@@ -7492,3 +7492,114 @@ docstring and comment now name the pairing that exists and record what
 they used to name. Manuscript: the count corrected, the seven named,
 the conservatism quantified. Artifact regenerated at forty-seven
 declarations, all axiom-clean. `P_0` unmoved. No certificate edit.
+
+## The omitted mixed mode in Theorem 6.3, and its short-interval repair
+
+*Mathematical target.* Audit the `OOEO*` sentence “Vaaler-expand the
+four waves” against the curvature calculation that follows it, then
+decide whether the same argument localizes to the length
+\(Y\asymp P^{37/64}\) inverse fibers needed by `OOEOEE`.
+
+*Novelty hypothesis.* The non-kernel drift argument remains valid after
+the fourth wave is retained, perhaps with a weaker truncation balance.
+
+*Falsifier.* A Fourier mode, moving-window boundary, carry, or majorant
+is absent from the displayed phase or costs the whole interval.
+
+**The falsifier fires against the printed proof.** The four-wave product
+contains
+\[
+ \frac j2Y+\frac k2w^{3/2},
+ \qquad Y=\lfloor n^{3/2}\rfloor^{3/2},
+ \qquad j,k\ne0.
+\]
+The subsequent \(\lambda_2\) calculation retains the \(k\)-wave and its
+window modes but drops \(jY/2\).  This is not a passenger: it is the
+exact nested phase for which Theorem 4.4 uses one Weyl \(A\)-process.
+There is no reduction to \(j=0\).  Independently, a centered frequency
+must be frozen before differentiation; writing an integer Fourier
+frequency dynamically as \(r=-B(n)+t\) is invalid.  Thus the printed
+\(N^{43/48+\varepsilon}\) proof is incomplete as written.
+
+**The centered window has an exact repair.** If
+\(B=N+\beta\), \(N=\lfloor B\rfloor\), \(0\le\beta<1\), then
+\[
+ e(-B\{t\})=e(-Nt)e(-\beta\{t\}).
+\]
+Apply Lemma 3.7 to the bounded coefficient \(\beta\), not to \(B\),
+and shift every produced frequency by the fixed integer \(-N\).  On a
+piece where \(B\) drifts by at most one, one further split fixes \(N\).
+The explicit coefficients of Lemma 3.7 satisfy
+\[
+ \sum_u(\lVert b_u\rVert_\infty+\operatorname{TV}b_u)
+ +\sum_q(\lVert v_q\rVert_\infty+\operatorname{TV}v_q)
+ \ll 1+\log T+\log J .
+\]
+The apparent singularity at \(u+\beta=0\) is removable.  Two centered
+expansions therefore cost only \(O(\log^2P)\) under Abel summation, with
+fixed supports.  Their product majorant is also accounted for: its
+nonconstant modes are \(qU+sX\); the \(sX\) curvature dominates when
+\(s\ne0\), and \(s=0\) is the pure-\(U\) estimate.
+
+**The omitted \(jY\) mode is repairable.** A fixed frequency from the
+first centered window has
+\[
+ |R|\ll |k|P^{9/16}+P^{1/4}.
+\]
+Do not replace \(RU\) by \(Rn^{9/8}\).  Instead use
+\[
+ U=\sqrt{\lfloor m^{3/2}\rfloor}=m^{3/4}+O(P^{-9/8}),
+\]
+whose total mode error is \(O(|k|P^{-9/16})\) per summand.  After the
+\(A\)-process write the existing first-level gap as
+\(g=m(n+2h)-m(n)=G+\kappa\), \(\kappa\in\{0,1\}\), and put
+\[
+ D_\kappa(n)=(X+G+\kappa)^{3/4}-X^{3/4},
+ \qquad X=n^{3/2}.
+\]
+Then
+\[
+ \Delta(m^{3/4})=D_\kappa(n)+O(hP^{-11/8}),
+ \qquad D_\kappa''(n)\ll hP^{-15/8}.
+\]
+Splitting the already-present binary carry introduces no new nesting,
+and
+\[
+ (R D_\kappa)''\ll |k|hP^{-21/16}.
+\]
+At \(|k|\le P^{1/48}\) this is below the retained
+\(|j|hP^{-3/4}\) curvature by \(P^{-13/24}\).  The remaining smooth
+passengers have at least the same margin.  Hence the unabsorbed proof of
+Theorem 4.12 applies on a drift piece of length \(Z\):
+\[
+ |S_D|\ll_\varepsilon P^\varepsilon
+ \bigl(ZP^{-1/24}+Z^{1/2}P^{3/16}\bigr).
+\]
+
+For \(Z\asymp P^{7/16}/|k|\), at most
+\(1+|k|YP^{-7/16}\) pieces meet the source interval.  Summing them gives
+\[
+ P^\varepsilon\left(
+ YP^{-1/24}+|k|^{1/2}YP^{-1/32}
+ +|k|^{-1/2}P^{13/32}+|k|^{-1}P^{19/48}
+ \right).
+\]
+Against the \(1/|k|\) Vaaler weights, truncation at \(P^a\) costs
+\(YP^{-a}\), while the mixed term costs \(YP^{-1/32+a/2}\).  Their
+optimum is \(a=1/48\), yielding
+\[
+ O_\varepsilon(YP^{-1/48+\varepsilon}).
+\]
+The first- and second-window majorants cost respectively
+\(YP^{-1/8}+P^{5/16}\) and \(YP^{-1/8}+P^{3/16}\); flat errors and
+pieces shorter than the differencing length are smaller.  Thus no
+majorant or endpoint term exceeds the new target.
+
+**Decision.** The stronger \(P^{-1/24}\) localization does not follow
+from this architecture: its partial-end-cell term forces the
+\(a=1/48\) balance.  The repaired \(P^{-1/48+\varepsilon}\) estimate is
+still a power saving and is sufficient for the proposed `OOEOEE`
+production.  This entry records the proof chain, not its integration:
+Theorem 6.3, its theorem-ledger row, and downstream quotations still
+print \(43/48\) and require a coordinated correction before the repair
+is promoted as an official theorem.  No termination claim is made.

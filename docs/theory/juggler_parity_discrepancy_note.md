@@ -4663,7 +4663,7 @@ coefficients \(n^{3/16}\) on \(\theta\) and \(n^{9/16}\) on
 =\tfrac N{32}+O\bigl(N^{1-1/96+\varepsilon}\bigr),
 \qquad
 \#\mathrm{OOEOE}(N),\;\#\mathrm{OOEOO}(N)
-=\tfrac N{32}+O\bigl(N^{43/48+\varepsilon}\bigr).
+=\tfrac N{32}+O\bigl(N^{47/48+\varepsilon}\bigr).
 \]
 Of these four words only \(OOOEE\) and \(OOEOE\) contract. The
 expanding tree \(OOOO*\) is not estimated: it is the level-3
@@ -4765,9 +4765,9 @@ the depth-4 class \(OOEO\), bounded by Theorem 4.7. For
 \(B=\tfrac{3k}4 v^{1/4}\asymp kn^{9/16}\) and
 \(C=\tfrac{9k}{16}n^{3/16}\), up to the decaying \(D_5'\). The
 remainder costs
-\(\lvert k\rvert\cdot P\cdot P^{-9/16}\ll P^{5/48+7/16}=P^{13/24}\)
-at the fifth-letter truncation \(P^{5/48}\) used below, inside
-\(P^{43/48}\). The leading sawtooth is of the
+\(\lvert k\rvert\cdot P\cdot P^{-9/16}\ll P^{1/48+7/16}=P^{11/24}\)
+at the fifth-letter truncation \(P^{1/48}\) used below, inside
+\(P^{47/48}\). The leading sawtooth is of the
 same species as Theorem 4.8, now riding
 \(\theta_w=\{v^{1/2}\}\).
 
@@ -4816,8 +4816,8 @@ with leading combination
 \(-\tfrac{297}{1024}+\tfrac{216}{1024}=-\tfrac{81}{1024}\ne0\).
 The \(t\)-error is
 \(O(P^{1/4-9/16})=O(P^{-5/16})\) and the \(J_*\)-error, at the
-truncation \(J_*=P^{5/48}\) used below, is
-\(O(P^{5/48-3/16})=O(P^{-1/12})\). Both are smaller than the
+truncation \(J_*=P^{1/48}\) used below, is
+\(O(P^{1/48-3/16})=O(P^{-1/6})\). Both are smaller than the
 leading coefficient, so \(\lambda_2\) is single-signed and
 \(\lambda_2\asymp kn^{-5/16}\). By Lemma 3.10(a) the curvature
 ratios and signs are invariant under \(n=2r+1\); Lemma 3.10(b)
@@ -4827,11 +4827,72 @@ reindexed bound.
 Lemma 3.3 on each \(I\):
 \(L_B\lambda_2^{1/2}+\lambda_2^{-1/2}
 \ll k^{-1/2}P^{9/32}+k^{-1/2}P^{5/32}\).
-Times \(\asymp kP^{9/16}\) intervals:
-\(S_k\ll k^{1/2}P^{27/32+\varepsilon}\). Balance
-\(J_*^{1/2}P^{27/32}=P/J_*\) at \(J_*=P^{5/48}\) gives
-\(P^{43/48}\). Dyadic blocks sum to
-\(N^{43/48+\varepsilon}\). \(\square\)
+The drift pieces have length \(Z\asymp P^{7/16}/\lvert k\rvert\), and
+at most \(1+\lvert k\rvert YP^{-7/16}\) of them meet a source interval
+of length \(Y\). With the unabsorbed estimate of Theorem 4.12 on a
+piece, \(\lvert S_D\rvert\ll_\varepsilon
+P^\varepsilon(ZP^{-1/24}+Z^{1/2}P^{3/16})\), summing the pieces gives
+\[
+P^\varepsilon\Bigl(
+YP^{-1/24}
++\lvert k\rvert^{1/2}YP^{-1/32}
++\lvert k\rvert^{-1/2}P^{13/32}
++\lvert k\rvert^{-1}P^{19/48}\Bigr).
+\]
+Against the \(1/\lvert k\rvert\) Vaaler weights, truncation at
+\(\lvert k\rvert\le P^{a}\) costs \(YP^{-a}\) while the second term
+costs \(YP^{-1/32+a/2}\); the two balance at \(a=\tfrac1{48}\), which
+is the fifth-letter truncation used above. Hence
+\(O_\varepsilon(YP^{-1/48+\varepsilon})\), and dyadic blocks sum to
+\(N^{47/48+\varepsilon}\). The third and fourth terms are
+\(P^{13/32}\) and \(P^{19/48}\), both far inside this, and the two
+window majorants cost \(YP^{-1/8}+P^{5/16}\) and
+\(YP^{-1/8}+P^{3/16}\). \(\square\)
+
+> *Erratum (the omitted mixed mode, and the exponent it costs).* Until
+> this revision the second half of Theorem 6.3 was printed at
+> \(N^{43/48+\varepsilon}\), on a proof with two defects.
+>
+> First, the four-wave product carries
+> \(\tfrac j2Y+\tfrac k2w^{3/2}\) with \(Y=\lfloor n^{3/2}\rfloor^{3/2}\)
+> and \(j,k\ne0\); the \(\lambda_2\) calculation retained the \(k\)-wave
+> and its window modes and dropped \(jY/2\). That term is not a
+> passenger --- it is the nested phase for which Theorem 4.4 spends one
+> Weyl \(A\)-process --- and there is no reduction to \(j=0\). Second, a
+> centered Fourier frequency was written dynamically as \(r=-B(n)+t\);
+> a frequency must be frozen before differentiation.
+>
+> Both are repairable. For the window, put \(B=N+\beta\) with
+> \(N=\lfloor B\rfloor\) and \(0\le\beta<1\), so that
+> \(e(-B\{t\})=e(-Nt)\,e(-\beta\{t\})\): apply Lemma 3.7 to the bounded
+> \(\beta\) and shift every produced frequency by the fixed integer
+> \(-N\), splitting once more on each piece where \(B\) drifts by one.
+> The apparent singularity at \(u+\beta=0\) is removable, and the two
+> centered expansions cost \(O(\log^2P)\) under Abel summation with
+> fixed supports.
+>
+> For the omitted mode, do not replace \(RU\) by \(Rn^{9/8}\). Use
+> \(U=\sqrt{\lfloor m^{3/2}\rfloor}=m^{3/4}+O(P^{-9/8})\), whose mode
+> error is \(O(\lvert k\rvert P^{-9/16})\) per summand, and after the
+> \(A\)-process write the existing first-level gap as
+> \(g=G+\kappa\), \(\kappa\in\{0,1\}\), with
+> \(D_\kappa(n)=(X+G+\kappa)^{3/4}-X^{3/4}\) and \(X=n^{3/2}\). Then
+> \(\Delta(m^{3/4})=D_\kappa(n)+O(hP^{-11/8})\),
+> \(D_\kappa''\ll hP^{-15/8}\) and
+> \((RD_\kappa)''\ll\lvert k\rvert hP^{-21/16}\), which at
+> \(\lvert k\rvert\le P^{1/48}\) sits below the retained
+> \(\lvert j\rvert hP^{-3/4}\) curvature by \(P^{-13/24}\). Splitting
+> the carry that is already there introduces no new nesting.
+>
+> What the repair costs is the exponent. The surviving balance is
+> \(a=\tfrac1{48}\) rather than the \(J_*=P^{5/48}\) of the old
+> display, so the saving is \(P^{-1/48+\varepsilon}\) and not
+> \(P^{-5/48+\varepsilon}\). The stronger \(P^{-1/24}\) localization
+> does not follow from this architecture --- the partial-end-cell term
+> forces the \(1/48\) balance. Corollary 6.4 is unaffected in form:
+> \(47/48=94/96\) is still below \(1-\tfrac1{96}=95/96\), so the
+> combined error remains \(N^{1-1/96+\varepsilon}\), now with one
+> ninety-sixth of room rather than nine.
 
 **Corollary 6.4 (certified-descent density \(7/8\)).**
 The five uniform certificate classes
@@ -4847,7 +4908,7 @@ are disjoint, and
 \[
 \bigl|\#\{n\le N:\mathrm{word}(n)\ \text{has prefix }OOEOE\}
 -\tfrac N{32}\bigr|
-\ll_\varepsilon N^{43/48+\varepsilon}.
+\ll_\varepsilon N^{47/48+\varepsilon}.
 \]
 Hence the class of starts with a certified descent within five
 steps has cardinality
@@ -5194,7 +5255,7 @@ window, and otherwise becomes part of what the kernel is a kernel
 
 | split | deepest blocked | monomial | \(>9/4\) | status |
 |---|---|---|---|---|
-| \(OOEO*\), letter 5 | none | --- | none | \(N^{43/48}\), windows only |
+| \(OOEO*\), letter 5 | none | --- | none | \(N^{47/48}\), windows only |
 | \(OOO*\), letter 4 | level \(2\), \(3/2\) | \(\tfrac{3k}4n^{9/8}\) | none | Thm 5.3 |
 | \(OOOO*\), letter 5 | level \(3\), \(3/2\) | \(\tfrac{3k}4n^{27/16}\) | \(57/16,\ 45/16\) | open (Conj. 7.3) |
 | \(OOOEOEE\), letter 6 | level \(1\), \(3/2\) | \(\tfrac{27k}{32}n^{33/32}\) | none | --- |
@@ -5221,13 +5282,16 @@ Depth five grades three ways, and so does the criterion:
 
 | word | blocked | the paper |
 |---|---|---|
-| \(OOEOE,\ OOEOO\) | none | Theorem 6.3, \(N^{43/48}\), windows only |
+| \(OOEOE,\ OOEOO\) | none | Theorem 6.3, \(N^{47/48}\), windows only |
 | \(OOOEE,\ OOOEO\) | letter 4, level \(2\) | Theorem 6.3, \(N^{1-1/96}\), on Theorem 6.1's kernel |
 | \(OOOOE,\ OOOOO\) | letters 4 and 5, levels \(2\) and \(3\) | open |
 
-The unblocked pair even carries the better error exponent, \(43/48\)
-against \(1-\tfrac1{96}\), which is what an argument that never needs a
-kernel should give. Two depths, sixteen words, three outcomes, no
+The unblocked pair still carries the better error exponent, \(47/48\)
+against \(1-\tfrac1{96}\) --- that is \(94/96\) against
+\(95/96\), a margin of one ninety-sixth, where the superseded
+\(43/48\) claimed nine. The direction is what an argument that never
+needs a kernel should give; the size of it is no longer evidence of
+anything. Two depths, sixteen words, three outcomes, no
 exceptions: that is the ground for reading the table above at depths
 where nothing is proved.
 

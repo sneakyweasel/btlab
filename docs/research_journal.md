@@ -38580,3 +38580,26 @@ its Tao-type consequence kernel-checked end to end; before, the Juggler
 input ("the live counts are a WeightSplit weight") was a sentence.
 Ledger row J-live-count-weight; export note, failure-margin dossier and
 branch-ledger row updated.
+
+## The positive part is not needed
+
+Paper C's no-momentum hypothesis bounds sum_{t<d} (s_theta(t) - q)^+,
+and Proposition 9.3 pays for each depth with a_q exp(c_q (s_t - q)^+).
+The one-step bound Z_{t+1} <= Z_t (1 + (e^theta - 1) s_t) telescopes to
+a product, and AM-GM (Jensen for log) bounds the product by the d-th
+power of the mean factor: Z_d <= Z_0 (1 + (e^theta - 1) s-bar_d)^d with
+s-bar_d the depth-average of the tilted share. So the hypothesis needed
+is the mean form, MeanShare mu x q d := sum_{t<d} s_t <= q d, with no
+positive part and no exponential slack; NoMomentum with slack delta
+implies MeanShare at q + delta, and MeanShare gives the Tao-type count
+Z_0 a_q^d / x^k directly (TiltedShare.lean: prod_le_mean_pow,
+weightGen_le_prod, MeanShare, meanShare_of_noMomentum,
+weightGen_le_of_meanShare, count_le_of_meanShare;
+LiveCountWeight.lean: juggler_count_le_of_meanShare; axioms propext,
+Classical.choice, Quot.sound only). What changes: depths where the
+tilted share falls below q compensate depths where it exceeds q. What
+does not: s_t already averages over every start at depth t, so the two
+forms differ only in depth-to-depth variation, and the wall (the tilted
+odd share of tall towers over sparse bases) is the same. Recorded as
+J-mean-share-form; export note and failure-margin dossier carry the
+mean form as the statement to prove.

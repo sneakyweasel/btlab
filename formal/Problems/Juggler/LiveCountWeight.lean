@@ -172,4 +172,32 @@ theorem juggler_count_le_of_noMomentum (N0 N : ℕ) (x q δ : ℝ) (hx : 1 ≤ x
         apply mul_le_mul_of_nonneg_right _ hexp
         exact mul_le_mul_of_nonneg_right hZ hpow
 
+/-- **The Tao-type count on Juggler orbits from the mean share.**  If the
+tilted odd share of the live count averages at most `q` over the depths
+below `d` (`MeanShare`), the number of starts in `{1, …, N}` that stay
+above `N0` for `d` steps with at least `k` odd letters is at most
+`N · a_q^d / x^k`. -/
+theorem juggler_count_le_of_meanShare (N0 N : ℕ) (x q : ℝ) (hx : 1 ≤ x)
+    (hq : 0 ≤ q) (d k : ℕ) (hM : MeanShare (liveWeight N0 N) x q d) :
+    (((Icc 1 N).filter
+        (fun n => liveTo N0 n d ∧ k ≤ oddCount (itinerary n d))).card : ℝ) ≤
+      N * (1 + (x - 1) * q) ^ d / x ^ k := by
+  have hsum : (((Icc 1 N).filter
+        (fun n => liveTo N0 n d ∧ k ≤ oddCount (itinerary n d))).card : ℝ) =
+      ∑ w ∈ (allWords d).filter (fun w => k ≤ oddCount w), liveWeight N0 N w := by
+    rw [liveCount_sum_oddCount, Nat.cast_sum]
+    rfl
+  rw [hsum]
+  have hZ := liveWeight_weightGen_zero_le N0 N x
+  have ha0 : 0 < 1 + (x - 1) * q := by nlinarith
+  have hpow : 0 ≤ (1 + (x - 1) * q) ^ d := pow_nonneg ha0.le d
+  have hxk : 0 ≤ x ^ k := pow_nonneg (by linarith) k
+  calc (∑ w ∈ (allWords d).filter (fun w => k ≤ oddCount w), liveWeight N0 N w)
+      ≤ weightGen (liveWeight N0 N) x 0 * (1 + (x - 1) * q) ^ d / x ^ k :=
+        count_le_of_meanShare _ x q (liveWeight_nonneg N0 N)
+          (liveWeight_weightSplit N0 N) hx hq d k hM
+    _ ≤ N * (1 + (x - 1) * q) ^ d / x ^ k := by
+        apply div_le_div_of_nonneg_right _ hxk
+        exact mul_le_mul_of_nonneg_right hZ hpow
+
 end Problems.Juggler

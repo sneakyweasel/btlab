@@ -1,3 +1,4 @@
+import Mathlib.Analysis.Convex.SpecificFunctions.Basic
 import Mathlib.Analysis.SpecialFunctions.Exp
 import Problems.Juggler.RateFreeDensity
 
@@ -227,5 +228,123 @@ theorem tilt_exponent_eq_kl (p q : ℝ) (hq0 : 0 < q) (hqp : q < p) (hp1 : p < 1
     Real.log_div h1p.ne' h1q.ne'
   rw [ha, h1, h2, h3, h4]
   ring
+
+/-- AM–GM in the form used below: a product of `d` positive reals is at
+most the `d`-th power of their mean (Jensen for `Real.log`). -/
+theorem prod_le_mean_pow (d : ℕ) (hd : 0 < d) (z : ℕ → ℝ)
+    (hz : ∀ t ∈ Finset.range d, 0 < z t) :
+    ∏ t ∈ Finset.range d, z t ≤ ((∑ t ∈ Finset.range d, z t) / d) ^ d := by
+  have hdR : (0 : ℝ) < d := by exact_mod_cast hd
+  have hd0 : (d : ℝ) ≠ 0 := hdR.ne'
+  have hw : ∀ t ∈ Finset.range d, (0 : ℝ) ≤ 1 / d := fun _ _ => by positivity
+  have hw1 : ∑ t ∈ Finset.range d, (1 / (d : ℝ)) = 1 := by
+    rw [Finset.sum_const, Finset.card_range, nsmul_eq_mul]
+    field_simp
+  have hmem : ∀ t ∈ Finset.range d, z t ∈ Set.Ioi (0 : ℝ) := fun t ht => hz t ht
+  have hJ := (strictConcaveOn_log_Ioi.concaveOn).le_map_sum hw hw1 hmem
+  simp only [smul_eq_mul] at hJ
+  rw [← Finset.mul_sum, ← Finset.mul_sum] at hJ
+  have hprod : 0 < ∏ t ∈ Finset.range d, z t := Finset.prod_pos hz
+  have hsum : 0 < ∑ t ∈ Finset.range d, z t :=
+    Finset.sum_pos hz (Finset.nonempty_range_iff.mpr hd.ne')
+  have hmean : 0 < (∑ t ∈ Finset.range d, z t) / d := div_pos hsum hdR
+  rw [← Real.log_le_log_iff hprod (pow_pos hmean d), Real.log_pow,
+    Real.log_prod (fun t ht => (hz t ht).ne')]
+  have hrepr : (∑ t ∈ Finset.range d, z t) / d = 1 / d * ∑ t ∈ Finset.range d, z t := by
+    ring
+  rw [hrepr]
+  calc (∑ t ∈ Finset.range d, Real.log (z t))
+      = d * (1 / d * ∑ t ∈ Finset.range d, Real.log (z t)) := by
+        field_simp
+    _ ≤ d * Real.log (1 / d * ∑ t ∈ Finset.range d, z t) :=
+        mul_le_mul_of_nonneg_left hJ hdR.le
+
+/-- The product form of the telescoping: `Z_d ≤ Z_0 ∏_{t<d} (1 + (x-1) s_t)`. -/
+theorem weightGen_le_prod (μ : List Branch → ℝ) (x : ℝ)
+    (hμ : ∀ w, 0 ≤ μ w) (hsplit : WeightSplit μ) (hx : 1 ≤ x) (d : ℕ) :
+    weightGen μ x d ≤
+      weightGen μ x 0 * ∏ t ∈ Finset.range d, (1 + (x - 1) * tiltedShare μ x t) := by
+  have hx0 : (0 : ℝ) ≤ x := by linarith
+  induction d with
+  | zero => simp
+  | succ d ih =>
+      have hstep := weightGen_succ_le_share μ x hμ hsplit hx d
+      have hs : 0 ≤ tiltedShare μ x d :=
+        div_nonneg (oddMass_nonneg μ x hμ hx0 d) (weightGen_nonneg μ x hμ hx0 d)
+      have hfac : 0 ≤ 1 + (x - 1) * tiltedShare μ x d := by nlinarith
+      rw [Finset.prod_range_succ]
+      calc weightGen μ x (d + 1)
+          ≤ weightGen μ x d * (1 + (x - 1) * tiltedShare μ x d) := hstep
+        _ ≤ (weightGen μ x 0 * ∏ t ∈ Finset.range d, (1 + (x - 1) * tiltedShare μ x t)) *
+              (1 + (x - 1) * tiltedShare μ x d) := mul_le_mul_of_nonneg_right ih hfac
+        _ = _ := by ring
+
+/-- The mean-share hypothesis: the tilted odd share averages at most `q`
+over the depths below `d`.  No positive part: depths with share below
+`q` compensate depths with share above it. -/
+def MeanShare (μ : List Branch → ℝ) (x q : ℝ) (d : ℕ) : Prop :=
+  (∑ t ∈ Finset.range d, tiltedShare μ x t) ≤ q * d
+
+/-- No momentum against `q` with slack `δ` gives mean share at most `q + δ`. -/
+theorem meanShare_of_noMomentum (μ : List Branch → ℝ) (x q δ : ℝ) (d : ℕ)
+    (hM : NoMomentum μ x q δ d) : MeanShare μ x (q + δ) d := by
+  unfold MeanShare
+  unfold NoMomentum at hM
+  have h : ∑ t ∈ Finset.range d, tiltedShare μ x t ≤
+      ∑ t ∈ Finset.range d, (q + max (tiltedShare μ x t - q) 0) := by
+    apply Finset.sum_le_sum
+    intro t _
+    linarith [le_max_left (tiltedShare μ x t - q) 0]
+  rw [Finset.sum_add_distrib, Finset.sum_const, Finset.card_range, nsmul_eq_mul] at h
+  linarith
+
+/-- Under the mean-share hypothesis the depth-`d` tilted mass is at most
+`Z_0 a_q^d`, with no exponential slack: AM–GM on the product form. -/
+theorem weightGen_le_of_meanShare (μ : List Branch → ℝ) (x q : ℝ)
+    (hμ : ∀ w, 0 ≤ μ w) (hsplit : WeightSplit μ) (hx : 1 ≤ x) (_hq : 0 ≤ q) (d : ℕ)
+    (hM : MeanShare μ x q d) :
+    weightGen μ x d ≤ weightGen μ x 0 * (1 + (x - 1) * q) ^ d := by
+  rcases Nat.eq_zero_or_pos d with hd | hd
+  · subst hd
+    simp
+  · have hx0 : (0 : ℝ) ≤ x := by linarith
+    have hZ0 : 0 ≤ weightGen μ x 0 := weightGen_nonneg μ x hμ hx0 0
+    have hpos : ∀ t ∈ Finset.range d, 0 < 1 + (x - 1) * tiltedShare μ x t := by
+      intro t _
+      have hs : 0 ≤ tiltedShare μ x t :=
+        div_nonneg (oddMass_nonneg μ x hμ hx0 t) (weightGen_nonneg μ x hμ hx0 t)
+      nlinarith
+    have hamgm := prod_le_mean_pow d hd (fun t => 1 + (x - 1) * tiltedShare μ x t) hpos
+    have hdR : (0 : ℝ) < d := by exact_mod_cast hd
+    have hmean0 : 0 ≤ (∑ t ∈ Finset.range d, (1 + (x - 1) * tiltedShare μ x t)) / d :=
+      div_nonneg (Finset.sum_nonneg (fun t ht => (hpos t ht).le)) hdR.le
+    have hmean : (∑ t ∈ Finset.range d, (1 + (x - 1) * tiltedShare μ x t)) / d ≤
+        1 + (x - 1) * q := by
+      rw [Finset.sum_add_distrib, Finset.sum_const, Finset.card_range, nsmul_eq_mul,
+        ← Finset.mul_sum, div_le_iff₀ hdR]
+      have h := mul_le_mul_of_nonneg_left hM (by linarith : (0 : ℝ) ≤ x - 1)
+      unfold MeanShare at hM
+      nlinarith
+    calc weightGen μ x d
+        ≤ weightGen μ x 0 * ∏ t ∈ Finset.range d, (1 + (x - 1) * tiltedShare μ x t) :=
+          weightGen_le_prod μ x hμ hsplit hx d
+      _ ≤ weightGen μ x 0 *
+            ((∑ t ∈ Finset.range d, (1 + (x - 1) * tiltedShare μ x t)) / d) ^ d :=
+          mul_le_mul_of_nonneg_left hamgm hZ0
+      _ ≤ weightGen μ x 0 * (1 + (x - 1) * q) ^ d :=
+          mul_le_mul_of_nonneg_left (pow_le_pow_left₀ hmean0 hmean d) hZ0
+
+/-- The Tao-type count under the mean-share hypothesis:
+`#{o_d ≥ k} ≤ Z_0 a_q^d / x^k`, with no exponential slack. -/
+theorem count_le_of_meanShare (μ : List Branch → ℝ) (x q : ℝ)
+    (hμ : ∀ w, 0 ≤ μ w) (hsplit : WeightSplit μ) (hx : 1 ≤ x) (hq : 0 ≤ q) (d k : ℕ)
+    (hM : MeanShare μ x q d) :
+    (∑ w ∈ (allWords d).filter (fun w => k ≤ oddCount w), μ w) ≤
+      weightGen μ x 0 * (1 + (x - 1) * q) ^ d / x ^ k := by
+  have hxk : 0 ≤ x ^ k := pow_nonneg (by linarith) k
+  calc (∑ w ∈ (allWords d).filter (fun w => k ≤ oddCount w), μ w)
+      ≤ weightGen μ x d / x ^ k := weight_markov μ x d k hx hμ
+    _ ≤ _ := div_le_div_of_nonneg_right
+      (weightGen_le_of_meanShare μ x q hμ hsplit hx hq d hM) hxk
 
 end Problems.Juggler

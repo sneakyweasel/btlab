@@ -4019,7 +4019,7 @@
  {
   "id": "J-depth5-contracting",
   "tag": "EXACT — HUMAN PROOF",
-  "statement": "Theorem T, Phase-27 repair, imported as Paper B Theorem 6.3: #OOOEE(N), #OOOEO(N) = N/32 + O(N^{1-1/96+eps}) and #OOEOE(N), #OOEOO(N) = N/32 + O(N^{43/48+eps}). The fifth-letter X-modes of the OOOE* sawtooth C θ, C ≍ l n^{3/16}, are Lemma 5.2 Stage-2 r-modes e(u X) with |u| ≤ P^{1/4} after Lemma 3.7 at T = R_0 = P^{1/4} and J_5 = 2 P^{1/96} (T ≥ 8(1+|C|) since |C| = O(P^{19/96})); they are not Lemma 5.2(ii) decorations and do not enlarge |q'|. Theorem 6.1 Steps D–E apply: the i-passenger stays (D3), the frozen theta-coefficient B = 27/32 k j nu^{3/8} is unchanged by the X-modes, and the sign-critical composites 243/512 and 1095/1024 survive. The OOEO* curvature λ_2 = (-81/1024) k n^{-5/16} + lower terms keeps sign under Lemma 3.10(a). Withdrawn from Paper B in Phase 26; restored in the laboratory record (lemma Part XII) and imported 2 September 2026. Not a termination claim.",
+  "statement": "Theorem T, Phase-27 repair, imported as Paper B Theorem 6.3: #OOOEE(N), #OOOEO(N) = N/32 + O(N^{1-1/96+eps}) and #OOEOE(N), #OOEOO(N) = N/32 + O(N^{47/48+eps}). The fifth-letter X-modes of the OOOE* sawtooth C θ, C ≍ l n^{3/16}, are Lemma 5.2 Stage-2 r-modes e(u X) with |u| ≤ P^{1/4} after Lemma 3.7 at T = R_0 = P^{1/4} and J_5 = 2 P^{1/96} (T ≥ 8(1+|C|) since |C| = O(P^{19/96})); they are not Lemma 5.2(ii) decorations and do not enlarge |q'|. Theorem 6.1 Steps D–E apply: the i-passenger stays (D3), the frozen theta-coefficient B = 27/32 k j nu^{3/8} is unchanged by the X-modes, and the sign-critical composites 243/512 and 1095/1024 survive. The OOEO* curvature λ_2 = (-81/1024) k n^{-5/16} + lower terms keeps sign under Lemma 3.10(a). Withdrawn from Paper B in Phase 26; restored in the laboratory record (lemma Part XII) and imported 2 September 2026. Not a termination claim.",
   "source": "docs/research/juggler_two_step_parity_lemma.md",
   "lean": "",
   "tests": [
@@ -7355,6 +7355,19 @@
   "tag": "EXACT — LEAN VERIFIED",
   "statement": "The live count liveCount N0 N w = #{n in [1,N] : itinerary n |w| = w and n, J n, ..., J^|w| n all exceed N0} is a WeightSplit weight (liveWeight_weightSplit: the two one-letter extensions have disjoint live classes inside the parent's), and juggler_count_le_of_noMomentum instantiates the chain on it: if NoMomentum (liveWeight N0 N) x q delta d holds, then #{n in [1,N] : live for d steps, oddCount(itinerary n d) >= k} <= N a_q^d exp(c_q delta d) / x^k with a_q = 1 + (x-1) q, c_q = (x-1)/a_q. The fibrewise identity liveCount_sum_oddCount writes that count as the sum of live counts over the words with at least k odd letters. So the no-momentum hypothesis is now a proposition about itineraries of floorPower, not about an abstract weight. Axioms propext, Classical.choice, Quot.sound only.",
   "lean": "formal/Problems/Juggler/LiveCountWeight.lean",
+  "related_conjectures": [
+   "juggler_loglog_depth_cylinder_bound"
+  ],
+  "source": "docs/problems/juggler_failure_margin.md",
+  "tests": [
+   "tests/research/juggler_sequence/test_layer_architecture.py"
+  ]
+ },
+ {
+  "id": "J-mean-share-form",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Mean-share form of the no-momentum hypothesis. MeanShare mu x q d := sum_{t<d} s_t <= q d, with s_t the tilted odd share of the WeightSplit weight mu at tilt x. Then (weightGen_le_of_meanShare) Z_d <= Z_0 a_q^d with a_q = 1 + (x-1) q and no exponential slack, by the product form Z_d <= Z_0 prod_{t<d} (1 + (x-1) s_t) (weightGen_le_prod) and AM-GM (prod_le_mean_pow, Jensen for log); hence (count_le_of_meanShare) #{o_d >= k} <= Z_0 a_q^d / x^k, and on the live count (juggler_count_le_of_meanShare) #{n in [1,N] : live for d steps, oddCount >= k} <= N a_q^d / x^k. NoMomentum mu x q delta d implies MeanShare mu x (q + delta) d (meanShare_of_noMomentum), so the mean form is the weaker sufficient hypothesis: Paper C's M_(theta,q) bounds the positive excursions sum (s_t - q)^+; only the depth-average of s_t is needed, and depths with share below q compensate depths above it. The difference is depth-to-depth variation only, since s_t already averages over all starts at depth t. Axioms propext, Classical.choice, Quot.sound only.",
+  "lean": "formal/Problems/Juggler/TiltedShare.lean",
   "related_conjectures": [
    "juggler_loglog_depth_cylinder_bound"
   ],

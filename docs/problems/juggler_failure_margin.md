@@ -110,8 +110,11 @@ a proposition, `count_le_of_noMomentum` the count under it, and
 at the re-centring tilt. `LiveCountWeight.lean` instantiates the chain on
 the live count of starts (`liveWeight_weightSplit`,
 `juggler_count_le_of_noMomentum`), so the hypothesis and its count are
-statements about itineraries of the map. The contagion rate theorem
-stays prose.
+statements about itineraries of the map. `MeanShare` is the mean form
+of the hypothesis (depth-average of the tilted share at most \(q\), no
+positive part), weaker than `NoMomentum` and still sufficient
+(`weightGen_le_of_meanShare`, AM–GM on the product form). The
+contagion rate theorem stays prose.
 
 ## Results
 

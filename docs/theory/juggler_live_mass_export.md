@@ -50,6 +50,18 @@ when odd-heavy live prefixes are up-weighted exponentially.
 \(\sum_{t<d(y)}\bigl(s_\theta(t)-q\bigr)^+=o(d(y))\) for all large
 \(y\).
 
+**Mean form (weaker, and enough).** Only the depth-average is needed:
+\(\frac1{d}\sum_{t<d}s_\theta(t)\le q+o(1)\) already gives
+\(Z_d\le Z_0a_q^{\,d}e^{o(d)}\), by AM–GM on the product form
+\(Z_d\le Z_0\prod_{t<d}(1+(e^\theta-1)s_\theta(t))\)
+(`MeanShare`, `weightGen_le_of_meanShare`, `count_le_of_meanShare`,
+`juggler_count_le_of_meanShare`; kernel-checked). The positive part in
+\(\mathrm M_{\theta,q}\) is not used: depths where the tilted share
+falls below \(q\) compensate depths where it exceeds \(q\). Since
+\(s_\theta(t)\) already averages over every start at depth \(t\), the
+two forms differ only in depth-to-depth variation; the mean form is the
+one to prove.
+
 **Theorem (kernel-checked reduction, `TiltedShare.lean`).** For any
 nonnegative word weight whose two children never exceed their parent
 (the live counts), with \(x=e^\theta\), \(a_q=1+(x-1)q\),
@@ -170,5 +182,6 @@ coordinate (the bracket in \(n\), the sub-density in the top variable).
 `NoMomentum` with its count, and the identity
 \(\theta p-\ln a_{\theta,q}=D(p\|q)\)), `LiveCountWeight.lean` (the live
 count of starts is such a weight, and the Tao-type count on Juggler
-itineraries follows from `NoMomentum` on it). Prose: the contagion rate
+itineraries follows from `NoMomentum`, or from the weaker `MeanShare`,
+on it). Prose: the contagion rate
 theorem and Paper B's estimates.
