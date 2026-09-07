@@ -147,6 +147,16 @@ Juggler Lean modules and probes: follow the registration sections in
 - Mathlib names used here: `Nat.eq_sqrt`, `Nat.le_sqrt`, `Nat.sqrt_lt`,
   `Nat.pow_le_pow_iff_left`, `Function.iterate_fixed`,
   `Function.iterate_mul`, `Function.iterate_add_apply`.
+- **`lake build` does not build everything.** `defaultTargets` is
+  `BTCalculus` and `Problems`, and the two paper barrels
+  `Problems.JugglerPaper` / `Problems.JugglerParityPaper` are not
+  imported by `Problems.lean`, so a plain `lake build` leaves them
+  untouched. After any toolchain change build them by name, or
+  `AxiomCheckPaperB.lean` fails on a stale olean with *incompatible
+  header* and `test_manuscript_self_audit.py` reports it as a
+  manuscript defect. `.lake/build` also carries orphan oleans whose
+  sources were deleted (37 at the v4.33.1 bump); they are inert, but
+  they make any stale-artifact sweep look alarming.
 
 ## prove2.me and Formalpedia (external platform)
 

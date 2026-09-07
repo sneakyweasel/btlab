@@ -38655,3 +38655,41 @@ a Fourier frequency dynamically. Neither defect showed up in any
 check, because every check compared numbers and the defect was in the
 argument. The new number is worse and it is the one the argument
 supports.
+
+## Lean v4.33.1: the laboratory now shares the prove2.me environment
+
+`formal/` moves from Lean v4.33.0 with Mathlib db584cd6 to v4.33.1 with
+Mathlib 0df444a3, which is the default environment of the prove2.me
+platform. The jump is one Mathlib commit, "chore: bump toolchain to
+v4.33.1", and that commit changes exactly one line, `lean-toolchain`,
+so Mathlib's source is byte-identical across it. None of the 194 Lean
+files needed an adaptation. `lake update mathlib` re-resolved the
+manifest and left every other dependency at its existing revision, the
+cache fetch pulled 8690 oleans, and the layer rebuilt clean.
+
+What it buys: proof text now carries between `formal/` and the platform
+unchanged apart from its imports, so a solution that compiles here
+compiles on the server, and a Formalpedia result ports without any
+environment work. Cross-environment imports remain impossible in either
+direction, but that is the platform's import mechanism rather than a
+version gap: a submitted solution may import only `Theorems.Thm_*` and
+`Definitions.Def_*`.
+
+One operational finding, worth more than the bump. `lake build` builds
+`defaultTargets` only, and the two paper barrels `Problems.JugglerPaper`
+and `Problems.JugglerParityPaper` are not imported by `Problems.lean`,
+so the successful build left their oleans at the old toolchain and
+`AxiomCheckPaperB.lean` failed with "incompatible header". The suite
+reports that as `test_the_axiom_check_actually_runs`, which reads like
+a manuscript defect and is really a build-coverage gap. Building the
+two barrels by name fixed it, and the axiom check then reproduced
+`AxiomCheckPaperB.expected` exactly, all 47 declarations on
+[propext, Classical.choice, Quot.sound]. Recorded in the AGENTS.md
+environment notes. A separate sweep found 37 orphan oleans whose
+sources were deleted long ago; they are inert and were left alone.
+
+Records: the environment block of the finite-dynamics note and its
+review mirror, the Paper B audit ledger line, the Ostrowski dossier's
+Formalization section, the AGENTS.md prove2.me section and environment
+notes, and the skill's environment table. Journal entries naming
+v4.33.0 are historical and stay as written.
