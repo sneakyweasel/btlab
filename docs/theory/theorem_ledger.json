@@ -7330,5 +7330,18 @@
   "tests": [
    "tests/research/juggler_sequence/test_failure_margin.py"
   ]
+ },
+ {
+  "id": "J-tilted-share-telescoping",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Paper C Proposition 9.3 on the word-weight framework of RateFreeDensity. For a nonnegative word weight mu with WeightSplit (each word's two children carry at most the parent's weight) and x >= 1: the tilted generating function Z_d = weightGen mu x d satisfies Z_{d+1} <= Z_d + (x-1) oddMass_d (weightGen_succ_le) and Z_{d+1} <= Z_d (1 + (x-1) s_d) with s_d = tiltedShare mu x d = oddMass_d / Z_d (weightGen_succ_le_share); for 0 <= q, 1 + (x-1)s <= a_q exp(c_q max(s-q,0)) with a_q = 1 + (x-1)q, c_q = (x-1)/a_q (one_add_le_exp_excess); hence Z_d <= Z_0 a_q^d exp(c_q sum_{t<d} max(s_t - q, 0)) (weightGen_le_pressure), and with weight_markov the mass of words with at least k odd letters is at most that over x^k (count_le_pressure). This is the reduction M_{theta,q} => P_theta => Tao-type count, kernel-checked; axioms propext, Classical.choice, Quot.sound only.",
+  "lean": "Problems/Juggler/TiltedShare.lean",
+  "related_conjectures": [
+   "juggler_loglog_depth_cylinder_bound"
+  ],
+  "source": "docs/problems/juggler_failure_margin.md",
+  "tests": [
+   "tests/research/juggler_sequence/test_layer_architecture.py"
+  ]
  }
 ]

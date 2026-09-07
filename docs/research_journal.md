@@ -38506,3 +38506,22 @@ Why
 Best next question
 - none on this line
 ```
+
+## Proposition 9.3 is now Lean
+
+`formal/Problems/Juggler/TiltedShare.lean`, kernel-checked with axioms
+`propext`, `Classical.choice`, `Quot.sound` only, on the word-weight
+framework of `RateFreeDensity`: `oddMass` and `tiltedShare` (the tilted
+odd share s_theta(d) = oddMass_d / Z_d), `weightGen_succ_le` and
+`weightGen_succ_le_share` (Z_{d+1} <= Z_d (1 + (x-1) s_d), the
+one-depth telescoping), `one_add_le_exp_excess`
+(1 + (x-1)s <= a_q exp(c_q (s-q)^+)), `weightGen_le_pressure`
+(Z_d <= Z_0 a_q^d exp(c_q sum_{t<d} (s_t-q)^+), Proposition 9.3), and
+`count_le_pressure` joining it to the existing `weight_markov` for the
+Tao-type count. The only Juggler input is `WeightSplit`. So the chain
+M_(theta,q) => P_theta => Tao-type count is machine-checked; the
+contagion rate theorem and the identity theta p - ln a = D(p||q) stay
+prose. Registered in the barrel and `LAYERS`; layer test and
+`lake build Problems.Juggler` pass. Ledger row
+`J-tilted-share-telescoping`; the failure-margin dossier's
+Formalization section names the theorems.

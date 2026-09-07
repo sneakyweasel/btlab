@@ -126,6 +126,7 @@ LAYERS: dict[str, Path] = {
     "FateContagion": JUGGLER_DIR / "FateContagion.lean",
     "LogLogClock": JUGGLER_DIR / "LogLogClock.lean",
     "TowerAbsorption": JUGGLER_DIR / "TowerAbsorption.lean",
+    "TiltedShare": JUGGLER_DIR / "TiltedShare.lean",
 }
 
 DYNAMICS = LAYERS["Dynamics"]

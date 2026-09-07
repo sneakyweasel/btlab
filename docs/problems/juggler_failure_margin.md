@@ -93,8 +93,19 @@ None.
 
 ## Formalization
 
-None; the identity is a two-line real-arithmetic computation. Not
-opened.
+The two unconditional ingredients are now kernel-checked on the
+word-weight framework of `RateFreeDensity`
+(`formal/Problems/Juggler/TiltedShare.lean`; axioms `propext`,
+`Classical.choice`, `Quot.sound` only): `weightGen_succ_le_share` is
+the one-depth telescoping \(Z_{d+1}\le Z_d(1+(x-1)s_d)\) with
+`tiltedShare` the tilted odd share; `one_add_le_exp_excess` is
+\(1+(x-1)s\le a_q\exp(c_q(s-q)^+)\); `weightGen_le_pressure` is
+Proposition 9.3, \(Z_d\le Z_0a_q^d\exp(c_q\sum_{t<d}(s_t-q)^+)\); and
+`count_le_pressure` joins it to the existing `weight_markov` for the
+Tao-type count \(\le Z_0a_q^d\exp(\cdots)/x^k\). The only Juggler
+input is `WeightSplit` (children carry at most the parent's weight),
+which the live counts satisfy. The contagion rate theorem and the
+identity \(\theta p-\ln a=D(p\|q)\) stay prose.
 
 ## Results
 

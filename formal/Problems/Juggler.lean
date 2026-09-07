@@ -88,6 +88,7 @@ import Problems.Juggler.CyclePosition
 import Problems.Juggler.FateContagion
 import Problems.Juggler.LogLogClock
 import Problems.Juggler.TowerAbsorption
+import Problems.Juggler.TiltedShare
 
 /-!
 # Juggler laboratory barrel
