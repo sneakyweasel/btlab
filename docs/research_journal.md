@@ -38912,3 +38912,55 @@ Branch status
 Best next question
 - none; stop
 ```
+
+## Denjoy–Koksma, or: the theorem was two theorems
+
+2026-09-08. Paper A cites Denjoy–Koksma as KNOWN and applies it per
+certified Ostrowski block. Before trying to formalize it I checked what
+Mathlib has, and the answer was worse than I expected: no Denjoy–Koksma,
+and no unique ergodicity either — there is no `UniquelyErgodic` in
+Mathlib at all, and the AddCircle ergodic file covers only the
+multiplication maps. Both of the classical inputs in that chain are
+unreachable from Mathlib today.
+
+What Mathlib does have is `eVariationOn` with binary additivity and
+`BoundedVariationOn.dist_le`, and those turn out to be exactly enough,
+because Denjoy–Koksma is really two theorems wearing one name. One is
+analytic and has nothing to do with rotations: if you take one sample
+point from each cell of a partition, the sample sum is within the total
+variation of the integral. The other is arithmetic: the orbit of an
+irrational rotation at a convergent denominator takes one point per
+cell.
+
+The analytic one went in cleanly. The per-cell bound is the pointwise
+`|f y − f x| ≤ Var` integrated over the cell, which is three lines once
+you stop thinking about infima and suprema and just integrate the
+difference. Additivity over n cells is an induction on Mathlib's binary
+form. The assembly is bookkeeping. Four theorems, all kernel, no sorry.
+
+The arithmetic one is not done, and I want to be exact about where the
+line falls, because Paper A certifies something that looks like it and
+isn't. `theta_block_permutations` says `i ↦ p·i` permutes `ZMod q` —
+that is the residues, not the cells. Getting from residues to cells is
+where `|θ − p/q| < 1/q²` earns its keep, and that transfer is the piece
+nobody has written. So Theorem 5.7 stays KNOWN and the module sits
+outside Paper A's barrel, by the same rule as DividedBounds: general
+mathematics that does not yet discharge a step of the paper does not go
+in the paper's certified corpus.
+
+Two things worth keeping.
+
+The first is that finishing this would close two of the three steps in
+that abstract sentence, not one. Proposition 5.5's ergodic
+identification is the qualitative shadow of the quantitative bound —
+`|S_q(x)/q − ∫f| ≤ Var(f)/q` uniformly in x *is* the identification,
+and for exactly the right class of observable, since the one in play
+has a wrap discontinuity and is BV rather than continuous. I had been
+counting DK as one gap among several; it is the gap that closes two.
+
+The second is a self-inflicted scare. I deleted the scratch file
+holding all four proofs with an `rm` that ran because it sat on a new
+line after a Python step that had just failed — `&&` would have stopped
+it. I reconstructed them from the transcript and they rebuilt clean, so
+the cost was ten minutes, but the rule is cheap: deleting a working file
+belongs in its own call, after whatever consumes it has succeeded.

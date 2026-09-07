@@ -2401,9 +2401,29 @@ convergents of \(\theta\), unimodular and coprime
 Their approximation quality \(|\theta-p_j/q_j|<1/q_j^2\) and
 the fact that the \(q_j\) rotation steps of one block permute
 the \(q_j\) grid cells are additionally verified in Lean
-(`theta_convergent_quality`, `theta_block_permutations`); the
-variation-versus-integral inequality itself is the classical
-statement and is not re-proved.
+(`theta_convergent_quality`, `theta_block_permutations`).
+
+The variation-versus-integral inequality itself is classical, and its
+analytic half is now Lean (`Problems/Juggler/DenjoyKoksma.lean`), for
+arbitrary cut points rather than for a rotation:
+`value_sub_mean_le_variation` --- a value of \(f\) on a cell differs from the
+mean of \(f\) there by at most the variation there --- together with the
+\(n\)-fold additivity of variation (`sum_eVariationOn_Icc`, Mathlib having only
+the binary form) gives `denjoy_koksma_abstract`: one sample point per cell,
+and the sample sum is within the total variation of the integral.
+`denjoy_koksma_unit` is that on \([0,1]\) with \(q\) uniform cells, the shape
+applied per block below.
+
+What is still classical here is the *geometric* step: that the orbit
+\(x, x+\theta, \ldots, x+(q-1)\theta\) visits each cell \([i/q,(i+1)/q)\)
+exactly once, which is where \(|\theta-p/q|<1/q^2\) is used. Its
+arithmetic skeleton is certified (`theta_block_permutations`, that
+\(i\mapsto pi\) permutes \(\mathbb Z/q\mathbb Z\)), and so is the quality bound;
+the transfer between them is not. Until it is, Theorem 5.7 remains KNOWN,
+and the module is deliberately outside this paper's barrel. Mathlib has
+neither Denjoy--Koksma nor unique ergodicity of the irrational rotation ---
+there is no `UniquelyErgodic` in Mathlib at all --- so the classical route
+cited above has no Lean path other than this one.
 
 **Theorem 5.7 (block envelope).**
 For the exact rotation prefix of length \(L\) at reduced base

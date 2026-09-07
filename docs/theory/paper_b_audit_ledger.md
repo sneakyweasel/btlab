@@ -7927,3 +7927,76 @@ the reason; the theorem-ledger row restated;
 `JUGGLER_COMPILER_TRUST` reduced to one name and the test renamed.
 `tools/formalpedia.py` hardened. No statement weakened; two were
 strengthened.
+
+## Denjoy–Koksma: the analytic half, in Lean, for arbitrary cut points
+
+*Mathematical target.* Paper A Section 5.5 states Denjoy–Koksma and
+marks it KNOWN; Theorem 5.7 applies it per certified Ostrowski block.
+Ask whether it can be formalized.
+
+*Novelty hypothesis.* It can, because the inequality splits into an
+analytic part about bounded variation and an arithmetic part about the
+orbit, and the arithmetic part is already certified here.
+
+*Falsifier.* Mathlib lacks something the analytic part needs.
+
+*Prior art.* Neither index has anything: `formalpedia` returns only
+Paper A's own hypothesis lemmas, and a Formalpedia search returns
+Riesz and Lipschitz-geodesic results, nothing on variation sums.
+
+**Mathlib has neither Denjoy–Koksma nor the alternative.** There is no
+`UniquelyErgodic` in Mathlib at all, and `Dynamics.Ergodic.AddCircle`
+covers only the multiplication maps `y ↦ n • y`, not irrational
+rotation. So the classical route Paper A cites — unique ergodicity for
+Proposition 5.5, Denjoy–Koksma for Theorem 5.7 — has no Lean path at
+all. What Mathlib does have is `eVariationOn` with the binary
+additivity `eVariationOn.Icc_add_Icc` and `BoundedVariationOn.dist_le`,
+which turn out to be exactly the two ingredients needed.
+
+**Four theorems, `Problems/Juggler/DenjoyKoksma.lean`, all kernel.**
+
+- `value_sub_mean_le_variation` — on a cell, a value of `f` differs
+  from the mean of `f` there by at most the variation there. The proof
+  is the pointwise bound `|f y − f x| ≤ Var` integrated: the whole
+  analytic content is one application of `dist_le` under an integral.
+- `sum_eVariationOn_Icc` — the `n`-fold additivity of variation along a
+  chain of cut points, by induction on the binary form.
+- `denjoy_koksma_abstract` — one sample point per cell of a monotone
+  chain, and the sample sum is within the total variation of the
+  integral. No rotation, no number theory: the orbit enters only as the
+  hypothesis that the points hit the cells one apiece.
+- `denjoy_koksma_unit` — the same on `[0,1]` with `q` uniform cells,
+  the shape Theorem 5.7 applies per block.
+
+**What is not done, stated precisely.** Denjoy–Koksma proper needs the
+*geometric* fact that `x, x+θ, …, x+(q−1)θ` visits each cell
+`[i/q,(i+1)/q)` exactly once, which is where `|θ − p/q| < 1/q²` is
+used. Paper A certifies the arithmetic skeleton of that
+(`theta_block_permutations`: `i ↦ p·i` permutes `ZMod q`) and the
+quality bound (`theta_convergent_quality`), but not the transfer
+between them. So Theorem 5.7 stays KNOWN and the module is
+deliberately outside Paper A's barrel — the same placement rule as
+`DividedBounds`, for the same reason: it is general mathematics that
+does not yet discharge a step of the paper.
+
+**What it would close if finished.** The abstract sentence names three
+steps, and this closes the second and third together. Proposition 5.5's
+ergodic identification is the qualitative shadow of the quantitative
+bound: `|S_q(x)/q − ∫f| ≤ Var(f)/q` uniformly in `x` *is* the
+identification, and for the right class, since the observable has a
+wrap discontinuity and is BV rather than continuous. Two of the
+sentence's inputs, one theorem.
+
+Tags. EXACT: the four statements. COMPUTATIONALLY VERIFIED: `lake
+build` clean; `#print axioms` on all four gives
+`[propext, Classical.choice, Quot.sound]`; no `sorry`; index rebuilt.
+OBSERVATION: Mathlib's gap here is wider than expected — not just this
+theorem but unique ergodicity entirely — which makes the analytic half
+worth having on its own.
+
+*A process note.* The scratch file carrying the four proofs was deleted
+by an `rm` that ran because it followed a failed Python step on a new
+line rather than after `&&`. The proofs were reconstructed from the
+session transcript and rebuilt clean. Worth a rule: the `rm` of a
+working file belongs in its own call, after the thing that consumes it
+has succeeded.

@@ -10,6 +10,7 @@ import Problems.Juggler.CubeCorridor
 import Problems.Juggler.Equality
 import Problems.Juggler.DepthFourFive
 import Problems.Juggler.DividedBounds
+import Problems.Juggler.DenjoyKoksma
 import Problems.Juggler.Defect
 import Problems.Juggler.GlobalDefect
 import Problems.Juggler.DefectLowerBound
@@ -91,6 +92,7 @@ import Problems.Juggler.LogLogClock
 import Problems.Juggler.TowerAbsorption
 import Problems.Juggler.TiltedShare
 import Problems.Juggler.LiveCountWeight
+import Problems.Juggler.DepthOneMainTerm
 
 /-!
 # Juggler laboratory barrel

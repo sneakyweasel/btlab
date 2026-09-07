@@ -16819,6 +16819,46 @@
       "trust": "kernel"
     },
     {
+      "doc": "**Per-cell bound.** On an interval, any value of `f` differs from the mean of `f` there by at most the variation of `f` there. This is the whole analytic content of Denjoy\u2013Koksma.",
+      "file": "formal/Problems/Juggler/DenjoyKoksma.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 53,
+      "module": "Problems.Juggler.DenjoyKoksma",
+      "name": "value_sub_mean_le_variation",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Variation is additive along a monotone chain of cut points.** Mathlib has the binary `eVariationOn.Icc_add_Icc`; this is the `n`-fold form.",
+      "file": "formal/Problems/Juggler/DenjoyKoksma.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 81,
+      "module": "Problems.Juggler.DenjoyKoksma",
+      "name": "sum_eVariationOn_Icc",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Denjoy\u2013Koksma, abstract form.** If one sample point is taken from each of the `n` cells of a monotone chain, the sample sum differs from the integral by at most the total variation. No rotation and no number theory: the arithmetic of the orbit enters only through the hypothesis that the points hit the cells one apiece.",
+      "file": "formal/Problems/Juggler/DenjoyKoksma.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 98,
+      "module": "Problems.Juggler.DenjoyKoksma",
+      "name": "denjoy_koksma_abstract",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Denjoy\u2013Koksma on the unit interval, uniform cells.** With one sample point in each of the `q` cells `[i/q, (i+1)/q]`, the sample sum differs from `q` times the integral by at most the sum of the cell variations. This is the shape Theorem 5.7 of Paper A applies per block.",
+      "file": "formal/Problems/Juggler/DenjoyKoksma.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 123,
+      "module": "Problems.Juggler.DenjoyKoksma",
+      "name": "denjoy_koksma_unit",
+      "trust": "kernel"
+    },
+    {
       "doc": "The six coefficients of Step B, in the order they are printed: `n^(27/8)`, `m n^(15/8)`, `m^2 n^(3/8)`, `v n^(9/8)`, `v m n^(-3/8)`, `v m^2 n^(-15/8)`.",
       "file": "formal/Problems/Juggler/DepthFourFive.lean",
       "kind": "def",
@@ -17186,6 +17226,156 @@
       "line": 381,
       "module": "Problems.Juggler.DepthFourFive",
       "name": "st3a_flat_cost",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/DepthOneMainTerm.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 47,
+      "module": "Problems.Juggler.DepthOneMainTerm",
+      "name": "e_add",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/DepthOneMainTerm.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 51,
+      "module": "Problems.Juggler.DepthOneMainTerm",
+      "name": "e_pow",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`e` kills the integers, so it is `1`-periodic.",
+      "file": "formal/Problems/Juggler/DepthOneMainTerm.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 60,
+      "module": "Problems.Juggler.DepthOneMainTerm",
+      "name": "e_intCast",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/DepthOneMainTerm.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 68,
+      "module": "Problems.Juggler.DepthOneMainTerm",
+      "name": "e_sub_intCast",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The stationary point of `\u03b1 M^{3/2} - \u03bdM`: writing `M = s\u00b2` with `s \u2265 0`, the phase derivative `(3/2)\u03b1s` equals `\u03bd` exactly at `s = 2\u03bd/(3\u03b1)`.",
+      "file": "formal/Problems/Juggler/DepthOneMainTerm.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 78,
+      "module": "Problems.Juggler.DepthOneMainTerm",
+      "name": "stationary_point",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The dual phase.** At the stationary point `M_\u03bd = s\u00b2`, `s = 2\u03bd/(3\u03b1)`, the Legendre value `\u03b1 M_\u03bd^{3/2} - \u03bd M_\u03bd` equals `-4\u03bd\u00b3/(27\u03b1\u00b2)`: a cubic in the dual variable with coefficient rational whenever `\u03b1` is.",
+      "file": "formal/Problems/Juggler/DepthOneMainTerm.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 89,
+      "module": "Problems.Juggler.DepthOneMainTerm",
+      "name": "dual_phase",
+      "trust": "kernel"
+    },
+    {
+      "doc": "At `\u03b1 = 1/2` the dual phase is `-16\u03bd\u00b3/27`: modulus `27`.",
+      "file": "formal/Problems/Juggler/DepthOneMainTerm.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 96,
+      "module": "Problems.Juggler.DepthOneMainTerm",
+      "name": "dual_phase_half",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/DepthOneMainTerm.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 106,
+      "module": "Problems.Juggler.DepthOneMainTerm",
+      "name": "zeta27_pow_27",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Powers of `\u03b6` only see the exponent modulo `27`.",
+      "file": "formal/Problems/Juggler/DepthOneMainTerm.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 110,
+      "module": "Problems.Juggler.DepthOneMainTerm",
+      "name": "zeta27_pow_mod",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`\u03b6\u2079` is a primitive cube root of unity, so `1 + \u03b6\u2079 + \u03b6\u00b9\u2078 = 0`. This is the whole reason the complete cubic sum is real and equal to `9`.",
+      "file": "formal/Problems/Juggler/DepthOneMainTerm.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 116,
+      "module": "Problems.Juggler.DepthOneMainTerm",
+      "name": "zeta27_nine_sum",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Each term of the dual sum, as a power of `\u03b6` with reduced exponent.",
+      "file": "formal/Problems/Juggler/DepthOneMainTerm.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 146,
+      "module": "Problems.Juggler.DepthOneMainTerm",
+      "name": "dual_term",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The complete cubic Gauss sum of the depth-one dual is `9`.** `\u2211_{r mod 27} e(-16r\u00b3/27) = 9`. Nine residues cube to `0`, and the remaining eighteen contribute two triples in arithmetic progression of difference `9`, each killed by `zeta27_nine_sum`.",
+      "file": "formal/Problems/Juggler/DepthOneMainTerm.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 159,
+      "module": "Problems.Juggler.DepthOneMainTerm",
+      "name": "completeCubicSum_eq_nine",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The constant is exactly `\u221a6/9`.** Numerically `0.2721655\u2026`, matching the four digits the note measures.",
+      "file": "formal/Problems/Juggler/DepthOneMainTerm.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 177,
+      "module": "Problems.Juggler.DepthOneMainTerm",
+      "name": "depthOneConstant_eq_sqrt_six_div_nine",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Reindexing a complete sum by an invertible affine substitution. This is the step the note calls \"`2\u03bd+1` runs over a complete residue system\".",
+      "file": "formal/Problems/Juggler/DepthOneMainTerm.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 195,
+      "module": "Problems.Juggler.DepthOneMainTerm",
+      "name": "sum_affine_reindex",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`2` is invertible modulo `27k\u00b2` whenever `k` is odd: the modulus of the twisted dual sum is odd, so the half-integer shift is a permutation.",
+      "file": "formal/Problems/Juggler/DepthOneMainTerm.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 207,
+      "module": "Problems.Juggler.DepthOneMainTerm",
+      "name": "two_isUnit",
       "trust": "kernel"
     },
     {
@@ -35906,7 +36096,7 @@
       "ledger": [
         "J-o7eeee-gap"
       ],
-      "line": 21,
+      "line": 19,
       "module": "Problems.Juggler.O7EEEEGap",
       "name": "itineraryO7EEEE",
       "trust": "kernel"
@@ -35918,7 +36108,7 @@
       "ledger": [
         "J-o7eeee-gap"
       ],
-      "line": 24,
+      "line": 22,
       "module": "Problems.Juggler.O7EEEEGap",
       "name": "iterate_floorPower_one",
       "trust": "kernel"
@@ -35930,7 +36120,7 @@
       "ledger": [
         "J-o7eeee-gap"
       ],
-      "line": 29,
+      "line": 27,
       "module": "Problems.Juggler.O7EEEEGap",
       "name": "image_one_sevenOdds",
       "trust": "kernel"
@@ -35942,7 +36132,7 @@
       "ledger": [
         "J-o7eeee-gap"
       ],
-      "line": 32,
+      "line": 30,
       "module": "Problems.Juggler.O7EEEEGap",
       "name": "odd_cube_lt_succ_sq",
       "trust": "kernel"
@@ -35954,7 +36144,7 @@
       "ledger": [
         "J-o7eeee-gap"
       ],
-      "line": 36,
+      "line": 34,
       "module": "Problems.Juggler.O7EEEEGap",
       "name": "cross_mul_pow",
       "trust": "kernel"
@@ -35966,7 +36156,7 @@
       "ledger": [
         "J-o7eeee-gap"
       ],
-      "line": 47,
+      "line": 45,
       "module": "Problems.Juggler.O7EEEEGap",
       "name": "image_replicate_odd_succ",
       "trust": "kernel"
@@ -35978,7 +36168,7 @@
       "ledger": [
         "J-o7eeee-gap"
       ],
-      "line": 52,
+      "line": 50,
       "module": "Problems.Juggler.O7EEEEGap",
       "name": "odd_run_ge",
       "trust": "kernel"
@@ -35990,7 +36180,7 @@
       "ledger": [
         "J-o7eeee-gap"
       ],
-      "line": 61,
+      "line": 59,
       "module": "Problems.Juggler.O7EEEEGap",
       "name": "follows_odd_drop",
       "trust": "kernel"
@@ -36002,7 +36192,7 @@
       "ledger": [
         "J-o7eeee-gap"
       ],
-      "line": 75,
+      "line": 73,
       "module": "Problems.Juggler.O7EEEEGap",
       "name": "follows_odd_take",
       "trust": "kernel"
@@ -36014,7 +36204,7 @@
       "ledger": [
         "J-o7eeee-gap"
       ],
-      "line": 88,
+      "line": 86,
       "module": "Problems.Juggler.O7EEEEGap",
       "name": "odd_image_is_odd",
       "trust": "kernel"
@@ -36026,7 +36216,7 @@
       "ledger": [
         "J-o7eeee-gap"
       ],
-      "line": 95,
+      "line": 93,
       "module": "Problems.Juggler.O7EEEEGap",
       "name": "odd_image_step",
       "trust": "kernel"
@@ -36038,7 +36228,7 @@
       "ledger": [
         "J-o7eeee-gap"
       ],
-      "line": 104,
+      "line": 102,
       "module": "Problems.Juggler.O7EEEEGap",
       "name": "absorb_odd_step",
       "trust": "kernel"
@@ -36050,7 +36240,7 @@
       "ledger": [
         "J-o7eeee-gap"
       ],
-      "line": 147,
+      "line": 145,
       "module": "Problems.Juggler.O7EEEEGap",
       "name": "three_mul_pow256_gt_pow257",
       "trust": "kernel"
@@ -36062,7 +36252,7 @@
       "ledger": [
         "J-o7eeee-gap"
       ],
-      "line": 151,
+      "line": 149,
       "module": "Problems.Juggler.O7EEEEGap",
       "name": "three_pow24_lt_two_pow40",
       "trust": "kernel"
@@ -36074,7 +36264,7 @@
       "ledger": [
         "J-o7eeee-gap"
       ],
-      "line": 154,
+      "line": 152,
       "module": "Problems.Juggler.O7EEEEGap",
       "name": "eight_mul_139",
       "trust": "kernel"
@@ -36086,7 +36276,7 @@
       "ledger": [
         "J-o7eeee-gap"
       ],
-      "line": 156,
+      "line": 154,
       "module": "Problems.Juggler.O7EEEEGap",
       "name": "pow256_139_eq_two_pow1112",
       "trust": "kernel"
@@ -36098,7 +36288,7 @@
       "ledger": [
         "J-o7eeee-gap"
       ],
-      "line": 160,
+      "line": 158,
       "module": "Problems.Juggler.O7EEEEGap",
       "name": "two_five_six_mul_23_add_150",
       "trust": "kernel"
@@ -36110,7 +36300,7 @@
       "ledger": [
         "J-o7eeee-gap"
       ],
-      "line": 162,
+      "line": 160,
       "module": "Problems.Juggler.O7EEEEGap",
       "name": "one_three_nine_add_6038",
       "trust": "kernel"
@@ -36122,7 +36312,7 @@
       "ledger": [
         "J-o7eeee-gap"
       ],
-      "line": 164,
+      "line": 162,
       "module": "Problems.Juggler.O7EEEEGap",
       "name": "three_nine_nine_zero_add_2048",
       "trust": "kernel"
@@ -36134,7 +36324,7 @@
       "ledger": [
         "J-o7eeee-gap"
       ],
-      "line": 166,
+      "line": 164,
       "module": "Problems.Juggler.O7EEEEGap",
       "name": "sixteen_mul_128",
       "trust": "kernel"
@@ -36146,7 +36336,7 @@
       "ledger": [
         "J-o7eeee-gap"
       ],
-      "line": 168,
+      "line": 166,
       "module": "Problems.Juggler.O7EEEEGap",
       "name": "three_mul_729",
       "trust": "kernel"
@@ -36158,7 +36348,7 @@
       "ledger": [
         "J-o7eeee-gap"
       ],
-      "line": 170,
+      "line": 168,
       "module": "Problems.Juggler.O7EEEEGap",
       "name": "two_mul_729",
       "trust": "kernel"
@@ -36170,7 +36360,7 @@
       "ledger": [
         "J-o7eeee-gap"
       ],
-      "line": 172,
+      "line": 170,
       "module": "Problems.Juggler.O7EEEEGap",
       "name": "pow257_150_lt_three_mul",
       "trust": "kernel"
@@ -36182,7 +36372,7 @@
       "ledger": [
         "J-o7eeee-gap"
       ],
-      "line": 188,
+      "line": 186,
       "module": "Problems.Juggler.O7EEEEGap",
       "name": "pow257_6038_lt_three_pow24_mul",
       "trust": "kernel"
@@ -36194,7 +36384,7 @@
       "ledger": [
         "J-o7eeee-gap"
       ],
-      "line": 210,
+      "line": 208,
       "module": "Problems.Juggler.O7EEEEGap",
       "name": "pow256_6177_gt_pow257_6038",
       "trust": "kernel"
@@ -36206,7 +36396,7 @@
       "ledger": [
         "J-o7eeee-gap"
       ],
-      "line": 223,
+      "line": 221,
       "module": "Problems.Juggler.O7EEEEGap",
       "name": "succ_pow6038_lt_of_ge_256",
       "trust": "kernel"
@@ -36218,7 +36408,7 @@
       "ledger": [
         "J-o7eeee-gap"
       ],
-      "line": 249,
+      "line": 247,
       "module": "Problems.Juggler.O7EEEEGap",
       "name": "o7_start_preimage",
       "trust": "kernel"
@@ -36230,7 +36420,7 @@
       "ledger": [
         "J-o7eeee-gap"
       ],
-      "line": 259,
+      "line": 257,
       "module": "Problems.Juggler.O7EEEEGap",
       "name": "o7_plus_one_chain",
       "trust": "kernel"
@@ -36242,7 +36432,7 @@
       "ledger": [
         "J-o7eeee-gap"
       ],
-      "line": 333,
+      "line": 331,
       "module": "Problems.Juggler.O7EEEEGap",
       "name": "o7_image_ge_succ_pow16",
       "trust": "kernel"
@@ -36254,7 +36444,7 @@
       "ledger": [
         "J-o7eeee-gap"
       ],
-      "line": 359,
+      "line": 357,
       "module": "Problems.Juggler.O7EEEEGap",
       "name": "no_cycle_itinerary_oooooooeeee",
       "trust": "kernel"
@@ -63759,7 +63949,9 @@
         "Problems.Juggler.Defect",
         "Problems.Juggler.DefectFinance",
         "Problems.Juggler.DefectLowerBound",
+        "Problems.Juggler.DenjoyKoksma",
         "Problems.Juggler.DepthFourFive",
+        "Problems.Juggler.DepthOneMainTerm",
         "Problems.Juggler.DividedBounds",
         "Problems.Juggler.Drift",
         "Problems.Juggler.Dynamics",
@@ -64169,9 +64361,21 @@
         }
       ]
     },
+    "Problems.Juggler.DenjoyKoksma": {
+      "declarations": 4,
+      "file": "formal/Problems/Juggler/DenjoyKoksma.lean",
+      "imports": [],
+      "ledger": []
+    },
     "Problems.Juggler.DepthFourFive": {
       "declarations": 37,
       "file": "formal/Problems/Juggler/DepthFourFive.lean",
+      "imports": [],
+      "ledger": []
+    },
+    "Problems.Juggler.DepthOneMainTerm": {
+      "declarations": 15,
+      "file": "formal/Problems/Juggler/DepthOneMainTerm.lean",
       "imports": [],
       "ledger": []
     },
@@ -64944,7 +65148,7 @@
       "ledger": [
         {
           "id": "J-o7eeee-gap",
-          "statement": "If n \u2265 2 follows the Juggler word O^7, then T^7(n) \u2265 (n+1)^16. In particular the EEEE inverse cell [n^16, (n+1)^16) is empty of seven-odd images, so O^7 EEEE is not a cycle itinerary. Lean theorems o7_image_ge_succ_pow16 and no_cycle_itinerary_oooooooeeee in O7EEEEGap.lean. Proof: no_follows_seven_odds_of_lt256 excludes n < 256; on an O^7 run the exact cells x_k^3 < (x_{k+1}+1)^2 and x_k \u2265 n compose to n^{6177} < (n+1)^{3990} (T^7(n)+1)^{128}; for n \u2265 256 one has n^{6177} > (n+1)^{6038} because 257^{256} < 3\u00b7256^{256} and 256^{139} > 2^{40} > 3^{24} > (257/256)^{6038}. This replaces the leftover 4-fudge (first fire at 828484409) by the exact successor cell. Not a length-11 census and not a halt theorem. Not imported by JugglerPaper.",
+          "statement": "If n \u2265 2 follows the Juggler word O^7, then T^7(n) \u2265 (n+1)^16. In particular the EEEE inverse cell [n^16, (n+1)^16) is empty of seven-odd images, so O^7 EEEE is not a cycle itinerary. Lean theorems o7_image_ge_succ_pow16 and no_cycle_itinerary_oooooooeeee in O7EEEEGap.lean. Proof: no_follows_seven_odds_of_lt256 excludes n < 256; on an O^7 run the exact cells x_k^3 < (x_{k+1}+1)^2 and x_k \u2265 n compose to n^{6177} < (n+1)^{3990} (T^7(n)+1)^{128}; for n \u2265 256 one has n^{6177} > (n+1)^{6038} because 257^{256} < 3\u00b7256^{256} and 256^{139} > 2^{40} > 3^{24} > (257/256)^{6038}. This replaces the leftover 4-fudge (first fire at 828484409) by the exact successor cell. Not a length-11 census and not a halt theorem. Imported by JugglerPaper (Paper A Lemma 3.28).",
           "tag": "EXACT \u2014 LEAN VERIFIED"
         }
       ]
@@ -64977,7 +65181,7 @@
       "ledger": [
         {
           "id": "J-cyclemin-walk-ostrowski-numeration",
-          "statement": "General Ostrowski numeration and the structural digit cap (Paper A Theorem 5.8, digit-cap step, previously human). For any denominator sequence q with 0 < q 0 and q monotone satisfying the convergent recurrence bound q(j+1) \u2264 a(j+1)\u00b7q(j) + q(j\u22121), the greedy digits from any L < q(n+1) obey the remainder invariant (ostroRem_lt), the digit cap b_j \u2264 a_{j+1} (ostroDigit_le), exact reconstruction L = \u03a3 b_j q_j when q 0 = 1 (ostro_sum_eq), and the digit-sum cap \u03a3 b_j \u2264 \u03a3 a_j (ostro_digitSum_le) \u2014 problem-independent, reusable for any deeper certified quotient list. Instantiated at the certified \u03b8 denominators closed at q\u2081\u2083 = 301994: every L < 301994 has greedy digit sum at most 47 = a\u2081+\u22ef+a\u2081\u2083, structurally, with exact decomposition (theta_digitSum_le, theta_sum_eq); the function form agrees with the fold form greedyDigitSum everywhere below the window endpoint (greedy_eq_ostro_below_window, native_decide over all 301994 lengths), giving the fold corollary greedyDigitSum_le. The scan cap 37 on [50508, 301994) stays the sharper bound; the Denjoy\u2013Koksma comparison stays analytic (KNOWN). Not a cycle obstruction and not a halt theorem.",
+          "statement": "General Ostrowski numeration and the structural digit cap (Paper A Theorem 5.8, digit-cap step, previously human). For any denominator sequence q with 0 < q 0 and q monotone satisfying the convergent recurrence bound q(j+1) \u2264 a(j+1)\u00b7q(j) + q(j\u22121), the greedy digits from any L < q(n+1) obey the remainder invariant (ostroRem_lt), the digit cap b_j \u2264 a_{j+1} (ostroDigit_le), exact reconstruction L = \u03a3 b_j q_j when q 0 = 1 (ostro_sum_eq), and the digit-sum cap \u03a3 b_j \u2264 \u03a3 a_j (ostro_digitSum_le) \u2014 problem-independent, reusable for any deeper certified quotient list. Instantiated at the certified \u03b8 denominators closed at q\u2081\u2083 = 301994: every L < 301994 has greedy digit sum at most 47 = a\u2081+\u22ef+a\u2081\u2083, structurally, with exact decomposition (theta_digitSum_le, theta_sum_eq); the function form agrees with the fold form greedyDigitSum for every L (greedy_eq_ostro), structurally and kernel-checked: the two are the same algorithm written twice, the fold peeling L/q and keeping L mod q over the descending denominator list and the recursion doing the same indexed by 12-i, with the two lists equal entry for entry. That replaces a native_decide scan of all 301994 lengths and is stronger than it, since the scan bounded L for no reason; greedy_eq_ostro_below_window is retained in its bounded shape as a corollary, and the fold corollary greedyDigitSum_le follows. Reconstruction went the same way: greedy_reconstruct_all is the division algorithm thirteen times and holds for every L, so window_digit_scan now certifies only the sharp constant 37. The scan cap 37 on [50508, 301994) stays the sharper bound; the Denjoy\u2013Koksma comparison stays analytic (KNOWN). Not a cycle obstruction and not a halt theorem.",
           "tag": "EXACT \u2014 LEAN VERIFIED"
         }
       ]
@@ -65417,6 +65621,7 @@
         "Problems.Juggler.LeftoverShort",
         "Problems.Juggler.NearTightScale",
         "Problems.Juggler.NormalizedDefect",
+        "Problems.Juggler.O7EEEEGap",
         "Problems.Juggler.OstrowskiNumeration",
         "Problems.Juggler.OstrowskiSandwich",
         "Problems.Juggler.Preimages",
@@ -65636,13 +65841,13 @@
     }
   },
   "totals": {
-    "declarations": 4662,
+    "declarations": 4681,
     "declarations_with_a_ledger_row": 3180,
     "ledger_rows_naming_a_file": 328,
-    "modules": 194,
+    "modules": 196,
     "trust": {
       "compiler": 54,
-      "kernel": 4608
+      "kernel": 4627
     }
   }
 }
