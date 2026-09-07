@@ -45368,6 +45368,102 @@
       "trust": "kernel"
     },
     {
+      "doc": "",
+      "file": "formal/Problems/Juggler/TiltedShare.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-tilted-share-telescoping"
+      ],
+      "line": 36,
+      "module": "Problems.Juggler.TiltedShare",
+      "name": "weightGen_nonneg",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/TiltedShare.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-tilted-share-telescoping"
+      ],
+      "line": 40,
+      "module": "Problems.Juggler.TiltedShare",
+      "name": "oddMass_nonneg",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Odd continuations carry at most the parents' tilted mass.",
+      "file": "formal/Problems/Juggler/TiltedShare.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-tilted-share-telescoping"
+      ],
+      "line": 45,
+      "module": "Problems.Juggler.TiltedShare",
+      "name": "oddMass_le_weightGen",
+      "trust": "kernel"
+    },
+    {
+      "doc": "One depth: `Z_{d+1} \u2264 Z_d + (x-1)\u00b7oddMass_d`.",
+      "file": "formal/Problems/Juggler/TiltedShare.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-tilted-share-telescoping"
+      ],
+      "line": 56,
+      "module": "Problems.Juggler.TiltedShare",
+      "name": "weightGen_succ_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "One depth in share form: `Z_{d+1} \u2264 Z_d (1 + (x-1) s_d)`.",
+      "file": "formal/Problems/Juggler/TiltedShare.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-tilted-share-telescoping"
+      ],
+      "line": 79,
+      "module": "Problems.Juggler.TiltedShare",
+      "name": "weightGen_succ_le_share",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The per-depth factor is dominated by `a_q exp(c_q (s - q)^+)`.",
+      "file": "formal/Problems/Juggler/TiltedShare.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-tilted-share-telescoping"
+      ],
+      "line": 99,
+      "module": "Problems.Juggler.TiltedShare",
+      "name": "one_add_le_exp_excess",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Proposition 9.3: the tilted mass at depth `d` is at most `Z_0 \u00b7 a_q^d \u00b7 exp(c_q \u03a3_{t<d} (s_t - q)^+)`.",
+      "file": "formal/Problems/Juggler/TiltedShare.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-tilted-share-telescoping"
+      ],
+      "line": 124,
+      "module": "Problems.Juggler.TiltedShare",
+      "name": "weightGen_le_pressure",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Theorem 9.2 with Proposition 9.3: the mass of words with at least `k` odd letters is at most `Z_0 a_q^d exp(c_q \u03a3 (s_t - q)^+) / x^k`.",
+      "file": "formal/Problems/Juggler/TiltedShare.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-tilted-share-telescoping"
+      ],
+      "line": 161,
+      "module": "Problems.Juggler.TiltedShare",
+      "name": "count_le_pressure",
+      "trust": "kernel"
+    },
+    {
       "doc": "`j` iterated integer square roots of `x` equal `s` exactly when `s^(2^j) \u2264 x < (s+1)^(2^j)`: the intermediate floors are transparent.",
       "file": "formal/Problems/Juggler/TowerAbsorption.lean",
       "kind": "theorem",
@@ -54195,7 +54291,7 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The least significant digit of any integer is a trit.",
       "file": "formal/BTCalculus/Normalization.lean",
       "kind": "theorem",
       "ledger": [
@@ -54205,13 +54301,13 @@
         "BTN-lex",
         "BTN-carry-bound"
       ],
-      "line": 14,
+      "line": 15,
       "module": "BTCalculus.Normalization",
       "name": "isTrit_lsdZ",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`|lsd n| <= 1`.",
       "file": "formal/BTCalculus/Normalization.lean",
       "kind": "theorem",
       "ledger": [
@@ -54221,13 +54317,13 @@
         "BTN-lex",
         "BTN-carry-bound"
       ],
-      "line": 17,
+      "line": 19,
       "module": "BTCalculus.Normalization",
       "name": "lsdZ_natAbs_le_one",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "A coefficient that is not a trit has absolute value at least `2`.",
       "file": "formal/BTCalculus/Normalization.lean",
       "kind": "theorem",
       "ledger": [
@@ -54237,13 +54333,13 @@
         "BTN-lex",
         "BTN-carry-bound"
       ],
-      "line": 20,
+      "line": 23,
       "module": "BTCalculus.Normalization",
       "name": "not_isTrit_natAbs",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Normalising a non-trit head strictly shrinks it in absolute value.",
       "file": "formal/BTCalculus/Normalization.lean",
       "kind": "theorem",
       "ledger": [
@@ -54253,7 +54349,7 @@
         "BTN-lex",
         "BTN-carry-bound"
       ],
-      "line": 38,
+      "line": 42,
       "module": "BTCalculus.Normalization",
       "name": "step_head_abs_lt",
       "trust": "kernel"
@@ -54269,7 +54365,7 @@
         "BTN-lex",
         "BTN-carry-bound"
       ],
-      "line": 44,
+      "line": 48,
       "module": "BTCalculus.Normalization",
       "name": "coeffValue",
       "trust": "kernel"
@@ -54285,13 +54381,13 @@
         "BTN-lex",
         "BTN-carry-bound"
       ],
-      "line": 48,
+      "line": 52,
       "module": "BTCalculus.Normalization",
       "name": "getCoeff",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Every coefficient of the empty word is `0`.",
       "file": "formal/BTCalculus/Normalization.lean",
       "kind": "theorem",
       "ledger": [
@@ -54301,13 +54397,13 @@
         "BTN-lex",
         "BTN-carry-bound"
       ],
-      "line": 51,
+      "line": 56,
       "module": "BTCalculus.Normalization",
       "name": "getCoeff_nil",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The head coefficient of the empty word is a trit.",
       "file": "formal/BTCalculus/Normalization.lean",
       "kind": "theorem",
       "ledger": [
@@ -54317,7 +54413,7 @@
         "BTN-lex",
         "BTN-carry-bound"
       ],
-      "line": 54,
+      "line": 60,
       "module": "BTCalculus.Normalization",
       "name": "getCoeff_zero_isTrit",
       "trust": "kernel"
@@ -54333,13 +54429,13 @@
         "BTN-lex",
         "BTN-carry-bound"
       ],
-      "line": 57,
+      "line": 63,
       "module": "BTCalculus.Normalization",
       "name": "addHead",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`addHead` adds its argument to the value.",
       "file": "formal/BTCalculus/Normalization.lean",
       "kind": "theorem",
       "ledger": [
@@ -54349,7 +54445,7 @@
         "BTN-lex",
         "BTN-carry-bound"
       ],
-      "line": 61,
+      "line": 68,
       "module": "BTCalculus.Normalization",
       "name": "addHead_value",
       "trust": "kernel"
@@ -54365,13 +54461,13 @@
         "BTN-lex",
         "BTN-carry-bound"
       ],
-      "line": 70,
+      "line": 77,
       "module": "BTCalculus.Normalization",
       "name": "stepZero",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The head-normalising step preserves the value.",
       "file": "formal/BTCalculus/Normalization.lean",
       "kind": "theorem",
       "ledger": [
@@ -54381,7 +54477,7 @@
         "BTN-lex",
         "BTN-carry-bound"
       ],
-      "line": 74,
+      "line": 82,
       "module": "BTCalculus.Normalization",
       "name": "stepZero_value",
       "trust": "kernel"
@@ -54397,13 +54493,13 @@
         "BTN-lex",
         "BTN-carry-bound"
       ],
-      "line": 84,
+      "line": 92,
       "module": "BTCalculus.Normalization",
       "name": "step",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The normalising step at any index preserves the value.",
       "file": "formal/BTCalculus/Normalization.lean",
       "kind": "theorem",
       "ledger": [
@@ -54413,7 +54509,7 @@
         "BTN-lex",
         "BTN-carry-bound"
       ],
-      "line": 89,
+      "line": 98,
       "module": "BTCalculus.Normalization",
       "name": "step_value",
       "trust": "kernel"
@@ -54429,45 +54525,13 @@
         "BTN-lex",
         "BTN-carry-bound"
       ],
-      "line": 103,
+      "line": 112,
       "module": "BTCalculus.Normalization",
       "name": "absList",
       "trust": "kernel"
     },
     {
-      "doc": "",
-      "file": "formal/BTCalculus/Normalization.lean",
-      "kind": "theorem",
-      "ledger": [
-        "BTN-divmod",
-        "BTN-step-value",
-        "BTN-nf",
-        "BTN-lex",
-        "BTN-carry-bound"
-      ],
-      "line": 106,
-      "module": "BTCalculus.Normalization",
-      "name": "stepZero_lex",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/BTCalculus/Normalization.lean",
-      "kind": "theorem",
-      "ledger": [
-        "BTN-divmod",
-        "BTN-step-value",
-        "BTN-nf",
-        "BTN-lex",
-        "BTN-carry-bound"
-      ],
-      "line": 112,
-      "module": "BTCalculus.Normalization",
-      "name": "step_lex_zero",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
+      "doc": "The head step strictly decreases the absolute-value lexicographic rank.",
       "file": "formal/BTCalculus/Normalization.lean",
       "kind": "theorem",
       "ledger": [
@@ -54479,11 +54543,11 @@
       ],
       "line": 116,
       "module": "BTCalculus.Normalization",
-      "name": "step_lex_succ",
+      "name": "stepZero_lex",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The step at index `0` strictly decreases the abs-lex rank.",
       "file": "formal/BTCalculus/Normalization.lean",
       "kind": "theorem",
       "ledger": [
@@ -54493,13 +54557,45 @@
         "BTN-lex",
         "BTN-carry-bound"
       ],
-      "line": 122,
+      "line": 123,
+      "module": "BTCalculus.Normalization",
+      "name": "step_lex_zero",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A decrease at index `n` lifts to a decrease at index `n + 1`.",
+      "file": "formal/BTCalculus/Normalization.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTN-divmod",
+        "BTN-step-value",
+        "BTN-nf",
+        "BTN-lex",
+        "BTN-carry-bound"
+      ],
+      "line": 128,
+      "module": "BTCalculus.Normalization",
+      "name": "step_lex_succ",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`|3 D n| = 3 |D n|`.",
+      "file": "formal/BTCalculus/Normalization.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTN-divmod",
+        "BTN-step-value",
+        "BTN-nf",
+        "BTN-lex",
+        "BTN-carry-bound"
+      ],
+      "line": 135,
       "module": "BTCalculus.Normalization",
       "name": "DZ_natAbs_mul_three",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`n - lsd n = 3 D n`: the digit-and-carry split of an integer.",
       "file": "formal/BTCalculus/Normalization.lean",
       "kind": "theorem",
       "ledger": [
@@ -54509,7 +54605,7 @@
         "BTN-lex",
         "BTN-carry-bound"
       ],
-      "line": 126,
+      "line": 140,
       "module": "BTCalculus.Normalization",
       "name": "sub_lsd_eq_three_DZ",
       "trust": "kernel"
@@ -54525,7 +54621,7 @@
         "BTN-lex",
         "BTN-carry-bound"
       ],
-      "line": 131,
+      "line": 145,
       "module": "BTCalculus.Normalization",
       "name": "DZ_carry_bound",
       "trust": "kernel"
@@ -54541,7 +54637,7 @@
         "BTN-lex",
         "BTN-carry-bound"
       ],
-      "line": 144,
+      "line": 158,
       "module": "BTCalculus.Normalization",
       "name": "DZ_carry_lower",
       "trust": "kernel"
@@ -54557,13 +54653,13 @@
         "BTN-lex",
         "BTN-carry-bound"
       ],
-      "line": 154,
+      "line": 168,
       "module": "BTCalculus.Normalization",
       "name": "DZ_le_of_abs_le",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`D` strictly shrinks a nonzero integer in absolute value.",
       "file": "formal/BTCalculus/Normalization.lean",
       "kind": "theorem",
       "ledger": [
@@ -54573,7 +54669,7 @@
         "BTN-lex",
         "BTN-carry-bound"
       ],
-      "line": 163,
+      "line": 178,
       "module": "BTCalculus.Normalization",
       "name": "DZ_natAbs_lt",
       "trust": "kernel"
@@ -54589,13 +54685,13 @@
         "BTN-lex",
         "BTN-carry-bound"
       ],
-      "line": 172,
+      "line": 187,
       "module": "BTCalculus.Normalization",
       "name": "encodeZ",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`encodeZ 0 = [0]`.",
       "file": "formal/BTCalculus/Normalization.lean",
       "kind": "theorem",
       "ledger": [
@@ -54605,13 +54701,13 @@
         "BTN-lex",
         "BTN-carry-bound"
       ],
-      "line": 182,
+      "line": 198,
       "module": "BTCalculus.Normalization",
       "name": "encodeZ_zero",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Recursive form of `encodeZ` on a nonzero integer.",
       "file": "formal/BTCalculus/Normalization.lean",
       "kind": "theorem",
       "ledger": [
@@ -54621,13 +54717,13 @@
         "BTN-lex",
         "BTN-carry-bound"
       ],
-      "line": 186,
+      "line": 203,
       "module": "BTCalculus.Normalization",
       "name": "encodeZ_of_ne_zero",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`encodeZ` is value-preserving: `value (encodeZ n) = n`.",
       "file": "formal/BTCalculus/Normalization.lean",
       "kind": "theorem",
       "ledger": [
@@ -54637,7 +54733,7 @@
         "BTN-lex",
         "BTN-carry-bound"
       ],
-      "line": 191,
+      "line": 209,
       "module": "BTCalculus.Normalization",
       "name": "encodeZ_value",
       "trust": "kernel"
@@ -54653,13 +54749,13 @@
         "BTN-lex",
         "BTN-carry-bound"
       ],
-      "line": 211,
+      "line": 229,
       "module": "BTCalculus.Normalization",
       "name": "normalizeLSD",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Normalisation preserves the value of a coefficient word.",
       "file": "formal/BTCalculus/Normalization.lean",
       "kind": "theorem",
       "ledger": [
@@ -54669,13 +54765,13 @@
         "BTN-lex",
         "BTN-carry-bound"
       ],
-      "line": 214,
+      "line": 233,
       "module": "BTCalculus.Normalization",
       "name": "normalizeLSD_value",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "A normalising step does not change the normal form.",
       "file": "formal/BTCalculus/Normalization.lean",
       "kind": "theorem",
       "ledger": [
@@ -54685,7 +54781,7 @@
         "BTN-lex",
         "BTN-carry-bound"
       ],
-      "line": 218,
+      "line": 238,
       "module": "BTCalculus.Normalization",
       "name": "step_preserves_normalize",
       "trust": "kernel"
@@ -54701,13 +54797,13 @@
         "BTN-lex",
         "BTN-carry-bound"
       ],
-      "line": 222,
+      "line": 242,
       "module": "BTCalculus.Normalization",
       "name": "allTrits",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The empty word is all trits.",
       "file": "formal/BTCalculus/Normalization.lean",
       "kind": "theorem",
       "ledger": [
@@ -54717,13 +54813,13 @@
         "BTN-lex",
         "BTN-carry-bound"
       ],
-      "line": 226,
+      "line": 247,
       "module": "BTCalculus.Normalization",
       "name": "allTrits_nil",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`encodeZ n` consists of trits.",
       "file": "formal/BTCalculus/Normalization.lean",
       "kind": "theorem",
       "ledger": [
@@ -54733,13 +54829,13 @@
         "BTN-lex",
         "BTN-carry-bound"
       ],
-      "line": 228,
+      "line": 250,
       "module": "BTCalculus.Normalization",
       "name": "encodeZ_trits",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The normal form consists of trits.",
       "file": "formal/BTCalculus/Normalization.lean",
       "kind": "theorem",
       "ledger": [
@@ -54749,7 +54845,7 @@
         "BTN-lex",
         "BTN-carry-bound"
       ],
-      "line": 243,
+      "line": 266,
       "module": "BTCalculus.Normalization",
       "name": "normalizeLSD_trits",
       "trust": "kernel"
@@ -54765,61 +54861,13 @@
         "BTN-lex",
         "BTN-carry-bound"
       ],
-      "line": 246,
+      "line": 269,
       "module": "BTCalculus.Normalization",
       "name": "irreducible",
       "trust": "kernel"
     },
     {
-      "doc": "",
-      "file": "formal/BTCalculus/Normalization.lean",
-      "kind": "theorem",
-      "ledger": [
-        "BTN-divmod",
-        "BTN-step-value",
-        "BTN-nf",
-        "BTN-lex",
-        "BTN-carry-bound"
-      ],
-      "line": 249,
-      "module": "BTCalculus.Normalization",
-      "name": "allTrits_irreducible",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/BTCalculus/Normalization.lean",
-      "kind": "theorem",
-      "ledger": [
-        "BTN-divmod",
-        "BTN-step-value",
-        "BTN-nf",
-        "BTN-lex",
-        "BTN-carry-bound"
-      ],
-      "line": 262,
-      "module": "BTCalculus.Normalization",
-      "name": "getCoeff_cons_succ",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/BTCalculus/Normalization.lean",
-      "kind": "theorem",
-      "ledger": [
-        "BTN-divmod",
-        "BTN-step-value",
-        "BTN-nf",
-        "BTN-lex",
-        "BTN-carry-bound"
-      ],
-      "line": 266,
-      "module": "BTCalculus.Normalization",
-      "name": "irreducible_cons",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
+      "doc": "An all-trits word is irreducible.",
       "file": "formal/BTCalculus/Normalization.lean",
       "kind": "theorem",
       "ledger": [
@@ -54831,11 +54879,11 @@
       ],
       "line": 273,
       "module": "BTCalculus.Normalization",
-      "name": "irreducible_allTrits",
+      "name": "allTrits_irreducible",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Indexing past the head drops it.",
       "file": "formal/BTCalculus/Normalization.lean",
       "kind": "theorem",
       "ledger": [
@@ -54845,7 +54893,55 @@
         "BTN-lex",
         "BTN-carry-bound"
       ],
-      "line": 279,
+      "line": 287,
+      "module": "BTCalculus.Normalization",
+      "name": "getCoeff_cons_succ",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Irreducibility of a cons splits into a trit head and an irreducible tail.",
+      "file": "formal/BTCalculus/Normalization.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTN-divmod",
+        "BTN-step-value",
+        "BTN-nf",
+        "BTN-lex",
+        "BTN-carry-bound"
+      ],
+      "line": 292,
+      "module": "BTCalculus.Normalization",
+      "name": "irreducible_cons",
+      "trust": "kernel"
+    },
+    {
+      "doc": "An irreducible word is all trits.",
+      "file": "formal/BTCalculus/Normalization.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTN-divmod",
+        "BTN-step-value",
+        "BTN-nf",
+        "BTN-lex",
+        "BTN-carry-bound"
+      ],
+      "line": 300,
+      "module": "BTCalculus.Normalization",
+      "name": "irreducible_allTrits",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Irreducible and all-trits are the same condition.",
+      "file": "formal/BTCalculus/Normalization.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTN-divmod",
+        "BTN-step-value",
+        "BTN-nf",
+        "BTN-lex",
+        "BTN-carry-bound"
+      ],
+      "line": 307,
       "module": "BTCalculus.Normalization",
       "name": "irreducible_iff_allTrits",
       "trust": "kernel"
@@ -54861,13 +54957,13 @@
         "BTN-lex",
         "BTN-carry-bound"
       ],
-      "line": 285,
+      "line": 313,
       "module": "BTCalculus.Normalization",
       "name": "isCanonical",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The normal form is irreducible.",
       "file": "formal/BTCalculus/Normalization.lean",
       "kind": "theorem",
       "ledger": [
@@ -54877,13 +54973,13 @@
         "BTN-lex",
         "BTN-carry-bound"
       ],
-      "line": 288,
+      "line": 317,
       "module": "BTCalculus.Normalization",
       "name": "normalizeLSD_irreducible",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "On a singleton, normalisation is `encodeZ`: `normalizeLSD [n] = encodeZ n`.",
       "file": "formal/BTCalculus/Normalization.lean",
       "kind": "theorem",
       "ledger": [
@@ -54893,7 +54989,7 @@
         "BTN-lex",
         "BTN-carry-bound"
       ],
-      "line": 292,
+      "line": 322,
       "module": "BTCalculus.Normalization",
       "name": "encodeZ_normalize",
       "trust": "kernel"
@@ -54909,7 +55005,7 @@
         "BTN-lex",
         "BTN-carry-bound"
       ],
-      "line": 297,
+      "line": 327,
       "module": "BTCalculus.Normalization",
       "name": "stepZero_singleton",
       "trust": "kernel"
@@ -63396,6 +63492,7 @@
         "Problems.Juggler.Termination",
         "Problems.Juggler.TerminationFloor257",
         "Problems.Juggler.ThresholdCertificate",
+        "Problems.Juggler.TiltedShare",
         "Problems.Juggler.TowerAbsorption",
         "Problems.Juggler.WalkChargeItineraries",
         "Problems.Juggler.WalkChargeMax",
@@ -64854,6 +64951,20 @@
       "imports": [],
       "ledger": []
     },
+    "Problems.Juggler.TiltedShare": {
+      "declarations": 8,
+      "file": "formal/Problems/Juggler/TiltedShare.lean",
+      "imports": [
+        "Problems.Juggler.RateFreeDensity"
+      ],
+      "ledger": [
+        {
+          "id": "J-tilted-share-telescoping",
+          "statement": "Paper C Proposition 9.3 on the word-weight framework of RateFreeDensity. For a nonnegative word weight mu with WeightSplit (each word's two children carry at most the parent's weight) and x >= 1: the tilted generating function Z_d = weightGen mu x d satisfies Z_{d+1} <= Z_d + (x-1) oddMass_d (weightGen_succ_le) and Z_{d+1} <= Z_d (1 + (x-1) s_d) with s_d = tiltedShare mu x d = oddMass_d / Z_d (weightGen_succ_le_share); for 0 <= q, 1 + (x-1)s <= a_q exp(c_q max(s-q,0)) with a_q = 1 + (x-1)q, c_q = (x-1)/a_q (one_add_le_exp_excess); hence Z_d <= Z_0 a_q^d exp(c_q sum_{t<d} max(s_t - q, 0)) (weightGen_le_pressure), and with weight_markov the mass of words with at least k odd letters is at most that over x^k (count_le_pressure). This is the reduction M_{theta,q} => P_theta => Tao-type count, kernel-checked; axioms propext, Classical.choice, Quot.sound only.",
+          "tag": "EXACT \u2014 LEAN VERIFIED"
+        }
+      ]
+    },
     "Problems.Juggler.TowerAbsorption": {
       "declarations": 5,
       "file": "formal/Problems/Juggler/TowerAbsorption.lean",
@@ -65177,13 +65288,13 @@
     }
   },
   "totals": {
-    "declarations": 4623,
-    "declarations_with_a_ledger_row": 3161,
-    "ledger_rows_naming_a_file": 325,
-    "modules": 191,
+    "declarations": 4631,
+    "declarations_with_a_ledger_row": 3169,
+    "ledger_rows_naming_a_file": 326,
+    "modules": 192,
     "trust": {
       "compiler": 55,
-      "kernel": 4568
+      "kernel": 4576
     }
   }
 }

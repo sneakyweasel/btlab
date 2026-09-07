@@ -1769,6 +1769,20 @@
         "kernel": 108
       }
     },
+    "Problems.Juggler.TiltedShare": {
+      "declarations": 8,
+      "depends_on": [
+        "Problems.Juggler.RateFreeDensity"
+      ],
+      "file": "formal/Problems/Juggler/TiltedShare.lean",
+      "ledger": [
+        "J-tilted-share-telescoping"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 8
+      }
+    },
     "Problems.Juggler.TowerAbsorption": {
       "declarations": 5,
       "depends_on": [],
@@ -1937,9 +1951,9 @@
     }
   },
   "totals": {
-    "edges": 126,
-    "edges_before_reduction": 979,
-    "ledger_rows_placed": 325,
-    "nodes": 118
+    "edges": 127,
+    "edges_before_reduction": 987,
+    "ledger_rows_placed": 326,
+    "nodes": 119
   }
 }

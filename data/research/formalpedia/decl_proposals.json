@@ -1,5 +1,5 @@
 {
-  "composite": 27,
+  "composite": 28,
   "note": "Proposals for human review. Calibration: 86% precision (42 of 49 fires) against all resolved rows. Nothing here has been written into the ledger.",
   "rows": [
     {
@@ -309,20 +309,20 @@
       "candidates": [
         {
           "decl": "isTrit_lsdZ",
-          "line": 14,
-          "score": 0.25,
+          "line": 15,
+          "score": 0.125,
           "trust": "kernel"
         },
         {
           "decl": "not_isTrit_natAbs",
-          "line": 20,
-          "score": 0.2,
+          "line": 23,
+          "score": 0.111,
           "trust": "kernel"
         },
         {
-          "decl": "getCoeff_zero_isTrit",
-          "line": 54,
-          "score": 0.167,
+          "decl": "irreducible_cons",
+          "line": 292,
+          "score": 0.111,
           "trust": "kernel"
         }
       ],
@@ -336,7 +336,7 @@
         },
         {
           "decl": "stepZero",
-          "line": 70,
+          "line": 77,
           "score": 0.1
         }
       ],
@@ -349,21 +349,21 @@
     {
       "candidates": [
         {
-          "decl": "normalizeLSD_value",
-          "line": 214,
-          "score": 0.5,
+          "decl": "encodeZ_normalize",
+          "line": 322,
+          "score": 0.375,
           "trust": "kernel"
         },
         {
           "decl": "normalizeLSD_trits",
-          "line": 243,
-          "score": 0.5,
+          "line": 266,
+          "score": 0.333,
           "trust": "kernel"
         },
         {
-          "decl": "encodeZ_value",
-          "line": 191,
-          "score": 0.333,
+          "decl": "normalizeLSD_value",
+          "line": 233,
+          "score": 0.3,
           "trust": "kernel"
         }
       ],
@@ -372,12 +372,12 @@
       "definitions": [
         {
           "decl": "normalizeLSD",
-          "line": 211,
+          "line": 229,
           "score": 0.4
         },
         {
           "decl": "encodeZ",
-          "line": 172,
+          "line": 187,
           "score": 0.167
         }
       ],
@@ -390,35 +390,35 @@
     {
       "candidates": [
         {
-          "decl": "lsdZ_natAbs_le_one",
-          "line": 17,
-          "score": 0.25,
-          "trust": "kernel"
-        },
-        {
-          "decl": "step_head_abs_lt",
-          "line": 38,
-          "score": 0.25,
+          "decl": "step_lex_zero",
+          "line": 123,
+          "score": 0.667,
           "trust": "kernel"
         },
         {
           "decl": "stepZero_lex",
-          "line": 106,
+          "line": 116,
+          "score": 0.417,
+          "trust": "kernel"
+        },
+        {
+          "decl": "lsdZ_natAbs_le_one",
+          "line": 19,
           "score": 0.25,
           "trust": "kernel"
         }
       ],
       "composite": false,
-      "confidence": "low",
+      "confidence": "review",
       "definitions": [
         {
           "decl": "stepZero",
-          "line": 70,
+          "line": 77,
           "score": 0.154
         },
         {
           "decl": "absList",
-          "line": 103,
+          "line": 112,
           "score": 0.125
         }
       ],
@@ -4511,8 +4511,44 @@
         "floorPower_odd_even_run_eq_iff"
       ],
       "statement": "Even steps never deepen the Juggler floor tower. For every j, Nat.sqrt^[j] x = s iff s^(2^j) <= x < (s+1)^(2^j) (sqrt_iter_eq_iff); on an even run floorPower is iterated Nat.sqrt (floorPower_iter_of_even); an odd step followed by j even steps equals Nat.sqrt^[j+1] (n^3), i.e. floor(n^(3/2^(j+1))) with one floor and no nesting (floorPower_odd_even_run, floorPower_odd_even_run_eq_iff); the OE fiber "
+    },
+    {
+      "candidates": [
+        {
+          "decl": "count_le_pressure",
+          "line": 161,
+          "score": 0.217,
+          "trust": "kernel"
+        },
+        {
+          "decl": "weightGen_le_pressure",
+          "line": 124,
+          "score": 0.17,
+          "trust": "kernel"
+        },
+        {
+          "decl": "oddMass_le_weightGen",
+          "line": 45,
+          "score": 0.146,
+          "trust": "kernel"
+        }
+      ],
+      "composite": true,
+      "confidence": "low",
+      "definitions": [],
+      "id": "J-tilted-share-telescoping",
+      "in_file": 8,
+      "lean": "Problems/Juggler/TiltedShare.lean",
+      "names_own": [
+        "weightGen_succ_le",
+        "weightGen_succ_le_share",
+        "one_add_le_exp_excess",
+        "weightGen_le_pressure",
+        "count_le_pressure"
+      ],
+      "statement": "Paper C Proposition 9.3 on the word-weight framework of RateFreeDensity. For a nonnegative word weight mu with WeightSplit (each word's two children carry at most the parent's weight) and x >= 1: the tilted generating function Z_d = weightGen mu x d satisfies Z_{d+1} <= Z_d + (x-1) oddMass_d (weightGen_succ_le) and Z_{d+1} <= Z_d (1 + (x-1) s_d) with s_d = tiltedShare mu x d = oddMass_d / Z_d (wei"
     }
   ],
-  "unresolved": 114,
-  "worth_reviewing": 19
+  "unresolved": 115,
+  "worth_reviewing": 20
 }
