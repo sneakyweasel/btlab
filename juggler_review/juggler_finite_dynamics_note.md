@@ -3314,7 +3314,7 @@ Theorem 4.8.
 | Lemma 4.3 | `cycleMin_log_envelope` |
 | Theorem 4.4 | `cycleMin_finance` |
 | Corollary 4.4c | `cycleMin_log_envelope_inv`, `cycleMin_finance_inv_sum` |
-| Lemma 4.4b | odd-count monotonicity; human proof, not Lean |
+| Lemma 4.4b | `packingR_step` (the step in \(o\) is the constant \(2\alpha-1-1/2n\)), `alpha_lt_half` (\(\alpha<1/2\) once \(t\ge2n\)), `two_n_add_one_lt_rpow_three_halves` (which \(t=\lfloor n^{3/2}\rfloor\) gives for \(n\ge12\)), `packingR_step_neg`, `theta_strictMono`, and `comparison_fails_upward` for an arbitrary positive coefficient — \(6/5\) here and \(1\) in Theorem 4.4 (`OddCountMonotone.lean`) |
 | Theorem 4.6 | certified identity `cycleMin_defect_finance`, per-step losses `log_floorPower_even_ge_sub`, `log_floorPower_odd_ge_sub`, invariants `cycleMin_log_le_weight`, `cycleMin_charge_prefix` (`DefectFinance.lean`); the numeric table is verified computation |
 | Theorem 4.7 | run-type packing; human proof, not Lean |
 | Theorem 4.8 | run-type table; verified computation, not Lean |

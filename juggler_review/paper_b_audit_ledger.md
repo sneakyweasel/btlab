@@ -8069,3 +8069,49 @@ reduction term for a quarter of a million iterations, and halving the
 work per iteration does not bring it into range. `window_digit_scan`
 stays `native_decide`, and getting `37` without evaluation remains a
 combinatorial question about attainable digit vectors on the window.
+
+## Paper A Lemma 4.4b, in Lean: one of the table's two rows with no Lean at all
+
+*Mathematical target.* Appendix A of Paper A lists seventy-two rows.
+Fifty-one are fully Lean, four are cross-references to rows that are,
+nine are Lean with a stated gap, six are verified computation, and
+**two have no Lean at all**: Lemma 4.4b (odd-count monotonicity) and
+Theorem 4.7 (run-type packing). Take the first.
+
+*Why this one.* It sits among Section 3/4 machinery that is already
+heavily Lean, and unlike everything in Section 5 it needs no missing
+Mathlib theory — no Denjoy–Koksma, no unique ergodicity, no discrepancy.
+
+**The lemma is three independent facts, and separating them is most of
+the work.** The comparison is `n log n · θ(o) ≤ c · R(o)` with
+`R(o) = e + (o−e)α + e/(2n)`, `e = L−o`.
+
+- `packingR_step` — the step in `o` is the *constant* `2α − 1 − 1/(2n)`,
+  so the monotonicity of the right-hand side is decided by one sign.
+  Pure algebra; `field_simp; ring`.
+- `alpha_lt_half` — `α = n log n/(t log t) < 1/2` once `t ≥ 2n`, from
+  `t log t > 2(n log n)`, which is `log t > log n` and nothing else.
+- `two_n_add_one_lt_rpow_three_halves` — and Paper A's `t = ⌊n^{3/2}⌋`
+  satisfies `t ≥ n^{3/2} − 1 > 2n` for `n ≥ 12`, so the hypothesis above
+  is discharged rather than assumed.
+- `theta_strictMono` — `θ(o) = 1 − 2^L/3^o` increases in `o`.
+- `packingR_step_neg`, `comparison_fails_upward` — the conclusion, for an
+  arbitrary positive coefficient, so it covers both the `6/5` here and
+  the `1` of Theorem 4.4 as the lemma claims.
+
+All six kernel-clean, `[propext, Classical.choice, Quot.sound]`, no
+`sorry`. `lake build Problems.JugglerPaper` clean at 3437 jobs.
+
+Unlike `DenjoyKoksma` and `DividedBounds`, this **is** Paper A content
+and goes in Paper A's barrel: it discharges a row of that paper's own
+table rather than sitting beside it.
+
+*What is and is not established.* What is checked is the inequality as
+stated. That this shape is the right model of the dynamics remains the
+human part, exactly as Section 1.2's trust boundary says of the whole
+layer — formalizing 4.4b moves it from "human proof, not Lean" to the
+same footing as the other fifty-one rows, not to a stronger one.
+
+Appendix A's row now names the six theorems. Paper A's count moves from
+fifty-one fully-Lean rows to fifty-two, and from two rows with no Lean
+to one: Theorem 4.7.

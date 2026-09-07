@@ -36490,6 +36490,66 @@
       "trust": "kernel"
     },
     {
+      "doc": "**The step is constant in `o`.** `R(o+1) \u2212 R(o) = 2\u03b1 \u2212 1 \u2212 1/(2n)`.",
+      "file": "formal/Problems/Juggler/OddCountMonotone.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 39,
+      "module": "Problems.Juggler.OddCountMonotone",
+      "name": "packingR_step",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**`\u03b1 < 1/2`.** Paper A gets `t = \u230an^{3/2}\u230b > 2n` for `n \u2265 12`; that hypothesis is taken here, and the rest is `log t > log n`.",
+      "file": "formal/Problems/Juggler/OddCountMonotone.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 47,
+      "module": "Problems.Juggler.OddCountMonotone",
+      "name": "alpha_lt_half",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The certified `t > 2n`.** Paper A's `t = \u230an^{3/2}\u230b` satisfies `t \u2265 n^{3/2} \u2212 1 > 2n` for `n \u2265 12`; this is that inequality, `n^{3/2} > 2n + 1`, in the form the floor step needs.",
+      "file": "formal/Problems/Juggler/OddCountMonotone.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 61,
+      "module": "Problems.Juggler.OddCountMonotone",
+      "name": "two_n_add_one_lt_rpow_three_halves",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**`R` strictly decreases in the odd count**, given `\u03b1 < 1/2` and `n > 0`.",
+      "file": "formal/Problems/Juggler/OddCountMonotone.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 70,
+      "module": "Problems.Juggler.OddCountMonotone",
+      "name": "packingR_step_neg",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**\u03b8 strictly increases in the odd count**: `\u03b8(o) = 1 \u2212 2^L/3^o`.",
+      "file": "formal/Problems/Juggler/OddCountMonotone.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 77,
+      "module": "Problems.Juggler.OddCountMonotone",
+      "name": "theta_strictMono",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Lemma 4.4b.** If the parity comparison `n log n \u00b7 \u03b8(o) \u2264 c \u00b7 R(o)` fails at an odd count, it fails at every larger one: the left side increases in `o` and the right side decreases. The coefficient `c` is arbitrary positive \u2014 Paper A uses `6/5` and Theorem 4.4 uses `1`.",
+      "file": "formal/Problems/Juggler/OddCountMonotone.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 91,
+      "module": "Problems.Juggler.OddCountMonotone",
+      "name": "comparison_fails_upward",
+      "trust": "kernel"
+    },
+    {
       "doc": "",
       "file": "formal/Problems/Juggler/OddLandingSets.lean",
       "kind": "abbrev",
@@ -64072,6 +64132,7 @@
         "Problems.Juggler.NearTightScale",
         "Problems.Juggler.NormalizedDefect",
         "Problems.Juggler.O7EEEEGap",
+        "Problems.Juggler.OddCountMonotone",
         "Problems.Juggler.OddLandingSets",
         "Problems.Juggler.OstrowskiNumeration",
         "Problems.Juggler.OstrowskiSandwich",
@@ -65229,6 +65290,12 @@
         }
       ]
     },
+    "Problems.Juggler.OddCountMonotone": {
+      "declarations": 6,
+      "file": "formal/Problems/Juggler/OddCountMonotone.lean",
+      "imports": [],
+      "ledger": []
+    },
     "Problems.Juggler.OddLandingSets": {
       "declarations": 10,
       "file": "formal/Problems/Juggler/OddLandingSets.lean",
@@ -65698,6 +65765,7 @@
         "Problems.Juggler.NearTightScale",
         "Problems.Juggler.NormalizedDefect",
         "Problems.Juggler.O7EEEEGap",
+        "Problems.Juggler.OddCountMonotone",
         "Problems.Juggler.OstrowskiNumeration",
         "Problems.Juggler.OstrowskiSandwich",
         "Problems.Juggler.Preimages",
@@ -65917,13 +65985,13 @@
     }
   },
   "totals": {
-    "declarations": 4688,
+    "declarations": 4694,
     "declarations_with_a_ledger_row": 3183,
     "ledger_rows_naming_a_file": 329,
-    "modules": 196,
+    "modules": 197,
     "trust": {
       "compiler": 54,
-      "kernel": 4634
+      "kernel": 4640
     }
   }
 }
