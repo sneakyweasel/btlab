@@ -10,3 +10,5 @@ export * from "./trajectory";
 export * from "./itinerary";
 export * from "./lollipop";
 export * from "./necklace";
+export * from "./runSuffix";
+export * from "./gapTransfer";

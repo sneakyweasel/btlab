@@ -20,6 +20,8 @@ import {
   NECKLACE_PRESETS,
   NOTE_TRAJECTORY_3,
   NOTE_PEAK_37,
+  MAIN_FLOOR,
+  MAIN_PERIOD,
   PAPER_EXCEPTION_COUNT,
   PAPER_FLOOR,
   PAPER_L_CAP,
@@ -71,7 +73,32 @@ import {
   paintStem,
   siteRigidity,
 } from "./lollipop";
-import { floorPower } from "./map";
+import { floorPower, icbrt } from "./map";
+import {
+  EVEN_COUNT_LADDER,
+  RECOVERIES,
+  exactBackwardEnvelope,
+  excludedCrude,
+  excludedSharp,
+  formatT,
+  leastRun,
+  parseSuffix,
+  sharpExponents,
+  suffixExponentValue,
+  thresholdCrude,
+  thresholdSharp,
+} from "./runSuffix";
+import {
+  RHIN_A,
+  RHIN_C,
+  RHIN_COEFF,
+  RHIN_SHIFT,
+  SURVIVOR_EXPONENTS,
+  gapHolds,
+  rhinForcedLength,
+  rhinMinLength,
+  shortExcluded,
+} from "./gapTransfer";
 import { EMBER, FLARE, PLUNGE, SEA, mixHex, stepPathColor } from "./palette";
 import { monsterTrajectory, resolveTrajectory } from "./monsters";
 import { walkTrajectory } from "./trajectory";
@@ -784,5 +811,99 @@ describe("excursion necklace", () => {
     expect(n * Math.log(n)).toBeCloseTo(25781 / ledger.theta, -2);
     expect(financeBudgetConstantOne(25781, n)).toBeCloseTo(ledger.theta, 12);
     expect(n).toBeGreaterThan(shippedNMax(25781)!);
+  });
+});
+
+describe("run-suffix law", () => {
+  it("parses a suffix that is empty or starts with E", () => {
+    expect(parseSuffix("")).toBe("");
+    expect(parseSuffix("ee")).toBe("EE");
+    expect(parseSuffix("EOE")).toBe("EOE");
+    expect(parseSuffix("OEE")).toBeNull();
+    expect(parseSuffix("EEEEEEEEE")).toBeNull();
+    expect(parseSuffix("EX")).toBeNull();
+  });
+
+  it("reproduces the ten least-a values, including the E strengthening", () => {
+    expect(RECOVERIES.map((row) => leastRun(row.suffix))).toEqual([
+      2, 4, 3, 6, 5, 4, 3, 5, 4, 3,
+    ]);
+    expect(leastRun("E")).toBe(2);
+    expect(formatT("EOE")).toBe("8/3");
+    expect(suffixExponentValue("EEE")).toBe(8);
+  });
+
+  it("matches Corollary 3.27 / 3.30 n_u on a live search", () => {
+    for (const row of RECOVERIES) {
+      expect(thresholdCrude(row.lawA, row.suffix)).toBe(row.nCrude);
+      expect(thresholdSharp(row.lawA, row.suffix)).toBe(row.nSharp);
+      expect(excludedCrude(row.lawA, row.suffix, row.nCrude)).toBe(true);
+      expect(excludedCrude(row.lawA, row.suffix, row.nCrude - 1)).toBe(false);
+      expect(excludedSharp(row.lawA, row.suffix, row.nSharp)).toBe(true);
+      expect(excludedSharp(row.lawA, row.suffix, row.nSharp - 1)).toBe(false);
+    }
+  });
+
+  it("matches the O7EEEEGap sharp exponents and the integer backward envelope", () => {
+    expect(sharpExponents(7)).toEqual([6177, 3990]);
+    expect(sharpExponents(1)).toEqual([3, 0]);
+    expect(icbrt(0n)).toBe(0n);
+    expect(icbrt(1n)).toBe(1n);
+    expect(icbrt(8n)).toBe(2n);
+    expect(icbrt(26n)).toBe(2n);
+    expect(icbrt(27n)).toBe(3n);
+    expect(icbrt(28n)).toBe(3n);
+    const n = 12345;
+    expect(exactBackwardEnvelope("E", n)).toBe(152423716n);
+    expect(exactBackwardEnvelope("EE", n)).toBe(23232989199248656n);
+    expect(exactBackwardEnvelope("EOE", n)).toBe(81421198336n);
+    expect(exactBackwardEnvelope("", n)).toBe(12346n);
+  });
+
+  it("needs the sharp form once the fourth trailing even appears", () => {
+    expect(leastRun("EEEE")).toBe(7);
+    expect(leastRun("EEEEE")).toBe(9);
+    expect(leastRun("EOEEE")).toBe(6);
+    expect(leastRun("EOOEEE")).toBe(5);
+    expect(leastRun("EEEOE")).toBe(6);
+    expect(leastRun("EOEOEE")).toBe(5);
+    const crude = thresholdCrude(7, "EEEE");
+    expect(crude).toBe(828_484_409);
+    expect(crude).toBeGreaterThan(1_000_000);
+    expect(EVEN_COUNT_LADDER.map((row) => row.forms)).toEqual([
+      16, 186, 2037, 25353, 325452,
+    ]);
+  });
+});
+
+describe("gap transfer / Rhin", () => {
+  it("packages Rhin's constants the way Corollary 4.11 prints them", () => {
+    expect(Math.abs(RHIN_A * RHIN_SHIFT - RHIN_C)).toBeLessThan(5e-5);
+    const coeff = 2 * Math.exp(RHIN_C);
+    expect(coeff).toBeGreaterThan(914);
+    expect(coeff).toBeLessThan(RHIN_COEFF);
+  });
+
+  it("forces only L ≥ 4 at the main printed floor", () => {
+    const min = rhinMinLength(MAIN_FLOOR);
+    expect(min).toBeGreaterThanOrEqual(3);
+    expect(min).toBeLessThan(4);
+    expect(rhinForcedLength(MAIN_FLOOR)).toBe(4);
+    expect(shortExcluded(MAIN_FLOOR, 3)).toBe(true);
+    expect(shortExcluded(MAIN_FLOOR, MAIN_PERIOD)).toBe(false);
+  });
+
+  it("holds the gap transfer on a live expanding pair", () => {
+    const length = 12;
+    const odds = oMinExact(length);
+    expect(odds).toBeGreaterThan(0);
+    expect(gapHolds(3, length, odds)).toBe(true);
+  });
+
+  it("matches the paper's four survivor exponents", () => {
+    for (const row of SURVIVOR_EXPONENTS) {
+      const measured = Math.log(row.L) / Math.log(row.nMax);
+      expect(Math.abs(measured - row.exponent)).toBeLessThan(1e-3);
+    }
   });
 });

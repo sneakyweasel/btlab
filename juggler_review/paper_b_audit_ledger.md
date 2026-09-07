@@ -8158,3 +8158,45 @@ at 3438 jobs; the `L ≥ 28` threshold checked against the certified bound
 useful part of this row was never the packing inequality but the two
 arithmetic facts underneath it, and those were three `omega`s and one
 logarithm away.
+
+## Theorem 5.4's strict half: the envelope had the non-strict inequality all along
+
+*Mathematical target.* Of the ten Paper A rows that are Lean with a
+stated gap, six are gaps this laboratory can close and four are
+computation or classical literature. Take the first of the six.
+
+**The gap was one word.** Paper A's Theorem 5.4 says `g` is *strictly*
+decreasing in `u`, and uses that to conclude the hug itinerary is the
+unique maximiser. `WalkChargeMax.stateCharge_antitone` proves the
+non-strict form — its own docstring says so, "in the (non-strict) form
+the envelope uses" — and the module docstring recorded the consequence:
+"Uniqueness of the maximiser stays with the human proof". The envelope
+never needed strictness; uniqueness needs nothing else.
+
+- `stateCharge_strictAnti` — `0 < W₁ < W₂` gives
+  `stateCharge ν W₂ < stateCharge ν W₁`, since `exp(Wν)·W·ν` is
+  strictly increasing in `W`.
+- `stateCharge_inj` — equal charges force equal weights, by trichotomy.
+- `hug_charge_unique` — if an admissible odd-count profile attains the
+  hug charge over a prefix then it *is* the hug profile there.
+  `hug_charge_maximal` gives the termwise inequality,
+  `Finset.sum_eq_sum_iff_of_le` turns equality of the sums into equality
+  of every term, `stateCharge_inj` gives equal weights, and
+  `Nat.pow_right_injective` gives equal odd counts.
+
+Kernel-clean, `lake build Problems.JugglerPaper` at 3438 jobs.
+
+*A guard caught the barrel edit.* Adding two modules to Paper A's barrel
+broke `test_paper_barrel_is_the_named_review_object`, which pins the
+barrel's import list in order against `lean_paths.PAPER_MODULES`. The
+list is now updated. That guard exists because the barrel *is* the
+review object, and its contents are a claim about what a reviewer is
+asked to build — the right thing to fail on an unannounced change.
+
+**Where Paper A now stands.** Appendix A: 52 fully Lean, 4
+cross-references, 10 Lean with a stated gap, 6 verified computation,
+**0 with no Lean**. Of the ten gaps, the ones this laboratory can still
+close are Theorem 3.31's enumeration and the Section 5 analytic cluster
+(5.5 and 5.7, which are one project through Denjoy–Koksma); Corollary
+4.11's is Rhin's measure, which is literature, and the rest are
+computation.

@@ -4,7 +4,7 @@
  */
 
 import { CYCLE_WORD_MAX, SLACK_BITS, WORD_MAX } from "./constants";
-import { bitLength, floorPower, letterOf, powInt } from "./map";
+import { bitLength, floorPower, letterOf, lnBig, powInt } from "./map";
 
 export type Regime = "contracting" | "expanding" | "critical" | "empty";
 
@@ -82,16 +82,6 @@ export function rotateItinerary(word: string, shift: number): string {
 
 export function parseCycleItinerary(text: string): string | null {
   return parseItinerary(text, CYCLE_WORD_MAX);
-}
-
-function lnBig(n: bigint): number {
-  if (n <= 0n) return Number.NEGATIVE_INFINITY;
-  const bits = bitLength(n);
-  if (bits <= 53) return Math.log(Number(n));
-  const hex = n.toString(16);
-  const take = Math.min(hex.length, 13);
-  const lead = Number.parseInt(hex.slice(0, take), 16);
-  return Math.log(lead) + (hex.length - take) * 4 * Math.LN2;
 }
 
 /** Finite stand-in for SVG / Number display. Exact below 53 bits. */

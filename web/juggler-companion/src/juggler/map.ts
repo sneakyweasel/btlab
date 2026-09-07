@@ -27,6 +27,34 @@ export function isqrt(n: bigint): bigint {
   return x0;
 }
 
+/** Floor cube root. Same Newton loop as run_suffix_law.icbrt. */
+export function icbrt(n: bigint): bigint {
+  if (n < 0n) {
+    throw new Error("icbrt requires a nonnegative integer");
+  }
+  if (n < 2n) return n;
+  let r = 1n << BigInt(Math.floor((bitLength(n) + 2) / 3));
+  while (true) {
+    const next = (2n * r + n / (r * r)) / 3n;
+    if (next >= r) break;
+    r = next;
+  }
+  while (r * r * r > n) r -= 1n;
+  while ((r + 1n) * (r + 1n) * (r + 1n) <= n) r += 1n;
+  return r;
+}
+
+/** Natural log of a positive bigint. Exact below 53 bits. */
+export function lnBig(n: bigint): number {
+  if (n <= 0n) return Number.NEGATIVE_INFINITY;
+  const bits = bitLength(n);
+  if (bits <= 53) return Math.log(Number(n));
+  const hex = n.toString(16);
+  const take = Math.min(hex.length, 13);
+  const lead = Number.parseInt(hex.slice(0, take), 16);
+  return Math.log(lead) + (hex.length - take) * 4 * Math.LN2;
+}
+
 export function floorPower(n: bigint): bigint {
   if (n < 1n) {
     throw new Error("floorPower is defined on positive integers");

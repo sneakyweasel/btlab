@@ -11,22 +11,9 @@ import {
   EVEN_BLOCK_BEAD_MAX,
   FIBER_BEAD_MAX,
 } from "./constants";
-import { floorPower, isqrt } from "./map";
+import { floorPower, icbrt, isqrt } from "./map";
 
-export function icbrt(x: bigint): bigint {
-  if (x < 0n) {
-    throw new Error("icbrt requires a nonnegative integer");
-  }
-  if (x <= 1n) return x;
-  let lo = 0n;
-  let hi = x;
-  while (lo < hi) {
-    const mid = (lo + hi + 1n) >> 1n;
-    if (mid * mid * mid <= x) lo = mid;
-    else hi = mid - 1n;
-  }
-  return lo;
-}
+export { icbrt };
 
 function requireNat(m: number, name: string): bigint {
   if (!Number.isInteger(m) || m < 0) {

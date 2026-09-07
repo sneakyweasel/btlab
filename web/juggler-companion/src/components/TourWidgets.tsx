@@ -26,6 +26,7 @@ import { OeFiberStrip } from "../visuals/OeFiberStrip";
 import { ProductionWork } from "../visuals/ProductionWork";
 import { SweepLane } from "../visuals/SweepLane";
 import { CycleTourWidget, LeftoverWidget } from "./CycleTourWidget";
+import { RunSuffixExplorer } from "./RunSuffixExplorer";
 import { EnvelopePanel, EnvelopeSlack } from "../visuals/EnvelopeSlack";
 import { RegimeDoors } from "../visuals/RegimeDoors";
 import { FinanceBalance, FinanceHierarchy } from "../visuals/FinanceBalance";
@@ -819,6 +820,10 @@ export function FinanceWidget() {
       </Movement>
     </div>
   );
+}
+
+export function RunSuffixWidget() {
+  return <RunSuffixExplorer compact />;
 }
 
 export function WalkChargeWidget() {

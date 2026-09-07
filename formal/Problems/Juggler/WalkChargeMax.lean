@@ -29,9 +29,12 @@ hence by the hug charge (`cycleMin_defect_le_hug_charge`):
 
 `Σ_k 1/(x_k log x_k) ≤ Σ_k g(w_k) ≤ Σ_k g(hugWeight k)`.
 
-Uniqueness of the maximiser (the strict exchange within a fixed
-`(L, o)` class) stays with the human proof; the rotation average
-(Prop 5.5) and Denjoy–Koksma (Thm 5.7) remain analytic prose. Not a
+Uniqueness of the maximiser is now here too (`hug_charge_unique`): the
+envelope used `stateCharge_antitone`, and the strict form
+`stateCharge_strictAnti` turns equality of the sums into equality of
+every term, so an admissible profile attaining the hug charge *is* the
+hug profile. The rotation average (Prop 5.5) and Denjoy–Koksma
+(Thm 5.7) remain analytic prose. Not a
 cycle obstruction and not a halt theorem.
 -/
 
@@ -119,6 +122,60 @@ theorem hug_charge_maximal {ν : ℝ} (hν : 0 < ν) (a : ℕ → ℕ)
   Finset.sum_le_sum fun k _ =>
     stateCharge_antitone hν (hugWeight_pos k)
       (hugWeight_le_of_admissible k (ha k))
+
+/-!
+## Theorem 5.4, the strict half: the hug itinerary is the only maximiser
+-/
+
+/-- **The charge is *strictly* antitone in the weight.**  `stateCharge_antitone` is the
+non-strict form the envelope uses; this is the paper's "`g` is strictly decreasing in `u`",
+which is what a uniqueness statement needs. -/
+theorem stateCharge_strictAnti {ν W₁ W₂ : ℝ} (hν : 0 < ν)
+    (hW₁ : 0 < W₁) (h : W₁ < W₂) :
+    stateCharge ν W₂ < stateCharge ν W₁ := by
+  have hW₂ : 0 < W₂ := lt_trans hW₁ h
+  rw [stateCharge, stateCharge]
+  apply one_div_lt_one_div_of_lt
+  · have := Real.exp_pos (W₁ * ν); positivity
+  · have hexp : Real.exp (W₁ * ν) < Real.exp (W₂ * ν) :=
+      Real.exp_lt_exp.mpr (by nlinarith)
+    have h1 : Real.exp (W₁ * ν) * W₁ < Real.exp (W₂ * ν) * W₂ := by
+      have := Real.exp_pos (W₁ * ν)
+      nlinarith [Real.exp_pos (W₂ * ν)]
+    nlinarith
+
+/-- Equal charges force equal weights. -/
+theorem stateCharge_inj {ν W₁ W₂ : ℝ} (hν : 0 < ν) (hW₁ : 0 < W₁) (hW₂ : 0 < W₂)
+    (h : stateCharge ν W₁ = stateCharge ν W₂) : W₁ = W₂ := by
+  rcases lt_trichotomy W₁ W₂ with hlt | heq | hgt
+  · exact absurd h (ne_of_gt (stateCharge_strictAnti hν hW₁ hlt))
+  · exact heq
+  · exact absurd h.symm (ne_of_gt (stateCharge_strictAnti hν hW₂ hgt))
+
+/-- **Theorem 5.4, the strict half: the hug itinerary is the *only* maximiser.**  If an
+admissible odd-count profile attains the hug charge over a prefix, it *is* the hug profile
+there.  `hug_charge_maximal` gives the inequality; strict antitonicity turns equality of the
+sums into equality of every term, and `3^·` is injective. -/
+theorem hug_charge_unique {ν : ℝ} (hν : 0 < ν) (a : ℕ → ℕ)
+    (ha : ∀ k, 2 ^ k ≤ 3 ^ a k) (L : ℕ)
+    (heq : ∑ k ∈ Finset.range L, stateCharge ν ((3 : ℝ) ^ a k / 2 ^ k)
+         = ∑ k ∈ Finset.range L, stateCharge ν (hugWeight k)) :
+    ∀ k < L, a k = hugOdds k := by
+  have hle : ∀ k ∈ Finset.range L,
+      stateCharge ν ((3 : ℝ) ^ a k / 2 ^ k) ≤ stateCharge ν (hugWeight k) :=
+    fun k _ => stateCharge_antitone hν (hugWeight_pos k) (hugWeight_le_of_admissible k (ha k))
+  have hterm := (Finset.sum_eq_sum_iff_of_le hle).mp heq
+  intro k hk
+  have hk' : k ∈ Finset.range L := Finset.mem_range.mpr hk
+  have hW : ((3 : ℝ) ^ a k / 2 ^ k) = hugWeight k := by
+    refine stateCharge_inj hν (by positivity) (hugWeight_pos k) (hterm k hk')
+  rw [hugWeight] at hW
+  have h2 : (0:ℝ) < 2 ^ k := by positivity
+  have h3 : ((3:ℝ) ^ a k) = 3 ^ hugOdds k := by
+    field_simp at hW
+    exact hW
+  have h3n : (3:ℕ) ^ a k = 3 ^ hugOdds k := by exact_mod_cast h3
+  exact Nat.pow_right_injective (by norm_num) h3n
 
 /-!
 ## The §5.2 consequence: defect sum ≤ walk charge ≤ hug charge

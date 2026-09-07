@@ -11,6 +11,7 @@ import {
   FinanceWidget,
   FloorWidget,
   MapWidget,
+  RunSuffixWidget,
   WalkChargeWidget,
 } from "../components/TourWidgets";
 import {
@@ -26,6 +27,7 @@ const SHORT_TERM: Record<TourSlug, string> = {
   "cycle-survivors": "Survivors",
   expanding: "Expand",
   envelope: "Envelope",
+  "run-suffix": "Suffix",
   preimages: "Preimages",
   "oe-fiber": "OE fiber",
   "descent-floor": "Floor",
@@ -39,6 +41,7 @@ const WIDGETS: Record<TourSlug, () => JSX.Element> = {
   "cycle-survivors": LeftoversWidget,
   expanding: ExpandingWidget,
   envelope: EnvelopeWidget,
+  "run-suffix": RunSuffixWidget,
   preimages: PreimagesWidget,
   "oe-fiber": OeFiberWidget,
   "descent-floor": FloorWidget,
@@ -65,6 +68,9 @@ export function TourPage() {
   }
   if (slug === "cycle-leftovers") {
     return <Navigate to="/tour/cycle-survivors" replace />;
+  }
+  if (slug === "suffix") {
+    return <Navigate to="/tour/run-suffix" replace />;
   }
   const chapter = chapterBySlug(slug);
   if (!chapter) {

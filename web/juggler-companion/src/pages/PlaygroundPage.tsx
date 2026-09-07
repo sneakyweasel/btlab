@@ -5,6 +5,7 @@ const TABS = [
   { to: "/play/trajectory", label: "Trajectory" },
   { to: "/play/cycle", label: "Cycle" },
   { to: "/play/survivors", label: "Survivors" },
+  { to: "/play/run-suffix", label: "Run-suffix" },
   { to: "/play/itinerary", label: "Itinerary" },
   { to: "/play/preimages", label: "Preimages" },
   { to: "/play/oe-fiber", label: "OE fiber" },
@@ -26,9 +27,10 @@ export function PlaygroundPage() {
         <h1 className="text-4xl">Playground</h1>
         <p className="prose-measure mt-3 text-muted">
           Walk a start — including the shipped peaks — follow a short itinerary,
-          rotate a cycle word, inspect a CycleMin survivor, grow the two Paper C
-          productions, look up a certified floor, look up a length in the shipped
-          Theorem 4.6 table, or read the walk-charge pipeline. Caps: 80 steps,
+          rotate a cycle word, inspect a CycleMin survivor, cross a run-suffix
+          pair, grow the two Paper C productions, look up a certified floor,
+          look up a length in the shipped Theorem 4.6 table, or read the
+          walk-charge pipeline. Caps: 80 steps,
           256 bits live, itineraries of length at most 8 (cycles 16, tour words
           24), production seeds at most 100,000. Shipped monsters are pictures,
           not a live walk. Hitting 1 is not a theorem.

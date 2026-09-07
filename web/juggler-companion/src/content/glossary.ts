@@ -4,6 +4,7 @@ export type TourSlug =
   | "cycle-survivors"
   | "expanding"
   | "envelope"
+  | "run-suffix"
   | "preimages"
   | "oe-fiber"
   | "descent-floor"
@@ -71,8 +72,19 @@ export const TOUR_CHAPTERS: TourChapter[] = [
     paper: "Theorem 2.2 / Corollary 2.3: the finite-itinerary power envelope.",
   },
   {
-    slug: "preimages",
+    slug: "run-suffix",
     number: 6,
+    term: "Run-suffix law",
+    blurb:
+      "One odd run, one suffix, one inequality. Eleven exclusions are ten evaluations of it.",
+    body:
+      "The split. Rotate a hypothetical cycle to its smallest value and read a maximal odd run O^a followed by a suffix u that is empty or begins with an even letter. The backward exponent T(u) = 2^|u| / 3^{#O(u)} is one factor 2 per even letter and one factor 2/3 per odd letter, read from the return backwards. At leading order the law says (3/2)^a ≤ T(u): the whole word must be formally expanding, and no tail of it beginning with an odd letter may be. That is the mirror of Theorem 3.2(i).\n\nThe crossing. Lemma 3.24 puts a closed-form lower envelope under the state after the run; Lemma 3.25 puts an integer upper envelope B(u) on the state entering the suffix. They collide once the cycle minimum is large enough. The crude form (Theorem 3.26) pays a factor 4 and needs a margin log 4 / log n; the sharp form (Theorem 3.29) uses the minimum at every step of the run and pays only (1+1/n). The a = 7 sharp chain is O7EEEEGap.lean. Empty suffix is the whole word as a tail: the envelope sits at n itself and the law degenerates to finance.\n\nThe table. Each of the ten suffixes is one evaluation of the same inequality. Nine least-a values are the ones the leftover-family theorems print; for u = E the law strengthens Lemma 3.4(v) and kills OOE at n ≥ 1032. The sharp thresholds are all at most 7. Theorem 3.31 then enumerates the seven-even forms and doubles the floor-free period to 22 once the minimum is at least 300. That census is not Lean, and the CycleMin checker stays on Theorem 3.22.",
+    paper:
+      "§3.9: Lemmas 3.24–3.25, Theorems 3.26 and 3.29, Corollaries 3.27 and 3.30, Theorem 3.31, Remark 3.32. O7EEEEGap.lean is the a = 7 sharp chain. The CycleMin checker stays on Theorem 3.22.",
+  },
+  {
+    slug: "preimages",
+    number: 7,
     term: "One-step preimages",
     blurb:
       "J is not invertible. A backward-closed set swallows the even square interval of every member.",
@@ -83,7 +95,7 @@ export const TOUR_CHAPTERS: TourChapter[] = [
   },
   {
     slug: "oe-fiber",
-    number: 7,
+    number: 8,
     term: "OE fiber",
     blurb:
       "Odd n with floor of n to the three-fourths equal to m. Those whose next image is even join A in two steps.",
@@ -94,7 +106,7 @@ export const TOUR_CHAPTERS: TourChapter[] = [
   },
   {
     slug: "descent-floor",
-    number: 8,
+    number: 9,
     term: "Verified descent floor N₀",
     blurb: "Every start from 2 through N₀ has already been checked to reach 1. A floor is an input.",
     body:
@@ -103,7 +115,7 @@ export const TOUR_CHAPTERS: TourChapter[] = [
   },
   {
     slug: "finance",
-    number: 9,
+    number: 10,
     term: "Finance",
     blurb:
       "Ideal dynamics expands, exact dynamics returns; the difference is paid in floor crumbs, and the crumbs run out.",
@@ -114,7 +126,7 @@ export const TOUR_CHAPTERS: TourChapter[] = [
   },
   {
     slug: "walk-charge",
-    number: 10,
+    number: 11,
     term: "Walk charge",
     blurb: "Section 5 carries the same floor crumbs to one common currency, then prices the worst itinerary.",
     body:

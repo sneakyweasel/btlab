@@ -49,6 +49,7 @@ the package-local `vercel.json` does the same rewrite.
 - `src/research/juggler_sequence/floor_preimages.py`
 - `src/research/juggler_sequence/fate_contagion.py`
 - `src/research/juggler_sequence/cycle_itinerary.py`
+- `src/research/juggler_sequence/run_suffix_law.py`
 
 The preimage playground shows Paper C’s two productions — the even block
 and the OE fiber with its parity sweep — not a halt-theorem demo.

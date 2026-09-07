@@ -46662,7 +46662,7 @@
       "ledger": [
         "J-cyclemin-hug-charge-max"
       ],
-      "line": 48,
+      "line": 51,
       "module": "Problems.Juggler.WalkChargeMax",
       "name": "stateCharge_pos",
       "trust": "kernel"
@@ -46674,7 +46674,7 @@
       "ledger": [
         "J-cyclemin-hug-charge-max"
       ],
-      "line": 56,
+      "line": 59,
       "module": "Problems.Juggler.WalkChargeMax",
       "name": "stateCharge_antitone",
       "trust": "kernel"
@@ -46686,7 +46686,7 @@
       "ledger": [
         "J-cyclemin-hug-charge-max"
       ],
-      "line": 79,
+      "line": 82,
       "module": "Problems.Juggler.WalkChargeMax",
       "name": "one_le_hugWeight",
       "trust": "kernel"
@@ -46698,7 +46698,7 @@
       "ledger": [
         "J-cyclemin-hug-charge-max"
       ],
-      "line": 83,
+      "line": 86,
       "module": "Problems.Juggler.WalkChargeMax",
       "name": "hugWeight_pos",
       "trust": "kernel"
@@ -46710,7 +46710,7 @@
       "ledger": [
         "J-cyclemin-hug-charge-max"
       ],
-      "line": 88,
+      "line": 91,
       "module": "Problems.Juggler.WalkChargeMax",
       "name": "hugWeight_le_of_admissible",
       "trust": "kernel"
@@ -46722,7 +46722,7 @@
       "ledger": [
         "J-cyclemin-hug-charge-max"
       ],
-      "line": 98,
+      "line": 101,
       "module": "Problems.Juggler.WalkChargeMax",
       "name": "hugWeight_le_walkWeight",
       "trust": "kernel"
@@ -46734,9 +46734,45 @@
       "ledger": [
         "J-cyclemin-hug-charge-max"
       ],
-      "line": 115,
+      "line": 118,
       "module": "Problems.Juggler.WalkChargeMax",
       "name": "hug_charge_maximal",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The charge is *strictly* antitone in the weight.** `stateCharge_antitone` is the non-strict form the envelope uses; this is the paper's \"`g` is strictly decreasing in `u`\", which is what a uniqueness statement needs.",
+      "file": "formal/Problems/Juggler/WalkChargeMax.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-cyclemin-hug-charge-max"
+      ],
+      "line": 133,
+      "module": "Problems.Juggler.WalkChargeMax",
+      "name": "stateCharge_strictAnti",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Equal charges force equal weights.",
+      "file": "formal/Problems/Juggler/WalkChargeMax.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-cyclemin-hug-charge-max"
+      ],
+      "line": 148,
+      "module": "Problems.Juggler.WalkChargeMax",
+      "name": "stateCharge_inj",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Theorem 5.4, the strict half: the hug itinerary is the *only* maximiser.** If an admissible odd-count profile attains the hug charge over a prefix, it *is* the hug profile there. `hug_charge_maximal` gives the inequality; strict antitonicity turns equality of the sums into equality of every term, and `3^\u00b7` is injective.",
+      "file": "formal/Problems/Juggler/WalkChargeMax.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-cyclemin-hug-charge-max"
+      ],
+      "line": 159,
+      "module": "Problems.Juggler.WalkChargeMax",
+      "name": "hug_charge_unique",
       "trust": "kernel"
     },
     {
@@ -46746,7 +46782,7 @@
       "ledger": [
         "J-cyclemin-hug-charge-max"
       ],
-      "line": 133,
+      "line": 190,
       "module": "Problems.Juggler.WalkChargeMax",
       "name": "cycleMin_defect_le_charge",
       "trust": "kernel"
@@ -46758,7 +46794,7 @@
       "ledger": [
         "J-cyclemin-hug-charge-max"
       ],
-      "line": 172,
+      "line": 229,
       "module": "Problems.Juggler.WalkChargeMax",
       "name": "cycleMin_defect_le_hug_charge",
       "trust": "kernel"
@@ -65748,7 +65784,7 @@
       ]
     },
     "Problems.Juggler.WalkChargeMax": {
-      "declarations": 9,
+      "declarations": 12,
       "file": "formal/Problems/Juggler/WalkChargeMax.lean",
       "imports": [
         "Problems.Juggler.WalkChargeItineraries",
@@ -66035,13 +66071,13 @@
     }
   },
   "totals": {
-    "declarations": 4698,
-    "declarations_with_a_ledger_row": 3183,
+    "declarations": 4701,
+    "declarations_with_a_ledger_row": 3186,
     "ledger_rows_naming_a_file": 329,
     "modules": 198,
     "trust": {
       "compiler": 54,
-      "kernel": 4644
+      "kernel": 4647
     }
   }
 }

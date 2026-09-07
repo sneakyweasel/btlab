@@ -1,5 +1,6 @@
 import { createContext, useContext, useMemo, useState, type ReactNode } from "react";
 import { NECKLACE_PRESETS } from "../juggler/constants";
+import type { EnvelopeMode } from "../juggler/runSuffix";
 
 type PlayState = {
   nText: string;
@@ -12,6 +13,14 @@ type PlayState = {
   setCycleShift: (value: number) => void;
   financeL: number;
   setFinanceL: (value: number) => void;
+  suffix: string;
+  setSuffix: (value: string) => void;
+  runA: number;
+  setRunA: (value: number) => void;
+  runN: number;
+  setRunN: (value: number) => void;
+  envelopeMode: EnvelopeMode;
+  setEnvelopeMode: (value: EnvelopeMode) => void;
 };
 
 type NecklaceState = {
@@ -30,6 +39,10 @@ export function PlayStateProvider({ children }: { children: ReactNode }) {
   const [cycleItinerary, setCycleItinerary] = useState("OOOOOOOEEEE");
   const [cycleShift, setCycleShift] = useState(0);
   const [financeL, setFinanceL] = useState(25781);
+  const [suffix, setSuffix] = useState("EE");
+  const [runA, setRunA] = useState(4);
+  const [runN, setRunN] = useState(300);
+  const [envelopeMode, setEnvelopeMode] = useState<EnvelopeMode>("crude");
   const [necklaceNText, setNecklaceNText] = useState(NECKLACE_PRESETS[0].n.toString());
   const [necklaceWord, setNecklaceWord] = useState<string>(NECKLACE_PRESETS[0].word);
   const value = useMemo(
@@ -44,8 +57,16 @@ export function PlayStateProvider({ children }: { children: ReactNode }) {
       setCycleShift,
       financeL,
       setFinanceL,
+      suffix,
+      setSuffix,
+      runA,
+      setRunA,
+      runN,
+      setRunN,
+      envelopeMode,
+      setEnvelopeMode,
     }),
-    [nText, itinerary, cycleItinerary, cycleShift, financeL],
+    [nText, itinerary, cycleItinerary, cycleShift, financeL, suffix, runA, runN, envelopeMode],
   );
   const necklace = useMemo(
     () => ({

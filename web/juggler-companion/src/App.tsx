@@ -14,6 +14,7 @@ import { CeilingTab } from "./pages/play/CeilingTab";
 import { FanTab } from "./pages/play/FanTab";
 import { WalkTab } from "./pages/play/WalkTab";
 import { FinanceTab } from "./pages/play/FinanceTab";
+import { RunSuffixTab } from "./pages/play/RunSuffixTab";
 import { TrajectoryTab } from "./pages/play/TrajectoryTab";
 import { ItineraryTab } from "./pages/play/ItineraryTab";
 
@@ -42,6 +43,8 @@ export default function App() {
               <Route path="cycle" element={<CycleTab />} />
               <Route path="survivors" element={<SurvivorsTab />} />
               <Route path="leftovers" element={<Navigate to="/play/survivors" replace />} />
+              <Route path="run-suffix" element={<RunSuffixTab />} />
+              <Route path="suffix" element={<Navigate to="/play/run-suffix" replace />} />
               <Route path="floor" element={<FloorTab />} />
               <Route path="descent-floor" element={<Navigate to="/play/floor" replace />} />
               <Route path="finance" element={<FinanceTab />} />
