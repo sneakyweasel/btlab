@@ -68,7 +68,12 @@ re-centring tilt with \(D(p_C\|q)\). At \(k=p_Cd\) the exponent is
 \(\mathrm M_{\theta,q}(C)\) gives \(\Lambda\le(\log y)^{-CD(p_C\|q)/\ln2+o(1)}\),
 which exceeds \(e_*\) exactly from the least \(C\):
 \(C\ge19,\,41,\,214,\,1496\) at \(q=0.5,\,0.55,\,0.6,\,0.62\)
-(`least_C_pressure`).
+(`least_C_pressure`). The live counts are such a weight
+(`liveWeight_weightSplit`, `LiveCountWeight.lean`), so
+`juggler_count_le_of_noMomentum` states the count directly: for starts in
+\([1,N]\) that stay above \(N_0\) for \(d\) steps with at least \(k\)
+odd letters, \(\#\le N a_q^d e^{c_q\delta d}/x^k\) under `NoMomentum` of
+the live count.
 
 **What it does not need** (Paper C §9.3). Any \(o(\log\log y)\)
 initial depths; any individual cylinder to split fairly (only the
@@ -163,5 +168,7 @@ coordinate (the bracket in \(n\), the sub-density in the top variable).
 `weight_markov`), `TowerAbsorption.lean` (absorption),
 `TiltedShare.lean` (Proposition 9.3, the Markov join, the hypothesis
 `NoMomentum` with its count, and the identity
-\(\theta p-\ln a_{\theta,q}=D(p\|q)\)). Prose: the contagion rate
+\(\theta p-\ln a_{\theta,q}=D(p\|q)\)), `LiveCountWeight.lean` (the live
+count of starts is such a weight, and the Tao-type count on Juggler
+itineraries follows from `NoMomentum` on it). Prose: the contagion rate
 theorem and Paper B's estimates.

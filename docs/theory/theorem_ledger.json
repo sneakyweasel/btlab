@@ -7345,5 +7345,18 @@
   "tests": [
    "tests/research/juggler_sequence/test_layer_architecture.py"
   ]
+ },
+ {
+  "id": "J-live-count-weight",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "The live count liveCount N0 N w = #{n in [1,N] : itinerary n |w| = w and n, J n, ..., J^|w| n all exceed N0} is a WeightSplit weight (liveWeight_weightSplit: the two one-letter extensions have disjoint live classes inside the parent's), and juggler_count_le_of_noMomentum instantiates the chain on it: if NoMomentum (liveWeight N0 N) x q delta d holds, then #{n in [1,N] : live for d steps, oddCount(itinerary n d) >= k} <= N a_q^d exp(c_q delta d) / x^k with a_q = 1 + (x-1) q, c_q = (x-1)/a_q. The fibrewise identity liveCount_sum_oddCount writes that count as the sum of live counts over the words with at least k odd letters. So the no-momentum hypothesis is now a proposition about itineraries of floorPower, not about an abstract weight. Axioms propext, Classical.choice, Quot.sound only.",
+  "lean": "formal/Problems/Juggler/LiveCountWeight.lean",
+  "related_conjectures": [
+   "juggler_loglog_depth_cylinder_bound"
+  ],
+  "source": "docs/problems/juggler_failure_margin.md",
+  "tests": [
+   "tests/research/juggler_sequence/test_layer_architecture.py"
+  ]
  }
 ]

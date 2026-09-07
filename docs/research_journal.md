@@ -38559,3 +38559,24 @@ So the exported statement is a named Lean proposition whose sufficiency
 for the Tao-type count, with the Chernoff exponent d D(p||q), is
 machine-checked; what stays prose is the contagion rate theorem. Ledger
 row, export note and failure-margin dossier updated.
+
+## The chain lands on the map
+
+`LiveCountWeight.lean`: liveCount N0 N w counts the starts in [1, N]
+with itinerary w whose first |w| iterates all exceed N0. Its two
+one-letter extensions have disjoint live classes inside the parent's
+(itinerary_take on the prefix, liveness monotone in the depth), so the
+live count is a WeightSplit weight (liveWeight_weightSplit), and
+juggler_count_le_of_noMomentum instantiates count_le_of_noMomentum on
+it: under NoMomentum of the live count at tilt x against q to depth d,
+the number of starts that stay above N0 for d steps with at least k odd
+letters is at most N a_q^d exp(c_q delta d) / x^k. The fibrewise
+identity liveCount_sum_oddCount is the bridge (card_eq_sum_card_fiberwise
+over the words with at least k odd letters). Axioms propext,
+Classical.choice, Quot.sound only; lake build Problems.Juggler green;
+layer test green. What this changes: the exported hypothesis
+M_(theta,q)(C) is now a proposition about itineraries of floorPower with
+its Tao-type consequence kernel-checked end to end; before, the Juggler
+input ("the live counts are a WeightSplit weight") was a sentence.
+Ledger row J-live-count-weight; export note, failure-margin dossier and
+branch-ledger row updated.

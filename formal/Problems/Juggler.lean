@@ -89,6 +89,7 @@ import Problems.Juggler.FateContagion
 import Problems.Juggler.LogLogClock
 import Problems.Juggler.TowerAbsorption
 import Problems.Juggler.TiltedShare
+import Problems.Juggler.LiveCountWeight
 
 /-!
 # Juggler laboratory barrel

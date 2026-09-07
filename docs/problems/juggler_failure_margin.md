@@ -107,7 +107,11 @@ input is `WeightSplit` (children carry at most the parent's weight),
 which the live counts satisfy. `NoMomentum` states the hypothesis as
 a proposition, `count_le_of_noMomentum` the count under it, and
 `tilt_exponent_eq_kl` the identity \(\theta p-\ln a_{\theta,q}=D(p\|q)\)
-at the re-centring tilt. The contagion rate theorem stays prose.
+at the re-centring tilt. `LiveCountWeight.lean` instantiates the chain on
+the live count of starts (`liveWeight_weightSplit`,
+`juggler_count_le_of_noMomentum`), so the hypothesis and its count are
+statements about itineraries of the map. The contagion rate theorem
+stays prose.
 
 ## Results
 
