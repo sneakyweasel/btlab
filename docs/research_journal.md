@@ -38525,3 +38525,24 @@ prose. Registered in the barrel and `LAYERS`; layer test and
 `lake build Problems.Juggler` pass. Ledger row
 `J-tilted-share-telescoping`; the failure-margin dossier's
 Formalization section names the theorems.
+
+## The live mass, exported
+
+[juggler_live_mass_export.md](theory/juggler_live_mass_export.md)
+collects, on one page and in the language of analytic number theory,
+the one open quantity of the termination programme: the live mass
+Lambda(y, d) at depth d = C L, the no-momentum hypothesis
+M_(theta,q)(C) with its kernel-checked reduction to the Tao-type count
+(TiltedShare.lean; least C = 19, 41, 214, 1496 at q = 0.5, 0.55, 0.6,
+0.62), what the hypothesis does not need and what it cannot be replaced
+by, the failure margin m(C,q) that the conjecture's failure would force
+(zero below the least C, 6.6% in the limit) and why the existing
+census sits where the margin is zero, the exact facts about the words
+(tower absorption in Lean; the attained X^(3/4) main term of the first
+letter and its cancellation on odd starts, every harmonic; the
+certified splits to depth four and the level-3 no-runs obstruction at
+five), and a table of every closed route with its exact price and
+dossier. It ends with what would count: a one-sided averaging theorem
+for the tilted odd share at depth ~ log log y, and the wall it must
+pass -- the height->=4 tower over a sparse base, in either coordinate.
+No new claim; a consolidation after six passes of the loop.
