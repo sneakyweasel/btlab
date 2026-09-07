@@ -8221,7 +8221,9 @@ scored as formalized. Exactly one row does:
 
 | row | backticked name | what it actually is |
 |---|---|---|
-| Theorem 3.31 | `run_suffix_law.closure` | Python, `src/research/juggler_sequence/branch_index.py:388` |
+| Theorem 3.31 | `run_suffix_law.closure` | Python, `src/research/juggler_sequence/run_suffix_law.py:386` |
+
+(This row first said `branch_index.py:388`. Wrong file: the module is `run_suffix_law`, as the dotted name says, and 388 was the line number of an unrelated function in the file I had open. An erratum about a classifier that did not check its own references, mis-citing a reference.)
 
 The recount joins every backtick in the appendix to
 `formalpedia.build()` and keeps only names the Lean corpus defines.
