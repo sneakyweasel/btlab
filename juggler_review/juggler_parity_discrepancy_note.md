@@ -612,12 +612,14 @@ read them that way --- in Lean \(1/0=0\), which makes \(\min\) select
 coefficient vanishes at the one mode where it is largest. The safe
 statement is multiplicative: \(|b_u|\le2\) together with
 \(\pi|u+B|\,|b_u|\le1\), which is the same bound at every other mode
-and correct at these. Lean `window_divided_form_fails_at_singular_mode`
-exhibits the failure, `window_forms_agree` the equivalence off it, and
-`mul_le_one_iff_le_one_div` the underlying step; `le_one_div_zero_iff`
-records the convention itself. The same discipline is why
-`weight_form_of_min_bound` states the window-mass hypotheses over a
-weight rather than a minimum --- after the two Weyl differencings of
+and correct at these.
+`formal/Problems/Juggler/DividedBounds.lean` records the failure, the
+equivalence off it, and the convention itself. That file is a repository
+utility and is deliberately outside the Paper B barrel: it says nothing
+about the Juggler map, and the barrel's claim is that everything
+reachable from it is an identity, a constant or a threshold. The same
+discipline is why the window-mass hypotheses are better stated over a
+weight than over a minimum --- after the two Weyl differencings of
 Theorem 5.3 the inner sums have shift-dependent lengths, and a
 fixed-length \(\min\) cannot be applied to them.
 

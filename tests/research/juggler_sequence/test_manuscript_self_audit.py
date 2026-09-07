@@ -696,7 +696,7 @@ def test_the_paper_records_the_recomputation() -> None:
 def test_every_cited_declaration_rests_on_mathlibs_three_axioms() -> None:
     assert M.axiom_failures() == []
     results = M.axiom_check_results()
-    assert len(results) == 52
+    assert len(results) == 47
     assert set(results.values()) == {"[propext, Classical.choice, Quot.sound]"}
 
 
@@ -709,7 +709,7 @@ def test_the_artifact_asks_about_exactly_the_cited_names() -> None:
     spec.loader.exec_module(tb)
     cited = sorted({r["name"] for r in tb.audit() if r["declared"]})
     assert M.axiom_check_names() == cited
-    assert len(cited) == 52
+    assert len(cited) == 47
 
 
 def test_no_sorry_in_the_paper_b_modules() -> None:
@@ -904,7 +904,7 @@ def test_lemma_3_7_display_is_false_at_its_singular_mode() -> None:
 
 
 def test_lean_carries_the_divided_bound_discipline() -> None:
-    src = (ROOT / "formal" / "Problems" / "Juggler" / "ThresholdCertificate.lean").read_text(
+    src = (ROOT / "formal" / "Problems" / "Juggler" / "DividedBounds.lean").read_text(
         encoding="utf-8")
     for name in ("le_one_div_zero_iff", "mul_le_one_iff_le_one_div",
                  "window_divided_form_fails_at_singular_mode", "window_forms_agree",
@@ -917,12 +917,16 @@ def test_the_paper_states_the_convention_and_cites_the_witnesses() -> None:
     text = M.paper_text()
     assert "A note on reading the coefficient bound" in text
     assert "1/0=+" + chr(92) + "infty" in text
-    assert "window_divided_form_fails_at_singular_mode" in text
+    # cited by path, not by theorem name: the module is outside the Paper B barrel
+    assert "formal/Problems/Juggler/DividedBounds.lean" in text
+    assert "window_divided_form_fails_at_singular_mode" not in text
+    assert "deliberately outside the Paper B barrel" in text
     assert "shift-dependent lengths" in text
 
 
 def test_the_barrel_names_the_new_section_and_the_corrected_erratum() -> None:
     barrel = (ROOT / "formal" / "Problems" / "JugglerParityPaper.lean").read_text(encoding="utf-8")
-    assert "divided-bound discipline of Lemma 3.7" in barrel
+    # the five live outside the barrel on purpose, so it must NOT name them
+    assert "divided-bound discipline" not in barrel
     assert "106 " + chr(8594) + " 170.6" in barrel
     assert "106 " + chr(8594) + " 171" not in barrel

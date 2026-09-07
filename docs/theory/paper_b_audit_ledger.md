@@ -7782,3 +7782,51 @@ the barrel updated, the index rebuilt (4660 declarations), the axiom
 artifact regenerated at fifty-two. Manuscript: a note after Lemma 3.7
 stating the convention it is read with and citing the five witnesses.
 No constant, threshold or exponent moved.
+
+## Correction to the entry above: the five convention lemmas did not belong in the certified corpus
+
+The previous entry put `le_one_div_zero_iff`,
+`mul_le_one_iff_le_one_div`,
+`window_divided_form_fails_at_singular_mode`, `window_forms_agree` and
+`weight_form_of_min_bound` in `ThresholdCertificate`, which the Paper B
+barrel imports, and cited them from the manuscript by name. Both were
+wrong, and the second made the first visible.
+
+**The barrel's own claim became false.** It says every declaration
+reachable from it "is an identity, a constant, or a threshold; not one
+of them is an estimate". A counterexample witness about Lean's division
+convention is none of those. The paper's trust-boundary section makes
+the same claim in prose, and both are sentences the paper uses to be
+honest with a referee about how little the Lean column carries.
+
+**And the cited count moved for nothing.** Citing the five by name took
+the paper's declared-and-reachable set from forty-seven to fifty-two —
+five declarations that say nothing about the Juggler map, inflating a
+number the paper is deliberately careful about. Fifteen guards were
+running and none of them noticed, because none checks that sentence.
+
+**What was actually established, stated without the framing.** Nothing
+was discovered and nothing was solved. Lemma 3.7's bound is correct;
+the mode-`0` failure is a property of a Lean transcription of its
+display, and Lemma 3.7 has no Lean statement — only its hypothesis
+appears, as threshold rows. The guard found zero violations: all twenty
+divided-form hypotheses were already safe. What the import produced is
+a stated reading convention beside the display, a prophylactic check,
+and five lemmas of near-zero mathematical content.
+
+**The re-cut.** The five now live in
+`formal/Problems/Juggler/DividedBounds.lean`, reachable from the
+umbrella `Problems.Juggler` and deliberately not from
+`Problems.JugglerParityPaper`; its header says why. The manuscript note
+cites the file by path, as it cites `tools/manuscript_self_audit.py`,
+and names no theorem. The barrel's module summary is back to what it
+said, keeping only the `106 -> 170.6` correction it needed anyway.
+
+COMPUTATIONALLY VERIFIED: the barrel reaches exactly its six modules
+and `DividedBounds` is not among them; `lake build
+Problems.JugglerParityPaper` clean; cited-and-declared back to
+forty-seven, all axiom-clean; twenty divided hypotheses, zero
+unguarded, with `DividedBounds` held to the discipline it states.
+OBSERVATION: the guard that would have caught this does not exist — no
+check reads the barrel's or the paper's claim about *what kind* of
+declaration the Lean column contains, only that the names resolve.

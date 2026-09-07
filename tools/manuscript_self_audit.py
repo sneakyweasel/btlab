@@ -1197,8 +1197,11 @@ def depth5_failures() -> list[dict[str, Any]]:
 # toward reporting, so a false positive is a prompt to write the multiplicative form rather than a
 # bug in the guard.
 
-PAPER_B_LEAN_MODULES = ("BranchFreeze", "MasterIdentity", "MeanValues", "MonomialSplitting",
-                        "PaperBAssembly", "ThresholdCertificate", "DepthFourFive")
+# Paper B's own modules plus DividedBounds, which is a repository utility outside the Paper B
+# barrel but is where the discipline lives, so it is held to it too.
+AUDITED_LEAN_MODULES = ("BranchFreeze", "MasterIdentity", "MeanValues", "MonomialSplitting",
+                        "PaperBAssembly", "ThresholdCertificate", "DepthFourFive",
+                        "DividedBounds")
 _LEAN_DECL = re.compile(r"^(?:private )?(?:theorem|lemma) (\w+)(.*?):=", re.S | re.M)
 _LEAN_BINDER = re.compile(r"\((\w+)\s*:\s*([^()]*(?:\([^()]*\)[^()]*)*)\)")
 _DENOM = re.compile(r"/\s*(\([^()]*\)|[0-9]+(?:\.[0-9]+)?|\w+)")
@@ -1230,7 +1233,7 @@ def divided_denominator_status(denominator: str, guards: str) -> str:
 def divided_hypotheses() -> list[dict[str, Any]]:
     """Every hypothesis binder in Paper B's Lean whose body divides, with how it is protected."""
     out: list[dict[str, Any]] = []
-    for module in PAPER_B_LEAN_MODULES:
+    for module in AUDITED_LEAN_MODULES:
         path = REPO_ROOT / "formal" / "Problems" / "Juggler" / (module + ".lean")
         if not path.exists():
             continue

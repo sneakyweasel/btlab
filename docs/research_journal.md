@@ -38795,3 +38795,42 @@ are in fields we do not touch; the convention applies to any
 formalization of any analytic bound with a removable singularity, which
 is most of the ones in this paper. Scavenging is not only about
 theorems.
+
+## The cost of putting it in the wrong place
+
+2026-09-08, later. Asked what the prove2.me import had actually
+achieved, I checked instead of answering from memory, and the answer
+was: nothing discovered, nothing solved, and one thing broken.
+
+Lemma 3.7's bound is correct. The failure I had written up as "false at
+two of its own modes" is a property of a Lean transcription of the
+display, and there is no such transcription — only the lemma's
+hypothesis is formalized, as threshold rows. The guard found zero
+violations. So the import produced a stated convention, a prophylactic
+check, and five lemmas of near-zero content.
+
+The broken thing was mine. I put the five in ThresholdCertificate,
+which the Paper B barrel imports, and cited them from the manuscript by
+name. The barrel says every declaration reachable from it is an
+identity, a constant or a threshold — and a counterexample witness
+about Lean's division convention is none of those. The paper says the
+same thing in prose. Both sentences exist so a referee is not misled
+about how little the Lean column carries, and I had made them false to
+add five facts about `1/0`.
+
+The count moved too: forty-seven cited declarations to fifty-two. That
+number is one the paper is careful about, and I inflated it with
+material that says nothing about the Juggler map.
+
+Fifteen guards were running. None noticed, because none of them reads
+the claim about *what kind* of declaration the column contains — they
+check that names resolve, are reachable, and are proved. That is a
+different question from whether the column is what the paper says it
+is, and it is the check I would write next if I were continuing.
+
+The five are now in DividedBounds.lean, outside the barrel, cited by
+path. What I want to keep from this is smaller than the fix: when a
+scavenged idea produces something, the question is not only whether it
+is true but where it belongs, and a corpus whose value is that it is
+small and specific is one you can damage by adding correct things to
+it.

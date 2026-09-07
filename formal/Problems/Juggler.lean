@@ -9,6 +9,7 @@ import Problems.Juggler.Corridor
 import Problems.Juggler.CubeCorridor
 import Problems.Juggler.Equality
 import Problems.Juggler.DepthFourFive
+import Problems.Juggler.DividedBounds
 import Problems.Juggler.Defect
 import Problems.Juggler.GlobalDefect
 import Problems.Juggler.DefectLowerBound
