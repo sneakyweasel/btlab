@@ -35,7 +35,34 @@ complete cubic Gauss sum on every period and does not cancel. At
 Consequently \(\#\{M\le X:\lfloor M^{3/2}\rfloor\text{ even}\}
 -\#\{\text{odd}\}=\kappa X^{3/4}(1+o(1))\) with \(\kappa=0.425\pm0.001\).
 
-**Cancellation on odd \(M\) (EXACT — HUMAN PROOF sketch).**
+**Cancellation on odd \(M\), every harmonic (EXACT — HUMAN PROOF).**
+For odd \(k\) the untwisted dual sum of \(\sum_Me(\tfrac k2M^{3/2})\) has
+complete sum \(C_k=\sum_{r\bmod 27k^2}e(-16r^3/27k^2)\), and the
+parity-twisted one \(C_k'=\sum_{\nu\bmod 27k^2}e(-2(2\nu-1)^3/27k^2)\).
+Since \(2\) is invertible mod \(27k^2\), both \(r\mapsto 2r\) and
+\(\nu\mapsto 2\nu-1\) permute the residues, so
+\(C_k=C_k'=\sum_we(-2w^3/27k^2)\) exactly, for every odd \(k\)
+(checked to \(10^{-6}\) for \(k\le11\); \(C_k=9k\) for \(3\nmid k\),
+\(C_9=0\)). Hence every odd harmonic of the parity indicator loses its
+\(X^{3/4}\) term on odd \(M\), and with the B-process error terms
+(\(O(\lambda_2^{-1/2}+\log)=O(X^{1/4}k^{-1/2}+\log kX)\)) plus the
+incomplete-period remainders of the dual sums (Weil-type,
+\(O(q^{1/2+\varepsilon}\sqrt V)\)) and Erdős–Turán at \(H=X^{1/2}\):
+
+**Theorem (depth-one super-fairness; EXACT — HUMAN PROOF sketch).**
+\[
+\#\{n\le X\ \text{odd}:\ \lfloor n^{3/2}\rfloor\ \text{odd}\}
+=\tfrac X4+O(X^{1/2+\varepsilon}),
+\]
+against the \(O(X^{3/4})\) that the second-derivative test gives and
+that is attained over even \(n\). Measured, the odd-restricted
+harmonic sums are all \(\le 3.4X^{1/4}\) at \(X\le10^7\) and the parity
+imbalance over odd \(n\) is \(30,146,210,16\) at
+\(10^5,10^6,10^7,5\cdot10^7\), so the truth is nearer \(X^{1/4}\); the
+\(X^{1/2+\varepsilon}\) is what the harmonic sum of the remainders
+proves.
+
+**Cancellation on odd \(M\), the first harmonic (EXACT — HUMAN PROOF sketch).**
 \(\sum_{M\text{ odd}}=\tfrac12\bigl(S-S'\bigr)\) with
 \(S'=\sum_Me(\tfrac12M^{3/2}+\tfrac12M)\). The twist shifts the dual
 frequency by \(\tfrac12\): the stationary points of \(S'\) sit at
@@ -136,6 +163,10 @@ Classification **DEPTH_ONE_MAIN_TERM_CANCELS_ON_ODD_STARTS**.
   \(\lfloor M^{3/2}\rfloor\).
 - Over the Juggler-relevant odd \(M\) the main term cancels and the sum
   is far below \(\sqrt X\): the odd branch's first letter is super-fair.
+- The identity \(C_k=C_k'\) holds for every odd \(k\): the parity
+  indicator's whole Fourier series loses its \(X^{3/4}\) terms on odd
+  \(M\), and the odd-restricted harmonic sums are \(1.3\)–\(3.4\) times
+  \(X^{1/4}\) for \(k=1,3,5,7\) at \(10^5\)–\(10^7\).
 - Tower levels \(2\)–\(4\) (cylinders \(O^k\), odd starts to \(10^7\))
   have imbalances \(\approx(1.0,\,1.2,\,-1.1)\sqrt{\text{cylinder}}\):
   the rational-cubic structure is special to the exponent \(3/2\);
@@ -164,5 +195,6 @@ none on this line.
 
 ## Publication assessment
 
-Status: `STRUCTURAL`. A short exact statement with a checked constant;
-a sentence for Paper B's Theorem 4.1 remark at most.
+Status: `STRUCTURAL`. Two exact statements with checked constants: the
+attained \(X^{3/4}\) over all \(n\) and the \(O(X^{1/2+\varepsilon})\)
+super-fairness over odd \(n\); a remark for Paper B's Theorem 4.1.

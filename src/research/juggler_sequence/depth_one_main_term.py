@@ -55,6 +55,42 @@ def complete_cubic_sum(coeff: int, modulus: int = 27) -> complex:
     return sum(cmath.exp(2j * math.pi * coeff * r**3 / modulus) for r in range(modulus))
 
 
+def complete_cubic_sum_shifted(k: int) -> complex:
+    """The dual complete sum of the twisted harmonic: ``Σ_{ν mod 27k²} e(-2(2ν-1)³/(27k²))``.
+
+    Restricting ``Σ e(k M^{3/2}/2)`` to odd ``M`` twists by ``(-1)^M``, which moves the stationary
+    points to half-integers ``μ = ν - 1/2``; the dual phase ``-16μ³/(27k²)`` at ``μ = (2ν-1)/2``
+    is ``-2(2ν-1)³/(27k²)``.  For odd ``k`` the map ``ν ↦ 2ν-1`` permutes the residues mod ``27k²``,
+    so this equals ``Σ_w e(-2w³/(27k²))``, and so does the untwisted sum ``Σ_r e(-16r³/(27k²))``
+    via ``w = 2r``: the two main terms are identical for every odd harmonic.
+    """
+
+    q = 27 * k * k
+    return sum(cmath.exp(2j * math.pi * (-2 * (2 * r - 1) ** 3) / q) for r in range(q))
+
+
+def harmonic_identity(k: int) -> dict[str, Any]:
+    """``C_k`` (untwisted) against ``C'_k`` (parity-twisted) at the modulus ``27k²``."""
+
+    q = 27 * k * k
+    c = complete_cubic_sum(-16, q)
+    cp = complete_cubic_sum_shifted(k)
+    return {"k": k, "modulus": q, "C_k": [c.real, c.imag], "C_k_shifted": [cp.real, cp.imag],
+            "difference": abs(c - cp), "identical": bool(abs(c - cp) < 1e-6 * max(1.0, abs(c)))}
+
+
+def odd_harmonic_sums(X: int, ks: tuple[int, ...] = (1, 3, 5, 7)) -> dict[str, Any]:
+    """``|Σ_{n ≤ X odd} e(k n^{3/2}/2)|`` against ``X^{1/4}`` for the first odd harmonics."""
+
+    n = np.arange(1, X + 1, 2, dtype=np.float64)
+    ph = np.power(n, 1.5)
+    out = {}
+    for k in ks:
+        s = np.exp(2j * np.pi * np.mod(k * ph / 2.0, 1.0)).sum()
+        out[f"k{k}"] = {"abs": float(abs(s)), "over_X14": float(abs(s) / X**0.25)}
+    return out
+
+
 def depth_one_sums(X: int, chunk: int = 2_000_000) -> dict[str, Any]:
     """The sum over all, even and odd ``M ≤ X``, and the parity imbalances of ``⌊M^{3/2}⌋``."""
 
@@ -109,7 +145,14 @@ def summary() -> dict[str, Any]:
     sums = {f"1e{e}": depth_one_sums(10**e) for e in (5, 6)}
     towers = tower_level_imbalances(10**6)
     ratio_all = sums["1e6"]["abs_S_all_over_X34"]
+    identities = {f"k{k}": harmonic_identity(k) for k in (1, 3, 5, 7, 9, 11)}
+    odd_harm = {f"1e{e}": odd_harmonic_sums(10**e) for e in (5, 6)}
     return {
+        "harmonic_identities": identities,
+        "every_odd_harmonic_main_term_cancels": bool(all(v["identical"] for v in identities.values())),
+        "odd_harmonic_sums": odd_harm,
+        "odd_harmonics_stay_within_four_X14": bool(all(
+            v["over_X14"] < 4.0 for row in odd_harm.values() for v in row.values())),
         "predicted_constant": pred,
         "complete_cubic_sum_mod_27": {"coeff_-16": complete_cubic_sum(-16).real,
                                       "coeff_-2": complete_cubic_sum(-2).real},
@@ -120,7 +163,7 @@ def summary() -> dict[str, Any]:
             abs(s["imbalance_odd_M"]) < 0.02 * abs(s["imbalance_even_M"]) for s in sums.values())),
         "tower_levels_at_1e6": towers,
         "tower_levels_are_root_order": bool(all(abs(v["over_sqrt"]) < 3.0 for v in towers.values())),
-        "classification": "DEPTH_ONE_MAIN_TERM_CANCELS_ON_ODD_STARTS",
+        "classification": "DEPTH_ONE_MAIN_TERM_CANCELS_ON_ODD_STARTS_ALL_HARMONICS",
     }
 
 
@@ -132,6 +175,8 @@ def main() -> None:
     for k, v in s["sums"].items():
         print(f"  {k}: |S_all|/X^.75={v['abs_S_all_over_X34']:.4f}  |S_odd|/X^.5={v['abs_S_odd_over_sqrtX']:.3f}"
               f"  imbalance all={v['imbalance_all']} even-M={v['imbalance_even_M']} odd-M={v['imbalance_odd_M']}")
+    for k, v in s["harmonic_identities"].items():
+        print(f"  {k}: modulus {v['modulus']}  C_k={v['C_k'][0]:.3f}  shifted={v['C_k_shifted'][0]:.3f}  identical={v['identical']}")
     for k, v in s["tower_levels_at_1e6"].items():
         print(f"  {k}: cylinder {v['cylinder']} imbalance {v['imbalance']} (/sqrt = {v['over_sqrt']:.2f})")
     print(s["classification"])

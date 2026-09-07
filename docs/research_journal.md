@@ -38421,3 +38421,26 @@ the depth — registered in the barrel and in `LAYERS`; the layer test
 and `lake build Problems.Juggler` pass. Ledger rows
 `J-tower-absorption`, `J-effective-tower-height-reset-tolerance`,
 `J-depth-one-main-term` added and re-rendered.
+
+## Every harmonic cancels on odd starts: the first letter is fair to X^(1/2+eps)
+
+The depth-one cancellation is not a coincidence of the first harmonic.
+For odd k the dual complete sum of sum e(k M^(3/2)/2) is
+C_k = sum_{r mod 27k^2} e(-16 r^3/(27k^2)) and the parity-twisted one is
+C'_k = sum_nu e(-2(2nu-1)^3/(27k^2)); since 2 is invertible mod 27k^2,
+r -> 2r and nu -> 2nu-1 both permute the residues, so C_k = C'_k =
+sum_w e(-2w^3/(27k^2)) exactly (checked to 1e-6 for k <= 11; C_k = 9k
+for 3 not dividing k, C_9 = 0). So every odd harmonic of the parity
+indicator loses its X^(3/4) term on odd n, and with the B-process
+remainders and Erdos-Turan at H = X^(1/2):
+
+    #{n <= X odd : floor(n^(3/2)) odd} = X/4 + O(X^(1/2+eps)),
+
+against the O(X^(3/4)) of the second-derivative test, which is attained
+over even n. Measured: the odd-restricted harmonic sums are 1.3-3.4
+X^(1/4) for k = 1, 3, 5, 7 at 1e5-1e7, and the parity imbalance over odd
+n is 30, 146, 210, 16 at 1e5-5e7 -- the truth is nearer X^(1/4); the
+X^(1/2+eps) is what the harmonic sum of remainders proves. Recorded in
+the depth-one dossier and its ledger row (now EXACT -- HUMAN PROOF);
+probe and tests extended. A remark for Paper B's Theorem 4.1, nothing
+at unbounded depth.

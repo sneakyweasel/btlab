@@ -35,3 +35,18 @@ def test_the_tower_levels_show_only_root_order_imbalance() -> None:
     t = D.tower_level_imbalances(10**5)
     assert all(abs(v["over_sqrt"]) < 3.0 for v in t.values())
     assert t["level_1"]["cylinder"] == 50000
+
+
+def test_the_main_terms_cancel_for_every_odd_harmonic() -> None:
+    """For odd k, ν ↦ 2ν-1 and r ↦ 2r both permute the residues mod 27k², so C_k = C'_k."""
+    for k in (1, 3, 5, 7, 9, 11):
+        h = D.harmonic_identity(k)
+        assert h["identical"], h
+    assert abs(D.harmonic_identity(1)["C_k"][0] - 9.0) < 1e-9
+    assert abs(D.harmonic_identity(9)["C_k"][0]) < 1e-6          # k ≡ 0 mod 3: the sum vanishes
+
+
+def test_the_odd_restricted_harmonic_sums_stay_at_the_fourth_root() -> None:
+    """|Σ_{n odd ≤ X} e(k n^{3/2}/2)| ≤ 4 X^{1/4} for k = 1, 3, 5, 7 at X = 1e5."""
+    for v in D.odd_harmonic_sums(10**5).values():
+        assert v["over_X14"] < 4.0
