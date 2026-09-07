@@ -7432,5 +7432,16 @@
   "tests": [
    "tests/research/juggler_sequence/test_cycle_run_alphabet.py"
   ]
+ },
+ {
+  "id": "J-cycle-band-discrepancy",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "The height of a cycle is the discrepancy of its word, and the two-block band splits into a mechanical regime, a thin sliver, and nothing else. Write s = o/L and D_t = o_t - t s. With closure o alpha = (L - o) beta, alpha = log(3/2), beta = log 2, the walk height is exactly u_t = (alpha + beta) D_t (walk_eq_discrepancy, Lean), so log R = log 3 * Delta with Delta = max D - min D: the balanced (mechanical) condition Delta < 1 is R < 3, and the two-block band R < 27/8 is Delta < log(27/8)/log 3 = 1.1072. Exact block arithmetic: k consecutive OOE blocks climb k(2 - 3s) + s in D, and j consecutive OE span (1 - s) + j(2s - 1). At the forced slope s = log2/log3 that caps OOE-runs at 3 for mechanical and 4 for the band, and OE-runs at 2 for both; five OOE in a row force R > 27/8 and four force R > 3^1.0598 = 3.20, so a cycle with R < 3.20 has OOE-runs of length at most three. Necklace census at a/b near the forced mix log(9/8)/log(4/3) = 0.4094 (COMPUTATIONALLY VERIFIED, exact rationals): (2,5) 3 necklaces, 1 balanced, 1 sliver, 1 above; (3,7) 12: 1/3/8; (4,10) 73: 1/10/62; (5,12) 364: 1/15/348; (7,17) 14421: 1/63/14357; (9,22) about 650000: 1/255/rest. Exactly one balanced necklace per pair, the Christoffel word, and a sliver of words that close without being balanced, all with OOE-runs of 3 or 4 and OE-runs of 1. So a cycle in the band is either mechanical (Paper A's regime) or lies in the sliver, a non-mechanical two-block word with one window violation; there is no third kind. Corollary from the even-run bound (ee_forces_fourth_power, Lean): two consecutive even steps force m^4 <= M, so any cycle with M < m^4, absolutely below N0^4 = 1.5e34, has no EE; no result forces EE into a cycle, so this is a shape constraint only. Not a halt theorem. CLOSE.",
+  "lean": "formal/Problems/Juggler/CycleRunAlphabet.lean",
+  "related_conjectures": [],
+  "source": "docs/problems/juggler_cycle_run_alphabet.md",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_run_alphabet.py"
+  ]
  }
 ]

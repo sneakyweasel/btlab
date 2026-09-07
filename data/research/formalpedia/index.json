@@ -15379,6 +15379,26 @@
       "trust": "kernel"
     },
     {
+      "doc": "The walk height of any prefix is `(\u03b1 + \u03b2)` times its count discrepancy.",
+      "file": "formal/Problems/Juggler/CycleRunAlphabet.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 148,
+      "module": "Problems.Juggler.CycleRunAlphabet",
+      "name": "walk_eq_discrepancy",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Two even steps land at most at the fourth root, so an `EE` inside a cycle whose values lie in `[m, M]` forces `m^4 \u2264 M`.",
+      "file": "formal/Problems/Juggler/CycleRunAlphabet.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 160,
+      "module": "Problems.Juggler.CycleRunAlphabet",
+      "name": "ee_forces_fourth_power",
+      "trust": "kernel"
+    },
+    {
       "doc": "",
       "file": "formal/Problems/Juggler/Defect.lean",
       "kind": "def",
@@ -65223,7 +65243,7 @@
       "ledger": []
     },
     "Problems.Juggler.CycleRunAlphabet": {
-      "declarations": 8,
+      "declarations": 10,
       "file": "formal/Problems/Juggler/CycleRunAlphabet.lean",
       "imports": [
         "Problems.Juggler.ItineraryStats",
@@ -66808,13 +66828,13 @@
     }
   },
   "totals": {
-    "declarations": 4769,
+    "declarations": 4771,
     "declarations_with_a_ledger_row": 3195,
-    "ledger_rows_naming_a_file": 331,
+    "ledger_rows_naming_a_file": 332,
     "modules": 202,
     "trust": {
       "compiler": 54,
-      "kernel": 4715
+      "kernel": 4717
     }
   }
 }

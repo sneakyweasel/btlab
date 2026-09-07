@@ -25,6 +25,18 @@ Let \(C\) be a nontrivial cycle with minimum \(m\) and maximum \(M\), and
    climbs, with exponent \(9/8\); \(OE\) falls with \(3/4\). Closure pins the mix: the
    \(OOE\) fraction of blocks is \(\log(4/3)/(\log(4/3)+\log(9/8))=0.709511\).
 
+4. **Height is discrepancy.** Write \(s=o/L\) and \(D_t=o_t-ts\). Under closure
+   the walk height is exactly \(u_t=(\alpha+\beta)D_t\) with \(\alpha=\log(3/2)\),
+   \(\beta=\log 2\), so \(\log R=\log 3\cdot\Delta\) for \(\Delta=\max D-\min D\).
+   Balanced (mechanical) words are \(\Delta<1\), i.e. \(R<3\); the band is
+   \(\Delta<\log(27/8)/\log 3=1.107\). A run of \(k\) consecutive \(OOE\) blocks
+   climbs exactly \(k(2-3s)+s\); a run of \(j\) consecutive \(OE\) spans
+   \((1-s)+j(2s-1)\). At the forced slope: \(OOE\)-runs are at most \(3\) if
+   mechanical and \(4\) in the band, \(OE\)-runs at most \(2\) for both.
+5. **No double even step below the fourth power.** Two consecutive even steps land at
+   the fourth root, so \(M\ge m^4\). Below \(N_0^4=1.5\cdot10^{34}\) no cycle contains
+   \(EE\).
+
 With the certified floor \(m>N_0=3.5\cdot10^8\), part 2 reads \(M>1.6\cdot10^{19}\) and
 the band of part 3 runs up to \(N_0^{27/8}=6.9\cdot10^{28}\).
 
@@ -61,6 +73,24 @@ that one step cannot exceed the band width.
 key ratios, the admissible block set, the two-block mix, the floor-defect size, and checks
 the integer chain for two odd steps on concrete odd starts.
 
+It also runs an exact necklace census in the band. For \((a,b)\) copies of
+\((OE,OOE)\) near the forced mix \(a/b=0.4094\), every cyclic arrangement is
+classified by its discrepancy: balanced (\(\Delta<1\)), sliver
+(\(1\le\Delta<1.107\)), or above the band.
+
+| \((a,b)\) | \(L\) | necklaces | balanced | sliver | above |
+|---|---|---|---|---|---|
+| (2,5) | 19 | 3 | 1 | 1 | 1 |
+| (3,7) | 27 | 12 | 1 | 3 | 8 |
+| (4,10) | 38 | 73 | 1 | 10 | 62 |
+| (5,12) | 46 | 364 | 1 | 15 | 348 |
+| (7,17) | 65 | 14421 | 1 | 63 | 14357 |
+| (9,22) | 84 | about 650000 | 1 | 255 | the rest |
+
+Exactly one balanced necklace per pair, which is the Christoffel word. Every sliver word
+has \(OOE\)-runs of length three or four and \(OE\)-runs of length one; no balanced or
+sliver word has five \(OOE\) or three \(OE\) in a row, as the climb formulas predict.
+
 ## Conjectures
 
 None opened. The natural continuation, killing every cyclic word over \(\{OE,OOE\}\), is
@@ -79,9 +109,10 @@ which says the band alphabet cannot be emptied by forcing a longer odd run.
 two sides of one odd step; `odd_run_upper` is the odd-run bound
 \(y^{2^r}\le v^{3^r}\); `even_run_contracts` is the even-run bound \(z^{2^g}\le w\), read
 off the tower-absorption iff; `oo_step_lower` is the integer form of part 2,
-\(x^9<2(z+1)^4\), whose slack is `cube_shift_le_two`; and `oddCount_le_of_noAdjOdd` is the
+\(x^9<2(z+1)^4\), whose slack is `cube_shift_le_two`; `oddCount_le_of_noAdjOdd` is the
 combinatorial half of part 2, that a word with no two adjacent odd letters is at most half
-odd.
+odd; `walk_eq_discrepancy` is the identity of part 4, \(u_t=(\alpha+\beta)D_t\) under
+closure; and `ee_forces_fourth_power` is part 5.
 
 The closure equation itself is not formalized here. Part 2 therefore combines a Lean
 inequality with the human-proof financing of Paper A, and the dossier says so rather than
@@ -99,11 +130,37 @@ The improvement over what was already proved is modest: `cycleMin_to_max_superqu
 gives \(M>m^2\) and this gives \(M\ge m^{9/4}\). The band alphabet is the part with no
 prior analogue.
 
+The discrepancy identity places the result against Paper A. The band walk of
+`band_successor_unique` is the letter-level version of the same bookkeeping, and below
+\(R=3\) the two coincide: a band-confined cycle is mechanical. What the run-level
+coordinate adds is the sliver between \(R=3\) and \(R=27/8\), where the word is still
+over two blocks but is no longer balanced. The census shows the sliver is real and thin,
+and the climb formulas say exactly how a word gets there: an \(OOE\)-run of length four,
+or an accumulated drift that puts an \(OOE\) start more than \(1-2(1-s)=0.262\) above
+the boundary minimum. So a cycle in the band is one of two things, mechanical or a
+one-violation two-block word, and nothing else.
+
+Two of the cheaper neighbours are recorded as they stand. Climbing against certified: the
+descent-certificate classes are exactly the falling blocks, and in the band \(26.2\%\) of
+cycle elements begin an \(OOE\) against a fair share of \(12.5\%\), a mismatch of
+\(2.1\). Block-level defect count: tower absorption makes \(OE\) one floor and \(OOE\)
+two, so a band cycle has \(a+2b\) effective floors against \(2a+3b\) letters, about
+\(1.6\) times fewer, which is marginal since the per-step finance is already exact at
+leading order.
+
 ## Open questions
 
 Whether a cyclic word over \(\{OE,OOE\}\) with the forced mix can be excluded. That is the
 question the refuted `J-cyclemin-ooo-inevitable` failed to settle from the other side, and
 nothing here changes its difficulty.
+
+Whether any sliver word closes at cycle scale. The census is exact but small; at the
+certified period the necklace count is astronomical and the sliver is a vanishing fraction
+of it, yet nothing excludes a sliver cycle. Its word would have \(OOE\)-runs of exactly
+three or four and \(OE\)-runs of one.
+
+Whether any result forces \(EE\) into every cycle. None does; if one did, part 5 would
+give \(M\ge m^4\) at once.
 
 ## Decision
 

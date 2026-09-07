@@ -137,4 +137,33 @@ theorem oddCount_le_of_noAdjOdd : ∀ (w : List Branch), NoAdjOdd w →
           simp only [oddCount, List.length_cons] at ih ⊢
           omega
 
+/-! ## The walk is the discrepancy
+
+Write `s = o/L` and `D_t = o_t - t s`.  With the closure `o α = (L - o) β` the walk height
+`o_t α - (t - o_t) β` is exactly `(α + β) D_t`.  So the height ratio of a cycle measures the
+count discrepancy of its word: `log R = (α + β)(max D - min D)`, and with
+`α + β = log 3` the balanced condition `max D - min D < 1` is `R < 3`. -/
+
+/-- The walk height of any prefix is `(α + β)` times its count discrepancy. -/
+theorem walk_eq_discrepancy {α β : ℝ} {o L t oₜ : ℕ} (hL : 0 < L)
+    (hclose : (o : ℝ) * α = ((L : ℝ) - o) * β) :
+    (oₜ : ℝ) * α - ((t : ℝ) - oₜ) * β =
+      (α + β) * ((oₜ : ℝ) - (t : ℝ) * ((o : ℝ) / L)) := by
+  have hLr : (L : ℝ) ≠ 0 := by exact_mod_cast hL.ne'
+  have hβ : (α + β) * ((o : ℝ) / L) = β := by
+    field_simp
+    linear_combination hclose
+  linear_combination (t : ℝ) * hβ
+
+/-- Two even steps land at most at the fourth root, so an `EE` inside a cycle whose values
+lie in `[m, M]` forces `m^4 ≤ M`. -/
+theorem ee_forces_fourth_power {w : ℕ} (h0 : w % 2 = 0) (h1 : Nat.sqrt w % 2 = 0) :
+    (floorPower (floorPower w)) ^ 4 ≤ w := by
+  have h := even_run_contracts (w := w) (g := 2) (by
+    intro i hi
+    interval_cases i
+    · simpa using h0
+    · simpa using h1)
+  simpa using h
+
 end Problems.Juggler

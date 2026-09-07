@@ -39320,3 +39320,43 @@ CLOSE. The natural continuation is to kill every cyclic word over
 J-cyclemin-ooo-inevitable was refuted: the laboratory tried to force a
 first OOO inside this alphabet and found a witness against it. Nothing
 here makes that easier, so the branch stops at the shape constraint.
+
+## The height of a cycle is the discrepancy of its word
+
+Write s = o/L and D_t = o_t - t s. Under closure the walk height is
+exactly u_t = (alpha + beta) D_t, and alpha + beta = log 3, so
+log R = log 3 * Delta with Delta the range of D. That one identity, now
+Lean (walk_eq_discrepancy), places the run alphabet against Paper A:
+balanced words are Delta < 1, which is R < 3, and Paper A's band walk
+lives there. The two-block band R < 27/8 is Delta < 1.107. Between the
+two sits a sliver, two-block words that close without being balanced,
+and the question was whether it is empty.
+
+It is not, and it is thin. An exact necklace census near the forced mix
+finds one balanced necklace per pair, the Christoffel word, and a
+sliver of 1, 3, 10, 15, 63, 255 necklaces at (2,5), (3,7), (4,10),
+(5,12), (7,17), (9,22) against 1, 8, 62, 348, 14357 and several
+hundred thousand above the band. The climb formulas say exactly how a
+word lands there: k consecutive OOE climb k(2-3s)+s in D and j
+consecutive OE span (1-s)+j(2s-1), so at the forced slope OOE-runs are
+capped at 3 for mechanical and 4 for the band, OE-runs at 2 for both,
+and five OOE in a row leave the band altogether. Every sliver word in
+the census has OOE-runs of three or four and OE-runs of one.
+
+So a cycle in the band is one of two things and nothing else: a
+mechanical word, which is Paper A's regime, or a one-violation
+two-block word. A cycle with R < 3.20 cannot even have four OOE in a
+row.
+
+The cheaper neighbours are recorded as they stand. Two consecutive even
+steps land at the fourth root, so EE forces M >= m^4
+(ee_forces_fourth_power, Lean), and below N0^4 = 1.5e34 no cycle has
+EE; nothing forces EE into a cycle, so that is a shape constraint only.
+In the band 26.2 percent of cycle elements begin an OOE against a fair
+12.5 percent, a mismatch of 2.1, and the descent-certificate classes
+are exactly the falling blocks. The block-level defect count is about
+1.6 times smaller than the letter count and is marginal.
+
+Still CLOSE. The sliver is characterized, not excluded; excluding it is
+the OOO-inevitability question from the other side, and that is refuted.
+Row J-cycle-band-discrepancy.

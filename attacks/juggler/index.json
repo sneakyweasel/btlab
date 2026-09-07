@@ -1419,7 +1419,8 @@
       "conjecture": [],
       "decision": "CLOSE",
       "ledger_ids": [
-        "J-cycle-run-alphabet"
+        "J-cycle-run-alphabet",
+        "J-cycle-band-discrepancy"
       ],
       "aliases": [],
       "nk_cluster": null
