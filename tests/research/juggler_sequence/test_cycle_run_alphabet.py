@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import math
 from math import isqrt, log
 
 from research.juggler_sequence import cycle_run_alphabet as A
@@ -225,3 +226,29 @@ def test_a_double_even_step_needs_the_fourth_power() -> None:
         assert z ** 4 <= w
     s = A.summary()
     assert s["absolute_bands_at_floor"]["no_double_even_below"] > 1e34
+
+
+def test_the_forced_opening_is_arithmetic_not_asymptotic() -> None:
+    """OOE^k then OE has o = 2k+1, t = 3k+2; it is an exponent gap exactly for k <= 2."""
+    for k, gap in ((0, True), (1, True), (2, True), (3, False), (4, False)):
+        o, steps = 2 * k + 1, 3 * k + 2
+        assert (3 ** o < 2 ** steps) is gap, k
+    # and a second fall after three climbs is a gap too
+    assert 3 ** 8 < 2 ** 13
+
+
+def test_the_forced_opening_matches_the_walk_argument() -> None:
+    """The integer condition reproduces the discrepancy computation: 3 climbs are needed."""
+    need = (2 * A.FORCED_SLOPE - 1) / (2 - 3 * A.FORCED_SLOPE)
+    assert 2.44 < need < 2.45
+    assert math.ceil(need) == 3
+
+
+def test_the_lean_layer_carries_the_forced_opening() -> None:
+    from research.juggler_sequence.lean_paths import LAYERS
+
+    src = LAYERS["CycleRunAlphabet"].read_text(encoding="utf-8")
+    for name in ("climbRun_append_oe_exponentGap", "band_min_needs_three_climbs",
+                 "climbRun_three_two_falls_exponentGap", "band_min_no_second_fall",
+                 "climbRun_three"):
+        assert f"theorem {name}" in src, name

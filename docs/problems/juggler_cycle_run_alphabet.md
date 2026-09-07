@@ -112,7 +112,10 @@ off the tower-absorption iff; `oo_step_lower` is the integer form of part 2,
 \(x^9<2(z+1)^4\), whose slack is `cube_shift_le_two`; `oddCount_le_of_noAdjOdd` is the
 combinatorial half of part 2, that a word with no two adjacent odd letters is at most half
 odd; `walk_eq_discrepancy` is the identity of part 4, \(u_t=(\alpha+\beta)D_t\) under
-closure; and `ee_forces_fourth_power` is part 5.
+closure; `ee_forces_fourth_power` is part 5; and `climbRun_append_oe_exponentGap` with
+`band_min_needs_three_climbs`, `climbRun_three_two_falls_exponentGap` with
+`band_min_no_second_fall` are the forced opening, hooked to the laboratory's existing
+`prefixNoncontracting`.
 
 The closure equation itself is not formalized here. Part 2 therefore combines a Lean
 inequality with the human-proof financing of Paper A, and the dossier says so rather than
@@ -164,6 +167,28 @@ attains its cyclic minimum no certificate can hold, since a certificate forces a
 within five steps and there is nothing below the minimum to drop to. So **every cycle has at
 least one uncertified position**, and in a band cycle it carries the prefix \(OOEOO\).
 Checked on every necklace at \((3,7)\) and \((5,12)\) with no exception.
+
+**The minimum's opening is forced.** A cycle minimum admits no contracting prefix, which
+is the laboratory's `prefixNoncontracting`. In the band the falling block is \(OE\) and
+the climbing block \(OOE\), and \(OOE^k\!\cdot\!OE\) has \(o=2k+1\), \(t=3k+2\), so it
+is an exponent gap exactly while \(k\le 2\):
+
+| \(k\) | \(3^{2k+1}\) | \(2^{3k+2}\) | |
+|---|---|---|---|
+| 0 | 3 | 4 | gap |
+| 1 | 27 | 32 | gap |
+| 2 | 243 | 256 | gap |
+| 3 | 2187 | 2048 | admissible |
+
+So a band cycle minimum opens \(OOEOOEOOE\), nine letters, deeper than any depth-five
+certificate reaches. One step further, \(OOE^3\!\cdot\!OE\cdot OE\) has \(o=8\),
+\(t=13\) and \(6561<8192\), so the fall cannot repeat and the next block is another
+\(OOE\): fourteen letters forced.
+
+This is the same computation as the discrepancy one, in integers. A fall costs
+\(2s-1=0.2619\) and a climb pays \(2-3s=0.1073\), so \(2.44\) climbs are needed and
+the exponent condition rounds it to three. The value of the integer form is that it is
+decidable and needs no closure equation, so it is Lean rather than human proof.
 
 Block-level defect count: tower absorption makes \(OE\) one floor and \(OOE\)
 two, so a band cycle has \(a+2b\) effective floors against \(2a+3b\) letters, about

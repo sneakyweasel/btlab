@@ -166,4 +166,113 @@ theorem ee_forces_fourth_power {w : ℕ} (h0 : w % 2 = 0) (h1 : Nat.sqrt w % 2 =
     · simpa using h1)
   simpa using h
 
+/-! ## The minimum must open with three climbing blocks
+
+A cycle minimum has no contracting prefix: `prefixNoncontracting` is exactly the
+statement that every prefix has `3^o >= 2^t`.  In the band alphabet the two blocks are
+`OE`, which contracts, and `OOE`, which expands, so a minimum cannot open with `OE` and
+cannot reach one until enough `OOE` have paid for it.  The arithmetic is finite:
+`OOE^k ++ OE` has `o = 2k+1` and `t = 3k+2`, and
+
+  k = 0:  3^1 = 3    < 4    = 2^2
+  k = 1:  3^3 = 27   < 32   = 2^5
+  k = 2:  3^5 = 243  < 256  = 2^8
+  k = 3:  3^7 = 2187 > 2048 = 2^11
+
+so the first three cases are exponent gaps and the fourth is not.  A band cycle minimum
+therefore opens `OOEOOEOOE`, nine letters, which is deeper than any depth-five descent
+certificate reaches. -/
+
+/-- The band's falling block. -/
+def oeBlock : List Branch := [Branch.odd, Branch.even]
+
+/-- The band's climbing block. -/
+def ooeBlock : List Branch := [Branch.odd, Branch.odd, Branch.even]
+
+/-- `k` climbing blocks in a row. -/
+def climbRun : ℕ → List Branch
+  | 0 => []
+  | k + 1 => ooeBlock ++ climbRun k
+
+@[simp] theorem climbRun_length (k : ℕ) : (climbRun k).length = 3 * k := by
+  induction k with
+  | zero => simp [climbRun]
+  | succ k ih => simp [climbRun, ooeBlock, ih]; ring
+
+@[simp] theorem climbRun_oddCount (k : ℕ) : oddCount (climbRun k) = 2 * k := by
+  induction k with
+  | zero => simp [climbRun]
+  | succ k ih =>
+      simp [climbRun, ooeBlock, ih]
+      ring
+
+/-- `OOE^k ++ OE` is an exponent gap exactly while `k ≤ 2`. -/
+theorem climbRun_append_oe_exponentGap {k : ℕ} (hk : k ≤ 2) :
+    exponentGap (climbRun k ++ oeBlock) := by
+  have hlen : (climbRun k ++ oeBlock).length = 3 * k + 2 := by
+    simp [oeBlock]
+  have hodd : oddCount (climbRun k ++ oeBlock) = 2 * k + 1 := by
+    simp [oeBlock, oddCount_append, oddCount]
+  unfold exponentGap
+  rw [hlen, hodd]
+  interval_cases k <;> norm_num
+
+/-- **A band cycle minimum opens with at least three climbing blocks.**  If the itinerary
+of a prefix-noncontracting word begins with `k` copies of `OOE` and then an `OE`, then
+`k ≥ 3`.  Since a cycle minimum is prefix-noncontracting, its itinerary opens
+`OOEOOEOOE`. -/
+theorem band_min_needs_three_climbs {k : ℕ} {v : List Branch}
+    (h : prefixNoncontracting (climbRun k ++ oeBlock ++ v)) : 3 ≤ k := by
+  by_contra hlt
+  have hk : k ≤ 2 := by omega
+  have hassoc : climbRun k ++ oeBlock ++ v = (climbRun k ++ oeBlock) ++ v := by
+    simp [List.append_assoc]
+  have hlen : (climbRun k ++ oeBlock).length = 3 * k + 2 := by simp [oeBlock]
+  have htake : (climbRun k ++ oeBlock ++ v).take (3 * k + 2) = climbRun k ++ oeBlock := by
+    rw [hassoc]
+    exact List.take_left' hlen
+  have hle : 3 * k + 2 ≤ (climbRun k ++ oeBlock ++ v).length := by
+    rw [hassoc, List.length_append, hlen]
+    omega
+  have hgap : exponentGap ((climbRun k ++ oeBlock ++ v).take (3 * k + 2)) := by
+    rw [htake]
+    exact climbRun_append_oe_exponentGap hk
+  exact (h (3 * k + 2) hle) hgap
+
+/-- The opening itself: three climbing blocks are nine letters, `OOEOOEOOE`. -/
+theorem climbRun_three :
+    climbRun 3 = [Branch.odd, Branch.odd, Branch.even, Branch.odd, Branch.odd,
+                  Branch.even, Branch.odd, Branch.odd, Branch.even] := by
+  simp [climbRun, ooeBlock]
+
+/-- After three climbing blocks and one fall, a second fall is an exponent gap:
+`OOE^3 ++ OE ++ OE` has `o = 8`, `t = 13`, and `3^8 = 6561 < 8192 = 2^13`. -/
+theorem climbRun_three_two_falls_exponentGap :
+    exponentGap (climbRun 3 ++ oeBlock ++ oeBlock) := by
+  unfold exponentGap
+  norm_num [climbRun, ooeBlock, oeBlock, oddCount]
+
+/-- **The fall cannot repeat.**  A prefix-noncontracting word cannot open with three
+climbing blocks and then two falls.  In the band, where the only blocks are `OE` and
+`OOE`, the block after the first fall must therefore be another `OOE`, so a cycle
+minimum's word opens `OOE OOE OOE OE OOE`: fourteen letters, all forced. -/
+theorem band_min_no_second_fall {v : List Branch}
+    (h : prefixNoncontracting (climbRun 3 ++ oeBlock ++ oeBlock ++ v)) : False := by
+  have hassoc : climbRun 3 ++ oeBlock ++ oeBlock ++ v
+      = (climbRun 3 ++ oeBlock ++ oeBlock) ++ v := by
+    simp [List.append_assoc]
+  have hlen : (climbRun 3 ++ oeBlock ++ oeBlock).length = 13 := by
+    simp [climbRun, ooeBlock, oeBlock]
+  have htake : (climbRun 3 ++ oeBlock ++ oeBlock ++ v).take 13
+      = climbRun 3 ++ oeBlock ++ oeBlock := by
+    rw [hassoc]
+    exact List.take_left' hlen
+  have hle : 13 ≤ (climbRun 3 ++ oeBlock ++ oeBlock ++ v).length := by
+    rw [hassoc, List.length_append, hlen]
+    omega
+  have hgap : exponentGap ((climbRun 3 ++ oeBlock ++ oeBlock ++ v).take 13) := by
+    rw [htake]
+    exact climbRun_three_two_falls_exponentGap
+  exact (h 13 hle) hgap
+
 end Problems.Juggler

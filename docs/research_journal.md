@@ -39397,3 +39397,39 @@ necklace at (3,7) and (5,12).
 Lesson worth keeping: a density comparison needs both sides measured in
 the same unit. Twice in one branch I compared a per-block quantity
 against a per-letter baseline.
+
+## The band minimum's opening is forced, and it is arithmetic
+
+Pushing the uncertified-minimum observation into the obstruction
+machinery gave something after all, though not a kill.
+
+A cycle minimum admits no contracting prefix. That is the laboratory's
+prefixNoncontracting, already defined in ItineraryStats and already used
+by the rate-free layer. Feed the band alphabet into it. The falling
+block OE and the climbing block OOE give OOE^k then OE the counts
+o = 2k+1 and t = 3k+2, so it is an exponent gap exactly while k <= 2:
+3 < 4, then 27 < 32, then 243 < 256, and finally 2187 > 2048. So a band
+cycle minimum opens with three climbing blocks, OOEOOEOOE, nine letters
+all forced, which is deeper than any depth-five descent certificate
+reaches.
+
+One step further. OOE^3 OE OE has o = 8 and t = 13, and 6561 < 8192, so
+the fall cannot repeat; in the band the next block is another OOE. That
+makes fourteen letters forced: OOE OOE OOE OE OOE.
+
+The point worth keeping is that this is the same computation as the
+discrepancy one, in integers. A fall costs 2s-1 = 0.2619 and a climb
+pays 2-3s = 0.1073, so 2.44 climbs are needed and the exponent
+condition rounds that to three. But the integer form is decidable and
+needs no closure equation, so it is Lean rather than human proof, while
+the discrepancy version leans on Paper A's financing.
+
+Still not a kill, and I want to be clear why the route cannot become
+one. The uncertified set has density 1/8 and is infinite; a minimum
+landing in it is no contradiction. Turning any of this into a no-cycle
+theorem needs every integer above the floor to descend, which is the
+statement itself. What the forced opening buys is a narrower target for
+the obstruction machinery, which attacks cycle-minimum prefixes
+directly.
+
+Row J-cycle-band-discrepancy extended. Branch stays CLOSE.
