@@ -16929,6 +16929,16 @@
       "trust": "kernel"
     },
     {
+      "doc": "**Blocks compose, because Denjoy\u2013Koksma is uniform in the starting phase.** This is the step Paper A's Theorem 5.7 makes in prose: a length `L = \u03a3 b\u2c7cq\u2c7c` is cut into consecutive blocks whose starting phases differ, each block inherits whatever phase its predecessor left, and the inequality applies to each regardless. Repeating a pair in the list is the `b\u2c7c`. `V` is any uniform bound on the variation over a window of length one \u2014 for a one-periodic observable this is the variation on the circle, and for Paper A's `F` it is `2`.",
+      "file": "formal/Problems/Juggler/DenjoyKoksmaOrbit.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 287,
+      "module": "Problems.Juggler.DenjoyKoksmaOrbit",
+      "name": "denjoy_koksma_blocks",
+      "trust": "kernel"
+    },
+    {
       "doc": "The six coefficients of Step B, in the order they are printed: `n^(27/8)`, `m n^(15/8)`, `m^2 n^(3/8)`, `v n^(9/8)`, `v m n^(-3/8)`, `v m^2 n^(-15/8)`.",
       "file": "formal/Problems/Juggler/DepthFourFive.lean",
       "kind": "def",
@@ -64920,7 +64930,7 @@
       "ledger": []
     },
     "Problems.Juggler.DenjoyKoksmaOrbit": {
-      "declarations": 7,
+      "declarations": 8,
       "file": "formal/Problems/Juggler/DenjoyKoksmaOrbit.lean",
       "imports": [
         "Problems.Juggler.DenjoyKoksma"
@@ -66428,13 +66438,13 @@
     }
   },
   "totals": {
-    "declarations": 4733,
+    "declarations": 4734,
     "declarations_with_a_ledger_row": 3195,
     "ledger_rows_naming_a_file": 330,
     "modules": 200,
     "trust": {
       "compiler": 54,
-      "kernel": 4679
+      "kernel": 4680
     }
   }
 }

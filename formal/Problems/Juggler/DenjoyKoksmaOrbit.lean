@@ -277,4 +277,63 @@ theorem denjoy_koksma_rotation_mean
   rw [← hshift]
   exact denjoy_koksma_rotation hq hcop hquality hper hbv hint
 
+/-- **Blocks compose, because Denjoy–Koksma is uniform in the starting phase.**  This is the
+step Paper A's Theorem 5.7 makes in prose: a length `L = Σ bⱼqⱼ` is cut into consecutive
+blocks whose starting phases differ, each block inherits whatever phase its predecessor left,
+and the inequality applies to each regardless.  Repeating a pair in the list is the `bⱼ`.
+
+`V` is any uniform bound on the variation over a window of length one — for a one-periodic
+observable this is the variation on the circle, and for Paper A's `F` it is `2`. -/
+theorem denjoy_koksma_blocks
+    {f : ℝ → ℝ} {V θ : ℝ} (hper : Function.Periodic f 1)
+    (hbvAll : ∀ y : ℝ, BoundedVariationOn f (Icc y (y + 1)))
+    (hintAll : ∀ y : ℝ, IntervalIntegrable f MeasureTheory.volume y (y + 1))
+    (hVar : ∀ y : ℝ, (eVariationOn f (Icc y (y + 1))).toReal ≤ V) :
+    ∀ blocks : List (ℕ × ℕ),
+      (∀ pq ∈ blocks, 0 < pq.2 ∧ Nat.Coprime pq.1 pq.2 ∧
+        |θ - (pq.1 : ℝ) / pq.2| ≤ 1 / (pq.2 : ℝ) ^ 2) →
+      ∀ x : ℝ,
+      |∑ k ∈ Finset.range (blocks.map Prod.snd).sum, f (x + k * θ)
+         - ((blocks.map Prod.snd).sum : ℕ) * ∫ t in (0:ℝ)..1, f t|
+        ≤ blocks.length * V := by
+  intro blocks
+  induction blocks with
+  | nil => intro _ x; simp
+  | cons pq rest ih =>
+    intro hb x
+    obtain ⟨hq, hcop, hqual⟩ := hb pq (List.mem_cons_self ..)
+    have hrest : ∀ r ∈ rest, 0 < r.2 ∧ Nat.Coprime r.1 r.2 ∧
+        |θ - (r.1 : ℝ) / r.2| ≤ 1 / (r.2 : ℝ) ^ 2 :=
+      fun r hr => hb r (List.mem_cons_of_mem _ hr)
+    set q : ℕ := pq.2 with hqdef
+    set S : ℕ := (rest.map Prod.snd).sum with hSdef
+    have hlen : (((pq :: rest).map Prod.snd).sum : ℕ) = q + S := by simp [hqdef, hSdef]
+    have hsplit : ∑ k ∈ Finset.range (q + S), f (x + k * θ)
+        = (∑ k ∈ Finset.range q, f (x + k * θ))
+          + ∑ k ∈ Finset.range S, f ((x + q * θ) + k * θ) := by
+      rw [Finset.sum_range_add]
+      refine congrArg _ (Finset.sum_congr rfl fun k _ => ?_)
+      congr 1
+      push_cast
+      ring
+    have hA := denjoy_koksma_rotation_mean hq hcop hqual hper (hbvAll x) (hintAll x)
+    have hB := ih hrest (x + q * θ)
+    have hVx := hVar x
+    rw [hlen, hsplit]
+    have hre : (∑ k ∈ Finset.range q, f (x + k * θ)
+          + ∑ k ∈ Finset.range S, f ((x + q * θ) + k * θ))
+        - ((q + S : ℕ) : ℝ) * ∫ t in (0:ℝ)..1, f t
+        = (∑ k ∈ Finset.range q, f (x + k * θ) - (q : ℝ) * ∫ t in (0:ℝ)..1, f t)
+          + (∑ k ∈ Finset.range S, f ((x + q * θ) + k * θ)
+              - (S : ℝ) * ∫ t in (0:ℝ)..1, f t) := by
+      push_cast; ring
+    rw [hre]
+    refine (abs_add_le _ _).trans ?_
+    have hlenR : ((pq :: rest).length : ℝ) = (rest.length : ℝ) + 1 := by
+      simp
+    rw [hlenR]
+    have h1 : |∑ k ∈ Finset.range q, f (x + k * θ) - (q : ℝ) * ∫ t in (0:ℝ)..1, f t| ≤ V :=
+      hA.trans hVx
+    linarith
+
 end Problems.Juggler

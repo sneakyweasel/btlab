@@ -554,8 +554,9 @@ is the rotation identification in
 Lemma 5.6, whose itinerary identity itself is Lean
 (`budgetedWord_eq_hugWord`); the Laplace bound of
 Proposition 5.5 is Lean (`rotation_average_le`,
-`rotationAverage_gap`; the ergodic identification stays
-human); the transport
+`rotationAverage_gap`; the ergodic identification follows from
+`denjoy_koksma_blocks`, the observable being of bounded
+variation); the transport
 inequality of Theorem 5.3 (`cycleMin_transport`), the
 defect-to-hug-charge consequence of §5.2
 (`cycleMin_defect_le_charge`, `cycleMin_defect_le_hug_charge`),
@@ -2324,15 +2325,16 @@ an exact antiderivative evaluation, giving
 \(C_*(n')\le\bigl(1-\tfrac2\nu+\tfrac6{\nu^2}\bigr)/(\ln 3\,\nu)\)
 at \(\nu=\ln n'\) with no quadrature
 (`rotation_average_lt`, `rotationAverage_le`,
-gap form `rotationAverage_gap`). Only the ergodic
-*identification* of \(C_*\) as the infinite-itinerary average
-remains classical prose. The observable has one wrap
-discontinuity, so bare unique ergodicity — uniform Birkhoff
-convergence for *continuous* observables — is not invoked
-directly: the identification uses its standard extension to
-Riemann-integrable observables of an irrational rotation, and
-the observable here is monotone with a single jump, hence
-Riemann integrable and of bounded variation.
+gap form `rotationAverage_gap`). The ergodic
+*identification* of \(C_*\) as the infinite-itinerary average was
+long stated here as classical prose; it is not an independent input.
+The observable has one wrap discontinuity, so bare unique ergodicity —
+uniform Birkhoff convergence for *continuous* observables — is not
+invoked directly. But the observable is monotone with a single jump,
+hence of bounded variation, and for such an observable §5.5's
+Denjoy--Koksma bound `denjoy_koksma_blocks` already gives
+\(|C_L-C_*|\le s(L)V/L\) at every \(L\). Unique ergodicity is not needed;
+that Mathlib has no `UniquelyErgodic` costs this paper nothing.
 
 This is the infinite-itinerary average, not a finite-\(L\)
 inequality: on the certified survey the finite leftover charge
@@ -2469,9 +2471,32 @@ argument does prove Denjoy--Koksma, and does not need the discrepancy
 route. What it does need is the anchor, which is exactly what the
 retracted claim omitted.
 
+**And blocks compose.** The proof below cuts a length \(L=\sum_jb_jq_j\)
+into consecutive blocks whose starting phases differ, and leans on the
+inequality being uniform in \(x\) so that each block may be treated
+independently, whatever phase it inherits from its predecessor. That step
+is `denjoy_koksma_blocks`: an induction over a list of certified pairs
+\((p_j,q_j)\), repeating a pair for each of the \(b_j\) copies, giving
+
+\[
+\Bigl|\sum_{k<L}f(x+k\theta)-L\int_0^1f\Bigr|\ \le\ s(L)\,V,
+\qquad s(L)=\sum_jb_j,
+\]
+
+for any \(V\) bounding the variation over every window of length one. The
+displayed bound of Theorem 5.7 is this at \(V=2\), divided by \(L\).
+
 What Theorem 5.7 still takes from its human proof is the variation of its
 own observable --- that \(F(u)=n'^{\,1-2^u}/2^u\) has \(\mathrm{Var}(F)<2\)
-including the wrap jump. The inequality that variation is fed to is Lean.
+including the wrap jump --- and the rescaling of \(F\) to the unit circle.
+Everything the variation is fed to is Lean.
+
+This also settles what Proposition 5.5 called classical. The ergodic
+*identification* of \(C_*\) is not an independent input: the observable is
+monotone with one jump, hence of bounded variation, and the display above
+forces \(|C_L-C_*|\le s(L)V/L\). Unique ergodicity is not needed for a
+bounded-variation observable once Denjoy--Koksma is available --- which is
+why Mathlib's not having `UniquelyErgodic` costs this paper nothing.
 
 **Theorem 5.7 (block envelope).**
 For the exact rotation prefix of length \(L\) at reduced base
@@ -3353,9 +3378,9 @@ Theorem 4.8.
 | Theorem 5.2 | raised cutoff; verified computation, not Lean |
 | Theorem 5.3 | transport inequality `cycleMin_transport`, per-step losses `log_floorPower_even_ge`, `log_floorPower_odd_ge` (`WalkTransport.lean`); §5.2 consequence `cycleMin_defect_le_charge`, `cycleMin_defect_le_hug_charge` (`WalkChargeMax.lean`) |
 | Theorem 5.4 | combinatorial core `hugOdds_le_of_admissible`; cycle-itinerary domination `cycleMin_prefix_odds_ge_hug`, `cycleMin_odds_ge_hug`; charge maximisation `stateCharge_antitone`, `hug_charge_maximal` (`WalkChargeMax.lean`); strict uniqueness `stateCharge_strictAnti`, `stateCharge_inj`, `hug_charge_unique` — an admissible profile attaining the hug charge *is* the hug profile |
-| Proposition 5.5 | ergodic identification human; Laplace bound Lean: `inv_sq_le_quad`, `rotation_average_le`, `rotation_average_lt`, `rotationAverage_le`, `rotationAverage_lt`, `rotationAverage_gap` (`RotationAverage.lean`) |
+| Proposition 5.5 | ergodic identification no longer classical: for a bounded-variation observable it follows from `denjoy_koksma_blocks` (`DenjoyKoksmaOrbit.lean`), not from unique ergodicity. Laplace bound Lean: `inv_sq_le_quad`, `rotation_average_le`, `rotation_average_lt`, `rotationAverage_le`, `rotationAverage_lt`, `rotationAverage_gap` (`RotationAverage.lean`) |
 | Lemma 5.6 | `budgetedWord_eq_hugWord`, `hugOdds_pow_ge`, `hugOdds_pow_lt`, `hugOdds_pow_gt`, `hugOdds_least` |
-| Theorem 5.7 | Denjoy--Koksma Lean end to end (`DenjoyKoksma.lean`, `DenjoyKoksmaOrbit.lean`): analytic half `value_sub_mean_le_variation`, `sum_eVariationOn_Icc`, `denjoy_koksma_abstract`; orbit half `orbitCell_inj`, `orbit_mem_cell`, `denjoy_koksma_cellmap`; the inequality itself `denjoy_koksma_rotation`, `denjoy_koksma_rotation_mean`. Human: the variation of the observable \(F\). Quotient arithmetic `theta_sandwich_upper`, `theta_sandwich_lower`, `lower_lt_walkTheta`, `walkTheta_lt_upper`, `cf_lower_prefix`, `cf_upper_prefix`, `theta_convergent_denominators`; DK hypotheses `theta_convergent_numerators`, `theta_convergents_unimodular`, `theta_convergents_coprime`, `theta_convergent_quality` (\(|\theta-p/q|<1/q^2\)), `theta_block_permutations` |
+| Theorem 5.7 | Denjoy--Koksma Lean end to end (`DenjoyKoksma.lean`, `DenjoyKoksmaOrbit.lean`): analytic half `value_sub_mean_le_variation`, `sum_eVariationOn_Icc`, `denjoy_koksma_abstract`; orbit half `orbitCell_inj`, `orbit_mem_cell`, `denjoy_koksma_cellmap`; the inequality itself `denjoy_koksma_rotation`, `denjoy_koksma_rotation_mean`; block composition `denjoy_koksma_blocks`, the induction over \(L=\sum_jb_jq_j\) that the uniformity in \(x\) licenses. Human: the variation of the observable \(F\) and its rescaling to the circle. Quotient arithmetic `theta_sandwich_upper`, `theta_sandwich_lower`, `lower_lt_walkTheta`, `walkTheta_lt_upper`, `cf_lower_prefix`, `cf_upper_prefix`, `theta_convergent_denominators`; DK hypotheses `theta_convergent_numerators`, `theta_convergents_unimodular`, `theta_convergents_coprime`, `theta_convergent_quality` (\(|\theta-p/q|<1/q^2\)), `theta_block_permutations` |
 | Theorem 5.8 | digit cap Lean: general numeration `ostroDigit_le`, `ostro_sum_eq`, `ostro_digitSum_le`, instance `theta_digitSum_le`, `greedyDigitSum_le`. On the extended window \([50508,q_{14})\) the cap is *structural* --- \(s(L)\le47\) below \(q_{13}\) and \(s(L)\le b+47\) on \(L=bq_{13}+r\) --- so the scan `window_digit_scan`, `window_digit_cap`, `window_digit_max` sharpens the constant on the old sub-window rather than establishing the theorem. Denjoy--Koksma comparison human |
 | Theorem 5.9 | kill template `cycleMin_hug_kill_criterion` (`DefectFinance.lean`); the per-length kill table is verified computation |
 | Proposition 5.12 | `fanLength`, `fanOdd`, `fanLambda`, affine step `fanLambda_affine`, negativity `fan_step_pow`, `fanLambda_step_neg`, monotonicity `fanLambda_strictAnti`, endpoints `fanLambda_55_pos`, `fanLambda_56_neg` (these *are* `theta_sandwich_lower` and `theta_sandwich_upper`), length `fan_positive_iff`, and `fan_frontiers`, `fan_endpoint`, `fan_past_endpoint` (`FanLaw.lean`) |

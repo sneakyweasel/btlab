@@ -8421,3 +8421,54 @@ is the anchor at \(x\), which is exactly what the retracted claim
 omitted --- and the reason the retraction reads as a dead end rather
 than a repair is that the counterexample was found before the fix was
 looked for.
+
+## Blocks compose, and Proposition 5.5's classical input evaporates
+
+*Mathematical target.* With `denjoy_koksma_rotation` in hand, Theorem
+5.7's proof still had one prose step: it cuts a length
+\(L=\sum_jb_jq_j\) into consecutive blocks whose starting phases differ
+and asserts that the inequality "holds uniformly in the starting phase
+\(x\), so it applies independently to each block, whatever phase that
+block inherits from its predecessor". That is an induction, and the
+uniformity is a hypothesis my statement already has.
+
+- `denjoy_koksma_blocks` --- over a list of certified pairs
+  \((p_j,q_j)\), a pair repeated once per copy \(b_j\),
+  \(\bigl|\sum_{k<L}f(x+k\theta)-L\int_0^1f\bigr|\le s(L)\,V\) with
+  \(s(L)=\sum_jb_j\), for any `V` bounding the variation over every
+  window of length one. Theorem 5.7's display is this at \(V=2\),
+  divided by \(L\). Induction on the list; the cons step splits
+  `range (q + S)` with `Finset.sum_range_add`, rewrites the tail's
+  phase as \(x+q\theta\), and applies the induction hypothesis there.
+
+**The unexpected part.** Proposition 5.5 says the charge-per-letter
+\(C_*\) is the infinite-itinerary average, and Paper A has always
+attributed that to unique ergodicity of the irrational rotation
+"extended, in the standard way, from continuous observables to
+Riemann-integrable ones". Its Appendix A row read "ergodic
+identification human", and §5.5's commentary called it the one thing
+there that "remains classical prose". Mathlib has no `UniquelyErgodic`,
+so that looked like a permanent gap.
+
+It is not a gap, because it is not an input. The paper's own §5.5
+records that the observable is monotone with a single jump, hence of
+bounded variation --- and for a bounded-variation observable,
+`denjoy_koksma_blocks` gives \(|C_L-C_*|\le s(L)V/L\) at *every* \(L\).
+The identification is a consequence of Section 5.5's own inequality,
+stated two subsections later. Unique ergodicity was never needed;
+Mathlib's not having it costs this paper nothing.
+
+The ordering is what hid it. §5.3 states the average and calls the
+identification classical; §5.5 proves the tool that implies it; §5.7
+uses the tool for a different purpose. Reading forward, the dependency
+looks like 5.5 → 5.7. It runs the other way.
+
+Tags. COMPUTATIONALLY VERIFIED: `lake build Problems.JugglerPaper` clean
+at 3447 jobs; `denjoy_koksma_blocks` within
+`[propext, Classical.choice, Quot.sound]`. OBSERVATION: two rows this
+week turned out to be already implied by machinery the same paper
+proves --- Theorem 5.4's uniqueness by an envelope that had the
+inequality all along, and now Proposition 5.5's identification by an
+inequality three subsections down. A theorem ledger records what each
+row *cites*, not what each row *needs*, and the difference is where the
+cheap closures live.

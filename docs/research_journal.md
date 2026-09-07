@@ -39152,3 +39152,37 @@ proof is the variation of its own observable.
 An erratum can be right about a claim and wrong about the method. The
 counterexample was found before anyone looked for the fix, and that is
 why the retraction reads as a dead end rather than a repair.
+
+Theorem 5.7's proof had one step left in prose: it cuts a length
+L = sum b_j q_j into consecutive blocks whose starting phases differ and
+says the inequality "holds uniformly in the starting phase x, so it
+applies independently to each block". That is an induction, and the
+uniformity is a hypothesis the Lean statement already carries.
+denjoy_koksma_blocks does it over a list of certified pairs, a pair
+repeated once per copy, and gives |sum_{k<L} f(x+k*theta) - L*integral|
+<= s(L)*V for any V bounding the variation over every unit window. The
+paper's display is that at V = 2, divided by L.
+
+The unexpected part is what that settles. Proposition 5.5 identifies the
+charge-per-letter C_* as the infinite-itinerary average and has always
+attributed the identification to unique ergodicity of the irrational
+rotation, extended from continuous to Riemann-integrable observables.
+Its Appendix A row read "ergodic identification human", and the section
+commentary called it the one thing there that remains classical prose.
+Mathlib has no UniquelyErgodic, so it looked permanent.
+
+It is not a gap, because it is not an input. The paper itself records
+that the observable is monotone with a single jump, hence of bounded
+variation -- and for a bounded-variation observable denjoy_koksma_blocks
+gives |C_L - C_*| <= s(L)V/L at every L. The identification follows from
+the inequality proved two subsections later.
+
+The ordering hid it. Section 5.3 states the average and calls the
+identification classical, 5.5 proves the tool that implies it, 5.7 uses
+that tool for something else. Reading forward the dependency looks like
+5.5 -> 5.7. It runs the other way.
+
+Second time this week. Theorem 5.4's uniqueness turned out to need only
+an envelope that had the strict inequality all along. A theorem ledger
+records what each row cites, not what each row needs, and the gap
+between those two is where the cheap closures are.
