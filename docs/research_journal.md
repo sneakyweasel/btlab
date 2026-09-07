@@ -39077,3 +39077,35 @@ between the open hypothesis and its consequence is now something you can
 run experiments against, and each experiment either narrows the target or
 converts a prose closure into a theorem that cannot be forgotten. Row
 J-mean-share-exceptional-depths.
+
+A coverage claim went wrong in the cheapest possible way. Two commits
+asserted that Paper A's Appendix A had no row without Lean. The
+classifier behind that number collected backticked names from each row
+and scored a row as formalized if it had any; it never asked the Lean
+index whether those names existed. One row names a Python probe,
+run_suffix_law.closure, and that row --- Theorem 3.31 --- was the only
+genuine hole left. The claim was true everywhere except the place it
+was being made about. Recounting against formalpedia.build() gives 11
+rows with no Lean, not 0.
+
+Then the hole closed, and it closed the same way Theorem 4.7 did a
+commit earlier. Theorem 3.31 caps each odd run by
+floor((e-i) log 2/log(3/2)) and quotes seven values of that floor. All
+seven follow from 5/3 < log 2/log(3/2) < 12/7, and both sides of that
+sandwich are integer power comparisons: 3^5 < 2^8 below, 2^19 < 3^12
+above. The upper one is not slack. 7 log 2/log(3/2) = 11.9666, so the
+top cap is 11 with 0.033 to spare, and 2^19 < 3^12 holds by 1.4%. If it
+failed, the e=7 run bound would read (12,10,8,6,5,3,1) and the
+enumeration behind the theorem would be larger than the 325452 forms
+the paper reports. That dependence was invisible in the prose.
+
+The second half is sharper and simpler: eight even letters and formal
+expansion 2^L < 3^o force 2^L < 3^(L-8), which first holds at L = 22
+(4194304 < 4782969) and fails at 21 (2097152 > 1594323). Eight theorems
+in EvenCountEight, axioms propext, Classical.choice, Quot.sound only,
+barrel clean at 3439 jobs.
+
+What is left in Appendix A with no Lean is ten rows: four that point at
+other rows which are Lean, and six certified computations. Twice now
+the logarithm in a Paper A proof has been the cheap half and the
+combinatorics the expensive one.

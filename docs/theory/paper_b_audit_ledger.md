@@ -8259,3 +8259,81 @@ Tags. OBSERVATION: a coverage metric that reads its own prose rather
 than the artifact it summarises will drift toward the answer the prose
 wants. The fix is not a better regexp; it is joining to the index, which
 is one line and was available the whole time.
+
+## Theorem 3.31's arithmetic core: the cap table is two integer comparisons
+
+*Mathematical target.* The erratum above leaves Paper A with exactly one
+Appendix A row that is a genuine hole rather than a cross-reference or a
+certified computation: Theorem 3.31, "no cycle itinerary has fewer than
+eight even letters, and a nontrivial cycle has period at least
+twenty-two". Its proof has two halves that are not alike --- a per-run
+cap and a period floor, both arithmetic, wrapped around an enumeration
+of 353044 canonical forms. Formalize the arithmetic; leave the
+enumeration where it belongs.
+
+**The cap table is a logarithm, and the logarithm is two integers.** The
+proof's displayed bound is
+\(a_i\le\lfloor (e-i)\log 2/\log(3/2)\rfloor\), and the paper then
+quotes seven values --- the tuples \((5,3,1)\) through
+\((11,10,8,6,5,3,1)\) for \(e=3,\dots,7\). Writing
+\(c=\log 2/\log(3/2)\), all fourteen inequalities needed to pin those
+seven floors follow from a single sandwich:
+
+\[
+\tfrac53 \;<\; c \;<\; \tfrac{12}{7},
+\]
+
+and each side of it is an integer power comparison in disguise. The
+lower bound is \(3^5<2^8\), which is \(243<256\); the upper bound is
+\(2^{19}<3^{12}\), which is \(524288<531441\). Nothing else about the
+logarithm is used --- no numerical evaluation, no continued fraction,
+not even the certified sandwich the Ostrowski work built.
+
+- `runCapConst`, `runCapConst_gt`, `runCapConst_lt` --- the constant and
+  its two bounds.
+- `runCap`, `runCap_eq_floor` --- the paper's table *is* the floor, for
+  every \(k\) from 1 to 7.
+- `runCap_tuple_three` … `runCap_tuple_seven` --- the five tuples the
+  proof quotes, read off that table.
+- `runCap_antitone` --- the caps fall as the suffix shortens, which is
+  what lets the proof apply them run by run.
+
+**The upper bound is doing real work.** \(7c=11.9666\), so the \(e=7\)
+cap is 11 with \(0.033\) of room. The comparison that decides it,
+\(2^{19}<3^{12}\), holds by 7153 out of 531441 --- 1.4%. Had it gone the
+other way the top cap would be 12, the run bound would read
+\((12,10,8,6,5,3,1)\), and the \(e=7\) enumeration would be larger than
+the 325452 forms the paper reports. The whole table rests on that one
+margin, which is not visible in the prose and is now a named theorem.
+
+**The period floor is sharp.** With \(e\ge8\), formal expansion
+\(2^{L}<3^{o}\) and \(o=L-e\le L-8\) give \(2^{L}<3^{L-8}\), and
+
+- `expansion_holds_at_22` --- that first holds at \(L=22\):
+  \(2^{22}=4194304<4782969=3^{14}\);
+- `expansion_fails_below_22` --- and at no shorter length; at
+  \(L=21\), \(2^{21}=2097152>1594323=3^{13}\);
+- `period_ge_22_of_even_count` --- so eight even letters force period at
+  least twenty-two.
+
+Not attempted, and named as such in the module: the enumeration. It is a
+search over 353044 canonical forms, closed by Theorem 3.29, and it is
+Paper A's certified computation, not arithmetic. The `e\le2` cases are
+Theorem 3.22, already Lean.
+
+**Where Paper A now stands.** Ten of the seventy-two Appendix A rows
+name no Lean declaration: four are cross-references to rows that are
+Lean (Lemmas 3.21a, 3.21b, 3.24 and Theorem 3.26), and six are certified
+computation (Theorem 4.8, Proposition 5.1, Theorem 5.2, Corollaries
+5.10 and 5.11, Lemma 5.13/Corollary 5.14). **There is no longer a row
+that is a genuine hole.** That is the claim the erratum's two commits
+were reaching for and did not have; it is true now, and the recount that
+checks it joins to `formalpedia.build()` rather than counting backticks.
+
+Tags. COMPUTATIONALLY VERIFIED: `lake build Problems.JugglerPaper` clean
+at 3439 jobs; all eight new theorems within
+`[propext, Classical.choice, Quot.sound]`, three of them needing less.
+OBSERVATION: the same shape as Theorem 4.7 a commit earlier --- the part
+of the proof that looked analytic was two integer comparisons, and the
+part that looked combinatorial was the expensive one. Twice now the
+logarithm has been the cheap half.
