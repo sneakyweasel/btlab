@@ -473,6 +473,50 @@ cd formal; lake build                               # no sorry / admit
   `Nat.pow_le_pow_iff_left`, `Function.iterate_fixed`,
   `Function.iterate_mul`, `Function.iterate_add_apply`.
 
+## prove2.me and Formalpedia (external platform)
+
+- **What it is.** https://prove2.me is a Lean 4 theorem platform:
+  missions, server-side kernel verification, permanent attribution.
+  Every proved statement enters *Formalpedia*
+  (https://prove2.me/formalpedia), a public library of ~58k theorems
+  that later proofs can import. This is **not** the laboratory's
+  `tools/formalpedia.py` (the local index over `formal/`), which keeps
+  its name and its habits (`impact` before editing, `search` before
+  proving).
+- **Client.** `python tools/prove2me.py {whoami,envs,search,show,fetch,
+  missions,leaves,verify,status}`; standard library only. The skill
+  `.claude/skills/prove2me/SKILL.md` is the full guide.
+- **Key.** User environment variable `PROVE2ME_API_KEY` (set with
+  `setx`; open a new shell) and `~/.prove2me/credentials.json`. Prefix
+  `p2m_`, valid 30 days (the current key expires 2026-10-07; a new one
+  comes from the account menu on the site). Exchanged by the client for
+  one-hour tokens at `POST /agent/refresh`. Never commit it, never send
+  it to any domain other than prove2.me; `.env`, `credentials.json` and
+  `prove2me_workspace/` are gitignored and
+  `tests/tools/test_prove2me.py` fails if any tracked file carries a
+  key-shaped string.
+- **Environments differ.** Platform default Lean v4.33.1 + Mathlib
+  `0df444a3…`; the laboratory pins v4.33.0 + Mathlib `db584cd6…`.
+  Cross-environment imports are impossible, so a Formalpedia hit is a
+  statement to port, not a module to import, and a `formal/` file does
+  not compile there unchanged. Check `envs` first.
+- **Submitting.** `theorem solution` at top level with the target's
+  exact type; never import the target; sorry-free; `autoImplicit`
+  false; targeted imports (no `import Mathlib`); explanation in
+  Markdown + KaTeX, ≤ 50k chars. Verify locally in
+  `$HOME/prove2me_workspace` (clone
+  https://github.com/prove2me/prove2me_workspace and read its
+  `SKILL.md`) before spending a server round trip; ≤ 100 pending
+  submissions.
+- **Publishing is irreversible.** Ask the human before any
+  `submit-problem`, `submit-definition`, `verify` on a public theorem,
+  or mission proposal, and say exactly what will be sent. A full upload
+  of `formal/` results follows `references/upload_full_project.md`;
+  axioms must be within `propext`/`Classical.choice`/`Quot.sound`, so
+  the two `native_decide` proofs are excluded.
+- **Docs.** `https://prove2.me/start.md`, `https://prove2.me/skill.md`
+  (v0.9.7), `https://prove2.me/references/*.md`.
+
 ## Remarks
 
 If you're Fable don't spend ages fixing tests - focus on the math.

@@ -31,6 +31,12 @@ htmlcov/
 node_modules/
 web/juggler-companion/dist/
 
+# Secrets and external platforms (prove2.me key lives outside the repo)
+.env
+.env.*
+credentials.json
+prove2me_workspace/
+
 # Experiment outputs (keep directory structure)
 experiments/**/*.json
 experiments/**/*.jsonl
