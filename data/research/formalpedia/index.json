@@ -51211,7 +51211,7 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Split a power of three: `3^a = 3^b * 3^(a-b)` for `b <= a`.",
       "file": "formal/BTCalculus/CubicN1Valuation.lean",
       "kind": "lemma",
       "ledger": [
@@ -51222,13 +51222,13 @@
         "BTA-x3-n1-sign",
         "BTA-x3-n1-scale"
       ],
-      "line": 17,
+      "line": 18,
       "module": "BTCalculus.CubicN1Valuation",
       "name": "pow3_split",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The `N1` agreement condition at depth `k-1-r`, reduced to a divisibility at order `k-1`.",
       "file": "formal/BTCalculus/CubicN1Valuation.lean",
       "kind": "theorem",
       "ledger": [
@@ -51239,7 +51239,7 @@
         "BTA-x3-n1-sign",
         "BTA-x3-n1-scale"
       ],
-      "line": 21,
+      "line": 23,
       "module": "BTCalculus.CubicN1Valuation",
       "name": "deficit_n1_iff",
       "trust": "kernel"
@@ -51256,13 +51256,13 @@
         "BTA-x3-n1-sign",
         "BTA-x3-n1-scale"
       ],
-      "line": 44,
+      "line": 46,
       "module": "BTCalculus.CubicN1Valuation",
       "name": "n1_after_n2_iff",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`3^r | 2p` implies `3^r | p`.",
       "file": "formal/BTCalculus/CubicN1Valuation.lean",
       "kind": "lemma",
       "ledger": [
@@ -51273,13 +51273,13 @@
         "BTA-x3-n1-sign",
         "BTA-x3-n1-scale"
       ],
-      "line": 62,
+      "line": 65,
       "module": "BTCalculus.CubicN1Valuation",
       "name": "three_pow_dvd_of_two_mul_pow",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "If `3^r` does not divide `p`, some `s < r` is the exact valuation of `p`.",
       "file": "formal/BTCalculus/CubicN1Valuation.lean",
       "kind": "lemma",
       "ledger": [
@@ -51290,13 +51290,13 @@
         "BTA-x3-n1-sign",
         "BTA-x3-n1-scale"
       ],
-      "line": 87,
+      "line": 91,
       "module": "BTCalculus.CubicN1Valuation",
       "name": "exists_val_lt",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "For a unit `p` congruent to `q` mod 3, the sum `p + q` is a unit too.",
       "file": "formal/BTCalculus/CubicN1Valuation.lean",
       "kind": "lemma",
       "ledger": [
@@ -51307,13 +51307,13 @@
         "BTA-x3-n1-sign",
         "BTA-x3-n1-scale"
       ],
-      "line": 99,
+      "line": 104,
       "module": "BTCalculus.CubicN1Valuation",
       "name": "not_three_dvd_add_of_unit",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`N2` together with `N1` separates units: on points of balanced width `k-1-r` with `p` prime to 3, agreement in both layers forces `p = q`, for every `r >= 1`.",
       "file": "formal/BTCalculus/CubicN1Valuation.lean",
       "kind": "theorem",
       "ledger": [
@@ -51324,13 +51324,13 @@
         "BTA-x3-n1-sign",
         "BTA-x3-n1-scale"
       ],
-      "line": 109,
+      "line": 115,
       "module": "BTCalculus.CubicN1Valuation",
       "name": "n1_unit_injective",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The injectivity step at an exact valuation `s < r`.",
       "file": "formal/BTCalculus/CubicN1Valuation.lean",
       "kind": "theorem",
       "ledger": [
@@ -51341,13 +51341,13 @@
         "BTA-x3-n1-sign",
         "BTA-x3-n1-scale"
       ],
-      "line": 157,
+      "line": 164,
       "module": "BTCalculus.CubicN1Valuation",
       "name": "n1_low_val_injective",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "After `N2`, a point whose valuation is below `r` is determined: agreement of the `N1` residuals forces `p = q` on balanced width `k-1-r`, for `r >= 1` and `r + 1 <= k`.",
       "file": "formal/BTCalculus/CubicN1Valuation.lean",
       "kind": "theorem",
       "ledger": [
@@ -51358,7 +51358,7 @@
         "BTA-x3-n1-sign",
         "BTA-x3-n1-scale"
       ],
-      "line": 245,
+      "line": 253,
       "module": "BTCalculus.CubicN1Valuation",
       "name": "n1_val_lt_injective",
       "trust": "kernel"
@@ -51375,13 +51375,13 @@
         "BTA-x3-n1-sign",
         "BTA-x3-n1-scale"
       ],
-      "line": 257,
+      "line": 265,
       "module": "BTCalculus.CubicN1Valuation",
       "name": "n21_fibre_in_pow",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The `N2` sign condition at depth `k-1-r` holds exactly when `3^r` divides `p`.",
       "file": "formal/BTCalculus/CubicN1Valuation.lean",
       "kind": "theorem",
       "ledger": [
@@ -51392,13 +51392,13 @@
         "BTA-x3-n1-sign",
         "BTA-x3-n1-scale"
       ],
-      "line": 267,
+      "line": 276,
       "module": "BTCalculus.CubicN1Valuation",
       "name": "n21_sign_n2_iff",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The `N1` sign condition at depth `k-1-r` holds exactly when `3^r` divides `p`.",
       "file": "formal/BTCalculus/CubicN1Valuation.lean",
       "kind": "theorem",
       "ledger": [
@@ -51409,13 +51409,13 @@
         "BTA-x3-n1-sign",
         "BTA-x3-n1-scale"
       ],
-      "line": 282,
+      "line": 292,
       "module": "BTCalculus.CubicN1Valuation",
       "name": "n21_sign_n1_iff",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`p` and `-p` agree in both the `N2` and `N1` layers exactly when `3^r` divides `p`.",
       "file": "formal/BTCalculus/CubicN1Valuation.lean",
       "kind": "theorem",
       "ledger": [
@@ -51426,13 +51426,13 @@
         "BTA-x3-n1-sign",
         "BTA-x3-n1-scale"
       ],
-      "line": 301,
+      "line": 312,
       "module": "BTCalculus.CubicN1Valuation",
       "name": "n21_sign_iff",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "On the scaled core `3^r u`, the `N1` condition reduces to the deepest `N1` at horizon `k - 2r`, once `2r + 2 <= k`.",
       "file": "formal/BTCalculus/CubicN1Valuation.lean",
       "kind": "theorem",
       "ledger": [
@@ -51443,13 +51443,13 @@
         "BTA-x3-n1-sign",
         "BTA-x3-n1-scale"
       ],
-      "line": 311,
+      "line": 323,
       "module": "BTCalculus.CubicN1Valuation",
       "name": "n1_high_val_scaled",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The `r = 1` instance of unit injectivity.",
       "file": "formal/BTCalculus/CubicN1Valuation.lean",
       "kind": "theorem",
       "ledger": [
@@ -51460,13 +51460,13 @@
         "BTA-x3-n1-sign",
         "BTA-x3-n1-scale"
       ],
-      "line": 356,
+      "line": 369,
       "module": "BTCalculus.CubicN1Valuation",
       "name": "n1_unit_r1",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The `r = 2` instance of unit injectivity.",
       "file": "formal/BTCalculus/CubicN1Valuation.lean",
       "kind": "theorem",
       "ledger": [
@@ -51477,7 +51477,7 @@
         "BTA-x3-n1-sign",
         "BTA-x3-n1-scale"
       ],
-      "line": 365,
+      "line": 379,
       "module": "BTCalculus.CubicN1Valuation",
       "name": "n1_unit_r2",
       "trust": "kernel"

@@ -1069,6 +1069,8 @@
   "statement": "after N2, v3(p)<r and N1 agree imply p=q on P_m (r≥1, r+1≤k)",
   "source": "docs/theory/cubic_n1_valuation.md",
   "lean": "BTCalculus/CubicN1Valuation.lean",
+  "decl": "n1_val_lt_injective",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/residuals/test_cubic_n1_valuation.py"
   ],
@@ -1080,6 +1082,8 @@
   "statement": "N2+N1 is injective on units of P_m for every r≥1",
   "source": "docs/theory/cubic_n1_valuation.md",
   "lean": "BTCalculus/CubicN1Valuation.lean",
+  "decl": "n1_unit_injective",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/residuals/test_cubic_n1_valuation.py"
   ],
@@ -1104,6 +1108,8 @@
   "statement": "p ~ -p after N2+N1 iff 3^r | p",
   "source": "docs/theory/cubic_n1_valuation.md",
   "lean": "BTCalculus/CubicN1Valuation.lean",
+  "decl": "n21_sign_iff",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/residuals/test_cubic_n1_valuation.py"
   ],
@@ -1115,6 +1121,8 @@
   "statement": "on p=3^r u, N1 reduces to deepest N1 at horizon k-2r when k≥2r+2",
   "source": "docs/theory/cubic_n1_valuation.md",
   "lean": "BTCalculus/CubicN1Valuation.lean",
+  "decl": "n1_high_val_scaled",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/residuals/test_cubic_n1_valuation.py"
   ],

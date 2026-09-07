@@ -1456,126 +1456,6 @@
     {
       "candidates": [
         {
-          "decl": "pow3_split",
-          "line": 17,
-          "score": 0.0,
-          "trust": "kernel"
-        },
-        {
-          "decl": "deficit_n1_iff",
-          "line": 21,
-          "score": 0.0,
-          "trust": "kernel"
-        },
-        {
-          "decl": "three_pow_dvd_of_two_mul_pow",
-          "line": 62,
-          "score": 0.0,
-          "trust": "kernel"
-        }
-      ],
-      "composite": false,
-      "confidence": "low",
-      "definitions": [],
-      "id": "BTA-x3-n1-val",
-      "in_file": 14,
-      "lean": "BTCalculus/CubicN1Valuation.lean",
-      "names_own": [],
-      "statement": "after N2, v3(p)<r and N1 agree imply p=q on P_m (r\u22651, r+1\u2264k)"
-    },
-    {
-      "candidates": [
-        {
-          "decl": "n1_unit_injective",
-          "line": 109,
-          "score": 0.333,
-          "trust": "kernel"
-        },
-        {
-          "decl": "n1_val_lt_injective",
-          "line": 245,
-          "score": 0.333,
-          "trust": "kernel"
-        },
-        {
-          "decl": "n1_low_val_injective",
-          "line": 157,
-          "score": 0.25,
-          "trust": "kernel"
-        }
-      ],
-      "composite": false,
-      "confidence": "low",
-      "definitions": [],
-      "id": "BTA-x3-n1-unit",
-      "in_file": 14,
-      "lean": "BTCalculus/CubicN1Valuation.lean",
-      "names_own": [],
-      "statement": "N2+N1 is injective on units of P_m for every r\u22651"
-    },
-    {
-      "candidates": [
-        {
-          "decl": "deficit_n1_iff",
-          "line": 21,
-          "score": 0.333,
-          "trust": "kernel"
-        },
-        {
-          "decl": "n21_sign_n2_iff",
-          "line": 267,
-          "score": 0.333,
-          "trust": "kernel"
-        },
-        {
-          "decl": "n21_sign_n1_iff",
-          "line": 282,
-          "score": 0.333,
-          "trust": "kernel"
-        }
-      ],
-      "composite": false,
-      "confidence": "low",
-      "definitions": [],
-      "id": "BTA-x3-n1-sign",
-      "in_file": 14,
-      "lean": "BTCalculus/CubicN1Valuation.lean",
-      "names_own": [],
-      "statement": "p ~ -p after N2+N1 iff 3^r | p"
-    },
-    {
-      "candidates": [
-        {
-          "decl": "pow3_split",
-          "line": 17,
-          "score": 0.0,
-          "trust": "kernel"
-        },
-        {
-          "decl": "deficit_n1_iff",
-          "line": 21,
-          "score": 0.0,
-          "trust": "kernel"
-        },
-        {
-          "decl": "three_pow_dvd_of_two_mul_pow",
-          "line": 62,
-          "score": 0.0,
-          "trust": "kernel"
-        }
-      ],
-      "composite": false,
-      "confidence": "low",
-      "definitions": [],
-      "id": "BTA-x3-n1-scale",
-      "in_file": 14,
-      "lean": "BTCalculus/CubicN1Valuation.lean",
-      "names_own": [],
-      "statement": "on p=3^r u, N1 reduces to deepest N1 at horizon k-2r when k\u22652r+2"
-    },
-    {
-      "candidates": [
-        {
           "decl": "DZ_mul_three",
           "line": 17,
           "score": 0.0,
@@ -4757,6 +4637,6 @@
       "statement": "not_reachesOne_even_chain_ge: if n >= 1 does not reach 1 and its first k states are even, then 261^(2^k) <= n. Proof: the k-th iterate is again a failure (backwardClosed_iterate with reachesOne_backwardClosed), hence >= 261 by the Lean floor (reachesOne_of_lt_two_hundred_sixty_one via not_reachesOne_ge; positivity by floorPower_iterate_pos), and the even chain multiplies exponents (even_chain_mem_"
     }
   ],
-  "unresolved": 121,
+  "unresolved": 117,
   "worth_reviewing": 19
 }

@@ -14,10 +14,12 @@ N1 equality is `3^{k-1-r} ∣ δ (p + q + 3^m)` where `p - q = 3^r δ`.
 On the balanced prefix interval, `v_3(p) < r` then forces `p = q`.
 -/
 
+/-- Split a power of three: `3^a = 3^b * 3^(a-b)` for `b <= a`. -/
 lemma pow3_split {a b : Nat} (h : b ≤ a) :
     (3 : Int) ^ a = (3 : Int) ^ b * (3 : Int) ^ (a - b) := by
   rw [← pow_add, Nat.add_comm b, Nat.sub_add_cancel h]
 
+/-- The `N1` agreement condition at depth `k-1-r`, reduced to a divisibility at order `k-1`. -/
 theorem deficit_n1_iff {k r : Nat} (hk : 1 ≤ k) (p q : Int) :
     (3 : Int) ^ k ∣ n1Resid (k - 1 - r) p - n1Resid (k - 1 - r) q ↔
       (3 : Int) ^ (k - 1) ∣ (p - q) * (p + q + (3 : Int) ^ (k - 1 - r)) := by
@@ -59,6 +61,7 @@ theorem n1_after_n2_iff {k r : Nat} (hk : 1 ≤ k) (hr : r + 1 ≤ k)
     rw [hd, hshape]
     simpa [mul_assoc] using mul_dvd_mul_left ((3 : Int) ^ r) h
 
+/-- `3^r | 2p` implies `3^r | p`. -/
 lemma three_pow_dvd_of_two_mul_pow {r : Nat} {p : Int}
     (h : (3 : Int) ^ r ∣ 2 * p) : (3 : Int) ^ r ∣ p := by
   induction r generalizing p with
@@ -84,6 +87,7 @@ lemma three_pow_dvd_of_two_mul_pow {r : Nat} {p : Int}
     rw [ht, pow_succ']
     exact mul_dvd_mul_left _ ht'
 
+/-- If `3^r` does not divide `p`, some `s < r` is the exact valuation of `p`. -/
 lemma exists_val_lt {r : Nat} {p : Int}
     (h : ¬ (3 : Int) ^ r ∣ p) :
     ∃ s, s < r ∧ (3 : Int) ^ s ∣ p ∧ ¬ (3 : Int) ^ (s + 1) ∣ p := by
@@ -96,6 +100,7 @@ lemma exists_val_lt {r : Nat} {p : Int}
     · obtain ⟨s, hs, hs1, hs2⟩ := ih h'
       exact ⟨s, Nat.lt_succ_of_lt hs, hs1, hs2⟩
 
+/-- For a unit `p` congruent to `q` mod 3, the sum `p + q` is a unit too. -/
 lemma not_three_dvd_add_of_unit {p q : Int}
     (hp : ¬ (3 : Int) ∣ p) (hcong : (3 : Int) ∣ p - q) :
     ¬ (3 : Int) ∣ p + q := by
@@ -106,6 +111,7 @@ lemma not_three_dvd_add_of_unit {p q : Int}
     exact h.add hcong
   exact hp (three_pow_dvd_of_two_mul (k := 1) (by simpa [pow_one] using this))
 
+/-- `N2` together with `N1` separates units: on points of balanced width `k-1-r` with `p` prime to 3, agreement in both layers forces `p = q`, for every `r >= 1`. -/
 theorem n1_unit_injective {k r : Nat} (hr : 1 ≤ r) (hk : r + 1 ≤ k)
     {p q : Int}
     (hpw : balWidth (k - 1 - r) p) (hqw : balWidth (k - 1 - r) q)
@@ -154,6 +160,7 @@ theorem n1_unit_injective {k r : Nat} (hr : 1 ≤ r) (hk : r + 1 ≤ k)
     dvd_trans (pow_dvd_pow (3 : Int) (by omega : k - 1 - r ≤ k - 1)) hstrong
   exact balWidth_dvd_sub hpw hqw hm
 
+/-- The injectivity step at an exact valuation `s < r`. -/
 theorem n1_low_val_injective {k r s : Nat}
     (_hr : 1 ≤ r) (hk : r + 1 ≤ k) (hs : s < r)
     {p q : Int}
@@ -242,6 +249,7 @@ theorem n1_low_val_injective {k r s : Nat}
     simpa [mul_assoc] using mul_dvd_mul_left ((3 : Int) ^ s) this
   exact balWidth_dvd_sub hpw hqw hstrong
 
+/-- After `N2`, a point whose valuation is below `r` is determined: agreement of the `N1` residuals forces `p = q` on balanced width `k-1-r`, for `r >= 1` and `r + 1 <= k`. -/
 theorem n1_val_lt_injective {k r : Nat} (hr : 1 ≤ r) (hk : r + 1 ≤ k)
     {p q : Int}
     (hpw : balWidth (k - 1 - r) p) (hqw : balWidth (k - 1 - r) q)
@@ -264,6 +272,7 @@ theorem n21_fibre_in_pow {k r : Nat} (hr : 1 ≤ r) (hk : r + 1 ≤ k)
   by_contra hnp
   exact hne (n1_val_lt_injective hr hk hpw hqw hnp hN2 hN1)
 
+/-- The `N2` sign condition at depth `k-1-r` holds exactly when `3^r` divides `p`. -/
 theorem n21_sign_n2_iff {k r : Nat} (hk : r + 1 ≤ k) (p : Int) :
     (3 : Int) ^ k ∣ n2Resid (k - 1 - r) p - n2Resid (k - 1 - r) (-p) ↔
       (3 : Int) ^ r ∣ p := by
@@ -279,6 +288,7 @@ theorem n21_sign_n2_iff {k r : Nat} (hk : r + 1 ≤ k) (p : Int) :
     have heq : (2 : Int) * p = p + p := by ring
     simpa [heq] using this
 
+/-- The `N1` sign condition at depth `k-1-r` holds exactly when `3^r` divides `p`. -/
 theorem n21_sign_n1_iff {k r : Nat} (hk1 : 1 ≤ k) (hk : r + 1 ≤ k) (p : Int) :
     (3 : Int) ^ k ∣ n1Resid (k - 1 - r) p - n1Resid (k - 1 - r) (-p) ↔
       (3 : Int) ^ r ∣ p := by
@@ -298,6 +308,7 @@ theorem n21_sign_n1_iff {k r : Nat} (hk1 : 1 ≤ k) (hk : r + 1 ≤ k) (p : Int)
     rw [pow3_split hle]
     exact mul_dvd_mul (by simpa using h.mul_left (2 : Int)) (dvd_refl _)
 
+/-- `p` and `-p` agree in both the `N2` and `N1` layers exactly when `3^r` divides `p`. -/
 theorem n21_sign_iff {k r : Nat} (hk1 : 1 ≤ k) (hk : r + 1 ≤ k) (p : Int) :
     ((3 : Int) ^ k ∣ n2Resid (k - 1 - r) p - n2Resid (k - 1 - r) (-p)) ∧
         ((3 : Int) ^ k ∣ n1Resid (k - 1 - r) p - n1Resid (k - 1 - r) (-p)) ↔
@@ -308,6 +319,7 @@ theorem n21_sign_iff {k r : Nat} (hk1 : 1 ≤ k) (hk : r + 1 ≤ k) (p : Int) :
   · intro h
     exact ⟨(n21_sign_n2_iff hk p).2 h, (n21_sign_n1_iff hk1 hk p).2 h⟩
 
+/-- On the scaled core `3^r u`, the `N1` condition reduces to the deepest `N1` at horizon `k - 2r`, once `2r + 2 <= k`. -/
 theorem n1_high_val_scaled {k r : Nat} (hkr : 2 * r + 2 ≤ k) {u v : Int} :
     (3 : Int) ^ k ∣
         n1Resid (k - 1 - r) ((3 : Int) ^ r * u) -
@@ -353,6 +365,7 @@ theorem n1_high_val_scaled {k r : Nat} (hkr : 2 * r + 2 ≤ k) {u v : Int} :
     exact (n1_after_n2_iff hk1 hr hd).2 (by
       simpa [mul_comm, mul_left_comm, mul_assoc] using hN)
 
+/-- The `r = 1` instance of unit injectivity. -/
 theorem n1_unit_r1 {k : Nat} (hk : 2 ≤ k) {p q : Int}
     (hpw : balWidth (k - 2) p) (hqw : balWidth (k - 2) q)
     (hunit : ¬ (3 : Int) ∣ p)
@@ -362,6 +375,7 @@ theorem n1_unit_r1 {k : Nat} (hk : 2 ≤ k) {p q : Int}
   simpa [pow_one] using
     n1_unit_injective (r := 1) (by decide) (by omega) hpw hqw hunit hN2 hN1
 
+/-- The `r = 2` instance of unit injectivity. -/
 theorem n1_unit_r2 {k : Nat} (hk : 3 ≤ k) {p q : Int}
     (hpw : balWidth (k - 3) p) (hqw : balWidth (k - 3) q)
     (hunit : ¬ (3 : Int) ∣ p)
