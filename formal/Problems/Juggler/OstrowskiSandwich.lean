@@ -299,4 +299,51 @@ theorem theta_block_permutations :
   fun pq hpq =>
     residue_mul_bijective pq.2 pq.1 (theta_convergents_coprime pq hpq)
 
+/-!
+### The grid-cell reading of the block permutation is false
+
+`theta_block_permutations` says that `i ↦ p·i` permutes `ZMod q`, which is true and is about
+*residues*.  Section 5.5 of Paper A described that as "the `q` rotation steps of one block
+permute the `q` grid cells", which is about *cells* and is false: the orbit point `k θ` sits
+within `1/q` of the grid point `(kp mod q)/q`, and when `θ < p/q` it sits just below, so its
+cell is `(kp mod q) − 1` — except at `k = 0`, where `fract 0 = 0` keeps cell `0`.  The two
+collide at the `k` with `kp ≡ 1 (mod q)`, and cell `q−1` is left empty.
+
+It fails for seven of the thirteen certified blocks: every one with `θ < p/q`, which is every
+even-indexed convergent.  The smallest is `q = 8`, `p = 3`, witnessed below at `k = 0` and
+`k = 3` (and indeed `3·3 = 9 ≡ 1 mod 8`).
+
+Denjoy–Koksma itself is unaffected — it is true, and its standard proof runs through Koksma's
+inequality and the discrepancy bound `q·D_q ≤ 1` at a convergent denominator, not through a
+cell permutation.  What is refuted is the bridge Paper A described, not the theorem.
+-/
+
+/-- `1/3 < θ`, from the certified lower sandwich. -/
+theorem theta_gt_third : (1:ℝ)/3 < walkTheta := by
+  have h := lower_lt_walkTheta
+  have : (1:ℝ)/3 < (6195184 : ℝ) / 16785921 := by norm_num
+  linarith
+
+/-- `θ < 3/8`, from the certified upper sandwich. -/
+theorem theta_lt_three_eighths : walkTheta < (3:ℝ)/8 := by
+  have h := walkTheta_lt_upper
+  have : (6306641 : ℝ) / 17087915 < (3:ℝ)/8 := by norm_num
+  linarith
+
+/-- **The grid cells are not permuted.**  At the certified block `q = 8`, `p = 3`, the orbit
+points `k = 0` and `k = 3` fall in the same cell `[0, 1/8)`, so `k ↦ ⌊q · fract (k θ)⌋` is not
+injective on `{0, …, 7}`.  Only `1/3 < θ < 3/8` is used, both from the sandwich. -/
+theorem grid_cells_collide_at_eight :
+    ⌊(8:ℝ) * Int.fract (3 * walkTheta)⌋ = ⌊(8:ℝ) * Int.fract ((0:ℕ) * walkTheta)⌋ := by
+  have hlo := theta_gt_third
+  have hhi := theta_lt_three_eighths
+  have hfloor : ⌊3 * walkTheta⌋ = 1 := by
+    apply Int.floor_eq_iff.mpr
+    constructor <;> push_cast <;> linarith
+  have hfract : Int.fract (3 * walkTheta) = 3 * walkTheta - 1 := by
+    rw [Int.fract, hfloor]; norm_num
+  rw [hfract]
+  norm_num [Int.fract]
+  constructor <;> linarith
+
 end Problems.Juggler

@@ -8000,3 +8000,58 @@ line rather than after `&&`. The proofs were reconstructed from the
 session transcript and rebuilt clean. Worth a rule: the `rm` of a
 working file belongs in its own call, after the thing that consumes it
 has succeeded.
+
+## The missing step is false: Paper A's grid-cell permutation fails on seven of thirteen blocks
+
+*Mathematical target.* Implement the geometric step Denjoy–Koksma needs
+— that the orbit `x, x+θ, …, x+(q−1)θ` visits each cell
+`[i/q,(i+1)/q)` exactly once — which the previous entry recorded as the
+piece nobody had written.
+
+*Falsifier.* The statement is false.
+
+**The falsifier fires.** Compute `⌊q·{kθ}⌋` for `k < q` at the certified
+θ and each certified block. It is a permutation of `{0,…,q−1}` for six
+of the thirteen and **not** for the other seven — exactly those with
+`θ < p_j/q_j`, i.e. every even-indexed convergent, including the
+operative `q = 301994`.
+
+The mechanism is one line. `kθ` lies within `1/q` of `(kp mod q)/q`; when
+`θ < p/q` it lies just *below*, so its cell is `(kp mod q) − 1` — except
+at `k = 0`, where the fractional part is exactly `0` and the cell stays
+`0`. The two collide at the `k` with `kp ≡ 1 (mod q)`, and cell `q−1` is
+left empty. Smallest instance `q = 8`, `p = 3`: `k = 0` and `k = 3` share
+`[0,1/8)`, and `3·3 = 9 ≡ 1 (mod 8)`.
+
+**Witnessed in Lean, from the certified sandwich alone.**
+`grid_cells_collide_at_eight` proves `⌊8·fract(3θ)⌋ = ⌊8·fract(0·θ)⌋`
+using only `1/3 < θ < 3/8`, which follows from `lower_lt_walkTheta` and
+`walkTheta_lt_upper` by `norm_num`. Kernel-checked.
+
+**What was wrong and what was not.** `theta_block_permutations` proves
+`i ↦ p·i` bijective on `ZMod q` — residues, and true. Paper A §5.5
+described it as "the `q_j` rotation steps of one block permute the `q_j`
+grid cells" — cells, and false. The Lean was right; the prose describing
+it was not, and the gap between residue and cell is exactly the step
+that was missing.
+
+Denjoy–Koksma is unaffected. It is true; its standard proof runs through
+Koksma's inequality together with the discrepancy bound `qD_q ≤ 1` at a
+convergent denominator, not through a cell permutation. So the correct
+missing step is a discrepancy bound, not the permutation transfer the
+previous entry proposed — and that entry's "supply that and
+`denjoy_koksma_unit` gives the paper's statement" is retracted: supplying
+it is impossible.
+
+Tags. EXACT: the mechanism, and `3·3 ≡ 1 (mod 8)`. COMPUTATIONALLY
+VERIFIED: all thirteen blocks at 80-digit precision, seven failing,
+the failures in bijection with `θ < p_j/q_j`; `lake build` clean;
+`grid_cells_collide_at_eight` kernel-checked from the sandwich.
+OBSERVATION: I spent the previous entry describing how to finish this
+step. Checking whether it was true took one script and should have come
+first.
+
+Manuscript: §5.5 carries an erratum stating the failure, its mechanism,
+its extent and the witness; the second citation site now says *residue*
+permutation. No theorem statement of Paper A changes — Theorem 5.7 was
+already KNOWN and stays KNOWN.

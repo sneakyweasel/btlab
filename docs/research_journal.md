@@ -38964,3 +38964,82 @@ line after a Python step that had just failed — `&&` would have stopped
 it. I reconstructed them from the transcript and they rebuilt clean, so
 the cost was ten minutes, but the rule is cheap: deleting a working file
 belongs in its own call, after whatever consumes it has succeeded.
+
+## The depth-one dual, machine-checked, and a constant that was hiding
+
+The dossier for the depth-one main term said formalization was "not
+opened", with the reason that the complete cubic sums are finite and the
+B-process is analysis. The first half of that reason was the opening.
+
+`DepthOneMainTerm.lean` now proves the arithmetic tier: the stationary
+point and the dual phase (alpha M^(3/2) dualises to -4 nu^3/(27 alpha^2),
+a cubic with rational coefficient, and -16 nu^3/27 at alpha = 1/2), the
+complete cubic sum at modulus 27, the affine invariance behind the
+odd-start cancellation together with 2 being a unit mod 27k^2 for odd k,
+and the constant. Axioms propext, Classical.choice, Quot.sound only.
+
+Two things came out of writing it that were not in the note.
+
+The complete sum is not a computation. Writing every term as
+zeta^(11 r^3 mod 27) with zeta = e(1/27), nine residues cube to zero and
+the eighteen others fall into two triples in arithmetic progression of
+common difference 9. Each triple is zeta^a (1 + zeta^9 + zeta^18), and
+zeta^9 is a primitive cube root of unity, so each triple vanishes and 9
+is what is left. The 9 is the count of the zero fibre, nothing else.
+
+The constant is exactly sqrt6/9. The note prints (4 sqrt8/27)(3/4)^(3/2)
+and measures 0.2721655 to four digits; those are the same number, and
+the closed form is one line: (4*2sqrt2/27)(3sqrt3/8) = 3sqrt6/27.
+
+The character convention was matched to CircleMethod.e on prove2.me, so
+these statements port to that platform unchanged now that both sides sit
+on the same Mathlib. That was the point of the toolchain alignment.
+
+What did not move: the analytic tier. The B-process remainders and the
+Erdos-Turan step are analysis, Formalpedia has no van der Corput A/B
+process and no Erdos-Turan, and the asymptotic together with the
+X/4 + O(X^(1/2+eps)) count stays HUMAN PROOF under
+J-depth-one-main-term. New row J-depth-one-arithmetic-layer carries what
+is machine-checked; the parent row now names it and says which tier is
+which.
+
+## I was asked to implement it; it was false
+
+2026-09-08. The previous entry ended by describing exactly how to
+finish Denjoy–Koksma: supply the geometric step — that the orbit visits
+each grid cell once — and `denjoy_koksma_unit` gives Paper A's
+statement. Asked to implement it, I checked first whether it was true.
+
+It is not. At the certified θ, the map `k ↦ ⌊q·{kθ}⌋` is a permutation
+of `{0,…,q−1}` for six of the thirteen certified blocks and fails for
+the other seven — precisely those with θ below the convergent, which is
+every even-indexed one, including the operative q = 301994.
+
+The mechanism took longer to see than it should have. `kθ` sits within
+1/q of the grid point `(kp mod q)/q`. When θ < p/q it sits just below,
+so its cell is one *less* than the residue — for every k except k = 0,
+where the fractional part is exactly 0 and there is nothing below to
+fall into. So the whole picture shifts by one except at a single fixed
+point, and the collision is at the k with kp ≡ 1. Cell q−1 is empty.
+The smallest case is q = 8, p = 3, where k = 0 and k = 3 share [0,1/8),
+and 3·3 = 9 ≡ 1 mod 8.
+
+Lean witnesses it from the sandwich alone: 1/3 < θ < 3/8 is all it
+takes, and both bounds are already certified.
+
+What was actually wrong is narrow and worth stating precisely. The Lean
+theorem `theta_block_permutations` proves that i ↦ p·i is a bijection of
+ZMod q. That is residues, and it is true. Paper A's prose called it "the
+q_j rotation steps of one block permute the q_j grid cells". That is
+cells, and it is false. The distance between those two sentences is
+exactly the step that was missing — which is why nobody had written it.
+
+Denjoy–Koksma survives. It is true; its standard proof goes through
+Koksma's inequality and the discrepancy bound qD_q ≤ 1, not through a
+cell permutation. So the missing step is a discrepancy bound, and my
+previous entry's instruction for finishing the job was wrong.
+
+The lesson is not subtle and I keep relearning it. I wrote a paragraph
+describing how to complete a proof step without checking that the step
+was true. Checking took one script. It should have come before the
+paragraph, not after the instruction to implement it.

@@ -547,7 +547,7 @@ is a human proof; Theorem 4.8 reuses the gap table under that
 packing. Proposition 4.9 is integer arithmetic in Lean. In
 Section 5, Theorem 5.7 is a human proof (Denjoy--Koksma is used
 as a known tool; its per-block hypotheses — convergent quality
-\(|\theta-p/q|<1/q^2\) and the block permutation — are Lean,
+\(|\theta-p/q|<1/q^2\) and the *residue* permutation — are Lean,
 `theta_convergent_quality`, `theta_block_permutations`) and so
 is the rotation identification in
 Lemma 5.6, whose itinerary identity itself is Lean
@@ -2399,9 +2399,29 @@ quotient prefix of \(\theta\)
 convergents of \(\theta\), unimodular and coprime
 (`theta_convergents_unimodular`, `theta_convergents_coprime`).
 Their approximation quality \(|\theta-p_j/q_j|<1/q_j^2\) and
-the fact that the \(q_j\) rotation steps of one block permute
-the \(q_j\) grid cells are additionally verified in Lean
-(`theta_convergent_quality`, `theta_block_permutations`).
+the *residue* permutation are additionally verified in Lean
+(`theta_convergent_quality`, `theta_block_permutations`): the latter
+says \(i\mapsto p_ji\) is a bijection of \(\mathbb Z/q_j\mathbb Z\).
+
+> *Erratum.* Earlier revisions described that as "the \(q_j\) rotation
+> steps of one block permute the \(q_j\) grid cells" --- a statement
+> about cells rather than residues, and **false**. The orbit point
+> \(k\theta\) lies within \(1/q\) of the grid point \((kp\bmod q)/q\);
+> when \(\theta<p/q\) it lies just below, so its cell is
+> \((kp\bmod q)-1\) --- except at \(k=0\), where the fractional part
+> is exactly \(0\) and the cell stays \(0\). The two collide at the
+> \(k\) with \(kp\equiv1\), and cell \(q-1\) is left empty. This
+> happens for **seven of the thirteen** certified blocks --- every one
+> with \(\theta<p_j/q_j\). The smallest is \(q=8\), \(p=3\), where
+> \(k=0\) and \(k=3\) share the cell \([0,1/8)\) and indeed
+> \(3\cdot3\equiv1\) mod \(8\); Lean `grid_cells_collide_at_eight`
+> witnesses it from the sandwich alone, via \(1/3<\theta<3/8\).
+>
+> Denjoy--Koksma itself is unaffected: it is true, and its standard
+> proof runs through Koksma's inequality with the discrepancy bound
+> \(qD_q\le1\) at a convergent denominator, not through a permutation
+> of grid cells. The erratum retracts the bridge described here, not
+> the inequality applied below and not Theorem 5.7.
 
 The variation-versus-integral inequality itself is classical, and its
 analytic half is now Lean (`Problems/Juggler/DenjoyKoksma.lean`), for
