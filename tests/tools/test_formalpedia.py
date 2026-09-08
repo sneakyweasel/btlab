@@ -197,6 +197,17 @@ def test_paper_b_is_kernel_checked_transitively_too() -> None:
     assert surface["compiler_dependent"] == [], surface["compiler_dependent"]
 
 
+def test_paper_c_is_kernel_checked_transitively() -> None:
+    """Paper C's root is `Problems.JugglerFatePaper`; its Lean column says the exact layer is
+    checked without `sorry` or `native_decide`, so nothing it reaches may run the compiler and
+    nothing it reaches may cite anything that does."""
+    surface = fp.paper_surface(fp.build())["Paper C"]
+    assert surface["present"], "Problems.JugglerFatePaper is missing from the index"
+    assert surface["compiler_trusted"] == [], surface["compiler_trusted"]
+    assert surface["compiler_dependent"] == [], surface["compiler_dependent"]
+    assert surface["modules"] >= 8, surface["modules"]
+
+
 def test_no_paper_reaches_a_sorry() -> None:
     """A `sorry` anywhere under a paper root would make its verification claim false."""
     for label, surface in fp.paper_surface(fp.build()).items():

@@ -1,6 +1,6 @@
 name = "balanced-ternary-formal"
 version = "0.2.1"
-defaultTargets = ["BTCalculus", "Problems", "Problems.JugglerPaper", "Problems.JugglerParityPaper"]
+defaultTargets = ["BTCalculus", "Problems", "Problems.JugglerPaper", "Problems.JugglerParityPaper", "Problems.JugglerFatePaper"]
 
 [[lean_lib]]
 name = "Core"

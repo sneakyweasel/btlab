@@ -44,7 +44,8 @@ PROPOSALS = ROOT / "data" / "research" / "formalpedia" / "decl_proposals.json"
 REVIEW = ROOT / "docs" / "research" / "formalpedia_decl_review.md"
 
 DECL = re.compile(
-    r"^(?P<kind>theorem|lemma|def|abbrev|instance|structure)\s+"
+    r"^(?:private\s+|protected\s+|noncomputable\s+)*"
+    r"(?P<kind>theorem|lemma|def|abbrev|instance|structure)\s+"
     r"(?P<name>[A-Za-z_][A-Za-z0-9_'!?.]*)",
     re.MULTILINE,
 )
@@ -245,6 +246,7 @@ def reachable(index: dict[str, Any]) -> dict[str, set[str]]:
 PAPER_ROOTS = {
     "Paper A": "Problems.JugglerPaper",
     "Paper B": "Problems.JugglerParityPaper",
+    "Paper C": "Problems.JugglerFatePaper",
 }
 """The module each manuscript's formalization claims to track.
 

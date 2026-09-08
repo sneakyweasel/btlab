@@ -328,6 +328,19 @@
         "BT-encode-unique",
         "C-append-plus"
       ],
+      "line": 102,
+      "module": "Representation.Words",
+      "name": "foldl_mapNeg",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Representation/Words.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BT-encode-unique",
+        "C-append-plus"
+      ],
       "line": 113,
       "module": "Representation.Words",
       "name": "evalMSD_mapNeg",
@@ -763,6 +776,18 @@
       "trust": "kernel"
     },
     {
+      "doc": "",
+      "file": "formal/Operators/Polynomial.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BT-Pn3"
+      ],
+      "line": 26,
+      "module": "Operators.Polynomial",
+      "name": "foldl_horner_from",
+      "trust": "kernel"
+    },
+    {
       "doc": "`P(3)=n` for the LSD polynomial of an MSD word.",
       "file": "formal/Operators/Polynomial.lean",
       "kind": "theorem",
@@ -772,6 +797,18 @@
       "line": 37,
       "module": "Operators.Polynomial",
       "name": "evalPoly_reverse_three",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Operators/Polynomial.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BT-Pn3"
+      ],
+      "line": 42,
+      "module": "Operators.Polynomial",
+      "name": "foldl_sum_from",
       "trust": "kernel"
     },
     {
@@ -5793,6 +5830,34 @@
         "C-shortcut-one-step-lyapunov",
         "C-no-uniform-L-descent"
       ],
+      "line": 56,
+      "module": "Problems.Collatz.Shortcut",
+      "name": "odd_all_odd_state",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/Shortcut.lean",
+      "kind": "theorem",
+      "ledger": [
+        "C-shortcut-welldefined",
+        "C-shortcut-one-step-lyapunov",
+        "C-no-uniform-L-descent"
+      ],
+      "line": 69,
+      "module": "Problems.Collatz.Shortcut",
+      "name": "all_odd_step",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/Shortcut.lean",
+      "kind": "theorem",
+      "ledger": [
+        "C-shortcut-welldefined",
+        "C-shortcut-one-step-lyapunov",
+        "C-no-uniform-L-descent"
+      ],
       "line": 97,
       "module": "Problems.Collatz.Shortcut",
       "name": "shortcutC_all_odd_iter",
@@ -7073,6 +7138,16 @@
       "trust": "kernel"
     },
     {
+      "doc": "",
+      "file": "formal/Problems/Engine/MxPlusR.lean",
+      "kind": "lemma",
+      "ledger": [],
+      "line": 86,
+      "module": "Problems.Engine.MxPlusR",
+      "name": "eight_modEq_one_mod_seven",
+      "trust": "kernel"
+    },
+    {
       "doc": "After one accelerated 7x+1 step, the odd part is ``\u2261 1, 2, or 4 (mod 7)``.",
       "file": "formal/Problems/Engine/MxPlusR.lean",
       "kind": "theorem",
@@ -7291,6 +7366,16 @@
       "module": "Problems.Engine.TwoPathZ2",
       "name": "two_path_unit_cycle",
       "trust": "compiler"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Engine/TwoPathZ2.lean",
+      "kind": "lemma",
+      "ledger": [],
+      "line": 34,
+      "module": "Problems.Engine.TwoPathZ2",
+      "name": "prod_eq_zero",
+      "trust": "kernel"
     },
     {
       "doc": "The only states that map to the origin are the origin and two signed preimages.",
@@ -12679,6 +12764,18 @@
     {
       "doc": "",
       "file": "formal/Problems/Juggler/CycleHeightFinance.lean",
+      "kind": "def",
+      "ledger": [
+        "J-cycle-itinerary-length-eighty-four-m-ge-three-or-ge-eighty-five"
+      ],
+      "line": 532,
+      "module": "Problems.Juggler.CycleHeightFinance",
+      "name": "invTermCap",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CycleHeightFinance.lean",
       "kind": "theorem",
       "ledger": [
         "J-cycle-itinerary-length-eighty-four-m-ge-three-or-ge-eighty-five"
@@ -16293,6 +16390,18 @@
       "trust": "kernel"
     },
     {
+      "doc": "Accumulated defect charge along the first `k` steps, priced at the images: `C_k = \u03a3_{i<k} 1.2\u00b7log n/(x_{i+1}\u00b7log x_{i+1})`. Depends only on the trajectory, not on the itinerary.",
+      "file": "formal/Problems/Juggler/DefectFinance.lean",
+      "kind": "def",
+      "ledger": [
+        "J-cyclemin-defect-finance-kill"
+      ],
+      "line": 255,
+      "module": "Problems.Juggler.DefectFinance",
+      "name": "prefixCharge",
+      "trust": "kernel"
+    },
+    {
       "doc": "One-step recurrence for the running prefix charge.",
       "file": "formal/Problems/Juggler/DefectFinance.lean",
       "kind": "theorem",
@@ -17671,6 +17780,16 @@
       "trust": "kernel"
     },
     {
+      "doc": "The standard additive character `e(\u03b8) = exp(2\u03c0i\u03b8)`.",
+      "file": "formal/Problems/Juggler/DepthOneMainTerm.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 44,
+      "module": "Problems.Juggler.DepthOneMainTerm",
+      "name": "e",
+      "trust": "kernel"
+    },
+    {
       "doc": "",
       "file": "formal/Problems/Juggler/DepthOneMainTerm.lean",
       "kind": "theorem",
@@ -17761,6 +17880,16 @@
       "trust": "kernel"
     },
     {
+      "doc": "The primitive `27`-th root of unity used by the dual sum.",
+      "file": "formal/Problems/Juggler/DepthOneMainTerm.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 123,
+      "module": "Problems.Juggler.DepthOneMainTerm",
+      "name": "zeta27",
+      "trust": "kernel"
+    },
+    {
       "doc": "",
       "file": "formal/Problems/Juggler/DepthOneMainTerm.lean",
       "kind": "theorem",
@@ -17808,6 +17937,16 @@
       "line": 178,
       "module": "Problems.Juggler.DepthOneMainTerm",
       "name": "completeCubicSum_eq_nine",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The constant the note prints, `(4\u221a8/27)(3/4)^{3/2}`, written with the half-power expanded.",
+      "file": "formal/Problems/Juggler/DepthOneMainTerm.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 191,
+      "module": "Problems.Juggler.DepthOneMainTerm",
+      "name": "depthOneConstant",
       "trust": "kernel"
     },
     {
@@ -20805,6 +20944,16 @@
       "trust": "kernel"
     },
     {
+      "doc": "The per-run constant of Theorem 3.31: a run of `m` odd letters costs `(3/2)^m`, and a suffix with `k` even letters can pay `2^k`, so `m \u2264 k \u00b7 log 2/log(3/2)`.",
+      "file": "formal/Problems/Juggler/EvenCountEight.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 45,
+      "module": "Problems.Juggler.EvenCountEight",
+      "name": "runCapConst",
+      "trust": "kernel"
+    },
+    {
       "doc": "",
       "file": "formal/Problems/Juggler/EvenCountEight.lean",
       "kind": "theorem",
@@ -22450,6 +22599,18 @@
       "trust": "kernel"
     },
     {
+      "doc": "The linear form `\u039b k = o k \u00b7 log 3 \u2212 L k \u00b7 log 2`.",
+      "file": "formal/Problems/Juggler/FanLaw.lean",
+      "kind": "def",
+      "ledger": [
+        "J-lean-arithmetic-certificates-kernel-checked"
+      ],
+      "line": 47,
+      "module": "Problems.Juggler.FanLaw",
+      "name": "fanLambda",
+      "trust": "kernel"
+    },
+    {
       "doc": "The paper's three frontiers are the first three members.",
       "file": "formal/Problems/Juggler/FanLaw.lean",
       "kind": "theorem",
@@ -23221,6 +23382,414 @@
       "trust": "kernel"
     },
     {
+      "doc": "`n` is a member of `A` below which `A` has no positive member.",
+      "file": "formal/Problems/Juggler/FateFirstLetter.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-minimal-failure-oo"
+      ],
+      "line": 28,
+      "module": "Problems.Juggler.FateFirstLetter",
+      "name": "MinimalMember",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A minimal member `n \u2265 2` of a forward-closed class is odd: an even member has the smaller positive member `\u230a\u221an\u230b`.",
+      "file": "formal/Problems/Juggler/FateFirstLetter.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-minimal-failure-oo"
+      ],
+      "line": 33,
+      "module": "Problems.Juggler.FateFirstLetter",
+      "name": "minimalMember_odd",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A minimal member `n \u2265 2` of a forward-closed class has an odd image: if `\u230an^{3/2}\u230b` were even, `\u230a\u221a\u230an^{3/2}\u230b\u230b < n` would be a smaller positive member.",
+      "file": "formal/Problems/Juggler/FateFirstLetter.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-minimal-failure-oo"
+      ],
+      "line": 46,
+      "module": "Problems.Juggler.FateFirstLetter",
+      "name": "minimalMember_image_odd",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Paper C Proposition 6.3(i): the least failure, if the failure set is nonempty, is odd with an odd image \u2014 an `OO`-type start.",
+      "file": "formal/Problems/Juggler/FateFirstLetter.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-minimal-failure-oo"
+      ],
+      "line": 63,
+      "module": "Problems.Juggler.FateFirstLetter",
+      "name": "minimal_failure_odd_odd",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The failure set, if nonempty on the positive integers, has a minimal member.",
+      "file": "formal/Problems/Juggler/FateFirstLetter.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-minimal-failure-oo"
+      ],
+      "line": 77,
+      "module": "Problems.Juggler.FateFirstLetter",
+      "name": "exists_minimal_failure",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The first-letter trichotomy of a two-way closed class (Section 6.2): every member is exactly one of even with image in the class, `OE`-type with image in the class, or `OO`-type with image in the class.",
+      "file": "formal/Problems/Juggler/FateFirstLetter.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-minimal-failure-oo"
+      ],
+      "line": 88,
+      "module": "Problems.Juggler.FateFirstLetter",
+      "name": "first_letter_trichotomy",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The three pieces are pairwise disjoint.",
+      "file": "formal/Problems/Juggler/FateFirstLetter.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-minimal-failure-oo"
+      ],
+      "line": 104,
+      "module": "Problems.Juggler.FateFirstLetter",
+      "name": "first_letter_pieces_disjoint",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Paper C Lemma 5.1 (recursion lemma), with the range of the contraction factors given by two bounds `emin \u2264 e i \u2264 emax` rather than by a finite minimum and maximum. `K = c\u2080 * t\u2081 ^ (-\u03bb)`.",
+      "file": "formal/Problems/Juggler/FateRecursion.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-recursion-lemma"
+      ],
+      "line": 37,
+      "module": "Problems.Juggler.FateRecursion",
+      "name": "recursion_lemma",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The half-cell index of a real: `\u230a2x\u230b`. Even cells are `{x} < 1/2`, odd cells are `{x} \u2265 1/2`.",
+      "file": "formal/Problems/Juggler/FateSweep.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-sweep-lemma"
+      ],
+      "line": 45,
+      "module": "Problems.Juggler.FateSweep",
+      "name": "cell",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweep.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-sweep-lemma"
+      ],
+      "line": 47,
+      "module": "Problems.Juggler.FateSweep",
+      "name": "cell_eq",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweep.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-sweep-lemma"
+      ],
+      "line": 61,
+      "module": "Problems.Juggler.FateSweep",
+      "name": "cell_modEq_zero_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweep.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-sweep-lemma"
+      ],
+      "line": 68,
+      "module": "Problems.Juggler.FateSweep",
+      "name": "cell_modEq_one_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The left-open representative `x - \u2308x\u2309 + 1 \u2208 (0, 1]` sits in the lower half-cell iff `\u23082x\u2309` is odd.",
+      "file": "formal/Problems/Juggler/FateSweep.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-sweep-lemma"
+      ],
+      "line": 79,
+      "module": "Problems.Juggler.FateSweep",
+      "name": "ceil_two_mul_eq",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweep.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-sweep-lemma"
+      ],
+      "line": 95,
+      "module": "Problems.Juggler.FateSweep",
+      "name": "ceil_modEq_one_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweep.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-sweep-lemma"
+      ],
+      "line": 102,
+      "module": "Problems.Juggler.FateSweep",
+      "name": "ceil_modEq_zero_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Consecutive gaps in `[a, b]` on the first `H` terms.",
+      "file": "formal/Problems/Juggler/FateSweep.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-sweep-lemma"
+      ],
+      "line": 112,
+      "module": "Problems.Juggler.FateSweep",
+      "name": "Steps",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweep.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-sweep-lemma"
+      ],
+      "line": 119,
+      "module": "Problems.Juggler.FateSweep",
+      "name": "step_lower",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweep.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-sweep-lemma"
+      ],
+      "line": 132,
+      "module": "Problems.Juggler.FateSweep",
+      "name": "step_upper",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweep.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-sweep-lemma"
+      ],
+      "line": 145,
+      "module": "Problems.Juggler.FateSweep",
+      "name": "mono",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweep.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-sweep-lemma"
+      ],
+      "line": 152,
+      "module": "Problems.Juggler.FateSweep",
+      "name": "cell_mono",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweep.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-sweep-lemma"
+      ],
+      "line": 156,
+      "module": "Problems.Juggler.FateSweep",
+      "name": "cell_succ_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Every cell holds at most `\u230a1/(2a)\u230b + 1` terms.",
+      "file": "formal/Problems/Juggler/FateSweep.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-sweep-lemma"
+      ],
+      "line": 165,
+      "module": "Problems.Juggler.FateSweep",
+      "name": "fiber_card_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Every strictly interior cell holds at least `\u230a1/(2b)\u230b` terms.",
+      "file": "formal/Problems/Juggler/FateSweep.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-sweep-lemma"
+      ],
+      "line": 201,
+      "module": "Problems.Juggler.FateSweep",
+      "name": "fiber_card_ge",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The number of visited cells: `cell (x (H-1)) - cell (x 0) \u2265 24`.",
+      "file": "formal/Problems/Juggler/FateSweep.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-sweep-lemma"
+      ],
+      "line": 289,
+      "module": "Problems.Juggler.FateSweep",
+      "name": "cell_span",
+      "trust": "kernel"
+    },
+    {
+      "doc": "All `H` terms are distributed over the visited cells.",
+      "file": "formal/Problems/Juggler/FateSweep.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-sweep-lemma"
+      ],
+      "line": 305,
+      "module": "Problems.Juggler.FateSweep",
+      "name": "card_le_cells_mul",
+      "trust": "kernel"
+    },
+    {
+      "doc": "One colour of cells holds at least `g` terms per interior cell of that colour.",
+      "file": "formal/Problems/Juggler/FateSweep.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-sweep-lemma"
+      ],
+      "line": 322,
+      "module": "Problems.Juggler.FateSweep",
+      "name": "colour_card_ge",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Interior cells of one colour: at least `(T - 3)/2` of them, where `T = cH - c\u2080 + 1` is the number of visited cells.",
+      "file": "formal/Problems/Juggler/FateSweep.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-sweep-lemma"
+      ],
+      "line": 368,
+      "module": "Problems.Juggler.FateSweep",
+      "name": "colour_cells_ge",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The paper's case analysis on `X = 1/(2a)`: `3 g \u2265 G` with `g = \u230a1/(2b)\u230b`, `G = \u230a1/(2a)\u230b + 1`.",
+      "file": "formal/Problems/Juggler/FateSweep.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-sweep-lemma"
+      ],
+      "line": 383,
+      "module": "Problems.Juggler.FateSweep",
+      "name": "three_g_ge",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Paper C Lemma 4.1 (sweep), closed half-cells, one colour `v` of the cell index `\u230a2 x_j\u230b mod 2`.",
+      "file": "formal/Problems/Juggler/FateSweep.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-sweep-lemma"
+      ],
+      "line": 406,
+      "module": "Problems.Juggler.FateSweep",
+      "name": "sweep_cell",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Paper C Lemma 4.1 (sweep), first half: at least `H/7` of the terms have `{x_j} < 1/2`.",
+      "file": "formal/Problems/Juggler/FateSweep.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-sweep-lemma"
+      ],
+      "line": 460,
+      "module": "Problems.Juggler.FateSweep",
+      "name": "sweep_fract_lt_half",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Paper C Lemma 4.1 (sweep), second half: at least `H/7` of the terms have `{x_j} \u2265 1/2`.",
+      "file": "formal/Problems/Juggler/FateSweep.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-sweep-lemma"
+      ],
+      "line": 474,
+      "module": "Problems.Juggler.FateSweep",
+      "name": "sweep_fract_ge_half",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The left-open variant, by reflection `j \u21a6 -x_{H-1-j}`: one colour `v` of `\u23082 x_j\u2309 mod 2`.",
+      "file": "formal/Problems/Juggler/FateSweep.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-sweep-lemma"
+      ],
+      "line": 488,
+      "module": "Problems.Juggler.FateSweep",
+      "name": "sweep_ceil",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Paper C Lemma 4.1 (sweep), left-open cells `(k/2, (k+1)/2]`: with the representative `x - \u2308x\u2309 + 1 \u2208 (0, 1]`, at least `H/7` of the terms have representative at most `1/2`.",
+      "file": "formal/Problems/Juggler/FateSweep.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-sweep-lemma"
+      ],
+      "line": 525,
+      "module": "Problems.Juggler.FateSweep",
+      "name": "sweep_rep_le_half",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Paper C Lemma 4.1 (sweep), left-open cells, the other colour: at least `H/7` of the terms have representative above `1/2`.",
+      "file": "formal/Problems/Juggler/FateSweep.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-sweep-lemma"
+      ],
+      "line": 539,
+      "module": "Problems.Juggler.FateSweep",
+      "name": "sweep_rep_gt_half",
+      "trust": "kernel"
+    },
+    {
       "doc": "`x \u21a6 1/(x log x)` is antitone on `[2, \u221e)`.",
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "theorem",
@@ -23248,6 +23817,16 @@
       "line": 75,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "sum_inv_mul_log_le_comp",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The six lower bounds of Theorem 4.7, in the paper's order: the cycle minimum `n`, the next odd integer `n + 2`, the expensive valley `v`, the first internal odd `t`, the later internals `t\u208a`, and every even at `n\u00b2`.",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 91,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "sixBounds",
       "trust": "kernel"
     },
     {
@@ -23288,6 +23867,16 @@
       "line": 156,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "odd_pow_ge_of_image_ge",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Paper A's `v`: the least odd integer whose cube is at least `n\u2074`.",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 164,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "expensiveValley",
       "trust": "kernel"
     },
     {
@@ -23578,6 +24167,16 @@
       "line": 642,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "cycleMin_last_even",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The three class bounds: the minimum, the first internal, and the even floor.",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 677,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "threeBounds",
       "trust": "kernel"
     },
     {
@@ -25281,6 +25880,36 @@
       "trust": "kernel"
     },
     {
+      "doc": "The exponent-walk position after `k` steps: `u_k = a_k\u00b7log\u20823 \u2212 k`.",
+      "file": "formal/Problems/Juggler/HugChargeEnvelope.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 40,
+      "module": "Problems.Juggler.HugChargeEnvelope",
+      "name": "hugWalkPos",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**`C_L`.** The charge per letter of the hug word of length `L`: the average of the observable along the exponent walk.",
+      "file": "formal/Problems/Juggler/HugChargeEnvelope.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 45,
+      "module": "Problems.Juggler.HugChargeEnvelope",
+      "name": "hugCharge",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**`C_*`.** The mean of the observable over the circle.",
+      "file": "formal/Problems/Juggler/HugChargeEnvelope.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 49,
+      "module": "Problems.Juggler.HugChargeEnvelope",
+      "name": "circleMean",
+      "trust": "kernel"
+    },
+    {
       "doc": "The rotation's ergodic sum at phase `0` is the walk sum, termwise.",
       "file": "formal/Problems/Juggler/HugChargeEnvelope.lean",
       "kind": "theorem",
@@ -25858,6 +26487,16 @@
       "line": 262,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "lastOdd_edge_not_sure",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/IdealCycleMin.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 264,
+      "module": "Problems.Juggler.IdealCycleMin",
+      "name": "sureLink_index_lt_six",
       "trust": "kernel"
     },
     {
@@ -28812,6 +29451,26 @@
       "trust": "kernel"
     },
     {
+      "doc": "Paper A's block observable `F(u) = n'^{1\u22122^u}/2^u`.",
+      "file": "formal/Problems/Juggler/JumpVariation.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 221,
+      "module": "Problems.Juggler.JumpVariation",
+      "name": "blockObservable",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The circle length `1 + \u03b1` with `\u03b1 = log\u2082(3/2)` \u2014 which is `log\u2082 3`, since `1 + log\u2082(3/2) = log\u2082 2 + log\u2082(3/2)`. Writing it that way keeps the file to `Real.log`.",
+      "file": "formal/Problems/Juggler/JumpVariation.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 225,
+      "module": "Problems.Juggler.JumpVariation",
+      "name": "circlePeriod",
+      "trust": "kernel"
+    },
+    {
       "doc": "",
       "file": "formal/Problems/Juggler/JumpVariation.lean",
       "kind": "theorem",
@@ -28869,6 +29528,16 @@
       "line": 261,
       "module": "Problems.Juggler.JumpVariation",
       "name": "blockObservable_period",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The observable transported to `\u211d/\u2124`: `F` of the fractional part times the period.",
+      "file": "formal/Problems/Juggler/JumpVariation.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 268,
+      "module": "Problems.Juggler.JumpVariation",
+      "name": "periodicObservable",
       "trust": "kernel"
     },
     {
@@ -34488,6 +35157,16 @@
       "trust": "kernel"
     },
     {
+      "doc": "Module-local. The exported name for this fact is `two_pow_le_three_pow` in `ExpandingGrammar`, which this module does not import; `private` so the fact keeps one public name rather than two.",
+      "file": "formal/Problems/Juggler/LeftoverPreimage.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 101,
+      "module": "Problems.Juggler.LeftoverPreimage",
+      "name": "two_pow_le_three_pow",
+      "trust": "kernel"
+    },
+    {
       "doc": "",
       "file": "formal/Problems/Juggler/LeftoverPreimage.lean",
       "kind": "theorem",
@@ -35484,6 +36163,16 @@
       "trust": "kernel"
     },
     {
+      "doc": "The live count as a real word weight.",
+      "file": "formal/Problems/Juggler/LiveCountWeight.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 44,
+      "module": "Problems.Juggler.LiveCountWeight",
+      "name": "liveWeight",
+      "trust": "kernel"
+    },
+    {
       "doc": "",
       "file": "formal/Problems/Juggler/LiveCountWeight.lean",
       "kind": "theorem",
@@ -35791,6 +36480,50 @@
       "line": 116,
       "module": "Problems.Juggler.LocalizedKernel",
       "name": "twist_exponent_neg",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The rotation of the clock circle induced by one odd step, `log2 (3/2)`.",
+      "file": "formal/Problems/Juggler/LogLogClock.lean",
+      "kind": "def",
+      "ledger": [
+        "J-lachesis-walk-rotation",
+        "J-lachesis-etree-density",
+        "J-lachesis-basin-every-block",
+        "J-clotho-basin-every-block-criterion",
+        "J-loglog-clock-walk-rotation-lean",
+        "J-loglog-clock-even-chain-burst-lean",
+        "J-loglog-clock-hug-band-lean",
+        "J-loglog-clock-band-word-forced-lean",
+        "J-hug-band-residence-is-prefix-realization",
+        "J-floor-stratifies-even-cylinders-lean",
+        "J-fate-visibility-one-law"
+      ],
+      "line": 40,
+      "module": "Problems.Juggler.LogLogClock",
+      "name": "alphaClock",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The exponent walk after `t` steps of which `o` are odd.",
+      "file": "formal/Problems/Juggler/LogLogClock.lean",
+      "kind": "def",
+      "ledger": [
+        "J-lachesis-walk-rotation",
+        "J-lachesis-etree-density",
+        "J-lachesis-basin-every-block",
+        "J-clotho-basin-every-block-criterion",
+        "J-loglog-clock-walk-rotation-lean",
+        "J-loglog-clock-even-chain-burst-lean",
+        "J-loglog-clock-hug-band-lean",
+        "J-loglog-clock-band-word-forced-lean",
+        "J-hug-band-residence-is-prefix-realization",
+        "J-floor-stratifies-even-cylinders-lean",
+        "J-fate-visibility-one-law"
+      ],
+      "line": 43,
+      "module": "Problems.Juggler.LogLogClock",
+      "name": "walk",
       "trust": "kernel"
     },
     {
@@ -36318,6 +37051,16 @@
       "trust": "kernel"
     },
     {
+      "doc": "The unit carry `[{A} + {B} \u2265 1]`, as a real number.",
+      "file": "formal/Problems/Juggler/MasterIdentity.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 76,
+      "module": "Problems.Juggler.MasterIdentity",
+      "name": "carry",
+      "trust": "kernel"
+    },
+    {
       "doc": "",
       "file": "formal/Problems/Juggler/MasterIdentity.lean",
       "kind": "theorem",
@@ -36398,6 +37141,16 @@
       "trust": "kernel"
     },
     {
+      "doc": "`x^(3/2)`, written without `rpow`.",
+      "file": "formal/Problems/Juggler/MeanValues.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 43,
+      "module": "Problems.Juggler.MeanValues",
+      "name": "pow32",
+      "trust": "kernel"
+    },
+    {
       "doc": "",
       "file": "formal/Problems/Juggler/MeanValues.lean",
       "kind": "theorem",
@@ -36435,6 +37188,16 @@
       "line": 89,
       "module": "Problems.Juggler.MeanValues",
       "name": "mvt_sqrt_diff_explicit",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The second difference of `x^(3/2)`, as the increment of `g(t) = F(t + \u03b2\u2082) - F(t)`.",
+      "file": "formal/Problems/Juggler/MeanValues.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 98,
+      "module": "Problems.Juggler.MeanValues",
+      "name": "gShift",
       "trust": "kernel"
     },
     {
@@ -38472,6 +39235,16 @@
       "trust": "kernel"
     },
     {
+      "doc": "Paper A Lemma 4.4b's right-hand side as a function of the odd count `o` at fixed word length `L`: `R(o) = e + (o \u2212 e)\u03b1 + e/(2n)` with `e = L \u2212 o`.",
+      "file": "formal/Problems/Juggler/OddCountMonotone.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 35,
+      "module": "Problems.Juggler.OddCountMonotone",
+      "name": "packingR",
+      "trust": "kernel"
+    },
+    {
       "doc": "**The step is constant in `o`.** `R(o+1) \u2212 R(o) = 2\u03b1 \u2212 1 \u2212 1/(2n)`.",
       "file": "formal/Problems/Juggler/OddCountMonotone.lean",
       "kind": "theorem",
@@ -38866,6 +39639,18 @@
       "trust": "kernel"
     },
     {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OstrowskiNumeration.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-cyclemin-walk-ostrowski-numeration"
+      ],
+      "line": 129,
+      "module": "Problems.Juggler.OstrowskiNumeration",
+      "name": "getD_of_length_le",
+      "trust": "kernel"
+    },
+    {
       "doc": "The certified \u03b8 denominators as a function, constant `301994` past the window.",
       "file": "formal/Problems/Juggler/OstrowskiNumeration.lean",
       "kind": "def",
@@ -38995,6 +39780,18 @@
       "line": 70,
       "module": "Problems.Juggler.OstrowskiSandwich",
       "name": "theta_sandwich_lower",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The rotation number of the hug walk in Paper A Section 5: `\u03b8 = log(3/2)/log 3`.",
+      "file": "formal/Problems/Juggler/OstrowskiSandwich.lean",
+      "kind": "def",
+      "ledger": [
+        "J-cyclemin-walk-ostrowski-arithmetic"
+      ],
+      "line": 75,
+      "module": "Problems.Juggler.OstrowskiSandwich",
+      "name": "walkTheta",
       "trust": "kernel"
     },
     {
@@ -43164,6 +43961,20 @@
     {
       "doc": "",
       "file": "formal/Problems/Juggler/RateFreeDensity.lean",
+      "kind": "def",
+      "ledger": [
+        "J-rate-free-density-one",
+        "J-rate-free-prop-j-finite",
+        "J-rate-free-floor-certificates"
+      ],
+      "line": 307,
+      "module": "Problems.Juggler.RateFreeDensity",
+      "name": "weightGen",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/RateFreeDensity.lean",
       "kind": "theorem",
       "ledger": [
         "J-rate-free-density-one",
@@ -44210,6 +45021,18 @@
       "trust": "kernel"
     },
     {
+      "doc": "Explicit antiderivative of `e^{\u2212\u03bd(t\u22121)} (1 \u2212 2(t\u22121) + 3(t\u22121)\u00b2)`: the polynomial factor `q` satisfies `q' \u2212 \u03bdq = 1 \u2212 2u + 3u\u00b2`.",
+      "file": "formal/Problems/Juggler/RotationAverage.lean",
+      "kind": "def",
+      "ledger": [
+        "J-cyclemin-rotation-average"
+      ],
+      "line": 52,
+      "module": "Problems.Juggler.RotationAverage",
+      "name": "quadPrim",
+      "trust": "kernel"
+    },
+    {
       "doc": "Derivative of the quadratic-majorant primitive, used for the FTC evaluation.",
       "file": "formal/Problems/Juggler/RotationAverage.lean",
       "kind": "theorem",
@@ -44246,6 +45069,18 @@
       "trust": "kernel"
     },
     {
+      "doc": "Explicit antiderivative of the pure exponential.",
+      "file": "formal/Problems/Juggler/RotationAverage.lean",
+      "kind": "def",
+      "ledger": [
+        "J-cyclemin-rotation-average"
+      ],
+      "line": 145,
+      "module": "Problems.Juggler.RotationAverage",
+      "name": "expPrim",
+      "trust": "kernel"
+    },
+    {
       "doc": "Derivative of the exponential primitive, used for the display bound.",
       "file": "formal/Problems/Juggler/RotationAverage.lean",
       "kind": "theorem",
@@ -44279,6 +45114,18 @@
       "line": 181,
       "module": "Problems.Juggler.RotationAverage",
       "name": "rotation_average_lt",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The rotation average `C*(\u03bd)` of Paper A Proposition 5.5, with the `1/ln 3` normalisation; at `\u03bd = ln n'` this is the charge per letter of the infinite hug itinerary at the reduced base.",
+      "file": "formal/Problems/Juggler/RotationAverage.lean",
+      "kind": "def",
+      "ledger": [
+        "J-cyclemin-rotation-average"
+      ],
+      "line": 203,
+      "module": "Problems.Juggler.RotationAverage",
+      "name": "rotationAverage",
       "trust": "kernel"
     },
     {
@@ -47770,6 +48617,16 @@
       "trust": "kernel"
     },
     {
+      "doc": "Monotonicity of `t \u21a6 t\u1d4f`, the only tool most rows need.",
+      "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 89,
+      "module": "Problems.Juggler.ThresholdCertificate",
+      "name": "pow_mono_base",
+      "trust": "kernel"
+    },
+    {
       "doc": "Row `s3s1-window`. Lemma 3.7's hypothesis `T \u2265 8(1+|B|)` at `T = P^(1/2)` with `|B| < 1/2`. `P = t\u00b2`, `t \u2265 12`; `P \u2265 144`.",
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
@@ -48157,6 +49014,30 @@
       "line": 498,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "gap_error_not_halved_by_recentring",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Tilted mass of the odd continuations at depth `d`: `\u03a3_{|w|=d} \u03bc(w ++ [O]) x^{o(w)}`.",
+      "file": "formal/Problems/Juggler/TiltedShare.lean",
+      "kind": "def",
+      "ledger": [
+        "J-tilted-share-telescoping"
+      ],
+      "line": 29,
+      "module": "Problems.Juggler.TiltedShare",
+      "name": "oddMass",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The tilted odd share `s_\u03b8(d)` with `x = e^\u03b8`: odd continuations over the whole tilted mass at depth `d` (Lean's `a / 0 = 0` when no mass).",
+      "file": "formal/Problems/Juggler/TiltedShare.lean",
+      "kind": "def",
+      "ledger": [
+        "J-tilted-share-telescoping"
+      ],
+      "line": 34,
+      "module": "Problems.Juggler.TiltedShare",
+      "name": "tiltedShare",
       "trust": "kernel"
     },
     {
@@ -48966,6 +49847,18 @@
       "trust": "kernel"
     },
     {
+      "doc": "The per-state walk charge at reduced log-base `\u03bd` and weight `W`: `g = 1/(e^{W\u03bd}\u00b7W\u00b7\u03bd)`. With `W = 2^u` and `\u03bd = log n'` this is the paper's `g(u) = 1/(n'^{2^u}\u00b72^u\u00b7log n')`.",
+      "file": "formal/Problems/Juggler/WalkChargeMax.lean",
+      "kind": "def",
+      "ledger": [
+        "J-cyclemin-hug-charge-max"
+      ],
+      "line": 48,
+      "module": "Problems.Juggler.WalkChargeMax",
+      "name": "stateCharge",
+      "trust": "kernel"
+    },
+    {
       "doc": "",
       "file": "formal/Problems/Juggler/WalkChargeMax.lean",
       "kind": "theorem",
@@ -48987,6 +49880,18 @@
       "line": 59,
       "module": "Problems.Juggler.WalkChargeMax",
       "name": "stateCharge_antitone",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The weight profile of the exact hug itinerary: `hugWeight k = 3^{hugOdds k} / 2^k`, the pointwise-least admissible walk weight.",
+      "file": "formal/Problems/Juggler/WalkChargeMax.lean",
+      "kind": "def",
+      "ledger": [
+        "J-cyclemin-hug-charge-max"
+      ],
+      "line": 79,
+      "module": "Problems.Juggler.WalkChargeMax",
+      "name": "hugWeight",
       "trust": "kernel"
     },
     {
@@ -49166,6 +50071,20 @@
       "trust": "kernel"
     },
     {
+      "doc": "The walk weight `w_k = 2^(u_k) = 3^(a_k)/2^k` \u2014 rational.",
+      "file": "formal/Problems/Juggler/WalkTransport.lean",
+      "kind": "def",
+      "ledger": [
+        "J-cyclemin-walk-transport-envelope",
+        "J-flight-envelope-transport",
+        "J-flight-height-law"
+      ],
+      "line": 180,
+      "module": "Problems.Juggler.WalkTransport",
+      "name": "walkWeight",
+      "trust": "kernel"
+    },
+    {
       "doc": "One more letter adds one to the odd count exactly when that letter is odd.",
       "file": "formal/Problems/Juggler/WalkTransport.lean",
       "kind": "theorem",
@@ -49250,6 +50169,20 @@
       "trust": "kernel"
     },
     {
+      "doc": "Accumulated transport deficit along the first `k` letters: `0.7/(n\u221an)` per odd letter, `1.05/n` per even letter.",
+      "file": "formal/Problems/Juggler/WalkTransport.lean",
+      "kind": "def",
+      "ledger": [
+        "J-cyclemin-walk-transport-envelope",
+        "J-flight-envelope-transport",
+        "J-flight-height-law"
+      ],
+      "line": 232,
+      "module": "Problems.Juggler.WalkTransport",
+      "name": "prefixDeficit",
+      "trust": "kernel"
+    },
+    {
       "doc": "One-step recurrence for the running prefix deficit.",
       "file": "formal/Problems/Juggler/WalkTransport.lean",
       "kind": "theorem",
@@ -49275,6 +50208,20 @@
       "line": 244,
       "module": "Problems.Juggler.WalkTransport",
       "name": "prefixDeficit_mono",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The transport deficit over the full word: `D = 1.05\u00b7e/n + 0.7\u00b7o/(n\u00b7\u221an)`.",
+      "file": "formal/Problems/Juggler/WalkTransport.lean",
+      "kind": "def",
+      "ledger": [
+        "J-cyclemin-walk-transport-envelope",
+        "J-flight-envelope-transport",
+        "J-flight-height-law"
+      ],
+      "line": 261,
+      "module": "Problems.Juggler.WalkTransport",
+      "name": "transportDeficit",
       "trust": "kernel"
     },
     {
@@ -49678,6 +50625,32 @@
       "trust": "kernel"
     },
     {
+      "doc": "",
+      "file": "formal/Problems/Ostrowski/NP/Energy.lean",
+      "kind": "theorem",
+      "ledger": [
+        "OST-np-energy-step",
+        "OST-np-energy-telescope",
+        "OST-np-energy-ext-interval",
+        "OST-np-energy-homogeneous",
+        "OST-np-adjoint-window-det",
+        "OST-np-origin-particular",
+        "OST-np-impulse-place",
+        "OST-np-particular-s3",
+        "OST-np-consumed-sum-append",
+        "OST-np-val-concat-energy",
+        "OST-np-complete-zero-monoid",
+        "OST-np-fold-s3",
+        "OST-np-reset-pow-then-hub",
+        "OST-np-reset-prefix",
+        "OST-np-same-energy-same-OnF"
+      ],
+      "line": 106,
+      "module": "Problems.Ostrowski.NP.Energy",
+      "name": "adjoint_covariance_succ_succ",
+      "trust": "kernel"
+    },
+    {
       "doc": "`u_{i-1} A = u_i` for `i \u2265 1`.",
       "file": "formal/Problems/Ostrowski/NP/Energy.lean",
       "kind": "theorem",
@@ -49701,6 +50674,32 @@
       "line": 116,
       "module": "Problems.Ostrowski.NP.Energy",
       "name": "adjoint_covariance",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Ostrowski/NP/Energy.lean",
+      "kind": "theorem",
+      "ledger": [
+        "OST-np-energy-step",
+        "OST-np-energy-telescope",
+        "OST-np-energy-ext-interval",
+        "OST-np-energy-homogeneous",
+        "OST-np-adjoint-window-det",
+        "OST-np-origin-particular",
+        "OST-np-impulse-place",
+        "OST-np-particular-s3",
+        "OST-np-consumed-sum-append",
+        "OST-np-val-concat-energy",
+        "OST-np-complete-zero-monoid",
+        "OST-np-fold-s3",
+        "OST-np-reset-pow-then-hub",
+        "OST-np-reset-prefix",
+        "OST-np-same-energy-same-OnF"
+      ],
+      "line": 125,
+      "module": "Problems.Ostrowski.NP.Energy",
+      "name": "adjoint_components",
       "trust": "kernel"
     },
     {
@@ -50094,6 +51093,110 @@
       "trust": "kernel"
     },
     {
+      "doc": "",
+      "file": "formal/Problems/Ostrowski/NP/Energy.lean",
+      "kind": "theorem",
+      "ledger": [
+        "OST-np-energy-step",
+        "OST-np-energy-telescope",
+        "OST-np-energy-ext-interval",
+        "OST-np-energy-homogeneous",
+        "OST-np-adjoint-window-det",
+        "OST-np-origin-particular",
+        "OST-np-impulse-place",
+        "OST-np-particular-s3",
+        "OST-np-consumed-sum-append",
+        "OST-np-val-concat-energy",
+        "OST-np-complete-zero-monoid",
+        "OST-np-fold-s3",
+        "OST-np-reset-pow-then-hub",
+        "OST-np-reset-prefix",
+        "OST-np-same-energy-same-OnF"
+      ],
+      "line": 256,
+      "module": "Problems.Ostrowski.NP.Energy",
+      "name": "adjointDet_two",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Ostrowski/NP/Energy.lean",
+      "kind": "theorem",
+      "ledger": [
+        "OST-np-energy-step",
+        "OST-np-energy-telescope",
+        "OST-np-energy-ext-interval",
+        "OST-np-energy-homogeneous",
+        "OST-np-adjoint-window-det",
+        "OST-np-origin-particular",
+        "OST-np-impulse-place",
+        "OST-np-particular-s3",
+        "OST-np-consumed-sum-append",
+        "OST-np-val-concat-energy",
+        "OST-np-complete-zero-monoid",
+        "OST-np-fold-s3",
+        "OST-np-reset-pow-then-hub",
+        "OST-np-reset-prefix",
+        "OST-np-same-energy-same-OnF"
+      ],
+      "line": 259,
+      "module": "Problems.Ostrowski.NP.Energy",
+      "name": "adjointDet_three",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Ostrowski/NP/Energy.lean",
+      "kind": "theorem",
+      "ledger": [
+        "OST-np-energy-step",
+        "OST-np-energy-telescope",
+        "OST-np-energy-ext-interval",
+        "OST-np-energy-homogeneous",
+        "OST-np-adjoint-window-det",
+        "OST-np-origin-particular",
+        "OST-np-impulse-place",
+        "OST-np-particular-s3",
+        "OST-np-consumed-sum-append",
+        "OST-np-val-concat-energy",
+        "OST-np-complete-zero-monoid",
+        "OST-np-fold-s3",
+        "OST-np-reset-pow-then-hub",
+        "OST-np-reset-prefix",
+        "OST-np-same-energy-same-OnF"
+      ],
+      "line": 262,
+      "module": "Problems.Ostrowski.NP.Energy",
+      "name": "adjointDet_succ_of_four",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Ostrowski/NP/Energy.lean",
+      "kind": "theorem",
+      "ledger": [
+        "OST-np-energy-step",
+        "OST-np-energy-telescope",
+        "OST-np-energy-ext-interval",
+        "OST-np-energy-homogeneous",
+        "OST-np-adjoint-window-det",
+        "OST-np-origin-particular",
+        "OST-np-impulse-place",
+        "OST-np-particular-s3",
+        "OST-np-consumed-sum-append",
+        "OST-np-val-concat-energy",
+        "OST-np-complete-zero-monoid",
+        "OST-np-fold-s3",
+        "OST-np-reset-pow-then-hub",
+        "OST-np-reset-prefix",
+        "OST-np-same-energy-same-OnF"
+      ],
+      "line": 322,
+      "module": "Problems.Ostrowski.NP.Energy",
+      "name": "adjointDet_succ",
+      "trust": "kernel"
+    },
+    {
       "doc": "Consecutive adjoints are independent: `det = 3^{n-2}` for `n \u2265 2`. Neighboring energies invert `s` over `\u211a`. Not a bound on `L\u2080`.",
       "file": "formal/Problems/Ostrowski/NP/Energy.lean",
       "kind": "theorem",
@@ -50403,6 +51506,32 @@
       "line": 391,
       "module": "Problems.Ostrowski.NP.Energy",
       "name": "addState_comm",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Ostrowski/NP/Energy.lean",
+      "kind": "theorem",
+      "ledger": [
+        "OST-np-energy-step",
+        "OST-np-energy-telescope",
+        "OST-np-energy-ext-interval",
+        "OST-np-energy-homogeneous",
+        "OST-np-adjoint-window-det",
+        "OST-np-origin-particular",
+        "OST-np-impulse-place",
+        "OST-np-particular-s3",
+        "OST-np-consumed-sum-append",
+        "OST-np-val-concat-energy",
+        "OST-np-complete-zero-monoid",
+        "OST-np-fold-s3",
+        "OST-np-reset-pow-then-hub",
+        "OST-np-reset-prefix",
+        "OST-np-same-energy-same-OnF"
+      ],
+      "line": 396,
+      "module": "Problems.Ostrowski.NP.Energy",
+      "name": "prod3_eq",
       "trust": "kernel"
     },
     {
@@ -51709,7 +52838,103 @@
       "line": 23,
       "module": "Problems.Ostrowski.NP.Reachability",
       "name": "origin_reachable_pred",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Ostrowski/NP/Reachability.lean",
+      "kind": "lemma",
+      "ledger": [
+        "OST-np-kernel-unreach"
+      ],
+      "line": 32,
+      "module": "Problems.Ostrowski.NP.Reachability",
+      "name": "combo_mod9_of_res",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Ostrowski/NP/Reachability.lean",
+      "kind": "lemma",
+      "ledger": [
+        "OST-np-kernel-unreach"
+      ],
+      "line": 45,
+      "module": "Problems.Ostrowski.NP.Reachability",
+      "name": "combo_residue_ne_zero_four",
       "trust": "compiler"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Ostrowski/NP/Reachability.lean",
+      "kind": "lemma",
+      "ledger": [
+        "OST-np-kernel-unreach"
+      ],
+      "line": 50,
+      "module": "Problems.Ostrowski.NP.Reachability",
+      "name": "combo_residue_ne_zero_eight",
+      "trust": "compiler"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Ostrowski/NP/Reachability.lean",
+      "kind": "lemma",
+      "ledger": [
+        "OST-np-kernel-unreach"
+      ],
+      "line": 55,
+      "module": "Problems.Ostrowski.NP.Reachability",
+      "name": "combo_residue_ne_zero_sixteen",
+      "trust": "compiler"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Ostrowski/NP/Reachability.lean",
+      "kind": "lemma",
+      "ledger": [
+        "OST-np-kernel-unreach"
+      ],
+      "line": 60,
+      "module": "Problems.Ostrowski.NP.Reachability",
+      "name": "combo_residue_ne_zero_twenty",
+      "trust": "compiler"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Ostrowski/NP/Reachability.lean",
+      "kind": "lemma",
+      "ledger": [
+        "OST-np-kernel-unreach"
+      ],
+      "line": 65,
+      "module": "Problems.Ostrowski.NP.Reachability",
+      "name": "not_nine_dvd_combo_of_res",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Enumeration of `\u2124/24\u2124`: residues with `n \u2261 0 or 4 (mod 8)` except `0, 12`.",
+      "file": "formal/Problems/Ostrowski/NP/Reachability.lean",
+      "kind": "lemma",
+      "ledger": [
+        "OST-np-kernel-unreach"
+      ],
+      "line": 83,
+      "module": "Problems.Ostrowski.NP.Reachability",
+      "name": "four_residues",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Ostrowski/NP/Reachability.lean",
+      "kind": "lemma",
+      "ledger": [
+        "OST-np-kernel-unreach"
+      ],
+      "line": 88,
+      "module": "Problems.Ostrowski.NP.Reachability",
+      "name": "nmod8_of_q_dvd",
+      "trust": "kernel"
     },
     {
       "doc": "Off `{0, 12} (mod 24)`, either `t_n` itself or every predecessor fails `3 \u2223 s\u2081`.",
@@ -51865,6 +53090,18 @@
       "line": 81,
       "module": "Problems.Ostrowski.NP.Recurrence",
       "name": "q_emod_three_period8",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Ostrowski/NP/Recurrence.lean",
+      "kind": "lemma",
+      "ledger": [
+        "OST-np-recurrence-word-zero"
+      ],
+      "line": 85,
+      "module": "Problems.Ostrowski.NP.Recurrence",
+      "name": "q_mod3_add_eight_mul",
       "trust": "kernel"
     },
     {
@@ -58395,6 +59632,16 @@
       "trust": "kernel"
     },
     {
+      "doc": "",
+      "file": "formal/BTCalculus/OpFrag.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 112,
+      "module": "BTCalculus.OpFrag",
+      "name": "step_rank_lt_coords",
+      "trust": "kernel"
+    },
+    {
       "doc": "Every one-step contraction strictly decreases the lex rank.",
       "file": "formal/BTCalculus/OpFrag.lean",
       "kind": "theorem",
@@ -64265,6 +65512,18 @@
       "trust": "kernel"
     },
     {
+      "doc": "",
+      "file": "formal/BTCalculus/WordSimpNewman.lean",
+      "kind": "lemma",
+      "ledger": [
+        "BTC-word-simp-nf"
+      ],
+      "line": 118,
+      "module": "BTCalculus.WordSimpNewman",
+      "name": "no_overlap",
+      "trust": "kernel"
+    },
+    {
       "doc": "Close an overlap `r1.src ++ suf1 = x :: r2.src ++ suf2` with `|r1.src|=2`.",
       "file": "formal/BTCalculus/WordSimpNewman.lean",
       "kind": "lemma",
@@ -65346,7 +66605,7 @@
       ]
     },
     "BTCalculus.OpFrag": {
-      "declarations": 19,
+      "declarations": 20,
       "file": "formal/BTCalculus/OpFrag.lean",
       "imports": [],
       "ledger": []
@@ -65677,7 +66936,7 @@
       "ledger": []
     },
     "BTCalculus.WordSimpNewman": {
-      "declarations": 26,
+      "declarations": 27,
       "file": "formal/BTCalculus/WordSimpNewman.lean",
       "imports": [
         "BTCalculus.WordSimp"
@@ -65794,7 +67053,7 @@
       ]
     },
     "Operators.Polynomial": {
-      "declarations": 7,
+      "declarations": 9,
       "file": "formal/Operators/Polynomial.lean",
       "imports": [
         "Representation.Words"
@@ -66302,7 +67561,7 @@
       ]
     },
     "Problems.Collatz.Shortcut": {
-      "declarations": 12,
+      "declarations": 14,
       "file": "formal/Problems/Collatz/Shortcut.lean",
       "imports": [],
       "ledger": [
@@ -66405,7 +67664,7 @@
       "ledger": []
     },
     "Problems.Engine.MxPlusR": {
-      "declarations": 14,
+      "declarations": 15,
       "file": "formal/Problems/Engine/MxPlusR.lean",
       "imports": [
         "Problems.Engine.ControlObstruction",
@@ -66435,7 +67694,7 @@
       "ledger": []
     },
     "Problems.Engine.TwoPathZ2": {
-      "declarations": 12,
+      "declarations": 13,
       "file": "formal/Problems/Engine/TwoPathZ2.lean",
       "imports": [],
       "ledger": []
@@ -66488,6 +67747,9 @@
         "Problems.Juggler.ExpansionSlack",
         "Problems.Juggler.FanLaw",
         "Problems.Juggler.FateContagion",
+        "Problems.Juggler.FateFirstLetter",
+        "Problems.Juggler.FateRecursion",
+        "Problems.Juggler.FateSweep",
         "Problems.Juggler.FirstETransportEval",
         "Problems.Juggler.FirstInternalOO",
         "Problems.Juggler.FirstPassage",
@@ -66771,7 +68033,7 @@
       ]
     },
     "Problems.Juggler.CycleHeightFinance": {
-      "declarations": 58,
+      "declarations": 59,
       "file": "formal/Problems/Juggler/CycleHeightFinance.lean",
       "imports": [
         "Problems.Juggler.CycleFinance",
@@ -66885,7 +68147,7 @@
       "ledger": []
     },
     "Problems.Juggler.DefectFinance": {
-      "declarations": 11,
+      "declarations": 12,
       "file": "formal/Problems/Juggler/DefectFinance.lean",
       "imports": [
         "Problems.Juggler.WalkChargeMax"
@@ -66933,7 +68195,7 @@
       "ledger": []
     },
     "Problems.Juggler.DepthOneMainTerm": {
-      "declarations": 19,
+      "declarations": 22,
       "file": "formal/Problems/Juggler/DepthOneMainTerm.lean",
       "imports": [],
       "ledger": []
@@ -67037,7 +68299,7 @@
       ]
     },
     "Problems.Juggler.EvenCountEight": {
-      "declarations": 15,
+      "declarations": 16,
       "file": "formal/Problems/Juggler/EvenCountEight.lean",
       "imports": [
         "Problems.Juggler.RunTypePacking"
@@ -67138,7 +68400,7 @@
       ]
     },
     "Problems.Juggler.FanLaw": {
-      "declarations": 20,
+      "declarations": 21,
       "file": "formal/Problems/Juggler/FanLaw.lean",
       "imports": [
         "Problems.Juggler.OstrowskiSandwich"
@@ -67181,8 +68443,46 @@
         }
       ]
     },
+    "Problems.Juggler.FateFirstLetter": {
+      "declarations": 7,
+      "file": "formal/Problems/Juggler/FateFirstLetter.lean",
+      "imports": [
+        "Problems.Juggler.FateContagion"
+      ],
+      "ledger": [
+        {
+          "id": "J-fate-minimal-failure-oo",
+          "statement": "Paper C Proposition 6.3(i) and the first-letter trichotomy of Section 6.2. If some positive n does not reach 1, the failure set has a least positive member (exists_minimal_failure), and that member is odd with an odd image, i.e. an OO-type start (minimal_failure_odd_odd): an even member n \u2265 2 has the smaller positive member floor(sqrt n) (floorPower_even_lt), and an odd member with even image has the smaller positive member floor(sqrt(floor(n^{3/2}))) < n (floorPower_odd_even_two_step_lt). Stated for any forward-closed class excluding 1 (minimalMember_odd, minimalMember_image_odd). For a two-way closed class A, A n iff exactly one of: n even with J(n) \u2208 A; n odd, J(n) even, J(n) \u2208 A; n odd, J(n) odd, J(n) \u2208 A (first_letter_trichotomy, first_letter_pieces_disjoint) \u2014 the three pieces of the identity (6.1). Kernel-checked, axioms propext, Classical.choice, Quot.sound only. The log-mass bookkeeping of (6.1), the fiber weights and the free term \u03c8_F are not formalized; not a density theorem, not a halt theorem.",
+          "tag": "EXACT \u2014 LEAN VERIFIED"
+        }
+      ]
+    },
+    "Problems.Juggler.FateRecursion": {
+      "declarations": 1,
+      "file": "formal/Problems/Juggler/FateRecursion.lean",
+      "imports": [],
+      "ledger": [
+        {
+          "id": "J-fate-recursion-lemma",
+          "statement": "Paper C Lemma 5.1 (recursion lemma). Let e_i \u2208 [e_min, e_max] with 0 < e_min and e_max < 1, c_i real, \u03bb > 0 with \u03b6 := \u03a3_i c_i e_i^\u03bb - 1 > 0, t_1 > 0, c_0 > 0. Let g : \u211d \u2192 \u211d satisfy g(t) \u2265 \u03a3_i (c_i - \u03b7_i(t)) g(e_i t) - \u03b7_0(t) for all t \u2265 t_1, where 0 \u2264 \u03b7_i(t) \u2264 c_i, \u03a3_i \u03b7_i(t) e_i^\u03bb \u2264 \u03b6/3 and \u03b7_0(t) \u2264 (2\u03b6/3) c_0 for t \u2265 t_1, and g \u2265 c_0 on [e_min t_1, t_1]. Then g(t) \u2265 c_0 t_1^{-\u03bb} t^\u03bb for all t \u2265 e_min t_1 (recursion_lemma). The proof is the paper's induction on N over [e_min t_1, t_1 e_max^{-N}], with exists_pow_lt_of_lt_one supplying N. Weaker hypotheses than the paper's: e_min, e_max are bounds rather than the extrema, \u03bb < 1 and g \u2265 0 are not needed. Kernel-checked, axioms propext, Classical.choice, Quot.sound only. This is the abstract analytic step of Theorem 5.3; the three-source inequality (5.2), its constants and the seed (Lemma 5.2) stay human proofs. Not a density theorem, not a halt theorem.",
+          "tag": "EXACT \u2014 LEAN VERIFIED"
+        }
+      ]
+    },
+    "Problems.Juggler.FateSweep": {
+      "declarations": 26,
+      "file": "formal/Problems/Juggler/FateSweep.lean",
+      "imports": [],
+      "ledger": [
+        {
+          "id": "J-fate-sweep-lemma",
+          "statement": "Paper C Lemma 4.1 (sweep). Let x_0 < x_1 < ... < x_{H-1} be reals with consecutive gaps in [a, b], 0 < a \u2264 b \u2264 1/2, b \u2264 (21/20) a and (H-1) a \u2265 12. Then at least H/7 of the terms have {x_j} < 1/2 and at least H/7 have {x_j} \u2265 1/2 (sweep_fract_lt_half, sweep_fract_ge_half); with the left-open half-cells (k/2, (k+1)/2], i.e. the representative x - ceil(x) + 1 in (0, 1], at least H/7 have representative \u2264 1/2 and at least H/7 have representative > 1/2 (sweep_rep_le_half, sweep_rep_gt_half). Both are instances of sweep_cell: each residue class of the half-cell index floor(2x_j) mod 2 holds at least H/7 terms. Proof as in the paper with one simplification: every cell holds at most G = floor(1/(2a)) + 1 terms (fiber_card_le), every strictly interior cell at least g = floor(1/(2b)) (fiber_card_ge), the number of visited cells T is at least 25 (cell_span), one colour has at least (T-3)/2 interior cells (colour_cells_ge, via Int.Ico_filter_modEq_card), and 3g \u2265 G (three_g_ge, the paper's case analysis on X = 1/(2a)); the integer chain 42 Good \u2265 21 g (T-3) \u2265 7 G (T-3) \u2265 6 G T \u2265 6 H closes. The left-open variant is the closed one applied to j \u21a6 -x_{H-1-j} (Finset.sum_range_reflect). Kernel-checked, axioms propext, Classical.choice, Quot.sound only. Lemma 4.1' (monotone pairing, H/3 - 2) is not formalized. Not a parity theorem about the Juggler map; the fiber inputs (Lemma 4.2) stay human proofs.",
+          "tag": "EXACT \u2014 LEAN VERIFIED"
+        }
+      ]
+    },
     "Problems.Juggler.FinanceTransfer": {
-      "declarations": 89,
+      "declarations": 92,
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "imports": [
         "Problems.Juggler.CycleCore",
@@ -67281,7 +68581,7 @@
       ]
     },
     "Problems.Juggler.HugChargeEnvelope": {
-      "declarations": 3,
+      "declarations": 6,
       "file": "formal/Problems/Juggler/HugChargeEnvelope.lean",
       "imports": [
         "Problems.Juggler.HugRotation",
@@ -67300,7 +68600,7 @@
       "ledger": []
     },
     "Problems.Juggler.IdealCycleMin": {
-      "declarations": 151,
+      "declarations": 152,
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "imports": [
         "Problems.Juggler.CycleMinFudge",
@@ -67381,7 +68681,7 @@
       ]
     },
     "Problems.Juggler.JumpVariation": {
-      "declarations": 27,
+      "declarations": 30,
       "file": "formal/Problems/Juggler/JumpVariation.lean",
       "imports": [
         "Problems.Juggler.DenjoyKoksmaOrbit",
@@ -67521,7 +68821,7 @@
       ]
     },
     "Problems.Juggler.LeftoverPreimage": {
-      "declarations": 30,
+      "declarations": 31,
       "file": "formal/Problems/Juggler/LeftoverPreimage.lean",
       "imports": [
         "Problems.Juggler.CycleCore",
@@ -67567,7 +68867,7 @@
       ]
     },
     "Problems.Juggler.LiveCountWeight": {
-      "declarations": 14,
+      "declarations": 15,
       "file": "formal/Problems/Juggler/LiveCountWeight.lean",
       "imports": [
         "Problems.Juggler.TiltedShare"
@@ -67581,7 +68881,7 @@
       "ledger": []
     },
     "Problems.Juggler.LogLogClock": {
-      "declarations": 22,
+      "declarations": 24,
       "file": "formal/Problems/Juggler/LogLogClock.lean",
       "imports": [
         "Problems.Juggler.Dynamics",
@@ -67648,7 +68948,7 @@
       ]
     },
     "Problems.Juggler.MasterIdentity": {
-      "declarations": 12,
+      "declarations": 13,
       "file": "formal/Problems/Juggler/MasterIdentity.lean",
       "imports": [
         "Problems.Juggler.PaperBAssembly"
@@ -67656,7 +68956,7 @@
       "ledger": []
     },
     "Problems.Juggler.MeanValues": {
-      "declarations": 8,
+      "declarations": 10,
       "file": "formal/Problems/Juggler/MeanValues.lean",
       "imports": [
         "Problems.Juggler.BranchFreeze"
@@ -67765,7 +69065,7 @@
       ]
     },
     "Problems.Juggler.OddCountMonotone": {
-      "declarations": 6,
+      "declarations": 7,
       "file": "formal/Problems/Juggler/OddCountMonotone.lean",
       "imports": [],
       "ledger": []
@@ -67799,7 +69099,7 @@
       "ledger": []
     },
     "Problems.Juggler.OstrowskiNumeration": {
-      "declarations": 16,
+      "declarations": 17,
       "file": "formal/Problems/Juggler/OstrowskiNumeration.lean",
       "imports": [
         "Problems.Juggler.OstrowskiSandwich"
@@ -67813,7 +69113,7 @@
       ]
     },
     "Problems.Juggler.OstrowskiSandwich": {
-      "declarations": 33,
+      "declarations": 34,
       "file": "formal/Problems/Juggler/OstrowskiSandwich.lean",
       "imports": [],
       "ledger": [
@@ -67969,7 +69269,7 @@
       ]
     },
     "Problems.Juggler.RateFreeDensity": {
-      "declarations": 40,
+      "declarations": 41,
       "file": "formal/Problems/Juggler/RateFreeDensity.lean",
       "imports": [
         "Problems.Juggler.Progress"
@@ -68010,7 +69310,7 @@
       ]
     },
     "Problems.Juggler.RotationAverage": {
-      "declarations": 10,
+      "declarations": 13,
       "file": "formal/Problems/Juggler/RotationAverage.lean",
       "imports": [],
       "ledger": [
@@ -68140,13 +69440,13 @@
       ]
     },
     "Problems.Juggler.ThresholdCertificate": {
-      "declarations": 41,
+      "declarations": 42,
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "imports": [],
       "ledger": []
     },
     "Problems.Juggler.TiltedShare": {
-      "declarations": 26,
+      "declarations": 28,
       "file": "formal/Problems/Juggler/TiltedShare.lean",
       "imports": [
         "Problems.Juggler.RateFreeDensity"
@@ -68198,7 +69498,7 @@
       ]
     },
     "Problems.Juggler.WalkChargeMax": {
-      "declarations": 12,
+      "declarations": 14,
       "file": "formal/Problems/Juggler/WalkChargeMax.lean",
       "imports": [
         "Problems.Juggler.WalkChargeItineraries",
@@ -68213,7 +69513,7 @@
       ]
     },
     "Problems.Juggler.WalkTransport": {
-      "declarations": 22,
+      "declarations": 25,
       "file": "formal/Problems/Juggler/WalkTransport.lean",
       "imports": [
         "Problems.Juggler.CycleCore"
@@ -68233,6 +69533,26 @@
           "id": "J-flight-height-law",
           "statement": "Walk-height law (divergence rate) on descent-free prefixes: if AboveAnchor(n,w) with n >= 400 and the exponent walk is at height >= B doublings at step k (2^(k+B) <= 3^{a_k} with a_k the odd count of the k-prefix), then 2^B (log n \u2212 D) <= log x_k with the transport deficit D = 1.05 e/n + 0.7 o/(n\u221an); exponentiating, x_k >= (n e^{\u2212D})^{2^B} \u2014 heights along a descent-free prefix are doubly exponential in the walk height (aboveAnchor_height_of_walk, weight form two_pow_le_walkWeight, WalkTransport.lean). One-case composition of aboveAnchor_transport with 2^B <= w_k = 3^{a_k}/2^k; when log n < D the bound is vacuously true since x_k >= 1. Appearing corollary of the September 2026 re-rooting of transport on AboveAnchor: composed with the flight walk-divergence theorem (J-flight-walk-divergence, human pigeonhole glue), every descent-free flight realizes this rate along an unbounded walk, so a divergent orbit escapes doubly exponentially in its walk height. Nonvacuous while D < log n (prefix lengths up to order n log n / 1.05); constrains descent-free prefixes only \u2014 not a halt theorem, not a divergence theorem, not a cycle obstruction.",
           "tag": "EXACT \u2014 LEAN VERIFIED"
+        }
+      ]
+    },
+    "Problems.JugglerFatePaper": {
+      "declarations": 0,
+      "file": "formal/Problems/JugglerFatePaper.lean",
+      "imports": [
+        "Problems.Juggler.CubeFiber",
+        "Problems.Juggler.FateContagion",
+        "Problems.Juggler.FateFirstLetter",
+        "Problems.Juggler.FateRecursion",
+        "Problems.Juggler.FateSweep",
+        "Problems.Juggler.TerminationFloor257",
+        "Problems.Juggler.TiltedShare"
+      ],
+      "ledger": [
+        {
+          "id": "J-paper-c-trust-surface",
+          "statement": "Paper C's Lean surface, as a build target and an axiom artifact, closing the asymmetry that Papers A and B had one and Paper C did not. formal/Problems/JugglerFatePaper.lean imports exactly the seven modules the paper cites (TerminationFloor257, FateContagion, CubeFiber, TiltedShare, FateRecursion, FateFirstLetter, FateSweep) and is a lake default target; formal/AxiomCheckPaperC.lean prints the axioms of the 99 cited declarations and AxiomCheckPaperC.expected records them: every line is a subset of [propext, Classical.choice, Quot.sound], no sorryAx, no Lean.ofReduceBool (native_decide). formalpedia's paper surface now carries Paper C (root Problems.JugglerFatePaper): no declaration it reaches runs the compiler and none cites one that does. Of the paper's nineteen verification-table rows (fifteen before the split), ten are Lean (Lemmas 2.1, 3.1, 3.2, 4.1, 4.7, 5.1, Theorem 6.1, Lemma 8.1 on Paper A's envelope, Proposition 6.3(i), Proposition 9.3 on the word-weight framework), seven are human proofs, one is a conditional hypothesis and one an observation; every result with analytic content (Theorems 1\u20135, 5.3, 7.2, 7.3, 8.3, 9.1, 9.2, Proposition 4.4, Lemmas 4.1', 4.2\u20134.6, 5.2, Section 10, Appendix C) is a human proof. The table had listed Proposition 9.3 as a human proof after TiltedShare.lean was written; corrected. This row records the artifact, not a theorem; nothing here bounds a density.",
+          "tag": "COMPUTATIONALLY VERIFIED"
         }
       ]
     },
@@ -68315,7 +69635,7 @@
       "ledger": []
     },
     "Problems.Ostrowski.NP.Energy": {
-      "declarations": 79,
+      "declarations": 86,
       "file": "formal/Problems/Ostrowski/NP/Energy.lean",
       "imports": [
         "Problems.Ostrowski.NP.Recurrence",
@@ -68415,7 +69735,7 @@
       ]
     },
     "Problems.Ostrowski.NP.Reachability": {
-      "declarations": 4,
+      "declarations": 12,
       "file": "formal/Problems/Ostrowski/NP/Reachability.lean",
       "imports": [
         "Problems.Ostrowski.NP.KernelFamily"
@@ -68429,7 +69749,7 @@
       ]
     },
     "Problems.Ostrowski.NP.Recurrence": {
-      "declarations": 21,
+      "declarations": 22,
       "file": "formal/Problems/Ostrowski/NP/Recurrence.lean",
       "imports": [],
       "ledger": [
@@ -68476,7 +69796,7 @@
       ]
     },
     "Representation.Words": {
-      "declarations": 30,
+      "declarations": 31,
       "file": "formal/Representation/Words.lean",
       "imports": [],
       "ledger": [
@@ -68494,13 +69814,13 @@
     }
   },
   "totals": {
-    "declarations": 4930,
-    "declarations_with_a_ledger_row": 3196,
-    "ledger_rows_naming_a_file": 338,
-    "modules": 210,
+    "declarations": 5028,
+    "declarations_with_a_ledger_row": 3270,
+    "ledger_rows_naming_a_file": 342,
+    "modules": 214,
     "trust": {
-      "compiler": 54,
-      "kernel": 4876
+      "compiler": 57,
+      "kernel": 4971
     }
   }
 }
