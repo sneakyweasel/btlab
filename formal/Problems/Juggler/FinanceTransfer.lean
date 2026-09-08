@@ -605,4 +605,57 @@ theorem cycleMin_succ_odd {n : ℕ} {w : List Branch} (hn : 2 ≤ n) (h : CycleM
     omega
   omega
 
+/-! ### The bridge from the word to the orbit
+
+Theorem 4.7 counts letters of `w`; the sum it bounds runs over states of the orbit.  Nothing
+above connects the two.  `follows_get_even` and `follows_get_odd` (`Itinerary.lean`) each give
+one direction; together they give the equivalence, and that is the bridge.
+
+The second fact here is what the *prefix* form of the valley count needs.  Counting valleys as
+"odd letters whose predecessor is even" injects them into the even letters by taking the
+predecessor — but index `0` has no predecessor, so the injection gives only `#valleys ≤ e + 1`
+unless some even letter is missed on the other side.  One is: the last.
+-/
+
+/-- On a realized itinerary the letter at `i` is odd exactly when the state is. -/
+theorem follows_get_odd_iff {n : ℕ} {w : List Branch} (hw : follows n w) {i : ℕ}
+    (hi : i < w.length) : w[i] = Branch.odd ↔ (floorPower^[i] n) % 2 = 1 := by
+  constructor
+  · exact follows_get_odd w hw i hi
+  · intro hpar
+    cases hb : w[i] with
+    | even =>
+        have := follows_get_even w hw i hi hb
+        omega
+    | odd => rfl
+
+/-- `J(n) > n` for odd `n ≥ 3`, since `(n+1)² ≤ n³`. -/
+theorem lt_floorPower_odd {n : ℕ} (hn : 3 ≤ n) (hodd : n % 2 = 1) : n < floorPower n := by
+  rw [floorPower_odd_eq hodd]
+  refine Nat.lt_of_succ_le ((Nat.le_sqrt).mpr ?_)
+  nlinarith
+
+/-- **The cycle's last state is even.**  Were it odd, the return `J(x) = n` with `x ≥ n` odd
+would force `x = n` and hence `J(n) = n`, which `lt_floorPower_odd` forbids.  So the word ends
+in `E`, the even letters outnumber the valleys, and the prefix count gives `#valleys ≤ e`. -/
+theorem cycleMin_last_even {n : ℕ} {w : List Branch} (hn : 3 ≤ n) (h : CycleMin n w) :
+    (floorPower^[w.length - 1] n) % 2 = 0 := by
+  have hlen : 1 ≤ w.length := h.1.2.2
+  set m := w.length - 1 with hm
+  have hm1 : m + 1 = w.length := by omega
+  have hstep : floorPower (floorPower^[m] n) = n := by
+    have := cycle_iterate_period h.1
+    rw [← hm1] at this
+    rwa [Function.iterate_succ_apply' floorPower m n] at this
+  have hge : n ≤ floorPower^[m] n := h.2 m (by omega)
+  by_contra hcon
+  have hoddx : floorPower^[m] n % 2 = 1 := by omega
+  have hx1 : 1 ≤ floorPower^[m] n := by omega
+  have hle : floorPower^[m] n ≤ floorPower (floorPower^[m] n) :=
+    le_floorPower_odd hoddx hx1
+  have hxn : floorPower^[m] n = n := by omega
+  have hlt : n < floorPower n := lt_floorPower_odd hn (cycleMin_start_odd (by omega) h)
+  rw [hxn] at hstep
+  omega
+
 end Problems.Juggler

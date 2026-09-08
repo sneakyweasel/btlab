@@ -40086,3 +40086,37 @@ The lesson is about my own procedure. The ceremony's prior-art step was
 run against docs, conjectures/refuted and the ledger -- not against the
 Lean index, which is where this was. One formalpedia search would have
 found it, and did, the moment I went looking for something else.
+
+The falsifier I wrote down for the prefix refactor fired, and its
+repair is a real lemma. Counting valleys as odd letters whose
+predecessor is even injects them into the even letters by taking the
+predecessor, but index 0 has no predecessor, so the injection gives
+only valleys <= e+1. The missing even letter is the last one, provided
+the word ends in E. It does: were the last state odd, the return
+J(x) = n with x >= n odd would force x <= J(x) = n, hence x = n and
+J(n) = n, which lt_floorPower_odd forbids since (n+1)^2 <= n^3 at
+n >= 3. So cycPred was never buying anything the last letter does not.
+
+The actual bottleneck was elsewhere. Nothing connected the word the
+theorem counts to the orbit whose terms it bounds. Itinerary.lean has
+each direction -- follows_get_even and follows_get_odd -- and putting
+them together is follows_get_odd_iff: on a realized itinerary the
+letter at i is odd exactly when the state is. That is the fact the last
+two entries assumed without noticing, and it was in the barrel base
+module the whole time.
+
+One routing note. oddCount_eq_card, which turns the letter count into a
+Finset.card, is in CycleHeightFinance and outside the barrel. So the
+assembly should not route through oddCount at all: take o and e to be
+the index counts of odd and even states, which are the same numbers by
+the bridge and need nothing from outside.
+
+Still no assembly. Every fact it consumes is now in place; what is
+missing is the six-case definition of cls and its six cardinality
+proofs, which is typing rather than mathematics.
+
+Last entry I concluded cycPred was avoidable because the existing
+convention is prefix-based. Right, but for an incomplete reason: the
+prefix version needs the word to end in E, which the cyclic version hid
+inside "index 0's predecessor is even". The two conventions cost the
+same fact. What differs is whether you are made to notice it.

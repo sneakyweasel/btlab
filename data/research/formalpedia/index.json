@@ -23369,6 +23369,36 @@
       "trust": "kernel"
     },
     {
+      "doc": "On a realized itinerary the letter at `i` is odd exactly when the state is.",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 621,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "follows_get_odd_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`J(n) > n` for odd `n \u2265 3`, since `(n+1)\u00b2 \u2264 n\u00b3`.",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 633,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "lt_floorPower_odd",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The cycle's last state is even.** Were it odd, the return `J(x) = n` with `x \u2265 n` odd would force `x = n` and hence `J(n) = n`, which `lt_floorPower_odd` forbids. So the word ends in `E`, the even letters outnumber the valleys, and the prefix count gives `#valleys \u2264 e`.",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 641,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "cycleMin_last_even",
+      "trust": "kernel"
+    },
+    {
       "doc": "",
       "file": "formal/Problems/Juggler/FirstETransportEval.lean",
       "kind": "def",
@@ -66555,7 +66585,7 @@
       ]
     },
     "Problems.Juggler.FinanceTransfer": {
-      "declarations": 33,
+      "declarations": 36,
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "imports": [
         "Problems.Juggler.CycleCore"
@@ -67864,13 +67894,13 @@
     }
   },
   "totals": {
-    "declarations": 4869,
+    "declarations": 4872,
     "declarations_with_a_ledger_row": 3195,
     "ledger_rows_naming_a_file": 336,
     "modules": 208,
     "trust": {
       "compiler": 54,
-      "kernel": 4815
+      "kernel": 4818
     }
   }
 }

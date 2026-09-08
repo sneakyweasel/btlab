@@ -43,6 +43,7 @@ import Problems.JugglerPaper
 #print axioms Problems.Juggler.cycleMin_internal_ge_t
 #print axioms Problems.Juggler.cycleMin_internal_ge_tplus
 #print axioms Problems.Juggler.cycleMin_iterate_ge
+#print axioms Problems.Juggler.cycleMin_last_even
 #print axioms Problems.Juggler.cycleMin_length_of_gap
 #print axioms Problems.Juggler.cycleMin_log_envelope
 #print axioms Problems.Juggler.cycleMin_log_envelope_inv
@@ -96,6 +97,9 @@ import Problems.JugglerPaper
 #print axioms Juggler.FanLaw.fan_positive_iff
 #print axioms Juggler.FanLaw.fan_step_pow
 #print axioms Problems.Juggler.floorPower_odd_mono
+#print axioms Problems.Juggler.follows_get_even
+#print axioms Problems.Juggler.follows_get_odd
+#print axioms Problems.Juggler.follows_get_odd_iff
 #print axioms Problems.Juggler.follows_iff_itinerary
 #print axioms Problems.Juggler.four_block_pe_1999
 #print axioms Problems.Juggler.global_defect_append
@@ -147,6 +151,7 @@ import Problems.JugglerPaper
 #print axioms Problems.Juggler.lowerDenom_replicate_odd
 #print axioms Problems.Juggler.lower_growth_word
 #print axioms Problems.Juggler.lower_lt_walkTheta
+#print axioms Problems.Juggler.lt_floorPower_odd
 #print axioms Problems.Juggler.majorize_three
 #print axioms Problems.Juggler.neg_log_one_sub_le_sixth
 #print axioms Problems.Juggler.no_cycleMin_gapped_three_even_ee

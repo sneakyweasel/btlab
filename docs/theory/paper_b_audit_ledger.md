@@ -9549,3 +9549,56 @@ have found it in one call, and did, the moment I looked for a different
 thing. NEXT: the assembly, with a prefix-based valley predicate rather
 than `cycPred`; if that lands, `cycPred` and `cycPred_injOn` become dead
 and should go.
+
+## The word-to-orbit bridge, and why the word ends in `E`
+
+*Mathematical target.* The assembly, using a prefix-based valley
+predicate rather than `cycPred`.
+
+*Falsifier, stated first.* The prefix notion loses
+\(\#\text{valleys}\le e\): counting valleys as "odd letters whose
+predecessor is even" injects them into the even letters by taking the
+predecessor, but index \(0\) has no predecessor, so the injection gives
+only \(\#\text{valleys}\le e+1\).
+
+**The falsifier fires, and its repair is a real lemma.** The injection
+misses one even letter on the other side --- the last --- provided the
+word ends in `E`. `cycleMin_last_even`: were the last state odd, the
+return \(J(x)=n\) with \(x\ge n\) odd would force \(x\le J(x)=n\), hence
+\(x=n\) and \(J(n)=n\); and `lt_floorPower_odd` forbids that, since
+\(n<\lfloor\sqrt{n^{3}}\rfloor\) follows from \((n+1)^{2}\le n^{3}\) at
+\(n\ge3\). So the prefix count does reach \(\#\text{valleys}\le e\), and
+`cycPred` was never buying anything the last letter does not.
+
+**And the actual bottleneck was elsewhere.** Nothing above connected the
+*word* Theorem 4.7 counts to the *orbit* whose terms it bounds.
+`Itinerary.lean` has each direction --- `follows_get_even` and
+`follows_get_odd` --- and putting them together is the bridge:
+
+- `follows_get_odd_iff` --- on a realized itinerary the letter at \(i\)
+  is odd exactly when the state is.
+
+That was the fact the last two entries assumed without noticing. It was
+in the barrel's base module the whole time.
+
+**A note on where `oddCount` lives.** `oddCount_eq_card`, which turns
+the letter count into a `Finset.card`, is in `CycleHeightFinance` and so
+is outside the barrel. The assembly should therefore not route through
+`oddCount` at all: take \(o\) and \(e\) to *be* the index counts
+\(\#\{i<L:\text{state odd}\}\) and its complement, which are the same
+numbers by `follows_get_odd_iff` and need no lemma from outside.
+
+*Result: still no assembly.* What is now in place is every fact it
+consumes; what is missing is the six-case definition of `cls` and the
+six cardinality proofs, which is typing rather than mathematics.
+
+Tags. COMPUTATIONALLY VERIFIED: `lake build Problems.JugglerPaper`
+clean; the three new declarations within
+`[propext, Classical.choice, Quot.sound]`; `AxiomCheckPaperA` at 250
+lines --- `follows_get_even` and `follows_get_odd` joined the cited set,
+since the bridge's docstring names them. OBSERVATION: the previous entry
+concluded that `cycPred` was avoidable because the existing convention
+is prefix-based. That was right, but for an incomplete reason: the
+prefix version needs the word to end in `E`, which the cyclic version
+hid inside "index 0's predecessor is even". The two conventions cost the
+same fact; what differs is whether you are made to notice it.
