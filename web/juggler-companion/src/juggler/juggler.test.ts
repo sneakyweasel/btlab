@@ -675,9 +675,9 @@ describe("productions", () => {
   });
 
   it("keeps the fiber chips at the named shares", () => {
-    expect(fiberStats(7)).toEqual({ m: 7, H: 1, G: 1, proportion: 1 });
     expect(fiberStats(11)).toEqual({ m: 11, H: 2, G: 1, proportion: 0.5 });
-    expect(fiberStats(15)).toEqual({ m: 15, H: 2, G: 0, proportion: 0 });
+    expect(fiberStats(52)).toEqual({ m: 52, H: 3, G: 0, proportion: 0 });
+    expect(fiberStats(56)).toEqual({ m: 56, H: 3, G: 3, proportion: 1 });
     expect(fiberStats(100)).toEqual({ m: 100, H: 3, G: 1, proportion: 1 / 3 });
     expect(fiberStats(99_969)).toEqual({ m: 99_969, H: 31, G: 0, proportion: 0 });
     expect(fiberStats(1_000_000)).toEqual({

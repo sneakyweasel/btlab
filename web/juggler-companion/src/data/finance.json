@@ -247,13 +247,13 @@
    "theorem": "Theorem 4.6",
    "floor": 1000000,
    "period": 25781,
-   "mechanism": "parity 6/5 table"
+   "mechanism": "three-class 6/5 table"
   },
   {
    "theorem": "Theorem 5.2",
    "floor": 26254995,
    "period": 50508,
-   "mechanism": "same parity table"
+   "mechanism": "same three-class table"
   },
   {
    "theorem": "Theorem 5.9",

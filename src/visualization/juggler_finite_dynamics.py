@@ -379,14 +379,14 @@ INSTANCE_ROWS: tuple[dict[str, Any], ...] = (
         "theorem": "Theorem 4.6",
         "floor": PAPER_FLOOR,
         "period": PAPER_PERIOD,
-        "mechanism": "parity 6/5 table",
+        "mechanism": "three-class 6/5 table",
         "ledger": "J-cycle-word-eliahou-leftover-instance",
     },
     {
         "theorem": "Theorem 5.2",
         "floor": LAB_FLOOR,
         "period": LAB_PARITY_PERIOD,
-        "mechanism": "same parity table",
+        "mechanism": "same three-class table",
         "ledger": "J-cycle-period-fifty-thousand",
     },
     {

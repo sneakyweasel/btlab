@@ -17,6 +17,22 @@ export const PAPER_FLOOR = 1_000_000;
 export const PAPER_PERIOD = 25_781;
 export const PAPER_L_CAP = 100_000;
 export const PAPER_EXCEPTION_COUNT = 141;
+/**
+ * Run packing (Theorems 4.7--4.8). The 42 deaths are one progression
+ * 56347 + 1054k. Only 24 of them hold whatever the itinerary; the other
+ * 18 need Theorem 4.7's no-EE hypothesis, and admissible words with odd
+ * runs of length at most two defeat each. Dropping that hypothesis
+ * leaves 117 lengths, not 99, and does not move the period.
+ */
+export const PACKING_DEATH_COUNT = 42;
+export const PACKING_DEATH_FIRST = 56_347;
+export const PACKING_DEATH_STEP = 1_054;
+export const PACKING_DEATH_UNCONDITIONAL = 24;
+export const PACKING_DEATH_CONDITIONAL = 18;
+/** First length whose exclusion no EE count defeats. */
+export const PACKING_ROBUST_FIRST = 75_319;
+export const RUN_EXCEPTION_COUNT = 99;
+export const RUN_EXCEPTION_COUNT_NO_HYPOTHESIS = 117;
 export const LAB_FLOOR = 26_254_995;
 export const LAB_PARITY_PERIOD = 50_508;
 export const LAB_WALK_PERIOD = 176_251;
@@ -67,27 +83,23 @@ export const PRODUCTION_SEEDS = [
     note: "Playground cap. |E(m)| ≈ 10^6, not listed bead by bead.",
   },
 ] as const;
-/** OE-fiber chips: empty production, mixed, 1/3 floor, printed figure, all odd-image, cap. */
+/** OE-fiber chips: mixed, first 3-bead empty/full, 1/3 floor, figure twins, cap. */
 export const FIBER_SEEDS = [
-  {
-    value: 7,
-    note: "One odd n, even image. The whole fiber is the production.",
-  },
   {
     value: 11,
     note: "First mixed fiber: one even image, one odd image.",
   },
   {
-    value: 15,
-    note: "Two odd n, both odd images. Production empty.",
+    value: 52,
+    note: "First three-bead empty production. All odd images.",
+  },
+  {
+    value: 56,
+    note: "First three-bead full production. All even images.",
   },
   {
     value: 100,
     note: "Three beads, share 1/3 — the monotone floor.",
-  },
-  {
-    value: 3375,
-    note: "Paper C dense census starts here. Mixed.",
   },
   {
     value: 99_969,

@@ -2,12 +2,19 @@ import {
   LAB_FLOOR,
   LAB_PARITY_PERIOD,
   LAB_WALK_PERIOD,
+  PACKING_DEATH_CONDITIONAL,
+  PACKING_DEATH_COUNT,
+  PACKING_DEATH_FIRST,
+  PACKING_DEATH_STEP,
+  PACKING_DEATH_UNCONDITIONAL,
   PAPER_FLOOR,
   PAPER_PERIOD,
   MAIN_FLOOR,
   MAIN_PERIOD,
   PRINTED_FLOOR,
   PRINTED_PERIOD,
+  RUN_EXCEPTION_COUNT,
+  RUN_EXCEPTION_COUNT_NO_HYPOTHESIS,
 } from "../juggler/constants";
 
 export const CLAIM_ROWS = [
@@ -49,8 +56,25 @@ export const CLAIM_ROWS = [
     tag: "EXACT — LEAN VERIFIED",
   },
   {
-    plain: `With the verified descent floor ${PAPER_FLOOR.toLocaleString("en-US")}, there is no period ≤ ${PAPER_PERIOD - 1}.`,
+    plain:
+      "The charge behind the per-length table prices valleys at n, internal odd states at t = ⌊n^(3/2)⌋, and evens at n². Called the “parity” charge for historical reasons, it is a three-class bound, and the t-scale middle term is what makes it sharper than a parity split.",
+    theorem: "Corollary 4.5 three-class charge (cycleMin_defect_threeTerm)",
+    tag: "EXACT — LEAN VERIFIED",
+  },
+  {
+    plain: `With the verified descent floor ${PAPER_FLOOR.toLocaleString("en-US")}, there is no period ≤ ${PAPER_PERIOD - 1}. The inequality behind the table is Lean; the per-length arithmetic and the descent floor stay computation.`,
     theorem: "Theorem 4.6",
+    tag: "COMPUTATIONALLY VERIFIED",
+  },
+  {
+    plain:
+      "Packing the valleys by run type sharpens the charge by a factor 1.4048. It needs two hypotheses: the itinerary is primitive, and it contains no EE. Without the second, the counting gives only #cheap ≤ o − #blocks.",
+    theorem: "Theorem 4.7 run-type packing",
+    tag: "EXACT — HUMAN PROOF",
+  },
+  {
+    plain: `Packing kills ${PACKING_DEATH_COUNT} more lengths, ${PACKING_DEATH_FIRST.toLocaleString("en-US")} + ${PACKING_DEATH_STEP.toLocaleString("en-US")}k. Only ${PACKING_DEATH_UNCONDITIONAL} hold whatever the itinerary: the other ${PACKING_DEATH_CONDITIONAL} need the no-EE hypothesis, and admissible words with odd runs of length ≤ 2 defeat each. Dropping it leaves ${RUN_EXCEPTION_COUNT_NO_HYPOTHESIS} lengths, not ${RUN_EXCEPTION_COUNT}. The period ${PAPER_PERIOD.toLocaleString("en-US")} is unchanged either way.`,
+    theorem: "Theorem 4.8 run-type table",
     tag: "COMPUTATIONALLY VERIFIED",
   },
   {
