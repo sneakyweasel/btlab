@@ -349,6 +349,8 @@ constants; they prove nothing and are labelled wherever they appear.
 | Envelope descent into the floor (Lemma 8.1) | Lean, on Paper A's power envelope |
 | Sweep lemma, monotone pairing, fiber parity, thin fibers (Lemmas 4.1, 4.1', 4.2--4.3) | human proof |
 | Block average (Proposition 4.4), \(C_0=250\) explicit | human proof |
+| Share law and its three corollaries (Lemma 4.5, Corollary 4.6) | human proof |
+| Cube fibers full or alternating (Lemma 4.7) | Lean |
 | Recursion lemma and contagion (Lemma 5.1, Theorem 5.3) | human proof |
 | First-letter identity (6.1) | human proof (exact combinatorics) |
 | Almost-all equivalence (Theorems 7.2, 7.3) | human proof |
@@ -772,6 +774,155 @@ the Term-4 harmonic sum). We take \(C_0=250\). \(\square\)
 The proposition is not sharp --- the census of Section 11 sits at
 \(0.078\) of the same scale --- but \(C_0=250\) is an explicit proved
 constant, and it is all the recursion needs.
+
+### 4.3 The share is a quadratic sweep
+
+Sections 4.1 and 4.2 bound \(G_m\) from below, by a sweep on each good
+fiber and by an exponential sum across an even block. Neither says what
+\(G_m/H_m\) *is*. It has a closed form, and the form explains both the
+floor of Lemma 4.2 and the extreme fibers that the goodness condition
+excludes. Nothing in Sections 5--10 depends on this subsection; it is
+here because it identifies which of the two tools is doing the work,
+and because it names the hypothesis behind the gap between them.
+
+Throughout, \(n_1=\min\Phi(m)\), \(n_j=n_1+2(j-1)\), and
+\(x_j=n_j^{3/2}/2\), so that \(\lfloor n_j^{3/2}\rfloor\) is even iff
+\(\{x_j\}<\tfrac12\). Write
+\[
+\theta_m=\{x_1\},\qquad
+\beta_m=\alpha_m\,(H_m-1),
+\]
+with \(\alpha_m=\{\tfrac32m^{2/3}\}\) as in Lemma 4.2, taken in
+\((-\tfrac12,\tfrac12]\), and set
+\[
+S(\beta,\theta)
+=\bigl|\{s\in[0,1]:\ \{\theta+\beta s+\tfrac13s^2\}<\tfrac12\}\bigr|.
+\]
+
+**Lemma 4.5 (share law).** \(G_m/H_m=S(\beta_m,\theta_m)+O\bigl((1+|\beta_m|)/H_m\bigr)\).
+
+*Proof.* Expand \(x_j\) about \(n_1\). With \(u=2(j-1)/n_1\),
+\[
+x_j=\tfrac12n_1^{3/2}(1+u)^{3/2}
+=x_1+\tfrac32n_1^{1/2}(j-1)+\tfrac34n_1^{-1/2}(j-1)^2+E_j,
+\qquad |E_j|\le\tfrac14(j-1)^3n_1^{-3/2}.
+\]
+On the fiber \(j-1\le H_m-1\ll m^{1/3}\) and \(n_1\ge m^{4/3}\), so
+\(|E_j|\ll m^{-1}\), below \(1/H_m\). Put \(s=(j-1)/(H_m-1)\in[0,1]\).
+The linear coefficient is \(A=\tfrac32n_1^{1/2}\), and since
+\(n_1=m^{4/3}+O(1)\) we have \(A=\tfrac32m^{2/3}+O(m^{-2/3})\), so
+\(\{A\}=\alpha_m+O(m^{-2/3})\) and the accumulated difference over the
+fiber is \(O(m^{-1/3})=O(1/H_m)\). Hence
+\(A(j-1)\equiv\beta_ms\pmod 1\) up to \(O(1/H_m)\). The quadratic
+coefficient gives
+\(\tfrac34n_1^{-1/2}(H_m-1)^2=\tfrac13+O(1/H_m)\) by Lemma 3.2, so
+\[
+x_j\ \equiv\ \theta_m+\beta_ms+\tfrac13s^2\pmod 1,
+\]
+uniformly to \(O(1/H_m)\). Counting the \(j\) with \(\{x_j\}<\tfrac12\)
+against the measure of the corresponding \(s\) costs one point per
+crossing of \(\{0\}\) or \(\{\tfrac12\}\), and the phase makes
+\(|\beta_m|+\tfrac13\) turns, so there are \(O(1+|\beta_m|)\) crossings.
+\(\square\)
+
+**Corollary 4.6.** For every \(\beta\):
+
+1. \(\int_0^1S(\beta,\theta)\,d\theta=\tfrac12\).
+2. \(S(\beta,\theta)\in\{0,1\}\) for some \(\theta\) if and only if
+   \(\beta\in[-\tfrac56,\tfrac16]\).
+3. \(\displaystyle\int\bigl|\{\theta:S(\beta,\theta)=0\}\bigr|\,d\beta=\tfrac{25}{108}\),
+   and the same for \(S=1\).
+
+*Proof.* (1) By Fubini the integral is
+\(\int_0^1\!\int_0^1\mathbf 1[\{\theta+\varphi(s)\}<\tfrac12]\,d\theta\,ds\),
+and the inner integral is \(\tfrac12\) for every \(s\), whatever
+\(\varphi\).
+
+(2) Let \(\varphi(s)=\beta s+\tfrac13s^2\), so
+\(\varphi'(s)=\beta+\tfrac23s\). If \(\beta\ge0\) then \(\varphi\) is
+increasing with range \(\beta+\tfrac13\); if \(\beta\le-\tfrac23\) it is
+decreasing with range \(-\beta-\tfrac13\); and if
+\(-\tfrac23<\beta<0\) it dips to \(\varphi(-\tfrac32\beta)=-\tfrac34\beta^2\)
+and returns to \(\beta+\tfrac13\), so its range is
+\(\max(0,\beta+\tfrac13)+\tfrac34\beta^2\). An extreme value of \(S\)
+needs the image of \([0,1]\) to miss a half-circle, hence range
+\(\le\tfrac12\). That is \(\beta\le\tfrac16\) in the first case,
+\(\beta\ge-\tfrac56\) in the second, and no constraint in the third,
+since the range there is at most \(\tfrac13\).
+
+(3) The \(\theta\)-measure is \(\max(0,\tfrac12-\text{range})\).
+Integrating the four pieces of (2),
+\[
+\int_0^{1/6}\!\!\bigl(\tfrac16-\beta\bigr)
++\int_{-1/3}^0\!\!\bigl(\tfrac16-\beta-\tfrac34\beta^2\bigr)
++\int_{-2/3}^{-1/3}\!\!\bigl(\tfrac12-\tfrac34\beta^2\bigr)
++\int_{-5/6}^{-2/3}\!\!\bigl(\tfrac56+\beta\bigr)
+=\tfrac1{72}+\tfrac{11}{108}+\tfrac{11}{108}+\tfrac1{72}
+=\tfrac{25}{108}.
+\]
+The statement for \(S=1\) is the reflection \(\theta\mapsto\theta+\tfrac12\).
+\(\square\)
+
+Part (1) is the reason no aggregate count in this paper sees the
+extreme fibers: they are compensated at every drift separately, which
+is what Proposition 4.4 recovers by a different route. Part (2) says the
+extremes occupy a window of one drift unit, that is
+\(\alpha_m\in[-\tfrac54,\tfrac14]m^{-1/3}\) by \(H_m\sim\tfrac23m^{1/3}\).
+
+At the centre of that window the law degenerates to an identity.
+
+**Lemma 4.7 (cube fibers).** Let \(k\ge2\) and \(m=k^3\). Every
+\(n\in\Phi(m)\) has \(n=k^4+t\) with \(3t\le4k\), and then
+\(\lfloor n^{3/2}\rfloor=k^6+\tfrac32k^2t\) exactly. Consequently the
+fiber of an even cube is full, \(G_m=H_m\), and along the fiber of an
+odd cube the images alternate in parity, so \(|2G_m-H_m|\le1\).
+
+*Proof.* If \(3t\ge4k+1\) then
+\((3k^4+4k+1)^3\le(3k^4+3t)^3=27(k^4+t)^3\), and
+\((3k^4+4k+1)^3\ge27(k^3+1)^4\), so \(n^3\ge(k^3+1)^4\) and \(n\notin\Phi(m)\).
+Given \(3t\le4k\), the claimed value \(q=k^6+\tfrac32k^2t\) satisfies
+\(n^3-q^2=\tfrac34k^4t^2+t^3\ge0\) and
+\((q+1)^2-n^3=2k^6+3k^2t+1-\tfrac34k^4t^2-t^3>0\), so \(q=\lfloor n^{3/2}\rfloor\).
+For even \(k\) the value \(k^6+\tfrac32k^2t\) is even for every \(t\); for
+odd \(k\) the fiber's \(t\) are even and the value has the parity of
+\(1+t/2\). Lean: `cube_fiber_range`, `cube_fiber_sqrt_even`,
+`cube_fiber_sqrt_odd`, `even_cube_fiber_full`,
+`odd_cube_fiber_alternating` in
+`formal/Problems/Juggler/CubeFiber.lean`. \(\square\)
+
+**Remark 4.8 (what the window is, arithmetically).** \(\alpha_m=0\)
+exactly means \(\tfrac32m^{2/3}\in\mathbb Z\), that is \(27m^2=8k^3\),
+whose integer solutions are \(m=(2e)^3\) and \(k=6e^2\). So the centre of
+the extreme window is the even cubes of Lemma 4.7, and the window
+itself is the near-solution set of that equation; the crossings are
+spaced \(\asymp m^{1/3}\) apart, giving \(\sim\tfrac32M^{2/3}\) of them
+below \(M\). Two consequences worth recording. The set is asymmetric
+about \(0\), which the symmetric goodness condition of Lemma 4.2 cannot
+express: that condition discards \(\|\alpha_m\|<22m^{-1/3}\), of width
+\(44m^{-1/3}\), against the \(\tfrac32m^{-1/3}\) the extremes actually
+occupy. Nothing here depends on the difference, since Lemma 4.3 already
+makes the discarded mass \(o(1)\); the point is that the goodness
+threshold is a convenience, not a boundary of the phenomenon. And the
+two sides of the window are not symmetric in strength either: full
+fibers contain the infinite family of Lemma 4.7, proved, whereas an
+empty fiber requires a near-miss together with a phase condition, and
+whether there are infinitely many is open.
+
+**Remark 4.9 (what would lift the rest term).** Item 3 of Section 5.1
+runs at \(\tfrac29\) where an ideal fiber share would give \(\tfrac13\),
+and the loss is exactly the gap between Lemma 4.1's monotone floor
+\(\tfrac13H_m\) and the mean \(\tfrac12H_m\). Corollary 4.6(1) says the
+mean is attained after averaging over \(\theta\) at every fixed drift.
+So the rest term lifts from \(\tfrac29\) to \(\tfrac13\) if and only if
+\(\theta_m\) equidistributes along \(A^{\rm rest}_x\) conditionally on
+\(\beta_m\). That is a statement about the landing phase of a
+backward-closed set, one nesting deeper than \(\alpha_m\), and it is not
+supplied by any bound on a single fiber: Lemma 4.1' is sharp, its
+\(\tfrac13\) being attained as \(\alpha_m\to\tfrac13\), and the fibers
+with \(\alpha_m\) near \(\tfrac13\) have positive density, so they
+cannot be discarded as the bad set is. In particular the extreme fibers
+of Corollary 4.6(2) are *not* the obstruction to the lift; they are
+already excluded at cost \(o(1)\).
 
 ## 5. The recursion and the contagion theorem
 
@@ -1925,7 +2076,30 @@ in the repository notes [14].
 \(\tfrac13H_m-2\). On
 the blocks \(m'\in[20,60)\cup[200,230)\cup[1000,1010)\cup\{3000,5000\}\)
 the deviation of \(|U(m')|\) from its main term is at most
-\(0.72\sqrt{|I(m')_{\rm odd}|}\), i.e. square-root scale. The closure
+\(0.72\sqrt{|I(m')_{\rm odd}|}\), i.e. square-root scale.
+
+*The share law and the extremes.* A complete census of \(\Phi(m)\) for
+\(m\le2\cdot10^5\) (`research.juggler_sequence.oe_fiber_share`) finds
+\(2481\) fibers with \(G_m=0\) and \(2508\) with \(G_m=H_m\), and
+\(H_m\ge1\) throughout. The mean of \(G_m/H_m\) is \(0.498\) on the
+decade \([10^2,10^3)\) and \(0.500\) on every decade above it, and the
+empty rate falls
+\(8.0,\,3.0,\,1.35,\,0.90\) per cent over the decades from \(10^2\) to
+\(2\cdot10^5\), tracking \(1/H_m\). Near \(10^6\), \(432\) fibers with
+\(|\beta_m|\le1.2\) match Lemma 4.5 with mean absolute error
+\(0.0195\) against \(1/H_m=0.015\), and every extreme fiber found has
+\(\beta_m\in[-0.79,0.15]\), inside the window of Corollary 4.6(2). The
+extremes sit \(\asymp m^{1/3}\) apart as Remark 4.8 predicts: in
+\(m\in[10^5,1.2\cdot10^5)\), where that period is \(46.4\), their median
+spacing is \(48\) and \(244\) of \(306\) gaps are one period. Empty
+fibers occur singly or in adjacent pairs and never in threes. The
+observed empty rate exceeds the \((25/108)/H_m\) of Corollary 4.6(3) by
+about \(1.4\), and the excess is discreteness rather than any
+correlation between the two phases: of the \(297\) empty fibers in
+\([10^5,1.3\cdot10^5)\), \(174\) have \(S(\beta_m,\theta_m)=0\) while
+\(123\) have \(S>0\) and miss only because the fiber samples it at
+\(31\) points. Consistently, the ratio falls \(1.49,\,1.44,\,1.36\)
+across the last three decades. The closure
 of the Lean-verified seed \([1,260]\) under the two productions of
 Section 3, computed exactly up to \(10^9\), has density between
 \(0.45\) and \(0.49\) on every dyadic block \((2^k,2^{k+1}]\),
@@ -2028,6 +2202,7 @@ analytic density estimates.
 | Theorem 6.1 (odd generation) | `ForwardClosed`, `reachesOne_forwardClosed`, `not_reachesOne_forwardClosed`, `escapes_forwardClosed`, `mem_iff_floorPower_mem`, `exists_odd_ancestor`, `exists_odd_ancestor_ge_three`, `nonempty_iff_odd_image_mem`, `odd_mem_iff` |
 | Lemma 8.1 (envelope descent) | `iterate_le_of_envelope`, `mem_of_envelope_floor`, `reachesOne_of_itinerary_envelope`; power envelope `power_bound_word` (Paper A layer) |
 | Lean floor \(N_0=260\) | `reachesOne_of_lt_two_hundred_sixty_one` |
+| Lemma 4.7 (cube fibers), in `Problems/Juggler/CubeFiber.lean` | `cube_fiber_range`, `cube_fiber_sqrt_even`, `cube_fiber_even_image`, `even_cube_fiber_full`, `cube_fiber_sqrt_odd`, `cube_fiber_alternating`, `odd_cube_fiber_alternating` |
 | Lemmas 4.1, 4.1', 4.2--4.3, Proposition 4.4 (\(C_0=250\)), Lemma 5.1, Theorem 5.3, Sections 7--10, Appendix C | human proofs |
 
 ## Appendix B. Constants and artifacts

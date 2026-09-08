@@ -3567,8 +3567,46 @@ within the cap of Theorem 3.31, every prefix above the anchor --- number
 a factor of about six per even letter. The first length finance leaves
 standing, \(L=25781\), has \(e=9515\). Enumeration is therefore not a
 route to anything, and Theorem 3.31's \(e\le7\) is not a stage on the way
-to \(e\le8\); it is the end of that method. Only an argument uniform in
-the shape would do, and Section 3 supplies none.
+to \(e\le8\); it is the end of that method.
+
+**And the law behind it is empty in the regime that matters.** This is
+the sharper statement, and it is not about feasibility. Theorem 3.26 says
+the whole word is formally expanding while no proper tail beginning with
+an odd letter is. Complementing a tail to its prefix, a tail with
+\(O_i\) odd and \(B_i\) even letters is non-expanding exactly when the
+complementary prefix satisfies
+
+\[
+\frac{3^{o_p}}{2^{\lvert p\rvert}}\ \ge\ \frac{3^{o}}{2^{L}}\ =\ \frac1{1-\theta},
+\]
+
+so the run--suffix law *is* the anchor condition
+\(3^{o_p}\ge2^{\lvert p\rvert}\), raised from \(1\) to \(1+\theta\).
+Its entire strength over the anchor is the surplus. Counting shapes under
+each condition:
+
+| \(e\) | \(\Lambda\) | shapes killed by the law |
+|---|---|---|
+| \(10\) | \(3.7\cdot10^{-1}\) | \(41.4\%\) |
+| \(16\) | \(2.6\cdot10^{-1}\) | \(37.7\%\) |
+| \(31\) | \(2.1\cdot10^{-3}\) | \(0\) |
+| \(210\) | \(1.1\cdot10^{-3}\) | \(0\) |
+| \(389\) | \(4.4\cdot10^{-5}\) | \(0\) |
+
+At \(e=389\) the two counts are equal as integers, all three hundred
+digits of them. And \(\Lambda\) is small exactly when \(e\) makes
+\(e\log2/\log(3/2)\) sit just under an integer --- which is precisely
+what makes a length survive finance. The surviving lengths have
+\(\Lambda\) between \(3.6\cdot10^{-6}\) and \(6.9\cdot10^{-5}\), at or
+below the row where the law already kills nothing.
+
+So the two mechanisms fail for **one** reason, not two. Finance weakens
+as \(\theta\to0\), since \(n_{\max}\sim1/\theta\); the run--suffix law
+weakens as \(\theta\to0\), since it is the anchor tightened by
+\(1+\theta\). They cannot be played against each other, because the
+lengths where one is weak are exactly the lengths where the other is.
+Any method whose strength is measured by the surplus is empty where a
+cycle could be.
 
 **What that leaves.** The only proved relation between a cycle's minimum
 and its period runs one way. Finance bounds the minimum *above*:

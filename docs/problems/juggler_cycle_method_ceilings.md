@@ -49,6 +49,35 @@ about \(6\times\) per even letter. The first surviving length
 \(L=25781\) has \(e=9515\). So Theorem 3.31's \(e\le7\) is not a stage on
 the way to \(e\le8\); it is the end of that method.
 
+### And the law is empty where it matters
+
+Feasibility is not the real obstruction. Theorem 3.26 says the whole word
+expands while no proper tail beginning with an odd letter does.
+Complementing tail to prefix, that reads
+\(3^{o_p}/2^{|p|}\ge3^{o}/2^{L}=1/(1-\theta)\): the law **is** the anchor
+condition, raised from \(1\) to \(1+\theta\). Its entire strength over the
+anchor is the surplus.
+
+| \(e\) | \(\Lambda\) | killed by the law |
+|---|---|---|
+| \(10\) | \(3.7\cdot10^{-1}\) | \(41.4\%\) |
+| \(16\) | \(2.6\cdot10^{-1}\) | \(37.7\%\) |
+| \(31\) | \(2.1\cdot10^{-3}\) | \(0\) |
+| \(210\) | \(1.1\cdot10^{-3}\) | \(0\) |
+| \(389\) | \(4.4\cdot10^{-5}\) | \(0\) |
+
+At \(e=389\) the counts are equal as integers, all three hundred digits.
+And \(\Lambda=\log(3/2)\,(1-\{e\cdot C\})\) is small exactly when
+\(e\cdot C\) sits just under an integer, which is what makes a length
+survive finance. Survivors have
+\(\Lambda\in[3.6\cdot10^{-6},6.9\cdot10^{-5}]\).
+
+**The two mechanisms therefore fail for one reason.** Finance weakens as
+\(\theta\to0\) because \(n_{\max}\sim1/\theta\); the run--suffix law
+weakens as \(\theta\to0\) because it is the anchor tightened by
+\(1+\theta\). The lengths where one is weak are exactly the lengths where
+the other is, so they cannot be played against each other.
+
 The count is a dynamic program rather than a search: the above-anchor
 condition after block \(i\) depends only on the cumulative odd count,
 because the walk rises inside a run and dips only at even letters. State
@@ -76,6 +105,11 @@ visible mechanism: a lower bound on the cycle minimum in terms of the
 period, or an argument uniform over shapes rather than an enumeration of
 them. Do not reopen on a bigger floor, a sharper per-length charge, or a
 longer enumeration; all three have ceilings measured here.
+
+Sharper, and the standing instruction: **do not open a direction whose
+kill criterion is a function of the surplus \(\theta\).** Both mechanisms
+in the paper are, and both are therefore empty at exactly the lengths a
+cycle could occupy. A new idea has to be measured by something else.
 
 ## Files
 

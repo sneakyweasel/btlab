@@ -179,13 +179,21 @@ which has positive density and cannot be discarded.
 *The cube family is a standing caution.* Any construction selecting targets from a
 thin arithmetic set must not treat the fiber as a coin.
 
-Paper C's manuscript is not edited here. The edits it would take are one constant in
-Lemma 4.2 and one sentence at the remainder lift.
+Paper C now carries this as Section 4.3: Lemma 4.5 the share law, Corollary 4.6 its
+three consequences, Lemma 4.7 the cube fibers with the Lean names added to its
+Appendix A, Remark 4.8 the arithmetic form of the window, and Remark 4.9 the rest-term
+lift stated as a conditional equidistribution. Lemma 4.2's constants are left as
+printed and the sharp window is recorded beside them, because Lemma 4.3 already makes
+the discarded mass \(o(1)\) and rewriting a proved constant buys nothing. Section 11
+carries the census and the discreteness finding.
 
 ## Open questions
 
-- The systematic excess of observed empty fibers over \(25/108\) per fiber length:
-  discreteness at \(1/2H\), or correlation between \(\beta_m\) and \(\theta_m\)?
+- ~~The systematic excess of observed empty fibers over \(25/108\) per fiber length.~~
+  Answered: discreteness, not correlation. Of the 297 empty fibers in
+  \([10^5,1.3\cdot10^5)\), 174 have model share exactly zero and 123 have a positive
+  model share that the fiber's 31 sample points miss. The ratio falls \(1.49,1.44,1.36\)
+  across the last three decades, as a discreteness effect should.
 - Equidistribution of \(\theta_m\) along the remainder set, which is the lift.
 - The general even-square version: above every even perfect square \(s^2\) the nested
   floor is \(s^3+\tfrac32st\) for \(t<1.63\sqrt s\), a monochrome run longer than a

@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import math
+
 import pytest
 
 from research.juggler_sequence.cycle_method_ceilings import (
@@ -9,7 +11,10 @@ from research.juggler_sequence.cycle_method_ceilings import (
     admissible_shape_count,
     ceilings_report,
     even_count_of,
+    law_kill_fraction,
+    shape_count_under,
     shape_growth,
+    surplus,
 )
 
 
@@ -62,3 +67,63 @@ def test_report_makes_no_halt_claim() -> None:
     assert data["halt_theorem"] is False
     assert data["no_cycle_all_lengths"] is False
     assert data["floor_route_reach_diverges"] is True
+
+
+# --- The sharper ceiling: the law is vacuous where cycles could live ---
+
+
+def test_law_is_the_anchor_tightened_by_the_surplus() -> None:
+    """It can only remove shapes, never add them."""
+    for even in (10, 16, 31):
+        assert shape_count_under(even, run_suffix_law=True) <= shape_count_under(
+            even, run_suffix_law=False
+        )
+
+
+def test_law_kills_nothing_once_the_surplus_is_small() -> None:
+    """At e = 31 the surplus is already 2.1e-3 and the two counts agree exactly.
+
+    Theorem 3.26's law adds no constraint there. Not "infeasible to
+    enumerate" -- empty. The cheap witness; `e = 389` is the slow one.
+    """
+    row = law_kill_fraction(31)
+    assert row["surplus"] < 3e-3
+    assert row["anchor_shapes"] == row["law_shapes"]
+    assert row["killed_fraction"] == 0.0
+    assert row["anchor_shapes"] > 10**20
+
+
+@pytest.mark.slow
+def test_law_is_vacuous_at_a_survivor_scale_surplus() -> None:
+    """e = 389 has surplus 4.4e-5, at or below every surviving length's.
+
+    Exact integers of ~300 digits, so this is minutes; the conclusion is
+    the same one `e = 31` shows cheaply.
+    """
+    row = law_kill_fraction(389)
+    assert row["surplus"] < 5e-5
+    assert row["anchor_shapes"] == row["law_shapes"]
+    assert row["anchor_shapes"] > 10**200
+
+
+def test_law_does_bite_when_the_surplus_is_ordinary() -> None:
+    """The guard must be able to fail: at e = 10 the surplus is O(1) and the
+    law removes about 41% of shapes."""
+    row = law_kill_fraction(10)
+    assert row["surplus"] > 0.3
+    assert 0.35 < row["killed_fraction"] < 0.45
+
+
+def test_the_survivors_sit_in_the_vacuous_regime() -> None:
+    """Every surviving length has a surplus at or below the tested point."""
+    data = ceilings_report()
+    assert data["surplus_at_first_survivor"] < 5e-5
+    assert any(row["killed_fraction"] == 0.0 for row in data["law_rows"])
+    assert any(row["killed_fraction"] > 0.3 for row in data["law_rows"])
+
+
+def test_surplus_is_the_fractional_part_identity() -> None:
+    """Lambda = log(3/2) * (1 - frac(e * RUN_CONST))."""
+    for even in (7, 31, 210, 389):
+        expected = math.log(1.5) * (1.0 - (even * RUN_CONST) % 1.0)
+        assert surplus(even) == pytest.approx(expected, rel=1e-9)

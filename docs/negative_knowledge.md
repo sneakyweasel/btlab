@@ -502,12 +502,29 @@ charge); no exponent helps, because the target recedes. Any result that
 fixes \(L\) and asks for a floor is a period bound, never a cycle
 theorem.
 
-**The shape route is exponential.** Section 3's exclusions are the only
-floor-free *and* length-free family. Admissible shapes at the least odd
-count grow about \(6\times\) per even letter: \(2651\) at \(e=7\)
-(Theorem 3.31's frontier), \(1.1\cdot10^{13}\) at \(e=20\). The first
-surviving length \(L=25781\) has \(e=9515\). Theorem 3.31 is the end of
-that method, not a stage in it.
+**The shape route is exponential, and its law is empty where it
+matters.** Section 3's exclusions are the only floor-free *and*
+length-free family. Admissible shapes at the least odd count grow about
+\(6\times\) per even letter: \(2651\) at \(e=7\) (Theorem 3.31's
+frontier), \(1.1\cdot10^{13}\) at \(e=20\), against \(e=9515\) for the
+first surviving length. But feasibility is not the real obstruction.
+Theorem 3.26's law — the whole word expands, no proper odd-starting tail
+does — is, after complementing tail to prefix, the anchor
+\(3^{o_p}\ge2^{\lvert p\rvert}\) raised to \(1+\theta\). Its whole
+strength over the anchor is the surplus. It kills \(41\%\) of shapes at
+\(e=10\) (\(\Lambda\approx0.37\)) and **exactly none** at \(e=31\),
+\(210\), \(389\) (\(\Lambda\le2.1\cdot10^{-3}\)) — at \(e=389\) the two
+counts agree in all \(300\) digits. Surviving lengths have
+\(\Lambda\in[3.6\cdot10^{-6},6.9\cdot10^{-5}]\).
+
+**So the two mechanisms fail for one reason.** Finance weakens as
+\(\theta\to0\) because \(n_{\max}\sim1/\theta\); the run--suffix law
+weakens as \(\theta\to0\) because it is the anchor tightened by
+\(1+\theta\). They cannot be played against each other: the lengths where
+one is weak are exactly the lengths where the other is. **Any method
+whose strength is measured by the surplus is empty where a cycle could
+be.** Do not open a direction whose kill criterion is a function of
+\(\theta\).
 
 **What is actually missing.** The only proved relation between minimum
 and period runs one way: finance bounds \(n\log n\lesssim L^{\mu}\), and

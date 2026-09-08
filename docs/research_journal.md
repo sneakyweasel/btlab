@@ -40821,3 +40821,50 @@ So the honest statement, now in the paper as 6.2 and in negative
 knowledge: a proof needs a lower bound on the minimum in terms of the
 period, or an argument uniform over shapes. I know of no mechanism for
 either, and saying so precisely is worth more than another floor.
+
+## The two mechanisms fail for one reason
+
+Last entry attributed Section 3's limit to combinatorial explosion. That
+was true and beside the point. The real obstruction is that the law is
+empty in the regime where a cycle could live.
+
+Read Theorem 3.26 as a constraint. It says the whole word is formally
+expanding while no proper tail beginning with an odd letter is.
+Complement a tail to its prefix: a tail with O_i odds and B_i evens is
+non-expanding exactly when the prefix has 3^{o_p}/2^{|p|} >= 3^o/2^L,
+which is 1/(1-theta). So the run-suffix law IS the above-anchor condition,
+raised from 1 to 1+theta. Its whole strength over the anchor is the
+surplus.
+
+Counting shapes under each condition: the law kills 41% at e=10 where
+Lambda ~ 0.37, and exactly nothing at e=31, 210, 389 where Lambda drops
+to 2.1e-3 and below. At e=389 the two counts are equal as integers, all
+three hundred digits of them.
+
+And Lambda = log(3/2)(1 - frac(e*C)) is small exactly when e*C sits just
+under an integer -- which is precisely the condition that makes a length
+survive finance. The survivors have Lambda between 3.6e-6 and 6.9e-5, at
+or below the row where the law already kills nothing.
+
+So the two mechanisms fail for one reason, not two. Finance weakens as
+theta -> 0 because n_max ~ 1/theta. The run-suffix law weakens as
+theta -> 0 because it is the anchor tightened by 1+theta. They cannot be
+played against each other, because the lengths where one is weak are
+exactly the lengths where the other is. Any method whose kill criterion
+is a function of the surplus is empty where a cycle could be. That is now
+the standing instruction in negative knowledge.
+
+I nearly missed this. My first hypothesis was that the law would be
+asymptotically vacuous, and the first measurement refuted it -- 38 to 46%
+killed at e = 7..24. What I had wrong was the regime: Lambda is O(1) at
+generic e and tiny only near the good rational approximations to C. The
+refutation was of my test point, not my hypothesis, and the fix was to
+choose e by smallest Lambda rather than by convenience. Worth naming
+because the wrong version looked like a clean negative result and I could
+have stopped there.
+
+Cost note. The exact counts are integers whose length grows with e, so
+the e=389 DP carries 300-digit values and takes minutes. The report uses
+e in (10,16,31,62), which shows both halves cheaply; e=389 is a slow-marked
+test. e=31 already has Lambda = 2.1e-3 and already kills nothing, so the
+expensive row confirms rather than establishes.

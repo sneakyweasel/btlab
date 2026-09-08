@@ -70,6 +70,77 @@ def admissible_shape_count(even: int) -> tuple[int, int]:
     return odd, dp.get(odd, 0)
 
 
+def surplus(even: int) -> float:
+    """`Lambda = o log3 - L log2` at the least odd count.
+
+    Equal to `log(3/2) * (1 - frac(e * RUN_CONST))`, so it is small exactly
+    when `e * RUN_CONST` sits just under an integer -- which is what makes a
+    length survive finance.
+    """
+    odd = int(even * RUN_CONST) + 1
+    return odd * math.log(3) - (odd + even) * math.log(2)
+
+
+def shape_count_under(even: int, *, run_suffix_law: bool) -> int:
+    """Shapes at the least odd count, under one of the two prefix conditions.
+
+    `run_suffix_law=False` imposes only the anchor, `3^{o_p} >= 2^{|p|}` at
+    every block boundary. `True` imposes Theorem 3.26's law, which says the
+    whole word expands but no proper tail beginning with an odd letter does.
+    Complementing a tail to its prefix, that reads
+    `3^{o_p}/2^{|p|} >= 3^o/2^L`, i.e. the anchor raised from `1` to
+    `1 + theta`. So the law is the anchor tightened by the surplus, and it
+    degenerates to the anchor as the surplus goes to zero.
+    """
+    odd = int(even * RUN_CONST) + 1
+    threshold = surplus(even) if run_suffix_law else 0.0
+    log2, log3 = math.log(2), math.log(3)
+    dp: dict[int, int] = {0: 1}
+    for i in range(even):
+        cap = int((even - i) * RUN_CONST)
+        low = 2 if i == 0 else 0
+        nxt: dict[int, int] = {}
+        for used, ways in dp.items():
+            for a in range(low, cap + 1):
+                total = used + a
+                if total > odd:
+                    break
+                if total * log3 - (total + i + 1) * log2 < threshold - 1e-12:
+                    continue
+                nxt[total] = nxt.get(total, 0) + ways
+        dp = nxt
+    return dp.get(odd, 0)
+
+
+def law_kill_fraction(even: int) -> dict[str, Any]:
+    """What Theorem 3.26's law removes beyond the anchor, at this even count."""
+    anchor = shape_count_under(even, run_suffix_law=False)
+    law = shape_count_under(even, run_suffix_law=True)
+    return {
+        "e": even,
+        "surplus": surplus(even),
+        "anchor_shapes": anchor,
+        "law_shapes": law,
+        "killed_fraction": (1.0 - law / anchor) if anchor else 0.0,
+    }
+
+
+def small_surplus_evens(count: int = 6, limit: int = 400) -> list[int]:
+    """Even counts with the smallest surplus -- the regime a survivor lives in.
+
+    `limit` is a cost control, not mathematics: the shape counts are exact
+    integers whose length grows with `e`, so the DP at `e = 389` carries
+    300-digit values and takes minutes. `e = 31` already has surplus
+    `2.1e-3` and already shows the law killing nothing.
+    """
+    return [e for _, e in sorted((surplus(e), e) for e in range(5, limit))[:count]]
+
+
+#: Cheap witnesses for the report: two where the law bites and two where it
+#: does not. The expensive confirmation at `e = 389` lives in a slow test.
+LAW_REPORT_EVENS: tuple[int, ...] = (10, 16, 31, 62)
+
+
 def shape_growth(evens: tuple[int, ...] = tuple(range(4, 21))) -> list[dict[str, Any]]:
     rows = []
     previous = None
@@ -111,6 +182,11 @@ def ceilings_report() -> dict[str, Any]:
         "shape_growth_median": sorted(growths)[len(growths) // 2],
         "shapes_at_theorem_3_31_frontier": admissible_shape_count(7)[1],
         "even_count_at_first_survivor": even_count_of(25781),
+        # The sharper statement: the law is the anchor tightened by the
+        # surplus, so where the surplus vanishes the law does too -- and the
+        # surviving lengths are exactly the small-surplus ones.
+        "law_rows": [law_kill_fraction(e) for e in LAW_REPORT_EVENS],
+        "surplus_at_first_survivor": surplus(even_count_of(25781)),
         "halt_theorem": False,
         "no_cycle_all_lengths": False,
     }
