@@ -9488,3 +9488,64 @@ cardinalities may not come out", which sounds like a bookkeeping worry.
 It was not: it was a real hole in the display, closed by minimality
 rather than by counting. Writing the falsifier down concretely enough to
 check is what turned a vague worry into a lemma.
+
+## I rebuilt the run structure; it exists, outside the barrel
+
+*Mathematical target.* The assembly. *Falsifier, stated first:*
+instantiating from `CycleMin` needs the word's letters tied to the
+orbit's parities, which the index-level counting assumes rather than
+provides.
+
+**Looking for that bridge found something else.** `oddCount_eq_card`
+(`CycleHeightFinance.lean`) supplies the letter half:
+\(\mathrm{oddCount}\,w=\#\{i<L: w[i]=\mathtt{odd}\}\). But the same
+module already contains the run structure I spent two entries building
+abstractly:
+
+| what I wrote | what exists | where |
+|---|---|---|
+| valley = odd with even cyclic predecessor | `oddRunDepth w i = 1` | `CycleHeightFinance` |
+| `#valleys` | `cycleCircuitCount w` | same |
+| `valley_le_even` | `cycleCircuitCount_le_oddCount` | same |
+| valley/internal image bounds | `cycleMin_first_odd_image_ge`, `cycleMin_later_odd_image_ge` | same |
+| per-term classification | `cycleMin_inv_term_le` | same |
+
+**Their design is better than mine.** `oddRunDepth w i` is
+`trailingOdds (w.take i) + 1` on an odd letter --- a *prefix* notion. It
+never mentions a cyclic predecessor, so `cycPred` and `cycPred_injOn`,
+which cost me a `Nat.ModEq` argument, are avoidable. The two agree here
+because index 0's cyclic predecessor is even on a `CycleMin`, but the
+prefix version does not need that fact at all.
+
+**But it is not simply duplication, and the reason matters.**
+`CycleHeightFinance` is *deliberately* outside Paper A's barrel ---
+`JugglerPaper.lean` line 62 says "`CycleHeightFinance.lean` is not
+imported", and `lean_paths` excludes it from the paper text. So a barrel
+module cannot use those names without pulling that file into the barrel,
+which changes what a reviewer is asked to build and is a decision, not a
+refactor. `FinanceTransfer` is in the barrel; that is why its versions
+exist.
+
+Two further differences worth recording, so the next reader does not
+mistake the files for rivals:
+
+- `cycleMin_inv_term_le` bounds \(1/x_i\), not \(1/(x_i\log x_i)\). It
+  serves Corollary 4.4c's inv-sum, aimed at excluding length-84 cycles
+  at the residual floor 261, with the certificates
+  \(J(261)=4216\) and \(J(4217)=273845\). Theorem 4.7's six-term valley
+  bound is a different sum with different constants.
+- Its classification is by producing letter and run depth, which is the
+  same *idea* as the six classes, applied to the other sum.
+
+*Result of this phase: no assembly.* What I have instead is the reason
+the next attempt should not start where the last two did.
+
+Tags. OBSERVATION: two entries were spent building `cycPred`,
+`valley_add_internal` and `valley_le_even` without searching for
+`oddRunDepth` first. The prior-art step of the ceremony was run against
+`docs/`, `conjectures/refuted/` and the ledger --- not against the Lean
+index, which is where this was. `formalpedia search "oddCount"` would
+have found it in one call, and did, the moment I looked for a different
+thing. NEXT: the assembly, with a prefix-based valley predicate rather
+than `cycPred`; if that lands, `cycPred` and `cycPred_injOn` become dead
+and should go.

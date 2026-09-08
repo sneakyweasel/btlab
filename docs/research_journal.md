@@ -40051,3 +40051,38 @@ which is not in this Mathlib; #check says the interface here is
 Nat.sqrt_le, Nat.lt_succ_sqrt and Nat.le_sqrt, and the last was already
 used twice in the same file. Checking the signature before guessing
 would have been faster than two rebuilds.
+
+No assembly this phase. Looking for the word-to-orbit bridge found
+something more useful: the run structure I spent two entries building
+abstractly already exists. oddRunDepth w i, in CycleHeightFinance, is
+the depth of the odd run containing index i, and oddRunDepth w i = 1 is
+exactly my valley; cycleCircuitCount w is my valley count;
+cycleCircuitCount_le_oddCount, cycleMin_first_odd_image_ge and
+cycleMin_later_odd_image_ge are there too, and cycleMin_inv_term_le is
+the per-term classification.
+
+Their design is better. oddRunDepth is trailingOdds (w.take i) + 1 on
+an odd letter -- a prefix notion. It never mentions a cyclic
+predecessor, so cycPred and cycPred_injOn, which cost me a Nat.ModEq
+argument, are avoidable. The two agree because index 0 has an even
+cyclic predecessor on a CycleMin, but the prefix version does not need
+that fact.
+
+It is not simply duplication though, and the reason matters.
+CycleHeightFinance is deliberately outside Paper A's barrel --
+JugglerPaper line 62 says so and lean_paths excludes it from the paper
+text. A barrel module cannot use those names without pulling that file
+in, which changes what a reviewer builds and is a decision rather than
+a refactor. FinanceTransfer is in the barrel; that is why its versions
+exist.
+
+And the two files are not rivals. cycleMin_inv_term_le bounds 1/x, not
+1/(x log x); it serves Corollary 4.4c's inv-sum against length-84
+cycles at floor 261, with the certificates J(261)=4216 and
+J(4217)=273845. Theorem 4.7's six-term valley bound is a different sum
+with different constants. Same idea, other sum.
+
+The lesson is about my own procedure. The ceremony's prior-art step was
+run against docs, conjectures/refuted and the ledger -- not against the
+Lean index, which is where this was. One formalpedia search would have
+found it, and did, the moment I went looking for something else.
