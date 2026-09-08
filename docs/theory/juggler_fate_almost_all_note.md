@@ -539,75 +539,107 @@ The same holds with the cells \((k/2,(k+1)/2]\) in place of
 \([k/2,(k+1)/2)\).
 
 *Proof.* The nonincreasing case is the reflection \(z_j=c-x_j\), which
-reverses the steps and swaps the two halves. Assume the steps are
-nondecreasing.
+reverses the steps and swaps the two halves, so assume the steps are
+nondecreasing. Cut \(\mathbb R\) into the cells \(C_k=[k/2,(k+1)/2)\)
+of Lemma 4.1. Since every step is at most \(b\le\tfrac12\), the cells
+of \(x_1,\dots,x_H\) are \(T\) consecutive integers, each visited;
+write \(\rho_1,\dots,\rho_T\ge 1\) for their occupancies in order, so
+\(\sum_i\rho_i=H\), and consecutive cells have opposite colours. Call
+the cells \(2,\dots,T-1\) *interior*. Put \(X=1/(2a)\),
+\(G=\lfloor X\rfloor+1\) and \(g=\lfloor 1/(2b)\rfloor\ge 1\). As in
+Lemma 4.1(i), every cell has \(\rho_i\le G\) and every interior cell
+has \(\rho_i\ge g\); and \((H-1)a\ge 12\) gives
+\(H\ge 24X+1\ge 24G-23\).
 
-Cut \(\mathbb R\) into cells \(C_k=[k/2,(k+1)/2)\) as in Lemma 4.1.
-An *occupied* cell contains at least one of the points. Occupied cells
-are consecutive; write \(\rho_1,\dots,\rho_{T^*}\) for their
-occupancies in order, so \(\sum\rho_i=H\). Every traversed cell is
-occupied (\(b\le\tfrac12\)), hence \(T^*\ge T\ge 22\). Odd-indexed
-cells are one colour and even-indexed cells the other.
+(a) *A later cell is at most one fuller than an earlier interior
+cell.* Let \(2\le i<j\le T\). The \(\rho_i+1\) steps from the last
+point before the cell of index \(i\) to the first point after it span
+more than \(\tfrac12\), so one of them, \(\gamma\), exceeds
+\(1/(2(\rho_i+1))\). Every step inside the cell of index \(j\) comes
+later, hence is at least \(\gamma\), and the \(\rho_j-1\) steps inside
+that cell span less than \(\tfrac12\). So \((\rho_j-1)\gamma<\tfrac12\),
+i.e. \(\rho_j\le\rho_i+1\). In particular, once an interior cell of
+occupancy \(v\) has occurred, every later cell has occupancy at most
+\(v+1\).
 
-A traversed cell of local step-scale \(\delta\) has occupancy within
-\(1\) of \(1/(2\delta)\). Because the steps lie in \([a,b]\) with
-\(b\le\tfrac{21}{20}a\), the values \(1/(2\delta)\) vary by a factor
-at most \(\tfrac{21}{20}\). Because the steps are monotone, the
-occupancies are a monotone sequence up to a phase error of \(1\): a
-block of \(L\)-runs, then \((L-1)\)-runs, and so on (or a single
-block).
+(b) *Pairs and surplus.* Pair the interior cells consecutively,
+\((2,3),(4,5),\dots\); at most three cells are unpaired (the first,
+the last, and possibly one interior cell), each holding at most \(G\)
+points. Each pair has one cell of each colour, so each colour receives
+at least \(\sum_{\rm pairs}\min(\rho,\rho')\), and
+\[
+\sum_{\rm pairs}\min(\rho,\rho')
+\ \ge\ \tfrac13(H-3G)+S,\qquad
+S:=\sum_{\rm pairs}\Bigl(\min(\rho,\rho')-\tfrac{\rho+\rho'}3\Bigr).
+\]
+It therefore suffices to show \(S\ge G-2\). Both entries of every
+pair lie in \([g,G]\), so every pair has
+\(\min/\mathrm{sum}\ge g/(g+G)=:r\), and a pair contributes at least
+\((r-\tfrac13)(\rho+\rho')\) to \(S\).
 
-(i) *If \(a\ge\tfrac14\).* Then \(X=1/(2a)\le 2\). Three points in a
-half-open cell of length \(\tfrac12\) would require two gaps of size
-at least \(a\ge\tfrac14\), hence a span of at least \(\tfrac12\),
-which cannot fit in \([c,c+\tfrac12)\). Thus every occupied cell has
-\(\rho\in\{1,2\}\). In the worst assignment every run of one colour
-has length \(1\) and every run of the other has length \(2\). If those
-colours have \(n_1\) and \(n_2\) runs, \(\lvert n_1-n_2\rvert\le 1\)
-and \(H=n_1+2n_2\) (or \(2n_1+n_2\)). Three sub-cases: \(n_1=n_2=n\)
-gives \(H=3n\) and scarcer count \(n=H/3\); \(n_1=n+1\), \(n_2=n\)
-gives \(H=3n+1\) and scarcer count \(n+1>H/3\); \(n_1=n\),
-\(n_2=n+1\) gives \(H=3n+2\) and scarcer count \(n=H/3-\tfrac23\).
-Hence at least \(\tfrac H3-\tfrac23\).
+(c) *\(G\ge 7\).* Then \(X\ge 6\) and \(g\ge\lfloor\tfrac{20}{21}X\rfloor\)
+give \(7g\ge 5G\) (\(g\ge 5\) at \(G=7\), \(g\ge 6\) at \(G=8\), and
+\(7g>\tfrac{20G-41}3\ge 5G\) for \(G\ge 9\)), so \(r\ge\tfrac5{12}\) and
+\(S\ge\tfrac1{12}(H-3G)\ge\tfrac{21G-23}{12}\ge G-2\).
 
-(ii) *If \(a<\tfrac14\).* Pair consecutive occupied cells
-\((\rho_{2i-1},\rho_{2i})\). Every such pair satisfies
-\(\min(\rho,\rho')\ge(\rho+\rho')/3\). Indeed, write
-\(L(\delta)=1/(2\delta)\). The global drop of \(L\) is
-\(L(a)-L(b)\le X/21\), spread over \(T^*\ge 22\) cells, so consecutive
-occupancies differ by at most \(1+X/441\) after the phase error. If
-some occupied cell has \(\rho=1\), then \(g=1\), hence
-\(\tfrac{20}{21}X<2\) and \(X<2.1\); the drop of \(L\) is then
-\(<0.1\), consecutive occupancies differ by at most \(1\), and the
-pairs are \((1,1)\), \((1,2)\) or \((2,2)\), each with
-\(\min\ge(\mathrm{sum})/3\). If every occupancy is at least \(2\), a
-consecutive pair is \((k,k)\), \((k,k+1)\), or \((k,k+d)\) with
-\(k\ge 2\) and \(d\le 1+X/441\); then
-\(\min/\mathrm{sum}\) is \(\tfrac12\), at least \(\tfrac25\), or
-\(k/(2k+d)\ge\tfrac13\) (the last because \(k\ge 2\) and, when
-\(d=2\), \(k/(2k+2)=\tfrac13\); when \(X\) is large enough for
-\(d\ge 3\), one has \(k\ge g\ge\tfrac{20}{21}X-1\) and
-\(k/(2k+d)\ge\tfrac12-o(1)>\tfrac13\)).
+(d) *\(3\le G\le 6\) and \(g\ge 2\).* The possible \((G,g)\) are
+\((3,2),(4,2),(4,3),(5,3),(5,4),(6,4),(6,5)\). Except for \((4,2)\),
+\(r\ge\tfrac38\), so \(S\ge\tfrac1{24}(H-3G)\ge\tfrac{21G-23}{24}\ge G-2\)
+because \(3G\le 25\). For \((G,g)=(4,2)\) the interior occupancies lie
+in \(\{2,3,4\}\); by (a), after the first interior cell of occupancy
+\(2\) every cell has occupancy at most \(3\). So the pairs with both
+entries in \(\{3,4\}\) (ratio \(\ge\tfrac37\)) precede the pairs with
+both entries in \(\{2,3\}\) (ratio \(\ge\tfrac25\)), and at most one
+pair straddles, with ratio \(\ge\tfrac13\) and at most \(6\) points.
+Hence \(S\ge\tfrac1{15}(H-3G-6)\ge\tfrac{24G-41}{15}>2=G-2\).
 
-Thus each pair contributes at least one-third of its points to each
-colour. If \(T^*\) is odd the leftover cell has at most \(G\) points,
-so the scarcer colour has at least \((H-G)/3\) points.
+(e) *\(G=2\).* Interior occupancies lie in \(\{1,2\}\), every pair has
+ratio \(\ge\tfrac13\), and \(S\ge 0=G-2\).
 
-- If \(G\le 6\), this is at least \(\tfrac H3-2\).
-- If \(G\ge 7\), then \(X\ge 6\) and \(g\ge\lfloor\tfrac{20}{21}\cdot 6\rfloor=5\).
-  Every pair then has \(\min/\mathrm{sum}\ge\tfrac25\): either
-  \(X<441\), so consecutive difference at most \(2\) and the worst
-  pair is \((5,7)\) with ratio \(\tfrac5{12}\), or \(X\ge 441\) and
-  \(g/(2g+1+X/441)\ge\tfrac25\). Hence the scarcer count is at least
-  \(\tfrac25(H-G)\). The hypothesis \((H-1)a\ge 12\) gives
-  \(H\ge 24X+1\ge 24(G-1)+1\), and
-  \(\tfrac25(H-G)\ge\tfrac H3-2\) follows:
-  \(\tfrac1{15}H\ge\tfrac25 G-2\), i.e. \(H\ge 6G-30\), which holds
-  because \(24G-23\ge 6G-30\).
+(f) *\(G=3\) and \(g=1\)*, i.e. \(2\le X<3\) and \(b>\tfrac14\); then
+\(a\le\tfrac14\) and \(b\le\tfrac{21}{80}\), so \(3b<1\) and \(7b<2\).
+Interior occupancies lie in \(\{1,2,3\}\), and by (a) every cell after
+the first interior cell of occupancy \(1\) has occupancy at most
+\(2\). The pairs are therefore: pairs with both entries in \(\{2,3\}\),
+of ratio \(\ge\tfrac25\); at most one straddling pair \((\rho,1)\) with
+\(\rho\in\{2,3\}\), which contributes at least \(-\tfrac13\) to \(S\);
+and pairs with both entries in \(\{1,2\}\). In the last group,
+\((1,1)\) does not occur: two adjacent interior cells with one point
+each would have three consecutive steps spanning more than \(1>3b\).
+Nor do two consecutive pairs with six points in all: four consecutive
+interior cells with six points would have seven consecutive steps
+spanning more than \(2>7b\). So among any two consecutive pairs of the
+last group at least one is \((2,2)\), and the two together hold at
+least \(7\) points of which the scarcer colour gets at least \(3\):
+their contribution to \(S\) is at least \(3-\tfrac73=\tfrac23\), and
+they hold at most \(8\) points, so the last group contributes at
+least \(\tfrac1{12}N_2-\tfrac23\) to \(S\), where \(N_2\) is its
+number of points (a leftover single pair contributes at least \(0\)).
+With \(N_1\) the number of points in the first group,
+\(N_1+N_2\ge H-3G-4=H-13\), and
+\[
+S\ \ge\ -\tfrac13+\tfrac1{15}N_1+\tfrac1{12}N_2-\tfrac23
+\ \ge\ \tfrac1{15}(H-13)-1\ \ge\ 1=G-2,
+\]
+since \(H\ge 24X+1\ge 49\).
 
-In all cases the scarcer count is at least \(\tfrac H3-2\). The two
-colours are the two half-interval counts. For left-open cells the same
-argument applies with the cells \((k/2,(k+1)/2]\). \(\square\)
+In all cases \(S\ge G-2\), so the scarcer colour has at least
+\(\tfrac13(H-3G)+G-2=\tfrac H3-2\) points. For left-open cells the
+same argument applies with the cells \((k/2,(k+1)/2]\), or apply the
+closed case to \(-x_{H+1-j}\) as in Lemma 4.1. \(\square\)
+
+*Remark (erratum, 8 September 2026).* An earlier version of this
+proof asserted that every pair satisfies
+\(\min\ge(\rho+\rho')/3\), on the grounds that the step scale
+\(1/(2\delta)\) changes by at most \(X/21\) "spread over the cells" and
+that with \(X<2.1\) the pairs are \((1,1)\), \((1,2)\) or \((2,2)\).
+Monotone steps need not change gradually: with \(a=\tfrac{10}{41}\),
+\(b=\tfrac{21}{82}\) the sequence \(-2a,-a,0,a,2a,2a+b,2a+2b,\dots\)
+has nondecreasing steps in \([a,b]\), and its cells \(2\) and \(3\) —
+an interior pair in the pairing of (b) — have occupancies \((3,1)\). That version also paired the two partial
+end cells as if they were interior. The statement is unchanged; the
+proof above replaces it, with (a) in place of the spreading claim, the
+end cells left unpaired, and the surplus \(S\) paying for them.
 
 **Lemma 4.2 (fiber parity).** For \(m\ge 10^6\) put
 \(\alpha_m=\{\tfrac32m^{2/3}\}\) and call \(m\) *good* if

@@ -6804,7 +6804,7 @@
  {
   "id": "J-fate-fiber-sweep",
   "tag": "EXACT — HUMAN PROOF",
-  "statement": "Sweep lemma, monotone pairing, and fiber parity (fate-contagion note, Lemmas 3.1–3.1′, 3.2–3.3). Adversarial sweep: steps in [a, b] with 0 < a ≤ b ≤ 1/2, b ≤ (21/20) a and (H−1) a ≥ 12 give at least H/7 in each half-interval. Monotone pairing: the same hypotheses plus monotone steps give at least H/3 − 2 in each half (1–2 runs when a ≥ 1/4; monotone run-length blocks when a < 1/4). An adversarial 3+1 lock near a = 1/4 sits near 1/4 and is not monotone. Fiber parity: for good m ≥ 10^6 the OE-fiber steps are monotone in [α_m, α_m + 1.02 m^{−1/3}], so G_m ≥ H_m/3 − 2 and H_m − G_m ≥ H_m/3 − 2. Thinness unchanged. Census: mean 0.5000, min on good fibers 0.328 at α_m ≈ 1/3. Not an equidistribution statement.",
+  "statement": "Sweep lemma, monotone pairing, and fiber parity (fate-contagion note, Lemmas 3.1–3.1′, 3.2–3.3). Adversarial sweep: steps in [a, b] with 0 < a ≤ b ≤ 1/2, b ≤ (21/20) a and (H−1) a ≥ 12 give at least H/7 in each half-interval. Monotone pairing: the same hypotheses plus monotone steps give at least H/3 − 2 in each half (1–2 runs when a ≥ 1/4; monotone run-length blocks when a < 1/4). An adversarial 3+1 lock near a = 1/4 sits near 1/4 and is not monotone. Fiber parity: for good m ≥ 10^6 the OE-fiber steps are monotone in [α_m, α_m + 1.02 m^{−1/3}], so G_m ≥ H_m/3 − 2 and H_m − G_m ≥ H_m/3 − 2. Thinness unchanged. Census: mean 0.5000, min on good fibers 0.328 at α_m ≈ 1/3. Not an equidistribution statement. Erratum 2026-09-08: the printed proof of the monotone-pairing lemma (Paper C Lemma 4.1') asserted that every pair of consecutive cells has min ≥ sum/3 because the step scale changes gradually; monotone steps need not change gradually, and the exact witness a = 10/41, b = 21/82, points −2a, −a, 0, a, 2a, 2a+b, … has an interior pair (3, 1). The statement is unchanged and now carries the corrected proof of row J-fate-monotone-pairing-repair (later interior cells are at most one fuller, end cells left unpaired, surplus pays for them). The adversarial sweep (Lemma 4.1) is Lean, row J-fate-sweep-lemma.",
   "source": "docs/theory/juggler_fate_contagion_note.md",
   "lean": "",
   "tests": [
@@ -7680,6 +7680,17 @@
   "tests": [
    "tests/research/juggler_sequence/test_paper_c_formal_layer.py",
    "tests/tools/test_formalpedia.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-fate-monotone-pairing-repair",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Paper C Lemma 4.1' (monotone pairing), with a corrected proof and the same constant. Hypotheses of Lemma 4.1 (steps in [a, b], 0 < a ≤ b ≤ 1/2, b ≤ 21a/20, (H−1) a ≥ 12) plus monotone steps: each half-cell colour receives at least H/3 − 2 terms, in both cell conventions. The proof printed until 2026-09-08 claimed every pair of consecutive cells (ρ, ρ') has min ≥ (ρ+ρ')/3, deduced from a step scale that 'drops by at most X/21 spread over the cells'; monotonicity does not give gradual change, and a = 10/41, b = 21/82 with points −2a, −a, 0, a, 2a, 2a+b, 2a+2b, … (nondecreasing steps) has the interior pair (3, 1), ratio 1/4. It also paired the two partial end cells as if interior. Corrected proof: (a) for interior i < j, ρ_j ≤ ρ_i + 1, because the ρ_i + 1 steps across cell i span more than 1/2 so one exceeds 1/(2(ρ_i+1)), every step inside cell j is at least that, and the ρ_j − 1 steps inside cell j span less than 1/2; (b) pair the interior cells consecutively, leave at most three cells (≤ 3G points) unpaired, so the scarcer colour has at least (H − 3G)/3 + S with S the surplus Σ (min − sum/3) over pairs, and it suffices that S ≥ G − 2; (c) G ≥ 7: 7g ≥ 5G so every pair has ratio ≥ 5/12 and S ≥ (H − 3G)/12 ≥ (21G − 23)/12 ≥ G − 2 using H ≥ 24G − 23; (d) 3 ≤ G ≤ 6, g ≥ 2: ratio ≥ 3/8 except (G, g) = (4, 2), where (a) gives {3,4}-pairs (≥ 3/7) before {2,3}-pairs (≥ 2/5) with at most one straddle, S ≥ (H − 18)/15 > 2; (e) G = 2: S ≥ 0; (f) G = 3, g = 1 (b > 1/4, 3b < 1, 7b < 2): after the first interior 1-cell all cells hold ≤ 2, adjacent (1,1) is impossible (three steps would span > 1), two consecutive pairs with six points are impossible (seven steps would span > 2), so any two consecutive {1,2}-pairs hold ≥ 7 points with ≥ 3 for the scarcer colour, S ≥ (H − 13)/15 − 1 ≥ 1. Adversarial search over 1.2 · 10^6 two-valued monotone profiles (X ∈ [1, 6), b/a ∈ {1, 1.02, 1.04, 1.05}, all switch points and 64 phases): no violation, least slack 1.33 over H/3 − 2; fact (a) holds on every profile. Lemma 4.2 consumes the constant −2 verbatim, so nothing downstream changes. Not Lean (Lemma 4.1 is, row J-fate-sweep-lemma); not a parity theorem about the map.",
+  "source": "docs/problems/juggler_monotone_pairing.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_monotone_pairing.py"
   ],
   "related_conjectures": []
  }
