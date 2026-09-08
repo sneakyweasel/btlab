@@ -1,0 +1,64 @@
+{
+  "root": "Problems.JugglerFatePaper",
+  "barrel_imports": [
+    "Problems.Juggler.TerminationFloor257",
+    "Problems.Juggler.FateContagion",
+    "Problems.Juggler.CubeFiber",
+    "Problems.Juggler.TiltedShare",
+    "Problems.Juggler.FateRecursion",
+    "Problems.Juggler.FateFirstLetter",
+    "Problems.Juggler.FateSweep"
+  ],
+  "artifact": {
+    "asked": 99,
+    "recorded": 99,
+    "axiom_lists": [
+      "propext",
+      "propext, Classical.choice, Quot.sound",
+      "propext, Quot.sound"
+    ]
+  },
+  "appendix_a_names": 75,
+  "surface": {
+    "modules": 36,
+    "declarations": 1255,
+    "compiler_trusted": [],
+    "compiler_dependent": [],
+    "open": []
+  },
+  "table": {
+    "rows": 19,
+    "lean": [
+      "Fate classes closed; trichotomy; exclusion (Lemma 2.1)",
+      "Even block is an interval (Lemma 3.1)",
+      "\\(OE\\) fiber is an interval; cell identity (Lemma 3.2)",
+      "Odd generation (Theorem 6.1)",
+      "Envelope descent into the floor (Lemma 8.1)",
+      "Sweep lemma (Lemma 4.1), both half-cell conventions",
+      "Cube fibers full or alternating (Lemma 4.7)",
+      "Recursion lemma (Lemma 5.1)",
+      "Least failure is \\(OO\\)-type; first-letter trichotomy (Proposition 6.3(i), Section 6.2)",
+      "Pressure telescoping (Proposition 9.3)"
+    ],
+    "human": [
+      "Monotone pairing, fiber parity, thin fibers (Lemmas 4.1', 4.2--4.3)",
+      "Block average (Proposition 4.4), \\(C_0=250\\) explicit",
+      "Share law and its three corollaries (Lemma 4.5, Corollary 4.6)",
+      "Seed and contagion (Lemma 5.2, Theorem 5.3)",
+      "First-letter identity (6.1)",
+      "Almost-all equivalence (Theorems 7.2, 7.3)",
+      "Chernoff, Azuma, exponential-moment arguments (Sections 8--10, except Proposition 9.3)"
+    ],
+    "other": [
+      "Localized triple discrepancy (Appendix C)",
+      "Numerical experiments (Section 11)"
+    ]
+  },
+  "problems": [],
+  "classification": {
+    "clean": true,
+    "label": "PAPER_C_LEAN_SURFACE_CONSISTENT",
+    "problems": 0
+  },
+  "git_commit": "15cf2bbb55e6474406549aa580c7030dbdff5a09"
+}

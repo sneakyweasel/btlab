@@ -41397,3 +41397,65 @@ cases the quantity being optimized is not the quantity that decides.
 
 CLOSE. Not because the family is exhausted -- it converges perfectly
 well -- but because it is downstream-inert past V_5.
+
+## How much of Paper C is Lean, and three small attacks on the rest
+
+The question was a count. Paper C's own table says six of fifteen rows
+are Lean, and the six are the definitions and interval identities the
+counting is built on: closures, the even block, the OE fiber, cube
+fibers, odd generation, envelope descent. Everything with analytic
+content is a human proof. That much is true and stays true.
+
+Two things the table did not say. Proposition 9.3 had been Lean since
+TiltedShare.lean, and the table still called it a human proof -- the
+failure-margin branch wrote the module and the ledger row and did not
+touch the paper. And Paper C had no barrel and no axiom check, so the
+formalpedia surface that audits Papers A and B could not see it at all.
+The paper's Lean column was a list of names with nothing enforcing it.
+
+Three of the human-proof rows are exact statements with the paper's
+proof already written out: the sweep lemma 4.1, the recursion lemma 5.1,
+and Proposition 6.3(i). Each is now a module.
+
+The recursion lemma took one attempt. It is an induction on intervals
+[e_min t1, t1 e_max^-N], and the only Lean-specific step is that
+exists_pow_lt_of_lt_one supplies the N. Two hypotheses of the printed
+statement are never used, lambda < 1 and g >= 0, so the Lean statement
+is weaker than the paper's; I recorded that rather than adding them
+back for fidelity.
+
+Proposition 6.3(i) is two existing lemmas -- the even step descends,
+the OE two-step descends -- applied to a minimal member. The minimum
+exists by Nat.find. I stated it for any forward-closed class excluding
+1, and the failure set is the instance.
+
+The sweep lemma is the one that cost something. The paper's proof
+counts traversed cells and gets the ratio 10/23; I counted strictly
+interior cells instead, which are the integers strictly between the
+first and last cell index, and the count of one colour among them is a
+Mathlib lemma (Int.Ico_filter_modEq_card) plus a ceiling inequality.
+That gives (T-3)/2 and the ratio 11/25, and the final constant is 11/75
+against the paper's 10/69, both above 1/7. One notion fewer, same
+argument. The left-open variant I did not reprove: reflecting
+x_j -> -x_{H-1-j} carries closed cells to left-open ones and the two
+colours to each other, and Finset.sum_range_reflect does the
+reindexing. The paper says "the same proof applies verbatim"; the Lean
+says it is the same theorem.
+
+Two places the formal proof had to be more careful than the prose. The
+lower bound on an interior cell needs the g indices j0, ..., j0+g-1 to
+exist, which the paper takes from "(k+1)/2 <= x_H"; in Lean it is an
+induction that carries j0+i < H along with the position bound. And the
+integer arithmetic at the end -- 42 Good >= 21 g (T-3) >= 7 G (T-3) >=
+6 G T >= 6 H -- needs the products handed to nlinarith as separate
+facts, because g, G and T are all variables.
+
+Paper C now builds from Problems.JugglerFatePaper, and
+AxiomCheckPaperC.expected records 99 declarations, all on subsets of
+Mathlib's three axioms, none through native_decide. The formalpedia
+papers command shows three papers. The table reads ten Lean rows and
+eight human rows, and the stale line is fixed.
+
+What this does not do: Theorem 5.3, the Tao reduction, the block
+average, Lemma 4.1'. The next small one is 4.1', because H/3 - 2 on
+monotone fibers is the constant the paper actually uses.
