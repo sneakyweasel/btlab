@@ -229,6 +229,13 @@ import Problems.JugglerPaper
 #print axioms Problems.Juggler.run_survivor_seed_F2
 #print axioms Problems.Juggler.run_survivor_seed_F3
 #print axioms Problems.Juggler.run_survivor_unimodular
+#print axioms Problems.Juggler.cycCls
+#print axioms Problems.Juggler.cycCls_filter_zero
+#print axioms Problems.Juggler.cycPred_of_pos
+#print axioms Problems.Juggler.cycleMin_threeTerm
+#print axioms Problems.Juggler.cycle_length_le_two_mul_oddCount
+#print axioms Problems.Juggler.evenCount_eq_orbit_card
+#print axioms Problems.Juggler.oddCount_eq_orbit_card
 #print axioms Problems.Juggler.threeTerm_bound
 #print axioms Problems.Juggler.sixTerm_bound
 #print axioms Problems.Juggler.sixTerm_bound_packed

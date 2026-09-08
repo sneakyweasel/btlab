@@ -842,4 +842,173 @@ theorem cycle_length_le_two_mul_oddCount {n : ℕ} {w : List Branch}
   have hpos : 0 < (2:ℕ) ^ (2 * oddCount w) := by positivity
   omega
 
+/-! ### The three-term bound from `CycleMin` alone
+
+`threeTerm_bound` is a majorant: it takes the classification and its cardinalities as
+hypotheses.  What follows discharges them from `CycleMin n w`, so the displayed inequality
+of `juggler_cycle_finance.md` becomes a theorem about a cycle rather than about a supplied
+classification.
+
+The classification is *defined* from the state parity rather than bridged to it, which is
+what makes the filter identities case splits instead of a translation layer.  Index `0` is
+the only place the cyclic predecessor is not `i - 1`, and `cycleMin_last_even` makes it a
+valley, never an internal.
+-/
+
+/-- **The cyclic three-class classification.**  Even states at `2`, odd states with an odd
+cyclic predecessor at `1` (internal), odd states with an even predecessor at `0` (valley). -/
+def cycCls (L : ℕ) (par : ℕ → Bool) (i : ℕ) : Fin 3 :=
+  if par i then (if par (cycPred L i) then 1 else 0) else 2
+
+theorem cycCls_eq_zero {L : ℕ} {par : ℕ → Bool} {i : ℕ} :
+    cycCls L par i = 0 ↔ (par i && !par (cycPred L i)) = true := by
+  unfold cycCls
+  cases hp : par i <;> cases hq : par (cycPred L i) <;> simp [hp, hq] <;> decide
+
+theorem cycCls_eq_one {L : ℕ} {par : ℕ → Bool} {i : ℕ} :
+    cycCls L par i = 1 ↔ (par i && par (cycPred L i)) = true := by
+  unfold cycCls
+  cases hp : par i <;> cases hq : par (cycPred L i) <;> simp [hp, hq] <;> decide
+
+theorem cycCls_eq_two {L : ℕ} {par : ℕ → Bool} {i : ℕ} :
+    cycCls L par i = 2 ↔ (!par i) = true := by
+  unfold cycCls
+  cases hp : par i <;> cases hq : par (cycPred L i) <;> simp [hp, hq] <;> decide
+
+theorem cycCls_filter_zero (L : ℕ) (par : ℕ → Bool) :
+    ((Finset.range L).filter fun i => cycCls L par i = 0)
+      = (Finset.range L).filter fun i => par i && !par (cycPred L i) := by
+  ext i; simp [cycCls_eq_zero]
+
+theorem cycCls_filter_one (L : ℕ) (par : ℕ → Bool) :
+    ((Finset.range L).filter fun i => cycCls L par i = 1)
+      = (Finset.range L).filter fun i => par i && par (cycPred L i) := by
+  ext i; simp [cycCls_eq_one]
+
+theorem cycCls_filter_two (L : ℕ) (par : ℕ → Bool) :
+    ((Finset.range L).filter fun i => cycCls L par i = 2)
+      = (Finset.range L).filter fun i => !par i := by
+  ext i; simp [cycCls_eq_two]
+
+/-- For a positive index inside the window the cyclic predecessor is the ordinary one. -/
+theorem cycPred_of_pos {L i : ℕ} (h1 : 1 ≤ i) (h2 : i < L) : cycPred L i = i - 1 := by
+  unfold cycPred
+  have : i + (L - 1) = (i - 1) + L := by omega
+  rw [this, Nat.add_mod_right, Nat.mod_eq_of_lt (by omega)]
+
+/-- At index zero the cyclic predecessor is the last index. -/
+theorem cycPred_zero {L : ℕ} (hL : 0 < L) : cycPred L 0 = L - 1 := by
+  unfold cycPred
+  simpa using Nat.mod_eq_of_lt (by omega : L - 1 < L)
+
+/-- The number of even states equals the number of even letters. -/
+theorem evenCount_eq_orbit_card {n : ℕ} {w : List Branch} (h : follows n w) :
+    ((Finset.range w.length).filter
+        fun i => !(decide (floorPower^[i] n % 2 = 1))).card
+      = w.length - oddCount w := by
+  classical
+  have hodd := oddCount_eq_orbit_card w h
+  have hsplit := Finset.card_filter_add_card_filter_not
+    (s := Finset.range w.length) (p := fun i => floorPower^[i] n % 2 = 1)
+  have e1 : ((Finset.range w.length).filter
+      fun i => !(decide (floorPower^[i] n % 2 = 1)))
+      = (Finset.range w.length).filter fun i => ¬ (floorPower^[i] n % 2 = 1) := by
+    ext i; simp
+  rw [e1]
+  simp only [Finset.card_range] at hsplit
+  omega
+
+/-- **The three-term bound for a cycle minimum.**  Valleys at `n`, internals at
+`t = J(n)`, evens at `n²`, with the counts read off the itinerary: `e` valleys,
+`2o − L` internals, `e` evens.  No `EE` hypothesis, and no classification supplied. -/
+theorem cycleMin_threeTerm {n : ℕ} {w : List Branch} (hn : 3 ≤ n) (h : CycleMin n w) :
+    ∑ i ∈ Finset.range w.length,
+        1 / ((floorPower^[i] n : ℝ) * Real.log (floorPower^[i] n))
+      ≤ ((w.length - oddCount w : ℕ) : ℝ) / ((n : ℝ) * Real.log n)
+        + ((2 * oddCount w - w.length : ℕ) : ℝ)
+            / ((floorPower n : ℝ) * Real.log (floorPower n))
+        + ((w.length - oddCount w : ℕ) : ℝ) / (2 * (n : ℝ) ^ 2 * Real.log n) := by
+  classical
+  set L := w.length with hL
+  set par : ℕ → Bool := fun i => decide (floorPower^[i] n % 2 = 1) with hpar
+  have hn2 : 2 ≤ n := by omega
+  have hLpos : 0 < L := h.1.2.2
+  have hnodd : n % 2 = 1 := cycleMin_start_odd hn2 h
+  -- the two count identities
+  have hoddcard : ((Finset.range L).filter fun i => par i).card = oddCount w := by
+    rw [oddCount_eq_orbit_card w h.1.1]
+    congr 1
+    ext i; simp [hpar, hL]
+  have hevencard : ((Finset.range L).filter fun i => !par i).card = L - oddCount w := by
+    simpa [hpar] using evenCount_eq_orbit_card (n := n) (w := w) h.1.1
+  have hhalf : L ≤ 2 * oddCount w := cycle_length_le_two_mul_oddCount hn2 h.1
+  -- index zero is a valley, never an internal
+  have hlast : par (cycPred L 0) = false := by
+    rw [cycPred_zero hLpos, hpar]
+    simp only [decide_eq_false_iff_not]
+    have := cycleMin_last_even hn h
+    rw [← hL] at this
+    omega
+  refine threeTerm_bound (L := L) (x := fun i => (floorPower^[i] n : ℝ))
+    (n := (n : ℝ)) (t := (floorPower n : ℝ))
+    (cA := ((Finset.range L).filter fun i => cycCls L par i = 0).card)
+    (cB := ((Finset.range L).filter fun i => cycCls L par i = 1).card)
+    (cC := L - oddCount w)
+    (kA := L - oddCount w) (kB := 2 * oddCount w - L)
+    (cycCls L par) (by exact_mod_cast hn2) ?_ ?_ rfl rfl ?_ ?_ ?_
+  · -- n ≤ t
+    have := le_floorPower_odd (x := n) hnodd (by omega)
+    exact_mod_cast this
+  · -- the class bounds
+    intro i hi
+    have hiL : i < L := Finset.mem_range.mp hi
+    by_cases hpi : par i
+    · by_cases hpp : par (cycPred L i)
+      · -- internal: the predecessor is odd, so the state is at least t
+        have hcls : cycCls L par i = 1 := by simp [cycCls, hpi, hpp]
+        have hipos : 1 ≤ i := by
+          rcases Nat.eq_zero_or_pos i with rfl | hp
+          · rw [hlast] at hpp; exact absurd hpp (by simp)
+          · exact hp
+        have hprev : floorPower^[i - 1] n % 2 = 1 := by
+          rw [cycPred_of_pos hipos hiL] at hpp
+          simpa [hpar] using hpp
+        have hstep := cycleMin_internal_ge_t hn2 h (i := i - 1) (by omega) hprev
+        have hidx : i - 1 + 1 = i := by omega
+        rw [hidx] at hstep
+        rw [hcls]
+        have : threeBounds ((n : ℝ)) ((floorPower n : ℝ)) 1 = (floorPower n : ℝ) := by
+          simp [threeBounds]
+        rw [this]
+        exact_mod_cast hstep
+      · -- valley: at least the minimum
+        have hcls : cycCls L par i = 0 := by simp [cycCls, hpi, hpp]
+        rw [hcls]
+        have : threeBounds ((n : ℝ)) ((floorPower n : ℝ)) 0 = (n : ℝ) := by
+          simp [threeBounds]
+        rw [this]
+        exact_mod_cast cycleMin_iterate_ge h i (by omega)
+    · -- even: at least n²
+      have hcls : cycCls L par i = 2 := by simp [cycCls, hpi]
+      have hev : floorPower^[i] n % 2 = 0 := by
+        have : ¬ (floorPower^[i] n % 2 = 1) := by simpa [hpar] using hpi
+        omega
+      rw [hcls]
+      have : threeBounds ((n : ℝ)) ((floorPower n : ℝ)) 2 = (n : ℝ) ^ 2 := by
+        simp [threeBounds]
+      rw [this]
+      exact_mod_cast cycleMin_even_ge_sq hn2 h hiL hev
+  · -- the even count
+    rw [cycCls_filter_two]
+    exact hevencard
+  · -- valleys inject into evens
+    rw [cycCls_filter_zero]
+    calc ((Finset.range L).filter fun i => par i && !par (cycPred L i)).card
+        ≤ ((Finset.range L).filter fun i => !par i).card := valley_le_even hLpos par
+      _ = L - oddCount w := hevencard
+  · -- valleys plus internals is the odd count
+    rw [cycCls_filter_zero, cycCls_filter_one, valley_add_internal L par, hoddcard]
+    have hoL : oddCount w ≤ L := by rw [hL]; exact oddCount_le_length w
+    omega
+
 end Problems.Juggler

@@ -75,7 +75,7 @@ B(L)=\frac65\cdot\frac{L\cdot 3^{o_{\min}}}{3^{o_{\min}}-2^{L}},
 n_{\max}(L)=\max\{n\in\mathbb N: n\ln n\le B(L)\}.
 \]
 
-**Length-only parity finance (EXACT — HUMAN PROOF).**
+**Length-only parity finance (EXACT — LEAN VERIFIED).**
 On a `CycleMin` start \(n\ge 12\), write \(e=L-o\) and
 \(t=\lfloor n^{3/2}\rfloor\). Then
 
@@ -351,12 +351,23 @@ It is not required.
   **EXACT — HUMAN PROOF** (crude Phase-0 computational table)
 - Length-only parity finance
   \(\sum 1/(x_i\ln x_i)\le e/(n\ln n)+(o-e)/(t\ln t)+e/(2n^2\ln n)\) —
-  **EXACT — HUMAN PROOF; majorant Lean** (`threeTerm_bound`,
-  `FinanceTransfer.lean`). The correction is mine: `threeTerm_bound`
-  proves the *majorant* inequality from a classification supplied as a
-  hypothesis, not the displayed statement from `CycleMin` alone. Marking
-  the row LEAN VERIFIED was an overclaim of exactly the kind this ledger
-  spent four entries pinning down in Theorem 4.7.
+  **EXACT — LEAN VERIFIED** (`cycleMin_threeTerm`, `FinanceTransfer.lean`),
+  from `CycleMin n w` and \(n\ge 3\) alone, with no classification supplied
+  and no hypothesis about `EE`. The counts in the Lean statement are the
+  itinerary's own: \(e=L-o\) valleys, \(2o-L\) internals, \(e\) evens.
+  *Index convention:* the display sums \(i=1..L\) and the Lean statement
+  \(i=0..L-1\) over \(J^i(n)\); these are the same multiset of states,
+  since \(J^L(n)=n=J^0(n)\) on a cycle.
+  This row previously read HUMAN PROOF; majorant Lean, because
+  `threeTerm_bound` proves the majorant from a classification supplied as a
+  hypothesis. That gap is now closed rather than restated: `cycCls` defines
+  the classification from the state parity, `cycCls_filter_{zero,one,two}`
+  match it against the `par`-based counting lemmas, and index \(0\) — the
+  one place the cyclic predecessor is not \(i-1\) — is a valley by
+  `cycleMin_last_even`, never an internal. The two count identities are
+  `oddCount_eq_orbit_card` (with `evenCount_eq_orbit_card`) and
+  `cycle_length_le_two_mul_oddCount`, which is what makes \(2o-L\) a
+  well-formed natural subtraction.
   The transfer is `sum_inv_mul_log_le` (pointwise lower bounds move through
   the sum, which is the "joint-minima" step); the three class bounds are
   `cycleMin_iterate_ge`, `cycleMin_internal_ge_t` and `cycleMin_even_ge_sq`;

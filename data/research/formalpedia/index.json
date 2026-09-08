@@ -23559,6 +23559,116 @@
       "trust": "kernel"
     },
     {
+      "doc": "**The cyclic three-class classification.** Even states at `2`, odd states with an odd cyclic predecessor at `1` (internal), odd states with an even predecessor at `0` (valley).",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 860,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "cycCls",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 863,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "cycCls_eq_zero",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 868,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "cycCls_eq_one",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 873,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "cycCls_eq_two",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 878,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "cycCls_filter_zero",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 883,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "cycCls_filter_one",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 888,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "cycCls_filter_two",
+      "trust": "kernel"
+    },
+    {
+      "doc": "For a positive index inside the window the cyclic predecessor is the ordinary one.",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 894,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "cycPred_of_pos",
+      "trust": "kernel"
+    },
+    {
+      "doc": "At index zero the cyclic predecessor is the last index.",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 900,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "cycPred_zero",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The number of even states equals the number of even letters.",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 905,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "evenCount_eq_orbit_card",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The three-term bound for a cycle minimum.** Valleys at `n`, internals at `t = J(n)`, evens at `n\u00b2`, with the counts read off the itinerary: `e` valleys, `2o \u2212 L` internals, `e` evens. No `EE` hypothesis, and no classification supplied.",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 924,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "cycleMin_threeTerm",
+      "trust": "kernel"
+    },
+    {
       "doc": "",
       "file": "formal/Problems/Juggler/FirstETransportEval.lean",
       "kind": "def",
@@ -66752,7 +66862,7 @@
       ]
     },
     "Problems.Juggler.FinanceTransfer": {
-      "declarations": 45,
+      "declarations": 56,
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "imports": [
         "Problems.Juggler.CycleCore"
@@ -68061,13 +68171,13 @@
     }
   },
   "totals": {
-    "declarations": 4888,
+    "declarations": 4899,
     "declarations_with_a_ledger_row": 3195,
     "ledger_rows_naming_a_file": 338,
     "modules": 209,
     "trust": {
       "compiler": 54,
-      "kernel": 4834
+      "kernel": 4845
     }
   }
 }

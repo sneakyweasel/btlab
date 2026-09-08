@@ -40502,3 +40502,72 @@ positive density.
 Rows J-cube-fiber-exact (Lean) and J-oe-fiber-share-law (human proof
 with a recorded observation). PROMOTE. Paper C's manuscript untouched;
 the edits it would take are one constant and one sentence.
+
+## The three-term bound from CycleMin alone
+
+The instantiation deferred as "typing" three entries running is done, and
+the last entry is why it became worth doing. Once Corollary 4.5's charge
+turned out to be threeTerm_bound rather than a coarser cousin of it, the
+gap between "majorant proved from a supplied classification" and "theorem
+about a cycle" stopped being cosmetic: it sat directly under the cutoff
+25781, the 141 lengths, and every floor in Paper A.
+
+cycleMin_threeTerm now proves
+
+  sum_{i<L} 1/(J^i(n) log J^i(n)) <= e/(n log n) + (2o-L)/(t log t)
+                                     + e/(2n^2 log n)
+
+from CycleMin n w and n >= 3 alone. No classification supplied, no EE
+hypothesis, kernel-checked, within [propext, Classical.choice,
+Quot.sound]. The barrel builds and the dossier row in
+juggler_cycle_finance.md moves to EXACT - LEAN VERIFIED, this time
+correctly: the hypotheses are gone, not renamed.
+
+What dissolved the friction I had predicted. I had written that item 3 --
+matching the cls-based filters against the par-based ones in
+valley_le_even and valley_add_internal -- was where I expected to fight,
+since neither filter is definitionally the other. The fix was to stop
+treating them as two things. cycCls is *defined* from the parity,
+
+  cycCls L par i = if par i then (if par (cycPred L i) then 1 else 0) else 2
+
+so cycCls_filter_zero and its two companions are `ext i; simp` over a
+two-way boolean case split, not a translation layer. The friction was an
+artifact of having planned to define cls independently and then reconcile
+it. Defining it in the shape the counting lemmas already use costs
+nothing and removes the step entirely.
+
+The rest went as the plan said. hbound splits three ways:
+cycleMin_iterate_ge for valleys, cycleMin_internal_ge_t for internals,
+cycleMin_even_ge_sq for evens. Index 0 is the one place the cyclic
+predecessor is not i-1, and cycleMin_last_even makes it a valley -- so
+the internal bound, which is stated at i+1, covers every index it needs
+to. That lemma was written for the prefix valley count two entries ago
+and has now paid for itself three times.
+
+Two count identities close it: oddCount_eq_orbit_card with a new
+evenCount_eq_orbit_card give e evens and o odds as *states* rather than
+letters, and cycle_length_le_two_mul_oddCount makes 2o-L a well-formed
+natural subtraction. Both were proved two entries ago for this, and I had
+recorded then that neither was cited by either manuscript. They are now.
+
+Four build errors, all mechanical: a stray space that made `.card` an
+application; a filter congruence still owing i < L <-> i < w.length, since
+`set` does not close it; le_floorPower_odd binds x and not n and wants
+1 <= x; and an omega that could not see oddCount w <= L until I supplied
+oddCount_le_length. The one worth noting is the first attempt, where I
+appended the block to the end of the file -- past `end Problems.Juggler`
+-- and autoImplicit silently turned cycPred into a bound variable, giving
+twenty "Function expected" errors that all pointed away from the cause.
+Appending to a Lean file is not the same as adding to a namespace.
+
+Manuscript: Appendix A had no Corollary 4.5 row at all, which is part of
+how the misreading survived -- the row that carries the cutoff was the one
+row not written down. It has one now, and the seven new citations entered
+AxiomCheckPaperA, regenerated with lake.
+
+Worth keeping: I deferred this three times as typing, and it took about
+an hour once there was a reason to do it. The estimate was not wrong
+about the difficulty; it was wrong about the value, and the value only
+became visible after reading what Corollary 4.5 actually computes with.
+Difficulty was never what had been blocking it.
