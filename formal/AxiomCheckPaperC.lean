@@ -55,6 +55,7 @@ open Problems.Juggler
 #print axioms cycle_basin_bounded
 #print axioms cycle_basin_not_escapes
 #print axioms cycles_or_escapes
+#print axioms cylinder_even_root_empty
 #print axioms escapes_backwardClosed
 #print axioms escapes_floorPower
 #print axioms escapes_forwardClosed
@@ -89,6 +90,7 @@ open Problems.Juggler
 #print axioms not_reachesOne_forwardClosed
 #print axioms oddFailures_card_le
 #print axioms oddFailures_card_le_chernoff
+#print axioms oddFailures_card_le_explicit
 #print axioms oddFailures_subset_bad_cylinders
 #print axioms oddMass_le_weightGen
 #print axioms oddMass_nonneg

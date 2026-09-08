@@ -60,13 +60,17 @@ lie in the cylinders of the envelope-bad words
 (`oddFailures_subset_bad_cylinders`), which are \(L(y)\)-bad
 (`LBad_of_envelopeBad`), so a bound \(M\) on every bad cylinder of depth
 \(d\ge CL(y)\) gives \(\#\{	ext{odd failures}\}\le 2^d2^{-e(C)L(y)}M\)
-(`oddFailures_card_le_chernoff`). The displayed asymptotic form and
-Corollary 8.4 stay human proofs.
+(`oddFailures_card_le_chernoff`), and with \(d=\lceil CL(y)ceil\) and
+\(\mathrm H(C,A)\)'s bound on the \(O\)-rooted bad cylinders,
+\(\#\{	ext{odd failures}\}\le y\Lambda^{-e(C)}+2\Lambda^Cy(\log y)^{-A}\)
+at every \(y\ge 2\) (`oddFailures_card_le_explicit`), a factor \(2\)
+against the paper's \(y/2\) and no \(arepsilon\). The absorption into
+the displayed form and Corollary 8.4 stay human proofs.
 
 **The build root (COMPUTATIONALLY VERIFIED).**
 `formal/Problems/JugglerFatePaper.lean` imports exactly the eight
 modules Paper C cites; `formal/AxiomCheckPaperC.lean` prints the axioms
-of the 118 cited declarations and `AxiomCheckPaperC.expected` records
+of the 120 cited declarations and `AxiomCheckPaperC.expected` records
 them, every list a subset of `propext`, `Classical.choice`,
 `Quot.sound`, no `sorryAx`, no `native_decide`.
 
@@ -153,8 +157,8 @@ None.
 `Sweep` for the cell machinery, five top-level theorems),
 `formal/Problems/Juggler/FateRecursion.lean` (`recursion_lemma`),
 `formal/Problems/Juggler/FateFirstLetter.lean` (7 declarations),
-`formal/Problems/Juggler/FateChernoff.lean` (Lemma 8.2 and the skeleton
-of Theorem 8.3, 26 declarations on `RateFreeDensity`'s word weights),
+`formal/Problems/Juggler/FateChernoff.lean` (Lemma 8.2 and Theorem 8.3 in
+explicit form, 31 declarations on `RateFreeDensity`'s word weights),
 `formal/Problems/JugglerFatePaper.lean` (barrel),
 `formal/AxiomCheckPaperC.lean` and `.expected`. All kernel-checked; the
 Paper C surface (root `Problems.JugglerFatePaper`, 36 modules reached,
@@ -176,7 +180,7 @@ Classification **PAPER_C_LEAN_SURFACE_CONSISTENT**.
   Paper C verification table, before and after
   Lean rows      6 -> 12  (Lemmas 4.1, 5.1, 8.2, Prop 6.3(i), Thm 8.3 skeleton new; Prop 9.3 was stale)
   human rows     7 -> 7   (rows split; Theorems 5.3, 7.2, 7.3, 9.1, 9.2, Prop 4.4 ... stay)
-  cited names    62 -> 118, all on subsets of Mathlib's three axioms; none native_decide
+  cited names    62 -> 120, all on subsets of Mathlib's three axioms; none native_decide
 ```
 
 - The three proofs are the paper's; the sweep count is the paper's
@@ -194,9 +198,8 @@ Classification **PAPER_C_LEAN_SURFACE_CONSISTENT**.
 - Lemma 4.1' (monotone pairing) in Lean: its corrected proof is a
   five-case analysis over the `FateSweep` machinery, estimated at well
   over a thousand lines; deferred, not abandoned.
-- The asymptotic form of Theorem 8.3 (substituting \(d=\lceil CLceil\)
-  and \(\mathrm H(C,A)\)'s bound) is real-analysis bookkeeping on top of
-  `oddFailures_card_le_chernoff`.
+- Corollary 8.4 in Lean would need Theorem 7.2 (contagion), which is
+  the analytic core; not a small attack.
 
 ## Decision
 

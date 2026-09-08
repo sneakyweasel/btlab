@@ -379,4 +379,118 @@ theorem oddFailures_card_le_chernoff {N₀ : ℕ} (hN : 2 ≤ N₀)
   refine le_trans h1 (le_trans h2 ?_)
   exact mul_le_mul_of_nonneg_right (LBad_count_le L C d hC hd hd1) hM
 
+/-! ### Theorem 8.3 in the paper's variables: `Λ(y) = log 2y / log N₀`, `L(y) = log₂ Λ(y)`,
+`d(y) = ⌈C L(y)⌉` -/
+
+/-- `Λ(y) = log 2y / log N₀`. -/
+noncomputable def scaleRatio (N₀ y : ℕ) : ℝ := Real.log (2 * y) / Real.log N₀
+
+/-- The paper's `L(y) = log₂ (log 2y / log N₀)`. -/
+noncomputable def scaleL (N₀ y : ℕ) : ℝ := Real.logb 2 (scaleRatio N₀ y)
+
+/-- The paper's depth `d(y) = ⌈C L(y)⌉`. -/
+noncomputable def depth (C : ℝ) (N₀ y : ℕ) : ℕ := ⌈C * scaleL N₀ y⌉₊
+
+/-- Odd starts have first letter `O`: an `E`-rooted cylinder of positive depth is empty. -/
+theorem cylinder_even_root_empty (y d : ℕ) (w : List Branch) (hd : 1 ≤ d)
+    (hw : w.head? = some .even) : cylinder y d w = ∅ := by
+  ext n
+  simp only [cylinder, Finset.mem_filter, Finset.mem_Ioc, Finset.notMem_empty, iff_false]
+  rintro ⟨_, hodd, hit⟩
+  obtain ⟨k, rfl⟩ : ∃ k, d = k + 1 := ⟨d - 1, by omega⟩
+  rw [itinerary_succ, bit_odd hodd] at hit
+  rw [← hit] at hw
+  simp at hw
+
+/-- **Theorem 8.3, explicit form.** Floor `N₀ ≥ 2`, scale `y ≥ 2`, `C ≥ 5`, depth
+`d = ⌈C L(y)⌉ ≥ 1`. If every `O`-rooted `L(y)`-bad cylinder of depth `d` holds at most
+`2^{-(d-1)} y/2 + y (log y)^{-A}` starts (the hypothesis `H(C, A)` at this `y`), then the odd
+failures in `(y, 2y]` number at most `y Λ^{-e(C)} + 2 Λ^C y (log y)^{-A}`, `Λ = log 2y / log N₀`.
+The paper's `(y/2) Λ^{-(e(C)-ε)}` for large `y` follows by absorbing the factor `2` into
+`Λ^ε` and the second term into the first when `A > C + e(C)`; that absorption is not
+formalized. -/
+theorem oddFailures_card_le_explicit {N₀ : ℕ} (hN : 2 ≤ N₀)
+    (hfloor : ∀ m, 1 ≤ m → m ≤ N₀ → ReachesOne m) (y : ℕ) (hy : 2 ≤ y)
+    (C A : ℝ) (hC : 5 ≤ C) (hd1 : 1 ≤ depth C N₀ y)
+    (hcyl : ∀ w ∈ allWords (depth C N₀ y), w.head? = some .odd → LBad (scaleL N₀ y) w →
+      ((cylinder y (depth C N₀ y) w).card : ℝ) ≤
+        2 ^ (-((depth C N₀ y : ℝ) - 1)) * y / 2 + y / Real.log y ^ A) :
+    ((oddFailures y).card : ℝ) ≤
+      y * scaleRatio N₀ y ^ (-chernoffExponent C) +
+        2 * scaleRatio N₀ y ^ C * y / Real.log y ^ A := by
+  classical
+  set Λ := scaleRatio N₀ y with hΛ
+  set L := scaleL N₀ y with hL
+  set d := depth C N₀ y with hd
+  set e := chernoffExponent C with he
+  have hLdef : L = Real.logb 2 Λ := rfl
+  have hddef : d = ⌈C * L⌉₊ := rfl
+  have hy' : (2 : ℝ) ≤ y := by exact_mod_cast hy
+  have hlogN : 0 < Real.log N₀ := Real.log_pos (by exact_mod_cast (by omega : 1 < N₀))
+  have hlog2y : 0 < Real.log (2 * y) := Real.log_pos (by push_cast; linarith)
+  have hΛpos : 0 < Λ := div_pos hlog2y hlogN
+  have hC0 : 0 < C := by linarith
+  have hCL : 0 < C * L := Nat.ceil_pos.mp hd1
+  have hLpos : 0 < L := (mul_pos_iff_of_pos_left hC0).mp hCL
+  have hΛ1 : 1 < Λ := by
+    rw [hLdef] at hLpos
+    exact (Real.logb_pos_iff (by norm_num) hΛpos).mp hLpos
+  have hdle : C * L ≤ d := Nat.le_ceil _
+  have hdlt : (d : ℝ) < C * L + 1 := Nat.ceil_lt_add_one hCL.le
+  have h2L : (2 : ℝ) ^ L = Λ := by
+    rw [hLdef]
+    exact Real.rpow_logb (by norm_num) (by norm_num) hΛpos
+  have he0 : 0 ≤ e := by
+    rw [he]
+    unfold chernoffExponent
+    have := klHalf_nonneg (pC C) (by linarith [half_le_pC C hC]) (pC_lt_one C hC)
+    have hlog2 : 0 < Real.log 2 := Real.log_pos (by norm_num)
+    positivity
+  have hpow_neg : (2 : ℝ) ^ (-(e * L)) = Λ ^ (-e) := by
+    rw [show -(e * L) = L * (-e) by ring, Real.rpow_mul (by norm_num), h2L]
+  have hpow_d : ((2 : ℝ) ^ d) ≤ 2 * Λ ^ C := by
+    rw [← Real.rpow_natCast]
+    calc (2 : ℝ) ^ (d : ℝ) ≤ (2 : ℝ) ^ (C * L + 1) :=
+          Real.rpow_le_rpow_of_exponent_le (by norm_num) hdlt.le
+      _ = 2 ^ (C * L) * 2 := by rw [Real.rpow_add (by norm_num), Real.rpow_one]
+      _ = 2 * Λ ^ C := by
+          rw [show C * L = L * C by ring, Real.rpow_mul (by norm_num), h2L]
+          ring
+  have hΛe : Λ ^ (-e) ≤ 1 :=
+    Real.rpow_le_one_of_one_le_of_nonpos hΛ1.le (by linarith)
+  have hcancel : (2 : ℝ) ^ d * 2 ^ (-((d : ℝ) - 1)) = 2 := by
+    rw [← Real.rpow_natCast, ← Real.rpow_add (by norm_num),
+      show (d : ℝ) + -((d : ℝ) - 1) = 1 by ring, Real.rpow_one]
+  have hlogy : 0 < Real.log y := Real.log_pos (by exact_mod_cast (by omega : 1 < y))
+  have hA : 0 < Real.log y ^ A := Real.rpow_pos_of_pos hlogy A
+  set M : ℝ := 2 ^ (-((d : ℝ) - 1)) * y / 2 + y / Real.log y ^ A with hM
+  have hM0 : 0 ≤ M := by positivity
+  have hcyl' : ∀ w ∈ allWords d, LBad L w → ((cylinder y d w).card : ℝ) ≤ M := by
+    intro w hw hbad
+    have hlen : w.length = d := mem_allWords.mp hw
+    cases w with
+    | nil => simp at hlen; omega
+    | cons b w' =>
+        cases b with
+        | odd => exact hcyl (.odd :: w') hw rfl hbad
+        | even =>
+            rw [cylinder_even_root_empty y d _ hd1 rfl]
+            simpa using hM0
+  have hmain := oddFailures_card_le_chernoff hN hfloor y d (by omega) hd1 C M hC hM0 hdle hcyl'
+  have hyA : 0 ≤ (y : ℝ) / Real.log y ^ A := by positivity
+  have hT : Λ ^ (-e) * (2 ^ d * y / Real.log y ^ A) ≤ 2 * Λ ^ C * y / Real.log y ^ A := by
+    calc Λ ^ (-e) * (2 ^ d * y / Real.log y ^ A)
+        = (Λ ^ (-e) * 2 ^ d) * (y / Real.log y ^ A) := by ring
+      _ ≤ (1 * (2 * Λ ^ C)) * (y / Real.log y ^ A) := by
+          apply mul_le_mul_of_nonneg_right _ hyA
+          exact mul_le_mul hΛe hpow_d (by positivity) (by norm_num)
+      _ = 2 * Λ ^ C * y / Real.log y ^ A := by ring
+  calc ((oddFailures y).card : ℝ)
+      ≤ 2 ^ d * (2 : ℝ) ^ (-(e * L)) * M := hmain
+    _ = Λ ^ (-e) * (2 ^ d * 2 ^ (-((d : ℝ) - 1)) * y / 2 + 2 ^ d * y / Real.log y ^ A) := by
+        rw [hpow_neg, hM]; ring
+    _ = y * Λ ^ (-e) + Λ ^ (-e) * (2 ^ d * y / Real.log y ^ A) := by
+        rw [hcancel]; ring
+    _ ≤ y * Λ ^ (-e) + 2 * Λ ^ C * y / Real.log y ^ A := by linarith
+
 end Problems.Juggler

@@ -11,18 +11,18 @@
     "Problems.Juggler.FateChernoff"
   ],
   "artifact": {
-    "asked": 118,
-    "recorded": 118,
+    "asked": 120,
+    "recorded": 120,
     "axiom_lists": [
       "propext",
       "propext, Classical.choice, Quot.sound",
       "propext, Quot.sound"
     ]
   },
-  "appendix_a_names": 100,
+  "appendix_a_names": 105,
   "surface": {
     "modules": 37,
-    "declarations": 1281,
+    "declarations": 1286,
     "compiler_trusted": [],
     "compiler_dependent": [],
     "open": []
@@ -40,7 +40,7 @@
       "Recursion lemma (Lemma 5.1)",
       "Least failure is \\(OO\\)-type; first-letter trichotomy (Proposition 6.3(i), Section 6.2)",
       "Chernoff count of bad words (Lemma 8.2, exact form)",
-      "Union bound over bad cylinders (Theorem 8.3, exact skeleton)",
+      "Theorem 8.3, explicit form \\(y\\Lambda^{-e(C)}+2\\Lambda^Cy(\\log y)^{-A}\\) at every \\(y\\)",
       "Pressure telescoping (Proposition 9.3)"
     ],
     "human": [
@@ -63,5 +63,5 @@
     "label": "PAPER_C_LEAN_SURFACE_CONSISTENT",
     "problems": 0
   },
-  "git_commit": "4063818c888bcfb9a10eb934e86b1b830390d539"
+  "git_commit": "aa42f4d35ad1b7372f180c8785d79bd99eb89aa7"
 }

@@ -363,7 +363,7 @@ constants; they prove nothing and are labelled wherever they appear.
 | First-letter identity (6.1) | human proof (exact combinatorics) |
 | Almost-all equivalence (Theorems 7.2, 7.3) | human proof |
 | Chernoff count of bad words (Lemma 8.2, exact form) | Lean |
-| Union bound over bad cylinders (Theorem 8.3, exact skeleton) | Lean; the asymptotic form is a human substitution |
+| Theorem 8.3, explicit form \(y\Lambda^{-e(C)}+2\Lambda^Cy(\log y)^{-A}\) at every \(y\) | Lean; the \(arepsilon\)-absorption into the displayed form is human |
 | Pressure telescoping (Proposition 9.3) | Lean, on the word-weight framework |
 | Azuma and exponential-moment arguments (Sections 8--10, except Lemma 8.2, the skeleton of Theorem 8.3 and Proposition 9.3) | human proof |
 | Localized triple discrepancy (Appendix C) | hypothesis, conditional |
@@ -1783,9 +1783,15 @@ the integer envelope comparison \(N_0^{2^t}<(2y)^{3^{o_t}}\)
 `oddFailures_card_le_chernoff` composes it with Lemma 8.2: if every
 \(L(y)\)-bad cylinder of depth \(d\ge CL(y)\) holds at most \(M\)
 starts, the odd failures in \((y,2y]\) number at most
-\(2^d\,2^{-e(C)L(y)}M\). The substitution of \(d=\lceil CL(y)\rceil\)
-and of \(\mathrm H(C,A)\)'s bound for \(M\), which gives the displayed
-\(y(\log y)^{-e(C)+\varepsilon}\), is not formalized.
+\(2^d\,2^{-e(C)L(y)}M\). `oddFailures_card_le_explicit` substitutes
+\(d=\lceil CL(y)\rceil\) and the bound of \(\mathrm H(C,A)\) at the
+scale \(y\), for \(O\)-rooted words only (`cylinder_even_root_empty`):
+with \(\Lambda=\log 2y/\log N_0\), the odd failures in \((y,2y]\)
+number at most \(y\,\Lambda^{-e(C)}+2\Lambda^{C}y(\log y)^{-A}\), at
+every \(y\ge 2\) and without \(\varepsilon\). The displayed form
+follows by absorbing the factor \(2\) into \(\Lambda^{\varepsilon}\)
+and the second term into the first for \(A>C+e(C)\); that absorption
+is not formalized. Corollary 8.4 uses only the exponent.
 
 **Corollary 8.4 (the conjecture from a cylinder bound).** If
 \(\mathrm H(C,A)\) holds for some \(C\ge 19\) and \(A>C+e(C)\), then
@@ -2306,9 +2312,9 @@ abstract lemmas listed here, not the analytic density estimates.
 | Lemma 5.1 (recursion), in `Problems/Juggler/FateRecursion.lean` | `recursion_lemma` |
 | Section 6.2, Proposition 6.3(i), in `Problems/Juggler/FateFirstLetter.lean` | `MinimalMember`, `minimalMember_odd`, `minimalMember_image_odd`, `minimal_failure_odd_odd`, `exists_minimal_failure`, `first_letter_trichotomy`, `first_letter_pieces_disjoint` |
 | Lemma 8.2 (Chernoff count), in `Problems/Juggler/FateChernoff.lean` | `weightGen_one`, `count_oddCount_ge_le`, `count_oddCount_ge_real_le`, `entropyLog`, `klHalf`, `klHalf_eq`, `klHalf_nonneg`, `tilt_value`, `count_oddCount_ge_le_exp`, `count_oddCount_ge_le_kl`, `LBad`, `pC`, `chernoffExponent`, `logb_two_three_le`, `half_le_pC`, `pC_lt_one`, `LBad_oddCount_ge`, `LBad_count_le` |
-| Theorem 8.3 (exact skeleton), in `Problems/Juggler/FateChernoff.lean` | `cylinder`, `oddFailures`, `EnvelopeBad`, `oddFailures_subset_bad_cylinders`, `oddFailures_card_le`, `LBad_of_envelopeBad`, `oddFailures_card_le_chernoff` |
+| Theorem 8.3 (explicit form), in `Problems/Juggler/FateChernoff.lean` | `cylinder`, `oddFailures`, `EnvelopeBad`, `oddFailures_subset_bad_cylinders`, `oddFailures_card_le`, `LBad_of_envelopeBad`, `oddFailures_card_le_chernoff`, `scaleRatio`, `scaleL`, `depth`, `cylinder_even_root_empty`, `oddFailures_card_le_explicit` |
 | Proposition 9.3 (pressure telescoping), in `Problems/Juggler/TiltedShare.lean` | `oddMass`, `tiltedShare`, `weightGen_succ_le_share`, `one_add_le_exp_excess`, `weightGen_le_pressure`, `count_le_pressure`, `NoMomentum`, `count_le_of_noMomentum`, `tilt_exponent_eq_kl`, `MeanShare`, `weightGen_le_of_meanShare`, `MeanShareOff`, `initial_depths_are_free`, `tower_ratio_lt_one` |
-| Lemmas 4.1', 4.2--4.3, Proposition 4.4 (\(C_0=250\)), Lemma 5.2, Theorem 5.3, Sections 7--10 except Lemma 8.2, the skeleton of Theorem 8.3 and Proposition 9.3, Appendix C | human proofs |
+| Lemmas 4.1', 4.2--4.3, Proposition 4.4 (\(C_0=250\)), Lemma 5.2, Theorem 5.3, Sections 7--10 except Lemma 8.2, the explicit form of Theorem 8.3 and Proposition 9.3, Appendix C | human proofs |
 
 ## Appendix B. Constants and artifacts
 
@@ -2364,9 +2370,9 @@ pressure (biased Chernoff) at the same \(q\): \(19,41,214,1496\) /
 | `formal/Problems/Juggler/FateRecursion.lean` | `13de9eb27d4e34b58d783d589574838028d767bcb5ea3f2bb8449e74e3be04d3` |
 | `formal/Problems/Juggler/FateFirstLetter.lean` | `635bb6163f5a054085087eefcd2c62037c61538fe863d53e9dca69da8fddb3e9` |
 | `formal/Problems/Juggler/FateSweep.lean` | `71c5c2472d2c2d31d7b2565e66f92e97b3ae9bd0c76aa45a1703eea7bd910d39` |
-| `formal/Problems/Juggler/FateChernoff.lean` | `99d14d51473f8c99a532c5c83019e20109cf2423d358d567f810552479694bfd` |
+| `formal/Problems/Juggler/FateChernoff.lean` | `4eec5c05916226374815b586252aa8c7a147615d27088939044f80db3b94f515` |
 | `formal/Problems/JugglerFatePaper.lean` | `0b4fcf218dbd20468339b10475a56429c65b967ee9b90c086c602f6341dab294` |
-| `formal/AxiomCheckPaperC.expected` | `f876aaa3473729fd0929f9c98a88e049d35e88cd49e81850690d7b1adc94a31a` |
+| `formal/AxiomCheckPaperC.expected` | `ada8c1e38b0575460091f963d72dc1a66be73a8f0c0ad4176ab7ca6ff31b778c` |
 | `src/research/juggler_sequence/fate_contagion.py` | `34f8cff465e00187cb85e1dc9a75a3b250caa4c8f38a3bc41aef29f68be08b7a` |
 | `src/research/juggler_sequence/tao_reduction.py` | `90f930bd604f6aa38c3a5ec8265d270d218240cdb358b20b19cad98dc4ac2f1c` |
 | `docs/theory/figures/render_paper_c_figures.py` | `5e434450835aadb4ed5ed2cbed00cc33f774996ba9ef229cb0434fc677bff5b7` |

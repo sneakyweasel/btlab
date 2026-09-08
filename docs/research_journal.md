@@ -41545,3 +41545,28 @@ theorem is false for negative M in that case. It is a hypothesis now.
 Paper C's Lean column: twelve rows Lean, seven human. The barrel
 imports eight modules and the axiom artifact records 118 declarations,
 all on subsets of Mathlib's three.
+
+## Theorem 8.3 without the epsilon
+
+The bookkeeping I had left undone turned out to be worth doing
+exactly. Substituting d = ceil(C L(y)) into the union bound and the
+H(C, A) bound into M gives
+
+  #{odd failures in (y, 2y]} <= y Lambda^{-e(C)} + 2 Lambda^C y (log y)^{-A},
+
+Lambda = log 2y / log N_0, at every y >= 2. No epsilon and no
+"sufficiently large y". The price is a factor 2 in the main term
+against the paper's y/2, which comes from using the plain Chernoff
+count rather than the O-rooted refinement; the paper's form recovers
+by absorbing the 2 into Lambda^epsilon. Corollary 8.4 reads only the
+exponent, so the factor is invisible downstream.
+
+One thing the exact form forced me to write down that the prose does
+not: the hypothesis H(C, A) speaks of O-rooted words, and the covering
+argument produces all bad words. The E-rooted ones have empty
+cylinders because odd starts have first letter O, one line in Lean
+(cylinder_even_root_empty), and it is that line that lets the Lean
+hypothesis be the paper's.
+
+The Paper C artifact now records 120 declarations.
+

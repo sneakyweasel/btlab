@@ -23165,6 +23165,71 @@
       "trust": "kernel"
     },
     {
+      "doc": "`\u039b(y) = log 2y / log N\u2080`.",
+      "file": "formal/Problems/Juggler/FateChernoff.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-chernoff-count",
+        "J-fate-tao-union-bound"
+      ],
+      "line": 386,
+      "module": "Problems.Juggler.FateChernoff",
+      "name": "scaleRatio",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The paper's `L(y) = log\u2082 (log 2y / log N\u2080)`.",
+      "file": "formal/Problems/Juggler/FateChernoff.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-chernoff-count",
+        "J-fate-tao-union-bound"
+      ],
+      "line": 389,
+      "module": "Problems.Juggler.FateChernoff",
+      "name": "scaleL",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The paper's depth `d(y) = \u2308C L(y)\u2309`.",
+      "file": "formal/Problems/Juggler/FateChernoff.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-chernoff-count",
+        "J-fate-tao-union-bound"
+      ],
+      "line": 392,
+      "module": "Problems.Juggler.FateChernoff",
+      "name": "depth",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Odd starts have first letter `O`: an `E`-rooted cylinder of positive depth is empty.",
+      "file": "formal/Problems/Juggler/FateChernoff.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-chernoff-count",
+        "J-fate-tao-union-bound"
+      ],
+      "line": 395,
+      "module": "Problems.Juggler.FateChernoff",
+      "name": "cylinder_even_root_empty",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Theorem 8.3, explicit form.** Floor `N\u2080 \u2265 2`, scale `y \u2265 2`, `C \u2265 5`, depth `d = \u2308C L(y)\u2309 \u2265 1`. If every `O`-rooted `L(y)`-bad cylinder of depth `d` holds at most `2^{-(d-1)} y/2 + y (log y)^{-A}` starts (the hypothesis `H(C, A)` at this `y`), then the odd failures in `(y, 2y]` number at most `y \u039b^{-e(C)} + 2 \u039b^C y (log y)^{-A}`, `\u039b = log 2y / log N\u2080`. The paper's `(y/2) \u039b^{-(e(C)-\u03b5)}` for large `y` follows by absorbing the factor `2` into `\u039b^\u03b5` and the second term into the first when `A > C + e(C)`; that absorption is not formalized.",
+      "file": "formal/Problems/Juggler/FateChernoff.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-chernoff-count",
+        "J-fate-tao-union-bound"
+      ],
+      "line": 412,
+      "module": "Problems.Juggler.FateChernoff",
+      "name": "oddFailures_card_le_explicit",
+      "trust": "kernel"
+    },
+    {
       "doc": "`A` is closed under taking one-step preimages.",
       "file": "formal/Problems/Juggler/FateContagion.lean",
       "kind": "def",
@@ -68753,7 +68818,7 @@
       ]
     },
     "Problems.Juggler.FateChernoff": {
-      "declarations": 26,
+      "declarations": 31,
       "file": "formal/Problems/Juggler/FateChernoff.lean",
       "imports": [
         "Problems.Juggler.FateContagion",
@@ -68767,7 +68832,7 @@
         },
         {
           "id": "J-fate-tao-union-bound",
-          "statement": "Paper C Theorem 8.3 (Tao-type bound from the cylinder hypothesis), exact skeleton. cylinder y d w is the set of odd n in (y, 2y] with itinerary n d = w; oddFailures y the odd n in (y, 2y] with \u00acReachesOne n; EnvelopeBad N\u2080 Y w says N\u2080^{2^t} < Y^{3^{o_t(w)}} for every prefix t \u2264 |w|. (i) oddFailures_subset_bad_cylinders: if every start up to N\u2080 reaches 1, then oddFailures y \u2286 \u22c3 {cylinder y d w : w \u2208 allWords d, EnvelopeBad N\u2080 (2y) w} \u2014 Lemma 8.1 (reachesOne_of_itinerary_envelope) in covering form, using n \u2264 2y. (ii) oddFailures_card_le: if every envelope-bad cylinder has at most M starts then #oddFailures y \u2264 #{envelope-bad words} \u00b7 M. (iii) LBad_of_envelopeBad: for N\u2080, Y \u2265 2, envelope-bad at scale Y implies L-bad with L = log_2(log Y / log N\u2080). (iv) oddFailures_card_le_chernoff: N\u2080 \u2265 2, y \u2265 1, C \u2265 5, d \u2265 1, d \u2265 C L(y) with L(y) = log_2(log 2y / log N\u2080), M \u2265 0, and every L(y)-bad cylinder of depth d has at most M starts: then #oddFailures y \u2264 2^d \u00b7 2^{\u2212e(C) L(y)} \u00b7 M, by (i)\u2013(iii) and row J-fate-chernoff-count. Kernel-checked, axioms propext, Classical.choice, Quot.sound only. The paper's displayed form y (log y)^{\u2212e(C)+\u03b5} is the substitution d = \u2308C L(y)\u2309 and M = 2^{\u2212(d\u22121)} y/2 + y (log y)^{\u2212A} from H(C, A), not formalized; Corollary 8.4 (the conjecture from a cylinder bound) rests on Theorem 7.2 and stays a human proof. Conditional on the cylinder bound; not a density theorem, not a halt theorem.",
+          "statement": "Paper C Theorem 8.3 (Tao-type bound from the cylinder hypothesis), exact and explicit forms. cylinder y d w is the set of odd n in (y, 2y] with itinerary n d = w; oddFailures y the odd n in (y, 2y] with \u00acReachesOne n; EnvelopeBad N\u2080 Y w says N\u2080^{2^t} < Y^{3^{o_t(w)}} for every prefix t \u2264 |w|. (i) oddFailures_subset_bad_cylinders: if every start up to N\u2080 reaches 1, then oddFailures y \u2286 \u22c3 {cylinder y d w : w \u2208 allWords d, EnvelopeBad N\u2080 (2y) w} \u2014 Lemma 8.1 (reachesOne_of_itinerary_envelope) in covering form, using n \u2264 2y. (ii) oddFailures_card_le: if every envelope-bad cylinder has at most M starts then #oddFailures y \u2264 #{envelope-bad words} \u00b7 M. (iii) LBad_of_envelopeBad: for N\u2080, Y \u2265 2, envelope-bad at scale Y implies L-bad with L = log_2(log Y / log N\u2080). (iv) oddFailures_card_le_chernoff: N\u2080 \u2265 2, y \u2265 1, C \u2265 5, d \u2265 1, d \u2265 C L(y) with L(y) = log_2(log 2y / log N\u2080), M \u2265 0, and every L(y)-bad cylinder of depth d has at most M starts: then #oddFailures y \u2264 2^d \u00b7 2^{\u2212e(C) L(y)} \u00b7 M, by (i)\u2013(iii) and row J-fate-chernoff-count. (v) oddFailures_card_le_explicit: with d = \u2308C L(y)\u2309 \u2265 1 (depth), y \u2265 2, and the bound of H(C, A) at the scale y on every O-rooted L(y)-bad cylinder of depth d (E-rooted cylinders are empty, cylinder_even_root_empty), the odd failures in (y, 2y] number at most y \u039b^{\u2212e(C)} + 2 \u039b^C y (log y)^{\u2212A} with \u039b = log 2y / log N\u2080 (scaleRatio) \u2014 at every y, no \u03b5, a factor 2 in the main term against the paper's y/2 \u039b^{\u2212(e(C)\u2212\u03b5)}. Kernel-checked, axioms propext, Classical.choice, Quot.sound only. The paper's displayed form is (v) with the factor 2 absorbed into \u039b^\u03b5 and the second term into the first for A > C + e(C), not formalized; Corollary 8.4 (the conjecture from a cylinder bound) rests on Theorem 7.2 and stays a human proof. Conditional on the cylinder bound; not a density theorem, not a halt theorem.",
           "tag": "EXACT \u2014 LEAN VERIFIED"
         }
       ]
@@ -70174,13 +70239,13 @@
     }
   },
   "totals": {
-    "declarations": 5054,
-    "declarations_with_a_ledger_row": 3296,
+    "declarations": 5059,
+    "declarations_with_a_ledger_row": 3301,
     "ledger_rows_naming_a_file": 344,
     "modules": 215,
     "trust": {
       "compiler": 57,
-      "kernel": 4997
+      "kernel": 5002
     }
   }
 }
