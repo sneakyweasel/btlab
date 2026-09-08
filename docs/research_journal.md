@@ -41087,3 +41087,43 @@ hhalf line appears in cycleMin_threeTerm and in cycleMin_sixTerm, and I
 edited the wrong one, which then failed as an unknown identifier three
 hundred lines earlier than the theorem I was working on. When two proofs
 share a line, a replacement keyed on that line alone is a coin flip.
+
+## Consistency pass: nine stale claims, one of them user-facing
+
+Deliberate sweep rather than the accidental catches of the last few
+entries. I had edited the paper, the dossier, negative knowledge, the
+probe and the companion incrementally across a dozen phases, and drift
+had accumulated in all five.
+
+The one that mattered: the companion still tagged Theorem 4.7 EXACT --
+HUMAN PROOF, when cycleMin_sixTerm now derives the display from a cycle.
+A trust claim on the surface a reviewer reads, understating the state by
+a full category. Fixed to EXACT -- LEAN VERIFIED, with the hypotheses in
+the prose where they belong. I first wrote the tag as "EXACT -- LEAN
+VERIFIED (under its two hypotheses)" and the manuscript guard rejected
+it: the tag column is a controlled vocabulary checked against the
+ledger's seven. That was the right refusal. Hypotheses go in the
+sentence; the tag says what kind of claim it is.
+
+The rest were drift I introduced myself:
+
+- Section 6.2 was titled "Two ceilings, measured" and prices four.
+- The probe docstring and the dossier said the same.
+- The paper still said "Theorem 4.7 is a human proof".
+- The dossier still carried the fitted exponents N_0^0.59 and N_0^0.69
+  that I corrected in 6.2 two entries ago, still said counting "yields no
+  window" after I had priced it at O(e/n), and had never received the
+  length-only optimum or the trailing-evens closure at all.
+- Negative knowledge carried the fitted exponents in two places.
+- juggler_cycle_budget_opt.md still called the packing inequality a human
+  proof.
+
+Research journal entries I left alone. They are dated records of what was
+believed when written, and editing them would destroy the only account of
+how the understanding moved.
+
+Worth keeping: the dossier was the worst offender, and it is the file I
+was least likely to reread, because I wrote it once and then kept working
+in the paper. A document that is authored in one pass and cited
+afterwards decays silently. The manuscript did better only because guards
+read it.

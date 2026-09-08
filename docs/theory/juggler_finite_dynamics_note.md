@@ -545,9 +545,10 @@ comparison it tests is Lean: `cycleMin_defect_threeTerm`
 `cycleMin_defect_finance` composed with the three-class charge
 `cycleMin_threeTerm`, so what stays verified computation is the
 per-length arithmetic and the descent floor, not the inequality.
-Theorem 4.7 is a human proof and carries two hypotheses --- the
-itinerary is primitive and contains no \(\mathtt{EE}\) ---
-without which its displayed counts fail; §4 prices them below.
+Theorem 4.7 carries two hypotheses --- the itinerary is primitive and
+contains no \(\mathtt{EE}\) --- without which its displayed counts fail;
+§4 prices them below. Given them the display is Lean
+(`cycleMin_sixTerm`), so they are sufficient as well as necessary.
 Theorem 4.8 reuses the gap table under that packing, and \(18\)
 of its \(42\) exclusions inherit the second hypothesis. Proposition 4.9 is integer arithmetic in Lean. In
 Section 5, Theorem 5.7 keeps a human step --- the variation of its
@@ -3525,11 +3526,13 @@ from the periodic side, and remains open.
 Lean names are in Appendix A. The computational certificates
 are Propositions 1.3 and 5.1.
 
-### 6.2 Two ceilings, measured
+### 6.2 Ceilings, measured
 
 Section 6.1 says the problem remains open. This section says something
-sharper about the two mechanisms used here: neither can close it, and
-the reason in each case is a number rather than a feeling.
+sharper about the mechanisms used here: none can close it, and the reason
+in each case is a number rather than a feeling. Four are priced below ---
+the descent floor, the trailing-evens bound, the charge family, and the
+shape enumeration --- and the last part says what that leaves.
 
 **The floor route diverges.** Finance excludes \(L\) when
 \(n_{\max}(L)\le N_0\). Along the convergents \(p_k/q_k\) of
@@ -3669,7 +3672,7 @@ what makes a length survive finance. The surviving lengths have
 \(\Lambda\) between \(3.6\cdot10^{-6}\) and \(6.9\cdot10^{-5}\), at or
 below the row where the law already kills nothing.
 
-So the two mechanisms fail for **one** reason, not two. Finance weakens
+So finance and the run--suffix law fail for **one** reason, not two. Finance weakens
 as \(\theta\to0\), since \(n_{\max}\sim1/\theta\); the run--suffix law
 weakens as \(\theta\to0\), since it is the anchor tightened by
 \(1+\theta\). They cannot be played against each other, because the

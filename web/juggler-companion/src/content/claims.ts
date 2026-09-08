@@ -68,9 +68,9 @@ export const CLAIM_ROWS = [
   },
   {
     plain:
-      "Packing the valleys by run type sharpens the charge by a factor 1.4048. It needs two hypotheses: the itinerary is primitive, and it contains no EE. Without the second, the counting gives only #cheap ≤ o − #blocks.",
+      "Packing the valleys by run type sharpens the charge by a factor 1.4048. It needs two hypotheses: the itinerary is primitive, and it contains no EE. Given both, the display follows from CycleMin (cycleMin_sixTerm), so they are sufficient as well as necessary; without the second the counting gives only #cheap ≤ o − #blocks.",
     theorem: "Theorem 4.7 run-type packing",
-    tag: "EXACT — HUMAN PROOF",
+    tag: "EXACT — LEAN VERIFIED",
   },
   {
     plain: `Packing kills ${PACKING_DEATH_COUNT} more lengths, ${PACKING_DEATH_FIRST.toLocaleString("en-US")} + ${PACKING_DEATH_STEP.toLocaleString("en-US")}k. ${PACKING_DEATH_UNCONDITIONAL} of them need no hypothesis at all: at most half the odd letters can be cheap valleys, whatever the word does with EE (two_mul_cheap_le_odd), and that alone excludes them. The other ${PACKING_DEATH_CONDITIONAL} rest on the no-EE hypothesis, and admissible words with odd runs of length ≤ 2 defeat each. Dropping it leaves ${RUN_EXCEPTION_COUNT_NO_HYPOTHESIS} lengths, not ${RUN_EXCEPTION_COUNT}. The period ${PAPER_PERIOD.toLocaleString("en-US")} is unchanged either way.`,

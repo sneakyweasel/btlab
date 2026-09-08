@@ -487,7 +487,7 @@ Dossiers:
 
 ---
 
-## The two mechanisms have measured ceilings
+## Paper A's mechanisms have measured ceilings
 
 Killed claim: a bigger descent floor, a sharper per-length charge, or a
 longer shape enumeration reaches "no nontrivial cycle".
@@ -497,8 +497,11 @@ longer shape enumeration reaches "no nontrivial cycle".
 \(n_{\max}(q_k)\log n_{\max}\approx 0.45\,q_k q_{k+1}\) — flat to within
 a factor \(1.3\) over \(q_k=19\ldots176251\). \(q_{k+1}\) is unbounded,
 so \(n_{\max}\) is. Every length needs its own floor. Raising \(N_0\)
-buys period \(\approx N_0^{0.59}\) (finance) or \(N_0^{0.69}\) (walk
-charge); no exponent helps, because the target recedes. Any result that
+buys \(\text{period}\asymp\sqrt{N_0\log N_0}\) (finance) or
+\(\asymp\sqrt{N_0}\log N_0\) (walk charge) — square roots, not the
+powers \(N_0^{0.59}\)/\(N_0^{0.69}\) a narrow fit suggests. Doubling the
+period costs roughly quadrupling the floor, and no exponent helps,
+because the target recedes. Any result that
 fixes \(L\) and asks for a floor is a period bound, never a cycle
 theorem.
 
@@ -517,7 +520,7 @@ strength over the anchor is the surplus. It kills \(41\%\) of shapes at
 counts agree in all \(300\) digits. Surviving lengths have
 \(\Lambda\in[3.6\cdot10^{-6},6.9\cdot10^{-5}]\).
 
-**So the two mechanisms fail for one reason.** Finance weakens as
+**So finance and the run--suffix law fail for one reason.** Finance weakens as
 \(\theta\to0\) because \(n_{\max}\sim1/\theta\); the run--suffix law
 weakens as \(\theta\to0\) because it is the anchor tightened by
 \(1+\theta\). They cannot be played against each other: the lengths where
@@ -1020,7 +1023,7 @@ internals and evens is worth more than \(20\%\) in \(n_{\max}\), i.e.
 \(12\%\) in period. Theorem 4.7's \(1.4048\) exceeds this only because
 no-\(\mathtt{EE}\) forbids the extremal configuration. The room that
 remains is *orbit-dependent* information — which is what the walk charge
-reads, and why it reaches \(N_0^{0.69}\). Do not open another
+reads, and why it carries the extra logarithm. Do not open another
 length-only refinement.
 
 **The trailing-evens family is not independent (added after testing it).**

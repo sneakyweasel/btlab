@@ -212,7 +212,7 @@ See
 
 ## Formalization
 
-The packing inequality is a human proof (Paper A Theorem 4.7).
+The packing inequality is Lean under Theorem 4.7's two hypotheses — the itinerary primitive and free of `EE` — as `cycleMin_sixTerm`; without them it fails, and 18 of Theorem 4.8's 42 exclusions with it.
 The \(99\)-list is a verified table (Theorem 4.8). The lattice
 arithmetic is `formal/Problems/Juggler/RunSurvivorLattice.lean`
 (Proposition 4.9), imported by `Problems.JugglerPaper`. No

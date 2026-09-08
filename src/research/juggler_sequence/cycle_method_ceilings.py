@@ -1,8 +1,10 @@
-"""Two measured ceilings on the methods Paper A actually uses.
+"""Measured ceilings on the methods Paper A actually uses.
 
 Not a halt theorem, not a floor raise, not a refutation. It asks what the
-paper's two exclusion mechanisms can reach *in the limit*, and answers
-with numbers rather than intuition.
+paper's exclusion mechanisms can reach *in the limit*, and answers with
+numbers rather than intuition. Four are priced here: the descent floor,
+the charge family against its own optimum, the shape enumeration, and
+the trailing-evens bound (which turns out not to be independent).
 
 **The floor route diverges.** Finance excludes a length `L` when
 `n_max(L) <= N_0`. Along the convergents `p_k/q_k` of `log2/log3` the
