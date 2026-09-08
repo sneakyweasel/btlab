@@ -471,4 +471,47 @@ theorem odd_le_internal_add_even {L : ℕ} (hL : 0 < L) (par : ℕ → Bool) :
   have hinj := valley_le_even hL par
   omega
 
+/-! ### The exchange in general: three classes, majorized
+
+The valley/internal exchange is the third of the same kind, and rather than write it a third
+time the general form is stated once.  With the class contributions *decreasing* and the actual
+cardinalities dominated in partial sums by the target ones at equal totals, the actual majorant
+is at most the target.  Abel summation collapses to
+
+`Σ(kᵢ − cᵢ)wᵢ = (k₁−c₁)(w₁−w₂) + (k₁+k₂−c₁−c₂)(w₂−w₃)`,
+
+both terms nonnegative.  `valley_swap_le` is the two-class case.
+-/
+
+/-- **Majorization on three classes.**  Decreasing contributions, partial sums dominated,
+equal totals. -/
+theorem majorize_three {w₁ w₂ w₃ : ℝ} (h12 : w₂ ≤ w₁) (h23 : w₃ ≤ w₂)
+    {c₁ c₂ c₃ k₁ k₂ k₃ : ℕ}
+    (h1 : c₁ ≤ k₁) (h2 : c₁ + c₂ ≤ k₁ + k₂) (htot : c₁ + c₂ + c₃ = k₁ + k₂ + k₃) :
+    (c₁ : ℝ) * w₁ + (c₂ : ℝ) * w₂ + (c₃ : ℝ) * w₃
+      ≤ (k₁ : ℝ) * w₁ + (k₂ : ℝ) * w₂ + (k₃ : ℝ) * w₃ := by
+  have a1 : (c₁ : ℝ) ≤ (k₁ : ℝ) := by exact_mod_cast h1
+  have a2 : (c₁ : ℝ) + (c₂ : ℝ) ≤ (k₁ : ℝ) + (k₂ : ℝ) := by exact_mod_cast h2
+  have a3 : (c₁ : ℝ) + (c₂ : ℝ) + (c₃ : ℝ) = (k₁ : ℝ) + (k₂ : ℝ) + (k₃ : ℝ) := by
+    exact_mod_cast htot
+  have hc3 : (c₃ : ℝ) = (k₁ : ℝ) + (k₂ : ℝ) + (k₃ : ℝ) - (c₁ : ℝ) - (c₂ : ℝ) := by linarith
+  rw [hc3]
+  nlinarith [mul_nonneg (by linarith : (0:ℝ) ≤ (k₁ : ℝ) - c₁)
+      (by linarith : (0:ℝ) ≤ w₁ - w₂),
+    mul_nonneg (by linarith : (0:ℝ) ≤ ((k₁ : ℝ) + k₂) - ((c₁ : ℝ) + c₂))
+      (by linarith : (0:ℝ) ≤ w₂ - w₃)]
+
+/-- An odd state never exceeds its own image: `x ≤ J(x)`, since `x² ≤ x³`. -/
+theorem le_floorPower_odd {x : ℕ} (hx : x % 2 = 1) (h1 : 1 ≤ x) : x ≤ floorPower x := by
+  rw [floorPower_odd_eq hx]
+  refine (Nat.le_sqrt).mpr ?_
+  calc x * x = x ^ 2 := by ring
+    _ ≤ x ^ 3 := Nat.pow_le_pow_right h1 (by norm_num)
+
+/-- The internal majorant is below the cheap-valley majorant: `1/(t₊ log t₊) ≤
+1/((n+2) log (n+2))`, because `n + 2 ≤ J(n+2)`. -/
+theorem internal_le_cheap {n tp : ℝ} (hn : 2 ≤ n + 2) (htp : n + 2 ≤ tp) :
+    1 / (tp * Real.log tp) ≤ 1 / ((n + 2) * Real.log (n + 2)) :=
+  inv_mul_log_antitoneOn (Set.mem_Ici.mpr hn) (Set.mem_Ici.mpr (le_trans hn htp)) htp
+
 end Problems.Juggler

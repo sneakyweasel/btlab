@@ -127,9 +127,11 @@ import Problems.JugglerPaper
 #print axioms Problems.Juggler.image_eq_iterate
 #print axioms Problems.Juggler.image_eq_start_defectRatio
 #print axioms Problems.Juggler.image_monotone_of_follows
+#print axioms Problems.Juggler.internal_le_cheap
 #print axioms Problems.Juggler.inv_mul_log_antitoneOn
 #print axioms Problems.Juggler.inv_sq_le_quad
 #print axioms Problems.Juggler.le_expensiveValley
+#print axioms Problems.Juggler.le_floorPower_odd
 #print axioms Problems.Juggler.log_floorPower_even_ge
 #print axioms Problems.Juggler.log_floorPower_even_ge_sub
 #print axioms Problems.Juggler.log_floorPower_odd_ge
@@ -141,6 +143,7 @@ import Problems.JugglerPaper
 #print axioms Problems.Juggler.lowerDenom_replicate_odd
 #print axioms Problems.Juggler.lower_growth_word
 #print axioms Problems.Juggler.lower_lt_walkTheta
+#print axioms Problems.Juggler.majorize_three
 #print axioms Problems.Juggler.neg_log_one_sub_le_sixth
 #print axioms Problems.Juggler.no_cycleMin_gapped_three_even_ee
 #print axioms Problems.Juggler.no_cycleMin_gapped_three_even_eoe

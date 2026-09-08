@@ -9317,3 +9317,66 @@ called the block decomposition "one bridge, not deep". It was not deep,
 but it was also not true, and the useful version is the one that never
 mentions blocks. Stating the falsifier before starting is what made that
 visible on the first build rather than after wiring it in.
+
+## The exchange, in general — and the one arithmetic fact that is left
+
+*Mathematical target.* The valley-to-internal swap, the last step of
+Theorem 4.7's chain.
+
+*Falsifier.* The class contributions cannot be linearly ordered, because
+\(v\) against \(t_+\) is unknown.
+
+**Working the algebra first was the right order.** Writing
+\(p=k_1-a_1\) and \(q=k_2-a_2\), the difference of majorants is
+\(p(w_1-w_3)+q(w_2-w_3)\). So the exchange needs **both**
+\(\text{cheap}\ge\text{internal}\) and
+\(\text{expensive}\ge\text{internal}\) --- and the second is exactly
+\(v\le t_+\). Doing the algebra before reaching for Lean is what showed
+that the easy comparison alone does not suffice; I had twice talked
+myself into thinking it did.
+
+**What is proved.**
+
+- `majorize_three` --- the exchange in general, so it is not written a
+  third time: decreasing contributions, partial sums dominated, equal
+  totals. Abel summation collapses to
+  \((k_1-c_1)(w_1-w_2)+(k_1+k_2-c_1-c_2)(w_2-w_3)\), both terms
+  nonnegative. `valley_swap_le` is the two-class case.
+- `le_floorPower_odd` --- an odd state never exceeds its own image,
+  \(x\le J(x)\), because \(x^{2}\le x^{3}\). One `Nat.le_sqrt`.
+- `internal_le_cheap` --- hence the internal majorant sits below the
+  cheap-valley one, \(1/(t_+\log t_+)\le 1/((n+2)\log(n+2))\).
+
+**What is left, and why it is awkward.** \(v\le t_+\), to order the
+*expensive*-valley majorant above the internal one. It is true: checked
+for every odd \(n<400\), and in the sharper form \(v\le t\) --- at
+\(n=13\), \(v=31\) against \(t=46\) and \(t_+=58\); at \(n=301\),
+\(v=2019\) against \(t=5222\). The obstruction is not doubt but degree.
+The natural route is
+
+\[
+n^{3}<(t+1)^{2}\ \Rightarrow\ n^{12}<(t+1)^{8}\ \Rightarrow\
+n^{12}<t^{9}\ \Rightarrow\ n^{4}<t^{3},
+\]
+
+whose middle step is \((t+1)^{8}\le t^{9}\), a degree-nine comparison
+needing \(t\ge9\). The arithmetic tactics do not reach it, and the
+honest options are an explicit induction or a `decide` on a reduced
+form. Neither is attempted here.
+
+So Theorem 4.7's display now rests on exactly one unproved arithmetic
+statement, down from a whole classification three entries ago.
+
+Tags. COMPUTATIONALLY VERIFIED: `lake build Problems.JugglerPaper`
+clean; the three new declarations within
+`[propext, Classical.choice, Quot.sound]`; \(v\le t_+\) checked for all
+odd \(n<400\); `AxiomCheckPaperA` at 241 lines. A guard caught a
+citation for the third time: I backticked `nlinarith`, which is a tactic
+and not a declaration. The carve-out list already holds two tactics, and
+widening a guard's allowlist to fit my own prose is the weaker move, so
+the sentence was rephrased instead. OBSERVATION: the last three entries
+have each ended by naming a smaller remainder than the one before ---
+classification, then counting, then one inequality. That is what a
+chain looks like when it is being closed from the top; the risk is
+mistaking the shrinking for nearness, and a degree-nine `ℕ` inequality
+is not near.

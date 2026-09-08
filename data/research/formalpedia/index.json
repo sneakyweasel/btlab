@@ -23299,6 +23299,36 @@
       "trust": "kernel"
     },
     {
+      "doc": "**Majorization on three classes.** Decreasing contributions, partial sums dominated, equal totals.",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 488,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "majorize_three",
+      "trust": "kernel"
+    },
+    {
+      "doc": "An odd state never exceeds its own image: `x \u2264 J(x)`, since `x\u00b2 \u2264 x\u00b3`.",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 505,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "le_floorPower_odd",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The internal majorant is below the cheap-valley majorant: `1/(t\u208a log t\u208a) \u2264 1/((n+2) log (n+2))`, because `n + 2 \u2264 J(n+2)`.",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 513,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "internal_le_cheap",
+      "trust": "kernel"
+    },
+    {
       "doc": "",
       "file": "formal/Problems/Juggler/FirstETransportEval.lean",
       "kind": "def",
@@ -66485,7 +66515,7 @@
       ]
     },
     "Problems.Juggler.FinanceTransfer": {
-      "declarations": 26,
+      "declarations": 29,
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "imports": [
         "Problems.Juggler.CycleCore"
@@ -67794,13 +67824,13 @@
     }
   },
   "totals": {
-    "declarations": 4862,
+    "declarations": 4865,
     "declarations_with_a_ledger_row": 3195,
     "ledger_rows_naming_a_file": 336,
     "modules": 208,
     "trust": {
       "compiler": 54,
-      "kernel": 4808
+      "kernel": 4811
     }
   }
 }

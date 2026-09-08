@@ -39948,3 +39948,39 @@ Two entries ago I called the block decomposition "one bridge, not
 deep". Not deep, but also not true. Stating the falsifier before
 starting is what made that visible on the first build rather than after
 wiring it in.
+
+Doing the algebra before reaching for Lean was the right order this
+time. Writing p = k1 - a1 and q = k2 - a2, the difference of majorants
+is p(w1 - w3) + q(w2 - w3), so the valley-to-internal exchange needs
+both cheap >= internal and expensive >= internal. The second is v <= t+.
+I had twice talked myself into thinking the easy comparison sufficed;
+writing the difference out showed it does not.
+
+What is proved: majorize_three, the exchange in general rather than
+written a third time -- decreasing contributions, partial sums
+dominated, equal totals, with Abel summation collapsing to
+(k1-c1)(w1-w2) + (k1+k2-c1-c2)(w2-w3), both terms nonnegative.
+valley_swap_le is its two-class case. And le_floorPower_odd, that an
+odd state never exceeds its own image since x^2 <= x^3, which gives
+internal_le_cheap.
+
+What is left is one arithmetic fact: v <= t+. It is true -- checked for
+every odd n < 400, and in the sharper form v <= t; at n=13, v=31
+against t=46 and t+=58. The obstruction is degree, not doubt. The
+natural route runs n^3 < (t+1)^2 to n^12 < (t+1)^8 to n^12 < t^9 to
+n^4 < t^3, and the middle step is (t+1)^8 <= t^9, degree nine, needing
+t >= 9. The arithmetic tactics do not reach it. An explicit induction
+or a decide on a reduced form would; neither is attempted.
+
+So the display rests on exactly one unproved arithmetic statement, down
+from a whole classification three entries ago. The last three entries
+have each named a smaller remainder than the one before --
+classification, then counting, then one inequality. That is what
+closing a chain from the top looks like, and the risk is mistaking the
+shrinking for nearness. A degree-nine inequality over the naturals is
+not near.
+
+A guard caught a citation for the third time: I backticked nlinarith,
+which is a tactic and not a declaration. The carve-out list already
+holds two tactics, but widening a guard to fit my own prose is the
+weaker move, so the sentence was rephrased instead.
