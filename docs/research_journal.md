@@ -41127,3 +41127,38 @@ was least likely to reread, because I wrote it once and then kept working
 in the paper. A document that is authored in one pass and cited
 afterwards decays silently. The manuscript did better only because guards
 read it.
+
+## Theorem 5.7's human step was already closed
+
+Went to formalize the last non-Lean item in Paper A with mathematical
+content -- "Theorem 5.7 keeps a human step, the variation of its own
+observable" -- and the prior-art check ended it. The step is Lean.
+observable_window_variation_lt_two proves variation < 2 for
+periodicObservable itself, on every unit window, and the display is
+hugCharge_sub_circleMean_le. Both within [propext, Classical.choice,
+Quot.sound]. The sentence in Section 4 naming it as human is stale, and
+the Appendix A row for 5.7 has listed the variation lemmas as Lean all
+along -- the two parts of the manuscript disagreed with each other.
+
+Corrected, and one real difference recorded while I was there: the
+printed theorem quantifies over any decomposition L = sum b_j q_j, and
+the Lean fixes the Ostrowski one. That is the decomposition the window
+bound and the kill tables use, so nothing downstream is affected, but it
+is a narrower statement than the display and should say so.
+
+The lesson is about the pass I ran last entry, not about 5.7. I swept for
+staleness by asking what I had changed this session. This item became
+stale from work done before it -- someone formalized the variation and
+did not revisit the Section 4 prose -- so a diff-driven sweep could never
+have caught it. The check that would have caught it compares the paper's
+trust claims against the corpus, not against my edits. I do not have a
+guard for that and I am not sure one is writable: "keeps a human step" is
+prose, and deciding whether a Lean name covers it is the reading a person
+does. What is writable is narrower and might still be worth it -- flag
+any theorem whose Appendix A row cites Lean names for its display while
+the prose calls it a human proof. That is exactly the disagreement here.
+
+So the last item on my own list of formal work with discovery potential
+is not work. Paper A's Section 4 and Section 5 mathematics is Lean; what
+remains non-Lean is the per-length numeric tables, which are bookkeeping
+under mechanisms whose ceilings are now measured.

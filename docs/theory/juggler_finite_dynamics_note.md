@@ -551,11 +551,17 @@ contains no \(\mathtt{EE}\) --- without which its displayed counts fail;
 (`cycleMin_sixTerm`), so they are sufficient as well as necessary.
 Theorem 4.8 reuses the gap table under that packing, and \(18\)
 of its \(42\) exclusions inherit the second hypothesis. Proposition 4.9 is integer arithmetic in Lean. In
-Section 5, Theorem 5.7 keeps a human step --- the variation of its
-own observable --- but Denjoy--Koksma itself is no longer a known
-tool: `denjoy_koksma_rotation` is Lean, from the convergent quality
-\(|\theta-p/q|<1/q^2\) and the *residue* permutation
-(`theta_convergent_quality`, `theta_block_permutations`).
+Section 5, Theorem 5.7 is Lean end to end. Its observable's variation
+--- once the remaining human step --- is
+`observable_window_variation_lt_two`, proved for `periodicObservable`
+itself on every unit window; and Denjoy--Koksma is no longer a known
+tool either: `denjoy_koksma_rotation` is Lean, from the convergent
+quality \(|\theta-p/q|<1/q^2\) and the *residue* permutation
+(`theta_convergent_quality`, `theta_block_permutations`). The display is
+`hugCharge_sub_circleMean_le`. One difference from the statement as
+printed: the theorem quantifies over *any* decomposition
+\(L=\sum_jb_jq_j\), while the Lean fixes the Ostrowski one, which is the
+decomposition the window bound and the kill tables actually use.
 Lemma 5.6 is Lean on both halves: the itinerary identity
 (`budgetedWord_eq_hugWord`) and the rotation identification
 (`hugOdds_eq_sub_floor`, `hugWalk_eq_fract`, `HugRotation.lean`).
