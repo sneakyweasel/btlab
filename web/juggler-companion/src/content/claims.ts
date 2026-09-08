@@ -198,3 +198,38 @@ export const NOT_CLAIMED = [
   "No independence-from-Peano-arithmetic claim is made. Goodstein is a different theorem.",
   "Paper B (parity discrepancy and descent densities) is a different manuscript.",
 ] as const;
+
+/** Separate from CLAIM_ROWS: Paper C Lean names are not this scoreboard. */
+export const PAPER_C_CLAIM_ROWS = [
+  {
+    plain:
+      "On a good fiber the scarcer half of the circle is at least H/3 − 2 once m ≥ 10⁶ and the step stays away from 0 and 1/2.",
+    theorem: "Paper C Lemma 4.2 parity sweep",
+    tag: "EXACT — HUMAN PROOF",
+  },
+  {
+    plain:
+      "Averaging the even-m fibers of E(m') gives a 1/4 share of even images after an error 250 m'^{11/9} log(m'+1).",
+    theorem: "Paper C Proposition 4.4 even-block average",
+    tag: "EXACT — HUMAN PROOF",
+  },
+  {
+    plain:
+      "Three pairwise disjoint families fill A ∩ (√x, x]. Items 1+2 give λ* = 0.3774; adding the rest drops 3t/8 from 1/3 to 1/9 and gives λ_pair = 0.4480.",
+    theorem: "Paper C §5.1–5.2 three sources",
+    tag: "EXACT — HUMAN PROOF",
+  },
+  {
+    plain:
+      "The official contagion exponent λ** = 0.4926 is the V6 truncation. The ideal share of a production word is available exactly when ρ_w ≤ 1/2.",
+    theorem: "Paper C Theorem 5.3 / Proposition 5.13",
+    tag: "EXACT — HUMAN PROOF",
+  },
+] as const;
+
+export const PAPER_C_NOT_CLAIMED = [
+  "Paper C excludes no fate and is not a halt theorem.",
+  "Official λ** = 0.4926 is the V6 truncation, not the three-source recursion.",
+  "The depth-two ideal 0.4927 is a method ceiling, not a proved word list.",
+  "Playground fiber shares and block averages are observations, not the sweep or van der Corput proofs.",
+] as const;

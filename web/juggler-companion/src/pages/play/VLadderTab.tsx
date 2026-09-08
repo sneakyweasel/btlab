@@ -74,7 +74,7 @@ export function VLadderTab() {
       <section className="space-y-3 rounded-xl border border-line bg-card p-4">
         <h2 className="font-serif text-2xl">V-ladder to {rung.name}</h2>
         <p className="text-sm text-muted">
-          Theorem 5.3 uses the full list, not the{" "}
+          Paper C Theorem 5.3 uses the full list, not the{" "}
           <Link to="/play/three-sources">three sources</Link> alone. (5.1) is
           only <Tex>{String.raw`\lambda^*`}</Tex>. Adding item 3 is{" "}
           <Tex>{String.raw`\lambda_{\mathrm{pair}}`}</Tex>. Then the no-

@@ -149,7 +149,7 @@ export function ThreeSourcesTab() {
         <p className="font-mono text-sm text-ink">{spec.equation}</p>
         <ZetaPlot recursion={recursion} onSelect={setRecursion} />
         <Metric
-          label={`c e^λ at ${spec.name}`}
+          label={`c · t^λ at ${spec.name}`}
           value={
             coeff > 0
               ? (coeff * source.scale ** root).toFixed(4)

@@ -60,7 +60,7 @@ export function ZetaPlot({ recursion, onSelect }: ZetaPlotProps) {
         role="img"
         aria-label="Zeta of lambda for the two three-source recursions"
       >
-        <title>ζ(λ) = Σ c e^λ − 1. Roots are λ* and λ_pair</title>
+        <title>ζ(λ) = Σ c_i t_i^λ − 1. Roots are λ* and λ_pair</title>
         <line
           x1={xOf(0)}
           x2={xOf(LAM_MAX)}

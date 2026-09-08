@@ -91,7 +91,7 @@ export function ThreeSourcesScale({
         role="img"
         aria-label="Log scale of the three contagion parent intervals and their common image wash"
       >
-        <title>Section 5.1: three disjoint sources in (√x, x]</title>
+        <title>Section 5.1: three disjoint families of A ∩ (√x, x]</title>
         <rect
           x={xOf(view.cuts.sqrt)}
           y={imageY}

@@ -33,6 +33,10 @@ export function CycleTab() {
   const trial = n !== null && current ? tryCycleItinerary(n, current) : null;
   return (
     <div className="space-y-5">
+      <p className="text-sm text-muted">
+        Rotating or testing a cycle word is not evidence for a cycle. A
+        return to n is a witness at this n only.
+      </p>
       <StartControl />
       <div className="flex flex-wrap items-end gap-3">
         <label className="text-sm text-muted">
@@ -152,8 +156,8 @@ export function CycleTab() {
           ) : (
             <p className="text-sm text-muted">
               Expanding is necessary, not sufficient. Period 11 is already
-              forced by four evens; Theorem 4.6 then excludes every period
-              ≤ 25,780.
+              forced by four evens. At N₀ = 10⁶, given the verified descent
+              floor, Theorem 4.6 excludes every period ≤ 25,780.
             </p>
           )}
           {trial ? (

@@ -46,7 +46,7 @@ export function VLadder({ selected, onSelect }: VLadderProps) {
         role="img"
         aria-label="Printed contagion exponents from lambda-star to lambda-star-star and the ideal ceiling"
       >
-        <title>Theorem 5.3: V-ladder of printed roots</title>
+        <title>Paper C Theorem 5.3: V-ladder of printed roots</title>
         <line
           x1={xOf(0)}
           x2={xOf(LADDER_RUNGS.length - 1)}

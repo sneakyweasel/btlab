@@ -1,4 +1,10 @@
-import { CLAIM_ROWS, DEFINITIONS, NOT_CLAIMED } from "../content/claims";
+import {
+  CLAIM_ROWS,
+  DEFINITIONS,
+  NOT_CLAIMED,
+  PAPER_C_CLAIM_ROWS,
+  PAPER_C_NOT_CLAIMED,
+} from "../content/claims";
 import { financeSnapshot } from "../juggler/finance";
 
 export function ClaimsPage() {
@@ -71,10 +77,40 @@ export function ClaimsPage() {
           </tbody>
         </table>
       </section>
+      <section>
+        <h2 className="text-2xl">Paper C (fates)</h2>
+        <p className="prose-measure mt-2 text-sm text-muted">
+          A different manuscript. Paper A Theorem 5.3 is walk-charge
+          transport; Paper C Theorem 5.3 is the contagion V-ladder.
+        </p>
+        <div className="mt-3 overflow-x-auto rounded-xl border border-line bg-card">
+          <table className="w-full min-w-[36rem] text-left text-sm">
+            <thead className="border-b border-line text-muted">
+              <tr>
+                <th className="px-3 py-2 font-medium">In plain English</th>
+                <th className="px-3 py-2 font-medium">In the paper</th>
+                <th className="px-3 py-2 font-medium">Tag</th>
+              </tr>
+            </thead>
+            <tbody>
+              {PAPER_C_CLAIM_ROWS.map((row) => (
+                <tr key={row.theorem} className="border-b border-line/70">
+                  <td className="px-3 py-2">{row.plain}</td>
+                  <td className="px-3 py-2">{row.theorem}</td>
+                  <td className="px-3 py-2 font-mono text-xs">{row.tag}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
       <section className="rounded-xl border border-warn/30 bg-card p-5">
         <h2 className="text-2xl">What this does not claim</h2>
         <ul className="prose-measure mt-3 list-disc space-y-2 pl-5 text-muted">
           {NOT_CLAIMED.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+          {PAPER_C_NOT_CLAIMED.map((item) => (
             <li key={item}>{item}</li>
           ))}
         </ul>

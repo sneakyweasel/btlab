@@ -39,6 +39,9 @@ export function PlaygroundPage() {
           80 steps, 256 bits live, itineraries of length at most 8 (cycles 16,
           tour words 24), production seeds at most 1,000,000. Shipped monsters
           are pictures, not a live walk. Hitting 1 is not a theorem.
+          The Paper C contagion walk is Preimages → OE fiber → Block
+          average → Three sources → V-ladder; those tabs are
+          observations, not proofs.
         </p>
       </header>
       <nav className="flex flex-wrap gap-2">

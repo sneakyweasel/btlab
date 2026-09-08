@@ -76,7 +76,7 @@ export function RhoTest({ selected, onSelect }: RhoTestProps) {
         ))}
       </svg>
       <figcaption className="text-xs text-muted">
-        {"Formula (5.7): ρ_w = 2^{-a} (3/2)^b. Localized parity needs |I| ≥ P^{1/2}, which is ρ_w ≤ 1/2. OE is the one lossy production in the three sources. OOEE / OOEEE are the Proposition 5.13 examples, not Theorem 5.3 terms."}
+        {"Formula (5.7): ρ_w = 2^{-a} (3/2)^b. Localized parity needs |I| ≥ P^{1/2}, which is ρ_w ≤ 1/2. OE is the one lossy production in the three sources. OOEE / OOEEE are the Proposition 5.13 examples, not Paper C Theorem 5.3 terms."}
       </figcaption>
     </figure>
   );

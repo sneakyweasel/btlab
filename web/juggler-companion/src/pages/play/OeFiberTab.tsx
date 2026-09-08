@@ -43,12 +43,14 @@ export function OeFiberTab() {
         <p className="text-sm text-muted">
           Odd n with <Tex>{String.raw`\lfloor n^{3/4}\rfloor=m`}</Tex>. The strip
           is three rails: O every integer around the fiber, E the even images,
-          then m. Orange is odd, blue is even, grey sits outside{" "}
+          then m. Orange is odd, teal is even, grey sits outside{" "}
           <Tex>{String.raw`\Phi(m)`}</Tex>. An even image means{" "}
           <Tex>{String.raw`J(J(n))=m`}</Tex> and that path joins A. An odd
           image stays on O and never reaches E. Paper C prints{" "}
-          {formatInt(TOUR_OE_FIBER_M)}; shares on one m are an observation, not
-          the sweep proof. Averaging those shares over an even block is the{" "}
+          {formatInt(TOUR_OE_FIBER_M)}; that seed is below the Lemma 4.2
+          scale m ≥ 10⁶, so the default windows are illustrative. Shares on
+          one m are an observation, not the sweep proof. Averaging those
+          shares over an even block is the{" "}
           <Link to="/play/block-average">block-average</Link> tab.
         </p>
         <div className="flex flex-wrap items-end gap-3">
@@ -128,7 +130,7 @@ export function OeFiberTab() {
           On the fiber the quantity <Tex>{String.raw`\{n^{3/2}/2\}`}</Tex> lives
           on the circle <Tex>{String.raw`\mathbb{R}/\mathbb{Z}`}</Tex>. Lemma 4.1
           says a walk with a nearly constant step cannot hide in one semicircle
-          unless the step sits near 0 or 1/2. Rust marks the thin pole — 0
+          unless the step sits near 0 or 1/2. Red marks the thin pole — 0
           at the top, 1/2 at the bottom — and the Lemma 4.2 window when it
           is small enough to read. The bar is the scarcer half against 1/7
           and{" "}

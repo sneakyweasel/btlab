@@ -109,7 +109,7 @@ export function FinanceTab() {
             value={view.status}
             hint={
               view.status === "excluded"
-                ? "n_max(L) ≤ N₀: no cycle of this length"
+                ? "n_max(L) ≤ N₀ at this floor: no cycle of this length"
                 : view.status === "admissible"
                   ? "finance survivor — not evidence for a cycle"
                   : "outside the shipped table"

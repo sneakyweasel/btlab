@@ -65,6 +65,12 @@ export function HomePage() {
             >
               Open the playground
             </Link>
+            <Link
+              to="/play/preimages"
+              className="rounded-full border border-line px-4 py-2 text-ink no-underline"
+            >
+              Paper C path
+            </Link>
           </div>
           <div className="mt-6 grid gap-3 sm:grid-cols-3">
             {PAPERS.map((paper) => (
