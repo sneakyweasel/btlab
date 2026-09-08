@@ -131,7 +131,7 @@ const RUNGS = [
     tex: String.raw`B(\varepsilon)=n+1,\quad B(Eu)=B(u)^2,\quad B(Ou)=\min\{c:c^3\ge B(u)^2\}`,
     lean: "exact backward envelope",
     status: "prose",
-    note: "The teal curve. Excess over (n+1)^{T(u)} is rounding.",
+    note: "The blue curve. Excess over (n+1)^{T(u)} is rounding.",
   },
   {
     name: "Theorem 3.26",

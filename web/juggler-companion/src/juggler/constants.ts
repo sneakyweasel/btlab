@@ -62,10 +62,49 @@ export const PRODUCTION_SEEDS = [
     value: 9962,
     note: "A large even block, too many to draw one bead each.",
   },
+  {
+    value: 1_000_000,
+    note: "Playground cap. |E(m)| ≈ 10^6, not listed bead by bead.",
+  },
+] as const;
+/** OE-fiber chips: empty production, mixed, 1/3 floor, printed figure, all odd-image, cap. */
+export const FIBER_SEEDS = [
+  {
+    value: 7,
+    note: "One odd n, even image. The whole fiber is the production.",
+  },
+  {
+    value: 11,
+    note: "First mixed fiber: one even image, one odd image.",
+  },
+  {
+    value: 15,
+    note: "Two odd n, both odd images. Production empty.",
+  },
+  {
+    value: 100,
+    note: "Three beads, share 1/3 — the monotone floor.",
+  },
+  {
+    value: 3375,
+    note: "Paper C dense census starts here. Mixed.",
+  },
+  {
+    value: 99_969,
+    note: "Same scale as the figure: 31 beads, all odd images.",
+  },
+  {
+    value: 100_000,
+    note: "Printed Paper C figure. Mixed, 19 of 31 even images.",
+  },
+  {
+    value: 1_000_000,
+    note: "Playground cap and sweep M₀. 67 beads, all even images.",
+  },
 ] as const;
 export const EVEN_BLOCK_BEAD_MAX = 40;
 export const FIBER_BEAD_MAX = 80;
-export const PRODUCTION_M_MAX = 100_000;
+export const PRODUCTION_M_MAX = 1_000_000;
 export const TOUR_EVEN_BLOCK_M = 11;
 export const TOUR_OE_FIBER_M = 100_000;
 

@@ -74,6 +74,7 @@ export function sweepPhase(n: bigint): number {
 
 export type FiberPoint = {
   n: number;
+  image: number;
   imageEven: boolean;
   sweep: number;
 };
@@ -86,6 +87,7 @@ export function oeFiber(m: number): FiberPoint[] {
     const image = isqrt(nb * nb * nb);
     points.push({
       n,
+      image: Number(image),
       imageEven: image % 2n === 0n,
       sweep: sweepPhase(nb),
     });
@@ -181,6 +183,14 @@ export function fiberView(m: number): FiberView {
     proportion: H === 0 ? null : G / H,
     listed: H <= FIBER_BEAD_MAX,
   };
+}
+
+/** A sea member of Φ(m), or any fiber bead if the production is empty. */
+export function randomOePath(view: FiberView): number | null {
+  const sea = view.points.filter((point) => point.imageEven);
+  const pool = sea.length > 0 ? sea : view.points;
+  if (pool.length === 0) return null;
+  return pool[Math.floor(Math.random() * pool.length)].n;
 }
 
 export function oeMembersMapToSeed(m: number): boolean {

@@ -1,5 +1,5 @@
 import { Tex } from "../components/Tex";
-import { EMBER, SEA } from "../juggler/palette";
+import { EVEN, ODD, beadColor } from "../juggler/palette";
 import type { FiberPoint } from "../juggler/productions";
 import { BeadMark } from "./BeadMark";
 
@@ -30,8 +30,8 @@ export function SweepLane({
     <div>
     <svg viewBox={`0 0 ${WIDTH} 100`} role="img" className="h-auto w-full">
       <title>Sweep of the fractional part of n to the three-halves over 2</title>
-      <rect x={LEFT} y="38" width={mid - LEFT} height="24" fill={SEA} opacity="0.18" />
-      <rect x={mid} y="38" width={RIGHT - mid} height="24" fill={EMBER} opacity="0.18" />
+      <rect x={LEFT} y="38" width={mid - LEFT} height="24" fill={EVEN} opacity="0.18" />
+      <rect x={mid} y="38" width={RIGHT - mid} height="24" fill={ODD} opacity="0.18" />
       <line x1={LEFT} y1={Y} x2={RIGHT} y2={Y} stroke="#1d1914" strokeWidth="2" />
       <line x1={mid} y1="34" x2={mid} y2="66" stroke="#1d1914" strokeWidth="1" />
       <text x={LEFT} y="88" fill="#5e574c" fontSize="12" fontFamily="IBM Plex Mono, monospace">
@@ -63,17 +63,17 @@ export function SweepLane({
           x={xOf(point.sweep)}
           y={Y}
           n={point.n}
-          color={point.imageEven ? SEA : EMBER}
+          color={beadColor(point.n)}
           radius={5.5}
           active={selected === point.n}
           onSelect={onSelect}
           onHover={onHover}
         />
       ))}
-      <text x={LEFT + 8} y="28" fill={SEA} fontSize="11">
+      <text x={LEFT + 8} y="28" fill={EVEN} fontSize="11">
         even image
       </text>
-      <text x={mid + 8} y="28" fill={EMBER} fontSize="11">
+      <text x={mid + 8} y="28" fill={ODD} fontSize="11">
         odd image
       </text>
     </svg>

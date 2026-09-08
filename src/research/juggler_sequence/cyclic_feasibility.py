@@ -16,7 +16,6 @@ from __future__ import annotations
 import csv
 import json
 import math
-import subprocess
 from dataclasses import dataclass
 from decimal import Decimal, localcontext
 from math import isqrt
@@ -29,7 +28,6 @@ from research.juggler_sequence.lean_paths import (
     DOCS_RESEARCH,
     JUGGLER_DIR,
     JUGGLER_PAPER_BARREL,
-    REPO_ROOT,
     engine_floor_text,
     has_named,
     juggler_text,
@@ -99,18 +97,6 @@ NEW_LEAN_FILES = (
     JUGGLER_DIR / "CycReal.lean",
     JUGGLER_DIR / "ClosureMismatch.lean",
 )
-
-
-def git_commit() -> str:
-    try:
-        return subprocess.check_output(
-            ["git", "rev-parse", "HEAD"],
-            cwd=REPO_ROOT,
-            text=True,
-            stderr=subprocess.DEVNULL,
-        ).strip()
-    except (OSError, subprocess.CalledProcessError):
-        return "unknown"
 
 
 def integer_cbrt_floor(m: int) -> int:
@@ -947,7 +933,6 @@ def run_probe(
         "n_max": n_max,
         "k_pairs": k_pairs,
         "scan_cap": scan_cap,
-        "git": git_commit(),
         "census": census,
         "census_matches_A001037": census_ok,
         "pairs": pairs,
@@ -1226,7 +1211,6 @@ def write_data_artifacts(payload: dict[str, Any]) -> None:
                 "k_max": scan["k_max"],
                 "n_max": scan["n_max"],
                 "claim": payload["claim"],
-                "git": scan["git"],
             },
             indent=2,
         )

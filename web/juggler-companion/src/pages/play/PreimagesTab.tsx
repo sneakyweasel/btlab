@@ -27,7 +27,7 @@ export function PreimagesTab() {
         <h2 className="font-serif text-2xl">Seed m</h2>
         <p className="text-sm text-muted">
           Pick a member of a backward-closed set A. The even block is the
-          one-step even production. The OE fiber of 100,000 is a separate tab.
+          one-step even production. The OE fiber is a separate tab.
         </p>
         <div className="flex flex-wrap items-end gap-3">
           <label className="text-sm text-muted">

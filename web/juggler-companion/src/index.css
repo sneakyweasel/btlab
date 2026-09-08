@@ -72,6 +72,10 @@ button.bg-odd {
   outline: none;
 }
 
+.bead-mark-static {
+  cursor: default;
+}
+
 .bead-label {
   opacity: 0;
   pointer-events: none;

@@ -12,6 +12,9 @@ type BeadMarkProps = {
   onHover?: (n: number | null) => void;
   labelBelow?: boolean;
   hideLabel?: boolean;
+  persistLabel?: boolean;
+  labelSize?: number;
+  labelRotate?: number;
 };
 
 export function BeadMark({
@@ -26,13 +29,18 @@ export function BeadMark({
   onHover,
   labelBelow = false,
   hideLabel = false,
+  persistLabel = false,
+  labelSize = 12,
+  labelRotate,
 }: BeadMarkProps) {
   const labelX = Math.min(Math.max(x, 40), width - 40);
-  const labelGap = 16;
+  const labelGap = labelRotate == null ? 16 : 10;
+  const labelY = labelBelow ? y + labelGap : y - labelGap;
+  const sticky = active || persistLabel;
   return (
     <g
-      className="bead-mark"
-      tabIndex={0}
+      className={onSelect || onHover ? "bead-mark" : "bead-mark bead-mark-static"}
+      tabIndex={onSelect || onHover ? 0 : undefined}
       onMouseEnter={() => onHover?.(n)}
       onMouseLeave={() => onHover?.(null)}
       onFocus={() => onHover?.(n)}
@@ -51,17 +59,28 @@ export function BeadMark({
       />
       {hideLabel ? null : (
       <text
-        className={active ? undefined : "bead-label"}
+        className={sticky ? undefined : "bead-label"}
         x={labelX}
-        y={labelBelow ? y + labelGap : y - labelGap}
-        dominantBaseline={labelBelow ? "hanging" : "auto"}
-        textAnchor="middle"
+        y={labelY}
+        dominantBaseline={
+          labelRotate == null
+            ? labelBelow
+              ? "hanging"
+              : "auto"
+            : "middle"
+        }
+        textAnchor={labelRotate == null ? "middle" : "start"}
         fill={color}
-        fontSize="12"
+        fontSize={labelSize}
         fontFamily="IBM Plex Mono, monospace"
         paintOrder="stroke"
         stroke="#fffdf7"
         strokeWidth="4"
+        transform={
+          labelRotate == null
+            ? undefined
+            : `rotate(${labelRotate} ${labelX} ${labelY})`
+        }
       >
         {formatInt(n)}
       </text>

@@ -1,9 +1,17 @@
-/** Ember / sea for O and E. Flare / plunge for a steep climb or drop. */
+/** Orange / blue for O and E. Flare / plunge for a steep climb or drop. */
 
 export const EMBER = "#c45c26";
 export const SEA = "#1f6f6a";
+export const ODD = EMBER;
+export const EVEN = SEA;
 export const FLARE = "#e8932a";
 export const PLUNGE = "#14525c";
+
+/** Bead fill follows the integer’s own parity, not the image’s. */
+export function beadColor(n: number | bigint): string {
+  const value = typeof n === "bigint" ? n : BigInt(n);
+  return value % 2n === 0n ? EVEN : ODD;
+}
 
 const STEEP_LOG10 = 2.2;
 

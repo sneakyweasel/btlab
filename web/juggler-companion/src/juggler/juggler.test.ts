@@ -7,13 +7,16 @@ import { evenPreimage, oddPreimageIntegers, oddPreimages } from "./preimages";
 import {
   evenBlock,
   evenBlockView,
+  evenPreimageInterval,
   evenMembersMapToSeed,
   centerEvenInBlock,
   randomEvenInBlock,
   fiberBounds,
   fiberStats,
+  fiberView,
   oeFiber,
   oeMembersMapToSeed,
+  randomOePath,
 } from "./productions";
 import {
   LIVE_FINANCE_L_MAX,
@@ -122,7 +125,17 @@ import {
   fanOdd,
   printedWalkK,
 } from "./fan";
-import { EMBER, FLARE, PLUNGE, SEA, mixHex, stepPathColor } from "./palette";
+import {
+  EMBER,
+  EVEN,
+  FLARE,
+  ODD,
+  PLUNGE,
+  SEA,
+  beadColor,
+  mixHex,
+  stepPathColor,
+} from "./palette";
 import { monsterTrajectory, resolveTrajectory } from "./monsters";
 import { walkTrajectory } from "./trajectory";
 import {
@@ -153,6 +166,16 @@ import {
   regimeOf,
   tryAssembleFill,
 } from "./itinerary";
+
+describe("beadColor", () => {
+  it("follows the integer’s own parity", () => {
+    expect(ODD).toBe(EMBER);
+    expect(EVEN).toBe(SEA);
+    expect(beadColor(27)).toBe(EMBER);
+    expect(beadColor(140)).toBe(SEA);
+    expect(beadColor(11n)).toBe(EMBER);
+  });
+});
 
 describe("stepPathColor", () => {
   it("stays ember or sea on a flat step and runs toward flare or plunge when steep", () => {
@@ -614,8 +637,30 @@ describe("productions", () => {
   it("sends every OE member of 12 to 12 in two steps", () => {
     const fiber = oeFiber(12);
     expect(fiber.map((point) => point.n)).toEqual([29]);
+    expect(fiber[0]?.image).toBe(156);
     expect(fiber[0]?.imageEven).toBe(true);
     expect(oeMembersMapToSeed(12)).toBe(true);
+  });
+
+  it("picks a sea path when one exists and a fiber bead when none do", () => {
+    expect(randomOePath(fiberView(11))).toBe(27);
+    expect(randomOePath(fiberView(12))).toBe(29);
+    const empty = fiberView(15);
+    expect(empty.points.map((point) => point.n)).toContain(randomOePath(empty));
+    const printed = fiberView(100000);
+    const sea = printed.points.filter((point) => point.imageEven).map((point) => point.n);
+    expect(sea).toContain(randomOePath(printed));
+  });
+
+  it("keeps ember images odd and sea images in the even block", () => {
+    const fiber = oeFiber(11);
+    expect(fiber.map((point) => [point.n, point.image, point.imageEven])).toEqual([
+      [25, 125, false],
+      [27, 140, true],
+    ]);
+    const block = evenPreimageInterval(11);
+    expect(140).toBeGreaterThanOrEqual(block.lo);
+    expect(140).toBeLessThan(block.hi);
   });
 
   it("matches the Paper C figure fiber of 100000", () => {
@@ -627,6 +672,21 @@ describe("productions", () => {
       proportion: 19 / 31,
     });
     expect(oeMembersMapToSeed(100000)).toBe(true);
+  });
+
+  it("keeps the fiber chips at the named shares", () => {
+    expect(fiberStats(7)).toEqual({ m: 7, H: 1, G: 1, proportion: 1 });
+    expect(fiberStats(11)).toEqual({ m: 11, H: 2, G: 1, proportion: 0.5 });
+    expect(fiberStats(15)).toEqual({ m: 15, H: 2, G: 0, proportion: 0 });
+    expect(fiberStats(100)).toEqual({ m: 100, H: 3, G: 1, proportion: 1 / 3 });
+    expect(fiberStats(99_969)).toEqual({ m: 99_969, H: 31, G: 0, proportion: 0 });
+    expect(fiberStats(1_000_000)).toEqual({
+      m: 1_000_000,
+      H: 67,
+      G: 67,
+      proportion: 1,
+    });
+    expect(fiberView(1_000_000).listed).toBe(true);
   });
 });
 

@@ -106,7 +106,7 @@ export const IDEAL_DECISIONS: readonly IdealDecision[] = [
     kind: "theorem",
     focus: "string-grey",
     title: "Stem ? 0+ stays grey",
-    why: "A string is not run form O^{a}E⋯O^{a}E. The middle is one 0+ slot, not three letters and not tiled by OOE and OE. Color and count are both unknown. Painting it orange or teal would pretend we know the parity.",
+    why: "A string is not run form O^{a}E⋯O^{a}E. The middle is one 0+ slot, not three letters and not tiled by OOE and OE. Color and count are both unknown. Painting it orange or blue would pretend we know the parity.",
     lemma: "J-itinerary-semantics",
   },
   {

@@ -29625,8 +29625,7 @@
     "first_step_ok": true,
     "contact_elevated": false,
     "shadow_elevated": false,
-    "rates_close": true,
-    "git_commit": "75d8c872ca221e9009275ad6116c0096f09c6d87"
+    "rates_close": true
   },
   "lean": {
     "sorry_free": true,

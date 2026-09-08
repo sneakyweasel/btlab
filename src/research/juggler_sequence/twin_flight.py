@@ -14,7 +14,6 @@ isolation. First-step closeness is the setup, not a shadow. The sink
 from __future__ import annotations
 
 import json
-import subprocess
 from collections import Counter
 from functools import lru_cache
 from pathlib import Path
@@ -26,7 +25,6 @@ from research.juggler_sequence.lean_paths import (
     DOCS_RESEARCH,
     JUGGLER_DIR,
     JUGGLER_PAPER_BARREL,
-    REPO_ROOT,
     engine_floor_text,
     has_named,
     juggler_text,
@@ -103,18 +101,6 @@ NEW_LEAN_FILES = (
     JUGGLER_DIR / "CommonTail.lean",
     JUGGLER_DIR / "ShadowPair.lean",
 )
-
-
-def git_commit() -> str:
-    try:
-        return subprocess.check_output(
-            ["git", "rev-parse", "HEAD"],
-            cwd=REPO_ROOT,
-            text=True,
-            stderr=subprocess.DEVNULL,
-        ).strip()
-    except (OSError, subprocess.CalledProcessError):
-        return "unknown"
 
 
 def compact_int(value: int | None, *, bits: int = JSON_INT_BITS) -> int | dict[str, Any] | None:
@@ -552,7 +538,6 @@ def run_probe(
             abs(hard_contact - control["contact_rate"]) < 0.10
             and abs(hard_shadow - control["shadow_rate"]) < 0.10
         ),
-        "git_commit": git_commit(),
     }
 
 

@@ -34,7 +34,7 @@ export function PlaygroundPage() {
           gap-transfer / Rhin plane, the walk-charge explorer, or the
           semiconvergent fan. Caps:
           80 steps, 256 bits live, itineraries of length at most 8 (cycles 16,
-          tour words 24), production seeds at most 100,000. Shipped monsters
+          tour words 24), production seeds at most 1,000,000. Shipped monsters
           are pictures, not a live walk. Hitting 1 is not a theorem.
         </p>
       </header>
