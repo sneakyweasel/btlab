@@ -41339,3 +41339,61 @@ Numbering note: section 6 had no numbered statements, and 6.1 and 6.2 are
 section headings, so Proposition 6.1 would have read as a section. The
 paper already uses letter suffixes -- 4.4b, 4.4c, 5.8b, 5.8c -- so 6.2a
 follows the convention that exists rather than inventing one.
+
+## The V-ladder was finished two rungs before anyone noticed
+
+Every dossier in the elementary production family ends the same way.
+V_4 names V_5 as the best next question, V_5 names V_6, V_6 names V_7.
+Each rung is a full audit -- a fiber computation, five or six saving
+cases, an envelope constant, a consistency pass.
+
+Theorem 5 of the production note already gives the limit of the whole
+family in closed form. The tail telescopes and the recursion collapses to
+x + y/3 = 1, root 0.4926580. So the residual past V_6 is 8.6e-5, and it
+has been computable since before V_3 was written.
+
+What nobody asked is what the residual buys. lambda** reaches the Tao
+reduction through exactly one number, the required rate 1 - lambda**, and
+the things that number decides are discrete: the least Chernoff depth and
+the least Azuma depth C(q). A discrete constant moves when the rate
+crosses a threshold, and not otherwise.
+
+Every constant reaches its terminal value at V_5. Least C = 19, C(0.5) =
+19, C(0.55) = 41, and they stay there at V_6, at V_24, and at the limit.
+The V_6 audit moved lambda** by 0.00021 and changed nothing at all. The
+laboratory had already written this down twice without reading it: the
+V_5 dossier records "Azuma C(0.55) drops from 42 to 41", the V_6 dossier
+records "stays 41".
+
+The nearest threshold is C(0.55) dropping to 40, which needs lambda >
+0.510018. The family limit is 0.492658. The shortfall is 0.01736 -- 201
+times everything the family has left. Chernoff needs 0.519593, Azuma at
+q = 0.5 needs 0.522563.
+
+I checked the falsifier rather than assuming it. There is a consumer of
+the rate that is not discrete: the failure margin m(C,q) of the pressure
+note. It does move. It moves by 7.5e-6, against the 0.06 resolution of
+the census it is read against -- four orders of magnitude below anything
+readable.
+
+The geometry confirms itself: gaps to the limit fall by y/3 = 0.2892855
+per rung, and the measured ratio at k = 18 is 0.2892854. I had to read
+that ratio at k = 18 rather than k = 24, because by then the gaps are
+near the double-precision floor and the measured ratio is noise -- my
+first version reported 0.28967 and I nearly wrote it down as a genuine
+0.1% discrepancy.
+
+One naming mistake worth recording. I called the function
+first_rung_without_effect and it returned 5, which reads as "V_5 has no
+effect" -- the opposite of the truth, since V_5 is the rung that moved
+C(0.55) from 42 to 41. It returns the first rung whose constants already
+equal the limit's, so it names the last rung that paid. Renamed
+last_effective_rung before the number went into a document.
+
+This is the same shape as Proposition 6.2a for Paper A yesterday: the
+ceiling was in the same document as the ladder, and the work was being
+priced in the wrong units. There it was theta; here it is lambda. In both
+cases the quantity being optimized is not the quantity that decides.
+
+CLOSE. Not because the family is exhausted -- it converges perfectly
+well -- but because it is downstream-inert past V_5.

@@ -160,6 +160,13 @@ count is fixed by the dynamics. It assumes the only effect of `EE` is
 the recount --- if an `EE` forced extra height relations, some of the
 \(18\) could come back. That is the open direction here.
 
+## Branch budget
+
+Phase 0 only, and spent. One probe, `cycle_packing_fragility`, over the
+existing three-class charge; the six-class packing it prices is Lean
+(`cycleMin_sixTerm`). No new estimate and no new floor. Closed, so the
+budget is not renewed.
+
 ## Decision
 
 **PARK.** The question asked is answered and the answer is sharp: 4.7
@@ -180,3 +187,10 @@ constraint of that kind --- not on a sharper version of these.
 - Probe: `src/research/juggler_sequence/cycle_packing_fragility.py`
 - Test: `tests/research/juggler_sequence/test_cycle_packing_fragility.py`
 - Data: `data/research/juggler/cycle_finance/packing_fragility.json`
+
+## Publication assessment
+
+Status: `MEASUREMENT`. Belongs in Paper A as the price attached to
+Theorem 4.7's hypotheses -- the 24/18 split of Theorem 4.8 and the
+"packing hypothesis and its price" subsection of section 4. Not a
+theorem of its own and not a halt theorem.

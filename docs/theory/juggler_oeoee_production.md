@@ -338,6 +338,26 @@ the sweep share \(\tfrac23\) to the ideal \(1\), and each costing a
 bounded amount of classical work with **the same** \(5/8\) geometry.
 Any finite truncation is a theorem; the convergence is geometric.
 
+**Remark (what the remaining rungs are worth).** The convergence being
+geometric is not by itself a reason to keep climbing, and it is worth
+saying once what the residual buys. The generic rung is \(3^{-(k+1)}\) at
+scale \(\tfrac12(3/4)^k\); the gap to the limit falls by \(y/3=0.28929\)
+per rung, so \(\lambda_\infty-\lambda_6=8.6\cdot10^{-5}\) is the value of
+the entire remaining infinite family. That value is spent on one number,
+the required rate \(1-\lambda^{**}\), and the quantities it decides are
+discrete: the least Chernoff depth and the least Azuma depth \(C(q)\).
+All of them reach their terminal values at \(V_5\) -- least \(C=19\),
+\(C(0.5)=19\), \(C(0.55)=41\) -- and stay there at every later rung and
+at the limit. The nearest threshold, \(C(0.55)\) dropping to \(40\),
+needs \(\lambda>0.510018\), which exceeds \(\lambda_\infty\) by \(201\)
+times the whole residual. The one quantity that depends on the rate
+continuously, the failure margin of the pressure note, moves by
+\(7.5\cdot10^{-6}\) against a census resolution of \(0.06\). So \(V_6\)
+was the last truncation to be worth writing out, \(V_5\) the last to
+change anything, and a constant can only move on a gain from outside the
+family. Probe: `research.juggler_sequence.vk_ladder_ceiling`; branch
+[juggler_vk_ladder_ceiling](../problems/juggler_vk_ladder_ceiling.md).
+
 ## 9. \(V_3=OEOEOEE\) worked out
 
 **Lemma 6 (exact chain; EXACT — HUMAN PROOF).** Let \(n\) be odd with

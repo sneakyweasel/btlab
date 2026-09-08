@@ -139,6 +139,15 @@ and worth \(O(e/n)\): at the floor where each length matters it is
 Survivors sit at \(L\approx n^{0.59}\), that is \(n\approx L^{1.7}\),
 inside the band \([L, L^{2}]\) that a one-sided bound cannot empty.
 
+## Branch budget
+
+Phase 0 only, and spent. Two probes -- `cycle_method_ceilings` for the
+reach scalings and shape counts, `cycle_packing_fragility` for the
+run-packing side -- over the existing finance and walk-charge machinery.
+No new estimate, no new floor, no Lean. The branch is closed, so the
+budget is not renewed: the reopen conditions in "What is actually
+missing" are the only spend that would be justified.
+
 ## Decision
 
 **PARK.** Reopen only on one of two things, neither of which has a
@@ -159,3 +168,11 @@ and is not. A new idea has to be measured by something else.
 - Probe: `src/research/juggler_sequence/cycle_method_ceilings.py`
 - Test: `tests/research/juggler_sequence/test_cycle_method_ceilings.py`
 - Data: `data/research/juggler/cycle_finance/method_ceilings.json`
+
+## Publication assessment
+
+Status: `MEASUREMENT`. Belongs in Paper A section 6 as the priced
+ceiling, which is where it now sits: the floor-route reaches and the
+length-only optimality are section 6.2, and the general statement is
+Proposition 6.2a. Not a theorem of its own, not a halt theorem, and not
+a Paper B object.
