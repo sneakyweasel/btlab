@@ -39580,3 +39580,35 @@ CLOSE and REFUTED.
 A lower bound cannot exceed the quantity it bounds, and the quantity is
 below G on every expanding word. The floor-defect picture is closed at
 the total and at every part.
+
+The Ostrowski assembly is done, and it was three list lemmas and one
+decide. theta_block_envelope wanted a list of certified convergents;
+the numeration produces digits against thetaDenomFn. ostroBlocks gives
+level i one copy of the pair at level 12-i per digit, matching the
+association in theta_sum_eq, and then the two readings of the list are
+exactly L and s(L): ostroBlocks_snd_sum is theta_sum_eq once the pairs
+are rewritten to denominators, and ostroBlocks_length is the digit sum.
+
+The bridge is one line -- thetaPair_snd, that the certified pair at
+level j has second component thetaDenomFn j. Both sides were talking
+about the same thirteen integers under two names, and a decide is the
+whole of it.
+
+So theta_block_envelope_of_length is Theorem 5.7's display at every L
+with no window hypothesis, and theta_block_envelope_window feeds the
+structural digit cap s(L) <= 47 through it to get the constant 94.
+That closes Theorem 5.8's row, which said the Denjoy-Koksma comparison
+was human: |C_L - C_*| <= 94/L for every L < 301994, uniformly in the
+starting phase.
+
+Three guards fired and all three were right. The layer test caught that
+I had put the new module before the one it imports -- the rank comes
+from lean_paths.LAYERS and I had fixed the module list but not the path
+map, two orderings that must agree with no single source. The Paper A
+trust boundary caught six missing citations in AxiomCheckPaperA,
+theta_sum_eq among them because the new prose cites it. And the branch
+index went stale twice, once for the module and once for the reorder.
+
+What Theorem 5.7 still takes from its human proof is now one thing: the
+reading of C_L as that ergodic sum, which is Lemma 5.6's rotation
+identification.

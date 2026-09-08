@@ -18,7 +18,6 @@
 -/
 
 import Problems.JugglerPaper
-
 #print axioms Problems.Juggler.absorb_odd_step
 #print axioms Problems.Juggler.alpha_lt_half
 #print axioms Problems.Juggler.block_envelope
@@ -163,6 +162,9 @@ import Problems.JugglerPaper
 #print axioms Problems.Juggler.orbitCell
 #print axioms Problems.Juggler.orbitCell_inj
 #print axioms Problems.Juggler.orbit_mem_cell
+#print axioms Problems.Juggler.ostroBlocks
+#print axioms Problems.Juggler.ostroBlocks_length
+#print axioms Problems.Juggler.ostroBlocks_snd_sum
 #print axioms Problems.Juggler.ostroDigit_le
 #print axioms Problems.Juggler.ostro_digitSum_le
 #print axioms Problems.Juggler.ostro_sum_eq
@@ -198,6 +200,8 @@ import Problems.JugglerPaper
 #print axioms Juggler.FanLaw.step_lt_two
 #print axioms Problems.Juggler.sum_eVariationOn_Icc
 #print axioms Problems.Juggler.theta_block_envelope
+#print axioms Problems.Juggler.theta_block_envelope_of_length
+#print axioms Problems.Juggler.theta_block_envelope_window
 #print axioms Problems.Juggler.theta_block_permutations
 #print axioms Problems.Juggler.theta_convergent_denominators
 #print axioms Problems.Juggler.theta_convergent_numerators
@@ -208,6 +212,7 @@ import Problems.JugglerPaper
 #print axioms Problems.Juggler.theta_sandwich_lower
 #print axioms Problems.Juggler.theta_sandwich_upper
 #print axioms Problems.Juggler.theta_strictMono
+#print axioms Problems.Juggler.theta_sum_eq
 #print axioms Problems.Juggler.three_mul_lt_two_mul_of_omin
 #print axioms Problems.Juggler.three_pow_step_gt_two_pow_step
 #print axioms Problems.Juggler.threshold_inherits_odd_append

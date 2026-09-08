@@ -142,6 +142,9 @@
 'Problems.Juggler.orbitCell' does not depend on any axioms
 'Problems.Juggler.orbitCell_inj' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.orbit_mem_cell' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.ostroBlocks' depends on axioms: [propext]
+'Problems.Juggler.ostroBlocks_length' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.ostroBlocks_snd_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.ostroDigit_le' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.ostro_digitSum_le' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.ostro_sum_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
@@ -177,6 +180,8 @@
 'Juggler.FanLaw.step_lt_two' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.sum_eVariationOn_Icc' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.theta_block_envelope' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.theta_block_envelope_of_length' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.theta_block_envelope_window' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.theta_block_permutations' depends on axioms: [propext, Quot.sound]
 'Problems.Juggler.theta_convergent_denominators' does not depend on any axioms
 'Problems.Juggler.theta_convergent_numerators' does not depend on any axioms
@@ -187,6 +192,7 @@
 'Problems.Juggler.theta_sandwich_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.theta_sandwich_upper' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.theta_strictMono' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.theta_sum_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.three_mul_lt_two_mul_of_omin' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.three_pow_step_gt_two_pow_step' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.threshold_inherits_odd_append' depends on axioms: [propext, Classical.choice, Quot.sound]

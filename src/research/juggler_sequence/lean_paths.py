@@ -65,6 +65,7 @@ PAPER_MODULES: tuple[str, ...] = (
     "DenjoyKoksmaOrbit",
     "JumpVariation",
     "OstrowskiNumeration",
+    "OstrowskiBlocks",
     "RotationAverage",
     "FanLaw",
     "WalkTransport",
@@ -146,6 +147,7 @@ LAYERS: dict[str, Path] = {
     "DenjoyKoksmaOrbit": JUGGLER_DIR / "DenjoyKoksmaOrbit.lean",
     "JumpVariation": JUGGLER_DIR / "JumpVariation.lean",
     "OstrowskiNumeration": JUGGLER_DIR / "OstrowskiNumeration.lean",
+    "OstrowskiBlocks": JUGGLER_DIR / "OstrowskiBlocks.lean",
     "RotationAverage": JUGGLER_DIR / "RotationAverage.lean",
     "FanLaw": JUGGLER_DIR / "FanLaw.lean",
     "WalkTransport": JUGGLER_DIR / "WalkTransport.lean",
@@ -162,6 +164,7 @@ LAYERS: dict[str, Path] = {
     "DepthOneMainTerm": JUGGLER_DIR / "DepthOneMainTerm.lean",
     "CycleRunAlphabet": JUGGLER_DIR / "CycleRunAlphabet.lean",
     "ParityComplexity": JUGGLER_DIR / "ParityComplexity.lean",
+    "LocalizedKernel": JUGGLER_DIR / "LocalizedKernel.lean",
 }
 
 DYNAMICS = LAYERS["Dynamics"]
