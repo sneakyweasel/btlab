@@ -15,6 +15,9 @@ import Problems.JugglerFatePaper
 
 open Problems.Juggler
 
+#print axioms LBad_count_le
+#print axioms LBad_oddCount_ge
+#print axioms LBad_of_envelopeBad
 #print axioms Sweep.card_le_cells_mul
 #print axioms Sweep.ceil_modEq_one_iff
 #print axioms Sweep.ceil_modEq_zero_iff
@@ -40,6 +43,10 @@ open Problems.Juggler
 #print axioms count_le_of_meanShareOff
 #print axioms count_le_of_noMomentum
 #print axioms count_le_pressure
+#print axioms count_oddCount_ge_le
+#print axioms count_oddCount_ge_le_exp
+#print axioms count_oddCount_ge_le_kl
+#print axioms count_oddCount_ge_real_le
 #print axioms cube_fiber_alternating
 #print axioms cube_fiber_even_image
 #print axioms cube_fiber_range
@@ -63,9 +70,13 @@ open Problems.Juggler
 #print axioms floorPower_even_block
 #print axioms floorPower_odd_even_two_step_lt
 #print axioms floorPower_oe_fiber
+#print axioms half_le_pC
 #print axioms initial_depths_are_free
 #print axioms iterate_le_of_envelope
 #print axioms iterate_one_fixed
+#print axioms klHalf_eq
+#print axioms klHalf_nonneg
+#print axioms logb_two_three_le
 #print axioms meanShareOff_empty
 #print axioms meanShare_of_noMomentum
 #print axioms mem_iff_floorPower_mem
@@ -76,6 +87,9 @@ open Problems.Juggler
 #print axioms nonempty_iff_odd_image_mem
 #print axioms not_reachesOne_backwardClosed
 #print axioms not_reachesOne_forwardClosed
+#print axioms oddFailures_card_le
+#print axioms oddFailures_card_le_chernoff
+#print axioms oddFailures_subset_bad_cylinders
 #print axioms oddMass_le_weightGen
 #print axioms oddMass_nonneg
 #print axioms odd_cube_fiber_alternating
@@ -83,6 +97,8 @@ open Problems.Juggler
 #print axioms oe_fiber_disjoint
 #print axioms oe_fiber_mem
 #print axioms one_add_le_exp_excess
+#print axioms one_lt_logb_two_three
+#print axioms pC_lt_one
 #print axioms periodic_iterate_mod
 #print axioms periodic_of_repeat
 #print axioms power_bound_word
@@ -104,6 +120,7 @@ open Problems.Juggler
 #print axioms sweep_rep_gt_half
 #print axioms sweep_rep_le_half
 #print axioms tilt_exponent_eq_kl
+#print axioms tilt_value
 #print axioms tiltedShare_le_one
 #print axioms tower_ratio_lt_one
 #print axioms tower_tolerance_half
@@ -112,5 +129,7 @@ open Problems.Juggler
 #print axioms weightGen_le_pressure
 #print axioms weightGen_le_prod
 #print axioms weightGen_nonneg
+#print axioms weightGen_one
 #print axioms weightGen_succ_le
 #print axioms weightGen_succ_le_share
+#print axioms weight_markov

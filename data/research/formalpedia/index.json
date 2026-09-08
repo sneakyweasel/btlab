@@ -22827,6 +22827,344 @@
       "trust": "kernel"
     },
     {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateChernoff.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-chernoff-count",
+        "J-fate-tao-union-bound"
+      ],
+      "line": 38,
+      "module": "Problems.Juggler.FateChernoff",
+      "name": "weightGen_one",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Markov tilt on the constant weight: at most `(1 + x)^d / x^k` words of length `d` have at least `k` odd letters, for any `x \u2265 1`.",
+      "file": "formal/Problems/Juggler/FateChernoff.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-chernoff-count",
+        "J-fate-tao-union-bound"
+      ],
+      "line": 56,
+      "module": "Problems.Juggler.FateChernoff",
+      "name": "count_oddCount_ge_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The same with a real threshold `p d` on the odd count and a real exponent.",
+      "file": "formal/Problems/Juggler/FateChernoff.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-chernoff-count",
+        "J-fate-tao-union-bound"
+      ],
+      "line": 63,
+      "module": "Problems.Juggler.FateChernoff",
+      "name": "count_oddCount_ge_real_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Binary entropy in nats, `h(p) = -p log p - (1-p) log (1-p)`.",
+      "file": "formal/Problems/Juggler/FateChernoff.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-chernoff-count",
+        "J-fate-tao-union-bound"
+      ],
+      "line": 82,
+      "module": "Problems.Juggler.FateChernoff",
+      "name": "entropyLog",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Relative entropy to the fair coin, `D(p \u2016 1/2) = log 2 - h(p)`.",
+      "file": "formal/Problems/Juggler/FateChernoff.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-chernoff-count",
+        "J-fate-tao-union-bound"
+      ],
+      "line": 85,
+      "module": "Problems.Juggler.FateChernoff",
+      "name": "klHalf",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateChernoff.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-chernoff-count",
+        "J-fate-tao-union-bound"
+      ],
+      "line": 87,
+      "module": "Problems.Juggler.FateChernoff",
+      "name": "klHalf_eq",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Gibbs' inequality for the fair coin: `h(p) \u2264 log 2`, i.e. `D(p \u2016 1/2) \u2265 0`.",
+      "file": "formal/Problems/Juggler/FateChernoff.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-chernoff-count",
+        "J-fate-tao-union-bound"
+      ],
+      "line": 94,
+      "module": "Problems.Juggler.FateChernoff",
+      "name": "klHalf_nonneg",
+      "trust": "kernel"
+    },
+    {
+      "doc": "At the tilt `x = p/(1-p)`, `(1 + x)^d / x^{p d} = exp (d h(p))`.",
+      "file": "formal/Problems/Juggler/FateChernoff.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-chernoff-count",
+        "J-fate-tao-union-bound"
+      ],
+      "line": 112,
+      "module": "Problems.Juggler.FateChernoff",
+      "name": "tilt_value",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Lemma 8.2, the count.** For `1/2 \u2264 p < 1`, at most `exp (d h(p))` words of length `d` have at least `p d` odd letters.",
+      "file": "formal/Problems/Juggler/FateChernoff.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-chernoff-count",
+        "J-fate-tao-union-bound"
+      ],
+      "line": 133,
+      "module": "Problems.Juggler.FateChernoff",
+      "name": "count_oddCount_ge_le_exp",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The same in the paper's form `2^d exp(-d D(p \u2016 1/2))`.",
+      "file": "formal/Problems/Juggler/FateChernoff.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-chernoff-count",
+        "J-fate-tao-union-bound"
+      ],
+      "line": 143,
+      "module": "Problems.Juggler.FateChernoff",
+      "name": "count_oddCount_ge_le_kl",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`w` is `L`-bad: the exponent walk `o_t log\u2082 3 - t` stays above `-L` at every prefix `1 \u2264 t \u2264 |w|`.",
+      "file": "formal/Problems/Juggler/FateChernoff.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-chernoff-count",
+        "J-fate-tao-union-bound"
+      ],
+      "line": 160,
+      "module": "Problems.Juggler.FateChernoff",
+      "name": "LBad",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The paper's `p_C = (1 - 1/C)/log\u2082 3`.",
+      "file": "formal/Problems/Juggler/FateChernoff.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-chernoff-count",
+        "J-fate-tao-union-bound"
+      ],
+      "line": 165,
+      "module": "Problems.Juggler.FateChernoff",
+      "name": "pC",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The paper's Chernoff exponent `e(C) = C D(p_C \u2016 1/2)/log 2`.",
+      "file": "formal/Problems/Juggler/FateChernoff.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-chernoff-count",
+        "J-fate-tao-union-bound"
+      ],
+      "line": 168,
+      "module": "Problems.Juggler.FateChernoff",
+      "name": "chernoffExponent",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateChernoff.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-chernoff-count",
+        "J-fate-tao-union-bound"
+      ],
+      "line": 170,
+      "module": "Problems.Juggler.FateChernoff",
+      "name": "one_lt_logb_two_three",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`log\u2082 3 \u2264 8/5`, i.e. `3^5 \u2264 2^8`.",
+      "file": "formal/Problems/Juggler/FateChernoff.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-chernoff-count",
+        "J-fate-tao-union-bound"
+      ],
+      "line": 175,
+      "module": "Problems.Juggler.FateChernoff",
+      "name": "logb_two_three_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateChernoff.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-chernoff-count",
+        "J-fate-tao-union-bound"
+      ],
+      "line": 187,
+      "module": "Problems.Juggler.FateChernoff",
+      "name": "pC_lt_one",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateChernoff.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-chernoff-count",
+        "J-fate-tao-union-bound"
+      ],
+      "line": 194,
+      "module": "Problems.Juggler.FateChernoff",
+      "name": "half_le_pC",
+      "trust": "kernel"
+    },
+    {
+      "doc": "An `L`-bad word of length `d \u2265 C L` has at least `p_C d` odd letters.",
+      "file": "formal/Problems/Juggler/FateChernoff.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-chernoff-count",
+        "J-fate-tao-union-bound"
+      ],
+      "line": 204,
+      "module": "Problems.Juggler.FateChernoff",
+      "name": "LBad_oddCount_ge",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Lemma 8.2 (Chernoff), exact form.** For `C \u2265 5` and `d \u2265 C L` with `d \u2265 1`, the number of `L`-bad words of length `d` is at most `2^d \u00b7 2^{-e(C) L}`.",
+      "file": "formal/Problems/Juggler/FateChernoff.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-chernoff-count",
+        "J-fate-tao-union-bound"
+      ],
+      "line": 221,
+      "module": "Problems.Juggler.FateChernoff",
+      "name": "LBad_count_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The cylinder of `w` at scale `y`: odd starts in `(y, 2y]` whose realized itinerary of length `d` is `w`.",
+      "file": "formal/Problems/Juggler/FateChernoff.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-chernoff-count",
+        "J-fate-tao-union-bound"
+      ],
+      "line": 252,
+      "module": "Problems.Juggler.FateChernoff",
+      "name": "cylinder",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The odd starts in `(y, 2y]` that do not reach `1`.",
+      "file": "formal/Problems/Juggler/FateChernoff.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-chernoff-count",
+        "J-fate-tao-union-bound"
+      ],
+      "line": 256,
+      "module": "Problems.Juggler.FateChernoff",
+      "name": "oddFailures",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`w` fails the envelope comparison against the floor `N\u2080` at the scale `Y` at every prefix: `N\u2080^{2^t} < Y^{3^{o_t}}` for all `t \u2264 |w|`. This is the integer form of `L(Y)`-badness.",
+      "file": "formal/Problems/Juggler/FateChernoff.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-chernoff-count",
+        "J-fate-tao-union-bound"
+      ],
+      "line": 262,
+      "module": "Problems.Juggler.FateChernoff",
+      "name": "EnvelopeBad",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Lemma 8.1 in covering form.** If every start up to `N\u2080` reaches `1`, an odd failure in `(y, 2y]` lies in the cylinder of an envelope-bad word.",
+      "file": "formal/Problems/Juggler/FateChernoff.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-chernoff-count",
+        "J-fate-tao-union-bound"
+      ],
+      "line": 267,
+      "module": "Problems.Juggler.FateChernoff",
+      "name": "oddFailures_subset_bad_cylinders",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Theorem 8.3, the union bound.** Under a floor `N\u2080` and a bound `M` on every envelope-bad cylinder of depth `d`, the odd failures in `(y, 2y]` number at most (the number of envelope-bad words) times `M`.",
+      "file": "formal/Problems/Juggler/FateChernoff.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-chernoff-count",
+        "J-fate-tao-union-bound"
+      ],
+      "line": 294,
+      "module": "Problems.Juggler.FateChernoff",
+      "name": "oddFailures_card_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Envelope-badness at the scale `Y` is `L`-badness with `L = log\u2082 (log Y / log N\u2080)`, for `N\u2080 \u2265 2` and `Y \u2265 2`.",
+      "file": "formal/Problems/Juggler/FateChernoff.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-chernoff-count",
+        "J-fate-tao-union-bound"
+      ],
+      "line": 309,
+      "module": "Problems.Juggler.FateChernoff",
+      "name": "LBad_of_envelopeBad",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Theorem 8.3, exact composite.** Floor `N\u2080 \u2265 2`, scale `y \u2265 1`, depth `d \u2265 1` with `d \u2265 C L`, `L = log\u2082 (log 2y / log N\u2080)`, `C \u2265 5`; if every `L`-bad cylinder of depth `d` holds at most `M` starts, then the odd failures in `(y, 2y]` number at most `2^d \u00b7 2^{-e(C) L} \u00b7 M`.",
+      "file": "formal/Problems/Juggler/FateChernoff.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-chernoff-count",
+        "J-fate-tao-union-bound"
+      ],
+      "line": 346,
+      "module": "Problems.Juggler.FateChernoff",
+      "name": "oddFailures_card_le_chernoff",
+      "trust": "kernel"
+    },
+    {
       "doc": "`A` is closed under taking one-step preimages.",
       "file": "formal/Problems/Juggler/FateContagion.lean",
       "kind": "def",
@@ -67746,6 +68084,7 @@
         "Problems.Juggler.ExpansionBlocks",
         "Problems.Juggler.ExpansionSlack",
         "Problems.Juggler.FanLaw",
+        "Problems.Juggler.FateChernoff",
         "Problems.Juggler.FateContagion",
         "Problems.Juggler.FateFirstLetter",
         "Problems.Juggler.FateRecursion",
@@ -68410,6 +68749,26 @@
           "id": "J-lean-arithmetic-certificates-kernel-checked",
           "statement": "Trust-boundary audit of the Juggler Lean layer, 5 Sep 2026. Of 325 native_decide sites, 302 run the dynamics or a structure (floorPower iteration, itinerary lists, List.all over ranges, the floor-257 orbit tables) and stay; 23 sites covering 18 distinct theorems are pure Nat literal arithmetic and all 18 convert to norm_num, so they are checked by the kernel rather than by the compiled runtime. The converted set is load-bearing: FanLaw.fan_step_pow (3^190537 < 2^301994) is the negativity of the affine step in Paper A Proposition 5.12, the reason the semiconvergent fan has 56 members; RunSurvivorLattice.three_pow_step_gt_two_pow_step and three_pow_pred_step_le_two_pow_step (3^665 > 2^1054, 3^664 <= 2^1054) are Proposition 4.9's survivor lattice; CycleHeightFinance.l84_height_cap_nat is the leftover-84 height cap; O7EEEEGap.three_mul_pow256_gt_pow257 is the O^7EEEE gap; ten more are the leftover cell evaluations of LeftoverEval. With theta_sandwich_upper and theta_sandwich_lower moved in the same pass, twenty of the layer's arithmetic certificates now rest on the kernel. Counts 325 -> 307; the barrel builds (3473 jobs) and tools/trust_boundary.py still reports every cited identifier declared and reachable. The dividing line is goal shape, not size: a six-hundred-thousand-bit comparison converts in under a second because Nat literal arithmetic is GMP-backed in the kernel, while a twenty-step orbit table does not convert at all because the kernel would have to unfold a definition. No theorem statement changed and no proof was weakened. Extended 5 Sep 2026 to the whole layer: the elaborator's decide is stuck on floorPower (reduction does not unfold Nat.sqrt) but decide +kernel is not, so all 307 remaining sites were converted and the barrel built. Two failed with (kernel) deterministic timeout and were reverted, both quarter-million-length scans: window_digit_scan over [50508, 301994) and greedy_eq_ostro_below_window over [0, 301994), each running a thirteen-denominator greedy decomposition per length. Final state 305 decide +kernel, 20 norm_num, 2 native_decide, from 327 before the three passes. Verified by #print axioms rather than by counting: reachesOne_n193 depends on [propext], FanLaw.fan_step_pow on [propext, Classical.choice, Quot.sound], and the holdout window_digit_scan on [propext, window_digit_scan._native.native_decide.ax_1_1] - the converted proofs carry no compiler-trust assumption and each holdout carries a named one. The ReachesOne class alone is 130 sites, deepest witness k = 73 from n = 193. Three regimes, three tactics: literal arithmetic to norm_num, closed computations over definitions to decide +kernel, and large scans staying native. No theorem statement changed and no proof was weakened.",
           "tag": "COMPUTATIONALLY VERIFIED"
+        }
+      ]
+    },
+    "Problems.Juggler.FateChernoff": {
+      "declarations": 26,
+      "file": "formal/Problems/Juggler/FateChernoff.lean",
+      "imports": [
+        "Problems.Juggler.FateContagion",
+        "Problems.Juggler.RateFreeDensity"
+      ],
+      "ledger": [
+        {
+          "id": "J-fate-chernoff-count",
+          "statement": "Paper C Lemma 8.2 (Chernoff), exact form. A word w of length d is L-bad if o_t(w) log_2 3 \u2212 t > \u2212L for every 1 \u2264 t \u2264 d (LBad). For C \u2265 5, p_C = (1 \u2212 1/C)/log_2 3, e(C) = C D(p_C\u20161/2)/log 2, and every d \u2265 1 with d \u2265 C L: #{L-bad words of length d} \u2264 2^d \u00b7 2^{\u2212e(C) L} (LBad_count_le). Engine: the constant weight has weightGen (1+x)^d (weightGen_one), so the Markov tilt weight_markov of RateFreeDensity gives #{o(w) \u2265 k} \u2264 (1+x)^d/x^k for x \u2265 1 (count_oddCount_ge_le), hence #{o(w) \u2265 p d} \u2264 (1+x)^d/x^{pd} with a real exponent (count_oddCount_ge_real_le); at x = p/(1\u2212p) this is exp(d h(p)) with h the binary entropy (tilt_value, count_oddCount_ge_le_exp), i.e. 2^d exp(\u2212d D(p\u20161/2)) (count_oddCount_ge_le_kl); D(p\u20161/2) \u2265 0 by log x \u2264 x \u2212 1 (klHalf_nonneg); an L-bad word has o_d \u2265 p_C d when d \u2265 CL (LBad_oddCount_ge); and 1/2 \u2264 p_C < 1 for C \u2265 5 from 3^5 \u2264 2^8 (logb_two_three_le, half_le_pC, pC_lt_one). Kernel-checked, axioms propext, Classical.choice, Quot.sound only. The O-rooted statement with \u03b5 and L_0 is not formalized. A count of words, not a statement about Juggler starts.",
+          "tag": "EXACT \u2014 LEAN VERIFIED"
+        },
+        {
+          "id": "J-fate-tao-union-bound",
+          "statement": "Paper C Theorem 8.3 (Tao-type bound from the cylinder hypothesis), exact skeleton. cylinder y d w is the set of odd n in (y, 2y] with itinerary n d = w; oddFailures y the odd n in (y, 2y] with \u00acReachesOne n; EnvelopeBad N\u2080 Y w says N\u2080^{2^t} < Y^{3^{o_t(w)}} for every prefix t \u2264 |w|. (i) oddFailures_subset_bad_cylinders: if every start up to N\u2080 reaches 1, then oddFailures y \u2286 \u22c3 {cylinder y d w : w \u2208 allWords d, EnvelopeBad N\u2080 (2y) w} \u2014 Lemma 8.1 (reachesOne_of_itinerary_envelope) in covering form, using n \u2264 2y. (ii) oddFailures_card_le: if every envelope-bad cylinder has at most M starts then #oddFailures y \u2264 #{envelope-bad words} \u00b7 M. (iii) LBad_of_envelopeBad: for N\u2080, Y \u2265 2, envelope-bad at scale Y implies L-bad with L = log_2(log Y / log N\u2080). (iv) oddFailures_card_le_chernoff: N\u2080 \u2265 2, y \u2265 1, C \u2265 5, d \u2265 1, d \u2265 C L(y) with L(y) = log_2(log 2y / log N\u2080), M \u2265 0, and every L(y)-bad cylinder of depth d has at most M starts: then #oddFailures y \u2264 2^d \u00b7 2^{\u2212e(C) L(y)} \u00b7 M, by (i)\u2013(iii) and row J-fate-chernoff-count. Kernel-checked, axioms propext, Classical.choice, Quot.sound only. The paper's displayed form y (log y)^{\u2212e(C)+\u03b5} is the substitution d = \u2308C L(y)\u2309 and M = 2^{\u2212(d\u22121)} y/2 + y (log y)^{\u2212A} from H(C, A), not formalized; Corollary 8.4 (the conjecture from a cylinder bound) rests on Theorem 7.2 and stays a human proof. Conditional on the cylinder bound; not a density theorem, not a halt theorem.",
+          "tag": "EXACT \u2014 LEAN VERIFIED"
         }
       ]
     },
@@ -69541,6 +69900,7 @@
       "file": "formal/Problems/JugglerFatePaper.lean",
       "imports": [
         "Problems.Juggler.CubeFiber",
+        "Problems.Juggler.FateChernoff",
         "Problems.Juggler.FateContagion",
         "Problems.Juggler.FateFirstLetter",
         "Problems.Juggler.FateRecursion",
@@ -69814,13 +70174,13 @@
     }
   },
   "totals": {
-    "declarations": 5028,
-    "declarations_with_a_ledger_row": 3270,
-    "ledger_rows_naming_a_file": 342,
-    "modules": 214,
+    "declarations": 5054,
+    "declarations_with_a_ledger_row": 3296,
+    "ledger_rows_naming_a_file": 344,
+    "modules": 215,
     "trust": {
       "compiler": 57,
-      "kernel": 4971
+      "kernel": 4997
     }
   }
 }

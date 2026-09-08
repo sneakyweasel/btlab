@@ -177,6 +177,7 @@ LAYERS: dict[str, Path] = {
     "FateRecursion": JUGGLER_DIR / "FateRecursion.lean",
     "FateFirstLetter": JUGGLER_DIR / "FateFirstLetter.lean",
     "FateSweep": JUGGLER_DIR / "FateSweep.lean",
+    "FateChernoff": JUGGLER_DIR / "FateChernoff.lean",
 }
 
 DYNAMICS = LAYERS["Dynamics"]

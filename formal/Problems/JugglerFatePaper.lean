@@ -5,11 +5,12 @@ import Problems.Juggler.TiltedShare
 import Problems.Juggler.FateRecursion
 import Problems.Juggler.FateFirstLetter
 import Problems.Juggler.FateSweep
+import Problems.Juggler.FateChernoff
 
 /-!
 # Paper C barrel — everything the repository checks for the fate-contagion note
 
-`docs/theory/juggler_fate_almost_all_note.md`. This file imports exactly the seven modules
+`docs/theory/juggler_fate_almost_all_note.md`. This file imports exactly the eight modules
 that paper cites and nothing else, so that a reader can build the formal side of Paper C on
 its own rather than selecting modules by hand out of the umbrella `Problems.Juggler`. It is a
 laboratory target, not a claim: building it does **not** corroborate the paper's counting.
@@ -32,16 +33,22 @@ laboratory target, not a claim: building it does **not** corroborate the paper's
   (`minimal_failure_odd_odd`), and the first-letter trichotomy of Section 6.2.
 * `FateSweep` — Lemma 4.1, the sweep lemma, in both half-cell conventions
   (`sweep_fract_lt_half`, `sweep_fract_ge_half`, `sweep_rep_le_half`, `sweep_rep_gt_half`).
+* `FateChernoff` — Lemma 8.2, the Chernoff count of `L`-bad words (`LBad_count_le`, on the
+  Markov tilt of `RateFreeDensity` and Gibbs' inequality `klHalf_nonneg`), and the exact
+  skeleton of Theorem 8.3: the odd failures in `(y, 2y]` are covered by the cylinders of the
+  envelope-bad words (`oddFailures_subset_bad_cylinders`) and a bound on every bad cylinder
+  bounds them by `2^d · 2^{-e(C) L}` times it (`oddFailures_card_le_chernoff`).
 
 ## What is not here, and cannot be
 
 Lemma 4.1' (monotone pairing), Lemmas 4.2–4.3, Proposition 4.4 (the block average), the
-share law 4.5–4.6, the seed 5.2, Theorem 5.3 and its corollaries, Theorems 7.2–7.3, 8.3,
-9.1–9.2, Section 10 and Appendix C have no machine check of any kind. Nothing here is a
+share law 4.5–4.6, the seed 5.2, Theorem 5.3 and its corollaries, Theorems 7.2–7.3, the
+asymptotic form of Theorem 8.3 and Corollary 8.4, Theorems 9.1–9.2, Section 10 and
+Appendix C have no machine check of any kind. Nothing here is a
 density estimate, and nothing here is a halt theorem.
 
 This barrel is not imported by `Problems.lean`; build it with
 `lake build Problems.JugglerFatePaper`. Paper A's barrel is `Problems.JugglerPaper`, Paper B's
-is `Problems.JugglerParityPaper`; this one shares `TerminationFloor257` with Paper A and no
-module with Paper B.
+is `Problems.JugglerParityPaper`; this one shares `TerminationFloor257` and, through `FateChernoff`,
+`RateFreeDensity` with Paper A, and no module with Paper B.
 -/
