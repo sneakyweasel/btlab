@@ -355,6 +355,22 @@ def words(text: str) -> set[str]:
     return out
 
 
+def row_decls(row: dict[str, Any]) -> list[str]:
+    """The declarations a ledger row names, as a list, whether it names one or many.
+
+    Most rows resolve to a single theorem and carry ``decl`` as a string. Some do not:
+    ``J-cyclemin-walk-ostrowski-arithmetic`` is Paper A's certified-arithmetic inventory and
+    names eighteen declarations, seventeen kernel-checked and one (``window_digit_scan``)
+    compiler-trusted. A single string cannot describe that row without misreporting one side
+    of the kernel boundary, so ``decl`` accepts a list and every consumer reads it through
+    here.
+    """
+    decl = row.get("decl")
+    if not decl:
+        return []
+    return [decl] if isinstance(decl, str) else list(decl)
+
+
 def similarity(statement_words: set[str], decl: dict[str, Any]) -> float:
     other = words(decl["doc"]) | words(decl["name"])
     both = statement_words | other
@@ -372,7 +388,7 @@ def calibrate(index: dict[str, Any], ledger: list[dict[str, Any]]) -> dict[str, 
     for d in index["declarations"]:
         if d["kind"] in ("theorem", "lemma"):
             by_file[d["file"]].append(d)
-    resolved = [r for r in ledger if r.get("decl")]
+    resolved = [r for r in ledger if len(row_decls(r)) == 1]
     fires = correct = 0
     for row in resolved:
         cands = by_file.get("formal/" + str(row.get("lean")), [])
@@ -383,7 +399,7 @@ def calibrate(index: dict[str, Any], ledger: list[dict[str, Any]]) -> dict[str, 
         a, b = similarity(sw, ranked[0]), similarity(sw, ranked[1])
         if a >= 0.10 and a >= 1.5 * max(b, 1e-9):
             fires += 1
-            correct += ranked[0]["name"] == row["decl"]
+            correct += ranked[0]["name"] == row_decls(row)[0]
     return {"resolved": len(resolved), "fires": fires, "correct": correct}
 
 
@@ -401,7 +417,7 @@ def propose(index: dict[str, Any], ledger: list[dict[str, Any]]) -> dict[str, An
     # A declaration already claimed by a resolved row cannot be the answer to another: one
     # theorem backs one claim, which the ledger's own collision test enforces.  Offering a
     # taken declaration wastes a reviewer's judgement on an answer that would be rejected.
-    taken = {(r["lean"], r["decl"]) for r in ledger if r.get("decl")}
+    taken = {(r["lean"], name) for r in ledger for name in row_decls(r)}
 
     by_file: dict[str, list[dict[str, Any]]] = defaultdict(list)
     defs_by_file: dict[str, list[dict[str, Any]]] = defaultdict(list)
@@ -501,7 +517,7 @@ def review_digest(index: dict[str, Any], ledger: list[dict[str, Any]]) -> str:
         "",
         "Rows where one candidate leads its file clearly.  Each entry is the ledger row's own",
         "statement beside the candidate's docstring; the question is only whether they say the",
-        f"same thing.  Measured against all {cal['resolved']} resolved rows the scorer gets",
+        f"same thing.  Measured against all {cal['resolved']} single-declaration rows the scorer gets",
         f"{cal['correct']} of the {cal['fires']} it fires on right, {pct}% precise, so roughly one in",
         f"{max(1, round(cal['fires'] / max(1, cal['fires'] - cal['correct'])))} below is wrong.",
         "",

@@ -359,7 +359,20 @@
   "tests": [
    "tests/unit/test_normtheory_rewrite.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "stripped_trits_eq_encodeZ",
+   "reaches_encodeZ",
+   "confluence",
+   "locally_confluent",
+   "overlap_minus5_two_raw",
+   "overlap_minus5_two_stripped"
+  ],
+  "lean_trust": "mixed",
+  "compiler_decls": [
+   "overlap_minus5_two_raw",
+   "overlap_minus5_two_stripped"
+  ]
  },
  {
   "id": "BTJ-hatD",
@@ -2400,7 +2413,17 @@
   "tests": [
    "tests/research/balanced_ternary/test_spec.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "doubledTrit_reach_one",
+   "doubledTrit_reach_neg",
+   "doubledTrit_closure"
+  ],
+  "lean_trust": "mixed",
+  "compiler_decls": [
+   "doubledTrit_reach_neg",
+   "doubledTrit_reach_one"
+  ]
  },
  {
   "id": "BTN-doubled-lyapunov",
@@ -2450,7 +2473,12 @@
   "tests": [
    "tests/research/balanced_ternary/test_perturbation.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "carryGain3_eq",
+   "carryGain3_unbounded"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "BTN-expanding-lsd",
@@ -2474,7 +2502,12 @@
   "tests": [
    "tests/research/balanced_ternary/test_expanding_d.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "expandingD_eq_IZ_shape",
+   "DZ_expandingD"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "BTN-expanding-section",
@@ -2485,7 +2518,12 @@
   "tests": [
    "tests/research/balanced_ternary/test_expanding_d.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "expandingD_IZ",
+   "lsdZ_expandingD_IZ"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "BTN-expanding-magnitude",
@@ -2509,7 +2547,12 @@
   "tests": [
    "tests/research/balanced_ternary/test_expanding_d.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "lsdZ_expandingDGain_two",
+   "lsdZ_expandingDGain_three"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "BTN-expanding-j2",
@@ -2520,7 +2563,12 @@
   "tests": [
    "tests/research/balanced_ternary/test_expanding_j2.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "jet2_expandingD",
+   "jet2_residue_closure"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "BTN-expanding-j2-third",
@@ -2542,7 +2590,12 @@
   "tests": [
    "tests/research/balanced_ternary/test_expanding_j2.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "jet2_expandingDGain_two",
+   "jet2_expandingDGain_three"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "BTN-expanding-j3",
@@ -2577,7 +2630,12 @@
   "tests": [
    "tests/research/balanced_ternary/test_expanding_j3.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "jet3_expandingDGain_two",
+   "jet3_expandingDGain_three"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "BTN-dadd-repaired",
@@ -2612,7 +2670,12 @@
   "tests": [
    "tests/research/balanced_ternary/test_d_add.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "dAdd_minimal_residual",
+   "dAdd_residual_closure"
+  ],
+  "lean_trust": "compiler"
  },
  {
   "id": "C-shortcut-welldefined",
@@ -2623,7 +2686,19 @@
   "tests": [
    "tests/research/collatz_finite_descent/test_finite_descent.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "shortcutC_even",
+   "shortcutC_odd",
+   "shortcutC_one",
+   "shortcutC_two",
+   "shortcutC_terminal_cycle"
+  ],
+  "lean_trust": "mixed",
+  "compiler_decls": [
+   "shortcutC_one",
+   "shortcutC_two"
+  ]
  },
  {
   "id": "C-shortcut-one-step-lyapunov",
@@ -2756,7 +2831,15 @@
   "tests": [
    "tests/research/signed_digit_residual/test_signed_digit_residual.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "multi_trit_carry_bound",
+   "multi_trit_carry_minimal"
+  ],
+  "lean_trust": "mixed",
+  "compiler_decls": [
+   "multi_trit_carry_minimal"
+  ]
  },
  {
   "id": "BTN-sdr-escape-general",
@@ -2815,7 +2898,12 @@
   "tests": [
    "tests/research/signed_digit_residual_geometry/test_signed_digit_residual_geometry.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "lambda1_interval_reachable",
+   "lambda1_interval_reachable_neg"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "BTN-sdrg-lambda2-evens",
@@ -2826,7 +2914,12 @@
   "tests": [
    "tests/research/signed_digit_residual_geometry/test_signed_digit_residual_geometry.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "lambda2_step_up",
+   "lambda2_even_reachable"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "BTN-sdrg-lattice-all-U",
@@ -3023,7 +3116,9 @@
   "tests": [
    "tests/research/multiplicative_residual/test_multiplicative_residual.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": "product_factor_through_raw",
+  "lean_trust": "kernel"
  },
  {
   "id": "BTN-mr-product-closure",
@@ -6351,6 +6446,30 @@
   "related_conjectures": [
    "juggler_walk_dk_envelope",
    "juggler_walk_window_envelope"
+  ],
+  "decl": [
+   "theta_sandwich_upper",
+   "lower_lt_walkTheta",
+   "walkTheta_lt_upper",
+   "cf_lower_prefix",
+   "cf_upper_prefix",
+   "cf_lower_continues",
+   "cf_upper_continues",
+   "theta_convergent_denominators",
+   "window_digit_scan",
+   "window_digit_max",
+   "window_digit_cap",
+   "theta_convergent_numerators",
+   "thetaConvergents_eq_zip",
+   "theta_convergents_unimodular",
+   "theta_convergents_coprime",
+   "theta_convergent_quality",
+   "residue_mul_bijective",
+   "theta_block_permutations"
+  ],
+  "lean_trust": "mixed",
+  "compiler_decls": [
+   "window_digit_scan"
   ]
  },
  {

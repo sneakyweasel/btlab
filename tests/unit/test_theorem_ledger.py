@@ -21,6 +21,14 @@ def _entries() -> list[dict]:
     return json.loads(JSON_PATH.read_text(encoding="utf-8"))
 
 
+def _decls(row: dict) -> list[str]:
+    """The declarations a row names. ``decl`` is a string for one, a list for many."""
+    decl = row.get("decl")
+    if not decl:
+        return []
+    return [decl] if isinstance(decl, str) else list(decl)
+
+
 def test_ledger_ids_are_unique():
     ids = [row["id"] for row in _entries()]
     assert ids
@@ -92,14 +100,17 @@ def test_decl_when_present_names_a_declaration_in_the_rows_own_file():
     import re
 
     for row in _entries():
-        decl = row.get("decl")
-        if not decl:
+        decls = _decls(row)
+        if not decls:
             continue
         lean = str(row.get("lean") or "").strip()
         assert lean.endswith(".lean"), f"{row['id']}: decl needs a file, not {lean!r}"
         text = (ROOT / "formal" / lean).read_text(encoding="utf-8")
-        pattern = rf"^\s*(?:theorem|lemma|def|abbrev|instance|structure)\s+{re.escape(decl)}\b"
-        assert re.search(pattern, text, re.MULTILINE), f"{row['id']}: {decl} not in {lean}"
+        assert len(decls) == len(set(decls)), f"{row['id']}: repeats a declaration"
+        for decl in decls:
+            pattern = (rf"^\s*(?:theorem|lemma|def|abbrev|instance|structure)\s+"
+                       rf"{re.escape(decl)}\b")
+            assert re.search(pattern, text, re.MULTILINE), f"{row['id']}: {decl} not in {lean}"
 
 
 def test_lean_trust_is_recorded_wherever_a_declaration_is_named():
@@ -109,8 +120,14 @@ def test_lean_trust_is_recorded_wherever_a_declaration_is_named():
     can carry it as data, so the tag stops having two meanings.
     """
     for row in _entries():
-        if row.get("decl"):
-            assert row.get("lean_trust") in {"kernel", "compiler", "open"}, row["id"]
+        decls = _decls(row)
+        if decls:
+            assert row.get("lean_trust") in {"kernel", "compiler", "mixed", "open"}, row["id"]
+            if row["lean_trust"] == "mixed":
+                assert len(decls) > 1, f"{row['id']}: one declaration cannot be mixed"
+                assert row.get("compiler_decls"), f"{row['id']}: mixed must say which"
+            for name in row.get("compiler_decls", []):
+                assert name in decls, f"{row['id']}: compiler_decls has unnamed {name}"
 
 
 def test_a_statement_naming_a_lean_theorem_names_one_that_exists():
@@ -145,12 +162,12 @@ def test_decl_agrees_with_the_theorem_the_statement_names():
 
     named = re.compile(r"Lean theorem\s+([A-Za-z][A-Za-z0-9_']*_[A-Za-z0-9_']+)")
     for row in _entries():
-        decl = row.get("decl")
-        if not decl:
+        decls = _decls(row)
+        if len(decls) != 1:
             continue
         names = named.findall(row["statement"])
         if names:
-            assert decl in names, f"{row['id']}: decl={decl} but prose names {names}"
+            assert decls[0] in names, f"{row['id']}: decl={decls[0]} but prose names {names}"
 
 
 def test_no_two_rows_claim_the_same_declaration():
@@ -159,7 +176,7 @@ def test_no_two_rows_claim_the_same_declaration():
     import collections
 
     claims = collections.Counter(
-        (row["lean"], row["decl"]) for row in _entries() if row.get("decl")
+        (row["lean"], name) for row in _entries() for name in _decls(row)
     )
     shared = {k: v for k, v in claims.items() if v > 1}
     assert shared == {}, shared
@@ -189,9 +206,12 @@ def test_no_row_chose_a_declaration_far_worse_than_one_it_names():
     ident = re.compile(r"[A-Za-z][A-Za-z0-9_']*_[A-Za-z0-9_']+")
     bad = []
     for row in _entries():
-        decl = row.get("decl")
-        if not decl:
+        # The gap test asks whether a row picked the wrong single theorem. A row that names
+        # its whole inventory has no single answer to be wrong about, so it has nothing to say.
+        decls = _decls(row)
+        if len(decls) != 1:
             continue
+        decl = decls[0]
         path = "formal/" + str(row.get("lean"))
         chosen = byname.get((path, decl))
         if chosen is None:
@@ -239,3 +259,40 @@ def test_no_row_credits_native_decide_to_a_kernel_checked_declaration():
                     assert "native_decide" in block.group(1), (
                         f"{row['id']}: names {name} beside native_decide, but it does not use it"
                     )
+
+
+def test_recorded_trust_matches_what_the_declarations_actually_are():
+    """``lean_trust`` is a claim about the kernel boundary, so the Lean must still agree.
+
+    Paper A Section 1.2 states that boundary in prose and the ledger is what backs it. A row
+    that says ``kernel`` while one of its declarations proves by ``native_decide`` reads as
+    machine-checked at a strength it does not have -- the exact confusion the flat
+    ``EXACT — LEAN VERIFIED`` tag caused before the trust field existed.
+    """
+    import sys
+
+    sys.path.insert(0, str(ROOT / "tools"))
+    import formalpedia as fp
+
+    index = fp.build()
+    byname = {(d["file"], d["name"]): d for d in index["declarations"]}
+    for row in _entries():
+        decls = _decls(row)
+        recorded = row.get("lean_trust")
+        if not decls or recorded == "open":
+            continue
+        found = {}
+        for name in decls:
+            d = byname.get(("formal/" + str(row.get("lean")), name))
+            if d is not None:
+                found[name] = d["trust"]
+        if not found:
+            continue
+        levels = set(found.values())
+        expected = levels.pop() if len(levels) == 1 else "mixed"
+        assert recorded == expected, f"{row['id']}: says {recorded}, Lean says {expected} ({found})"
+        if expected == "mixed":
+            compiler = sorted(n for n, t in found.items() if t == "compiler")
+            assert sorted(row.get("compiler_decls", [])) == compiler, (
+                f"{row['id']}: compiler_decls should be {compiler}"
+            )

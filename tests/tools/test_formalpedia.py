@@ -246,7 +246,7 @@ def test_proposals_never_offer_a_declaration_another_row_already_claims() -> Non
     Two of the 43 confident entries did exactly that before this filter."""
     index = fp.build()
     ledger = json.load(io.open(fp.LEDGER, encoding="utf-8"))
-    taken = {(r["lean"], r["decl"]) for r in ledger if r.get("decl")}
+    taken = {(r["lean"], name) for r in ledger for name in fp.row_decls(r)}
     offered = [
         f"{row['id']} -> {c['decl']}"
         for row in fp.propose(index, ledger)["rows"]
@@ -291,14 +291,20 @@ def test_definitions_are_ranked_apart_from_theorems() -> None:
 
 def test_the_digest_computes_its_precision_rather_than_asserting_one() -> None:
     """A hardcoded figure goes stale silently: 96% was quoted for twenty-five ticks after the
-    calibration set had outgrown the easy rows it was measured on. The real number was 86%."""
+    calibration set had outgrown the easy rows it was measured on. The real number was 86%.
+
+    Calibration measures the scorer, and the scorer proposes one declaration, so it runs on
+    the rows that name exactly one. A row naming its whole inventory has no single answer to
+    be scored against and would only dilute the figure.
+    """
     index = fp.build()
     ledger = json.load(io.open(fp.LEDGER, encoding="utf-8"))
     cal = fp.calibrate(index, ledger)
-    assert cal["resolved"] == sum(1 for r in ledger if r.get("decl"))
+    assert cal["resolved"] == sum(1 for r in ledger if len(fp.row_decls(r)) == 1)
+    assert cal["resolved"] < sum(1 for r in ledger if fp.row_decls(r))
     assert 0 < cal["correct"] <= cal["fires"]
     text = fp.review_digest(index, ledger)
-    assert f"all {cal['resolved']} resolved rows" in text
+    assert f"all {cal['resolved']} single-declaration rows" in text
     assert "96%" not in text
 
 
