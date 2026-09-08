@@ -40087,36 +40087,40 @@ run against docs, conjectures/refuted and the ledger -- not against the
 Lean index, which is where this was. One formalpedia search would have
 found it, and did, the moment I went looking for something else.
 
-The falsifier I wrote down for the prefix refactor fired, and its
-repair is a real lemma. Counting valleys as odd letters whose
-predecessor is even injects them into the even letters by taking the
-predecessor, but index 0 has no predecessor, so the injection gives
-only valleys <= e+1. The missing even letter is the last one, provided
-the word ends in E. It does: were the last state odd, the return
-J(x) = n with x >= n odd would force x <= J(x) = n, hence x = n and
-J(n) = n, which lt_floorPower_odd forbids since (n+1)^2 <= n^3 at
-n >= 3. So cycPred was never buying anything the last letter does not.
+I said three entries running that what remained was "typing rather than
+mathematics". Writing the six cardinalities out shows that was wrong.
+The display needs two hypotheses Theorem 4.7 does not state.
 
-The actual bottleneck was elsewhere. Nothing connected the word the
-theorem counts to the orbit whose terms it bounds. Itinerary.lean has
-each direction -- follows_get_even and follows_get_odd -- and putting
-them together is follows_get_odd_iff: on a realized itinerary the
-letter at i is odd exactly when the state is. That is the fact the last
-two entries assumed without noticing, and it was in the barrel base
-module the whole time.
+First, the minimum must occur once. CycleMin is CycleItinerary plus
+minimality, and CycleItinerary is follows, image = n, length >= 1. If u
+is a cycle word for n then u ++ u satisfies all of them, so a doubled
+cycle is a CycleMin and n occurs twice. The display charges one valley
+at n. The paper says "the cycle minimum occurs once" in the proof; that
+is a hypothesis, not a consequence.
 
-One routing note. oddCount_eq_card, which turns the letter count into a
-Finset.card, is in CycleHeightFinance and outside the barrel. So the
-assembly should not route through oddCount at all: take o and e to be
-the index counts of odd and even states, which are the same numbers by
-the bridge and need nothing from outside.
+Second, and this one is load-bearing, the word must contain no EE. I
+claimed twice that EE only lowers the sum. Wrong. EE lowers the valley
+count, but it also raises the cheap-to-expensive ratio among the
+valleys, and the second effect dominates. On OOEEOOE with o=4, e=3, the
+valleys are {0,4} with both runs of length two, so #cheap = 2 while
+o-e = 1 and the packing bound fails; the resulting majorant exceeds the
+display by about 1.7x at every scale, 2.95e-4 against 1.70e-4 at
+n = 1001 and 1.45e-7 against 7.35e-8 at n = 10^6+3.
 
-Still no assembly. Every fact it consumes is now in place; what is
-missing is the six-case definition of cls and its six cardinality
-proofs, which is typing rather than mathematics.
+The cause is structural. blocks_ge_two_add_length_le_sum counts blocks,
+and its e is the number of blocks. With EE the even letters outnumber
+the blocks, so the lemma gives #cheap <= o - #blocks with #blocks < e.
+The paper's packing -- o-e copies of OOE and 2e-o circuits of OE --
+already presupposes one even letter per block, which is no EE.
 
-Last entry I concluded cycPred was avoidable because the existing
-convention is prefix-based. Right, but for an incomplete reason: the
-prefix version needs the word to end in E, which the cyclic version hid
-inside "index 0's predecessor is even". The two conventions cost the
-same fact. What differs is whether you are made to notice it.
+This does not show the display is false. It shows the derivation as
+stated assumes no EE, and that nothing now in FinanceTransfer reaches
+the display without it. Whether a CycleMin can contain EE is open here:
+two consecutive evens need a state at least n^4, hence an odd run of
+length at least four, since (3/2)^3 < 4 <= (3/2)^4.
+
+The phrase "typing rather than mathematics" survived three entries
+because I never wrote the cardinalities down. The moment they were
+written the two hypotheses were immediate. A remainder described the
+same way three times without shrinking is a signal to expand it, not to
+repeat it.

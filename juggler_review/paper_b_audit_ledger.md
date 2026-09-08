@@ -9602,3 +9602,72 @@ is prefix-based. That was right, but for an incomplete reason: the
 prefix version needs the word to end in `E`, which the cyclic version
 hid inside "index 0's predecessor is even". The two conventions cost the
 same fact; what differs is whether you are made to notice it.
+
+## Why the assembly cannot be done from `CycleMin` alone: two unstated hypotheses
+
+I said the last three entries that what remained was "typing rather than
+mathematics". Writing the six cardinalities out shows that was wrong.
+The display needs two hypotheses Theorem 4.7 does not state.
+
+### 1. The minimum must occur once
+
+`CycleMin n w` is `CycleItinerary n w ∧ ∀ j<|w|, n ≤ J^{[j]}(n)`, and
+`CycleItinerary` is `follows n w ∧ image n w = n ∧ 1 ≤ |w|`. If `u` is a
+cycle word for `n`, then `w = u ++ u` satisfies **all** of these: it
+follows, its image is `n`, and its states are those of `u`. So a doubled
+cycle is a `CycleMin`, and `n` occurs twice.
+
+The display charges *one* valley at `n`. With `n` occurring twice the
+majorant has two terms at `n`, and undercounting them is not an upper
+bound. The paper says "The cycle minimum occurs once" in the proof; that
+is a hypothesis, not a consequence of `CycleMin`.
+
+### 2. The word must contain no `EE` — and this one is load-bearing
+
+I claimed twice, in the two entries on the index-level counting, that
+"`EE` only lowers the sum". That is **wrong**, and the error is worth
+stating precisely. `EE` does lower the *valley count*; but it also
+raises the *cheap-to-expensive ratio* among the valleys, and the second
+effect dominates.
+
+Concretely, take the word `OOEEOOE`: `o=4`, `e=3`, valleys `{0,4}` with
+both runs of length two, internals `{1,5}`, evens `{2,3,6}`. Then
+
+- \(\#\text{cheap}=2\) while \(o-e=1\), so the packing bound
+  \(\#\text{cheap}\le o-e\) **fails**; and
+- the actual counts \((1,1,0,1,1,3)\) give a majorant *above* the
+  display's \((1,0,2,1,0,3)\), by
+  \(1/((n+2)\log(n+2))+1/(t_+\log t_+)-2/(v\log v)>0\).
+
+Evaluated: at \(n=1001\), \(2.95\times10^{-4}\) against
+\(1.70\times10^{-4}\); at \(n=10^{6}+3\),
+\(1.45\times10^{-7}\) against \(7.35\times10^{-8}\). The excess is a
+factor of about \(1.7\) at every scale, not a rounding artifact.
+
+The reason is structural: `blocks_ge_two_add_length_le_sum` counts
+blocks, and its `e` is the *number of blocks*. In a word with `EE` the
+even letters outnumber the blocks, so `#cheap ≤ o − #blocks` is what the
+lemma gives, and `#blocks < e`. The paper's packing --- "`o−e` copies of
+`OOE` and `2e−o` circuits of `OE`" --- already presupposes one even
+letter per block, which is exactly no `EE`.
+
+### What this does and does not say
+
+It does **not** show Theorem 4.7's display is false. It shows that the
+derivation as stated assumes no `EE`, and that no rearrangement of the
+lemmas now in `FinanceTransfer` reaches the display without it. Whether
+a `CycleMin` can contain `EE` is open here: two consecutive evens need a
+state at least \(n^{4}\), hence an odd run of length at least four,
+since \((3/2)^{3}<4\le(3/2)^{4}\).
+
+So the honest form of the row is: every ingredient is Lean, and the
+display follows from them **given** that the minimum occurs once and the
+word has no `EE`. Those two belong in the theorem's statement.
+
+Tags. COMPUTATIONALLY VERIFIED: the `OOEEOOE` majorant against the
+display at four scales; the counts sum to `L` in both. OBSERVATION: I
+called the remainder "typing rather than mathematics" three entries
+running, and each time the phrase survived because I never wrote the
+cardinalities down. The moment they were written the two hypotheses were
+immediate. A remainder that has been described the same way three times
+without shrinking is a signal to expand it, not to repeat it.
