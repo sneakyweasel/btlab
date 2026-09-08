@@ -29,9 +29,16 @@ INDEX = REPO / "data" / "research" / "formalpedia" / "index.json"
 FORMAL = REPO / "formal"
 DOCS = REPO / "docs"
 
-#: Declarations referenced nowhere else and named in no document. Measured
-#: after the deduplication pass; lower it when you clear some, never raise it.
-ORPHAN_BUDGET = 400
+#: Declarations referenced nowhere in the repository but their own definition.
+#: Measured after the deduplication pass at 281; lower it when you clear some,
+#: never raise it. Most are small intermediate lemmas nobody consumed, plus the
+#: two companion-figure schema modules whose lemmas the TypeScript mirrors.
+ORPHAN_BUDGET = 285
+
+#: Directories whose contents are not ours, and the generated index, which
+#: lists every declaration by name and would make each look referenced.
+SCAN_SKIP = {".lake", "node_modules", ".git", "dist", "__pycache__"}
+SCAN_SUFFIXES = {".lean", ".md", ".ts", ".tsx", ".py"}
 
 #: Warnings from ``lake build Problems.Juggler Problems.JugglerPaper``.
 #: Two remain, both cases where the linter is wrong:
@@ -57,25 +64,28 @@ def test_no_duplicate_declaration_names() -> None:
 def test_orphan_declarations_do_not_grow() -> None:
     """A new declaration should be used, or cited, or not written.
 
+    The scan covers the whole repository, not just ``formal/`` and ``docs/``:
+    the companion mirrors Lean schema declarations in TypeScript, so a
+    Lean-only scan reports those as orphans when they are load-bearing for the
+    figure. It skips the generated formalpedia index, which lists every
+    declaration by name and would make each one look referenced.
+
     Structure fields are excluded: they are reached by dot notation, which a
     name scan cannot see.
     """
     decls = [d for d in juggler_declarations() if "." not in d["name"]]
-    corpus = "\n".join(
-        p.read_text(encoding="utf-8", errors="ignore")
-        for p in (FORMAL / "Problems").rglob("*.lean")
-    )
-    prose = "\n".join(
-        p.read_text(encoding="utf-8", errors="ignore") for p in DOCS.rglob("*.md")
-    )
-    orphans = [
-        d["name"]
-        for d in decls
-        if corpus.count(d["name"]) <= 1 and d["name"] not in prose
-    ]
+    blob = []
+    for path in REPO.rglob("*"):
+        if not path.is_file() or path.suffix not in SCAN_SUFFIXES:
+            continue
+        if any(part in SCAN_SKIP for part in path.parts):
+            continue
+        blob.append(path.read_text(encoding="utf-8", errors="ignore"))
+    whole = "\n".join(blob)
+    orphans = [d["name"] for d in decls if whole.count(d["name"]) <= 1]
     assert len(orphans) <= ORPHAN_BUDGET, (
         f"{len(orphans)} orphans, budget {ORPHAN_BUDGET}; "
-        f"newest examples: {sorted(orphans)[:5]}"
+        f"examples: {sorted(orphans)[:5]}"
     )
 
 

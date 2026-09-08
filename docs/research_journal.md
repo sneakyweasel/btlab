@@ -41222,3 +41222,41 @@ slow-marked and, importantly, skips on a warm cache instead of passing --
 Lean reports a module's warnings only when it compiles that module, so a
 cached build prints nothing and a naive count would pass at a fake zero
 while the warnings sat there. A guard that cannot measure should say so.
+
+## Item 2: the orphan metric was wrong, and the orphans are not what I said
+
+Triaged the 391 orphans. The headline is that 391 was wrong, and the
+guard I shipped an hour ago measured the wrong thing.
+
+Two errors in the metric, in opposite directions. Scanning only formal/
+and docs/ misses that the companion mirrors Lean schema declarations in
+TypeScript: 11 of IdealLollipop's 47 "orphans" are referenced from the web
+app or the tests. Then scanning the whole repo gave zero, because
+data/research/formalpedia/index.json lists every declaration by name, so
+each looked referenced by the index that catalogues it. The honest number,
+whole repo minus vendored trees and minus the generated index, is 281.
+
+The clusters are not dead mathematics. IdealCycleMin (44) and
+IdealLollipop (36) are the display schema behind the companion's lollipop
+figure -- IdealLollipop's own module docstring says so, and that is why it
+appears in no dossier and no ledger: it is not a research branch. The
+remainder are scattered small intermediate lemmas -- dropOddRun_nil,
+cycleCircuitCount_nil, trailingOdds_append_odd, onOrbit_map -- proved as
+building blocks and never consumed, or consumed by something that later
+changed.
+
+So I did not delete anything. Mass deletion of proved lemmas is churn with
+a real downside and no reader benefit, and the hazard the formalpedia
+guide actually names -- two names for one fact -- was the duplicate pair,
+which is fixed. What I did instead is make the guard correct: whole-repo
+scope, generated index excluded, budget 285 against the true 281.
+
+One number is worth keeping for item 4. Only 15% of the orphans carry a
+docstring, against 38% for the layer as a whole. That is the real cost of
+this population: they are invisible to formalpedia search, so the next
+person proves them again. Which is how two byte-identical copies of
+cycleMin_ends_even came to exist in the first place.
+
+Method note. I proposed this guard, wrote it, ran it green, committed it,
+and only found it was measuring the wrong set when I used it for the job
+it was written for. A guard that has never been used in anger is a guess.
