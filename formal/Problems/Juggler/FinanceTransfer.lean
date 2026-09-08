@@ -159,4 +159,56 @@ theorem odd_pow_ge_of_image_ge {v n : ℕ} (hv : v % 2 = 1) (h : n ^ 2 ≤ floor
   calc n ^ 4 = n ^ 2 * n ^ 2 := by ring
     _ ≤ v ^ 3 := this
 
+/-- Paper A's `v`: the least odd integer whose cube is at least `n⁴`. -/
+noncomputable def expensiveValley (n : ℕ) : ℕ := sInf {v | v % 2 = 1 ∧ n ^ 4 ≤ v ^ 3}
+
+theorem expensiveValley_le {n x : ℕ} (hx : x % 2 = 1) (h : n ^ 4 ≤ x ^ 3) :
+    expensiveValley n ≤ x :=
+  Nat.sInf_le ⟨hx, h⟩
+
+/-- **The expensive valley, with no hypothesis left.**  An odd cycle state whose successor is
+even satisfies `n⁴ ≤ v³`.  Theorem 3.2 is not needed for this step: the successor *is* an even
+cycle state, and `cycleMin_even_ge_sq` already bounds every even state below by `n²`. -/
+theorem cycleMin_oe_start_pow_ge {n : ℕ} {w : List Branch} {i : ℕ}
+    (hn : 2 ≤ n) (h : CycleMin n w) (hi1 : i + 1 < w.length)
+    (ho : floorPower^[i] n % 2 = 1) (he : floorPower^[i + 1] n % 2 = 0) :
+    n ^ 4 ≤ (floorPower^[i] n) ^ 3 := by
+  have hsucc : floorPower^[i + 1] n = floorPower (floorPower^[i] n) :=
+    Function.iterate_succ_apply' floorPower i n
+  have hge : n ^ 2 ≤ floorPower (floorPower^[i] n) := by
+    rw [← hsucc]
+    exact cycleMin_even_ge_sq hn h hi1 he
+  exact odd_pow_ge_of_image_ge ho hge
+
+/-- So an `OE`-start is at least `v`, which is the third of the six class bounds — and it is
+now a theorem rather than a hypothesis. -/
+theorem cycleMin_oe_start_ge {n : ℕ} {w : List Branch} {i : ℕ}
+    (hn : 2 ≤ n) (h : CycleMin n w) (hi1 : i + 1 < w.length)
+    (ho : floorPower^[i] n % 2 = 1) (he : floorPower^[i + 1] n % 2 = 0) :
+    expensiveValley n ≤ floorPower^[i] n :=
+  expensiveValley_le ho (cycleMin_oe_start_pow_ge hn h hi1 ho he)
+
+/-- **The first internal odd.**  The successor of any odd cycle state is at least
+`t = J(n)`, since the state is odd and at least `n`. -/
+theorem cycleMin_internal_ge_t {n : ℕ} {w : List Branch} {i : ℕ}
+    (hn : 2 ≤ n) (h : CycleMin n w) (hi : i < w.length)
+    (ho : floorPower^[i] n % 2 = 1) :
+    floorPower n ≤ floorPower^[i + 1] n := by
+  have hge : n ≤ floorPower^[i] n := h.2 i hi
+  have hnodd : n % 2 = 1 := cycleMin_start_odd hn h
+  rw [Function.iterate_succ_apply' floorPower i n]
+  exact floorPower_odd_mono hnodd ho hge
+
+/-- **The later internal odds.**  If the odd predecessor is not the minimum it is at least
+`n + 2`, so the successor is at least `t₊ = J(n+2)`. -/
+theorem cycleMin_internal_ge_tplus {n : ℕ} {w : List Branch} {i : ℕ}
+    (hn : 2 ≤ n) (h : CycleMin n w) (hi : i < w.length)
+    (ho : floorPower^[i] n % 2 = 1) (hne : floorPower^[i] n ≠ n) :
+    floorPower (n + 2) ≤ floorPower^[i + 1] n := by
+  have hpred : n + 2 ≤ floorPower^[i] n := cycleMin_odd_ne_ge hn h hi ho hne
+  have hnodd : n % 2 = 1 := cycleMin_start_odd hn h
+  have hn2odd : (n + 2) % 2 = 1 := by omega
+  rw [Function.iterate_succ_apply' floorPower i n]
+  exact floorPower_odd_mono hn2odd ho hpred
+
 end Problems.Juggler

@@ -23039,6 +23039,126 @@
       "trust": "kernel"
     },
     {
+      "doc": "`x \u21a6 1/(x log x)` is antitone on `[2, \u221e)`.",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 53,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "inv_mul_log_antitoneOn",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Transfer.** Pointwise lower bounds move through the inverse-log sum. This is the paper's \"any deeper odd run or any higher valley only decreases the sum\".",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 65,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "sum_inv_mul_log_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The classified form.** With the lower bound constant on each class, the majorant is the count-weighted sum over classes: the six terms of Theorem 4.7 are six fibres.",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 74,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "sum_inv_mul_log_le_comp",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The fibre decomposition of a majorant that is constant on classes.",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 93,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "sum_comp_fin_six",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Theorem 4.7's six-term bound.** Given the classification of the orbit \u2014 which is where Theorem 3.2 and the packing enter, and is a hypothesis here \u2014 the inverse-log sum is at most the count-weighted sum of the six class bounds. On a cycle the counts are the paper's `1, o\u2212e\u22121, 2e\u2212o, 1, o\u2212e\u22121, e`.",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 106,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "sixTerm_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A cycle state that is odd and is not the minimum is at least `n + 2`: minimality gives `\u2265 n`, and parity excludes `n + 1`.",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 146,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "cycleMin_odd_ne_ge",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The expensive valley: an odd state whose image is at least `n\u00b2` satisfies `n\u2074 \u2264 v\u00b3`.",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 155,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "odd_pow_ge_of_image_ge",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 165,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "expensiveValley_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The expensive valley, with no hypothesis left.** An odd cycle state whose successor is even satisfies `n\u2074 \u2264 v\u00b3`. Theorem 3.2 is not needed for this step: the successor *is* an even cycle state, and `cycleMin_even_ge_sq` already bounds every even state below by `n\u00b2`.",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 172,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "cycleMin_oe_start_pow_ge",
+      "trust": "kernel"
+    },
+    {
+      "doc": "So an `OE`-start is at least `v`, which is the third of the six class bounds \u2014 and it is now a theorem rather than a hypothesis.",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 185,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "cycleMin_oe_start_ge",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The first internal odd.** The successor of any odd cycle state is at least `t = J(n)`, since the state is odd and at least `n`.",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 193,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "cycleMin_internal_ge_t",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The later internal odds.** If the odd predecessor is not the minimum it is at least `n + 2`, so the successor is at least `t\u208a = J(n+2)`.",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 204,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "cycleMin_internal_ge_tplus",
+      "trust": "kernel"
+    },
+    {
       "doc": "",
       "file": "formal/Problems/Juggler/FirstETransportEval.lean",
       "kind": "def",
@@ -66224,6 +66344,14 @@
         }
       ]
     },
+    "Problems.Juggler.FinanceTransfer": {
+      "declarations": 12,
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "imports": [
+        "Problems.Juggler.CycleCore"
+      ],
+      "ledger": []
+    },
     "Problems.Juggler.FirstETransportEval": {
       "declarations": 5,
       "file": "formal/Problems/Juggler/FirstETransportEval.lean",
@@ -67288,6 +67416,7 @@
         "Problems.Juggler.EvenCountThree",
         "Problems.Juggler.ExpansionSlack",
         "Problems.Juggler.FanLaw",
+        "Problems.Juggler.FinanceTransfer",
         "Problems.Juggler.GapTransfer",
         "Problems.Juggler.GlobalDefect",
         "Problems.Juggler.HugChargeEnvelope",
@@ -67525,13 +67654,13 @@
     }
   },
   "totals": {
-    "declarations": 4836,
+    "declarations": 4848,
     "declarations_with_a_ledger_row": 3195,
     "ledger_rows_naming_a_file": 336,
-    "modules": 207,
+    "modules": 208,
     "trust": {
       "compiler": 54,
-      "kernel": 4782
+      "kernel": 4794
     }
   }
 }

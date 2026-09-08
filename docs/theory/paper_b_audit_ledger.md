@@ -9060,3 +9060,64 @@ the *hardest* part of a statement applied to the whole of it. The part
 that was unreachable is still unreachable. The part that was never
 examined was four lines of `gcongr` and `Finset.sum_le_sum`, and it was
 also load-bearing for a second human-proof row in a different dossier.
+
+## All six of Theorem 4.7's class bounds are theorems; only the counting is left
+
+*Mathematical target.* The one input `odd_pow_ge_of_image_ge` still took
+as a hypothesis: that an `OE`-start `v` satisfies \(n^{2}\le J(v)\),
+which the paper attributes to Theorem 3.2.
+
+*Novelty hypothesis.* It is a single orbit fact, smaller than the whole
+classification.
+
+**Theorem 3.2 is not needed for it.** An `OE`-start is an odd state
+whose *successor* carries the letter `E` --- that is, the successor is
+an even cycle state. Every even cycle state is at least \(n^{2}\) by
+`cycleMin_even_ge_sq`, which has been Lean since the cycle layer was
+written. So
+
+- `cycleMin_oe_start_pow_ge` --- one `Function.iterate_succ_apply'` to
+  see the successor as `floorPower` of the state, then the even bound,
+  then `odd_pow_ge_of_image_ge`. No dynamics beyond the letter itself.
+- `expensiveValley`, `expensiveValley_le`, `cycleMin_oe_start_ge` ---
+  and since \(v\) is by definition the *least* odd integer with
+  \(n^{4}\le v^{3}\), `Nat.sInf_le` turns that into the class bound.
+
+**And that opened the other two, to a lemma already in the repository.**
+`floorPower_odd_mono` (`Dynamics.lean`) says `floorPower` is monotone on
+odd inputs. So:
+
+- `cycleMin_internal_ge_t` --- the successor of *any* odd cycle state is
+  at least \(t=J(n)\), because the state is odd and at least \(n\).
+- `cycleMin_internal_ge_tplus` --- if that odd predecessor is not the
+  minimum it is at least \(n+2\) (`cycleMin_odd_ne_ge`), so the
+  successor is at least \(t_+=J(n+2)\).
+
+**Where the six bounds now stand.**
+
+| class | bound | source |
+|---|---|---|
+| minimum | \(n\) | `CycleMin` |
+| odd non-minimum | \(n+2\) | `cycleMin_odd_ne_ge` |
+| `OE`-start | \(v\) | `cycleMin_oe_start_ge` |
+| first internal | \(t\) | `cycleMin_internal_ge_t` |
+| later internals | \(t_+\) | `cycleMin_internal_ge_tplus` |
+| even | \(n^{2}\) | `cycleMin_even_ge_sq` |
+
+All six are theorems. **A correction to the previous entry**, which said
+"what stays human is *which* state falls in which class". That was too
+broad: the *bound attached to each class* is now proved from the state's
+own letter and minimality. What is assumed in `sixTerm_bound` is only
+the six **cardinalities** \(1,o-e-1,2e-o,1,o-e-1,e\) --- the packing.
+The dynamics that remains is counting, not locating.
+
+Tags. COMPUTATIONALLY VERIFIED: `lake build Problems.JugglerPaper`
+clean; all five new declarations within
+`[propext, Classical.choice, Quot.sound]`; `AxiomCheckPaperA` at 227
+lines, regenerated, still two `native_decide` consumers; suite green.
+OBSERVATION: the whole of this entry is three lemmas that were already
+in the repository --- `cycleMin_even_ge_sq`, `floorPower_odd_mono`,
+`cycleMin_start_odd` --- applied to states identified by their own
+letters. The appendix row said the bound "locates an actual cycle's
+iterates and needs Theorem 3.2". Locating them turned out to need only
+the itinerary, which is what a letter *is*.

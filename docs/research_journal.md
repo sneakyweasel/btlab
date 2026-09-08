@@ -39823,3 +39823,31 @@ A guard caught the write-up rather than the mathematics: I had
 backticked hbound, a hypothesis name, in the appendix row, and Paper
 A's trust boundary requires every backticked name to be a declaration
 or a listed carve-out. Rephrased.
+
+The one hypothesis left in the expensive-valley bound was that an
+OE-start v satisfies n^2 <= J(v), which the paper attributes to
+Theorem 3.2. Theorem 3.2 is not needed. An OE-start is an odd state
+whose successor carries the letter E -- the successor is an even cycle
+state, and every even cycle state is at least n^2 by
+cycleMin_even_ge_sq, which has been Lean since the cycle layer was
+written. One Function.iterate_succ_apply' and the bound is a theorem.
+
+That opened the other two, to floorPower_odd_mono, which has been
+sitting in Dynamics.lean the whole time. The successor of any odd cycle
+state is at least t = J(n), since the state is odd and at least n; and
+if that predecessor is not the minimum it is at least n+2, so the
+successor is at least t_+ = J(n+2).
+
+So all six lower bounds of the display are now theorems: n from
+minimality, n+2 by parity, v from the even successor, t and t_+ from
+odd monotonicity, n^2 from the even bound. I owe a correction to my own
+previous entry, which said what stays human is "which state falls in
+which class". Too broad. The bound attached to each class is proved
+from the state's own letter and minimality. What is assumed is only the
+six cardinalities -- the packing. The remaining dynamics is counting,
+not locating.
+
+The whole of this is three lemmas already in the repository, applied to
+states identified by their own letters. The appendix row said the bound
+"locates an actual cycle's iterates and needs Theorem 3.2". Locating
+them needed only the itinerary, which is what a letter is.

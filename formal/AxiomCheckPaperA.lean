@@ -36,6 +36,8 @@ import Problems.JugglerPaper
 #print axioms Problems.Juggler.cycleMin_finance_inv_sum
 #print axioms Problems.Juggler.cycleMin_gap_transfer
 #print axioms Problems.Juggler.cycleMin_hug_kill_criterion
+#print axioms Problems.Juggler.cycleMin_internal_ge_t
+#print axioms Problems.Juggler.cycleMin_internal_ge_tplus
 #print axioms Problems.Juggler.cycleMin_iterate_ge
 #print axioms Problems.Juggler.cycleMin_length_of_gap
 #print axioms Problems.Juggler.cycleMin_log_envelope
@@ -44,6 +46,7 @@ import Problems.JugglerPaper
 #print axioms Problems.Juggler.cycleMin_not_end_odd
 #print axioms Problems.Juggler.cycleMin_odd_ne_ge
 #print axioms Problems.Juggler.cycleMin_odds_ge_hug
+#print axioms Problems.Juggler.cycleMin_oe_start_ge
 #print axioms Problems.Juggler.cycleMin_prefix_odds_ge_hug
 #print axioms Problems.Juggler.cycleMin_prefix_pow_le
 #print axioms Problems.Juggler.cycleMin_start_odd
@@ -84,6 +87,7 @@ import Problems.JugglerPaper
 #print axioms Juggler.FanLaw.fan_past_endpoint
 #print axioms Juggler.FanLaw.fan_positive_iff
 #print axioms Juggler.FanLaw.fan_step_pow
+#print axioms Problems.Juggler.floorPower_odd_mono
 #print axioms Problems.Juggler.follows_iff_itinerary
 #print axioms Problems.Juggler.four_block_pe_1999
 #print axioms Problems.Juggler.global_defect_append
