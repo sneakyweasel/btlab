@@ -107,8 +107,8 @@ theorem hugLetter_iff_floor_step (k : ℕ) :
     hugLetter k = true ↔ ⌊((k : ℝ) + 1) * walkTheta⌋ = ⌊(k : ℝ) * walkTheta⌋ + 1 := by
   have hstep : hugLetter k = true ↔ hugOdds (k + 1) = hugOdds k := by
     cases h : hugLetter k with
-    | true => simp [h, hugOdds_succ_of_even h]
-    | false => simp [h, hugOdds_succ_of_odd h]
+    | true => simp [hugOdds_succ_of_even h]
+    | false => simp [hugOdds_succ_of_odd h]
   have hk := hugOdds_eq_sub_floor k
   have hk1 := hugOdds_eq_sub_floor (k + 1)
   push_cast at hk1

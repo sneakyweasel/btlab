@@ -53,7 +53,7 @@ theorem sum_map_snd_flatMap_replicate (d : ℕ → ℕ) (p : ℕ → ℕ × ℕ)
   | succ n ih =>
     rw [List.range_succ, List.flatMap_append, List.map_append, List.sum_append, ih,
       Finset.sum_range_succ]
-    simp [List.map_replicate, List.sum_replicate, mul_comm]
+    simp [List.map_replicate, List.sum_replicate]
 
 theorem mem_flatMap_replicate {d : ℕ → ℕ} {p : ℕ → ℕ × ℕ} {n : ℕ} {x : ℕ × ℕ}
     (h : x ∈ (List.range n).flatMap fun i => List.replicate (d i) (p i)) :

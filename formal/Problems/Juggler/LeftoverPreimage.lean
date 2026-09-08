@@ -95,7 +95,10 @@ theorem pow_lt_of_lt_pow_mul {a b k m : ℕ} (h : a < b ^ k) (hm : m ≠ 0) :
   have := Nat.pow_lt_pow_left h hm
   rwa [← Nat.pow_mul] at this
 
-theorem two_pow_le_three_pow (a : ℕ) : 2 ^ a ≤ 3 ^ a :=
+/-- Module-local. The exported name for this fact is `two_pow_le_three_pow` in
+`ExpandingGrammar`, which this module does not import; `private` so the fact keeps
+one public name rather than two. -/
+private theorem two_pow_le_three_pow (a : ℕ) : 2 ^ a ≤ 3 ^ a :=
   Nat.pow_le_pow_left (by decide : (2 : ℕ) ≤ 3) a
 
 theorem nat_cast_eq_of_int {a b : ℕ} (h : (a : ℤ) = (b : ℤ)) : a = b :=

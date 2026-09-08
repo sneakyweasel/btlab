@@ -9739,13 +9739,25 @@
       "trust": "kernel"
     },
     {
+      "doc": "**A cycle minimum's word ends in `E`**, in list form: it splits as `u ++ [even]`. The letter form is `cycleMin_word_shape`; this is the decomposition its callers use. Hoisted here from `CyclePosition` and `Seam`, which had proved it identically and independently and both import this module.",
+      "file": "formal/Problems/Juggler/CycleCore.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
+      "line": 852,
+      "module": "Problems.Juggler.CycleCore",
+      "name": "cycleMin_ends_even",
+      "trust": "kernel"
+    },
+    {
       "doc": "Prefix `OOO` plus an internal even step cannot land at the cycle minimum: `T^3(n) \u2265 (n+1)^2` and `isqrt(T^3(n)) = n` are incompatible.",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 850,
+      "line": 865,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycleMin_prefix_ooo_even_sqrt_ne",
       "trust": "kernel"
@@ -10669,7 +10681,7 @@
         "J-cycle-finance-inequality",
         "J-lachesis-basin-inverse-sum"
       ],
-      "line": 379,
+      "line": 377,
       "module": "Problems.Juggler.CycleFinance",
       "name": "cycleMin_finance_inv_sum",
       "trust": "kernel"
@@ -15189,21 +15201,11 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
-      "file": "formal/Problems/Juggler/CyclePosition.lean",
-      "kind": "theorem",
-      "ledger": [],
-      "line": 459,
-      "module": "Problems.Juggler.CyclePosition",
-      "name": "cycleMin_ends_even",
-      "trust": "kernel"
-    },
-    {
       "doc": "Wrap at a CycleMin cut is E-arrival, by `cycleMin_not_end_odd`, not by the six-bead table.",
       "file": "formal/Problems/Juggler/CyclePosition.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 472,
+      "line": 461,
       "module": "Problems.Juggler.CyclePosition",
       "name": "valley_is_eArrival",
       "trust": "kernel"
@@ -15213,7 +15215,7 @@
       "file": "formal/Problems/Juggler/CyclePosition.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 488,
+      "line": 477,
       "module": "Problems.Juggler.CyclePosition",
       "name": "valley_iff",
       "trust": "kernel"
@@ -15223,7 +15225,7 @@
       "file": "formal/Problems/Juggler/CyclePosition.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 492,
+      "line": 481,
       "module": "Problems.Juggler.CyclePosition",
       "name": "valley_cycle_parent_cell",
       "trust": "kernel"
@@ -15233,7 +15235,7 @@
       "file": "formal/Problems/Juggler/CyclePosition.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 503,
+      "line": 492,
       "module": "Problems.Juggler.CyclePosition",
       "name": "valley_odd_stem_lt",
       "trust": "kernel"
@@ -15243,7 +15245,7 @@
       "file": "formal/Problems/Juggler/CyclePosition.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 511,
+      "line": 500,
       "module": "Problems.Juggler.CyclePosition",
       "name": "valley_odd_stem_off",
       "trust": "kernel"
@@ -15253,7 +15255,7 @@
       "file": "formal/Problems/Juggler/CyclePosition.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 520,
+      "line": 509,
       "module": "Problems.Juggler.CyclePosition",
       "name": "valley_stem_cases",
       "trust": "kernel"
@@ -15263,7 +15265,7 @@
       "file": "formal/Problems/Juggler/CyclePosition.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 536,
+      "line": 525,
       "module": "Problems.Juggler.CyclePosition",
       "name": "letter_is_next_prevBranch",
       "trust": "kernel"
@@ -15273,7 +15275,7 @@
       "file": "formal/Problems/Juggler/CyclePosition.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 544,
+      "line": 533,
       "module": "Problems.Juggler.CyclePosition",
       "name": "letter_determines_next_arrival",
       "trust": "kernel"
@@ -15283,7 +15285,7 @@
       "file": "formal/Problems/Juggler/CyclePosition.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 565,
+      "line": 554,
       "module": "Problems.Juggler.CyclePosition",
       "name": "wrap_letter_is_start_prevBranch",
       "trust": "kernel"
@@ -15293,7 +15295,7 @@
       "file": "formal/Problems/Juggler/CyclePosition.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 575,
+      "line": 564,
       "module": "Problems.Juggler.CyclePosition",
       "name": "odd_run_terminates_oArrival",
       "trust": "kernel"
@@ -15303,7 +15305,7 @@
       "file": "formal/Problems/Juggler/CyclePosition.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 581,
+      "line": 570,
       "module": "Problems.Juggler.CyclePosition",
       "name": "even_letter_next_eArrival",
       "trust": "kernel"
@@ -15313,7 +15315,7 @@
       "file": "formal/Problems/Juggler/CyclePosition.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 593,
+      "line": 582,
       "module": "Problems.Juggler.CyclePosition",
       "name": "rotateItinerary_getElem?",
       "trust": "kernel"
@@ -15323,7 +15325,7 @@
       "file": "formal/Problems/Juggler/CyclePosition.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 614,
+      "line": 603,
       "module": "Problems.Juggler.CyclePosition",
       "name": "rotateItinerary_get",
       "trust": "kernel"
@@ -15333,7 +15335,7 @@
       "file": "formal/Problems/Juggler/CyclePosition.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 624,
+      "line": 613,
       "module": "Problems.Juggler.CyclePosition",
       "name": "cyclePrevIndex_add_rotate",
       "trust": "kernel"
@@ -15343,7 +15345,7 @@
       "file": "formal/Problems/Juggler/CyclePosition.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 643,
+      "line": 632,
       "module": "Problems.Juggler.CyclePosition",
       "name": "cyclePrevBranch_rotate",
       "trust": "kernel"
@@ -15353,7 +15355,7 @@
       "file": "formal/Problems/Juggler/CyclePosition.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 674,
+      "line": 663,
       "module": "Problems.Juggler.CyclePosition",
       "name": "cycleArrival_rotate",
       "trust": "kernel"
@@ -15363,7 +15365,7 @@
       "file": "formal/Problems/Juggler/CyclePosition.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 690,
+      "line": 679,
       "module": "Problems.Juggler.CyclePosition",
       "name": "onOrbit_rotate",
       "trust": "kernel"
@@ -16499,7 +16501,7 @@
       "ledger": [
         "J-first-defect-amplification"
       ],
-      "line": 296,
+      "line": 294,
       "module": "Problems.Juggler.DefectLowerBound",
       "name": "ooeWord",
       "trust": "kernel"
@@ -16511,7 +16513,7 @@
       "ledger": [
         "J-first-defect-amplification"
       ],
-      "line": 298,
+      "line": 296,
       "module": "Problems.Juggler.DefectLowerBound",
       "name": "ooeoWord",
       "trust": "kernel"
@@ -16523,7 +16525,7 @@
       "ledger": [
         "J-first-defect-amplification"
       ],
-      "line": 300,
+      "line": 298,
       "module": "Problems.Juggler.DefectLowerBound",
       "name": "oooeWord",
       "trust": "kernel"
@@ -16535,7 +16537,7 @@
       "ledger": [
         "J-first-defect-amplification"
       ],
-      "line": 302,
+      "line": 300,
       "module": "Problems.Juggler.DefectLowerBound",
       "name": "ooeWord_decompose",
       "trust": "kernel"
@@ -16547,7 +16549,7 @@
       "ledger": [
         "J-first-defect-amplification"
       ],
-      "line": 306,
+      "line": 304,
       "module": "Problems.Juggler.DefectLowerBound",
       "name": "ooeoWord_decompose",
       "trust": "kernel"
@@ -16559,7 +16561,7 @@
       "ledger": [
         "J-first-defect-amplification"
       ],
-      "line": 310,
+      "line": 308,
       "module": "Problems.Juggler.DefectLowerBound",
       "name": "oooeWord_decompose",
       "trust": "kernel"
@@ -16571,7 +16573,7 @@
       "ledger": [
         "J-first-defect-amplification"
       ],
-      "line": 314,
+      "line": 312,
       "module": "Problems.Juggler.DefectLowerBound",
       "name": "ooeWord_not_monochrome",
       "trust": "kernel"
@@ -16583,7 +16585,7 @@
       "ledger": [
         "J-first-defect-amplification"
       ],
-      "line": 317,
+      "line": 315,
       "module": "Problems.Juggler.DefectLowerBound",
       "name": "ooeoWord_not_monochrome",
       "trust": "kernel"
@@ -16595,7 +16597,7 @@
       "ledger": [
         "J-first-defect-amplification"
       ],
-      "line": 320,
+      "line": 318,
       "module": "Problems.Juggler.DefectLowerBound",
       "name": "oooeWord_not_monochrome",
       "trust": "kernel"
@@ -16607,7 +16609,7 @@
       "ledger": [
         "J-first-defect-amplification"
       ],
-      "line": 323,
+      "line": 321,
       "module": "Problems.Juggler.DefectLowerBound",
       "name": "firstDefect_OOE_le_one",
       "trust": "kernel"
@@ -16619,7 +16621,7 @@
       "ledger": [
         "J-first-defect-amplification"
       ],
-      "line": 331,
+      "line": 329,
       "module": "Problems.Juggler.DefectLowerBound",
       "name": "firstDefect_OOEO_le_one",
       "trust": "kernel"
@@ -16631,7 +16633,7 @@
       "ledger": [
         "J-first-defect-amplification"
       ],
-      "line": 339,
+      "line": 337,
       "module": "Problems.Juggler.DefectLowerBound",
       "name": "firstDefect_OOOE_le_two",
       "trust": "kernel"
@@ -16643,7 +16645,7 @@
       "ledger": [
         "J-first-defect-amplification"
       ],
-      "line": 347,
+      "line": 345,
       "module": "Problems.Juggler.DefectLowerBound",
       "name": "powGap_mono_addend",
       "trust": "kernel"
@@ -16655,7 +16657,7 @@
       "ledger": [
         "J-first-defect-amplification"
       ],
-      "line": 353,
+      "line": 351,
       "module": "Problems.Juggler.DefectLowerBound",
       "name": "add_pow_three",
       "trust": "kernel"
@@ -16667,7 +16669,7 @@
       "ledger": [
         "J-first-defect-amplification"
       ],
-      "line": 358,
+      "line": 356,
       "module": "Problems.Juggler.DefectLowerBound",
       "name": "odd_defect_lift",
       "trust": "kernel"
@@ -16679,7 +16681,7 @@
       "ledger": [
         "J-first-defect-amplification"
       ],
-      "line": 369,
+      "line": 367,
       "module": "Problems.Juggler.DefectLowerBound",
       "name": "odd_defect_lift_lower_bound",
       "trust": "kernel"
@@ -16691,7 +16693,7 @@
       "ledger": [
         "J-first-defect-amplification"
       ],
-      "line": 374,
+      "line": 372,
       "module": "Problems.Juggler.DefectLowerBound",
       "name": "powGap_one",
       "trust": "kernel"
@@ -16703,7 +16705,7 @@
       "ledger": [
         "J-first-defect-amplification"
       ],
-      "line": 378,
+      "line": 376,
       "module": "Problems.Juggler.DefectLowerBound",
       "name": "amplifyDefect",
       "trust": "kernel"
@@ -16715,7 +16717,7 @@
       "ledger": [
         "J-first-defect-amplification"
       ],
-      "line": 385,
+      "line": 383,
       "module": "Problems.Juggler.DefectLowerBound",
       "name": "amplifyDefect_ge",
       "trust": "kernel"
@@ -16727,7 +16729,7 @@
       "ledger": [
         "J-first-defect-amplification"
       ],
-      "line": 393,
+      "line": 391,
       "module": "Problems.Juggler.DefectLowerBound",
       "name": "amplifyDefect_mono",
       "trust": "kernel"
@@ -16739,7 +16741,7 @@
       "ledger": [
         "J-first-defect-amplification"
       ],
-      "line": 400,
+      "line": 398,
       "module": "Problems.Juggler.DefectLowerBound",
       "name": "accumulatedDefect_mono",
       "trust": "kernel"
@@ -16751,7 +16753,7 @@
       "ledger": [
         "J-first-defect-amplification"
       ],
-      "line": 417,
+      "line": 415,
       "module": "Problems.Juggler.DefectLowerBound",
       "name": "amplifyDefect_le_accumulated",
       "trust": "kernel"
@@ -16763,7 +16765,7 @@
       "ledger": [
         "J-first-defect-amplification"
       ],
-      "line": 438,
+      "line": 436,
       "module": "Problems.Juggler.DefectLowerBound",
       "name": "amplifyDefect_odd_ge_triple",
       "trust": "kernel"
@@ -16775,7 +16777,7 @@
       "ledger": [
         "J-first-defect-amplification"
       ],
-      "line": 445,
+      "line": 443,
       "module": "Problems.Juggler.DefectLowerBound",
       "name": "accumulatedDefect_of_tight_prefix",
       "trust": "kernel"
@@ -16787,7 +16789,7 @@
       "ledger": [
         "J-first-defect-amplification"
       ],
-      "line": 476,
+      "line": 474,
       "module": "Problems.Juggler.DefectLowerBound",
       "name": "globalDefect_eq_accumulated_drop",
       "trust": "kernel"
@@ -16799,7 +16801,7 @@
       "ledger": [
         "J-first-defect-amplification"
       ],
-      "line": 488,
+      "line": 486,
       "module": "Problems.Juggler.DefectLowerBound",
       "name": "accumulate_first_step",
       "trust": "kernel"
@@ -16811,7 +16813,7 @@
       "ledger": [
         "J-first-defect-amplification"
       ],
-      "line": 501,
+      "line": 499,
       "module": "Problems.Juggler.DefectLowerBound",
       "name": "global_defect_lower_bound",
       "trust": "kernel"
@@ -16823,7 +16825,7 @@
       "ledger": [
         "J-first-defect-amplification"
       ],
-      "line": 543,
+      "line": 541,
       "module": "Problems.Juggler.DefectLowerBound",
       "name": "defectScale",
       "trust": "kernel"
@@ -16835,7 +16837,7 @@
       "ledger": [
         "J-first-defect-amplification"
       ],
-      "line": 548,
+      "line": 546,
       "module": "Problems.Juggler.DefectLowerBound",
       "name": "normalizedDefect",
       "trust": "kernel"
@@ -16847,7 +16849,7 @@
       "ledger": [
         "J-first-defect-amplification"
       ],
-      "line": 551,
+      "line": 549,
       "module": "Problems.Juggler.DefectLowerBound",
       "name": "defectScale_even_tight",
       "trust": "kernel"
@@ -16859,7 +16861,7 @@
       "ledger": [
         "J-first-defect-amplification"
       ],
-      "line": 558,
+      "line": 556,
       "module": "Problems.Juggler.DefectLowerBound",
       "name": "defectScale_odd_tight",
       "trust": "kernel"
@@ -16871,7 +16873,7 @@
       "ledger": [
         "J-first-defect-amplification"
       ],
-      "line": 567,
+      "line": 565,
       "module": "Problems.Juggler.DefectLowerBound",
       "name": "normalizedDefect_step",
       "trust": "kernel"
@@ -16883,7 +16885,7 @@
       "ledger": [
         "J-first-defect-amplification"
       ],
-      "line": 581,
+      "line": 579,
       "module": "Problems.Juggler.DefectLowerBound",
       "name": "even_sq_mod_four",
       "trust": "kernel"
@@ -16895,7 +16897,7 @@
       "ledger": [
         "J-first-defect-amplification"
       ],
-      "line": 587,
+      "line": 585,
       "module": "Problems.Juggler.DefectLowerBound",
       "name": "odd_sq_mod_four",
       "trust": "kernel"
@@ -16907,7 +16909,7 @@
       "ledger": [
         "J-first-defect-amplification"
       ],
-      "line": 593,
+      "line": 591,
       "module": "Problems.Juggler.DefectLowerBound",
       "name": "sq_mod_four",
       "trust": "kernel"
@@ -16919,7 +16921,7 @@
       "ledger": [
         "J-first-defect-amplification"
       ],
-      "line": 598,
+      "line": 596,
       "module": "Problems.Juggler.DefectLowerBound",
       "name": "not_square_of_two_mod_four",
       "trust": "kernel"
@@ -16931,7 +16933,7 @@
       "ledger": [
         "J-first-defect-amplification"
       ],
-      "line": 607,
+      "line": 605,
       "module": "Problems.Juggler.DefectLowerBound",
       "name": "localDefectEven_two_mod_four_pos",
       "trust": "kernel"
@@ -16943,7 +16945,7 @@
       "ledger": [
         "J-first-defect-amplification"
       ],
-      "line": 617,
+      "line": 615,
       "module": "Problems.Juggler.DefectLowerBound",
       "name": "conditional_remainder_lower_bound",
       "trust": "kernel"
@@ -16955,7 +16957,7 @@
       "ledger": [
         "J-first-defect-amplification"
       ],
-      "line": 637,
+      "line": 635,
       "module": "Problems.Juggler.DefectLowerBound",
       "name": "odd_sq_mod_eight",
       "trust": "kernel"
@@ -16967,7 +16969,7 @@
       "ledger": [
         "J-first-defect-amplification"
       ],
-      "line": 645,
+      "line": 643,
       "module": "Problems.Juggler.DefectLowerBound",
       "name": "sq_mod_eight",
       "trust": "kernel"
@@ -16979,7 +16981,7 @@
       "ledger": [
         "J-first-defect-amplification"
       ],
-      "line": 658,
+      "line": 656,
       "module": "Problems.Juggler.DefectLowerBound",
       "name": "localDefectOdd_three_mod_eight",
       "trust": "kernel"
@@ -16991,7 +16993,7 @@
       "ledger": [
         "J-first-defect-amplification"
       ],
-      "line": 693,
+      "line": 691,
       "module": "Problems.Juggler.DefectLowerBound",
       "name": "localDefectOdd_seven_mod_eight",
       "trust": "kernel"
@@ -17003,7 +17005,7 @@
       "ledger": [
         "J-first-defect-amplification"
       ],
-      "line": 728,
+      "line": 726,
       "module": "Problems.Juggler.DefectLowerBound",
       "name": "amplifyDefect_OOE_j_zero",
       "trust": "kernel"
@@ -17015,7 +17017,7 @@
       "ledger": [
         "J-first-defect-amplification"
       ],
-      "line": 733,
+      "line": 731,
       "module": "Problems.Juggler.DefectLowerBound",
       "name": "globalDefect_OOE_eq",
       "trust": "kernel"
@@ -17027,7 +17029,7 @@
       "ledger": [
         "J-first-defect-amplification"
       ],
-      "line": 740,
+      "line": 738,
       "module": "Problems.Juggler.DefectLowerBound",
       "name": "globalDefect_OOE_of_j_zero",
       "trust": "kernel"
@@ -17039,7 +17041,7 @@
       "ledger": [
         "J-first-defect-amplification"
       ],
-      "line": 762,
+      "line": 760,
       "module": "Problems.Juggler.DefectLowerBound",
       "name": "globalDefect_OOE_of_j_one",
       "trust": "kernel"
@@ -17051,7 +17053,7 @@
       "ledger": [
         "J-first-defect-amplification"
       ],
-      "line": 776,
+      "line": 774,
       "module": "Problems.Juggler.DefectLowerBound",
       "name": "expanding_defect_lower_bound",
       "trust": "kernel"
@@ -17063,7 +17065,7 @@
       "ledger": [
         "J-first-defect-amplification"
       ],
-      "line": 789,
+      "line": 787,
       "module": "Problems.Juggler.DefectLowerBound",
       "name": "global_defect_le_surplus_of_expanding",
       "trust": "kernel"
@@ -32340,7 +32342,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 1593,
+      "line": 1596,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "threeEvenEOOOEE_z_lt",
       "trust": "kernel"
@@ -32365,7 +32367,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 1644,
+      "line": 1647,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycle_itinerary_three_even_eoooee_of_ge_four",
       "trust": "kernel"
@@ -32390,7 +32392,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 1661,
+      "line": 1667,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycle_itinerary_three_even_eoooee_of_ge_three",
       "trust": "kernel"
@@ -32415,7 +32417,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 1729,
+      "line": 1735,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "threeEvenEOOOEE_follows_seven_odds",
       "trust": "kernel"
@@ -32440,7 +32442,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 1744,
+      "line": 1750,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycle_itinerary_three_even_eoooee_of_lt",
       "trust": "kernel"
@@ -32465,7 +32467,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 1760,
+      "line": 1766,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycle_itinerary_three_even_eoooee",
       "trust": "kernel"
@@ -32490,7 +32492,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 1801,
+      "line": 1807,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "threeEvenEOOEOE_z_lt",
       "trust": "kernel"
@@ -32515,7 +32517,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 1862,
+      "line": 1868,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycle_itinerary_three_even_eooeoe_of_ge_four",
       "trust": "kernel"
@@ -32540,7 +32542,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 1879,
+      "line": 1888,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycle_itinerary_three_even_eooeoe_of_ge_three",
       "trust": "kernel"
@@ -32565,7 +32567,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 1956,
+      "line": 1965,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "threeEvenEOOEOE_follows_seven_odds",
       "trust": "kernel"
@@ -32590,7 +32592,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 1971,
+      "line": 1980,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycle_itinerary_three_even_eooeoe_of_lt",
       "trust": "kernel"
@@ -32615,7 +32617,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 1987,
+      "line": 1996,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycle_itinerary_three_even_eooeoe",
       "trust": "kernel"
@@ -32640,7 +32642,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2020,
+      "line": 2029,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "at",
       "trust": "kernel"
@@ -32665,7 +32667,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2025,
+      "line": 2034,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "four_mul_two_pow",
       "trust": "kernel"
@@ -32690,7 +32692,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2031,
+      "line": 2040,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "gappedThreeEvenEE_eq_twoEven",
       "trust": "kernel"
@@ -32715,7 +32717,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2036,
+      "line": 2045,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "gappedThreeEvenEOE_eq_twoEven",
       "trust": "kernel"
@@ -32740,7 +32742,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2041,
+      "line": 2050,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "gappedThreeEvenEE_length",
       "trust": "kernel"
@@ -32765,7 +32767,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2046,
+      "line": 2055,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "gappedThreeEvenEOE_length",
       "trust": "kernel"
@@ -32790,7 +32792,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2051,
+      "line": 2060,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "firstEPrefix_length",
       "trust": "kernel"
@@ -32815,7 +32817,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2054,
+      "line": 2063,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "firstEPrefix_image",
       "trust": "kernel"
@@ -32840,7 +32842,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2058,
+      "line": 2067,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "cycleMin_gapped_ee_y_ge",
       "trust": "kernel"
@@ -32865,7 +32867,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2066,
+      "line": 2075,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "cycleMin_gapped_eoe_y_ge",
       "trust": "kernel"
@@ -32890,7 +32892,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2074,
+      "line": 2083,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "follows_gapped_ee_prefix",
       "trust": "kernel"
@@ -32915,7 +32917,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2080,
+      "line": 2089,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "follows_gapped_eoe_prefix",
       "trust": "kernel"
@@ -32940,7 +32942,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2087,
+      "line": 2096,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "follows_gapped_ee_remaining_odds",
       "trust": "kernel"
@@ -32965,7 +32967,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2094,
+      "line": 2103,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "follows_gapped_eoe_remaining_odds",
       "trust": "kernel"
@@ -32990,7 +32992,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2101,
+      "line": 2110,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "firstEPrefix_image_ge_two",
       "trust": "kernel"
@@ -33015,7 +33017,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2133,
+      "line": 2142,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "gapped_ee_preimage",
       "trust": "kernel"
@@ -33040,7 +33042,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2164,
+      "line": 2173,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "gapped_eoe_preimage",
       "trust": "kernel"
@@ -33065,7 +33067,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2252,
+      "line": 2261,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycleMin_gapped_three_even_ee_of_y",
       "trust": "kernel"
@@ -33090,7 +33092,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2272,
+      "line": 2281,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycleMin_gapped_three_even_eoe_of_y",
       "trust": "kernel"
@@ -33115,7 +33117,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2294,
+      "line": 2303,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "gapped_ee_prefix_seven_odds",
       "trust": "kernel"
@@ -33140,7 +33142,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2308,
+      "line": 2317,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "gapped_eoe_prefix_seven_odds",
       "trust": "kernel"
@@ -33165,7 +33167,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2322,
+      "line": 2331,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "gapped_ee_remaining_seven_odds",
       "trust": "kernel"
@@ -33190,7 +33192,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2333,
+      "line": 2342,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "gapped_eoe_remaining_seven_odds",
       "trust": "kernel"
@@ -33215,7 +33217,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2344,
+      "line": 2353,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycle_itinerary_gapped_ee_short_of_lt",
       "trust": "kernel"
@@ -33240,7 +33242,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2362,
+      "line": 2371,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycle_itinerary_gapped_eoe_short_of_lt",
       "trust": "kernel"
@@ -33265,7 +33267,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2380,
+      "line": 2389,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycleMin_gapped_three_even_ee_of_lt",
       "trust": "kernel"
@@ -33290,7 +33292,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2405,
+      "line": 2414,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycleMin_gapped_three_even_eoe_of_lt",
       "trust": "kernel"
@@ -33315,7 +33317,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2431,
+      "line": 2440,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycleMin_gapped_three_even_ee",
       "trust": "kernel"
@@ -33340,7 +33342,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2451,
+      "line": 2460,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycleMin_gapped_three_even_eoe",
       "trust": "kernel"
@@ -33365,7 +33367,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2485,
+      "line": 2494,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "rotateItinerary_cons",
       "trust": "kernel"
@@ -33390,7 +33392,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2490,
+      "line": 2499,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "rotateItinerary_cons_cons",
       "trust": "kernel"
@@ -33415,7 +33417,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2497,
+      "line": 2506,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "take_snoc",
       "trust": "kernel"
@@ -33440,7 +33442,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2508,
+      "line": 2517,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "rotateItinerary_snoc",
       "trust": "kernel"
@@ -33465,7 +33467,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2516,
+      "line": 2525,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "cycleMin_of_rotate_ends_odd",
       "trust": "kernel"
@@ -33490,7 +33492,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2524,
+      "line": 2533,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "cycleMin_rotate_start_even",
       "trust": "kernel"
@@ -33515,7 +33517,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2531,
+      "line": 2540,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "cycleMin_rotate_start_OE",
       "trust": "kernel"
@@ -33540,7 +33542,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2538,
+      "line": 2547,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "getElem_of_list_eq",
       "trust": "kernel"
@@ -33565,7 +33567,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2543,
+      "line": 2552,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "getElem_nat_eq",
       "trust": "kernel"
@@ -33590,7 +33592,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2548,
+      "line": 2557,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "gapped_ee_as_prefix",
       "trust": "kernel"
@@ -33615,7 +33617,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2554,
+      "line": 2563,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "gapped_eoe_as_prefix",
       "trust": "kernel"
@@ -33640,7 +33642,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2561,
+      "line": 2570,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "gapped_ee_expanded",
       "trust": "kernel"
@@ -33665,7 +33667,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2567,
+      "line": 2576,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "gapped_eoe_expanded",
       "trust": "kernel"
@@ -33690,7 +33692,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2574,
+      "line": 2583,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "firstEPrefix_get_lt",
       "trust": "kernel"
@@ -33715,7 +33717,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2581,
+      "line": 2590,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "firstEPrefix_get_last",
       "trust": "kernel"
@@ -33740,7 +33742,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2587,
+      "line": 2596,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "gappedThreeEvenEE_get_lt_a",
       "trust": "kernel"
@@ -33765,7 +33767,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2599,
+      "line": 2608,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "gappedThreeEvenEE_get_a",
       "trust": "kernel"
@@ -33790,7 +33792,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2611,
+      "line": 2620,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "gappedThreeEvenEE_get_mid",
       "trust": "kernel"
@@ -33815,7 +33817,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2627,
+      "line": 2636,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "gappedThreeEvenEE_get_last",
       "trust": "kernel"
@@ -33840,7 +33842,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2647,
+      "line": 2656,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "gappedThreeEvenEE_pred_odd",
       "trust": "kernel"
@@ -33865,7 +33867,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2659,
+      "line": 2668,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "gappedThreeEvenEOE_get_lt_a",
       "trust": "kernel"
@@ -33890,7 +33892,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2671,
+      "line": 2680,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "gappedThreeEvenEOE_get_a",
       "trust": "kernel"
@@ -33915,7 +33917,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2683,
+      "line": 2692,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "gappedThreeEvenEOE_get_mid",
       "trust": "kernel"
@@ -33940,7 +33942,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2699,
+      "line": 2708,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "gappedThreeEvenEOE_get_o",
       "trust": "kernel"
@@ -33965,7 +33967,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2720,
+      "line": 2729,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "gappedThreeEvenEOE_get_last",
       "trust": "kernel"
@@ -33990,7 +33992,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2741,
+      "line": 2750,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "gappedThreeEvenEOE_pred_odd",
       "trust": "kernel"
@@ -34015,7 +34017,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2757,
+      "line": 2766,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "gappedEEBootstrap",
       "trust": "kernel"
@@ -34040,7 +34042,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2761,
+      "line": 2770,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "gappedEOEBootstrap",
       "trust": "kernel"
@@ -34065,7 +34067,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2765,
+      "line": 2774,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "gappedEEBootstrap_split",
       "trust": "kernel"
@@ -34090,7 +34092,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2771,
+      "line": 2780,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "gappedEOEBootstrap_split",
       "trust": "kernel"
@@ -34115,7 +34117,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2777,
+      "line": 2786,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "gapped_ee_rotate_succ_a",
       "trust": "kernel"
@@ -34140,7 +34142,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2793,
+      "line": 2802,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "gapped_eoe_rotate_succ_a",
       "trust": "kernel"
@@ -34165,7 +34167,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2809,
+      "line": 2818,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_followsB_3_four_odds",
       "trust": "kernel"
@@ -34190,7 +34192,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2813,
+      "line": 2822,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_follows_three_four_odds",
       "trust": "kernel"
@@ -34215,7 +34217,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2821,
+      "line": 2830,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_follows_three_long_odds",
       "trust": "kernel"
@@ -34240,7 +34242,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2832,
+      "line": 2841,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_followsB_3_eoe_boot3",
       "trust": "kernel"
@@ -34265,7 +34267,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2836,
+      "line": 2845,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_follows_three_eoe_bootstrap",
       "trust": "kernel"
@@ -34290,7 +34292,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2854,
+      "line": 2863,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "oo_run_suffix_threshold",
       "trust": "kernel"
@@ -34315,7 +34317,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2862,
+      "line": 2871,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycleMin_gapped_ee_bootstrap",
       "trust": "kernel"
@@ -34340,7 +34342,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2888,
+      "line": 2897,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycleMin_gapped_eoe_bootstrap",
       "trust": "kernel"
@@ -34365,7 +34367,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2913,
+      "line": 2922,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycle_itinerary_gapped_three_even_ee",
       "trust": "kernel"
@@ -34390,7 +34392,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2941,
+      "line": 2950,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycle_itinerary_gapped_three_even_eoe",
       "trust": "kernel"
@@ -34490,17 +34492,7 @@
       "file": "formal/Problems/Juggler/LeftoverPreimage.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 98,
-      "module": "Problems.Juggler.LeftoverPreimage",
-      "name": "two_pow_le_three_pow",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/Problems/Juggler/LeftoverPreimage.lean",
-      "kind": "theorem",
-      "ledger": [],
-      "line": 101,
+      "line": 104,
       "module": "Problems.Juggler.LeftoverPreimage",
       "name": "nat_cast_eq_of_int",
       "trust": "kernel"
@@ -34510,7 +34502,7 @@
       "file": "formal/Problems/Juggler/LeftoverPreimage.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 104,
+      "line": 107,
       "module": "Problems.Juggler.LeftoverPreimage",
       "name": "denomBits_succ",
       "trust": "kernel"
@@ -34520,7 +34512,7 @@
       "file": "formal/Problems/Juggler/LeftoverPreimage.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 113,
+      "line": 116,
       "module": "Problems.Juggler.LeftoverPreimage",
       "name": "four_exp_odd_succ",
       "trust": "kernel"
@@ -34530,7 +34522,7 @@
       "file": "formal/Problems/Juggler/LeftoverPreimage.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 123,
+      "line": 126,
       "module": "Problems.Juggler.LeftoverPreimage",
       "name": "four_mul_two_pow_sub",
       "trust": "kernel"
@@ -34540,7 +34532,7 @@
       "file": "formal/Problems/Juggler/LeftoverPreimage.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 128,
+      "line": 131,
       "module": "Problems.Juggler.LeftoverPreimage",
       "name": "two_mul_two_pow",
       "trust": "kernel"
@@ -34550,7 +34542,7 @@
       "file": "formal/Problems/Juggler/LeftoverPreimage.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 131,
+      "line": 134,
       "module": "Problems.Juggler.LeftoverPreimage",
       "name": "two_mul_two_pow_pred",
       "trust": "kernel"
@@ -34560,7 +34552,7 @@
       "file": "formal/Problems/Juggler/LeftoverPreimage.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 137,
+      "line": 140,
       "module": "Problems.Juggler.LeftoverPreimage",
       "name": "two_mul_pow_cube",
       "trust": "kernel"
@@ -34570,7 +34562,7 @@
       "file": "formal/Problems/Juggler/LeftoverPreimage.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 141,
+      "line": 144,
       "module": "Problems.Juggler.LeftoverPreimage",
       "name": "three_mul_two_pow",
       "trust": "kernel"
@@ -34580,7 +34572,7 @@
       "file": "formal/Problems/Juggler/LeftoverPreimage.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 146,
+      "line": 149,
       "module": "Problems.Juggler.LeftoverPreimage",
       "name": "three_pow_succ_sub",
       "trust": "kernel"
@@ -34590,7 +34582,7 @@
       "file": "formal/Problems/Juggler/LeftoverPreimage.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 152,
+      "line": 155,
       "module": "Problems.Juggler.LeftoverPreimage",
       "name": "three_pow_succ_sub_two",
       "trust": "kernel"
@@ -34600,7 +34592,7 @@
       "file": "formal/Problems/Juggler/LeftoverPreimage.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 158,
+      "line": 161,
       "module": "Problems.Juggler.LeftoverPreimage",
       "name": "lowerDenomFrom_replicate_odd",
       "trust": "kernel"
@@ -34610,7 +34602,7 @@
       "file": "formal/Problems/Juggler/LeftoverPreimage.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 174,
+      "line": 177,
       "module": "Problems.Juggler.LeftoverPreimage",
       "name": "lowerDenom_replicate_odd",
       "trust": "kernel"
@@ -34620,7 +34612,7 @@
       "file": "formal/Problems/Juggler/LeftoverPreimage.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 182,
+      "line": 185,
       "module": "Problems.Juggler.LeftoverPreimage",
       "name": "odd_run_lower_growth",
       "trust": "kernel"
@@ -34630,7 +34622,7 @@
       "file": "formal/Problems/Juggler/LeftoverPreimage.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 190,
+      "line": 193,
       "module": "Problems.Juggler.LeftoverPreimage",
       "name": "denomBits_four",
       "trust": "kernel"
@@ -34640,7 +34632,7 @@
       "file": "formal/Problems/Juggler/LeftoverPreimage.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 193,
+      "line": 196,
       "module": "Problems.Juggler.LeftoverPreimage",
       "name": "three_pow_four",
       "trust": "kernel"
@@ -34650,7 +34642,7 @@
       "file": "formal/Problems/Juggler/LeftoverPreimage.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 196,
+      "line": 199,
       "module": "Problems.Juggler.LeftoverPreimage",
       "name": "two_pow_six",
       "trust": "kernel"
@@ -34660,7 +34652,7 @@
       "file": "formal/Problems/Juggler/LeftoverPreimage.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 199,
+      "line": 202,
       "module": "Problems.Juggler.LeftoverPreimage",
       "name": "shared_two_even_tail_succ",
       "trust": "kernel"
@@ -34670,7 +34662,7 @@
       "file": "formal/Problems/Juggler/LeftoverPreimage.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 254,
+      "line": 257,
       "module": "Problems.Juggler.LeftoverPreimage",
       "name": "shared_two_even_tail",
       "trust": "kernel"
@@ -34680,7 +34672,7 @@
       "file": "formal/Problems/Juggler/LeftoverPreimage.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 270,
+      "line": 273,
       "module": "Problems.Juggler.LeftoverPreimage",
       "name": "succ_sq_gt_mul_add_two",
       "trust": "kernel"
@@ -34690,7 +34682,7 @@
       "file": "formal/Problems/Juggler/LeftoverPreimage.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 275,
+      "line": 278,
       "module": "Problems.Juggler.LeftoverPreimage",
       "name": "persist_succ_pow",
       "trust": "kernel"
@@ -34700,7 +34692,7 @@
       "file": "formal/Problems/Juggler/LeftoverPreimage.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 301,
+      "line": 304,
       "module": "Problems.Juggler.LeftoverPreimage",
       "name": "leftover_prefix_preimage",
       "trust": "kernel"
@@ -36370,7 +36362,7 @@
       "file": "formal/Problems/Juggler/MasterIdentity.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 117,
+      "line": 116,
       "module": "Problems.Juggler.MasterIdentity",
       "name": "lemma51_double_gap",
       "trust": "kernel"
@@ -36380,7 +36372,7 @@
       "file": "formal/Problems/Juggler/MasterIdentity.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 162,
+      "line": 160,
       "module": "Problems.Juggler.MasterIdentity",
       "name": "double_difference_product",
       "trust": "kernel"
@@ -36390,7 +36382,7 @@
       "file": "formal/Problems/Juggler/MasterIdentity.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 187,
+      "line": 185,
       "module": "Problems.Juggler.MasterIdentity",
       "name": "lemma51_master",
       "trust": "kernel"
@@ -36400,7 +36392,7 @@
       "file": "formal/Problems/Juggler/MasterIdentity.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 233,
+      "line": 231,
       "module": "Problems.Juggler.MasterIdentity",
       "name": "lemma51_brackets_le_two",
       "trust": "kernel"
@@ -39552,7 +39544,7 @@
       "file": "formal/Problems/Juggler/PaperBAssembly.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 325,
+      "line": 328,
       "module": "Problems.Juggler.PaperBAssembly",
       "name": "wideD3_regimeA_dominated",
       "trust": "kernel"
@@ -39562,7 +39554,7 @@
       "file": "formal/Problems/Juggler/PaperBAssembly.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 335,
+      "line": 338,
       "module": "Problems.Juggler.PaperBAssembly",
       "name": "wideD3_regimeB_small",
       "trust": "kernel"
@@ -39572,7 +39564,7 @@
       "file": "formal/Problems/Juggler/PaperBAssembly.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 344,
+      "line": 347,
       "module": "Problems.Juggler.PaperBAssembly",
       "name": "wideD3_frequency_sweep",
       "trust": "kernel"
@@ -39582,7 +39574,7 @@
       "file": "formal/Problems/Juggler/PaperBAssembly.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 355,
+      "line": 361,
       "module": "Problems.Juggler.PaperBAssembly",
       "name": "wideD3_cells_flat",
       "trust": "kernel"
@@ -39592,7 +39584,7 @@
       "file": "formal/Problems/Juggler/PaperBAssembly.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 368,
+      "line": 374,
       "module": "Problems.Juggler.PaperBAssembly",
       "name": "wideD3_caseA_total",
       "trust": "kernel"
@@ -39602,7 +39594,7 @@
       "file": "formal/Problems/Juggler/PaperBAssembly.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 380,
+      "line": 386,
       "module": "Problems.Juggler.PaperBAssembly",
       "name": "wideD3_caseB_confined",
       "trust": "kernel"
@@ -39612,7 +39604,7 @@
       "file": "formal/Problems/Juggler/PaperBAssembly.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 386,
+      "line": 395,
       "module": "Problems.Juggler.PaperBAssembly",
       "name": "wideD3_caseB_closes",
       "trust": "kernel"
@@ -39622,7 +39614,7 @@
       "file": "formal/Problems/Juggler/PaperBAssembly.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 396,
+      "line": 405,
       "module": "Problems.Juggler.PaperBAssembly",
       "name": "wideD3_caseB_confines_phi",
       "trust": "kernel"
@@ -39632,7 +39624,7 @@
       "file": "formal/Problems/Juggler/PaperBAssembly.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 404,
+      "line": 413,
       "module": "Problems.Juggler.PaperBAssembly",
       "name": "wideD3_caseB_ratio",
       "trust": "kernel"
@@ -39642,7 +39634,7 @@
       "file": "formal/Problems/Juggler/PaperBAssembly.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 411,
+      "line": 420,
       "module": "Problems.Juggler.PaperBAssembly",
       "name": "wideD3_caseB_gaps",
       "trust": "kernel"
@@ -39652,7 +39644,7 @@
       "file": "formal/Problems/Juggler/PaperBAssembly.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 428,
+      "line": 437,
       "module": "Problems.Juggler.PaperBAssembly",
       "name": "sublevel_diam_of_deriv_lower",
       "trust": "kernel"
@@ -39662,7 +39654,7 @@
       "file": "formal/Problems/Juggler/PaperBAssembly.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 451,
+      "line": 460,
       "module": "Problems.Juggler.PaperBAssembly",
       "name": "midpoint_defect_of_convexOn",
       "trust": "kernel"
@@ -39672,7 +39664,7 @@
       "file": "formal/Problems/Juggler/PaperBAssembly.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 471,
+      "line": 480,
       "module": "Problems.Juggler.PaperBAssembly",
       "name": "sublevel_diam_of_strong_convexity",
       "trust": "kernel"
@@ -39682,7 +39674,7 @@
       "file": "formal/Problems/Juggler/PaperBAssembly.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 485,
+      "line": 494,
       "module": "Problems.Juggler.PaperBAssembly",
       "name": "sublevel_second_term_dominates",
       "trust": "kernel"
@@ -45170,16 +45162,6 @@
       "ledger": [],
       "line": 160,
       "module": "Problems.Juggler.Seam",
-      "name": "cycleMin_ends_even",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/Problems/Juggler/Seam.lean",
-      "kind": "theorem",
-      "ledger": [],
-      "line": 171,
-      "module": "Problems.Juggler.Seam",
       "name": "cycleParentOf_append_even",
       "trust": "kernel"
     },
@@ -45188,7 +45170,7 @@
       "file": "formal/Problems/Juggler/Seam.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 175,
+      "line": 164,
       "module": "Problems.Juggler.Seam",
       "name": "cycleMin_cycleParent_even",
       "trust": "kernel"
@@ -45198,7 +45180,7 @@
       "file": "formal/Problems/Juggler/Seam.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 185,
+      "line": 174,
       "module": "Problems.Juggler.Seam",
       "name": "cycleMin_cycleParent_cell",
       "trust": "kernel"
@@ -45208,7 +45190,7 @@
       "file": "formal/Problems/Juggler/Seam.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 196,
+      "line": 185,
       "module": "Problems.Juggler.Seam",
       "name": "odd_parent_of_cycleMin_off_cycle",
       "trust": "kernel"
@@ -45218,7 +45200,7 @@
       "file": "formal/Problems/Juggler/Seam.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 207,
+      "line": 196,
       "module": "Problems.Juggler.Seam",
       "name": "seam_cycle_edge",
       "trust": "kernel"
@@ -45228,7 +45210,7 @@
       "file": "formal/Problems/Juggler/Seam.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 211,
+      "line": 200,
       "module": "Problems.Juggler.Seam",
       "name": "seam_cycle_parent_on_cycle",
       "trust": "kernel"
@@ -45238,7 +45220,7 @@
       "file": "formal/Problems/Juggler/Seam.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 215,
+      "line": 204,
       "module": "Problems.Juggler.Seam",
       "name": "seam_cycle_is_cycle_parent",
       "trust": "kernel"
@@ -45248,7 +45230,7 @@
       "file": "formal/Problems/Juggler/Seam.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 219,
+      "line": 208,
       "module": "Problems.Juggler.Seam",
       "name": "seam_stem_is_external",
       "trust": "kernel"
@@ -45258,7 +45240,7 @@
       "file": "formal/Problems/Juggler/Seam.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 224,
+      "line": 213,
       "module": "Problems.Juggler.Seam",
       "name": "seam_parents_distinct",
       "trust": "kernel"
@@ -45268,7 +45250,7 @@
       "file": "formal/Problems/Juggler/Seam.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 229,
+      "line": 218,
       "module": "Problems.Juggler.Seam",
       "name": "seam_cycle_parent_even",
       "trust": "kernel"
@@ -45278,7 +45260,7 @@
       "file": "formal/Problems/Juggler/Seam.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 233,
+      "line": 222,
       "module": "Problems.Juggler.Seam",
       "name": "seam_cycle_parent_cell",
       "trust": "kernel"
@@ -45288,7 +45270,7 @@
       "file": "formal/Problems/Juggler/Seam.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 240,
+      "line": 229,
       "module": "Problems.Juggler.Seam",
       "name": "seam_parent_cases",
       "trust": "kernel"
@@ -45298,7 +45280,7 @@
       "file": "formal/Problems/Juggler/Seam.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 256,
+      "line": 245,
       "module": "Problems.Juggler.Seam",
       "name": "seam_odd_stem_lt",
       "trust": "kernel"
@@ -45308,7 +45290,7 @@
       "file": "formal/Problems/Juggler/Seam.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 266,
+      "line": 255,
       "module": "Problems.Juggler.Seam",
       "name": "seam_stem_ancestor_of_cycleParent",
       "trust": "kernel"
@@ -45318,7 +45300,7 @@
       "file": "formal/Problems/Juggler/Seam.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 281,
+      "line": 270,
       "module": "Problems.Juggler.Seam",
       "name": "seam_cycle_not_ancestor_of_stem",
       "trust": "kernel"
@@ -45328,7 +45310,7 @@
       "file": "formal/Problems/Juggler/Seam.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 289,
+      "line": 278,
       "module": "Problems.Juggler.Seam",
       "name": "seam_stem_in_basin",
       "trust": "kernel"
@@ -45338,7 +45320,7 @@
       "file": "formal/Problems/Juggler/Seam.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 293,
+      "line": 282,
       "module": "Problems.Juggler.Seam",
       "name": "seam_cycle_in_basin",
       "trust": "kernel"
@@ -45348,7 +45330,7 @@
       "file": "formal/Problems/Juggler/Seam.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 300,
+      "line": 289,
       "module": "Problems.Juggler.Seam",
       "name": "cycleMin_one_odd",
       "trust": "kernel"
@@ -45358,7 +45340,7 @@
       "file": "formal/Problems/Juggler/Seam.lean",
       "kind": "def",
       "ledger": [],
-      "line": 309,
+      "line": 298,
       "module": "Problems.Juggler.Seam",
       "name": "sink_seam_two_to_one",
       "trust": "kernel"
@@ -45368,7 +45350,7 @@
       "file": "formal/Problems/Juggler/Seam.lean",
       "kind": "def",
       "ledger": [],
-      "line": 331,
+      "line": 320,
       "module": "Problems.Juggler.Seam",
       "name": "predIndex",
       "trust": "kernel"
@@ -45378,7 +45360,7 @@
       "file": "formal/Problems/Juggler/Seam.lean",
       "kind": "def",
       "ledger": [],
-      "line": 334,
+      "line": 323,
       "module": "Problems.Juggler.Seam",
       "name": "orbitVertex",
       "trust": "kernel"
@@ -45388,7 +45370,7 @@
       "file": "formal/Problems/Juggler/Seam.lean",
       "kind": "def",
       "ledger": [],
-      "line": 337,
+      "line": 326,
       "module": "Problems.Juggler.Seam",
       "name": "cycleParentAt",
       "trust": "kernel"
@@ -45398,7 +45380,7 @@
       "file": "formal/Problems/Juggler/Seam.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 340,
+      "line": 329,
       "module": "Problems.Juggler.Seam",
       "name": "predIndex_lt",
       "trust": "kernel"
@@ -45408,7 +45390,7 @@
       "file": "formal/Problems/Juggler/Seam.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 343,
+      "line": 332,
       "module": "Problems.Juggler.Seam",
       "name": "predIndex_zero",
       "trust": "kernel"
@@ -45418,7 +45400,7 @@
       "file": "formal/Problems/Juggler/Seam.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 348,
+      "line": 337,
       "module": "Problems.Juggler.Seam",
       "name": "predIndex_of_pos",
       "trust": "kernel"
@@ -45428,7 +45410,7 @@
       "file": "formal/Problems/Juggler/Seam.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 355,
+      "line": 344,
       "module": "Problems.Juggler.Seam",
       "name": "predIndex_succ_mod",
       "trust": "kernel"
@@ -45438,7 +45420,7 @@
       "file": "formal/Problems/Juggler/Seam.lean",
       "kind": "def",
       "ledger": [],
-      "line": 365,
+      "line": 354,
       "module": "Problems.Juggler.Seam",
       "name": "joinArrival",
       "trust": "kernel"
@@ -45448,7 +45430,7 @@
       "file": "formal/Problems/Juggler/Seam.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 368,
+      "line": 357,
       "module": "Problems.Juggler.Seam",
       "name": "cycleParentAt_zero",
       "trust": "kernel"
@@ -45458,7 +45440,7 @@
       "file": "formal/Problems/Juggler/Seam.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 372,
+      "line": 361,
       "module": "Problems.Juggler.Seam",
       "name": "cycleParentAt_onCycle",
       "trust": "kernel"
@@ -45468,7 +45450,7 @@
       "file": "formal/Problems/Juggler/Seam.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 377,
+      "line": 366,
       "module": "Problems.Juggler.Seam",
       "name": "every_orbit_index_is_join_site",
       "trust": "kernel"
@@ -45478,7 +45460,7 @@
       "file": "formal/Problems/Juggler/Seam.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 382,
+      "line": 371,
       "module": "Problems.Juggler.Seam",
       "name": "onCycle_left_inverse",
       "trust": "kernel"
@@ -45488,7 +45470,7 @@
       "file": "formal/Problems/Juggler/Seam.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 392,
+      "line": 381,
       "module": "Problems.Juggler.Seam",
       "name": "cycleParentAt_edge",
       "trust": "kernel"
@@ -45498,7 +45480,7 @@
       "file": "formal/Problems/Juggler/Seam.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 407,
+      "line": 396,
       "module": "Problems.Juggler.Seam",
       "name": "cycle_in_edge_unique_at",
       "trust": "kernel"
@@ -45508,7 +45490,7 @@
       "file": "formal/Problems/Juggler/Seam.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 428,
+      "line": 417,
       "module": "Problems.Juggler.Seam",
       "name": "join_arrival_parent_parity",
       "trust": "kernel"
@@ -45518,7 +45500,7 @@
       "file": "formal/Problems/Juggler/Seam.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 461,
+      "line": 450,
       "module": "Problems.Juggler.Seam",
       "name": "join_valley_arrival_even",
       "trust": "kernel"
@@ -45528,7 +45510,7 @@
       "file": "formal/Problems/Juggler/Seam.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 475,
+      "line": 464,
       "module": "Problems.Juggler.Seam",
       "name": "join_arrives_odd_cycle_parent_ge",
       "trust": "kernel"
@@ -45538,7 +45520,7 @@
       "file": "formal/Problems/Juggler/Seam.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 485,
+      "line": 474,
       "module": "Problems.Juggler.Seam",
       "name": "join_arrives_odd_external_even",
       "trust": "kernel"
@@ -45548,7 +45530,7 @@
       "file": "formal/Problems/Juggler/Seam.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 498,
+      "line": 487,
       "module": "Problems.Juggler.Seam",
       "name": "join_arrives_even_cycle_parent_cell",
       "trust": "kernel"
@@ -45558,7 +45540,7 @@
       "file": "formal/Problems/Juggler/Seam.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 508,
+      "line": 497,
       "module": "Problems.Juggler.Seam",
       "name": "rotateItinerary_get_zero",
       "trust": "kernel"
@@ -45568,7 +45550,7 @@
       "file": "formal/Problems/Juggler/Seam.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 514,
+      "line": 503,
       "module": "Problems.Juggler.Seam",
       "name": "rotate_even_not_cycleMin",
       "trust": "kernel"
@@ -45578,7 +45560,7 @@
       "file": "formal/Problems/Juggler/Seam.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 524,
+      "line": 513,
       "module": "Problems.Juggler.Seam",
       "name": "rotate_OE_not_cycleMin",
       "trust": "kernel"
@@ -66655,7 +66637,7 @@
       "ledger": []
     },
     "Problems.Juggler.CycleCore": {
-      "declarations": 71,
+      "declarations": 72,
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "imports": [
         "Problems.Juggler.Envelope",
@@ -66853,7 +66835,7 @@
       "ledger": []
     },
     "Problems.Juggler.CyclePosition": {
-      "declarations": 65,
+      "declarations": 64,
       "file": "formal/Problems/Juggler/CyclePosition.lean",
       "imports": [
         "Problems.Juggler.CycleCore",
@@ -67530,7 +67512,7 @@
       ]
     },
     "Problems.Juggler.LeftoverPreimage": {
-      "declarations": 31,
+      "declarations": 30,
       "file": "formal/Problems/Juggler/LeftoverPreimage.lean",
       "imports": [
         "Problems.Juggler.CycleCore",
@@ -68060,7 +68042,7 @@
       "ledger": []
     },
     "Problems.Juggler.Seam": {
-      "declarations": 61,
+      "declarations": 60,
       "file": "formal/Problems/Juggler/Seam.lean",
       "imports": [
         "Problems.Juggler.CycleCore",
@@ -68502,13 +68484,13 @@
     }
   },
   "totals": {
-    "declarations": 4932,
-    "declarations_with_a_ledger_row": 3195,
+    "declarations": 4930,
+    "declarations_with_a_ledger_row": 3196,
     "ledger_rows_naming_a_file": 338,
     "modules": 209,
     "trust": {
       "compiler": 54,
-      "kernel": 4878
+      "kernel": 4876
     }
   }
 }

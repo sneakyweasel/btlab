@@ -86,7 +86,7 @@ theorem mvt_cube_explicit (a b : ℝ) (ha : 0 < a) (hab : a ≤ b) :
 *exactly*, with `√η` the **arithmetic mean** of `√A` and `√(A+B)`.  Written in
 root coordinates `a = √A`, `b = √(A+B)`:
 `(3/2)(b - a) = (b² - a²)·(3/4)/((a+b)/2)`, and `(a+b)/2 ∈ [a, b]`. -/
-theorem mvt_sqrt_diff_explicit (a b : ℝ) (ha : 0 ≤ a) (hab : a ≤ b) :
+theorem mvt_sqrt_diff_explicit (a b : ℝ) (_ha : 0 ≤ a) (hab : a ≤ b) :
     a ≤ (a + b) / 2 ∧ (a + b) / 2 ≤ b
       ∧ (3 / 2) * (b - a) * ((a + b) / 2) = (3 / 4) * (b ^ 2 - a ^ 2) := by
   refine ⟨by linarith, by linarith, by ring⟩

@@ -41162,3 +41162,63 @@ So the last item on my own list of formal work with discovery potential
 is not work. Paper A's Section 4 and Section 5 mathematics is Lean; what
 remains non-Lean is the per-length numeric tables, which are bookkeeping
 under mechanisms whose ceilings are now measured.
+
+## Making the Lean pristine: 109 warnings to 2, and three guards
+
+Worked the plan from the top. Items 5 and 3 took minutes; item 1 took six
+build cycles and four mistakes of mine.
+
+Item 5: the formalpedia skill guide still said the Juggler layer keeps
+"exactly two proofs off the kernel". It is one, and has been since
+greedy_eq_ostro_below_window became a corollary. Paper A section 1.2 was
+already correct and even records the transition; the agent-facing guide
+was not, and it misled me for a minute earlier today.
+
+Item 3: both duplicate names were byte-identical, statement and proof.
+cycleMin_ends_even is hoisted into CycleCore, which CyclePosition and Seam
+both already import, and deleted from both. two_pow_le_three_pow is a
+one-line arithmetic fact whose two homes have no common ancestor, so
+adding an import to deduplicate would couple unrelated modules to fix a
+naming problem; the LeftoverPreimage copy is private instead, so the fact
+carries one public name.
+
+Item 1: 109 warnings down to 2. What the exercise actually taught:
+
+The unusedVariables linter has false positives. A binder used only inside
+an nlinarith term list is reported unused, and prefixing it with _ breaks
+the build. Three of my first 45 fixes did exactly that. So this cannot be
+a blind sweep; the build is the only arbiter, and I ran six.
+
+The unnecessarySimpa suggestion is not a token swap. Half the sites carry
+a using clause whose term the linter is asserting redundant, and dropping
+it needs the whole clause removed, including one that spanned three lines.
+My delimiter heuristic then mangled two lines -- a nested (by simp [hu])]
+lost its closing bracket, and dropping a using term left a stray paren. I
+caught both by reading every edited line rather than trusting the script's
+own success report.
+
+The tac1 <;> tac2 suggestion is simply wrong at FinanceTransfer:796.
+cases c <;> simp [ih] <;> omega runs omega on each remaining goal, and one
+branch has none; (simp [ih]; omega) runs it unconditionally and errors. I
+reverted and left the warning.
+
+A global string replace removed four push_casts where two were flagged. I
+caught that by diffing, not by the build -- removing a tactic that does
+nothing fails silently by construction. Position-directed edits only.
+
+set_option cannot go between a docstring and its declaration. And my first
+attempt to move them looped forever, because the loop searched for a
+marker it was relocating rather than removing.
+
+Two warnings remain, both cases where the linter is wrong, and I left them
+visible rather than suppress a linter that is usually right. Three
+unusedVariables false positives are suppressed narrowly, per declaration,
+with a comment naming the limitation.
+
+The guards are the point, since cleaning once decays. tests/tools/
+test_lean_hygiene.py: duplicate names must be zero, orphans must not grow
+past 400, and build warnings must not grow past 2. The warning one is
+slow-marked and, importantly, skips on a warm cache instead of passing --
+Lean reports a module's warnings only when it compiles that module, so a
+cached build prints nothing and a naive count would pass at a fake zero
+while the warnings sat there. A guard that cannot measure should say so.

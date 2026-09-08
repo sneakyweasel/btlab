@@ -157,17 +157,6 @@ theorem collision_factorization_one_step {p c : ℕ} {w : List Branch}
   subst this
   simpa using h.2.2
 
-theorem cycleMin_ends_even {n : ℕ} {w : List Branch}
-    (hn : 2 ≤ n) (h : CycleMin n w) : ∃ u, w = u ++ [.even] := by
-  induction w using List.reverseRecOn with
-  | nil =>
-      have := h.1.2.2
-      simp at this
-  | append_singleton u b =>
-      cases b with
-      | even => exact ⟨u, rfl⟩
-      | odd => exact (cycleMin_not_end_odd hn h).elim
-
 theorem cycleParentOf_append_even (n : ℕ) (u : List Branch) :
     cycleParentOf n (u ++ [.even]) = floorPower^[u.length] n := by
   simp [cycleParentOf, List.length_append]
@@ -343,13 +332,13 @@ theorem predIndex_lt {L k : ℕ} (hL : 0 < L) : predIndex L k < L :=
 theorem predIndex_zero {L : ℕ} (hL : 1 ≤ L) : predIndex L 0 = L - 1 := by
   have hlt : L - 1 < L :=
     Nat.sub_lt (lt_of_lt_of_le (by decide : (0 : ℕ) < 1) hL) (by decide)
-  simpa [predIndex] using Nat.mod_eq_of_lt hlt
+  simp [predIndex]
 
 theorem predIndex_of_pos {L k : ℕ} (hL : 1 ≤ L) (hk : 0 < k) (hkL : k < L) :
     predIndex L k = k - 1 := by
   have hsum : k + L - 1 = L + (k - 1) := by omega
   have hlt : k - 1 < L := Nat.lt_of_le_of_lt (Nat.sub_le k 1) hkL
-  simp [predIndex, hsum, Nat.add_mod, Nat.mod_self]
+  simp [predIndex, hsum]
   exact Nat.mod_eq_of_lt hlt
 
 theorem predIndex_succ_mod {L k : ℕ} (hL : 1 ≤ L) (hk : k < L) :
@@ -440,7 +429,7 @@ theorem join_arrival_parent_parity {n : ℕ} {w : List Branch} {k : ℕ}
     · intro heven
       cases hlet : (w[predIndex w.length k]'hpred) with
       | even =>
-          simpa [joinArrival, hlet]
+          simp [joinArrival, hlet]
       | odd =>
           have := follows_get_odd w hf (predIndex w.length k) hpred hlet
           simp [cycleParentAt] at heven
@@ -452,7 +441,7 @@ theorem join_arrival_parent_parity {n : ℕ} {w : List Branch} {k : ℕ}
     · intro hodd
       cases hlet : (w[predIndex w.length k]'hpred) with
       | odd =>
-          simpa [joinArrival, hlet]
+          simp [joinArrival, hlet]
       | even =>
           have := follows_get_even w hf (predIndex w.length k) hpred hlet
           simp [cycleParentAt] at hodd

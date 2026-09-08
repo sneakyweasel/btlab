@@ -107,7 +107,6 @@ theorem fract_diff_level2 (y w : ℝ) :
     Int.fract (y + w) - Int.fract y = Int.fract w - carry y w := by
   rw [carry_as_sawtooth]
   simp only [Int.fract]
-  push_cast
   ring
 
 /-- **Lemma 5.1(ii), the double gap.**  With `v = ⌊Y⌋`, `g₂ = Δ₁v`,
@@ -142,7 +141,6 @@ theorem lemma51_double_gap (y₀ y₁ y₂ y₁₂ : ℝ) :
     simp only [Int.fract] at this
     have e : (y₁ - y₀) + ((y₁₂ - y₂) - (y₁ - y₀)) = y₁₂ - y₂ := by ring
     rw [e] at this
-    push_cast
     linarith
   rw [h₁, h₂]
   linarith [h₃]

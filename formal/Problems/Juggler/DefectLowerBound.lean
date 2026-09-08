@@ -270,9 +270,7 @@ theorem firstDefect_lt_of_odd_run_then_even {n odds : ℕ} {w : List Branch}
   have htake_eq : word.take odds = List.replicate odds Branch.odd := by
     have hlen : (List.replicate odds Branch.odd).length = odds :=
       List.length_replicate
-    simpa [word, hlen] using
-      (List.take_left (l₁ := List.replicate odds Branch.odd)
-        (l₂ := Branch.even :: w))
+    simp [word, hlen]
   have htake_nested :
       word.take odds = (word.take (firstDefect n word)).take odds := by
     rw [List.take_take, min_eq_left hge']
@@ -446,7 +444,7 @@ theorem accumulatedDefect_of_tight_prefix {current k : ℕ} :
     ∀ u v, localsTight current u →
       accumulatedDefect current 0 k (u ++ v) =
         accumulatedDefect (image current u) 0 (k + u.length) v
-  | [], v, _ => by simp [accumulatedDefect, image]
+  | [], v, _ => by simp [image]
   | .even :: u, v, ht => by
       have hρ : localDefectEven current = 0 := by
         simpa [branchDefect] using branchDefect_eq_zero_of_localTight ht.1
@@ -735,7 +733,7 @@ theorem globalDefect_OOE_eq (n : ℕ) :
       accumulatedDefect (floorPower n) (localDefectOdd n) 1
         [Branch.odd, Branch.even] := by
   simp [globalDefect, ooeWord, accumulatedDefect, accumulateOdd,
-    powGap_zero_addend, powGap_one, branchDefect]
+    powGap_zero_addend, powGap_one]
 
 theorem globalDefect_OOE_of_j_zero {n : ℕ}
     (_hw : follows n ooeWord) (_hj : firstDefect n ooeWord = 0) :
@@ -764,11 +762,11 @@ theorem globalDefect_OOE_of_j_one {n : ℕ}
     localDefectOdd (floorPower n) ^ 2 ≤ globalDefect n ooeWord := by
   have hlen : ooeWord.length = 3 := rfl
   have hpos : firstDefect n ooeWord < ooeWord.length := by
-    simpa [hj, hlen]
+    simp [hj, hlen]
   have hbound := firstDefect_contribution hw hpos
   have hget : ooeWord[1] = Branch.odd := rfl
   have hiter : floorPower^[1] n = floorPower n := by
-    simp [Function.iterate_one]
+    simp
   simpa [hj, hget, hiter, branchDefect] using hbound
 
 /-- Conditional lower bound for the previously difficult mixed class `OOE`.

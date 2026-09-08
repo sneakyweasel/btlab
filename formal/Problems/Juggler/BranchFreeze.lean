@@ -112,7 +112,7 @@ range is `{-1,0,1,2}` again — so `|j| ≤ 2`, and `3` is unattainable. -/
 theorem carry_eq_floor_shifted (A θ : ℝ) (hθ₀ : 0 ≤ θ) (hθ₁ : θ < 1) :
     ⌊A⌋ + (if 1 ≤ Int.fract A + θ then (1:ℤ) else 0) = ⌊A + θ⌋ := by
   have hsplit : A + θ = (Int.fract A + θ) + ((⌊A⌋ : ℤ) : ℝ) := by
-    have := Int.floor_add_fract A; push_cast; linarith
+    have := Int.floor_add_fract A; linarith
   rw [hsplit, Int.floor_add_intCast]
   have h0 : (0:ℝ) ≤ Int.fract A + θ := by have := Int.fract_nonneg A; linarith
   have h2 : Int.fract A + θ < 2 := by have := Int.fract_lt_one A; linarith
@@ -122,7 +122,7 @@ theorem carry_eq_floor_shifted (A θ : ℝ) (hθ₀ : 0 ≤ θ) (hθ₁ : θ < 1
       rw [Int.floor_eq_iff]; constructor <;> push_cast <;> linarith
     omega
   · rw [if_neg h]
-    push_neg at h
+    push Not at h
     have hf : ⌊Int.fract A + θ⌋ = 0 := by
       rw [Int.floor_eq_iff]; constructor <;> push_cast <;> linarith
     omega
@@ -224,7 +224,7 @@ theorem Gprime_j_bound (j p s : ℝ) (hp : 0 < p) (hs : p ≤ s) :
 /-- **The `β`-part of `G'`.**  `(9/16)β₁β₂ s^(-7) ≤ 20 h₁h₂ p^(-3)`, the printed
 `20 h₁h₂P^(-3/4)`; the constant used is `(9/16)·19 = 10.6875 ≤ 20`. -/
 theorem Gprime_beta_bound (β h p s : ℝ) (hp : 0 < p) (hs : p ≤ s)
-    (hh : 0 ≤ h) (hβ0 : 0 ≤ β) (hβ : β ≤ 19 * h * p ^ 4) :
+    (hh : 0 ≤ h) (_hβ0 : 0 ≤ β) (hβ : β ≤ 19 * h * p ^ 4) :
     (9 / 16) * β * p ^ 3 ≤ 20 * h * s ^ 7 := by
   have hp7 : p ^ 7 ≤ s ^ 7 := by gcongr
   nlinarith [pow_pos hp 3, pow_pos hp 7, mul_nonneg hh (pow_pos hp 7).le]
@@ -249,7 +249,7 @@ theorem Gsecond_naive_bound_fails :
 /-- **The `β`-part of `G''`.**  `(63/64)β₁β₂ s^(-11) ≤ 25 h₁h₂ p^(-7)`, the
 printed `25 h₁h₂P^(-7/4)`. -/
 theorem Gsecond_beta_bound (β h p s : ℝ) (hp : 0 < p) (hs : p ≤ s)
-    (hh : 0 ≤ h) (hβ0 : 0 ≤ β) (hβ : β ≤ 19 * h * p ^ 4) :
+    (hh : 0 ≤ h) (_hβ0 : 0 ≤ β) (hβ : β ≤ 19 * h * p ^ 4) :
     (63 / 64) * β * p ^ 7 ≤ 25 * h * s ^ 11 := by
   have hp11 : p ^ 11 ≤ s ^ 11 := by gcongr
   nlinarith [pow_pos hp 7, pow_pos hp 11, mul_nonneg hh (pow_pos hp 11).le]
@@ -271,7 +271,7 @@ section Sizes
 lies in `[1.5|j|P^(3/4), 2.6|j|P^(3/4)]`.  Written with `w = A^(1/2)` and
 `p = P^(1/4)`, the hypothesis is `p³ ≤ w ≤ 1.7333 p³`; the manuscript's `2^(3/2)`
 gives `w ≤ 1.6818 p³`, so `2.6` has room. -/
-theorem offset_term_bounds (j p w : ℝ) (hp : 0 < p)
+theorem offset_term_bounds (j p w : ℝ) (_hp : 0 < p)
     (hlo : p ^ 3 ≤ w) (hhi : w ≤ 1.7333 * p ^ 3) :
     (3 / 2) * |j| * p ^ 3 ≤ (3 / 2) * |j| * w
       ∧ (3 / 2) * |j| * w ≤ 2.6 * |j| * p ^ 3 := by
@@ -298,7 +298,7 @@ theorem second_difference_term_bounds (β h p u : ℝ) (hp : 0 < p) (hh : 0 ≤ 
 `B = 20 h₁h₂ p^(-3)`, and `M = max((|j|+1)p^(-1), h₁h₂p^(-3))`, one has
 `A ≤ 2M` and `B ≤ 20M`, so `A + B ≤ 22M`.  The `22` of the manuscript is exactly
 `2 + 20`. -/
-theorem run_length_arithmetic (j h p : ℝ) (hj : 0 ≤ j) (hh : 0 ≤ h) (hp : 0 < p) :
+theorem run_length_arithmetic (j h p : ℝ) (_hj : 0 ≤ j) (_hh : 0 ≤ h) (hp : 0 < p) :
     2 * j / p + 20 * h / p ^ 3
       ≤ 22 * max ((j + 1) / p) (h / p ^ 3) := by
   have hA : 2 * j / p ≤ 2 * max ((j + 1) / p) (h / p ^ 3) := by
@@ -317,7 +317,7 @@ an interval of length `1/(22M)` it moves by at most `1`, so `⌊G⌋` takes at m
 two values there: runs of `⌊G(n)⌋` have length at least
 `(1/22)min(P^(1/4)/(|j|+1), P^(3/4)/(h₁h₂))`. -/
 theorem run_length_conclusion (Gx Gy M x y : ℝ) (hM : 0 < M)
-    (hxy : x ≤ y) (hlen : y - x ≤ 1 / (22 * M))
+    (_hxy : x ≤ y) (hlen : y - x ≤ 1 / (22 * M))
     (hrate : |Gy - Gx| ≤ 22 * M * (y - x)) :
     |Gy - Gx| ≤ 1 := by
   have h22 : (0:ℝ) < 22 * M := by linarith

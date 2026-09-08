@@ -845,6 +845,21 @@ theorem cycleMin_not_end_odd {n : ℕ} {u : List Branch}
   have hcube : n ^ 3 ≤ image n u ^ 3 := Nat.pow_le_pow_left hx 3
   exact (not_lt_of_ge (succ_sq_le_cube hn3)) (lt_of_le_of_lt hcube hI.2)
 
+/-- **A cycle minimum's word ends in `E`**, in list form: it splits as `u ++ [even]`.
+The letter form is `cycleMin_word_shape`; this is the decomposition its callers use.
+Hoisted here from `CyclePosition` and `Seam`, which had proved it identically and
+independently and both import this module. -/
+theorem cycleMin_ends_even {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleMin n w) : ∃ u, w = u ++ [.even] := by
+  induction w using List.reverseRecOn with
+  | nil =>
+      have := h.1.2.2
+      simp at this
+  | append_singleton u b =>
+      cases b with
+      | even => exact ⟨u, rfl⟩
+      | odd => exact (cycleMin_not_end_odd hn h).elim
+
 /-- Prefix `OOO` plus an internal even step cannot land at the cycle
 minimum: `T^3(n) ≥ (n+1)^2` and `isqrt(T^3(n)) = n` are incompatible. -/
 theorem cycleMin_prefix_ooo_even_sqrt_ne {n : ℕ} {v : List Branch}

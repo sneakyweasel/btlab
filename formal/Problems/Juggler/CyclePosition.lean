@@ -95,7 +95,7 @@ def CollisionFactorization.arrival (C : CollisionFactorization) : CycleArrival :
 theorem cyclePrevIndex_zero {L : ℕ} (hL : 1 ≤ L) : cyclePrevIndex L 0 = L - 1 := by
   have hlt : L - 1 < L :=
     Nat.sub_lt (lt_of_lt_of_le (by decide : (0 : ℕ) < 1) hL) (by decide)
-  simpa [cyclePrevIndex] using Nat.mod_eq_of_lt hlt
+  simp [cyclePrevIndex]
 
 theorem cyclePrevIndex_of_pos {L k : ℕ} (hL : 1 ≤ L) (hk : 0 < k) (hkL : k < L) :
     cyclePrevIndex L k = k - 1 := by
@@ -149,7 +149,7 @@ theorem cycleParent_branch_classification {n : ℕ} {w : List Branch} {k : ℕ}
     · intro heven
       cases hlet : (w[cyclePrevIndex w.length k]'hpred) with
       | even =>
-          simpa [cyclePrevBranch, hlet]
+          simp [cyclePrevBranch, hlet]
       | odd =>
           have := follows_get_odd w hf (cyclePrevIndex w.length k) hpred hlet
           simp [cycleParent] at heven
@@ -161,7 +161,7 @@ theorem cycleParent_branch_classification {n : ℕ} {w : List Branch} {k : ℕ}
     · intro hodd
       cases hlet : (w[cyclePrevIndex w.length k]'hpred) with
       | odd =>
-          simpa [cyclePrevBranch, hlet]
+          simp [cyclePrevBranch, hlet]
       | even =>
           have := follows_get_even w hf (cyclePrevIndex w.length k) hpred hlet
           simp [cycleParent] at hodd
@@ -456,17 +456,6 @@ theorem eArrival_odd_stem_has_nontrivial_cycleMin
 
 /-! ## Valley specialization of E-arrival -/
 
-theorem cycleMin_ends_even {n : ℕ} {w : List Branch}
-    (hn : 2 ≤ n) (h : CycleMin n w) : ∃ u, w = u ++ [.even] := by
-  induction w using List.reverseRecOn with
-  | nil =>
-      have := h.1.2.2
-      simp at this
-  | append_singleton u b =>
-      cases b with
-      | even => exact ⟨u, rfl⟩
-      | odd => exact (cycleMin_not_end_odd hn h).elim
-
 /-- Wrap at a CycleMin cut is E-arrival, by `cycleMin_not_end_odd`,
     not by the six-bead table. -/
 theorem valley_is_eArrival {n : ℕ} {w : List Branch}
@@ -496,7 +485,7 @@ theorem valley_cycle_parent_cell {n : ℕ} {w : List Branch}
   have hI := cycle_last_even_interval (by simpa [hu] using h.1)
   have himg : cycleParent n w 0 = image n u := by
     have hL : 1 ≤ w.length := h.1.2.2
-    rw [hu, cycleParent_zero (by simpa [hu] using hL)]
+    rw [hu, cycleParent_zero (by simp)]
     simp [image_eq_iterate]
   simpa [himg] using hI
 
@@ -539,7 +528,7 @@ theorem letter_is_next_prevBranch {w : List Branch} {k : ℕ}
   have hpos : 0 < k + 1 := Nat.succ_pos _
   have hpred : cyclePrevIndex w.length (k + 1) = k :=
     cyclePrevIndex_of_pos hL hpos hk1
-  simpa [cyclePrevBranch, hpred]
+  simp [cyclePrevBranch, hpred]
 
 theorem letter_determines_next_arrival {w : List Branch} {k : ℕ}
     (hL : 1 ≤ w.length) (hk1 : k + 1 < w.length) :
@@ -567,7 +556,7 @@ theorem wrap_letter_is_start_prevBranch {w : List Branch}
     cyclePrevBranch w 0 (lt_of_lt_of_le (by decide : (0 : ℕ) < 1) hL) =
       w[w.length - 1]'(Nat.sub_lt (lt_of_lt_of_le (by decide : (0 : ℕ) < 1) hL)
         (by decide)) := by
-  simpa [cyclePrevBranch, cyclePrevIndex_zero hL]
+  simp [cyclePrevBranch, cyclePrevIndex_zero hL]
 
 /-- After an odd letter the next cyclic arrival is O-arrival.
     After an even letter it is E-arrival. This is the run-boundary

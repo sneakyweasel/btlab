@@ -58,7 +58,7 @@ theorem inv_mul_log_antitoneOn :
   have hy2 : (2:ℝ) ≤ y := hy
   have hlx : 0 < Real.log x := Real.log_pos (by linarith)
   have hmul : x * Real.log x ≤ y * Real.log y := by
-    gcongr <;> linarith
+    gcongr
   exact one_div_le_one_div_of_le (by positivity) hmul
 
 /-- **Transfer.**  Pointwise lower bounds move through the inverse-log sum.  This is the
@@ -249,9 +249,9 @@ theorem blocks_ge_two_add_length_le_sum :
     have ha : 1 ≤ a := hpos a (List.mem_cons_self ..)
     have h := ih hta
     by_cases h2 : 2 ≤ a
-    · simp [List.filter_cons, h2, List.sum_cons]
+    · simp [h2, List.sum_cons]
       omega
-    · simp [List.filter_cons, h2, List.sum_cons]
+    · simp [h2, List.sum_cons]
       omega
 
 /-- **Equality is exactly the packing.**  The bound above is tight iff every run has length
@@ -424,7 +424,7 @@ def cycPred (L i : ℕ) : ℕ := (i + (L - 1)) % L
 theorem cycPred_lt {L : ℕ} (hL : 0 < L) (i : ℕ) : cycPred L i < L :=
   Nat.mod_lt _ hL
 
-theorem cycPred_injOn {L : ℕ} (hL : 0 < L) :
+theorem cycPred_injOn {L : ℕ} (_hL : 0 < L) :
     ∀ i ∈ Finset.range L, ∀ j ∈ Finset.range L, cycPred L i = cycPred L j → i = j := by
   intro i hi j hj hij
   have hi' : i < L := Finset.mem_range.mp hi
@@ -864,17 +864,17 @@ def cycCls (L : ℕ) (par : ℕ → Bool) (i : ℕ) : Fin 3 :=
 theorem cycCls_eq_zero {L : ℕ} {par : ℕ → Bool} {i : ℕ} :
     cycCls L par i = 0 ↔ (par i && !par (cycPred L i)) = true := by
   unfold cycCls
-  cases hp : par i <;> cases hq : par (cycPred L i) <;> simp [hp, hq] <;> decide
+  cases hp : par i <;> cases hq : par (cycPred L i) <;> simp
 
 theorem cycCls_eq_one {L : ℕ} {par : ℕ → Bool} {i : ℕ} :
     cycCls L par i = 1 ↔ (par i && par (cycPred L i)) = true := by
   unfold cycCls
-  cases hp : par i <;> cases hq : par (cycPred L i) <;> simp [hp, hq] <;> decide
+  cases hp : par i <;> cases hq : par (cycPred L i) <;> simp
 
 theorem cycCls_eq_two {L : ℕ} {par : ℕ → Bool} {i : ℕ} :
     cycCls L par i = 2 ↔ (!par i) = true := by
   unfold cycCls
-  cases hp : par i <;> cases hq : par (cycPred L i) <;> simp [hp, hq] <;> decide
+  cases hp : par i <;> cases hq : par (cycPred L i) <;> simp
 
 theorem cycCls_filter_zero (L : ℕ) (par : ℕ → Bool) :
     ((Finset.range L).filter fun i => cycCls L par i = 0)
@@ -898,9 +898,9 @@ theorem cycPred_of_pos {L i : ℕ} (h1 : 1 ≤ i) (h2 : i < L) : cycPred L i = i
   rw [this, Nat.add_mod_right, Nat.mod_eq_of_lt (by omega)]
 
 /-- At index zero the cyclic predecessor is the last index. -/
-theorem cycPred_zero {L : ℕ} (hL : 0 < L) : cycPred L 0 = L - 1 := by
+theorem cycPred_zero {L : ℕ} (_hL : 0 < L) : cycPred L 0 = L - 1 := by
   unfold cycPred
-  simpa using Nat.mod_eq_of_lt (by omega : L - 1 < L)
+  simp
 
 /-- The number of even states equals the number of even letters. -/
 theorem evenCount_eq_orbit_card {n : ℕ} {w : List Branch} (h : follows n w) :
@@ -1267,7 +1267,7 @@ theorem sixCls_eq_five {L : ℕ} {par : ℕ → Bool} {i : ℕ} :
   cases hp : par i <;> cases hq : par (cycPred L i) <;>
     cases hs : par (cycSucc L i) <;>
     by_cases h0 : i = 0 <;> by_cases h1 : i = 1 <;>
-    simp [hp, hq, hs, h0, h1]
+    simp [h0, h1]
 
 theorem sixCls_zero {L : ℕ} {par : ℕ → Bool}
     (h0 : par 0 = true) (hlast : par (cycPred L 0) = false) :
@@ -1524,8 +1524,7 @@ theorem cycleMin_sixTerm {n : ℕ} {w : List Branch} (hn : 3 ≤ n) (h : CycleMi
               = (floorPower n : ℝ) := by simp [sixBounds]
           rw [hb]
           have := cycleMin_internal_ge_t hn2 h (i := 0) (by omega) (by simpa using hnodd)
-          simpa using (by exact_mod_cast this :
-            ((floorPower n : ℕ) : ℝ) ≤ ((floorPower^[1] n : ℕ) : ℝ))
+          exact_mod_cast this
         · have hcls : sixCls L par i = 4 := by simp [sixCls, hp, hq, hi1]
           rw [hcls]
           have hb : sixBounds ((n : ℝ)) ((expensiveValley n : ℝ))

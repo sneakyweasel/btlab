@@ -33,7 +33,7 @@ theorem orbitCell_lt {p q : ℕ} (hq : 0 < q) (neg : Bool) (k : ℕ) :
   split <;> exact Nat.mod_lt _ hq
 
 /-- The cell map is injective on `range q`, because `p` is invertible mod `q`. -/
-theorem orbitCell_inj {p q : ℕ} (hq : 0 < q) (hcop : Nat.Coprime p q) {neg : Bool}
+theorem orbitCell_inj {p q : ℕ} (_hq : 0 < q) (hcop : Nat.Coprime p q) {neg : Bool}
     {j k : ℕ} (hj : j < q) (hk : k < q) (h : orbitCell p q neg j = orbitCell p q neg k) :
     j = k := by
   have hmul : j * p % q = k * p % q := by

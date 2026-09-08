@@ -509,7 +509,7 @@ theorem aboveAnchor_height_of_walk {n : ℕ} {w : List Branch}
         ≤ walkWeight w k * (Real.log n - transportDeficit n w) :=
           mul_le_mul_of_nonneg_right (two_pow_le_walkWeight hB) hD
       _ ≤ Real.log (floorPower^[k] n) := aboveAnchor_transport hn h hk
-  · push_neg at hD
+  · push Not at hD
     have hx : 1 ≤ floorPower^[k] n :=
       floorPower_iterate_pos (by omega : 1 ≤ n) k
     have hlog : (0 : ℝ) ≤ Real.log (floorPower^[k] n) :=

@@ -236,7 +236,7 @@ theorem cycleMin_later_odd_image_ge {n : ℕ} {w : List Branch} {i : ℕ}
     have h1 : w.take (i - 1 + 1) = w.take (i - 1) ++ [w[i - 1]] := by
       rw [List.take_add_one, List.getElem?_eq_getElem hi1]
       rfl
-    simpa [Nat.sub_add_cancel hi0] using h1
+    simp [Nat.sub_add_cancel hi0]
   have hprev : w[i - 1] = Branch.odd := by
     cases hb : w[i - 1] with
     | even =>
@@ -375,7 +375,7 @@ theorem list_range_filter_card (n : ℕ) (p : ℕ → Prop) [DecidablePred p] :
       have hlast : List.filter p [n] = if p n then [n] else [] := by
         by_cases hp : p n <;> simp [hp]
       rw [hlast, List.length_append, ih, Finset.filter_insert]
-      by_cases hp : p n <;> simp [hp, ih]
+      by_cases hp : p n <;> simp [hp]
 
 theorem cycleCircuitCount_eq_card (w : List Branch) :
     cycleCircuitCount w =
@@ -410,7 +410,7 @@ theorem oddCount_eq_card (w : List Branch) :
         Finset.filter_congr (fun i hi => by rw [hprefix i hi])
       cases b with
       | odd =>
-          rw [Finset.filter_insert, if_pos (by simp [hlast])]
+          rw [Finset.filter_insert, if_pos (by simp)]
           have hnotin :
               u.length ∉
                 (Finset.range u.length).filter
@@ -419,7 +419,7 @@ theorem oddCount_eq_card (w : List Branch) :
           rw [Finset.card_insert_of_notMem hnotin, hcongr, ih]
           simp [oddCount]
       | even =>
-          rw [Finset.filter_insert, if_neg (by simp [hlast]), hcongr, ih]
+          rw [Finset.filter_insert, if_neg (by simp), hcongr, ih]
           simp [oddCount]
 
 theorem cycleCircuitCount_le_oddCount (w : List Branch) :
@@ -483,7 +483,7 @@ theorem cycleMin_evenOdd_maps_to_firstClimb {n : ℕ} {w : List Branch} {i : ℕ
     simp [hlast]
     exact cycleMin_internal_evenOdd_is_firstClimb hn h hi1 he hodd
 
-theorem evenOddToClimb_inj {L i j : ℕ} (hi : i < L) (hj : j < L)
+theorem evenOddToClimb_inj {L i j : ℕ} (_hi : i < L) (_hj : j < L)
     (h : evenOddToClimb L i = evenOddToClimb L j) : i = j := by
   unfold evenOddToClimb at h
   split_ifs at h <;> omega
@@ -910,7 +910,7 @@ theorem no_length_eighty_four_circuit_le_two
     (hmin : CycleMin (floorPower^[k] n) (rotateItinerary w k))
     (hm : cycleCircuitCount (rotateItinerary w k) ≤ 2) : False := by
   have hlen : (rotateItinerary w k).length = 84 := by
-    simpa [rotateItinerary_length, hL]
+    simp [rotateItinerary_length, hL]
   have hm2 : 2 ≤ floorPower^[k] n :=
     cycleItinerary_iterate_ge_two hn h hk
   exact no_cycleMin_length_eighty_four_of_circuit_le_two hm2 hmin hlen hm

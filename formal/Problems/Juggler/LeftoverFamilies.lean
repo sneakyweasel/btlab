@@ -1590,6 +1590,9 @@ theorem denomBits_three : denomBits 3 = 38 := by
 theorem three_pow_three : (3 : ℕ) ^ 3 = 27 := by
   decide
 
+-- `3 ^ 38` sits above the default evaluation threshold; raising it lets
+-- `norm_num` finish rather than reporting an unevaluated power.
+set_option exponentiation.threshold 40 in
 theorem threeEvenEOOOEE_z_lt {n a : ℕ} (hn : 3 ≤ n)
     (h : CycleItinerary n (threeEvenEOOOEE a)) :
     image n (List.replicate a Branch.odd) < (n + 1) ^ 4 := by
@@ -1658,6 +1661,9 @@ theorem no_cycle_itinerary_three_even_eoooee_of_ge_four {n a : ℕ}
   exact leftover_prefix_preimage hpow hz
     (by simpa [hZ] using three_even_eooee_tail hn ha)
 
+-- `3 ^ 38` sits above the default evaluation threshold; raising it lets
+-- `norm_num` finish rather than reporting an unevaluated power.
+set_option exponentiation.threshold 40 in
 theorem no_cycle_itinerary_three_even_eoooee_of_ge_three {n : ℕ}
     (hn : 256 ≤ n) (h : CycleItinerary n (threeEvenEOOOEE 3)) : False := by
   have hn1 : 1 ≤ n := le_trans (by decide : (1 : ℕ) ≤ 256) hn
@@ -1876,6 +1882,9 @@ theorem no_cycle_itinerary_three_even_eooeoe_of_ge_four {n a : ℕ}
   exact leftover_prefix_preimage hpow hz
     (by simpa [hZ] using three_even_eooee_tail hn ha)
 
+-- `3 ^ 38` sits above the default evaluation threshold; raising it lets
+-- `norm_num` finish rather than reporting an unevaluated power.
+set_option exponentiation.threshold 40 in
 theorem no_cycle_itinerary_three_even_eooeoe_of_ge_three {n : ℕ}
     (hn : 256 ≤ n) (h : CycleItinerary n (threeEvenEOOEOE 3)) : False := by
   have hn1 : 1 ≤ n := le_trans (by decide : (1 : ℕ) ≤ 256) hn
@@ -2930,7 +2939,7 @@ theorem no_cycle_itinerary_gapped_three_even_ee {n a b : ℕ}
     exact no_cycleMin_gapped_ee_bootstrap hnk ha hb
       (by simpa [gapped_ee_rotate_succ_a] using hm)
   · subst hlast
-    exact cycleMin_rotate_start_even hnk (by simpa [hlen] using hk)
+    exact cycleMin_rotate_start_even hnk (by simp [hlen])
       (gappedThreeEvenEE_get_last (a := a) (b := b)) hm
   · exact cycleMin_of_rotate_ends_odd hnk hmid.1
       (by simpa [hlen] using Nat.le_of_lt hk)

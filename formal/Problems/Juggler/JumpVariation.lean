@@ -253,12 +253,12 @@ theorem blockObservable_antitone {n' : ℝ} (hn : 1 < n') : Antitone (blockObser
   calc n' ^ (1 - (2:ℝ) ^ v) / (2:ℝ) ^ v ≤ n' ^ (1 - (2:ℝ) ^ u) / (2:ℝ) ^ v := by gcongr
     _ ≤ n' ^ (1 - (2:ℝ) ^ u) / (2:ℝ) ^ u := by gcongr
 
-theorem blockObservable_zero {n' : ℝ} (hn : 0 < n') : blockObservable n' 0 = 1 := by
+theorem blockObservable_zero {n' : ℝ} (_hn : 0 < n') : blockObservable n' 0 = 1 := by
   unfold blockObservable
   rw [Real.rpow_zero, sub_self, Real.rpow_zero]
   norm_num
 
-theorem blockObservable_period {n' : ℝ} (hn : 0 < n') :
+theorem blockObservable_period {n' : ℝ} (_hn : 0 < n') :
     blockObservable n' circlePeriod = n' ^ (-2 : ℝ) / 3 := by
   unfold blockObservable
   rw [two_rpow_circlePeriod]

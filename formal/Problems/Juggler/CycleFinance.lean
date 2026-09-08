@@ -297,7 +297,6 @@ theorem cycleMin_log_envelope_inv {n : ℕ} {w : List Branch}
             (3 : ℝ) ^ oddCount (w.take k) / (floorPower^[k + 1] n : ℝ) := by
         exact div_le_div_of_nonneg_right h2le3 hx1pos.le
       rw [hsum]
-      push_cast
       calc (3 : ℝ) ^ oddCount (List.take k w) * Real.log n
           ≤ (2 : ℝ) ^ k * Real.log (floorPower^[k] n) +
               (3 : ℝ) ^ oddCount (List.take k w) *
@@ -346,7 +345,6 @@ theorem cycleMin_log_envelope_inv {n : ℕ} {w : List Branch}
               (floorPower^[k + 1] n : ℝ) :=
         div_le_div_of_nonneg_right h2le3 hx1pos.le
       rw [hsum]
-      push_cast
       calc (3 : ℝ) * (3 : ℝ) ^ oddCount (List.take k w) * Real.log n
           = 3 * ((3 : ℝ) ^ oddCount (List.take k w) * Real.log n) := by ring
         _ ≤ 3 * ((2 : ℝ) ^ k * Real.log (floorPower^[k] n) +

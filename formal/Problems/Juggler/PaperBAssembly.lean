@@ -115,7 +115,7 @@ theorem carry_identity (x δ : ℝ) :
       · push_cast; linarith
     omega
   · rw [if_neg h]
-    push_neg at h
+    push Not at h
     have : ⌊Int.fract x + Int.fract δ⌋ = 0 := by
       rw [Int.floor_eq_iff]
       constructor
@@ -319,6 +319,9 @@ what replaces the derivative tests is the *frozen* `G`: it steps by exactly `1`
 at each cell boundary, so `f''` carries a sawtooth no continuous `φ''` can
 follow, and `f'` jumps at every boundary. -/
 
+-- `linter.unusedVariables` does not count a binder used only inside a
+-- `nlinarith [...]` term list; this one is used in the proof below.
+set_option linter.unusedVariables false in
 /-- **Regime A: the undifferenced budget is dominated.**  `3 K P^(-5/8) ≤
 ¼·0.35 u h P^(-3/4)` holds as soon as `u h ≥ (12/0.35) K P^(1/8)`, and
 `12/0.35 = 34.28…`.  Written at `P = p^24`, after multiplying by `p^15`. -/
@@ -342,12 +345,15 @@ jump is `(9/8) u (ν+2h)^(-1/4)`; the point is only that it is *bounded below*,
 which no choice of the continuous decoration can affect.  Over `N` cells the
 total sweep of `f'` is at least `N` times that. -/
 theorem wideD3_frequency_sweep (u nu2h N sweep : ℝ)
-    (hu : 0 < u) (hN : 0 ≤ N) (hj : (0.946 : ℝ) * u ≤ 9 / 8 * u * nu2h)
+    (_hu : 0 < u) (hN : 0 ≤ N) (hj : (0.946 : ℝ) * u ≤ 9 / 8 * u * nu2h)
     (hsweep : sweep = N * ((9:ℝ) / 8 * u * nu2h)) :
     N * (0.946 * u) ≤ sweep := by
   rw [hsweep]
   nlinarith [hN, hj]
 
+-- `linter.unusedVariables` does not count a binder used only inside a
+-- `nlinarith [...]` term list; this one is used in the proof below.
+set_option linter.unusedVariables false in
 /-- **The cells are flat in regime B.**  At the sawtooth curvature scale
 `0.282 u P^(-5/4)`, over a cell of length `ℓ ≤ 0.95 P^(1/2)/h` the phase departs
 from linear by `≤ 0.282 u P^(-5/4) ℓ² ≤ 0.26 u P^(-1/4) h^(-2)`, so the
@@ -365,7 +371,7 @@ term.**  A cell total `(ℓ/q)^(1/2)` summed over `1.5 h P^(1/2)` cells, with
 `ℓ ≤ 0.95 P^(1/2)/h` and `q ≥ 0.946 u P^(-1/4)`, gives `≤ 1.6 (h/u)^(1/2) P^(7/8)`.
 Written at `P = p^8` (so `P^(1/2) = p^4`, `P^(3/8) = p^3`, `P^(7/8) = p^7`) and
 with the two square roots cleared. -/
-theorem wideD3_caseA_total (u h p : ℝ) (hu : 0 < u) (hh : 0 < h) (hp : 0 < p)
+theorem wideD3_caseA_total (u h p : ℝ) (_hu : 0 < u) (hh : 0 < h) (hp : 0 < p)
     (cell : ℝ) (hcell : cell ≤ 1.01 * p ^ 3) :
     1.5 * h * p ^ 4 * cell ≤ 1.6 * h * p ^ 7 := by
   have hc : (0:ℝ) ≤ 1.5 * h * p ^ 4 := by positivity
@@ -377,9 +383,12 @@ theorem wideD3_caseA_total (u h p : ℝ) (hu : 0 < u) (hh : 0 < h) (hp : 0 < p)
 /-- **Regime B, case (b) is confined to small `uh`.**  `|D_i| < q/(2ℓ)` forces
 `φ''` within `O(u h P^(-3/4))` of `½ u h P^(-3/4)`, so `|φ''| ≤ Φ₂` confines the
 case to `u h ≤ 6 k h₁ h₂ P^(1/8)`. -/
-theorem wideD3_caseB_confined (K uh p : ℝ) (hK : 0 ≤ K) (hp : 0 < p)
+theorem wideD3_caseB_confined (K uh p : ℝ) (_hK : 0 ≤ K) (_hp : 0 < p)
     (hcase : (1/2) * uh ≤ 3 * K * p ^ 3) : uh ≤ 6 * K * p ^ 3 := by linarith
 
+-- `linter.unusedVariables` does not count a binder used only inside a
+-- `nlinarith [...]` term list; this one is used in the proof below.
+set_option linter.unusedVariables false in
 /-- **Where case (b) closes outright.**  Its second term is `1.1 u P^(3/4)`,
 inside `P^(7/8)` exactly when `u ≤ 0.9 P^(1/8)`.  At `P = p^8`: `1.1 u p^6 ≤ p^7`
 iff `u ≤ 0.9 p`. -/
@@ -393,7 +402,7 @@ theorem wideD3_caseB_closes (u p : ℝ) (hp : 0 < p) (hu : u ≤ 0.9 * p) (hu0 :
 `Ψ' = (27/32) u h ν^(-3/4) + φ''` pins `0 < φ'' < (27/16) u h ν^(-3/4)`.
 So in the only case left open, `|φ''|` is at most `27/16` times
 `u h ν^(-3/4)` -- the wide budget is never attained there. -/
-theorem wideD3_caseB_confines_phi (uh3 phi2 : ℝ) (h3 : 0 < uh3)
+theorem wideD3_caseB_confines_phi (uh3 phi2 : ℝ) (_h3 : 0 < uh3)
     (hcase : |((27:ℝ)/32) * uh3 + phi2 - (27/16) * uh3| < (27/32) * uh3) :
     0 < phi2 ∧ phi2 < (27/16) * uh3 := by
   rw [abs_lt] at hcase
@@ -408,7 +417,7 @@ theorem wideD3_caseB_ratio (uh3 phi2 : ℝ) (h3 : 0 ≤ uh3)
 `Ψ' ∈ [27/32, 81/32] u h ν^(-3/4)`, so with `ℓ = (2/3) ν^(1/2)/h` the gaps
 `α_{i+1} - α_i = Ψ' ℓ` lie in `[0.562, 1.688] u P^(-1/4)`: a strictly increasing
 sequence of bounded ratio `3`. -/
-theorem wideD3_caseB_gaps (Psi uh3 : ℝ) (h3 : 0 < uh3)
+theorem wideD3_caseB_gaps (Psi uh3 : ℝ) (_h3 : 0 < uh3)
     (hlo : (27/32) * uh3 ≤ Psi) (hhi : Psi ≤ (81/32) * uh3) :
     (27/48) * uh3 ≤ Psi * (2/3) ∧ Psi * (2/3) ≤ (81/48) * uh3 := by
   constructor <;> linarith
