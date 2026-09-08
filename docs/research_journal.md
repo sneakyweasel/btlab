@@ -40159,3 +40159,42 @@ The last entry's hypotheses were found by writing out cardinalities;
 this one was settled by running the map. The cheaper tool was available
 first and I reached for it second. EE in half the excursions needed no
 theory to find.
+
+Does closure at o = o_min(L) force runs of one and two? That is the
+packing claim, and after the last two entries it is the only thing the
+six-term display still rests on. The falsifier I wrote down was that
+3^{a_k} >= 2^k is a lower bound on the running odd count, so it cannot
+stop the count running ahead.
+
+It fires, at the paper's own leftover length. At L = 84 with o_min = 53
+and 3^53/2^84 = 1.00209, the word (O^6 E)^8 O^5 E^23 has zero prefixes
+violating 3^{a_j} >= 2^j, runs of five and six throughout, and contains
+EE. So the packing does not follow from minimality plus the least
+admissible odd count.
+
+A false start worth keeping. The first search returned O^32 E^18 at
+L = 50 -- all odds then all evens, obviously not cycle-shaped. That is
+the signal that the constraint set was too weak to be interesting, not
+that the answer was settled. Capping runs at six removed the degeneracy
+and the conclusion survived, which is what makes it reportable. I also
+had to check 3^53 >= 2^84 directly, because my own estimate of it was
+wrong.
+
+The caveat is the real content. This is the exponent model, exact for
+the multipliers and blind to the floors. Whether such a word is
+realized by an integer orbit is a different and harder question. But
+that is the point: the packing cannot be settled by exponent
+bookkeeping, and exponent bookkeeping is what the available machinery
+does. Theorem 3.29's integer cap binds only near the end of the word.
+
+So Theorem 4.7 stands like this. Every step from the classification to
+the display is Lean. The display follows given that the minimum occurs
+once and the word has no EE; no-EE holds if runs are one and two; and
+the packing is asserted rather than derived, by the paper and by
+everything here.
+
+Three entries ago the remainder was "typing". Then two unstated
+hypotheses. Then whether EE is free. Now that the packing is an
+assumption. Each was a correction to the previous description, and each
+came from writing down what I had been referring to indirectly. The
+problem did not grow; the description was catching up with it.

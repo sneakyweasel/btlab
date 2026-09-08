@@ -9723,3 +9723,65 @@ writing out cardinalities; this one was settled by running the map. The
 cheaper of the two was available first and I reached for it second ---
 `EE` in half the excursions is not a fact that needed any theory to
 find.
+
+## The packing is an assumption: exponent bookkeeping cannot force short runs
+
+*Mathematical target.* Does closure at \(o=o_{\min}(L)\) force odd runs
+of length one and two? This is Theorem 4.7's packing claim, and after
+the last two entries it is the only thing the six-term display still
+rests on.
+
+*Novelty hypothesis.* Minimality gives \(3^{a_k}\ge2^{k}\) at every
+prefix --- `hugOdds_least` in exponent form --- and pinning
+\(a_L=o_{\min}(L)\) might squeeze the running count onto the hug walk,
+whose runs are one and two.
+
+*Falsifier.* \(3^{a_k}\ge2^{k}\) is a **lower** bound on the running odd
+count. It does not stop the count running ahead, so a long run early may
+be admissible.
+
+**The falsifier fires, at the paper's own leftover length.** At
+\(L=84\), \(o_{\min}=53\) and \(3^{53}/2^{84}=1.00209\), the word
+
+`OOOOOOE OOOOOOE OOOOOOE OOOOOOE OOOOOOE OOOOOOE OOOOOOE OOOOOOE OOOOO E^23`
+
+has **zero** prefixes violating \(3^{a_j}\ge2^{j}\), runs of length
+five and six throughout, and contains `EE`. The packing --- runs of one
+and two --- is therefore not a consequence of minimality together with
+the least admissible odd count.
+
+**A false start worth recording.** The first search returned
+\(\mathtt{O}^{32}\mathtt{E}^{18}\) at \(L=50\): all odds, then all
+evens. That satisfies the constraints trivially and is obviously not
+cycle-shaped, which is the signal that the constraint set was too weak
+to be interesting rather than that the answer was settled. Capping runs
+at six removed the degeneracy and the conclusion survived, which is what
+makes it worth reporting.
+
+**The caveat, which is the real content.** This is the *exponent*
+model, \(x_j\approx n^{3^{a_j}/2^{j}}\), which is exact for the
+multipliers and ignores the floors. Whether such a word is realized by
+an integer orbit is a different and much harder question. But that is
+precisely the point: **the packing cannot be settled by exponent
+bookkeeping**, and exponent bookkeeping is what the available machinery
+does. Theorem 3.29's run cap
+\(a_i\le\lfloor(e-i)\log2/\log(3/2)\rfloor\) is the integer version, and
+it binds only near the end of the word --- \(1\) at \(e-i=1\), already
+\(3\) at \(e-i=2\).
+
+**Where this leaves Theorem 4.7.** Every step from the classification to
+the display is Lean. The display follows from those steps given that the
+minimum occurs once and the word has no `EE`; the second holds if runs
+are one and two; and that --- the packing --- is asserted rather than
+derived, by the paper and by everything in this laboratory. The row
+should say so.
+
+Tags. COMPUTATIONALLY VERIFIED: the \(L=84\) witness, zero prefix
+violations, checked directly rather than trusted from the search;
+\(3^{53}\ge2^{84}\) confirmed exactly after my own estimate of it was
+wrong. OBSERVATION: three entries ago the remainder was "typing"; two
+ago it was two unstated hypotheses; one ago it was whether `EE` is free;
+now it is that the packing is an assumption. Each step was a correction
+to the previous description, and each came from writing down the thing I
+had been referring to indirectly. The pattern is not that the problem
+grew --- it is that the description was catching up with it.
