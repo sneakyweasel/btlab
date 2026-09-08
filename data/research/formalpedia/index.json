@@ -23159,6 +23159,46 @@
       "trust": "kernel"
     },
     {
+      "doc": "**The packing bound.** At most `o \u2212 e` blocks have a run of two or more, where `o` is the total odd count `runs.sum` and `e` the number of blocks `runs.length`. Stated without natural subtraction.",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 239,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "blocks_ge_two_add_length_le_sum",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Equality is exactly the packing.** The bound above is tight iff every run has length one or two \u2014 so `(o\u2212e)` blocks of `OOE` with `(2e\u2212o)` of `OE` is not one admissible configuration among many, it is the unique maximiser of the cheap-valley count.",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 259,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "blocks_ge_two_eq_sum_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The two block types exhaust the blocks: a run has length one or at least two.",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 291,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "blocks_filter_split",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Hence at least `2e \u2212 o` blocks are single-odd `OE` circuits, which is the count of expensive valleys in Theorem 4.7's display.",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 317,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "blocks_eq_one_ge",
+      "trust": "kernel"
+    },
+    {
       "doc": "",
       "file": "formal/Problems/Juggler/FirstETransportEval.lean",
       "kind": "def",
@@ -66345,7 +66385,7 @@
       ]
     },
     "Problems.Juggler.FinanceTransfer": {
-      "declarations": 12,
+      "declarations": 16,
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "imports": [
         "Problems.Juggler.CycleCore"
@@ -67654,13 +67694,13 @@
     }
   },
   "totals": {
-    "declarations": 4848,
+    "declarations": 4852,
     "declarations_with_a_ledger_row": 3195,
     "ledger_rows_naming_a_file": 336,
     "modules": 208,
     "trust": {
       "compiler": 54,
-      "kernel": 4794
+      "kernel": 4798
     }
   }
 }

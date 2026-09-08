@@ -39851,3 +39851,37 @@ The whole of this is three lemmas already in the repository, applied to
 states identified by their own letters. The appendix row said the bound
 "locates an actual cycle's iterates and needs Theorem 3.2". Locating
 them needed only the itinerary, which is what a letter is.
+
+I predicted the packing extremality was an optimization over block
+structures and would not fall the way the class bounds did. Wrong, and
+for a reason worth keeping.
+
+Write the itinerary as blocks O^{a_i}E: e blocks, one even letter each,
+sum a_i = o. Every block gives one valley and a_i - 1 internals, so the
+valley count is e and the internal count is o - e whatever the runs
+are. Those are forced, not extremal. What the runs decide is only how
+the e valleys split -- and that is decided blockwise. A block with
+a_i >= 2 has an odd successor, so its valley is cheap, bounded by n+2.
+A block with a_i = 1 is an OE circuit whose successor is even, so
+cycleMin_oe_start_ge forces its valley up to v. Expensive.
+
+Since a valley's class depends only on its own block, where the long
+runs sit cannot matter, and the global optimization collapses to a
+per-block count:
+
+  #{a_i >= 2} <= sum over those of (a_i - 1) = sum_i (a_i - 1) = o - e
+
+At most o-e cheap valleys, at least 2e-o expensive ones, and tight
+exactly when every run has length one or two. So the packing is the
+unique maximiser, and a run of three trades two cheap valleys for one
+expensive. That is the paper's "any deeper odd run only decreases the
+sum" a second time -- the first was about values, this one about
+counts.
+
+What I had missed is that the class of a valley is decided by the
+letter after it. Once that is seen, there is nothing to optimize.
+
+Two bridges remain, neither deep and neither done: that the itinerary
+decomposes into that run list with the classification attached index by
+index, and a cardinality-monotone form of sixTerm_bound taking the
+inequalities rather than equalities, which needs v >= n+2.

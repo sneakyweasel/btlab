@@ -21,6 +21,9 @@ import Problems.JugglerPaper
 #print axioms Problems.Juggler.absorb_odd_step
 #print axioms Problems.Juggler.alpha_lt_half
 #print axioms Problems.Juggler.block_envelope
+#print axioms Problems.Juggler.blocks_eq_one_ge
+#print axioms Problems.Juggler.blocks_ge_two_add_length_le_sum
+#print axioms Problems.Juggler.blocks_ge_two_eq_sum_iff
 #print axioms Problems.Juggler.budgetedWord_eq_hugWord
 #print axioms Problems.Juggler.cf_lower_prefix
 #print axioms Problems.Juggler.cf_upper_prefix

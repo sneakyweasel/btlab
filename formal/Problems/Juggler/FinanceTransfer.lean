@@ -211,4 +211,114 @@ theorem cycleMin_internal_ge_tplus {n : ℕ} {w : List Branch} {i : ℕ}
   rw [Function.iterate_succ_apply' floorPower i n]
   exact floorPower_odd_mono hn2odd ho hpred
 
+/-! ### Why the packing is extremal
+
+Write the itinerary as blocks `O^{aᵢ}E`: there are `e` blocks, one even letter each, and
+`Σ aᵢ = o`.  Every block contributes one *valley* (its first odd) and `aᵢ - 1` *internals*, so
+the valley count is `e` and the internal count is `o - e` **whatever the run lengths are** —
+those two counts are not extremal claims at all.
+
+What the run lengths do decide is how the `e` valleys split.  A block with `aᵢ ≥ 2` has an odd
+successor, so its valley is only constrained by minimality and parity: it is *cheap*, bounded
+by `n + 2`.  A block with `aᵢ = 1` is an `OE` circuit, whose successor is even, so
+`cycleMin_oe_start_ge` forces its valley up to `v`: it is *expensive*.  Cheap valleys
+contribute more to the sum, so the extremal configuration is the one with the most of them.
+
+And the number of cheap valleys is bounded by a counting identity, not an optimization:
+
+`#{i : aᵢ ≥ 2} ≤ Σ_{aᵢ ≥ 2} (aᵢ - 1) = Σᵢ (aᵢ - 1) = o - e`
+
+with equality exactly when every run has length one or two.  That is the packing.  A run of
+length three trades two cheap valleys for one expensive one, which is the paper's "any deeper
+odd run … only decreases the sum" in its second incarnation.
+-/
+
+/-- **The packing bound.**  At most `o − e` blocks have a run of two or more, where `o` is the
+total odd count `runs.sum` and `e` the number of blocks `runs.length`.  Stated without natural
+subtraction. -/
+theorem blocks_ge_two_add_length_le_sum :
+    ∀ runs : List ℕ, (∀ a ∈ runs, 1 ≤ a) →
+      (runs.filter fun a => 2 ≤ a).length + runs.length ≤ runs.sum := by
+  intro runs
+  induction runs with
+  | nil => intro _; simp
+  | cons a t ih =>
+    intro hpos
+    have hta : ∀ b ∈ t, 1 ≤ b := fun b hb => hpos b (List.mem_cons_of_mem a hb)
+    have ha : 1 ≤ a := hpos a (List.mem_cons_self ..)
+    have h := ih hta
+    by_cases h2 : 2 ≤ a
+    · simp [List.filter_cons, h2, List.sum_cons]
+      omega
+    · simp [List.filter_cons, h2, List.sum_cons]
+      omega
+
+/-- **Equality is exactly the packing.**  The bound above is tight iff every run has length
+one or two — so `(o−e)` blocks of `OOE` with `(2e−o)` of `OE` is not one admissible
+configuration among many, it is the unique maximiser of the cheap-valley count. -/
+theorem blocks_ge_two_eq_sum_iff :
+    ∀ runs : List ℕ, (∀ a ∈ runs, 1 ≤ a) →
+      ((runs.filter fun a => 2 ≤ a).length + runs.length = runs.sum ↔ ∀ a ∈ runs, a ≤ 2) := by
+  intro runs
+  induction runs with
+  | nil => intro _; simp
+  | cons a t ih =>
+    intro hpos
+    have hta : ∀ b ∈ t, 1 ≤ b := fun b hb => hpos b (List.mem_cons_of_mem a hb)
+    have ha : 1 ≤ a := hpos a (List.mem_cons_self ..)
+    have hle := blocks_ge_two_add_length_le_sum t hta
+    have hiff := ih hta
+    simp only [List.mem_cons, forall_eq_or_imp]
+    by_cases h2 : 2 ≤ a
+    · rw [List.filter_cons_of_pos (by simpa using h2)]
+      simp only [List.length_cons, List.sum_cons]
+      constructor
+      · intro heq
+        exact ⟨by omega, hiff.mp (by omega)⟩
+      · rintro ⟨hA, hT⟩
+        have := hiff.mpr hT
+        omega
+    · rw [List.filter_cons_of_neg (by simpa using h2)]
+      simp only [List.length_cons, List.sum_cons]
+      constructor
+      · intro heq
+        exact ⟨by omega, hiff.mp (by omega)⟩
+      · rintro ⟨_, hT⟩
+        have := hiff.mpr hT
+        omega
+
+/-- The two block types exhaust the blocks: a run has length one or at least two. -/
+theorem blocks_filter_split :
+    ∀ runs : List ℕ, (∀ a ∈ runs, 1 ≤ a) →
+      (runs.filter fun a => a = 1).length + (runs.filter fun a => 2 ≤ a).length
+        = runs.length := by
+  intro runs
+  induction runs with
+  | nil => intro _; simp
+  | cons a t ih =>
+    intro hpos
+    have hta : ∀ b ∈ t, 1 ≤ b := fun b hb => hpos b (List.mem_cons_of_mem a hb)
+    have ha : 1 ≤ a := hpos a (List.mem_cons_self ..)
+    have h := ih hta
+    by_cases h1 : a = 1
+    · have h2 : ¬ (2 ≤ a) := by omega
+      rw [List.filter_cons_of_pos (by simpa using h1),
+        List.filter_cons_of_neg (by simpa using h2)]
+      simp only [List.length_cons]
+      omega
+    · have h2 : 2 ≤ a := by omega
+      rw [List.filter_cons_of_neg (by simpa using h1),
+        List.filter_cons_of_pos (by simpa using h2)]
+      simp only [List.length_cons]
+      omega
+
+/-- Hence at least `2e − o` blocks are single-odd `OE` circuits, which is the count of
+expensive valleys in Theorem 4.7's display. -/
+theorem blocks_eq_one_ge (runs : List ℕ) (hpos : ∀ a ∈ runs, 1 ≤ a) :
+    2 * runs.length ≤ (runs.filter fun a => a = 1).length + runs.sum := by
+  have hsplit := blocks_filter_split runs hpos
+  have hbound := blocks_ge_two_add_length_le_sum runs hpos
+  omega
+
+
 end Problems.Juggler

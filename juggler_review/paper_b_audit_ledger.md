@@ -9121,3 +9121,83 @@ in the repository --- `cycleMin_even_ge_sq`, `floorPower_odd_mono`,
 letters. The appendix row said the bound "locates an actual cycle's
 iterates and needs Theorem 3.2". Locating them turned out to need only
 the itinerary, which is what a letter *is*.
+
+## The packing extremality is a counting inequality, not an optimization
+
+*Mathematical target.* The last hypothesis in `sixTerm_bound`: that the
+cardinalities are \(1,o-e-1,2e-o,1,o-e-1,e\). I had called this "the
+packing", an optimization over block structures, and said I would not
+expect it to fall the way the class bounds did.
+
+*Novelty hypothesis.* Re-deriving it, it is not an optimization.
+
+*Falsifier.* The bound depends on *where* the long runs sit, not just
+how many there are.
+
+**The falsifier does not fire, and the reason is the block accounting.**
+Write the itinerary as blocks \(O^{a_i}E\): there are \(e\) blocks, one
+even letter each, and \(\sum a_i=o\). Every block contributes one valley
+(its first odd) and \(a_i-1\) internals. So
+
+- the valley count is \(e\), and
+- the internal count is \(o-e\),
+
+**whatever the run lengths are.** Those two are not extremal claims at
+all; they are forced. What the run lengths decide is only how the \(e\)
+valleys *split*, and that is decided blockwise, not globally:
+
+- a block with \(a_i\ge2\) has an **odd** successor, so its valley is
+  constrained only by minimality and parity --- *cheap*, bounded by
+  \(n+2\);
+- a block with \(a_i=1\) is an `OE` circuit, whose successor is
+  **even**, so `cycleMin_oe_start_ge` forces its valley up to \(v\) ---
+  *expensive*.
+
+Since a valley's class depends only on its own block's length, "where
+the long runs sit" cannot matter. That is the falsifier answered.
+
+**And then the count is one line of arithmetic.**
+
+\[
+\#\{i:a_i\ge2\}\ \le\ \sum_{a_i\ge2}(a_i-1)\ =\ \sum_i(a_i-1)\ =\ o-e .
+\]
+
+- `blocks_ge_two_add_length_le_sum` --- that, stated without natural
+  subtraction. At most \(o-e\) cheap valleys.
+- `blocks_filter_split`, `blocks_eq_one_ge` --- hence at least
+  \(2e-o\) expensive ones.
+- `blocks_ge_two_eq_sum_iff` --- and the bound is tight **exactly** when
+  every run has length one or two. So the packing is not one admissible
+  configuration among many; it is the unique maximiser of the
+  cheap-valley count, and a run of three trades two cheap valleys for
+  one expensive one. That is the paper's "any deeper odd run … only
+  decreases the sum", in its second incarnation --- the first was
+  `sum_inv_mul_log_le`, about values; this one is about *counts*.
+
+Checked numerically: `[2,2,1,1,1]` at \(e=5,o=7\) is tight with 2 cheap
+and 3 expensive; `[3,1,1,1,1]` drops to 1 cheap and rises to 4 expensive;
+`[4,1,1,1,1]` at \(e=5,o=8\) gives 1 cheap against the bound 3.
+
+**What is left, precisely.** Two bridges, both named in the row:
+
+1. that the itinerary *decomposes* into that run list with the
+   classification attached index by index --- the step from "a list of
+   run lengths" to "a function `cls : ℕ → Fin 6`";
+2. a cardinality-**monotone** form of `sixTerm_bound`, taking
+   \(\#\text{cheap}\le o-e\) and \(\#\text{expensive}\ge 2e-o\) rather
+   than equalities. That needs \(v\ge n+2\), so that trading a cheap
+   valley for an expensive one really does lower the majorant.
+
+Neither is deep; neither is done.
+
+Tags. COMPUTATIONALLY VERIFIED: `lake build Problems.JugglerPaper`
+clean; the four new declarations within
+`[propext, Classical.choice, Quot.sound]`, and
+`blocks_ge_two_add_length_le_sum` within `[propext, Quot.sound]` alone;
+the extremality checked on five run profiles; `AxiomCheckPaperA` at 230
+lines, regenerated. OBSERVATION: I predicted this would be an
+optimization and would not fall. It fell because the classification is
+*blockwise* --- a valley's class depends only on its own run length ---
+which collapses a global optimization into a per-block count. The
+prediction was wrong for a reason worth keeping: I had not noticed that
+the class of a valley is decided by the letter *after* it.

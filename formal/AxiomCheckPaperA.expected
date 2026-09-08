@@ -1,6 +1,9 @@
 'Problems.Juggler.absorb_odd_step' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.alpha_lt_half' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.block_envelope' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.blocks_eq_one_ge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.blocks_ge_two_add_length_le_sum' depends on axioms: [propext, Quot.sound]
+'Problems.Juggler.blocks_ge_two_eq_sum_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.budgetedWord_eq_hugWord' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.cf_lower_prefix' does not depend on any axioms
 'Problems.Juggler.cf_upper_prefix' does not depend on any axioms
