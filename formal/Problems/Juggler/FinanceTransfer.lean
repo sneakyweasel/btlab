@@ -575,4 +575,34 @@ theorem internal_le_expensive {v tp : ℝ} (hv : 2 ≤ v) (hvtp : v ≤ tp) :
     1 / (tp * Real.log tp) ≤ 1 / (v * Real.log v) :=
   inv_mul_log_antitoneOn (Set.mem_Ici.mpr hv) (Set.mem_Ici.mpr (le_trans hv hvtp)) hvtp
 
+/-- **The minimum's successor is odd**, so the minimum is always a *cheap* valley.
+
+Theorem 4.7's display puts one valley at `n` and `o−e−1` further cheap ones at `n+2`, for
+`o−e` cheap valleys in all.  That is only an upper bound if the minimum is one of them: if the
+minimum started an `OE` circuit there could be `o−e` cheap valleys *besides* it, and the
+majorant would exceed the display, since `1/((n+2)log(n+2)) > 1/(v log v)`.
+
+It cannot.  If `J(n)` were even it would be an even cycle state, hence at least `n²` by
+`cycleMin_even_ge_sq`; but `J(n) = ⌊√(n³)⌋ < n²` because `n³ < n⁴`.  So the minimum is
+followed by another odd letter and sits in a block with a run of at least two. -/
+theorem cycleMin_succ_odd {n : ℕ} {w : List Branch} (hn : 2 ≤ n) (h : CycleMin n w)
+    (h1 : 1 < w.length) : floorPower n % 2 = 1 := by
+  by_contra hcon
+  have heven : floorPower^[1] n % 2 = 0 := by
+    rw [Function.iterate_one]
+    omega
+  have hge : n ^ 2 ≤ floorPower^[1] n := cycleMin_even_ge_sq hn h h1 heven
+  rw [Function.iterate_one] at hge
+  have hodd : n % 2 = 1 := cycleMin_start_odd hn h
+  rw [floorPower_odd_eq hodd] at hge
+  have hlt : Nat.sqrt (n ^ 3) < n ^ 2 := by
+    by_contra hc
+    have hge2 : n ^ 2 ≤ Nat.sqrt (n ^ 3) := by omega
+    have hsq := (Nat.le_sqrt).mp hge2
+    have hpos : 0 < n ^ 3 := by positivity
+    have he : n ^ 2 * n ^ 2 = n ^ 3 * n := by ring
+    have hmul : n ^ 3 * 2 ≤ n ^ 3 * n := Nat.mul_le_mul (le_refl _) (by omega)
+    omega
+  omega
+
 end Problems.Juggler

@@ -9437,3 +9437,54 @@ was an artifact of the proof I had in mind, not of the statement. The
 lesson is narrow but real: when a route to an integer inequality needs a
 high power, the first thing to try is not a stronger tactic but a
 different witness.
+
+## The display's silent assumption, and why it holds
+
+*Mathematical target.* The assembly: one theorem hypothesised only on
+`CycleMin n w`.
+
+*Falsifier, stated before starting.* The cardinalities may not come out
+to the paper's numbers.
+
+**The falsifier fired, and it was worth catching before assembling.**
+Theorem 4.7's display puts *one* valley at \(n\) and the remaining cheap
+ones at \(n+2\) --- \(o-e\) cheap valleys in all, the minimum among
+them. That is an upper bound only if the minimum is itself cheap. Were
+the minimum an `OE`-start, there could be \(o-e\) cheap valleys
+*besides* it, and since
+\(1/((n+2)\log(n+2))>1/(v\log v)\) the resulting majorant would
+**exceed** the display. The counting alone does not exclude it: the
+packing bounds the cheap valleys at \(o-e\) without saying which one is
+the minimum.
+
+**It cannot happen.** `cycleMin_succ_odd`: if \(J(n)\) were even it
+would be an even cycle state, hence at least \(n^{2}\) by
+`cycleMin_even_ge_sq`; but \(J(n)=\lfloor\sqrt{n^{3}}\rfloor<n^{2}\),
+because \(n^{3}<n^{4}\). So the minimum is followed by another odd
+letter, sits in a block with a run of at least two, and is a cheap
+valley. Two lemmas already in the repository, composed.
+
+Put plainly: a cycle minimum cannot start an `OE` circuit, because the
+circuit would land at \(\lfloor\sqrt{J(n)}\rfloor\approx n^{3/4}\),
+below the minimum. That is minimality doing the work, and the display's
+"one valley at \(n\)" is exactly the record of it.
+
+**Where the display stands.** Every mathematical step from `CycleMin` to
+the six-term bound is Lean, and this was the last *assumption* left
+implicit in the paper's own statement. What remains is bookkeeping:
+fixing a concrete `cls : ℕ → Fin 6` and discharging its six fibre
+cardinalities against the counting lemmas. That is not a gap in the
+argument; it is a theorem not yet typed.
+
+Tags. COMPUTATIONALLY VERIFIED: `lake build Problems.JugglerPaper`
+clean; `cycleMin_succ_odd` within
+`[propext, Classical.choice, Quot.sound]`; `AxiomCheckPaperA` at 245
+lines, regenerated. A name that does not exist cost a build: I reached
+for `Nat.sqrt_lt'`, which is not in this Mathlib --- `#check` says the
+sqrt interface here is `Nat.sqrt_le`, `Nat.lt_succ_sqrt` and
+`Nat.le_sqrt`, and the last was already used twice in this same file.
+OBSERVATION: the falsifier for this phase was stated as "the
+cardinalities may not come out", which sounds like a bookkeeping worry.
+It was not: it was a real hole in the display, closed by minimality
+rather than by counting. Writing the falsifier down concretely enough to
+check is what turned a vague worry into a lemma.

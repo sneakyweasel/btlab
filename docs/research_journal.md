@@ -40017,3 +40017,37 @@ against the counting lemmas.
 The lesson is narrow but real. When a route to an integer inequality
 needs a high power, the first thing to try is not a stronger tactic but
 a different witness.
+
+Before assembling I wrote down the falsifier: the cardinalities may not
+come out to the paper's numbers. That sounds like a bookkeeping worry.
+It was a real hole.
+
+Theorem 4.7's display puts one valley at n and the remaining cheap ones
+at n+2 -- o-e cheap valleys with the minimum among them. That is an
+upper bound only if the minimum is itself cheap. Were the minimum an
+OE-start there could be o-e cheap valleys besides it, and since
+1/((n+2)log(n+2)) > 1/(v log v) the majorant would exceed the display.
+The counting does not exclude this: the packing bounds cheap valleys at
+o-e without saying which one is the minimum.
+
+It cannot happen. If J(n) were even it would be an even cycle state,
+hence at least n^2 by cycleMin_even_ge_sq; but J(n) = floor(sqrt(n^3))
+< n^2 since n^3 < n^4. So the minimum is followed by another odd letter
+and is a cheap valley. Two lemmas already in the repository, composed.
+
+Plainly: a cycle minimum cannot start an OE circuit, because the
+circuit would land near n^{3/4}, below the minimum. That is minimality
+doing the work, and the display's "one valley at n" is the record of
+it.
+
+Every mathematical step from CycleMin to the six-term bound is now
+Lean, and this was the last assumption left implicit in the paper's own
+statement. What remains is bookkeeping: fixing a concrete cls and
+discharging its six fibre cardinalities. Not a gap in the argument, a
+theorem not yet typed.
+
+A name that does not exist cost a build. I reached for Nat.sqrt_lt',
+which is not in this Mathlib; #check says the interface here is
+Nat.sqrt_le, Nat.lt_succ_sqrt and Nat.le_sqrt, and the last was already
+used twice in the same file. Checking the signature before guessing
+would have been faster than two rebuilds.

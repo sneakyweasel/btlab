@@ -54,6 +54,7 @@ import Problems.JugglerPaper
 #print axioms Problems.Juggler.cycleMin_prefix_odds_ge_hug
 #print axioms Problems.Juggler.cycleMin_prefix_pow_le
 #print axioms Problems.Juggler.cycleMin_start_odd
+#print axioms Problems.Juggler.cycleMin_succ_odd
 #print axioms Problems.Juggler.cycleMin_to_even_superquadratic
 #print axioms Problems.Juggler.cycleMin_transport
 #print axioms Problems.Juggler.cycle_itinerary_formally_expanding

@@ -23359,6 +23359,16 @@
       "trust": "kernel"
     },
     {
+      "doc": "**The minimum's successor is odd**, so the minimum is always a *cheap* valley. Theorem 4.7's display puts one valley at `n` and `o\u2212e\u22121` further cheap ones at `n+2`, for `o\u2212e` cheap valleys in all. That is only an upper bound if the minimum is one of them: if the minimum started an `OE` circuit there could be `o\u2212e` cheap valleys *besides* it, and the majorant would exceed the display, since `1/((n+2)log(n+2)) > 1/(v log v)`. It cannot. If `J(n)` were even it would be an even cycle state, hence at least `n\u00b2` by `cycleMin_even_ge_sq`; but `J(n) = \u230a\u221a(n\u00b3)\u230b < n\u00b2` because `n\u00b3 < n\u2074`. So the minimum is followed by another odd letter and sits in a block with a run of at least two.",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 588,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "cycleMin_succ_odd",
+      "trust": "kernel"
+    },
+    {
       "doc": "",
       "file": "formal/Problems/Juggler/FirstETransportEval.lean",
       "kind": "def",
@@ -66545,7 +66555,7 @@
       ]
     },
     "Problems.Juggler.FinanceTransfer": {
-      "declarations": 32,
+      "declarations": 33,
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "imports": [
         "Problems.Juggler.CycleCore"
@@ -67854,13 +67864,13 @@
     }
   },
   "totals": {
-    "declarations": 4868,
+    "declarations": 4869,
     "declarations_with_a_ledger_row": 3195,
     "ledger_rows_naming_a_file": 336,
     "modules": 208,
     "trust": {
       "compiler": 54,
-      "kernel": 4814
+      "kernel": 4815
     }
   }
 }

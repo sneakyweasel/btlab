@@ -34,6 +34,7 @@
 'Problems.Juggler.cycleMin_prefix_odds_ge_hug' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.cycleMin_prefix_pow_le' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.cycleMin_start_odd' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.cycleMin_succ_odd' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.cycleMin_to_even_superquadratic' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.cycleMin_transport' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.cycle_itinerary_formally_expanding' depends on axioms: [propext, Classical.choice, Quot.sound]
