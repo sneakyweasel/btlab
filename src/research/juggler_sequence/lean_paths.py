@@ -174,6 +174,8 @@ LAYERS: dict[str, Path] = {
     "ParityComplexity": JUGGLER_DIR / "ParityComplexity.lean",
     "LocalizedKernel": JUGGLER_DIR / "LocalizedKernel.lean",
     "CubeFiber": JUGGLER_DIR / "CubeFiber.lean",
+    "FateRecursion": JUGGLER_DIR / "FateRecursion.lean",
+    "FateFirstLetter": JUGGLER_DIR / "FateFirstLetter.lean",
 }
 
 DYNAMICS = LAYERS["Dynamics"]
