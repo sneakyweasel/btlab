@@ -8829,6 +8829,76 @@
       "trust": "kernel"
     },
     {
+      "doc": "Every element of the fiber of `k^3` has offset `t = n - k^4` with `3t \u2264 4k`: if `3t \u2265 4k + 1` then `(k^4 + t)^3 \u2265 (k^3 + 1)^4`, so `n` is past the fiber.",
+      "file": "formal/Problems/Juggler/CubeFiber.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 26,
+      "module": "Problems.Juggler.CubeFiber",
+      "name": "cube_fiber_range",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Even `k = 2a`: the identity `\u221a((16a\u2074+t)\u00b3) = 64a\u2076 + 6a\u00b2t` for `3t \u2264 8a`.",
+      "file": "formal/Problems/Juggler/CubeFiber.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 43,
+      "module": "Problems.Juggler.CubeFiber",
+      "name": "cube_fiber_sqrt_even",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Hence every element of the fiber of `(2a)^3` has an even odd-step image.",
+      "file": "formal/Problems/Juggler/CubeFiber.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 55,
+      "module": "Problems.Juggler.CubeFiber",
+      "name": "cube_fiber_even_image",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The fiber-level statement for even cubes: every `n` with `(2a)^4 \u2264 n` and `n^3 < ((2a)^3 + 1)^4` has even odd-step image. The `OE` fiber of `(2a)^3` is full.",
+      "file": "formal/Problems/Juggler/CubeFiber.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 63,
+      "module": "Problems.Juggler.CubeFiber",
+      "name": "even_cube_fiber_full",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Odd `k = 2a+1`, even offset `t = 2s`: the identity `\u221a(((2a+1)\u2074+2s)\u00b3) = (2a+1)\u2076 + 3(2a+1)\u00b2s` for `3s \u2264 2(2a+1)`.",
+      "file": "formal/Problems/Juggler/CubeFiber.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 73,
+      "module": "Problems.Juggler.CubeFiber",
+      "name": "cube_fiber_sqrt_odd",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Along the fiber of `(2a+1)^3` the odd-step images alternate in parity: the image at offset `2s` has the parity of `1 + s`.",
+      "file": "formal/Problems/Juggler/CubeFiber.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 88,
+      "module": "Problems.Juggler.CubeFiber",
+      "name": "cube_fiber_alternating",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The fiber-level statement for odd cubes: an odd `n` with `(2a+1)^4 \u2264 n` and `n^3 < ((2a+1)^3 + 1)^4` sits at an even offset `2s`, and its image has the parity of `1 + s`. Consecutive fiber elements therefore have opposite image parity.",
+      "file": "formal/Problems/Juggler/CubeFiber.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 100,
+      "module": "Problems.Juggler.CubeFiber",
+      "name": "odd_cube_fiber_alternating",
+      "trust": "kernel"
+    },
+    {
       "doc": "",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "def",
@@ -65965,6 +66035,7 @@
         "Problems.Juggler.Collapse",
         "Problems.Juggler.Corridor",
         "Problems.Juggler.CubeCorridor",
+        "Problems.Juggler.CubeFiber",
         "Problems.Juggler.CycleCore",
         "Problems.Juggler.CycleDiophantine",
         "Problems.Juggler.CycleExtrema",
@@ -66136,6 +66207,12 @@
           "tag": "EXACT \u2014 LEAN VERIFIED"
         }
       ]
+    },
+    "Problems.Juggler.CubeFiber": {
+      "declarations": 7,
+      "file": "formal/Problems/Juggler/CubeFiber.lean",
+      "imports": [],
+      "ledger": []
     },
     "Problems.Juggler.CycleCore": {
       "declarations": 71,
@@ -67984,13 +68061,13 @@
     }
   },
   "totals": {
-    "declarations": 4881,
+    "declarations": 4888,
     "declarations_with_a_ledger_row": 3195,
-    "ledger_rows_naming_a_file": 336,
-    "modules": 208,
+    "ledger_rows_naming_a_file": 338,
+    "modules": 209,
     "trust": {
       "compiler": 54,
-      "kernel": 4827
+      "kernel": 4834
     }
   }
 }

@@ -3730,6 +3730,25 @@
       "nk_cluster": null
     },
     {
+      "id": "oe_fiber_share",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/oe_fiber_share.py",
+      "test": "tests/research/juggler_sequence/test_oe_fiber_share.py",
+      "dossier": "docs/problems/juggler_oe_fiber_share.md",
+      "data_dir": "data/research/juggler/oe_fiber_share",
+      "lean": [
+        "formal/Problems/Juggler/CubeFiber.lean"
+      ],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-cube-fiber-exact",
+        "J-oe-fiber-share-law"
+      ],
+      "aliases": [],
+      "nk_cluster": null
+    },
+    {
       "id": "oe_next_oo",
       "kind": "branch",
       "probe": "src/research/juggler_sequence/oe_next_oo.py",
@@ -5513,7 +5532,8 @@
         "formal/Problems/Juggler/DepthOneMainTerm.lean",
         "formal/Problems/Juggler/CycleRunAlphabet.lean",
         "formal/Problems/Juggler/ParityComplexity.lean",
-        "formal/Problems/Juggler/LocalizedKernel.lean"
+        "formal/Problems/Juggler/LocalizedKernel.lean",
+        "formal/Problems/Juggler/CubeFiber.lean"
       ],
       "conjecture": [],
       "decision": null,

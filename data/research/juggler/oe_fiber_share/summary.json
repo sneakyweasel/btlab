@@ -1,0 +1,164 @@
+{
+  "statement": "G_m/H_m = S(beta_m, theta_m) + O(1/H_m) with S the measure of s in [0,1] such that {theta + beta s + s^2/3} < 1/2; the theta-average of S is 1/2 for every beta; an extreme is possible iff beta in [-5/6, 1/6]; the beta-integral of the empty region is 25/108. For m = k^3 the fiber is full (k even) or exactly alternating (k odd), by the integer identity isqrt((k^4+t)^3) = k^6 + 3k^2t/2.",
+  "cubes": {
+    "checked_k": [
+      2,
+      120
+    ],
+    "all_as_predicted": true,
+    "identity_holds_on_every_fiber": true,
+    "min_range_slack": 0,
+    "examples": [
+      {
+        "k": 2,
+        "m": 8,
+        "H": 1,
+        "G": 1,
+        "full": true,
+        "alternating": true,
+        "range_slack": 5,
+        "identity_holds": true,
+        "as_predicted": true
+      },
+      {
+        "k": 3,
+        "m": 27,
+        "H": 3,
+        "G": 1,
+        "full": false,
+        "alternating": true,
+        "range_slack": 0,
+        "identity_holds": true,
+        "as_predicted": true
+      },
+      {
+        "k": 4,
+        "m": 64,
+        "H": 3,
+        "G": 3,
+        "full": true,
+        "alternating": false,
+        "range_slack": 1,
+        "identity_holds": true,
+        "as_predicted": true
+      },
+      {
+        "k": 5,
+        "m": 125,
+        "H": 4,
+        "G": 2,
+        "full": false,
+        "alternating": true,
+        "range_slack": 2,
+        "identity_holds": true,
+        "as_predicted": true
+      },
+      {
+        "k": 10,
+        "m": 1000,
+        "H": 7,
+        "G": 7,
+        "full": true,
+        "alternating": false,
+        "range_slack": 1,
+        "identity_holds": true,
+        "as_predicted": true
+      },
+      {
+        "k": 11,
+        "m": 1331,
+        "H": 8,
+        "G": 4,
+        "full": false,
+        "alternating": true,
+        "range_slack": 2,
+        "identity_holds": true,
+        "as_predicted": true
+      },
+      {
+        "k": 100,
+        "m": 1000000,
+        "H": 67,
+        "G": 67,
+        "full": true,
+        "alternating": false,
+        "range_slack": 1,
+        "identity_holds": true,
+        "as_predicted": true
+      }
+    ]
+  },
+  "empty_beta_integral": "25/108",
+  "extreme_window_beta": [
+    "-5/6",
+    "1/6"
+  ],
+  "extreme_window_alpha_units_of_m_to_minus_third": [
+    -1.25,
+    0.25
+  ],
+  "paper_c_window_units_of_m_to_minus_third": [
+    -22,
+    22
+  ],
+  "paper_c_window_over_sharp": 29.333333333333332,
+  "phase_average": {
+    "-0.8": 0.5,
+    "-0.4": 0.49999583333333336,
+    "0.0": 0.5,
+    "0.1": 0.49999583333333336,
+    "0.5": 0.49999166666666667,
+    "2.0": 0.49999583333333336
+  },
+  "density": [
+    {
+      "lo": 10123,
+      "count": 2000,
+      "mean_H": 14.877,
+      "mean_share": 0.4995294750285676,
+      "empty_pct": 2.0,
+      "full_pct": 2.1,
+      "predicted_pct": 1.5559688208743798
+    },
+    {
+      "lo": 100123,
+      "count": 2000,
+      "mean_H": 31.0595,
+      "mean_share": 0.49963779197990954,
+      "empty_pct": 1.05,
+      "full_pct": 0.85,
+      "predicted_pct": 0.7452839919557027
+    },
+    {
+      "lo": 1007777,
+      "count": 1200,
+      "mean_H": 66.85166666666667,
+      "mean_share": 0.49912742140559946,
+      "empty_pct": 0.5833333333333334,
+      "full_pct": 0.3333333333333333,
+      "predicted_pct": 0.34626134698434063
+    }
+  ],
+  "window_fit": {
+    "n_window": 432,
+    "mean_abs_error": 0.019486258300495937,
+    "max_abs_error": 0.2606666666666667,
+    "one_over_H": 0.015151515151515152,
+    "n_extreme": 105,
+    "extreme_beta_min": -0.7878089043173537,
+    "extreme_beta_max": 0.14320653972909791
+  },
+  "lean": [
+    "cube_fiber_range",
+    "cube_fiber_sqrt_even",
+    "cube_fiber_even_image",
+    "even_cube_fiber_full",
+    "cube_fiber_sqrt_odd",
+    "cube_fiber_alternating",
+    "odd_cube_fiber_alternating"
+  ],
+  "paper_c": {
+    "lemma_4_2_window_can_shrink_by": 29.333333333333332,
+    "rest_lift_is": "equidistribution of the landing phase theta_m along the remainder set, conditionally on beta_m: a depth-two fairness statement on a backward-closed set"
+  }
+}

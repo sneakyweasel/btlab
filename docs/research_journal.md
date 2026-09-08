@@ -40451,3 +40451,54 @@ that my first pricing was off because I imposed one of two caps and not
 the other, and the shape of the error was flattering: it made every
 death fragile, which was the more striking result. It survived until I
 wrote it down in a form that could return None.
+
+## The OE-fiber share is a quadratic sweep, and on cubes it is exact
+
+Two fibers started this: 99969, whose OE fiber is empty, and 10^6, whose
+fiber is full. The first is generic and the second is a cube, and the
+cube is where the whole mechanism becomes an integer identity.
+
+Along a fiber the phase of n^(3/2)/2 is quadratic in position, not
+linear. The reduced step is the fractional part of (3/2) m^(2/3), and
+the increment itself grows, so the phase sweeps a curve of total
+curvature exactly one third over the fiber. Write beta for the linear
+drift in fiber units and theta for the phase at the first element;
+then the even share is S(beta, theta) + O(1/H), with S the measure of
+the sweep that lands below a half. Near 10^6 that predicts individual
+shares with mean error 0.019, and 1/H is 0.015.
+
+Three things fall out of the formula. The theta-average of S is exactly
+a half for every beta, by Fubini, which is the reason no aggregate
+count ever saw the extremes: they are compensated fiber shape by fiber
+shape. An extreme needs the phase range to fit in half a turn, which is
+beta in [-5/6, 1/6], asymmetric because the curvature is one-signed;
+all 105 extremes found near 10^6 sit inside it. And the beta-integral
+of the empty region is 25/108 exactly, which under equidistribution of
+the two phases is the empty-fiber density per fiber length. The
+observed densities run 1.3 to 1.7 times that, an excess I have not
+explained and have recorded as such.
+
+For m = k^3 the reduced step is {3k^2/2}, zero for even k and a half
+for odd k, and the law is exact: floor((k^4+t)^(3/2)) = k^6 + 3k^2 t/2
+on the whole fiber, because 3t <= 4k there and the quadratic Taylor
+term stays below one until t = 1.63k. Even k gives a full fiber, odd k
+an exactly alternating one, and both are in Lean by nlinarith on the two
+square-root inequalities, with the fiber-range bound proved by
+contradiction. So 10^6 = 100^3 is full for the same reason 8, 64, 216
+and 64000 are.
+
+What this does to Paper C. Its Lemma 4.2 discards a window of width
+44 m^(-1/3) around the bad reduced step; the extremes live in a signed
+window of width 1.5 m^(-1/3), so the exceptional set is about 29 times
+too wide, harmlessly. More useful: the parked lift of the remainder
+production from a third to a half is exactly the statement that the
+landing phase equidistributes along the remainder set conditionally on
+the drift. That is a depth-two fairness statement on a backward-closed
+set, of the kind already priced at the frontier. The empty fibers are
+not in its way, and no per-fiber lemma can reach it: Lemma 4.1' is
+sharp because of the resonance at reduced step one third, which has
+positive density.
+
+Rows J-cube-fiber-exact (Lean) and J-oe-fiber-share-law (human proof
+with a recorded observation). PROMOTE. Paper C's manuscript untouched;
+the edits it would take are one constant and one sentence.
