@@ -3111,6 +3111,25 @@
       "nk_cluster": "Finance leftover-killers are identities, not movers"
     },
     {
+      "id": "localized_kernel",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/localized_kernel.py",
+      "test": "tests/research/juggler_sequence/test_localized_kernel.py",
+      "dossier": "docs/problems/juggler_localized_kernel.md",
+      "data_dir": "data/research/juggler/localized_kernel",
+      "lean": [
+        "formal/Problems/Juggler/LocalizedKernel.lean"
+      ],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-localized-kernel",
+        "J-localized-kernel-arithmetic"
+      ],
+      "aliases": [],
+      "nk_cluster": null
+    },
+    {
       "id": "macro_event",
       "kind": "branch",
       "probe": "src/research/juggler_sequence/macro_event.py",
@@ -5458,6 +5477,7 @@
         "formal/Problems/Juggler/DenjoyKoksmaOrbit.lean",
         "formal/Problems/Juggler/JumpVariation.lean",
         "formal/Problems/Juggler/OstrowskiNumeration.lean",
+        "formal/Problems/Juggler/OstrowskiBlocks.lean",
         "formal/Problems/Juggler/RotationAverage.lean",
         "formal/Problems/Juggler/FanLaw.lean",
         "formal/Problems/Juggler/WalkTransport.lean",
@@ -5473,7 +5493,8 @@
         "formal/Problems/Juggler/LiveCountWeight.lean",
         "formal/Problems/Juggler/DepthOneMainTerm.lean",
         "formal/Problems/Juggler/CycleRunAlphabet.lean",
-        "formal/Problems/Juggler/ParityComplexity.lean"
+        "formal/Problems/Juggler/ParityComplexity.lean",
+        "formal/Problems/Juggler/LocalizedKernel.lean"
       ],
       "conjecture": [],
       "decision": null,

@@ -1,0 +1,397 @@
+{
+  "statement": "Theorem 5.3 localizes: for every interval I inside (P, 2P] of length |I| >= P^{29/48+delta}, |K_c(I)| << |I| P^{-1/96+eps}, a slow twist allowed. The exponent is the printed one; only the admissible length is new.",
+  "companion_length_exponent": "23/32",
+  "threshold_length_exponent": "29/48",
+  "threshold_closed_form": "y >= A_1 + 8/96 = 25/48 + 1/12 = 29/48",
+  "companion_above_threshold": true,
+  "threshold_above_one_half": true,
+  "balancing_choices_unchanged": {
+    "H1": "1/48",
+    "H2": "1/24",
+    "H3": "1/12"
+  },
+  "chain": {
+    "lemma_52i": {
+      "proportional": "-1/16",
+      "absolute": "25/48"
+    },
+    "lemma_52ii": {
+      "proportional": "-1/24",
+      "absolute": "119/192"
+    },
+    "T2": {
+      "proportional": "-1/24",
+      "absolute": "119/192"
+    },
+    "T1": {
+      "proportional": "-1/48",
+      "absolute": "257/384"
+    },
+    "K": {
+      "proportional": "-1/96",
+      "absolute": "533/768"
+    }
+  },
+  "saving": "-1/96",
+  "saving_is_printed_exponent": true,
+  "absolute_tail": "533/768",
+  "absolute_tail_closed_form": "533/768",
+  "absolute_tail_matches_closed_form": true,
+  "target": "17/24",
+  "absolute_dominated": true,
+  "margin": "11/768",
+  "cost_tables_reproduce_printed": {
+    "lemma_52i_max": "15/16",
+    "lemma_52i_printed": "15/16",
+    "T2_max": "23/24",
+    "T2_printed": "23/24",
+    "ok": true
+  },
+  "dyadic_specialization": {
+    "T2": "23/24",
+    "T1": "47/48",
+    "K": "95/96",
+    "reproduces_printed": true
+  },
+  "coverage": {
+    "lemma_52i": {
+      "displayed_at_or_above_floor": 15,
+      "tabulated_as_a_cost": 10,
+      "named_as_a_non_cost": 9,
+      "unexplained": [],
+      "complete": true
+    },
+    "theorem_53": {
+      "displayed_at_or_above_floor": 21,
+      "tabulated_as_a_cost": 13,
+      "named_as_a_non_cost": 21,
+      "unexplained": [],
+      "complete": true
+    }
+  },
+  "coverage_complete": true,
+  "largest_absolute_cost": {
+    "exponent": "25/48",
+    "site": "Stage 5, collision band, transition term"
+  },
+  "largest_absolute_cost_theorem53": {
+    "exponent": "37/96",
+    "site": "Step 5b, middle band piece boundaries"
+  },
+  "claim_c_balance": {
+    "H3": "t^{1/3} P^{1/12}",
+    "trivial_term": "2P^2/H_3 = t^-1/3 P^23/12",
+    "terms": [
+      {
+        "term": "1: (uh)^{1/2} P^{5/8}",
+        "exponent": "5/3",
+        "dominated": true,
+        "balances": false
+      },
+      {
+        "term": "2: (h/u)^{1/2} P^{7/8}",
+        "exponent": "23/12",
+        "dominated": true,
+        "balances": true
+      },
+      {
+        "term": "3: P^{7/8}",
+        "exponent": "15/8",
+        "dominated": true,
+        "balances": false
+      },
+      {
+        "term": "4: P^{1/24}(uh)^{-1/2}P^{7/8}",
+        "exponent": "15/8",
+        "dominated": true,
+        "balances": false
+      },
+      {
+        "term": "5: R_0^{1/2} P^{3/4}",
+        "exponent": "61/32",
+        "dominated": true,
+        "balances": false
+      }
+    ],
+    "balancing_terms": [
+      "2: (h/u)^{1/2} P^{7/8}"
+    ],
+    "unique_balancing_term": true,
+    "all_dominated": true,
+    "output": "|U| << t^-1/6 P^23/24",
+    "output_is_printed": true
+  },
+  "twist": {
+    "total_variation_exponent": "-21/32",
+    "negligible": true
+  },
+  "costs": {
+    "lemma_52i": [
+      {
+        "name": "Stage 1, linearization remainder u Delta E",
+        "source": "2 pi u P^{1/4} <= 2 pi P^{3/4} at u <= P^{1/2}",
+        "dyadic": "3/4",
+        "proportional": "-1/4",
+        "absolute": null
+      },
+      {
+        "name": "Stage 2, Vaaler majorant 4P/R_0",
+        "source": "4 P^{11/16} at R_0 = P^{5/16}",
+        "dyadic": "11/16",
+        "proportional": "-5/16",
+        "absolute": null
+      },
+      {
+        "name": "Stage 3(s1), flat cost",
+        "source": "12 P^{1/2} = 8(1+|B|) N / T at T = P^{1/2}",
+        "dyadic": "1/2",
+        "proportional": "-1/2",
+        "absolute": null
+      },
+      {
+        "name": "Stage 3(s1), mode majorant",
+        "source": "14.2 P^{-1/16} * 4 P^{11/16}",
+        "dyadic": "5/8",
+        "proportional": "-3/8",
+        "absolute": null
+      },
+      {
+        "name": "Stage 3(s2), flat cost",
+        "source": "19 P^{3/4} = 8(1+2.25P^{1/4}) N / T",
+        "dyadic": "3/4",
+        "proportional": "-1/4",
+        "absolute": null
+      },
+      {
+        "name": "Stage 3(s2), window boundaries",
+        "source": "1.1 P^{17/32}; (0.6P^{1/4}+1) windows at (0.35uh)^{-1/2}P^{3/8}, uh > P^{3/16}",
+        "dyadic": "17/32",
+        "proportional": "-15/32",
+        "absolute": "9/32"
+      },
+      {
+        "name": "Stage 4, main curvature sum (printed term 1)",
+        "source": "1.1 (uh)^{1/2} P^{5/8} <= 1.1 P^{7/8} at uh = P^{1/2}",
+        "dyadic": "7/8",
+        "proportional": "-1/8",
+        "absolute": null
+      },
+      {
+        "name": "Stage 4, gap-cell boundaries (printed term 2)",
+        "source": "2.6 (h/u)^{1/2} P^{7/8} <= 2.6 P^{15/16} at u=1, h=P^{1/8}; unit lambda^{-1/2} <= 1.69 (uh)^{-1/2} P^{3/8}",
+        "dyadic": "15/16",
+        "proportional": "-1/16",
+        "absolute": "3/8"
+      },
+      {
+        "name": "Stage 5, collision band, length term",
+        "source": "3.1 (uh)^{1/2} P^{5/8} <= 3.1 P^{7/8}: windows partition the block",
+        "dyadic": "7/8",
+        "proportional": "-1/8",
+        "absolute": null
+      },
+      {
+        "name": "Stage 5, collision band, inverse-root term",
+        "source": "0.37 (uh)^{-1/2} P^{5/8}; unit 0.48 (uh)^{-1/2} P^{3/8}",
+        "dyadic": "5/8",
+        "proportional": "-3/8",
+        "absolute": "9/32"
+      },
+      {
+        "name": "Stage 5, collision band, transition term",
+        "source": "0.47 P^{37/48}; unit 0.611 (uh)^{-1/3} P^{7/12} <= 0.611 P^{25/48} at uh > P^{3/16}; Lemma 3.8's third term carries no window-length factor, so it is per window",
+        "dyadic": "37/48",
+        "proportional": "-11/48",
+        "absolute": "25/48"
+      },
+      {
+        "name": "Stage 5, dominant-mode sum (printed term 5)",
+        "source": "3 R_0^{1/2} P^{3/4} log P = 3 P^{29/32} log P",
+        "dyadic": "29/32",
+        "proportional": "-3/32",
+        "absolute": "1/4"
+      },
+      {
+        "name": "Stage 5, mode tails (printed terms 3 and 4)",
+        "source": "C P^{7/8} log P in regime (s2); P^{1/24}(uh)^{-1/2}P^{7/8} <= P^{11/12} at uh = 1",
+        "dyadic": "11/12",
+        "proportional": "-1/12",
+        "absolute": "1/4"
+      },
+      {
+        "name": "Stage 6, decorations",
+        "source": "dominated comparisons against 0.35 uh P^{-3/4}; no new object count",
+        "dyadic": "7/8",
+        "proportional": "-1/8",
+        "absolute": null
+      }
+    ],
+    "theorem_53": [
+      {
+        "name": "Step 2, M_1 deletion",
+        "source": "2.7 k h1 h2 P^{1/8} <= 2.7 P^{1/4} by (C1)",
+        "dyadic": "1/4",
+        "proportional": "-3/4",
+        "absolute": null
+      },
+      {
+        "name": "Step 3a, Delta_J majorant",
+        "source": "2 * 4P/J = 8 P^{3/4} at J = P^{1/4}",
+        "dyadic": "3/4",
+        "proportional": "-1/4",
+        "absolute": null
+      },
+      {
+        "name": "Step 3a, flat cost",
+        "source": "46 P^{3/4}",
+        "dyadic": "3/4",
+        "proportional": "-1/4",
+        "absolute": null
+      },
+      {
+        "name": "Step 3a, frozen-window residual",
+        "source": "6.3 P^{-1/8} * P",
+        "dyadic": "7/8",
+        "proportional": "-1/8",
+        "absolute": null
+      },
+      {
+        "name": "Step 3a, window boundaries",
+        "source": "7 P^{17/24}; (2 k h_2 P^{1/4}+1) windows at 3.4 P^{3/8}",
+        "dyadic": "17/24",
+        "proportional": "-7/24",
+        "absolute": "3/8"
+      },
+      {
+        "name": "Step 3b, carry majorant 4P/J_2",
+        "source": "4 P^{23/24} at J_2 = P^{1/24}: a binding proportional cost",
+        "dyadic": "23/24",
+        "proportional": "-1/24",
+        "absolute": null
+      },
+      {
+        "name": "Step 3c, window boundaries",
+        "source": "7 P^{11/16}; (2 k h_1 P^{1/4}+1) windows at 3.4 P^{3/8}",
+        "dyadic": "11/16",
+        "proportional": "-5/16",
+        "absolute": "3/8"
+      },
+      {
+        "name": "Step 3e, branch-arc majorant",
+        "source": "4 P^{11/16} exact shift device, O(log P) mass",
+        "dyadic": "11/16",
+        "proportional": "-5/16",
+        "absolute": null
+      },
+      {
+        "name": "Step 4, wave pieces (Lemma 5.2(ii))",
+        "source": "|t|^{-1/6} P^{23/24} summed over t: a binding proportional cost",
+        "dyadic": "23/24",
+        "proportional": "-1/24",
+        "absolute": null
+      },
+      {
+        "name": "Step 4, bad-shift trivial bound",
+        "source": "368 P^2/H_3 <= 368 t^{-1/3} P^{23/12}, halved by the A-process",
+        "dyadic": "23/24",
+        "proportional": "-1/24",
+        "absolute": null
+      },
+      {
+        "name": "Step 5a, frozen runs, main",
+        "source": "1.2 (k|j|)^{1/2} P^{15/16} <= 1.8 P^{23/24} at k <= P^{1/24}",
+        "dyadic": "23/24",
+        "proportional": "-1/24",
+        "absolute": null
+      },
+      {
+        "name": "Step 5a, frozen-run boundaries",
+        "source": "20 (|j|+1)|j|^{-1/2} k^{-1/2} P^{13/16}; unit 0.88 (k|j|)^{-1/2} P^{1/16}",
+        "dyadic": "13/16",
+        "proportional": "-3/16",
+        "absolute": "1/16"
+      },
+      {
+        "name": "Step 5a, collision band main",
+        "source": "2.4 (k|j|)^{1/2} P^{15/16} log P at k <= P^{1/24}",
+        "dyadic": "23/24",
+        "proportional": "-1/24",
+        "absolute": null
+      },
+      {
+        "name": "Step 5a, collision band transition term",
+        "source": "0.33 P^{1/36+3/4}; unit 0.92 (k|j|)^{-1/3} P^{3/8}",
+        "dyadic": "7/9",
+        "proportional": "-2/9",
+        "absolute": "3/8"
+      },
+      {
+        "name": "Step 5a, collision window boundaries",
+        "source": "0.15 (k|j|)^{1/2} P^{7/16} at k <= P^{1/24}",
+        "dyadic": "11/24",
+        "proportional": "-13/24",
+        "absolute": "1/16"
+      },
+      {
+        "name": "Step 5b, anchor-dominant runs, main",
+        "source": "1.7 (k h1 h2)^{1/2} P^{11/16} <= 1.7 P^{3/4} by (C1)",
+        "dyadic": "3/4",
+        "proportional": "-1/4",
+        "absolute": null
+      },
+      {
+        "name": "Step 5b, anchor-dominant run boundaries",
+        "source": "40 (h1h2/k)^{1/2} P^{9/16}; unit 1.34 (k h1 h2)^{-1/2} P^{5/16}",
+        "dyadic": "19/32",
+        "proportional": "-13/32",
+        "absolute": "5/16"
+      },
+      {
+        "name": "Step 5b, mode-dominant boundaries",
+        "source": "75 P^{11/16}; unit 3.4 (u h_1)^{-1/2} P^{3/8}",
+        "dyadic": "11/16",
+        "proportional": "-5/16",
+        "absolute": "3/8"
+      },
+      {
+        "name": "Step 5b, mode-dominant Lemma 5.2(i) total",
+        "source": "((uh_1)^{1/2}P^{5/8} + (h_1/u)^{1/2}P^{7/8} + P^{7/8}) P^eps",
+        "dyadic": "15/16",
+        "proportional": "-1/16",
+        "absolute": null
+      },
+      {
+        "name": "Step 5b, middle band transition set",
+        "source": "0.46 C(E) P (W/S)^{1/2}, W/S <= 0.21 P^{-7/48}",
+        "dyadic": "89/96",
+        "proportional": "-7/96",
+        "absolute": null
+      },
+      {
+        "name": "Step 5b, middle band piece boundaries",
+        "source": "14.1 P^{89/96}; (3.5 P^{13/24} + C(E)) pieces at 4.01 P^{37/96}",
+        "dyadic": "89/96",
+        "proportional": "-7/96",
+        "absolute": "37/96"
+      },
+      {
+        "name": "Step 5b, middle band good pieces",
+        "source": "26 C'(E) P^{3/4}, S <= 610 P^{-1/2}",
+        "dyadic": "3/4",
+        "proportional": "-1/4",
+        "absolute": null
+      },
+      {
+        "name": "Step 6, slow modes and (D3) remnants",
+        "source": "<< P^{7/8+eps}",
+        "dyadic": "7/8",
+        "proportional": "-1/8",
+        "absolute": null
+      }
+    ]
+  },
+  "unlocks": [
+    "OOOEEE",
+    "OOEOEE"
+  ]
+}

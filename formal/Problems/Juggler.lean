@@ -97,6 +97,7 @@ import Problems.Juggler.LiveCountWeight
 import Problems.Juggler.DepthOneMainTerm
 import Problems.Juggler.CycleRunAlphabet
 import Problems.Juggler.ParityComplexity
+import Problems.Juggler.LocalizedKernel
 
 /-!
 # Juggler laboratory barrel

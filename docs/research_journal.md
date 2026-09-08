@@ -39612,3 +39612,62 @@ index went stale twice, once for the module and once for the reorder.
 What Theorem 5.7 still takes from its human proof is now one thing: the
 reading of C_L as that ergodic sum, which is Lemma 5.6's rotation
 identification.
+
+## The kernel theorem localizes, and stops higher than the paper guessed
+
+Paper B lists one thing as the strongest result it does not supply to
+its companion: Theorem 5.3 on intervals of length P^(23/32) rather than
+on a dyadic block. Without it the even-block productions OOOEEE and
+OOEOEE are unavailable and the contagion exponent stays at 0.5392. The
+paper also guesses what it would cost: "the scaling architecture is the
+same, with per-window absolute costs at most P^(7/16)". The first half
+of that guess is right and the second is not.
+
+Run the proof over an interval and every displayed cost turns out to be
+of one of two kinds. Either it is proportional to the number of
+summands, in which case a printed exponent e becomes Y P^(e-1); or it is
+a count of gap cells, sawtooth windows, frozen runs or middle-band
+pieces times a unit cost, and such a count is c*Y + O(1), so it splits
+into a proportional part and one unit that does not scale. An
+A-process leaves the proportional half alone, because it is homogeneous
+of degree two when the differenced sums are degree one, but it sends a
+unit P^a to P^((y+a)/2): units are not squared away, they are pushed to
+the geometric mean with the length. Three of them stand between a unit
+and K_c, so P^a arrives as P^((7y+a)/8) and the threshold is
+a + 8/96.
+
+The one place this could break is the balance that fixes H_3, and it
+does not break, for a reason worth naming. Claim C balances 2P^2/H_3
+against the h_3-*average* of Lemma 5.2(i), not its maximum, and the
+average is over a quantity proportional to the number of summands.
+Both sides therefore carry (Y/P)^2 and H_3 is still the balancing
+choice. Nothing is re-optimized; the exponent 1/96 is untouched.
+
+So the whole question is the largest unit, and it is not an inverse
+root. It is Lemma 3.8's transition term in Stage 5 of Lemma 5.2(i),
+which the manuscript itself flags as carrying no window-length factor.
+That is exactly why the paper can sum it over windows, and exactly why
+one window's worth of it survives localization. At the regime-(s2)
+constraint it is P^(25/48), against P^(3/8) for every inverse root in
+the proof. The threshold is 25/48 + 1/12 = 29/48.
+
+Two consequences. The companion is fine: 23/32 = 0.719 is well above
+29/48 = 0.604, the unit chain ends at P^(533/768) against a target of
+P^(544/768), and both new productions are available. But 29/48 > 1/2,
+so the kernel does not localize as far as Section 3.5 takes the
+depth-three theorems, and the two localizations of Section 8 are not
+interchangeable. The paper's P^(7/16) was the depth-three figure
+carried over.
+
+Written into the manuscript as Lemma 5.4 and Theorem 5.5, with the
+inventory table. What the theorem rests on is the completeness of that
+inventory, so that is the part I made falsifiable rather than asserted:
+the probe reads every P-exponent at or above P^(1/4) out of both proofs
+and requires each to be either a tabulated cost or named as a count, a
+length, a parameter, a hypothesis or an intermediate step. Fifteen in
+Lemma 5.2(i), twenty-one in Theorem 5.3, none left over. It also checks
+that the tables reproduce the printed P^(15/16) and P^(23/24), and that
+setting Y = P returns the paper. A missing unit above P^(25/48) would
+raise the threshold; it could not touch the exponent.
+
+Rows J-localized-kernel and J-localized-kernel-arithmetic. PROMOTE.

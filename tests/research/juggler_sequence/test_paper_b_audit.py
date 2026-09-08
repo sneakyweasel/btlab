@@ -1173,8 +1173,10 @@ def test_the_table_has_no_sampled_warrant_and_flags_where_the_proof_stands_alone
     assert r["table_has_no_sampled_column"]          # its warrants are proof, Lean, classical
     assert r["row_count"] == r["rows_with_lean"] + len(r["rows_on_the_human_proof_alone"]) + len(
         r["rows_quoted_from_elsewhere"])
-    assert set(r["flagged_rows"]) == {"Lem. 5.2(i), (ii), (iii)", "Thm. 5.3 kernel cancellation"}
-    assert "Lem. 5.2(i), (ii), (iii)" in r["rows_on_the_human_proof_alone"]
+    assert set(r["flagged_rows"]) == {"Lem. 5.2(i), (ii), (iii)", "Thm. 5.3 kernel cancellation",
+                                      "Thm. 5.5 localized kernel"}
+    for row in ("Lem. 5.2(i), (ii), (iii)", "Thm. 5.5 localized kernel"):
+        assert row in r["rows_on_the_human_proof_alone"], row
 
 
 # --- the row with the least numerical company ---

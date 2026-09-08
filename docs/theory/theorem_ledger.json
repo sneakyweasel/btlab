@@ -7584,5 +7584,27 @@
   "tests": [
    "tests/research/juggler_sequence/test_parity_complexity.py"
   ]
+ },
+ {
+  "id": "J-localized-kernel",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Paper B's kernel theorem localizes. Theorem 5.5 of the manuscript: for c(n) = (3k/4) n^(9/8) with 1 <= k <= P^(1/24), every delta > 0, every slow twist g = (l/2) n^(9/16) with |l| <= P^(1/24), and every interval I inside (P, 2P] of length Y >= P^(29/48+delta), |K_c^g(I)| << Y P^(-1/96+eps), uniformly in k, in g, and in the position of I. The exponent is the one Theorem 5.3 prints; what is new is the admissible length. Proof in three parts. (a) Transfer, Lemma 5.4: if |T_h| <= C(Y P^p + P^a) for all h <= H = P^eta <= Y then the A-process over I gives |S|^2 <= 2Y^2 P^-eta + 4C Y^2 P^p + 4C Y P^a, so |S| <= C'(Y P^p' + P^((y+a)/2)); the first two terms are the dyadic balance, unchanged because both carry Y^2, and a unit cost is not squared away but pushed to the geometric mean with the length, so three A-processes send P^a to P^((7y+a)/8). (b) The balance is against an average, not a maximum: at H_3 = t^(1/3) P^(1/12) the trivial term 2P^2/H_3 = 2 t^(-1/3) P^(23/12) is matched by the h_3-average of the second printed term of Lemma 5.2(i), (4P/H_3) t^(-1/2) (2/3) H_3^(3/2) P^(7/8) = (8/3) t^(-1/3) P^(23/12), and by that term alone (the other four give P^(5/3), P^(15/8), P^(15/8), P^(61/32)); an average of quantities proportional to the number of summands is proportional, so both sides carry (Y/P)^2 on I and H_1 = P^(1/48), H_2 = P^(1/24), H_3 are not re-optimized. (c) The inventory: every displayed cost is proportional to the number of summands, or is a count of cells, windows, runs or pieces times a unit, and such a count is c*Y + O(1); the eleven units are tabulated and the largest is P^(25/48), the Stage 5 transition term of Lemma 5.2(i) at the regime-(s2) constraint uh > P^(3/16). It is the one unit that is not a van der Corput inverse root: Lemma 3.8's third term carries no window-length factor, which is why the manuscript sums it over windows and also why one window's worth of it survives. Threshold A_1 + 8/96 = 25/48 + 1/12 = 29/48. The twist is removed after the first differencing by Lemma 4.10 at TV <= 0.26 P^(-21/32). CORRECTION to the record: Section 8 estimated these per-window absolute costs at P^(7/16); that is the depth-<=3 figure, and 25/48 > 7/16, so the kernel localizes to P^(29/48) and not to the P^(1/2) that Section 3.5 reaches for Theorems 4.11 and 4.12. The two localizations are not interchangeable. The companion's intervals I(m') = [m'^(32/9), (m'+1)^(32/9)) have length asymp P^(23/32) > P^(29/48), so the even-block productions OOOEEE and OOEOEE become available; at y = 23/32 the unit chain ends at P^(533/768) against a target P^(17/24) = P^(544/768), margin P^(11/768). What the theorem rests on is the completeness of the unit inventory: a missing unit above P^(25/48) would raise the threshold without touching the exponent. That completeness is checked, not asserted (see J-localized-kernel-arithmetic). PROMOTE.",
+  "lean": "formal/Problems/Juggler/LocalizedKernel.lean",
+  "related_conjectures": [],
+  "source": "docs/problems/juggler_localized_kernel.md",
+  "tests": [
+   "tests/research/juggler_sequence/test_localized_kernel.py"
+  ]
+ },
+ {
+  "id": "J-localized-kernel-arithmetic",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "The bookkeeping behind J-localized-kernel is rational arithmetic and is pinned as such. Lean (LocalizedKernel.lean, Mathlib's three axioms only): absTail_eq, the closed form absTail y a = (7y+a)/8 of three nested A-processes; absTail_companion, absTail (23/32) (25/48) = 533/768; target_companion, 23/32 - 1/96 = 17/24; absTail_lt_target and margin_companion, the strict inequality and the margin 11/768; threshold_iff, absTail y A_1 <= y - saving iff A_1 + 8*saving <= y, with threshold_value 29/48 and threshold_is_equality showing the endpoint is an equality so the theorem needs a positive gap; half_lt_threshold and threshold_lt_companion, 1/2 < 29/48 < 23/32; proportional_chain, the halving 23/24 - 1 = -1/24, then -1/48, then -1/96; claimC_balance and claimC_output, 2 - 1/12 = (1/2)(1/12) + 1 + 7/8 and half of it is 23/24, with claimC_others_dominated for the four strictly smaller terms; twist_negligible and twist_exponent_neg, 1/48 + 23/32 + 1/24 - 23/16 = -21/32 < 0. The file is in the laboratory barrel Problems.Juggler and deliberately not in Paper B's certified corpus. It certifies no estimate, exactly as Appendix A's threshold certificate does not. COMPUTATIONALLY VERIFIED alongside it (research.juggler_sequence.localized_kernel): the two cost tables' maxima are the printed P^(15/16) of Lemma 5.2(i) and P^(23/24) of T_2; setting Y = P returns the paper's P^(23/24), P^(47/48), P^(95/96); and every P-exponent at or above P^(1/4) displayed in either proof, read out of the manuscript by extraction, is either one of the tabulated costs or is named as a count, a length, a parameter, a hypothesis or an intermediate step: fifteen in Lemma 5.2(i), twenty-one in Theorem 5.3, none left over. That last check is what makes the inventory's completeness falsifiable.",
+  "lean": "formal/Problems/Juggler/LocalizedKernel.lean",
+  "related_conjectures": [],
+  "source": "docs/problems/juggler_localized_kernel.md",
+  "tests": [
+   "tests/research/juggler_sequence/test_localized_kernel.py"
+  ]
  }
 ]

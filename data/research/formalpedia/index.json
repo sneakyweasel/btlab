@@ -34502,6 +34502,216 @@
       "trust": "kernel"
     },
     {
+      "doc": "One `A`-process, on the absolute half of the bookkeeping: a cost that does not scale with the length is pushed to the geometric mean with it.",
+      "file": "formal/Problems/Juggler/LocalizedKernel.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 26,
+      "module": "Problems.Juggler.LocalizedKernel",
+      "name": "absStep",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The three nested `A`-processes of Theorem 5.3: Claim C inside Lemma 5.2(ii), then the two of Step 1.",
+      "file": "formal/Problems/Juggler/LocalizedKernel.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 30,
+      "module": "Problems.Juggler.LocalizedKernel",
+      "name": "absTail",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Closed form of the tail.",
+      "file": "formal/Problems/Juggler/LocalizedKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 33,
+      "module": "Problems.Juggler.LocalizedKernel",
+      "name": "absTail_eq",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The largest absolute cost in the chain is the per-window transition term `(P/M)^(1/3)` of Stage 5 of Lemma 5.2(i), of size `P^(25/48)` at the regime-(s2) constraint `uh > P^(3/16)`. Lemma 3.8's third term carries no window-length factor, as the manuscript says, which is what makes it summable and also what makes it the largest cost that does not scale with the interval.",
+      "file": "formal/Problems/Juggler/LocalizedKernel.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 41,
+      "module": "Problems.Juggler.LocalizedKernel",
+      "name": "A",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The length the companion paper needs: the preimage interval of an even block.",
+      "file": "formal/Problems/Juggler/LocalizedKernel.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 44,
+      "module": "Problems.Juggler.LocalizedKernel",
+      "name": "companionY",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The saving Theorem 5.3 prints.",
+      "file": "formal/Problems/Juggler/LocalizedKernel.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 47,
+      "module": "Problems.Juggler.LocalizedKernel",
+      "name": "saving",
+      "trust": "kernel"
+    },
+    {
+      "doc": "At the companion's length the absolute chain ends at `P^(533/768)`.",
+      "file": "formal/Problems/Juggler/LocalizedKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 50,
+      "module": "Problems.Juggler.LocalizedKernel",
+      "name": "absTail_companion",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The target it must beat is `Y * P^(-1/96)`, that is `P^(17/24)`.",
+      "file": "formal/Problems/Juggler/LocalizedKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 54,
+      "module": "Problems.Juggler.LocalizedKernel",
+      "name": "target_companion",
+      "trust": "kernel"
+    },
+    {
+      "doc": "It beats it, with margin `P^(11/768)`.",
+      "file": "formal/Problems/Juggler/LocalizedKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 58,
+      "module": "Problems.Juggler.LocalizedKernel",
+      "name": "absTail_lt_target",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/LocalizedKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 61,
+      "module": "Problems.Juggler.LocalizedKernel",
+      "name": "margin_companion",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The threshold is exactly `A\u2081 + 8 * saving`: the absolute term is dominated for every longer interval and for no shorter one.",
+      "file": "formal/Problems/Juggler/LocalizedKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 66,
+      "module": "Problems.Juggler.LocalizedKernel",
+      "name": "threshold_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/LocalizedKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 69,
+      "module": "Problems.Juggler.LocalizedKernel",
+      "name": "threshold_value",
+      "trust": "kernel"
+    },
+    {
+      "doc": "At the threshold the two exponents are equal, so a strictly shorter interval fails and the theorem is stated with a positive gap.",
+      "file": "formal/Problems/Juggler/LocalizedKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 74,
+      "module": "Problems.Juggler.LocalizedKernel",
+      "name": "threshold_is_equality",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The kernel does **not** reach the length `P^(1/2)` at which Section 3.5 localizes the depth-three theorems: the transition term stops it at `P^(29/48)`. The companion's intervals are longer than that, so nothing it needs is lost.",
+      "file": "formal/Problems/Juggler/LocalizedKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 80,
+      "module": "Problems.Juggler.LocalizedKernel",
+      "name": "half_lt_threshold",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/LocalizedKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 82,
+      "module": "Problems.Juggler.LocalizedKernel",
+      "name": "threshold_lt_companion",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The proportional half halves at each of the two outer `A`-processes, which is where `1/96 = (1/4) * (1/24)` comes from; localization does not touch it.",
+      "file": "formal/Problems/Juggler/LocalizedKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 87,
+      "module": "Problems.Juggler.LocalizedKernel",
+      "name": "proportional_chain",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The balance that fixes `H\u2083 = t^(1/3) P^(1/12)` in Claim C is between the trivial term `2P\u00b2/H\u2083` and the shift-*average* of the second printed term of Lemma 5.2(i): both are `P^(23/12)`. An average of quantities proportional to the length is proportional to the length, which is why the balance survives on a shorter interval.",
+      "file": "formal/Problems/Juggler/LocalizedKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 96,
+      "module": "Problems.Juggler.LocalizedKernel",
+      "name": "claimC_balance",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/LocalizedKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 99,
+      "module": "Problems.Juggler.LocalizedKernel",
+      "name": "claimC_output",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The other four printed terms of Lemma 5.2(i) are strictly dominated after the same averaging, so the balancing term is unique.",
+      "file": "formal/Problems/Juggler/LocalizedKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 103,
+      "module": "Problems.Juggler.LocalizedKernel",
+      "name": "claimC_others_dominated",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A slow twist `(l/2) n^(9/16)` with `|l| \u2264 P^(1/24)` is removed after the first differencing: its total variation carries a negative exponent, so it costs `1 + o(1)`.",
+      "file": "formal/Problems/Juggler/LocalizedKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 112,
+      "module": "Problems.Juggler.LocalizedKernel",
+      "name": "twist_negligible",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/LocalizedKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 116,
+      "module": "Problems.Juggler.LocalizedKernel",
+      "name": "twist_exponent_neg",
+      "trust": "kernel"
+    },
+    {
       "doc": "For every real `x` and integers `o`, `t`: `o * x - t \u2261 o * (x - 1)` mod `1`.",
       "file": "formal/Problems/Juggler/LogLogClock.lean",
       "kind": "theorem",
@@ -37367,6 +37577,126 @@
       "line": 80,
       "module": "Problems.Juggler.OddLandingSets",
       "name": "oddLanding_preimage_unique",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OstrowskiBlocks.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 34,
+      "module": "Problems.Juggler.OstrowskiBlocks",
+      "name": "length_flatMap_replicate",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OstrowskiBlocks.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 46,
+      "module": "Problems.Juggler.OstrowskiBlocks",
+      "name": "sum_map_snd_flatMap_replicate",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OstrowskiBlocks.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 58,
+      "module": "Problems.Juggler.OstrowskiBlocks",
+      "name": "mem_flatMap_replicate",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The certified convergent pair at level `j`.",
+      "file": "formal/Problems/Juggler/OstrowskiBlocks.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 68,
+      "module": "Problems.Juggler.OstrowskiBlocks",
+      "name": "thetaPair",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OstrowskiBlocks.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 70,
+      "module": "Problems.Juggler.OstrowskiBlocks",
+      "name": "thetaPair_mem",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The bridge: the pair's denominator is the numeration's denominator.",
+      "file": "formal/Problems/Juggler/OstrowskiBlocks.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 74,
+      "module": "Problems.Juggler.OstrowskiBlocks",
+      "name": "thetaPair_snd",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The Ostrowski block list.** Level `i` contributes one copy of the pair at level `12 - i` for each of its digits, matching `theta_sum_eq`.",
+      "file": "formal/Problems/Juggler/OstrowskiBlocks.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 79,
+      "module": "Problems.Juggler.OstrowskiBlocks",
+      "name": "ostroBlocks",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OstrowskiBlocks.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 83,
+      "module": "Problems.Juggler.OstrowskiBlocks",
+      "name": "ostroBlocks_mem",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The denominators sum to `L` \u2014 this is `theta_sum_eq`.",
+      "file": "formal/Problems/Juggler/OstrowskiBlocks.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 89,
+      "module": "Problems.Juggler.OstrowskiBlocks",
+      "name": "ostroBlocks_snd_sum",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The length is the greedy digit sum `s(L)`.",
+      "file": "formal/Problems/Juggler/OstrowskiBlocks.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 99,
+      "module": "Problems.Juggler.OstrowskiBlocks",
+      "name": "ostroBlocks_length",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Theorem 5.7's display at a given length.** No window hypothesis: for every `L`, the ergodic sum of `L` letters is within `2 s(L)` of `L` times the mean.",
+      "file": "formal/Problems/Juggler/OstrowskiBlocks.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 105,
+      "module": "Problems.Juggler.OstrowskiBlocks",
+      "name": "theta_block_envelope_of_length",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**On the certified window the bound is a constant.** `s(L) \u2264 47`, so the ergodic sum of `L < 301994` letters is within `94` of `L \u00b7 C_*`, uniformly in the starting phase.",
+      "file": "formal/Problems/Juggler/OstrowskiBlocks.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 115,
+      "module": "Problems.Juggler.OstrowskiBlocks",
+      "name": "theta_block_envelope_window",
       "trust": "kernel"
     },
     {
@@ -65107,6 +65437,7 @@
         "Problems.Juggler.LeftoverShort",
         "Problems.Juggler.LengthEightCensus",
         "Problems.Juggler.LiveCountWeight",
+        "Problems.Juggler.LocalizedKernel",
         "Problems.Juggler.LogLogClock",
         "Problems.Juggler.MasterIdentity",
         "Problems.Juggler.MeanValues",
@@ -66127,6 +66458,12 @@
       ],
       "ledger": []
     },
+    "Problems.Juggler.LocalizedKernel": {
+      "declarations": 21,
+      "file": "formal/Problems/Juggler/LocalizedKernel.lean",
+      "imports": [],
+      "ledger": []
+    },
     "Problems.Juggler.LogLogClock": {
       "declarations": 22,
       "file": "formal/Problems/Juggler/LogLogClock.lean",
@@ -66335,6 +66672,15 @@
           "tag": "REFUTED"
         }
       ]
+    },
+    "Problems.Juggler.OstrowskiBlocks": {
+      "declarations": 12,
+      "file": "formal/Problems/Juggler/OstrowskiBlocks.lean",
+      "imports": [
+        "Problems.Juggler.JumpVariation",
+        "Problems.Juggler.OstrowskiNumeration"
+      ],
+      "ledger": []
     },
     "Problems.Juggler.OstrowskiNumeration": {
       "declarations": 16,
@@ -66807,6 +67153,7 @@
         "Problems.Juggler.NormalizedDefect",
         "Problems.Juggler.O7EEEEGap",
         "Problems.Juggler.OddCountMonotone",
+        "Problems.Juggler.OstrowskiBlocks",
         "Problems.Juggler.OstrowskiNumeration",
         "Problems.Juggler.OstrowskiSandwich",
         "Problems.Juggler.Preimages",
@@ -67027,13 +67374,13 @@
     }
   },
   "totals": {
-    "declarations": 4790,
+    "declarations": 4823,
     "declarations_with_a_ledger_row": 3195,
-    "ledger_rows_naming_a_file": 334,
-    "modules": 203,
+    "ledger_rows_naming_a_file": 336,
+    "modules": 205,
     "trust": {
       "compiler": 54,
-      "kernel": 4736
+      "kernel": 4769
     }
   }
 }

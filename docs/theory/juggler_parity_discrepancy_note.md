@@ -140,7 +140,8 @@ itineraries are counted and do not contract, and \(OOOO*\) is the
 level-3 kernel. Section 3.5 proves the depth-\(\le3\) theorems on
 sub-dyadic intervals of length \(\ge P^{1/2}\) with a slowly varying
 twist attached, the form in which the companion paper [24] uses them.
-Theorem 5.3 is not localized.
+Theorem 5.5 localizes Theorem 5.3 to intervals of length \(\ge P^{29/48+\delta}\),
+which covers them.
 
 The logical dependence of the counting theorems is
 \[
@@ -154,10 +155,9 @@ The logical dependence of the counting theorems is
 \;\Longrightarrow\;
 \text{Theorem 6.3 and Corollary 6.4}.
 \]
-The localization used by the companion [24] is a separate chain and
-does not include Theorem 5.3:
+The localization used by the companion [24] is a separate chain:
 \[
-\text{Theorems 4.11--4.12 and Corollary 4.13 (Section 3.5)}
+\text{Theorems 4.11--4.12, Cor. 4.13, Thm. 5.5}
 \;\Longrightarrow\;
 \text{companion [24]}.
 \]
@@ -249,16 +249,21 @@ of any estimate; *classical* names the external result used as given.
 | **Lem. 5.2(i), (ii), (iii)** | **this paper** | **none** | Lem. 3.3, 3.5, 3.7, 3.8 |
 | Lem. 5.2b interpolant | this paper | `interpolant_assembly`, `interpolant_step_i`, `interpolant_step_ii_constant`, `gap_error_le_one`, `gap_error_one_attained`, `gap_error_not_halved_by_recentring` | — |
 | **Thm. 5.3 kernel cancellation** | **this paper** | `step5b_curvature_norm`, `sublevel_raised_threshold` (Step 5b constants only; **no part of the assembly**) | Lem. 5.1, 5.2, 5.2b, 3.9 |
+| Lem. 5.4 transfer | this paper | — | — |
+| **Thm. 5.5 localized kernel** | **this paper** | **none** | Thm. 5.3, Lem. 4.10 |
 | Thm. 6.1 depth four | this paper | — | Thm. 5.3 |
 | Thm. 6.3, Cor. 6.4 depth five | this paper | — | Thm. 5.3 |
 | Threshold \(P_0\) (App. A) | computation, not a proof step | `row_5b_binding`, `step5b_c2_ceiling`, `step5b_c2_optimum_feasible`, `step5b_uniform_saturates` | rational arithmetic |
 | Prop. 7.1 reduction | this paper | — | Hoeffding |
 | Prop. 7.4 shift average | this paper | — | — |
 
-Two rows carry the paper and are the ones to read first. Lemma 5.2 is
-proved here and has **no** machine check of any kind; Theorem 5.3 has
-two, and both are constants inside Step 5b rather than any step of the
-assembly. Everything the repository verifies is an identity, a
+Three rows stand on the proof alone and are the ones to read first.
+Lemma 5.2 is proved here and has **no** machine check of any kind;
+Theorem 5.3 has two, and both are constants inside Step 5b rather than
+any step of the assembly; Theorem 5.5 has none, and what it rests on is
+stated in its own subsection --- the completeness of an inventory of
+costs, which the repository checks by extraction from these proofs but
+which no Lean file certifies. Everything the repository verifies is an identity, a
 constant, or a threshold — it has checked no estimate in this paper,
 and a reader who treats the Lean column as corroboration of the
 analysis will be misled. The remaining rows are stated so that this
@@ -280,7 +285,7 @@ declared, the module reachable and `lake build` green while this column
 asserts something false. So the third convention is that every
 identifier listed depends on Mathlib's three axioms and nothing else.
 `formal/AxiomCheckPaperB.lean` prints the axiom dependencies of all
-forty-six, and every line of its output reads
+forty-seven, and every line of its output reads
 `[propext, Classical.choice, Quot.sound]`; the output is recorded
 beside it. That is what makes the column a claim about proofs rather
 than about names, and it is the check a reader should run first.
@@ -4246,6 +4251,158 @@ depth-2 strength \(P^{23/24}\) of the exact level-2 waves
 (Lemma 5.2(ii)); any improvement of the wave bound improves
 \(\delta\) proportionally.
 
+### Localization of the kernel theorem
+
+Theorem 5.3 is stated on a dyadic block. The companion [24] needs it on the
+preimage intervals \(I(m')=[m'^{32/9},(m'+1)^{32/9})\), of length
+\(\asymp P^{23/32}\), for the reason Section 3.5 gives for the
+depth-\(\le3\) theorems: a production is counted on the preimage intervals
+of its landing points. This subsection proves it there. As in Section 3.5
+the proof is the proof already given, with the number of summands in place
+of \(P\) wherever the number of summands enters, and the content is the
+inventory of terms that do *not* scale. Here one of them dominates the
+rest, and it is not the one the architecture suggests.
+
+**Two kinds of cost.** Write a cost on an interval \(I\subseteq(P,2P]\) of
+length \(Y\) as \(cY^{\alpha}P^{\beta}\); on the block it is
+\(cP^{\alpha+\beta}\), the exponent Steps 2--6 print. Every displayed cost
+is of one of two kinds.
+
+*Proportional* (\(\alpha=1\)): a per-summand cost --- a flat cost
+\(8(1+\lvert B\rvert)N/T\), a majorant \(4N/J\), a deletion, a residual ---
+or a sum over gap cells, sawtooth windows, frozen runs or middle-band
+pieces. Those objects partition the interval, so their number is
+\(\lvert I\rvert\) times a density plus \(O(1)\), and a printed exponent
+\(e\) becomes \(YP^{e-1}\).
+
+*A unit* (\(\alpha=0\)): the \(O(1)\) additive term in such a count, paying
+one unit cost. A unit is a van der Corput \(\lambda^{-1/2}\), or the
+transition term of Lemma 3.8; never a length.
+
+**Lemma 5.4 (transfer).** Let \(H=P^{\eta}\le Y\) and suppose
+\(\lvert T_h\rvert\le C\bigl(YP^{p}+P^{a}\bigr)\) for every \(h\le H\) and
+every sub-interval, with the dyadic argument balancing \(2P^2/H\) against
+\((4P/H)\sum_h\lvert T_h\rvert\) at the printed \(p\). Then
+\[
+\lvert S\rvert\ \le\ C'\Bigl(YP^{p'}+P^{(y+a)/2}\Bigr),
+\qquad Y=P^{y},
+\]
+with \(p'\) the printed half of the dyadic saving.
+
+*Proof.* The \(A\)-process on \(I\) reads
+\(\lvert S\rvert^2\le 2Y^2/H+(4Y/H)\sum_{h\le H}\lvert T_h\rvert
+\le 2Y^2P^{-\eta}+4CY^2P^{p}+4CYP^{a}\),
+and \(\sqrt{x+y+z}\le\sqrt x+\sqrt y+\sqrt z\). \(\square\)
+
+The first two terms are the dyadic balance, unchanged because both carry
+\(Y^2\); the third is new. A unit is therefore not squared away but pushed
+to the geometric mean with the length, and three \(A\)-processes stand
+between a unit and \(K_c\) --- Claim C inside Lemma 5.2(ii), then the two
+of Step 1 --- so \(P^{a}\) arrives as \(P^{(7y+a)/8}\).
+
+**The balance is against an average.** The hypothesis of Lemma 5.4 is the
+one thing localization could break, and it does not. In Claim C the balance
+at \(H_3=t^{1/3}P^{1/12}\) is between \(2P^2/H_3=2t^{-1/3}P^{23/12}\) and
+the \(h_3\)-*average* of Lemma 5.2(i), not its maximum: with
+\(\sum_{h\le H}h^{1/2}\sim\tfrac23H^{3/2}\), the second printed term
+contributes
+\[
+\frac{4P}{H_3}\cdot t^{-1/2}\cdot\tfrac23H_3^{3/2}\cdot P^{7/8}
+=\tfrac83\,t^{-1/3}P^{23/12},
+\]
+the same quantity, while the first, third, fourth and fifth printed terms
+give \(P^{5/3}\), \(P^{15/8}\), \(P^{15/8}\) and \(P^{61/32}\), all
+strictly below \(P^{23/12}\). So \(H_3\) balances against one term and that
+term is proportional; an average of proportional quantities is
+proportional, both sides carry \((Y/P)^2\) on \(I\), and \(H_3\) is still
+the balancing choice. The same holds at \(H_1\) and \(H_2\). No parameter
+is re-optimized and the exponent \(\tfrac1{96}\) is untouched.
+
+**The inventory of units.** Collecting every count-times-unit cost in
+Lemma 5.2(i) and in Steps 2--6:
+
+| site | unit | exponent |
+|---|---|---|
+| Lemma 5.2(i), Stage 3(s2) window boundaries | \((0.35uh)^{-1/2}P^{3/8}\), \(uh>P^{3/16}\) | \(9/32\) |
+| Lemma 5.2(i), Stage 4 gap-cell boundaries | \(1.69(uh)^{-1/2}P^{3/8}\) | \(3/8\) |
+| Lemma 5.2(i), Stage 5 inverse-root term | \(0.48(uh)^{-1/2}P^{3/8}\) | \(9/32\) |
+| **Lemma 5.2(i), Stage 5 transition term** | \(0.611(uh)^{-1/3}P^{7/12}\), \(uh>P^{3/16}\) | \(\mathbf{25/48}\) |
+| Lemma 5.2(i), Stage 5 mode ends | \(\lambda^{-1/2}\ll P^{1/4}\) | \(1/4\) |
+| Steps 3a, 3c window boundaries | \(3.4P^{3/8}\) | \(3/8\) |
+| Step 5a run boundaries | \(0.88(k\lvert j\rvert)^{-1/2}P^{1/16}\) | \(1/16\) |
+| Step 5a transition term | \(0.92(k\lvert j\rvert)^{-1/3}P^{3/8}\) | \(3/8\) |
+| Step 5b anchor-dominant run boundaries | \(1.34(kh_1h_2)^{-1/2}P^{5/16}\) | \(5/16\) |
+| Step 5b mode-dominant boundaries | \(3.4(uh_1)^{-1/2}P^{3/8}\) | \(3/8\) |
+| Step 5b middle-band piece boundaries | \(4.01P^{37/96}\) | \(37/96\) |
+
+The largest is the Stage 5 transition term, and it is the one unit that is
+not an inverse root. Lemma 3.8's third term carries no window-length
+factor --- which, as Stage 5 says, is exactly why it sums --- so one
+window's worth of it survives as a unit, at \(P^{7/12}\) before the
+regime-(s2) constraint \(uh>P^{3/16}\) is used and \(P^{25/48}\) after.
+That single cost, and nothing about the architecture, sets the threshold
+below.
+
+**Theorem 5.5 (localized kernel cancellation).** Let
+\(c(n)=\tfrac{3k}4n^{9/8}\) with \(1\le k\le P^{1/24}\), let \(\delta>0\),
+and let \(g\) be a slow twist. For every interval \(I\subseteq(P,2P]\) of
+length \(Y\ge P^{29/48+\delta}\),
+\[
+\Bigl\lvert\sum_{\substack{n\in I\\ n\ \mathrm{odd}}}
+e\bigl(c(n)\{\lfloor n^{3/2}\rfloor^{3/2}\}+g(n)\bigr)\Bigr\rvert
+\ \ll\ Y\,P^{-1/96+\varepsilon},
+\]
+uniformly in \(k\), in \(g\), and in the position of \(I\).
+
+*Proof.* The twist first. By Lemma 4.10 applied after the \(h_1\)
+differencing of Step 1, with
+\(\mathrm{TV}(\Delta_{2h_1}g)\le2h_1\lvert I\rvert\sup\lvert g''\rvert
+\le0.26\,P^{1/48+23/32+1/24-23/16}=0.26\,P^{-21/32}\),
+the twist costs a factor \(1+o(1)\) and every sum below is untwisted; the
+maximum over initial sub-intervals it introduces is harmless because the
+bound proved is nondecreasing in \(\lvert I\rvert\).
+
+Now run Steps 2--6 over \(I\). Each proportional cost of printed exponent
+\(e\) becomes \(YP^{e-1}\), so the largest, the Step 3b majorant
+\(4N/J_2\) and the three costs of Steps 4 and 5a that meet it, give
+\(YP^{-1/24}\); each unit contributes its exponent, the largest being
+\(P^{25/48}\) through Lemma 5.2(i). Lemma 5.2(ii) follows by Lemma 5.4 at
+\(H_3\), and \(T_1\), \(K_c\) by Lemma 5.4 at \(H_2\), \(H_1\). Hence
+\[
+\lvert K_c^{g}(I)\rvert\ \ll\ Y\,P^{-1/96+\varepsilon}+P^{(7y+25/48)/8},
+\]
+and the second term is at most the first exactly when
+\(y\ge\tfrac{25}{48}+\tfrac8{96}=\tfrac{29}{48}\), with equality at the
+endpoint; \(\delta>0\) makes the inequality strict. \(\square\)
+
+At \(y=\tfrac{23}{32}\) the unit chain ends at \(P^{533/768}\) against a
+target \(P^{17/24}=P^{544/768}\), a margin of \(P^{11/768}\).
+
+Three remarks. First, the theorem does **not** reach \(P^{1/2}\), where
+Section 3.5 leaves Theorems 4.11 and 4.12: \(\tfrac{29}{48}>\tfrac12\), and
+the obstruction is the transition term rather than the nesting. The
+companion's intervals are longer than \(P^{29/48}\), so nothing it needs is
+lost, but a shorter localization would need Lemma 3.8's third term handled
+per window rather than absorbed. Second, the loss is entirely in the
+admissible length; the saving is the printed \(P^{-1/96}\) and the
+constants are the printed constants, because no step was replaced. Third,
+the earlier estimate in Section 8 that the per-window absolute costs are
+"at most \(P^{7/16}\)" was the depth-\(\le3\) figure carried over; the
+kernel's largest unit is \(P^{25/48}\), and \(\tfrac{25}{48}>\tfrac7{16}\).
+
+The bookkeeping is arithmetic and is recorded as such: the two cost tables,
+the transfer recursion, the threshold, the balance above and the twist are
+in `research.juggler_sequence.localized_kernel`, which also checks that the
+tables' maxima are the printed \(P^{15/16}\) of Lemma 5.2(i) and
+\(P^{23/24}\) of \(T_2\), that setting \(Y=P\) returns \(P^{23/24}\),
+\(P^{47/48}\), \(P^{95/96}\), and that every \(P\)-exponent at or above
+\(P^{1/4}\) displayed in either proof is either one of the tabulated costs
+or is named as a count, a length, a parameter, a hypothesis or an
+intermediate step. That last check is the one worth stating plainly:
+the completeness of the inventory is what the theorem rests on, and a
+missing unit larger than \(P^{25/48}\) would raise the threshold. It would
+not touch the exponent.
+
 ## 5. Depth-four equidistribution
 
 **Theorem 6.1 (the OOO\* splits; complete depth-4 parity equidistribution for odd-rooted itineraries).**
@@ -6536,10 +6693,12 @@ Two localization facts, stated so they cannot be confused.
    (Theorems 4.11 and 4.12) on sub-dyadic intervals of length
    \(\ge P^{1/2}\) with a slow twist. Corollary 4.13 is the only
    localization this paper supplies to [24].
-2. Theorem 5.3 is a dyadic-block statement. A localized kernel
-   theorem on intervals of length \(P^{23/32}\) is not proved, and
-   the strongest even-block productions that would need it
-   (\(OOOEEE\), \(OOEOEE\)) remain unavailable.
+2. Theorem 5.3 is a dyadic-block statement; Theorem 5.5 localizes it
+   to intervals of length \(\ge P^{29/48+\delta}\), which includes the
+   \(P^{23/32}\) the companion needs, at the same exponent. The
+   even-block productions \(OOOEEE\) and \(OOEOEE\) are therefore
+   available. The threshold \(29/48>1/2\) is above the one in item 1,
+   so the two localizations are not interchangeable.
 
 *What each new depth buys.* Every new certificate class enters the
 contagion recursion of [24] as a production: a word \(w\) of fair
@@ -6553,11 +6712,11 @@ production on even blocks raises the contagion exponent from
 of the almost-all reformulation from \(0.552\) to \(0.461\), and the
 least depth constant of its conditional theorems from \(20\) to
 \(18\). Those are the dividends of the depth-\(\le3\) localization.
-A localized form of the kernel theorem (Theorem 5.3 on intervals of
-length \(P^{23/32}\), which we have not proved; the scaling
-architecture is the same, with per-window absolute costs at most
-\(P^{7/16}\)) would add the words \(OOOEEE\) and \(OOEOEE\) and give
-\(0.5561\); the level-3 kernel of Conjecture 7.3 would give more. (The
+The localized kernel theorem (Theorem 5.5; the scaling architecture is
+indeed the same, but the per-window absolute costs reach \(P^{25/48}\),
+not the \(P^{7/16}\) of the depth-\(\le3\) localization, which is what
+puts its threshold at \(P^{29/48}\)) adds the words \(OOOEEE\) and
+\(OOEOEE\) and gives \(0.5561\); the level-3 kernel of Conjecture 7.3 would give more. (The
 \(0.5561\) is quoted from [24]. Applying the production rule stated
 above to those two words gives each fair probability \(2^{-6}\) at
 landing scale \(e_w=27/64\), hence a coefficient \(\tfrac1{27}\)
@@ -6570,8 +6729,8 @@ contributes is [24]'s to fix, not this paper's.)
 Each depth also raises the certificate density of Corollaries 4.9 and
 6.4 and the constants of the Tao-type reduction. These are the
 quantitative dividends of the program, and they are real. The
-strongest of them that this paper actually proves for [24] is the
-depth-\(\le3\) localization, not a localized Theorem 5.3.
+strongest of them this paper proves for [24] is now Theorem 5.5, the
+localized kernel, and with it the depth-\(\le3\) localization.
 
 *What no depth can buy.* The frontier statement of [24] is that the
 odd starts in \((y,2y]\) whose orbit is still above a fixed floor after
