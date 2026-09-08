@@ -355,6 +355,12 @@ It is not required.
   from `CycleMin n w` and \(n\ge 3\) alone, with no classification supplied
   and no hypothesis about `EE`. The counts in the Lean statement are the
   itinerary's own: \(e=L-o\) valleys, \(2o-L\) internals, \(e\) evens.
+  Composed with the certified relative-defect identity as
+  `cycleMin_defect_threeTerm`, this gives
+  \(1-2^L/3^o\le\frac65[e/(n\ln n)+(o-e)/(t\ln t)+e/(2n^2\ln n)]\) for a
+  cycle minimum \(n\ge400\) — the comparison the gap table tests, in one
+  theorem. What remains computation is the per-length arithmetic
+  (\(o_{\min}\), \(n_{\max}\)) and the descent floor, not the inequality.
   *Index convention:* the display sums \(i=1..L\) and the Lean statement
   \(i=0..L-1\) over \(J^i(n)\); these are the same multiset of states,
   since \(J^L(n)=n=J^0(n)\) on a cycle.

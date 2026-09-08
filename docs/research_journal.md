@@ -40571,3 +40571,53 @@ an hour once there was a reason to do it. The estimate was not wrong
 about the difficulty; it was wrong about the value, and the value only
 became visible after reading what Corollary 4.5 actually computes with.
 Difficulty was never what had been blocking it.
+
+## The comparison in one theorem, and a layer that had to move
+
+cycleMin_defect_threeTerm composes the certified relative-defect identity
+with the three-term bound:
+
+  1 - 2^L/3^o <= (6/5)[ e/(n log n) + (2o-L)/(t log t) + e/(2n^2 log n) ]
+
+for a cycle minimum n >= 400. That is exactly what parity_holds tests to
+produce n_max(L), so the inequality behind Corollary 4.5 is now a single
+citable theorem rather than two halves a reader has to join. The proof is
+two lines -- trans and mul_le_mul_of_nonneg_left -- because the two halves
+were already stated over the same sum, same index range, same summand.
+That agreement was luck rather than design; had either used i=1..L the
+composition would have needed a reindex.
+
+What is left as computation is now precisely delimited: the per-length
+arithmetic (o_min, n_max) and Proposition 1.3's descent floor. Not the
+inequality.
+
+The interesting part was the layering. FinanceTransfer had no path to
+DefectFinance in either direction, so I added the import to
+FinanceTransfer -- the leaf, imported only by the paper barrel, so the
+smaller blast radius. It built first try and then test_imports_are_one_way
+refused it: a module may import only modules ranked earlier, and
+DefectFinance ranks after FinanceTransfer.
+
+I had guessed wrong twice about that guard before running it. First that
+the barrel's import list was a listing rather than a topological order --
+it is checked against PAPER_MODULES for exact sequence, and separately
+LAYER_RANK is derived from the LAYERS dict and does enforce direction.
+Second that no reorder would be needed. Both wrong, and cheap to find out:
+the test names the violated pair.
+
+The fix is the honest one rather than the convenient one. The alternative
+was to put the composition in DefectFinance, which imports FinanceTransfer
+legally without any reorder -- but that would pull FinanceTransfer into
+Problems.Juggler, the non-paper barrel, purely to avoid editing three
+lists. The dependency genuinely changed, so FinanceTransfer moved after
+DefectFinance in all three orderings: LAYERS, PAPER_MODULES, and the
+barrel's import list. The ledger's standing warning that the two orderings
+must agree is now three, and they do.
+
+Barrel green, cycleMin_defect_threeTerm within [propext, Classical.choice,
+Quot.sound], and Appendix A's Corollary 4.5 row cites the composition.
+
+Worth keeping: the guard caught a real architectural change and not a
+typo. I had been treating the layer order as bookkeeping to be satisfied;
+it is a claim about the shape of the development, and this edit changed
+that shape.

@@ -68,12 +68,12 @@ PAPER_MODULES: tuple[str, ...] = (
     "OstrowskiBlocks",
     "HugRotation",
     "HugChargeEnvelope",
-    "FinanceTransfer",
     "RotationAverage",
     "FanLaw",
     "WalkTransport",
     "WalkChargeMax",
     "DefectFinance",
+    "FinanceTransfer",
 )
 
 LAYERS: dict[str, Path] = {
@@ -153,12 +153,12 @@ LAYERS: dict[str, Path] = {
     "OstrowskiBlocks": JUGGLER_DIR / "OstrowskiBlocks.lean",
     "HugRotation": JUGGLER_DIR / "HugRotation.lean",
     "HugChargeEnvelope": JUGGLER_DIR / "HugChargeEnvelope.lean",
-    "FinanceTransfer": JUGGLER_DIR / "FinanceTransfer.lean",
     "RotationAverage": JUGGLER_DIR / "RotationAverage.lean",
     "FanLaw": JUGGLER_DIR / "FanLaw.lean",
     "WalkTransport": JUGGLER_DIR / "WalkTransport.lean",
     "WalkChargeMax": JUGGLER_DIR / "WalkChargeMax.lean",
     "DefectFinance": JUGGLER_DIR / "DefectFinance.lean",
+    "FinanceTransfer": JUGGLER_DIR / "FinanceTransfer.lean",
     "AboveAnchorWalk": JUGGLER_DIR / "AboveAnchorWalk.lean",
     "GapTransfer": JUGGLER_DIR / "GapTransfer.lean",
     "FunctionalGraph": JUGGLER_DIR / "FunctionalGraph.lean",

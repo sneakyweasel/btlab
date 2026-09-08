@@ -232,6 +232,7 @@ import Problems.JugglerPaper
 #print axioms Problems.Juggler.cycCls
 #print axioms Problems.Juggler.cycCls_filter_zero
 #print axioms Problems.Juggler.cycPred_of_pos
+#print axioms Problems.Juggler.cycleMin_defect_threeTerm
 #print axioms Problems.Juggler.cycleMin_threeTerm
 #print axioms Problems.Juggler.cycle_length_le_two_mul_oddCount
 #print axioms Problems.Juggler.evenCount_eq_orbit_card

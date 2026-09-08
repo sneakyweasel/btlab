@@ -37,12 +37,12 @@ import Problems.Juggler.OstrowskiNumeration
 import Problems.Juggler.OstrowskiBlocks
 import Problems.Juggler.HugRotation
 import Problems.Juggler.HugChargeEnvelope
-import Problems.Juggler.FinanceTransfer
 import Problems.Juggler.RotationAverage
 import Problems.Juggler.FanLaw
 import Problems.Juggler.WalkTransport
 import Problems.Juggler.WalkChargeMax
 import Problems.Juggler.DefectFinance
+import Problems.Juggler.FinanceTransfer
 
 /-!
 # Juggler paper barrel (Paper A)

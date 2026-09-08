@@ -42,6 +42,7 @@ is exactly the honest interface: supply the classification, get the display.
 -/
 
 import Problems.Juggler.CycleCore
+import Problems.Juggler.DefectFinance
 
 namespace Problems.Juggler
 
@@ -1010,5 +1011,21 @@ theorem cycleMin_threeTerm {n : ℕ} {w : List Branch} (hn : 3 ≤ n) (h : Cycle
     rw [cycCls_filter_zero, cycCls_filter_one, valley_add_internal L par, hoddcard]
     have hoL : oddCount w ≤ L := by rw [hL]; exact oddCount_le_length w
     omega
+
+/-- **The certified comparison, in one statement.**  `cycleMin_defect_finance` bounds the
+relative defect by the `6/5` unroll of the inverse-log sum, and `cycleMin_threeTerm` bounds
+that sum by the three-term charge.  Their composition is what Corollary 4.5 applies to
+produce `n_max(L)`, so the per-length table now rests on a single theorem rather than on two
+halves joined by hand.  The floor `400` is the one `cycleMin_defect_finance` carries; the
+published table runs at `n > 10^6`. -/
+theorem cycleMin_defect_threeTerm {n : ℕ} {w : List Branch}
+    (hn : 400 ≤ n) (h : CycleMin n w) :
+    1 - (2 : ℝ) ^ w.length / 3 ^ oddCount w ≤
+      1.2 * (((w.length - oddCount w : ℕ) : ℝ) / ((n : ℝ) * Real.log n)
+        + ((2 * oddCount w - w.length : ℕ) : ℝ)
+            / ((floorPower n : ℝ) * Real.log (floorPower n))
+        + ((w.length - oddCount w : ℕ) : ℝ) / (2 * (n : ℝ) ^ 2 * Real.log n)) := by
+  refine (cycleMin_defect_finance hn h).trans ?_
+  exact mul_le_mul_of_nonneg_left (cycleMin_threeTerm (by omega) h) (by norm_num)
 
 end Problems.Juggler

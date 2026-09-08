@@ -23113,7 +23113,7 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 53,
+      "line": 54,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "inv_mul_log_antitoneOn",
       "trust": "kernel"
@@ -23123,7 +23123,7 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 65,
+      "line": 66,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "sum_inv_mul_log_le",
       "trust": "kernel"
@@ -23133,7 +23133,7 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 74,
+      "line": 75,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "sum_inv_mul_log_le_comp",
       "trust": "kernel"
@@ -23143,7 +23143,7 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 93,
+      "line": 94,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "sum_comp_fin_six",
       "trust": "kernel"
@@ -23153,7 +23153,7 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 106,
+      "line": 107,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "sixTerm_bound",
       "trust": "kernel"
@@ -23163,7 +23163,7 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 146,
+      "line": 147,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "cycleMin_odd_ne_ge",
       "trust": "kernel"
@@ -23173,7 +23173,7 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 155,
+      "line": 156,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "odd_pow_ge_of_image_ge",
       "trust": "kernel"
@@ -23183,7 +23183,7 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 165,
+      "line": 166,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "expensiveValley_le",
       "trust": "kernel"
@@ -23193,7 +23193,7 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 172,
+      "line": 173,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "cycleMin_oe_start_pow_ge",
       "trust": "kernel"
@@ -23203,7 +23203,7 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 185,
+      "line": 186,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "cycleMin_oe_start_ge",
       "trust": "kernel"
@@ -23213,7 +23213,7 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 193,
+      "line": 194,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "cycleMin_internal_ge_t",
       "trust": "kernel"
@@ -23223,7 +23223,7 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 204,
+      "line": 205,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "cycleMin_internal_ge_tplus",
       "trust": "kernel"
@@ -23233,7 +23233,7 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 239,
+      "line": 240,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "blocks_ge_two_add_length_le_sum",
       "trust": "kernel"
@@ -23243,7 +23243,7 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 259,
+      "line": 260,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "blocks_ge_two_eq_sum_iff",
       "trust": "kernel"
@@ -23253,7 +23253,7 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 291,
+      "line": 292,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "blocks_filter_split",
       "trust": "kernel"
@@ -23263,7 +23263,7 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 317,
+      "line": 318,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "blocks_eq_one_ge",
       "trust": "kernel"
@@ -23273,7 +23273,7 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 335,
+      "line": 336,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "le_expensiveValley",
       "trust": "kernel"
@@ -23283,7 +23283,7 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 354,
+      "line": 355,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "valley_swap_le",
       "trust": "kernel"
@@ -23293,7 +23293,7 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 365,
+      "line": 366,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "expensive_le_cheap",
       "trust": "kernel"
@@ -23303,7 +23303,7 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 373,
+      "line": 374,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "sixTerm_bound_packed",
       "trust": "kernel"
@@ -23313,7 +23313,7 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "def",
       "ledger": [],
-      "line": 421,
+      "line": 422,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "cycPred",
       "trust": "kernel"
@@ -23323,7 +23323,7 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 423,
+      "line": 424,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "cycPred_lt",
       "trust": "kernel"
@@ -23333,7 +23333,7 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 426,
+      "line": 427,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "cycPred_injOn",
       "trust": "kernel"
@@ -23343,7 +23343,7 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 438,
+      "line": 439,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "valley_add_internal",
       "trust": "kernel"
@@ -23353,7 +23353,7 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 456,
+      "line": 457,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "valley_le_even",
       "trust": "kernel"
@@ -23363,7 +23363,7 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 466,
+      "line": 467,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "odd_le_internal_add_even",
       "trust": "kernel"
@@ -23373,7 +23373,7 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 488,
+      "line": 489,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "majorize_three",
       "trust": "kernel"
@@ -23383,7 +23383,7 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 505,
+      "line": 506,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "le_floorPower_odd",
       "trust": "kernel"
@@ -23393,7 +23393,7 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 513,
+      "line": 514,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "internal_le_cheap",
       "trust": "kernel"
@@ -23403,7 +23403,7 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 528,
+      "line": 529,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "expensiveValley_le_floorPower",
       "trust": "kernel"
@@ -23413,7 +23413,7 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 566,
+      "line": 567,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "expensiveValley_le_floorPower_succ",
       "trust": "kernel"
@@ -23423,7 +23423,7 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 574,
+      "line": 575,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "internal_le_expensive",
       "trust": "kernel"
@@ -23433,7 +23433,7 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 588,
+      "line": 589,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "cycleMin_succ_odd",
       "trust": "kernel"
@@ -23443,7 +23443,7 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 621,
+      "line": 622,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "follows_get_odd_iff",
       "trust": "kernel"
@@ -23453,7 +23453,7 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 633,
+      "line": 634,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "lt_floorPower_odd",
       "trust": "kernel"
@@ -23463,7 +23463,7 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 641,
+      "line": 642,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "cycleMin_last_even",
       "trust": "kernel"
@@ -23473,7 +23473,7 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 678,
+      "line": 679,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "sum_comp_fin_three",
       "trust": "kernel"
@@ -23483,7 +23483,7 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 690,
+      "line": 691,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "threeTerm_bound",
       "trust": "kernel"
@@ -23493,7 +23493,7 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 731,
+      "line": 732,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "floorPower_eq_self_iff",
       "trust": "kernel"
@@ -23503,7 +23503,7 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 744,
+      "line": 745,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "cycleMin_length_ge_two",
       "trust": "kernel"
@@ -23513,7 +23513,7 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 760,
+      "line": 761,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "cycleMin_word_shape",
       "trust": "kernel"
@@ -23523,7 +23523,7 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 786,
+      "line": 787,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "range_succ_insert",
       "trust": "kernel"
@@ -23533,7 +23533,7 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 791,
+      "line": 792,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "oddCount_append_singleton",
       "trust": "kernel"
@@ -23543,7 +23543,7 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 799,
+      "line": 800,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "oddCount_eq_orbit_card",
       "trust": "kernel"
@@ -23553,7 +23553,7 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 829,
+      "line": 830,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "cycle_length_le_two_mul_oddCount",
       "trust": "kernel"
@@ -23563,7 +23563,7 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "def",
       "ledger": [],
-      "line": 860,
+      "line": 861,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "cycCls",
       "trust": "kernel"
@@ -23573,7 +23573,7 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 863,
+      "line": 864,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "cycCls_eq_zero",
       "trust": "kernel"
@@ -23583,7 +23583,7 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 868,
+      "line": 869,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "cycCls_eq_one",
       "trust": "kernel"
@@ -23593,7 +23593,7 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 873,
+      "line": 874,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "cycCls_eq_two",
       "trust": "kernel"
@@ -23603,7 +23603,7 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 878,
+      "line": 879,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "cycCls_filter_zero",
       "trust": "kernel"
@@ -23613,7 +23613,7 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 883,
+      "line": 884,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "cycCls_filter_one",
       "trust": "kernel"
@@ -23623,7 +23623,7 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 888,
+      "line": 889,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "cycCls_filter_two",
       "trust": "kernel"
@@ -23633,7 +23633,7 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 894,
+      "line": 895,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "cycPred_of_pos",
       "trust": "kernel"
@@ -23643,7 +23643,7 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 900,
+      "line": 901,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "cycPred_zero",
       "trust": "kernel"
@@ -23653,7 +23653,7 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 905,
+      "line": 906,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "evenCount_eq_orbit_card",
       "trust": "kernel"
@@ -23663,9 +23663,19 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 924,
+      "line": 925,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "cycleMin_threeTerm",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The certified comparison, in one statement.** `cycleMin_defect_finance` bounds the relative defect by the `6/5` unroll of the inverse-log sum, and `cycleMin_threeTerm` bounds that sum by the three-term charge. Their composition is what Corollary 4.5 applies to produce `n_max(L)`, so the per-length table now rests on a single theorem rather than on two halves joined by hand. The floor `400` is the one `cycleMin_defect_finance` carries; the published table runs at `n > 10^6`.",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 1021,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "cycleMin_defect_threeTerm",
       "trust": "kernel"
     },
     {
@@ -66862,10 +66872,11 @@
       ]
     },
     "Problems.Juggler.FinanceTransfer": {
-      "declarations": 56,
+      "declarations": 57,
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "imports": [
-        "Problems.Juggler.CycleCore"
+        "Problems.Juggler.CycleCore",
+        "Problems.Juggler.DefectFinance"
       ],
       "ledger": []
     },
@@ -68171,13 +68182,13 @@
     }
   },
   "totals": {
-    "declarations": 4899,
+    "declarations": 4900,
     "declarations_with_a_ledger_row": 3195,
     "ledger_rows_naming_a_file": 338,
     "modules": 209,
     "trust": {
       "compiler": 54,
-      "kernel": 4845
+      "kernel": 4846
     }
   }
 }
