@@ -487,6 +487,40 @@ Dossiers:
 
 ---
 
+## The two mechanisms have measured ceilings
+
+Killed claim: a bigger descent floor, a sharper per-length charge, or a
+longer shape enumeration reaches "no nontrivial cycle".
+
+**The floor route diverges.** Finance excludes \(L\) when
+\(n_{\max}(L)\le N_0\), and along the convergents
+\(n_{\max}(q_k)\log n_{\max}\approx 0.45\,q_k q_{k+1}\) — flat to within
+a factor \(1.3\) over \(q_k=19\ldots176251\). \(q_{k+1}\) is unbounded,
+so \(n_{\max}\) is. Every length needs its own floor. Raising \(N_0\)
+buys period \(\approx N_0^{0.59}\) (finance) or \(N_0^{0.69}\) (walk
+charge); no exponent helps, because the target recedes. Any result that
+fixes \(L\) and asks for a floor is a period bound, never a cycle
+theorem.
+
+**The shape route is exponential.** Section 3's exclusions are the only
+floor-free *and* length-free family. Admissible shapes at the least odd
+count grow about \(6\times\) per even letter: \(2651\) at \(e=7\)
+(Theorem 3.31's frontier), \(1.1\cdot10^{13}\) at \(e=20\). The first
+surviving length \(L=25781\) has \(e=9515\). Theorem 3.31 is the end of
+that method, not a stage in it.
+
+**What is actually missing.** The only proved relation between minimum
+and period runs one way: finance bounds \(n\log n\lesssim L^{\mu}\), and
+\(\mu\ge2\) for every irrational, so even a perfect irrationality measure
+leaves \(n\lesssim L^{2}\). Nothing bounds \(n\) *below* in terms of
+\(L\) — the descent floor is a constant, and counting the \(L\) distinct
+states gives no window, since a cycle's states are not confined to one.
+Survivors sit at \(n\approx L^{1.7}\), inside the band a one-sided bound
+cannot empty. Reopen only on a lower bound for the minimum in terms of
+the period, or an argument uniform over shapes.
+Kind: `REPARAMETERIZATION` / `PARK_STOP`.
+Branch: [juggler_cycle_method_ceilings](problems/juggler_cycle_method_ceilings.md).
+
 ## Diophantine walls
 
 Killed claim: Baker / Rhin / Simons–de Weger on \(\lvert 3^o-2^L\rvert\)

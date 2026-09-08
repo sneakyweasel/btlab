@@ -40773,3 +40773,51 @@ cycPred_cycSucc and never needs positivity of L.
 
 Paper, probe, tests and the companion claims row all updated. The UI row
 now says why the 24 hold, not merely that they do.
+
+## Two ceilings, measured
+
+The question was whether the recent work moved us toward no-cycle. It did
+not, and rather than leave that as an impression I measured what the two
+mechanisms converge to.
+
+The floor route diverges. Along the convergents, n_max(q_k) log n_max is
+about 0.45 q_k q_{k+1}, flat to within a factor 1.3 over five orders of
+magnitude -- convergent_invariant has computed this all along; nobody had
+read it as a statement about the method's limit. q_{k+1} is unbounded, so
+n_max is. Every length carries its own descent floor and the floors are
+unbounded, so no finite computation excludes all lengths. That is what it
+means that every result in Sections 4 and 5 is a period bound: not a
+staging post toward a cycle theorem but a different kind of statement.
+Raising N_0 buys period ~ N_0^0.59 by finance, ~N_0^0.69 with the walk
+charge. The exponent is not the issue. The target recedes.
+
+The shape route is exponential. Section 3 kills words rather than
+lengths, so it is the only family that could close the problem uniformly.
+Admissible shapes at the least odd count grow about six-fold per even
+letter: 2651 at e=7, 1.1e13 at e=20. The first surviving length has
+e=9515. So Theorem 3.31's e<=7 is not a stage on the way to e<=8; it is
+the end of that method. I had been treating it as a frontier to push.
+
+Method note worth keeping. My first attempt at the shape count was a
+recursive enumeration, which backgrounded itself and produced nothing --
+correctly, since it is exponential by construction and I was using it to
+measure exponential growth. The constraint only depends on the cumulative
+odd count, because the walk rises inside a run and dips only at the even
+letters, so the state is (block, odds used) and the count is a polynomial
+DP. Ten seconds instead of never. The lesson is narrow but real: when the
+thing you want to measure is a count, count it, do not generate it.
+
+What is actually missing. The only proved relation between minimum and
+period runs one way. Finance bounds n log n <~ L^mu, and mu >= 2 for
+every irrational, so even a perfect irrationality measure leaves
+n <~ L^2. Nothing bounds n below in terms of L. I spent a while trying to
+get a lower bound from counting -- L distinct states, all at least n --
+and it gives nothing, because the states are not confined to any window;
+the confinement finance supplies is finance itself, so the argument is
+circular. Survivors sit at n ~ L^1.7, inside the band [L, L^2] that no
+one-sided bound can empty.
+
+So the honest statement, now in the paper as 6.2 and in negative
+knowledge: a proof needs a lower bound on the minimum in terms of the
+period, or an argument uniform over shapes. I know of no mechanism for
+either, and saying so precisely is worth more than another floor.

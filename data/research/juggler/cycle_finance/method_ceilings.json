@@ -1,0 +1,153 @@
+{
+  "bound": "method_ceilings",
+  "convergent_rows": [
+    {
+      "q": 19,
+      "q_next": 65,
+      "n_max": 133,
+      "nlogn_over_q_qnext": 0.5266529830392658,
+      "nlog2n_over_q_qnext": 2.5755169564814597
+    },
+    {
+      "q": 84,
+      "q_next": 485,
+      "n_max": 2323,
+      "nlogn_over_q_qnext": 0.44194104134083606,
+      "nlog2n_over_q_qnext": 3.4253147460321807
+    },
+    {
+      "q": 1054,
+      "q_next": 24727,
+      "n_max": 788014,
+      "nlogn_over_q_qnext": 0.41052006070684516,
+      "nlog2n_over_q_qnext": 5.5737421706472485
+    },
+    {
+      "q": 50508,
+      "q_next": 125743,
+      "n_max": 162848324,
+      "nlogn_over_q_qnext": 0.4848333351393534,
+      "nlog2n_over_q_qnext": 9.1673885978569
+    },
+    {
+      "q": 176251,
+      "q_next": 301994,
+      "n_max": 1044093213,
+      "nlogn_over_q_qnext": 0.40735297181018915,
+      "nlog2n_over_q_qnext": 8.459260703964862
+    }
+  ],
+  "invariant_min": 0.40735297181018915,
+  "invariant_max": 0.5266529830392658,
+  "floor_route_reach_diverges": true,
+  "largest_n_max_tabulated": 1044093213,
+  "shape_rows": [
+    {
+      "e": 4,
+      "o_min": 7,
+      "shapes": 29,
+      "growth": null
+    },
+    {
+      "e": 5,
+      "o_min": 9,
+      "shapes": 141,
+      "growth": 4.862068965517241
+    },
+    {
+      "e": 6,
+      "o_min": 11,
+      "shapes": 753,
+      "growth": 5.340425531914893
+    },
+    {
+      "e": 7,
+      "o_min": 12,
+      "shapes": 2651,
+      "growth": 3.5205843293492696
+    },
+    {
+      "e": 8,
+      "o_min": 14,
+      "shapes": 14953,
+      "growth": 5.640513013956998
+    },
+    {
+      "e": 9,
+      "o_min": 16,
+      "shapes": 88453,
+      "growth": 5.915401591653849
+    },
+    {
+      "e": 10,
+      "o_min": 18,
+      "shapes": 533115,
+      "growth": 6.027099137395001
+    },
+    {
+      "e": 11,
+      "o_min": 19,
+      "shapes": 1897787,
+      "growth": 3.5598079213678098
+    },
+    {
+      "e": 12,
+      "o_min": 21,
+      "shapes": 11551332,
+      "growth": 6.086737868896773
+    },
+    {
+      "e": 13,
+      "o_min": 23,
+      "shapes": 72483743,
+      "growth": 6.274925090889951
+    },
+    {
+      "e": 14,
+      "o_min": 24,
+      "shapes": 257975849,
+      "growth": 3.5590856421418526
+    },
+    {
+      "e": 15,
+      "o_min": 26,
+      "shapes": 1639575385,
+      "growth": 6.355538285291194
+    },
+    {
+      "e": 16,
+      "o_min": 28,
+      "shapes": 10636522143,
+      "growth": 6.487363887205467
+    },
+    {
+      "e": 17,
+      "o_min": 30,
+      "shapes": 69070720723,
+      "growth": 6.493731672288777
+    },
+    {
+      "e": 18,
+      "o_min": 31,
+      "shapes": 248109720309,
+      "growth": 3.5921113564749794
+    },
+    {
+      "e": 19,
+      "o_min": 33,
+      "shapes": 1606569880631,
+      "growth": 6.4752395779986
+    },
+    {
+      "e": 20,
+      "o_min": 35,
+      "shapes": 10612347994122,
+      "growth": 6.605593769723773
+    }
+  ],
+  "shape_growth_median": 6.027099137395001,
+  "shapes_at_theorem_3_31_frontier": 2651,
+  "even_count_at_first_survivor": 9515,
+  "halt_theorem": false,
+  "no_cycle_all_lengths": false
+}

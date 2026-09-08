@@ -1205,6 +1205,20 @@
       "nk_cluster": "Diophantine walls"
     },
     {
+      "id": "cycle_method_ceilings",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_method_ceilings.py",
+      "test": "tests/research/juggler_sequence/test_cycle_method_ceilings.py",
+      "dossier": "docs/problems/juggler_cycle_method_ceilings.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PARK",
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "The two mechanisms have measured ceilings"
+    },
+    {
       "id": "cycle_mod_closure",
       "kind": "branch",
       "probe": "src/research/juggler_sequence/cycle_mod_closure.py",

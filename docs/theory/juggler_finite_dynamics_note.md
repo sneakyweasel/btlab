@@ -3525,6 +3525,67 @@ from the periodic side, and remains open.
 Lean names are in Appendix A. The computational certificates
 are Propositions 1.3 and 5.1.
 
+### 6.2 Two ceilings, measured
+
+Section 6.1 says the problem remains open. This section says something
+sharper about the two mechanisms used here: neither can close it, and
+the reason in each case is a number rather than a feeling.
+
+**The floor route diverges.** Finance excludes \(L\) when
+\(n_{\max}(L)\le N_0\). Along the convergents \(p_k/q_k\) of
+\(\log 2/\log 3\) the surplus is \(\theta\approx\log 3/q_{k+1}\), so the
+threshold obeys
+
+\[
+n_{\max}(q_k)\log n_{\max}(q_k)\ \approx\ c\,q_k\,q_{k+1},
+\qquad c\approx 0.45 ,
+\]
+
+and the ratio is flat to within a factor \(1.3\) across
+\(q_k=19,84,1054,50508,176251\) --- five orders of magnitude. Since
+\(q_{k+1}\to\infty\), so does \(n_{\max}\). Every length carries its own
+descent floor and those floors are unbounded, so **no finite computation
+excludes all lengths**. That is intrinsic to using a floor at all, not a
+defect of the present table, and it is why every result in Sections 4
+and 5 is a period bound rather than a cycle theorem. Raising \(N_0\) buys
+period \(\approx N_0^{0.59}\) by finance and \(\approx N_0^{0.69}\) with
+the walk charge; neither exponent reaching \(1\) is the point --- no
+exponent would help, because the target recedes.
+
+**The shape route is exponential.** Section 3's exclusions are the only
+family here that is both floor-free and length-free: they kill *words*,
+not lengths, so in principle they could close the problem uniformly, and
+Theorem 3.31 is that argument carried to \(e\le 7\). Count what it would
+have to face. Writing the itinerary as \(O^{a_0}E\cdots O^{a_{e-1}}E\),
+the shapes admissible at the least odd count --- \(a_0\ge2\), each run
+within the cap of Theorem 3.31, every prefix above the anchor --- number
+
+| \(e\) | \(7\) | \(10\) | \(13\) | \(16\) | \(20\) |
+|---|---|---|---|---|---|
+| shapes | \(2651\) | \(5.3\cdot10^{5}\) | \(7.2\cdot10^{7}\) | \(1.1\cdot10^{10}\) | \(1.1\cdot10^{13}\) |
+
+a factor of about six per even letter. The first length finance leaves
+standing, \(L=25781\), has \(e=9515\). Enumeration is therefore not a
+route to anything, and Theorem 3.31's \(e\le7\) is not a stage on the way
+to \(e\le8\); it is the end of that method. Only an argument uniform in
+the shape would do, and Section 3 supplies none.
+
+**What that leaves.** The only proved relation between a cycle's minimum
+and its period runs one way. Finance bounds the minimum *above*:
+\(n\log n\lesssim L^{\mu}\), with \(\mu\) the effective irrationality
+measure of \(\log2/\log3\), and \(\mu\ge2\) for every irrational, so even
+a perfect measure leaves \(n\lesssim L^{2}\). Nothing here bounds the
+minimum *below* in terms of the period; the descent floor supplies a
+constant, not a function of \(L\), and the distinctness of the \(L\)
+states gives no window to count in, because a cycle's states are not
+confined to one. The surviving lengths sit at \(L\approx n^{0.59}\), that
+is \(n\approx L^{1.7}\), inside the band that a one-sided bound cannot
+empty.
+
+So a proof would need one of two things this paper does not have: a
+lower bound on the cycle minimum in terms of the period, or an argument
+uniform over shapes. We know of no mechanism for either.
+
 ## Appendix A. Lean names
 
 The core mathematical lemmas of Sections 2--4 are mechanized in
