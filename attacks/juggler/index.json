@@ -3923,7 +3923,8 @@
         "J-fate-minimal-failure-oo",
         "J-paper-c-trust-surface",
         "J-fate-chernoff-count",
-        "J-fate-tao-union-bound"
+        "J-fate-tao-union-bound",
+        "J-fate-pressure-form"
       ],
       "aliases": [],
       "nk_cluster": null
@@ -5607,7 +5608,8 @@
         "formal/Problems/Juggler/FateRecursion.lean",
         "formal/Problems/Juggler/FateFirstLetter.lean",
         "formal/Problems/Juggler/FateSweep.lean",
-        "formal/Problems/Juggler/FateChernoff.lean"
+        "formal/Problems/Juggler/FateChernoff.lean",
+        "formal/Problems/Juggler/FatePressure.lean"
       ],
       "conjecture": [],
       "decision": null,

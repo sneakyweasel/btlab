@@ -7721,5 +7721,19 @@
    "tests/research/juggler_sequence/test_layer_architecture.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "id": "J-fate-pressure-form",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Paper C Theorem 9.2 (pressure form), exact. On the live weight of LiveCountWeight (starts n in {1, …, N} with J^i(n) > N₀ for i ≤ d, liveTo): livePressure N₀ N x d := weightGen (liveWeight N₀ N) x d = Σ_{n live} x^{o_d(n)}; the Markov step live_count_le_pressure gives #{n live, o_d(n) ≥ k} ≤ livePressure / x^k for x ≥ 1 (weight_markov on the live weight, liveCount_sum_oddCount); Lemma 8.1 on live starts: a live n ≤ N has an itinerary that fails the envelope comparison at scale N at every prefix (envelopeBad_of_liveTo, from iterate_le_of_envelope), hence is L(N)-bad with L(N) = log_2(log N / log N₀) (LBad_of_liveTo) and has o_d ≥ p_C d when d ≥ C L(N) (live_oddCount_ge). Theorem: N₀ ≥ 2, N ≥ 2, C ≥ 5, d ≥ 1, d ≥ C L(N), tilt x = p_C/(1 − p_C), a = (1 + x)/2; if livePressure N₀ N x d ≤ N a^d E then #{n ≤ N : liveTo N₀ n d} ≤ N exp(−d D(p_C‖1/2)) E (live_count_le_of_pressure), by a^d / x^{p_C d} = exp(−d D(p_C‖1/2)) (tilt_value); E ≥ 0 is forced since the pressure is a nonnegative sum. This is the exponential-Markov step of Theorem 9.2 with the hypothesis P_θ(C) at one scale and depth in the form pressure ≤ N a_θ^d E; the paper's E = e^{o(d)}, d = ⌈CL⌉ and the displayed (y/2) Λ^{−(e(C)−ε)} are not formalized, and the paper counts odd starts in (y, 2y] where the Lean counts starts in {1, …, N}. Kernel-checked, axioms propext, Classical.choice, Quot.sound only. Conditional on the pressure bound; nothing here bounds a pressure sum; not a halt theorem.",
+  "source": "docs/problems/juggler_paper_c_formal_layer.md",
+  "lean": "Problems/Juggler/FatePressure.lean",
+  "decl": "live_count_le_of_pressure",
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_paper_c_formal_layer.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py"
+  ],
+  "related_conjectures": []
  }
 ]

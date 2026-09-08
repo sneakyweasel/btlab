@@ -333,7 +333,7 @@ type Paper B proves enters Appendix C as an explicit hypothesis.
 
 Statements carry one of four roles. *Lean*: the exact combinatorial
 layer is formalized in Lean 4; the root `formal/Problems/JugglerFatePaper.lean`
-imports exactly the eight modules this paper cites and builds with
+imports exactly the nine modules this paper cites and builds with
 `lake build Problems.JugglerFatePaper`, without `sorry` and without
 `native_decide`; `formal/AxiomCheckPaperC.lean` prints the axiom
 dependencies of every cited name and `AxiomCheckPaperC.expected`
@@ -364,8 +364,9 @@ constants; they prove nothing and are labelled wherever they appear.
 | Almost-all equivalence (Theorems 7.2, 7.3) | human proof |
 | Chernoff count of bad words (Lemma 8.2, exact form) | Lean |
 | Theorem 8.3, explicit form \(y\Lambda^{-e(C)}+2\Lambda^Cy(\log y)^{-A}\) at every \(y\) | Lean; the \(arepsilon\)-absorption into the displayed form is human |
+| Pressure form (Theorem 9.2, exact: a pressure bound \(Na_	heta^dE\) gives at most \(Ne^{-dD(p_C\Vert 1/2)}E\) live starts) | Lean, on the live weight |
 | Pressure telescoping (Proposition 9.3) | Lean, on the word-weight framework |
-| Azuma and exponential-moment arguments (Sections 8--10, except Lemma 8.2, the skeleton of Theorem 8.3 and Proposition 9.3) | human proof |
+| Azuma and exponential-moment arguments (Sections 8--10, except Lemma 8.2, Theorem 8.3, Theorem 9.2 and Proposition 9.3 in their exact forms) | human proof |
 | Localized triple discrepancy (Appendix C) | hypothesis, conditional |
 | Numerical experiments (Section 11) | observation |
 
@@ -1927,6 +1928,20 @@ At \(\theta=\theta_C\), \(\theta p_C-\log a_\theta=D(p_C\|\tfrac12)\),
 so the count is \(\le N\exp(-dD(p_C\|\tfrac12)(1-o(1)))\le N2^{-(e(C)-\varepsilon)L}\).
 \(\square\)
 
+Lean: exact form, in `formal/Problems/Juggler/FatePressure.lean`, on the
+live weight of `LiveCountWeight` (starts in \(\{1,\dots,N\}\) that stay
+above \(N_0\) for \(d\) steps). `livePressure` is
+\(\sum_{n\ \mathrm{live}}x^{o_d(n)}\) as the generating function of the
+live weight; `live_count_le_pressure` is the Markov step
+\(\#\{\text{live},\,o_d\ge k\}\le\text{pressure}/x^k\);
+`live_oddCount_ge` is Lemma 8.1 on live starts (\(o_d\ge p_Cd\) for
+\(d\ge CL(N)\)); and `live_count_le_of_pressure` says: if the pressure
+at the tilt \(x=p_C/(1-p_C)\) is at most \(Na_\theta^dE\), the live
+starts number at most \(N\exp(-dD(p_C\|\tfrac12))E\), by the identity
+\(a_\theta^d/x^{p_Cd}=e^{-dD(p_C\|1/2)}\) (`tilt_value`). The
+substitution \(E=e^{o(d)}\) and \(d=\lceil CL\rceil\) that gives the
+displayed bound is not formalized.
+
 For \(1\le t<d\) let \(\mu_{\theta,t}\) be the probability measure on
 the starts live at depth \(t\) with density proportional to
 \(e^{\theta o_t(n)}\), and let
@@ -2289,7 +2304,7 @@ at depth of order \(\log\log n\): the Terras step of the Juggler map.
 ## Appendix A. Lean names
 
 All in `formal/Problems/Juggler/FateContagion.lean` unless noted. The
-root `formal/Problems/JugglerFatePaper.lean` imports exactly the eight
+root `formal/Problems/JugglerFatePaper.lean` imports exactly the nine
 modules named here and builds with `lake build Problems.JugglerFatePaper`
 without `sorry` and without `native_decide`;
 `formal/AxiomCheckPaperC.expected` records the axioms of every name
@@ -2313,8 +2328,9 @@ abstract lemmas listed here, not the analytic density estimates.
 | Section 6.2, Proposition 6.3(i), in `Problems/Juggler/FateFirstLetter.lean` | `MinimalMember`, `minimalMember_odd`, `minimalMember_image_odd`, `minimal_failure_odd_odd`, `exists_minimal_failure`, `first_letter_trichotomy`, `first_letter_pieces_disjoint` |
 | Lemma 8.2 (Chernoff count), in `Problems/Juggler/FateChernoff.lean` | `weightGen_one`, `count_oddCount_ge_le`, `count_oddCount_ge_real_le`, `entropyLog`, `klHalf`, `klHalf_eq`, `klHalf_nonneg`, `tilt_value`, `count_oddCount_ge_le_exp`, `count_oddCount_ge_le_kl`, `LBad`, `pC`, `chernoffExponent`, `logb_two_three_le`, `half_le_pC`, `pC_lt_one`, `LBad_oddCount_ge`, `LBad_count_le` |
 | Theorem 8.3 (explicit form), in `Problems/Juggler/FateChernoff.lean` | `cylinder`, `oddFailures`, `EnvelopeBad`, `oddFailures_subset_bad_cylinders`, `oddFailures_card_le`, `LBad_of_envelopeBad`, `oddFailures_card_le_chernoff`, `scaleRatio`, `scaleL`, `depth`, `cylinder_even_root_empty`, `oddFailures_card_le_explicit` |
+| Theorem 9.2 (pressure form), in `Problems/Juggler/FatePressure.lean` | `livePressure`, `live_count_le_pressure`, `envelopeBad_of_liveTo`, `LBad_of_liveTo`, `live_oddCount_ge`, `live_count_le_of_pressure` |
 | Proposition 9.3 (pressure telescoping), in `Problems/Juggler/TiltedShare.lean` | `oddMass`, `tiltedShare`, `weightGen_succ_le_share`, `one_add_le_exp_excess`, `weightGen_le_pressure`, `count_le_pressure`, `NoMomentum`, `count_le_of_noMomentum`, `tilt_exponent_eq_kl`, `MeanShare`, `weightGen_le_of_meanShare`, `MeanShareOff`, `initial_depths_are_free`, `tower_ratio_lt_one` |
-| Lemmas 4.1', 4.2--4.3, Proposition 4.4 (\(C_0=250\)), Lemma 5.2, Theorem 5.3, Sections 7--10 except Lemma 8.2, the explicit form of Theorem 8.3 and Proposition 9.3, Appendix C | human proofs |
+| Lemmas 4.1', 4.2--4.3, Proposition 4.4 (\(C_0=250\)), Lemma 5.2, Theorem 5.3, Sections 7--10 except Lemma 8.2, the explicit form of Theorem 8.3, the exact form of Theorem 9.2 and Proposition 9.3, Appendix C | human proofs |
 
 ## Appendix B. Constants and artifacts
 
@@ -2371,8 +2387,9 @@ pressure (biased Chernoff) at the same \(q\): \(19,41,214,1496\) /
 | `formal/Problems/Juggler/FateFirstLetter.lean` | `635bb6163f5a054085087eefcd2c62037c61538fe863d53e9dca69da8fddb3e9` |
 | `formal/Problems/Juggler/FateSweep.lean` | `71c5c2472d2c2d31d7b2565e66f92e97b3ae9bd0c76aa45a1703eea7bd910d39` |
 | `formal/Problems/Juggler/FateChernoff.lean` | `4eec5c05916226374815b586252aa8c7a147615d27088939044f80db3b94f515` |
-| `formal/Problems/JugglerFatePaper.lean` | `0b4fcf218dbd20468339b10475a56429c65b967ee9b90c086c602f6341dab294` |
-| `formal/AxiomCheckPaperC.expected` | `ada8c1e38b0575460091f963d72dc1a66be73a8f0c0ad4176ab7ca6ff31b778c` |
+| `formal/Problems/Juggler/FatePressure.lean` | `f69ad74fcaed87b692451113cf72eeadc1182efc0ac8121e255e6b079bf2bbf2` |
+| `formal/Problems/JugglerFatePaper.lean` | `77ea662960c9880c98ca434cf1e2ff577dd32779b632ab6f395f34471f7a4945` |
+| `formal/AxiomCheckPaperC.expected` | `8f1ff2a7c49274b352922ea893489425330c173e4f4f66ad59914ba49769978f` |
 | `src/research/juggler_sequence/fate_contagion.py` | `34f8cff465e00187cb85e1dc9a75a3b250caa4c8f38a3bc41aef29f68be08b7a` |
 | `src/research/juggler_sequence/tao_reduction.py` | `90f930bd604f6aa38c3a5ec8265d270d218240cdb358b20b19cad98dc4ac2f1c` |
 | `docs/theory/figures/render_paper_c_figures.py` | `5e434450835aadb4ed5ed2cbed00cc33f774996ba9ef229cb0434fc677bff5b7` |

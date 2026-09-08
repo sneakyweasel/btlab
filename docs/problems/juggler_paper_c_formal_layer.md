@@ -60,17 +60,26 @@ lie in the cylinders of the envelope-bad words
 (`oddFailures_subset_bad_cylinders`), which are \(L(y)\)-bad
 (`LBad_of_envelopeBad`), so a bound \(M\) on every bad cylinder of depth
 \(d\ge CL(y)\) gives \(\#\{	ext{odd failures}\}\le 2^d2^{-e(C)L(y)}M\)
-(`oddFailures_card_le_chernoff`), and with \(d=\lceil CL(y)ceil\) and
+(`oddFailures_card_le_chernoff`), and with \(d=\lceil CL(y)
+ceil\) and
 \(\mathrm H(C,A)\)'s bound on the \(O\)-rooted bad cylinders,
 \(\#\{	ext{odd failures}\}\le y\Lambda^{-e(C)}+2\Lambda^Cy(\log y)^{-A}\)
 at every \(y\ge 2\) (`oddFailures_card_le_explicit`), a factor \(2\)
 against the paper's \(y/2\) and no \(arepsilon\). The absorption into
 the displayed form and Corollary 8.4 stay human proofs.
 
+**Theorem 9.2 (EXACT — LEAN VERIFIED, `FatePressure.lean`).** On the
+live weight of `LiveCountWeight`: the live pressure is the generating
+function of the live weight, a live start at depth \(d\ge CL(N)\) has
+at least \(p_Cd\) odd letters (Lemma 8.1 on live starts), and a
+pressure bound \(Na_	heta^dE\) at the tilt \(x=p_C/(1-p_C)\) gives at
+most \(N\exp(-dD(p_C\|	frac12))E\) live starts
+(`live_count_le_of_pressure`). The \(o(d)\) bookkeeping stays human.
+
 **The build root (COMPUTATIONALLY VERIFIED).**
-`formal/Problems/JugglerFatePaper.lean` imports exactly the eight
+`formal/Problems/JugglerFatePaper.lean` imports exactly the nine
 modules Paper C cites; `formal/AxiomCheckPaperC.lean` prints the axioms
-of the 120 cited declarations and `AxiomCheckPaperC.expected` records
+of the 128 cited declarations and `AxiomCheckPaperC.expected` records
 them, every list a subset of `propext`, `Classical.choice`,
 `Quot.sound`, no `sorryAx`, no `native_decide`.
 
@@ -159,6 +168,8 @@ None.
 `formal/Problems/Juggler/FateFirstLetter.lean` (7 declarations),
 `formal/Problems/Juggler/FateChernoff.lean` (Lemma 8.2 and Theorem 8.3 in
 explicit form, 31 declarations on `RateFreeDensity`'s word weights),
+`formal/Problems/Juggler/FatePressure.lean` (Theorem 9.2 in exact form, 6
+declarations on the live weight),
 `formal/Problems/JugglerFatePaper.lean` (barrel),
 `formal/AxiomCheckPaperC.lean` and `.expected`. All kernel-checked; the
 Paper C surface (root `Problems.JugglerFatePaper`, 36 modules reached,
@@ -168,8 +179,8 @@ Not formalized, and not claimed: Lemma 4.1' (monotone pairing,
 \(H/3-2\); its printed proof was repaired in
 [monotone pairing](juggler_monotone_pairing.md)), Lemmas 4.2–4.3,
 Proposition 4.4, the share law 4.5–4.6, the seed 5.2, Theorem 5.3,
-Theorems 7.2–7.3, the asymptotic form of Theorem 8.3 and Corollary 8.4,
-Theorems 9.1–9.2, Section 10, Appendix C, and the log-mass bookkeeping
+Theorems 7.2–7.3, the asymptotic forms of Theorems 8.3 and 9.2, Corollary
+8.4, Theorem 9.1, Section 10, Appendix C, and the log-mass bookkeeping
 that turns the first-letter trichotomy into the identity (6.1).
 
 ## Results
@@ -178,9 +189,9 @@ Classification **PAPER_C_LEAN_SURFACE_CONSISTENT**.
 
 ```text
   Paper C verification table, before and after
-  Lean rows      6 -> 12  (Lemmas 4.1, 5.1, 8.2, Prop 6.3(i), Thm 8.3 skeleton new; Prop 9.3 was stale)
+  Lean rows      6 -> 13  (Lemmas 4.1, 5.1, 8.2, Prop 6.3(i), Thms 8.3, 9.2 new; Prop 9.3 was stale)
   human rows     7 -> 7   (rows split; Theorems 5.3, 7.2, 7.3, 9.1, 9.2, Prop 4.4 ... stay)
-  cited names    62 -> 120, all on subsets of Mathlib's three axioms; none native_decide
+  cited names    62 -> 128, all on subsets of Mathlib's three axioms; none native_decide
 ```
 
 - The three proofs are the paper's; the sweep count is the paper's

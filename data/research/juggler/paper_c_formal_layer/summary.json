@@ -8,27 +8,28 @@
     "Problems.Juggler.FateRecursion",
     "Problems.Juggler.FateFirstLetter",
     "Problems.Juggler.FateSweep",
-    "Problems.Juggler.FateChernoff"
+    "Problems.Juggler.FateChernoff",
+    "Problems.Juggler.FatePressure"
   ],
   "artifact": {
-    "asked": 120,
-    "recorded": 120,
+    "asked": 128,
+    "recorded": 128,
     "axiom_lists": [
       "propext",
       "propext, Classical.choice, Quot.sound",
       "propext, Quot.sound"
     ]
   },
-  "appendix_a_names": 105,
+  "appendix_a_names": 111,
   "surface": {
-    "modules": 37,
-    "declarations": 1286,
+    "modules": 39,
+    "declarations": 1307,
     "compiler_trusted": [],
     "compiler_dependent": [],
     "open": []
   },
   "table": {
-    "rows": 21,
+    "rows": 22,
     "lean": [
       "Fate classes closed; trichotomy; exclusion (Lemma 2.1)",
       "Even block is an interval (Lemma 3.1)",
@@ -41,6 +42,7 @@
       "Least failure is \\(OO\\)-type; first-letter trichotomy (Proposition 6.3(i), Section 6.2)",
       "Chernoff count of bad words (Lemma 8.2, exact form)",
       "Theorem 8.3, explicit form \\(y\\Lambda^{-e(C)}+2\\Lambda^Cy(\\log y)^{-A}\\) at every \\(y\\)",
+      "Pressure form (Theorem 9.2, exact: a pressure bound \\(Na_\theta^dE\\) gives at most \\(Ne^{-dD(p_C\\Vert 1/2)}E\\) live starts)",
       "Pressure telescoping (Proposition 9.3)"
     ],
     "human": [
@@ -50,7 +52,7 @@
       "Seed and contagion (Lemma 5.2, Theorem 5.3)",
       "First-letter identity (6.1)",
       "Almost-all equivalence (Theorems 7.2, 7.3)",
-      "Azuma and exponential-moment arguments (Sections 8--10, except Lemma 8.2, the skeleton of Theorem 8.3 and Proposition 9.3)"
+      "Azuma and exponential-moment arguments (Sections 8--10, except Lemma 8.2, Theorem 8.3, Theorem 9.2 and Proposition 9.3 in their exact forms)"
     ],
     "other": [
       "Localized triple discrepancy (Appendix C)",
@@ -63,5 +65,5 @@
     "label": "PAPER_C_LEAN_SURFACE_CONSISTENT",
     "problems": 0
   },
-  "git_commit": "aa42f4d35ad1b7372f180c8785d79bd99eb89aa7"
+  "git_commit": "48a9464e10c908d0b185b562d5f72d4c41211f78"
 }

@@ -41570,3 +41570,20 @@ hypothesis be the paper's.
 
 The Paper C artifact now records 120 declarations.
 
+## Theorem 9.2 was one Markov step away
+
+Checking whether the live-count theorems of LiveCountWeight already
+covered Theorem 9.2, I found they covered its neighbour: the count
+under no momentum, which is Proposition 9.3 composed with the Markov
+step. Theorem 9.2 itself -- a pressure bound N a_theta^d e^{o(d)} gives
+N exp(-d D(p_C || 1/2)) e^{o(d)} live starts -- is the Markov step
+alone, on the live weight, at the tilt x = p_C/(1-p_C), plus Lemma 8.1
+on live starts to know that a live start has at least p_C d odd
+letters. Six declarations. The identity a_theta^d / x^{p_C d} =
+exp(-d D) is tilt_value from the Chernoff module again.
+
+The table now reads thirteen Lean rows against seven human. What is
+left human in Sections 8 and 9 is exactly the asymptotics: the o(d),
+the epsilon, the ceiling. The mathematics is the exact statements, and
+those are Lean.
+
