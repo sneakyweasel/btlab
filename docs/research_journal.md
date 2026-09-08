@@ -40124,3 +40124,38 @@ because I never wrote the cardinalities down. The moment they were
 written the two hypotheses were immediate. A remainder described the
 same way three times without shrinking is a signal to expand it, not to
 repeat it.
+
+Can a CycleMin contain EE? I guessed no: EE forces a state of at least
+n^4, which needs an odd run of four, and the packing allows only runs
+of one or two. But the packing is the extremal configuration, not a
+proven property, so I wrote the falsifier down: a run of four may be
+consistent with minimality.
+
+It fires. Four odds from the minimum give n^{3/2}, n^{9/4}, n^{27/8},
+n^{81/16}, and two even steps bring that to n^{81/64} -- every state
+above n. And it is realized: at n = 271, 309 and 445 the orbit follows
+OOOOEE with every state at or above the start. At 271 the states run
+271, 4461, 297953, 162637857 and on to thirteen digits before
+descending.
+
+EE is not even rare. Across the 29999 odd starts below 6e4, the
+excursion that stays at or above n contains EE in 12543 of them, and an
+odd run of four or more in 4750.
+
+So no-EE is a real hypothesis. Minimality does not exclude it, and
+neither does Theorem 3.29's run cap: that cap is floor((e-i)
+log2/log(3/2)), which is 1 at e-i=1 and already 3 at e-i=2, so it binds
+only the last runs. Early runs are free to be long.
+
+The caveat matters. These are excursions, not cycles. The test shows
+the available arguments do not exclude EE; it does not show a cycle can
+contain it. Closure at o = o_min is untouched by any of this, and that
+is exactly what the packing asserts the consequences of. So the
+question moves from "is no-EE free?", answered no, to "does closure at
+the least admissible odd count force runs of one and two?" -- the
+packing claim itself, which is not proved anywhere here.
+
+The last entry's hypotheses were found by writing out cardinalities;
+this one was settled by running the map. The cheaper tool was available
+first and I reached for it second. EE in half the excursions needed no
+theory to find.

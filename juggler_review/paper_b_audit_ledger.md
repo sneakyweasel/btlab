@@ -9671,3 +9671,55 @@ running, and each time the phrase survived because I never wrote the
 cardinalities down. The moment they were written the two hypotheses were
 immediate. A remainder that has been described the same way three times
 without shrinking is a signal to expand it, not to repeat it.
+
+## `EE` is not excluded by minimality, so no-`EE` is a real hypothesis
+
+*Mathematical target.* Whether a `CycleMin` can contain `EE`, which
+decides if the no-`EE` hypothesis found last entry is free or must be
+assumed.
+
+*Novelty hypothesis.* `EE` forces a state at least \(n^{4}\), which
+needs an odd run of length four, and the packing allows only runs of one
+or two --- so no-`EE` might come free.
+
+*Falsifier.* The packing is the *extremal* configuration rather than a
+proven property, so a run of four may be consistent with minimality.
+
+**The falsifier fires.** Working the exponents, a run of four odds from
+the minimum gives
+\(n\to n^{3/2}\to n^{9/4}\to n^{27/8}\to n^{81/16}\), and two even steps
+bring that to \(n^{81/64}\) --- every state above \(n\). So `OOOOEE` is
+consistent on paper, and it is also **realized**: at \(n=271\), \(309\)
+and \(445\) the orbit follows `OOOOEE` with every state at or above the
+start. At \(n=271\) the states run
+\(271,\,4461,\,297953,\,162637857,\dots\) to thirteen digits before
+descending.
+
+More than that, `EE` is common. Across the \(29999\) odd starts below
+\(6\times10^{4}\), the excursion that stays at or above \(n\) contains
+`EE` in **12543** of them, and an odd run of four or more in \(4750\).
+
+**So the hypothesis is not free.** Minimality --- the only structural
+fact `CycleMin` carries beyond closure --- does not exclude `EE`, and
+neither does Theorem 3.29's run cap: that cap is
+\(a_i\le\lfloor(e-i)\log2/\log(3/2)\rfloor\), which is \(1\) at
+\(e-i=1\) and \(3\) already at \(e-i=2\), so it constrains only the last
+runs of the word. Early runs are free to be long.
+
+**What is still open, stated exactly.** These are *excursions*, not
+cycles. The test shows the arguments available --- minimality and the
+run caps --- do not exclude `EE`; it does not show a cycle can contain
+it. The cycle-closing condition at \(o=o_{\min}(L)\) is untouched by
+anything here, and that is precisely what Theorem 4.7's packing asserts
+the consequences of. So the question moves from "is no-`EE` free?" ---
+answered, no --- to "does closure at the least admissible odd count
+force runs of one and two?", which is the packing claim itself and is
+not proved anywhere in this laboratory.
+
+Tags. COMPUTATIONALLY VERIFIED: `OOOOEE` witnesses at \(271, 309, 445\)
+with all states \(\ge n\); the `EE` and long-run frequencies over 29999
+odd starts. OBSERVATION: the last entry's two hypotheses were found by
+writing out cardinalities; this one was settled by running the map. The
+cheaper of the two was available first and I reached for it second ---
+`EE` in half the excursions is not a fact that needed any theory to
+find.
