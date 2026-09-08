@@ -351,7 +351,12 @@ It is not required.
   **EXACT — HUMAN PROOF** (crude Phase-0 computational table)
 - Length-only parity finance
   \(\sum 1/(x_i\ln x_i)\le e/(n\ln n)+(o-e)/(t\ln t)+e/(2n^2\ln n)\) —
-  **EXACT — LEAN VERIFIED** (`threeTerm_bound`, `FinanceTransfer.lean`).
+  **EXACT — HUMAN PROOF; majorant Lean** (`threeTerm_bound`,
+  `FinanceTransfer.lean`). The correction is mine: `threeTerm_bound`
+  proves the *majorant* inequality from a classification supplied as a
+  hypothesis, not the displayed statement from `CycleMin` alone. Marking
+  the row LEAN VERIFIED was an overclaim of exactly the kind this ledger
+  spent four entries pinning down in Theorem 4.7.
   The transfer is `sum_inv_mul_log_le` (pointwise lower bounds move through
   the sum, which is the "joint-minima" step); the three class bounds are
   `cycleMin_iterate_ge`, `cycleMin_internal_ge_t` and `cycleMin_even_ge_sq`;
