@@ -40370,3 +40370,84 @@ myself on the next commit. Worth naming the asymmetry: the six-term gap
 was found by writing out what the statement needed; the three-term one
 was missed because I had just written the lemma and knew what it said.
 Familiarity is exactly when the check gets skipped.
+
+## Pricing the packing hypothesis: 18 of 42, and no floor at all
+
+The question was whether anything downstream needs the six-term bound
+or whether the three-term one carries the load. It is answered, and the
+first half of the answer is a misreading of my own that I should have
+caught four entries ago.
+
+Corollary 4.5's "length-only parity charge" is not a parity charge. I
+had been reading the name and assuming a two-class split, odds at n and
+evens at n^2. Read parity_holds instead:
+
+    R = e + (o-e)(n log n)/(t log t) + e/(2n),   n log n theta <= 1.2 R
+
+Divide by n log n and that is theta <= (6/5)[e/(n log n) + (o-e)/(t log
+t) + e/(2n^2 log n)] -- the three-class bound, with the internal odds at
+t. It is exactly threeTerm_bound. So the bound I put in Lean last entry
+is not a weaker cousin of what the paper computes with; it is what the
+paper computes with. The cutoff 25781, the 141 lengths, Theorem 5.2's
+floor 50508, Theorem 5.9's 176251, Corollaries 5.10, 5.11 and 5.14 are
+all downstream of it, and it needs no hypothesis about EE.
+
+So no period bound in Paper A depends on Theorem 4.7. Its only
+consumers are Theorem 4.8 and Proposition 4.9's identification with
+E_run. The manuscript already called 4.7 "a supporting comparison at the
+same floor"; that sentence is now checked rather than asserted, and
+test_three_term_rhs_is_corollary_4_5s_charge pins the identification
+against parity_holds so it cannot drift.
+
+Second half: what does the missing hypothesis cost the one theorem that
+needs it? The refinement's entire budget is a single constant. At every
+one of the 42 lengths the ratio of majorants is 1.4048, uniformly --
+e/(o-e) to leading order, the t- and n^2-scale terms pulling it down a
+third of a percent. Each of the 42 dies with margin in [1.0033, 1.3535],
+inside that budget of necessity, since each survives the three-term
+charge.
+
+Then the pricing, and here I got it wrong first and the error is the
+interesting part. With m cyclic EE adjacencies the evens form e-m runs,
+so #cheap <= o - #blocks = o-e+m, and I scanned m upward until the
+comparison stopped excluding. That gave 42 of 42 fragile, every death
+inside the gap, and it was wrong. #cheap is bounded by o-e+m and by the
+valley count e-m that it is part of. The two cross at m = e-o/2, where
+both equal o/2; past the crossing the valleys themselves run out and the
+majorant falls again. My scan had been stopping at the first
+inadmissible count and reporting it as a resurrection. What caught it
+was writing the probe properly and getting a None where the ad-hoc
+script had produced a number.
+
+Corrected: EE cannot inflate the n-scale charge past (o/2)/(o-e) =
+1.2047, and theta/packed rises monotonically along the progression,
+crossing that ceiling between L=74265 (1.1982) and L=75319 (1.2068). The
+42 split 18 fragile and 24 robust -- a threshold in L, not a scatter.
+test_resurrection_scan_does_not_stop_at_the_first_inadmissible_count
+guards the bug I made.
+
+The 18 need 50 to 3925 adjacencies. A word with its evens placed
+uniformly carries e(e-1)/(L-1), which is 7675 to 10116 over that range,
+so each of the 18 is voided by less EE than an ordinary word already
+has -- L=56347 by a factor of 150. EE is realized and common: 12543 of
+the 29999 at-or-above excursions below 6*10^4. Dropping the hypothesis
+leaves 117 survivors below 10^5, not 99.
+
+What this is not. Theorem 4.8 is not refuted: it is true as stated with
+the hypothesis, and 24 of its 42 exclusions survive without it. A voided
+exclusion does not make a cycle of that length exist, only means the
+argument does not rule one out. And the model treats m as free where a
+realized word's EE count is fixed by the dynamics, and assumes the only
+effect of EE is the recount. If an EE forced extra height relations some
+of the 18 would come back. That is the open direction.
+
+PARK. Branch cycle_packing_fragility.
+
+Two things worth keeping. The first is that a gap I spent four entries
+establishing turned out to sit under nothing load-bearing, and finding
+that out took reading the implementation of a corollary rather than its
+name -- I had had parity_holds available the whole time. The second is
+that my first pricing was off because I imposed one of two caps and not
+the other, and the shape of the error was flattering: it made every
+death fragile, which was the more striking result. It survived until I
+wrote it down in a form that could return None.

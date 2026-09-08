@@ -229,6 +229,7 @@ import Problems.JugglerPaper
 #print axioms Problems.Juggler.run_survivor_seed_F2
 #print axioms Problems.Juggler.run_survivor_seed_F3
 #print axioms Problems.Juggler.run_survivor_unimodular
+#print axioms Problems.Juggler.threeTerm_bound
 #print axioms Problems.Juggler.sixTerm_bound
 #print axioms Problems.Juggler.sixTerm_bound_packed
 #print axioms Problems.Juggler.square_scale_superquadratic

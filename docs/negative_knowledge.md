@@ -370,6 +370,20 @@ does not move leftovers. Residual-floor raise to \(1981\)/\(4756\) is
 Kind: `REFUTED` / `REPARAMETERIZATION`.
 Do not reopen: leftover-killer packaging of cells or finance.
 
+**Read `parity_holds`, not the name (added after a four-entry
+misreading of my own).** Corollary 4.5's "length-only parity charge" is
+**not** a two-class parity split of odds at \(n\) and evens at
+\(n^{2}\). It is the three-class bound
+\(\theta\le(6/5)[e/(n\log n)+(o-e)/(t\log t)+e/(2n^{2}\log n)]\), with
+the internal odds at \(t=\lfloor n^{3/2}\rfloor\) — that is
+`threeTerm_bound`, and it carries no hypothesis about `EE`. So the
+cutoff \(25781\), the \(141\) lengths, and the floors of Theorems 5.2
+and 5.9 and Corollaries 5.10, 5.11 and 5.14 are all free of the run
+packing. **No period bound in Paper A depends on Theorem 4.7**; its only
+consumers are Theorem 4.8 and Proposition 4.9's identification with
+\(\mathcal E_{\mathrm{run}}\). Before treating a gap in 4.7 as
+load-bearing, check what actually cites it.
+
 **The one-line reason (added after the ordered-vector retry).** Every
 member of this family compares the accumulated floor defect \(\Delta\)
 against the formal surplus \(G=n^{3^{o}}-n^{2^{L}}\). By
@@ -818,6 +832,12 @@ second frontier.
   open \(N_0=5.54\cdot 10^8\).
 - **Residual floor \(1981\)/\(4756\)** for leftover \(84\)
   ([juggler_cycle_l84_residual_floor](problems/juggler_cycle_l84_residual_floor.md)).
+- **Run-type packing fragility**
+  ([juggler_cycle_packing_fragility](problems/juggler_cycle_packing_fragility.md)).
+  Theorem 4.7's missing no-`EE` hypothesis is priced: it costs \(18\) of
+  Theorem 4.8's \(42\) exclusions and no period bound at all. Reopen only
+  on a proof that closure at \(o_{\min}(L)\) caps the `EE` density below
+  \(50\) adjacencies at \(L=56347\) — which is the packing claim again.
 - **Lachesis log-log clock**
   ([juggler_lachesis_loglog_clock](problems/juggler_lachesis_loglog_clock.md)).
   The walk mod 1 is the rotation orbit by \(\log_2(3/2)\), and the walk

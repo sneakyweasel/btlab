@@ -98,6 +98,7 @@ import Problems.Juggler.DepthOneMainTerm
 import Problems.Juggler.CycleRunAlphabet
 import Problems.Juggler.ParityComplexity
 import Problems.Juggler.LocalizedKernel
+import Problems.Juggler.CubeFiber
 
 /-!
 # Juggler laboratory barrel

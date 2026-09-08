@@ -1,11 +1,12 @@
 import { useId } from "react";
+import { EVEN_BLOCK_BEAD_MAX } from "../juggler/constants";
 import { formatInt } from "../juggler/format";
 import { EMBER, SEA, beadColor } from "../juggler/palette";
 import { evenPreimageInterval, type FiberView } from "../juggler/productions";
 import { BeadMark } from "./BeadMark";
 
 const WIDTH = 640;
-const HEIGHT = 328;
+const HEIGHT = 308;
 const LEFT = 36;
 const RIGHT = 604;
 const O_Y = 52;
@@ -14,8 +15,46 @@ const M_Y = 276;
 const TARGET_X = WIDTH / 2;
 const TARGET_R = 16;
 const WASH_H = 16;
+const TICK = 10;
 const PAD = 5;
 const GREY = "#cfc6b4";
+
+function EndCaption({
+  x,
+  lineY,
+  side,
+  lines,
+}: {
+  x: number;
+  lineY: number;
+  side: "above" | "below";
+  lines: readonly string[];
+}) {
+  const stack = lines.filter((line) => line.length > 0);
+  if (stack.length === 0) return null;
+  const shown = side === "above" ? [...stack].reverse() : stack;
+  const startY =
+    side === "above" ? lineY - 14 - 12 * (shown.length - 1) : lineY + 20;
+  return (
+    <text
+      x={x}
+      y={startY}
+      textAnchor="middle"
+      fill="#5e574c"
+      fontSize="10"
+      fontFamily="IBM Plex Mono, monospace"
+      paintOrder="stroke"
+      stroke="#fffdf7"
+      strokeWidth="4"
+    >
+      {shown.map((line, index) => (
+        <tspan key={line} x={x} dy={index === 0 ? 0 : 12}>
+          {line}
+        </tspan>
+      ))}
+    </text>
+  );
+}
 
 type OeFiberStripProps = {
   view: FiberView;
@@ -27,6 +66,15 @@ type OeFiberStripProps = {
 function xOf(n: number, lo: number, hi: number): number {
   const span = Math.max(hi - lo, 1);
   return LEFT + ((n - lo) / span) * (RIGHT - LEFT);
+}
+
+/** Place an E-value on the O axis so n and ⌊n^{3/2}⌋ share an x. */
+function eAxis(y: number): number {
+  return Math.cbrt(y * y);
+}
+
+function clampX(x: number): number {
+  return Math.min(RIGHT, Math.max(LEFT, x));
 }
 
 function integersOn(lo: number, hi: number): number[] {
@@ -62,12 +110,19 @@ export function OeFiberStrip({
   const sea = points.filter((point) => point.imageEven);
   const oLo = Math.max(0, lo - PAD);
   const oHi = hi + PAD;
+  const eLo = Math.max(0, block.lo - PAD);
+  const eHi = block.hi + PAD;
   const rail = listed ? integersOn(oLo, oHi) : points.map((point) => point.n);
+  const eListed = block.hi - block.lo <= EVEN_BLOCK_BEAD_MAX + 2 * PAD;
+  const seaByImage = new Map(sea.map((point) => [point.image, point]));
+  const eRail = eListed ? integersOn(eLo, eHi) : sea.map((point) => point.image);
   const targetFill = beadColor(m);
   const share =
     view.proportion === null ? "empty" : `OE ${view.proportion.toFixed(2)}`;
   const washLo = xOf(lo, oLo, oHi);
   const washHi = xOf(hi, oLo, oHi);
+  const eWashLo = clampX(xOf(eAxis(block.lo), oLo, oHi));
+  const eWashHi = clampX(xOf(eAxis(block.hi), oLo, oHi));
 
   return (
     <div>
@@ -139,7 +194,7 @@ export function OeFiberStrip({
           width={Math.max(washHi - washLo, 4)}
           height={WASH_H}
           fill={EMBER}
-          opacity="0.22"
+          opacity="0.34"
         />
         <line
           x1={LEFT}
@@ -148,6 +203,22 @@ export function OeFiberStrip({
           y2={O_Y}
           stroke="#1d1914"
           strokeWidth="2"
+        />
+        <line
+          x1={washLo}
+          y1={O_Y - TICK}
+          x2={washLo}
+          y2={O_Y + TICK}
+          stroke={EMBER}
+          strokeWidth="1.5"
+        />
+        <line
+          x1={washHi}
+          y1={O_Y - TICK}
+          x2={washHi}
+          y2={O_Y + TICK}
+          stroke={EMBER}
+          strokeWidth="1.5"
         />
         {rail.map((n) => {
           const inside = n >= lo && n < hi;
@@ -168,25 +239,18 @@ export function OeFiberStrip({
             />
           );
         })}
-        <text
-          x={LEFT}
-          y={O_Y + 28}
-          fill="#5e574c"
-          fontSize="11"
-          fontFamily="IBM Plex Mono, monospace"
-        >
-          O(m)
-        </text>
-        <text
-          x={RIGHT}
-          y={O_Y + 28}
-          textAnchor="end"
-          fill="#5e574c"
-          fontSize="11"
-          fontFamily="IBM Plex Mono, monospace"
-        >
-          {`[${formatInt(lo)}, ${formatInt(hi)})`}
-        </text>
+        <EndCaption
+          x={washHi - washLo < 56 ? (washLo + washHi) / 2 - 28 : washLo}
+          lineY={O_Y}
+          side="below"
+          lines={[formatInt(lo), `∛(${formatInt(m)}⁴)`]}
+        />
+        <EndCaption
+          x={washHi - washLo < 56 ? (washLo + washHi) / 2 + 28 : washHi}
+          lineY={O_Y}
+          side="below"
+          lines={[formatInt(hi), `∛(${formatInt(m + 1)}⁴)`]}
+        />
 
         <text
           x={8}
@@ -198,12 +262,12 @@ export function OeFiberStrip({
           E
         </text>
         <rect
-          x={LEFT}
+          x={eWashLo}
           y={E_Y - WASH_H / 2}
-          width={RIGHT - LEFT}
+          width={Math.max(eWashHi - eWashLo, 4)}
           height={WASH_H}
           fill={SEA}
-          opacity="0.22"
+          opacity="0.34"
         />
         <line
           x1={LEFT}
@@ -212,6 +276,22 @@ export function OeFiberStrip({
           y2={E_Y}
           stroke="#1d1914"
           strokeWidth="2"
+        />
+        <line
+          x1={eWashLo}
+          y1={E_Y - TICK}
+          x2={eWashLo}
+          y2={E_Y + TICK}
+          stroke={SEA}
+          strokeWidth="1.5"
+        />
+        <line
+          x1={eWashHi}
+          y1={E_Y - TICK}
+          x2={eWashHi}
+          y2={E_Y + TICK}
+          stroke={SEA}
+          strokeWidth="1.5"
         />
         {sea.map((point) => {
           const x = xOf(point.n, oLo, oHi);
@@ -222,7 +302,7 @@ export function OeFiberStrip({
               x1={x}
               y1={O_Y + 8}
               x2={x}
-              y2={active ? E_Y - 7 : E_Y}
+              y2={active ? E_Y - 9 : E_Y}
               stroke={EMBER}
               strokeWidth={active ? 1.6 : 0.7}
               opacity={active ? 0.95 : 0.55}
@@ -231,56 +311,65 @@ export function OeFiberStrip({
             />
           );
         })}
+        {eRail.map((n) => {
+          const parent = seaByImage.get(n);
+          const inside = n >= block.lo && n < block.hi;
+          const active = parent != null && selected === parent.n;
+          const x = parent
+            ? xOf(parent.n, oLo, oHi)
+            : clampX(xOf(eAxis(n), oLo, oHi));
+          return (
+            <BeadMark
+              key={`e-${n}`}
+              n={n}
+              x={x}
+              y={E_Y}
+              color={inside ? beadColor(n) : GREY}
+              radius={parent ? 5.5 : 3.5}
+              active={active}
+              hideLabel={!active}
+              onSelect={
+                parent ? () => onSelect?.(parent.n) : undefined
+              }
+              onHover={
+                parent
+                  ? (value) => onHover?.(value === null ? null : parent.n)
+                  : onHover
+              }
+            />
+          );
+        })}
         {sea.map((point) => {
           const x = xOf(point.n, oLo, oHi);
           const active = selected === point.n;
           const tip = tipToward(x, E_Y, TARGET_X, M_Y, TARGET_R + 3);
           return (
-            <g key={`e-${point.n}`}>
-              <line
-                x1={x}
-                y1={E_Y}
-                x2={tip.x}
-                y2={tip.y}
-                stroke={SEA}
-                strokeWidth={active ? 1.6 : 0.7}
-                opacity={active ? 0.95 : 0.55}
-                markerEnd={active ? `url(#${evenMarker})` : undefined}
-                pointerEvents="none"
-              />
-              <BeadMark
-                n={point.image}
-                x={x}
-                y={E_Y}
-                color={beadColor(point.image)}
-                radius={3.5}
-                active={active}
-                hideLabel={!active}
-                onSelect={() => onSelect?.(point.n)}
-                onHover={(n) => onHover?.(n === null ? null : point.n)}
-              />
-            </g>
+            <line
+              key={`em-${point.n}`}
+              x1={x}
+              y1={E_Y}
+              x2={tip.x}
+              y2={tip.y}
+              stroke={SEA}
+              strokeWidth={active ? 1.6 : 0.7}
+              opacity={active ? 0.95 : 0.55}
+              markerEnd={active ? `url(#${evenMarker})` : undefined}
+              pointerEvents="none"
+            />
           );
         })}
-        <text
-          x={LEFT}
-          y={E_Y + 28}
-          fill="#5e574c"
-          fontSize="11"
-          fontFamily="IBM Plex Mono, monospace"
-        >
-          E(m)
-        </text>
-        <text
-          x={RIGHT}
-          y={E_Y + 28}
-          textAnchor="end"
-          fill="#5e574c"
-          fontSize="11"
-          fontFamily="IBM Plex Mono, monospace"
-        >
-          {`[${formatInt(block.lo)}, ${formatInt(block.hi)})`}
-        </text>
+        <EndCaption
+          x={eWashHi - eWashLo < 56 ? (eWashLo + eWashHi) / 2 - 28 : eWashLo}
+          lineY={E_Y}
+          side="below"
+          lines={[formatInt(block.lo), `${formatInt(m)}²`]}
+        />
+        <EndCaption
+          x={eWashHi - eWashLo < 56 ? (eWashLo + eWashHi) / 2 + 28 : eWashHi}
+          lineY={E_Y}
+          side="below"
+          lines={[formatInt(block.hi), `${formatInt(m + 1)}²`]}
+        />
 
         <text
           x={8}
@@ -319,11 +408,14 @@ export function OeFiberStrip({
         </text>
         <text
           x={TARGET_X}
-          y={M_Y + TARGET_R + 16}
+          y={M_Y - TARGET_R - 8}
           textAnchor="middle"
           fill="#1d1914"
           fontSize="12"
           fontFamily="IBM Plex Mono, monospace"
+          paintOrder="stroke"
+          stroke="#fffdf7"
+          strokeWidth="4"
         >
           {formatInt(m)}
         </text>

@@ -209,6 +209,7 @@
 'Problems.Juggler.run_survivor_seed_F2' does not depend on any axioms
 'Problems.Juggler.run_survivor_seed_F3' does not depend on any axioms
 'Problems.Juggler.run_survivor_unimodular' does not depend on any axioms
+'Problems.Juggler.threeTerm_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.sixTerm_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.sixTerm_bound_packed' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.square_scale_superquadratic' depends on axioms: [propext, Classical.choice, Quot.sound]

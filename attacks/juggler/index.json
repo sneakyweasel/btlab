@@ -1265,6 +1265,22 @@
       "nk_cluster": "Finance leftover-killers are identities, not movers"
     },
     {
+      "id": "cycle_packing_fragility",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_packing_fragility.py",
+      "test": "tests/research/juggler_sequence/test_cycle_packing_fragility.py",
+      "dossier": "docs/problems/juggler_cycle_packing_fragility.md",
+      "data_dir": null,
+      "lean": [
+        "formal/Problems/Juggler/FinanceTransfer.lean"
+      ],
+      "conjecture": [],
+      "decision": "PARK",
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Parked, not killed"
+    },
+    {
       "id": "cycle_padic_coupling",
       "kind": "branch",
       "probe": "src/research/juggler_sequence/cycle_padic_coupling.py",
