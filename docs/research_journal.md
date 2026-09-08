@@ -40294,3 +40294,37 @@ assumption and the unrefined bound below it is free.
 Second dossier this transfer lemma closes a row in, having been written
 for the first. An elementary lemma nobody had stated was load-bearing
 for two human-proof claims in two documents.
+
+The rest of the harvest, and none of it needed new mathematics.
+
+The falsifier was that w[1] needs L >= 2, which CycleItinerary does not
+give -- it supplies only L >= 1. Answerable rather than assumable:
+period one would mean J(n) = n, which lt_floorPower_odd forbids for odd
+n >= 3. So cycleMin_length_ge_two is a theorem and the index is legal.
+
+floorPower_eq_self_iff: among positive integers J fixes only 1. Even
+states strictly descend and odd states at least 3 strictly ascend, so
+the two parities close the case between them. The laboratory had the
+observation -- cycle_last_even_interval's docstring notes a last-even
+return is never a fixed point -- but not the statement.
+
+cycleMin_word_shape: every cycle itinerary reads OO...E. It starts odd
+because the minimum is odd, its second letter is odd because the
+minimum cannot start an OE circuit, and it ends even because the return
+would otherwise fix the minimum. follows_get_odd_iff is the bridge from
+states to letters.
+
+That last one is worth having because CycleHeightFinance's
+cycleMin_start_odd_run says only that some odd run starts somewhere.
+The shape statement pins the first two letters and the last, and does
+it inside Paper A's barrel where cycleMin_start_odd_run is not
+available.
+
+None of the three is cited by either manuscript, so none enters
+AxiomCheckPaperA. They are laboratory results, not paper results.
+
+The three lemmas composed here -- start odd, successor odd, last even
+-- were each proved for a different purpose across three separate
+entries, none of them this one. The shape statement is what they were
+always going to add up to. It took asking what the module yields rather
+than what it was for.

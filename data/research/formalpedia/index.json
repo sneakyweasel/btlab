@@ -23419,6 +23419,36 @@
       "trust": "kernel"
     },
     {
+      "doc": "`J` fixes only `1` among positive integers: even states strictly descend and odd states at least `3` strictly ascend.",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 731,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "floorPower_eq_self_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A cycle has period at least two: period one would make its minimum a fixed point.",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 744,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "cycleMin_length_ge_two",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Every cycle itinerary reads `OO\u2026E`.** It starts odd because the minimum is odd; its second letter is odd because the minimum cannot start an `OE` circuit; and it ends even because the return would otherwise fix the minimum. This is strictly stronger than `1 \u2264 cycleCircuitCount w`, which only says some odd run starts somewhere.",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 760,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "cycleMin_word_shape",
+      "trust": "kernel"
+    },
+    {
       "doc": "",
       "file": "formal/Problems/Juggler/FirstETransportEval.lean",
       "kind": "def",
@@ -66605,7 +66635,7 @@
       ]
     },
     "Problems.Juggler.FinanceTransfer": {
-      "declarations": 38,
+      "declarations": 41,
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "imports": [
         "Problems.Juggler.CycleCore"
@@ -67914,13 +67944,13 @@
     }
   },
   "totals": {
-    "declarations": 4874,
+    "declarations": 4877,
     "declarations_with_a_ledger_row": 3195,
     "ledger_rows_naming_a_file": 336,
     "modules": 208,
     "trust": {
       "compiler": 54,
-      "kernel": 4820
+      "kernel": 4823
     }
   }
 }

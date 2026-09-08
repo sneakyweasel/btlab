@@ -9915,3 +9915,52 @@ second dossier the transfer lemma closes a row in, having been written
 for the first. An elementary lemma that nobody had stated was
 load-bearing for two human-proof claims in two documents, and finding
 that out took writing it once.
+
+## Harvest: the shape of a cycle word, and the unique fixed point
+
+*Mathematical target.* The rest of what the recent lemmas yield without
+new mathematics.
+
+*Falsifier.* `w[1]` needs \(2\le L\), which `CycleItinerary` does not
+give --- it supplies only \(1\le L\).
+
+**Answerable rather than assumable.** Period one would mean
+\(J(n)=n\), which `lt_floorPower_odd` forbids for odd \(n\ge3\). So
+`cycleMin_length_ge_two` is a theorem, and the index is legitimate.
+
+- `floorPower_eq_self_iff` --- among positive integers `J` fixes only
+  `1`. Even states strictly descend (`floorPower_even_lt`) and odd
+  states at least `3` strictly ascend (`lt_floorPower_odd`), so the two
+  parities close the case between them. The laboratory had the
+  observation --- `cycle_last_even_interval`'s docstring notes a
+  last-even return is never a fixed point --- but not the statement.
+- `cycleMin_length_ge_two` --- a cycle has period at least two.
+- `cycleMin_word_shape` --- **every cycle itinerary reads
+  \(\mathtt{OO}\ldots\mathtt{E}\)**: it starts odd because the minimum
+  is odd (`cycleMin_start_odd`), its second letter is odd because the
+  minimum cannot start an `OE` circuit (`cycleMin_succ_odd`), and it
+  ends even because the return would otherwise fix the minimum
+  (`cycleMin_last_even`). The bridge from states to letters is
+  `follows_get_odd_iff`.
+
+**Why the last one is worth having.** `CycleHeightFinance` already
+carries `cycleMin_start_odd_run`, but that says only
+\(1\le\mathtt{cycleCircuitCount}\,w\) --- *some* odd run starts
+somewhere. The shape statement pins the first two letters and the last,
+and it does so inside Paper A's barrel, where
+`cycleMin_start_odd_run` is not available.
+
+**What is not claimed.** None of these is cited by either manuscript, so
+none enters `AxiomCheckPaperA`; they are laboratory results, not paper
+results. And the three of them are compositions --- no new mathematics
+was needed, which is exactly why they were worth doing now rather than
+being left implicit.
+
+Tags. COMPUTATIONALLY VERIFIED: `lake build Problems.JugglerPaper`
+clean; the three declarations within
+`[propext, Classical.choice, Quot.sound]`. OBSERVATION: the three
+lemmas composed here --- start odd, successor odd, last even --- were
+each proved for a different purpose over three separate entries, none of
+them this one. The shape statement is what they were always going to
+add up to, and it took asking what the module yields rather than what it
+was for.

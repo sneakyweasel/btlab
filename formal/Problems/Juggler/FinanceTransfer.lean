@@ -724,4 +724,54 @@ theorem threeTerm_bound {L : ℕ} {x : ℕ → ℝ} {n t : ℝ} {cA cB cC kA kB 
   rw [e0, e1]
   linarith
 
+/-! ### Harvest: the shape of a cycle word, and the unique fixed point -/
+
+/-- `J` fixes only `1` among positive integers: even states strictly descend and odd states
+at least `3` strictly ascend. -/
+theorem floorPower_eq_self_iff {n : ℕ} (hn : 1 ≤ n) : floorPower n = n ↔ n = 1 := by
+  constructor
+  · intro h
+    by_contra hne
+    have h2 : 2 ≤ n := by omega
+    rcases Nat.mod_two_eq_zero_or_one n with he | ho
+    · have := floorPower_even_lt h2 he; omega
+    · have h3 : 3 ≤ n := by omega
+      have := lt_floorPower_odd h3 ho; omega
+  · rintro rfl
+    decide
+
+/-- A cycle has period at least two: period one would make its minimum a fixed point. -/
+theorem cycleMin_length_ge_two {n : ℕ} {w : List Branch} (hn : 3 ≤ n) (h : CycleMin n w) :
+    2 ≤ w.length := by
+  have hlen : 1 ≤ w.length := h.1.2.2
+  by_contra hcon
+  have h1 : w.length = 1 := by omega
+  have hper : floorPower^[w.length] n = n := cycle_iterate_period h.1
+  rw [h1] at hper
+  have hodd : n % 2 = 1 := cycleMin_start_odd (by omega) h
+  have := lt_floorPower_odd hn hodd
+  simp only [Function.iterate_one] at hper
+  omega
+
+/-- **Every cycle itinerary reads `OO…E`.**  It starts odd because the minimum is odd; its
+second letter is odd because the minimum cannot start an `OE` circuit; and it ends even
+because the return would otherwise fix the minimum.  This is strictly stronger than
+`1 ≤ cycleCircuitCount w`, which only says some odd run starts somewhere. -/
+theorem cycleMin_word_shape {n : ℕ} {w : List Branch} (hn : 3 ≤ n) (h : CycleMin n w) :
+    ∃ (h0 : 0 < w.length) (h1 : 1 < w.length) (hL : w.length - 1 < w.length),
+      w[0] = Branch.odd ∧ w[1] = Branch.odd ∧ w[w.length - 1] = Branch.even := by
+  have hn2 : 2 ≤ n := by omega
+  have hlen : 2 ≤ w.length := cycleMin_length_ge_two hn h
+  refine ⟨by omega, by omega, by omega, ?_, ?_, ?_⟩
+  · exact (follows_get_odd_iff h.1.1 (by omega)).mpr
+      (by simpa using cycleMin_start_odd hn2 h)
+  · refine (follows_get_odd_iff h.1.1 (by omega)).mpr ?_
+    simpa [Function.iterate_one] using cycleMin_succ_odd hn2 h (by omega)
+  · have hev := cycleMin_last_even hn h
+    cases hb : w[w.length - 1] with
+    | even => rfl
+    | odd =>
+        have := (follows_get_odd_iff h.1.1 (by omega : w.length - 1 < w.length)).mp hb
+        omega
+
 end Problems.Juggler
