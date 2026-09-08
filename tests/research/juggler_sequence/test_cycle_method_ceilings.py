@@ -13,6 +13,7 @@ from research.juggler_sequence.cycle_method_ceilings import (
     distinctness_gain,
     even_count_of,
     law_kill_fraction,
+    length_only_optimum,
     shape_count_under,
     shape_growth,
     surplus,
@@ -155,3 +156,22 @@ def test_distinctness_would_matter_if_the_floor_were_small() -> None:
     same refinement is worth percent, not 1e-4."""
     row = distinctness_gain(176251, n=10**6 + 1)
     assert row["gain"] > 0.05
+
+
+def test_finance_is_optimal_among_length_only_charges_up_to_the_unroll() -> None:
+    """A length-only charge must cover e valleys at n, n+2, ..., so it is at
+    least ~e/(n log n). Finance lands on that optimum times the 6/5 unroll,
+    so the family has about 20% left in it and no more."""
+    rows = length_only_optimum()
+    big = [row for row in rows if row["q"] >= 1000]
+    for row in big:
+        assert 1.15 < row["ratio"] < 1.5, row["q"]
+    # The largest convergents, where the asymptotics have settled, sit on 6/5.
+    assert min(row["ratio"] for row in big) == pytest.approx(1.21, abs=0.02)
+
+
+def test_the_optimum_is_the_even_share_over_log_three() -> None:
+    """e/L -> 1 - log2/log3 = 0.369, so the optimum is a constant."""
+    for row in length_only_optimum():
+        assert row["even_share"] == pytest.approx(0.369, abs=0.002)
+        assert row["optimum"] == pytest.approx(0.3359, abs=0.002)

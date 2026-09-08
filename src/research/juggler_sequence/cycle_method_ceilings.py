@@ -195,6 +195,42 @@ def distinctness_gain(length: int, n: int | None = None) -> dict[str, Any]:
     }
 
 
+def length_only_optimum() -> list[dict[str, Any]]:
+    """How close finance is to the best possible *length-only* charge.
+
+    A charge that sees only `(n, L, o)` and not the orbit must upper-bound
+    every configuration those numbers allow -- including `e` valleys sitting
+    at `n, n+2, ...`, which no proved constraint forbids. So any such charge
+    is at least `~e/(n log n)`, and exclusion needs
+    `theta * n log n > e`. With `theta ~ log3 / q_next` that puts the
+    optimal threshold at
+
+        n_max log n  ~  (e/q) * q * q_next / log 3,
+
+    against which `convergent_invariant` measures what finance achieves.
+    The ratio is the room left in the family. It comes out at the `6/5`
+    unroll, so the family is exhausted: what remains is orbit-dependent
+    information, which is what the walk charge uses.
+    """
+    rows = []
+    for row in convergent_invariant():
+        q, q_next = row["q"], row["q_next"]
+        even = q - o_min(q)
+        optimum = (even / q) / math.log(3)
+        achieved = row["nlogn_over_q_qnext"]
+        rows.append(
+            {
+                "q": q,
+                "q_next": q_next,
+                "even_share": even / q,
+                "optimum": optimum,
+                "achieved": achieved,
+                "ratio": achieved / optimum,
+            }
+        )
+    return rows
+
+
 def even_count_of(length: int) -> int:
     """Even letters of a leftover length at its least admissible odd count."""
     return length - o_min(length)
@@ -229,6 +265,9 @@ def ceilings_report() -> dict[str, Any]:
         "distinctness_rows": [
             distinctness_gain(L) for L in (25781, 50508, 176251)
         ],
+        # The charge family, priced against its own optimum. The ratio lands
+        # on the 6/5 unroll, so length-only charges are exhausted.
+        "length_only_rows": length_only_optimum(),
         "halt_theorem": False,
         "no_cycle_all_lengths": False,
     }

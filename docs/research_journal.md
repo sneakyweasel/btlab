@@ -40919,3 +40919,54 @@ Worth keeping: the harvest found prior art three times before it found
 anything new, and that is the correct ratio for this kind of pass. The
 value was not in the last three letters; it was in noticing which
 hypothesis kept reappearing while nobody had defined it.
+
+## The charge family, priced against its own optimum
+
+Asked whether the ceilings are general or per-mechanism. They are general,
+and pushing on that turned up the sharpest thing in this sequence.
+
+First the general form. Every criterion in the paper has the shape
+theta <= Phi(n, L) with Phi decreasing in n -- the walk charge included:
+cycleMin_hug_kill_criterion reads theta <= 1.2 * sum stateCharge(nu, ...).
+Any valid Phi must dominate the true defect sum, which contains the
+minimum's own term, so Phi >= 1/(n log n) always. Exclusion at floor N_0
+therefore needs theta > 1/(N_0 log N_0), and since theta(q_k) ~ log3/q_next
+tends to zero, only finitely many convergent lengths can ever be excluded
+at a fixed floor. No charge closes the problem, and that is a proof rather
+than a measurement.
+
+But that ceiling is loose -- at N_0 = 10^6 it permits period 301994 where
+finance reaches 25781 -- so I sharpened the lower bound on Phi. A charge
+that sees only (n, L, o) must cover every configuration those numbers
+allow, and nothing proved here forbids e valleys sitting at n, n+2, ....
+So a length-only charge is at least ~e/(n log n), and the best possible
+threshold is n_max log n ~ (e/q) q q_next / log3 = 0.336 q q_next.
+
+Measured against convergent_invariant's 0.41 to 0.53, the ratio is 1.21 at
+the large convergents. That is the 6/5 unroll and nothing else. So finance
+is the optimal length-only charge to within the coefficient it already
+advertises, and no sharper counting of valleys, internals and evens is
+worth more than about 20% in n_max, which is 12% in period.
+
+Two things fall into place. Theorem 4.7's 1.4048 exceeds the ceiling only
+because the packing is not length-only in the required sense: no-EE
+forbids exactly the extremal configuration that sets the optimum. That is
+the same hypothesis three entries showed is unrecoverable, seen from the
+other side -- it is not a technical gap, it is what the extra factor is
+made of. And the walk charge beats N_0^0.59 precisely because it reads the
+orbit rather than the length, through the reduced base.
+
+So the message of 6.2 changes in one direction. Everything about floors
+diverging stands. But "sharpen the charge" is now split: length-only is
+done, orbit-dependent is not, and the walk charge is the existing proof
+that the second half is real room. I had been treating charge improvement
+as uniformly capped; it is capped only in the half the paper has been
+working in.
+
+Method note. My first computation of the general ceiling used a linear
+scan for the first length with small theta, which backgrounded itself and
+produced nothing -- the small-theta lengths are the convergent
+denominators, so the scan was searching for something a two-line
+continued-fraction computation hands over. Second time this session that I
+reached for a search where the structure was already known. Worth naming
+as a habit rather than an incident.

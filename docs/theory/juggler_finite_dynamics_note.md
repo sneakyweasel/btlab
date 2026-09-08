@@ -3552,6 +3552,37 @@ period \(\approx N_0^{0.59}\) by finance and \(\approx N_0^{0.69}\) with
 the walk charge; neither exponent reaching \(1\) is the point --- no
 exponent would help, because the target recedes.
 
+**And the length-only charges are exhausted.** This is worth separating
+from the divergence, because it says where the remaining room is *not*. A
+charge that sees only \((n,L,o)\) must bound every configuration those
+numbers permit, and nothing proved here forbids \(e\) valleys sitting at
+\(n,n+2,\ldots\); so any such charge is at least \(\sim e/(n\log n)\), and
+exclusion needs \(\theta\,n\log n>e\). With \(\theta\approx\log3/q_{k+1}\)
+that puts the best possible length-only threshold at
+
+\[
+n_{\max}\log n_{\max}\ \approx\ \frac{e}{q_k}\cdot
+\frac{q_k q_{k+1}}{\log 3}\ =\ 0.336\,q_k q_{k+1},
+\]
+
+against the \(0.41\)--\(0.53\) that Corollary 4.5 achieves. The ratio is
+\(1.21\) at the large convergents. That is the \(6/5\) unroll and nothing
+else: **finance is the optimal length-only charge, to within the
+coefficient it already advertises.** No sharper counting of valleys,
+internals and evens can be worth more than about \(20\%\) in
+\(n_{\max}\), which is \(12\%\) in period.
+
+Two consequences. Theorem 4.7's factor \(1.4048\) exceeds that ceiling
+only because the packing is *not* length-only in the required sense: it
+assumes no \(\mathtt{EE}\), and that hypothesis forbids exactly the
+extremal configuration --- valleys at \(n,n+2,\ldots\) --- which sets the
+optimum. And the walk charge of Section 5 beats \(N_0^{0.59}\) precisely
+because it reads the orbit rather than the length, through the reduced
+base. So the room left inside the charge family is orbit-dependent
+information, not finer bookkeeping on \((n,L,o)\). It is real room --- the
+walk charge already converts it into \(N_0^{0.69}\) --- and it does not
+change the paragraph above, since the floors still diverge.
+
 **The shape route is exponential.** Section 3's exclusions are the only
 family here that is both floor-free and length-free: they kill *words*,
 not lengths, so in principle they could close the problem uniformly, and

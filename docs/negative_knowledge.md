@@ -1007,3 +1007,18 @@ CLOSE) are included so the completeness gate cannot hide them.
 [juggler_twin_flight](problems/juggler_twin_flight.md),
 [juggler_two_step_parity](problems/juggler_two_step_parity.md),
 [research_engine_v24](problems/research_engine_v24.md).
+
+**Length-only charges are exhausted (added after pricing the family).** A
+charge seeing only \((n,L,o)\) must bound every configuration those
+numbers allow, and nothing proved forbids \(e\) valleys at
+\(n,n+2,\ldots\); so it is at least \(\sim e/(n\log n)\) and the best
+possible threshold is \(0.336\,q_k q_{k+1}\), against the \(0.41\)–\(0.53\)
+Corollary 4.5 achieves — a ratio of \(1.21\), which is the \(6/5\) unroll
+and nothing else. **Finance is the optimal length-only charge to within
+the coefficient it advertises**; no sharper counting of valleys,
+internals and evens is worth more than \(20\%\) in \(n_{\max}\), i.e.
+\(12\%\) in period. Theorem 4.7's \(1.4048\) exceeds this only because
+no-\(\mathtt{EE}\) forbids the extremal configuration. The room that
+remains is *orbit-dependent* information — which is what the walk charge
+reads, and why it reaches \(N_0^{0.69}\). Do not open another
+length-only refinement.
