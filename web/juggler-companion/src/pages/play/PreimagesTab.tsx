@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import { Disclaimer } from "../../components/Disclaimer";
 import { Metric } from "../../components/Metric";
 import { Tex } from "../../components/Tex";
@@ -27,7 +28,10 @@ export function PreimagesTab() {
         <h2 className="font-serif text-2xl">Seed m</h2>
         <p className="text-sm text-muted">
           Pick a member of a backward-closed set A. The even block is the
-          one-step even production. The OE fiber is a separate tab.
+          one-step even production. The{" "}
+          <Link to="/play/oe-fiber">OE fiber</Link> and the{" "}
+          <Link to="/play/block-average">even-block average</Link> of those
+          fibers are separate tabs.
         </p>
         <div className="flex flex-wrap items-end gap-3">
           <label className="text-sm text-muted">

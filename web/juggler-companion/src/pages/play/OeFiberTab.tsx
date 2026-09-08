@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import { Disclaimer } from "../../components/Disclaimer";
 import { Metric } from "../../components/Metric";
 import { Tex } from "../../components/Tex";
@@ -8,10 +9,11 @@ import {
   TOUR_OE_FIBER_M,
 } from "../../juggler/constants";
 import { formatInt } from "../../juggler/format";
-import { fiberView, randomOePath } from "../../juggler/productions";
+import { fiberView, randomOePath, sweepLemmaView } from "../../juggler/productions";
 import { OeFiberStrip } from "../../visuals/OeFiberStrip";
 import { ProductionWork } from "../../visuals/ProductionWork";
 import { SweepLane } from "../../visuals/SweepLane";
+import { SweepLemma } from "../../visuals/SweepLemma";
 
 function formatShare(value: number | null): string {
   if (value === null) return "—";
@@ -21,6 +23,7 @@ function formatShare(value: number | null): string {
 export function OeFiberTab() {
   const [m, setM] = useState(TOUR_OE_FIBER_M);
   const fiber = useMemo(() => fiberView(m), [m]);
+  const lemma = useMemo(() => sweepLemmaView(m), [m]);
   const [selected, setSelected] = useState<number | null>(() =>
     randomOePath(fiberView(TOUR_OE_FIBER_M)),
   );
@@ -45,7 +48,8 @@ export function OeFiberTab() {
           <Tex>{String.raw`J(J(n))=m`}</Tex> and that path joins A. An odd
           image stays on O and never reaches E. Paper C prints{" "}
           {formatInt(TOUR_OE_FIBER_M)}; shares on one m are an observation, not
-          the sweep proof.
+          the sweep proof. Averaging those shares over an even block is the{" "}
+          <Link to="/play/block-average">block-average</Link> tab.
         </p>
         <div className="flex flex-wrap items-end gap-3">
           <label className="text-sm text-muted">
@@ -95,9 +99,19 @@ export function OeFiberTab() {
             hint="this fiber only"
           />
           <Metric
-            label="Floors"
-            value="1/7 and 1/3"
-            hint="elementary and monotone"
+            label="Lemma"
+            value={
+              lemma.verdict === "good"
+                ? "good"
+                : lemma.verdict === "thin-zero"
+                  ? "thin near 0"
+                  : lemma.verdict === "thin-half"
+                    ? "thin near 1/2"
+                    : lemma.verdict === "below-scale"
+                      ? "below 10⁶"
+                      : "empty"
+            }
+            hint="Lemma 4.2 windows"
           />
         </div>
         <OeFiberStrip
@@ -112,13 +126,18 @@ export function OeFiberTab() {
         <h2 className="font-serif text-2xl">Parity sweep</h2>
         <p className="text-sm text-muted">
           On the fiber the quantity <Tex>{String.raw`\{n^{3/2}/2\}`}</Tex> lives
-          on the circle <Tex>{String.raw`\mathbb{R}/\mathbb{Z}`}</Tex>: 0 and 1
-          are the same point. A walk with a nearly constant step cannot hide in
-          one semicircle.
+          on the circle <Tex>{String.raw`\mathbb{R}/\mathbb{Z}`}</Tex>. Lemma 4.1
+          says a walk with a nearly constant step cannot hide in one semicircle
+          unless the step sits near 0 or 1/2. Rust marks the thin pole — 0
+          at the top, 1/2 at the bottom — and the Lemma 4.2 window when it
+          is small enough to read. The bar is the scarcer half against 1/7
+          and{" "}
+          <Tex>{String.raw`H/3-2`}</Tex>.
         </p>
         {fiber.points.length ? (
           <SweepLane
             points={fiber.points}
+            lemma={lemma}
             selected={selected}
             onSelect={setSelected}
             onHover={setHovered}
@@ -128,6 +147,7 @@ export function OeFiberTab() {
             This m has no odd n with <Tex>{String.raw`\lfloor n^{3/4}\rfloor=m`}</Tex>.
           </p>
         )}
+        <SweepLemma lemma={lemma} />
         {inspect !== null ? (
           <ProductionWork n={inspect} />
         ) : (

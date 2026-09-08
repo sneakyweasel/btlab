@@ -11,12 +11,17 @@ import {
   evenMembersMapToSeed,
   centerEvenInBlock,
   randomEvenInBlock,
+  blockAverageView,
+  blockInterval,
+  circleDistance,
   fiberBounds,
   fiberStats,
+  fiberStepAlpha,
   fiberView,
   oeFiber,
   oeMembersMapToSeed,
   randomOePath,
+  sweepLemmaView,
 } from "./productions";
 import {
   LIVE_FINANCE_L_MAX,
@@ -687,6 +692,64 @@ describe("productions", () => {
       proportion: 1,
     });
     expect(fiberView(1_000_000).listed).toBe(true);
+  });
+
+  it("matches the fate-contagion first-step and Lemma 4.2 windows", () => {
+    expect(circleDistance(0.98, 0)).toBeCloseTo(0.02, 10);
+    expect(circleDistance(0.65, 0.5)).toBeCloseTo(0.15, 10);
+    expect(fiberStepAlpha(100000)).toBeCloseTo(0.65244, 4);
+    expect(fiberStepAlpha(1_000_000)).toBeCloseTo(0, 3);
+    const printed = sweepLemmaView(100000);
+    expect(printed.verdict).toBe("thin-zero");
+    expect(printed.good).toBe(false);
+    expect(printed.atLemmaScale).toBe(false);
+    expect(printed.scarcer).toBe(12);
+    expect(printed.meetsSweep).toBe(true);
+    expect(printed.meetsPairing).toBe(true);
+    const empty = sweepLemmaView(99_969);
+    expect(empty.verdict).toBe("thin-zero");
+    expect(empty.scarcer).toBe(0);
+    expect(empty.meetsSweep).toBe(false);
+    expect(empty.meetsPairing).toBe(false);
+    const cap = sweepLemmaView(1_000_000);
+    expect(cap.atLemmaScale).toBe(true);
+    expect(cap.verdict).toBe("thin-zero");
+    expect(cap.good).toBe(false);
+    expect(cap.scarcer).toBe(0);
+    expect(cap.meetsSweep).toBe(false);
+  });
+
+  it("matches fate_contagion.block_stats on the playground blocks", () => {
+    const ten = blockAverageView(10);
+    expect(blockInterval(10)).toEqual({ lo: 465, hi: 599 });
+    expect(ten.fibers.map((fiber) => [fiber.m, fiber.H, fiber.G])).toEqual([
+      [100, 3, 1],
+      [102, 3, 0],
+      [104, 3, 1],
+      [106, 3, 1],
+      [108, 3, 0],
+      [110, 3, 1],
+      [112, 3, 0],
+      [114, 4, 3],
+      [116, 3, 2],
+      [118, 4, 3],
+      [120, 3, 2],
+    ]);
+    expect(ten.U).toBe(14);
+    expect(ten.H).toBe(67);
+    expect(ten.evenH).toBe(35);
+    expect(ten.share).toBeCloseTo(14 / 67, 10);
+    expect(ten.meanEven).toBeCloseTo(14 / 35, 10);
+    expect(ten.boundPositive).toBe(false);
+    expect(ten.meetsBound).toBe(true);
+    const twenty = blockAverageView(20);
+    expect(twenty.U).toBe(54);
+    expect(twenty.H).toBe(204);
+    expect(twenty.evenM).toBe(21);
+    expect(twenty.boundPositive).toBe(false);
+    const emptyish = blockAverageView(5);
+    expect(emptyish.U).toBe(1);
+    expect(emptyish.H).toBe(22);
   });
 });
 

@@ -119,6 +119,39 @@ export const FIBER_BEAD_MAX = 80;
 export const PRODUCTION_M_MAX = 1_000_000;
 export const TOUR_EVEN_BLOCK_M = 11;
 export const TOUR_OE_FIBER_M = 100_000;
+/** Paper C Lemma 4.2. Display fork of fate_contagion.py. */
+export const SWEEP_M0 = 1_000_000;
+export const GOOD_ALPHA_ZERO = 22;
+export const GOOD_ALPHA_HALF = 2;
+export const SWEEP_SHARE = 1 / 7;
+export const PAIRING_SLACK = 2;
+/** Paper C Proposition 4.4. Display fork of fate_contagion.block_stats. */
+export const BLOCK_AVERAGE_C0 = 250;
+export const BLOCK_AVERAGE_SHARE = 1 / 4;
+export const BLOCK_M_PRIME_MAX = 32;
+export const TOUR_BLOCK_M_PRIME = 10;
+export const BLOCK_SEEDS = [
+  {
+    value: 2,
+    note: "Smallest m' in Proposition 4.4. Three even fibers; the share overshoots 1/4.",
+  },
+  {
+    value: 5,
+    note: "Five even fibers. Almost empty U — one even image in 22 odds.",
+  },
+  {
+    value: 10,
+    note: "A dozen even fibers. Default playground block.",
+  },
+  {
+    value: 16,
+    note: "Seventeen even fibers. Share near 1/4.",
+  },
+  {
+    value: 20,
+    note: "Twenty-one even fibers. Share near 1/4.",
+  },
+] as const;
 
 export const NOTE_TRAJECTORY_3 = [3n, 5n, 11n, 36n, 6n, 2n, 1n] as const;
 export const NOTE_PEAK_37 = 24_906_114_455_136n;

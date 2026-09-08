@@ -70,6 +70,9 @@ export function TourPage() {
   if (slug === "oe-fiber") {
     return <Navigate to="/play/oe-fiber" replace />;
   }
+  if (slug === "block-average" || slug === "block") {
+    return <Navigate to="/play/block-average" replace />;
+  }
   if (slug === "cycle-leftovers") {
     return <Navigate to="/tour/cycle-survivors" replace />;
   }
