@@ -103,6 +103,7 @@ import Problems.Juggler.FateRecursion
 import Problems.Juggler.FateFirstLetter
 import Problems.Juggler.FateSweep
 import Problems.Juggler.FateChernoff
+import Problems.Juggler.FatePressure
 
 /-!
 # Juggler laboratory barrel

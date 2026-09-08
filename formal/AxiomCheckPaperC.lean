@@ -18,6 +18,7 @@ open Problems.Juggler
 #print axioms LBad_count_le
 #print axioms LBad_oddCount_ge
 #print axioms LBad_of_envelopeBad
+#print axioms LBad_of_liveTo
 #print axioms Sweep.card_le_cells_mul
 #print axioms Sweep.ceil_modEq_one_iff
 #print axioms Sweep.ceil_modEq_zero_iff
@@ -56,6 +57,7 @@ open Problems.Juggler
 #print axioms cycle_basin_not_escapes
 #print axioms cycles_or_escapes
 #print axioms cylinder_even_root_empty
+#print axioms envelopeBad_of_liveTo
 #print axioms escapes_backwardClosed
 #print axioms escapes_floorPower
 #print axioms escapes_forwardClosed
@@ -75,8 +77,14 @@ open Problems.Juggler
 #print axioms initial_depths_are_free
 #print axioms iterate_le_of_envelope
 #print axioms iterate_one_fixed
+#print axioms juggler_count_le_of_noMomentum
 #print axioms klHalf_eq
 #print axioms klHalf_nonneg
+#print axioms liveCount_sum_oddCount
+#print axioms liveWeight_weightSplit
+#print axioms live_count_le_of_pressure
+#print axioms live_count_le_pressure
+#print axioms live_oddCount_ge
 #print axioms logb_two_three_le
 #print axioms meanShareOff_empty
 #print axioms meanShare_of_noMomentum
