@@ -658,4 +658,70 @@ theorem cycleMin_last_even {n : ℕ} {w : List Branch} (hn : 3 ≤ n) (h : Cycle
   rw [hxn] at hstep
   omega
 
+/-! ### The coarse three-term bound
+
+`juggler_cycle_finance.md` carries
+
+`Σ 1/(xᵢ ln xᵢ) ≤ e/(n ln n) + (o−e)/(t ln t) + e/(2n² ln n)`
+
+as EXACT — HUMAN PROOF.  Everything it needs is here.  Three classes rather than six: a state
+is charged at `n` if odd, at `t` if odd with an odd predecessor, and at `n²` if even.
+
+The reason this form is *robust where the six-term one is not*: it never splits the valleys
+into cheap and expensive, and that split is the only place `EE` did damage.  So no hypothesis
+about `EE` is needed here, and none appears below.
+-/
+
+/-- The three class bounds: the minimum, the first internal, and the even floor. -/
+noncomputable def threeBounds (n t : ℝ) : Fin 3 → ℝ := ![n, t, n ^ 2]
+
+theorem sum_comp_fin_three {L : ℕ} (cls : ℕ → Fin 3) (F : Fin 3 → ℝ) :
+    ∑ i ∈ Finset.range L, F (cls i)
+      = ∑ c : Fin 3, (((Finset.range L).filter fun i => cls i = c).card : ℝ) * F c := by
+  rw [← Finset.sum_fiberwise_of_maps_to (g := cls) (fun i _ => Finset.mem_univ (cls i))
+    (fun i => F (cls i))]
+  refine Finset.sum_congr rfl fun c _ => ?_
+  rw [Finset.sum_congr rfl fun i hi => by rw [(Finset.mem_filter.mp hi).2],
+    Finset.sum_const, nsmul_eq_mul]
+
+/-- **The three-term bound.**  Valleys charged at `n`, internals at `t`, evens at `n²`; the
+valley count may be replaced by any larger `kA` with the total held fixed, since `n ≤ t` makes
+the exchange downhill.  No `EE` hypothesis. -/
+theorem threeTerm_bound {L : ℕ} {x : ℕ → ℝ} {n t : ℝ} {cA cB cC kA kB : ℕ}
+    (cls : ℕ → Fin 3) (hn : 2 ≤ n) (hnt : n ≤ t)
+    (hbound : ∀ i ∈ Finset.range L, threeBounds n t (cls i) ≤ x i)
+    (h0 : ((Finset.range L).filter fun i => cls i = 0).card = cA)
+    (h1 : ((Finset.range L).filter fun i => cls i = 1).card = cB)
+    (h2 : ((Finset.range L).filter fun i => cls i = 2).card = cC)
+    (hle : cA ≤ kA) (hsum : cA + cB = kA + kB) :
+    ∑ i ∈ Finset.range L, 1 / (x i * Real.log (x i))
+      ≤ (kA : ℝ) / (n * Real.log n) + (kB : ℝ) / (t * Real.log t)
+        + (cC : ℝ) / (2 * n ^ 2 * Real.log n) := by
+  have hall : ∀ c : Fin 3, 2 ≤ threeBounds n t c := by
+    intro c
+    fin_cases c <;> simp [threeBounds] <;> nlinarith
+  have hβ : ∀ i ∈ Finset.range L, 2 ≤ threeBounds n t (cls i) := fun i _ => hall (cls i)
+  refine (sum_inv_mul_log_le hβ hbound).trans ?_
+  rw [sum_comp_fin_three cls (fun c => 1 / (threeBounds n t c * Real.log (threeBounds n t c)))]
+  rw [Fin.sum_univ_three]
+  have b0 : threeBounds n t 0 = n := by simp [threeBounds]
+  have b1 : threeBounds n t 1 = t := by simp [threeBounds]
+  have b2 : threeBounds n t 2 = n ^ 2 := by simp [threeBounds]
+  have hlogsq : Real.log (n ^ 2) = 2 * Real.log n := by
+    rw [Real.log_pow]; push_cast; ring
+  rw [b0, b1, b2, h0, h1, h2, hlogsq]
+  have hswap := valley_swap_le (B := 1 / (n * Real.log n)) (C := 1 / (t * Real.log t))
+    (inv_mul_log_antitoneOn (Set.mem_Ici.mpr hn) (Set.mem_Ici.mpr (le_trans hn hnt)) hnt)
+    hle hsum
+  have hswap' : (cA : ℝ) / (n * Real.log n) + (cB : ℝ) / (t * Real.log t)
+      ≤ (kA : ℝ) / (n * Real.log n) + (kB : ℝ) / (t * Real.log t) := by
+    simpa [div_eq_mul_inv, one_div] using hswap
+  have hcast : (cC : ℝ) * (1 / (n ^ 2 * (2 * Real.log n)))
+      = (cC : ℝ) / (2 * n ^ 2 * Real.log n) := by ring
+  rw [hcast]
+  have e0 : (cA : ℝ) * (1 / (n * Real.log n)) = (cA : ℝ) / (n * Real.log n) := by ring
+  have e1 : (cB : ℝ) * (1 / (t * Real.log t)) = (cB : ℝ) / (t * Real.log t) := by ring
+  rw [e0, e1]
+  linarith
+
 end Problems.Juggler

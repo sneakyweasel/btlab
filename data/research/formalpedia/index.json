@@ -23400,6 +23400,26 @@
     },
     {
       "doc": "",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 678,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "sum_comp_fin_three",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The three-term bound.** Valleys charged at `n`, internals at `t`, evens at `n\u00b2`; the valley count may be replaced by any larger `kA` with the total held fixed, since `n \u2264 t` makes the exchange downhill. No `EE` hypothesis.",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 690,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "threeTerm_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
       "file": "formal/Problems/Juggler/FirstETransportEval.lean",
       "kind": "def",
       "ledger": [],
@@ -66585,7 +66605,7 @@
       ]
     },
     "Problems.Juggler.FinanceTransfer": {
-      "declarations": 36,
+      "declarations": 38,
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "imports": [
         "Problems.Juggler.CycleCore"
@@ -67894,13 +67914,13 @@
     }
   },
   "totals": {
-    "declarations": 4872,
+    "declarations": 4874,
     "declarations_with_a_ledger_row": 3195,
     "ledger_rows_naming_a_file": 336,
     "modules": 208,
     "trust": {
       "compiler": 54,
-      "kernel": 4818
+      "kernel": 4820
     }
   }
 }

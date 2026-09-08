@@ -9856,3 +9856,62 @@ run by run. OBSERVATION: the first attempt at this overflowed on a
 float division, because a state 40000 bits wide is not comparable to
 \(n\) by division. Guarding on bit-length rather than value is the fix,
 and it is also the honest description of what "near" means here.
+
+## The three-term bound is Lean, and it is robust where the six-term one is not
+
+*Mathematical target.* `juggler_cycle_finance.md` carries
+
+\[
+\sum 1/(x_i\ln x_i)\ \le\ \frac{e}{n\ln n}+\frac{o-e}{t\ln t}
++\frac{e}{2n^{2}\ln n}
+\]
+
+as **EXACT — HUMAN PROOF**. Every input is now in `FinanceTransfer`.
+
+*Falsifier.* The count slack does not absorb, because the \(t\) bound
+fails for some internal --- in particular for index \(0\), whose cyclic
+predecessor is the last state.
+
+**The falsifier is answered by a lemma proved two entries ago.**
+`cycleMin_last_even` says the last state is even, so index \(0\) is
+never an internal, and every internal sits at \(i\ge1\) where
+`cycleMin_internal_ge_t` applies. That lemma was written for the prefix
+valley count; it turns out to be what makes the coarse bound work too.
+
+**The assembly.** Three classes rather than six --- a state is charged
+at \(n\) if odd, at \(t\) if odd with an odd predecessor, at \(n^{2}\)
+if even:
+
+- `sum_inv_mul_log_le` --- the transfer. This is the dossier's
+  "joint-minima at \(m=e\)" step, which is the whole of its human proof.
+- the class bounds --- `cycleMin_iterate_ge`,
+  `cycleMin_internal_ge_t`, `cycleMin_even_ge_sq`.
+- `sum_comp_fin_three` --- the three terms are three fibres.
+- `valley_swap_le` --- the count slack. The classification gives
+  \(\#\text{valleys}\le e\) and \(\#\text{valleys}+\#\text{internals}=o\)
+  (`valley_le_even`, `valley_add_internal`); the exchange to the
+  dossier's \(e\) and \(o-e\) is downhill because \(n\le t\), which is
+  `le_floorPower_odd`.
+- `threeTerm_bound` --- the statement.
+
+**The point worth keeping.** This form needs **no hypothesis about
+`EE`**, and the six-term form does. The difference is exactly one step:
+the coarse bound never splits the valleys into cheap and expensive, and
+that split is the only place `EE` did damage --- it is what turns
+\(\#\text{cheap}\le o-\#\text{blocks}\) into the false
+\(\#\text{cheap}\le o-e\). So the robustness is not luck. The refinement
+that buys Theorem 4.7 its extra terms is precisely the refinement that
+costs it a hypothesis.
+
+That also sharpens what the last four entries found. They did not show
+the six-term bound is unreachable; they showed the *refinement* is what
+carries the assumption, and the unrefined bound below it is free.
+
+Tags. COMPUTATIONALLY VERIFIED: `lake build Problems.JugglerPaper`
+clean; the three new declarations within
+`[propext, Classical.choice, Quot.sound]`. The dossier row moves from
+EXACT — HUMAN PROOF to EXACT — LEAN VERIFIED. OBSERVATION: this is the
+second dossier the transfer lemma closes a row in, having been written
+for the first. An elementary lemma that nobody had stated was
+load-bearing for two human-proof claims in two documents, and finding
+that out took writing it once.

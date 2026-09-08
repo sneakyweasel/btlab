@@ -351,7 +351,15 @@ It is not required.
   **EXACT — HUMAN PROOF** (crude Phase-0 computational table)
 - Length-only parity finance
   \(\sum 1/(x_i\ln x_i)\le e/(n\ln n)+(o-e)/(t\ln t)+e/(2n^2\ln n)\) —
-  **EXACT — HUMAN PROOF** (this dossier; joint-minima at \(m=e\))
+  **EXACT — LEAN VERIFIED** (`threeTerm_bound`, `FinanceTransfer.lean`).
+  The transfer is `sum_inv_mul_log_le` (pointwise lower bounds move through
+  the sum, which is the "joint-minima" step); the three class bounds are
+  `cycleMin_iterate_ge`, `cycleMin_internal_ge_t` and `cycleMin_even_ge_sq`;
+  the count slack is absorbed by `valley_swap_le`, downhill because
+  \(n\le t\) (`le_floorPower_odd`). Unlike Theorem 4.7's six-term
+  refinement this needs **no** hypothesis about `EE`, because it never
+  splits the valleys into cheap and expensive — which is the only place
+  `EE` does damage.
 - Prefix-weight comparison: \(P\ge\ln x/\ln n\ge 1\) on a
   `CycleMin`, so the naive \(P\equiv 1\) unroll is weaker than the
   published \(1/(x\ln x)\) form —

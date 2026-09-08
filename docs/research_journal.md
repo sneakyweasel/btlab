@@ -40260,3 +40260,37 @@ lines of dots as success without checking the exit code.
 Fixed forward: docs/theory restored from the mirror, which holds the
 text I intended; the two are now byte-identical and the full suite is
 green.
+
+The three-term bound is Lean. juggler_cycle_finance.md carried
+sum 1/(x_i ln x_i) <= e/(n ln n) + (o-e)/(t ln t) + e/(2n^2 ln n) as
+EXACT - HUMAN PROOF; every input was already in FinanceTransfer.
+
+The falsifier I wrote down was that the count slack might not absorb,
+because the t bound could fail for index 0, whose cyclic predecessor is
+the last state. It is answered by cycleMin_last_even from two entries
+ago: the last state is even, so index 0 is never an internal and every
+internal sits at i >= 1 where cycleMin_internal_ge_t applies. That
+lemma was written for the prefix valley count; it turns out to be what
+makes the coarse bound work too.
+
+Three classes rather than six -- n if odd, t if odd with an odd
+predecessor, n^2 if even. sum_inv_mul_log_le is the transfer, which is
+the dossier's "joint-minima at m=e" step and the whole of its human
+proof. sum_comp_fin_three makes the three terms three fibres.
+valley_swap_le absorbs the count slack, downhill because n <= t.
+
+The point worth keeping: this form needs no hypothesis about EE, and
+the six-term form does. The difference is exactly one step. The coarse
+bound never splits the valleys into cheap and expensive, and that split
+is the only place EE did damage -- it is what turns #cheap <= o -
+#blocks into the false #cheap <= o - e. So the robustness is not luck:
+the refinement that buys Theorem 4.7 its extra terms is precisely the
+refinement that costs it a hypothesis.
+
+That also sharpens the last four entries. They did not show the
+six-term bound is unreachable; they showed the refinement carries the
+assumption and the unrefined bound below it is free.
+
+Second dossier this transfer lemma closes a row in, having been written
+for the first. An elementary lemma nobody had stated was load-bearing
+for two human-proof claims in two documents.
