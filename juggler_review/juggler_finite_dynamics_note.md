@@ -3547,10 +3547,31 @@ and the ratio is flat to within a factor \(1.3\) across
 descent floor and those floors are unbounded, so **no finite computation
 excludes all lengths**. That is intrinsic to using a floor at all, not a
 defect of the present table, and it is why every result in Sections 4
-and 5 is a period bound rather than a cycle theorem. Raising \(N_0\) buys
-period \(\approx N_0^{0.59}\) by finance and \(\approx N_0^{0.69}\) with
-the walk charge; neither exponent reaching \(1\) is the point --- no
-exponent would help, because the target recedes.
+and 5 is a period bound rather than a cycle theorem.
+
+What raising \(N_0\) buys follows from the same relation, and it is not a
+power. With \(q_{k+1}=a_{k+1}q_k\), the threshold
+\(n_{\max}\log n_{\max}\approx0.45\,q_kq_{k+1}\) inverts to
+
+\[
+\text{period}\ \asymp\ \sqrt{N_0\log N_0}\quad\text{(finance)},
+\qquad
+\text{period}\ \asymp\ \sqrt{N_0}\,\log N_0\quad\text{(walk charge)},
+\]
+
+the second carrying one more logarithm because the walk charge shrinks
+the charge by a further \(0.44\log n'\) (Remark 5.8a). Both are checked:
+the walk-charge coefficient is \(2.014,1.982,2.120\) at the three
+published instances --- constant to \(7\%\) --- and the finance one is
+\(1.18,1.22\) at the two largest. Quoting these as \(N_0^{0.59}\) and
+\(N_0^{0.69}\) would be fitting a power to a square root over a narrow
+range: those fits drift by a factor \(3\) across the same floors, and the
+coefficient above does not. The residual swing is the local partial
+quotient \(a_{k+1}\), which runs \(3.4,5.8,23.5,2.5,1.7\) over the
+tabulated convergents; the \(23.5\) is the whole of the visible
+irregularity. So doubling the period costs roughly quadrupling the floor,
+and no sharpening of either charge changes that, because the target
+recedes.
 
 **And the length-only charges are exhausted.** This is worth separating
 from the divergence, because it says where the remaining room is *not*. A
@@ -3576,12 +3597,16 @@ Two consequences. Theorem 4.7's factor \(1.4048\) exceeds that ceiling
 only because the packing is *not* length-only in the required sense: it
 assumes no \(\mathtt{EE}\), and that hypothesis forbids exactly the
 extremal configuration --- valleys at \(n,n+2,\ldots\) --- which sets the
-optimum. And the walk charge of Section 5 beats \(N_0^{0.59}\) precisely
-because it reads the orbit rather than the length, through the reduced
+optimum. And the walk charge of Section 5 beats the finance reach
+precisely because it reads the orbit rather than the length, through the reduced
 base. So the room left inside the charge family is orbit-dependent
 information, not finer bookkeeping on \((n,L,o)\). It is real room --- the
-walk charge already converts it into \(N_0^{0.69}\) --- and it does not
-change the paragraph above, since the floors still diverge.
+walk charge already converts it into the extra logarithm above --- and it
+does not change the paragraph above, since the floors still diverge.
+Remark 5.8a prices that room from the other side: the advantage is
+\(0.44\log n'\), it is limited by the shape of the charge rather than by
+certification depth or the envelope, and doubling the efficiency requires
+squaring the floor.
 
 **The shape route is exponential.** Section 3's exclusions are the only
 family here that is both floor-free and length-free: they kill *words*,

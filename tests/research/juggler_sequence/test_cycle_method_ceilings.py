@@ -14,6 +14,7 @@ from research.juggler_sequence.cycle_method_ceilings import (
     even_count_of,
     law_kill_fraction,
     length_only_optimum,
+    reach_scaling,
     shape_count_under,
     shape_growth,
     surplus,
@@ -175,3 +176,26 @@ def test_the_optimum_is_the_even_share_over_log_three() -> None:
     for row in length_only_optimum():
         assert row["even_share"] == pytest.approx(0.369, abs=0.002)
         assert row["optimum"] == pytest.approx(0.3359, abs=0.002)
+
+
+def test_walk_charge_reach_is_sqrt_floor_times_log() -> None:
+    """period ~ 2 sqrt(N0) log N0, derived from the boundary layer rather than
+    fitted. Constant to 7% across the three published instances."""
+    data = reach_scaling()
+    assert data["walk_ratio_spread"] < 1.10
+    for row in data["walk_rows"]:
+        assert 1.9 < row["ratio"] < 2.2, row["floor"]
+
+
+def test_the_fitted_powers_drift_where_the_derived_forms_do_not() -> None:
+    """N0^0.69 is a fit over a narrow range; it is not the scaling law."""
+    data = reach_scaling()
+    powers = [row["period"] / row["fitted_power"] for row in data["walk_rows"]]
+    ratios = [row["ratio"] for row in data["walk_rows"]]
+    # The derived form is tighter than the fitted power across the same points.
+    assert (max(ratios) / min(ratios)) < (max(powers) / min(powers))
+
+
+def test_finance_reach_is_sqrt_of_floor_times_log() -> None:
+    for row in reach_scaling()["finance_rows"]:
+        assert 1.1 < row["ratio"] < 1.3, row["floor"]

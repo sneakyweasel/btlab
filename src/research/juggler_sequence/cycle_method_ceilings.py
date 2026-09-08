@@ -231,6 +231,59 @@ def length_only_optimum() -> list[dict[str, Any]]:
     return rows
 
 
+#: Published (floor, period) pairs for the walk charge: Theorem 5.9,
+#: Corollary 5.10, Corollary 5.11.
+WALK_INSTANCES: tuple[tuple[int, int], ...] = (
+    (26_254_995, 176_251),
+    (162_849_448, 478_245),
+    (350_000_000, 780_239),
+)
+
+
+def reach_scaling() -> dict[str, Any]:
+    """The reach of each charge, in its derived form rather than a fitted power.
+
+    From `n_max log n ~ 0.45 q q_next` and `q_next = a q`, finance reaches
+    `q ~ sqrt(N0 log N0 / (0.45 a))`, so its period is
+    `~ sqrt(N0 log N0)` with a coefficient that swings with the local
+    partial quotient. The walk charge shrinks the charge by a further
+    `0.44 log n'` (Remark 5.8a's boundary layer), which puts one more
+    logarithm inside the square root: `~ sqrt(N0) log N0`.
+
+    Both are checked below. The powers `N0^0.59` and `N0^0.69` quoted
+    elsewhere are fits to these over a narrow range, and they drift; the
+    forms here do not.
+    """
+    walk = [
+        {
+            "floor": floor,
+            "period": period,
+            "model": math.sqrt(floor) * math.log(floor),
+            "ratio": period / (math.sqrt(floor) * math.log(floor)),
+            "fitted_power": floor**0.69,
+        }
+        for floor, period in WALK_INSTANCES
+    ]
+    finance = [
+        {
+            "floor": floor,
+            "period": period,
+            "model": math.sqrt(floor * math.log(floor)),
+            "ratio": period / math.sqrt(floor * math.log(floor)),
+            "fitted_power": floor**0.59,
+        }
+        for floor, period in ((10**8, 50_508), (10**9, 176_251))
+    ]
+    ratios = [row["ratio"] for row in walk]
+    return {
+        "walk_rows": walk,
+        "finance_rows": finance,
+        "walk_ratio_min": min(ratios),
+        "walk_ratio_max": max(ratios),
+        "walk_ratio_spread": max(ratios) / min(ratios),
+    }
+
+
 def even_count_of(length: int) -> int:
     """Even letters of a leftover length at its least admissible odd count."""
     return length - o_min(length)

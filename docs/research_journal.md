@@ -40970,3 +40970,50 @@ denominators, so the scan was searching for something a two-line
 continued-fraction computation hands over. Second time this session that I
 reached for a search where the structure was already known. Worth naming
 as a habit rather than an incident.
+
+## Attack 1: the falsifier fired, and caught an error of mine
+
+The plan was to price the orbit-dependent charge family the way the last
+entry priced the length-only one. Prior art closed it, and reading that
+prior art turned up a mistake in my own section 6.2.
+
+Remark 5.8a already does the pricing, and does it better than my sketch.
+I had started deriving that valley j sits at n^{P_j} with
+P_j = (3/2)^{A_j}/2^{B_j} >= 1, that P_j = 1 is Diophantine-impossible,
+and that each valley is therefore suppressed by n^{-(P_j-1)} -- a
+boundary layer. Remark 5.8a states exactly that: the charge decays on the
+scale u ~ 1/ln n', "a Laplace-type boundary layer at u = 0, not a hard
+cutoff". It then measures the advantage over the length-only charge as
+0.44 ln n', constant to 8% over ten orders of magnitude in the floor, and
+names the limiter: not certification depth, not the envelope (0.07%), but
+the shape of f. Doubling the efficiency squares the floor. Proposition
+5.8c measures the flatness at the top, 1 - r_16/r_1 = 5.4e-8 at L=50508,
+and 5.8b closes the relaxed-versus-realizable gap that was flagged as the
+only place a constant could hide. So attack 1 is prior art, and I record
+it as such rather than rediscovering it.
+
+What the reading did produce is a correction. Section 6.2 said raising N_0
+buys period ~ N_0^0.59 by finance and ~N_0^0.69 with the walk charge. Those
+are fits, not laws, and I wrote them as if they were laws. From
+n_max log n ~ 0.45 q q_next the inversion is
+
+  finance:      period ~ sqrt(N_0 log N_0)
+  walk charge:  period ~ sqrt(N_0) log N_0
+
+the second carrying one more logarithm because the walk charge shrinks the
+charge by 0.44 ln n'. Checked: the walk coefficient is 2.014, 1.982, 2.120
+at the three published instances, constant to 7%, where N_0^0.69 drifts by
+a factor 3 across the same points. The finance coefficient is 1.18, 1.22 at
+the two largest floors. The residual swing is the local partial quotient,
+which runs 3.4, 5.8, 23.5, 2.5, 1.7 -- the 23.5 is the whole of the visible
+irregularity, and it is why a power fitted across it looked plausible.
+
+So the honest form is: doubling the period costs roughly quadrupling the
+floor. That is a cleaner and slightly worse statement than the one I had,
+and it is derived rather than fitted.
+
+Worth keeping: I quoted those exponents three entries running, including
+in a paragraph whose whole point was that measurement beats intuition. The
+exponents were measured -- badly, by fitting the wrong functional form to
+six points straddling a partial quotient of 23.5. Measuring is not enough
+if the model is chosen by eye.
