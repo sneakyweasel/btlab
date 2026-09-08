@@ -91,11 +91,17 @@ Each declaration is classified by reading its proof body:
 | `open` | carries a `sorry` |
 
 Two facts here are asserted in the manuscripts, so changing them changes a paper: the corpus
-carries **no `sorry`**, and the Juggler layer keeps exactly two proofs off the kernel —
-`greedy_eq_ostro_below_window` and `window_digit_scan`, the Ostrowski scans that Paper A's
-Section 1.2 names. `tests/tools/test_formalpedia.py` fails if either stops being true, which
-is the point: a third `native_decide` in that layer would silently falsify a published
-sentence.
+carries **no `sorry`**, and the Juggler layer keeps exactly **one** proof off the kernel —
+`window_digit_scan`, the Ostrowski scan that Paper A's Section 1.2 names.
+`tests/tools/test_formalpedia.py` fails if either stops being true, which is the point: a
+second `native_decide` in that layer would silently falsify a published sentence.
+
+It was two. `greedy_eq_ostro_below_window` was the other until it became a corollary of
+`greedy_eq_ostro` rather than a scan, and it now carries no compiler-trust assumption;
+Paper A's Section 1.2 records that transition. A reader asking the different question —
+which of Paper A's theorems would *fall* if the compiler were wrong — gets a second name,
+`window_digit_cap`, which cites the scan. Both sentences are true and the ledger carries
+both.
 
 If you add one deliberately, update Paper A's Section 1.2 and the test together.
 

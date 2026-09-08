@@ -9,6 +9,7 @@ import { PreimagesTab } from "./pages/play/PreimagesTab";
 import { OeFiberTab } from "./pages/play/OeFiberTab";
 import { BlockAverageTab } from "./pages/play/BlockAverageTab";
 import { ThreeSourcesTab } from "./pages/play/ThreeSourcesTab";
+import { VLadderTab } from "./pages/play/VLadderTab";
 import { CycleTab } from "./pages/play/CycleTab";
 import { SurvivorsTab } from "./pages/play/SurvivorsTab";
 import { FloorTab } from "./pages/play/FloorTab";
@@ -47,6 +48,9 @@ export default function App() {
               <Route path="block" element={<Navigate to="/play/block-average" replace />} />
               <Route path="three-sources" element={<ThreeSourcesTab />} />
               <Route path="sources" element={<Navigate to="/play/three-sources" replace />} />
+              <Route path="v-ladder" element={<VLadderTab />} />
+              <Route path="ladder" element={<Navigate to="/play/v-ladder" replace />} />
+              <Route path="rho" element={<Navigate to="/play/v-ladder" replace />} />
               <Route path="cycle" element={<CycleTab />} />
               <Route path="survivors" element={<SurvivorsTab />} />
               <Route path="leftovers" element={<Navigate to="/play/survivors" replace />} />

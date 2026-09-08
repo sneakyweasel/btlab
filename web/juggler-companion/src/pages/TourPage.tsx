@@ -76,6 +76,9 @@ export function TourPage() {
   if (slug === "three-sources" || slug === "sources") {
     return <Navigate to="/play/three-sources" replace />;
   }
+  if (slug === "v-ladder" || slug === "ladder" || slug === "rho") {
+    return <Navigate to="/play/v-ladder" replace />;
+  }
   if (slug === "cycle-leftovers") {
     return <Navigate to="/tour/cycle-survivors" replace />;
   }

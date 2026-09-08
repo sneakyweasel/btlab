@@ -5,8 +5,12 @@ import {
 } from "../content/idealDecisions";
 import { evenPreimage, oddPreimageIntegers, oddPreimages } from "./preimages";
 import {
+  idealCoeffOfWord,
+  LADDER_RUNGS,
   lambdaRoot,
   PAIR_RECURSION,
+  rhoIdeal,
+  rhoOfWord,
   STAR_RECURSION,
   threeSourcesView,
   zetaOf,
@@ -783,6 +787,45 @@ describe("three sources / contagion recursion", () => {
     expect(view.sources[1].coeffPair).toBeCloseTo(1 / 9, 10);
     expect(view.sources[2].coeffStar).toBe(0);
     expect(view.sources[2].coeffPair).toBeCloseTo(2 / 9, 10);
+  });
+});
+
+describe("V-ladder / rho test", () => {
+  it("roots match paper_c_audit printed truncations", () => {
+    const printed: Record<string, number> = {
+      star: 0.3774,
+      pair: 0.4480,
+      oeoee: 0.4801,
+      v3: 0.4891,
+      v4: 0.4916,
+      v5: 0.4924,
+      v6: 0.4926,
+      ideal: 0.4927,
+    };
+    for (const rung of LADDER_RUNGS) {
+      expect(lambdaRoot(rung.terms), rung.id).toBeCloseTo(printed[rung.id], 3);
+      expect(rung.printed, rung.id).toBe(printed[rung.id]);
+    }
+    expect(LADDER_RUNGS.find((rung) => rung.official)?.id).toBe("v6");
+  });
+
+  it("matches formula (5.7) and Proposition 5.13", () => {
+    expect(rhoOfWord("E")).toBeCloseTo(1 / 2, 10);
+    expect(rhoOfWord("OE")).toBeCloseTo(3 / 4, 10);
+    expect(rhoOfWord("OEE")).toBeCloseTo(3 / 8, 10);
+    expect(rhoOfWord("OEOEE")).toBeCloseTo(9 / 32, 10);
+    expect(rhoOfWord("OOEEE")).toBeCloseTo(9 / 32, 10);
+    expect(rhoOfWord("OOEE")).toBeCloseTo(9 / 16, 10);
+    expect(rhoOfWord("OEOEOEE")).toBeCloseTo(27 / 128, 10);
+    expect(rhoOfWord("OEOEOEOEOEOEE")).toBeCloseTo(729 / 8192, 10);
+    expect(idealCoeffOfWord("E")).toBeCloseTo(1, 10);
+    expect(idealCoeffOfWord("OE")).toBeCloseTo(1 / 3, 10);
+    expect(idealCoeffOfWord("OEE")).toBeCloseTo(1 / 3, 10);
+    expect(idealCoeffOfWord("OOEEE")).toBeCloseTo(1 / 9, 10);
+    expect(rhoIdeal(1 / 2)).toBe(true);
+    expect(rhoIdeal(3 / 8)).toBe(true);
+    expect(rhoIdeal(3 / 4)).toBe(false);
+    expect(rhoIdeal(9 / 16)).toBe(false);
   });
 });
 

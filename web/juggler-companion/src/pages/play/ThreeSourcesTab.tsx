@@ -52,7 +52,9 @@ export function ThreeSourcesTab() {
           (5.2). <Tex>{String.raw`\lambda`}</Tex> is the root of{" "}
           <Tex>{String.raw`\zeta`}</Tex>, not a slogan. The{" "}
           <Link to="/play/block-average">even-block average</Link> is the{" "}
-          <Tex>{String.raw`1/3`}</Tex> in item 2.
+          <Tex>{String.raw`1/3`}</Tex> in item 2. Official{" "}
+          <Tex>{String.raw`\lambda^{**}`}</Tex> is the{" "}
+          <Link to="/play/v-ladder">V-ladder</Link>.
         </p>
         <div className="flex flex-wrap items-end gap-3">
           <div className="flex flex-wrap gap-2">
@@ -163,7 +165,7 @@ export function ThreeSourcesTab() {
 
       <Disclaimer>
         The three families exclude no fate and do not produce a halt theorem.
-        The scale drawing is schematic. Official λ** waits for later words.
+        The scale drawing is schematic. Official λ** is the V6 truncation.
       </Disclaimer>
     </div>
   );

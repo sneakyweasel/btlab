@@ -11,6 +11,7 @@ const TABS = [
   { to: "/play/oe-fiber", label: "OE fiber" },
   { to: "/play/block-average", label: "Block average" },
   { to: "/play/three-sources", label: "Three sources" },
+  { to: "/play/v-ladder", label: "V-ladder" },
   { to: "/play/floor", label: "Floor" },
   { to: "/play/finance", label: "Finance" },
   { to: "/play/gap-transfer", label: "Gap transfer" },
@@ -31,7 +32,7 @@ export function PlaygroundPage() {
         <p className="prose-measure mt-3 text-muted">
           Walk a start — including the shipped peaks — follow a short itinerary,
           rotate a cycle word, inspect a CycleMin survivor, cross a run-suffix
-          pair, grow the two Paper C productions, average an even block, split the three sources, look up a certified floor,
+          pair, grow the two Paper C productions, average an even block, split the three sources, climb the V-ladder, look up a certified floor,
           look up a length in the shipped Theorem 4.6 table, read the
           gap-transfer / Rhin plane, the walk-charge explorer, or the
           semiconvergent fan. Caps:

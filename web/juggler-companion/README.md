@@ -56,8 +56,8 @@ the package-local `vercel.json` does the same rewrite.
 
 The preimage playground shows Paper C’s two productions — the even block
 and the OE fiber with its parity sweep — the even-block average of
-Proposition 4.4, and the three §5.1 sources with the roots of ζ, not a
-halt-theorem demo.
+Proposition 4.4, the three §5.1 sources, and the Theorem 5.3 V-ladder
+with the ρ_w test, not a halt-theorem demo.
 
 `n_max` is looked up from the shipped Theorem 4.6 snapshot. It is never
 recomputed with floating logarithms.
