@@ -1028,6 +1028,15 @@ theorem cycleMin_defect_threeTerm {n : ℕ} {w : List Branch}
   refine (cycleMin_defect_finance hn h).trans ?_
   exact mul_le_mul_of_nonneg_left (cycleMin_threeTerm (by omega) h) (by norm_num)
 
+theorem cycle_length_lt_two_mul_oddCount {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleItinerary n w) : w.length < 2 * oddCount w := by
+  have hexp : 2 ^ w.length < 3 ^ oddCount w := cycle_itinerary_formally_expanding hn h
+  have h34 : (3 : ℕ) ^ oddCount w ≤ 4 ^ oddCount w := Nat.pow_le_pow_left (by norm_num) _
+  have h4 : (4 : ℕ) ^ oddCount w = 2 ^ (2 * oddCount w) := by
+    rw [show (4 : ℕ) = 2 ^ 2 by norm_num, ← pow_mul]
+  have hlt : (2 : ℕ) ^ w.length < 2 ^ (2 * oddCount w) := by omega
+  exact (Nat.pow_lt_pow_iff_right (by norm_num)).mp hlt
+
 /-! ### The cheap-valley cap, with no hypothesis about `EE`
 
 `sixTerm_bound_packed` takes the cheap count as `c₁ ≤ k₁`, so a bound on the cheap
@@ -1165,5 +1174,451 @@ theorem cyclePrimitive_card_orbit {n : ℕ} {w : List Branch}
   intro i hi j hj hEq
   exact cyclePrimitive_orbit_injOn h hp i (Finset.mem_range.mp hi) j
     (Finset.mem_range.mp hj) hEq
+
+/-! ### The no-`EE` hypothesis, and the counts it fixes
+
+Theorem 4.7's display needs the six class counts \(1, o-e-1, 2e-o, 1, o-e-1, e\).
+Those follow from the two hypotheses its statement carries, and this section says how.
+
+`NoEE` makes the valleys exactly the even letters: `valley_le_even` injects one way by
+`cycPred`, and `NoEE` injects back by `cycSucc`, since the letter after an even one is
+then odd and has an even predecessor.  With `valley_add_internal` that fixes the internal
+count at `o - e`, and `cheap_le_internal` — proved earlier for the hypothesis-free cap —
+immediately bounds the cheap valleys by `o - e`, which is the packing count.  No block
+decomposition is needed anywhere.
+-/
+
+/-- **No two cyclically adjacent even letters.** -/
+def NoEE (L : ℕ) (par : ℕ → Bool) : Prop :=
+  ∀ i, i < L → par i = true ∨ par (cycPred L i) = true
+
+/-- Under `NoEE` the even letters inject into the valleys by the cyclic successor. -/
+theorem noEE_even_le_valley {L : ℕ} (hL : 0 < L) (par : ℕ → Bool) (h : NoEE L par) :
+    ((Finset.range L).filter fun i => !par i).card
+      ≤ ((Finset.range L).filter fun i => par i && !par (cycPred L i)).card := by
+  refine Finset.card_le_card_of_injOn (cycSucc L) (fun i hi => ?_) (fun i hi j hj hij => ?_)
+  · obtain ⟨hmem, hcond⟩ := Finset.mem_filter.mp hi
+    have hi' : i < L := Finset.mem_range.mp hmem
+    have hieven : par i = false := by simpa using hcond
+    have hs : cycSucc L i < L := cycSucc_lt hL i
+    have hpred : cycPred L (cycSucc L i) = i := cycPred_cycSucc hi'
+    have hodd : par (cycSucc L i) = true := by
+      rcases h (cycSucc L i) hs with hx | hx
+      · exact hx
+      · rw [hpred, hieven] at hx; exact absurd hx (by simp)
+    refine Finset.mem_filter.mpr ⟨Finset.mem_range.mpr hs, ?_⟩
+    rw [hpred, hieven, hodd]
+    simp
+  · exact cycSucc_injOn hL i (Finset.mem_filter.mp hi).1 j (Finset.mem_filter.mp hj).1 hij
+
+/-- **Under `NoEE` the valleys are exactly the even letters.** -/
+theorem noEE_valley_card {L : ℕ} (hL : 0 < L) (par : ℕ → Bool) (h : NoEE L par) :
+    ((Finset.range L).filter fun i => par i && !par (cycPred L i)).card
+      = ((Finset.range L).filter fun i => !par i).card :=
+  le_antisymm (valley_le_even hL par) (noEE_even_le_valley hL par h)
+
+/-- **Hence the internals number `o - e`.** -/
+theorem noEE_internal_card {L : ℕ} (hL : 0 < L) (par : ℕ → Bool) (h : NoEE L par) :
+    ((Finset.range L).filter fun i => par i && par (cycPred L i)).card
+        + ((Finset.range L).filter fun i => !par i).card
+      = ((Finset.range L).filter fun i => par i).card := by
+  have hsplit := valley_add_internal L par
+  have hval := noEE_valley_card hL par h
+  omega
+
+/-- **And the cheap valleys number at most `o - e`**, which is the packing count.
+
+This is the bound the run-type packing derives from a block decomposition. It needs no
+blocks: a cheap valley's successor is an internal and the successor map is injective
+(`cheap_le_internal`), and `NoEE` fixes the internal count. -/
+theorem noEE_cheap_le {L : ℕ} (hL : 0 < L) (par : ℕ → Bool) (h : NoEE L par) :
+    ((Finset.range L).filter
+        fun i => par i && !par (cycPred L i) && par (cycSucc L i)).card
+        + ((Finset.range L).filter fun i => !par i).card
+      ≤ ((Finset.range L).filter fun i => par i).card := by
+  have hcheap := cheap_le_internal hL par
+  have hcount := noEE_internal_card hL par h
+  omega
+
+/-! ### The six-term bound from `CycleMin`, primitivity and `NoEE`
+
+`sixTerm_bound_packed` is the majorant.  What follows discharges its hypotheses from a
+cycle, so Theorem 4.7's display becomes a theorem about a cycle carrying exactly the two
+hypotheses its statement now names --- and confirms they are *sufficient*, not merely
+necessary.
+
+The classification is again defined from the parity, so the class filters are case splits.
+Primitivity is what makes class `3` a singleton: `cycleMin_internal_ge_tplus` needs the
+predecessor to differ from the minimum, and on a primitive cycle the minimum occurs only
+at index `0`, so index `1` is the one internal charged at `t`.
+-/
+
+/-- The six-class cyclic classification: the minimum, other cheap valleys, expensive
+valleys, the first internal, the other internals, and the evens. -/
+def sixCls (L : ℕ) (par : ℕ → Bool) (i : ℕ) : Fin 6 :=
+  if par i then
+    (if par (cycPred L i) then (if i = 1 then 3 else 4)
+      else (if i = 0 then 0 else if par (cycSucc L i) then 1 else 2))
+  else 5
+
+theorem sixCls_eq_five {L : ℕ} {par : ℕ → Bool} {i : ℕ} :
+    sixCls L par i = 5 ↔ (!par i) = true := by
+  unfold sixCls
+  cases hp : par i <;> cases hq : par (cycPred L i) <;>
+    cases hs : par (cycSucc L i) <;>
+    by_cases h0 : i = 0 <;> by_cases h1 : i = 1 <;>
+    simp [hp, hq, hs, h0, h1]
+
+theorem sixCls_zero {L : ℕ} {par : ℕ → Bool}
+    (h0 : par 0 = true) (hlast : par (cycPred L 0) = false) :
+    sixCls L par 0 = 0 := by
+  simp [sixCls, h0, hlast]
+
+theorem sixCls_one {L : ℕ} {par : ℕ → Bool}
+    (h1 : par 1 = true) (hpred : par (cycPred L 1) = true) :
+    sixCls L par 1 = 3 := by
+  simp [sixCls, h1, hpred]
+
+theorem sixCls_eq_zero_imp {L : ℕ} {par : ℕ → Bool} {i : ℕ}
+    (h : sixCls L par i = 0) : i = 0 := by
+  unfold sixCls at h
+  by_cases hp : par i
+  · by_cases hq : par (cycPred L i)
+    · rw [if_pos hp, if_pos hq] at h; split at h <;> exact absurd h (by decide)
+    · rw [if_pos hp, if_neg hq] at h
+      by_cases hi : i = 0
+      · exact hi
+      · rw [if_neg hi] at h; split at h <;> exact absurd h (by decide)
+  · rw [if_neg hp] at h; exact absurd h (by decide)
+
+theorem sixCls_eq_three_imp {L : ℕ} {par : ℕ → Bool} {i : ℕ}
+    (h : sixCls L par i = 3) : i = 1 := by
+  unfold sixCls at h
+  by_cases hp : par i
+  · by_cases hq : par (cycPred L i)
+    · rw [if_pos hp, if_pos hq] at h
+      by_cases hi : i = 1
+      · exact hi
+      · rw [if_neg hi] at h; exact absurd h (by decide)
+    · rw [if_pos hp, if_neg hq] at h
+      split at h
+      · exact absurd h (by decide)
+      · split at h <;> exact absurd h (by decide)
+  · rw [if_neg hp] at h; exact absurd h (by decide)
+
+/-- Class `0` is the singleton `{0}`. -/
+theorem sixCls_filter_zero {L : ℕ} {par : ℕ → Bool} (hL : 0 < L)
+    (h0 : par 0 = true) (hlast : par (cycPred L 0) = false) :
+    ((Finset.range L).filter fun i => sixCls L par i = 0) = {0} := by
+  ext i
+  simp only [Finset.mem_filter, Finset.mem_range, Finset.mem_singleton]
+  constructor
+  · rintro ⟨-, h⟩; exact sixCls_eq_zero_imp h
+  · rintro rfl; exact ⟨hL, sixCls_zero h0 hlast⟩
+
+/-- Class `3` is the singleton `{1}`. -/
+theorem sixCls_filter_three {L : ℕ} {par : ℕ → Bool} (hL : 1 < L)
+    (h1 : par 1 = true) (hpred : par (cycPred L 1) = true) :
+    ((Finset.range L).filter fun i => sixCls L par i = 3) = {1} := by
+  ext i
+  simp only [Finset.mem_filter, Finset.mem_range, Finset.mem_singleton]
+  constructor
+  · rintro ⟨-, h⟩; exact sixCls_eq_three_imp h
+  · rintro rfl; exact ⟨hL, sixCls_one h1 hpred⟩
+
+theorem sixCls_filter_five (L : ℕ) (par : ℕ → Bool) :
+    ((Finset.range L).filter fun i => sixCls L par i = 5)
+      = (Finset.range L).filter fun i => !par i := by
+  ext i; simp [sixCls_eq_five]
+
+/-- Class `4` is the internals with index one removed. -/
+theorem sixCls_filter_four (L : ℕ) (par : ℕ → Bool) :
+    ((Finset.range L).filter fun i => sixCls L par i = 4)
+      = ((Finset.range L).filter fun i => par i && par (cycPred L i)).erase 1 := by
+  ext i
+  simp only [Finset.mem_erase, Finset.mem_filter, Finset.mem_range]
+  constructor
+  · intro ⟨hm, hc⟩
+    unfold sixCls at hc
+    by_cases hp : par i
+    · by_cases hq : par (cycPred L i)
+      · by_cases hi : i = 1
+        · rw [if_pos hp, if_pos hq, if_pos hi] at hc; exact absurd hc (by decide)
+        · exact ⟨hi, hm, by simp [hp, hq]⟩
+      · rw [if_pos hp, if_neg hq] at hc
+        split at hc
+        · exact absurd hc (by decide)
+        · split at hc <;> exact absurd hc (by decide)
+    · rw [if_neg hp] at hc; exact absurd hc (by decide)
+  · intro ⟨hi, hm, hc⟩
+    obtain ⟨hp, hq⟩ := Bool.and_eq_true_iff.mp hc
+    exact ⟨hm, by simp [sixCls, hp, hq, hi]⟩
+
+/-- Classes `1` and `2` split the valleys other than the minimum. -/
+theorem sixCls_filter_one_union_two (L : ℕ) (par : ℕ → Bool) :
+    ((Finset.range L).filter fun i => sixCls L par i = 1)
+        ∪ ((Finset.range L).filter fun i => sixCls L par i = 2)
+      = ((Finset.range L).filter fun i => par i && !par (cycPred L i)).erase 0 := by
+  ext i
+  simp only [Finset.mem_union, Finset.mem_erase, Finset.mem_filter, Finset.mem_range]
+  constructor
+  · rintro (⟨hm, hc⟩ | ⟨hm, hc⟩) <;> unfold sixCls at hc <;>
+      [skip; skip] <;>
+      · by_cases hp : par i
+        · by_cases hq : par (cycPred L i)
+          · rw [if_pos hp, if_pos hq] at hc; split at hc <;> exact absurd hc (by decide)
+          · rw [if_pos hp, if_neg hq] at hc
+            by_cases hi : i = 0
+            · rw [if_pos hi] at hc; exact absurd hc (by decide)
+            · exact ⟨hi, hm, by simp [hp, hq]⟩
+        · rw [if_neg hp] at hc; exact absurd hc (by decide)
+  · intro ⟨hi, hm, hc⟩
+    obtain ⟨hp, hq⟩ := Bool.and_eq_true_iff.mp hc
+    have hq' : par (cycPred L i) = false := by simpa using hq
+    by_cases hs : par (cycSucc L i)
+    · exact Or.inl ⟨hm, by simp [sixCls, hp, hq', hi, hs]⟩
+    · exact Or.inr ⟨hm, by simp [sixCls, hp, hq', hi, hs]⟩
+
+theorem sixCls_one_two_disjoint (L : ℕ) (par : ℕ → Bool) :
+    Disjoint ((Finset.range L).filter fun i => sixCls L par i = 1)
+      ((Finset.range L).filter fun i => sixCls L par i = 2) := by
+  refine Finset.disjoint_left.mpr fun i hi hj => ?_
+  have h1 := (Finset.mem_filter.mp hi).2
+  have h2 := (Finset.mem_filter.mp hj).2
+  rw [h1] at h2
+  exact absurd h2 (by decide)
+
+/-- Classes `1` and `2` together carry one fewer than the valleys. -/
+theorem sixCls_one_two_card {L : ℕ} {par : ℕ → Bool}
+    (h0 : (0 : ℕ) ∈ (Finset.range L).filter fun i => par i && !par (cycPred L i)) :
+    ((Finset.range L).filter fun i => sixCls L par i = 1).card
+        + ((Finset.range L).filter fun i => sixCls L par i = 2).card
+      = ((Finset.range L).filter fun i => par i && !par (cycPred L i)).card - 1 := by
+  rw [← Finset.card_union_of_disjoint (sixCls_one_two_disjoint L par),
+    sixCls_filter_one_union_two, Finset.card_erase_of_mem h0]
+
+/-- Class `1` is the cheap valleys with the minimum removed. -/
+theorem sixCls_filter_one (L : ℕ) (par : ℕ → Bool) :
+    ((Finset.range L).filter fun i => sixCls L par i = 1)
+      = ((Finset.range L).filter
+          fun i => par i && !par (cycPred L i) && par (cycSucc L i)).erase 0 := by
+  ext i
+  simp only [Finset.mem_erase, Finset.mem_filter, Finset.mem_range]
+  constructor
+  · intro ⟨hm, hc⟩
+    unfold sixCls at hc
+    by_cases hp : par i
+    · by_cases hq : par (cycPred L i)
+      · rw [if_pos hp, if_pos hq] at hc; split at hc <;> exact absurd hc (by decide)
+      · rw [if_pos hp, if_neg hq] at hc
+        by_cases hi : i = 0
+        · rw [if_pos hi] at hc; exact absurd hc (by decide)
+        · rw [if_neg hi] at hc
+          by_cases hs : par (cycSucc L i)
+          · exact ⟨hi, hm, by simp [hp, hq, hs]⟩
+          · rw [if_neg hs] at hc; exact absurd hc (by decide)
+    · rw [if_neg hp] at hc; exact absurd hc (by decide)
+  · intro ⟨hi, hm, hc⟩
+    obtain ⟨hleft, hs⟩ := Bool.and_eq_true_iff.mp hc
+    obtain ⟨hp, hq⟩ := Bool.and_eq_true_iff.mp hleft
+    have hq' : par (cycPred L i) = false := by simpa using hq
+    exact ⟨hm, by simp [sixCls, hp, hq', hi, hs]⟩
+
+/-- **Theorem 4.7's display, from a cycle.**  The six-term bound holds for a primitive
+`CycleMin` whose itinerary contains no `EE`, with the counts the display prints.  The two
+hypotheses are therefore sufficient as well as necessary: `not_cyclePrimitive_append_self`
+shows the first cannot be dropped, and the `EE` audit shows the second cannot. -/
+theorem cycleMin_sixTerm {n : ℕ} {w : List Branch} (hn : 3 ≤ n) (h : CycleMin n w)
+    (hprim : CyclePrimitive n w)
+    (hee : NoEE w.length (fun i => decide (floorPower^[i] n % 2 = 1)))
+    (hlen : 1 < w.length) (h3o : 3 * oddCount w < 2 * w.length) :
+    ∑ i ∈ Finset.range w.length,
+        1 / ((floorPower^[i] n : ℝ) * Real.log (floorPower^[i] n))
+      ≤ (1 : ℝ) / ((n : ℝ) * Real.log n)
+        + ((2 * oddCount w - w.length - 1 : ℕ) : ℝ)
+            / (((n : ℝ) + 2) * Real.log ((n : ℝ) + 2))
+        + ((2 * w.length - 3 * oddCount w : ℕ) : ℝ)
+            / ((expensiveValley n : ℝ) * Real.log (expensiveValley n))
+        + (1 : ℝ) / ((floorPower n : ℝ) * Real.log (floorPower n))
+        + ((2 * oddCount w - w.length - 1 : ℕ) : ℝ)
+            / ((floorPower (n + 2) : ℝ) * Real.log (floorPower (n + 2)))
+        + ((w.length - oddCount w : ℕ) : ℝ) / (2 * (n : ℝ) ^ 2 * Real.log n) := by
+  classical
+  set L := w.length with hL
+  set par : ℕ → Bool := fun i => decide (floorPower^[i] n % 2 = 1) with hpar
+  have hn2 : 2 ≤ n := by omega
+  have hLpos : 0 < L := h.1.2.2
+  have hnodd : n % 2 = 1 := cycleMin_start_odd hn2 h
+  have hlast : floorPower^[L - 1] n % 2 = 0 := by
+    have := cycleMin_last_even hn h; rwa [← hL] at this
+  -- index 0 is an odd valley, index 1 an odd internal
+  have hpar0 : par 0 = true := by simp [hpar, hnodd]
+  have hpredzero : par (cycPred L 0) = false := by
+    rw [cycPred_zero hLpos, hpar]; simp only [decide_eq_false_iff_not]; omega
+  have hsucc : floorPower n % 2 = 1 := cycleMin_succ_odd hn2 h (by omega)
+  have hpar1 : par 1 = true := by simp [hpar, hsucc]
+  have hpred1 : par (cycPred L 1) = true := by
+    rw [cycPred_of_pos le_rfl (by omega)]; simpa using hpar0
+  -- the two count identities
+  have hoddcard : ((Finset.range L).filter fun i => par i).card = oddCount w := by
+    rw [oddCount_eq_orbit_card w h.1.1]; congr 1; ext i; simp [hpar, hL]
+  have hevencard : ((Finset.range L).filter fun i => !par i).card = L - oddCount w := by
+    simpa [hpar] using evenCount_eq_orbit_card (n := n) (w := w) h.1.1
+  have hvalley := noEE_valley_card hLpos par hee
+  have hinternal := noEE_internal_card hLpos par hee
+  have hcheap := noEE_cheap_le hLpos par hee
+  have hhalf : L < 2 * oddCount w := cycle_length_lt_two_mul_oddCount hn2 h.1
+  have hoL : oddCount w ≤ L := by rw [hL]; exact oddCount_le_length w
+  -- membership facts the cardinality lemmas need
+  have hzeromem : (0 : ℕ) ∈ (Finset.range L).filter
+      fun i => par i && !par (cycPred L i) := by
+    refine Finset.mem_filter.mpr ⟨Finset.mem_range.mpr hLpos, ?_⟩
+    simp [hpar0, hpredzero]
+  have honemem : (1 : ℕ) ∈ (Finset.range L).filter
+      fun i => par i && par (cycPred L i) := by
+    refine Finset.mem_filter.mpr ⟨Finset.mem_range.mpr (by omega), ?_⟩
+    simp [hpar1, hpred1]
+  refine sixTerm_bound_packed (L := L) (x := fun i => (floorPower^[i] n : ℝ))
+    (n := (n : ℝ)) (v := (expensiveValley n : ℝ)) (t := (floorPower n : ℝ))
+    (tp := (floorPower (n + 2) : ℝ))
+    (c₁ := ((Finset.range L).filter fun i => sixCls L par i = 1).card)
+    (c₂ := ((Finset.range L).filter fun i => sixCls L par i = 2).card)
+    (k₁ := 2 * oddCount w - L - 1) (k₂ := 2 * L - 3 * oddCount w)
+    (c₄ := 2 * oddCount w - L - 1) (c₅ := L - oddCount w)
+    (sixCls L par) (by exact_mod_cast hn2) ?_ ?_ ?_ ?_ ?_ ?_ ?_ ?_ ?_ ?_ ?_ ?_ ?_
+  · -- 2 <= v
+    have := le_expensiveValley hn2 hnodd
+    have : (2 : ℕ) ≤ expensiveValley n := by omega
+    exact_mod_cast this
+  · -- 2 <= t
+    have := le_floorPower_odd (x := n) hnodd (by omega)
+    have : (2 : ℕ) ≤ floorPower n := by omega
+    exact_mod_cast this
+  · -- 2 <= tp
+    have hodd2 : (n + 2) % 2 = 1 := by omega
+    have := le_floorPower_odd (x := n + 2) hodd2 (by omega)
+    have : (2 : ℕ) ≤ floorPower (n + 2) := by omega
+    exact_mod_cast this
+  · -- n + 2 <= v
+    have := le_expensiveValley hn2 hnodd
+    exact_mod_cast this
+  · -- the six class bounds
+    intro i hi
+    have hiL : i < L := Finset.mem_range.mp hi
+    by_cases hp : par i
+    · have hio : floorPower^[i] n % 2 = 1 := by simpa [hpar] using hp
+      by_cases hq : par (cycPred L i)
+      · -- internal
+        have hipos : 1 ≤ i := by
+          rcases Nat.eq_zero_or_pos i with rfl | hx
+          · rw [hpredzero] at hq; exact absurd hq (by simp)
+          · exact hx
+        have hprev : floorPower^[i - 1] n % 2 = 1 := by
+          rw [cycPred_of_pos hipos hiL] at hq; simpa [hpar] using hq
+        by_cases hi1 : i = 1
+        · subst hi1
+          have hcls : sixCls L par 1 = 3 := sixCls_one hpar1 hpred1
+          rw [hcls]
+          have hb : sixBounds ((n : ℝ)) ((expensiveValley n : ℝ))
+              ((floorPower n : ℝ)) ((floorPower (n + 2) : ℝ)) 3
+              = (floorPower n : ℝ) := by simp [sixBounds]
+          rw [hb]
+          have := cycleMin_internal_ge_t hn2 h (i := 0) (by omega) (by simpa using hnodd)
+          simpa using (by exact_mod_cast this :
+            ((floorPower n : ℕ) : ℝ) ≤ ((floorPower^[1] n : ℕ) : ℝ))
+        · have hcls : sixCls L par i = 4 := by simp [sixCls, hp, hq, hi1]
+          rw [hcls]
+          have hb : sixBounds ((n : ℝ)) ((expensiveValley n : ℝ))
+              ((floorPower n : ℝ)) ((floorPower (n + 2) : ℝ)) 4
+              = (floorPower (n + 2) : ℝ) := by simp [sixBounds]
+          rw [hb]
+          have hne : floorPower^[i - 1] n ≠ n := by
+            intro hcon
+            exact hprim (i - 1) (by omega) (by omega) hcon
+          have := cycleMin_internal_ge_tplus hn2 h (i := i - 1) (by omega) hprev hne
+          have hidx : i - 1 + 1 = i := by omega
+          rw [hidx] at this
+          exact_mod_cast this
+      · -- valley
+        by_cases hi0 : i = 0
+        · subst hi0
+          have hcls : sixCls L par 0 = 0 := sixCls_zero hpar0 hpredzero
+          rw [hcls]
+          have hb : sixBounds ((n : ℝ)) ((expensiveValley n : ℝ))
+              ((floorPower n : ℝ)) ((floorPower (n + 2) : ℝ)) 0
+              = (n : ℝ) := by simp [sixBounds]
+          rw [hb]; simp
+        · have hne : floorPower^[i] n ≠ n := fun hcon =>
+            hprim i (by omega) hiL hcon
+          by_cases hs : par (cycSucc L i)
+          · have hcls : sixCls L par i = 1 := by simp [sixCls, hp, hq, hi0, hs]
+            rw [hcls]
+            have hb : sixBounds ((n : ℝ)) ((expensiveValley n : ℝ))
+                ((floorPower n : ℝ)) ((floorPower (n + 2) : ℝ)) 1
+                = (n : ℝ) + 2 := by simp [sixBounds]
+            rw [hb]
+            have := cycleMin_odd_ne_ge hn2 h hiL hio hne
+            exact_mod_cast this
+          · have hcls : sixCls L par i = 2 := by simp [sixCls, hp, hq, hi0, hs]
+            rw [hcls]
+            have hb : sixBounds ((n : ℝ)) ((expensiveValley n : ℝ))
+                ((floorPower n : ℝ)) ((floorPower (n + 2) : ℝ)) 2
+                = (expensiveValley n : ℝ) := by simp [sixBounds]
+            rw [hb]
+            -- the successor is inside the window: index L-1 is even, so i <= L-2
+            have hilt : i + 1 < L := by
+              rcases Nat.lt_or_ge (i + 1) L with hx | hx
+              · exact hx
+              · exfalso
+                have : i = L - 1 := by omega
+                rw [this, hpar] at hp
+                simp only [decide_eq_true_eq] at hp
+                omega
+            have hsucc' : floorPower^[i + 1] n % 2 = 0 := by
+              have hz : ¬ (par (i + 1) = true) := by
+                simp only [cycSucc, Nat.mod_eq_of_lt hilt] at hs
+                exact hs
+              simp only [hpar, decide_eq_true_eq] at hz
+              omega
+            have := cycleMin_oe_start_ge hn2 h hilt hio hsucc'
+            exact_mod_cast this
+    · -- even
+      have hev : floorPower^[i] n % 2 = 0 := by
+        have : ¬ (floorPower^[i] n % 2 = 1) := by simpa [hpar] using hp
+        omega
+      have hcls : sixCls L par i = 5 := by simp [sixCls, hp]
+      rw [hcls]
+      have hb : sixBounds ((n : ℝ)) ((expensiveValley n : ℝ))
+          ((floorPower n : ℝ)) ((floorPower (n + 2) : ℝ)) 5
+          = (n : ℝ) ^ 2 := by simp [sixBounds]
+      rw [hb]
+      exact_mod_cast cycleMin_even_ge_sq hn2 h hiL hev
+  · -- class 0 is a singleton
+    rw [sixCls_filter_zero hLpos hpar0 hpredzero]; simp
+  · rfl
+  · rfl
+  · -- class 3 is a singleton
+    rw [sixCls_filter_three (by omega) hpar1 hpred1]; simp
+  · -- class 4
+    rw [sixCls_filter_four, Finset.card_erase_of_mem honemem]
+    omega
+  · -- class 5
+    rw [sixCls_filter_five]; exact hevencard
+  · -- the cheap count
+    have hcard := sixCls_one_two_card (L := L) (par := par) hzeromem
+    have hcheapmem : (0 : ℕ) ∈ (Finset.range L).filter
+        fun i => par i && !par (cycPred L i) && par (cycSucc L i) := by
+      refine Finset.mem_filter.mpr ⟨Finset.mem_range.mpr hLpos, ?_⟩
+      have hs0 : par (cycSucc L 0) = true := by
+        have : cycSucc L 0 = 1 := by
+          simp only [cycSucc, Nat.zero_add]
+          exact Nat.mod_eq_of_lt (by omega)
+        rw [this]; exact hpar1
+      simp [hpar0, hpredzero, hs0]
+    rw [sixCls_filter_one, Finset.card_erase_of_mem hcheapmem]
+    omega
+  · -- the exchange total
+    have hcard := sixCls_one_two_card (L := L) (par := par) hzeromem
+    omega
 
 end Problems.Juggler

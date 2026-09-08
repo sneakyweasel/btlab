@@ -41050,3 +41050,40 @@ The honest state: every mechanism in the paper is measured by theta, all
 of them are empty where a cycle could live, and the one direction that
 would close the problem has no visible route. That is worth saying
 plainly rather than generating a fourth attack to have something to do.
+
+## The six-term display, from a cycle
+
+The formalization pass, run on the statement whose hypotheses I had just
+edited into the paper. cycleMin_sixTerm now derives Theorem 4.7's display
+from CycleMin, CyclePrimitive and NoEE. So the two hypotheses are
+sufficient as well as necessary -- not_cyclePrimitive_append_self already
+showed the first cannot be dropped, and the EE audit the second -- and no
+third hypothesis was hiding, which is what I was looking for.
+
+The instantiation needs only what the statement already carries. The
+counts o-e-1 and 2e-o are natural numbers exactly when 3o < 2L, which is
+odd_excess_lt_even at o = o_min. I got that wrong first: I wrote the
+display with L-o-1 and 2o-L, which are e-1 and o-e, not o-e-1 and 2e-o.
+The build caught it as an arity error and then as an omega failure, and
+translating the counts into (L, o) is where the strictness of L < 2o
+turned out to matter -- cycle_length_le_two_mul_oddCount states only the
+non-strict form, so cycle_length_lt_two_mul_oddCount is new. Its proof is
+the same three lines with the last inequality kept strict.
+
+The result worth keeping is a simplification. The packing count
+#cheap <= o-e needs no block decomposition at all. A cheap valley's
+successor is an internal and the successor map is injective, which is
+cheap_le_internal, proved two entries ago for the hypothesis-free cap;
+and NoEE makes the valleys exactly the even letters, by injecting back
+with cycSucc, which fixes the internal count at o-e. noEE_cheap_le is
+then one omega. So blocks_ge_two_add_length_le_sum, blocks_eq_one_ge and
+blocks_ge_two_eq_sum_iff -- the run-length argument the paper uses for
+this count -- are not needed for the bound. They remain the source of the
+extremality claim; they are not the source of the inequality.
+
+Method note. Two of my four build errors were the same species: a
+targeted replacement that hit the first of two identical lines. The
+hhalf line appears in cycleMin_threeTerm and in cycleMin_sixTerm, and I
+edited the wrong one, which then failed as an unknown identifier three
+hundred lines earlier than the theorem I was working on. When two proofs
+share a line, a replacement keyed on that line alone is a coin flip.

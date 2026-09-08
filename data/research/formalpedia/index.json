@@ -23679,11 +23679,21 @@
       "trust": "kernel"
     },
     {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 1031,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "cycle_length_lt_two_mul_oddCount",
+      "trust": "kernel"
+    },
+    {
       "doc": "The cyclic successor.",
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "def",
       "ledger": [],
-      "line": 1046,
+      "line": 1055,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "cycSucc",
       "trust": "kernel"
@@ -23693,7 +23703,7 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 1048,
+      "line": 1057,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "cycSucc_lt",
       "trust": "kernel"
@@ -23703,7 +23713,7 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 1052,
+      "line": 1061,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "cycPred_cycSucc",
       "trust": "kernel"
@@ -23713,7 +23723,7 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 1063,
+      "line": 1072,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "cycSucc_injOn",
       "trust": "kernel"
@@ -23723,7 +23733,7 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 1072,
+      "line": 1081,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "cheap_le_internal",
       "trust": "kernel"
@@ -23733,7 +23743,7 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 1087,
+      "line": 1096,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "cheap_le_valley",
       "trust": "kernel"
@@ -23743,7 +23753,7 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 1099,
+      "line": 1108,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "two_mul_cheap_le_odd",
       "trust": "kernel"
@@ -23753,7 +23763,7 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "def",
       "ledger": [],
-      "line": 1123,
+      "line": 1132,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "CyclePrimitive",
       "trust": "kernel"
@@ -23763,7 +23773,7 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 1128,
+      "line": 1137,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "not_cyclePrimitive_append_self",
       "trust": "kernel"
@@ -23773,7 +23783,7 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 1140,
+      "line": 1149,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "cyclePrimitive_orbit_injOn",
       "trust": "kernel"
@@ -23783,9 +23793,209 @@
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 1161,
+      "line": 1170,
       "module": "Problems.Juggler.FinanceTransfer",
       "name": "cyclePrimitive_card_orbit",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**No two cyclically adjacent even letters.**",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 1192,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "NoEE",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Under `NoEE` the even letters inject into the valleys by the cyclic successor.",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 1196,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "noEE_even_le_valley",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Under `NoEE` the valleys are exactly the even letters.**",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 1215,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "noEE_valley_card",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Hence the internals number `o - e`.**",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 1221,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "noEE_internal_card",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**And the cheap valleys number at most `o - e`**, which is the packing count. This is the bound the run-type packing derives from a block decomposition. It needs no blocks: a cheap valley's successor is an internal and the successor map is injective (`cheap_le_internal`), and `NoEE` fixes the internal count.",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 1234,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "noEE_cheap_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The six-class cyclic classification: the minimum, other cheap valleys, expensive valleys, the first internal, the other internals, and the evens.",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 1258,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "sixCls",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 1264,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "sixCls_eq_five",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 1272,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "sixCls_zero",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 1277,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "sixCls_one",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 1282,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "sixCls_eq_zero_imp",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 1294,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "sixCls_eq_three_imp",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Class `0` is the singleton `{0}`.",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 1310,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "sixCls_filter_zero",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Class `3` is the singleton `{1}`.",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 1320,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "sixCls_filter_three",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 1329,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "sixCls_filter_five",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Class `4` is the internals with index one removed.",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 1335,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "sixCls_filter_four",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Classes `1` and `2` split the valleys other than the minimum.",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 1358,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "sixCls_filter_one_union_two",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 1382,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "sixCls_one_two_disjoint",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Classes `1` and `2` together carry one fewer than the valleys.",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 1392,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "sixCls_one_two_card",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Class `1` is the cheap valleys with the minimum removed.",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 1401,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "sixCls_filter_one",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Theorem 4.7's display, from a cycle.** The six-term bound holds for a primitive `CycleMin` whose itinerary contains no `EE`, with the counts the display prints. The two hypotheses are therefore sufficient as well as necessary: `not_cyclePrimitive_append_self` shows the first cannot be dropped, and the `EE` audit shows the second cannot.",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 1431,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "cycleMin_sixTerm",
       "trust": "kernel"
     },
     {
@@ -66982,7 +67192,7 @@
       ]
     },
     "Problems.Juggler.FinanceTransfer": {
-      "declarations": 68,
+      "declarations": 89,
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "imports": [
         "Problems.Juggler.CycleCore",
@@ -68292,13 +68502,13 @@
     }
   },
   "totals": {
-    "declarations": 4911,
+    "declarations": 4932,
     "declarations_with_a_ledger_row": 3195,
     "ledger_rows_naming_a_file": 338,
     "modules": 209,
     "trust": {
       "compiler": 54,
-      "kernel": 4857
+      "kernel": 4878
     }
   }
 }
