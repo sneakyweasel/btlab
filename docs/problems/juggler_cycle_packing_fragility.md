@@ -113,6 +113,40 @@ factor of \(150\). `EE` is realized and common: it occurs in
 So dropping the unstated hypothesis leaves \(117\) survivors below
 \(10^5\), not \(99\).
 
+## The reopen condition, tested and failed
+
+The PARK below originally said this would reopen on a proof that closure
+at \(o_{\min}(L)\) caps the `EE` density below the \(50\)-adjacency
+threshold at \(L=56347\). **It does not, and cannot.**
+
+Impose every constraint Paper A proves about a cycle-minimum itinerary and
+nothing else: above-anchor prefixes (\(3^{a_j}\ge2^j\) for all \(j\)),
+Theorem 3.29's run cap
+(\(\lfloor(e-i)\log2/\log(3/2)\rfloor\)), \(o=o_{\min}(L)\), and the
+\(\mathtt{OO}\ldots\mathtt{E}\) shape of `cycleMin_word_shape`. At all
+\(18\) fragile lengths there is an admissible word carrying more than
+enough `EE` to void the exclusion.
+
+**The witness keeps runs of length at most two** --- the packing's *own*
+extremal shape. It is the Beatty interleaving of `OOE` and `OE` blocks
+over \(e-k\) evens followed by a tail of \(k\) evens. So no run-structure
+claim is violated; what breaks is the block/even-letter correspondence,
+which is the whole of the `EE` gap. That closes the route rather than
+leaving it open: even granting the packing's extremality claim about runs
+in full, the counting still fails.
+
+One structural fact came out of it, and it is not a coincidence.
+\(o_{\min}\) is defined by \(o\log(3/2)>e\log2\) and the run cap uses the
+same constant, so at every one of the \(42\) lengths
+
+\[
+\Big\lfloor e\cdot\tfrac{\log 2}{\log(3/2)}\Big\rfloor = o_{\min}-1 ,
+\]
+
+i.e. **the one-block word \(\mathtt{O}^{o}\mathtt{E}^{e}\) is forbidden by
+exactly one letter.** Two blocks are admissible, and already carry
+\(e-2\) adjacencies.
+
 ## What this does and does not say
 
 It is a statement about the *proof*, not about cycles. A voided
@@ -130,11 +164,16 @@ the recount --- if an `EE` forced extra height relations, some of the
 
 **PARK.** The question asked is answered and the answer is sharp: 4.7
 carries no floor, its budget is \(1.4048\), and its missing hypothesis
-costs \(18\) of \(42\) exclusions. What would reopen this is a proof
-that closure at \(o_{\min}(L)\) bounds the `EE` density below the
-\(50\)-adjacency threshold at \(L=56347\) --- which is the packing
-claim again, and the four earlier entries found it does not follow
-from exponent bookkeeping.
+costs \(18\) of \(42\) exclusions --- each of which an admissible word
+with runs of length at most two actually voids.
+
+The obvious reopener is now closed rather than open. Recovering the
+no-`EE` hypothesis needs a constraint that is **floor-sensitive**: every
+constraint used above is exponent bookkeeping, which is exact for the
+multipliers and blind to the floors, and the witness satisfies all of
+them. Nothing about run structure can help, since the witness already has
+the run structure the packing wants. Reopen only on a genuinely new
+constraint of that kind --- not on a sharper version of these.
 
 ## Files
 

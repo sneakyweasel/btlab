@@ -217,6 +217,136 @@ def fragility_scan(*, floor: int = PUBLISHED_FLOOR) -> dict[str, Any]:
     }
 
 
+# --- Feasibility: can an admissible word carry the EE that voids an exclusion? ---
+#
+# The constraints below are the ones Paper A proves for a cycle-minimum
+# itinerary, and nothing else:
+#   (1) above-anchor, every prefix j has 3^{a_j} >= 2^j;
+#   (2) Theorem 3.29's run cap, an odd run beginning after i evens have been
+#       consumed has length at most floor((e-i) * log2/log(3/2));
+#   (3) o = o_min(L);
+#   (4) the word shape OO...E (`cycleMin_word_shape`).
+#
+# The witness deliberately keeps runs of length at most two -- the packing's
+# own extremal shape -- so that no run-structure claim is violated. What it
+# breaks is the block/even-letter correspondence: k of the evens sit in a tail
+# rather than one per block. That is the whole of the `EE` gap.
+
+RUN_CAP_CONST = math.log(2) / math.log(1.5)
+
+
+def blocks_word(odd: int, blocks: int) -> str:
+    """Beatty interleaving of `odd - blocks` OOE blocks with `2*blocks - odd` OE blocks."""
+    ooe = odd - blocks
+    oe = 2 * blocks - odd
+    if ooe < 0 or oe < 0:
+        return ""
+    parts = []
+    for i in range(1, blocks + 1):
+        is_ooe = (i * ooe + blocks - 1) // blocks - ((i - 1) * ooe + blocks - 1) // blocks
+        parts.append("OOE" if is_ooe else "OE")
+    return "".join(parts)
+
+
+def ee_witness_word(odd: int, even: int, tail: int) -> str:
+    """Blocks over `even - tail` evens, then a tail of `tail` evens."""
+    return blocks_word(odd, even - tail) + "E" * tail
+
+
+def above_anchor_min(word: str) -> float:
+    """Least prefix surplus `a_j*log3 - j*log2`; nonnegative iff above-anchor."""
+    a = 0
+    worst = math.inf
+    l2, l3 = math.log(2), math.log(3)
+    for j, ch in enumerate(word, start=1):
+        if ch == "O":
+            a += 1
+        worst = min(worst, a * l3 - j * l2)
+    return worst
+
+
+def max_odd_run(word: str) -> int:
+    best = run = 0
+    for ch in word:
+        run = run + 1 if ch == "O" else 0
+        best = max(best, run)
+    return best
+
+
+def run_caps_hold(word: str, even: int) -> bool:
+    """Theorem 3.29's cap on every odd run, at the position where it starts."""
+    used = 0
+    i = 0
+    while i < len(word):
+        if word[i] == "E":
+            used += 1
+            i += 1
+            continue
+        run = 0
+        while i < len(word) and word[i] == "O":
+            run += 1
+            i += 1
+        if run > int((even - used) * RUN_CAP_CONST):
+            return False
+    return True
+
+
+def cyclic_ee(word: str) -> int:
+    return sum(1 for i in range(len(word)) if word[i] == "E" and word[i - 1] == "E")
+
+
+def ee_witness(length: int, *, floor: int = PUBLISHED_FLOOR) -> dict[str, Any] | None:
+    """An admissible word carrying enough `EE` to void `length`, or `None`.
+
+    `None` means either the length is robust (no `EE` count voids it) or no
+    witness of this shape exists.
+    """
+    need = ee_to_resurrect(length, floor=floor)
+    if need is None:
+        return None
+    odd = o_min(length)
+    even = length - odd
+    word = ee_witness_word(odd, even, need + 1)
+    if len(word) != length or word.count("O") != odd:
+        return None
+    anchor = above_anchor_min(word)
+    return {
+        "L": length,
+        "ee_needed": need,
+        "ee_carried": cyclic_ee(word),
+        "max_odd_run": max_odd_run(word),
+        "above_anchor": anchor >= 0,
+        "run_caps_hold": run_caps_hold(word, even),
+        "shape_OO_dots_E": word[:2] == "OO" and word[-1] == "E",
+        "o_is_o_min": True,
+        "voids_exclusion": (
+            anchor >= 0
+            and run_caps_hold(word, even)
+            and cyclic_ee(word) >= need
+            and word[:2] == "OO"
+            and word[-1] == "E"
+        ),
+    }
+
+
+def witness_scan(*, floor: int = PUBLISHED_FLOOR) -> dict[str, Any]:
+    """Every fragile length, against an admissible runs-at-most-two witness."""
+    rows = [w for L in PACKING_DEATHS if (w := ee_witness(L, floor=floor)) is not None]
+    return {
+        "bound": "packing_ee_feasibility",
+        "floor": floor,
+        "fragile_examined": len(rows),
+        "voided_by_admissible_word": sum(1 for r in rows if r["voids_exclusion"]),
+        "max_run_over_witnesses": max((r["max_odd_run"] for r in rows), default=0),
+        # The reopen condition of the dossier: does closure cap EE below threshold?
+        "closure_caps_ee_below_threshold": all(
+            not r["voids_exclusion"] for r in rows
+        ),
+        "rows": rows,
+        "halt_theorem": False,
+        "refutes_theorem_4_8": False,
+    }
+
 def write_packing_fragility_artifacts(
     payload: dict[str, Any] | None = None, *, floor: int = PUBLISHED_FLOOR
 ) -> dict[str, Any]:

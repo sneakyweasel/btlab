@@ -10,6 +10,10 @@ from research.juggler_sequence.cycle_budget_opt import budget_sum_terms
 from research.juggler_sequence.cycle_finance import EPS_CONST, PUBLISHED_FLOOR
 from research.juggler_sequence.cycle_packing_fragility import (
     PACKING_DEATHS,
+    RUN_CAP_CONST,
+    above_anchor_min,
+    blocks_word,
+    witness_scan,
     ee_model_holds,
     ee_to_resurrect,
     fragility_row,
@@ -143,3 +147,59 @@ def test_scan_makes_no_halt_or_refutation_claim() -> None:
     assert data["no_cycle_all_lengths"] is False
     assert data["refutes_theorem_4_8"] is False
     assert math.isfinite(data["refinement_budget_max"])
+
+
+# --- Feasibility: the dossier's reopen condition ---
+
+
+def test_witness_words_are_admissible_and_void_every_fragile_length() -> None:
+    """The reopen condition, answered: closure at o_min does not cap EE.
+
+    Each witness satisfies every constraint Paper A proves -- above-anchor,
+    Theorem 3.29's run caps, o = o_min, and the OO...E shape -- and still
+    carries enough EE to defeat the exclusion.
+    """
+    data = witness_scan()
+    assert data["fragile_examined"] == 18
+    assert data["voided_by_admissible_word"] == 18
+    assert data["closure_caps_ee_below_threshold"] is False
+    for row in data["rows"]:
+        assert row["above_anchor"], row["L"]
+        assert row["run_caps_hold"], row["L"]
+        assert row["shape_OO_dots_E"], row["L"]
+        assert row["ee_carried"] >= row["ee_needed"], row["L"]
+
+
+def test_witnesses_keep_the_packings_own_run_shape() -> None:
+    """Runs of length at most two, so no run-structure claim is violated.
+
+    This is what closes the route: even granting the packing's extremal claim
+    about runs, the block/even-letter correspondence still fails.
+    """
+    data = witness_scan()
+    assert data["max_run_over_witnesses"] == 2
+
+
+def test_one_block_word_is_forbidden_by_exactly_one_letter() -> None:
+    """floor(e * log2/log(3/2)) = o_min - 1 at every packing death.
+
+    Not a coincidence: o_min is defined by o*log(3/2) > e*log2, the same
+    constant the run cap uses.
+    """
+    for length in PACKING_DEATHS:
+        odd = o_min(length)
+        even = length - odd
+        assert int(even * RUN_CAP_CONST) == odd - 1, length
+
+
+def test_blocks_word_counts_are_exact() -> None:
+    for odd, blocks in [(53, 31), (35551, 20745), (7, 4)]:
+        w = blocks_word(odd, blocks)
+        assert w.count("O") == odd
+        assert w.count("E") == blocks
+
+
+def test_above_anchor_rejects_a_descending_prefix() -> None:
+    """The checker must actually bite: OE from the start dips below the anchor."""
+    assert above_anchor_min("OE") < 0
+    assert above_anchor_min("OOE") > 0

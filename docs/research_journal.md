@@ -40621,3 +40621,53 @@ Worth keeping: the guard caught a real architectural change and not a
 typo. I had been treating the layer order as bookkeeping to be satisfied;
 it is a claim about the shape of the development, and this edit changed
 that shape.
+
+## The reopen condition, tested and failed
+
+Yesterday's PARK named its own reopener: a proof that closure at o_min
+caps the EE density below the 50-adjacency threshold at L=56347. I tested
+it. It does not, and the way it fails closes the route rather than leaving
+it open.
+
+Impose every constraint Paper A proves about a cycle-minimum itinerary and
+nothing else -- above-anchor prefixes, Theorem 3.29's run cap, o =
+o_min(L), and the OO...E shape of cycleMin_word_shape. At all 18 fragile
+lengths there is an admissible word carrying more EE than the threshold
+needs. 18 of 18.
+
+The first witness I built was O^(o-1) E O E^(e-1), which has e-2
+adjacencies, hundreds of times what is needed. But it has an odd run of
+35550, so the state reaches n^{(3/2)^35550} -- admissible under the proved
+constraints and obviously not a cycle. That objection would have been
+fair, so I removed it: the second witness is the Beatty interleaving of
+OOE and OE blocks over e-k evens followed by a tail of k evens. Runs of
+length at most two -- the packing's own extremal shape -- and still enough
+EE. Every one of the 18.
+
+That is the part worth keeping. What breaks is not the run structure but
+the block/even-letter correspondence. The packing needs one even letter
+per block, and a tail of evens violates that while leaving every run
+untouched. So granting the extremality claim about runs in full does not
+rescue the counting, and no sharpening of the run analysis will. What
+would be needed is a floor-sensitive constraint; everything used here is
+exponent bookkeeping, which is exact for the multipliers and blind to the
+floors. I had written that sentence four entries ago about why the
+question could not be settled by bookkeeping. It turns out to cut the
+other way too: bookkeeping cannot rescue the hypothesis either.
+
+A structural identity fell out, and it is not a coincidence. o_min is
+defined by o log(3/2) > e log2; the run cap uses the same constant. So
+
+  floor(e * log2/log(3/2)) = o_min - 1
+
+at every one of the 42 lengths -- the one-block word O^o E^e is forbidden
+by exactly one letter. Two blocks are admissible and already carry e-2
+adjacencies. The cap and the odd count are the same inequality read twice,
+which is why the cap can never forbid much: it is calibrated to o_min by
+construction.
+
+Method note. I nearly stopped at the first witness. The reason I did not
+is that I could hear the objection -- "your word is absurd" -- and it
+would have been correct about the word while wrong about the conclusion.
+Building the second one cost ten minutes and changed the result from
+suggestive to closing, because it meets the packing on its own ground.
