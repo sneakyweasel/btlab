@@ -332,8 +332,13 @@ type Paper B proves enters Appendix C as an explicit hypothesis.
 ### 1.4 Verification
 
 Statements carry one of four roles. *Lean*: the exact combinatorial
-layer is formalized in Lean 4 (`formal/Problems/Juggler/FateContagion.lean`,
-no `sorry`; names in Appendix A). *Human proof*: the analytic and
+layer is formalized in Lean 4; the root `formal/Problems/JugglerFatePaper.lean`
+imports exactly the seven modules this paper cites and builds with
+`lake build Problems.JugglerFatePaper`, without `sorry` and without
+`native_decide`; `formal/AxiomCheckPaperC.lean` prints the axiom
+dependencies of every cited name and `AxiomCheckPaperC.expected`
+records them — Mathlib's `propext`, `Classical.choice`, `Quot.sound`
+and nothing else (names in Appendix A). *Human proof*: the analytic and
 probabilistic counting. *Verified computation*: exact integer
 computations (the descent floor is Paper A's; the closure of
 \([1,260]\) under the two productions up to \(10^9\) is computed
@@ -347,14 +352,18 @@ constants; they prove nothing and are labelled wherever they appear.
 | \(OE\) fiber is an interval; cell identity (Lemma 3.2) | Lean |
 | Odd generation (Theorem 6.1) | Lean |
 | Envelope descent into the floor (Lemma 8.1) | Lean, on Paper A's power envelope |
-| Sweep lemma, monotone pairing, fiber parity, thin fibers (Lemmas 4.1, 4.1', 4.2--4.3) | human proof |
+| Sweep lemma (Lemma 4.1), both half-cell conventions | Lean |
+| Monotone pairing, fiber parity, thin fibers (Lemmas 4.1', 4.2--4.3) | human proof |
 | Block average (Proposition 4.4), \(C_0=250\) explicit | human proof |
 | Share law and its three corollaries (Lemma 4.5, Corollary 4.6) | human proof |
 | Cube fibers full or alternating (Lemma 4.7) | Lean |
-| Recursion lemma and contagion (Lemma 5.1, Theorem 5.3) | human proof |
+| Recursion lemma (Lemma 5.1) | Lean |
+| Seed and contagion (Lemma 5.2, Theorem 5.3) | human proof |
+| Least failure is \(OO\)-type; first-letter trichotomy (Proposition 6.3(i), Section 6.2) | Lean |
 | First-letter identity (6.1) | human proof (exact combinatorics) |
 | Almost-all equivalence (Theorems 7.2, 7.3) | human proof |
-| Chernoff, Azuma, exponential-moment arguments (Sections 8--10) | human proof |
+| Pressure telescoping (Proposition 9.3) | Lean, on the word-weight framework |
+| Chernoff, Azuma, exponential-moment arguments (Sections 8--10, except Proposition 9.3) | human proof |
 | Localized triple discrepancy (Appendix C) | hypothesis, conditional |
 | Numerical experiments (Section 11) | observation |
 
@@ -504,6 +513,15 @@ Put \(X=1/(2a)\ge 1\), so \(G=\lfloor X\rfloor+1\) and, from
 The bad count is symmetric. For left-open cells the same proof applies
 verbatim (the first point in a cell \((c,c+\tfrac12]\) after a point
 \(\le c\) is \(\le c+b\le c+\tfrac12\)). \(\square\)
+
+Lean: `sweep_fract_lt_half`, `sweep_fract_ge_half` (closed cells) and
+`sweep_rep_le_half`, `sweep_rep_gt_half` (left-open cells, with the
+representative \(x-\lceil x\rceil+1\in(0,1]\)), in
+`formal/Problems/Juggler/FateSweep.lean`. The formal count uses the
+strictly interior cells (at least \((T-3)/2\) of one colour, ratio
+\(11/25\)) in place of the traversed cells (ratio \(10/23\)), and
+obtains the left-open case from the closed one by
+\(x_j\mapsto -x_{H+1-j}\).
 
 The product \(g/G\cdot 10/23\) cannot reach \(\tfrac13\). An
 adversarial sequence with steps in \([a,b]\) can lock a \(3+1\)
@@ -1034,6 +1052,11 @@ using \(c_0=Kt_1^\lambda\le Kt^\lambda\). Hence the bound holds on
 \([e_{\min}t_1,t_1e_{\max}^{-N}]\) for every \(N\), i.e. all
 \(t\ge e_{\min}t_1\). \(\square\)
 
+Lean: `recursion_lemma` in `formal/Problems/Juggler/FateRecursion.lean`,
+with \(e_{\min}\le e_i\le e_{\max}\) as bounds rather than extrema and
+\(\lambda>0\) in place of \(\lambda\in(0,1)\); the hypotheses
+\(g\ge 0\) and \(\lambda<1\) are not used.
+
 ### 5.4 The seed
 
 **Lemma 5.2 (seed).** Every nonempty backward-closed \(A\) contains an
@@ -1467,6 +1490,12 @@ a smaller failure). So \(n_F\) is an \(OO\)-type failure and
 \(\psi_F(t)>0\) for \(t\) with \(e^{t/2}<n_F\le e^t\). (ii) is the
 decomposition. \(\square\)
 
+Lean: `minimal_failure_odd_odd` and `exists_minimal_failure` (the least
+failure is odd with odd image), and the three pieces as
+`first_letter_trichotomy` with `first_letter_pieces_disjoint`, in
+`formal/Problems/Juggler/FateFirstLetter.lean`; the log-mass
+bookkeeping of (6.1) is not formalized.
+
 **Remark 6.4 (the walk heuristic; not a theorem).** If \(F\) were
 \(S\)-fair, if the fiber weights were ideal
 (\(\varphi^{\rm fib}_F=\varphi_F\)), and if the error term of (6.1)
@@ -1864,6 +1893,13 @@ step of Theorem 9.2 with \(a_{\theta,q}\) in place of \(a_\theta\) and
 \(\theta=\log\frac{p_C(1-q)}{q(1-p_C)}\) gives \(D(p_C\|q)\).
 \(\square\)
 
+Lean: `weightGen_succ_le_share` (the one-depth step),
+`one_add_le_exp_excess`, `weightGen_le_pressure` (the telescoped bound)
+and `count_le_pressure` (the exponential Markov step), in
+`formal/Problems/Juggler/TiltedShare.lean`, on the word-weight
+framework of `RateFreeDensity`; `tilt_exponent_eq_kl` is the identity
+at the re-centring tilt.
+
 ### 9.3 What the weakest form does not need
 
 **(a) Any \(o(\log\log y)\) initial depths are free.** A letter
@@ -2186,10 +2222,13 @@ at depth of order \(\log\log n\): the Terras step of the Juggler map.
 
 ## Appendix A. Lean names
 
-All in `formal/Problems/Juggler/FateContagion.lean` unless noted; the
-module compiles with `lake build Problems.Juggler` without `sorry`.
-Lean certifies the exact combinatorial identities listed here, not the
-analytic density estimates.
+All in `formal/Problems/Juggler/FateContagion.lean` unless noted. The
+root `formal/Problems/JugglerFatePaper.lean` imports exactly the seven
+modules named here and builds with `lake build Problems.JugglerFatePaper`
+without `sorry` and without `native_decide`;
+`formal/AxiomCheckPaperC.expected` records the axioms of every name
+below. Lean certifies the exact combinatorial identities and the two
+abstract lemmas listed here, not the analytic density estimates.
 
 | Statement | Lean |
 |---|---|
@@ -2203,7 +2242,11 @@ analytic density estimates.
 | Lemma 8.1 (envelope descent) | `iterate_le_of_envelope`, `mem_of_envelope_floor`, `reachesOne_of_itinerary_envelope`; power envelope `power_bound_word` (Paper A layer) |
 | Lean floor \(N_0=260\) | `reachesOne_of_lt_two_hundred_sixty_one` |
 | Lemma 4.7 (cube fibers), in `Problems/Juggler/CubeFiber.lean` | `cube_fiber_range`, `cube_fiber_sqrt_even`, `cube_fiber_even_image`, `even_cube_fiber_full`, `cube_fiber_sqrt_odd`, `cube_fiber_alternating`, `odd_cube_fiber_alternating` |
-| Lemmas 4.1, 4.1', 4.2--4.3, Proposition 4.4 (\(C_0=250\)), Lemma 5.1, Theorem 5.3, Sections 7--10, Appendix C | human proofs |
+| Lemma 4.1 (sweep), in `Problems/Juggler/FateSweep.lean` | `Sweep.cell`, `Sweep.sweep_cell`, `sweep_fract_lt_half`, `sweep_fract_ge_half`, `sweep_ceil`, `sweep_rep_le_half`, `sweep_rep_gt_half` |
+| Lemma 5.1 (recursion), in `Problems/Juggler/FateRecursion.lean` | `recursion_lemma` |
+| Section 6.2, Proposition 6.3(i), in `Problems/Juggler/FateFirstLetter.lean` | `MinimalMember`, `minimalMember_odd`, `minimalMember_image_odd`, `minimal_failure_odd_odd`, `exists_minimal_failure`, `first_letter_trichotomy`, `first_letter_pieces_disjoint` |
+| Proposition 9.3 (pressure telescoping), in `Problems/Juggler/TiltedShare.lean` | `oddMass`, `tiltedShare`, `weightGen_succ_le_share`, `one_add_le_exp_excess`, `weightGen_le_pressure`, `count_le_pressure`, `NoMomentum`, `count_le_of_noMomentum`, `tilt_exponent_eq_kl`, `MeanShare`, `weightGen_le_of_meanShare`, `MeanShareOff`, `initial_depths_are_free`, `tower_ratio_lt_one` |
+| Lemmas 4.1', 4.2--4.3, Proposition 4.4 (\(C_0=250\)), Lemma 5.2, Theorem 5.3, Sections 7--10 except Proposition 9.3, Appendix C | human proofs |
 
 ## Appendix B. Constants and artifacts
 
@@ -2254,6 +2297,13 @@ pressure (biased Chernoff) at the same \(q\): \(19,41,214,1496\) /
 | `data/research/juggler/fate_contagion/summary.json` | `85030bcb5f4964b814b101683c2721efa5f7299b687afa9e399febe60343a10c` |
 | `data/research/juggler/tao_reduction/summary.json` | `76c0ae713d34569cdf8efd90231712f9281f7d5083346a2d9384c536f7cd34cc` |
 | `formal/Problems/Juggler/FateContagion.lean` | `cac6a00884346fcc98a03603bf919e03a681f8f66b8b55f3cff9d336e83a2472` |
+| `formal/Problems/Juggler/CubeFiber.lean` | `acbf621b4651782eff7922512d096832aa20ea59a59261839b3e5926189dedba` |
+| `formal/Problems/Juggler/TiltedShare.lean` | `cfb1b2b6cbe08be3a9acc1f4fa33c9afaa2dfa73beed2125dbe0793c540e239e` |
+| `formal/Problems/Juggler/FateRecursion.lean` | `13de9eb27d4e34b58d783d589574838028d767bcb5ea3f2bb8449e74e3be04d3` |
+| `formal/Problems/Juggler/FateFirstLetter.lean` | `635bb6163f5a054085087eefcd2c62037c61538fe863d53e9dca69da8fddb3e9` |
+| `formal/Problems/Juggler/FateSweep.lean` | `71c5c2472d2c2d31d7b2565e66f92e97b3ae9bd0c76aa45a1703eea7bd910d39` |
+| `formal/Problems/JugglerFatePaper.lean` | `82feb9e3933f3e0a5d9aafada1971654ee6e598f73bfd9aad035f19dc251479f` |
+| `formal/AxiomCheckPaperC.expected` | `8db1c8284e9b206df4b594d1aefc1cdbc4fd6ddde29f1a423ea1321b6c98e14e` |
 | `src/research/juggler_sequence/fate_contagion.py` | `34f8cff465e00187cb85e1dc9a75a3b250caa4c8f38a3bc41aef29f68be08b7a` |
 | `src/research/juggler_sequence/tao_reduction.py` | `90f930bd604f6aa38c3a5ec8265d270d218240cdb358b20b19cad98dc4ac2f1c` |
 | `docs/theory/figures/render_paper_c_figures.py` | `5e434450835aadb4ed5ed2cbed00cc33f774996ba9ef229cb0434fc677bff5b7` |
