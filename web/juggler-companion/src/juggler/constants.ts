@@ -130,6 +130,23 @@ export const BLOCK_AVERAGE_C0 = 250;
 export const BLOCK_AVERAGE_SHARE = 1 / 4;
 export const BLOCK_M_PRIME_MAX = 32;
 export const TOUR_BLOCK_M_PRIME = 10;
+/** Paper C §5.1 three sources. Display fork of fate_contagion.RECURSIONS. */
+export const SOURCE_X_MAX = 1_000_000;
+export const TOUR_SOURCE_X = 10_000;
+export const SOURCE_SCALES = [
+  {
+    value: 10_000,
+    note: "Item-2 parents sit in (5.6, 31.6] — the block-average chips.",
+  },
+  {
+    value: 100_000,
+    note: "One decade up. Item-2 parents in (8.7, 56.2].",
+  },
+  {
+    value: 1_000_000,
+    note: "Playground cap. Item-2 parents in (13.3, 177.8].",
+  },
+] as const;
 export const BLOCK_SEEDS = [
   {
     value: 2,

@@ -143,7 +143,7 @@ export function HomePage() {
           Use the tour if the itineraries are new. Use the playground to try the
           trajectory of 173, a cycle word, a CycleMin survivor, a run-suffix
           crossing, a short O/E itinerary, a one-step preimage, the OE fiber or
-          the even-block average, a necklace
+          the even-block average, the three contagion sources, a necklace
           rotation, a finance length from the shipped table, the
           gap-transfer / Rhin plane, the walk-charge transport, or the
           semiconvergent fan.

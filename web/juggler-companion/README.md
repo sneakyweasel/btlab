@@ -55,8 +55,9 @@ the package-local `vercel.json` does the same rewrite.
 - `src/data/fan.json` via the companion export (Proposition 5.12 fan law)
 
 The preimage playground shows Paper C’s two productions — the even block
-and the OE fiber with its parity sweep — and the even-block average of
-Proposition 4.4, not a halt-theorem demo.
+and the OE fiber with its parity sweep — the even-block average of
+Proposition 4.4, and the three §5.1 sources with the roots of ζ, not a
+halt-theorem demo.
 
 `n_max` is looked up from the shipped Theorem 4.6 snapshot. It is never
 recomputed with floating logarithms.

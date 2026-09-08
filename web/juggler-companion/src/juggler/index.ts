@@ -1,5 +1,6 @@
 export * from "./preimages";
 export * from "./productions";
+export * from "./contagion";
 export * from "./constants";
 export * from "./finance";
 export * from "./format";

@@ -73,6 +73,9 @@ export function TourPage() {
   if (slug === "block-average" || slug === "block") {
     return <Navigate to="/play/block-average" replace />;
   }
+  if (slug === "three-sources" || slug === "sources") {
+    return <Navigate to="/play/three-sources" replace />;
+  }
   if (slug === "cycle-leftovers") {
     return <Navigate to="/tour/cycle-survivors" replace />;
   }

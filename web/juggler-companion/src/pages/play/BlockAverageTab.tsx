@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import { Disclaimer } from "../../components/Disclaimer";
 import { Metric } from "../../components/Metric";
 import { Tex } from "../../components/Tex";
@@ -49,7 +50,9 @@ export function BlockAverageTab() {
           <Tex>{String.raw`\lfloor n^{3/2}\rfloor`}</Tex> — the teal part of
           the even-m columns. One fiber can be empty; the block is the{" "}
           <Tex>{String.raw`1/3`}</Tex> in item 2 of §5.1. Playground shares
-          are an observation, not the van der Corput proof.
+          are an observation, not the van der Corput proof. Those three
+          families are the{" "}
+          <Link to="/play/three-sources">three sources</Link> tab.
         </p>
         <div className="flex flex-wrap items-end gap-3">
           <label className="text-sm text-muted">

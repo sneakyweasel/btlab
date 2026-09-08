@@ -5,6 +5,13 @@ import {
 } from "../content/idealDecisions";
 import { evenPreimage, oddPreimageIntegers, oddPreimages } from "./preimages";
 import {
+  lambdaRoot,
+  PAIR_RECURSION,
+  STAR_RECURSION,
+  threeSourcesView,
+  zetaOf,
+} from "./contagion";
+import {
   evenBlock,
   evenBlockView,
   evenPreimageInterval,
@@ -750,6 +757,32 @@ describe("productions", () => {
     const emptyish = blockAverageView(5);
     expect(emptyish.U).toBe(1);
     expect(emptyish.H).toBe(22);
+  });
+});
+
+describe("three sources / contagion recursion", () => {
+  it("roots match fate_contagion printed values", () => {
+    expect(lambdaRoot(STAR_RECURSION.terms)).toBeCloseTo(0.3774, 3);
+    expect(lambdaRoot(PAIR_RECURSION.terms)).toBeCloseTo(0.4480, 3);
+    expect(zetaOf(STAR_RECURSION.terms, 0)).toBeCloseTo(1 / 3, 10);
+    expect(zetaOf(PAIR_RECURSION.terms, 0)).toBeCloseTo(1 / 3, 10);
+    expect(zetaOf(STAR_RECURSION.terms, 0.3774)).toBeCloseTo(0, 3);
+    expect(zetaOf(PAIR_RECURSION.terms, 0.4480)).toBeCloseTo(0, 3);
+  });
+
+  it("pins the decade cuts at x = 10^4", () => {
+    const view = threeSourcesView(10_000);
+    expect(view.cuts.x316).toBeCloseTo(10 ** 0.75, 10);
+    expect(view.cuts.x14).toBeCloseTo(10, 10);
+    expect(view.cuts.x38).toBeCloseTo(10 ** 1.5, 10);
+    expect(view.cuts.sqrt).toBeCloseTo(100, 10);
+    expect(view.cuts.x34).toBeCloseTo(1000, 10);
+    expect(view.cuts.x).toBe(10_000);
+    expect(view.sources[0].coeffStar).toBe(1);
+    expect(view.sources[1].coeffStar).toBeCloseTo(1 / 3, 10);
+    expect(view.sources[1].coeffPair).toBeCloseTo(1 / 9, 10);
+    expect(view.sources[2].coeffStar).toBe(0);
+    expect(view.sources[2].coeffPair).toBeCloseTo(2 / 9, 10);
   });
 });
 
