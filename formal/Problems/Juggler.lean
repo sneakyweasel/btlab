@@ -104,6 +104,8 @@ import Problems.Juggler.FateFirstLetter
 import Problems.Juggler.FateSweep
 import Problems.Juggler.FateChernoff
 import Problems.Juggler.FatePressure
+import Problems.Juggler.FateTaoReduction
+import Problems.Juggler.FateSeed
 
 /-!
 # Juggler laboratory barrel
