@@ -36,7 +36,11 @@ import math
 from typing import Any
 
 from research.juggler_sequence.cycle_finance import DATA_DIR
-from research.juggler_sequence.paper_a_audit import convergent_invariant, o_min
+from research.juggler_sequence.paper_a_audit import (
+    convergent_invariant,
+    n_max,
+    o_min,
+)
 
 #: `log 2 / log(3/2)`: the odd letters an even letter must be paid for.
 RUN_CONST = math.log(2) / math.log(1.5)
@@ -158,6 +162,39 @@ def shape_growth(evens: tuple[int, ...] = tuple(range(4, 21))) -> list[dict[str,
     return rows
 
 
+def distinctness_gain(length: int, n: int | None = None) -> dict[str, Any]:
+    """What orbit distinctness is worth to the three-class charge.
+
+    A primitive cycle's states are pairwise distinct (Lean
+    `cyclePrimitive_orbit_injOn`), so the `e` valleys are distinct odd
+    integers at least `n` -- hence at least `n, n+2, ..., n+2(e-1)`, not all
+    at `n` as the charge assumes. The refinement is therefore real, and it is
+    worth `O(e/n)`.
+
+    Evaluated at `n = n_max(length)`, the floor where the length actually
+    matters, since `n_max ~ q q_next` grows faster than `e ~ 0.37 L`, that is
+    already negligible and shrinks as the floor rises. This is the counting
+    route, measured rather than waved at.
+    """
+    odd = o_min(length)
+    even = length - odd
+    base = n if n is not None else n_max(length)
+    crude = even / (base * math.log(base))
+    # The exact sum of e terms, to O((e/n)^2), is this integral.
+    fine = 0.5 * (
+        math.log(math.log(base + 2 * even)) - math.log(math.log(base))
+    )
+    return {
+        "L": length,
+        "e": even,
+        "n": base,
+        "e_over_n": even / base,
+        "crude": crude,
+        "distinct_aware": fine,
+        "gain": 1.0 - fine / crude,
+    }
+
+
 def even_count_of(length: int) -> int:
     """Even letters of a leftover length at its least admissible odd count."""
     return length - o_min(length)
@@ -187,6 +224,11 @@ def ceilings_report() -> dict[str, Any]:
         # surviving lengths are exactly the small-surplus ones.
         "law_rows": [law_kill_fraction(e) for e in LAW_REPORT_EVENS],
         "surplus_at_first_survivor": surplus(even_count_of(25781)),
+        # The counting route, measured: distinctness of the orbit states is
+        # real but worth O(e/n), and n >> e at every relevant floor.
+        "distinctness_rows": [
+            distinctness_gain(L) for L in (25781, 50508, 176251)
+        ],
         "halt_theorem": False,
         "no_cycle_all_lengths": False,
     }

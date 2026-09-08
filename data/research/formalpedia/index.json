@@ -23749,6 +23749,46 @@
       "trust": "kernel"
     },
     {
+      "doc": "**Primitive cycle word**: the minimum is not revisited inside it. Equivalently `w` has the period for its length, since `floorPower^[j] n = n` exactly at multiples of it.",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 1123,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "CyclePrimitive",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A doubled cycle word is a cycle word, and is not primitive. This is the counterexample that forces the hypothesis rather than a derivation.",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 1128,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "not_cyclePrimitive_append_self",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**On a primitive cycle the orbit states are pairwise distinct.** If two indices carried the same state, closing the cycle from the later one would return to the minimum strictly inside the word.",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 1140,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "cyclePrimitive_orbit_injOn",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The orbit of a primitive cycle carries `L` distinct states, as a `Finset` count.",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 1161,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "cyclePrimitive_card_orbit",
+      "trust": "kernel"
+    },
+    {
       "doc": "",
       "file": "formal/Problems/Juggler/FirstETransportEval.lean",
       "kind": "def",
@@ -66942,7 +66982,7 @@
       ]
     },
     "Problems.Juggler.FinanceTransfer": {
-      "declarations": 64,
+      "declarations": 68,
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "imports": [
         "Problems.Juggler.CycleCore",
@@ -68252,13 +68292,13 @@
     }
   },
   "totals": {
-    "declarations": 4907,
+    "declarations": 4911,
     "declarations_with_a_ledger_row": 3195,
     "ledger_rows_naming_a_file": 338,
     "modules": 209,
     "trust": {
       "compiler": 54,
-      "kernel": 4853
+      "kernel": 4857
     }
   }
 }

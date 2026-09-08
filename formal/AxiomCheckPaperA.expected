@@ -216,6 +216,7 @@
 'Problems.Juggler.cheap_le_internal' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.cheap_le_valley' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.two_mul_cheap_le_odd' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.cyclePrimitive_orbit_injOn' depends on axioms: [propext, Quot.sound]
 'Problems.Juggler.cycleMin_threeTerm' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.cycle_length_le_two_mul_oddCount' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.evenCount_eq_orbit_card' depends on axioms: [propext, Classical.choice, Quot.sound]

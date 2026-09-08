@@ -236,6 +236,7 @@ import Problems.JugglerPaper
 #print axioms Problems.Juggler.cheap_le_internal
 #print axioms Problems.Juggler.cheap_le_valley
 #print axioms Problems.Juggler.two_mul_cheap_le_odd
+#print axioms Problems.Juggler.cyclePrimitive_orbit_injOn
 #print axioms Problems.Juggler.cycleMin_threeTerm
 #print axioms Problems.Juggler.cycle_length_le_two_mul_oddCount
 #print axioms Problems.Juggler.evenCount_eq_orbit_card

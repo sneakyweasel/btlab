@@ -3614,11 +3614,28 @@ and its period runs one way. Finance bounds the minimum *above*:
 measure of \(\log2/\log3\), and \(\mu\ge2\) for every irrational, so even
 a perfect measure leaves \(n\lesssim L^{2}\). Nothing here bounds the
 minimum *below* in terms of the period; the descent floor supplies a
-constant, not a function of \(L\), and the distinctness of the \(L\)
-states gives no window to count in, because a cycle's states are not
-confined to one. The surviving lengths sit at \(L\approx n^{0.59}\), that
-is \(n\approx L^{1.7}\), inside the band that a one-sided bound cannot
-empty.
+constant, not a function of \(L\). The surviving lengths sit at
+\(L\approx n^{0.59}\), that is \(n\approx L^{1.7}\), inside the band that
+a one-sided bound cannot empty.
+
+The counting route can be priced rather than dismissed. A cycle word need
+not have \(L\) for its period --- \(w\) concatenated with itself is again
+one --- but a *primitive* one has pairwise distinct orbit states
+(`cyclePrimitive_orbit_injOn`), so the \(e\) valleys are distinct odd
+integers at least \(n\): at least \(n,n+2,\ldots,n+2(e-1)\), rather than
+all at \(n\) as the charge assumes. That refinement is real, and it is
+worth a relative
+
+\[
+1-\frac{\tfrac12\log\bigl(\log(n+2e)/\log n\bigr)}{e/(n\log n)}
+\;=\;O\!\left(\frac{e}{n}\right).
+\]
+
+At the floor where each length actually matters it is already spent:
+\(3.8\cdot10^{-4}\) at \(L=25781\), \(1.2\cdot10^{-4}\) at \(L=50508\),
+\(6.5\cdot10^{-5}\) at \(L=176251\) --- and shrinking, since
+\(n_{\max}\sim q_k q_{k+1}\) outgrows \(e\approx0.37L\). Distinctness is
+therefore not the missing ingredient. It is available, and empty.
 
 So a proof would need one of two things this paper does not have: a
 lower bound on the cycle minimum in terms of the period, or an argument

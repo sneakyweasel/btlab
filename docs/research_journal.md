@@ -40868,3 +40868,54 @@ the e=389 DP carries 300-digit values and takes minutes. The report uses
 e in (10,16,31,62), which shows both halves cheaply; e=389 is a slow-marked
 test. e=31 already has Lambda = 2.1e-3 and already kills nothing, so the
 expensive row confirms rather than establishes.
+
+## The harvest: what the end of a cycle word is forced to be
+
+Asked what the last three letters are forced to be. The honest answer is
+that the corpus already knew most of it, and the search was worth running
+for what it turned up instead.
+
+The last letter is E (cycleMin_word_shape). The state there is pinned
+much harder than "even and at least n^2": J(x_{L-1}) = n confines it to
+[n^2, (n+1)^2), a window of width about 2n. I was about to prove that and
+found cycle_last_even_interval already states exactly it, with
+cycle_trailing_evens_lt generalising the upper half to r trailing evens.
+The second-to-last letter is not forced: an odd parent gives x_{L-2} near
+n^{4/3} and an even one gives near n^4, and both sit inside the bounds.
+So there is nothing to prove there, which is a fine outcome for a harvest.
+
+What the search did turn up is that primitivity had surfaced three times
+without ever being named -- Theorem 4.7 needs it, "the minimum occurs
+once" is it, and injectivity of J on the orbit needs it -- and that the
+Juggler layer had no notion of it at all. Collatz has IsPrimitive;
+Juggler had nothing. So: CyclePrimitive, the counterexample
+not_cyclePrimitive_append_self showing it cannot be discharged (w ++ w is
+again a CycleMin, which is exactly why Theorem 4.7 must assume it), and
+cyclePrimitive_orbit_injOn -- on a primitive cycle the orbit states are
+pairwise distinct, since two equal states would close the cycle early.
+With cyclePrimitive_card_orbit that gives L distinct states as a Finset
+count.
+
+That last one is the formal prerequisite for any pigeonhole argument on a
+cycle, and the pigeonhole itself was already sitting in Residuals.lean as
+bounded_prefix_not_nodup, with nothing in the cycle layer to feed it.
+
+So I fed it, and measured what it buys. The e valleys are distinct odd
+integers at least n, hence at least n, n+2, ..., n+2(e-1), not all at n
+as the three-class charge assumes. The refinement is real and worth
+O(e/n). At n = 10^6 that is 1% to 6.4%, which looks promising. At the
+floor where each length actually matters it is 3.8e-4 at L=25781, 1.2e-4
+at 50508, 6.5e-5 at 176251 -- and shrinking, because n_max ~ q q_next
+outgrows e ~ 0.37 L.
+
+So the counting route is now priced rather than dismissed. Two entries ago
+I wrote that counting gives nothing "because the states are not confined
+to a window", which was a hand-wave and also not the real reason. The real
+reason is that distinctness IS available and IS worth something, and the
+something is O(e/n) at a scale where n is a large power of L. Section 6.2
+now says that with numbers.
+
+Worth keeping: the harvest found prior art three times before it found
+anything new, and that is the correct ratio for this kind of pass. The
+value was not in the last three letters; it was in noticing which
+hypothesis kept reappearing while nobody had defined it.

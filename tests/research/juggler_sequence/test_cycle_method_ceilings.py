@@ -10,6 +10,7 @@ from research.juggler_sequence.cycle_method_ceilings import (
     RUN_CONST,
     admissible_shape_count,
     ceilings_report,
+    distinctness_gain,
     even_count_of,
     law_kill_fraction,
     shape_count_under,
@@ -127,3 +128,30 @@ def test_surplus_is_the_fractional_part_identity() -> None:
     for even in (7, 31, 210, 389):
         expected = math.log(1.5) * (1.0 - (even * RUN_CONST) % 1.0)
         assert surplus(even) == pytest.approx(expected, rel=1e-9)
+
+
+# --- The counting route, now that distinctness is formally available ---
+
+
+def test_distinctness_is_real_but_worth_nothing_at_the_relevant_floor() -> None:
+    """Orbit distinctness is Lean (cyclePrimitive_orbit_injOn), so the e valleys
+    are distinct odds n, n+2, ... rather than all at n. The refinement is real
+    and bounded by O(e/n) -- and n >> e wherever a length actually matters."""
+    for row in ceilings_report()["distinctness_rows"]:
+        assert row["gain"] > 0.0, row["L"]
+        assert row["gain"] < 1e-3, row["L"]
+        assert row["gain"] == pytest.approx(row["e_over_n"], rel=0.2)
+
+
+def test_distinctness_gain_shrinks_as_the_floor_rises() -> None:
+    """n_max ~ q q_next outgrows e ~ 0.37 L, so the counting route closes."""
+    rows = ceilings_report()["distinctness_rows"]
+    gains = [row["gain"] for row in rows]
+    assert gains == sorted(gains, reverse=True)
+
+
+def test_distinctness_would_matter_if_the_floor_were_small() -> None:
+    """The guard must be able to bite: at n just above the published floor the
+    same refinement is worth percent, not 1e-4."""
+    row = distinctness_gain(176251, n=10**6 + 1)
+    assert row["gain"] > 0.05

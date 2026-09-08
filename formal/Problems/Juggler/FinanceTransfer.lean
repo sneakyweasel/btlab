@@ -1105,4 +1105,65 @@ theorem two_mul_cheap_le_odd {L : ℕ} (hL : 0 < L) (par : ℕ → Bool) :
   have h2 := cheap_le_internal hL par
   omega
 
+/-! ### Primitivity, and the distinctness it buys
+
+`CycleItinerary n w` is `follows n w ∧ image n w = n ∧ 1 ≤ w.length`; it does **not** ask
+that `L` be the period. So `w ++ w` is again a cycle itinerary, and again a `CycleMin`.
+Any statement that charges the minimum once needs primitivity as a hypothesis -- the
+display of Theorem 4.7 is one, which is why it carries it.
+
+What primitivity buys is that the orbit states are pairwise distinct. That is the formal
+prerequisite for every pigeonhole argument on a cycle, and it was missing: the pigeonhole
+itself is already available as `bounded_prefix_not_nodup` in `Residuals.lean`, with
+nothing in the cycle layer to feed it.
+-/
+
+/-- **Primitive cycle word**: the minimum is not revisited inside it. Equivalently `w` has
+the period for its length, since `floorPower^[j] n = n` exactly at multiples of it. -/
+def CyclePrimitive (n : ℕ) (w : List Branch) : Prop :=
+  ∀ j, 0 < j → j < w.length → floorPower^[j] n ≠ n
+
+/-- A doubled cycle word is a cycle word, and is not primitive. This is the counterexample
+that forces the hypothesis rather than a derivation. -/
+theorem not_cyclePrimitive_append_self {n : ℕ} {w : List Branch}
+    (h : CycleItinerary n w) : ¬ CyclePrimitive n (w ++ w) := by
+  intro hp
+  have hlen : 0 < w.length := h.2.2
+  refine hp w.length hlen ?_ (cycle_iterate_period h)
+  simp only [List.length_append]
+  omega
+
+/-- **On a primitive cycle the orbit states are pairwise distinct.**
+
+If two indices carried the same state, closing the cycle from the later one would return
+to the minimum strictly inside the word. -/
+theorem cyclePrimitive_orbit_injOn {n : ℕ} {w : List Branch}
+    (h : CycleItinerary n w) (hp : CyclePrimitive n w) :
+    ∀ i, i < w.length → ∀ j, j < w.length →
+      floorPower^[i] n = floorPower^[j] n → i = j := by
+  have key : ∀ i j, i < j → j < w.length →
+      floorPower^[i] n = floorPower^[j] n → False := by
+    intro i j hij hj hEq
+    have hL : floorPower^[w.length] n = n := cycle_iterate_period h
+    have h1 : floorPower^[(w.length - j) + i] n
+        = floorPower^[(w.length - j) + j] n := by
+      rw [Function.iterate_add_apply, Function.iterate_add_apply, hEq]
+    have h2 : (w.length - j) + j = w.length := by omega
+    rw [h2, hL] at h1
+    exact hp _ (by omega) (by omega) h1
+  intro i hi j hj hEq
+  rcases lt_trichotomy i j with hlt | heq | hgt
+  · exact ((key i j hlt hj hEq)).elim
+  · exact heq
+  · exact ((key j i hgt hi hEq.symm)).elim
+
+/-- The orbit of a primitive cycle carries `L` distinct states, as a `Finset` count. -/
+theorem cyclePrimitive_card_orbit {n : ℕ} {w : List Branch}
+    (h : CycleItinerary n w) (hp : CyclePrimitive n w) :
+    ((Finset.range w.length).image fun i => floorPower^[i] n).card = w.length := by
+  rw [Finset.card_image_of_injOn, Finset.card_range]
+  intro i hi j hj hEq
+  exact cyclePrimitive_orbit_injOn h hp i (Finset.mem_range.mp hi) j
+    (Finset.mem_range.mp hj) hEq
+
 end Problems.Juggler
