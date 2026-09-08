@@ -39671,3 +39671,44 @@ setting Y = P returns the paper. A missing unit above P^(25/48) would
 raise the threshold; it could not touch the exponent.
 
 Rows J-localized-kernel and J-localized-kernel-arithmetic. PROMOTE.
+
+Lemma 5.6's rotation identification was listed as human for as long as
+the appendix has existed, and the content was two inequalities that
+were already Lean, read through a logarithm.
+
+hugOdds is defined by a recursion, but hugOdds_pow_ge and hugOdds_least
+together say it is the least a with 2^k <= 3^a. A least element of that
+shape is a ceiling. So hugOdds k = ceil(k log2 / log3), and since
+theta = 1 - log2/log3 that is k - floor(k*theta); the even count is
+floor(k*theta). The letter rule then costs nothing: even exactly when
+floor((k+1)theta) = floor(k*theta) + 1, which follows from hugOdds_succ
+and the identity by omega. That is the wrap of a rotation, and there is
+no second analytic argument anywhere.
+
+The walk is the orbit for a reason worth stating plainly. Writing
+u_k = a_k log_2 3 - k, the rule sends u to u + alpha when u < 1 and to
+u - 1 when u >= 1, with alpha = log_2(3/2). That is rotation by alpha
+on R/(1+alpha)Z precisely because 1 + alpha = log_2 3. hugWalk_eq_fract
+is that in closed form: u_k = log_2(3) * frac(k*theta).
+
+And the last piece was already sitting there. circlePeriod in
+JumpVariation is literally log3/log2, so the observable transported to
+R/Z and evaluated at k*theta is the observable at the walk position
+after k steps. After hugWalk_eq_fract the proof is mul_comm. That is
+the "in particular C_L is a Birkhoff average" of the lemma.
+
+Neither the certified sandwich nor irrationality of theta appears in
+the file. The identification never needed to know where theta sits,
+only that theta = 1 - log2/log3.
+
+A correction I owe. Two phases ago I rewrote a section 1.2 sentence
+that read "Theorem 5.7 is a human proof ... and so is the rotation
+identification in Lemma 5.6", changing the first clause to say
+Denjoy-Koksma is now Lean. That flipped the antecedent of "and so is"
+from human to Lean, leaving the sentence asserting this identification
+was Lean when it was not. It is now, but it was wrong for two commits.
+
+Every step of Theorem 5.7's chain is now Lean. What is left outside is
+not a step but a definition: the laboratory has no C_L declaration, and
+periodicObservable_hugWalk is the term-by-term identity such a
+definition would be compared against.

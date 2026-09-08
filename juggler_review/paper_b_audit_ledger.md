@@ -8843,3 +8843,82 @@ untracked, in-flight module and is not touched here.
 OBSERVATION: the whole assembly is three general list lemmas and one
 `decide`. The reason it sat open for three phases is that it needed the
 envelope to exist first --- and the envelope was the hard part.
+
+## Lemma 5.6's rotation identification: a least element of that shape is a ceiling
+
+*Mathematical target.* Theorem 5.7's last human step: that the integer
+rule "`E` at step \(k\) iff \(3^a\ge2^{k+1}\)" *is* the rotation coding,
+so \(C_L\) is a Birkhoff average. *Novelty hypothesis:* it is not
+analysis but a floor identity. *Falsifier:* it needs a sharper \(\theta\)
+bound than the certified sandwich, or irrationality.
+
+*Prior art.* `budgetedWord_eq_hugWord` and the window invariants in
+`WalkChargeItineraries.lean`; nothing on the rotation reading.
+
+**The whole thing is already in the two inequalities.** `hugOdds k` is
+defined by the recursion, and `hugOdds_pow_ge` with `hugOdds_least` say
+it is the *least* \(a\) with \(2^k\le3^a\). A least element of that
+shape is a ceiling. Reading the two inequalities through the logarithm:
+
+- `two_pow_le_three_pow_iff` --- \(2^k\le3^a\) iff
+  \(k\log2\le a\log3\).
+- `hugOdds_eq_ceil` --- hence
+  \(\mathtt{hugOdds}\,k=\lceil k\log2/\log3\rceil\), by antisymmetry:
+  `Int.le_ceil` feeds `hugOdds_least`, and `hugOdds_pow_ge` feeds
+  `Int.ceil_le`.
+- `hugOdds_eq_sub_floor` --- since
+  \(\theta=1-\log2/\log3\) (`walkTheta_eq_one_sub`), that ceiling is
+  \(k-\lfloor k\theta\rfloor\). One `Int.floor_intCast_add` and one
+  `Int.floor_neg`.
+- `hugEvens_eq_floor` --- so the even count is \(\lfloor k\theta\rfloor\).
+
+**The letter rule then costs nothing.** `hugLetter_iff_floor_step`: the
+letter at \(k\) is even exactly when
+\(\lfloor(k+1)\theta\rfloor=\lfloor k\theta\rfloor+1\). It follows from
+`hugOdds_succ` and the identity by `omega` --- the wrap of a rotation,
+with no second analytic argument.
+
+**And the walk is the orbit.** Writing \(u_k=a_k\log_23-k\), the rule
+sends \(u\mapsto u+\alpha\) when \(u<1\) and \(u\mapsto u-1\) when
+\(u\ge1\), with \(\alpha=\log_2(3/2)\) --- which is rotation by
+\(\alpha\) on \(\mathbb R/(1+\alpha)\mathbb Z\) precisely because
+\(1+\alpha=\log_23\). `hugWalk_eq_fract` is that in closed form:
+\(u_k=\log_23\cdot\{k\theta\}\).
+
+- `periodicObservable_hugWalk` --- the "in particular" of Lemma 5.6.
+  `circlePeriod` in `JumpVariation.lean` is literally \(\log3/\log2\),
+  so the observable transported to \(\mathbb R/\mathbb Z\) evaluated at
+  \(k\theta\) *is* the observable at the walk position after \(k\)
+  steps. After `hugWalk_eq_fract` the proof is `mul_comm`.
+
+Neither the certified sandwich nor irrationality of \(\theta\) appears
+anywhere in the file. The falsifier did not fire: the identification
+never needed to know where \(\theta\) sits, only that
+\(\theta=1-\log2/\log3\).
+
+**A correction to my own edit.** Two phases ago I rewrote the §1.2
+sentence "Theorem 5.7 is a human proof … and so is the rotation
+identification in Lemma 5.6" by changing the first clause to "…
+Denjoy--Koksma itself is no longer a known tool: `denjoy_koksma_rotation`
+is Lean". That flipped the antecedent of "and so is" from *human* to
+*Lean*, leaving the sentence asserting the rotation identification was
+Lean when it was not. It is now, but the sentence was wrong for two
+commits and is rewritten to say which half is which.
+
+**Where Theorem 5.7 stands.** Every step of the chain is Lean: the
+inequality, the orbit half, the observable's variation, the block
+composition, the Ostrowski assembly, and now the rotation reading. What
+is left outside Lean is not a step but a *definition* --- the
+laboratory has no \(C_L\) declaration, and `periodicObservable_hugWalk`
+is the term-by-term identity such a definition would be compared
+against.
+
+Tags. COMPUTATIONALLY VERIFIED: `lake build Problems.JugglerPaper`
+clean; all six new declarations within
+`[propext, Classical.choice, Quot.sound]`; `AxiomCheckPaperA.lean` now
+214 lines, regenerated, still exactly two `native_decide` consumers.
+OBSERVATION: the row had been listed as human for as long as the
+appendix has existed, and the content was two inequalities that were
+already Lean, read through a logarithm. What was missing was noticing
+that "least \(a\) with \(2^k\le3^a\)" and "\(\lceil k\log2/\log3\rceil\)"
+are the same sentence.

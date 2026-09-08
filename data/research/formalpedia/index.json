@@ -24209,6 +24209,106 @@
       "trust": "kernel"
     },
     {
+      "doc": "",
+      "file": "formal/Problems/Juggler/HugRotation.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 36,
+      "module": "Problems.Juggler.HugRotation",
+      "name": "log_two_pos",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/HugRotation.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 38,
+      "module": "Problems.Juggler.HugRotation",
+      "name": "log_three_pos",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`walkTheta = log(3/2)/log 3 = 1 \u2212 log 2/log 3`.",
+      "file": "formal/Problems/Juggler/HugRotation.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 41,
+      "module": "Problems.Juggler.HugRotation",
+      "name": "walkTheta_eq_one_sub",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Integer powers compare exactly as their logarithms do.",
+      "file": "formal/Problems/Juggler/HugRotation.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 47,
+      "module": "Problems.Juggler.HugRotation",
+      "name": "two_pow_le_three_pow_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The odd count is a ceiling.** `hugOdds k = \u2308k\u00b7log 2/log 3\u2309` \u2014 the least `a` with `2^k \u2264 3^a`, read through the logarithm.",
+      "file": "formal/Problems/Juggler/HugRotation.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 56,
+      "module": "Problems.Juggler.HugRotation",
+      "name": "hugOdds_eq_ceil",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The rotation coding.** The odd count after `k` steps is `k \u2212 \u230ak\u00b7\u03b8\u230b`.",
+      "file": "formal/Problems/Juggler/HugRotation.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 82,
+      "module": "Problems.Juggler.HugRotation",
+      "name": "hugOdds_eq_sub_floor",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The even count after `k` steps is `\u230ak\u00b7\u03b8\u230b`.",
+      "file": "formal/Problems/Juggler/HugRotation.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 91,
+      "module": "Problems.Juggler.HugRotation",
+      "name": "hugEvens_eq_floor",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The letter rule is the wrap.** The letter at `k` is even exactly when the floor of `k\u00b7\u03b8` advances.",
+      "file": "formal/Problems/Juggler/HugRotation.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 106,
+      "module": "Problems.Juggler.HugRotation",
+      "name": "hugLetter_iff_floor_step",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The exponent walk is the rotation orbit.** With `u_k = a_k\u00b7log\u20823 \u2212 k`, the walk position is `log\u20823` times the fractional part of `k\u00b7\u03b8` \u2014 so `C_L`, the average of the observable along the walk, is a Birkhoff average of the rotation by `\u03b8`.",
+      "file": "formal/Problems/Juggler/HugRotation.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 127,
+      "module": "Problems.Juggler.HugRotation",
+      "name": "hugWalk_eq_fract",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The ergodic sum is the walk sum.** This is what Lemma 5.6's \"in particular `C_L` is a Birkhoff average of the rotation\" means: at phase `0`, the `k`-th term of the rotation's ergodic sum is the observable at the exponent walk's position after `k` steps. So the envelope of Theorem 5.7, stated for `periodicObservable` along `k \u00b7 walkTheta`, is a statement about `C_L`.",
+      "file": "formal/Problems/Juggler/HugRotation.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 144,
+      "module": "Problems.Juggler.HugRotation",
+      "name": "periodicObservable_hugWalk",
+      "trust": "kernel"
+    },
+    {
       "doc": "Combinatorial CycleMin shape: forced letters plus interval bounds. A leftover word may inhabit the shape without being a cycle.",
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "structure",
@@ -66184,6 +66284,16 @@
         }
       ]
     },
+    "Problems.Juggler.HugRotation": {
+      "declarations": 10,
+      "file": "formal/Problems/Juggler/HugRotation.lean",
+      "imports": [
+        "Problems.Juggler.JumpVariation",
+        "Problems.Juggler.OstrowskiSandwich",
+        "Problems.Juggler.WalkChargeItineraries"
+      ],
+      "ledger": []
+    },
     "Problems.Juggler.IdealCycleMin": {
       "declarations": 162,
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
@@ -67141,6 +67251,7 @@
         "Problems.Juggler.FanLaw",
         "Problems.Juggler.GapTransfer",
         "Problems.Juggler.GlobalDefect",
+        "Problems.Juggler.HugRotation",
         "Problems.Juggler.Iteration",
         "Problems.Juggler.Itinerary",
         "Problems.Juggler.ItineraryStats",
@@ -67374,13 +67485,13 @@
     }
   },
   "totals": {
-    "declarations": 4823,
+    "declarations": 4833,
     "declarations_with_a_ledger_row": 3195,
     "ledger_rows_naming_a_file": 336,
-    "modules": 205,
+    "modules": 206,
     "trust": {
       "compiler": 54,
-      "kernel": 4769
+      "kernel": 4779
     }
   }
 }

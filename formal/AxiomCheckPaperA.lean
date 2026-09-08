@@ -94,7 +94,12 @@ import Problems.JugglerPaper
 #print axioms Problems.Juggler.greedy_eq_ostro_below_window
 #print axioms Problems.Juggler.greedy_reconstruct_all
 #print axioms Problems.Juggler.grid_cells_collide_at_eight
+#print axioms Problems.Juggler.hugEvens_eq_floor
+#print axioms Problems.Juggler.hugLetter_iff_floor_step
+#print axioms Problems.Juggler.hugOdds
 #print axioms Problems.Juggler.hugOdds_1054
+#print axioms Problems.Juggler.hugOdds_eq_ceil
+#print axioms Problems.Juggler.hugOdds_eq_sub_floor
 #print axioms Problems.Juggler.hugOdds_lattice_base
 #print axioms Problems.Juggler.hugOdds_le_of_admissible
 #print axioms Problems.Juggler.hugOdds_least
@@ -102,6 +107,7 @@ import Problems.JugglerPaper
 #print axioms Problems.Juggler.hugOdds_pow_gt
 #print axioms Problems.Juggler.hugOdds_pow_lt
 #print axioms Problems.Juggler.hugOdds_seed
+#print axioms Problems.Juggler.hugWalk_eq_fract
 #print axioms Problems.Juggler.hug_charge_maximal
 #print axioms Problems.Juggler.hug_charge_unique
 #print axioms Problems.Juggler.image_append
@@ -173,6 +179,7 @@ import Problems.JugglerPaper
 #print axioms Problems.Juggler.packing_counts
 #print axioms Problems.Juggler.period_ge_22_of_even_count
 #print axioms Problems.Juggler.periodicObservable
+#print axioms Problems.Juggler.periodicObservable_hugWalk
 #print axioms Problems.Juggler.periodic_window_variation_le
 #print axioms Problems.Juggler.power_bound_contracts
 #print axioms Problems.Juggler.power_bound_eq_iff_extremal

@@ -549,10 +549,11 @@ Section 5, Theorem 5.7 keeps a human step --- the variation of its
 own observable --- but Denjoy--Koksma itself is no longer a known
 tool: `denjoy_koksma_rotation` is Lean, from the convergent quality
 \(|\theta-p/q|<1/q^2\) and the *residue* permutation
-(`theta_convergent_quality`, `theta_block_permutations`), and so
-is the rotation identification in
-Lemma 5.6, whose itinerary identity itself is Lean
-(`budgetedWord_eq_hugWord`); the Laplace bound of
+(`theta_convergent_quality`, `theta_block_permutations`).
+Lemma 5.6 is Lean on both halves: the itinerary identity
+(`budgetedWord_eq_hugWord`) and the rotation identification
+(`hugOdds_eq_sub_floor`, `hugWalk_eq_fract`, `HugRotation.lean`).
+The Laplace bound of
 Proposition 5.5 is Lean (`rotation_average_le`,
 `rotationAverage_gap`; the ergodic identification follows from
 `denjoy_koksma_blocks`, the observable being of bounded
@@ -2361,7 +2362,23 @@ budget-forced divergence between the two words would make the
 exact prefix use more of one letter than its own total, which
 is impossible. Lean: `budgetedWord_eq_hugWord`, with the window
 invariant `hugOdds_pow_ge` / `hugOdds_pow_lt` and minimality
-`hugOdds_least` (`WalkChargeItineraries.lean`). \(\square\)
+`hugOdds_least` (`WalkChargeItineraries.lean`).
+
+The identification with the rotation is Lean too, and it is a floor
+identity rather than analysis (`HugRotation.lean`). Minimality says
+`hugOdds` is the least \(a\) with \(2^k\le3^a\), and a least element of
+that shape is a ceiling: `hugOdds_eq_ceil` reads it as
+\(\lceil k\log2/\log3\rceil\), hence `hugOdds_eq_sub_floor` as
+\(k-\lfloor k\theta\rfloor\) and `hugEvens_eq_floor` as
+\(\lfloor k\theta\rfloor\). The letter rule is then the wrap
+(`hugLetter_iff_floor_step`: even exactly when
+\(\lfloor(k+1)\theta\rfloor=\lfloor k\theta\rfloor+1\)), the exponent
+walk is the rotation orbit (`hugWalk_eq_fract`:
+\(u_k=\log_2 3\cdot\{k\theta\}\)), and `periodicObservable_hugWalk` is
+the "in particular" of the statement --- the \(k\)-th term of the
+rotation's ergodic sum at phase \(0\) is the observable at the walk's
+position after \(k\) steps. Neither the certified sandwich nor
+irrationality of \(\theta\) is used. \(\square\)
 
 ### 5.5 Denjoy--Koksma over certified Ostrowski blocks
 
@@ -2517,9 +2534,13 @@ arbitrary length with no window hypothesis. Feeding the digit cap
 \(s(L)\le47\) through it, `theta_block_envelope_window` makes the bound
 the constant \(94=2\cdot47\) for every \(L<301994\).
 
-What Theorem 5.7 still takes from its human proof is the reading of
-\(C_L\) as that ergodic sum, which is Lemma 5.6's rotation
-identification.
+The reading of \(C_L\) as that ergodic sum --- Lemma 5.6's rotation
+identification --- is Lean as well (`HugRotation.lean`), so the chain
+from the integer rule to the envelope is formal throughout. What remains
+outside Lean is only the *definition* of \(C_L\) as the charge-per-letter
+of the budgeted word: the laboratory has no `C_L` declaration, and
+`periodicObservable_hugWalk` supplies the term-by-term identity that
+such a definition would be compared against.
 
 This also settles what Proposition 5.5 called classical. The ergodic
 *identification* of \(C_*\) is not an independent input: the observable is
@@ -3410,8 +3431,8 @@ Theorem 4.8.
 | Theorem 5.3 | transport inequality `cycleMin_transport`, per-step losses `log_floorPower_even_ge`, `log_floorPower_odd_ge` (`WalkTransport.lean`); §5.2 consequence `cycleMin_defect_le_charge`, `cycleMin_defect_le_hug_charge` (`WalkChargeMax.lean`) |
 | Theorem 5.4 | combinatorial core `hugOdds_le_of_admissible`; cycle-itinerary domination `cycleMin_prefix_odds_ge_hug`, `cycleMin_odds_ge_hug`; charge maximisation `stateCharge_antitone`, `hug_charge_maximal` (`WalkChargeMax.lean`); strict uniqueness `stateCharge_strictAnti`, `stateCharge_inj`, `hug_charge_unique` — an admissible profile attaining the hug charge *is* the hug profile |
 | Proposition 5.5 | ergodic identification no longer classical: for a bounded-variation observable it follows from `denjoy_koksma_blocks` (`DenjoyKoksmaOrbit.lean`), not from unique ergodicity. Laplace bound Lean: `inv_sq_le_quad`, `rotation_average_le`, `rotation_average_lt`, `rotationAverage_le`, `rotationAverage_lt`, `rotationAverage_gap` (`RotationAverage.lean`) |
-| Lemma 5.6 | `budgetedWord_eq_hugWord`, `hugOdds_pow_ge`, `hugOdds_pow_lt`, `hugOdds_pow_gt`, `hugOdds_least` |
-| Theorem 5.7 | Denjoy--Koksma Lean end to end (`DenjoyKoksma.lean`, `DenjoyKoksmaOrbit.lean`): analytic half `value_sub_mean_le_variation`, `sum_eVariationOn_Icc`, `denjoy_koksma_abstract`; orbit half `orbitCell_inj`, `orbit_mem_cell`, `denjoy_koksma_cellmap`; the inequality itself `denjoy_koksma_rotation`, `denjoy_koksma_rotation_mean`; block composition `denjoy_koksma_blocks`, the induction over \(L=\sum_jb_jq_j\) that the uniformity in \(x\) licenses; the observable and its variation (`JumpVariation.lean`) `eVariationOn_neg`, `eVariationOn_add_le`, `eVariationOn_le_of_jump`, `periodic_window_variation_le`, `observable_window_variation_lt_two`; the display `block_envelope`, `theta_block_envelope`. the Ostrowski assembly (`OstrowskiBlocks.lean`) `ostroBlocks`, `ostroBlocks_snd_sum` (the denominators sum to \(L\)), `ostroBlocks_length` (the length is \(s(L)\)), and the display at a given length `theta_block_envelope_of_length`. Human: the reading of \(C_L\) as the ergodic sum (Lemma 5.6's rotation identification). Quotient arithmetic `theta_sandwich_upper`, `theta_sandwich_lower`, `lower_lt_walkTheta`, `walkTheta_lt_upper`, `cf_lower_prefix`, `cf_upper_prefix`, `theta_convergent_denominators`; DK hypotheses `theta_convergent_numerators`, `theta_convergents_unimodular`, `theta_convergents_coprime`, `theta_convergent_quality` (\(|\theta-p/q|<1/q^2\)), `theta_block_permutations` |
+| Lemma 5.6 | itinerary identity `budgetedWord_eq_hugWord`, `hugOdds_pow_ge`, `hugOdds_pow_lt`, `hugOdds_pow_gt`, `hugOdds_least`; rotation identification (`HugRotation.lean`) `hugOdds_eq_ceil`, `hugOdds_eq_sub_floor`, `hugEvens_eq_floor`, `hugLetter_iff_floor_step`, `hugWalk_eq_fract`, and the Birkhoff reading `periodicObservable_hugWalk` |
+| Theorem 5.7 | Denjoy--Koksma Lean end to end (`DenjoyKoksma.lean`, `DenjoyKoksmaOrbit.lean`): analytic half `value_sub_mean_le_variation`, `sum_eVariationOn_Icc`, `denjoy_koksma_abstract`; orbit half `orbitCell_inj`, `orbit_mem_cell`, `denjoy_koksma_cellmap`; the inequality itself `denjoy_koksma_rotation`, `denjoy_koksma_rotation_mean`; block composition `denjoy_koksma_blocks`, the induction over \(L=\sum_jb_jq_j\) that the uniformity in \(x\) licenses; the observable and its variation (`JumpVariation.lean`) `eVariationOn_neg`, `eVariationOn_add_le`, `eVariationOn_le_of_jump`, `periodic_window_variation_le`, `observable_window_variation_lt_two`; the display `block_envelope`, `theta_block_envelope`. the Ostrowski assembly (`OstrowskiBlocks.lean`) `ostroBlocks`, `ostroBlocks_snd_sum` (the denominators sum to \(L\)), `ostroBlocks_length` (the length is \(s(L)\)), and the display at a given length `theta_block_envelope_of_length`. the reading of \(C_L\) as the ergodic sum is Lemma 5.6's rotation identification, also Lean (`periodicObservable_hugWalk`). Quotient arithmetic `theta_sandwich_upper`, `theta_sandwich_lower`, `lower_lt_walkTheta`, `walkTheta_lt_upper`, `cf_lower_prefix`, `cf_upper_prefix`, `theta_convergent_denominators`; DK hypotheses `theta_convergent_numerators`, `theta_convergents_unimodular`, `theta_convergents_coprime`, `theta_convergent_quality` (\(|\theta-p/q|<1/q^2\)), `theta_block_permutations` |
 | Theorem 5.8 | digit cap Lean: general numeration `ostroDigit_le`, `ostro_sum_eq`, `ostro_digitSum_le`, instance `theta_digitSum_le`, `greedyDigitSum_le`. On the extended window \([50508,q_{14})\) the cap is *structural* --- \(s(L)\le47\) below \(q_{13}\) and \(s(L)\le b+47\) on \(L=bq_{13}+r\) --- so the scan `window_digit_scan`, `window_digit_cap`, `window_digit_max` sharpens the constant on the old sub-window rather than establishing the theorem. Denjoy--Koksma comparison Lean: `theta_block_envelope_window` feeds the digit cap into the envelope, giving \(|C_L-C_*|\le 94/L\) for every \(L<301994\), uniformly in the starting phase |
 | Theorem 5.9 | kill template `cycleMin_hug_kill_criterion` (`DefectFinance.lean`); the per-length kill table is verified computation |
 | Proposition 5.12 | `fanLength`, `fanOdd`, `fanLambda`, affine step `fanLambda_affine`, negativity `fan_step_pow`, `fanLambda_step_neg`, monotonicity `fanLambda_strictAnti`, endpoints `fanLambda_55_pos`, `fanLambda_56_neg` (these *are* `theta_sandwich_lower` and `theta_sandwich_upper`), length `fan_positive_iff`, and `fan_frontiers`, `fan_endpoint`, `fan_past_endpoint` (`FanLaw.lean`) |
