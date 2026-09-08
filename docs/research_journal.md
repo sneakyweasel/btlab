@@ -40236,3 +40236,27 @@ The first attempt overflowed on a float division: a state 40000 bits
 wide is not comparable to n by division. Guarding on bit-length rather
 than value is the fix, and it is also the honest description of what
 "near" means here.
+
+A guard caught me shipping a broken commit, and I made it worse by not
+reading its output. test_review_mirror_matches_the_manuscript[A] failed:
+Paper A and its juggler_review mirror had diverged at the Theorem 4.7
+row, the mirror carrying the L=84 paragraph and docs/theory not. Both
+files were last written by my own commit 1091bfad, so the divergence
+was introduced there and not by the concurrent session, which I checked
+before touching anything.
+
+I cannot reconstruct how one write landed and the other did not. The
+script asserts the old text occurs exactly once in each file before
+replacing, so a silent miss should have been impossible, and the guard
+passed when I ran it in that same command. I am recording that I do not
+know rather than inventing a cause.
+
+Two process failures, both mine. The chain was
+pytest ... | tail -3 && git add && git commit, so the commit ran
+whatever pytest returned -- tail exits 0 even when the suite fails. A
+test whose result gates a commit must not be piped. And I read three
+lines of dots as success without checking the exit code.
+
+Fixed forward: docs/theory restored from the mirror, which holds the
+text I intended; the two are now byte-identical and the full suite is
+green.
