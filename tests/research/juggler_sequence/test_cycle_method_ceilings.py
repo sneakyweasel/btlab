@@ -15,6 +15,7 @@ from research.juggler_sequence.cycle_method_ceilings import (
     law_kill_fraction,
     length_only_optimum,
     reach_scaling,
+    trailing_evens_transport,
     shape_count_under,
     shape_growth,
     surplus,
@@ -199,3 +200,22 @@ def test_the_fitted_powers_drift_where_the_derived_forms_do_not() -> None:
 def test_finance_reach_is_sqrt_of_floor_times_log() -> None:
     for row in reach_scaling()["finance_rows"]:
         assert 1.1 < row["ratio"] < 1.3, row["floor"]
+
+
+def test_trailing_evens_constraint_is_r_independent() -> None:
+    """The window's 2^r and the r square roots cancel exactly.
+
+    So cycle_trailing_evens_lt is the r = 1 case transported, and the r = 1
+    case is what finance is derived from. The family looks floor-sensitive
+    but is not an independent constraint.
+    """
+    n = 10**6 + 1
+    rows = [trailing_evens_transport(n, r) for r in range(1, 13)]
+    base = rows[0]["transported"]
+    for row in rows:
+        assert row["transported"] == pytest.approx(base, rel=1e-15), row["r"]
+        assert row["transported"] == pytest.approx(row["log1p"], rel=1e-15)
+    # The uncancelled width does grow, which is why it looks like a lever.
+    assert rows[-1]["log_width_at_cut"] / rows[0]["log_width_at_cut"] == pytest.approx(
+        2**11, rel=1e-9
+    )

@@ -3573,6 +3573,19 @@ irregularity. So doubling the period costs roughly quadrupling the floor,
 and no sharpening of either charge changes that, because the target
 recedes.
 
+**The trailing-evens family is not a third mechanism.** It is worth
+checking, because `cycle_trailing_evens_lt` is the one constraint here
+whose strength reads \((1+1/n)^{2^r}\) rather than the surplus, and so
+looks floor-sensitive. It is not independent. The window at the cut has
+log width \(2^r\log(1+1/n)\), and the \(r\) square roots that follow
+divide the log by exactly \(2^r\); the transported width is
+\(\log(1+1/n)\) at every \(r\). So the constraint at any depth is the
+\(r=1\) one carried back, and \(r=1\) is `cycle_last_even_interval`,
+which is what Theorem 4.4 is derived from. The \((n+1)\) against \(n\)
+is the granularity of the return, and it says the same thing at every
+depth --- which is why Section 3 uses \(r=1,2,3\) on named short shapes
+and never as a general tool.
+
 **And the length-only charges are exhausted.** This is worth separating
 from the divergence, because it says where the remaining room is *not*. A
 charge that sees only \((n,L,o)\) must bound every configuration those

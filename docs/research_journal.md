@@ -41017,3 +41017,36 @@ in a paragraph whose whole point was that measurement beats intuition. The
 exponents were measured -- badly, by fitting the wrong functional form to
 six points straddling a partial quotient of 23.5. Measuring is not enough
 if the model is chosen by eye.
+
+## Attack 3 closes too: the trailing-evens family is finance transported
+
+Of the three attacks I ranked, one was prior art. This was the second, and
+it is not an independent mechanism either.
+
+The hope was specific. cycle_trailing_evens_lt is the only constraint in
+the paper whose strength reads (1+1/n)^{2^r} rather than the surplus, so
+it is the only candidate the standing prohibition -- do not open a
+direction measured by theta -- leaves open. It looked floor-sensitive.
+
+It is not. The window at the cut has log width 2^r log(1+1/n), and the r
+square roots that follow divide the log by exactly 2^r. The transported
+width is log(1+1/n) at every r, to all thirteen digits I printed. So the
+constraint at any depth is the r=1 constraint carried back, and r=1 is
+cycle_last_even_interval, which is precisely what Theorem 4.4 is derived
+from. The (n+1) against n is the granularity of the return, and it says
+the same thing at every depth.
+
+That also explains the paper's own usage, which I should have read as
+evidence before treating the family as open: r=1, 2, 3 appear on named
+short shapes -- OOOOEE, OOOOOOEEE -- and never as a general tool. A
+family that generalised would have been generalised.
+
+So the ranking collapses. Attack 1 was priced by Remark 5.8a before I
+started. Attack 3 is finance in disguise. Only attack 2 survives -- a
+lower bound on the cycle minimum in terms of the period -- and I have no
+mechanism for it, having already ruled out the counting one.
+
+The honest state: every mechanism in the paper is measured by theta, all
+of them are empty where a cycle could live, and the one direction that
+would close the problem has no visible route. That is worth saying
+plainly rather than generating a fourth attack to have something to do.

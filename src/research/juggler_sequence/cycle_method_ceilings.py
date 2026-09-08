@@ -284,6 +284,31 @@ def reach_scaling() -> dict[str, Any]:
     }
 
 
+def trailing_evens_transport(n: int, r: int) -> dict[str, float]:
+    """The trailing-evens window at position `L - r`, and what it transports to.
+
+    `cycle_trailing_evens_lt` puts the state before `r` trailing even letters
+    in `[n^{2^r}, (n+1)^{2^r})`. In log units that window has width
+    `2^r log(1 + 1/n)` -- and the `r` square roots that follow divide the log
+    by exactly `2^r`. So the transported width is `log(1 + 1/n)` for every
+    `r`: the constraint at any `r` is the `r = 1` one carried back, and the
+    `r = 1` case is `cycle_last_even_interval`, which is what finance is
+    derived from.
+
+    The family therefore looks floor-sensitive -- its strength reads
+    `(1+1/n)^{2^r}` rather than the surplus -- but is not independent. The
+    `(n+1)` against `n` is the granularity of the return, and it says the
+    same thing at every depth.
+    """
+    width = (2**r) * math.log1p(1.0 / n)
+    return {
+        "r": r,
+        "log_width_at_cut": width,
+        "transported": width / 2**r,
+        "log1p": math.log1p(1.0 / n),
+    }
+
+
 def even_count_of(length: int) -> int:
     """Even letters of a leftover length at its least admissible odd count."""
     return length - o_min(length)

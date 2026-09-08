@@ -1022,3 +1022,14 @@ no-\(\mathtt{EE}\) forbids the extremal configuration. The room that
 remains is *orbit-dependent* information — which is what the walk charge
 reads, and why it reaches \(N_0^{0.69}\). Do not open another
 length-only refinement.
+
+**The trailing-evens family is not independent (added after testing it).**
+`cycle_trailing_evens_lt` is the one constraint whose strength reads
+\((1+1/n)^{2^r}\) rather than \(\theta\), so it looks like the
+floor-sensitive lever the standing prohibition leaves open. It is not.
+The window at the cut has log width \(2^r\log(1+1/n)\) and the \(r\)
+square roots divide the log by exactly \(2^r\), so the transported width
+is \(\log(1+1/n)\) at every \(r\): the constraint at any depth is the
+\(r=1\) one carried back, and \(r=1\) is `cycle_last_even_interval`, from
+which Theorem 4.4 is derived. The \((n+1)\) against \(n\) is the
+granularity of the return. Do not open it as a third mechanism.
