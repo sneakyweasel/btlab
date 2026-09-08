@@ -1,0 +1,139 @@
+{
+  "witness": {
+    "X": "41/20",
+    "a": "10/41",
+    "b": "21/82",
+    "b_over_a": "21/20",
+    "steps_nondecreasing": true,
+    "hypotheses": true,
+    "H": 65,
+    "occupancies": [
+      2,
+      3,
+      1,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      1,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2
+    ],
+    "interior_pairs": [
+      [
+        3,
+        1
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        2,
+        2
+      ]
+    ],
+    "pairs_violating_min_ge_sum_over_three": [
+      [
+        3,
+        1
+      ]
+    ],
+    "good": 32,
+    "bad": 33,
+    "H_over_3_minus_2": "59/3",
+    "conclusion_holds": true
+  },
+  "search": {
+    "profiles": 268226560,
+    "worst": {
+      "slack": 1.3333333333333321,
+      "X": 1.5000000000000004,
+      "b_over_a": 1.05,
+      "H": 50,
+      "switch": 40,
+      "phase": 0.0078125,
+      "scarcer": 16
+    },
+    "violations": false,
+    "fact_a_failures": 0
+  },
+  "classification": {
+    "label": "PRINTED_PROOF_STEP_FALSE_STATEMENT_SUPPORTED",
+    "printed_pair_claim_refuted": true,
+    "statement_violated": false,
+    "fact_a_failures": 0
+  },
+  "git_commit": "ff15d639225724c3ab83db7ec125af5f5ca4d644"
+}

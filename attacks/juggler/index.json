@@ -3282,6 +3282,24 @@
       "nk_cluster": null
     },
     {
+      "id": "monotone_pairing",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/monotone_pairing.py",
+      "test": "tests/research/juggler_sequence/test_monotone_pairing.py",
+      "dossier": "docs/problems/juggler_monotone_pairing.md",
+      "data_dir": "data/research/juggler/monotone_pairing",
+      "lean": [
+        "formal/Problems/Juggler/FateSweep.lean"
+      ],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "aliases": [],
+      "nk_cluster": null
+    },
+    {
       "id": "nc_boundary",
       "kind": "branch",
       "probe": "src/research/juggler_sequence/nc_boundary.py",

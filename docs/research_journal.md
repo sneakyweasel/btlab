@@ -41459,3 +41459,51 @@ eight human rows, and the stale line is fixed.
 What this does not do: Theorem 5.3, the Tao reduction, the block
 average, Lemma 4.1'. The next small one is 4.1', because H/3 - 2 on
 monotone fibers is the constant the paper actually uses.
+
+## Lemma 4.1' was true and its proof was not
+
+The next Lean target on Paper C was Lemma 4.1', the monotone pairing
+bound H/3 - 2 that Lemma 4.2 consumes verbatim. Before formalizing a
+proof I read it as Lean would, and it does not hold together.
+
+The printed proof pairs consecutive cells and claims every pair
+(rho, rho') has min >= (rho + rho')/3, because the step scale
+1/(2 delta) drops by at most X/21 "spread over T* >= 22 cells", so
+consecutive occupancies differ by at most one. Monotone steps do not
+spread anything: all the change can sit in one place. With a = 10/41
+and b = 21/82 the points -2a, -a, 0, a, 2a, 2a+b, 2a+2b, ... have
+nondecreasing steps in [a, b], and the cells [0, 1/2) and [1/2, 1)
+hold 3 and 1 points. Under the proof's own pairing that is a pair with
+ratio 1/4. The proof also treats the two partial end cells as
+interior, which they are not.
+
+Then I checked whether the lemma is true, because the pairing root
+0.448 and everything above it rest on it. An adversarial search over
+two-valued monotone profiles -- 1.2 million of them, every switch point
+and phase, X from 1 to 6, b/a up to 1.05 -- never goes below H/3 - 2;
+the worst slack is 1.33. So the statement stands and the proof needed
+replacing.
+
+The repair has one new fact and one change of bookkeeping. The fact:
+for interior cells i < j, rho_j <= rho_i + 1, because the rho_i + 1
+steps across cell i span more than a half, one of them exceeds
+1/(2(rho_i+1)), and every step inside a later cell is at least that.
+That is what the spreading claim was reaching for, and it is what
+monotonicity actually buys: occupancies can drop freely and can only
+climb by one. The bookkeeping: leave the end cells unpaired, write the
+scarcer count as (H - 3G)/3 plus the surplus S over pairs, and show
+S >= G - 2 in five cases on G and g. The only delicate case is
+G = 3, g = 1, the window X in [2, 2.1) where the witness lives: there
+(1,1) cannot be adjacent because three steps would span more than one
+unit, and two consecutive pairs cannot hold six points because seven
+steps would span more than two, so every two pairs give at least three
+of at most eight to the scarcer colour. Everything closes with the
+same -2.
+
+The corrected proof is in the paper with an erratum remark. Nothing
+downstream moves. The lesson is the one Paper B taught with its
+constant 1/232: a proof that says "spread over the cells" has an
+averaging step nobody wrote down, and reading for Lean finds it.
+
+Next: Lemma 4.1' in Lean. The repair was written so that its parts are
+the ones FateSweep.lean already has.
