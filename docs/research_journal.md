@@ -39885,3 +39885,30 @@ Two bridges remain, neither deep and neither done: that the itinerary
 decomposes into that run list with the classification attached index by
 index, and a cardinality-monotone form of sixTerm_bound taking the
 inequalities rather than equalities, which needs v >= n+2.
+
+The second of the two bridges is done. sixTerm_bound wants the six
+cardinalities exactly; the packing gives the valley split as
+inequalities. Bridging them means showing the exchange is downhill --
+that trading a cheap valley for an expensive one lowers the majorant --
+which needs n+2 <= v.
+
+I expected that to need a comparison of n^{4/3} with n+2, which is
+false at n=2 and n=3 and would have dragged in the n >= 12 hypothesis.
+It needs neither. v is by definition the least odd integer with
+n^4 <= v^3, so any odd w <= n has w^3 <= n^3 < n^4 and therefore
+v > n; both odd, so v >= n+2. The only inequality used is n^3 < n^4.
+Defining the constant as a least element rather than by a formula is
+what made it cheap.
+
+From there expensive_le_cheap gives 1/(v log v) <= 1/((n+2)log(n+2))
+by the antitone lemma, valley_swap_le performs the exchange -- the
+difference is (k1-c1)(B-C) >= 0 -- and sixTerm_bound_packed lets the
+packing inequalities stand in for the exact counts.
+
+Reading Theorem 4.7's display from the bottom, everything is now
+proved except one step: the transfer, the fibre decomposition, all six
+class bounds, the packing extremality, and the passage from
+inequalities to the paper's counts. What remains is that the itinerary
+decomposes into that run list with the classification attached index by
+index -- the only place the display still touches the word's structure
+rather than a single letter.

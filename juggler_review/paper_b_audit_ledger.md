@@ -9201,3 +9201,59 @@ optimization and would not fall. It fell because the classification is
 which collapses a global optimization into a per-block count. The
 prediction was wrong for a reason worth keeping: I had not noticed that
 the class of a valley is decided by the letter *after* it.
+
+## The second bridge: the packing inequality reaches the paper's counts
+
+*Mathematical target.* Of the two bridges named last entry, the second:
+a cardinality-**monotone** form of `sixTerm_bound`, taking the packing's
+inequalities (\(\#\text{cheap}\le o-e-1\), valley total fixed) rather
+than the exact cardinalities `sixTerm_bound` requires.
+
+*Falsifier.* The exchange is not downhill --- that is, \(v\) is not
+above \(n+2\), so trading a cheap valley for an expensive one could
+*raise* the majorant.
+
+**It is downhill, and for a reason that needs no estimate of
+\(n^{4/3}\).** `le_expensiveValley`: \(v\) is by definition the *least
+odd* integer with \(n^{4}\le v^{3}\). Any odd \(w\le n\) has
+\(w^{3}\le n^{3}<n^{4}\), so \(v>n\); both are odd, so \(v\ge n+2\).
+No growth rate is involved --- only that \(n^{3}<n^{4}\).
+
+- `le_expensiveValley` --- \(n+2\le v\) for odd \(n\ge2\). The
+  non-emptiness witness is \(2n^{2}+1\), whose cube exceeds \(n^{6}\).
+- `expensive_le_cheap` --- hence
+  \(1/(v\log v)\le 1/((n+2)\log(n+2))\), by `inv_mul_log_antitoneOn`.
+- `valley_swap_le` --- with the valley total fixed, fewer cheap valleys
+  gives a smaller majorant: the difference is
+  \((k_1-c_1)(B-C)\ge0\).
+- `sixTerm_bound_packed` --- so `sixTerm_bound`'s exact cardinalities
+  may be replaced by \(c_1\le k_1\) with \(c_1+c_2=k_1+k_2\), and the
+  paper's counts dominate whatever the actual split is.
+
+**Where Theorem 4.7's display now stands.** Reading the chain from the
+bottom:
+
+| step | status |
+|---|---|
+| transfer: lower bounds move through the sum | `sum_inv_mul_log_le` |
+| the six terms are six fibres | `sum_comp_fin_six` |
+| the six class *bounds* | all six theorems, from the letters |
+| the packing's extremality | `blocks_ge_two_add_length_le_sum`, tight iff runs `≤ 2` |
+| inequalities to the paper's counts | `sixTerm_bound_packed` |
+| **the itinerary decomposes into that run list** | **open** |
+
+One bridge left, and it is the only place the display still touches the
+itinerary's structure rather than a single letter: producing, from a
+`CycleMin` word, the list of run lengths together with a classification
+`cls : ℕ → Fin 6` whose six fibres have the cardinalities the packing
+bounds. Everything above it is proved.
+
+Tags. COMPUTATIONALLY VERIFIED: `lake build Problems.JugglerPaper`
+clean; the four new declarations within
+`[propext, Classical.choice, Quot.sound]`; `AxiomCheckPaperA` at 234
+lines, regenerated. OBSERVATION: I expected \(n+2\le v\) to need a
+comparison of \(n^{4/3}\) with \(n+2\), which is false at \(n=2,3\) and
+so would have dragged in the \(n\ge12\) hypothesis. It needs neither:
+the *leastness* in \(v\)'s definition does the work, and the only
+inequality used is \(n^{3}<n^{4}\). Defining a constant as a least
+element rather than by a formula is what made it cheap.

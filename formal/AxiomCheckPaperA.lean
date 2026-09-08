@@ -77,6 +77,7 @@ import Problems.JugglerPaper
 #print axioms Problems.Juggler.expansion_holds_at_22
 #print axioms Juggler.FanLaw.expansion_rate_lower
 #print axioms Juggler.FanLaw.expansion_rate_upper
+#print axioms Problems.Juggler.expensive_le_cheap
 #print axioms Juggler.FanLaw.fanLambda
 #print axioms Juggler.FanLaw.fanLambda_55_pos
 #print axioms Juggler.FanLaw.fanLambda_56_neg
@@ -127,6 +128,7 @@ import Problems.JugglerPaper
 #print axioms Problems.Juggler.image_monotone_of_follows
 #print axioms Problems.Juggler.inv_mul_log_antitoneOn
 #print axioms Problems.Juggler.inv_sq_le_quad
+#print axioms Problems.Juggler.le_expensiveValley
 #print axioms Problems.Juggler.log_floorPower_even_ge
 #print axioms Problems.Juggler.log_floorPower_even_ge_sub
 #print axioms Problems.Juggler.log_floorPower_odd_ge
@@ -214,6 +216,7 @@ import Problems.JugglerPaper
 #print axioms Problems.Juggler.run_survivor_seed_F3
 #print axioms Problems.Juggler.run_survivor_unimodular
 #print axioms Problems.Juggler.sixTerm_bound
+#print axioms Problems.Juggler.sixTerm_bound_packed
 #print axioms Problems.Juggler.square_scale_superquadratic
 #print axioms Problems.Juggler.stateCharge
 #print axioms Problems.Juggler.stateCharge_antitone
@@ -240,6 +243,7 @@ import Problems.JugglerPaper
 #print axioms Problems.Juggler.three_pow_step_gt_two_pow_step
 #print axioms Problems.Juggler.threshold_inherits_odd_append
 #print axioms Problems.Juggler.two_n_add_one_lt_rpow_three_halves
+#print axioms Problems.Juggler.valley_swap_le
 #print axioms Problems.Juggler.value_sub_mean_le_variation
 #print axioms Problems.Juggler.walkTheta
 #print axioms Problems.Juggler.walkTheta_lt_upper

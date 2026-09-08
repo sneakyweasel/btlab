@@ -57,6 +57,7 @@
 'Problems.Juggler.expansion_holds_at_22' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Juggler.FanLaw.expansion_rate_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Juggler.FanLaw.expansion_rate_upper' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.expensive_le_cheap' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Juggler.FanLaw.fanLambda' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Juggler.FanLaw.fanLambda_55_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Juggler.FanLaw.fanLambda_56_neg' depends on axioms: [propext, Classical.choice, Quot.sound]
@@ -107,6 +108,7 @@
 'Problems.Juggler.image_monotone_of_follows' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.inv_mul_log_antitoneOn' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.inv_sq_le_quad' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.le_expensiveValley' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.log_floorPower_even_ge' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.log_floorPower_even_ge_sub' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.log_floorPower_odd_ge' depends on axioms: [propext, Classical.choice, Quot.sound]
@@ -194,6 +196,7 @@
 'Problems.Juggler.run_survivor_seed_F3' does not depend on any axioms
 'Problems.Juggler.run_survivor_unimodular' does not depend on any axioms
 'Problems.Juggler.sixTerm_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.sixTerm_bound_packed' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.square_scale_superquadratic' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.stateCharge' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.stateCharge_antitone' depends on axioms: [propext, Classical.choice, Quot.sound]
@@ -220,6 +223,7 @@
 'Problems.Juggler.three_pow_step_gt_two_pow_step' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.threshold_inherits_odd_append' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.two_n_add_one_lt_rpow_three_halves' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.valley_swap_le' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.value_sub_mean_le_variation' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.walkTheta' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.walkTheta_lt_upper' depends on axioms: [propext, Classical.choice, Quot.sound]

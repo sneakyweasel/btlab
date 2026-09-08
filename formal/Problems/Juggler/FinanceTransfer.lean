@@ -321,4 +321,79 @@ theorem blocks_eq_one_ge (runs : List ℕ) (hpos : ∀ a ∈ runs, 1 ≤ a) :
   omega
 
 
+/-! ### From the packing inequality to the paper's counts
+
+`sixTerm_bound` takes the six cardinalities exactly.  The packing gives them as
+*inequalities* — at most `o−e−1` cheap valleys besides the minimum, at least `2e−o` expensive
+ones — so the two must be bridged, and the bridge is that trading a cheap valley for an
+expensive one lowers the majorant.  That needs `v ≥ n+2`, which is immediate from `v`'s
+definition rather than from any estimate of `n^{4/3}`.
+-/
+
+/-- The expensive valley clears `n + 2`.  Any odd `w ≤ n` has `w³ ≤ n³ < n⁴`, so the least odd
+`v` with `n⁴ ≤ v³` exceeds `n`; both are odd, so it clears `n + 2`. -/
+theorem le_expensiveValley {n : ℕ} (hn : 2 ≤ n) (hodd : n % 2 = 1) :
+    n + 2 ≤ expensiveValley n := by
+  have hne : {v | v % 2 = 1 ∧ n ^ 4 ≤ v ^ 3}.Nonempty := by
+    refine ⟨2 * n ^ 2 + 1, by omega, ?_⟩
+    calc n ^ 4 ≤ n ^ 6 := Nat.pow_le_pow_right (by omega) (by norm_num)
+      _ = (n ^ 2) ^ 3 := by ring
+      _ ≤ (2 * n ^ 2 + 1) ^ 3 := Nat.pow_le_pow_left (by omega) 3
+  have hmem : expensiveValley n % 2 = 1 ∧ n ^ 4 ≤ expensiveValley n ^ 3 :=
+    Nat.sInf_mem hne
+  obtain ⟨hvodd, hvge⟩ := hmem
+  have hlt : n ^ 3 < n ^ 4 := by nlinarith [pow_pos (show 0 < n by omega) 3]
+  have hgt : n < expensiveValley n := by
+    by_contra hcon
+    have hle : expensiveValley n ≤ n := not_lt.mp hcon
+    have h1 : expensiveValley n ^ 3 ≤ n ^ 3 := Nat.pow_le_pow_left hle 3
+    omega
+  omega
+
+/-- **The swap.**  With the valley total fixed, fewer cheap valleys means a smaller majorant. -/
+theorem valley_swap_le {B C : ℝ} (hBC : C ≤ B) {c₁ c₂ k₁ k₂ : ℕ}
+    (hc : c₁ ≤ k₁) (hsum : c₁ + c₂ = k₁ + k₂) :
+    (c₁ : ℝ) * B + (c₂ : ℝ) * C ≤ (k₁ : ℝ) * B + (k₂ : ℝ) * C := by
+  have h1 : (c₁ : ℝ) ≤ (k₁ : ℝ) := by exact_mod_cast hc
+  have hs : (c₁ : ℝ) + (c₂ : ℝ) = (k₁ : ℝ) + (k₂ : ℝ) := by exact_mod_cast hsum
+  have h2 : (c₂ : ℝ) = (k₁ : ℝ) + (k₂ : ℝ) - (c₁ : ℝ) := by linarith
+  rw [h2]
+  nlinarith [mul_nonneg (by linarith : (0:ℝ) ≤ (k₁ : ℝ) - c₁) (by linarith : (0:ℝ) ≤ B - C)]
+
+/-- The cheap-valley majorant dominates the expensive one, which is what makes the swap
+downhill: `1/(v log v) ≤ 1/((n+2) log (n+2))` once `n + 2 ≤ v`. -/
+theorem expensive_le_cheap {n v : ℝ} (hn : 2 ≤ n + 2) (hv : n + 2 ≤ v) :
+    1 / (v * Real.log v) ≤ 1 / ((n + 2) * Real.log (n + 2)) :=
+  inv_mul_log_antitoneOn (Set.mem_Ici.mpr hn) (Set.mem_Ici.mpr (le_trans hn hv)) hv
+
+/-- **Theorem 4.7's display from the packing inequality.**  `sixTerm_bound` needs the six
+cardinalities exactly; the packing supplies the valley split as inequalities — at most `k₁`
+cheap valleys with the valley total fixed.  Since `n + 2 ≤ v` the swap is downhill, so the
+paper's counts dominate whatever the actual split is. -/
+theorem sixTerm_bound_packed {L : ℕ} {x : ℕ → ℝ} {n v t tp : ℝ} {c₁ c₂ k₁ k₂ c₄ c₅ : ℕ}
+    (cls : ℕ → Fin 6)
+    (hn : 2 ≤ n) (hv : 2 ≤ v) (ht : 2 ≤ t) (htp : 2 ≤ tp) (hvge : n + 2 ≤ v)
+    (hbound : ∀ i ∈ Finset.range L, sixBounds n v t tp (cls i) ≤ x i)
+    (h0 : ((Finset.range L).filter fun i => cls i = 0).card = 1)
+    (h1 : ((Finset.range L).filter fun i => cls i = 1).card = c₁)
+    (h2 : ((Finset.range L).filter fun i => cls i = 2).card = c₂)
+    (h3 : ((Finset.range L).filter fun i => cls i = 3).card = 1)
+    (h4 : ((Finset.range L).filter fun i => cls i = 4).card = c₄)
+    (h5 : ((Finset.range L).filter fun i => cls i = 5).card = c₅)
+    (hc : c₁ ≤ k₁) (hsum : c₁ + c₂ = k₁ + k₂) :
+    ∑ i ∈ Finset.range L, 1 / (x i * Real.log (x i))
+      ≤ (1 : ℝ) / (n * Real.log n)
+        + (k₁ : ℝ) / ((n + 2) * Real.log (n + 2))
+        + (k₂ : ℝ) / (v * Real.log v)
+        + (1 : ℝ) / (t * Real.log t)
+        + (c₄ : ℝ) / (tp * Real.log tp)
+        + (c₅ : ℝ) / (2 * n ^ 2 * Real.log n) := by
+  have hswap := valley_swap_le (B := 1 / ((n + 2) * Real.log (n + 2)))
+    (C := 1 / (v * Real.log v)) (expensive_le_cheap (by linarith) hvge) hc hsum
+  have hswap' : (c₁ : ℝ) / ((n + 2) * Real.log (n + 2)) + (c₂ : ℝ) / (v * Real.log v)
+      ≤ (k₁ : ℝ) / ((n + 2) * Real.log (n + 2)) + (k₂ : ℝ) / (v * Real.log v) := by
+    simpa [div_eq_mul_inv, one_div] using hswap
+  refine (sixTerm_bound cls hn hv ht htp hbound h0 h1 h2 h3 h4 h5).trans ?_
+  linarith
+
 end Problems.Juggler

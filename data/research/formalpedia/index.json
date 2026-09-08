@@ -23199,6 +23199,46 @@
       "trust": "kernel"
     },
     {
+      "doc": "The expensive valley clears `n + 2`. Any odd `w \u2264 n` has `w\u00b3 \u2264 n\u00b3 < n\u2074`, so the least odd `v` with `n\u2074 \u2264 v\u00b3` exceeds `n`; both are odd, so it clears `n + 2`.",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 335,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "le_expensiveValley",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The swap.** With the valley total fixed, fewer cheap valleys means a smaller majorant.",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 354,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "valley_swap_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The cheap-valley majorant dominates the expensive one, which is what makes the swap downhill: `1/(v log v) \u2264 1/((n+2) log (n+2))` once `n + 2 \u2264 v`.",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 365,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "expensive_le_cheap",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Theorem 4.7's display from the packing inequality.** `sixTerm_bound` needs the six cardinalities exactly; the packing supplies the valley split as inequalities \u2014 at most `k\u2081` cheap valleys with the valley total fixed. Since `n + 2 \u2264 v` the swap is downhill, so the paper's counts dominate whatever the actual split is.",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 373,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "sixTerm_bound_packed",
+      "trust": "kernel"
+    },
+    {
       "doc": "",
       "file": "formal/Problems/Juggler/FirstETransportEval.lean",
       "kind": "def",
@@ -66385,7 +66425,7 @@
       ]
     },
     "Problems.Juggler.FinanceTransfer": {
-      "declarations": 16,
+      "declarations": 20,
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "imports": [
         "Problems.Juggler.CycleCore"
@@ -67694,13 +67734,13 @@
     }
   },
   "totals": {
-    "declarations": 4852,
+    "declarations": 4856,
     "declarations_with_a_ledger_row": 3195,
     "ledger_rows_naming_a_file": 336,
     "modules": 208,
     "trust": {
       "compiler": 54,
-      "kernel": 4798
+      "kernel": 4802
     }
   }
 }
