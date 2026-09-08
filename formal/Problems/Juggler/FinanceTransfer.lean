@@ -774,4 +774,72 @@ theorem cycleMin_word_shape {n : ℕ} {w : List Branch} (hn : 3 ≤ n) (h : Cycl
         have := (follows_get_odd_iff h.1.1 (by omega : w.length - 1 < w.length)).mp hb
         omega
 
+/-! ### The letter count is the index count
+
+`oddCount_eq_card` proves the list half of this in `CycleHeightFinance`, which is outside this
+barrel.  What the instantiation needs is the orbit form, and it is cheaper to prove that
+directly than to import the list form and bridge it.
+-/
+
+/-- Mathlib has no `Finset.range_succ` under that name; `CycleHeightFinance` proves its own
+for the same reason, and that file is outside this barrel. -/
+theorem range_succ_insert (m : ℕ) : Finset.range (m + 1) = insert m (Finset.range m) := by
+  ext x
+  simp [Finset.mem_range, Finset.mem_insert]
+  omega
+
+theorem oddCount_append_singleton (u : List Branch) (b : Branch) :
+    oddCount (u ++ [b]) = oddCount u + oddCount [b] := by
+  induction u with
+  | nil => simp
+  | cons c t ih => cases c <;> simp [ih] <;> omega
+
+/-- **The odd letters are the odd states.**  On a realized word the letter count equals the
+number of indices carrying an odd state. -/
+theorem oddCount_eq_orbit_card {n : ℕ} : ∀ w : List Branch, follows n w →
+    oddCount w = ((Finset.range w.length).filter
+      fun i => floorPower^[i] n % 2 = 1).card := by
+  intro w
+  induction w using List.reverseRecOn with
+  | nil => intro _; simp
+  | append_singleton u b ih =>
+      intro hf
+      have hu : follows n u := follows_of_append_left hf
+      have hlt : u.length < (u ++ [b]).length := by simp
+      have hget : (u ++ [b])[u.length] = b := by simp
+      have hiff : (floorPower^[u.length] n % 2 = 1) ↔ b = Branch.odd := by
+        rw [← hget]
+        exact (follows_get_odd_iff hf hlt).symm
+      have hlen : (u ++ [b]).length = u.length + 1 := by simp
+      have hsub : ∀ i ∈ Finset.range u.length,
+          (floorPower^[i] n % 2 = 1) = (floorPower^[i] n % 2 = 1) := fun _ _ => rfl
+      rw [oddCount_append_singleton, ih hu, hlen, range_succ_insert, Finset.filter_insert]
+      by_cases hb : b = Branch.odd
+      · rw [if_pos (hiff.mpr hb), Finset.card_insert_of_notMem (by simp), hb]
+        simp [oddCount]
+      · have : ¬ (floorPower^[u.length] n % 2 = 1) := fun hc => hb (hiff.mp hc)
+        rw [if_neg this]
+        cases b with
+        | odd => exact absurd rfl hb
+        | even => simp [oddCount]
+
+/-- **A cycle is at least half odd.**  Formal expansion gives `2^L < 3^o`, and `3^o ≤ 4^o`
+turns that into `L ≤ 2o`, so the even letters never outnumber the odd ones.  This is what lets
+the three-term bound's count exchange run: it needs `e ≤ o`. -/
+theorem cycle_length_le_two_mul_oddCount {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleItinerary n w) : w.length ≤ 2 * oddCount w := by
+  have hexp : 2 ^ w.length < 3 ^ oddCount w := cycle_itinerary_formally_expanding hn h
+  have h34 : (3:ℕ) ^ oddCount w ≤ 4 ^ oddCount w :=
+    Nat.pow_le_pow_left (by norm_num) _
+  have h4 : (4:ℕ) ^ oddCount w = 2 ^ (2 * oddCount w) := by
+    rw [show (4:ℕ) = 2 ^ 2 by norm_num, ← pow_mul]
+  have hlt : (2:ℕ) ^ w.length < 2 ^ (2 * oddCount w) + 1 := by omega
+  by_contra hcon
+  have hge : 2 * oddCount w < w.length := by omega
+  have : (2:ℕ) ^ (2 * oddCount w + 1) ≤ 2 ^ w.length :=
+    Nat.pow_le_pow_right (by norm_num) (by omega)
+  have hdouble : (2:ℕ) ^ (2 * oddCount w + 1) = 2 * 2 ^ (2 * oddCount w) := by ring
+  have hpos : 0 < (2:ℕ) ^ (2 * oddCount w) := by positivity
+  omega
+
 end Problems.Juggler

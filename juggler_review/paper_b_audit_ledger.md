@@ -9964,3 +9964,62 @@ each proved for a different purpose over three separate entries, none of
 them this one. The shape statement is what they were always going to
 add up to, and it took asking what the module yields rather than what it
 was for.
+
+## Two pieces toward the three-term instantiation, and no upgrade to the claim
+
+*First, a correction of my own, made before any new work.* The previous
+entry marked `juggler_cycle_finance.md`'s length-only parity finance row
+**EXACT — LEAN VERIFIED**, citing `threeTerm_bound`. That was an
+overclaim. `threeTerm_bound` proves the *majorant* inequality from a
+classification and its cardinalities supplied as hypotheses; it does not
+prove the displayed statement from `CycleMin` alone. The row now reads
+**EXACT — HUMAN PROOF; majorant Lean**, and says why. This is the same
+gap the ledger spent four entries pinning down in Theorem 4.7, and I
+made the move myself one commit later.
+
+**Why the instantiation is nevertheless reachable here.** The six-term
+case needed two hypotheses the three-term case does not: primitivity of
+the period, because the display charges *one* valley at \(n\) while the
+coarse form charges \(e\) of them; and no-`EE`, because the split into
+cheap and expensive is where `EE` breaks the packing bound. The coarse
+form has neither feature.
+
+**The two named missing pieces are now proved.**
+
+- `oddCount_eq_orbit_card` --- the odd letters are the odd states: on a
+  realized word the letter count equals the number of indices carrying
+  an odd state. `oddCount_eq_card` proves the list half of this in
+  `CycleHeightFinance`, outside the barrel; proving the orbit form
+  directly was cheaper than importing and bridging. Needed a local
+  `range_succ_insert`, since Mathlib has no `Finset.range_succ` under
+  that name --- `CycleHeightFinance` proved its own for the same reason.
+- `cycle_length_le_two_mul_oddCount` --- a cycle is at least half odd.
+  Formal expansion gives \(2^{L}<3^{o}\), and \(3^{o}\le4^{o}=2^{2o}\)
+  turns that into \(L\le2o\), hence \(e\le o\), which is exactly what
+  the count exchange needs.
+
+**What remains, concretely rather than as "typing".** I will not repeat
+the phrase that survived three entries last time. The remaining work is:
+
+1. define `cls i` as `2` when the state is even, `1` when the cyclic
+   predecessor's state is odd, `0` otherwise;
+2. discharge `hbound` in three cases --- `cycleMin_iterate_ge`,
+   `cycleMin_internal_ge_t`, `cycleMin_even_ge_sq` --- with the case
+   \(i=0\) handled by `cycleMin_last_even`, which makes index zero never
+   an internal;
+3. match the `cls`-based filters against the `par`-based ones in
+   `valley_le_even` and `valley_add_internal`, which is where the
+   friction actually is.
+
+Item 3 is the one I expect to fight, because the two filters are stated
+over different predicates and neither is definitionally the other.
+
+Tags. COMPUTATIONALLY VERIFIED: `lake build Problems.JugglerPaper`
+clean; both new declarations within
+`[propext, Classical.choice, Quot.sound]`. The dossier row is **not**
+upgraded. OBSERVATION: I applied a standard to another author's theorem
+for four entries and then failed it myself on the next commit. The
+asymmetry is worth naming: the six-term gap was found by writing out
+what the statement needed, and the three-term one was missed because I
+had just written the lemma and knew what it said --- familiarity is
+exactly when the check gets skipped.

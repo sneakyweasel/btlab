@@ -23449,6 +23449,46 @@
       "trust": "kernel"
     },
     {
+      "doc": "Mathlib has no `Finset.range_succ` under that name; `CycleHeightFinance` proves its own for the same reason, and that file is outside this barrel.",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 786,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "range_succ_insert",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 791,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "oddCount_append_singleton",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The odd letters are the odd states.** On a realized word the letter count equals the number of indices carrying an odd state.",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 799,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "oddCount_eq_orbit_card",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**A cycle is at least half odd.** Formal expansion gives `2^L < 3^o`, and `3^o \u2264 4^o` turns that into `L \u2264 2o`, so the even letters never outnumber the odd ones. This is what lets the three-term bound's count exchange run: it needs `e \u2264 o`.",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 829,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "cycle_length_le_two_mul_oddCount",
+      "trust": "kernel"
+    },
+    {
       "doc": "",
       "file": "formal/Problems/Juggler/FirstETransportEval.lean",
       "kind": "def",
@@ -66635,7 +66675,7 @@
       ]
     },
     "Problems.Juggler.FinanceTransfer": {
-      "declarations": 41,
+      "declarations": 45,
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "imports": [
         "Problems.Juggler.CycleCore"
@@ -67944,13 +67984,13 @@
     }
   },
   "totals": {
-    "declarations": 4877,
+    "declarations": 4881,
     "declarations_with_a_ledger_row": 3195,
     "ledger_rows_naming_a_file": 336,
     "modules": 208,
     "trust": {
       "compiler": 54,
-      "kernel": 4823
+      "kernel": 4827
     }
   }
 }

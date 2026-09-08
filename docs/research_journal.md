@@ -40328,3 +40328,45 @@ The three lemmas composed here -- start odd, successor odd, last even
 entries, none of them this one. The shape statement is what they were
 always going to add up to. It took asking what the module yields rather
 than what it was for.
+
+Before any new work I had to correct myself. Last entry marked the
+length-only parity finance row EXACT - LEAN VERIFIED, citing
+threeTerm_bound. Overclaim. threeTerm_bound proves the majorant
+inequality from a classification and cardinalities supplied as
+hypotheses; it does not prove the displayed statement from CycleMin
+alone. That is the same gap I spent four entries pinning down in
+Theorem 4.7, and I made the move myself one commit later. The row now
+reads EXACT - HUMAN PROOF; majorant Lean.
+
+The instantiation is still reachable here, unlike for six terms. The
+six-term case needed primitivity, because the display charges one
+valley at n while the coarse form charges e of them, and it needed
+no-EE, because the cheap/expensive split is where EE breaks the packing
+bound. The coarse form has neither feature.
+
+Two named missing pieces are now proved. oddCount_eq_orbit_card: on a
+realized word the odd letter count equals the number of indices
+carrying an odd state. oddCount_eq_card proves the list half of this in
+CycleHeightFinance, outside the barrel, and proving the orbit form
+directly was cheaper than importing and bridging. It needed a local
+range_succ_insert, Mathlib having no Finset.range_succ under that name
+-- CycleHeightFinance proved its own for the same reason.
+
+And cycle_length_le_two_mul_oddCount: a cycle is at least half odd.
+Formal expansion gives 2^L < 3^o, and 3^o <= 4^o = 2^{2o} turns that
+into L <= 2o, hence e <= o, which is what the count exchange needs.
+
+What remains, concretely, because I will not repeat the phrase that
+survived three entries last time. Define cls i as 2 when the state is
+even, 1 when the cyclic predecessor is odd, 0 otherwise; discharge
+hbound in three cases with i = 0 handled by cycleMin_last_even, which
+makes index zero never an internal; and match the cls-based filters
+against the par-based ones in valley_le_even and valley_add_internal.
+The third is where the friction is, since neither filter is
+definitionally the other.
+
+I applied a standard to another author for four entries and failed it
+myself on the next commit. Worth naming the asymmetry: the six-term gap
+was found by writing out what the statement needed; the three-term one
+was missed because I had just written the lemma and knew what it said.
+Familiarity is exactly when the check gets skipped.
