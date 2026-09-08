@@ -1028,4 +1028,81 @@ theorem cycleMin_defect_threeTerm {n : ℕ} {w : List Branch}
   refine (cycleMin_defect_finance hn h).trans ?_
   exact mul_le_mul_of_nonneg_left (cycleMin_threeTerm (by omega) h) (by norm_num)
 
+/-! ### The cheap-valley cap, with no hypothesis about `EE`
+
+`sixTerm_bound_packed` takes the cheap count as `c₁ ≤ k₁`, so a bound on the cheap
+valleys that does not mention `EE` turns the packed comparison into a hypothesis-free one.
+There is such a bound, and it is half the odd count.
+
+A *cheap* valley is an odd letter whose cyclic predecessor is even and whose cyclic
+successor is odd — the start of an odd run of length at least two.  Its successor is an
+odd letter with an odd predecessor, which is an internal, and the successor map is
+injective.  So the cheap valleys inject into the internals; they are also a subset of the
+valleys; and `valley_add_internal` makes those two classes sum to the odd count.  Hence
+`2·#cheap ≤ o`, whatever the word does with `EE`.
+-/
+
+/-- The cyclic successor. -/
+def cycSucc (L i : ℕ) : ℕ := (i + 1) % L
+
+theorem cycSucc_lt {L : ℕ} (hL : 0 < L) (i : ℕ) : cycSucc L i < L :=
+  Nat.mod_lt _ hL
+
+/-- On the window the successor undoes the predecessor. -/
+theorem cycPred_cycSucc {L i : ℕ} (hi : i < L) : cycPred L (cycSucc L i) = i := by
+  unfold cycPred cycSucc
+  rcases Nat.lt_or_ge (i + 1) L with h | h
+  · rw [Nat.mod_eq_of_lt h]
+    have : i + 1 + (L - 1) = i + L := by omega
+    rw [this, Nat.add_mod_right, Nat.mod_eq_of_lt hi]
+  · have hL1 : i + 1 = L := by omega
+    rw [hL1, Nat.mod_self, Nat.zero_add,
+      Nat.mod_eq_of_lt (by omega : L - 1 < L)]
+    omega
+
+theorem cycSucc_injOn {L : ℕ} (_hL : 0 < L) :
+    ∀ i ∈ Finset.range L, ∀ j ∈ Finset.range L, cycSucc L i = cycSucc L j → i = j := by
+  intro i hi j hj hij
+  have hi' : i < L := Finset.mem_range.mp hi
+  have hj' : j < L := Finset.mem_range.mp hj
+  have := congrArg (cycPred L) hij
+  rwa [cycPred_cycSucc hi', cycPred_cycSucc hj'] at this
+
+/-- **Cheap valleys inject into internals**, by taking the cyclic successor. -/
+theorem cheap_le_internal {L : ℕ} (hL : 0 < L) (par : ℕ → Bool) :
+    ((Finset.range L).filter
+        fun i => par i && !par (cycPred L i) && par (cycSucc L i)).card
+      ≤ ((Finset.range L).filter fun i => par i && par (cycPred L i)).card := by
+  refine Finset.card_le_card_of_injOn (cycSucc L) (fun i hi => ?_) (fun i hi j hj h => ?_)
+  · obtain ⟨hmem, hcond⟩ := Finset.mem_filter.mp hi
+    have hi' : i < L := Finset.mem_range.mp hmem
+    obtain ⟨hleft, hsucc⟩ := Bool.and_eq_true_iff.mp hcond
+    have hodd : par i = true := (Bool.and_eq_true_iff.mp hleft).1
+    refine Finset.mem_filter.mpr ⟨Finset.mem_range.mpr (cycSucc_lt hL i), ?_⟩
+    rw [cycPred_cycSucc hi']
+    simp [hsucc, hodd]
+  · exact cycSucc_injOn hL i (Finset.mem_filter.mp hi).1 j (Finset.mem_filter.mp hj).1 h
+
+/-- Cheap valleys are valleys. -/
+theorem cheap_le_valley {L : ℕ} (par : ℕ → Bool) :
+    ((Finset.range L).filter
+        fun i => par i && !par (cycPred L i) && par (cycSucc L i)).card
+      ≤ ((Finset.range L).filter fun i => par i && !par (cycPred L i)).card := by
+  refine Finset.card_le_card ?_
+  intro i hi
+  obtain ⟨hmem, hcond⟩ := Finset.mem_filter.mp hi
+  exact Finset.mem_filter.mpr ⟨hmem, (Bool.and_eq_true_iff.mp hcond).1⟩
+
+/-- **At most half the odd letters are cheap valleys.**  No hypothesis about `EE`: the
+cheap valleys sit inside the valleys and inject into the internals, and those two classes
+partition the odd letters. -/
+theorem two_mul_cheap_le_odd {L : ℕ} (hL : 0 < L) (par : ℕ → Bool) :
+    2 * ((Finset.range L).filter
+        fun i => par i && !par (cycPred L i) && par (cycSucc L i)).card
+      ≤ ((Finset.range L).filter fun i => par i).card := by
+  have hsplit := valley_add_internal L par
+  have h1 := cheap_le_valley (L := L) par
+  have h2 := cheap_le_internal hL par
+  omega
+
 end Problems.Juggler

@@ -2017,8 +2017,10 @@ itinerary satisfies the hypotheses of Theorem 4.7, then
 
 The two halves of that progression do not carry the same weight. The
 \(24\) lengths with \(k\ge 18\), from \(75319\) up, are excluded
-whatever the itinerary: no admissible \(\mathtt{EE}\) count defeats
-them. The \(18\) with \(k\le 17\), from \(56347\) to \(74265\),
+with no hypothesis about \(\mathtt{EE}\) at all: at most half the odd
+letters can be cheap valleys whatever the word does
+(`two_mul_cheap_le_odd`), and charging \(\lfloor o/2\rfloor\) of them
+at \(n+2\) still excludes exactly those lengths. The \(18\) with \(k\le 17\), from \(56347\) to \(74265\),
 are excluded only under the no-\(\mathtt{EE}\) hypothesis, and the
 subsection below exhibits admissible words that defeat each. Dropping that hypothesis
 therefore leaves \(117\) lengths in place of \(99\). It does not move
@@ -2080,6 +2082,29 @@ the valleys themselves run out and the majorant falls again. So
 crosses that ceiling between \(L=74265\) and \(L=75319\), the \(42\)
 split cleanly: the \(24\) lengths from \(75319\) up are excluded whatever
 the itinerary, and the \(18\) from \(56347\) to \(74265\) are not.
+
+**The \(24\) are a theorem, not an observation.** The split above is
+read off a scan over \(m\), but the surviving half needs no scan. Call
+an odd letter a *cheap valley* when its cyclic predecessor is even and its
+cyclic successor is odd --- the start of an odd run of length at least
+two. A cheap valley is a valley; its successor is an odd letter with an
+odd predecessor, hence an internal; and the successor map is injective on
+the window. So the cheap valleys sit inside the valleys and inject into
+the internals, and those two classes partition the odd letters
+(`valley_add_internal`), giving
+
+\[
+2\cdot\#\text{cheap}\ \le\ o
+\]
+
+with no reference to \(\mathtt{EE}\) --- Lean `two_mul_cheap_le_odd`,
+from `cheap_le_valley` and `cheap_le_internal`. Feeding
+\(\lfloor o/2\rfloor\) to `sixTerm_bound_packed` in place of the
+packing's \(o-e\) therefore yields a comparison carrying none of
+Theorem 4.7's hypotheses, and at \(N_0=10^6\) that comparison excludes
+exactly the \(24\). The bound is of course weaker than the packed one
+--- it charges more valleys at the \(n+2\) scale --- and it remains
+below the charge of Corollary 4.5, as it must.
 
 **The \(18\) are genuinely lost without the hypothesis.** For each there
 is a word satisfying every restriction this paper proves for a

@@ -73,7 +73,7 @@ export const CLAIM_ROWS = [
     tag: "EXACT — HUMAN PROOF",
   },
   {
-    plain: `Packing kills ${PACKING_DEATH_COUNT} more lengths, ${PACKING_DEATH_FIRST.toLocaleString("en-US")} + ${PACKING_DEATH_STEP.toLocaleString("en-US")}k. Only ${PACKING_DEATH_UNCONDITIONAL} hold whatever the itinerary: the other ${PACKING_DEATH_CONDITIONAL} need the no-EE hypothesis, and admissible words with odd runs of length ≤ 2 defeat each. Dropping it leaves ${RUN_EXCEPTION_COUNT_NO_HYPOTHESIS} lengths, not ${RUN_EXCEPTION_COUNT}. The period ${PAPER_PERIOD.toLocaleString("en-US")} is unchanged either way.`,
+    plain: `Packing kills ${PACKING_DEATH_COUNT} more lengths, ${PACKING_DEATH_FIRST.toLocaleString("en-US")} + ${PACKING_DEATH_STEP.toLocaleString("en-US")}k. ${PACKING_DEATH_UNCONDITIONAL} of them need no hypothesis at all: at most half the odd letters can be cheap valleys, whatever the word does with EE (two_mul_cheap_le_odd), and that alone excludes them. The other ${PACKING_DEATH_CONDITIONAL} rest on the no-EE hypothesis, and admissible words with odd runs of length ≤ 2 defeat each. Dropping it leaves ${RUN_EXCEPTION_COUNT_NO_HYPOTHESIS} lengths, not ${RUN_EXCEPTION_COUNT}. The period ${PAPER_PERIOD.toLocaleString("en-US")} is unchanged either way.`,
     theorem: "Theorem 4.8 run-type table",
     tag: "COMPUTATIONALLY VERIFIED",
   },

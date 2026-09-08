@@ -23679,6 +23679,76 @@
       "trust": "kernel"
     },
     {
+      "doc": "The cyclic successor.",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 1046,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "cycSucc",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 1048,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "cycSucc_lt",
+      "trust": "kernel"
+    },
+    {
+      "doc": "On the window the successor undoes the predecessor.",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 1052,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "cycPred_cycSucc",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 1063,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "cycSucc_injOn",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Cheap valleys inject into internals**, by taking the cyclic successor.",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 1072,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "cheap_le_internal",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Cheap valleys are valleys.",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 1087,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "cheap_le_valley",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**At most half the odd letters are cheap valleys.** No hypothesis about `EE`: the cheap valleys sit inside the valleys and inject into the internals, and those two classes partition the odd letters.",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 1099,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "two_mul_cheap_le_odd",
+      "trust": "kernel"
+    },
+    {
       "doc": "",
       "file": "formal/Problems/Juggler/FirstETransportEval.lean",
       "kind": "def",
@@ -66872,7 +66942,7 @@
       ]
     },
     "Problems.Juggler.FinanceTransfer": {
-      "declarations": 57,
+      "declarations": 64,
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "imports": [
         "Problems.Juggler.CycleCore",
@@ -68182,13 +68252,13 @@
     }
   },
   "totals": {
-    "declarations": 4900,
+    "declarations": 4907,
     "declarations_with_a_ledger_row": 3195,
     "ledger_rows_naming_a_file": 338,
     "modules": 209,
     "trust": {
       "compiler": 54,
-      "kernel": 4846
+      "kernel": 4853
     }
   }
 }

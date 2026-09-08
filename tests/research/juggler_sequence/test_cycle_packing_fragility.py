@@ -19,6 +19,7 @@ from research.juggler_sequence.cycle_packing_fragility import (
     fragility_row,
     fragility_scan,
     packed_rhs_with_ee,
+    robust_rhs,
     three_term_rhs,
 )
 from research.juggler_sequence.paper_a_audit import o_min, parity_holds, theta
@@ -203,3 +204,33 @@ def test_above_anchor_rejects_a_descending_prefix() -> None:
     """The checker must actually bite: OE from the start dips below the anchor."""
     assert above_anchor_min("OE") < 0
     assert above_anchor_min("OOE") > 0
+
+
+def test_stated_bound_reproduces_the_scan_exactly() -> None:
+    """The 24 come from a hypothesis-free bound, not from a scan over EE counts.
+
+    `robust_rhs` feeds `o // 2` to the packed comparison in place of the
+    packing's `o - e`. That cap is `two_mul_cheap_le_odd` in Lean and needs
+    no hypothesis about EE, so the 24 exclusions it certifies are
+    unconditional -- which is what Theorem 4.8 now asserts.
+    """
+    data = fragility_scan()
+    assert data["robust_by_stated_bound"] == data["robust_lengths"]
+    assert len(data["robust_by_stated_bound"]) == 24
+    assert data["robust_by_stated_bound"][0] == 75319
+
+
+def test_robust_bound_stays_below_the_hypothesis_free_three_term_charge() -> None:
+    """Soundness: weakening the packing must not overshoot Corollary 4.5."""
+    for length in PACKING_DEATHS:
+        odd = o_min(length)
+        rhs = robust_rhs(N, length, odd)
+        assert rhs is not None
+        assert rhs < three_term_rhs(N, length, odd), length
+
+
+def test_robust_bound_is_weaker_than_the_packed_one() -> None:
+    """It charges o//2 cheap valleys where the packing charges o - e, so it is larger."""
+    for length in PACKING_DEATHS:
+        odd = o_min(length)
+        assert robust_rhs(N, length, odd) > packed_rhs_with_ee(N, length, odd, 0), length

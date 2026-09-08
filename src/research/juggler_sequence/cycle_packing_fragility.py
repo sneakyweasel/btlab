@@ -117,6 +117,45 @@ def packed_rhs_with_ee(
     )
 
 
+def robust_rhs(
+    n: int, length: int, odd_count: int, *, const: float = EPS_CONST
+) -> float | None:
+    """The packed charge with **no hypothesis about `EE`**.
+
+    A cheap valley is an odd letter with an even predecessor and an odd
+    successor. It is a valley, and its successor is an internal, and the
+    successor map is injective -- so the cheap valleys sit inside the
+    valleys and inject into the internals, two classes that partition the
+    odd letters. Hence `2 * #cheap <= o` whatever the word does with `EE`,
+    which is Lean as `two_mul_cheap_le_odd`. Feeding `o // 2` to
+    `sixTerm_bound_packed` in place of the packing's `o - e` gives this.
+    """
+    even = length - odd_count
+    cheap = odd_count // 2
+    expensive = even - cheap
+    internal = odd_count - even
+    if expensive < 0 or cheap < 1 or internal < 1:
+        return None
+    v = oe_start_min(n)
+    t, t_plus = first_odd_image(n), first_odd_image(n + 2)
+    return const * (
+        inv_log(n)
+        + (cheap - 1) * inv_log(n + 2)
+        + expensive * inv_log(v)
+        + inv_log(t)
+        + (internal - 1) * inv_log(t_plus)
+        + even * inv_log(n * n)
+    )
+
+
+def robust_excludes(length: int, *, floor: int = PUBLISHED_FLOOR) -> bool:
+    """Does the hypothesis-free charge exclude `length` at this floor?"""
+    n = max(floor + 1, MIN_STATE)
+    odd = o_min(length)
+    rhs = robust_rhs(n, length, odd)
+    return rhs is not None and theta(length, odd) > rhs
+
+
 def ee_to_resurrect(length: int, *, floor: int = PUBLISHED_FLOOR) -> int | None:
     """Least `EE` count at which the packed comparison stops excluding `length`.
 
@@ -206,6 +245,11 @@ def fragility_scan(*, floor: int = PUBLISHED_FLOOR) -> dict[str, Any]:
         "deaths_fragile_to_ee": len(fragile),
         "deaths_robust_to_ee": len(robust),
         "robust_lengths": [row["L"] for row in robust],
+        # The same set, from a stated hypothesis-free bound rather than a
+        # scan over EE counts: this is what lets Theorem 4.8 assert the 24.
+        "robust_by_stated_bound": [
+            L for L in PACKING_DEATHS if robust_excludes(L, floor=floor)
+        ],
         "ee_to_resurrect_min": min((r["ee_to_resurrect"] for r in fragile), default=None),
         "ee_to_resurrect_max": max((r["ee_to_resurrect"] for r in fragile), default=None),
         # Of the fragile ones, those needing less EE than a random placement expects.

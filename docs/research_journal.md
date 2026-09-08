@@ -40725,3 +40725,51 @@ disagree.
 Guards green. No number in the paper moved: the cutoff, the 141, and all
 five floors are exactly as they were, which is the point of having done
 the dependency audit before touching anything.
+
+## Half the odd letters, and the 24 become a theorem
+
+Yesterday I put "24 hold whatever the itinerary" into Theorem 4.8. That
+was an audit observation wearing a theorem's clothes: it rested on a
+Python scan over EE counts, not on any stated bound. It does not any more.
+
+The cap is simpler than the scan that found it. Call an odd letter a
+cheap valley when its cyclic predecessor is even and its cyclic successor
+is odd -- the start of an odd run of length at least two. Then:
+
+  a cheap valley is a valley;
+  its successor is an odd letter with an odd predecessor, so an internal;
+  the successor map is injective on the window.
+
+So the cheap valleys sit inside the valleys and inject into the internals,
+and valley_add_internal says those two classes partition the odd letters.
+Hence 2 * #cheap <= o. No reference to EE anywhere.
+
+That is the whole thing. Feeding floor(o/2) to sixTerm_bound_packed in
+place of the packing's o-e gives a comparison with none of Theorem 4.7's
+hypotheses, and at the published floor it excludes exactly the 24 -- same
+set, same first length 75319, checked against the scan. So Theorem 4.8's
+unconditional half is now asserted rather than observed, and Paper A says
+which lemma does it.
+
+What is worth keeping is where the bound came from. I had computed the
+ceiling (o/2)/(o-e) = 1.2047 two entries ago as a diagnostic and called it
+exactly that -- a number that decides rows, not a bound. It was a bound
+the whole time. The two caps I found by writing out the counting with m
+EE adjacencies, #cheap <= min(o-e+m, e-m), average to o/2 for every m, so
+the min is at most o/2 unconditionally. I had the inequality and read it
+as an observation about a scan because that is what I had been computing.
+
+The Lean was cheap: cycSucc, its injectivity via cycPred_cycSucc, two
+card_le lemmas, and an omega. Nothing new was needed because
+sixTerm_bound_packed already takes the cheap count as an inequality
+c1 <= k1 rather than as the packing's count -- it was written to take the
+split as hypotheses two entries ago, for a different reason, and that is
+exactly the shape a hypothesis-free cap plugs into.
+
+Two build errors, both mine and both mechanical: a final goal L-1 = i left
+after rewriting the modulus, which needed omega rather than simpa; and an
+unused hL binder in cycSucc_injOn, since the injectivity goes through
+cycPred_cycSucc and never needs positivity of L.
+
+Paper, probe, tests and the companion claims row all updated. The UI row
+now says why the 24 hold, not merely that they do.
