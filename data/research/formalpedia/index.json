@@ -23329,6 +23329,36 @@
       "trust": "kernel"
     },
     {
+      "doc": "**The expensive valley sits below the first internal**: `v \u2264 t = J(n)` for odd `n \u2265 9`. The route through `n\u00b3 \u2264 t\u00b2` forces a `3/2` exponent and lands on a degree-nine comparison. Naming the witness avoids it entirely. With `s = \u230a\u221an\u230b` and `s'` the largest odd number at most `s`, the witness is `n\u00b7s'`: * `(n s')\u00b2 = n\u00b2 s'\u00b2 \u2264 n\u00b2 \u00b7 n = n\u00b3`, so `n s' \u2264 \u230a\u221a(n\u00b3)\u230b = t`; * `(n s')\u00b3 = n\u00b3 s'\u00b3 \u2265 n\u00b3 \u00b7 n = n\u2074`, since `n < (s+1)\u00b2 \u2264 s'\u00b3` once `s \u2265 3`; * and `n s'` is odd, being a product of two odds. Everything is degree three.",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 528,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "expensiveValley_le_floorPower",
+      "trust": "kernel"
+    },
+    {
+      "doc": "And below the later internals: `v \u2264 t\u208a = J(n+2)`, by monotonicity of `J` on odds.",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 566,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "expensiveValley_le_floorPower_succ",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The last ordering.** The internal majorant sits below the expensive-valley majorant, so the three class contributions are linearly ordered \u2014 cheap, expensive, internal \u2014 and `majorize_three` applies to Theorem 4.7's display.",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 574,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "internal_le_expensive",
+      "trust": "kernel"
+    },
+    {
       "doc": "",
       "file": "formal/Problems/Juggler/FirstETransportEval.lean",
       "kind": "def",
@@ -66515,7 +66545,7 @@
       ]
     },
     "Problems.Juggler.FinanceTransfer": {
-      "declarations": 29,
+      "declarations": 32,
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "imports": [
         "Problems.Juggler.CycleCore"
@@ -67824,13 +67854,13 @@
     }
   },
   "totals": {
-    "declarations": 4865,
+    "declarations": 4868,
     "declarations_with_a_ledger_row": 3195,
     "ledger_rows_naming_a_file": 336,
     "modules": 208,
     "trust": {
       "compiler": 54,
-      "kernel": 4811
+      "kernel": 4814
     }
   }
 }

@@ -78,6 +78,8 @@ import Problems.JugglerPaper
 #print axioms Problems.Juggler.expansion_holds_at_22
 #print axioms Juggler.FanLaw.expansion_rate_lower
 #print axioms Juggler.FanLaw.expansion_rate_upper
+#print axioms Problems.Juggler.expensiveValley_le_floorPower
+#print axioms Problems.Juggler.expensiveValley_le_floorPower_succ
 #print axioms Problems.Juggler.expensive_le_cheap
 #print axioms Juggler.FanLaw.fanLambda
 #print axioms Juggler.FanLaw.fanLambda_55_pos
@@ -128,6 +130,7 @@ import Problems.JugglerPaper
 #print axioms Problems.Juggler.image_eq_start_defectRatio
 #print axioms Problems.Juggler.image_monotone_of_follows
 #print axioms Problems.Juggler.internal_le_cheap
+#print axioms Problems.Juggler.internal_le_expensive
 #print axioms Problems.Juggler.inv_mul_log_antitoneOn
 #print axioms Problems.Juggler.inv_sq_le_quad
 #print axioms Problems.Juggler.le_expensiveValley

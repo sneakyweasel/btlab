@@ -9380,3 +9380,60 @@ classification, then counting, then one inequality. That is what a
 chain looks like when it is being closed from the top; the risk is
 mistaking the shrinking for nearness, and a degree-nine `ℕ` inequality
 is not near.
+
+## `v ≤ t`: the degree-nine step came from a bad intermediate
+
+*Mathematical target.* The single unproved arithmetic fact left in
+Theorem 4.7's chain: \(v\le t_+\), to order the expensive-valley
+contribution above the internal one.
+
+*Novelty hypothesis.* The degree-nine comparison was not intrinsic. It
+came from routing through \(n^{3}\le t^{2}\), which forces a \(3/2\)
+exponent and then needs an eighth power to get back.
+
+*Falsifier.* No odd witness below \(t\) whose cube clears \(n^{4}\) can
+be named without the same exponent.
+
+**Naming the witness removes the exponent entirely.** Let
+\(s=\lfloor\sqrt n\rfloor\) and let \(s'\) be the largest odd number at
+most \(s\). The witness is \(n s'\):
+
+- \((n s')^{2}=n^{2}s'^{2}\le n^{2}\cdot n=n^{3}\), so
+  \(n s'\le\lfloor\sqrt{n^{3}}\rfloor=t\);
+- \((n s')^{3}=n^{3}s'^{3}\ge n^{3}\cdot n=n^{4}\), because
+  \(n<(s+1)^{2}\le(s'+2)^{2}\le s'^{3}\) once \(s'\ge3\);
+- \(n s'\) is odd, a product of two odds.
+
+Every step is degree three, and the only nonlinear fact is
+\((s'+2)^{2}\le s'^{3}\) at \(s'\ge3\), which is \(25\le27\) shifted.
+
+- `expensiveValley_le_floorPower` --- \(v\le t\) for odd \(n\ge9\).
+- `expensiveValley_le_floorPower_succ` --- hence \(v\le t_+\), by
+  `floorPower_odd_mono`.
+- `internal_le_expensive` --- so the three contributions are linearly
+  ordered, cheap ≥ expensive ≥ internal, and `majorize_three` applies.
+
+Checked before formalizing: the witness satisfies all three conditions
+for every odd \(n\) in \([9,2000)\). At \(n=17\), \(s=4\) so \(s'=3\)
+and the witness is \(51\), against \(t=70\); at \(n=101\), \(s=10\),
+\(s'=9\), witness \(909\) against \(t=1015\).
+
+**Where the display now stands.** Every step from `CycleMin` to
+Theorem 4.7's six-term bound is Lean: the transfer, the fibre
+decomposition, all six class bounds, the packing extremality, the
+index-level valley/internal counting, the exchange in its general
+three-class form, and now the last ordering. What remains is not a
+mathematical gap but an *assembly*: composing these into one statement
+whose only hypothesis is `CycleMin n w`, which means fixing a concrete
+`cls : ℕ → Fin 6` and discharging its six fibre cardinalities against
+the counting lemmas.
+
+Tags. COMPUTATIONALLY VERIFIED: `lake build Problems.JugglerPaper`
+clean; the three new declarations within
+`[propext, Classical.choice, Quot.sound]`; the witness checked on all
+odd \(n<2000\); `AxiomCheckPaperA` at 244 lines. OBSERVATION: last entry
+I called the remaining fact "not near" because of its degree. The degree
+was an artifact of the proof I had in mind, not of the statement. The
+lesson is narrow but real: when a route to an integer inequality needs a
+high power, the first thing to try is not a stronger tactic but a
+different witness.

@@ -39984,3 +39984,36 @@ A guard caught a citation for the third time: I backticked nlinarith,
 which is a tactic and not a declaration. The carve-out list already
 holds two tactics, but widening a guard to fit my own prose is the
 weaker move, so the sentence was rephrased instead.
+
+Last entry I called v <= t "not near" because the proof needed a
+degree-nine comparison. The degree was an artifact of the route, not of
+the statement.
+
+Going through n^3 <= t^2 forces a 3/2 exponent and then an eighth power
+to get back. Naming the witness removes it. Let s = floor(sqrt n) and
+s' the largest odd number at most s; the witness is n*s'. Its square is
+n^2 s'^2 <= n^2 * n = n^3, so it is at most t. Its cube is n^3 s'^3 >=
+n^3 * n = n^4, because n < (s+1)^2 <= (s'+2)^2 <= s'^3 once s' >= 3. And
+it is odd, a product of odds. Every step is degree three, and the only
+nonlinear fact is (s'+2)^2 <= s'^3 at s' >= 3, which is 25 <= 27
+shifted.
+
+Checked before formalizing: the witness works for every odd n in
+[9,2000). At n=17, s=4 so s'=3 and the witness is 51 against t=70; at
+n=101, s=10, s'=9, witness 909 against t=1015.
+
+expensiveValley_le_floorPower_succ carries it to t_+, and
+internal_le_expensive orders the three contributions, so majorize_three
+applies. Every step from CycleMin to Theorem 4.7's six-term bound is
+now Lean: the transfer, the fibre decomposition, all six class bounds,
+the packing extremality, the index-level counting, the exchange in
+general, and the last ordering.
+
+What remains is not a mathematical gap but an assembly: composing these
+into one statement whose only hypothesis is CycleMin n w, which means
+fixing a concrete cls and discharging its six fibre cardinalities
+against the counting lemmas.
+
+The lesson is narrow but real. When a route to an integer inequality
+needs a high power, the first thing to try is not a stronger tactic but
+a different witness.

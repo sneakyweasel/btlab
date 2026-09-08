@@ -514,4 +514,65 @@ theorem internal_le_cheap {n tp : ℝ} (hn : 2 ≤ n + 2) (htp : n + 2 ≤ tp) :
     1 / (tp * Real.log tp) ≤ 1 / ((n + 2) * Real.log (n + 2)) :=
   inv_mul_log_antitoneOn (Set.mem_Ici.mpr hn) (Set.mem_Ici.mpr (le_trans hn htp)) htp
 
+/-- **The expensive valley sits below the first internal**: `v ≤ t = J(n)` for odd `n ≥ 9`.
+
+The route through `n³ ≤ t²` forces a `3/2` exponent and lands on a degree-nine comparison.
+Naming the witness avoids it entirely.  With `s = ⌊√n⌋` and `s'` the largest odd number at
+most `s`, the witness is `n·s'`:
+
+* `(n s')² = n² s'² ≤ n² · n = n³`, so `n s' ≤ ⌊√(n³)⌋ = t`;
+* `(n s')³ = n³ s'³ ≥ n³ · n = n⁴`, since `n < (s+1)² ≤ s'³` once `s ≥ 3`;
+* and `n s'` is odd, being a product of two odds.
+
+Everything is degree three. -/
+theorem expensiveValley_le_floorPower {n : ℕ} (hn : 9 ≤ n) (hodd : n % 2 = 1) :
+    expensiveValley n ≤ floorPower n := by
+  set s := Nat.sqrt n with hsdef
+  have hsq : s * s ≤ n := Nat.sqrt_le n
+  have hlt : n < (s + 1) * (s + 1) := Nat.lt_succ_sqrt n
+  have hs3 : 3 ≤ s := by
+    by_contra hcon
+    have hs2 : s ≤ 2 := by omega
+    nlinarith
+  set s' := if s % 2 = 1 then s else s - 1 with hs'def
+  have hs'odd : s' % 2 = 1 := by rw [hs'def]; split <;> omega
+  have hs'le : s' ≤ s := by rw [hs'def]; split <;> omega
+  have hs'ge : 3 ≤ s' := by rw [hs'def]; split <;> omega
+  have hn_le : n ≤ s' * s' * s' := by
+    have hcase : s + 1 ≤ s' + 2 := by rw [hs'def]; split <;> omega
+    have h1 : (s + 1) * (s + 1) ≤ (s' + 2) * (s' + 2) := Nat.mul_le_mul hcase hcase
+    have h2 : (s' + 2) * (s' + 2) ≤ s' * s' * s' := by
+      obtain ⟨k, hk⟩ : ∃ k, s' = 3 + k := ⟨s' - 3, by omega⟩
+      rw [hk]
+      nlinarith
+    omega
+  have hodd' : (n * s') % 2 = 1 := by
+    rw [Nat.mul_mod, hodd, hs'odd]
+  have hcube : n ^ 4 ≤ (n * s') ^ 3 := by
+    have : (n * s') ^ 3 = n ^ 3 * (s' * s' * s') := by ring
+    rw [this]
+    calc n ^ 4 = n ^ 3 * n := by ring
+      _ ≤ n ^ 3 * (s' * s' * s') := Nat.mul_le_mul_left _ hn_le
+  have hmem : expensiveValley n ≤ n * s' := expensiveValley_le hodd' hcube
+  have hle : n * s' ≤ floorPower n := by
+    rw [floorPower_odd_eq hodd]
+    refine (Nat.le_sqrt).mpr ?_
+    calc n * s' * (n * s') = n * n * (s' * s') := by ring
+      _ ≤ n * n * n := Nat.mul_le_mul_left _ (le_trans (Nat.mul_le_mul hs'le hs'le) hsq)
+      _ = n ^ 3 := by ring
+  omega
+
+/-- And below the later internals: `v ≤ t₊ = J(n+2)`, by monotonicity of `J` on odds. -/
+theorem expensiveValley_le_floorPower_succ {n : ℕ} (hn : 9 ≤ n) (hodd : n % 2 = 1) :
+    expensiveValley n ≤ floorPower (n + 2) :=
+  le_trans (expensiveValley_le_floorPower hn hodd)
+    (floorPower_odd_mono hodd (by omega) (by omega))
+
+/-- **The last ordering.**  The internal majorant sits below the expensive-valley majorant,
+so the three class contributions are linearly ordered — cheap, expensive, internal — and
+`majorize_three` applies to Theorem 4.7's display. -/
+theorem internal_le_expensive {v tp : ℝ} (hv : 2 ≤ v) (hvtp : v ≤ tp) :
+    1 / (tp * Real.log tp) ≤ 1 / (v * Real.log v) :=
+  inv_mul_log_antitoneOn (Set.mem_Ici.mpr hv) (Set.mem_Ici.mpr (le_trans hv hvtp)) hvtp
+
 end Problems.Juggler
