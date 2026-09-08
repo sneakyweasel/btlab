@@ -51,6 +51,12 @@ export const CLAIM_ROWS = [
     tag: "COMPUTATIONALLY VERIFIED",
   },
   {
+    plain:
+      "A real loop's word reads O^a₁ E … O^aₑ E: e blocks, one even letter each, the first odd run at least two long and the last at most one. This is what lays out the lollipop figure — the bead count and both ends of it.",
+    theorem: "cycleMin_has_full_odd_even_run_form (CycleRunForm.lean)",
+    tag: "EXACT — LEAN VERIFIED",
+  },
+  {
     plain: "At a cycle minimum, n log n times the surplus cannot exceed L · 3^o.",
     theorem: "Theorem 4.4 finance inequality",
     tag: "EXACT — LEAN VERIFIED",

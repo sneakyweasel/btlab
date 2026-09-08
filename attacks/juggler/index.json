@@ -5503,6 +5503,7 @@
         "formal/Problems/Juggler/LengthEightCensus.lean",
         "formal/Problems/Juggler/CycleDiophantine.lean",
         "formal/Problems/Juggler/EvenCountThree.lean",
+        "formal/Problems/Juggler/CycleRunForm.lean",
         "formal/Problems/Juggler/CycleMinObstruction.lean",
         "formal/Problems/Juggler/O7EEEEGap.lean",
         "formal/Problems/Juggler/CycleMinFudge.lean",

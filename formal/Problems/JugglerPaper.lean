@@ -17,6 +17,7 @@ import Problems.Juggler.LeftoverShort
 import Problems.Juggler.LeftoverFamilies
 import Problems.Juggler.O7EEEEGap
 import Problems.Juggler.EvenCountThree
+import Problems.Juggler.CycleRunForm
 import Problems.Juggler.SmallCycleCensus
 import Problems.Juggler.NormalizedDefect
 import Problems.Juggler.ExpansionSlack

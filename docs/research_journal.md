@@ -41260,3 +41260,46 @@ cycleMin_ends_even came to exist in the first place.
 Method note. I proposed this guard, wrote it, ran it green, committed it,
 and only found it was measuring the wrong set when I used it for the job
 it was written for. A guard that has never been used in anger is a guess.
+
+## The lollipop figure moves onto Paper A's verified surface
+
+The companion's central figure was laid out by
+cycleMin_has_full_odd_even_run_form, which lived in IdealCycleMin -- real
+Lean, but outside the barrel that lake build Problems.JugglerPaper and
+AxiomCheckPaperA cover. So a reader checking Paper A's Lean would not have
+found the theorem the figure rests on.
+
+It is now in CycleRunForm.lean, inside the barrel. The move was smaller
+than it looked: the run form's two substantive inputs,
+cycleMin_getLast_even and exists_cycleMin_last_odd_run, were already in
+EvenCountThree, which the barrel carries, and three of IdealCycleMin's
+four imports are barrel modules. Only the run-list plumbing had to travel
+-- eleven declarations, 149 lines, and the proof uses nothing from
+CycleMinFudge directly.
+
+What did not travel is the point. sureLink_iff and the bead table stay in
+IdealCycleMin. They are statements about the display schema, not about
+cycle words, and putting them in Paper A's barrel would have padded the
+paper's verified surface with UI scaffolding. The split is: the run form
+is mathematics the paper owns; the beads are a projection of it for
+drawing.
+
+The UI now says which is which. The bead-schema comment points at
+CycleRunForm and says it is barrel-covered; the sureLink comment says
+explicitly that it stays behind and why; and the claims scoreboard has a
+row for the run form, which it never had -- the figure's layout was
+previously an unattributed schematic on the surface described in the app
+as a scoreboard for a reviewer.
+
+Two mistakes. The first extractor ended each block at the next keyword
+while starting it at the preceding docstring, so adjacent spans overlapped
+and one block swallowed the head of its neighbour; Lean caught it as a
+parse error. The fix was to make the spans a partition -- end each where
+the next begins -- rather than to patch the overlap. And the branch index
+needed rebuilding after a new module appeared, which its own guard caught.
+
+What is unchanged, and the UI still says so: assembleFill is not a
+characterization. The schema shows conditions a cycle word must satisfy,
+not a classification of the words that do. Moving the backing makes the
+figure Paper-A-verified; it does not make it a classification, and the
+comment now states that in those words.

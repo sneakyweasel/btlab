@@ -454,9 +454,17 @@ export type BalloonInterval = {
 
 /**
  * Candidate bead schema in CycleMin reading order.
- * Same order as Lean `balloonSchema`. The full e-run is Lean
- * (`cycleMin_has_full_odd_even_run_form`); this schema is a projection
- * of that run list. `assembleFill` is not a characterization.
+ * Same order as Lean `balloonSchema`.
+ *
+ * The run form this figure is laid out by — `w = O^{a₁}E ⋯ O^{a_e}E` with
+ * `a₁ ≥ 2` and `a_e ≤ 1` — is `cycleMin_has_full_odd_even_run_form` in
+ * `formal/Problems/Juggler/CycleRunForm.lean`, which is inside Paper A's
+ * barrel: it is covered by `lake build Problems.JugglerPaper`, so a reader
+ * checking the paper's Lean will find it.
+ *
+ * The schema below is a *projection* of that run list, and `assembleFill` is
+ * not a characterization. It shows conditions the word must satisfy, not a
+ * classification of the words that do.
  */
 export const BALLOON_SCHEMA: readonly BalloonStation[] = [
   { kind: "sureLaunchO" },
@@ -513,7 +521,11 @@ function sureBeadsFromSchema(schema: readonly BalloonStation[]): IdealBead[] {
 export const IDEAL_BALLOON_BEADS: readonly IdealBead[] =
   sureBeadsFromSchema(BALLOON_SCHEMA);
 
-/** Lean `sureLink_iff`: exactly two table adjacencies are sure. */
+/**
+ * Lean `sureLink_iff`: exactly two table adjacencies are sure. This one is a
+ * statement about the bead table, so it stays in `IdealCycleMin` with the rest
+ * of the display schema rather than moving into Paper A's barrel.
+ */
 export const SURE_LINKS: readonly (readonly [number, number])[] = [
   [0, 1],
   [5, 0],

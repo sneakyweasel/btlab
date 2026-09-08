@@ -15551,6 +15551,116 @@
       "trust": "kernel"
     },
     {
+      "doc": "Concatenate odd-runs separated by one even each.",
+      "file": "formal/Problems/Juggler/CycleRunForm.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 23,
+      "module": "Problems.Juggler.CycleRunForm",
+      "name": "assembleOddEvenRuns",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Recover the odd-run lengths of a word. Empty unless the word ends `E`.",
+      "file": "formal/Problems/Juggler/CycleRunForm.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 29,
+      "module": "Problems.Juggler.CycleRunForm",
+      "name": "oddEvenRuns",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CycleRunForm.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 37,
+      "module": "Problems.Juggler.CycleRunForm",
+      "name": "oddEvenRuns_ne_nil_of_endsEven",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CycleRunForm.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 54,
+      "module": "Problems.Juggler.CycleRunForm",
+      "name": "assemble_oddEvenRuns",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CycleRunForm.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 82,
+      "module": "Problems.Juggler.CycleRunForm",
+      "name": "evenCount_assembleOddEvenRuns",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CycleRunForm.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 89,
+      "module": "Problems.Juggler.CycleRunForm",
+      "name": "oddEvenRuns_length_eq_evenCount",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CycleRunForm.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 96,
+      "module": "Problems.Juggler.CycleRunForm",
+      "name": "oddEvenRuns_cons_first_even",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CycleRunForm.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 104,
+      "module": "Problems.Juggler.CycleRunForm",
+      "name": "oddEvenRuns_replicate_odds_even",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CycleRunForm.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 108,
+      "module": "Problems.Juggler.CycleRunForm",
+      "name": "oddEvenRuns_append_of_endsEven",
+      "trust": "kernel"
+    },
+    {
+      "doc": "First-run wrap of Lemma 3.21b: `O^{a\u2081} E` plus a tail, `a\u2081 \u2265 2`.",
+      "file": "formal/Problems/Juggler/CycleRunForm.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 139,
+      "module": "Problems.Juggler.CycleRunForm",
+      "name": "cycleMin_run_form_first_block",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Full CycleMin run form: `w = O^{a\u2081}E \u22ef O^{a\u2091}E` with `e = #E`, `a\u2081 \u2265 2`, `a\u2091 \u2264 1`. The bead schema is a projection of this list, not a characterization. Lemma 3.21b's leftover use for `e \u2264 3` stays the Paper A argument.",
+      "file": "formal/Problems/Juggler/CycleRunForm.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 149,
+      "module": "Problems.Juggler.CycleRunForm",
+      "name": "cycleMin_has_full_odd_even_run_form",
+      "trust": "kernel"
+    },
+    {
       "doc": "",
       "file": "formal/Problems/Juggler/Defect.lean",
       "kind": "def",
@@ -25305,7 +25415,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "structure",
       "ledger": [],
-      "line": 50,
+      "line": 51,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "CycleMinShape",
       "trust": "kernel"
@@ -25315,7 +25425,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 61,
+      "line": 62,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "two_pow_add_four_lt_three_pow",
       "trust": "kernel"
@@ -25325,7 +25435,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 67,
+      "line": 68,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "cycleMin_oddCount_ge_seven",
       "trust": "kernel"
@@ -25335,7 +25445,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 77,
+      "line": 78,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "cycleMin_unplaced_odds_ge_five",
       "trust": "kernel"
@@ -25345,7 +25455,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 82,
+      "line": 83,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "cycleMin_extra_evens_ge_zero",
       "trust": "kernel"
@@ -25355,7 +25465,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 87,
+      "line": 88,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "cycleMin_last_odd_run_mem",
       "trust": "kernel"
@@ -25365,7 +25475,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 93,
+      "line": 94,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "cycleMin_inhabits_shape",
       "trust": "kernel"
@@ -25375,7 +25485,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 105,
+      "line": 106,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "cycleMin_valley_is_odd",
       "trust": "kernel"
@@ -25385,7 +25495,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 109,
+      "line": 110,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "cycle_has_cycleMin",
       "trust": "kernel"
@@ -25395,7 +25505,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "def",
       "ledger": [],
-      "line": 123,
+      "line": 124,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "BeadParity.ofBranch",
       "trust": "kernel"
@@ -25405,7 +25515,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "def",
       "ledger": [],
-      "line": 128,
+      "line": 129,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "BeadParity.matches",
       "trust": "kernel"
@@ -25415,7 +25525,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 134,
+      "line": 135,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "beadParity_ofBranch_matches",
       "trust": "kernel"
@@ -25425,7 +25535,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 138,
+      "line": 139,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "sure_parity_not_unknown",
       "trust": "kernel"
@@ -25435,7 +25545,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "structure",
       "ledger": [],
-      "line": 143,
+      "line": 144,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "CountBound",
       "trust": "kernel"
@@ -25445,7 +25555,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "def",
       "ledger": [],
-      "line": 148,
+      "line": 149,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "CountBound.exactly",
       "trust": "kernel"
@@ -25455,7 +25565,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "def",
       "ledger": [],
-      "line": 149,
+      "line": 150,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "CountBound.atLeast",
       "trust": "kernel"
@@ -25465,7 +25575,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "def",
       "ledger": [],
-      "line": 150,
+      "line": 151,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "CountBound.between",
       "trust": "kernel"
@@ -25475,7 +25585,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "def",
       "ledger": [],
-      "line": 151,
+      "line": 152,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "CountBound.zeroPlus",
       "trust": "kernel"
@@ -25485,7 +25595,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "def",
       "ledger": [],
-      "line": 152,
+      "line": 153,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "CountBound.onePlus",
       "trust": "kernel"
@@ -25495,7 +25605,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "def",
       "ledger": [],
-      "line": 153,
+      "line": 154,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "CountBound.zeroOrOne",
       "trust": "kernel"
@@ -25505,7 +25615,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "def",
       "ledger": [],
-      "line": 155,
+      "line": 156,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "CountBound.admitsProp",
       "trust": "kernel"
@@ -25515,7 +25625,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 168,
+      "line": 169,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "CountBound.admitsProp_zeroOrOne",
       "trust": "kernel"
@@ -25525,7 +25635,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 181,
+      "line": 182,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "CountBound.admitsProp_exactly",
       "trust": "kernel"
@@ -25535,7 +25645,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "structure",
       "ledger": [],
-      "line": 194,
+      "line": 195,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "BeadSlot",
       "trust": "kernel"
@@ -25545,7 +25655,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "def",
       "ledger": [],
-      "line": 200,
+      "line": 201,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "BeadSlot.sureOdd",
       "trust": "kernel"
@@ -25555,7 +25665,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "def",
       "ledger": [],
-      "line": 201,
+      "line": 202,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "BeadSlot.sureEven",
       "trust": "kernel"
@@ -25565,7 +25675,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "def",
       "ledger": [],
-      "line": 202,
+      "line": 203,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "BeadSlot.launchOO",
       "trust": "kernel"
@@ -25575,7 +25685,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "def",
       "ledger": [],
-      "line": 203,
+      "line": 204,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "BeadSlot.intervalOdd",
       "trust": "kernel"
@@ -25585,7 +25695,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "def",
       "ledger": [],
-      "line": 204,
+      "line": 205,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "BeadSlot.intervalEven",
       "trust": "kernel"
@@ -25595,7 +25705,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "def",
       "ledger": [],
-      "line": 205,
+      "line": 206,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "BeadSlot.intervalUnknown",
       "trust": "kernel"
@@ -25605,7 +25715,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "def",
       "ledger": [],
-      "line": 213,
+      "line": 214,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "BeadEdge.isSure",
       "trust": "kernel"
@@ -25615,7 +25725,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "def",
       "ledger": [],
-      "line": 218,
+      "line": 219,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "sureBeadParities",
       "trust": "kernel"
@@ -25625,7 +25735,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "def",
       "ledger": [],
-      "line": 222,
+      "line": 223,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "cycleEdges",
       "trust": "kernel"
@@ -25635,7 +25745,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "def",
       "ledger": [],
-      "line": 231,
+      "line": 232,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "sureLink",
       "trust": "kernel"
@@ -25645,7 +25755,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 236,
+      "line": 237,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "sureBeadParities_length",
       "trust": "kernel"
@@ -25655,7 +25765,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 238,
+      "line": 239,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "cycleEdges_length",
       "trust": "kernel"
@@ -25665,7 +25775,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 241,
+      "line": 242,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "cycleEdges_OO_sure",
       "trust": "kernel"
@@ -25675,7 +25785,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 243,
+      "line": 244,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "cycleEdges_wrap_sure",
       "trust": "kernel"
@@ -25685,7 +25795,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 245,
+      "line": 246,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "sure_link_count",
       "trust": "kernel"
@@ -25695,7 +25805,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 250,
+      "line": 251,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "OO_sure_link",
       "trust": "kernel"
@@ -25705,7 +25815,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 253,
+      "line": 254,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "wrap_sure_link",
       "trust": "kernel"
@@ -25715,7 +25825,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 255,
+      "line": 256,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "launch_to_firstE_not_sure",
       "trust": "kernel"
@@ -25725,7 +25835,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 257,
+      "line": 258,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "firstE_to_secondE_not_sure",
       "trust": "kernel"
@@ -25735,7 +25845,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 259,
+      "line": 260,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "extraEven_edge_not_sure",
       "trust": "kernel"
@@ -25745,7 +25855,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 261,
+      "line": 262,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "lastOdd_edge_not_sure",
       "trust": "kernel"
@@ -25755,7 +25865,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 271,
+      "line": 272,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "sureLink_iff",
       "trust": "kernel"
@@ -25765,7 +25875,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 290,
+      "line": 291,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "cycleMin_only_forced_adjacencies",
       "trust": "kernel"
@@ -25775,107 +25885,17 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 294,
+      "line": 295,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "sure_beads_known_parity",
       "trust": "kernel"
     },
     {
-      "doc": "Concatenate odd-runs separated by one even each.",
+      "doc": "",
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
-      "kind": "def",
+      "kind": "theorem",
       "ledger": [],
       "line": 301,
-      "module": "Problems.Juggler.IdealCycleMin",
-      "name": "assembleOddEvenRuns",
-      "trust": "kernel"
-    },
-    {
-      "doc": "Recover the odd-run lengths of a word. Empty unless the word ends `E`.",
-      "file": "formal/Problems/Juggler/IdealCycleMin.lean",
-      "kind": "def",
-      "ledger": [],
-      "line": 307,
-      "module": "Problems.Juggler.IdealCycleMin",
-      "name": "oddEvenRuns",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/Problems/Juggler/IdealCycleMin.lean",
-      "kind": "theorem",
-      "ledger": [],
-      "line": 315,
-      "module": "Problems.Juggler.IdealCycleMin",
-      "name": "oddEvenRuns_ne_nil_of_endsEven",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/Problems/Juggler/IdealCycleMin.lean",
-      "kind": "theorem",
-      "ledger": [],
-      "line": 332,
-      "module": "Problems.Juggler.IdealCycleMin",
-      "name": "assemble_oddEvenRuns",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/Problems/Juggler/IdealCycleMin.lean",
-      "kind": "theorem",
-      "ledger": [],
-      "line": 360,
-      "module": "Problems.Juggler.IdealCycleMin",
-      "name": "evenCount_assembleOddEvenRuns",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/Problems/Juggler/IdealCycleMin.lean",
-      "kind": "theorem",
-      "ledger": [],
-      "line": 367,
-      "module": "Problems.Juggler.IdealCycleMin",
-      "name": "oddEvenRuns_length_eq_evenCount",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/Problems/Juggler/IdealCycleMin.lean",
-      "kind": "theorem",
-      "ledger": [],
-      "line": 374,
-      "module": "Problems.Juggler.IdealCycleMin",
-      "name": "oddEvenRuns_cons_first_even",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/Problems/Juggler/IdealCycleMin.lean",
-      "kind": "theorem",
-      "ledger": [],
-      "line": 382,
-      "module": "Problems.Juggler.IdealCycleMin",
-      "name": "oddEvenRuns_replicate_odds_even",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/Problems/Juggler/IdealCycleMin.lean",
-      "kind": "theorem",
-      "ledger": [],
-      "line": 386,
-      "module": "Problems.Juggler.IdealCycleMin",
-      "name": "oddEvenRuns_append_of_endsEven",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/Problems/Juggler/IdealCycleMin.lean",
-      "kind": "theorem",
-      "ledger": [],
-      "line": 416,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "assembleOddEvenRuns_append",
       "trust": "kernel"
@@ -25885,7 +25905,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 424,
+      "line": 309,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "assembleOddEvenRuns_singleton",
       "trust": "kernel"
@@ -25895,7 +25915,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 429,
+      "line": 314,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "assembleOddEvenRuns_replicate_zero",
       "trust": "kernel"
@@ -25905,7 +25925,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 436,
+      "line": 321,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "assembleOddEvenRuns_eq_nil",
       "trust": "kernel"
@@ -25915,7 +25935,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 442,
+      "line": 327,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "oddEvenRuns_assemble",
       "trust": "kernel"
@@ -25925,7 +25945,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 447,
+      "line": 332,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "assembleOddEvenRuns_inj",
       "trust": "kernel"
@@ -25935,19 +25955,9 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 453,
+      "line": 338,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "exists_oddEven_run_form",
-      "trust": "kernel"
-    },
-    {
-      "doc": "First-run wrap of Lemma 3.21b: `O^{a\u2081} E` plus a tail, `a\u2081 \u2265 2`.",
-      "file": "formal/Problems/Juggler/IdealCycleMin.lean",
-      "kind": "theorem",
-      "ledger": [],
-      "line": 464,
-      "module": "Problems.Juggler.IdealCycleMin",
-      "name": "cycleMin_run_form_first_block",
       "trust": "kernel"
     },
     {
@@ -25955,7 +25965,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 470,
+      "line": 348,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "cycleMin_first_even_role",
       "trust": "kernel"
@@ -25965,7 +25975,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 478,
+      "line": 356,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "cycleMin_last_even_role",
       "trust": "kernel"
@@ -25975,7 +25985,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 485,
+      "line": 363,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "cycleMin_hug_prefix_odds",
       "trust": "kernel"
@@ -25985,7 +25995,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "def",
       "ledger": [],
-      "line": 491,
+      "line": 369,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "PrefixOddBudget",
       "trust": "kernel"
@@ -25995,7 +26005,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 494,
+      "line": 372,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "cycleMin_bead_prefix_dominates_hug",
       "trust": "kernel"
@@ -26005,7 +26015,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 500,
+      "line": 378,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "cycleMin_letters_known_parity",
       "trust": "kernel"
@@ -26015,7 +26025,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 506,
+      "line": 384,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "cycleMin_sure_OO",
       "trust": "kernel"
@@ -26025,7 +26035,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 514,
+      "line": 392,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "cycleMin_sure_wrap",
       "trust": "kernel"
@@ -26035,7 +26045,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 521,
+      "line": 399,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "cycleMin_a1_interval",
       "trust": "kernel"
@@ -26045,19 +26055,9 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 538,
+      "line": 416,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "cycleMin_last_interval",
-      "trust": "kernel"
-    },
-    {
-      "doc": "Full CycleMin run form: `w = O^{a\u2081}E \u22ef O^{a\u2091}E` with `e = #E`, `a\u2081 \u2265 2`, `a\u2091 \u2264 1`. The bead schema is a projection of this list, not a characterization. Lemma 3.21b's leftover use for `e \u2264 3` stays the Paper A argument.",
-      "file": "formal/Problems/Juggler/IdealCycleMin.lean",
-      "kind": "theorem",
-      "ledger": [],
-      "line": 549,
-      "module": "Problems.Juggler.IdealCycleMin",
-      "name": "cycleMin_has_full_odd_even_run_form",
       "trust": "kernel"
     },
     {
@@ -26065,7 +26065,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 577,
+      "line": 423,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "cycleMin_realizes_sure_links",
       "trust": "kernel"
@@ -26075,7 +26075,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 584,
+      "line": 430,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "cycleMin_launch_is_OO",
       "trust": "kernel"
@@ -26085,7 +26085,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 589,
+      "line": 435,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "cycleMin_wrap_is_EO",
       "trust": "kernel"
@@ -26095,7 +26095,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 594,
+      "line": 440,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "cycleMin_firstEven_is_overshoot",
       "trust": "kernel"
@@ -26105,7 +26105,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 601,
+      "line": 447,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "cycleMin_lastEven_is_closure_cell",
       "trust": "kernel"
@@ -26115,7 +26115,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 607,
+      "line": 453,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "cycleMin_lastEven_ne_odd_sq",
       "trust": "kernel"
@@ -26125,7 +26125,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "def",
       "ledger": [],
-      "line": 626,
+      "line": 472,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "CycleSeamKind.window",
       "trust": "kernel"
@@ -26135,7 +26135,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 632,
+      "line": 478,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "cycleMin_has_two_seams",
       "trust": "kernel"
@@ -26145,7 +26145,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 653,
+      "line": 499,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "cycleMin_ee_seam_prev_lt",
       "trust": "kernel"
@@ -26155,7 +26155,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "def",
       "ledger": [],
-      "line": 686,
+      "line": 532,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "BalloonStation.isForced",
       "trust": "kernel"
@@ -26165,7 +26165,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "def",
       "ledger": [],
-      "line": 690,
+      "line": 536,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "BalloonStation.sureLetterCount",
       "trust": "kernel"
@@ -26175,7 +26175,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "def",
       "ledger": [],
-      "line": 695,
+      "line": 541,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "BalloonStation.bound",
       "trust": "kernel"
@@ -26185,7 +26185,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "def",
       "ledger": [],
-      "line": 701,
+      "line": 547,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "BalloonStation.parity",
       "trust": "kernel"
@@ -26195,7 +26195,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "def",
       "ledger": [],
-      "line": 705,
+      "line": 551,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "BalloonStation.asSlot",
       "trust": "kernel"
@@ -26205,7 +26205,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "def",
       "ledger": [],
-      "line": 708,
+      "line": 554,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "BalloonStation.intervalMin",
       "trust": "kernel"
@@ -26215,7 +26215,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "def",
       "ledger": [],
-      "line": 712,
+      "line": 558,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "BalloonStation.intervalMax",
       "trust": "kernel"
@@ -26225,7 +26225,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "def",
       "ledger": [],
-      "line": 722,
+      "line": 568,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "balloonSchema",
       "trust": "kernel"
@@ -26235,7 +26235,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "def",
       "ledger": [],
-      "line": 734,
+      "line": 580,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "balloonSchemaForced",
       "trust": "kernel"
@@ -26245,7 +26245,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 737,
+      "line": 583,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "balloonSchema_forced_eq",
       "trust": "kernel"
@@ -26255,7 +26255,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 743,
+      "line": 589,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "balloonSchema_sure_letter_count",
       "trust": "kernel"
@@ -26265,7 +26265,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 747,
+      "line": 593,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "balloonSchema_sure_even_count",
       "trust": "kernel"
@@ -26275,7 +26275,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 754,
+      "line": 600,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "balloonSchema_sure_launch_repeat",
       "trust": "kernel"
@@ -26285,7 +26285,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 759,
+      "line": 605,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "cycleMin_sure_letter_inventory",
       "trust": "kernel"
@@ -26295,7 +26295,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 769,
+      "line": 615,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "last_odd_interval_bounds",
       "trust": "kernel"
@@ -26305,7 +26305,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 774,
+      "line": 620,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "extra_even_interval_min_zero",
       "trust": "kernel"
@@ -26315,7 +26315,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 779,
+      "line": 625,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "balloonStation_cases",
       "trust": "kernel"
@@ -26325,7 +26325,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 784,
+      "line": 630,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "balloonStation_forced_iff",
       "trust": "kernel"
@@ -26335,7 +26335,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 788,
+      "line": 634,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "interval_station_not_forced",
       "trust": "kernel"
@@ -26345,7 +26345,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 795,
+      "line": 641,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "balloonSchema_slots",
       "trust": "kernel"
@@ -26355,7 +26355,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 809,
+      "line": 655,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "sureLaunch_two_odds",
       "trust": "kernel"
@@ -26365,7 +26365,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 817,
+      "line": 663,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "cycleMin_projects_balloonSchema",
       "trust": "kernel"
@@ -26375,7 +26375,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 833,
+      "line": 679,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "sure_mem_balloonSchemaForced",
       "trust": "kernel"
@@ -26385,7 +26385,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 845,
+      "line": 691,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "no_forced_station_outside_sure",
       "trust": "kernel"
@@ -26395,7 +26395,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "structure",
       "ledger": [],
-      "line": 862,
+      "line": 708,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "NecklaceFill",
       "trust": "kernel"
@@ -26405,7 +26405,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "def",
       "ledger": [],
-      "line": 869,
+      "line": 715,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "NecklaceFill.admits",
       "trust": "kernel"
@@ -26415,7 +26415,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "def",
       "ledger": [],
-      "line": 875,
+      "line": 721,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "assembleFill",
       "trust": "kernel"
@@ -26425,7 +26425,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 886,
+      "line": 732,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "NecklaceFill.admits_of_last_le_one",
       "trust": "kernel"
@@ -26435,7 +26435,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 893,
+      "line": 739,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "assemble_of_no_extra_evens",
       "trust": "kernel"
@@ -26445,7 +26445,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 906,
+      "line": 752,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "assembleFill_oddCount",
       "trust": "kernel"
@@ -26455,7 +26455,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 911,
+      "line": 757,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "assembleFill_evenCount",
       "trust": "kernel"
@@ -26465,7 +26465,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 916,
+      "line": 762,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "assembleFill_length",
       "trust": "kernel"
@@ -26475,7 +26475,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 922,
+      "line": 768,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "assembleFill_unplaced_odds",
       "trust": "kernel"
@@ -26485,7 +26485,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 928,
+      "line": 774,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "assembleFill_extra_evens",
       "trust": "kernel"
@@ -26495,7 +26495,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 934,
+      "line": 780,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "necklaceFill_unplaced_odd_budget",
       "trust": "kernel"
@@ -26505,7 +26505,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 940,
+      "line": 786,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "necklaceFill_extra_even_budget",
       "trust": "kernel"
@@ -26515,7 +26515,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "def",
       "ledger": [],
-      "line": 947,
+      "line": 793,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "NecklaceFill.toRuns",
       "trust": "kernel"
@@ -26525,7 +26525,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 952,
+      "line": 798,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "NecklaceFill.toRuns_length",
       "trust": "kernel"
@@ -26535,7 +26535,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 957,
+      "line": 803,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "NecklaceFill.toRuns_index_two",
       "trust": "kernel"
@@ -26545,7 +26545,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 967,
+      "line": 813,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "assembleFill_eq_assembleOddEvenRuns",
       "trust": "kernel"
@@ -26555,7 +26555,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 993,
+      "line": 839,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "fourEvenWord_eq_assembleOddEvenRuns",
       "trust": "kernel"
@@ -26565,7 +26565,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 997,
+      "line": 843,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "fourEvenWord_oddEvenRuns",
       "trust": "kernel"
@@ -26575,7 +26575,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 1002,
+      "line": 848,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "oddEvenRuns_last_odd_run",
       "trust": "kernel"
@@ -26585,7 +26585,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 1016,
+      "line": 862,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "CycleMinShape_oddEvenRuns_last_le_one",
       "trust": "kernel"
@@ -26595,7 +26595,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 1024,
+      "line": 870,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "leftover_three_valley_not_fill_runs",
       "trust": "kernel"
@@ -26605,7 +26605,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "def",
       "ledger": [],
-      "line": 1032,
+      "line": 878,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "leftoverO7EEEE_fill",
       "trust": "kernel"
@@ -26615,7 +26615,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "def",
       "ledger": [],
-      "line": 1033,
+      "line": 879,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "leftoverO6EEEOE_fill",
       "trust": "kernel"
@@ -26625,7 +26625,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 1035,
+      "line": 881,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "leftover_O7EEEE_fill_admits",
       "trust": "kernel"
@@ -26635,7 +26635,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 1038,
+      "line": 884,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "leftover_O7EEEE_fill_eq",
       "trust": "kernel"
@@ -26645,7 +26645,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 1042,
+      "line": 888,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "leftover_O6EEEOE_fill_admits",
       "trust": "kernel"
@@ -26655,7 +26655,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 1045,
+      "line": 891,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "leftover_O6EEEOE_fill_eq",
       "trust": "kernel"
@@ -26665,7 +26665,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 1050,
+      "line": 896,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "leftover_O7EEEE_split",
       "trust": "kernel"
@@ -26675,7 +26675,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 1058,
+      "line": 904,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "leftover_O7EEEE_prefix_ends_even",
       "trust": "kernel"
@@ -26685,7 +26685,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 1062,
+      "line": 908,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "leftover_O7EEEE_inhabits_shape",
       "trust": "kernel"
@@ -26695,7 +26695,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 1074,
+      "line": 920,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "leftover_O7EEEE_not_cycle",
       "trust": "kernel"
@@ -26705,7 +26705,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 1079,
+      "line": 925,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "CycleMinShape_not_of_CycleMin",
       "trust": "kernel"
@@ -26715,7 +26715,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 1083,
+      "line": 929,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "leftover_O6EEEOE_eq",
       "trust": "kernel"
@@ -26725,7 +26725,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 1088,
+      "line": 934,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "leftover_O6EEEOE_inhabits_shape",
       "trust": "kernel"
@@ -26735,7 +26735,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 1104,
+      "line": 950,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "leftover_O6EEEOE_not_cycle",
       "trust": "kernel"
@@ -26745,7 +26745,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 1110,
+      "line": 956,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "leftover_one_three_eee_not_cycleMin",
       "trust": "kernel"
@@ -26755,7 +26755,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 1117,
+      "line": 963,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "leftover_fudge_not_cycleMin",
       "trust": "kernel"
@@ -26765,7 +26765,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 1122,
+      "line": 968,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "leftover_four_even_slack",
       "trust": "kernel"
@@ -26775,7 +26775,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 1132,
+      "line": 978,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "leftover_slack139",
       "trust": "kernel"
@@ -26785,7 +26785,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 1135,
+      "line": 981,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "leftover_O7EEEE_ee_window",
       "trust": "kernel"
@@ -26795,7 +26795,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 1140,
+      "line": 986,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "leftover_O6EEEOE_oe_window",
       "trust": "kernel"
@@ -26805,7 +26805,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 1148,
+      "line": 994,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "isolated_OE_not_forced_on_shape",
       "trust": "kernel"
@@ -26815,7 +26815,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "def",
       "ledger": [],
-      "line": 1166,
+      "line": 1012,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "necklacePinMiss2005",
       "trust": "kernel"
@@ -26825,7 +26825,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "def",
       "ledger": [],
-      "line": 1167,
+      "line": 1013,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "necklacePinMiss3004",
       "trust": "kernel"
@@ -26835,7 +26835,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "def",
       "ledger": [],
-      "line": 1168,
+      "line": 1014,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "necklacePinMiss2005_fill",
       "trust": "kernel"
@@ -26845,7 +26845,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "def",
       "ledger": [],
-      "line": 1169,
+      "line": 1015,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "necklacePinMiss3004_fill",
       "trust": "kernel"
@@ -26855,7 +26855,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 1171,
+      "line": 1017,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "necklacePinMiss2005_eq",
       "trust": "kernel"
@@ -26865,7 +26865,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 1176,
+      "line": 1022,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "necklacePinMiss3004_eq",
       "trust": "kernel"
@@ -26875,7 +26875,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 1181,
+      "line": 1027,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "necklacePinMiss2005_not_admit",
       "trust": "kernel"
@@ -26885,7 +26885,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 1187,
+      "line": 1033,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "necklacePinMiss3004_not_admit",
       "trust": "kernel"
@@ -26895,7 +26895,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 1193,
+      "line": 1039,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "necklace_pin_miss_not_shape",
       "trust": "kernel"
@@ -26905,7 +26905,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 1209,
+      "line": 1055,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "necklace_pin_misses_not_CycleMinShape",
       "trust": "kernel"
@@ -26915,7 +26915,7 @@
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 1215,
+      "line": 1061,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "necklace_pin_misses_oddCount_seven",
       "trust": "kernel"
@@ -66852,6 +66852,14 @@
       ],
       "ledger": []
     },
+    "Problems.Juggler.CycleRunForm": {
+      "declarations": 11,
+      "file": "formal/Problems/Juggler/CycleRunForm.lean",
+      "imports": [
+        "Problems.Juggler.EvenCountThree"
+      ],
+      "ledger": []
+    },
     "Problems.Juggler.Cycles": {
       "declarations": 0,
       "file": "formal/Problems/Juggler/Cycles.lean",
@@ -67292,10 +67300,11 @@
       "ledger": []
     },
     "Problems.Juggler.IdealCycleMin": {
-      "declarations": 162,
+      "declarations": 151,
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "imports": [
         "Problems.Juggler.CycleMinFudge",
+        "Problems.Juggler.CycleRunForm",
         "Problems.Juggler.EvenCountThree",
         "Problems.Juggler.O7EEEEGap",
         "Problems.Juggler.WalkChargeItineraries"
@@ -68234,6 +68243,7 @@
         "Problems.Juggler.Certificates",
         "Problems.Juggler.CycleFinance",
         "Problems.Juggler.CycleFinanceLeftovers",
+        "Problems.Juggler.CycleRunForm",
         "Problems.Juggler.Cycles",
         "Problems.Juggler.Defect",
         "Problems.Juggler.DefectFinance",
@@ -68487,7 +68497,7 @@
     "declarations": 4930,
     "declarations_with_a_ledger_row": 3196,
     "ledger_rows_naming_a_file": 338,
-    "modules": 209,
+    "modules": 210,
     "trust": {
       "compiler": 54,
       "kernel": 4876
