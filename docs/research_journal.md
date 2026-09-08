@@ -40671,3 +40671,57 @@ is that I could hear the objection -- "your word is absurd" -- and it
 would have been correct about the word while wrong about the conclusion.
 Building the second one cost ten minutes and changed the result from
 suggestive to closing, because it meets the packing on its own ground.
+
+## Paper A updated to match what the audit found
+
+Six changes to the body, at the author's direction, all in Section 4.
+
+Theorem 4.7 now states its two hypotheses: the itinerary is primitive and
+contains no EE. Primitivity was previously asserted inside the statement
+("the cycle minimum occurs once") and justified in the proof as
+"periodicity", which is not right -- a cycle word concatenated with itself
+is again based at a cycle minimum. It is primitivity, and now it is a
+hypothesis. The no-EE assumption was absent altogether; the proof now says
+where it enters, at the split of the e valleys into cheap and expensive,
+and that the general counting lemma gives only #cheap <= o - #blocks.
+
+Theorem 4.8 splits its 42. The 24 from 75319 up hold whatever the
+itinerary; the 18 from 56347 to 74265 are conditional, and dropping the
+hypothesis leaves 117 lengths rather than 99. The cutoff is 25781 either
+way, and I said so in the statement, because that is the number a reader
+will worry about.
+
+The mechanization prose was understating the paper. It said Theorem 4.6's
+certified identity is Lean and the per-length table is computation. Now
+the whole comparison is Lean -- cycleMin_defect_threeTerm -- so what
+remains computation is the per-length arithmetic and the descent floor,
+not the inequality.
+
+The naming. I did not sweep "parity" out of the manuscript: it appears
+about twenty-five times, most of them legitimate (parity sequence, parity
+word) or established Section 5 shorthand, and a blanket rename would have
+destabilised more than it fixed. Instead the hierarchy item that
+introduces the charge now displays the formula, names the three classes,
+and says outright that "parity" is historical and slightly misleading
+because the charge is not a two-class split and the t-scale middle term is
+what makes it sharper. A reader who sees the formula cannot make the
+mistake I made. Four other occurrences that describe this specific object
+were renamed; the Section 5 shorthand stays.
+
+New subsection, The packing hypothesis and its price, carrying the whole
+audit: why the packing needs the hypothesis, the 1.4048 budget, the second
+cap and the 18/24 split, the witnesses with runs of length at most two,
+and the o_min - 1 remark. Section 4's subsections are unnumbered, which I
+noticed only after writing three cross-references to a "4.5" that does not
+exist in that style; they now point at the subsection by name.
+
+Attribution check worth recording: I first cited the per-run cap to
+Theorem 3.31, then found the Appendix A row for 4.7 attributes it to 3.29.
+Both are defensible -- 3.29 is the run-suffix law, 3.31 derives the
+explicit floor from it -- so the new text names 3.31 and says which law
+supplies it, rather than leaving two attributions in the paper that
+disagree.
+
+Guards green. No number in the paper moved: the cutoff, the 141, and all
+five floors are exactly as they were, which is the point of having done
+the dependency audit before touching anything.

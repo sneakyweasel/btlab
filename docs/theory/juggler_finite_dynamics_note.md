@@ -539,12 +539,17 @@ first-passage runs of Appendix B. Not proved: global
 termination.
 
 Theorem 4.6 applies Corollary 4.5 to this input and certifies
-the table with the conservative coefficient \(6/5\); its
-certified identity is Lean (`cycleMin_defect_finance`,
-`DefectFinance.lean`), the per-length table stays a verified
-computation. Theorem 4.7
-is a human proof; Theorem 4.8 reuses the gap table under that
-packing. Proposition 4.9 is integer arithmetic in Lean. In
+the table with the conservative coefficient \(6/5\). The whole
+comparison it tests is Lean: `cycleMin_defect_threeTerm`
+(`FinanceTransfer.lean`) is the certified identity
+`cycleMin_defect_finance` composed with the three-class charge
+`cycleMin_threeTerm`, so what stays verified computation is the
+per-length arithmetic and the descent floor, not the inequality.
+Theorem 4.7 is a human proof and carries two hypotheses --- the
+itinerary is primitive and contains no \(\mathtt{EE}\) ---
+without which its displayed counts fail; §4 prices them below.
+Theorem 4.8 reuses the gap table under that packing, and \(18\)
+of its \(42\) exclusions inherit the second hypothesis. Proposition 4.9 is integer arithmetic in Lean. In
 Section 5, Theorem 5.7 keeps a human step --- the variation of its
 own observable --- but Denjoy--Koksma itself is no longer a known
 tool: `denjoy_koksma_rotation` is Lean, from the convergent quality
@@ -1736,10 +1741,22 @@ These three layers must not be conflated.
    form of those defects. Lean: `cycleMin_finance_inv_sum`.
 
 3. *Corollary 4.5* is the convenient length-only statewise
-   bound: a verified descent floor \(N_0\) plus a parity charge
-   of the defect sum produces a per-length threshold
+   bound: a verified descent floor \(N_0\) plus the three-class
+   charge of the defect sum produces a per-length threshold
    \(n_{\max}(L)\) and excludes every \(L\) with
-   \(n_{\max}(L)\le N_0\).
+   \(n_{\max}(L)\le N_0\). The charge is
+   \[
+   \sum_i \frac1{x_i\log x_i}\ \le\
+   \frac{e}{n\log n}+\frac{o-e}{t\log t}+\frac{e}{2n^{2}\log n},
+   \qquad t=\lfloor n^{3/2}\rfloor ,
+   \]
+   charging valleys at \(n\), internal odds at \(t\), and evens
+   at \(n^{2}\). It is called the *parity* charge in the tables
+   and in places below, which is historical and slightly
+   misleading: it is **not** a two-class split of odds against
+   evens, and the \(t\)-scale middle term is exactly what makes
+   it sharper than one. Lean: `cycleMin_threeTerm` from
+   `CycleMin` alone, with no hypothesis about \(\mathtt{EE}\).
 
 4. *Theorem 4.6* is the numerical certification of Corollary 4.5
    at \(N_0=10^6\). The certified identity is the conservative
@@ -1763,7 +1780,7 @@ cycle minimum in that identity recovers the coarser comparison
 \(\theta\le(6/5)L/(n\log n)\), which is Theorem 4.4 with
 coefficient \(6/5\). At this floor that uniform charge excludes
 only through length \(1053\). The computational table uses a
-stricter length-only parity charge of the same identity.
+stricter length-only three-class charge of the same identity.
 
 **Corollary 4.4c (inv-sum).**
 Let \(w\) be a cycle itinerary of length \(L\) with \(o\) odd letters,
@@ -1890,14 +1907,14 @@ nontrivial cycle of length \(L\) exists whenever
 \(n_{\max}(L)\le N_0\).
 
 *Proof.* A periodic state never reaches \(1\), so every cycle
-state is at least \(N_0+1\). The length-only parity charge of
-the certified relative-defect identity then forces the minimum
+state is at least \(N_0+1\). The length-only three-class charge
+of the certified relative-defect identity then forces the minimum
 to satisfy the displayed inequality, hence \(n\le n_{\max}(L)\).
 This is the convenient statewise bound in the hierarchy after
 Theorem 4.4; it is not a replacement for that theorem.
 \(\square\)
 
-Record values of the parity \(n_{\max}\) include
+Record values of the three-class \(n_{\max}\) include
 \(n_{\max}(19)=133\), \(n_{\max}(84)=2323\),
 \(n_{\max}(569)=23568\), \(n_{\max}(1054)=788014\), and
 \(n_{\max}(25781)=26254995\).
@@ -1939,7 +1956,9 @@ a supporting comparison at the same floor; the leftover count
 **Theorem 4.7 (run-type packing).**
 Let \(w\) be a cycle itinerary of length \(L\) with \(o=o_{\min}(L)\)
 odd letters and \(e=L-o\) even letters, based at a cycle
-minimum \(n\ge 12\). Write \(v\) for the least odd integer with
+minimum \(n\ge 12\). Assume further that \(w\) is primitive and
+that \(w\) contains no \(\mathtt{EE}\). Write \(v\) for the least
+odd integer with
 \(v^3\ge n^4\), and write \(t=\lfloor n^{3/2}\rfloor\). Then
 \(o-e<e\), the largest number of \(n\)-scale valleys compatible
 with the even cap is \(o-e\) copies of \(\mathtt{OOE}\), and the
@@ -1956,7 +1975,7 @@ cycle minimum occurs once, so
 +\frac{e}{2n^2\log n},
 \]
 where \(t_+=J(n+2)\). Combined with the \(6/5\) unroll this is
-strictly smaller than the parity sum of Corollary 4.5 whenever
+strictly smaller than the three-class sum of Corollary 4.5 whenever
 \(2e-o>0\). Sending the cycle maximum to infinity removes one
 even term and does not change the valley packing.
 
@@ -1969,7 +1988,17 @@ even-cap comparison \(3^k\ge 2^{k+\ell}\) is the ideal power
 envelope; floors only help. An \(\mathtt{OE}\)-start is followed
 by an even state, so Theorem 3.2 gives \(J(v)\ge n^2\) and
 therefore \(v^3\ge n^4\). Unique visit of the cycle minimum is
-periodicity. The displayed sum charges one cheap valley at
+primitivity, which is why that hypothesis is stated: a cycle word
+concatenated with itself is again based at a cycle minimum, and the
+display charges only one valley at \(n\). The no-\(\mathtt{EE}\)
+hypothesis enters at the split of the \(e\) valleys into cheap and
+expensive. Counting on indices rather than on blocks, an odd letter is a
+*valley* when its cyclic predecessor is even; the valleys are then in
+bijection with the maximal even runs, and the counting lemma gives
+\(\#\text{cheap}\le o-\#\text{blocks}\). Only when no
+\(\mathtt{EE}\) occurs do the blocks number \(e\), giving the
+\(\#\text{cheap}\le o-e\) the packing uses; the subsection *The packing hypothesis and its price* below shows
+the hypothesis is not removable. The displayed sum charges one cheap valley at
 \(n\), the remaining \(o-e-1\) cheap valleys at the next odd
 integer \(n+2\), the expensive valleys at \(v\), one internal
 odd at \(t\), the remaining internals at \(J(n+2)\), and every
@@ -1982,8 +2011,18 @@ of Theorem 4.7 excludes the \(42\) lengths
 \(56347+1054k\) for \(k=0,\ldots,41\) and leaves an explicit
 set \(\mathcal E_{\mathrm{run}}=\mathcal E_{\mathrm{run}}(10^6)\)
 of \(99\) lengths. The first survivor remains \(25781\). In
-particular, if a nontrivial cycle has period \(L\le 10^5\), then
+particular, if a nontrivial cycle has period \(L\le 10^5\) and its
+itinerary satisfies the hypotheses of Theorem 4.7, then
 \(L\in\mathcal E_{\mathrm{run}}\).
+
+The two halves of that progression do not carry the same weight. The
+\(24\) lengths with \(k\ge 18\), from \(75319\) up, are excluded
+whatever the itinerary: no admissible \(\mathtt{EE}\) count defeats
+them. The \(18\) with \(k\le 17\), from \(56347\) to \(74265\),
+are excluded only under the no-\(\mathtt{EE}\) hypothesis, and the
+subsection below exhibits admissible words that defeat each. Dropping that hypothesis
+therefore leaves \(117\) lengths in place of \(99\). It does not move
+the cutoff, which is \(25781\) either way and comes from Corollary 4.5.
 
 *Proof.* The \(141\) lengths of Theorem 4.6(B) are tested at
 \(n=10^6+1\) against the packed right-hand side. The comparison
@@ -1993,6 +2032,97 @@ named in the statement. The complementary set in that range is
 \(\mathcal E_{\mathrm{run}}\). Checksums are Appendix B.
 The period cutoff remains \(25781\).
 \(\square\)
+
+### The packing hypothesis and its price
+
+Theorem 4.7 assumes the itinerary contains no \(\mathtt{EE}\). The
+assumption is not cosmetic and it is not removable, and since \(18\) of
+Theorem 4.8's \(42\) exclusions rest on it, it is worth saying exactly
+what it buys and what it costs.
+
+**Why the packing needs it.** The extremality argument counts *blocks*
+\(\mathtt{O}^{a}\mathtt{E}\). Counting instead on indices, where nothing
+is assumed, call an odd letter a *valley* when its cyclic predecessor is
+even and an *internal* when that predecessor is odd. The valleys are then
+in bijection with the maximal even runs. If the itinerary carries \(m\)
+cyclic \(\mathtt{EE}\) adjacencies, the \(e\) even letters form \(e-m\)
+maximal runs, so
+
+\[
+\#\text{valleys}=e-m,\qquad
+\#\text{internals}=o-e+m,\qquad
+\#\text{cheap}\le\min(o-e+m,\ e-m),
+\]
+
+with the expensive valleys making up the rest. The bound
+\(\#\text{cheap}\le o-e\) that Theorem 4.7 uses is the case \(m=0\); in
+general the counting lemma gives only
+\(\#\text{cheap}\le o-\#\text{blocks}\), and with \(\mathtt{EE}\) present
+the even letters outnumber the blocks. The paper's phrasing --- \(o-e\)
+copies of \(\mathtt{OOE}\) and \(2e-o\) circuits of \(\mathtt{OE}\) ---
+already presupposes one even letter per block.
+
+**What it is worth.** At every one of the \(42\) lengths, at
+\(n=10^6+1\), the ratio of the Corollary 4.5 charge to the packed one is
+\(1.4048\), uniformly; to leading order it is \(e/(o-e)\), the packing
+moving the \(n\)-scale charge from \(e\) valleys to \(o-e\). That
+constant is the whole budget of the refinement, and each of the \(42\)
+dies with margin \(\theta/\text{packed}\in[1.0033,1.3535]\) --- inside
+that budget of necessity, since each survives the unpacked charge.
+
+**The second cap, and the split.** The quantity \(\#\text{cheap}\) is
+bounded both by \(o-e+m\) and by the valley count \(e-m\) it is part of.
+The two cross at \(m=e-o/2\), where both equal \(o/2\); past the crossing
+the valleys themselves run out and the majorant falls again. So
+\(\mathtt{EE}\) cannot inflate the \(n\)-scale charge beyond
+\((o/2)/(o-e)=1.2047\), however much of it a word carries. Since
+\(\theta/\text{packed}\) rises monotonically along the progression and
+crosses that ceiling between \(L=74265\) and \(L=75319\), the \(42\)
+split cleanly: the \(24\) lengths from \(75319\) up are excluded whatever
+the itinerary, and the \(18\) from \(56347\) to \(74265\) are not.
+
+**The \(18\) are genuinely lost without the hypothesis.** For each there
+is a word satisfying every restriction this paper proves for a
+cycle-minimum itinerary --- \(3^{a_j}\ge2^j\) at every prefix, the
+per-run cap of Theorem 3.31, \(o=o_{\min}(L)\), and the
+\(\mathtt{OO}\ldots\mathtt{E}\) shape --- and carrying more
+\(\mathtt{EE}\) than the comparison can absorb. The witness is the Beatty
+interleaving of \(\mathtt{OOE}\) and \(\mathtt{OE}\) blocks over \(e-k\)
+even letters followed by a tail of \(k\) even letters, with \(k\) between
+\(51\) and \(3926\). Its odd runs have length at most two, which is the
+packing's own extremal shape, so no claim about run structure is
+violated; what fails is only the correspondence between blocks and even
+letters. Granting the extremality of the run packing in full therefore
+does not restore the counting, and no sharpening of the run analysis
+will: what would be needed is a restriction sensitive to the floors,
+whereas every restriction used above is exponent bookkeeping, exact for
+the multipliers and blind to the floors.
+
+*Remark (why the run cap cannot help).* The least admissible odd count is
+defined by \(3^{o}>2^{L}\), that is \(o\log(3/2)>e\log 2\), and the
+per-run cap of Theorem 3.31, which Theorem 3.29's run--suffix law
+supplies, is
+\(\lfloor(e-i)\log 2/\log(3/2)\rfloor\) with \(i\) the number of even
+letters already spent. The two use the same constant, so at every one of
+the \(42\) lengths
+
+\[
+\Big\lfloor e\cdot\frac{\log 2}{\log(3/2)}\Big\rfloor=o_{\min}(L)-1 .
+\]
+
+The single-run word \(\mathtt{O}^{o}\mathtt{E}^{e}\) is therefore
+forbidden by exactly one letter, and two blocks are already admissible
+--- carrying \(e-2\) adjacencies. The cap and the odd count are the same
+inequality read twice, which is why the cap is never far from binding and
+never actually binds.
+
+**What this does not say.** Theorem 4.7 is true as stated, with its
+hypotheses, and Theorem 4.8's \(42\) exclusions are correct under them.
+A defeated exclusion does not produce a cycle of that length; it means
+the comparison does not rule one out. And the count \(m\) is treated here
+as free, whereas a realised itinerary's \(\mathtt{EE}\) count is fixed by
+the dynamics --- the witnesses are admissible for the restrictions this
+paper proves, not exhibited as cycles.
 
 ### Arithmetic structure of the finance survivors
 
