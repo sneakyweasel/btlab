@@ -23239,6 +23239,66 @@
       "trust": "kernel"
     },
     {
+      "doc": "The cyclic predecessor of an index in `range L`.",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 421,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "cycPred",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 423,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "cycPred_lt",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 426,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "cycPred_injOn",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Every odd letter is a valley or an internal.**",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 438,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "valley_add_internal",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Valleys inject into even letters** by taking the cyclic predecessor.",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 456,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "valley_le_even",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Hence at least `o \u2212 e` internals**, which is the direction the majorant needs.",
+      "file": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 466,
+      "module": "Problems.Juggler.FinanceTransfer",
+      "name": "odd_le_internal_add_even",
+      "trust": "kernel"
+    },
+    {
       "doc": "",
       "file": "formal/Problems/Juggler/FirstETransportEval.lean",
       "kind": "def",
@@ -66425,7 +66485,7 @@
       ]
     },
     "Problems.Juggler.FinanceTransfer": {
-      "declarations": 20,
+      "declarations": 26,
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "imports": [
         "Problems.Juggler.CycleCore"
@@ -67734,13 +67794,13 @@
     }
   },
   "totals": {
-    "declarations": 4856,
+    "declarations": 4862,
     "declarations_with_a_ledger_row": 3195,
     "ledger_rows_naming_a_file": 336,
     "modules": 208,
     "trust": {
       "compiler": 54,
-      "kernel": 4802
+      "kernel": 4808
     }
   }
 }

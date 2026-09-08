@@ -9,6 +9,7 @@
 'Problems.Juggler.cf_upper_prefix' does not depend on any axioms
 'Problems.Juggler.comparison_fails_upward' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.cross_mul_pow' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.cycPred' does not depend on any axioms
 'Problems.Juggler.cycleMax_start_even' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.cycleMin_charge_prefix' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.cycleMin_defect_finance' depends on axioms: [propext, Classical.choice, Quot.sound]
@@ -153,6 +154,7 @@
 'Problems.Juggler.oddEvenBlock' does not depend on any axioms
 'Problems.Juggler.odd_even_finiteProgress' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.odd_excess_lt_even' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.odd_le_internal_add_even' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.odd_pow_ge_of_image_ge' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.odd_preimage_unique' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.odd_run_ge' depends on axioms: [propext, Classical.choice, Quot.sound]
@@ -223,6 +225,8 @@
 'Problems.Juggler.three_pow_step_gt_two_pow_step' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.threshold_inherits_odd_append' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.two_n_add_one_lt_rpow_three_halves' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.valley_add_internal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.valley_le_even' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.valley_swap_le' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.value_sub_mean_le_variation' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.walkTheta' depends on axioms: [propext, Classical.choice, Quot.sound]

@@ -39912,3 +39912,39 @@ inequalities to the paper's counts. What remains is that the itinerary
 decomposes into that run list with the classification attached index by
 index -- the only place the display still touches the word's structure
 rather than a single letter.
+
+The falsifier fired on the last bridge, and the reformulation is
+better than what it replaced. I had been asking for the itinerary to
+decompose into blocks O^a E. It does not: a cycle word may contain EE
+-- cycle_trailing_evens_lt is about exactly that -- so it need not
+split into blocks with one even letter each. The paper's packing is the
+extremal configuration, not the shape of every word, and I had been
+treating those as the same thing for two entries.
+
+Counting on indices needs no blocks. Call an odd letter a valley when
+its cyclic predecessor is even and an internal when that predecessor is
+odd. That partitions the odd letters, so valleys + internals = o. The
+cyclic predecessor is injective on range L, so the valleys inject into
+the even letters: valleys <= e, and therefore internals >= o - e.
+Nothing about the word is assumed.
+
+Equality in both holds exactly when no EE occurs, and the inequalities
+point the way the majorant needs. EE trades a valley for an internal; a
+valley sits at n-scale and an internal at t-scale, so EE only lowers
+the sum. The general word is better for the bound than the packing,
+which is why the packing is the case to bound.
+
+Checked on 20000 random words up to length 14, no violation. OOEEOE has
+2 valleys against e=3, strict exactly where the EE is; OOEOOEOOEOE has
+no EE and is tight at 4 and 3.
+
+What remains is one lemma of a kind already written twice: a
+valley-to-internal swap, needing n+2 <= t, to feed these inequalities
+into sixTerm_bound_packed the way the valley split already feeds it.
+valley_swap_le is the general form; it just has not been applied across
+the valley/internal boundary.
+
+Two entries ago I called the block decomposition "one bridge, not
+deep". Not deep, but also not true. Stating the falsifier before
+starting is what made that visible on the first build rather than after
+wiring it in.

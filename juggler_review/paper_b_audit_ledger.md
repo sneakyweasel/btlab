@@ -9257,3 +9257,63 @@ so would have dragged in the \(n\ge12\) hypothesis. It needs neither:
 the *leastness* in \(v\)'s definition does the work, and the only
 inequality used is \(n^{3}<n^{4}\). Defining a constant as a least
 element rather than by a formula is what made it cheap.
+
+## The decomposition: the falsifier fired, and the reformulation is stronger
+
+*Mathematical target.* The last bridge: from a `CycleMin` word, the
+classification with the cardinalities the packing bounds.
+
+*Falsifier.* The word does not decompose into `O^{a}E` blocks.
+
+**The falsifier fired.** A cycle word may contain `EE` ---
+`cycle_trailing_evens_lt` is about exactly that situation --- so it need
+not split into blocks carrying one even letter each. The literal
+statement "the itinerary decomposes into a run list" is **false in
+general**. The paper's packing is the *extremal* configuration, not the
+shape of every word, and I had been treating the two as the same thing
+for two entries.
+
+**The reformulation needs no blocks at all.** Count on indices. Call an
+odd letter a **valley** when its cyclic predecessor is even and an
+**internal** when that predecessor is odd. Then:
+
+- `valley_add_internal` --- that is a partition of the odd letters:
+  \(\#\text{valleys}+\#\text{internals}=o\). Every odd letter is one or
+  the other, and nothing about the word is assumed.
+- `cycPred`, `cycPred_injOn` --- the cyclic predecessor is injective on
+  `range L`.
+- `valley_le_even` --- so the valleys **inject into the even letters**
+  by taking the predecessor: \(\#\text{valleys}\le e\).
+- `odd_le_internal_add_even` --- hence
+  \(\#\text{internals}\ge o-e\).
+
+Equality in both holds exactly when no `EE` occurs, and the inequalities
+point the way the majorant needs: `EE` trades a valley for an internal,
+a valley sits at \(n\)-scale and an internal at \(t\)-scale, so `EE`
+only *lowers* the sum. The general word is better for the bound than the
+packing, which is why the packing is the case to bound.
+
+Checked on 20000 random words over `{O,E}` of length up to 14: no
+violation of either inequality. `OOEEOE` has 2 valleys against \(e=3\)
+--- strict exactly where the `EE` is --- and `OOEOOEOOEOE`, which has
+none, is tight at 4 and 3.
+
+**What remains, and it is one lemma of a kind already written twice.**
+`sixTerm_bound_packed` takes the *valley* split as inequalities but
+classes 3 and 4 as exact counts. Feeding \(\#\text{valleys}\le e\) and
+\(\#\text{internals}\ge o-e\) into it needs the third exchange of the
+same shape --- a valley-to-internal swap, requiring \(n+2\le t\), which
+holds since \(t=\lfloor n^{3/2}\rfloor\). `valley_swap_le` is already
+the general form; what is missing is applying it across the
+valley/internal boundary rather than within the valley split.
+
+Tags. COMPUTATIONALLY VERIFIED: `lake build Problems.JugglerPaper`
+clean; the four new declarations within
+`[propext, Classical.choice, Quot.sound]`; 20000-word sweep;
+`AxiomCheckPaperA` at 238 lines, regenerated. A guard caught a citation
+again: I wrote `cycle_trailing_evens`, which is not a declaration ---
+the name is `cycle_trailing_evens_lt`. OBSERVATION: two entries ago I
+called the block decomposition "one bridge, not deep". It was not deep,
+but it was also not true, and the useful version is the one that never
+mentions blocks. Stating the falsifier before starting is what made that
+visible on the first build rather than after wiring it in.

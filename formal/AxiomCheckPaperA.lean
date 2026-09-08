@@ -29,6 +29,7 @@ import Problems.JugglerPaper
 #print axioms Problems.Juggler.cf_upper_prefix
 #print axioms Problems.Juggler.comparison_fails_upward
 #print axioms Problems.Juggler.cross_mul_pow
+#print axioms Problems.Juggler.cycPred
 #print axioms Problems.Juggler.cycleMax_start_even
 #print axioms Problems.Juggler.cycleMin_charge_prefix
 #print axioms Problems.Juggler.cycleMin_defect_finance
@@ -173,6 +174,7 @@ import Problems.JugglerPaper
 #print axioms Problems.Juggler.oddEvenBlock
 #print axioms Problems.Juggler.odd_even_finiteProgress
 #print axioms Problems.Juggler.odd_excess_lt_even
+#print axioms Problems.Juggler.odd_le_internal_add_even
 #print axioms Problems.Juggler.odd_pow_ge_of_image_ge
 #print axioms Problems.Juggler.odd_preimage_unique
 #print axioms Problems.Juggler.odd_run_ge
@@ -243,6 +245,8 @@ import Problems.JugglerPaper
 #print axioms Problems.Juggler.three_pow_step_gt_two_pow_step
 #print axioms Problems.Juggler.threshold_inherits_odd_append
 #print axioms Problems.Juggler.two_n_add_one_lt_rpow_three_halves
+#print axioms Problems.Juggler.valley_add_internal
+#print axioms Problems.Juggler.valley_le_even
 #print axioms Problems.Juggler.valley_swap_le
 #print axioms Problems.Juggler.value_sub_mean_le_variation
 #print axioms Problems.Juggler.walkTheta

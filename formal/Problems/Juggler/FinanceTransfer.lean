@@ -396,4 +396,79 @@ theorem sixTerm_bound_packed {L : ℕ} {x : ℕ → ℝ} {n v t tp : ℝ} {c₁ 
   refine (sixTerm_bound cls hn hv ht htp hbound h0 h1 h2 h3 h4 h5).trans ?_
   linarith
 
+/-! ### The decomposition, counted on indices rather than on blocks
+
+The remaining bridge was "the itinerary decomposes into a run list".  Taken literally that is
+false in general: a cycle word may contain `EE` (`cycle_trailing_evens`), and then it does not
+split into blocks `O^{a}E` with one even letter each.  The paper's packing is the *extremal*
+configuration, not the shape of every word.
+
+So the decomposition is done on indices instead, where nothing has to be assumed.  Each odd
+letter is a **valley** if its cyclic predecessor is even and an **internal** if that
+predecessor is odd; that is a partition of the odd letters, and the valleys inject into the
+even letters by taking the predecessor.  Hence
+
+* `#valleys + #internals = o` — every odd letter is one or the other;
+* `#valleys ≤ e` — with equality exactly when no `EE` occurs;
+* `#internals ≥ o − e`.
+
+That is the direction the majorant needs.  Fewer valleys and more internals is a *smaller*
+sum, because a valley sits at `n`-scale and an internal at `t`-scale, so the paper's counts
+`e` and `o − e` dominate whatever the word actually does — `EE` only helps.
+-/
+
+/-- The cyclic predecessor of an index in `range L`. -/
+def cycPred (L i : ℕ) : ℕ := (i + (L - 1)) % L
+
+theorem cycPred_lt {L : ℕ} (hL : 0 < L) (i : ℕ) : cycPred L i < L :=
+  Nat.mod_lt _ hL
+
+theorem cycPred_injOn {L : ℕ} (hL : 0 < L) :
+    ∀ i ∈ Finset.range L, ∀ j ∈ Finset.range L, cycPred L i = cycPred L j → i = j := by
+  intro i hi j hj hij
+  have hi' : i < L := Finset.mem_range.mp hi
+  have hj' : j < L := Finset.mem_range.mp hj
+  have h : (i + (L - 1)) % L = (j + (L - 1)) % L := hij
+  have hmod : i % L = j % L := by
+    have := Nat.ModEq.add_right_cancel' (L - 1) (h : Nat.ModEq L _ _)
+    simpa [Nat.ModEq] using this
+  rwa [Nat.mod_eq_of_lt hi', Nat.mod_eq_of_lt hj'] at hmod
+
+/-- **Every odd letter is a valley or an internal.** -/
+theorem valley_add_internal (L : ℕ) (par : ℕ → Bool) :
+    ((Finset.range L).filter fun i => par i && !par (cycPred L i)).card
+      + ((Finset.range L).filter fun i => par i && par (cycPred L i)).card
+      = ((Finset.range L).filter fun i => par i).card := by
+  classical
+  have key := Finset.card_filter_add_card_filter_not
+    (s := (Finset.range L).filter fun i => par i = true)
+    (p := fun i => par (cycPred L i) = true)
+  simp only [Finset.filter_filter] at key
+  have e1 : ((Finset.range L).filter fun i => par i && par (cycPred L i))
+      = (Finset.range L).filter fun i => par i = true ∧ par (cycPred L i) = true := by
+    ext i; simp
+  have e2 : ((Finset.range L).filter fun i => par i && !par (cycPred L i))
+      = (Finset.range L).filter fun i => par i = true ∧ ¬ (par (cycPred L i) = true) := by
+    ext i; simp
+  rw [e1, e2, ← key, add_comm]
+
+/-- **Valleys inject into even letters** by taking the cyclic predecessor. -/
+theorem valley_le_even {L : ℕ} (hL : 0 < L) (par : ℕ → Bool) :
+    ((Finset.range L).filter fun i => par i && !par (cycPred L i)).card
+      ≤ ((Finset.range L).filter fun i => !par i).card := by
+  refine Finset.card_le_card_of_injOn (cycPred L) (fun i hi => ?_) (fun i hi j hj h => ?_)
+  · obtain ⟨hmem, hcond⟩ := Finset.mem_filter.mp hi
+    refine Finset.mem_filter.mpr ⟨Finset.mem_range.mpr (cycPred_lt hL i), ?_⟩
+    simpa using (Bool.and_eq_true_iff.mp hcond).2
+  · exact cycPred_injOn hL i (Finset.mem_filter.mp hi).1 j (Finset.mem_filter.mp hj).1 h
+
+/-- **Hence at least `o − e` internals**, which is the direction the majorant needs. -/
+theorem odd_le_internal_add_even {L : ℕ} (hL : 0 < L) (par : ℕ → Bool) :
+    ((Finset.range L).filter fun i => par i).card
+      ≤ ((Finset.range L).filter fun i => par i && par (cycPred L i)).card
+        + ((Finset.range L).filter fun i => !par i).card := by
+  have hsplit := valley_add_internal L par
+  have hinj := valley_le_even hL par
+  omega
+
 end Problems.Juggler
