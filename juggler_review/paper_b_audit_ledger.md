@@ -8985,3 +8985,78 @@ consumers. OBSERVATION: the last step of a formalization is where a
 modelling choice hides, because everything before it is forced by the
 statement above. The right move is not to hide it in a definition but to
 name the thing it was chosen over.
+
+## Theorem 4.7's six-term bound: the verdict conflated two halves
+
+*Mathematical target.* The displayed bound
+
+\[
+\sum_{i=1}^{L}\frac1{x_i\log x_i}\le\frac1{n\log n}
++\frac{o-e-1}{(n+2)\log(n+2)}+\frac{2e-o}{v\log v}
++\frac1{t\log t}+\frac{o-e-1}{t_+\log t_+}+\frac{e}{2n^{2}\log n},
+\]
+
+recorded in Appendix A as "Human, and not attempted … it needs Theorem
+3.2 and the orbit. Arithmetic will not reach it."
+
+*Novelty hypothesis.* That verdict conflates two things. *Locating* the
+iterates is dynamics. Getting from a location to the sum is arithmetic,
+and it is a lemma nobody here had written --- the paper spends one
+sentence on it: "any deeper odd run or any higher valley only decreases
+the sum."
+
+*Falsifier.* The transfer needs more than pointwise lower bounds, or
+\(1/(x\log x)\) is not antitone where it must be.
+
+*Prior art.* `cycleMin_even_ge_sq`, `floorPower_odd_mono`,
+`cycleMin_start_odd`, `cycleMin_finance_inv_sum`. The coarse three-term
+form in `juggler_cycle_finance.md` is **EXACT — HUMAN PROOF**, so the
+transfer was missing there too.
+
+**The transfer, which is the one sentence.**
+
+- `inv_mul_log_antitoneOn` --- \(x\mapsto1/(x\log x)\) is antitone on
+  \([2,\infty)\).
+- `sum_inv_mul_log_le` --- so pointwise lower bounds move through the
+  sum. That is the whole content of "only decreases the sum", and it is
+  where the bound's *shape* comes from: any classification into classes
+  with lower bounds yields a bound of that shape. The same lemma covers
+  the three-term form, which was carrying its own human-proof tag.
+- `sum_comp_fin_six` --- with the majorant constant on classes, the sum
+  collapses to the count-weighted sum over fibres. The six terms are six
+  fibres, and nothing else.
+- `sixTerm_bound` --- the display, from a classification `cls : ℕ → Fin
+  6` with bounds \(n,\,n+2,\,v,\,t,\,t_+,\,n^{2}\) and the six counts.
+  The counts do sum to \(L\): \(1+(o-e-1)+(2e-o)+1+(o-e-1)+e=o+e\),
+  checked at three \((n,o,e)\) including \(L=176251\).
+
+**Two of the six lower bounds are arithmetic, and are now proved.**
+
+- `cycleMin_odd_ne_ge` --- an odd cycle state that is not the minimum is
+  at least \(n+2\). Minimality gives \(\ge n\); the state and \(n\) are
+  both odd (`cycleMin_start_odd`), so \(n+1\) is excluded by parity.
+  This is the \((o-e-1)/((n+2)\log(n+2))\) term, one of the two
+  refinements the six-term form makes over the three-term one.
+- `odd_pow_ge_of_image_ge` --- an odd state with \(n^{2}\le J(v)\)
+  satisfies \(n^{4}\le v^{3}\), the defining property of the expensive
+  valley. One `Nat.le_sqrt`. This is the \((2e-o)/(v\log v)\) term.
+
+The third, every even at \(n^{2}\), was already `cycleMin_even_ge_sq`.
+
+**What I did not close, and the paper was right about.** *Which* state
+falls in which class. That is Theorem 3.2 together with the packing, and
+no rearrangement of this file produces it; it enters `sixTerm_bound` as
+the hypothesis `hbound`. The honest description of the row is therefore
+not "closed" but "the arithmetic is Lean and the dynamics is a named
+hypothesis" --- the same shape as Theorems 3.31 and 4.7's packing half.
+
+Tags. COMPUTATIONALLY VERIFIED: `lake build Problems.JugglerPaper`
+clean; all six declarations within
+`[propext, Classical.choice, Quot.sound]`; the counts and the identity
+\(1/(n^{2}\log n^{2})=1/(2n^{2}\log n)\) checked numerically;
+`AxiomCheckPaperA` at 223 lines, regenerated, still two `native_decide`
+consumers. OBSERVATION: "arithmetic will not reach it" was a verdict on
+the *hardest* part of a statement applied to the whole of it. The part
+that was unreachable is still unreachable. The part that was never
+examined was four lines of `gcongr` and `Finset.sum_le_sum`, and it was
+also load-bearing for a second human-proof row in a different dossier.

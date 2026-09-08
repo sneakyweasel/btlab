@@ -42,6 +42,7 @@ import Problems.JugglerPaper
 #print axioms Problems.Juggler.cycleMin_log_envelope_inv
 #print axioms Problems.Juggler.cycleMin_log_le_weight
 #print axioms Problems.Juggler.cycleMin_not_end_odd
+#print axioms Problems.Juggler.cycleMin_odd_ne_ge
 #print axioms Problems.Juggler.cycleMin_odds_ge_hug
 #print axioms Problems.Juggler.cycleMin_prefix_odds_ge_hug
 #print axioms Problems.Juggler.cycleMin_prefix_pow_le
@@ -117,6 +118,7 @@ import Problems.JugglerPaper
 #print axioms Problems.Juggler.image_eq_iterate
 #print axioms Problems.Juggler.image_eq_start_defectRatio
 #print axioms Problems.Juggler.image_monotone_of_follows
+#print axioms Problems.Juggler.inv_mul_log_antitoneOn
 #print axioms Problems.Juggler.inv_sq_le_quad
 #print axioms Problems.Juggler.log_floorPower_even_ge
 #print axioms Problems.Juggler.log_floorPower_even_ge_sub
@@ -162,6 +164,7 @@ import Problems.JugglerPaper
 #print axioms Problems.Juggler.oddEvenBlock
 #print axioms Problems.Juggler.odd_even_finiteProgress
 #print axioms Problems.Juggler.odd_excess_lt_even
+#print axioms Problems.Juggler.odd_pow_ge_of_image_ge
 #print axioms Problems.Juggler.odd_preimage_unique
 #print axioms Problems.Juggler.odd_run_ge
 #print axioms Problems.Juggler.odd_run_lower_growth
@@ -203,6 +206,7 @@ import Problems.JugglerPaper
 #print axioms Problems.Juggler.run_survivor_seed_F2
 #print axioms Problems.Juggler.run_survivor_seed_F3
 #print axioms Problems.Juggler.run_survivor_unimodular
+#print axioms Problems.Juggler.sixTerm_bound
 #print axioms Problems.Juggler.square_scale_superquadratic
 #print axioms Problems.Juggler.stateCharge
 #print axioms Problems.Juggler.stateCharge_antitone
@@ -210,6 +214,7 @@ import Problems.JugglerPaper
 #print axioms Problems.Juggler.stateCharge_strictAnti
 #print axioms Juggler.FanLaw.step_lt_two
 #print axioms Problems.Juggler.sum_eVariationOn_Icc
+#print axioms Problems.Juggler.sum_inv_mul_log_le
 #print axioms Problems.Juggler.theta_block_envelope
 #print axioms Problems.Juggler.theta_block_envelope_of_length
 #print axioms Problems.Juggler.theta_block_envelope_window

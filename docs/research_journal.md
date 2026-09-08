@@ -39784,3 +39784,42 @@ answer is at least stable under that refinement.
 - **Decision:** CLOSE. The question was asked and answered, the two
   sentences are separated in the tooling and pinned by tests, and the
   `.olean` graph is the named boundary of this scope, not a promotion.
+
+Theorem 4.7's six-term valley bound was recorded as "Human, and not
+attempted ... it needs Theorem 3.2 and the orbit. Arithmetic will not
+reach it." That verdict was about the hardest part of the statement and
+was applied to the whole of it.
+
+Locating the iterates is dynamics and is still open. Getting from a
+location to the sum is arithmetic, and it is the sentence the paper
+spends one line on: "any deeper odd run or any higher valley only
+decreases the sum." Nobody had written it. It is that 1/(x log x) is
+antitone on [2, infinity), and therefore that pointwise lower bounds
+move through the sum -- a gcongr and a Finset.sum_le_sum. With the
+majorant constant on classes the sum collapses to the count-weighted
+sum over fibres, so the six terms are six fibres and nothing else, and
+sixTerm_bound is the display.
+
+The same lemma covers the coarse three-term form in the finance
+dossier, which was carrying its own EXACT - HUMAN PROOF tag. One
+missing elementary lemma was load-bearing for two rows in two
+documents.
+
+Two of the six lower bounds are arithmetic and are now proved. An odd
+cycle state that is not the minimum is at least n+2: minimality gives
+at least n, and since the state and n are both odd, parity excludes
+n+1. And an odd state with n^2 <= J(v) satisfies n^4 <= v^3, which is
+one Nat.le_sqrt. Those are exactly the two refinements the six-term
+form makes over the three-term one. The third bound, every even at n^2,
+was already cycleMin_even_ge_sq.
+
+What I did not close, and what the paper was right about: which state
+falls in which class. That is Theorem 3.2 with the packing, and it
+enters sixTerm_bound as an explicit classification hypothesis. So the
+row is not closed; it is "the arithmetic is Lean and the dynamics is
+named", the same shape as 3.31 and as 4.7's packing half.
+
+A guard caught the write-up rather than the mathematics: I had
+backticked hbound, a hypothesis name, in the appendix row, and Paper
+A's trust boundary requires every backticked name to be a declaration
+or a listed carve-out. Rephrased.

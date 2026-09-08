@@ -22,6 +22,7 @@
 'Problems.Juggler.cycleMin_log_envelope_inv' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.cycleMin_log_le_weight' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.cycleMin_not_end_odd' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.cycleMin_odd_ne_ge' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.cycleMin_odds_ge_hug' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.cycleMin_prefix_odds_ge_hug' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.cycleMin_prefix_pow_le' depends on axioms: [propext, Classical.choice, Quot.sound]
@@ -97,6 +98,7 @@
 'Problems.Juggler.image_eq_iterate' depends on axioms: [propext]
 'Problems.Juggler.image_eq_start_defectRatio' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.image_monotone_of_follows' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.inv_mul_log_antitoneOn' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.inv_sq_le_quad' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.log_floorPower_even_ge' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.log_floorPower_even_ge_sub' depends on axioms: [propext, Classical.choice, Quot.sound]
@@ -142,6 +144,7 @@
 'Problems.Juggler.oddEvenBlock' does not depend on any axioms
 'Problems.Juggler.odd_even_finiteProgress' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.odd_excess_lt_even' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.odd_pow_ge_of_image_ge' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.odd_preimage_unique' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.odd_run_ge' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.odd_run_lower_growth' depends on axioms: [propext, Classical.choice, Quot.sound]
@@ -183,6 +186,7 @@
 'Problems.Juggler.run_survivor_seed_F2' does not depend on any axioms
 'Problems.Juggler.run_survivor_seed_F3' does not depend on any axioms
 'Problems.Juggler.run_survivor_unimodular' does not depend on any axioms
+'Problems.Juggler.sixTerm_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.square_scale_superquadratic' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.stateCharge' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.stateCharge_antitone' depends on axioms: [propext, Classical.choice, Quot.sound]
@@ -190,6 +194,7 @@
 'Problems.Juggler.stateCharge_strictAnti' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Juggler.FanLaw.step_lt_two' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.sum_eVariationOn_Icc' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.sum_inv_mul_log_le' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.theta_block_envelope' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.theta_block_envelope_of_length' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.theta_block_envelope_window' depends on axioms: [propext, Classical.choice, Quot.sound]
