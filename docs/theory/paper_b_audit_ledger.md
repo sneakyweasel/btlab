@@ -8701,3 +8701,76 @@ laboratory refuted this family one member at a time --- transport,
 congruence, correlation, anticluster, exponent budget, block potential
 --- because each was proposed as a new aggregation of the same
 remainders. The aggregation was never the variable.
+
+## The first remainder: a correction, and the closure of every part
+
+*Mathematical target.* The last entry left one place where the local
+remainders are still visible: the first-defect Amplify bound, which I
+reported as capped at \(0.179\) of the gap. The question was whether a
+better congruence lower bound on the first odd-step remainder
+\(\rho_O=x^{3}-\lfloor x^{3/2}\rfloor^{2}\) could lift it.
+
+**Correction: the \(0.179\) ceiling was a sampling artifact.** It was a
+supremum over words of length \(L\le 8\). Continuing along the all-odd
+prefixes \(\mathtt{O}^{k}\mathtt{E}\):
+
+| word | \(L\) | best \(n\) | Amplify\(/G\) | \(\Delta/G\) |
+|---|---|---|---|---|
+| `OOOOOOOE` | 8 | 371 | 0.1786 | 0.1791 |
+| `OOOOOOOOE` | 9 | 329 | 0.3166 | 0.3168 |
+| `OOOOOOOOOE` | 10 | 451 | 0.6513 | 0.6586 |
+| `OOOOOOOOOOE` | 11 | 357 | 0.8416 | 0.8423 |
+| `OOOOOOOOOOOE` | 12 | 663 | **0.9471** | 0.9544 |
+
+It grows monotonically and reaches \(0.947\). I stated the \(0.179\)
+ceiling twice; it is wrong.
+
+**But the correction does not reopen anything, and the reason finishes
+the family.** The ordered decomposition is
+\(\Delta=\sum_i W_i e_i + X\) with every \(e_i\ge0\) and \(X\ge0\)
+(verified on 6615 records: zero negative \(e_i\), zero negative \(X\)).
+So *every* part of \(\Delta\) --- Amplify, the largest single \(e_i\),
+either seam half --- is at most \(\Delta\). And by the previous entry's
+identity, \(\Delta\ge G\iff T_w(n)\le n\). Hence on an expanding word no
+part of the decomposition can reach \(G\): checked, **0 of 6615**.
+
+So the growth to \(0.947\) is not progress toward a threshold. It is the
+approach to the contraction boundary, which is where \(\Delta/G\to1\) by
+definition. Amplify tracks \(\Delta\) to three decimals on long all-odd
+prefixes (\(0.9471\) against \(0.9544\)) --- the first defect, amplified
+by \(3^{o-1}\), carries essentially all of \(\Delta\) there --- and both
+are pinned below \(1\) by the same identity.
+
+**What the congruence question would have bought.** For the record, the
+best bound any congruence mod \(m\) can give is
+\(B(m,a)=\min\{r\ge0:\ a^{3}-r\ \text{is a square mod}\ m\}\), since
+\(y=\lfloor x^{3/2}\rfloor\) is not controlled by \(x\bmod m\).
+
+- **New, and immediately final:** \(x\equiv15\pmod{16}\Rightarrow
+  \rho_O\ge6\), double the recorded \(x\equiv7\pmod 8\Rightarrow
+  \rho_O\ge3\). And \(\max_a B(2^{k},a)=6\) for **every** \(k\ge4\),
+  checked to \(2^{18}\); the mean saturates at \(2.625\). The 2-adic
+  route improves once and then stops.
+- Composite moduli are not capped: \(\max_a B(1680,a)=79\), the largest
+  over all \(m\le4000\). But \(B(m,1)=0\) for every \(m\), so no
+  universal bound exists --- matching \(\rho_O=0\) exactly on the odd
+  squares \(1,9,25,49,81,121,169\).
+- The relaxation is lossy anyway: at \(x\equiv31\pmod{32}\) the bound is
+  \(6\) and the observed minimum is \(47\). The reason is that
+  \(\rho_O=2y\theta+\theta^{2}\) with \(\theta=\{x^{3/2}\}\), so
+  \(\rho_O\approx2x^{3/2}\theta\) --- verified to
+  \(1.4\times10^{-1}\) relative at \(x=10^{5}\). Small \(\rho_O\) means
+  \(x^{3}-y^{2}\) small, which is Hall/Mordell, not a congruence. The
+  laboratory already names that campaign: `SequentialMordell.lean`, and
+  `juggler_cycle_gap_baker.md` carries "Baker/Thue/Mordell on
+  \(x^{3}-y^{2}\)" as CLOSE/REFUTED.
+
+None of it would have mattered. A lower bound cannot exceed the quantity
+it bounds, and the quantity is below \(G\) on every expanding word.
+
+Tags. COMPUTATIONALLY VERIFIED: nonnegativity and the part bound on 6615
+records; the Amplify growth on ten all-odd prefixes; \(B(2^{k},\cdot)\)
+to \(k=18\) and all \(m\le4000\). OBSERVATION: I twice quoted a
+supremum from a truncated sweep as if it were a ceiling. The real
+ceiling was one line away in an identity I had already proved, and it is
+\(1\) --- open, and equal to the conclusion.

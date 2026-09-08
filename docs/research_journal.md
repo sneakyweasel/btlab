@@ -39540,3 +39540,43 @@ exponent budget, block potential. It now has a reason instead of a
 list. A reader with a new variant does not have to find it on the list;
 they have to check whether their quantity survives the subtraction, and
 nothing built from the local remainders does.
+
+I quoted a ceiling twice that was a truncated sweep. The first-defect
+Amplify bound does not stop at 0.179 of the gap; that was a supremum
+over words of length at most 8. Continuing along the all-odd prefixes
+O^k E it climbs monotonically: 0.179, 0.317, 0.651, 0.842, 0.947 at
+L = 8 through 12.
+
+The correction reopens nothing, and the reason finishes the family. The
+ordered decomposition Delta = sum W_i e_i + X has every e_i >= 0 and
+X >= 0 -- 6615 records, no exception -- so every part of Delta is at
+most Delta, and Delta >= G iff the word contracts. On an expanding word
+no part can reach G: 0 of 6615. The climb to 0.947 is the approach to
+the contraction boundary, which is where Delta/G goes to 1 by
+definition. Amplify tracks Delta to three decimals on long all-odd
+prefixes, 0.9471 against 0.9544; the first defect amplified by 3^(o-1)
+carries essentially all of Delta there, and both are pinned under 1 by
+the same identity.
+
+The congruence question I had set up would not have mattered, but it
+produced one fact worth keeping. The best bound any congruence mod m
+can give is B(m,a) = min{r >= 0 : a^3 - r is a square mod m}, because y
+= floor(x^{3/2}) is not controlled by x mod m. On powers of two:
+x = 15 mod 16 forces rho_O >= 6, double the recorded x = 7 mod 8 giving
+rho_O >= 3 -- and max_a B(2^k, a) = 6 for every k >= 4, checked to
+2^18. The 2-adic route improves once and stops.
+
+Composite moduli are not capped: B(1680, 479) = 79, the largest over
+all m <= 4000. But B(m,1) = 0 always, so no universal bound exists,
+matching rho_O = 0 exactly on odd squares. And the relaxation is lossy
+anyway -- at x = 31 mod 32 the bound is 6 and the observed minimum is
+47 -- because rho_O = 2*y*theta + theta^2 with theta the fractional
+part of x^{3/2}, so rho_O is of order x^{3/2} and small only when
+x^3 - y^2 is small. That is Hall and Mordell, not a congruence, and the
+laboratory already names the campaign: SequentialMordell.lean, with
+juggler_cycle_gap_baker carrying Baker/Thue/Mordell on x^3 - y^2 as
+CLOSE and REFUTED.
+
+A lower bound cannot exceed the quantity it bounds, and the quantity is
+below G on every expanding word. The floor-defect picture is closed at
+the total and at every part.

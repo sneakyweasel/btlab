@@ -389,8 +389,16 @@ The residues of \(T_w(n)-n\) attain every class mod \(3,5,7,8,9,16\)
 inside each of `OOE`, `OOEOOE`, `OEOOOE` within at most \(66\) realized
 starts, which is `cycle_mod_closure` from below; the window bound
 \(2Y+1>m\) gives it from above at \(n\ge 10^{6}+1\).
+The same closes every *part*: the ordered decomposition
+\(\Delta=\sum_i W_ie_i+X\) has \(e_i\ge0\) and \(X\ge0\) (6615 records,
+no exception), so Amplify, the largest single \(e_i\) and either seam
+half are all at most \(\Delta\), hence below \(G\) on every expanding
+word. Amplify\(/G\) does climb --- \(0.18,0.32,0.65,0.84,0.95\) on
+\(\mathtt{O}^{k}\mathtt{E}\) at \(L=8,\dots,12\) --- but that is the
+approach to the contraction boundary, not to a usable threshold.
+
 Do not reopen: reweighting, reordering, or reducing the floor-defect
-comparison mod anything.
+comparison mod anything, nor bounding any single part of it.
 
 Members: `juggler_cycle_closure_leftover_killer`,
 `juggler_cycle_conditioned_closure_leftover_killer`,
