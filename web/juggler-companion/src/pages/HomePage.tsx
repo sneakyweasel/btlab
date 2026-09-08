@@ -142,7 +142,7 @@ export function HomePage() {
         <p>
           Use the tour if the itineraries are new. Use the playground to try the
           trajectory of 173, a cycle word, a CycleMin survivor, a run-suffix
-          crossing, a short O/E itinerary, a one-step preimage, a necklace
+          crossing, a short O/E itinerary, a one-step preimage or the OE fiber, a necklace
           rotation, a finance length from the shipped table, the
           gap-transfer / Rhin plane, the walk-charge transport, or the
           semiconvergent fan.

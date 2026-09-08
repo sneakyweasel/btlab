@@ -2,8 +2,6 @@ import type { JSX } from "react";
 import { useState } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import {
-  PreimagesWidget,
-  OeFiberWidget,
   CycleWidget,
   LeftoversWidget,
   EnvelopeWidget,
@@ -31,8 +29,6 @@ const SHORT_TERM: Record<TourSlug, string> = {
   expanding: "Expand",
   envelope: "Envelope",
   "run-suffix": "Suffix",
-  preimages: "Preimages",
-  "oe-fiber": "OE fiber",
   "descent-floor": "Floor",
   finance: "Finance",
   "gap-transfer": "Gap",
@@ -47,8 +43,6 @@ const WIDGETS: Record<TourSlug, () => JSX.Element> = {
   expanding: ExpandingWidget,
   envelope: EnvelopeWidget,
   "run-suffix": RunSuffixWidget,
-  preimages: PreimagesWidget,
-  "oe-fiber": OeFiberWidget,
   "descent-floor": FloorWidget,
   finance: FinanceWidget,
   "gap-transfer": GapTransferWidget,
@@ -70,8 +64,11 @@ export function TourPage() {
   ) {
     return <Navigate to="/tour/the-map" replace />;
   }
-  if (slug === "cells") {
-    return <Navigate to="/tour/preimages" replace />;
+  if (slug === "cells" || slug === "preimages") {
+    return <Navigate to="/play/preimages" replace />;
+  }
+  if (slug === "oe-fiber") {
+    return <Navigate to="/play/oe-fiber" replace />;
   }
   if (slug === "cycle-leftovers") {
     return <Navigate to="/tour/cycle-survivors" replace />;

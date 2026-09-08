@@ -5,6 +5,7 @@ import { Tex } from "../../components/Tex";
 import {
   PRODUCTION_M_MAX,
   PRODUCTION_SEEDS,
+  TOUR_EVEN_BLOCK_M,
 } from "../../juggler/constants";
 import { formatInt } from "../../juggler/format";
 import { oddPreimageIntegers } from "../../juggler/preimages";
@@ -13,9 +14,9 @@ import { EvenBlockStrip } from "../../visuals/EvenBlockStrip";
 import { PreimageNumberLine } from "../../visuals/PreimageNumberLine";
 
 export function PreimagesTab() {
-  const [m, setM] = useState(11);
+  const [m, setM] = useState(TOUR_EVEN_BLOCK_M);
   const [selected, setSelected] = useState<number | null>(() =>
-    randomEvenInBlock(evenBlockView(11)),
+    randomEvenInBlock(evenBlockView(TOUR_EVEN_BLOCK_M)),
   );
   const block = useMemo(() => evenBlockView(m), [m]);
   const odds = useMemo(() => oddPreimageIntegers(m), [m]);

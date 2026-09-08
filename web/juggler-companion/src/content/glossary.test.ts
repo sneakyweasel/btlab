@@ -23,8 +23,10 @@ describe("tour glossary markup", () => {
     }
   });
 
-  it("keeps thirteen chapters and the finance voice leads", () => {
-    expect(TOUR_CHAPTERS).toHaveLength(13);
+  it("keeps eleven Paper A chapters and the finance voice leads", () => {
+    expect(TOUR_CHAPTERS).toHaveLength(11);
+    expect(TOUR_CHAPTERS.map((chapter) => chapter.slug)).not.toContain("preimages");
+    expect(TOUR_CHAPTERS.map((chapter) => chapter.slug)).not.toContain("oe-fiber");
     expect(TOUR_CHAPTERS.map((chapter) => chapter.slug)).toContain("fan");
     expect(TOUR_CHAPTERS.find((chapter) => chapter.slug === "finance")?.body).toContain("**The necklace.**");
     expect(TOUR_CHAPTERS.find((chapter) => chapter.slug === "gap-transfer")?.body).toContain("`cycleMin_gap_transfer`");

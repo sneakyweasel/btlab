@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 import {
   ENVELOPE_MONSTERS,
   ENVELOPE_STARTS,
@@ -6,25 +6,15 @@ import {
   EXPANDING_STARTS,
   LIVE_STARTS,
   MONSTER_ROW_LIVE,
-  PRODUCTION_M_MAX,
-  PRODUCTION_SEEDS,
   RECORD_LENGTHS,
-  TOUR_EVEN_BLOCK_M,
-  TOUR_OE_FIBER_M,
   TRAJECTORY_STEPS_MAX,
 } from "../juggler/constants";
-import { oddPreimageIntegers } from "../juggler/preimages";
-import { evenBlockView, fiberView, randomEvenInBlock } from "../juggler/productions";
 import { usePlayState } from "../context/PlayState";
 import { financeView } from "../juggler/finance";
 import { formatInt, parsePositiveInt } from "../juggler/format";
 import { floorPower, letterOf } from "../juggler/map";
 import { monsterCatalog, resolveTrajectory } from "../juggler/monsters";
 import { envelopeLog10Series, oddCount, regimeOf } from "../juggler/itinerary";
-import { EvenBlockStrip } from "../visuals/EvenBlockStrip";
-import { OeFiberStrip } from "../visuals/OeFiberStrip";
-import { ProductionWork } from "../visuals/ProductionWork";
-import { SweepLane } from "../visuals/SweepLane";
 import { CycleTourWidget, LeftoverWidget } from "./CycleTourWidget";
 import { GapTransferExplorer } from "./GapTransferExplorer";
 import { RunSuffixExplorer } from "./RunSuffixExplorer";
@@ -41,13 +31,11 @@ import { IdealExponent } from "../visuals/IdealExponent";
 import { ItineraryBeads } from "../visuals/ItineraryBeads";
 import { LinkedWalk } from "../visuals/LinkedWalk";
 import { MapDoors } from "../visuals/MapDoors";
-import { MediaControls, MediaPlayer, MediaScrubber } from "./MediaControls";
+import { MediaPlayer, MediaScrubber } from "./MediaControls";
 import { Tex } from "./Tex";
 
 const MAP_DEFAULT = 37n;
 const AUTOPLAY_MS = 550;
-const EVEN_BLOCK_PLAY_LO = 1;
-const EVEN_BLOCK_PLAY_HI = 20;
 
 function fieldHasFocus(target: EventTarget | null): boolean {
   if (!(target instanceof HTMLElement)) return false;
@@ -501,229 +489,6 @@ export function EnvelopeWidget() {
         />
       )}
     />
-  );
-}
-
-export function PreimagesWidget() {
-  const [startText, setStartText] = useState(String(TOUR_EVEN_BLOCK_M));
-  const [m, setM] = useState(TOUR_EVEN_BLOCK_M);
-  const [playing, setPlaying] = useState(false);
-  const block = useMemo(() => evenBlockView(m), [m]);
-  const slotInteger = useMemo(() => oddPreimageIntegers(m)[0] ?? null, [m]);
-  const [blockN, setBlockN] = useState<number | null>(() =>
-    randomEvenInBlock(evenBlockView(TOUR_EVEN_BLOCK_M)),
-  );
-  const parsed = parsePositiveInt(startText);
-  const startError =
-    startText.trim() === ""
-      ? null
-      : parsed === null
-        ? "Enter a positive integer."
-        : parsed > BigInt(PRODUCTION_M_MAX)
-          ? `At most ${PRODUCTION_M_MAX.toLocaleString("en-US")} on this page.`
-          : null;
-  const inPlayRange = m >= EVEN_BLOCK_PLAY_LO && m <= EVEN_BLOCK_PLAY_HI;
-  const playValue = inPlayRange ? m : EVEN_BLOCK_PLAY_LO;
-  const chooseM = useCallback((value: number) => {
-    setPlaying(false);
-    setStartText(String(value));
-    setM(value);
-    const next = evenBlockView(value);
-    setBlockN(randomEvenInBlock(next));
-  }, []);
-  const seekPlay = useCallback((value: number) => {
-    setPlaying(false);
-    const span = EVEN_BLOCK_PLAY_HI - EVEN_BLOCK_PLAY_LO + 1;
-    const wrapped =
-      EVEN_BLOCK_PLAY_LO +
-      ((((value - EVEN_BLOCK_PLAY_LO) % span) + span) % span);
-    setStartText(String(wrapped));
-    setM(wrapped);
-    const next = evenBlockView(wrapped);
-    setBlockN(randomEvenInBlock(next));
-  }, []);
-  const playCurrent = useCallback(() => {
-    if (playing) {
-      setPlaying(false);
-      return;
-    }
-    if (!inPlayRange) {
-      setStartText(String(EVEN_BLOCK_PLAY_LO));
-      setM(EVEN_BLOCK_PLAY_LO);
-      const next = evenBlockView(EVEN_BLOCK_PLAY_LO);
-      setBlockN(randomEvenInBlock(next));
-    }
-    setPlaying(true);
-  }, [inPlayRange, playing]);
-  useEffect(() => {
-    if (!playing) return;
-    const id = window.setInterval(() => {
-      setM((current) => {
-        const next =
-          current >= EVEN_BLOCK_PLAY_HI || current < EVEN_BLOCK_PLAY_LO
-            ? EVEN_BLOCK_PLAY_LO
-            : current + 1;
-        setStartText(String(next));
-        const view = evenBlockView(next);
-        setBlockN(randomEvenInBlock(view));
-        return next;
-      });
-    }, AUTOPLAY_MS);
-    return () => window.clearInterval(id);
-  }, [playing]);
-  const keysRef = useLatest({ playCurrent, seekPlay, playValue });
-  useEffect(() => {
-    function onKey(event: KeyboardEvent) {
-      if (event.altKey || event.ctrlKey || event.metaKey) return;
-      if (fieldHasFocus(event.target)) return;
-      const frame = keysRef.current;
-      if (event.key === "ArrowLeft") {
-        event.preventDefault();
-        frame.seekPlay(frame.playValue - 1);
-        return;
-      }
-      if (event.key === "ArrowRight") {
-        event.preventDefault();
-        frame.seekPlay(frame.playValue + 1);
-        return;
-      }
-      if (event.key === " " || event.code === "Space") {
-        event.preventDefault();
-        frame.playCurrent();
-      }
-    }
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [keysRef]);
-  return (
-    <div className="space-y-6">
-      <div>
-        <div className="mb-4 rounded-2xl border border-line bg-paper px-4 py-2.5">
-          <div className="flex flex-wrap items-start gap-x-12 gap-y-4">
-            <label className="grid gap-1">
-              <span className="text-xs uppercase tracking-wide text-muted">
-                Starting number
-              </span>
-              <input
-                className="start-input min-w-64 max-w-full rounded-xl border-2 border-ink bg-card px-3 py-2 font-mono text-3xl leading-none text-ink"
-                style={{ width: `calc(${Math.max(10, startText.length)}ch + 1.5rem)` }}
-                type="number"
-                min={1}
-                max={PRODUCTION_M_MAX}
-                value={startText}
-                onChange={(event) => {
-                  const text = event.target.value;
-                  setStartText(text);
-                  const value = parsePositiveInt(text);
-                  if (value !== null && value <= BigInt(PRODUCTION_M_MAX)) {
-                    chooseM(Number(value));
-                  }
-                }}
-              />
-              {startError ? (
-                <span className="text-sm text-warn">{startError}</span>
-              ) : null}
-            </label>
-            <div className="grid min-w-0 flex-1 gap-1.5">
-              <p className="text-xs uppercase tracking-wide text-muted">
-                Interesting presets
-              </p>
-              <div className="flex flex-wrap items-center gap-1.5">
-                {PRODUCTION_SEEDS.map((preset) => (
-                  <Chip
-                    key={preset.value}
-                    selected={m === preset.value}
-                    title={preset.note}
-                    onClick={() => chooseM(preset.value)}
-                  >
-                    {preset.value.toString()}
-                  </Chip>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-        <EvenBlockStrip
-          view={block}
-          selected={blockN}
-          onSelect={setBlockN}
-        />
-        <div className="mt-3">
-          <MediaControls
-            value={playValue}
-            min={EVEN_BLOCK_PLAY_LO}
-            max={EVEN_BLOCK_PLAY_HI}
-            playing={playing}
-            loop
-            prevLabel={formatInt(
-              playValue <= EVEN_BLOCK_PLAY_LO
-                ? EVEN_BLOCK_PLAY_HI
-                : playValue - 1,
-            )}
-            nextLabel={formatInt(
-              playValue >= EVEN_BLOCK_PLAY_HI
-                ? EVEN_BLOCK_PLAY_LO
-                : playValue + 1,
-            )}
-            onSeek={seekPlay}
-            onPlay={playCurrent}
-          />
-        </div>
-        <h3 className="mt-4 mb-2 font-serif text-lg">
-          One-step preimages of {formatInt(m)}
-        </h3>
-        <p className="text-sm text-muted">
-          Same floor cut on both lines. Above, <Tex>{String.raw`\lfloor\sqrt{n}\rfloor`}</Tex>{" "}
-          = {formatInt(m)} exactly when n sits in [{formatInt(m)}²,{" "}
-          {formatInt(m + 1)}²) = [{formatInt(block.lo)}, {formatInt(block.hi)}).
-          Every even bead in that interval sends a teal arrow.
-        </p>
-        <p className="text-sm text-muted">
-          Below, <Tex>{String.raw`\lfloor n\sqrt{n}\rfloor`}</Tex> = {formatInt(m)}{" "}
-          exactly when n sits in [∛({formatInt(m)}²), ∛({formatInt(m + 1)}²)).
-          That slot is shorter than 1, so it holds at most one integer.
-          {slotInteger === null
-            ? " Here the slot is empty."
-            : slotInteger % 2 === 0
-              ? ` Here that integer is ${formatInt(slotInteger)}, not odd, so J does not use this cut.`
-              : ` Here that integer is ${formatInt(slotInteger)}.`}{" "}
-          If {formatInt(m)} is in a backward-closed set A, every bead with an
-          arrow joins A. The OE fiber is the next chapter.
-        </p>
-      </div>
-    </div>
-  );
-}
-
-export function OeFiberWidget() {
-  const fiber = fiberView(TOUR_OE_FIBER_M);
-  const firstSea = fiber.points.find((point) => point.imageEven)?.n ?? fiber.points[0]?.n ?? 0;
-  const [fiberN, setFiberN] = useState(firstSea);
-  const [fiberHover, setFiberHover] = useState<number | null>(null);
-  const fiberInspect = fiberHover ?? fiberN;
-  return (
-    <div>
-      <h3 className="mb-2 font-serif text-lg">OE fiber of 100,000</h3>
-      <OeFiberStrip
-        view={fiber}
-        selected={fiberN}
-        onSelect={setFiberN}
-        onHover={setFiberHover}
-      />
-      <SweepLane
-        points={fiber.points}
-        selected={fiberN}
-        onSelect={setFiberN}
-        onHover={setFiberHover}
-      />
-      <ProductionWork n={fiberInspect} />
-      <p className="mt-3 text-sm text-muted">
-        H = {fiber.H} odd n, G = {fiber.G} with even image. The odd step
-        grows, the even step drops to 100000. Ember beads are on the fiber
-        but not this production. An odd image still has at most one odd
-        parent.
-      </p>
-    </div>
   );
 }
 

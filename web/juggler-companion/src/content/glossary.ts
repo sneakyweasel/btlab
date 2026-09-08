@@ -5,8 +5,6 @@ export type TourSlug =
   | "expanding"
   | "envelope"
   | "run-suffix"
-  | "preimages"
-  | "oe-fiber"
   | "descent-floor"
   | "finance"
   | "gap-transfer"
@@ -85,30 +83,8 @@ export const TOUR_CHAPTERS: TourChapter[] = [
       "§3.9: Lemmas 3.24–3.25, Theorems 3.26 and 3.29, Corollaries 3.27 and 3.30, Theorem 3.31, Remark 3.32. `O7EEEEGap.lean` is the $a=7$ sharp chain. The CycleMin checker stays on Theorem 3.22.",
   },
   {
-    slug: "preimages",
-    number: 7,
-    term: "One-step preimages",
-    blurb:
-      "J is not invertible. A backward-closed set swallows the even square interval of every member.",
-    body:
-      "Work backwards. $J$ is not invertible, so the one-step preimage of $m$ is a set. If $J(n)$ is in a backward-closed class $A$ then $n$ is in $A$. The even block $E(m)$ is every even $n$ in the square interval from $m^2$ to $(m+1)^2$; each has $J(n)=m$, so the whole block joins $A$. An odd image still has at most one odd parent. The OE fiber is a different production and lives on the next page. None of this excludes a fate.",
-    paper:
-      "Paper C Lemma 3.1; Lean `even_block_mem`. Odd one-step uniqueness is Paper A Lemma 3.1.",
-  },
-  {
-    slug: "oe-fiber",
-    number: 8,
-    term: "OE fiber",
-    blurb:
-      "Odd $n$ with floor of $n$ to the three-fourths equal to $m$. Those whose next image is even join $A$ in two steps.",
-    body:
-      "The OE fiber $\\Phi(m)$ is every odd $n$ with $\\lfloor n^{3/4}\\rfloor = m$. Sea beads have even $\\lfloor n^{3/2}\\rfloor$, so $J(J(n))=m$ and they join a backward-closed $A$. Ember beads sit on the fiber but do not use this production. The printed figure is $m=100{,}000$: $H$ odd $n$ on the interval, $G$ of them with even image. Along the fiber the quantity $\\{n^{3/2}/2\\}$ advances by a nearly constant step, and both colors appear. Shares on this $m$ are an observation, not the sweep proof. None of this excludes a fate.",
-    paper:
-      "Paper C Lemmas 3.2 and 4.1; Lean `oe_fiber_mem`. The printed fiber is $m=10^5$.",
-  },
-  {
     slug: "descent-floor",
-    number: 9,
+    number: 7,
     term: "Verified descent floor N₀",
     blurb: "Every start from 2 through $N_0$ has already been checked to reach 1. A floor is an input.",
     body:
@@ -117,7 +93,7 @@ export const TOUR_CHAPTERS: TourChapter[] = [
   },
   {
     slug: "finance",
-    number: 10,
+    number: 8,
     term: "Finance",
     blurb:
       "Ideal dynamics expands, exact dynamics returns; the difference is paid in floor crumbs, and the crumbs run out.",
@@ -128,7 +104,7 @@ export const TOUR_CHAPTERS: TourChapter[] = [
   },
   {
     slug: "gap-transfer",
-    number: 11,
+    number: 9,
     term: "Gap transfer",
     blurb:
       "The surplus is a linear form; Rhin kills only the short ones. The floors already do more.",
@@ -139,7 +115,7 @@ export const TOUR_CHAPTERS: TourChapter[] = [
   },
   {
     slug: "walk-charge",
-    number: 12,
+    number: 10,
     term: "Walk charge",
     blurb: "Section 5 carries the same floor crumbs to one common currency, then prices the worst itinerary.",
     body:
@@ -149,7 +125,7 @@ export const TOUR_CHAPTERS: TourChapter[] = [
   },
   {
     slug: "fan",
-    number: 13,
+    number: 11,
     term: "The fan",
     blurb:
       "The leftover after Corollary 5.11 is one arithmetic progression of 56 terms. Each step is priced. That is not a halt theorem.",
