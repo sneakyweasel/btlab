@@ -11,6 +11,8 @@ not mention words or certificates. Finite seed identities live here as
 examples, not as a map theorem.
 -/
 
+/-- Some iterate of `n` is `1`. The paper proves this for no infinite family;
+it is the hypothesis a verified descent floor supplies below a bound. -/
 def ReachesOne (n : ℕ) : Prop :=
   ∃ k, floorPower^[k] n = 1
 

@@ -17,15 +17,18 @@ words, drift, certificates, or termination.
 def floorPower (n : ℕ) : ℕ :=
   if n % 2 = 0 then n.sqrt else (n ^ 3).sqrt
 
+/-- On an even state `J` is the integer square root. -/
 theorem floorPower_even_eq {n : ℕ} (heven : n % 2 = 0) :
     floorPower n = n.sqrt :=
   if_pos heven
 
+/-- On an odd state `J` is `⌊√(n³)⌋`, the integer form of `⌊n^{3/2}⌋`. -/
 theorem floorPower_odd_eq {n : ℕ} (hodd : n % 2 = 1) :
     floorPower n = (n ^ 3).sqrt := by
   have hodd0 : n % 2 ≠ 0 := by omega
   simp [floorPower, hodd0]
 
+/-- `J` does not leave the positive integers. -/
 theorem floorPower_pos {n : ℕ} (hn : 1 ≤ n) : 1 ≤ floorPower n := by
   cases Nat.mod_two_eq_zero_or_one n with
   | inl heven =>

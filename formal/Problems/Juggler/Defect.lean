@@ -12,6 +12,8 @@ Composite envelope defect. This is not the refuted local claim
 
 def localDefectEven (x : ℕ) : ℕ := x - floorPower x ^ 2
 
+/-- What one odd step loses to the floor, as `x³ - J(x)²`. Summing these around
+a cycle is the finance identity. -/
 def localDefectOdd (x : ℕ) : ℕ := x ^ 3 - floorPower x ^ 2
 
 def StrictPowerBound (m n k o : ℕ) : Prop := m ^ (2 ^ k) < n ^ (3 ^ o)

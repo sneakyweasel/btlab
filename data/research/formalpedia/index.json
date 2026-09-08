@@ -8899,13 +8899,13 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`n` follows `w` and returns to `n`, with `w` nonempty. Note what this does **not** ask: that `w.length` be the period. `w ++ w` is again a `CycleItinerary`, so a statement that charges the minimum once needs primitivity as a hypothesis -- see `CyclePrimitive`.",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "def",
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 42,
+      "line": 47,
       "module": "Problems.Juggler.CycleCore",
       "name": "CycleItinerary",
       "trust": "kernel"
@@ -8917,7 +8917,7 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 45,
+      "line": 50,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycleItinerary_follows",
       "trust": "kernel"
@@ -8929,7 +8929,7 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 49,
+      "line": 54,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycleItinerary_image",
       "trust": "kernel"
@@ -8941,7 +8941,7 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 53,
+      "line": 58,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycleItinerary_nonempty",
       "trust": "kernel"
@@ -8953,7 +8953,7 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 57,
+      "line": 62,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycle_itinerary_formally_expanding",
       "trust": "kernel"
@@ -8965,7 +8965,7 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 62,
+      "line": 67,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycle_itinerary_not_contracting",
       "trust": "kernel"
@@ -8977,7 +8977,7 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 68,
+      "line": 73,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycle_lower_growth",
       "trust": "kernel"
@@ -8989,7 +8989,7 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 76,
+      "line": 81,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycle_pow_le_lowerDenom",
       "trust": "kernel"
@@ -9001,7 +9001,7 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 93,
+      "line": 98,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycle_le_lowerDenom",
       "trust": "kernel"
@@ -9013,7 +9013,7 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 105,
+      "line": 110,
       "module": "Problems.Juggler.CycleCore",
       "name": "lowerDenom_odd",
       "trust": "kernel"
@@ -9025,7 +9025,7 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 107,
+      "line": 112,
       "module": "Problems.Juggler.CycleCore",
       "name": "lowerDenom_odd_odd",
       "trust": "kernel"
@@ -9037,7 +9037,7 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 109,
+      "line": 114,
       "module": "Problems.Juggler.CycleCore",
       "name": "no_cycle_itinerary_odd",
       "trust": "kernel"
@@ -9049,7 +9049,7 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 121,
+      "line": 126,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycle_oo_le_four",
       "trust": "kernel"
@@ -9061,7 +9061,7 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 137,
+      "line": 142,
       "module": "Problems.Juggler.CycleCore",
       "name": "no_cycle_itinerary_oo",
       "trust": "kernel"
@@ -9073,7 +9073,7 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 149,
+      "line": 154,
       "module": "Problems.Juggler.CycleCore",
       "name": "no_cycle_itinerary_eoo",
       "trust": "kernel"
@@ -9085,7 +9085,7 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 171,
+      "line": 176,
       "module": "Problems.Juggler.CycleCore",
       "name": "lowerDenom_itineraryOOE",
       "trust": "kernel"
@@ -9097,7 +9097,7 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 173,
+      "line": 178,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycle_ooe_le_lowerDenom",
       "trust": "kernel"
@@ -9109,7 +9109,7 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 178,
+      "line": 183,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycle_iterate_period",
       "trust": "kernel"
@@ -9121,19 +9121,19 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 182,
+      "line": 187,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycle_iterate_one_tail",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Every state of a cycle on a start at least `2` is itself at least `2`.",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 189,
+      "line": 195,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycleItinerary_iterate_ge_two",
       "trust": "kernel"
@@ -9145,7 +9145,7 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 204,
+      "line": 210,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycle_last_even_interval",
       "trust": "kernel"
@@ -9157,7 +9157,7 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 219,
+      "line": 225,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycle_trailing_evens_lt",
       "trust": "kernel"
@@ -9169,7 +9169,7 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 262,
+      "line": 268,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycle_last_even_ne_odd_sq",
       "trust": "kernel"
@@ -9181,7 +9181,7 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 267,
+      "line": 273,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycle_last_odd_interval",
       "trust": "kernel"
@@ -9193,7 +9193,7 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 278,
+      "line": 284,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycleItinerary_rotate_cons",
       "trust": "kernel"
@@ -9205,7 +9205,7 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 291,
+      "line": 297,
       "module": "Problems.Juggler.CycleCore",
       "name": "exists_iterate_min",
       "trust": "kernel"
@@ -9217,7 +9217,7 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 322,
+      "line": 328,
       "module": "Problems.Juggler.CycleCore",
       "name": "exists_cycle_min_odd",
       "trust": "kernel"
@@ -9229,7 +9229,7 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 346,
+      "line": 352,
       "module": "Problems.Juggler.CycleCore",
       "name": "no_cycle_itinerary_ooe",
       "trust": "kernel"
@@ -9241,7 +9241,7 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 372,
+      "line": 378,
       "module": "Problems.Juggler.CycleCore",
       "name": "no_cycle_itinerary_oeo",
       "trust": "kernel"
@@ -9253,7 +9253,7 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 386,
+      "line": 392,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycle_last_even_preimage",
       "trust": "kernel"
@@ -9265,7 +9265,7 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 391,
+      "line": 397,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycle_last_even_preimage_odd",
       "trust": "kernel"
@@ -9277,7 +9277,7 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 400,
+      "line": 406,
       "module": "Problems.Juggler.CycleCore",
       "name": "no_cycle_append_even_of_suffix_threshold",
       "trust": "kernel"
@@ -9289,7 +9289,7 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 406,
+      "line": 412,
       "module": "Problems.Juggler.CycleCore",
       "name": "itineraryOOOE",
       "trust": "kernel"
@@ -9301,7 +9301,7 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 408,
+      "line": 414,
       "module": "Problems.Juggler.CycleCore",
       "name": "itineraryOOOE_eq_append",
       "trust": "kernel"
@@ -9313,7 +9313,7 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 412,
+      "line": 418,
       "module": "Problems.Juggler.CycleCore",
       "name": "no_cycle_itinerary_oooe",
       "trust": "kernel"
@@ -9325,7 +9325,7 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 424,
+      "line": 430,
       "module": "Problems.Juggler.CycleCore",
       "name": "no_cycle_itinerary_length_four_ends_even",
       "trust": "kernel"
@@ -9337,7 +9337,7 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 447,
+      "line": 453,
       "module": "Problems.Juggler.CycleCore",
       "name": "threshold_inherits_odd_append",
       "trust": "kernel"
@@ -9349,7 +9349,7 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 459,
+      "line": 465,
       "module": "Problems.Juggler.CycleCore",
       "name": "replicate_odd_concat",
       "trust": "kernel"
@@ -9361,7 +9361,7 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 468,
+      "line": 474,
       "module": "Problems.Juggler.CycleCore",
       "name": "follows_replicate_odd_head",
       "trust": "kernel"
@@ -9373,7 +9373,7 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 475,
+      "line": 481,
       "module": "Problems.Juggler.CycleCore",
       "name": "odd_run_suffix_threshold_add",
       "trust": "kernel"
@@ -9385,7 +9385,7 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 494,
+      "line": 500,
       "module": "Problems.Juggler.CycleCore",
       "name": "odd_run_suffix_threshold",
       "trust": "kernel"
@@ -9397,7 +9397,7 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 501,
+      "line": 507,
       "module": "Problems.Juggler.CycleCore",
       "name": "no_cycle_odd_run_append_even",
       "trust": "kernel"
@@ -9409,7 +9409,7 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 513,
+      "line": 519,
       "module": "Problems.Juggler.CycleCore",
       "name": "eventually_no_cycle_append_even",
       "trust": "kernel"
@@ -9421,7 +9421,7 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 521,
+      "line": 527,
       "module": "Problems.Juggler.CycleCore",
       "name": "no_cycle_itinerary_length_five_ends_even",
       "trust": "kernel"
@@ -9433,7 +9433,7 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 545,
+      "line": 551,
       "module": "Problems.Juggler.CycleCore",
       "name": "CycleMin",
       "trust": "kernel"
@@ -9445,7 +9445,7 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 548,
+      "line": 554,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycleMin_cycleItinerary",
       "trust": "kernel"
@@ -9457,7 +9457,7 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 552,
+      "line": 558,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycleMin_ge",
       "trust": "kernel"
@@ -9469,7 +9469,7 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 558,
+      "line": 564,
       "module": "Problems.Juggler.CycleCore",
       "name": "aboveAnchor_of_cycleMin",
       "trust": "kernel"
@@ -9481,7 +9481,7 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 571,
+      "line": 577,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycleMin_iterate_ge",
       "trust": "kernel"
@@ -9493,7 +9493,7 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 580,
+      "line": 586,
       "module": "Problems.Juggler.CycleCore",
       "name": "aboveAnchor_prefix_pow_le",
       "trust": "kernel"
@@ -9505,7 +9505,7 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 597,
+      "line": 603,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycleMin_prefix_pow_le",
       "trust": "kernel"
@@ -9517,7 +9517,7 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 602,
+      "line": 608,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycle_iterate_mul_length",
       "trust": "kernel"
@@ -9529,7 +9529,7 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 611,
+      "line": 617,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycle_iterate_mod",
       "trust": "kernel"
@@ -9541,7 +9541,7 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 620,
+      "line": 626,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycleMin_succ_ge",
       "trust": "kernel"
@@ -9553,7 +9553,7 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 635,
+      "line": 641,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycleMin_even_ge_sq",
       "trust": "kernel"
@@ -9565,7 +9565,7 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 642,
+      "line": 648,
       "module": "Problems.Juggler.CycleCore",
       "name": "floorPower_odd_lt_sq",
       "trust": "kernel"
@@ -9577,7 +9577,7 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 646,
+      "line": 652,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycleMin_start_odd",
       "trust": "kernel"
@@ -9589,7 +9589,7 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 663,
+      "line": 669,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycleMin_not_start_even",
       "trust": "kernel"
@@ -9601,19 +9601,19 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 670,
+      "line": 676,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycleMin_not_odd_even",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Rotate a word `k` places, moving the front letter to the back each time. A cycle's spellings are the rotations of any one of them.",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "def",
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 674,
+      "line": 682,
       "module": "Problems.Juggler.CycleCore",
       "name": "rotateItinerary",
       "trust": "kernel"
@@ -9625,7 +9625,7 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 679,
+      "line": 687,
       "module": "Problems.Juggler.CycleCore",
       "name": "rotateItinerary_length",
       "trust": "kernel"
@@ -9637,7 +9637,7 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 688,
+      "line": 696,
       "module": "Problems.Juggler.CycleCore",
       "name": "rotateItinerary_eq_drop_append_take",
       "trust": "kernel"
@@ -9649,19 +9649,19 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 707,
+      "line": 715,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycleItinerary_rotateItinerary",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Every cycle has a `CycleMin` spelling: some rotation starts at a smallest state. This is what licenses proving cycle theorems at the minimum.",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 721,
+      "line": 731,
       "module": "Problems.Juggler.CycleCore",
       "name": "exists_cycleMin",
       "trust": "kernel"
@@ -9673,7 +9673,7 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 736,
+      "line": 746,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycleMin_le_cycle_state",
       "trust": "kernel"
@@ -9685,7 +9685,7 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 764,
+      "line": 774,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycle_min_value_unique",
       "trust": "kernel"
@@ -9697,7 +9697,7 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 774,
+      "line": 784,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycleItinerary_not_reachesOne",
       "trust": "kernel"
@@ -9709,7 +9709,7 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 787,
+      "line": 797,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycleItinerary_iterate_not_lt_twelve",
       "trust": "kernel"
@@ -9721,7 +9721,7 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 807,
+      "line": 817,
       "module": "Problems.Juggler.CycleCore",
       "name": "no_cycleMin_internal_even_threshold",
       "trust": "kernel"
@@ -9733,7 +9733,7 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 837,
+      "line": 847,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycleMin_not_end_odd",
       "trust": "kernel"
@@ -9745,7 +9745,7 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 852,
+      "line": 862,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycleMin_ends_even",
       "trust": "kernel"
@@ -9757,7 +9757,7 @@
       "ledger": [
         "J-cycle-trailing-evens"
       ],
-      "line": 865,
+      "line": 875,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycleMin_prefix_ooo_even_sqrt_ne",
       "trust": "kernel"
@@ -15671,11 +15671,11 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "What one odd step loses to the floor, as `x\u00b3 - J(x)\u00b2`. Summing these around a cycle is the finance identity.",
       "file": "formal/Problems/Juggler/Defect.lean",
       "kind": "def",
       "ledger": [],
-      "line": 15,
+      "line": 17,
       "module": "Problems.Juggler.Defect",
       "name": "localDefectOdd",
       "trust": "kernel"
@@ -15685,7 +15685,7 @@
       "file": "formal/Problems/Juggler/Defect.lean",
       "kind": "def",
       "ledger": [],
-      "line": 17,
+      "line": 19,
       "module": "Problems.Juggler.Defect",
       "name": "StrictPowerBound",
       "trust": "kernel"
@@ -15695,7 +15695,7 @@
       "file": "formal/Problems/Juggler/Defect.lean",
       "kind": "def",
       "ledger": [],
-      "line": 19,
+      "line": 21,
       "module": "Problems.Juggler.Defect",
       "name": "isMonochrome",
       "trust": "kernel"
@@ -15705,7 +15705,7 @@
       "file": "formal/Problems/Juggler/Defect.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 23,
+      "line": 25,
       "module": "Problems.Juggler.Defect",
       "name": "localDefectEven_eq",
       "trust": "kernel"
@@ -15715,7 +15715,7 @@
       "file": "formal/Problems/Juggler/Defect.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 27,
+      "line": 29,
       "module": "Problems.Juggler.Defect",
       "name": "localDefectOdd_eq",
       "trust": "kernel"
@@ -15725,7 +15725,7 @@
       "file": "formal/Problems/Juggler/Defect.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 31,
+      "line": 33,
       "module": "Problems.Juggler.Defect",
       "name": "localDefectEven_add",
       "trust": "kernel"
@@ -15735,7 +15735,7 @@
       "file": "formal/Problems/Juggler/Defect.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 35,
+      "line": 37,
       "module": "Problems.Juggler.Defect",
       "name": "localDefectOdd_add",
       "trust": "kernel"
@@ -15745,7 +15745,7 @@
       "file": "formal/Problems/Juggler/Defect.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 39,
+      "line": 41,
       "module": "Problems.Juggler.Defect",
       "name": "localDefectEven_eq_zero_iff",
       "trust": "kernel"
@@ -15755,7 +15755,7 @@
       "file": "formal/Problems/Juggler/Defect.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 48,
+      "line": 50,
       "module": "Problems.Juggler.Defect",
       "name": "localDefectOdd_eq_zero_iff",
       "trust": "kernel"
@@ -15765,7 +15765,7 @@
       "file": "formal/Problems/Juggler/Defect.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 60,
+      "line": 62,
       "module": "Problems.Juggler.Defect",
       "name": "localDefectEven_lt_succ_sqrt",
       "trust": "kernel"
@@ -15775,7 +15775,7 @@
       "file": "formal/Problems/Juggler/Defect.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 71,
+      "line": 73,
       "module": "Problems.Juggler.Defect",
       "name": "localDefectEven_lt_succ",
       "trust": "kernel"
@@ -15785,7 +15785,7 @@
       "file": "formal/Problems/Juggler/Defect.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 76,
+      "line": 78,
       "module": "Problems.Juggler.Defect",
       "name": "localDefectOdd_lt_succ",
       "trust": "kernel"
@@ -15795,7 +15795,7 @@
       "file": "formal/Problems/Juggler/Defect.lean",
       "kind": "def",
       "ledger": [],
-      "line": 88,
+      "line": 90,
       "module": "Problems.Juggler.Defect",
       "name": "branchDefect",
       "trust": "kernel"
@@ -15805,7 +15805,7 @@
       "file": "formal/Problems/Juggler/Defect.lean",
       "kind": "def",
       "ledger": [],
-      "line": 92,
+      "line": 94,
       "module": "Problems.Juggler.Defect",
       "name": "branchExp",
       "trust": "kernel"
@@ -15815,7 +15815,7 @@
       "file": "formal/Problems/Juggler/Defect.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 96,
+      "line": 98,
       "module": "Problems.Juggler.Defect",
       "name": "branchDefect_add",
       "trust": "kernel"
@@ -15825,7 +15825,7 @@
       "file": "formal/Problems/Juggler/Defect.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 105,
+      "line": 107,
       "module": "Problems.Juggler.Defect",
       "name": "branchDefect_lt",
       "trust": "kernel"
@@ -15835,7 +15835,7 @@
       "file": "formal/Problems/Juggler/Defect.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 113,
+      "line": 115,
       "module": "Problems.Juggler.Defect",
       "name": "branchDefect_eq_zero_iff_localTight",
       "trust": "kernel"
@@ -15845,7 +15845,7 @@
       "file": "formal/Problems/Juggler/Defect.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 141,
+      "line": 143,
       "module": "Problems.Juggler.Defect",
       "name": "power_bound_of_branchDefect",
       "trust": "kernel"
@@ -15855,7 +15855,7 @@
       "file": "formal/Problems/Juggler/Defect.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 146,
+      "line": 148,
       "module": "Problems.Juggler.Defect",
       "name": "pow_sq_lt",
       "trust": "kernel"
@@ -15865,7 +15865,7 @@
       "file": "formal/Problems/Juggler/Defect.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 151,
+      "line": 153,
       "module": "Problems.Juggler.Defect",
       "name": "pow_add_pow_le_add_pow",
       "trust": "kernel"
@@ -15875,7 +15875,7 @@
       "file": "formal/Problems/Juggler/Defect.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 167,
+      "line": 169,
       "module": "Problems.Juggler.Defect",
       "name": "pow_sub_pow_ge_sub",
       "trust": "kernel"
@@ -15885,7 +15885,7 @@
       "file": "formal/Problems/Juggler/Defect.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 178,
+      "line": 180,
       "module": "Problems.Juggler.Defect",
       "name": "strict_power_bound_append_even",
       "trust": "kernel"
@@ -15895,7 +15895,7 @@
       "file": "formal/Problems/Juggler/Defect.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 187,
+      "line": 189,
       "module": "Problems.Juggler.Defect",
       "name": "strict_power_bound_append_odd",
       "trust": "kernel"
@@ -15905,7 +15905,7 @@
       "file": "formal/Problems/Juggler/Defect.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 207,
+      "line": 209,
       "module": "Problems.Juggler.Defect",
       "name": "strict_power_bound_of_even_defect",
       "trust": "kernel"
@@ -15915,7 +15915,7 @@
       "file": "formal/Problems/Juggler/Defect.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 216,
+      "line": 218,
       "module": "Problems.Juggler.Defect",
       "name": "strict_power_bound_of_odd_defect",
       "trust": "kernel"
@@ -15925,7 +15925,7 @@
       "file": "formal/Problems/Juggler/Defect.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 235,
+      "line": 237,
       "module": "Problems.Juggler.Defect",
       "name": "even_defect_gap_ge_local",
       "trust": "kernel"
@@ -15935,7 +15935,7 @@
       "file": "formal/Problems/Juggler/Defect.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 246,
+      "line": 248,
       "module": "Problems.Juggler.Defect",
       "name": "odd_defect_gap_ge_local",
       "trust": "kernel"
@@ -15945,7 +15945,7 @@
       "file": "formal/Problems/Juggler/Defect.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 266,
+      "line": 268,
       "module": "Problems.Juggler.Defect",
       "name": "strict_power_bound_from",
       "trust": "kernel"
@@ -15955,7 +15955,7 @@
       "file": "formal/Problems/Juggler/Defect.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 301,
+      "line": 303,
       "module": "Problems.Juggler.Defect",
       "name": "power_bound_word_strict",
       "trust": "kernel"
@@ -15965,7 +15965,7 @@
       "file": "formal/Problems/Juggler/Defect.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 311,
+      "line": 313,
       "module": "Problems.Juggler.Defect",
       "name": "strict_power_bound_of_not_extremal",
       "trust": "kernel"
@@ -15975,7 +15975,7 @@
       "file": "formal/Problems/Juggler/Defect.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 325,
+      "line": 327,
       "module": "Problems.Juggler.Defect",
       "name": "power_bound_defect_ge_one",
       "trust": "kernel"
@@ -15985,7 +15985,7 @@
       "file": "formal/Problems/Juggler/Defect.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 333,
+      "line": 335,
       "module": "Problems.Juggler.Defect",
       "name": "not_localsTight_of_nonmonochrome",
       "trust": "kernel"
@@ -15995,7 +15995,7 @@
       "file": "formal/Problems/Juggler/Defect.lean",
       "kind": "def",
       "ledger": [],
-      "line": 341,
+      "line": 343,
       "module": "Problems.Juggler.Defect",
       "name": "powerDeficit",
       "trust": "kernel"
@@ -16005,7 +16005,7 @@
       "file": "formal/Problems/Juggler/Defect.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 343,
+      "line": 345,
       "module": "Problems.Juggler.Defect",
       "name": "powerBound_of_eq",
       "trust": "kernel"
@@ -16015,7 +16015,7 @@
       "file": "formal/Problems/Juggler/Defect.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 347,
+      "line": 349,
       "module": "Problems.Juggler.Defect",
       "name": "power_bound_eq_empty",
       "trust": "kernel"
@@ -16025,7 +16025,7 @@
       "file": "formal/Problems/Juggler/Defect.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 350,
+      "line": 352,
       "module": "Problems.Juggler.Defect",
       "name": "power_deficit_append_even",
       "trust": "kernel"
@@ -16035,7 +16035,7 @@
       "file": "formal/Problems/Juggler/Defect.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 360,
+      "line": 362,
       "module": "Problems.Juggler.Defect",
       "name": "power_deficit_append_odd",
       "trust": "kernel"
@@ -16045,7 +16045,7 @@
       "file": "formal/Problems/Juggler/Defect.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 389,
+      "line": 391,
       "module": "Problems.Juggler.Defect",
       "name": "power_deficit_from",
       "trust": "kernel"
@@ -16055,7 +16055,7 @@
       "file": "formal/Problems/Juggler/Defect.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 427,
+      "line": 429,
       "module": "Problems.Juggler.Defect",
       "name": "local_defect_even_le_suffix_deficit",
       "trust": "kernel"
@@ -16065,7 +16065,7 @@
       "file": "formal/Problems/Juggler/Defect.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 439,
+      "line": 441,
       "module": "Problems.Juggler.Defect",
       "name": "local_defect_odd_le_suffix_deficit",
       "trust": "kernel"
@@ -16075,7 +16075,7 @@
       "file": "formal/Problems/Juggler/Defect.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 451,
+      "line": 453,
       "module": "Problems.Juggler.Defect",
       "name": "powerDeficit_even_first",
       "trust": "kernel"
@@ -16085,7 +16085,7 @@
       "file": "formal/Problems/Juggler/Defect.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 455,
+      "line": 457,
       "module": "Problems.Juggler.Defect",
       "name": "powerDeficit_odd_first",
       "trust": "kernel"
@@ -16095,7 +16095,7 @@
       "file": "formal/Problems/Juggler/Defect.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 459,
+      "line": 461,
       "module": "Problems.Juggler.Defect",
       "name": "pow_sub_pow_gt_sub",
       "trust": "kernel"
@@ -16105,7 +16105,7 @@
       "file": "formal/Problems/Juggler/Defect.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 517,
+      "line": 519,
       "module": "Problems.Juggler.Defect",
       "name": "two_le_two_pow_of_pos",
       "trust": "kernel"
@@ -16115,7 +16115,7 @@
       "file": "formal/Problems/Juggler/Defect.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 520,
+      "line": 522,
       "module": "Problems.Juggler.Defect",
       "name": "even_defect_gap_gt_of_pos_prefix",
       "trust": "kernel"
@@ -16125,7 +16125,7 @@
       "file": "formal/Problems/Juggler/Defect.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 532,
+      "line": 534,
       "module": "Problems.Juggler.Defect",
       "name": "odd_defect_gap_gt_of_pos_prefix",
       "trust": "kernel"
@@ -16135,7 +16135,7 @@
       "file": "formal/Problems/Juggler/Defect.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 554,
+      "line": 556,
       "module": "Problems.Juggler.Defect",
       "name": "power_deficit_append_even_eq",
       "trust": "kernel"
@@ -16145,7 +16145,7 @@
       "file": "formal/Problems/Juggler/Defect.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 564,
+      "line": 566,
       "module": "Problems.Juggler.Defect",
       "name": "power_deficit_append_even_of_defect",
       "trust": "kernel"
@@ -16155,7 +16155,7 @@
       "file": "formal/Problems/Juggler/Defect.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 592,
+      "line": 594,
       "module": "Problems.Juggler.Defect",
       "name": "power_deficit_append_odd_of_strict",
       "trust": "kernel"
@@ -16165,7 +16165,7 @@
       "file": "formal/Problems/Juggler/Defect.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 629,
+      "line": 631,
       "module": "Problems.Juggler.Defect",
       "name": "suffix_deficit_eq_of_exact_even",
       "trust": "kernel"
@@ -16175,7 +16175,7 @@
       "file": "formal/Problems/Juggler/Defect.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 664,
+      "line": 666,
       "module": "Problems.Juggler.Defect",
       "name": "suffix_eq_of_deficit_eq",
       "trust": "kernel"
@@ -16185,7 +16185,7 @@
       "file": "formal/Problems/Juggler/Defect.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 730,
+      "line": 732,
       "module": "Problems.Juggler.Defect",
       "name": "power_deficit_eq_local_even_iff",
       "trust": "kernel"
@@ -16195,7 +16195,7 @@
       "file": "formal/Problems/Juggler/Defect.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 755,
+      "line": 757,
       "module": "Problems.Juggler.Defect",
       "name": "power_deficit_eq_local_odd_iff",
       "trust": "kernel"
@@ -16205,7 +16205,7 @@
       "file": "formal/Problems/Juggler/Defect.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 791,
+      "line": 793,
       "module": "Problems.Juggler.Defect",
       "name": "power_bound_compensated_contracts",
       "trust": "kernel"
@@ -16215,7 +16215,7 @@
       "file": "formal/Problems/Juggler/Defect.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 804,
+      "line": 806,
       "module": "Problems.Juggler.Defect",
       "name": "power_bound_compensated_contracts_follows",
       "trust": "kernel"
@@ -17961,31 +17961,31 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "On an even state `J` is the integer square root.",
       "file": "formal/Problems/Juggler/Dynamics.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 20,
+      "line": 21,
       "module": "Problems.Juggler.Dynamics",
       "name": "floorPower_even_eq",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "On an odd state `J` is `\u230a\u221a(n\u00b3)\u230b`, the integer form of `\u230an^{3/2}\u230b`.",
       "file": "formal/Problems/Juggler/Dynamics.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 24,
+      "line": 26,
       "module": "Problems.Juggler.Dynamics",
       "name": "floorPower_odd_eq",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`J` does not leave the positive integers.",
       "file": "formal/Problems/Juggler/Dynamics.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 29,
+      "line": 32,
       "module": "Problems.Juggler.Dynamics",
       "name": "floorPower_pos",
       "trust": "kernel"
@@ -17995,7 +17995,7 @@
       "file": "formal/Problems/Juggler/Dynamics.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 42,
+      "line": 45,
       "module": "Problems.Juggler.Dynamics",
       "name": "sqrt_sqrt_n_cubed_lt",
       "trust": "kernel"
@@ -18005,7 +18005,7 @@
       "file": "formal/Problems/Juggler/Dynamics.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 67,
+      "line": 70,
       "module": "Problems.Juggler.Dynamics",
       "name": "floorPower_odd_even_two_step_lt",
       "trust": "kernel"
@@ -18015,7 +18015,7 @@
       "file": "formal/Problems/Juggler/Dynamics.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 79,
+      "line": 82,
       "module": "Problems.Juggler.Dynamics",
       "name": "succ_sq_le_cube",
       "trust": "kernel"
@@ -18025,7 +18025,7 @@
       "file": "formal/Problems/Juggler/Dynamics.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 84,
+      "line": 87,
       "module": "Problems.Juggler.Dynamics",
       "name": "floorPower_odd_gt",
       "trust": "kernel"
@@ -18035,7 +18035,7 @@
       "file": "formal/Problems/Juggler/Dynamics.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 92,
+      "line": 95,
       "module": "Problems.Juggler.Dynamics",
       "name": "floorPower_odd_nondecreasing",
       "trust": "kernel"
@@ -18045,7 +18045,7 @@
       "file": "formal/Problems/Juggler/Dynamics.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 103,
+      "line": 106,
       "module": "Problems.Juggler.Dynamics",
       "name": "floorPower_odd_odd_two_step_gt",
       "trust": "kernel"
@@ -18055,7 +18055,7 @@
       "file": "formal/Problems/Juggler/Dynamics.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 121,
+      "line": 124,
       "module": "Problems.Juggler.Dynamics",
       "name": "floorPower_odd_macro_direction",
       "trust": "kernel"
@@ -18065,7 +18065,7 @@
       "file": "formal/Problems/Juggler/Dynamics.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 133,
+      "line": 136,
       "module": "Problems.Juggler.Dynamics",
       "name": "floorPower_even_sq_le",
       "trust": "kernel"
@@ -18075,7 +18075,7 @@
       "file": "formal/Problems/Juggler/Dynamics.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 139,
+      "line": 142,
       "module": "Problems.Juggler.Dynamics",
       "name": "floorPower_odd_sq_le_cube",
       "trust": "kernel"
@@ -18085,7 +18085,7 @@
       "file": "formal/Problems/Juggler/Dynamics.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 146,
+      "line": 149,
       "module": "Problems.Juggler.Dynamics",
       "name": "floorPower_odd_sq_eq_cube_of_sq",
       "trust": "kernel"
@@ -18095,7 +18095,7 @@
       "file": "formal/Problems/Juggler/Dynamics.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 155,
+      "line": 158,
       "module": "Problems.Juggler.Dynamics",
       "name": "floorPower_nine_odd_eq",
       "trust": "kernel"
@@ -18105,7 +18105,7 @@
       "file": "formal/Problems/Juggler/Dynamics.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 160,
+      "line": 163,
       "module": "Problems.Juggler.Dynamics",
       "name": "floorPower_even_lt",
       "trust": "kernel"
@@ -18115,7 +18115,7 @@
       "file": "formal/Problems/Juggler/Dynamics.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 170,
+      "line": 173,
       "module": "Problems.Juggler.Dynamics",
       "name": "floorPower_one",
       "trust": "kernel"
@@ -18125,7 +18125,7 @@
       "file": "formal/Problems/Juggler/Dynamics.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 173,
+      "line": 176,
       "module": "Problems.Juggler.Dynamics",
       "name": "floorPower_two",
       "trust": "kernel"
@@ -18135,7 +18135,7 @@
       "file": "formal/Problems/Juggler/Dynamics.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 176,
+      "line": 179,
       "module": "Problems.Juggler.Dynamics",
       "name": "floorPower_four",
       "trust": "kernel"
@@ -18145,7 +18145,7 @@
       "file": "formal/Problems/Juggler/Dynamics.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 179,
+      "line": 182,
       "module": "Problems.Juggler.Dynamics",
       "name": "floorPower_six",
       "trust": "kernel"
@@ -18155,7 +18155,7 @@
       "file": "formal/Problems/Juggler/Dynamics.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 182,
+      "line": 185,
       "module": "Problems.Juggler.Dynamics",
       "name": "floorPower_seven",
       "trust": "kernel"
@@ -18165,7 +18165,7 @@
       "file": "formal/Problems/Juggler/Dynamics.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 185,
+      "line": 188,
       "module": "Problems.Juggler.Dynamics",
       "name": "floorPower_eight",
       "trust": "kernel"
@@ -18175,7 +18175,7 @@
       "file": "formal/Problems/Juggler/Dynamics.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 189,
+      "line": 192,
       "module": "Problems.Juggler.Dynamics",
       "name": "floorPower_thirteen_step",
       "trust": "kernel"
@@ -18185,7 +18185,7 @@
       "file": "formal/Problems/Juggler/Dynamics.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 192,
+      "line": 195,
       "module": "Problems.Juggler.Dynamics",
       "name": "floorPower_eighteen",
       "trust": "kernel"
@@ -18195,7 +18195,7 @@
       "file": "formal/Problems/Juggler/Dynamics.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 195,
+      "line": 198,
       "module": "Problems.Juggler.Dynamics",
       "name": "floorPower_even_mono",
       "trust": "kernel"
@@ -18205,7 +18205,7 @@
       "file": "formal/Problems/Juggler/Dynamics.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 201,
+      "line": 204,
       "module": "Problems.Juggler.Dynamics",
       "name": "floorPower_odd_mono",
       "trust": "kernel"
@@ -27771,11 +27771,11 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Peel one step off the front of an iterate: `J^[k+1] n = J^[k] (J n)`. The companion of `Function.iterate_succ_apply'`, which peels off the back.",
       "file": "formal/Problems/Juggler/Iteration.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 11,
+      "line": 13,
       "module": "Problems.Juggler.Iteration",
       "name": "iterate_cons",
       "trust": "kernel"
@@ -27785,17 +27785,17 @@
       "file": "formal/Problems/Juggler/Iteration.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 18,
+      "line": 20,
       "module": "Problems.Juggler.Iteration",
       "name": "iterate_add_right",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Every iterate of a positive state is positive.",
       "file": "formal/Problems/Juggler/Iteration.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 22,
+      "line": 25,
       "module": "Problems.Juggler.Iteration",
       "name": "floorPower_iterate_pos",
       "trust": "kernel"
@@ -27814,14 +27814,14 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The first `k` letters of `n`'s trajectory: `bit n` then the itinerary of `J n`. The *word* a start actually follows, as opposed to a word one hypothesises about.",
       "file": "formal/Problems/Juggler/Itinerary.lean",
       "kind": "def",
       "ledger": [
         "J-itinerary-semantics",
         "J-fixed-itinerary-image-monotone"
       ],
-      "line": 25,
+      "line": 28,
       "module": "Problems.Juggler.Itinerary",
       "name": "itinerary",
       "trust": "kernel"
@@ -27834,7 +27834,7 @@
         "J-itinerary-semantics",
         "J-fixed-itinerary-image-monotone"
       ],
-      "line": 30,
+      "line": 33,
       "module": "Problems.Juggler.Itinerary",
       "name": "follows",
       "trust": "kernel"
@@ -27847,7 +27847,7 @@
         "J-itinerary-semantics",
         "J-fixed-itinerary-image-monotone"
       ],
-      "line": 36,
+      "line": 39,
       "module": "Problems.Juggler.Itinerary",
       "name": "image",
       "trust": "kernel"
@@ -27860,7 +27860,7 @@
         "J-itinerary-semantics",
         "J-fixed-itinerary-image-monotone"
       ],
-      "line": 45,
+      "line": 48,
       "module": "Problems.Juggler.Itinerary",
       "name": "bit_even",
       "trust": "kernel"
@@ -27873,7 +27873,7 @@
         "J-itinerary-semantics",
         "J-fixed-itinerary-image-monotone"
       ],
-      "line": 48,
+      "line": 51,
       "module": "Problems.Juggler.Itinerary",
       "name": "bit_odd",
       "trust": "kernel"
@@ -27886,7 +27886,7 @@
         "J-itinerary-semantics",
         "J-fixed-itinerary-image-monotone"
       ],
-      "line": 52,
+      "line": 55,
       "module": "Problems.Juggler.Itinerary",
       "name": "itinerary_zero",
       "trust": "kernel"
@@ -27899,7 +27899,7 @@
         "J-itinerary-semantics",
         "J-fixed-itinerary-image-monotone"
       ],
-      "line": 54,
+      "line": 57,
       "module": "Problems.Juggler.Itinerary",
       "name": "itinerary_succ",
       "trust": "kernel"
@@ -27912,7 +27912,7 @@
         "J-itinerary-semantics",
         "J-fixed-itinerary-image-monotone"
       ],
-      "line": 57,
+      "line": 60,
       "module": "Problems.Juggler.Itinerary",
       "name": "itinerary_length",
       "trust": "kernel"
@@ -27925,7 +27925,7 @@
         "J-itinerary-semantics",
         "J-fixed-itinerary-image-monotone"
       ],
-      "line": 61,
+      "line": 64,
       "module": "Problems.Juggler.Itinerary",
       "name": "follows_nil",
       "trust": "kernel"
@@ -27938,20 +27938,20 @@
         "J-itinerary-semantics",
         "J-fixed-itinerary-image-monotone"
       ],
-      "line": 63,
+      "line": 66,
       "module": "Problems.Juggler.Itinerary",
       "name": "follows_iff_itinerary",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The image depends on a word only through its length: following `w` from `n` lands where `w.length` steps of `J` land. This is what lets the cycle layer move between word statements and orbit statements.",
       "file": "formal/Problems/Juggler/Itinerary.lean",
       "kind": "theorem",
       "ledger": [
         "J-itinerary-semantics",
         "J-fixed-itinerary-image-monotone"
       ],
-      "line": 105,
+      "line": 111,
       "module": "Problems.Juggler.Itinerary",
       "name": "image_eq_iterate",
       "trust": "kernel"
@@ -27964,20 +27964,20 @@
         "J-itinerary-semantics",
         "J-fixed-itinerary-image-monotone"
       ],
-      "line": 112,
+      "line": 118,
       "module": "Problems.Juggler.Itinerary",
       "name": "image_word",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The image is functorial in concatenation: follow `u`, then `v` from there.",
       "file": "formal/Problems/Juggler/Itinerary.lean",
       "kind": "theorem",
       "ledger": [
         "J-itinerary-semantics",
         "J-fixed-itinerary-image-monotone"
       ],
-      "line": 115,
+      "line": 122,
       "module": "Problems.Juggler.Itinerary",
       "name": "image_append",
       "trust": "kernel"
@@ -27990,7 +27990,7 @@
         "J-itinerary-semantics",
         "J-fixed-itinerary-image-monotone"
       ],
-      "line": 119,
+      "line": 126,
       "module": "Problems.Juggler.Itinerary",
       "name": "follows_append",
       "trust": "kernel"
@@ -28003,33 +28003,33 @@
         "J-itinerary-semantics",
         "J-fixed-itinerary-image-monotone"
       ],
-      "line": 127,
+      "line": 134,
       "module": "Problems.Juggler.Itinerary",
       "name": "follows_even_letter",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Following a concatenation includes following the left factor.",
       "file": "formal/Problems/Juggler/Itinerary.lean",
       "kind": "theorem",
       "ledger": [
         "J-itinerary-semantics",
         "J-fixed-itinerary-image-monotone"
       ],
-      "line": 131,
+      "line": 139,
       "module": "Problems.Juggler.Itinerary",
       "name": "follows_of_append_left",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Following a concatenation includes following the right factor from where the left one landed. With `follows_of_append_left`, this is how a proof cuts a word in two.",
       "file": "formal/Problems/Juggler/Itinerary.lean",
       "kind": "theorem",
       "ledger": [
         "J-itinerary-semantics",
         "J-fixed-itinerary-image-monotone"
       ],
-      "line": 137,
+      "line": 148,
       "module": "Problems.Juggler.Itinerary",
       "name": "follows_of_append_right",
       "trust": "kernel"
@@ -28042,33 +28042,33 @@
         "J-itinerary-semantics",
         "J-fixed-itinerary-image-monotone"
       ],
-      "line": 145,
+      "line": 156,
       "module": "Problems.Juggler.Itinerary",
       "name": "image_pos",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "An even *letter* means an even *state*, the companion of `follows_get_odd`.",
       "file": "formal/Problems/Juggler/Itinerary.lean",
       "kind": "theorem",
       "ledger": [
         "J-itinerary-semantics",
         "J-fixed-itinerary-image-monotone"
       ],
-      "line": 149,
+      "line": 162,
       "module": "Problems.Juggler.Itinerary",
       "name": "follows_get_even",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "An odd *letter* means an odd *state*: if a realized word has `.odd` at `i`, the state there is odd. The bridge from the word a theorem counts to the orbit it bounds; `follows_get_even` is the other half.",
       "file": "formal/Problems/Juggler/Itinerary.lean",
       "kind": "theorem",
       "ledger": [
         "J-itinerary-semantics",
         "J-fixed-itinerary-image-monotone"
       ],
-      "line": 183,
+      "line": 199,
       "module": "Problems.Juggler.Itinerary",
       "name": "follows_get_odd",
       "trust": "kernel"
@@ -28081,7 +28081,7 @@
         "J-itinerary-semantics",
         "J-fixed-itinerary-image-monotone"
       ],
-      "line": 217,
+      "line": 233,
       "module": "Problems.Juggler.Itinerary",
       "name": "follows_get",
       "trust": "kernel"
@@ -28094,7 +28094,7 @@
         "J-itinerary-semantics",
         "J-fixed-itinerary-image-monotone"
       ],
-      "line": 223,
+      "line": 239,
       "module": "Problems.Juggler.Itinerary",
       "name": "follows_take",
       "trust": "kernel"
@@ -28107,7 +28107,7 @@
         "J-itinerary-semantics",
         "J-fixed-itinerary-image-monotone"
       ],
-      "line": 232,
+      "line": 248,
       "module": "Problems.Juggler.Itinerary",
       "name": "image_take_of_le",
       "trust": "kernel"
@@ -28120,7 +28120,7 @@
         "J-itinerary-semantics",
         "J-fixed-itinerary-image-monotone"
       ],
-      "line": 239,
+      "line": 255,
       "module": "Problems.Juggler.Itinerary",
       "name": "image_lt_twelve_reachesOne",
       "trust": "kernel"
@@ -28133,7 +28133,7 @@
         "J-itinerary-semantics",
         "J-fixed-itinerary-image-monotone"
       ],
-      "line": 244,
+      "line": 260,
       "module": "Problems.Juggler.Itinerary",
       "name": "image_two_reachesOne",
       "trust": "kernel"
@@ -28146,7 +28146,7 @@
         "J-itinerary-semantics",
         "J-fixed-itinerary-image-monotone"
       ],
-      "line": 248,
+      "line": 264,
       "module": "Problems.Juggler.Itinerary",
       "name": "image_four_reachesOne",
       "trust": "kernel"
@@ -28159,7 +28159,7 @@
         "J-itinerary-semantics",
         "J-fixed-itinerary-image-monotone"
       ],
-      "line": 252,
+      "line": 268,
       "module": "Problems.Juggler.Itinerary",
       "name": "image_six_reachesOne",
       "trust": "kernel"
@@ -28172,7 +28172,7 @@
         "J-itinerary-semantics",
         "J-fixed-itinerary-image-monotone"
       ],
-      "line": 256,
+      "line": 272,
       "module": "Problems.Juggler.Itinerary",
       "name": "image_eight_reachesOne",
       "trust": "kernel"
@@ -28185,7 +28185,7 @@
         "J-itinerary-semantics",
         "J-fixed-itinerary-image-monotone"
       ],
-      "line": 260,
+      "line": 276,
       "module": "Problems.Juggler.Itinerary",
       "name": "reachesOne_of_image",
       "trust": "kernel"
@@ -28198,7 +28198,7 @@
         "J-itinerary-semantics",
         "J-fixed-itinerary-image-monotone"
       ],
-      "line": 265,
+      "line": 281,
       "module": "Problems.Juggler.Itinerary",
       "name": "followsB",
       "trust": "kernel"
@@ -28211,7 +28211,7 @@
         "J-itinerary-semantics",
         "J-fixed-itinerary-image-monotone"
       ],
-      "line": 270,
+      "line": 286,
       "module": "Problems.Juggler.Itinerary",
       "name": "followsB_iff",
       "trust": "kernel"
@@ -28224,7 +28224,7 @@
         "J-itinerary-semantics",
         "J-fixed-itinerary-image-monotone"
       ],
-      "line": 280,
+      "line": 296,
       "module": "Problems.Juggler.Itinerary",
       "name": "image_monotone_of_follows",
       "trust": "kernel"
@@ -28390,13 +28390,13 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "How many `O` letters a word has. The `o` of `3^o` against `2^L` throughout, so most of the cycle arithmetic is stated in terms of it.",
       "file": "formal/Problems/Juggler/ItineraryStats.lean",
       "kind": "def",
       "ledger": [
         "J-exponent-expanding-append"
       ],
-      "line": 12,
+      "line": 14,
       "module": "Problems.Juggler.ItineraryStats",
       "name": "oddCount",
       "trust": "kernel"
@@ -28408,7 +28408,7 @@
       "ledger": [
         "J-exponent-expanding-append"
       ],
-      "line": 25,
+      "line": 27,
       "module": "Problems.Juggler.ItineraryStats",
       "name": "oddCount_replicate_even",
       "trust": "kernel"
@@ -28420,7 +28420,7 @@
       "ledger": [
         "J-exponent-expanding-append"
       ],
-      "line": 31,
+      "line": 33,
       "module": "Problems.Juggler.ItineraryStats",
       "name": "oddCount_replicate_odd",
       "trust": "kernel"
@@ -28432,19 +28432,19 @@
       "ledger": [
         "J-exponent-expanding-append"
       ],
-      "line": 37,
+      "line": 39,
       "module": "Problems.Juggler.ItineraryStats",
       "name": "oddCount_le_length",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Odd letters add across concatenation.",
       "file": "formal/Problems/Juggler/ItineraryStats.lean",
       "kind": "theorem",
       "ledger": [
         "J-exponent-expanding-append"
       ],
-      "line": 45,
+      "line": 48,
       "module": "Problems.Juggler.ItineraryStats",
       "name": "oddCount_append",
       "trust": "kernel"
@@ -28456,7 +28456,7 @@
       "ledger": [
         "J-exponent-expanding-append"
       ],
-      "line": 51,
+      "line": 54,
       "module": "Problems.Juggler.ItineraryStats",
       "name": "eq_replicate_even_of_oddCount_zero",
       "trust": "kernel"
@@ -28468,7 +28468,7 @@
       "ledger": [
         "J-exponent-expanding-append"
       ],
-      "line": 65,
+      "line": 68,
       "module": "Problems.Juggler.ItineraryStats",
       "name": "eq_replicate_odd_of_oddCount_eq_length",
       "trust": "kernel"
@@ -28480,7 +28480,7 @@
       "ledger": [
         "J-exponent-expanding-append"
       ],
-      "line": 84,
+      "line": 87,
       "module": "Problems.Juggler.ItineraryStats",
       "name": "driftG",
       "trust": "kernel"
@@ -28492,7 +28492,7 @@
       "ledger": [
         "J-exponent-expanding-append"
       ],
-      "line": 87,
+      "line": 90,
       "module": "Problems.Juggler.ItineraryStats",
       "name": "exponentGap",
       "trust": "kernel"
@@ -28504,7 +28504,7 @@
       "ledger": [
         "J-exponent-expanding-append"
       ],
-      "line": 91,
+      "line": 94,
       "module": "Problems.Juggler.ItineraryStats",
       "name": "exponentExpanding",
       "trust": "kernel"
@@ -28516,7 +28516,7 @@
       "ledger": [
         "J-exponent-expanding-append"
       ],
-      "line": 94,
+      "line": 97,
       "module": "Problems.Juggler.ItineraryStats",
       "name": "exponentGap_iff_posDrift",
       "trust": "kernel"
@@ -28528,7 +28528,7 @@
       "ledger": [
         "J-exponent-expanding-append"
       ],
-      "line": 105,
+      "line": 108,
       "module": "Problems.Juggler.ItineraryStats",
       "name": "exponentExpanding_not_gap",
       "trust": "kernel"
@@ -28540,7 +28540,7 @@
       "ledger": [
         "J-exponent-expanding-append"
       ],
-      "line": 110,
+      "line": 113,
       "module": "Problems.Juggler.ItineraryStats",
       "name": "prefixNoncontracting",
       "trust": "kernel"
@@ -28552,7 +28552,7 @@
       "ledger": [
         "J-exponent-expanding-append"
       ],
-      "line": 115,
+      "line": 118,
       "module": "Problems.Juggler.ItineraryStats",
       "name": "exponentExpanding_append",
       "trust": "kernel"
@@ -28564,7 +28564,7 @@
       "ledger": [
         "J-exponent-expanding-append"
       ],
-      "line": 130,
+      "line": 133,
       "module": "Problems.Juggler.ItineraryStats",
       "name": "itineraryOE",
       "trust": "kernel"
@@ -28576,7 +28576,7 @@
       "ledger": [
         "J-exponent-expanding-append"
       ],
-      "line": 132,
+      "line": 135,
       "module": "Problems.Juggler.ItineraryStats",
       "name": "repeatedOE",
       "trust": "kernel"
@@ -28588,7 +28588,7 @@
       "ledger": [
         "J-exponent-expanding-append"
       ],
-      "line": 136,
+      "line": 139,
       "module": "Problems.Juggler.ItineraryStats",
       "name": "itineraryOE_length",
       "trust": "kernel"
@@ -28600,7 +28600,7 @@
       "ledger": [
         "J-exponent-expanding-append"
       ],
-      "line": 138,
+      "line": 141,
       "module": "Problems.Juggler.ItineraryStats",
       "name": "oddCount_itineraryOE",
       "trust": "kernel"
@@ -28612,7 +28612,7 @@
       "ledger": [
         "J-exponent-expanding-append"
       ],
-      "line": 140,
+      "line": 143,
       "module": "Problems.Juggler.ItineraryStats",
       "name": "repeatedOE_zero",
       "trust": "kernel"
@@ -28624,7 +28624,7 @@
       "ledger": [
         "J-exponent-expanding-append"
       ],
-      "line": 142,
+      "line": 145,
       "module": "Problems.Juggler.ItineraryStats",
       "name": "repeatedOE_succ",
       "trust": "kernel"
@@ -28636,7 +28636,7 @@
       "ledger": [
         "J-exponent-expanding-append"
       ],
-      "line": 145,
+      "line": 148,
       "module": "Problems.Juggler.ItineraryStats",
       "name": "length_repeatedOE",
       "trust": "kernel"
@@ -28648,7 +28648,7 @@
       "ledger": [
         "J-exponent-expanding-append"
       ],
-      "line": 151,
+      "line": 154,
       "module": "Problems.Juggler.ItineraryStats",
       "name": "oddCount_repeatedOE",
       "trust": "kernel"
@@ -28660,7 +28660,7 @@
       "ledger": [
         "J-exponent-expanding-append"
       ],
-      "line": 157,
+      "line": 160,
       "module": "Problems.Juggler.ItineraryStats",
       "name": "four_pow_eq_two_pow_two_mul",
       "trust": "kernel"
@@ -28672,7 +28672,7 @@
       "ledger": [
         "J-exponent-expanding-append"
       ],
-      "line": 160,
+      "line": 163,
       "module": "Problems.Juggler.ItineraryStats",
       "name": "two_pow_succ_le_three_of_two_le",
       "trust": "kernel"
@@ -28684,31 +28684,31 @@
       "ledger": [
         "J-exponent-expanding-append"
       ],
-      "line": 179,
+      "line": 182,
       "module": "Problems.Juggler.ItineraryStats",
       "name": "two_pow_succ_le_three_pow_iff",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`O^a E^b`: one odd run followed by one even run. The building block the run form assembles words out of.",
       "file": "formal/Problems/Juggler/ItineraryStats.lean",
       "kind": "def",
       "ledger": [
         "J-exponent-expanding-append"
       ],
-      "line": 195,
+      "line": 200,
       "module": "Problems.Juggler.ItineraryStats",
       "name": "oddEvenBlock",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "A block `O^a E^b` has `a + b` letters.",
       "file": "formal/Problems/Juggler/ItineraryStats.lean",
       "kind": "theorem",
       "ledger": [
         "J-exponent-expanding-append"
       ],
-      "line": 198,
+      "line": 204,
       "module": "Problems.Juggler.ItineraryStats",
       "name": "length_oddEvenBlock",
       "trust": "kernel"
@@ -28720,7 +28720,7 @@
       "ledger": [
         "J-exponent-expanding-append"
       ],
-      "line": 202,
+      "line": 208,
       "module": "Problems.Juggler.ItineraryStats",
       "name": "oddCount_oddEvenBlock",
       "trust": "kernel"
@@ -28732,7 +28732,7 @@
       "ledger": [
         "J-exponent-expanding-append"
       ],
-      "line": 207,
+      "line": 213,
       "module": "Problems.Juggler.ItineraryStats",
       "name": "odd_run_even_residual",
       "trust": "kernel"
@@ -28744,7 +28744,7 @@
       "ledger": [
         "J-exponent-expanding-append"
       ],
-      "line": 212,
+      "line": 218,
       "module": "Problems.Juggler.ItineraryStats",
       "name": "exponentExpanding_oddEvenBlock",
       "trust": "kernel"
@@ -28756,7 +28756,7 @@
       "ledger": [
         "J-exponent-expanding-append"
       ],
-      "line": 217,
+      "line": 223,
       "module": "Problems.Juggler.ItineraryStats",
       "name": "expanding_oddEvenBlock_two_le_odds",
       "trust": "kernel"
@@ -41082,25 +41082,25 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "An even state maps to `M` exactly when it lies in `[M\u00b2, (M+1)\u00b2)`. The one-step preimage of `M` through an even letter, as an interval.",
       "file": "formal/Problems/Juggler/Preimages.lean",
       "kind": "theorem",
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 30,
+      "line": 32,
       "module": "Problems.Juggler.Preimages",
       "name": "floorPower_even_eq_iff_sq_interval",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "An odd state maps to `M` exactly when `n\u00b3` lies in `[M\u00b2, (M+1)\u00b2)`. The odd companion of `floorPower_even_eq_iff_sq_interval`.",
       "file": "formal/Problems/Juggler/Preimages.lean",
       "kind": "theorem",
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 35,
+      "line": 39,
       "module": "Problems.Juggler.Preimages",
       "name": "floorPower_odd_eq_iff_cube_interval",
       "trust": "kernel"
@@ -41112,7 +41112,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 40,
+      "line": 44,
       "module": "Problems.Juggler.Preimages",
       "name": "floorPower_odd_eq_pow_two_depth_iff",
       "trust": "kernel"
@@ -41124,7 +41124,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 60,
+      "line": 64,
       "module": "Problems.Juggler.Preimages",
       "name": "succ_cube_sub_cube",
       "trust": "kernel"
@@ -41136,7 +41136,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 64,
+      "line": 68,
       "module": "Problems.Juggler.Preimages",
       "name": "fourth_window_span",
       "trust": "kernel"
@@ -41148,7 +41148,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 68,
+      "line": 72,
       "module": "Problems.Juggler.Preimages",
       "name": "nat_cbrt_eq_iff",
       "trust": "kernel"
@@ -41160,7 +41160,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 78,
+      "line": 82,
       "module": "Problems.Juggler.Preimages",
       "name": "pow_eight_eq_cube",
       "trust": "kernel"
@@ -41172,7 +41172,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 87,
+      "line": 91,
       "module": "Problems.Juggler.Preimages",
       "name": "is_cube_iff_eighth_is_cube",
       "trust": "kernel"
@@ -41184,7 +41184,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 97,
+      "line": 101,
       "module": "Problems.Juggler.Preimages",
       "name": "eight_mul_pow_twelve_le",
       "trust": "kernel"
@@ -41196,7 +41196,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 108,
+      "line": 112,
       "module": "Problems.Juggler.Preimages",
       "name": "three_mul_sq_ge_two_pow_four",
       "trust": "kernel"
@@ -41208,7 +41208,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 120,
+      "line": 124,
       "module": "Problems.Juggler.Preimages",
       "name": "cube_gap_covers_fourth_window",
       "trust": "kernel"
@@ -41220,7 +41220,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 130,
+      "line": 134,
       "module": "Problems.Juggler.Preimages",
       "name": "fourth_window_occupancy",
       "trust": "kernel"
@@ -41232,7 +41232,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 154,
+      "line": 158,
       "module": "Problems.Juggler.Preimages",
       "name": "eighth_pow_mem_fourth_window",
       "trust": "kernel"
@@ -41244,7 +41244,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 164,
+      "line": 168,
       "module": "Problems.Juggler.Preimages",
       "name": "exact_cube_left_endpoint",
       "trust": "kernel"
@@ -41256,7 +41256,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 169,
+      "line": 173,
       "module": "Problems.Juggler.Preimages",
       "name": "fourth_window_cube_eq_succ_cbrt",
       "trust": "kernel"
@@ -41268,7 +41268,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 186,
+      "line": 190,
       "module": "Problems.Juggler.Preimages",
       "name": "noncube_odd_cbrt_fourth_window_cube_even",
       "trust": "kernel"
@@ -41280,7 +41280,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 195,
+      "line": 199,
       "module": "Problems.Juggler.Preimages",
       "name": "odd_cube_interval_of_odd_cbrt_implies_square",
       "trust": "kernel"
@@ -41292,7 +41292,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 213,
+      "line": 217,
       "module": "Problems.Juggler.Preimages",
       "name": "floorPower_odd_eq_fourth_power_of_odd_cbrt_implies_square",
       "trust": "kernel"
@@ -41304,7 +41304,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 223,
+      "line": 227,
       "module": "Problems.Juggler.Preimages",
       "name": "odd_nonsquare_not_fourth_power_of_odd_cbrt",
       "trust": "kernel"
@@ -41316,7 +41316,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 232,
+      "line": 236,
       "module": "Problems.Juggler.Preimages",
       "name": "pow_two_depth_ge_two_is_fourth",
       "trust": "kernel"
@@ -41328,7 +41328,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 241,
+      "line": 245,
       "module": "Problems.Juggler.Preimages",
       "name": "odd_first_defect_not_fourth_power_of_odd_cbrt",
       "trust": "kernel"
@@ -41340,7 +41340,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 256,
+      "line": 260,
       "module": "Problems.Juggler.Preimages",
       "name": "odd_first_defect_not_pow_two_depth_ge_two_of_odd_cbrt",
       "trust": "kernel"
@@ -41352,7 +41352,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 268,
+      "line": 272,
       "module": "Problems.Juggler.Preimages",
       "name": "itineraryEOO",
       "trust": "kernel"
@@ -41364,7 +41364,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 269,
+      "line": 273,
       "module": "Problems.Juggler.Preimages",
       "name": "itineraryOOE",
       "trust": "kernel"
@@ -41376,7 +41376,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 270,
+      "line": 274,
       "module": "Problems.Juggler.Preimages",
       "name": "itineraryOEO",
       "trust": "kernel"
@@ -41388,7 +41388,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 272,
+      "line": 276,
       "module": "Problems.Juggler.Preimages",
       "name": "follows_itineraryEOO_iff",
       "trust": "kernel"
@@ -41400,7 +41400,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 279,
+      "line": 283,
       "module": "Problems.Juggler.Preimages",
       "name": "follows_itineraryOOE_iff",
       "trust": "kernel"
@@ -41412,7 +41412,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 286,
+      "line": 290,
       "module": "Problems.Juggler.Preimages",
       "name": "follows_itineraryOEO_iff",
       "trust": "kernel"
@@ -41424,7 +41424,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 293,
+      "line": 297,
       "module": "Problems.Juggler.Preimages",
       "name": "oddCount_itineraryEOO",
       "trust": "kernel"
@@ -41436,7 +41436,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 294,
+      "line": 298,
       "module": "Problems.Juggler.Preimages",
       "name": "oddCount_itineraryOOE",
       "trust": "kernel"
@@ -41448,7 +41448,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 295,
+      "line": 299,
       "module": "Problems.Juggler.Preimages",
       "name": "oddCount_itineraryOEO",
       "trust": "kernel"
@@ -41460,7 +41460,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 296,
+      "line": 300,
       "module": "Problems.Juggler.Preimages",
       "name": "length_itineraryEOO",
       "trust": "kernel"
@@ -41472,7 +41472,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 297,
+      "line": 301,
       "module": "Problems.Juggler.Preimages",
       "name": "length_itineraryOOE",
       "trust": "kernel"
@@ -41484,7 +41484,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 298,
+      "line": 302,
       "module": "Problems.Juggler.Preimages",
       "name": "length_itineraryOEO",
       "trust": "kernel"
@@ -41496,7 +41496,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 300,
+      "line": 304,
       "module": "Problems.Juggler.Preimages",
       "name": "follows_eoo_two",
       "trust": "kernel"
@@ -41508,7 +41508,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 303,
+      "line": 307,
       "module": "Problems.Juggler.Preimages",
       "name": "follows_eoo_twelve",
       "trust": "kernel"
@@ -41520,7 +41520,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 306,
+      "line": 310,
       "module": "Problems.Juggler.Preimages",
       "name": "follows_eoo_fourteen",
       "trust": "kernel"
@@ -41532,7 +41532,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 309,
+      "line": 313,
       "module": "Problems.Juggler.Preimages",
       "name": "floorPower_eoo_two_contracts",
       "trust": "kernel"
@@ -41544,7 +41544,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 312,
+      "line": 316,
       "module": "Problems.Juggler.Preimages",
       "name": "floorPower_eoo_twelve_contracts",
       "trust": "kernel"
@@ -41556,7 +41556,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 315,
+      "line": 319,
       "module": "Problems.Juggler.Preimages",
       "name": "floorPower_eoo_fourteen_contracts",
       "trust": "kernel"
@@ -41568,7 +41568,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 318,
+      "line": 322,
       "module": "Problems.Juggler.Preimages",
       "name": "floorPower_eoo_two_eq",
       "trust": "kernel"
@@ -41580,7 +41580,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 321,
+      "line": 325,
       "module": "Problems.Juggler.Preimages",
       "name": "floorPower_eoo_twelve_eq",
       "trust": "kernel"
@@ -41592,7 +41592,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 324,
+      "line": 328,
       "module": "Problems.Juggler.Preimages",
       "name": "floorPower_eoo_fourteen_eq",
       "trust": "kernel"
@@ -41604,7 +41604,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 327,
+      "line": 331,
       "module": "Problems.Juggler.Preimages",
       "name": "n_lt_formal_gap_three_two",
       "trust": "kernel"
@@ -41616,7 +41616,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 347,
+      "line": 351,
       "module": "Problems.Juggler.Preimages",
       "name": "localDefectEven_lt_formal_gap_three_two",
       "trust": "kernel"
@@ -41628,7 +41628,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 351,
+      "line": 355,
       "module": "Problems.Juggler.Preimages",
       "name": "eoo_first_defect_lt_formal_gap",
       "trust": "kernel"
@@ -41640,7 +41640,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 357,
+      "line": 361,
       "module": "Problems.Juggler.Preimages",
       "name": "floorPower_eoo_two_deficit_gt_gap",
       "trust": "kernel"
@@ -41652,7 +41652,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 362,
+      "line": 366,
       "module": "Problems.Juggler.Preimages",
       "name": "floorPower_eoo_of_follows",
       "trust": "kernel"
@@ -41664,7 +41664,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 376,
+      "line": 380,
       "module": "Problems.Juggler.Preimages",
       "name": "eoo_sqrt_odd",
       "trust": "kernel"
@@ -41676,7 +41676,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 381,
+      "line": 385,
       "module": "Problems.Juggler.Preimages",
       "name": "eoo_n_ge_two",
       "trust": "kernel"
@@ -41688,7 +41688,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 389,
+      "line": 393,
       "module": "Problems.Juggler.Preimages",
       "name": "eoo_sqrt_cube_pow_of_small",
       "trust": "kernel"
@@ -41700,7 +41700,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 393,
+      "line": 397,
       "module": "Problems.Juggler.Preimages",
       "name": "succ_pow_eight_le_five_mul",
       "trust": "kernel"
@@ -41712,7 +41712,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 410,
+      "line": 414,
       "module": "Problems.Juggler.Preimages",
       "name": "succ_pow_eight_le_pow_nine",
       "trust": "kernel"
@@ -41724,7 +41724,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 420,
+      "line": 424,
       "module": "Problems.Juggler.Preimages",
       "name": "eoo_qs_le_cbrt",
       "trust": "kernel"
@@ -41736,7 +41736,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 432,
+      "line": 436,
       "module": "Problems.Juggler.Preimages",
       "name": "eoo_qs_cube_ge_of_ge_twenty_five",
       "trust": "kernel"
@@ -41748,7 +41748,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 461,
+      "line": 465,
       "module": "Problems.Juggler.Preimages",
       "name": "eoo_sqrt_cube_pow_ge",
       "trust": "kernel"
@@ -41760,7 +41760,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 471,
+      "line": 475,
       "module": "Problems.Juggler.Preimages",
       "name": "eoo_image_ge_succ_sq",
       "trust": "kernel"
@@ -41772,7 +41772,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 483,
+      "line": 487,
       "module": "Problems.Juggler.Preimages",
       "name": "eoo_expands_of_sqrt_ge_five",
       "trust": "kernel"
@@ -41784,7 +41784,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 492,
+      "line": 496,
       "module": "Problems.Juggler.Preimages",
       "name": "eoo_sqrt_cases",
       "trust": "kernel"
@@ -41796,7 +41796,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 506,
+      "line": 510,
       "module": "Problems.Juggler.Preimages",
       "name": "eoo_eq_two_of_sqrt_one",
       "trust": "kernel"
@@ -41808,7 +41808,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 517,
+      "line": 521,
       "module": "Problems.Juggler.Preimages",
       "name": "eoo_of_sqrt_three",
       "trust": "kernel"
@@ -41820,7 +41820,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 526,
+      "line": 530,
       "module": "Problems.Juggler.Preimages",
       "name": "floorPower_eoo_image_of_sqrt_three",
       "trust": "kernel"
@@ -41832,7 +41832,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 533,
+      "line": 537,
       "module": "Problems.Juggler.Preimages",
       "name": "floorPower_eoo_contracts_iff",
       "trust": "kernel"
@@ -41844,7 +41844,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 561,
+      "line": 565,
       "module": "Problems.Juggler.Preimages",
       "name": "sqrt_preimage_iff",
       "trust": "kernel"
@@ -41856,7 +41856,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 565,
+      "line": 569,
       "module": "Problems.Juggler.Preimages",
       "name": "eooPreimageOutput",
       "trust": "kernel"
@@ -41868,7 +41868,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 567,
+      "line": 571,
       "module": "Problems.Juggler.Preimages",
       "name": "follows_eoo_sqrt_iff",
       "trust": "kernel"
@@ -41880,7 +41880,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 586,
+      "line": 590,
       "module": "Problems.Juggler.Preimages",
       "name": "eoo_output_eq_preimage",
       "trust": "kernel"
@@ -41892,7 +41892,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 590,
+      "line": 594,
       "module": "Problems.Juggler.Preimages",
       "name": "eoo_output_constant_on_sqrt_preimage",
       "trust": "kernel"
@@ -41904,7 +41904,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 598,
+      "line": 602,
       "module": "Problems.Juggler.Preimages",
       "name": "eoo_contracts_on_preimage",
       "trust": "kernel"
@@ -41916,7 +41916,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 602,
+      "line": 606,
       "module": "Problems.Juggler.Preimages",
       "name": "eoo_preimage_output_one",
       "trust": "kernel"
@@ -41928,7 +41928,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 605,
+      "line": 609,
       "module": "Problems.Juggler.Preimages",
       "name": "eoo_preimage_output_three",
       "trust": "kernel"
@@ -41940,7 +41940,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 608,
+      "line": 612,
       "module": "Problems.Juggler.Preimages",
       "name": "eoo_preimage_output_ge_succ_sq",
       "trust": "kernel"
@@ -41952,7 +41952,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 615,
+      "line": 619,
       "module": "Problems.Juggler.Preimages",
       "name": "eoo_residue",
       "trust": "kernel"
@@ -41964,7 +41964,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 629,
+      "line": 633,
       "module": "Problems.Juggler.Preimages",
       "name": "even_preimage_iff",
       "trust": "kernel"
@@ -41976,7 +41976,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 633,
+      "line": 637,
       "module": "Problems.Juggler.Preimages",
       "name": "odd_preimage_iff",
       "trust": "kernel"
@@ -41988,7 +41988,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 637,
+      "line": 641,
       "module": "Problems.Juggler.Preimages",
       "name": "preimage_same_next_state",
       "trust": "kernel"
@@ -42000,7 +42000,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 642,
+      "line": 646,
       "module": "Problems.Juggler.Preimages",
       "name": "iterate_cons_even",
       "trust": "kernel"
@@ -42012,7 +42012,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 646,
+      "line": 650,
       "module": "Problems.Juggler.Preimages",
       "name": "iterate_cons_odd",
       "trust": "kernel"
@@ -42024,7 +42024,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 651,
+      "line": 655,
       "module": "Problems.Juggler.Preimages",
       "name": "first_even_freeze",
       "trust": "kernel"
@@ -42036,7 +42036,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 656,
+      "line": 660,
       "module": "Problems.Juggler.Preimages",
       "name": "first_odd_freeze",
       "trust": "kernel"
@@ -42048,7 +42048,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 661,
+      "line": 665,
       "module": "Problems.Juggler.Preimages",
       "name": "suffix_same_output_on_preimage",
       "trust": "kernel"
@@ -42060,7 +42060,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 668,
+      "line": 672,
       "module": "Problems.Juggler.Preimages",
       "name": "first_even_contracts_iff",
       "trust": "kernel"
@@ -42072,7 +42072,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 674,
+      "line": 678,
       "module": "Problems.Juggler.Preimages",
       "name": "eoo_from_first_even",
       "trust": "kernel"
@@ -42084,7 +42084,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 678,
+      "line": 682,
       "module": "Problems.Juggler.Preimages",
       "name": "constant_cell_trichotomy",
       "trust": "kernel"
@@ -42096,7 +42096,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 682,
+      "line": 686,
       "module": "Problems.Juggler.Preimages",
       "name": "constant_cell_all_contract",
       "trust": "kernel"
@@ -42108,7 +42108,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 686,
+      "line": 690,
       "module": "Problems.Juggler.Preimages",
       "name": "constant_cell_all_expand",
       "trust": "kernel"
@@ -42120,7 +42120,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 690,
+      "line": 694,
       "module": "Problems.Juggler.Preimages",
       "name": "cube_succ_diff",
       "trust": "kernel"
@@ -42132,7 +42132,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 695,
+      "line": 699,
       "module": "Problems.Juggler.Preimages",
       "name": "sq_succ_diff",
       "trust": "kernel"
@@ -42144,7 +42144,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 701,
+      "line": 705,
       "module": "Problems.Juggler.Preimages",
       "name": "odd_preimage_unique",
       "trust": "kernel"
@@ -42156,7 +42156,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 753,
+      "line": 757,
       "module": "Problems.Juggler.Preimages",
       "name": "sq_lt_succ_sq",
       "trust": "kernel"
@@ -42168,7 +42168,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 757,
+      "line": 761,
       "module": "Problems.Juggler.Preimages",
       "name": "cell_any_contracts_iff",
       "trust": "kernel"
@@ -42180,7 +42180,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 767,
+      "line": 771,
       "module": "Problems.Juggler.Preimages",
       "name": "cell_all_contracts_iff",
       "trust": "kernel"
@@ -42192,7 +42192,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 778,
+      "line": 782,
       "module": "Problems.Juggler.Preimages",
       "name": "first_even_any_contracts_iff",
       "trust": "kernel"
@@ -42204,7 +42204,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 786,
+      "line": 790,
       "module": "Problems.Juggler.Preimages",
       "name": "first_even_all_contracts_iff",
       "trust": "kernel"
@@ -42216,7 +42216,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 792,
+      "line": 796,
       "module": "Problems.Juggler.Preimages",
       "name": "floorPower_odd_ge",
       "trust": "kernel"
@@ -42228,7 +42228,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 803,
+      "line": 807,
       "module": "Problems.Juggler.Preimages",
       "name": "eooPreimageOutput_eq_iterate",
       "trust": "kernel"
@@ -42240,7 +42240,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 815,
+      "line": 819,
       "module": "Problems.Juggler.Preimages",
       "name": "oo_suffix_threshold",
       "trust": "kernel"
@@ -42252,7 +42252,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 820,
+      "line": 824,
       "module": "Problems.Juggler.Preimages",
       "name": "follows_oo_of_ooo",
       "trust": "kernel"
@@ -42264,7 +42264,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 825,
+      "line": 829,
       "module": "Problems.Juggler.Preimages",
       "name": "ooo_three",
       "trust": "kernel"
@@ -42276,7 +42276,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 830,
+      "line": 834,
       "module": "Problems.Juggler.Preimages",
       "name": "ooo_suffix_threshold",
       "trust": "kernel"
@@ -42288,7 +42288,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 853,
+      "line": 857,
       "module": "Problems.Juggler.Preimages",
       "name": "odd_ge_succ_sq_floorPower_ge_cube",
       "trust": "kernel"
@@ -42300,7 +42300,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 867,
+      "line": 871,
       "module": "Problems.Juggler.Preimages",
       "name": "ooo_residual_ge_cube",
       "trust": "kernel"
@@ -42312,7 +42312,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 890,
+      "line": 894,
       "module": "Problems.Juggler.Preimages",
       "name": "LowerPowerBound",
       "trust": "kernel"
@@ -42324,7 +42324,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 893,
+      "line": 897,
       "module": "Problems.Juggler.Preimages",
       "name": "lowerDenomFrom",
       "trust": "kernel"
@@ -42336,7 +42336,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 898,
+      "line": 902,
       "module": "Problems.Juggler.Preimages",
       "name": "lowerDenom",
       "trust": "kernel"
@@ -42348,7 +42348,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 900,
+      "line": 904,
       "module": "Problems.Juggler.Preimages",
       "name": "three_pow_odd",
       "trust": "kernel"
@@ -42360,7 +42360,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 906,
+      "line": 910,
       "module": "Problems.Juggler.Preimages",
       "name": "two_pow_even_of_pos",
       "trust": "kernel"
@@ -42372,7 +42372,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 912,
+      "line": 916,
       "module": "Problems.Juggler.Preimages",
       "name": "alpha_ne_two",
       "trust": "kernel"
@@ -42384,7 +42384,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 921,
+      "line": 925,
       "module": "Problems.Juggler.Preimages",
       "name": "four_mul_sqrt_sq_gt",
       "trust": "kernel"
@@ -42396,7 +42396,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 933,
+      "line": 937,
       "module": "Problems.Juggler.Preimages",
       "name": "four_mul_floorPower_even_sq",
       "trust": "kernel"
@@ -42408,7 +42408,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 938,
+      "line": 942,
       "module": "Problems.Juggler.Preimages",
       "name": "four_mul_floorPower_odd_sq",
       "trust": "kernel"
@@ -42420,7 +42420,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 945,
+      "line": 949,
       "module": "Problems.Juggler.Preimages",
       "name": "lower_power_empty",
       "trust": "kernel"
@@ -42432,7 +42432,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 948,
+      "line": 952,
       "module": "Problems.Juggler.Preimages",
       "name": "lower_power_append_even",
       "trust": "kernel"
@@ -42444,7 +42444,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 970,
+      "line": 974,
       "module": "Problems.Juggler.Preimages",
       "name": "lower_power_append_odd",
       "trust": "kernel"
@@ -42456,7 +42456,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 1004,
+      "line": 1008,
       "module": "Problems.Juggler.Preimages",
       "name": "lower_power_from",
       "trust": "kernel"
@@ -42468,7 +42468,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 1034,
+      "line": 1038,
       "module": "Problems.Juggler.Preimages",
       "name": "lower_growth_word",
       "trust": "kernel"
@@ -42480,7 +42480,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 1039,
+      "line": 1043,
       "module": "Problems.Juggler.Preimages",
       "name": "succ_sq_le_four_sq",
       "trust": "kernel"
@@ -42492,7 +42492,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 1053,
+      "line": 1057,
       "module": "Problems.Juggler.Preimages",
       "name": "superquadratic_gap",
       "trust": "kernel"
@@ -42504,7 +42504,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 1058,
+      "line": 1062,
       "module": "Problems.Juggler.Preimages",
       "name": "lowerDenomFrom_pos",
       "trust": "kernel"
@@ -42516,7 +42516,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 1079,
+      "line": 1083,
       "module": "Problems.Juggler.Preimages",
       "name": "lowerDenom_pos",
       "trust": "kernel"
@@ -42528,7 +42528,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 1082,
+      "line": 1086,
       "module": "Problems.Juggler.Preimages",
       "name": "pow_le_pow_left_cancel",
       "trust": "kernel"
@@ -42540,7 +42540,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 1091,
+      "line": 1095,
       "module": "Problems.Juggler.Preimages",
       "name": "eventually_no_first_even_contraction",
       "trust": "kernel"
@@ -42552,7 +42552,7 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
-      "line": 1147,
+      "line": 1151,
       "module": "Problems.Juggler.Preimages",
       "name": "oo_lower_growth_eventual",
       "trust": "kernel"
@@ -45866,13 +45866,13 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Some iterate of `n` is `1`. The paper proves this for no infinite family; it is the hypothesis a verified descent floor supplies below a bound.",
       "file": "formal/Problems/Juggler/Termination.lean",
       "kind": "def",
       "ledger": [
         "J-residual-floor-fifty-three"
       ],
-      "line": 14,
+      "line": 16,
       "module": "Problems.Juggler.Termination",
       "name": "ReachesOne",
       "trust": "kernel"
@@ -45884,7 +45884,7 @@
       "ledger": [
         "J-residual-floor-fifty-three"
       ],
-      "line": 17,
+      "line": 19,
       "module": "Problems.Juggler.Termination",
       "name": "reachesOne_one",
       "trust": "kernel"
@@ -45896,7 +45896,7 @@
       "ledger": [
         "J-residual-floor-fifty-three"
       ],
-      "line": 20,
+      "line": 22,
       "module": "Problems.Juggler.Termination",
       "name": "reachesOne_of_iterate",
       "trust": "kernel"
@@ -45908,7 +45908,7 @@
       "ledger": [
         "J-residual-floor-fifty-three"
       ],
-      "line": 27,
+      "line": 29,
       "module": "Problems.Juggler.Termination",
       "name": "floorPower_thirteen_reaches_one",
       "trust": "kernel"
@@ -45920,7 +45920,7 @@
       "ledger": [
         "J-residual-floor-fifty-three"
       ],
-      "line": 31,
+      "line": 33,
       "module": "Problems.Juggler.Termination",
       "name": "two_reachesOne",
       "trust": "kernel"
@@ -45932,7 +45932,7 @@
       "ledger": [
         "J-residual-floor-fifty-three"
       ],
-      "line": 36,
+      "line": 38,
       "module": "Problems.Juggler.Termination",
       "name": "four_reachesOne",
       "trust": "kernel"
@@ -45944,7 +45944,7 @@
       "ledger": [
         "J-residual-floor-fifty-three"
       ],
-      "line": 41,
+      "line": 43,
       "module": "Problems.Juggler.Termination",
       "name": "six_reachesOne",
       "trust": "kernel"
@@ -45956,7 +45956,7 @@
       "ledger": [
         "J-residual-floor-fifty-three"
       ],
-      "line": 46,
+      "line": 48,
       "module": "Problems.Juggler.Termination",
       "name": "eight_reachesOne",
       "trust": "kernel"
@@ -45968,7 +45968,7 @@
       "ledger": [
         "J-residual-floor-fifty-three"
       ],
-      "line": 51,
+      "line": 53,
       "module": "Problems.Juggler.Termination",
       "name": "three_reachesOne",
       "trust": "kernel"
@@ -45980,7 +45980,7 @@
       "ledger": [
         "J-residual-floor-fifty-three"
       ],
-      "line": 54,
+      "line": 56,
       "module": "Problems.Juggler.Termination",
       "name": "five_reachesOne",
       "trust": "kernel"
@@ -45992,7 +45992,7 @@
       "ledger": [
         "J-residual-floor-fifty-three"
       ],
-      "line": 57,
+      "line": 59,
       "module": "Problems.Juggler.Termination",
       "name": "seven_reachesOne",
       "trust": "kernel"
@@ -46004,7 +46004,7 @@
       "ledger": [
         "J-residual-floor-fifty-three"
       ],
-      "line": 60,
+      "line": 62,
       "module": "Problems.Juggler.Termination",
       "name": "nine_reachesOne",
       "trust": "kernel"
@@ -46016,7 +46016,7 @@
       "ledger": [
         "J-residual-floor-fifty-three"
       ],
-      "line": 63,
+      "line": 65,
       "module": "Problems.Juggler.Termination",
       "name": "ten_reachesOne",
       "trust": "kernel"
@@ -46028,7 +46028,7 @@
       "ledger": [
         "J-residual-floor-fifty-three"
       ],
-      "line": 68,
+      "line": 70,
       "module": "Problems.Juggler.Termination",
       "name": "eleven_reachesOne",
       "trust": "kernel"
@@ -46040,7 +46040,7 @@
       "ledger": [
         "J-residual-floor-fifty-three"
       ],
-      "line": 73,
+      "line": 75,
       "module": "Problems.Juggler.Termination",
       "name": "reachesOne_of_lt_twelve",
       "trust": "kernel"
@@ -46052,7 +46052,7 @@
       "ledger": [
         "J-residual-floor-fifty-three"
       ],
-      "line": 91,
+      "line": 93,
       "module": "Problems.Juggler.Termination",
       "name": "non_reachesOne_ge_twelve",
       "trust": "kernel"
@@ -46064,7 +46064,7 @@
       "ledger": [
         "J-residual-floor-fifty-three"
       ],
-      "line": 98,
+      "line": 100,
       "module": "Problems.Juggler.Termination",
       "name": "even_lt_sq_twelve_reachesOne",
       "trust": "kernel"
@@ -46076,7 +46076,7 @@
       "ledger": [
         "J-residual-floor-fifty-three"
       ],
-      "line": 109,
+      "line": 111,
       "module": "Problems.Juggler.Termination",
       "name": "thirteen_reachesOne",
       "trust": "kernel"
@@ -46088,7 +46088,7 @@
       "ledger": [
         "J-residual-floor-fifty-three"
       ],
-      "line": 112,
+      "line": 114,
       "module": "Problems.Juggler.Termination",
       "name": "fifteen_reachesOne",
       "trust": "kernel"
@@ -46100,7 +46100,7 @@
       "ledger": [
         "J-residual-floor-fifty-three"
       ],
-      "line": 115,
+      "line": 117,
       "module": "Problems.Juggler.Termination",
       "name": "seventeen_reachesOne",
       "trust": "kernel"
@@ -46112,7 +46112,7 @@
       "ledger": [
         "J-residual-floor-fifty-three"
       ],
-      "line": 118,
+      "line": 120,
       "module": "Problems.Juggler.Termination",
       "name": "nineteen_reachesOne",
       "trust": "kernel"
@@ -46124,7 +46124,7 @@
       "ledger": [
         "J-residual-floor-fifty-three"
       ],
-      "line": 121,
+      "line": 123,
       "module": "Problems.Juggler.Termination",
       "name": "twentyone_reachesOne",
       "trust": "kernel"
@@ -46136,7 +46136,7 @@
       "ledger": [
         "J-residual-floor-fifty-three"
       ],
-      "line": 124,
+      "line": 126,
       "module": "Problems.Juggler.Termination",
       "name": "twentythree_reachesOne",
       "trust": "kernel"
@@ -46148,7 +46148,7 @@
       "ledger": [
         "J-residual-floor-fifty-three"
       ],
-      "line": 127,
+      "line": 129,
       "module": "Problems.Juggler.Termination",
       "name": "twentyfive_reachesOne",
       "trust": "kernel"
@@ -46160,7 +46160,7 @@
       "ledger": [
         "J-residual-floor-fifty-three"
       ],
-      "line": 130,
+      "line": 132,
       "module": "Problems.Juggler.Termination",
       "name": "twentyseven_reachesOne",
       "trust": "kernel"
@@ -46172,7 +46172,7 @@
       "ledger": [
         "J-residual-floor-fifty-three"
       ],
-      "line": 133,
+      "line": 135,
       "module": "Problems.Juggler.Termination",
       "name": "twentynine_reachesOne",
       "trust": "kernel"
@@ -46184,7 +46184,7 @@
       "ledger": [
         "J-residual-floor-fifty-three"
       ],
-      "line": 136,
+      "line": 138,
       "module": "Problems.Juggler.Termination",
       "name": "thirtyone_reachesOne",
       "trust": "kernel"
@@ -46196,7 +46196,7 @@
       "ledger": [
         "J-residual-floor-fifty-three"
       ],
-      "line": 139,
+      "line": 141,
       "module": "Problems.Juggler.Termination",
       "name": "thirtythree_reachesOne",
       "trust": "kernel"
@@ -46208,7 +46208,7 @@
       "ledger": [
         "J-residual-floor-fifty-three"
       ],
-      "line": 142,
+      "line": 144,
       "module": "Problems.Juggler.Termination",
       "name": "thirtyfive_reachesOne",
       "trust": "kernel"
@@ -46220,7 +46220,7 @@
       "ledger": [
         "J-residual-floor-fifty-three"
       ],
-      "line": 145,
+      "line": 147,
       "module": "Problems.Juggler.Termination",
       "name": "thirtyseven_reachesOne",
       "trust": "kernel"
@@ -46232,7 +46232,7 @@
       "ledger": [
         "J-residual-floor-fifty-three"
       ],
-      "line": 148,
+      "line": 150,
       "module": "Problems.Juggler.Termination",
       "name": "thirtynine_reachesOne",
       "trust": "kernel"
@@ -46244,7 +46244,7 @@
       "ledger": [
         "J-residual-floor-fifty-three"
       ],
-      "line": 151,
+      "line": 153,
       "module": "Problems.Juggler.Termination",
       "name": "fortyone_reachesOne",
       "trust": "kernel"
@@ -46256,7 +46256,7 @@
       "ledger": [
         "J-residual-floor-fifty-three"
       ],
-      "line": 154,
+      "line": 156,
       "module": "Problems.Juggler.Termination",
       "name": "fortythree_reachesOne",
       "trust": "kernel"
@@ -46268,7 +46268,7 @@
       "ledger": [
         "J-residual-floor-fifty-three"
       ],
-      "line": 157,
+      "line": 159,
       "module": "Problems.Juggler.Termination",
       "name": "fortyfive_reachesOne",
       "trust": "kernel"
@@ -46280,7 +46280,7 @@
       "ledger": [
         "J-residual-floor-fifty-three"
       ],
-      "line": 160,
+      "line": 162,
       "module": "Problems.Juggler.Termination",
       "name": "fortyseven_reachesOne",
       "trust": "kernel"
@@ -46292,7 +46292,7 @@
       "ledger": [
         "J-residual-floor-fifty-three"
       ],
-      "line": 163,
+      "line": 165,
       "module": "Problems.Juggler.Termination",
       "name": "fortynine_reachesOne",
       "trust": "kernel"
@@ -46304,7 +46304,7 @@
       "ledger": [
         "J-residual-floor-fifty-three"
       ],
-      "line": 166,
+      "line": 168,
       "module": "Problems.Juggler.Termination",
       "name": "fiftyone_reachesOne",
       "trust": "kernel"
@@ -46316,7 +46316,7 @@
       "ledger": [
         "J-residual-floor-fifty-three"
       ],
-      "line": 172,
+      "line": 174,
       "module": "Problems.Juggler.Termination",
       "name": "reachesOne_of_lt_fifty_three",
       "trust": "kernel"
@@ -46328,7 +46328,7 @@
       "ledger": [
         "J-residual-floor-fifty-three"
       ],
-      "line": 209,
+      "line": 211,
       "module": "Problems.Juggler.Termination",
       "name": "non_reachesOne_ge_fifty_three",
       "trust": "kernel"
@@ -46340,7 +46340,7 @@
       "ledger": [
         "J-residual-floor-fifty-three"
       ],
-      "line": 216,
+      "line": 218,
       "module": "Problems.Juggler.Termination",
       "name": "even_lt_sq_fifty_three_reachesOne",
       "trust": "kernel"

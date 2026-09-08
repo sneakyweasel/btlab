@@ -39,6 +39,11 @@ This is not a halt theorem and not a claim that every cycle itinerary
 is impossible.
 -/
 
+/-- `n` follows `w` and returns to `n`, with `w` nonempty.
+
+Note what this does **not** ask: that `w.length` be the period. `w ++ w` is
+again a `CycleItinerary`, so a statement that charges the minimum once needs
+primitivity as a hypothesis -- see `CyclePrimitive`. -/
 def CycleItinerary (n : ℕ) (w : List Branch) : Prop :=
   follows n w ∧ image n w = n ∧ 1 ≤ w.length
 
@@ -186,6 +191,7 @@ theorem cycle_iterate_one_tail {n k : ℕ} (h : floorPower^[k] n = 1) :
       rw [Nat.add_succ, Function.iterate_succ_apply']
       simpa [cycle_iterate_one_tail h j] using floorPower_one
 
+/-- Every state of a cycle on a start at least `2` is itself at least `2`. -/
 theorem cycleItinerary_iterate_ge_two {n : ℕ} {w : List Branch} {i : ℕ}
     (hn : 2 ≤ n) (h : CycleItinerary n w) (hi : i < w.length) :
     2 ≤ floorPower^[i] n := by
@@ -671,6 +677,8 @@ theorem cycleMin_not_odd_even {n : ℕ} {v : List Branch}
     (hn : 2 ≤ n) (h : CycleMin n (.odd :: .even :: v)) : False :=
   aboveAnchor_not_odd_even hn (aboveAnchor_of_cycleMin h)
 
+/-- Rotate a word `k` places, moving the front letter to the back each time.
+A cycle's spellings are the rotations of any one of them. -/
 def rotateItinerary : List Branch → ℕ → List Branch
   | w, 0 => w
   | [], _k + 1 => []
@@ -718,6 +726,8 @@ theorem cycleItinerary_rotateItinerary {n : ℕ} {w : List Branch}
             Function.iterate_succ_apply floorPower k n
           simpa [rotateItinerary, this] using ih
 
+/-- Every cycle has a `CycleMin` spelling: some rotation starts at a smallest
+state. This is what licenses proving cycle theorems at the minimum. -/
 theorem exists_cycleMin {n : ℕ} {w : List Branch}
     (hn : 2 ≤ n) (h : CycleItinerary n w) :
     ∃ k < w.length, CycleMin (floorPower^[k] n) (rotateItinerary w k) := by

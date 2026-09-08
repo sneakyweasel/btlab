@@ -22,6 +22,9 @@ inductive Branch where
 def bit (n : ℕ) : Branch :=
   if n % 2 = 0 then .even else .odd
 
+/-- The first `k` letters of `n`'s trajectory: `bit n` then the itinerary of
+`J n`. The *word* a start actually follows, as opposed to a word one
+hypothesises about. -/
 def itinerary : ℕ → ℕ → List Branch
   | _, 0 => []
   | n, k + 1 => bit n :: itinerary (floorPower n) k
@@ -102,6 +105,9 @@ theorem follows_iff_itinerary (n : ℕ) : ∀ w : List Branch,
           simpa [itinerary_succ, bit_odd hodd, List.length_cons] using hw
         exact ⟨hodd, ih.mpr htail⟩
 
+/-- The image depends on a word only through its length: following `w` from `n`
+lands where `w.length` steps of `J` land. This is what lets the cycle layer
+move between word statements and orbit statements. -/
 theorem image_eq_iterate (n : ℕ) : ∀ w, image n w = floorPower^[w.length] n := by
   intro w
   induction w generalizing n with
@@ -112,6 +118,7 @@ theorem image_eq_iterate (n : ℕ) : ∀ w, image n w = floorPower^[w.length] n 
 theorem image_word (n k : ℕ) : image n (itinerary n k) = floorPower^[k] n := by
   rw [image_eq_iterate, itinerary_length]
 
+/-- The image is functorial in concatenation: follow `u`, then `v` from there. -/
 theorem image_append (n : ℕ) : ∀ u v, image n (u ++ v) = image (image n u) v
   | [], _ => rfl
   | _ :: u, v => by simp [image_append (floorPower n) u v]
@@ -128,12 +135,16 @@ theorem follows_even_letter {m : ℕ} (he : m % 2 = 0) :
     follows m [Branch.even] :=
   ⟨he, trivial⟩
 
+/-- Following a concatenation includes following the left factor. -/
 theorem follows_of_append_left {n : ℕ} :
     ∀ {u v : List Branch}, follows n (u ++ v) → follows n u
   | [], _, _ => trivial
   | .even :: u, _v, h => ⟨h.1, follows_of_append_left (u := u) h.2⟩
   | .odd :: u, _v, h => ⟨h.1, follows_of_append_left (u := u) h.2⟩
 
+/-- Following a concatenation includes following the right factor from where
+the left one landed. With `follows_of_append_left`, this is how a proof cuts a
+word in two. -/
 theorem follows_of_append_right {n : ℕ} :
     ∀ {u v : List Branch}, follows n (u ++ v) → follows (image n u) v
   | [], _, h => by simpa [image] using h
@@ -146,6 +157,8 @@ theorem image_pos {n : ℕ} (hn : 1 ≤ n) : ∀ w, 1 ≤ image n w
   | [] => hn
   | _ :: w => image_pos (floorPower_pos hn) w
 
+/-- An even *letter* means an even *state*, the companion of
+`follows_get_odd`. -/
 theorem follows_get_even {n : ℕ} :
     ∀ w, follows n w →
       ∀ i, (hi : i < w.length) → w[i] = .even → (floorPower^[i] n) % 2 = 0 := by
@@ -180,6 +193,9 @@ theorem follows_get_even {n : ℕ} :
               have hrest : follows (floorPower n) rest := hw.2
               simpa [hget, hiter] using ih hrest j hj (hget ▸ he)
 
+/-- An odd *letter* means an odd *state*: if a realized word has `.odd` at `i`,
+the state there is odd. The bridge from the word a theorem counts to the orbit
+it bounds; `follows_get_even` is the other half. -/
 theorem follows_get_odd {n : ℕ} :
     ∀ w, follows n w →
       ∀ i, (hi : i < w.length) → w[i] = .odd → (floorPower^[i] n) % 2 = 1 := by

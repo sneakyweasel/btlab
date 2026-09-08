@@ -9,6 +9,8 @@ Length, odd count, and the combinatorial drift of a finite itinerary.
 This file does not know how an itinerary was obtained.
 -/
 
+/-- How many `O` letters a word has. The `o` of `3^o` against `2^L` throughout,
+so most of the cycle arithmetic is stated in terms of it. -/
 def oddCount : List Branch → ℕ
   | [] => 0
   | .odd :: w => oddCount w + 1
@@ -42,6 +44,7 @@ theorem oddCount_le_length : ∀ w : List Branch, oddCount w ≤ w.length
   | .odd :: w => by
       exact Nat.succ_le_succ (oddCount_le_length w)
 
+/-- Odd letters add across concatenation. -/
 theorem oddCount_append : ∀ u v, oddCount (u ++ v) = oddCount u + oddCount v
   | [], _ => by simp
   | .even :: u, v => by simp [oddCount_append u v]
@@ -192,9 +195,12 @@ theorem two_pow_succ_le_three_pow_iff {a : ℕ} :
         | succ _ => omega
   · exact two_pow_succ_le_three_of_two_le
 
+/-- `O^a E^b`: one odd run followed by one even run. The building block the run
+form assembles words out of. -/
 def oddEvenBlock (a b : ℕ) : List Branch :=
   List.replicate a Branch.odd ++ List.replicate b Branch.even
 
+/-- A block `O^a E^b` has `a + b` letters. -/
 theorem length_oddEvenBlock (a b : ℕ) :
     (oddEvenBlock a b).length = a + b := by
   simp [oddEvenBlock, List.length_append, List.length_replicate]

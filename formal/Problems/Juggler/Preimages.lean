@@ -27,11 +27,15 @@ theorem floor_sqrt_eq_iff_sq_interval {n M : ℕ} :
     · exact Nat.le_sqrt.mpr (by simpa [pow_two] using hle)
     · exact Nat.sqrt_lt.mpr (by simpa [pow_two] using hlt)
 
+/-- An even state maps to `M` exactly when it lies in `[M², (M+1)²)`. The
+one-step preimage of `M` through an even letter, as an interval. -/
 theorem floorPower_even_eq_iff_sq_interval {n M : ℕ} (heven : n % 2 = 0) :
     floorPower n = M ↔ M ^ 2 ≤ n ∧ n < (M + 1) ^ 2 := by
   rw [floorPower_even_eq heven]
   exact floor_sqrt_eq_iff_sq_interval
 
+/-- An odd state maps to `M` exactly when `n³` lies in `[M², (M+1)²)`. The odd
+companion of `floorPower_even_eq_iff_sq_interval`. -/
 theorem floorPower_odd_eq_iff_cube_interval {n M : ℕ} (hodd : n % 2 = 1) :
     floorPower n = M ↔ M ^ 2 ≤ n ^ 3 ∧ n ^ 3 < (M + 1) ^ 2 := by
   rw [floorPower_odd_eq hodd]
