@@ -41303,3 +41303,39 @@ characterization. The schema shows conditions a cycle word must satisfy,
 not a classification of the words that do. Moving the backing makes the
 figure Paper-A-verified; it does not make it a classification, and the
 comment now states that in those words.
+
+## Proposition 6.2a: the ceiling as a theorem, and the abstract catches up
+
+Two edits, both following from the observation that section 6.2's central
+claim is a proof and had been written as prose with numbers.
+
+Proposition 6.2a. Call Phi a charge if it bounds the defect sum and is
+nonincreasing in the minimum, and say it excludes L at floor N_0 when
+theta(L) > (6/5) Phi(N_0, L). Then at any fixed floor only finitely many
+convergent denominators are excluded. The proof is three lines: the sum
+Phi bounds contains its own first term x_0 = n, so Phi >= 1/(n log n) for
+every charge whatever; exclusion therefore needs theta above a threshold
+fixed by N_0; and theta(q_k) ~ log3/q_{k+1} tends to zero.
+
+That covers finance, the run packing and the walk charge in one statement,
+and it cannot be evaded by sharpening any of them, because the lower bound
+on Phi comes from the minimum's own term. It is also the reason every
+result in sections 4 and 5 is a period bound rather than a cycle theorem:
+at a fixed floor the excluded set is finite, so the bound is finite.
+
+The abstract now says so. It had run through the positive results in
+detail and ended on "the long regime, where it remains open", with nothing
+about 6.2 -- so a reader deciding whether to read the paper could not tell
+that the measured ceilings existed, which is arguably the most distinctive
+material in it now.
+
+I did not rename the paper. Cycle Financing and Near-Convergent
+Diophantine Obstructions is accurate for sections 2 through 5, and section
+6 is the conventional home for limits; nobody titles a paper by its
+limitations section. The filename is vaguer than the title, but that is
+cosmetic.
+
+Numbering note: section 6 had no numbered statements, and 6.1 and 6.2 are
+section headings, so Proposition 6.1 would have read as a section. The
+paper already uses letter suffixes -- 4.4b, 4.4c, 5.8b, 5.8c -- so 6.2a
+follows the convention that exists rather than inventing one.

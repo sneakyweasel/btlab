@@ -72,7 +72,20 @@ Rhin's effective measure, excludes every cycle with
 the long regime, where it remains open. The core lemmas are formalized in
 Lean 4; the descent floors and the per-length kill tables are
 independently certified computations, and the paper does not
-claim to be formally verified as a whole. Two companion manuscripts
+claim to be formally verified as a whole. Section 6 then prices the method rather than only stating its limits.
+Any charge of the kind used here is bounded below by the cycle minimum's
+own term, so at a fixed descent floor it can exclude only finitely many
+lengths (Proposition 6.2a): no sharpening of the finance charge, the run
+packing or the walk charge yields a cycle theorem, and the reach of the
+floor route is \(\asymp\sqrt{N_0\log N_0}\), or \(\sqrt{N_0}\log N_0\)
+with the walk charge. Within the length-only charges finance is already
+optimal to within the \(6/5\) it advertises, and the run--suffix law of
+Section 3, which is floor-free and length-free, is empty at exactly the
+lengths that survive finance. What a proof would need, and what is
+absent here, is a lower bound on the cycle minimum in terms of the
+period.
+
+Two companion manuscripts
 use this paper's power envelope and certified floor as inputs: a
 parity-discrepancy paper (depth-4 equidistribution of nested floor
 powers, certificate density \(7/8\)) and a fate-contagion paper, in
@@ -3581,6 +3594,37 @@ tabulated convergents; the \(23.5\) is the whole of the visible
 irregularity. So doubling the period costs roughly quadrupling the floor,
 and no sharpening of either charge changes that, because the target
 recedes.
+
+**Proposition 6.2a (what any charge can exclude).**
+Call \(\Phi\) a *charge* if every cycle minimum \(n\) with word of length
+\(L\) satisfies
+\(\sum_{i<L}1/(x_i\log x_i)\le\Phi(n,L)\), with \(\Phi\) nonincreasing in
+its first argument, and say \(\Phi\) *excludes* \(L\) at floor \(N_0\)
+when \(\theta(L)>\tfrac65\Phi(N_0,L)\). Then for every charge and every
+fixed \(N_0\), only finitely many convergent denominators \(q_k\) are
+excluded.
+
+*Proof.* The sum \(\Phi\) bounds contains its own first term, \(x_0=n\),
+so \(\Phi(n,L)\ge 1/(n\log n)\) for **every** charge; exclusion at
+\(N_0\) therefore requires
+\(\theta(L)>\tfrac65\cdot 1/(N_0\log N_0)\), a threshold fixed once
+\(N_0\) is. Along the convergents \(p_k/q_k\) of \(\log2/\log3\),
+\[
+-\log\bigl(1-\theta(q_k)\bigr)=p_k\log3-q_k\log2
+=q_k\log 3\,\Bigl|\tfrac{\log2}{\log3}-\tfrac{p_k}{q_k}\Bigr|
+\approx\frac{\log 3}{q_{k+1}},
+\]
+and \(q_{k+1}\to\infty\), so \(\theta(q_k)\to0\) and only finitely many
+lengths clear the threshold. \(\square\)
+
+Three things follow. It is a proof rather than a measurement, and it
+covers the mechanisms of Sections 4 and 5 at once: finance, the run
+packing and the walk charge are all charges in this sense, the last
+through `cycleMin_hug_kill_criterion`. It cannot be evaded by sharpening
+any of them, because the lower bound on \(\Phi\) comes from the cycle
+minimum's own term and no valid charge can go below it. And it is why
+every result in those sections is a period bound: at a fixed floor the
+excluded set is finite, so the bound it yields is finite too.
 
 **The trailing-evens family is not a third mechanism.** It is worth
 checking, because `cycle_trailing_evens_lt` is the one constraint here
