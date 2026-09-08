@@ -39738,3 +39738,49 @@ variation of a sawtooth and the anchoring of Denjoy-Koksma's cells,
 both of them general mathematics that Mathlib does not carry. The last
 step of a formalization is where the modelling choice hides, precisely
 because everything before it is forced by the statement above.
+
+## Trust was read off a proof body, so it did not follow citations
+
+- **Date:** 2026-09-08
+- **Objective:** Decide whether any Paper A or Paper B declaration rests on
+  a `native_decide` proof through a chain the syntactic trust label cannot
+  see, and name it if so
+- **Falsifier:** the transitive closure returns the same set as the
+  syntactic one, and the label was already right
+
+The falsifier did not fire. `_trust` in `tools/formalpedia.py` reads a
+single proof body and asks "does this proof run the compiler". That is not
+the same question as "does this theorem depend on the compiler", and the
+two answers differ.
+
+`shortcutC_terminal_cycle` is the case that exposed it. Its body is the
+term `⟨shortcutC_one, shortcutC_two⟩`, both halves `native_decide`, and
+the body carries no such token, so the label read `kernel`. The row
+`C-shortcut-welldefined` would have recorded a compiled 2-cycle as
+kernel-checked. It now lists the pair, which is what makes it honest.
+
+Corpus-wide, 54 declarations run `native_decide` and 67 rest on one, so
+13 were invisible to the label. Inside Paper A the gap is one name:
+`window_digit_cap` cites `window_digit_scan`. Both facts are true and
+they are different sentences. Section 1.2 states the first — proofs that
+call the compiler, and exactly one does. A reader asking which theorems
+would fall if the compiler were wrong gets two. `paper_surface` now
+reports both, `trust_closure` computes the second, and two tests pin
+them.
+
+Paper B is the result worth keeping. It is kernel-checked syntactically
+and transitively: no declaration it reaches runs `native_decide`, and
+none cites anything that does. That claim was previously tested in the
+weaker form only.
+
+Two limits are recorded rather than papered over. Edges are name
+occurrences in a comment-stripped proof body, so a citation of one of the
+40 duplicated names in the corpus taints every declaration sharing it —
+the conservative direction. And an occurrence is evidence of use, not
+proof of it; the exact graph is in the `.olean` files, which this does
+not read. Stripping comments before the scan changed no result, so the
+answer is at least stable under that refinement.
+
+- **Decision:** CLOSE. The question was asked and answered, the two
+  sentences are separated in the tooling and pinned by tests, and the
+  `.olean` graph is the named boundary of this scope, not a promotion.

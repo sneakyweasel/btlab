@@ -255,9 +255,61 @@ count outside it stayed reassuring.
 """
 
 
+_COMMENT = re.compile(r"/-.*?-/|--[^\n]*", re.S)
+_IDENT = re.compile(r"[A-Za-z_][A-Za-z0-9_'.]*")
+_HEAD = re.compile(r"(?:^|\n)\s*(?:private\s+|protected\s+|noncomputable\s+)*"
+                   r"(?:theorem|lemma|def|abbrev|instance)\s+([A-Za-z_][A-Za-z0-9_'!?.]*)")
+
+
+def trust_closure(index: dict[str, Any]) -> set[str]:
+    """Declarations that rest on ``native_decide``, following citation rather than syntax.
+
+    ``_trust`` reads one proof body, so it answers "does this proof run the compiler" -- not
+    "does this theorem depend on the compiler".  Those differ, and the gap is not academic:
+    ``shortcutC_terminal_cycle`` is the term ``<shortcutC_one, shortcutC_two>`` and both halves
+    are ``native_decide``, yet the body carries no such token and the label read ``kernel``.
+    Inside Paper A, ``window_digit_cap`` cites ``window_digit_scan`` the same way.
+
+    Edges are name occurrences in a comment-stripped proof body, which is why comments are
+    stripped first: a docstring naming a compiled lemma is prose, not a dependency.  Two
+    limits are worth stating rather than hiding.  Forty declaration names are not unique
+    across the corpus, so a citation of a duplicated name taints every declaration sharing it;
+    that is the conservative direction.  And a name occurring in a proof is evidence of use,
+    not proof of it -- the exact graph lives in the ``.olean`` files, and reading those is a
+    bigger job than this answers.
+    """
+    decls = index["declarations"]
+    names = {d["name"] for d in decls}
+    bodies: dict[tuple[str, str], str] = {}
+    for path in sorted({d["file"] for d in decls}):
+        text = Path(path).read_text(encoding="utf-8")
+        heads = list(_HEAD.finditer(text))
+        for i, m in enumerate(heads):
+            end = heads[i + 1].start() if i + 1 < len(heads) else len(text)
+            bodies[(path, m.group(1))] = _COMMENT.sub(" ", text[m.end():end])
+
+    cites: dict[tuple[str, str], set[str]] = {}
+    for key, body in bodies.items():
+        used = {t for t in _IDENT.findall(body) if t in names}
+        used.discard(key[1])
+        if used:
+            cites[key] = used
+
+    tainted = {d["name"] for d in decls if d["trust"] == "compiler"}
+    changed = True
+    while changed:
+        changed = False
+        for (_path, name), used in cites.items():
+            if name not in tainted and used & tainted:
+                tainted.add(name)
+                changed = True
+    return tainted
+
+
 def paper_surface(index: dict[str, Any]) -> dict[str, Any]:
     """Per paper: the modules it reaches, and the proofs in them the kernel does not check."""
     reach = reachable(index)
+    tainted = trust_closure(index)
     out: dict[str, Any] = {}
     for label, root in PAPER_ROOTS.items():
         if root not in index["modules"]:
@@ -271,6 +323,7 @@ def paper_surface(index: dict[str, Any]) -> dict[str, Any]:
             "modules": len(mods),
             "declarations": len(inside),
             "compiler_trusted": sorted(d["name"] for d in inside if d["trust"] == "compiler"),
+            "compiler_dependent": sorted(d["name"] for d in inside if d["name"] in tainted),
             "open": sorted(d["name"] for d in inside if d["trust"] == "open"),
         }
     return out
@@ -645,7 +698,9 @@ def main(argv: list[str] | None = None) -> int:
                 continue
             print(f"{label} ({s['root']}): {s['modules']} modules, "
                   f"{s['declarations']} declarations")
-            print(f"   off the kernel: {s['compiler_trusted'] or 'none'}")
+            print(f"   proofs running native_decide: {s['compiler_trusted'] or 'none'}")
+            resting = [n for n in s["compiler_dependent"] if n not in s["compiler_trusted"]]
+            print(f"   resting on one through citation: {resting or 'none'}")
             if s["open"]:
                 print(f"   carrying sorry: {s['open']}")
         return 0

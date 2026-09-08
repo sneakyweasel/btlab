@@ -163,10 +163,38 @@ def test_paper_a_keeps_exactly_the_one_ostrowski_scan_off_the_kernel() -> None:
     assert surface["compiler_trusted"] == PAPER_A_OFF_KERNEL, surface["compiler_trusted"]
 
 
+PAPER_A_COMPILER_DEPENDENT = ["window_digit_cap", "window_digit_scan"]
+"""What rests on the compiler, as opposed to what runs it.
+
+Section 1.2's sentence is about proofs that call ``native_decide``, and one does.  A reader
+asking the other question -- which of Paper A's theorems would fall if the compiler were
+wrong -- gets a second name: ``window_digit_cap`` cites the scan.  Both are true; they are
+different sentences, and the ledger now carries both.
+"""
+
+
+def test_paper_a_rests_on_the_compiler_through_one_more_declaration() -> None:
+    surface = fp.paper_surface(fp.build())["Paper A"]
+    assert surface["compiler_dependent"] == PAPER_A_COMPILER_DEPENDENT, (
+        surface["compiler_dependent"]
+    )
+    assert set(surface["compiler_trusted"]) < set(surface["compiler_dependent"]), (
+        "if these ever agree the transitive pass has stopped finding anything and the "
+        "syntactic label would say the same thing more cheaply"
+    )
+
+
 def test_paper_b_is_kernel_checked_throughout() -> None:
     surface = fp.paper_surface(fp.build())["Paper B"]
     assert surface["present"], "Problems.JugglerParityPaper is missing from the index"
     assert surface["compiler_trusted"] == [], surface["compiler_trusted"]
+
+
+def test_paper_b_is_kernel_checked_transitively_too() -> None:
+    """Paper B's claim is the stronger one, so it is the one worth testing both ways: no
+    declaration it reaches runs ``native_decide``, and none cites anything that does."""
+    surface = fp.paper_surface(fp.build())["Paper B"]
+    assert surface["compiler_dependent"] == [], surface["compiler_dependent"]
 
 
 def test_no_paper_reaches_a_sorry() -> None:
