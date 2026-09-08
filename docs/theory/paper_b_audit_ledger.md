@@ -9785,3 +9785,74 @@ now it is that the packing is an assumption. Each step was a correction
 to the previous description, and each came from writing down the thing I
 had been referring to indirectly. The pattern is not that the problem
 grew --- it is that the description was catching up with it.
+
+## Can a realized cycle have long runs? Nothing forbids it, and the evidence favours it
+
+*Mathematical target.* Whether realizability --- an actual integer
+orbit, not the exponent model --- excludes odd runs of length three or
+more, which is what the packing needs.
+
+*Falsifier.* Each floor loses less than one against a value of size
+\(n^{k}\), so realizability adds nothing the exponent model missed.
+
+**The falsifier holds, and the dual gives the sharp form.** The
+laboratory has `CycleMax` as well as `CycleMin`, so a cycle's states lie
+between \(n\) and \(M\). A run of \(a\) odds from a valley at least
+\(n\) reaches about \(n^{(3/2)^{a}}\), which must not exceed \(M\).
+Hence
+
+\[
+a\ \le\ \frac{\log\bigl(\log M/\log n\bigr)}{\log(3/2)} ,
+\]
+
+so **run length is bounded by the logarithm of the cycle's dynamic
+range**, and by nothing else. This is the `CycleMax` dual of Theorem
+3.29's suffix cap, and it is equally weak: a run of four needs only
+\(M\ge n^{5.06}\).
+
+That cap is not close to binding on the witness from the last entry. At
+\(L=84\) its runs of six sit against caps of \(39\) to \(52\).
+
+**The packing asserts a flat cycle.** If every run has length one or
+two, the state never exceeds about \(v^{9/4}\approx n^{3}\), taking the
+highest valley \(v\approx n^{4/3}\). So the packing is the claim that a
+cycle's dynamic range is at most a cube.
+
+**Realized near-returns are not flat.** Taking every odd \(n<4\cdot
+10^{4}\), running the orbit while it stays at or above \(n\), and
+keeping those that return within \(50\%\) of \(n\), gives 248 near-
+returns. Their longest-run distribution:
+
+| longest run | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 12 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| count | 3 | 20 | 51 | 67 | 55 | 23 | 19 | 6 | 3 | 1 |
+
+The mode is five. **Three of 248 have all runs at most two.** The
+closest return --- gap \(0.075\) at \(n=265\), word
+`OOOOOEOOOEEEOOOEEOE` --- has longest run five and climbs to roughly
+\(n^{11.6}\); heights across the sample run from \(n^{5.7}\) to
+\(n^{25}\), against the packing's \(n^{3}\).
+
+So realizability does not merely fail to exclude long runs; the shape it
+favours is the opposite of the packing.
+
+**Caveats, which are large.** Near-returns are not cycles: the gaps
+bottom out at \(0.075\), not \(0\), and a cycle needs \(0\) exactly.
+These words have \(L\le19\) while a cycle has \(L\ge176251\) by Theorem
+4.6. And the sample is small \(n\). The evidence is about which shapes
+the map produces when constrained to stay above the start and come back
+near it, which is the closest observable proxy available and is not the
+same thing.
+
+**Verdict.** The question "can a realized cycle have long runs" is not
+answered by anything in the laboratory, and the exponent bookkeeping,
+the two suffix caps, and the floors are all too weak to answer it. The
+packing remains an assumption, and the only evidence bearing on it
+points against.
+
+Tags. COMPUTATIONALLY VERIFIED: the run-length distribution and heights
+over 248 near-returns; the \(L=84\) witness against Theorem 3.29's cap,
+run by run. OBSERVATION: the first attempt at this overflowed on a
+float division, because a state 40000 bits wide is not comparable to
+\(n\) by division. Guarding on bit-length rather than value is the fix,
+and it is also the honest description of what "near" means here.

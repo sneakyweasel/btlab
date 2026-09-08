@@ -40198,3 +40198,41 @@ hypotheses. Then whether EE is free. Now that the packing is an
 assumption. Each was a correction to the previous description, and each
 came from writing down what I had been referring to indirectly. The
 problem did not grow; the description was catching up with it.
+
+Can a realized cycle have long runs? The falsifier I wrote down was
+that each floor loses less than one against a value of size n^k, so
+realizability adds nothing the exponent model missed. It holds, and the
+CycleMax dual gives the sharp form: a run of a odds from a valley at
+least n reaches about n^{(3/2)^a}, which must not exceed the cycle
+maximum M. So a <= log(log M / log n)/log(3/2) -- run length is bounded
+by the logarithm of the dynamic range, and by nothing else. A run of
+four needs only M >= n^5.06.
+
+The packing asserts a flat cycle. With every run of length one or two,
+the state never exceeds about v^{9/4} = n^3 from the highest valley
+v = n^{4/3}. So the packing says the dynamic range is at most a cube.
+
+Realized near-returns are not flat. Taking every odd n < 4e4, running
+the orbit while it stays at or above n, and keeping those that return
+within 50% of n gives 248 near-returns. Longest-run counts: 2 appears
+3 times, 3 twenty times, 4 fifty-one, 5 sixty-seven, 6 fifty-five, 7
+twenty-three, 8 nineteen, 9 six, 10 three, 12 once. The mode is five,
+and three of 248 have all runs at most two. The closest return, gap
+0.075 at n=265 on OOOOOEOOOEEEOOOEEOE, has longest run five and climbs
+to about n^11.6; heights across the sample run n^5.7 to n^25 against
+the packing's n^3.
+
+So realizability does not merely fail to exclude long runs. The shape
+it favours is the opposite of the packing.
+
+The caveats are large and I do not want them lost. Near-returns are not
+cycles: gaps bottom out at 0.075, not 0. These words have L <= 19 while
+a cycle has L >= 176251 by Theorem 4.6. And the sample is small n. This
+is about which shapes the map produces when constrained to stay above
+the start and come back near it, which is the closest observable proxy
+and not the same thing.
+
+The first attempt overflowed on a float division: a state 40000 bits
+wide is not comparable to n by division. Guarding on bit-length rather
+than value is the fix, and it is also the honest description of what
+"near" means here.
