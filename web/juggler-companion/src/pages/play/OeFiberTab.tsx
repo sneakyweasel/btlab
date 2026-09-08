@@ -111,9 +111,10 @@ export function OeFiberTab() {
       <section className="space-y-3 rounded-xl border border-line bg-card p-4">
         <h2 className="font-serif text-2xl">Parity sweep</h2>
         <p className="text-sm text-muted">
-          On the fiber the quantity <Tex>{String.raw`\{n^{3/2}/2\}`}</Tex> advances
-          by a nearly constant step. A walk with that step cannot hide in one
-          half of the unit interval.
+          On the fiber the quantity <Tex>{String.raw`\{n^{3/2}/2\}`}</Tex> lives
+          on the circle <Tex>{String.raw`\mathbb{R}/\mathbb{Z}`}</Tex>: 0 and 1
+          are the same point. A walk with a nearly constant step cannot hide in
+          one semicircle.
         </p>
         {fiber.points.length ? (
           <SweepLane
