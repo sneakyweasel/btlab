@@ -74,6 +74,9 @@
 'Problems.Juggler.greedy_eq_ostro_below_window' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.greedy_reconstruct_all' depends on axioms: [propext, Quot.sound]
 'Problems.Juggler.grid_cells_collide_at_eight' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.hugCharge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.hugCharge_sub_circleMean_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.hugCharge_sub_circleMean_window' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.hugEvens_eq_floor' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.hugLetter_iff_floor_step' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.hugOdds' depends on axioms: [propext]
@@ -181,6 +184,7 @@
 'Problems.Juggler.run_survivor_seed_F3' does not depend on any axioms
 'Problems.Juggler.run_survivor_unimodular' does not depend on any axioms
 'Problems.Juggler.square_scale_superquadratic' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.stateCharge' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.stateCharge_antitone' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.stateCharge_inj' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.stateCharge_strictAnti' depends on axioms: [propext, Classical.choice, Quot.sound]

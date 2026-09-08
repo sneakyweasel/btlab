@@ -94,6 +94,9 @@ import Problems.JugglerPaper
 #print axioms Problems.Juggler.greedy_eq_ostro_below_window
 #print axioms Problems.Juggler.greedy_reconstruct_all
 #print axioms Problems.Juggler.grid_cells_collide_at_eight
+#print axioms Problems.Juggler.hugCharge
+#print axioms Problems.Juggler.hugCharge_sub_circleMean_le
+#print axioms Problems.Juggler.hugCharge_sub_circleMean_window
 #print axioms Problems.Juggler.hugEvens_eq_floor
 #print axioms Problems.Juggler.hugLetter_iff_floor_step
 #print axioms Problems.Juggler.hugOdds
@@ -201,6 +204,7 @@ import Problems.JugglerPaper
 #print axioms Problems.Juggler.run_survivor_seed_F3
 #print axioms Problems.Juggler.run_survivor_unimodular
 #print axioms Problems.Juggler.square_scale_superquadratic
+#print axioms Problems.Juggler.stateCharge
 #print axioms Problems.Juggler.stateCharge_antitone
 #print axioms Problems.Juggler.stateCharge_inj
 #print axioms Problems.Juggler.stateCharge_strictAnti

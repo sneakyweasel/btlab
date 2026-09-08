@@ -8922,3 +8922,66 @@ appendix has existed, and the content was two inequalities that were
 already Lean, read through a logarithm. What was missing was noticing
 that "least \(a\) with \(2^k\le3^a\)" and "\(\lceil k\log2/\log3\rceil\)"
 are the same sentence.
+
+## Theorem 5.7 in one statement, and the one thing that is a definition
+
+*Mathematical target.* Every input to Theorem 5.7 is Lean, but the
+display itself was a chain a reader had to compose. State it once.
+
+*Novelty hypothesis.* Assembly, not mathematics: `hugCharge` defined so
+that `periodicObservable_hugWalk` applies termwise, and the rest is
+dividing the envelope by \(L\).
+
+*Falsifier.* The laboratory's existing charge does not match the
+observable, so the definition is not forced.
+
+**The falsifier fired, and the file says so.** The laboratory had no
+\(C_L\). `stateCharge` (`WalkChargeMax.lean`) is Theorem 5.4's envelope
+charge \(1/(e^{W\nu}W\nu)\), and
+
+\[
+\mathtt{blockObservable}\ n'\ u
+= n'\,(\log n')\cdot\mathtt{stateCharge}\,(\log n')\,(2^{u}),
+\]
+
+proportional but not equal. So `hugCharge` is a **definition**, not a
+derived object, and the module docstring separates what rests on
+theorems from what does not:
+
+- it is the average of Theorem 5.7's own observable along the exponent
+  walk --- by construction;
+- the walk positions are the *budgeted* word's, because the budgeted
+  word is the hug word (`budgetedWord_eq_hugWord`) --- a theorem;
+- the \(k\)-th term of the rotation's ergodic sum at phase \(0\) is that
+  observable at the \(k\)-th walk position
+  (`periodicObservable_hugWalk`) --- a theorem;
+- that Paper A's phrase "charge per letter" denotes *this*
+  normalisation rather than another --- **not** a theorem, and no
+  amount of Lean will make it one. The two named theorems are what make
+  it the defensible choice, and naming the alternative
+  (`stateCharge`) is the honest way to record that a choice was made.
+
+**The statements.**
+
+- `hugWalkPos`, `hugCharge`, `circleMean` --- the definitions.
+- `sum_periodicObservable_eq_walk` --- the ergodic sum at phase \(0\) is
+  the walk sum, termwise, by `periodicObservable_hugWalk`.
+- `hugCharge_sub_circleMean_le` --- \(|C_L-C_*|\le 2s(L)/L\) for every
+  \(L>0\), no window hypothesis.
+- `hugCharge_sub_circleMean_window` --- \(94/L\) for every
+  \(L<301994\), from the structural cap \(s(L)\le47\).
+
+It compiled on the first build. That is what "assembly, not mathematics"
+looks like when the inputs are right, and it is worth contrasting with
+the four rebuilds `HugRotation` took and the eleven `JumpVariation`
+took: the difficulty in this chain was never at the top.
+
+Tags. COMPUTATIONALLY VERIFIED: `lake build Problems.JugglerPaper`
+clean; all four new declarations within
+`[propext, Classical.choice, Quot.sound]`; `AxiomCheckPaperA` now 218
+lines --- `stateCharge` joined the cited set because the docstring
+comparison names it --- regenerated, still exactly two `native_decide`
+consumers. OBSERVATION: the last step of a formalization is where a
+modelling choice hides, because everything before it is forced by the
+statement above. The right move is not to hide it in a definition but to
+name the thing it was chosen over.

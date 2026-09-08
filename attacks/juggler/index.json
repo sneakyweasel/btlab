@@ -5479,6 +5479,7 @@
         "formal/Problems/Juggler/OstrowskiNumeration.lean",
         "formal/Problems/Juggler/OstrowskiBlocks.lean",
         "formal/Problems/Juggler/HugRotation.lean",
+        "formal/Problems/Juggler/HugChargeEnvelope.lean",
         "formal/Problems/Juggler/RotationAverage.lean",
         "formal/Problems/Juggler/FanLaw.lean",
         "formal/Problems/Juggler/WalkTransport.lean",

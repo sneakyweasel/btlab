@@ -24209,6 +24209,36 @@
       "trust": "kernel"
     },
     {
+      "doc": "The rotation's ergodic sum at phase `0` is the walk sum, termwise.",
+      "file": "formal/Problems/Juggler/HugChargeEnvelope.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 52,
+      "module": "Problems.Juggler.HugChargeEnvelope",
+      "name": "sum_periodicObservable_eq_walk",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Theorem 5.7, in one statement.** For every length, the charge per letter is within `2 s(L)/L` of the circle mean, where `s(L)` is the Ostrowski digit sum of `L`.",
+      "file": "formal/Problems/Juggler/HugChargeEnvelope.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 60,
+      "module": "Problems.Juggler.HugChargeEnvelope",
+      "name": "hugCharge_sub_circleMean_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**On the certified window the bound is `94/L`.** The digit cap `s(L) \u2264 47` is structural, so this holds for every `L < 301994` with no scan.",
+      "file": "formal/Problems/Juggler/HugChargeEnvelope.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 84,
+      "module": "Problems.Juggler.HugChargeEnvelope",
+      "name": "hugCharge_sub_circleMean_window",
+      "trust": "kernel"
+    },
+    {
       "doc": "",
       "file": "formal/Problems/Juggler/HugRotation.lean",
       "kind": "theorem",
@@ -66284,6 +66314,15 @@
         }
       ]
     },
+    "Problems.Juggler.HugChargeEnvelope": {
+      "declarations": 3,
+      "file": "formal/Problems/Juggler/HugChargeEnvelope.lean",
+      "imports": [
+        "Problems.Juggler.HugRotation",
+        "Problems.Juggler.OstrowskiBlocks"
+      ],
+      "ledger": []
+    },
     "Problems.Juggler.HugRotation": {
       "declarations": 10,
       "file": "formal/Problems/Juggler/HugRotation.lean",
@@ -67251,6 +67290,7 @@
         "Problems.Juggler.FanLaw",
         "Problems.Juggler.GapTransfer",
         "Problems.Juggler.GlobalDefect",
+        "Problems.Juggler.HugChargeEnvelope",
         "Problems.Juggler.HugRotation",
         "Problems.Juggler.Iteration",
         "Problems.Juggler.Itinerary",
@@ -67485,13 +67525,13 @@
     }
   },
   "totals": {
-    "declarations": 4833,
+    "declarations": 4836,
     "declarations_with_a_ledger_row": 3195,
     "ledger_rows_naming_a_file": 336,
-    "modules": 206,
+    "modules": 207,
     "trust": {
       "compiler": 54,
-      "kernel": 4779
+      "kernel": 4782
     }
   }
 }

@@ -39712,3 +39712,29 @@ Every step of Theorem 5.7's chain is now Lean. What is left outside is
 not a step but a definition: the laboratory has no C_L declaration, and
 periodicObservable_hugWalk is the term-by-term identity such a
 definition would be compared against.
+
+Theorem 5.7 is one Lean statement now, and it compiled on the first
+build. hugCharge_sub_circleMean_le is |C_L - C_*| <= 2 s(L)/L at every
+L > 0, and hugCharge_sub_circleMean_window is 94/L on the certified
+window. Every input was already there; the work was dividing the
+envelope by L and getting the definition right.
+
+The definition is the part worth recording, because it is the one thing
+here that is not a theorem. The laboratory had no C_L. stateCharge is
+Theorem 5.4's envelope charge 1/(exp(W nu) W nu), and blockObservable
+n' u equals n' log(n') times stateCharge (log n') (2^u) -- proportional
+but not equal. So hugCharge is a choice, and the module says which
+parts rest on theorems: that the walk positions are the budgeted
+word's is budgetedWord_eq_hugWord, and that the k-th ergodic term is
+the observable at the k-th walk position is periodicObservable_hugWalk.
+What no theorem supplies is that "charge per letter" means this
+normalisation rather than another. Naming the alternative is the only
+honest way to record that a choice was made.
+
+One contrast worth keeping. This file compiled first try;
+HugRotation took four rebuilds and JumpVariation eleven. The
+difficulty in this chain was never at the top -- it was in the
+variation of a sawtooth and the anchoring of Denjoy-Koksma's cells,
+both of them general mathematics that Mathlib does not carry. The last
+step of a formalization is where the modelling choice hides, precisely
+because everything before it is forced by the statement above.

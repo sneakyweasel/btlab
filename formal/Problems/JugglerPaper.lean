@@ -36,6 +36,7 @@ import Problems.Juggler.JumpVariation
 import Problems.Juggler.OstrowskiNumeration
 import Problems.Juggler.OstrowskiBlocks
 import Problems.Juggler.HugRotation
+import Problems.Juggler.HugChargeEnvelope
 import Problems.Juggler.RotationAverage
 import Problems.Juggler.FanLaw
 import Problems.Juggler.WalkTransport
