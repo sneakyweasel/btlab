@@ -41479,8 +41479,8 @@ interior, which they are not.
 
 Then I checked whether the lemma is true, because the pairing root
 0.448 and everything above it rest on it. An adversarial search over
-two-valued monotone profiles -- 1.2 million of them, every switch point
-and phase, X from 1 to 6, b/a up to 1.05 -- never goes below H/3 - 2;
+two-valued monotone profiles -- 4.2 million of them at 64 phases each, every switch
+point, X from 1 to 6, b/a up to 1.05 -- never goes below H/3 - 2;
 the worst slack is 1.33. So the statement stands and the proof needed
 replacing.
 

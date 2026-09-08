@@ -129,7 +129,7 @@ is a new lemma of the same kind; the case analysis is finite.
 Classification **PRINTED_PROOF_STEP_FALSE_STATEMENT_SUPPORTED**.
 
 - The printed pair claim is false (exact witness); the lemma holds on
-  \(1.2\cdot 10^6\) adversarial profiles with slack \(\ge 1.33\).
+  \(4.2\cdot 10^6\) adversarial profiles at \(64\) phases each with slack \(\ge 1.33\).
 - The corrected proof keeps the constant \(-2\), so Lemma 4.2, the
   pairing root \(0.448\), \(\lambda^{**}=0.4926\) and the Tao
   thresholds are unchanged.
