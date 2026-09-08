@@ -333,7 +333,7 @@ type Paper B proves enters Appendix C as an explicit hypothesis.
 
 Statements carry one of four roles. *Lean*: the exact combinatorial
 layer is formalized in Lean 4; the root `formal/Problems/JugglerFatePaper.lean`
-imports exactly the seven modules this paper cites and builds with
+imports exactly the eight modules this paper cites and builds with
 `lake build Problems.JugglerFatePaper`, without `sorry` and without
 `native_decide`; `formal/AxiomCheckPaperC.lean` prints the axiom
 dependencies of every cited name and `AxiomCheckPaperC.expected`
@@ -362,8 +362,10 @@ constants; they prove nothing and are labelled wherever they appear.
 | Least failure is \(OO\)-type; first-letter trichotomy (Proposition 6.3(i), Section 6.2) | Lean |
 | First-letter identity (6.1) | human proof (exact combinatorics) |
 | Almost-all equivalence (Theorems 7.2, 7.3) | human proof |
+| Chernoff count of bad words (Lemma 8.2, exact form) | Lean |
+| Union bound over bad cylinders (Theorem 8.3, exact skeleton) | Lean; the asymptotic form is a human substitution |
 | Pressure telescoping (Proposition 9.3) | Lean, on the word-weight framework |
-| Chernoff, Azuma, exponential-moment arguments (Sections 8--10, except Proposition 9.3) | human proof |
+| Azuma and exponential-moment arguments (Sections 8--10, except Lemma 8.2, the skeleton of Theorem 8.3 and Proposition 9.3) | human proof |
 | Localized triple discrepancy (Appendix C) | hypothesis, conditional |
 | Numerical experiments (Section 11) | observation |
 
@@ -1714,6 +1716,17 @@ For the \(O\)-rooted count, the remaining \(d-1\) letters contain
 \((d-1)D(p'\|1/2)\ge(e(C)-\varepsilon)L\ln 2\) for \(L\) large.
 \(\square\)
 
+Lean: the first statement, in the exact form
+\(\#\{w\ L\text{-bad},|w|=d\}\le 2^d\,2^{-e(C)L}\) for \(C\ge 5\),
+\(d\ge CL\), \(d\ge 1\), is `LBad_count_le` in
+`formal/Problems/Juggler/FateChernoff.lean`: the Markov tilt
+`weight_markov` on the constant weight (`weightGen_one`,
+\((1+x)^d\)), the value \(\exp(d\,h(p))\) at \(x=p/(1-p)\)
+(`tilt_value`, `count_oddCount_ge_le_exp`), Gibbs' inequality
+\(D(p\|\tfrac12)\ge 0\) (`klHalf_nonneg`), and \(p_C\in[\tfrac12,1)\)
+from \(\log_2 3\le 8/5\) (`half_le_pC`, `pC_lt_one`). The \(O\)-rooted
+statement with \(\varepsilon\) stays a human proof.
+
 Numerically \(e(18)=0.480\), \(e(19)=0.527\), \(e(20)=0.574\),
 \(e(21)=0.621\), \(e(25)=0.812\), \(e(30)=1.054\); \(e(C)\) grows
 linearly in \(C\) with slope
@@ -1758,6 +1771,21 @@ odd starts. Hence the count is at most
 using \(2^{d-1}\le 2^{CL}\). The second term is
 \(O(y(\log y)^{C-A})=o(y(\log y)^{-e(C)})\) because \(A>C+e(C)\).
 \(\square\)
+
+Lean: the exact skeleton, in `formal/Problems/Juggler/FateChernoff.lean`.
+`oddFailures_subset_bad_cylinders` is Lemma 8.1 in covering form: with
+every start up to \(N_0\) reaching \(1\), an odd \(n\in(y,2y]\) that does
+not reach \(1\) lies in the cylinder of a word whose every prefix fails
+the integer envelope comparison \(N_0^{2^t}<(2y)^{3^{o_t}}\)
+(`EnvelopeBad`); `LBad_of_envelopeBad` identifies those words as
+\(L(y)\)-bad with \(L(y)=\log_2(\log 2y/\log N_0)\);
+`oddFailures_card_le` is the union bound, and
+`oddFailures_card_le_chernoff` composes it with Lemma 8.2: if every
+\(L(y)\)-bad cylinder of depth \(d\ge CL(y)\) holds at most \(M\)
+starts, the odd failures in \((y,2y]\) number at most
+\(2^d\,2^{-e(C)L(y)}M\). The substitution of \(d=\lceil CL(y)\rceil\)
+and of \(\mathrm H(C,A)\)'s bound for \(M\), which gives the displayed
+\(y(\log y)^{-e(C)+\varepsilon}\), is not formalized.
 
 **Corollary 8.4 (the conjecture from a cylinder bound).** If
 \(\mathrm H(C,A)\) holds for some \(C\ge 19\) and \(A>C+e(C)\), then
@@ -2255,7 +2283,7 @@ at depth of order \(\log\log n\): the Terras step of the Juggler map.
 ## Appendix A. Lean names
 
 All in `formal/Problems/Juggler/FateContagion.lean` unless noted. The
-root `formal/Problems/JugglerFatePaper.lean` imports exactly the seven
+root `formal/Problems/JugglerFatePaper.lean` imports exactly the eight
 modules named here and builds with `lake build Problems.JugglerFatePaper`
 without `sorry` and without `native_decide`;
 `formal/AxiomCheckPaperC.expected` records the axioms of every name
@@ -2277,8 +2305,10 @@ abstract lemmas listed here, not the analytic density estimates.
 | Lemma 4.1 (sweep), in `Problems/Juggler/FateSweep.lean` | `Sweep.cell`, `Sweep.sweep_cell`, `sweep_fract_lt_half`, `sweep_fract_ge_half`, `sweep_ceil`, `sweep_rep_le_half`, `sweep_rep_gt_half` |
 | Lemma 5.1 (recursion), in `Problems/Juggler/FateRecursion.lean` | `recursion_lemma` |
 | Section 6.2, Proposition 6.3(i), in `Problems/Juggler/FateFirstLetter.lean` | `MinimalMember`, `minimalMember_odd`, `minimalMember_image_odd`, `minimal_failure_odd_odd`, `exists_minimal_failure`, `first_letter_trichotomy`, `first_letter_pieces_disjoint` |
+| Lemma 8.2 (Chernoff count), in `Problems/Juggler/FateChernoff.lean` | `weightGen_one`, `count_oddCount_ge_le`, `count_oddCount_ge_real_le`, `entropyLog`, `klHalf`, `klHalf_eq`, `klHalf_nonneg`, `tilt_value`, `count_oddCount_ge_le_exp`, `count_oddCount_ge_le_kl`, `LBad`, `pC`, `chernoffExponent`, `logb_two_three_le`, `half_le_pC`, `pC_lt_one`, `LBad_oddCount_ge`, `LBad_count_le` |
+| Theorem 8.3 (exact skeleton), in `Problems/Juggler/FateChernoff.lean` | `cylinder`, `oddFailures`, `EnvelopeBad`, `oddFailures_subset_bad_cylinders`, `oddFailures_card_le`, `LBad_of_envelopeBad`, `oddFailures_card_le_chernoff` |
 | Proposition 9.3 (pressure telescoping), in `Problems/Juggler/TiltedShare.lean` | `oddMass`, `tiltedShare`, `weightGen_succ_le_share`, `one_add_le_exp_excess`, `weightGen_le_pressure`, `count_le_pressure`, `NoMomentum`, `count_le_of_noMomentum`, `tilt_exponent_eq_kl`, `MeanShare`, `weightGen_le_of_meanShare`, `MeanShareOff`, `initial_depths_are_free`, `tower_ratio_lt_one` |
-| Lemmas 4.1', 4.2--4.3, Proposition 4.4 (\(C_0=250\)), Lemma 5.2, Theorem 5.3, Sections 7--10 except Proposition 9.3, Appendix C | human proofs |
+| Lemmas 4.1', 4.2--4.3, Proposition 4.4 (\(C_0=250\)), Lemma 5.2, Theorem 5.3, Sections 7--10 except Lemma 8.2, the skeleton of Theorem 8.3 and Proposition 9.3, Appendix C | human proofs |
 
 ## Appendix B. Constants and artifacts
 
@@ -2334,8 +2364,9 @@ pressure (biased Chernoff) at the same \(q\): \(19,41,214,1496\) /
 | `formal/Problems/Juggler/FateRecursion.lean` | `13de9eb27d4e34b58d783d589574838028d767bcb5ea3f2bb8449e74e3be04d3` |
 | `formal/Problems/Juggler/FateFirstLetter.lean` | `635bb6163f5a054085087eefcd2c62037c61538fe863d53e9dca69da8fddb3e9` |
 | `formal/Problems/Juggler/FateSweep.lean` | `71c5c2472d2c2d31d7b2565e66f92e97b3ae9bd0c76aa45a1703eea7bd910d39` |
-| `formal/Problems/JugglerFatePaper.lean` | `82feb9e3933f3e0a5d9aafada1971654ee6e598f73bfd9aad035f19dc251479f` |
-| `formal/AxiomCheckPaperC.expected` | `8db1c8284e9b206df4b594d1aefc1cdbc4fd6ddde29f1a423ea1321b6c98e14e` |
+| `formal/Problems/Juggler/FateChernoff.lean` | `99d14d51473f8c99a532c5c83019e20109cf2423d358d567f810552479694bfd` |
+| `formal/Problems/JugglerFatePaper.lean` | `0b4fcf218dbd20468339b10475a56429c65b967ee9b90c086c602f6341dab294` |
+| `formal/AxiomCheckPaperC.expected` | `f876aaa3473729fd0929f9c98a88e049d35e88cd49e81850690d7b1adc94a31a` |
 | `src/research/juggler_sequence/fate_contagion.py` | `34f8cff465e00187cb85e1dc9a75a3b250caa4c8f38a3bc41aef29f68be08b7a` |
 | `src/research/juggler_sequence/tao_reduction.py` | `90f930bd604f6aa38c3a5ec8265d270d218240cdb358b20b19cad98dc4ac2f1c` |
 | `docs/theory/figures/render_paper_c_figures.py` | `5e434450835aadb4ed5ed2cbed00cc33f774996ba9ef229cb0434fc677bff5b7` |

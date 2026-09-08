@@ -41507,3 +41507,41 @@ averaging step nobody wrote down, and reading for Lean finds it.
 
 Next: Lemma 4.1' in Lean. The repair was written so that its parts are
 the ones FateSweep.lean already has.
+
+## Lemma 8.2 and the skeleton of Theorem 8.3, in an afternoon
+
+After the monotone-pairing repair I priced Lemma 4.1' in Lean honestly:
+five cases, each with its own structural fact, over the FateSweep cell
+machinery. Well over a thousand lines. It is the constant Paper C uses,
+and it will be worth doing, but not as the next chunk.
+
+The next chunk was Section 8, because the word framework of
+RateFreeDensity already has the engine. Lemma 8.2 counts L-bad words:
+words whose exponent walk never descends to -L. The paper says
+"Chernoff" and cites a binomial tail. In Lean the tail is three lines
+of algebra on top of weight_markov: the constant weight has generating
+function (1+x)^d, the Markov tilt gives #{o >= k} <= (1+x)^d / x^k,
+and at x = p/(1-p) the bound is exp(d h(p)) with h the binary entropy,
+which is 2^d exp(-d D(p || 1/2)). Gibbs' inequality D >= 0 is
+log x <= x - 1 applied twice. The one numeric fact is p_C >= 1/2 for
+C >= 5, which is log_2 3 <= 8/5, which is 243 <= 256.
+
+Theorem 8.3 is a union bound, and reading it for Lean made that
+visible. A failure in (y, 2y] has an itinerary that fails the envelope
+comparison at every prefix -- that is Lemma 8.1 contrapositive, already
+Lean -- so it lies in the cylinder of a bad word; the bad words are
+L(y)-bad after taking logarithms twice; and a bound on every bad
+cylinder bounds the failures by the Chernoff count times it. The Lean
+states exactly that, with the cylinder bound as a hypothesis. What it
+does not state is the paper's displayed y (log y)^{-e(C)+eps}, which
+is the substitution of d = ceil(C L(y)) and of H(C, A)'s explicit
+bound; that is bookkeeping I have not done, and the paper now says so
+in place.
+
+One correction to my own first draft: I had tried to derive M >= 0
+from the cylinder hypothesis, which fails when no word is bad, and the
+theorem is false for negative M in that case. It is a hypothesis now.
+
+Paper C's Lean column: twelve rows Lean, seven human. The barrel
+imports eight modules and the axiom artifact records 118 declarations,
+all on subsets of Mathlib's three.

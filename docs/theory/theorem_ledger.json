@@ -7693,5 +7693,33 @@
    "tests/research/juggler_sequence/test_monotone_pairing.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "id": "J-fate-chernoff-count",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Paper C Lemma 8.2 (Chernoff), exact form. A word w of length d is L-bad if o_t(w) log_2 3 − t > −L for every 1 ≤ t ≤ d (LBad). For C ≥ 5, p_C = (1 − 1/C)/log_2 3, e(C) = C D(p_C‖1/2)/log 2, and every d ≥ 1 with d ≥ C L: #{L-bad words of length d} ≤ 2^d · 2^{−e(C) L} (LBad_count_le). Engine: the constant weight has weightGen (1+x)^d (weightGen_one), so the Markov tilt weight_markov of RateFreeDensity gives #{o(w) ≥ k} ≤ (1+x)^d/x^k for x ≥ 1 (count_oddCount_ge_le), hence #{o(w) ≥ p d} ≤ (1+x)^d/x^{pd} with a real exponent (count_oddCount_ge_real_le); at x = p/(1−p) this is exp(d h(p)) with h the binary entropy (tilt_value, count_oddCount_ge_le_exp), i.e. 2^d exp(−d D(p‖1/2)) (count_oddCount_ge_le_kl); D(p‖1/2) ≥ 0 by log x ≤ x − 1 (klHalf_nonneg); an L-bad word has o_d ≥ p_C d when d ≥ CL (LBad_oddCount_ge); and 1/2 ≤ p_C < 1 for C ≥ 5 from 3^5 ≤ 2^8 (logb_two_three_le, half_le_pC, pC_lt_one). Kernel-checked, axioms propext, Classical.choice, Quot.sound only. The O-rooted statement with ε and L_0 is not formalized. A count of words, not a statement about Juggler starts.",
+  "source": "docs/problems/juggler_paper_c_formal_layer.md",
+  "lean": "Problems/Juggler/FateChernoff.lean",
+  "decl": "LBad_count_le",
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_paper_c_formal_layer.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-fate-tao-union-bound",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Paper C Theorem 8.3 (Tao-type bound from the cylinder hypothesis), exact skeleton. cylinder y d w is the set of odd n in (y, 2y] with itinerary n d = w; oddFailures y the odd n in (y, 2y] with ¬ReachesOne n; EnvelopeBad N₀ Y w says N₀^{2^t} < Y^{3^{o_t(w)}} for every prefix t ≤ |w|. (i) oddFailures_subset_bad_cylinders: if every start up to N₀ reaches 1, then oddFailures y ⊆ ⋃ {cylinder y d w : w ∈ allWords d, EnvelopeBad N₀ (2y) w} — Lemma 8.1 (reachesOne_of_itinerary_envelope) in covering form, using n ≤ 2y. (ii) oddFailures_card_le: if every envelope-bad cylinder has at most M starts then #oddFailures y ≤ #{envelope-bad words} · M. (iii) LBad_of_envelopeBad: for N₀, Y ≥ 2, envelope-bad at scale Y implies L-bad with L = log_2(log Y / log N₀). (iv) oddFailures_card_le_chernoff: N₀ ≥ 2, y ≥ 1, C ≥ 5, d ≥ 1, d ≥ C L(y) with L(y) = log_2(log 2y / log N₀), M ≥ 0, and every L(y)-bad cylinder of depth d has at most M starts: then #oddFailures y ≤ 2^d · 2^{−e(C) L(y)} · M, by (i)–(iii) and row J-fate-chernoff-count. Kernel-checked, axioms propext, Classical.choice, Quot.sound only. The paper's displayed form y (log y)^{−e(C)+ε} is the substitution d = ⌈C L(y)⌉ and M = 2^{−(d−1)} y/2 + y (log y)^{−A} from H(C, A), not formalized; Corollary 8.4 (the conjecture from a cylinder bound) rests on Theorem 7.2 and stays a human proof. Conditional on the cylinder bound; not a density theorem, not a halt theorem.",
+  "source": "docs/problems/juggler_paper_c_formal_layer.md",
+  "lean": "Problems/Juggler/FateChernoff.lean",
+  "decl": "oddFailures_card_le_chernoff",
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_paper_c_formal_layer.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py"
+  ],
+  "related_conjectures": []
  }
 ]

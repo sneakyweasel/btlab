@@ -3921,7 +3921,9 @@
         "J-fate-sweep-lemma",
         "J-fate-recursion-lemma",
         "J-fate-minimal-failure-oo",
-        "J-paper-c-trust-surface"
+        "J-paper-c-trust-surface",
+        "J-fate-chernoff-count",
+        "J-fate-tao-union-bound"
       ],
       "aliases": [],
       "nk_cluster": null
@@ -5604,7 +5606,8 @@
         "formal/Problems/Juggler/CubeFiber.lean",
         "formal/Problems/Juggler/FateRecursion.lean",
         "formal/Problems/Juggler/FateFirstLetter.lean",
-        "formal/Problems/Juggler/FateSweep.lean"
+        "formal/Problems/Juggler/FateSweep.lean",
+        "formal/Problems/Juggler/FateChernoff.lean"
       ],
       "conjecture": [],
       "decision": null,

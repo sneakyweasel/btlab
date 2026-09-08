@@ -18,7 +18,8 @@ small enough to formalize without inventing anything?
 
 ## Exact statement
 
-Three statements, each now a Lean theorem with the paper's proof.
+Three statements, each now a Lean theorem with the paper's proof, and
+(second pass, same day) Lemma 8.2 with the exact skeleton of Theorem 8.3.
 
 **Lemma 4.1 (sweep; EXACT — LEAN VERIFIED, `FateSweep.lean`).** Let
 \(x_0<\dots<x_{H-1}\) be reals with consecutive gaps in \([a,b]\),
@@ -50,10 +51,22 @@ forward-closed class excluding \(1\) (`minimalMember_odd`,
 `minimalMember_image_odd`). The three first-letter pieces of Section
 6.2 are `first_letter_trichotomy` and `first_letter_pieces_disjoint`.
 
+**Lemma 8.2 and Theorem 8.3 (EXACT — LEAN VERIFIED, `FateChernoff.lean`).**
+For \(C\ge 5\), \(d\ge CL\), \(d\ge 1\): at most \(2^d2^{-e(C)L}\) words
+of length \(d\) are \(L\)-bad (`LBad_count_le`), by the Markov tilt of
+`RateFreeDensity` on the constant weight at \(x=p_C/(1-p_C)\) and Gibbs'
+inequality. With a floor \(N_0\ge 2\), the odd failures in \((y,2y]\)
+lie in the cylinders of the envelope-bad words
+(`oddFailures_subset_bad_cylinders`), which are \(L(y)\)-bad
+(`LBad_of_envelopeBad`), so a bound \(M\) on every bad cylinder of depth
+\(d\ge CL(y)\) gives \(\#\{	ext{odd failures}\}\le 2^d2^{-e(C)L(y)}M\)
+(`oddFailures_card_le_chernoff`). The displayed asymptotic form and
+Corollary 8.4 stay human proofs.
+
 **The build root (COMPUTATIONALLY VERIFIED).**
-`formal/Problems/JugglerFatePaper.lean` imports exactly the seven
+`formal/Problems/JugglerFatePaper.lean` imports exactly the eight
 modules Paper C cites; `formal/AxiomCheckPaperC.lean` prints the axioms
-of the 99 cited declarations and `AxiomCheckPaperC.expected` records
+of the 118 cited declarations and `AxiomCheckPaperC.expected` records
 them, every list a subset of `propext`, `Classical.choice`,
 `Quot.sound`, no `sorryAx`, no `native_decide`.
 
@@ -140,16 +153,20 @@ None.
 `Sweep` for the cell machinery, five top-level theorems),
 `formal/Problems/Juggler/FateRecursion.lean` (`recursion_lemma`),
 `formal/Problems/Juggler/FateFirstLetter.lean` (7 declarations),
+`formal/Problems/Juggler/FateChernoff.lean` (Lemma 8.2 and the skeleton
+of Theorem 8.3, 26 declarations on `RateFreeDensity`'s word weights),
 `formal/Problems/JugglerFatePaper.lean` (barrel),
 `formal/AxiomCheckPaperC.lean` and `.expected`. All kernel-checked; the
 Paper C surface (root `Problems.JugglerFatePaper`, 36 modules reached,
 1251 declarations) carries no `native_decide` and cites none.
 
 Not formalized, and not claimed: Lemma 4.1' (monotone pairing,
-\(H/3-2\)), Lemmas 4.2–4.3, Proposition 4.4, the share law 4.5–4.6, the
-seed 5.2, Theorem 5.3, Theorems 7.2–7.3, 8.3, 9.1–9.2, Section 10,
-Appendix C, and the log-mass bookkeeping that turns the first-letter
-trichotomy into the identity (6.1).
+\(H/3-2\); its printed proof was repaired in
+[monotone pairing](juggler_monotone_pairing.md)), Lemmas 4.2–4.3,
+Proposition 4.4, the share law 4.5–4.6, the seed 5.2, Theorem 5.3,
+Theorems 7.2–7.3, the asymptotic form of Theorem 8.3 and Corollary 8.4,
+Theorems 9.1–9.2, Section 10, Appendix C, and the log-mass bookkeeping
+that turns the first-letter trichotomy into the identity (6.1).
 
 ## Results
 
@@ -157,9 +174,9 @@ Classification **PAPER_C_LEAN_SURFACE_CONSISTENT**.
 
 ```text
   Paper C verification table, before and after
-  Lean rows      6 -> 10  (Lemma 4.1, Lemma 5.1, Prop 6.3(i) new; Prop 9.3 was stale)
-  human rows     7 -> 7   (rows split; Theorems 5.3, 7.2, 7.3, 8.3, 9.1, 9.2, Prop 4.4 ... stay)
-  cited names    62 -> 99, all on subsets of Mathlib's three axioms; none native_decide
+  Lean rows      6 -> 12  (Lemmas 4.1, 5.1, 8.2, Prop 6.3(i), Thm 8.3 skeleton new; Prop 9.3 was stale)
+  human rows     7 -> 7   (rows split; Theorems 5.3, 7.2, 7.3, 9.1, 9.2, Prop 4.4 ... stay)
+  cited names    62 -> 118, all on subsets of Mathlib's three axioms; none native_decide
 ```
 
 - The three proofs are the paper's; the sweep count is the paper's
@@ -174,11 +191,12 @@ Classification **PAPER_C_LEAN_SURFACE_CONSISTENT**.
 
 ## Open questions
 
-- Lemma 4.1' (monotone pairing) is the natural next small attack: the
-  occupancy sequence is monotone up to a phase error of one, and the
-  pairing argument is elementary but longer than 4.1.
-- Lemma 8.2 (Chernoff for the bad-word count) is a statement about
-  binomial tails that Mathlib partly carries.
+- Lemma 4.1' (monotone pairing) in Lean: its corrected proof is a
+  five-case analysis over the `FateSweep` machinery, estimated at well
+  over a thousand lines; deferred, not abandoned.
+- The asymptotic form of Theorem 8.3 (substituting \(d=\lceil CLceil\)
+  and \(\mathrm H(C,A)\)'s bound) is real-analysis bookkeeping on top of
+  `oddFailures_card_le_chernoff`.
 
 ## Decision
 
