@@ -1,4 +1,4 @@
-"""Build the conditional Paper B PDF from Markdown using Pandoc and XeLaTeX.
+"""Build the repaired Paper B PDF from Markdown using Pandoc and XeLaTeX.
 
 Standalone package: python build_paper_b.py
 Repository: python tools/build_paper_b.py
@@ -125,8 +125,8 @@ def main() -> None:
     output.mkdir(parents=True, exist_ok=True)
     work.mkdir(parents=True, exist_ok=True)
     text = source.read_text(encoding='utf-8')
-    if 'Conditional Descent Results' not in text[:350]:
-        raise RuntimeError('Expected the conditional revision, not the historical working draft')
+    if 'Four-Step Descent and Conditional Extensions' not in text[:350]:
+        raise RuntimeError('Expected the four-step repair, not an earlier working draft')
     pandoc, xelatex = executable('pandoc',args.pandoc), executable('xelatex',args.xelatex)
     tex = work/f'{STEM}.tex'
     run([pandoc,str(source),'--from=markdown+tex_math_single_backslash+autolink_bare_uris',

@@ -8,7 +8,7 @@
     "OOEOE",
     "OOOEE"
   ],
-  "conditional_four_step_density": "13/16",
+  "four_step_density_arithmetic": "13/16",
   "conditional_five_step_density": "7/8",
   "envelope_cases": 16000,
   "branch_indicator_cases": 6231,

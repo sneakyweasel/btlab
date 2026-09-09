@@ -19,7 +19,7 @@ describe("published preprint records", () => {
     expect(paperByLetter("B").doi).toBeUndefined();
     expect(paperByLetter("B").zenodo).toBeUndefined();
     expect(paperByLetter("B").guide).toBeUndefined();
-    expect(paperByLetter("B").hint).toContain("3/4");
+    expect(paperByLetter("B").hint).toContain("Unconditional four-step certificate density 13/16");
   });
 
   it("sends Paper A to the tour and Paper C to the contagion walk", () => {

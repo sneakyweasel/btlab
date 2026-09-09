@@ -1,4 +1,4 @@
-"""Exact finite checks for the conditional preprint; no analytic hypotheses are tested.
+"""Exact finite checks for Paper B; no analytic estimates are tested.
 
 Run with Python 3.10+ using only the standard library:
     python validate_paper_b.py --output paper_b_validation.json
@@ -104,7 +104,7 @@ def check() -> dict:
 
     return {'status': 'PASS', 'scope': 'Exact finite checks only; no asymptotic, kernel, or Lean certification.',
             'minimal_certificates_through_five': words,
-            'conditional_four_step_density': '13/16', 'conditional_five_step_density': '7/8',
+            'four_step_density_arithmetic': '13/16', 'conditional_five_step_density': '7/8',
             'envelope_cases': envelope_cases, 'branch_indicator_cases': indicator_cases,
             'factorization_cases': factorization_cases, 'carry_cases': carry_cases,
             'word_survivor_counts': tail}

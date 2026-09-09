@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "scope": "Exact finite identity and exponent checks; the asymptotic claims are supported by written proofs, not these tests.",
+  "differenced_identity_cases": 1920,
+  "carry_expansion_cases": 2000,
+  "exponent_comparisons": 40,
+  "restored_four_step_density": "13/16, by Corollary 4.6 and Theorem 5.2 of the repaired manuscript",
+  "remaining_open": "General decorated kernel, its short-interval version, and five-step correlation hypotheses."
+}

@@ -142,10 +142,116 @@ def report() -> dict:
             "uniform_parity_closure_proved": False, "no_cycle_proved": False}
 
 
+def square_cell_carry(N: int, y: int) -> dict:
+    """Recover sqrt(N) within its exact double-square endpoint cell."""
+    if y < 1 or not y**4 <= N < (y+1)**4:
+        raise ValueError("positive y and its exact fourth-power cell required")
+    d = (N-y**4) // (2*y*y)
+    h = min(d, 2*y)
+    # The theorem bounds the correction before these comparisons are made.
+    if (y*y+h)**2 <= N:
+        kappa = 0
+    elif (y*y+h-1)**2 <= N:
+        kappa = 1
+    else:
+        kappa = 2
+    c = h-kappa
+    u = y*y+c
+    assert 0 <= c <= 2*y and u*u <= N < (u+1)**2
+    return {"N": N, "y": y, "d": d, "h": h, "kappa": kappa, "c": c, "u": u}
+
+
+def valid_ooe_carry_family(r: int) -> dict:
+    """Exact controls for the proved infinite family; no orbit search."""
+    if r < 3 or r % 2 != 1:
+        raise ValueError("odd r >= 3 required")
+    b, x = r**8, r**8+8
+    u = r**12+12*r**4
+    v = r**18+18*r**10+54*r*r-1
+    z = r**9+9*r-1
+    states = [x, u, v, z]
+    assert trace_word(x, "OOE") == states and parity_guard(states, "OOE")
+    assert z % 2 == 1
+    assert b <= x < b*b and b <= u < b*b
+    assert b*b <= v < b**3 and b <= z < b*b
+    assert max(states) < min(states)**3
+    exact = square_cell_carry(u**3, z)
+    assert exact["u"] == v and exact["c"] == 2*z-27*r*r
+    # floor((sqrt(x^9)-A)/B) = (isqrt(x^9)-A)//B for integer A,B>0.
+    D = (isqrt(x**9)-z**4) // (2*z*z)
+    assert D-exact["d"] in (36*r*r, 36*r*r+1)
+    H = min(D, 2*z)
+    assert H == 2*z and H-exact["c"] == 27*r*r
+    # This is exact output compression despite the growing internal quotient gap.
+    assert (z+1)**8 < x**9 < (z+2)**8
+    # The substituted radicand is outside the original unit endpoint cell.
+    assert isqrt(x**9) >= (z+1)**4
+    return {"r": r, "threshold": b, "states": states, "word": "OOE",
+            "source_parities_valid": True, "cubic_height": True,
+            "first_square_remainder": x**3-u*u, "true_oe_carry": exact,
+            "substituted_quotient": D, "quotient_difference": D-exact["d"],
+            "quotient_difference_base": 36*r*r,
+            "quotient_difference_extra_bit": D-exact["d"]-36*r*r,
+            "clipped_substitute": H, "clipped_offset_error": H-exact["c"],
+            "ordinary_power_endpoint": z+1, "odd_power_endpoint": z,
+            "substitution_preserves_unit_endpoint_cell": False,
+            "closed_cycle": False}
+
+
+def guard_carry_report() -> dict:
+    """Boundary controls for the normal form and literal infinite-family instances."""
+    cells, corrections = 0, set()
+    for y in range(1, 33):
+        for c in range(2*y+1):
+            u = y*y+c
+            for epsilon in sorted({0, 1, 2*u-1, 2*u}):
+                N = u*u+epsilon
+                result = square_cell_carry(N, y)
+                assert result["u"] == isqrt(N) == u
+                assert result["c"] == c
+                corrections.add(result["kappa"])
+                cells += 1
+    sharp = square_cell_carry(93**3, 29)
+    assert trace_word(93, "OE") == [93, 896, 29]
+    assert sharp["kappa"] == 2
+    family = [valid_ooe_carry_family(r) for r in (3, 5, 11, 101, 10**6+1, 10**20+1)]
+    fibers = []
+    for s in (3, 5, 11, 101):
+        count = 2*s//3+1
+        guards = []
+        for j in range(count):
+            x, y = s**4+2*j, s**3
+            states = trace_word(x, "OE")
+            assert states == [x, s**6+3*s*s*j, y]
+            guard = parity_guard(states, "OE")
+            assert guard == bool(j % 2) == (x % 4 == 3)
+            guards.append(guard)
+        fibers.append({"s": s, "endpoint": s**3, "sources_checked": count,
+                       "guard_sequence": guards, "valid_iff_source_mod4_is3": True})
+    return {
+        "scope": {"endpoint_range_for_boundary_controls": [1, 32],
+                  "square_cell_boundary_instances": cells,
+                  "boundary_offsets": "0,1,2u-1,2u, deduplicated",
+                  "family_parameters": [row["r"] for row in family],
+                  "cube_fiber_parameters": [row["s"] for row in fibers],
+                  "cycle_search": False, "source_scan_enlarged": False},
+        "arithmetic": "Exact integers throughout",
+        "normal_form_corrections_seen": sorted(corrections),
+        "sharp_valid_oe_block": {"states": [93, 896, 29], "carry": sharp},
+        "valid_ooe_family": family, "cube_fiber_controls": fibers,
+        "uniform_bounded_additive_substitution_refuted": True,
+        "general_arithmetic_parity_closure_refuted": False, "no_cycle_proved": False}
+
+
 if __name__ == "__main__":
-    data = report()
-    out = DATA_ROOT / "cycle_cubic_induction" / "controls.json"
+    import argparse
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--guard-carries", action="store_true",
+                        help="verify only exact parity-carry and substitution controls")
+    args = parser.parse_args()
+    data = guard_carry_report() if args.guard_carries else report()
+    out = DATA_ROOT / "cycle_cubic_induction" / ("guard_carries.json" if args.guard_carries else "controls.json")
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(data, indent=2)+"\n", encoding="utf-8")
-    print(json.dumps({"scope": data["scope"], "sources": data["sources"],
+    print(json.dumps({"scope": data["scope"], "sources": data.get("sources", []),
                       "no_cycle_proved": data["no_cycle_proved"]}, indent=2))

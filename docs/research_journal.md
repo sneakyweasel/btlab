@@ -1,5 +1,26 @@
 # Research journal
 
+## Paper B proof repair: four-step certificates restored
+
+- **Date:** 9 September 2026. **Source:**
+  [Small-shift and partition repairs](problems/juggler_paper_b_small_shift_repair.md).
+- **What was learned:** The nested estimate needed for four-step certificates
+  uses a small shift range. Its exact carry expansion can be estimated over
+  every gap cell without the general decorated kernel.
+- **Strongest theorem:** Paper B Theorem 4.5 gives O(P^(23/24)) restricted
+  mixed sums; Corollary 4.6 and Theorem 5.2 give certificate density 13/16
+  with error O(N^(23/24) log(2N)^3). Proposition 3.2 repairs the OE count;
+  Lemma 7.5 and Proposition 7.6 repair the basic collision model.
+- **Evidence:** EXACT — HUMAN PROOF in the written-proof sense. Exact
+  publication validators check the algebra and exponent bookkeeping;
+  they do not certify asymptotic cancellation. No new Lean formalization.
+- **Remaining gap:** The decorated-family assembly, short-interval kernel,
+  and two five-letter correlation hypotheses remain unproved. No universal
+  termination conclusion follows.
+- **Decision:** PROMOTE the restricted theorem and model repair.
+- **Best next question:** Do all decorated coefficient and phase families
+  satisfy Lemma 7.5 with an adequate total weighted bound?
+
 ## Prefix-selected boundary trimming: fixed depth is not growing depth
 
 - **Date:** 9 September 2026. **Source:**
@@ -42165,4 +42186,33 @@ or a decreasing arithmetic quantity, remains unproved. Symbolic rank
 reduction alone ends at the original full-word condition. No general
 impossibility of guarded compression, wrong-parity theorem, cycle
 exclusion or new numerical bound is claimed.
+
+## 2026-09-09 — Hidden parity carry and substitution obstruction
+
+The user authorized the next arithmetic-closure question.
+[Exact parity carries](problems/juggler_cycle_guard_carries.md) proves
+an OE guard using one quotient, clipping and a correction in {0,1,2},
+then tests the same baseline under the next OOE substitution.
+For every odd r>=3, the exact valid block
+r^8+8 -> r^12+12r^4 -> r^18+18r^10+54r^2-1 -> r^9+9r-1
+lies in the cubic band at b=r^8. Its ideal endpoint is only one
+integer away, but replacing the eliminated source by its pure power
+changes the suffix quotient by 36r^2 or 36r^2+1; the clipped offset
+miss is exactly 27r^2. The proof uses the actual first square remainder
+48r^8+512 and exact adjacent-square inequalities.
+
+The existing induction verifier's --guard-carries mode checks 4,351
+generic square-cell boundaries, the sharp OE block 93->896->29,
+six literal OOE-family parameters, and four known cube-fiber controls.
+It performs no cycle search or expanded source scan. All arithmetic
+is integral. The two named results have written proofs and separate
+AI audits, not new Lean claims.
+
+**Decision: CLOSE** the tested bounded additive substitution. The
+original unit endpoint cell does not survive the ideal replacement;
+the endpoint floor bit alone does not repair the internal quotient.
+The family itself admits a polynomial correction plus one carry, so
+unbounded magnitude does not refute general arithmetic or parity-only
+closure. Exact remainder transport remains open. Paper A and its
+numerical period bound are unchanged by this gate.
 

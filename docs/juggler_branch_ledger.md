@@ -5,8 +5,8 @@ This appendix curates the branches behind the two manuscripts:
 lower bounds: local itinerary obstructions plus finance, \(L\ge 25781\);
 Lean-backed except Theorems 4.6 and 4.8) and
 [Paper B](theory/juggler_parity_discrepancy_note.md) (parity
-discrepancy of nested floor powers: exact linearization, the kernel
-theorem, densities). Neither paper recounts every closed compression.
+discrepancy of nested floor powers: exact linearization, restricted mixed
+sums, unconditional four-step certificate density, and conditional extensions). Neither paper recounts every closed compression.
 The finance branch is Paper A §4; leftover \(84\) is a laboratory
 companion. Laboratory extract:
 [juggler_cycle_finance_note.md](theory/juggler_cycle_finance_note.md).
@@ -19,6 +19,7 @@ statement in the branch.
 
 | Theme | Branch and dossier | Decision | Strongest evidence | Strongest defensible outcome | Role in paper |
 |---|---|---|---|---|---|
+| Paper B proof repair | [Small-shift and partition repairs](problems/juggler_paper_b_small_shift_repair.md) | PROMOTE | **EXACT — HUMAN PROOF** | Restricted mixed sums O(P^(23/24)) and four-step certificate density 13/16; corrected OE count and basic partition-aware collision model | Restores the four-step theorem; general decorated kernel and five-step correlations remain unproved |
 | First-image parity locality | [Parity neighbor scale](problems/juggler_parity_neighbor_scale.md) | PROMOTE | **EXACT — HUMAN PROOF** sharp distance exponent (`J-parity-neighbor-scale`) | Every odd n >= 4096 has an odd source with opposite first-image parity within 8 ceil(n^(1/4)) to its right; infinitely many odd nonsquare sources with odd nonsquare image require distance >= n^(1/4)/4. Monotone slopes plus convexity prove the upper bound; explicit near-square clusters prove the lower bound. Direct target-neighbor pullback is CLOSE: above 65536 the whole guaranteed window contains no other odd-source image, by the existing image-gap theorem. No prefix-preserving bounded-multiplicity assignment or pressure estimate | Standalone first-step theorem; no termination improvement |
 | Termination frontier | [Absorbed growing-depth cylinders](problems/juggler_absorbed_cylinder.md) | CLOSE | **EXACT — HUMAN PROOF** / **REFUTED** | On infinitely many dyadic blocks one terminating cylinder has at least y/(216 log y) starts; the unrestricted H and H_q fail. Bad-word restrictions and stopped live pressure remain open | Corrects scope of Paper C's sufficient hypotheses; no failure-density improvement |
 | Formal contraction | [Power composition](problems/juggler_power_composition.md) | PROMOTE | **EXACT — LEAN VERIFIED** | Every realized itinerary obeys the one-sided power envelope; negative exponent gap forces contraction | Central theorem |
@@ -204,6 +205,7 @@ from here.
 
 | Theme | Branch and dossier | Decision | Strongest evidence | Strongest defensible outcome | Role |
 |---|---|---|---|---|---|
+| Paper B proof repair | [Small-shift and partition repairs](problems/juggler_paper_b_small_shift_repair.md) | PROMOTE | **EXACT — HUMAN PROOF** | Restricted mixed sums O(P^(23/24)) and four-step certificate density 13/16; corrected OE count and basic partition-aware collision model | Restores the four-step theorem; general decorated kernel and five-step correlations remain unproved |
 | Open-orbit transport | [Flight envelope](problems/juggler_flight_envelope.md) | PROMOTE (theorem) / PARK (atlas, terminating-side height law) | **EXACT — LEAN VERIFIED** | Two-sided transport on `AboveAnchor`; fly exponent equals peak walk weight up to \(\Delta\) | Extract §1 |
 | Walk-height rate | [Walk-divergence](problems/juggler_flight_walk_divergence.md) (height-law extension) | PROMOTE | **EXACT — LEAN VERIFIED** | Heights along a descent-free prefix are doubly exponential in the walk height | Extract §2 |
 | Hug adversary off-cycle | [Walk-divergence](problems/juggler_flight_walk_divergence.md) | PROMOTE | **EXACT — HUMAN PROOF** | Every descent-free flight has unbounded walk; hug-hugging is cycle-exclusive; dichotomy at \(N_0=162849448\) | Extract §3 |
@@ -253,4 +255,6 @@ from here.
 | Absolute floor-cell alignment | [Absolute cells](problems/juggler_cycle_absolute_cells.md) | PARK | **EXACT — HUMAN PROOF** three written results; **COMPUTATIONALLY VERIFIED** bounded controls | The exact upper-cell/grid charge sharpens a conditional scale; absolute extrema cells give M<=(J(m)-1)^2-2 and u<m^2-(4/3)sqrt(m). A positive phase plateau blocks strict-response arguments. None forces uniform wrong parity. | Retain scoped results; no new census, floor, cap or numerical period exclusion |
 
 | Exact Euclidean cycle induction | [Euclidean induction](problems/juggler_cycle_cubic_induction.md) | PARK | **EXACT — HUMAN PROOF** symbolic induction, short return identities and hidden-parity obstruction; **COMPUTATIONALLY VERIFIED** bounded integer controls | Two return branches persist, but faithful tower expansion retains all original parity tests. OE, OOE and OOEOE have exact endpoint compression under the stated output hypotheses; odd perfect-power blocks defeat omitting internal parity. No uniform arithmetic-plus-parity closure or no-cycle proof follows. | Completed authorized closure gate; no larger scan or automatic next attack |
+
+| Exact parity carries | [Parity carries](problems/juggler_cycle_guard_carries.md) | CLOSE | **EXACT — HUMAN PROOF** quotient guard and infinite substitution obstruction; **COMPUTATIONALLY VERIFIED** bounded integer controls | OE has one quotient, clipping and a correction in {0,1,2} determining hidden parity. A genuine OOE family has quotient substitution error 36r^2 or 36r^2+1 and clipped error 27r^2, while its endpoint changes by one integer. This refutes that bounded additive extension, not general arithmetic parity closure or any cycle. | Completed authorized follow-up; preserve exact source residue or supply a genuinely new update law |
 

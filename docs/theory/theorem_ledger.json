@@ -1,5 +1,27 @@
 [
  {
+  "id": "J-cycle-oe-quotient-parity-carry",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For integers N>=1 and y>=1 with y^4<=N<(y+1)^4, put u=isqrt(N), c=u-y^2, d=floor((N-y^4)/(2y^2)), and h=min(d,2y). Then 0<=c<=2y and c=h-kappa with kappa in {0,1,2}. For q=y^2+h, kappa is 0 if q^2<=N, 1 if (q-1)^2<=N<q^2, and 2 otherwise; in the last case (q-2)^2<=N is guaranteed. Thus for an OE block with odd source x and odd exact endpoint y, N=x^3 yields a necessary-and-sufficient hidden parity guard: h-kappa is odd. The true OE block 93->896->29 has d=h=57,c=55,kappa=2, so the correction bound is attained. The identity uses one source-dependent integer quotient and two square comparisons; it is an exact guard for this single block, not closure under all return-word substitutions or a cycle theorem. AI-assisted written proof with exact boundary controls and AI audit; no new Lean verification or external novelty claim.",
+  "source": "docs/problems/juggler_cycle_guard_carries.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_cubic_induction.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cycle-ooe-carry-substitution-obstruction",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For every odd integer r>=3, x=r^8+8,u=r^12+12r^4,v=r^18+18r^10+54r^2-1,z=r^9+9r-1 form a genuine parity-valid Juggler OOE block x->u->v->z in threshold band [b,b^3), b=r^8, with x,u,z below b^2 and v above it; max(block)<min(block)^3. Its true suffix quotient is d=floor((u^3-z^4)/(2z^2)); the candidate pure-power replacement is D=floor((x^(9/2)-z^4)/(2z^2)). Exactly D-d is 36r^2 or 36r^2+1. For c=v-z^2 and H=min(D,2z), c=2z-27r^2, H=2z, and H-c=27r^2. Meanwhile floor(x^(9/8))=z+1 and odd projection gives the correct endpoint z. Hence no uniformly bounded additive correction repairs this specified quotient or clipped-displacement substitution. The ideal radicand lies outside the original unit endpoint cell at z, so the example refutes a candidate closure extension rather than the valid one-block normal form. The actual first square remainder is 48r^8+512 and cannot simply be discarded in that extension. These are blocks, not cycles; the family itself has a polynomial-plus-one-carry correction, so no impossibility for general fixed-dimensional data or parity-only formulas is claimed. AI-assisted written proof and independent AI algebra audit, exact literal controls; no new Lean verification or no-cycle theorem. No member is shown to lie on a periodic orbit, so a closure rule restricted by additional global cycle constraints is not refuted.",
+  "source": "docs/problems/juggler_cycle_guard_carries.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_cubic_induction.py"
+  ],
+  "related_conjectures": []
+ },
+ {
   "id": "J-cycle-cubic-euclidean-induction",
   "tag": "EXACT — HUMAN PROOF",
   "statement": "For a finite sorted invariant set with rank permutation i->i+b modulo a+b, positive a,b, and chronological return words A,B, inducing on a prefix gives (a-b,b;A,AB) if a>b, or (a,b-a;AB,B) if b>a. Accelerating a=qb+r gives (r,b;A,A^q B), and b=qa+r gives (a,r;AB^q,B); a zero remainder gives the identity on the gcd-sized prefix. Return towers partition all original states, preserving a|A|+b|B|=L and letter counts. Exact parity predicates compose as P_AB(x)=P_A(x) AND P_B(F_A(x)). Therefore the full expanded tower representation retains exactly L original source-parity tests at every stage. For a primitive cycle the terminal single base carries the entire original fixed-point and parity condition. These first returns concern the finite invariant set, not every integer between its extrema. This is elementary symbolic induction with a faithful parity interpretation, not a uniform arithmetic-closure theorem, a lower bound on every possible representation, or a no-cycle proof. AI-assisted written proof; no new Lean or external novelty claim.",
@@ -4124,12 +4146,13 @@
  },
  {
   "id": "J-nested-parity-discrepancy",
-  "tag": "CONJECTURE",
-  "statement": "Publication review 9 September 2026: the analytic claim below is not established by Paper B and is retained only as a historical research target. The revised paper gives conditional implications, not this analytic proof. See docs/theory/paper_b_review.md. Historical target: Each of the four joint parity classes of (floor(n^{3/2}), floor(floor(n^{3/2})^{3/2})) over odd n ≤ N has cardinality N/8 + O(N^{23/24+eps}); in particular #{odd n ≤ N : J(n) odd, J^2(n) even} = N/8 + O(N^{23/24+eps}), one itinerary letter beyond the ambient odd-input bound. Proof: Vaaler wave expansion, the exact linearization row J-nested-parity-linearization, one van der Corput A-process at H = N^{1/12}, constant-gap cells with an exactly split moving-endpoint expansion, and the second-derivative test per cell; exponent deliberately unoptimized. Ambient counting over all odd starts; not an orbit transfer theorem, not a frequency theorem along trajectories, and not a termination claim. Imported into the parity-discrepancy paper as Theorem 4.4. Lean covers only the exact floor reductions (floor_gap_eq_carry gap cells, floor_odd_iff_half_le_fract_half parity bridge); the analytic estimate is a human proof.",
-  "source": "docs/research/juggler_two_step_parity_lemma.md",
-  "lean": "Problems/Juggler/GapCells.lean",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Paper B Corollary 4.6 (9 September 2026 repair), taking a marginal: each joint parity class of (floor(n^(3/2)), floor(floor(n^(3/2))^(3/2))) over odd n <= N has count N/8 + O(N^(23/24) log(2N)^3). Theorem 4.5 gives a replacement small-shift proof, including mixed signs and zero frequencies. Ambient counting, not an orbit-frequency or termination theorem; the old general decorated kernel is not used.",
+  "source": "docs/theory/juggler_parity_discrepancy_note.md",
+  "lean": "",
   "tests": [
-   "tests/research/juggler_sequence/test_two_step_parity.py"
+   "tools/validate_paper_b.py",
+   "tools/validate_paper_b_repairs.py"
   ],
   "related_conjectures": []
  },
@@ -4146,23 +4169,25 @@
  },
  {
   "id": "J-triple-parity-discrepancy",
-  "tag": "CONJECTURE",
-  "statement": "Publication review 9 September 2026: the analytic claim below is not established by Paper B and is retained only as a historical research target. The revised paper gives conditional implications, not this analytic proof. See docs/theory/paper_b_review.md. Historical target: Each of the eight sign classes of ((-1)^m, (-1)^v, (-1)^{floor(sqrt v)}) over odd n ≤ N, with m = floor(n^{3/2}) and v = floor(m^{3/2}), has cardinality N/16 + O(N^{23/24+eps}). Proof: the c = 0 cases are rows J-ambient-odd-discrepancy and J-nested-parity-discrepancy; for c = 1, the fourth letter is smoothed exactly by row J-fourth-letter-linearization before any differencing, pure fourth-letter modes reduce to a single smooth exponential sum (direct second-derivative test), and mixed modes rerun the depth-2 machinery with the smooth passenger (k/2) n^{9/8}, whose curvature is smaller than every retained scale by at least N^{9/8-1/24}. Even-branch fourth letter only; ambient counting; not a termination claim. Imported into the parity-discrepancy paper as Theorem 4.7.",
-  "source": "docs/research/juggler_two_step_parity_lemma.md",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Paper B Corollary 4.6 (9 September 2026 repair): for m=floor(n^(3/2)), v=floor(m^(3/2)), each of the eight sign classes ((-1)^m, (-1)^v, (-1)^floor(sqrt(v))) over odd n <= N has count N/16 + O(N^(23/24) log(2N)^3). The third coordinate is the formal even branch; this is not the complete depth-four itinerary census. Theorem 4.5 and a pointwise square-root comparison prove the result.",
+  "source": "docs/theory/juggler_parity_discrepancy_note.md",
   "lean": "",
   "tests": [
-   "tests/research/juggler_sequence/test_two_step_parity.py"
+   "tools/validate_paper_b.py",
+   "tools/validate_paper_b_repairs.py"
   ],
   "related_conjectures": []
  },
  {
   "id": "J-four-step-descent-density",
   "tag": "EXACT — HUMAN PROOF",
-  "statement": "Conditional Paper B Theorem 5.2 (9 September 2026): under H_0(OOEE), the class of starts with a power-envelope descent certificate of length at most four has natural density 13/16. Under H(OOEE; delta), the error is O(N^(1-min(1/6,delta))). The nested correlation hypothesis is unproved here. The unconditional certificate density retained is 3/4.",
+  "statement": "Unconditional Paper B Theorem 5.2 (9 September 2026 repair): the starts admitting a power-envelope descent certificate of length at most four have count 13N/16 + O(N^(23/24) log(2N)^3). The disjoint minimal prefixes are E, OE, OOEE. Corollary 4.6 proves the previously missing OOEE correlation. This sufficient certificate class need not exhaust every start descending within four operations; it is not a termination theorem.",
   "source": "docs/theory/juggler_parity_discrepancy_note.md",
   "lean": "",
   "tests": [
-   "tools/validate_paper_b.py"
+   "tools/validate_paper_b.py",
+   "tools/validate_paper_b_repairs.py"
   ],
   "related_conjectures": []
  },
@@ -4316,11 +4341,12 @@
  {
   "id": "J-even-branch-third-letter",
   "tag": "EXACT — HUMAN PROOF",
-  "statement": "Proposition L: |sum over odd n ≤ N of ((-1)^m)^a psi(m^{1/2})| ≪ N^{7/8+eps} for a in {0,1}, with m = floor(n^{3/2}) and psi(x) = (-1)^{floor(x)}. Hence #OEO(N) and #OEE(N) each equal N/8 + O(N^{7/8+eps}), completing all four depth-3 itinerary word classes (OO-splits by row J-triple-parity-discrepancy). Proof: exact smoothing m^{1/2} = n^{3/4} + D1 with -(1/2)X^{-1/2} - (1/8)(X-1)^{-3/2} ≤ D1 ≤ 0 (decaying; cumulative cost O(l N^{1/4})), then pure smooth modes with van der Corput II. Branch-consistent: the (1+(-1)^m)/2 factor vanishes exactly where J^2 takes the odd branch. Corrects an earlier overclaim that depth 3 was already fully proved. Validated to n = 10^{12} (smoothing) and n ≤ 20001 (indicator identity). Imported into the parity-discrepancy paper as Proposition 4.5.",
-  "source": "docs/research/juggler_two_step_parity_lemma.md",
+  "statement": "Paper B Proposition 3.2 (9 September 2026 repair): OEE and OEO each have count N/8 + O(N^(5/6) log(2N)). The identity floor(sqrt(floor(x)))=floor(sqrt(x)) for x>=0 makes the parity replacement exact. Two-dimensional discrepancy with cutoff P^(1/6) and the classical second-derivative estimate gives the stated error, replacing the inconsistent historical truncation.",
+  "source": "docs/theory/juggler_parity_discrepancy_note.md",
   "lean": "",
   "tests": [
-   "tests/research/juggler_sequence/test_two_step_parity.py"
+   "tools/validate_paper_b.py",
+   "tools/validate_paper_b_repairs.py"
   ],
   "related_conjectures": []
  },
@@ -4385,11 +4411,12 @@
  {
   "id": "J-five-step-descent-density",
   "tag": "EXACT — HUMAN PROOF",
-  "statement": "Conditional Paper B Theorem 5.3 (9 September 2026): under H_0(w) for w in {OOEE, OOOEE, OOEOE}, the class of starts with a power-envelope certificate of length at most five has natural density 7/8. The five minimal words are E, OE, OOEE, OOOEE, OOEOE. The required nested correlations remain unproved; this is not an unconditional density or termination theorem.",
+  "statement": "Conditional Paper B Theorem 5.3 (9 September 2026 repair): under H_0(w) for the two words w in {OOOEE, OOEOE}, the starts admitting a power-envelope certificate of length at most five have natural density 7/8. Under H(w; delta_w), any 0<delta_0<1/24 gives error O(N^(1-delta_*)), delta_*=min(delta_0,delta_w). The four-step contribution 13/16 is now unconditional; the two five-letter hypotheses remain unproved. No universal termination conclusion.",
   "source": "docs/theory/juggler_parity_discrepancy_note.md",
   "lean": "",
   "tests": [
-   "tools/validate_paper_b.py"
+   "tools/validate_paper_b.py",
+   "tools/validate_paper_b_repairs.py"
   ],
   "related_conjectures": []
  },
@@ -8009,6 +8036,42 @@
   "lean": "",
   "tests": [
    "tests/research/juggler_sequence/test_parity_neighbor_scale.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-paper-b-restricted-mixed-sums",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Paper B Theorem 4.5: for each fixed C, nonzero integer triples max(|i|,|j|,|k|)<=C P^(1/24) give an odd-input sum of e((i/2)n^(3/2)+(j/2)floor(n^(3/2))^(3/2)+(k/2)n^(9/8)) bounded by O_C(P^(23/24)) on (P,2P]. One differencing with H=P^(1/12), an exact carry expansion, and estimates summed over every gap cell suffice. Includes half-integer j/2 directly; no general decorated-kernel assertion.",
+  "source": "docs/theory/juggler_parity_discrepancy_note.md",
+  "lean": "",
+  "tests": [
+   "tools/validate_paper_b.py",
+   "tools/validate_paper_b_repairs.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-paper-b-partition-curvature",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Paper B Lemma 7.5: if cells have local count O(1+nu L), a continuous reference curvature Lambda has O(1)-component sublevel and dyadic-band sets of total length O(Ps), and |f_second-Lambda|<=rho M with 0<=rho<=1/8, 0<M<=1, MP^2>=1, then the sum is O(P sqrt(M)+(1+nu P)/sqrt(M)+(P/M)^(1/3)+P rho+1). Constants in the hypotheses are fixed. A global transition count and band-by-band cell counting retain the boundary cost.",
+  "source": "docs/theory/juggler_parity_discrepancy_note.md",
+  "lean": "",
+  "tests": [
+   "tools/validate_paper_b.py",
+   "tools/validate_paper_b_repairs.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-paper-b-frozen-gap-collision",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Paper B Proposition 7.6: for u>=1/2, 1<=h<=P^(1/8), uh<=P^(1/2), and positive w comparable to uh P^(-1/4), the basic frozen-gap phase u A_h+(3u/2)floor(Delta_h x^(3/2))(x+2h)^(3/4)+w x^(3/2) has odd-input sum O((uh)^(1/2)P^(5/8)+(h/u)^(1/2)P^(7/8)+(uh)^(-1/3)P^(7/12)+h+P^(1/2)/h+1). The reference-curvature comparison is of values, not derivatives of the floor. This verifies only the basic model, not all decorated Fourier families.",
+  "source": "docs/theory/juggler_parity_discrepancy_note.md",
+  "lean": "",
+  "tests": [
+   "tools/validate_paper_b.py",
+   "tools/validate_paper_b_repairs.py"
   ],
   "related_conjectures": []
  }

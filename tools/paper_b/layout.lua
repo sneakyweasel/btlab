@@ -14,7 +14,7 @@ function Pandoc(doc)
     end
     if block.t == 'Para' and block.content[1] and block.content[1].t == 'Strong' then
       local label = pandoc.utils.stringify(block.content[1])
-      if label:match('^Theorem') or label:match('^Proposition') or label:match('^Lemma') or label:match('^Hypothesis') then
+      if label:match('^Theorem') or label:match('^Proposition') or label:match('^Corollary') or label:match('^Lemma') or label:match('^Hypothesis') then
         blocks:insert(pandoc.RawBlock('latex', '\\needspace{5\\baselineskip}'))
       end
     end

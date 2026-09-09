@@ -1,4 +1,4 @@
-> **Paper B update, 9 September 2026:** the current PDF is the conditional preprint *Parity Statistics of Nested Floor Powers*. The older Paper B description below is historical and superseded. The kernel estimates remain unproved; 13/16 and 7/8 require explicit correlation hypotheses. See [the review](paper_b_review.md) and [build instructions](../docs/theory/PAPER_B_BUILD.md). Companion cross-citations still require review.
+> **Paper B repair, 9 September 2026:** the current preprint proves four-step power-envelope certificate density 13/16. Five-step density 7/8 remains conditional on two correlation hypotheses; the general decorated kernel remains unproved. See [the repair report](paper_b_repair_report.md) and [build instructions](../docs/theory/PAPER_B_BUILD.md). Earlier theorem numbers and companion cross-citations require review.
 
 # Juggler reviewer bundle (three manuscripts)
 
@@ -12,9 +12,9 @@ This snapshot's Paper C Markdown and PDF predate that correction and
 must be rebuilt from `docs/theory/` before further external review.
 The stopped live-pressure hypothesis is unchanged and unproved.
 
-Status: Paper A is the regenerated Zenodo preprint of 9 September 2026; Paper B is a revised
-working draft (8-section journal form; Theorem 5.3 the monomial
-\(c=\tfrac{3k}4 n^{9/8}\); certified density \(7/8\)); Paper C
+Status: Paper A is the regenerated Zenodo preprint of 9 September 2026; Paper B is the repaired
+preprint (unconditional four-step certificate density 13/16 and
+conditional five-step density 7/8); Paper C
 (fate contagion and the almost-all reformulation, 4 September 2026)
 is a complete draft whose main theorem is unconditional and whose
 Appendix C alone depends on Paper B.
@@ -56,31 +56,21 @@ https://sneakyweasel.github.io/btlab/
    `python tools/build_paper_a.py --check`. See
    [build instructions](../docs/theory/PAPER_A_BUILD.md).
 2. [juggler_parity_discrepancy_note.pdf](juggler_parity_discrepancy_note.pdf)
-   — **Paper B**: parity equidistribution of nested floor powers, the
-   level-2 wave bound (Lemma 5.2) and the kernel theorem, complete
-   depth-4 parity equidistribution for odd-rooted itineraries, the
-   length-5 contractors, and the certified-descent densities
-   \(13/16\) (four steps) and \(7/8\) (five steps). Human proofs.
-   Eight-section journal form, 4 September 2026. Theorem 5.3 is the
-   monomial \(c=\tfrac{3k}4 n^{9/8}\); the frozen zero-offset
-   coefficient is \(B=-\tfrac9{32}k\beta_1\beta_2\nu^{-9/8}\) with
-   \(\lvert B\rvert\le6\); \(\rho_0\) ratios are \(O(P^{-1/4})\).
-   Companion audit ledger
-   [paper_b_audit_ledger.md](paper_b_audit_ledger.md) and
-   `research.juggler_sequence.paper_b_audit` (114 exponent checks).
-   Lemma 5.2(ii) from (i) is Claims A–H; Stages 1–5 of (i) remain
-   author-chain.
-   Section 3.5 proves the depth-\(\le3\) Theorems 4.4 and 4.7 on
-   sub-dyadic intervals of length \(\ge P^{1/2}\) with a slow twist
-   (Theorems 4.11–4.12, Corollary 4.13 — the \(OOEEE\) production
-   that Paper C's Appendix C uses). Theorem 5.3 is dyadic;
-   Theorem 5.5 is a human-proof localization to length
-   \(P^{29/48+\delta}\), not an established application at the
-   \(P^{37/64}\) scale needed by the proposed new productions.
-   Section 8 records what the kernel program
-   buys for termination and what it cannot. Two more exact identities in Lean
-   (`carry_eq_fract_add_sub_fract`, `second_difference_product_rule`).
-   Length 7/8 remain laboratory conjectures.
+   — **Paper B**: *Parity Statistics of Nested Floor Powers: Four-Step
+   Descent and Conditional Extensions for the Juggler Map* (9 September 2026).
+   Theorem 4.5 proves restricted mixed exponential sums by an exact carry
+   expansion and estimates over every gap cell. Corollary 4.6 and Theorem
+   5.2 give the unconditional four-step power-envelope certificate density
+   \(13/16\), with error \(O(N^{23/24}(\log(2N))^3)\). Proposition 3.2
+   repairs the OE count, and Proposition 7.6 treats a basic collision model.
+   Theorem 5.3's five-step density \(7/8\) requires two explicit hypotheses.
+   The general decorated kernel, short-interval extension, complete
+   depth-four census, and density-one conclusion remain unproved or
+   conditional as stated in the paper. These are written analytic arguments;
+   no new Lean formalization or independent peer review is claimed.
+   See [the repair report](paper_b_repair_report.md). The
+   [historical audit ledger](paper_b_audit_ledger.md) concerns the superseded
+   4 September draft and does not validate the current analytic proofs.
 3. [juggler_fate_almost_all_note.pdf](juggler_fate_almost_all_note.pdf)
    — **Paper C**
    ([doi:10.5281/zenodo.22678165](https://doi.org/10.5281/zenodo.22678165),
@@ -122,7 +112,7 @@ Markdown sources:
 [juggler_finite_dynamics_note.md](juggler_finite_dynamics_note.md),
 [juggler_parity_discrepancy_note.md](juggler_parity_discrepancy_note.md)
 and [juggler_fate_almost_all_note.md](juggler_fate_almost_all_note.md).
-Paper B's Section 8 figure is
+The historical Paper B frontier figure is
 [figures/juggler_frontier.png](figures/juggler_frontier.png).
 
 ## Optional Lean map
@@ -154,9 +144,9 @@ The core mathematical lemmas of Paper A are mechanized in Lean 4;
 selected finite classifications and the descent floor are
 independently certified computations. Theorems 4.6 and 4.8 are
 verified computations. Proposition 4.9's arithmetic is Lean.
-Every analytic estimate of Paper B (including the kernel theorem
-and the shift-average theorem) is a human proof and is not in
-Lean; only the exact floor reductions beneath them are
+The repaired analytic estimates of Paper B are written proofs and are
+not in Lean. The general kernel theorem remains unproved. Only selected
+exact floor reductions from the earlier draft are formalized
 (`GapCells.lean`, including the double-gap identity
 `seq_floor_gap_second`). Paper C's exact layer (closure of the fate
 classes, trichotomy and exclusion, the even block and \(OE\) fiber

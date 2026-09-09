@@ -588,3 +588,14 @@ completed bounded gate, with exact written statements and finite
 integer controls. Paper A's text, Lean claims and numerical bounds are
 not changed by this investigation. Uniform wrong-parity intersection
 and global no-cycle remain open.
+
+## Authorized parity-carry continuation
+
+The next bounded question is answered in
+[Exact parity carries](juggler_cycle_guard_carries.md). An OE quotient
+and three-valued correction give its exact hidden guard. An infinite
+fully parity-valid OOE family defeats the tested pure-power substitution:
+the quotient discrepancy grows as 36r^2 and its clipped offset error is
+exactly 27r^2 despite a one-integer endpoint correction. That extension
+is CLOSE; this dossier's broader arithmetic closure question remains open.
+

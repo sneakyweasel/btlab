@@ -17,12 +17,12 @@ CC BY 4.0. Use the actual date this version first becomes public as the
 publication date. No DOI has been reserved, and no external record has
 been created.
 
-The PDF is a conditional preprint, not a peer-reviewed article. The
-unconditional certificate density is 3/4. The densities 13/16 and 7/8,
-and the density-one conclusion, require the hypotheses printed in the
-paper. The nested correlation and deterministic kernel estimates remain
-unproved. Arrival at 1 is not claimed. AI assistance is disclosed in
-the manuscript.
+The PDF is a preprint with an unconditional four-step certificate density
+13/16, proved by the restricted mixed-sum estimate. Five-step density 7/8
+requires the two formal-chain hypotheses in Theorem 5.3; density-one
+certificates require fixed-depth equidistribution. The general decorated
+kernel and short-interval estimates remain unproved. Arrival at 1 is not
+claimed. AI assistance is disclosed; no independent peer review is asserted.
 
 Start a deposit at <https://zenodo.org/uploads/new>. Upload the current
 Paper B PDF and the accompanying source/verification archive when

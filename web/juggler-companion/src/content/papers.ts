@@ -23,7 +23,7 @@ export const PAPERS: readonly PaperRecord[] = [
   {
     letter: "B",
     title: "Parity",
-    hint: "Conditional draft. Unconditional certificate density 3/4; 13/16 and 7/8 need the printed hypotheses.",
+    hint: "Unconditional four-step certificate density 13/16; five-step density 7/8 requires two hypotheses. The general kernel remains unproved.",
     pdf: "juggler_parity_discrepancy_note.pdf",
   },
   {

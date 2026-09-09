@@ -75,3 +75,61 @@ def test_exact_report_replays_only_declared_scope_and_existing_cycles(monkeypatc
     assert not data["uniform_parity_closure_proved"]
     assert not data["no_cycle_proved"]
     assert data == json.loads((DATA_ROOT / "cycle_cubic_induction/controls.json").read_text(encoding="utf-8"))
+
+
+def test_square_cell_normal_form_has_three_sharp_corrections():
+    from research.juggler_sequence.cycle_cubic_induction import square_cell_carry
+    import pytest
+    # Independent true roots, including the fourth-power cell boundaries.
+    for y in (1, 2, 3, 29, 10**20+1):
+        for N in (y**4, y**4+1, (y+1)**4-2, (y+1)**4-1):
+            got = square_cell_carry(N, y)
+            u = isqrt(N)
+            assert got["u"] == u and got["c"] == u-y*y
+            assert 0 <= got["h"]-got["c"] <= 2
+    got = square_cell_carry(93**3, 29)
+    assert (got["d"], got["h"], got["c"], got["kappa"]) == (57, 57, 55, 2)
+    for N, y in ((0, 0), (15, 2), (81, 2)):
+        with pytest.raises(ValueError):
+            square_cell_carry(N, y)
+
+
+def test_valid_ooe_family_retains_cells_parity_and_exposes_unbounded_carry():
+    from research.juggler_sequence.cycle_cubic_induction import valid_ooe_carry_family
+    for r in (3, 5, 11, 101, 10**6+1, 10**20+1):
+        row = valid_ooe_carry_family(r)
+        x, u, v, z = row["states"]
+        assert x**3-u*u == 48*r**8+512
+        for a, y, exponent in ((x, u, 3), (u, v, 3), (v, z, 1)):
+            assert y*y < a**exponent < (y+1)**2
+        assert [n % 2 for n in row["states"]] == [1, 1, 0, 1]
+        # Independent exact comparison of the real quotient delta against both bounds.
+        denominator = 2*z*z
+        low = u**3+36*r*r*denominator
+        high = low+denominator
+        assert low*low < x**9 < high*high
+        assert row["clipped_offset_error"] == 27*r*r
+        assert row["ordinary_power_endpoint"] == z+1
+        assert not row["substitution_preserves_unit_endpoint_cell"]
+        assert not row["closed_cycle"]
+
+
+def test_guard_carry_report_reuses_only_the_declared_exact_controls(monkeypatch):
+    import research.juggler_sequence.cycle_cubic_induction as induction
+    import research.juggler_sequence.cycle_cubic_band as cubic
+
+    def forbidden(*args, **kwargs):
+        raise AssertionError("carry verification must not search or rerun a source census")
+
+    for name in ("all_small_cycles", "orbit_cycle", "rounding_cycle"):
+        monkeypatch.setattr(cubic, name, forbidden)
+    monkeypatch.setattr(induction, "source_controls", forbidden)
+    got = induction.guard_carry_report()
+    assert got["normal_form_corrections_seen"] == [0, 1, 2]
+    assert got["scope"]["square_cell_boundary_instances"] == 4351
+    assert [r["sources_checked"] for r in got["cube_fiber_controls"]] == [3, 4, 8, 68]
+    assert got["uniform_bounded_additive_substitution_refuted"]
+    assert not got["general_arithmetic_parity_closure_refuted"]
+    assert not got["no_cycle_proved"]
+    archive = DATA_ROOT / "cycle_cubic_induction/guard_carries.json"
+    assert got == json.loads(archive.read_text(encoding="utf-8"))

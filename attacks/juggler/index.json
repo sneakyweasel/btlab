@@ -601,6 +601,8 @@
       "conjecture": [],
       "decision": "PARK",
       "ledger_ids": [
+        "J-cycle-oe-quotient-parity-carry",
+        "J-cycle-ooe-carry-substitution-obstruction",
         "J-cycle-cubic-euclidean-induction",
         "J-cycle-cubic-return-compression",
         "J-cycle-cubic-hidden-parity"
@@ -4792,12 +4794,9 @@
       "decision": "PROMOTE",
       "ledger_ids": [
         "J-nested-parity-linearization",
-        "J-nested-parity-discrepancy",
         "J-fourth-letter-linearization",
-        "J-triple-parity-discrepancy",
         "J-second-order-linearization",
         "J-equidistribution-implies-density-one",
-        "J-even-branch-third-letter",
         "J-tier2-gap-and-shifted-forms",
         "J-depth4-slow-branch",
         "J-kernel-cancellation",
@@ -5055,6 +5054,23 @@
       "ledger_ids": [],
       "aliases": [],
       "nk_cluster": "Diophantine walls"
+    },
+    {
+      "id": "cycle_guard_carries",
+      "kind": "dossier_only",
+      "probe": null,
+      "test": null,
+      "dossier": "docs/problems/juggler_cycle_guard_carries.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": [
+        "J-cycle-oe-quotient-parity-carry",
+        "J-cycle-ooe-carry-substitution-obstruction"
+      ],
+      "aliases": [],
+      "nk_cluster": "Bounded cell carries do not survive the tested pure-power substitution"
     },
     {
       "id": "cycle_intersection_taxonomy",
@@ -5376,6 +5392,20 @@
       "ledger_ids": [],
       "aliases": [],
       "nk_cluster": "Flights"
+    },
+    {
+      "id": "paper_b_small_shift_repair",
+      "kind": "dossier_only",
+      "probe": null,
+      "test": null,
+      "dossier": "docs/problems/juggler_paper_b_small_shift_repair.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "parity_neighbor_scale",
