@@ -971,7 +971,7 @@ The public statements are audited with their fully qualified namespaces.
 | Appendix E.3 | Square carry: `baseline_bounds`, `baseline_zero_iff`, `baseline_one_iff`, `baseline_two_iff`, `square_guard_iff`; genuine family block: `ooeFamily_juggler_block`. The unbounded real quotient-substitution error remains written |
 | Theorem E.4 | `ooeFamilyReturn_mod_fortyeight`, `ooeFamilyReturn_valuation_drop`, `ooeFamily_juggler_chain_bound`, `ooeFamily_no_infinite_juggler_chain`. The additional 3-adic identity is written; six terminating traces are finite computations |
 | Appendix E.5 | Initialized record: `record_initializes`, `endpoint_validation`; correction and signed floors: `exact_remainder_correction`, `exact_quotient_gap`, `corrected_quotient_integer`; executable recovery and hidden guards: `recoverPeak_eq`, `recoverPeak_guard_iff`. The further OOEOE composition is written |
-| Appendix E.6 | `guardResidueFamily_every_modulus` supplies a counterfamily for every modulus; `guardResidue_first_remainders_zero`, `guardResidue_nat_parities` and `guardResidue_ooe_traces` certify its record and branches. The larger positive-\(b\) Taylor construction and supplementary endpoint/energy discussion remain written; see the formalization map for exact witness data |
+| Appendix E.6 | Every-modulus witness: `guardResidueFamily_every_modulus`; cells and parities: `guardResidue_ooe_traces`, `guardResidue_nat_parities`; exact remainder and valuation: `guardResidue_first_remainders_zero`, `guardResidue_aggregate_valuation`; record collision and classifier obstruction: `guardResidueFamily_record_collision`, `guardResidueFamily_no_record_classifier`; common domain and threshold edges: `guardResidue_common_band_and_section`, `guardResidue_threshold_blocks`. The general positive-\(b\) construction and supplementary bookkeeping remain written |
 
 The cycle theorem starts from an ordinary periodic orbit with an attained
 minimum and maximum, or the repository's actual `CycleMin` predicate.
@@ -986,6 +986,17 @@ The remainder module includes an executable integer recovery function,
 with exact endpoint validation and a signed quotient. Its guard theorem
 recovers both hidden parities from a correctly initialized record;
 it does not assume that every proposed record or endpoint is valid.
+
+For any requested modulus \(q>0\), the formal residue witness chooses
+\(c=512q-1\) and \(b=c^3\). Its colliding record contains the source,
+first image, endpoint and natural aggregate modulo \(q\), the exact
+first remainder \(0\), and the exact aggregate valuation \(3\).
+The same threshold \(B\) and section upper endpoint may also be supplied
+to a proposed classifier: the two inputs still agree and the final
+source parities differ. All six threshold edges, band memberships and
+first-return inclusions/exclusions are proved. Thus the every-modulus
+obstruction includes its geometric domain; only the more general
+free-\(b\) Taylor construction is outside this formal witness theorem.
 
 The general \(OOEOE\) odd-projection claim, fixed-word asymptotic
 transport, accelerated tower partition, substitution-error Taylor

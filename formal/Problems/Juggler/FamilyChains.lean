@@ -97,7 +97,7 @@ theorem ooeFamily_juggler_block {r : ℕ} (hr : 3 ≤ r) (ho : r % 2 = 1) :
 
 def ooeFamilyReturn (r s : ℕ) : Prop := s ^ 8 + 9 = r ^ 9 + 9 * r
 
-theorem ooeFamilyReturn_iff {r s : ℕ} (hr : 3 ≤ r) :
+theorem ooeFamilyReturn_iff {r s : ℕ} (_hr : 3 ≤ r) :
     ooeFamilyExit r = ooeFamilySource s ↔ ooeFamilyReturn r s := by
   unfold ooeFamilyExit ooeFamilySource ooeFamilyReturn
   omega

@@ -194,8 +194,8 @@ scale average is any
 
 | \(C,q\) | optimized \(r\) | strict upper limit for \(\eta\) |
 |---|---:|---:|
-| \(19,1/2\) | 0.5269265491 | 0.0195265491 |
-| \(41,0.55\) | 0.5194493967 | 0.0120493967 |
+| \(19,1/2\) | 0.5269265491 | 0.0194980938 |
+| \(41,0.55\) | 0.5194493967 | 0.0120209415 |
 
 For the cumulative tilted excess
 \(E_k=\sum_{1\le t<d_k}(s_\theta(t)-q)^+\), the existing stopped
@@ -252,6 +252,20 @@ No fate is excluded. No halt theorem.
   summation method or a literature-priority claim.
 
 ## Branch budget
+
+**Shorter-prefix counting follow-up (9 September 2026).**
+
+| Triage item | Scope |
+|---|---|
+| Mathematical target | Can a shorter all-odd prefix bound control the all-odd contribution at the required full depth, and can the recorded error estimates provide it? |
+| Novelty hypothesis | Use inclusion of actual source sets to reduce the depth at which this single cylinder needs to be counted. |
+| Falsifier | The shorter prefix still needs more uniformity than the available estimates supply. |
+| Already killed by? | Fixed-prefix statistics, target-image interval averaging and the full-depth uniformity barrier are recorded. This check varies the prefix length with the source scale and tracks its precise cost; it does not reopen those mechanisms. |
+| Existing machinery | Scale-average pressure sufficiency, the finite V6 contagion root, source-set inclusion and the recorded model of depth loss. |
+| Maximum Phase-0 scope | Derive the two exponent thresholds, the shorter-prefix implication and its error budget; check the numerical constants. No orbit census. |
+| Promotion criterion | An actual arithmetic estimate uniform over the derived depth range. |
+| Stop criterion | Leave the count PARK if only a conditional calibration follows. |
+
 
 **Prefix-selected boundary follow-up budget (9 September 2026).**
 Check whether earlier non-boundary conditions supply a source-count
@@ -579,7 +593,7 @@ The trivial full-population bound is
 \(C=19\),
 \[
 \kappa=4.89342683035\ldots,
-\qquad 1+\eta<1.01952654911\ldots.
+\qquad 1+\eta<1.01949809383\ldots.
 \tag{B3}
 \]
 Suppose a proposed proof controls good scales and uses only this
@@ -627,13 +641,13 @@ not just its validity on the original dyadic starts.
 
 **Fair-normalized tilt/depth tuning cannot fix this cap.** Here fix
 \(q=1/2\), \(a=(1+e^\theta)/2\),
-\(b=1-\lambda^{**}=0.5074\), and
+\(b=1-\lambda^{**}=0.507428455274\ldots\), and
 \(\Delta=2\log2/\log3-1=0.2618595071\ldots\).
 For every \(C>1\), \(\theta>0\), and \(\eta\ge0\) satisfying
 the sufficient rate condition \(r-\eta>b\), one has
 \[
 \kappa-1-\eta>
-\frac{b}{\Delta}-1=0.9376802680\ldots.
+\frac{b}{\Delta}-1=0.9377889342\ldots.
 \tag{C2}
 \]
 To prove this, put \(s=\log a/\theta\). The identity
@@ -663,13 +677,146 @@ Their contribution to \(\rho_k\) is exactly
 \[
 \frac{Q_k}{N_k}\le
 k^{-(\kappa-1-\eta)+o(1)},\qquad
-\kappa-1-\eta>3.8739002812\ldots.
+\kappa-1-\eta>3.8739287365\ldots.
 \tag{C3}
 \]
 No such arithmetic bound is obtained here. Odd-branch injectivity
 gives no density saving for these sources, and the fixed-prefix
-argument above gives no logarithmic power. Even proving (C3) would
-not control the other high-odd-count words or establish (A2).
+argument above gives no logarithmic power. Even proving (C3) would not by itself control the accumulated all-odd
+contribution, the other high-odd-count words, or establish (A2).
+The distinction and a shorter sufficient counting target are detailed
+in the following calibration.
+
+### Shorter-prefix calibration (9 September 2026)
+
+
+Set \(N_0=350000000\), \(L(y)=\log_2(\log(2y)/\log N_0)\),
+\(d(y)=\lceil19L(y)\rceil\), and
+\[
+\mathcal O_t(y)=\{n\in(y,2y]:J^j(n)\text{ is odd for }0\le j<t\}.
+\]
+All floors in \(J(n)=\lfloor n^{3/2}\rfloor\) on odd states are
+retained. These starts remain above the stopping floor while the
+specified odd steps are taken.
+
+At \(y=2^k\), write \(Q_k=|\mathcal O_{d(2^k)}(2^k)|\) and
+\(N_k=2^{k-1}\). At the fair optimized tilt, their exact normalized
+pressure contribution is
+\[
+\rho_k^{O}=\frac{Q_k}{N_k}(e^\theta/a)^{d(2^k)}
+\asymp \frac{Q_k}{N_k}k^\kappa,\qquad
+\kappa=4.893426830351912\ldots.
+\]
+Here \(p=(18/19)\log2/\log3\),
+\(\theta=\log(p/(1-p))\), and \(a=(1+e^\theta)/2\).
+
+The existing termination implication requires the **full** pressure
+sum to be at most \(K^{1+\eta+o(1)}\), where
+\[
+0\le\eta<0.019498093834503\ldots.
+\]
+This value uses the actual finite V6 root
+\(\lambda^{**}=0.492571544725356259\ldots\), rather than substituting
+the rounded display \(0.4926\) as an exact constant.
+
+Positivity implies the necessary individual-scale condition
+\[
+Q_k/N_k\le k^{-(\kappa-1-\eta)+o(1)}.
+\]
+The infimum of this exponent over the admissible choices of \(\eta\)
+is \(3.873928736517410\ldots\). This is the source of the earlier
+benchmark \(3.874\).
+
+However, a **uniform** estimate \(Q_k/N_k\ll k^{-\gamma}\) gives
+\[
+\sum_{k\le K}\rho_k^{O}
+\ll
+\begin{cases}
+K^{1+\kappa-\gamma},&\gamma<\kappa+1,\\
+\log K,&\gamma=\kappa+1,\\
+1,&\gamma>\kappa+1.
+\end{cases}
+\]
+Thus this upper-bound argument fits some permitted pressure budget
+when
+\[
+\boxed{\gamma>4.873928736517410\ldots.}
+\]
+This is a sufficient uniform exponent for the all-odd contribution;
+it is not a necessary pointwise bound on every actual scale.
+For example, the abstract scalar densities \(Q_k/N_k=k^{-4}\)
+pass the necessary benchmark but give cumulative exponent
+\(1.8934268\ldots\), too large. They are not claimed to be realized
+by Juggler starts.
+
+The canonical (C3) count excludes starts that are squares or have
+square first images. Adding these starts back has summable pressure
+by the already-proved sparse-source estimate, so the distinction
+does not change these thresholds.
+
+**A shorter prefix suffices for this contribution.**
+
+Take
+\[
+m(y)=\lceil5L(y)\rceil.
+\]
+For sufficiently large \(y\), \(1\le m(y)\le d(y)\) and, exactly,
+\(\mathcal O_{d(y)}(y)\subseteq\mathcal O_{m(y)}(y)\).
+Consequently the concrete sufficient target
+\[
+\boxed{\quad
+|\mathcal O_{m(y)}(y)|\ll y\,2^{-m(y)}
+\asymp \frac{y}{(\log y)^5}
+\quad}
+\]
+would imply
+\[
+\sum_{k\le K}\rho_k^O\ll K^{0.893426830351912\ldots}.
+\]
+The first odd letter being forced changes only an absolute factor
+of two. A constant multiple of the fair single-cylinder count is
+enough; exact asymptotic equidistribution is unnecessary.
+
+This argument uses inclusion on the original integer sources. It
+does not replace their images by a full interval or discard floor
+corrections. The inclusion is elementary, and no new counting
+theorem is claimed. The shorter depth still tends to infinity:
+it is not a fixed five-step result.
+
+**What an error estimate would need.**
+
+For calibration, suppose one had, with constants independent of
+both \(y\) and \(m\),
+\[
+\frac{|\mathcal O_m(y)|}{y/2}
+\le B\,2^{-(m-1)}
++\exp(Dm)y^{-\delta_0 2^{-cm}},
+\qquad B>0,\ D\ge0,\ \delta_0>0.
+\]
+This estimate has **not** been established here for the actual map.
+At \(m(y)=\lceil\alpha L(y)\rceil\), the logarithm of the error is
+\[
+O(\log\log y)-\Theta((\log y)^{1-c\alpha}).
+\]
+It beats every negative logarithmic power if \(c\alpha<1\).
+Thus the concrete choice \(\alpha=5\) needs \(c<1/5\), meaning
+the error exponent loses a factor less than
+\(2^{1/5}=1.148698354997\ldots\) per additional step.
+
+Optimizing the shorter depth just above
+\(4.873928736517410\ldots\) relaxes the condition to
+\[
+c<0.205173291211\ldots,\qquad
+2^c<1.152824811550\ldots.
+\]
+At \(c\alpha\ge1\), the displayed error bound does not give a
+vanishing density error, let alone the required saving. The
+recorded differencing model has \(c\ge1\); it fails even this
+relaxed single-cylinder budget. This is a limit of those bounds,
+not an impossibility result for a different arithmetic method.
+
+
+**PARK** the actual arithmetic count. This is a conditional calibration of the existing pressure route, not a new counting theorem or named frontier hypothesis. No available estimate checked here meets the derived uniformity requirement. The remaining high-odd-count words also remain uncontrolled. No paper edit, orbit census, runtime module or formalization is introduced.
 
 ### One-sided sieve check: sublinear-order marginals are insufficient
 
@@ -723,7 +870,7 @@ k^{-\gamma+o(1)}
 \tag{D3}
 \]
 an exponential saving in depth. At the specified \(C=19\),
-\(\gamma>3.8739002812\ldots\). Consequently even **exact**
+\(\gamma>3.8739287365\ldots\). Consequently even **exact**
 fairness for all collections of \(o(d)\) remaining time positions cannot,
 by itself, imply the required one-sided all-odd bound. In particular,
 a sieve whose only inputs are those joint statistics cannot certify

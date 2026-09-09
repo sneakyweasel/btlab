@@ -601,6 +601,9 @@
       "conjecture": [],
       "decision": "PARK",
       "ledger_ids": [
+        "J-cycle-ooe-polynomial-block",
+        "J-cycle-subtractive-return-step",
+        "J-cycle-short-return-cells",
         "J-cycle-oe-quotient-parity-carry",
         "J-cycle-ooe-carry-substitution-obstruction",
         "J-cycle-cubic-euclidean-induction",
@@ -1027,6 +1030,7 @@
       "conjecture": [],
       "decision": "CLOSE",
       "ledger_ids": [
+        "J-cycle-fixed-residue-witness",
         "J-cycle-ooe-fixed-residue-obstruction"
       ],
       "aliases": [],
@@ -5114,10 +5118,7 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": [
-        "J-cycle-oe-quotient-parity-carry",
-        "J-cycle-ooe-carry-substitution-obstruction"
-      ],
+      "ledger_ids": [],
       "aliases": [],
       "nk_cluster": "Bounded cell carries do not survive the tested pure-power substitution"
     },
@@ -5457,6 +5458,20 @@
       "nk_cluster": "Paper B: individual wave size does not imply combined dominance"
     },
     {
+      "id": "paper_b_kernel_assembly",
+      "kind": "dossier_only",
+      "probe": null,
+      "test": null,
+      "dossier": "docs/problems/juggler_paper_b_kernel_assembly.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
+    },
+    {
       "id": "paper_b_offset_anchor",
       "kind": "dossier_only",
       "probe": null,
@@ -5476,6 +5491,20 @@
       "probe": null,
       "test": null,
       "dossier": "docs/problems/juggler_paper_b_ooeoe_repair.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
+    },
+    {
+      "id": "paper_b_oooee_transfer",
+      "kind": "dossier_only",
+      "probe": null,
+      "test": null,
+      "dossier": "docs/problems/juggler_paper_b_oooee_transfer.md",
       "data_dir": null,
       "lean": [],
       "conjecture": [],
@@ -5865,7 +5894,15 @@
         "formal/Problems/Juggler/CubicLogGrid.lean",
         "formal/Problems/Juggler/CubicRounding.lean",
         "formal/Problems/Juggler/CubicInterlacing.lean",
-        "formal/Problems/Juggler/CubicConsequences.lean"
+        "formal/Problems/Juggler/CubicConsequences.lean",
+        "formal/Problems/Juggler/ReturnInduction.lean",
+        "formal/Problems/Juggler/ReturnCells.lean",
+        "formal/Problems/Juggler/FamilyChains.lean",
+        "formal/Problems/Juggler/CubicReturnHeight.lean",
+        "formal/Problems/Juggler/RemainderCarry.lean",
+        "formal/Problems/Juggler/CubicReturn.lean",
+        "formal/Problems/Juggler/CubicReturnStrip.lean",
+        "formal/Problems/Juggler/GuardResidueFamily.lean"
       ],
       "conjecture": [],
       "decision": null,

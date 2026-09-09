@@ -12,7 +12,10 @@ from itertools import accumulate, combinations
 import math
 from pathlib import Path
 
+from research.juggler_sequence.fate_contagion import RECURSIONS, lambda_root
 from research.juggler_sequence.tao_reduction import p_of_C
+
+LAMBDA_V6 = lambda_root(RECURSIONS["block_third_plus_oeoee_v6"])
 
 DOSSIER = (
     Path(__file__).resolve().parents[3]
@@ -143,8 +146,8 @@ def test_optimized_scale_average_rates_and_allowed_growth_surplus() -> None:
     """The admissible eta is positive at both quoted elementary depths."""
 
     for C, q, expected_rate, expected_surplus in (
-        (19, 0.5, 0.5269265491091455, 0.01952654910914542),
-        (41, 0.55, 0.5194493967422041, 0.012049396742204177),
+        (19, 0.5, 0.5269265491091455, 0.01949809383450257),
+        (41, 0.55, 0.5194493967422041, 0.01202094146756036),
     ):
         p = p_of_C(C)
         theta = math.log(p * (1.0 - q) / (q * (1.0 - p)))
@@ -153,13 +156,13 @@ def test_optimized_scale_average_rates_and_allowed_growth_surplus() -> None:
         kl = p * math.log(p / q) + (1.0 - p) * math.log((1.0 - p) / (1.0 - q))
         assert math.isclose(rate, C * kl / math.log(2.0), abs_tol=1e-13)
         assert math.isclose(rate, expected_rate, abs_tol=1e-13)
-        assert math.isclose(rate + 0.4926 - 1.0, expected_surplus, abs_tol=1e-13)
+        assert math.isclose(rate + LAMBDA_V6 - 1.0, expected_surplus, abs_tol=1e-13)
         eta = expected_surplus / 2.0
         beta_floor = max(1.0 + eta - rate, 0.0)
-        beta = (beta_floor + 0.4926) / 2.0
-        contagion_exponent = (beta + 0.4926) / 2.0
+        beta = (beta_floor + LAMBDA_V6) / 2.0
+        contagion_exponent = (beta + LAMBDA_V6) / 2.0
         assert 0.0 <= eta < expected_surplus
-        assert beta_floor < beta < contagion_exponent < 0.4926
+        assert beta_floor < beta < contagion_exponent < LAMBDA_V6
 
 
 def test_ceiling_depth_preserves_the_chernoff_power_bound() -> None:
@@ -261,10 +264,10 @@ def test_crude_complement_bound_still_exceeds_the_averaging_allowance() -> None:
     log_base = math.log((1.0 + math.exp(theta)) / 2.0)
     kappa = 19.0 * (theta - log_base) / math.log(2.0)
     rate = 19.0 * (theta * p - log_base) / math.log(2.0)
-    surplus = rate + 0.4926 - 1.0
+    surplus = rate + LAMBDA_V6 - 1.0
     assert math.isclose(kappa, 4.89342683035, abs_tol=1e-10)
-    assert math.isclose(surplus, 0.0195265491, abs_tol=1e-10)
-    assert math.isclose(kappa - (1.0 + surplus), 3.87390028124, abs_tol=1e-10)
+    assert math.isclose(surplus, 0.0194980938, abs_tol=1e-10)
+    assert math.isclose(kappa - (1.0 + surplus), 3.8739287365174, abs_tol=1e-10)
 
 
 def test_fair_cap_gap_persists_under_depth_and_tilt_retuning() -> None:
@@ -273,9 +276,9 @@ def test_fair_cap_gap_persists_under_depth_and_tilt_retuning() -> None:
     log2 = math.log(2.0)
     q_star = log2 / math.log(3.0)
     delta_star = 2.0 * q_star - 1.0
-    threshold = 1.0 - 0.4926
+    threshold = 1.0 - LAMBDA_V6
     cap_infimum = threshold / delta_star
-    assert math.isclose(cap_infimum - 1.0, 0.9376802680800771, abs_tol=1e-13)
+    assert math.isclose(cap_infimum - 1.0, 0.9377889342688821, abs_tol=1e-13)
     t0 = 2.0 * log2 * cap_infimum
     fixtures = [
         (C, math.log(p_of_C(C) / (1.0 - p_of_C(C))))
@@ -311,10 +314,10 @@ def test_fixed_prefix_factor_and_all_odd_density_cost() -> None:
             assert math.isclose(capped_log_pressure, trivial_log_cap + correction, abs_tol=1e-13)
     kappa = C * (theta - log_base) / math.log(2.0)
     rate = C * (theta * p_of_C(C) - log_base) / math.log(2.0)
-    surplus = rate + 0.4926 - 1.0
+    surplus = rate + LAMBDA_V6 - 1.0
     for eta in (0.0, surplus / 2.0, 0.999 * surplus):
         density_exponent_needed = kappa - 1.0 - eta
-        assert density_exponent_needed > 3.87390028124
+        assert density_exponent_needed > 3.8739287365174
         for density_exponent in (density_exponent_needed - 0.25, density_exponent_needed + 0.25):
             for log_scale in (math.log(10.0), 100.0, 1000.0):
                 contribution = (kappa - density_exponent) * log_scale
@@ -489,3 +492,30 @@ def test_first_step_boundary_strip_exponents_and_pressure_cost() -> None:
     assert 2**30 < 3**19
     assert 6**19 < 2**5 * 5**19
     assert Fraction(3, 2) * discrepancy_exponent == Fraction(5, 4) > 1
+
+
+
+def test_pointwise_all_odd_benchmark_does_not_control_its_scale_sum() -> None:
+    """Scalar counterexample to sufficiency; not alleged Juggler counts."""
+
+    p = p_of_C(19)
+    kappa = 19 * math.log2(2 * p)
+    rate = 19 * (
+        p * math.log(2 * p) + (1 - p) * math.log(2 * (1 - p))
+    ) / math.log(2)
+    eta = 0.01
+    assert 0 < eta < rate + LAMBDA_V6 - 1
+    assert kappa - 1 - eta < 4 < kappa - eta < 5
+    for gamma, increasing in ((4, True), (5, False)):
+        normalized_sums = [
+            math.fsum(k ** (kappa - gamma) for k in range(1, K + 1))
+            / K ** (1 + eta)
+            for K in (64, 256, 1024)
+        ]
+        assert all(
+            (right > left) == increasing
+            for left, right in zip(normalized_sums, normalized_sums[1:])
+        )
+    assert math.isclose(1 + kappa - 5, 0.8934268303519122, abs_tol=1e-12)
+    assert 2**30 < 3**19
+    assert 6**19 < 2**5 * 5**19

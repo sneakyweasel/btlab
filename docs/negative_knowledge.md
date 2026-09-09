@@ -17,7 +17,15 @@ without this subtraction. This does not refute a power saving.
 The [corrected offset proof](theory/paper_b_offset_anchor_report.md)
 centers the coefficient and truncates residual modes below the
 curvature-cancellation range, giving O_epsilon(P^(23/24+epsilon))
-for its stated family. The full kernel and OOOEE remain unproved.
+for its stated family. The subsequent
+[dyadic assembly](theory/paper_b_kernel_assembly_report.md) proves
+the weaker undecorated monomial kernel with exponent 127/128.
+The subsequent
+[OOOEE transfer](theory/paper_b_oooee_transfer_report.md) proves the
+specific four-coordinate modes with exponent 127/128 and the
+five-step certificate density 7/8 as AI-assisted written results,
+pending independent review. The 95/96 target, arbitrary decorations,
+and short-interval localization remain unproved.
 Source: [branch dossier](problems/juggler_paper_b_offset_anchor.md).
 Ledger: J-paper-b-offset-composite-729.
 Exact regression control: tools/validate_paper_b_offset_anchor.py.
@@ -38,8 +46,15 @@ The subsequent
 [signed zero-offset proof](theory/paper_b_signed_waves_report.md) bounds
 the combined family by O_epsilon(P^(31/32+epsilon)), including the
 specified D2 factors. It uses signed curvature and Fourier weights.
-The original dominance inference remains refuted; the complete kernel
-and the OOOEE transfer remain open.
+The original dominance inference remains refuted. The subsequent
+[dyadic assembly](theory/paper_b_kernel_assembly_report.md) proves
+the weaker undecorated monomial bound with exponent 127/128.
+The subsequent
+[OOOEE transfer](theory/paper_b_oooee_transfer_report.md) proves the
+specific four-coordinate modes with exponent 127/128 and the
+five-step certificate density 7/8 as AI-assisted written results,
+pending independent review. The 95/96 target, arbitrary decorations,
+and short-interval localization remain unproved.
 
 Source: [D2 supplement](theory/paper_b_d2_report.md), Section 8;
 [branch dossier](problems/juggler_paper_b_d2_repair.md).

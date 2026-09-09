@@ -1,5 +1,57 @@
 # Research journal
 
+## Paper B OOOEE: mixed modes and the five-step count
+
+- **Date:** 9 September 2026. **Source:**
+  [OOOEE transfer](problems/juggler_paper_b_oooee_transfer.md).
+- **What was learned:** The full mixed phase includes k m^(9/4)/2.
+  Retaining l m^(9/8)/2 until after differencing keeps its floor
+  errors small. Recomputing the signed composite gives -243/512
+  for nonzero offsets and 3645/2048 at zero offset with the actual
+  negative moving centers.
+- **Strongest theorem:** All nonzero integer four-coordinate modes
+  for OOOEE, of size at most C P^(1/24), have odd dyadic bound
+  O_(C,epsilon)(P^(127/128+epsilon)). All signs and zero coordinates
+  are covered; both outer A-process diagonals fit.
+- **Consequence:** OOOEE has count N/32 with that error. The full
+  five-step power-envelope certificate class has count 7N/8 with
+  error O_epsilon(N^(127/128+epsilon)).
+- **Evidence:** EXACT — HUMAN PROOF in the written-proof sense.
+  AI-assisted proof and exact controls; no independent mathematical
+  review or Lean verification. Finite tests do not prove cancellation.
+- **Decision:** PROMOTE this precise transfer and its counting results.
+- **Best next question:** Can the complete dependency chain be
+  consolidated and survive a fresh manuscript audit for Zenodo?
+- **Scope:** The historical 95/96 target, arbitrary decorations,
+  localization, and all-depth assertions are unresolved. The
+  existing 27/32 manuscript and deposit files are unchanged.
+  This branch stops at the transfer.
+
+## Paper B dyadic kernel: a weaker assembled bound
+
+- **Date:** 9 September 2026. **Source:**
+  [Dyadic kernel assembly](problems/juggler_paper_b_kernel_assembly.md).
+- **What was learned:** Center both growing M2/M3 coefficients at
+  their integer parts, truncate residuals at P^(1/24), and bound
+  every positive endpoint error before dropping the anchor.
+  The actual moving-center zero-offset family has a frequency gap
+  because kh_1h_2<=P^(5/48).
+- **Strongest theorem:** The undecorated dyadic monomial kernel
+  K_k(P) is O_epsilon(P^(127/128+epsilon)), uniformly for integer
+  1<=k<=P^(1/24). The complete twice-differenced inventory has bound
+  P^(31/32+epsilon), with coefficient mass and all cuts counted.
+- **Auxiliary result:** The moving-center zero-offset family has
+  exponent 29/32; its reference coefficient is -1215/256.
+- **Evidence:** EXACT — HUMAN PROOF in the written-proof sense.
+  Exact identities, full carry inventory, and exponent controls pass.
+  No independent mathematical review or Lean verification.
+- **Decision:** PROMOTE the weaker dyadic kernel and its assembly.
+- **Best next question:** What exact mixed-mode family is needed for
+  OOOEE, and does its phase reduce to a controlled kernel family?
+- **Scope:** The stronger 95/96 target, arbitrary decorations,
+  short intervals, and OOOEE remain unproved. The 27/32 manuscript
+  and existing deposit package are unchanged.
+
 ## Paper B nonzero-offset anchor: corrected composite and family bound
 
 - **Date:** 9 September 2026. **Source:**
@@ -42408,3 +42460,34 @@ Verification reuses seven archived cycles and evaluates five conditional
 ceilings at previous literal starts, without trajectories, a source
 census, a new cycle search, or any floor increase. No new Lean or
 Paper A claim. The remaining cubic region and tall cycles are open.
+
+
+## 2026-09-09 — All-odd counting: cumulative cost and shorter prefix
+
+The user authorized the growing-depth all-odd counting question.
+[The pressure dossier](problems/juggler_pressure_external_average.md)
+now makes explicit that its necessary per-scale exponent
+3.8739287365... does not control even the accumulated all-odd
+contribution. A uniform density bound with exponent gamma controls
+that contribution within some admissible pressure budget if
+gamma>4.8739287365.... The abstract scalar density k^(-4) separates
+the conditions; it is not an asserted distribution of Juggler starts.
+
+Exact source-set inclusion shows that a fair-order upper count for
+the single prefix of length ceil(5 L(y)) would suffice at the full
+length ceil(19 L(y)), giving accumulated exponent
+0.89342683035.... This is conditional algebra, not an actual count.
+For the recorded error model exp(Dm)y^(-delta0 2^(-cm)), the shorter
+choice needs c<1/5; optimizing it gives c<0.2051732912....
+The recorded c>=1 differencing loss still misses this relaxed
+budget. No new arithmetic cancellation estimate was obtained.
+
+The dossier and its regression tests now use the finite V6 root
+0.492571544725356259... when calibrating strict thresholds, rather
+than substituting the rounded display 0.4926 as an exact value.
+
+**Decision: PARK** the arithmetic count. The triage and conditional
+calibration are recorded without promoting a theorem or naming a new
+frontier hypothesis. All nested floors are retained, other high-odd-count
+words remain open, and no source census, floor increase, paper edit,
+runtime probe or formal module is introduced.

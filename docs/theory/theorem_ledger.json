@@ -1,11 +1,77 @@
 [
  {
+  "id": "J-paper-b-oooee-mixed-127",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For every fixed C>=1 and epsilon>0, let X=n^(3/2),m=floor X,Y=m^(3/2),v=floor Y,Z=v^(3/2),w=floor Z,U=sqrt(w). Uniformly over nonzero integer quadruples (i,j,k,l) with max absolute value <= C P^(1/24), the sum over odd P<n<=2P of e((iX+jY+kZ+lU)/2) is O_(C,epsilon)(P^(127/128+epsilon)). All signs and zero coordinates are covered. For k nonzero the negative kernel inventory retains k DD(m^(9/4))/2 and l DD(m^(9/8))/2; recomputed curvature coefficients are -243/512 for nonzero first-floor offsets and 3645/2048 for the zero-offset family with actual negative moving centers. The double correlation has exponent 31/32, then both outer A-processes give 63/64 and 127/128. This is the specified OOOEE formal chain, not an arbitrary decorated or localized family. AI-assisted written proof based on the earlier analytic supplements; exact finite controls are not a proof of cancellation. Independent review and Lean verification outstanding.",
+  "source": "docs/theory/paper_b_oooee_transfer_report.md",
+  "lean": "",
+  "tests": [
+   "tools/validate_paper_b_oooee_transfer.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-paper-b-oooee-count",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For every epsilon>0, every one of the sixteen formal parity-sign classes of (X,Y,Z,U), with X=n^(3/2),m=floor X,Y=m^(3/2),v=floor Y,Z=v^(3/2),w=floor Z,U=sqrt(w), on odd n<=N has count N/32+O_epsilon(N^(127/128+epsilon)). In particular the actual Juggler OOOEE class, where m,v are odd and w,floor U are even, has that count. All fifteen nonempty parity-sign products have the same error, so H(OOOEE;delta) holds for every 0<delta<1/128. Erdős–Turán–Koksma is applied separately on each dyadic block using its own cutoff. The sixteen formal classes must not be identified with sixteen actual itineraries. AI-assisted written proof; independent review and Lean verification outstanding.",
+  "source": "docs/theory/paper_b_oooee_transfer_report.md",
+  "lean": "",
+  "tests": [
+   "tools/validate_paper_b_oooee_transfer.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-paper-b-five-step-density-127",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For every epsilon>0, the full class C_5 of n>=2 with a uniform power-envelope descent certificate of length at most five has count 7N/8+O_epsilon(N^(127/128+epsilon)) up to N, hence natural density 7/8. The disjoint minimal prefix classes are E,OE,OOEE,OOEOE,OOOEE. Combine the existing 27/32 subfamily count with J-paper-b-oooee-count. This discharges the specific hypothesis of the printed conditional Paper B Theorem 5.4 at the written-supplement level; the existing manuscript and deposit files still contain the 27/32 revision pending consolidation and review. This is not the exact class of all starts that descend within five steps and not a termination theorem. AI-assisted written proof; independent mathematical review and Lean verification outstanding.",
+  "source": "docs/theory/paper_b_oooee_transfer_report.md",
+  "lean": "",
+  "tests": [
+   "tools/validate_paper_b_oooee_transfer.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-paper-b-dyadic-kernel-127",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For every epsilon>0, uniformly over integers 1<=k<=P^(1/24), the undecorated dyadic sum K_k(P)=sum over odd P<n<=2P of e((3k/4)n^(9/8){floor(n^(3/2))^(3/2)}) is O_epsilon(P^(127/128+epsilon)). The complete doubly differenced inventory at h1<=P^(1/48),h2<=P^(1/24) has bound P^(31/32+epsilon), including both short centered expansions, all five binary carries, positive errors without an anchor, moving coefficient windows, actual carry restrictions, and every partition endpoint. The outer A-processes give 31/32 -> 63/64 -> 127/128 with both diagonal terms checked. This is weaker than the historical 95/96 target J-kernel-cancellation, which remains CONJECTURE. Arbitrary mixed decorations, short intervals, OOOEE correlations, and density 7/8 do not follow here. AI-assisted written proof using the wave-bearing and corrected offset-anchor supplements and a new moving-zero-offset specialization; exact controls only, with no independent review or Lean verification.",
+  "source": "docs/theory/paper_b_kernel_assembly_report.md",
+  "lean": "",
+  "tests": [
+   "tools/validate_paper_b_kernel_assembly.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-paper-b-ddy-positive-majorant",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Let X=n^(3/2),m=floor X,Y=m^(3/2),1<=h1<=P^(1/48),1<=h2<=P^(1/24),p=h1h2,D=Delta_(2h1)Delta_(2h2)Y,j(n)=Delta_(2h1)Delta_(2h2)m. Uniformly, D(n)=(3/2)j(n)n^(3/4)+(27/4)p n^(1/4)+O((h1+h2)P^(-1/4)), with -1<=j(n)<=2. This is a value approximation, not a frozen-derivative identity. At J=floor(P^(1/24)), the positive sum of E_J(D), where E_J(z)=min(1,1/(J||z||)) and E_J=1 at integers, is O(P^(23/24)log P), also on the odd lattice. Proof compares with the four smooth monotone value models on the whole dyadic block; no original-gap-run multiplier enters the error count. Together with the current manuscript's Y and first-difference estimates this bounds every positive carry error in the kernel assembly. AI-assisted written proof with exact controls, not independently reviewed.",
+  "source": "docs/theory/paper_b_kernel_assembly_report.md",
+  "lean": "",
+  "tests": [
+   "tools/validate_paper_b_kernel_assembly.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-paper-b-kernel-moving-zero-offset",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "In the actual kernel ranges k<=P^(1/24),h1<=P^(1/48),h2<=P^(1/24), set c=(3k/4)x^(9/8),d_i=2h_i,B2=Delta_2 c(x+d1),B1=Delta_1 c(x+d2),N_i=floor B_i,Pi=kh1h2. On Delta_1 Delta_2m=0, the normalized family (K10) at t=0, with integer |u|,|v|,|q|<=6P^(1/24), phi a bounded integer combination of B1,B2,c_11, and amplitude of bounded sup norm plus variation on the N1,N2 cells, has bound O_epsilon(P^(29/32+epsilon)). With u,v fixed, the frozen curvature after the bounded theta expansion is -(27/32)(uh1+vh2)x^(-3/4)-(1215/256)Pi x^(-5/8)+(3/4)ell x^(-1/2)+O(Pi P^(-3/4)). Since Pi<=P^(5/48), ell=0 and nonzero integer ell have separated curvature scales. All floor and window cuts number O(P^(13/24)). This explicitly handles varying N_i; it is not a blanket extension of the fixed-coefficient signed-wave theorem. AI-assisted written proof; exact controls only, independent review and Lean verification outstanding.",
+  "source": "docs/theory/paper_b_kernel_assembly_report.md",
+  "lean": "",
+  "tests": [
+   "tools/validate_paper_b_kernel_assembly.py"
+  ],
+  "related_conjectures": []
+ },
+ {
   "id": "J-cycle-fixed-residue-witness",
   "tag": "EXACT — LEAN VERIFIED",
-  "statement": "Paper A Appendix E.6, explicit formal witness. For every positive residue modulus q, an explicit polynomial pair of prescribed OOE blocks has exact first remainder zero, odd source/first image/endpoint, equal specified source/first-image/endpoint/aggregate residues modulo q, and opposite hidden final E-source guards. The construction uses an internal multiple of q and a positive polynomial choice of b; the general-b Taylor formula remains written. These are geometric blocks, not asserted periodic points. Kernel-verified witness construction; no impossibility for full absolute-value formulas or cycle-specific guards is claimed.",
+  "statement": "Paper A Appendix E.6, explicit formal witness. For every requested modulus q>0, c=512q-1 and b=c^3 yield two prescribed OOE first-return blocks in the same full cubic threshold band and the same section. The source, first image and endpoint are odd, all six threshold edges and first-return memberships are proved, and the final E-source parities differ. The records agree in source/first-image/endpoint/natural-aggregate residues modulo q, exact first remainder zero, and exact aggregate 2-adic valuation three. No classifier of this record can give both hidden parities correctly, even when supplied the exact common threshold and section boundary. The general positive free-b Taylor construction remains written. These blocks are not asserted periodic points; no impossibility for full absolute-value formulas or cycle-specific guards is claimed. Kernel verified.",
   "source": "docs/theory/juggler_finite_dynamics_note.md",
   "lean": "Problems/Juggler/GuardResidueFamily.lean",
-  "decl": "guardResidueFamily_every_modulus",
+  "decl": "guardResidueFamily_no_record_classifier",
   "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_cycle_guard_residues.py",
@@ -154,7 +220,7 @@
  {
   "id": "J-paper-b-d2-reduction",
   "tag": "EXACT — HUMAN PROOF",
-  "statement": "For P tending to infinity, integer 1<=k,h1,h2<=P^(1/24), 1<=h<=P^(1/8), and fixed carry-label extensions with offsets frozen on every first-floor gap run, let F be the second-difference branch function, G=F composed with x^(3/2), A(n)=floor(F(floor(n^(3/2)))), c=3k x^(9/8)/4, B=Delta_(2h)c, N=floor B, beta=B-N, and Q=floor(P^(5/16)). The factor e(-Delta_(2h)(cA)) equals sum_{|r|<=Q} a_r(beta)e((N+r-B)G) with total absolute error O(P^(15/16) log P). The coefficient sup norms plus variations sum to O(log P) per refined interval. Retained phases have second derivative O(P^(-3/16) u h P^(-3/4)) for u>=1/2; new boundary costs are O(P^(11/12)) where the total curvature is comparable to the base wave. Proof uses monotone slow-variable counts, O(P^(3/4)) floor-replacement exceptions, and O(P^(7/8)) floor-crossing exceptions. This is a fixed-label reduction, not a bound for all assembled oscillatory sums. Kernel and OOOEE remain unproved. Written proof with exact controls; no independent review or Lean formalization.",
+  "statement": "For P tending to infinity, integer 1<=k,h1,h2<=P^(1/24), 1<=h<=P^(1/8), and fixed carry-label extensions with offsets frozen on every first-floor gap run, let F be the second-difference branch function, G=F composed with x^(3/2), A(n)=floor(F(floor(n^(3/2)))), c=3k x^(9/8)/4, B=Delta_(2h)c, N=floor B, beta=B-N, and Q=floor(P^(5/16)). The factor e(-Delta_(2h)(cA)) equals sum_{|r|<=Q} a_r(beta)e((N+r-B)G) with total absolute error O(P^(15/16) log P). The coefficient sup norms plus variations sum to O(log P) per refined interval. Retained phases have second derivative O(P^(-3/16) u h P^(-3/4)) for u>=1/2; new boundary costs are O(P^(11/12)) where the total curvature is comparable to the base wave. Proof uses monotone slow-variable counts, O(P^(3/4)) floor-replacement exceptions, and O(P^(7/8)) floor-crossing exceptions. This is a fixed-label reduction, not a bound for all assembled oscillatory sums. The kernel and OOOEE were still open at this branch; subsequent written results J-paper-b-dyadic-kernel-127 and J-paper-b-oooee-mixed-127 supply exponent 127/128 for their specified families. Written proof with exact controls; no independent review or Lean formalization.",
   "source": "docs/theory/paper_b_d2_report.md",
   "lean": "",
   "tests": [
@@ -4583,7 +4649,7 @@
  {
   "id": "J-kernel-cancellation",
   "tag": "CONJECTURE",
-  "statement": "Publication review 9 September 2026: the analytic claim below is not established by Paper B and is retained only as a historical research target. The revised paper gives conditional implications, not this analytic proof. See docs/theory/paper_b_review.md. Historical target: Theorem R (formerly Conjecture O; Theorem 5.3 of the parity-discrepancy paper): K_c(P) = sum over odd n ~ P of e(c(n) {floor(n^{3/2})^{3/2}}) with c(n) = (3k/4) n^{9/8} satisfies K_c(P) << P^{1-1/96+eps}, uniformly for 1 <= k <= P^{1/24}, deliberately unoptimized. The statement is the monomial; a two-sided scale c^{(r)} ~ k P^{9/8-r} does not determine the Step 5a cancellation. Proof (Phase 25 expansion, Phase 26 repair; Paper B Section 4): double Weyl differencing at H1 = P^{1/48}, H2 = P^{1/24}; the exact master identity DD(c theta_2) = (DD c) theta_2 + (D2 c)({W}-kappa_2) + (D1 c)({W'}-kappa_2') + c_11({DDY}-kappa''-D2 kappa_2), proved algebraically in the text by the product rule on the carry-branch decomposition; level-2 waves handled by Lemma 5.2's exact e(qY) model with third differencing (bottleneck P^{23/24}); offset branches by shifted-window expansion (Lemma 3.7) with the printed anchor composite 945/512 - 27/64; zero-offset middle band repaired in Phase 26 by global sublevel splitting (Lemma 3.9): a smooth three-term monomial model for f'' with a trivial bound on the transition set Omega_V and the second-derivative test on the good pieces, total << P^{15/16+eps} — the earlier per-cell summation of inverse-power van der Corput terms was incorrectly assembled and is withdrawn. All derivative tests on odd n are read through the parity-reindexing lemma (Lemma 3.10). Writeup repair (4 September 2026): Lemma 5.2b isolates the frozen-shape interpolant: local (cG) = -135/1024 k beta1 beta2 n^{-13/8} with beta frozen, global Lambda substitutes Delta_i X as values only; rho_0 ratios are O(P^{-1/4}) and sit under 1/2304. Zero-offset B = (9/32) k beta1 beta2 n^{-9/8} has constant size |B| <= 6 (the printed |B|<1 dropped h1 h2 from (C1)); Lemma 3.7 at T = P^{1/2} still applies. Theorem 5.3 exponent unchanged. Earlier writeup repair (2 September 2026): Lemma 5.2 coefficient budget enlarged to |q_d| <= 4 P^{1/24} with at most nine decorations (the printed |q_d| <= P^{1/16} overflowed at every census P with ratio 3 P^{-1/48} -> 0); Step 5b interpolant keeps the two-term majorant 219 P^{-25/24} + 0.11 P^{-5/6} and does not collapse to 0.1 P^{-5/6}; c7 = 1/288 is displayed for the printed triple; P0 is named and ineffective (windows ~ 3e5; V <= c7 S/2 of size 10^{24}). Numerical validators (master_identity_check, kernel_margin_scan) remain in the repository as checks, not proof steps.",
+  "statement": "Subsequent dyadic assembly (9 September 2026) proves the weaker exponent 127/128 in J-paper-b-dyadic-kernel-127, source docs/theory/paper_b_kernel_assembly_report.md. The original 95/96 exponent below remains a CONJECTURE, as do unverified mixed-mode transfers. Publication review 9 September 2026: the analytic claim below is not established by Paper B and is retained only as a historical research target. The revised paper gives conditional implications, not this analytic proof. See docs/theory/paper_b_review.md. Historical target: Theorem R (formerly Conjecture O; Theorem 5.3 of the parity-discrepancy paper): K_c(P) = sum over odd n ~ P of e(c(n) {floor(n^{3/2})^{3/2}}) with c(n) = (3k/4) n^{9/8} satisfies K_c(P) << P^{1-1/96+eps}, uniformly for 1 <= k <= P^{1/24}, deliberately unoptimized. The statement is the monomial; a two-sided scale c^{(r)} ~ k P^{9/8-r} does not determine the Step 5a cancellation. Proof (Phase 25 expansion, Phase 26 repair; Paper B Section 4): double Weyl differencing at H1 = P^{1/48}, H2 = P^{1/24}; the exact master identity DD(c theta_2) = (DD c) theta_2 + (D2 c)({W}-kappa_2) + (D1 c)({W'}-kappa_2') + c_11({DDY}-kappa''-D2 kappa_2), proved algebraically in the text by the product rule on the carry-branch decomposition; level-2 waves handled by Lemma 5.2's exact e(qY) model with third differencing (bottleneck P^{23/24}); offset branches by shifted-window expansion (Lemma 3.7) with the printed anchor composite 945/512 - 27/64; zero-offset middle band repaired in Phase 26 by global sublevel splitting (Lemma 3.9): a smooth three-term monomial model for f'' with a trivial bound on the transition set Omega_V and the second-derivative test on the good pieces, total << P^{15/16+eps} — the earlier per-cell summation of inverse-power van der Corput terms was incorrectly assembled and is withdrawn. All derivative tests on odd n are read through the parity-reindexing lemma (Lemma 3.10). Writeup repair (4 September 2026): Lemma 5.2b isolates the frozen-shape interpolant: local (cG) = -135/1024 k beta1 beta2 n^{-13/8} with beta frozen, global Lambda substitutes Delta_i X as values only; rho_0 ratios are O(P^{-1/4}) and sit under 1/2304. Zero-offset B = (9/32) k beta1 beta2 n^{-9/8} has constant size |B| <= 6 (the printed |B|<1 dropped h1 h2 from (C1)); Lemma 3.7 at T = P^{1/2} still applies. Theorem 5.3 exponent unchanged. Earlier writeup repair (2 September 2026): Lemma 5.2 coefficient budget enlarged to |q_d| <= 4 P^{1/24} with at most nine decorations (the printed |q_d| <= P^{1/16} overflowed at every census P with ratio 3 P^{-1/48} -> 0); Step 5b interpolant keeps the two-term majorant 219 P^{-25/24} + 0.11 P^{-5/6} and does not collapse to 0.1 P^{-5/6}; c7 = 1/288 is displayed for the printed triple; P0 is named and ineffective (windows ~ 3e5; V <= c7 S/2 of size 10^{24}). Numerical validators (master_identity_check, kernel_margin_scan) remain in the repository as checks, not proof steps.",
   "source": "docs/research/juggler_two_step_parity_lemma.md",
   "lean": "Problems/Juggler/GapCells.lean",
   "tests": [
@@ -4619,7 +4685,7 @@
  {
   "id": "J-five-step-descent-density",
   "tag": "EXACT — HUMAN PROOF",
-  "statement": "Conditional Paper B Theorem 5.4 (9 September 2026 OOEOE repair): H_0(OOOEE) suffices for natural density 7/8 of the entire five-step power-envelope certificate set C_5. Under H(OOOEE; delta), the count is 7N/8 + O(N^(1-min(1/48,delta))). The disjoint subfamily D_5 has unconditional density 27/32 by Theorem 5.3; the OOOEE correlation remains unproved. No universal termination conclusion.",
+  "statement": "Printed conditional Paper B Theorem 5.4 (9 September 2026 OOEOE repair): H_0(OOOEE) suffices for natural density 7/8 of the entire five-step power-envelope certificate set C_5. Under H(OOOEE;delta), the count is 7N/8+O(N^(1-min(1/48,delta))). The disjoint subfamily D_5 has unconditional density 27/32 by Theorem 5.3. Subsequent written supplement J-paper-b-oooee-count discharges H(OOOEE;delta) for every 0<delta<1/128; J-paper-b-five-step-density-127 records the resulting unconditional 7/8 count. The printed manuscript has not yet been consolidated with that proof; independent review is outstanding. No universal termination conclusion.",
   "source": "docs/theory/juggler_parity_discrepancy_note.md",
   "lean": "",
   "tests": [

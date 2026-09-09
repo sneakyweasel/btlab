@@ -342,6 +342,16 @@ controls the entire sorted cycle in log-log coordinates. Propositions
 within-branch differences alone cannot prove no-cycle. They concern
 different maps and are not counterexamples to the Juggler conjecture.
 
+**Contribution 7 — a periodic height gap and exact short-return guards.**
+For \(m\ge7\), Theorem 3.39 strengthens the hypothesis \(M<m^3\)
+to \(M<m^3-m^{15/8}\). It uses the ordered return images of the
+minimum and maximum retained states, followed by exact parity faces
+of the floor cells. Appendix E gives exact carry recovery, a finite
+bound on consecutive transitions in a polynomial growth family, and
+counterfamilies delimiting two proposed guard summaries. The family
+obstructions concern prescribed blocks; the height gap uses actual
+periodicity. None increases the numerical period floor.
+
 These statements are not interchangeable. Theorem 4.4 is
 the conceptual sharp inequality (constant \(1\)). Corollary 4.5
 is the convenient length-only statewise bound that turns a
@@ -485,6 +495,12 @@ starts from integer square-cell inequalities and the actual successor map;
 its geometric conclusion is not an assumption. Appendix A identifies the
 public declarations. The illustrative asymptotic comparison following
 Proposition 3.36 and the open absolute-cell question remain written analysis.
+Section 3.11's actual-cycle seam and integer height gap are formalized
+from periodic-orbit hypotheses. Appendix E's formal coverage includes
+the short OE/OOE cells, subtractive rank returns, exact family-chain bound,
+and retained-remainder recovery. Its larger analytic constructions and
+full tower discussions remain written where Appendix A indicates.
+The new proofs use kernel verification and add no native scan.
 The real projection description and the higher-difference consequence
 are explanatory deductions from the listed results. The grid endpoints
 use the namespace `Problems.Juggler.CubicGrid`.
@@ -3846,8 +3862,10 @@ with a positive length-uniform anchor contribution.
 
 Section 3.10 isolates a second unresolved question: whether absolute
 floor-cell alignment forces every threshold cycle to contain a
-wrong-parity state. Its structural theorems and altered-map
-counterexamples do not establish that conclusion.
+wrong-parity state. Theorem 3.39 answers this only in the top strip
+\(m^3-m^{15/8}\le M<m^3\), \(m\ge7\). The remaining region
+and the taller-cycle case are still unresolved. Appendix E's family
+and guard results do not establish the uniform conclusion.
 
 The result does not imply termination. The remaining
 finance-survivor lengths are uncontrolled, and existence of a
@@ -4121,6 +4139,13 @@ None of these distinctions is removed by compiling the barrel.
 | Proposition 3.36 | Exact-cycle realization: `threshold_cycle_grid`, `cubicBand_cycle_grid` with conclusion `RealizedGridBounds`; the illustrative asymptotic width comparison remains written analysis |
 | Proposition 3.37 | `cubicParityProject_greatest`, `cubicRounding_eq_or_pred`, `cubicRounding_exists_primitive`, `cubicRounding_real_loss`, `cubicRounding_finite_invariant_rotation`; modular consequences as in Theorem 3.33 |
 | Proposition 3.38 | `branchOffset_same_branch_difference`, `branchOffset_same_branch_smooth_gap`, `branchOffset_nearest_even_gap`; kernel-checked witness: `branchOffsetCycle_cells`, `branchOffsetCycle_primitive`, `branchOffsetCycle_bounds`, `branchOffsetCycle_counts`, `branchOffsetCycle_rank_rotation`, `branchOffsetCycle_mechanical_prefix` |
+| Theorem 3.39 | Exact actual-cycle seam: `cycleMin_exact_return_seam`; integer height gap: `cubic_return_height_algebra`, `cycleMin_height_strip`, `cycleMin_all_states_height_strip`; top-strip obstruction: `threshold_cycle_wrong_parity`. The maximum-odd-integer restatement and the sharper fractional bound for \(t\) are written consequences |
+| Appendix E.1 | OE cell: `oe_eq_iff`; OOE floor and odd endpoint: `ooe_one_integer`, `ooe_odd_maximal`; hidden-parity family: `oe_perfect_power_hidden_odd`. General root iteration, OOEOE projection and fixed-word asymptotics remain written |
+| Appendix E.2 | Exact one-step rank returns: `left_subtractive_first_return`, `right_subtractive_first_return`; word statistics: `left_word_statistics`, `right_word_statistics`; guards: `follows_append`. Full accelerated tower partition remains written |
+| Appendix E.3 | Square carry: `baseline_bounds`, `baseline_zero_iff`, `baseline_one_iff`, `baseline_two_iff`, `square_guard_iff`; genuine family block: `ooeFamily_juggler_block`. The unbounded real quotient-substitution error remains written |
+| Theorem E.4 | `ooeFamilyReturn_mod_fortyeight`, `ooeFamilyReturn_valuation_drop`, `ooeFamily_juggler_chain_bound`, `ooeFamily_no_infinite_juggler_chain`. The additional 3-adic identity is written; six terminating traces are finite computations |
+| Appendix E.5 | Initialized record: `record_initializes`, `endpoint_validation`; correction and signed floors: `exact_remainder_correction`, `exact_quotient_gap`, `corrected_quotient_integer`; executable recovery and hidden guards: `recoverPeak_eq`, `recoverPeak_guard_iff`. The further OOEOE composition is written |
+| Appendix E.6 | Every-modulus witness: `guardResidueFamily_every_modulus`; cells and parities: `guardResidue_ooe_traces`, `guardResidue_nat_parities`; exact remainder and valuation: `guardResidue_first_remainders_zero`, `guardResidue_aggregate_valuation`; record collision and classifier obstruction: `guardResidueFamily_record_collision`, `guardResidueFamily_no_record_classifier`; common domain and threshold edges: `guardResidue_common_band_and_section`, `guardResidue_threshold_blocks`. The general positive-\(b\) construction and supplementary bookkeeping remain written |
 | Lemma 3.21b | canonical run form; Theorem 3.2 |
 | Lemma 3.21a | the case split of Theorem 3.22 |
 | Lemma 4.1 | `log_le_two_log_add` |
@@ -4940,6 +4965,31 @@ It lies in the threshold band with \(b=s^3\).
 Likewise \(13\mapsto46\mapsto311\mapsto17\) has odd endpoints
 and the stated \(OOE\) endpoint identity, but both hidden guards fail.
 
+For completeness, a fixed prescribed word also has an exact
+floor-loss identity. Let its branch exponents be \(\alpha_j\), its
+successive states \(n_j=\lfloor n_{j-1}^{\alpha_j}\rfloor\), its
+prefix products \(p_j=\prod_{i\le j}\alpha_i\), and
+\[
+q_j=p_k/p_j,\qquad
+\epsilon_j=n_{j-1}^{\alpha_j}-n_j.
+\]
+Since \(n_{j-1}^{p_k/p_{j-1}}=(n_j+\epsilon_j)^{q_j}\),
+telescoping gives
+\[
+x^{p_k}-n_k=\sum_{j=1}^k
+\bigl((n_j+\epsilon_j)^{q_j}-n_j^{q_j}\bigr).
+\]
+If every nonempty proper prefix has \(p_j>p_k\), concavity gives the strict upper bound
+\[
+1+\sum_{j<k}q_jn_j^{q_j-1}.
+\]
+When the sum is at most \(1\), an odd final output is the odd
+projection of \(x^{p_k}\). Each such fixed word eventually has
+this property as \(x\) grows, because its finitely many negative
+powers tend to zero. This supplies no uniform threshold for
+words whose length grows, and does not certify internal parities.
+This general fixed-word asymptotic statement remains a written proof.
+
 ### E.2. Euclidean return words retain the complete guard
 
 For the rank rotation
@@ -4963,7 +5013,7 @@ instead gives
 \]
 When \(a=b\), every rank in the prefix of length \(a\) returns
 by \(AB\) and is fixed by the induced rank map.
-Iterating yields the accelerated formulas
+Iterating yields the accelerated formulas, for \(q\ge1\),
 \[
 (qb+r,b;A,B)\longmapsto(r,b;A,A^qB),\qquad 0\le r<b,
 \]
@@ -4995,8 +5045,9 @@ The tower partition therefore transfers every original parity
 condition. Fully expanding this representation still gives \(L\)
 tests across all retained bases. This is exact symbolic closure;
 it does not provide a uniformly shorter arithmetic test for those
-guards. The rank induction and tower discussion here are written
-proofs; the existing formal itinerary concatenation theorem
+guards. The two subtractive rank returns and their word statistics are
+formalized. The complete accelerated tower partition remains written;
+the existing formal itinerary concatenation theorem
 `follows_append` supplies the semantic composition law.
 
 ### E.3. An exact quotient form and its failed power substitution
@@ -5144,6 +5195,13 @@ drops give \(\nu_2(r-1)-2(k-1)\ge4\), which is the asserted bound.
 The final destination need not continue, and no additional drop
 has been assumed there. \(\square\)
 
+For continuing destinations one also has
+\(\nu_3(s-1)=\nu_3(r-1)+2\). If \(r=1+3j\), its right-hand
+factor is \(18+108j+756j^2\equiv18\pmod{27}\); the other
+three left-hand factors are prime to \(3\), since \(s\equiv1\pmod3\).
+This additional identity is a written observation and is not needed
+for the finite bound.
+
 This excludes escape by endless exact concatenation of this family.
 It says nothing about later re-entry, other growth patterns, or
 general escape to infinity.
@@ -5254,7 +5312,7 @@ those specified summaries, not unrestricted arithmetic in full
 absolute values and not a periodic-set invariant.
 
 *Proof.* Let \(Q\ge2\) be any even integer, set \(c=Q-1\), and
-choose \(b\equiv3\pmod4\) with \(b^2>504c^5\). For \(d=1,-c\), set
+choose a positive integer \(b\equiv3\pmod4\) with \(b^2>504c^5\). For \(d=1,-c\), set
 \[
 t_d=b^4+4d,\quad x_d=t_d^2,\quad u_d=t_d^3,
 \]
@@ -5324,10 +5382,31 @@ For any fixed finite list of moduli, choose an even common multiple
 as \(Q\). The common data then give opposite guards, proving the
 claim. \(\square\)
 
+The formal witness specializes this construction, for any requested
+modulus \(q>0\), to \(c=512q-1\) and \(b=c^3\). It verifies the
+colliding record, including the exact aggregate valuation \(3\),
+and both blocks' common threshold and first-return section. Even
+supplying that exact threshold and section boundary to a classifier
+of the stated record cannot distinguish the final source parities.
+The general free-\(b\) argument above remains a written proof.
+
 The two source values are different, and neither is asserted to
 belong to a cycle. The absolute quotient and cell comparisons
 in Section E.5 distinguish them. Adding a later intermediate parity
 or remainder would also distinguish them.
+
+The dyadic endpoint summary has a related limitation. For a
+word of length \(L\ge1\), odd count \(o\), and odd endpoint \(y\),
+\[
+x^{3^o}-y^{2^L}\equiv x^{3^o}-1\pmod{2^{L+2}}.
+\]
+For an odd expanding closed return \(y=x>1\), its nonzero
+aggregate has valuation \(\nu_2(x-1)\), because \(3^o-2^L\)
+is odd. This is endpoint information, not the hidden source guards.
+Likewise, an energy formed from squared differences of neighboring
+wrong-parity indicators counts changes in those indicators. It can
+vanish when every indicator is \(1\); it does not initialize their
+correct value.
 
 The analogous aggregate calculation on an actual return permutation
 \(y_i=x_{\sigma(i)}\), with peaks \(v_i\) and displacements

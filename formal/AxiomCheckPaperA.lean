@@ -306,3 +306,9 @@ import Problems.JugglerPaper
 #print axioms Problems.Juggler.guardResidue_first_remainders_zero
 #print axioms Problems.Juggler.guardResidue_nat_parities
 #print axioms Problems.Juggler.guardResidue_ooe_traces
+
+#print axioms Problems.Juggler.guardResidue_aggregate_valuation
+#print axioms Problems.Juggler.guardResidueFamily_record_collision
+#print axioms Problems.Juggler.guardResidueFamily_no_record_classifier
+#print axioms Problems.Juggler.guardResidue_common_band_and_section
+#print axioms Problems.Juggler.guardResidue_threshold_blocks

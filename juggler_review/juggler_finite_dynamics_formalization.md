@@ -956,3 +956,52 @@ checks, not inputs to the quantified real inequalities.
 The illustrative state-width discussion after Proposition 3.36 remains
 written analysis under \(\Lambda\log c_i\ll1\). The universal wrong-parity
 intersection and global no-cycle statements remain unproved.
+
+## 12. Absolute return cells and the periodic height gap
+
+Paper A Section 3.11 and Appendix E are the canonical written sources.
+The new modules are imported by both registered barrels in dependency order.
+The public statements are audited with their fully qualified namespaces.
+
+| Paper statement | Formal coverage and boundary |
+|---|---|
+| Theorem 3.39 | Exact actual-cycle seam: `cycleMin_exact_return_seam`; integer height gap: `cubic_return_height_algebra`, `cycleMin_height_strip`, `cycleMin_all_states_height_strip`; top-strip obstruction: `threshold_cycle_wrong_parity`. The maximum-odd-integer restatement and the sharper fractional bound for \(t\) are written consequences |
+| Appendix E.1 | OE cell: `oe_eq_iff`; OOE floor and odd endpoint: `ooe_one_integer`, `ooe_odd_maximal`; hidden-parity family: `oe_perfect_power_hidden_odd`. General root iteration, OOEOE projection and fixed-word asymptotics remain written |
+| Appendix E.2 | Exact one-step rank returns: `left_subtractive_first_return`, `right_subtractive_first_return`; word statistics: `left_word_statistics`, `right_word_statistics`; guards: `follows_append`. Full accelerated tower partition remains written |
+| Appendix E.3 | Square carry: `baseline_bounds`, `baseline_zero_iff`, `baseline_one_iff`, `baseline_two_iff`, `square_guard_iff`; genuine family block: `ooeFamily_juggler_block`. The unbounded real quotient-substitution error remains written |
+| Theorem E.4 | `ooeFamilyReturn_mod_fortyeight`, `ooeFamilyReturn_valuation_drop`, `ooeFamily_juggler_chain_bound`, `ooeFamily_no_infinite_juggler_chain`. The additional 3-adic identity is written; six terminating traces are finite computations |
+| Appendix E.5 | Initialized record: `record_initializes`, `endpoint_validation`; correction and signed floors: `exact_remainder_correction`, `exact_quotient_gap`, `corrected_quotient_integer`; executable recovery and hidden guards: `recoverPeak_eq`, `recoverPeak_guard_iff`. The further OOEOE composition is written |
+| Appendix E.6 | Every-modulus witness: `guardResidueFamily_every_modulus`; cells and parities: `guardResidue_ooe_traces`, `guardResidue_nat_parities`; exact remainder and valuation: `guardResidue_first_remainders_zero`, `guardResidue_aggregate_valuation`; record collision and classifier obstruction: `guardResidueFamily_record_collision`, `guardResidueFamily_no_record_classifier`; common domain and threshold edges: `guardResidue_common_band_and_section`, `guardResidue_threshold_blocks`. The general positive-\(b\) construction and supplementary bookkeeping remain written |
+
+The cycle theorem starts from an ordinary periodic orbit with an attained
+minimum and maximum, or the repository's actual `CycleMin` predicate.
+The normalized section, injectivity, hidden parities and strict return
+ordering are proved internally. They are not extra hypotheses.
+For \(m\ge7\) and \(M<m^3\), the final conclusion is the exact integer
+inequality \(m^{15}<(m^3-M)^8\). The natural subtraction is positive
+under the stated height assumption. The equivalent fractional-power
+wording requires no numerical approximation.
+
+The remainder module includes an executable integer recovery function,
+with exact endpoint validation and a signed quotient. Its guard theorem
+recovers both hidden parities from a correctly initialized record;
+it does not assume that every proposed record or endpoint is valid.
+
+For any requested modulus \(q>0\), the formal residue witness chooses
+\(c=512q-1\) and \(b=c^3\). Its colliding record contains the source,
+first image, endpoint and natural aggregate modulo \(q\), the exact
+first remainder \(0\), and the exact aggregate valuation \(3\).
+The same threshold \(B\) and section upper endpoint may also be supplied
+to a proposed classifier: the two inputs still agree and the final
+source parities differ. All six threshold edges, band memberships and
+first-return inclusions/exclusions are proved. Thus the every-modulus
+obstruction includes its geometric domain; only the more general
+free-\(b\) Taylor construction is outside this formal witness theorem.
+
+The general \(OOEOE\) odd-projection claim, fixed-word asymptotic
+transport, accelerated tower partition, substitution-error Taylor
+argument, and supplementary 3-adic/endpoint bookkeeping remain written
+proofs. These distinctions do not weaken the fully formalized periodic
+height theorem. The six stored terminating family traces are checked
+computations and do not establish universal family termination.
+No global no-cycle theorem or universal escape exclusion is established.

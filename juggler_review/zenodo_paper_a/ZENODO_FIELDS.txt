@@ -1,5 +1,5 @@
 GENERATED FROM docs/theory/; do not edit this export.
-Prepared metadata only; no external record has been created.
+Metadata for the local revision; this build does not upload a new version.
 
 TITLE
 Lower Bounds for Cycle Lengths in the Juggler Map

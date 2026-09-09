@@ -4145,7 +4145,7 @@ None of these distinctions is removed by compiling the barrel.
 | Appendix E.3 | Square carry: `baseline_bounds`, `baseline_zero_iff`, `baseline_one_iff`, `baseline_two_iff`, `square_guard_iff`; genuine family block: `ooeFamily_juggler_block`. The unbounded real quotient-substitution error remains written |
 | Theorem E.4 | `ooeFamilyReturn_mod_fortyeight`, `ooeFamilyReturn_valuation_drop`, `ooeFamily_juggler_chain_bound`, `ooeFamily_no_infinite_juggler_chain`. The additional 3-adic identity is written; six terminating traces are finite computations |
 | Appendix E.5 | Initialized record: `record_initializes`, `endpoint_validation`; correction and signed floors: `exact_remainder_correction`, `exact_quotient_gap`, `corrected_quotient_integer`; executable recovery and hidden guards: `recoverPeak_eq`, `recoverPeak_guard_iff`. The further OOEOE composition is written |
-| Appendix E.6 | `guardResidueFamily_every_modulus` supplies a counterfamily for every modulus; `guardResidue_first_remainders_zero`, `guardResidue_nat_parities` and `guardResidue_ooe_traces` certify its record and branches. The larger positive-\(b\) Taylor construction and supplementary endpoint/energy discussion remain written; see the formalization map for exact witness data |
+| Appendix E.6 | Every-modulus witness: `guardResidueFamily_every_modulus`; cells and parities: `guardResidue_ooe_traces`, `guardResidue_nat_parities`; exact remainder and valuation: `guardResidue_first_remainders_zero`, `guardResidue_aggregate_valuation`; record collision and classifier obstruction: `guardResidueFamily_record_collision`, `guardResidueFamily_no_record_classifier`; common domain and threshold edges: `guardResidue_common_band_and_section`, `guardResidue_threshold_blocks`. The general positive-\(b\) construction and supplementary bookkeeping remain written |
 | Lemma 3.21b | canonical run form; Theorem 3.2 |
 | Lemma 3.21a | the case split of Theorem 3.22 |
 | Lemma 4.1 | `log_le_two_log_add` |
@@ -5381,6 +5381,14 @@ They also have the same exact valuation
 For any fixed finite list of moduli, choose an even common multiple
 as \(Q\). The common data then give opposite guards, proving the
 claim. \(\square\)
+
+The formal witness specializes this construction, for any requested
+modulus \(q>0\), to \(c=512q-1\) and \(b=c^3\). It verifies the
+colliding record, including the exact aggregate valuation \(3\),
+and both blocks' common threshold and first-return section. Even
+supplying that exact threshold and section boundary to a classifier
+of the stated record cannot distinguish the final source parities.
+The general free-\(b\) argument above remains a written proof.
 
 The two source values are different, and neither is asserted to
 belong to a cycle. The absolute quotient and cell comparisons
