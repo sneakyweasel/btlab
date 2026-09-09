@@ -1,0 +1,1237 @@
+{
+  "review_date": "2026-09-09",
+  "scope": "Independent arithmetic and finite checks; not formal verification of the analytic proofs.",
+  "existing_audit": {
+    "git_commit": "unknown",
+    "paper": "docs/theory/juggler_fate_almost_all_note.md",
+    "N0": 350000000,
+    "checks": {
+      "contagion": [
+        {
+          "name": "lambda_star (block_average_only)",
+          "printed": 0.3774,
+          "computed": 0.3774401681534122,
+          "abs_error": 4.016815341217894e-05,
+          "ok": true
+        },
+        {
+          "name": "pairing-only (block_average_plus_third)",
+          "printed": 0.448,
+          "computed": 0.44801700122730537,
+          "abs_error": 1.700122730535769e-05,
+          "ok": true
+        },
+        {
+          "name": "oeoee-only (block_third_plus_oeoee)",
+          "printed": 0.4801,
+          "computed": 0.4801145718496832,
+          "abs_error": 1.457184968317593e-05,
+          "ok": true
+        },
+        {
+          "name": "v3-only (block_third_plus_oeoee_v3)",
+          "printed": 0.4891,
+          "computed": 0.4890678795095489,
+          "abs_error": 3.2120490451093e-05,
+          "ok": true
+        },
+        {
+          "name": "v4-only (block_third_plus_oeoee_v4)",
+          "printed": 0.4916,
+          "computed": 0.4916233334356801,
+          "abs_error": 2.3333435680117365e-05,
+          "ok": true
+        },
+        {
+          "name": "v5-only (block_third_plus_oeoee_v5)",
+          "printed": 0.4924,
+          "computed": 0.49235906048881073,
+          "abs_error": 4.093951118927519e-05,
+          "ok": true
+        },
+        {
+          "name": "lambda** (block_third_plus_oeoee_v6)",
+          "printed": 0.4926,
+          "computed": 0.49257154472535614,
+          "abs_error": 2.8455274643846007e-05,
+          "ok": true
+        },
+        {
+          "name": "lambda*** (block_third_plus_ooeee)",
+          "printed": 0.5392,
+          "computed": 0.5391796859705966,
+          "abs_error": 2.0314029403389888e-05,
+          "ok": true
+        },
+        {
+          "name": "conditional depth-two ideal-share model",
+          "printed": 0.4927,
+          "computed": 0.4926579801153874,
+          "abs_error": 4.201988461260964e-05,
+          "ok": true
+        },
+        {
+          "name": "lambda_star via residual",
+          "printed": 0.3774,
+          "computed": 0.3774401681534124,
+          "abs_error": 4.0168153412400986e-05,
+          "ok": true
+        },
+        {
+          "name": "pairing via residual",
+          "printed": 0.448,
+          "computed": 0.4480170012273056,
+          "abs_error": 1.7001227305579736e-05,
+          "ok": true
+        },
+        {
+          "name": "ideal via residual",
+          "printed": 0.4927,
+          "computed": 0.49265798011538753,
+          "abs_error": 4.2019884612498615e-05,
+          "ok": true
+        },
+        {
+          "name": "lambda(1) conditional pairing-share model",
+          "printed": 0.448,
+          "computed": 0.4480170012273049,
+          "abs_error": 1.7001227304913602e-05,
+          "ok": true
+        },
+        {
+          "name": "lambda(1) conditional ideal-share model",
+          "printed": 0.4927,
+          "computed": 0.49265798011538753,
+          "abs_error": 4.2019884612498615e-05,
+          "ok": true
+        },
+        {
+          "name": "lambda(2) conditional pairing-share model",
+          "printed": 0.6247,
+          "computed": 0.6247277027196891,
+          "abs_error": 2.7702719689104427e-05,
+          "ok": true
+        },
+        {
+          "name": "lambda(2) conditional ideal-share model",
+          "printed": 0.718,
+          "computed": 0.7179648798704841,
+          "abs_error": 3.51201295158976e-05,
+          "ok": true
+        },
+        {
+          "name": "lambda(3) conditional pairing-share model",
+          "printed": 0.7095,
+          "computed": 0.7095331793097053,
+          "abs_error": 3.317930970525573e-05,
+          "ok": true
+        },
+        {
+          "name": "lambda(3) conditional ideal-share model",
+          "printed": 0.8414,
+          "computed": 0.8413565367931324,
+          "abs_error": 4.346320686765548e-05,
+          "ok": true
+        },
+        {
+          "name": "lambda(4) conditional pairing-share model",
+          "printed": 0.7516,
+          "computed": 0.7515815875589429,
+          "abs_error": 1.8412441057158446e-05,
+          "ok": true
+        },
+        {
+          "name": "lambda(4) conditional ideal-share model",
+          "printed": 0.9121,
+          "computed": 0.9121453502913082,
+          "abs_error": 4.535029130814383e-05,
+          "ok": true
+        }
+      ],
+      "tao": [
+        {
+          "name": "rate threshold 1 - pairing",
+          "printed": 0.552,
+          "computed": 0.5519829987726946,
+          "abs_error": 1.7001227305413202e-05,
+          "ok": true
+        },
+        {
+          "name": "rate threshold 1 - oeoee",
+          "printed": 0.5199,
+          "computed": 0.5198854281503168,
+          "abs_error": 1.4571849683231441e-05,
+          "ok": true
+        },
+        {
+          "name": "rate threshold 1 - v3",
+          "printed": 0.5109,
+          "computed": 0.5109321204904511,
+          "abs_error": 3.2120490451093e-05,
+          "ok": true
+        },
+        {
+          "name": "rate threshold 1 - v4",
+          "printed": 0.5084,
+          "computed": 0.5083766665643199,
+          "abs_error": 2.3333435680061854e-05,
+          "ok": true
+        },
+        {
+          "name": "rate threshold 1 - v5",
+          "printed": 0.5076,
+          "computed": 0.5076409395111893,
+          "abs_error": 4.093951118921968e-05,
+          "ok": true
+        },
+        {
+          "name": "rate threshold 1 - lambda**",
+          "printed": 0.5074,
+          "computed": 0.5074284552746439,
+          "abs_error": 2.8455274643901518e-05,
+          "ok": true
+        },
+        {
+          "name": "rate threshold 1 - lambda***",
+          "printed": 0.4608,
+          "computed": 0.4608203140294034,
+          "abs_error": 2.0314029403389888e-05,
+          "ok": true
+        },
+        {
+          "name": "rate threshold 1 - lambda_ideal",
+          "printed": 0.5073,
+          "computed": 0.5073420198846126,
+          "abs_error": 4.201988461260964e-05,
+          "ok": true
+        },
+        {
+          "name": "e(20)",
+          "printed": 0.574,
+          "computed": 0.5737956448546405,
+          "abs_error": 0.0002043551453594361,
+          "ok": true
+        },
+        {
+          "name": "e(19)",
+          "printed": 0.527,
+          "computed": 0.526926549109147,
+          "abs_error": 7.34508908529774e-05,
+          "ok": true
+        },
+        {
+          "name": "e(18)",
+          "printed": 0.48,
+          "computed": 0.4804066215192821,
+          "abs_error": 0.0004066215192821132,
+          "ok": true
+        },
+        {
+          "name": "least depth, pairing regime",
+          "printed": 20,
+          "computed": 20,
+          "abs_error": 0,
+          "ok": true
+        },
+        {
+          "name": "least depth, oeoee regime",
+          "printed": 19,
+          "computed": 19,
+          "abs_error": 0,
+          "ok": true
+        },
+        {
+          "name": "least depth, v3 regime",
+          "printed": 19,
+          "computed": 19,
+          "abs_error": 0,
+          "ok": true
+        },
+        {
+          "name": "least depth, v4 regime",
+          "printed": 19,
+          "computed": 19,
+          "abs_error": 0,
+          "ok": true
+        },
+        {
+          "name": "least depth, v5 regime",
+          "printed": 19,
+          "computed": 19,
+          "abs_error": 0,
+          "ok": true
+        },
+        {
+          "name": "least depth, lambda** regime",
+          "printed": 19,
+          "computed": 19,
+          "abs_error": 0,
+          "ok": true
+        },
+        {
+          "name": "least depth, lambda*** regime",
+          "printed": 18,
+          "computed": 18,
+          "abs_error": 0,
+          "ok": true
+        },
+        {
+          "name": "least depth, ideal regime",
+          "printed": 19,
+          "computed": 19,
+          "abs_error": 0,
+          "ok": true
+        },
+        {
+          "name": "C(0.5), lambda*** regime",
+          "printed": 18,
+          "computed": 18,
+          "abs_error": 0,
+          "ok": true
+        },
+        {
+          "name": "C(0.55), lambda*** regime",
+          "printed": 39,
+          "computed": 39,
+          "abs_error": 0,
+          "ok": true
+        },
+        {
+          "name": "C(0.6), lambda*** regime",
+          "printed": 206,
+          "computed": 206,
+          "abs_error": 0,
+          "ok": true
+        },
+        {
+          "name": "C(0.62), lambda*** regime",
+          "printed": 1451,
+          "computed": 1451,
+          "abs_error": 0,
+          "ok": true
+        },
+        {
+          "name": "C(0.5), lambda** regime",
+          "printed": 19,
+          "computed": 19,
+          "abs_error": 0,
+          "ok": true
+        },
+        {
+          "name": "C(0.55), lambda** regime",
+          "printed": 41,
+          "computed": 41,
+          "abs_error": 0,
+          "ok": true
+        },
+        {
+          "name": "C(0.6), lambda** regime",
+          "printed": 223,
+          "computed": 223,
+          "abs_error": 0,
+          "ok": true
+        },
+        {
+          "name": "C(0.62), lambda** regime",
+          "printed": 1586,
+          "computed": 1586,
+          "abs_error": 0,
+          "ok": true
+        },
+        {
+          "name": "C(0.5), pairing regime",
+          "printed": 20,
+          "computed": 20,
+          "abs_error": 0,
+          "ok": true
+        },
+        {
+          "name": "C(0.55), pairing regime",
+          "printed": 44,
+          "computed": 44,
+          "abs_error": 0,
+          "ok": true
+        },
+        {
+          "name": "C(0.6), pairing regime",
+          "printed": 240,
+          "computed": 240,
+          "abs_error": 0,
+          "ok": true
+        },
+        {
+          "name": "C(0.62), pairing regime",
+          "printed": 1715,
+          "computed": 1715,
+          "abs_error": 0,
+          "ok": true
+        },
+        {
+          "name": "pressure C(0.5), lambda*** regime",
+          "printed": 18,
+          "computed": 18,
+          "abs_error": 0,
+          "ok": true
+        },
+        {
+          "name": "pressure C(0.55), lambda*** regime",
+          "printed": 38,
+          "computed": 38,
+          "abs_error": 0,
+          "ok": true
+        },
+        {
+          "name": "pressure C(0.6), lambda*** regime",
+          "printed": 198,
+          "computed": 198,
+          "abs_error": 0,
+          "ok": true
+        },
+        {
+          "name": "pressure C(0.62), lambda*** regime",
+          "printed": 1369,
+          "computed": 1369,
+          "abs_error": 0,
+          "ok": true
+        },
+        {
+          "name": "pressure C(0.5), lambda** regime",
+          "printed": 19,
+          "computed": 19,
+          "abs_error": 0,
+          "ok": true
+        },
+        {
+          "name": "pressure C(0.55), lambda** regime",
+          "printed": 41,
+          "computed": 41,
+          "abs_error": 0,
+          "ok": true
+        },
+        {
+          "name": "pressure C(0.6), lambda** regime",
+          "printed": 214,
+          "computed": 214,
+          "abs_error": 0,
+          "ok": true
+        },
+        {
+          "name": "pressure C(0.62), lambda** regime",
+          "printed": 1496,
+          "computed": 1496,
+          "abs_error": 0,
+          "ok": true
+        },
+        {
+          "name": "pressure C(0.5), pairing regime",
+          "printed": 20,
+          "computed": 20,
+          "abs_error": 0,
+          "ok": true
+        },
+        {
+          "name": "pressure C(0.55), pairing regime",
+          "printed": 43,
+          "computed": 43,
+          "abs_error": 0,
+          "ok": true
+        },
+        {
+          "name": "pressure C(0.6), pairing regime",
+          "printed": 230,
+          "computed": 230,
+          "abs_error": 0,
+          "ok": true
+        },
+        {
+          "name": "pressure C(0.62), pairing regime",
+          "printed": 1618,
+          "computed": 1618,
+          "abs_error": 0,
+          "ok": true
+        }
+      ],
+      "constants_table": [
+        {
+          "name": "L(1e20)",
+          "printed": 1.25,
+          "computed": 1.2485578843236127,
+          "abs_error": 0.001442115676387301,
+          "ok": true
+        },
+        {
+          "name": "d(1e20)",
+          "printed": 25,
+          "computed": 25,
+          "abs_error": 0,
+          "ok": true
+        },
+        {
+          "name": "bad probability at 1e20",
+          "printed": 0.065,
+          "computed": 0.06495946645736694,
+          "abs_error": 4.053354263305886e-05,
+          "ok": true
+        },
+        {
+          "name": "(log y)^-0.6 at 1e20",
+          "printed": 0.1,
+          "computed": 0.10047374481040945,
+          "abs_error": 0.00047374481040944605,
+          "ok": true
+        },
+        {
+          "name": "least depth for rate 0.6 at 1e20",
+          "printed": 19,
+          "computed": 19,
+          "abs_error": 0,
+          "ok": true
+        },
+        {
+          "name": "L(1e100)",
+          "printed": 3.55,
+          "computed": 3.55326947430744,
+          "abs_error": 0.003269474307439957,
+          "ok": true
+        },
+        {
+          "name": "d(1e100)",
+          "printed": 72,
+          "computed": 72,
+          "abs_error": 0,
+          "ok": true
+        },
+        {
+          "name": "bad probability at 1e100",
+          "printed": 0.017,
+          "computed": 0.016717749048680224,
+          "abs_error": 0.0002822509513197777,
+          "ok": true
+        },
+        {
+          "name": "(log y)^-0.6 at 1e100",
+          "printed": 0.038,
+          "computed": 0.038253448009174004,
+          "abs_error": 0.0002534480091740052,
+          "ok": true
+        },
+        {
+          "name": "least depth for rate 0.6 at 1e100",
+          "printed": 56,
+          "computed": 56,
+          "abs_error": 0,
+          "ok": true
+        },
+        {
+          "name": "L(1e1000)",
+          "printed": 6.87,
+          "computed": 6.87129537719735,
+          "abs_error": 0.001295377197349623,
+          "ok": true
+        },
+        {
+          "name": "d(1e1000)",
+          "printed": 138,
+          "computed": 138,
+          "abs_error": 0,
+          "ok": true
+        },
+        {
+          "name": "bad probability at 1e1000",
+          "printed": 0.0038,
+          "computed": 0.003811408769345075,
+          "abs_error": 1.1408769345075138e-05,
+          "ok": true
+        },
+        {
+          "name": "(log y)^-0.6 at 1e1000",
+          "printed": 0.0096,
+          "computed": 0.009608831701270136,
+          "abs_error": 8.831701270136522e-06,
+          "ok": true
+        },
+        {
+          "name": "least depth for rate 0.6 at 1e1000",
+          "printed": 117,
+          "computed": 117,
+          "abs_error": 0,
+          "ok": true
+        }
+      ],
+      "statement_boundaries": [
+        {
+          "name": "1015 follows OEOEE to 6",
+          "printed": true,
+          "computed": true,
+          "abs_error": 0,
+          "ok": true,
+          "evidence": {
+            "start": 1015,
+            "word": "OEOEE",
+            "orbit": [
+              1015,
+              32336,
+              179,
+              2394,
+              48,
+              6
+            ],
+            "source": 6,
+            "collapsed_9_32_floor": 7,
+            "in_claimed_source_interval": false,
+            "nested_3_4_floor": 179,
+            "nested_source_condition": true
+          }
+        },
+        {
+          "name": "collapsed 9/32 fiber differs from exact iterate",
+          "printed": true,
+          "computed": true,
+          "abs_error": 0,
+          "ok": true,
+          "evidence": {
+            "start": 1015,
+            "word": "OEOEE",
+            "orbit": [
+              1015,
+              32336,
+              179,
+              2394,
+              48,
+              6
+            ],
+            "source": 6,
+            "collapsed_9_32_floor": 7,
+            "in_claimed_source_interval": false,
+            "nested_3_4_floor": 179,
+            "nested_source_condition": true
+          }
+        },
+        {
+          "name": "nested OEOEE source condition survives the falsifier",
+          "printed": true,
+          "computed": true,
+          "abs_error": 0,
+          "ok": true,
+          "evidence": {
+            "start": 1015,
+            "word": "OEOEE",
+            "orbit": [
+              1015,
+              32336,
+              179,
+              2394,
+              48,
+              6
+            ],
+            "source": 6,
+            "collapsed_9_32_floor": 7,
+            "in_claimed_source_interval": false,
+            "nested_3_4_floor": 179,
+            "nested_source_condition": true
+          }
+        },
+        {
+          "name": "A greater than C plus one need not absorb the Azuma target",
+          "printed": true,
+          "computed": true,
+          "abs_error": 0,
+          "ok": true,
+          "evidence": {
+            "C_azuma": 100.0,
+            "q_azuma": 0.5,
+            "azuma_exponent": 4.48108525811523,
+            "old_A_witness": 101.5,
+            "additive_error_exponent": 1.5,
+            "C_chernoff": 41.0,
+            "q_chernoff": 0.55,
+            "p_C": 0.6155412229965439,
+            "theta_optimizer": 0.26999465148776536,
+            "optimized_tilt_rate": 0.00878182645842493,
+            "off_tilt_rate": 0.006604424909267284,
+            "kl_rate": 0.008781826458425124,
+            "chernoff_exponent": 0.519449396742214
+          }
+        },
+        {
+          "name": "optimizing tilt is required for the KL rate",
+          "printed": true,
+          "computed": true,
+          "abs_error": 0,
+          "ok": true,
+          "evidence": {
+            "C_azuma": 100.0,
+            "q_azuma": 0.5,
+            "azuma_exponent": 4.48108525811523,
+            "old_A_witness": 101.5,
+            "additive_error_exponent": 1.5,
+            "C_chernoff": 41.0,
+            "q_chernoff": 0.55,
+            "p_C": 0.6155412229965439,
+            "theta_optimizer": 0.26999465148776536,
+            "optimized_tilt_rate": 0.00878182645842493,
+            "off_tilt_rate": 0.006604424909267284,
+            "kl_rate": 0.008781826458425124,
+            "chernoff_exponent": 0.519449396742214
+          }
+        }
+      ]
+    },
+    "classification": {
+      "total_checks": 83,
+      "failures": 0,
+      "failing_names": [],
+      "all_printed_constants_reproduce": true
+    }
+  },
+  "formal_surface": {
+    "root": "Problems.JugglerFatePaper",
+    "barrel_imports": [
+      "Problems.Juggler.TerminationFloor257",
+      "Problems.Juggler.FateContagion",
+      "Problems.Juggler.CubeFiber",
+      "Problems.Juggler.TiltedShare",
+      "Problems.Juggler.FateRecursion",
+      "Problems.Juggler.FateFirstLetter",
+      "Problems.Juggler.FateSweep",
+      "Problems.Juggler.FateSweepMonotone",
+      "Problems.Juggler.FateChernoff",
+      "Problems.Juggler.FatePressure",
+      "Problems.Juggler.FateTaoReduction",
+      "Problems.Juggler.FateSeed"
+    ],
+    "artifact": {
+      "asked": 141,
+      "recorded": 141,
+      "axiom_lists": [
+        "propext",
+        "propext, Classical.choice, Quot.sound",
+        "propext, Quot.sound"
+      ]
+    },
+    "appendix_a_names": 124,
+    "surface": {
+      "modules": 42,
+      "declarations": 1465,
+      "compiler_trusted": [],
+      "compiler_dependent": [],
+      "open": []
+    },
+    "table": {
+      "rows": 25,
+      "lean": [
+        "Fate classes closed; trichotomy; exclusion (Lemma 2.1)",
+        "Even block is an interval (Lemma 3.1)",
+        "\\(OE\\) fiber is an interval; cell identity (Lemma 3.2)",
+        "Odd generation (Theorem 6.1)",
+        "Envelope descent into the floor (Lemma 8.1)",
+        "Sweep lemma (Lemma 4.1), both half-cell conventions",
+        "Monotone pairing (Lemma 4.1')",
+        "Cube fibers full or alternating (Lemma 4.7)",
+        "Recursion lemma (Lemma 5.1)",
+        "Seed (Lemma 5.2)",
+        "Least failure is \\(OO\\)-type; first-letter trichotomy (Proposition 6.3(i), Section 6.2)",
+        "Tao-type rate implies the conjecture (Theorem 7.2), with the contagion bound of Theorem 5.3 as a hypothesis",
+        "Chernoff count of bad words (Lemma 8.2, exact form)",
+        "Theorem 8.3, explicit form \\(y\\Lambda^{-e(C)}+2\\Lambda^Cy(\\log y)^{-A}\\) at every \\(y\\)",
+        "Pressure form (Theorem 9.2, exact: a pressure bound \\(Na_\\theta^dE\\) gives at most \\(Ne^{-dD(p_C\\Vert 1/2)}E\\) live starts)",
+        "Pressure telescoping (Proposition 9.3)"
+      ],
+      "human": [
+        "Fiber parity, thin fibers (Lemmas 4.2--4.3)",
+        "Block average (Proposition 4.4), asymptotic",
+        "Share law and its three corollaries (Lemma 4.5, Corollary 4.6)",
+        "Contagion (Theorem 5.3)",
+        "First-letter identity (6.1)",
+        "Almost-all equivalence (Theorem 7.3)",
+        "Azuma and exponential-moment arguments (Sections 8--10, except Lemma 8.2, Theorem 8.3, Theorem 9.2 and Proposition 9.3 in their exact forms)"
+      ],
+      "other": [
+        "Localized triple discrepancy (Appendix C)",
+        "Numerical experiments (Section 11)"
+      ]
+    },
+    "problems": []
+  },
+  "fresh_lean_axiom_audit": {
+    "matches_recorded": true,
+    "declarations": 141,
+    "forbidden": [],
+    "build": "passed"
+  },
+  "independent_roots": {
+    "pairing": "0.448017001227305544763828283075800067673801291612436524439642",
+    "V2": "0.480114571849683343278656763608963893547615163523396762346496",
+    "V3": "0.489067879509549155801501153307522548437927960007036729363016",
+    "V4": "0.491623333435680250355318235590739375773542202076118081819829",
+    "V5": "0.492359060488810957264322379901773177187469252219055237562441",
+    "V6": "0.492571544725356259004339218986000473053376884060362592748331",
+    "conditional_Appendix_C": "0.539179685970596776136163473887355764818517614951681645073578",
+    "depth_two_ideal": "0.492657980115387660136385087210460386631895844260818211488946"
+  },
+  "net_gains": [
+    {
+      "k": 2,
+      "rho": "9/32",
+      "gain": "1/27"
+    },
+    {
+      "k": 3,
+      "rho": "27/128",
+      "gain": "1/81"
+    },
+    {
+      "k": 4,
+      "rho": "81/512",
+      "gain": "1/243"
+    },
+    {
+      "k": 5,
+      "rho": "243/2048",
+      "gain": "1/729"
+    },
+    {
+      "k": 6,
+      "rho": "729/8192",
+      "gain": "1/2187"
+    }
+  ],
+  "independent_depths": {
+    "V6": {
+      "Chernoff": {
+        "0.5": {
+          "least_integer_C": 19,
+          "rate": "0.52692654910914631577350873303108662",
+          "previous_rate": "0.48040662151928209609586241033193015"
+        },
+        "0.55": {
+          "least_integer_C": 41,
+          "rate": "0.51944939674220874299043638579735924",
+          "previous_rate": "0.50080380304888179321715218650331755"
+        },
+        "0.60": {
+          "least_integer_C": 214,
+          "rate": "0.50784593538009609188676199324045911",
+          "previous_rate": "0.50497060830627103927990513613097592"
+        },
+        "0.62": {
+          "least_integer_C": 1496,
+          "rate": "0.50761112874893937724252208513181944",
+          "previous_rate": "0.50724452881341092145219846755593041"
+        }
+      },
+      "Azuma": {
+        "0.5": {
+          "least_integer_C": 19,
+          "rate": "0.52354141901008230806170433111012295",
+          "previous_rate": "0.47743679197810650393618640860756168"
+        },
+        "0.55": {
+          "least_integer_C": 41,
+          "rate": "0.50817988827398447817902335255708314",
+          "previous_rate": "0.48998202743018649129102131981239999"
+        },
+        "0.60": {
+          "least_integer_C": 223,
+          "rate": "0.50808530265216462256278357487555982",
+          "previous_rate": "0.50534819633041045494662485386837874"
+        },
+        "0.62": {
+          "least_integer_C": 1586,
+          "rate": "0.50760349519863765137988402797332345",
+          "previous_rate": "0.5072592648178882208648188081871974"
+        }
+      }
+    },
+    "pairing": {
+      "Chernoff": {
+        "0.5": {
+          "least_integer_C": 20,
+          "rate": "0.57379564485464030711173609253164762",
+          "previous_rate": "0.52692654910914631577350873303108662"
+        },
+        "0.55": {
+          "least_integer_C": 43,
+          "rate": "0.55684383304945415983437407351079298",
+          "previous_rate": "0.53813022216460572247864395875977543"
+        },
+        "0.60": {
+          "least_integer_C": 230,
+          "rate": "0.55388305993348628292777714009617281",
+          "previous_rate": "0.55100410368944496100891901513514757"
+        },
+        "0.62": {
+          "least_integer_C": 1618,
+          "rate": "0.55234143216343464743573036573979932",
+          "previous_rate": "0.55197475222677567384093583138424423"
+        }
+      },
+      "Azuma": {
+        "0.5": {
+          "least_integer_C": 20,
+          "rate": "0.56998189224729012652378355446707537",
+          "previous_rate": "0.52354141901008230806170433111012295"
+        },
+        "0.55": {
+          "least_integer_C": 44,
+          "rate": "0.56296447868041615874841298442561447",
+          "previous_rate": "0.54467333492090207609266550502223087"
+        },
+        "0.60": {
+          "least_integer_C": 240,
+          "rate": "0.55464569153389340639926778829335134",
+          "previous_rate": "0.55190540840779208265220597295594723"
+        },
+        "0.62": {
+          "least_integer_C": 1715,
+          "rate": "0.55201368221115833862605316962826888",
+          "previous_rate": "0.55166938566015360922556880387451219"
+        }
+      }
+    },
+    "Appendix_C": {
+      "Chernoff": {
+        "0.5": {
+          "least_integer_C": 18,
+          "rate": "0.48040662151928209609586241033193015",
+          "previous_rate": "0.43429686783858183385561789350349188"
+        },
+        "0.55": {
+          "least_integer_C": 38,
+          "rate": "0.46362937672787070010465380389639338",
+          "previous_rate": "0.44510682076318077498497605578750127"
+        },
+        "0.60": {
+          "least_integer_C": 198,
+          "rate": "0.46187338414269902638124554569825343",
+          "previous_rate": "0.45900260245967334800922107450868049"
+        },
+        "0.62": {
+          "least_integer_C": 1369,
+          "rate": "0.46105937866751642523028979894936694",
+          "previous_rate": "0.46069288576446906680004836581743396"
+        }
+      },
+      "Azuma": {
+        "0.5": {
+          "least_integer_C": 18,
+          "rate": "0.47743679197810650393618640860756168",
+          "previous_rate": "0.43172727812875659903015236946310765"
+        },
+        "0.55": {
+          "least_integer_C": 39,
+          "rate": "0.47182008259707935771856148997334592",
+          "previous_rate": "0.45369688924919130272339719484826005"
+        },
+        "0.60": {
+          "least_integer_C": 206,
+          "rate": "0.4615851296542225400646921333348024",
+          "previous_rate": "0.45885202075745743106621259436079369"
+        },
+        "0.62": {
+          "least_integer_C": 1451,
+          "rate": "0.46113809026014433114791904259562393",
+          "previous_rate": "0.46079394888845663954525930549573015"
+        }
+      }
+    }
+  },
+  "exact_endpoint_checks": [
+    {
+      "k": 1,
+      "m": 2,
+      "left": 7,
+      "right_exclusive": 19,
+      "ok": true
+    },
+    {
+      "k": 1,
+      "m": 3,
+      "left": 19,
+      "right_exclusive": 41,
+      "ok": true
+    },
+    {
+      "k": 1,
+      "m": 7,
+      "left": 180,
+      "right_exclusive": 256,
+      "ok": true
+    },
+    {
+      "k": 1,
+      "m": 19,
+      "left": 2571,
+      "right_exclusive": 2948,
+      "ok": true
+    },
+    {
+      "k": 2,
+      "m": 2,
+      "left": 14,
+      "right_exclusive": 51,
+      "ok": true
+    },
+    {
+      "k": 2,
+      "m": 3,
+      "left": 51,
+      "right_exclusive": 142,
+      "ok": true
+    },
+    {
+      "k": 2,
+      "m": 7,
+      "left": 1017,
+      "right_exclusive": 1626,
+      "ok": true
+    },
+    {
+      "k": 2,
+      "m": 19,
+      "left": 35222,
+      "right_exclusive": 42271,
+      "ok": true
+    },
+    {
+      "k": 3,
+      "m": 2,
+      "left": 34,
+      "right_exclusive": 190,
+      "ok": true
+    },
+    {
+      "k": 3,
+      "m": 3,
+      "left": 190,
+      "right_exclusive": 741,
+      "ok": true
+    },
+    {
+      "k": 3,
+      "m": 7,
+      "left": 10228,
+      "right_exclusive": 19121,
+      "ok": true
+    },
+    {
+      "k": 3,
+      "m": 19,
+      "left": 1154566,
+      "right_exclusive": 1472505,
+      "ok": true
+    },
+    {
+      "k": 4,
+      "m": 2,
+      "left": 111,
+      "right_exclusive": 1093,
+      "ok": true
+    },
+    {
+      "k": 4,
+      "m": 3,
+      "left": 1093,
+      "right_exclusive": 6706,
+      "ok": true
+    },
+    {
+      "k": 4,
+      "m": 7,
+      "left": 222018,
+      "right_exclusive": 511306,
+      "ok": true
+    },
+    {
+      "k": 4,
+      "m": 19,
+      "left": 121122554,
+      "right_exclusive": 167523487,
+      "ok": true
+    },
+    {
+      "k": 5,
+      "m": 2,
+      "left": 534,
+      "right_exclusive": 11259,
+      "ok": true
+    },
+    {
+      "k": 5,
+      "m": 3,
+      "left": 11259,
+      "right_exclusive": 126460,
+      "ok": true
+    },
+    {
+      "k": 5,
+      "m": 7,
+      "left": 13443662,
+      "right_exclusive": 40885991,
+      "ok": true
+    },
+    {
+      "k": 5,
+      "m": 19,
+      "left": 59928493411,
+      "right_exclusive": 92349441297,
+      "ok": true
+    },
+    {
+      "k": 6,
+      "m": 2,
+      "left": 4333,
+      "right_exclusive": 252348,
+      "ok": true
+    },
+    {
+      "k": 6,
+      "m": 3,
+      "left": 252348,
+      "right_exclusive": 6347523,
+      "ok": true
+    },
+    {
+      "k": 6,
+      "m": 7,
+      "left": 3196613383,
+      "right_exclusive": 14085297954,
+      "ok": true
+    },
+    {
+      "k": 6,
+      "m": 19,
+      "left": 234518880853350,
+      "right_exclusive": 417425551673527,
+      "ok": true
+    }
+  ],
+  "finite_word_counts": [
+    {
+      "k": 1,
+      "source": 2,
+      "odd_points": 6,
+      "matching_words": 4,
+      "land_at_source": 4,
+      "ok": true
+    },
+    {
+      "k": 2,
+      "source": 2,
+      "odd_points": 18,
+      "matching_words": 4,
+      "land_at_source": 4,
+      "ok": true
+    },
+    {
+      "k": 3,
+      "source": 2,
+      "odd_points": 78,
+      "matching_words": 2,
+      "land_at_source": 2,
+      "ok": true
+    },
+    {
+      "k": 4,
+      "source": 2,
+      "odd_points": 491,
+      "matching_words": 3,
+      "land_at_source": 3,
+      "ok": true
+    },
+    {
+      "k": 5,
+      "source": 2,
+      "odd_points": 5362,
+      "matching_words": 10,
+      "land_at_source": 10,
+      "ok": true
+    },
+    {
+      "k": 6,
+      "source": 2,
+      "odd_points": 124008,
+      "matching_words": 47,
+      "land_at_source": 47,
+      "ok": true
+    }
+  ],
+  "retired_constant_witnesses": {
+    "m_prime": 2,
+    "claimed_correction_le_1_over_16": "0.08504937501089856026598002",
+    "one_over_16": "0.0625",
+    "claimed_slow_derivative_upper_below_half": "0.6429329871398046231622763"
+  },
+  "archival_observation_checks": {
+    "fate_contagion": {
+      "max_block_abs_sqrt_deviation": 0.7172189661966965,
+      "closure_keys": [
+        "limit",
+        "dyadic_blocks",
+        "ell_sqrt_x_to_x",
+        "ell_even_part",
+        "ell_odd_part",
+        "e_coefficient_realised",
+        "oe_coefficient_realised",
+        "total_logmass",
+        "total_logmass_e_only",
+        "log_limit"
+      ]
+    },
+    "tao_reduction": {
+      "top_level_keys": [
+        "git_commit",
+        "lambda_starstar",
+        "required_rate",
+        "least_C",
+        "lambda_star3_with_ooeee",
+        "required_rate_star3",
+        "least_C_star3",
+        "biased_split_least_C_star3",
+        "chernoff_exponent",
+        "biased_split",
+        "table",
+        "odd_run_census",
+        "tao_census",
+        "pressure_census",
+        "pressure_form_least_C"
+      ],
+      "caps": [
+        [
+          "/pressure_census/1e12/bit_capped",
+          1
+        ],
+        [
+          "/pressure_census/1e20/bit_capped",
+          0
+        ],
+        [
+          "/pressure_census/1e30/bit_capped",
+          0
+        ],
+        [
+          "/pressure_census/1e50/bit_capped",
+          0
+        ]
+      ]
+    },
+    "oe_fiber_share": {
+      "top_level_keys": [
+        "statement",
+        "cubes",
+        "empty_beta_integral",
+        "extreme_window_beta",
+        "extreme_window_alpha_units_of_m_to_minus_third",
+        "paper_c_window_units_of_m_to_minus_third",
+        "paper_c_window_over_sharp",
+        "phase_average",
+        "density",
+        "window_fit",
+        "lean",
+        "paper_c"
+      ],
+      "caps": []
+    }
+  },
+  "all_checks_passed": true
+}

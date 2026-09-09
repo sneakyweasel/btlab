@@ -77,6 +77,14 @@ def test_parity_is_a_separate_requirement():
     assert not narrow["actual_juggler_cycle"] and not tall["actual_juggler_cycle"]
 
 
+def test_floor_ties_are_excluded_only_on_the_cycle():
+    # The image blocks need not be strictly separated on the whole interval.
+    # The proof must use injectivity on a primitive cycle to remove this tie.
+    assert threshold_step(3, 3) == threshold_step(25, 3) == 5
+    for states in all_small_cycles(3):
+        assert not ({3, 25} <= set(states))
+
+
 def test_invalid_inputs_and_corrupted_cycles_are_rejected():
     with pytest.raises(ValueError):
         orbit_cycle(2)

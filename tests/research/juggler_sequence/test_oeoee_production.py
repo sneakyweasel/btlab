@@ -311,9 +311,11 @@ def test_note_records_the_production():
     paper_c = Path("docs/theory/juggler_fate_almost_all_note.md").read_text(
         encoding="utf-8"
     )
-    assert "seven non-main terms" in paper_c
+    # The publication revision proves the finite words in Appendix D.
+    assert "Appendix D. The finite nested productions" in paper_c
     assert r"O_k(P^{-5s/8})" in paper_c
-    assert "fixed named estimate" in paper_c
+    assert "Averaged cancellation inside the short fibers" in paper_c
+    assert r"I_k(m)=[\Phi^{k-1}(a),\Phi^{k-1}(b))" in paper_c
 
 
 # --------------------------------------------------------------------------

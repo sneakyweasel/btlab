@@ -53,7 +53,7 @@
     ],
     "human": [
       "Fiber parity, thin fibers (Lemmas 4.2--4.3)",
-      "Block average (Proposition 4.4), \\(C_0=250\\) explicit",
+      "Block average (Proposition 4.4), asymptotic",
       "Share law and its three corollaries (Lemma 4.5, Corollary 4.6)",
       "Contagion (Theorem 5.3)",
       "First-letter identity (6.1)",
@@ -71,5 +71,5 @@
     "label": "PAPER_C_LEAN_SURFACE_CONSISTENT",
     "problems": 0
   },
-  "git_commit": "d16b6df0ef7bce1f4510541497fc270d4a61fe69"
+  "git_commit": "unknown"
 }

@@ -21,7 +21,7 @@ Rebuild: `python -m research.juggler_sequence.branch_index`.
 6. [juggler_cycle_finance_note.md](../../docs/theory/juggler_cycle_finance_note.md) and [juggler_run_survivor_lattice_note.md](../../docs/theory/juggler_run_survivor_lattice_note.md) — cycle frontier.
 7. [juggler_fate_contagion_note.md](../../docs/theory/juggler_fate_contagion_note.md) — fate contagion (Atropos / Lachesis / Clotho). Not a halt theorem; no fate excluded.
 8. [juggler_tao_reduction_note.md](../../docs/theory/juggler_tao_reduction_note.md) — Tao-type reduction. Conditional; do not read as evidence for termination.
-9. [juggler_fate_almost_all_note.md](../../docs/theory/juggler_fate_almost_all_note.md) — Paper C. Notes 7–8 remain the source of the proofs and constants. Review PDF: `pandoc -f markdown+tex_math_single_backslash --pdf-engine=xelatex -V geometry:margin=1in --resource-path=docs/theory` into `juggler_review/`; figures: `python docs/theory/figures/render_paper_c_figures.py`.
+9. [juggler_fate_almost_all_note.md](../../docs/theory/juggler_fate_almost_all_note.md) — Paper C. The 9 September 2026 publication revision contains the corrected proofs and constants, including the finite production proof in Appendix D; notes 7–8 remain historical. Build and synchronization: `python tools/build_paper_c.py`, then `--check`; details: [PAPER_C_BUILD.md](../../docs/theory/PAPER_C_BUILD.md).
 
 Claim labels: [docs/README.md](../../docs/README.md).
 Method: [docs/methodology.md](../../docs/methodology.md).

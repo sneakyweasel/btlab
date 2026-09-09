@@ -1,0 +1,344 @@
+{
+  "schema": 1,
+  "canonical_source": "docs/theory/juggler_fate_almost_all_note.md",
+  "status": "preprint; no external deposit performed",
+  "verification_scope": "File provenance only. Mathematical trust boundaries are in the manuscript and PAPER_C_BUILD.md.",
+  "tools": {
+    "pandoc": "pandoc.EXE 3.6.3",
+    "xelatex": "MiKTeX-XeTeX 4.18 (MiKTeX 26.5)"
+  },
+  "inputs": [
+    {
+      "path": "data/research/juggler/fate_contagion/summary.json",
+      "mode": "text",
+      "sha256": "d322b8549e2239c5fc78279c7a579332766a3287811f73ee4d225d6eb9e5cc7b"
+    },
+    {
+      "path": "data/research/juggler/paper_c_publication_review/validation.json",
+      "mode": "text",
+      "sha256": "f5af1f6647449be334b8f2767b22e8f5f8cd535b9ea3cd2548a200f27adff448"
+    },
+    {
+      "path": "data/research/juggler/tao_reduction/summary.json",
+      "mode": "text",
+      "sha256": "2316e5339e3670d283c1983a5b5b0c11bc92101ab327c477072b7897619a587f"
+    },
+    {
+      "path": "docs/theory/PAPER_C_BUILD.md",
+      "mode": "text",
+      "sha256": "5fe7ea02b3e8a3e4adeed457c3e267d08000928654f59ae6e2228ba48e0e46eb"
+    },
+    {
+      "path": "docs/theory/figures/paper_c_decomposition.png",
+      "mode": "binary",
+      "sha256": "016e661e3af7187e6f46e7eee9d80a6db91be56e671505d8a83eb731d5a8de23"
+    },
+    {
+      "path": "docs/theory/figures/paper_c_dependencies.png",
+      "mode": "binary",
+      "sha256": "a7446a33389ac5550384c346bf3945bdf366ee829deeb487fb785489dbe0733c"
+    },
+    {
+      "path": "docs/theory/figures/paper_c_productions.png",
+      "mode": "binary",
+      "sha256": "f907df186c11106b7f4a07a113472f3e6ef46a2c00a109eb664119f0934ad65b"
+    },
+    {
+      "path": "docs/theory/figures/render_paper_c_figures.py",
+      "mode": "text",
+      "sha256": "f2590a6ec45bd859e1a5ca1eadd403187b0229285a2114f77101cfd187f43d38"
+    },
+    {
+      "path": "docs/theory/juggler_fate_almost_all_note.md",
+      "mode": "text",
+      "sha256": "27c7305067f8acd0af4241001e19a677b0304fc4badbf64a94993bb02565ccb0"
+    },
+    {
+      "path": "formal/AxiomCheckPaperC.expected",
+      "mode": "text",
+      "sha256": "5939a49ce68518bbff9544fc34287bb41fdab54c11d2a2ba7817dfc2ee99f523"
+    },
+    {
+      "path": "formal/AxiomCheckPaperC.lean",
+      "mode": "text",
+      "sha256": "d9f7daaa88d929f3589450cdeba73d116162e184289d61718910bcbac370e880"
+    },
+    {
+      "path": "formal/Problems/Juggler/Certificates.lean",
+      "mode": "text",
+      "sha256": "fb6cc2041532d15259a49641e24ca038988aaae3cf3f38fedb95b29fdacfa274"
+    },
+    {
+      "path": "formal/Problems/Juggler/Collapse.lean",
+      "mode": "text",
+      "sha256": "239f16482d73238ce90222cfe6e4b760baf1dbab1a84c05319704afe0f715ee4"
+    },
+    {
+      "path": "formal/Problems/Juggler/Corridor.lean",
+      "mode": "text",
+      "sha256": "2a10549e587a3f9bfdfb659742f485595532e14e7f10c047e35aa738f8b94708"
+    },
+    {
+      "path": "formal/Problems/Juggler/CubeCorridor.lean",
+      "mode": "text",
+      "sha256": "3e0f16e8595a978f057e4ecdda30a6d011f715bf4734e85130c01729c12284cc"
+    },
+    {
+      "path": "formal/Problems/Juggler/CubeFiber.lean",
+      "mode": "text",
+      "sha256": "2b0add4108651218c43fb741a207d3d6860525a2ad13ad1341ece9fc5c37f8e9"
+    },
+    {
+      "path": "formal/Problems/Juggler/CycleCore.lean",
+      "mode": "text",
+      "sha256": "2c3dd777a8935b9fe21ae48c439476c47247f45ef3afe55c22c2e109e291c1fa"
+    },
+    {
+      "path": "formal/Problems/Juggler/CycleObstructions.lean",
+      "mode": "text",
+      "sha256": "429e268a04e0adbd96ff34b2a49da08f197fcf09780b8e832f11dabb116ef2ed"
+    },
+    {
+      "path": "formal/Problems/Juggler/Defect.lean",
+      "mode": "text",
+      "sha256": "a3f0b02f179f1670dd6e27479e7dc1c5ce43d20037ae37d69526d9f1630863d9"
+    },
+    {
+      "path": "formal/Problems/Juggler/DefectLowerBound.lean",
+      "mode": "text",
+      "sha256": "2a4b3b3b36f90b680c66e3751c058120601a810132f6c0f9f9102424e21df321"
+    },
+    {
+      "path": "formal/Problems/Juggler/Drift.lean",
+      "mode": "text",
+      "sha256": "4e372e621dc134c5da7c43019734d96182e0f264f6b765d78cabaf47be35ce20"
+    },
+    {
+      "path": "formal/Problems/Juggler/Dynamics.lean",
+      "mode": "text",
+      "sha256": "481d38a263bd8be32f5af84c4bcc87e0b100717bcce3610aa46750de233b19d9"
+    },
+    {
+      "path": "formal/Problems/Juggler/Envelope.lean",
+      "mode": "text",
+      "sha256": "ac652d2c23161af4b6eceff1b8638bbff501910c3bc8e31e52b567566cd36379"
+    },
+    {
+      "path": "formal/Problems/Juggler/Equality.lean",
+      "mode": "text",
+      "sha256": "1a1fe635938f639b56600e80467f94b66c801a5b33392615129acb059fd454eb"
+    },
+    {
+      "path": "formal/Problems/Juggler/Escape.lean",
+      "mode": "text",
+      "sha256": "bb4d4a348692a6720ad05c22b33c7d92501666e5235273f4465b621cb6de95c7"
+    },
+    {
+      "path": "formal/Problems/Juggler/FateChernoff.lean",
+      "mode": "text",
+      "sha256": "de99b56e1a95a80559aaba2152e01463f5df03c31c27a92bdfb0360ac022b1c0"
+    },
+    {
+      "path": "formal/Problems/Juggler/FateContagion.lean",
+      "mode": "text",
+      "sha256": "58105934124ffbf80510fb988fc449ef70e492fdd943cc377460fe1f51a8bd50"
+    },
+    {
+      "path": "formal/Problems/Juggler/FateFirstLetter.lean",
+      "mode": "text",
+      "sha256": "635bb6163f5a054085087eefcd2c62037c61538fe863d53e9dca69da8fddb3e9"
+    },
+    {
+      "path": "formal/Problems/Juggler/FatePressure.lean",
+      "mode": "text",
+      "sha256": "f69ad74fcaed87b692451113cf72eeadc1182efc0ac8121e255e6b079bf2bbf2"
+    },
+    {
+      "path": "formal/Problems/Juggler/FateRecursion.lean",
+      "mode": "text",
+      "sha256": "e6d050acc924867abcf5c03b4a3e59b62363f40bbba452e2ced83afe474dd435"
+    },
+    {
+      "path": "formal/Problems/Juggler/FateSeed.lean",
+      "mode": "text",
+      "sha256": "62b804568a8eba85538417928bdf2a08f0d704983c375bd43917cc2ee7fa8f15"
+    },
+    {
+      "path": "formal/Problems/Juggler/FateSweep.lean",
+      "mode": "text",
+      "sha256": "155b8a1496b4e45af76693dd8bce65e905ae99ff8810b6e4164d1b35417e6577"
+    },
+    {
+      "path": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "mode": "text",
+      "sha256": "bba31179e77f1fb8d3a0835963994383bf3ce203b3e4d81a6fd2d87ff8666553"
+    },
+    {
+      "path": "formal/Problems/Juggler/FateTaoReduction.lean",
+      "mode": "text",
+      "sha256": "a25a13fb15686d8b9932e9e21d5489cda248fdec8ec04f2186c356469a6381fd"
+    },
+    {
+      "path": "formal/Problems/Juggler/FirstInternalOO.lean",
+      "mode": "text",
+      "sha256": "a33b9a7fba9654206baa4a6c51cf656953a71ad14782980cf934659c5b7eb7cd"
+    },
+    {
+      "path": "formal/Problems/Juggler/FirstPassage.lean",
+      "mode": "text",
+      "sha256": "f7b15a4bb2f7a540d017a82dfb37aeb5ae3d8486fc659aa4d92299e46e99bb3e"
+    },
+    {
+      "path": "formal/Problems/Juggler/FunctionalGraph.lean",
+      "mode": "text",
+      "sha256": "d66607c59e52069d7a0238452fa13180cb0b5d509cc58f97842e2d8c5ad23a12"
+    },
+    {
+      "path": "formal/Problems/Juggler/GlobalDefect.lean",
+      "mode": "text",
+      "sha256": "34345e3f6ded57f03bc657f6abaf6ec7fcff24d4ed2e6a1c601ae6a2ab0411ea"
+    },
+    {
+      "path": "formal/Problems/Juggler/Iteration.lean",
+      "mode": "text",
+      "sha256": "96ddcef273b4dfd9d913948f9c55f7daee2c1bfd6025fb5b6dc02f62a5beb135"
+    },
+    {
+      "path": "formal/Problems/Juggler/Itinerary.lean",
+      "mode": "text",
+      "sha256": "36a8578d34d77556db1c6bd28388ff994f01289ffef51458ca9dad6a88d865d0"
+    },
+    {
+      "path": "formal/Problems/Juggler/ItineraryStats.lean",
+      "mode": "text",
+      "sha256": "e236b11909e7900e89db39b445679977c507afd63b18879dc5759f923a9e6262"
+    },
+    {
+      "path": "formal/Problems/Juggler/LiveCountWeight.lean",
+      "mode": "text",
+      "sha256": "456aba09af342097f5a41a217a9863df967323463d8866f2d8d1671cf6b949b3"
+    },
+    {
+      "path": "formal/Problems/Juggler/Minimal.lean",
+      "mode": "text",
+      "sha256": "8c8a1a9d65291f179e1231ca88cb29b6fc103869a31b52e445957fee33517290"
+    },
+    {
+      "path": "formal/Problems/Juggler/MinimumRelative.lean",
+      "mode": "text",
+      "sha256": "a110acfb2c522d74ecd8f57ce1a9fc94cfbc9fc176948fa1522cec57a14d9826"
+    },
+    {
+      "path": "formal/Problems/Juggler/Preimages.lean",
+      "mode": "text",
+      "sha256": "dabe4af2c54b55826cada04dd92b5f35d3face6f86e42e66829699ab4bc87e3f"
+    },
+    {
+      "path": "formal/Problems/Juggler/Progress.lean",
+      "mode": "text",
+      "sha256": "e1b5375e8fde7c0f54ac610b84469887a25392e338e44f2ac4cad3f5c8d545eb"
+    },
+    {
+      "path": "formal/Problems/Juggler/RateFreeDensity.lean",
+      "mode": "text",
+      "sha256": "9a711586243582e4d2ecd6ef9dde3fd342c6db8e8c297a0fd19fd760d25520ce"
+    },
+    {
+      "path": "formal/Problems/Juggler/Residuals.lean",
+      "mode": "text",
+      "sha256": "9d067f8496ae3782e30841f61181a2f38ddbca9244d665e4b2ac14118baed154"
+    },
+    {
+      "path": "formal/Problems/Juggler/Scale.lean",
+      "mode": "text",
+      "sha256": "9156455b03e7095970f69ca7b49762788608502ff9f560414ef9bded6965ccf9"
+    },
+    {
+      "path": "formal/Problems/Juggler/Termination.lean",
+      "mode": "text",
+      "sha256": "7b458453bb0fa6478550d875a1b3d5ac18eeea106b5d08797628dfbd2a9c8eb0"
+    },
+    {
+      "path": "formal/Problems/Juggler/TerminationFloor257.lean",
+      "mode": "text",
+      "sha256": "3ff00ef9bd58ad556a0b657b2241b3d7428ff34d93e0b3ab7b05c7770eceac01"
+    },
+    {
+      "path": "formal/Problems/Juggler/TiltedShare.lean",
+      "mode": "text",
+      "sha256": "7dcafa45a2a0e9bca182a713b495d791cf812e4c70d6472c67bf85b0b736aef4"
+    },
+    {
+      "path": "formal/Problems/JugglerFatePaper.lean",
+      "mode": "text",
+      "sha256": "d959e0a3221bdbe79d61ccc76bccba9fca8f9f555d8c5c2293eb21ffd8edb81a"
+    },
+    {
+      "path": "formal/lake-manifest.json",
+      "mode": "text",
+      "sha256": "8a4dabaa6346246a71a2fac594a4385e248735a4feacd25082bcad2336d27385"
+    },
+    {
+      "path": "formal/lean-toolchain",
+      "mode": "text",
+      "sha256": "3aac669c7a910ec2389f4e4f921b605adf6ebf2d1e0c9b9cd0be4d33f3f5db71"
+    },
+    {
+      "path": "src/research/juggler_sequence/fate_contagion.py",
+      "mode": "text",
+      "sha256": "6442eb4af160876678b734e261575c7a4ce2181b21c400697b66cf39e4a90c74"
+    },
+    {
+      "path": "src/research/juggler_sequence/paper_c_audit.py",
+      "mode": "text",
+      "sha256": "d46015c817123d0f8badeb1fdeabdfc6548e008c46305f32f6c4a4e445a446a3"
+    },
+    {
+      "path": "src/research/juggler_sequence/paper_c_formal_layer.py",
+      "mode": "text",
+      "sha256": "d428a1355c79408b3e7362f95bb5ea75237d583109fa3a6617af553e591bfb96"
+    },
+    {
+      "path": "src/research/juggler_sequence/tao_reduction.py",
+      "mode": "text",
+      "sha256": "8725a2660a6ab279b2b1c23a831053fed07064aae53a6c0eb2f306f2ab01cdcb"
+    },
+    {
+      "path": "tools/build_paper_c.py",
+      "mode": "text",
+      "sha256": "f51e90259dda5a74906468a91996a4356e018c88ec877862dd3e6b6fd3cf1f93"
+    },
+    {
+      "path": "tools/check_paper_c_numeric.py",
+      "mode": "text",
+      "sha256": "4dc08f704541f32e1d6f339eef8494f03a1257760d36560477e35e664e2d023e"
+    },
+    {
+      "path": "tools/paper_c/article.tex",
+      "mode": "text",
+      "sha256": "d62612a2cebac437ce734dd4c2e63e700038f232925c5c53a605162aeecd03f1"
+    },
+    {
+      "path": "tools/paper_c/layout.lua",
+      "mode": "text",
+      "sha256": "e021e63c99b8dff8668accd7edc0064e6ced736780839bff05b4b49b8fef65aa"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "docs/theory/juggler_fate_almost_all_note.pdf",
+      "mode": "binary",
+      "sha256": "168c613509670e1a8f5c31b62e86606843294799ee4e119cdc67ea3db121bd13"
+    },
+    {
+      "path": "docs/theory/cochin-juggler-fates.tex",
+      "mode": "text",
+      "sha256": "31103676f125076f4941cbe148d9898cf755252a715d217c72e338643de820b6"
+    },
+    {
+      "path": "docs/theory/paper_c_zenodo.json",
+      "mode": "text",
+      "sha256": "7d5e2d7f6b143891ba674479764aeeb283910485eeeb4323b9b7c395cffbc56c"
+    }
+  ]
+}

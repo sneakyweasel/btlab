@@ -581,7 +581,7 @@
         "J-cycle-threshold-relaxation"
       ],
       "aliases": [],
-      "nk_cluster": null
+      "nk_cluster": "Cubic-band order does not enforce actual parity"
     },
     {
       "id": "cycle_cyclic_seam",

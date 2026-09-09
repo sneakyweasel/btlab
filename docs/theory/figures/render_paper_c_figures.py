@@ -133,79 +133,23 @@ def fig_decomposition() -> None:
 
 
 def fig_dependencies() -> None:
-    fig, ax = plt.subplots(figsize=(8.6, 5.6))
-    ax.set_xlim(-0.35, 10.05)
-    ax.set_ylim(0, 10)
-    ax.axis("off")
-
-    def box(x, y, w, h, text, fc="white", ec="black", fs=8.6, lw=1.2):
-        ax.add_patch(FancyBboxPatch((x, y), w, h, boxstyle="round,pad=0.08", fc=fc, ec=ec, lw=lw))
-        ax.text(x + w / 2, y + h / 2, text, ha="center", va="center", fontsize=fs)
-        return (x + w / 2, y + h / 2, w, h)
-
-    def arrow(a, b, dashed=False, color="black"):
-        ax.add_patch(
-            FancyArrowPatch(
-                a, b, arrowstyle="->", mutation_scale=13, lw=1.2, color=color, linestyle="--" if dashed else "-", shrinkA=2, shrinkB=2
-            )
-        )
-
-    lean = "#e8f0fe"
-    human = "#fff4e0"
-    cond = "#f3e8ff"
-    obs = "#eeeeee"
-
-    # Row 0: Lean layer
-    box(0.2, 0.4, 2.2, 0.9, "Lean: fate classes closed,\ntrichotomy, exclusion (Lem. 2.1)", fc=lean, fs=8.2)
-    box(2.7, 0.4, 2.2, 0.9, "Lean: even block, $OE$ fiber,\ncell identity (Lem. 3.1, 3.2)", fc=lean, fs=8.2)
-    box(5.4, 0.4, 2.0, 0.9, "Lean: odd generation\n(Theorem 6.1)", fc=lean, fs=8.2)
-    box(7.7, 0.4, 2.1, 0.9, "Lean: envelope descent\ninto the floor (Lem. 8.1)", fc=lean, fs=8.2)
-
-    # Row 1: human lemmas and the exact decomposition
-    box(0.0, 2.2, 2.0, 0.9, "exact first-letter\ndecomposition (6.1), Sec. 6.2", fc=human, fs=8.2)
-    box(2.9, 2.2, 2.3, 0.9, "sweep lemma, fiber parity $\\geq 1/3$,\nblock average (Sec. 4)", fc=human, fs=8.2)
-
-    # Row 2: the two engines
-    box(1.6, 4.0, 3.6, 0.95, "Theorem 1: contagion (Sec. 5)\n$\\sum_{n\\in A,\\,n\\leq x}1/n\\gg(\\log x)^{\\lambda}$, $\\lambda<0.4480$", fc=human)
-    box(5.6, 4.0, 4.2, 0.95, "Theorem 4: parity hypotheses $\\Rightarrow$ Tao-type bound\n$\\mathrm{H}(C,A)\\Leftarrow\\mathrm{H}_q\\Leftarrow\\mathrm{P}_\\theta\\Leftarrow\\mathrm{M}_{\\theta,q}$ (Sec. 8–9)", fc=human)
-
-    # Row 3: the reformulation, the single frontier, the conditional appendix
-    box(0.0, 5.8, 3.0, 0.95, "Theorem 5: $\\psi_F=$ live mass; duality;\ndepth budget (Sec. 10)", fc=human)
-    box(3.6, 5.8, 3.8, 0.95, "Theorem 3: conjecture $\\Leftrightarrow$ Tao-type bound\n$\\#\\{n\\ \\mathrm{odd}\\in(y,2y]\\backslash R\\}\\leq y(\\log y)^{-e}$, $e>0.552$", fc=human)
-    box(7.7, 5.8, 2.1, 0.95, "Appendix C: $\\lambda^{***}=0.5392$,\nconditional on Hypothesis L", fc=cond, fs=8.2)
-
-    # Row 4
-    box(4.4, 7.6, 2.2, 0.8, "Juggler conjecture\n(not proved)", fc="white", ec="black", lw=1.6)
-    box(7.7, 7.6, 2.1, 0.8, "numerical observations\n(Sec. 11): no logical role", fc=obs, fs=8.2)
-
-    # arrows (solid: unconditional dependence)
-    arrow((2.3, 1.3), (2.6, 4.0))          # fate classes -> Theorem 1
-    arrow((3.0, 1.3), (1.6, 2.2))          # cells -> exact decomposition
-    arrow((3.9, 1.3), (4.0, 2.2))          # cells -> sweep/block
-    arrow((4.0, 3.1), (3.9, 4.0))          # sweep/block -> Theorem 1
-    arrow((8.75, 1.3), (8.75, 4.0))        # envelope -> Theorem 4
-    arrow((5.45, 1.3), (5.45, 5.8))        # odd generation -> Theorem 3 (between the two engines)
-    arrow((4.2, 4.95), (4.8, 5.8))         # Theorem 1 -> Theorem 3
-    arrow((6.8, 4.95), (6.4, 5.8))         # Theorem 4 -> Theorem 3
-    arrow((5.5, 6.75), (5.5, 7.6))         # Theorem 3 -> conjecture
-    arrow((1.0, 3.1), (1.0, 5.8))          # exact decomposition -> Theorem 5
-    arrow((5.9, 4.95), (2.9, 5.8), dashed=True)   # Theorem 4 (as hypothesis) -> Theorem 5
-    arrow((8.75, 5.8), (8.75, 4.95), dashed=True, color="0.4")  # Appendix C -> constants of Theorem 4
-    arrow((7.7, 6.3), (7.4, 6.3), dashed=True, color="0.4")     # Appendix C -> constants of Theorem 3
-
-    ax.text(
-        5.0,
-        9.5,
-        "Solid arrows: unconditional dependence. Dashed: the bound used as a hypothesis (Sec. 10), or the\nconditional constants of Appendix C (they improve the exponents of Theorems 1, 3, 4 but nothing else depends on them).",
-        ha="center",
-        va="center",
-        fontsize=8.2,
-    )
-    fig.tight_layout()
-    fig.savefig(OUT / "paper_c_dependencies.png", dpi=200)
-    plt.close(fig)
-
-
+    fig,ax=plt.subplots(figsize=(9.5,6.3));ax.set_xlim(0,10);ax.set_ylim(0,7);ax.axis('off')
+    def box(x,y,w,h,text,fc):
+     ax.add_patch(FancyBboxPatch((x,y),w,h,boxstyle='round,pad=0.06',facecolor=fc,edgecolor='#365267',linewidth=1))
+     ax.text(x+w/2,y+h/2,text,ha='center',va='center',fontsize=9,color='#162b3b')
+    def arrow(a,b):
+     ax.add_patch(FancyArrowPatch(a,b,arrowstyle='-|>',mutation_scale=12,linewidth=1.2,color='#365267',shrinkA=3,shrinkB=3))
+    box(.1,5.8,4.2,.9,'Exact inverse intervals and sweep\nBlock estimates; finite productions (Appendix D)','#e8f1f6')
+    box(.1,4.1,4.2,.95,'Contagion (Theorem 1)\n'+r'$\lambda<\lambda^{**}\approx0.4926$','#e8f1f6')
+    box(5.3,5.8,4.5,.9,'Unproved sufficient hypotheses\nBad cylinders H, one-sided Hq, or live pressure P','#fff1da')
+    box(5.3,4.1,4.5,.95,'Time-bounded live count\nCase-dependent rate r (Theorems 8.3, 9.1, 9.2)','#fff1da')
+    box(2.0,2.15,5.9,1.1,'Eventual-entry rate '+r'$e>1-\lambda^{**}\approx0.5074$'+'\n'+r'$\Longleftrightarrow$'+' Universal termination\n(Theorem 3; no stopping-time converse)','#edf4e8')
+    box(.1,.25,4.45,1.0,'First-letter identity (6.1)\nNormalized infinite live limit (Proposition 10.1)','#f0edf7')
+    box(5.25,.25,4.55,1.0,'Hypothesis L (Appendix C)\nConditional exponent '+r'$\lambda^{***}\approx0.5392$'+'\nSeparate improvement of the rate threshold','#f0edf7')
+    arrow((2.2,5.8),(2.2,5.05));arrow((7.55,5.8),(7.55,5.05))
+    arrow((2.2,4.1),(3.7,3.25));arrow((7.55,4.1),(6.25,3.25))
+    ax.text(5,6.95,'Proved implications; the hypotheses in amber remain open',ha='center',va='top',fontsize=10,fontweight='bold',color='#162b3b')
+    fig.tight_layout();fig.savefig(OUT/'paper_c_dependencies.png',dpi=220,bbox_inches='tight');plt.close(fig)
 def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     fig_productions()

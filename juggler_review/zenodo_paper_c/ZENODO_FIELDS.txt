@@ -1,0 +1,36 @@
+GENERATED FROM docs/theory/; do not edit this export.
+Prepared metadata only; no external record has been created.
+
+TITLE
+Fate Contagion and Termination Criteria for the Juggler Map
+
+CREATOR
+Cochin, Philippe
+Affiliation: none
+
+RESOURCE TYPE
+Publication / Preprint
+
+VERSION
+2026-09-09
+
+LICENSE
+cc-by-4.0
+
+PUBLICATION DATE
+Use the actual date this version is first made public.
+
+KEYWORDS
+Juggler map
+preimage sets
+logarithmic counting
+parity cylinders
+integer dynamics
+
+DESCRIPTION (HTML)
+<p>The Juggler map sends an even positive integer to the integer part of its square root and an odd positive integer to the integer part of its three-halves power. We prove that every nonempty set A closed under taking preimages satisfies ∑_(n ∈ A, n ≤ x)1/n ≥ c(log x)^(λ), for all sufficiently large x and every 0 &lt; λ &lt; λ^(**), where λ^(**) ≈ 0.4926 is an explicitly specified root. Thus every realized cycle basin and the set of unbounded orbits, if nonempty, obey this lower bound. The proof combines exact inverse intervals, a monotone parity sweep, classical exponential-sum estimates, and a finite list of disjoint parity productions.</p>
+<p>For any fixed N₀ ≥ 2 such that every start in [1, N₀] reaches 1, universal termination is equivalent to an eventual-entry statement: all but O(y(log y)^(−e)) odd starts in (y, 2y] enter [1, N₀], for some e &gt; 1 − λ^(**). We give sufficient parity-cylinder and exponential-moment hypotheses at depth O(log log y) for a stronger statement with a time bound. These hypotheses remain unproved. A first-letter decomposition identifies the contribution of failures beginning with two odd steps, and an abstract production model describes possible improvements of the exponent. A separate appendix gives a conditional exponent 0.5392. Selected combinatorial lemmas are formalized in Lean 4; the analytic estimates are mathematical arguments outside the formalization, and the numerical experiments are observations. Neither universal termination nor the exclusion of a nontrivial cycle or an unbounded orbit is established.</p>
+<p>Large language models assisted the development of this work, including prose, proposed proof arguments, Lean formalizations, and computations. The September 2026 review with OpenAI Codex revised the analytic estimates and reductions, checked references, ran the numerical and formal audits, and prepared this preprint. AI assistance is not independent mathematical validation. The author is responsible for the statements, proofs, code, and the decision to make this version public. The formalization covers only the results identified in Section 1.4 and Appendix A.</p>
+
+RELATED SOFTWARE
+https://github.com/sneakyweasel/btlab
