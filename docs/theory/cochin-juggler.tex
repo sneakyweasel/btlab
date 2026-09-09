@@ -44,15 +44,16 @@ exclusions give at least four even steps without a descent-floor input;
 an exact computational classification strengthens this to eight even
 steps and period at least twenty-two. For cycles whose maximum is below
 the cube of their minimum, we also determine the complete rank order and
-mechanical itinerary, derive a uniform log-log grid bound, and identify
-the exact rounding information that several relaxed no-cycle criteria
-discard. The core inequalities and selected classifications are
-formalized in Lean 4. The descent computations, per-length numerical
-comparisons, and remaining analytic identifications are distinguished
-from those formal proofs. A limitation result applies to charges
-retaining a positive contribution at a fixed floor. Neither the
-exclusion of all nontrivial cycles nor universal termination is
-established.
+mechanical itinerary, derive a uniform log-log grid bound, and prove the
+further height restriction \(M<m^3-m^{15/8}\) for \(m\ge7\), where
+\(m,M\) are the minimum and maximum. Exact short-return cells identify
+the rounding information discarded by several relaxed no-cycle criteria.
+The core inequalities and selected classifications are formalized in
+Lean 4. The descent computations, per-length numerical comparisons, and
+remaining analytic identifications are distinguished from those formal
+proofs. A limitation result applies to charges retaining a positive
+contribution at a fixed floor. Neither the exclusion of all nontrivial
+cycles nor universal termination is established.
 
 \end{abstract}
 
@@ -1827,6 +1828,129 @@ y^2\le x<(y+1)^2\quad(x\text{ even}).
 The uniform wrong-parity conclusion from these absolute cells remains
 open in this paper. Finite checks of the threshold or altered maps do
 not settle it.
+
+\subsection{3.11. A periodic return boundary and a sharper height
+ceiling}\label{a-periodic-return-boundary-and-a-sharper-height-ceiling}
+
+The absolute-cell question has a partial answer near the top of the
+cubic height band. This restriction uses the return map of the complete
+periodic set. Isolated admissible blocks do not supply its ordering
+condition.
+
+Write \(O(x)=\operatorname{isqrt}(x^3)\) and
+\(E(x)=\operatorname{isqrt}(x)\). These are prescribed branches; a word
+in \(O,E\) need not agree with the parities of its intermediate states.
+Composition is chronological: \(F_{OOE}=E\circ O\circ O\). Let \(Q(s)\)
+denote the greatest odd integer not exceeding \(s\).
+
+\textbf{Theorem 3.39 (periodic return height restriction).} Suppose that
+an actual Juggler cycle has minimum \(m\ge5\) and maximum \(M<m^3\). Put
+\[
+q=O(m),\qquad t=E(M),\qquad z=F_{OOE}(m)=Q(m^{9/8}).
+\] Then \(m,q,t,z\) are odd and \[
+t^3+2\le[z(z-2)]^2,\qquad M+2\le(t+1)^2. \tag{RC1}
+\] Consequently, if \(T\) is the greatest positive odd integer
+satisfying \(T^3+2\le[z(z-2)]^2\), then \[
+M\le(T+1)^2-2. \tag{RC2}
+\] For \(m\ge7\), a simpler consequence is \[
+\boxed{M<m^3-m^{15/8}.} \tag{RC3}
+\] Equivalently, the positive integer gap satisfies
+\((m^3-M)^8>m^{15}\).
+
+\emph{Proof.} We first record two branch estimates, valid without
+source-parity assumptions: \[
+O(O(x))\ge x^2\quad(x\ge3),\qquad
+F_{OOE}(x)>x\quad(x\ge5). \tag{RC4}
+\] For the first, take \(k=\operatorname{isqrt}(x)\). If \(x\ge4\), then
+\(k\ge2\), \(x\le k^2+2k\le k^3\), and \(O(x)\ge kx\). Thus
+\(O(x)^3\ge x^4\), which implies the claim. At \(x=3\),
+\(O(O(3))=11\ge9\). For the second, if \(x\ge9\), then \(k\ge3\) and
+\(k^3\ge x+12\). Hence \[
+O(x)^3\ge(x+12)x^3>(x+1)^4.
+\] The last inequality follows from \(8x^3-6x^2-4x-1>0\). For
+\(x=5,6,7,8\), the first images are \(11,14,18,22\), whose cubes are
+respectively at least \(6^4,7^4,8^4,9^4\). The excluded values \(3,4\)
+satisfy \(F_{OOE}(x)=x\).
+
+Let \(C\) be the cycle set. Its actual parities make it an \(S_m\)
+cycle: an even source has square root at least \(m\), and so is at least
+\(m^2\); an odd source at least \(m^2\) would have image at least
+\(m^3\), contrary to the height assumption. In particular, the minimum
+is an odd source and the maximum is an even source. Every even-branch
+image is below \(m^2\), and two successive odd branches reach at least
+\(m^2\) by (RC4). Therefore the successive returns after even steps have
+only the words \(OE\) and \(OOE\).
+
+The correct section, including its strict upper endpoint, is \[
+Y=C\cap[m,q),\qquad q=O(m).
+\] All odd-branch images are at least \(q\). All even-branch images are
+at most \(\operatorname{isqrt}(m^3-1)\le q\). Equality with \(q\) is
+impossible: \(q\) is already the image of \(m\), and the cycle map is
+injective on \(C\). Thus \(Y\) is exactly the set of even-branch images
+and \(t=E(M)=\max Y\). Every point of \(Y\) is odd. The return word at
+\(x\in Y\) is \(OOE\) when \(x^3<m^4\), and \(OE\) otherwise.
+
+The minimum \(m\) uses \(OOE\), since
+\(F_{OE}(m)=\lfloor m^{3/4}\rfloor<m\). The maximum \(t\) uses \(OE\),
+since an \(OOE\) return would increase it by (RC4). Set \[
+z=F_{OOE}(m),\qquad w=F_{OE}(t).
+\] Monotonicity and \(t<q\) give \[
+w\le F_{OE}(q)=z.
+\] These images are distinct. Indeed, the first-return map is a
+permutation of \(Y\), and \(m<t\), since the return of \(m\) is larger
+than \(m\). Hence \(w<z\). Since both are odd, \[
+w\le z-2. \tag{RC5}
+\] The short-word identity in Appendix E.1 gives \(z=Q(m^{9/8})\); here
+its odd-output hypothesis is supplied by the actual cycle.
+
+Write \(p=O(t)\). The states \(p,M\) are even, whereas \(t,w,z\) are
+odd. The exact cells and their parity faces imply \[
+p+2\le(w+1)^2\le(z-1)^2,\qquad
+t^3+2\le(p+1)^2\le[z(z-2)]^2.
+\] The cell for \(M\mapsto t\) similarly gives \(M+2\le(t+1)^2\). This
+proves (RC1) and its integer ceiling (RC2).
+
+For the smooth bound (RC3), even the weaker consequence \[
+t^3<(z-1)^4,\qquad z^8\le m^9
+\] is sufficient. Set \(r=m^{3/8}\). Since \(m\ge7\), \(r\ge2\). We have
+\(z\le r^3\), and \[
+(r^3-1)^4\le(r^4-r)^3,
+\] because the difference of the right and left sides is
+\((r^3-1)^3\ge0\). Thus \(t<r^4-r\), and \[
+M<(r^4-r+1)^2-2<r^8-r^5.
+\] The last comparison follows from the exact identity \[
+r^8-r^5-\bigl((r^4-r+1)^2-2\bigr)
+=(r-2)(r^4-r)+1>0.
+\] Since \(r^8=m^3\) and \(r^5=m^{15/8}\), this proves (RC3).
+\(\square\)
+
+\textbf{A further smooth consequence of the integer seam.} The sharper
+first inequality in (RC1) also gives \[
+t<m^{3/2}-\frac43m^{3/8}.
+\] Indeed \(g(z)=z^{4/3}-\frac43z^{1/3}\) is positive for \(z\ge3\), is
+increasing there, and \[
+g(z)^3-[z(z-2)]^2=\frac4{27}z(9z-16)>0.
+\] This analytic reformulation is a written consequence; the proof of
+(RC3) above does not depend on differentiating \(g\).
+
+\textbf{Scope and finite controls.} A threshold cycle in the region
+\(m^3-m^{15/8}\le M<m^3\), \(m\ge7\), must therefore have at least one
+wrong-parity state. This does not exclude the lower part of the cubic
+band or the regime \(M\ge m^3\), and it does not increase the period
+bound \(780239\). The integer ceiling at hypothetical minimum \(9\)
+improves the earlier minimum-only extrema ceiling from \(674\) to
+\(482\); at minimum \(6569\), it improves \(283462537742\) to
+\(283388004962\). These are conditional arithmetic evaluations, not
+assertions that cycles with those minima exist.
+
+The threshold cycle \[
+(9,27,140,11,36,216,14,52,374,19,82)
+\] has \(Y=\{9,11,14,19\}\), \(t=19\), \(z=11\), and \(w=9\). It
+satisfies \(19^3=6859\le9799=[11(11-2)]^2-2\), yet has wrong parities,
+including the even retained base \(14\). Thus the new necessary extrema
+conditions are not a complete guard test. Appendix E records the exact
+carry formulas and the limitations of several proposed summaries of the
+missing guards.
 
 \section{4. Cycle finance}\label{cycle-finance}
 
@@ -4805,6 +4929,376 @@ letter; the rotation by \(k=a+b+2\) begins \(OE\), forbidden by Theorem
 The original start need not be a cycle minimum. After rotation the start
 is a minimum, so the hypothesis \(y<n\) that blocked Theorem 3.13 does
 not arise. \(\square\)
+
+\section{Appendix E. Absolute return cells and parity
+obstructions}\label{appendix-e.-absolute-return-cells-and-parity-obstructions}
+
+This appendix consolidates the short-return calculations used in Section
+3.11 and the precise limitations found when trying to extend them. A
+prescribed word acts by the displayed branch functions even when an
+intermediate parity is wrong. Its \emph{guard} is the conjunction of the
+required source parities at every letter. Statements about prescribed
+endpoints must therefore be distinguished from statements about actual
+Juggler trajectories.
+
+\subsection{E.1. Exact short-return
+endpoints}\label{e.1.-exact-short-return-endpoints}
+
+\textbf{Proposition E.1 (root collapse and odd endpoints).} For positive
+integers \(N,r,s\), \[
+\left\lfloor\left\lfloor N^{1/r}\right\rfloor^{1/s}\right\rfloor
+=\left\lfloor N^{1/(rs)}\right\rfloor.
+\] Consequently \[
+F_{E^k}(x)=\lfloor x^{1/2^k}\rfloor,\qquad
+F_{OE^k}(x)=\lfloor x^{3/2^{k+1}}\rfloor.
+\] If \(H=\lfloor x^{9/8}\rfloor\), then \[
+F_{OOE}(x)\in\{H-1,H\}.
+\] In particular an odd \(OOE\) endpoint equals \(Q(x^{9/8})\). For
+positive odd \(x\), an odd \(OOEOE\) endpoint similarly equals
+\(Q(x^{27/32})\).
+
+\emph{Proof.} For each integer \(j\ge0\), the nested root is at least
+\(j\) if and only if \(N\ge j^{rs}\), proving root collapse. Put
+\(u=\lfloor x^{3/2}\rfloor\). Then
+\(F_{OOE}(x)=\lfloor u^{3/4}\rfloor\). Concavity, or subadditivity of
+the \(3/4\) power, gives \[
+0\le x^{9/8}-u^{3/4}<1.
+\] The two possible floors follow; exactly one of two consecutive
+integers is odd.
+
+For \(u=F_{OOE}(x)\) and \(x\ge5\), we have \(u\ge6\) and
+\(0\le x^{9/8}-u<2\). Concavity now gives \[
+0\le x^{27/32}-u^{3/4}
+<\frac32u^{-1/4}<1,
+\] since \(u\ge6>81/16\). Taking the final floor again leaves fewer than
+two units of total error. The odd-output conclusion follows. The
+remaining odd sources are \(1\), which is fixed, and \(3\), whose
+\(OOEOE\) endpoint is the even integer \(2\). \(\square\)
+
+Endpoint compression does not determine the guard. For every odd
+\(s\ge3\), the prescribed block \[
+s^4\overset O\longmapsto s^6\overset E\longmapsto s^3
+\] has odd endpoints, but the source of its \(E\) step is odd. It lies
+in the threshold band with \(b=s^3\). Likewise
+\(13\mapsto46\mapsto311\mapsto17\) has odd endpoints and the stated
+\(OOE\) endpoint identity, but both hidden guards fail.
+
+\subsection{E.2. Euclidean return words retain the complete
+guard}\label{e.2.-euclidean-return-words-retain-the-complete-guard}
+
+For the rank rotation \[
+T(i)=
+\begin{cases}
+i+b,&0\le i<a,\\
+i-a,&a\le i<a+b,
+\end{cases}
+\] suppose the two branches execute chronological words \(A,B\).
+Inducing on the prefix of length \(a\), when \(a>b\), gives \[
+(a,b;A,B)\longmapsto(a-b,b;A,AB).
+\] The first branch returns in one step; the second first leaves the
+prefix and then returns. For \(b>a\), the prefix of length \(b\) instead
+gives \[
+(a,b;A,B)\longmapsto(a,b-a;AB,B).
+\] When \(a=b\), every rank in the prefix of length \(a\) returns by
+\(AB\) and is fixed by the induced rank map. Iterating yields the
+accelerated formulas \[
+(qb+r,b;A,B)\longmapsto(r,b;A,A^qB),\qquad 0\le r<b,
+\] \[
+(a,qa+r;A,B)\longmapsto(a,r;AB^q,B),\qquad 0\le r<a.
+\] For example, in the first formula the ranks \(i\ge r\) traverse
+\(i+b,\ldots,i+qb\) outside the retained prefix before returning to
+\(i-r\). This also proves that the displayed words are first returns.
+
+At each stage the length and letter-count identities are \[
+a|A|+b|B|=L,\qquad av(A)+bv(B)=(o,e),
+\] where \(v\) records the two original letter counts. Column addition
+preserves the determinant \(1\) of the word-count matrix. The return
+towers partition the original finite set: on each permutation cycle
+choose the most recent retained rank while traversing backwards. Every
+cycle meets the prefix, since rank cycles are residue classes modulo
+\(d=\gcd(o,e)\) and each retained prefix has at least \(d\) ranks. At
+termination there are \(d\) towers, each of length \(L/d\); a primitive
+cycle has a single tower.
+
+For the full guard \(P_W\), chronological composition is exactly \[
+P_{AB}(x)=P_A(x)\wedge P_B(F_A(x)).
+\] The tower partition therefore transfers every original parity
+condition. Fully expanding this representation still gives \(L\) tests
+across all retained bases. This is exact symbolic closure; it does not
+provide a uniformly shorter arithmetic test for those guards. The rank
+induction and tower discussion here are written proofs; the existing
+formal itinerary concatenation theorem
+\texttt{\nolinkurl{follows_append}} supplies the semantic composition
+law.
+
+\subsection{E.3. An exact quotient form and its failed power
+substitution}\label{e.3.-an-exact-quotient-form-and-its-failed-power-substitution}
+
+\textbf{Proposition E.2 (three-candidate square carry).} Suppose
+\(y\ge1\) and \(y^4\le N<(y+1)^4\). Set \[
+u=\operatorname{isqrt}(N),\quad c=u-y^2,\quad
+d=\left\lfloor\frac{N-y^4}{2y^2}\right\rfloor,\quad h=\min(d,2y).
+\] Then \(0\le c\le2y\) and \[
+c=h-\kappa,\qquad \kappa\in\{0,1,2\}.
+\] Writing \(a=y^2+h\), choose \(\kappa=0\) if \(a^2\le N\),
+\(\kappa=1\) if \((a-1)^2\le N<a^2\), and \(\kappa=2\) otherwise. For
+odd \(OE\) endpoints \(x,y\), taking \(N=x^3\) makes the hidden
+\(E\)-source guard equivalent to \(c\) being odd.
+
+\emph{Proof.} Write \(N=(y^2+c)^2+\epsilon\), where
+\(0\le\epsilon\le2(y^2+c)\). Then \[
+d=c+\left\lfloor\frac{c^2+\epsilon}{2y^2}\right\rfloor\ge c.
+\] If \(c\le2y-1\), then \(c^2+\epsilon\le6y^2-1\), so \(d-c\le2\). If
+\(c=2y\), clipping gives \(h=c\). The adjacent square tests identify the
+unique correction. Finally \(u=y^2+c\) is even exactly when \(c\) is
+odd. \(\square\)
+
+The genuine block \(93\to896\to29\) attains the correction \(2\):
+\(d=h=57\), whereas \(c=55\).
+
+\textbf{Proposition E.3 (unbounded error of a particular substitution).}
+For each odd integer \(s\ge3\), define \[
+\begin{aligned}
+x&=s^8+8,& u&=s^{12}+12s^4,\\
+v&=s^{18}+18s^{10}+54s^2-1,& z&=s^9+9s-1.
+\end{aligned}
+\] These form an actual \(OOE\) block inside the threshold band
+\(b=s^8\), with \(x,u,z\) odd and \(v\) even. Its suffix displacement is
+\[
+c_2=v-z^2=2z-27s^2.
+\] Define the actual and substituted quotients \[
+d_2=\left\lfloor\frac{u^3-z^4}{2z^2}\right\rfloor,\qquad
+D=\left\lfloor\frac{x^{9/2}-z^4}{2z^2}\right\rfloor.
+\] Then \[
+D-d_2\in\{36s^2,36s^2+1\},\qquad
+\min(D,2z)-c_2=27s^2.
+\] Thus replacing the eliminated integer \(u\) by its continuous power
+cannot preserve Proposition E.2 with a uniformly bounded additive
+correction.
+
+\emph{Proof.} The three adjacent-square certificates follow from \[
+x^3-u^2=48s^8+512,\qquad
+(v+1)^2-u^3=216s^{12}+2916s^4,
+\] \[
+(z+1)^2-v=27s^2+1,\qquad
+v-z^2=2s^9+18s-27s^2-2.
+\] For \(s\ge3\), the first remainder lies strictly between \(0\) and
+\(u\); the second lies strictly between \(0\) and \(v+1\). The last two
+expressions are positive. These inequalities give all three floors; the
+parities and \(b\le x,u,z<b^2\le v<b^3\) follow directly.
+
+Put \(R=48s^8+512\). The mean-value theorem bounds \[
+\Delta=\frac{x^{9/2}-u^3}{2z^2}
+\quad\text{strictly between}\quad
+\frac{3uR}{4z^2}\ \text{and}\ \frac{3(u+1)R}{4z^2}.
+\] Subtracting \(72s^2z^2\) from \(3uR/2\) gives \[
+P=336s^{12}+144s^{11}+3384s^4+1296s^3-72s^2>0.
+\] The corresponding upper excess is \(P+72s^8+768\), and \[
+P+72s^8+768<388s^{12}<2s^{18}<2z^2.
+\] For the first bound use \(144s^{11}\le48s^{12}\) and bound each of
+the four remaining positive terms by \(s^{12}\). It follows that
+\(36s^2<\Delta<36s^2+1\), proving the assertion about the two floors.
+Since \(d_2\ge c_2\), it also follows that \(D>2z\), giving the clipped
+difference. \(\square\)
+
+The ideal endpoint is nevertheless within one integer:
+\(\lfloor x^{9/8}\rfloor=z+1\). Taylor's formula gives \[
+0<x^{9/8}-(s^9+9s)<\frac9{2s^7}<1.
+\] The ideal radicand lies outside the original suffix endpoint cell.
+Thus Proposition E.3 tests the proposed substitution, rather than
+misapplying Proposition E.2 to a radicand in that cell. It refutes this
+bounded additive formula; it does not refute all fixed-register rules or
+all rules for parity alone.
+
+\subsection{E.4. The polynomial growth family has no infinite exact
+chain}\label{e.4.-the-polynomial-growth-family-has-no-infinite-exact-chain}
+
+\textbf{Theorem E.4 (finite consecutive family chains).} Let
+\(X(r)=r^8+8\), for odd integers \(r\ge3\). If there are \(k\)
+consecutive transitions \(J^3(X(r_i))=X(r_{i+1})\) within this family,
+starting at \(r_0=r\), then \[
+k\le\max\left(0,\left\lfloor\frac{\nu_2(r-1)-2}{2}\right\rfloor\right).
+\] Every immediate transition requires \(r\equiv1\pmod{48}\). In
+particular, no infinite chain can remain in this exact three-step family
+description.
+
+\emph{Proof.} Proposition E.3 makes a transition equivalent to \[
+s^8=r^9+9r-9.
+\] For odd \(r,s\), reducing modulo \(32\) gives
+\(10(r-1)\equiv0\pmod{32}\), hence \(r\equiv1\pmod{16}\). The residue
+\(r\equiv2\pmod3\) is impossible. If \(3\mid r\), the right side has
+\(3\)-adic valuation \(2\), whereas an eighth power has valuation
+divisible by \(8\). Thus \(r\equiv1\pmod3\).
+
+If the destination \(s\) itself continues, both \(r,s\) are
+\(1\pmod{16}\). Factoring the transition after subtracting \(1\) gives
+\[
+(s-1)(s+1)(s^2+1)(s^4+1)
+=(r-1)(r^8+r^7+\cdots+r+10).
+\] The last factor on the right is \(2\pmod{16}\); the last three
+factors on the left each have \(2\)-adic valuation \(1\). Therefore \[
+\nu_2(s-1)=\nu_2(r-1)-2.
+\] In a chain of \(k\ge1\) transitions the \(k\) source parameters all
+have valuation at least \(4\). The first \(k-1\) valuation drops give
+\(\nu_2(r-1)-2(k-1)\ge4\), which is the asserted bound. The final
+destination need not continue, and no additional drop has been assumed
+there. \(\square\)
+
+This excludes escape by endless exact concatenation of this family. It
+says nothing about later re-entry, other growth patterns, or general
+escape to infinity. As separate finite computations, the six previously
+examined parameters \[
+3,\ 5,\ 11,\ 101,\ 10^6+1,\ 10^{20}+1
+\] reach \(1\) after respectively \(28,13,64,24,60,54\) steps. Their
+peak decimal lengths are \(111,13,129,41,468,1480\). The stored integer
+traces certify every edge by adjacent squares. These six computations
+are not a proof about all family members.
+
+\subsection{E.5. Retaining the exact first remainder repairs the short
+quotient}\label{e.5.-retaining-the-exact-first-remainder-repairs-the-short-quotient}
+
+\textbf{Proposition E.5 (exact remainder transport).} Consider a
+prescribed \(OOE\) block \(x\mapsto u\mapsto v\mapsto z\), with
+\(u\ge3\). Set \[
+X=x^3,\quad R=X-u^2,\quad B=X-R=u^2,\quad t=\sqrt X,\quad\eta=t-u.
+\] The remainder record and proposed endpoint must satisfy \[
+B>0,\quad B\text{ is a square},\quad R\ge0,\quad R^2\le4B,\qquad
+z^8\le B^3<(z+1)^8.
+\] These conditions certify \(u=\operatorname{isqrt}(X)\) and the suffix
+endpoint. Define \[
+\Delta=\frac{t^3-u^3}{2z^2},\qquad C=\frac{3tR}{4z^2}.
+\] Then \[
+C-\Delta=\frac{\eta^2(t+2u)}{4z^2},\qquad
+0\le C-\Delta<\frac56.
+\] Consequently, for the integer floors \[
+d=\left\lfloor\frac{u^3-z^4}{2z^2}\right\rfloor,\qquad
+q=\left\lfloor\frac{t^3-z^4}{2z^2}-C\right\rfloor,
+\] we have \(d\in\{q,q+1\}\).
+
+\emph{Proof.} The initialized record gives \(0\le\eta<1\) and
+\(R=(t-u)(t+u)\). Expansion proves the exact identity. The endpoint cell
+gives \(z\ge2\) and \(z^2\ge u\): otherwise \(u\ge z^2+1\),
+contradicting \((z^2+1)^3>(z+1)^4\) for \(z\ge2\). For that comparison,
+the difference is \[
+z^3(z^3-4)+z(2z^3-3z-4)>0.
+\] It follows that \[
+0\le C-\Delta<\frac{3u+1}{4z^2}
+\le\frac{3u+1}{4u}\le\frac56.
+\] The two possible floors are immediate. \(\square\)
+
+The corrected \(q\) is signed and may a priori be \(-1\); the relation
+with \(d\ge0\) guarantees \(q+1\ge0\). There is an exact integer
+implementation. With \(K=2X-3R>0\), \[
+q=\left\lfloor
+\frac{\operatorname{isqrt}(K^2X)-2z^4}{4z^2}
+\right\rfloor. \tag{ER1}
+\] This uses
+\(\lfloor(\alpha-a)/b\rfloor=\lfloor(\lfloor\alpha\rfloor-a)/b\rfloor\)
+for integers \(a,b\), \(b>0\), and the identity
+\(\lfloor K\sqrt X\rfloor=\operatorname{isqrt}(K^2X)\). Negative
+numerators in (ER1) require floor division.
+
+Put \(h=\min(q+1,2z)\) and \(N=z^2+h\). Proposition E.2 now gives \[
+v=N-\kappa,\qquad\kappa\in\{0,1,2,3\}.
+\] Indeed, for \(c=v-z^2<2z\), we have \(c\le h\le d+1\le c+3\); if
+\(c=2z\), clipping gives \(h=c\). The correction is the smallest
+\(j\in\{0,1,2,3\}\) for which \[
+(N-j)^4\le B^3.
+\] All candidates are positive, since \(N\ge z^2\ge4\). For odd
+endpoints \(x,z\), the complete \(OOE\) guard is exactly \[
+R\text{ even},\qquad N-\kappa\text{ even}.
+\] Thus the absolute record \((x,z,R)\), a new exact square root in
+(ER1), and at most four fourth-power comparisons recover both hidden
+parities. This does not claim a computational speedup.
+
+For the next word \(OOEOE\), the candidate intermediate endpoint
+\(z_*=Q(x^{9/8})\) must first pass the eighth-power cell validation.
+Then apply this prefix guard and the \(OE\) cell and guard at \(z_*\).
+This yields one further exact composition. It does not prove uniform
+arithmetic closure for arbitrarily long induced words. Retaining the
+full remainder retains absolute information sufficient to reconstruct
+\(u\); it is not a finite-valued summary.
+
+\subsection{E.6. Fixed residues do not determine the hidden
+guard}\label{e.6.-fixed-residues-do-not-determine-the-hidden-guard}
+
+\textbf{Proposition E.6 (a counterfamily for every fixed residue
+modulus).} Even retaining the exact first remainder \(R=0\), no fixed
+finite collection of residue classes of \(x,u,z\) and
+\(\mathcal E=x^9-z^8\) determines the full \(OOE\) guard on its
+geometric first-return domain. The two blocks below also share the same
+full threshold and first-return section. This statement concerns those
+specified summaries, not unrestricted arithmetic in full absolute values
+and not a periodic-set invariant.
+
+\emph{Proof.} Let \(Q\ge2\) be any even integer, set \(c=Q-1\), and
+choose \(b\equiv3\pmod4\) with \(b^2>504c^5\). For \(d=1,-c\), set \[
+t_d=b^4+4d,\quad x_d=t_d^2,\quad u_d=t_d^3,
+\] \[
+V_d=b^{18}+18db^{14}+126d^2b^{10}+420d^3b^6+630d^4b^2,
+\] \[
+Z_d=b^9+9db^5+\frac{45d^2b-1}{2}.
+\] All these expressions are integers. The exact branches are \[
+O(x_d)=u_d,\quad
+O(u_1)=V_1,\quad O(u_{-c})=V_{-c}-1,\quad
+E(O(u_d))=Z_d.
+\] The first remainder is exactly zero in both cases.
+
+To verify the floors, put \(A=b^4\), so \(A>8c+4\). Taylor expansion
+through degree four gives \[
+(A+4d)^{9/2}=V_d+252d^5\xi^{-1/2},
+\] for \(\xi\) between \(A\) and \(A+4d\). The remainder has the sign of
+\(d\), and its magnitude is less than \(504c^5/b^2<1\), giving the two
+second images. Expansion through degree two similarly gives \[
+(A+4d)^{9/4}
+=b^9+9db^5+\frac{45d^2b}{2}
++\frac{15}{2}d^3\zeta^{-3/4}.
+\] Its remainder has magnitude less than \(15c^3/b^3<15/64<1/2\),
+whereas the polynomial part is a half-integer. Its floor is therefore
+\(Z_d\). Root collapse identifies this with \(E(O(u_d))\).
+
+The states \(x_d,u_d,Z_d\) are odd. The polynomial \(V_d\) is odd, so
+the negative-\(d\) block has an even final \(E\) source and is
+guard-valid, whereas the positive-\(d\) block fails that guard. For
+\(Z_d\), oddness follows from \(45d^2b-1\equiv2\pmod4\).
+
+These blocks have the same geometric domain. Set \(T=t_{-c}>8\) and
+\(B=T^2\). Then \(t_1<2T\), and \[
+B\le x_d,u_d,Z_d<B^2\le O(u_d)<B^3.
+\] For example \(u_1<8T^3<T^4\), and
+\(O(u_1)^2\le t_1^9<512T^9<T^{12}\). Also \(Z_1<T^3=u_{-c}\), so both
+blocks are first returns to \[
+D=[B,Z_1+1)\cap\mathbb N:
+\] their initial and final points belong to \(D\), and both intermediate
+states lie outside it.
+
+Finally \[
+t_1-t_{-c}=4Q,\qquad
+Z_1-Z_{-c}=Q\left(9b^5+45b-\frac{45Qb}{2}\right).
+\] Thus \(x_d,u_d,Z_d,\mathcal E_d\) agree modulo \(Q\). They also have
+the same exact valuation \(\nu_2(\mathcal E_d)=3\): since
+\(t_d\equiv5\pmod8\), \(x_d\equiv9\pmod{16}\), while
+\(Z_d^8\equiv1\pmod{16}\). For any fixed finite list of moduli, choose
+an even common multiple as \(Q\). The common data then give opposite
+guards, proving the claim. \(\square\)
+
+The two source values are different, and neither is asserted to belong
+to a cycle. The absolute quotient and cell comparisons in Section E.5
+distinguish them. Adding a later intermediate parity or remainder would
+also distinguish them.
+
+The analogous aggregate calculation on an actual return permutation
+\(y_i=x_{\sigma(i)}\), with peaks \(v_i\) and displacements
+\(c_i=v_i-y_i^2\), is only \[
+\sum_i c_i=\sum_i v_i-\sum_i x_i^2.
+\] It is not a zero-sum identity. Even bases restricted to distinct odd
+integers admit all even-step cells by setting \(v_i=x_{\sigma(i)}^2+1\);
+the omitted odd-prefix equations are essential. Products of the complete
+cells similarly return to the existing floor-defect identities unless a
+further estimate is supplied. Theorem 3.39 uses the coupled periodic
+order and actual odd-prefix cells to obtain a restriction beyond these
+bookkeeping identities. The uniform wrong-parity conclusion remains
+open.
 
 \section{7. Acknowledgments and use of
 AI}\label{acknowledgments-and-use-of-ai}

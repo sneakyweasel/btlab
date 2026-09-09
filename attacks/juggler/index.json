@@ -5499,6 +5499,20 @@
       "nk_cluster": null
     },
     {
+      "id": "paper_b_wave_bearing",
+      "kind": "dossier_only",
+      "probe": null,
+      "test": null,
+      "dossier": "docs/problems/juggler_paper_b_wave_bearing.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
+    },
+    {
       "id": "parity_neighbor_scale",
       "kind": "dossier_only",
       "probe": null,

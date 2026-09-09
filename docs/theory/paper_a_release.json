@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "canonical_source": "docs/theory/juggler_finite_dynamics_note.md",
-  "status": "preprint; Zenodo 10.5281/zenodo.22676453 (2026-09-09, v1.0.0)",
+  "status": "preprint; no external deposit performed",
   "verification_scope": "File provenance only. Mathematical trust boundaries are in the manuscript and reviewer packet.",
   "tools": {
     "pandoc": "pandoc.EXE 3.6.3",
@@ -16,7 +16,7 @@
     {
       "path": "docs/theory/juggler_finite_dynamics_note.md",
       "mode": "text",
-      "sha256": "86dde267eece044ed59c073b854725ab46b88f44f9a05b6b18303da60cf7363b"
+      "sha256": "28d883cb5b1c207a406e9d5bb120c2285990dc6b6c628c78a155c75991d0d54b"
     },
     {
       "path": "docs/theory/juggler_finite_dynamics_reviewer_packet.md",
@@ -433,17 +433,17 @@
     {
       "path": "docs/theory/juggler_finite_dynamics_note.pdf",
       "mode": "binary",
-      "sha256": "20c946ab7d3b5bbaa4037c5cd37827c2f13d8b3f90966ad08a51b573a024d6e1"
+      "sha256": "28d987fb34abec4209e1ae79259d744a673a849e00e89c52c0b40bc61257f678"
     },
     {
       "path": "docs/theory/cochin-juggler.tex",
       "mode": "text",
-      "sha256": "be4837d32d7f3f88bc631b790b1e9885e0238b19b87300eff0913602c344b667"
+      "sha256": "f28d05d0bd5086a4089f2905e3d3ade8d1a6db943098dab46b55f00489b2eb99"
     },
     {
       "path": "docs/theory/paper_a_zenodo.json",
       "mode": "text",
-      "sha256": "4b6666cdde3a8036f4b60339a203e90e9fa7b3910bba12e44f666e28bead6147"
+      "sha256": "232d8b81bf8e9a07468973d7ef9a526cbf6c207aadd42952b23d21c7fc99c4df"
     }
   ]
 }

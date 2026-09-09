@@ -1,5 +1,27 @@
 [
  {
+  "id": "J-paper-b-widened-d1-linearization",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Let X=x^(3/2),m=floor X,Y=m^(3/2),1<=h<=P^(1/12),1<=r<=CP^(1/24), and |a|r<=CP^(1/2). On an actual fixed carry branch Delta_(2h)Delta_(2r)Y=F_j(m), where beta_1~h sqrt(P),beta_2~r sqrt(P),|j|<=2. With offsets frozen, |F_j'| is O(|j|P^(-3/4)+hrP^(-5/4)). Replacing F_j(m) by F_j(X) in e(aF_j(m)) costs O_C(P^(3/4)) over the whole dyadic interval, including a fixed number of terms. The retained phase curvature is O_C(P^(-3/4)/r+hP^(-5/4)). No derivative of moving beta approximations or growing Fourier expansion of this floor error is needed. AI-assisted written proof with exact controls, not independently reviewed or Lean verified.",
+  "source": "docs/theory/paper_b_wave_bearing_report.md",
+  "lean": "",
+  "tests": [
+   "tools/validate_paper_b_wave_bearing.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-paper-b-wave-bearing-sums",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For fixed C,M, let X=x^(3/2),m=floor X,Y=m^(3/2),1/2<=|t|<=CP^(1/24), even 0<=e_j<=CP^(1/24),1<=r_j<=CP^(1/24), and real |a_j|r_j<=CP^(1/2), with at most M terms. On a coarse partition of local count C(1+L P^(-11/24)), a_j are constant, phi is real C^3 with |phi'''|<=CP^(-13/12), and eta has sup norm plus variation <=C per cell. The odd-integer dyadic sum of eta e(tY+sum a_j Delta_(2r_j)Y(n+e_j)-sum sigma_l c_l A_l+phi) is O_(C,M,epsilon)(P^(31/32+epsilon)), with at most M translated D2 factors from Section 1 of the source, sigma_l in {-1,0,1}, and k_l,h_l,i<=CP^(1/24). D2 labels must stay fixed on their original gap runs; the coarse partition only refines them. The A-process H=P^(1/12) controls all but a fixed number of shifts by nonzero main curvature; D1 replacement, D2 error, all carry modes, and every partition endpoint are included. This is a family estimate, not a complete kernel theorem or OOOEE count. AI-assisted written proof with exact controls; no independent review or Lean verification.",
+  "source": "docs/theory/paper_b_wave_bearing_report.md",
+  "lean": "",
+  "tests": [
+   "tools/validate_paper_b_wave_bearing.py"
+  ],
+  "related_conjectures": []
+ },
+ {
   "id": "J-cycle-periodic-return-height-strip",
   "tag": "EXACT — HUMAN PROOF",
   "statement": "Every actual Juggler cycle with minimum m>=5 and maximum M<m^3 has q=O(m), t=E(M), and z=Q(m^(9/8)), Q the largest odd integer not exceeding its argument, satisfying t^3<=[z(z-2)]^2-2 and M<=(t+1)^2-2. The periodic E-image section is exactly C intersect [m,O(m)), its return words are OE/OOE, and its minimum and maximum return images z,w are adjacent odd bases with w<=z-2. The exact OE cells at t give p=O(t)<= (w+1)^2-2 and t^3<=(p+1)^2-2, proving the bound. If T is the largest odd integer with T^3<=[z(z-2)]^2-2, then M<=(T+1)^2-2. The smooth form is t<m^(3/2)-(4/3)m^(3/8), implying M<m^3-m^(15/8) for m>=7. Thus a periodic threshold cycle in that top cubic strip must have a wrong-parity state; if all retained bases are odd, an OOE first remainder is odd or an E displacement is even. The strict OOE growth used in the return partition starts at m>=5; the fixed prescribed returns at 3 and 4 are excluded. This strengthens the earlier minimum-only extrema ceiling, not every period-dependent grid bound. The remaining cubic region, tall cycles and global no-cycle are unexcluded; no numerical period floor is raised. AI-assisted written proof with separate AI audits and exact bounded controls; no new Lean verification.",

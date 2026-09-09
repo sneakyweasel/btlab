@@ -1,3 +1,5 @@
+> **Wave-bearing research supplement, 9 September 2026:** [Widened D1 repair](paper_b_wave_bearing_report.md) gives exponent 31/32, up to epsilon, for the nonzero-total-Y family with the stated D2 factors and partition conditions. The nonzero-offset family at zero total Y frequency, complete kernel, and OOOEE remain unproved. The 27/32 manuscript and deposit package are unchanged.
+
 > **Signed-wave research supplement, 9 September 2026:** [Combined zero-offset estimate](paper_b_signed_waves_report.md) proves the specified signed family with exponent 31/32, up to epsilon, including the D2 factors. Full kernel assembly and OOOEE remain unproved. The 27/32 manuscript and deposit package are unchanged.
 
 > **D2 research supplement, 9 September 2026:** [D2 repair and signed-wave obstruction](paper_b_d2_report.md) records a new fixed-label reduction. The kernel and OOOEE count remain unproved; the 27/32 manuscript and deposit package are unchanged.

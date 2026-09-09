@@ -1,5 +1,26 @@
 # Research journal
 
+## Paper B wave-bearing family: widened D1 repair
+
+- **Date:** 9 September 2026. **Source:**
+  [Wave-bearing family](problems/juggler_paper_b_wave_bearing.md).
+- **What was learned:** Differentiating the frozen D1 branch in m
+  gives a smaller floor error, still summable at the widened
+  coefficient range. Beyond finitely many small shifts, the
+  nonzero total Y frequency controls the full curvature.
+- **Strongest theorem:** The family (W3), with signed coefficients
+  |a_j|r_j<=CP^(1/2), the specified coarse partition and smooth twist,
+  and a fixed number of D2 floor factors on their original runs, is
+  O_epsilon(P^(31/32+epsilon)). Every carry and coefficient cut is counted.
+- **Evidence:** EXACT — HUMAN PROOF in the written-proof sense.
+  Exact algebra and exponent controls pass; no independent review
+  or Lean verification is claimed.
+- **Decision:** PROMOTE the wave-bearing estimate and D1 linearization.
+- **Best next question:** Can the nonzero-offset anchor family with
+  zero total Y frequency and signed decorations be bounded uniformly?
+- **Scope:** The complete kernel and OOOEE transfer remain unproved.
+  The 27/32 manuscript and Zenodo package are unchanged.
+
 ## Paper B signed zero-offset family: a uniform power saving
 
 - **Date:** 9 September 2026. **Source:**
