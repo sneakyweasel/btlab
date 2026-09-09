@@ -1375,20 +1375,41 @@ level sets — intervals \([w^{4/3},(w+1)^{4/3})\) of length
 surviving \(\psi\)'s are \(\psi\) of smooth monomials rather than of
 nested floors. Only \(\psi(n^{3/2})\) varies inside a block. For
 \(OEOEE\) (nominal \(\rho=\tfrac9{32}\)) this splits the fifteen sign
-sums into eight that are
+sums into seven non-main terms without \(\psi(n^{3/2})\) that are
 one-variable sums in \(w\), handled by the second-derivative test and
-the Proposition 4.4 pairing, and seven that are
-\(\sum_w|T(w)|\le\mathcal N^{1/2}(\sum_w|T(w)|^2)^{1/2}\) with
+the Proposition 4.4 pairing, and eight terms with \(\psi(n^{3/2})\)
+that are bounded through \(\sum_w|T(w)|\), with
 \(T(w)=\sum_{n\in I_w}\psi(n^{3/2})\), handled by Kusmin–Landau per
-block against a monotone slowly-stepping frequency. The savings are
-\(P^{-3/32}\) and \(P^{-1/16}\); no Paper B estimate, no localization,
+block against a monotone slowly-stepping frequency. After the balanced
+truncations in the production note, both sides save
+\(P^{-1/8+\varepsilon}\); no Paper B estimate, no localization,
 and — unlike \(OOEEE\), where
 \(\lfloor v^{1/4}\rfloor=\lfloor n^{9/16}\rfloor\) fails on a set needing
 Erdős–Turán — the relevant nested description
 \(J^5(n)=m'\iff\lfloor n^{3/4}\rfloor\in[m'^{8/3},(m'+1)^{8/3})\) is
 exact. It is this statement, not the false replacement
-\(J^5(n)=\lfloor n^{9/32}\rfloor\), that the construction uses. Since
-an \(OEOEE\)-start lies in the \(OE\)-fiber of an *odd*
+\(J^5(n)=\lfloor n^{9/32}\rfloor\), that the construction uses.
+
+Here is the endpoint transfer suppressed by the scale notation above.
+Put \(\Phi(a)=\lceil a^{4/3}\rceil\). For fixed \(V_k\), set
+\(s=(3/4)^{k-1}\), \(\rho_k=3s/8\),
+\(a=\lceil m'^{8/3}\rceil\), and
+\(b=\lceil(m'+1)^{8/3}\rceil\). Its exact nested landing window is
+\([\Phi^{k-1}(a),\Phi^{k-1}(b))\cap\mathbb Z\), not the single-power
+window. If \(P=m'^{1/\rho_k}\), its symmetric difference from
+\([m'^{1/\rho_k},(m'+1)^{1/\rho_k})\cap\mathbb Z\) is
+\(O_k(P^{1-s})\), hence has relative size \(O_k(P^{-5s/8})\).
+This is smaller than the audited binding error
+\(P^{-s/6+\varepsilon}\), so the triangle inequality transfers every
+fixed named estimate \(V_2,\ldots,V_6\) with the same exponent. At a
+shell endpoint one discards \(O_k(1)\) terminal \(m'\)-values, of
+log-mass \(O_k(x^{-\rho_k})\), to keep the corrected fibers inside
+\((\sqrt x,x]\). See Lemma 1' of
+[the production note](juggler_oeoee_production.md). Its displayed
+finite constants are smooth-window constants; this transfer only
+asserts an enlarged implicit constant on the exact fibers.
+
+An \(OEOEE\)-start lies in the \(OE\)-fiber of an *odd*
 \(J^2(n)\), the family sits inside family 3 and must be removed from it
 before being re-added at the ideal share, which by the two-sided form of
 Proposition 4.4 changes (5.2) by exactly
@@ -1893,7 +1914,7 @@ every \(1\le t<d(y)\) and every \(w\in\{O,E\}^t\),
 (The depth-\(0\) cylinder is all odd starts, whose next letter is \(O\)
 with share \(1\); the hypothesis starts at depth \(1\).)
 
-**Theorem 9.1 (one-sided form).** Let \(q<\log 2/\log 3=0.6309\ldots\),
+**Theorem 9.1 (one-sided form).** Let \(0<q<\log 2/\log 3=0.6309\ldots\),
 \(\mu=1-q\log_2 3>0\), \(C>1/\mu\), and
 \(e_q(C)=2(C\mu-1)^2/(C(\log_2 3)^2\ln 2)\). Under
 \(\mathrm H_q(C,A)\) with \(A>C+e_q(C)\), for every \(\varepsilon>0\) and
@@ -1999,13 +2020,13 @@ live prefixes are up-weighted exponentially.
 \(y\), \(\sum_{t=1}^{d(y)-1}\bigl(s_\theta(t)-q\bigr)^+=o(d(y))\).
 
 **Proposition 9.3.** \(\mathrm M_{\theta,1/2}(C)\) implies
-\(\mathrm P_\theta(C)\). More generally, for a fixed \(\theta>0\),
+\(\mathrm P_\theta(C)\). More generally, for \(0<q<1\) and a fixed \(\theta>0\),
 \(\mathrm M_{\theta,q}(C)\) gives
 \[
 \#\{\tau>d\}\le
 N\exp\{-d[\theta p_C-\log(1-q+qe^\theta)-o(1)]\}.
 \]
-If \(q<p_C\) and the hypothesis is assumed at the optimizing tilt
+If \(0<q<p_C<1\) and the hypothesis is assumed at the optimizing tilt
 \(\theta=\theta_{C,q}:=\log\frac{p_C(1-q)}{q(1-p_C)}\), this becomes
 \(N\exp(-dD(p_C\|q)(1-o(1)))\), with exponent
 \(e_q^{\rm Ch}(C)=C\,D(p_C\|q)/\ln 2\), at least the Azuma exponent of
@@ -2436,25 +2457,69 @@ pressure (biased Chernoff) at the same \(q\): \(19,41,214,1496\) /
 \(N_0=3.5\cdot 10^8\): \(25\) at \(10^{20}\), \(72\) at \(10^{100}\),
 \(138\) at \(10^{1000}\), \(204\) at \(10^{10000}\).
 
+\newpage
+
 *Artifacts* (repository `sneakyweasel/btlab`; SHA-256):
 
-| file | hash |
-|---|---|
-| `data/research/juggler/fate_contagion/summary.json` | `85030bcb5f4964b814b101683c2721efa5f7299b687afa9e399febe60343a10c` |
-| `data/research/juggler/tao_reduction/summary.json` | `76c0ae713d34569cdf8efd90231712f9281f7d5083346a2d9384c536f7cd34cc` |
-| `formal/Problems/Juggler/FateContagion.lean` | `cac6a00884346fcc98a03603bf919e03a681f8f66b8b55f3cff9d336e83a2472` |
-| `formal/Problems/Juggler/CubeFiber.lean` | `acbf621b4651782eff7922512d096832aa20ea59a59261839b3e5926189dedba` |
-| `formal/Problems/Juggler/TiltedShare.lean` | `cfb1b2b6cbe08be3a9acc1f4fa33c9afaa2dfa73beed2125dbe0793c540e239e` |
-| `formal/Problems/Juggler/FateRecursion.lean` | `13de9eb27d4e34b58d783d589574838028d767bcb5ea3f2bb8449e74e3be04d3` |
-| `formal/Problems/Juggler/FateFirstLetter.lean` | `635bb6163f5a054085087eefcd2c62037c61538fe863d53e9dca69da8fddb3e9` |
-| `formal/Problems/Juggler/FateSweep.lean` | `71c5c2472d2c2d31d7b2565e66f92e97b3ae9bd0c76aa45a1703eea7bd910d39` |
-| `formal/Problems/Juggler/FateChernoff.lean` | `4eec5c05916226374815b586252aa8c7a147615d27088939044f80db3b94f515` |
-| `formal/Problems/Juggler/FatePressure.lean` | `f69ad74fcaed87b692451113cf72eeadc1182efc0ac8121e255e6b079bf2bbf2` |
-| `formal/Problems/JugglerFatePaper.lean` | `77ea662960c9880c98ca434cf1e2ff577dd32779b632ab6f395f34471f7a4945` |
-| `formal/AxiomCheckPaperC.expected` | `8f1ff2a7c49274b352922ea893489425330c173e4f4f66ad59914ba49769978f` |
-| `src/research/juggler_sequence/fate_contagion.py` | `34f8cff465e00187cb85e1dc9a75a3b250caa4c8f38a3bc41aef29f68be08b7a` |
-| `src/research/juggler_sequence/tao_reduction.py` | `90f930bd604f6aa38c3a5ec8265d270d218240cdb358b20b19cad98dc4ac2f1c` |
-| `docs/theory/figures/render_paper_c_figures.py` | `5e434450835aadb4ed5ed2cbed00cc33f774996ba9ef229cb0434fc677bff5b7` |
+- `data/research/juggler/fate_contagion/summary.json`
+
+  SHA-256: `85030bcb5f4964b814b101683c2721efa5f7299b687afa9e399febe60343a10c`
+
+- `data/research/juggler/tao_reduction/summary.json`
+
+  SHA-256: `76c0ae713d34569cdf8efd90231712f9281f7d5083346a2d9384c536f7cd34cc`
+
+- `formal/Problems/Juggler/FateContagion.lean`
+
+  SHA-256: `cac6a00884346fcc98a03603bf919e03a681f8f66b8b55f3cff9d336e83a2472`
+
+- `formal/Problems/Juggler/CubeFiber.lean`
+
+  SHA-256: `acbf621b4651782eff7922512d096832aa20ea59a59261839b3e5926189dedba`
+
+- `formal/Problems/Juggler/TiltedShare.lean`
+
+  SHA-256: `cfb1b2b6cbe08be3a9acc1f4fa33c9afaa2dfa73beed2125dbe0793c540e239e`
+
+- `formal/Problems/Juggler/FateRecursion.lean`
+
+  SHA-256: `13de9eb27d4e34b58d783d589574838028d767bcb5ea3f2bb8449e74e3be04d3`
+
+- `formal/Problems/Juggler/FateFirstLetter.lean`
+
+  SHA-256: `635bb6163f5a054085087eefcd2c62037c61538fe863d53e9dca69da8fddb3e9`
+
+- `formal/Problems/Juggler/FateSweep.lean`
+
+  SHA-256: `71c5c2472d2c2d31d7b2565e66f92e97b3ae9bd0c76aa45a1703eea7bd910d39`
+
+- `formal/Problems/Juggler/FateChernoff.lean`
+
+  SHA-256: `4eec5c05916226374815b586252aa8c7a147615d27088939044f80db3b94f515`
+
+- `formal/Problems/Juggler/FatePressure.lean`
+
+  SHA-256: `f69ad74fcaed87b692451113cf72eeadc1182efc0ac8121e255e6b079bf2bbf2`
+
+- `formal/Problems/JugglerFatePaper.lean`
+
+  SHA-256: `cb096d601d6c5ef6d19e7c7b81a52ae8a708f241d8311eb89794a699cec3af2b`
+
+- `formal/AxiomCheckPaperC.expected`
+
+  SHA-256: `5939a49ce68518bbff9544fc34287bb41fdab54c11d2a2ba7817dfc2ee99f523`
+
+- `src/research/juggler_sequence/fate_contagion.py`
+
+  SHA-256: `84bafabf891e9be8c764eed222d7b72a96b4971708502cbb7dd43287deaf6ec0`
+
+- `src/research/juggler_sequence/tao_reduction.py`
+
+  SHA-256: `73e6cfb53a094ccbc998eff6bbf422361fc6a7cbef5f32807215bae6a41c0471`
+
+- `docs/theory/figures/render_paper_c_figures.py`
+
+  SHA-256: `5e434450835aadb4ed5ed2cbed00cc33f774996ba9ef229cb0434fc677bff5b7`
 
 The numerical experiments of Section 11 use fixed random seeds and are
 reproduced by `python -m research.juggler_sequence.fate_contagion` and

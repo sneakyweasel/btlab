@@ -2457,6 +2457,8 @@ pressure (biased Chernoff) at the same \(q\): \(19,41,214,1496\) /
 \(N_0=3.5\cdot 10^8\): \(25\) at \(10^{20}\), \(72\) at \(10^{100}\),
 \(138\) at \(10^{1000}\), \(204\) at \(10^{10000}\).
 
+\newpage
+
 *Artifacts* (repository `sneakyweasel/btlab`; SHA-256):
 
 - `data/research/juggler/fate_contagion/summary.json`
