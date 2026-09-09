@@ -4210,6 +4210,8 @@
       "conjecture": [],
       "decision": "CLOSE",
       "ledger_ids": [
+        "J-pressure-log-order-obstruction",
+        "J-pressure-log-order-certificate",
         "J-pressure-direct-routes"
       ],
       "aliases": [],

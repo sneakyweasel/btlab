@@ -1,5 +1,31 @@
 [
  {
+  "id": "J-pressure-log-order-obstruction",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Fix N0>=2 and theta>0. For positive h on n>N0 let K_theta h(n)=exp(theta*1_odd(n))*h(Jn) if Jn>N0, and 0 otherwise. If log h(n)/log log n tends to s, then R(h)=limsup_{n->infinity} K_theta h(n)/h(n) >= max(2^(-s), exp(theta)*(3/2)^s) >= exp(theta*log2/log3). The infimum over all finite logarithmic orders and all such h is exactly exp(theta*log2/log3), attained as a limsup by h(n)=(log n)^(-theta/log3), not asserted as an exact finite-cutoff inequality. Same lower bound per step for every fixed block length. Proof uses exact live E towers b^(2^k)->b and O towers a^(2^k)->a^(3^k), with even b and odd a above any cutoff. More generally finite lower/upper logarithmic orders s_-<=s_+ give log R(h)>=theta*log2/log3-(s_+-s_-)*log2. No regularity beyond the stated orders; arbitrary subpower arithmetic fluctuations are included. Human proof, no new Lean theorem. This is a pointwise-certificate obstruction, not a dyadic live-pressure or no-momentum refutation.",
+  "source": "docs/problems/juggler_pressure_direct.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_pressure_direct.py"
+  ],
+  "related_conjectures": [
+   "juggler_loglog_depth_cylinder_bound"
+  ]
+ },
+ {
+  "id": "J-pressure-log-order-certificate",
+  "tag": "REFUTED",
+  "statement": "For C>1, at an optimizing pressure tilt theta=log(p_C*(1-q)/(q*(1-p_C))), 0<q<p_C=(1-1/C)*log2/log3, a positive fixed-logarithmic-order state weight cannot satisfy the eventual pointwise killed drift K_theta h <= (1-q+q*exp(theta))*h, even after replacing one step by any fixed block length. The unavoidable log rate is theta*q_*, while the target is theta*p_C-D(p_C||q)<theta*q_*. At C=19,q=1/2 the unavoidable/target factor is 1.03290217; any finite-order irregular weight would need log-order oscillation >=0.04670362, a necessary condition only. This refutes the uniform certificate class, not the open averaged hypotheses M or P. Both obstruction towers stay above the floor; no fate is excluded.",
+  "source": "docs/problems/juggler_pressure_direct.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_pressure_direct.py"
+  ],
+  "related_conjectures": [
+   "juggler_loglog_depth_cylinder_bound"
+  ]
+ },
+ {
   "id": "J-absorbed-cylinder",
   "tag": "EXACT — HUMAN PROOF",
   "statement": "Fix N0 >= 2 and C > 1. For every sufficiently large k there is a dyadic y_k with L(y_k)=k+O(1), d=ceil(C L(y_k))>k+5, such that the single exact-map cylinder O E^(k+4) O^(d-k-5) contains at least y_k/(216 log y_k) odd starts in (y_k,2y_k]. Every start in that cylinder reaches 1 at time k+5. Proof: the E-depth-k inverse tree of 4 retains harmonic mass >=1/12; the fixed OEE production gives >=1/6 of each large leaf's harmonic weight; dyadic pigeonhole on log-support width O(2^k). These are non-bad absorbed cylinders, excluded from live pressure. No bound for surviving mass is proved; analytic human proof, not Lean verified.",

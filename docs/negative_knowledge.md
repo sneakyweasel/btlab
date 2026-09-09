@@ -804,6 +804,23 @@ pressure census. Dossier:
 [juggler_transfer_weight_invariant](problems/juggler_transfer_weight_invariant.md)
 (`J-transfer-weight-invariant`).
 
+**Pointwise logarithmic-weight pressure certificates (9 September 2026).**
+The class \(h(n)=(\log n)^{s+o(1)}\), with any real \(s\), cannot
+give the uniform killed tilted factor \(a_{\theta,q}=1-q+qe^\theta\)
+at an optimizing pressure tilt. Exact live even and odd power towers
+force the asymptotic pointwise factor to be at least
+\(\max(2^{-s},e^\theta(3/2)^s)\ge e^{\theta\log2/\log3}
+>a_{\theta,q}\). The bound is sharp as a limsup and survives every
+fixed block length and all subpower arithmetic fluctuations of the
+weight. This extends the scope of the old bounded-correction
+obstruction; it is not an attempt to rescue that program. The proof
+uses pointwise transitions, so it does not refute averaged drift on
+the actual dyadic tilted population. Do not turn the necessary
+oscillation condition on irregular weights into a new rescue branch.
+Dossier: [juggler_pressure_direct](problems/juggler_pressure_direct.md),
+`J-pressure-log-order-obstruction`, `J-pressure-log-order-certificate`.
+Decision: CLOSE for this certificate class; M and P remain open.
+
 **Unstopped growing-depth cylinders (9 September 2026).** The former
 all-word version of \(\mathrm H(C,A)\) is **REFUTED** for
 \(C>1,A>1\), and the all-prefix version of \(\mathrm H_q(C,A)\)

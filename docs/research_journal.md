@@ -1,5 +1,29 @@
 # Research journal
 
+## Live pressure: logarithmic-order pointwise weights
+
+- **Date:** 9 September 2026, follow-up to the absorbed-cylinder phase.
+- **Target:** A state-weighted drift estimate for the actual stopped
+  pressure, allowing unbounded weights of fixed logarithmic order.
+- **Strongest theorem:** `J-pressure-log-order-obstruction`, EXACT —
+  HUMAN PROOF. Exact live even and odd power towers force every
+  h(n)=(log n)^(s+o(1)) to have asymptotic pointwise tilted rate at least
+  max(2^(-s),exp(theta)*(3/2)^s), whose sharp minimum is
+  exp(theta*log2/log3). Every fixed block length has the same obstruction.
+- **Refutation:** This exceeds the optimized pressure target. At C=19
+  and q=1/2 the factor gap is 1.03290217 per step. Finite lower/upper
+  logarithmic orders must differ by at least 0.04670362 to evade this
+  particular bound; this is necessary only, not an existence result.
+- **Limit:** The obstruction families remain live, but their aggregate
+  tilted mass is not controlled. No dyadic M or P bound is proved or
+  refuted; no improvement in failure density. No new census, framework,
+  Lean module, manuscript edit or floor campaign.
+- **Decision:** CLOSE for the pointwise certificate class. Record the
+  proof as an addendum to the existing direct-pressure dossier. The next
+  question is whether an estimate can be proved only after averaging
+  over the actual dyadic tilted population, without a uniform statewise
+  inequality. Do not auto-open an irregular-weight rescue.
+
 ## Absorbed-cylinder obstruction to unstopped averaging
 
 - **Date:** 9 September 2026.

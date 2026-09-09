@@ -101,6 +101,102 @@ def test_tao_depth_suffix_dp_runs() -> None:
     assert 0.0 <= mu4 <= 1.0
 
 
+def test_exact_even_and_odd_perfect_power_towers() -> None:
+    """Finite fixtures for the two sparse towers used in the gauge obstruction."""
+
+    floor = 350_000_000
+    even_base = floor + 2
+    odd_base = floor + 1
+    for depth in range(1, 6):
+        even_start = even_base ** (2**depth)
+        x = even_start
+        for _ in range(depth):
+            assert x % 2 == 0
+            x = math.isqrt(x)
+            assert x > floor
+        assert x == even_base
+
+        odd_start = odd_base ** (2**depth)
+        x = odd_start
+        for _ in range(depth):
+            assert x % 2 == 1
+            x = math.isqrt(x**3)
+            assert x > floor
+        assert x == odd_base ** (3**depth)
+
+        # These are exact integer checks, kept deliberately tiny; they are not
+        # evidence that either sparse family has positive dyadic mass.
+        assert max(even_start.bit_length(), odd_start.bit_length()) < 1_000
+
+
+def test_log_order_gauge_minimax_is_the_critical_drift() -> None:
+    """The E/O tower constraints meet at exp(theta log(2)/log(3))."""
+
+    theta = theta_of_C(19)
+    log2 = math.log(2.0)
+    log3 = math.log(3.0)
+    log_three_halves = math.log(1.5)
+    s_critical = -theta / log3
+    critical_log_R = theta * Q_CRIT
+
+    even_constraint = -s_critical * log2
+    odd_constraint = theta + s_critical * log_three_halves
+    assert math.isclose(even_constraint, critical_log_R, rel_tol=0.0, abs_tol=1e-14)
+    assert math.isclose(odd_constraint, critical_log_R, rel_tol=0.0, abs_tol=1e-14)
+
+    # On either side of the crossing, one of the two exact-tower constraints
+    # is at least the critical value.  The asymptotic theorem uses k-step
+    # iteration; these sample points only regress the minimax algebra.
+    for offset in (-4.0, -1.0, -0.1, 0.0, 0.1, 1.0, 4.0):
+        s = s_critical + offset
+        log_R_lower_bound = max(-s * log2, theta + s * log_three_halves)
+        assert log_R_lower_bound >= critical_log_R - 1e-14
+
+
+def test_critical_gauge_bound_exceeds_optimized_pressure_base() -> None:
+    """At the useful fair and biased depths, a pointwise gauge is too costly."""
+
+    for C, q, expected_gap in ((19, 0.5, 0.03237248), (41, 0.55, 0.01293665)):
+        p = p_of_C(C)
+        theta = math.log(p * (1.0 - q) / (q * (1.0 - p)))
+        log_pressure_base = math.log(1.0 - q + q * math.exp(theta))
+        log_pointwise_lower_bound = theta * Q_CRIT
+        assert q < p < Q_CRIT
+        assert theta > 0.0
+        assert log_pointwise_lower_bound > log_pressure_base
+        assert abs((log_pointwise_lower_bound - log_pressure_base) - expected_gap) < 1e-8
+
+
+def test_log_order_oscillation_bound_and_necessary_widths() -> None:
+    """Regress (P5) and the oscillation widths needed to reach the target rate."""
+
+    log2 = math.log(2.0)
+    log3 = math.log(3.0)
+    cases = ((19, 0.5, 0.0467036177), (41, 0.55, 0.0186636371))
+    for C, q, expected_delta in cases:
+        p = p_of_C(C)
+        theta = math.log(p * (1.0 - q) / (q * (1.0 - p)))
+        log_pressure_base = math.log(1.0 - q + q * math.exp(theta))
+        delta = (theta * Q_CRIT - log_pressure_base) / log2
+        assert abs(delta - expected_delta) < 5e-11
+
+        # For fixed width delta = s_+ - s_-, the two affine tower bounds
+        # meet at s_+ = delta - theta/log(3), attaining (P5).
+        equality_s_plus = delta - theta / log3
+        for offset in (-2.0, -0.2, 0.0, 0.2, 2.0):
+            s_plus = equality_s_plus + offset
+            s_minus = s_plus - delta
+            log_R_lower_bound = max(
+                -s_plus * log2,
+                theta + s_minus * log3 - s_plus * log2,
+            )
+            p5_lower_bound = theta * Q_CRIT - delta * log2
+            assert log_R_lower_bound >= p5_lower_bound - 1e-14
+            if offset == 0.0:
+                assert math.isclose(log_R_lower_bound, p5_lower_bound, abs_tol=1e-14)
+                assert math.isclose(p5_lower_bound, log_pressure_base, abs_tol=1e-14)
+
+
 def test_dossier_headings_and_close() -> None:
     dossier = DOSSIER.read_text(encoding="utf-8")
     for heading in (
