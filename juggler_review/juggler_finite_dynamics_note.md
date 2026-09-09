@@ -1,7 +1,7 @@
 ---
-title: "Cycle Financing and Near-Convergent Diophantine Obstructions in the Juggler Map"
+title: "Lower Bounds for Cycle Lengths in the Juggler Map"
 author: Philippe Cochin
-date: 7 September 2026
+date: 9 September 2026
 keywords:
   - Juggler map
   - Juggler sequence
@@ -16,95 +16,48 @@ header-includes:
 
 ## Abstract
 
-The Juggler map is the nonlinear integer map
+The Juggler map sends an even positive integer to the integer part of its
+square root and an odd positive integer to the integer part of its
+three-halves power. We obtain restrictions on hypothetical nontrivial
+cycles. For a cycle with minimum \(n\), length \(L\), and \(o\) odd steps,
+we prove the cycle-financing inequality
 \[
-J(n)=
-\begin{cases}
-\lfloor\sqrt n\rfloor,&n\ \text{even},\\
-\lfloor n^{3/2}\rfloor,&n\ \text{odd}.
-\end{cases}
+n\log n\,(3^o-2^L)\le L\,3^o.
 \]
-It is conjectured that every positive integer eventually reaches \(1\).
-This paper does not prove that conjecture. It proves period lower
-bounds for a hypothetical nontrivial cycle, once a verified descent
-floor is given.
+It bounds the formal expansion that accumulated floor losses can offset.
+A refinement transports these losses to a reduced base and bounds the
+resulting exponent-walk charge using an irrational rotation,
+Denjoy--Koksma estimates, and finite Ostrowski decompositions. Combined
+with the verified descent inputs described in the paper, the inequalities
+give period lower bounds of \(25781\), \(176251\), \(478245\), and
+\(780239\) at floors \(10^6\), \(26254995\), \(162849448\), and
+\(350000000\), respectively. Separately, finite-word exclusions give at
+least four even steps without a descent-floor input; an exact computational
+classification strengthens this to eight even steps and period at least
+twenty-two. The core inequalities and selected classifications are
+formalized in Lean 4. The descent computations, per-length numerical
+comparisons, and remaining analytic identifications are distinguished
+from those formal proofs. A limitation result applies to charges retaining
+a positive contribution at a fixed floor. Neither the exclusion of all
+nontrivial cycles nor universal termination is established.
 
-We develop a cycle-financing inequality for this floor-power map.
-Exact integer one-step preimages give a one-step logarithmic defect; cycle
-minimality lets that defect be unrolled against the cycle
-minimum; the formal surplus \(3^o-2^L\) must then be paid by a
-finite accumulated budget. For a hypothetical cycle of length
-\(L\) with \(o\) odd steps and minimum \(n\),
-\[
-n\log n\cdot(3^o-2^L)\le L\cdot 3^o.
-\]
-This inequality is the main theorem; every numerical period
-bound below is an instantiation of it, or of its coupled
-walk-charge refinement, at a certified descent floor.
-As a consequence, combining the inequality with the known
-verification through \(10^6\) yields \(L\ge 25781\); at the
-laboratory-certified descent floor \(N_0=26254995\) the same
-table yields \(L\ge 50508\). The novelty is not a new
-computational record; it is that implication. A walk-charge
-envelope — transport of the floor losses to a
-reduced base, identification of the extremal exponent walk as a
-rotation itinerary, and a Denjoy--Koksma bound over certified
-Ostrowski blocks, census-free on the window
-\([50508,16785921)\) — then extends the exclusion at the
-laboratory floor: any nontrivial cycle has period at least
-\(176251\). The same
-certified kill criterion at a second certified floor,
-\(N_0=162849448\), on the surviving lengths — all inside the
-census-free window, which reaches up to but excludes the fan endpoint — gives
-period at least \(478245\). The main numerical result evaluates it once more at
-the third certified floor \(N_0=350000000\): any nontrivial
-Juggler cycle has period at least \(780239\). We
-also prove that every nontrivial cycle contains at least four
-even steps, and hence has period at least eleven (Theorem 3.22);
-that Lean statement uses no descent floor and holds for every
-\(n\ge 2\). A computational strengthening (Theorem 3.31) raises
-the even count to eight and the period to twenty-two once the
-cycle minimum is at least \(300\) --- every \(n\le 299\) reaches
-\(1\). That enumeration is not Lean. A floor-free gap transfer,
-\(n\log n\cdot\min(o\log 3-L\log 2,\,1)\le 2L\), combined with
-Rhin's effective measure, excludes every cycle with
-\(L^{14.3}\le n\log n/915\) and reduces the no-cycle problem to
-the long regime, where it remains open. The core lemmas are formalized in
-Lean 4; the descent floors and the per-length kill tables are
-independently certified computations, and the paper does not
-claim to be formally verified as a whole. Section 6 then prices the method rather than only stating its limits.
-The charges used here retain, at each fixed descent floor, a positive
-anchor term uniformly in the length. Proposition 6.2a proves that any
-refinement retaining that anchor can exclude only finitely many
-upper-convergent denominators; it makes no claim about charges without such
-an anchor. Thus this anchored finance/run/walk architecture does not by
-itself yield a cycle theorem, and the reach of the
-floor route is \(\asymp\sqrt{N_0\log N_0}\), or \(\sqrt{N_0}\log N_0\)
-with the walk charge. Within the relaxed configuration-majorant model of
-Section 6, finance is within the \(6/5\) it advertises, and the run--suffix law of
-Section 3, which is floor-free and length-free, is empty at exactly the
-lengths that survive finance. What a proof would need, and what is
-absent here, is a lower bound on the cycle minimum in terms of the
-period.
+**2020 Mathematics Subject Classification.** Primary 11B83;
+secondary 37P99, 11Y55.
 
-Two companion manuscripts
-use this paper's power envelope and certified floor as inputs: a
-parity-discrepancy paper (depth-4 equidistribution of nested floor
-powers, certificate density \(7/8\)) and a fate-contagion paper, in
-which the floor is the target of a Tao-type reduction and the basin of
-any hypothetical cycle is shown to have logarithmic count
-\(\gg(\log x)^{0.492}\); Section 6.1 records what they add to the cycle
-problem and what they do not.
-
-**2020 Mathematics Subject Classification.** 11B83, 37P99, 11Y55.
+**Keywords.** Juggler map, Juggler sequence, floor-power map, cycle
+financing, integer dynamics.
 
 ## 1. Introduction
 
 The Juggler sequence was introduced by Pickover [1,2] as an
 interesting variation of the Collatz problem. Pickover's later
-exposition is Chapter 45 of [2], pp. 102--106. The object of study
-is the one-step map \(J:\mathbb N\to\mathbb N\) displayed in the
-abstract. The *Juggler sequence* starting at \(n\) is the trajectory of
+exposition is Chapter 45 of [2], pp. 102--106. We study \(J:\mathbb N\to\mathbb N\),
+\[
+J(n)=\begin{cases}
+\lfloor\sqrt n\rfloor,&n\text{ even},\\
+\lfloor n^{3/2}\rfloor,&n\text{ odd}.
+\end{cases}
+\] The *Juggler sequence* starting at \(n\) is the trajectory of
 iterates \(n,\,J(n),\,J^2(n),\ldots\). The On-Line Encyclopedia of
 Integer Sequences records the one-step values of \(J\) as A094683
 [3] and the number of steps to reach \(1\) (when that occurs) as
@@ -147,8 +100,8 @@ reaches \(1\).
 
 **Ideal exponent.** An itinerary of length \(k\) with \(o\) odd letters
 has ideal exponent \(3^o/2^k\). Ignoring floors, those letters
-would multiply the start by that ratio. Floors make the actual
-image smaller.
+would send a start \(n\) to \(n^{3^o/2^k}\); equivalently, the
+ratio multiplies \(\log n\). Applying floors can only decrease the image.
 
 **Realized itinerary.** An itinerary \(w\) is *realized* at \(n\) when the
 first \(\lvert w\rvert\) parities of the trajectory of \(n\) are exactly
@@ -163,8 +116,11 @@ the *one-step preimage* of \(m\) is the set
 \[
 J^{-1}(m)=\{k\in\mathbb N:J(k)=m\}.
 \]
-An even image has a whole interval of even parents; an odd image
-has at most one odd parent (Lemma 3.1).
+For each target \(m\), its even parents are the even integers \(k\)
+with \(m^2\le k<(m+1)^2\). Its odd parents satisfy
+\(m^2\le k^3<(m+1)^2\), and there is at most one such odd
+integer (Lemma 3.1). These are statements about the parent's branch,
+independent of the target's parity.
 
 **Lemma 1.1 (three fates).**
 Let \(n\in\mathbb N\). The trajectory of \(n\) does exactly one of the
@@ -256,17 +212,10 @@ L\ge 25781\ \text{at}\ 10^6,
 \]
 extended at the laboratory floor by
 \[
-\text{transport}
-\to
-\text{hug adversary}
-\to
-\text{itinerary identity}
-\to
-\text{Denjoy--Koksma}
-\to
-\text{window}
-\to
-L\ge 176251.
+\begin{aligned}
+\text{transport}&\to\text{hug adversary}\to\text{itinerary identity}\\
+&\to\text{Denjoy--Koksma}\to\text{window}\to L\ge176251.
+\end{aligned}
 \]
 The computation supplies the endpoint \(N_0\). The mathematics
 amplifies that floor to the period bound.
@@ -505,44 +454,53 @@ of a million window lengths in Section 5's Ostrowski certification, which
 uses `native_decide` and so also trusts the Lean compiler and runtime.
 `#print axioms` on any theorem displays whether it depends on it.
 
-It was two. The second, `greedy_eq_ostro_below_window`, scanned all
-\(301994\) lengths to identify the fold-form greedy digits with the
-function-form ones. They are the same algorithm written twice --- the fold
-peels \(L/q\) and keeps \(L\bmod q\) over the descending denominator list,
-the recursion does the same indexed by \(12-i\), and those two lists agree
-entry for entry --- so `greedy_eq_ostro` proves the identity for *every*
-\(L\), structurally, and the bounded scan is now a corollary of it. The
-reconstruction half of `window_digit_scan` went the same way:
-`greedy_reconstruct_all` is the division algorithm thirteen times and holds
-for every \(L\). What still needs the scan is only the sharp constant
-\(37\), the structural cap being \(47\).
+The structural digit identity `greedy_eq_ostro` identifies the
+fold and recursive algorithms for all lengths; `greedy_eq_ostro_below_window`
+is its bounded corollary. Likewise `greedy_reconstruct_all` is an exact
+reconstruction theorem. The remaining native scan sharpens the digit cap
+from \(47\) to \(37\) on its stated sub-window. The bound
+`window_digit_cap` inherits that scan's runtime dependency, as recorded
+by the axiom audit.
 
-Every number printed in Sections 4 and 5 is additionally recomputed
-from the *printed* criterion, independently of the probes that
-produced the tables, by `research.juggler_sequence.paper_a_audit`:
-the record \(n_{\max}\) values, the contiguous excluded prefix at each
-of the four certified floors, the Rhin constants of Corollary 4.11,
-the convergent asymptotic of Section 4, and the fan law of
-Proposition 5.12. Two of those recomputations are delicate enough to
-be worth stating. The crossings that define \(n_{\max}(25781)\) and
-\(n_{\max}(50508)\) are sharp to a relative \(2\cdot10^{-8}\) and
-\(3\cdot10^{-10}\) respectively --- each is the *last* integer at which
-the parity comparison holds, and the next one fails --- so
-\(\theta=1-2^L/3^o\) must be evaluated in extended precision: a
-double-precision evaluation of the exponent \(L\log 2-o\log 3\) carries
-enough relative error to move \(n_{\max}(25781)\) to \(26254996\). The
-remaining terms may be evaluated in double precision, and are.
+Reproducibility has three layers. The repository command
+`research.juggler_sequence.paper_a_audit` recomputes selected parity
+thresholds, finite fan identities, and constants, and checks the stored
+walk-comparison records. The standalone script
+`tools/check_paper_a_numeric.py` independently screens every length below
+the four headline cutoffs using rational logarithm bounds and interval
+arithmetic; it assumes the archived descent floors. Replaying those floors
+requires the separate exact-integer first-passage computation. Appendix B
+identifies its coverage and records. Neither an archive hash nor the
+arithmetic audit replaces that replay.
+
+Near a convergent, double precision is insufficient to identify an exact
+integer crossing without a guard: the \(25781\) threshold can shift by
+one integer when \(L\log2-o\log3\) is evaluated naively. The independent
+checker uses outward interval comparisons and rational screening. The
+historical GPU and CPU tables remain separately identified in Appendix B.
+
+The build command `python tools/build_paper_a.py` produces the canonical
+PDF and synchronized distribution copies from this source.
+`python tools/build_paper_a.py --check` checks their provenance and hashes.
+The manuscript source, formalization map, and reviewer packet in
+`docs/theory/` are the editorial inputs; files in `juggler_review/` and
+the companion's paper directories are generated exports. No external
+submission or universal termination proof is implied by a successful build.
 
 **Proposition 1.3 (certified computational input).**
-A machine-verifiable certificate establishes that every integer
-\(2\le n\le 10^6\) reaches \(1\). Precisely: an exact-integer
-first-passage run records, for each such \(n\), a finite realized
-word with image strictly below the start; strong induction on
-that image reaches \(1\). The longest first passage in the window
-has \(253\) steps (seed \(78901\)). Weisstein [5] records the
-same computational verification; the run here is an independent
-recomputation. The certificate files, SHA-256 hashes, and
-regeneration commands are Appendix B.
+An exact-integer first-passage computation checks that every odd start
+\(3\le n\le10^6\) reaches a value strictly below its start. Even
+starts descend in one step, so strong induction gives arrival at \(1\)
+for every \(2\le n\le10^6\). The archived files retain chunk summaries,
+counts, maximal first-passage lengths, and exceptional-seed resolutions;
+they do not retain a realized word for every start. Reproducing the
+descent assertion requires the exact computation, not only checking a
+summary's hash. The first four chunks of the \(26254995\)-floor run
+cover the odd starts through \(10^6\); their maximal first-passage
+lengths are \(253,213,188,188\). Thus the maximum is \(253\), at seed
+\(78901\). Weisstein [5] reports the same coverage; the archived run
+is a separate computation. Artifact locations and commands appear in
+Appendix B.
 
 **Roles.** Independently proved: the finance inequality
 (Theorem 4.4). Computational input: every \(2\le n\le 10^6\)
@@ -763,9 +721,9 @@ and 3.8) are supporting. Main-text proofs are kept to the short
 structural lemmas; the longer case analyses — Lemmas 3.5
 and 3.7, the censuses of Theorems 3.6 and 3.8, and the family
 exclusions of Theorems 3.12--3.21 — are Appendix D. After the one-step preimages, a minimum-based itinerary
-has a canonical run form. There are only three even-count
-regimes with \(e\le 3\); each reduces to a finite collection of
-geometries \(O^aEO^bEO^cE\). Those geometries are eliminated by
+has a canonical run form. The three regimes \(1\le e\le3\) use
+\(O^{a_1}E\cdots O^{a_e}E\), with exactly \(e\) even letters.
+These forms are eliminated by
 a next-square obstruction, by long odd-run growth against a
 last-even one-step preimage, or by a finite exceptional window. The family
 calculations are Appendix D.
@@ -850,10 +808,11 @@ so \(n^2\le y\), and the preceding argument applies to that prefix.
 \(\square\)
 
 **Lemma 3.21b (canonical run form).**
-After rotation to a minimum-based orientation, the itinerary begins
+Let the cycle contain a state at least \(2\). After rotation to a minimum-based orientation, the itinerary begins
 with \(OO\) and ends with \(E\); hence every itinerary with
 \(1\le e\le 3\) even letters has the canonical run decomposition
-\(O^aEO^bEO^cE\) (unused runs empty). The case \(e=0\) is
+\(O^{a_1}E\cdots O^{a_e}E\), with \(a_1\ge2\) and
+\(a_i\ge0\) for \(i>1\). The case \(e=0\) is
 all-odd and is already forbidden by the last-letter restriction.
 No other cyclic rotation needs a separate case.
 
@@ -862,8 +821,9 @@ begin with \(E\) or \(OE\), and it cannot end with an odd letter.
 Thus a minimum-based itinerary starts \(OO\) and ends \(E\), so
 \(e\ge 1\). The remaining letters are odd runs separated by the
 \(e\) even letters, so the itinerary is \(O^{a_1}E\cdots O^{a_e}E\)
-with \(a_1\ge 2\). For \(e\le 3\) this is \(O^aEO^bEO^cE\) with
-unused runs empty. Every cycle itinerary has a minimum-based rotation
+with \(a_1\ge 2\). The forms for \(e=1,2,3\) are respectively
+\(O^aE\), \(O^aEO^cE\), and \(O^aEO^bEO^cE\).
+Every nontrivial cycle itinerary has a minimum-based rotation
 of the same even-count, and that orientation is already in this
 form. \(\square\)
 
@@ -1101,12 +1061,13 @@ at least \(12\). Write \(e\) for the number of even letters.
 Lemma 3.21b is the canonical run form.
 
 **Lemma 3.21a (classification).**
-Every minimum-based cycle itinerary with at most three even letters
+Every nontrivial minimum-based cycle itinerary with at most three even letters
 belongs to one of the families excluded by Lemma 3.4(v) and
 Theorems 3.12--3.21.
 
-*Proof.* Lemma 3.21b puts the itinerary in the form
-\(O^aEO^bEO^cE\) with \(a\ge 2\) and unused runs empty. If
+*Proof.* Lemma 3.21b gives \(O^{a_1}E\cdots O^{a_e}E\)
+with \(a_1\ge2\); write the last odd-run length as \(c\) when
+\(e\ge2\). If
 \(e=0\), the itinerary is all-odd. If \(e=1\), it is \(O^aE\). If
 \(e=2\), a last run \(c\ge 2\) is the internal-even bootstrap of
 Lemma 3.4, and the remaining shapes are the two-even families of
@@ -1173,14 +1134,10 @@ In particular there is no cycle of length eight, nine, or ten.
 
 ### 3.9 One inequality behind the eleven exclusions
 
-Theorems 3.12--3.21 read as a list of eleven families with eleven
-thresholds \(3,4,3,6,5,4,3,5,4,3\). They are not a list. Every proof
-in Appendix D runs the same two envelopes against each other --- the
-odd-run lower envelope of Lemma 3.10 pushing the state up, and the
-one-step preimage of the trailing letters holding it down --- and the
-threshold is wherever the two exponents cross. Stating the crossing
-once makes the eleven proofs one theorem and the eleven thresholds one
-table.
+The earlier exclusions use two envelopes: the odd-run lower envelope
+of Lemma 3.10 pushes the state up, while the one-step preimage of the
+trailing letters bounds it from above. A single comparison explains
+the ten suffixes collected in Corollary 3.27.
 
 **Lemma 3.24 (odd-run envelope in closed form).**
 If \(n\ge 1\) realizes \(O^a\), then
@@ -1251,28 +1208,13 @@ The itinerary is minimum-based, so \(m\ge n\ge 4\), and \(m\) realizes
 entering \(u\), which Lemma 3.25 puts strictly below \(B(u)\).
 \(\square\)
 
-Read at leading order, with \(B(u)\approx(n+1)^{T(u)}\), the law says
-\[
-\left(\tfrac32\right)^{a}\le T(u),
-\qquad\text{equivalently}\qquad
-3^{\,\#O(O^au)}\le 2^{\,|O^au|}.
-\]
-That is, the tail \(O^au\) is not formally expanding, so the law is the
-exact mirror of Theorem 3.2(i):
-*the whole word must be formally expanding, and no tail of it beginning
-with an odd letter may be.* The two are not in conflict because the
-leading-order reading is only valid with room to spare. Writing
-\(\theta=1-2^{|O^au|}/3^{\#O(O^au)}\) for the margin of the tail, the law fires
-once
-\[
-\theta\ >\ \frac{\log 4}{\log n},
-\]
-this being what the constant of Lemma 3.24 costs, and the whole word is
-precisely the tail whose margin is too thin to pay. Recovering that
-margin is what Section 4 does: financing the cycle globally replaces the
-flat factor \(4\) per step by a loss of relative size \(1/(x\log x)\) at
-a state \(x\), which is how the bound \(n\log n\,\theta\le L\) of
-Theorem 4.4 gains the factor \(n\log n\) that Theorem 3.26 does not have.
+For a fixed suffix \(u\), the leading exponent of the backward
+envelope is \(T(u)\). Thus \((3/2)^a>T(u)\) identifies shapes
+that can be excluded once \(n\) is sufficiently large. At a specified
+finite \(n\), however, the test is the exact displayed comparison with
+\(B(u)\); the constants and the \(n+1\) terms cannot be dropped.
+This does not assert formal non-expansion of every proper tail. The next
+table evaluates the finite-envelope comparison for the stated suffixes.
 
 **Corollary 3.27 (eleven statements, ten suffixes).**
 Each row below is Theorem 3.26 for one suffix. The column *least
@@ -1293,7 +1235,7 @@ computed against the exact envelope \(B(u)\) of Lemma 3.25.
 | \(EOEOE\) | \(32/9\) | \(4\) | \(45\) | Theorem 3.19 |
 | \(EOOEOE\) | \(64/27\) | \(3\) | \(30\) | Theorem 3.20 |
 
-Nine of the ten thresholds are the ones the theorems print. The tenth
+Nine of the ten least odd-run lengths match the earlier statements. The tenth
 is a strengthening: for \(u=E\) the law excludes \(a\ge 2\), so the word
 \(OOE\) needs no appeal to the census of Theorem 3.6. Where a theorem
 prints a threshold on \(n\), the law's is smaller --- \(205\) against
@@ -1381,8 +1323,9 @@ Every \(n\le 299\) reaches \(1\), so a cycle minimum is at least
 \(300\) and all ten are unconditional.
 
 **Theorem 3.31 (even count at least eight).**
-No cycle itinerary has fewer than eight even letters, and a nontrivial
-cycle has period at least twenty-two.
+Every cycle itinerary based at \(n\ge2\) has at least eight even
+letters. Consequently, every nontrivial cycle has period at least
+twenty-two.
 
 *Proof.* Let a minimum-based cycle itinerary have
 \(e\le 7\) even letters and canonical run form
@@ -1500,9 +1443,14 @@ Write \(n\) for a cycle minimum and
 w=O^{a_1}EO^{a_2}E\cdots O^{a_e}E
 \]
 for a minimum-based orientation (Lemma 3.21b), so \(a_1\ge 2\),
-\(\sum_i a_i=o\), and \(e=L-o\). The odd landings are the
-*valleys* \(v_i\) and the even state just before each final \(E\)
-is the *peak* \(p_i\):
+\(\sum_i a_i=o\), and \(e=L-o\). Let \(v_i\) be the landing
+state at the start of block \(i+1\), and \(p_i\) the even state
+just before its final \(E\). If \(a_{i+1}>0\), then \(v_i\)
+is odd and the block rises to \(p_i\). If \(a_{i+1}=0\), then
+\(v_i=p_i\) is even; it is neither an odd valley nor a new peak.
+Thus the valley/peak terminology below applies to actual transitions
+between maximal odd and even runs. In general the block-boundary
+identities are
 \[
 v_0=n,\qquad
 p_i=J^{a_{i+1}}(v_i),\qquad
@@ -2204,16 +2152,14 @@ packing deaths the \(F_1\) continuation \(b\ge 29\). \(\square\)
 
 ### The gap transfer and the short-cycle reduction
 
-Everything above turns a verified descent floor into a per-length
-exclusion. The floor is the only ingredient that is not
-scale-free, and along the convergent denominators \(q_k\) of
-\(\log 2/\log 3\) the threshold grows like
-\(n_{\max}(q_k)\log n_{\max}(q_k)\asymp q_kq_{k+1}\), equivalently
-\(n_{\max}(q_k)\asymp a_{k+1}q_k^2/\log n\), so every floor leaves the
-next fan. (The invariant is the first form: over the good convergents
-\(q_k\in\{19,84,1054,50508,176251\}\) --- those with \(3^{p_k}>2^{q_k}\),
-which are every other one --- the ratio
-\(n\log n/(q_kq_{k+1})\) stays in \([0.41,0.53]\).) This subsection records the one statement
+Everything above turns a verified descent floor into per-length
+exclusions. At the five upper-convergent denominators
+\(19,84,1054,50508,176251\), the computed ratio
+\(n_{\max}(q_k)\log n_{\max}(q_k)/(q_kq_{k+1})\)
+lies in \([0.41,0.53]\). This finite comparison motivates the
+discussion in Section 6.2; it is not by itself a global scaling theorem.
+
+This subsection records the one statement
 of the note that needs no floor. It transfers a lower bound on
 the linear form
 \[
@@ -2244,23 +2190,30 @@ The Lean form is `cycleMin_gap_transfer`; the abstract corollary
 \(n\log n\cdot\varepsilon\le 2L\)" is `cycleMin_length_of_gap`.
 
 **Corollary 4.11 (short cycles are excluded).**
-Rhin's effective irrationality measure [15], in the packaged form
-of [12, Lemma 12], gives
-\(\Lambda>\exp\bigl(-13.3\,(0.46057+\log L)\bigr)
-=e^{-6.1256}L^{-13.3}\) for every pair \(o<L\) with
-\(3^o\ne 2^L\). Hence every nontrivial cycle satisfies
+Rhin's effective estimate [15, Proposition, p. 160, (7)] applies
+to the absolute value of an integer linear form in \(1,\log2,\log3\).
+For a nontrivial cycle, \(L\ge11\), \(0<o<L\), and
+\(\Lambda=o\log3-L\log2>0\). Substituting
+\((u_0,u_1,u_2)=(0,-L,o)\) gives height \(H=L\) and
 \[
-n\log n\;\le\;2e^{6.1256}\,L^{14.3}\;<\;915\,L^{14.3},
-\qquad\text{equivalently}\qquad
-L\;>\;\Bigl(\frac{n\log n}{915}\Bigr)^{1/14.3}.
+\Lambda\ge L^{-13.3}>e^{-6.1256}L^{-13.3}.
 \]
-In particular a cycle with minimum \(n\) and
-\(L^{14.3}\le n\log n/915\) does not exist, for every \(n\ge 2\)
-and without any descent floor.
+We retain the weaker constant to state the following consequence:
+\[
+n\log n\le2e^{6.1256}L^{14.3}<915L^{14.3},
+\qquad
+L>\Bigl(\frac{n\log n}{915}\Bigr)^{1/14.3}.
+\]
+In particular, a cycle with \(L^{14.3}\le n\log n/915\) is
+excluded without a descent-floor input.
 
-*Proof.* On a cycle itinerary \(o<L\), so \(H=\max(L,o)=L\) in
-[12, Lemma 12], and \(\varepsilon=e^{-6.1256}L^{-13.3}\le 1\).
-Apply Theorem 4.10 with this \(\varepsilon\). \(\square\)
+*Proof.* Corollary 3.23 supplies \(L\ge11\), so Rhin's height
+condition is satisfied. Set \(\varepsilon=e^{-6.1256}L^{-13.3}\).
+Then \(0<\varepsilon\le\min(\Lambda,1)\), and Theorem 4.10
+gives the first displayed upper bound. The inequality
+\(2e^{6.1256}<915\) completes the proof. This use of Rhin is an
+external theorem, not a Lean proof of the transcendence estimate.
+\(\square\)
 
 **Remark (what the reduction does and does not do).**
 Corollary 4.11 is a reduction of the no-cycle problem, not a
@@ -2391,12 +2344,13 @@ elementary real arithmetic over the formalized cycle envelopes
 Consequently the cyclic defect sum \(\sum_i 1/(x_i\ln x_i)\) is
 bounded above by the maximum of the walk charge
 \(\sum_k g(u_k)\), \(g(u)=1/(n'^{2^u}2^u\ln n')\), over all
-nonnegative closed exponent walks with \(o\) up-steps,
+nonnegative exponent walks of length \(L\),
 evaluated at the *reduced base* \(n'=n\,e^{-D}\). No free
 parameter remains; the walk value feeds the \(6/5\) unroll of
 Theorem 4.4 exactly as the parity charge did. At the laboratory
-floor and window lengths, \(D\le 4.6\cdot 10^{-3}\), so
-\(\ln n'\ge 17.07\).
+floor, for the original sub-window \(L<301994\), one has
+\(D\le4.6\cdot10^{-3}\) and \(\ln n'\ge17.07\).
+The extended window requires the bounds in Theorem 5.8.
 
 This consequence is itself Lean end to end
 (`WalkChargeMax.lean`): writing the charge through the rational
@@ -2411,7 +2365,7 @@ under the recorded hypothesis \(\nu>0\).
 ### 5.3 The adversary is the hug itinerary
 
 **Theorem 5.4 (hug exchange).**
-Among nonnegative exponent walks with prescribed \((L,o)\), the
+Among all nonnegative exponent walks of length \(L\), the
 *hug itinerary* — take \(E\) at every step where \(u\ge 1\), else
 \(O\) — is prefix-minimal: writing \(a_k\) for the odd count of
 a length-\(k\) prefix,
@@ -2438,21 +2392,24 @@ steps in \(\{-1,0,+1\}\) that cannot go negative, since
 \(\delta=0\) restores the same state. This is the displayed
 prefix-minimality \(a_k^{\mathrm{hug}}\le a_k\); since
 \(u_k=(1+\mu)a_k-k\) with the same \(k\), it transfers verbatim
-to \(u_k^{\mathrm{hug}}\le u_k\). Feasible pairs
-(\((1+\mu)o\ge L\)) never strand: when the odd budget is
-exhausted, \(u=\text{surplus}+e_{\mathrm{left}}
-\ge e_{\mathrm{left}}\), so the remaining evens are legal.
+to \(u_k^{\mathrm{hug}}\le u_k\). The greedy word uses exactly
+\(o_{\min}(L)\) odd letters (Lemma 5.6). It therefore belongs to
+the class with that prescribed odd count, while still dominating every
+admissible word with a larger odd count.
+
 Applying the strict antitonicity of \(g\) termwise and summing
 over \(k\) is the charge comparison. The prefix-minimality core
 is Lean: `hugOdds_le_of_admissible`. \(\square\)
 
 *Remark (uniqueness).* The hug itinerary is in fact the *unique*
-prefix-minimal admissible path in its \((L,o)\) class, so it
+prefix-minimal admissible path in the class \((L,o_{\min}(L))\), so it
 uniquely maximises the charge; at the first disagreement the
 competitor already carries a strictly larger prefix odd count,
 and strict monotonicity of \(g\) makes the total comparison
-strict. Uniqueness is not used by the kill table; only the
-displayed domination is.
+strict. The profile equality for every charged prefix \(k<L\)
+is also formalized by `hug_charge_unique`; the prescribed total odd
+count determines the last letter. Uniqueness is not needed for the
+exclusion criterion.
 
 The analytic half is also Lean, in a strengthened form
 (`WalkChargeMax.lean`): the charge is antitone in the rational
@@ -2460,8 +2417,9 @@ weight (`stateCharge_antitone`, elementary \(\exp\)
 monotonicity — no charge integral), so the exact hug itinerary
 maximises the total charge over *all* admissible exponent
 walks, not just a fixed \((L,o)\) class
-(`hug_charge_maximal`). Only the strict within-\((L,o)\)
-uniqueness of the maximiser remains a human argument.
+(`hug_charge_maximal`). The equality case for the charged profile
+is formalized by `hug_charge_unique`, using `stateCharge_strictAnti`
+and `stateCharge_inj`.
 
 The statement is about the \(u\ge 0\) relaxation, not about
 realized cycle itineraries. Word-order (Christoffel) prefix-dominance
@@ -2583,7 +2541,7 @@ same rescaling; a homeomorphic change of coordinate does not
 change its total variation. All Ostrowski data below —
 quotients, convergents, digits — refer to this \(\theta\).
 
-*The Denjoy--Koksma inequality (classical; used as known).*
+*The Denjoy--Koksma inequality (classical; see [18, Theorem 3.1, p. 73]).*
 If \(f:\mathbb R/\mathbb Z\to\mathbb R\) has bounded variation
 \(\mathrm{Var}(f)\) and \(p_j/q_j\) is a continued-fraction
 convergent of the irrational \(\theta\), then for every \(x\),
@@ -2605,25 +2563,11 @@ the *residue* permutation are additionally verified in Lean
 (`theta_convergent_quality`, `theta_block_permutations`): the latter
 says \(i\mapsto p_ji\) is a bijection of \(\mathbb Z/q_j\mathbb Z\).
 
-> *Erratum.* Earlier revisions described that as "the \(q_j\) rotation
-> steps of one block permute the \(q_j\) grid cells" --- a statement
-> about cells rather than residues, and **false**. The orbit point
-> \(k\theta\) lies within \(1/q\) of the grid point \((kp\bmod q)/q\);
-> when \(\theta<p/q\) it lies just below, so its cell is
-> \((kp\bmod q)-1\) --- except at \(k=0\), where the fractional part
-> is exactly \(0\) and the cell stays \(0\). The two collide at the
-> \(k\) with \(kp\equiv1\), and cell \(q-1\) is left empty. This
-> happens for **seven of the thirteen** certified blocks --- every one
-> with \(\theta<p_j/q_j\). The smallest is \(q=8\), \(p=3\), where
-> \(k=0\) and \(k=3\) share the cell \([0,1/8)\) and indeed
-> \(3\cdot3\equiv1\) mod \(8\); Lean `grid_cells_collide_at_eight`
-> witnesses it from the sandwich alone, via \(1/3<\theta<3/8\).
->
-> Denjoy--Koksma itself is unaffected: it is true, and its standard
-> proof runs through Koksma's inequality with the discrepancy bound
-> \(qD_q\le1\) at a convergent denominator, not through a permutation
-> of grid cells. The erratum retracts the bridge described here, not
-> the inequality applied below and not Theorem 5.7.
+The residue permutation must not be confused with a permutation of
+fixed half-open cells. For example, at \(p/q=3/8\), the points
+\(0\) and \(3\theta\) both lie in \([0,1/8)\). The argument
+below instead anchors cells at the starting phase and chooses their
+endpoint convention according to the sign of \(\theta-p/q\).
 
 The variation-versus-integral inequality itself is classical, and its
 analytic half is now Lean (`Problems/Juggler/DenjoyKoksma.lean`), for
@@ -2637,7 +2581,7 @@ and the sample sum is within the total variation of the integral.
 applied per block below.
 
 The *geometric* step --- that the orbit
-\(x, x+\theta, \ldots, x+(q-1)\theta\) visits each cell exactly once, which
+\(x, x+\theta, \ldots, x+(q-1)\theta\) visits each phase-anchored, sign-oriented cell exactly once, which
 is where \(|\theta-p/q|\le 1/q^2\) is used --- is now Lean as well
 (`Problems/Juggler/DenjoyKoksmaOrbit.lean`), and with it the whole
 inequality. `denjoy_koksma_rotation` and its mean form
@@ -2648,8 +2592,7 @@ unique ergodicity of the irrational rotation --- there is no
 `UniquelyErgodic` in Mathlib at all --- so this is the only Lean path to
 the display.
 
-**The repair is the anchoring.** The bridge retracted in the erratum above
-fixed the cells at \([i/q,(i+1)/q)\) and asked the blocks to permute them.
+**Phase anchoring.** A fixed-grid argument would place the cells at \([i/q,(i+1)/q)\) and asked the blocks to permute them.
 That is false, and the counterexample is small: \(q=2\), \(\theta=0.7\),
 \(p=1\), \(x=0.49\) puts both orbit points in \([0,\tfrac12)\). Two changes
 make it true. The cells must be anchored at the starting phase \(x\), and
@@ -2665,10 +2608,8 @@ this paper already certified as `theta_block_permutations`; and
 takes the assignment in the direction the orbit supplies it, point
 \(\mapsto\) cell, so no permutation has to be inverted.
 
-So the erratum's reading was too pessimistic in one respect: a cell
-argument does prove Denjoy--Koksma, and does not need the discrepancy
-route. What it does need is the anchor, which is exactly what the
-retracted claim omitted.
+The cell argument therefore proves the required rotation estimate
+uniformly in the starting phase, with the endpoint convention just stated.
 
 **And blocks compose.** The proof below cuts a length \(L=\sum_jb_jq_j\)
 into consecutive blocks whose starting phases differ, and leans on the
@@ -2809,7 +2750,8 @@ observable; the correct constant is \(2s(L)\).
 ### 5.6 The window theorem
 
 **Theorem 5.8 (uniform window envelope).**
-For every \(L\in[50508,\,16785921)\), at the laboratory floor,
+For every \(L\in[50508,\,16785921)\), evaluate the reduced base
+at \(n=26254996\) and \(o=o_{\min}(L)\). Then
 \[
 C_L\ \le\ C_*(n')+\frac{2\,s(L)}{L}\ <\ \frac1{\ln 3\,\ln n'}.
 \]
@@ -2833,16 +2775,30 @@ endpoint power inequalities
 (`theta_sandwich_lower`, `theta_sandwich_upper`,
 \(2^{16785921}<3^{10590737}\) and \(3^{10781274}<2^{17087915}\)); it does
 not contain the named extended-window instance.
-The transport deficit keeps \(\ln n'\ge 17.07\), hence
+Put \(\nu=\ln n'\). Since \(n=26254996\) and
+\(0\le D\le1.05L/n\), the entire window satisfies
 \[
-\frac{2\,s(L)}{L}\ \le\ 9.38\cdot10^{-4}
-\ <\ 5.14\cdot 10^{-3}\ \le\ \frac1{\ln 3\,\ln n'}-C_*(n'),
+16.41<\log n-\frac{1.05\cdot16785921}{n}\le\nu<17.084.
 \]
-the last gap from \(\int_0^{2\ln n}e^{-s}(1+s/\ln n)^{-2}ds
-\le 1-2/\ln n+6/(\ln n)^2\), which is Lean
-(`rotation_average_le`, gap form `rotationAverage_gap`,
-`RotationAverage.lean`). Conclude by Lemma 5.6 and
-Theorem 5.7. \(\square\)
+The digit caps give, without a scan,
+\[
+\frac{2s(L)}{L}\le
+\max\!\left(\frac{94}{50508},\frac{96}{301994}\right)
+<0.001862.
+\]
+For the second range this follows from
+\(2(b+47)/(bq_{13})\le96/q_{13}\), since \(b\ge1\).
+The quadratic integral majorant of Proposition 5.5 gives
+\[
+\frac1{\ln3\,\nu}-C_*(e^\nu)
+\ge h(\nu):=\frac{2\nu-6}{\ln3\,\nu^3}.
+\]
+Because \(h'(\nu)=(18-4\nu)/(\ln3\,\nu^4)<0\) on this
+interval, \(h(\nu)>h(17.084)>0.00514>0.001862\).
+Combining this with Theorem 5.7 proves the strict comparison.
+The digit reconstruction and block inequality are formalized as described
+above; these explicit extended-window bounds are human arithmetic.
+\(\square\)
 
 *Why the window reaches \(q_{14}\), and why that is the natural stop.*
 The bound \(2s(L)/L\) is worst at the *small* end, not the large one:
@@ -2854,17 +2810,10 @@ scan of \([50508,2\cdot10^{6})\) puts the true maximum at
 \(9.3766\cdot10^{-4}\), attained at \(L=74654\) with \(s=35\). So the
 window costs nothing to extend across the nonendpoint members of the
 \(a_{14}=55\) fan, and it stops at \(q_{14}=16785921\) only because
-that is where the next partial quotient begins. The right-hand side
-is what shrinks: using the explicit lower bound for the gap,
-\[
-\frac1{\ln 3\,\ln n'}-C_*(n')
-\ge\frac{2\ln n'-6}{\ln 3\,(\ln n')^{3}},
-\]
-which is \(5.14\cdot10^{-3}\) at \(\ln n'=17.07\) and falls to
-\(3.82\cdot10^{-3}\) at the floor of Corollary 5.14. Against the
-window maximum \(9.38\cdot10^{-4}\) that leaves a factor between
-\(4.1\) and \(5.5\) at every floor in this paper, and the window
-theorem survives floors up to \(n'\approx2.8\cdot10^{18}\).
+that is where the next partial quotient begins. The same sufficient comparison can be checked at another fixed
+evaluation floor by bounding \(\nu\) for that floor and comparing
+\(h(\nu)\) with the digit bound above. No assertion uniform over
+arbitrarily large floors follows from the present calculation.
 
 Two consequences, and one thing that is *not* a consequence. First,
 \(q_{14}=16785921\) is exactly \(L_{55}\), the last member of the
@@ -3198,14 +3147,15 @@ endpoint. \(\square\)
 Because \(\Lambda_k\) *decreases* in \(k\), so does \(\theta(L_k)\), and
 \(n_{\max}(L_k)\) increases: the fan grows strictly more expensive as it
 is climbed, and the cheapest member is always the one at the current
-frontier. The resulting rule is a single comparison. For every
-\(k\ge 1\),
+frontier within this fan. The following transition has been checked
+computationally at \(k=1,\ldots,12,20,31,40,52,54\):
 \[
 N_0\ \ge\ n_{\max}(L_k)
 \qquad\Longrightarrow\qquad
 \text{period}\ \ge\ L_{k+1},
 \]
-verified directly at \(k=1,\dots,12\) and at \(k=20,31,40,52,54\). (At
+No all-index transition theorem is asserted: excluding a fan member
+also requires ruling out intervening non-fan lengths. (At
 \(k=0\) alone one extra length intervenes, the doubling
 \(2q_{12}=352502\), whose threshold \(1044095006\) sits \(1793\) above
 \(n_{\max}(q_{12})\); the multiples \(mq_{12}\) cluster just above
@@ -3241,10 +3191,12 @@ first-passage run — needs
 present one. The walk charge does very much better, and by a factor
 that can be measured rather than guessed.
 
-**Lemma 5.13 (margin scaling).**
-At fixed \(L\), the certified kill margin
-\(\theta(L)/\bigl(\tfrac65 B(L,N_0)\bigr)\) of Theorem 5.9 grows like
-\((N_0\log N_0)^{\beta}\) with \(\beta=1.047\).
+**Observation 5.13 (finite margin scaling).**
+For two lengths evaluated at two floors each, fitting the kill margin
+\(\theta(L)/(\tfrac65B(L,N_0))\) to a power of \(N_0\log N_0\)
+gives effective exponents \(1.0491\) and \(1.0458\).
+Their mean, approximately \(1.047\), is an empirical interpolation;
+it is not a proved asymptotic law.
 
 *Evidence.* The committed kill records contain two lengths priced at
 two floors each. At \(L=176251\) the margin runs \(0.158796\) at
@@ -3266,8 +3218,9 @@ criterion directly gives
 so the prediction is accurate to \(0.2\%\), and the walk charge is
 worth a factor \(4479642886/553906250=8.09\) in descent floor here —
 against \(7.9\) at the previous frontier and \(6.4\) at the one before.
-The efficiency is stable, and the \(56\)-step price list above may be
-read divided by roughly \(8\) whenever the walk charge is applied.
+These three comparisons suggest a useful local estimate. Other fan
+members require direct evaluation; a uniform factor of eight over the
+entire fan is not established.
 
 **Corollary 5.14 (conditional; the next period bound).**
 If every integer \(2\le n\le 554000000\) reaches \(1\), then any
@@ -3302,25 +3255,12 @@ not carry out that run here; Corollary 5.14 is stated conditionally so
 that the computation and the criterion are separable, which is the
 architecture of Corollaries 5.10 and 5.11 as well.
 
-*Where computation ends.* Exhausting the fan, i.e. reaching
-\(L_{55}=16785921\), needs \(N_0\ge 2.20\cdot10^{12}\) by finance and
-about \(2.7\cdot10^{11}\) with the walk charge; passing the convergent
-itself needs \(4.87\cdot10^{12}\), respectively \(6.0\cdot10^{11}\),
-after which the same structure repeats one scale up with \(q_{14}\) in
-the role of \(q_{12}\), at a cost that grows like
-\(a_{15}q_{14}^2/\log n\).
-
-So the bound is not stuck against a wall; it is on a staircase whose
-steps are priced --- whose next step costs a factor \(1.58\) in floor
-with the walk charge (\(12.8\) without it), and whose \(56\) steps
-together cost a factor \(4660\) either way, since the walk charge
-divides the whole list by a constant. What no floor buys
-is the end of the staircase. The fans recur at every convergent, the
-required floor grows quadratically in the length, and a period bound
-obtained this way can never become a proof that no cycle exists. That
-gap is not computational, and it is the subject of the remark after
-Corollary 4.11.
-
+*Further computational costs.* The fan table reports parity-charge
+thresholds through \(L_{55}\). Extrapolating the locally measured
+walk improvement to every member would be a heuristic; the conditional
+next-period claim in Corollary 5.14 uses direct comparisons instead.
+The limitation proved in Proposition 6.2a concerns fixed-floor charges
+with a positive length-uniform anchor contribution.
 
 ## 6. Limitations and future directions
 
@@ -3372,246 +3312,106 @@ length one, and the walk is a word in the two blocks
 Sturmian form. At \(L=84\) it is
 \(\mathtt{O^2E\,O^2E\,O^2E\,OE\,O^2E\,O^2E\,OE\,\cdots}\).
 
-Both halves of the direction are therefore closed against this
-adversary. A *lower* bound on \(p\) cannot bite, because \(p\)
-is already at its combinatorial maximum. A peak-height /
-peak-count tradeoff cannot bite either, because the longest odd
-run is \(2\) and the peaks are already as low as an expanding
-word allows. The extremal walk is the flattest word available,
-and it is flat in both senses at once.
+These relaxed extremal words attain the displayed run-count ceiling
+at the tested lengths. Thus a lower bound on run count alone would not
+exclude those particular relaxed words. A constraint coupling peak
+height, parity realization, and exact return could still be stronger.
 
-One further check falls out. That walk begins \(\mathtt{OO}\)
-and ends \(\mathtt{E}\), so it satisfies the minimum-based
-structural restrictions of Theorem 3.2: Section 3 does not cut
-the adversary down either, which is the qualitative reason
-behind the measurement in Proposition 5.8b. What would bite is a
-constraint that forbids the \(\mathtt{OE}/\mathtt{OOE}\) mixture
-itself at the critical density --- an arithmetic statement about
-which Sturmian words are realizable as Juggler itineraries, not
-a counting statement about runs. That statement is false as
-stated, and it is worth saying why.
+The repository also measures realization of short hug prefixes among
+odd \(m<4\cdot10^6\): relative to \(2^{-(l-1)}\), the observed
+frequency ratio is about \(1.00\) at \(l=8,9,10\) and \(1.38\)
+at \(l=18\). This finite experiment establishes realization of those
+short prefixes. It does not establish realization at lengths such as
+\(780239\), realization by cycle minima, or exact closure of the
+full word. These remain possible sources of further restrictions.
 
-The hug word is realized at the generic rate. Counting odd
-\(m<4\cdot10^{6}\) whose itinerary begins with the length-\(l\)
-prefix of the extremal walk, against the \(2^{-(l-1)}\) a generic
-word would get: the ratio is \(1.00\) at \(l=8,9,10\) and drifts
-to \(1.38\) by \(l=18\). The control is the same statistic over
-every itinerary that occurs at depth \(18\) --- \(34342\) of them
---- whose ratios have median \(1.05\) and run from \(0.066\) to
-\(4.4\cdot10^{3}\). The hug word therefore sits just above the
-median and deep inside the bulk: by realizability it is an
-ordinary word, not a rare one.
+Corollary 4.11 excludes a short-period regime in terms of the cycle
+minimum. None of the finite realization or charge comparisons supplies
+a lower bound on that minimum growing with the period. The general
+cycle and termination problems remain open.
 
-So the walk charge is not bounding an adversary that cannot
-occur. That is a point in the construction's favour, and it also
-closes the reformulation: the obstruction is not the realizability
-of the extremal word. Taken with Propositions 5.8b and 5.8c, and
-with Remark 5.8a, every candidate explanation for the walk
-charge's \(0.44\ln n'\) has now been eliminated --- the envelope
-(tight to \(0.07\%\)), the certification depth (a factor \(55\)
-of unused range), the exponent-walk relaxation (a part in
-\(10^{8}\) at the operative lengths), the run count, and the
-realizability of the adversary. What remains is the shape of the
-charge itself, and that is not a slack to be recovered but the
-value of the method. The remaining
-gap recorded there is the missing link from the forced lift at
-the minimum, through the complete necklace, to the entry one-step preimage;
-it is not a halt theorem.
+### 6.1 Relation to the companion manuscripts
 
-Corollary 4.11 fixes what a full exclusion would have to prove.
-Every method of this note bounds the same side of one equation,
-\(\Lambda=\sum_i\delta_i/\log x_i\), and along the convergents of
-\(\log 2/\log 3\) the minimum required of a survivor grows
-quadratically in the period, so no descent floor and no
-refinement of the defect upper bound can exclude all lengths.
-Transcendence excludes the short cycles
-\(L^{14.3}\le n\log n/915\) unconditionally. What remains is the
-long regime, and there the obstruction would have to come from
-the parity word of a specific orbit at depth \(L\) — for a
-prescribed word \(w\) the integers \(m\) with \(f_w(m)=m\) under
-the prescribed branches number about
-\(1/(\Lambda(1+\log n))\approx n/L\) and sit in a band around the
-finance balance point, and a cycle exists exactly when one of them
-realizes \(w\). On the hug words at \(L=19,84,1054\) the band
-holds \(11\), \(55\), \(1689\) integers and the realized parity
-depth on it is a fair coin (mean \(1.03\) at \(L=1054\), maximum
-\(8<\log_2 1689\)). No estimate
-here, and none in the companion discrepancy manuscript [16] (whose
-per-depth control is complete through depth four and covers two
-words of depth five, and is averaged over starts), addresses a
-single orbit at that depth. We record this as the open problem, not
-as a program.
+The companion manuscripts [16,17] use the power envelope and descent floor
+proved or recorded here. Their analytic and counting results are separate
+inputs, and the period bounds of Sections 2--5 do not depend on them.
 
-The same pattern --- a piecewise power map, integer rounding,
-and a cycle minimum --- produces a defect-financing obstruction.
-The Juggler-specific content is the interaction of \(x^{3/2}\)
-and \(x^{1/2}\). Analogous questions for other piecewise
-floor-power maps are not taken up here.
-
-### 6.1 What the companion manuscripts add, and what they do not
-
-The results of [16] and [17] postdate the theorems above. They
-change the *context* of the cycle problem in five ways, none of which
-excludes a cycle.
-
-*The envelope becomes a descent step.* Theorem 2.2 bounds the state
-after an itinerary \(w\) by \(J^{|w|}(n)^{2^{|w|}}\le n^{3^{\#O(w)}}\).
-In [17] this is used in the other direction: if the exponent walk
-\(u_t=o_t\log_2 3-t\) of a start \(n\in(y,2y]\) reaches
-\(-L(y)\), \(L(y)=\log_2(\log 2y/\log N_0)\), within \(t\) steps, then
-\(J^t(n)\le N_0\), so \(n\) reaches \(1\) by the certified floor. The
-floor of Section 5 is thereby the *target* of a Tao-type reduction: a
-bound \(\#\{n\ \text{odd}\in(y,2y]:\ J^t(n)>N_0\ \forall t\le C\log_2\log y\}\le y(\log y)^{-e}\)
-with \(e>1-\lambda^{**}=0.5074\) implies the whole conjecture, cycles included ([17],
-Theorems 3 and 4). A larger floor lowers \(L(y)\): the certified
-\(3.5\cdot10^8\) against the Lean-verified \(260\) is worth
-\(\log_2(19.67/5.56)=1.82\) units of the walk, which lowers the
-required depth \(C\,L(y)\) by \(35\)–\(38\) letters (\(C=19\) to
-\(21\)) at every scale \(y\). That is all the floor does for the
-asymptotics; it crosses no threshold.
-
-*Cycle basins are contagious.* If a nontrivial cycle \(C\) exists,
-its basin \(B(C)=\{n:\exists k,\ J^k(n)\in C\}\) is backward-closed,
-and [17, Theorem 1] gives \(\sum_{n\in B(C),\,n\le x}1/n\gg(\log x)^{\lambda}\)
-for every \(\lambda<\lambda^{**}=0.4926\): on infinitely many dyadic
-blocks the starts that enter \(C\) have natural density
-\(\gg(\log y)^{-0.508}\).
-The two constraints do not meet. This paper bounds the *states* of
-\(C\) — minimum above \(3.5\cdot10^8\), period at least \(780239\),
-at least four even steps in Lean (Theorem 3.22) and eight even
-steps once the minimum is at least \(300\) (Theorem 3.31) — and
-thereby the seed of the basin. In fact
-it pins that seed from both sides: Corollary 4.4c is the lower bound
-and \(x_i\ge n\) the upper one,
+*The envelope supplies a bounded target.* If the exponent walk of a start
+\(n\in(y,2y]\) reaches
 \[
-\theta\log n\ \le\ \sum_{x\in C}\frac1x\ \le\ \frac{L}{\min C},
-\qquad\theta=1-2^L/3^o,
+u_t\le-\log_2\!\left(\frac{\log(2y)}{\log N_0}\right),
 \]
-and Theorem 4.4 is exactly the composite of the two — a length dies
-when the left side passes the right. At the certified floor with
-\(L=780239\) the window is
-\(6.83\cdot10^{-5}\le\sum_{x\in C}1/x\le2.23\cdot10^{-3}\). Contagion
-bounds the growth of the basin from any seed, from below; no inequality
-in either paper bounds a basin from above.
+Theorem 2.2 gives \(J^t(n)\le N_0\), after which the verified descent
+floor gives arrival at \(1\). Paper C [17] combines a quantitative
+almost-all version of this event with a lower bound for backward-closed
+sets. Its parity or stopped-pressure hypotheses remain unproved; a larger
+finite floor alone does not establish them.
 
-The pinned quantity is more than a seed size. A laboratory companion
-(`J-lachesis-basin-inverse-sum`, `J-lachesis-basin-every-block`)
-observes that the \(E\)-forest of the cycle contributes natural density
-\(\asymp\bigl(\sum_{x\in C}1/x\bigr)/\log y\) to the dyadic block at
-scale \(y\), the constant lying in \([1,3]\); the cycle states'
-positions on the log-log clock \(c=\log_2\log\) are an orbit of the
-rotation by \(\log_2(3/2)\), indexed by the odd count, so above
-\(y\ge n^{2^{1+u_{\max}}}\) some state's burst lands in every block
-rather than in a sparse sequence of them. Corollary 4.4c therefore
-prices the *visibility* of the basin and not only the states of the
-cycle. That is a second reading of an inequality already proved here,
-conjectural in its every-block half, and it adds nothing to the cycle
-bounds of Sections 4 and 5. A cycle would be rare in its states and common
-in its basin, and neither statement contradicts the other.
-
-*Cycles sit just above the critical odd share.* The gap transfer of
-Theorem 4.10 forces \(0<\Lambda=o\log 3-L\log 2\le 2L/(n\log n)\) on a
-cycle with minimum \(n>2L/\log n\), so
-\(o/L=\log 2/\log 3+\Lambda/(L\log 3)\) with
-\(\Lambda/L\le 2/(n\log n)\). The weakest
-hypothesis of the reduction in [17] — the no-momentum form — asks that
-the tilted odd share of the starts still above the floor stay below
-some \(q<\log 2/\log 3=0.6309\), on average over depths; a cycle's
-word is a periodic itinerary that never descends, with odd share strictly
-above that threshold and, in the regime quantified here, close to it. The
-finance-survivor lengths \(176251\), \(301994\),
-\(478245\), \(780239\) are denominators of convergents and
-semiconvergents of \(\log 2/\log 3\) because a periodic non-descending
-word must realize the critical share to within \(2/(n\log n\log 3)\). The
-walk-charge program of Section 5 and the no-momentum hypothesis are
-two views of one boundary — the periodic side and the almost-all
-side of the zero-drift line — and the period bound \(L\ge780239\) is
-the statement that the boundary carries no short periodic word above
-the floor.
-
-*The floor stratifies the failure set.* By backward closure, the
-minimum of the failure set \(F\) (if \(F\ne\emptyset\)) is odd with odd
-image, exactly as the minimum of a cycle is (Theorem 3.2(ii), and the
-run form of Section 3, whose first odd run has length at least two);
-every odd
-failure with even image exceeds \(N_0^{4/3}=2.5\cdot10^{11}\), every
-even failure exceeds \(N_0^{2}=1.2\cdot10^{17}\), and every failure that
-is the image \(\lfloor m^{3/2}\rfloor\) of an odd \(m\) exceeds
-\(N_0^{3/2}=6.5\cdot10^{12}\) ([17, Section 6]). These are the scales
-at which each type of failure — cycle state or divergent start — can
-first appear.
-
-*The floor is a testable target.* Because every \(n\le N_0\) reaches
-\(1\), the statistic "\(J^t(n)\le N_0\) for some \(t\le d\)" is a finite
-computation on exact orbits, and [17, Section 11] reports that for
-random odd starts at \(y=10^{12}\) to \(10^{50}\) the fraction still
-above \(N_0\) after \(d\le40\) steps matches the odd-start fair-coin
-survival within \(3\%\). This is an observation about aggregates; it
-proves nothing about cycles.
-
-What none of this does: exclude a cycle, bound a basin from above, or
-address the parity word of a single orbit at depth \(L\). Paper C
-shows that the termination problem, cycles included, is one
-almost-all statement about parity words at depth \(\asymp\log\log n\);
-Paper B shows that fixed-depth parity control, which its methods
-deliver through depth four, improves the constants of that statement
-and cannot reach it. The cycle problem as posed in this paper — the
-long regime \(L\approx n^{0.59}\), a per-orbit parity statement at
-depth \(L\) — is therefore a special case of the same frontier, seen
-from the periodic side, and remains open.
-
-Lean names are in Appendix A. The computational certificates
-are Propositions 1.3 and 5.1.
-
-### 6.2 Ceilings, measured
-
-Section 6.1 says the problem remains open. This section says something
-sharper about the mechanisms quantified here: under the stated hypotheses
-none closes it, and the reason in each case is explicit. Four are priced below ---
-the descent floor, the trailing-evens bound, the charge family, and the
-shape enumeration --- and the last part says what that leaves.
-
-**The floor route diverges.** Finance excludes \(L\) when
-\(n_{\max}(L)\le N_0\). Along the convergents \(p_k/q_k\) of
-\(\log 2/\log 3\) the surplus is \(\theta\approx\log 3/q_{k+1}\), so the
-threshold obeys
-
+For numerical scale comparisons at \(N_0=350000000\),
 \[
-n_{\max}(q_k)\log n_{\max}(q_k)\ \approx\ c\,q_k\,q_{k+1},
-\qquad c\approx 0.45 ,
+N_0^{4/3}\approx2.47\cdot10^{11},\qquad
+N_0^{3/2}\approx6.55\cdot10^{12},\qquad
+N_0^2\approx1.23\cdot10^{17}.
 \]
+These are conversions of the supplied floor, not additional cycle
+exclusions or a proof of an almost-all hypothesis.
 
-and the ratio is flat to within a factor \(1.3\) across
-\(q_k=19,84,1054,50508,176251\) --- five orders of magnitude. Since
-\(q_{k+1}\to\infty\), so does \(n_{\max}\). Every length carries its own
-descent floor and those floors are unbounded, so **no finite computation
-excludes all lengths**. That is intrinsic to using a floor at all, not a
-defect of the present table, and it is why every result in Sections 4
-and 5 is a period bound rather than a cycle theorem.
-
-What raising \(N_0\) buys follows from the same relation, and it is not a
-power. With \(q_{k+1}=a_{k+1}q_k\), the threshold
-\(n_{\max}\log n_{\max}\approx0.45\,q_kq_{k+1}\) inverts to
-
+*A cycle's basin has a separate lower bound.* Paper C's stated contagion
+theorem gives
+\(\sum_{m\in B(C),\,m\le x}1/m\gg(\log x)^\lambda\)
+for every \(\lambda<\lambda^{**}=0.4926\ldots\), if the basin
+\(B(C)\) of a nontrivial cycle exists. This is a result of the companion
+manuscript, not a new theorem here. For a primitive cycle \(C\) with
+minimum \(n\) and period \(L\), the present paper instead gives
 \[
-\text{period}\ \asymp\ \sqrt{N_0\log N_0}\quad\text{(finance)},
-\qquad
-\text{period}\ \asymp\ \sqrt{N_0}\,\log N_0\quad\text{(walk charge)},
+\theta\log n\le\sum_{x\in C}\frac1x\le\frac Ln,
+\qquad \theta=1-2^L/3^o.
 \]
+The first inequality is Corollary 4.4c and the second follows from
+minimality. These constraints concern the cycle states; they do not give
+an upper bound on the basin that could contradict contagion.
 
-the second carrying one more logarithm because the walk charge shrinks
-the charge by a further \(0.44\log n'\) (Remark 5.8a). Both are checked:
-the walk-charge coefficient is \(2.014,1.982,2.120\) at the three
-published instances --- constant to \(7\%\) --- and the finance one is
-\(1.18,1.22\) at the two largest. Quoting these as \(N_0^{0.59}\) and
-\(N_0^{0.69}\) would be fitting a power to a square root over a narrow
-range: those fits drift by a factor \(3\) across the same floors, and the
-coefficient above does not. The residual swing is the local partial
-quotient \(a_{k+1}\), which runs \(3.4,5.8,23.5,2.5,1.7\) over the
-tabulated convergents; the \(23.5\) is the whole of the visible
-irregularity. So doubling the period costs roughly quadrupling the floor.
-Within the fixed-floor, anchor-normalized charge models below, sharpening
-constants does not change the fact that the target recedes.
+*Odd share and the finite frontier.* Every nontrivial cycle has
+\(o/L>\log2/\log3\). If \(n\log n>2L\), Theorem 4.10 also implies
+\[
+0<\frac oL-\frac{\log2}{\log3}
+\le\frac{2}{n\log n\log3}.
+\]
+The frontier lengths \(176251,478245,780239\) are members of the
+finite fan in Proposition 5.12. The auxiliary denominator \(301994\)
+is the adjacent lower-convergent denominator used to generate that fan;
+it is not itself one of these surviving lengths. A constraint on the
+odd share of live starts averaged over many starts is a different
+statement from a restriction on one periodic orbit.
+
+*Current scope of the companion hypotheses.* Paper B's depth-five
+certificate class has stated density \(7/8\); the proposed length-seven
+and length-eight extensions remain outside its established conclusions.
+Paper C's revised cylinder hypotheses concern bad words or bad prefixes,
+and its stopped-pressure formulations concern live starts. The
+unrestricted all-word versions are not assumed: terminating cylinders
+already obstruct them. The scale-average stopped-pressure bound remains
+an open arithmetic input. These corrections do not change Paper A's
+finite cycle bounds, and no companion result is used here to exclude
+the surviving lengths.
+
+### 6.2 Scope of the method's limitations
+
+At the tabulated upper-convergent denominators, the finance threshold
+is well approximated by a constant multiple of \(q_kq_{k+1}\) after
+multiplication by \(\log n_{\max}\). The exact denominator recurrence is
+\[
+q_{k+1}=a_{k+1}q_k+q_{k-1}.
+\]
+The numbers \(3.4,5.8,23.5,2.5,1.7\) in the numerical comparison
+are approximate ratios \(q_{k+1}/q_k\), not the integer partial
+quotients \(a_{k+1}\). A square-root scaling in the floor can be a
+useful local heuristic, but a global asymptotic for the first surviving
+period would require control of continued-fraction quotients and the
+intervening lengths. No such global theorem is claimed here.
+
+The following proposition gives a precise limitation under an explicit
+normalization assumption.
 
 **Proposition 6.2a (what an anchor-normalized charge can exclude).**
 Call \(\Phi\) a *charge* if every cycle minimum \(n\) with word of length
@@ -3647,153 +3447,48 @@ charge formulation whose value at \(N_0\) has no length-uniform positive
 anchor, nor does it turn the present finite period bounds into a universal
 no-go theorem.
 
-**The trailing-evens family is not a third mechanism.** It is worth
-checking, because `cycle_trailing_evens_lt` is the one constraint here
-whose strength reads \((1+1/n)^{2^r}\) rather than the surplus, and so
-looks floor-sensitive. It is not independent. The window at the cut has
-log width \(2^r\log(1+1/n)\), and the \(r\) square roots that follow
-divide the log by exactly \(2^r\); the transported width is
-\(\log(1+1/n)\) at every \(r\). So the constraint at any depth is the
-\(r=1\) one carried back, and \(r=1\) is `cycle_last_even_interval`,
-which is what Theorem 4.4 is derived from. The \((n+1)\) against \(n\)
-is the granularity of the return, and it says the same thing at every
-depth --- which is why Section 3 uses \(r=1,2,3\) on named short shapes
-and never as a general tool.
+The run--suffix inequalities require separate care. Theorem 3.26
+compares the finite-state lower envelope
+\(4(n/4)^{(3/2)^a}\) with the backward envelope \(B(u)\).
+A leading-exponent comparison can suggest which shapes to test, but
+does not remove the constants or finite-\(n\) margin. In particular,
+it does not prove that every proper tail beginning with \(O\) is
+formally non-expanding. Equality of two finite shape counts likewise
+does not prove that the run--suffix inequalities are ineffective at
+every length surviving finance.
 
-**A conditional comparison inside the relaxed configuration-majorant
-model.** This is worth separating from the divergence. Impose the stronger
-design rule that a function of \((n,L,o)\) must majorize every relaxed
-configuration allowed by the bookkeeping used in the finance argument,
-not merely every actual cycle. The relaxation permits \(e\) valleys at
-\(n,n+2,\ldots\); their realization by a cycle is not asserted. Within
-this model any such configuration-majorant is at least
-\(\sim e/(n\log n)\), and exclusion needs
-\(\theta\,n\log n>e\). With \(\theta\approx\log3/q_{k+1}\), the resulting
-model optimum has threshold
+The finite shape enumerations and charge comparisons describe the
+instances computed in this paper. They do not rule out stronger
+enumeration methods, improved charges without the normalization of
+Proposition 6.2a, or restrictions valid specifically on realized cycles.
+Primitivity makes orbit states distinct; it does not make every
+block-boundary landing odd when adjacent even letters are permitted.
+Consequently, any refinement using distinct odd valleys must count
+actual maximal odd runs or impose the no-\(EE\) hypothesis.
 
-\[
-n_{\max}\log n_{\max}\ \approx\ \frac{e}{q_k}\cdot
-\frac{q_k q_{k+1}}{\log 3}\ =\ 0.336\,q_k q_{k+1},
-\]
+A proof excluding all nontrivial cycles would need a further argument
+beyond the finite period bounds and the scoped limitation above.
 
-against the \(0.41\)--\(0.53\) that Corollary 4.5 achieves. The ratio is
-\(1.21\) at the large convergents. Thus finance is within its advertised
-\(6/5\) coefficient of the optimum **in this relaxation**. The associated
-\(20\%\) in \(n_{\max}\) (about \(12\%\) in period) is a model comparison,
-not a universal ceiling for every function of \((n,L,o)\) that is valid
-only on actual cycles.
+## Appendix A. Lean names and trust boundary
 
-Two model-specific comparisons follow. Theorem 4.7's factor \(1.4048\)
-exceeds the relaxed ceiling because its no-\(\mathtt{EE}\) hypothesis
-forbids the configuration that sets that relaxation's optimum. The walk
-charge of Section 5 beats the finance reach because it reads the orbit
-through the reduced base, and Remark 5.8a measures that gain as
-\(0.44\log n'\). None of this proves that finer bookkeeping on
-\((n,L,o)\) cannot do better on actual cycles: such a conclusion would
-require realizability of the relaxed extremizer, or another lower bound
-valid on the actual-cycle domain.
+The proof object is the import closure of `formal/Problems/JugglerPaper.lean`.
+From `formal/`, run `lake build Problems.JugglerPaper`, followed by
+`lake env lean AxiomCheckPaperA.lean` to inspect the cited declarations'
+dependencies. The exact toolchain is pinned in `formal/lean-toolchain`.
+The optional [formalization map](juggler_finite_dynamics_formalization.md)
+contains the detailed declaration-level explanations. Every name cited in
+this manuscript must be reachable from the paper barrel; the associated
+trust-boundary tests enforce that condition.
 
-**The shape route is exponential.** Section 3's exclusions are the only
-family here that is both floor-free and length-free: they kill *words*,
-not lengths, so in principle they could close the problem uniformly, and
-Theorem 3.31 is that argument carried to \(e\le 7\). Count what it would
-have to face. Writing the itinerary as \(O^{a_0}E\cdots O^{a_{e-1}}E\),
-the shapes admissible at the least odd count --- \(a_0\ge2\), each run
-within the cap of Theorem 3.31, every prefix above the anchor --- number
+The core financing, transport, hug domination, and bounded-variation
+rotation estimates are Lean theorems. The displayed change of variables
+identifying the circle mean with \(C_*\), the explicit extension of
+Theorem 5.8 beyond \(q_{13}\), and the use of Rhin are human arguments.
+The descent floors, per-length comparisons, and Theorem 3.31's enumeration
+are computational inputs. The native digit scan is recorded separately.
+None of these distinctions is removed by compiling the barrel.
 
-| \(e\) | \(7\) | \(10\) | \(13\) | \(16\) | \(20\) |
-|---|---|---|---|---|---|
-| shapes | \(2651\) | \(5.3\cdot10^{5}\) | \(7.2\cdot10^{7}\) | \(1.1\cdot10^{10}\) | \(1.1\cdot10^{13}\) |
-
-a factor of about six per even letter. The first length finance leaves
-standing, \(L=25781\), has \(e=9515\). Enumeration is therefore not a
-route to anything, and Theorem 3.31's \(e\le7\) is not a stage on the way
-to \(e\le8\); it is the end of that method.
-
-**And the law behind it is empty in the regime that matters.** This is
-the sharper statement, and it is not about feasibility. Theorem 3.26 says
-the whole word is formally expanding while no proper tail beginning with
-an odd letter is. Complementing a tail to its prefix, a tail with
-\(O_i\) odd and \(B_i\) even letters is non-expanding exactly when the
-complementary prefix satisfies
-
-\[
-\frac{3^{o_p}}{2^{\lvert p\rvert}}\ \ge\ \frac{3^{o}}{2^{L}}\ =\ \frac1{1-\theta},
-\]
-
-so the run--suffix law *is* the anchor condition
-\(3^{o_p}\ge2^{\lvert p\rvert}\), raised from \(1\) to \(1+\theta\).
-Its entire strength over the anchor is the surplus. Counting shapes under
-each condition:
-
-| \(e\) | \(\Lambda\) | shapes killed by the law |
-|---|---|---|
-| \(10\) | \(3.7\cdot10^{-1}\) | \(41.4\%\) |
-| \(16\) | \(2.6\cdot10^{-1}\) | \(37.7\%\) |
-| \(31\) | \(2.1\cdot10^{-3}\) | \(0\) |
-| \(210\) | \(1.1\cdot10^{-3}\) | \(0\) |
-| \(389\) | \(4.4\cdot10^{-5}\) | \(0\) |
-
-At \(e=389\) the two counts are equal as integers, all three hundred
-digits of them. And \(\Lambda\) is small exactly when \(e\) makes
-\(e\log2/\log(3/2)\) sit just under an integer --- which is precisely
-what makes a length survive finance. The surviving lengths have
-\(\Lambda\) between \(3.6\cdot10^{-6}\) and \(6.9\cdot10^{-5}\), at or
-below the row where the law already kills nothing.
-
-So finance and the run--suffix law fail for **one** reason, not two. Finance weakens
-as \(\theta\to0\), since \(n_{\max}\sim1/\theta\); the run--suffix law
-weakens as \(\theta\to0\), since it is the anchor tightened by
-\(1+\theta\). They cannot be played against each other, because the
-lengths where one is weak are exactly the lengths where the other is.
-Any method whose strength is measured by the surplus is empty where a
-cycle could be.
-
-**What that leaves.** The only proved relation between a cycle's minimum
-and its period runs one way. Finance bounds the minimum *above*:
-\(n\log n\lesssim L^{\mu}\), with \(\mu\) the effective irrationality
-measure of \(\log2/\log3\), and \(\mu\ge2\) for every irrational, so even
-a perfect measure leaves \(n\lesssim L^{2}\). Nothing here bounds the
-minimum *below* in terms of the period; the descent floor supplies a
-constant, not a function of \(L\). The surviving lengths sit at
-\(L\approx n^{0.59}\), that is \(n\approx L^{1.7}\), inside the band that
-a one-sided bound cannot empty.
-
-The counting route can be priced rather than dismissed. A cycle word need
-not have \(L\) for its period --- \(w\) concatenated with itself is again
-one --- but a *primitive* one has pairwise distinct orbit states
-(`cyclePrimitive_orbit_injOn`), so the \(e\) valleys are distinct odd
-integers at least \(n\): at least \(n,n+2,\ldots,n+2(e-1)\), rather than
-all at \(n\) as the charge assumes. That refinement is real, and it is
-worth a relative
-
-\[
-1-\frac{\tfrac12\log\bigl(\log(n+2e)/\log n\bigr)}{e/(n\log n)}
-\;=\;O\!\left(\frac{e}{n}\right).
-\]
-
-At the floor where each length actually matters it is already spent:
-\(3.8\cdot10^{-4}\) at \(L=25781\), \(1.2\cdot10^{-4}\) at \(L=50508\),
-\(6.5\cdot10^{-5}\) at \(L=176251\) --- and shrinking, since
-\(n_{\max}\sim q_k q_{k+1}\) outgrows \(e\approx0.37L\). Distinctness is
-therefore not the missing ingredient. It is available, and empty.
-
-So a proof would need one of two things this paper does not have: a
-lower bound on the cycle minimum in terms of the period, or an argument
-uniform over shapes. We know of no mechanism for either.
-
-## Appendix A. Lean names
-
-The core mathematical lemmas of Sections 2--4 are mechanized in
-Lean 4. The names below are the corresponding theorems in
-`formal/Problems/Juggler/`, imported by `Problems.JugglerPaper`.
-Selected finite classifications of Section 3 are `decide +kernel`
-tables (Appendix D). Theorems 4.6 and 4.8 are independently
-certified computations. Proposition 4.9's arithmetic is Lean;
-its identification with \(\mathcal E_{\mathrm{run}}\) is
-Theorem 4.8.
-
-| Text | Lean |
+| Text | Lean declaration or evidence boundary |
 |---|---|
 | itinerary semantics | `follows_iff_itinerary`, `image_eq_iterate`, `image_append` |
 | Theorem 2.1 | `image_monotone_of_follows` |
@@ -3843,9 +3538,9 @@ Theorem 4.8.
 | Theorem 4.4 | `cycleMin_finance` |
 | Corollary 4.4c | `cycleMin_log_envelope_inv`, `cycleMin_finance_inv_sum` |
 | Lemma 4.4b | `packingR_step` (the step in \(o\) is the constant \(2\alpha-1-1/2n\)), `alpha_lt_half` (\(\alpha<1/2\) once \(t\ge2n\)), `two_n_add_one_lt_rpow_three_halves` (which \(t=\lfloor n^{3/2}\rfloor\) gives for \(n\ge12\)), `packingR_step_neg`, `theta_strictMono`, and `comparison_fails_upward` for an arbitrary positive coefficient — \(6/5\) here and \(1\) in Theorem 4.4 (`OddCountMonotone.lean`) |
-| Corollary 4.5 | the comparison it applies is `cycleMin_defect_threeTerm` (`FinanceTransfer.lean`), which is exactly what the gap table tests: the certified relative-defect identity `cycleMin_defect_finance` composed with `cycleMin_threeTerm`, giving \(1-2^{L}/3^{o}\le(6/5)[e/(n\log n)+(o-e)/(t\log t)+e/(2n^{2}\log n)]\) for a cycle minimum \(n\ge400\) --- so the inequality behind \(n_{\max}(L)\) is one theorem rather than two halves joined by hand, and only the per-length arithmetic remains computation. The second factor is `cycleMin_threeTerm`, the displayed three-term bound \(\sum 1/(x_i\log x_i)\le e/(n\log n)+(o-e)/(t\log t)+e/(2n^{2}\log n)\) from `CycleMin` and \(n\ge3\) alone --- no classification supplied, no hypothesis about `EE`, and the counts read off the itinerary as \(e=L-o\) valleys, \(2o-L\) internals and \(e\) evens. This is what Theorem 4.6 computes with, so the cutoff \(25781\) and the \(141\) lengths rest on a kernel-checked inequality rather than on the run packing. `threeTerm_bound` is the majorant it specialises: the step that was missing was the classification, and `cycCls` supplies it by *defining* the three classes from the state parity --- even at \(2\), odd with an odd cyclic predecessor at \(1\), odd with an even predecessor at \(0\) --- so that `cycCls_filter_zero` and its two companions match the class filters against the parity-based counting lemmas by case split rather than by translation. The counts come from `oddCount_eq_orbit_card` and `evenCount_eq_orbit_card`, which say the odd and even *letters* are the odd and even *states*, and \(2o-L\) is a well-formed natural subtraction by `cycle_length_le_two_mul_oddCount`. Index \(0\) is the one place the cyclic predecessor is not \(i-1\) (`cycPred_of_pos`), and there `cycleMin_last_even` makes it a valley, never an internal --- which is why the internal bound `cycleMin_internal_ge_t`, stated at \(i+1\), covers every index it must. The per-length table stays verified computation. |
+| Corollary 4.5 | See the accompanying formalization map. |
 | Theorem 4.6 | certified identity `cycleMin_defect_finance`, per-step losses `log_floorPower_even_ge_sub`, `log_floorPower_odd_ge_sub`, invariants `cycleMin_log_le_weight`, `cycleMin_charge_prefix` (`DefectFinance.lean`); the numeric table is verified computation |
-| Theorem 4.7 | arithmetic core Lean (`RunTypePacking.lean`): the packing is consistent — \(o-e\) copies of OOE with \(2e-o\) circuits of OE use exactly \(o\) odd and \(e\) even letters (`packing_counts`); \(o-e<e\) is \(3o<2L\) (`odd_excess_lt_even`), which holds at the least admissible odd count for \(L\ge28\) (`three_mul_lt_two_mul_of_omin`, via `log_two_div_log_three_lt` from the certified sandwich). The displayed six-term valley bound splits (`FinanceTransfer.lean`). Its *transfer* --- the paper's "any deeper odd run or any higher valley only decreases the sum" --- is `inv_mul_log_antitoneOn` and `sum_inv_mul_log_le`, and the display itself is `sixTerm_bound`, proved from a classification of the orbit into six classes with the counts \(1,o-e-1,2e-o,1,o-e-1,e\). All six lower bounds are theorems. Minimality is `CycleMin` itself (\(n\)); `cycleMin_odd_ne_ge` gives \(n+2\) for an odd non-minimum state, by minimality and parity; `cycleMin_oe_start_ge` gives \(v\) for an `OE`-start, via `odd_pow_ge_of_image_ge` (\(n^{2}\le J(v)\) forces \(n^{4}\le v^{3}\)) --- and this needs no Theorem 3.2, because the successor of an `OE`-start *is* an even cycle state; `cycleMin_internal_ge_t` and `cycleMin_internal_ge_tplus` give \(t\) and \(t_+\) by `floorPower_odd_mono`; and `cycleMin_even_ge_sq` gives \(n^{2}\). The packing's *extremality* is a counting inequality on run lengths, not an optimization: writing the itinerary as blocks \(O^{a_i}E\), the valley count is \(e\) and the internal count \(o-e\) whatever the runs are, and what the runs decide is the split of the \(e\) valleys, since a block with \(a_i\ge2\) has an odd successor (cheap, \(n+2\)) and a block with \(a_i=1\) has an even one (expensive, \(v\)). Then `blocks_ge_two_add_length_le_sum` gives at most \(o-e\) cheap valleys, `blocks_eq_one_ge` at least \(2e-o\) expensive ones, and `blocks_ge_two_eq_sum_iff` says the bound is tight exactly when every run has length one or two --- so the packing is the unique maximiser, and a run of three trades two cheap valleys for one expensive one. The cardinality-monotone form is `sixTerm_bound_packed`: it takes the split as inequalities and returns the paper's counts, because `le_expensiveValley` gives \(n+2\le v\) --- immediately, since any odd \(w\le n\) has \(w^{3}\le n^{3}<n^{4}\) --- so `expensive_le_cheap` makes the exchange downhill and `valley_swap_le` performs it. The remaining bridge was stated as "the itinerary decomposes into that run list", and taken literally that is false: a cycle word may contain `EE` (`cycle_trailing_evens_lt` is about exactly that), so it need not split into blocks with one even letter each. The counting is therefore done on indices, where nothing is assumed. Calling an odd letter a *valley* when its cyclic predecessor is even and an *internal* when that predecessor is odd, `valley_add_internal` partitions the odd letters and `valley_le_even` injects the valleys into the even letters by `cycPred`, giving `odd_le_internal_add_even`: at most \(e\) valleys and at least \(o-e\) internals, with equality exactly when no `EE` occurs. That is the direction the majorant needs, since `EE` trades a valley for an internal and internals sit at \(t\)-scale. The exchange itself is now general: `majorize_three` is the three-class majorization --- decreasing contributions, partial sums dominated, equal totals --- of which `valley_swap_le` is the two-class case, and `internal_le_cheap` puts the internal majorant below the cheap-valley one via `le_floorPower_odd` (\(x\le J(x)\) for odd \(x\), since \(x^{2}\le x^{3}\)). The last ordering, \(v\le t\), is `expensiveValley_le_floorPower`, and `expensiveValley_le_floorPower_succ` carries it to \(t_{+}\). The route through \(n^{3}\le t^{2}\) forces a \(3/2\) exponent and a degree-nine comparison; naming the witness avoids it. With \(s=\lfloor\sqrt n\rfloor\) and \(s'\) the largest odd number at most \(s\), the witness is \(n s'\): its square is \(n^{2}s'^{2}\le n^{3}\), so it is at most \(t\); its cube is \(n^{3}s'^{3}\ge n^{4}\), since \(n<(s+1)^{2}\le s'^{3}\) once \(s\ge3\); and it is odd, being a product of odds. Everything is degree three. So `internal_le_expensive` orders the three contributions and `majorize_three` applies. One assumption the display makes silently is also discharged: it puts *one* valley at \(n\) and the remaining cheap ones at \(n+2\), which is an upper bound only if the minimum is itself cheap --- were it an `OE`-start there could be \(o-e\) cheap valleys besides it and the majorant would exceed the display. `cycleMin_succ_odd` rules that out: if \(J(n)\) were even it would be an even cycle state, hence at least \(n^{2}\), but \(J(n)=\lfloor\sqrt{n^{3}}\rfloor<n^{2}\). Two facts the assembly needs are also Lean. `follows_get_odd_iff` is the bridge between the *word* the theorem counts and the *orbit* whose terms it bounds --- the letter at \(i\) is odd exactly when the state is, the two directions of `follows_get_even` and `follows_get_odd` together. And `cycleMin_last_even` says the word ends in `E`: were the last state odd, the return \(J(x)=n\) with \(x\ge n\) odd would force \(x=n\) and \(J(n)=n\), which `lt_floorPower_odd` forbids. That is what lets the prefix count of valleys reach \(\#\text{valleys}\le e\) rather than \(e+1\). Writing the six cardinalities out shows the display needs two hypotheses the theorem does not state. First, the minimum must occur once: a cycle word concatenated with itself is also a `CycleMin`, and the display charges only one valley at \(n\). Second, and load-bearing, the word must contain no `EE`. On `OOEEOOE` (\(o=4\), \(e=3\)) the packing bound \(\#\text{cheap}\le o-e\) fails, \(2>1\), and the resulting majorant *exceeds* the display by about a factor \(1.7\) at every scale --- \(2.95\times10^{-4}\) against \(1.70\times10^{-4}\) at \(n=1001\). The cause is structural: the packing counts *blocks*, and in a word with `EE` the even letters outnumber the blocks, so what the lemma gives is \(\#\text{cheap}\le o-\#\text{blocks}\). The paper's phrasing --- \(o-e\) copies of `OOE` and \(2e-o\) circuits of `OE` --- already presupposes one even letter per block. The display is now Lean *from a cycle*: `cycleMin_sixTerm` derives it from `CycleMin`, `CyclePrimitive` and `NoEE`, so the two hypotheses are sufficient as well as necessary, and no third one is hiding. The instantiation needs only what the statement already carries --- the counts \(o-e-1\) and \(2e-o\) are natural numbers exactly when \(3o<2L\), which is `odd_excess_lt_even` at \(o=o_{\min}\). It also simplifies the argument: the packing count \(\#\text{cheap}\le o-e\) needs no block decomposition. A cheap valley's successor is an internal and the successor map is injective (`cheap_le_internal`), and `NoEE` makes the valleys exactly the even letters (`noEE_valley_card`, by injecting back with `cycSucc`), which fixes the internal count at \(o-e\); `noEE_cheap_le` is then immediate. So `blocks_ge_two_add_length_le_sum` and its companions, which derive the same count from run lengths, are not needed for the bound. The second is not free: a run of four odds from the minimum reaches \(n^{81/16}\) and two even steps return it to \(n^{81/64}\), all above \(n\), and the shape `OOOOEE` is realized with every state at or above the start at \(n=271,309,445\); across the \(29999\) odd starts below \(6\cdot10^{4}\), the excursion that stays at or above \(n\) contains `EE` in \(12543\). Theorem 3.29's run cap does not exclude it either, being \(\lfloor(e-i)\log2/\log(3/2)\rfloor\) and so binding only on the last runs. What would settle it is whether closure at \(o=o_{\min}(L)\) forces runs of one and two --- which is the packing claim itself, and it does not. At \(L=84\), the paper's own leftover length, with \(o_{\min}=53\) and \(3^{53}/2^{84}=1.00209\), the word \((\mathtt{O}^{6}\mathtt{E})^{8}\mathtt{O}^{5}\mathtt{E}^{23}\) has no prefix violating \(3^{a_j}\ge2^{j}\), runs of five and six, and contains `EE`. The packing is therefore an assumption relative to minimality and the least admissible odd count. It cannot be settled by exponent bookkeeping at all --- that model is exact for the multipliers and blind to the floors --- and Theorem 3.29's integer cap binds only near the end of the word, being \(1\) at \(e-i=1\) and \(3\) at \(e-i=2\). The hypothesis is now priced, and the price is bounded. What depends on this theorem is only Theorem 4.8 and Proposition 4.9's identification with \(\mathcal E_{\mathrm{run}}\): Corollary 4.5's "length-only parity charge" is not a two-class parity split but the three-class bound \(\theta\le(6/5)[e/(n\log n)+(o-e)/(t\log t)+e/(2n^{2}\log n)]\) --- as the gap table actually implements it --- which is `threeTerm_bound` and needs no hypothesis about `EE`, so the cutoff \(25781\), the \(141\) lengths, and the floors of Theorems 5.2 and 5.9 and Corollaries 5.10, 5.11 and 5.14 are all free of it. The refinement's whole budget is the single constant \(1.4048=e/(o-e)\) to leading order, uniform over the \(42\) lengths, and each dies with margin in \([1.0033,1.3535]\), inside it of necessity. Pricing `EE` needs the second cap: with \(m\) cyclic `EE` adjacencies the evens form \(e-m\) runs, so \(\#\text{cheap}\le\min(o-e+m,e-m)\), and the two bounds cross at \(m=e-o/2\) where both equal \(o/2\) --- past the crossing the valleys run out and the majorant falls, so `EE` cannot inflate the \(n\)-scale charge beyond \((o/2)/(o-e)=1.2047\). \(\theta/\text{packed}\) crosses that ceiling between \(L=74265\) and \(L=75319\), splitting the \(42\) into \(18\) exclusions any admissible `EE` count voids and \(24\) no `EE` count can. The \(18\) need \(50\) to \(3925\) adjacencies where a word with its evens placed uniformly carries \(e(e-1)/(L-1)\approx7675\) to \(10116\), so each is voided by less `EE` than an ordinary word already has. Dropping the hypothesis leaves \(117\) survivors below \(10^{5}\), not \(99\); Theorem 4.8 is not thereby false, but \(18\) of its \(42\) exclusions rest entirely on the missing hypothesis. And the obvious way to recover the hypothesis is now closed rather than open. Impose every constraint the paper proves about a cycle-minimum itinerary and nothing else --- above-anchor prefixes, Theorem 3.29's run cap, \(o=o_{\min}(L)\), and the \(\mathtt{OO}\ldots\mathtt{E}\) shape --- and at all \(18\) fragile lengths an admissible word carries more `EE` than the threshold needs. The witness keeps runs of length at most two, the packing's own extremal shape: it is the Beatty interleaving of `OOE` and `OE` blocks over \(e-k\) evens followed by a tail of \(k\) evens, so no run-structure claim is violated and what breaks is only the block/even-letter correspondence. Granting the extremality claim about runs in full therefore does not rescue the counting. A structural identity falls out: \(o_{\min}\) is defined by \(o\log(3/2)>e\log2\) and the run cap uses the same constant, so \(\lfloor e\log2/\log(3/2)\rfloor=o_{\min}-1\) at every one of the \(42\) --- the one-block word \(\mathtt{O}^{o}\mathtt{E}^{e}\) is forbidden by exactly one letter, and two blocks already carry \(e-2\) adjacencies. Recovering the hypothesis needs a floor-sensitive constraint; every constraint above is exponent bookkeeping, which is blind to the floors. The audit is the packing-fragility branch. |
+| Theorem 4.7 | See the accompanying formalization map. |
 | Theorem 4.8 | run-type table; verified computation, not Lean |
 | Proposition 4.9 | `run_survivor_unimodular`, `run_survivor_seed_F2`, `run_survivor_seed_F3`, `three_pow_step_gt_two_pow_step`, `runSurvivors_length` |
 | Theorem 4.10 | `cycleMin_gap_transfer`; abstract length bound `cycleMin_length_of_gap` (`GapTransfer.lean`) |
@@ -3856,12 +3551,12 @@ Theorem 4.8.
 | Theorem 5.4 | combinatorial core `hugOdds_le_of_admissible`; cycle-itinerary domination `cycleMin_prefix_odds_ge_hug`, `cycleMin_odds_ge_hug`; charge maximisation `stateCharge_antitone`, `hug_charge_maximal` (`WalkChargeMax.lean`); strict uniqueness `stateCharge_strictAnti`, `stateCharge_inj`, `hug_charge_unique` — an admissible profile attaining the hug charge *is* the hug profile |
 | Proposition 5.5 | Lean proves convergence of the finite hug average to `circleMean` by `denjoy_koksma_blocks` and the Laplace bounds `inv_sq_le_quad`, `rotation_average_le`, `rotation_average_lt`, `rotationAverage_le`, `rotationAverage_lt`, `rotationAverage_gap`; the elementary change of variables identifying `circleMean n'` with the displayed `rotationAverage (log n')` remains prose |
 | Lemma 5.6 | itinerary identity `budgetedWord_eq_hugWord`, `hugOdds_pow_ge`, `hugOdds_pow_lt`, `hugOdds_pow_gt`, `hugOdds_least`; rotation identification (`HugRotation.lean`) `hugOdds_eq_ceil`, `hugOdds_eq_sub_floor`, `hugEvens_eq_floor`, `hugLetter_iff_floor_step`, `hugWalk_eq_fract`, and the Birkhoff reading `periodicObservable_hugWalk` |
-| Theorem 5.7 | Denjoy--Koksma Lean end to end (`DenjoyKoksma.lean`, `DenjoyKoksmaOrbit.lean`): analytic half `value_sub_mean_le_variation`, `sum_eVariationOn_Icc`, `denjoy_koksma_abstract`; orbit half `orbitCell_inj`, `orbit_mem_cell`, `denjoy_koksma_cellmap`; the inequality itself `denjoy_koksma_rotation`, `denjoy_koksma_rotation_mean`; block composition `denjoy_koksma_blocks`, the induction over \(L=\sum_jb_jq_j\) that the uniformity in \(x\) licenses; the observable and its variation (`JumpVariation.lean`) `eVariationOn_neg`, `eVariationOn_add_le`, `eVariationOn_le_of_jump`, `periodic_window_variation_le`, `observable_window_variation_lt_two`; the display `block_envelope`, `theta_block_envelope`. the Ostrowski assembly (`OstrowskiBlocks.lean`) `ostroBlocks`, `ostroBlocks_snd_sum` (the denominators sum to \(L\)), `ostroBlocks_length` (the length is \(s(L)\)), and the display at a given length `theta_block_envelope_of_length`. the reading of \(C_L\) as the ergodic sum is Lemma 5.6's rotation identification, also Lean (`periodicObservable_hugWalk`); and the display is one statement in `HugChargeEnvelope.lean`, `hugCharge_sub_circleMean_le` (\(2s(L)/L\), every \(L\)) and `hugCharge_sub_circleMean_window` (\(94/L\) on the window), over the definition `hugCharge`. Quotient arithmetic `theta_sandwich_upper`, `theta_sandwich_lower`, `lower_lt_walkTheta`, `walkTheta_lt_upper`, `cf_lower_prefix`, `cf_upper_prefix`, `theta_convergent_denominators`; DK hypotheses `theta_convergent_numerators`, `theta_convergents_unimodular`, `theta_convergents_coprime`, `theta_convergent_quality` (\(|\theta-p/q|<1/q^2\)), `theta_block_permutations` |
-| Theorem 5.8 | Lean proves the general numeration lemmas `ostroDigit_le`, `ostro_sum_eq`, `ostro_digitSum_le`, the instantiated cap `theta_digitSum_le`, `greedyDigitSum_le`, and `hugCharge_sub_circleMean_window` only for \(L<q_{13}=301994\), uniformly in the starting phase; `window_digit_scan`, `window_digit_cap`, `window_digit_max` sharpen that old sub-window. The extension to \([50508,q_{14})\) is human arithmetic: write \(L=bq_{13}+r\), use \(s(L)\le b+47\), and combine it with the general Lean block envelope. The endpoint inequalities at \(q_{14},q_{15}\) are Lean (`theta_sandwich_lower`, `theta_sandwich_upper`), but no named Lean theorem instantiates the extended window. Since the interval is half-open it contains fan members \(L_0,\ldots,L_{54}\), not \(L_{55}=q_{14}\) |
+| Theorem 5.7 | `value_sub_mean_le_variation`, `sum_eVariationOn_Icc`, `denjoy_koksma_abstract`, `orbitCell_inj`, `orbit_mem_cell`; detailed scope in the formalization map |
+| Theorem 5.8 | `ostroDigit_le`, `ostro_sum_eq`, `ostro_digitSum_le`, `theta_digitSum_le`, `greedyDigitSum_le`; detailed scope in the formalization map |
 | Theorem 5.9 | kill template `cycleMin_hug_kill_criterion` (`DefectFinance.lean`); the per-length kill table is verified computation |
 | Proposition 5.12 | `fanLength`, `fanOdd`, `fanLambda`, affine step `fanLambda_affine`, negativity `fan_step_pow`, `fanLambda_step_neg`, monotonicity `fanLambda_strictAnti`, endpoints `fanLambda_55_pos`, `fanLambda_56_neg` (these *are* `theta_sandwich_lower` and `theta_sandwich_upper`), length `fan_positive_iff`, and `fan_frontiers`, `fan_endpoint`, `fan_past_endpoint` (`FanLaw.lean`) |
 | Propositions 5.8b, 5.8c | the two forced walk letters `walk_first_letter_odd`, `walk_second_letter_odd`, `step_lt_two` (`FanLaw.lean`); the relaxation and flatness measurements are verified computation |
-| Lemma 5.13, Corollary 5.14 | margin scaling and the conditional bound; verified computation, not Lean |
+| Observation 5.13, Corollary 5.14 | finite fitted exponents and the separately evaluated conditional bound; computation, not Lean |
 | Corollary 5.10 | second floor and kill table; verified computation, not Lean |
 | Corollary 5.11 | third floor and kill table; verified computation, not Lean |
 | short certificates (Section 6) | `even_finiteProgress`, `odd_even_finiteProgress` |
@@ -3876,7 +3571,7 @@ parity \(6/5\) bound \(n_{\max}\) of Section 4, are
 
 | \(L\) | \(o_{\min}\) | \(n_{\max}\) |
 |---:|---:|---:|
-| \(1\) | \(1\) | \(3\) |
+| \(1\) | \(1\) | \(2\) |
 | \(3\) | \(2\) | \(7\) |
 | \(11\) | \(7\) | \(25\) |
 | \(19\) | \(12\) | \(133\) |
@@ -3884,7 +3579,7 @@ parity \(6/5\) bound \(n_{\max}\) of Section 4, are
 | \(569\) | \(359\) | \(23568\) |
 | \(1054\) | \(665\) | \(788014\) |
 | \(25781\) | \(16266\) | \(26254995\) |
-| \(50508\) | \(31867\) | \(162848325\) |
+| \(50508\) | \(31867\) | \(162848324\) |
 
 At the verified descent floor \(N_0=10^6\) the first seven rows
 are excluded. The set \(\mathcal E=\mathcal E(10^6)\) is defined
@@ -3915,9 +3610,11 @@ The file `floor.json` in the same directory as
 companion and is not the \(10^6\) certificate. The parity table is
 written by
 `research.juggler_sequence.cycle_finance.write_parity_artifacts`.
-The row \(L=1\) of the table above prints \(n_{\max}=3\), the
-conservative generator; the exact \(6/5\) crossing is \(2\), the
-same guard species as the \(50508\) row documented at Theorem 5.2.
+The table gives exact crossings of the stated \(6/5\) comparison.
+The historical guarded generator returned the conservative upper values
+\(3\) and \(162848325\) at \(L=1\) and \(L=50508\), respectively;
+these must not be confused with the exact crossings \(2\) and
+\(162848324\). Neither correction changes the stated period bounds.
 
 The run-type table of Theorem 4.8 is
 `data/research/juggler/cycle_finance/budget_opt.json`. The
@@ -3925,7 +3622,8 @@ The run-type table of Theorem 4.8 is
 `killed_by_budget`; their SHA-256, serialized as a JSON list of
 integers with no spaces, is
 `9d108776d6dc5dc1ae2594058850463cd2d3995cc57b9811471f08e3b818b90a`.
-The complementary \(99\) lengths are \(\mathcal E_{\mathrm{run}}\).
+The complementary \(99\) lengths form the table \(\mathcal E_{\mathrm{run}}\)
+under Theorem 4.7's primitive and no-\(EE\) hypotheses.
 Their SHA-256, in the same serialization, is
 `9e2098923ccb39933630b116133a3fc2ddaf98ace4eb76dbab9b5ab9f6e604e6`.
 The first few survivors remain
@@ -3994,32 +3692,34 @@ checkout of the repository, `pip install -e .` followed by, for
 a survivor length \(L\),
 
 ```text
-python -c "from research.juggler_sequence.cycle_walk_charge \
-import certified_report; print(certified_report(L, 162849448))"
+python -m research.juggler_sequence.paper_a_audit
 ```
 
-recomputes the authoritative certified record behind
-Corollary 5.10 for that length (at \(L=478245\) it prints the
-non-kill); the same call through the GPU port,
-`python -m research.juggler_sequence.cycle_walk_charge_gpu L
-162849448`, reproduces it in seconds per length on one consumer
-GPU. The first-floor kill table of Theorem 5.9 is
-`python -m research.juggler_sequence.cycle_walk_charge
---survey`.
+runs the Paper A arithmetic audit when executed from the repository
+root. It recomputes selected exact parity thresholds, compares stored
+walk margins, checks the finite fan identities, and checks the constants
+used in Corollary 4.11. It does not replay all descent trajectories.
+For a direct per-length CPU report, save the following as a script and
+run it from the repository root after installing the project:
 
-*Reproducibility of the third-floor kill table.* The committed
-records behind Corollary 5.11 are the GPU certified reports.
-From a fresh checkout,
+```python
+import argparse
+from research.juggler_sequence.cycle_walk_charge import certified_report
 
-```text
-python -c "from research.juggler_sequence.cycle_walk_charge_gpu \
-import gpu_certified_report; print(gpu_certified_report(L, 350000000))"
+parser = argparse.ArgumentParser()
+parser.add_argument("length", type=int)
+parser.add_argument("floor", type=int)
+args = parser.parse_args()
+print(certified_report(args.length, args.floor))
 ```
 
-recomputes the record for length \(L\) at this floor (at
-\(L=780239\) it prints the non-kill). Do not pass `--write`
-to the module CLI: that path is hardcoded to the second-floor
-directory.
+For example, `python report_length.py 478245 162849448` evaluates
+the non-excluded endpoint of Corollary 5.10. The committed third-floor
+records use `cycle_walk_charge_gpu.gpu_certified_report` with floor
+\(350000000\), and therefore require the corresponding GPU runtime.
+Do not use its `--write` option to regenerate a different floor: that
+option selects a fixed output directory. The precise software version,
+dependency environment, and archived data must accompany a release.
 
 ## Appendix C. Exact floor defect
 
@@ -4248,15 +3948,18 @@ even-terminating expanding length-seven words are exactly
 rotates two steps onto \(O^4EOE\); both leftovers are excluded by
 Lemma 3.7.
 
-It remains to exclude \(OOEO^3E\) and \(O^3EO^2E\). Rotate either
-word to a cycle minimum \(m\ge 2\). For \(OOEO^3E\) the minimum
-orientation retains the internal even letter followed by the suffix
-\(OOO\). Then \(m\ge 3\), the prefix through that even letter is
-realized, and Lemma 3.4(ii) at threshold \(3\) contradicts the last
-even one-step preimage. For \(O^3EO^2E\) the same bootstrap applies with suffix
-\(OO\) and threshold \(5\), once \(m=3\) is removed: at \(m=3\) the
-state after \(OOO\) is even, so the next even letter is not
-realized. \(\square\)
+It remains to exclude the cyclic class containing \(OOEO^3E\)
+and \(O^3EO^2E\). At a cycle minimum \(m\), Theorem 3.2 forces
+the orientation to start \(OO\) and end \(E\). The two possible
+orientations in this class are exactly those two words; a rotation can
+interchange them. In the first orientation, the internal even state is
+followed by \(OOO\), so Lemma 3.4(ii), valid at \(m\ge3\),
+contradicts the last-even preimage interval. In the second orientation,
+the corresponding \(OO\) bootstrap applies at \(m\ge5\).
+The remaining odd minimum \(m=3\) follows
+\(3\to5\to11\to36\to6\): the \(E\) at \(36\) is realized,
+but the next prescribed \(O\) is impossible at the even state \(6\).
+Both minimum-based orientations are excluded. \(\square\)
 
 **Theorem 3.12 (two-even leftover families).**
 Let \(k\ge 6\) and \(n\ge 2\). Neither \(O^{k-2}EE\) nor
@@ -4583,11 +4286,19 @@ The original start need not be a cycle minimum. After rotation
 the start is a minimum, so the hypothesis \(y<n\) that blocked
 Theorem 3.13 does not arise. \(\square\)
 
-## Acknowledgments
+## 7. Acknowledgments and use of AI
 
-Computational and formal-assistant tools were used in the
-development and verification of the manuscript; all mathematical
-statements and code are the responsibility of the author.
+The author used large language models throughout the development of this
+work, including drafting and revising the prose, proposing and developing
+proof arguments, writing Lean formalizations, and designing and implementing
+computations. The September 2026 review with OpenAI Codex checked the
+mathematical claims and references, corrected the finite-window estimate,
+revised the rotation-cell argument and several hypotheses, distinguished
+formal proofs from numerical evidence, and prepared the document build and
+independent numerical audit. AI assistance is not independent mathematical
+validation. The explicit evidence boundaries in Section 1.2 and Appendix A
+apply to these contributions. The author is responsible for the statements,
+proofs, code, and final verification of this preprint.
 
 ## References
 
@@ -4644,10 +4355,16 @@ statements and code are the responsibility of the author.
     d'irrationalité,” in *Séminaire de Théorie des Nombres, Paris
     1985--86*, Progress in Mathematics 71, Birkhäuser, Boston, 1987,
     155--164.
+    [doi:10.1007/978-1-4757-4267-1_11](https://doi.org/10.1007/978-1-4757-4267-1_11).
 16. P. Cochin, “Parity equidistribution of nested floor powers, with
-    descent applications to the Juggler map,” companion manuscript
-    (Paper B), 2026. Repository copy:
-    `docs/theory/juggler_parity_discrepancy_note.md`.
+    descent applications to the Juggler map,” companion working manuscript
+    (Paper B), version consulted 9 September 2026. Repository copy:
+    [repository source](https://github.com/sneakyweasel/btlab/blob/main/docs/theory/juggler_parity_discrepancy_note.md).
 17. P. Cochin, “Fate contagion in the Juggler map and the almost-all
-    reduction of termination,” companion manuscript (Paper C), 2026.
-    Repository copy: `docs/theory/juggler_fate_almost_all_note.md`.
+    reduction of termination,” companion working manuscript (Paper C),
+    version consulted 9 September 2026. Repository [source](https://github.com/sneakyweasel/btlab/blob/main/docs/theory/juggler_fate_almost_all_note.md).
+
+18. M. R. Herman, "Sur la conjugaison différentiable des difféomorphismes
+    du cercle à des rotations," *Publ. Math. IHÉS* 49 (1979), 5--233,
+    Theorem 3.1, p. 73.
+    [doi:10.1007/BF02684798](https://doi.org/10.1007/BF02684798).

@@ -1,50 +1,28 @@
-# Zenodo deposit — Paper A only
+# Paper A: prepared Zenodo preprint
 
-**Historical kit — not synchronized with the 9 September 2026 repairs.**
-The PDF stored in this subfolder is retained as an older snapshot; do not
-submit it as the current manuscript. Use the corrected
-[Paper A review PDF](../juggler_finite_dynamics_note.pdf) and recheck the
-deposit fields before any submission. No external deposit was changed.
+This folder is generated from the canonical editorial inputs in
+`docs/theory/`. The historical filename
+`Lower_bounds_for_nontrivial_cycles_of_the_Juggler_map.pdf` is maintained
+as a byte-identical alias of the current Paper A PDF, not an older edition.
 
-The original instructions below describe a one-file deposit:
-`Lower_bounds_for_nontrivial_cycles_of_the_Juggler_map.pdf`.
-Do not upload Paper B, this folder, the reviewer packet, or the laboratory.
+Use `python tools/build_paper_a.py --check` from the repository root before
+preparing a deposit. Rebuild with `python tools/build_paper_a.py` after
+editing the canonical manuscript, formalization map, or reviewer packet.
+See [build instructions](../../docs/theory/PAPER_A_BUILD.md).
 
-Zenodo: <https://zenodo.org/uploads/new>
-Account: any email. ORCID is optional but useful if you already have one
-from the Quantum Flytrap paper.
+`ZENODO_FIELDS.txt` is generated from the manuscript's title, abstract,
+version, and AI disclosure. Creator: Philippe Cochin, with no affiliation.
+The existing CC BY 4.0 preprint license choice is retained. Use the actual
+date this version first becomes public as the publication date. No DOI
+has been invented or reserved, and no external record has been changed.
 
-## Fields to paste
+The PDF is a preprint, not a peer-reviewed article. It establishes finite
+cycle exclusions with the evidence boundaries described in the paper;
+universal termination remains open. AI assistance throughout the work is
+explicitly disclosed in Section 7.
 
-Copy from `ZENODO_FIELDS.txt`. Short version:
-
-| Field | Value |
-|---|---|
-| Resource type | Publication → Preprint |
-| Title | Cycle Financing and Near-Convergent Diophantine Obstructions in the Juggler Map |
-| Creator | Cochin, Philippe — no affiliation (or “Independent”) |
-| Description | the HTML block in `ZENODO_FIELDS.txt` |
-| Keywords | Juggler map; Juggler sequence; floor-power maps; integer dynamics; cycles |
-| License | Creative Commons Attribution 4.0 International (CC BY 4.0) |
-| Access | Open |
-| Language | English |
-| Publication date | 2026-09-03 |
-| Related | GitHub `https://github.com/sneakyweasel/btlab` as *isSupplementTo* (optional) |
-
-Do not list `quant-ph` or arXiv:2203.13300 as a version of this note.
-That paper is a different subject.
-
-## After you click Publish
-
-Zenodo gives a DOI of the form `10.5281/zenodo.XXXXXXX`.
-
-1. Put that DOI in a reply here, or edit Paper B reference [22] yourself.
-2. Cite the note as
-
-   P. Cochin, Cycle Financing and Near-Convergent Diophantine Obstructions in the Juggler Map, 2026. https://doi.org/10.5281/zenodo.XXXXXXX
-
-3. You can still submit the same PDF to a journal. Most number-theory
-   journals allow a preprint. **Integers currently does not**, if the
-   AI acknowledgment stays as written — see `AFTER_ZENODO.md`.
-
-Do not pay anyone. Do not upload Paper B.
+Start a deposit at <https://zenodo.org/uploads/new>. If an earlier version
+of this same preprint already has a Zenodo record, use that record's new
+version operation. Upload the current Paper A PDF and the accompanying
+source/verification archive when desired; the companion manuscripts are
+separate works. Review the record before publishing.

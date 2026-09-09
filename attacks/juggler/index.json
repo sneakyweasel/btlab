@@ -567,6 +567,23 @@
       "nk_cluster": "Finance leftover-killers are identities, not movers"
     },
     {
+      "id": "cycle_cubic_band",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_cubic_band.py",
+      "test": "tests/research/juggler_sequence/test_cycle_cubic_band.py",
+      "dossier": "docs/problems/juggler_cycle_cubic_band.md",
+      "data_dir": "data/research/juggler/cycle_cubic_band",
+      "lean": [],
+      "conjecture": [],
+      "decision": "PARK",
+      "ledger_ids": [
+        "J-cycle-cubic-band-order",
+        "J-cycle-threshold-relaxation"
+      ],
+      "aliases": [],
+      "nk_cluster": null
+    },
+    {
       "id": "cycle_cyclic_seam",
       "kind": "branch",
       "probe": "src/research/juggler_sequence/cycle_cyclic_seam.py",
@@ -5320,6 +5337,22 @@
       "nk_cluster": "Flights"
     },
     {
+      "id": "parity_neighbor_scale",
+      "kind": "dossier_only",
+      "probe": null,
+      "test": null,
+      "dossier": "docs/problems/juggler_parity_neighbor_scale.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-parity-neighbor-scale"
+      ],
+      "aliases": [],
+      "nk_cluster": "Paper B, \\(K_3\\), and harvest counting"
+    },
+    {
       "id": "power_words",
       "kind": "dossier_only",
       "probe": null,
@@ -5342,8 +5375,9 @@
       "data_dir": null,
       "lean": [],
       "conjecture": [],
-      "decision": "PROMOTE",
+      "decision": "PARK",
       "ledger_ids": [
+        "J-pressure-sparse-starts",
         "J-pressure-scale-average-suffices",
         "J-pressure-external-average"
       ],

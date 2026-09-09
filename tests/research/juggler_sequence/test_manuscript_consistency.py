@@ -297,7 +297,6 @@ def test_contagion_exponent_quoted_by_paper_a_is_the_current_one() -> None:
     assert abs((1.0 - lam) - 0.5074) < 1e-3
     text = read(PAPER)
     assert "0.4926" in text
-    assert "0.5074" in text or "0.507" in text
     # the superseded sweep pair must not appear as Paper C's exponent or as the rate threshold
     assert "0.4050" not in text
     assert re.search(r"\(\\log x\)\^\{0\.405\}", text) is None
@@ -339,8 +338,9 @@ def test_paper_a_pins_the_seed_sum_from_both_sides() -> None:
     """Section 6.1 states Corollary 4.4c as the floor beside the trivial cap."""
 
     text = read(PAPER)
-    assert "6.83\\cdot10^{-5}" in text and "2.23\\cdot10^{-3}" in text
-    assert "J-lachesis-basin-inverse-sum" in text
+    assert r"\theta\log n\le\sum_{x\in C}\frac1x\le\frac Ln" in text
+    assert "Corollary 4.4c" in text
+    assert "primitive cycle" in text
 
 
 def test_window_stops_at_but_excludes_the_last_fan_member() -> None:

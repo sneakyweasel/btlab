@@ -1,5 +1,40 @@
 [
  {
+  "id": "J-cycle-cubic-band-order",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Conditional cycle-order theorem. Let C be a primitive nontrivial Juggler cycle with minimum m>1, maximum M<m^3, length L and o odd states; set e=L-o. If c_0=m<...<c_(L-1) lists its states, the odd states are exactly those below m^2 and J(c_i)=c_((i+e) mod L). Hence gcd(L,o)=1 and the odd count in the first k steps from m is ceil(k o/L), for 0<=k<=L: the exact ceiling mechanical word. Proof separates odd/even states and images, uses injectivity to eliminate possible floor ties, then ranks the resulting cyclic permutation. A non-mechanical primitive cycle or one with gcd(L,o)>1 must instead have M>=m^3+1. The height hypothesis is essential to this argument; no unconditional Christoffel claim, no parity obstruction, no new period exclusion. Written AI-assisted proof; no independent human review or new Lean verification claimed.",
+  "source": "docs/problems/juggler_cycle_cubic_band.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_cubic_band.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cycle-threshold-relaxation",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For each integer b>=3, the size-switched map S_b on integers b<=x<b^3 uses floor(sqrt(x^3)) for x<b^2 and floor(sqrt(x)) otherwise. This finite interval is invariant and S_b has no fixed point, so it has a primitive cycle of length at least two at arbitrarily large minima. Its cycles have the separated-image rank rotation, coprime branch counts and ceiling mechanical words; 3^o>2^L. S_b is not Juggler: a full cycle is a Juggler cycle iff every low state is odd and every high state even. This parity compatibility is not established, and the construction refutes only attempts to get no-cycle from the listed parity-relaxed properties alone. Written AI-assisted proof; no independent human review or new Lean verification claimed.",
+  "source": "docs/problems/juggler_cycle_cubic_band.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_cubic_band.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-pressure-sparse-starts",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Actual sparse-source pressure bound. Fix N0>=2, C>1, theta>0, 0<q<1, a=1-q+q*exp(theta), and the scale-averaged pressure notation of J-pressure-scale-average-suffices. If a source set B has O(2^((1-delta)*k)) members in (2^k,2^(k+1)] for fixed delta>0, its restricted normalized live moment satisfies rho_k(B)=O(2^(-delta*k)*(k+1)^kappa), kappa=C*(theta-log a)/log2, so its cumulative contribution is bounded independently of K. Proof grants every source d_k odd letters and survival, then compares the exponential source-density saving with the polynomial tilt. For the actual odd source subset n square OR J(n) square, injectivity of the odd branch gives count <=floor(sqrt(2y))+floor((2y)^(3/4))<=4*y^(3/4), hence delta=1/4 and an O(1/K) contribution to the normalized scale average. Exact odd power towers n=b^(2^j), j>=1, are square starts and have delta=1/2. No assertion about later parities, arbitrary inverse closures, unbounded later square hits, or relative live tilted shares. The complement and the full averaging hypothesis remain uncontrolled. Human proof, not Lean verified; no termination conclusion.",
+  "source": "docs/problems/juggler_pressure_external_average.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_pressure_external_average.py"
+  ],
+  "related_conjectures": [
+   "juggler_loglog_depth_cylinder_bound"
+  ]
+ },
+ {
   "id": "J-pressure-scale-average-suffices",
   "tag": "EXACT — HUMAN PROOF",
   "statement": "Conditional scale-averaged pressure theorem, correcting the earlier rejection of Pi. Fix a terminating floor N0>=2, C>1, theta>0 and 0<q<1. Set p_C=(1-1/C)*log2/log3, a=1-q+q*exp(theta), d_k=ceil(C*log2(((k+1)*log2)/log N0)), N_k=2^(k-1), rho_k=Z_{d_k}(2^k)/(N_k*a^d_k), and r=C*(theta*p_C-log a)/log2>0. If for some eta>=0 the cumulative sum of rho_k through K is at most K^(1+eta+o(1)) and r-eta>1-lambda**, lambda**=0.4926, then every positive integer reaches 1. Proof: envelope plus Markov bounds block harmonic odd-failure mass by O(rho_k*(k+1)^(-r)); dyadic grouping gives total odd harmonic mass O((log x)^beta) for every beta>max(1+eta-r,0). The even-fiber inequality H_F(x)<=H_odd(x)+H_F(sqrt x)+zeta(2) gives the same bound for beta>0. Choosing beta<lambda<lambda** contradicts contagion if F is nonempty. At the optimizing tilt r=C*D(p_C||q)/log2; C=19,q=1/2 permits eta<0.0195265491 and C=41,q=0.55 permits eta<0.0120493967. In particular the original Cesaro bound Pi<=exp(o(d)) (eta=0) suffices. Scalar sequence rho_k=1+k on powers of two and 1 elsewhere separates this assumption from pointwise subpower pressure; not a Juggler realization. Existing recurrence rho_k<=exp(theta)/a*exp(c E_k) gives the corresponding sufficient exponential average of cumulative tilted excess, not an ordinary first-moment condition. The actual arithmetic average remains unproved. Human proof, no new Lean theorem; termination is only the conclusion of the stated conditional implication.",
@@ -7473,7 +7508,7 @@
  {
   "id": "J-pressure-external-average",
   "tag": "REPARAMETERIZATION",
-  "statement": "Corrected 9 September 2026: this row retains only the closed METHODS in the external-averaging dossier; its former rejection of the Cesaro normalized pressure average Pi is withdrawn and replaced by J-pressure-scale-average-suffices. Identity A, completing the single live-tilted odd sum, produces a cylinder-weighted nested phase. The recorded inputs remain Walsh-tail pair correlation, the two-monomial/Weyl depth budget cC<1, or fixed-depth truncation (Tao note 10.4(e)). Parseval is already J-tao-cylinder-forms-reparameterization. The harmonic average of live counts is finite-depth free-term live mass, and a proposed inverse-production estimate still needs tilted S-fairness on its odd branch. These are not new arithmetic estimates. They do not invalidate the corrected conditional sufficiency of scale-averaged pressure. The dossier now PROMOTEs that conditional weakening only; its arithmetic hypothesis and termination remain unproved.",
+  "statement": "Corrected 9 September 2026: this row retains only the closed METHODS in the external-averaging dossier; its former rejection of the Cesaro normalized pressure average Pi is withdrawn and replaced by J-pressure-scale-average-suffices. Identity A, completing the single live-tilted odd sum, produces a cylinder-weighted nested phase. The recorded inputs remain Walsh-tail pair correlation, the two-monomial/Weyl depth budget cC<1, or fixed-depth truncation (Tao note 10.4(e)). Parseval is already J-tao-cylinder-forms-reparameterization. The harmonic average of live counts is finite-depth free-term live mass, and a proposed inverse-production estimate still needs tilted S-fairness on its odd branch. These are not new arithmetic estimates. They do not invalidate the corrected conditional sufficiency of scale-averaged pressure. The conditional weakening was promoted; the subsequent arithmetic-estimate attempt is PARK, with only the sparse-source bound J-pressure-sparse-starts proved. Its full arithmetic hypothesis and unconditional termination remain unproved.",
   "source": "docs/problems/juggler_pressure_external_average.md",
   "lean": "",
   "tests": [
@@ -7816,6 +7851,17 @@
   "tests": [
    "tests/research/juggler_sequence/test_paper_c_formal_layer.py",
    "tests/research/juggler_sequence/test_layer_architecture.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-parity-neighbor-scale",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Sharp first-image opposite-parity neighbor exponent. For every odd integer n ≥ 4096, L = ceil(n^(1/4)), both parities occur among floor((n+2j)^(3/2)), 0 ≤ j ≤ 4L. Hence an odd u > n with opposite first-image parity exists at distance ≤ 8L. If D(n) is the minimum distance to any positive odd source with opposite first-image parity, infinitely many odd nonsquare n with odd nonsquare first image satisfy D(n) ≥ n^(1/4)/4. Upper proof: smooth increments of (n+2x)^(3/2) increase by less than two, so monochromatic floors have at most one switch between adjacent even increments; a constant run of 2L increments contradicts the midpoint curvature gap > 1 versus floor errors < 1. Lower family: for odd c,t ≥ 1 with t² ≤ 4c, floor((4c²+t)^(3/2)) = 8c³+3ct; prime c ≥ 37 makes all these sources and images nonsquare. Central sources have monochromatic radius at least floor(sqrt(c)+1/2). The exponent, not the constants, is sharp. Pointwise first-step availability only: no injection, bounded-multiplicity assignment, prefix preservation, positive exit share, growing-depth count, or termination bound is proved. The whole explicit cluster family has O(y^(3/4)) sources in (y,2y] and is covered by the existing sparse-source pressure lemma.",
+  "source": "docs/problems/juggler_parity_neighbor_scale.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_parity_neighbor_scale.py"
   ],
   "related_conjectures": []
  }

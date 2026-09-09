@@ -803,6 +803,109 @@ PROOF. The original \(\Pi\) has \(\eta=0\), so it suffices at
 \(C=19\). This corrects sufficiency only; neither \(\Pi\) nor a
 Juggler-specific method to estimate it is proved. A small arithmetic
 mean of the tilted excess is not its exponential moment.
+
+**Scale-average estimate follow-up (PARK, 9 September 2026).** The
+corrected conditional implication is retained. The actual sparse
+source set consisting of odd square starts or odd starts with square
+successor has only \(O(y^{3/4})\) members per block, hence bounded
+total normalized pressure over all scales
+(`J-pressure-sparse-starts`). This does not control the complement or
+relative live shares. Merely counting exceptional scales while using
+the trivial cap on them is insufficient: at \(C=19\) the cap is
+\(\rho_k\ll k^{4.8934268}\), whereas the permitted cumulative power
+is below \(1.0195266\). Even a superlacunary unbounded exceptional set
+allows a scalar capped-spike sequence exceeding that budget. This is
+not a realized Juggler counterexample or a refutation of the scale
+average. Do not promote sparsity of scales without bounding their
+weighted amplitudes. Dossier: the external-average link above.
+The next finite-prefix/suffix-cap test is also closed: any fixed
+prefix information leaves the cap exponent unchanged. With fair
+normalization, \(r-\eta>0.5074\), \(\eta\ge0\), and arbitrary
+\(C,\theta\), Jensen's inequality gives
+\(\kappa-1-\eta>0.9376802680\). Thus fair tilt/depth tuning cannot
+repair that trivial cap. This is not a bound from below for actual
+pressure and is not asserted for arbitrary normalizations. The
+necessary all-odd density saving at the original \(C=19\) remains
+unproved (external-average dossier (C1)–(C3)); no new named hypothesis.
+The subsequent one-sided sieve check closes a narrower information-only
+route, not the arithmetic count: for every depth d and order h<=d-1,
+there are abstract binary distributions with a forced initial odd
+letter and exactly fair joint marginals of all orders <=h, yet all-odd
+mass at least 1/(2 sum(binom(d-1,j),j=1..h)). A random binary matrix
+and a union bound prove this. For h=o(d), the lower bound is exp(-o(d)),
+larger than the exp(-c*d) required by (C3). Thus those marginals alone
+cannot supply the desired sieve bound. No model is asserted to be a
+Juggler distribution; map-specific arithmetic inputs are not excluded.
+See the same dossier (D1)–(D3). The parent estimate stays PARK.
+The direct-source follow-up adds no escape from these limits. The
+neighbor theorem's elementary block cover deletes only a fraction
+of order y^(-1/4), not a logarithmic-power fraction after log-log depth;
+iteration on selected sources is unproved. Replacing actual defects
+n_j³-n_(j+1)² by free residues modulo an even Q admits every odd
+state-residue chain when each defect window contains [0,Q-1]; this
+does not rule out sieves using the actual defect correlations.
+Finally d_k-d_K<=19 on K<=k<=2K at C=19 lets one freeze depth at a
+constant pressure cost, but d_K still grows; truncating further to
+fixed depth restores (C1). These are scope checks, not new named
+theorems or a refutation of (C3). The three shortcuts are CLOSE;
+the actual count remains PARK. See the direct-source follow-up in
+the external-average dossier above.
+The fixed-base, long-square-dilation transfer is also closed
+(external-average dossier (E1)–(E3)): sources n=a²b admitting a>=A
+number at most 2y/(A-1), while at least 3y/8-sqrt(2y)-1 odd sources
+are squarefree and have only a=1. Thus long-parameter balance does
+not cover the bulk. Two-letter membership is not dilation-invariant
+(3 versus 27, 7 versus 175); at the second iterate the fractional-part
+term grows like a^(3/2). This closes only that averaging transfer,
+not squarefree counting, every dilation method, or the actual (C3).
+Squarefreeness also fails to give a uniform positive fractional-floor
+gap: infinitely many c>1, c=1 mod18, have c,2c-1,2c+1 squarefree;
+then n=4c²-1 is squarefree, J(n)=8c³-3c is odd and nonsquare, and
+0<n^(3/2)-J(n)<1/(5c). The elementary union bound gives at least
+X/72-3sqrt(2X+1)-2 such c up to X. This thin two-letter family does
+not challenge the growing-depth count. The Möbius squarefree expansion
+has tail <=2y/A uniformly in depth but no bound for its retained signed
+sum was found. See the same dossier (F1)–(F3); do not label possible
+Möbius cancellation or the actual squarefree count refuted.
+The subsequent two-step fractional-gap shortcut also fails after
+excluding all square states: for odd a>=7, n=a^4-8 has exact odd
+images m=a^6-12a² and z=a^9-18a^5+54a. For prime a>=7 all three
+are nonsquares, while the two fractional errors are <25/a² and
+<225/(2a³), both tending to zero. This says nothing about quartic
+squarefreeness. The integer defects grow, and the transported error
+n^(9/4)-z is asymptotic to 36a, so arbitrary weighted or growing-depth
+error budgets are not refuted. The explicit family has O(y^(1/4))
+sources and is covered by the sparse-source bound (B1). The narrow
+positive two-step unweighted-gap claim is CLOSE; (C3) stays PARK.
+Proof and scope: external-average dossier (F4)–(F6).
+Initial boundary trimming does give a source estimate: uniformly in
+0<delta<=1/2, the odd starts in (y,2y] with distance of n^(3/2) to the
+nearest integer <=delta number O(delta y+y^(5/6)), by Paper B's
+second-derivative estimate and Erdős–Turán. At delta=(log y)^(-6),
+their restricted normalized pressure is summable at fair optimized
+C=19; the exact inequalities 2^30<3^19 and 6^19<2^5 5^19 certify
+kappa<5. This controls only the initial strip, not its relative live
+share, the complement, or later boundary encounters. Automatic
+ambient iteration is CLOSE: after one odd step it yields only
+O(delta y^(3/2)+y^(5/4)), vacuous against the original O(y) sources.
+This is the known sparse-image obstruction, not a refutation of a
+direct late-hit source estimate. Growing-depth trimming and (C3)
+remain PARK. Proof and scope: external-average dossier (G1)–(G2).
+The prefix-selected follow-up does not overcome depth uniformity.
+Paper B's existing S_(0,2h) estimate does control the second strip
+directly on sources, with error O_epsilon(y^(23/24+epsilon)); its
+restricted pressure is again summable at delta=(log y)^(-6).
+This bypasses ambient completion at that fixed depth only. Earlier
+good margins do not supply interval averaging along all-odd prefixes:
+for the auxiliary F(x)=floor(x^(3/2)), the exact constancy cells of
+every F^t are the first cells [m^(2/3),(m+1)^(2/3)), each shorter than
+one, because F is injective on positive integers. Margins shrink or
+select these cells; counting their source integers remains unproved.
+Do not multiply smooth derivatives through an exact floor after its
+first-image coalescence, or insert an additional prefix indicator
+into an unweighted exponential-sum estimate. This localization
+shortcut is CLOSE; actual growing-depth counts remain PARK.
+Proof and scope: external-average dossier (G3)–(G4) and its cell check.
 Mass, max-atom, collision energy and ancestry multiplicity of the
 tilted pushforward \(W_t\) do not force the five-word four-step cut:
 they saturate on the injective \(\mathtt{OOOO}\) cell (profile
@@ -886,6 +989,37 @@ Dossiers: [juggler_length7_passenger](problems/juggler_length7_passenger.md),
 [juggler_ps_inversion_barrier](problems/juggler_ps_inversion_barrier.md),
 [juggler_bi_resonance_limit](problems/juggler_bi_resonance_limit.md),
 [juggler_parity_discrepancy_transfer](problems/juggler_parity_discrepancy_transfer.md).
+
+**First-step locality refinement (9 September 2026).** A universal
+opposite-image-parity source-distance bound of o(n^(1/4)) is false,
+even on odd nonsquare starts with nonsquare first image. For prime
+c >= 37, the consecutive odd offsets t with 1 <= t <= 2 sqrt(c)
+give the exact odd images
+floor((4c²+t)^(3/2)) = 8c³+3ct, all nonsquare. Central starts need
+distance at least n^(1/4)/4 to find the opposite image parity.
+These unbounded blocks, not the earlier single length-52 example,
+also provide an explicit counterexample to any translation-uniform
+sublinear interval-discrepancy bound with a fixed constant.
+Qualitative long blocks were already implied by parity complexity;
+the new quantitative companion upper bound is 8 ceil(n^(1/4)).
+The entire explicit family has only O(y^(3/4)) sources per dyadic
+block. This refutes neither longer-distance assignments nor aggregate
+pressure; it supplies no prefix-preserving or bounded-multiplicity
+pairing. Proof: [parity neighbor scale](problems/juggler_parity_neighbor_scale.md),
+`J-parity-neighbor-scale` (EXACT — HUMAN PROOF).
+
+Its direct prefix-pairing follow-up is CLOSE, by the already-recorded
+image-gap obstruction: for odd n >= 65536, the entire window
+of radius 8 ceil(F(n)^(1/4)) about F(n) contains no other odd-source
+image. A target neighbor supplied by the first-step theorem therefore
+has no odd pullback. An unrestricted K-to-one assignment between
+continuers and exits in the same finite source window exists exactly
+when the continuation share is <=K/(K+1); renaming the count supplies
+no arithmetic estimate. The calibration K=5 would control the all-odd
+pressure contribution only if available throughout the required depth
+range. No such construction was found, and neither larger-distance
+matching nor the actual growing-depth count is refuted. See Results 4
+of the same dossier; no new named theorem or frontier hypothesis.
 
 ---
 

@@ -1,5 +1,310 @@
 # Research journal
 
+## Prefix-selected boundary trimming: fixed depth is not growing depth
+
+- **Date:** 9 September 2026. **Source:**
+  [Pressure external average, (G3)–(G4) and cell check](problems/juggler_pressure_external_average.md).
+- **What was learned:** Paper B's existing source-mode estimate also
+  removes the second boundary strip with summable restricted pressure.
+  Earlier good margins yield no multi-integer constancy interval:
+  along the auxiliary odd map, every iterate retains the first-step
+  cells, each shorter than one. Neither calculation bounds a late-hit
+  source population uniformly at growing depth.
+- **Strongest theorem:** The fixed-depth corollary (G3)–(G4), EXACT —
+  HUMAN PROOF, follows from Theorem 4.4's existing mode bound and
+  Erdős–Turán. No new cancellation estimate or termination bound.
+- **Strongest refutation:** No counterexample to the desired count.
+  The proposed interval-averaging advantage fails because earlier
+  margins only shrink or select sub-integer cells.
+- **Reusable machinery:** A short source-mode corollary and exact
+  cell argument in the existing dossier. No new probe, test harness,
+  Lean module, or fixed-depth ladder.
+- **Decision:** CLOSE margin-based interval averaging; the parent
+  arithmetic estimate stays PARK. Available fixed-depth bounds cannot
+  simply acquire a longer prefix indicator or growing-depth uniformity.
+- **Best next question:** What arithmetic estimate can bound the
+  actual growing-depth all-odd count (C3) while retaining the floor corrections?
+
+## Initial boundary strips have summable pressure cost
+
+- **Date:** 9 September 2026. **Source:**
+  [Pressure external average, (G1)–(G2)](problems/juggler_pressure_external_average.md).
+- **What was learned:** The initial strip with distance of n^(3/2)
+  to the nearest integer <=delta contains O(delta y+y^(5/6)) odd
+  sources in (y,2y], uniformly in delta. Choosing delta=(log y)^(-6)
+  makes its restricted normalized pressure summable at fair optimized
+  C=19, even granting every source survival and only odd steps.
+  At the next image scale the ambient count gives no source saving.
+- **Strongest theorem:** The initial-strip count and summability
+  corollary (G1)–(G2), EXACT — HUMAN PROOF, using Paper B Lemmas
+  3.3–3.4 and the existing pressure cap. Two integer inequalities
+  certify kappa<5 without relying on its numerical approximation.
+- **Strongest refutation:** No counterexample to growing-depth
+  trimming or (C3). Only the ambient-strip transfer fails to give
+  the required source estimate; no later-hit union bound follows.
+- **Reusable machinery:** A short proof and one algebraic regression
+  in the existing pressure test file; no runtime probe or Lean module.
+- **Decision:** PARK growing-depth boundary trimming and the actual
+  arithmetic count; CLOSE automatic ambient iteration. The initial
+  deletion is retained, but neither complementary pressure nor the
+  strip's relative live tilted share is bounded. No termination
+  estimate was obtained.
+- **Best next question:** Can a boundary-strip count be proved on
+  the actual prefix-selected source population uniformly at growing depth?
+
+## Two successive fractional errors can vanish off squares
+
+- **Date:** 9 September 2026. **Source:**
+  [Pressure external average, (F4)–(F6)](problems/juggler_pressure_external_average.md).
+- **What was learned:** The explicit family n=a^4-8 has exact odd
+  images m=a^6-12a² and z=a^9-18a^5+54a for every odd a>=7.
+  The fractional errors are positive but <25/a² and <225/(2a³).
+  All three states are nonsquares when a>=7 is prime. Integer defects
+  grow, and transported two-step error is asymptotic to 36a; neither
+  should be confused with the small unweighted fractional errors.
+- **Strongest theorem:** The formulas and limits (F4)–(F6), EXACT —
+  HUMAN PROOF, by cube–square expansion, rationalization, and the
+  mean value theorem. No squarefreeness of a^4-8 is claimed.
+- **Strongest refutation:** No uniform positive lower bound exists
+  for the sum of two unweighted fractional errors on all sufficiently
+  large all-odd triples with every state nonsquare. This is not a
+  refutation of a growing-depth bound or a weighted-error argument.
+- **Reusable machinery:** The explicit family and one exact regression
+  in the existing pressure test file; no runtime probe or Lean module.
+- **Decision:** CLOSE this positive-gap shortcut. The family has only
+  O(y^(1/4)) sources, hence is harmless under the existing sparse-source
+  pressure lemma. The actual all-odd count remains PARK.
+- **Best next question:** Can the required growing-depth all-odd
+  count be bounded for the full source population, including these
+  near-boundary starts?
+
+## Direct all-odd source count: three checks, no new estimate
+
+- **Date:** 9 September 2026. **Source:**
+  [Pressure external average, direct-source follow-up](problems/juggler_pressure_external_average.md).
+- **What was learned:** The neighbor theorem yields only a first-step
+  deletion fraction of order y^(-1/4), too small to produce the required
+  saving over log-log depth even if repetition were justified. Free
+  defect residues modulo Q admit every odd state-residue chain once
+  their windows contain a complete residue system. Freezing depth on
+  K <= k <= 2K costs a constant, but the frozen depth still grows as
+  19 log2 K. None controls the actual prefix-selected population.
+- **Strongest theorem:** No new counting theorem. The displayed
+  covering and stopped-moment inequalities are elementary consequences
+  of existing results; the residue observation concerns a relaxation,
+  not the actual defects.
+- **Strongest refutation:** No counterexample to (C3). Only the
+  proposed deductions from those limited inputs fail. In particular,
+  finite defect censuses do not disprove every possible arithmetic
+  coupling on all-odd chains.
+- **Reusable machinery:** None; short analytical record only, with no
+  new code, probe, Lean file, or theorem-ledger row.
+- **Decision:** CLOSE the tested transfer shortcuts. PARK remains the
+  actual arithmetic-count status. No termination estimate was obtained.
+- **Best next question:** What additional exact-floor arithmetic can
+  control the actual all-odd count (C3) uniformly at growing depth?
+
+## Prefix pairing: the first-step neighbor has no odd pullback
+
+- **Date:** 9 September 2026. **Source:**
+  [Parity neighbor scale, Results 4](problems/juggler_parity_neighbor_scale.md).
+- **What was learned:** For odd n >= 65536, the radius
+  8 ceil(F(n)^(1/4)) window about F(n) contains no other odd-source
+  image. Thus the first-step parity neighbor cannot be lifted even
+  through the last odd edge of a longer prefix. An unrestricted
+  K-to-one assignment within the same finite source window is exactly
+  the continuation-share bound K/(K+1), not a construction. Five-to-one
+  control at every depth would price the all-odd pressure contribution,
+  but does not control the other high-odd-count words.
+- **Strongest theorem:** No new counting theorem. The explicit
+  isolation inequality (8) follows from the existing image-gap theorem
+  and the neighbor radius; the multiplicity formulas are elementary
+  bookkeeping under the existing tower-tolerance calculation.
+- **Strongest refutation:** Direct target-neighbor pullback fails
+  uniformly above the displayed threshold. Larger-distance or
+  source-level prefix-aware assignments are not refuted.
+- **Reusable machinery:** One exact regression added to the existing
+  test file; no new runtime probe, Lean module, or theorem-ledger row.
+- **Decision:** CLOSE this shortcut as the known sparse-image transfer
+  obstruction. The first-step theorem stays PROMOTE; the actual
+  arithmetic-pressure estimate stays PARK. No termination bound.
+- **Best next question:** Can the existing necessary all-odd count
+  (C3) be bounded directly on the original source integers, without
+  replacing their selected images by an interval?
+
+## First-image parity: a sharp neighbor-distance exponent
+
+- **Date:** 9 September 2026. **Branch:**
+  [Parity neighbor scale](problems/juggler_parity_neighbor_scale.md).
+- **What was learned:** Every odd n >= 4096 has an odd source with
+  opposite first-image parity to its right within 8 ceil(n^(1/4)).
+  Explicit prime-centered clusters show that the exponent 1/4 cannot
+  be reduced, even after removing square sources and square images.
+  Qualitative long constant blocks were already known in the repo;
+  the matching quantitative scale is the additional consequence.
+  Pointwise neighbors do not supply a prefix-preserving matching.
+- **Strongest theorem:** `J-parity-neighbor-scale`, EXACT — HUMAN PROOF:
+  D(n) <= 8 ceil(n^(1/4)) for every odd n >= 4096, and
+  D(n) >= n^(1/4)/4 for infinitely many odd nonsquare n whose first
+  image is also odd and nonsquare. The upper bound is elementary
+  convexity plus the unit floor-error bound, not a finite-check inference.
+- **Strongest refutation:** A uniform o(n^(1/4)) opposite-parity
+  source-distance bound is false. Longer-distance adaptive assignments
+  and growing-depth pressure estimates are not refuted.
+- **Reusable machinery:** The proof, ledger row, and four exact
+  formula/endpoint regression tests; no new runtime probe or Lean module.
+- **Decision:** PROMOTE the first-step scale theorem. The parent
+  arithmetic-pressure estimate remains PARK: flipping the first
+  image leaves any O^t cylinder with t >= 2, and assignment
+  multiplicity is uncontrolled. No termination estimate was obtained.
+- **Best next question:** At t proportional to log log y, can sources
+  within the same O^t cylinder be assigned partners with opposite
+  parity of the next unprescribed image F^t(n), with uniformly
+  bounded multiplicity?
+
+## Retained full phase: no new cancellation mechanism
+
+- **Date:** 9 September 2026. **Index cluster:** Pressure external average.
+- **Target:** Obtain the required growing-depth all-odd saving through
+  exact source pairing or grouping that retains the floor corrections.
+- **Learned:** Complete-sum cancellation does not estimate the subset
+  selected by the preceding odd prefix. Partial summation needs an
+  unavailable variation/run estimate for that subset. Grouping still
+  needs a source-weighted image estimate. Moving Fourier frequencies
+  and shift-average non-transfer are already in the parity laboratory
+  note, Parts XVI–XVIII, not new consequences of this follow-up.
+- **Strongest new theorem / refutation:** None. No actual counting
+  bound was obtained, and the pressure hypothesis is not refuted.
+- **Reusable machinery:** None; no new code, probe, or formalization.
+- **Decision:** CLOSE the duplicate-method follow-up; the arithmetic
+  estimate remains PARK. Do not relabel these existing obstacles as
+  another advance toward termination.
+- **Best next question:** Can the existing pressure target be reached
+  by an arithmetic estimate controlling the prefix-selected population
+  at depth proportional to log log y?
+
+## Squarefree starts: a boundary family, not a deep counting bound
+
+- **Date:** 9 September 2026. **Index cluster:** Pressure external average.
+- **Target:** Test whether squarefreeness supplies the arithmetic saving
+  missing from the growing-depth all-odd count.
+- **Strongest theorem:** For infinitely many c>1, c=1 mod18, the three
+  integers c,2c-1,2c+1 are squarefree. For these c, n=4c²-1 is squarefree,
+  J(n)=8c³-3c is odd and nonsquare, and 0<n^(3/2)-J(n)<1/(5c).
+  A union bound over three linear forms proves infinitude; no external
+  squarefree-value conjecture or theorem is needed. Dossier (F1)–(F2).
+- **What was learned:** Squarefreeness does not keep OO landings away
+  from a floor boundary. The family has only O(sqrt y) sources per
+  block and gives no control of later letters. The squarefree count's
+  Möbius expansion has a depth-independent tail <=2y/A, but its retained
+  signed arithmetic sum remains unestimated; cancellation is not refuted.
+- **Strongest refutation:** A uniform positive fractional-floor gap
+  on squarefree OO starts with nonsquare successor is false. This is
+  not a refutation of the required growing-depth all-odd estimate.
+- **Reusable machinery:** Elementary proof and two regression tests in
+  the existing dossier/test file; no new probe, framework, or paper edit.
+- **Decision:** CLOSE the positive-gap shortcut; PARK the actual
+  arithmetic estimate. No termination bound was obtained.
+  **Best next question:** can (C3) be proved by an estimate retaining
+  the full nested-floor phase at growing depth?
+
+## Square-dilation averaging: a source-coverage obstruction
+
+- **Date:** 9 September 2026. **Index cluster:** Pressure external average.
+- **Target:** Use the exact square-dilation formula for the odd branch
+  to estimate actual growing-depth all-odd starts.
+- **What was learned:** Large integer dilation parameters reach at most
+  2y/(A-1) sources in (y,2y]. At least 3y/8-sqrt(2y)-1 sources are odd
+  and squarefree, so their only square-dilation parameter is a=1.
+  Fixed-base long-parameter balance does not control these singleton fibers.
+- **Strongest result:** The elementary source-count bounds (E1)–(E2)
+  in the existing external-average dossier; neither counts all-odd starts.
+- **Strongest refutation:** All-odd membership is not square-dilation
+  invariant even at two letters (3 versus 27, and 7 versus 175).
+  The second-step expansion also retains a growing fractional-part term.
+- **Reusable machinery:** None new; proof and scope recorded in the
+  existing dossier. No new probe, conjecture, paper edit, or floor campaign.
+- **Decision:** CLOSE this long-dilation averaging transfer. The parent
+  arithmetic estimate remains PARK. No actual bound for (C3) was obtained.
+  **Best next question:** can the growing-depth all-odd count be bounded
+  directly on squarefree sources, without transferring a dilation average?
+
+## One-sided all-odd sieve: sublinear-order fairness is insufficient
+
+- **Date:** 9 September 2026.
+- **Target:** Obtain the necessary growing-depth all-odd upper bound
+  using fewer correlations than full joint equidistribution.
+- **What was learned:** Even granting exact fairness at every collection
+  of o(d) positions does not force exponential-in-depth decay of one
+  word. A one-sided conclusion does not remove this information gap.
+- **Strongest result:** An elementary random-matrix argument constructs
+  h-wise fair binary models with all-odd mass at least
+  1/(2 sum(binom(d-1,j),j=1..h)), with the first odd letter forced.
+  For h=o(d), this is exp(-o(d)); the necessary bound needs exp(-c*d).
+- **Strongest refutation:** A deduction from only those low-order joint
+  statistics is insufficient. This is not a Juggler counterexample,
+  and neither the actual all-odd count nor the pressure average is refuted.
+- **Reusable machinery:** None new. Added the proof and two regressions
+  to the existing external-average dossier/test file. The calculation
+  refines the known fixed-order barrier, not an arithmetic estimate.
+- **Decision:** CLOSE this information-only sieve route; PARK the parent
+  arithmetic estimate. No actual growing-depth counting bound was found.
+  **Best next question:** can map-specific arithmetic information prove
+  the necessary all-odd bound (C3) beyond low-order parity statistics?
+
+## Exceptional amplitudes: finite-prefix reuse does not improve the cap
+
+- **Date:** 9 September 2026.
+- **Target:** Improve the exceptional-scale bound using certified finite
+  prefix information and/or tuning the fair tilt and depth.
+- **Learned:** Z_d<=exp(theta*(d-m))*Z_m changes only the constant for
+  fixed m. All sufficiently large starts survive any fixed prefix above
+  N0, so finite descent density cannot be read as fixed-floor absorption.
+- **Strongest result:** An elementary parameter-uniform method check:
+  with fair normalization and r-eta>0.5074, eta>=0, the trivial cap
+  exponent exceeds the permitted cumulative exponent by >0.9376802680.
+  This holds for every admissible C and theta, not just the optimizer.
+  It is not an arithmetic lower bound for actual pressure, and not a
+  claim about other normalizations or stronger mortality estimates.
+- **Unresolved count:** At C=19, even the remaining nonsquare all-odd
+  cylinder requires a log-density saving >3.8739002812 as a necessary
+  consequence of the target average. No such counting estimate was found.
+- **Reusable machinery:** None new. Recorded calculations and regressions
+  in the existing dossier/test file; no new probe, hypothesis, or framework.
+- **Decision:** CLOSE the finite-prefix/suffix-cap reuse; the parent
+  arithmetic-average branch stays PARK and its conditional sufficiency
+  theorem remains valid. **Best next question:** can a one-sided arithmetic
+  argument prove the necessary growing-depth all-odd density bound?
+
+## Scale-average estimate: sparse sources controlled, bulk remains open
+
+- **Date:** 9 September 2026, arithmetic-estimate follow-up.
+- **Target:** Estimate the actual scale average, allowing exceptional
+  dyadic scales, rather than derive another sufficient formulation.
+- **What was learned:** The exact odd power towers obstructing uniform
+  state weights are harmless for cumulative pressure: all are square
+  starts. More broadly, odd n with n or J(n) square have O(y^(3/4))
+  sources per dyadic block, using odd-branch injectivity.
+- **Strongest theorem:** `J-pressure-sparse-starts`, EXACT — HUMAN PROOF.
+  Any fixed power-density saving in the source count beats the
+  polylogarithmic tilted weight. The stated square/square-successor
+  subset contributes only O(1/K) to the average over K scales, even
+  granting every one survival and all odd letters through the horizon.
+- **Strongest method refutation:** Sparse exceptional scale counts plus
+  the trivial amplitude cap cannot certify the full average. The cap
+  exponent is 4.89342683035 at C=19; the cumulative allowance is below
+  1.01952654911. Arbitrarily sparse unbounded scalar spikes can exhaust
+  the cap. They are not asserted to be actual Juggler moments.
+- **Reusable result and boundary:** The sparse-source estimate is an
+  actual upper bound, but not for the complement, arbitrary inverse
+  closures, or relative shares within the live population. The existing
+  completed-phase and inverse-sampling barriers remain; no new method
+  to estimate the full average was obtained. No census or framework.
+- **Decision:** PARK the arithmetic estimate. The preceding phase's
+  conditional scale-average theorem remains valid and is not withdrawn.
+  **Best next question:** can a Juggler-specific arithmetic estimate
+  bound the exceptional-scale pressure amplitudes on the remaining starts?
+
 ## Scale-averaged live pressure: correction of a false rejection
 
 - **Date:** 9 September 2026, follow-up to the pointwise-weight obstruction.
@@ -41743,4 +42048,28 @@ those are Lean.
   theorem or analytic production is asserted by this repair.
 - **Decision:** CLOSE. This is correction of the existing record, not a
   new research phase. The live tilted-share estimate remains unproved.
+
+## 2026-09-09 — No-cycle attempt: cubic-band order
+
+**PARK.** [Cubic-band order](problems/juggler_cycle_cubic_band.md)
+proves a conditional restriction by sorting the complete primitive orbit:
+M<m^3 forces rank rotation by the even count, gcd(L,o)=1, and the exact
+ceiling mechanical word from the minimum. The proof handles possible
+floor-image ties by injectivity. It does not use zero logarithmic drift
+or revive the withdrawn R<27/8 alphabet claim. The separate size-switched
+map S_b preserves [b,b^3), has no fixed point, and has closed integer
+orbits at every scale; these are not actual Juggler cycles without all
+parity checks. Exact controls include the length-11 b=9 loop with three
+wrong-parity states and the length-6 out-of-band loop with gcd(6,4)=2.
+Written AI-assisted proofs are recorded as J-cycle-cubic-band-order and
+J-cycle-threshold-relaxation, not Lean-verified claims.
+
+The bounded probe checked 38 cycles across complete threshold graphs
+b=3..30 and 9,998 eventual cycles from one start per b=3..10000. All
+passed rank/word/edge checks and failed parity compatibility. Four large
+controls hit the 200,000-step cap and remain unresolved computations.
+No no-cycle theorem, parity independence, floor raise, period improvement
+or publication-source change follows. The missing uniform threshold-cycle
+intersection with the wrong-parity set is explicit; even that would leave
+the regime M>=m^3 open. Do not enlarge the survey as a proof substitute.
 

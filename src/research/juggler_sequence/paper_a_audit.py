@@ -46,7 +46,7 @@ LN3 = log(mpf(3))
 PAPER = DOCS_THEORY / "juggler_finite_dynamics_note.md"
 
 STRATIFICATION = re.compile(
-    r"N_0\^\{?(?P<exp>[0-9/]+)\}?\s*=\s*(?P<mant>[0-9.]+)\\cdot10\^\{(?P<pow>\d+)\}"
+    r"N_0\^\{?(?P<exp>[0-9/]+)\}?\s*(?:=|\\approx)\s*(?P<mant>[0-9.]+)\\cdot10\^\{(?P<pow>\d+)\}"
 )
 """``N_0^{4/3}=2.5\\cdot10^{11}`` and its two siblings, read from the paper rather than
 copied into this module.  These three scales were audited by ``paper_c_audit`` under a

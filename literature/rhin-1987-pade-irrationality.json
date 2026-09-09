@@ -1,12 +1,17 @@
 {
   "id": "rhin-1987-pade-irrationality",
   "title": "Approximants de Padé et mesures effectives d'irrationalité",
-  "authors": ["Georges Rhin"],
+  "authors": [
+    "Georges Rhin"
+  ],
   "year": 1987,
   "identifiers": {
-    "isbn": "9780817633653"
+    "isbn": "9780817633691",
+    "doi": "10.1007/978-1-4757-4267-1_11"
   },
-  "url": {},
+  "url": {
+    "publisher": "https://doi.org/10.1007/978-1-4757-4267-1_11"
+  },
   "problem_area": "transcendence",
   "relevant_concepts": [
     "linear forms in two logarithms",
@@ -15,5 +20,5 @@
   ],
   "project_relationship": "independent",
   "status": "classical-source",
-  "notes": "Séminaire de Théorie des Nombres, Paris 1985-86, Progress in Mathematics 75, Birkhäuser, 155-187. Simons-de Weger Lemma 12 applies the Proposition on p. 160 to Lambda = (K+L) log 2 - K log 3, obtaining Lambda > exp(-13.3 (0.46057 + log K)). The Juggler cycle-gap Baker branch maps that lower bound into cycle finance; docs/problems/juggler_cycle_gap_baker.md. Later irrationality measures for log 3: Salikhov 2007 (5.125) and Wu-Wang 2014 (5.1163051); neither is imported as a leftover killer."
+  "notes": "Séminaire de Théorie des Nombres, Paris 1985–86, Progress in Mathematics 71, Birkhäuser, 1987, pp. 155–164. The Proposition on p. 160, equation (7), bounds the absolute value at height H=max(|u1|,|u2|). Paper A substitutes (u0,u1,u2)=(0,-L,o), H=L, and retains the conservative constant 915. The transcendence estimate is an external theorem, not a Lean proof."
 }

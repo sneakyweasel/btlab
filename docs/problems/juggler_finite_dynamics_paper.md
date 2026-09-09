@@ -1,9 +1,16 @@
 # Juggler finite-dynamics paper synthesis
 
+Paper A was rebuilt for a Zenodo preprint on 9 September 2026. The canonical
+editorial files remain in `docs/theory/`; see
+[the build and verification instructions](../theory/PAPER_A_BUILD.md).
+All Paper A review and website PDF copies are generated from that build.
+The numerical floor remains 350000000, giving period at least 780239.
+
+
 Author: Philippe Cochin. Date: 31 August 2026.
 Status: **PAPER_CANDIDATE**. The publication draft is dated 1 September 2026
 and is not submitted. Since the 1 September editorial passes it is titled
-*Cycle Financing and Near-Convergent Diophantine Obstructions in the Juggler Map*.
+*Lower Bounds for Cycle Lengths in the Juggler Map*.
 The contribution is known verification through \(10^6\) plus the
 new finance inequality, hence \(L\ge 25781\). Theorem 3.22 is
 the Section 3 headline; Lemma 3.21b is the canonical run form
@@ -339,8 +346,7 @@ Status: Paper A `PAPER_CANDIDATE`; Paper B `WORKING_DRAFT`
 implication, \(\delta=1/96\); pending one independent check of
 Section 5).
 
-Paper A is titled *Cycle Financing and Near-Convergent
-Diophantine Obstructions in the Juggler Map*. The main
+Paper A is titled *Lower Bounds for Cycle Lengths in the Juggler Map*. The main
 contributions are Theorem 4.4, Theorem 3.22, Theorem 4.6(A),
 and the Section 5 walk-charge envelope with the period bound
 \(478245\) (Corollary 5.10, a certified evaluation of the

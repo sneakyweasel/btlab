@@ -12,9 +12,11 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "lint": "oxlint",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prebuild": "node scripts/sync-paper-a.mjs"
   },
   "dependencies": {
+    "@vercel/analytics": "^2.0.1",
     "katex": "^0.18.5",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",

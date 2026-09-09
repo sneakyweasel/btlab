@@ -4,10 +4,34 @@ on:
   push:
     paths:
       - "web/juggler-companion/**"
+      - "docs/theory/juggler_finite_dynamics*"
+      - "docs/theory/paper_a_*"
+      - "docs/theory/cochin-juggler.tex"
+      - "tools/build_paper_a.py"
+      - "tools/check_paper_a_numeric.py"
+      - "src/research/juggler_sequence/paper_a_audit.py"
+      - "tools/paper_a/**"
+      - "formal/Problems/Juggler/**"
+      - "formal/Problems/JugglerPaper.lean"
+      - "formal/AxiomCheckPaperA.*"
+      - "formal/lean-toolchain"
+      - "formal/lake-manifest.json"
       - ".github/workflows/juggler-companion.yml"
   pull_request:
     paths:
       - "web/juggler-companion/**"
+      - "docs/theory/juggler_finite_dynamics*"
+      - "docs/theory/paper_a_*"
+      - "docs/theory/cochin-juggler.tex"
+      - "tools/build_paper_a.py"
+      - "tools/check_paper_a_numeric.py"
+      - "src/research/juggler_sequence/paper_a_audit.py"
+      - "tools/paper_a/**"
+      - "formal/Problems/Juggler/**"
+      - "formal/Problems/JugglerPaper.lean"
+      - "formal/AxiomCheckPaperA.*"
+      - "formal/lean-toolchain"
+      - "formal/lake-manifest.json"
       - ".github/workflows/juggler-companion.yml"
   workflow_dispatch:
 

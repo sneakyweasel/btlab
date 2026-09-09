@@ -279,7 +279,8 @@ def test_paper_companions_state_the_window_trust_boundary() -> None:
     assert "upper convergents" in paper
     assert "what any charge can exclude" not in paper
     assert "Within the length-only charges finance is already" not in paper
-    assert "using the explicit lower bound for the gap" in paper
+    assert r"16.41<\log n" in paper
+    assert r"\nu<17.084" in paper
     assert "Only the classical\nvariation-versus-integral inequality itself remains prose" not in paper
     assert "change of variables identifying that circle\nintegral" in paper
     assert "not \\(L_{55}=q_{14}\\)" in packet
@@ -306,8 +307,11 @@ def test_window_maximum_is_at_the_small_end() -> None:
 
 
 def test_window_criterion_reproduces_the_printed_lower_bound() -> None:
-    """The certified gap lower bound is 5.14e-3 at ln n = 17.07."""
-    assert abs(A.window_criterion(17.07) - 0.00514) < 1e-4
+    """The gap is minimized at the upper end of the full reduced-base range."""
+    assert math.log(26254996) - 1.05 * 16785921 / 26254996 > 16.41
+    assert math.log(26254996) < 17.084
+    assert A.window_criterion(17.084) > 0.00514
+    assert max(94 / 50508, 96 / 301994) < 0.001862 < 0.00514
 
 
 def test_extended_window_holds_at_every_certified_floor() -> None:
@@ -414,10 +418,11 @@ def test_appendix_b_million_certificate_is_the_opening_chunk() -> None:
     assert "n_{\\mathrm{top}}=2\\cdot10^6" in appendix_b
 
 
-def test_appendix_b_n_max_one_is_the_conservative_table() -> None:
-    """Exact 6/5 crossing at L=1 is 2; the printed table keeps 3, same species as 50508."""
+def test_appendix_b_distinguishes_exact_crossings_from_guards() -> None:
+    """The printed crossings are exact; historical guarded values stay identified."""
     assert A.n_max(1) == 2
     paper = (DOCS_THEORY / "juggler_finite_dynamics_note.md").read_text(encoding="utf-8")
     appendix_b = paper[paper.index("## Appendix B"):]
-    assert r"| \(1\) | \(1\) | \(3\) |" in appendix_b
-    assert r"exact \(6/5\) crossing is \(2\)" in appendix_b
+    assert r"| \(1\) | \(1\) | \(2\) |" in appendix_b
+    assert r"| \(50508\) | \(31867\) | \(162848324\) |" in appendix_b
+    assert "historical guarded generator" in appendix_b

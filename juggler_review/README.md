@@ -10,7 +10,7 @@ This snapshot's Paper C Markdown and PDF predate that correction and
 must be rebuilt from `docs/theory/` before further external review.
 The stopped live-pressure hypothesis is unchanged and unproved.
 
-Status: Paper A is a submission candidate; Paper B is a revised
+Status: Paper A is the regenerated Zenodo preprint of 9 September 2026; Paper B is a revised
 working draft (8-section journal form; Theorem 5.3 the monomial
 \(c=\tfrac{3k}4 n^{9/8}\); certified density \(7/8\)); Paper C
 (fate contagion and the almost-all reformulation, 4 September 2026)
@@ -40,42 +40,17 @@ https://sneakyweasel.github.io/btlab/
 ## Read this first
 
 1. [juggler_finite_dynamics_note.pdf](juggler_finite_dynamics_note.pdf)
-   — **Paper A**: *Cycle Financing and Near-Convergent
-   Diophantine Obstructions in the Juggler Map*. Finance inequality
-   plus the verified
-   descent floor give \(L\ge 25781\) at \(10^6\) and
-   \(L\ge 50508\) at the laboratory floor \(26254995\); the
-   Section 5 walk-charge envelope (transport, hug adversary,
-   Denjoy–Koksma over certified Ostrowski blocks, window
-   theorem on \([50508,16785921)\) — the fan through \(k=54\),
-   excluding its \(k=55\) endpoint) raises the bound to
-   \(L\ge 176251\) at that floor. Corollary 5.10 evaluates the
-   same kill criterion at the second certified floor
-   \(162849448\) and gives \(L\ge 478245\). The main numerical
-   result is \(L\ge 780239\) at the third certified floor
-   \(350000000\) (Corollary 5.11) — certified evaluations of
-   the same kill criterion on the survivors; those lengths sit
-   inside the census-free window, and the comparison against
-   \(\theta(L)\) stays per-length — not extensions of the window
-   theorem. Every nontrivial cycle has at least four even letters,
-   hence period at least eleven (Theorem 3.22). Once the cycle
-   minimum is at least \(300\), that bound strengthens to eight
-   even letters and period at least twenty-two (Theorem 3.31;
-   computationally verified, not Lean). Finance-survivor lengths
-   through \(10^5\) are supporting material. Updated 7 September
-   2026 with Theorem 3.31 in the front matter and with the
-   companion context (Section 6.1; references [16], [17]):
-   the power envelope of Theorem 2.2 is Paper C's descent step and
-   the certified floor is its bounded target; the basin of any
-   nontrivial cycle has logarithmic count \(\gg(\log x)^{\lambda}\)
-   for \(\lambda<\lambda^{**}=0.4926\)
-   (Paper C, Theorem 1) while this paper bounds the cycle's states —
-   the two constraints do not meet; a cycle's odd share is strictly
-   above \(\log 2/\log 3\), with its excess constrained by finance
-   (the survivor lengths are convergent and semiconvergent
-   denominators); the floor stratifies the failure set exactly as it
-   does a cycle minimum. Nothing in Section 6.1 excludes a cycle; the
-   theorems and numbers of Sections 2–5 are unchanged.
+   is the current **Paper A** preprint. It includes the corrected rotation
+   cells, full finite-window estimate, exact threshold table, updated Lean
+   uniqueness result, scoped companion context, and explicit AI disclosure.
+   Theorem 3.31 gives the computational eight-even-step exclusion.
+   The finite-window charge theorem covers \([50508,16785921)\).
+   Its strongest reported period floor remains 780239 at the supplied
+   descent floor 350000000. The formalization map and reviewer packet are
+   generated copies of their canonical `docs/theory/` inputs.
+   Rebuild with `python tools/build_paper_a.py`; verify every copy with
+   `python tools/build_paper_a.py --check`. See
+   [build instructions](../docs/theory/PAPER_A_BUILD.md).
 2. [juggler_parity_discrepancy_note.pdf](juggler_parity_discrepancy_note.pdf)
    — **Paper B**: parity equidistribution of nested floor powers, the
    level-2 wave bound (Lemma 5.2) and the kernel theorem, complete

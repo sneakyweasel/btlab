@@ -1,0 +1,414 @@
+{
+  "schema": 1,
+  "canonical_source": "docs/theory/juggler_finite_dynamics_note.md",
+  "status": "preprint; no external deposit performed",
+  "verification_scope": "File provenance only. Mathematical trust boundaries are in the manuscript and reviewer packet.",
+  "tools": {
+    "pandoc": "pandoc.EXE 3.6.3",
+    "xelatex": "MiKTeX-XeTeX 4.18 (MiKTeX 26.5)"
+  },
+  "inputs": [
+    {
+      "path": "docs/theory/juggler_finite_dynamics_formalization.md",
+      "mode": "text",
+      "sha256": "891933148b0e3879042d6be13babad33996e9a8f603fe1ddd3960d43596770bf"
+    },
+    {
+      "path": "docs/theory/juggler_finite_dynamics_note.md",
+      "mode": "text",
+      "sha256": "4b4ea083cafce6cffcb41b6662384915bd5d0d686455827d3626e2f4554f32e2"
+    },
+    {
+      "path": "docs/theory/juggler_finite_dynamics_reviewer_packet.md",
+      "mode": "text",
+      "sha256": "d6cb2717cde205fc9e2c218f9d5dc7311f9d11d941423aeb309d4af0807da703"
+    },
+    {
+      "path": "formal/AxiomCheckPaperA.expected",
+      "mode": "text",
+      "sha256": "cf9b4511aebeca84634c61c6c611dc717c39987ae38c0e5bebd6a5017e88388e"
+    },
+    {
+      "path": "formal/AxiomCheckPaperA.lean",
+      "mode": "text",
+      "sha256": "462c9ddb8aad300d843df0a35a33408562470a883632d096944ec6490c69c7f5"
+    },
+    {
+      "path": "formal/Problems/Juggler/BunchedTight.lean",
+      "mode": "text",
+      "sha256": "3f0bbe8e8387e8f3ae10bd0d59edaa89aa4fe0da4013c8db42691ebc00cbfceb"
+    },
+    {
+      "path": "formal/Problems/Juggler/Certificates.lean",
+      "mode": "text",
+      "sha256": "fb6cc2041532d15259a49641e24ca038988aaae3cf3f38fedb95b29fdacfa274"
+    },
+    {
+      "path": "formal/Problems/Juggler/Collapse.lean",
+      "mode": "text",
+      "sha256": "239f16482d73238ce90222cfe6e4b760baf1dbab1a84c05319704afe0f715ee4"
+    },
+    {
+      "path": "formal/Problems/Juggler/Corridor.lean",
+      "mode": "text",
+      "sha256": "2a10549e587a3f9bfdfb659742f485595532e14e7f10c047e35aa738f8b94708"
+    },
+    {
+      "path": "formal/Problems/Juggler/CubeCorridor.lean",
+      "mode": "text",
+      "sha256": "3e0f16e8595a978f057e4ecdda30a6d011f715bf4734e85130c01729c12284cc"
+    },
+    {
+      "path": "formal/Problems/Juggler/CycleCore.lean",
+      "mode": "text",
+      "sha256": "2c3dd777a8935b9fe21ae48c439476c47247f45ef3afe55c22c2e109e291c1fa"
+    },
+    {
+      "path": "formal/Problems/Juggler/CycleExtrema.lean",
+      "mode": "text",
+      "sha256": "2227dc344f4ed1157d2637551664670880905c709c2616a294fa5670c4063601"
+    },
+    {
+      "path": "formal/Problems/Juggler/CycleFinance.lean",
+      "mode": "text",
+      "sha256": "3a573658c8f40a3d3e6574d75646393860dcfc7dc93b93f3d86148086b659e7b"
+    },
+    {
+      "path": "formal/Problems/Juggler/CycleFinanceLeftovers.lean",
+      "mode": "text",
+      "sha256": "86aca29a9e4efb014221280c1ffb076904ca71c84a2b0d41f1c0aa89a586c8bd"
+    },
+    {
+      "path": "formal/Problems/Juggler/CycleObstructions.lean",
+      "mode": "text",
+      "sha256": "429e268a04e0adbd96ff34b2a49da08f197fcf09780b8e832f11dabb116ef2ed"
+    },
+    {
+      "path": "formal/Problems/Juggler/CycleRunForm.lean",
+      "mode": "text",
+      "sha256": "e0418576e3c0d356d66748ec1a6f0cfeac185388b6eafb10568101971638d7b3"
+    },
+    {
+      "path": "formal/Problems/Juggler/Cycles.lean",
+      "mode": "text",
+      "sha256": "f5e47e5f24c40fa059e5941cf6ef04b6b4b293a728eb0497dc7776c5032631cc"
+    },
+    {
+      "path": "formal/Problems/Juggler/Defect.lean",
+      "mode": "text",
+      "sha256": "a3f0b02f179f1670dd6e27479e7dc1c5ce43d20037ae37d69526d9f1630863d9"
+    },
+    {
+      "path": "formal/Problems/Juggler/DefectFinance.lean",
+      "mode": "text",
+      "sha256": "bf101899011ca211a4541d4adbd19dd5dfaa7480a3bdf4776624d61f47d5c129"
+    },
+    {
+      "path": "formal/Problems/Juggler/DefectLowerBound.lean",
+      "mode": "text",
+      "sha256": "2a4b3b3b36f90b680c66e3751c058120601a810132f6c0f9f9102424e21df321"
+    },
+    {
+      "path": "formal/Problems/Juggler/DenjoyKoksma.lean",
+      "mode": "text",
+      "sha256": "923b80593d7539e100ed3292a8b0fd831aacc9de7b36b4325cf772dfff378d19"
+    },
+    {
+      "path": "formal/Problems/Juggler/DenjoyKoksmaOrbit.lean",
+      "mode": "text",
+      "sha256": "a900cd7b92cd87f43c66bb1e47243b2d70bfc205a01ef82c2bf26182fc5f9f8e"
+    },
+    {
+      "path": "formal/Problems/Juggler/Drift.lean",
+      "mode": "text",
+      "sha256": "4e372e621dc134c5da7c43019734d96182e0f264f6b765d78cabaf47be35ce20"
+    },
+    {
+      "path": "formal/Problems/Juggler/Dynamics.lean",
+      "mode": "text",
+      "sha256": "481d38a263bd8be32f5af84c4bcc87e0b100717bcce3610aa46750de233b19d9"
+    },
+    {
+      "path": "formal/Problems/Juggler/Envelope.lean",
+      "mode": "text",
+      "sha256": "ac652d2c23161af4b6eceff1b8638bbff501910c3bc8e31e52b567566cd36379"
+    },
+    {
+      "path": "formal/Problems/Juggler/Equality.lean",
+      "mode": "text",
+      "sha256": "1a1fe635938f639b56600e80467f94b66c801a5b33392615129acb059fd454eb"
+    },
+    {
+      "path": "formal/Problems/Juggler/EvenCountEight.lean",
+      "mode": "text",
+      "sha256": "934e391d24436f65abbd26c43d261cd7564ffaedd174d05ca6a0c3156a81e73a"
+    },
+    {
+      "path": "formal/Problems/Juggler/EvenCountThree.lean",
+      "mode": "text",
+      "sha256": "37e86a7ae678699b156680a77bcdfeb042180fc2e323e13d9b5760d046dedc85"
+    },
+    {
+      "path": "formal/Problems/Juggler/ExpansionSlack.lean",
+      "mode": "text",
+      "sha256": "44627f8b7ae7398263da8a25a9c2f2bdc5c9d8624725663cf66ae91eb640abb0"
+    },
+    {
+      "path": "formal/Problems/Juggler/FanLaw.lean",
+      "mode": "text",
+      "sha256": "b5cce77857f3b43f76da83e808dfab5f45a5cefde76d6f434f8237c1ebf26485"
+    },
+    {
+      "path": "formal/Problems/Juggler/FinanceTransfer.lean",
+      "mode": "text",
+      "sha256": "045139424a693d87c2467db8de37389bd2fc125560a8bc79df8442d00ac4d05f"
+    },
+    {
+      "path": "formal/Problems/Juggler/FirstETransportEval.lean",
+      "mode": "text",
+      "sha256": "4080fb8cd8cafe4ea2e530f5db5f5e551d2f807fc8fdcea14815ef16341656a5"
+    },
+    {
+      "path": "formal/Problems/Juggler/FirstInternalOO.lean",
+      "mode": "text",
+      "sha256": "a33b9a7fba9654206baa4a6c51cf656953a71ad14782980cf934659c5b7eb7cd"
+    },
+    {
+      "path": "formal/Problems/Juggler/FirstPassage.lean",
+      "mode": "text",
+      "sha256": "f7b15a4bb2f7a540d017a82dfb37aeb5ae3d8486fc659aa4d92299e46e99bb3e"
+    },
+    {
+      "path": "formal/Problems/Juggler/GapTransfer.lean",
+      "mode": "text",
+      "sha256": "bd9e56c92d308e14de718720f324b675276844857361ba83295563b04479d284"
+    },
+    {
+      "path": "formal/Problems/Juggler/GlobalDefect.lean",
+      "mode": "text",
+      "sha256": "34345e3f6ded57f03bc657f6abaf6ec7fcff24d4ed2e6a1c601ae6a2ab0411ea"
+    },
+    {
+      "path": "formal/Problems/Juggler/HugChargeEnvelope.lean",
+      "mode": "text",
+      "sha256": "546d52f815a79dc1a71855d0cdcec892de3809f6d358d1237161a440c6966a31"
+    },
+    {
+      "path": "formal/Problems/Juggler/HugRotation.lean",
+      "mode": "text",
+      "sha256": "fb654ff22a83c8326597970852eba272a283b75621e0a147a717e42c72703aeb"
+    },
+    {
+      "path": "formal/Problems/Juggler/Iteration.lean",
+      "mode": "text",
+      "sha256": "96ddcef273b4dfd9d913948f9c55f7daee2c1bfd6025fb5b6dc02f62a5beb135"
+    },
+    {
+      "path": "formal/Problems/Juggler/Itinerary.lean",
+      "mode": "text",
+      "sha256": "36a8578d34d77556db1c6bd28388ff994f01289ffef51458ca9dad6a88d865d0"
+    },
+    {
+      "path": "formal/Problems/Juggler/ItineraryStats.lean",
+      "mode": "text",
+      "sha256": "e236b11909e7900e89db39b445679977c507afd63b18879dc5759f923a9e6262"
+    },
+    {
+      "path": "formal/Problems/Juggler/JumpVariation.lean",
+      "mode": "text",
+      "sha256": "3f8442d988e299f68fa2c0f474962f0b09d80bd6b404f4fc729519dbd095b8b0"
+    },
+    {
+      "path": "formal/Problems/Juggler/LeftoverEval.lean",
+      "mode": "text",
+      "sha256": "2758492078f8617eed0d0ce3b3417ffcd2f20c0a0723392bf17980857a97c73c"
+    },
+    {
+      "path": "formal/Problems/Juggler/LeftoverFamilies.lean",
+      "mode": "text",
+      "sha256": "cf77c5aa5dc6710517e681d0a8691e6e7bda7aedd6242f70783847e472bf1d28"
+    },
+    {
+      "path": "formal/Problems/Juggler/LeftoverPreimage.lean",
+      "mode": "text",
+      "sha256": "1862047107300490c60d87ac5f59521c2d0316e2e4e45d936cfdba027738acfc"
+    },
+    {
+      "path": "formal/Problems/Juggler/LeftoverShort.lean",
+      "mode": "text",
+      "sha256": "93e4662fe959f1c26225b8393e3bc7dc5b6352e032c28c6f30673e8b27b95731"
+    },
+    {
+      "path": "formal/Problems/Juggler/LengthEightCensus.lean",
+      "mode": "text",
+      "sha256": "cdf772fe76e84d819af2b29d4d66b6d9109b56b2dcfd404351b13082d65670c8"
+    },
+    {
+      "path": "formal/Problems/Juggler/Minimal.lean",
+      "mode": "text",
+      "sha256": "8c8a1a9d65291f179e1231ca88cb29b6fc103869a31b52e445957fee33517290"
+    },
+    {
+      "path": "formal/Problems/Juggler/MinimumRelative.lean",
+      "mode": "text",
+      "sha256": "a110acfb2c522d74ecd8f57ce1a9fc94cfbc9fc176948fa1522cec57a14d9826"
+    },
+    {
+      "path": "formal/Problems/Juggler/NearTightScale.lean",
+      "mode": "text",
+      "sha256": "e972c09a607342c177689832486bfa3ad180049d66c0232a4c377586623ca841"
+    },
+    {
+      "path": "formal/Problems/Juggler/NormalizedDefect.lean",
+      "mode": "text",
+      "sha256": "e612a7e8f9393d266f96ca4def7ab82ac0e0334589355ffa1f48981887b35dc0"
+    },
+    {
+      "path": "formal/Problems/Juggler/O7EEEEGap.lean",
+      "mode": "text",
+      "sha256": "3914316e93378ae34847622ad65aee67d365b021c8d0b6097847a04dfbf95e61"
+    },
+    {
+      "path": "formal/Problems/Juggler/OddCountMonotone.lean",
+      "mode": "text",
+      "sha256": "b4dc255e8e4e9fececefa032ad7d25627329ab7cabe81cb46bf9d5b045ef31cc"
+    },
+    {
+      "path": "formal/Problems/Juggler/OstrowskiBlocks.lean",
+      "mode": "text",
+      "sha256": "2c1640393c70594709a6e6bc5a50c1422b886268ffb1348c233d01697b5f5716"
+    },
+    {
+      "path": "formal/Problems/Juggler/OstrowskiNumeration.lean",
+      "mode": "text",
+      "sha256": "632f7daafd72e8f0c4046970f13816b11d26c029c2f08d825ed3d9df098a1084"
+    },
+    {
+      "path": "formal/Problems/Juggler/OstrowskiSandwich.lean",
+      "mode": "text",
+      "sha256": "725b3864ee262da77eeede6810d702d4ce91b5f0758700fd6dbea46951106e08"
+    },
+    {
+      "path": "formal/Problems/Juggler/Preimages.lean",
+      "mode": "text",
+      "sha256": "dabe4af2c54b55826cada04dd92b5f35d3face6f86e42e66829699ab4bc87e3f"
+    },
+    {
+      "path": "formal/Problems/Juggler/Progress.lean",
+      "mode": "text",
+      "sha256": "e1b5375e8fde7c0f54ac610b84469887a25392e338e44f2ac4cad3f5c8d545eb"
+    },
+    {
+      "path": "formal/Problems/Juggler/Residuals.lean",
+      "mode": "text",
+      "sha256": "9d067f8496ae3782e30841f61181a2f38ddbca9244d665e4b2ac14118baed154"
+    },
+    {
+      "path": "formal/Problems/Juggler/RotationAverage.lean",
+      "mode": "text",
+      "sha256": "c714b67e4ee79e9a2675f17090e6326fe76f52d58c1b6b720b9f1e84734cf343"
+    },
+    {
+      "path": "formal/Problems/Juggler/RunSurvivorLattice.lean",
+      "mode": "text",
+      "sha256": "dc0030bf146333f606cfae8ab2b2691643e0f7602ef545d6ca5a5dee11d9bcaf"
+    },
+    {
+      "path": "formal/Problems/Juggler/RunTypePacking.lean",
+      "mode": "text",
+      "sha256": "410be0de230c6774cc93a87c12acaf46272b8d7bf7076a8d7809455785bf4ce0"
+    },
+    {
+      "path": "formal/Problems/Juggler/Scale.lean",
+      "mode": "text",
+      "sha256": "9156455b03e7095970f69ca7b49762788608502ff9f560414ef9bded6965ccf9"
+    },
+    {
+      "path": "formal/Problems/Juggler/SmallCycleCensus.lean",
+      "mode": "text",
+      "sha256": "20d08b4603b4b0d7a2ac75eaf4d5eaaaa27590fbc92237d3f927de4fe3dc99ae"
+    },
+    {
+      "path": "formal/Problems/Juggler/Termination.lean",
+      "mode": "text",
+      "sha256": "7b458453bb0fa6478550d875a1b3d5ac18eeea106b5d08797628dfbd2a9c8eb0"
+    },
+    {
+      "path": "formal/Problems/Juggler/TerminationFloor257.lean",
+      "mode": "text",
+      "sha256": "3ff00ef9bd58ad556a0b657b2241b3d7428ff34d93e0b3ab7b05c7770eceac01"
+    },
+    {
+      "path": "formal/Problems/Juggler/WalkChargeItineraries.lean",
+      "mode": "text",
+      "sha256": "b3e31392bfc23fd77c104948785d93f7f0fb52e8092b423544daa5aff62c6f55"
+    },
+    {
+      "path": "formal/Problems/Juggler/WalkChargeMax.lean",
+      "mode": "text",
+      "sha256": "e9a3569f073f23f162af00e7b3a14af329e4db951ce0d44762e5af2100497b1f"
+    },
+    {
+      "path": "formal/Problems/Juggler/WalkTransport.lean",
+      "mode": "text",
+      "sha256": "9750546f88ec556fd41cf70aca403845456727dd704b277539ec28177252affe"
+    },
+    {
+      "path": "formal/Problems/JugglerPaper.lean",
+      "mode": "text",
+      "sha256": "fdfb8c02af688c3e1fb5487c0d8d16c64f77c44dc276311cf4f358a227e3ca31"
+    },
+    {
+      "path": "formal/lake-manifest.json",
+      "mode": "text",
+      "sha256": "8a4dabaa6346246a71a2fac594a4385e248735a4feacd25082bcad2336d27385"
+    },
+    {
+      "path": "formal/lean-toolchain",
+      "mode": "text",
+      "sha256": "3aac669c7a910ec2389f4e4f921b605adf6ebf2d1e0c9b9cd0be4d33f3f5db71"
+    },
+    {
+      "path": "src/research/juggler_sequence/paper_a_audit.py",
+      "mode": "text",
+      "sha256": "b93263cddc671bfb6cdeb95ffc6cfe43c00bf0c9a5a638a7afb4b236dac7ac11"
+    },
+    {
+      "path": "tools/build_paper_a.py",
+      "mode": "text",
+      "sha256": "c84109ea19067e41644067a28cf248937796af34059147a558f773858ad3698b"
+    },
+    {
+      "path": "tools/check_paper_a_numeric.py",
+      "mode": "text",
+      "sha256": "29825fcd35c1eb0477bca0a729071dd4913942fbf4b2b3add14b3fa83d42d5b8"
+    },
+    {
+      "path": "tools/paper_a/article.tex",
+      "mode": "text",
+      "sha256": "e2d69d897872d7306367df6af665bcb39377362e4dcea31d3c04a2b88c8f86ea"
+    },
+    {
+      "path": "tools/paper_a/layout.lua",
+      "mode": "text",
+      "sha256": "27562f324c0e2289ca5eda3b65289141faab90e9d0b891185be240463c470048"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "docs/theory/juggler_finite_dynamics_note.pdf",
+      "mode": "binary",
+      "sha256": "fa8c1ff46ceb0940bf3f098c5dab885e072b56405049f56872fb6b51fe3d4c5c"
+    },
+    {
+      "path": "docs/theory/cochin-juggler.tex",
+      "mode": "text",
+      "sha256": "9a0f413a36e682ad7d7a0638e2cd6b1dd78dce7d1d094359e8045482c3e9ae98"
+    },
+    {
+      "path": "docs/theory/paper_a_zenodo.json",
+      "mode": "text",
+      "sha256": "7a9d5b82d2cdd7ebaa170819893339edfba142b11c844decffa0297d4fad9e45"
+    }
+  ]
+}

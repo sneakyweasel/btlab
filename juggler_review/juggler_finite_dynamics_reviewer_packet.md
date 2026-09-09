@@ -1,18 +1,37 @@
 # Juggler reviewer packet (three manuscripts)
 
-Author: Philippe Cochin. Date: 4 September 2026.
+Author: Philippe Cochin. Paper A release revision: 9 September 2026.
 Status: Paper A is a submission candidate; Paper B is a revised
 working draft (8-section journal form, 4 September 2026; Theorem 5.3
 is the monomial \(c=\tfrac{3k}4 n^{9/8}\); certified density
 \(7/8\)); Paper C (fate contagion, 4 September 2026) is a complete
 draft — see its claim map below.
 
-The former single note has been split into two manuscripts:
+**Paper A publication revision.** Edit only its manuscript and supporting
+documents in `docs/theory/`; `tools/build_paper_a.py` builds and verifies
+the distribution copies. The run-type table with \(99\) entries assumes
+primitivity and no \(EE\); without the latter hypothesis the refined
+list has \(117\) entries. Theorem 5.8's full window uses
+\(16.41<\nu<17.084\) and the scan-free bound
+\(2s(L)/L<0.001862<0.00514212\). Observation 5.13 is a finite fit.
+The exact Appendix B crossings at \(L=1,50508\) are \(2,162848324\).
+The published bounds remain \(25781,176251,478245,780239\), conditional
+on their stated descent computations. A checksum verifies archive
+integrity and is not itself a proof that every trajectory descends.
+
+**Companion status.** The Paper B and C descriptions below are context,
+not dependencies of the cycle bounds. Their canonical sources may
+postdate a review snapshot. In particular, Paper C's cylinder hypotheses
+are now restricted to bad words or bad prefixes; the unrestricted
+all-word versions have been withdrawn, and the stopped live-pressure
+input remains open. This Paper A release makes no new claim about
+those hypotheses and does not promote the length-seven/eight densities.
+
+The review materials distinguish the following manuscripts:
 
 - **Paper A** —
   [juggler_finite_dynamics_note.md](juggler_finite_dynamics_note.md):
-  *Cycle Financing and Near-Convergent Diophantine Obstructions
-  in the Juggler Map.*
+  *Lower Bounds for Cycle Lengths in the Juggler Map.*
   The contributions are the Juggler-specific finance inequality
   (Theorem 4.4, hence \(L\ge 25781\) at the known \(10^6\)
   floor) and the Section 5 walk-charge envelope: transport to a
@@ -98,8 +117,9 @@ No termination theorem is claimed anywhere. The level-3 kernel bound
 \(L^2\) bound (Proposition 7.4) is proved, and is an average-only
 statement carrying a \(\sqrt{\log L}\) factor in general.
 
-Large language models were used extensively in drafting. They are not
-authors. Lean theorems and named computations certify the
+Large language models were used throughout the work: prose, proof development,
+Lean code, and computations, as the author confirmed for this revision.
+Section 7 of the manuscript records this disclosure. They are not authors. Lean theorems and named computations certify the
 exact-arithmetic claims of Paper A and the floor identities cited by
 Paper B; every analytic estimate of Paper B is a human proof.
 
@@ -206,7 +226,7 @@ Proposition 7.4 says nothing about the deterministic shift).
 | Four-block expanding chain \(1999\to\cdots\to887471\) (Section 6) | **EXACT — LEAN VERIFIED** | one certified hard path; not a growth theorem |
 | Even and odd-to-even starts have uniform short certificates (Section 6) | **EXACT — LEAN VERIFIED** | not all descent certificates |
 | No descent certificate \(\Rightarrow\) odd-to-odd | **EXACT — LEAN VERIFIED** | one direction only; complement of the short-certificate remark |
-| Companion context (Section 6.1): envelope as descent step, cycle basins contagious, cycle odd share strictly above and near the critical share in the quantified regime, floor stratifies the failure set, floor as testable target | **imports from Paper C** (Theorems 1, 3, 4, Section 6; census OBSERVATION) | context only — excludes no cycle, bounds no basin from above; the convergent/semiconvergent claim for \(176251, 301994, 478245, 780239\) is elementary arithmetic |
+| Companion context (Section 6.1): envelope as descent step, cycle basins contagious, cycle odd share strictly above and near the critical share in the quantified regime, floor stratifies the failure set, floor as testable target | **imports from Paper C** (Theorems 1, 3, 4, Section 6; census OBSERVATION) | context only — excludes no cycle, bounds no basin from above; the convergent/semiconvergent claim for \(176251,478245,780239\); \(301994\) is the auxiliary lower-convergent denominator is elementary arithmetic |
 
 ## Claim map — Paper B
 

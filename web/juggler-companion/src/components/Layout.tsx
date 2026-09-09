@@ -7,6 +7,9 @@ const LINKS = [
   { to: "/claims", label: "What the paper claims" },
 ];
 
+const REPO_HREF = "https://github.com/sneakyweasel/btlab";
+const ABOUT_HREF = "https://www.cochin.fr/about/";
+
 export function Layout() {
   return (
     <div className="min-h-svh">
@@ -30,6 +33,22 @@ export function Layout() {
                 {link.label}
               </NavLink>
             ))}
+            <a
+              href={REPO_HREF}
+              target="_blank"
+              rel="noreferrer"
+              className="rounded-full px-3 py-1 text-muted no-underline hover:bg-paper"
+            >
+              GitHub
+            </a>
+            <a
+              href={ABOUT_HREF}
+              target="_blank"
+              rel="noreferrer"
+              className="rounded-full px-3 py-1 text-muted no-underline hover:bg-paper"
+            >
+              About
+            </a>
           </nav>
         </div>
       </header>

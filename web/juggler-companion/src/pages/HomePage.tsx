@@ -71,6 +71,22 @@ export function HomePage() {
             >
               Paper C path
             </Link>
+            <a
+              href="https://github.com/sneakyweasel/btlab"
+              target="_blank"
+              rel="noreferrer"
+              className="rounded-full border border-line px-4 py-2 text-ink no-underline"
+            >
+              Source on GitHub
+            </a>
+            <a
+              href="https://www.cochin.fr/about/"
+              target="_blank"
+              rel="noreferrer"
+              className="rounded-full border border-line px-4 py-2 text-ink no-underline"
+            >
+              About the author
+            </a>
           </div>
           <div className="mt-6 grid gap-3 sm:grid-cols-3">
             {PAPERS.map((paper) => (

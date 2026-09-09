@@ -1,7 +1,7 @@
 # Juggler companion
 
 A static reviewer site for Papers A–C, led by
-[Cycle Financing and Near-Convergent Diophantine Obstructions in the Juggler Map](../../juggler_review/juggler_finite_dynamics_note.pdf).
+[Lower Bounds for Cycle Lengths in the Juggler Map](../../juggler_review/juggler_finite_dynamics_note.pdf).
 It teaches the basic vocabulary with pictures and a small playground. It is
 not the laboratory Streamlit app and not a halt-theorem demo.
 

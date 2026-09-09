@@ -1,42 +1,35 @@
+GENERATED FROM docs/theory/; do not edit this export.
+Prepared metadata only; no external record has been created.
+
 TITLE
-Cycle Financing and Near-Convergent Diophantine Obstructions in the Juggler Map
+Lower Bounds for Cycle Lengths in the Juggler Map
 
 CREATOR
-Family name: Cochin
-Given names: Philippe
-Affiliation: (leave blank, or type Independent)
-ORCID: (paste yours if you have one)
+Cochin, Philippe
+Affiliation: none
 
 RESOURCE TYPE
-Publication
-Publication type: Preprint
+Publication / Preprint
+
+VERSION
+2026-09-09
 
 LICENSE
-Creative Commons Attribution 4.0 International
-(Zenodo id: cc-by-4.0)
+cc-by-4.0
+
+PUBLICATION DATE
+Use the actual date this version is first made public.
 
 KEYWORDS
 Juggler map
 Juggler sequence
-floor-power maps
+floor-power map
 cycle financing
 integer dynamics
-cycles
 
-PUBLICATION DATE
-2026-09-03
+DESCRIPTION (HTML)
+<p>The Juggler map sends an even positive integer to the integer part of its square root and an odd positive integer to the integer part of its three-halves power. We obtain restrictions on hypothetical nontrivial cycles. For a cycle with minimum n, length L, and o odd steps, we prove the cycle-financing inequality nlog n (3^(o) − 2^(L)) ≤ L 3^(o). It bounds the formal expansion that accumulated floor losses can offset. A refinement transports these losses to a reduced base and bounds the resulting exponent-walk charge using an irrational rotation, Denjoy–Koksma estimates, and finite Ostrowski decompositions. Combined with the verified descent inputs described in the paper, the inequalities give period lower bounds of 25781, 176251, 478245, and 780239 at floors 10⁶, 26254995, 162849448, and 350000000, respectively. Separately, finite-word exclusions give at least four even steps without a descent-floor input; an exact computational classification strengthens this to eight even steps and period at least twenty-two. The core inequalities and selected classifications are formalized in Lean 4. The descent computations, per-length numerical comparisons, and remaining analytic identifications are distinguished from those formal proofs. A limitation result applies to charges retaining a positive contribution at a fixed floor. Neither the exclusion of all nontrivial cycles nor universal termination is established.</p>
+<p>The author used large language models throughout the development of this work, including drafting and revising the prose, proposing and developing proof arguments, writing Lean formalizations, and designing and implementing computations. The September 2026 review with OpenAI Codex checked the mathematical claims and references, corrected the finite-window estimate, revised the rotation-cell argument and several hypotheses, distinguished formal proofs from numerical evidence, and prepared the document build and independent numerical audit. AI assistance is not independent mathematical validation. The explicit evidence boundaries in Section 1.2 and Appendix A apply to these contributions. The author is responsible for the statements, proofs, code, and final verification of this preprint.</p>
 
-RELATED IDENTIFIER (optional)
-Identifier: https://github.com/sneakyweasel/btlab
-Relation: Is supplement to
-Resource type: Software
-Scheme: URL
-
-DESCRIPTION (paste as HTML)
-
-<p>The Juggler map is the nonlinear integer map J(n) = floor(sqrt(n)) if n is even, and J(n) = floor(n^{3/2}) if n is odd. It is conjectured that every positive integer eventually reaches 1. This paper does not prove that conjecture. It proves period lower bounds for a hypothetical nontrivial cycle, once a verified descent floor is given.</p>
-<p>A realized parity word obeys a power envelope, so a cycle word is formally expanding. Floor remainders must finance the surplus 3^o &minus; 2^L. At a cycle minimum this yields the financing inequality n log n &middot; (3^o &minus; 2^L) &le; L &middot; 3^o. This inequality is the main theorem; every numerical period bound is an instantiation of it, or of its walk-charge refinement, at a certified descent floor. Combined with the independently verified descent that every start through 10^6 reaches 1, any nontrivial cycle has period at least 25781. A walk-charge envelope &mdash; transport of the floor losses to a reduced base, identification of the extremal exponent walk as a rotation itinerary, and a Denjoy&ndash;Koksma bound over certified Ostrowski blocks, census-free on the window [50508, 301994) &mdash; extends the exclusion at a certified laboratory floor N0 = 26254995 to period at least 176251. The same certified kill criterion at a second certified floor, N0 = 162849448, gives period at least 478245. The main numerical result evaluates it once more at the third certified floor N0 = 350000000: any nontrivial Juggler cycle has period at least 780239. A separate inverse-cell analysis shows that every nontrivial cycle has at least four even letters and hence period at least eleven, with no descent floor. A floor-free gap transfer, n log n &middot; min(o log 3 &minus; L log 2, 1) &le; 2L, combined with Rhin's effective irrationality measure, excludes every cycle with L^{14.3} &le; n log n / 915 and reduces the no-cycle problem to the long regime, where it remains open. The core lemmas are mechanized in Lean 4; the descent floors and the per-length kill tables are independently certified computations, and the paper does not claim to be formally verified as a whole. Two companion manuscripts use the power envelope and the certified floor as inputs (parity equidistribution of nested floor powers; fate contagion and the almost-all reduction of termination); Section 6.1 records what they add to the cycle problem and what they do not.</p>
-<p>2020 Mathematics Subject Classification: 11B83, 37P99, 11Y55.</p>
-
-VERSION NOTES (optional)
-Public preprint, version of 3 September 2026. Lean certificates for the exact-arithmetic claims are in the related GitHub repository (lake build Problems.JugglerPaper). Theorems 4.6, 4.8, 5.2, and 5.9 and Corollaries 5.10 and 5.11 are named computations, not Lean theorems. Proposition 4.9's lattice arithmetic is Lean; the gap transfer (Theorem 4.10) is Lean (cycleMin_gap_transfer). Corollaries 5.10 and 5.11 are certified evaluations of the Theorem 5.9 kill criterion beyond the census-free window of Theorem 5.8, not extensions of that window. Section 6.1 and references [16], [17] point to the two companion manuscripts (nested-floor parity; fate contagion), which are not included.
+RELATED SOFTWARE
+https://github.com/sneakyweasel/btlab
