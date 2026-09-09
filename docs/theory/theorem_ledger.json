@@ -1,12 +1,79 @@
 [
  {
-  "id": "J-paper-b-oooee-mixed-127",
+  "id": "J-cycle-later-return-certificate",
   "tag": "EXACT — HUMAN PROOF",
-  "statement": "For every fixed C>=1 and epsilon>0, let X=n^(3/2),m=floor X,Y=m^(3/2),v=floor Y,Z=v^(3/2),w=floor Z,U=sqrt(w). Uniformly over nonzero integer quadruples (i,j,k,l) with max absolute value <= C P^(1/24), the sum over odd P<n<=2P of e((iX+jY+kZ+lU)/2) is O_(C,epsilon)(P^(127/128+epsilon)). All signs and zero coordinates are covered. For k nonzero the negative kernel inventory retains k DD(m^(9/4))/2 and l DD(m^(9/8))/2; recomputed curvature coefficients are -243/512 for nonzero first-floor offsets and 3645/2048 for the zero-offset family with actual negative moving centers. The double correlation has exponent 31/32, then both outer A-processes give 63/64 and 127/128. This is the specified OOOEE formal chain, not an arbitrary decorated or localized family. AI-assisted written proof based on the earlier analytic supplements; exact finite controls are not a proof of cancellation. Independent review and Lean verification outstanding.",
-  "source": "docs/theory/paper_b_oooee_transfer_report.md",
+  "statement": "For a prescribed word with full ideal exponent 0<p<1 and every proper tail q_j=p/p_j<1, two traces whose sources and proper states are at least m>=1 satisfy 0<=F(z)-F(w)<p*m^(p-1)*(z-w)+K_W(m), where K_W=1+sum(q_j*m^(q_j-1)). The condition 2*p*m^(p-1)+K_W<=2 forces strict contraction on gaps at least two. For p>1/2 and a proper prefix this sufficient certificate requires m>(2p)^(1/(1-p)); hence it cannot hold uniformly at a fixed minimum for a family with p approaching one from below. This is a limitation of the one-sided error estimate, not a counterexample to true paired contraction or a claim that every possible later upper word has these exponents. AI-assisted written proof; no new Lean or no-cycle conclusion.",
+  "source": "docs/problems/juggler_cycle_later_returns.md",
   "lean": "",
   "tests": [
-   "tools/validate_paper_b_oooee_transfer.py"
+   "tests/research/juggler_sequence/test_cycle_later_returns.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cycle-later-return-height",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Every actual Juggler cycle with minimum m>=2^128 and maximum M<m^3 satisfies M<m^3-(1/2)*m^theta, theta=381/128-3^41/2^65>127/64. In particular m^127<[2*(m^3-M)]^64. With A=OOE,B=OE,C=A^2B,D=A C^2, the first counts obey a=2b+r,b=2r+s,r=3s+u,0<u<s. The word W=D^3C has 65 letters, ideal exponent rho=3^41/2^65, and loss below6/5 at inputs>=2^128. It strictly contracts the third genuine odd seam, forcing original gap d0>=8 and d0>(2/5)*m^(13/128+1-rho). Exact parity cells transport this to the height bound. This applies at a much larger minimum than the preceding 253/128 theorem; it does not replace that lower-domain result, exclude the remaining cubic region or taller cycles, or improve the period/descent floor. AI-assisted written proof; finite exact controls are consistency checks, not quantified Lean verification or independent human review.",
+  "source": "docs/problems/juggler_cycle_later_returns.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_later_returns.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cycle-terminal-mixed-gap",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "The Euclidean return pair U,V admits exact chronological factors UV=P OE Q and VU=P EO Q, initially P=O,Q=OE. Left substitution sends P to U P; right substitution sends Q to Q V. At a primitive actual cubic-band cycle terminal section {m,v}, the common prefix P takes the adjacent pair to the largest odd/smallest even source pair (h,s); OE/EO takes it to (t,q)=(E(M),O(m)); Q returns it to (m,v). For odd m>=3, h<m^2,s>=m^2+1 imply 0<q-t<s-h. This mixed contraction does not imply total contraction: the uncontrolled prefix P contributes amplification and p_P*(3/4)*p_Q=3^o/2^L>1. A new joint prefix/suffix cell estimate or terminal absolute-loss calibration is still required. All cycle memberships and intermediate guards are retained. AI-assisted written structural proof, not a no-cycle theorem or new Lean claim.",
+  "source": "docs/problems/juggler_cycle_later_returns.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_later_returns.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cycle-direction-change-contraction",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For the prescribed return C=OOEOOEOE and every integer x>=2^24, 0<=x^(243/256)-F_C(x)<9/8. This follows from all eight actual square-cell remainders and the seven-tail majorant 63121/524288<1/8. For integers z>w>=2^24 with d=z-w>=2, 0<=F_C(z)-F_C(w)<(243/256)w^(-13/256)d+9/8<d. No parity hypothesis is needed for this local inequality; distinct odd cycle-return outputs force the even gap to drop by at least two. Exact full guard transport remains required in a cycle application. AI-assisted written proof, not new Lean verification or a no-cycle theorem.",
+  "source": "docs/problems/juggler_cycle_direction_change.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_direction_change.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cycle-direction-change-batches",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For any normalized cubic threshold cycle of minimum m>=2^24, with lower OOE count a and upper OE count b in its E-image return section, the first maximal Euclidean left and right batches both have quotient2 and nonzero remainders: a=2b+r, b=2r+s, 0<s<r. A^3B and A(A^2B)^2 strictly grow on the stated range, while A(A^2B)^3 has ideal exponent below1; these exclude all other first-batch cases, including terminal remainders. The first two left steps recycle the same seam. The next two right steps apply C=A^2B twice to that seam through genuine adjacent return pairs. This is an AI-assisted written rank/dynamical proof, not a new Lean theorem or arbitrary-depth closure.",
+  "source": "docs/problems/juggler_cycle_direction_change.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_direction_change.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cycle-direction-change-height",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Theorem DC: Every actual Juggler cycle with minimum m>=2^24 and maximum M<m^3 satisfies M<m^3-(1/2)m^(253/128), equivalently m^253<[2(m^3-M)]^128 with positive cube gap. With t=E(M),z=F_OOE(m),w=F_OE(t), two genuine C=OOEOOEOE seam transfers give d0=z-w>=6 and d0>(26240/59049)m^(13/128). In particular t^3+2<=[(z-6)(z-4)]^2 and M+2<=(t+1)^2. The proof combines actual periodic rank placement, every original guard, the unconditional paired floor-error bound, and exact extremal square cells. This widens the previous 15/8 height strip but excludes neither the remaining cubic region nor taller cycles; period780239 and descent floor350000000 are unchanged. AI-assisted written proof; finite controls are consistency checks, not quantified proof or independent human review.",
+  "source": "docs/problems/juggler_cycle_direction_change.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_direction_change.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-paper-b-oooee-mixed-127",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For every fixed C>=1 and epsilon>0, let X=n^(3/2),m=floor X,Y=m^(3/2),v=floor Y,Z=v^(3/2),w=floor Z,U=sqrt(w). Uniformly over nonzero integer quadruples (i,j,k,l) with max absolute value <= C P^(1/24), the sum over odd P<n<=2P of e((iX+jY+kZ+lU)/2) is O_(C,epsilon)(P^(127/128+epsilon)). All signs and zero coordinates are covered. For k nonzero the negative kernel inventory retains k DD(m^(9/4))/2 and l DD(m^(9/8))/2; recomputed curvature coefficients are -243/512 for nonzero first-floor offsets and 3645/2048 for the zero-offset family with actual negative moving centers. The double correlation has exponent 31/32, then both outer A-processes give 63/64 and 127/128. This is the specified OOOEE formal chain, not an arbitrary decorated or localized family. AI-assisted written proof based on the earlier analytic supplements; exact finite controls are not a proof of cancellation. Independent review and Lean verification outstanding. The 10 September 2026 proof audit supplies the bounded signed-residual Fourier extension and its variation proof in the manuscript; conclusions and error exponent are unchanged. See docs/theory/paper_b_proof_review.md.",
+  "source": "docs/theory/juggler_parity_discrepancy_note.md",
+  "lean": "",
+  "tests": [
+   "tools/validate_paper_b_oooee_transfer.py",
+   "tools/validate_paper_b_consolidated.py"
   ],
   "related_conjectures": []
  },
@@ -14,21 +81,23 @@
   "id": "J-paper-b-oooee-count",
   "tag": "EXACT — HUMAN PROOF",
   "statement": "For every epsilon>0, every one of the sixteen formal parity-sign classes of (X,Y,Z,U), with X=n^(3/2),m=floor X,Y=m^(3/2),v=floor Y,Z=v^(3/2),w=floor Z,U=sqrt(w), on odd n<=N has count N/32+O_epsilon(N^(127/128+epsilon)). In particular the actual Juggler OOOEE class, where m,v are odd and w,floor U are even, has that count. All fifteen nonempty parity-sign products have the same error, so H(OOOEE;delta) holds for every 0<delta<1/128. Erdős–Turán–Koksma is applied separately on each dyadic block using its own cutoff. The sixteen formal classes must not be identified with sixteen actual itineraries. AI-assisted written proof; independent review and Lean verification outstanding.",
-  "source": "docs/theory/paper_b_oooee_transfer_report.md",
+  "source": "docs/theory/juggler_parity_discrepancy_note.md",
   "lean": "",
   "tests": [
-   "tools/validate_paper_b_oooee_transfer.py"
+   "tools/validate_paper_b_oooee_transfer.py",
+   "tools/validate_paper_b_consolidated.py"
   ],
   "related_conjectures": []
  },
  {
   "id": "J-paper-b-five-step-density-127",
   "tag": "EXACT — HUMAN PROOF",
-  "statement": "For every epsilon>0, the full class C_5 of n>=2 with a uniform power-envelope descent certificate of length at most five has count 7N/8+O_epsilon(N^(127/128+epsilon)) up to N, hence natural density 7/8. The disjoint minimal prefix classes are E,OE,OOEE,OOEOE,OOOEE. Combine the existing 27/32 subfamily count with J-paper-b-oooee-count. This discharges the specific hypothesis of the printed conditional Paper B Theorem 5.4 at the written-supplement level; the existing manuscript and deposit files still contain the 27/32 revision pending consolidation and review. This is not the exact class of all starts that descend within five steps and not a termination theorem. AI-assisted written proof; independent mathematical review and Lean verification outstanding.",
-  "source": "docs/theory/paper_b_oooee_transfer_report.md",
+  "statement": "For every epsilon>0, the full class C_5 of n>=2 with a uniform power-envelope descent certificate of length at most five has count 7N/8+O_epsilon(N^(127/128+epsilon)) up to N, hence natural density 7/8. The disjoint minimal prefix classes are E,OE,OOEE,OOEOE,OOOEE. Combine the existing 27/32 subfamily count with J-paper-b-oooee-count. Consolidated Paper B Theorem 5.4 now includes this unconditional conclusion, with its full proof in Appendices A-C; independent review is outstanding. This is not the exact class of all starts that descend within five steps and not a termination theorem. AI-assisted written proof; independent mathematical review and Lean verification outstanding. The 10 September 2026 proof audit supplies the bounded signed-residual Fourier extension and its variation proof in the manuscript; conclusions and error exponent are unchanged. See docs/theory/paper_b_proof_review.md.",
+  "source": "docs/theory/juggler_parity_discrepancy_note.md",
   "lean": "",
   "tests": [
-   "tools/validate_paper_b_oooee_transfer.py"
+   "tools/validate_paper_b_oooee_transfer.py",
+   "tools/validate_paper_b_consolidated.py"
   ],
   "related_conjectures": []
  },
@@ -4673,7 +4742,7 @@
  {
   "id": "J-depth5-contracting",
   "tag": "CONJECTURE",
-  "statement": "OOEOE repair, 9 September 2026: the OOEOE/OOEOO portion is now proved by current Paper B Corollary 4.10, using a new centered-frequency proof with frozen curvature 243/512. The combined historical target below remains CONJECTURE because OOOEE/OOOEO are unproved. Publication review 9 September 2026: the analytic claim below is not established by Paper B and is retained only as a historical research target. The revised paper gives conditional implications, not this analytic proof. See docs/theory/paper_b_review.md. Historical target: Theorem T, Phase-27 repair, imported as Paper B Theorem 6.3: #OOOEE(N), #OOOEO(N) = N/32 + O(N^{1-1/96+eps}) and #OOEOE(N), #OOEOO(N) = N/32 + O(N^{47/48+eps}). The fifth-letter X-modes of the OOOE* sawtooth C θ, C ≍ l n^{3/16}, are Lemma 5.2 Stage-2 r-modes e(u X) with |u| ≤ P^{1/4} after Lemma 3.7 at T = R_0 = P^{1/4} and J_5 = 2 P^{1/96} (T ≥ 8(1+|C|) since |C| = O(P^{19/96})); they are not Lemma 5.2(ii) decorations and do not enlarge |q'|. Theorem 6.1 Steps D–E apply: the i-passenger stays (D3), the frozen theta-coefficient B = 27/32 k j nu^{3/8} is unchanged by the X-modes, and the sign-critical composites 243/512 and 1095/1024 survive. The OOEO* curvature λ_2 = (-81/1024) k n^{-5/16} + lower terms keeps sign under Lemma 3.10(a). Withdrawn from Paper B in Phase 26; restored in the laboratory record (lemma Part XII) and imported 2 September 2026. Not a termination claim.",
+  "statement": "OOEOE repair, 9 September 2026: the OOEOE/OOEOO portion is now proved by current Paper B Corollary 4.10, using a new centered-frequency proof with frozen curvature 243/512. The combined historical target below retains its stronger 95/96 exponent and remains CONJECTURE. Consolidated Paper B Corollary 4.12 now proves OOOEE/OOOEO with the weaker error exponent 127/128+epsilon. Publication review 9 September 2026: the analytic claim below is not established by Paper B and is retained only as a historical research target. The revised paper gives conditional implications, not this analytic proof. See docs/theory/paper_b_review.md. Historical target: Theorem T, Phase-27 repair, imported as Paper B Theorem 6.3: #OOOEE(N), #OOOEO(N) = N/32 + O(N^{1-1/96+eps}) and #OOEOE(N), #OOEOO(N) = N/32 + O(N^{47/48+eps}). The fifth-letter X-modes of the OOOE* sawtooth C θ, C ≍ l n^{3/16}, are Lemma 5.2 Stage-2 r-modes e(u X) with |u| ≤ P^{1/4} after Lemma 3.7 at T = R_0 = P^{1/4} and J_5 = 2 P^{1/96} (T ≥ 8(1+|C|) since |C| = O(P^{19/96})); they are not Lemma 5.2(ii) decorations and do not enlarge |q'|. Theorem 6.1 Steps D–E apply: the i-passenger stays (D3), the frozen theta-coefficient B = 27/32 k j nu^{3/8} is unchanged by the X-modes, and the sign-critical composites 243/512 and 1095/1024 survive. The OOEO* curvature λ_2 = (-81/1024) k n^{-5/16} + lower terms keeps sign under Lemma 3.10(a). Withdrawn from Paper B in Phase 26; restored in the laboratory record (lemma Part XII) and imported 2 September 2026. Not a termination claim.",
   "source": "docs/research/juggler_two_step_parity_lemma.md",
   "lean": "",
   "tests": [
@@ -4685,12 +4754,13 @@
  {
   "id": "J-five-step-descent-density",
   "tag": "EXACT — HUMAN PROOF",
-  "statement": "Printed conditional Paper B Theorem 5.4 (9 September 2026 OOEOE repair): H_0(OOOEE) suffices for natural density 7/8 of the entire five-step power-envelope certificate set C_5. Under H(OOOEE;delta), the count is 7N/8+O(N^(1-min(1/48,delta))). The disjoint subfamily D_5 has unconditional density 27/32 by Theorem 5.3. Subsequent written supplement J-paper-b-oooee-count discharges H(OOOEE;delta) for every 0<delta<1/128; J-paper-b-five-step-density-127 records the resulting unconditional 7/8 count. The printed manuscript has not yet been consolidated with that proof; independent review is outstanding. No universal termination conclusion.",
+  "statement": "Consolidated Paper B Theorem 5.4 (9 September 2026): for every epsilon>0, the full five-step power-envelope certificate class C_5 has count 7N/8+O_epsilon(N^(127/128+epsilon)), hence natural density 7/8. The OOOEE hypothesis of the former conditional revision is discharged by Theorem 4.11, Corollary 4.12, and Appendices A-C. The result counts the certificate class, not all starts that descend in five steps. AI-assisted written proof; no independent mathematical review, complete Lean verification, or universal termination conclusion.",
   "source": "docs/theory/juggler_parity_discrepancy_note.md",
   "lean": "",
   "tests": [
    "tools/validate_paper_b.py",
-   "tools/validate_paper_b_ooeoe.py"
+   "tools/validate_paper_b_ooeoe.py",
+   "tools/validate_paper_b_consolidated.py"
   ],
   "related_conjectures": []
  },

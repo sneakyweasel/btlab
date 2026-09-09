@@ -5,11 +5,11 @@
   "files": [
     {
       "name": "juggler_parity_discrepancy_note.md",
-      "sha256": "2cd8b717c2d09dba36eba1dca37ca3406585553d0e6d9509e0c5f10b34eb44dc"
+      "sha256": "2aa7455c01d6f16d032785973b6e34eb989406c099c81914e2835bbc7f4ed1f0"
     },
     {
       "name": "article.tex",
-      "sha256": "3d91258524cf6456cef894f1e2d93c5ac5b26990cffbf1d9711ffcac9b780034"
+      "sha256": "f57d4e9e1587613663ce6212fefa3ce08340c33d2894815273ff584fb202277f"
     },
     {
       "name": "layout.lua",
@@ -21,11 +21,11 @@
     },
     {
       "name": "juggler_parity_discrepancy_note.tex",
-      "sha256": "2c52654d5818e0158c5baeda3432378be6aea865f17275cd32c8d519471649e1"
+      "sha256": "3beef115eef6cb1cfa77dd07745a81ab042aa91bb8fe321bb52182d28e1db57a"
     },
     {
       "name": "juggler_parity_discrepancy_note.pdf",
-      "sha256": "8ce503d82e3c40956b577b671a2c039f6062686964ec7c379fd17be9585a70bd"
+      "sha256": "dc8debba9fd1dacc790a28e289307df033f659bfb7f0436ee813e3d84e252728"
     }
   ]
 }

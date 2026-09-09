@@ -1,0 +1,5872 @@
+{
+  "scope": {
+    "archived_threshold_cycles": 7,
+    "induction_cycles": 5,
+    "singleton_sections_excluded": 2,
+    "ceiling_minima": [
+      214358889,
+      10828567056280809
+    ],
+    "ceiling_evaluations": 2,
+    "cycle_search": false,
+    "source_census": false,
+    "rank_pair_scan": false,
+    "trajectory_extension": false,
+    "descent_floor_increase": false
+  },
+  "arithmetic": "Exact integer cells and rational constants; no numerical roots or logarithms",
+  "constant_checks": {
+    "word": "OOEOOEOE",
+    "ideal_exponent": "243/256",
+    "proper_prefix_tail_exponents": [
+      "81/128",
+      "27/64",
+      "27/32",
+      "9/16",
+      "3/8",
+      "3/4",
+      "1/2"
+    ],
+    "dyadic_majorants": [
+      "81/32768",
+      "27/524288",
+      "27/256",
+      "9/16384",
+      "3/262144",
+      "3/256",
+      "1/8192"
+    ],
+    "tail_sum": "63121/524288",
+    "error_bound": "9/8",
+    "derivative_majorant": "27/64",
+    "A3B_coefficient_exponent": "907/256",
+    "two_transfer_gap_coefficient": "26240/59049",
+    "height_strip_exponent": "253/128",
+    "height_strip_coefficient": "1/2",
+    "role": "exact constants in the written argument; not a Lean proof"
+  },
+  "archived_cycles": [
+    {
+      "threshold": 3,
+      "normalized_threshold": 3,
+      "minimum": 3,
+      "maximum": 11,
+      "period": 3,
+      "retained_bases": [
+        3
+      ],
+      "OOE_count": 1,
+      "OE_count": 0,
+      "original_cells": [
+        {
+          "source": 3,
+          "branch": "O",
+          "image": 5,
+          "square_remainder": 2,
+          "wrong_parity": false
+        },
+        {
+          "source": 5,
+          "branch": "O",
+          "image": 11,
+          "square_remainder": 4,
+          "wrong_parity": false
+        },
+        {
+          "source": 11,
+          "branch": "E",
+          "image": 3,
+          "square_remainder": 2,
+          "wrong_parity": true
+        }
+      ],
+      "wrong_parity_sources": [
+        11
+      ],
+      "parity_mismatches_at_every_stage": 1,
+      "actual_juggler_cycle": false,
+      "large_minimum_theorem_applies": false,
+      "rank_induction_excluded": true,
+      "exclusion_reason": "singleton retained section with no OE branch",
+      "stages": [],
+      "transitions": [],
+      "terminal_extra_seam_edge": false
+    },
+    {
+      "threshold": 3,
+      "normalized_threshold": 4,
+      "minimum": 4,
+      "maximum": 22,
+      "period": 3,
+      "retained_bases": [
+        4
+      ],
+      "OOE_count": 1,
+      "OE_count": 0,
+      "original_cells": [
+        {
+          "source": 4,
+          "branch": "O",
+          "image": 8,
+          "square_remainder": 0,
+          "wrong_parity": true
+        },
+        {
+          "source": 8,
+          "branch": "O",
+          "image": 22,
+          "square_remainder": 28,
+          "wrong_parity": true
+        },
+        {
+          "source": 22,
+          "branch": "E",
+          "image": 4,
+          "square_remainder": 6,
+          "wrong_parity": false
+        }
+      ],
+      "wrong_parity_sources": [
+        4,
+        8
+      ],
+      "parity_mismatches_at_every_stage": 2,
+      "actual_juggler_cycle": false,
+      "large_minimum_theorem_applies": false,
+      "rank_induction_excluded": true,
+      "exclusion_reason": "singleton retained section with no OE branch",
+      "stages": [],
+      "transitions": [],
+      "terminal_extra_seam_edge": false
+    },
+    {
+      "threshold": 9,
+      "normalized_threshold": 9,
+      "minimum": 9,
+      "maximum": 374,
+      "period": 11,
+      "retained_bases": [
+        9,
+        11,
+        14,
+        19
+      ],
+      "OOE_count": 3,
+      "OE_count": 1,
+      "original_cells": [
+        {
+          "source": 9,
+          "branch": "O",
+          "image": 27,
+          "square_remainder": 0,
+          "wrong_parity": false
+        },
+        {
+          "source": 11,
+          "branch": "O",
+          "image": 36,
+          "square_remainder": 35,
+          "wrong_parity": false
+        },
+        {
+          "source": 14,
+          "branch": "O",
+          "image": 52,
+          "square_remainder": 40,
+          "wrong_parity": true
+        },
+        {
+          "source": 19,
+          "branch": "O",
+          "image": 82,
+          "square_remainder": 135,
+          "wrong_parity": false
+        },
+        {
+          "source": 27,
+          "branch": "O",
+          "image": 140,
+          "square_remainder": 83,
+          "wrong_parity": false
+        },
+        {
+          "source": 36,
+          "branch": "O",
+          "image": 216,
+          "square_remainder": 0,
+          "wrong_parity": true
+        },
+        {
+          "source": 52,
+          "branch": "O",
+          "image": 374,
+          "square_remainder": 732,
+          "wrong_parity": true
+        },
+        {
+          "source": 82,
+          "branch": "E",
+          "image": 9,
+          "square_remainder": 1,
+          "wrong_parity": false
+        },
+        {
+          "source": 140,
+          "branch": "E",
+          "image": 11,
+          "square_remainder": 19,
+          "wrong_parity": false
+        },
+        {
+          "source": 216,
+          "branch": "E",
+          "image": 14,
+          "square_remainder": 20,
+          "wrong_parity": false
+        },
+        {
+          "source": 374,
+          "branch": "E",
+          "image": 19,
+          "square_remainder": 13,
+          "wrong_parity": false
+        }
+      ],
+      "wrong_parity_sources": [
+        14,
+        36,
+        52
+      ],
+      "parity_mismatches_at_every_stage": 3,
+      "actual_juggler_cycle": false,
+      "large_minimum_theorem_applies": false,
+      "rank_induction_excluded": false,
+      "stages": [
+        {
+          "a": 3,
+          "b": 1,
+          "A": "OOE",
+          "B": "OE",
+          "retained_bases": [
+            9,
+            11,
+            14,
+            19
+          ],
+          "seam": {
+            "w": 9,
+            "z": 11,
+            "gap": 2
+          },
+          "towers": [
+            {
+              "base_rank": 0,
+              "base": 9,
+              "image_rank": 1,
+              "image": 11,
+              "abstract_word": "O",
+              "word": "OOE",
+              "states": [
+                9,
+                27,
+                140,
+                11
+              ],
+              "cells": [
+                {
+                  "source": 9,
+                  "branch": "O",
+                  "image": 27,
+                  "square_remainder": 0,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 27,
+                  "branch": "O",
+                  "image": 140,
+                  "square_remainder": 83,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 140,
+                  "branch": "E",
+                  "image": 11,
+                  "square_remainder": 19,
+                  "wrong_parity": false
+                }
+              ]
+            },
+            {
+              "base_rank": 1,
+              "base": 11,
+              "image_rank": 2,
+              "image": 14,
+              "abstract_word": "O",
+              "word": "OOE",
+              "states": [
+                11,
+                36,
+                216,
+                14
+              ],
+              "cells": [
+                {
+                  "source": 11,
+                  "branch": "O",
+                  "image": 36,
+                  "square_remainder": 35,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 36,
+                  "branch": "O",
+                  "image": 216,
+                  "square_remainder": 0,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 216,
+                  "branch": "E",
+                  "image": 14,
+                  "square_remainder": 20,
+                  "wrong_parity": false
+                }
+              ]
+            },
+            {
+              "base_rank": 2,
+              "base": 14,
+              "image_rank": 3,
+              "image": 19,
+              "abstract_word": "O",
+              "word": "OOE",
+              "states": [
+                14,
+                52,
+                374,
+                19
+              ],
+              "cells": [
+                {
+                  "source": 14,
+                  "branch": "O",
+                  "image": 52,
+                  "square_remainder": 40,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 52,
+                  "branch": "O",
+                  "image": 374,
+                  "square_remainder": 732,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 374,
+                  "branch": "E",
+                  "image": 19,
+                  "square_remainder": 13,
+                  "wrong_parity": false
+                }
+              ]
+            },
+            {
+              "base_rank": 3,
+              "base": 19,
+              "image_rank": 0,
+              "image": 9,
+              "abstract_word": "E",
+              "word": "OE",
+              "states": [
+                19,
+                82,
+                9
+              ],
+              "cells": [
+                {
+                  "source": 19,
+                  "branch": "O",
+                  "image": 82,
+                  "square_remainder": 135,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 82,
+                  "branch": "E",
+                  "image": 9,
+                  "square_remainder": 1,
+                  "wrong_parity": false
+                }
+              ]
+            }
+          ],
+          "original_cells_preserved": 11,
+          "wrong_parity_sources": [
+            14,
+            36,
+            52
+          ]
+        },
+        {
+          "a": 2,
+          "b": 1,
+          "A": "OOE",
+          "B": "OOEOE",
+          "retained_bases": [
+            9,
+            11,
+            14
+          ],
+          "seam": {
+            "w": 9,
+            "z": 11,
+            "gap": 2
+          },
+          "towers": [
+            {
+              "base_rank": 0,
+              "base": 9,
+              "image_rank": 1,
+              "image": 11,
+              "abstract_word": "O",
+              "word": "OOE",
+              "states": [
+                9,
+                27,
+                140,
+                11
+              ],
+              "cells": [
+                {
+                  "source": 9,
+                  "branch": "O",
+                  "image": 27,
+                  "square_remainder": 0,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 27,
+                  "branch": "O",
+                  "image": 140,
+                  "square_remainder": 83,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 140,
+                  "branch": "E",
+                  "image": 11,
+                  "square_remainder": 19,
+                  "wrong_parity": false
+                }
+              ]
+            },
+            {
+              "base_rank": 1,
+              "base": 11,
+              "image_rank": 2,
+              "image": 14,
+              "abstract_word": "O",
+              "word": "OOE",
+              "states": [
+                11,
+                36,
+                216,
+                14
+              ],
+              "cells": [
+                {
+                  "source": 11,
+                  "branch": "O",
+                  "image": 36,
+                  "square_remainder": 35,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 36,
+                  "branch": "O",
+                  "image": 216,
+                  "square_remainder": 0,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 216,
+                  "branch": "E",
+                  "image": 14,
+                  "square_remainder": 20,
+                  "wrong_parity": false
+                }
+              ]
+            },
+            {
+              "base_rank": 2,
+              "base": 14,
+              "image_rank": 0,
+              "image": 9,
+              "abstract_word": "OE",
+              "word": "OOEOE",
+              "states": [
+                14,
+                52,
+                374,
+                19,
+                82,
+                9
+              ],
+              "cells": [
+                {
+                  "source": 14,
+                  "branch": "O",
+                  "image": 52,
+                  "square_remainder": 40,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 52,
+                  "branch": "O",
+                  "image": 374,
+                  "square_remainder": 732,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 374,
+                  "branch": "E",
+                  "image": 19,
+                  "square_remainder": 13,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 19,
+                  "branch": "O",
+                  "image": 82,
+                  "square_remainder": 135,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 82,
+                  "branch": "E",
+                  "image": 9,
+                  "square_remainder": 1,
+                  "wrong_parity": false
+                }
+              ]
+            }
+          ],
+          "original_cells_preserved": 11,
+          "wrong_parity_sources": [
+            14,
+            36,
+            52
+          ]
+        },
+        {
+          "a": 1,
+          "b": 1,
+          "A": "OOE",
+          "B": "OOEOOEOE",
+          "retained_bases": [
+            9,
+            11
+          ],
+          "seam": {
+            "w": 9,
+            "z": 11,
+            "gap": 2
+          },
+          "towers": [
+            {
+              "base_rank": 0,
+              "base": 9,
+              "image_rank": 1,
+              "image": 11,
+              "abstract_word": "O",
+              "word": "OOE",
+              "states": [
+                9,
+                27,
+                140,
+                11
+              ],
+              "cells": [
+                {
+                  "source": 9,
+                  "branch": "O",
+                  "image": 27,
+                  "square_remainder": 0,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 27,
+                  "branch": "O",
+                  "image": 140,
+                  "square_remainder": 83,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 140,
+                  "branch": "E",
+                  "image": 11,
+                  "square_remainder": 19,
+                  "wrong_parity": false
+                }
+              ]
+            },
+            {
+              "base_rank": 1,
+              "base": 11,
+              "image_rank": 0,
+              "image": 9,
+              "abstract_word": "OOE",
+              "word": "OOEOOEOE",
+              "states": [
+                11,
+                36,
+                216,
+                14,
+                52,
+                374,
+                19,
+                82,
+                9
+              ],
+              "cells": [
+                {
+                  "source": 11,
+                  "branch": "O",
+                  "image": 36,
+                  "square_remainder": 35,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 36,
+                  "branch": "O",
+                  "image": 216,
+                  "square_remainder": 0,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 216,
+                  "branch": "E",
+                  "image": 14,
+                  "square_remainder": 20,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 14,
+                  "branch": "O",
+                  "image": 52,
+                  "square_remainder": 40,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 52,
+                  "branch": "O",
+                  "image": 374,
+                  "square_remainder": 732,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 374,
+                  "branch": "E",
+                  "image": 19,
+                  "square_remainder": 13,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 19,
+                  "branch": "O",
+                  "image": 82,
+                  "square_remainder": 135,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 82,
+                  "branch": "E",
+                  "image": 9,
+                  "square_remainder": 1,
+                  "wrong_parity": false
+                }
+              ]
+            }
+          ],
+          "original_cells_preserved": 11,
+          "wrong_parity_sources": [
+            14,
+            36,
+            52
+          ]
+        },
+        {
+          "a": 0,
+          "b": 1,
+          "A": "OOE",
+          "B": "OOEOOEOOEOE",
+          "retained_bases": [
+            9
+          ],
+          "seam": null,
+          "towers": [
+            {
+              "base_rank": 0,
+              "base": 9,
+              "image_rank": 0,
+              "image": 9,
+              "abstract_word": "OOOE",
+              "word": "OOEOOEOOEOE",
+              "states": [
+                9,
+                27,
+                140,
+                11,
+                36,
+                216,
+                14,
+                52,
+                374,
+                19,
+                82,
+                9
+              ],
+              "cells": [
+                {
+                  "source": 9,
+                  "branch": "O",
+                  "image": 27,
+                  "square_remainder": 0,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 27,
+                  "branch": "O",
+                  "image": 140,
+                  "square_remainder": 83,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 140,
+                  "branch": "E",
+                  "image": 11,
+                  "square_remainder": 19,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 11,
+                  "branch": "O",
+                  "image": 36,
+                  "square_remainder": 35,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 36,
+                  "branch": "O",
+                  "image": 216,
+                  "square_remainder": 0,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 216,
+                  "branch": "E",
+                  "image": 14,
+                  "square_remainder": 20,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 14,
+                  "branch": "O",
+                  "image": 52,
+                  "square_remainder": 40,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 52,
+                  "branch": "O",
+                  "image": 374,
+                  "square_remainder": 732,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 374,
+                  "branch": "E",
+                  "image": 19,
+                  "square_remainder": 13,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 19,
+                  "branch": "O",
+                  "image": 82,
+                  "square_remainder": 135,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 82,
+                  "branch": "E",
+                  "image": 9,
+                  "square_remainder": 1,
+                  "wrong_parity": false
+                }
+              ]
+            }
+          ],
+          "original_cells_preserved": 11,
+          "wrong_parity_sources": [
+            14,
+            36,
+            52
+          ]
+        }
+      ],
+      "transitions": [
+        {
+          "direction": "left",
+          "old_seam": {
+            "w": 9,
+            "z": 11,
+            "gap": 2
+          },
+          "new_seam": {
+            "w": 9,
+            "z": 11,
+            "gap": 2
+          },
+          "same_two_values": true
+        },
+        {
+          "direction": "left",
+          "old_seam": {
+            "w": 9,
+            "z": 11,
+            "gap": 2
+          },
+          "new_seam": {
+            "w": 9,
+            "z": 11,
+            "gap": 2
+          },
+          "same_two_values": true
+        },
+        {
+          "direction": "terminal",
+          "old_seam": {
+            "w": 9,
+            "z": 11,
+            "gap": 2
+          },
+          "new_seam": null,
+          "upper_seam_point_removed": true,
+          "extra_seam_transfer": false
+        }
+      ],
+      "terminal_extra_seam_edge": false
+    },
+    {
+      "threshold": 9,
+      "normalized_threshold": 10,
+      "minimum": 10,
+      "maximum": 585,
+      "period": 11,
+      "retained_bases": [
+        10,
+        13,
+        17,
+        24
+      ],
+      "OOE_count": 3,
+      "OE_count": 1,
+      "original_cells": [
+        {
+          "source": 10,
+          "branch": "O",
+          "image": 31,
+          "square_remainder": 39,
+          "wrong_parity": true
+        },
+        {
+          "source": 13,
+          "branch": "O",
+          "image": 46,
+          "square_remainder": 81,
+          "wrong_parity": false
+        },
+        {
+          "source": 17,
+          "branch": "O",
+          "image": 70,
+          "square_remainder": 13,
+          "wrong_parity": false
+        },
+        {
+          "source": 24,
+          "branch": "O",
+          "image": 117,
+          "square_remainder": 135,
+          "wrong_parity": true
+        },
+        {
+          "source": 31,
+          "branch": "O",
+          "image": 172,
+          "square_remainder": 207,
+          "wrong_parity": false
+        },
+        {
+          "source": 46,
+          "branch": "O",
+          "image": 311,
+          "square_remainder": 615,
+          "wrong_parity": true
+        },
+        {
+          "source": 70,
+          "branch": "O",
+          "image": 585,
+          "square_remainder": 775,
+          "wrong_parity": true
+        },
+        {
+          "source": 117,
+          "branch": "E",
+          "image": 10,
+          "square_remainder": 17,
+          "wrong_parity": true
+        },
+        {
+          "source": 172,
+          "branch": "E",
+          "image": 13,
+          "square_remainder": 3,
+          "wrong_parity": false
+        },
+        {
+          "source": 311,
+          "branch": "E",
+          "image": 17,
+          "square_remainder": 22,
+          "wrong_parity": true
+        },
+        {
+          "source": 585,
+          "branch": "E",
+          "image": 24,
+          "square_remainder": 9,
+          "wrong_parity": true
+        }
+      ],
+      "wrong_parity_sources": [
+        10,
+        24,
+        46,
+        70,
+        117,
+        311,
+        585
+      ],
+      "parity_mismatches_at_every_stage": 7,
+      "actual_juggler_cycle": false,
+      "large_minimum_theorem_applies": false,
+      "rank_induction_excluded": false,
+      "stages": [
+        {
+          "a": 3,
+          "b": 1,
+          "A": "OOE",
+          "B": "OE",
+          "retained_bases": [
+            10,
+            13,
+            17,
+            24
+          ],
+          "seam": {
+            "w": 10,
+            "z": 13,
+            "gap": 3
+          },
+          "towers": [
+            {
+              "base_rank": 0,
+              "base": 10,
+              "image_rank": 1,
+              "image": 13,
+              "abstract_word": "O",
+              "word": "OOE",
+              "states": [
+                10,
+                31,
+                172,
+                13
+              ],
+              "cells": [
+                {
+                  "source": 10,
+                  "branch": "O",
+                  "image": 31,
+                  "square_remainder": 39,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 31,
+                  "branch": "O",
+                  "image": 172,
+                  "square_remainder": 207,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 172,
+                  "branch": "E",
+                  "image": 13,
+                  "square_remainder": 3,
+                  "wrong_parity": false
+                }
+              ]
+            },
+            {
+              "base_rank": 1,
+              "base": 13,
+              "image_rank": 2,
+              "image": 17,
+              "abstract_word": "O",
+              "word": "OOE",
+              "states": [
+                13,
+                46,
+                311,
+                17
+              ],
+              "cells": [
+                {
+                  "source": 13,
+                  "branch": "O",
+                  "image": 46,
+                  "square_remainder": 81,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 46,
+                  "branch": "O",
+                  "image": 311,
+                  "square_remainder": 615,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 311,
+                  "branch": "E",
+                  "image": 17,
+                  "square_remainder": 22,
+                  "wrong_parity": true
+                }
+              ]
+            },
+            {
+              "base_rank": 2,
+              "base": 17,
+              "image_rank": 3,
+              "image": 24,
+              "abstract_word": "O",
+              "word": "OOE",
+              "states": [
+                17,
+                70,
+                585,
+                24
+              ],
+              "cells": [
+                {
+                  "source": 17,
+                  "branch": "O",
+                  "image": 70,
+                  "square_remainder": 13,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 70,
+                  "branch": "O",
+                  "image": 585,
+                  "square_remainder": 775,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 585,
+                  "branch": "E",
+                  "image": 24,
+                  "square_remainder": 9,
+                  "wrong_parity": true
+                }
+              ]
+            },
+            {
+              "base_rank": 3,
+              "base": 24,
+              "image_rank": 0,
+              "image": 10,
+              "abstract_word": "E",
+              "word": "OE",
+              "states": [
+                24,
+                117,
+                10
+              ],
+              "cells": [
+                {
+                  "source": 24,
+                  "branch": "O",
+                  "image": 117,
+                  "square_remainder": 135,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 117,
+                  "branch": "E",
+                  "image": 10,
+                  "square_remainder": 17,
+                  "wrong_parity": true
+                }
+              ]
+            }
+          ],
+          "original_cells_preserved": 11,
+          "wrong_parity_sources": [
+            10,
+            24,
+            46,
+            70,
+            117,
+            311,
+            585
+          ]
+        },
+        {
+          "a": 2,
+          "b": 1,
+          "A": "OOE",
+          "B": "OOEOE",
+          "retained_bases": [
+            10,
+            13,
+            17
+          ],
+          "seam": {
+            "w": 10,
+            "z": 13,
+            "gap": 3
+          },
+          "towers": [
+            {
+              "base_rank": 0,
+              "base": 10,
+              "image_rank": 1,
+              "image": 13,
+              "abstract_word": "O",
+              "word": "OOE",
+              "states": [
+                10,
+                31,
+                172,
+                13
+              ],
+              "cells": [
+                {
+                  "source": 10,
+                  "branch": "O",
+                  "image": 31,
+                  "square_remainder": 39,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 31,
+                  "branch": "O",
+                  "image": 172,
+                  "square_remainder": 207,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 172,
+                  "branch": "E",
+                  "image": 13,
+                  "square_remainder": 3,
+                  "wrong_parity": false
+                }
+              ]
+            },
+            {
+              "base_rank": 1,
+              "base": 13,
+              "image_rank": 2,
+              "image": 17,
+              "abstract_word": "O",
+              "word": "OOE",
+              "states": [
+                13,
+                46,
+                311,
+                17
+              ],
+              "cells": [
+                {
+                  "source": 13,
+                  "branch": "O",
+                  "image": 46,
+                  "square_remainder": 81,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 46,
+                  "branch": "O",
+                  "image": 311,
+                  "square_remainder": 615,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 311,
+                  "branch": "E",
+                  "image": 17,
+                  "square_remainder": 22,
+                  "wrong_parity": true
+                }
+              ]
+            },
+            {
+              "base_rank": 2,
+              "base": 17,
+              "image_rank": 0,
+              "image": 10,
+              "abstract_word": "OE",
+              "word": "OOEOE",
+              "states": [
+                17,
+                70,
+                585,
+                24,
+                117,
+                10
+              ],
+              "cells": [
+                {
+                  "source": 17,
+                  "branch": "O",
+                  "image": 70,
+                  "square_remainder": 13,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 70,
+                  "branch": "O",
+                  "image": 585,
+                  "square_remainder": 775,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 585,
+                  "branch": "E",
+                  "image": 24,
+                  "square_remainder": 9,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 24,
+                  "branch": "O",
+                  "image": 117,
+                  "square_remainder": 135,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 117,
+                  "branch": "E",
+                  "image": 10,
+                  "square_remainder": 17,
+                  "wrong_parity": true
+                }
+              ]
+            }
+          ],
+          "original_cells_preserved": 11,
+          "wrong_parity_sources": [
+            10,
+            24,
+            46,
+            70,
+            117,
+            311,
+            585
+          ]
+        },
+        {
+          "a": 1,
+          "b": 1,
+          "A": "OOE",
+          "B": "OOEOOEOE",
+          "retained_bases": [
+            10,
+            13
+          ],
+          "seam": {
+            "w": 10,
+            "z": 13,
+            "gap": 3
+          },
+          "towers": [
+            {
+              "base_rank": 0,
+              "base": 10,
+              "image_rank": 1,
+              "image": 13,
+              "abstract_word": "O",
+              "word": "OOE",
+              "states": [
+                10,
+                31,
+                172,
+                13
+              ],
+              "cells": [
+                {
+                  "source": 10,
+                  "branch": "O",
+                  "image": 31,
+                  "square_remainder": 39,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 31,
+                  "branch": "O",
+                  "image": 172,
+                  "square_remainder": 207,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 172,
+                  "branch": "E",
+                  "image": 13,
+                  "square_remainder": 3,
+                  "wrong_parity": false
+                }
+              ]
+            },
+            {
+              "base_rank": 1,
+              "base": 13,
+              "image_rank": 0,
+              "image": 10,
+              "abstract_word": "OOE",
+              "word": "OOEOOEOE",
+              "states": [
+                13,
+                46,
+                311,
+                17,
+                70,
+                585,
+                24,
+                117,
+                10
+              ],
+              "cells": [
+                {
+                  "source": 13,
+                  "branch": "O",
+                  "image": 46,
+                  "square_remainder": 81,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 46,
+                  "branch": "O",
+                  "image": 311,
+                  "square_remainder": 615,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 311,
+                  "branch": "E",
+                  "image": 17,
+                  "square_remainder": 22,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 17,
+                  "branch": "O",
+                  "image": 70,
+                  "square_remainder": 13,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 70,
+                  "branch": "O",
+                  "image": 585,
+                  "square_remainder": 775,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 585,
+                  "branch": "E",
+                  "image": 24,
+                  "square_remainder": 9,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 24,
+                  "branch": "O",
+                  "image": 117,
+                  "square_remainder": 135,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 117,
+                  "branch": "E",
+                  "image": 10,
+                  "square_remainder": 17,
+                  "wrong_parity": true
+                }
+              ]
+            }
+          ],
+          "original_cells_preserved": 11,
+          "wrong_parity_sources": [
+            10,
+            24,
+            46,
+            70,
+            117,
+            311,
+            585
+          ]
+        },
+        {
+          "a": 0,
+          "b": 1,
+          "A": "OOE",
+          "B": "OOEOOEOOEOE",
+          "retained_bases": [
+            10
+          ],
+          "seam": null,
+          "towers": [
+            {
+              "base_rank": 0,
+              "base": 10,
+              "image_rank": 0,
+              "image": 10,
+              "abstract_word": "OOOE",
+              "word": "OOEOOEOOEOE",
+              "states": [
+                10,
+                31,
+                172,
+                13,
+                46,
+                311,
+                17,
+                70,
+                585,
+                24,
+                117,
+                10
+              ],
+              "cells": [
+                {
+                  "source": 10,
+                  "branch": "O",
+                  "image": 31,
+                  "square_remainder": 39,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 31,
+                  "branch": "O",
+                  "image": 172,
+                  "square_remainder": 207,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 172,
+                  "branch": "E",
+                  "image": 13,
+                  "square_remainder": 3,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 13,
+                  "branch": "O",
+                  "image": 46,
+                  "square_remainder": 81,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 46,
+                  "branch": "O",
+                  "image": 311,
+                  "square_remainder": 615,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 311,
+                  "branch": "E",
+                  "image": 17,
+                  "square_remainder": 22,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 17,
+                  "branch": "O",
+                  "image": 70,
+                  "square_remainder": 13,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 70,
+                  "branch": "O",
+                  "image": 585,
+                  "square_remainder": 775,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 585,
+                  "branch": "E",
+                  "image": 24,
+                  "square_remainder": 9,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 24,
+                  "branch": "O",
+                  "image": 117,
+                  "square_remainder": 135,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 117,
+                  "branch": "E",
+                  "image": 10,
+                  "square_remainder": 17,
+                  "wrong_parity": true
+                }
+              ]
+            }
+          ],
+          "original_cells_preserved": 11,
+          "wrong_parity_sources": [
+            10,
+            24,
+            46,
+            70,
+            117,
+            311,
+            585
+          ]
+        }
+      ],
+      "transitions": [
+        {
+          "direction": "left",
+          "old_seam": {
+            "w": 10,
+            "z": 13,
+            "gap": 3
+          },
+          "new_seam": {
+            "w": 10,
+            "z": 13,
+            "gap": 3
+          },
+          "same_two_values": true
+        },
+        {
+          "direction": "left",
+          "old_seam": {
+            "w": 10,
+            "z": 13,
+            "gap": 3
+          },
+          "new_seam": {
+            "w": 10,
+            "z": 13,
+            "gap": 3
+          },
+          "same_two_values": true
+        },
+        {
+          "direction": "terminal",
+          "old_seam": {
+            "w": 10,
+            "z": 13,
+            "gap": 3
+          },
+          "new_seam": null,
+          "upper_seam_point_removed": true,
+          "extra_seam_transfer": false
+        }
+      ],
+      "terminal_extra_seam_edge": false
+    },
+    {
+      "threshold": 29,
+      "normalized_threshold": 35,
+      "minimum": 35,
+      "maximum": 23696,
+      "period": 19,
+      "retained_bases": [
+        35,
+        43,
+        54,
+        68,
+        88,
+        115,
+        153
+      ],
+      "OOE_count": 5,
+      "OE_count": 2,
+      "original_cells": [
+        {
+          "source": 35,
+          "branch": "O",
+          "image": 207,
+          "square_remainder": 26,
+          "wrong_parity": false
+        },
+        {
+          "source": 43,
+          "branch": "O",
+          "image": 281,
+          "square_remainder": 546,
+          "wrong_parity": false
+        },
+        {
+          "source": 54,
+          "branch": "O",
+          "image": 396,
+          "square_remainder": 648,
+          "wrong_parity": true
+        },
+        {
+          "source": 68,
+          "branch": "O",
+          "image": 560,
+          "square_remainder": 832,
+          "wrong_parity": true
+        },
+        {
+          "source": 88,
+          "branch": "O",
+          "image": 825,
+          "square_remainder": 847,
+          "wrong_parity": true
+        },
+        {
+          "source": 115,
+          "branch": "O",
+          "image": 1233,
+          "square_remainder": 586,
+          "wrong_parity": false
+        },
+        {
+          "source": 153,
+          "branch": "O",
+          "image": 1892,
+          "square_remainder": 1913,
+          "wrong_parity": false
+        },
+        {
+          "source": 207,
+          "branch": "O",
+          "image": 2978,
+          "square_remainder": 1259,
+          "wrong_parity": false
+        },
+        {
+          "source": 281,
+          "branch": "O",
+          "image": 4710,
+          "square_remainder": 3941,
+          "wrong_parity": false
+        },
+        {
+          "source": 396,
+          "branch": "O",
+          "image": 7880,
+          "square_remainder": 4736,
+          "wrong_parity": true
+        },
+        {
+          "source": 560,
+          "branch": "O",
+          "image": 13252,
+          "square_remainder": 496,
+          "wrong_parity": true
+        },
+        {
+          "source": 825,
+          "branch": "O",
+          "image": 23696,
+          "square_remainder": 15209,
+          "wrong_parity": false
+        },
+        {
+          "source": 1233,
+          "branch": "E",
+          "image": 35,
+          "square_remainder": 8,
+          "wrong_parity": true
+        },
+        {
+          "source": 1892,
+          "branch": "E",
+          "image": 43,
+          "square_remainder": 43,
+          "wrong_parity": false
+        },
+        {
+          "source": 2978,
+          "branch": "E",
+          "image": 54,
+          "square_remainder": 62,
+          "wrong_parity": false
+        },
+        {
+          "source": 4710,
+          "branch": "E",
+          "image": 68,
+          "square_remainder": 86,
+          "wrong_parity": false
+        },
+        {
+          "source": 7880,
+          "branch": "E",
+          "image": 88,
+          "square_remainder": 136,
+          "wrong_parity": false
+        },
+        {
+          "source": 13252,
+          "branch": "E",
+          "image": 115,
+          "square_remainder": 27,
+          "wrong_parity": false
+        },
+        {
+          "source": 23696,
+          "branch": "E",
+          "image": 153,
+          "square_remainder": 287,
+          "wrong_parity": false
+        }
+      ],
+      "wrong_parity_sources": [
+        54,
+        68,
+        88,
+        396,
+        560,
+        1233
+      ],
+      "parity_mismatches_at_every_stage": 6,
+      "actual_juggler_cycle": false,
+      "large_minimum_theorem_applies": false,
+      "rank_induction_excluded": false,
+      "stages": [
+        {
+          "a": 5,
+          "b": 2,
+          "A": "OOE",
+          "B": "OE",
+          "retained_bases": [
+            35,
+            43,
+            54,
+            68,
+            88,
+            115,
+            153
+          ],
+          "seam": {
+            "w": 43,
+            "z": 54,
+            "gap": 11
+          },
+          "towers": [
+            {
+              "base_rank": 0,
+              "base": 35,
+              "image_rank": 2,
+              "image": 54,
+              "abstract_word": "O",
+              "word": "OOE",
+              "states": [
+                35,
+                207,
+                2978,
+                54
+              ],
+              "cells": [
+                {
+                  "source": 35,
+                  "branch": "O",
+                  "image": 207,
+                  "square_remainder": 26,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 207,
+                  "branch": "O",
+                  "image": 2978,
+                  "square_remainder": 1259,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 2978,
+                  "branch": "E",
+                  "image": 54,
+                  "square_remainder": 62,
+                  "wrong_parity": false
+                }
+              ]
+            },
+            {
+              "base_rank": 1,
+              "base": 43,
+              "image_rank": 3,
+              "image": 68,
+              "abstract_word": "O",
+              "word": "OOE",
+              "states": [
+                43,
+                281,
+                4710,
+                68
+              ],
+              "cells": [
+                {
+                  "source": 43,
+                  "branch": "O",
+                  "image": 281,
+                  "square_remainder": 546,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 281,
+                  "branch": "O",
+                  "image": 4710,
+                  "square_remainder": 3941,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 4710,
+                  "branch": "E",
+                  "image": 68,
+                  "square_remainder": 86,
+                  "wrong_parity": false
+                }
+              ]
+            },
+            {
+              "base_rank": 2,
+              "base": 54,
+              "image_rank": 4,
+              "image": 88,
+              "abstract_word": "O",
+              "word": "OOE",
+              "states": [
+                54,
+                396,
+                7880,
+                88
+              ],
+              "cells": [
+                {
+                  "source": 54,
+                  "branch": "O",
+                  "image": 396,
+                  "square_remainder": 648,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 396,
+                  "branch": "O",
+                  "image": 7880,
+                  "square_remainder": 4736,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 7880,
+                  "branch": "E",
+                  "image": 88,
+                  "square_remainder": 136,
+                  "wrong_parity": false
+                }
+              ]
+            },
+            {
+              "base_rank": 3,
+              "base": 68,
+              "image_rank": 5,
+              "image": 115,
+              "abstract_word": "O",
+              "word": "OOE",
+              "states": [
+                68,
+                560,
+                13252,
+                115
+              ],
+              "cells": [
+                {
+                  "source": 68,
+                  "branch": "O",
+                  "image": 560,
+                  "square_remainder": 832,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 560,
+                  "branch": "O",
+                  "image": 13252,
+                  "square_remainder": 496,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 13252,
+                  "branch": "E",
+                  "image": 115,
+                  "square_remainder": 27,
+                  "wrong_parity": false
+                }
+              ]
+            },
+            {
+              "base_rank": 4,
+              "base": 88,
+              "image_rank": 6,
+              "image": 153,
+              "abstract_word": "O",
+              "word": "OOE",
+              "states": [
+                88,
+                825,
+                23696,
+                153
+              ],
+              "cells": [
+                {
+                  "source": 88,
+                  "branch": "O",
+                  "image": 825,
+                  "square_remainder": 847,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 825,
+                  "branch": "O",
+                  "image": 23696,
+                  "square_remainder": 15209,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 23696,
+                  "branch": "E",
+                  "image": 153,
+                  "square_remainder": 287,
+                  "wrong_parity": false
+                }
+              ]
+            },
+            {
+              "base_rank": 5,
+              "base": 115,
+              "image_rank": 0,
+              "image": 35,
+              "abstract_word": "E",
+              "word": "OE",
+              "states": [
+                115,
+                1233,
+                35
+              ],
+              "cells": [
+                {
+                  "source": 115,
+                  "branch": "O",
+                  "image": 1233,
+                  "square_remainder": 586,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 1233,
+                  "branch": "E",
+                  "image": 35,
+                  "square_remainder": 8,
+                  "wrong_parity": true
+                }
+              ]
+            },
+            {
+              "base_rank": 6,
+              "base": 153,
+              "image_rank": 1,
+              "image": 43,
+              "abstract_word": "E",
+              "word": "OE",
+              "states": [
+                153,
+                1892,
+                43
+              ],
+              "cells": [
+                {
+                  "source": 153,
+                  "branch": "O",
+                  "image": 1892,
+                  "square_remainder": 1913,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 1892,
+                  "branch": "E",
+                  "image": 43,
+                  "square_remainder": 43,
+                  "wrong_parity": false
+                }
+              ]
+            }
+          ],
+          "original_cells_preserved": 19,
+          "wrong_parity_sources": [
+            54,
+            68,
+            88,
+            396,
+            560,
+            1233
+          ]
+        },
+        {
+          "a": 3,
+          "b": 2,
+          "A": "OOE",
+          "B": "OOEOE",
+          "retained_bases": [
+            35,
+            43,
+            54,
+            68,
+            88
+          ],
+          "seam": {
+            "w": 43,
+            "z": 54,
+            "gap": 11
+          },
+          "towers": [
+            {
+              "base_rank": 0,
+              "base": 35,
+              "image_rank": 2,
+              "image": 54,
+              "abstract_word": "O",
+              "word": "OOE",
+              "states": [
+                35,
+                207,
+                2978,
+                54
+              ],
+              "cells": [
+                {
+                  "source": 35,
+                  "branch": "O",
+                  "image": 207,
+                  "square_remainder": 26,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 207,
+                  "branch": "O",
+                  "image": 2978,
+                  "square_remainder": 1259,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 2978,
+                  "branch": "E",
+                  "image": 54,
+                  "square_remainder": 62,
+                  "wrong_parity": false
+                }
+              ]
+            },
+            {
+              "base_rank": 1,
+              "base": 43,
+              "image_rank": 3,
+              "image": 68,
+              "abstract_word": "O",
+              "word": "OOE",
+              "states": [
+                43,
+                281,
+                4710,
+                68
+              ],
+              "cells": [
+                {
+                  "source": 43,
+                  "branch": "O",
+                  "image": 281,
+                  "square_remainder": 546,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 281,
+                  "branch": "O",
+                  "image": 4710,
+                  "square_remainder": 3941,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 4710,
+                  "branch": "E",
+                  "image": 68,
+                  "square_remainder": 86,
+                  "wrong_parity": false
+                }
+              ]
+            },
+            {
+              "base_rank": 2,
+              "base": 54,
+              "image_rank": 4,
+              "image": 88,
+              "abstract_word": "O",
+              "word": "OOE",
+              "states": [
+                54,
+                396,
+                7880,
+                88
+              ],
+              "cells": [
+                {
+                  "source": 54,
+                  "branch": "O",
+                  "image": 396,
+                  "square_remainder": 648,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 396,
+                  "branch": "O",
+                  "image": 7880,
+                  "square_remainder": 4736,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 7880,
+                  "branch": "E",
+                  "image": 88,
+                  "square_remainder": 136,
+                  "wrong_parity": false
+                }
+              ]
+            },
+            {
+              "base_rank": 3,
+              "base": 68,
+              "image_rank": 0,
+              "image": 35,
+              "abstract_word": "OE",
+              "word": "OOEOE",
+              "states": [
+                68,
+                560,
+                13252,
+                115,
+                1233,
+                35
+              ],
+              "cells": [
+                {
+                  "source": 68,
+                  "branch": "O",
+                  "image": 560,
+                  "square_remainder": 832,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 560,
+                  "branch": "O",
+                  "image": 13252,
+                  "square_remainder": 496,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 13252,
+                  "branch": "E",
+                  "image": 115,
+                  "square_remainder": 27,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 115,
+                  "branch": "O",
+                  "image": 1233,
+                  "square_remainder": 586,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 1233,
+                  "branch": "E",
+                  "image": 35,
+                  "square_remainder": 8,
+                  "wrong_parity": true
+                }
+              ]
+            },
+            {
+              "base_rank": 4,
+              "base": 88,
+              "image_rank": 1,
+              "image": 43,
+              "abstract_word": "OE",
+              "word": "OOEOE",
+              "states": [
+                88,
+                825,
+                23696,
+                153,
+                1892,
+                43
+              ],
+              "cells": [
+                {
+                  "source": 88,
+                  "branch": "O",
+                  "image": 825,
+                  "square_remainder": 847,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 825,
+                  "branch": "O",
+                  "image": 23696,
+                  "square_remainder": 15209,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 23696,
+                  "branch": "E",
+                  "image": 153,
+                  "square_remainder": 287,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 153,
+                  "branch": "O",
+                  "image": 1892,
+                  "square_remainder": 1913,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 1892,
+                  "branch": "E",
+                  "image": 43,
+                  "square_remainder": 43,
+                  "wrong_parity": false
+                }
+              ]
+            }
+          ],
+          "original_cells_preserved": 19,
+          "wrong_parity_sources": [
+            54,
+            68,
+            88,
+            396,
+            560,
+            1233
+          ]
+        },
+        {
+          "a": 1,
+          "b": 2,
+          "A": "OOE",
+          "B": "OOEOOEOE",
+          "retained_bases": [
+            35,
+            43,
+            54
+          ],
+          "seam": {
+            "w": 43,
+            "z": 54,
+            "gap": 11
+          },
+          "towers": [
+            {
+              "base_rank": 0,
+              "base": 35,
+              "image_rank": 2,
+              "image": 54,
+              "abstract_word": "O",
+              "word": "OOE",
+              "states": [
+                35,
+                207,
+                2978,
+                54
+              ],
+              "cells": [
+                {
+                  "source": 35,
+                  "branch": "O",
+                  "image": 207,
+                  "square_remainder": 26,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 207,
+                  "branch": "O",
+                  "image": 2978,
+                  "square_remainder": 1259,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 2978,
+                  "branch": "E",
+                  "image": 54,
+                  "square_remainder": 62,
+                  "wrong_parity": false
+                }
+              ]
+            },
+            {
+              "base_rank": 1,
+              "base": 43,
+              "image_rank": 0,
+              "image": 35,
+              "abstract_word": "OOE",
+              "word": "OOEOOEOE",
+              "states": [
+                43,
+                281,
+                4710,
+                68,
+                560,
+                13252,
+                115,
+                1233,
+                35
+              ],
+              "cells": [
+                {
+                  "source": 43,
+                  "branch": "O",
+                  "image": 281,
+                  "square_remainder": 546,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 281,
+                  "branch": "O",
+                  "image": 4710,
+                  "square_remainder": 3941,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 4710,
+                  "branch": "E",
+                  "image": 68,
+                  "square_remainder": 86,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 68,
+                  "branch": "O",
+                  "image": 560,
+                  "square_remainder": 832,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 560,
+                  "branch": "O",
+                  "image": 13252,
+                  "square_remainder": 496,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 13252,
+                  "branch": "E",
+                  "image": 115,
+                  "square_remainder": 27,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 115,
+                  "branch": "O",
+                  "image": 1233,
+                  "square_remainder": 586,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 1233,
+                  "branch": "E",
+                  "image": 35,
+                  "square_remainder": 8,
+                  "wrong_parity": true
+                }
+              ]
+            },
+            {
+              "base_rank": 2,
+              "base": 54,
+              "image_rank": 1,
+              "image": 43,
+              "abstract_word": "OOE",
+              "word": "OOEOOEOE",
+              "states": [
+                54,
+                396,
+                7880,
+                88,
+                825,
+                23696,
+                153,
+                1892,
+                43
+              ],
+              "cells": [
+                {
+                  "source": 54,
+                  "branch": "O",
+                  "image": 396,
+                  "square_remainder": 648,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 396,
+                  "branch": "O",
+                  "image": 7880,
+                  "square_remainder": 4736,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 7880,
+                  "branch": "E",
+                  "image": 88,
+                  "square_remainder": 136,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 88,
+                  "branch": "O",
+                  "image": 825,
+                  "square_remainder": 847,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 825,
+                  "branch": "O",
+                  "image": 23696,
+                  "square_remainder": 15209,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 23696,
+                  "branch": "E",
+                  "image": 153,
+                  "square_remainder": 287,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 153,
+                  "branch": "O",
+                  "image": 1892,
+                  "square_remainder": 1913,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 1892,
+                  "branch": "E",
+                  "image": 43,
+                  "square_remainder": 43,
+                  "wrong_parity": false
+                }
+              ]
+            }
+          ],
+          "original_cells_preserved": 19,
+          "wrong_parity_sources": [
+            54,
+            68,
+            88,
+            396,
+            560,
+            1233
+          ]
+        },
+        {
+          "a": 1,
+          "b": 1,
+          "A": "OOEOOEOOEOE",
+          "B": "OOEOOEOE",
+          "retained_bases": [
+            35,
+            43
+          ],
+          "seam": {
+            "w": 35,
+            "z": 43,
+            "gap": 8
+          },
+          "towers": [
+            {
+              "base_rank": 0,
+              "base": 35,
+              "image_rank": 1,
+              "image": 43,
+              "abstract_word": "OOOE",
+              "word": "OOEOOEOOEOE",
+              "states": [
+                35,
+                207,
+                2978,
+                54,
+                396,
+                7880,
+                88,
+                825,
+                23696,
+                153,
+                1892,
+                43
+              ],
+              "cells": [
+                {
+                  "source": 35,
+                  "branch": "O",
+                  "image": 207,
+                  "square_remainder": 26,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 207,
+                  "branch": "O",
+                  "image": 2978,
+                  "square_remainder": 1259,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 2978,
+                  "branch": "E",
+                  "image": 54,
+                  "square_remainder": 62,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 54,
+                  "branch": "O",
+                  "image": 396,
+                  "square_remainder": 648,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 396,
+                  "branch": "O",
+                  "image": 7880,
+                  "square_remainder": 4736,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 7880,
+                  "branch": "E",
+                  "image": 88,
+                  "square_remainder": 136,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 88,
+                  "branch": "O",
+                  "image": 825,
+                  "square_remainder": 847,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 825,
+                  "branch": "O",
+                  "image": 23696,
+                  "square_remainder": 15209,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 23696,
+                  "branch": "E",
+                  "image": 153,
+                  "square_remainder": 287,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 153,
+                  "branch": "O",
+                  "image": 1892,
+                  "square_remainder": 1913,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 1892,
+                  "branch": "E",
+                  "image": 43,
+                  "square_remainder": 43,
+                  "wrong_parity": false
+                }
+              ]
+            },
+            {
+              "base_rank": 1,
+              "base": 43,
+              "image_rank": 0,
+              "image": 35,
+              "abstract_word": "OOE",
+              "word": "OOEOOEOE",
+              "states": [
+                43,
+                281,
+                4710,
+                68,
+                560,
+                13252,
+                115,
+                1233,
+                35
+              ],
+              "cells": [
+                {
+                  "source": 43,
+                  "branch": "O",
+                  "image": 281,
+                  "square_remainder": 546,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 281,
+                  "branch": "O",
+                  "image": 4710,
+                  "square_remainder": 3941,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 4710,
+                  "branch": "E",
+                  "image": 68,
+                  "square_remainder": 86,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 68,
+                  "branch": "O",
+                  "image": 560,
+                  "square_remainder": 832,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 560,
+                  "branch": "O",
+                  "image": 13252,
+                  "square_remainder": 496,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 13252,
+                  "branch": "E",
+                  "image": 115,
+                  "square_remainder": 27,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 115,
+                  "branch": "O",
+                  "image": 1233,
+                  "square_remainder": 586,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 1233,
+                  "branch": "E",
+                  "image": 35,
+                  "square_remainder": 8,
+                  "wrong_parity": true
+                }
+              ]
+            }
+          ],
+          "original_cells_preserved": 19,
+          "wrong_parity_sources": [
+            54,
+            68,
+            88,
+            396,
+            560,
+            1233
+          ]
+        },
+        {
+          "a": 0,
+          "b": 1,
+          "A": "OOEOOEOOEOE",
+          "B": "OOEOOEOOEOEOOEOOEOE",
+          "retained_bases": [
+            35
+          ],
+          "seam": null,
+          "towers": [
+            {
+              "base_rank": 0,
+              "base": 35,
+              "image_rank": 0,
+              "image": 35,
+              "abstract_word": "OOOEOOE",
+              "word": "OOEOOEOOEOEOOEOOEOE",
+              "states": [
+                35,
+                207,
+                2978,
+                54,
+                396,
+                7880,
+                88,
+                825,
+                23696,
+                153,
+                1892,
+                43,
+                281,
+                4710,
+                68,
+                560,
+                13252,
+                115,
+                1233,
+                35
+              ],
+              "cells": [
+                {
+                  "source": 35,
+                  "branch": "O",
+                  "image": 207,
+                  "square_remainder": 26,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 207,
+                  "branch": "O",
+                  "image": 2978,
+                  "square_remainder": 1259,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 2978,
+                  "branch": "E",
+                  "image": 54,
+                  "square_remainder": 62,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 54,
+                  "branch": "O",
+                  "image": 396,
+                  "square_remainder": 648,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 396,
+                  "branch": "O",
+                  "image": 7880,
+                  "square_remainder": 4736,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 7880,
+                  "branch": "E",
+                  "image": 88,
+                  "square_remainder": 136,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 88,
+                  "branch": "O",
+                  "image": 825,
+                  "square_remainder": 847,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 825,
+                  "branch": "O",
+                  "image": 23696,
+                  "square_remainder": 15209,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 23696,
+                  "branch": "E",
+                  "image": 153,
+                  "square_remainder": 287,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 153,
+                  "branch": "O",
+                  "image": 1892,
+                  "square_remainder": 1913,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 1892,
+                  "branch": "E",
+                  "image": 43,
+                  "square_remainder": 43,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 43,
+                  "branch": "O",
+                  "image": 281,
+                  "square_remainder": 546,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 281,
+                  "branch": "O",
+                  "image": 4710,
+                  "square_remainder": 3941,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 4710,
+                  "branch": "E",
+                  "image": 68,
+                  "square_remainder": 86,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 68,
+                  "branch": "O",
+                  "image": 560,
+                  "square_remainder": 832,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 560,
+                  "branch": "O",
+                  "image": 13252,
+                  "square_remainder": 496,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 13252,
+                  "branch": "E",
+                  "image": 115,
+                  "square_remainder": 27,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 115,
+                  "branch": "O",
+                  "image": 1233,
+                  "square_remainder": 586,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 1233,
+                  "branch": "E",
+                  "image": 35,
+                  "square_remainder": 8,
+                  "wrong_parity": true
+                }
+              ]
+            }
+          ],
+          "original_cells_preserved": 19,
+          "wrong_parity_sources": [
+            54,
+            68,
+            88,
+            396,
+            560,
+            1233
+          ]
+        }
+      ],
+      "transitions": [
+        {
+          "direction": "left",
+          "old_seam": {
+            "w": 43,
+            "z": 54,
+            "gap": 11
+          },
+          "new_seam": {
+            "w": 43,
+            "z": 54,
+            "gap": 11
+          },
+          "same_two_values": true
+        },
+        {
+          "direction": "left",
+          "old_seam": {
+            "w": 43,
+            "z": 54,
+            "gap": 11
+          },
+          "new_seam": {
+            "w": 43,
+            "z": 54,
+            "gap": 11
+          },
+          "same_two_values": true
+        },
+        {
+          "direction": "right",
+          "old_seam": {
+            "w": 43,
+            "z": 54,
+            "gap": 11
+          },
+          "new_seam": {
+            "w": 35,
+            "z": 43,
+            "gap": 8
+          },
+          "transfer_word": "OOEOOEOE",
+          "adjacent_intermediate_pairs": [
+            [
+              43,
+              54
+            ],
+            [
+              281,
+              396
+            ],
+            [
+              4710,
+              7880
+            ],
+            [
+              68,
+              88
+            ],
+            [
+              560,
+              825
+            ],
+            [
+              13252,
+              23696
+            ],
+            [
+              115,
+              153
+            ],
+            [
+              1233,
+              1892
+            ],
+            [
+              35,
+              43
+            ]
+          ]
+        },
+        {
+          "direction": "terminal",
+          "old_seam": {
+            "w": 35,
+            "z": 43,
+            "gap": 8
+          },
+          "new_seam": null,
+          "upper_seam_point_removed": true,
+          "extra_seam_transfer": false
+        }
+      ],
+      "terminal_extra_seam_edge": false
+    },
+    {
+      "threshold": 29,
+      "normalized_threshold": 31,
+      "minimum": 31,
+      "maximum": 17032,
+      "period": 19,
+      "retained_bases": [
+        31,
+        38,
+        47,
+        59,
+        76,
+        98,
+        130
+      ],
+      "OOE_count": 5,
+      "OE_count": 2,
+      "original_cells": [
+        {
+          "source": 31,
+          "branch": "O",
+          "image": 172,
+          "square_remainder": 207,
+          "wrong_parity": false
+        },
+        {
+          "source": 38,
+          "branch": "O",
+          "image": 234,
+          "square_remainder": 116,
+          "wrong_parity": true
+        },
+        {
+          "source": 47,
+          "branch": "O",
+          "image": 322,
+          "square_remainder": 139,
+          "wrong_parity": false
+        },
+        {
+          "source": 59,
+          "branch": "O",
+          "image": 453,
+          "square_remainder": 170,
+          "wrong_parity": false
+        },
+        {
+          "source": 76,
+          "branch": "O",
+          "image": 662,
+          "square_remainder": 732,
+          "wrong_parity": true
+        },
+        {
+          "source": 98,
+          "branch": "O",
+          "image": 970,
+          "square_remainder": 292,
+          "wrong_parity": true
+        },
+        {
+          "source": 130,
+          "branch": "O",
+          "image": 1482,
+          "square_remainder": 676,
+          "wrong_parity": true
+        },
+        {
+          "source": 172,
+          "branch": "O",
+          "image": 2255,
+          "square_remainder": 3423,
+          "wrong_parity": true
+        },
+        {
+          "source": 234,
+          "branch": "O",
+          "image": 3579,
+          "square_remainder": 3663,
+          "wrong_parity": true
+        },
+        {
+          "source": 322,
+          "branch": "O",
+          "image": 5778,
+          "square_remainder": 964,
+          "wrong_parity": true
+        },
+        {
+          "source": 453,
+          "branch": "O",
+          "image": 9641,
+          "square_remainder": 10796,
+          "wrong_parity": false
+        },
+        {
+          "source": 662,
+          "branch": "O",
+          "image": 17032,
+          "square_remainder": 28504,
+          "wrong_parity": true
+        },
+        {
+          "source": 970,
+          "branch": "E",
+          "image": 31,
+          "square_remainder": 9,
+          "wrong_parity": false
+        },
+        {
+          "source": 1482,
+          "branch": "E",
+          "image": 38,
+          "square_remainder": 38,
+          "wrong_parity": false
+        },
+        {
+          "source": 2255,
+          "branch": "E",
+          "image": 47,
+          "square_remainder": 46,
+          "wrong_parity": true
+        },
+        {
+          "source": 3579,
+          "branch": "E",
+          "image": 59,
+          "square_remainder": 98,
+          "wrong_parity": true
+        },
+        {
+          "source": 5778,
+          "branch": "E",
+          "image": 76,
+          "square_remainder": 2,
+          "wrong_parity": false
+        },
+        {
+          "source": 9641,
+          "branch": "E",
+          "image": 98,
+          "square_remainder": 37,
+          "wrong_parity": true
+        },
+        {
+          "source": 17032,
+          "branch": "E",
+          "image": 130,
+          "square_remainder": 132,
+          "wrong_parity": false
+        }
+      ],
+      "wrong_parity_sources": [
+        38,
+        76,
+        98,
+        130,
+        172,
+        234,
+        322,
+        662,
+        2255,
+        3579,
+        9641
+      ],
+      "parity_mismatches_at_every_stage": 11,
+      "actual_juggler_cycle": false,
+      "large_minimum_theorem_applies": false,
+      "rank_induction_excluded": false,
+      "stages": [
+        {
+          "a": 5,
+          "b": 2,
+          "A": "OOE",
+          "B": "OE",
+          "retained_bases": [
+            31,
+            38,
+            47,
+            59,
+            76,
+            98,
+            130
+          ],
+          "seam": {
+            "w": 38,
+            "z": 47,
+            "gap": 9
+          },
+          "towers": [
+            {
+              "base_rank": 0,
+              "base": 31,
+              "image_rank": 2,
+              "image": 47,
+              "abstract_word": "O",
+              "word": "OOE",
+              "states": [
+                31,
+                172,
+                2255,
+                47
+              ],
+              "cells": [
+                {
+                  "source": 31,
+                  "branch": "O",
+                  "image": 172,
+                  "square_remainder": 207,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 172,
+                  "branch": "O",
+                  "image": 2255,
+                  "square_remainder": 3423,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 2255,
+                  "branch": "E",
+                  "image": 47,
+                  "square_remainder": 46,
+                  "wrong_parity": true
+                }
+              ]
+            },
+            {
+              "base_rank": 1,
+              "base": 38,
+              "image_rank": 3,
+              "image": 59,
+              "abstract_word": "O",
+              "word": "OOE",
+              "states": [
+                38,
+                234,
+                3579,
+                59
+              ],
+              "cells": [
+                {
+                  "source": 38,
+                  "branch": "O",
+                  "image": 234,
+                  "square_remainder": 116,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 234,
+                  "branch": "O",
+                  "image": 3579,
+                  "square_remainder": 3663,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 3579,
+                  "branch": "E",
+                  "image": 59,
+                  "square_remainder": 98,
+                  "wrong_parity": true
+                }
+              ]
+            },
+            {
+              "base_rank": 2,
+              "base": 47,
+              "image_rank": 4,
+              "image": 76,
+              "abstract_word": "O",
+              "word": "OOE",
+              "states": [
+                47,
+                322,
+                5778,
+                76
+              ],
+              "cells": [
+                {
+                  "source": 47,
+                  "branch": "O",
+                  "image": 322,
+                  "square_remainder": 139,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 322,
+                  "branch": "O",
+                  "image": 5778,
+                  "square_remainder": 964,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 5778,
+                  "branch": "E",
+                  "image": 76,
+                  "square_remainder": 2,
+                  "wrong_parity": false
+                }
+              ]
+            },
+            {
+              "base_rank": 3,
+              "base": 59,
+              "image_rank": 5,
+              "image": 98,
+              "abstract_word": "O",
+              "word": "OOE",
+              "states": [
+                59,
+                453,
+                9641,
+                98
+              ],
+              "cells": [
+                {
+                  "source": 59,
+                  "branch": "O",
+                  "image": 453,
+                  "square_remainder": 170,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 453,
+                  "branch": "O",
+                  "image": 9641,
+                  "square_remainder": 10796,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 9641,
+                  "branch": "E",
+                  "image": 98,
+                  "square_remainder": 37,
+                  "wrong_parity": true
+                }
+              ]
+            },
+            {
+              "base_rank": 4,
+              "base": 76,
+              "image_rank": 6,
+              "image": 130,
+              "abstract_word": "O",
+              "word": "OOE",
+              "states": [
+                76,
+                662,
+                17032,
+                130
+              ],
+              "cells": [
+                {
+                  "source": 76,
+                  "branch": "O",
+                  "image": 662,
+                  "square_remainder": 732,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 662,
+                  "branch": "O",
+                  "image": 17032,
+                  "square_remainder": 28504,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 17032,
+                  "branch": "E",
+                  "image": 130,
+                  "square_remainder": 132,
+                  "wrong_parity": false
+                }
+              ]
+            },
+            {
+              "base_rank": 5,
+              "base": 98,
+              "image_rank": 0,
+              "image": 31,
+              "abstract_word": "E",
+              "word": "OE",
+              "states": [
+                98,
+                970,
+                31
+              ],
+              "cells": [
+                {
+                  "source": 98,
+                  "branch": "O",
+                  "image": 970,
+                  "square_remainder": 292,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 970,
+                  "branch": "E",
+                  "image": 31,
+                  "square_remainder": 9,
+                  "wrong_parity": false
+                }
+              ]
+            },
+            {
+              "base_rank": 6,
+              "base": 130,
+              "image_rank": 1,
+              "image": 38,
+              "abstract_word": "E",
+              "word": "OE",
+              "states": [
+                130,
+                1482,
+                38
+              ],
+              "cells": [
+                {
+                  "source": 130,
+                  "branch": "O",
+                  "image": 1482,
+                  "square_remainder": 676,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 1482,
+                  "branch": "E",
+                  "image": 38,
+                  "square_remainder": 38,
+                  "wrong_parity": false
+                }
+              ]
+            }
+          ],
+          "original_cells_preserved": 19,
+          "wrong_parity_sources": [
+            38,
+            76,
+            98,
+            130,
+            172,
+            234,
+            322,
+            662,
+            2255,
+            3579,
+            9641
+          ]
+        },
+        {
+          "a": 3,
+          "b": 2,
+          "A": "OOE",
+          "B": "OOEOE",
+          "retained_bases": [
+            31,
+            38,
+            47,
+            59,
+            76
+          ],
+          "seam": {
+            "w": 38,
+            "z": 47,
+            "gap": 9
+          },
+          "towers": [
+            {
+              "base_rank": 0,
+              "base": 31,
+              "image_rank": 2,
+              "image": 47,
+              "abstract_word": "O",
+              "word": "OOE",
+              "states": [
+                31,
+                172,
+                2255,
+                47
+              ],
+              "cells": [
+                {
+                  "source": 31,
+                  "branch": "O",
+                  "image": 172,
+                  "square_remainder": 207,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 172,
+                  "branch": "O",
+                  "image": 2255,
+                  "square_remainder": 3423,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 2255,
+                  "branch": "E",
+                  "image": 47,
+                  "square_remainder": 46,
+                  "wrong_parity": true
+                }
+              ]
+            },
+            {
+              "base_rank": 1,
+              "base": 38,
+              "image_rank": 3,
+              "image": 59,
+              "abstract_word": "O",
+              "word": "OOE",
+              "states": [
+                38,
+                234,
+                3579,
+                59
+              ],
+              "cells": [
+                {
+                  "source": 38,
+                  "branch": "O",
+                  "image": 234,
+                  "square_remainder": 116,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 234,
+                  "branch": "O",
+                  "image": 3579,
+                  "square_remainder": 3663,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 3579,
+                  "branch": "E",
+                  "image": 59,
+                  "square_remainder": 98,
+                  "wrong_parity": true
+                }
+              ]
+            },
+            {
+              "base_rank": 2,
+              "base": 47,
+              "image_rank": 4,
+              "image": 76,
+              "abstract_word": "O",
+              "word": "OOE",
+              "states": [
+                47,
+                322,
+                5778,
+                76
+              ],
+              "cells": [
+                {
+                  "source": 47,
+                  "branch": "O",
+                  "image": 322,
+                  "square_remainder": 139,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 322,
+                  "branch": "O",
+                  "image": 5778,
+                  "square_remainder": 964,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 5778,
+                  "branch": "E",
+                  "image": 76,
+                  "square_remainder": 2,
+                  "wrong_parity": false
+                }
+              ]
+            },
+            {
+              "base_rank": 3,
+              "base": 59,
+              "image_rank": 0,
+              "image": 31,
+              "abstract_word": "OE",
+              "word": "OOEOE",
+              "states": [
+                59,
+                453,
+                9641,
+                98,
+                970,
+                31
+              ],
+              "cells": [
+                {
+                  "source": 59,
+                  "branch": "O",
+                  "image": 453,
+                  "square_remainder": 170,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 453,
+                  "branch": "O",
+                  "image": 9641,
+                  "square_remainder": 10796,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 9641,
+                  "branch": "E",
+                  "image": 98,
+                  "square_remainder": 37,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 98,
+                  "branch": "O",
+                  "image": 970,
+                  "square_remainder": 292,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 970,
+                  "branch": "E",
+                  "image": 31,
+                  "square_remainder": 9,
+                  "wrong_parity": false
+                }
+              ]
+            },
+            {
+              "base_rank": 4,
+              "base": 76,
+              "image_rank": 1,
+              "image": 38,
+              "abstract_word": "OE",
+              "word": "OOEOE",
+              "states": [
+                76,
+                662,
+                17032,
+                130,
+                1482,
+                38
+              ],
+              "cells": [
+                {
+                  "source": 76,
+                  "branch": "O",
+                  "image": 662,
+                  "square_remainder": 732,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 662,
+                  "branch": "O",
+                  "image": 17032,
+                  "square_remainder": 28504,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 17032,
+                  "branch": "E",
+                  "image": 130,
+                  "square_remainder": 132,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 130,
+                  "branch": "O",
+                  "image": 1482,
+                  "square_remainder": 676,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 1482,
+                  "branch": "E",
+                  "image": 38,
+                  "square_remainder": 38,
+                  "wrong_parity": false
+                }
+              ]
+            }
+          ],
+          "original_cells_preserved": 19,
+          "wrong_parity_sources": [
+            38,
+            76,
+            98,
+            130,
+            172,
+            234,
+            322,
+            662,
+            2255,
+            3579,
+            9641
+          ]
+        },
+        {
+          "a": 1,
+          "b": 2,
+          "A": "OOE",
+          "B": "OOEOOEOE",
+          "retained_bases": [
+            31,
+            38,
+            47
+          ],
+          "seam": {
+            "w": 38,
+            "z": 47,
+            "gap": 9
+          },
+          "towers": [
+            {
+              "base_rank": 0,
+              "base": 31,
+              "image_rank": 2,
+              "image": 47,
+              "abstract_word": "O",
+              "word": "OOE",
+              "states": [
+                31,
+                172,
+                2255,
+                47
+              ],
+              "cells": [
+                {
+                  "source": 31,
+                  "branch": "O",
+                  "image": 172,
+                  "square_remainder": 207,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 172,
+                  "branch": "O",
+                  "image": 2255,
+                  "square_remainder": 3423,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 2255,
+                  "branch": "E",
+                  "image": 47,
+                  "square_remainder": 46,
+                  "wrong_parity": true
+                }
+              ]
+            },
+            {
+              "base_rank": 1,
+              "base": 38,
+              "image_rank": 0,
+              "image": 31,
+              "abstract_word": "OOE",
+              "word": "OOEOOEOE",
+              "states": [
+                38,
+                234,
+                3579,
+                59,
+                453,
+                9641,
+                98,
+                970,
+                31
+              ],
+              "cells": [
+                {
+                  "source": 38,
+                  "branch": "O",
+                  "image": 234,
+                  "square_remainder": 116,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 234,
+                  "branch": "O",
+                  "image": 3579,
+                  "square_remainder": 3663,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 3579,
+                  "branch": "E",
+                  "image": 59,
+                  "square_remainder": 98,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 59,
+                  "branch": "O",
+                  "image": 453,
+                  "square_remainder": 170,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 453,
+                  "branch": "O",
+                  "image": 9641,
+                  "square_remainder": 10796,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 9641,
+                  "branch": "E",
+                  "image": 98,
+                  "square_remainder": 37,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 98,
+                  "branch": "O",
+                  "image": 970,
+                  "square_remainder": 292,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 970,
+                  "branch": "E",
+                  "image": 31,
+                  "square_remainder": 9,
+                  "wrong_parity": false
+                }
+              ]
+            },
+            {
+              "base_rank": 2,
+              "base": 47,
+              "image_rank": 1,
+              "image": 38,
+              "abstract_word": "OOE",
+              "word": "OOEOOEOE",
+              "states": [
+                47,
+                322,
+                5778,
+                76,
+                662,
+                17032,
+                130,
+                1482,
+                38
+              ],
+              "cells": [
+                {
+                  "source": 47,
+                  "branch": "O",
+                  "image": 322,
+                  "square_remainder": 139,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 322,
+                  "branch": "O",
+                  "image": 5778,
+                  "square_remainder": 964,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 5778,
+                  "branch": "E",
+                  "image": 76,
+                  "square_remainder": 2,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 76,
+                  "branch": "O",
+                  "image": 662,
+                  "square_remainder": 732,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 662,
+                  "branch": "O",
+                  "image": 17032,
+                  "square_remainder": 28504,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 17032,
+                  "branch": "E",
+                  "image": 130,
+                  "square_remainder": 132,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 130,
+                  "branch": "O",
+                  "image": 1482,
+                  "square_remainder": 676,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 1482,
+                  "branch": "E",
+                  "image": 38,
+                  "square_remainder": 38,
+                  "wrong_parity": false
+                }
+              ]
+            }
+          ],
+          "original_cells_preserved": 19,
+          "wrong_parity_sources": [
+            38,
+            76,
+            98,
+            130,
+            172,
+            234,
+            322,
+            662,
+            2255,
+            3579,
+            9641
+          ]
+        },
+        {
+          "a": 1,
+          "b": 1,
+          "A": "OOEOOEOOEOE",
+          "B": "OOEOOEOE",
+          "retained_bases": [
+            31,
+            38
+          ],
+          "seam": {
+            "w": 31,
+            "z": 38,
+            "gap": 7
+          },
+          "towers": [
+            {
+              "base_rank": 0,
+              "base": 31,
+              "image_rank": 1,
+              "image": 38,
+              "abstract_word": "OOOE",
+              "word": "OOEOOEOOEOE",
+              "states": [
+                31,
+                172,
+                2255,
+                47,
+                322,
+                5778,
+                76,
+                662,
+                17032,
+                130,
+                1482,
+                38
+              ],
+              "cells": [
+                {
+                  "source": 31,
+                  "branch": "O",
+                  "image": 172,
+                  "square_remainder": 207,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 172,
+                  "branch": "O",
+                  "image": 2255,
+                  "square_remainder": 3423,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 2255,
+                  "branch": "E",
+                  "image": 47,
+                  "square_remainder": 46,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 47,
+                  "branch": "O",
+                  "image": 322,
+                  "square_remainder": 139,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 322,
+                  "branch": "O",
+                  "image": 5778,
+                  "square_remainder": 964,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 5778,
+                  "branch": "E",
+                  "image": 76,
+                  "square_remainder": 2,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 76,
+                  "branch": "O",
+                  "image": 662,
+                  "square_remainder": 732,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 662,
+                  "branch": "O",
+                  "image": 17032,
+                  "square_remainder": 28504,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 17032,
+                  "branch": "E",
+                  "image": 130,
+                  "square_remainder": 132,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 130,
+                  "branch": "O",
+                  "image": 1482,
+                  "square_remainder": 676,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 1482,
+                  "branch": "E",
+                  "image": 38,
+                  "square_remainder": 38,
+                  "wrong_parity": false
+                }
+              ]
+            },
+            {
+              "base_rank": 1,
+              "base": 38,
+              "image_rank": 0,
+              "image": 31,
+              "abstract_word": "OOE",
+              "word": "OOEOOEOE",
+              "states": [
+                38,
+                234,
+                3579,
+                59,
+                453,
+                9641,
+                98,
+                970,
+                31
+              ],
+              "cells": [
+                {
+                  "source": 38,
+                  "branch": "O",
+                  "image": 234,
+                  "square_remainder": 116,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 234,
+                  "branch": "O",
+                  "image": 3579,
+                  "square_remainder": 3663,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 3579,
+                  "branch": "E",
+                  "image": 59,
+                  "square_remainder": 98,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 59,
+                  "branch": "O",
+                  "image": 453,
+                  "square_remainder": 170,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 453,
+                  "branch": "O",
+                  "image": 9641,
+                  "square_remainder": 10796,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 9641,
+                  "branch": "E",
+                  "image": 98,
+                  "square_remainder": 37,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 98,
+                  "branch": "O",
+                  "image": 970,
+                  "square_remainder": 292,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 970,
+                  "branch": "E",
+                  "image": 31,
+                  "square_remainder": 9,
+                  "wrong_parity": false
+                }
+              ]
+            }
+          ],
+          "original_cells_preserved": 19,
+          "wrong_parity_sources": [
+            38,
+            76,
+            98,
+            130,
+            172,
+            234,
+            322,
+            662,
+            2255,
+            3579,
+            9641
+          ]
+        },
+        {
+          "a": 0,
+          "b": 1,
+          "A": "OOEOOEOOEOE",
+          "B": "OOEOOEOOEOEOOEOOEOE",
+          "retained_bases": [
+            31
+          ],
+          "seam": null,
+          "towers": [
+            {
+              "base_rank": 0,
+              "base": 31,
+              "image_rank": 0,
+              "image": 31,
+              "abstract_word": "OOOEOOE",
+              "word": "OOEOOEOOEOEOOEOOEOE",
+              "states": [
+                31,
+                172,
+                2255,
+                47,
+                322,
+                5778,
+                76,
+                662,
+                17032,
+                130,
+                1482,
+                38,
+                234,
+                3579,
+                59,
+                453,
+                9641,
+                98,
+                970,
+                31
+              ],
+              "cells": [
+                {
+                  "source": 31,
+                  "branch": "O",
+                  "image": 172,
+                  "square_remainder": 207,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 172,
+                  "branch": "O",
+                  "image": 2255,
+                  "square_remainder": 3423,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 2255,
+                  "branch": "E",
+                  "image": 47,
+                  "square_remainder": 46,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 47,
+                  "branch": "O",
+                  "image": 322,
+                  "square_remainder": 139,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 322,
+                  "branch": "O",
+                  "image": 5778,
+                  "square_remainder": 964,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 5778,
+                  "branch": "E",
+                  "image": 76,
+                  "square_remainder": 2,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 76,
+                  "branch": "O",
+                  "image": 662,
+                  "square_remainder": 732,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 662,
+                  "branch": "O",
+                  "image": 17032,
+                  "square_remainder": 28504,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 17032,
+                  "branch": "E",
+                  "image": 130,
+                  "square_remainder": 132,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 130,
+                  "branch": "O",
+                  "image": 1482,
+                  "square_remainder": 676,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 1482,
+                  "branch": "E",
+                  "image": 38,
+                  "square_remainder": 38,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 38,
+                  "branch": "O",
+                  "image": 234,
+                  "square_remainder": 116,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 234,
+                  "branch": "O",
+                  "image": 3579,
+                  "square_remainder": 3663,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 3579,
+                  "branch": "E",
+                  "image": 59,
+                  "square_remainder": 98,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 59,
+                  "branch": "O",
+                  "image": 453,
+                  "square_remainder": 170,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 453,
+                  "branch": "O",
+                  "image": 9641,
+                  "square_remainder": 10796,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 9641,
+                  "branch": "E",
+                  "image": 98,
+                  "square_remainder": 37,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 98,
+                  "branch": "O",
+                  "image": 970,
+                  "square_remainder": 292,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 970,
+                  "branch": "E",
+                  "image": 31,
+                  "square_remainder": 9,
+                  "wrong_parity": false
+                }
+              ]
+            }
+          ],
+          "original_cells_preserved": 19,
+          "wrong_parity_sources": [
+            38,
+            76,
+            98,
+            130,
+            172,
+            234,
+            322,
+            662,
+            2255,
+            3579,
+            9641
+          ]
+        }
+      ],
+      "transitions": [
+        {
+          "direction": "left",
+          "old_seam": {
+            "w": 38,
+            "z": 47,
+            "gap": 9
+          },
+          "new_seam": {
+            "w": 38,
+            "z": 47,
+            "gap": 9
+          },
+          "same_two_values": true
+        },
+        {
+          "direction": "left",
+          "old_seam": {
+            "w": 38,
+            "z": 47,
+            "gap": 9
+          },
+          "new_seam": {
+            "w": 38,
+            "z": 47,
+            "gap": 9
+          },
+          "same_two_values": true
+        },
+        {
+          "direction": "right",
+          "old_seam": {
+            "w": 38,
+            "z": 47,
+            "gap": 9
+          },
+          "new_seam": {
+            "w": 31,
+            "z": 38,
+            "gap": 7
+          },
+          "transfer_word": "OOEOOEOE",
+          "adjacent_intermediate_pairs": [
+            [
+              38,
+              47
+            ],
+            [
+              234,
+              322
+            ],
+            [
+              3579,
+              5778
+            ],
+            [
+              59,
+              76
+            ],
+            [
+              453,
+              662
+            ],
+            [
+              9641,
+              17032
+            ],
+            [
+              98,
+              130
+            ],
+            [
+              970,
+              1482
+            ],
+            [
+              31,
+              38
+            ]
+          ]
+        },
+        {
+          "direction": "terminal",
+          "old_seam": {
+            "w": 31,
+            "z": 38,
+            "gap": 7
+          },
+          "new_seam": null,
+          "upper_seam_point_removed": true,
+          "extra_seam_transfer": false
+        }
+      ],
+      "terminal_extra_seam_edge": false
+    },
+    {
+      "threshold": 29,
+      "normalized_threshold": 34,
+      "minimum": 34,
+      "maximum": 21910,
+      "period": 19,
+      "retained_bases": [
+        34,
+        42,
+        52,
+        66,
+        85,
+        111,
+        148
+      ],
+      "OOE_count": 5,
+      "OE_count": 2,
+      "original_cells": [
+        {
+          "source": 34,
+          "branch": "O",
+          "image": 198,
+          "square_remainder": 100,
+          "wrong_parity": true
+        },
+        {
+          "source": 42,
+          "branch": "O",
+          "image": 272,
+          "square_remainder": 104,
+          "wrong_parity": true
+        },
+        {
+          "source": 52,
+          "branch": "O",
+          "image": 374,
+          "square_remainder": 732,
+          "wrong_parity": true
+        },
+        {
+          "source": 66,
+          "branch": "O",
+          "image": 536,
+          "square_remainder": 200,
+          "wrong_parity": true
+        },
+        {
+          "source": 85,
+          "branch": "O",
+          "image": 783,
+          "square_remainder": 1036,
+          "wrong_parity": false
+        },
+        {
+          "source": 111,
+          "branch": "O",
+          "image": 1169,
+          "square_remainder": 1070,
+          "wrong_parity": false
+        },
+        {
+          "source": 148,
+          "branch": "O",
+          "image": 1800,
+          "square_remainder": 1792,
+          "wrong_parity": true
+        },
+        {
+          "source": 198,
+          "branch": "O",
+          "image": 2786,
+          "square_remainder": 596,
+          "wrong_parity": true
+        },
+        {
+          "source": 272,
+          "branch": "O",
+          "image": 4485,
+          "square_remainder": 8423,
+          "wrong_parity": true
+        },
+        {
+          "source": 374,
+          "branch": "O",
+          "image": 7232,
+          "square_remainder": 11800,
+          "wrong_parity": true
+        },
+        {
+          "source": 536,
+          "branch": "O",
+          "image": 12409,
+          "square_remainder": 7375,
+          "wrong_parity": true
+        },
+        {
+          "source": 783,
+          "branch": "O",
+          "image": 21910,
+          "square_remainder": 587,
+          "wrong_parity": false
+        },
+        {
+          "source": 1169,
+          "branch": "E",
+          "image": 34,
+          "square_remainder": 13,
+          "wrong_parity": true
+        },
+        {
+          "source": 1800,
+          "branch": "E",
+          "image": 42,
+          "square_remainder": 36,
+          "wrong_parity": false
+        },
+        {
+          "source": 2786,
+          "branch": "E",
+          "image": 52,
+          "square_remainder": 82,
+          "wrong_parity": false
+        },
+        {
+          "source": 4485,
+          "branch": "E",
+          "image": 66,
+          "square_remainder": 129,
+          "wrong_parity": true
+        },
+        {
+          "source": 7232,
+          "branch": "E",
+          "image": 85,
+          "square_remainder": 7,
+          "wrong_parity": false
+        },
+        {
+          "source": 12409,
+          "branch": "E",
+          "image": 111,
+          "square_remainder": 88,
+          "wrong_parity": true
+        },
+        {
+          "source": 21910,
+          "branch": "E",
+          "image": 148,
+          "square_remainder": 6,
+          "wrong_parity": false
+        }
+      ],
+      "wrong_parity_sources": [
+        34,
+        42,
+        52,
+        66,
+        148,
+        198,
+        272,
+        374,
+        536,
+        1169,
+        4485,
+        12409
+      ],
+      "parity_mismatches_at_every_stage": 12,
+      "actual_juggler_cycle": false,
+      "large_minimum_theorem_applies": false,
+      "rank_induction_excluded": false,
+      "stages": [
+        {
+          "a": 5,
+          "b": 2,
+          "A": "OOE",
+          "B": "OE",
+          "retained_bases": [
+            34,
+            42,
+            52,
+            66,
+            85,
+            111,
+            148
+          ],
+          "seam": {
+            "w": 42,
+            "z": 52,
+            "gap": 10
+          },
+          "towers": [
+            {
+              "base_rank": 0,
+              "base": 34,
+              "image_rank": 2,
+              "image": 52,
+              "abstract_word": "O",
+              "word": "OOE",
+              "states": [
+                34,
+                198,
+                2786,
+                52
+              ],
+              "cells": [
+                {
+                  "source": 34,
+                  "branch": "O",
+                  "image": 198,
+                  "square_remainder": 100,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 198,
+                  "branch": "O",
+                  "image": 2786,
+                  "square_remainder": 596,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 2786,
+                  "branch": "E",
+                  "image": 52,
+                  "square_remainder": 82,
+                  "wrong_parity": false
+                }
+              ]
+            },
+            {
+              "base_rank": 1,
+              "base": 42,
+              "image_rank": 3,
+              "image": 66,
+              "abstract_word": "O",
+              "word": "OOE",
+              "states": [
+                42,
+                272,
+                4485,
+                66
+              ],
+              "cells": [
+                {
+                  "source": 42,
+                  "branch": "O",
+                  "image": 272,
+                  "square_remainder": 104,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 272,
+                  "branch": "O",
+                  "image": 4485,
+                  "square_remainder": 8423,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 4485,
+                  "branch": "E",
+                  "image": 66,
+                  "square_remainder": 129,
+                  "wrong_parity": true
+                }
+              ]
+            },
+            {
+              "base_rank": 2,
+              "base": 52,
+              "image_rank": 4,
+              "image": 85,
+              "abstract_word": "O",
+              "word": "OOE",
+              "states": [
+                52,
+                374,
+                7232,
+                85
+              ],
+              "cells": [
+                {
+                  "source": 52,
+                  "branch": "O",
+                  "image": 374,
+                  "square_remainder": 732,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 374,
+                  "branch": "O",
+                  "image": 7232,
+                  "square_remainder": 11800,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 7232,
+                  "branch": "E",
+                  "image": 85,
+                  "square_remainder": 7,
+                  "wrong_parity": false
+                }
+              ]
+            },
+            {
+              "base_rank": 3,
+              "base": 66,
+              "image_rank": 5,
+              "image": 111,
+              "abstract_word": "O",
+              "word": "OOE",
+              "states": [
+                66,
+                536,
+                12409,
+                111
+              ],
+              "cells": [
+                {
+                  "source": 66,
+                  "branch": "O",
+                  "image": 536,
+                  "square_remainder": 200,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 536,
+                  "branch": "O",
+                  "image": 12409,
+                  "square_remainder": 7375,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 12409,
+                  "branch": "E",
+                  "image": 111,
+                  "square_remainder": 88,
+                  "wrong_parity": true
+                }
+              ]
+            },
+            {
+              "base_rank": 4,
+              "base": 85,
+              "image_rank": 6,
+              "image": 148,
+              "abstract_word": "O",
+              "word": "OOE",
+              "states": [
+                85,
+                783,
+                21910,
+                148
+              ],
+              "cells": [
+                {
+                  "source": 85,
+                  "branch": "O",
+                  "image": 783,
+                  "square_remainder": 1036,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 783,
+                  "branch": "O",
+                  "image": 21910,
+                  "square_remainder": 587,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 21910,
+                  "branch": "E",
+                  "image": 148,
+                  "square_remainder": 6,
+                  "wrong_parity": false
+                }
+              ]
+            },
+            {
+              "base_rank": 5,
+              "base": 111,
+              "image_rank": 0,
+              "image": 34,
+              "abstract_word": "E",
+              "word": "OE",
+              "states": [
+                111,
+                1169,
+                34
+              ],
+              "cells": [
+                {
+                  "source": 111,
+                  "branch": "O",
+                  "image": 1169,
+                  "square_remainder": 1070,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 1169,
+                  "branch": "E",
+                  "image": 34,
+                  "square_remainder": 13,
+                  "wrong_parity": true
+                }
+              ]
+            },
+            {
+              "base_rank": 6,
+              "base": 148,
+              "image_rank": 1,
+              "image": 42,
+              "abstract_word": "E",
+              "word": "OE",
+              "states": [
+                148,
+                1800,
+                42
+              ],
+              "cells": [
+                {
+                  "source": 148,
+                  "branch": "O",
+                  "image": 1800,
+                  "square_remainder": 1792,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 1800,
+                  "branch": "E",
+                  "image": 42,
+                  "square_remainder": 36,
+                  "wrong_parity": false
+                }
+              ]
+            }
+          ],
+          "original_cells_preserved": 19,
+          "wrong_parity_sources": [
+            34,
+            42,
+            52,
+            66,
+            148,
+            198,
+            272,
+            374,
+            536,
+            1169,
+            4485,
+            12409
+          ]
+        },
+        {
+          "a": 3,
+          "b": 2,
+          "A": "OOE",
+          "B": "OOEOE",
+          "retained_bases": [
+            34,
+            42,
+            52,
+            66,
+            85
+          ],
+          "seam": {
+            "w": 42,
+            "z": 52,
+            "gap": 10
+          },
+          "towers": [
+            {
+              "base_rank": 0,
+              "base": 34,
+              "image_rank": 2,
+              "image": 52,
+              "abstract_word": "O",
+              "word": "OOE",
+              "states": [
+                34,
+                198,
+                2786,
+                52
+              ],
+              "cells": [
+                {
+                  "source": 34,
+                  "branch": "O",
+                  "image": 198,
+                  "square_remainder": 100,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 198,
+                  "branch": "O",
+                  "image": 2786,
+                  "square_remainder": 596,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 2786,
+                  "branch": "E",
+                  "image": 52,
+                  "square_remainder": 82,
+                  "wrong_parity": false
+                }
+              ]
+            },
+            {
+              "base_rank": 1,
+              "base": 42,
+              "image_rank": 3,
+              "image": 66,
+              "abstract_word": "O",
+              "word": "OOE",
+              "states": [
+                42,
+                272,
+                4485,
+                66
+              ],
+              "cells": [
+                {
+                  "source": 42,
+                  "branch": "O",
+                  "image": 272,
+                  "square_remainder": 104,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 272,
+                  "branch": "O",
+                  "image": 4485,
+                  "square_remainder": 8423,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 4485,
+                  "branch": "E",
+                  "image": 66,
+                  "square_remainder": 129,
+                  "wrong_parity": true
+                }
+              ]
+            },
+            {
+              "base_rank": 2,
+              "base": 52,
+              "image_rank": 4,
+              "image": 85,
+              "abstract_word": "O",
+              "word": "OOE",
+              "states": [
+                52,
+                374,
+                7232,
+                85
+              ],
+              "cells": [
+                {
+                  "source": 52,
+                  "branch": "O",
+                  "image": 374,
+                  "square_remainder": 732,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 374,
+                  "branch": "O",
+                  "image": 7232,
+                  "square_remainder": 11800,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 7232,
+                  "branch": "E",
+                  "image": 85,
+                  "square_remainder": 7,
+                  "wrong_parity": false
+                }
+              ]
+            },
+            {
+              "base_rank": 3,
+              "base": 66,
+              "image_rank": 0,
+              "image": 34,
+              "abstract_word": "OE",
+              "word": "OOEOE",
+              "states": [
+                66,
+                536,
+                12409,
+                111,
+                1169,
+                34
+              ],
+              "cells": [
+                {
+                  "source": 66,
+                  "branch": "O",
+                  "image": 536,
+                  "square_remainder": 200,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 536,
+                  "branch": "O",
+                  "image": 12409,
+                  "square_remainder": 7375,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 12409,
+                  "branch": "E",
+                  "image": 111,
+                  "square_remainder": 88,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 111,
+                  "branch": "O",
+                  "image": 1169,
+                  "square_remainder": 1070,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 1169,
+                  "branch": "E",
+                  "image": 34,
+                  "square_remainder": 13,
+                  "wrong_parity": true
+                }
+              ]
+            },
+            {
+              "base_rank": 4,
+              "base": 85,
+              "image_rank": 1,
+              "image": 42,
+              "abstract_word": "OE",
+              "word": "OOEOE",
+              "states": [
+                85,
+                783,
+                21910,
+                148,
+                1800,
+                42
+              ],
+              "cells": [
+                {
+                  "source": 85,
+                  "branch": "O",
+                  "image": 783,
+                  "square_remainder": 1036,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 783,
+                  "branch": "O",
+                  "image": 21910,
+                  "square_remainder": 587,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 21910,
+                  "branch": "E",
+                  "image": 148,
+                  "square_remainder": 6,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 148,
+                  "branch": "O",
+                  "image": 1800,
+                  "square_remainder": 1792,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 1800,
+                  "branch": "E",
+                  "image": 42,
+                  "square_remainder": 36,
+                  "wrong_parity": false
+                }
+              ]
+            }
+          ],
+          "original_cells_preserved": 19,
+          "wrong_parity_sources": [
+            34,
+            42,
+            52,
+            66,
+            148,
+            198,
+            272,
+            374,
+            536,
+            1169,
+            4485,
+            12409
+          ]
+        },
+        {
+          "a": 1,
+          "b": 2,
+          "A": "OOE",
+          "B": "OOEOOEOE",
+          "retained_bases": [
+            34,
+            42,
+            52
+          ],
+          "seam": {
+            "w": 42,
+            "z": 52,
+            "gap": 10
+          },
+          "towers": [
+            {
+              "base_rank": 0,
+              "base": 34,
+              "image_rank": 2,
+              "image": 52,
+              "abstract_word": "O",
+              "word": "OOE",
+              "states": [
+                34,
+                198,
+                2786,
+                52
+              ],
+              "cells": [
+                {
+                  "source": 34,
+                  "branch": "O",
+                  "image": 198,
+                  "square_remainder": 100,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 198,
+                  "branch": "O",
+                  "image": 2786,
+                  "square_remainder": 596,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 2786,
+                  "branch": "E",
+                  "image": 52,
+                  "square_remainder": 82,
+                  "wrong_parity": false
+                }
+              ]
+            },
+            {
+              "base_rank": 1,
+              "base": 42,
+              "image_rank": 0,
+              "image": 34,
+              "abstract_word": "OOE",
+              "word": "OOEOOEOE",
+              "states": [
+                42,
+                272,
+                4485,
+                66,
+                536,
+                12409,
+                111,
+                1169,
+                34
+              ],
+              "cells": [
+                {
+                  "source": 42,
+                  "branch": "O",
+                  "image": 272,
+                  "square_remainder": 104,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 272,
+                  "branch": "O",
+                  "image": 4485,
+                  "square_remainder": 8423,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 4485,
+                  "branch": "E",
+                  "image": 66,
+                  "square_remainder": 129,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 66,
+                  "branch": "O",
+                  "image": 536,
+                  "square_remainder": 200,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 536,
+                  "branch": "O",
+                  "image": 12409,
+                  "square_remainder": 7375,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 12409,
+                  "branch": "E",
+                  "image": 111,
+                  "square_remainder": 88,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 111,
+                  "branch": "O",
+                  "image": 1169,
+                  "square_remainder": 1070,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 1169,
+                  "branch": "E",
+                  "image": 34,
+                  "square_remainder": 13,
+                  "wrong_parity": true
+                }
+              ]
+            },
+            {
+              "base_rank": 2,
+              "base": 52,
+              "image_rank": 1,
+              "image": 42,
+              "abstract_word": "OOE",
+              "word": "OOEOOEOE",
+              "states": [
+                52,
+                374,
+                7232,
+                85,
+                783,
+                21910,
+                148,
+                1800,
+                42
+              ],
+              "cells": [
+                {
+                  "source": 52,
+                  "branch": "O",
+                  "image": 374,
+                  "square_remainder": 732,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 374,
+                  "branch": "O",
+                  "image": 7232,
+                  "square_remainder": 11800,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 7232,
+                  "branch": "E",
+                  "image": 85,
+                  "square_remainder": 7,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 85,
+                  "branch": "O",
+                  "image": 783,
+                  "square_remainder": 1036,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 783,
+                  "branch": "O",
+                  "image": 21910,
+                  "square_remainder": 587,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 21910,
+                  "branch": "E",
+                  "image": 148,
+                  "square_remainder": 6,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 148,
+                  "branch": "O",
+                  "image": 1800,
+                  "square_remainder": 1792,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 1800,
+                  "branch": "E",
+                  "image": 42,
+                  "square_remainder": 36,
+                  "wrong_parity": false
+                }
+              ]
+            }
+          ],
+          "original_cells_preserved": 19,
+          "wrong_parity_sources": [
+            34,
+            42,
+            52,
+            66,
+            148,
+            198,
+            272,
+            374,
+            536,
+            1169,
+            4485,
+            12409
+          ]
+        },
+        {
+          "a": 1,
+          "b": 1,
+          "A": "OOEOOEOOEOE",
+          "B": "OOEOOEOE",
+          "retained_bases": [
+            34,
+            42
+          ],
+          "seam": {
+            "w": 34,
+            "z": 42,
+            "gap": 8
+          },
+          "towers": [
+            {
+              "base_rank": 0,
+              "base": 34,
+              "image_rank": 1,
+              "image": 42,
+              "abstract_word": "OOOE",
+              "word": "OOEOOEOOEOE",
+              "states": [
+                34,
+                198,
+                2786,
+                52,
+                374,
+                7232,
+                85,
+                783,
+                21910,
+                148,
+                1800,
+                42
+              ],
+              "cells": [
+                {
+                  "source": 34,
+                  "branch": "O",
+                  "image": 198,
+                  "square_remainder": 100,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 198,
+                  "branch": "O",
+                  "image": 2786,
+                  "square_remainder": 596,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 2786,
+                  "branch": "E",
+                  "image": 52,
+                  "square_remainder": 82,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 52,
+                  "branch": "O",
+                  "image": 374,
+                  "square_remainder": 732,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 374,
+                  "branch": "O",
+                  "image": 7232,
+                  "square_remainder": 11800,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 7232,
+                  "branch": "E",
+                  "image": 85,
+                  "square_remainder": 7,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 85,
+                  "branch": "O",
+                  "image": 783,
+                  "square_remainder": 1036,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 783,
+                  "branch": "O",
+                  "image": 21910,
+                  "square_remainder": 587,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 21910,
+                  "branch": "E",
+                  "image": 148,
+                  "square_remainder": 6,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 148,
+                  "branch": "O",
+                  "image": 1800,
+                  "square_remainder": 1792,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 1800,
+                  "branch": "E",
+                  "image": 42,
+                  "square_remainder": 36,
+                  "wrong_parity": false
+                }
+              ]
+            },
+            {
+              "base_rank": 1,
+              "base": 42,
+              "image_rank": 0,
+              "image": 34,
+              "abstract_word": "OOE",
+              "word": "OOEOOEOE",
+              "states": [
+                42,
+                272,
+                4485,
+                66,
+                536,
+                12409,
+                111,
+                1169,
+                34
+              ],
+              "cells": [
+                {
+                  "source": 42,
+                  "branch": "O",
+                  "image": 272,
+                  "square_remainder": 104,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 272,
+                  "branch": "O",
+                  "image": 4485,
+                  "square_remainder": 8423,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 4485,
+                  "branch": "E",
+                  "image": 66,
+                  "square_remainder": 129,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 66,
+                  "branch": "O",
+                  "image": 536,
+                  "square_remainder": 200,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 536,
+                  "branch": "O",
+                  "image": 12409,
+                  "square_remainder": 7375,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 12409,
+                  "branch": "E",
+                  "image": 111,
+                  "square_remainder": 88,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 111,
+                  "branch": "O",
+                  "image": 1169,
+                  "square_remainder": 1070,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 1169,
+                  "branch": "E",
+                  "image": 34,
+                  "square_remainder": 13,
+                  "wrong_parity": true
+                }
+              ]
+            }
+          ],
+          "original_cells_preserved": 19,
+          "wrong_parity_sources": [
+            34,
+            42,
+            52,
+            66,
+            148,
+            198,
+            272,
+            374,
+            536,
+            1169,
+            4485,
+            12409
+          ]
+        },
+        {
+          "a": 0,
+          "b": 1,
+          "A": "OOEOOEOOEOE",
+          "B": "OOEOOEOOEOEOOEOOEOE",
+          "retained_bases": [
+            34
+          ],
+          "seam": null,
+          "towers": [
+            {
+              "base_rank": 0,
+              "base": 34,
+              "image_rank": 0,
+              "image": 34,
+              "abstract_word": "OOOEOOE",
+              "word": "OOEOOEOOEOEOOEOOEOE",
+              "states": [
+                34,
+                198,
+                2786,
+                52,
+                374,
+                7232,
+                85,
+                783,
+                21910,
+                148,
+                1800,
+                42,
+                272,
+                4485,
+                66,
+                536,
+                12409,
+                111,
+                1169,
+                34
+              ],
+              "cells": [
+                {
+                  "source": 34,
+                  "branch": "O",
+                  "image": 198,
+                  "square_remainder": 100,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 198,
+                  "branch": "O",
+                  "image": 2786,
+                  "square_remainder": 596,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 2786,
+                  "branch": "E",
+                  "image": 52,
+                  "square_remainder": 82,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 52,
+                  "branch": "O",
+                  "image": 374,
+                  "square_remainder": 732,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 374,
+                  "branch": "O",
+                  "image": 7232,
+                  "square_remainder": 11800,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 7232,
+                  "branch": "E",
+                  "image": 85,
+                  "square_remainder": 7,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 85,
+                  "branch": "O",
+                  "image": 783,
+                  "square_remainder": 1036,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 783,
+                  "branch": "O",
+                  "image": 21910,
+                  "square_remainder": 587,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 21910,
+                  "branch": "E",
+                  "image": 148,
+                  "square_remainder": 6,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 148,
+                  "branch": "O",
+                  "image": 1800,
+                  "square_remainder": 1792,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 1800,
+                  "branch": "E",
+                  "image": 42,
+                  "square_remainder": 36,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 42,
+                  "branch": "O",
+                  "image": 272,
+                  "square_remainder": 104,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 272,
+                  "branch": "O",
+                  "image": 4485,
+                  "square_remainder": 8423,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 4485,
+                  "branch": "E",
+                  "image": 66,
+                  "square_remainder": 129,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 66,
+                  "branch": "O",
+                  "image": 536,
+                  "square_remainder": 200,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 536,
+                  "branch": "O",
+                  "image": 12409,
+                  "square_remainder": 7375,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 12409,
+                  "branch": "E",
+                  "image": 111,
+                  "square_remainder": 88,
+                  "wrong_parity": true
+                },
+                {
+                  "source": 111,
+                  "branch": "O",
+                  "image": 1169,
+                  "square_remainder": 1070,
+                  "wrong_parity": false
+                },
+                {
+                  "source": 1169,
+                  "branch": "E",
+                  "image": 34,
+                  "square_remainder": 13,
+                  "wrong_parity": true
+                }
+              ]
+            }
+          ],
+          "original_cells_preserved": 19,
+          "wrong_parity_sources": [
+            34,
+            42,
+            52,
+            66,
+            148,
+            198,
+            272,
+            374,
+            536,
+            1169,
+            4485,
+            12409
+          ]
+        }
+      ],
+      "transitions": [
+        {
+          "direction": "left",
+          "old_seam": {
+            "w": 42,
+            "z": 52,
+            "gap": 10
+          },
+          "new_seam": {
+            "w": 42,
+            "z": 52,
+            "gap": 10
+          },
+          "same_two_values": true
+        },
+        {
+          "direction": "left",
+          "old_seam": {
+            "w": 42,
+            "z": 52,
+            "gap": 10
+          },
+          "new_seam": {
+            "w": 42,
+            "z": 52,
+            "gap": 10
+          },
+          "same_two_values": true
+        },
+        {
+          "direction": "right",
+          "old_seam": {
+            "w": 42,
+            "z": 52,
+            "gap": 10
+          },
+          "new_seam": {
+            "w": 34,
+            "z": 42,
+            "gap": 8
+          },
+          "transfer_word": "OOEOOEOE",
+          "adjacent_intermediate_pairs": [
+            [
+              42,
+              52
+            ],
+            [
+              272,
+              374
+            ],
+            [
+              4485,
+              7232
+            ],
+            [
+              66,
+              85
+            ],
+            [
+              536,
+              783
+            ],
+            [
+              12409,
+              21910
+            ],
+            [
+              111,
+              148
+            ],
+            [
+              1169,
+              1800
+            ],
+            [
+              34,
+              42
+            ]
+          ]
+        },
+        {
+          "direction": "terminal",
+          "old_seam": {
+            "w": 34,
+            "z": 42,
+            "gap": 8
+          },
+          "new_seam": null,
+          "upper_seam_point_removed": true,
+          "extra_seam_transfer": false
+        }
+      ],
+      "terminal_extra_seam_edge": false
+    }
+  ],
+  "conditional_ceilings": [
+    {
+      "minimum": 214358889,
+      "least_even_seam_gap": 6,
+      "odd_projected_return": 2357947789,
+      "seam_squared_product": 30912685409788800388884266872468529025,
+      "max_retained_odd_base": 3138428541765,
+      "new_maximum_ceiling": 9849733711771461206398754,
+      "previous_periodic_ceiling": 9849733756324592835690494,
+      "ceiling_improvement": 44553131629291740,
+      "cube_gap": 66829707770950615,
+      "gap_bound_certificate": "(59049*G)^128 > 26240^128*m^13",
+      "smooth_strip_integer_certificate": "(2*cube_gap)^128 > minimum^253",
+      "periodicity": "not asserted; conditional bound evaluation only"
+    },
+    {
+      "minimum": 10828567056280809,
+      "least_even_seam_gap": 20,
+      "odd_projected_return": 1093685272684361809,
+      "seam_squared_product": 1430768783591585156251238154534791507267689817317813987535135179192801801,
+      "max_retained_odd_base": 1126825030131970941911319,
+      "new_maximum_ceiling": 1269734648531917221174119162188160997734744142398,
+      "previous_periodic_ceiling": 1269734648531917276900629019948151693434746439934,
+      "ceiling_improvement": 55726509857759990695700002297536,
+      "cube_gap": 61918343535183822753946157372731,
+      "gap_bound_certificate": "(59049*G)^128 > 26240^128*m^13",
+      "smooth_strip_integer_certificate": "(2*cube_gap)^128 > minimum^253",
+      "periodicity": "not asserted; conditional bound evaluation only"
+    }
+  ],
+  "written_bound": "If a Juggler cycle has m>=2^24 and M<m^3, then M<m^3-(1/2)*m^(253/128)",
+  "proof_status": "written mathematical proof; this probe provides bounded controls only",
+  "new_theorem_formalized_in_lean": false,
+  "uniform_gap_propagation_proved": false,
+  "universal_wrong_parity_proved": false,
+  "tall_cycles_excluded": false,
+  "new_period_bound": false,
+  "no_cycle_proved": false
+}

@@ -1,0 +1,125 @@
+{
+  "status": "PASS",
+  "version": "2026-09-10-proof-audit",
+  "source_sha256": "2aa7455c01d6f16d032785973b6e34eb989406c099c81914e2835bbc7f4ed1f0",
+  "exact_control_modules": {
+    "validate_paper_b": {
+      "status": "PASS",
+      "counts": {
+        "envelope_cases": 16000,
+        "branch_indicator_cases": 6231,
+        "factorization_cases": 3150,
+        "carry_cases": 10201
+      }
+    },
+    "validate_paper_b_repairs": {
+      "status": "PASS",
+      "counts": {
+        "differenced_identity_cases": 1920,
+        "carry_expansion_cases": 2000,
+        "exponent_comparisons": 40
+      }
+    },
+    "validate_paper_b_ooeoe": {
+      "status": "PASS",
+      "counts": {
+        "centering_identity_cases": 1275,
+        "strict_exponent_checks": {
+          "intervals_longer_than_shift": true,
+          "R_center_dominates_cutoff": true,
+          "residual_floor_error": true,
+          "Taylor_error": true,
+          "nonzero_carry_curvature": true,
+          "smooth_passenger_curvature": true,
+          "pure_mode_curvature": true,
+          "pure_mode_sum": true,
+          "Fourier_error": true,
+          "ETK_log_absorption": true
+        }
+      }
+    },
+    "validate_paper_b_d2": {
+      "status": "PASS",
+      "counts": {
+        "centering_cases": 2989,
+        "floor_difference_cases": 8649,
+        "signed_wave_cases": 1331,
+        "frozen_derivative_coefficients": 4,
+        "positive_error_exponents": 12,
+        "curvature_ratio_exponents": 4,
+        "near_integer_increment_exponent": 1,
+        "conditional_differencing_chains": 2,
+        "near_integer_majorant_controls": 16
+      }
+    },
+    "validate_paper_b_signed_waves": {
+      "status": "PASS",
+      "counts": {
+        "curvature_and_centering_coefficients": 8,
+        "signed_cancellation_triples": 3375,
+        "wave_only_centering_cases": 4300,
+        "quadratic_interpolation_and_change_cases": 1710,
+        "coefficient_convolution_controls": 196,
+        "error_and_partition_exponents": 14,
+        "model_and_regime_exponents": 8
+      }
+    },
+    "validate_paper_b_wave_bearing": {
+      "status": "PASS",
+      "counts": {
+        "frozen_coefficients_and_derivative_identities": 12,
+        "shifted_wave_telescope_cases": 2916,
+        "commuting_shift_and_four_corner_cases": 288,
+        "carry_and_endpoint_phase_cases": 1575,
+        "rational_exponent_controls": 29
+      }
+    },
+    "validate_paper_b_offset_anchor": {
+      "status": "PASS",
+      "counts": {
+        "frozen_coefficients_and_correction_controls": 13,
+        "signed_smooth_centering_cases": 6612,
+        "carry_and_endpoint_cases": 1155,
+        "offset_branch_decomposition_cases": 1792,
+        "rational_exponent_controls": 36
+      }
+    },
+    "validate_paper_b_kernel_assembly": {
+      "status": "PASS",
+      "counts": {
+        "master_identity_cases": 2500,
+        "binary_exponential_polynomial_cases": 2500,
+        "centered_growing_coefficient_cases": 3567,
+        "carry_inventory_vertex_cases": 7776,
+        "four_corner_telescope_cases": 1875,
+        "positive_envelope_stability_cases": 972,
+        "moving_curvature_and_product_controls": 517,
+        "rational_exponent_controls": 34
+      }
+    },
+    "validate_paper_b_oooee_transfer": {
+      "status": "PASS",
+      "counts": {
+        "negative_centered_master_cases": 3750,
+        "half_integer_D_inventory_cases": 475,
+        "derived_frozen_coefficient_controls": 15,
+        "fifth_coordinate_derivative_exponents": 8,
+        "rational_exponent_controls": 49,
+        "exact_formal_chain_equivalence_cases": 10000,
+        "exact_certificate_union_cases": 20000,
+        "nonempty_sign_product_controls": 15
+      }
+    }
+  },
+  "equation_tags": 93,
+  "appendix_equation_references": 78,
+  "external_research_note_dependencies": false,
+  "notation_defined_before_use": true,
+  "external_links_well_formed": true,
+  "bounded_residual_extension_present": true,
+  "written_manuscript_result": "C_5 count 7N/8+O_epsilon(N^(127/128+epsilon))",
+  "validation_scope": "Finite exact algebra and exponent controls, plus source structure; not an independent proof of asymptotic cancellation.",
+  "historical_module_labels": "Individual earlier modules retain their original research-stage labels; these are not current theorem-status assertions.",
+  "independent_mathematical_review": false,
+  "lean_verification": false
+}

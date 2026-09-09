@@ -724,6 +724,24 @@
       "nk_cluster": null
     },
     {
+      "id": "cycle_direction_change",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_direction_change.py",
+      "test": "tests/research/juggler_sequence/test_cycle_direction_change.py",
+      "dossier": "docs/problems/juggler_cycle_direction_change.md",
+      "data_dir": "data/research/juggler/cycle_direction_change",
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-cycle-direction-change-contraction",
+        "J-cycle-direction-change-batches",
+        "J-cycle-direction-change-height"
+      ],
+      "aliases": [],
+      "nk_cluster": null
+    },
+    {
       "id": "cycle_e_block",
       "kind": "branch",
       "probe": "src/research/juggler_sequence/cycle_e_block.py",
@@ -1139,6 +1157,24 @@
       "ledger_ids": [],
       "aliases": [],
       "nk_cluster": "Parked, not killed"
+    },
+    {
+      "id": "cycle_later_returns",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_later_returns.py",
+      "test": "tests/research/juggler_sequence/test_cycle_later_returns.py",
+      "dossier": "docs/problems/juggler_cycle_later_returns.md",
+      "data_dir": "data/research/juggler/cycle_later_returns",
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-cycle-later-return-certificate",
+        "J-cycle-later-return-height",
+        "J-cycle-terminal-mixed-gap"
+      ],
+      "aliases": [],
+      "nk_cluster": "One-sided later-return error bounds cannot be uniform at a fixed minimum"
     },
     {
       "id": "cycle_length_eight",
@@ -5442,6 +5478,20 @@
       "ledger_ids": [],
       "aliases": [],
       "nk_cluster": "Flights"
+    },
+    {
+      "id": "paper_b_consolidation",
+      "kind": "dossier_only",
+      "probe": null,
+      "test": null,
+      "dossier": "docs/problems/juggler_paper_b_consolidation.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "paper_b_d2_repair",

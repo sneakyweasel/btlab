@@ -38,6 +38,7 @@ The live publication task is the Juggler programme.
 1. [Paper A — cycle-length lower bounds](theory/juggler_finite_dynamics_note.md)
    ([doi:10.5281/zenodo.22676453](https://doi.org/10.5281/zenodo.22676453))
 2. [Paper B — parity results and conditional extensions](theory/juggler_parity_discrepancy_note.md)
+   ([10 September proof audit](theory/paper_b_proof_review.md))
 3. [Paper C — fate contagion](theory/juggler_fate_almost_all_note.md)
    ([doi:10.5281/zenodo.22678165](https://doi.org/10.5281/zenodo.22678165))
 4. [Branch ledger](juggler_branch_ledger.md)
@@ -129,7 +130,7 @@ record. That is a status line, not a ban on stating a later matching
   obstructions, finance, walk-charge envelope, certified floors
   ([doi:10.5281/zenodo.22676453](https://doi.org/10.5281/zenodo.22676453))
 - [Paper B](theory/juggler_parity_discrepancy_note.md): parity
-  statistics of nested floor powers; unconditional four-step certificate density \(13/16\) and a five-step certificate subfamily of density \(27/32\); full five-step density \(7/8\) requires only the remaining \(OOOEE\) hypothesis
+  statistics of nested floor powers; unconditional five-step certificate density \(7/8\), with the complete OOOEE proof in Appendices A-C; independent mathematical review remains outstanding
 - [Paper C](theory/juggler_fate_almost_all_note.md): fate contagion
   and the almost-all reduction
   ([doi:10.5281/zenodo.22678165](https://doi.org/10.5281/zenodo.22678165))

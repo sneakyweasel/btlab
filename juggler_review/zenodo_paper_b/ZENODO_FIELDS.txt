@@ -12,7 +12,7 @@ RESOURCE TYPE
 Publication / Preprint
 
 VERSION
-2026-09-09-ooeoe-repair
+2026-09-10-proof-audit
 
 LICENSE
 cc-by-4.0
@@ -26,10 +26,10 @@ nested floor powers
 parity correlations
 discrepancy
 stopping time
-conditional descent
+finite-step descent
 
 DESCRIPTION (HTML)
-<p>The Juggler map applies the integer part of the square root at even positive integers and of the three-halves power at odd positive integers. We prove that the starting values admitting a power-envelope descent certificate within four operations have natural density 13/16. We also prove that the five-letter itinerary OOEOE has count N/32 + O(N^(47/48)). Together these give a specified certificate class of density 27/32, all of whose starts descend within five operations. The analytic arguments use exact carry expansions and second-derivative estimates summed over every gap cell. For the fifth letter, centering a Fourier expansion at the integer part of a smooth coefficient cancels the growing first-floor term; the additional interval boundaries are retained in a summed mixed-mode estimate. We also give a partition-aware curvature estimate for a basic collision model. The full five-step certificate density 7/8 requires only the remaining formal-chain correlation hypothesis for OOOEE. Fair-share densities for every fixed-depth odd-rooted itinerary would imply density-one finite certificates. The general decorated kernel, its short-interval extension, and the remaining correlation hypotheses are unproved here. No result asserts universal arrival at 1.</p>
+<p>The Juggler map applies the integer part of the square root at even positive integers and of the three-halves power at odd positive integers. We prove that the starting values admitting a power-envelope descent certificate within five operations have natural density 7/8. More precisely, their count up to N is 7N/8+O_epsilon(N^(127/128+epsilon)) for every epsilon&gt;0. The four-step subfamily has density 13/16. The proof uses exact carry identities, centered Fourier expansions, and van der Corput differencing, with all floor exceptions and partition endpoints counted. The two five-letter classes OOEOE and OOOEE are treated through their distinct formal chains. For OOOEE, the full mixed phase is retained and its signed curvature is recomputed after each frequency center is frozen. The complete analytic argument is included in three appendices. Fair-share densities at every fixed depth would imply density-one finite certificates; that hypothesis, general decorated estimates, and short-interval localization remain open. No result asserts universal arrival at 1.</p>
 
 RELATED SOFTWARE
 https://github.com/sneakyweasel/btlab

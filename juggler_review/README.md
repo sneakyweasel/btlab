@@ -1,16 +1,4 @@
-> **Current Paper B research result, 9 September 2026:** [OOOEE mixed-mode transfer](paper_b_oooee_transfer_report.md) gives the precise four-coordinate bound O_epsilon(P^(127/128+epsilon)), the OOOEE count N/32, and full five-step certificate density 7/8. This is an AI-assisted written proof with exact controls; independent mathematical review and manuscript consolidation remain outstanding. The existing 27/32 manuscript and deposit package are unchanged. Earlier notices below record the status at their respective research steps and are superseded on this specific transfer.
-
-> **Dyadic-kernel research supplement, 9 September 2026:** [Weaker kernel assembly](paper_b_kernel_assembly_report.md) proves O_epsilon(P^(127/128+epsilon)) for the stated undecorated monomial kernel, uniformly for integer k<=P^(1/24). The historical 95/96 target, general mixed decorations, short intervals, and OOOEE remain unproved. Independent review is outstanding; the 27/32 manuscript and existing deposit package are unchanged.
-
-> **Offset-anchor research supplement, 9 September 2026:** [Nonzero-offset estimate](paper_b_offset_anchor_report.md) gives exponent 23/24, up to epsilon, for the stated zero-total-Y family with signed widened waves and already-differenced D2 factors. The corrected composite coefficient is 81/64. Full kernel assembly and OOOEE remain unproved; the 27/32 manuscript and deposit package are unchanged.
-
-> **Wave-bearing research supplement, 9 September 2026:** [Widened D1 repair](paper_b_wave_bearing_report.md) gives exponent 31/32, up to epsilon, for the nonzero-total-Y family with the stated D2 factors and partition conditions. The nonzero-offset family at zero total Y frequency, complete kernel, and OOOEE remain unproved. The 27/32 manuscript and deposit package are unchanged.
-
-> **Signed-wave research supplement, 9 September 2026:** [Combined zero-offset estimate](paper_b_signed_waves_report.md) proves the specified signed family with exponent 31/32, up to epsilon, including the D2 factors. Full kernel assembly and OOOEE remain unproved. The 27/32 manuscript and deposit package are unchanged.
-
-> **D2 research supplement, 9 September 2026:** [D2 repair and signed-wave obstruction](paper_b_d2_report.md) records a new fixed-label reduction. The kernel and OOOEE count remain unproved; the 27/32 manuscript and deposit package are unchanged.
-
-> **Paper B OOEOE repair, 9 September 2026:** the current preprint proves four-step certificate density 13/16 and a five-step certificate subfamily of density 27/32. Full five-step density 7/8 now requires only OOOEE. The general decorated kernel remains unproved. See [the current report](paper_b_ooeoe_report.md) and [build instructions](../docs/theory/PAPER_B_BUILD.md). Earlier theorem numbers and companion cross-citations require review.
+> **Paper B proof audit, 10 September 2026:** the 37-page manuscript includes the bounded signed-residual Fourier extension and explicit variation checks. Fresh symbolic derivation confirms the critical curvature coefficients. The five-step certificate density remains 7/8 with error O_epsilon(N^(127/128+epsilon)). [Fresh proof audit](paper_b_proof_review.md). Independent expert review remains outstanding; no upload has occurred.
 
 # Juggler reviewer bundle (three manuscripts)
 
@@ -26,7 +14,7 @@ The stopped live-pressure hypothesis is unchanged and unproved.
 
 Status: Paper A is the regenerated Zenodo preprint of 9 September 2026; Paper B is the repaired
 preprint (four-step certificate density 13/16, five-step subfamily density
-27/32, and conditional full five-step density 7/8); Paper C
+7/8 with its complete written proof); Paper C
 (fate contagion and the almost-all reformulation, 4 September 2026)
 is a complete draft whose main theorem is unconditional and whose
 Appendix C alone depends on Paper B.
@@ -69,7 +57,7 @@ https://sneakyweasel.github.io/btlab/
    [build instructions](../docs/theory/PAPER_A_BUILD.md).
 2. [juggler_parity_discrepancy_note.pdf](juggler_parity_discrepancy_note.pdf)
    — **Paper B**: *Parity Statistics of Nested Floor Powers: Finite-Step
-   Descent and Conditional Extensions for the Juggler Map* (9 September 2026).
+   Descent and Conditional Extensions for the Juggler Map* (10 September 2026).
    Theorem 4.5 proves restricted mixed exponential sums by an exact carry
    expansion and estimates over every gap cell. Corollary 4.6 and Theorem
    5.2 give the unconditional four-step power-envelope certificate density
@@ -77,12 +65,12 @@ https://sneakyweasel.github.io/btlab/
    repairs the OE count, and Proposition 7.6 treats a basic collision model.
    Corollary 4.10 proves the OOEOE split with error \(O(N^{47/48})\).
    Theorem 5.3 gives a five-step certificate subfamily of density \(27/32\);
-   Theorem 5.4's full five-step density \(7/8\) requires only OOOEE.
+   Theorem 4.11 and Appendices A-C now prove OOOEE; Theorem 5.4 gives full five-step density \(7/8\).
    The general decorated kernel, short-interval extension, complete
    depth-four census, and density-one conclusion remain unproved or
    conditional as stated in the paper. These are written analytic arguments;
    no new Lean formalization or independent peer review is claimed.
-   See [the current report](paper_b_ooeoe_report.md). The
+   See [the current report](paper_b_proof_review.md). The
    [historical audit ledger](paper_b_audit_ledger.md) concerns the superseded
    4 September draft and does not validate the current analytic proofs.
 3. [juggler_fate_almost_all_note.pdf](juggler_fate_almost_all_note.pdf)

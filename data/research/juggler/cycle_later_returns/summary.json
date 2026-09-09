@@ -1,0 +1,1778 @@
+{
+  "scope": {
+    "fixed_words": [
+      "A",
+      "C",
+      "D",
+      "W",
+      "V"
+    ],
+    "W_tail_terms": 64,
+    "minimum_scale_exponent": 128,
+    "archived_threshold_cycles": 7,
+    "singleton_sections_excluded": 2,
+    "ceiling_evaluations": 1,
+    "ceiling_minima": [
+      340282366920938463463374607431768211457
+    ],
+    "cycle_search": false,
+    "source_census": false,
+    "rank_pair_scan": false,
+    "trajectory_extension": false,
+    "descent_floor_increase": false
+  },
+  "arithmetic": "Exact fractions, integer cells and power comparisons only",
+  "constant_checks": {
+    "words": {
+      "A": {
+        "word": "OOE",
+        "length": 3,
+        "odd_count": 2,
+        "ideal_exponent": "9/8",
+        "nonempty_prefix_exponents": [
+          "3/2",
+          "9/4",
+          "9/8"
+        ],
+        "minimum_proper_prefix_exponent": "3/2"
+      },
+      "C": {
+        "word": "OOEOOEOE",
+        "length": 8,
+        "odd_count": 5,
+        "ideal_exponent": "243/256",
+        "nonempty_prefix_exponents": [
+          "3/2",
+          "9/4",
+          "9/8",
+          "27/16",
+          "81/32",
+          "81/64",
+          "243/128",
+          "243/256"
+        ],
+        "minimum_proper_prefix_exponent": "9/8"
+      },
+      "D": {
+        "word": "OOEOOEOOEOEOOEOOEOE",
+        "length": 19,
+        "odd_count": 12,
+        "ideal_exponent": "531441/524288",
+        "nonempty_prefix_exponents": [
+          "3/2",
+          "9/4",
+          "9/8",
+          "27/16",
+          "81/32",
+          "81/64",
+          "243/128",
+          "729/256",
+          "729/512",
+          "2187/1024",
+          "2187/2048",
+          "6561/4096",
+          "19683/8192",
+          "19683/16384",
+          "59049/32768",
+          "177147/65536",
+          "177147/131072",
+          "531441/262144",
+          "531441/524288"
+        ],
+        "minimum_proper_prefix_exponent": "2187/2048"
+      },
+      "W": {
+        "word": "OOEOOEOOEOEOOEOOEOEOOEOOEOOEOEOOEOOEOEOOEOOEOOEOEOOEOOEOEOOEOOEOE",
+        "length": 65,
+        "odd_count": 41,
+        "ideal_exponent": "36472996377170786403/36893488147419103232",
+        "nonempty_prefix_exponents": [
+          "3/2",
+          "9/4",
+          "9/8",
+          "27/16",
+          "81/32",
+          "81/64",
+          "243/128",
+          "729/256",
+          "729/512",
+          "2187/1024",
+          "2187/2048",
+          "6561/4096",
+          "19683/8192",
+          "19683/16384",
+          "59049/32768",
+          "177147/65536",
+          "177147/131072",
+          "531441/262144",
+          "531441/524288",
+          "1594323/1048576",
+          "4782969/2097152",
+          "4782969/4194304",
+          "14348907/8388608",
+          "43046721/16777216",
+          "43046721/33554432",
+          "129140163/67108864",
+          "387420489/134217728",
+          "387420489/268435456",
+          "1162261467/536870912",
+          "1162261467/1073741824",
+          "3486784401/2147483648",
+          "10460353203/4294967296",
+          "10460353203/8589934592",
+          "31381059609/17179869184",
+          "94143178827/34359738368",
+          "94143178827/68719476736",
+          "282429536481/137438953472",
+          "282429536481/274877906944",
+          "847288609443/549755813888",
+          "2541865828329/1099511627776",
+          "2541865828329/2199023255552",
+          "7625597484987/4398046511104",
+          "22876792454961/8796093022208",
+          "22876792454961/17592186044416",
+          "68630377364883/35184372088832",
+          "205891132094649/70368744177664",
+          "205891132094649/140737488355328",
+          "617673396283947/281474976710656",
+          "617673396283947/562949953421312",
+          "1853020188851841/1125899906842624",
+          "5559060566555523/2251799813685248",
+          "5559060566555523/4503599627370496",
+          "16677181699666569/9007199254740992",
+          "50031545098999707/18014398509481984",
+          "50031545098999707/36028797018963968",
+          "150094635296999121/72057594037927936",
+          "150094635296999121/144115188075855872",
+          "450283905890997363/288230376151711744",
+          "1350851717672992089/576460752303423488",
+          "1350851717672992089/1152921504606846976",
+          "4052555153018976267/2305843009213693952",
+          "12157665459056928801/4611686018427387904",
+          "12157665459056928801/9223372036854775808",
+          "36472996377170786403/18446744073709551616",
+          "36472996377170786403/36893488147419103232"
+        ],
+        "minimum_proper_prefix_exponent": "531441/524288"
+      },
+      "V": {
+        "word": "OOEOOEOOEOEOOEOOEOEOOEOOEOOEOEOOEOOEOEOOEOOEOOEOEOOEOOEOEOOEOOEOOEOEOOEOOEOEOOEOOEOE",
+        "length": 84,
+        "odd_count": 53,
+        "ideal_exponent": "19383245667680019896796723/19342813113834066795298816",
+        "nonempty_prefix_exponents": [
+          "3/2",
+          "9/4",
+          "9/8",
+          "27/16",
+          "81/32",
+          "81/64",
+          "243/128",
+          "729/256",
+          "729/512",
+          "2187/1024",
+          "2187/2048",
+          "6561/4096",
+          "19683/8192",
+          "19683/16384",
+          "59049/32768",
+          "177147/65536",
+          "177147/131072",
+          "531441/262144",
+          "531441/524288",
+          "1594323/1048576",
+          "4782969/2097152",
+          "4782969/4194304",
+          "14348907/8388608",
+          "43046721/16777216",
+          "43046721/33554432",
+          "129140163/67108864",
+          "387420489/134217728",
+          "387420489/268435456",
+          "1162261467/536870912",
+          "1162261467/1073741824",
+          "3486784401/2147483648",
+          "10460353203/4294967296",
+          "10460353203/8589934592",
+          "31381059609/17179869184",
+          "94143178827/34359738368",
+          "94143178827/68719476736",
+          "282429536481/137438953472",
+          "282429536481/274877906944",
+          "847288609443/549755813888",
+          "2541865828329/1099511627776",
+          "2541865828329/2199023255552",
+          "7625597484987/4398046511104",
+          "22876792454961/8796093022208",
+          "22876792454961/17592186044416",
+          "68630377364883/35184372088832",
+          "205891132094649/70368744177664",
+          "205891132094649/140737488355328",
+          "617673396283947/281474976710656",
+          "617673396283947/562949953421312",
+          "1853020188851841/1125899906842624",
+          "5559060566555523/2251799813685248",
+          "5559060566555523/4503599627370496",
+          "16677181699666569/9007199254740992",
+          "50031545098999707/18014398509481984",
+          "50031545098999707/36028797018963968",
+          "150094635296999121/72057594037927936",
+          "150094635296999121/144115188075855872",
+          "450283905890997363/288230376151711744",
+          "1350851717672992089/576460752303423488",
+          "1350851717672992089/1152921504606846976",
+          "4052555153018976267/2305843009213693952",
+          "12157665459056928801/4611686018427387904",
+          "12157665459056928801/9223372036854775808",
+          "36472996377170786403/18446744073709551616",
+          "109418989131512359209/36893488147419103232",
+          "109418989131512359209/73786976294838206464",
+          "328256967394537077627/147573952589676412928",
+          "328256967394537077627/295147905179352825856",
+          "984770902183611232881/590295810358705651712",
+          "2954312706550833698643/1180591620717411303424",
+          "2954312706550833698643/2361183241434822606848",
+          "8862938119652501095929/4722366482869645213696",
+          "26588814358957503287787/9444732965739290427392",
+          "26588814358957503287787/18889465931478580854784",
+          "79766443076872509863361/37778931862957161709568",
+          "79766443076872509863361/75557863725914323419136",
+          "239299329230617529590083/151115727451828646838272",
+          "717897987691852588770249/302231454903657293676544",
+          "717897987691852588770249/604462909807314587353088",
+          "2153693963075557766310747/1208925819614629174706176",
+          "6461081889226673298932241/2417851639229258349412352",
+          "6461081889226673298932241/4835703278458516698824704",
+          "19383245667680019896796723/9671406556917033397649408",
+          "19383245667680019896796723/19342813113834066795298816"
+        ],
+        "minimum_proper_prefix_exponent": "531441/524288"
+      }
+    },
+    "minimum_scale_exponent": 128,
+    "W_proper_tail_exponents": [
+      "12157665459056928801/18446744073709551616",
+      "4052555153018976267/9223372036854775808",
+      "4052555153018976267/4611686018427387904",
+      "1350851717672992089/2305843009213693952",
+      "450283905890997363/1152921504606846976",
+      "450283905890997363/576460752303423488",
+      "150094635296999121/288230376151711744",
+      "50031545098999707/144115188075855872",
+      "50031545098999707/72057594037927936",
+      "16677181699666569/36028797018963968",
+      "16677181699666569/18014398509481984",
+      "5559060566555523/9007199254740992",
+      "1853020188851841/4503599627370496",
+      "1853020188851841/2251799813685248",
+      "617673396283947/1125899906842624",
+      "205891132094649/562949953421312",
+      "205891132094649/281474976710656",
+      "68630377364883/140737488355328",
+      "68630377364883/70368744177664",
+      "22876792454961/35184372088832",
+      "7625597484987/17592186044416",
+      "7625597484987/8796093022208",
+      "2541865828329/4398046511104",
+      "847288609443/2199023255552",
+      "847288609443/1099511627776",
+      "282429536481/549755813888",
+      "94143178827/274877906944",
+      "94143178827/137438953472",
+      "31381059609/68719476736",
+      "31381059609/34359738368",
+      "10460353203/17179869184",
+      "3486784401/8589934592",
+      "3486784401/4294967296",
+      "1162261467/2147483648",
+      "387420489/1073741824",
+      "387420489/536870912",
+      "129140163/268435456",
+      "129140163/134217728",
+      "43046721/67108864",
+      "14348907/33554432",
+      "14348907/16777216",
+      "4782969/8388608",
+      "1594323/4194304",
+      "1594323/2097152",
+      "531441/1048576",
+      "177147/524288",
+      "177147/262144",
+      "59049/131072",
+      "59049/65536",
+      "19683/32768",
+      "6561/16384",
+      "6561/8192",
+      "2187/4096",
+      "729/2048",
+      "729/1024",
+      "243/512",
+      "243/256",
+      "81/128",
+      "27/64",
+      "27/32",
+      "9/16",
+      "3/8",
+      "3/4",
+      "1/2"
+    ],
+    "W_dyadic_majorants": [
+      "12157665459056928801/162259276829213363391578010288128",
+      "4052555153018976267/21778071482940061661655974875633165533184",
+      "4052555153018976267/151115727451828646838272",
+      "1350851717672992089/20769187434139310514121985316880384",
+      "450283905890997363/348449143727040986586495598010130648530944",
+      "450283905890997363/154742504910672534362390528",
+      "150094635296999121/664613997892457936451903530140172288",
+      "50031545098999707/1393796574908163946345982392040522594123776",
+      "50031545098999707/39614081257132168796771975168",
+      "16677181699666569/10633823966279326983230456482242756608",
+      "16677181699666569/9223372036854775808",
+      "5559060566555523/5070602400912917605986812821504",
+      "1853020188851841/170141183460469231731687303715884105728",
+      "1853020188851841/9444732965739290427392",
+      "617673396283947/162259276829213363391578010288128",
+      "205891132094649/1361129467683753853853498429727072845824",
+      "205891132094649/4835703278458516698824704",
+      "68630377364883/5192296858534827628530496329220096",
+      "68630377364883/562949953421312",
+      "22876792454961/618970019642690137449562112",
+      "7625597484987/83076749736557242056487941267521536",
+      "7625597484987/1152921504606846976",
+      "2541865828329/79228162514264337593543950336",
+      "847288609443/664613997892457936451903530140172288",
+      "847288609443/590295810358705651712",
+      "282429536481/2535301200456458802993406410752",
+      "94143178827/5316911983139663491615228241121378304",
+      "94143178827/151115727451828646838272",
+      "31381059609/40564819207303340847894502572032",
+      "31381059609/70368744177664",
+      "10460353203/19342813113834066795298816",
+      "3486784401/649037107316853453566312041152512",
+      "3486784401/72057594037927936",
+      "1162261467/618970019642690137449562112",
+      "387420489/2596148429267413814265248164610048",
+      "387420489/18446744073709551616",
+      "129140163/19807040628566084398385987584",
+      "129140163/2147483648",
+      "43046721/2361183241434822606848",
+      "14348907/316912650057057350374175801344",
+      "14348907/4398046511104",
+      "4782969/302231454903657293676544",
+      "1594323/2535301200456458802993406410752",
+      "1594323/2251799813685248",
+      "531441/9671406556917033397649408",
+      "177147/10141204801825835211973625643008",
+      "177147/576460752303423488",
+      "59049/154742504910672534362390528",
+      "59049/268435456",
+      "19683/73786976294838206464",
+      "6561/1237940039285380274899124224",
+      "6561/274877906944",
+      "2187/2361183241434822606848",
+      "729/9903520314283042199192993792",
+      "729/70368744177664",
+      "243/75557863725914323419136",
+      "243/16384",
+      "81/18014398509481984",
+      "27/1208925819614629174706176",
+      "27/33554432",
+      "9/1152921504606846976",
+      "3/9671406556917033397649408",
+      "3/17179869184",
+      "1/36893488147419103232"
+    ],
+    "W_tail_sum": "277910493483851358096413315698577150111783/1393796574908163946345982392040522594123776",
+    "W_error_bound": "6/5",
+    "W_derivative_majorant": "3/8",
+    "C_error_bound": "9/8",
+    "C_derivative_majorant": "1/64",
+    "three_transfer_numerator": "7609/20480",
+    "sharp_gap_coefficient_C0": "4491560821019391303876608/10768469815377788831553735",
+    "sharp_gap_exponent_sigma": "4167486660220569501/36893488147419103232",
+    "sharp_written_height_exponent_theta": "73342776936631388061/36893488147419103232",
+    "clean_gap_coefficient": "2/5",
+    "clean_gap_exponent": "7/64",
+    "clean_height_strip_coefficient": "1/2",
+    "clean_height_strip_exponent": "127/64",
+    "role": "exact constants supporting the written proof, not a uniform or Lean certificate"
+  },
+  "archived_cycles": [
+    {
+      "threshold": 3,
+      "minimum": 3,
+      "period": 3,
+      "original_cells": [
+        {
+          "source": 3,
+          "branch": "O",
+          "image": 5,
+          "square_remainder": 2,
+          "wrong_parity": false
+        },
+        {
+          "source": 5,
+          "branch": "O",
+          "image": 11,
+          "square_remainder": 4,
+          "wrong_parity": false
+        },
+        {
+          "source": 11,
+          "branch": "E",
+          "image": 3,
+          "square_remainder": 2,
+          "wrong_parity": true
+        }
+      ],
+      "wrong_parity_sources": [
+        11
+      ],
+      "actual_juggler_cycle": false,
+      "rank_induction_excluded": true,
+      "all_original_cells_and_mismatches_replayed": true,
+      "total_ideal_exponent": "9/8",
+      "off_domain_lower_guard_asserted": false,
+      "stages": [],
+      "terminal": null,
+      "exclusion_reason": "singleton retained section with no OE branch"
+    },
+    {
+      "threshold": 3,
+      "minimum": 4,
+      "period": 3,
+      "original_cells": [
+        {
+          "source": 4,
+          "branch": "O",
+          "image": 8,
+          "square_remainder": 0,
+          "wrong_parity": true
+        },
+        {
+          "source": 8,
+          "branch": "O",
+          "image": 22,
+          "square_remainder": 28,
+          "wrong_parity": true
+        },
+        {
+          "source": 22,
+          "branch": "E",
+          "image": 4,
+          "square_remainder": 6,
+          "wrong_parity": false
+        }
+      ],
+      "wrong_parity_sources": [
+        4,
+        8
+      ],
+      "actual_juggler_cycle": false,
+      "rank_induction_excluded": true,
+      "all_original_cells_and_mismatches_replayed": true,
+      "total_ideal_exponent": "9/8",
+      "off_domain_lower_guard_asserted": false,
+      "stages": [],
+      "terminal": null,
+      "exclusion_reason": "singleton retained section with no OE branch"
+    },
+    {
+      "threshold": 9,
+      "minimum": 9,
+      "period": 11,
+      "original_cells": [
+        {
+          "source": 9,
+          "branch": "O",
+          "image": 27,
+          "square_remainder": 0,
+          "wrong_parity": false
+        },
+        {
+          "source": 11,
+          "branch": "O",
+          "image": 36,
+          "square_remainder": 35,
+          "wrong_parity": false
+        },
+        {
+          "source": 14,
+          "branch": "O",
+          "image": 52,
+          "square_remainder": 40,
+          "wrong_parity": true
+        },
+        {
+          "source": 19,
+          "branch": "O",
+          "image": 82,
+          "square_remainder": 135,
+          "wrong_parity": false
+        },
+        {
+          "source": 27,
+          "branch": "O",
+          "image": 140,
+          "square_remainder": 83,
+          "wrong_parity": false
+        },
+        {
+          "source": 36,
+          "branch": "O",
+          "image": 216,
+          "square_remainder": 0,
+          "wrong_parity": true
+        },
+        {
+          "source": 52,
+          "branch": "O",
+          "image": 374,
+          "square_remainder": 732,
+          "wrong_parity": true
+        },
+        {
+          "source": 82,
+          "branch": "E",
+          "image": 9,
+          "square_remainder": 1,
+          "wrong_parity": false
+        },
+        {
+          "source": 140,
+          "branch": "E",
+          "image": 11,
+          "square_remainder": 19,
+          "wrong_parity": false
+        },
+        {
+          "source": 216,
+          "branch": "E",
+          "image": 14,
+          "square_remainder": 20,
+          "wrong_parity": false
+        },
+        {
+          "source": 374,
+          "branch": "E",
+          "image": 19,
+          "square_remainder": 13,
+          "wrong_parity": false
+        }
+      ],
+      "wrong_parity_sources": [
+        14,
+        36,
+        52
+      ],
+      "actual_juggler_cycle": false,
+      "rank_induction_excluded": false,
+      "all_original_cells_and_mismatches_replayed": true,
+      "total_ideal_exponent": "2187/2048",
+      "off_domain_lower_guard_asserted": false,
+      "stages": [
+        {
+          "a": 3,
+          "b": 1,
+          "lower_word": "OOE",
+          "upper_word": "OE",
+          "lower_exponent": "9/8",
+          "upper_exponent": "3/4",
+          "weighted_ideal_exponent": "2187/2048",
+          "common_prefix_P": "O",
+          "common_suffix_Q": "OE"
+        },
+        {
+          "a": 2,
+          "b": 1,
+          "lower_word": "OOE",
+          "upper_word": "OOEOE",
+          "lower_exponent": "9/8",
+          "upper_exponent": "27/32",
+          "weighted_ideal_exponent": "2187/2048",
+          "common_prefix_P": "OOEO",
+          "common_suffix_Q": "OE"
+        },
+        {
+          "a": 1,
+          "b": 1,
+          "lower_word": "OOE",
+          "upper_word": "OOEOOEOE",
+          "lower_exponent": "9/8",
+          "upper_exponent": "243/256",
+          "weighted_ideal_exponent": "2187/2048",
+          "common_prefix_P": "OOEOOEO",
+          "common_suffix_Q": "OE"
+        },
+        {
+          "a": 0,
+          "b": 1,
+          "lower_word": "OOE",
+          "upper_word": "OOEOOEOOEOE",
+          "lower_exponent": "9/8",
+          "upper_exponent": "2187/2048",
+          "weighted_ideal_exponent": "2187/2048"
+        }
+      ],
+      "terminal": {
+        "states": [
+          9,
+          11
+        ],
+        "lower_word": "OOE",
+        "upper_word": "OOEOOEOE",
+        "common_prefix_P": "OOEOOEO",
+        "common_suffix_Q": "OE",
+        "prefix_traces": [
+          [
+            9,
+            27,
+            140,
+            11,
+            36,
+            216,
+            14,
+            52
+          ],
+          [
+            11,
+            36,
+            216,
+            14,
+            52,
+            374,
+            19,
+            82
+          ]
+        ],
+        "mixed_traces": [
+          [
+            52,
+            374,
+            19
+          ],
+          [
+            82,
+            9,
+            27
+          ]
+        ],
+        "suffix_traces": [
+          [
+            19,
+            82,
+            9
+          ],
+          [
+            27,
+            140,
+            11
+          ]
+        ],
+        "mixed_source_gap": 30,
+        "mixed_image_gap": 8,
+        "mixed_actual_parity_hypotheses": false,
+        "terminal_section_size": 1,
+        "extra_seam_transfer": false,
+        "off_domain_lower_guard_asserted": false
+      }
+    },
+    {
+      "threshold": 9,
+      "minimum": 10,
+      "period": 11,
+      "original_cells": [
+        {
+          "source": 10,
+          "branch": "O",
+          "image": 31,
+          "square_remainder": 39,
+          "wrong_parity": true
+        },
+        {
+          "source": 13,
+          "branch": "O",
+          "image": 46,
+          "square_remainder": 81,
+          "wrong_parity": false
+        },
+        {
+          "source": 17,
+          "branch": "O",
+          "image": 70,
+          "square_remainder": 13,
+          "wrong_parity": false
+        },
+        {
+          "source": 24,
+          "branch": "O",
+          "image": 117,
+          "square_remainder": 135,
+          "wrong_parity": true
+        },
+        {
+          "source": 31,
+          "branch": "O",
+          "image": 172,
+          "square_remainder": 207,
+          "wrong_parity": false
+        },
+        {
+          "source": 46,
+          "branch": "O",
+          "image": 311,
+          "square_remainder": 615,
+          "wrong_parity": true
+        },
+        {
+          "source": 70,
+          "branch": "O",
+          "image": 585,
+          "square_remainder": 775,
+          "wrong_parity": true
+        },
+        {
+          "source": 117,
+          "branch": "E",
+          "image": 10,
+          "square_remainder": 17,
+          "wrong_parity": true
+        },
+        {
+          "source": 172,
+          "branch": "E",
+          "image": 13,
+          "square_remainder": 3,
+          "wrong_parity": false
+        },
+        {
+          "source": 311,
+          "branch": "E",
+          "image": 17,
+          "square_remainder": 22,
+          "wrong_parity": true
+        },
+        {
+          "source": 585,
+          "branch": "E",
+          "image": 24,
+          "square_remainder": 9,
+          "wrong_parity": true
+        }
+      ],
+      "wrong_parity_sources": [
+        10,
+        24,
+        46,
+        70,
+        117,
+        311,
+        585
+      ],
+      "actual_juggler_cycle": false,
+      "rank_induction_excluded": false,
+      "all_original_cells_and_mismatches_replayed": true,
+      "total_ideal_exponent": "2187/2048",
+      "off_domain_lower_guard_asserted": false,
+      "stages": [
+        {
+          "a": 3,
+          "b": 1,
+          "lower_word": "OOE",
+          "upper_word": "OE",
+          "lower_exponent": "9/8",
+          "upper_exponent": "3/4",
+          "weighted_ideal_exponent": "2187/2048",
+          "common_prefix_P": "O",
+          "common_suffix_Q": "OE"
+        },
+        {
+          "a": 2,
+          "b": 1,
+          "lower_word": "OOE",
+          "upper_word": "OOEOE",
+          "lower_exponent": "9/8",
+          "upper_exponent": "27/32",
+          "weighted_ideal_exponent": "2187/2048",
+          "common_prefix_P": "OOEO",
+          "common_suffix_Q": "OE"
+        },
+        {
+          "a": 1,
+          "b": 1,
+          "lower_word": "OOE",
+          "upper_word": "OOEOOEOE",
+          "lower_exponent": "9/8",
+          "upper_exponent": "243/256",
+          "weighted_ideal_exponent": "2187/2048",
+          "common_prefix_P": "OOEOOEO",
+          "common_suffix_Q": "OE"
+        },
+        {
+          "a": 0,
+          "b": 1,
+          "lower_word": "OOE",
+          "upper_word": "OOEOOEOOEOE",
+          "lower_exponent": "9/8",
+          "upper_exponent": "2187/2048",
+          "weighted_ideal_exponent": "2187/2048"
+        }
+      ],
+      "terminal": {
+        "states": [
+          10,
+          13
+        ],
+        "lower_word": "OOE",
+        "upper_word": "OOEOOEOE",
+        "common_prefix_P": "OOEOOEO",
+        "common_suffix_Q": "OE",
+        "prefix_traces": [
+          [
+            10,
+            31,
+            172,
+            13,
+            46,
+            311,
+            17,
+            70
+          ],
+          [
+            13,
+            46,
+            311,
+            17,
+            70,
+            585,
+            24,
+            117
+          ]
+        ],
+        "mixed_traces": [
+          [
+            70,
+            585,
+            24
+          ],
+          [
+            117,
+            10,
+            31
+          ]
+        ],
+        "suffix_traces": [
+          [
+            24,
+            117,
+            10
+          ],
+          [
+            31,
+            172,
+            13
+          ]
+        ],
+        "mixed_source_gap": 47,
+        "mixed_image_gap": 7,
+        "mixed_actual_parity_hypotheses": false,
+        "terminal_section_size": 1,
+        "extra_seam_transfer": false,
+        "off_domain_lower_guard_asserted": false
+      }
+    },
+    {
+      "threshold": 29,
+      "minimum": 35,
+      "period": 19,
+      "original_cells": [
+        {
+          "source": 35,
+          "branch": "O",
+          "image": 207,
+          "square_remainder": 26,
+          "wrong_parity": false
+        },
+        {
+          "source": 43,
+          "branch": "O",
+          "image": 281,
+          "square_remainder": 546,
+          "wrong_parity": false
+        },
+        {
+          "source": 54,
+          "branch": "O",
+          "image": 396,
+          "square_remainder": 648,
+          "wrong_parity": true
+        },
+        {
+          "source": 68,
+          "branch": "O",
+          "image": 560,
+          "square_remainder": 832,
+          "wrong_parity": true
+        },
+        {
+          "source": 88,
+          "branch": "O",
+          "image": 825,
+          "square_remainder": 847,
+          "wrong_parity": true
+        },
+        {
+          "source": 115,
+          "branch": "O",
+          "image": 1233,
+          "square_remainder": 586,
+          "wrong_parity": false
+        },
+        {
+          "source": 153,
+          "branch": "O",
+          "image": 1892,
+          "square_remainder": 1913,
+          "wrong_parity": false
+        },
+        {
+          "source": 207,
+          "branch": "O",
+          "image": 2978,
+          "square_remainder": 1259,
+          "wrong_parity": false
+        },
+        {
+          "source": 281,
+          "branch": "O",
+          "image": 4710,
+          "square_remainder": 3941,
+          "wrong_parity": false
+        },
+        {
+          "source": 396,
+          "branch": "O",
+          "image": 7880,
+          "square_remainder": 4736,
+          "wrong_parity": true
+        },
+        {
+          "source": 560,
+          "branch": "O",
+          "image": 13252,
+          "square_remainder": 496,
+          "wrong_parity": true
+        },
+        {
+          "source": 825,
+          "branch": "O",
+          "image": 23696,
+          "square_remainder": 15209,
+          "wrong_parity": false
+        },
+        {
+          "source": 1233,
+          "branch": "E",
+          "image": 35,
+          "square_remainder": 8,
+          "wrong_parity": true
+        },
+        {
+          "source": 1892,
+          "branch": "E",
+          "image": 43,
+          "square_remainder": 43,
+          "wrong_parity": false
+        },
+        {
+          "source": 2978,
+          "branch": "E",
+          "image": 54,
+          "square_remainder": 62,
+          "wrong_parity": false
+        },
+        {
+          "source": 4710,
+          "branch": "E",
+          "image": 68,
+          "square_remainder": 86,
+          "wrong_parity": false
+        },
+        {
+          "source": 7880,
+          "branch": "E",
+          "image": 88,
+          "square_remainder": 136,
+          "wrong_parity": false
+        },
+        {
+          "source": 13252,
+          "branch": "E",
+          "image": 115,
+          "square_remainder": 27,
+          "wrong_parity": false
+        },
+        {
+          "source": 23696,
+          "branch": "E",
+          "image": 153,
+          "square_remainder": 287,
+          "wrong_parity": false
+        }
+      ],
+      "wrong_parity_sources": [
+        54,
+        68,
+        88,
+        396,
+        560,
+        1233
+      ],
+      "actual_juggler_cycle": false,
+      "rank_induction_excluded": false,
+      "all_original_cells_and_mismatches_replayed": true,
+      "total_ideal_exponent": "531441/524288",
+      "off_domain_lower_guard_asserted": false,
+      "stages": [
+        {
+          "a": 5,
+          "b": 2,
+          "lower_word": "OOE",
+          "upper_word": "OE",
+          "lower_exponent": "9/8",
+          "upper_exponent": "3/4",
+          "weighted_ideal_exponent": "531441/524288",
+          "common_prefix_P": "O",
+          "common_suffix_Q": "OE"
+        },
+        {
+          "a": 3,
+          "b": 2,
+          "lower_word": "OOE",
+          "upper_word": "OOEOE",
+          "lower_exponent": "9/8",
+          "upper_exponent": "27/32",
+          "weighted_ideal_exponent": "531441/524288",
+          "common_prefix_P": "OOEO",
+          "common_suffix_Q": "OE"
+        },
+        {
+          "a": 1,
+          "b": 2,
+          "lower_word": "OOE",
+          "upper_word": "OOEOOEOE",
+          "lower_exponent": "9/8",
+          "upper_exponent": "243/256",
+          "weighted_ideal_exponent": "531441/524288",
+          "common_prefix_P": "OOEOOEO",
+          "common_suffix_Q": "OE"
+        },
+        {
+          "a": 1,
+          "b": 1,
+          "lower_word": "OOEOOEOOEOE",
+          "upper_word": "OOEOOEOE",
+          "lower_exponent": "2187/2048",
+          "upper_exponent": "243/256",
+          "weighted_ideal_exponent": "531441/524288",
+          "common_prefix_P": "OOEOOEO",
+          "common_suffix_Q": "OEOOEOOEOE"
+        },
+        {
+          "a": 0,
+          "b": 1,
+          "lower_word": "OOEOOEOOEOE",
+          "upper_word": "OOEOOEOOEOEOOEOOEOE",
+          "lower_exponent": "2187/2048",
+          "upper_exponent": "531441/524288",
+          "weighted_ideal_exponent": "531441/524288"
+        }
+      ],
+      "terminal": {
+        "states": [
+          35,
+          43
+        ],
+        "lower_word": "OOEOOEOOEOE",
+        "upper_word": "OOEOOEOE",
+        "common_prefix_P": "OOEOOEO",
+        "common_suffix_Q": "OEOOEOOEOE",
+        "prefix_traces": [
+          [
+            35,
+            207,
+            2978,
+            54,
+            396,
+            7880,
+            88,
+            825
+          ],
+          [
+            43,
+            281,
+            4710,
+            68,
+            560,
+            13252,
+            115,
+            1233
+          ]
+        ],
+        "mixed_traces": [
+          [
+            825,
+            23696,
+            153
+          ],
+          [
+            1233,
+            35,
+            207
+          ]
+        ],
+        "suffix_traces": [
+          [
+            153,
+            1892,
+            43,
+            281,
+            4710,
+            68,
+            560,
+            13252,
+            115,
+            1233,
+            35
+          ],
+          [
+            207,
+            2978,
+            54,
+            396,
+            7880,
+            88,
+            825,
+            23696,
+            153,
+            1892,
+            43
+          ]
+        ],
+        "mixed_source_gap": 408,
+        "mixed_image_gap": 54,
+        "mixed_actual_parity_hypotheses": false,
+        "terminal_section_size": 1,
+        "extra_seam_transfer": false,
+        "off_domain_lower_guard_asserted": false
+      }
+    },
+    {
+      "threshold": 29,
+      "minimum": 31,
+      "period": 19,
+      "original_cells": [
+        {
+          "source": 31,
+          "branch": "O",
+          "image": 172,
+          "square_remainder": 207,
+          "wrong_parity": false
+        },
+        {
+          "source": 38,
+          "branch": "O",
+          "image": 234,
+          "square_remainder": 116,
+          "wrong_parity": true
+        },
+        {
+          "source": 47,
+          "branch": "O",
+          "image": 322,
+          "square_remainder": 139,
+          "wrong_parity": false
+        },
+        {
+          "source": 59,
+          "branch": "O",
+          "image": 453,
+          "square_remainder": 170,
+          "wrong_parity": false
+        },
+        {
+          "source": 76,
+          "branch": "O",
+          "image": 662,
+          "square_remainder": 732,
+          "wrong_parity": true
+        },
+        {
+          "source": 98,
+          "branch": "O",
+          "image": 970,
+          "square_remainder": 292,
+          "wrong_parity": true
+        },
+        {
+          "source": 130,
+          "branch": "O",
+          "image": 1482,
+          "square_remainder": 676,
+          "wrong_parity": true
+        },
+        {
+          "source": 172,
+          "branch": "O",
+          "image": 2255,
+          "square_remainder": 3423,
+          "wrong_parity": true
+        },
+        {
+          "source": 234,
+          "branch": "O",
+          "image": 3579,
+          "square_remainder": 3663,
+          "wrong_parity": true
+        },
+        {
+          "source": 322,
+          "branch": "O",
+          "image": 5778,
+          "square_remainder": 964,
+          "wrong_parity": true
+        },
+        {
+          "source": 453,
+          "branch": "O",
+          "image": 9641,
+          "square_remainder": 10796,
+          "wrong_parity": false
+        },
+        {
+          "source": 662,
+          "branch": "O",
+          "image": 17032,
+          "square_remainder": 28504,
+          "wrong_parity": true
+        },
+        {
+          "source": 970,
+          "branch": "E",
+          "image": 31,
+          "square_remainder": 9,
+          "wrong_parity": false
+        },
+        {
+          "source": 1482,
+          "branch": "E",
+          "image": 38,
+          "square_remainder": 38,
+          "wrong_parity": false
+        },
+        {
+          "source": 2255,
+          "branch": "E",
+          "image": 47,
+          "square_remainder": 46,
+          "wrong_parity": true
+        },
+        {
+          "source": 3579,
+          "branch": "E",
+          "image": 59,
+          "square_remainder": 98,
+          "wrong_parity": true
+        },
+        {
+          "source": 5778,
+          "branch": "E",
+          "image": 76,
+          "square_remainder": 2,
+          "wrong_parity": false
+        },
+        {
+          "source": 9641,
+          "branch": "E",
+          "image": 98,
+          "square_remainder": 37,
+          "wrong_parity": true
+        },
+        {
+          "source": 17032,
+          "branch": "E",
+          "image": 130,
+          "square_remainder": 132,
+          "wrong_parity": false
+        }
+      ],
+      "wrong_parity_sources": [
+        38,
+        76,
+        98,
+        130,
+        172,
+        234,
+        322,
+        662,
+        2255,
+        3579,
+        9641
+      ],
+      "actual_juggler_cycle": false,
+      "rank_induction_excluded": false,
+      "all_original_cells_and_mismatches_replayed": true,
+      "total_ideal_exponent": "531441/524288",
+      "off_domain_lower_guard_asserted": false,
+      "stages": [
+        {
+          "a": 5,
+          "b": 2,
+          "lower_word": "OOE",
+          "upper_word": "OE",
+          "lower_exponent": "9/8",
+          "upper_exponent": "3/4",
+          "weighted_ideal_exponent": "531441/524288",
+          "common_prefix_P": "O",
+          "common_suffix_Q": "OE"
+        },
+        {
+          "a": 3,
+          "b": 2,
+          "lower_word": "OOE",
+          "upper_word": "OOEOE",
+          "lower_exponent": "9/8",
+          "upper_exponent": "27/32",
+          "weighted_ideal_exponent": "531441/524288",
+          "common_prefix_P": "OOEO",
+          "common_suffix_Q": "OE"
+        },
+        {
+          "a": 1,
+          "b": 2,
+          "lower_word": "OOE",
+          "upper_word": "OOEOOEOE",
+          "lower_exponent": "9/8",
+          "upper_exponent": "243/256",
+          "weighted_ideal_exponent": "531441/524288",
+          "common_prefix_P": "OOEOOEO",
+          "common_suffix_Q": "OE"
+        },
+        {
+          "a": 1,
+          "b": 1,
+          "lower_word": "OOEOOEOOEOE",
+          "upper_word": "OOEOOEOE",
+          "lower_exponent": "2187/2048",
+          "upper_exponent": "243/256",
+          "weighted_ideal_exponent": "531441/524288",
+          "common_prefix_P": "OOEOOEO",
+          "common_suffix_Q": "OEOOEOOEOE"
+        },
+        {
+          "a": 0,
+          "b": 1,
+          "lower_word": "OOEOOEOOEOE",
+          "upper_word": "OOEOOEOOEOEOOEOOEOE",
+          "lower_exponent": "2187/2048",
+          "upper_exponent": "531441/524288",
+          "weighted_ideal_exponent": "531441/524288"
+        }
+      ],
+      "terminal": {
+        "states": [
+          31,
+          38
+        ],
+        "lower_word": "OOEOOEOOEOE",
+        "upper_word": "OOEOOEOE",
+        "common_prefix_P": "OOEOOEO",
+        "common_suffix_Q": "OEOOEOOEOE",
+        "prefix_traces": [
+          [
+            31,
+            172,
+            2255,
+            47,
+            322,
+            5778,
+            76,
+            662
+          ],
+          [
+            38,
+            234,
+            3579,
+            59,
+            453,
+            9641,
+            98,
+            970
+          ]
+        ],
+        "mixed_traces": [
+          [
+            662,
+            17032,
+            130
+          ],
+          [
+            970,
+            31,
+            172
+          ]
+        ],
+        "suffix_traces": [
+          [
+            130,
+            1482,
+            38,
+            234,
+            3579,
+            59,
+            453,
+            9641,
+            98,
+            970,
+            31
+          ],
+          [
+            172,
+            2255,
+            47,
+            322,
+            5778,
+            76,
+            662,
+            17032,
+            130,
+            1482,
+            38
+          ]
+        ],
+        "mixed_source_gap": 308,
+        "mixed_image_gap": 42,
+        "mixed_actual_parity_hypotheses": false,
+        "terminal_section_size": 1,
+        "extra_seam_transfer": false,
+        "off_domain_lower_guard_asserted": false
+      }
+    },
+    {
+      "threshold": 29,
+      "minimum": 34,
+      "period": 19,
+      "original_cells": [
+        {
+          "source": 34,
+          "branch": "O",
+          "image": 198,
+          "square_remainder": 100,
+          "wrong_parity": true
+        },
+        {
+          "source": 42,
+          "branch": "O",
+          "image": 272,
+          "square_remainder": 104,
+          "wrong_parity": true
+        },
+        {
+          "source": 52,
+          "branch": "O",
+          "image": 374,
+          "square_remainder": 732,
+          "wrong_parity": true
+        },
+        {
+          "source": 66,
+          "branch": "O",
+          "image": 536,
+          "square_remainder": 200,
+          "wrong_parity": true
+        },
+        {
+          "source": 85,
+          "branch": "O",
+          "image": 783,
+          "square_remainder": 1036,
+          "wrong_parity": false
+        },
+        {
+          "source": 111,
+          "branch": "O",
+          "image": 1169,
+          "square_remainder": 1070,
+          "wrong_parity": false
+        },
+        {
+          "source": 148,
+          "branch": "O",
+          "image": 1800,
+          "square_remainder": 1792,
+          "wrong_parity": true
+        },
+        {
+          "source": 198,
+          "branch": "O",
+          "image": 2786,
+          "square_remainder": 596,
+          "wrong_parity": true
+        },
+        {
+          "source": 272,
+          "branch": "O",
+          "image": 4485,
+          "square_remainder": 8423,
+          "wrong_parity": true
+        },
+        {
+          "source": 374,
+          "branch": "O",
+          "image": 7232,
+          "square_remainder": 11800,
+          "wrong_parity": true
+        },
+        {
+          "source": 536,
+          "branch": "O",
+          "image": 12409,
+          "square_remainder": 7375,
+          "wrong_parity": true
+        },
+        {
+          "source": 783,
+          "branch": "O",
+          "image": 21910,
+          "square_remainder": 587,
+          "wrong_parity": false
+        },
+        {
+          "source": 1169,
+          "branch": "E",
+          "image": 34,
+          "square_remainder": 13,
+          "wrong_parity": true
+        },
+        {
+          "source": 1800,
+          "branch": "E",
+          "image": 42,
+          "square_remainder": 36,
+          "wrong_parity": false
+        },
+        {
+          "source": 2786,
+          "branch": "E",
+          "image": 52,
+          "square_remainder": 82,
+          "wrong_parity": false
+        },
+        {
+          "source": 4485,
+          "branch": "E",
+          "image": 66,
+          "square_remainder": 129,
+          "wrong_parity": true
+        },
+        {
+          "source": 7232,
+          "branch": "E",
+          "image": 85,
+          "square_remainder": 7,
+          "wrong_parity": false
+        },
+        {
+          "source": 12409,
+          "branch": "E",
+          "image": 111,
+          "square_remainder": 88,
+          "wrong_parity": true
+        },
+        {
+          "source": 21910,
+          "branch": "E",
+          "image": 148,
+          "square_remainder": 6,
+          "wrong_parity": false
+        }
+      ],
+      "wrong_parity_sources": [
+        34,
+        42,
+        52,
+        66,
+        148,
+        198,
+        272,
+        374,
+        536,
+        1169,
+        4485,
+        12409
+      ],
+      "actual_juggler_cycle": false,
+      "rank_induction_excluded": false,
+      "all_original_cells_and_mismatches_replayed": true,
+      "total_ideal_exponent": "531441/524288",
+      "off_domain_lower_guard_asserted": false,
+      "stages": [
+        {
+          "a": 5,
+          "b": 2,
+          "lower_word": "OOE",
+          "upper_word": "OE",
+          "lower_exponent": "9/8",
+          "upper_exponent": "3/4",
+          "weighted_ideal_exponent": "531441/524288",
+          "common_prefix_P": "O",
+          "common_suffix_Q": "OE"
+        },
+        {
+          "a": 3,
+          "b": 2,
+          "lower_word": "OOE",
+          "upper_word": "OOEOE",
+          "lower_exponent": "9/8",
+          "upper_exponent": "27/32",
+          "weighted_ideal_exponent": "531441/524288",
+          "common_prefix_P": "OOEO",
+          "common_suffix_Q": "OE"
+        },
+        {
+          "a": 1,
+          "b": 2,
+          "lower_word": "OOE",
+          "upper_word": "OOEOOEOE",
+          "lower_exponent": "9/8",
+          "upper_exponent": "243/256",
+          "weighted_ideal_exponent": "531441/524288",
+          "common_prefix_P": "OOEOOEO",
+          "common_suffix_Q": "OE"
+        },
+        {
+          "a": 1,
+          "b": 1,
+          "lower_word": "OOEOOEOOEOE",
+          "upper_word": "OOEOOEOE",
+          "lower_exponent": "2187/2048",
+          "upper_exponent": "243/256",
+          "weighted_ideal_exponent": "531441/524288",
+          "common_prefix_P": "OOEOOEO",
+          "common_suffix_Q": "OEOOEOOEOE"
+        },
+        {
+          "a": 0,
+          "b": 1,
+          "lower_word": "OOEOOEOOEOE",
+          "upper_word": "OOEOOEOOEOEOOEOOEOE",
+          "lower_exponent": "2187/2048",
+          "upper_exponent": "531441/524288",
+          "weighted_ideal_exponent": "531441/524288"
+        }
+      ],
+      "terminal": {
+        "states": [
+          34,
+          42
+        ],
+        "lower_word": "OOEOOEOOEOE",
+        "upper_word": "OOEOOEOE",
+        "common_prefix_P": "OOEOOEO",
+        "common_suffix_Q": "OEOOEOOEOE",
+        "prefix_traces": [
+          [
+            34,
+            198,
+            2786,
+            52,
+            374,
+            7232,
+            85,
+            783
+          ],
+          [
+            42,
+            272,
+            4485,
+            66,
+            536,
+            12409,
+            111,
+            1169
+          ]
+        ],
+        "mixed_traces": [
+          [
+            783,
+            21910,
+            148
+          ],
+          [
+            1169,
+            34,
+            198
+          ]
+        ],
+        "suffix_traces": [
+          [
+            148,
+            1800,
+            42,
+            272,
+            4485,
+            66,
+            536,
+            12409,
+            111,
+            1169,
+            34
+          ],
+          [
+            198,
+            2786,
+            52,
+            374,
+            7232,
+            85,
+            783,
+            21910,
+            148,
+            1800,
+            42
+          ]
+        ],
+        "mixed_source_gap": 386,
+        "mixed_image_gap": 50,
+        "mixed_actual_parity_hypotheses": false,
+        "terminal_section_size": 1,
+        "extra_seam_transfer": false,
+        "off_domain_lower_guard_asserted": false
+      }
+    }
+  ],
+  "conditional_ceiling": {
+    "minimum": 340282366920938463463374607431768211457,
+    "least_even_gap": 6554,
+    "odd_projected_return": 22300745198530623141535718272648361506054143,
+    "seam_squared_product": 247330401473104534060502521019647190038111370125737785792100182403387265181659559323858819866886360444089356698722833174497287694927077372026227081867148364776640939135993801,
+    "max_retained_odd_base": 6277101735386680763835789423207666416127565844578116654421,
+    "new_maximum_ceiling": 39402006196394479212279040100143613805396235763077241838504472010065983501535481637022382797341816390456086172154082,
+    "previous_direction_change_ceiling": 39402006196394479212279040100143613805409955919484267585610093373944570270431995904008052925819490522234808126406654,
+    "ceiling_improvement": 13720156407025747105621363878586768896514266985670128477674131778721954252572,
+    "cube_gap": 30879775100153415714534349205801993522559775489567965051862126196576511706911,
+    "gap_certificate": "(5*G)^64 > 2^64*minimum^7",
+    "clean_strip_certificate": "(2*cube_gap)^64 > minimum^127",
+    "sharp_rational_power_evaluated": false,
+    "periodicity": "not asserted; one conditional bound evaluation only"
+  },
+  "written_bound": "If a Juggler cycle has m>=2^128 and M<m^3, then M<m^3-(1/2)*m^(127/64)",
+  "proof_status": "written mathematical proof; bounded controls do not replace it",
+  "uniform_fixed_minimum_certificate": false,
+  "new_theorem_formalized_in_lean": false,
+  "uniform_gap_propagation_proved": false,
+  "universal_wrong_parity_proved": false,
+  "tall_cycles_excluded": false,
+  "new_period_bound": false,
+  "no_cycle_proved": false
+}

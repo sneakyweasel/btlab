@@ -8,8 +8,8 @@
         "name": "Cochin, Philippe"
       }
     ],
-    "description": "<p>The Juggler map applies the integer part of the square root at even positive integers and of the three-halves power at odd positive integers. We prove that the starting values admitting a power-envelope descent certificate within four operations have natural density 13/16. We also prove that the five-letter itinerary OOEOE has count N/32 + O(N^(47/48)). Together these give a specified certificate class of density 27/32, all of whose starts descend within five operations. The analytic arguments use exact carry expansions and second-derivative estimates summed over every gap cell. For the fifth letter, centering a Fourier expansion at the integer part of a smooth coefficient cancels the growing first-floor term; the additional interval boundaries are retained in a summed mixed-mode estimate. We also give a partition-aware curvature estimate for a basic collision model. The full five-step certificate density 7/8 requires only the remaining formal-chain correlation hypothesis for OOOEE. Fair-share densities for every fixed-depth odd-rooted itinerary would imply density-one finite certificates. The general decorated kernel, its short-interval extension, and the remaining correlation hypotheses are unproved here. No result asserts universal arrival at 1.</p>",
-    "version": "2026-09-09-ooeoe-repair",
+    "description": "<p>The Juggler map applies the integer part of the square root at even positive integers and of the three-halves power at odd positive integers. We prove that the starting values admitting a power-envelope descent certificate within five operations have natural density 7/8. More precisely, their count up to N is 7N/8+O_epsilon(N^(127/128+epsilon)) for every epsilon&gt;0. The four-step subfamily has density 13/16. The proof uses exact carry identities, centered Fourier expansions, and van der Corput differencing, with all floor exceptions and partition endpoints counted. The two five-letter classes OOEOE and OOOEE are treated through their distinct formal chains. For OOOEE, the full mixed phase is retained and its signed curvature is recomputed after each frequency center is frozen. The complete analytic argument is included in three appendices. Fair-share densities at every fixed depth would imply density-one finite certificates; that hypothesis, general decorated estimates, and short-interval localization remain open. No result asserts universal arrival at 1.</p>",
+    "version": "2026-09-10-proof-audit",
     "language": "eng",
     "access_right": "open",
     "license": "cc-by-4.0",
@@ -19,7 +19,7 @@
       "parity correlations",
       "discrepancy",
       "stopping time",
-      "conditional descent"
+      "finite-step descent"
     ],
     "related_identifiers": [
       {
@@ -28,6 +28,6 @@
         "scheme": "url"
       }
     ],
-    "notes": "The four-step certificate density 13/16 and a specified five-step certificate subfamily of density 27/32 are proved here. The full five-step density 7/8 remains conditional on the OOOEE correlation hypothesis. The general decorated kernel and short-interval bounds remain unproved. Earlier theorem numbering is superseded. AI assistance is disclosed in the manuscript. No independent mathematical or peer-review certification is asserted. Set the actual first-publication date before deposit."
+    "notes": "Theorem 5.4 proves the five-step power-envelope certificate density 7/8 with error O_epsilon(N^(127/128+epsilon)). The complete OOOEE proof is consolidated into Appendices A-C. AI assistance is disclosed. Exact scripts support algebra and bookkeeping, not independent mathematical certification. Independent review remains outstanding. The historical 95/96 target, arbitrary decorations, localization, and all-depth fair-share hypotheses remain open. No universal termination claim. Use the actual first-publication date when creating the deposit. The 10 September proof audit adds the bounded signed-residual Fourier extension, verifies coefficient variation, clarifies notation and shift conventions, and repairs the reference link. Critical curvature coefficients were derived afresh with SymPy. This remains an AI-assisted written proof pending independent expert review."
   }
 }

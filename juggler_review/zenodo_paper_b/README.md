@@ -17,13 +17,15 @@ CC BY 4.0. Use the actual date this version first becomes public as the
 publication date. No DOI has been reserved, and no external record has
 been created.
 
-The PDF is a preprint with an unconditional four-step certificate density
-13/16 and a specified five-step certificate subfamily of density 27/32.
-The OOEOE split is proved in Corollary 4.10. Full five-step density 7/8
-requires only the OOOEE hypothesis in Theorem 5.4; density-one
-certificates require fixed-depth equidistribution. The general decorated
-kernel and short-interval estimates remain unproved. Arrival at 1 is not
-claimed. AI assistance is disclosed; no independent peer review is asserted.
+The PDF is a 37-page preprint proving full five-step power-envelope
+certificate density 7/8, with count error O_epsilon(N^(127/128+epsilon)).
+The OOOEE proof is complete within Theorem 4.11 and Appendices A-C.
+The 10 September proof audit adds the bounded signed-residual Fourier
+extension and verifies its variation hypotheses. See the
+[fresh proof audit](../../docs/theory/paper_b_proof_review.md).
+All-depth hypotheses, arbitrary decorated estimates, and localization
+remain open. AI assistance is disclosed; independent mathematical
+review and complete Lean verification remain outstanding.
 
 Start a deposit at <https://zenodo.org/uploads/new>. Upload the current
 Paper B PDF and the accompanying source/verification archive when

@@ -1,0 +1,26 @@
+{
+  "status": "PASS",
+  "sympy_version": "1.14.0",
+  "method": "Differentiate exact four-corner powers in an auxiliary shift; compose with X; freeze labels while differentiating; substitute moving values afterwards.",
+  "curvatures": {
+    "nonzero_offset": {
+      "pieces": [
+        "945/512",
+        "-27/16",
+        "-81/128"
+      ],
+      "sum": "-243/512"
+    },
+    "zero_offset": {
+      "pieces": [
+        "-6075/2048",
+        "243/128",
+        "729/256"
+      ],
+      "sum": "3645/2048"
+    }
+  },
+  "k_zero_fifth_curvature": "81/512",
+  "scope": "Symbolic leading coefficients only. Remainder uniformity and analytic bounds require the written proofs.",
+  "independent_mathematical_review": false
+}

@@ -1,4 +1,4 @@
-> **Publication status, 9 September 2026.** This ledger is a historical arithmetic audit, not a proof of the nested cancellation claims. The current [conditional Paper B](juggler_parity_discrepancy_note.md) supersedes those claims. Its [publication review](paper_b_review.md) explains the gaps. Historical source-text tests now read the preserved 4 September snapshot.
+> **Historical audit:** the current [consolidated Paper B](juggler_parity_discrepancy_note.md) contains a new full five-step proof. This ledger concerns earlier arithmetic and is not independent verification of that analytic result. See [the consolidation audit](paper_b_consolidation_report.md). Historical source tests retain the 4 September snapshot.
 
 # Paper B audit ledger
 

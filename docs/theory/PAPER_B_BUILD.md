@@ -1,53 +1,96 @@
-# Paper B: OOEOE repair release
+# Paper B: consolidated five-step preprint
 
-Version: 2026-09-09-ooeoe-repair. Author: Philippe Cochin.
+Version: 2026-09-10-proof-audit. Author: Philippe Cochin.
 
-The publication is **Parity Statistics of Nested Floor Powers: Finite-Step Descent and Conditional Extensions for the Juggler Map**. The PDF has seventeen pages. The four-step power-envelope certificate density 13/16 is unconditional, with error O(N^(23/24) log(2N)^3). The OOEOE count adds a disjoint five-step certificate subfamily, giving density 27/32 with error O(N^(47/48)). The full five-step density 7/8 requires only the remaining OOOEE correlation hypothesis; density-one certificates require fixed-depth equidistribution. The general decorated kernel and short-interval estimates remain unproved.
+The 37-page manuscript proves full five-step power-envelope certificate
+density 7/8, with count error O_epsilon(N^(127/128+epsilon)).
+Theorem 4.11 and Appendices A-C contain the complete OOOEE proof;
+Theorem 5.4 gives the count. The four-step density 13/16 and OOEOE
+estimate remain included. The stronger historical 95/96 target,
+arbitrary decorations, localization, and all-depth hypotheses remain open.
 
-## Files for Zenodo
+## Deposit files
 
-Upload `juggler_parity_discrepancy_note.pdf` and `paper_b_source_package.zip`. The latter contains the manuscript sources, build assets, exact validation script and results, and this guide. `paper_b_zenodo_fields.txt` and `paper_b_zenodo.json` provide prepared record fields. The reviewer kit `juggler_review/zenodo_paper_b/` holds the deposit-named PDF alias `Parity_Statistics_of_Nested_Floor_Powers.pdf` and generated `ZENODO_FIELDS.txt`. They are local preparation materials, not an existing deposit. Set the actual first-publication date in Zenodo. No DOI has been reserved or inserted.
+Upload juggler_parity_discrepancy_note.pdf and paper_b_source_package.zip.
+The source ZIP contains the complete manuscript, generated LaTeX,
+build assets, all exact-control scripts, aggregate validation, fresh proof audit, metadata, and this guide. paper_b_zenodo_package.zip collects
+the prepared deposit materials for convenience.
 
-`paper_b_review.md` records the initial review and original proof gaps. The first repair report, paper_b_repair_report.md, records the four-step repair. The current paper_b_ooeoe_report.md records its audit, the OOEOE proof, the 27/32 subfamily, and the bounded kernel assessment. The old 4 September working draft is preserved separately in the repository as `juggler_parity_discrepancy_note_2026_09_04.md`; it is not the publication source. Earlier theorem numbering is superseded.
+Prepared fields: paper_b_zenodo.json and paper_b_zenodo_fields.txt.
+The repository reviewer kit also contains the byte-identical PDF alias
+Parity_Statistics_of_Nested_Floor_Powers.pdf and generated ZENODO_FIELDS.txt.
+No deposit or DOI has been created. Use the actual first-publication date.
 
-## Rebuild from the standalone source package
+## Standalone rebuild
 
-Requirements: Python 3.10 or newer, Pandoc, and XeLaTeX with the standard AMS, geometry, longtable, booktabs, array, calc, needspace, xurl, and hyperref packages. The validated build used Pandoc 3.6.3 and MiKTeX-XeTeX 4.18 (MiKTeX 26.5).
+Requirements: Python 3.10+, Pandoc, and XeLaTeX with AMS, geometry,
+longtable, booktabs, array, calc, needspace, xurl, and hyperref.
+The tested versions are Pandoc 3.6.3 and MiKTeX-XeTeX 4.18.
+Extract the source ZIP into an empty directory and run:
 
-Extract the source ZIP into a new directory and run there:
-
-```text
+~~~text
 python build_paper_b.py
-python validate_paper_b.py --output paper_b_validation.json
-python validate_paper_b_repairs.py --output paper_b_repair_validation.json
-python validate_paper_b_ooeoe.py --output paper_b_ooeoe_validation.json
-```
+python validate_paper_b_consolidated.py --output paper_b_consolidated_validation.json
+~~~
 
-The build reads the Markdown and `build/article.tex` / `build/layout.lua`, compiles twice, and writes the PDF, generated LaTeX, and `paper_b_build.json`. It stops on overfull boxes, missing glyphs, or undefined references. Use `--pandoc` and `--xelatex` with executable paths if they are not on PATH. Use `--output-dir` and `--build-dir` to choose output locations. The supplied LaTeX can also be compiled directly with XeLaTeX twice.
+Use --pandoc and --xelatex for executable paths, or --output-dir and
+--build-dir to select destinations. The build compiles twice and fails
+on overfull boxes, missing glyphs, or undefined references. The supplied
+LaTeX can also be compiled directly twice. PDF timestamps can differ;
+the rebuild check compares generated LaTeX exactly.
 
-From the laboratory repository root, the corresponding commands are:
+## Repository workflow
 
-```text
+~~~text
 python tools/build_paper_b.py
-python tools/validate_paper_b.py --output docs/theory/paper_b_validation.json
-python tools/validate_paper_b_repairs.py --output docs/theory/paper_b_repair_validation.json
-python tools/validate_paper_b_ooeoe.py --output docs/theory/paper_b_ooeoe_validation.json
-```
+python tools/validate_paper_b_consolidated.py --output docs/theory/paper_b_consolidated_validation.json
+python tools/build_paper_b.py --check
+python tools/render_theorem_ledger.py --check
+python -m research.juggler_sequence.branch_index --check
+~~~
 
-The repository builder uses `docs/theory/` as the source directory and `tools/paper_b/` for its assets. Review the PDF after every changed build; rebuilds can differ at the byte level because PDF metadata includes build information. `paper_b_build.json` records hashes of the actual delivered build, and `SHA256SUMS.txt` records the package files.
+The builder reads docs/theory/ and tools/paper_b/. A repository build
+synchronizes the review mirrors, companion PDF, and Zenodo PDF alias.
+--sync repairs those mirrors without compiling. The source archive and
+checksums must be regenerated after source changes; --sync alone does
+not rebuild archives. Review the rendered PDF after every changed build.
 
-A repository rebuild that writes to `docs/theory/` also synchronizes the Markdown and PDF copies in `juggler_review/`, the companion PDF, and `juggler_review/zenodo_paper_b/`. Use `python tools/build_paper_b.py --sync` to repair those exports without recompiling, and `--check` to verify them. A standalone package build still writes only its selected output directory. Run the repository's manuscript-mirror and documentation-link checks before preparing another release.
+## Optional symbolic review
 
-## Validation scope
+The standalone source also includes derive_paper_b_review.py and its
+result paper_b_symbolic_review.json. With SymPy installed (tested with
+1.14.0), run:
 
-The standalone script uses only Python's standard library and exact integer or rational arithmetic. It checks 16,000 power envelopes, 6,231 branch indicators, 3,150 algebraic identities and bounds, and 10,201 carry identities. It enumerates the minimal contracting words through depth five and auxiliary word counts through depth sixteen. Its density fractions are finite word-weight sums, not measurements or proofs of asymptotic orbit densities. The new repair validator additionally passes 1,920 differenced-identity checks, 2,000 carry-expansion checks, and 40 exponent comparisons. The OOEOE validator checks 1,275 exact centering identities, the frozen-frequency curvature coefficient, five squared-sum exponents, ten strict exponent comparisons, and the certificate fractions.
+~~~text
+python derive_paper_b_review.py --output paper_b_symbolic_review.json
+~~~
 
-The manuscript's analytic and conditional arguments are written proofs. The exact scripts support algebra and exponent bookkeeping; neither they nor the older repository audits prove asymptotic cancellation or independently validate the new arguments. No complete Lean verification is claimed for this revision.
+This derives leading curvature coefficients from the exact four-corner
+powers. SymPy is optional for building the PDF and running the nine
+standard-library exact-control modules. The fresh review and its limits
+are documented in paper_b_proof_review.md.
 
-## Prepared licensing
+## Evidence and licensing
 
-The proposed manuscript and release-documentation license is Creative Commons Attribution 4.0 International, matching the prepared Zenodo fields: <https://creativecommons.org/licenses/by/4.0/>. This is an editable deposit choice. The Python and Lua build/validation code follows the repository's MIT license, included as `LICENSE-MIT.txt` in the source package. Third-party tools and cited works retain their own licenses.
+The 10 September revision supplies the bounded signed-residual Fourier
+extension and its variation proof, defines the parity sign before use,
+clarifies shifts, and repairs subscripts and the reference link.
+The aggregate validator runs nine exact modules and checks 93 equation
+labels and 78 appendix references. Earlier modules retain historical
+research-stage labels; those are not current theorem-status assertions.
+The analytic arguments are AI-assisted written proofs. Finite scripts
+check identities and exponents, not asymptotic cancellation. No surviving
+gap was identified in the consolidation audit; independent mathematical
+review and complete Lean verification remain outstanding.
 
-## Publication status
+paper_b_release_check.json records PDF preflight, the standalone rebuild,
+and repository checks. Earlier reports remain historical repository
+records and are not external dependencies of the manuscript.
 
-This is a locally prepared preprint with proved four-step and OOEOE results and conditional extensions. It has not been uploaded or published by this review. Author approval of the final text and record fields remains part of the publication decision. Companion manuscripts that use the former unconditional Paper B claims need a separate dependency review.
+The prepared manuscript/documentation license is CC BY 4.0:
+<https://creativecommons.org/licenses/by/4.0/>. Original Python/Lua code
+uses the repository's MIT license, included as LICENSE-MIT.txt.
+
+This is a locally prepared preprint. Author approval of its text and
+record fields is part of the publication decision. No upload, independent
+peer-review certification, or universal termination claim is made.

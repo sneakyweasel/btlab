@@ -1,43 +1,38 @@
+PAPER B - PREPARED ZENODO RECORD
+
 TITLE
 Parity Statistics of Nested Floor Powers: Finite-Step Descent and Conditional Extensions for the Juggler Map
 
 CREATOR
 Cochin, Philippe
-No affiliation or ORCID is asserted.
+No affiliation supplied.
 
 RESOURCE TYPE
 Publication / Preprint
 
 VERSION
-2026-09-09-ooeoe-repair
+2026-09-10-proof-audit
 
 PUBLICATION DATE
-Use the actual date this version is first made public.
+Use the date this version is first made public. The manuscript is dated 10 September 2026.
 
-LICENSE (PREPARED CHOICE; EDITABLE BEFORE DEPOSIT)
-Creative Commons Attribution 4.0 International (CC BY 4.0)
-
-LANGUAGE
-English
-
-KEYWORDS
-Juggler map; nested floor powers; parity correlations; discrepancy; stopping time; conditional descent
-
-FILES
-juggler_parity_discrepancy_note.pdf
-paper_b_source_package.zip
+LICENSE
+CC BY 4.0 for the manuscript and release documentation.
+MIT for the accompanying original code.
 
 DESCRIPTION
-Use the abstract in paper_b_zenodo.json. It identifies the four-step certificate density 13/16 and the specified five-step subfamily density 27/32 as proved. The full five-step density 7/8 requires the remaining OOOEE hypothesis. Density-one certificates, the general decorated kernel, and short-interval estimates remain conditional or unproved.
+The Juggler map applies the integer part of the square root at even positive integers and of the three-halves power at odd positive integers. We prove that the starting values admitting a power-envelope descent certificate within five operations have natural density 7/8. More precisely, their count up to N is 7N/8+O_epsilon(N^(127/128+epsilon)) for every epsilon>0. The four-step subfamily has density 13/16. The proof uses exact carry identities, centered Fourier expansions, and van der Corput differencing, with all floor exceptions and partition endpoints counted. The two five-letter classes OOEOE and OOOEE are treated through their distinct formal chains. For OOOEE, the full mixed phase is retained and its signed curvature is recomputed after each frequency center is frozen. The complete analytic argument is included in three appendices. Fair-share densities at every fixed depth would imply density-one finite certificates; that hypothesis, general decorated estimates, and short-interval localization remain open. No result asserts universal arrival at 1.
+
+KEYWORDS
+Juggler map; nested floor powers; parity correlations; discrepancy; stopping time; finite-step descent
 
 RELATED SOFTWARE
 https://github.com/sneakyweasel/btlab
 
-DOI
-No DOI has been reserved. Reserve one in the Zenodo draft if desired, then insert the actual identifier before publishing. Do not reuse a companion paper's DOI.
+UPLOAD FILES
+juggler_parity_discrepancy_note.pdf
+paper_b_source_package.zip
 
-RECORD STATUS
-Prepared locally only. No deposit has been created or published. This preprint proves the four-step density and a five-step certificate subfamily of density 27/32, with explicit conditional extensions. It does not prove the earlier general kernel theorem and has not been independently peer reviewed.
-
-AUTHOR NOTE
-Companion documents must distinguish the restored four-step theorem and OOEOE split from the unproved general kernel and OOOEE claim; earlier theorem numbers require a separate dependency review.
+REVIEW STATUS
+AI-assisted written proof; exact controls pass. Independent mathematical review and full Lean verification are not claimed.
+No record has been created, no DOI reserved, and no files uploaded.

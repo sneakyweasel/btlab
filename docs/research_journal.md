@@ -1,5 +1,18 @@
 # Research journal
 
+## Paper B: consolidated five-step publication candidate
+
+- **Date:** 9 September 2026. [Dossier](problems/juggler_paper_b_consolidation.md).
+- **Result:** The complete OOOEE argument is now in Theorem 4.11 and
+  Appendices A-C; Theorem 5.4 proves five-step certificate density 7/8.
+- **Audit:** Signed frequencies, original-run errors, centered coefficients,
+  all endpoints, and dyadic cutoffs checked; no surviving gap identified.
+- **Evidence:** AI-assisted written proof and nine exact-control modules.
+  No independent mathematical review or complete Lean verification.
+- **Decision:** PROMOTE the consolidated manuscript and local package
+  for author review. No upload or DOI reservation.
+- **Stop:** Publication preparation ends here; broader hypotheses remain open.
+
 ## Paper B OOOEE: mixed modes and the five-step count
 
 - **Date:** 9 September 2026. **Source:**
@@ -42491,3 +42504,82 @@ calibration are recorded without promoting a theorem or naming a new
 frontier hypothesis. All nested floors are retained, other high-odd-count
 words remain open, and no source census, floor increase, paper edit,
 runtime probe or formal module is introduced.
+
+## 2026-09-09 — Two genuine direction-change transfers
+
+The user authorized exact gap transfer at the first Euclidean direction
+change. [The direction-change dossier](problems/juggler_cycle_direction_change.md)
+is the canonical proof source. Left inductions reuse one boundary pair;
+the two forced right returns apply C=OOEOOEOE to it twice.
+
+The prescribed C-map has total additive floor loss below 9/8 for every
+integer input at least 2^24. Its paired output gap is strictly smaller
+than every input gap at least2 there. Two genuine odd return pairs
+therefore force initial gap at least6 and, quantitatively,
+(26240/59049)m^(13/128). The complete rank argument handles every
+zero-remainder terminal case and forces both initial batch quotients2.
+Combining these facts with the earlier exact seam gives
+M<m^3-(1/2)m^(253/128) for actual cycles with m>=2^24 and M<m^3.
+
+**Decision: PROMOTE** this scoped written theorem. It widens the excluded
+strip without a new source census, trajectory extension, descent floor
+or period computation. The checks reuse seven archived threshold cycles
+and two previously used large minima for conditional ceiling arithmetic.
+The results are AI-assisted written proofs, not newly compiled Lean or
+independent human review. Paper A remains at its previous verified
+release until a separate consolidation. Later induced words and the
+terminal mixed-branch event prevent inferring uniform no-cycle from
+these two contractions. No automatic next branch is opened.
+
+
+## 2026-09-10 — Later returns and the terminal mixed passage
+
+The authorized continuation begun on 9 September proves a third genuine
+boundary contraction and identifies the limitation of extending the same
+error estimate indefinitely. The canonical proof is the
+[later-return dossier](problems/juggler_cycle_later_returns.md).
+
+For m>=2^128, the next left quotient is three, with nonzero remainder.
+The 65-letter word W=(A C^2)^3 C has exponent rho=3^41/2^65 and floor
+loss below6/5. Its genuine seam transfer gives original gap at least8
+and greater than(2/5)m^(13/128+1-rho). Therefore actual cycles with
+M<m^3 satisfy M<m^3-(1/2)m^(381/128-rho), including the clean
+127/64 corollary. The preceding 253/128 result remains the applicable
+lower-domain theorem from m>=2^24.
+
+The general one-sided certificate needs a minimum growing at least as
+(2p)^(1/(1-p)) when the contracting exponent p approaches1. This does
+not refute actual paired contraction. At the terminal two-base stage,
+UV=P OE Q and VU=P EO Q close the gap passage through a mixed block
+that itself contracts. The left-step prefix P accounts for the omitted
+amplification; the right-step suffix Q accounts for the previously
+tracked contractions. Their ideal exponent product is still above1.
+A new joint cell estimate is needed before this yields no-cycle.
+
+**Decision: PROMOTE** the scoped third-transfer result and exact terminal
+accounting; do not infer global no-cycle or start another branch.
+These are AI-assisted written proofs with separate AI checks, not new
+Lean verification or independent human review. The bounded controls
+use fixed rational constants, seven archived threshold cycles, and one
+conditional ceiling at2^128+1. No source/cycle census, trajectory
+extension, rank-pair scan, floor increase, manuscript edit or upload.
+
+## 2026-09-10 — Paper B proof audit and bounded residuals
+
+The user requested a fresh review of the complete Paper B proof.
+The [proof audit](theory/paper_b_proof_review.md) records the obligation
+checks and the corrected statement of Lemma 4.7's bounded signed-residual
+extension. Appendix C now proves the required residual variation bounds.
+The revision also defines the parity sign, distinguishes shift conventions,
+repairs multi-digit subscripts, and restores the bibliography link.
+Fresh symbolic differentiation of exact four-corner powers confirms
+-243/512 and 3645/2048; the 127/128 exponent and 7/8 certificate density
+are unchanged. Primary derivative and discrepancy references were checked.
+
+**Decision: PROMOTE** the corrected manuscript and local release for
+author and expert review. The current PDF has 37 pages. Exact controls,
+source structure, standalone rebuild, rendering, and repository checks
+are recorded in the release report. No unresolved gap was identified
+after these repairs, but this is another AI-assisted review, not
+independent mathematical certification or complete Lean verification.
+No external deposit or new research branch was opened.
