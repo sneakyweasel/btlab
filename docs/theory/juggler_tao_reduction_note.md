@@ -344,7 +344,7 @@ and every \(w\in\{O,E\}^t\),
 e_q(C)=\frac{2\,(C\mu-1)^2}{C\,(\log_2 3)^2\ln 2}
 =1.1486\ldots\cdot\frac{(C\mu-1)^2}{C}.
 \]
-Assume \(\mathrm H_q(C,A)\) with \(A>C+1\). Then for every
+Assume \(\mathrm H_q(C,A)\) with \(A>C+e_q(C)\). Then for every
 \(\varepsilon>0\) and all sufficiently large \(y\),
 \[
 \#\{n\ \text{odd}\in(y,2y]:\ n\notin R\}
@@ -375,7 +375,8 @@ reaches \(-L\), so \(u_d>-L\), hence either
 \(M_d>-L-u_1+(1-\kappa)(d-1)\mu\). By Markov and the bound on
 \(\mathbb E[\sum\eta_s]\), the first event has probability
 \(\le\frac{4\log_2 3}{\kappa(d-1)\mu}(\log 2y/\log N_0)^{C}(\log y)^{-A}=O((\log y)^{C-A})\),
-negligible for \(A>C+1\). By Azuma–Hoeffding, with
+which is \(o((\log y)^{-e_q(C)+\varepsilon})\) under the stated
+condition. By Azuma–Hoeffding, with
 \(a=(1-\kappa)(d-1)\mu-L-u_1\ge L\bigl((1-\kappa)C\mu-1\bigr)-\log_2 3\),
 \[
 \mathbb P(M_d>a)\le\exp\Bigl(-\frac{2a^2}{(d-1)(\log_2 3)^2}\Bigr)
@@ -507,8 +508,9 @@ every \(\varepsilon>0\) and all large \(y\),
 \ \le\ \frac y2\Bigl(\frac{\log 2y}{\log N_0}\Bigr)^{-(e(C)-\varepsilon)},
 \]
 the bound of Theorem B; hence \(\mathrm P_{\theta_C}(C)\) with
-\(C\ge 19\) implies the Juggler conjecture (Theorem A with
-\(\lambda^{***}\)).
+\(C\ge 19\) implies the Juggler conjecture using the unconditional
+\(\lambda^{**}\), while Appendix C's conditional \(\lambda^{***}\)
+lowers this to \(C\ge18\).
 
 *Proof.* If \(\tau(n)>d\) then \(u_d>-L\), i.e.
 \(o_d>(d-L)/\log_2 3\ge p_Cd\). Hence
@@ -537,9 +539,15 @@ be the *tilted odd share*: the probability that the next letter is
 \(\sum_{t=1}^{d(y)-1}\bigl(s_\theta(t)-q\bigr)^+=o(d(y))\).
 
 **Proposition 10.1.** \(\mathrm M_{\theta,1/2}(C)\) implies
-\(\mathrm P_\theta(C)\). More generally \(\mathrm M_{\theta,q}(C)\)
-with \(q<p_C\) gives
-\(\#\{\tau>d\}\le N\exp(-d\,D(p_C\|q)(1-o(1)))\), i.e. the exponent
+\(\mathrm P_\theta(C)\). More generally, at a fixed \(\theta>0\),
+\(\mathrm M_{\theta,q}(C)\) gives
+\[
+\#\{\tau>d\}\le
+N\exp\{-d[\theta p_C-\log(1-q+qe^\theta)-o(1)]\}.
+\]
+If \(0<q<p_C<1\) and the hypothesis is assumed at the optimizing tilt
+\(\theta=\theta_{C,q}:=\log\frac{p_C(1-q)}{q(1-p_C)}\), this becomes
+\(\#\{\tau>d\}\le N\exp(-dD(p_C\|q)(1-o(1)))\), i.e. the exponent
 \(e_q^{\rm Ch}(C)=C\,D(p_C\|q)/\ln 2\), which is at least the Azuma
 exponent of Theorem B′ (least \(C\): \(19\) at \(q=\tfrac12\), \(41\)
 at \(0.55\), \(214\) at \(0.60\), \(1496\) at \(0.62\)).
@@ -555,8 +563,9 @@ With \(a_{\theta,q}=1+(e^\theta-1)q\) and \(c_\theta=(e^\theta-1)/a_{\theta,q}\)
 Telescoping from \(t=1\) (\(\sum_{\tau>1}e^{\theta o_1}\le Ne^\theta\))
 gives
 \(\sum_{\tau>d}e^{\theta o_d}\le Ne^{\theta}a_{\theta,q}^{\,d-1}\exp\bigl(c_\theta\sum_{t<d}(s_\theta(t)-q)^+\bigr)\),
-which is \(\mathrm P_\theta\) at \(q=\tfrac12\); the Chernoff step of
-Theorem B‴ with \(a_{\theta,q}\) in place of \(a_\theta\) and
+which is \(\mathrm P_\theta\) at \(q=\tfrac12\). For general \(q\), the
+Chernoff step gives \(\theta p_C-\log a_{\theta,q}\) at the same fixed
+\(\theta\). Assuming \(\mathrm M_{\theta,q}\) at
 \(\theta=\log\frac{p_C(1-q)}{q(1-p_C)}\) gives \(D(p_C\|q)\).
 \(\square\)
 
@@ -702,19 +711,22 @@ For \(A=F=\mathbb N_{\ge1}\setminus R\) and odd \(n\), \(n\in F\iff\lfloor n^{3/
 \(1/n\)-weighted measure on the odd \(n\in(\sqrt x,x]\),
 
 **Proposition 11.1.** \(\psi_F(t)=\lim_{d\to\infty}\mathbb P^{\log}_x\bigl(\tau(n)>d\ \big|\ \mathrm{word}_2(n)=OO\bigr)\),
-a decreasing limit, and under \(\mathrm P_\theta(C)\) (equivalently
-under any hypothesis of Sections 4, 8, 10),
+a decreasing limit. Suppose one of the hypotheses of Sections 4, 8,
+10 supplies a live-start bound with exponent \(r(C)\). Then
 \[
-\psi_F(t)\ \le\ 2\,(1+o(1))\Bigl(\frac{t}{2\log N_0}\Bigr)^{-(e(C)-\varepsilon)} .
+\psi_F(t)\ \le\ 2\,(1+o(1))\Bigl(\frac{t}{2\log N_0}\Bigr)^{-(r(C)-\varepsilon)} .
 \]
+Here \(r(C)=e(C)\) for \(\mathrm H(C,A)\) or fair pressure,
+\(r(C)=e_q(C)\) for \(\mathrm H_q(C,A)\), and
+\(r(C)=C D(p_C\|q)/\ln2\) for no-momentum at its optimizing tilt.
 
 *Proof.* The first claim is the definition of \(\psi_F\) together with
 \(F\cap\{\text{odd}\}=\{\tau=\infty\}\cap\{\text{odd}\}=\bigcap_d\{\tau>d\}\).
 For the bound, cover \((\sqrt x,x]\) by dyadic blocks \((y,2y]\); the
 \(OO\)-type odd starts of a block number \(\tfrac y4(1+O(y^{-\delta}))\)
-(Paper B, depth two, unconditional, with a power saving), the live starts at depth
-\(d(y)\) number at most \(\tfrac y2(\log 2y/\log N_0)^{-(e(C)-\varepsilon)}\)
-by Theorem B‴, and \(\{\tau>d\}\) decreases in \(d\). The
+(Paper B, depth two, unconditional, with a power saving), the live
+starts at depth \(d(y)\) have the assumed bound with exponent \(r(C)\),
+by the applicable theorem, and \(\{\tau>d\}\) decreases in \(d\). The
 \(1/n\)-weighting only averages the block ratios. \(\square\)
 
 So the free term of the exact map is the infinite-depth live mass of

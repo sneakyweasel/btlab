@@ -55,7 +55,7 @@ laboratory floor: any nontrivial cycle has period at least
 \(176251\). The same
 certified kill criterion at a second certified floor,
 \(N_0=162849448\), on the surviving lengths — all inside the
-census-free window, which reaches the end of the fan — gives
+census-free window, which reaches up to but excludes the fan endpoint — gives
 period at least \(478245\). The main numerical result evaluates it once more at
 the third certified floor \(N_0=350000000\): any nontrivial
 Juggler cycle has period at least \(780239\). We
@@ -73,13 +73,15 @@ the long regime, where it remains open. The core lemmas are formalized in
 Lean 4; the descent floors and the per-length kill tables are
 independently certified computations, and the paper does not
 claim to be formally verified as a whole. Section 6 then prices the method rather than only stating its limits.
-Any charge of the kind used here is bounded below by the cycle minimum's
-own term, so at a fixed descent floor it can exclude only finitely many
-lengths (Proposition 6.2a): no sharpening of the finance charge, the run
-packing or the walk charge yields a cycle theorem, and the reach of the
+The charges used here retain, at each fixed descent floor, a positive
+anchor term uniformly in the length. Proposition 6.2a proves that any
+refinement retaining that anchor can exclude only finitely many
+upper-convergent denominators; it makes no claim about charges without such
+an anchor. Thus this anchored finance/run/walk architecture does not by
+itself yield a cycle theorem, and the reach of the
 floor route is \(\asymp\sqrt{N_0\log N_0}\), or \(\sqrt{N_0}\log N_0\)
-with the walk charge. Within the length-only charges finance is already
-optimal to within the \(6/5\) it advertises, and the run--suffix law of
+with the walk charge. Within the relaxed configuration-majorant model of
+Section 6, finance is within the \(6/5\) it advertises, and the run--suffix law of
 Section 3, which is floor-free and length-free, is empty at exactly the
 lengths that survive finance. What a proof would need, and what is
 absent here, is a lower bound on the cycle minimum in terms of the
@@ -232,8 +234,10 @@ therefore covers their charge, and gives \(L\ge 478245\). The main numerical res
 Corollary 5.11: at the third certified floor
 \(N_0=350000000\) the same comparison gives \(L\ge 780239\).
 The census-free window theorem covers
-\([50508,16785921)\) --- the whole semiconvergent fan of
-Proposition 5.12 --- so the charge side of the later-floor kills
+\([50508,16785921)\) --- every nonendpoint member
+\(L_0,\ldots,L_{54}\) of the semiconvergent fan of Proposition 5.12;
+the endpoint \(L_{55}=16785921\) is excluded by the half-open interval ---
+so the charge side of the later-floor kills
 needs no per-length dynamic program. The kill comparison itself
 stays per-length, because its left-hand side \(\theta(L)\) is a
 Diophantine quantity the envelope does not control. The architecture is
@@ -343,7 +347,8 @@ as the rotation (hug) itinerary (Theorem 5.4, Lemma 5.6), and a
 Denjoy--Koksma bound over certified Ostrowski blocks
 (Theorem 5.7) give a uniform envelope for every length in the
 window \([50508,16785921)\) (Theorem 5.8) — census-free on that
-window, which covers the whole semiconvergent fan. At the laboratory
+window, which covers \(L_0,\ldots,L_{54}\) but not its endpoint
+\(L_{55}=16785921\). At the laboratory
 floor the resulting kill table leaves a single finance survivor
 below \(2\cdot 10^5\): any nontrivial cycle has period at least
 \(176251\) (Theorem 5.9), the first laboratory instance. The
@@ -564,31 +569,31 @@ contains no \(\mathtt{EE}\) --- without which its displayed counts fail;
 (`cycleMin_sixTerm`), so they are sufficient as well as necessary.
 Theorem 4.8 reuses the gap table under that packing, and \(18\)
 of its \(42\) exclusions inherit the second hypothesis. Proposition 4.9 is integer arithmetic in Lean. In
-Section 5, Theorem 5.7 is Lean end to end. Its observable's variation
---- once the remaining human step --- is
+Section 5's Denjoy--Koksma core is Lean end to end relative to the circle
+integral. Its observable's variation is
 `observable_window_variation_lt_two`, proved for `periodicObservable`
-itself on every unit window; and Denjoy--Koksma is no longer a known
-tool either: `denjoy_koksma_rotation` is Lean, from the convergent
-quality \(|\theta-p/q|<1/q^2\) and the *residue* permutation
-(`theta_convergent_quality`, `theta_block_permutations`). The display is
-`hugCharge_sub_circleMean_le`. One difference from the statement as
-printed: the theorem quantifies over *any* decomposition
-\(L=\sum_jb_jq_j\), while the Lean fixes the Ostrowski one, which is the
-decomposition the window bound and the kill tables actually use.
+itself on every unit window; `denjoy_koksma_rotation` is Lean from
+positivity, coprimality and \(|\theta-p/q|\le1/q^2\), and
+`denjoy_koksma_blocks` composes the blocks uniformly in their starting
+phase. The one-statement display is `hugCharge_sub_circleMean_le`. Two
+bridges in the printed Theorem 5.7 stay human: it quantifies over any
+decomposition into actual convergents while that named theorem fixes the
+certified Ostrowski assembly, and it writes the circle integral as the
+explicit \(C_*\) of Proposition 5.5.
 Lemma 5.6 is Lean on both halves: the itinerary identity
 (`budgetedWord_eq_hugWord`) and the rotation identification
 (`hugOdds_eq_sub_floor`, `hugWalk_eq_fract`, `HugRotation.lean`).
-The Laplace bound of
-Proposition 5.5 is Lean (`rotation_average_le`,
-`rotationAverage_gap`; the ergodic identification follows from
-`denjoy_koksma_blocks`, the observable being of bounded
-variation); the transport
+The Laplace bound of Proposition 5.5 is Lean (`rotation_average_le`,
+`rotationAverage_gap`), and `denjoy_koksma_blocks` proves convergence of
+the finite hug averages to the circle integral for the bounded-variation
+observable. The elementary change of variables identifying that circle
+integral with the displayed `rotationAverage (log n')` remains prose; the transport
 inequality of Theorem 5.3 (`cycleMin_transport`), the
 defect-to-hug-charge consequence of §5.2
 (`cycleMin_defect_le_charge`, `cycleMin_defect_le_hug_charge`),
-the charge-maximisation half of Theorem 5.4
-(`hug_charge_maximal`; strict uniqueness stays human), the
-digit-cap step and digit scan of Theorem 5.8 (`ostroDigit_le`,
+the charge-maximisation and strict-uniqueness halves of Theorem 5.4
+(`hug_charge_maximal`, `hug_charge_unique`), the general digit machinery
+and the instantiated cap below \(q_{13}=301994\) (`ostroDigit_le`,
 `theta_digitSum_le`, `window_digit_scan`), and the kill
 template of Theorem 5.9 (`cycleMin_hug_kill_criterion`) are
 Lean-verified; Theorems 5.2 and 5.9 are independently certified
@@ -2501,15 +2506,17 @@ an exact antiderivative evaluation, giving
 \(C_*(n')\le\bigl(1-\tfrac2\nu+\tfrac6{\nu^2}\bigr)/(\ln 3\,\nu)\)
 at \(\nu=\ln n'\) with no quadrature
 (`rotation_average_lt`, `rotationAverage_le`,
-gap form `rotationAverage_gap`). The ergodic
-*identification* of \(C_*\) as the infinite-itinerary average was
-long stated here as classical prose; it is not an independent input.
+gap form `rotationAverage_gap`). Lean's
+`hugCharge_sub_circleMean_le` identifies the limiting hug average with
+the circle integral `circleMean n'`; the elementary change of variables
+equating that integral with the displayed \(C_*(n')\) remains prose.
 The observable has one wrap discontinuity, so bare unique ergodicity —
 uniform Birkhoff convergence for *continuous* observables — is not
 invoked directly. But the observable is monotone with a single jump,
 hence of bounded variation, and for such an observable §5.5's
 Denjoy--Koksma bound `denjoy_koksma_blocks` already gives
-\(|C_L-C_*|\le s(L)\,\mathrm{Var}(F)/L\) at every \(L\). Unique ergodicity is not needed;
+\(|C_L-\mathrm{circleMean}|\le s(L)\,\mathrm{Var}(F)/L\) at every \(L\).
+Unique ergodicity is not needed;
 that Mathlib has no `UniquelyErgodic` costs this paper nothing.
 
 This is the infinite-itinerary average, not a finite-\(L\)
@@ -2728,13 +2735,14 @@ another --- `stateCharge`, Theorem 5.4's envelope charge, is
 proportional to it but not equal. The two named theorems are what make
 this the defensible choice.
 
-This also settles what Proposition 5.5 called classical. The ergodic
-*identification* of \(C_*\) is not an independent input: the observable is
-monotone with one jump, hence of bounded variation, and the display above
-forces \(|C_L-C_*|\le s(L)\,\mathrm{Var}(F)/L\). Unique ergodicity is not
-needed for a
-bounded-variation observable once Denjoy--Koksma is available --- which is
-why Mathlib's not having `UniquelyErgodic` costs this paper nothing.
+This settles the ergodic-convergence part of what Proposition 5.5 called
+classical. The observable is monotone with one jump, hence of bounded
+variation, and the display above forces
+\(|C_L-\mathrm{circleMean}|\le s(L)\,\mathrm{Var}(F)/L\). The elementary
+change of variables from `circleMean n'` to the displayed explicit
+\(C_*(n')\) remains human. Unique ergodicity is not needed once
+Denjoy--Koksma is available --- which is why Mathlib's not having
+`UniquelyErgodic` costs this paper nothing.
 
 **Theorem 5.7 (block envelope).**
 For the exact rotation prefix of length \(L\) at reduced base
@@ -2779,18 +2787,21 @@ rational endpoints, and the convergent recurrence are Lean
 `OstrowskiSandwich.lean`); the two power inequalities are checked by
 the Lean kernel through `norm_num`, not by the compiled runtime, so the
 sandwich that carries this certification rests on the kernel alone.
-The cylinder-interval bridge from the endpoints to \(\theta\) itself is
-classical. The quantitative
-hypothesis Denjoy--Koksma needs per block is also Lean: with the
+The cylinder-interval bridge identifying the displayed list as a literal
+continued-fraction prefix of \(\theta\) remains classical prose. It is not
+needed for the formal block bound: the quantitative hypothesis
+Denjoy--Koksma needs per block is Lean directly. With the
 matching numerators \(0,1,1,3,7,24,31,179,389,9126,18641,
 46408,65049\) (`theta_convergent_numerators`), consecutive
 pairs are unimodular, all pairs are coprime, every certified
 convergent satisfies \(|\theta-p/q|<1/q^2\) against the
 sandwich (`theta_convergents_unimodular`,
 `theta_convergents_coprime`, `theta_convergent_quality`), and
-each block's \(q\) rotation steps permute the \(q\) grid cells
-(`theta_block_permutations`). Only the classical
-variation-versus-integral inequality itself remains prose.
+each certified pair has the requisite residue permutation
+(`theta_block_permutations`). The variation-versus-integral inequality,
+the signed anchored orbit-cell argument, its mean form, and uniform block
+composition are Lean (`denjoy_koksma_abstract`, `denjoy_koksma_rotation`,
+`denjoy_koksma_rotation_mean`, `denjoy_koksma_blocks`).
 A Koksma-type bound
 with constant \(1\) (that is, \(+1/L\)) is *false* for this
 observable; the correct constant is \(2s(L)\).
@@ -2808,16 +2819,20 @@ with the certified quotients
 \(\theta=[0;2,1,2,2,3,1,5,2,23,2,2,1,1,55,\ldots]\) the digit sum
 satisfies \(s(L)\le\sum_{j\le13}a_j=47\) for \(L<q_{13}=301994\),
 and on the remaining range \(L=b\,q_{13}+r\) with \(1\le b\le a_{14}=55\)
-and \(r<q_{13}\), so \(s(L)\le b+47\). This step is Lean: the
-digit cap, exact reconstruction \(L=\sum_j b_jq_j\), and the
-digit-sum bound hold for *any* denominator sequence satisfying
-the convergent recurrence (`ostroDigit_le`, `ostro_sum_eq`,
-`ostro_digitSum_le`, `OstrowskiNumeration.lean`), and the
-certified \(\theta\) instance gives the two caps structurally
-(`theta_digitSum_le`, `greedyDigitSum_le`); the sandwich already
-reaches \(q_{14}\) and \(q_{15}\)
+and \(r<q_{13}\), so \(s(L)\le b+47\). The general digit cap, exact
+reconstruction \(L=\sum_j b_jq_j\), and digit-sum bound are Lean for any
+denominator sequence satisfying the convergent recurrence
+(`ostroDigit_le`, `ostro_sum_eq`, `ostro_digitSum_le`,
+`OstrowskiNumeration.lean`). The instantiated Lean theorem
+`theta_digitSum_le` supplies \(s(L)\le47\) only for \(L<q_{13}=301994\),
+and `hugCharge_sub_circleMean_window` has the same range. The extension
+from \(q_{13}\) to \(q_{14}\) is the human arithmetic just displayed:
+identify the next quotient \(a_{14}=55\), write \(L=bq_{13}+r\), and apply
+the general block envelope with \(s(L)\le b+47\). Lean does certify the
+endpoint power inequalities
 (`theta_sandwich_lower`, `theta_sandwich_upper`,
-\(2^{16785921}<3^{10590737}\) and \(3^{10781274}<2^{17087915}\)).
+\(2^{16785921}<3^{10590737}\) and \(3^{10781274}<2^{17087915}\)); it does
+not contain the named extended-window instance.
 The transport deficit keeps \(\ln n'\ge 17.07\), hence
 \[
 \frac{2\,s(L)}{L}\ \le\ 9.38\cdot10^{-4}
@@ -2837,13 +2852,13 @@ a large Ostrowski digit forces a large \(L\), since \(b_j=c\) requires
 \(b=1\) and an order below the value at \(L=50508\); an exhaustive
 scan of \([50508,2\cdot10^{6})\) puts the true maximum at
 \(9.3766\cdot10^{-4}\), attained at \(L=74654\) with \(s=35\). So the
-window costs nothing to extend across the whole of the
+window costs nothing to extend across the nonendpoint members of the
 \(a_{14}=55\) fan, and it stops at \(q_{14}=16785921\) only because
 that is where the next partial quotient begins. The right-hand side
-is what shrinks: writing the gap in closed form,
+is what shrinks: using the explicit lower bound for the gap,
 \[
 \frac1{\ln 3\,\ln n'}-C_*(n')
-=\frac{2\ln n'-6}{\ln 3\,(\ln n')^{3}},
+\ge\frac{2\ln n'-6}{\ln 3\,(\ln n')^{3}},
 \]
 which is \(5.14\cdot10^{-3}\) at \(\ln n'=17.07\) and falls to
 \(3.82\cdot10^{-3}\) at the floor of Corollary 5.14. Against the
@@ -2853,8 +2868,9 @@ theorem survives floors up to \(n'\approx2.8\cdot10^{18}\).
 
 Two consequences, and one thing that is *not* a consequence. First,
 \(q_{14}=16785921\) is exactly \(L_{55}\), the last member of the
-semiconvergent fan of Proposition 5.12, so the window now covers the
-entire fan. Second, the window theorem is not what limits the walk
+semiconvergent fan of Proposition 5.12. Because the window is half-open,
+it covers precisely \(L_0,\ldots,L_{54}\) and excludes \(L_{55}\).
+Second, the window theorem is not what limits the walk
 charge; that is Remark 5.8a.
 
 What does *not* follow is that the kill tables become census-free. The
@@ -2866,7 +2882,8 @@ per-length dynamic program is needed to bound \(B(L)\) anywhere on
 quantity that the envelope says nothing about. Corollaries 5.10 and
 5.11 identify exactly that quantity as the obstruction at the surviving
 fan members. So the extension removes the per-length *dynamic program*
-from the whole fan and leaves the per-length *arithmetic* in place.
+from every nonendpoint fan member and leaves the per-length *arithmetic*
+in place.
 Eliminating the latter would need a lower bound on the Diophantine
 deficit that is uniform along the fan --- a genuinely different
 statement, and one this paper does not prove.
@@ -3126,11 +3143,11 @@ obstruction remains the Diophantine quality of
 is the GPU floating-point certified comparison of the same
 Theorem 5.9 criterion (Appendix B).
 
-Beyond \(q_{13}=301994\) the window theorem needs deeper
-certified quotients of \(\theta\), and killing the remaining
+At and beyond \(q_{14}=16785921\), the stated half-open window would need
+a further block argument and certified quotient data. Killing the remaining
 near-convergent survivors (starting with the fan member
-\(L=780239\)) is a Diophantine question about \(|3^o-2^L|\);
-neither is attempted here. The family leftover — the
+\(L=780239\), which is already inside the present window) is instead a
+Diophantine question about \(|3^o-2^L|\), and is not attempted here. The family leftover — the
 semiconvergent fans of \(\log 2/\log 3\) reduced to
 dangerous-position partial quotients — is the working draft
 [juggler_near_convergent_diophantine_note.md](juggler_near_convergent_diophantine_note.md).
@@ -3492,7 +3509,7 @@ conjectural in its every-block half, and it adds nothing to the cycle
 bounds of Sections 4 and 5. A cycle would be rare in its states and common
 in its basin, and neither statement contradicts the other.
 
-*Cycles sit at the critical odd share.* The gap transfer of
+*Cycles sit just above the critical odd share.* The gap transfer of
 Theorem 4.10 forces \(0<\Lambda=o\log 3-L\log 2\le 2L/(n\log n)\) on a
 cycle with minimum \(n>2L/\log n\), so
 \(o/L=\log 2/\log 3+\Lambda/(L\log 3)\) with
@@ -3500,8 +3517,9 @@ cycle with minimum \(n>2L/\log n\), so
 hypothesis of the reduction in [17] — the no-momentum form — asks that
 the tilted odd share of the starts still above the floor stay below
 some \(q<\log 2/\log 3=0.6309\), on average over depths; a cycle's
-word is a periodic itinerary that never descends, at *exactly* that
-critical share. The finance-survivor lengths \(176251\), \(301994\),
+word is a periodic itinerary that never descends, with odd share strictly
+above that threshold and, in the regime quantified here, close to it. The
+finance-survivor lengths \(176251\), \(301994\),
 \(478245\), \(780239\) are denominators of convergents and
 semiconvergents of \(\log 2/\log 3\) because a periodic non-descending
 word must realize the critical share to within \(2/(n\log n\log 3)\). The
@@ -3548,8 +3566,8 @@ are Propositions 1.3 and 5.1.
 ### 6.2 Ceilings, measured
 
 Section 6.1 says the problem remains open. This section says something
-sharper about the mechanisms used here: none can close it, and the reason
-in each case is a number rather than a feeling. Four are priced below ---
+sharper about the mechanisms quantified here: under the stated hypotheses
+none closes it, and the reason in each case is explicit. Four are priced below ---
 the descent floor, the trailing-evens bound, the charge family, and the
 shape enumeration --- and the last part says what that leaves.
 
@@ -3591,40 +3609,43 @@ range: those fits drift by a factor \(3\) across the same floors, and the
 coefficient above does not. The residual swing is the local partial
 quotient \(a_{k+1}\), which runs \(3.4,5.8,23.5,2.5,1.7\) over the
 tabulated convergents; the \(23.5\) is the whole of the visible
-irregularity. So doubling the period costs roughly quadrupling the floor,
-and no sharpening of either charge changes that, because the target
-recedes.
+irregularity. So doubling the period costs roughly quadrupling the floor.
+Within the fixed-floor, anchor-normalized charge models below, sharpening
+constants does not change the fact that the target recedes.
 
-**Proposition 6.2a (what any charge can exclude).**
+**Proposition 6.2a (what an anchor-normalized charge can exclude).**
 Call \(\Phi\) a *charge* if every cycle minimum \(n\) with word of length
 \(L\) satisfies
 \(\sum_{i<L}1/(x_i\log x_i)\le\Phi(n,L)\), with \(\Phi\) nonincreasing in
-its first argument, and say \(\Phi\) *excludes* \(L\) at floor \(N_0\)
-when \(\theta(L)>\tfrac65\Phi(N_0,L)\). Then for every charge and every
-fixed \(N_0\), only finitely many convergent denominators \(q_k\) are
-excluded.
+its first argument. Fix \(N_0\ge2\), and call \(\Phi\)
+*anchor-normalized at \(N_0\)* if there is a constant \(c_{N_0}>0\),
+independent of \(L\), such that \(\Phi(N_0,L)\ge c_{N_0}\) for every \(L\).
+Say \(\Phi\) *excludes* \(L\) at floor \(N_0\) when
+\(\theta(L)>\tfrac65\Phi(N_0,L)\). Then an anchor-normalized charge excludes
+only finitely many denominators \(q_k\) of the upper convergents
+\(p_k/q_k>\log2/\log3\).
 
-*Proof.* The sum \(\Phi\) bounds contains its own first term, \(x_0=n\),
-so \(\Phi(n,L)\ge 1/(n\log n)\) for **every** charge; exclusion at
-\(N_0\) therefore requires
-\(\theta(L)>\tfrac65\cdot 1/(N_0\log N_0)\), a threshold fixed once
-\(N_0\) is. Along the convergents \(p_k/q_k\) of \(\log2/\log3\),
+*Proof.* Anchor normalization makes exclusion at \(N_0\) require
+\(\theta(L)>\tfrac65c_{N_0}\), a positive threshold fixed once \(N_0\)
+is. Along an upper convergent \(p_k/q_k>\alpha:=\log2/\log3\), one has
+\(p_k=o_{\min}(q_k)\), and therefore
 \[
--\log\bigl(1-\theta(q_k)\bigr)=p_k\log3-q_k\log2
-=q_k\log 3\,\Bigl|\tfrac{\log2}{\log3}-\tfrac{p_k}{q_k}\Bigr|
-\approx\frac{\log 3}{q_{k+1}},
+0<-\log\bigl(1-\theta(q_k)\bigr)=p_k\log3-q_k\log2
+=q_k\log 3\,\Bigl(\tfrac{p_k}{q_k}-\alpha\Bigr)
+<\frac{\log 3}{q_{k+1}}.
 \]
-and \(q_{k+1}\to\infty\), so \(\theta(q_k)\to0\) and only finitely many
-lengths clear the threshold. \(\square\)
+The last bound is the standard convergent estimate. Since
+\(q_{k+1}\to\infty\), it gives \(\theta(q_k)\to0\), so only finitely many
+upper-convergent denominators clear the fixed threshold. \(\square\)
 
-Three things follow. It is a proof rather than a measurement, and it
-covers the mechanisms of Sections 4 and 5 at once: finance, the run
-packing and the walk charge are all charges in this sense, the last
-through `cycleMin_hug_kill_criterion`. It cannot be evaded by sharpening
-any of them, because the lower bound on \(\Phi\) comes from the cycle
-minimum's own term and no valid charge can go below it. And it is why
-every result in those sections is a period bound: at a fixed floor the
-excluded set is finite, so the bound it yields is finite too.
+The explicit finance, run-packing and walk-charge majorants in Sections 4
+and 5 are anchor-normalized: their displayed fixed-floor formulas retain a
+positive first-state contribution uniformly in \(L\), the last entering
+`cycleMin_hug_kill_criterion`. Proposition 6.2a therefore applies to
+refinements that preserve this feature. It does not rule out a different
+charge formulation whose value at \(N_0\) has no length-uniform positive
+anchor, nor does it turn the present finite period bounds into a universal
+no-go theorem.
 
 **The trailing-evens family is not a third mechanism.** It is worth
 checking, because `cycle_trailing_evens_lt` is the one constraint here
@@ -3639,13 +3660,16 @@ is the granularity of the return, and it says the same thing at every
 depth --- which is why Section 3 uses \(r=1,2,3\) on named short shapes
 and never as a general tool.
 
-**And the length-only charges are exhausted.** This is worth separating
-from the divergence, because it says where the remaining room is *not*. A
-charge that sees only \((n,L,o)\) must bound every configuration those
-numbers permit, and nothing proved here forbids \(e\) valleys sitting at
-\(n,n+2,\ldots\); so any such charge is at least \(\sim e/(n\log n)\), and
-exclusion needs \(\theta\,n\log n>e\). With \(\theta\approx\log3/q_{k+1}\)
-that puts the best possible length-only threshold at
+**A conditional comparison inside the relaxed configuration-majorant
+model.** This is worth separating from the divergence. Impose the stronger
+design rule that a function of \((n,L,o)\) must majorize every relaxed
+configuration allowed by the bookkeeping used in the finance argument,
+not merely every actual cycle. The relaxation permits \(e\) valleys at
+\(n,n+2,\ldots\); their realization by a cycle is not asserted. Within
+this model any such configuration-majorant is at least
+\(\sim e/(n\log n)\), and exclusion needs
+\(\theta\,n\log n>e\). With \(\theta\approx\log3/q_{k+1}\), the resulting
+model optimum has threshold
 
 \[
 n_{\max}\log n_{\max}\ \approx\ \frac{e}{q_k}\cdot
@@ -3653,26 +3677,21 @@ n_{\max}\log n_{\max}\ \approx\ \frac{e}{q_k}\cdot
 \]
 
 against the \(0.41\)--\(0.53\) that Corollary 4.5 achieves. The ratio is
-\(1.21\) at the large convergents. That is the \(6/5\) unroll and nothing
-else: **finance is the optimal length-only charge, to within the
-coefficient it already advertises.** No sharper counting of valleys,
-internals and evens can be worth more than about \(20\%\) in
-\(n_{\max}\), which is \(12\%\) in period.
+\(1.21\) at the large convergents. Thus finance is within its advertised
+\(6/5\) coefficient of the optimum **in this relaxation**. The associated
+\(20\%\) in \(n_{\max}\) (about \(12\%\) in period) is a model comparison,
+not a universal ceiling for every function of \((n,L,o)\) that is valid
+only on actual cycles.
 
-Two consequences. Theorem 4.7's factor \(1.4048\) exceeds that ceiling
-only because the packing is *not* length-only in the required sense: it
-assumes no \(\mathtt{EE}\), and that hypothesis forbids exactly the
-extremal configuration --- valleys at \(n,n+2,\ldots\) --- which sets the
-optimum. And the walk charge of Section 5 beats the finance reach
-precisely because it reads the orbit rather than the length, through the reduced
-base. So the room left inside the charge family is orbit-dependent
-information, not finer bookkeeping on \((n,L,o)\). It is real room --- the
-walk charge already converts it into the extra logarithm above --- and it
-does not change the paragraph above, since the floors still diverge.
-Remark 5.8a prices that room from the other side: the advantage is
-\(0.44\log n'\), it is limited by the shape of the charge rather than by
-certification depth or the envelope, and doubling the efficiency requires
-squaring the floor.
+Two model-specific comparisons follow. Theorem 4.7's factor \(1.4048\)
+exceeds the relaxed ceiling because its no-\(\mathtt{EE}\) hypothesis
+forbids the configuration that sets that relaxation's optimum. The walk
+charge of Section 5 beats the finance reach because it reads the orbit
+through the reduced base, and Remark 5.8a measures that gain as
+\(0.44\log n'\). None of this proves that finer bookkeeping on
+\((n,L,o)\) cannot do better on actual cycles: such a conclusion would
+require realizability of the relaxed extremizer, or another lower bound
+valid on the actual-cycle domain.
 
 **The shape route is exponential.** Section 3's exclusions are the only
 family here that is both floor-free and length-free: they kill *words*,
@@ -3835,10 +3854,10 @@ Theorem 4.8.
 | Theorem 5.2 | raised cutoff; verified computation, not Lean |
 | Theorem 5.3 | transport inequality `cycleMin_transport`, per-step losses `log_floorPower_even_ge`, `log_floorPower_odd_ge` (`WalkTransport.lean`); §5.2 consequence `cycleMin_defect_le_charge`, `cycleMin_defect_le_hug_charge` (`WalkChargeMax.lean`) |
 | Theorem 5.4 | combinatorial core `hugOdds_le_of_admissible`; cycle-itinerary domination `cycleMin_prefix_odds_ge_hug`, `cycleMin_odds_ge_hug`; charge maximisation `stateCharge_antitone`, `hug_charge_maximal` (`WalkChargeMax.lean`); strict uniqueness `stateCharge_strictAnti`, `stateCharge_inj`, `hug_charge_unique` — an admissible profile attaining the hug charge *is* the hug profile |
-| Proposition 5.5 | ergodic identification no longer classical: for a bounded-variation observable it follows from `denjoy_koksma_blocks` (`DenjoyKoksmaOrbit.lean`), not from unique ergodicity. Laplace bound Lean: `inv_sq_le_quad`, `rotation_average_le`, `rotation_average_lt`, `rotationAverage_le`, `rotationAverage_lt`, `rotationAverage_gap` (`RotationAverage.lean`) |
+| Proposition 5.5 | Lean proves convergence of the finite hug average to `circleMean` by `denjoy_koksma_blocks` and the Laplace bounds `inv_sq_le_quad`, `rotation_average_le`, `rotation_average_lt`, `rotationAverage_le`, `rotationAverage_lt`, `rotationAverage_gap`; the elementary change of variables identifying `circleMean n'` with the displayed `rotationAverage (log n')` remains prose |
 | Lemma 5.6 | itinerary identity `budgetedWord_eq_hugWord`, `hugOdds_pow_ge`, `hugOdds_pow_lt`, `hugOdds_pow_gt`, `hugOdds_least`; rotation identification (`HugRotation.lean`) `hugOdds_eq_ceil`, `hugOdds_eq_sub_floor`, `hugEvens_eq_floor`, `hugLetter_iff_floor_step`, `hugWalk_eq_fract`, and the Birkhoff reading `periodicObservable_hugWalk` |
 | Theorem 5.7 | Denjoy--Koksma Lean end to end (`DenjoyKoksma.lean`, `DenjoyKoksmaOrbit.lean`): analytic half `value_sub_mean_le_variation`, `sum_eVariationOn_Icc`, `denjoy_koksma_abstract`; orbit half `orbitCell_inj`, `orbit_mem_cell`, `denjoy_koksma_cellmap`; the inequality itself `denjoy_koksma_rotation`, `denjoy_koksma_rotation_mean`; block composition `denjoy_koksma_blocks`, the induction over \(L=\sum_jb_jq_j\) that the uniformity in \(x\) licenses; the observable and its variation (`JumpVariation.lean`) `eVariationOn_neg`, `eVariationOn_add_le`, `eVariationOn_le_of_jump`, `periodic_window_variation_le`, `observable_window_variation_lt_two`; the display `block_envelope`, `theta_block_envelope`. the Ostrowski assembly (`OstrowskiBlocks.lean`) `ostroBlocks`, `ostroBlocks_snd_sum` (the denominators sum to \(L\)), `ostroBlocks_length` (the length is \(s(L)\)), and the display at a given length `theta_block_envelope_of_length`. the reading of \(C_L\) as the ergodic sum is Lemma 5.6's rotation identification, also Lean (`periodicObservable_hugWalk`); and the display is one statement in `HugChargeEnvelope.lean`, `hugCharge_sub_circleMean_le` (\(2s(L)/L\), every \(L\)) and `hugCharge_sub_circleMean_window` (\(94/L\) on the window), over the definition `hugCharge`. Quotient arithmetic `theta_sandwich_upper`, `theta_sandwich_lower`, `lower_lt_walkTheta`, `walkTheta_lt_upper`, `cf_lower_prefix`, `cf_upper_prefix`, `theta_convergent_denominators`; DK hypotheses `theta_convergent_numerators`, `theta_convergents_unimodular`, `theta_convergents_coprime`, `theta_convergent_quality` (\(|\theta-p/q|<1/q^2\)), `theta_block_permutations` |
-| Theorem 5.8 | digit cap Lean: general numeration `ostroDigit_le`, `ostro_sum_eq`, `ostro_digitSum_le`, instance `theta_digitSum_le`, `greedyDigitSum_le`. On the extended window \([50508,q_{14})\) the cap is *structural* --- \(s(L)\le47\) below \(q_{13}\) and \(s(L)\le b+47\) on \(L=bq_{13}+r\) --- so the scan `window_digit_scan`, `window_digit_cap`, `window_digit_max` sharpens the constant on the old sub-window rather than establishing the theorem. Denjoy--Koksma comparison Lean: `theta_block_envelope_window` feeds the digit cap into the envelope, giving \(|C_L-C_*|\le 94/L\) for every \(L<301994\), uniformly in the starting phase |
+| Theorem 5.8 | Lean proves the general numeration lemmas `ostroDigit_le`, `ostro_sum_eq`, `ostro_digitSum_le`, the instantiated cap `theta_digitSum_le`, `greedyDigitSum_le`, and `hugCharge_sub_circleMean_window` only for \(L<q_{13}=301994\), uniformly in the starting phase; `window_digit_scan`, `window_digit_cap`, `window_digit_max` sharpen that old sub-window. The extension to \([50508,q_{14})\) is human arithmetic: write \(L=bq_{13}+r\), use \(s(L)\le b+47\), and combine it with the general Lean block envelope. The endpoint inequalities at \(q_{14},q_{15}\) are Lean (`theta_sandwich_lower`, `theta_sandwich_upper`), but no named Lean theorem instantiates the extended window. Since the interval is half-open it contains fan members \(L_0,\ldots,L_{54}\), not \(L_{55}=q_{14}\) |
 | Theorem 5.9 | kill template `cycleMin_hug_kill_criterion` (`DefectFinance.lean`); the per-length kill table is verified computation |
 | Proposition 5.12 | `fanLength`, `fanOdd`, `fanLambda`, affine step `fanLambda_affine`, negativity `fan_step_pow`, `fanLambda_step_neg`, monotonicity `fanLambda_strictAnti`, endpoints `fanLambda_55_pos`, `fanLambda_56_neg` (these *are* `theta_sandwich_lower` and `theta_sandwich_upper`), length `fan_positive_iff`, and `fan_frontiers`, `fan_endpoint`, `fan_past_endpoint` (`FanLaw.lean`) |
 | Propositions 5.8b, 5.8c | the two forced walk letters `walk_first_letter_odd`, `walk_second_letter_odd`, `step_lt_two` (`FanLaw.lean`); the relaxation and flatness measurements are verified computation |

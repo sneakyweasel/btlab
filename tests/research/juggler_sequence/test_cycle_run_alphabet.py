@@ -1,4 +1,4 @@
-"""Cycle height forces a run alphabet: the bookkeeping and the band."""
+"""Exact run inequalities and explicitly idealized block arithmetic."""
 
 from __future__ import annotations
 
@@ -9,45 +9,50 @@ from research.juggler_sequence import cycle_run_alphabet as A
 
 
 def test_the_letter_ratio_forbids_an_odd_run_of_length_one_everywhere() -> None:
-    """o/e = log2/log(3/2) > 1, but a cyclic word with no adjacent O has o <= e."""
+    """Critical o/e exceeds 1; actual cycles have still larger ratio (Paper A)."""
     assert abs(A.LOG_RATIO_OE - log(2) / log(1.5)) < 1e-12
     assert A.LOG_RATIO_OE > 1.0
-    assert A.summary()["adjacent_odd_forced"] is True
+    assert "> 0" in A.summary()["cycle_drift"]
 
 
-def test_the_run_bounds_track_the_height_ratio() -> None:
+def test_the_model_run_caps_track_a_strict_height_ceiling() -> None:
     """(3/2)^r < R for odd runs, 2^g < R for even runs."""
-    assert A.max_odd_run(2.0) == 1 and A.max_even_run(2.0) == 0
-    assert A.max_odd_run(2.25) == 1 and A.max_even_run(2.25) == 1
-    assert A.max_odd_run(27 / 8) == 2 and A.max_even_run(27 / 8) == 1
-    assert A.max_odd_run(4.0) == 3 and A.max_even_run(4.0) == 1
-    assert A.max_odd_run(5.0) == 3 and A.max_even_run(5.0) == 2
+    assert A.model_max_odd_run(2.0) == 1 and A.max_even_run_below(2.0) == 0
+    assert A.model_max_odd_run(2.25) == 1 and A.max_even_run_below(2.25) == 1
+    assert A.model_max_odd_run(27 / 8) == 2 and A.max_even_run_below(27 / 8) == 1
+    assert A.model_max_odd_run(4.0) == 3 and A.max_even_run_below(4.0) == 1
+    assert A.model_max_odd_run(5.0) == 3 and A.max_even_run_below(5.0) == 2
 
 
 def test_below_square_height_no_block_is_admissible() -> None:
     """R < 2 leaves no even letter at all, so the word cannot close: this recovers the
     laboratory's superquadratic result as the empty-alphabet case."""
-    assert A.admissible_blocks(2.0) == []
+    assert A.model_admissible_blocks(2.0) == []
 
 
-def test_the_band_alphabet_is_exactly_oe_and_ooe() -> None:
-    assert A.admissible_blocks(27 / 8) == [(1, 1), (2, 1)]
+def test_the_floor_free_model_alphabet_is_oe_and_ooe() -> None:
+    assert A.model_admissible_blocks(27 / 8) == [(1, 1), (2, 1)]
 
 
-def test_only_ooe_climbs_and_the_mix_is_pinned() -> None:
+def test_only_ooe_climbs_and_zero_drift_pins_the_model_mix() -> None:
     assert A.block_exponent(1, 1) < 1.0 < A.block_exponent(2, 1)
     assert abs(A.block_exponent(1, 1) - 0.75) < 1e-12
     assert abs(A.block_exponent(2, 1) - 1.125) < 1e-12
-    mix = A.two_block_mix()
-    # closing the cycle forces the proportions, and they reproduce the letter ratio
+    mix = A.model_two_block_mix()
+    # Zero drift in the model fixes these proportions, not an actual cycle's ratio.
     assert abs(mix["ooe_fraction_of_blocks"] - 0.709511) < 1e-5
     assert abs(mix["letter_ratio_check"] - A.LOG_RATIO_OE) < 1e-9
 
 
-def test_a_forced_oo_pushes_the_maximum_to_the_nine_quarters_power() -> None:
-    s = A.summary()
-    assert abs(s["forced_min_height_exponent"] - 2.25) < 1e-12
-    assert s["cycle_max_lower_bound"] > 1.6e19
+def test_the_oo_maximum_bound_retains_the_factor_and_shift() -> None:
+    minimum = A.N0_CERTIFIED + 1
+    lower = A.oo_cycle_max_lower_bound(minimum)
+    assert 2 * lower ** 4 <= minimum ** 9 < 2 * (lower + 1) ** 4
+    assert 1.408e19 < lower < 1.410e19
+    assert A.summary()["cycle_max_lower_bound"] == lower
+    # Exact OO witness disproves the factor-free step inference.
+    assert isqrt(9 ** 3) == 27 and isqrt(27 ** 3) == 140
+    assert 140 ** 4 < 9 ** 9 < 2 * 141 ** 4
 
 
 def test_the_integer_chain_for_two_odd_steps_holds() -> None:
@@ -66,9 +71,38 @@ def test_the_integer_chain_for_two_odd_steps_holds() -> None:
     assert checked > 20
 
 
-def test_the_floor_defect_is_negligible_against_the_closure_equation() -> None:
-    """The letter ratio is exact only up to floor losses; they are ~1e-8 relative."""
-    assert A.floor_defect_bound(780_239, A.N0_CERTIFIED) < 1e-6
+def test_model_output_cannot_be_misread_as_realized_cycle_geometry() -> None:
+    s = A.summary()
+    assert "no height-to-alphabet theorem" in s["scope"]
+    assert "idealized_model" in s and "bands" not in s
+    assert "two_block_alphabet_below" not in s["absolute_bands_at_floor"]
+    assert "forced_min_height_exponent" not in s
+    assert "not realized cycle geometry" in s["idealized_model"]["scope"]
+
+
+def test_odd_upper_growth_does_not_supply_a_lower_growth_bound() -> None:
+    # One odd step: its true endpoint ratio is below the floor-free multiplier.
+    assert isqrt(3 ** 3) == 5
+    assert 5 ** 2 < 3 ** 3
+    assert log(5) / log(3) < 1.5
+
+
+def test_a_nonzero_drift_term_cannot_be_dropped() -> None:
+    from fractions import Fraction
+
+    word = A.block_letters("2222211")
+    length, odds = len(word), word.count("O")
+    # Rational step sizes make this algebraic regression exact.
+    alpha, beta = Fraction(2, 5), Fraction(7, 10)
+    drift = odds * alpha - (length - odds) * beta
+    assert drift != 0
+    ot = 0
+    for t, letter in enumerate(word, 1):
+        ot += letter == "O"
+        centered = ot - Fraction(t * odds, length)
+        walk = ot * alpha - (t - ot) * beta
+        assert walk == (alpha + beta) * centered + Fraction(t, length) * drift
+    assert centered == 0 and walk == drift != 0
 
 
 def test_the_probe_agrees_with_a_direct_orbit_computation() -> None:
@@ -101,8 +135,8 @@ def test_the_lean_layer_carries_the_named_theorems() -> None:
 # --------------------------------------------------------------------------- discrepancy
 
 
-def test_the_walk_is_the_discrepancy_times_log_three() -> None:
-    """u_t = (alpha+beta) D_t under closure, so log R = log 3 * Delta.  Checked on a word."""
+def test_the_zero_drift_identity_is_only_conditional() -> None:
+    """The abstract identity assumes zero drift; it does not identify actual cycle height."""
     from fractions import Fraction
 
     a, b = 3, 7
@@ -169,7 +203,7 @@ def test_exactly_one_balanced_necklace_per_pair_and_a_thin_sliver() -> None:
                 assert ooe <= 4 and oe <= 2, (cls, key)
 
 
-def test_a_band_cycle_can_use_only_three_of_the_five_certificates() -> None:
+def test_a_prescribed_two_block_word_uses_only_three_certificate_classes() -> None:
     """Even runs are length one and odd runs at most two, so OOEE and OOOEE cannot occur."""
     prof = A.band_certificate_profile(3, 7)
     assert prof["classes_available"] == ["E", "OE", "OOEOE"]

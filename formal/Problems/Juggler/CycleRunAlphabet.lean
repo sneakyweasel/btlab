@@ -4,23 +4,22 @@ import Problems.Juggler.ItineraryStats
 namespace Problems.Juggler
 
 /-!
-# Cycle height forces a run alphabet
+# Exact run inequalities and conditional word algebra
 
-A nontrivial cycle has a minimum `m` and a maximum `M`.  Its runs are bounded by the
-height ratio `R = log M / log m`, by pure bookkeeping: an odd run of length `r` multiplies
-the logarithm by `(3/2)^r` and an even run of length `g` divides it by `2^g`, and both
-endpoints lie between `m` and `M`.  This file carries the integer content of those two
-statements, plus the combinatorial half of the reason a cycle cannot avoid two adjacent
-odd letters.
+Floors matter: an odd run has an upper growth bound, not an exact logarithmic
+multiplier.  It does not follow that a cycle's height bounds its odd-run length by
+the floor-free formula.  This file proves the inequalities below, not a two-block
+alphabet for every cycle of height ratio below `27/8`.
 
 * `odd_step_sq_le` and `odd_step_le_sq_add` are the two sides of one odd step.
-* `odd_run_upper`: after `r` odd steps, `y^(2^r) ≤ v^(3^r)`.  This is the run bound.
+* `odd_run_upper`: after `r` odd steps, `y^(2^r) ≤ v^(3^r)`, an upper growth bound.
 * `even_run_contracts`: after `g` even steps, `z^(2^g) ≤ w`.
-* `oo_step_lower`: two odd steps climb by nine quarters, in the integer form
-  `x^9 < 2 (z+1)^4`.  With the certified floor this is what forces `M ≥ m^(9/4)`.
-* `oddCount_le_of_noAdjOdd`: a word with no two adjacent odd letters has at most half its
-  letters odd.  A cycle's letters satisfy `o log(3/2) = e log 2`, so `o/e = 1.7095 > 1`,
-  and the two cannot both hold: some odd run has length at least two.
+* `oo_step_lower`: `x^9 < 2 (z+1)^4`; retain both the factor two and the shift.
+* `oddCount_le_of_noAdjOdd`: a linear word has `2 o ≤ L + 1`.
+  The cyclic counting argument is separate.  Actual nontrivial cycles satisfy
+  `o log(3/2) > e log 2`, not exact closure, by Paper A's floor-defect inequality.
+* `walk_eq_discrepancy` assumes exact closure as an abstract algebraic hypothesis;
+  it does not identify actual cycle height with centered word discrepancy.
 
 Nothing here is a halt theorem.  It constrains the shape a cycle would have to have.
 -/
@@ -46,8 +45,8 @@ theorem cube_shift_le_two {y : ℕ} (hy : 8 ≤ y) : (y + 2) ^ 3 ≤ 2 * y ^ 3 :
   nlinarith [Nat.zero_le k, sq_nonneg k]
 
 /-- **Two odd steps climb by nine quarters.**  In integers, `x^9 < 2 (z+1)^4`, so
-`z > x^(9/4) / 2^(1/4) - 1`.  Applied to a cycle with an `OO`, whose bottom is at least the
-minimum and whose top is at most the maximum, this is `M ≥ m^(9/4)` up to the factor. -/
+`z > x^(9/4) / 2^(1/4) - 1`.  For an `OO` inside `[m, M]`, with the stated intermediate
+size condition, it gives `m^9 < 2 (M+1)^4`, not the factor-free inequality. -/
 theorem oo_step_lower {x : ℕ} (hx : x % 2 = 1) (hy : floorPower x % 2 = 1)
     (h8 : 8 ≤ floorPower x) :
     x ^ 9 < 2 * (floorPower (floorPower x) + 1) ^ 4 := by
@@ -73,8 +72,8 @@ theorem oo_step_lower {x : ℕ} (hx : x % 2 = 1) (hy : floorPower x % 2 = 1)
     _ ≤ 2 * y ^ 6 := hC
     _ < 2 * (z + 1) ^ 4 := by omega
 
-/-- **The odd-run bound.**  After `r` odd steps from `v`, the top `y` satisfies
-`y^(2^r) ≤ v^(3^r)`: the logarithm has been multiplied by at most `(3/2)^r`. -/
+/-- **Upper growth on an odd run.**  After `r` odd steps from `v`, the top `y` satisfies
+`y^(2^r) ≤ v^(3^r)`.  This inequality alone gives no upper bound on `r` from cycle height. -/
 theorem odd_run_upper (v : ℕ) : ∀ r : ℕ, (∀ i < r, floorPower^[i] v % 2 = 1) →
     (floorPower^[r] v) ^ 2 ^ r ≤ v ^ 3 ^ r := by
   intro r
@@ -110,9 +109,8 @@ theorem even_run_contracts {w g : ℕ} (heven : ∀ i < g, Nat.sqrt^[i] w % 2 = 
 def NoAdjOdd (w : List Branch) : Prop :=
   List.IsChain (fun a b => ¬(a = Branch.odd ∧ b = Branch.odd)) w
 
-/-- A word with no two adjacent odd letters is at most half odd.  A cycle's letters
-satisfy `o log(3/2) = e log 2`, hence `o/e = log 2 / log(3/2) = 1.7095 > 1`, which this
-forbids: some odd run of a cycle has length at least two. -/
+/-- A linear word with no two adjacent odd letters has `2 o ≤ L + 1`.
+This includes the endpoint allowance; a cyclic no-adjacency argument is separate. -/
 theorem oddCount_le_of_noAdjOdd : ∀ (w : List Branch), NoAdjOdd w →
     2 * oddCount w ≤ w.length + 1
   | [], _ => by simp [oddCount]
@@ -137,14 +135,15 @@ theorem oddCount_le_of_noAdjOdd : ∀ (w : List Branch), NoAdjOdd w →
           simp only [oddCount, List.length_cons] at ih ⊢
           omega
 
-/-! ## The walk is the discrepancy
+/-! ## Discrepancy under an explicit zero-drift hypothesis
 
 Write `s = o/L` and `D_t = o_t - t s`.  With the closure `o α = (L - o) β` the walk height
-`o_t α - (t - o_t) β` is exactly `(α + β) D_t`.  So the height ratio of a cycle measures the
-count discrepancy of its word: `log R = (α + β)(max D - min D)`, and with
-`α + β = log 3` the balanced condition `max D - min D < 1` is `R < 3`. -/
+`o_t α - (t - o_t) β` is exactly `(α + β) D_t`.  Without that hypothesis the missing
+term is `(t/L) (o α - (L-o) β)`.  With Juggler's logarithmic step sizes a nontrivial
+cycle has strictly positive drift, and its actual height also involves floor defects.
+No cycle-height identification is proved here. -/
 
-/-- The walk height of any prefix is `(α + β)` times its count discrepancy. -/
+/-- Under the supplied zero-drift hypothesis, the formal walk equals scaled discrepancy. -/
 theorem walk_eq_discrepancy {α β : ℝ} {o L t oₜ : ℕ} (hL : 0 < L)
     (hclose : (o : ℝ) * α = ((L : ℝ) - o) * β) :
     (oₜ : ℝ) * α - ((t : ℝ) - oₜ) * β =
@@ -179,9 +178,8 @@ cannot reach one until enough `OOE` have paid for it.  The arithmetic is finite:
   k = 2:  3^5 = 243  < 256  = 2^8
   k = 3:  3^7 = 2187 > 2048 = 2^11
 
-so the first three cases are exponent gaps and the fourth is not.  A band cycle minimum
-therefore opens `OOEOOEOOE`, nine letters, which is deeper than any depth-five descent
-certificate reaches. -/
+so the first three cases are exponent gaps and the fourth is not.  The results below
+assume the displayed block prefix; no cycle-height hypothesis supplies this alphabet. -/
 
 /-- The band's falling block. -/
 def oeBlock : List Branch := [Branch.odd, Branch.even]
@@ -219,8 +217,7 @@ theorem climbRun_append_oe_exponentGap {k : ℕ} (hk : k ≤ 2) :
 
 /-- **A band cycle minimum opens with at least three climbing blocks.**  If the itinerary
 of a prefix-noncontracting word begins with `k` copies of `OOE` and then an `OE`, then
-`k ≥ 3`.  Since a cycle minimum is prefix-noncontracting, its itinerary opens
-`OOEOOEOOE`. -/
+`k ≥ 3`.  An application to a cycle must independently establish this block prefix. -/
 theorem band_min_needs_three_climbs {k : ℕ} {v : List Branch}
     (h : prefixNoncontracting (climbRun k ++ oeBlock ++ v)) : 3 ≤ k := by
   by_contra hlt
@@ -253,9 +250,9 @@ theorem climbRun_three_two_falls_exponentGap :
   norm_num [climbRun, ooeBlock, oeBlock, oddCount]
 
 /-- **The fall cannot repeat.**  A prefix-noncontracting word cannot open with three
-climbing blocks and then two falls.  In the band, where the only blocks are `OE` and
-`OOE`, the block after the first fall must therefore be another `OOE`, so a cycle
-minimum's word opens `OOE OOE OOE OE OOE`: fourteen letters, all forced. -/
+climbing blocks and then two falls.  If the next block is independently known to belong
+to `{OE, OOE}`, it must be `OOE`.  Neither that alphabet nor the first fall's location
+is a conclusion of a cycle-height bound here. -/
 theorem band_min_no_second_fall {v : List Branch}
     (h : prefixNoncontracting (climbRun 3 ++ oeBlock ++ oeBlock ++ v)) : False := by
   have hassoc : climbRun 3 ++ oeBlock ++ oeBlock ++ v

@@ -16,6 +16,34 @@ lookup. Juggler paper-cut companions:
 [theory/juggler_cycle_itinerary_structure_note.md](theory/juggler_cycle_itinerary_structure_note.md)
 §8.
 
+## Three-paper review corrections (9 September 2026)
+
+- **General exact monomial fibers are false.** The exact orbit
+  \(1015\to32336\to179\to2394\to48\to6\) has word \(OEOEE\), but
+  \(7^{32}\le1015^9<8^{32}\). A production's exponent product therefore
+  does not identify its exact nested-floor fiber. Paper C Model calculation 5.13
+  now separates the smooth model from the required exact-fiber argument;
+  iterated ceiling endpoints repair the finite \(V_k\) fibers. Their
+  fixed-depth boundary error is smaller than the established asymptotic
+  counting error, preserving the finite exponent 0.4926; the old explicit
+  constants remain smooth-window constants, not exact-fiber certificates.
+- **The new kernel application used the wrong scale.** \(OOOEEE\) and
+  \(OOEOEE\) have nominal inverse-fiber length \(P^{37/64}\), not
+  \(P^{23/32}\). Theorem 5.5's unchanged-saving threshold \(29/48\)
+  exceeds \(37/64\). The formal smaller-scale saving \(11/1536\) is a
+  proof obligation, not an established production or contagion dividend.
+- **Hypotheses cannot be dropped in the reductions.** The biased rate
+  is \(q\)-dependent and limited by the accumulated additive-error budget;
+  optimizing a tilted hypothesis requires that hypothesis at the optimizer.
+  Paper A's charge obstruction also needs an explicit positive anchor lower
+  bound, not merely a bound at actual cycle minima. Neither correction
+  opens a new termination route.
+
+Sources: [Paper A](theory/juggler_finite_dynamics_note.md),
+[Paper B](theory/juggler_parity_discrepancy_note.md),
+[Paper C](theory/juggler_fate_almost_all_note.md), and the corrected
+[cycle-run dossier](problems/juggler_cycle_run_alphabet.md).
+
 ## Agent filter
 
 Three tests, same wording as `.cursor/rules/methodology.mdc`:
@@ -629,16 +657,18 @@ working draft (family leftover, not a review object):
 [juggler_near_convergent_diophantine_note.md](theory/juggler_near_convergent_diophantine_note.md).
 Do not reopen as a kill campaign.
 
-**Cycle run alphabet is a shape constraint, not a kill (CLOSE).** The
-height ratio \(R=\log M/\log m\) of a cycle bounds its runs,
-\((3/2)^r\le R\) and \(2^g\le R\); closure forces \(o/e=1.7095>1\), which
-no-adjacent-odd forbids, so \(M\ge m^{9/4}\); below \(R<27/8\) the word is
-cyclic over \(\{OE,OOE\}\), height is discrepancy (\(\log R=\log 3\,\Delta\)),
-and a band minimum opens \(OOE\,OOE\,OOE\,OE\,OOE\). Every integer above
-the floor must still descend for a no-cycle theorem, which is the
-statement itself; the uncertified cylinder has density \(1/8\) and a
-minimum landing in it is no contradiction. Do not reopen as a cycle
-kill, a certificate-density argument, or a longer necklace census
+**Cycle height-to-alphabet inference withdrawn (CLOSE; corrected 9 September 2026).**
+The Lean odd-run inequality is upper growth \(y^{2^r}\le v^{3^r}\),
+not the lower growth needed for \((3/2)^r\le R\). Exact \(9\to27\to140\)
+also disproves the factor-free two-step inference: \(140^4<9^9\).
+Retain \(m^9<2(M+1)^4\), the even-run bound \(2^g\le R\), and the
+conditional word identities only. Actual nontrivial cycles have positive
+floor drift, not exact logarithmic closure, so neither a two-block alphabet
+from \(R<27/8\), exact block proportions, nor height equal to discrepancy
+is established. The prescribed-prefix Lean results do not fix the first
+fall after exactly three climbs. The necklace census is an abstract model,
+not realized cycle geometry. Do not reopen as a cycle kill, a
+certificate-density argument, or a longer necklace census
 ([juggler_cycle_run_alphabet](problems/juggler_cycle_run_alphabet.md),
 `J-cycle-run-alphabet`, `J-cycle-band-discrepancy`).
 

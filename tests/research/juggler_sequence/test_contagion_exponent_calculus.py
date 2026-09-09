@@ -318,8 +318,9 @@ def test_paper_c_records_the_ceiling_and_the_cap():
     text = Path("docs/theory/juggler_fate_almost_all_note.md").read_text(
         encoding="utf-8"
     )
-    # Proposition 5.12 (ceiling) and 5.13 (fiber-length criterion)
-    assert "Proposition 5.12" in text and "Proposition 5.13" in text
+    # Proposition 5.12 is an abstract ceiling; 5.13 is only a collapsed-power model.
+    assert "Proposition 5.12" in text and "Model calculation 5.13" in text
+    assert "1015" in text and "not an attained" in text
     assert "### 5.7 The ceiling of the production calculus" in text
     # the price list and the K_3 cap
     for value in ("0.6247", "0.7180", "0.7095", "0.8414"):

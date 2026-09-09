@@ -4,9 +4,10 @@ This page is the Lean companion to the two manuscripts: **Paper A**,
 [juggler_finite_dynamics_note.md](juggler_finite_dynamics_note.md)
 (cycle-length lower bounds; core lemmas Lean-backed, while the
 descent floors, Theorems 4.6, 4.8, 5.2, 5.9, Corollaries 5.10--5.11,
-and Theorem 3.31 are independently certified computations, and
-Denjoy--Koksma and the ergodic identification of \(C_*\) are
-classical prose), and **Paper B**,
+and Theorem 3.31 are independently certified computations; the
+Denjoy--Koksma block theorem and convergence to `circleMean` are Lean,
+while its identification with the displayed explicit \(C_*\) and Theorem
+5.8's extension past \(q_{13}\) are human arithmetic), and **Paper B**,
 [juggler_parity_discrepancy_note.md](juggler_parity_discrepancy_note.md)
 (parity discrepancy; human proofs over Lean-verified floor
 identities). Both are written to be readable without this page.
@@ -649,7 +650,10 @@ the survivor-lattice generators of Proposition 4.9 lie on the hug
 diagonal \(o=o_{\min}(L)\) — \((1054,665)\), \((25781,16266)\),
 \((50508,31867)\) (`hugOdds_1054`, `hugOdds_lattice_base`,
 `hugOdds_seed`, list form `hugOdds_convergent_denoms`). The
-Laplace integral (Proposition 5.5) is a human proof.
+Laplace bound and convergence to the circle integral in Proposition 5.5
+are Lean; the latter follows from `denjoy_koksma_blocks` for the
+bounded-variation observable. The change of variables from `circleMean`
+to the displayed `rotationAverage` remains human.
 
 `WalkTransport.lean` proves the transport inequality of Theorem 5.3
 end to end in log form. The walk weight \(w_k=2^{u_k}=3^{a_k}/2^k\)
@@ -692,11 +696,10 @@ with `cycleMin_transport`: on a CycleMin cycle at \(n\ge 400\) with
 positive reduced log-base \(\nu=\ln n-D\), the cyclic defect sum
 satisfies \(\sum_k 1/(x_k\ln x_k)\le\sum_k g(w_k)\le\sum_k
 g(\mathrm{hugWeight}\ k)\) (`cycleMin_defect_le_charge`,
-`cycleMin_defect_le_hug_charge`). What remains human in the §5
-chain: the rotation average (Proposition 5.5), Denjoy–Koksma
-(Theorem 5.7), the strict within-\((L,o)\) uniqueness of the
-maximiser, and the final kill evaluations of Theorems 5.2/5.9
-and Corollaries 5.10--5.11 (verified computation).
+`cycleMin_defect_le_hug_charge`). Strict within-\((L,o)\) uniqueness
+of the maximiser is also Lean (`stateCharge_strictAnti`,
+`stateCharge_inj`, `hug_charge_unique`). The final kill evaluations of
+Theorems 5.2/5.9 and Corollaries 5.10--5.11 remain verified computation.
 
 `DefectFinance.lean` closes the finance side. The certified identity
 of Theorem 4.6 — \(1-2^L/3^o\le\tfrac65\sum_k 1/(x_k\log x_k)\) on
@@ -735,10 +738,10 @@ also Lean, on the sub-window it was written for: for every
 \(50508\le L<301994\) the greedy Ostrowski digits over the certified
 denominators reconstruct \(L\) and sum to at most \(37\)
 (`window_digit_scan`, pointwise `window_digit_cap`), attained at
-\(L=275632\) (`window_digit_max`). Since the window was extended to
-\(q_{14}\) that scan sharpens the constant rather than establishing
-the theorem; the extended statement rests on the structural cap
-below.
+\(L=275632\) (`window_digit_max`). Since the paper's window was extended
+to \(q_{14}\), that scan sharpens the constant rather than establishing
+the full theorem; the named Lean window instance remains restricted to
+\(L<q_{13}\).
 The Denjoy–Koksma hypotheses are certified as well: the matching
 numerator list \(0,1,1,3,7,24,31,179,389,9126,18641,46408,65049\)
 (`theta_convergent_numerators`, `thetaConvergents_eq_zip`),
@@ -766,8 +769,10 @@ majorant \(t^{-2}\le 1-2(t-1)+3(t-1)^2\) on \([1,3]\)
 fundamental-theorem-of-calculus evaluation with explicit
 antiderivative (`quadPrim`, `hasDerivAt_quadPrim`), whose boundary
 term \(-e^{-2\nu}(9/\nu+10/\nu^2+6/\nu^3)\) drops with the right
-sign. The ergodic identification of \(C_*\) as the infinite-hug-itinerary
-average (unique ergodicity of the rotation) stays prose (KNOWN).
+sign. Lean's `denjoy_koksma_blocks` identifies the infinite-hug-itinerary
+average with `circleMean`, with bounded variation formalized in
+`JumpVariation.lean`; no theorem equates that definition with the explicit
+`rotationAverage (log n')` integral.
 
 `OstrowskiNumeration.lean` proves the digit-cap step of Theorem 5.8
 in general form: for any denominator sequence \(q\) with \(q_0>0\),
@@ -776,20 +781,20 @@ in general form: for any denominator sequence \(q\) with \(q_0>0\),
 \(L<q_{n+1}\) obey the remainder invariant (`ostroRem_lt`), the
 structural cap \(b_j\le a_{j+1}\) (`ostroDigit_le`), exact
 reconstruction \(L=\sum_j b_jq_j\) when \(q_0=1\) (`ostro_sum_eq`),
-and the digit-sum cap (`ostro_digitSum_le`). The \(\theta\) instance
-gives \(s(L)\le 47\) for *every* \(L<q_{13}=301994\) structurally,
-and \(s(L)\le b+47\) on \(L=bq_{13}+r\) with \(b\le a_{14}=55\),
-which is what carries the window to \(q_{14}=16785921\)
-(`theta_digitSum_le`,
-`theta_sum_eq`); a `native_decide` bridge identifies the function
-form with the fold form `greedyDigitSum` below the window endpoint
-(`greedy_eq_ostro_below_window`, corollary `greedyDigitSum_le`).
-Denjoy–Koksma's variation-versus-integral inequality and the
-cylinder-interval bridge from the endpoints
-to \(\theta\) itself are classical and stay prose; the
-Denjoy–Koksma comparison and the kill tables (Theorem 5.9,
-Corollaries 5.10--5.11) are human proof plus certified computation, not
-Lean (the kill *template* is: `cycleMin_hug_kill_criterion`).
+and the digit-sum cap (`ostro_digitSum_le`). The instantiated theorem
+`theta_digitSum_le` gives \(s(L)\le47\) only for
+\(L<q_{13}=301994\); the function/fold bridge and `greedyDigitSum_le`
+have that same endpoint. The further estimate \(s(L)\le b+47\) on
+\(L=bq_{13}+r\), \(b\le a_{14}=55\), and hence the extension to
+\([50508,q_{14})\), is human arithmetic using the general Lean block
+envelope. No named Lean theorem instantiates that extended window. It is
+half-open, so it contains fan members \(L_0,\ldots,L_{54}\), not
+\(L_{55}=q_{14}=16785921\). Denjoy–Koksma's variation and orbit
+comparison are Lean (`denjoy_koksma_rotation`,
+`hugCharge_sub_circleMean_le`); the constant-cap instance
+`hugCharge_sub_circleMean_window` stops at \(L<301994\). The kill tables
+(Theorem 5.9, Corollaries 5.10--5.11) remain certified computation; the
+kill template is Lean (`cycleMin_hug_kill_criterion`).
 
 ## 9. Exact floor reductions for the discrepancy paper
 

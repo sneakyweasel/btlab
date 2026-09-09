@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
+import hashlib
 import json
 import math
+import re
 from pathlib import Path
 
 import pytest
@@ -11,9 +13,13 @@ import pytest
 from research.juggler_sequence.paper_c_audit import (
     DATA_DIR,
     PAPER,
+    boundary_checks,
     constants_table_checks,
     contagion_checks,
     exponent,
+    fiber_counterexample,
+    floor_rational_power,
+    rate_boundary_evidence,
     residual,
     run_exponent,
     summary,
@@ -24,7 +30,20 @@ GROUPS = {
     "contagion": contagion_checks,
     "tao": tao_checks,
     "constants_table": constants_table_checks,
+    "statement_boundaries": boundary_checks,
 }
+
+
+def test_published_artifact_hashes_match_the_reviewed_files() -> None:
+    entries = re.findall(
+        r"^- `([^`]+)`\n\n  SHA-256: `([a-f0-9]{64})`$",
+        PAPER.read_text(encoding="utf-8"),
+        re.MULTILINE,
+    )
+    assert entries
+    root = Path(__file__).resolve().parents[3]
+    for relative, digest in entries:
+        assert hashlib.sha256((root / relative).read_bytes()).hexdigest() == digest, relative
 
 
 @pytest.mark.parametrize("name", sorted(GROUPS))
@@ -69,6 +88,43 @@ def test_the_two_C_of_q_regimes_are_different_and_both_are_covered() -> None:
     assert by_name["C(0.5), pairing regime"]["computed"] == 20
 
 
+def test_all_current_azuma_and_optimized_pressure_depths_are_guarded() -> None:
+    """The live lambda** table must not silently revert to the older pairing threshold."""
+
+    by_name = {c["name"]: c["computed"] for c in tao_checks()}
+    qs = (0.5, 0.55, 0.6, 0.62)
+    assert [by_name[f"C({q}), lambda** regime"] for q in qs] == [19, 41, 223, 1586]
+    assert [by_name[f"pressure C({q}), lambda** regime"] for q in qs] == [19, 41, 214, 1496]
+
+
+def test_1015_falsifies_only_the_collapsed_OEOEE_fiber() -> None:
+    """Exact arithmetic separates the false 9/32 collapse from the nested identity in use."""
+
+    row = fiber_counterexample()
+    assert row["word"] == "OEOEE"
+    assert row["orbit"] == [1015, 32336, 179, 2394, 48, 6]
+    assert floor_rational_power(1015, 9, 32) == 7 != row["source"]
+    assert not row["in_claimed_source_interval"]
+    assert floor_rational_power(1015, 3, 4) == row["nested_3_4_floor"] == 179
+    assert row["nested_source_condition"]
+
+
+def test_old_A_condition_does_not_absorb_the_claimed_azuma_rate() -> None:
+    row = rate_boundary_evidence()
+    assert row["old_A_witness"] > row["C_azuma"] + 1
+    assert row["additive_error_exponent"] < row["azuma_exponent"]
+    assert row["C_azuma"] + row["azuma_exponent"] > row["old_A_witness"]
+
+
+def test_KL_rate_occurs_only_at_the_optimizing_tilt() -> None:
+    row = rate_boundary_evidence()
+    assert row["optimized_tilt_rate"] == pytest.approx(row["kl_rate"], abs=1e-12)
+    assert row["off_tilt_rate"] < row["kl_rate"]
+    assert row["chernoff_exponent"] == pytest.approx(
+        row["C_chernoff"] * row["kl_rate"] / math.log(2), abs=1e-12
+    )
+
+
 def test_paper_quotes_the_constants_the_audit_checks() -> None:
     """A guard against the audit drifting away from the manuscript it audits."""
 
@@ -78,6 +134,10 @@ def test_paper_quotes_the_constants_the_audit_checks() -> None:
                   "0.7180", "0.7095", "0.8414", "0.7516", "0.9121"):
         assert token in text, token
     assert "C(0.55)=39" in text.replace(" ", "").replace("\\(", "").replace("\\)", "")
+    assert r"1-\lambda^{**}=0.552" not in text
+    assert r"A>C+1" not in text
+    assert "1015" in text
+    assert "collapsed-power fiber" in text
 
 
 def test_summary_is_clean_and_serialisable() -> None:

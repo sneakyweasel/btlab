@@ -10,20 +10,26 @@ Audit ledgers: [oeoee_audit_ledger.md](oeoee_audit_ledger.md),
 The word \(OEOEE\) was listed in
 [juggler_contagion_exponent_calculus.md](juggler_contagion_exponent_calculus.md)
 as "needs localized Paper B depth 2". That label is **wrong**: the
-nesting in \(OEOEE\) is removable exactly, and the whole count reduces
-to classical one-variable exponential sums. No Paper B estimate, no
-localization of Theorems 4.4/4.7, and — unlike Appendix C's \(OOEEE\)
-— no exceptional-set argument are needed.
+parity chain in \(OEOEE\) reduces exactly to iterates of
+\(w\mapsto\lfloor w^{3/4}\rfloor\), and the count reduces to classical
+one-variable exponential sums. The inverse fiber has nested ceiling
+endpoints, not the formerly printed single monomial endpoints; Lemma
+1' below shows that, for each fixed \(V_k\), this endpoint correction is
+smaller than the analytic error. No Paper B estimate, no localization
+of Theorems 4.4/4.7, and — unlike Appendix C's \(OOEEE\) — no
+exceptional-set argument are needed.
 
 Consequence, now that the two half-estimates are audited:
 \(\lambda^{**}\) rises from the pairing root \(0.4480\) to \(0.4801\)
 **unconditionally**, and alongside Appendix C would raise
 \(\lambda^{***}\) from \(0.5392\) to \(0.5665\) (a remark, not a new
-official exponent). Section 8 iterates the same construction into a family
-\(V_k=(OE)^{k-1}OEE\) whose geometry does not degrade with \(k\) and
-whose terms telescope **exactly** to the ideal depth-two recursion,
-root \(0.4927\) — closing the whole gap the fate note records as a
-dynamical averaging problem. It also shows why \(OEOEOE\) is *not* the
+official exponent). Section 8 iterates the same formal construction into
+a family \(V_k=(OE)^{k-1}OEE\). The named fixed cases
+\(V_2,\ldots,V_6\) have the required power-saving estimates after the
+endpoint transfer below, giving the official root \(0.4926\). The
+infinite series telescopes algebraically to the ideal depth-two root
+\(0.4927\), but this limit is a model ceiling, not a theorem uniform in
+\(k\). It also shows why \(OEOEOE\) is *not* the
 next word: its binding layer has relative length \(\tfrac14\), where
 the phase is essentially linear and the measured worst-case
 cancellation is nil. Verification and census:
@@ -43,8 +49,7 @@ J^4(n)=\lfloor w^{3/4}\rfloor,\qquad J^5(n)=\lfloor w^{3/8}\rfloor,
 and consequently, for \(m'\ge 1\),
 
 \[
-J^5(n)=m'\iff w\in[m'^{8/3},(m'+1)^{8/3})
-\iff n\in J(m'):=[m'^{32/9},(m'+1)^{32/9}) .
+J^5(n)=m'\iff w\in[m'^{8/3},(m'+1)^{8/3}).
 \]
 
 *Proof.* \(J(n)=\lfloor n^{3/2}\rfloor\) is even, so
@@ -55,17 +60,95 @@ by the transparent nesting \(\lfloor\sqrt{\lfloor y\rfloor}\rfloor=\lfloor\sqrt 
 \(J^4(n)=\lfloor\sqrt{\lfloor w^{3/2}\rfloor}\rfloor=\lfloor w^{3/4}\rfloor\)
 by the same identity; it is even, so
 \(J^5(n)=\lfloor\sqrt{\lfloor w^{3/4}\rfloor}\rfloor=\lfloor w^{3/8}\rfloor\).
-The fiber statement is \(\lfloor w^{3/8}\rfloor=m'\iff m'^{8/3}\le w<(m'+1)^{8/3}\),
-and \(\lfloor n^{3/4}\rfloor\) lies in that window exactly when \(n\)
-lies in its \(4/3\)-power. \(\square\)
+The last equivalence is immediate from the defining property of the
+floor. \(\square\)
 
-Two things are worth noting. First, **the fiber is exact** — there is
+**Lemma 1' (exact inverse endpoints and fixed-depth transfer; EXACT —
+HUMAN PROOF).** Put \(\Phi(a)=\lceil a^{4/3}\rceil\). For integers
+\(0\le a\le b\),
+
+\[
+\{n\in\mathbb Z_{\ge0}:a\le\lfloor n^{3/4}\rfloor<b\}
+=[\Phi(a),\Phi(b))\cap\mathbb Z.
+\]
+
+Consequently, if \(s=(3/4)^{k-1}\), \(\rho_k=3s/8\), and
+
+\[
+a=\lceil m'^{8/3}\rceil,\qquad b=\lceil(m'+1)^{8/3}\rceil,
+\]
+
+then the exact landing window for the nested expression attached to
+\(V_k\) is
+
+\[
+J_k^{\rm ex}(m')=
+[\Phi^{k-1}(a),\Phi^{k-1}(b))\cap\mathbb Z.
+\tag{1.1}
+\]
+
+Let \(P=m'^{1/\rho_k}\) and define the smooth reference window
+
+\[
+J_k^{\rm sm}(m')=[m'^{1/\rho_k},(m'+1)^{1/\rho_k})\cap\mathbb Z.
+\]
+
+For fixed \(k\), the two corresponding endpoints differ by
+\(O_k(P^{1-s})\). Hence
+
+\[
+|J_k^{\rm ex}\mathbin\triangle J_k^{\rm sm}|=O_k(P^{1-s}),
+\qquad
+\frac{|J_k^{\rm ex}\mathbin\triangle J_k^{\rm sm}|}
+{|J_k^{\rm sm}|}=O_k(P^{-5s/8}).
+\tag{1.2}
+\]
+
+The \(V_k\)-starts are the points of this landing window satisfying the
+word's parity restrictions; (1.1) does not claim that every point is a
+\(V_k\)-start.
+
+*Proof.* The first identity follows by raising the inequalities to the
+power \(4/3\) and taking the least integer endpoint. Iterating it gives
+(1.1). The innermost smooth endpoint has scale \(P^s\) and its ceiling
+error is \(O(1)\). After \(j\) inverse steps, the mean-value theorem for
+\(x^{4/3}\) gives error
+\(O_k(P^{(4/3)^{j-(k-1)}-s})\); at \(j=k-1\) this is
+\(O_k(P^{1-s})\). The same induction absorbs the \(O(1)\) rounding at
+each later step. The smooth fiber has length
+\(\asymp P^{1-\rho_k}=P^{1-3s/8}\), which gives (1.2). \(\square\)
+
+The relative boundary exponent \(5s/8\) is strictly larger than the
+binding analytic saving \(s/6\) in Sections 11--15. Thus the
+smooth-window asymptotic transfers, by the triangle inequality, to
+the exact nested fiber for every fixed named case \(V_2,\ldots,V_6\),
+with the same saving exponent and a possibly larger implicit constant.
+The explicit constants \(100,400,1600,4000,8000\) below were audited
+only for the smooth reference windows and are not asserted for
+\(J_k^{\rm ex}\).
+
+The rounding distinction is real already for \(V_2\): \(n=1015\) has
+orbit prefix
+\(1015,32336,179,2394,48,6\), hence word \(OEOEE\) and \(J^5(n)=6\),
+but \(\lfloor1015^{9/32}\rfloor=7\). Thus the formerly printed
+single-power fiber equivalence was false; it is (1.1), not that
+equivalence, which makes the landing window exact.
+
+For the shell bookkeeping used in the contagion recursion, an exact
+upper endpoint can lie just beyond the smooth shell endpoint \(x\).
+For fixed \(k\), discard the \(O_k(1)\) terminal \(m'\)-values whose
+corrected fibers are not contained in \((\sqrt x,x]\). Their log-mass
+is \(O_k(x^{-\rho_k})\), while every remaining exact fiber is contained
+in the required shell. Thus this trimming is absorbed by the existing
+\(o(1)\) and does not change the production coefficient.
+
+Two things are worth noting. First, **the nested fiber is exact** — there is
 no exceptional set, in contrast with Appendix C's \(OOEEE\), where
 \(\lfloor v^{1/4}\rfloor=\lfloor n^{9/16}\rfloor\) fails on a set that
 must be bounded by Erdős–Turán. Second, at scale \(P=n\),
 
 \[
-|J(m')|=\tfrac{32}9m'^{23/9}\bigl(1+O(1/m')\bigr)\asymp P^{23/32},
+|J_2^{\rm ex}(m')|=\tfrac{32}9m'^{23/9}\bigl(1+o(1)\bigr)\asymp P^{23/32},
 \qquad \rho_{OEOEE}=\tfrac9{32},
 \]
 
@@ -92,7 +175,7 @@ Moreover \(\Lambda_1,\Lambda_2,\Lambda_3\) are functions of \(w\)
 alone, hence **constant on each level set**
 \(I_w=\{n:\lfloor n^{3/4}\rfloor=w\}=[w^{4/3},(w+1)^{4/3})\cap\mathbb Z\),
 an interval with
-\(|I_w|=\tfrac43w^{1/3}(1+O(1/w))\asymp P^{1/4}\). Only \(\psi_1\)
+\(|I_w|=\tfrac43w^{1/3}+O(1)\asymp P^{1/4}\). Only \(\psi_1\)
 varies inside a block.
 
 *Proof.* By Lemma 1 the four parity conditions of the word are
@@ -115,27 +198,31 @@ Paper B is unavoidable.
 
 ## 3. The count
 
-**Proposition 3.** Let \(\mathcal O(m')=\{n\ \text{odd}\in J(m'):\
+**Proposition 3.** Let \(\mathcal O(m')=\{n\ \text{odd}\in J_2^{\rm ex}(m'):\
 \mathrm{word}_5(n)=OEOEE\}\). Then
 \[
-|\mathcal O(m')|=\tfrac1{16}\#\{n\ \text{odd}\in J(m')\}
-+O\bigl(|J(m')|\,P^{-1/8+\varepsilon}\bigr),
+|\mathcal O(m')|=\tfrac1{16}\#\{n\ \text{odd}\in J_2^{\rm ex}(m')\}
++O\bigl(|J_2^{\rm ex}(m')|\,P^{-1/8+\varepsilon}\bigr),
 \qquad P=m'^{32/9}.
 \]
 
-*Reduction.* Expand Lemma 2. The main term is
-\(\tfrac1{16}\#\{n\ \text{odd}\in J(m')\}\); the other fifteen sign
-sums split by whether \(\psi_1\) occurs. Write \(Y=|J(m')|\asymp P^{23/32}\),
+*Reduction.* First perform the calculation on the smooth reference
+window \(J_2^{\rm sm}(m')\). Expand Lemma 2. The main term is
+\(\tfrac1{16}\#\{n\ \text{odd}\in J_2^{\rm sm}(m')\}\); the other fifteen sign
+sums split by whether \(\psi_1\) occurs. Write \(Y=|J_2^{\rm sm}(m')|\asymp P^{23/32}\),
 \(H=|I_w|\asymp P^{1/4}\), so the number of blocks is
 \(\mathcal N=Y/H\asymp P^{15/32}\), and \(w\) ranges over an interval
 \(K\) of length \(L=\mathcal N\asymp W^{5/8}\) at scale
 \(W=m'^{8/3}=P^{3/4}\).
 
-*Half A — the eight terms without \(\psi_1\).* These are
+*Half A — the eight terms without \(\psi_1\), including the main term.*
+The seven non-main sums are
 \(\sum_{w\in K}\omega(w)\Lambda_1^{b}\Lambda_2^{c}\Lambda_3^{d}\) with
-\(\omega(w)=\#\{n\ \text{odd}\in I_w\}\asymp W^{1/3}\) smooth and
-monotone, and \((b,c,d)\ne 0\). Partial summation against \(\omega\)
-reduces to the unweighted partial sums. Then:
+\(\omega(w)=\#\{n\ \text{odd}\in I_w\}
+=\tfrac23w^{1/3}+O(1)\). The main weight is smooth and monotone, so
+partial summation reduces it to the unweighted partial sums; the
+pointwise \(O(1)\) remainder costs \(O(L)\), a relative
+\(O(P^{-1/4})\), stronger than the binding \(P^{-1/8}\). Then:
 
 - \(c=1\): Vaaler-expand \(\Lambda_2,\Lambda_3\) at truncation
   \(S=U=W^{1/8}\). The modes have phase
@@ -172,7 +259,10 @@ Summing \(|S_q|\) **directly** — not through Cauchy–Schwarz, which is
 lossy here — gives \(\sum_w|S_q(w)|\ll qL+L\log P\), and the Vaaler
 weights \(2/q\) cancel the \(q\): \(\sum_w|T(w)|\ll LR+Y/R\), balanced
 at \(R\asymp(Y/L)^{1/2}\), i.e. \(\sum_w|T(w)|\ll(LY)^{1/2}\log P\).
-Against \(Y\) this saves \(P^{-1/8+\varepsilon}\). \(\square\)
+Against \(Y\) this saves \(P^{-1/8+\varepsilon}\). Lemma 1' changes
+both the word count and the odd baseline by at most
+\(O(P^{1/4})\), whose relative size \(P^{-15/32}\) is smaller than
+\(P^{-1/8}\), and transfers the result to \(J_2^{\rm ex}\). \(\square\)
 
 The needed saving is any fixed power; both halves clear it, and they
 **tie** at \(P^{-1/8}\) (Section 11).
@@ -298,8 +388,9 @@ verbatim and the net gain is
 \((\tfrac13-\tfrac29)c_k=\tfrac19c_k=3^{-(k+2)}\) at scale
 \(\rho_{k+1}\).
 
-**Theorem 5 (EXACT — HUMAN PROOF).** With \(x=2^{-\lambda}\),
-\(y=(3/4)^{\lambda}\), the whole family telescopes:
+**Model identity 5 (exact algebra; not a uniform production theorem).**
+With \(x=2^{-\lambda}\), \(y=(3/4)^{\lambda}\), the formal whole-family
+series telescopes:
 
 \[
 \underbrace{x+\tfrac19xy+\tfrac29y}_{\lambda^{**}}
@@ -317,7 +408,8 @@ x+\tfrac13y=1 .
 \(\square\)
 
 The right-hand equation is the **ideal depth-two recursion**, root
-\(0.4927\). So the elementary family closes the entire depth-two gap:
+\(0.4927\). The rows through \(V_6\) below are fixed-depth theorems;
+the whole-family rows are model ceilings:
 
 | productions | \(\lambda\) |
 |---|---|
@@ -327,16 +419,14 @@ The right-hand equation is the **ideal depth-two recursion**, root
 | \(+V_2,V_3,V_4\) (named intermediate) | \(0.4916\) |
 | \(+V_2,\dots,V_5\) (named intermediate) | \(0.4924\) |
 | \(+V_2,\dots,V_6\) (current \(\lambda^{**}\)) | \(0.4926\) |
-| whole family | \(0.4927\) |
-| whole family \(+OOEEE\) | \(0.5769\) |
+| whole family (model limit) | \(0.4927\) |
+| whole family \(+OOEEE\) (model limit) | \(0.5769\) |
 
-This changes how the gap should be read. The fate note records
-\(0.448\to0.4927\) as "a dynamical averaging problem for the low-even
-set". It is not: it is an infinite sequence of elementary productions,
-each upgrading one more \(V_k\)-produced piece of \(A^{\rm rest}\) from
-the sweep share \(\tfrac23\) to the ideal \(1\), and each costing a
-bounded amount of classical work with **the same** \(5/8\) geometry.
-Any finite truncation is a theorem; the convergence is geometric.
+The algebra identifies what a uniform continuation of the fixed-depth
+argument would approach. It does not supply constants uniform in \(k\),
+so it does not itself close the remaining depth-two gap. The proved
+statement used by Paper C is the finite truncation through \(V_6\),
+whose endpoint correction is absorbed by Lemma 1'.
 
 **Remark (what the remaining rungs are worth).** The convergence being
 geometric is not by itself a reason to keep climbing, and it is worth
@@ -370,12 +460,14 @@ J^5=\lfloor w_2^{3/2}\rfloor,\quad J^6=\lfloor w_2^{3/4}\rfloor,\quad
 J^7=\lfloor w_2^{3/8}\rfloor,
 \]
 
-and \(J^7(n)=m'\iff w_2\in[m'^{8/3},(m'+1)^{8/3})
-\iff n\in J(m'):=[m'^{128/27},(m'+1)^{128/27})\).
+and \(J^7(n)=m'\iff w_2\in[m'^{8/3},(m'+1)^{8/3})\).
+The corresponding exact \(n\)-fiber is \(J_3^{\rm ex}(m')\) from
+(1.1); \([m'^{128/27},(m'+1)^{128/27})\cap\mathbb Z\) is its smooth
+reference window.
 
 *Proof.* Three applications of \(\lfloor\sqrt{\lfloor y\rfloor}\rfloor=\lfloor\sqrt y\rfloor\)
 at the three \(E\)-steps that follow an \(O\)-step, and one more at the
-trailing \(E\). \(\square\) Again the fiber is exact.
+trailing \(E\). Exact inversion is Lemma 1'. \(\square\)
 
 **Lemma 7 (three-layer decomposition).** With \(\psi_1=\psi(n^{3/2})\),
 \(\Lambda_1=(-1)^{w_1}\), \(\Lambda_2=\psi(w_1^{3/2})\),
@@ -398,8 +490,9 @@ variable of their own layer**.
 | \(w_1\) | \(P^{3/4}\) | \(P^{1/4}\) | \(P^{69/128}\) | \(23/32\) |
 | \(w_2\) | \(P^{9/16}\) | \(P^{3/16}\) | \(P^{45/128}\) | \(\mathbf{5/8}\) |
 
-**Proposition 8.** \(|\mathcal O(m')|=\tfrac1{64}\#\{n\ \text{odd}\in J(m')\}
-+O(|J(m')|P^{-3/32+\varepsilon})\).
+**Proposition 8.** On the exact nested fiber,
+\(|\mathcal O(m')|=\tfrac1{64}\#\{n\ \text{odd}\in J_3^{\rm ex}(m')\}
++O(|J_3^{\rm ex}(m')|P^{-3/32+\varepsilon})\).
 
 *Reduction.* Four cases, by which layer the surviving factors live on.
 
@@ -410,8 +503,10 @@ variable of their own layer**.
 | only \(\Lambda_1\) | pairing of consecutive \(w_1\) against the slowly varying weight | \(P^{-3/16}\) |
 | only \(w_2\)-factors | one-variable sum at relative length \(5/8\) — Section 3 Half A verbatim, with \(W_2=P^{9/16}\) | \(P^{-3/32}\) |
 
-Two cases tie at the binding \(P^{-3/32}\) (Section 11).
-\(\square\)
+Two cases tie at the binding \(P^{-3/32}\) (Section 11). The calculation
+there is on \(J_3^{\rm sm}\); Lemma 1' has relative endpoint cost
+\(O(P^{-45/128})\), which is smaller, and transfers it to
+\(J_3^{\rm ex}\). \(\square\)
 
 **Proposition 9 (bookkeeping).** A \(V_3\)-start lies in the \(OE\)-fiber
 of a \(V_2\)-produced element, so adding the family changes (4.2) by
@@ -425,7 +520,7 @@ conditional on \(V_2\).
 ### Census, and its limits
 
 At \(P=10^6,10^7,10^8\) over \(Y=P^{101/128}\): **zero** chain failures,
-**zero** fiber failures, **zero** block-constancy violations at either
+**zero** nested-chain failures, **zero** block-constancy violations at either
 layer; block lengths match \(\tfrac43P^{1/4}\) and \(\tfrac43P^{3/16}\)
 to three digits; \(\sum_{w_1}|T|^2\approx0.56\,Y\) and
 \(\sum_{w_2}|{\rm inner}|^2\approx\omega^2L_1\), both as predicted and
@@ -470,8 +565,9 @@ saving is always the deepest Cauchy–Schwarz case:
 \tfrac1{12},\ \tfrac1{16},\ \tfrac3{64},\ \tfrac9{256},\dots
 \]
 
-It decays geometrically but never vanishes, so **every \(V_k\) carries a
-power saving** and every truncation of the family is a theorem.
+It decays geometrically but never vanishes for each fixed \(k\). This is
+the formal saving law; Sections 11--15 carry out and audit the named
+cases through \(V_6\). No estimate uniform in \(k\) is asserted.
 
 *(Section 11 supersedes this law: summing \(|S_q|\) directly rather
 than through Cauchy–Schwarz, and balancing every Vaaler truncation,
@@ -501,7 +597,7 @@ and \(0.5761\) alongside Appendix C. The case constants are Section 13.
 ### Census: structure yes, constant no
 
 At \(P=10^6,10^7,10^8\) over \(Y=P^{431/512}\): **zero** chain failures,
-**zero** fiber failures, **zero** block-constancy violations across all
+**zero** nested-chain failures, **zero** block-constancy violations across all
 three \(w\)-layers, at every scale. The first four conditional shares
 are \(0.5000,0.5000,0.4978,0.5013\) at \(P=10^8\).
 
@@ -515,12 +611,23 @@ reads \(0.001512,\ 0.000984,\ 0.003554\) against
 Getting \(100\) distinct \(w_4\) values needs \(P\approx10^{12.7}\).
 
 This is the expected shape of the census for deep \(V_k\) and is not
-evidence against Proposition 10: the exact identities and the block
+evidence against the fixed-depth estimates: the exact identities and the block
 structure — which is what the proof actually uses — are confirmed
 without a single failure, and the shares that a single fiber *can*
 sample are all \(0.50\).
 
 ## 11. The constants
+
+**Scope of the numerical constants.** Sections 11--15 perform their
+explicit endpoint arithmetic on the smooth reference windows
+\(J_k^{\rm sm}\); within those sections, \(Y\) and
+\(\mathcal O(m')\) denote the corresponding smooth-window counts.
+The big-\(O\) asymptotics on the exact nested fibers
+follow from Lemma 1', because the endpoint loss has relative size
+\(O_k(P^{-5s/8})\), smaller than the binding
+\(P^{-s/6+\varepsilon}\). The displayed constants and measured ratios
+have not been enlarged to cover this transfer and are therefore
+smooth-window statements only.
 
 Writing them out changed the exponents. Two steps in Sections 3 and 10
 were lossy: Half B went through Cauchy–Schwarz, and the Vaaler
@@ -639,20 +746,23 @@ ratio never above \(0.25\), so the constant \(100\) above is generous by
 some \(400\times\); Half B's bound is met with a factor \(8\) of slack
 and Half A's with \(30\)–\(500\).
 
-**Status.** Audited (6 September 2026). Every displayed Section 11
-constant recomputes from T1–T5, or is tightened and still saves a
-positive power of \(P\). Classification `OEOEE_AUDIT_CONSISTENT`.
+**Status.** The smooth-window constants were audited (6 September
+2026). Every displayed Section 11 constant recomputes from T1–T5, or
+is tightened and still saves a positive power of \(P\). Classification
+`OEOEE_AUDIT_CONSISTENT`; Lemma 1' transfers the asymptotic with an
+unspecified enlarged constant.
 The \(V_2\) truncation is Theorem 1's previous exponent \(0.4801\).
 The \(V_3\) constants are Section 12.
 
 ## 12. The \(V_3\) constants
 
-The toolkit is T1–T5 of §11.1. The fiber is
-\(J(m')=[m'^{128/27},(m'+1)^{128/27})\). Write \(Y\) for the number of
-odd \(n\) in \(J(m')\). The \(w_2\)-interval of the fiber is exactly
-the \(w\)-interval of \(OEOEE\):
-\([m'^{8/3},(m'+1)^{8/3})\). The \(w_1\)-interval is
-\([m'^{32/9},(m'+1)^{32/9})\).
+The toolkit is T1–T5 of §11.1. This section audits the smooth reference
+window
+\(J_3^{\rm sm}(m')=[m'^{128/27},(m'+1)^{128/27})\cap\mathbb Z\).
+Write \(Y\) for its odd-point count. Its smooth \(w_2\)-window is
+\([m'^{8/3},(m'+1)^{8/3})\), and its smooth \(w_1\)-window is
+\([m'^{32/9},(m'+1)^{32/9})\). The exact nested endpoints are (1.1),
+and only the asymptotic estimate transfers to them via Lemma 1'.
 
 ### 12.2 Sizes
 
@@ -714,36 +824,39 @@ Measured ratios at \(m'=12,16,20\) are \(0.13,0.35,0.26\) against
 \(400\). Combined with Proposition 9 this is
 \(+\tfrac1{81}g_A(27t/128)\), root \(0.4891\).
 
-**Status.** Audited (6 September 2026). Classification
-`V3_AUDIT_CONSISTENT`. The five-term root \(0.4891\) is a named
+**Status.** The smooth-window constants were audited (6 September
+2026), classification `V3_AUDIT_CONSISTENT`; Lemma 1' transfers the
+asymptotic with an unspecified enlarged constant. The five-term root \(0.4891\) is a named
 intermediate. Official unconditional \(\lambda^{**}\) is the six-term
 root \(0.4916\) of Section 13. The Tao depth stays \(C=19\).
 
 ## 13. The \(V_4\) constants
 
-The toolkit is T1–T5 of §11.1. The fiber is
-\(J(m')=[m'^{512/81},(m'+1)^{512/81})\). Write \(Y\) for the number of
-odd \(n\) in \(J(m')\). The \(w_3\)-interval of the fiber is exactly
-the \(w\)-interval of \(OEOEE\):
-\([m'^{8/3},(m'+1)^{8/3})\). The \(w_2\)-interval is
+The toolkit is T1–T5 of §11.1. This section audits the smooth reference
+window
+\(J_4^{\rm sm}(m')=[m'^{512/81},(m'+1)^{512/81})\cap\mathbb Z\).
+Write \(Y\) for its odd-point count. The successive smooth layer
+windows are \([m'^{8/3},(m'+1)^{8/3})\),
 \([m'^{32/9},(m'+1)^{32/9})\) (the \(w_1\)-interval of \(V_3\)). The
 \(w_1\)-interval is \([m'^{128/27},(m'+1)^{128/27})\) (the \(n\)-interval
-of \(V_3\)).
+of \(V_3\)). Exact endpoints are instead given by (1.1).
 
 **Lemma 8 (EXACT — HUMAN PROOF).** For odd \(n\) with
 \(\mathrm{word}_9(n)=OEOEOEOEE\) and \(w_1=\lfloor n^{3/4}\rfloor\),
 \(w_2=\lfloor w_1^{3/4}\rfloor\), \(w_3=\lfloor w_2^{3/4}\rfloor\), the
 chain \(J^2=w_1\), \(J^4=w_2\), \(J^6=w_3\),
-\(J^9=\lfloor w_3^{3/8}\rfloor\) is exact, and
-\(J^9(n)=m'\iff n\in[m'^{512/81},(m'+1)^{512/81})\). No exceptional set.
+\(J^9=\lfloor w_3^{3/8}\rfloor\) is exact. Its landing window is
+\(J_4^{\rm ex}(m')\) from (1.1), with no exceptional set.
 
 **Lemma 9 (EXACT — HUMAN PROOF).** The eight later letters split across
 four layers; each is \(\psi\) of a smooth monomial of its own layer.
 
 **Proposition 11 (EXACT — HUMAN PROOF).**
-\(|\mathcal O(m')|=\tfrac1{256}\#\{n\text{ odd}\in J(m')\}
-+O(|J(m')|\,P^{-9/128+\varepsilon})\). The six cases below recompute
-from T1–T5; binding saving \(P^{-9/128}=m'^{-4/9}\) stands.
+On \(J_4^{\rm ex}(m')\),
+\(|\mathcal O(m')|=\tfrac1{256}\#\{n\text{ odd}\in J_4^{\rm ex}(m')\}
++O(|J_4^{\rm ex}(m')|\,P^{-9/128+\varepsilon})\). The six cases below
+recompute the smooth-window estimate from T1–T5; Lemma 1' transfers it,
+since \(P^{-135/512}=o(P^{-9/128})\).
 
 **Proposition 12 (EXACT — HUMAN PROOF).** Adding the family changes
 the pairing-plus-\(OEOEE\)-plus-\(V_3\) recursion by exactly
@@ -813,38 +926,42 @@ Measured ratios at \(m'=4,6,8\) are \(1.64,0.23,0.60\) against
 \(1600\). Combined with Proposition 12 this is
 \(+\tfrac1{243}g_A(81t/512)\), root \(0.4916\).
 
-**Status.** Audited (7 September 2026). Classification
-`V4_AUDIT_CONSISTENT`. The six-term root \(0.4916\) is a named
+**Status.** The smooth-window constants were audited (7 September
+2026), classification `V4_AUDIT_CONSISTENT`; Lemma 1' transfers the
+asymptotic with an unspecified enlarged constant. The six-term root \(0.4916\) is a named
 intermediate. Official unconditional \(\lambda^{**}\) is the
 eight-term root \(0.4926\) of Section 15. The Tao depth stays \(C=19\).
 
 ## 14. The \(V_5\) constants
 
-The toolkit is T1–T5 of §11.1. The fiber is
-\(J(m')=[m'^{2048/243},(m'+1)^{2048/243})\). Write \(Y\) for the number of
-odd \(n\) in \(J(m')\). The \(w_4\)-interval of the fiber is exactly
-the \(w\)-interval of \(OEOEE\):
-\([m'^{8/3},(m'+1)^{8/3})\). The \(w_3\)-interval is
+The toolkit is T1–T5 of §11.1. This section audits the smooth reference
+window
+\(J_5^{\rm sm}(m')=[m'^{2048/243},(m'+1)^{2048/243})\cap\mathbb Z\).
+Write \(Y\) for its odd-point count. Its successive smooth layer
+windows begin with \([m'^{8/3},(m'+1)^{8/3})\) and
 \([m'^{32/9},(m'+1)^{32/9})\) (the \(w_1\)-interval of \(V_3\)). The
 \(w_2\)-interval is \([m'^{128/27},(m'+1)^{128/27})\) (the \(w_1\)-interval
 of \(V_4\)). The \(w_1\)-interval is
 \([m'^{512/81},(m'+1)^{512/81})\) (the \(n\)-interval of \(V_4\)).
+Exact endpoints are instead given by (1.1).
 
 **Lemma 10 (EXACT — HUMAN PROOF).** For odd \(n\) with
 \(\mathrm{word}_{11}(n)=OEOEOEOEOEE\) and \(w_1=\lfloor n^{3/4}\rfloor\),
 \(w_2=\lfloor w_1^{3/4}\rfloor\), \(w_3=\lfloor w_2^{3/4}\rfloor\),
 \(w_4=\lfloor w_3^{3/4}\rfloor\), the
 chain \(J^2=w_1\), \(J^4=w_2\), \(J^6=w_3\), \(J^8=w_4\),
-\(J^{11}=\lfloor w_4^{3/8}\rfloor\) is exact, and
-\(J^{11}(n)=m'\iff n\in[m'^{2048/243},(m'+1)^{2048/243})\). No exceptional set.
+\(J^{11}=\lfloor w_4^{3/8}\rfloor\) is exact. Its landing window is
+\(J_5^{\rm ex}(m')\) from (1.1), with no exceptional set.
 
 **Lemma 11 (EXACT — HUMAN PROOF).** The ten later letters split across
 five layers; each is \(\psi\) of a smooth monomial of its own layer.
 
 **Proposition 13 (EXACT — HUMAN PROOF).**
-\(|\mathcal O(m')|=\tfrac1{1024}\#\{n\text{ odd}\in J(m')\}
-+O(|J(m')|\,P^{-27/512+\varepsilon})\). The cases below recompute
-from T1–T5; binding saving \(P^{-27/512}=m'^{-4/9}\) stands.
+On \(J_5^{\rm ex}(m')\),
+\(|\mathcal O(m')|=\tfrac1{1024}\#\{n\text{ odd}\in J_5^{\rm ex}(m')\}
++O(|J_5^{\rm ex}(m')|\,P^{-27/512+\varepsilon})\). The cases below
+recompute the smooth-window estimate from T1–T5; Lemma 1' transfers it,
+since \(P^{-405/2048}=o(P^{-27/512})\).
 
 **Proposition 14 (EXACT — HUMAN PROOF).** Adding the family changes
 the pairing-plus-\(OEOEE\)-plus-\(V_3\)-plus-\(V_4\) recursion by exactly
@@ -921,40 +1038,43 @@ Measured ratios at \(m'=2,3,4\) are \(1.38,0.70,2.02\) against
 \(4000\). Combined with Proposition 14 this is
 \(+\tfrac1{729}g_A(243t/2048)\), root \(0.4924\).
 
-**Status.** Audited (7 September 2026). Classification
-`V5_AUDIT_CONSISTENT`. The seven-term root \(0.4924\) is a named
+**Status.** The smooth-window constants were audited (7 September
+2026), classification `V5_AUDIT_CONSISTENT`; Lemma 1' transfers the
+asymptotic with an unspecified enlarged constant. The seven-term root \(0.4924\) is a named
 intermediate. Official unconditional \(\lambda^{**}\) is the
 eight-term root \(0.4926\) of Section 15. The Tao depth stays \(C=19\).
 
 ## 15. The \(V_6\) constants
 
-The toolkit is T1–T5 of §11.1. The fiber is
-\(J(m')=[m'^{8192/729},(m'+1)^{8192/729})\). Write \(Y\) for the number of
-odd \(n\) in \(J(m')\). The \(w_5\)-interval of the fiber is exactly
-the \(w\)-interval of \(OEOEE\):
-\([m'^{8/3},(m'+1)^{8/3})\). The \(w_4\)-interval is
+The toolkit is T1–T5 of §11.1. This section audits the smooth reference
+window
+\(J_6^{\rm sm}(m')=[m'^{8192/729},(m'+1)^{8192/729})\cap\mathbb Z\).
+Write \(Y\) for its odd-point count. Its successive smooth layer
+windows begin with \([m'^{8/3},(m'+1)^{8/3})\) and
 \([m'^{32/9},(m'+1)^{32/9})\) (the \(w_1\)-interval of \(V_3\)). The
 \(w_3\)-interval is \([m'^{128/27},(m'+1)^{128/27})\) (the \(w_1\)-interval
 of \(V_4\)). The \(w_2\)-interval is
 \([m'^{512/81},(m'+1)^{512/81})\) (the \(w_1\)-interval of \(V_5\)). The
 \(w_1\)-interval is \([m'^{2048/243},(m'+1)^{2048/243})\) (the \(n\)-interval
-of \(V_5\)).
+of \(V_5\)). Exact endpoints are instead given by (1.1).
 
 **Lemma 12 (EXACT — HUMAN PROOF).** For odd \(n\) with
 \(\mathrm{word}_{13}(n)=OEOEOEOEOEOEE\) and \(w_1=\lfloor n^{3/4}\rfloor\),
 \(w_2=\lfloor w_1^{3/4}\rfloor\), \(w_3=\lfloor w_2^{3/4}\rfloor\),
 \(w_4=\lfloor w_3^{3/4}\rfloor\), \(w_5=\lfloor w_4^{3/4}\rfloor\), the
 chain \(J^2=w_1\), \(J^4=w_2\), \(J^6=w_3\), \(J^8=w_4\),
-\(J^{10}=w_5\), \(J^{13}=\lfloor w_5^{3/8}\rfloor\) is exact, and
-\(J^{13}(n)=m'\iff n\in[m'^{8192/729},(m'+1)^{8192/729})\). No exceptional set.
+\(J^{10}=w_5\), \(J^{13}=\lfloor w_5^{3/8}\rfloor\) is exact. Its
+landing window is \(J_6^{\rm ex}(m')\) from (1.1), with no exceptional set.
 
 **Lemma 13 (EXACT — HUMAN PROOF).** The twelve later letters split across
 six layers; each is \(\psi\) of a smooth monomial of its own layer.
 
 **Proposition 15 (EXACT — HUMAN PROOF).**
-\(|\mathcal O(m')|=\tfrac1{4096}\#\{n\text{ odd}\in J(m')\}
-+O(|J(m')|\,P^{-81/2048+\varepsilon})\). The cases below recompute
-from T1–T5; binding saving \(P^{-81/2048}=m'^{-4/9}\) stands.
+On \(J_6^{\rm ex}(m')\),
+\(|\mathcal O(m')|=\tfrac1{4096}\#\{n\text{ odd}\in J_6^{\rm ex}(m')\}
++O(|J_6^{\rm ex}(m')|\,P^{-81/2048+\varepsilon})\). The cases below
+recompute the smooth-window estimate from T1–T5; Lemma 1' transfers it,
+since \(P^{-1215/8192}=o(P^{-81/2048})\).
 
 **Proposition 16 (EXACT — HUMAN PROOF).** Adding the family changes
 the pairing-plus-\(OEOEE\)-plus-\(V_3\)-plus-\(V_4\)-plus-\(V_5\) recursion by exactly
@@ -1038,8 +1158,9 @@ The \(V_6\) fiber at \(m'\ge 3\) is too large to scan. The measured
 ratio at \(m'=2\) is \(0.94\) against \(8000\). Combined with Proposition 16
 this is \(+\tfrac1{2187}g_A(729t/8192)\), root \(0.4926\).
 
-**Status.** Audited (7 September 2026). Classification
-`V6_AUDIT_CONSISTENT`. Official unconditional \(\lambda^{**}\) is now
+**Status.** The smooth-window constants were audited (7 September
+2026), classification `V6_AUDIT_CONSISTENT`; Lemma 1' transfers the
+asymptotic with an unspecified enlarged constant. Official unconditional \(\lambda^{**}\) is now
 the eight-term root \(0.4926\). Later \(V_k\) truncations are not
 opened here. The Tao depth stays \(C=19\)
 (\(e(19)=0.527>0.5074>e(18)=0.480\)).

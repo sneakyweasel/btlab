@@ -7,6 +7,7 @@
 'Problems.Juggler.budgetedWord_eq_hugWord' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.cf_lower_prefix' does not depend on any axioms
 'Problems.Juggler.cf_upper_prefix' does not depend on any axioms
+'Problems.Juggler.circleMean' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.comparison_fails_upward' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.cross_mul_pow' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.cycPred' does not depend on any axioms

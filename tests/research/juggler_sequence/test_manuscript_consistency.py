@@ -343,9 +343,11 @@ def test_paper_a_pins_the_seed_sum_from_both_sides() -> None:
     assert "J-lachesis-basin-inverse-sum" in text
 
 
-def test_window_covers_the_whole_fan() -> None:
-    """The window's endpoint is exactly the last fan member: q_14 = L_55."""
+def test_window_stops_at_but_excludes_the_last_fan_member() -> None:
+    """The half-open window ends at q_14 = L_55 and therefore contains only L_0,...,L_54."""
     assert A.WINDOW_HI == A.fan_length(A.FAN_LEN - 1) == 16785921
+    assert A.fan_length(A.FAN_LEN - 2) < A.WINDOW_HI
+    assert not A.fan_length(A.FAN_LEN - 1) < A.WINDOW_HI
 
 
 @pytest.mark.parametrize("name,value", [

@@ -599,6 +599,27 @@ from the forced lift, the complete necklace, and the entry one-step preimage
 to a contradiction on leftover lengths. There is no such Lean
 theorem.
 
+## 8.7 Walk-charge window trust boundary
+
+The current Paper A barrel contains the general Ostrowski numeration and
+Denjoy--Koksma machinery used in Section 5. In particular,
+`hugCharge_sub_circleMean_le` is the general Lean block envelope, and
+`theta_digitSum_le`, `greedyDigitSum_le`, and
+`hugCharge_sub_circleMean_window` instantiate the constant digit cap only
+for \(L<q_{13}=301994\). The endpoint power inequalities at \(q_{14}\) and
+\(q_{15}\) are also Lean (`theta_sandwich_lower`,
+`theta_sandwich_upper`).
+
+The extension of Theorem 5.8 to the half-open interval
+\([50508,q_{14})=[50508,16785921)\) is a human arithmetic step: write
+\(L=bq_{13}+r\), use \(s(L)\le b+47\), and combine it with the general
+block envelope. There is no named Lean theorem instantiating this extended
+window. Because the interval is half-open, it contains the semiconvergent
+fan members \(L_0,\ldots,L_{54}\), not its endpoint
+\(L_{55}=q_{14}=16785921\). This distinction does not alter the certified
+period bounds \(176251\), \(478245\), or \(780239\), whose relevant lengths
+all lie inside the window.
+
 ## 9. Exact floor reductions for the discrepancy paper
 
 Source: `formal/Problems/Juggler/GapCells.lean`.

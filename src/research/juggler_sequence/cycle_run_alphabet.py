@@ -1,38 +1,20 @@
-"""Cycle height forces a run alphabet.
+"""Exact run inequalities, separated from a floor-free word model.
 
-A nontrivial Juggler cycle has a minimum ``m`` and a maximum ``M``.  Two elementary
-bookkeeping facts bound its runs by the height ratio ``R = log M / log m``:
+The odd-run inequality is an UPPER growth bound, ``y^(2^r) <= v^(3^r)``;
+it does not bound odd-run length from cycle height.  The even-run inequality
+does imply ``2^g <= log(M)/log(m)``.  Two odd steps with intermediate at least
+8 give ``x^9 < 2(z+1)^4``, retaining both the factor and shift.
 
-* an **odd** run of length ``r`` takes its bottom ``v`` to about ``v^{(3/2)^r}``, and the
-  bottom is at least ``m`` while the top is at most ``M``, so ``(3/2)^r <= R``;
-* an **even** run of length ``g`` takes its top ``w`` down to about ``w^{1/2^g}``, so
-  ``2^g <= R``.
+Paper A gives strictly positive cycle drift ``o log(3/2) - e log 2 > 0``.
+Thus the critical letter ratio is a lower bound, not an exact cycle ratio.
+An OO exists by cyclic counting, so the integer maximum bound below applies
+at the certified floor.  No two-block alphabet is deduced from cycle height.
 
-The letter counts are not free either.  A cycle closes, so ``o log(3/2) = e log 2`` up to
-floor defects, giving ``o/e = log2/log(3/2) = 1.7095``.  In a *cyclic* word with no two
-adjacent odd letters every odd letter is followed by an even one, so ``o <= e``.  Since
-``1.7095 > 1`` that is impossible: **every nontrivial cycle contains two consecutive odd
-steps**, hence ``M >= m^{9/4}``.
-
-Push the height a little further and the itinerary collapses to a two-block alphabet.  If
-``R < 27/8`` then odd runs have length at most two and even runs exactly one, so the cycle
-word is a cyclic sequence over ``{OE, OOE}``.  Only ``OOE`` climbs, with log-exponent
-``9/8``; ``OE`` falls with ``3/4``.  Closing the cycle pins their proportions exactly.
-
-**The discrepancy sliver.**  Write ``s = o/L`` and ``D_t = o_t - t s`` for the count
-discrepancy of a prefix.  With ``alpha = log(3/2)``, ``beta = log 2`` and closure
-``o alpha = e beta``, the walk height is exactly ``u_t = (alpha + beta) D_t``, so
-``log R = log 3 * Delta`` with ``Delta = max D - min D``.  Balanced (mechanical) words are
-``Delta < 1``, i.e. ``R < 3``; the two-block band is ``Delta < log(27/8)/log 3 = 1.107``.
-Between them sits a sliver of two-block words that close without being balanced.  A run
-of ``k`` consecutive ``OOE`` blocks climbs exactly ``k(2-3s)+s`` in ``D``; a run of ``j``
-consecutive ``OE`` spans ``(1-s)+j(2s-1)``.  At the forced slope that caps ``OOE``-runs at
-``3`` for mechanical and ``4`` for the band, and ``OE``-runs at ``2`` for both.  An exact
-census of necklaces near the forced mix finds exactly one balanced necklace per pair and a
-sliver thinner than the band by orders of magnitude.
-
-This is a statement about *shape*, not a halt theorem.  It says nothing about whether a
-cycle exists; it says what one would have to look like while its height stays low.
+Functions prefixed ``model_`` and the ``idealized_model`` output are only
+floor-free arithmetic.  The necklace routines count prescribed abstract
+words; their centered discrepancy is not actual Juggler cycle height.
+This distinction repairs the withdrawn height-to-alphabet claim.  No halt
+theorem or new cycle exclusion is claimed.
 """
 
 from __future__ import annotations
@@ -40,7 +22,7 @@ from __future__ import annotations
 import json
 from fractions import Fraction
 from itertools import combinations
-from math import log
+from math import isqrt, log
 from typing import Any
 
 from research.juggler_sequence.lean_paths import DATA_ROOT
@@ -51,31 +33,31 @@ N0_CERTIFIED = 350_000_000
 """The certified floor: every start at or below this reaches 1."""
 
 LOG_RATIO_OE = log(2.0) / log(1.5)
-"""``o/e`` for any cycle, from ``(3/2)^o (1/2)^e = 1``."""
+"""Critical zero-drift ratio; an actual nontrivial cycle has strictly larger o/e."""
 
 FORCED_SLOPE = log(2.0) / log(3.0)
-"""``o/L`` for any cycle: ``log 2 / log 3 = 0.6309``."""
+"""Critical zero-drift slope, not an exact slope of a finite Juggler cycle."""
 
 BALANCED_CAP = 1.0
-"""``Delta < 1`` is the balanced (mechanical) condition: ``R < 3``."""
+"""The centered abstract-word condition Delta < 1; no actual height identification."""
 
 BAND_CAP = log(27 / 8) / log(3.0)
-"""``Delta < log(27/8)/log 3 = 1.107`` is the two-block band ``R < 27/8``."""
+"""A chosen abstract discrepancy cutoff; it does not force a Juggler alphabet."""
 
 
 # --------------------------------------------------------------------------- run bounds
 
 
-def max_odd_run(height_ratio: float) -> int:
-    """Largest ``r`` with ``(3/2)^r < R``: an odd run cannot exceed it."""
+def model_max_odd_run(height_ratio: float) -> int:
+    """Floor-free run cap for a STRICT height ceiling R, not a Juggler run bound."""
     r = 0
     while 1.5 ** (r + 1) < height_ratio:
         r += 1
     return r
 
 
-def max_even_run(height_ratio: float) -> int:
-    """Largest ``g`` with ``2^g < R``."""
+def max_even_run_below(height_ratio: float) -> int:
+    """Largest g with 2^g < R, for cycles with height STRICTLY BELOW R."""
     g = 0
     while 2.0 ** (g + 1) < height_ratio:
         g += 1
@@ -87,15 +69,15 @@ def block_exponent(odd_run: int, even_run: int) -> float:
     return (1.5 ** odd_run) * (0.5 ** even_run)
 
 
-def admissible_blocks(height_ratio: float) -> list[tuple[int, int]]:
-    """Blocks ``O^r E^g`` a cycle of this height ratio can contain, ``r, g >= 1``."""
+def model_admissible_blocks(height_ratio: float) -> list[tuple[int, int]]:
+    """Floor-free candidate blocks; not a certified alphabet for actual cycles."""
     return [(r, g)
-            for r in range(1, max_odd_run(height_ratio) + 1)
-            for g in range(1, max_even_run(height_ratio) + 1)]
+            for r in range(1, model_max_odd_run(height_ratio) + 1)
+            for g in range(1, max_even_run_below(height_ratio) + 1)]
 
 
-def two_block_mix() -> dict[str, float]:
-    """In the band ``R < 27/8`` the alphabet is ``{OE, OOE}``; closure pins the mix.
+def model_two_block_mix() -> dict[str, float]:
+    """Zero-drift proportions in a prescribed floor-free {OE, OOE} model.
 
     ``(3/4)^a (9/8)^b = 1`` with ``a`` copies of ``OE`` and ``b`` of ``OOE``.
     """
@@ -109,16 +91,15 @@ def two_block_mix() -> dict[str, float]:
     }
 
 
-def forced_min_height(min_odd_run: int = 2) -> float:
-    """``M >= m^{(3/2)^r}`` once a run of length ``r`` is forced."""
-    return 1.5 ** min_odd_run
+def oo_cycle_max_lower_bound(minimum: int) -> int:
+    """Least integer M allowed by m^9 < 2(M+1)^4, conditional on an OO witness.
 
-
-def floor_defect_bound(period: int, minimum: int) -> float:
-    """Relative size of the accumulated floor defect in the closure equation."""
-    absolute = period / minimum
-    scale = period * log(1.5)
-    return absolute / scale
+    The run must have intermediate at least 8 as in Lean ``oo_step_lower``.
+    No floating-point rounding is used in this lower bound.
+    """
+    if minimum < 1:
+        raise ValueError("minimum must be positive")
+    return isqrt(isqrt(minimum ** 9 // 2))
 
 
 def oo_integer_witness(x: int) -> dict[str, int] | None:
@@ -299,7 +280,7 @@ def band_certificate_profile(a: int, b: int) -> dict[str, Any]:
 
 
 def band_uncertified_window() -> dict[str, float]:
-    """Asymptotic uncertified fraction at the forced mix.
+    """Model uncertified fraction at zero drift, not a cycle-density theorem.
 
     ``R`` is the number of ``OOE``-runs.  In the band ``OE``-runs have length at most two,
     so ``R >= a/2``; ``OOE``-runs have length at most four, so ``R >= b/4``.  With
@@ -328,48 +309,50 @@ def summary() -> dict[str, Any]:
                         ("twentyseven_eighths", 27 / 8), ("four", 4.0)):
         bands[name] = {
             "height_ratio": ratio,
-            "max_odd_run": max_odd_run(ratio),
-            "max_even_run": max_even_run(ratio),
-            "blocks": [f"O^{r}E^{g}" for r, g in admissible_blocks(ratio)],
+            "max_odd_run": model_max_odd_run(ratio),
+            "max_even_run": max_even_run_below(ratio),
+            "blocks": [f"O^{r}E^{g}" for r, g in model_admissible_blocks(ratio)],
         }
-    mix = two_block_mix()
+    mix = model_two_block_mix()
     witnesses = [w for w in (oo_integer_witness(x) for x in range(9, 400, 2)) if w]
     census = [necklace_census(a, b) for a, b in ((2, 5), (3, 7), (4, 10), (5, 12))]
     return {
+        "scope": "exact integer bounds plus a separate idealized word model; no height-to-alphabet theorem",
         "n0_certified": N0_CERTIFIED,
-        "letter_ratio_o_over_e": LOG_RATIO_OE,
-        "forced_slope_o_over_L": FORCED_SLOPE,
-        "adjacent_odd_forced": LOG_RATIO_OE > 1.0,
-        "forced_min_height_exponent": forced_min_height(2),
-        "cycle_max_lower_bound": float(N0_CERTIFIED ** forced_min_height(2)),
-        "bands": bands,
+        "cycle_drift": "o log(3/2) - e log 2 > 0 (Paper A), not equality",
+        "cycle_max_lower_bound": oo_cycle_max_lower_bound(N0_CERTIFIED + 1),
+        "cycle_max_lower_bound_inequality": "m^9 < 2(M+1)^4, using an OO with intermediate >= 8",
         "absolute_bands_at_floor": {
-            "two_block_alphabet_below": float(N0_CERTIFIED ** (27 / 8)),
-            "no_double_even_below": float(N0_CERTIFIED ** 4),
+            "no_double_even_below": N0_CERTIFIED ** 4,
         },
-        "two_block_mix": mix,
-        "fair_ooe_start_density": 1 / 8,
-        "ooe_start_mismatch": mix["ooe_start_fraction_of_letters"] / (1 / 8),
-        "band_ceiling_exponent": 27 / 8,
-        "band_ceiling_value": float(N0_CERTIFIED ** (27 / 8)),
-        "floor_defect_relative": floor_defect_bound(780_239, N0_CERTIFIED),
         "oo_chain_holds_on_witnesses": all(w["x9"] < w["two_z1_4"] for w in witnesses),
         "oo_witnesses_checked": len(witnesses),
-        "certificates": {
-            "classes": list(CERTIFICATE_CLASSES),
-            "band_profile": [band_certificate_profile(a, b) for a, b in ((3, 7), (5, 12))],
-            "window": band_uncertified_window(),
-        },
-        "discrepancy": {
-            "balanced_cap": BALANCED_CAP,
-            "band_cap": BAND_CAP,
-            "mechanical_height_ratio": 3.0,
-            "ooe_run_cap_mechanical": max_ooe_run(BALANCED_CAP),
-            "ooe_run_cap_band": max_ooe_run(BAND_CAP),
-            "oe_run_cap_mechanical": max_oe_run(BALANCED_CAP),
-            "oe_run_cap_band": max_oe_run(BAND_CAP),
-            "four_ooe_height_ratio": float(3.0 ** ooe_run_climb(4, FORCED_SLOPE)),
-            "census": census,
+        "idealized_model": {
+            "scope": "floor-free and prescribed-word calculations only; not realized cycle geometry",
+            "critical_letter_ratio_o_over_e": LOG_RATIO_OE,
+            "critical_slope_o_over_L": FORCED_SLOPE,
+            "bands": bands,
+            "two_block_mix": mix,
+            "fair_ooe_start_density": 1 / 8,
+            "ooe_start_mismatch": mix["ooe_start_fraction_of_letters"] / (1 / 8),
+            "band_ceiling_exponent": 27 / 8,
+            "band_ceiling_value": float(N0_CERTIFIED ** (27 / 8)),
+            "certificates": {
+                "classes": list(CERTIFICATE_CLASSES),
+                "band_profile": [band_certificate_profile(a, b) for a, b in ((3, 7), (5, 12))],
+                "window": band_uncertified_window(),
+            },
+            "discrepancy": {
+                "balanced_cap": BALANCED_CAP,
+                "band_cap": BAND_CAP,
+                "mechanical_height_ratio": 3.0,
+                "ooe_run_cap_mechanical": max_ooe_run(BALANCED_CAP),
+                "ooe_run_cap_band": max_ooe_run(BAND_CAP),
+                "oe_run_cap_mechanical": max_oe_run(BALANCED_CAP),
+                "oe_run_cap_band": max_oe_run(BAND_CAP),
+                "four_ooe_height_ratio": float(3.0 ** ooe_run_climb(4, FORCED_SLOPE)),
+                "census": census,
+            },
         },
     }
 
@@ -378,17 +361,16 @@ def main() -> None:
     s = summary()
     ARTIFACT.parent.mkdir(parents=True, exist_ok=True)
     ARTIFACT.write_text(json.dumps(s, indent=2) + "\n", encoding="utf-8")
-    print(f"o/e = {s['letter_ratio_o_over_e']:.6f}; adjacent OO forced: "
-          f"{s['adjacent_odd_forced']}")
-    print(f"cycle max >= m^{s['forced_min_height_exponent']} >= "
-          f"{s['cycle_max_lower_bound']:.4e}")
-    for name, b in s["bands"].items():
-        print(f"  R < {b['height_ratio']:6.3f}: odd run <= {b['max_odd_run']}, "
+    print(s["scope"])
+    print(f"Integer OO consequence at the certified floor: M >= {s['cycle_max_lower_bound']}")
+    model = s["idealized_model"]
+    for name, b in model["bands"].items():
+        print(f"  MODEL R < {b['height_ratio']:6.3f}: odd run <= {b['max_odd_run']}, "
               f"even run <= {b['max_even_run']}, blocks {b['blocks']}")
-    m = s["two_block_mix"]
-    print(f"  band alphabet mix: OOE fraction {m['ooe_fraction_of_blocks']:.6f}, "
+    m = model["two_block_mix"]
+    print(f"  zero-drift MODEL mix: OOE fraction {m['ooe_fraction_of_blocks']:.6f}, "
           f"letter ratio {m['letter_ratio_check']:.6f}")
-    d = s["discrepancy"]
+    d = model["discrepancy"]
     print(f"  discrepancy caps: balanced < {d['balanced_cap']}, band < {d['band_cap']:.4f}")
     print(f"  OOE-run cap: {d['ooe_run_cap_mechanical']} mechanical, {d['ooe_run_cap_band']} band; "
           f"OE-run cap: {d['oe_run_cap_mechanical']} / {d['oe_run_cap_band']}")
@@ -396,10 +378,10 @@ def main() -> None:
         print(f"  ({c['a']},{c['b']}) L={c['L']}: {c['necklaces']} necklaces, "
               f"{c['balanced']} balanced, {c['sliver']} sliver, {c['above']} above; "
               f"min non-balanced Delta {c['min_nonbalanced_delta']}")
-    c = s["certificates"]["window"]
+    c = model["certificates"]["window"]
     print(f"  uncertified band fraction {c['uncertified_low']:.4f}-{c['uncertified_high']:.4f} "
           f"vs fair {c['fair_share']}: ratio {c['ratio_low']:.2f}-{c['ratio_high']:.2f}")
-    prof = s["certificates"]["band_profile"][0]
+    prof = model["certificates"]["band_profile"][0]
     print(f"  band uses only {prof['classes_available']}; uncertified prefix "
           f"{prof['uncertified_prefixes']}")
     print(f"wrote {ARTIFACT}")

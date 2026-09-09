@@ -1,9 +1,14 @@
 {
   "statement": "Theorem 5.3 localizes: for every interval I inside (P, 2P] of length |I| >= P^{29/48+delta}, |K_c(I)| << |I| P^{-1/96+eps}, a slow twist allowed. The exponent is the printed one; only the admissible length is new.",
-  "companion_length_exponent": "23/32",
+  "evaluated_length_exponent": "37/64",
+  "reference_length_exponent": "23/32",
+  "production_landing_exponent": "27/64",
+  "production_length_exponent": "37/64",
   "threshold_length_exponent": "29/48",
   "threshold_closed_form": "y >= A_1 + 8/96 = 25/48 + 1/12 = 29/48",
-  "companion_above_threshold": true,
+  "companion_above_threshold": false,
+  "production_above_threshold": false,
+  "reference_above_threshold": true,
   "threshold_above_one_half": true,
   "balancing_choices_unchanged": {
     "H1": "1/48",
@@ -17,29 +22,38 @@
     },
     "lemma_52ii": {
       "proportional": "-1/24",
-      "absolute": "119/192"
+      "absolute": "211/384"
     },
     "T2": {
       "proportional": "-1/24",
-      "absolute": "119/192"
+      "absolute": "211/384"
     },
     "T1": {
       "proportional": "-1/48",
-      "absolute": "257/384"
+      "absolute": "433/768"
     },
     "K": {
       "proportional": "-1/96",
-      "absolute": "533/768"
+      "absolute": "877/1536"
     }
   },
   "saving": "-1/96",
   "saving_is_printed_exponent": true,
-  "absolute_tail": "533/768",
-  "absolute_tail_closed_form": "533/768",
+  "printed_saving_bound_applies_at_evaluated_length": false,
+  "absolute_tail": "877/1536",
+  "absolute_tail_closed_form": "877/1536",
   "absolute_tail_matches_closed_form": true,
-  "target": "17/24",
-  "absolute_dominated": true,
-  "margin": "11/768",
+  "target": "109/192",
+  "absolute_dominated": false,
+  "margin": "-5/1536",
+  "reference_same_saving_margin": "11/768",
+  "production_same_saving_margin": "-5/1536",
+  "production_formal_effective_saving": "11/1536",
+  "production_formal_effective_saving_is_11_over_1536": true,
+  "production_application": {
+    "status": "OPEN_PROOF_OBLIGATION",
+    "reason": "37/64 is below the theorem's 29/48 same-saving threshold; the formal two-term substitution does not prove the exact floor/parity transport."
+  },
   "cost_tables_reproduce_printed": {
     "lemma_52i_max": "15/16",
     "lemma_52i_printed": "15/16",
@@ -122,8 +136,9 @@
     "output_is_printed": true
   },
   "twist": {
-    "total_variation_exponent": "-21/32",
-    "negligible": true
+    "total_variation_exponent": "-51/64",
+    "negligible": true,
+    "uniform_exponent_for_Y_at_most_P": "-3/8"
   },
   "costs": {
     "lemma_52i": [
@@ -390,7 +405,8 @@
       }
     ]
   },
-  "unlocks": [
+  "unlocks": [],
+  "retracted_unlocks": [
     "OOOEEE",
     "OOEOEE"
   ]

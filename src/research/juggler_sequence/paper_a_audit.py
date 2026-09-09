@@ -166,6 +166,34 @@ def good_convergents(qmax: int = 10**6) -> list[tuple[int, int, int]]:
     return [(p, q, an) for (p, q, an) in convergents() if 10 <= q <= qmax and 3**p > 2**q]
 
 
+def upper_convergent_decay(terms: int = 18) -> list[dict[str, Any]]:
+    """The signed estimate used in Proposition 6.2a, on upper convergents only.
+
+    For ``p/q > log(2)/log(3)``, ``p`` is ``o_min(q)`` and
+    ``0 < p log(3) - q log(2) < log(3) / q_next``.  Lower convergents are
+    deliberately absent: their ``o_min`` is ``p + 1``, so the corresponding
+    Juggler surplus does not tend to zero along that subsequence.
+    """
+    conv = convergents(terms)
+    out = []
+    for i, (p, q, _a_next) in enumerate(conv[:-1]):
+        if 3**p <= 2**q:
+            continue
+        q_next = conv[i + 1][1]
+        surplus = mpf(p) * LN3 - mpf(q) * LN2
+        out.append(
+            {
+                "p": p,
+                "q": q,
+                "q_next": q_next,
+                "surplus": float(surplus),
+                "theta": float(1 - exp(-surplus)),
+                "surplus_upper": float(LN3 / q_next),
+            }
+        )
+    return out
+
+
 def convergent_invariant() -> list[dict[str, Any]]:
     """``n_max(q) log n_max(q) / (q q_next)`` along the good convergents.
 
@@ -391,13 +419,17 @@ def predicted_kill_floor(L: int, floor: int, beta: float | None = None) -> float
     return hi
 
 
-# --- Section 5.6: the window theorem, extended, and what the walk charge can buy ---
+# --- Section 5.6: the human-extended window, its Lean sub-window, and the walk ceiling ---
 
-# Certified partial quotients of the rotation number (OstrowskiSandwich.lean reaches q_14, q_15).
+# Audited partial quotients of the rotation number.  Lean certifies the endpoint power
+# inequalities at q_14 and q_15, but its instantiated constant-cap window stops below q_13.
 THETA_QUOTIENTS = (0, 2, 1, 2, 2, 3, 1, 5, 2, 23, 2, 2, 1, 1, 55, 1, 4)
 WINDOW_LO = 50508
-WINDOW_HI_OLD = 301994          # q_13, the range the draft proved
-WINDOW_HI = 16785921            # q_14, and L_55: the end of the fan
+LEAN_WINDOW_HI = 301994         # q_13, exclusive scope of the named Lean window instance
+WINDOW_HI_OLD = LEAN_WINDOW_HI  # retained for the committed audit-output schema
+WINDOW_HI = 16785921            # q_14 = L_55, excluded endpoint of the human extension
+WINDOW_LAST_INCLUDED_FAN_INDEX = 54
+WINDOW_ENDPOINT_FAN_INDEX = 55
 
 
 def theta_denominators() -> list[int]:
@@ -421,10 +453,11 @@ def ostrowski_digit_sum(L: int, qs: list[int] | None = None) -> int:
 
 
 def window_criterion(ln_n: float) -> float:
-    """The right-hand side of Theorem 5.8 in closed form.
+    """The explicit lower bound for Theorem 5.8's available gap.
 
-    1/(ln3 ln n') - C_*(n') = (2 ln n' - 6)/(ln3 (ln n')^3); reproduces the printed
-    5.14e-3 at ln n' = 17.07.
+    The Laplace majorant gives
+    ``1/(ln3 ln n') - C_*(n') >= (2 ln n' - 6)/(ln3 (ln n')^3)``;
+    this reproduces the printed certified lower bound 5.14e-3 at ln n' = 17.07.
     """
     return (2 * ln_n - 6) / (math.log(3) * ln_n**3)
 
@@ -441,14 +474,14 @@ def window_scan(lo: int = WINDOW_LO, hi: int = 2_000_000) -> dict[str, Any]:
         v = 2 * ostrowski_digit_sum(L, qs) / L
         if v > best:
             best, arg = v, L
-    tail = max(2 * (b + 47) / (b * WINDOW_HI_OLD) for b in range(1, 56))
+    tail = max(2 * (b + 47) / (b * LEAN_WINDOW_HI) for b in range(1, 56))
     return {"scanned": (lo, hi), "max_2s_over_L": best, "argmax": arg,
             "digit_sum_at_argmax": ostrowski_digit_sum(arg, qs),
             "tail_bound_above_q13": tail, "window_max": max(best, tail)}
 
 
 def window_headroom() -> list[dict[str, Any]]:
-    """Theorem 5.8's headroom at each certified floor, on the extended window."""
+    """Certified lower bound for Theorem 5.8's headroom at each floor."""
     m = 9.3766e-4                                    # window_scan()["window_max"], cached
     out = []
     for N0, _b, site in FLOORS:

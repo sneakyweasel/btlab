@@ -146,8 +146,9 @@ The note's Lean-tagged theorems are listed in its Appendix A:
       cycle-word domination `cycleMin_prefix_odds_ge_hug`,
       `cycleMin_odds_ge_hug` (`WalkChargeItineraries.lean`); analytic
       half (charge maximisation) `stateCharge_antitone`,
-      `hug_charge_maximal` (`WalkChargeMax.lean`); the strict
-      within-`(L,o)` uniqueness of the maximiser stays human
+      `hug_charge_maximal`, with strict within-`(L,o)` uniqueness
+      `stateCharge_strictAnti`, `stateCharge_inj`, `hug_charge_unique`
+      (`WalkChargeMax.lean`)
 * 5.9 (kill mechanism) `cycleMin_hug_kill_criterion`
       (`DefectFinance.lean`): finance vs hug charge as one Lean
       implication; the per-length numeric kill evaluations stay
@@ -155,8 +156,10 @@ The note's Lean-tagged theorems are listed in its Appendix A:
 * Prop 5.5 (Laplace bound) `rotation_average_le`,
       `rotation_average_lt`, normalised `rotationAverage_le`,
       `rotationAverage_lt`, gap form `rotationAverage_gap`
-      (`RotationAverage.lean`); the ergodic identification of
-      `C*` stays human/KNOWN
+      (`RotationAverage.lean`); `denjoy_koksma_blocks` proves convergence
+      of the hug averages to `circleMean`.  The change of variables
+      identifying `circleMean n'` with `rotationAverage (log n')`
+      remains human
 * 5.6 `budgetedWord_eq_hugWord`, `hugOdds_pow_ge`, `hugOdds_pow_lt`,
       `hugOdds_pow_gt`, `hugOdds_least` (`WalkChargeItineraries.lean`)
 * 5.5 (certified quotient arithmetic) `theta_sandwich_upper`,
@@ -168,15 +171,19 @@ The note's Lean-tagged theorems are listed in its Appendix A:
       (`|θ − p/q| < 1/q²` for all certified pairs), block
       permutations `residue_mul_bijective`,
       `theta_block_permutations` (`OstrowskiSandwich.lean`);
-      Denjoy--Koksma's variation inequality and the
-      cylinder-interval bridge stay human/KNOWN
+      Denjoy--Koksma's variation inequality is formalized by
+      `value_sub_mean_le_variation`, `denjoy_koksma_abstract`, and
+      `denjoy_koksma_rotation` (`DenjoyKoksma.lean`)
 * 5.8 (digit cap) general Ostrowski numeration `ostroDigit_le`,
       `ostro_sum_eq`, `ostro_digitSum_le`, θ instance
       `theta_digitSum_le`, `greedyDigitSum_le`
       (`OstrowskiNumeration.lean`); window scan `window_digit_scan`,
       `window_digit_cap`, `window_digit_max`
-      (`OstrowskiSandwich.lean`); the Denjoy--Koksma comparison
-      stays human/KNOWN
+      (`OstrowskiSandwich.lean`); `hugCharge_sub_circleMean_le` is the
+      general Lean block envelope, while the instantiated constant-cap
+      theorem `hugCharge_sub_circleMean_window` has scope `L < 301994`.
+      The paper's extension to the half-open window ending at
+      `q₁₄ = 16785921` is human arithmetic, not a named Lean instance
 * short certificates (Section 6):
       `even_finiteProgress`, `odd_even_finiteProgress`
 * no certificate implies odd-to-odd:

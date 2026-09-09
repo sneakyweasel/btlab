@@ -5,10 +5,10 @@ and not an unconditional improvement of \(\lambda^{***}\). It
 reorganizes the §4 recursion of
 [juggler_fate_contagion_note.md](juggler_fate_contagion_note.md) as a
 transfer matrix on the backward tree, recovers \(\lambda^*\),
-\(\lambda^{**}\) and the \(0.4927\) ceiling from one equation, shows the
-method's ceiling is **exactly** \(\lambda=1\), identifies the single
-criterion that decides which productions get the ideal share, and
-prices the remaining ground — including where it stops. Verification:
+\(\lambda^{**}\) and the \(0.4927\) model ceiling from one equation,
+and prices conditional production scenarios. Its collapsed-power
+fiber scale is a diagnostic, not an exact identity or a criterion that
+by itself grants the ideal share. Verification:
 [`tests/research/juggler_sequence/test_contagion_exponent_calculus.py`](../../tests/research/juggler_sequence/test_contagion_exponent_calculus.py).
 
 ## 1. Two elementary backward steps
@@ -131,73 +131,87 @@ and forbidding two consecutive \(O\)-steps leaves, at
 arrangement that makes the entropy is one that puts two \(O\)'s in a
 row.
 
-## 6. The fiber-length criterion (EXACT — HUMAN PROOF)
+## 6. The collapsed-power fiber diagnostic
 
-**Proposition 6.1.** For a production word \(w\) with source scale
-\(\rho_w t\), the source \(m'\) has \(n\asymp m'^{1/\rho_w}\), so at
-scale \(P=n\) the fiber is
-\(I(m')=[m'^{1/\rho_w},(m'+1)^{1/\rho_w})\) with
+**Model calculation 6.1 (not an identity for the Juggler map).** Replace
+the nested branch for \(w\) by
+\(\widetilde J_w(n)=\lfloor n^{\rho_w}\rfloor\). The model fiber is
+\(I_{\rm mod}(m')=[m'^{1/\rho_w},(m'+1)^{1/\rho_w})\), and at
+\(P\asymp m'^{1/\rho_w}\)
 
 \[
-|I(m')|=\tfrac1{\rho_w}\,m'^{1/\rho_w-1}
-       =\tfrac1{\rho_w}\,P^{\,1-\rho_w}.
+|I_{\rm mod}(m')|=\tfrac1{\rho_w}\,m'^{1/\rho_w-1}(1+O(1/m'))
+       \asymp P^{\,1-\rho_w}.
 \]
 
-Proposition 7.1 requires \(Y\ge P^{1/2}\). Hence **the localized
-Paper B estimate — and with it the ideal share \(\eta=1\) — is
-available exactly when \(\rho_w\le\tfrac12\).**
+This exact model identity is false for the actual nested map. The start
+\(1015\) follows
+\[
+1015\xrightarrow O32336\xrightarrow E179\xrightarrow O2394
+\xrightarrow E48\xrightarrow E6,
+\]
+but \(7^{32}\le1015^9<8^{32}\), so
+\(\lfloor1015^{9/32}\rfloor=7\ne J^5(1015)\). In particular the exact
+\(OEOEE\) statement is the nested condition
+\(J^5(n)=m'\iff\lfloor n^{3/4}\rfloor\in
+[m'^{8/3},(m'+1)^{8/3})\), not a single \(9/32\)-power floor.
 
-This reproduces all three fiber lengths printed in the note and
-classifies every production it uses:
+Proposition 7.1 requires a separately proved actual parameter interval
+of length \(Y\ge P^{1/2}\). Therefore \(\rho_w\le\tfrac12\) only says
+that the collapsed model passes this scale screen; it does not prove
+the interval or the ideal share \(\eta=1\).
 
-| word | \(\rho_w\) | \(|I|\) | \(\rho_w\le\tfrac12\) | production |
+The nominal scale bookkeeping is:
+
+| word | \(\rho_w\) | nominal model length | passes model screen | separately established status |
 |---|---|---|---|---|
 | \(E\) | \(1/2\) | \(P^{1/2}\) | yes | Lemma 2.1, exact |
 | \(OEE\) | \(3/8\) | \(P^{5/8}\) | yes | Prop 3.4, ideal |
-| \(OOEEE\) | \(9/32\) | \(P^{23/32}\) | yes | Prop 7.1, ideal |
+| \(OOEEE\) | \(9/32\) | \(P^{23/32}\) | yes | conditional Prop 7.1, ideal |
 | \(OE\) | \(3/4\) | \(P^{1/4}\) | **no** | elementary sweep, \(\eta=2/3\) |
 | \(OOEE\) | \(9/16\) | \(P^{7/16}\) | **no** | unavailable |
 
-**The \(\tfrac13\)-versus-\(\tfrac12\) "depth-two gap" and the
-short-fiber regime \(\rho_w>\tfrac12\) are the same set.** They are not
-two problems. This also explains why §7 had to reach \(OOEEE\) rather
-than \(OOEE\): \(OOEE\) has \(\rho=9/16>\tfrac12\), so its fiber
-\(P^{7/16}\) is below Proposition 7.1's threshold; the extra \(E\)
-lengthens the fiber past it.
+Thus the model flags \(OE\) and \(OOEE\) as short-scale candidates, but
+does not identify the depth-two averaging gap with an exact fiber
+classification. The separate \(OOEEE\) argument reaches a parameter
+range long enough for Proposition 7.1; that fact does not follow from
+\(\rho_{OOEEE}=9/32\) alone.
 
 ## 7. The word list, and where it stops
 
 Production words must be prefix-free (else the same \(n\) is produced
-from two sources). The natural set is the *first passage below
-\(\tfrac12\)*: \(\rho_w\le\tfrac12\) with every proper prefix above.
+from two sources). First passage of the nominal \(\rho_w\) below
+\(\tfrac12\) gives a candidate list, not a theorem about exact fibers.
 An \(O\)-run of length \(r\) forces \(r\) nested \(3/2\)-powers plus the
 closing square root, i.e. **Paper B at depth \(r+1\)**. Paper B is
 complete to depth \(4\), and to depth \(5\) except \(OOOO*\) — the
-\(K_3\) wall. So \(r\le 3\).
+\(K_3\) wall. This limits the corresponding conditional inventory; it
+does not make every candidate through \(r=3\) available.
 
 | word | \(\rho_w\) | longest \(O\)-run | Paper B depth | status |
 |---|---|---|---|---|
 | \(E\) | \(1/2\) | 0 | — | exact |
 | \(OEE\) | \(3/8\) | 1 | 2 | **proved** (Prop 3.4) |
-| \(OOEEE\) | \(9/32\) | 2 | 3 | **proved** (§7) |
-| \(OEOEE\) | \(9/32\) | 1 | — | **elementary**, no nesting ([note](juggler_oeoee_production.md)) |
+| \(OOEEE\) | \(9/32\) | 2 | 3 | **conditional** (§7) |
+| \(OEOEE\) | \(9/32\) | 1 | — | tailored nested reduction ([note](juggler_oeoee_production.md)) |
 | \(OOEOEE\), \(OOEEOE\), \(OEOOEE\) | \(27/64\) | 2 | 3 | needs localized depth 3 |
 | \(OOOEEE\) | \(27/64\) | 3 | 4 | needs localized depth 4 |
 | \(OOOOEEEE\) | \(81/256\) | 4 | 5 | **\(K_3\) wall** |
 
-§7's Proposition 7.2 attains the *ideal* share \(\tfrac1{16}\) for
-\(OOEEE\); its estimate is not lossy. The remaining ground is therefore
-**more words, not a better estimate for the word already used**.
+Conditional Proposition 7.2 attains the *ideal* share \(\tfrac1{16}\)
+for \(OOEEE\). The model table still supplies none of the other words.
 
-**The \(r=1\) words are free.** The "Paper B depth" column above
-over-charges every word with no two consecutive \(O\)'s. In such a word
+**The audited \(r=1\) words use exact nested reductions.** The “Paper B
+depth” column above over-charges the named words with no two consecutive
+\(O\)'s. In such a word
 each isolated \(O\) is absorbed by the \(E\) that follows it: the
 transparent nesting makes \(J^2(n)=\lfloor n^{3/4}\rfloor\) an *exact*
 function of \(n\), and every later parity becomes a function of that
 single integer, in which the remaining \(\psi\)'s are \(\psi\) of smooth
 monomials rather than of nested floors. \(OEOEE\) is worked out in
 [juggler_oeoee_production.md](juggler_oeoee_production.md): no Paper B
-estimate, no localization, and — unlike \(OOEEE\) — no exceptional set.
+estimate or localization; its exact statement is nested as in §6, not
+the collapsed \(9/32\)-power identity.
 It is worth \(+\tfrac1{27}\) on the \((9/32)^\lambda\) term, taking
 \(\lambda^{**}\) from \(0.4480\) to \(0.4801\) **unconditionally** and
 \(\lambda^{***}\) from \(0.5392\) to \(0.5665\).
@@ -209,43 +223,48 @@ Not every no-\(OO\) word is usable, though. Writing such a word as
 (\(j=0\)) has relative length \(\tfrac14\), where the phase
 \(\tfrac s2w^{3/2}\) is essentially linear and the measured worst-case
 cancellation is nil; it is not the next word. \(OEOEOEE\) is. The
-usable family is \(V_k=(OE)^{k-1}OEE\), every member at relative length
-\(\tfrac58\), and its net gains \(3^{-(k+2)}\) at scales
-\((3/4)^{k}\tfrac38\) **telescope exactly** onto
+model family is \(V_k=(OE)^{k-1}OEE\), with nominal relative length
+\(\tfrac58\) and net gains \(3^{-(k+2)}\) at scales
+\((3/4)^{k}\tfrac38\). Its formal series telescopes onto
 \(2^{-\lambda}+\tfrac13(3/4)^{\lambda}=1\) — the \(r=1\) ceiling
-\(0.4927\). So the whole \(r=1\) rung is elementary and reachable by
-finite truncation (\(0.4801\), \(0.4891\), \(0.4916\), \(0.4924\), …);
-only \(r\ge2\) costs a localization of a Paper B theorem.
+\(0.4927\). This limit is not attained here. The separately audited
+finite truncations through \(V_6\) give \(0.4801\), \(0.4891\),
+\(0.4916\), \(0.4924\), and \(0.4926\); the series alone proves no
+further truncation.
 
 ## 8. Price list
 
 \(r\) = longest controllable \(O\)-run; Tao \(C\) = least constant with
 \(e(C)>1-\lambda\).
 
-| \(r\) | Paper B depth | \(\lambda\) (\(\eta_1=\tfrac23\), current sweep) | \(C\) | \(\lambda\) (\(\eta_1=1\)) | \(C\) |
+Every entry below is the output of the transfer matrix *conditional on
+all required productions being proved at the stated shares*.
+
+| \(r\) | Paper B depth | conditional \(\lambda\) (pairing share) | \(C\) | conditional \(\lambda\) (ideal-share model) | \(C\) |
 |---|---|---|---|---|---|
 | 1 | 2 | 0.4480 | 20 | 0.4927 | 19 |
 | 2 | 3 | 0.6247 | 16 | 0.7180 | 14 |
 | 3 | 4 | 0.7095 | 14 | 0.8414 | 11 |
 | 4 | 5 | 0.7516 | 13 | 0.9121 | 9 |
 
-Row \(r=4\) is behind \(K_3\). **The reachable target is \(r=3\):
-\(\lambda\le0.7095\) (\(C=14\)) with the present sweep, and
-\(\lambda\le0.8414\) (\(C=11\)) if the short-fiber regime is also
-brought to the ideal share.** Current print is \(\lambda^{***}=0.5392\)
+Row \(r=4\) would meet \(K_3\), but neither \(r=2\) nor \(r=3\) is an
+attained rung merely because it appears in this table. The values
+\(0.7095\) (\(C=14\)) and \(0.8414\) (\(C=11\)) are conditional model
+prices. The current unconditional print is \(\lambda^{**}=0.4926\)
+(\(C=19\)); conditional Appendix C gives \(\lambda^{***}=0.5392\)
 (\(C=18\)).
 
-Two independent levers, both needed for \(\lambda\to1\): the
-short-fiber share \(\eta_1\) alone caps at \(0.4927\); the \(O\)-run
-lever alone saturates at \(0.7909\).
+Within the transfer-matrix model, two independent levers are needed for
+\(\lambda\to1\): the \(\eta_1\) lever alone caps at \(0.4927\), while
+the odd-run lever alone saturates at \(0.7909\).
 
 ## 9. What this does not do
 
-\(\lambda=1\) requires \(r\to\infty\), hence \(O\)-runs of every length,
-hence Paper B past \(OOOO*\): **the contagion lever is guarded by
-\(K_3\) too, at \(r=4\).** It is not a route around the wall — it
-approaches the same wall from the other side, and buys real ground
-before reaching it (\(C=18\to14\), or \(\to11\)). Since
+In this model, \(\lambda=1\) requires \(r\to\infty\), hence odd runs of
+every length, and the proposed word-by-word implementation would meet
+Paper B's \(OOOO*\) kernel at \(r=4\). This is a cost diagnosis, not a
+proof that \(K_3\) is the only obstruction or that the earlier model
+rungs are attainable. Since
 \(1-\lambda\approx(1-\eta)/\ln(4/3)\) and \(\eta\) is a fiber-parity
 share, the ceiling is approached only through statements of the same
 species as \(\mathrm H(C,A)\). Improving \(\lambda\) lowers the Tao

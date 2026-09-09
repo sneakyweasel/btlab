@@ -396,7 +396,7 @@ def _contagion_root(with_ooeee: bool):
 
 
 def test_the_two_contagion_exponents_are_roots_of_one_recursion() -> None:
-    """lambda** = 0.4480 and lambda*** = 0.5392, differing by the OOEEE summand."""
+    """The pairing root 0.4480 and analytic 0.5392 root differ by the OOEEE summand."""
     from mpmath import mpf
     assert abs(_contagion_root(False) - mpf("0.4480")) < 5e-5
     assert abs(_contagion_root(True) - mpf("0.5392")) < 5e-5
@@ -428,7 +428,7 @@ def test_paper_names_the_gap_and_the_summand() -> None:
     assert "attributable to a single summand" in text
 
 
-# --- the 0.5561 dividend does not reconcile with the paper's own rule ---
+# --- the proposed localized productions: scale first, conditional coefficient second ---
 
 
 def _recursion_root(extra, guess):
@@ -456,12 +456,14 @@ def test_the_two_printed_contagion_exponents_solve_the_recursion() -> None:
     assert abs(_recursion_root(base_minus, "0.45") - mpf("0.4480")) < 5e-5
 
 
-def test_the_localized_words_both_land_at_twentyseven_sixtyfourths() -> None:
+def test_the_proposed_words_land_at_twentyseven_sixtyfourths_and_need_thirtyseven_sixtyfourths() -> None:
     from research.juggler_sequence import paper_b_prefix_count as PB
     for w in ("OOOEEE", "OOEOEE"):
         assert len(w) == 6
-        assert PB.iterate_exponents(w)[-1] == Fr(27, 64), w
-        assert Fr(1, 64) / Fr(27, 64) == Fr(1, 27)
+        landing = PB.iterate_exponents(w)[-1]
+        assert landing == Fr(27, 64), w
+        assert 1 - landing == Fr(37, 64), w
+        assert Fr(1, 64) / landing == Fr(1, 27)
 
 
 def test_the_rule_gives_0_6066_not_the_printed_0_5561() -> None:
@@ -471,13 +473,15 @@ def test_the_rule_gives_0_6066_not_the_printed_0_5561() -> None:
     assert abs(got - mpf("0.5561")) > 0.04
 
 
-def test_the_discrepancy_is_recorded_and_runs_conservative() -> None:
+def test_the_unproved_localized_dividends_are_retracted() -> None:
     led = io.open(ROOT / "docs" / "theory" / "paper_b_audit_ledger.md", encoding="utf-8").read()
-    assert "does not reconcile" in led
-    assert "0.606635" in led and "0.01812" in led
-    assert "conservative direction" in led
+    assert "broad inverse scale" in led and "P^{37/64}" in led
+    assert "0.606635" in led and r"\frac{11}{1536}" in led
+    assert "proof obligation" in led
     text = _paper()
-    assert "recorded in the audit ledger rather than" in text
+    assert "is retracted" in text
+    assert "neither number is a proved dividend" in text
+    assert "productions are therefore available" not in text
 
 
 # --- the Lemma 6.2 edge search hunts for something that does not exist ---

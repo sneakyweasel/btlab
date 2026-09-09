@@ -1241,13 +1241,17 @@ the laboratory has that the hypothesis is true in aggregate; it is no
 evidence at all about individual cylinders, which is where a proof
 must work.
 
-*The period bound places cycles at the critical share.* A cycle of
-period \(L\) with \(o\) odd states has \(3^{o}/2^{L}=1+\Lambda\) with
-\(\Lambda\) tiny (Paper A), so its word — an infinite bad word in the
+*The period bound places cycles just above the critical share.* A cycle
+of period \(L\) with \(o\) odd states has \(3^{o}/2^{L}=1+\Lambda\) with
+\(\Lambda>0\) tiny (Paper A), so its word — an infinite bad word in the
 sense of §2 of the sequel note — has odd share
-\(o/L=\log 2/\log 3+O(\Lambda/L)\): exactly the critical share
-\(q^{*}=0.6309\) of the biased-split hypothesis, at which the exponent
-walk has zero drift. The surviving periods (\(176251\), \(301994\),
+\[
+\frac{o}{L}=\frac{\log2}{\log3}
++\frac{\log(1+\Lambda)}{L\log3}>\frac{\log2}{\log3}.
+\]
+It lies strictly above, but under the finance bound very near, the
+critical share \(q^{*}=0.6309\) of the biased-split hypothesis, at which
+the exponent walk has zero drift. The surviving periods (\(176251\), \(301994\),
 \(478245\), \(780239\)) are denominators of convergents and
 semiconvergents of \(q^*\) (\(111202/176251\), \(190537/301994\),
 and their mediants), because a periodic bad word must realize \(q^*\)
@@ -1255,7 +1259,7 @@ to within \(O(\Lambda/L)\) and Paper A's finance forces \(\Lambda\)
 small enough that only those denominators survive. So the
 finance/walk-charge program and
 the biased-split hypothesis are two views of one boundary: cycles
-must sit *on* the critical share, the Tao-type hypothesis asks that
+must sit just *above* the critical share within the finance window, while the Tao-type hypothesis asks that
 no cylinder be pushed *toward* it, and \(L\ge780239\) at
 \(n\ge3.5\cdot10^8\) is the statement that the boundary carries no
 short periodic word below that floor. A cycle's basin is nonetheless

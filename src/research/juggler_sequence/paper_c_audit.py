@@ -8,8 +8,8 @@ none of which is a proof:
    exponent calculus, recomputed and compared with every exponent Paper C prints:
    ``lambda* = 0.3774``, pairing-only ``0.4480``, OEOEE ``0.4801``,
    V_3 ``0.4891``, V_4 ``0.4916``, V_5 ``0.4924``, ``lambda** = 0.4926`` (plus V_6),
-   ``lambda*** = 0.5392``, the depth-two ideal ceiling ``0.4927``, and the
-   ``lambda(r)`` ladder of Section 5.7.
+   ``lambda*** = 0.5392``, the conditional depth-two ideal-share model ``0.4927``,
+   and the conditional ``lambda(r)`` transfer-matrix ladder of Section 5.7.
 2. **Tao thresholds and depths.**  ``e(20) = 0.574``, ``e(18) = 0.480``, the least depth in each
    regime, and the one-sided ``C(q)`` values.  Every regime is carried explicitly, because the
    same symbol ``C(q)`` denotes different numbers under ``lambda**`` and ``lambda***``
@@ -17,6 +17,10 @@ none of which is a proof:
    and Paper C quotes the third.
 3. **The Section 8.4 constants table.**  ``L(y)``, ``d(y)``, the exact fair-coin bad probability,
    the target ``(log y)^-0.6`` and the least depth for rate ``0.6``, at the three printed scales.
+4. **Statement boundaries.**  Exact integer arithmetic records that ``1015`` follows ``OEOEE``
+   to ``6`` although ``floor(1015^(9/32)) = 7``; it separately verifies the nested fiber used by
+   the finite ``V_k`` argument.  Numerical inequalities also guard the additive-error exponent
+   in Theorem 9.1 and the optimizing tilt required for the KL rate in Proposition 9.3.
 The floor-derived stratification scales ``N0^{4/3}``, ``N0^{3/2}`` and ``N0^2`` were audited
 here under a heading calling them "Section 6".  Paper C prints none of them; Paper A does, and
 cites Paper C only for the odd-generation result underneath.  They now live in
@@ -44,13 +48,18 @@ import numpy as np
 from research.juggler_sequence.cycle_finance import git_commit
 from research.juggler_sequence.fate_contagion import RECURSIONS, lambda_root
 from research.juggler_sequence.tao_reduction import (
+    LOG2_3,
     N0_CERTIFIED,
     REQUIRED_RATE,
     REQUIRED_RATE_STAR3,
+    azuma_exponent,
     bad_word_probability,
+    chernoff_biased_exponent,
     chernoff_exponent,
+    kl_bernoulli,
     least_C,
     least_C_biased,
+    least_C_pressure,
     required_depth,
     scale_L,
 )
@@ -132,6 +141,138 @@ def _check(name: str, printed: float, computed: float, tol: float) -> dict[str, 
     }
 
 
+def _assertion(name: str, holds: bool, **evidence: Any) -> dict[str, Any]:
+    """A non-rounded audit check, with the exact evidence retained in the JSON payload."""
+
+    return {
+        "name": name,
+        "printed": True,
+        "computed": bool(holds),
+        "abs_error": 0 if holds else 1,
+        "ok": bool(holds),
+        "evidence": evidence,
+    }
+
+
+def floor_rational_power(n: int, numerator: int, denominator: int) -> int:
+    """Exact ``floor(n ** (numerator / denominator))`` by integer comparisons."""
+
+    if n < 0 or numerator <= 0 or denominator <= 0:
+        raise ValueError("require n >= 0 and positive exponents")
+    target = n**numerator
+    lo, hi = 0, 1
+    while hi**denominator <= target:
+        lo, hi = hi, 2 * hi
+    while lo + 1 < hi:
+        mid = (lo + hi) // 2
+        if mid**denominator <= target:
+            lo = mid
+        else:
+            hi = mid
+    return lo
+
+
+def juggler_step(n: int) -> int:
+    """The exact Juggler map, using integer square roots in both branches."""
+
+    return math.isqrt(n**3) if n % 2 else math.isqrt(n)
+
+
+def fiber_counterexample() -> dict[str, Any]:
+    """The smallest recorded falsifier of the collapsed ``OEOEE`` monomial fiber claim."""
+
+    start, depth = 1015, 5
+    orbit = [start]
+    word: list[str] = []
+    n = start
+    for _ in range(depth):
+        word.append("O" if n % 2 else "E")
+        n = juggler_step(n)
+        orbit.append(n)
+    source = orbit[-1]
+    collapsed = floor_rational_power(start, 9, 32)
+    nested = floor_rational_power(start, 3, 4)
+    return {
+        "start": start,
+        "word": "".join(word),
+        "orbit": orbit,
+        "source": source,
+        "collapsed_9_32_floor": collapsed,
+        "in_claimed_source_interval": source**32 <= start**9 < (source + 1) ** 32,
+        "nested_3_4_floor": nested,
+        "nested_source_condition": source**8 <= nested**3 < (source + 1) ** 8,
+    }
+
+
+def rate_boundary_evidence() -> dict[str, float]:
+    """Numerical witnesses for the two corrected quantifier boundaries in Sections 9--10."""
+
+    C_az, q_az = 100.0, 0.5
+    azuma = azuma_exponent(C_az, q_az)
+    weak_A = C_az + 1.5  # satisfies the old A > C + 1, but not the claimed rate absorption
+
+    C_ch, q_ch = 41.0, 0.55
+    p = (1.0 - 1.0 / C_ch) / LOG2_3
+    theta_opt = math.log(p * (1.0 - q_ch) / (q_ch * (1.0 - p)))
+
+    def tilt_rate(theta: float) -> float:
+        return theta * p - math.log(1.0 - q_ch + q_ch * math.exp(theta))
+
+    return {
+        "C_azuma": C_az,
+        "q_azuma": q_az,
+        "azuma_exponent": azuma,
+        "old_A_witness": weak_A,
+        "additive_error_exponent": weak_A - C_az,
+        "C_chernoff": C_ch,
+        "q_chernoff": q_ch,
+        "p_C": p,
+        "theta_optimizer": theta_opt,
+        "optimized_tilt_rate": tilt_rate(theta_opt),
+        "off_tilt_rate": tilt_rate(theta_opt / 2.0),
+        "kl_rate": kl_bernoulli(p, q_ch),
+        "chernoff_exponent": chernoff_biased_exponent(int(C_ch), q_ch),
+    }
+
+
+def boundary_checks() -> list[dict[str, Any]]:
+    """Exact/computational guards for corrected claims, rather than manuscript token checks."""
+
+    fiber = fiber_counterexample()
+    rate = rate_boundary_evidence()
+    return [
+        _assertion(
+            "1015 follows OEOEE to 6",
+            fiber["word"] == "OEOEE" and fiber["orbit"] == [1015, 32336, 179, 2394, 48, 6],
+            **fiber,
+        ),
+        _assertion(
+            "collapsed 9/32 fiber differs from exact iterate",
+            fiber["collapsed_9_32_floor"] == 7
+            and fiber["source"] == 6
+            and not fiber["in_claimed_source_interval"],
+            **fiber,
+        ),
+        _assertion(
+            "nested OEOEE source condition survives the falsifier",
+            fiber["nested_3_4_floor"] == 179 and fiber["nested_source_condition"],
+            **fiber,
+        ),
+        _assertion(
+            "A greater than C plus one need not absorb the Azuma target",
+            rate["old_A_witness"] > rate["C_azuma"] + 1.0
+            and rate["additive_error_exponent"] < rate["azuma_exponent"],
+            **rate,
+        ),
+        _assertion(
+            "optimizing tilt is required for the KL rate",
+            abs(rate["optimized_tilt_rate"] - rate["kl_rate"]) < 1e-12
+            and rate["off_tilt_rate"] < rate["kl_rate"],
+            **rate,
+        ),
+    ]
+
+
 def contagion_checks() -> list[dict[str, Any]]:
     """Every contagion exponent Paper C prints, against the recursion roots and the ladder."""
 
@@ -144,17 +285,19 @@ def contagion_checks() -> list[dict[str, Any]]:
         _check("v5-only (block_third_plus_oeoee_v5)", 0.4924, lambda_root(RECURSIONS["block_third_plus_oeoee_v5"]), EXP_TOL),
         _check("lambda** (block_third_plus_oeoee_v6)", 0.4926, lambda_root(RECURSIONS["block_third_plus_oeoee_v6"]), EXP_TOL),
         _check("lambda*** (block_third_plus_ooeee)", 0.5392, lambda_root(RECURSIONS["block_third_plus_ooeee"]), EXP_TOL),
-        _check("depth-two ideal ceiling", 0.4927, lambda_root(RECURSIONS["depth_two_ideal"]), EXP_TOL),
+        _check("conditional depth-two ideal-share model", 0.4927, lambda_root(RECURSIONS["depth_two_ideal"]), EXP_TOL),
         # the same pairing/ideal constants through the residual, which is how Section 5.7 derives them
         _check("lambda_star via residual", 0.3774, exponent(0.0, 0.0, 1.0), EXP_TOL),
         _check("pairing via residual", 0.4480, exponent(0.0, 2 / 3, 1.0), EXP_TOL),
         _check("ideal via residual", 0.4927, exponent(0.0, 1.0, 1.0), EXP_TOL),
     ]
-    # Section 5.7 ladder: lambda(r) under the present sweep (eta1 = 2/3) and ideal fibers
+    # Section 5.7: conditional transfer-matrix outputs, not attained production theorems.
     ladder = {1: (0.4480, 0.4927), 2: (0.6247, 0.7180), 3: (0.7095, 0.8414), 4: (0.7516, 0.9121)}
     for r, (present, ideal) in ladder.items():
-        out.append(_check(f"lambda({r}) present sweep", present, run_exponent(r, eta1=2 / 3), EXP_TOL))
-        out.append(_check(f"lambda({r}) ideal fibers", ideal, run_exponent(r, eta1=1.0), EXP_TOL))
+        out.append(_check(f"lambda({r}) conditional pairing-share model", present,
+                          run_exponent(r, eta1=2 / 3), EXP_TOL))
+        out.append(_check(f"lambda({r}) conditional ideal-share model", ideal,
+                          run_exponent(r, eta1=1.0), EXP_TOL))
     return out
 
 
@@ -189,20 +332,38 @@ def tao_checks() -> list[dict[str, Any]]:
         _check("least depth, lambda** regime", 19, least_C(REQUIRED_RATE), 0),
         _check("least depth, lambda*** regime", 18, least_C(REQUIRED_RATE_STAR3), 0),
         _check("least depth, ideal regime", 19, least_C(1.0 - ideal), 0),
-        # one-sided C(q): Paper C's Section 10 quotes the lambda*** regime
+        # One-sided Azuma C(q), with every row kept in its explicit contagion regime.
         _check("C(0.5), lambda*** regime", 18, least_C_biased(0.5, REQUIRED_RATE_STAR3), 0),
         _check("C(0.55), lambda*** regime", 39, least_C_biased(0.55, REQUIRED_RATE_STAR3), 0),
-        # the lambda** regime values (OEOEE), and pairing-only for the historical quotes
+        _check("C(0.6), lambda*** regime", 206, least_C_biased(0.6, REQUIRED_RATE_STAR3), 0),
+        _check("C(0.62), lambda*** regime", 1451, least_C_biased(0.62, REQUIRED_RATE_STAR3), 0),
         _check("C(0.5), lambda** regime", 19, least_C_biased(0.5, REQUIRED_RATE), 0),
         _check("C(0.55), lambda** regime", 41, least_C_biased(0.55, REQUIRED_RATE), 0),
+        _check("C(0.6), lambda** regime", 223, least_C_biased(0.6, REQUIRED_RATE), 0),
+        _check("C(0.62), lambda** regime", 1586, least_C_biased(0.62, REQUIRED_RATE), 0),
         _check("C(0.5), pairing regime", 20, least_C_biased(0.5, 1.0 - pairing), 0),
         _check("C(0.55), pairing regime", 44, least_C_biased(0.55, 1.0 - pairing), 0),
+        _check("C(0.6), pairing regime", 240, least_C_biased(0.6, 1.0 - pairing), 0),
+        _check("C(0.62), pairing regime", 1715, least_C_biased(0.62, 1.0 - pairing), 0),
+        # Biased Chernoff/no-momentum C(q), valid at theta = theta_{C,q}.
+        _check("pressure C(0.5), lambda*** regime", 18, least_C_pressure(0.5, REQUIRED_RATE_STAR3), 0),
+        _check("pressure C(0.55), lambda*** regime", 38, least_C_pressure(0.55, REQUIRED_RATE_STAR3), 0),
+        _check("pressure C(0.6), lambda*** regime", 198, least_C_pressure(0.6, REQUIRED_RATE_STAR3), 0),
+        _check("pressure C(0.62), lambda*** regime", 1369, least_C_pressure(0.62, REQUIRED_RATE_STAR3), 0),
+        _check("pressure C(0.5), lambda** regime", 19, least_C_pressure(0.5, REQUIRED_RATE), 0),
+        _check("pressure C(0.55), lambda** regime", 41, least_C_pressure(0.55, REQUIRED_RATE), 0),
+        _check("pressure C(0.6), lambda** regime", 214, least_C_pressure(0.6, REQUIRED_RATE), 0),
+        _check("pressure C(0.62), lambda** regime", 1496, least_C_pressure(0.62, REQUIRED_RATE), 0),
+        _check("pressure C(0.5), pairing regime", 20, least_C_pressure(0.5, 1.0 - pairing), 0),
+        _check("pressure C(0.55), pairing regime", 43, least_C_pressure(0.55, 1.0 - pairing), 0),
+        _check("pressure C(0.6), pairing regime", 230, least_C_pressure(0.6, 1.0 - pairing), 0),
+        _check("pressure C(0.62), pairing regime", 1618, least_C_pressure(0.62, 1.0 - pairing), 0),
     ]
     return out
 
 
 def constants_table_checks() -> list[dict[str, Any]]:
-    """Section 8.4, at the certified floor with the least unconditional depth ``C = 20``."""
+    """Section 8.4 at the certified floor, using its conservative display value ``C = 20``."""
 
     printed = {
         20: {"L": 1.25, "d": 25, "bad": 0.065, "target": 0.100, "least_depth": 19},
@@ -228,6 +389,7 @@ def summary() -> dict[str, Any]:
         "contagion": contagion_checks(),
         "tao": tao_checks(),
         "constants_table": constants_table_checks(),
+        "statement_boundaries": boundary_checks(),
     }
     failures = [c for g in groups.values() for c in g if not c["ok"]]
     return {

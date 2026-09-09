@@ -1453,7 +1453,7 @@
         "J-cycle-band-discrepancy"
       ],
       "aliases": [],
-      "nk_cluster": "Diophantine walls"
+      "nk_cluster": "Three-paper review corrections (9 September 2026)"
     },
     {
       "id": "cycle_seam_ancestry",
@@ -5659,9 +5659,7 @@
       "test": "tests/research/juggler_sequence/test_paper_a_audit.py",
       "dossier": null,
       "data_dir": "data/research/juggler/paper_a_audit",
-      "lean": [
-        "formal/Problems/Juggler/OstrowskiSandwich.lean"
-      ],
+      "lean": [],
       "conjecture": [],
       "decision": null,
       "ledger_ids": [],

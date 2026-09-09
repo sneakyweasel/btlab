@@ -1,4 +1,4 @@
-"""The kernel theorem localizes: exponents unchanged, only the length is new."""
+"""The standalone localized kernel theorem and its retracted production application."""
 
 from __future__ import annotations
 
@@ -46,11 +46,12 @@ def test_the_claim_c_balance_is_against_the_shift_average_and_is_unique() -> Non
     assert cb["output_is_printed"] is True
 
 
-def test_the_saving_is_the_printed_exponent_at_the_companion_length() -> None:
+def test_the_proportional_chain_keeps_the_printed_saving_at_every_length() -> None:
     ch = L.chain(L.COMPANION_Y)
     assert ch["K"][0] == F(-1, 96)
     assert ch["lemma_52ii"][0] == F(-1, 24)
     assert ch["T1"][0] == F(-1, 48)
+    assert ch["absolute_dominated"] is False
 
 
 def test_the_absolute_chain_is_the_geometric_mean_recursion() -> None:
@@ -61,17 +62,28 @@ def test_the_absolute_chain_is_the_geometric_mean_recursion() -> None:
     a = a1
     for _ in range(3):
         a = (y + a) / 2
-    assert a == L.absolute_tail(y) == F(533, 768)
-    assert L.chain(y)["K"][1] == F(533, 768)
+    assert a == L.absolute_tail(y) == F(877, 1536)
+    assert L.chain(y)["K"][1] == F(877, 1536)
 
 
-def test_the_companion_length_clears_the_threshold_with_margin() -> None:
+def test_the_correct_production_length_is_below_the_same_saving_threshold() -> None:
     assert L.threshold() == F(29, 48)
-    assert L.COMPANION_Y == F(23, 32) > F(29, 48)
+    assert L.PRODUCTION_LANDING == F(27, 64)
+    assert L.COMPANION_Y == L.PRODUCTION_Y == 1 - L.PRODUCTION_LANDING == F(37, 64)
+    assert L.PRODUCTION_Y < F(29, 48)
     ch = L.chain(L.COMPANION_Y)
-    assert ch["absolute_dominated"] is True
+    assert ch["absolute_dominated"] is False
+    assert ch["target"] == F(109, 192)
+    assert ch["margin"] == -F(5, 1536)
+    assert L.PRODUCTION_Y - ch["K"][1] == F(11, 1536) > 0
+
+
+def test_the_old_twenty_three_thirtyseconds_is_only_an_admissible_reference() -> None:
+    assert L.REFERENCE_Y == F(23, 32) > L.threshold()
+    ch = L.chain(L.REFERENCE_Y)
+    assert ch["K"][1] == F(533, 768)
     assert ch["target"] == F(17, 24)
-    assert ch["margin"] == F(11, 768) > 0
+    assert ch["margin"] == F(11, 768)
 
 
 def test_the_threshold_is_sharp_for_this_bookkeeping() -> None:
@@ -86,17 +98,19 @@ def test_the_threshold_is_sharp_for_this_bookkeeping() -> None:
 
 def test_the_kernel_does_not_localize_as_far_as_the_depth_three_theorems() -> None:
     """Section 3.5 reaches P^{1/2}; the kernel stops at P^{29/48} because of the
-    transition term. The companion's intervals are longer, so nothing it needs is lost."""
-    assert F(1, 2) < L.threshold() == F(29, 48) < L.COMPANION_Y
+    transition term. The proposed production scale lies between the two thresholds."""
+    assert F(1, 2) < L.PRODUCTION_Y < L.threshold() == F(29, 48)
     assert L.chain(F(1, 2))["absolute_dominated"] is False
     assert L.summary()["threshold_above_one_half"] is True
 
 
 def test_the_slow_twist_costs_a_factor_one_plus_little_o() -> None:
     tv = L.twist_total_variation(L.COMPANION_Y)
-    assert tv == F(1, 48) + F(23, 32) + F(1, 24) - F(23, 16) == F(-21, 32)
+    assert tv == F(1, 48) + F(37, 64) + F(1, 24) - F(23, 16) == F(-51, 64)
     assert tv < 0
-    assert L.summary()["twist"]["negligible"] is True
+    twist = L.summary()["twist"]
+    assert twist["negligible"] is True
+    assert twist["uniform_exponent_for_Y_at_most_P"] == "-3/8"
 
 
 def test_the_largest_absolute_cost_is_the_transition_term() -> None:
@@ -112,12 +126,20 @@ def test_the_largest_absolute_cost_is_the_transition_term() -> None:
     assert F(37, 96) < (L.COMPANION_Y + F(25, 48)) / 2
 
 
-def test_the_summary_records_the_statement_and_what_it_unlocks() -> None:
+def test_the_summary_retracts_the_production_application() -> None:
     s = L.summary()
-    assert s["companion_above_threshold"] is True
+    assert s["production_landing_exponent"] == "27/64"
+    assert s["production_length_exponent"] == "37/64"
+    assert s["companion_above_threshold"] is False
+    assert s["production_above_threshold"] is False
+    assert s["reference_above_threshold"] is True
     assert s["saving_is_printed_exponent"] is True
+    assert s["printed_saving_bound_applies_at_evaluated_length"] is False
     assert s["absolute_tail_matches_closed_form"] is True
-    assert s["unlocks"] == ["OOOEEE", "OOEOEE"]
+    assert s["production_formal_effective_saving"] == "11/1536"
+    assert s["production_application"]["status"] == "OPEN_PROOF_OBLIGATION"
+    assert s["unlocks"] == []
+    assert s["retracted_unlocks"] == ["OOOEEE", "OOEOEE"]
     assert s["balancing_choices_unchanged"] == {"H1": "1/48", "H2": "1/24", "H3": "1/12"}
 
 

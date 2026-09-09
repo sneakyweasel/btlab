@@ -1,6 +1,13 @@
 # Zenodo deposit — Paper A only
 
-Upload **one file**: `Lower_bounds_for_nontrivial_cycles_of_the_Juggler_map.pdf`.
+**Historical kit — not synchronized with the 9 September 2026 repairs.**
+The PDF stored in this subfolder is retained as an older snapshot; do not
+submit it as the current manuscript. Use the corrected
+[Paper A review PDF](../juggler_finite_dynamics_note.pdf) and recheck the
+deposit fields before any submission. No external deposit was changed.
+
+The original instructions below describe a one-file deposit:
+`Lower_bounds_for_nontrivial_cycles_of_the_Juggler_map.pdf`.
 Do not upload Paper B, this folder, the reviewer packet, or the laboratory.
 
 Zenodo: <https://zenodo.org/uploads/new>

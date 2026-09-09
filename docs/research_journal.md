@@ -39281,6 +39281,12 @@ session's active area.
 
 ## Cycle height forces a run alphabet
 
+**Historical claim corrected 9 September 2026.** The height-to-odd-run
+inference, exact closure/mix, factor-free maximum and actual-height
+discrepancy identification below are withdrawn. See the corrected
+[dossier](problems/juggler_cycle_run_alphabet.md): only the integer
+inequalities and explicitly conditional word identities are retained.
+
 Two pieces of bookkeeping, nothing analytic. An odd run of length r
 multiplies the logarithm by (3/2)^r and an even run of length g divides
 it by 2^g, and every cycle value sits between the minimum m and the
@@ -39399,6 +39405,10 @@ the same unit. Twice in one branch I compared a per-block quantity
 against a per-letter baseline.
 
 ## The band minimum's opening is forced, and it is arithmetic
+
+**Scope correction, 9 September 2026.** The compiled lemmas assume the
+displayed block prefixes. Height does not establish the two-block alphabet,
+and the lemmas do not place the first fall after exactly three climbs.
 
 Pushing the uncertified-minimum observation into the obstruction
 machinery gave something after all, though not a kill.
@@ -39614,6 +39624,12 @@ reading of C_L as that ergodic sum, which is Lemma 5.6's rotation
 identification.
 
 ## The kernel theorem localizes, and stops higher than the paper guessed
+
+**Application corrected 9 September 2026.** The two proposed new
+productions have nominal fiber scale \(P^{37/64}\), not \(P^{23/32}\).
+Theorem 5.5's unchanged-saving threshold does not cover that scale. The
+weaker \(11/1536\) bookkeeping saving is only a possible extension; the
+production application and claimed dividends below are not established.
 
 Paper B lists one thing as the strongest result it does not supply to
 its companion: Theorem 5.3 on intervals of length P^(23/32) rather than
@@ -41306,6 +41322,11 @@ comment now states that in those words.
 
 ## Proposition 6.2a: the ceiling as a theorem, and the abstract catches up
 
+**Hypothesis corrected 9 September 2026.** The original definition only
+constrained actual cycle minima. It did not imply the pointwise anchor
+lower bound used below. The repaired proposition assumes that bound
+explicitly and is not a universal obstruction to every charge method.
+
 Two edits, both following from the observation that section 6.2's central
 claim is a proof and had been written as prose with numbers.
 
@@ -41617,4 +41638,31 @@ those are Lean.
   `EXACT — LEAN VERIFIED`. `J-tao-rate-implies-conjecture` stays
   `EXACT — HUMAN PROOF`. Theorem 5.3 stays human.
 - **Decision:** PROMOTE. Stop. No next branch.
+
+## Six-issue manuscript and formal-scope repair
+
+- **Date:** 9 September 2026.
+- **Objective:** Repair the six concrete issues found in the three-paper
+  review, without reopening a research branch or raising the descent floor.
+- **Corrections:** Replace the universal monomial-fiber identity by a
+  conditional smooth-model calculation; retain the exact nested fibers and
+  record the orbit of 1015. Separate cycle-run integer inequalities from
+  floor-free alphabet calculations and record the orbit of 9. Correct the
+  new localization application's scale to 37/64 and leave its extension
+  conditional. State biased rates with their error-budget and tilt
+  hypotheses. Restrict the charge obstruction to its explicit anchor lower
+  bound. Distinguish the extended human window from the Lean instance and
+  exclude the fan endpoint from the half-open window.
+- **Fiber propagation:** The same false collapse occurred in the finite
+  production source note. Iterated ceiling endpoints repair its exact
+  fibers; for each fixed depth their boundary error is smaller than the
+  existing counting error. The finite asymptotic exponent 0.4926 survives.
+  The old explicit constants and censuses remain smooth-window results,
+  not certificates of unchanged constants on the corrected exact fibers.
+- **Verification:** Regression tests exercise exact floor arithmetic,
+  drift, interval scales, rate hypotheses and window endpoints; canonical
+  manuscripts and reviewer copies are synchronized. No new termination
+  theorem or analytic production is asserted by this repair.
+- **Decision:** CLOSE. This is correction of the existing record, not a
+  new research phase. The live tilted-share estimate remains unproved.
 

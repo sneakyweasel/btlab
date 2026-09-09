@@ -1,5 +1,5 @@
 {
-  "git_commit": "21f1687da8cae4f176084b686f84fb66778d7e0b",
+  "git_commit": "unknown",
   "paper": "docs/theory/juggler_fate_almost_all_note.md",
   "N0": 350000000,
   "checks": {
@@ -61,7 +61,7 @@
         "ok": true
       },
       {
-        "name": "depth-two ideal ceiling",
+        "name": "conditional depth-two ideal-share model",
         "printed": 0.4927,
         "computed": 0.4926579801153874,
         "abs_error": 4.201988461260964e-05,
@@ -89,56 +89,56 @@
         "ok": true
       },
       {
-        "name": "lambda(1) present sweep",
+        "name": "lambda(1) conditional pairing-share model",
         "printed": 0.448,
         "computed": 0.4480170012273049,
         "abs_error": 1.7001227304913602e-05,
         "ok": true
       },
       {
-        "name": "lambda(1) ideal fibers",
+        "name": "lambda(1) conditional ideal-share model",
         "printed": 0.4927,
         "computed": 0.49265798011538753,
         "abs_error": 4.2019884612498615e-05,
         "ok": true
       },
       {
-        "name": "lambda(2) present sweep",
+        "name": "lambda(2) conditional pairing-share model",
         "printed": 0.6247,
         "computed": 0.6247277027196891,
         "abs_error": 2.7702719689104427e-05,
         "ok": true
       },
       {
-        "name": "lambda(2) ideal fibers",
+        "name": "lambda(2) conditional ideal-share model",
         "printed": 0.718,
         "computed": 0.7179648798704841,
         "abs_error": 3.51201295158976e-05,
         "ok": true
       },
       {
-        "name": "lambda(3) present sweep",
+        "name": "lambda(3) conditional pairing-share model",
         "printed": 0.7095,
         "computed": 0.7095331793097053,
         "abs_error": 3.317930970525573e-05,
         "ok": true
       },
       {
-        "name": "lambda(3) ideal fibers",
+        "name": "lambda(3) conditional ideal-share model",
         "printed": 0.8414,
         "computed": 0.8413565367931324,
         "abs_error": 4.346320686765548e-05,
         "ok": true
       },
       {
-        "name": "lambda(4) present sweep",
+        "name": "lambda(4) conditional pairing-share model",
         "printed": 0.7516,
         "computed": 0.7515815875589429,
         "abs_error": 1.8412441057158446e-05,
         "ok": true
       },
       {
-        "name": "lambda(4) ideal fibers",
+        "name": "lambda(4) conditional ideal-share model",
         "printed": 0.9121,
         "computed": 0.9121453502913082,
         "abs_error": 4.535029130814383e-05,
@@ -294,6 +294,20 @@
         "ok": true
       },
       {
+        "name": "C(0.6), lambda*** regime",
+        "printed": 206,
+        "computed": 206,
+        "abs_error": 0,
+        "ok": true
+      },
+      {
+        "name": "C(0.62), lambda*** regime",
+        "printed": 1451,
+        "computed": 1451,
+        "abs_error": 0,
+        "ok": true
+      },
+      {
         "name": "C(0.5), lambda** regime",
         "printed": 19,
         "computed": 19,
@@ -308,6 +322,20 @@
         "ok": true
       },
       {
+        "name": "C(0.6), lambda** regime",
+        "printed": 223,
+        "computed": 223,
+        "abs_error": 0,
+        "ok": true
+      },
+      {
+        "name": "C(0.62), lambda** regime",
+        "printed": 1586,
+        "computed": 1586,
+        "abs_error": 0,
+        "ok": true
+      },
+      {
         "name": "C(0.5), pairing regime",
         "printed": 20,
         "computed": 20,
@@ -318,6 +346,104 @@
         "name": "C(0.55), pairing regime",
         "printed": 44,
         "computed": 44,
+        "abs_error": 0,
+        "ok": true
+      },
+      {
+        "name": "C(0.6), pairing regime",
+        "printed": 240,
+        "computed": 240,
+        "abs_error": 0,
+        "ok": true
+      },
+      {
+        "name": "C(0.62), pairing regime",
+        "printed": 1715,
+        "computed": 1715,
+        "abs_error": 0,
+        "ok": true
+      },
+      {
+        "name": "pressure C(0.5), lambda*** regime",
+        "printed": 18,
+        "computed": 18,
+        "abs_error": 0,
+        "ok": true
+      },
+      {
+        "name": "pressure C(0.55), lambda*** regime",
+        "printed": 38,
+        "computed": 38,
+        "abs_error": 0,
+        "ok": true
+      },
+      {
+        "name": "pressure C(0.6), lambda*** regime",
+        "printed": 198,
+        "computed": 198,
+        "abs_error": 0,
+        "ok": true
+      },
+      {
+        "name": "pressure C(0.62), lambda*** regime",
+        "printed": 1369,
+        "computed": 1369,
+        "abs_error": 0,
+        "ok": true
+      },
+      {
+        "name": "pressure C(0.5), lambda** regime",
+        "printed": 19,
+        "computed": 19,
+        "abs_error": 0,
+        "ok": true
+      },
+      {
+        "name": "pressure C(0.55), lambda** regime",
+        "printed": 41,
+        "computed": 41,
+        "abs_error": 0,
+        "ok": true
+      },
+      {
+        "name": "pressure C(0.6), lambda** regime",
+        "printed": 214,
+        "computed": 214,
+        "abs_error": 0,
+        "ok": true
+      },
+      {
+        "name": "pressure C(0.62), lambda** regime",
+        "printed": 1496,
+        "computed": 1496,
+        "abs_error": 0,
+        "ok": true
+      },
+      {
+        "name": "pressure C(0.5), pairing regime",
+        "printed": 20,
+        "computed": 20,
+        "abs_error": 0,
+        "ok": true
+      },
+      {
+        "name": "pressure C(0.55), pairing regime",
+        "printed": 43,
+        "computed": 43,
+        "abs_error": 0,
+        "ok": true
+      },
+      {
+        "name": "pressure C(0.6), pairing regime",
+        "printed": 230,
+        "computed": 230,
+        "abs_error": 0,
+        "ok": true
+      },
+      {
+        "name": "pressure C(0.62), pairing regime",
+        "printed": 1618,
+        "computed": 1618,
         "abs_error": 0,
         "ok": true
       }
@@ -428,10 +554,128 @@
         "abs_error": 0,
         "ok": true
       }
+    ],
+    "statement_boundaries": [
+      {
+        "name": "1015 follows OEOEE to 6",
+        "printed": true,
+        "computed": true,
+        "abs_error": 0,
+        "ok": true,
+        "evidence": {
+          "start": 1015,
+          "word": "OEOEE",
+          "orbit": [
+            1015,
+            32336,
+            179,
+            2394,
+            48,
+            6
+          ],
+          "source": 6,
+          "collapsed_9_32_floor": 7,
+          "in_claimed_source_interval": false,
+          "nested_3_4_floor": 179,
+          "nested_source_condition": true
+        }
+      },
+      {
+        "name": "collapsed 9/32 fiber differs from exact iterate",
+        "printed": true,
+        "computed": true,
+        "abs_error": 0,
+        "ok": true,
+        "evidence": {
+          "start": 1015,
+          "word": "OEOEE",
+          "orbit": [
+            1015,
+            32336,
+            179,
+            2394,
+            48,
+            6
+          ],
+          "source": 6,
+          "collapsed_9_32_floor": 7,
+          "in_claimed_source_interval": false,
+          "nested_3_4_floor": 179,
+          "nested_source_condition": true
+        }
+      },
+      {
+        "name": "nested OEOEE source condition survives the falsifier",
+        "printed": true,
+        "computed": true,
+        "abs_error": 0,
+        "ok": true,
+        "evidence": {
+          "start": 1015,
+          "word": "OEOEE",
+          "orbit": [
+            1015,
+            32336,
+            179,
+            2394,
+            48,
+            6
+          ],
+          "source": 6,
+          "collapsed_9_32_floor": 7,
+          "in_claimed_source_interval": false,
+          "nested_3_4_floor": 179,
+          "nested_source_condition": true
+        }
+      },
+      {
+        "name": "A greater than C plus one need not absorb the Azuma target",
+        "printed": true,
+        "computed": true,
+        "abs_error": 0,
+        "ok": true,
+        "evidence": {
+          "C_azuma": 100.0,
+          "q_azuma": 0.5,
+          "azuma_exponent": 4.48108525811523,
+          "old_A_witness": 101.5,
+          "additive_error_exponent": 1.5,
+          "C_chernoff": 41.0,
+          "q_chernoff": 0.55,
+          "p_C": 0.6155412229965439,
+          "theta_optimizer": 0.26999465148776536,
+          "optimized_tilt_rate": 0.00878182645842493,
+          "off_tilt_rate": 0.006604424909267284,
+          "kl_rate": 0.008781826458425124,
+          "chernoff_exponent": 0.519449396742214
+        }
+      },
+      {
+        "name": "optimizing tilt is required for the KL rate",
+        "printed": true,
+        "computed": true,
+        "abs_error": 0,
+        "ok": true,
+        "evidence": {
+          "C_azuma": 100.0,
+          "q_azuma": 0.5,
+          "azuma_exponent": 4.48108525811523,
+          "old_A_witness": 101.5,
+          "additive_error_exponent": 1.5,
+          "C_chernoff": 41.0,
+          "q_chernoff": 0.55,
+          "p_C": 0.6155412229965439,
+          "theta_optimizer": 0.26999465148776536,
+          "optimized_tilt_rate": 0.00878182645842493,
+          "off_tilt_rate": 0.006604424909267284,
+          "kl_rate": 0.008781826458425124,
+          "chernoff_exponent": 0.519449396742214
+        }
+      }
     ]
   },
   "classification": {
-    "total_checks": 60,
+    "total_checks": 83,
     "failures": 0,
     "failing_names": [],
     "all_printed_constants_reproduce": true

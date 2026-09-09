@@ -6,6 +6,16 @@ research-discipline record, not an independent verification and not
 part of the journal text. A script check confirms consistency of what
 is printed; it is not a proof.
 
+**Review-scope notice (9 September 2026).** The rows below audit the
+smooth reference window \(J_2^{\rm sm}\) used in the printed constant
+calculation, not the exact nested Juggler landing fiber
+\(J_2^{\rm ex}\). The exact fiber has iterated ceiling endpoints rather
+than the formerly collapsed monomial endpoints. The endpoint correction
+is lower order than the binding saving, so the fixed-depth asymptotic
+exponent and root bookkeeping transfer, but the audited constant \(100\)
+and finite census ratio do not automatically transfer. No exact-fiber
+constant is certified here.
+
 T1 is Paper B Lemma 3.5 (Vaaler) and is cited, not re-derived. Every
 other displayed constant in Section 11 is recomputed from the stated
 inputs.
@@ -38,5 +48,7 @@ inputs.
 | Envelope \(\lvert16\lvert\mathcal O\rvert-Y\rvert\le100\,Y\,m'^{-4/9}(1+\log m')^2\) | script \(m'=60,90,120\) | consistent; measured ratio \(\le0.25\) against \(100\) |
 
 The elementary route has a uniform power saving. Proposition 3 meets
-the ledger bar **EXACT — HUMAN PROOF**. The promotion of
+the ledger bar **EXACT — HUMAN PROOF** at the asymptotic level, with an
+unspecified enlarged implicit constant on the exact fiber; the numeral
+\(100\) is only the smooth-window audit above. The promotion of
 \(\lambda^{**}\) from \(0.4480\) to \(0.4801\) is then bookkeeping.

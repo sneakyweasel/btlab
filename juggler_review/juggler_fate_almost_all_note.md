@@ -119,7 +119,7 @@ target \(f(N)\to\infty\) arbitrarily slowly. For the Juggler map,
 contagion and odd generation together turn a bounded-target statement
 into the conjecture: every positive integer reaches \(1\) if and only
 if all but \(O(y(\log y)^{-e})\) odd starts in \((y,2y]\) enter
-\([1,N_0]\), for some \(e>1-\lambda^{**}=0.552\) (Theorem 3). The
+\([1,N_0]\), for some \(e>1-\lambda^{**}=0.5074\ldots\) (Theorem 3). The
 threshold is the complement of the contagion exponent. For Collatz
 the analogous implication is not available: the known lower bound for
 a preimage tree below \(x\) is of polynomial size, \(x^{0.84}\)
@@ -178,20 +178,22 @@ the source scale of a production word with \(a\) letters \(E\) and
 here — and if every \(O\)-production realized the fair fiber share
 then \(\lambda\) would solve
 \(2^{-\lambda}+\tfrac13(\tfrac32)^{\lambda}=1\), whose root is
-\(\lambda=1\), attained on the fair-coin backward path (Proposition
-5.12). Two obstructions stop the list short: the ideal share is
-available only for \(\rho_w\le\tfrac12\), because the fiber has length
-\(P^{1-\rho_w}\) (Proposition 5.13), and a run of \(r\) consecutive
-\(O\)'s needs Paper B at depth \(r+1\), which the parked kernel
-\(K_3\) blocks at \(r=4\). The last rung before that wall is
-\(\lambda\le0.8414\). The \(r=1\) words — those with no two consecutive
-\(O\)'s — cost no Paper B estimate at all, because an isolated \(O\) is
+\(\lambda=1\), in the abstract model where every backward production
+has its ideal share (Proposition 5.12). The collapsed-power model gives
+the candidate fiber scale \(P^{1-\rho_w}\), but Model calculation 5.13 records
+that it is not an exact identity for the nested Juggler map. Thus the
+Section 5.7 run table is conditional on separately proving the required
+nested fibers and their shares; its value \(0.8414\) is a model output,
+not an attained contagion exponent. The audited \(r=1\) words — those
+with no two consecutive \(O\)'s — use a different exact nesting, because an isolated \(O\) is
 absorbed by the \(E\) after it into an exact
 \(\lfloor\cdot^{3/4}\rfloor\); the first of them, \(OEOEE\), raises
 the pairing root \(0.4480\) to \(0.4801\) (\(OEOEE\)), then to
 \(0.4891\) (\(V_3\)), then to \(0.4916\) (\(V_4\)), then to \(0.4924\) (\(V_5\)), then to \(\lambda^{**}=0.4926\) (\(V_6=OEOEOEOEOEOEE\); all audited) and would raise \(0.5392\) to \(0.5665\) alongside
-Appendix C, and the family \((OE)^{k-1}OEE\) telescopes exactly onto the
-ideal depth-two recursion, closing the gap to \(0.4927\).
+Appendix C. The formal series for the family \((OE)^{k-1}OEE\)
+telescopes onto the ideal depth-two recursion with limiting root
+\(0.4927\); the theorem here uses only the audited finite truncation
+through \(V_6\), not that unattained limit.
 
 **Theorem 2 (odd generation).** Let \(A\) be forward- and
 backward-closed with \(1\notin A\). Every \(n\in A\) descends by even
@@ -211,27 +213,34 @@ and all large \(y\), \(\#\{n\ \text{odd}\in(y,2y]:\ n\notin R\}\le y(\log y)^{-e
 
 **Theorem 4 (the frontier reduction).** Let
 \(L(y)=\log_2(\log 2y/\log N_0)\), \(d(y)=\lceil CL(y)\rceil\),
-\(p_C=(1-1/C)/\log_2 3\) and \(e(C)=C\,D(p_C\|\tfrac12)/\ln 2\). Each of
-the following hypotheses implies (iii) of Theorem 3 with
-\(e=e(C)-\varepsilon\), hence the conjecture for \(C\ge 19\)
-(unconditionally; \(C\ge 18\) under the conditional Appendix C):
+\(p_C=(1-1/C)/\log_2 3\), \(e(C)=C\,D(p_C\|\tfrac12)/\ln 2\), and
+\(e_q^{\rm Az}(C)=2(C(1-q\log_2 3)-1)^2/
+(C(\log_2 3)^2\ln2)\). Assume \(C\ge5\). The following hypotheses give
+the indicated, case-dependent bounds. Each implies (iii) of Theorem 3
+only when its displayed rate exceeds \(1-\lambda^{**}\):
 
 (a) *cylinder form* \(\mathrm H(C,A)\): no \(O\)-rooted itinerary
 cylinder of depth \(d(y)\) exceeds its fair share \(2^{-(d-1)}y/2\)
 among odd starts by more than \(y(\log y)^{-A}\), \(A>C+e(C)\)
-(Theorem 8.3);
+(Theorem 8.3), giving \(e(C)-\varepsilon\) and hence the conjecture for
+\(C\ge19\) using Theorem 1 (or \(C\ge18\) under Appendix C);
 
-(b) *one-sided form* \(\mathrm H_q(C,A)\): every cylinder of depth
-\(1\le t<d(y)\) sends at most a fraction \(q<\log 2/\log 3\) of its
+(b) *one-sided form* \(\mathrm H_q(C,A)\), with
+\(0<q<\log 2/\log 3\) and \(C>1/(1-q\log_2 3)\): every cylinder of depth
+\(1\le t<d(y)\) sends at most a fraction \(q\) of its
 members, plus \(y(\log y)^{-A}\), to an odd next state (Theorem 9.1;
-\(C\ge 44\) at \(q=0.55\));
+\(A>C+e_q^{\rm Az}(C)\)), giving \(e_q^{\rm Az}(C)-\varepsilon\);
+at \(q=0.55\), \(C\ge41\) crosses Theorem 1's threshold;
 
 (c) *pressure form* \(\mathrm P_\theta(C)\):
 \(\frac1N\sum_{n\ \mathrm{odd},\ \tau(n)>d}e^{\theta o_d(n)}\le(\tfrac12(1+e^{\theta}))^{d}e^{o(d)}\)
 at \(\theta=\log(p_C/(1-p_C))\), where \(\tau\) is the entrance time
 into \([1,N_0]\) and \(o_d\) the odd count of the first \(d\) letters;
-and its *no-momentum form* \(\sum_{t<d}(s_\theta(t)-q)^+=o(d)\) for the
-tilted odd share \(s_\theta\) of live starts (Theorem 9.2,
+this gives \(e(C)-\varepsilon\). Its biased *no-momentum form*, for
+\(0<q<p_C<1\),
+\(\sum_{t<d}(s_\theta(t)-q)^+=o(d)\) gives
+\(C D(p_C\|q)/\ln2-\varepsilon\) only at the optimizing tilt
+\(\theta=\log(p_C(1-q)/(q(1-p_C)))\) (Theorem 9.2,
 Proposition 9.3).
 
 None of these hypotheses is proved here. Form (c) is insensitive to
@@ -278,8 +287,9 @@ each, all from outside this paper:
   with a power saving on dyadic blocks.
 - *Lachesis.* A nontrivial cycle has minimum above \(3.5\cdot 10^8\)
   and period at least \(780239\) [11]; it has at least four even
-  steps; its odd share is \(\log 2/\log 3\) up to \(O(\Lambda/L)\),
-  the critical share at which the exponent walk has zero drift.
+  steps; if \(3^o/2^L=1+\Lambda\), its odd share is
+  \(\log 2/\log 3+\log(1+\Lambda)/(L\log3)\), strictly above but,
+  under the finance bound, very near the critical zero-drift share.
 - *Clotho.* A divergent orbit has unbounded exponent walk; its record
   jumps are quantized to the \(\log_2 3\) lattice [11]. Nothing
   excludes it.
@@ -1235,12 +1245,13 @@ is lacunary at the dyadic scale.
 \(\tfrac13H_m-2\); the observed floor on good fibers is \(0.328\) at
 \(\alpha_m\approx\tfrac13\) (Section 11). The remaining depth-two gap
 \(0.448\to 0.4927\) is a dynamical averaging problem for the
-low-even set \(P=\{m:G_m/H_m\le 0.40\}\), not another pointwise
-fiber bound. By Proposition 5.13 it is not a separate problem either:
-it is exactly the short-fiber regime \(\rho_w>\tfrac12\). Section 5.7
-identifies it further, and more sharply: the gap is closed **exactly**
-by an infinite family of elementary productions, so it need not be read
-as a dynamical averaging problem at all.
+low-even set \(P=\{m:G_m/H_m\le 0.40\}\). The nominal exponent
+\(\rho_w\) gives a useful scale diagnostic for candidate productions,
+but Model calculation 5.13 shows that it does not collapse the actual
+nested fiber to one monomial interval. The finite \(V_k\) constructions
+below use their own exact nested fibers; their limiting transfer-matrix
+value \(0.4927\) is a model ceiling, not a proved infinite-family
+exponent.
 
 *What is excluded.* Nothing. Corollary 5.5 does not say that a cycle
 or a divergent orbit is impossible; it says that either would be
@@ -1292,52 +1303,70 @@ The extremal backward path is therefore the *fair-coin* one,
 frontier statement of Section 12 needs, not less. Two obstructions keep
 the realized \(\eta\) below \(1\).
 
-**Proposition 5.13 (fiber-length criterion).** For a production word
-\(w\), the fiber over a source \(m'\) is
-\(I(m')=[m'^{1/\rho_w},(m'+1)^{1/\rho_w})\), so at scale \(P=n\)
+**Model calculation 5.13 (collapsed-power fiber; not an identity for
+the Juggler map).** If one replaces the nested branch belonging to a
+production word \(w\) by the single model map
+\(\widetilde J_w(n)=\lfloor n^{\rho_w}\rfloor\), then its fiber over a
+source \(m'\) is exactly
+\(I_{\rm mod}(m')=[m'^{1/\rho_w},(m'+1)^{1/\rho_w})\), and at scale
+\(P\asymp m'^{1/\rho_w}\)
 
 \[
-|I(m')|=\tfrac1{\rho_w}\,m'^{1/\rho_w-1}=\tfrac1{\rho_w}\,P^{\,1-\rho_w}.
+|I_{\rm mod}(m')|
+=\tfrac1{\rho_w}\,m'^{1/\rho_w-1}(1+O(1/m'))
+\asymp P^{\,1-\rho_w}.
 \]
 
-The localized parity estimate of Appendix C requires \(|I|\ge P^{1/2}\).
-Hence the ideal share is available **exactly when
-\(\rho_w\le\tfrac12\)**.
+The corresponding assertion for the exact map is false. For example,
+\(1015\) follows
 
-This classifies every production: \(E\) (\(\rho=\tfrac12\), exact),
-\(OEE\) (\(\rho=\tfrac38\), \(|I|=P^{5/8}\), block average, ideal),
-\(OOEEE\) (\(\rho=\tfrac9{32}\), \(|I|=P^{23/32}\), Appendix C, ideal)
-— against \(OE\) (\(\rho=\tfrac34\), \(|I|=P^{1/4}\)), the one lossy
-production, and \(OOEE\) (\(\rho=\tfrac9{16}\), \(|I|=P^{7/16}\)),
-which is why Appendix C must reach \(OOEEE\): the extra \(E\)
-lengthens the fiber past the threshold.
+\[
+1015\xrightarrow O32336\xrightarrow E179\xrightarrow O2394
+\xrightarrow E48\xrightarrow E6,
+\]
 
-**The \(K_3\) cap.** Production words must be prefix-free, so the
-natural list is the first passage of \(\rho_w\) below \(\tfrac12\). A
+so its word is \(OEOEE\) and \(J^5(1015)=6\). But
+\(7^{32}\le1015^9<8^{32}\), hence
+\(\lfloor1015^{9/32}\rfloor=7\), not \(6\). Nested floors cannot in
+general be replaced by one final floor.
+
+Appendix C's localized parity estimate requires an *actual proved*
+parameter interval of length at least \(P^{1/2}\). Thus
+\(\rho_w\le\tfrac12\) is only the collapsed model's candidate threshold;
+it neither proves the needed interval nor the ideal share. The words
+\(E\), \(OEE\), and conditionally \(OOEEE\) have separate fiber
+arguments in their cited results. The nominal lengths
+\(P^{1/2},P^{5/8},P^{23/32}\) remain useful bookkeeping, while the
+nominal \(OE\) and \(OOEE\) lengths \(P^{1/4}\) and \(P^{7/16}\) only
+screen where that particular localization estimate could apply.
+
+**The conditional run model and the \(K_3\) interface.** Production
+words must be prefix-free. First passage of the nominal \(\rho_w\) below
+\(\tfrac12\) gives a candidate list, not a theorem that its fibers have
+the model length or ideal share. A
 run of \(r\) consecutive \(O\)'s forces \(r\) nested \(3/2\)-powers
 plus the closing square root — Paper B at depth \(r+1\). Paper B is
 complete to depth \(4\), and to depth \(5\) except \(OOOO*\), which is
-the parked kernel \(K_3\). Hence \(r\le3\), and with \(\lambda(r)\) the
-exponent when \(O\)-runs up to length \(r\) are controlled:
+the parked kernel \(K_3\). Under the additional hypothesis that every
+required candidate production through run length \(r\) is established
+at the stated share, the transfer matrix gives:
 
-| \(r\) | Paper B depth | \(\lambda(r)\), present sweep | \(\lambda(r)\), ideal fibers |
+| \(r\) | Paper B depth | conditional \(\lambda(r)\), pairing share | conditional \(\lambda(r)\), ideal-share model |
 |---|---|---|---|
 | 1 | 2 | \(0.4480\) | \(0.4927\) |
 | 2 | 3 | \(0.6247\) | \(0.7180\) |
 | 3 | 4 | \(0.7095\) | \(0.8414\) |
 | 4 | 5 | \(0.7516\) | \(0.9121\) |
 
-Row \(r=4\) is behind \(K_3\). Appendix C uses one word of the \(r=2\)
-family and prints \(0.5392\); its Proposition C.2 attains the *ideal*
-share, so the ground between \(0.5392\) and \(0.7180\) is more words —
-each costing one localization of a Paper B theorem to sub-dyadic
-intervals — and not a better estimate for the word already used.
-\(\lambda=1\) needs \(r\to\infty\): **the contagion side of the problem
-is guarded by \(K_3\) as well**, at \(r=4\), and approaches the same
-wall from the other direction rather than going around it.
+The table is a price list of hypothetical inputs, not an attained
+ladder. Appendix C establishes one \(r=2\) word conditionally and prints
+\(0.5392\); nothing here supplies the other words needed for \(0.6247\)
+or \(0.7180\). Row \(r=4\) would also meet the parked \(K_3\) kernel,
+but the model does not prove that this is the only obstruction.
 
-**The \(r=1\) words cost nothing.** The table over-charges every word
-with no two consecutive \(O\)'s. In such a word each isolated \(O\) is
+**The audited \(r=1\) words use exact nested fibers.** The table's
+Paper B depth over-charges the named words with no two consecutive
+\(O\)'s. In such a word each isolated \(O\) is
 absorbed by the \(E\) after it: the transparent nesting of Lemma 3.2
 makes \(J^2(n)=\lfloor n^{3/4}\rfloor\) an *exact* function of \(n\), so
 every later parity is a function of that one integer \(w\), on whose
@@ -1345,8 +1374,8 @@ level sets — intervals \([w^{4/3},(w+1)^{4/3})\) of length
 \(\asymp P^{1/4}\) — those parities are constant, and in which the
 surviving \(\psi\)'s are \(\psi\) of smooth monomials rather than of
 nested floors. Only \(\psi(n^{3/2})\) varies inside a block. For
-\(OEOEE\) (\(\rho=\tfrac9{32}\), the same fiber length as Appendix C's
-\(OOEEE\)) this splits the fifteen sign sums into eight that are
+\(OEOEE\) (nominal \(\rho=\tfrac9{32}\)) this splits the fifteen sign
+sums into eight that are
 one-variable sums in \(w\), handled by the second-derivative test and
 the Proposition 4.4 pairing, and seven that are
 \(\sum_w|T(w)|\le\mathcal N^{1/2}(\sum_w|T(w)|^2)^{1/2}\) with
@@ -1355,9 +1384,11 @@ block against a monotone slowly-stepping frequency. The savings are
 \(P^{-3/32}\) and \(P^{-1/16}\); no Paper B estimate, no localization,
 and — unlike \(OOEEE\), where
 \(\lfloor v^{1/4}\rfloor=\lfloor n^{9/16}\rfloor\) fails on a set needing
-Erdős–Turán — no exceptional set: the fiber
+Erdős–Turán — the relevant nested description
 \(J^5(n)=m'\iff\lfloor n^{3/4}\rfloor\in[m'^{8/3},(m'+1)^{8/3})\) is
-exact. Since an \(OEOEE\)-start lies in the \(OE\)-fiber of an *odd*
+exact. It is this statement, not the false replacement
+\(J^5(n)=\lfloor n^{9/32}\rfloor\), that the construction uses. Since
+an \(OEOEE\)-start lies in the \(OE\)-fiber of an *odd*
 \(J^2(n)\), the family sits inside family 3 and must be removed from it
 before being re-added at the ideal share, which by the two-sided form of
 Proposition 4.4 changes (5.2) by exactly
@@ -1372,7 +1403,8 @@ Theorem 1's exponent \(\lambda^{**}=0.4926\), and alongside
 Appendix C would give \(0.5665\) from \(OEOEE\) alone (a remark, not
 a new official exponent).
 
-The construction iterates. Write a no-\(OO\) word as \((OE)^KE^{\,j}\);
+The formal construction pattern iterates. Write a no-\(OO\) word as
+\((OE)^KE^{\,j}\);
 its binding layer \(w_{K-1}\) has length \(1-\tfrac34\cdot2^{-j}\)
 relative to its own scale, **independent of \(K\)**, so the route needs
 \(j\ge1\). This rules out \(OEOEOE\) (\(j=0\), relative length
@@ -1382,18 +1414,21 @@ worst-case cancellation is nil) and admits the family
 member at relative length \(\tfrac58\), with ideal coefficient
 \(c_k=3^{-k}\) and net gain \(\tfrac19c_k=3^{-(k+2)}\) at scale
 \((3/4)^k\tfrac38\). With \(x=2^{-\lambda}\), \(y=(3/4)^\lambda\) the
-family telescopes:
+family would telescope:
 \(x+\tfrac19xy+\tfrac29y+\sum_{k\ge1}3^{-(k+2)}xy^{k+1}=1
 \iff x+\tfrac13y=1\),
 since the family sum is \(\tfrac1{27}xy^2/(1-\tfrac13y)\), which at
 \(x=1-\tfrac y3\) is \(\tfrac1{27}y^2\), exactly cancelling the
 \(-\tfrac1{27}y^2\) from \(\tfrac19xy\). The right-hand equation is the
-ideal depth-two recursion, root \(0.4927\): **the elementary family
-closes the whole depth-two gap**, with finite truncations \(0.4801\),
-\(0.4891\), \(0.4916\), \(0.4924\), \(0.4926\), and \(0.5769\) alongside Appendix C.
+ideal depth-two recursion, root \(0.4927\). This is the limiting model,
+not an attained exponent: Paper C uses the separately audited finite
+truncations \(0.4801\), \(0.4891\), \(0.4916\), \(0.4924\), and
+\(0.4926\). The value \(0.5769\) alongside Appendix C is likewise a
+conditional infinite-family model output.
 
-\(V_2\), \(V_3\) and \(V_4\) are worked out in full, and the pattern
-closes. For \(V_k\) the layers are \(n,w_1,\dots,w_{k-1}\), with \(w_i\)
+The named finite cases through \(V_6\) are the inputs to Theorem 1.
+For the extrapolated \(V_k\) model the layers are
+\(n,w_1,\dots,w_{k-1}\), with \(w_i\)
 at scale \(P^{(3/4)^i}\) and block length \(\tfrac13(3/4)^i\); the
 binding layer is \(w_{k-1}\), **always at relative length \(\tfrac58\)**.
 The sign sums fall into \(k-1\) Cauchy–Schwarz cases — the one whose
@@ -1410,25 +1445,26 @@ case; these coincide, since \(H_{k-1}/2=\tfrac12\cdot\tfrac13(3/4)^{k-1}\), so
 =\tfrac18,\ \tfrac3{32},\ \tfrac9{128},\ \tfrac{27}{512},\dots
 \]
 
-geometrically decaying but never zero: **every \(V_k\) carries a power
-saving, so every truncation of the family is a theorem.** The net gains
-are \(\tfrac19c_k=3^{-(k+2)}\) at \(\rho_{k+1}\), giving \(0.4801\),
-\(0.4891\), \(0.4916\) and, alongside Appendix C, \(0.5665\),
-\(0.5740\), \(0.5761\).
+geometrically decaying but never zero in the model. The named finite
+cases through \(V_6\) have separate estimates; the displayed pattern
+alone is not a proof for arbitrary \(k\). Its formal net gains are
+\(\tfrac19c_k=3^{-(k+2)}\) at \(\rho_{k+1}\), giving the audited finite
+roots above and, conditionally alongside Appendix C, the corresponding
+finite-truncation roots.
 
-The censuses confirm the exact identities and the block structure
-without a single failure at any layer, and every conditional share a
+The censuses confirm the sampled *nested* identities and block structure,
+not the collapsed monomial identity falsified in Model calculation
+5.13, and every conditional share a
 single fiber can sample reads \(0.50\). They do **not** confirm the
 constants \(2^{-2k}\) for \(k\ge3\): the deepest layers of \(V_k\) are
 sampled at only \(P^{\rho_k}\)-ish many points — \(50\) and \(7\)
 distinct values at \(P=10^8\) for \(V_4\) — so those shares are noise,
 and reaching \(100\) samples at \(V_4\)'s deepest layer needs
 \(P\approx10^{12.7}\).
-The reduction, the telescoping identity, the census, and the Section 11
-constants of the \(V_2=OEOEE\) truncation are complete
-([juggler_oeoee_production.md](juggler_oeoee_production.md),
-[oeoee_audit_ledger.md](oeoee_audit_ledger.md)); later \(V_k\)
-truncations remain in reserve. Theorem 1 uses the \(V_2\) truncation.
+The reduction, the finite computations, and their audit ledgers are
+recorded in [juggler_oeoee_production.md](juggler_oeoee_production.md)
+and the associated audit notes. Theorem 1 uses the named truncations
+through \(V_6\); the infinite-family limit is not used.
 
 ## 6. Odd generation and the exact first-letter decomposition
 
@@ -1860,14 +1896,14 @@ with share \(1\); the hypothesis starts at depth \(1\).)
 **Theorem 9.1 (one-sided form).** Let \(q<\log 2/\log 3=0.6309\ldots\),
 \(\mu=1-q\log_2 3>0\), \(C>1/\mu\), and
 \(e_q(C)=2(C\mu-1)^2/(C(\log_2 3)^2\ln 2)\). Under
-\(\mathrm H_q(C,A)\) with \(A>C+1\), for every \(\varepsilon>0\) and
+\(\mathrm H_q(C,A)\) with \(A>C+e_q(C)\), for every \(\varepsilon>0\) and
 all large \(y\),
 \[
 \#\{n\ \text{odd}\in(y,2y]:\ n\notin R\}\ \le\ \frac y2\Bigl(\frac{\log 2y}{\log N_0}\Bigr)^{-(e_q(C)-\varepsilon)} .
 \]
 Hence \(e_q(C)>1-\lambda^{**}\) implies the conjecture; the least
-\(C\) is \(20\) at \(q=\tfrac12\), \(44\) at \(0.55\), \(240\) at
-\(0.60\), \(1715\) at \(0.62\) (with \(\lambda^{***}\): \(18\), \(39\),
+\(C\) is \(19\) at \(q=\tfrac12\), \(41\) at \(0.55\), \(223\) at
+\(0.60\), \(1586\) at \(0.62\) (with \(\lambda^{***}\): \(18\), \(39\),
 \(206\), \(1451\)).
 
 *Proof.* Let \(n\) be uniform on the odd integers of \((y,2y]\),
@@ -1886,7 +1922,8 @@ is a martingale with increments in an interval of length \(\log_2 3\),
 and \(u_d\le u_1+M_d-(d-1)\mu+\log_2 3\sum_{s<d}\eta_s\). Fix
 \(\kappa\in(0,1)\). If \(n\notin R\) then by Lemma 8.1 \(u_d>-L\), so
 either \(\log_2 3\sum_s\eta_s>\kappa(d-1)\mu\), an event of probability
-\(O((\log y)^{C-A})\) by Markov's inequality, or
+\(O((\log y)^{C-A})\) by Markov's inequality, which is
+\(o((\log y)^{-e_q(C)+\varepsilon})\) under the stated condition, or
 \(M_d>a:=(1-\kappa)(d-1)\mu-L-u_1\ge L((1-\kappa)C\mu-1)-\log_2 3\).
 By the Azuma--Hoeffding inequality,
 \(\mathbb P(M_d>a)\le\exp(-2a^2/((d-1)(\log_2 3)^2))\le 2^{-L(e_q^{(\kappa)}(C)-o(1))}\)
@@ -1894,7 +1931,7 @@ with \(e_q^{(\kappa)}(C)=2((1-\kappa)C\mu-1)^2/(C(\log_2 3)^2\ln 2)\to e_q(C)\)
 as \(\kappa\to 0\). \(\square\)
 
 So no lower bound on odd shares and no vanishing error are needed: if
-no cylinder of depth below \(44\log_2(\log 2y/\log N_0)\) sends more
+no cylinder of depth below \(41\log_2(\log 2y/\log N_0)\) sends more
 than \(55\%\) of its members to an odd state, every positive integer
 reaches \(1\).
 
@@ -1924,7 +1961,7 @@ every \(\varepsilon>0\) and all large \(y\),
 \ \le\ \frac y2\Bigl(\frac{\log 2y}{\log N_0}\Bigr)^{-(e(C)-\varepsilon)},
 \]
 the bound of Theorem 8.3. Hence \(\mathrm P_{\theta_C}(C)\) with
-\(C\ge 20\) implies the conjecture unconditionally, and with
+\(C\ge 19\) implies the conjecture using Theorem 1, and with
 \(C\ge 18\) under the conditional exponent of Appendix C.
 
 *Proof.* If \(\tau(n)>d\) then \(u_d>-L\), i.e. \(o_d\ge p_Cd\). Hence
@@ -1962,11 +1999,18 @@ live prefixes are up-weighted exponentially.
 \(y\), \(\sum_{t=1}^{d(y)-1}\bigl(s_\theta(t)-q\bigr)^+=o(d(y))\).
 
 **Proposition 9.3.** \(\mathrm M_{\theta,1/2}(C)\) implies
-\(\mathrm P_\theta(C)\). More generally \(\mathrm M_{\theta,q}(C)\) with
-\(q<p_C\) gives \(\#\{\tau>d\}\le N\exp(-d\,D(p_C\|q)(1-o(1)))\), i.e.
-the exponent \(e_q^{\rm Ch}(C)=C\,D(p_C\|q)/\ln 2\), at least the Azuma
-exponent of Theorem 9.1 (least \(C\): \(20,43,230,1618\) at
-\(q=0.5,0.55,0.60,0.62\); with \(\lambda^{***}\): \(18,38,198,1369\)).
+\(\mathrm P_\theta(C)\). More generally, for a fixed \(\theta>0\),
+\(\mathrm M_{\theta,q}(C)\) gives
+\[
+\#\{\tau>d\}\le
+N\exp\{-d[\theta p_C-\log(1-q+qe^\theta)-o(1)]\}.
+\]
+If \(q<p_C\) and the hypothesis is assumed at the optimizing tilt
+\(\theta=\theta_{C,q}:=\log\frac{p_C(1-q)}{q(1-p_C)}\), this becomes
+\(N\exp(-dD(p_C\|q)(1-o(1)))\), with exponent
+\(e_q^{\rm Ch}(C)=C\,D(p_C\|q)/\ln 2\), at least the Azuma exponent of
+Theorem 9.1. Its least \(C\) at \(q=0.5,0.55,0.60,0.62\) is
+\(19,41,214,1496\) (with \(\lambda^{***}\): \(18,38,198,1369\)).
 
 *Proof.* Dropping the condition \(\tau>t+1\) in favour of \(\tau>t\)
 only enlarges the sum, so
@@ -1978,8 +2022,10 @@ With \(a_{\theta,q}=1+(e^\theta-1)q\) and \(c_\theta=(e^\theta-1)/a_{\theta,q}\)
 \(1+(e^\theta-1)s\le a_{\theta,q}\exp\bigl(c_\theta(s-q)^+\bigr)\).
 Telescoping from \(t=1\) gives
 \(\sum_{\tau>d}e^{\theta o_d}\le Ne^{\theta}a_{\theta,q}^{\,d-1}\exp\bigl(c_\theta\sum_{t<d}(s_\theta(t)-q)^+\bigr)\),
-which is \(\mathrm P_\theta\) at \(q=\tfrac12\); the exponential Markov
-step of Theorem 9.2 with \(a_{\theta,q}\) in place of \(a_\theta\) and
+which is \(\mathrm P_\theta\) at \(q=\tfrac12\). For general \(q\), the
+exponential Markov step gives
+\(\theta p_C-\log a_{\theta,q}\) at the same fixed \(\theta\). Assuming
+\(\mathrm M_{\theta,q}\) at
 \(\theta=\log\frac{p_C(1-q)}{q(1-p_C)}\) gives \(D(p_C\|q)\).
 \(\square\)
 
@@ -2085,11 +2131,14 @@ Recall the free term \(\psi_F\) of (6.1). For odd \(n\),
 
 **Proposition 10.1.**
 \(\psi_F(t)=\lim_{d\to\infty}\mathbb P^{\log}_x\bigl(\tau(n)>d\ \big|\ \mathrm{word}_2(n)=OO\bigr)\),
-a decreasing limit, and under \(\mathrm P_\theta(C)\) — equivalently
-under any hypothesis of Sections 8--9 —
+a decreasing limit. Suppose a hypothesis of Sections 8--9 supplies
+the live-start bound with exponent \(r(C)\). Then
 \[
-\psi_F(t)\ \le\ 2\,(1+o(1))\Bigl(\frac{t}{2\log N_0}\Bigr)^{-(e(C)-\varepsilon)} .
+\psi_F(t)\ \le\ 2\,(1+o(1))\Bigl(\frac{t}{2\log N_0}\Bigr)^{-(r(C)-\varepsilon)} .
 \]
+Here \(r(C)=e(C)\) for \(\mathrm H(C,A)\) or fair pressure,
+\(r(C)=e_q^{\rm Az}(C)\) for \(\mathrm H_q(C,A)\), and
+\(r(C)=C D(p_C\|q)/\ln2\) for no-momentum at its optimizing tilt.
 
 *Proof.* The first claim is the definition of \(\psi_F\) together with
 \(F\cap\{\text{odd}\}=\bigcap_d\{\tau>d\}\cap\{\text{odd}\}\). For the
@@ -2097,9 +2146,9 @@ bound, cover \((\sqrt x,x]\) by dyadic blocks \((y,2y]\); the
 \(OO\)-type odd starts of a block number \(\tfrac y4(1+O(y^{-\delta}))\)
 (the parity of \(\lfloor n^{3/2}\rfloor\) over odd \(n\) is
 equidistributed with a power saving: a single exponential sum, the
-depth-two case of Paper B), the live starts at depth \(d(y)\) number at
-most \(\tfrac y2(\log 2y/\log N_0)^{-(e(C)-\varepsilon)}\) by
-Theorem 9.2, and \(\{\tau>d\}\) decreases in \(d\). The
+depth-two case of Paper B), the live starts at depth \(d(y)\) have the
+assumed bound with exponent \(r(C)\), by the applicable theorem of
+Sections 8--9, and \(\{\tau>d\}\) decreases in \(d\). The
 \(1/n\)-weighting only averages the block ratios. \(\square\)
 
 So the free term of the exact map is the infinite-depth live mass of
@@ -2283,18 +2332,19 @@ remaining problem to one statement:
 > **The frontier statement.** The number of odd starts in \((y,2y]\)
 > whose orbit is still above the certified floor \(N_0\) after
 > \(C\log_2\log y\) steps is at most \(y(\log y)^{-e}\) for some
-> \(e>1-\lambda^{**}=0.552\) (\(0.461\) under Appendix C).
+> \(e>1-\lambda^{**}=0.5074\ldots\) (\(0.4608\ldots\) under Appendix C).
 
 By Theorem 3 this statement is equivalent to the conjecture. The rate
-threshold \(1-\lambda^{**}\) can be lowered by raising \(\lambda\), and
-Section 5.7 prices that: the last rung reachable before \(K_3\) is
-\(\lambda\le0.7095\) with the present fiber sweep and \(\le0.8414\)
-with ideal fibers, i.e. \(e>0.2905\) and \(e>0.1586\), which move the
-least depth constant from \(C=18\) to \(C=14\) and \(C=11\). This
-lowers the frontier statement's constant; it does not remove its
-\(\log\log y\) depth, and by Proposition 5.12 driving \(\lambda\) to
-\(1\) — which would make any positive rate suffice — needs \(O\)-runs
-of every length, hence \(K_3\). Its
+threshold \(1-\lambda^{**}\) can be lowered by raising \(\lambda\).
+Section 5.7 prices conditional transfer-matrix scenarios: if every
+required run-length-three production were separately established, its
+pairing-share and ideal-share models would give \(0.7095\) and
+\(0.8414\), hence rate thresholds \(0.2905\) and \(0.1586\). These are
+not attained improvements. The abstract all-production model reaches
+\(\lambda=1\) only with every odd-run length, and would encounter the
+\(K_3\) interface; this diagnoses a possible cost but does not prove a
+complete obstruction theorem. None of these model calculations removes
+the \(\log\log y\) depth. The
 weakest sufficient condition on the concentration route is the
 no-momentum hypothesis \(\mathrm M_{\theta,q}(C)\): the tilted odd
 share of live starts exceeds \(q<\log 2/\log 3\) by \(o(\log\log y)\) in
@@ -2360,16 +2410,16 @@ abstract lemmas listed here, not the analytic density estimates.
 | + \(V_5=OEOEOEOEOEE\) (named intermediate; elementary, audited) | \(\ldots,(\tfrac1{729},\tfrac{243}{2048})\) | \(0.4924\) |
 | + \(V_6=OEOEOEOEOEOEE\) (\(\lambda^{**}\), Theorem 1; elementary, audited) | \(\ldots,(\tfrac1{2187},\tfrac{729}{8192})\) | \(0.4926\) |
 | + \(OOEEE\) on even blocks (\(\lambda^{***}\), Appendix C, conditional) | \(\ldots,(\tfrac19,\tfrac9{32})\) | \(0.5392\) |
-| depth-two ideal | \((\tfrac13,\tfrac34)\) | \(0.4927\) |
+| depth-two ideal-share model | \((\tfrac13,\tfrac34)\) | \(0.4927\) |
 | + \(OOOEE\), \(OOEOE\) (closed: fibers \(P^{5/32}\); Lemma 3.9 leftover \(P^{89/96}\)) | \(\ldots,(\tfrac2{27},\tfrac{27}{64})\) | \(0.5561\) |
 | \(+OEOEE\) and \(OOEEE\) (remark, not an official exponent) | \(\ldots,(\tfrac4{27},\tfrac9{32})\) | \(0.5665\) |
-| \(+\) the whole family \(V_k=(OE)^{k-1}OEE\) | \(\ldots,(3^{-(k+2)},(\tfrac34)^k\tfrac38)_{k\ge1}\) | \(0.4927\) |
-| \(+\) that family and \(OOEEE\) | | \(0.5769\) |
-| \(O\)-runs \(\le2\) controlled, present sweep (Section 5.7) | transfer matrix | \(0.6247\) |
-| \(O\)-runs \(\le2\), ideal fibers | transfer matrix | \(0.7180\) |
-| \(O\)-runs \(\le3\) (last rung before \(K_3\)), present sweep | transfer matrix | \(0.7095\) |
-| \(O\)-runs \(\le3\), ideal fibers | transfer matrix | \(0.8414\) |
-| ceiling, all \(O\)-runs at the ideal share (Proposition 5.12) | \(2^{-\lambda}+\tfrac13(\tfrac32)^{\lambda}=1\) | \(1\) |
+| conditional infinite \(V_k=(OE)^{k-1}OEE\) model | \(\ldots,(3^{-(k+2)},(\tfrac34)^k\tfrac38)_{k\ge1}\) | \(0.4927\) |
+| conditional infinite \(V_k\) model and \(OOEEE\) | | \(0.5769\) |
+| conditional \(O\)-runs \(\le2\), pairing share (Section 5.7) | transfer matrix | \(0.6247\) |
+| conditional \(O\)-runs \(\le2\), ideal-share model | transfer matrix | \(0.7180\) |
+| conditional \(O\)-runs \(\le3\), pairing share | transfer matrix | \(0.7095\) |
+| conditional \(O\)-runs \(\le3\), ideal-share model | transfer matrix | \(0.8414\) |
+| abstract ceiling, all \(O\)-runs at the ideal share (Proposition 5.12) | \(2^{-\lambda}+\tfrac13(\tfrac32)^{\lambda}=1\) | \(1\) |
 
 *Depth constants.* Chernoff exponent \(e(C)\): \(0.480\) (\(18\)),
 \(0.527\) (\(19\)), \(0.574\) (\(20\)), \(0.621\) (\(21\)), \(0.812\)

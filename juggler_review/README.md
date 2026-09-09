@@ -1,6 +1,6 @@
 # Juggler reviewer bundle (three manuscripts)
 
-Author: Philippe Cochin. Date: 4 September 2026.
+Author: Philippe Cochin. Review-repair snapshot: 9 September 2026.
 Status: Paper A is a submission candidate; Paper B is a revised
 working draft (8-section journal form; Theorem 5.3 the monomial
 \(c=\tfrac{3k}4 n^{9/8}\); certified density \(7/8\)); Paper C
@@ -9,7 +9,14 @@ is a complete draft whose main theorem is unconditional and whose
 Appendix C alone depends on Paper B.
 
 This folder is a snapshot of the files to send for external review. It
-is not the laboratory. No termination theorem is claimed.
+is not the laboratory. No unconditional termination theorem is claimed.
+
+The 9 September repair corrects six reviewed claim-level issues: general
+floor fibers, cycle-run scope, the new kernel application's interval scale,
+biased pressure rates and their hypotheses, the charge obstruction's
+anchor assumption, and the extended window's formal coverage and endpoint.
+The exact integer core and existing conditional reductions are retained;
+unproved extensions are not promoted by these corrections.
 
 **Source of truth is `docs/theory/`.** Edit
 [juggler_finite_dynamics_note.md](../docs/theory/juggler_finite_dynamics_note.md),
@@ -31,8 +38,8 @@ https://sneakyweasel.github.io/btlab/
    \(L\ge 50508\) at the laboratory floor \(26254995\); the
    Section 5 walk-charge envelope (transport, hug adversary,
    Denjoy–Koksma over certified Ostrowski blocks, window
-   theorem on \([50508,16785921)\) — the whole semiconvergent
-   fan) raises the bound to
+   theorem on \([50508,16785921)\) — the fan through \(k=54\),
+   excluding its \(k=55\) endpoint) raises the bound to
    \(L\ge 176251\) at that floor. Corollary 5.10 evaluates the
    same kill criterion at the second certified floor
    \(162849448\) and gives \(L\ge 478245\). The main numerical
@@ -54,9 +61,9 @@ https://sneakyweasel.github.io/btlab/
    nontrivial cycle has logarithmic count \(\gg(\log x)^{\lambda}\)
    for \(\lambda<\lambda^{**}=0.4926\)
    (Paper C, Theorem 1) while this paper bounds the cycle's states —
-   the two constraints do not meet; a cycle's word sits at the
-   critical odd share \(\log 2/\log 3\) of Paper C's no-momentum
-   hypothesis (the survivor lengths are convergent and semiconvergent
+   the two constraints do not meet; a cycle's odd share is strictly
+   above \(\log 2/\log 3\), with its excess constrained by finance
+   (the survivor lengths are convergent and semiconvergent
    denominators); the floor stratifies the failure set exactly as it
    does a cycle minimum. Nothing in Section 6.1 excludes a cycle; the
    theorems and numbers of Sections 2–5 are unchanged.
@@ -78,8 +85,11 @@ https://sneakyweasel.github.io/btlab/
    Section 3.5 proves the depth-\(\le3\) Theorems 4.4 and 4.7 on
    sub-dyadic intervals of length \(\ge P^{1/2}\) with a slow twist
    (Theorems 4.11–4.12, Corollary 4.13 — the \(OOEEE\) production
-   that Paper C's Appendix C uses). Theorem 5.3 remains a
-   dyadic-block statement. Section 8 records what the kernel program
+   that Paper C's Appendix C uses). Theorem 5.3 is dyadic;
+   Theorem 5.5 is a human-proof localization to length
+   \(P^{29/48+\delta}\), not an established application at the
+   \(P^{37/64}\) scale needed by the proposed new productions.
+   Section 8 records what the kernel program
    buys for termination and what it cannot. Two more exact identities in Lean
    (`carry_eq_fract_add_sub_fract`, `second_difference_product_rule`).
    Length 7/8 remain laboratory conjectures.
@@ -99,8 +109,10 @@ https://sneakyweasel.github.io/btlab/
    \(e>0.5074\). Theorem 4:
    that bound follows from parity control on itinerary cylinders of
    depth \(C\log_2\log y\), in a hierarchy of forms down to a single
-   exponential moment of the odd count on live starts (\(C\ge 20\)
-   unconditionally). Theorem 5: the exact first-letter decomposition
+   exponential moment of the odd count on live starts (\(C\ge19\)
+   for the fair optimized-tilt hypothesis; biased forms have
+   \(q\)-dependent rates and depths). These hypotheses remain unproved.
+   Theorem 5: the exact first-letter decomposition
    has one free term, the infinite-depth live mass; \(S\)-fairness is
    defined and the walk argument labelled a heuristic; a narrowly
    stated depth-uniformity budget. Appendix C (exponent \(0.5392\),
@@ -152,9 +164,11 @@ Lean; only the exact floor reductions beneath them are
 `seq_floor_gap_second`). Paper C's exact layer (closure of the fate
 classes, trichotomy and exclusion, the even block and \(OE\) fiber
 as intervals, odd generation, envelope descent into the floor) is
-Lean (`FateContagion.lean`); its counting, its conditional
-reduction and its exact map are human proofs; its censuses are
-observations.
+Lean (`FateContagion.lean`). The seed and abstract recursion are also
+formalized. `tao_rate_implies_conjecture` is a compiled conditional
+theorem assuming the contagion lower bound and the Tao-rate upper bound;
+it does not establish those hypotheses. The production estimates and
+asymptotic counting remain human-proof objects; censuses are observations.
 
 ## What is not here
 

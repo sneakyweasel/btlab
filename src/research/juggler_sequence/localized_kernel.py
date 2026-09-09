@@ -1,13 +1,13 @@
 """Localizing Paper B's kernel theorem to sub-dyadic intervals.
 
 Theorem 5.3 bounds the kernel sum ``K_c`` on a dyadic block ``n ~ P`` by
-``P^{1-1/96+eps}``.  The companion paper needs it on the intervals
-``I(m') = [m'^{32/9}, (m'+1)^{32/9})`` of length ``asymp P^{23/32}``, because those are
-the preimage intervals of the landing points of an even block; without it the
-productions ``OOOEEE`` and ``OOEOEE`` are unavailable and the contagion exponent stays
-at ``0.5392``.  Section 3.5 localizes the depth-``<=3`` theorems this way and observes
-that exactly three costs there fail to scale, all at most ``P^{7/16}``.  This module
-runs the same audit on Theorem 5.3.
+``P^{1-1/96+eps}``. This module audits how far its proof retains that
+same saving. An earlier version also claimed that the resulting threshold
+unlocked ``OOOEEE`` and ``OOEOEE``. That application used ``23/32``,
+the inverse-length exponent of ``OOEEE``. The proposed words instead
+land at exponent ``27/64``, so their broad inverse scale is
+``P^{37/64}``. Since ``37/64 < 29/48``, Theorem 5.5 as stated does
+not apply to them at the printed saving.
 
 **The accounting.**  Write a cost on an interval of length ``Y = P^y`` inside
 ``(P, 2P]`` as ``c * Y^alpha * P^beta``.  On the full block it is ``c * P^{alpha+beta}``,
@@ -35,17 +35,26 @@ maximum, and an average of proportional quantities is proportional; that single 
 why the exponent ``1/96`` is untouched and the choices ``H_1 = P^{1/48}``,
 ``H_2 = P^{1/24}``, ``H_3`` are not re-optimized.
 
-**The result.**  The largest absolute cost is ``A_1 = P^{25/48}``, the per-window
+**The theorem.**  The largest absolute cost is ``A_1 = P^{25/48}``, the per-window
 transition term ``(P/M)^{1/3}`` of Stage 5 of Lemma 5.2(i) at the regime-(s2) constraint
 ``uh > P^{3/16}``.  Hence
 
     |K_c(I)| << |I| P^{-1/96+eps} + P^{(7y+25/48)/8},
 
 and the second term is dominated exactly when ``y > 25/48 + 1/12 = 29/48``.  At the
-length the companion needs, ``y = 23/32``, the absolute chain ends at ``P^{533/768}``
-against a target ``P^{17/24} = P^{544/768}``, a margin of ``P^{11/768}``.  A slow twist
-``(l/2) n^{9/16}`` with ``|l| <= P^{1/24}`` is removed after the first differencing by
-Lemma 4.10 at total variation ``0.26 P^{-21/32}``, so it costs a factor ``1 + o(1)``.
+admissible reference length ``y = 23/32``, the absolute chain ends at
+``P^{533/768}`` against a target ``P^{17/24} = P^{544/768}``, a margin of
+``P^{11/768}``.  A slow twist ``(l/2) n^{9/16}`` with
+``|l| <= P^{1/24}`` is removed after the first differencing; uniformly over
+``I subset (P,2P]`` its total variation is ``O(P^{-3/8})``.
+
+**The production-scale audit.**  Formally substituting ``y = 37/64`` into the
+two-term bookkeeping display leaves the absolute tail below the trivial length by
+``37/64 - (7(37/64)+25/48)/8 = 11/1536``. This does not prove a
+shorter-interval theorem: ``37/64`` lies outside the theorem's hypothesis, and
+the bookkeeping does not transport the exact floor and parity restrictions defining
+the production. The ``11/1536`` is a possible salvage obligation, not a proved
+production or a new contagion exponent.
 
 Note that ``29/48 > 1/2``: the kernel theorem does **not** localize as far as the
 depth-``<=3`` theorems of Section 3.5, which reach ``P^{1/2}``.  The obstruction is the
@@ -75,8 +84,13 @@ from research.juggler_sequence.lean_paths import DATA_ROOT, REPO_ROOT
 ARTIFACT = DATA_ROOT / "localized_kernel" / "summary.json"
 MANUSCRIPT = REPO_ROOT / "docs" / "theory" / "juggler_parity_discrepancy_note.md"
 
-#: the length the companion paper needs, as an exponent of P
-COMPANION_Y = F(23, 32)
+#: an admissible reference length used inside Theorem 5.5's stated range
+REFERENCE_Y = F(23, 32)
+#: proposed production landing exponent and its broad inverse-length exponent
+PRODUCTION_LANDING = F(27, 64)
+PRODUCTION_Y = F(37, 64)
+#: retained public name, now corrected to the actual proposed-production scale
+COMPANION_Y = PRODUCTION_Y
 #: the paper's balancing choices, unchanged by localization
 H1, H2, H3 = F(1, 48), F(1, 24), F(1, 12)
 #: Stage 2 sawtooth truncation of Lemma 5.2(i)
@@ -87,7 +101,7 @@ SAVING = F(1, 96)
 PRINTED_LEMMA_52i = F(15, 16)
 PRINTED_T2 = F(23, 24)
 #: line ranges of the two proofs in the manuscript
-PROOF_LINES = {"lemma_52i": (2747, 2960), "theorem_53": (3728, 4245)}
+PROOF_LINES = {"lemma_52i": (2749, 2962), "theorem_53": (3730, 4247)}
 #: exponents below this cannot bind: the chain already carries P^{25/48}
 COVERAGE_FLOOR = F(1, 4)
 
@@ -406,9 +420,11 @@ def twist_total_variation(y: F) -> F:
     return H1 + y + F(1, 24) - F(23, 16)
 
 
-def summary(y: F = COMPANION_Y) -> dict[str, Any]:
+def summary(y: F = PRODUCTION_Y) -> dict[str, Any]:
     ch = chain(y)
     dy = chain(F(1))
+    ref = chain(REFERENCE_Y)
+    prod = chain(PRODUCTION_Y)
     thr = threshold()
     cov = {k: coverage(k) for k in PROOF_LINES}
     return {
@@ -417,10 +433,15 @@ def summary(y: F = COMPANION_Y) -> dict[str, Any]:
             "|I| >= P^{29/48+delta}, |K_c(I)| << |I| P^{-1/96+eps}, a slow twist "
             "allowed. The exponent is the printed one; only the admissible length is new."
         ),
-        "companion_length_exponent": str(y),
+        "evaluated_length_exponent": str(y),
+        "reference_length_exponent": str(REFERENCE_Y),
+        "production_landing_exponent": str(PRODUCTION_LANDING),
+        "production_length_exponent": str(PRODUCTION_Y),
         "threshold_length_exponent": str(thr),
         "threshold_closed_form": "y >= A_1 + 8/96 = 25/48 + 1/12 = 29/48",
-        "companion_above_threshold": y > thr,
+        "companion_above_threshold": PRODUCTION_Y > thr,
+        "production_above_threshold": PRODUCTION_Y > thr,
+        "reference_above_threshold": REFERENCE_Y > thr,
         "threshold_above_one_half": thr > F(1, 2),
         "balancing_choices_unchanged": {"H1": str(H1), "H2": str(H2), "H3": str(H3)},
         "chain": {
@@ -429,12 +450,26 @@ def summary(y: F = COMPANION_Y) -> dict[str, Any]:
         },
         "saving": str(ch["K"][0]),
         "saving_is_printed_exponent": ch["K"][0] == -SAVING,
+        "printed_saving_bound_applies_at_evaluated_length": ch["absolute_dominated"],
         "absolute_tail": str(ch["K"][1]),
         "absolute_tail_closed_form": str(absolute_tail(y)),
         "absolute_tail_matches_closed_form": ch["K"][1] == absolute_tail(y),
         "target": str(ch["target"]),
         "absolute_dominated": ch["absolute_dominated"],
         "margin": str(ch["margin"]),
+        "reference_same_saving_margin": str(ref["margin"]),
+        "production_same_saving_margin": str(prod["margin"]),
+        "production_formal_effective_saving": str(PRODUCTION_Y - prod["K"][1]),
+        "production_formal_effective_saving_is_11_over_1536": (
+            PRODUCTION_Y - prod["K"][1] == F(11, 1536)
+        ),
+        "production_application": {
+            "status": "OPEN_PROOF_OBLIGATION",
+            "reason": (
+                "37/64 is below the theorem's 29/48 same-saving threshold; the formal "
+                "two-term substitution does not prove the exact floor/parity transport."
+            ),
+        },
         "cost_tables_reproduce_printed": {
             "lemma_52i_max": str(max_dyadic(LEMMA_52i)),
             "lemma_52i_printed": str(PRINTED_LEMMA_52i),
@@ -467,12 +502,14 @@ def summary(y: F = COMPANION_Y) -> dict[str, Any]:
         "twist": {
             "total_variation_exponent": str(twist_total_variation(y)),
             "negligible": twist_total_variation(y) < 0,
+            "uniform_exponent_for_Y_at_most_P": str(twist_total_variation(F(1))),
         },
         "costs": {
             "lemma_52i": [c.as_dict() for c in LEMMA_52i],
             "theorem_53": [c.as_dict() for c in THEOREM_53],
         },
-        "unlocks": ["OOOEEE", "OOEOEE"],
+        "unlocks": [],
+        "retracted_unlocks": ["OOOEEE", "OOEOEE"],
     }
 
 
@@ -487,11 +524,13 @@ def main() -> None:
         print(f"coverage {k:<11} {c['displayed_at_or_above_floor']:>2} displayed >= 1/4: "
               f"{c['tabulated_as_a_cost']} tabulated, {c['named_as_a_non_cost']} named, "
               f"unexplained {c['unexplained'] or 'none'}")
-    print(f"\ncompanion needs |I| = P^{s['companion_length_exponent']}; "
+    print(f"\nproposed productions need broad scale |I| = P^{s['production_length_exponent']}; "
           f"threshold P^{s['threshold_length_exponent']} "
-          f"({'above' if s['companion_above_threshold'] else 'BELOW'}); "
+          f"({'above' if s['production_above_threshold'] else 'BELOW'}); "
           f"threshold above P^(1/2): {s['threshold_above_one_half']}")
-    print(f"saving P^{s['saving']} (the printed exponent: {s['saving_is_printed_exponent']})")
+    print(f"proportional saving P^{s['saving']} (the printed exponent: "
+          f"{s['saving_is_printed_exponent']}; full bound applies here: "
+          f"{s['printed_saving_bound_applies_at_evaluated_length']})")
     print(f"absolute tail P^{s['absolute_tail']} vs target P^{s['target']}; "
           f"margin P^{s['margin']}; dominated: {s['absolute_dominated']}")
     print("\nchain:")
@@ -506,7 +545,10 @@ def main() -> None:
     print(f"Claim C: {cb['trivial_term']} balanced by {cb['balancing_terms']} alone "
           f"(unique: {cb['unique_balancing_term']}); {cb['output']}")
     print(f"slow twist TV exponent {s['twist']['total_variation_exponent']} "
-          f"(negligible: {s['twist']['negligible']})")
+          f"(negligible: {s['twist']['negligible']}; uniform exponent "
+          f"{s['twist']['uniform_exponent_for_Y_at_most_P']})")
+    print(f"production application: {s['production_application']['status']}; "
+          f"formal effective saving {s['production_formal_effective_saving']}")
     print(f"wrote {ARTIFACT}")
 
 

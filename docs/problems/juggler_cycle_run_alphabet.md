@@ -1,222 +1,139 @@
-# Cycle height forces a run alphabet
+# Exact run inequalities and the floor-free alphabet model
 
 ## Problem
 
-A nontrivial Juggler cycle has a minimum \(m\) and a maximum \(M\). How much does the
-height ratio \(R=\log M/\log m\) constrain the cycle's itinerary? The question is whether
-a bound on how far a cycle ranges is enough, on its own, to pin the shape of its parity
-word.
+Does the height ratio \(R=\log M/\log m\) of a nontrivial Juggler cycle
+force a two-block parity alphabet? The September 2026 review found that
+the recorded argument confused upper growth bounds with lower bounds and
+replaced positive floor drift by exact closure. That implication is withdrawn.
 
 ## Exact statement
 
-Let \(C\) be a nontrivial cycle with minimum \(m\) and maximum \(M\), and
-\(R=\log M/\log m\).
+The following integer statements are **EXACT — LEAN VERIFIED** in
+`CycleRunAlphabet.lean`:
 
-1. **Run bounds.** Every odd run has length \(r\) with \((3/2)^r\le R\); every even run
-   has length \(g\) with \(2^g\le R\). Both are the same bookkeeping: an odd run
-   multiplies the logarithm by \((3/2)^r\) and an even run divides it by \(2^g\), while
-   every cycle value lies in \([m,M]\).
-2. **A long odd run is forced.** Closure gives \(o\log(3/2)=e\log 2\), so
-   \(o/e=\log 2/\log(3/2)=1.7095\). A cyclic word with no two adjacent odd letters has
-   \(o\le e\). Since \(1.7095>1\), some odd run has length at least two, and therefore
-   \(M\ge m^{9/4}\).
-3. **The band alphabet.** If \(R<27/8\) then odd runs have length at most two and even
-   runs exactly one, so the itinerary is a cyclic word over \(\{OE,OOE\}\). Only \(OOE\)
-   climbs, with exponent \(9/8\); \(OE\) falls with \(3/4\). Closure pins the mix: the
-   \(OOE\) fraction of blocks is \(\log(4/3)/(\log(4/3)+\log(9/8))=0.709511\).
+1. After \(r\) odd steps from \(v\) to \(y\),
+   \(y^{2^r}\le v^{3^r}\). This is an upper growth bound. It does **not**
+   imply \((3/2)^r\le R\) or cap odd-run length from cycle height.
+2. After \(g\) even steps from \(w\) to \(z\), \(z^{2^g}\le w\).
+   Thus an even run inside \([m,M]\), with \(m>1\), gives \(2^g\le R\).
+   In particular, an \(EE\) forces \(m^4\le M\).
+3. Two odd steps \(x\to y\to z\), with \(y\ge8\), give
+   \(x^9<2(z+1)^4\). Inside \([m,M]\), retain the full consequence
+   \(m^9<2(M+1)^4\), equivalently \(M+1>m^{9/4}/2^{1/4}\).
+4. A linear word without adjacent odd letters satisfies \(2o\le L+1\).
+5. With the supplied abstract closure hypothesis \(o\alpha=(L-o)\beta\),
+   the formal walk equals \((\alpha+\beta)(o_t-to/L)\).
+6. A prefix-noncontracting word beginning \((OOE)^kOE\) has \(k\ge3\).
+   Such a word cannot begin \((OOE)^3OE\,OE\). These results assume the
+   displayed prefixes; height does not supply that alphabet or fix the
+   first fall after exactly three climbs.
 
-4. **Height is discrepancy.** Write \(s=o/L\) and \(D_t=o_t-ts\). Under closure
-   the walk height is exactly \(u_t=(\alpha+\beta)D_t\) with \(\alpha=\log(3/2)\),
-   \(\beta=\log 2\), so \(\log R=\log 3\cdot\Delta\) for \(\Delta=\max D-\min D\).
-   Balanced (mechanical) words are \(\Delta<1\), i.e. \(R<3\); the band is
-   \(\Delta<\log(27/8)/\log 3=1.107\). A run of \(k\) consecutive \(OOE\) blocks
-   climbs exactly \(k(2-3s)+s\); a run of \(j\) consecutive \(OE\) spans
-   \((1-s)+j(2s-1)\). At the forced slope: \(OOE\)-runs are at most \(3\) if
-   mechanical and \(4\) in the band, \(OE\)-runs at most \(2\) for both.
-5. **No double even step below the fourth power.** Two consecutive even steps land at
-   the fourth root, so \(M\ge m^4\). Below \(N_0^4=1.5\cdot10^{34}\) no cycle contains
-   \(EE\).
+The additional cycle interpretation is **EXACT — HUMAN PROOF**, using
+Paper A: a nontrivial cycle satisfies
+\(o\log(3/2)-e\log2>0\), hence \(o>e\). A cyclic word without an
+\(OO\) has \(o\le e\), so an \(OO\) exists. At the certified floor its
+intermediate exceeds 8, and item 3 applies. The integer consequence is
 
-With the certified floor \(m>N_0=3.5\cdot10^8\), part 2 reads \(M>1.6\cdot10^{19}\) and
-the band of part 3 runs up to \(N_0^{27/8}=6.9\cdot10^{28}\).
+\[
+M\ge\left\lfloor\left(\frac{m^9}{2}\right)^{1/4}\right\rfloor.
+\]
+
+At \(m\ge350000001\) this is approximately \(1.409\cdot10^{19}\),
+not the withdrawn factor-free \(1.6\cdot10^{19}\) assertion.
 
 ## Current literature
 
-Nothing external. The Juggler cycle question is this laboratory's, and the run-length and
-financing bookkeeping is Paper A's. Not a known-results branch.
+No new external input. Paper A supplies the strict floor-defect inequality;
+the abstract block arithmetic is not a new result about realized cycles.
 
 ## Branch budget
 
-Phase 0 only: the two run bounds, the letter-count argument, and the band alphabet, with
-the integer content in Lean. No census, no new corridor, no attempt to kill the alphabet.
+Repair the existing statements, model labels, and regression checks only.
+No floor raise, new census campaign, or attempt to exclude all cycles.
 
 ## Balanced-ternary formulation
 
-None. The statement is about the exponent walk in \(\log\log\), where the two letters are
-additive steps \(+\log(3/2)\) and \(-\log 2\); no ternary digit structure enters.
+None. These are integer floor inequalities and formal parity-word sums.
 
 ## Why BT may be relevant
 
-It is not. This branch is recorded here because it is a Juggler cycle constraint, not
-because balanced ternary bears on it.
+It is not used in this branch.
 
 ## Candidate operations / invariants
 
-The invariant is the exponent walk in \(\log\log\), read on runs rather than letters: an
-odd run is a single \(+r\log(3/2)\) and an even run a single \(-g\log 2\), and the walk is
-confined to the band \([\log\log m,\log\log M]\). The bound on each run is the statement
-that one step cannot exceed the band width.
+For \(s=o/L\), \(D_t=o_t-ts\), and \(u_t=o_t\alpha-(t-o_t)\beta\),
+the unconditional algebraic identity is
+
+\[
+u_t=(\alpha+\beta)D_t+
+\frac tL\bigl(o\alpha-(L-o)\beta\bigr).
+\]
+
+The final term vanishes only under a zero-drift hypothesis. For Juggler's
+step sizes it is positive on nontrivial cycles; relating this formal walk
+to actual log-log height also requires floor-defect transport.
+Neither \(\log R=\log3\,\Delta\) nor the height-to-alphabet claim follows here.
 
 ## Experiments
 
-`python -m research.juggler_sequence.cycle_run_alphabet` computes the run bounds at the
-key ratios, the admissible block set, the two-block mix, the floor-defect size, and checks
-the integer chain for two odd steps on concrete odd starts.
+The existing cycle-run probe separately emits exact integer checks and an
+`idealized_model` object. The latter holds floor-free run caps,
+zero-drift proportions, and prescribed-word necklaces. It is not a census
+of realized cycle geometry.
 
-It also runs an exact necklace census in the band. For \((a,b)\) copies of
-\((OE,OOE)\) near the forced mix \(a/b=0.4094\), every cyclic arrangement is
-classified by its discrepancy: balanced (\(\Delta<1\)), sliver
-(\(1\le\Delta<1.107\)), or above the band.
-
-| \((a,b)\) | \(L\) | necklaces | balanced | sliver | above |
-|---|---|---|---|---|---|
-| (2,5) | 19 | 3 | 1 | 1 | 1 |
-| (3,7) | 27 | 12 | 1 | 3 | 8 |
-| (4,10) | 38 | 73 | 1 | 10 | 62 |
-| (5,12) | 46 | 364 | 1 | 15 | 348 |
-| (7,17) | 65 | 14421 | 1 | 63 | 14357 |
-| (9,22) | 84 | about 650000 | 1 | 255 | the rest |
-
-Exactly one balanced necklace per pair, which is the Christoffel word. Every sliver word
-has \(OOE\)-runs of length three or four and \(OE\)-runs of length one; no balanced or
-sliver word has five \(OOE\) or three \(OE\) in a row, as the climb formulas predict.
+The retained finite necklace counts are total / balanced / sliver / above
+the chosen discrepancy cutoff: \((2,5)\): 3 / 1 / 1 / 1;
+\((3,7)\): 12 / 1 / 3 / 8; \((4,10)\): 73 / 1 / 10 / 62;
+\((5,12)\): 364 / 1 / 15 / 348. These are finite word computations only.
 
 ## Conjectures
 
-None opened. The natural continuation, killing every cyclic word over \(\{OE,OOE\}\), is
-the already-refuted `J-cyclemin-ooo-inevitable`: the laboratory tried to force a first
-\(OOO\) inside exactly this alphabet and found a witness against it.
+None opened. No corrected odd-run cap or realized two-block alphabet is
+claimed. The existing `J-cyclemin-ooo-inevitable` refutation remains separate.
 
 ## Counterexamples
 
-None to the statements above. The relevant negative result is the refutation just named,
-which says the band alphabet cannot be emptied by forcing a longer odd run.
+Exact orbit \(9\to27\to140\) has two odd steps, yet \(140^4<9^9\).
+Thus two odd steps do not give the factor-free growth inequality used in
+the old deduction. The valid inequality is \(9^9<2\cdot141^4\).
+This refutes that step inference, not the existence of nontrivial cycles.
+
+Exact logarithmic closure is unavailable: a finite nontrivial cycle has
+\(3^o>2^L\), not equality. Recentring an arbitrary word to force zero drift
+tests conditional algebra, not a Juggler closure theorem.
 
 ## Formalization
 
-`formal/Problems/Juggler/CycleRunAlphabet.lean`, kernel-checked, axioms `propext`,
-`Classical.choice`, `Quot.sound` only. `odd_step_sq_le` and `odd_step_le_sq_add` are the
-two sides of one odd step; `odd_run_upper` is the odd-run bound
-\(y^{2^r}\le v^{3^r}\); `even_run_contracts` is the even-run bound \(z^{2^g}\le w\), read
-off the tower-absorption iff; `oo_step_lower` is the integer form of part 2,
-\(x^9<2(z+1)^4\), whose slack is `cube_shift_le_two`; `oddCount_le_of_noAdjOdd` is the
-combinatorial half of part 2, that a word with no two adjacent odd letters is at most half
-odd; `walk_eq_discrepancy` is the identity of part 4, \(u_t=(\alpha+\beta)D_t\) under
-closure; `ee_forces_fourth_power` is part 5; and `climbRun_append_oe_exponentGap` with
-`band_min_needs_three_climbs`, `climbRun_three_two_falls_exponentGap` with
-`band_min_no_second_fall` are the forced opening, hooked to the laboratory's existing
-`prefixNoncontracting`.
-
-The closure equation itself is not formalized here. Part 2 therefore combines a Lean
-inequality with the human-proof financing of Paper A, and the dossier says so rather than
-claiming the whole of it.
+`formal/Problems/Juggler/CycleRunAlphabet.lean` proves
+`odd_run_upper`, `even_run_contracts`, `oo_step_lower`,
+`oddCount_le_of_noAdjOdd`, `walk_eq_discrepancy` with its explicit
+closure hypothesis, `ee_forces_fourth_power`, and the displayed-prefix
+results `band_min_needs_three_climbs` / `band_min_no_second_fall`.
+The corrected comments match their hypotheses; no theorem body is weakened.
+There is no Lean theorem deducing the two-block alphabet from \(R<27/8\).
 
 ## Results
 
-The bookkeeping is exact and the band is narrow. Two things came out of writing it that
-were not the target. Below \(R=2\) the admissible block set is empty, because there is no
-room for even a single even letter, which recovers the laboratory's existing
-superquadratic result as a degenerate case of the same computation. And the mix forced in
-the band reproduces the letter ratio exactly, which is a consistency check on both.
-
-The improvement over what was already proved is modest: `cycleMin_to_max_superquadratic`
-gives \(M>m^2\) and this gives \(M\ge m^{9/4}\). The band alphabet is the part with no
-prior analogue.
-
-The discrepancy identity places the result against Paper A. The band walk of
-`band_successor_unique` is the letter-level version of the same bookkeeping, and below
-\(R=3\) the two coincide: a band-confined cycle is mechanical. What the run-level
-coordinate adds is the sliver between \(R=3\) and \(R=27/8\), where the word is still
-over two blocks but is no longer balanced. The census shows the sliver is real and thin,
-and the climb formulas say exactly how a word gets there: an \(OOE\)-run of length four,
-or an accumulated drift that puts an \(OOE\) start more than \(1-2(1-s)=0.262\) above
-the boundary minimum. So a cycle in the band is one of two things, mechanical or a
-one-violation two-block word, and nothing else.
-
-**Climbing against certified, corrected.** An earlier version of this dossier reported the
-mismatch as the fraction of cycle elements beginning an \(OOE\), \(26.2\%\) against a
-fair \(12.5\%\), a ratio of \(2.1\). That number is arithmetically right but measures the
-wrong thing: beginning an \(OOE\) is not the same as being uncertified, and most \(OOE\)
-starts in the band *are* certified, through \(OOEOE\).
-
-The correct statement is sharper in one direction and much weaker in the other. A band word
-has even runs of length one and odd runs of at most two, so \(OOEE\) and \(OOOEE\) can
-never occur: **a band cycle can use only three of the five descent certificates**, namely
-\(E\), \(OE\) and \(OOEOE\). Reading every depth-5 cyclic prefix that occurs, exactly one
-is uncertified, \(OOEOO\), the start of an \(OOE\) immediately followed by another
-\(OOE\). So the uncertified count is exactly \(b-R\) with \(R\) the number of
-\(OOE\)-runs, verified against every necklace at \((3,7)\) and \((5,12)\).
-
-Since \(OE\)-runs have length at most two, \(R\ge a/2\), and \(OOE\)-runs at most four
-gives \(R\ge b/4\). At the forced mix the uncertified fraction therefore lies in
-\([0.155,0.196]\), a ratio to the fair \(1/8\) of only \([1.24,1.57]\). The crowding is
-mild, not the factor of several the earlier framing suggested.
-
-What does survive is qualitative and was not stated before: at the position where the walk
-attains its cyclic minimum no certificate can hold, since a certificate forces a strict drop
-within five steps and there is nothing below the minimum to drop to. So **every cycle has at
-least one uncertified position**, and in a band cycle it carries the prefix \(OOEOO\).
-Checked on every necklace at \((3,7)\) and \((5,12)\) with no exception.
-
-**The minimum's opening is forced.** A cycle minimum admits no contracting prefix, which
-is the laboratory's `prefixNoncontracting`. In the band the falling block is \(OE\) and
-the climbing block \(OOE\), and \(OOE^k\!\cdot\!OE\) has \(o=2k+1\), \(t=3k+2\), so it
-is an exponent gap exactly while \(k\le 2\):
-
-| \(k\) | \(3^{2k+1}\) | \(2^{3k+2}\) | |
-|---|---|---|---|
-| 0 | 3 | 4 | gap |
-| 1 | 27 | 32 | gap |
-| 2 | 243 | 256 | gap |
-| 3 | 2187 | 2048 | admissible |
-
-So a band cycle minimum opens \(OOEOOEOOE\), nine letters, deeper than any depth-five
-certificate reaches. One step further, \(OOE^3\!\cdot\!OE\cdot OE\) has \(o=8\),
-\(t=13\) and \(6561<8192\), so the fall cannot repeat and the next block is another
-\(OOE\): fourteen letters forced.
-
-This is the same computation as the discrepancy one, in integers. A fall costs
-\(2s-1=0.2619\) and a climb pays \(2-3s=0.1073\), so \(2.44\) climbs are needed and
-the exponent condition rounds it to three. The value of the integer form is that it is
-decidable and needs no closure equation, so it is Lean rather than human proof.
-
-Block-level defect count: tower absorption makes \(OE\) one floor and \(OOE\)
-two, so a band cycle has \(a+2b\) effective floors against \(2a+3b\) letters, about
-\(1.6\) times fewer, which is marginal since the per-step finance is already exact at
-leading order.
+Retained: exact run inequalities, the factor-and-shift OO consequence,
+conditional word algebra, and finite abstract-word computations.
+Withdrawn: the odd-run height cap, exact cycle mix, factor-free maximum
+bound, realized height/discrepancy identification, and forced fourteen-letter
+opening from height alone. Model zero-drift proportions are not cycle proportions.
 
 ## Open questions
 
-Whether a cyclic word over \(\{OE,OOE\}\) with the forced mix can be excluded. That is the
-question the refuted `J-cyclemin-ooo-inevitable` failed to settle from the other side, and
-nothing here changes its difficulty.
-
-Whether any sliver word closes at cycle scale. The census is exact but small; at the
-certified period the necklace count is astronomical and the sliver is a vanishing fraction
-of it, yet nothing excludes a sliver cycle. Its word would have \(OOE\)-runs of exactly
-three or four and \(OE\)-runs of one.
-
-Whether any result forces \(EE\) into every cycle. None does; if one did, part 5 would
-give \(M\ge m^4\) at once.
+Can a floor-aware argument establish a useful odd-run upper bound from
+cycle height? This repair does not investigate that question.
 
 ## Decision
 
-**CLOSE.** The stated theorem is delivered and the branch has no promotion criterion left:
-it is not a halt theorem, it does not open an attack, and its natural continuation is a
-direction the laboratory has already refuted. The result stands as a shape constraint.
+**CLOSE.** The overclaimed implication is withdrawn and the valid integer
+core is retained. Model calculations do not establish a cycle exclusion or
+termination theorem, and no new research branch is opened.
 
 ## Publication assessment
 
-Not publishable alone. Part 3 would be a useful paragraph inside Paper A's cycle section,
-where the financing and the run bookkeeping already live, and where the exponent
-improvement from \(2\) to \(9/4\) belongs next to the existing superquadratic statement.
+Only the explicitly quantified integer inequalities and conditional word
+identities may be cited as proved. The former height-to-alphabet result
+must not be used as a theorem about Juggler cycles.

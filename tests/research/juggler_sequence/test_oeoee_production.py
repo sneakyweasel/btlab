@@ -9,8 +9,10 @@ separated by an E-step, and the E-step's transparent nesting makes
 so that J^3 = floor(w^{3/2}), J^4 = floor(w^{3/4}), J^5 = floor(w^{3/8}) are
 functions of the single integer w.  The parities of J^2, J^3, J^4 are therefore
 constant on the level sets I_w = [w^{4/3},(w+1)^{4/3}), and only
-psi_1 = psi(n^{3/2}) varies inside a block.  Nothing is nested, so no Paper B
-estimate is needed -- unlike OOEEE, which carries floor(floor(n^{3/2})^{3/2}).
+psi_1 = psi(n^{3/2}) varies inside a block.  The inverse landing window
+has nested ceiling endpoints, but the parity phases are no longer nested,
+so no Paper B estimate is needed -- unlike OOEEE, which carries
+floor(floor(n^{3/2})^{3/2}).
 
 These tests check the exact identities, the block decomposition, the fiber, the
 1/16 share, the mean-square behaviour that Half B needs, the +1/27 bookkeeping,
@@ -63,6 +65,37 @@ def floor_three_quarters(n: int) -> int:
     return isqrt(isqrt(n**3))
 
 
+def ceil_rational_power(n: int, numerator: int, denominator: int) -> int:
+    """The least integer r with r^denominator >= n^numerator."""
+    target = n**numerator
+    if target == 0:
+        return 0
+    lo, hi = 0, 1
+    while hi**denominator < target:
+        hi *= 2
+    while lo + 1 < hi:
+        mid = (lo + hi) // 2
+        if mid**denominator < target:
+            lo = mid
+        else:
+            hi = mid
+    return hi
+
+
+def phi(n: int) -> int:
+    """Exact left endpoint of the inverse of floor(x^{3/4})."""
+    return ceil_rational_power(n, 4, 3)
+
+
+def exact_landing_bounds(m: int, k: int) -> tuple[int, int]:
+    """Exact V_k nested landing window [lo, hi)."""
+    lo = ceil_rational_power(m, 8, 3)
+    hi = ceil_rational_power(m + 1, 8, 3)
+    for _ in range(k - 1):
+        lo, hi = phi(lo), phi(hi)
+    return lo, hi
+
+
 def word5(n: int) -> str:
     letters, x = [], n
     for _ in range(5):
@@ -98,6 +131,35 @@ def test_exact_chain_and_fiber():
         m = j5
         assert m**8 <= w**3 < (m + 1) ** 8
     assert tested > 5_000
+
+
+def test_exact_inverse_interval_uses_nested_ceiling_endpoints():
+    for a in range(0, 20):
+        for b in range(a, 25):
+            lo, hi = phi(a), phi(b)
+            for n in range(max(0, lo - 2), hi + 2):
+                assert (lo <= n < hi) == (a <= floor_three_quarters(n) < b)
+
+
+def test_1015_falsifies_the_collapsed_power_fiber_but_not_the_nested_fiber():
+    n, m = 1015, 6
+    orbit = [n]
+    for _ in range(5):
+        orbit.append(J(orbit[-1]))
+    assert orbit == [1015, 32336, 179, 2394, 48, 6]
+    assert word5(n) == "OEOEE"
+    lo, hi = exact_landing_bounds(m, 2)
+    assert (lo, hi) == (586, 1017)
+    assert lo <= n < hi
+    assert 7**32 <= n**9 < 8**32  # floor(n^(9/32)) = 7, not 6
+
+
+def test_endpoint_transfer_beats_the_binding_saving_through_v6():
+    for k in range(2, 7):
+        s = F(3, 4) ** (k - 1)
+        relative_boundary_saving = F(5, 8) * s
+        binding_analytic_saving = F(1, 6) * s
+        assert relative_boundary_saving > binding_analytic_saving
 
 
 def test_rho_and_fiber_length():
@@ -241,6 +303,17 @@ def test_note_records_the_production():
     text = Path(NOTE).read_text(encoding="utf-8")
     assert "0.4801" in text and "0.5665" in text and "0.4927" in text
     assert "no exceptional set" in text
+    assert r"\Phi(a)=\lceil a^{4/3}\rceil" in text
+    assert "smooth-window statements only" in text
+    assert "model ceiling" in text
+    assert r"\lfloor1015^{9/32}\rfloor=7" in text
+
+    paper_c = Path("docs/theory/juggler_fate_almost_all_note.md").read_text(
+        encoding="utf-8"
+    )
+    assert "seven non-main terms" in paper_c
+    assert r"O_k(P^{-5s/8})" in paper_c
+    assert "fixed named estimate" in paper_c
 
 
 # --------------------------------------------------------------------------
@@ -448,7 +521,7 @@ def test_saving_law():
     # strictly better than the earlier (1/9)(3/4)^{k-1}, by a factor 3/2
     for k in range(2, 8):
         assert F(1, 6) * F(3, 4) ** (k - 1) == F(3, 2) * F(1, 9) * F(3, 4) ** (k - 1)
-    # positive for every k: the family never runs out of saving
+    # The formal fixed-k exponent stays positive; this is not a uniform-in-k bound.
     assert all(F(1, 6) * F(3, 4) ** (k - 1) > 0 for k in range(2, 40))
 
 
@@ -492,8 +565,8 @@ def test_second_derivative_test_constant():
     assert worst < 1.0
 
 
-def test_explicit_envelope_end_to_end():
-    # |16|O(m')| - Y|  <=  100 Y m'^{-4/9} (1+log m')^2, checked exactly.
+def test_smooth_window_explicit_envelope_end_to_end():
+    # The printed constant is audited on J_2^sm, not on the exact nested fiber.
     from math import log
 
     def ninth_root_floor(x):

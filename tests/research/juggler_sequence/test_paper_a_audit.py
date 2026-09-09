@@ -232,12 +232,62 @@ def test_the_new_bound_is_the_next_fan_member() -> None:
 # --- Section 5.6: the extended window, and the walk charge's ceiling ---
 
 
-def test_certified_denominators_reach_q14() -> None:
-    """OstrowskiSandwich.lean pins theta between 6195184/16785921 and 6306641/17087915."""
+def test_endpoint_denominators_and_lean_subwindow_are_distinguished() -> None:
+    """Lean pins the endpoint powers, but its named window instance stops at q_13."""
     q = A.theta_denominators()
     assert q[:15] == [1, 2, 3, 8, 19, 65, 84, 485, 1054, 24727, 50508,
                       125743, 176251, 301994, 16785921]
-    assert A.WINDOW_HI == q[14] == A.fan_length(55)      # the window ends where the fan does
+    assert A.LEAN_WINDOW_HI == q[13] == 301994
+    assert A.WINDOW_HI == q[14] == A.fan_length(A.WINDOW_ENDPOINT_FAN_INDEX)
+
+
+def test_half_open_window_excludes_the_fan_endpoint() -> None:
+    assert A.WINDOW_LAST_INCLUDED_FAN_INDEX == 54
+    assert A.fan_length(A.WINDOW_LAST_INCLUDED_FAN_INDEX) < A.WINDOW_HI
+    assert not A.fan_length(A.WINDOW_ENDPOINT_FAN_INDEX) < A.WINDOW_HI
+
+
+def test_upper_convergent_surplus_has_the_signed_decay_bound() -> None:
+    rows = A.upper_convergent_decay()
+    assert len(rows) >= 4
+    for row in rows:
+        assert A.o_min(row["q"]) == row["p"]
+        assert 0 < row["theta"] < row["surplus"] < row["surplus_upper"]
+    assert rows[-1]["surplus_upper"] < rows[0]["surplus_upper"]
+    for p, q, _a_next in A.convergents():
+        if 3**p < 2**q:
+            assert A.o_min(q) == p + 1
+
+
+def test_paper_companions_state_the_window_trust_boundary() -> None:
+    paper = (DOCS_THEORY / "juggler_finite_dynamics_note.md").read_text(encoding="utf-8")
+    packet = (DOCS_THEORY / "juggler_finite_dynamics_reviewer_packet.md").read_text(
+        encoding="utf-8"
+    )
+    canonical_map = (DOCS_THEORY / "juggler_finite_dynamics_formalization.md").read_text(
+        encoding="utf-8"
+    )
+    review_map = (
+        DOCS_THEORY.parents[1] / "juggler_review" / "juggler_finite_dynamics_formalization.md"
+    ).read_text(encoding="utf-8")
+    barrel = (
+        DOCS_THEORY.parents[1] / "formal" / "Problems" / "JugglerPaper.lean"
+    ).read_text(encoding="utf-8")
+    assert "The instantiated Lean theorem\n`theta_digitSum_le`" in paper
+    assert "it covers precisely \\(L_0,\\ldots,L_{54}\\) and excludes \\(L_{55}\\)" in paper
+    assert "what an anchor-normalized charge can exclude" in paper
+    assert "upper convergents" in paper
+    assert "what any charge can exclude" not in paper
+    assert "Within the length-only charges finance is already" not in paper
+    assert "using the explicit lower bound for the gap" in paper
+    assert "Only the classical\nvariation-versus-integral inequality itself remains prose" not in paper
+    assert "change of variables identifying that circle\nintegral" in paper
+    assert "not \\(L_{55}=q_{14}\\)" in packet
+    for formalization in (canonical_map, review_map):
+        assert "no named lean theorem instantiat" in formalization.lower()
+        assert "\\(L_0,\\ldots,L_{54}\\)" in formalization
+    assert "named Lean instance" in barrel
+    assert "scope `L < 301994`" in barrel
 
 
 def test_digit_sum_cap_is_the_sum_of_quotients() -> None:
@@ -255,8 +305,8 @@ def test_window_maximum_is_at_the_small_end() -> None:
     assert 9.3e-4 < w["max_2s_over_L"] < 9.4e-4
 
 
-def test_window_criterion_reproduces_the_printed_value() -> None:
-    """(2 ln n - 6)/(ln3 (ln n)^3) = 5.14e-3 at ln n = 17.07, as Theorem 5.8 prints."""
+def test_window_criterion_reproduces_the_printed_lower_bound() -> None:
+    """The certified gap lower bound is 5.14e-3 at ln n = 17.07."""
     assert abs(A.window_criterion(17.07) - 0.00514) < 1e-4
 
 

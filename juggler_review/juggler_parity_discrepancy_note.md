@@ -141,7 +141,9 @@ level-3 kernel. Section 3.5 proves the depth-\(\le3\) theorems on
 sub-dyadic intervals of length \(\ge P^{1/2}\) with a slowly varying
 twist attached, the form in which the companion paper [24] uses them.
 Theorem 5.5 localizes Theorem 5.3 to intervals of length \(\ge P^{29/48+\delta}\),
-which covers them.
+as a separate short-interval theorem. Its threshold does not reach the
+\(P^{37/64}\) broad inverse scale of the proposed \(OOOEEE\) and
+\(OOEOEE\) productions, so no production is deduced from it here.
 
 The logical dependence of the counting theorems is
 \[
@@ -4253,14 +4255,18 @@ depth-2 strength \(P^{23/24}\) of the exact level-2 waves
 
 ### Localization of the kernel theorem
 
-Theorem 5.3 is stated on a dyadic block. The companion [24] needs it on the
-preimage intervals \(I(m')=[m'^{32/9},(m'+1)^{32/9})\), of length
-\(\asymp P^{23/32}\), for the reason Section 3.5 gives for the
-depth-\(\le3\) theorems: a production is counted on the preimage intervals
-of its landing points. This subsection proves it there. As in Section 3.5
-the proof is the proof already given, with the number of summands in place
-of \(P\) wherever the number of summands enters, and the content is the
-inventory of terms that do *not* scale. Here one of them dominates the
+Theorem 5.3 is stated on a dyadic block. This subsection asks how far its
+proof localizes. An earlier application identified the relevant companion
+intervals as \(I(m')=[m'^{32/9},(m'+1)^{32/9})\), of length
+\(\asymp P^{23/32}\). Those are the \(OOEEE\) intervals of Corollary 4.13,
+whose landing exponent is \(9/32\), not the intervals for the proposed
+\(OOOEEE\) and \(OOEOEE\) productions. The latter words have landing
+exponent \(27/64\), hence broad inverse scale \(P^{37/64}\), below the
+threshold proved here. The result below is therefore a standalone
+short-interval theorem, not a production theorem for [24]. As in Section
+3.5 the proof is the proof already given, with the number of summands in
+place of \(P\) wherever the number of summands enters, and the content is
+the inventory of terms that do *not* scale. Here one of them dominates the
 rest, and it is not the one the architecture suggests.
 
 **Two kinds of cost.** Write a cost on an interval \(I\subseteq(P,2P]\) of
@@ -4357,7 +4363,8 @@ uniformly in \(k\), in \(g\), and in the position of \(I\).
 *Proof.* The twist first. By Lemma 4.10 applied after the \(h_1\)
 differencing of Step 1, with
 \(\mathrm{TV}(\Delta_{2h_1}g)\le2h_1\lvert I\rvert\sup\lvert g''\rvert
-\le0.26\,P^{1/48+23/32+1/24-23/16}=0.26\,P^{-21/32}\),
+\le0.26\,Y P^{1/48+1/24-23/16}
+=0.26\,Y P^{-11/8}\le0.26\,P^{-3/8}\),
 the twist costs a factor \(1+o(1)\) and every sum below is untwisted; the
 maximum over initial sub-intervals it introduces is harmless because the
 bound proved is nondecreasing in \(\lvert I\rvert\).
@@ -4375,15 +4382,22 @@ and the second term is at most the first exactly when
 \(y\ge\tfrac{25}{48}+\tfrac8{96}=\tfrac{29}{48}\), with equality at the
 endpoint; \(\delta>0\) makes the inequality strict. \(\square\)
 
-At \(y=\tfrac{23}{32}\) the unit chain ends at \(P^{533/768}\) against a
-target \(P^{17/24}=P^{544/768}\), a margin of \(P^{11/768}\).
+At the admissible reference length \(y=\tfrac{23}{32}\) the unit chain ends
+at \(P^{533/768}\) against a target
+\(P^{17/24}=P^{544/768}\), a margin of \(P^{11/768}\). This is arithmetic
+inside the theorem's range, not the scale of the two proposed productions.
 
 Three remarks. First, the theorem does **not** reach \(P^{1/2}\), where
 Section 3.5 leaves Theorems 4.11 and 4.12: \(\tfrac{29}{48}>\tfrac12\), and
 the obstruction is the transition term rather than the nesting. The
-companion's intervals are longer than \(P^{29/48}\), so nothing it needs is
-lost, but a shorter localization would need Lemma 3.8's third term handled
-per window rather than absorbed. Second, the loss is entirely in the
+proposed productions lie at the shorter broad scale \(P^{37/64}\). Formally
+substituting \(y=37/64\) into the two-term bookkeeping bound leaves a saving
+\((37/64-25/48)/8=11/1536\) below the trivial length, but that substitution
+lies outside the theorem just stated and does not transport the exact floor
+and parity restrictions of a production. It is a possible salvage proof
+obligation, not a result of this paper. A shorter localization would need
+that transport justified, with Lemma 3.8's third term retained rather than
+silently absorbed. Second, the loss is entirely in the
 admissible length; the saving is the printed \(P^{-1/96}\) and the
 constants are the printed constants, because no step was replaced. Third,
 the earlier estimate in Section 8 that the per-window absolute costs are
@@ -6692,13 +6706,16 @@ Two localization facts, stated so they cannot be confused.
 1. Section 3.5 proves the depth-\(\le3\) discrepancy estimates
    (Theorems 4.11 and 4.12) on sub-dyadic intervals of length
    \(\ge P^{1/2}\) with a slow twist. Corollary 4.13 is the only
-   localization this paper supplies to [24].
+   localization in this paper that presently supplies a production
+   to [24].
 2. Theorem 5.3 is a dyadic-block statement; Theorem 5.5 localizes it
-   to intervals of length \(\ge P^{29/48+\delta}\), which includes the
-   \(P^{23/32}\) the companion needs, at the same exponent. The
-   even-block productions \(OOOEEE\) and \(OOEOEE\) are therefore
-   available. The threshold \(29/48>1/2\) is above the one in item 1,
-   so the two localizations are not interchangeable.
+   to intervals of length \(\ge P^{29/48+\delta}\), at the same
+   exponent. The \(P^{23/32}\) interval belongs to the already-treated
+   \(OOEEE\) word. The proposed \(OOOEEE\) and \(OOEOEE\) words land at
+   exponent \(27/64\), so their broad inverse scale is \(P^{37/64}\);
+   since \(37/64<29/48\), Theorem 5.5 as stated does not make those
+   productions available. The threshold \(29/48>1/2\) is also above
+   the one in item 1, so the two localizations are not interchangeable.
 
 *What each new depth buys.* Every new certificate class enters the
 contagion recursion of [24] as a production: a word \(w\) of fair
@@ -6707,30 +6724,35 @@ probability \(P_w\) landing at scale \(x^{e_w}\) contributes
 preimage intervals of the landing points — intervals of length
 \(x^{1-e_w}\), which is why Section 3.5 localizes Theorems 4.4 and 4.7
 to sub-dyadic intervals. Through Corollary 4.13 the \(OOEEE\)
-production on even blocks raises the contagion exponent from
-\(\lambda^{**}=0.4480\) to \(\lambda^{***}=0.5392\), the rate threshold
-of the almost-all reformulation from \(0.552\) to \(0.461\), and the
-least depth constant of its conditional theorems from \(20\) to
-\(18\). Those are the dividends of the depth-\(\le3\) localization.
+production on even blocks raises the pairing-only baseline
+\(\lambda_{\rm pair}=0.4480\) to \(\lambda^{***}=0.5392\), the
+corresponding rate threshold from \(0.552\) to \(0.461\), and the least
+depth constant from \(20\) to \(18\). The current elementary baseline,
+after the later \(V_k\) productions, is instead
+\(\lambda^{**}=0.4926\), with rate threshold \(0.5074\) and least depth
+constant \(19\). Those are distinct comparisons; the \(OOEEE\)
+dividend is the analytic one supplied by the depth-\(\le3\)
+localization.
 The localized kernel theorem (Theorem 5.5; the scaling architecture is
 indeed the same, but the per-window absolute costs reach \(P^{25/48}\),
 not the \(P^{7/16}\) of the depth-\(\le3\) localization, which is what
-puts its threshold at \(P^{29/48}\)) adds the words \(OOOEEE\) and
-\(OOEOEE\) and gives \(0.5561\); the level-3 kernel of Conjecture 7.3 would give more. (The
-\(0.5561\) is quoted from [24]. Applying the production rule stated
-above to those two words gives each fair probability \(2^{-6}\) at
-landing scale \(e_w=27/64\), hence a coefficient \(\tfrac1{27}\)
-apiece, and re-solving the recursion with both added returns
-\(0.6066\) rather than \(0.5561\); the printed figure corresponds to
-about a quarter of that added mass. The discrepancy is in the
-conservative direction and is recorded in the audit ledger rather than
-resolved here, since the weight a localized cylinder actually
-contributes is [24]'s to fix, not this paper's.)
+puts its threshold at \(P^{29/48}\)) adds no production at its stated
+range. Its two-term bookkeeping, evaluated formally at \(37/64\), has
+a residual saving \(11/1536\), but the theorem does not state that
+shorter estimate and no argument here transports the exact floor and
+parity restrictions of the production. This is a possible salvage
+proof obligation, not a theorem. If future work established both
+words with their fair weights, each would have probability \(2^{-6}\)
+at landing scale \(e_w=27/64\), hence coefficient \(\tfrac1{27}\), and
+the production rule above would return \(0.6066\). The quoted
+\(0.5561\) does not follow from that rule and is retracted;
+neither number is a proved dividend of Theorem 5.5.
 Each depth also raises the certificate density of Corollaries 4.9 and
 6.4 and the constants of the Tao-type reduction. These are the
-quantitative dividends of the program, and they are real. The
-strongest of them this paper proves for [24] is now Theorem 5.5, the
-localized kernel, and with it the depth-\(\le3\) localization.
+quantitative dividends of the proved depth-\(\le3\) production. The
+strongest short-interval kernel statement in this paper is Theorem
+5.5, while the strongest localization currently supplied as a
+production to [24] remains Corollary 4.13.
 
 *What no depth can buy.* The frontier statement of [24] is that the
 odd starts in \((y,2y]\) whose orbit is still above a fixed floor after
@@ -6760,8 +6782,8 @@ would be needed is a saving uniform in the depth up to a factor
 \(2^{d/19}\), or a direct treatment of the exponential moment, neither
 of which this paper offers.
 
-(The two contagion exponents above are roots of the same recursion and
-differ by exactly one term. \(\lambda^{**}=0.4480\) solves
+(The pairing-only and \(OOEEE\) exponents above are roots of the same
+recursion and differ by exactly one term. \(\lambda_{\rm pair}=0.4480\) solves
 \(2^{-\lambda}+\tfrac19(\tfrac38)^{\lambda}
 +\tfrac29(\tfrac34)^{\lambda}=1\), and \(\lambda^{***}=0.5392\) solves
 it with \(\tfrac19(\tfrac9{32})^{\lambda}\) added --- that term *is*
@@ -6774,9 +6796,10 @@ floor powers — depth four completely, depth five for the two
 contractors — with a bound whose critical piece is the level-2 wave;
 it identifies the level-3 kernel as the next analytic object; and
 through the depth-\(\le3\) localization of Section 3.5 it supplies
-constants to the termination reduction of [24]. It does not localize
-Theorem 5.3, and it does not approach the infinite-depth problem
-that the termination question is.
+constants to the termination reduction of [24]. Theorem 5.5 does
+localize Theorem 5.3, but not far enough at the printed saving to
+supply the two proposed length-six productions, and it does not
+approach the infinite-depth problem that the termination question is.
 
 ![The theorem flow of the paper. The exact finite-itinerary calculus of the companion manuscript feeds the contraction certificates; the discrepancy calculus with the kernel theorem counts every O-rooted itinerary class through depth four and the two length-five contractors (certified-descent density 7/8), leaving the level-3 kernel — and with it almost-all descent — open.](figures/juggler_frontier.png){width=100%}
 

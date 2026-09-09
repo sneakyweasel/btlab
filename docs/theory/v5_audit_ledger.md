@@ -5,6 +5,16 @@ Sections 10 and 14. Probe: `research.juggler_sequence.v5_audit`. A
 script check confirms consistency of what is printed; it is not a
 proof.
 
+**Review-scope notice (9 September 2026).** The rows below audit the
+smooth reference window \(J_5^{\rm sm}\) used in the printed constant
+calculation, not the exact nested Juggler landing fiber
+\(J_5^{\rm ex}\). The exact fiber has iterated ceiling endpoints rather
+than the formerly collapsed monomial endpoints. The endpoint correction
+is lower order than the binding saving, so the fixed-depth asymptotic
+exponent and root bookkeeping transfer, but the audited constant
+\(4000\) and finite census ratio do not automatically transfer. No
+exact-fiber constant is certified here.
+
 T1 is Paper B Lemma 3.5 (Vaaler) and is cited, not re-derived. Lemmas
 10–11 and Proposition 14 are already **EXACT — HUMAN PROOF**. Every
 displayed constant in Section 14 is recomputed from T1–T5 at the
@@ -34,7 +44,9 @@ displayed constant in Section 14 is recomputed from T1–T5 at the
 | Seven-term root \(0.4924\) | script | consistent; rate \(0.5076\); least \(C\) still \(19\) |
 
 The elementary route has a uniform power saving \(P^{-27/512}\).
-Proposition 13 meets the ledger bar **EXACT — HUMAN PROOF**. Net
-bookkeeping is \(+1/729\) at scale \(243/2048\). The promotion of
+Proposition 13 meets the ledger bar **EXACT — HUMAN PROOF** at the
+asymptotic level, with an unspecified enlarged implicit constant on the
+exact fiber; the numeral \(4000\) is only the smooth-window audit above.
+Net bookkeeping is \(+1/729\) at scale \(243/2048\). The promotion of
 \(\lambda^{**}\) from \(0.4916\) to \(0.4924\) is then bookkeeping.
 Later \(V_k\) are not opened here.

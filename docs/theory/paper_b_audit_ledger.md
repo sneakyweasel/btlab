@@ -947,7 +947,7 @@ condition; the uselessness of \(49P^{-1/16}\); and the fact that
 \(23P^{19/24}\) is *not* below \(P^{7/8}\). In each the warning is the
 content and the attribution was not.
 
-## The localized-kernel dividend 0.5561 does not reconcile
+## The localized-kernel application used the wrong scale; both advertised dividends are retracted
 
 Section 8 states the production rule — a word \(w\) of fair
 probability \(P_w\) landing at scale \(x^{e_w}\) contributes
@@ -965,26 +965,43 @@ The recursion itself also checks. Solving
 +\tfrac19\bigl(\tfrac9{32}\bigr)^{\lambda}=1
 \]
 gives \(0.539180\), against the printed \(\lambda^{***}=0.5392\); and
-dropping the last term gives \(0.448017\) against \(\lambda^{**}=0.4480\).
+dropping the last term gives \(0.448017\) against the pairing-only
+baseline \(\lambda_{\rm pair}=0.4480\). The current elementary
+\(\lambda^{**}\) is \(0.4926\), after the later \(V_k\) productions.
 
-**What does not reconcile is \(0.5561\).** The two words a localized
-Theorem 5.3 would add, \(OOOEEE\) and \(OOEOEE\), both have \(d=6\) and
-both land at \(e_w=27/64\), so the rule gives each a coefficient
-\(2^{-6}/(27/64)=\tfrac1{27}\). Re-solving with both added returns
-\(0.606635\). The printed \(0.5561\) instead requires an added
-coefficient of \(0.01812\) at that scale, against the rule's
-\(\tfrac2{27}=0.07407\) — a ratio of \(0.245\), near a quarter.
+**The application fails one step earlier, at the interval scale.** The
+two proposed words \(OOOEEE\) and \(OOEOEE\) both have \(d=6\) and land
+at \(e_w=27/64\). Their broad inverse scale is therefore
+\(P^{1-e_w}=P^{37/64}\), not \(P^{23/32}\). The latter is the inverse
+scale of the already-treated \(OOEEE\) word, whose landing exponent is
+\(9/32\). Theorem 5.5 retains the printed \(P^{-1/96}\) saving only for
+intervals of length at least \(P^{29/48+\delta}\), and
+\[
+\frac{37}{64}=\frac{111}{192}<\frac{116}{192}=\frac{29}{48}.
+\]
+Thus its stated theorem does not make either production available.
 
-Three readings, and this ledger does not choose between them: the
-figure may be stale; the localization may recover only part of each
-cylinder, so that \(P_w\) is not the fair \(2^{-6}\); or \(0.5561\) may
-already net off a loss the sentence does not mention. Two points in
-mitigation. The discrepancy runs in the conservative direction — the
-rule would give a *larger* dividend than the paper claims, so nothing
-is overstated. And the quantity is [24]'s, not this paper's: what
-weight a localized cylinder contributes is fixed there.
+The theorem's two-term bookkeeping display can be evaluated formally at
+\(y=37/64\). Its absolute tail then lies below the trivial interval
+length by
+\[
+\frac{37}{64}-\frac{7(37/64)+25/48}{8}=\frac{11}{1536}.
+\]
+That is not a new short-interval theorem: the substitution lies outside
+Theorem 5.5's hypothesis, and neither the exact floor fibers nor the
+extra parity restriction of the production have been transported.
+Recovering a weaker saving is a proof obligation.
 
-Recorded so that a reader who recomputes hits the same wall knowingly.
+**The coefficient discrepancy is consequently conditional twice.** If
+future work established both full cylinders with fair weights, the rule
+would give each coefficient \(2^{-6}/(27/64)=\tfrac1{27}\), and
+re-solving with both added would return \(0.606635\). The previously
+quoted \(0.5561\) requires total added coefficient \(0.01812\), about a
+quarter of \(2/27\), and has no derivation from the stated rule. Since
+the localized production itself is unproved, neither \(0.5561\) nor
+\(0.606635\) is a theorem-level dividend. The manuscript now retracts
+the application while retaining Theorem 5.5 as a standalone human
+proof.
 
 ## The Lemma 6.2 edge search hunts for something that cannot exist
 
@@ -7598,8 +7615,10 @@ majorant or endpoint term exceeds the new target.
 **Decision.** The stronger \(P^{-1/24}\) localization does not follow
 from this architecture: its partial-end-cell term forces the
 \(a=1/48\) balance.  The repaired \(P^{-1/48+\varepsilon}\) estimate is
-still a power saving and is sufficient for the proposed `OOEOEE`
-production.  This entry records the proof chain, not its integration:
+still a power saving on the broad source interval, but it does not by
+itself transport the exact sixth-letter parity and floor-fiber condition
+of the proposed `OOEOEE` production. This entry records the analytic
+proof chain, not that production or its integration:
 Theorem 6.3, its theorem-ledger row, and downstream quotations still
 print \(43/48\) and require a coordinated correction before the repair
 is promoted as an official theorem.  No termination claim is made.

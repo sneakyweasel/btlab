@@ -27,6 +27,7 @@ import Problems.JugglerPaper
 #print axioms Problems.Juggler.budgetedWord_eq_hugWord
 #print axioms Problems.Juggler.cf_lower_prefix
 #print axioms Problems.Juggler.cf_upper_prefix
+#print axioms Problems.Juggler.circleMean
 #print axioms Problems.Juggler.comparison_fails_upward
 #print axioms Problems.Juggler.cross_mul_pow
 #print axioms Problems.Juggler.cycPred

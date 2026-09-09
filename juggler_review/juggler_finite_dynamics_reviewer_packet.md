@@ -19,8 +19,9 @@ The former single note has been split into two manuscripts:
   reduced base (Theorem 5.3), hug adversary (Theorem 5.4), word
   identity (Lemma 5.6), Denjoy--Koksma over certified Ostrowski
   blocks (Theorem 5.7), and the census-free window theorem on
-  \([50508,16785921)\) (Theorem 5.8), which covers the whole
-  semiconvergent fan and bounds the charge --- the kill
+  \([50508,16785921)\) (Theorem 5.8), which covers the nonendpoint
+  fan members \(L_0,\ldots,L_{54}\), but not \(L_{55}=16785921\),
+  and bounds the charge --- the kill
   comparison against \(\theta(L)\) stays per-length. The kill
   table gives
   \(L\ge 176251\) at the laboratory floor \(26254995\)
@@ -134,7 +135,8 @@ Section 5 couples the states through one closed exponent walk:
 transport to a reduced base, the hug adversary, the itinerary
 identity, and Denjoy--Koksma over certified Ostrowski blocks
 give a census-free envelope on \([50508,16785921)\), covering the
-whole semiconvergent fan and bounding the charge; the kill
+nonendpoint fan members \(L_0,\ldots,L_{54}\), but not the endpoint
+\(L_{55}=16785921\), and bounding the charge; the kill
 comparison against \(\theta(L)\) stays per-length. The kill
 table yields \(L\ge 176251\) at the laboratory floor, and a
 certified evaluation of the same criterion at the second floor
@@ -193,18 +195,18 @@ Proposition 7.4 says nothing about the deterministic shift).
 | Lean leftover \(84\) or \(\ge 85\) | **EXACT — LEAN VERIFIED** | Appendix A companion; formalization lag relative to Theorem 4.6 |
 | Laboratory descent floor \(26254995\) (Proposition 5.1); raised cutoff \(50508\) (Theorem 5.2) | **COMPUTATIONALLY VERIFIED** | certified first-passage input plus the Theorem 4.6 table; not Lean |
 | Transport to a reduced base (Theorem 5.3) | **EXACT — HUMAN PROOF** | Lean in log form (`cycleMin_transport`); \(n\ge 400\) hypothesis |
-| Hug charge domination (Theorem 5.4) | **EXACT — HUMAN PROOF** | maximisation Lean (`hug_charge_maximal`); strict uniqueness human, unused by kills |
-| Rotation average \(C_*\) (Proposition 5.5) | **EXACT — HUMAN PROOF** | Laplace bound Lean (`rotationAverage_gap`); ergodic identification classical prose |
+| Hug charge domination (Theorem 5.4) | **EXACT — LEAN VERIFIED** | maximisation and strict uniqueness Lean (`hug_charge_maximal`, `hug_charge_unique`) |
+| Rotation average \(C_*\) (Proposition 5.5) | **EXACT — HUMAN PROOF** | Laplace bound `rotationAverage_gap` and convergence to the circle integral are Lean; the change of variables identifying `circleMean n'` with the displayed `rotationAverage (log n')` remains prose |
 | Itinerary identity (Lemma 5.6) | **EXACT — LEAN VERIFIED** | `budgetedWord_eq_hugWord` |
-| Denjoy--Koksma block envelope (Theorem 5.7) | **EXACT — HUMAN PROOF** | DK classical, stated in §5.5 with the \(\alpha\to\theta\) coordinate change; per-block hypotheses Lean (`theta_convergent_quality`, `theta_block_permutations`) |
-| Census-free window envelope on \([50508,16785921)\) (Theorem 5.8) | **EXACT — HUMAN PROOF** | digit caps Lean and structural (\(s(L)\le47\) below \(q_{13}\), \(s(L)\le b+47\) above); the scan sharpens a constant on the old sub-window. Bounds the **charge** only — the kill comparison against \(\theta(L)\) remains per-length |
+| Denjoy--Koksma block envelope (Theorem 5.7) | **EXACT — HUMAN PROOF** | analytic and orbit halves are Lean (`denjoy_koksma_rotation`, `denjoy_koksma_blocks`, `hugCharge_sub_circleMean_le`); the printed any-convergent scope and `circleMean`-to-explicit-\(C_*\) bridge remain human |
+| Census-free window envelope on \([50508,16785921)\) (Theorem 5.8) | **EXACT — HUMAN PROOF** | the named Lean cap and constant-window instance stop at \(L<q_{13}=301994\); the extension is the human decomposition \(L=bq_{13}+r\) with \(s(L)\le b+47\). The half-open window covers \(L_0,\ldots,L_{54}\), not \(L_{55}=q_{14}\). Bounds the **charge** only — the kill comparison against \(\theta(L)\) remains per-length |
 | Kill table, period \(\ge 176251\) (Theorem 5.9) | **COMPUTATIONALLY VERIFIED** | kill template Lean (`cycleMin_hug_kill_criterion`); per-length evaluation certified computation |
 | Second floor \(162849448\), period \(\ge 478245\) (Corollary 5.10) | **COMPUTATIONALLY VERIFIED** | certified evaluation of the same criterion on a length inside the window; the window bounds the charge, the kill stays per-length; **not** an extension of Theorem 5.8 |
 | Third floor \(350000000\), period \(\ge 780239\) (Corollary 5.11) | **COMPUTATIONALLY VERIFIED** | certified evaluation of the same criterion on a length inside the window; the window bounds the charge, the kill stays per-length; **not** an extension of Theorem 5.8 |
 | Four-block expanding chain \(1999\to\cdots\to887471\) (Section 6) | **EXACT — LEAN VERIFIED** | one certified hard path; not a growth theorem |
 | Even and odd-to-even starts have uniform short certificates (Section 6) | **EXACT — LEAN VERIFIED** | not all descent certificates |
 | No descent certificate \(\Rightarrow\) odd-to-odd | **EXACT — LEAN VERIFIED** | one direction only; complement of the short-certificate remark |
-| Companion context (Section 6.1): envelope as descent step, cycle basins contagious, cycles at the critical odd share, floor stratifies the failure set, floor as testable target | **imports from Paper C** (Theorems 1, 3, 4, Section 6; census OBSERVATION) | context only — excludes no cycle, bounds no basin from above; the convergent/semiconvergent claim for \(176251, 301994, 478245, 780239\) is elementary arithmetic |
+| Companion context (Section 6.1): envelope as descent step, cycle basins contagious, cycle odd share strictly above and near the critical share in the quantified regime, floor stratifies the failure set, floor as testable target | **imports from Paper C** (Theorems 1, 3, 4, Section 6; census OBSERVATION) | context only — excludes no cycle, bounds no basin from above; the convergent/semiconvergent claim for \(176251, 301994, 478245, 780239\) is elementary arithmetic |
 
 ## Claim map — Paper B
 
