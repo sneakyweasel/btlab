@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "canonical_source": "docs/theory/juggler_finite_dynamics_note.md",
-  "status": "preprint; no external deposit performed",
+  "status": "preprint; Zenodo 10.5281/zenodo.22676453 (2026-09-09, v1.0.0)",
   "verification_scope": "File provenance only. Mathematical trust boundaries are in the manuscript and reviewer packet.",
   "tools": {
     "pandoc": "pandoc.EXE 3.6.3",

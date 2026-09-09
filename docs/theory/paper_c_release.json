@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "canonical_source": "docs/theory/juggler_fate_almost_all_note.md",
-  "status": "preprint; no external deposit performed",
+  "status": "preprint; Zenodo 10.5281/zenodo.22678165 (2026-09-09, v1.0.0)",
   "verification_scope": "File provenance only. Mathematical trust boundaries are in the manuscript and PAPER_C_BUILD.md.",
   "tools": {
     "pandoc": "pandoc.EXE 3.6.3",
@@ -26,7 +26,7 @@
     {
       "path": "docs/theory/PAPER_C_BUILD.md",
       "mode": "text",
-      "sha256": "5fe7ea02b3e8a3e4adeed457c3e267d08000928654f59ae6e2228ba48e0e46eb"
+      "sha256": "c3165b08dffc3d28d9d70c599387e2dbff360506128cb42a36e0be3ed3dcc202"
     },
     {
       "path": "docs/theory/figures/paper_c_decomposition.png",

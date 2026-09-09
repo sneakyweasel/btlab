@@ -145,8 +145,8 @@ export function FanExplorer({ compact = false }: FanExplorerProps) {
       <Movement number={3} title="What it does not buy" question="why can this never become a halt theorem?">
         <FanHierarchy />
         <p className="text-sm text-muted">
-          Exhausting the fan needs a floor of {formatSci(FAN_EXHAUST_NMAX)}; passing
-          q₁₄ itself needs {formatSci(FAN_Q14_NMAX)}. Corollary 5.14 is conditional
+          Finance n_max at L₅₄ is {formatSci(FAN_EXHAUST_NMAX)}; the last member
+          L₅₅ = q₁₄ needs {formatSci(FAN_Q14_NMAX)}. Corollary 5.14 is conditional
           on a floor nobody has certified. The mechanism is on{" "}
           <Link to="/play/walk">Walk charge</Link>; the method ceiling is on{" "}
           <Link to="/play/ceiling">Ceiling</Link>.

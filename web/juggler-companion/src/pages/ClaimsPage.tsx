@@ -5,7 +5,28 @@ import {
   PAPER_C_CLAIM_ROWS,
   PAPER_C_NOT_CLAIMED,
 } from "../content/claims";
+import { paperByLetter, paperDoiHref, paperPdfHref } from "../content/papers";
 import { financeSnapshot } from "../juggler/finance";
+
+function PaperCite({ letter }: { letter: "A" | "C" }) {
+  const paper = paperByLetter(letter);
+  return (
+    <p className="prose-measure mt-2 text-sm text-muted">
+      Preprint{" "}
+      <a href={paperDoiHref(paper.doi!)} target="_blank" rel="noreferrer">
+        doi:{paper.doi}
+      </a>
+      {" · "}
+      <a href={paper.zenodo} target="_blank" rel="noreferrer">
+        Zenodo
+      </a>
+      {" · "}
+      <a href={paperPdfHref(paper)} target="_blank" rel="noreferrer">
+        PDF
+      </a>
+    </p>
+  );
+}
 
 export function ClaimsPage() {
   return (
@@ -16,6 +37,7 @@ export function ClaimsPage() {
           A scoreboard for a reviewer, in plain English. Lean names live in
           the manuscript. Arrival at 1 is not claimed.
         </p>
+        <PaperCite letter="A" />
       </header>
       <section>
         <h2 className="text-2xl">Definitions</h2>
@@ -79,6 +101,7 @@ export function ClaimsPage() {
       </section>
       <section>
         <h2 className="text-2xl">Paper C (fates)</h2>
+        <PaperCite letter="C" />
         <p className="prose-measure mt-2 text-sm text-muted">
           A different manuscript. Paper A Theorem 5.3 is walk-charge
           transport; Paper C Theorem 5.3 is the contagion V-ladder.

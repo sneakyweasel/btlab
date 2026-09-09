@@ -6,7 +6,7 @@ The publication is **Parity Statistics of Nested Floor Powers: Conditional Desce
 
 ## Files for Zenodo
 
-Upload `juggler_parity_discrepancy_note.pdf` and `paper_b_source_package.zip`. The latter contains the manuscript sources, build assets, exact validation script and results, and this guide. `paper_b_zenodo_fields.txt` and `paper_b_zenodo.json` provide prepared record fields. They are local preparation materials, not an existing deposit. Set the actual first-publication date in Zenodo. No DOI has been reserved or inserted.
+Upload `juggler_parity_discrepancy_note.pdf` and `paper_b_source_package.zip`. The latter contains the manuscript sources, build assets, exact validation script and results, and this guide. `paper_b_zenodo_fields.txt` and `paper_b_zenodo.json` provide prepared record fields. The reviewer kit `juggler_review/zenodo_paper_b/` holds the deposit-named PDF alias `Parity_Statistics_of_Nested_Floor_Powers.pdf` and generated `ZENODO_FIELDS.txt`. They are local preparation materials, not an existing deposit. Set the actual first-publication date in Zenodo. No DOI has been reserved or inserted.
 
 `paper_b_review.md` explains the original proof gaps and the scope of the replacement. The old 4 September working draft is preserved separately in the repository as `juggler_parity_discrepancy_note_2026_09_04.md`; it is not the publication source. Earlier theorem numbering is superseded.
 
@@ -32,7 +32,7 @@ python tools/validate_paper_b.py --output docs/theory/paper_b_validation.json
 
 The repository builder uses `docs/theory/` as the source directory and `tools/paper_b/` for its assets. Review the PDF after every changed build; rebuilds can differ at the byte level because PDF metadata includes build information. `paper_b_build.json` records hashes of the actual delivered build, and `SHA256SUMS.txt` records the package files.
 
-After a repository rebuild, synchronize the Markdown and PDF copies in `juggler_review/` and the PDF in `web/juggler-companion/public/papers/`. The build command itself writes only its selected output directory. Run the repository's manuscript-mirror and documentation-link checks before preparing another release. The copies delivered by this review are synchronized.
+A repository rebuild that writes to `docs/theory/` also synchronizes the Markdown and PDF copies in `juggler_review/`, the companion PDF, and `juggler_review/zenodo_paper_b/`. Use `python tools/build_paper_b.py --sync` to repair those exports without recompiling, and `--check` to verify them. A standalone package build still writes only its selected output directory. Run the repository's manuscript-mirror and documentation-link checks before preparing another release.
 
 ## Validation scope
 

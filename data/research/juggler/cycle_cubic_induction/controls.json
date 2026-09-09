@@ -1,0 +1,193 @@
+{
+  "scope": {
+    "odd_source_range": [
+      3,
+      65535
+    ],
+    "words": [
+      "O",
+      "OE",
+      "OOE",
+      "OOEOE",
+      "OOEOOEOE",
+      "OOEOOEOOEOE",
+      "OOEOOEOOEOEOOEOOEOE"
+    ],
+    "rank_branch_length_range": [
+      1,
+      32
+    ],
+    "rank_pairs": 1024,
+    "archived_threshold_cycles": 7,
+    "cycle_search": false
+  },
+  "arithmetic": "Exact integers throughout; no numerical roots or logarithms",
+  "sources": [
+    {
+      "word": "O",
+      "numerator": 3,
+      "denominator": 2,
+      "odd_sources_checked": 32767,
+      "parity_valid_odd_endpoints": 16379,
+      "also_cubic_height": 16379,
+      "projection_failures": []
+    },
+    {
+      "word": "OE",
+      "numerator": 3,
+      "denominator": 4,
+      "odd_sources_checked": 32767,
+      "parity_valid_odd_endpoints": 8181,
+      "also_cubic_height": 8181,
+      "projection_failures": []
+    },
+    {
+      "word": "OOE",
+      "numerator": 9,
+      "denominator": 8,
+      "odd_sources_checked": 32767,
+      "parity_valid_odd_endpoints": 4125,
+      "also_cubic_height": 4125,
+      "projection_failures": []
+    },
+    {
+      "word": "OOEOE",
+      "numerator": 27,
+      "denominator": 32,
+      "odd_sources_checked": 32767,
+      "parity_valid_odd_endpoints": 1002,
+      "also_cubic_height": 1002,
+      "projection_failures": []
+    },
+    {
+      "word": "OOEOOEOE",
+      "numerator": 243,
+      "denominator": 256,
+      "odd_sources_checked": 32767,
+      "parity_valid_odd_endpoints": 152,
+      "also_cubic_height": 152,
+      "projection_failures": []
+    },
+    {
+      "word": "OOEOOEOOEOE",
+      "numerator": 2187,
+      "denominator": 2048,
+      "odd_sources_checked": 32767,
+      "parity_valid_odd_endpoints": 14,
+      "also_cubic_height": 14,
+      "projection_failures": []
+    },
+    {
+      "word": "OOEOOEOOEOEOOEOOEOE",
+      "numerator": 531441,
+      "denominator": 524288,
+      "odd_sources_checked": 32767,
+      "parity_valid_odd_endpoints": 0,
+      "also_cubic_height": 0,
+      "projection_failures": []
+    }
+  ],
+  "archived_cycles": [
+    {
+      "threshold": 3,
+      "minimum": 3,
+      "period": 3,
+      "stages": 3,
+      "parity_mismatches_at_every_stage": 1,
+      "terminal_word": "OOE",
+      "actual_juggler_cycle": false
+    },
+    {
+      "threshold": 3,
+      "minimum": 4,
+      "period": 3,
+      "stages": 3,
+      "parity_mismatches_at_every_stage": 2,
+      "terminal_word": "OOE",
+      "actual_juggler_cycle": false
+    },
+    {
+      "threshold": 9,
+      "minimum": 9,
+      "period": 11,
+      "stages": 6,
+      "parity_mismatches_at_every_stage": 3,
+      "terminal_word": "OOEOOEOOEOE",
+      "actual_juggler_cycle": false
+    },
+    {
+      "threshold": 9,
+      "minimum": 10,
+      "period": 11,
+      "stages": 6,
+      "parity_mismatches_at_every_stage": 7,
+      "terminal_word": "OOEOOEOOEOE",
+      "actual_juggler_cycle": false
+    },
+    {
+      "threshold": 29,
+      "minimum": 35,
+      "period": 19,
+      "stages": 7,
+      "parity_mismatches_at_every_stage": 6,
+      "terminal_word": "OOEOOEOOEOEOOEOOEOE",
+      "actual_juggler_cycle": false
+    },
+    {
+      "threshold": 29,
+      "minimum": 31,
+      "period": 19,
+      "stages": 7,
+      "parity_mismatches_at_every_stage": 11,
+      "terminal_word": "OOEOOEOOEOEOOEOOEOE",
+      "actual_juggler_cycle": false
+    },
+    {
+      "threshold": 29,
+      "minimum": 34,
+      "period": 19,
+      "stages": 7,
+      "parity_mismatches_at_every_stage": 12,
+      "terminal_word": "OOEOOEOOEOEOOEOOEOE",
+      "actual_juggler_cycle": false
+    }
+  ],
+  "hidden_guard_examples": [
+    {
+      "s": 3,
+      "threshold": 27,
+      "states": [
+        81,
+        729,
+        27
+      ],
+      "odd_endpoints": true,
+      "hidden_even_guard": false
+    },
+    {
+      "s": 5,
+      "threshold": 125,
+      "states": [
+        625,
+        15625,
+        125
+      ],
+      "odd_endpoints": true,
+      "hidden_even_guard": false
+    },
+    {
+      "s": 101,
+      "threshold": 1030301,
+      "states": [
+        104060401,
+        1061520150601,
+        1030301
+      ],
+      "odd_endpoints": true,
+      "hidden_even_guard": false
+    }
+  ],
+  "uniform_endpoint_closure_proved": false,
+  "uniform_parity_closure_proved": false,
+  "no_cycle_proved": false
+}

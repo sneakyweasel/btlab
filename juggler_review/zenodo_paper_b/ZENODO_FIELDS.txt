@@ -1,0 +1,35 @@
+GENERATED FROM docs/theory/; do not edit this export.
+Prepared metadata only; no external record has been created.
+
+TITLE
+Parity Statistics of Nested Floor Powers: Conditional Descent Results for the Juggler Map
+
+CREATOR
+Cochin, Philippe
+Affiliation: none
+
+RESOURCE TYPE
+Publication / Preprint
+
+VERSION
+2026-09-09-conditional
+
+LICENSE
+cc-by-4.0
+
+PUBLICATION DATE
+Use the actual date this version is first made public.
+
+KEYWORDS
+Juggler map
+nested floor powers
+parity correlations
+discrepancy
+stopping time
+conditional descent
+
+DESCRIPTION (HTML)
+<p>The Juggler map applies the integer part of the square root at even positive integers and of the three-halves power at odd positive integers. Its finite itineraries lead to joint parity questions for compositions of floor powers. We give a self-contained conditional framework relating these parity statistics to descent below the initial value. Exact branch-indicator identities and a power envelope reduce finite descent certificates to explicit correlation estimates along prescribed formal chains. The classical second-derivative estimate gives an unconditional certificate class of natural density 3/4. Under stated finite-chain correlation hypotheses, the certificate classes of lengths at most four and five have densities 13/16 and 7/8, respectively. If every fixed-depth odd-rooted itinerary has its fair-share density, the set of starts admitting some finite power-envelope certificate has density one; no uniformity in depth is needed for this implication. We also record exact floor-defect identities, a Fourier criterion sufficient for the correlation hypotheses, and a shift-averaged cancellation estimate. The nested correlation and deterministic kernel estimates remain unproved here. In particular, the larger certificate densities and the density-one conclusion are conditional, and none asserts universal arrival at 1.</p>
+
+RELATED SOFTWARE
+https://github.com/sneakyweasel/btlab

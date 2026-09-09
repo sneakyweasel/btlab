@@ -42138,3 +42138,31 @@ threshold cycles. Exact minimum and maximum anchors do not recover the
 remaining upper unit cell, as R_3 shows. Offset recovery and phase continuity
 give no contradiction. Uniform wrong-parity intersection, the taller-cycle
 regime, and global no-cycle remain unproved.
+
+## 2026-09-09 — Exact Euclidean induction closure gate
+
+The user's "Proceed" authorized the first-ranked attack's bounded closure
+test. [Euclidean induction](problems/juggler_cycle_cubic_induction.md)
+records exact subtractive and accelerated rank-prefix returns, their
+tower and parity invariants, short endpoint identities for OE/OOE/OOEOE,
+and a telescoping formula for actual transported floor losses. A fixed
+word can compress at large sources without a uniform induction theorem.
+For every odd s>=3, the threshold block s^4 -> s^6 -> s^3 has odd
+endpoints and exact collapsed cells but an odd eliminated E-source.
+
+The exact verifier checks the original 32,767 odd sources in 3..65535
+against seven selected words, with no enlarged range. All admissible
+odd-endpoint samples satisfy their integer odd-projection cells; the
+length-19 word has zero admissible samples and supplies no positive
+endpoint evidence. Literal first returns also check 1,024 small rank
+pairs and all seven previously archived threshold cycles. No cycle
+search is performed. The registered statements are written proofs,
+not new Lean claims, and Paper A is not changed by this research gate.
+
+**Decision: PARK.** The endpoint-only omission of internal parity is
+refuted. A uniformly controlled arithmetic family including the guards,
+or a decreasing arithmetic quantity, remains unproved. Symbolic rank
+reduction alone ends at the original full-word condition. No general
+impossibility of guarded compression, wrong-parity theorem, cycle
+exclusion or new numerical bound is claimed.
+

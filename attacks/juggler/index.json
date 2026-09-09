@@ -591,6 +591,24 @@
       "nk_cluster": "Cubic-band order does not enforce actual parity"
     },
     {
+      "id": "cycle_cubic_induction",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_cubic_induction.py",
+      "test": "tests/research/juggler_sequence/test_cycle_cubic_induction.py",
+      "dossier": "docs/problems/juggler_cycle_cubic_induction.md",
+      "data_dir": "data/research/juggler/cycle_cubic_induction",
+      "lean": [],
+      "conjecture": [],
+      "decision": "PARK",
+      "ledger_ids": [
+        "J-cycle-cubic-euclidean-induction",
+        "J-cycle-cubic-return-compression",
+        "J-cycle-cubic-hidden-parity"
+      ],
+      "aliases": [],
+      "nk_cluster": "Euclidean induction does not discard parity guards"
+    },
+    {
       "id": "cycle_cyclic_seam",
       "kind": "branch",
       "probe": "src/research/juggler_sequence/cycle_cyclic_seam.py",

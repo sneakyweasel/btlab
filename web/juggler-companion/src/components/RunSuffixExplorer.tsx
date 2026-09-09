@@ -148,10 +148,10 @@ export function RunSuffixExplorer({ compact = false }: RunSuffixExplorerProps) {
               />
             </div>
             <p className="text-sm text-muted">
-              The whole word must be formally expanding, and no tail of it
-              beginning with an odd letter may be. That is the mirror of
-              Theorem 3.2(i). The leading-order reading is only valid with room
-              to spare — Movement 2 prices the constant.
+              Theorem 3.2(i) forces the whole word to expand. The leading-order
+              test (3/2)^a {">"} T(u) flags shapes that die once n is large
+              enough; it does not assert that every proper tail is formally
+              contracting. Movement 2 prices the constant.
             </p>
           </>
         ) : null}

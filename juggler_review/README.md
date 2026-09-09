@@ -42,7 +42,9 @@ https://sneakyweasel.github.io/btlab/
 ## Read this first
 
 1. [juggler_finite_dynamics_note.pdf](juggler_finite_dynamics_note.pdf)
-   is the current **Paper A** preprint. It includes the corrected rotation
+   is the current **Paper A** preprint
+   ([doi:10.5281/zenodo.22676453](https://doi.org/10.5281/zenodo.22676453),
+   [Zenodo](https://zenodo.org/records/22676453)). It includes the corrected rotation
    cells, full finite-window estimate, exact threshold table, updated Lean
    uniqueness result, scoped companion context, and explicit AI disclosure.
    Theorem 3.31 gives the computational eight-even-step exclusion.
@@ -80,7 +82,10 @@ https://sneakyweasel.github.io/btlab/
    (`carry_eq_fract_add_sub_fract`, `second_difference_product_rule`).
    Length 7/8 remain laboratory conjectures.
 3. [juggler_fate_almost_all_note.pdf](juggler_fate_almost_all_note.pdf)
-   — **Paper C**: *Fate Contagion in the Juggler Map and the
+   — **Paper C**
+   ([doi:10.5281/zenodo.22678165](https://doi.org/10.5281/zenodo.22678165),
+   [Zenodo](https://zenodo.org/records/22678165)):
+   *Fate Contagion in the Juggler Map and the
    Almost-All Reduction of Termination* (4 September 2026; first
    complete draft 3 September, revised the same day after a first
    external review; pairing and consistency pass 4 September).
@@ -134,8 +139,14 @@ the repository and from `formal/` run
 lake build Problems.JugglerPaper
 ```
 
-Paper A Zenodo deposit kit (one PDF, paste-ready fields):
-[zenodo_paper_a/](zenodo_paper_a/).
+Paper A Zenodo record
+[doi:10.5281/zenodo.22676453](https://doi.org/10.5281/zenodo.22676453)
+and deposit kit: [zenodo_paper_a/](zenodo_paper_a/).
+Paper B prepared deposit kit (no record yet):
+[zenodo_paper_b/](zenodo_paper_b/).
+Paper C Zenodo record
+[doi:10.5281/zenodo.22678165](https://doi.org/10.5281/zenodo.22678165)
+and deposit kit: [zenodo_paper_c/](zenodo_paper_c/).
 
 Repository: https://github.com/sneakyweasel/btlab/
 

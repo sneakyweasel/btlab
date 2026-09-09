@@ -1,4 +1,5 @@
 import { NavLink, Outlet } from "react-router-dom";
+import { PAPERS, paperDoiHref } from "../content/papers";
 
 const LINKS = [
   { to: "/", label: "Home", end: true },
@@ -55,6 +56,21 @@ export function Layout() {
       <main className="mx-auto max-w-6xl px-4 py-8">
         <Outlet />
       </main>
+      <footer className="border-t border-line">
+        <div className="mx-auto flex max-w-6xl flex-wrap gap-x-4 gap-y-1 px-4 py-3 text-sm text-muted">
+          {PAPERS.filter((paper) => paper.doi).map((paper) => (
+            <a
+              key={paper.letter}
+              href={paperDoiHref(paper.doi!)}
+              target="_blank"
+              rel="noreferrer"
+              className="text-muted no-underline hover:text-ink"
+            >
+              Paper {paper.letter} doi:{paper.doi}
+            </a>
+          ))}
+        </div>
+      </footer>
     </div>
   );
 }

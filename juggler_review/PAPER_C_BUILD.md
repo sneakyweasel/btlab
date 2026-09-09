@@ -1,6 +1,6 @@
 # Paper C — reproducible preprint build
 
-The canonical manuscript is [juggler_fate_almost_all_note.md](juggler_fate_almost_all_note.md). The 9 September 2026 revision is prepared for Zenodo as a mathematics preprint. It has not been deposited by this build process.
+The canonical manuscript is [juggler_fate_almost_all_note.md](juggler_fate_almost_all_note.md). The 9 September 2026 revision is the Zenodo preprint [doi:10.5281/zenodo.22678165](https://doi.org/10.5281/zenodo.22678165). A local rebuild does not create or update that record.
 
 ## Build and provenance
 
@@ -33,4 +33,4 @@ Development notes are historical. Where their statements differ, the corrected m
 
 ## Zenodo
 
-Use the generated metadata and field sheet for resource type Publication / Preprint, version 2026-09-09, English, open access, and CC BY 4.0, as for Paper A. The software remains under the repository's MIT license. Set the publication date to the actual date this version becomes public. No DOI, affiliation, ORCID or funding details are invented. The manuscript includes an AI-assistance disclosure and the author's responsibility statement.
+The published record is [doi:10.5281/zenodo.22678165](https://doi.org/10.5281/zenodo.22678165) ([Zenodo](https://zenodo.org/records/22678165)), version 1.0.0, 9 September 2026. Resource type Publication / Preprint, English, open access, CC BY 4.0. A rebuild writes local metadata only; it does not upload a new version. Later revisions should use that record's new-version operation. The manuscript includes an AI-assistance disclosure and the author's responsibility statement.

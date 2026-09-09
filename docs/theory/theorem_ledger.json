@@ -1,5 +1,38 @@
 [
  {
+  "id": "J-cycle-cubic-euclidean-induction",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For a finite sorted invariant set with rank permutation i->i+b modulo a+b, positive a,b, and chronological return words A,B, inducing on a prefix gives (a-b,b;A,AB) if a>b, or (a,b-a;AB,B) if b>a. Accelerating a=qb+r gives (r,b;A,A^q B), and b=qa+r gives (a,r;AB^q,B); a zero remainder gives the identity on the gcd-sized prefix. Return towers partition all original states, preserving a|A|+b|B|=L and letter counts. Exact parity predicates compose as P_AB(x)=P_A(x) AND P_B(F_A(x)). Therefore the full expanded tower representation retains exactly L original source-parity tests at every stage. For a primitive cycle the terminal single base carries the entire original fixed-point and parity condition. These first returns concern the finite invariant set, not every integer between its extrema. This is elementary symbolic induction with a faithful parity interpretation, not a uniform arithmetic-closure theorem, a lower bound on every possible representation, or a no-cycle proof. AI-assisted written proof; no new Lean or external novelty claim.",
+  "source": "docs/problems/juggler_cycle_cubic_induction.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_cubic_induction.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cycle-cubic-return-compression",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For positive integer x and O(x)=floor(x^(3/2)), E(x)=floor(sqrt x), chronological OE equals floor(x^(3/4)) exactly. If H=floor(x^(9/8)), then F_OOE(x) is H or H-1, so an odd output equals the largest odd integer at most x^(9/8). For x>=5, 0<=x^(27/32)-F_OOEOE(x)<2; hence an odd output is the odd projection. The same odd-output assertion holds for positive odd sources below 5 by x=1 and x=3 controls. For any fixed word, defining n_j=floor(n_(j-1)^alpha_j), p_j=product alpha up to j, q_j=p_k/p_j, and actual error eps_j=n_(j-1)^alpha_j-n_j, the loss telescopes exactly as x^p_k-n_k=sum_j[(n_j+eps_j)^q_j-n_j^q_j]. If every nonempty proper prefix, 1<=j<k, has p_j>p_k, it is less than 1+sum_(j<k)q_j n_j^(q_j-1). A sum at most 1 therefore suffices for odd projection; each such fixed word eventually satisfies this as x grows. This supplies no uniform word-independent bound and does not establish internal source parity, arbitrary Euclidean endpoint closure, or a no-cycle theorem. AI-assisted written proof with independent AI endpoint audit; no new Lean or external priority claim.",
+  "source": "docs/problems/juggler_cycle_cubic_induction.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_cubic_induction.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cycle-cubic-hidden-parity",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For every odd integer s>=3, take threshold b=s^3 and source x=s^4. The exact threshold map S_b makes the lower-to-lower first-return block s^4 -> s^6 -> s^3, since s^3<=s^4<s^6=b^2<b^3. Both endpoints are odd and the collapsed OE endpoint is exactly x^(3/4)=s^3, but the eliminated E source s^6 is odd; the actual Juggler map there gives s^9. Thus exact collapsed endpoint cells, odd endpoint parity and threshold cuts do not imply the original internal parity guard. This family occurs at unbounded cube thresholds, not every threshold, and its members are blocks rather than closed cycles. It refutes omitting internal parity, not short-word endpoint identities, guarded compression, or any full-cycle assertion. AI-assisted written proof with a separate AI audit and literal integer controls; no new Lean claim.",
+  "source": "docs/problems/juggler_cycle_cubic_induction.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_cubic_induction.py"
+  ],
+  "related_conjectures": []
+ },
+ {
   "id": "J-cycle-absolute-cell-grid-charge",
   "tag": "EXACT — HUMAN PROOF",
   "statement": "For a primitive exact threshold cycle S_b, or an actual Juggler cycle with minimum m>1 and maximum M<m^3, let L,o be its period and lower/odd count, T=log 3, Lambda=o log 3-L log 2>0, and A=(log m) exp(-(1-1/L)Lambda)>0. Then Lambda < exp(-A)/A times the finite sum over 0<=i<L of exp(-i T(A+1)/L), and exp(A) A(A+1)Lambda < A+1+L/T. The exact upper unit cells bound each logarithmic defect by 1/(y log y); the sorted grid bounds the total by a geometric sum. Along sequences with log m tending to infinity, log m=o(L), and Lambda log m tending to zero, this yields m(log m)^2 Lambda <= (1+o(1))L/log 3. In the explicitly conditional regime Lambda~c/L and polynomially growing m, this narrows the necessary scale to m(log m)^2<=(1+o(1))L^2/(c log 3). No uniform lower bound of order 1/L for Lambda is asserted. The result also holds for wrong-parity threshold cycles and does not prove a parity obstruction, no-cycle, or a new numerical period bound. AI-assisted written proof with a separate AI audit; no new Lean verification or independent human review claimed.",

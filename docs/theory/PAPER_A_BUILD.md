@@ -47,7 +47,12 @@ four reported boundaries; the descent floors remain supplied inputs. In
 `AxiomCheckPaperA.expected`. When the manuscript cites a different set of
 declarations, update the audit list and regenerate its expected output.
 
-The Zenodo files are a prepared preprint deposit. A build does not create or
-publish an external record. The author has no affiliation and has disclosed
-AI assistance throughout the work. The preprint does not claim peer review,
-universal termination, or exclusion of every nontrivial cycle.
+The published record is
+[doi:10.5281/zenodo.22676453](https://doi.org/10.5281/zenodo.22676453)
+([Zenodo](https://zenodo.org/records/22676453)), version 1.0.0,
+9 September 2026. A local build writes metadata only; it does not upload
+a new version. Later revisions should use that record's new-version
+operation. See [paper_deposits.md](paper_deposits.md). The author has no
+affiliation and has disclosed AI assistance throughout the work. The
+preprint does not claim peer review, universal termination, or exclusion
+of every nontrivial cycle.
