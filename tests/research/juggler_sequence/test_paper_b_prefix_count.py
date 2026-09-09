@@ -1,3 +1,4 @@
+# Historical Paper B audit: the 2026-09-04 snapshot is not the conditional publication.
 """The exact non-contracting count of Proposition 7.1, and Proposition 7.4's arc count.
 
 Proposition 7.1 bounded the number of length-d words with no contracting prefix by Hoeffding
@@ -20,7 +21,7 @@ import pytest
 from research.juggler_sequence import paper_b_prefix_count as B
 
 ROOT = Path(__file__).resolve().parents[3]
-PAPER = ROOT / "docs" / "theory" / "juggler_parity_discrepancy_note.md"
+PAPER = ROOT / "docs" / "theory" / "juggler_parity_discrepancy_note_2026_09_04.md"
 
 
 def surviving_words(d: int) -> list[str]:

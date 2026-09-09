@@ -1290,17 +1290,22 @@ This conditional global-order result is proved in
 `J-cycle-cubic-band-order`. It does not revive the withdrawn R<27/8
 alphabet or the unconditional Christoffel reduction.
 
-**Refuted extension:** exact integer floor closure, coprime counts,
-mechanical word, extrema parity, and formal expansion by themselves
-force a parity contradiction. At threshold b=9, the exact size-switched
+**Refuted extension:** exact prescribed-branch integer closure,
+coprime counts, mechanical word, extrema parity and formal expansion
+are mutually inconsistent, or suffice for full parity compatibility.
+At threshold b=9, the exact size-switched
 loop 9,27,140,11,36,216,14,52,374,19,82,9 satisfies these listed properties
 and has M<m^3, but uses the odd branch at even states 36,14,52.
 It is not a Juggler cycle. The size-switched map on [b,b^3), with its
 branch cut at b^2, preserves that finite interval without fixed points
 for every b>=3 (`J-cycle-threshold-relaxation`), so closed integer
 orbits of this relaxed map occur at arbitrarily high minima.
-Parity compatibility is the unproved requirement. The same example's
-3/11 mismatch fraction also defeats an unconditional one-third bound.
+Full parity compatibility is absent in this example. The desired
+uniform theorem that every threshold cycle has a wrong-parity state
+remains unproved: this example neither proves nor refutes it. This
+corrects the earlier logically reversed wording about a "parity
+contradiction". The same example's 3/11 mismatch fraction also defeats
+an unconditional one-third bound.
 
 Do not infer a no-cycle theorem or parity independence from the finite
 threshold survey, and do not treat the four capped large runs as escape.
@@ -1309,3 +1314,64 @@ with its wrong-parity set. Even that would leave actual cycles with
 M>=m^3 unresolved. Members: `cycle_cubic_band`,
 `J-cycle-cubic-band-order`, `J-cycle-threshold-relaxation`.
 
+
+## Cubic-band continuation: rounding tolerance and lost branch constants
+
+**Exact obstructions to weakened tests; no-cycle still PARK (9 September 2026).**
+The [same canonical dossier](problems/juggler_cycle_cubic_band.md) proves
+that all cycles at one threshold share a period and interlace, and gives
+a uniform log-log grid bound with error at most (1-1/L) times the surplus.
+These restrictions do not resolve absolute integer parity.
+
+**Refuted weakened criterion:** correct source parity, cubic-band rank
+rotation, coprime counts and one-sided power-rounding error below 2
+exclude cycles at all sufficiently large minima. For every odd b>=3,
+the finite parity projection R_b on odd [b,b^2] and even [b^2+1,b^3-1]
+has a nontrivial cycle with R_b(x) in {J(x),J(x)-1}. The inclusion of
+odd b^2 avoids a gap 3 at the seam. Whether every such cycle contains
+an altered edge remains unproved, and would itself exclude actual
+cubic-band cycles. Equal rotation fractions do not force equality of
+maps: S_3 has (3,5,11), while R_3 has (3,5,10), both with counts (2,1).
+
+**Refuted gap-only criterion:** exact same-branch image differences on sources >1,
+correct source parity and the global rank rule suffice for no-cycle.
+The map G=J-1 on odd x>=3 and G=J on evens has the exact 11-cycle
+13,45,300,17,69,572,23,109,1136,33,188,13, wholly below the cube of
+its minimum. All same-branch differences on sources >1 agree with those of J;
+strict nearest-even smooth-gap tests survive as well. Subtraction erases
+an additive constant for each branch. A successful gap argument must
+recover absolute floor-cell positions or couple these offsets.
+
+These are different maps, not counterexamples to Juggler no-cycle. The
+uniform wrong-parity intersection for the exact S_b remains the question,
+and the separate M>=m^3 regime remains open. New controls use only complete
+S_3, S_9, S_29 graphs and one R_b orbit at b=3,9,11,29,101; the old
+large caps and census were not expanded. Members:
+`J-cycle-threshold-common-period`, `J-cycle-cubic-sorted-grid`,
+`J-cycle-unit-perturbation`, `J-cycle-branch-offset-obstruction`.
+
+
+**Consolidation update (9 September 2026).** The six cubic-band structural
+results and scoped obstructions now have compiled Lean proofs, with canonical
+written proofs in Paper A Section 3.10. Earlier written-only status entries
+are historical. Formalization does not settle uniform absolute-cell
+wrong-parity intersection; the author authorized that next question.
+
+
+## Absolute floor cells: scoped outcomes, not a parity contradiction
+
+The authorized 9 September follow-up is
+[Absolute floor cells](problems/juggler_cycle_absolute_cells.md).
+For every b>=3, independent pre-floor phases in [0,1/(2b^3)] leave the
+entire threshold map unchanged. A strict rotation response to every
+positive phase, or isolation of zero phase by these finite constraints,
+is therefore unavailable. Absolute image anchors recover integer branch
+constants but do not contradict zero-offset closure.
+
+The new upper-cell/grid charge is a valid stronger necessary estimate;
+it holds for threshold cycles with wrong parity as well. The tighter
+extrema strips use actual parity and exact cells but leave a large region.
+The altered cycle 3->5->10->3 satisfies the derived bounds and both
+extrema anchors while failing the remaining odd upper cell. This refutes
+the sufficiency of those consequences, not the universal wrong-parity
+statement. No new floor or cap campaign is justified by these findings.

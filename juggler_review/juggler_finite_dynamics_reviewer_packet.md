@@ -19,6 +19,14 @@ The published bounds remain \(25781,176251,478245,780239\), conditional
 on their stated descent computations. A checksum verifies archive
 integrity and is not itself a proof that every trajectory descends.
 
+**Cubic-band consolidation.** Section 3.10 adds six formally supported
+results: cubic-band rank order and mechanical words, threshold cycles at
+every scale, common period and interlacing, the realized log-log grid,
+cycles under a one-unit successor allowance, and the exact branch-offset
+obstruction to gap-only criteria. The altered maps are not Juggler
+counterexamples. The period bound remains 780239. Uniform wrong-parity
+intersection and the taller-cycle regime remain open.
+
 **Companion status.** The Paper B and C descriptions below are context,
 not dependencies of the cycle bounds. Their canonical sources may
 postdate a review snapshot. In particular, Paper C's cylinder hypotheses

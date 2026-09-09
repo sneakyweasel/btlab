@@ -66,7 +66,7 @@ assert decode(word) == 42
 The live publication task is the Juggler programme: Paper A
 ([cycle-length lower bounds](docs/theory/juggler_finite_dynamics_note.md))
 and Paper B
-([parity discrepancy](docs/theory/juggler_parity_discrepancy_note.md)).
+([conditional parity results](docs/theory/juggler_parity_discrepancy_note.md)).
 Reviewer snapshot: [juggler_review/](juggler_review/). Companion:
 [web/juggler-companion/](web/juggler-companion/). Reading path:
 [AGENTS.md](AGENTS.md). This is not a halt theorem and not a

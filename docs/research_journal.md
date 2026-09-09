@@ -42073,3 +42073,68 @@ or publication-source change follows. The missing uniform threshold-cycle
 intersection with the wrong-parity set is explicit; even that would leave
 the regime M>=m^3 open. Do not enlarge the survey as a proof substitute.
 
+## 2026-09-09 — Cubic-band continuation: global order and exact rounding
+
+**PARK.** The user-authorized continuation of
+[cubic-band order](problems/juggler_cycle_cubic_band.md) proves four written
+results: common period and interlacing of every cycle at a fixed threshold;
+a uniform sorted log-log grid with error controlled by the surplus without
+a factor L loss; existence at every scale under a one-unit successor
+allowance; and a branch-constant obstruction to every criterion using only
+same-branch image differences. The last is witnessed by the exact 11-cycle
+13,45,300,17,69,572,23,109,1136,33,188,13 for J-1 on odds and J on evens.
+All four arguments were separately audited by AI agents. They are written
+proofs, not new Lean or independent human verification.
+
+The finite controls cover complete S_3, S_9 and S_29 graphs, five single
+R_b orbits at b=3,9,11,29,101, exact projection seams up to 101-digit b,
+and the branch-offset square-cell certificate. Twelve grid calculations
+use 80-decimal arithmetic only as consistency checks; the universal
+inequalities have analytic proofs. No prior census or large capped run
+was extended. The negative-knowledge record corrects a logical error:
+a wrong-parity example does not refute uniform wrong-parity intersection.
+
+The remaining question is the exact one: must every S_b cycle meet B_b?
+The new obstructions show why a proof must retain absolute unit-cell
+positions or couple the branch offsets discarded by gap subtraction.
+The no-cycle claim is unproved; M>=m^3 is separately unresolved, and no
+floor, period lower bound, Paper A source or release artifact is changed.
+
+
+
+## 2026-09-09 — Cubic-band results consolidated into Lean and Paper A
+
+The user authorized consolidation and then the absolute floor-cell question.
+Paper A Section 3.10 now owns six written proofs; the research dossier points
+there and retains its experimental record. Seven compiled Lean modules connect
+exact integer dynamics to rank rotation, mechanical prefixes, common periods,
+interlacing, the complete real log-log grid and the exact rounding obstructions.
+No desired rank, geometry or parity-failure conclusion is assumed as a premise.
+The new proofs use the kernel; the old native scan remains disclosed.
+
+**Decision: PARK for cycle exclusion.** The universal wrong-parity conclusion
+and the taller-cycle regime remain open. The authorized follow-up targets
+absolute square-cell alignment without enlarging any census, floor or cap.
+
+
+## 2026-09-09 — Absolute floor cells after the formal cubic-band consolidation
+
+The user authorized the exact wrong-parity question after consolidation.
+Three bounded analytic routes produced a stronger total-defect estimate from
+the upper unit cells and the sorted grid, narrower conditional extrema strips,
+and an explicit one-sided phase plateau for every finite threshold map.
+The canonical written proofs and precise asymptotic hypotheses are in
+[Absolute floor cells](problems/juggler_cycle_absolute_cells.md).
+They are not new Lean claims. The prior six statements remain formalized
+and consolidated in Paper A Section 3.10.
+
+The existing cubic-band probe's `--absolute-cells` mode rechecks seven
+archived threshold cycles, 744 phase states and two exact anchor controls.
+It performs no cycle search. Eighty-decimal grid checks are consistency
+checks, not interval certificates. The extrema strip coefficient is 4/3.
+
+**Decision: PARK.** The new charge inequality also holds for wrong-parity
+threshold cycles. Exact minimum and maximum anchors do not recover the
+remaining upper unit cell, as R_3 shows. Offset recovery and phase continuity
+give no contradiction. Uniform wrong-parity intersection, the taller-cycle
+regime, and global no-cycle remain unproved.

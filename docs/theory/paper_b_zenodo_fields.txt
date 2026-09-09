@@ -1,0 +1,43 @@
+TITLE
+Parity Statistics of Nested Floor Powers: Conditional Descent Results for the Juggler Map
+
+CREATOR
+Cochin, Philippe
+No affiliation or ORCID is asserted.
+
+RESOURCE TYPE
+Publication / Preprint
+
+VERSION
+2026-09-09-conditional
+
+PUBLICATION DATE
+Use the actual date this version is first made public.
+
+LICENSE (PREPARED CHOICE; EDITABLE BEFORE DEPOSIT)
+Creative Commons Attribution 4.0 International (CC BY 4.0)
+
+LANGUAGE
+English
+
+KEYWORDS
+Juggler map; nested floor powers; parity correlations; discrepancy; stopping time; conditional descent
+
+FILES
+juggler_parity_discrepancy_note.pdf
+paper_b_source_package.zip
+
+DESCRIPTION
+Use the abstract in paper_b_zenodo.json. It explicitly identifies the nested correlation and deterministic kernel estimates as unproved, and the 13/16, 7/8 and density-one conclusions as conditional.
+
+RELATED SOFTWARE
+https://github.com/sneakyweasel/btlab
+
+DOI
+No DOI has been reserved. Reserve one in the Zenodo draft if desired, then insert the actual identifier before publishing. Do not reuse a companion paper's DOI.
+
+RECORD STATUS
+Prepared locally only. No deposit has been created or published. This package is a conditional preprint, not a proof of the earlier unconditional kernel theorem and not a peer-reviewed publication.
+
+AUTHOR NOTE
+Companion documents that cite the superseded unconditional Paper B results require a separate dependency review.

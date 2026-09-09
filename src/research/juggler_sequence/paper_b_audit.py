@@ -1,4 +1,5 @@
-"""Audit probe for Paper B (docs/theory/juggler_parity_discrepancy_note.md), Sections 4-6.
+# Historical Paper B audit: the 2026-09-04 snapshot is not the conditional publication.
+"""Audit probe for Paper B (docs/theory/juggler_parity_discrepancy_note_2026_09_04.md), Sections 4-6.
 
 Three layers, none of which is a proof:
 
@@ -3221,7 +3222,7 @@ def draft_history_markers() -> dict[str, Any]:
     polices the phrase the referee named; this counts the family around it.
     """
 
-    text = (DOCS_THEORY / "juggler_parity_discrepancy_note.md").read_text(encoding="utf-8")
+    text = (DOCS_THEORY / "juggler_parity_discrepancy_note_2026_09_04.md").read_text(encoding="utf-8")
     lines = text.splitlines()
     heads = [(i, ln) for i, ln in enumerate(lines) if re.match(r"^#{1,3} ", ln)]
 
@@ -3271,7 +3272,7 @@ def trust_boundary_rows() -> dict[str, Any]:
     explicitly "no part of the assembly".
     """
 
-    text = (DOCS_THEORY / "juggler_parity_discrepancy_note.md").read_text(encoding="utf-8")
+    text = (DOCS_THEORY / "juggler_parity_discrepancy_note_2026_09_04.md").read_text(encoding="utf-8")
     start = text.index("The boundary between those three kinds of warrant")
     table = text[start:text.index("### 1.2 Related work", start)]
     rows = []
@@ -4342,7 +4343,7 @@ def c1_invocation_inventory(P0: float = 3.5858e13) -> dict[str, Any]:
     ratio = 2 * P0 ** float(load - cap)
     # The line numbers are as of this pass and the manuscript is edited concurrently, so drift is
     # reported rather than asserted: a site counts as found if h_1h_2 appears within three lines.
-    lines = (DOCS_THEORY / "juggler_parity_discrepancy_note.md").read_text(
+    lines = (DOCS_THEORY / "juggler_parity_discrepancy_note_2026_09_04.md").read_text(
         encoding="utf-8").splitlines()
     found = 0
     for site in C1_INVOCATIONS:
@@ -4418,7 +4419,7 @@ def c2_occurrence_audit() -> dict[str, Any]:
     caps -- which is why j = 2, needing {n^{3/2}} < eps, is invisible inside the box.
     """
 
-    text = (DOCS_THEORY / "juggler_parity_discrepancy_note.md").read_text(encoding="utf-8")
+    text = (DOCS_THEORY / "juggler_parity_discrepancy_note_2026_09_04.md").read_text(encoding="utf-8")
     lines = text.splitlines()
     statement = None
     for i, line in enumerate(lines, 1):
@@ -6635,7 +6636,7 @@ def _claim_holds(expr: str, P: float) -> bool:
 def _a5_printed_thresholds() -> dict[str, float]:
     """The A.5 table's printed threshold for each claim string, as the reader sees it."""
 
-    text = (DOCS_THEORY / "juggler_parity_discrepancy_note.md").read_text(
+    text = (DOCS_THEORY / "juggler_parity_discrepancy_note_2026_09_04.md").read_text(
         encoding="utf-8")
     out: dict[str, float] = {}
     for line in text.splitlines():
@@ -6815,7 +6816,7 @@ def fifth_letter_coefficient_has_three_values() -> dict[str, Any]:
     hold at the value printed beside it.
     """
 
-    text = (DOCS_THEORY / "juggler_parity_discrepancy_note.md").read_text(
+    text = (DOCS_THEORY / "juggler_parity_discrepancy_note_2026_09_04.md").read_text(
         encoding="utf-8")
     compact = re.sub(r"\s+", "", text)
     sharp = (9 / 16) * 2 * 2 ** (3 / 16)
@@ -6938,7 +6939,7 @@ def step_5_inventories_against_the_paper() -> dict[str, Any]:
     binding sharper than the prose beside it prints -- the first was |C| in Theorem 6.3.
     """
 
-    text = (DOCS_THEORY / "juggler_parity_discrepancy_note.md").read_text(
+    text = (DOCS_THEORY / "juggler_parity_discrepancy_note_2026_09_04.md").read_text(
         encoding="utf-8")
     compact = re.sub(r"\s+", "", text)
 
@@ -7058,7 +7059,7 @@ def which_cap_each_substitution_uses() -> dict[str, Any]:
     not always travel together.
     """
 
-    text = (DOCS_THEORY / "juggler_parity_discrepancy_note.md").read_text(
+    text = (DOCS_THEORY / "juggler_parity_discrepancy_note_2026_09_04.md").read_text(
         encoding="utf-8")
     compact = re.sub(r"\s+", "", text)
 
@@ -7158,7 +7159,7 @@ def one_symbol_two_bounds() -> dict[str, Any]:
     the repair is a letter.
     """
 
-    text = (DOCS_THEORY / "juggler_parity_discrepancy_note.md").read_text(
+    text = (DOCS_THEORY / "juggler_parity_discrepancy_note_2026_09_04.md").read_text(
         encoding="utf-8")
     compact, lines = _compact_with_lines(text)
 
@@ -7258,7 +7259,7 @@ def survivors_of_the_E_constant_update() -> dict[str, Any]:
     where the printed pair implies 2.2249.
     """
 
-    text = (DOCS_THEORY / "juggler_parity_discrepancy_note.md").read_text(
+    text = (DOCS_THEORY / "juggler_parity_discrepancy_note_2026_09_04.md").read_text(
         encoding="utf-8")
     compact = re.sub(r"\s+", "", text)
 
@@ -7356,7 +7357,7 @@ def prose_onsets_rounded_to_nearest() -> dict[str, Any]:
     a factor 120 below P_0, and A.5 -- which is what the certificate checks -- has them all right.
     """
 
-    text = (DOCS_THEORY / "juggler_parity_discrepancy_note.md").read_text(
+    text = (DOCS_THEORY / "juggler_parity_discrepancy_note_2026_09_04.md").read_text(
         encoding="utf-8")
     compact = re.sub(r"\s+", "", text)
     rows = {r["tag"]: r for r in p0_certificate.thresholds()}
@@ -7445,7 +7446,7 @@ def every_prose_threshold_accounted_for() -> dict[str, Any]:
     only one in the paper.
     """
 
-    text = (DOCS_THEORY / "juggler_parity_discrepancy_note.md").read_text(
+    text = (DOCS_THEORY / "juggler_parity_discrepancy_note_2026_09_04.md").read_text(
         encoding="utf-8")
     raw = text.splitlines()
     table_lines = {ln for ln, line in enumerate(raw, 1) if line.startswith("|")}

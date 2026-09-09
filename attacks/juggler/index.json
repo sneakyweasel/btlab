@@ -577,6 +577,13 @@
       "conjecture": [],
       "decision": "PARK",
       "ledger_ids": [
+        "J-cycle-absolute-cell-grid-charge",
+        "J-cycle-absolute-cell-extrema",
+        "J-cycle-threshold-phase-plateau",
+        "J-cycle-threshold-common-period",
+        "J-cycle-cubic-sorted-grid",
+        "J-cycle-unit-perturbation",
+        "J-cycle-branch-offset-obstruction",
         "J-cycle-cubic-band-order",
         "J-cycle-threshold-relaxation"
       ],
@@ -4770,7 +4777,6 @@
         "J-nested-parity-discrepancy",
         "J-fourth-letter-linearization",
         "J-triple-parity-discrepancy",
-        "J-four-step-descent-density",
         "J-second-order-linearization",
         "J-equidistribution-implies-density-one",
         "J-even-branch-third-letter",
@@ -4779,7 +4785,6 @@
         "J-kernel-cancellation",
         "J-depth4-complete",
         "J-depth5-contracting",
-        "J-five-step-descent-density",
         "J-level3-inner-linearization",
         "J-scale-invariant-R-extension",
         "J-w-family-thirty-three-thirty-seconds",
@@ -4986,6 +4991,24 @@
       "ledger_ids": [],
       "aliases": [],
       "nk_cluster": "Paper B, \\(K_3\\), and harvest counting"
+    },
+    {
+      "id": "cycle_absolute_cells",
+      "kind": "dossier_only",
+      "probe": null,
+      "test": null,
+      "dossier": "docs/problems/juggler_cycle_absolute_cells.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PARK",
+      "ledger_ids": [
+        "J-cycle-absolute-cell-grid-charge",
+        "J-cycle-absolute-cell-extrema",
+        "J-cycle-threshold-phase-plateau"
+      ],
+      "aliases": [],
+      "nk_cluster": "Absolute floor cells: scoped outcomes, not a parity contradiction"
     },
     {
       "id": "cycle_arrival_collision",
@@ -5668,7 +5691,14 @@
         "formal/Problems/Juggler/FateChernoff.lean",
         "formal/Problems/Juggler/FatePressure.lean",
         "formal/Problems/Juggler/FateTaoReduction.lean",
-        "formal/Problems/Juggler/FateSeed.lean"
+        "formal/Problems/Juggler/FateSeed.lean",
+        "formal/Problems/Juggler/CubicBand.lean",
+        "formal/Problems/Juggler/CubicRotation.lean",
+        "formal/Problems/Juggler/CubicGrid.lean",
+        "formal/Problems/Juggler/CubicLogGrid.lean",
+        "formal/Problems/Juggler/CubicRounding.lean",
+        "formal/Problems/Juggler/CubicInterlacing.lean",
+        "formal/Problems/Juggler/CubicConsequences.lean"
       ],
       "conjecture": [],
       "decision": null,

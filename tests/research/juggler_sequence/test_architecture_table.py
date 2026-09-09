@@ -1,3 +1,4 @@
+# Historical Paper B audit: the 2026-09-04 snapshot is not the conditional publication.
 """The architecture table before Theorem 5.3 must keep agreeing with the proof.
 
 A map that has drifted from the territory is worse than no map, and this one is the first
@@ -17,8 +18,8 @@ import pytest
 from research.juggler_sequence import p0_certificate as P0
 
 ROOT = Path(__file__).resolve().parents[3]
-PAPER = ROOT / "docs" / "theory" / "juggler_parity_discrepancy_note.md"
-MIRROR = ROOT / "juggler_review" / "juggler_parity_discrepancy_note.md"
+PAPER = ROOT / "docs" / "theory" / "juggler_parity_discrepancy_note_2026_09_04.md"
+MIRROR = ROOT / "juggler_review" / "juggler_parity_discrepancy_note_2026_09_04.md"
 
 
 def text() -> str:

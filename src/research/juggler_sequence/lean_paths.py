@@ -75,6 +75,13 @@ PAPER_MODULES: tuple[str, ...] = (
     "WalkChargeMax",
     "DefectFinance",
     "FinanceTransfer",
+    "CubicBand",
+    "CubicRotation",
+    "CubicGrid",
+    "CubicLogGrid",
+    "CubicRounding",
+    "CubicInterlacing",
+    "CubicConsequences",
 )
 
 LAYERS: dict[str, Path] = {
@@ -182,6 +189,13 @@ LAYERS: dict[str, Path] = {
     "FatePressure": JUGGLER_DIR / "FatePressure.lean",
     "FateTaoReduction": JUGGLER_DIR / "FateTaoReduction.lean",
     "FateSeed": JUGGLER_DIR / "FateSeed.lean",
+    "CubicBand": JUGGLER_DIR / "CubicBand.lean",
+    "CubicRotation": JUGGLER_DIR / "CubicRotation.lean",
+    "CubicGrid": JUGGLER_DIR / "CubicGrid.lean",
+    "CubicLogGrid": JUGGLER_DIR / "CubicLogGrid.lean",
+    "CubicRounding": JUGGLER_DIR / "CubicRounding.lean",
+    "CubicInterlacing": JUGGLER_DIR / "CubicInterlacing.lean",
+    "CubicConsequences": JUGGLER_DIR / "CubicConsequences.lean",
 }
 
 DYNAMICS = LAYERS["Dynamics"]

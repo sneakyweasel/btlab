@@ -1,3 +1,4 @@
+# Historical Paper B audit: the 2026-09-04 snapshot is not the conditional publication.
 """What Paper B claims is Lean-checked, and whether the repository backs each claim.
 
 The referee asked for one compact table separating human proof from machine check from
@@ -20,7 +21,7 @@ import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-PAPER = ROOT / "docs" / "theory" / "juggler_parity_discrepancy_note.md"
+PAPER = ROOT / "docs" / "theory" / "juggler_parity_discrepancy_note_2026_09_04.md"
 PAPER_A = ROOT / "docs" / "theory" / "juggler_finite_dynamics_note.md"
 LEAN = ROOT / "formal" / "Problems" / "Juggler"
 UMBRELLA = ROOT / "formal" / "Problems" / "Juggler.lean"

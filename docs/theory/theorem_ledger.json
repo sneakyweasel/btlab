@@ -1,9 +1,9 @@
 [
  {
-  "id": "J-cycle-cubic-band-order",
+  "id": "J-cycle-absolute-cell-grid-charge",
   "tag": "EXACT — HUMAN PROOF",
-  "statement": "Conditional cycle-order theorem. Let C be a primitive nontrivial Juggler cycle with minimum m>1, maximum M<m^3, length L and o odd states; set e=L-o. If c_0=m<...<c_(L-1) lists its states, the odd states are exactly those below m^2 and J(c_i)=c_((i+e) mod L). Hence gcd(L,o)=1 and the odd count in the first k steps from m is ceil(k o/L), for 0<=k<=L: the exact ceiling mechanical word. Proof separates odd/even states and images, uses injectivity to eliminate possible floor ties, then ranks the resulting cyclic permutation. A non-mechanical primitive cycle or one with gcd(L,o)>1 must instead have M>=m^3+1. The height hypothesis is essential to this argument; no unconditional Christoffel claim, no parity obstruction, no new period exclusion. Written AI-assisted proof; no independent human review or new Lean verification claimed.",
-  "source": "docs/problems/juggler_cycle_cubic_band.md",
+  "statement": "For a primitive exact threshold cycle S_b, or an actual Juggler cycle with minimum m>1 and maximum M<m^3, let L,o be its period and lower/odd count, T=log 3, Lambda=o log 3-L log 2>0, and A=(log m) exp(-(1-1/L)Lambda)>0. Then Lambda < exp(-A)/A times the finite sum over 0<=i<L of exp(-i T(A+1)/L), and exp(A) A(A+1)Lambda < A+1+L/T. The exact upper unit cells bound each logarithmic defect by 1/(y log y); the sorted grid bounds the total by a geometric sum. Along sequences with log m tending to infinity, log m=o(L), and Lambda log m tending to zero, this yields m(log m)^2 Lambda <= (1+o(1))L/log 3. In the explicitly conditional regime Lambda~c/L and polynomially growing m, this narrows the necessary scale to m(log m)^2<=(1+o(1))L^2/(c log 3). No uniform lower bound of order 1/L for Lambda is asserted. The result also holds for wrong-parity threshold cycles and does not prove a parity obstruction, no-cycle, or a new numerical period bound. AI-assisted written proof with a separate AI audit; no new Lean verification or independent human review claimed.",
+  "source": "docs/problems/juggler_cycle_absolute_cells.md",
   "lean": "",
   "tests": [
    "tests/research/juggler_sequence/test_cycle_cubic_band.py"
@@ -11,15 +11,129 @@
   "related_conjectures": []
  },
  {
-  "id": "J-cycle-threshold-relaxation",
+  "id": "J-cycle-absolute-cell-extrema",
   "tag": "EXACT — HUMAN PROOF",
-  "statement": "For each integer b>=3, the size-switched map S_b on integers b<=x<b^3 uses floor(sqrt(x^3)) for x<b^2 and floor(sqrt(x)) otherwise. This finite interval is invariant and S_b has no fixed point, so it has a primitive cycle of length at least two at arbitrarily large minima. Its cycles have the separated-image rank rotation, coprime branch counts and ceiling mechanical words; 3^o>2^L. S_b is not Juggler: a full cycle is a Juggler cycle iff every low state is odd and every high state even. This parity compatibility is not established, and the construction refutes only attempts to get no-cycle from the listed parity-relaxed properties alone. Written AI-assisted proof; no independent human review or new Lean verification claimed.",
-  "source": "docs/problems/juggler_cycle_cubic_band.md",
+  "statement": "Every actual primitive Juggler cycle with minimum m>1 and maximum M<m^3 satisfies, with q=J(m)=floor(sqrt(m^3)), r=m^3-q^2, and largest odd state u: M<=(q-1)^2-2, m^3-M>=r+2q+1, u^3<=[q(q-2)]^2-2, and u<m^2-(4/3)sqrt(m). Equivalently the last bound implies u<=m^2-2 floor(2 sqrt(m)/3)-2. Proof: q and J(M) are adjacent odd ranks, so J(M)<=q-2; the even upper square-cell face leaves an even gap of at least two. The largest odd state maps to M and its upper cell leaves another gap of two. The real strip follows from (s^4-4s/3)^3-(s^6-2s^3)^2=(4/27)s^3(9s^3-16)>0 for s=sqrt(m)>=sqrt(3). These are conditional extrema exclusions; they leave a large region and do not exclude the full cubic band or improve the Paper A's numerical period lower bound. The two-edge m=9,q=27,M=674 control attains the maximum ceiling without forming a Juggler cycle. AI-assisted written proof with separate AI algebra audits; no new Lean verification or independent human review claimed.",
+  "source": "docs/problems/juggler_cycle_absolute_cells.md",
   "lean": "",
   "tests": [
    "tests/research/juggler_sequence/test_cycle_cubic_band.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "id": "J-cycle-threshold-phase-plateau",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For every integer b>=3, independently adding pre-floor phases theta_O,theta_E in [0,1/(2b^3)] to the two real branches of S_b leaves every output on [b,b^3) unchanged. Hence all finite dynamics, cycles, rank rotation and output anchors persist on that positive phase rectangle. Exact proof: B=b^3, integer branch radicand N<B^2, q=floor(sqrt N), q+1<=B; then [2B(q+1)-1]^2-4B^2N=4B^2[(q+1)^2-N]-4B(q+1)+1>=1, so sqrt N<q+1-1/(2B), including the maximal allowed phase. This rules out strict rotation-response arguments requiring every positive phase to change the map. It does not prove a wrong-parity state or refute a proof using absolute cells. The plateau is one-sided, depends on b and is not claimed sharp or uniform in b. AI-assisted written proof with exact small integer controls; no new Lean verification or independent human review claimed.",
+  "source": "docs/problems/juggler_cycle_absolute_cells.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_cubic_band.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cycle-threshold-common-period",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For a fixed integer b>=3, all primitive cycles of the size-switched threshold map S_b have the same period L, branch counts (o,e), and minimum-based ceiling mechanical word. If there are t cycles, they interlace: each occupies one rank residue class modulo t in the sorted union of all periodic points. Proof: on that finite invariant union, branch image separation and injectivity give rank addition by E, the total upper-branch count; t=gcd(N,E), L=N/t, e=E/t. No uniqueness, uniform wrong-parity intersection or actual Juggler cycle exclusion follows. Consolidated in Paper A Section 3.10 and formalized in the seven Cubic modules. The cited declarations and supporting modules are compiled kernel proofs. The illustrative asymptotic comparison and universal wrong-parity question are not promoted; no new cycle exclusion, floor or period bound follows.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/CubicInterlacing.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_cubic_band.py"
+  ],
+  "related_conjectures": [],
+  "decl": [
+   "rankRotation_orbit_iff_residue",
+   "rankRotation_orbit_representatives",
+   "rankRotation_orbit_upper_card",
+   "rankResidue_interlaces"
+  ],
+  "lean_trust": "kernel"
+ },
+ {
+  "id": "J-cycle-cubic-sorted-grid",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For a primitive S_b cycle, or an actual Juggler cycle with minimum m>1 and maximum M<m^3, sort its states c_i and set T=log 3, Lambda=o log 3-L log 2>0, v_i=log(log c_i/log m), v_(i+L)=v_i+T and w_i=v_i-iT/L. Then osc(w)<= (1-1/L)Lambda and |w_i|<= (1-1/L)Lambda. The lifted adjacent gaps h_i=v_(i+1)-v_i satisfy range(h)<=Lambda and |h_i-T/L|<=(1-1/L)Lambda. The proof uses nonnegative logarithmic rounding defects summing to Lambda and the coprime rank rotation, with no factor L loss. The bounds do not resolve integer parity or exclude cycles. Consolidated in Paper A Section 3.10 and formalized in the seven Cubic modules. The cited declarations and supporting modules are compiled kernel proofs. The illustrative asymptotic comparison and universal wrong-parity question are not promoted; no new cycle exclusion, floor or period bound follows.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/CubicLogGrid.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_cubic_band.py"
+  ],
+  "related_conjectures": [],
+  "decl": [
+   "threshold_cycle_grid",
+   "cubicBand_cycle_grid"
+  ],
+  "lean_trust": "kernel"
+ },
+ {
+  "id": "J-cycle-unit-perturbation",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every odd integer b>=3, let D_b consist of odd integers in [b,b^2] and even integers in [b^2+1,b^3-1], and let P_b(z) be its largest element <=z for b<=z<=b^3. Define R_b(x)=P_b(x^(3/2)) on odd x and P_b(sqrt x) on even x. This finite map has no fixed point and has a nontrivial cycle; every edge has R_b(x) in {J(x),J(x)-1}. Every primitive cycle uses its actual source parity, has M<m^3, rank rotation, coprime counts and the ceiling mechanical word. Thus one-sided power-rounding error <2 admits such cycles at every scale. Inclusion of odd b^2 is essential at the projection seam. R_b is a different map; it is NOT proved that every R_b cycle has an altered edge, and no actual Juggler no-cycle statement follows. Consolidated in Paper A Section 3.10 and formalized in the seven Cubic modules. The cited declarations and supporting modules are compiled kernel proofs. The illustrative asymptotic comparison and universal wrong-parity question are not promoted; no new cycle exclusion, floor or period bound follows.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/CubicRounding.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_cubic_band.py"
+  ],
+  "related_conjectures": [],
+  "decl": [
+   "cubicRounding_exists_primitive",
+   "cubicRounding_eq_or_pred",
+   "cubicRounding_real_loss",
+   "cubicRounding_finite_invariant_rotation"
+  ],
+  "lean_trust": "kernel"
+ },
+ {
+  "id": "J-cycle-branch-offset-obstruction",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Let G(1)=1, G(x)=J(x)-1 for odd x>=3, and G(x)=J(x) for even x. Exact integer square-cell inequalities certify the primitive cycle 13,45,300,17,69,572,23,109,1136,33,188,13, with (L,o,e)=(11,7,4) and maximum 1136<13^3. It is also an R_11 cycle. For any two odd sources >=3, or two positive even sources, G(x')-G(x)=J(x')-J(x). All same-branch higher finite differences on sources >1 therefore agree as well. Even strict nearest-even smooth-gap tests hold for same-parity successor pairs. Hence correct source parity, global rank order and exact within-branch image differences restricted to sources >1 alone cannot exclude cycles: an additive branch constant is lost. Differences involving 1 are excluded because they could anchor the odd-branch constant. This is a cycle of a different map, not a Juggler counterexample. Consolidated in Paper A Section 3.10 and formalized in the seven Cubic modules. The cited declarations and supporting modules are compiled kernel proofs. The illustrative asymptotic comparison and universal wrong-parity question are not promoted; no new cycle exclusion, floor or period bound follows.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/CubicRounding.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_cubic_band.py"
+  ],
+  "related_conjectures": [],
+  "decl": [
+   "branchOffset_same_branch_difference",
+   "branchOffset_same_branch_smooth_gap",
+   "branchOffset_nearest_even_gap",
+   "branchOffsetCycle_primitive",
+   "branchOffsetCycle_cells"
+  ],
+  "lean_trust": "kernel"
+ },
+ {
+  "id": "J-cycle-cubic-band-order",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Conditional cycle-order theorem. Let C be a primitive nontrivial Juggler cycle with minimum m>1, maximum M<m^3, length L and o odd states; set e=L-o. If c_0=m<...<c_(L-1) lists its states, the odd states are exactly those below m^2 and J(c_i)=c_((i+e) mod L). Hence gcd(L,o)=1 and the odd count in the first k steps from m is ceil(k o/L), for 0<=k<=L: the exact ceiling mechanical word. Proof separates odd/even states and images, uses injectivity to eliminate possible floor ties, then ranks the resulting cyclic permutation. A non-mechanical primitive cycle or one with gcd(L,o)>1 must instead have M>=m^3+1. The height hypothesis is essential to this argument; no unconditional Christoffel claim, no parity obstruction, no new period exclusion. Consolidated in Paper A Section 3.10 and formalized in the seven Cubic modules. The cited declarations and supporting modules are compiled kernel proofs. The illustrative asymptotic comparison and universal wrong-parity question are not promoted; no new cycle exclusion, floor or period bound follows.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/CubicConsequences.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_cubic_band.py"
+  ],
+  "related_conjectures": [],
+  "decl": [
+   "cubicBand_mechanical_itinerary"
+  ],
+  "lean_trust": "kernel"
+ },
+ {
+  "id": "J-cycle-threshold-relaxation",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For each integer b>=3, the size-switched map S_b on integers b<=x<b^3 uses floor(sqrt(x^3)) for x<b^2 and floor(sqrt(x)) otherwise. This finite interval is invariant and S_b has no fixed point, so it has a primitive cycle of length at least two at arbitrarily large minima. Its cycles have the separated-image rank rotation, coprime branch counts and ceiling mechanical words; 3^o>2^L. S_b is not Juggler: a full cycle is a Juggler cycle iff every low state is odd and every high state even. This parity compatibility is not established, and the construction refutes only attempts to get no-cycle from the listed parity-relaxed properties alone. Consolidated in Paper A Section 3.10 and formalized in the seven Cubic modules. The cited declarations and supporting modules are compiled kernel proofs. The illustrative asymptotic comparison and universal wrong-parity question are not promoted; no new cycle exclusion, floor or period bound follows.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/CubicBand.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_cubic_band.py"
+  ],
+  "related_conjectures": [],
+  "decl": [
+   "thresholdMap_exists_primitive",
+   "threshold_sorted_rotation",
+   "thresholdMap_eq_floorPower_iff"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-pressure-sparse-starts",
@@ -3977,8 +4091,8 @@
  },
  {
   "id": "J-nested-parity-discrepancy",
-  "tag": "EXACT — HUMAN PROOF",
-  "statement": "Each of the four joint parity classes of (floor(n^{3/2}), floor(floor(n^{3/2})^{3/2})) over odd n ≤ N has cardinality N/8 + O(N^{23/24+eps}); in particular #{odd n ≤ N : J(n) odd, J^2(n) even} = N/8 + O(N^{23/24+eps}), one itinerary letter beyond the ambient odd-input bound. Proof: Vaaler wave expansion, the exact linearization row J-nested-parity-linearization, one van der Corput A-process at H = N^{1/12}, constant-gap cells with an exactly split moving-endpoint expansion, and the second-derivative test per cell; exponent deliberately unoptimized. Ambient counting over all odd starts; not an orbit transfer theorem, not a frequency theorem along trajectories, and not a termination claim. Imported into the parity-discrepancy paper as Theorem 4.4. Lean covers only the exact floor reductions (floor_gap_eq_carry gap cells, floor_odd_iff_half_le_fract_half parity bridge); the analytic estimate is a human proof.",
+  "tag": "CONJECTURE",
+  "statement": "Publication review 9 September 2026: the analytic claim below is not established by Paper B and is retained only as a historical research target. The revised paper gives conditional implications, not this analytic proof. See docs/theory/paper_b_review.md. Historical target: Each of the four joint parity classes of (floor(n^{3/2}), floor(floor(n^{3/2})^{3/2})) over odd n ≤ N has cardinality N/8 + O(N^{23/24+eps}); in particular #{odd n ≤ N : J(n) odd, J^2(n) even} = N/8 + O(N^{23/24+eps}), one itinerary letter beyond the ambient odd-input bound. Proof: Vaaler wave expansion, the exact linearization row J-nested-parity-linearization, one van der Corput A-process at H = N^{1/12}, constant-gap cells with an exactly split moving-endpoint expansion, and the second-derivative test per cell; exponent deliberately unoptimized. Ambient counting over all odd starts; not an orbit transfer theorem, not a frequency theorem along trajectories, and not a termination claim. Imported into the parity-discrepancy paper as Theorem 4.4. Lean covers only the exact floor reductions (floor_gap_eq_carry gap cells, floor_odd_iff_half_le_fract_half parity bridge); the analytic estimate is a human proof.",
   "source": "docs/research/juggler_two_step_parity_lemma.md",
   "lean": "Problems/Juggler/GapCells.lean",
   "tests": [
@@ -3999,8 +4113,8 @@
  },
  {
   "id": "J-triple-parity-discrepancy",
-  "tag": "EXACT — HUMAN PROOF",
-  "statement": "Each of the eight sign classes of ((-1)^m, (-1)^v, (-1)^{floor(sqrt v)}) over odd n ≤ N, with m = floor(n^{3/2}) and v = floor(m^{3/2}), has cardinality N/16 + O(N^{23/24+eps}). Proof: the c = 0 cases are rows J-ambient-odd-discrepancy and J-nested-parity-discrepancy; for c = 1, the fourth letter is smoothed exactly by row J-fourth-letter-linearization before any differencing, pure fourth-letter modes reduce to a single smooth exponential sum (direct second-derivative test), and mixed modes rerun the depth-2 machinery with the smooth passenger (k/2) n^{9/8}, whose curvature is smaller than every retained scale by at least N^{9/8-1/24}. Even-branch fourth letter only; ambient counting; not a termination claim. Imported into the parity-discrepancy paper as Theorem 4.7.",
+  "tag": "CONJECTURE",
+  "statement": "Publication review 9 September 2026: the analytic claim below is not established by Paper B and is retained only as a historical research target. The revised paper gives conditional implications, not this analytic proof. See docs/theory/paper_b_review.md. Historical target: Each of the eight sign classes of ((-1)^m, (-1)^v, (-1)^{floor(sqrt v)}) over odd n ≤ N, with m = floor(n^{3/2}) and v = floor(m^{3/2}), has cardinality N/16 + O(N^{23/24+eps}). Proof: the c = 0 cases are rows J-ambient-odd-discrepancy and J-nested-parity-discrepancy; for c = 1, the fourth letter is smoothed exactly by row J-fourth-letter-linearization before any differencing, pure fourth-letter modes reduce to a single smooth exponential sum (direct second-derivative test), and mixed modes rerun the depth-2 machinery with the smooth passenger (k/2) n^{9/8}, whose curvature is smaller than every retained scale by at least N^{9/8-1/24}. Even-branch fourth letter only; ambient counting; not a termination claim. Imported into the parity-discrepancy paper as Theorem 4.7.",
   "source": "docs/research/juggler_two_step_parity_lemma.md",
   "lean": "",
   "tests": [
@@ -4011,11 +4125,11 @@
  {
   "id": "J-four-step-descent-density",
   "tag": "EXACT — HUMAN PROOF",
-  "statement": "#{n ≤ N : n odd with itinerary OOEE} = N/16 + O(N^{23/24+eps}), and the class of starts with a certified descent within four steps — evens (one step), OE (two steps, Lean lemma floorPower_odd_even_two_step_lt), OOEE (four steps, row J-power-envelope-contraction via 3^2 < 2^4) — has cardinality 13N/16 + O(N^{23/24+eps}). Indicator algebra (1-psi_1)(1+psi_2)(1+psi_3)/8 is exactly branch-consistent: the (1+psi_2) factor vanishes precisely where J^3 would take the odd branch. Raises the certified descent density from 3/4 to 13/16. Density of a certificate class, not a termination claim; OOO* classes remain open. Imported into the parity-discrepancy paper as Corollary 4.9.",
-  "source": "docs/research/juggler_two_step_parity_lemma.md",
+  "statement": "Conditional Paper B Theorem 5.2 (9 September 2026): under H_0(OOEE), the class of starts with a power-envelope descent certificate of length at most four has natural density 13/16. Under H(OOEE; delta), the error is O(N^(1-min(1/6,delta))). The nested correlation hypothesis is unproved here. The unconditional certificate density retained is 3/4.",
+  "source": "docs/theory/juggler_parity_discrepancy_note.md",
   "lean": "",
   "tests": [
-   "tests/research/juggler_sequence/test_two_step_parity.py"
+   "tools/validate_paper_b.py"
   ],
   "related_conjectures": []
  },
@@ -4190,8 +4304,8 @@
  },
  {
   "id": "J-depth4-slow-branch",
-  "tag": "EXACT — HUMAN PROOF",
-  "statement": "Theorem Q: #OEOE(N), #OEOO(N) = N/16 + O(N^{7/8+eps}) and #OEEE(N), #OEEO(N) = N/16 + O(N^{13/16+eps}). With rows J-triple-parity-discrepancy and J-four-step-descent-density this proves every depth-4 itinerary word class except OOO*. Proof: Lemma A' gives the exact identity w^{3/2} = m^{3/4} - (3/2) m^{1/4} theta_w + E (0 ≤ E ≤ (3/8)(U-1)^{-1/2}, using U m^{1/4} = m^{3/4} exactly), so the fourth-letter phase is (k/2) n^{9/8} minus one growing sawtooth B theta_w with B = (3k/4) n^{3/8}; B drifts by ≤ 1 on intervals of length P^{5/8}/k, where a shifted-window Fourier expansion in U (mass O(log), partial summation for the moving coefficients) reduces to smooth modes with single-signed curvature ~ k n^{-7/8} (window T = P^{5/16} << k P^{3/8} avoids sign collision for every k ≥ 1); van der Corput II and the balance J = P^{1/8} give N^{7/8+eps}. The OEE branch has decaying amplitudes only. No differencing and no kernel: the coefficient crosses integers every P^{5/8}/k steps, unlike the OOO* weight (crossings within single steps) — the engine reaches exactly the letters whose phase coefficients grow slower than n. Ambient counting; not a termination claim; OOO* remains open (Conjecture O). Imported into the finite-dynamics note as Theorem 5.8.",
+  "tag": "CONJECTURE",
+  "statement": "Publication review 9 September 2026: the analytic claim below is not established by Paper B and is retained only as a historical research target. The revised paper gives conditional implications, not this analytic proof. See docs/theory/paper_b_review.md. Historical target: Theorem Q: #OEOE(N), #OEOO(N) = N/16 + O(N^{7/8+eps}) and #OEEE(N), #OEEO(N) = N/16 + O(N^{13/16+eps}). With rows J-triple-parity-discrepancy and J-four-step-descent-density this proves every depth-4 itinerary word class except OOO*. Proof: Lemma A' gives the exact identity w^{3/2} = m^{3/4} - (3/2) m^{1/4} theta_w + E (0 ≤ E ≤ (3/8)(U-1)^{-1/2}, using U m^{1/4} = m^{3/4} exactly), so the fourth-letter phase is (k/2) n^{9/8} minus one growing sawtooth B theta_w with B = (3k/4) n^{3/8}; B drifts by ≤ 1 on intervals of length P^{5/8}/k, where a shifted-window Fourier expansion in U (mass O(log), partial summation for the moving coefficients) reduces to smooth modes with single-signed curvature ~ k n^{-7/8} (window T = P^{5/16} << k P^{3/8} avoids sign collision for every k ≥ 1); van der Corput II and the balance J = P^{1/8} give N^{7/8+eps}. The OEE branch has decaying amplitudes only. No differencing and no kernel: the coefficient crosses integers every P^{5/8}/k steps, unlike the OOO* weight (crossings within single steps) — the engine reaches exactly the letters whose phase coefficients grow slower than n. Ambient counting; not a termination claim; OOO* remains open (Conjecture O). Imported into the finite-dynamics note as Theorem 5.8.",
   "source": "docs/research/juggler_two_step_parity_lemma.md",
   "lean": "",
   "tests": [
@@ -4201,8 +4315,8 @@
  },
  {
   "id": "J-kernel-cancellation",
-  "tag": "EXACT — HUMAN PROOF",
-  "statement": "Theorem R (formerly Conjecture O; Theorem 5.3 of the parity-discrepancy paper): K_c(P) = sum over odd n ~ P of e(c(n) {floor(n^{3/2})^{3/2}}) with c(n) = (3k/4) n^{9/8} satisfies K_c(P) << P^{1-1/96+eps}, uniformly for 1 <= k <= P^{1/24}, deliberately unoptimized. The statement is the monomial; a two-sided scale c^{(r)} ~ k P^{9/8-r} does not determine the Step 5a cancellation. Proof (Phase 25 expansion, Phase 26 repair; Paper B Section 4): double Weyl differencing at H1 = P^{1/48}, H2 = P^{1/24}; the exact master identity DD(c theta_2) = (DD c) theta_2 + (D2 c)({W}-kappa_2) + (D1 c)({W'}-kappa_2') + c_11({DDY}-kappa''-D2 kappa_2), proved algebraically in the text by the product rule on the carry-branch decomposition; level-2 waves handled by Lemma 5.2's exact e(qY) model with third differencing (bottleneck P^{23/24}); offset branches by shifted-window expansion (Lemma 3.7) with the printed anchor composite 945/512 - 27/64; zero-offset middle band repaired in Phase 26 by global sublevel splitting (Lemma 3.9): a smooth three-term monomial model for f'' with a trivial bound on the transition set Omega_V and the second-derivative test on the good pieces, total << P^{15/16+eps} — the earlier per-cell summation of inverse-power van der Corput terms was incorrectly assembled and is withdrawn. All derivative tests on odd n are read through the parity-reindexing lemma (Lemma 3.10). Writeup repair (4 September 2026): Lemma 5.2b isolates the frozen-shape interpolant: local (cG) = -135/1024 k beta1 beta2 n^{-13/8} with beta frozen, global Lambda substitutes Delta_i X as values only; rho_0 ratios are O(P^{-1/4}) and sit under 1/2304. Zero-offset B = (9/32) k beta1 beta2 n^{-9/8} has constant size |B| <= 6 (the printed |B|<1 dropped h1 h2 from (C1)); Lemma 3.7 at T = P^{1/2} still applies. Theorem 5.3 exponent unchanged. Earlier writeup repair (2 September 2026): Lemma 5.2 coefficient budget enlarged to |q_d| <= 4 P^{1/24} with at most nine decorations (the printed |q_d| <= P^{1/16} overflowed at every census P with ratio 3 P^{-1/48} -> 0); Step 5b interpolant keeps the two-term majorant 219 P^{-25/24} + 0.11 P^{-5/6} and does not collapse to 0.1 P^{-5/6}; c7 = 1/288 is displayed for the printed triple; P0 is named and ineffective (windows ~ 3e5; V <= c7 S/2 of size 10^{24}). Numerical validators (master_identity_check, kernel_margin_scan) remain in the repository as checks, not proof steps.",
+  "tag": "CONJECTURE",
+  "statement": "Publication review 9 September 2026: the analytic claim below is not established by Paper B and is retained only as a historical research target. The revised paper gives conditional implications, not this analytic proof. See docs/theory/paper_b_review.md. Historical target: Theorem R (formerly Conjecture O; Theorem 5.3 of the parity-discrepancy paper): K_c(P) = sum over odd n ~ P of e(c(n) {floor(n^{3/2})^{3/2}}) with c(n) = (3k/4) n^{9/8} satisfies K_c(P) << P^{1-1/96+eps}, uniformly for 1 <= k <= P^{1/24}, deliberately unoptimized. The statement is the monomial; a two-sided scale c^{(r)} ~ k P^{9/8-r} does not determine the Step 5a cancellation. Proof (Phase 25 expansion, Phase 26 repair; Paper B Section 4): double Weyl differencing at H1 = P^{1/48}, H2 = P^{1/24}; the exact master identity DD(c theta_2) = (DD c) theta_2 + (D2 c)({W}-kappa_2) + (D1 c)({W'}-kappa_2') + c_11({DDY}-kappa''-D2 kappa_2), proved algebraically in the text by the product rule on the carry-branch decomposition; level-2 waves handled by Lemma 5.2's exact e(qY) model with third differencing (bottleneck P^{23/24}); offset branches by shifted-window expansion (Lemma 3.7) with the printed anchor composite 945/512 - 27/64; zero-offset middle band repaired in Phase 26 by global sublevel splitting (Lemma 3.9): a smooth three-term monomial model for f'' with a trivial bound on the transition set Omega_V and the second-derivative test on the good pieces, total << P^{15/16+eps} — the earlier per-cell summation of inverse-power van der Corput terms was incorrectly assembled and is withdrawn. All derivative tests on odd n are read through the parity-reindexing lemma (Lemma 3.10). Writeup repair (4 September 2026): Lemma 5.2b isolates the frozen-shape interpolant: local (cG) = -135/1024 k beta1 beta2 n^{-13/8} with beta frozen, global Lambda substitutes Delta_i X as values only; rho_0 ratios are O(P^{-1/4}) and sit under 1/2304. Zero-offset B = (9/32) k beta1 beta2 n^{-9/8} has constant size |B| <= 6 (the printed |B|<1 dropped h1 h2 from (C1)); Lemma 3.7 at T = P^{1/2} still applies. Theorem 5.3 exponent unchanged. Earlier writeup repair (2 September 2026): Lemma 5.2 coefficient budget enlarged to |q_d| <= 4 P^{1/24} with at most nine decorations (the printed |q_d| <= P^{1/16} overflowed at every census P with ratio 3 P^{-1/48} -> 0); Step 5b interpolant keeps the two-term majorant 219 P^{-25/24} + 0.11 P^{-5/6} and does not collapse to 0.1 P^{-5/6}; c7 = 1/288 is displayed for the printed triple; P0 is named and ineffective (windows ~ 3e5; V <= c7 S/2 of size 10^{24}). Numerical validators (master_identity_check, kernel_margin_scan) remain in the repository as checks, not proof steps.",
   "source": "docs/research/juggler_two_step_parity_lemma.md",
   "lean": "Problems/Juggler/GapCells.lean",
   "tests": [
@@ -4213,8 +4327,8 @@
  },
  {
   "id": "J-depth4-complete",
-  "tag": "EXACT — HUMAN PROOF",
-  "statement": "Theorem S (Theorem 6.1 of the parity-discrepancy paper): #OOOE(N), #OOOO(N) = N/16 + O(N^{1-1/96+eps}), completing depth-4 parity equidistribution over odd starts: each of the eight O-rooted length-4 words satisfies #w(N) = 2^{-4} N + O(N^{1-delta_w}) with explicit delta_w > 0 (rows J-nested-parity-discrepancy, J-triple-parity-discrepancy, J-even-branch-third-letter, J-four-step-descent-density, J-depth4-slow-branch, and this row). E-rooted words (even starts) are not claimed. Proof (Phase 26 rewrite with full passenger inventory): Vaaler expansion at J3 = P^{1/96} with explicit mode ranges |i|, |j| <= 2P^{1/96}, 1 <= |k| <= 2P^{1/96}; the depth-4 identity makes the phase a degree-(2,1) polynomial in (m, v) whose total smooth v-coefficient is exactly (3k/4) n^{9/8}; on each carry branch the corner exactness theta(n+d) = theta + delta_d(nu) - beta_d makes the differenced phase a function of nu and one sawtooth, with the theta^2-contents cancelling exactly in the (+,-,-,+) pattern; every passenger (iX/2, jY/2, pure-m mu_1 m + mu_2 m^2, v-theta crosses) is listed with its budget check (Y-passenger |q_d| <= 3 P^{1/24} + P^{1/96} <= 4 P^{1/24}); both sign-critical composites are the frozen-shape totals of Step E: offset leftover 81/512 minus window-centre 324/512 gives composite 243/512 (lambda_a' in [0.40, 0.52] k|j| P^{-1/8}; B = 27/32 k j nu^{3/8}), zero-offset curvature 1095/1024 k h1 h2 nu^{-5/8} (the withdrawn 405/512 and 8.27 differentiated the moving total phase (k/2) nu^{27/8}). Steps 2-6 of Theorem R then run at the new constants. The exponent 1-1/96 is unchanged.",
+  "tag": "CONJECTURE",
+  "statement": "Publication review 9 September 2026: the analytic claim below is not established by Paper B and is retained only as a historical research target. The revised paper gives conditional implications, not this analytic proof. See docs/theory/paper_b_review.md. Historical target: Theorem S (Theorem 6.1 of the parity-discrepancy paper): #OOOE(N), #OOOO(N) = N/16 + O(N^{1-1/96+eps}), completing depth-4 parity equidistribution over odd starts: each of the eight O-rooted length-4 words satisfies #w(N) = 2^{-4} N + O(N^{1-delta_w}) with explicit delta_w > 0 (rows J-nested-parity-discrepancy, J-triple-parity-discrepancy, J-even-branch-third-letter, J-four-step-descent-density, J-depth4-slow-branch, and this row). E-rooted words (even starts) are not claimed. Proof (Phase 26 rewrite with full passenger inventory): Vaaler expansion at J3 = P^{1/96} with explicit mode ranges |i|, |j| <= 2P^{1/96}, 1 <= |k| <= 2P^{1/96}; the depth-4 identity makes the phase a degree-(2,1) polynomial in (m, v) whose total smooth v-coefficient is exactly (3k/4) n^{9/8}; on each carry branch the corner exactness theta(n+d) = theta + delta_d(nu) - beta_d makes the differenced phase a function of nu and one sawtooth, with the theta^2-contents cancelling exactly in the (+,-,-,+) pattern; every passenger (iX/2, jY/2, pure-m mu_1 m + mu_2 m^2, v-theta crosses) is listed with its budget check (Y-passenger |q_d| <= 3 P^{1/24} + P^{1/96} <= 4 P^{1/24}); both sign-critical composites are the frozen-shape totals of Step E: offset leftover 81/512 minus window-centre 324/512 gives composite 243/512 (lambda_a' in [0.40, 0.52] k|j| P^{-1/8}; B = 27/32 k j nu^{3/8}), zero-offset curvature 1095/1024 k h1 h2 nu^{-5/8} (the withdrawn 405/512 and 8.27 differentiated the moving total phase (k/2) nu^{27/8}). Steps 2-6 of Theorem R then run at the new constants. The exponent 1-1/96 is unchanged.",
   "source": "docs/research/juggler_two_step_parity_lemma.md",
   "lean": "",
   "tests": [
@@ -4225,8 +4339,8 @@
  },
  {
   "id": "J-depth5-contracting",
-  "tag": "EXACT — HUMAN PROOF",
-  "statement": "Theorem T, Phase-27 repair, imported as Paper B Theorem 6.3: #OOOEE(N), #OOOEO(N) = N/32 + O(N^{1-1/96+eps}) and #OOEOE(N), #OOEOO(N) = N/32 + O(N^{47/48+eps}). The fifth-letter X-modes of the OOOE* sawtooth C θ, C ≍ l n^{3/16}, are Lemma 5.2 Stage-2 r-modes e(u X) with |u| ≤ P^{1/4} after Lemma 3.7 at T = R_0 = P^{1/4} and J_5 = 2 P^{1/96} (T ≥ 8(1+|C|) since |C| = O(P^{19/96})); they are not Lemma 5.2(ii) decorations and do not enlarge |q'|. Theorem 6.1 Steps D–E apply: the i-passenger stays (D3), the frozen theta-coefficient B = 27/32 k j nu^{3/8} is unchanged by the X-modes, and the sign-critical composites 243/512 and 1095/1024 survive. The OOEO* curvature λ_2 = (-81/1024) k n^{-5/16} + lower terms keeps sign under Lemma 3.10(a). Withdrawn from Paper B in Phase 26; restored in the laboratory record (lemma Part XII) and imported 2 September 2026. Not a termination claim.",
+  "tag": "CONJECTURE",
+  "statement": "Publication review 9 September 2026: the analytic claim below is not established by Paper B and is retained only as a historical research target. The revised paper gives conditional implications, not this analytic proof. See docs/theory/paper_b_review.md. Historical target: Theorem T, Phase-27 repair, imported as Paper B Theorem 6.3: #OOOEE(N), #OOOEO(N) = N/32 + O(N^{1-1/96+eps}) and #OOEOE(N), #OOEOO(N) = N/32 + O(N^{47/48+eps}). The fifth-letter X-modes of the OOOE* sawtooth C θ, C ≍ l n^{3/16}, are Lemma 5.2 Stage-2 r-modes e(u X) with |u| ≤ P^{1/4} after Lemma 3.7 at T = R_0 = P^{1/4} and J_5 = 2 P^{1/96} (T ≥ 8(1+|C|) since |C| = O(P^{19/96})); they are not Lemma 5.2(ii) decorations and do not enlarge |q'|. Theorem 6.1 Steps D–E apply: the i-passenger stays (D3), the frozen theta-coefficient B = 27/32 k j nu^{3/8} is unchanged by the X-modes, and the sign-critical composites 243/512 and 1095/1024 survive. The OOEO* curvature λ_2 = (-81/1024) k n^{-5/16} + lower terms keeps sign under Lemma 3.10(a). Withdrawn from Paper B in Phase 26; restored in the laboratory record (lemma Part XII) and imported 2 September 2026. Not a termination claim.",
   "source": "docs/research/juggler_two_step_parity_lemma.md",
   "lean": "",
   "tests": [
@@ -4238,11 +4352,11 @@
  {
   "id": "J-five-step-descent-density",
   "tag": "EXACT — HUMAN PROOF",
-  "statement": "Corollary U, Phase-27 repair, imported as Paper B Corollary 6.4: the class of starts carrying a uniform power-envelope descent certificate of length at most five — evens, OE, OOEE, OOOEE, OOEOE — has natural density 7/8. The new cylinders are row J-depth5-contracting / Theorem 6.3; the contraction 3^3 < 2^5 is row J-power-envelope-contraction. The four-step class remains Corollary 4.9 at 13/16 (row J-four-step-descent-density). Not a density of starts that reach 1.",
-  "source": "docs/research/juggler_two_step_parity_lemma.md",
+  "statement": "Conditional Paper B Theorem 5.3 (9 September 2026): under H_0(w) for w in {OOEE, OOOEE, OOEOE}, the class of starts with a power-envelope certificate of length at most five has natural density 7/8. The five minimal words are E, OE, OOEE, OOOEE, OOEOE. The required nested correlations remain unproved; this is not an unconditional density or termination theorem.",
+  "source": "docs/theory/juggler_parity_discrepancy_note.md",
   "lean": "",
   "tests": [
-   "tests/research/juggler_sequence/test_two_step_parity.py"
+   "tools/validate_paper_b.py"
   ],
   "related_conjectures": []
  },
@@ -4270,8 +4384,8 @@
  },
  {
   "id": "J-w-family-thirty-three-thirty-seconds",
-  "tag": "EXACT — HUMAN PROOF",
-  "statement": "Theorem R at alpha = 33/32 (Phase 28): if c is smooth on (P, 2P] with c^{(r)} ~ k P^{33/32-r} for r = 0,...,4, derivative signs following the monomial pattern (e.g. c = (3k/4) n^{33/32}), and 1 <= k <= P^{1/24}, then K_c(P) << P^{1-1/96+eps} uniformly in k. Every Theorem 5.3 constraint was rerun: M1 deletion costs P^{13/96}; Lemma 3.7 holds at |B| <= P^{11/96}; Lemma 5.2 applies a fortiori (c, c', c'' all smaller than the printed 9/8 sizes); the offset composite is (9369/8192) k|j| n^{-7/32} at ratio 3.711; the zero-offset interpolant coefficient is 1701/1024 with sub-unit B <= 1.2 P^{-11/96}; the middle-band triple (5/4, 41/32, 3/2) uses E^dagger = E union {41/32, 57/32} with c_6(5/4, 41/32) = 1/55. The Corollary R' family remains CONJECTURE (row J-w-family-below-nine-eighths). Not a bound for alpha > 9/8 (row J-scale-invariant-R-extension remains REFUTED). Not a length-7 count and not a Paper B edit.",
+  "tag": "CONJECTURE",
+  "statement": "Publication review 9 September 2026: the analytic claim below is not established by Paper B and is retained only as a historical research target. The revised paper gives conditional implications, not this analytic proof. See docs/theory/paper_b_review.md. Historical target: Theorem R at alpha = 33/32 (Phase 28): if c is smooth on (P, 2P] with c^{(r)} ~ k P^{33/32-r} for r = 0,...,4, derivative signs following the monomial pattern (e.g. c = (3k/4) n^{33/32}), and 1 <= k <= P^{1/24}, then K_c(P) << P^{1-1/96+eps} uniformly in k. Every Theorem 5.3 constraint was rerun: M1 deletion costs P^{13/96}; Lemma 3.7 holds at |B| <= P^{11/96}; Lemma 5.2 applies a fortiori (c, c', c'' all smaller than the printed 9/8 sizes); the offset composite is (9369/8192) k|j| n^{-7/32} at ratio 3.711; the zero-offset interpolant coefficient is 1701/1024 with sub-unit B <= 1.2 P^{-11/96}; the middle-band triple (5/4, 41/32, 3/2) uses E^dagger = E union {41/32, 57/32} with c_6(5/4, 41/32) = 1/55. The Corollary R' family remains CONJECTURE (row J-w-family-below-nine-eighths). Not a bound for alpha > 9/8 (row J-scale-invariant-R-extension remains REFUTED). Not a length-7 count and not a Paper B edit.",
   "source": "docs/research/juggler_two_step_parity_lemma.md",
   "lean": "",
   "tests": [
@@ -7048,9 +7162,9 @@
  },
  {
   "id": "J-parity-triple-discrepancy-localized",
-  "tag": "EXACT — HUMAN PROOF",
-  "statement": "Paper B §3.5, Lemma 4.10 and Theorems 4.11–4.12 (nested and triple parity discrepancy on sub-dyadic intervals, with a slow twist). For every ε > 0 there is P₀ such that for P ≥ P₀, every interval I ⊆ (P, 2P] of length Y ≥ P^{1/2}, every (a,b,c) ∈ {0,1}³ ∖ {0} and every slow twist g(n) = (ℓ/2) n^{9/16} with |ℓ| ≤ P^{1/24}: |Σ_{n ∈ I odd} ψ(n^{3/2})^a ψ(m^{3/2})^b ψ(v^{1/2})^c e(g(n))| ≤ Y P^{−1/24+ε} (Theorem 4.12; Theorem 4.11 is the case c = 0). Proof: Steps 1–7 of Theorems 4.4/4.7 run over I with the number of summands Y in place of P; every cost is proportional to Y except three absolute terms — the two partial end cells 5.2 (jh)^{−1/2} P^{3/8}, the pure passenger 3.8 P^{7/16}, the majorant end cells 17 P^{1/4} — which fall below Y P^{−1/24} for Y ≥ P^{1/2}; the twist survives the Weyl differencing as e(Δ_{2h} g) with total variation ≤ 0.26 P^{−5/16} over the block and is removed by one partial summation (Lemma 4.10) against the untwisted differenced sums on initial sub-intervals, whose bound is nondecreasing in the length; in the single-smooth-sum cases the twist’s curvature 0.13 P^{1/24−23/16} is dominated by powers of P. Corollary 4.13 (the OOEEE production on even blocks): for m′ ≥ 2 and I(m′) = [m′^{32/9}, (m′+1)^{32/9}), #{odd n ∈ I(m′) : word₅(n) = OOEEE, J⁵(n) = m′} = (1/16)#{odd n ∈ I(m′)} + O(|I(m′)| m′^{−4/27+ε}), via the nesting bound 0 ≤ n^{9/16} − v^{1/4} ≤ n^{−15/16}, an Erdős–Turán/Kusmin–Landau bound Y P^{−1/16} for the exceptional set, and a Vaaler expansion of the fifth letter whose modes are the slow twists. This discharges Hypothesis L of Paper C (Appendix C) to a Paper B theorem; Paper B remains a working draft. Not a halt theorem.",
-  "source": "docs/theory/juggler_parity_discrepancy_note.md",
+  "tag": "CONJECTURE",
+  "statement": "Publication review 9 September 2026: the analytic claim below is not established by Paper B and is retained only as a historical research target. The revised paper gives conditional implications, not this analytic proof. See docs/theory/paper_b_review.md. Historical target: Paper B §3.5, Lemma 4.10 and Theorems 4.11–4.12 (nested and triple parity discrepancy on sub-dyadic intervals, with a slow twist). For every ε > 0 there is P₀ such that for P ≥ P₀, every interval I ⊆ (P, 2P] of length Y ≥ P^{1/2}, every (a,b,c) ∈ {0,1}³ ∖ {0} and every slow twist g(n) = (ℓ/2) n^{9/16} with |ℓ| ≤ P^{1/24}: |Σ_{n ∈ I odd} ψ(n^{3/2})^a ψ(m^{3/2})^b ψ(v^{1/2})^c e(g(n))| ≤ Y P^{−1/24+ε} (Theorem 4.12; Theorem 4.11 is the case c = 0). Proof: Steps 1–7 of Theorems 4.4/4.7 run over I with the number of summands Y in place of P; every cost is proportional to Y except three absolute terms — the two partial end cells 5.2 (jh)^{−1/2} P^{3/8}, the pure passenger 3.8 P^{7/16}, the majorant end cells 17 P^{1/4} — which fall below Y P^{−1/24} for Y ≥ P^{1/2}; the twist survives the Weyl differencing as e(Δ_{2h} g) with total variation ≤ 0.26 P^{−5/16} over the block and is removed by one partial summation (Lemma 4.10) against the untwisted differenced sums on initial sub-intervals, whose bound is nondecreasing in the length; in the single-smooth-sum cases the twist’s curvature 0.13 P^{1/24−23/16} is dominated by powers of P. Corollary 4.13 (the OOEEE production on even blocks): for m′ ≥ 2 and I(m′) = [m′^{32/9}, (m′+1)^{32/9}), #{odd n ∈ I(m′) : word₅(n) = OOEEE, J⁵(n) = m′} = (1/16)#{odd n ∈ I(m′)} + O(|I(m′)| m′^{−4/27+ε}), via the nesting bound 0 ≤ n^{9/16} − v^{1/4} ≤ n^{−15/16}, an Erdős–Turán/Kusmin–Landau bound Y P^{−1/16} for the exceptional set, and a Vaaler expansion of the fifth letter whose modes are the slow twists. This discharges Hypothesis L of Paper C (Appendix C) to a Paper B theorem; Paper B remains a working draft. Not a halt theorem.",
+  "source": "docs/theory/juggler_parity_discrepancy_note_2026_09_04.md",
   "lean": "",
   "tests": [
    "tests/research/juggler_sequence/test_paper_b_audit.py",
@@ -7063,8 +7177,8 @@
  {
   "id": "J-parity-paper-b-audit",
   "tag": "COMPUTATIONALLY VERIFIED",
-  "statement": "Paper B companion audit ledger docs/theory/paper_b_audit_ledger.md and research.juggler_sequence.paper_b_audit. Machine layer: the exact identities of Lemma 4.3 (one-signed remainder 0 ≤ E ≤ (3/8)(X−1)^{−1/2}, gap identity), Lemma 5.1(i)–(iv) (0 ≤ R ≤ (3/16) v^{−1/2}; double-gap identity; carry as sawtooth difference; ΔΔY = F_κ(m), |j| ≤ 3, the offset/second-difference split with its numerical ranges and the |G′| bound; the master identity with all four brackets ≤ 2) and Lemma 6.2 hold on 360 random odd starts across 10⁴ ≤ n ≤ 2·10¹⁴ at 60–120 digits; the standing estimates (E1)–(E6) contain the observed values at P = 10⁶, 10⁸, 10¹⁰; the cell inventory 1.5 h P^{1/2} + 1 with lengths [2/3, 0.95] P^{1/2}/h holds exhaustively at P = 10⁵; 98 displayed P-power comparisons of the kernel argument hold as exact rational statements. Companion file docs/theory/paper_b_audit_ledger.md. The printed Step 5b |B|<1 is withdrawn: frozen B has constant size at most 6. Three corrections, none changing a statement: Lemma 4.3’s proof printed f″ = (3/8)(X−t)^{−1/2} (correct (3/4)); Lemma 3.9’s printed ℓ^∞ operator norm 288 is the ℓ¹ norm (the ℓ^∞ norm is 232; c₇ = 1/288 remains valid); Lemma 6.2 now displays the two Lagrange remainders (orders n^{−45/16}, n^{−81/16}) instead of absorbing them into coefficients without slack. Observation only: |K_c(P)| at P ≤ 3·10⁵ is 0.4–1.2 times (P/2)^{1/2}, square-root scale. A script check is consistency of what is printed, not a proof, and not an independent human verification Fourth correction (4 September 2026): Step 5b interpolant is the frozen-shape Lemma 5.2b, local leading -135/1024, b = -405/176, lambda_0 in [0.35, 2.6]; the moving-gap (c F_sm) = 243/128 is a different object and is withdrawn. Theorem 5.3 unchanged. Fifth correction (4 September 2026): Theorem 6.1 Step E is the same frozen-versus-smooth error one theorem later; offset leftover 81/512, window-centre 324/512, composite 243/512, B = 27/32 k j nu^{3/8}; zero-offset lambda_0' = 1095/1024 k h1 h2 nu^{-5/8}; the withdrawn 405/512 and 8.27 differentiated the moving total phase (k/2) nu^{27/8}. The 1-1/96 exponent is unchanged. Sixth correction (4 September 2026): Theorem 5.3 is the monomial c = (3k/4) n^{9/8}; Step 5b zero-offset |B| is (9/32) k beta1 beta2 n^{-9/8} with |B| <= 6; rho_0 ratios of Lemma 5.2b are O(P^{-1/4}).",
-  "source": "docs/theory/juggler_parity_discrepancy_note.md",
+  "statement": "Historical arithmetic audit of the 4 September Paper B snapshot; passing checks do not establish the analytic estimates withdrawn in the 9 September conditional revision. Paper B companion audit ledger docs/theory/paper_b_audit_ledger.md and research.juggler_sequence.paper_b_audit. Machine layer: the exact identities of Lemma 4.3 (one-signed remainder 0 ≤ E ≤ (3/8)(X−1)^{−1/2}, gap identity), Lemma 5.1(i)–(iv) (0 ≤ R ≤ (3/16) v^{−1/2}; double-gap identity; carry as sawtooth difference; ΔΔY = F_κ(m), |j| ≤ 3, the offset/second-difference split with its numerical ranges and the |G′| bound; the master identity with all four brackets ≤ 2) and Lemma 6.2 hold on 360 random odd starts across 10⁴ ≤ n ≤ 2·10¹⁴ at 60–120 digits; the standing estimates (E1)–(E6) contain the observed values at P = 10⁶, 10⁸, 10¹⁰; the cell inventory 1.5 h P^{1/2} + 1 with lengths [2/3, 0.95] P^{1/2}/h holds exhaustively at P = 10⁵; 98 displayed P-power comparisons of the kernel argument hold as exact rational statements. Companion file docs/theory/paper_b_audit_ledger.md. The printed Step 5b |B|<1 is withdrawn: frozen B has constant size at most 6. Three corrections, none changing a statement: Lemma 4.3’s proof printed f″ = (3/8)(X−t)^{−1/2} (correct (3/4)); Lemma 3.9’s printed ℓ^∞ operator norm 288 is the ℓ¹ norm (the ℓ^∞ norm is 232; c₇ = 1/288 remains valid); Lemma 6.2 now displays the two Lagrange remainders (orders n^{−45/16}, n^{−81/16}) instead of absorbing them into coefficients without slack. Observation only: |K_c(P)| at P ≤ 3·10⁵ is 0.4–1.2 times (P/2)^{1/2}, square-root scale. A script check is consistency of what is printed, not a proof, and not an independent human verification Fourth correction (4 September 2026): Step 5b interpolant is the frozen-shape Lemma 5.2b, local leading -135/1024, b = -405/176, lambda_0 in [0.35, 2.6]; the moving-gap (c F_sm) = 243/128 is a different object and is withdrawn. Theorem 5.3 unchanged. Fifth correction (4 September 2026): Theorem 6.1 Step E is the same frozen-versus-smooth error one theorem later; offset leftover 81/512, window-centre 324/512, composite 243/512, B = 27/32 k j nu^{3/8}; zero-offset lambda_0' = 1095/1024 k h1 h2 nu^{-5/8}; the withdrawn 405/512 and 8.27 differentiated the moving total phase (k/2) nu^{27/8}. The 1-1/96 exponent is unchanged. Sixth correction (4 September 2026): Theorem 5.3 is the monomial c = (3k/4) n^{9/8}; Step 5b zero-offset |B| is (9/32) k beta1 beta2 n^{-9/8} with |B| <= 6; rho_0 ratios of Lemma 5.2b are O(P^{-1/4}).",
+  "source": "docs/theory/juggler_parity_discrepancy_note_2026_09_04.md",
   "lean": "",
   "tests": [
    "tests/research/juggler_sequence/test_paper_b_audit.py"
@@ -7688,8 +7802,8 @@
  },
  {
   "id": "J-localized-kernel",
-  "tag": "EXACT — HUMAN PROOF",
-  "statement": "Standalone localized kernel estimate, not a production theorem. Paper B Theorem 5.5: for c(n)=(3k/4)n^(9/8), 1<=k<=P^(1/24), delta>0, a slow twist g(n)=(l/2)n^(9/16) with |l|<=P^(1/24), and I inside (P,2P] of length Y>=P^(29/48+delta), |K_c^g(I)| << Y P^(-1/96+eps), uniformly in the stated parameters. The human proof classifies proportional and absolute costs, transfers the latter through three A-processes to P^((7y+25/48)/8), and retains the printed saving above 25/48+8/96=29/48. The largest tabulated absolute cost is the transition term P^(25/48), not the depth-three P^(7/16). Uniformly for Y<=P, the twist variation is at most 0.26 P^(-3/8). The bookkeeping and extracted inventory are consistency checks, not independent proofs of that analytic classification. The legacy reference y=23/32 is admissible, with margin 11/768. It is NOT the nominal inverse-fiber scale of OOOEEE or OOEOEE: both have landing exponent 27/64 and nominal inverse exponent 37/64 < 29/48. Accordingly the claimed unchanged-1/96 production application and its contagion dividend are withdrawn. Substitution of 37/64 into the formal two-term bookkeeping suggests saving 11/1536, but extending the estimate and transporting the exact floor/parity restrictions remain proof obligations. No new production or termination theorem. PROMOTE for the stated standalone estimate only; production application not established.",
+  "tag": "CONJECTURE",
+  "statement": "Publication review 9 September 2026: the analytic claim below is not established by Paper B and is retained only as a historical research target. The revised paper gives conditional implications, not this analytic proof. See docs/theory/paper_b_review.md. Historical target: Standalone localized kernel estimate, not a production theorem. Paper B Theorem 5.5: for c(n)=(3k/4)n^(9/8), 1<=k<=P^(1/24), delta>0, a slow twist g(n)=(l/2)n^(9/16) with |l|<=P^(1/24), and I inside (P,2P] of length Y>=P^(29/48+delta), |K_c^g(I)| << Y P^(-1/96+eps), uniformly in the stated parameters. The human proof classifies proportional and absolute costs, transfers the latter through three A-processes to P^((7y+25/48)/8), and retains the printed saving above 25/48+8/96=29/48. The largest tabulated absolute cost is the transition term P^(25/48), not the depth-three P^(7/16). Uniformly for Y<=P, the twist variation is at most 0.26 P^(-3/8). The bookkeeping and extracted inventory are consistency checks, not independent proofs of that analytic classification. The legacy reference y=23/32 is admissible, with margin 11/768. It is NOT the nominal inverse-fiber scale of OOOEEE or OOEOEE: both have landing exponent 27/64 and nominal inverse exponent 37/64 < 29/48. Accordingly the claimed unchanged-1/96 production application and its contagion dividend are withdrawn. Substitution of 37/64 into the formal two-term bookkeeping suggests saving 11/1536, but extending the estimate and transporting the exact floor/parity restrictions remain proof obligations. No new production or termination theorem. PROMOTE for the stated standalone estimate only; production application not established.",
   "lean": "formal/Problems/Juggler/LocalizedKernel.lean",
   "related_conjectures": [],
   "source": "docs/problems/juggler_localized_kernel.md",

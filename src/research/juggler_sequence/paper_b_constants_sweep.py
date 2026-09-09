@@ -1,3 +1,4 @@
+# Historical Paper B audit: the 2026-09-04 snapshot is not the conditional publication.
 """Paper B constants sweep, third pass: only genuine comparisons.
 
 Shape A  c * P^(-g)  <=  margin        threshold (c/margin)^(1/g)
@@ -12,7 +13,7 @@ import io
 import re
 from fractions import Fraction as F
 
-PATH = "docs/theory/juggler_parity_discrepancy_note.md"
+PATH = "docs/theory/juggler_parity_discrepancy_note_2026_09_04.md"
 P0 = 8.9458e13
 MARGIN = 0.25
 

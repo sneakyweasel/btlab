@@ -10,6 +10,13 @@ count are coprime and its word is exactly a ceiling mechanical word.
 The parity obstruction needed to exclude even this class is unproved.
 Cycles reaching or exceeding the cubic height are also unexcluded.
 
+The authorized continuation adds four exact results: common period and
+interlacing for all cycles at one threshold; a uniform sorted grid in
+log-log coordinates; cycles under a one-unit successor allowance at
+every scale; and an explicit 11-cycle showing that even exact
+within-branch gap data lose an additive branch constant. None proves
+the required wrong-parity intersection for the exact map.
+
 ## Problem
 
 Let
@@ -29,58 +36,18 @@ does not raise the descent floor or exclude any further period.
 
 ## Exact statement
 
-**Proposition 1 — cubic-band order rigidity
-(`J-cycle-cubic-band-order`, EXACT — HUMAN PROOF).**
-Suppose \(C\) is a primitive nontrivial Juggler cycle of length \(L\),
-minimum \(m>1\), maximum \(M<m^3\), and odd-state count \(o\).
-Put \(e=L-o\) and list its states as
-\(c_0=m<c_1<\cdots<c_{L-1}=M\). Then
-\[
-\begin{split}
-&c_i\text{ is odd}\quad\Longleftrightarrow\quad i<o
-\quad\Longleftrightarrow\quad c_i<m^2,\\
-&J(c_i)=c_{(i+e)\bmod L},\qquad \gcd(L,o)=1.
-\end{split}\tag{1}
-\]
-If \(a_k\) is the number of odd steps in the first \(k\) steps from
-the minimum, then, for \(0\le k\le L\),
-\[
-a_k=\left\lceil\frac{ko}{L}\right\rceil.\tag{2}
-\]
-Thus the letter at position \(k\), starting with position zero, is
-\(O\) precisely when
-\(\lceil(k+1)o/L\rceil-\lceil ko/L\rceil=1\).
-This specifies the word, rather than only its letter counts.
+**Canonical proof source:** [Paper A, Section 3.10](../theory/juggler_finite_dynamics_note.md).
+Theorem 3.33 through Proposition 3.38 contain the statements and full proofs.
+The six theorem-ledger identifiers now point there. This dossier retains
+research context and data, without a second editable proof source.
 
-In particular, a primitive nontrivial cycle whose minimum-based word
-is not (2), or whose counts satisfy \(\gcd(L,o)>1\), must satisfy
-\(M\ge m^3\). Since \(m\) is odd and \(M\) even, the integer
-consequence is \(M\ge m^3+1\). This is a conditional height bound,
-not a global cycle exclusion.
-
-**Proposition 2 — arbitrarily high closed orbits after removing the
-parity rule (`J-cycle-threshold-relaxation`, EXACT — HUMAN PROOF).**
-For every integer \(b\ge3\), define a different map on
-\(I_b=\{b,b+1,\ldots,b^3-1\}\):
-\[
-S_b(x)=\begin{cases}
-\lfloor\sqrt{x^3}\rfloor,&x<b^2,\\
-\lfloor\sqrt{x}\rfloor,&x\ge b^2.
-\end{cases}\tag{3}
-\]
-It maps \(I_b\) into itself, has no fixed point, and therefore has
-a cycle of length at least two. All its primitive cycles have the
-rank-rotation and mechanical-word properties in (1)--(2), counting
-branch labels instead of actual odd integers. Their minima are at
-least \(b\), so this construction is unbounded in scale.
-
-**Map distinction:** (3) chooses its branch by size. It is not the
-Juggler map. A cycle of (3) is a Juggler cycle if and only if every
-state satisfies
-\[
-x\text{ odd}\quad\Longleftrightarrow\quad x<b^2.\tag{4}
-\]
-The construction does not assert that (4) ever holds on a full cycle.
+For an actual primitive cycle with m>1 and M<m^3, sorted states rotate by
+the even count; the period and odd count are coprime, and the minimum-based
+word is ceiling mechanical. The comparison map S_b uses the three-halves
+floor below b^2 and the square-root floor above, on [b,b^3). It has cycles
+at every scale, sharing a period and interlacing at fixed b. The exact
+log-log grid and the two altered-map obstructions are Propositions
+3.36--3.38. Uniform wrong-parity intersection remains open.
 
 ## Current literature
 
@@ -132,6 +99,24 @@ the proofs below, and the finite searches do not establish novelty.
 - **Stop criterion:** retain the structural result, identify the
   unproved arithmetic statement, and PARK without a no-cycle claim.
 
+### Authorized continuation (9 September 2026)
+
+Mathematical target: Does every exact S_b cycle meet its wrong-parity set, uniformly in b>=3?
+
+Novelty hypothesis: The union of periodic points, interlacing of its cycles, and exact unit-width floor cells may constrain parity in a way single-cycle geometry does not.
+
+Falsifier: Common rotation and smooth spacing persist under a parity-correct one-unit successor alteration, or rotation comparison is non-strict without a common exact cycle.
+
+Already killed by?: Coarse surplus/charge and local-cell-only arguments are closed. This continuation was explicitly requested and tests a global relation between complete cycles and a precise rounding boundary; no floor or band survey is reopened.
+
+Existing machinery: Cubic-band rank rotation and old exact data; independent AI audit; elementary finite permutations; exact roots and logarithmic defect identity.
+
+Maximum Phase-0 scope: Written common-period/interlacing, sorted-grid and one-unit rounding proofs; complete old small graphs at b=3,9,29; rounding controls at b=3,9,29,101 and the single exact R_11 branch-offset witness; exact boundary checks at arbitrarily large symbolic sizes. No larger trajectory census or Lean packaging.
+
+Promotion criterion: A proved uniform exact-parity obstruction. Structural statements can be recorded separately without asserting that criterion is met.
+
+Stop criterion: If the exact parity inequality remains unproved, record the valid statements and precision obstruction with PARK. Do not automatically open another attack.
+
 ## Balanced-ternary formulation
 
 All states are ordinary positive integers. Canonical balanced ternary
@@ -149,10 +134,12 @@ even images occupy the lowest ranks and the odd images the highest.
 The rank increment is the number of even states. Individual inverse
 cells alone do not establish this permutation structure.
 
-The attempted final step was a uniform obstruction to (4). Integer
-closure, mechanical balance, coprime counts, extrema parity, and the
-sign of the surplus do not supply it; the witnesses below demonstrate
-the distinction. No statistical parity assumption is made.
+No uniform obstruction to (4) was proved. The witnesses show that the
+parity-relaxed constraints coexist, and that exact closure does not by
+itself establish (4). A wrong-parity example neither proves nor refutes
+the assertion that every such cycle has a wrong-parity state. The
+follow-up instead tests global cycle relations and absolute rounding
+precision. No statistical parity assumption is made.
 
 ## Experiments
 
@@ -179,6 +166,32 @@ The complete small-graph count is likewise a count across maps.
 The large capped runs are not evidence of escape: Proposition 2
 proves that they eventually repeat. No cap or parity-frequency
 observation is promoted into an infinite statement.
+
+### Continuation: small independent controls
+
+Regenerate only the continuation with
+`python -m research.juggler_sequence.cycle_cubic_band --followup`.
+Data: [followup.json](../../data/research/juggler/cycle_cubic_band/followup.json).
+The former large capped runs were not extended and the former census
+was not enlarged. All edge, projection-boundary and interlacing checks
+use integers. Twelve log-log grid checks use 80-decimal arithmetic as
+numerical consistency checks, not rigorous interval certificates; the
+quantified bounds are proved below.
+
+| Map and parameter | Cycles / period / relevant checks |
+|---|---|
+| Complete S_3 periodic set | 2 cycles, common period 3, 6 points interlacing |
+| Complete S_9 periodic set | 2 cycles, common period 11, 22 points interlacing |
+| Complete S_29 periodic set | 3 cycles, common period 19, 57 points interlacing |
+| R_3, one orbit | Period 3; 1 one-unit alterations; not an actual Juggler cycle |
+| R_9, one orbit | Period 14; 8 one-unit alterations; not an actual Juggler cycle |
+| R_11, one orbit | Period 11; 7 one-unit alterations; not an actual Juggler cycle |
+| R_29, one orbit | Period 49; 25 one-unit alterations; not an actual Juggler cycle |
+| R_101, one orbit | Period 141; 72 one-unit alterations; not an actual Juggler cycle |
+
+The branch-offset control is the exact R_11 cycle in Proposition 6.
+Its integer square-cell margins and all same-branch image differences
+are checked independently of the 80-decimal grid calculations.
 
 ## Conjectures
 
@@ -217,102 +230,27 @@ it is not a counterexample to any theorem about actual Juggler cycles.
 
 ## Formalization
 
-The two propositions have written proofs below. The repository tag
-is **EXACT — HUMAN PROOF**, meaning an analytic proof rather than a
-Lean-checked theorem. These proofs were prepared with AI assistance;
-no independent human review or new Lean verification is claimed.
-Finite integer tests validate examples and implementation boundaries,
-not the universally quantified assertions. No Paper A Lean module or
-publication source has been modified for this research attempt.
+**EXACT — LEAN VERIFIED** for the six consolidated results at their stated
+scope. The seven Cubic modules are imported by the Paper A barrel. The
+[formalization map](../theory/juggler_finite_dynamics_formalization.md)
+identifies their declarations and distinguishes the illustrative asymptotic
+comparison from the compiled inequalities. Separate AI audits preceded
+formalization; no independent human review or external priority is claimed.
 
 ## Results
 
-### Proof of Proposition 1
-
-A cycle with minimum greater than 1 has odd minimum \(m\ge3\):
-an even minimum would map below itself. Its maximum is even, since
-\(\lfloor\sqrt{x^3}\rfloor>x\) for every integer \(x\ge3\).
-Thus \(o,e>0\).
-
-If an even state \(x\in C\) satisfied \(x<m^2\), then
-\(J(x)<m\), impossible. If an odd state \(x\in C\) satisfied
-\(x\ge m^2\), then
-\(J(x)\ge\lfloor\sqrt{(m^2)^3}\rfloor=m^3>M\), also impossible.
-Therefore the first \(o\) sorted states are exactly the odd states.
-
-For any even \(x\in C\) and odd \(y\in C\), monotonicity gives
-\[
-J(x)\le\lfloor\sqrt M\rfloor
-\le\lfloor\sqrt{m^3}\rfloor\le J(y).
-\]
-The possible equality from taking floors must be handled: \(J\)
-permutes the states of a primitive cycle, so it is injective on
-\(C\). Equality of these images would force \(x=y\), impossible
-for opposite parities. Hence every even image is strictly below
-every odd image. Each branch is nondecreasing, and injectivity on
-\(C\) makes its restriction strictly increasing.
-
-The \(e\) even images are consequently \(c_0,\ldots,c_{e-1}\),
-in that order, and the \(o\) odd images are
-\(c_e,\ldots,c_{L-1}\), in that order. This proves
-\(J(c_i)=c_{(i+e)\bmod L}\).
-Adding \(e\) modulo \(L\) has an orbit of size
-\(L/\gcd(e,L)\). Primitivity requires that size to be \(L\),
-so \(\gcd(e,L)=\gcd(o,L)=1\).
-
-From rank zero the rank at time \(k\) is \(ke\bmod L\).
-An even step occurs exactly when adding \(e\) wraps past \(L\):
-the starting rank is then at least \(L-e=o\). The number of wraps
-in the first \(k\) additions is \(\lfloor ke/L\rfloor\).
-The odd count is therefore
-\(k-\lfloor ke/L\rfloor=\lceil ko/L\rceil\), proving (2).
-No exact logarithmic closure is used.
-
-### Proof of Proposition 2
-
-For \(b\le x<b^2\),
-\(b\le x<\lfloor\sqrt{x^3}\rfloor<b^3\).
-For \(b^2\le x<b^3\),
-\(b\le\lfloor\sqrt x\rfloor<b^2\le x\).
-Both conclusions follow directly from the square/cube inequalities;
-the strict growth uses \(x\ge3\). Thus (3) preserves the nonempty
-finite set \(I_b\), and neither branch has a fixed point there.
-Every orbit eventually repeats, yielding a primitive cycle of
-length at least two.
-
-On any such cycle the states using the odd branch are its lower
-part \(x<b^2\). The even-branch images are at most
-\(\lfloor\sqrt{b^3-1}\rfloor\), and the odd-branch images are
-at least \(\lfloor\sqrt{b^3}\rfloor\).
-Once again these weak inequalities become strict between cycle
-images by injectivity. The same sorting and modular-rank argument
-proves (1)--(2) with branch counts. Since the least state is at
-least \(b\), these closed orbits exist beyond any fixed lower bound.
-
-Their formal exponent is also strictly expanding. Composing
-\(S_b(x)\le x^{3/2}\) or \(S_b(x)\le x^{1/2}\) around a cycle
-with minimum \(r>1\) gives
-\(r\le r^{3^o/2^L}\), hence \(3^o\ge2^L\).
-Equality is impossible for positive \(o,L\), since a positive
-power of 3 is odd and a positive power of 2 is even.
-Consequently \(3^o>2^L\). This sign, exact floors, distinctness,
-closed-orbit order and unbounded minimum coexist in the relaxed map.
-They do not force the missing parity rule (4).
-
-### A limited run consequence
-
-For an actual cycle under Proposition 1, \(EE\) is impossible:
-all even states are at least \(m^2\), whereas their images are
-less than \(m^2\). Also \(OOO\) is impossible. If its starting
-state is \(q\ge5\), the existing exact lemma
-`ooo_residual_ge_cube` in `Preimages.lean` places its third image
-at least \((q+1)^3>m^3\). The remaining odd case \(q=3\) has
-the exact third image 36, larger than \(3^3\).
-Thus the word consists cyclically of blocks \(OE\) and \(OOE\).
-This is a corollary under \(M<m^3\), not the withdrawn claim
-under \(R<27/8\); no first-fall location is inferred.
+Statements and written proofs have one editorial home:
+[Paper A, Section 3.10](../theory/juggler_finite_dynamics_note.md).
+This supersedes the earlier copied proofs in this dossier. The finite
+controls remain supporting data and do not prove universal parity failure.
 
 ## Open questions
+
+The authorized absolute-cell follow-up is recorded in
+[Absolute floor cells](juggler_cycle_absolute_cells.md). It adds three
+written necessary restrictions or comparison obstructions; none establishes
+uniform wrong parity. Paper A remains the canonical proof source for the
+six Lean-supported results consolidated above.
 
 For \(b\ge3\), define the wrong-parity set
 \[
@@ -336,13 +274,15 @@ of this missing statement would still leave the separate regime
 
 ## Decision
 
-**PARK.** The structural propositions survive exact checking, but
-the proposed cycle exclusion does not. Retain the written proofs
-and explicit counterexamples; do not enlarge the capped runs or
-translate a positive observed mismatch fraction into a theorem.
-Exactly one next mathematical question for this branch is whether
-every threshold cycle must meet \(B_b\), uniformly in \(b\).
-No new attack is opened automatically from this record.
+**PARK.** The continuation proves the common-period/interlacing and
+sorted-grid results, plus two precisely scoped obstructions to weakening
+the rounding or retaining only branchwise gaps. The exact wrong-parity
+intersection is not proved. The valid statements are retained; no larger
+census, new floor or automatic follow-on attack is authorized by this
+decision. Exactly one next mathematical question remains: prove that
+every exact threshold cycle meets B_b, using absolute unit-cell alignment
+or a constraint coupling the branch offsets that the gap equations erase.
+The regime M>=m^3 remains a separate unresolved part of no-cycle.
 
 ## Publication assessment
 

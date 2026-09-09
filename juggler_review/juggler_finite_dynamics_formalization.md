@@ -914,3 +914,45 @@ The three-term comparison of Corollary 4.5 and the four headline period
 bounds do not use this packing hypothesis. Theorem 4.8's 99-survivor
 table and its identification with the run-survivor lattice remain
 explicitly conditional.
+
+
+## 11. Cubic-band consolidation (Paper A Section 3.10)
+
+Paper A owns the canonical statements and written proofs, Theorem 3.33
+through Proposition 3.38. The research dossier retains budgets, experiments,
+failed implications and the open question, without a second copy of the proofs.
+
+The Paper A and Juggler barrels import seven new modules:
+
+- `CubicBand.lean`: exact parity separation, threshold invariance, primitive
+  cycles at every scale, automatic branch counts, sorted rank rotation,
+  and the rank rotation of the entire periodic union.
+- `CubicRotation.lean`: every iterate, least period \(L/\gcd(L,e)\),
+  coprimality, ceiling-mechanical prefixes and invariant rank residues.
+- `CubicInterlacing.lean`: orbit/residue equivalence, exactly \(\gcd(L,e)\)
+  cycles, increasing residue parameterization, interlacing and upper count
+  \(e/\gcd(L,e)\) on every orbit.
+- `CubicConsequences.lean`: transfer of least periods through injective
+  conjugacy, common threshold periods and actual Juggler odd prefixes.
+- `CubicGrid.lean`: exact finite-permutation defect estimates.
+  `CubicLogGrid.lean` realizes the actual logarithmic coordinates from
+  integer square cells and ordinary cycle connectedness. It derives
+  nonnegative defects, strict positive surplus, all-pair oscillation,
+  the anchored grid, and positive lifted gaps including the seam.
+  The endpoints are `Problems.Juggler.CubicGrid.threshold_cycle_grid`
+  and `Problems.Juggler.CubicGrid.cubicBand_cycle_grid`.
+- `CubicRounding.lean`: the projection seam, finite invariant altered
+  map, primitive cycles at every odd scale, one-unit successor bound,
+  loss below 2, universal sorted rotation, same-branch offset cancellation,
+  strict smooth-gap and nearest-even statements, and the exact 11-cycle.
+
+The Lean premises are exact realization, band membership, sorting and
+ordinary cycle connectedness. The rank, grid and parity-cut conclusions
+are derived. No desired wrong-parity failure is a premise. These proofs
+introduce no native decision procedure; Section 5's existing native scan
+retains its disclosed trust boundary. Decimal controls are consistency
+checks, not inputs to the quantified real inequalities.
+
+The illustrative state-width discussion after Proposition 3.36 remains
+written analysis under \(\Lambda\log c_i\ll1\). The universal wrong-parity
+intersection and global no-cycle statements remain unproved.

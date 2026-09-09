@@ -14,7 +14,7 @@ Rebuild: `python -m research.juggler_sequence.branch_index`.
 ## Reading path
 
 1. [juggler_finite_dynamics_note.md](../../docs/theory/juggler_finite_dynamics_note.md) — Paper A: cycle-length lower bounds. Audit: `research.juggler_sequence.paper_a_audit`. Extracts: [juggler_walk_charge_note.md](../../docs/theory/juggler_walk_charge_note.md), [juggler_cycle_itinerary_structure_note.md](../../docs/theory/juggler_cycle_itinerary_structure_note.md). Paper D draft (not a review object): [juggler_near_convergent_diophantine_note.md](../../docs/theory/juggler_near_convergent_diophantine_note.md).
-2. [juggler_parity_discrepancy_note.md](../../docs/theory/juggler_parity_discrepancy_note.md) — Paper B: parity discrepancy of nested floor powers. Audit ledger: [paper_b_audit_ledger.md](../../docs/theory/paper_b_audit_ledger.md) + `paper_b_audit`.
+2. [juggler_parity_discrepancy_note.md](../../docs/theory/juggler_parity_discrepancy_note.md) — Paper B: conditional parity statistics of nested floor powers (9 September revision). Only the certificate density 3/4 is unconditional in this paper; 13/16 and 7/8 require the printed hypotheses. Historical analytic claims are superseded; see docs/theory/paper_b_review.md. Audit ledger: [paper_b_audit_ledger.md](../../docs/theory/paper_b_audit_ledger.md) + `paper_b_audit`.
 3. [juggler_flight_note.md](../../docs/theory/juggler_flight_note.md) — descent-free flights. Not a paper; the flight program is descriptively terminal.
 4. [juggler_branch_ledger.md](../../docs/juggler_branch_ledger.md) — every branch, decision, and strongest evidence.
 5. [negative_knowledge.md](../../docs/negative_knowledge.md) — every recorded failure. Search before reopening.
@@ -57,8 +57,8 @@ Method: [docs/methodology.md](../../docs/methodology.md).
   ([juggler_three_halves_mod_one.md](../../docs/problems/juggler_three_halves_mod_one.md)),
   valley-composition, or a bounded walk coboundary. Hug-cylinder
   stays PARK. Exclusion of divergent orbits is not claimed.
-- **Termination.** Certified descent density \(7/8\)
-  (`J-five-step-descent-density`). Four-step class \(13/16\).
+- **Termination.** Conditional certificate density \(7/8\), under the revised Paper B correlation hypotheses
+  (`J-five-step-descent-density`). Four-step class \(13/16\) is conditional as well; \(3/4\) is unconditional.
   Densities \(57/64\) and \(29/32\) remain CONJECTURE. Harvest
   counting is laboratory-terminal (`J-harvest-counting-terminal`).
   Remaining problem is external:

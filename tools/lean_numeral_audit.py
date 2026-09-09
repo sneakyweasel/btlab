@@ -1,3 +1,4 @@
+# Historical Paper B audit: the 2026-09-04 snapshot is not the conditional publication.
 """Every numeral in a Paper B Lean *statement*, paired with the quantity it implements.
 
 `manuscript_self_audit.lean_row_audit` pairs the thirty-three threshold-row theorems with the
@@ -479,7 +480,7 @@ def coverage() -> dict[str, Any]:
 # file, so rewording the sentence retires the row loudly instead of silently; the predicate is
 # checked against the manuscript.
 
-PAPER = REPO_ROOT / "docs" / "theory" / "juggler_parity_discrepancy_note.md"
+PAPER = REPO_ROOT / "docs" / "theory" / "juggler_parity_discrepancy_note_2026_09_04.md"
 
 
 def paper_text() -> str:

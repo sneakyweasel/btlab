@@ -1,3 +1,4 @@
+# Historical Paper B audit: the 2026-09-04 snapshot is not the conditional publication.
 """Which symbols carry more than one meaning, and where a reviewer would trip over it.
 
 A symbol collision is only a defect when a reader can plausibly hold both meanings at once.
@@ -33,7 +34,7 @@ from typing import Any, Iterable
 
 PAPERS = {
     "A": DOCS_THEORY / "juggler_finite_dynamics_note.md",
-    "B": DOCS_THEORY / "juggler_parity_discrepancy_note.md",
+    "B": DOCS_THEORY / "juggler_parity_discrepancy_note_2026_09_04.md",
     "C": DOCS_THEORY / "juggler_fate_almost_all_note.md",
 }
 

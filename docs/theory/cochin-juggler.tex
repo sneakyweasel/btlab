@@ -42,12 +42,16 @@ inequalities give period lower bounds of \(25781\), \(176251\),
 \(162849448\), and \(350000000\), respectively. Separately, finite-word
 exclusions give at least four even steps without a descent-floor input;
 an exact computational classification strengthens this to eight even
-steps and period at least twenty-two. The core inequalities and selected
-classifications are formalized in Lean 4. The descent computations,
-per-length numerical comparisons, and remaining analytic identifications
-are distinguished from those formal proofs. A limitation result applies
-to charges retaining a positive contribution at a fixed floor. Neither
-the exclusion of all nontrivial cycles nor universal termination is
+steps and period at least twenty-two. For cycles whose maximum is below
+the cube of their minimum, we also determine the complete rank order and
+mechanical itinerary, derive a uniform log-log grid bound, and identify
+the exact rounding information that several relaxed no-cycle criteria
+discard. The core inequalities and selected classifications are
+formalized in Lean 4. The descent computations, per-length numerical
+comparisons, and remaining analytic identifications are distinguished
+from those formal proofs. A limitation result applies to charges
+retaining a positive contribution at a fixed floor. Neither the
+exclusion of all nontrivial cycles nor universal termination is
 established.
 
 \end{abstract}
@@ -323,6 +327,18 @@ and it shows that the no-cycle problem is exactly the exclusion of long
 cycles, \(L>(n\log n/915)^{1/14.3}\), where the finance survivors
 (\(L\approx n^{0.59}\)) live.
 
+\textbf{Contribution 6 --- complete cycle order under a height
+hypothesis.} For a primitive cycle with \(m>1\) and \(M<m^3\), the
+sorted states rotate by the even count, the period and odd count are
+coprime, and the itinerary from its minimum is exactly the ceiling
+mechanical word (Theorem 3.33). The associated threshold maps have a
+common period and interlacing cycles at each fixed threshold (Theorem
+3.35); Proposition 3.36 controls the entire sorted cycle in log-log
+coordinates. Propositions 3.37--3.38 show precisely why a one-unit
+successor allowance or exact within-branch differences alone cannot
+prove no-cycle. They concern different maps and are not counterexamples
+to the Juggler conjecture.
+
 These statements are not interchangeable. Theorem 4.4 is the conceptual
 sharp inequality (constant \(1\)). Corollary 4.5 is the convenient
 length-only statewise bound that turns a descent floor into a per-length
@@ -465,6 +481,17 @@ exact reconstruction theorem. The remaining native scan sharpens the
 digit cap from \(47\) to \(37\) on its stated sub-window. The bound
 \texttt{\nolinkurl{window_digit_cap}} inherits that scan's runtime
 dependency, as recorded by the axiom audit.
+
+Section 3.10's finite-order statements, exact rounding results, and
+quantitative log-log grid inequalities are also formalized. The grid
+proof starts from integer square-cell inequalities and the actual
+successor map; its geometric conclusion is not an assumption. Appendix A
+identifies the public declarations. The illustrative asymptotic
+comparison following Proposition 3.36 and the open absolute-cell
+question remain written analysis. The real projection description and
+the higher-difference consequence are explanatory deductions from the
+listed results. The grid endpoints use the namespace
+\texttt{\nolinkurl{Problems.Juggler.CubicGrid}}.
 
 Reproducibility has three layers. The repository command
 \texttt{\nolinkurl{research.juggler_sequence.paper_a_audit}} recomputes
@@ -1446,6 +1473,360 @@ mechanical rather than hand-written. What the earlier accounting got
 right is that raising the even count is the only route to a stronger
 floor-free statement; what it got wrong is the assumption that the
 eleven exclusions had to be generalised one at a time.
+
+\subsection{3.10 Cycle order below the cubic
+height}\label{cycle-order-below-the-cubic-height}
+
+The preceding restrictions concern the itinerary or its counts. A height
+hypothesis gives additional information about the order of all states in
+the closed orbit. Throughout this subsection a primitive cycle means its
+distinct states in one traversal; \(m\) and \(M\) denote its minimum and
+maximum. The bounds obtained here do not exclude every cycle or improve
+the numerical period bounds in Section 5.
+
+\textbf{Theorem 3.33 (cubic-band order).} Suppose \(C\) is a primitive
+nontrivial Juggler cycle of length \(L\), minimum \(m>1\), maximum
+\(M<m^3\), and odd-state count \(o\). Put \(e=L-o\) and list its states
+as \(c_0=m<c_1<\cdots<c_{L-1}=M\). Then \[
+\begin{split}
+&c_i\text{ is odd}\quad\Longleftrightarrow\quad i<o
+\quad\Longleftrightarrow\quad c_i<m^2,\\
+&J(c_i)=c_{(i+e)\bmod L},\qquad \gcd(L,o)=1.
+\end{split}\tag{CB1}
+\] If \(a_k\) is the number of odd steps in the first \(k\) steps from
+the minimum, then, for \(0\le k\le L\), \[
+a_k=\left\lceil\frac{ko}{L}\right\rceil.\tag{CB2}
+\] Thus the letter at position \(k\), starting with position zero, is
+\(O\) precisely when \(\lceil(k+1)o/L\rceil-\lceil ko/L\rceil=1\). This
+specifies the word, rather than only its letter counts.
+
+In particular, a primitive nontrivial cycle whose minimum-based word is
+not (CB2), or whose counts satisfy \(\gcd(L,o)>1\), must satisfy
+\(M\ge m^3\). Since \(m\) is odd and \(M\) even, the integer consequence
+is \(M\ge m^3+1\). This is a conditional height bound, not a global
+cycle exclusion.
+
+\textbf{Proof.} A cycle with minimum greater than 1 has odd minimum
+\(m\ge3\): an even minimum would map below itself. Its maximum is even,
+since \(\lfloor\sqrt{x^3}\rfloor>x\) for every integer \(x\ge3\). Thus
+\(o,e>0\).
+
+If an even state \(x\in C\) satisfied \(x<m^2\), then \(J(x)<m\),
+impossible. If an odd state \(x\in C\) satisfied \(x\ge m^2\), then
+\(J(x)\ge\lfloor\sqrt{(m^2)^3}\rfloor=m^3>M\), also impossible.
+Therefore the first \(o\) sorted states are exactly the odd states.
+
+For any even \(x\in C\) and odd \(y\in C\), monotonicity gives \[
+J(x)\le\lfloor\sqrt M\rfloor
+\le\lfloor\sqrt{m^3}\rfloor\le J(y).
+\] The possible equality from taking floors must be handled: \(J\)
+permutes the states of a primitive cycle, so it is injective on \(C\).
+Equality of these images would force \(x=y\), impossible for opposite
+parities. Hence every even image is strictly below every odd image. Each
+branch is nondecreasing, and injectivity on \(C\) makes its restriction
+strictly increasing.
+
+The \(e\) even images are consequently \(c_0,\ldots,c_{e-1}\), in that
+order, and the \(o\) odd images are \(c_e,\ldots,c_{L-1}\), in that
+order. This proves \(J(c_i)=c_{(i+e)\bmod L}\). Adding \(e\) modulo
+\(L\) has an orbit of size \(L/\gcd(e,L)\). Primitivity requires that
+size to be \(L\), so \(\gcd(e,L)=\gcd(o,L)=1\).
+
+From rank zero the rank at time \(k\) is \(ke\bmod L\). An even step
+occurs exactly when adding \(e\) wraps past \(L\): the starting rank is
+then at least \(L-e=o\). The number of wraps in the first \(k\)
+additions is \(\lfloor ke/L\rfloor\). The odd count is therefore
+\(k-\lfloor ke/L\rfloor=\lceil ko/L\rceil\), proving (CB2). No exact
+logarithmic closure is used.
+
+\textbf{Proposition 3.34 (threshold comparison map).} For every integer
+\(b\ge3\), define a different map on \(I_b=\{b,b+1,\ldots,b^3-1\}\): \[
+S_b(x)=\begin{cases}
+\lfloor\sqrt{x^3}\rfloor,&x<b^2,\\
+\lfloor\sqrt{x}\rfloor,&x\ge b^2.
+\end{cases}\tag{CB3}
+\] It maps \(I_b\) into itself, has no fixed point, and therefore has a
+cycle of length at least two. All its primitive cycles have the
+rank-rotation and mechanical-word properties in (CB1)--(CB2), counting
+branch labels instead of actual odd integers. Their minima are at least
+\(b\), so this construction is unbounded in scale.
+
+\textbf{Map distinction:} (CB3) chooses its branch by size. It is not
+the Juggler map. A cycle of (CB3) is a Juggler cycle if and only if
+every state satisfies \[
+x\text{ odd}\quad\Longleftrightarrow\quad x<b^2.\tag{CB4}
+\] The construction does not assert that (CB4) ever holds on a full
+cycle.
+
+\textbf{Proof.} For \(b\le x<b^2\),
+\(b\le x<\lfloor\sqrt{x^3}\rfloor<b^3\). For \(b^2\le x<b^3\),
+\(b\le\lfloor\sqrt x\rfloor<b^2\le x\). Both conclusions follow directly
+from the square/cube inequalities; the strict growth uses \(x\ge3\).
+Thus (CB3) preserves the nonempty finite set \(I_b\), and neither branch
+has a fixed point there. Every orbit eventually repeats, yielding a
+primitive cycle of length at least two.
+
+On any such cycle the states using the odd branch are its lower part
+\(x<b^2\). The even-branch images are at most
+\(\lfloor\sqrt{b^3-1}\rfloor\), and the odd-branch images are at least
+\(\lfloor\sqrt{b^3}\rfloor\). Once again these weak inequalities become
+strict between cycle images by injectivity. The same sorting and
+modular-rank argument proves (CB1)--(CB2) with branch counts. Since the
+least state is at least \(b\), these closed orbits exist beyond any
+fixed lower bound.
+
+Their formal exponent is also strictly expanding. Composing
+\(S_b(x)\le x^{3/2}\) or \(S_b(x)\le x^{1/2}\) around a cycle with
+minimum \(r>1\) gives \(r\le r^{3^o/2^L}\), hence \(3^o\ge2^L\).
+Equality is impossible for positive \(o,L\), since a positive power of 3
+is odd and a positive power of 2 is even. Consequently \(3^o>2^L\). This
+sign, exact floors, distinctness, closed-orbit order and unbounded
+minimum coexist in the relaxed map. They do not force the missing parity
+rule (CB4).
+
+\textbf{Theorem 3.35 (common period and interlacing).} For a fixed
+\(b\ge3\), all primitive cycles of \(S_b\) have the same period,
+lower/upper counts, and minimum-based mechanical word. If there are
+\(t\) cycles of common period \(L\), they interlace: in the sorted list
+of all \(tL\) periodic points, each cycle occupies exactly one residue
+class of ranks modulo \(t\).
+
+\textbf{Proof.} Let \(P\) be the union of all periodic points. It is a
+nonempty finite invariant set, and \(S_b\) permutes it. Put \(N=|P|\),
+and let \(E\) count its upper-branch points. As in Theorem 3.33, branch
+monotonicity and separated image ranges, with injectivity removing ties,
+make the rank permutation addition by \(E\) modulo \(N\). Write
+\(t=\gcd(N,E)\). This permutation has exactly \(t\) orbits, each of
+length \(L=N/t\), namely the rank residue classes modulo \(t\). The
+upper states occupy the final \(E\) ranks. Since \(t\mid E\), every
+residue class contains exactly \(e=E/t\) of them. All cycles therefore
+have counts \((o,e)=((N-E)/t,E/t)\), and Theorem 3.33's wrap count gives
+their identical minimum-based word. This does not assert uniqueness.
+
+\textbf{Proposition 3.36 (uniform sorted grid).} Let \(C\) be a
+primitive threshold cycle, or an actual Juggler cycle with \(m>1\) and
+\(M<m^3\). Retain its sorted states \(c_i\) and counts \((L,o,e)\), and
+put \[
+T=\log3,\quad \alpha=\log(3/2),\quad
+\Lambda=o\log3-L\log2>0,
+\quad v_i=\log\frac{\log c_i}{\log m}.
+\] Extend \(v_{i+L}=v_i+T\). With \(w_i=v_i-iT/L\), \[
+\operatorname{osc}(w)\le\left(1-\frac1L\right)\Lambda,
+\qquad
+\left|v_i-\frac{iT}{L}\right|
+\le\left(1-\frac1L\right)\Lambda.\tag{CB5}
+\] The lifted adjacent gaps \(h_i=v_{i+1}-v_i>0\), including the gap at
+the seam, satisfy \[
+\max h_i-\min h_i\le\Lambda,
+\qquad
+\left|h_i-\frac TL\right|
+\le\left(1-\frac1L\right)\Lambda.\tag{CB6}
+\] These are uniform bounds on every rank, without a factor \(L\) in the
+error.
+
+\textbf{Proof.} Let \(p_i=3/2\) for \(i<o\) and \(p_i=1/2\) otherwise,
+and let \(y_i\) be the successor of \(c_i\). Define \[
+\delta_i=\log\frac{p_i\log c_i}{\log y_i}\ge0.
+\] All states exceed 1. Exact floors give \(y_i\le c_i^{p_i}\), which
+justifies the sign. The rank rule and the periodic lift give \[
+v_{i+e}=v_i+\alpha-\delta_i.\tag{CB7}
+\] For an upper step the lift adds \(T\), converting \(-\log2\) to
+\(\alpha\). Summing over all ranks gives \[
+\sum_i\delta_i=L\alpha-eT=\Lambda,
+\qquad
+w_{i+e}-w_i=\frac\Lambda L-\delta_i.\tag{CB8}
+\] In particular \(\Lambda\ge0\). Equality would give \(3^o=2^L\),
+impossible for positive branch counts, so \(\Lambda>0\). For distinct
+ranks \(i,j\), choose \(1\le k\le L-1\) with \(j\equiv i+ke\pmod L\).
+The \(k\) indices traversed are distinct because \(\gcd(e,L)=1\). Thus
+\[
+w_j-w_i=\frac{k\Lambda}{L}
+ -\sum_{r=0}^{k-1}\delta_{i+re}.
+\] The partial sum is between 0 and \(\Lambda\), proving the oscillation
+bound. Since \(w_0=0\), it also proves the absolute bound in (CB5).
+Subtracting (CB7) at neighboring ranks gives
+\(h_{i+e}-h_i=\delta_i-\delta_{i+1}\). Iteration expresses any
+difference of two gaps as the difference of two partial sums of the
+\(\delta_i\); each lies in \([0,\Lambda]\). Hence the gap range is at
+most \(\Lambda\). Its mean is \(T/L\), and the maximum distance from the
+mean of \(L\) values of range at most \(\Lambda\) is at most
+\((1-1/L)\Lambda\), proving (CB6). The seam gap is positive because
+\(M<m^3\), irrespective of whether (CB6) supplies a positive numerical
+lower bound.
+
+\textbf{Parity-scale limitation.} Actual lower states are distinct odd
+integers, so \(c_i\ge m+2i\) for \(i<o\). A necessary consequence of
+(CB5) is \[
+\log\frac{\log(m+2i)}{\log m}
+\le\frac{i\log3}{L}+\Lambda.
+\] If \(\Lambda\le C/L\), the case \(i=1\) gives \[
+L\le\frac{\log3+C}{\log(\log(m+2)/\log m)}
+\sim\frac{\log3+C}{2}\,m\log m.
+\] This does not conflict with a minimum of order \(L^2\). More
+specifically, for an unanchored rank \(i>0\), the interval for a state
+permitted by (CB5) has width of order \(c_i\log(c_i)\Lambda\) in the
+local regime \(\Lambda\log(c_i)\ll1\). In the illustrative regime
+\(\Lambda\) comparable to \(1/L\) and \(m\) comparable to
+\(L^2/\log L\), that permitted width is already of order \(L\) at low
+unanchored ranks, too large to determine parity. The minimum \(c_0=m\)
+itself is fixed exactly and has no such uncertainty. This is a
+limitation of this bound, not a lower bound on the actual error or a
+theorem about the scale of a real cycle.
+
+\textbf{Proposition 3.37 (one-unit successor allowance).} For every odd
+\(b\ge3\), define \[
+D_b=\{x\text{ odd}:b\le x\le b^2\}
+\cup\{x\text{ even}:b^2+1\le x\le b^3-1\}.
+\] For \(b\le z\le b^3\), let \(P_b(z)=\max\{d\in D_b:d\le z\}\), and
+set \[
+R_b(x)=\begin{cases}
+P_b(x^{3/2}),&x\text{ odd},\\
+P_b(\sqrt x),&x\text{ even}.
+\end{cases}
+\] This finite map has a nontrivial cycle and every edge satisfies \[
+R_b(x)\in\{J(x),J(x)-1\}.
+\tag{CB9}
+\] The exponent agrees with the actual source parity at every state. All
+its primitive cycles have \(M<m^3\), the rank-rotation rule, coprime
+counts, and the mechanical word. Therefore correct source parity, this
+global order, and one-sided power-rounding loss below 2 admit closed
+orbits at arbitrarily large minima.
+
+\textbf{Proof and boundary check.} Adjacent members of \(D_b\) have gap
+2, except the gap 1 from \(b^2\) to \(b^2+1\). Therefore
+\(0\le z-P_b(z)<2\), including \(z=b^3\), whose image is \(b^3-1\). Odd
+source images lie between \(b^{3/2}\) and \(b^3\); even source images
+lie strictly between \(b\) and \(b^{3/2}\). The projection is defined in
+each case and preserves \(D_b\). Odd steps strictly increase, since
+\(x^{3/2}-x\ge3\sqrt3-3>2\) for \(x\ge3\); even steps strictly decrease.
+Finiteness gives a nontrivial cycle. Its minimum is odd and at least
+\(b\), its maximum is even and below \(b^3\), so \(M<m^3\). The common
+nondecreasing projection preserves the weak separation of the two image
+ranges; injectivity on a cycle makes it strict. The rank proof applies
+again. Finally an integer output at one-sided distance less than 2 from
+the real power differs from its floor by either 0 or 1, proving (CB9).
+
+The inclusion of \(b^2\) is essential: ending the lower odd range at
+\(b^2-2\) would create a gap 3 and would not prove (CB9). The
+exact-floor characterization ``odd iff \(x<m^2\)'' is \textbf{not}
+imported into this altered map; an odd source \(b^2\) is allowed. The
+rank and mechanical-word conclusions, which do not need that
+characterization, are the ones retained.
+
+No assertion is made that every \(R_b\) cycle contains an altered edge.
+Proving that assertion uniformly would itself exclude the cubic-band
+Juggler cycles: a cycle with all corrections zero is an actual Juggler
+cycle, and any actual cubic-band cycle lies in \(D_m\) and is unchanged
+by \(R_m\). For the explicit cycle in Proposition 3.38, each odd edge is
+altered.
+
+\textbf{Equal rotation fractions do not detect an alteration.} At
+\(b=3\), \(S_b\) has \(3\to5\to11\to3\), while \(R_b\) has
+\(3\to5\to10\to3\). They have identical period and counts, but different
+cycles. Thus replacing the map by a monotone downward projection need
+not strictly change its common rotation fraction.
+
+\textbf{Proposition 3.38 (branch offsets are invisible to differences).}
+Define \(G\) on positive integers by \(G(1)=1\), \(G(x)=J(x)-1\) for odd
+\(x\ge3\), and \(G(x)=J(x)\) for even \(x\). It has the primitive cycle
+\[
+13,45,300,17,69,572,23,109,1136,33,188,13.\tag{CB10}
+\] Its minimum is 13, its maximum is \(1136<13^3\), and its counts are
+\((L,o,e)=(11,7,4)\). It is also a cycle of \(R_{11}\). Every source
+uses its actual parity, and the same rank and mechanical-word conditions
+hold.
+
+Nevertheless, for every pair of odd sources \(x,x'\ge3\), or every pair
+of even positive sources, \[
+G(x')-G(x)=J(x')-J(x).\tag{CB11}
+\] This is a global identity, not a numerical approximation on (CB10).
+On sources greater than 1, all within-branch higher finite differences
+erase the constant shift. Thus global rank order, correct source parity,
+and even the complete within-branch image-difference data of \(J\)
+restricted to sources greater than 1 do not by themselves exclude
+cycles. Differences involving the fixed point 1 are deliberately
+excluded: since \(G(1)=J(1)\), they could anchor the odd-branch
+constant.
+
+\textbf{Exact witness certificate.} The entries in the middle column are
+certified by \(J(x)^2\le x^h<(J(x)+1)^2\), with \(h=3\) on odd sources
+and \(h=1\) on even sources. Subtracting one on each odd row yields the
+successive states of (CB10).
+
+\begingroup\small
+
+\begin{longtable}[]{@{}rrr@{}}
+\toprule\noalign{}
+\(x\) & \(J(x)\) & \(G(x)\) \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endfoot
+\bottomrule\noalign{}
+\endlastfoot
+13 & 46 & 45 \\
+45 & 301 & 300 \\
+300 & 17 & 17 \\
+17 & 70 & 69 \\
+69 & 573 & 572 \\
+572 & 23 & 23 \\
+23 & 110 & 109 \\
+109 & 1137 & 1136 \\
+1136 & 33 & 33 \\
+33 & 189 & 188 \\
+188 & 13 & 13 \\*
+\end{longtable}
+
+\endgroup
+
+All eleven states are distinct. Each row can be checked directly by the
+displayed square-cell inequalities. Formula (CB11) follows immediately
+by subtracting the same branch constant on both sides.
+
+\textbf{Why the strict nearest-even gap test also fails.} Suppose two
+sources \(x<x'\) on the same branch have same-parity successors in
+(CB10). Their image gap \(d'=G(x')-G(x)\) is even. For the relevant real
+branch \(f\), (CB11) gives \[
+\left|d'-\bigl(f(x')-f(x)\bigr)\right|<1,
+\] because the difference of the two fractional parts lies strictly
+between \(-1\) and 1. Thus \(d'\) is the unique even integer within
+distance less than 1 of the smooth increment. This strict gap test
+survives every changed odd edge of this example.
+
+The lost information is the absolute position of each branch image
+inside its unit floor cell. Subtracting neighboring equations removes an
+additive constant for each branch. A proof using gaps must restore those
+constants through absolute values or a relation between the branches.
+This counterexample concerns a different map; it neither proves nor
+refutes the no-cycle statement for \(J\).
+
+\textbf{The remaining absolute floor-cell question.} Define the
+wrong-parity set
+
+\[
+B_b=\{x\in I_b:x<b^2,\ x\text{ even}\}\ \cup
+\{x\in I_b:x\ge b^2,\ x\text{ odd}\}.
+\]
+
+Must every cycle of \(S_b\) meet \(B_b\), for every integer \(b\ge3\)?
+An affirmative answer is equivalent to excluding all actual Juggler
+cycles with \(m>1\) and \(M<m^3\). Indeed, a threshold cycle avoiding
+\(B_b\) is an actual cycle, and an actual cycle in this height range is
+an \(S_m\) cycle by Theorem 3.33. The regime \(M\ge m^3\) is separate.
+
+Proposition 3.38 rules out a contradiction based only on the
+within-branch differences on sources greater than 1: subtraction removes
+a branch constant. The exact conditions retain more information. With
+successor \(y\), they are
+
+\[
+y^2\le x^3<(y+1)^2\quad(x\text{ odd}),\qquad
+y^2\le x<(y+1)^2\quad(x\text{ even}).
+\]
+
+The uniform wrong-parity conclusion from these absolute cells remains
+open in this paper. Finite checks of the threshold or altered maps do
+not settle it.
 
 \section{4. Cycle finance}\label{cycle-finance}
 
@@ -3227,6 +3608,11 @@ a positive length-uniform anchor contribution.
 \section{6. Limitations and future
 directions}\label{limitations-and-future-directions}
 
+Section 3.10 isolates a second unresolved question: whether absolute
+floor-cell alignment forces every threshold cycle to contain a
+wrong-parity state. Its structural theorems and altered-map
+counterexamples do not establish that conclusion.
+
 The result does not imply termination. The remaining finance-survivor
 lengths are uncontrolled, and existence of a cycle at such a length is
 open.
@@ -3566,6 +3952,44 @@ period floor \texttt{\nolinkurl{period_ge_22_of_even_count}}, sharp by
 \texttt{\nolinkurl{expansion_fails_below_22}}. The enumeration of 353044
 canonical forms (\texttt{\nolinkurl{run_suffix_law.closure}}, Python) is
 verified computation, not Lean \\
+Theorem 3.33 & Exact parity and sorted order:
+\texttt{\nolinkurl{cubicBand_sorted_rotation}}; coprimality and actual
+odd prefixes: \texttt{\nolinkurl{cubicBand_mechanical_itinerary}} \\
+Proposition 3.34 & \texttt{\nolinkurl{thresholdMap_invariant}},
+\texttt{\nolinkurl{thresholdMap_ne_self}},
+\texttt{\nolinkurl{thresholdMap_exists_primitive}},
+\texttt{\nolinkurl{threshold_sorted_rotation}},
+\texttt{\nolinkurl{thresholdMap_eq_floorPower_iff}} \\
+Theorem 3.35 &
+\texttt{\nolinkurl{threshold_all_periodic_rank_rotation}},
+\texttt{\nolinkurl{threshold_periods_equal}};
+\texttt{\nolinkurl{rankRotation_orbit_iff_residue}},
+\texttt{\nolinkurl{rankRotation_orbit_representatives}},
+\texttt{\nolinkurl{rankResidue_parameterization}},
+\texttt{\nolinkurl{rankRotation_orbit_upper_card}},
+\texttt{\nolinkurl{rankResidue_interlaces}}; prefixes:
+\texttt{\nolinkurl{rankRotation_mechanical_prefix}} \\
+Proposition 3.36 & Exact-cycle realization:
+\texttt{\nolinkurl{threshold_cycle_grid}},
+\texttt{\nolinkurl{cubicBand_cycle_grid}} with conclusion
+\texttt{\nolinkurl{RealizedGridBounds}}; the illustrative asymptotic
+width comparison remains written analysis \\
+Proposition 3.37 & \texttt{\nolinkurl{cubicParityProject_greatest}},
+\texttt{\nolinkurl{cubicRounding_eq_or_pred}},
+\texttt{\nolinkurl{cubicRounding_exists_primitive}},
+\texttt{\nolinkurl{cubicRounding_real_loss}},
+\texttt{\nolinkurl{cubicRounding_finite_invariant_rotation}}; modular
+consequences as in Theorem 3.33 \\
+Proposition 3.38 &
+\texttt{\nolinkurl{branchOffset_same_branch_difference}},
+\texttt{\nolinkurl{branchOffset_same_branch_smooth_gap}},
+\texttt{\nolinkurl{branchOffset_nearest_even_gap}}; kernel-checked
+witness: \texttt{\nolinkurl{branchOffsetCycle_cells}},
+\texttt{\nolinkurl{branchOffsetCycle_primitive}},
+\texttt{\nolinkurl{branchOffsetCycle_bounds}},
+\texttt{\nolinkurl{branchOffsetCycle_counts}},
+\texttt{\nolinkurl{branchOffsetCycle_rank_rotation}},
+\texttt{\nolinkurl{branchOffsetCycle_mechanical_prefix}} \\
 Lemma 3.21b & canonical run form; Theorem 3.2 \\
 Lemma 3.21a & the case split of Theorem 3.22 \\
 Lemma 4.1 & \texttt{\nolinkurl{log_le_two_log_add}} \\

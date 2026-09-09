@@ -1,0 +1,391 @@
+{
+  "purpose": "Absolute-cell controls; no larger census, trajectory cap, or floor",
+  "scope": {
+    "phase_thresholds": [
+      3,
+      9
+    ],
+    "phase_states_checked": 744,
+    "archived_threshold_cycle_counts": {
+      "3": 2,
+      "9": 2,
+      "29": 3
+    },
+    "threshold_cycles_checked": 7,
+    "cycle_search_performed": false,
+    "grid_decimal_precision": 80,
+    "grid_interval_certification": false,
+    "anchor_controls": [
+      "R_3",
+      "m=9,q=27,M=674"
+    ]
+  },
+  "phase_arithmetic": "Exact integer square comparisons, no numerical roots",
+  "phase_controls": [
+    {
+      "b": 3,
+      "states_checked": 24,
+      "phase_numerator": 1,
+      "phase_denominator": 54,
+      "minimum_integer_margin": 2377,
+      "all_square_comparisons_strict": true
+    },
+    {
+      "b": 9,
+      "states_checked": 720,
+      "phase_numerator": 1,
+      "phase_denominator": 1458,
+      "minimum_integer_margin": 2047033,
+      "all_square_comparisons_strict": true
+    }
+  ],
+  "grid_arithmetic": "80-decimal consistency checks, not rigorous interval certificates",
+  "grid_controls": [
+    {
+      "b": 3,
+      "states": [
+        3,
+        5,
+        11
+      ],
+      "minimum": 3,
+      "period": 3,
+      "odd_branch_count": 2,
+      "parity_mismatches": 1,
+      "actual_juggler_cycle": false,
+      "arithmetic": "80-decimal numerical consistency, not interval certification",
+      "decimal_precision": 80,
+      "interval_certificate": false,
+      "Lambda": "0.1177830356563834545387941094705217050684807125647331411073486387948077205281338",
+      "A": "1.0156469553175838591626352582039992652640602622691955230996117548472071877876265",
+      "actual_inverse_log_sum": "0.46559209803822388705446251611370769767190574463857706512274179716247667227506374",
+      "finite_geometric_bound": "0.60851473413446854828052090385913681419128406750523663719611784090293261889103234",
+      "closed_bound": "0.83968035644921855089251658163644521983660037038282917342970425511768003307819025",
+      "G1_verified_numerically": true,
+      "G2_left": "0.66577862727403698295658350052218502314999757827100480956071896009693570047544281",
+      "G2_right": "4.7463646351980960400053557554123202671019684340348307572785179447330504373690077",
+      "G2_verified_numerically": true
+    },
+    {
+      "b": 3,
+      "states": [
+        4,
+        8,
+        22
+      ],
+      "minimum": 4,
+      "period": 3,
+      "odd_branch_count": 2,
+      "parity_mismatches": 2,
+      "actual_juggler_cycle": false,
+      "arithmetic": "80-decimal numerical consistency, not interval certification",
+      "decimal_precision": 80,
+      "interval_certificate": false,
+      "Lambda": "0.1177830356563834545387941094705217050684807125647331411073486387948077205281338",
+      "A": "1.2816037664682484538039853082623181677823866725040098628878612949585810583193484",
+      "actual_inverse_log_sum": "0.25515442135188810674556207876218599829610254951543274086445742992411449168329482",
+      "finite_geometric_bound": "0.35125348375959189249860656997596603636726895572572763068341512865708321667840983",
+      "closed_bound": "0.47582961791215426111954716783215275104044354182445954572855587366964524619078817",
+      "G1_verified_numerically": true,
+      "G2_left": "1.2407097276267964996875014771624468366006557398721606021131260973423945441215699",
+      "G2_right": "5.0123214463487606346467058054706391696202948442696450970667674848444243079007296",
+      "G2_verified_numerically": true
+    },
+    {
+      "b": 9,
+      "states": [
+        9,
+        27,
+        140,
+        11,
+        36,
+        216,
+        14,
+        52,
+        374,
+        19,
+        82
+      ],
+      "minimum": 9,
+      "period": 11,
+      "odd_branch_count": 7,
+      "parity_mismatches": 3,
+      "actual_juggler_cycle": false,
+      "arithmetic": "80-decimal numerical consistency, not interval certification",
+      "decimal_precision": 80,
+      "interval_certificate": false,
+      "Lambda": "0.0656670345173694361771633224177376837019324267964383668153802310351302108636211",
+      "A": "2.0698946330426017553938386667058553234164787480810013528206962099746409888939365",
+      "actual_inverse_log_sum": "0.16280325331920694653046283910078629342356967110743399684358489746702700036744418",
+      "finite_geometric_bound": "0.22297348810072646973164922135088207436494147569582063748810182151173648038606538",
+      "closed_bound": "0.25982209806868554492835586830221093096967103874264312141432982083389259696289182",
+      "G1_verified_numerically": true,
+      "G2_left": "3.3064573840029572546021373674480042352879002109653623915242835028729815569946829",
+      "G2_right": "13.082526125937813085150480489803032330155475377888330544810018906222732904025668",
+      "G2_verified_numerically": true
+    },
+    {
+      "b": 9,
+      "states": [
+        10,
+        31,
+        172,
+        13,
+        46,
+        311,
+        17,
+        70,
+        585,
+        24,
+        117
+      ],
+      "minimum": 10,
+      "period": 11,
+      "odd_branch_count": 7,
+      "parity_mismatches": 7,
+      "actual_juggler_cycle": false,
+      "arithmetic": "80-decimal numerical consistency, not interval certification",
+      "decimal_precision": 80,
+      "interval_certificate": false,
+      "Lambda": "0.0656670345173694361771633224177376837019324267964383668153802310351302108636211",
+      "A": "2.1691494694140066199633578836288949453631953554603488930686009116477399975204327",
+      "actual_inverse_log_sum": "0.12947947148747587036226273363609374053610090503085819118684545542190888335379090",
+      "finite_geometric_bound": "0.18819951811662958928848948987257921207799738538783419028247643492514825138793465",
+      "closed_bound": "0.21912515898502629731677311535404975753671477742824609159211742082942839325742810",
+      "G1_verified_numerically": true,
+      "G2_left": "3.9502924696634822423608144923368136997584192482313441506620413727838501217786389",
+      "G2_right": "13.181780962309217949719999706726071952102191985267678085057923607895831912652164",
+      "G2_verified_numerically": true
+    },
+    {
+      "b": 29,
+      "states": [
+        35,
+        207,
+        2978,
+        54,
+        396,
+        7880,
+        88,
+        825,
+        23696,
+        153,
+        1892,
+        43,
+        281,
+        4710,
+        68,
+        560,
+        13252,
+        115,
+        1233
+      ],
+      "minimum": 35,
+      "period": 19,
+      "odd_branch_count": 12,
+      "parity_mismatches": 6,
+      "actual_juggler_cycle": false,
+      "arithmetic": "80-decimal numerical consistency, not interval certification",
+      "decimal_precision": 80,
+      "interval_certificate": false,
+      "Lambda": "0.013551033378355417815532535364953662335384141028143592523411823275452701199108",
+      "A": "3.5099968672613544064305646636776376534458649564624319194108167307788475106283971",
+      "actual_inverse_log_sum": "0.030716138710866800332776876075722847698192608185613964239436402016021722123759070",
+      "finite_geometric_bound": "0.036844966367007573101808096014463630397972622146437230625619304391363189570728960",
+      "closed_bound": "0.041180511085162250955515672465654732407345371290288185373459030512041691887477194",
+      "G1_verified_numerically": true,
+      "G2_left": "7.1750949903791856569245770616200601290562516421755034270352507379247284920379088",
+      "G2_right": "21.804542173171264885101127812663670665085950044311455069210555933389188091310478",
+      "G2_verified_numerically": true
+    },
+    {
+      "b": 29,
+      "states": [
+        31,
+        172,
+        2255,
+        47,
+        322,
+        5778,
+        76,
+        662,
+        17032,
+        130,
+        1482,
+        38,
+        234,
+        3579,
+        59,
+        453,
+        9641,
+        98,
+        970
+      ],
+      "minimum": 31,
+      "period": 19,
+      "odd_branch_count": 12,
+      "parity_mismatches": 11,
+      "actual_juggler_cycle": false,
+      "arithmetic": "80-decimal numerical consistency, not interval certification",
+      "decimal_precision": 80,
+      "interval_certificate": false,
+      "Lambda": "0.013551033378355417815532535364953662335384141028143592523411823275452701199108",
+      "A": "3.3901840611658856380279277344853202824461776675038986777637503254871625844082599",
+      "actual_inverse_log_sum": "0.036570576050080467702089794660641537915705311907604414835805088733858633688916699",
+      "finite_geometric_bound": "0.043986079016482711692413400413117719803011787466952959600118083131276485938753012",
+      "closed_bound": "0.049103197064328180088667438223392145702504951622025878483420142620912149454368258",
+      "G1_verified_numerically": true,
+      "G2_left": "5.9843453995243123986810038541564259237819175855676241290937376896251504017113402",
+      "G2_right": "21.684729367075796116698490883471353294086262755352921827563489528097503165090341",
+      "G2_verified_numerically": true
+    },
+    {
+      "b": 29,
+      "states": [
+        34,
+        198,
+        2786,
+        52,
+        374,
+        7232,
+        85,
+        783,
+        21910,
+        148,
+        1800,
+        42,
+        272,
+        4485,
+        66,
+        536,
+        12409,
+        111,
+        1169
+      ],
+      "minimum": 34,
+      "period": 19,
+      "odd_branch_count": 12,
+      "parity_mismatches": 12,
+      "actual_juggler_cycle": false,
+      "arithmetic": "80-decimal numerical consistency, not interval certification",
+      "decimal_precision": 80,
+      "interval_certificate": false,
+      "Lambda": "0.013551033378355417815532535364953662335384141028143592523411823275452701199108",
+      "A": "3.4813790886767972523483197998961997512619576788426404630420272500413072685550492",
+      "actual_inverse_log_sum": "0.031953709707614598647110509644886411831562408845913292536734143188755799314249401",
+      "finite_geometric_bound": "0.038431241284828376797544869417194835993165492214755786406299244936280557583565763",
+      "closed_bound": "0.042940774443327521097957361843403323278298028237782109327337089979361988014243637",
+      "G1_verified_numerically": true,
+      "G2_left": "6.8719365717317965663460178469655642514893477110660420986357965753998914098333368",
+      "G2_right": "21.775924394586707731018882948882232762902042766691663612841766452651647849237130",
+      "G2_verified_numerically": true
+    }
+  ],
+  "anchor_controls": [
+    {
+      "name": "R3_exact_extrema_anchors_leave_one_false_upper_cell",
+      "states": [
+        3,
+        5,
+        10
+      ],
+      "map": "R_3",
+      "closed_cycle": true,
+      "actual_juggler_cycle": false,
+      "rounding_record": {
+        "b": 3,
+        "period": 3,
+        "odd_count": 2,
+        "minimum": 3,
+        "maximum": 10,
+        "one_unit_corrections": 1,
+        "actual_juggler_cycle": false,
+        "corrected_edges": [
+          {
+            "x": 5,
+            "R_x": 10,
+            "J_x": 11
+          }
+        ]
+      },
+      "minimum_anchor_exact": true,
+      "maximum_anchor_exact": true,
+      "cells": [
+        {
+          "x": 3,
+          "y": 5,
+          "radicand": 27,
+          "lower_cell_slack": 2,
+          "upper_cell_slack": 9,
+          "lower_cell_holds": true,
+          "strict_upper_cell_holds": true,
+          "exact_juggler_edge": true
+        },
+        {
+          "x": 5,
+          "y": 10,
+          "radicand": 125,
+          "lower_cell_slack": 25,
+          "upper_cell_slack": -4,
+          "lower_cell_holds": true,
+          "strict_upper_cell_holds": false,
+          "exact_juggler_edge": false
+        },
+        {
+          "x": 10,
+          "y": 3,
+          "radicand": 10,
+          "lower_cell_slack": 1,
+          "upper_cell_slack": 6,
+          "lower_cell_holds": true,
+          "strict_upper_cell_holds": true,
+          "exact_juggler_edge": true
+        }
+      ],
+      "bounds": {
+        "maximum": 10,
+        "maximum_ceiling": 14,
+        "largest_odd_cube": 125,
+        "largest_odd_cube_ceiling": 223,
+        "quartic_lower": 101,
+        "quartic_upper": 223,
+        "period_twice": 6,
+        "period_twice_ceiling": 6
+      },
+      "largest_odd_strip": {
+        "m": 3,
+        "u": 5,
+        "coefficient": "4/3",
+        "gap_positive": true,
+        "squared_left": 144,
+        "squared_right": 48,
+        "strict_rational_square_test": true
+      }
+    },
+    {
+      "name": "two_exact_edges_attain_the_maximum_ceiling",
+      "m": 9,
+      "q": 27,
+      "M": 674,
+      "top_landing": 25,
+      "edges": [
+        {
+          "x": 9,
+          "y": 27
+        },
+        {
+          "x": 674,
+          "y": 25
+        }
+      ],
+      "maximum_ceiling": 674,
+      "ceiling_attained": true,
+      "both_anchor_cells_exact": true,
+      "closed_cycle": false,
+      "actual_juggler_cycle": false,
+      "limitation": "Only two anchored edges; no closed orbit is asserted."
+    }
+  ],
+  "uniform_wrong_parity_proved": false,
+  "no_cycle_proved": false
+}

@@ -1,3 +1,4 @@
+# Historical Paper B audit: the 2026-09-04 snapshot is not the conditional publication.
 """Paper B audit probe: exact identities, standing estimates, exponent bookkeeping (fast subset)."""
 
 from __future__ import annotations
@@ -12,7 +13,7 @@ import pytest
 from research.juggler_sequence import paper_b_audit as A
 
 ROOT = Path(__file__).resolve().parents[3]
-PAPER = ROOT / "docs" / "theory" / "juggler_parity_discrepancy_note.md"
+PAPER = ROOT / "docs" / "theory" / "juggler_parity_discrepancy_note_2026_09_04.md"
 
 
 def test_exact_identities_hold_on_a_small_census() -> None:

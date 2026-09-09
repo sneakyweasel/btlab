@@ -1,3 +1,4 @@
+# Historical Paper B audit: the 2026-09-04 snapshot is not the conditional publication.
 """Effective threshold certificate for Paper B: P_0 = 3.6e13, binding at Step 5b's W <= c_7 S/2."""
 
 from __future__ import annotations
@@ -14,7 +15,7 @@ from research.juggler_sequence import decoration_budget as D
 from research.juggler_sequence import p0_certificate as C
 
 ROOT = Path(__file__).resolve().parents[3]
-PAPER = ROOT / "docs" / "theory" / "juggler_parity_discrepancy_note.md"
+PAPER = ROOT / "docs" / "theory" / "juggler_parity_discrepancy_note_2026_09_04.md"
 
 
 def _pred_for(tag: str):
@@ -411,7 +412,7 @@ def _paper() -> str:
     import io
     from pathlib import Path
     root = Path(__file__).resolve().parents[3]
-    return io.open(root / "docs" / "theory" / "juggler_parity_discrepancy_note.md",
+    return io.open(root / "docs" / "theory" / "juggler_parity_discrepancy_note_2026_09_04.md",
                    encoding="utf-8").read()
 
 

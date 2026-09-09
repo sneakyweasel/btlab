@@ -1,0 +1,99 @@
+{
+  "status": "PASS",
+  "scope": "Exact finite checks only; no asymptotic, kernel, or Lean certification.",
+  "minimal_certificates_through_five": [
+    "E",
+    "OE",
+    "OOEE",
+    "OOEOE",
+    "OOOEE"
+  ],
+  "conditional_four_step_density": "13/16",
+  "conditional_five_step_density": "7/8",
+  "envelope_cases": 16000,
+  "branch_indicator_cases": 6231,
+  "factorization_cases": 3150,
+  "carry_cases": 10201,
+  "word_survivor_counts": [
+    {
+      "depth": 1,
+      "surviving_odd_rooted_words": 1,
+      "fair_share_among_all_starts": "1/2"
+    },
+    {
+      "depth": 2,
+      "surviving_odd_rooted_words": 1,
+      "fair_share_among_all_starts": "1/4"
+    },
+    {
+      "depth": 3,
+      "surviving_odd_rooted_words": 2,
+      "fair_share_among_all_starts": "1/4"
+    },
+    {
+      "depth": 4,
+      "surviving_odd_rooted_words": 3,
+      "fair_share_among_all_starts": "3/16"
+    },
+    {
+      "depth": 5,
+      "surviving_odd_rooted_words": 4,
+      "fair_share_among_all_starts": "1/8"
+    },
+    {
+      "depth": 6,
+      "surviving_odd_rooted_words": 8,
+      "fair_share_among_all_starts": "1/8"
+    },
+    {
+      "depth": 7,
+      "surviving_odd_rooted_words": 13,
+      "fair_share_among_all_starts": "13/128"
+    },
+    {
+      "depth": 8,
+      "surviving_odd_rooted_words": 19,
+      "fair_share_among_all_starts": "19/256"
+    },
+    {
+      "depth": 9,
+      "surviving_odd_rooted_words": 38,
+      "fair_share_among_all_starts": "19/256"
+    },
+    {
+      "depth": 10,
+      "surviving_odd_rooted_words": 64,
+      "fair_share_among_all_starts": "1/16"
+    },
+    {
+      "depth": 11,
+      "surviving_odd_rooted_words": 128,
+      "fair_share_among_all_starts": "1/16"
+    },
+    {
+      "depth": 12,
+      "surviving_odd_rooted_words": 226,
+      "fair_share_among_all_starts": "113/2048"
+    },
+    {
+      "depth": 13,
+      "surviving_odd_rooted_words": 367,
+      "fair_share_among_all_starts": "367/8192"
+    },
+    {
+      "depth": 14,
+      "surviving_odd_rooted_words": 734,
+      "fair_share_among_all_starts": "367/8192"
+    },
+    {
+      "depth": 15,
+      "surviving_odd_rooted_words": 1295,
+      "fair_share_among_all_starts": "1295/32768"
+    },
+    {
+      "depth": 16,
+      "surviving_odd_rooted_words": 2114,
+      "fair_share_among_all_starts": "1057/32768"
+    }
+  ]
+}

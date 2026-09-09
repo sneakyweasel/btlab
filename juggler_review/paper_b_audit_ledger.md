@@ -1,3 +1,5 @@
+> **Publication status, 9 September 2026.** This ledger is a historical arithmetic audit, not a proof of the nested cancellation claims. The current [conditional Paper B](juggler_parity_discrepancy_note.md) supersedes those claims. Its [publication review](paper_b_review.md) explains the gaps. Historical source-text tests now read the preserved 4 September snapshot.
+
 # Paper B audit ledger
 
 Companion to [juggler_parity_discrepancy_note.md](juggler_parity_discrepancy_note.md). This is a research-discipline record, not an independent verification and not part of the journal text. Probe: `research.juggler_sequence.paper_b_audit`. Theorem 5.3 is the monomial `c = (3k/4) n^{9/8}`. The printed Step 5b `|B|<1` claim is withdrawn: frozen `B = (9/32) k β1 β2 ν^{-9/8}` has constant size `|B| ≤ 6`; Lemma 3.7 at `T = P^{1/2}` still applies. The `ρ₀` ratios of Lemma 5.2b are `O(P^{-1/4})` and sit under `1/2304` for `P ≥ P₀`. Exponent checks: 166.

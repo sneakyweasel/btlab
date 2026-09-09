@@ -1,3 +1,4 @@
+# Historical Paper B audit: the 2026-09-04 snapshot is not the conditional publication.
 """The trust-boundary table must keep matching the repository.
 
 A table that overstates what Lean checks is worse than none, because it converts an honest
@@ -16,8 +17,8 @@ from pathlib import Path
 import pytest
 
 ROOT = Path(__file__).resolve().parents[3]
-PAPER = ROOT / "docs" / "theory" / "juggler_parity_discrepancy_note.md"
-MIRROR = ROOT / "juggler_review" / "juggler_parity_discrepancy_note.md"
+PAPER = ROOT / "docs" / "theory" / "juggler_parity_discrepancy_note_2026_09_04.md"
+MIRROR = ROOT / "juggler_review" / "juggler_parity_discrepancy_note_2026_09_04.md"
 
 _spec = importlib.util.spec_from_file_location("trust_boundary", ROOT / "tools" / "trust_boundary.py")
 TB = importlib.util.module_from_spec(_spec)

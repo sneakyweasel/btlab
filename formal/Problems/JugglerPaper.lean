@@ -44,13 +44,20 @@ import Problems.Juggler.WalkTransport
 import Problems.Juggler.WalkChargeMax
 import Problems.Juggler.DefectFinance
 import Problems.Juggler.FinanceTransfer
+import Problems.Juggler.CubicBand
+import Problems.Juggler.CubicRotation
+import Problems.Juggler.CubicGrid
+import Problems.Juggler.CubicLogGrid
+import Problems.Juggler.CubicRounding
+import Problems.Juggler.CubicInterlacing
+import Problems.Juggler.CubicConsequences
 
 /-!
 # Juggler paper barrel (Paper A)
 
 Review object for the finite-dynamics note
 `docs/theory/juggler_finite_dynamics_note.md`
-(*Cycle financing and a period lower bound for the Juggler map*).
+(*Lower Bounds for Cycle Lengths in the Juggler Map*).
 
 This file imports only the modules named by that note. It does not
 copy proofs. Laboratory satellites stay in `Problems.Juggler` and are

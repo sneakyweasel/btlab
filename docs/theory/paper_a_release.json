@@ -11,27 +11,27 @@
     {
       "path": "docs/theory/juggler_finite_dynamics_formalization.md",
       "mode": "text",
-      "sha256": "891933148b0e3879042d6be13babad33996e9a8f603fe1ddd3960d43596770bf"
+      "sha256": "27a7cac5bd9e213b5f4ded538daf04ff0fec3fa9306e406f4383044604e13caa"
     },
     {
       "path": "docs/theory/juggler_finite_dynamics_note.md",
       "mode": "text",
-      "sha256": "4b4ea083cafce6cffcb41b6662384915bd5d0d686455827d3626e2f4554f32e2"
+      "sha256": "86dde267eece044ed59c073b854725ab46b88f44f9a05b6b18303da60cf7363b"
     },
     {
       "path": "docs/theory/juggler_finite_dynamics_reviewer_packet.md",
       "mode": "text",
-      "sha256": "d6cb2717cde205fc9e2c218f9d5dc7311f9d11d941423aeb309d4af0807da703"
+      "sha256": "df9faa8e5e069f390b026f6b6726b527543c7f988a8fb6111891817b97886656"
     },
     {
       "path": "formal/AxiomCheckPaperA.expected",
       "mode": "text",
-      "sha256": "cf9b4511aebeca84634c61c6c611dc717c39987ae38c0e5bebd6a5017e88388e"
+      "sha256": "e1c3e9eb48190ca0a68e2075901e98d97749aa5203ae317046cc9b1a69819657"
     },
     {
       "path": "formal/AxiomCheckPaperA.lean",
       "mode": "text",
-      "sha256": "462c9ddb8aad300d843df0a35a33408562470a883632d096944ec6490c69c7f5"
+      "sha256": "ad5f5553823e2e38c21a863b3329b044537b460d1ce53cd64348a6f3d9f3c8a2"
     },
     {
       "path": "formal/Problems/Juggler/BunchedTight.lean",
@@ -57,6 +57,41 @@
       "path": "formal/Problems/Juggler/CubeCorridor.lean",
       "mode": "text",
       "sha256": "3e0f16e8595a978f057e4ecdda30a6d011f715bf4734e85130c01729c12284cc"
+    },
+    {
+      "path": "formal/Problems/Juggler/CubicBand.lean",
+      "mode": "text",
+      "sha256": "7da85f10e709d7c11c97baf50a73f6abd7e5333b15fab7d4b74ea0075a0cf38c"
+    },
+    {
+      "path": "formal/Problems/Juggler/CubicConsequences.lean",
+      "mode": "text",
+      "sha256": "1bda603ff148b99a1c8ea90d59c4732e2ca908087e60ca5134fabda9dfac5e76"
+    },
+    {
+      "path": "formal/Problems/Juggler/CubicGrid.lean",
+      "mode": "text",
+      "sha256": "246ce961639b637e58cb9526cfa6f8624861fc1a13902fab7f73e8a78fc689ad"
+    },
+    {
+      "path": "formal/Problems/Juggler/CubicInterlacing.lean",
+      "mode": "text",
+      "sha256": "072bf462b6a3709d4e4299b2e097b150673eb066425e23766bdf4dea89db8dd6"
+    },
+    {
+      "path": "formal/Problems/Juggler/CubicLogGrid.lean",
+      "mode": "text",
+      "sha256": "f618705ac86ea9ab9498c54f8814e0c1882d619e1bc44498315545028b82002f"
+    },
+    {
+      "path": "formal/Problems/Juggler/CubicRotation.lean",
+      "mode": "text",
+      "sha256": "a30551a7a5d959ec7f6e835469a43c618ae4bfa80d3b7147f67f93b42979b605"
+    },
+    {
+      "path": "formal/Problems/Juggler/CubicRounding.lean",
+      "mode": "text",
+      "sha256": "076dae31db344a9b2975c53af11c51d9dd59271f3f1f3c8967343f113c4e11ae"
     },
     {
       "path": "formal/Problems/Juggler/CycleCore.lean",
@@ -356,7 +391,7 @@
     {
       "path": "formal/Problems/JugglerPaper.lean",
       "mode": "text",
-      "sha256": "fdfb8c02af688c3e1fb5487c0d8d16c64f77c44dc276311cf4f358a227e3ca31"
+      "sha256": "3da8586d7fe059faa44a66d913baa5cb8555a11174e2215ce1d13d29fd1af6f1"
     },
     {
       "path": "formal/lake-manifest.json",
@@ -398,17 +433,17 @@
     {
       "path": "docs/theory/juggler_finite_dynamics_note.pdf",
       "mode": "binary",
-      "sha256": "fa8c1ff46ceb0940bf3f098c5dab885e072b56405049f56872fb6b51fe3d4c5c"
+      "sha256": "20c946ab7d3b5bbaa4037c5cd37827c2f13d8b3f90966ad08a51b573a024d6e1"
     },
     {
       "path": "docs/theory/cochin-juggler.tex",
       "mode": "text",
-      "sha256": "9a0f413a36e682ad7d7a0638e2cd6b1dd78dce7d1d094359e8045482c3e9ae98"
+      "sha256": "be4837d32d7f3f88bc631b790b1e9885e0238b19b87300eff0913602c344b667"
     },
     {
       "path": "docs/theory/paper_a_zenodo.json",
       "mode": "text",
-      "sha256": "7a9d5b82d2cdd7ebaa170819893339edfba142b11c844decffa0297d4fad9e45"
+      "sha256": "4b6666cdde3a8036f4b60339a203e90e9fa7b3910bba12e44f666e28bead6147"
     }
   ]
 }

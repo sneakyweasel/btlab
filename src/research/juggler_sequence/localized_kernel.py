@@ -1,3 +1,4 @@
+# Historical Paper B audit: the 2026-09-04 snapshot is not the conditional publication.
 """Localizing Paper B's kernel theorem to sub-dyadic intervals.
 
 Theorem 5.3 bounds the kernel sum ``K_c`` on a dyadic block ``n ~ P`` by
@@ -82,7 +83,7 @@ from typing import Any
 from research.juggler_sequence.lean_paths import DATA_ROOT, REPO_ROOT
 
 ARTIFACT = DATA_ROOT / "localized_kernel" / "summary.json"
-MANUSCRIPT = REPO_ROOT / "docs" / "theory" / "juggler_parity_discrepancy_note.md"
+MANUSCRIPT = REPO_ROOT / "docs" / "theory" / "juggler_parity_discrepancy_note_2026_09_04.md"
 
 #: an admissible reference length used inside Theorem 5.5's stated range
 REFERENCE_Y = F(23, 32)

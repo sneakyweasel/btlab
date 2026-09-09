@@ -1,3 +1,5 @@
+> **Paper B update, 9 September 2026:** the current PDF is the conditional preprint *Parity Statistics of Nested Floor Powers*. The older Paper B description below is historical and superseded. The kernel estimates remain unproved; 13/16 and 7/8 require explicit correlation hypotheses. See [the review](paper_b_review.md) and [build instructions](../docs/theory/PAPER_B_BUILD.md). Companion cross-citations still require review.
+
 # Juggler reviewer bundle (three manuscripts)
 
 Author: Philippe Cochin. Review-repair snapshot: 9 September 2026.

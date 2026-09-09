@@ -1,0 +1,682 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=25mm]{geometry}
+\usepackage{longtable,booktabs,array,calc}
+\usepackage{needspace}
+\usepackage{xurl}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={Parity Statistics of Nested Floor
+Powers: Conditional Descent Results for the Juggler
+Map},pdfauthor={Philippe
+Cochin},pdfsubject={Conditional mathematics preprint}}
+\setlength{\emergencystretch}{2em}
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.12}
+\setlength{\LTpre}{0.8em}
+\setlength{\LTpost}{0.8em}
+\clubpenalty=10000
+\widowpenalty=10000
+\allowdisplaybreaks[1]
+\raggedbottom
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\providecommand{\passthrough}[1]{#1}
+\setcounter{secnumdepth}{-1}
+\title{Parity Statistics of Nested Floor
+Powers\\[0.4em]{\large Conditional Descent Results for the Juggler Map}}
+\author{Philippe Cochin\\\small\texttt{philippe@cochin.fr}}
+\date{9 September 2026}
+\begin{document}
+\maketitle
+\begin{center}\small Preprint\end{center}
+\section{Abstract}\label{abstract}
+
+The Juggler map applies the integer part of the square root at even
+positive integers and of the three-halves power at odd positive
+integers. Its finite itineraries lead to joint parity questions for
+compositions of floor powers. We give a self-contained conditional
+framework relating these parity statistics to descent below the initial
+value. Exact branch-indicator identities and a power envelope reduce
+finite descent certificates to explicit correlation estimates along
+prescribed formal chains. The classical second-derivative estimate gives
+an unconditional certificate class of natural density \(3/4\). Under
+stated finite-chain correlation hypotheses, the certificate classes of
+lengths at most four and five have densities \(13/16\) and \(7/8\),
+respectively. If every fixed-depth odd-rooted itinerary has its
+fair-share density, the set of starts admitting some finite
+power-envelope certificate has density one; no uniformity in depth is
+needed for this implication. We also record exact floor-defect
+identities, a Fourier criterion sufficient for the correlation
+hypotheses, and a shift-averaged cancellation estimate. The nested
+correlation and deterministic kernel estimates remain unproved here. In
+particular, the larger certificate densities and the density-one
+conclusion are conditional, and none asserts universal arrival at \(1\).
+
+\textbf{Keywords:} Juggler map; nested floor powers; parity
+correlations; discrepancy; stopping time; conditional descent.
+
+\section{1. Scope and relation to earlier
+work}\label{scope-and-relation-to-earlier-work}
+
+For a positive integer \(n\), define \[
+J(n)=
+\begin{cases}
+\lfloor n^{1/2}\rfloor,&n\ \text{even},\\
+\lfloor n^{3/2}\rfloor,&n\ \text{odd}.
+\end{cases}
+\] This is the Juggler map recorded in OEIS A094683 {[}1{]}. The
+conjecture that every positive orbit reaches \(1\) remains open. The
+question studied here is more limited: which distribution estimates for
+finite itineraries would imply that many starting values eventually fall
+below their initial value?
+
+Single-floor parity estimates follow from classical exponential-sum
+methods {[}2, 3{]}. Composing floors creates an additional difficulty.
+For \(m=\lfloor n^{3/2}\rfloor\) and \(\theta=\{n^{3/2}\}\), \[
+m^{3/2}=n^{9/4}-\tfrac32\theta n^{3/4}+O(n^{-3/4}).
+\] The coefficient of the fractional part grows with \(n\). A theorem
+for the smooth phase \(n^{9/4}\) therefore does not by itself estimate
+the nested phase. Nor does a parity estimate over consecutive starting
+values automatically apply to a sparse set of orbit images.
+
+The contribution of this note is an explicit reduction: the exact
+identities, finite certificate classification, sufficient analytic
+hypotheses, and conditional consequences are stated separately. The
+single-floor estimate and the probabilistic counting argument use
+standard methods. The latter is in the spirit of stopping-time arguments
+for the Collatz map, such as Terras {[}4{]}; no theorem about Collatz is
+transferred to the Juggler map.
+
+This version replaces an earlier working draft that asserted nested
+parity equidistribution and kernel cancellation. Those analytic claims
+are not established by the arguments retained here. The powers \(23/24\)
+and \(95/96\) below are research targets, not proved error exponents.
+The former numerical threshold \(3.6\cdot10^{13}\) is not a certified
+threshold for any nested cancellation theorem in this version. All
+proofs of conditional implications are given below; their analytic
+hypotheses remain explicit.
+
+Throughout, \(e(t)=\exp(2\pi it)\), \(\{t\}=t-\lfloor t\rfloor\), and
+\(\psi(t)=(-1)^{\lfloor t\rfloor}\). Natural density is measured among
+all positive integers. Thus a length-\(d\) odd-rooted word with count
+\(2^{-d}N+o(N)\) has relative density \(2^{-(d-1)}\) among odd starts.
+Constants in \(O\) and \(\ll\) may depend on fixed words and explicit
+fixed parameters. They are not asserted to be uniform in depth.
+
+\section{2. Exact itineraries and the power
+envelope}\label{exact-itineraries-and-the-power-envelope}
+
+Let \(w=w_1\cdots w_d\) be a word in \(\{E,O\}\). The itinerary
+\(\operatorname{word}_d(n)\) records the parities of
+\(n,J(n),\ldots,J^{d-1}(n)\). It contains \(d\) letters and specifies
+the \(d\) operations that produce \(J^d(n)\). Write \(o(w)\) for the
+number of its odd letters.
+
+\needspace{5\baselineskip}
+
+\textbf{Proposition 2.1 (power envelope).} If \(w\) is realized at
+\(n\), then \[
+\bigl(J^d(n)\bigr)^{2^d}\le n^{3^{o(w)}}.
+\] Consequently, if \(n\ge2\) and \(3^{o(w)}<2^d\), then \(J^d(n)<n\).
+
+\emph{Proof.} At any positive integer \(x\), the even operation
+satisfies \(J(x)^2\le x\), and the odd operation satisfies
+\(J(x)^2\le x^3\). Suppose a prefix of length \(r\) with \(o\) odd
+letters ends at \(x\) and obeys \(x^{2^r}\le n^{3^o}\). An even
+operation preserves the right-hand exponent after raising
+\(J(x)^2\le x\) to \(2^r\); an odd operation replaces it by \(3^{o+1}\).
+Induction starts at the empty prefix. If \(3^{o(w)}<2^d\) and \(n>1\),
+the bound is strictly less than \(n^{2^d}\), proving descent.
+\(\square\)
+
+A word satisfying \(3^{o(w)}<2^{|w|}\) is called \emph{contracting}. A
+realized contracting prefix is a \emph{power-envelope descent
+certificate}. Let \[
+\mathcal C_d=\{n\ge2:\text{some contracting prefix of length at most }d
+\text{ is realized at }n\}.
+\] Also set \[
+\mathcal C_\infty=\bigcup_{d\ge1}\mathcal C_d.
+\] These sets refer to this particular sufficient certificate. Flooring
+can cause descent even when the envelope does not certify it. Therefore
+\(\mathcal C_d\) need not equal the set of all starts that descend
+within \(d\) steps.
+
+For an odd-rooted target word \(w\), define its \emph{formal chain} for
+every odd \(n\), regardless of whether \(n\) realizes \(w\): \[
+x_1^w(n)=n,\qquad
+\xi_t^w(n)=\bigl(x_t^w(n)\bigr)^{p_t},\qquad
+x_{t+1}^w(n)=\lfloor\xi_t^w(n)\rfloor\quad(1\le t<d),
+\] where \(p_t=3/2\) for \(w_t=O\) and \(p_t=1/2\) for \(w_t=E\). Set
+\(s_t^w(n)=\psi(\xi_t^w(n))\), and put \(\epsilon_t=1\) for
+\(w_{t+1}=E\), \(\epsilon_t=-1\) for \(w_{t+1}=O\).
+
+\needspace{5\baselineskip}
+
+\textbf{Lemma 2.2 (parity and branch indicators).} For real \(x\),
+\(\lfloor x\rfloor\) is odd exactly when \(\{x/2\}\in[1/2,1)\). For
+every odd \(n\) and odd-rooted word \(w\), \[
+\mathbf1_{\operatorname{word}_d(n)=w}
+=2^{-(d-1)}\prod_{t=1}^{d-1}(1+\epsilon_t s_t^w(n)).
+\tag{2.1}
+\]
+
+\emph{Proof.} Writing \(x=\lfloor x\rfloor+\{x\}\) proves the first
+assertion, including the half-open endpoints. Each factor divided by two
+tests the parity of \(x_{t+1}^w\). Until the first failed test, the
+formal chain agrees with the true orbit, by induction on \(t\). A failed
+test makes the product zero and prevents realization of \(w\). If all
+tests pass, the chains agree through the required letters and the
+product is one. The empty product covers \(d=1\). \(\square\)
+
+The use of formal chains is essential: the product is defined on every
+odd input before any correlation or Fourier expansion is made.
+
+\section{3. An unconditional certificate
+density}\label{an-unconditional-certificate-density}
+
+Let \(M(N)=\#\{n\le N:n\text{ odd}\}=N/2+O(1)\), and set \[
+S_O(N)=\sum_{\substack{n\le N\\n\ \mathrm{odd}}}\psi(n^{3/2}).
+\]
+
+\needspace{5\baselineskip}
+
+\textbf{Theorem 3.1 (single-floor parity).} One has \[
+S_O(N)=O(N^{5/6}).
+\] In particular, \[
+\#\{n\le N:\operatorname{word}_2(n)=OO\}
+=N/4+O(N^{5/6}),
+\] \[
+\#(\mathcal C_2\cap[1,N])=3N/4+O(N^{5/6}).
+\]
+
+\emph{Proof.} Write \(n=2r+1\) and \(g(r)=\tfrac12(2r+1)^{3/2}\). Then
+\(g''(r)=\tfrac32(2r+1)^{-1/2}\). On a dyadic block with \(r\asymp Q\),
+the classical second-derivative test {[}2{]} gives \[
+\left|\sum_{r\asymp Q}e(hg(r))\right|
+\ll h^{1/2}Q^{3/4}+h^{-1/2}Q^{1/4}
+\quad(h\ge1).
+\] The Erd\H{o}s--Tur\'{a}n inequality {[}3, Chapter 2{]} bounds the
+unnormalized interval discrepancy by \[
+\ll Q/H+\sum_{h=1}^{H}\frac1h
+\left|\sum_{r\asymp Q}e(hg(r))\right|
+\ll Q/H+H^{1/2}Q^{3/4}+Q^{1/4}.
+\] Taking \(H=\lfloor Q^{1/6}\rfloor\) for sufficiently large \(Q\)
+gives \(O(Q^{5/6})\). Lemma 2.2 identifies parity with membership in
+\([1/2,1)\); summing the dyadic bounds proves the first assertion. Since
+\(S_O=M-2\#OO\), it also proves the count of \(OO\).
+
+The only minimal contracting words of length at most two are \(E\) and
+\(OE\). The first class has count \(\lfloor N/2\rfloor\), and the second
+has count \(M-\#OO=N/4+O(N^{5/6})\). They are disjoint, and Proposition
+2.1 proves the stated certificate count. \(\square\)
+
+This argument estimates starting values in an interval. It makes no
+independence assertion about successive orbit parities.
+
+\section{4. Explicit correlation
+hypotheses}\label{explicit-correlation-hypotheses}
+
+For a fixed odd-rooted word \(w\) of length \(d\) and nonempty
+\(A\subseteq\{1,\ldots,d-1\}\), define \[
+R_{w,A}(N)=\sum_{\substack{n\le N\\n\ \mathrm{odd}}}
+\prod_{t\in A}s_t^w(n).
+\]
+
+\needspace{5\baselineskip}
+
+\textbf{Hypothesis \(\mathrm H(w;\delta)\).} For some fixed
+\(0<\delta<1\), every nonempty \(A\) satisfies
+\(R_{w,A}(N)=O_{w,A}(N^{1-\delta})\) as \(N\to\infty\).
+
+\needspace{5\baselineskip}
+
+\textbf{Hypothesis \(\mathrm H_0(w)\).} The same correlations satisfy
+\(R_{w,A}(N)=o(N)\), without a prescribed rate.
+
+These are assertions about the formal chains, not assumptions that the
+true orbit is a sequence of independent coin tosses. Hypothesis
+\(\mathrm H(w;\delta)\) implies \(\mathrm H_0(w)\).
+
+\needspace{5\baselineskip}
+
+\textbf{Proposition 4.1 (conditional word count).} Under
+\(\mathrm H(w;\delta)\), \[
+\#\{n\le N:\operatorname{word}_d(n)=w\}
+=2^{-d}N+O_w(N^{1-\delta}).
+\tag{4.1}
+\] Under \(\mathrm H_0(w)\), the error is \(o(N)\).
+
+\emph{Proof.} Expand (2.1) and sum. The empty subset contributes
+\(2^{-(d-1)}M(N)=2^{-d}N+O(1)\). The other \(2^{d-1}-1\) terms are fixed
+signed multiples of \(R_{w,A}\), and there are finitely many for fixed
+\(w\). \(\square\)
+
+For example, \(\mathrm H(OOEE;\delta)\) concerns the seven nonempty
+products of \[
+\psi(n^{3/2}),\qquad \psi(m^{3/2}),\qquad \psi(v^{1/2}),
+\quad m=\lfloor n^{3/2}\rfloor,\quad v=\lfloor m^{3/2}\rfloor.
+\] Proposition 4.1 then gives the count \(N/16+O(N^{1-\delta})\) needed
+for four-step certificates. Theorem 3.1 establishes only the first of
+these seven estimates; the others are not supplied here.
+
+\subsection{4.1 A sufficient Fourier
+criterion}\label{a-sufficient-fourier-criterion}
+
+For \(\mathbf k=(k_1,\ldots,k_{d-1})\in\mathbb Z^{d-1}\), let \[
+S_{w,\mathbf k}(N)=\sum_{\substack{n\le N\\n\ \mathrm{odd}}}
+e\left(\frac12\sum_{t=1}^{d-1}k_t\xi_t^w(n)\right).
+\]
+
+\needspace{5\baselineskip}
+
+\textbf{Proposition 4.2 (conditional Fourier-to-parity transfer).} Fix
+\(d\ge2\), \(w\), and \(0<\eta,\sigma<1\). Suppose, uniformly over all
+nonzero integer vectors with
+\(\|\mathbf k\|_\infty\le\lfloor N^\eta\rfloor\), that \[
+|S_{w,\mathbf k}(N)|\ll_w N^{1-\sigma}.
+\tag{4.2}
+\] Then \(\mathrm H(w;\delta)\) holds for every
+\(0<\delta<\min(\eta,\sigma)\). The constants may depend on these fixed
+parameters.
+
+\emph{Proof.} Apply the multidimensional Erd\H{o}s--Tur\'{a}n--Koksma
+inequality {[}3, Chapter 2, p.~116{]} to the points
+\(\mathbf y_n=(\{\xi_1^w(n)/2\},\ldots,\{\xi_{d-1}^w(n)/2\})\). For any
+half-open axis-parallel box \(B\subseteq[0,1)^{d-1}\), its unnormalized
+discrepancy is \[
+\begin{split}
+\left|\#\{n\le N\text{ odd}:\mathbf y_n\in B\}-M(N)|B|\right|
+&\ll_d \frac{M(N)}{H}
++\sum_{0<\|\mathbf k\|_\infty\le H}
+\frac{|S_{w,\mathbf k}(N)|}{r(\mathbf k)},\\
+r(\mathbf k)&=\prod_{t=1}^{d-1}\max(1,|k_t|).
+\end{split}
+\] The weight sum is \(O_d((1+\log H)^{d-1})\). With
+\(H=\lfloor N^\eta\rfloor\), (4.2) gives box discrepancy
+\(O_w(N^{1-\eta}+N^{1-\sigma}(1+\log N)^{d-1})\). Each nonempty sign
+product is constant, with value \(1\) or \(-1\), on the \(2^{d-1}\)
+boxes obtained by splitting each coordinate at \(1/2\). Its integral
+over the unit cube is zero. Summing their discrepancies therefore bounds
+\(R_{w,A}\); absorbing the fixed logarithmic power proves the assertion.
+\(\square\)
+
+The criterion needs every indicated mixed mode, including vectors with
+zero coordinates and mixed signs. A bound for one undecorated kernel is
+not a substitute for (4.2). Qualitatively, cancellation
+\(S_{w,\mathbf k}(N)=o(N)\) for each fixed nonzero \(\mathbf k\) also
+implies \(\mathrm H_0(w)\): keep \(H\) fixed in the displayed
+inequality, let \(N\to\infty\), and then let \(H\to\infty\).
+
+\section{5. Conditional finite-depth descent
+densities}\label{conditional-finite-depth-descent-densities}
+
+\needspace{5\baselineskip}
+
+\textbf{Lemma 5.1 (minimal certificates through length five).} The
+contracting words of length at most five with no proper contracting
+prefix are exactly \[
+E,\qquad OE,\qquad OOEE,\qquad OOOEE,\qquad OOEOE.
+\tag{5.1}
+\]
+
+\emph{Proof.} An \(E\)-rooted word already contracts at its first
+letter, and an \(OE\)-rooted word contracts at its second. Every
+remaining word begins with \(OO\). At length three, even two odd letters
+give \(3^2>2^3\), so no new certificate appears. At length four,
+contraction requires at most two odd letters, giving only \(OOEE\).
+After excluding that prefix, the possible fourth-level prefixes are
+\(OOEO\), \(OOOE\), and \(OOOO\). At length five, contraction requires
+at most three odd letters because \(3^3<2^5<3^4\). The first two
+prefixes must therefore end with \(E\), and the third cannot contract.
+This proves (5.1). \(\square\)
+
+\needspace{5\baselineskip}
+
+\textbf{Theorem 5.2 (conditional four-step density).} If
+\(\mathrm H(OOEE;\delta_4)\) holds for some \(\delta_4>0\), then \[
+\#(\mathcal C_4\cap[1,N])
+=\frac{13N}{16}+O(N^{1-\delta_*}),
+\qquad \delta_* =\min(1/6,\delta_4).
+\] The qualitative hypothesis \(\mathrm H_0(OOEE)\) instead suffices for
+natural density \(13/16\).
+
+\emph{Proof.} Lemma 5.1 gives the disjoint decomposition into the prefix
+classes \(E\), \(OE\), and \(OOEE\). Theorem 3.1 supplies the first two
+counts, and Proposition 4.1 supplies the third. Their densities add to
+\(1/2+1/4+1/16=13/16\). \(\square\)
+
+\needspace{5\baselineskip}
+
+\textbf{Theorem 5.3 (conditional five-step density).} Suppose
+\(\mathrm H(w;\delta_w)\) holds for each \[
+w\in\mathcal W=\{OOEE,OOOEE,OOEOE\},\qquad \delta_w>0.
+\] Then \[
+\#(\mathcal C_5\cap[1,N])=\frac{7N}{8}+O(N^{1-\delta_*}),
+\qquad \delta_* =\min\bigl(1/6,\min_{w\in\mathcal W}\delta_w\bigr).
+\] The three qualitative hypotheses \(\mathrm H_0(w)\) suffice for
+natural density \(7/8\).
+
+\emph{Proof.} The two additional prefix classes in (5.1) are disjoint
+from each other and from the four-step classes. Each has density
+\(1/32\) by Proposition 4.1. Thus the total is \(13/16+1/32+1/32=7/8\).
+Lemma 5.1 proves that this list exhausts power-envelope certificates
+through length five. \(\square\)
+
+The exact fractions and their analytic requirements can be read
+together:
+
+\begingroup\small
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Certificate length
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Minimal prefixes added
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Cumulative density
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Status
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+1 & \(E\) & \(1/2\) & Unconditional \\
+2 & \(OE\) & \(3/4\) & Theorem 3.1 \\
+4 & \(OOEE\) & \(13/16\) & Conditional on \(\mathrm H_0(OOEE)\) \\
+5 & \(OOOEE,OOEOE\) & \(7/8\) & Conditional on the three hypotheses in
+Theorem 5.3 \\
+\end{longtable}
+
+\endgroup
+
+For the five-letter words, the four tested real images are,
+respectively, \((n^{3/2},m^{3/2},v^{3/2},z^{1/2})\), with
+\(z=\lfloor v^{3/2}\rfloor\), and \((n^{3/2},m^{3/2},v^{1/2},u^{3/2})\),
+with \(u=\lfloor v^{1/2}\rfloor\). Each hypothesis concerns all fifteen
+nonempty sign products of its four coordinates.
+
+Separately, if \(\mathrm H_0(w)\) holds for every odd-rooted word of
+length four, all eight such classes have density \(1/16\). This complete
+census is conditional as well; it is stronger than the single
+four-letter hypothesis used in Theorem 5.2.
+
+\section{6. The fixed-depth reduction to density-one
+certificates}\label{the-fixed-depth-reduction-to-density-one-certificates}
+
+\needspace{5\baselineskip}
+
+\textbf{Hypothesis \(\mathrm{FD}\).} For every fixed \(d\ge1\) and every
+odd-rooted word \(w\) of length \(d\), \[
+\#\{n\le N:\operatorname{word}_d(n)=w\}=2^{-d}N+o_w(N).
+\] No common error rate in \(d\) is assumed. The family
+\(\mathrm H_0(w)\) over all such words implies \(\mathrm{FD}\).
+
+\needspace{5\baselineskip}
+
+\textbf{Theorem 6.1 (conditional density-one certificate theorem).}
+Under \(\mathrm{FD}\), \(\mathcal C_\infty\) has natural density one.
+
+\emph{Proof.} Put \(p=\log2/\log3>1/2\). A word with no contracting
+prefix through length \(d\) must in particular have at least \(pd\) odd
+letters at length \(d\). All such words begin with \(O\). For a
+uniformly chosen odd-rooted word of length \(d\), the number of odd
+letters is distributed as \(1+B_{d-1}\), where \(B_{d-1}\) is a binomial
+random variable with parameters \((d-1,1/2)\). This is an auxiliary
+count on words, not a stochastic model asserted for the Juggler orbit.
+
+Choose \(q=(p+1/2)/2\), so \(1/2<q<p\). For all sufficiently large fixed
+\(d\), \(pd-1\ge q(d-1)\). For \(t>0\), the exponential Markov
+inequality and the binomial generating function give \[
+\Pr(B_{d-1}\ge q(d-1))
+\le\left(\frac{1+e^t}{2e^{qt}}\right)^{d-1}.
+\] The logarithm of the expression in parentheses is zero at \(t=0\) and
+has derivative \(1/2-q<0\) there. Hence some fixed \(t>0\) makes it a
+number \(\vartheta<1\).
+
+For fixed \(d\), \(\mathrm{FD}\) and a finite sum over surviving words
+show that the natural density of \(\mathbb N\setminus\mathcal C_d\) is
+their number divided by \(2^d\). It is at most
+\(\tfrac12\vartheta^{d-1}\) for sufficiently large \(d\). Since
+\(\mathcal C_d\subseteq\mathcal C_\infty\), \[
+\overline{\operatorname{dens}}(\mathbb N\setminus\mathcal C_\infty)
+\le\tfrac12\vartheta^{d-1}.
+\] Letting \(d\to\infty\) proves the assertion. In this argument
+\(N\to\infty\) is taken first, with \(d\) fixed. \(\square\)
+
+The conclusion concerns descent below the initial value. It does not
+prove that a descended value reaches \(1\), or that subsequent orbit
+samples avoid an exceptional set. Even a density-zero exceptional set
+can contain a nontrivial cycle. No interchange of the two limits, and no
+assertion of finite stopping time for every start, follows from Theorem
+6.1.
+
+\section{7. Exact floor defects and the unresolved analytic
+estimates}\label{exact-floor-defects-and-the-unresolved-analytic-estimates}
+
+For \(n\ge3\), write \[
+X=n^{3/2},\quad m=\lfloor X\rfloor,\quad\theta=X-m,
+\qquad Y=m^{3/2},\quad v=\lfloor Y\rfloor,\quad\theta_2=Y-v.
+\]
+
+\needspace{5\baselineskip}
+
+\textbf{Lemma 7.1 (one-signed linearization).} One has \[
+m^{3/2}=\tfrac32mn^{3/4}-\tfrac12n^{9/4}+E(n),
+\qquad
+0\le E(n)\le\tfrac38(n^{3/2}-1)^{-1/2}\le\tfrac12n^{-3/4}.
+\]
+
+\emph{Proof.} Let \(a=\sqrt m\), \(b=\sqrt X\). Direct factorization
+gives \[
+E=a^3-\tfrac32a^2b+\tfrac12b^3
+=\tfrac12(a-b)^2(2a+b)\ge0.
+\] Moreover \(\theta=b^2-a^2\), and \(Ea\le\tfrac38\theta^2\) follows
+from \(4a(2a+b)\le3(a+b)^2\), equivalent to \((5a+3b)(a-b)\le0\). Thus
+\(E\le\tfrac38m^{-1/2}\), which is at most \(\tfrac38(X-1)^{-1/2}\).
+Finally \((X-1)^{-1/2}\le\tfrac43X^{-1/2}\) for \(n\ge3\). \(\square\)
+
+\needspace{5\baselineskip}
+
+\textbf{Lemma 7.2 (gap and carry).} For an integer \(h\ge1\), set
+\(\Delta_hX(n)=X(n+2h)-X(n)\). Then \[
+m(n+2h)-m(n)=\lfloor\Delta_hX(n)\rfloor+\kappa_h(n),
+\quad
+\kappa_h(n)=\mathbf1_{\{X(n)\}+\{\Delta_hX(n)\}\ge1}\in\{0,1\}.
+\]
+
+\emph{Proof.} Expand \(X(n)+\Delta_hX(n)\) into integer and fractional
+parts, and take its floor. The sum of the two fractional parts lies in
+\([0,2)\). \(\square\)
+
+For \(1\le h\le P/4\) and \(n\in(P,2P]\), differentiation gives
+\((\Delta_hX)'(n)\asymp hP^{-1/2}\). The level sets of
+\(\lfloor\Delta_hX\rfloor\) consequently form \(O(1+hP^{1/2})\)
+intervals. Full intervals have length \(\asymp P^{1/2}/h\); the two
+endpoint intervals can be shorter. A coefficient involving this floor is
+frozen only on these intervals. A derivative estimate proved there must
+be summed over the partition, or replaced by a separate global argument
+with controlled errors.
+
+\needspace{5\baselineskip}
+
+\textbf{Lemma 7.3 (next-level defect).} One has \[
+v^{3/2}=m^{9/4}-\tfrac32v^{1/2}\theta_2-\mathcal R,
+\qquad 0\le\mathcal R\le\tfrac38v^{-1/2}\theta_2^2.
+\]
+
+\emph{Proof.} Apply Taylor's theorem to \(x^{3/2}\) between \(v\) and
+\(v+\theta_2=Y\). Its second derivative is
+\(\tfrac34x^{-1/2}\le\tfrac34v^{-1/2}\) on that interval, and is
+positive. Rearranging the Taylor formula gives the result. \(\square\)
+
+These identities describe the objects requiring cancellation; they do
+not supply that cancellation. Two targets from the earlier draft are: \[
+\left|\sum_{\substack{P<n\le2P\\n\ \mathrm{odd}}}
+e\bigl(\tfrac i2 n^{3/2}+\tfrac j2m^{3/2}\bigr)\right|
+\ll_\varepsilon P^{23/24+\varepsilon},
+\quad |i|\le2P^{1/24},\quad1\le|j|\le2P^{1/24},
+\tag{7.1}
+\] and, with \(c_k(n)=\tfrac{3k}{4}n^{9/8}\), \[
+K_k(P)=\sum_{\substack{P<n\le2P\\n\ \mathrm{odd}}}
+e(c_k(n)\theta_2(n)),
+\qquad |K_k(P)|\ll_\varepsilon P^{95/96+\varepsilon},
+\quad1\le k\le P^{1/24}.
+\tag{7.2}
+\] The indices \(i,j,k\) are integers. Both estimates, with the printed
+uniformities, are \textbf{open targets in this note}. Equations (7.1)
+and (7.2) are not invoked in any unconditional proof above. Even if
+(7.2) were established, its transfer to the full mixed-mode families in
+Proposition 4.2 would still require proof. In particular, a coefficient
+\(j/2\) can be a half-integer, so a lemma restricted to integer
+frequencies cannot be used without extending its hypotheses.
+
+Short-interval variants require separate estimates. A bound for a
+transition set \(\Omega\subset(P,2P]\) of the form \(|\Omega|\ll P^a\)
+implies only \(|\Omega\cap I|\le\min(|I|,O(P^a))\). It does not imply a
+bound proportional to \(|I|/P\). Therefore the earlier localized-kernel
+threshold \(|I|\ge P^{29/48+\delta}\) is not asserted here.
+
+\subsection{7.1 An unconditional estimate averaged over a
+shift}\label{an-unconditional-estimate-averaged-over-a-shift}
+
+\needspace{5\baselineskip}
+
+\textbf{Proposition 7.4 (shift average).} Let \(L\ge1\), let
+\(A_1<\cdots<A_L\) obey \(|A_t-A_s|\ge a|t-s|\) with \(a>0\), and let
+\(x_1,\ldots,x_L\) be real. For
+\(S_\lambda=\sum_{t=1}^{L}e(A_t\{x_t+\lambda\})\), \[
+\left|\int_0^1|S_\lambda|^2\,d\lambda-L\right|
+\le\frac4\pi\frac La(1+\log L).
+\tag{7.3}
+\] For every \(0<\eta<1\), outside a set of shifts of measure at most
+\(\eta\), \[
+|S_\lambda|\le
+\left[\frac L\eta\left(1+\frac4{\pi a}(1+\log L)\right)\right]^{1/2}.
+\]
+
+\emph{Proof.} Expanding the square gives the diagonal term \(L\). For
+\(t\ne s\), the integrand \(e(A_t\{x_t+\lambda\}-A_s\{x_s+\lambda\})\)
+is periodic in \(\lambda\). Integrate over a period starting at one of
+its two fractional-part breakpoints. There is at most one other interior
+breakpoint, giving at most two intervals on which the phase is affine
+with slope \(A_t-A_s\). On each interval the integral has modulus at
+most \(1/(\pi|A_t-A_s|)\). Hence the off-diagonal contribution is
+bounded by \[
+\frac{2}{\pi a}\sum_{t\ne s}\frac1{|t-s|}
+=\frac4{\pi a}\sum_{r=1}^{L-1}\frac{L-r}{r}
+\le\frac4\pi\frac La(1+\log L).
+\] For \(L=1\) the off-diagonal sum is empty. Markov's inequality
+applied to \(|S_\lambda|^2\) gives the second assertion. \(\square\)
+
+The estimate allows a small exceptional set of shifts. It gives no bound
+for a specified shift, including \(\lambda=0\) in (7.2).
+
+\section{8. Evidence, availability, and remaining
+work}\label{evidence-availability-and-remaining-work}
+
+The status of the principal statements is as follows.
+
+\begingroup\small
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Statement
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Warrant in this version
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Envelope, branch identity, minimal words, floor defects & Exact proofs
+in Sections 2, 5, and 7 \\
+Certificate density \(3/4\) & Classical analytic proof in Theorem 3.1 \\
+Correlation-to-count and Fourier-to-parity implications & Proofs in
+Propositions 4.1 and 4.2 \\
+Certificate densities \(13/16\), \(7/8\) & Conditional theorems; nested
+hypotheses unproved \\
+Density-one finite certificates & Conditional on \(\mathrm{FD}\); no
+depth uniformity assumed \\
+Deterministic nested sums and short-interval kernels & Unproved; no
+numerical threshold certified \\
+Shift-averaged estimate & Direct integral proof in Proposition 7.4 \\
+\end{longtable}
+
+\endgroup
+
+Supporting software is available in the Balanced Ternary Mathematical
+Laboratory repository, \url{https://github.com/sneakyweasel/btlab}. The
+accompanying source package contains this manuscript, its LaTeX build,
+and an exact-arithmetic validation script. That script checks the finite
+certificate list, the indicator identity on a finite census, and
+selected algebraic inequalities. Those checks support reproducibility;
+they are not proofs of asymptotic cancellation.
+
+Earlier repository audits and Lean modules concern identities,
+inequalities, and arithmetic from the previous draft. This version
+claims no Lean formalization of its analytic hypotheses or of the
+complete conditional manuscript. Earlier theorem numbers are superseded
+and should not be used as citations to unconditional nested estimates.
+Companion texts that rely on those estimates require their own review.
+
+To obtain an unconditional improvement beyond the certificate density
+\(3/4\), it would suffice to establish the correlations identified in
+Theorem 5.2. To reach \(7/8\) by this route requires the additional
+five-letter correlations in Theorem 5.3. A proof of all fixed-depth
+counts would imply density-one certificates by Theorem 6.1, but a
+further argument would still be required to settle universal
+termination.
+
+\needspace{12\baselineskip}
+
+\section{Acknowledgments and AI
+assistance}\label{acknowledgments-and-ai-assistance}
+
+Large language models were used throughout the development of the
+earlier draft and this revision, including the formulation and review of
+proof arguments, drafting, programming, and discussion of Lean
+formalizations. The September 2026 review with OpenAI Codex identified
+unresolved analytic steps and prepared this conditional formulation, its
+proofs, and its release materials. AI assistance and automated checks
+are not independent mathematical validation. The author is responsible
+for the statements, proofs, code, and final approval of the preprint.
+The models are not authors.
+
+\section{References}\label{references}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  OEIS Foundation Inc., ``Juggler sequence: if n mod 2 = 0 then
+  floor(sqrt(n)) else floor(n\^{}(3/2)),'' \emph{The On-Line
+  Encyclopedia of Integer Sequences}, A094683.
+  \href{https://oeis.org/A094683}{Sequence record}, accessed 9 September
+  2026.
+\item
+  S. W. Graham and G. Kolesnik, \emph{Van der Corput's Method of
+  Exponential Sums}, London Mathematical Society Lecture Note Series
+  126, Cambridge University Press, 1991.
+  \href{https://beckassets.blob.core.windows.net/product/readingsample/666252/9780521339278_excerpt_001.pdf}{Publisher
+  excerpt}.
+\item
+  L. Kuipers and H. Niederreiter, \emph{Uniform Distribution of
+  Sequences}, Wiley-Interscience, New York, 1974. Chapter 2, especially
+  pp.~112--116.
+  \href{https://web.maths.unsw.edu.au/~josefdick/preprints/KuipersNied_book.pdf}{University-hosted
+  scan}.
+\item
+  R. Terras, ``A stopping time problem on the positive integers,''
+  \emph{Acta Arithmetica} 30 (1976), 241--252.
+  \href{https://doi.org/10.4064/aa-30-3-241-252}{doi:10.4064/aa-30-3-241-252}.
+\end{enumerate}
+\end{document}

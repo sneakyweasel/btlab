@@ -1,3 +1,4 @@
+# Historical Paper B audit: the 2026-09-04 snapshot is not the conditional publication.
 """Symbols that were separated stay separated, and the notation table stays true.
 
 Paper A bound `e` to four things at once: the even count, Lemma 3.3's constant `e_a`, the
@@ -148,8 +149,8 @@ def test_mirror_carries_the_renames() -> None:
 # --- Paper B, Section 7: the model problem has its own letters ---
 
 
-PAPER_B = ROOT / "docs" / "theory" / "juggler_parity_discrepancy_note.md"
-MIRROR_B = ROOT / "juggler_review" / "juggler_parity_discrepancy_note.md"
+PAPER_B = ROOT / "docs" / "theory" / "juggler_parity_discrepancy_note_2026_09_04.md"
+MIRROR_B = ROOT / "juggler_review" / "juggler_parity_discrepancy_note_2026_09_04.md"
 
 
 def section_7() -> str:

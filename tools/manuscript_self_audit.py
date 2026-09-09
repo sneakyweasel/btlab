@@ -1,3 +1,4 @@
+# Historical Paper B audit: the 2026-09-04 snapshot is not the conditional publication.
 """The manuscript against itself: named constants, and numerals that name more than one thing.
 
 Every other audit in this repository compares the manuscript with something outside it -- Lean
@@ -33,7 +34,7 @@ from pathlib import Path
 from typing import Any
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-PAPER = REPO_ROOT / "docs" / "theory" / "juggler_parity_discrepancy_note.md"
+PAPER = REPO_ROOT / "docs" / "theory" / "juggler_parity_discrepancy_note_2026_09_04.md"
 BS = chr(92)
 
 
@@ -1144,7 +1145,7 @@ def lean_row_failures() -> list[dict[str, Any]]:
 DEPTH5_EXPONENT = Fraction(47, 48)
 DEPTH5_SUPERSEDED = Fraction(43, 48)
 DEPTH5_SOURCES = {
-    "manuscript": ("docs/theory/juggler_parity_discrepancy_note.md",
+    "manuscript": ("docs/theory/juggler_parity_discrepancy_note_2026_09_04.md",
                    r"=" + re.escape(BS) + r"tfrac N\{32\}\+O" + re.escape(BS) + r"bigl\(N\^\{(\d+)/(\d+)\+"),
     "ledger_json": ("docs/theory/theorem_ledger.json", r"OOEOO\(N\) = N/32 \+ O\(N\^\{(\d+)/(\d+)\+eps\}\)"),
     "lean": ("formal/Problems/Juggler/DepthFourFive.lean",

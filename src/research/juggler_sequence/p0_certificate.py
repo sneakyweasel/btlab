@@ -1,4 +1,5 @@
-"""Effective threshold certificate for Paper B (docs/theory/juggler_parity_discrepancy_note.md).
+# Historical Paper B audit: the 2026-09-04 snapshot is not the conditional publication.
+"""Effective threshold certificate for Paper B (docs/theory/juggler_parity_discrepancy_note_2026_09_04.md).
 
 Every numerical margin in Sections 4-6 is claimed for ``P >= P_0``.  This module transcribes each
 such printed inequality as a predicate in ``P``, solves it for the least ``P`` beyond which it holds

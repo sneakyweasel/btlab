@@ -107,6 +107,13 @@ import Problems.Juggler.FateChernoff
 import Problems.Juggler.FatePressure
 import Problems.Juggler.FateTaoReduction
 import Problems.Juggler.FateSeed
+import Problems.Juggler.CubicBand
+import Problems.Juggler.CubicRotation
+import Problems.Juggler.CubicGrid
+import Problems.Juggler.CubicLogGrid
+import Problems.Juggler.CubicRounding
+import Problems.Juggler.CubicInterlacing
+import Problems.Juggler.CubicConsequences
 
 /-!
 # Juggler laboratory barrel

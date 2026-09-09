@@ -1,0 +1,31 @@
+{
+  "status": "built; visual review required for any changed build",
+  "pandoc": "pandoc.EXE 3.6.3",
+  "xelatex": "MiKTeX-XeTeX 4.18 (MiKTeX 26.5)",
+  "files": [
+    {
+      "name": "juggler_parity_discrepancy_note.md",
+      "sha256": "4655e7ee9890c6c0883e9cbf4fd450b0f6f9cb68fe2ca119604ae7828547f1b4"
+    },
+    {
+      "name": "article.tex",
+      "sha256": "3d91258524cf6456cef894f1e2d93c5ac5b26990cffbf1d9711ffcac9b780034"
+    },
+    {
+      "name": "layout.lua",
+      "sha256": "5fc1e1667586033df02aaa34473993972f1c8aa9882366cb9e3a028b7f210fd3"
+    },
+    {
+      "name": "build_paper_b.py",
+      "sha256": "8659e593f7272fecad246551f4a4dd0a760d3a0e962f42e9345024a7829e3f37"
+    },
+    {
+      "name": "juggler_parity_discrepancy_note.tex",
+      "sha256": "b18300ff18e32edb4fbfa873598da2c180d58e5f7cb24a08c558d5271a17dd99"
+    },
+    {
+      "name": "juggler_parity_discrepancy_note.pdf",
+      "sha256": "b75fb7504667c40d65fce889db4d4c5904c30bfa39e2d33a44e4b86bb80c3889"
+    }
+  ]
+}

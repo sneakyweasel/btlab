@@ -1,3 +1,4 @@
+# Historical Paper B audit: the 2026-09-04 snapshot is not the conditional publication.
 """Cross-document consistency for Papers A, B and C.
 
 Every defect found in several iterations of work on these papers was the same species: a change
@@ -44,8 +45,8 @@ APP_CONSTANTS = ROOT / "web" / "juggler-companion" / "src" / "juggler" / "consta
 APP_CLAIMS = ROOT / "web" / "juggler-companion" / "src" / "content" / "claims.ts"
 APP_GLOSSARY = ROOT / "web" / "juggler-companion" / "src" / "content" / "glossary.ts"
 
-PAPER_B = ROOT / "docs" / "theory" / "juggler_parity_discrepancy_note.md"
-MIRROR_B = ROOT / "juggler_review" / "juggler_parity_discrepancy_note.md"
+PAPER_B = ROOT / "docs" / "theory" / "juggler_parity_discrepancy_note_2026_09_04.md"
+MIRROR_B = ROOT / "juggler_review" / "juggler_parity_discrepancy_note_2026_09_04.md"
 LEDGER_B = ROOT / "docs" / "theory" / "paper_b_audit_ledger.md"
 LEDGER_B_MIRROR = ROOT / "juggler_review" / "paper_b_audit_ledger.md"
 
@@ -458,7 +459,7 @@ def test_audit_ledger_mirror_matches() -> None:
 
 def test_paper_b_body_carries_no_draft_history() -> None:
     """"earlier draft" was the referee's marker for the development log."""
-    text = io.open(ROOT / "docs" / "theory" / "juggler_parity_discrepancy_note.md",
+    text = io.open(ROOT / "docs" / "theory" / "juggler_parity_discrepancy_note_2026_09_04.md",
                    encoding="utf-8").read()
     assert "earlier draft" not in text
     # the two surviving "an earlier" are mathematical, not historical
@@ -477,7 +478,7 @@ def test_the_ledger_carries_what_left_the_body() -> None:
 
 def test_the_protected_sentence_and_the_two_warnings_stayed() -> None:
     """The referee singled out c_7 = 1/288 as load-bearing; two warnings are too."""
-    text = io.open(ROOT / "docs" / "theory" / "juggler_parity_discrepancy_note.md",
+    text = io.open(ROOT / "docs" / "theory" / "juggler_parity_discrepancy_note_2026_09_04.md",
                    encoding="utf-8").read()
     assert "we keep the" in text and r"weaker value \(c_7=1/288\) used in Step 5b" in text
     assert "must not be relaxed" in text          # the Stage 6 budget warning
