@@ -1,9 +1,11 @@
 # Juggler pressure: external averaging of \(M_{\theta,q}\) / \(P_\theta\)
 
-Status: **CLOSE** (both ANT readings of “external averaging” are
-reparameterizations or recorded kills; no new sufficient inequality)
+Status: **PROMOTE** (9 September 2026 correction: the existing
+scale-averaged pressure bound does suffice for contagion; its
+arithmetic estimate remains open)
 
-Not a third formulation of the frontier, not a proof of
+This corrects the sufficiency claim for the already-written \(\Pi\),
+not a third formulation of the frontier, not a proof of
 \(\mathrm M_{\theta,q}\) or \(\mathrm P_\theta\), not a halt theorem,
 and not a Paper C rewrite. The objects stay `J-tao-pressure-form`.
 
@@ -19,6 +21,10 @@ re-derive it. After the laboratory routes were classified
 natural readings remain: complete the single live-tilted odd sum
 without a Walsh expansion of the tilt, and take a harmonic / dyadic
 average of \(\mathrm P_\theta\). Is either a new sufficient inequality?
+The original rejection of the second was incorrect: a growing
+harmonic upper bound can still contradict the faster-growing
+contagion lower bound. The correction below concerns sufficiency,
+not an estimate of the actual Juggler average.
 
 ## Exact statement
 
@@ -80,15 +86,130 @@ Identity A is not a new sufficient inequality.
 \Pi(Y)=\frac1{\log Y}\sum_{2^k\le Y}\frac{Z_{d(2^k)}(2^k)}{N_k\,a_\theta^{d(2^k)}}.
 \]
 
-*Sufficiency of \(\Pi\) as written.* Let
-\(\rho_k=Z_{d(2^k)}(2^k)/(N_k a_\theta^{d_k})\). A bound
-\(\Pi(Y)\le e^{o(d(Y))}\) is a Cesàro mean of the *normalized tilted
-moments*. Markov converting a moment into a live count is per-scale:
-\(\#\{\tau>d\}_k\le e^{-\theta p_C d_k}Z_{d_k}\). The Cesàro mean
-allows a spike \(\rho_{\max}\lesssim(\log Y)^{1+o(1)}\), and that one
-block contributes \((\log Y)^{1-e(C)+o(1)}\) to the harmonic live
-sum. For \(e(C)\approx 0.55<1\) the contribution grows and does not
-beat contagion. \(\Pi\) as written does not suffice.
+**Corrected sufficiency of \(\Pi\) as written.** Omit finitely many
+small scales, so \(2^{k_0}>N_0\) and \(d_k\ge1\). Let
+\(\rho_k=Z_{d_k}(2^k)/(N_k a_\theta^{d_k})\), with
+\(N_k=2^{k-1}\) and \(d_k=d(2^k)\). Since
+\(d(2^K)\asymp\log K\), the bound
+\(\Pi(2^K)\le e^{o(d(2^K))}\) is exactly the upper-growth condition
+\[
+A(K):=\sum_{k=k_0}^K\rho_k\le K^{1+o(1)}.
+\tag{A1}
+\]
+Here and below an upper bound \(K^{a+o(1)}\) means that for every
+\(\varepsilon>0\) it is \(O_\varepsilon(K^{a+\varepsilon})\).
+
+**Theorem (`J-pressure-scale-average-suffices`, EXACT — HUMAN PROOF).**
+Fix \(C>1\), \(\theta>0\), and \(0<q<1\). Put
+\[
+p_C=(1-1/C)\frac{\log2}{\log3},\qquad
+a=1-q+qe^\theta,\qquad
+r=\frac{C}{\log2}(\theta p_C-\log a)>0,
+\]
+and use \(a\) instead of \(a_\theta\) in \(\rho_k\). Suppose
+\([1,N_0]\) consists of terminating starts. If, for some
+\(\eta\ge0\),
+\[
+A(K)\le K^{1+\eta+o(1)},\qquad
+r-\eta>1-\lambda^{**},
+\tag{A2}
+\]
+then every positive integer reaches \(1\). In particular the original
+\(\Pi\) bound (A1), at the fair optimizing tilt and \(C\ge19\),
+is sufficient. This is a conditional implication; (A1) and (A2)
+have not been proved for Juggler.
+
+*Proof.* Let \(F\) be the set of nonterminating starts. On block
+\((2^k,2^{k+1}]\), every member of \(F\) is live at depth \(d_k\).
+The envelope and \(d_k\ge C L(2^k)\) give
+\(o_{d_k}>p_Cd_k\). Thus exponential Markov, still applied separately
+on each block, gives
+\[
+\begin{aligned}
+b_k&:=\sum_{\substack{n\in F\text{ odd}\\2^k<n\le2^{k+1}}}\frac1n\\
+&\le 2^{-k}e^{-\theta p_Cd_k}Z_{d_k}(2^k)
+=\tfrac12\rho_k e^{-(\theta p_C-\log a)d_k}
+\ll_{N_0,C,\theta,q}\rho_k(k+1)^{-r}.
+\end{aligned}
+\tag{A3}
+\]
+The ceiling helps because the exponent in parentheses is positive;
+indeed \(e^{-(\theta p_C-\log a)d_k}\le
+(((k+1)\log2)/\log N_0)^{-r}\).
+
+For every \(\varepsilon>0\), (A2) bounds \(A(K)\) by a constant
+times \(K^{1+\eta+\varepsilon}\). Grouping the indices into blocks
+\([2^j,2^{j+1})\) yields
+\[
+\sum_{k=k_0}^K\rho_k(k+1)^{-r}
+\ll_\varepsilon
+\sum_{j\le\log_2 K}2^{j(1+\eta+\varepsilon-r)}.
+\tag{A4}
+\]
+Consequently this is \(O(K^\beta)\) for every
+\(\beta>\max\{1+\eta-r,0\}\), including the zero-exponent boundary
+by absorbing its logarithm. With
+\(H_o(x)=\sum_{n\le x,n\in F\text{ odd}}1/n\), (A3) therefore gives
+\(H_o(x)=O((\log x)^\beta)\).
+
+For completeness, the odd-to-all-starts passage can avoid even the
+harmless \(\log\log x\) multiplier in the original Tao proof. If
+\(H_F(x)=\sum_{n\le x,n\in F}1/n\), every even failure has a
+failure parent \(m\le\sqrt x\). Its complete even fiber has at most
+\(m+1\) elements, all at least \(m^2\). Therefore
+\[
+H_F(x)\le H_o(x)+H_F(\sqrt x)+\sum_{m\ge1}m^{-2}.
+\tag{A5}
+\]
+Iterate until the argument is bounded. The odd terms form a geometric
+sum \(O((\log x)^\beta\sum_{j\ge0}2^{-j\beta})\), and the errors
+are \(O(\log\log x)\). For \(\beta>0\) this gives
+\(H_F(x)=O((\log x)^\beta)\).
+
+The strict inequality in (A2) permits
+\(\max\{1+\eta-r,0\}<\beta<\lambda<\lambda^{**}\).
+If \(F\ne\emptyset\), fate contagion gives
+\(H_F(x)\gg(\log x)^\lambda\), a contradiction. \(\square\)
+
+**Why the old objection fails.** A spike can contribute
+\(K^{1-r+o(1)}\), which need not tend to zero. But contagion requires
+growth at least \(K^\lambda\). At \(r>1-\lambda^{**}\), the spike
+and the whole summed upper bound grow more slowly than some such
+lower bound. Summation does not need to preserve a per-scale theorem.
+
+**Genuine weakening at the level of numerical hypotheses.** The
+nonnegative sequence \(\rho_k=1+k\,1_{\{k\text{ is a power of }2\}}\)
+satisfies \(A(K)\le3K\), but violates \(\rho_k\le k^{o(1)}\) along
+the powers of two. This separates scale-averaged from pointwise
+pressure assumptions. It is not asserted to be a realized Juggler
+sequence of moments.
+
+**Allowance and the requested tilted share.** At the optimizing tilt
+\(\theta=\log(p_C(1-q)/(q(1-p_C)))\), one has
+\(r=C D(p_C\|q)/\log2\). The allowed power growth of the normalized
+scale average is any
+\(\eta<r+\lambda^{**}-1\), not only \(\eta=0\).
+
+| \(C,q\) | optimized \(r\) | strict upper limit for \(\eta\) |
+|---|---:|---:|
+| \(19,1/2\) | 0.5269265491 | 0.0195265491 |
+| \(41,0.55\) | 0.5194493967 | 0.0120493967 |
+
+For the cumulative tilted excess
+\(E_k=\sum_{1\le t<d_k}(s_\theta(t)-q)^+\), the existing stopped
+recurrence gives (set \(s_\theta(t)=0\) if the live population is
+empty, in which case all subsequent pressures are zero)
+\[
+\rho_k\le\frac{e^\theta}{a}\exp(cE_k),\qquad
+c=\frac{e^\theta-1}{a}.
+\tag{A6}
+\]
+Thus an upper bound \(\sum_{k\le K}\exp(cE_k)\le
+K^{1+\eta+o(1)}\) with the same allowance would suffice. This
+estimates the same existing pressure object; no third named
+hypothesis is introduced. A small arithmetic mean of \(E_k\)
+alone does not give this exponential bound. No such estimate on
+the actual dyadic population has been obtained here.
 
 *Sufficiency of the harmonic average of live counts.* The sum
 \(\sum_{n\le x}1_{\{\tau(n)>d(n)\}}/n\), restricted to a window
@@ -123,8 +244,33 @@ No fate is excluded. No halt theorem.
 - `J-tao-pressure-form`, `J-tao-free-term-is-live-mass` — `known`.
 - Exponent-pair two-monomial leftover — `known`; not reopened.
 - Paper C Proposition 10.3 (depth-uniformity budget) — `known`.
+- The 9 September correction uses elementary summation of nonnegative
+  sequences and the already-proved contagion theorem. Its contribution
+  is the project-specific weaker conditional input, not a new
+  summation method or a literature-priority claim.
 
 ## Branch budget
+
+**Correction budget, 9 September 2026 (before implementation):**
+
+```text
+Mathematical target     Does the existing scale-averaged pressure
+                        bound suffice for contagion?
+Novelty hypothesis      Sum the per-block Markov bounds before
+                        comparing with harmonic failure growth.
+Falsifier               The summed exponent or odd-to-all-starts
+                        conversion loses the required saving.
+Already killed by?      The earlier Cesaro rejection used the wrong
+                        comparison; other arithmetic barriers remain.
+Existing machinery      Live pressure, envelope, and contagion.
+Maximum Phase-0 scope   Correct implication, quantify error allowance,
+                        repair affected record; no census or framework.
+Promotion criterion     A valid weaker sufficient averaging condition.
+Stop criterion          Record implication; leave actual arithmetic
+                        estimate open. Do not auto-open another route.
+```
+
+**Original budget (its blanket conclusion is superseded):**
 
 ```text
 Mathematical target     Is either natural ANT reading of “external
@@ -170,8 +316,9 @@ Not relevant here; recorded for the template.
 - Identity A, completed single sum — **REPARAMETERIZATION** of
   pressure-direct B2 / nested-phase Weyl / §10.4(e). Completing
   \(1_{\mathrm{odd}}\) leaves a cylinder-constant amplitude.
-- Identity B, \(\Pi\) as written — does not suffice (Markov does not
-  pass through Cesàro). Not a sufficient inequality.
+- Identity B, \(\Pi\) as written — **EXACT — HUMAN PROOF** sufficient
+  at the contagion threshold, by (A1)–(A5). The prior rejection was
+  incorrect; Markov is used per block and its conclusions are summed.
 - Identity B, harmonic average of live counts — **REPARAMETERIZATION**
   of `J-tao-free-term-is-live-mass` (finite-depth log-measure live
   mass). Not named as a third formulation.
@@ -180,64 +327,81 @@ Not relevant here; recorded for the template.
 
 ## Experiments
 
-None. Classification by identities. No probe, no census, no new CLI.
+No probe, census, or new CLI. Regression tests in
+`tests/research/juggler_sequence/test_pressure_external_average.py`
+check the summation identity, the sparse numerical separator, the
+ceiling inequality, and the exponent allowances. These finite tests
+are not a proof of the asymptotic implication or of its hypothesis.
 
 ## Conjectures
 
 None new. `juggler_loglog_depth_cylinder_bound` stays **ACTIVE**;
 \(\mathrm P_\theta\) / \(\mathrm M_{\theta,q}\) remain its weakest
-form.
+per-scale form. The already-written scale average \(\Pi\) is now
+known to suffice; no new named conjecture is registered and its
+arithmetic bound is unproved.
 
 ## Counterexamples
 
-None. The identities died by reparameterization, by the recorded
-Weyl / §10.4(e) kills, and by a sufficiency failure of the Cesàro
-moment average, not by a counterexample to \(\mathrm M_{\theta,q}\).
+There is no counterexample to \(\mathrm M_{\theta,q}\), pressure, or
+the scale-average bound. The numerical sequence after (A5) separates
+averaged from pointwise assumptions but is not a Juggler realization.
+The former claim that the Cesàro bound cannot beat contagion is
+withdrawn: the explicit implication (A1)–(A5) disproves that claim.
+The completed-sum and inverse-production methods retain their
+recorded limitations.
 
 ## Formalization
 
-None. The completion identity for \(1_{\mathrm{odd}}\) and the
-comparison of the harmonic live sum with Proposition 11.1 are
-elementary. Lean-ifying them ahead of an estimate would be machinery
-gravity.
+No new Lean file. The scale-average implication has a complete
+analytic human proof above. The completion identity and comparison
+with Proposition 11.1 remain elementary identities, not estimates.
 
 ## Results
 
-Classification **PRESSURE_EXTERNAL_AVERAGE_IS_REPARAM**
-(`J-pressure-external-average`).
+The original blanket classification is corrected.
+`J-pressure-external-average` retains only the closed methods;
+`J-pressure-scale-average-suffices` records the conditional theorem.
 
 - The notes’ “mean over characters” is the pair-correlation form of
   \(\mathrm H(C,A)\). Not re-derived.
 - Identity A: Vaaler of \(1_{\mathrm{odd}}(J^t(n))\) produces a
   cylinder-weighted nested phase. Every input is Walsh-tail
   pair-correlation, the two-monomial / Weyl budget, or §10.4(e).
-- Identity B: \(\Pi\) as a Cesàro mean of tilted moments does not
-  suffice. The harmonic average of live counts is the finite-depth
-  log-measure live mass of Proposition 11.1. A production recursion
-  has odd step equal to tilted \(S\)-fairness.
+- Identity B: \(\Pi\) does suffice. More generally the normalized
+  average may grow by \(K^{\eta+o(1)}\) when
+  \(\eta<r+\lambda^{**}-1\). No pointwise pressure conclusion is
+  needed. The harmonic live-count identity and the tilted
+  \(S\)-fairness limitation of the proposed production method remain.
 - Not claimed: \(\mathrm M_{\theta,q}\), \(\mathrm P_\theta\),
-  termination, any new cylinder bound, any new frontier statement.
+  termination without a hypothesis, any new cylinder bound, or any
+  actual estimate of \(\Pi\).
 
 ## Open questions
 
-None in this laboratory. The statement to export remains
-\(\mathrm M_{\theta,q}(C)\) with the depth budget \(2^{-d/C}\), as the
-Tao dossier already recorded.
+Can the actual normalized pressure average \(\Pi\) be bounded within
+the allowance \(\eta<r+\lambda^{**}-1\)? No specific arithmetic
+method for that estimate is established here. A first moment of the
+excess is not a substitute for the exponential quantity in (A6).
 
 ## Decision
 
-**CLOSE.** The stop criterion fired: both natural ANT readings of
-“external averaging” are the pair-correlation reparameterization of
-\(\mathrm H(C,A)\), a cylinder-weighted nested phase already killed
-as Walsh / Weyl / §10.4(e), a Cesàro moment average that does not
-suffice, or the free-term live-mass reparameterization (including
-tilted \(S\)-fairness on the odd step). No third formulation was
-opened. Do not reopen as a signed Walsh tail, a short-interval Paper B
-on the completed sum, a Tauberian upgrade of \(\Pi\), or another
-pressure census. Best next question: none on this line; the
-no-momentum form stays the export.
+**PROMOTE**, limited to the corrected conditional scale-averaged
+implication (A2). The promotion criterion is met: the existing
+\(\Pi\) is sufficient without pointwise pressure control. Its former
+rejection compared the upper bound with boundedness instead of the
+contagion growth rate. No estimate of the actual average is proved,
+so this is not a halt theorem without a hypothesis.
+
+The completed-sum, Walsh, sparse-forward-image and inverse-production
+methods remain closed. No third formulation, census, potential
+framework, floor increase or paper rewrite is introduced. The phase
+ends with the conditional theorem. **Best next question:** can a
+Juggler-specific estimate bound \(\Pi\) within the explicit power
+allowance, allowing exceptional dyadic scales?
 
 ## Publication assessment
 
-Status: `ARCHIVED`. A classification of two readings of a sentence
-the paper deferred. Not a paper claim; no Paper A or Paper C edit.
+Status: `WORKING NOTE`. The original method classification now has
+a corrected conditional theorem. Canonical Tao-note cross-reference
+updated; no Paper A, Paper B, Paper C, or reviewer PDF edit.

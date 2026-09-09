@@ -74,7 +74,10 @@ Method: [docs/methodology.md](../../docs/methodology.md).
   Rest-average PARK. Log-log clock PARK. Contagion method ceiling
   \(\lambda=0.4927\). Tao-type bound with \(e>0.5074\) implies the
   conjecture (`J-tao-rate-implies-conjecture`). Pressure form is
-  the weakest hypothesis. Kernel localize CLOSE. Do not open a
+  the weakest displayed per-scale hypothesis. The existing scale average
+  also suffices: [corrected implication](../../docs/problems/juggler_pressure_external_average.md),
+  `J-pressure-scale-average-suffices`; its arithmetic bound is open.
+  Kernel localize CLOSE. Do not open a
   third formulation. Not a halt theorem; no fate excluded.
   The former unrestricted H/H_q statements are now **REFUTED** by
   [absorbed cylinders](../../docs/problems/juggler_absorbed_cylinder.md):

@@ -583,6 +583,28 @@ At \(\theta=\theta_C\), \(\theta p_C-\log a_\theta=D(p_C\|\tfrac12)\),
 so the count is \(\le N\exp(-dD(p_C\|\tfrac12)(1-o(1)))\le N2^{-(e(C)-\varepsilon)L}\).
 \(\square\)
 
+**Scale-averaged variant (9 September 2026 correction).** The pressure
+hypothesis above is per scale, but a bound on every scale is not
+necessary for termination. For \(y_k=2^k\), \(N_k=2^{k-1}\),
+\(d_k=d(2^k)\), and
+\(\rho_k=Z_{d_k}(2^k)/(N_k a_\theta^{d_k})\), where \(Z_d(y)\)
+is the live tilted sum in the pressure hypothesis, it suffices that
+\[
+\sum_{k\le K}\rho_k\le K^{1+\eta+o(1)},\qquad
+e(C)-\eta>1-\lambda^{**},\quad\eta\ge0,
+\]
+at \(\theta=\theta_C\), omitting finitely many small scales.
+In particular the scale average \(\Pi\) already defined in the
+[external-averaging dossier](../problems/juggler_pressure_external_average.md)
+is sufficient at \(C=19\); its former rejection was incorrect.
+Markov on each block gives harmonic odd-failure mass
+\(\ll\rho_k k^{-e(C)}\). Summing these bounds under the cumulative
+hypothesis gives growth below contagion, and even fibers extend the
+bound to all failures. The dossier proves the general fixed-tilt,
+biased version (`J-pressure-scale-average-suffices`). No bound on
+the actual scale average is proved, and this variant need not imply
+pointwise \(\mathrm P_\theta(C)\).
+
 ### 10.3 The tilted share: no momentum
 
 For \(1\le t<d\) let \(\mu_{\theta,t}\) be the probability measure on
@@ -798,8 +820,10 @@ the depth-two cylinder \(OO\), and the hypothesis of this note bounds
 it. There are not two frontier statements but one quantity — the
 live mass of odd-heavy parity words at depth \(\asymp\log\log x\) —
 seen once as a limit (exact map) and once at finite depth with a rate
-(Tao-type bound). The pressure form is the weakest condition on the
-concentration route that controls it.
+(Tao-type bound). The pressure form is the weakest per-scale condition
+in the displayed hierarchy that controls it; the scale-averaged
+variant in Section 10.2 suffices without controlling each scale
+separately.
 
 ### 11.2 Exact map = contagion + free term, and the critical exponent
 

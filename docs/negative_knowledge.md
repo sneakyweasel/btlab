@@ -749,7 +749,7 @@ Rated-line wall BB/GG/JJ is `PARK_STOP` of quantitative \(K_3\), not a
 refutation of Conjectures V/HH.
 
 **Tao-type reduction: reformulations that are not weaker.** The
-weakest hypothesis on the concentration route is the live pressure /
+weakest per-scale hypothesis in the displayed hierarchy is the live pressure /
 no-momentum form (`J-tao-pressure-form`, Tao note §10). The
 almost-all-cylinder and pair-correlation forms are Walsh
 reparameterizations of \(\mathrm H(C,A)\)
@@ -777,20 +777,32 @@ campaign (fixed-order characters are \(e^{o(d)}\); the tail is
 reparameterization). Direct-attack dossier:
 [juggler_pressure_direct](problems/juggler_pressure_direct.md)
 (`J-pressure-direct-routes`).
-The two natural ANT readings of “external averaging” after that
-CLOSE are the same kills: completing the single live-tilted odd sum
+For “external averaging” after that CLOSE, completing the single live-tilted odd sum
 without a Walsh expansion of the tilt is a cylinder-weighted nested
 phase (Vaaler of \(1_{\mathrm{odd}}(J^t n)\); Walsh tail, two-monomial
-/ Weyl \(cC<1\), or §10.4(e)); a Cesàro mean of tilted moments does
-not suffice for contagion; the harmonic average of live counts is the
+/ Weyl \(cC<1\), or §10.4(e)); the harmonic average of live counts is the
 finite-depth log-measure live mass (`J-tao-free-term-is-live-mass`);
 the odd step of a production recursion is tilted \(S\)-fairness.
 Parseval / large sieve is the pair-correlation form already named
 above. Do not reopen as a signed Walsh tail, a short-interval Paper B
-on the completed sum, a Tauberian upgrade of the Cesàro moment, or a
-third formulation. Dossier:
+on the completed sum, or a third formulation. Dossier:
 [juggler_pressure_external_average](problems/juggler_pressure_external_average.md)
 (`J-pressure-external-average`).
+**Correction, 9 September 2026:** the rejection of the already-defined
+Cesàro pressure average is withdrawn. A growing harmonic upper bound
+can beat the faster-growing contagion lower bound. Precisely, with
+\(\rho_k=Z_{d_k}(2^k)/(N_k a^{d_k})\), cumulative bound
+\(\sum_{k\le K}\rho_k\le K^{1+\eta+o(1)}\) is sufficient when
+\(r-\eta>1-\lambda^{**}\), where
+\(r=C(\theta p_C-\log a)/\log2\). Markov per block followed by
+summation gives odd harmonic failure mass
+\(O((\log x)^\beta)\) for every
+\(\beta>\max\{1+\eta-r,0\}\); even fibers preserve that bound
+for \(\beta>0\). `J-pressure-scale-average-suffices`, EXACT — HUMAN
+PROOF. The original \(\Pi\) has \(\eta=0\), so it suffices at
+\(C=19\). This corrects sufficiency only; neither \(\Pi\) nor a
+Juggler-specific method to estimate it is proved. A small arithmetic
+mean of the tilted excess is not its exponential moment.
 Mass, max-atom, collision energy and ancestry multiplicity of the
 tilted pushforward \(W_t\) do not force the five-word four-step cut:
 they saturate on the injective \(\mathtt{OOOO}\) cell (profile

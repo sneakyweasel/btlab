@@ -5342,8 +5342,9 @@
       "data_dir": null,
       "lean": [],
       "conjecture": [],
-      "decision": "CLOSE",
+      "decision": "PROMOTE",
       "ledger_ids": [
+        "J-pressure-scale-average-suffices",
         "J-pressure-external-average"
       ],
       "aliases": [],

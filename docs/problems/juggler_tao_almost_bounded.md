@@ -246,8 +246,12 @@ after §10 it is also known to be beside the point for the reduction:
 the pressure form needs no fixed-depth control and no fixed-depth
 control can reach it. The weakening question ("a hypothesis weaker
 than \(\mathrm H_q\) that contagion still absorbs") is answered by
-Theorem B‴ and closed: the pressure form is the weakest, and the forms
-between it and \(\mathrm H(C,A)\) are reparameterizations.
+Theorem B‴ within the per-scale hierarchy; the forms between pressure
+and \(\mathrm H(C,A)\) are reparameterizations. The 9 September
+[scale-average correction](juggler_pressure_external_average.md)
+shows that the already-defined \(\Pi\) also suffices without
+pointwise pressure control (`J-pressure-scale-average-suffices`).
+Its arithmetic estimate remains open.
 
 The question is answered exactly: unconditionally the Tao-type
 statement with bounded target and rate above \(1-\lambda^{**}\) is the

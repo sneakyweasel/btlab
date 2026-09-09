@@ -1,5 +1,34 @@
 # Research journal
 
+## Scale-averaged live pressure: correction of a false rejection
+
+- **Date:** 9 September 2026, follow-up to the pointwise-weight obstruction.
+- **Target:** Can averaging over actual dyadic populations avoid requiring
+  control at every scale? The existing external-average dossier rejected
+  exactly such an input; its sufficiency argument was rechecked.
+- **Strongest theorem:** `J-pressure-scale-average-suffices`, EXACT —
+  HUMAN PROOF. If normalized live moments satisfy
+  sum(rho_k, k<=K) <= K^(1+eta+o(1)), and the Chernoff rate r obeys
+  r-eta>1-lambda**, then every positive integer reaches 1. Markov per
+  block followed by summation bounds harmonic odd failures by a power
+  below contagion; even fibers preserve that power for all failures.
+- **Correction:** The old rejection compared a growing harmonic upper
+  bound with boundedness. It should have compared it with the faster
+  contagion growth. The original Pi bound (eta=0) really is sufficient.
+  The allowed eta is <0.0195265491 at C=19,q=1/2, or <0.0120493967 at
+  C=41,q=0.55. Sparse numerical spikes separate this from pointwise
+  pressure, without asserting that those spikes are realized by Juggler.
+- **Limit:** No bound on the actual Pi, M, or P is proved. A mean of
+  the tilted excess is not its exponential moment. The sparse-image,
+  completed-phase and inverse-production method barriers remain.
+  No new census, framework, Lean module, paper edit or floor campaign.
+- **Reusable result:** The conditional scale-average implication and
+  its explicit polynomial error allowance; correction recorded in the
+  existing dossier, canonical Tao note, branch ledger and negative knowledge.
+- **Decision:** PROMOTE this conditional weakening only, then stop.
+  **Best next question:** can a Juggler-specific estimate bound Pi
+  within that allowance while allowing exceptional dyadic scales?
+
 ## Live pressure: logarithmic-order pointwise weights
 
 - **Date:** 9 September 2026, follow-up to the absorbed-cylinder phase.
@@ -37960,6 +37989,11 @@ Best next question
 ```
 
 ## External averaging of \(M_{\theta,q}\) / \(P_\theta\) (not a numbered milestone)
+
+**Historical entry: the Cesàro insufficiency claim and blanket CLOSE
+below were withdrawn on 9 September 2026.** The corrected proof is
+`J-pressure-scale-average-suffices` in the same dossier. Only the
+completed-sum and inverse-production method limitations survive.
 
 - **Date:** 2026-09-06
 - **Objective:** Classify the two natural ANT readings of “external averaging” for the existing hypotheses \(\mathrm P_\theta(C)\) and \(\mathrm M_{\theta,q}(C)\). Not a proof campaign, not a third formulation, not a Paper C rewrite, not a census.
