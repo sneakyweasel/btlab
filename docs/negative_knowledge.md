@@ -804,6 +804,22 @@ pressure census. Dossier:
 [juggler_transfer_weight_invariant](problems/juggler_transfer_weight_invariant.md)
 (`J-transfer-weight-invariant`).
 
+**Unstopped growing-depth cylinders (9 September 2026).** The former
+all-word version of \(\mathrm H(C,A)\) is **REFUTED** for
+\(C>1,A>1\), and the all-prefix version of \(\mathrm H_q(C,A)\)
+for \(q<1,C>1,A>1\): a pure even inverse tree of 4 followed by one
+OEE lift produces a single absorbed cylinder of size
+\(\ge y/(216\log y)\) on infinitely many dyadic blocks. This is an
+exact-map human proof, not the older abstract word-measure example.
+The entire prefix cylinder is at 1 and hence sends every member to
+an odd next letter. Do not try to prove the full unstopped bounds.
+The definitions now restrict H to bad words and H_q to bad prefixes;
+the live pressure was already stopped and is unaffected. Dossier:
+[juggler_absorbed_cylinder](problems/juggler_absorbed_cylinder.md),
+`J-absorbed-cylinder`, `J-unstopped-cylinder-bound`, conjecture
+`juggler_unstopped_cylinder_bound`. Decision: CLOSE; no termination
+estimate is gained.
+
 **Kernel localization to \(OOOEE\) / \(OOEOE\) even-block fibers.**
 Killed claim: Paper B Theorem 5.3 localizes to those fibers (fate
 note §7.4: leftovers \(\le P^{7/16}\) against \(YP^{-1/24}=P^{0.677}\)

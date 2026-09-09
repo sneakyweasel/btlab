@@ -131,8 +131,8 @@ Because descent is by powers, the exponent walk of an itinerary has
 to travel only \(L(y)=\log_2(\log 2y/\log N_0)\) units to bring a
 start of size \(y\) below \(N_0\), and a Chernoff count of the
 itineraries whose walk fails to do so within \(C\,L(y)\) steps gives
-the rate, provided the itinerary cylinders of that depth are not
-over-populated (Theorem 4). The depth is \(O(\log\log y)\), where
+the rate, provided the envelope-bad itinerary cylinders of that depth
+are not over-populated (Theorem 4). The depth is \(O(\log\log y)\), where
 cylinders are large; for the Collatz map the corresponding depth is
 \(\Theta(\log y)\), where they have single elements. The hypothesis
 has a hierarchy of forms; the weakest is one exponential moment of
@@ -219,16 +219,18 @@ and all large \(y\), \(\#\{n\ \text{odd}\in(y,2y]:\ n\notin R\}\le y(\log y)^{-e
 the indicated, case-dependent bounds. Each implies (iii) of Theorem 3
 only when its displayed rate exceeds \(1-\lambda^{**}\):
 
-(a) *cylinder form* \(\mathrm H(C,A)\): no \(O\)-rooted itinerary
-cylinder of depth \(d(y)\) exceeds its fair share \(2^{-(d-1)}y/2\)
-among odd starts by more than \(y(\log y)^{-A}\), \(A>C+e(C)\)
+(a) *cylinder form* \(\mathrm H(C,A)\): no \(O\)-rooted,
+\(L(y)\)-bad itinerary cylinder of depth \(d(y)\) exceeds its fair
+share \(2^{-(d-1)}y/2\) among odd starts by more than
+\(y(\log y)^{-A}\), \(A>C+e(C)\)
 (Theorem 8.3), giving \(e(C)-\varepsilon\) and hence the conjecture for
 \(C\ge19\) using Theorem 1 (or \(C\ge18\) under Appendix C);
 
 (b) *one-sided form* \(\mathrm H_q(C,A)\), with
-\(0<q<\log 2/\log 3\) and \(C>1/(1-q\log_2 3)\): every cylinder of depth
-\(1\le t<d(y)\) sends at most a fraction \(q\) of its
-members, plus \(y(\log y)^{-A}\), to an odd next state (Theorem 9.1;
+\(0<q<\log 2/\log 3\) and \(C>1/(1-q\log_2 3)\): every
+\(L(y)\)-bad cylinder of depth \(1\le t<d(y)\) sends at most a fraction
+\(q\) of its members, plus \(y(\log y)^{-A}\), to an odd next state
+(Theorem 9.1;
 \(A>C+e_q^{\rm Az}(C)\)), giving \(e_q^{\rm Az}(C)-\varepsilon\);
 at \(q=0.55\), \(C\ge41\) crosses Theorem 1's threshold;
 
@@ -1803,7 +1805,7 @@ linearly in \(C\) with slope
 
 **Hypothesis \(\mathrm H(C,A)\) (log-log-depth cylinder bound).** For
 all sufficiently large \(y\), with \(d=d(y)\), every word
-\(w\in\{O,E\}^d\) beginning with \(O\) satisfies
+\(w\in\{O,E\}^d\) that begins with \(O\) and is \(L(y)\)-bad satisfies
 \[
 \#[w]_y\ \le\ 2^{-(d-1)}\cdot\frac y2+\frac{y}{(\log y)^{A}} .
 \]
@@ -1811,8 +1813,13 @@ all sufficiently large \(y\), with \(d=d(y)\), every word
 Only an upper bound is asked, only at one depth per scale, and only
 for the \(L(y)\)-bad words. Since \(2^{-(d-1)}y/2\asymp y(\log y)^{-C}\),
 \(\mathrm H(C,A)\) with \(A>C\) says that no \(O\)-rooted cylinder of
-depth \(d(y)\) exceeds its fair share by more than a relative
-\(O((\log y)^{C-A})\).
+depth \(d(y)\) whose envelope has not crossed the floor exceeds its fair
+share by more than a relative \(O((\log y)^{C-A})\). The restriction is
+essential: the older all-word version is false because already absorbed
+starts can share a long terminating tail and overpopulate a cylinder
+without contributing any live mass; see the
+[absorbed-cylinder obstruction](../problems/juggler_absorbed_cylinder.md).
+This obstruction does not refute \(\mathrm H(C,A)\) as stated here.
 
 **Theorem 8.3 (Tao-type bound from the cylinder hypothesis).** Assume
 \(\mathrm H(C,A)\) with \(C\ge 5\) and \(A>C+e(C)\). Then for every
@@ -1894,25 +1901,29 @@ it drops below \((\log y)^{-0.6}\) — about \(17\,L(y)\). With the Lean
 floor \(N_0=260\) the depths grow by about \(38\) letters. For
 comparison, Paper B controls depth \(4\) (all words) and two words of
 depth \(5\), with relative error \(y^{-1/96}\) on dyadic blocks; the
-hypothesis asks for depth \(d(y)\to\infty\) with relative error
-\(o(1)\) — weaker in rate than a power saving, unbounded in depth.
+hypothesis asks for the bad cylinders at depth \(d(y)\to\infty\) with
+relative error \(o(1)\) — weaker in rate than a power saving, unbounded
+in depth.
 
 ## 9. Weaker forms of the hypothesis
 
-Theorem 8.3 conditions on the past letter by letter and asks for
-two-sided control of every cylinder. Neither is needed. This section
-gives the hierarchy of forms down to the weakest one the concentration
-argument can use, and records what that form does not need.
+Theorem 8.3 asks for a fair-share upper bound on every envelope-bad
+cylinder at one depth. Lower bounds and control of cylinders after their
+envelope has crossed the floor are not needed. This section gives the
+hierarchy of forms down to the weakest one the concentration argument
+can use, and records what that form does not need.
 
 ### 9.1 One-sided odd-share control
 
 **Hypothesis \(\mathrm H_q(C,A)\).** For all sufficiently large \(y\),
-every \(1\le t<d(y)\) and every \(w\in\{O,E\}^t\),
+every \(1\le t<d(y)\) and every \(L(y)\)-bad word
+\(w\in\{O,E\}^t\),
 \[
 \#\{n\in[w]_y:\ \mathrm{word}_{t+1}(n)=wO\}\ \le\ q\,\#[w]_y+\frac{y}{(\log y)^{A}} .
 \]
 (The depth-\(0\) cylinder is all odd starts, whose next letter is \(O\)
-with share \(1\); the hypothesis starts at depth \(1\).)
+with share \(1\); the hypothesis starts at depth \(1\). As in
+Section 8.3, no condition is imposed after an envelope crossing.)
 
 **Theorem 9.1 (one-sided form).** Let \(0<q<\log 2/\log 3=0.6309\ldots\),
 \(\mu=1-q\log_2 3>0\), \(C>1/\mu\), and
@@ -1927,34 +1938,49 @@ Hence \(e_q(C)>1-\lambda^{**}\) implies the conjecture; the least
 \(0.60\), \(1586\) at \(0.62\) (with \(\lambda^{***}\): \(18\), \(39\),
 \(206\), \(1451\)).
 
-*Proof.* Let \(n\) be uniform on the odd integers of \((y,2y]\),
-\(\mathcal F_t\) the \(\sigma\)-algebra of the depth-\(t\) cylinders,
-\(X_t=\mathbf 1[\mathrm{word}_{t+1}(n)=\mathrm{word}_t(n)O]\) for
-\(t\ge 1\), and \(u_t=(\log_2 3-1)+\sum_{1\le s<t}(X_s\log_2 3-1)\)
-the exponent walk. Put \(\eta_t=(\mathbb P(X_t=1\mid\mathcal F_t)-q)^+\).
-On a cylinder \([w]\) of depth \(t\), \(\mathrm H_q\) gives
-\(\eta_t\le y(\log y)^{-A}/\#[w]\), so
+*Proof.* Let \(n\) be uniform on the odd integers of \((y,2y]\). Follow
+its actual word until the first prefix that is not \(L(y)\)-bad, and
+after that crossing append synthetic letters \(E\). Let
+\(\widehat{\mathcal F}_t\) be the filtration of these stopped words,
+\(\widehat X_t\) the indicator that the synthetic next letter is \(O\),
+and
+\(\widehat u_t=(\log_2 3-1)+
+\sum_{1\le s<t}(\widehat X_s\log_2 3-1)\). On a bad atom the stopped
+word is the actual word, so \(\mathrm H_q\) applies; on a crossed atom
+\(\widehat X_t=0\). Thus, with
+\(\eta_t=(\mathbb P(\widehat X_t=1\mid\widehat{\mathcal F}_t)-q)^+\),
+each bad atom \([w]\) has
+\(\eta_t\le y(\log y)^{-A}/\#[w]\), while every crossed atom has
+\(\eta_t=0\). There are at most \(2^t\) atoms, so
 \(\mathbb E[\eta_t]\le 2^{t+1}(\log y)^{-A}\) and
 \(\mathbb E[\sum_{1\le t<d}\eta_t]\le 4(\log 2y/\log N_0)^{C}(\log y)^{-A}\).
-Since \(\mathbb E[u_{t+1}-u_t\mid\mathcal F_t]\le-\mu+\eta_t\log_2 3\),
+Since
+\(\mathbb E[\widehat u_{t+1}-\widehat u_t\mid\widehat{\mathcal F}_t]
+\le-\mu+\eta_t\log_2 3\),
 the process
-\(M_t=u_t-u_1-\sum_{1\le s<t}\mathbb E[u_{s+1}-u_s\mid\mathcal F_s]\)
+\(M_t=\widehat u_t-\widehat u_1-
+\sum_{1\le s<t}\mathbb E[\widehat u_{s+1}-\widehat u_s
+\mid\widehat{\mathcal F}_s]\)
 is a martingale with increments in an interval of length \(\log_2 3\),
-and \(u_d\le u_1+M_d-(d-1)\mu+\log_2 3\sum_{s<d}\eta_s\). Fix
-\(\kappa\in(0,1)\). If \(n\notin R\) then by Lemma 8.1 \(u_d>-L\), so
+and \(\widehat u_d\le \widehat u_1+M_d-(d-1)\mu+
+\log_2 3\sum_{s<d}\eta_s\). Fix
+\(\kappa\in(0,1)\). If \(n\notin R\), the contrapositive of Lemma 8.1
+gives \(u_t>-L\) for every \(t\le d\). Thus no crossing occurred,
+\(\widehat u_d=u_d>-L\), and hence
 either \(\log_2 3\sum_s\eta_s>\kappa(d-1)\mu\), an event of probability
 \(O((\log y)^{C-A})\) by Markov's inequality, which is
 \(o((\log y)^{-e_q(C)+\varepsilon})\) under the stated condition, or
-\(M_d>a:=(1-\kappa)(d-1)\mu-L-u_1\ge L((1-\kappa)C\mu-1)-\log_2 3\).
+\(M_d>a:=(1-\kappa)(d-1)\mu-L-\widehat u_1
+\ge L((1-\kappa)C\mu-1)-\log_2 3\).
 By the Azuma--Hoeffding inequality,
 \(\mathbb P(M_d>a)\le\exp(-2a^2/((d-1)(\log_2 3)^2))\le 2^{-L(e_q^{(\kappa)}(C)-o(1))}\)
 with \(e_q^{(\kappa)}(C)=2((1-\kappa)C\mu-1)^2/(C(\log_2 3)^2\ln 2)\to e_q(C)\)
 as \(\kappa\to 0\). \(\square\)
 
 So no lower bound on odd shares and no vanishing error are needed: if
-no cylinder of depth below \(41\log_2(\log 2y/\log N_0)\) sends more
-than \(55\%\) of its members to an odd state, every positive integer
-reaches \(1\).
+no \(L(y)\)-bad cylinder of depth below
+\(41\log_2(\log 2y/\log N_0)\) sends more than \(55\%\) of its members
+to an odd state, every positive integer reaches \(1\).
 
 ### 9.2 The pressure form
 
@@ -2093,23 +2119,27 @@ tilted weight, cost nothing. In Walsh terms,
 \qquad W_T=\sum_n\prod_{s\in T}(-1)^{J^s(n)} :
 \]
 Walsh sums of high order are exponentially down-weighted
-(\(\tanh(0.198)=0.196\) per letter), whereas the uniform cylinder
-hypothesis needs all \(2^{d}\) of them with equal weight.
+(\(\tanh(0.198)=0.196\) per letter), whereas \(\mathrm H(C,A)\) asks for
+a separate supremum bound on each \(L(y)\)-bad cylinder at the target
+depth.
 
 **(d) Intermediate forms are reparameterizations.** Between
 \(\mathrm H(C,A)\) and \(\mathrm P_\theta\) sit the "almost all
-cylinders" form (odd share \(\le q\) on all but a family of cylinders
-of total mass \(\le N(\log y)^{-B}\) per depth, \(B>e_q(C)\); the
-Markov step of Theorem 9.1 absorbs it) and its second-moment form.
+cylinders" form (odd share \(\le q\) on all but a family of
+\(L(y)\)-bad cylinders of total mass \(\le N(\log y)^{-B}\) per depth,
+\(B>e_q(C)\); the Markov step of Theorem 9.1 absorbs it) and its
+second-moment form.
 With \(D(w)=\#[wO]-\tfrac12\#[w]\) and the collision count
 \(\mathcal C_t=\sum_{|w|=t}\#[w]^2\), Parseval's identity gives
 \(\sum_wD(w)^2=2^{-t-2}\sum_{S\subseteq[0,t)}|W_{S\cup\{t\}}|^2=\tfrac12\mathcal C_{t+1}-\tfrac14\mathcal C_t\),
 so the almost-all form follows from the pair-correlation asymptotic
 \(\mathcal C_t\le(N^2/2^{t-1})(1+(\log y)^{-A'})\), \(A'>C+2\); but by
-Walsh inversion any such two-sided bound is equivalent, up to the
+Walsh inversion such a global two-sided bound is equivalent, up to the
 exponent, to polylogarithmic savings on every Walsh sum to depth
-\(d(y)\), i.e. to \(\mathrm H(C,A)\) with another \(A\). They are not
-weaker in substance; the pressure form is.
+\(d(y)\). It implies the bad-cylinder hypothesis \(\mathrm H(C,A)\),
+but the converse is neither asserted nor needed. These global
+pair-correlation/Walsh formulations are not weaker routes to the
+conclusion; the pressure form is.
 
 **(e) No bounded-depth cylinder statement implies the bound.** Fix
 \(k\). The probability measure on parity words that is fair to depth
@@ -2225,8 +2255,8 @@ information at depth \(\to\infty\). The form of Theorem 8.3 says how
 uniform that information must be *along the cylinder-count route*.
 
 **Proposition 10.3 (depth-uniformity budget).** Suppose a method
-establishes, for every depth \(d\) and every \(O\)-rooted word
-\(w\) of length \(d\),
+establishes, for every depth \(d\) and every \(O\)-rooted,
+\(L(y)\)-bad word \(w\) of length \(d\),
 \(\#[w]_y=2^{-(d-1)}\tfrac y2+O(y^{1-\delta_d})\) with
 \(\delta_d=\delta_0 2^{-cd}\) for constants \(\delta_0,c>0\), and that
 this is its only error term. Then the bound of Theorem 8.3 follows

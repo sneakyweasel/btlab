@@ -1,5 +1,25 @@
 # Research journal
 
+## Absorbed-cylinder obstruction to unstopped averaging
+
+- **Date:** 9 September 2026.
+- **Objective:** Attack the growing-depth parity hypothesis using exact
+  inverse-tree mass, after checking the closed live-transfer routes.
+- **Major result:** For fixed N0 >= 2 and C > 1, infinitely many dyadic
+  blocks have a single absorbed depth-ceil(C L(y)) cylinder with at least
+  y/(216 log y) odd starts. The proof retains harmonic mass in an even
+  inverse tree of 4, applies one fixed OEE production, and uses dyadic
+  pigeonhole. `J-absorbed-cylinder`, EXACT — HUMAN PROOF; not Lean verified.
+- **Refutation:** The former full-word H(C,A) fails for C>1,A>1; the
+  full-prefix H_q fails for q<1,C>1,A>1. Restricting to bad words/prefixes
+  restores the intended scope of the conditional reductions. The existing
+  Lean union bound already has the bad-word restriction.
+- **Limit:** No upper bound on surviving tilted mass is gained. The live
+  pressure is unchanged and unproved. No floor campaign or large census.
+- **Decision:** CLOSE. Keep the proof and corrected scope; stop this
+  attack. The next question is the existing live tilted-share estimate at
+  a depth constant whose rate exceeds the contagion threshold.
+
 Compact milestone entries copied from the existing repository record.
 Milestone completion calendar dates are **not** present in the docs and
 are not invented here. Local experiment manifests are timestamped

@@ -1,0 +1,20 @@
+{
+ "id": "juggler_unstopped_cylinder_bound",
+ "title": "Unrestricted log-log-depth parity cylinder and odd-split bounds",
+ "statement": "For fixed N0>=2, C>1 and A>1, every O-rooted depth-d(y) word has at most 2^{-d(y)} y+y/(log y)^A odd starts in (y,2y], where d(y)=ceil(C log2(log(2y)/log N0)). The analogous all-prefix split assertion bounds the odd next share by q<1 plus the same additive error.",
+ "status": "REFUTED",
+ "first_seen": "2026-09-03; separated from the combined live-pressure record on 2026-09-09",
+ "counterexamples": [
+  "For every sufficiently large k, some dyadic y_k with log y_k comparable to 2^k has at least y_k/(216 log y_k) odd starts with full word O E^(k+4) O^(d(y_k)-k-5). Every start in that cylinder reaches 1 at time k+5. Its mass exceeds the proposed bound when C>1,A>1.",
+  "On the same block the entire prefix cylinder O E^(k+4) is absorbed at 1, so its next odd share is 1. This contradicts the all-prefix version for any fixed q<1,A>1."
+ ],
+ "mathematical_domain": "Juggler inverse trees and growing-depth cylinder counts",
+ "origin": "docs/theory/juggler_tao_reduction_note.md",
+ "proof_reference": "docs/problems/juggler_absorbed_cylinder.md",
+ "lean_reference": "",
+ "tested_range": "The refutation is an infinite-family human proof from the even-block harmonic estimate and fixed OEE block-average production. Finite regression tests check identities and indexing only.",
+ "literature": [],
+ "notes": "The original definition quantified over all words despite the following prose requiring only bad words. The current H definition is restricted to bad words; H_q is restricted to bad prefixes. These restricted hypotheses and stopped live pressure remain unproved, and juggler_loglog_depth_cylinder_bound remains ACTIVE only with that corrected scope. This result excludes neither cycles nor escape.",
+ "not_a_halt_theorem": true,
+ "no_cycle_all_lengths": false
+}

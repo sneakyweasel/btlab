@@ -1,6 +1,15 @@
 # Juggler reviewer bundle (three manuscripts)
 
 Author: Philippe Cochin. Review-repair snapshot: 9 September 2026.
+
+**Later 9 September source correction:** the canonical Paper C now
+restricts H to bad words and H_q to bad prefixes. The unrestricted
+versions are refuted by the exact
+[absorbed-cylinder proof](../docs/problems/juggler_absorbed_cylinder.md).
+This snapshot's Paper C Markdown and PDF predate that correction and
+must be rebuilt from `docs/theory/` before further external review.
+The stopped live-pressure hypothesis is unchanged and unproved.
+
 Status: Paper A is a submission candidate; Paper B is a revised
 working draft (8-section journal form; Theorem 5.3 the monomial
 \(c=\tfrac{3k}4 n^{9/8}\); certified density \(7/8\)); Paper C

@@ -24,9 +24,10 @@ The answer has two parts.
    Paper B proves it.
 2. **Conditionally, the required Tao-type statement follows from parity
    equidistribution at depth \(O(\log\log y)\)** (Theorem B below): if
-   no cylinder of depth \(d(y)=\lceil C\log_2(\log 2y/\log N_0)\rceil\)
-   is over-represented among odd starts in \((y,2y]\) by more than a
-   vanishing relative error, then all but \(O(y(\log y)^{-e(C)})\)
+   no \(L(y)\)-bad cylinder of depth
+   \(d(y)=\lceil C\log_2(\log 2y/\log N_0)\rceil\) is over-represented
+   among odd starts in \((y,2y]\) by more than a vanishing relative
+   error, then all but \(O(y(\log y)^{-e(C)})\)
    of those starts enter \([1,N_0]\) within \(d(y)\) steps, with
    \(e(21)=0.621>1-\lambda^{**}\). Contagion then closes the loop
    (Theorem A): **the Juggler conjecture follows from the
@@ -150,18 +151,33 @@ smaller on the range of the table in Section 6.
 
 **Hypothesis \(\mathrm H(C,A)\) (log-log-depth cylinder bound).** For
 all sufficiently large \(y\), with \(d=d(y)=\lceil C L(y)\rceil\),
-every word \(w\in\{O,E\}^{d}\) beginning with \(O\) satisfies
+every \(L(y)\)-bad word \(w\in\{O,E\}^{d}\) beginning with \(O\)
+satisfies
 \[
 \#\{n\ \text{odd},\ y<n\le 2y:\ \mathrm{word}_d(n)=w\}
 \ \le\ 2^{-(d-1)}\cdot\frac y2+\frac{y}{(\log y)^{A}} .
 \]
 
-Only an *upper* bound is asked, only at one depth per scale, and (as
-the proof shows) only for the \(L(y)\)-bad words. Since
+Only an *upper* bound is asked, only at one depth per scale, and only
+for the \(L(y)\)-bad words. Since
 \(2^{-(d-1)}y/2\asymp y(\log y)^{-C}\) up to constants, \(\mathrm H(C,A)\)
-with \(A>C\) says that no \(O\)-rooted cylinder of depth \(d(y)\)
+with \(A>C\) says that no \(O\)-rooted bad cylinder of depth \(d(y)\)
 exceeds its fair share among odd starts by more than a relative
 \(O((\log y)^{C-A})\).
+
+**Scope correction (9 September 2026).** An earlier version quantified
+over every \(O\)-rooted word. That stronger statement is false. The
+seed-\(4\) absorbed-cylinder family gives infinitely many scales \(y\)
+at which one word
+\(OE^{k+4}O^{d(y)-k-5}\) contains at least \(y/(216\log y)\) odd
+starts: they reach \(1\) at time \(k+5\), after which their itinerary
+is all \(O\). For \(C>1\) and \(A>1\), both terms in the old
+all-word upper bound are \(o(y/\log y)\), a contradiction. The old
+all-prefix version of \(\mathrm H_q\) in Section 8 fails for the same
+reason: after absorption the next-letter odd share is \(1\). See the
+[absorbed-cylinder obstruction](../problems/juggler_absorbed_cylinder.md).
+Theorem B has always summed only \(L(y)\)-bad words, so the restricted
+hypothesis above is exactly what its proof requires.
 
 **Theorem B (Tao-type bound).** Assume \(\mathrm H(C,A)\) with
 \(C\ge 5\) and \(A>C+e(C)\). Then for every \(\varepsilon>0\) and all
@@ -288,8 +304,8 @@ So the exponent walk to the certified floor is fair-coin to depth
 \(40\) at scales up to \(10^{50}\): the aggregate odd share along
 surviving prefixes is \(\tfrac12\), not \(0.55\), far from the
 critical \(0.6309\). This is evidence about the *aggregate* over
-cylinders; the hypothesis asks for every cylinder, which no sample
-can test.
+cylinders; the hypothesis asks for every \(L(y)\)-bad cylinder, which
+no sample can test.
 
 For comparison, Paper B controls depth \(4\) (all words) and two
 words of depth \(5\), with relative error \(y^{-1/96}\) on dyadic
@@ -308,7 +324,8 @@ reaches a fixed floor.
   of the Lean envelope step and the fate-contagion theorem).
 - Hypothesis \(\mathrm H(C,A)\) is not proved; it is recorded as the
   conjecture `juggler_loglog_depth_cylinder_bound`. Its depth-\(\le 4\)
-  analogue is Paper B; its depth-\(5\) analogue is the \(K_3\) wall.
+  bad-cylinder analogue is Paper B; its depth-\(5\) analogue is the
+  \(K_3\) wall.
 - No fate is excluded and no orbit is shown to terminate beyond the
   certified floor. The content is the identification of the exact
   almost-all statement that is equivalent to the conjecture, and the
@@ -319,27 +336,31 @@ reaches a fixed floor.
 
 Equidistribution is more than the argument uses. The exponent walk
 only has to *drift down*; a one-sided bound on the conditional
-probability of the letter \(O\), uniformly over cylinders, is enough,
-and the constant may be any \(q\) below \(\log 2/\log 3=0.6309\ldots\)
+probability of the letter \(O\), uniformly over bad cylinders, is
+enough, and the constant may be any \(q\) below
+\(\log 2/\log 3=0.6309\ldots\)
 — the same threshold as the laboratory's node-wise \(E\)-share
 \(\beta^*=1-\log 2/\log 3\) (`J-rate-free-density-one` (B)), now at
 depth \(O(\log\log y)\) and with the conjecture as conclusion.
 
 For odd \(n\in(y,2y]\) and \(t\ge 0\) write \([w]_y\) for the
 cylinder \(\{n\ \text{odd}\in(y,2y]:\mathrm{word}_t(n)=w\}\),
-\(w\in\{O,E\}^t\).
+\(w\in\{O,E\}^t\). A prefix \(w\) is \(L(y)\)-bad if
+\(u_s(w)>-L(y)\) at every \(1\le s\le t\).
 
 **Hypothesis \(\mathrm H_q(C,A)\) (log-log-depth odd-share bound).**
 For all sufficiently large \(y\), every \(1\le t<d(y)=\lceil CL(y)\rceil\)
-and every \(w\in\{O,E\}^t\),
+and every \(L(y)\)-bad \(w\in\{O,E\}^t\) beginning with \(O\),
 \[
 \#\{n\in[w]_y:\ \mathrm{word}_{t+1}(n)=wO\}\ \le\ q\,\#[w]_y+\frac{y}{(\log y)^{A}} .
 \]
 (The depth-\(0\) cylinder is all odd starts, whose next letter is
-\(O\) with share \(1\); the hypothesis starts at depth \(1\).)
+\(O\) with share \(1\); the hypothesis starts at depth \(1\). The
+bad-prefix restriction is necessary by the scope correction in
+Section 4.)
 
 **Theorem B′ (biased-split Tao-type bound).** Let
-\(q<\log 2/\log 3\), \(\mu=1-q\log_2 3>0\), \(C>1/\mu\), and put
+\(0\le q<\log 2/\log 3\), \(\mu=1-q\log_2 3>0\), \(C>1/\mu\), and put
 \[
 e_q(C)=\frac{2\,(C\mu-1)^2}{C\,(\log_2 3)^2\ln 2}
 =1.1486\ldots\cdot\frac{(C\mu-1)^2}{C}.
@@ -353,24 +374,62 @@ Assume \(\mathrm H_q(C,A)\) with \(A>C+e_q(C)\). Then for every
 Consequently, if \(e_q(C)>1-\lambda^{**}\), Theorem A gives
 \(R=\mathbb N\).
 
-*Proof.* Let \(n\) be uniform on the odd integers of \((y,2y]\),
-\(\mathcal F_t\) the σ-algebra of the depth-\(t\) cylinders,
-\(X_t=\mathbf 1[\mathrm{word}_{t+1}(n)=\mathrm{word}_t(n)O]\) for
-\(t\ge 1\), and \(u_t=(\log_2 3-1)+\sum_{1\le s<t}(X_s\log_2 3-1)\) the
-exponent walk (the first letter is \(O\)). Put
-\(\eta_t=\max\bigl(0,\ \mathbb P(X_t=1\mid\mathcal F_t)-q\bigr)\) for
-\(t\ge 1\). On a cylinder \([w]\) of depth \(t\), \(\mathrm H_q\)
-gives \(\eta_t\le y(\log y)^{-A}/\#[w]\), so
-\(\mathbb E[\eta_t]\le\sum_w\frac{\#[w]}{y/2}\cdot\frac{y(\log y)^{-A}}{\#[w]}\le 2^{t+1}(\log y)^{-A}\)
-and \(\mathbb E\bigl[\sum_{1\le t<d}\eta_t\bigr]\le 2^{d+1}(\log y)^{-A}\le 4(\log 2y/\log N_0)^{C}(\log y)^{-A}\).
-Since \(\mathbb E[u_{t+1}-u_t\mid\mathcal F_t]\le-\mu+\eta_t\log_2 3\)
-for \(t\ge 1\), the process
-\(M_t=u_t-u_1-\sum_{1\le s<t}\mathbb E[u_{s+1}-u_s\mid\mathcal F_s]\)
+*Proof.* Let \(n\) be uniform on the odd integers of \((y,2y]\). For
+\(t\ge1\), define a synthetic next-letter indicator
+\[
+\widetilde X_t=
+\begin{cases}
+\mathbf 1[J^t(n)\text{ is odd}],&
+  \mathrm{word}_t(n)\text{ is }L(y)\text{-bad},\\
+0,&\text{after the first envelope crossing}.
+\end{cases}
+\]
+Thus the synthetic word follows the actual word through its first
+crossing of \(-L(y)\), then appends only \(E\)'s. Let
+\(\widetilde{\mathcal F}_t\) be the σ-algebra generated by its
+depth-\(t\) prefixes and put
+\[
+\widetilde u_t=(\log_2 3-1)
+ +\sum_{1\le s<t}(\widetilde X_s\log_2 3-1).
+\]
+An \(L(y)\)-bad synthetic cylinder is exactly the corresponding
+actual cylinder \([w]_y\), so \(\mathrm H_q\) controls its next
+synthetic letter. On every cylinder that has crossed, the conditional
+odd probability is \(0\). Hence, for
+\[
+\eta_t=\max\bigl(0,\ \mathbb P(\widetilde X_t=1
+  \mid\widetilde{\mathcal F}_t)-q\bigr),
+\]
+\(\eta_t=0\) after crossing (here \(q\ge0\)), while on a nonempty bad
+cylinder \([w]_y\) the hypothesis gives
+\(\eta_t\le y(\log y)^{-A}/\#[w]_y\). Summing only over bad prefixes,
+\[
+\mathbb E[\eta_t]
+ \le\sum_{w\text{ bad}}\frac{\#[w]_y}{y/2}
+      \frac{y(\log y)^{-A}}{\#[w]_y}
+ \le 2^{t+1}(\log y)^{-A},
+\]
+and therefore
+\(\mathbb E[\sum_{1\le t<d}\eta_t]
+ \le2^{d+1}(\log y)^{-A}
+ \le4(\log 2y/\log N_0)^C(\log y)^{-A}\).
+
+Now
+\(\mathbb E[\widetilde u_{t+1}-\widetilde u_t
+ \mid\widetilde{\mathcal F}_t]
+ \le-\mu+\eta_t\log_2 3\). Thus
+\[
+M_t=\widetilde u_t-\widetilde u_1-
+ \sum_{1\le s<t}\mathbb E[\widetilde u_{s+1}-\widetilde u_s
+ \mid\widetilde{\mathcal F}_s]
+\]
 is a martingale with increments in an interval of length
 \(\log_2 3\), and
-\(u_d\le u_1+M_d-(d-1)\mu+\log_2 3\sum_{1\le s<d}\eta_s\). Fix
-\(\kappa\in(0,1)\). If \(n\notin R\) then by Lemma 2.1 the walk never
-reaches \(-L\), so \(u_d>-L\), hence either
+\(\widetilde u_d\le \widetilde u_1+M_d-(d-1)\mu
++\log_2 3\sum_{1\le s<d}\eta_s\). Fix \(\kappa\in(0,1)\). If
+\(n\notin R\), Lemma 2.1 implies \(u_t(n)>-L(y)\) for every
+\(t\le d\); no crossing occurs, so the synthetic and actual words
+agree through depth \(d\) and \(\widetilde u_d=u_d>-L\). Hence either
 \(\log_2 3\sum_s\eta_s>\kappa(d-1)\mu\) or
 \(M_d>-L-u_1+(1-\kappa)(d-1)\mu\). By Markov and the bound on
 \(\mathbb E[\sum\eta_s]\), the first event has probability
@@ -395,9 +454,10 @@ The least \(C\) with \(e_q(C)>1-\lambda^{**}\) (`least_C_biased`):
 | \(0.60\) | \(0.0490\) | \(223\) | \(0.508\) |
 | \(0.62\) | \(0.0173\) | \(1586\) | \(0.508\) |
 
-So: **if no cylinder of depth below \(41\log_2(\log 2y/\log N_0)\)
-sends more than \(55\%\) of its members to an odd next state, every
-positive integer reaches \(1\).** At \(q=\tfrac12\) the one-sided
+So: **if no \(L(y)\)-bad cylinder of depth below
+\(41\log_2(\log 2y/\log N_0)\) sends more than \(55\%\) of its members
+to an odd next state, every positive integer reaches \(1\).** At
+\(q=\tfrac12\) the one-sided
 hypothesis reproduces the constant \(C=19\) of the two-sided
 Chernoff argument; as \(q\to\log 2/\log 3\), \(C\to\infty\).
 (The pairing-only intermediate was \(20,44,240,1715\).)
@@ -455,8 +515,8 @@ the reduction adds is the size of the prize: uniform odd-share control
 at depth \(O(\log\log y)\) — one-sided, with any constant below
 \(0.6309\) — is the whole Juggler conjecture.
 
-*Update (Section 10).* The uniform per-cylinder form is not what the
-argument needs. The pressure form of Section 10 is one-sided,
+*Update (Section 10).* Even the uniform bad-cylinder form is not what
+the argument needs. The pressure form of Section 10 is one-sided,
 aggregated over cylinders with exponential weights, tolerant of tower
 cylinders \(O^t\) biased up to \(0.84\) and of any \(o(\log\log y)\)
 initial depths;
@@ -612,25 +672,29 @@ with \(b_\theta/a_\theta=-\tanh(\theta/2)\), so
 \qquad W_T=\sum_n\prod_{s\in T}(-1)^{J^s(n)} :
 \]
 the Walsh sums of high order are exponentially down-weighted
-(\(\tanh(0.198)=0.196\) per letter), whereas the uniform cylinder
-hypothesis needs all \(2^{d}\) of them with equal weight. (The live
-restriction adds the indicator of \(\{u_t>-L\ \forall t\}\); the
-identity is stated for the unstopped moment to show the weights.)
+(\(\tanh(0.198)=0.196\) per letter). By contrast,
+\(\mathrm H(C,A)\) asks for a separate supremum over the bad
+cylinders. (The live restriction adds the indicator of
+\(\{\tau(n)>d\}\); the identity is stated for the unstopped moment to
+show the weights.)
 
-**(d) The intermediate forms are reparameterizations.** Between
-\(\mathrm H(C,A)\) and \(\mathrm P_\theta\) sit the "almost all
-cylinders" form (odd-share \(\le q\) on all but a set of cylinders of
-total mass \(\le N(\log y)^{-B}\) per depth, \(B>e_q(C)\); the Markov
-step of Theorem B′ absorbs it) and its second-moment version. With
+**(d) Global collision forms do not weaken the scoped hypothesis.** A
+scoped "almost all cylinders" form asks for odd-share \(\le q\) on all
+but a set of \(L(y)\)-bad cylinders of total mass
+\(\le N(\log y)^{-B}\) per depth, \(B>e_q(C)\); the synthetic-walk
+Markov step of Theorem B′ absorbs that exceptional mass. A global
+second-moment condition implies this scoped form. Indeed, with
 \(D(w)=\#[wO]-\tfrac12\#[w]\) and the collision count
 \(\mathcal C_t=\sum_{|w|=t}\#[w]^2\), Parseval gives
 \(\sum_wD(w)^2=2^{-t-2}\sum_{S\subseteq[0,t)}|W_{S\cup\{t\}}|^2=\tfrac12\mathcal C_{t+1}-\tfrac14\mathcal C_t\),
-so the almost-all form follows from the pair-correlation asymptotic
+so the scoped almost-all form follows from the pair-correlation asymptotic
 \(\mathcal C_t\le(N^2/2^{t-1})(1+(\log y)^{-A'})\), \(A'>C+2\) — a
-two-point statement — but by Walsh inversion any such two-sided
-bound is equivalent, up to the exponent, to polylogarithmic savings on
-every Walsh sum to depth \(d(y)\), i.e. to \(\mathrm H(C,A)\) with a
-different \(A\). They are recorded as `REPARAMETERIZATION`; the
+two-point statement. By Walsh inversion, such a global two-sided bound
+is equivalent, up to the exponent, to polylogarithmic savings on every
+Walsh sum to depth \(d(y)\), hence to the former *all-cylinder*
+strengthening of \(\mathrm H(C,A)\), not conversely to the corrected
+bad-cylinder hypothesis. It remains a sufficient condition, but its
+`REPARAMETERIZATION` label records the stronger global proposal; the
 pressure form is the one that is weaker in substance.
 
 **(e) No bounded-depth cylinder statement can close the reduction.**
@@ -781,7 +845,8 @@ free term would have log-count exactly of the order
 Section 10.4(e) says that a proof of the Tao-type bound must use
 information at depth \(\to\infty\). The exact form of the bound says
 how uniform that information must be. Suppose an analytic method
-proves cylinder equidistribution at depth \(d\) with a power saving,
+proves, at least on every \(L(y)\)-bad cylinder, equidistribution at
+depth \(d\) with a power saving,
 \(\#[w]_y=2^{-(d-1)}\tfrac y2+O(y^{1-\delta_d})\), where the saving
 exponent loses a factor \(2^{c}\) per depth: \(\delta_d=\delta_0 2^{-cd}\)
 (Weyl differencing loses \(c\ge1\); Paper B's chain \(\tfrac1{24}\to\tfrac1{96}\)

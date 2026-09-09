@@ -4938,6 +4938,23 @@
       "nk_cluster": "Walk charge and Denjoy–Koksma"
     },
     {
+      "id": "absorbed_cylinder",
+      "kind": "dossier_only",
+      "probe": null,
+      "test": null,
+      "dossier": "docs/problems/juggler_absorbed_cylinder.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": [
+        "J-absorbed-cylinder",
+        "J-unstopped-cylinder-bound"
+      ],
+      "aliases": [],
+      "nk_cluster": "Paper B, \\(K_3\\), and harvest counting"
+    },
+    {
       "id": "bi_resonance_limit",
       "kind": "dossier_only",
       "probe": null,

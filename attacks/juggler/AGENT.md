@@ -76,6 +76,12 @@ Method: [docs/methodology.md](../../docs/methodology.md).
   conjecture (`J-tao-rate-implies-conjecture`). Pressure form is
   the weakest hypothesis. Kernel localize CLOSE. Do not open a
   third formulation. Not a halt theorem; no fate excluded.
+  The former unrestricted H/H_q statements are now **REFUTED** by
+  [absorbed cylinders](../../docs/problems/juggler_absorbed_cylinder.md):
+  one terminating cylinder has at least y/(216 log y) starts on infinitely
+  many dyadic blocks. H is restricted to bad words, H_q to bad prefixes;
+  the stopped live-pressure question is unchanged. Do not reopen the
+  all-word version as an averaging target.
 - **Local attacks are closed.** Fibres are parity + interval only.
   Seam / ancestry / collision-pair / word-order drops reduce to
   Collision Factorization or \(T^L(t)=c\ge n\). Do not reopen.

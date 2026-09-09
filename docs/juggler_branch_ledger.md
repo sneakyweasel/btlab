@@ -19,6 +19,7 @@ statement in the branch.
 
 | Theme | Branch and dossier | Decision | Strongest evidence | Strongest defensible outcome | Role in paper |
 |---|---|---|---|---|---|
+| Termination frontier | [Absorbed growing-depth cylinders](problems/juggler_absorbed_cylinder.md) | CLOSE | **EXACT — HUMAN PROOF** / **REFUTED** | On infinitely many dyadic blocks one terminating cylinder has at least y/(216 log y) starts; the unrestricted H and H_q fail. Bad-word restrictions and stopped live pressure remain open | Corrects scope of Paper C's sufficient hypotheses; no failure-density improvement |
 | Formal contraction | [Power composition](problems/juggler_power_composition.md) | PROMOTE | **EXACT — LEAN VERIFIED** | Every realized itinerary obeys the one-sided power envelope; negative exponent gap forces contraction | Central theorem |
 | Exact slack | [Global defect](problems/juggler_global_defect.md) | PROMOTE | **EXACT — LEAN VERIFIED** | Local floor remainders lift to the exact global-defect identity | Central theorem |
 | Exact slack | [Exact-floor impact](problems/juggler_exact_floor_impact.md) | CLOSE | **KNOWN** / **REPARAMETERIZATION** of the square package | Floor is a no-op iff the state is a square; isolated exact steps contribute crumb 0, force the next letter, and do not bias first-descent class or PE continuation beyond word-length occupancy. Not a halt theorem | Negative impact census |

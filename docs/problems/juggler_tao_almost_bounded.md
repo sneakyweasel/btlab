@@ -1,5 +1,14 @@
 # Juggler almost-bounded values: the Tao-type reduction
 
+**Scope correction, 9 September 2026.** The older unrestricted wording
+below is superseded: H applies only to O-rooted L(y)-bad words, and H_q
+only to L(y)-bad prefixes. The all-word and all-prefix versions are
+refuted by [absorbed cylinders](juggler_absorbed_cylinder.md), which
+contain at least y/(216 log y) starts on infinitely many dyadic scales.
+The stopped live-pressure hypothesis is unchanged and remains open.
+For the corrected statements and current rate constants, use the
+[canonical Tao note](../theory/juggler_tao_reduction_note.md).
+
 Status: **PROMOTE** (conditional theorems proved; hypothesis recorded as a conjecture)
 
 The question left by fate contagion: is there a Juggler analogue of
