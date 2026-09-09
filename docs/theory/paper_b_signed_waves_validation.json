@@ -1,0 +1,43 @@
+{
+  "status": "PASS",
+  "scope": "Finite exact algebra and exponent controls; no independent proof of analytic cancellation.",
+  "counts": {
+    "curvature_and_centering_coefficients": 8,
+    "signed_cancellation_triples": 3375,
+    "wave_only_centering_cases": 4300,
+    "quadratic_interpolation_and_change_cases": 1710,
+    "coefficient_convolution_controls": 196,
+    "error_and_partition_exponents": 14,
+    "model_and_regime_exponents": 8
+  },
+  "error_exponents": {
+    "wave_floor_value_error": "3/4",
+    "zero_offset_floor_exceptions": "13/24",
+    "bounded_fourier_error": "5/6",
+    "wave_curvature_rounding": "-3/4",
+    "wave_shift_remainder": "-29/24",
+    "anchor_gap_rounding": "-25/24",
+    "anchor_shift_remainder": "-35/24",
+    "anchor_floor_curvature": "-5/6",
+    "shifted_indicator_curvature": "-29/24",
+    "wave_center_value_remainder": "-17/24",
+    "wave_center_derivative_remainder": "-41/24",
+    "D2_largest_curvature": "-15/16",
+    "D2_largest_run_density": "-11/24",
+    "D2_coefficient_window_density": "-17/24"
+  },
+  "cost_exponents": {
+    "model_length": "29/32",
+    "model_boundaries": "15/16",
+    "model_balanced_transition": "21/32",
+    "model_curvature_error": "15/16",
+    "small_combination": "31/32",
+    "large_resonant": "31/32",
+    "large_length": "29/32",
+    "large_boundaries": "55/64"
+  },
+  "written_family_bound": "O_epsilon(P^(31/32+epsilon)) under (S1) and the stated twist conditions",
+  "kernel_status": "UNPROVED",
+  "oooee_status": "UNPROVED",
+  "independent_mathematical_review": false
+}

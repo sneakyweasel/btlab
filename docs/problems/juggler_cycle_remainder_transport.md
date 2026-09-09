@@ -522,3 +522,12 @@ Status: **STRUCTURAL**. This dossier is the canonical written source for
 the two new results and their exact finite controls. Paper A, its Lean
 claims and its numerical period bound are unchanged by this gate.
 Global no-cycle remains unproved.
+
+## Authorized whole-word continuation
+
+The [fixed-residue guard gate](juggler_cycle_guard_residues.md) proves a
+precise limitation of the next extension: even the exact first remainder
+R=0 plus any fixed finite collection of source/endpoint/aggregate residues
+does not determine the OOE hidden guard. The counterpair shares threshold
+and return section. The absolute quotient repair above remains correct.
+Full arithmetic closure and cycle-selected constraints remain open.

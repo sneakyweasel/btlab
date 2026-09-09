@@ -1,5 +1,30 @@
 # Negative knowledge
 
+## Paper B: individual wave size does not imply combined dominance
+
+The historical Paper B Theorem 5.3 Step 5(b) classifies two signed
+differenced waves by the maximum of their individual scales.
+For h_1=h_2=1 and u'=-u, their sum is identically zero, while that
+maximum can exceed the zero-offset anchor scale by a growing factor.
+For h_2=2h_1 and u'=-u/2, the combined wave is
+-(u/2) Delta_(2h_1)^2 Y. An individual-mode estimate therefore cannot
+be substituted for an estimate of the complete signed phase.
+
+Kind: **REFUTED** / method obstruction for this dominance inference.
+This does not refute the desired kernel estimate or OOOEE density.
+The subsequent
+[signed zero-offset proof](theory/paper_b_signed_waves_report.md) bounds
+the combined family by O_epsilon(P^(31/32+epsilon)), including the
+specified D2 factors. It uses signed curvature and Fourier weights.
+The original dominance inference remains refuted; the complete kernel
+and the OOOEE transfer remain open.
+
+Source: [D2 supplement](theory/paper_b_d2_report.md), Section 8;
+[branch dossier](problems/juggler_paper_b_d2_repair.md).
+Ledger: J-paper-b-signed-wave-dominance.
+Do not reuse the maximum-of-individual-scales dominance inference
+without controlling cancellation in the combined phase.
+
 Project-wide index of recorded laboratory failures. Search this page
 before opening a branch. Do not re-test a discarded hypothesis unless
 new mathematics changes the situation.
@@ -1443,3 +1468,45 @@ exists in GlobalDefect and its mod2 residue only reads endpoints.
 Members: cycle_remainder_transport, J-cycle-ooe-family-chain-bound,
 J-cycle-ooe-exact-remainder-repair.
 
+## Exact first remainders do not repair fixed residue summaries
+
+[Whole-word residue guard](problems/juggler_cycle_guard_residues.md),
+9 September 2026. **CLOSE** the specific extension retaining an exact first
+square remainder and finitely many residue classes of the source, first
+image, endpoint and endpoint aggregate, even with aggregate valuation and
+full common threshold/return section.
+
+For every even Q there are two exact OOE first returns in that same geometry
+with R=0, matching listed residues modulo Q and aggregate valuation 3,
+yet opposite hidden E-source parity. Taking Q an even common multiple
+defeats any fixed finite set of moduli. This does not include the full
+absolute source, endpoint or quotient; the prior exact quotient repair
+correctly distinguishes the pair. Neither source is claimed to be periodic.
+Do not turn this into an impossibility theorem for all fixed-register
+algorithms, all absolute-remainder summaries, or cycle-selected carries.
+
+For odd endpoints, the length-L aggregate is source^(3^o)-1 modulo
+2^(L+2); at an odd fixed point its valuation is nu2(source-1).
+The residual XOR energy counts changes in mismatch status; an actual
+mismatch sum still evaluates all constituent guards. Enlarging a fixed
+modulus, packing the checks, or naming that sum an energy is not a new
+uniform arithmetic update. Member: J-cycle-ooe-fixed-residue-obstruction.
+
+## A periodic return seam excludes a strip, not all cycles
+
+[Periodic carry follow-up](problems/juggler_cycle_periodic_carries.md),
+9 September 2026. The positive result
+J-cycle-periodic-return-height-strip gives M<m^3-m^(15/8) for actual
+cycles with m>=7 and M<m^3, via a sharper exact integer ceiling.
+Do not promote that excluded top strip to emptiness of the entire
+cubic region, a restriction on taller cycles, or a new period floor.
+The old S_9 cycle passes the extremal seam but has an even retained
+base and other parity failures.
+
+Periodic endpoint matching does not make the carry sum zero: it is
+sum(peaks)-sum(base squares). Any odd base set and permutation admit
+exact E suffix cells with peaks=destination^2+1; this partial model
+omits the O-prefix equations and is not a cycle. Product identities
+remain existing floor-defect composition. A future propagation result
+must use the joint absolute cells or multiple ordered boundaries;
+carry bookkeeping or another single strip is not a global proof.

@@ -1,5 +1,71 @@
 [
  {
+  "id": "J-cycle-periodic-return-height-strip",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Every actual Juggler cycle with minimum m>=5 and maximum M<m^3 has q=O(m), t=E(M), and z=Q(m^(9/8)), Q the largest odd integer not exceeding its argument, satisfying t^3<=[z(z-2)]^2-2 and M<=(t+1)^2-2. The periodic E-image section is exactly C intersect [m,O(m)), its return words are OE/OOE, and its minimum and maximum return images z,w are adjacent odd bases with w<=z-2. The exact OE cells at t give p=O(t)<= (w+1)^2-2 and t^3<=(p+1)^2-2, proving the bound. If T is the largest odd integer with T^3<=[z(z-2)]^2-2, then M<=(T+1)^2-2. The smooth form is t<m^(3/2)-(4/3)m^(3/8), implying M<m^3-m^(15/8) for m>=7. Thus a periodic threshold cycle in that top cubic strip must have a wrong-parity state; if all retained bases are odd, an OOE first remainder is odd or an E displacement is even. The strict OOE growth used in the return partition starts at m>=5; the fixed prescribed returns at 3 and 4 are excluded. This strengthens the earlier minimum-only extrema ceiling, not every period-dependent grid bound. The remaining cubic region, tall cycles and global no-cycle are unexcluded; no numerical period floor is raised. AI-assisted written proof with separate AI audits and exact bounded controls; no new Lean verification.",
+  "source": "docs/problems/juggler_cycle_periodic_carries.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_periodic_carries.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-paper-b-signed-zero-offset",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Let X=x^(3/2),m=floor X,Y=m^(3/2),d_i=2h_i,Delta_i the d_i difference,c_d=3k(x+d1+d2)^(9/8)/4. For integers 1<=k,h1,h2<=P^(1/24), real u,u' with |u|h1,|u'|h2<=P^(1/2), and a real C^2-per-cell twist psi with |psi''|<=C P^(-3/4) on a partition with local cell count C(1+L P^(-3/8)), the sum over odd P<n<=2P with Delta1 Delta2 m=0 of e(c_d{Delta1 Delta2Y}+u Delta1Y+u' Delta2Y+psi) is O_(C,epsilon)(P^(31/32+epsilon)). An extra q Delta1 Delta2Y with |q|<=P^(1/24) and a fixed number of the preceding D2 factors fit the bound. All signs, zero wave coefficients, equal shifts, and exact leading cancellation are included. The proof centers only the wave coefficient; small signed combination uses a quadratic sublevel estimate, and large combination uses O(1) resonant frequencies per window with weight O(log(P)/A). This is a zero-offset family estimate, not a general kernel theorem or OOOEE count. AI-assisted written proof with exact controls; no independent review or Lean verification.",
+  "source": "docs/theory/paper_b_signed_waves_report.md",
+  "lean": "",
+  "tests": [
+   "tools/validate_paper_b_signed_waves.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-paper-b-quadratic-partition-bound",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For Lambda=a x^(-3/4)+b x^(-5/8)+w0 x^(-1/2) on [P,2P], let S=max(|a|P^(-3/4),|b|P^(-5/8),|w0|P^(-1/2))>0. The sublevel |Lambda|<=sS has O(1) components and length O(P sqrt(s)); the same bounds hold for dyadic bands. If f is C^2 on cells with local count O(1+nu L), |f''-Lambda|<=rho S,0<=rho<=1/8,S<=1,SP^2>=1, then any integer or odd-integer interval sum is bounded by O(P sqrt(S)+(1+nu P)S^(-1/2)log(2P)+P^(1/2)S^(-1/4)+P sqrt(rho)+1). A finite family with a common reference and total coefficient sup norms plus variations <=M0 per cell obeys the same bound times M0. Proof uses t=(x/P)^(1/8), quadratic interpolation, and second derivatives summed over every cell and dyadic band. Written proof; finite exact controls do not independently certify cancellation.",
+  "source": "docs/theory/paper_b_signed_waves_report.md",
+  "lean": "",
+  "tests": [
+   "tools/validate_paper_b_signed_waves.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cycle-ooe-fixed-residue-obstruction",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For every even Q>=2 put c=Q-1 and choose b=3 mod4 with b^2>504c^5. For d=1,-c define t_d=b^4+4d, x_d=t_d^2, u_d=t_d^3, V_d=b^18+18db^14+126d^2b^10+420d^3b^6+630d^4b^2 and Z_d=b^9+9db^5+(45d^2b-1)/2. Exact prescribed OOE traces have second images v_1=V_1 and v_-c=V_-c-1 and endpoints Z_d. Both first remainders x_d^3-u_d^2 equal zero. Both x_d,u_d,Z_d are odd, but v_1 is odd and v_-c is even, so precisely the negative-d guard holds. The traces are first returns to the same integer section [B,Z_1+1), B=t_-c^2, of the same threshold map on [B,B^3), with both intermediate states outside that section and correct OOE threshold placement. Their x,u,Z and endpoint-aggregate x^9-Z^8 residues agree modulo Q, and both aggregate 2-adic valuations equal 3. Taking Q an even multiple of any fixed finite collection of residue moduli proves that no function of just those residues, the exact first remainder, aggregate valuation, word and common full threshold/section can recognize every such guard. This refutes that precise fixed-residue summary class on the geometric return domain, not absolute-value quotient formulas, a fixed number of unbounded registers, or a cycle-selected representation. Periodic membership of these blocks is not asserted. AI-assisted written proof with separate AI audits and exact cell controls; no new Lean or no-cycle claim.",
+  "source": "docs/problems/juggler_cycle_guard_residues.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_guard_residues.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-paper-b-d2-reduction",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For P tending to infinity, integer 1<=k,h1,h2<=P^(1/24), 1<=h<=P^(1/8), and fixed carry-label extensions with offsets frozen on every first-floor gap run, let F be the second-difference branch function, G=F composed with x^(3/2), A(n)=floor(F(floor(n^(3/2)))), c=3k x^(9/8)/4, B=Delta_(2h)c, N=floor B, beta=B-N, and Q=floor(P^(5/16)). The factor e(-Delta_(2h)(cA)) equals sum_{|r|<=Q} a_r(beta)e((N+r-B)G) with total absolute error O(P^(15/16) log P). The coefficient sup norms plus variations sum to O(log P) per refined interval. Retained phases have second derivative O(P^(-3/16) u h P^(-3/4)) for u>=1/2; new boundary costs are O(P^(11/12)) where the total curvature is comparable to the base wave. Proof uses monotone slow-variable counts, O(P^(3/4)) floor-replacement exceptions, and O(P^(7/8)) floor-crossing exceptions. This is a fixed-label reduction, not a bound for all assembled oscillatory sums. Kernel and OOOEE remain unproved. Written proof with exact controls; no independent review or Lean formalization.",
+  "source": "docs/theory/paper_b_d2_report.md",
+  "lean": "",
+  "tests": [
+   "tools/validate_paper_b_d2.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-paper-b-signed-wave-dominance",
+  "tag": "REFUTED",
+  "statement": "Refuted inference: the maximum of the two individual scales of u Delta_(2h1)Y and u' Delta_(2h2)Y certifies mode dominance of their combined phase over the zero-offset anchor in the historical Paper B Theorem 5.3 Step 5(b). With h1=h2=1,u=L,u'=-L, their sum is exactly zero; L comparable to P^(1/4) fits the stated Fourier supports and makes the individual wave scale P^(-1/2) larger than the anchor scale P^(-5/8) at k=1. For h2=2h1,u'=-u/2, the sum is -(u/2) Delta_(2h1)^2 Y. This refutes the dominance inference, not the target exponential-sum estimate, and does not assert that every pair has nonzero coefficient in each application. A bound for the combined signed family is still required.",
+  "source": "docs/theory/paper_b_d2_report.md",
+  "lean": "",
+  "tests": [
+   "tools/validate_paper_b_d2.py"
+  ],
+  "related_conjectures": []
+ },
+ {
   "id": "J-cycle-ooe-family-chain-bound",
   "tag": "EXACT — HUMAN PROOF",
   "statement": "For odd r>=3 let X(r)=r^8+8 and Z(r)=r^9+9r-1, with the previously proved exact Juggler block J^3(X(r))=Z(r)>X(r). A consecutive family transition r->s requires s^8=r^9+9r-9 and forces r=1 modulo 48: odd eighth powers modulo32 force r=1 modulo16; r=2 modulo3 is impossible and 3|r gives right-side 3-adic valuation 2, impossible for an eighth power. For a transition whose destination can itself make another family transition, both r,s=1 modulo16, and factoring s^8-1=(r-1)(r^8+...+r+10) gives nu2(s-1)=nu2(r-1)-2. Therefore k consecutive family transitions from r satisfy k<=max(0,floor((nu2(r-1)-2)/2)); no infinite exact three-step concatenation exists. The final endpoint need not itself continue, so the valuation drop is asserted only through continuing destinations. Continuing transitions also have nu3(s-1)=nu3(r-1)+2. This excludes only repetition of this exact growth family, not later reentry after other step counts, another growth pattern, an escaping full orbit, or a cycle. The six archived parameters all fail r=1 modulo3 and their full finite traces reach 1, but universal family termination remains unproved. AI-assisted written proof with independent AI valuation audits; no new Lean verification or external priority claim.",

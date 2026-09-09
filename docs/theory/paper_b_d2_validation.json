@@ -1,0 +1,49 @@
+{
+  "status": "PASS",
+  "scope": "Exact identities and exponent bookkeeping only; no proof of analytic cancellation.",
+  "counts": {
+    "centering_cases": 2989,
+    "floor_difference_cases": 8649,
+    "signed_wave_cases": 1331,
+    "frozen_derivative_coefficients": 4,
+    "positive_error_exponents": 12,
+    "curvature_ratio_exponents": 4,
+    "near_integer_increment_exponent": 1,
+    "conditional_differencing_chains": 2,
+    "near_integer_majorant_controls": 16
+  },
+  "error_exponents": {
+    "zero_offset_P_over_Q": "11/16",
+    "zero_offset_D_over_aQ": "15/16",
+    "zero_offset_Pa": "1/3",
+    "original_runs": "13/24",
+    "nonzero_offset_D_over_aQ": "23/48",
+    "nonzero_offset_Pa": "3/4",
+    "floor_crossings": "7/8",
+    "shifted_run_boundaries": "2/3",
+    "coefficient_windows": "7/24",
+    "new_run_inverse_curvature": "11/12",
+    "new_window_inverse_curvature": "29/48",
+    "literal_continuous_tail": "47/48"
+  },
+  "curvature_ratio_exponents": [
+    "-3/16",
+    "-29/48",
+    "-1/3",
+    "-3/4"
+  ],
+  "conditional_centered_chain": [
+    "15/16",
+    "31/32",
+    "63/64",
+    "127/128"
+  ],
+  "conditional_literal_tail_chain": [
+    "47/48",
+    "95/96",
+    "191/192",
+    "383/384"
+  ],
+  "kernel_status": "UNPROVED",
+  "oooee_status": "UNPROVED"
+}

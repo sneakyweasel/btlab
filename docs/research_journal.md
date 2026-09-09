@@ -1,5 +1,49 @@
 # Research journal
 
+## Paper B signed zero-offset family: a uniform power saving
+
+- **Date:** 9 September 2026. **Source:**
+  [Combined signed waves](problems/juggler_paper_b_signed_waves.md).
+- **What was learned:** Center only the wave coefficient. Retain the
+  bounded anchor coefficient in the Fourier amplitude. The signed
+  combination u h_1+u' h_2 organizes the estimate; a quadratic sublevel
+  bound and coefficient weights control cancellation.
+- **Strongest theorem:** The actual zero-offset sum (S2), with both
+  differenced waves and the specified twists, is O_epsilon(P^(31/32+epsilon)).
+  Both signs, zero coefficients, equal shifts, and leading cancellation
+  are covered. A fixed number of the stated D2 factors fits the proof.
+- **Evidence:** EXACT — HUMAN PROOF in the written-proof sense.
+  Exact controls check the identities, curvature, coefficient convolution,
+  and exponent budgets; no independent mathematical review or Lean proof.
+- **Decision:** PROMOTE the combined signed zero-offset estimate.
+- **Best next question:** Can the wave-bearing family with nonzero total
+  Y frequency, including widened D1 decorations, be proved uniformly?
+- **Scope:** Kernel assembly and the OOOEE mixed-mode transfer remain open.
+  The 27/32 manuscript and Zenodo package are unchanged.
+
+## Paper B D2 repair: positive error budget, signed assembly still open
+
+- **Date:** 9 September 2026. **Source:**
+  [D2 repair](problems/juggler_paper_b_d2_repair.md).
+- **What was learned:** Count actual slow floor crossings before expanding
+  the carry. Center the remaining coefficient. The fixed-label D2
+  reduction has total absolute error O(P^(15/16) log P), including
+  all original gap runs, and logarithmic coefficient variation per window.
+- **Evidence:** EXACT — HUMAN PROOF in the written-proof sense, with
+  exact algebra and exponent controls. No independent review or Lean proof.
+- **Remaining obstruction:** The maximum size of two signed waves does
+  not certify their combined curvature: equal shifts and opposite
+  coefficients cancel exactly. The full zero-offset family needs a
+  uniform estimate using the combined phase.
+- **Conditional propagation:** A complete inner-sum bound of the same
+  strength would give kernel exponent 127/128, up to epsilon. Its
+  antecedent is unproved; neither OOOEE nor density 7/8 is restored.
+- **Decision:** PROMOTE the D2 reduction and its error accounting.
+- **Best next question:** Does the combined signed zero-offset family
+  admit a uniform power saving after this reduction?
+- **Publication:** Research supplement only; the 27/32 manuscript and
+  Zenodo package are unchanged.
+
 ## Paper B OOEOE split: certificate subfamily density 27/32
 
 - **Date:** 9 September 2026. **Source:**
@@ -42270,3 +42314,51 @@ controls. Full fate after departure, universal family termination,
 arbitrary-word closure and global no-cycle remain unproved.
 No new Lean or Paper A change is claimed for this gate.
 
+## 2026-09-09 — Whole-word guard: fixed residue obstruction
+
+The user authorized the next no-cycle question after exact remainder transport.
+[The canonical dossier](problems/juggler_cycle_guard_residues.md) closes the
+specified fixed-residue extension. For every even Q, a Taylor-certified pair
+of exact OOE first returns shares a threshold and return section, exact first
+remainder R=0, source/first-image/endpoint/aggregate residues modulo Q and
+aggregate valuation 3, but has opposite final E-source parity. An even common
+multiple defeats any fixed finite list of moduli. Full absolute values still
+distinguish the pair, as does the existing corrected quotient guard.
+
+The dyadic endpoint aggregate saturates modulo 2^(L+2) for odd endpoints.
+At an odd fixed point its valuation is nu2(x-1), independent of word counts.
+Residual mismatch energy is a boundary count, while the exact mismatch sum
+requires constituent guards. Neither audit supplies a decreasing cycle quantity.
+
+Decision: **CLOSE** the tested fixed-residue/aggregate-energy shortcuts.
+Retain J-cycle-ooe-fixed-residue-obstruction as an AI-assisted written proof,
+with separate AI algebra/scope audits. Six literal moduli give twelve exact
+blocks; seven archived threshold cycles are reused. No source census, new
+cycle search, floor increase or cap extension. No new Lean or Paper A claim.
+The blocks are not asserted to be periodic, so the broader absolute-data
+and cycle-selected closure questions remain open.
+
+## 2026-09-09 — Periodic carries give a sharper height strip
+
+The authorized periodicity follow-up yields a scoped positive result:
+[the canonical proof](problems/juggler_cycle_periodic_carries.md) shows
+that an actual cycle with m>=7 and M<m^3 has M<m^3-m^(15/8).
+Normalize a threshold cycle by its minimum and retain precisely its
+E-image set C intersect [m,O(m)). Its OE/OOE return permutation makes
+the extremal return images adjacent. On a compatible cycle both are
+odd, so their gap is at least two. Exact OE parity faces give
+t^3<=[z(z-2)]^2-2, z=Q(m^(9/8)), t=E(M), and M<=(t+1)^2-2.
+This also gives t<m^(3/2)-(4/3)m^(3/8).
+
+Decision: **PROMOTE** J-cycle-periodic-return-height-strip as an
+AI-assisted written theorem, with separate AI audits. The comparison
+is with the previous minimum-only extrema ceiling, not all
+period-dependent estimates. Sums/products of carries alone remain
+identities; the new information is the ordered return boundary and
+its exact parity cells. The old S_9 cycle passes this seam but still
+has an even retained base, showing the result is necessary only.
+
+Verification reuses seven archived cycles and evaluates five conditional
+ceilings at previous literal starts, without trajectories, a source
+census, a new cycle search, or any floor increase. No new Lean or
+Paper A claim. The remaining cubic region and tall cycles are open.

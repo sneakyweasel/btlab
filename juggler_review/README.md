@@ -1,3 +1,7 @@
+> **Signed-wave research supplement, 9 September 2026:** [Combined zero-offset estimate](paper_b_signed_waves_report.md) proves the specified signed family with exponent 31/32, up to epsilon, including the D2 factors. Full kernel assembly and OOOEE remain unproved. The 27/32 manuscript and deposit package are unchanged.
+
+> **D2 research supplement, 9 September 2026:** [D2 repair and signed-wave obstruction](paper_b_d2_report.md) records a new fixed-label reduction. The kernel and OOOEE count remain unproved; the 27/32 manuscript and deposit package are unchanged.
+
 > **Paper B OOEOE repair, 9 September 2026:** the current preprint proves four-step certificate density 13/16 and a five-step certificate subfamily of density 27/32. Full five-step density 7/8 now requires only OOOEE. The general decorated kernel remains unproved. See [the current report](paper_b_ooeoe_report.md) and [build instructions](../docs/theory/PAPER_B_BUILD.md). Earlier theorem numbers and companion cross-citations require review.
 
 # Juggler reviewer bundle (three manuscripts)

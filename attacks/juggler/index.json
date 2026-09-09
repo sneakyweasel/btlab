@@ -1017,6 +1017,22 @@
       "nk_cluster": "Diophantine walls"
     },
     {
+      "id": "cycle_guard_residues",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_guard_residues.py",
+      "test": "tests/research/juggler_sequence/test_cycle_guard_residues.py",
+      "dossier": "docs/problems/juggler_cycle_guard_residues.md",
+      "data_dir": "data/research/juggler/cycle_guard_residues",
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": [
+        "J-cycle-ooe-fixed-residue-obstruction"
+      ],
+      "aliases": [],
+      "nk_cluster": "Exact first remainders do not repair fixed residue summaries"
+    },
+    {
       "id": "cycle_inhomogeneous_log",
       "kind": "branch",
       "probe": "src/research/juggler_sequence/cycle_inhomogeneous_log.py",
@@ -1399,6 +1415,22 @@
       "ledger_ids": [],
       "aliases": [],
       "nk_cluster": "Finance leftover-killers are identities, not movers"
+    },
+    {
+      "id": "cycle_periodic_carries",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_periodic_carries.py",
+      "test": "tests/research/juggler_sequence/test_cycle_periodic_carries.py",
+      "dossier": "docs/problems/juggler_cycle_periodic_carries.md",
+      "data_dir": "data/research/juggler/cycle_periodic_carries",
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-cycle-periodic-return-height-strip"
+      ],
+      "aliases": [],
+      "nk_cluster": "A periodic return seam excludes a strip, not all cycles"
     },
     {
       "id": "cycle_position_finance",
@@ -5411,11 +5443,39 @@
       "nk_cluster": "Flights"
     },
     {
+      "id": "paper_b_d2_repair",
+      "kind": "dossier_only",
+      "probe": null,
+      "test": null,
+      "dossier": "docs/problems/juggler_paper_b_d2_repair.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Paper B: individual wave size does not imply combined dominance"
+    },
+    {
       "id": "paper_b_ooeoe_repair",
       "kind": "dossier_only",
       "probe": null,
       "test": null,
       "dossier": "docs/problems/juggler_paper_b_ooeoe_repair.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
+    },
+    {
+      "id": "paper_b_signed_waves",
+      "kind": "dossier_only",
+      "probe": null,
+      "test": null,
+      "dossier": "docs/problems/juggler_paper_b_signed_waves.md",
       "data_dir": null,
       "lean": [],
       "conjecture": [],
