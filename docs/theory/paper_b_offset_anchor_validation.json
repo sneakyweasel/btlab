@@ -1,0 +1,58 @@
+{
+  "status": "PASS",
+  "counts": {
+    "frozen_coefficients_and_correction_controls": 13,
+    "signed_smooth_centering_cases": 6612,
+    "carry_and_endpoint_cases": 1155,
+    "offset_branch_decomposition_cases": 1792,
+    "rational_exponent_controls": 36
+  },
+  "corrected_composite_coefficient": "81/64",
+  "historical_coefficient": "729/512",
+  "omitted_frozen_floor_coefficient": "81/512",
+  "cost_exponents": {
+    "floor_mismatch": "3/4",
+    "anchor_offset_taylor": "-1/12",
+    "anchor_zero_offset_taylor": "-1/2",
+    "wave_taylor": "-1/4",
+    "slow_floor_replacement": "7/24",
+    "fourier_endpoint_error": "5/6",
+    "original_gap_runs": "13/24",
+    "floor_and_input_partition": "3/4",
+    "new_center_drift": "5/12",
+    "retained_length": "23/24",
+    "retained_endpoints": "13/16",
+    "D2_absolute_error": "15/16",
+    "D2_original_runs": "13/24",
+    "D2_coefficient_windows": "7/24"
+  },
+  "curvature_error_exponents": {
+    "anchor_zero_offset": "-1/2",
+    "anchor_shift_remainder": "-25/24",
+    "floor_residual": "-5/6",
+    "all_signed_waves": "-1/4",
+    "center_wave": "-1/4",
+    "center_floor_rounding": "-1/2",
+    "retained_fourier_mode": "-3/16",
+    "shifted_carry": "-29/24",
+    "slow_offset": "-29/24",
+    "slow_zero_offset": "-13/8",
+    "smooth_twist": "-1/4",
+    "D2_curvature": "-15/16"
+  },
+  "centering_exponents": {
+    "anchor_value_shift_error": "-13/24",
+    "anchor_value_zero_offset_error": "0",
+    "wave_value_rounding": "-1/4",
+    "wave_value_shift_error": "-17/24",
+    "anchor_derivative_zero_offset": "-1",
+    "wave_derivative_residual": "-3/4",
+    "residual_variation_on_gap_run": "-1/4",
+    "center_derivative_competitor_ratio": "-1/8",
+    "fourier_cutoff_to_anchor_frequency": "-1/16"
+  },
+  "final_exponent": "23/24 + epsilon",
+  "scope": "Finite algebra and exponent controls, not an analytic proof.",
+  "independent_mathematical_review": false,
+  "kernel_and_oooee": "UNPROVED"
+}

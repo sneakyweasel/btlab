@@ -116,7 +116,7 @@ def check(root: Path, exports: bool = True) -> None:
 
 def zenodo_fields(meta: dict) -> str:
     return ("GENERATED FROM docs/theory/; do not edit this export.\n"
-            "Prepared metadata only; no external record has been created.\n\n"
+            "Metadata for the local revision; this build does not upload a new version.\n\n"
             f"TITLE\n{meta['title']}\n\nCREATOR\n{meta['creators'][0]['name']}\n"
             "Affiliation: none\n\nRESOURCE TYPE\nPublication / Preprint\n\n"
             f"VERSION\n{meta['version']}\n\nLICENSE\n{meta['license']}\n\n"
@@ -206,7 +206,7 @@ def build(root: Path, args) -> None:
     shutil.copyfile(tex.with_suffix(".pdf"), root / PDF)
     write_metadata(root, pandoc)
     release = {"schema": 1, "canonical_source": SOURCE,
-               "status": "preprint; no external deposit performed",
+               "status": "local preprint revision; no new version uploaded by this build",
                "verification_scope": "File provenance only. Mathematical trust boundaries are in the manuscript and reviewer packet.",
                "tools": versions,
                "inputs": [{"path": p, "mode": "text", "sha256": digest(root / p, "text")} for p in input_files(root)],

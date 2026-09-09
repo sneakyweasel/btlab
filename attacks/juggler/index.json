@@ -5457,6 +5457,20 @@
       "nk_cluster": "Paper B: individual wave size does not imply combined dominance"
     },
     {
+      "id": "paper_b_offset_anchor",
+      "kind": "dossier_only",
+      "probe": null,
+      "test": null,
+      "dossier": "docs/problems/juggler_paper_b_offset_anchor.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Paper B: the offset composite must subtract the frozen integer floor"
+    },
+    {
       "id": "paper_b_ooeoe_repair",
       "kind": "dossier_only",
       "probe": null,

@@ -1,3 +1,5 @@
+> **Offset-anchor research supplement, 9 September 2026:** [Nonzero-offset estimate](paper_b_offset_anchor_report.md) gives exponent 23/24, up to epsilon, for the stated zero-total-Y family with signed widened waves and already-differenced D2 factors. The corrected composite coefficient is 81/64. Full kernel assembly and OOOEE remain unproved; the 27/32 manuscript and deposit package are unchanged.
+
 > **Wave-bearing research supplement, 9 September 2026:** [Widened D1 repair](paper_b_wave_bearing_report.md) gives exponent 31/32, up to epsilon, for the nonzero-total-Y family with the stated D2 factors and partition conditions. The nonzero-offset family at zero total Y frequency, complete kernel, and OOOEE remain unproved. The 27/32 manuscript and deposit package are unchanged.
 
 > **Signed-wave research supplement, 9 September 2026:** [Combined zero-offset estimate](paper_b_signed_waves_report.md) proves the specified signed family with exponent 31/32, up to epsilon, including the D2 factors. Full kernel assembly and OOOEE remain unproved. The 27/32 manuscript and deposit package are unchanged.

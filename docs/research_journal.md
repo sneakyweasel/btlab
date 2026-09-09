@@ -1,5 +1,30 @@
 # Research journal
 
+## Paper B nonzero-offset anchor: corrected composite and family bound
+
+- **Date:** 9 September 2026. **Source:**
+  [Nonzero-offset anchor](problems/juggler_paper_b_offset_anchor.md).
+- **What was learned:** Center the large anchor coefficient and
+  retain residual Fourier frequencies at P^(5/16), below the
+  first curvature-cancellation range. The full frozen-floor
+  subtraction changes the historical coefficient to 81/64.
+- **Strongest theorem:** The actual nonzero-offset sum (O4), with
+  zero total Y frequency, signed widened first differences, the
+  specified slow/smooth terms and already-differenced D2 factors,
+  is O_epsilon(P^(23/24+epsilon)). All partition cuts are counted.
+- **Refuted identity:** The historical 729/512 composite omits
+  c''J at leading order, of coefficient 81/512. This is a
+  coefficient correction, not a refutation of a saving.
+- **Evidence:** EXACT — HUMAN PROOF for the written family proof;
+  REFUTED for the old identity. Exact controls pass. No independent
+  mathematical review or Lean verification.
+- **Decision:** PROMOTE the nonzero-offset estimate and correction.
+- **Best next question:** Does every twice-differenced kernel term
+  fit one of the three family statements, with all coefficient
+  masses and exceptional sets accounted for?
+- **Scope:** Full kernel assembly and OOOEE remain unproved.
+  The 27/32 manuscript and deposit package are unchanged.
+
 ## Paper B wave-bearing family: widened D1 repair
 
 - **Date:** 9 September 2026. **Source:**

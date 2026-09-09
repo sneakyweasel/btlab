@@ -1,7 +1,7 @@
 # Juggler reviewer packet (three manuscripts)
 
 Author: Philippe Cochin. Paper A release revision: 9 September 2026.
-Status: Paper A is a submission candidate; Paper B is a revised
+Status: Paper A is a local revision of the published Zenodo preprint; Paper B is a revised
 working draft (8-section journal form, 4 September 2026; Theorem 5.3
 is the monomial \(c=\tfrac{3k}4 n^{9/8}\); certified density
 \(7/8\)); Paper C (fate contagion, 4 September 2026) is a complete
@@ -26,6 +26,19 @@ cycles under a one-unit successor allowance, and the exact branch-offset
 obstruction to gap-only criteria. The altered maps are not Juggler
 counterexamples. The period bound remains 780239. Uniform wrong-parity
 intersection and the taller-cycle regime remain open.
+
+**Return-cell consolidation.** Section 3.11 proves the exact periodic
+return seam and the height restriction \(M<m^3-m^{15/8}\), \(m\ge7\),
+under \(M<m^3\). Appendix E consolidates short-return cells, Euclidean
+guard transport, the polynomial family, finite family chains, exact
+remainder recovery, and the fixed-residue obstruction. The manuscript's
+Appendix A gives the precise formal coverage; the additional analytic
+and tower arguments remain written proofs where indicated. Six archived
+family trajectories remain finite computations, not a universal claim.
+The canonical proof source is the manuscript; research dossiers now
+point there and retain their branch decisions and controls.
+This local revision has not been uploaded to the
+[existing Zenodo record](https://doi.org/10.5281/zenodo.22676453).
 
 **Companion status.** The Paper B and C descriptions below are context,
 not dependencies of the cycle bounds. Their canonical sources may

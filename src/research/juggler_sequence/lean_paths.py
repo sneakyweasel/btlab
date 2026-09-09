@@ -82,6 +82,14 @@ PAPER_MODULES: tuple[str, ...] = (
     "CubicRounding",
     "CubicInterlacing",
     "CubicConsequences",
+    "ReturnInduction",
+    "ReturnCells",
+    "FamilyChains",
+    "CubicReturnHeight",
+    "RemainderCarry",
+    "CubicReturn",
+    "CubicReturnStrip",
+    "GuardResidueFamily",
 )
 
 LAYERS: dict[str, Path] = {
@@ -196,6 +204,14 @@ LAYERS: dict[str, Path] = {
     "CubicRounding": JUGGLER_DIR / "CubicRounding.lean",
     "CubicInterlacing": JUGGLER_DIR / "CubicInterlacing.lean",
     "CubicConsequences": JUGGLER_DIR / "CubicConsequences.lean",
+    "ReturnInduction": JUGGLER_DIR / "ReturnInduction.lean",
+    "ReturnCells": JUGGLER_DIR / "ReturnCells.lean",
+    "FamilyChains": JUGGLER_DIR / "FamilyChains.lean",
+    "CubicReturnHeight": JUGGLER_DIR / "CubicReturnHeight.lean",
+    "RemainderCarry": JUGGLER_DIR / "RemainderCarry.lean",
+    "CubicReturn": JUGGLER_DIR / "CubicReturn.lean",
+    "CubicReturnStrip": JUGGLER_DIR / "CubicReturnStrip.lean",
+    "GuardResidueFamily": JUGGLER_DIR / "GuardResidueFamily.lean",
 }
 
 DYNAMICS = LAYERS["Dynamics"]

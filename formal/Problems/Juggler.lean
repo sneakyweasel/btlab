@@ -114,6 +114,14 @@ import Problems.Juggler.CubicLogGrid
 import Problems.Juggler.CubicRounding
 import Problems.Juggler.CubicInterlacing
 import Problems.Juggler.CubicConsequences
+import Problems.Juggler.ReturnInduction
+import Problems.Juggler.ReturnCells
+import Problems.Juggler.FamilyChains
+import Problems.Juggler.CubicReturnHeight
+import Problems.Juggler.RemainderCarry
+import Problems.Juggler.CubicReturn
+import Problems.Juggler.CubicReturnStrip
+import Problems.Juggler.GuardResidueFamily
 
 /-!
 # Juggler laboratory barrel

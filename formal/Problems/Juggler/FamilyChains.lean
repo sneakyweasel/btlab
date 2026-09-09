@@ -261,4 +261,33 @@ theorem ooeFamily_no_infinite_chain (r : ℕ → ℕ)
     (fun i _ => hr i) (fun i _ => ho i) (fun i _ => h i)
   omega
 
+theorem ooeFamily_iterate_three {r : ℕ} (hr : 3 ≤ r) (ho : r % 2 = 1) :
+    (floorPower^[3]) (ooeFamilySource r) = ooeFamilyExit r := by
+  obtain ⟨h1,h2,h3⟩ := ooeFamily_juggler_block hr ho
+  change floorPower (floorPower (floorPower (ooeFamilySource r))) = _
+  rw [h1,h2,h3]
+
+theorem ooeFamily_juggler_chain_bound (r : ℕ → ℕ) (k : ℕ)
+    (hr : ∀ i, i ≤ k → 3 ≤ r i)
+    (ho : ∀ i, i ≤ k → r i % 2 = 1)
+    (hstep : ∀ i, i < k →
+      (floorPower^[3]) (ooeFamilySource (r i)) = ooeFamilySource (r (i+1))) :
+    k ≤ (padicValNat 2 (r 0 - 1) - 2) / 2 := by
+  apply ooeFamily_chain_bound r k hr ho
+  intro i hi
+  apply (ooeFamilyReturn_iff (hr i (by omega))).mp
+  rw [← ooeFamily_iterate_three (hr i (by omega)) (ho i (by omega))]
+  exact hstep i hi
+
+theorem ooeFamily_no_infinite_juggler_chain (r : ℕ → ℕ)
+    (hr : ∀ i, 3 ≤ r i) (ho : ∀ i, r i % 2 = 1) :
+    ¬ ∀ i, (floorPower^[3]) (ooeFamilySource (r i)) =
+      ooeFamilySource (r (i+1)) := by
+  intro h
+  apply ooeFamily_no_infinite_chain r hr ho
+  intro i
+  apply (ooeFamilyReturn_iff (hr i)).mp
+  rw [← ooeFamily_iterate_three (hr i) (ho i)]
+  exact h i
+
 end Problems.Juggler

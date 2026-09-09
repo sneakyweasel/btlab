@@ -1,5 +1,87 @@
 [
  {
+  "id": "J-cycle-fixed-residue-witness",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Paper A Appendix E.6, explicit formal witness. For every positive residue modulus q, an explicit polynomial pair of prescribed OOE blocks has exact first remainder zero, odd source/first image/endpoint, equal specified source/first-image/endpoint/aggregate residues modulo q, and opposite hidden final E-source guards. The construction uses an internal multiple of q and a positive polynomial choice of b; the general-b Taylor formula remains written. These are geometric blocks, not asserted periodic points. Kernel-verified witness construction; no impossibility for full absolute-value formulas or cycle-specific guards is claimed.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/GuardResidueFamily.lean",
+  "decl": "guardResidueFamily_every_modulus",
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_guard_residues.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py",
+   "tests/research/juggler_sequence/test_paper_a_trust_boundary.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cycle-ooe-polynomial-block",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Paper A Proposition E.3, formal polynomial-block subset. For every odd r>=3, x=r^8+8,u=r^12+12r^4,v=r^18+18r^10+54r^2-1,z=r^9+9r-1 satisfy all three adjacent-square cells, x,u,z odd and v even, and the actual Juggler steps x->u->v->z. The direct iterate-three identity is proved. Kernel verified; this row does not cover the real-power quotient substitution estimates or assert a closed orbit.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/FamilyChains.lean",
+  "decl": "ooeFamily_juggler_block",
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_cubic_induction.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py",
+   "tests/research/juggler_sequence/test_paper_a_trust_boundary.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cycle-subtractive-return-step",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Paper A Appendix E.2, formal core. For rankStep(a,b,i)=i+b when i<a and i-a otherwise, a>b gives the first return on [0,a) as rankStep(a-b,b), in one or two iterations with every earlier positive iterate outside. For b>a the first return on [0,b) is rankStep(a,b-a); equal counts give a two-step identity. Weighted word lengths and O/E statistics are preserved by A,AB or AB,B substitution. Kernel-verified return iterates and first-visit properties; full accelerated towers and their global partition remain written.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/ReturnInduction.lean",
+  "decl": "left_subtractive_first_return",
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_cubic_induction.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py",
+   "tests/research/juggler_sequence/test_paper_a_trust_boundary.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cycle-short-return-cells",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Paper A Appendix E.1, formal subset. The prescribed OE return equals y iff y^4<=x^3<(y+1)^4. Every prescribed OOE return v satisfies v^8<=x^9<(v+2)^8; relative to an eighth-root cell y it is y or y-1. If v is odd, it is the greatest odd integer whose eighth power is at most x^9. The family s^4->s^6->s^3 has all three states odd when s is odd, so endpoint parities do not imply the hidden E guard. Actual OE/OOE composition bridges retain every source-parity premise. Kernel verified; no arbitrary-root or OOEOE projection theorem is claimed by this row.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/ReturnCells.lean",
+  "decl": "ooe_odd_maximal",
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_cubic_induction.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py",
+   "tests/research/juggler_sequence/test_paper_a_trust_boundary.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-paper-b-offset-anchor-sums",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Fix C,M. Let X=x^(3/2),m=floor X,Y=m^(3/2), positive integers k,h1,h2<=CP^(1/24), nonzero integer |j|<=2, and c=3k(x+v)^(9/8)/4 with nonnegative even v=O_C(P^(1/24)). The odd dyadic sum on Delta_(2h1)Delta_(2h2)m=j of eta e(c{Delta_(2h1)Delta_(2h2)Y}+sum a_b Delta_(2r_b)Y(n+e_b)+q Delta_(2h1)Delta_(2h2)Y+psi) is O_(C,M,epsilon)(P^(23/24+epsilon)). There are at most M waves, e_b nonnegative even,r_b positive, e_b,r_b<=CP^(1/24),|a_b|r_b<=CP^(1/2),|q|<=CP^(1/24). Coefficients are constant on a partition of local count C(1+L P^(-1/4)), psi is real C^2 per cell with |psi''|<=CP^(-1/4), and eta has sup norm plus variation <=C per cell. The additional slow terms and already-differenced D2 factors are exactly those in Section 7 of the source, with original D2 labels preserved. Centering B_*=(9/16)kjx^(3/8)+(9/4)alpha x^(-1/4),alpha=sum a_b r_b, and retaining residual modes at P^(5/16) gives frozen curvature (81/64)kjx^(-1/8)+O_(C,M)(P^(-3/16)); all cuts number O_(C,M)(P^(3/4)). Both signs and full widened ranges are included. This is a family theorem, not a complete kernel or OOOEE result. AI-assisted written proof with exact controls; independent review and Lean verification outstanding.",
+  "source": "docs/theory/paper_b_offset_anchor_report.md",
+  "lean": "",
+  "tests": [
+   "tools/validate_paper_b_offset_anchor.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-paper-b-offset-composite-729",
+  "tag": "REFUTED",
+  "statement": "The historical Paper B Theorem 5.3 Step 5(a) claim that 729/512 is the leading kjx^(-1/8) coefficient of the full nonzero-offset anchor-plus-center curvature is false. With c=3kx^(9/8)/4,G_offset=(3j/2)x^(3/4) at leading order,J=floor G,N=(9/16)kjx^(3/8)+lower terms, and J,N frozen when differentiating, the phase c(G-J)-NX has coefficient 945/512-81/512-216/512=81/64. The omitted term c''J contributes 81/512. This refutes the displayed identity and invalidates reuse of its numerical margins; it does not refute a power-saving estimate. The corrected family bound is J-paper-b-offset-anchor-sums.",
+  "source": "docs/theory/paper_b_offset_anchor_report.md",
+  "lean": "",
+  "tests": [
+   "tools/validate_paper_b_offset_anchor.py"
+  ],
+  "related_conjectures": []
+ },
+ {
   "id": "J-paper-b-widened-d1-linearization",
   "tag": "EXACT — HUMAN PROOF",
   "statement": "Let X=x^(3/2),m=floor X,Y=m^(3/2),1<=h<=P^(1/12),1<=r<=CP^(1/24), and |a|r<=CP^(1/2). On an actual fixed carry branch Delta_(2h)Delta_(2r)Y=F_j(m), where beta_1~h sqrt(P),beta_2~r sqrt(P),|j|<=2. With offsets frozen, |F_j'| is O(|j|P^(-3/4)+hrP^(-5/4)). Replacing F_j(m) by F_j(X) in e(aF_j(m)) costs O_C(P^(3/4)) over the whole dyadic interval, including a fixed number of terms. The retained phase curvature is O_C(P^(-3/4)/r+hP^(-5/4)). No derivative of moving beta approximations or growing Fourier expansion of this floor error is needed. AI-assisted written proof with exact controls, not independently reviewed or Lean verified.",
@@ -23,14 +105,18 @@
  },
  {
   "id": "J-cycle-periodic-return-height-strip",
-  "tag": "EXACT — HUMAN PROOF",
-  "statement": "Every actual Juggler cycle with minimum m>=5 and maximum M<m^3 has q=O(m), t=E(M), and z=Q(m^(9/8)), Q the largest odd integer not exceeding its argument, satisfying t^3<=[z(z-2)]^2-2 and M<=(t+1)^2-2. The periodic E-image section is exactly C intersect [m,O(m)), its return words are OE/OOE, and its minimum and maximum return images z,w are adjacent odd bases with w<=z-2. The exact OE cells at t give p=O(t)<= (w+1)^2-2 and t^3<=(p+1)^2-2, proving the bound. If T is the largest odd integer with T^3<=[z(z-2)]^2-2, then M<=(T+1)^2-2. The smooth form is t<m^(3/2)-(4/3)m^(3/8), implying M<m^3-m^(15/8) for m>=7. Thus a periodic threshold cycle in that top cubic strip must have a wrong-parity state; if all retained bases are odd, an OOE first remainder is odd or an E displacement is even. The strict OOE growth used in the return partition starts at m>=5; the fixed prescribed returns at 3 and 4 are excluded. This strengthens the earlier minimum-only extrema ceiling, not every period-dependent grid bound. The remaining cubic region, tall cycles and global no-cycle are unexcluded; no numerical period floor is raised. AI-assisted written proof with separate AI audits and exact bounded controls; no new Lean verification.",
-  "source": "docs/problems/juggler_cycle_periodic_carries.md",
-  "lean": "",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Paper A Theorem 3.39. For every actual cycle with attained minimum m>=5 and maximum M<m^3, t=isqrt(M) and z=F_OOE(m) satisfy t^3+2<=[z(z-2)]^2 and M+2<=(t+1)^2 (cycleMin_exact_return_seam). The periodic E-image section is exactly C intersect [m,O(m)); its extrema return images have a strict odd gap, derived from actual periodicity and injectivity rather than assumed. For m>=7, m^15<(m^3-M)^8 (cycleMin_height_strip), equivalently M<m^3-m^(15/8); the all-states version is cycleMin_all_states_height_strip. Every threshold cycle in the complementary top strip has a wrong-parity state (threshold_cycle_wrong_parity). Exact OE/OOE cells identify the odd endpoint z. The sharper fractional bound for t, maximum-odd-integer ceiling restatement, and full rank adjacency are separately written consequences. The remaining cubic region, tall cycles and global no-cycle remain unexcluded; the period floor is unchanged. Kernel verified from actual periodic-orbit and CycleMin hypotheses.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/CubicReturnStrip.lean",
   "tests": [
-   "tests/research/juggler_sequence/test_cycle_periodic_carries.py"
+   "tests/research/juggler_sequence/test_cycle_periodic_carries.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py",
+   "tests/research/juggler_sequence/test_paper_a_trust_boundary.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": "cycleMin_height_strip",
+  "lean_trust": "kernel"
  },
  {
   "id": "J-paper-b-signed-zero-offset",
@@ -57,8 +143,8 @@
  {
   "id": "J-cycle-ooe-fixed-residue-obstruction",
   "tag": "EXACT — HUMAN PROOF",
-  "statement": "For every even Q>=2 put c=Q-1 and choose b=3 mod4 with b^2>504c^5. For d=1,-c define t_d=b^4+4d, x_d=t_d^2, u_d=t_d^3, V_d=b^18+18db^14+126d^2b^10+420d^3b^6+630d^4b^2 and Z_d=b^9+9db^5+(45d^2b-1)/2. Exact prescribed OOE traces have second images v_1=V_1 and v_-c=V_-c-1 and endpoints Z_d. Both first remainders x_d^3-u_d^2 equal zero. Both x_d,u_d,Z_d are odd, but v_1 is odd and v_-c is even, so precisely the negative-d guard holds. The traces are first returns to the same integer section [B,Z_1+1), B=t_-c^2, of the same threshold map on [B,B^3), with both intermediate states outside that section and correct OOE threshold placement. Their x,u,Z and endpoint-aggregate x^9-Z^8 residues agree modulo Q, and both aggregate 2-adic valuations equal 3. Taking Q an even multiple of any fixed finite collection of residue moduli proves that no function of just those residues, the exact first remainder, aggregate valuation, word and common full threshold/section can recognize every such guard. This refutes that precise fixed-residue summary class on the geometric return domain, not absolute-value quotient formulas, a fixed number of unbounded registers, or a cycle-selected representation. Periodic membership of these blocks is not asserted. AI-assisted written proof with separate AI audits and exact cell controls; no new Lean or no-cycle claim.",
-  "source": "docs/problems/juggler_cycle_guard_residues.md",
+  "statement": "For every even Q>=2 put c=Q-1 and choose a positive integer b=3 mod4 with b^2>504c^5. For d=1,-c define t_d=b^4+4d, x_d=t_d^2, u_d=t_d^3, V_d=b^18+18db^14+126d^2b^10+420d^3b^6+630d^4b^2 and Z_d=b^9+9db^5+(45d^2b-1)/2. Exact prescribed OOE traces have second images v_1=V_1 and v_-c=V_-c-1 and endpoints Z_d. Both first remainders x_d^3-u_d^2 equal zero. Both x_d,u_d,Z_d are odd, but v_1 is odd and v_-c is even, so precisely the negative-d guard holds. The traces are first returns to the same integer section [B,Z_1+1), B=t_-c^2, of the same threshold map on [B,B^3), with both intermediate states outside that section and correct OOE threshold placement. Their x,u,Z and endpoint-aggregate x^9-Z^8 residues agree modulo Q, and both aggregate 2-adic valuations equal 3. Taking Q an even multiple of any fixed finite collection of residue moduli proves that no function of just those residues, the exact first remainder, aggregate valuation, word and common full threshold/section can recognize every such guard. This refutes that precise fixed-residue summary class on the geometric return domain, not absolute-value quotient formulas, a fixed number of unbounded registers, or a cycle-selected representation. Periodic membership of these blocks is not asserted. The general positive-b construction is a written proof. A fully quantified explicit every-modulus subfamily is Lean verified in J-cycle-fixed-residue-witness. No periodicity or global no-cycle claim.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
   "lean": "",
   "tests": [
    "tests/research/juggler_sequence/test_cycle_guard_residues.py"
@@ -89,42 +175,54 @@
  },
  {
   "id": "J-cycle-ooe-family-chain-bound",
-  "tag": "EXACT — HUMAN PROOF",
-  "statement": "For odd r>=3 let X(r)=r^8+8 and Z(r)=r^9+9r-1, with the previously proved exact Juggler block J^3(X(r))=Z(r)>X(r). A consecutive family transition r->s requires s^8=r^9+9r-9 and forces r=1 modulo 48: odd eighth powers modulo32 force r=1 modulo16; r=2 modulo3 is impossible and 3|r gives right-side 3-adic valuation 2, impossible for an eighth power. For a transition whose destination can itself make another family transition, both r,s=1 modulo16, and factoring s^8-1=(r-1)(r^8+...+r+10) gives nu2(s-1)=nu2(r-1)-2. Therefore k consecutive family transitions from r satisfy k<=max(0,floor((nu2(r-1)-2)/2)); no infinite exact three-step concatenation exists. The final endpoint need not itself continue, so the valuation drop is asserted only through continuing destinations. Continuing transitions also have nu3(s-1)=nu3(r-1)+2. This excludes only repetition of this exact growth family, not later reentry after other step counts, another growth pattern, an escaping full orbit, or a cycle. The six archived parameters all fail r=1 modulo3 and their full finite traces reach 1, but universal family termination remains unproved. AI-assisted written proof with independent AI valuation audits; no new Lean verification or external priority claim.",
-  "source": "docs/problems/juggler_cycle_remainder_transport.md",
-  "lean": "",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Paper A Theorem E.4. For X(r)=r^8+8 and odd parameters r>=3, the exact three-step Juggler image is r^9+9r-1. A family transition r->s is equivalent to s^8+9=r^9+9r and forces r=1 modulo48. Between continuing sources, nu2(s-1)=nu2(r-1)-2. For a finite actual J^3 chain of k transitions through odd parameters >=3, k<=(nu2(r0-1)-2)/2 with natural-number subtraction and division; this is max(0,floor((nu2(r0-1)-2)/2)) in integer notation. No valuation drop is assumed after the final destination. ooeFamily_no_infinite_juggler_chain excludes an infinite exact family chain. These are direct actual-Juggler wrappers, not merely an assumed polynomial recurrence. The supplementary 3-adic identity is written and six terminating sample traces are computations. No universal family termination, general escape exclusion, or no-cycle theorem follows.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/FamilyChains.lean",
   "tests": [
-   "tests/research/juggler_sequence/test_cycle_remainder_transport.py"
+   "tests/research/juggler_sequence/test_cycle_remainder_transport.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py",
+   "tests/research/juggler_sequence/test_paper_a_trust_boundary.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": "ooeFamily_juggler_chain_bound",
+  "lean_trust": "kernel"
  },
  {
   "id": "J-cycle-ooe-exact-remainder-repair",
-  "tag": "EXACT — HUMAN PROOF",
-  "statement": "For a prescribed OOE block x->u->v->z with u>=3, retain the actual square remainder R=x^3-u^2, put X=x^3,B=X-R=u^2,t=sqrt X,eta=t-u in [0,1), and validate z^8<=B^3<(z+1)^8. With Delta=(t^3-u^3)/(2z^2) and C=3tR/(4z^2), the exact identity C-Delta=eta^2(t+2u)/(4z^2) gives 0<=C-Delta<5/6, using z^2>=u. Thus q=floor((t^3-z^4)/(2z^2)-C) and d=floor((u^3-z^4)/(2z^2)) satisfy d in {q,q+1}; q is signed and may a priori be -1. For K=2X-3R>0, q=(isqrt(K^2 X)-2z^4) floor-divided by 4z^2. Define h=min(q+1,2z),N=z^2+h. Then v=N-kappa for kappa in {0,1,2,3}, chosen as the smallest j with (N-j)^4<=B^3. For odd x,z the full OOE guard is exactly R even and N-kappa even, under the validated remainder record and endpoint cell. The specific OOEOE extension is recognized by validating z*=oddProjection(x^(9/8)), applying this prefix guard, then validating and applying the exact OE suffix guard. Retaining R requires initialization or certification and retains absolute-state information; this procedure still evaluates constituent guards and does not prove uniform arbitrary-word closure or a computational speedup. The existing aggregate-defect composition is background, not a new result. AI-assisted written proof with exact controls and AI audit; no new Lean or no-cycle claim.",
-  "source": "docs/problems/juggler_cycle_remainder_transport.md",
-  "lean": "",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Paper A Proposition E.5 and ER1. For an exact first root u=isqrt(x^3)>=3, retained remainder R=x^3-u^2, and validated OE suffix endpoint z, the correction error C-Delta=eta^2(t+2u)/(4z^2) is in [0,5/6). The signed corrected floor q is d or d-1, where d=floor((u^3-z^4)/(2z^2)). corrected_quotient_integer proves q=(isqrt(K^2*x^3)-2z^4) floor-divided by 4z^2, K=2x^3-3R. endpoint_validation certifies z via z^8<=(x^3-R)^3<(z+1)^8; record_initializes checks an independently supplied square/remainder witness. The executable recoverPeak evaluates this integer quotient and the four candidate fourth-power cells; recoverPeak_eq proves exact recovery of v=isqrt(u^3). For odd initial x, both hidden OOE source guards hold iff R is even and recoverPeak is even. Initial record and endpoint validity are explicit, not inferred from a projected candidate. This is a kernel-verified short-word algorithm; the additional OOEOE composition remains written, and no arbitrary-word closure or speedup is claimed.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/RemainderCarry.lean",
   "tests": [
-   "tests/research/juggler_sequence/test_cycle_remainder_transport.py"
+   "tests/research/juggler_sequence/test_cycle_remainder_transport.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py",
+   "tests/research/juggler_sequence/test_paper_a_trust_boundary.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": "recoverPeak_guard_iff",
+  "lean_trust": "kernel"
  },
  {
   "id": "J-cycle-oe-quotient-parity-carry",
-  "tag": "EXACT — HUMAN PROOF",
-  "statement": "For integers N>=1 and y>=1 with y^4<=N<(y+1)^4, put u=isqrt(N), c=u-y^2, d=floor((N-y^4)/(2y^2)), and h=min(d,2y). Then 0<=c<=2y and c=h-kappa with kappa in {0,1,2}. For q=y^2+h, kappa is 0 if q^2<=N, 1 if (q-1)^2<=N<q^2, and 2 otherwise; in the last case (q-2)^2<=N is guaranteed. Thus for an OE block with odd source x and odd exact endpoint y, N=x^3 yields a necessary-and-sufficient hidden parity guard: h-kappa is odd. The true OE block 93->896->29 has d=h=57,c=55,kappa=2, so the correction bound is attained. The identity uses one source-dependent integer quotient and two square comparisons; it is an exact guard for this single block, not closure under all return-word substitutions or a cycle theorem. AI-assisted written proof with exact boundary controls and AI audit; no new Lean verification or external novelty claim.",
-  "source": "docs/problems/juggler_cycle_guard_carries.md",
-  "lean": "",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Paper A Proposition E.2. For positive y and y^4<=N<(y+1)^4, let u=isqrt(N), c=u-y^2, d=(N-y^4) div (2y^2), h=min(d,2y). Then 0<=c<=2y and c<=h<=c+2. The exact 0/1/2 correction is recovered by the two adjacent square comparisons (baseline_zero_iff, baseline_one_iff, baseline_two_iff). For odd y, the hidden source u is even iff c is odd (square_guard_iff). With N=x^3 and an odd OE source, this is the exact internal guard. Kernel-verified quantified bounds and recovery; the sharpness example 93->896->29 is separately checked finite arithmetic. No arbitrary-word closure or cycle theorem is asserted.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/RemainderCarry.lean",
   "tests": [
-   "tests/research/juggler_sequence/test_cycle_cubic_induction.py"
+   "tests/research/juggler_sequence/test_cycle_cubic_induction.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py",
+   "tests/research/juggler_sequence/test_paper_a_trust_boundary.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": "baseline_bounds",
+  "lean_trust": "kernel"
  },
  {
   "id": "J-cycle-ooe-carry-substitution-obstruction",
   "tag": "EXACT — HUMAN PROOF",
-  "statement": "For every odd integer r>=3, x=r^8+8,u=r^12+12r^4,v=r^18+18r^10+54r^2-1,z=r^9+9r-1 form a genuine parity-valid Juggler OOE block x->u->v->z in threshold band [b,b^3), b=r^8, with x,u,z below b^2 and v above it; max(block)<min(block)^3. Its true suffix quotient is d=floor((u^3-z^4)/(2z^2)); the candidate pure-power replacement is D=floor((x^(9/2)-z^4)/(2z^2)). Exactly D-d is 36r^2 or 36r^2+1. For c=v-z^2 and H=min(D,2z), c=2z-27r^2, H=2z, and H-c=27r^2. Meanwhile floor(x^(9/8))=z+1 and odd projection gives the correct endpoint z. Hence no uniformly bounded additive correction repairs this specified quotient or clipped-displacement substitution. The ideal radicand lies outside the original unit endpoint cell at z, so the example refutes a candidate closure extension rather than the valid one-block normal form. The actual first square remainder is 48r^8+512 and cannot simply be discarded in that extension. These are blocks, not cycles; the family itself has a polynomial-plus-one-carry correction, so no impossibility for general fixed-dimensional data or parity-only formulas is claimed. AI-assisted written proof and independent AI algebra audit, exact literal controls; no new Lean verification or no-cycle theorem. No member is shown to lie on a periodic orbit, so a closure rule restricted by additional global cycle constraints is not refuted.",
-  "source": "docs/problems/juggler_cycle_guard_carries.md",
+  "statement": "For every odd integer r>=3, x=r^8+8,u=r^12+12r^4,v=r^18+18r^10+54r^2-1,z=r^9+9r-1 form a genuine parity-valid Juggler OOE block x->u->v->z in threshold band [b,b^3), b=r^8, with x,u,z below b^2 and v above it; max(block)<min(block)^3. Its true suffix quotient is d=floor((u^3-z^4)/(2z^2)); the candidate pure-power replacement is D=floor((x^(9/2)-z^4)/(2z^2)). Exactly D-d is 36r^2 or 36r^2+1. For c=v-z^2 and H=min(D,2z), c=2z-27r^2, H=2z, and H-c=27r^2. Meanwhile floor(x^(9/8))=z+1 and odd projection gives the correct endpoint z. Hence no uniformly bounded additive correction repairs this specified quotient or clipped-displacement substitution. The ideal radicand lies outside the original unit endpoint cell at z, so the example refutes a candidate closure extension rather than the valid one-block normal form. The actual first square remainder is 48r^8+512 and cannot simply be discarded in that extension. These are blocks, not cycles; the family itself has a polynomial-plus-one-carry correction, so no impossibility for general fixed-dimensional data or parity-only formulas is claimed. The exact polynomial Juggler block is Lean verified separately; the real quotient-substitution inequalities and clipped-error calculation remain written proofs. No periodic membership is claimed.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
   "lean": "",
   "tests": [
    "tests/research/juggler_sequence/test_cycle_cubic_induction.py"
@@ -134,8 +232,8 @@
  {
   "id": "J-cycle-cubic-euclidean-induction",
   "tag": "EXACT — HUMAN PROOF",
-  "statement": "For a finite sorted invariant set with rank permutation i->i+b modulo a+b, positive a,b, and chronological return words A,B, inducing on a prefix gives (a-b,b;A,AB) if a>b, or (a,b-a;AB,B) if b>a. Accelerating a=qb+r gives (r,b;A,A^q B), and b=qa+r gives (a,r;AB^q,B); a zero remainder gives the identity on the gcd-sized prefix. Return towers partition all original states, preserving a|A|+b|B|=L and letter counts. Exact parity predicates compose as P_AB(x)=P_A(x) AND P_B(F_A(x)). Therefore the full expanded tower representation retains exactly L original source-parity tests at every stage. For a primitive cycle the terminal single base carries the entire original fixed-point and parity condition. These first returns concern the finite invariant set, not every integer between its extrema. This is elementary symbolic induction with a faithful parity interpretation, not a uniform arithmetic-closure theorem, a lower bound on every possible representation, or a no-cycle proof. AI-assisted written proof; no new Lean or external novelty claim.",
-  "source": "docs/problems/juggler_cycle_cubic_induction.md",
+  "statement": "For a finite sorted invariant set with rank permutation i->i+b modulo a+b, positive a,b, and chronological return words A,B, inducing on a prefix gives (a-b,b;A,AB) if a>b, or (a,b-a;AB,B) if b>a. Accelerating a=qb+r gives (r,b;A,A^q B), and b=qa+r gives (a,r;AB^q,B); a zero remainder gives the identity on the gcd-sized prefix. Return towers partition all original states, preserving a|A|+b|B|=L and letter counts. Exact parity predicates compose as P_AB(x)=P_A(x) AND P_B(F_A(x)). Therefore the full expanded tower representation retains exactly L original source-parity tests at every stage. For a primitive cycle the terminal single base carries the entire original fixed-point and parity condition. These first returns concern the finite invariant set, not every integer between its extrema. This is elementary symbolic induction with a faithful parity interpretation, not a uniform arithmetic-closure theorem, a lower bound on every possible representation, or a no-cycle proof. The exact subtractive rank first returns and their word statistics are Lean verified in J-cycle-subtractive-return-step; the accelerated full tower partition remains written. No uniform guard compression or no-cycle theorem.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
   "lean": "",
   "tests": [
    "tests/research/juggler_sequence/test_cycle_cubic_induction.py"
@@ -145,8 +243,8 @@
  {
   "id": "J-cycle-cubic-return-compression",
   "tag": "EXACT — HUMAN PROOF",
-  "statement": "For positive integer x and O(x)=floor(x^(3/2)), E(x)=floor(sqrt x), chronological OE equals floor(x^(3/4)) exactly. If H=floor(x^(9/8)), then F_OOE(x) is H or H-1, so an odd output equals the largest odd integer at most x^(9/8). For x>=5, 0<=x^(27/32)-F_OOEOE(x)<2; hence an odd output is the odd projection. The same odd-output assertion holds for positive odd sources below 5 by x=1 and x=3 controls. For any fixed word, defining n_j=floor(n_(j-1)^alpha_j), p_j=product alpha up to j, q_j=p_k/p_j, and actual error eps_j=n_(j-1)^alpha_j-n_j, the loss telescopes exactly as x^p_k-n_k=sum_j[(n_j+eps_j)^q_j-n_j^q_j]. If every nonempty proper prefix, 1<=j<k, has p_j>p_k, it is less than 1+sum_(j<k)q_j n_j^(q_j-1). A sum at most 1 therefore suffices for odd projection; each such fixed word eventually satisfies this as x grows. This supplies no uniform word-independent bound and does not establish internal source parity, arbitrary Euclidean endpoint closure, or a no-cycle theorem. AI-assisted written proof with independent AI endpoint audit; no new Lean or external priority claim.",
-  "source": "docs/problems/juggler_cycle_cubic_induction.md",
+  "statement": "For positive integer x and O(x)=floor(x^(3/2)), E(x)=floor(sqrt x), chronological OE equals floor(x^(3/4)) exactly. If H=floor(x^(9/8)), then F_OOE(x) is H or H-1, so an odd output equals the largest odd integer at most x^(9/8). For x>=5, 0<=x^(27/32)-F_OOEOE(x)<2; hence an odd output is the odd projection. The same odd-output assertion holds for positive odd sources below 5 by x=1 and x=3 controls. For any fixed word, defining n_j=floor(n_(j-1)^alpha_j), p_j=product alpha up to j, q_j=p_k/p_j, and actual error eps_j=n_(j-1)^alpha_j-n_j, the loss telescopes exactly as x^p_k-n_k=sum_j[(n_j+eps_j)^q_j-n_j^q_j]. If every nonempty proper prefix, 1<=j<k, has p_j>p_k, it is less than 1+sum_(j<k)q_j n_j^(q_j-1). A sum at most 1 therefore suffices for odd projection; each such fixed word eventually satisfies this as x grows. This supplies no uniform word-independent bound and does not establish internal source parity, arbitrary Euclidean endpoint closure, or a no-cycle theorem. OE/OOE integer cells and the OOE odd maximal endpoint are Lean verified in J-cycle-short-return-cells. The OOEOE projection and fixed-word asymptotic transport remain written; no uniform growing-word conclusion.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
   "lean": "",
   "tests": [
    "tests/research/juggler_sequence/test_cycle_cubic_induction.py"
@@ -156,8 +254,8 @@
  {
   "id": "J-cycle-cubic-hidden-parity",
   "tag": "EXACT — HUMAN PROOF",
-  "statement": "For every odd integer s>=3, take threshold b=s^3 and source x=s^4. The exact threshold map S_b makes the lower-to-lower first-return block s^4 -> s^6 -> s^3, since s^3<=s^4<s^6=b^2<b^3. Both endpoints are odd and the collapsed OE endpoint is exactly x^(3/4)=s^3, but the eliminated E source s^6 is odd; the actual Juggler map there gives s^9. Thus exact collapsed endpoint cells, odd endpoint parity and threshold cuts do not imply the original internal parity guard. This family occurs at unbounded cube thresholds, not every threshold, and its members are blocks rather than closed cycles. It refutes omitting internal parity, not short-word endpoint identities, guarded compression, or any full-cycle assertion. AI-assisted written proof with a separate AI audit and literal integer controls; no new Lean claim.",
-  "source": "docs/problems/juggler_cycle_cubic_induction.md",
+  "statement": "For every odd integer s>=3, take threshold b=s^3 and source x=s^4. The exact threshold map S_b makes the lower-to-lower first-return block s^4 -> s^6 -> s^3, since s^3<=s^4<s^6=b^2<b^3. Both endpoints are odd and the collapsed OE endpoint is exactly x^(3/4)=s^3, but the eliminated E source s^6 is odd; the actual Juggler map there gives s^9. Thus exact collapsed endpoint cells, odd endpoint parity and threshold cuts do not imply the original internal parity guard. This family occurs at unbounded cube thresholds, not every threshold, and its members are blocks rather than closed cycles. It refutes omitting internal parity, not short-word endpoint identities, guarded compression, or any full-cycle assertion. The prescribed power family and all three odd parities are Lean verified by oe_perfect_power and oe_perfect_power_hidden_odd; the threshold placement is an elementary written consequence. These are blocks, not cycles.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
   "lean": "",
   "tests": [
    "tests/research/juggler_sequence/test_cycle_cubic_induction.py"

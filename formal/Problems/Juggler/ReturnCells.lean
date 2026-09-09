@@ -2,6 +2,12 @@ import Problems.Juggler.FateContagion
 
 namespace Problems.Juggler.ReturnCells
 
+/-!
+Exact integer cells for the prescribed OE and OOE returns. The actual-step
+bridges require every source parity. Endpoint compression alone does not
+provide those guards, as the perfect-power family below demonstrates.
+-/
+
 /-- The prescribed O then E return, without a source-parity assumption. -/
 def oe (x : ℕ) : ℕ := ((x ^ 3).sqrt).sqrt
 
@@ -15,6 +21,19 @@ theorem oe_eq_iff {x y : ℕ} :
 theorem oe_cell (x : ℕ) :
     oe x ^ 4 ≤ x ^ 3 ∧ x ^ 3 < (oe x + 1) ^ 4 :=
   oe_eq_iff.mp rfl
+
+theorem oe_actual {x : ℕ} (hx : x % 2 = 1)
+    (hu : (x ^ 3).sqrt % 2 = 0) :
+    floorPower (floorPower x) = oe x := by
+  rw [floorPower_odd_eq hx, floorPower_even_eq hu]
+  rfl
+
+theorem ooe_actual {x : ℕ} (hx : x % 2 = 1)
+    (hu : (x ^ 3).sqrt % 2 = 1)
+    (hv : (((x ^ 3).sqrt) ^ 3).sqrt % 2 = 0) :
+    floorPower (floorPower (floorPower x)) = ooe x := by
+  rw [floorPower_odd_eq hx, floorPower_odd_eq hu, floorPower_even_eq hv]
+  rfl
 
 theorem ooe_upper_pow (x : ℕ) : ooe x ^ 8 ≤ x ^ 9 := by
   have h₁ := Nat.pow_le_pow_left (oe_cell ((x ^ 3).sqrt)).1 2
