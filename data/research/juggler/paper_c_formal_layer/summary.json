@@ -8,28 +8,31 @@
     "Problems.Juggler.FateRecursion",
     "Problems.Juggler.FateFirstLetter",
     "Problems.Juggler.FateSweep",
+    "Problems.Juggler.FateSweepMonotone",
     "Problems.Juggler.FateChernoff",
-    "Problems.Juggler.FatePressure"
+    "Problems.Juggler.FatePressure",
+    "Problems.Juggler.FateTaoReduction",
+    "Problems.Juggler.FateSeed"
   ],
   "artifact": {
-    "asked": 128,
-    "recorded": 128,
+    "asked": 141,
+    "recorded": 141,
     "axiom_lists": [
       "propext",
       "propext, Classical.choice, Quot.sound",
       "propext, Quot.sound"
     ]
   },
-  "appendix_a_names": 111,
+  "appendix_a_names": 124,
   "surface": {
-    "modules": 39,
-    "declarations": 1307,
+    "modules": 42,
+    "declarations": 1465,
     "compiler_trusted": [],
     "compiler_dependent": [],
     "open": []
   },
   "table": {
-    "rows": 22,
+    "rows": 25,
     "lean": [
       "Fate classes closed; trichotomy; exclusion (Lemma 2.1)",
       "Even block is an interval (Lemma 3.1)",
@@ -37,21 +40,24 @@
       "Odd generation (Theorem 6.1)",
       "Envelope descent into the floor (Lemma 8.1)",
       "Sweep lemma (Lemma 4.1), both half-cell conventions",
+      "Monotone pairing (Lemma 4.1')",
       "Cube fibers full or alternating (Lemma 4.7)",
       "Recursion lemma (Lemma 5.1)",
+      "Seed (Lemma 5.2)",
       "Least failure is \\(OO\\)-type; first-letter trichotomy (Proposition 6.3(i), Section 6.2)",
+      "Tao-type rate implies the conjecture (Theorem 7.2), with the contagion bound of Theorem 5.3 as a hypothesis",
       "Chernoff count of bad words (Lemma 8.2, exact form)",
       "Theorem 8.3, explicit form \\(y\\Lambda^{-e(C)}+2\\Lambda^Cy(\\log y)^{-A}\\) at every \\(y\\)",
-      "Pressure form (Theorem 9.2, exact: a pressure bound \\(Na_\theta^dE\\) gives at most \\(Ne^{-dD(p_C\\Vert 1/2)}E\\) live starts)",
+      "Pressure form (Theorem 9.2, exact: a pressure bound \\(Na_\\theta^dE\\) gives at most \\(Ne^{-dD(p_C\\Vert 1/2)}E\\) live starts)",
       "Pressure telescoping (Proposition 9.3)"
     ],
     "human": [
-      "Monotone pairing, fiber parity, thin fibers (Lemmas 4.1', 4.2--4.3)",
+      "Fiber parity, thin fibers (Lemmas 4.2--4.3)",
       "Block average (Proposition 4.4), \\(C_0=250\\) explicit",
       "Share law and its three corollaries (Lemma 4.5, Corollary 4.6)",
-      "Seed and contagion (Lemma 5.2, Theorem 5.3)",
+      "Contagion (Theorem 5.3)",
       "First-letter identity (6.1)",
-      "Almost-all equivalence (Theorems 7.2, 7.3)",
+      "Almost-all equivalence (Theorem 7.3)",
       "Azuma and exponential-moment arguments (Sections 8--10, except Lemma 8.2, Theorem 8.3, Theorem 9.2 and Proposition 9.3 in their exact forms)"
     ],
     "other": [
@@ -65,5 +71,5 @@
     "label": "PAPER_C_LEAN_SURFACE_CONSISTENT",
     "problems": 0
   },
-  "git_commit": "48a9464e10c908d0b185b562d5f72d4c41211f78"
+  "git_commit": "d16b6df0ef7bce1f4510541497fc270d4a61fe69"
 }

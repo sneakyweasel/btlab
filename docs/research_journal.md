@@ -41587,3 +41587,34 @@ left human in Sections 8 and 9 is exactly the asymptotics: the o(d),
 the epsilon, the ceiling. The mathematics is the exact statements, and
 those are Lean.
 
+## Paper C Lemma 5.2 and Theorem 7.2 in Lean, surface aligned
+
+- **Date:** 8 September 2026
+- **Objective:** Put the already-compiled seed and the conditional Tao
+  reduction on the Paper C surface, without retagging the unconditional
+  implication.
+- **Major results:** Lemma 5.2 is Lean (`seed_lemma`, row `J-fate-seed`).
+  Theorem 7.2 is Lean with the contagion bound of Theorem 5.3 as a
+  hypothesis (`tao_rate_implies_conjecture`). The table splits seed from
+  contagion and 7.2 from 7.3. Fifteen Lean rows, seven human; 135 cited
+  names, Mathlib's three axioms only. `J-tao-rate-implies-conjecture`
+  stays `EXACT — HUMAN PROOF`.
+- **Decision:** PROMOTE. Best next question: Lemma 4.1' in Lean on the
+  `FateSweep` machinery.
+
+## Paper C Lemma 4.1' in Lean
+
+- **Date:** 8 September 2026
+- **Objective:** Finish Lemma 4.1' on the existing sweep machinery and
+  put it on the Paper C surface.
+- **Major results:** `FateSweepMonotone.lean` proves
+  `sweep_monotone_cell` (each colour of \(\lfloor 2x_j\rfloor\) has at
+  least \(H/3-2\) terms) and both half-cell conventions, including
+  nonincreasing steps and left-open cells by reflection. Cases (c)–(f)
+  and the \((4,2)\) straddle compile without `sorry`. The table splits
+  4.1' (Lean) from 4.2–4.3 (human). Twelve cited modules; sixteen Lean
+  rows, seven human. `J-fate-monotone-pairing-repair` is
+  `EXACT — LEAN VERIFIED`. `J-tao-rate-implies-conjecture` stays
+  `EXACT — HUMAN PROOF`. Theorem 5.3 stays human.
+- **Decision:** PROMOTE. Stop. No next branch.
+

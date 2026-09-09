@@ -37,6 +37,7 @@ open Problems.Juggler
 #print axioms Sweep.step_lower
 #print axioms Sweep.step_upper
 #print axioms Sweep.sweep_cell
+#print axioms Sweep.sweep_monotone_cell
 #print axioms Sweep.three_g_ge
 #print axioms ancestor_backwardClosed
 #print axioms backwardClosed_iterate
@@ -64,6 +65,7 @@ open Problems.Juggler
 #print axioms even_block_card
 #print axioms even_block_mem
 #print axioms even_cube_fiber_full
+#print axioms exists_ge_three_of_backwardClosed
 #print axioms exists_minimal_failure
 #print axioms exists_odd_ancestor
 #print axioms exists_odd_ancestor_ge_three
@@ -86,6 +88,7 @@ open Problems.Juggler
 #print axioms live_count_le_pressure
 #print axioms live_oddCount_ge
 #print axioms logb_two_three_le
+#print axioms logMass_le_oddLogMass
 #print axioms meanShareOff_empty
 #print axioms meanShare_of_noMomentum
 #print axioms mem_iff_floorPower_mem
@@ -100,6 +103,7 @@ open Problems.Juggler
 #print axioms oddFailures_card_le_chernoff
 #print axioms oddFailures_card_le_explicit
 #print axioms oddFailures_subset_bad_cylinders
+#print axioms oddLogMass_le_of_dyadic
 #print axioms oddMass_le_weightGen
 #print axioms oddMass_nonneg
 #print axioms odd_cube_fiber_alternating
@@ -123,12 +127,21 @@ open Problems.Juggler
 #print axioms reachesOne_of_itinerary_envelope
 #print axioms reachesOne_of_lt_two_hundred_sixty_one
 #print axioms recursion_lemma
+#print axioms seed_constant_pos
+#print axioms seed_lemma
 #print axioms sqrt_sqrt_eq_iff
 #print axioms sweep_ceil
 #print axioms sweep_fract_ge_half
 #print axioms sweep_fract_lt_half
+#print axioms sweep_monotone_ceil
+#print axioms sweep_monotone_fract_ge_half
+#print axioms sweep_monotone_fract_lt_half
+#print axioms sweep_monotone_rep_gt_half
+#print axioms sweep_monotone_rep_le_half
 #print axioms sweep_rep_gt_half
 #print axioms sweep_rep_le_half
+#print axioms tao_rate_implies_conjecture
+#print axioms tao_rate_implies_empty
 #print axioms tilt_exponent_eq_kl
 #print axioms tilt_value
 #print axioms tiltedShare_le_one

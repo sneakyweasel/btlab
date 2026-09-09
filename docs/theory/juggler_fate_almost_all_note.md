@@ -333,7 +333,7 @@ type Paper B proves enters Appendix C as an explicit hypothesis.
 
 Statements carry one of four roles. *Lean*: the exact combinatorial
 layer is formalized in Lean 4; the root `formal/Problems/JugglerFatePaper.lean`
-imports exactly the nine modules this paper cites and builds with
+imports exactly the twelve modules this paper cites and builds with
 `lake build Problems.JugglerFatePaper`, without `sorry` and without
 `native_decide`; `formal/AxiomCheckPaperC.lean` prints the axiom
 dependencies of every cited name and `AxiomCheckPaperC.expected`
@@ -353,18 +353,21 @@ constants; they prove nothing and are labelled wherever they appear.
 | Odd generation (Theorem 6.1) | Lean |
 | Envelope descent into the floor (Lemma 8.1) | Lean, on Paper A's power envelope |
 | Sweep lemma (Lemma 4.1), both half-cell conventions | Lean |
-| Monotone pairing, fiber parity, thin fibers (Lemmas 4.1', 4.2--4.3) | human proof |
+| Monotone pairing (Lemma 4.1') | Lean |
+| Fiber parity, thin fibers (Lemmas 4.2--4.3) | human proof |
 | Block average (Proposition 4.4), \(C_0=250\) explicit | human proof |
 | Share law and its three corollaries (Lemma 4.5, Corollary 4.6) | human proof |
 | Cube fibers full or alternating (Lemma 4.7) | Lean |
 | Recursion lemma (Lemma 5.1) | Lean |
-| Seed and contagion (Lemma 5.2, Theorem 5.3) | human proof |
+| Seed (Lemma 5.2) | Lean |
+| Contagion (Theorem 5.3) | human proof |
 | Least failure is \(OO\)-type; first-letter trichotomy (Proposition 6.3(i), Section 6.2) | Lean |
 | First-letter identity (6.1) | human proof (exact combinatorics) |
-| Almost-all equivalence (Theorems 7.2, 7.3) | human proof |
+| Tao-type rate implies the conjecture (Theorem 7.2), with the contagion bound of Theorem 5.3 as a hypothesis | Lean |
+| Almost-all equivalence (Theorem 7.3) | human proof |
 | Chernoff count of bad words (Lemma 8.2, exact form) | Lean |
-| Theorem 8.3, explicit form \(y\Lambda^{-e(C)}+2\Lambda^Cy(\log y)^{-A}\) at every \(y\) | Lean; the \(arepsilon\)-absorption into the displayed form is human |
-| Pressure form (Theorem 9.2, exact: a pressure bound \(Na_	heta^dE\) gives at most \(Ne^{-dD(p_C\Vert 1/2)}E\) live starts) | Lean, on the live weight |
+| Theorem 8.3, explicit form \(y\Lambda^{-e(C)}+2\Lambda^Cy(\log y)^{-A}\) at every \(y\) | Lean; the \(\varepsilon\)-absorption into the displayed form is human |
+| Pressure form (Theorem 9.2, exact: a pressure bound \(Na_\theta^dE\) gives at most \(Ne^{-dD(p_C\Vert 1/2)}E\) live starts) | Lean, on the live weight |
 | Pressure telescoping (Proposition 9.3) | Lean, on the word-weight framework |
 | Azuma and exponential-moment arguments (Sections 8--10, except Lemma 8.2, Theorem 8.3, Theorem 9.2 and Proposition 9.3 in their exact forms) | human proof |
 | Localized triple discrepancy (Appendix C) | hypothesis, conditional |
@@ -630,6 +633,12 @@ In all cases \(S\ge G-2\), so the scarcer colour has at least
 \(\tfrac13(H-3G)+G-2=\tfrac H3-2\) points. For left-open cells the
 same argument applies with the cells \((k/2,(k+1)/2]\), or apply the
 closed case to \(-x_{H+1-j}\) as in Lemma 4.1. \(\square\)
+
+Lean: `sweep_monotone_fract_lt_half`, `sweep_monotone_fract_ge_half`
+(closed cells) and `sweep_monotone_rep_le_half`,
+`sweep_monotone_rep_gt_half` (left-open cells), instances of
+`Sweep.sweep_monotone_cell` and `sweep_monotone_ceil`, in
+`formal/Problems/Juggler/FateSweepMonotone.lean`.
 
 *Remark (erratum, 8 September 2026).* An earlier version of this
 proof asserted that every pair satisfies
@@ -2304,7 +2313,7 @@ at depth of order \(\log\log n\): the Terras step of the Juggler map.
 ## Appendix A. Lean names
 
 All in `formal/Problems/Juggler/FateContagion.lean` unless noted. The
-root `formal/Problems/JugglerFatePaper.lean` imports exactly the nine
+root `formal/Problems/JugglerFatePaper.lean` imports exactly the twelve
 modules named here and builds with `lake build Problems.JugglerFatePaper`
 without `sorry` and without `native_decide`;
 `formal/AxiomCheckPaperC.expected` records the axioms of every name
@@ -2324,13 +2333,16 @@ abstract lemmas listed here, not the analytic density estimates.
 | Lean floor \(N_0=260\) | `reachesOne_of_lt_two_hundred_sixty_one` |
 | Lemma 4.7 (cube fibers), in `Problems/Juggler/CubeFiber.lean` | `cube_fiber_range`, `cube_fiber_sqrt_even`, `cube_fiber_even_image`, `even_cube_fiber_full`, `cube_fiber_sqrt_odd`, `cube_fiber_alternating`, `odd_cube_fiber_alternating` |
 | Lemma 4.1 (sweep), in `Problems/Juggler/FateSweep.lean` | `Sweep.cell`, `Sweep.sweep_cell`, `sweep_fract_lt_half`, `sweep_fract_ge_half`, `sweep_ceil`, `sweep_rep_le_half`, `sweep_rep_gt_half` |
+| Lemma 4.1' (monotone pairing), in `Problems/Juggler/FateSweepMonotone.lean` | `Sweep.sweep_monotone_cell`, `sweep_monotone_fract_lt_half`, `sweep_monotone_fract_ge_half`, `sweep_monotone_ceil`, `sweep_monotone_rep_le_half`, `sweep_monotone_rep_gt_half` |
 | Lemma 5.1 (recursion), in `Problems/Juggler/FateRecursion.lean` | `recursion_lemma` |
 | Section 6.2, Proposition 6.3(i), in `Problems/Juggler/FateFirstLetter.lean` | `MinimalMember`, `minimalMember_odd`, `minimalMember_image_odd`, `minimal_failure_odd_odd`, `exists_minimal_failure`, `first_letter_trichotomy`, `first_letter_pieces_disjoint` |
 | Lemma 8.2 (Chernoff count), in `Problems/Juggler/FateChernoff.lean` | `weightGen_one`, `count_oddCount_ge_le`, `count_oddCount_ge_real_le`, `entropyLog`, `klHalf`, `klHalf_eq`, `klHalf_nonneg`, `tilt_value`, `count_oddCount_ge_le_exp`, `count_oddCount_ge_le_kl`, `LBad`, `pC`, `chernoffExponent`, `logb_two_three_le`, `half_le_pC`, `pC_lt_one`, `LBad_oddCount_ge`, `LBad_count_le` |
 | Theorem 8.3 (explicit form), in `Problems/Juggler/FateChernoff.lean` | `cylinder`, `oddFailures`, `EnvelopeBad`, `oddFailures_subset_bad_cylinders`, `oddFailures_card_le`, `LBad_of_envelopeBad`, `oddFailures_card_le_chernoff`, `scaleRatio`, `scaleL`, `depth`, `cylinder_even_root_empty`, `oddFailures_card_le_explicit` |
 | Theorem 9.2 (pressure form), in `Problems/Juggler/FatePressure.lean` | `livePressure`, `live_count_le_pressure`, `envelopeBad_of_liveTo`, `LBad_of_liveTo`, `live_oddCount_ge`, `live_count_le_of_pressure` |
 | Proposition 9.3 (pressure telescoping), in `Problems/Juggler/TiltedShare.lean` | `oddMass`, `tiltedShare`, `weightGen_succ_le_share`, `one_add_le_exp_excess`, `weightGen_le_pressure`, `count_le_pressure`, `NoMomentum`, `count_le_of_noMomentum`, `tilt_exponent_eq_kl`, `MeanShare`, `weightGen_le_of_meanShare`, `MeanShareOff`, `initial_depths_are_free`, `tower_ratio_lt_one` |
-| Lemmas 4.1', 4.2--4.3, Proposition 4.4 (\(C_0=250\)), Lemma 5.2, Theorem 5.3, Sections 7--10 except Lemma 8.2, the explicit form of Theorem 8.3, the exact form of Theorem 9.2 and Proposition 9.3, Appendix C | human proofs |
+| Lemma 5.2 (seed), in `Problems/Juggler/FateSeed.lean` | `exists_ge_three_of_backwardClosed`, `seed_lemma`, `seed_constant_pos` |
+| Theorem 7.2 (Tao-type rate, contagion as a hypothesis), in `Problems/Juggler/FateTaoReduction.lean` | `logMass_le_oddLogMass`, `oddLogMass_le_of_dyadic`, `tao_rate_implies_empty`, `tao_rate_implies_conjecture` |
+| Lemmas 4.2--4.3, Proposition 4.4 (\(C_0=250\)), Theorem 5.3, Theorem 7.3, Sections 8--10 except Lemma 8.2, the explicit form of Theorem 8.3, the exact form of Theorem 9.2 and Proposition 9.3, Appendix C | human proofs |
 
 ## Appendix B. Constants and artifacts
 

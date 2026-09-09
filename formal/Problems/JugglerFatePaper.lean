@@ -5,6 +5,7 @@ import Problems.Juggler.TiltedShare
 import Problems.Juggler.FateRecursion
 import Problems.Juggler.FateFirstLetter
 import Problems.Juggler.FateSweep
+import Problems.Juggler.FateSweepMonotone
 import Problems.Juggler.FateChernoff
 import Problems.Juggler.FatePressure
 import Problems.Juggler.FateTaoReduction
@@ -13,7 +14,7 @@ import Problems.Juggler.FateSeed
 /-!
 # Paper C barrel — everything the repository checks for the fate-contagion note
 
-`docs/theory/juggler_fate_almost_all_note.md`. This file imports exactly the eleven modules
+`docs/theory/juggler_fate_almost_all_note.md`. This file imports exactly the twelve modules
 that paper cites and nothing else, so that a reader can build the formal side of Paper C on
 its own rather than selecting modules by hand out of the umbrella `Problems.Juggler`. It is a
 laboratory target, not a claim: building it does **not** corroborate the paper's counting.
@@ -36,6 +37,10 @@ laboratory target, not a claim: building it does **not** corroborate the paper's
   (`minimal_failure_odd_odd`), and the first-letter trichotomy of Section 6.2.
 * `FateSweep` — Lemma 4.1, the sweep lemma, in both half-cell conventions
   (`sweep_fract_lt_half`, `sweep_fract_ge_half`, `sweep_rep_le_half`, `sweep_rep_gt_half`).
+* `FateSweepMonotone` — Lemma 4.1′, monotone pairing: each colour of `⌊2 x_j⌋` has at
+  least `H/3 - 2` terms (`sweep_monotone_cell`, `sweep_monotone_fract_lt_half`,
+  `sweep_monotone_fract_ge_half`), and the left-open convention by reflection
+  (`sweep_monotone_ceil`, `sweep_monotone_rep_le_half`, `sweep_monotone_rep_gt_half`).
 * `FateChernoff` — Lemma 8.2, the Chernoff count of `L`-bad words (`LBad_count_le`, on the
   Markov tilt of `RateFreeDensity` and Gibbs' inequality `klHalf_nonneg`), and the exact
   skeleton of Theorem 8.3: the odd failures in `(y, 2y]` are covered by the cylinders of the
@@ -59,7 +64,7 @@ laboratory target, not a claim: building it does **not** corroborate the paper's
 
 ## What is not here, and cannot be
 
-Lemma 4.1' (monotone pairing), Lemmas 4.2–4.3, Proposition 4.4 (the block average), the
+Lemmas 4.2–4.3, Proposition 4.4 (the block average), the
 share law 4.5–4.6, Theorem 5.3 itself (its seed 5.2 and recursion 5.1 are here; the
 production inequality (5.2) and the root check `ζ > 0` are not), Theorem 5.3's corollaries,
 the asymptotic form of Theorem 8.3, Theorem 9.1, the asymptotic form of

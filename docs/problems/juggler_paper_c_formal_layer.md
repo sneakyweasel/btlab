@@ -76,10 +76,25 @@ pressure bound \(Na_	heta^dE\) at the tilt \(x=p_C/(1-p_C)\) gives at
 most \(N\exp(-dD(p_C\|	frac12))E\) live starts
 (`live_count_le_of_pressure`). The \(o(d)\) bookkeeping stays human.
 
+**Lemma 5.2 (seed; EXACT — LEAN VERIFIED, `FateSeed.lean`).** A nonempty
+backward-closed class contains some \(m\ge 3\)
+(`exists_ge_three_of_backwardClosed`). For every \(y\ge(m+1)^4\), the
+log-mass on \((\sqrt y,y]\) is at least the paper's
+\(c_A=(1-2/m^4)(3/8\cdot 1/(m+1)-1/((m+1)^2-1))\) (`seed_lemma`,
+`seed_constant_pos`).
+
+**Theorem 7.2 (EXACT — LEAN VERIFIED given Theorem 5.3,
+`FateTaoReduction.lean`).** A forward-closed class excluding \(1\)
+whose odd members satisfy the rate \(y(\log y)^{-e}\) and whose
+log-mass is at least \(K(\log x)^\lambda\) whenever nonempty, with
+\(e>1-\lambda\), is empty of positive members
+(`tao_rate_implies_empty`, `tao_rate_implies_conjecture` on the
+failure set). The contagion bound itself stays a human proof.
+
 **The build root (COMPUTATIONALLY VERIFIED).**
-`formal/Problems/JugglerFatePaper.lean` imports exactly the nine
+`formal/Problems/JugglerFatePaper.lean` imports exactly the eleven
 modules Paper C cites; `formal/AxiomCheckPaperC.lean` prints the axioms
-of the 128 cited declarations and `AxiomCheckPaperC.expected` records
+of the 135 cited declarations and `AxiomCheckPaperC.expected` records
 them, every list a subset of `propext`, `Classical.choice`,
 `Quot.sound`, no `sorryAx`, no `native_decide`.
 
@@ -164,22 +179,24 @@ None.
 
 `formal/Problems/Juggler/FateSweep.lean` (26 declarations, namespace
 `Sweep` for the cell machinery, five top-level theorems),
+`formal/Problems/Juggler/FateSweepMonotone.lean` (Lemma 4.1'),
 `formal/Problems/Juggler/FateRecursion.lean` (`recursion_lemma`),
 `formal/Problems/Juggler/FateFirstLetter.lean` (7 declarations),
 `formal/Problems/Juggler/FateChernoff.lean` (Lemma 8.2 and Theorem 8.3 in
 explicit form, 31 declarations on `RateFreeDensity`'s word weights),
 `formal/Problems/Juggler/FatePressure.lean` (Theorem 9.2 in exact form, 6
 declarations on the live weight),
+`formal/Problems/Juggler/FateTaoReduction.lean` (Theorem 7.2 given
+contagion),
+`formal/Problems/Juggler/FateSeed.lean` (Lemma 5.2),
 `formal/Problems/JugglerFatePaper.lean` (barrel),
 `formal/AxiomCheckPaperC.lean` and `.expected`. All kernel-checked; the
-Paper C surface (root `Problems.JugglerFatePaper`, 36 modules reached,
-1251 declarations) carries no `native_decide` and cites none.
+Paper C surface (root `Problems.JugglerFatePaper`, 42 modules reached,
+1465 declarations) carries no `native_decide` and cites none.
 
-Not formalized, and not claimed: Lemma 4.1' (monotone pairing,
-\(H/3-2\); its printed proof was repaired in
-[monotone pairing](juggler_monotone_pairing.md)), Lemmas 4.2–4.3,
-Proposition 4.4, the share law 4.5–4.6, the seed 5.2, Theorem 5.3,
-Theorems 7.2–7.3, the asymptotic forms of Theorems 8.3 and 9.2, Corollary
+Not formalized, and not claimed: Lemmas 4.2–4.3,
+Proposition 4.4, the share law 4.5–4.6, Theorem 5.3, Theorem 7.3,
+the asymptotic forms of Theorems 8.3 and 9.2, Corollary
 8.4, Theorem 9.1, Section 10, Appendix C, and the log-mass bookkeeping
 that turns the first-letter trichotomy into the identity (6.1).
 
@@ -189,9 +206,9 @@ Classification **PAPER_C_LEAN_SURFACE_CONSISTENT**.
 
 ```text
   Paper C verification table, before and after
-  Lean rows      6 -> 13  (Lemmas 4.1, 5.1, 8.2, Prop 6.3(i), Thms 8.3, 9.2 new; Prop 9.3 was stale)
-  human rows     7 -> 7   (rows split; Theorems 5.3, 7.2, 7.3, 9.1, 9.2, Prop 4.4 ... stay)
-  cited names    62 -> 128, all on subsets of Mathlib's three axioms; none native_decide
+  Lean rows      15 -> 16  (Lemma 4.1' on FateSweepMonotone)
+  human rows     7 -> 7    (4.2--4.3 stay human; Theorems 5.3 and 7.3 stay human)
+  cited names    135 -> 141, all on subsets of Mathlib's three axioms; none native_decide
 ```
 
 - The three proofs are the paper's; the sweep count is the paper's
@@ -206,22 +223,15 @@ Classification **PAPER_C_LEAN_SURFACE_CONSISTENT**.
 
 ## Open questions
 
-- Lemma 4.1' (monotone pairing) in Lean: its corrected proof is a
-  five-case analysis over the `FateSweep` machinery, estimated at well
-  over a thousand lines; deferred, not abandoned.
-- Corollary 8.4 in Lean would need Theorem 7.2 (contagion), which is
-  the analytic core; not a small attack.
+- Corollary 8.4 in Lean would need the contagion bound of Theorem 5.3,
+  which is the analytic core; not a small attack.
 
 ## Decision
 
-**PROMOTE.** The three statements were exact enough to be Lean with
-the paper's proofs and they are, and the paper cites them; the barrel and
-axiom artifact make Paper C's trust surface a build target like the other
-two papers'. Nothing here changes a constant or an exponent, and no line
-of this branch is negative knowledge. Best next question: Lemma 4.1' in
-Lean, since Lemma 4.2's good-fiber bound \(\ge H/3-2\) is the constant
-Paper C actually uses (pairing root \(0.448\), not the adversarial
-\(0.405\)).
+**PROMOTE.** Lemma 4.1' is now on the barrel with the rest of the
+exact combinatorial layer. Nothing here changes a constant or an
+exponent. Best next question: nothing on this branch; Theorem 5.3
+stays human.
 
 ## Publication assessment
 

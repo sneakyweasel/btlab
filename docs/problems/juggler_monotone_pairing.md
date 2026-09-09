@@ -2,7 +2,7 @@
 
 Status: **PROMOTE** (the printed proof of Paper C Lemma 4.1' had two
 false steps; the statement stands, with a corrected proof and the same
-constant, now in the paper; Lean is the best next question)
+constant, now in the paper and in Lean)
 
 Not a new estimate and not a change to any exponent. The object is one
 lemma of Paper C
@@ -17,7 +17,7 @@ Is the printed proof of Lemma 4.1' (monotone pairing, scarcer colour
 
 ## Exact statement
 
-**Lemma 4.1' (EXACT — HUMAN PROOF, corrected).** Let
+**Lemma 4.1' (EXACT — LEAN VERIFIED, corrected).** Let
 \(x_1<\dots<x_H\) have consecutive differences in \([a,b]\),
 \(0<a\le b\le\tfrac12\), \(b\le\tfrac{21}{20}a\), \((H-1)a\ge 12\), and
 monotone (nondecreasing or nonincreasing). Then
@@ -119,10 +119,14 @@ points \(-2a,-a,0,a,2a,2a+b,\dots\), pair \((3,1)\).
 
 ## Formalization
 
-None for Lemma 4.1' yet. Lemma 4.1 is `FateSweep.lean`. The repair is
-written so that its pieces are the formal ones: `fiber_card_le`,
-`fiber_card_ge` and `cell_span` give \(G\), \(g\) and \(T\); fact (a)
-is a new lemma of the same kind; the case analysis is finite.
+`formal/Problems/Juggler/FateSweepMonotone.lean` (row
+`J-fate-monotone-pairing-repair`). Public theorems:
+`sweep_monotone_cell`, `sweep_monotone_fract_lt_half`,
+`sweep_monotone_fract_ge_half`, `sweep_monotone_ceil`,
+`sweep_monotone_rep_le_half`, `sweep_monotone_rep_gt_half`. Fact (a)
+is `fiber_card_le_succ` / `fiber_card_le_succ_anti`; the surplus cases
+(c)–(f) and the \((4,2)\) straddle are in the same module. Left-open
+cells are the closed case on \(j\mapsto -x_{H-1-j}\). No `sorry`.
 
 ## Results
 
@@ -137,17 +141,14 @@ Classification **PRINTED_PROOF_STEP_FALSE_STATEMENT_SUPPORTED**.
 
 ## Open questions
 
-- Lemma 4.1' in Lean, on the `FateSweep` machinery.
 - Whether the true constant is \(H/3-1\) (the search never goes below
-  \(H/3-0.67\)); no consumer needs it.
+  \(H/3-0.67\)); no consumer needs it. Not a Lean target.
 
 ## Decision
 
-**PROMOTE.** The lemma survives and its proof is now correct; the paper
-carries the corrected proof and an erratum. Best next question:
-formalize Lemma 4.1' in Lean, since it is the constant Paper C uses and
-its proof is now a finite case analysis over the machinery
-`FateSweep.lean` already has.
+**PROMOTE.** The lemma survives, its proof is corrected, and the
+English is covered by `FateSweepMonotone.lean`. Best next question:
+nothing on this branch; Lemmas 4.2–4.3 stay human.
 
 ## Publication assessment
 

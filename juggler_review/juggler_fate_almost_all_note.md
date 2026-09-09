@@ -332,8 +332,13 @@ type Paper B proves enters Appendix C as an explicit hypothesis.
 ### 1.4 Verification
 
 Statements carry one of four roles. *Lean*: the exact combinatorial
-layer is formalized in Lean 4 (`formal/Problems/Juggler/FateContagion.lean`,
-no `sorry`; names in Appendix A). *Human proof*: the analytic and
+layer is formalized in Lean 4; the root `formal/Problems/JugglerFatePaper.lean`
+imports exactly the twelve modules this paper cites and builds with
+`lake build Problems.JugglerFatePaper`, without `sorry` and without
+`native_decide`; `formal/AxiomCheckPaperC.lean` prints the axiom
+dependencies of every cited name and `AxiomCheckPaperC.expected`
+records them — Mathlib's `propext`, `Classical.choice`, `Quot.sound`
+and nothing else (names in Appendix A). *Human proof*: the analytic and
 probabilistic counting. *Verified computation*: exact integer
 computations (the descent floor is Paper A's; the closure of
 \([1,260]\) under the two productions up to \(10^9\) is computed
@@ -347,14 +352,24 @@ constants; they prove nothing and are labelled wherever they appear.
 | \(OE\) fiber is an interval; cell identity (Lemma 3.2) | Lean |
 | Odd generation (Theorem 6.1) | Lean |
 | Envelope descent into the floor (Lemma 8.1) | Lean, on Paper A's power envelope |
-| Sweep lemma, monotone pairing, fiber parity, thin fibers (Lemmas 4.1, 4.1', 4.2--4.3) | human proof |
+| Sweep lemma (Lemma 4.1), both half-cell conventions | Lean |
+| Monotone pairing (Lemma 4.1') | Lean |
+| Fiber parity, thin fibers (Lemmas 4.2--4.3) | human proof |
 | Block average (Proposition 4.4), \(C_0=250\) explicit | human proof |
 | Share law and its three corollaries (Lemma 4.5, Corollary 4.6) | human proof |
 | Cube fibers full or alternating (Lemma 4.7) | Lean |
-| Recursion lemma and contagion (Lemma 5.1, Theorem 5.3) | human proof |
+| Recursion lemma (Lemma 5.1) | Lean |
+| Seed (Lemma 5.2) | Lean |
+| Contagion (Theorem 5.3) | human proof |
+| Least failure is \(OO\)-type; first-letter trichotomy (Proposition 6.3(i), Section 6.2) | Lean |
 | First-letter identity (6.1) | human proof (exact combinatorics) |
-| Almost-all equivalence (Theorems 7.2, 7.3) | human proof |
-| Chernoff, Azuma, exponential-moment arguments (Sections 8--10) | human proof |
+| Tao-type rate implies the conjecture (Theorem 7.2), with the contagion bound of Theorem 5.3 as a hypothesis | Lean |
+| Almost-all equivalence (Theorem 7.3) | human proof |
+| Chernoff count of bad words (Lemma 8.2, exact form) | Lean |
+| Theorem 8.3, explicit form \(y\Lambda^{-e(C)}+2\Lambda^Cy(\log y)^{-A}\) at every \(y\) | Lean; the \(\varepsilon\)-absorption into the displayed form is human |
+| Pressure form (Theorem 9.2, exact: a pressure bound \(Na_\theta^dE\) gives at most \(Ne^{-dD(p_C\Vert 1/2)}E\) live starts) | Lean, on the live weight |
+| Pressure telescoping (Proposition 9.3) | Lean, on the word-weight framework |
+| Azuma and exponential-moment arguments (Sections 8--10, except Lemma 8.2, Theorem 8.3, Theorem 9.2 and Proposition 9.3 in their exact forms) | human proof |
 | Localized triple discrepancy (Appendix C) | hypothesis, conditional |
 | Numerical experiments (Section 11) | observation |
 
@@ -505,6 +520,15 @@ The bad count is symmetric. For left-open cells the same proof applies
 verbatim (the first point in a cell \((c,c+\tfrac12]\) after a point
 \(\le c\) is \(\le c+b\le c+\tfrac12\)). \(\square\)
 
+Lean: `sweep_fract_lt_half`, `sweep_fract_ge_half` (closed cells) and
+`sweep_rep_le_half`, `sweep_rep_gt_half` (left-open cells, with the
+representative \(x-\lceil x\rceil+1\in(0,1]\)), in
+`formal/Problems/Juggler/FateSweep.lean`. The formal count uses the
+strictly interior cells (at least \((T-3)/2\) of one colour, ratio
+\(11/25\)) in place of the traversed cells (ratio \(10/23\)), and
+obtains the left-open case from the closed one by
+\(x_j\mapsto -x_{H+1-j}\).
+
 The product \(g/G\cdot 10/23\) cannot reach \(\tfrac13\). An
 adversarial sequence with steps in \([a,b]\) can lock a \(3+1\)
 split near \(a=\tfrac14\). The OE fiber is monotone.
@@ -521,75 +545,113 @@ The same holds with the cells \((k/2,(k+1)/2]\) in place of
 \([k/2,(k+1)/2)\).
 
 *Proof.* The nonincreasing case is the reflection \(z_j=c-x_j\), which
-reverses the steps and swaps the two halves. Assume the steps are
-nondecreasing.
+reverses the steps and swaps the two halves, so assume the steps are
+nondecreasing. Cut \(\mathbb R\) into the cells \(C_k=[k/2,(k+1)/2)\)
+of Lemma 4.1. Since every step is at most \(b\le\tfrac12\), the cells
+of \(x_1,\dots,x_H\) are \(T\) consecutive integers, each visited;
+write \(\rho_1,\dots,\rho_T\ge 1\) for their occupancies in order, so
+\(\sum_i\rho_i=H\), and consecutive cells have opposite colours. Call
+the cells \(2,\dots,T-1\) *interior*. Put \(X=1/(2a)\),
+\(G=\lfloor X\rfloor+1\) and \(g=\lfloor 1/(2b)\rfloor\ge 1\). As in
+Lemma 4.1(i), every cell has \(\rho_i\le G\) and every interior cell
+has \(\rho_i\ge g\); and \((H-1)a\ge 12\) gives
+\(H\ge 24X+1\ge 24G-23\).
 
-Cut \(\mathbb R\) into cells \(C_k=[k/2,(k+1)/2)\) as in Lemma 4.1.
-An *occupied* cell contains at least one of the points. Occupied cells
-are consecutive; write \(\rho_1,\dots,\rho_{T^*}\) for their
-occupancies in order, so \(\sum\rho_i=H\). Every traversed cell is
-occupied (\(b\le\tfrac12\)), hence \(T^*\ge T\ge 22\). Odd-indexed
-cells are one colour and even-indexed cells the other.
+(a) *A later cell is at most one fuller than an earlier interior
+cell.* Let \(2\le i<j\le T\). The \(\rho_i+1\) steps from the last
+point before the cell of index \(i\) to the first point after it span
+more than \(\tfrac12\), so one of them, \(\gamma\), exceeds
+\(1/(2(\rho_i+1))\). Every step inside the cell of index \(j\) comes
+later, hence is at least \(\gamma\), and the \(\rho_j-1\) steps inside
+that cell span less than \(\tfrac12\). So \((\rho_j-1)\gamma<\tfrac12\),
+i.e. \(\rho_j\le\rho_i+1\). In particular, once an interior cell of
+occupancy \(v\) has occurred, every later cell has occupancy at most
+\(v+1\).
 
-A traversed cell of local step-scale \(\delta\) has occupancy within
-\(1\) of \(1/(2\delta)\). Because the steps lie in \([a,b]\) with
-\(b\le\tfrac{21}{20}a\), the values \(1/(2\delta)\) vary by a factor
-at most \(\tfrac{21}{20}\). Because the steps are monotone, the
-occupancies are a monotone sequence up to a phase error of \(1\): a
-block of \(L\)-runs, then \((L-1)\)-runs, and so on (or a single
-block).
+(b) *Pairs and surplus.* Pair the interior cells consecutively,
+\((2,3),(4,5),\dots\); at most three cells are unpaired (the first,
+the last, and possibly one interior cell), each holding at most \(G\)
+points. Each pair has one cell of each colour, so each colour receives
+at least \(\sum_{\rm pairs}\min(\rho,\rho')\), and
+\[
+\sum_{\rm pairs}\min(\rho,\rho')
+\ \ge\ \tfrac13(H-3G)+S,\qquad
+S:=\sum_{\rm pairs}\Bigl(\min(\rho,\rho')-\tfrac{\rho+\rho'}3\Bigr).
+\]
+It therefore suffices to show \(S\ge G-2\). Both entries of every
+pair lie in \([g,G]\), so every pair has
+\(\min/\mathrm{sum}\ge g/(g+G)=:r\), and a pair contributes at least
+\((r-\tfrac13)(\rho+\rho')\) to \(S\).
 
-(i) *If \(a\ge\tfrac14\).* Then \(X=1/(2a)\le 2\). Three points in a
-half-open cell of length \(\tfrac12\) would require two gaps of size
-at least \(a\ge\tfrac14\), hence a span of at least \(\tfrac12\),
-which cannot fit in \([c,c+\tfrac12)\). Thus every occupied cell has
-\(\rho\in\{1,2\}\). In the worst assignment every run of one colour
-has length \(1\) and every run of the other has length \(2\). If those
-colours have \(n_1\) and \(n_2\) runs, \(\lvert n_1-n_2\rvert\le 1\)
-and \(H=n_1+2n_2\) (or \(2n_1+n_2\)). Three sub-cases: \(n_1=n_2=n\)
-gives \(H=3n\) and scarcer count \(n=H/3\); \(n_1=n+1\), \(n_2=n\)
-gives \(H=3n+1\) and scarcer count \(n+1>H/3\); \(n_1=n\),
-\(n_2=n+1\) gives \(H=3n+2\) and scarcer count \(n=H/3-\tfrac23\).
-Hence at least \(\tfrac H3-\tfrac23\).
+(c) *\(G\ge 7\).* Then \(X\ge 6\) and \(g\ge\lfloor\tfrac{20}{21}X\rfloor\)
+give \(7g\ge 5G\) (\(g\ge 5\) at \(G=7\), \(g\ge 6\) at \(G=8\), and
+\(7g>\tfrac{20G-41}3\ge 5G\) for \(G\ge 9\)), so \(r\ge\tfrac5{12}\) and
+\(S\ge\tfrac1{12}(H-3G)\ge\tfrac{21G-23}{12}\ge G-2\).
 
-(ii) *If \(a<\tfrac14\).* Pair consecutive occupied cells
-\((\rho_{2i-1},\rho_{2i})\). Every such pair satisfies
-\(\min(\rho,\rho')\ge(\rho+\rho')/3\). Indeed, write
-\(L(\delta)=1/(2\delta)\). The global drop of \(L\) is
-\(L(a)-L(b)\le X/21\), spread over \(T^*\ge 22\) cells, so consecutive
-occupancies differ by at most \(1+X/441\) after the phase error. If
-some occupied cell has \(\rho=1\), then \(g=1\), hence
-\(\tfrac{20}{21}X<2\) and \(X<2.1\); the drop of \(L\) is then
-\(<0.1\), consecutive occupancies differ by at most \(1\), and the
-pairs are \((1,1)\), \((1,2)\) or \((2,2)\), each with
-\(\min\ge(\mathrm{sum})/3\). If every occupancy is at least \(2\), a
-consecutive pair is \((k,k)\), \((k,k+1)\), or \((k,k+d)\) with
-\(k\ge 2\) and \(d\le 1+X/441\); then
-\(\min/\mathrm{sum}\) is \(\tfrac12\), at least \(\tfrac25\), or
-\(k/(2k+d)\ge\tfrac13\) (the last because \(k\ge 2\) and, when
-\(d=2\), \(k/(2k+2)=\tfrac13\); when \(X\) is large enough for
-\(d\ge 3\), one has \(k\ge g\ge\tfrac{20}{21}X-1\) and
-\(k/(2k+d)\ge\tfrac12-o(1)>\tfrac13\)).
+(d) *\(3\le G\le 6\) and \(g\ge 2\).* The possible \((G,g)\) are
+\((3,2),(4,2),(4,3),(5,3),(5,4),(6,4),(6,5)\). Except for \((4,2)\),
+\(r\ge\tfrac38\), so \(S\ge\tfrac1{24}(H-3G)\ge\tfrac{21G-23}{24}\ge G-2\)
+because \(3G\le 25\). For \((G,g)=(4,2)\) the interior occupancies lie
+in \(\{2,3,4\}\); by (a), after the first interior cell of occupancy
+\(2\) every cell has occupancy at most \(3\). So the pairs with both
+entries in \(\{3,4\}\) (ratio \(\ge\tfrac37\)) precede the pairs with
+both entries in \(\{2,3\}\) (ratio \(\ge\tfrac25\)), and at most one
+pair straddles, with ratio \(\ge\tfrac13\) and at most \(6\) points.
+Hence \(S\ge\tfrac1{15}(H-3G-6)\ge\tfrac{24G-41}{15}>2=G-2\).
 
-Thus each pair contributes at least one-third of its points to each
-colour. If \(T^*\) is odd the leftover cell has at most \(G\) points,
-so the scarcer colour has at least \((H-G)/3\) points.
+(e) *\(G=2\).* Interior occupancies lie in \(\{1,2\}\), every pair has
+ratio \(\ge\tfrac13\), and \(S\ge 0=G-2\).
 
-- If \(G\le 6\), this is at least \(\tfrac H3-2\).
-- If \(G\ge 7\), then \(X\ge 6\) and \(g\ge\lfloor\tfrac{20}{21}\cdot 6\rfloor=5\).
-  Every pair then has \(\min/\mathrm{sum}\ge\tfrac25\): either
-  \(X<441\), so consecutive difference at most \(2\) and the worst
-  pair is \((5,7)\) with ratio \(\tfrac5{12}\), or \(X\ge 441\) and
-  \(g/(2g+1+X/441)\ge\tfrac25\). Hence the scarcer count is at least
-  \(\tfrac25(H-G)\). The hypothesis \((H-1)a\ge 12\) gives
-  \(H\ge 24X+1\ge 24(G-1)+1\), and
-  \(\tfrac25(H-G)\ge\tfrac H3-2\) follows:
-  \(\tfrac1{15}H\ge\tfrac25 G-2\), i.e. \(H\ge 6G-30\), which holds
-  because \(24G-23\ge 6G-30\).
+(f) *\(G=3\) and \(g=1\)*, i.e. \(2\le X<3\) and \(b>\tfrac14\); then
+\(a\le\tfrac14\) and \(b\le\tfrac{21}{80}\), so \(3b<1\) and \(7b<2\).
+Interior occupancies lie in \(\{1,2,3\}\), and by (a) every cell after
+the first interior cell of occupancy \(1\) has occupancy at most
+\(2\). The pairs are therefore: pairs with both entries in \(\{2,3\}\),
+of ratio \(\ge\tfrac25\); at most one straddling pair \((\rho,1)\) with
+\(\rho\in\{2,3\}\), which contributes at least \(-\tfrac13\) to \(S\);
+and pairs with both entries in \(\{1,2\}\). In the last group,
+\((1,1)\) does not occur: two adjacent interior cells with one point
+each would have three consecutive steps spanning more than \(1>3b\).
+Nor do two consecutive pairs with six points in all: four consecutive
+interior cells with six points would have seven consecutive steps
+spanning more than \(2>7b\). So among any two consecutive pairs of the
+last group at least one is \((2,2)\), and the two together hold at
+least \(7\) points of which the scarcer colour gets at least \(3\):
+their contribution to \(S\) is at least \(3-\tfrac73=\tfrac23\), and
+they hold at most \(8\) points, so the last group contributes at
+least \(\tfrac1{12}N_2-\tfrac23\) to \(S\), where \(N_2\) is its
+number of points (a leftover single pair contributes at least \(0\)).
+With \(N_1\) the number of points in the first group,
+\(N_1+N_2\ge H-3G-4=H-13\), and
+\[
+S\ \ge\ -\tfrac13+\tfrac1{15}N_1+\tfrac1{12}N_2-\tfrac23
+\ \ge\ \tfrac1{15}(H-13)-1\ \ge\ 1=G-2,
+\]
+since \(H\ge 24X+1\ge 49\).
 
-In all cases the scarcer count is at least \(\tfrac H3-2\). The two
-colours are the two half-interval counts. For left-open cells the same
-argument applies with the cells \((k/2,(k+1)/2]\). \(\square\)
+In all cases \(S\ge G-2\), so the scarcer colour has at least
+\(\tfrac13(H-3G)+G-2=\tfrac H3-2\) points. For left-open cells the
+same argument applies with the cells \((k/2,(k+1)/2]\), or apply the
+closed case to \(-x_{H+1-j}\) as in Lemma 4.1. \(\square\)
+
+Lean: `sweep_monotone_fract_lt_half`, `sweep_monotone_fract_ge_half`
+(closed cells) and `sweep_monotone_rep_le_half`,
+`sweep_monotone_rep_gt_half` (left-open cells), instances of
+`Sweep.sweep_monotone_cell` and `sweep_monotone_ceil`, in
+`formal/Problems/Juggler/FateSweepMonotone.lean`.
+
+*Remark (erratum, 8 September 2026).* An earlier version of this
+proof asserted that every pair satisfies
+\(\min\ge(\rho+\rho')/3\), on the grounds that the step scale
+\(1/(2\delta)\) changes by at most \(X/21\) "spread over the cells" and
+that with \(X<2.1\) the pairs are \((1,1)\), \((1,2)\) or \((2,2)\).
+Monotone steps need not change gradually: with \(a=\tfrac{10}{41}\),
+\(b=\tfrac{21}{82}\) the sequence \(-2a,-a,0,a,2a,2a+b,2a+2b,\dots\)
+has nondecreasing steps in \([a,b]\), and its cells \(2\) and \(3\) —
+an interior pair in the pairing of (b) — have occupancies \((3,1)\). That version also paired the two partial
+end cells as if they were interior. The statement is unchanged; the
+proof above replaces it, with (a) in place of the spreading claim, the
+end cells left unpaired, and the surplus \(S\) paying for them.
 
 **Lemma 4.2 (fiber parity).** For \(m\ge 10^6\) put
 \(\alpha_m=\{\tfrac32m^{2/3}\}\) and call \(m\) *good* if
@@ -1034,6 +1096,11 @@ using \(c_0=Kt_1^\lambda\le Kt^\lambda\). Hence the bound holds on
 \([e_{\min}t_1,t_1e_{\max}^{-N}]\) for every \(N\), i.e. all
 \(t\ge e_{\min}t_1\). \(\square\)
 
+Lean: `recursion_lemma` in `formal/Problems/Juggler/FateRecursion.lean`,
+with \(e_{\min}\le e_i\le e_{\max}\) as bounds rather than extrema and
+\(\lambda>0\) in place of \(\lambda\in(0,1)\); the hypotheses
+\(g\ge 0\) and \(\lambda<1\) are not used.
+
 ### 5.4 The seed
 
 **Lemma 5.2 (seed).** Every nonempty backward-closed \(A\) contains an
@@ -1467,6 +1534,12 @@ a smaller failure). So \(n_F\) is an \(OO\)-type failure and
 \(\psi_F(t)>0\) for \(t\) with \(e^{t/2}<n_F\le e^t\). (ii) is the
 decomposition. \(\square\)
 
+Lean: `minimal_failure_odd_odd` and `exists_minimal_failure` (the least
+failure is odd with odd image), and the three pieces as
+`first_letter_trichotomy` with `first_letter_pieces_disjoint`, in
+`formal/Problems/Juggler/FateFirstLetter.lean`; the log-mass
+bookkeeping of (6.1) is not formalized.
+
 **Remark 6.4 (the walk heuristic; not a theorem).** If \(F\) were
 \(S\)-fair, if the fiber weights were ideal
 (\(\varphi^{\rm fib}_F=\varphi_F\)), and if the error term of (6.1)
@@ -1653,6 +1726,17 @@ For the \(O\)-rooted count, the remaining \(d-1\) letters contain
 \((d-1)D(p'\|1/2)\ge(e(C)-\varepsilon)L\ln 2\) for \(L\) large.
 \(\square\)
 
+Lean: the first statement, in the exact form
+\(\#\{w\ L\text{-bad},|w|=d\}\le 2^d\,2^{-e(C)L}\) for \(C\ge 5\),
+\(d\ge CL\), \(d\ge 1\), is `LBad_count_le` in
+`formal/Problems/Juggler/FateChernoff.lean`: the Markov tilt
+`weight_markov` on the constant weight (`weightGen_one`,
+\((1+x)^d\)), the value \(\exp(d\,h(p))\) at \(x=p/(1-p)\)
+(`tilt_value`, `count_oddCount_ge_le_exp`), Gibbs' inequality
+\(D(p\|\tfrac12)\ge 0\) (`klHalf_nonneg`), and \(p_C\in[\tfrac12,1)\)
+from \(\log_2 3\le 8/5\) (`half_le_pC`, `pC_lt_one`). The \(O\)-rooted
+statement with \(\varepsilon\) stays a human proof.
+
 Numerically \(e(18)=0.480\), \(e(19)=0.527\), \(e(20)=0.574\),
 \(e(21)=0.621\), \(e(25)=0.812\), \(e(30)=1.054\); \(e(C)\) grows
 linearly in \(C\) with slope
@@ -1697,6 +1781,27 @@ odd starts. Hence the count is at most
 using \(2^{d-1}\le 2^{CL}\). The second term is
 \(O(y(\log y)^{C-A})=o(y(\log y)^{-e(C)})\) because \(A>C+e(C)\).
 \(\square\)
+
+Lean: the exact skeleton, in `formal/Problems/Juggler/FateChernoff.lean`.
+`oddFailures_subset_bad_cylinders` is Lemma 8.1 in covering form: with
+every start up to \(N_0\) reaching \(1\), an odd \(n\in(y,2y]\) that does
+not reach \(1\) lies in the cylinder of a word whose every prefix fails
+the integer envelope comparison \(N_0^{2^t}<(2y)^{3^{o_t}}\)
+(`EnvelopeBad`); `LBad_of_envelopeBad` identifies those words as
+\(L(y)\)-bad with \(L(y)=\log_2(\log 2y/\log N_0)\);
+`oddFailures_card_le` is the union bound, and
+`oddFailures_card_le_chernoff` composes it with Lemma 8.2: if every
+\(L(y)\)-bad cylinder of depth \(d\ge CL(y)\) holds at most \(M\)
+starts, the odd failures in \((y,2y]\) number at most
+\(2^d\,2^{-e(C)L(y)}M\). `oddFailures_card_le_explicit` substitutes
+\(d=\lceil CL(y)\rceil\) and the bound of \(\mathrm H(C,A)\) at the
+scale \(y\), for \(O\)-rooted words only (`cylinder_even_root_empty`):
+with \(\Lambda=\log 2y/\log N_0\), the odd failures in \((y,2y]\)
+number at most \(y\,\Lambda^{-e(C)}+2\Lambda^{C}y(\log y)^{-A}\), at
+every \(y\ge 2\) and without \(\varepsilon\). The displayed form
+follows by absorbing the factor \(2\) into \(\Lambda^{\varepsilon}\)
+and the second term into the first for \(A>C+e(C)\); that absorption
+is not formalized. Corollary 8.4 uses only the exponent.
 
 **Corollary 8.4 (the conjecture from a cylinder bound).** If
 \(\mathrm H(C,A)\) holds for some \(C\ge 19\) and \(A>C+e(C)\), then
@@ -1832,6 +1937,20 @@ At \(\theta=\theta_C\), \(\theta p_C-\log a_\theta=D(p_C\|\tfrac12)\),
 so the count is \(\le N\exp(-dD(p_C\|\tfrac12)(1-o(1)))\le N2^{-(e(C)-\varepsilon)L}\).
 \(\square\)
 
+Lean: exact form, in `formal/Problems/Juggler/FatePressure.lean`, on the
+live weight of `LiveCountWeight` (starts in \(\{1,\dots,N\}\) that stay
+above \(N_0\) for \(d\) steps). `livePressure` is
+\(\sum_{n\ \mathrm{live}}x^{o_d(n)}\) as the generating function of the
+live weight; `live_count_le_pressure` is the Markov step
+\(\#\{\text{live},\,o_d\ge k\}\le\text{pressure}/x^k\);
+`live_oddCount_ge` is Lemma 8.1 on live starts (\(o_d\ge p_Cd\) for
+\(d\ge CL(N)\)); and `live_count_le_of_pressure` says: if the pressure
+at the tilt \(x=p_C/(1-p_C)\) is at most \(Na_\theta^dE\), the live
+starts number at most \(N\exp(-dD(p_C\|\tfrac12))E\), by the identity
+\(a_\theta^d/x^{p_Cd}=e^{-dD(p_C\|1/2)}\) (`tilt_value`). The
+substitution \(E=e^{o(d)}\) and \(d=\lceil CL\rceil\) that gives the
+displayed bound is not formalized.
+
 For \(1\le t<d\) let \(\mu_{\theta,t}\) be the probability measure on
 the starts live at depth \(t\) with density proportional to
 \(e^{\theta o_t(n)}\), and let
@@ -1863,6 +1982,13 @@ which is \(\mathrm P_\theta\) at \(q=\tfrac12\); the exponential Markov
 step of Theorem 9.2 with \(a_{\theta,q}\) in place of \(a_\theta\) and
 \(\theta=\log\frac{p_C(1-q)}{q(1-p_C)}\) gives \(D(p_C\|q)\).
 \(\square\)
+
+Lean: `weightGen_succ_le_share` (the one-depth step),
+`one_add_le_exp_excess`, `weightGen_le_pressure` (the telescoped bound)
+and `count_le_pressure` (the exponential Markov step), in
+`formal/Problems/Juggler/TiltedShare.lean`, on the word-weight
+framework of `RateFreeDensity`; `tilt_exponent_eq_kl` is the identity
+at the re-centring tilt.
 
 ### 9.3 What the weakest form does not need
 
@@ -2186,10 +2312,13 @@ at depth of order \(\log\log n\): the Terras step of the Juggler map.
 
 ## Appendix A. Lean names
 
-All in `formal/Problems/Juggler/FateContagion.lean` unless noted; the
-module compiles with `lake build Problems.Juggler` without `sorry`.
-Lean certifies the exact combinatorial identities listed here, not the
-analytic density estimates.
+All in `formal/Problems/Juggler/FateContagion.lean` unless noted. The
+root `formal/Problems/JugglerFatePaper.lean` imports exactly the twelve
+modules named here and builds with `lake build Problems.JugglerFatePaper`
+without `sorry` and without `native_decide`;
+`formal/AxiomCheckPaperC.expected` records the axioms of every name
+below. Lean certifies the exact combinatorial identities and the two
+abstract lemmas listed here, not the analytic density estimates.
 
 | Statement | Lean |
 |---|---|
@@ -2203,7 +2332,17 @@ analytic density estimates.
 | Lemma 8.1 (envelope descent) | `iterate_le_of_envelope`, `mem_of_envelope_floor`, `reachesOne_of_itinerary_envelope`; power envelope `power_bound_word` (Paper A layer) |
 | Lean floor \(N_0=260\) | `reachesOne_of_lt_two_hundred_sixty_one` |
 | Lemma 4.7 (cube fibers), in `Problems/Juggler/CubeFiber.lean` | `cube_fiber_range`, `cube_fiber_sqrt_even`, `cube_fiber_even_image`, `even_cube_fiber_full`, `cube_fiber_sqrt_odd`, `cube_fiber_alternating`, `odd_cube_fiber_alternating` |
-| Lemmas 4.1, 4.1', 4.2--4.3, Proposition 4.4 (\(C_0=250\)), Lemma 5.1, Theorem 5.3, Sections 7--10, Appendix C | human proofs |
+| Lemma 4.1 (sweep), in `Problems/Juggler/FateSweep.lean` | `Sweep.cell`, `Sweep.sweep_cell`, `sweep_fract_lt_half`, `sweep_fract_ge_half`, `sweep_ceil`, `sweep_rep_le_half`, `sweep_rep_gt_half` |
+| Lemma 4.1' (monotone pairing), in `Problems/Juggler/FateSweepMonotone.lean` | `Sweep.sweep_monotone_cell`, `sweep_monotone_fract_lt_half`, `sweep_monotone_fract_ge_half`, `sweep_monotone_ceil`, `sweep_monotone_rep_le_half`, `sweep_monotone_rep_gt_half` |
+| Lemma 5.1 (recursion), in `Problems/Juggler/FateRecursion.lean` | `recursion_lemma` |
+| Section 6.2, Proposition 6.3(i), in `Problems/Juggler/FateFirstLetter.lean` | `MinimalMember`, `minimalMember_odd`, `minimalMember_image_odd`, `minimal_failure_odd_odd`, `exists_minimal_failure`, `first_letter_trichotomy`, `first_letter_pieces_disjoint` |
+| Lemma 8.2 (Chernoff count), in `Problems/Juggler/FateChernoff.lean` | `weightGen_one`, `count_oddCount_ge_le`, `count_oddCount_ge_real_le`, `entropyLog`, `klHalf`, `klHalf_eq`, `klHalf_nonneg`, `tilt_value`, `count_oddCount_ge_le_exp`, `count_oddCount_ge_le_kl`, `LBad`, `pC`, `chernoffExponent`, `logb_two_three_le`, `half_le_pC`, `pC_lt_one`, `LBad_oddCount_ge`, `LBad_count_le` |
+| Theorem 8.3 (explicit form), in `Problems/Juggler/FateChernoff.lean` | `cylinder`, `oddFailures`, `EnvelopeBad`, `oddFailures_subset_bad_cylinders`, `oddFailures_card_le`, `LBad_of_envelopeBad`, `oddFailures_card_le_chernoff`, `scaleRatio`, `scaleL`, `depth`, `cylinder_even_root_empty`, `oddFailures_card_le_explicit` |
+| Theorem 9.2 (pressure form), in `Problems/Juggler/FatePressure.lean` | `livePressure`, `live_count_le_pressure`, `envelopeBad_of_liveTo`, `LBad_of_liveTo`, `live_oddCount_ge`, `live_count_le_of_pressure` |
+| Proposition 9.3 (pressure telescoping), in `Problems/Juggler/TiltedShare.lean` | `oddMass`, `tiltedShare`, `weightGen_succ_le_share`, `one_add_le_exp_excess`, `weightGen_le_pressure`, `count_le_pressure`, `NoMomentum`, `count_le_of_noMomentum`, `tilt_exponent_eq_kl`, `MeanShare`, `weightGen_le_of_meanShare`, `MeanShareOff`, `initial_depths_are_free`, `tower_ratio_lt_one` |
+| Lemma 5.2 (seed), in `Problems/Juggler/FateSeed.lean` | `exists_ge_three_of_backwardClosed`, `seed_lemma`, `seed_constant_pos` |
+| Theorem 7.2 (Tao-type rate, contagion as a hypothesis), in `Problems/Juggler/FateTaoReduction.lean` | `logMass_le_oddLogMass`, `oddLogMass_le_of_dyadic`, `tao_rate_implies_empty`, `tao_rate_implies_conjecture` |
+| Lemmas 4.2--4.3, Proposition 4.4 (\(C_0=250\)), Theorem 5.3, Theorem 7.3, Sections 8--10 except Lemma 8.2, the explicit form of Theorem 8.3, the exact form of Theorem 9.2 and Proposition 9.3, Appendix C | human proofs |
 
 ## Appendix B. Constants and artifacts
 
@@ -2254,6 +2393,15 @@ pressure (biased Chernoff) at the same \(q\): \(19,41,214,1496\) /
 | `data/research/juggler/fate_contagion/summary.json` | `85030bcb5f4964b814b101683c2721efa5f7299b687afa9e399febe60343a10c` |
 | `data/research/juggler/tao_reduction/summary.json` | `76c0ae713d34569cdf8efd90231712f9281f7d5083346a2d9384c536f7cd34cc` |
 | `formal/Problems/Juggler/FateContagion.lean` | `cac6a00884346fcc98a03603bf919e03a681f8f66b8b55f3cff9d336e83a2472` |
+| `formal/Problems/Juggler/CubeFiber.lean` | `acbf621b4651782eff7922512d096832aa20ea59a59261839b3e5926189dedba` |
+| `formal/Problems/Juggler/TiltedShare.lean` | `cfb1b2b6cbe08be3a9acc1f4fa33c9afaa2dfa73beed2125dbe0793c540e239e` |
+| `formal/Problems/Juggler/FateRecursion.lean` | `13de9eb27d4e34b58d783d589574838028d767bcb5ea3f2bb8449e74e3be04d3` |
+| `formal/Problems/Juggler/FateFirstLetter.lean` | `635bb6163f5a054085087eefcd2c62037c61538fe863d53e9dca69da8fddb3e9` |
+| `formal/Problems/Juggler/FateSweep.lean` | `71c5c2472d2c2d31d7b2565e66f92e97b3ae9bd0c76aa45a1703eea7bd910d39` |
+| `formal/Problems/Juggler/FateChernoff.lean` | `4eec5c05916226374815b586252aa8c7a147615d27088939044f80db3b94f515` |
+| `formal/Problems/Juggler/FatePressure.lean` | `f69ad74fcaed87b692451113cf72eeadc1182efc0ac8121e255e6b079bf2bbf2` |
+| `formal/Problems/JugglerFatePaper.lean` | `77ea662960c9880c98ca434cf1e2ff577dd32779b632ab6f395f34471f7a4945` |
+| `formal/AxiomCheckPaperC.expected` | `8f1ff2a7c49274b352922ea893489425330c173e4f4f66ad59914ba49769978f` |
 | `src/research/juggler_sequence/fate_contagion.py` | `34f8cff465e00187cb85e1dc9a75a3b250caa4c8f38a3bc41aef29f68be08b7a` |
 | `src/research/juggler_sequence/tao_reduction.py` | `90f930bd604f6aa38c3a5ec8265d270d218240cdb358b20b19cad98dc4ac2f1c` |
 | `docs/theory/figures/render_paper_c_figures.py` | `5e434450835aadb4ed5ed2cbed00cc33f774996ba9ef229cb0434fc677bff5b7` |

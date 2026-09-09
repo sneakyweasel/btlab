@@ -3920,8 +3920,10 @@
       "ledger_ids": [
         "J-fate-sweep-lemma",
         "J-fate-recursion-lemma",
+        "J-fate-seed",
         "J-fate-minimal-failure-oo",
         "J-paper-c-trust-surface",
+        "J-fate-monotone-pairing-repair",
         "J-fate-chernoff-count",
         "J-fate-tao-union-bound",
         "J-fate-pressure-form"
@@ -5608,8 +5610,11 @@
         "formal/Problems/Juggler/FateRecursion.lean",
         "formal/Problems/Juggler/FateFirstLetter.lean",
         "formal/Problems/Juggler/FateSweep.lean",
+        "formal/Problems/Juggler/FateSweepMonotone.lean",
         "formal/Problems/Juggler/FateChernoff.lean",
-        "formal/Problems/Juggler/FatePressure.lean"
+        "formal/Problems/Juggler/FatePressure.lean",
+        "formal/Problems/Juggler/FateTaoReduction.lean",
+        "formal/Problems/Juggler/FateSeed.lean"
       ],
       "conjecture": [],
       "decision": null,

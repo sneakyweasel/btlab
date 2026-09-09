@@ -23953,6 +23953,222 @@
       "trust": "kernel"
     },
     {
+      "doc": "Every nonempty backward-closed class (with a positive member) contains some `m \u2265 3`: `1 \u21a6 2 \u21a6 4` through even blocks.",
+      "file": "formal/Problems/Juggler/FateSeed.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-seed"
+      ],
+      "line": 40,
+      "module": "Problems.Juggler.FateSeed",
+      "name": "exists_ge_three_of_backwardClosed",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`S_k`: the `k`-fold even-block tree of `m`, `S_0 = {m}`, `S_{k+1} = \u22c3_{m'' \u2208 S_k} E(m'')`.",
+      "file": "formal/Problems/Juggler/FateSeed.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-seed"
+      ],
+      "line": 53,
+      "module": "Problems.Juggler.FateSeed",
+      "name": "blockTree",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSeed.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-seed"
+      ],
+      "line": 57,
+      "module": "Problems.Juggler.FateSeed",
+      "name": "blockTree_zero",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSeed.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-seed"
+      ],
+      "line": 59,
+      "module": "Problems.Juggler.FateSeed",
+      "name": "blockTree_succ",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The tree of a member lies in the class (Lemma 3.1).",
+      "file": "formal/Problems/Juggler/FateSeed.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-seed"
+      ],
+      "line": 62,
+      "module": "Problems.Juggler.FateSeed",
+      "name": "blockTree_mem",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Level `k` of the tree lies in `[m^{2^k}, (m+1)^{2^k})`.",
+      "file": "formal/Problems/Juggler/FateSeed.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-seed"
+      ],
+      "line": 78,
+      "module": "Problems.Juggler.FateSeed",
+      "name": "blockTree_bounds",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Distinct even blocks are disjoint: the block of `m` is the fibre `\u230a\u221an\u230b = m`.",
+      "file": "formal/Problems/Juggler/FateSeed.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-seed"
+      ],
+      "line": 104,
+      "module": "Problems.Juggler.FateSeed",
+      "name": "evenBlock_disjoint",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSeed.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-seed"
+      ],
+      "line": 112,
+      "module": "Problems.Juggler.FateSeed",
+      "name": "evenBlock_pairwiseDisjoint",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Lemma 3.1, the lower log-mass: `\u03a3_{n \u2208 E(m)} 1/n \u2265 m/(m+1)\u00b2`.",
+      "file": "formal/Problems/Juggler/FateSeed.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-seed"
+      ],
+      "line": 118,
+      "module": "Problems.Juggler.FateSeed",
+      "name": "evenBlock_logMass_ge",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`m/(m+1)\u00b2 \u2265 (1 - 2/m)/m` for `m \u2265 1`: Lemma 3.1's lower bound in the paper's form.",
+      "file": "formal/Problems/Juggler/FateSeed.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-seed"
+      ],
+      "line": 135,
+      "module": "Problems.Juggler.FateSeed",
+      "name": "evenBlock_logMass_ge'",
+      "trust": "kernel"
+    },
+    {
+      "doc": "One level up multiplies the log-mass by at least `1 - 2 m^{-2^k}`.",
+      "file": "formal/Problems/Juggler/FateSeed.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-seed"
+      ],
+      "line": 144,
+      "module": "Problems.Juggler.FateSeed",
+      "name": "blockTree_logMass_succ_ge",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSeed.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-seed"
+      ],
+      "line": 165,
+      "module": "Problems.Juggler.FateSeed",
+      "name": "two_mul_succ_le_two_pow",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`\u03a3_{j=1}^{k} m^{-2^j} \u2264 1/(m\u00b2 - 1)` for `m \u2265 2`.",
+      "file": "formal/Problems/Juggler/FateSeed.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-seed"
+      ],
+      "line": 178,
+      "module": "Problems.Juggler.FateSeed",
+      "name": "sum_inv_pow_two_pow_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`\u2113(S_{k+1}) \u2265 (1 - 2 \u03a3_{j=1}^{k} m^{-2^j}) \u2113(S_1)`.",
+      "file": "formal/Problems/Juggler/FateSeed.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-seed"
+      ],
+      "line": 217,
+      "module": "Problems.Juggler.FateSeed",
+      "name": "blockTree_logMass_ge_aux",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`\u2113(S_{k+1}) \u2265 (3/4) \u2113(S_1) \u2265 0.375/(m+1)` for `m \u2265 3`.",
+      "file": "formal/Problems/Juggler/FateSeed.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-seed"
+      ],
+      "line": 257,
+      "module": "Problems.Juggler.FateSeed",
+      "name": "blockTree_logMass_ge",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The log-mass of `A` on the half-interval `(\u221ay, y]`, the paper's `g_A(log y)`.",
+      "file": "formal/Problems/Juggler/FateSeed.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-seed"
+      ],
+      "line": 282,
+      "module": "Problems.Juggler.FateSeed",
+      "name": "halfLogMass",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Paper C Lemma 5.2 (seed).** If `A` is backward-closed and contains `m \u2265 3`, then for every `y \u2265 (m+1)\u2074`, `\u03a3_{\u221ay < n \u2264 y, n \u2208 A} 1/n \u2265 (1 - 2/m\u2074) (3/8 \u00b7 1/(m+1) - 1/((m+1)\u00b2 - 1))`.",
+      "file": "formal/Problems/Juggler/FateSeed.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-seed"
+      ],
+      "line": 288,
+      "module": "Problems.Juggler.FateSeed",
+      "name": "seed_lemma",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The seed constant is positive for `m \u2265 3`, so the seed is a usable `c\u2080 > 0` for `recursion_lemma`.",
+      "file": "formal/Problems/Juggler/FateSeed.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-seed"
+      ],
+      "line": 480,
+      "module": "Problems.Juggler.FateSeed",
+      "name": "seed_constant_pos",
+      "trust": "kernel"
+    },
+    {
       "doc": "The half-cell index of a real: `\u230a2x\u230b`. Even cells are `{x} < 1/2`, odd cells are `{x} \u2265 1/2`.",
       "file": "formal/Problems/Juggler/FateSweep.lean",
       "kind": "def",
@@ -24262,6 +24478,1620 @@
       "line": 539,
       "module": "Problems.Juggler.FateSweep",
       "name": "sweep_rep_gt_half",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Consecutive steps are nondecreasing on the first `H` terms.",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 26,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "MonoSteps",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Consecutive differences are nonincreasing.",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 30,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "AntiSteps",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Occupancy of a half-cell.",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 34,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "occupancy",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Starting cells of the consecutive interior pairs.",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 38,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "pairStarts",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 41,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "pairCells",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 44,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "unpaired",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Nondecreasing steps compare at any distance.",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 52,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "step_mono",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 65,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "step_mono'",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A span of `d` nondecreasing steps is at most `d` times its last step.",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 73,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "span_le_last",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A span of `d` nondecreasing steps is at least `d` times its first step.",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 97,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "span_ge_first",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Fact (a).** With nondecreasing steps in `[a, b]`, `b \u2264 1/2`, a cell `j` after an interior cell `i` holds at most one point more than `i`.",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 113,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "fiber_card_le_succ",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 225,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "step_anti",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 240,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "step_anti'",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 247,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "span_le_first_anti",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 261,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "span_ge_last_anti",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Dual of fact (a): an earlier cell is at most one fuller than a later interior cell.",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 285,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "fiber_card_le_succ_anti",
+      "trust": "kernel"
+    },
+    {
+      "doc": "After an interior cell, every later cell is at most one fuller.",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 398,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "LaterLe",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Before a later interior cell, every earlier cell is at most one fuller.",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 403,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "EarlierLe",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 407,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "later_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 412,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "earlier_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 419,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "H_pos_of_twelve",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 425,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "H_ge_of_twelve",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 437,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "H_ge_G_of_twelve",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 447,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "yx_ratio",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 453,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "seven_g_ge_five_G",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 517,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "g_ge_one",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 523,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "G_ge_two",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 531,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "g_ge_three_of_G_ge_five",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 547,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "g_ge_four_of_G_ge_six",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 563,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "three_G_le_five_g",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 586,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "pair_min_div_sum",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 608,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "mem_pairStarts",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 617,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "pairStarts_succ_lt",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 621,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "pairStarts_step",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 636,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "unpaired_mem",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 664,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "unpaired_subset",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 669,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "occupancy_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 673,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "occupancy_ge",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 678,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "sum_occupancy",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 690,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "unpaired_mass_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 707,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "pairStarts_pairwise",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 720,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "sum_occ_pairs",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 742,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "pair_union",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 757,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "pairMass_ge",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 781,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "exactly_one_colour",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 787,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "good_eq_sum",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 814,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "colour_ge_sum_min",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 866,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "surplus",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 871,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "sum_min_eq_surplus",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 889,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "surplus_of_ratio",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 910,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "crossing_span",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 973,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "crossing_le_steps",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 981,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "occ_sum_Ico",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 1006,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "pairSurp",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 1010,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "surplus_eq_sum",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 1014,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "is24Pair",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 1018,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "pair_cell_interior",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 1026,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "pair_occ_bounds",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 1039,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "pairMass_ge_real",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 1063,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "Ico_two",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 1068,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "Ico_four",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 1073,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "occ_sum_two",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 1078,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "occ_sum_four",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 1095,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "three_b_lt_one",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 1111,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "seven_b_lt_two",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 1127,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "no_adjacent_ones",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 1151,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "no_two_pairs_six",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 1210,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "pairSurp_of_min_ratio",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 1224,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "five_twelfths_le_ratio",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 1244,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "three_eighths_le_ratio",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 1256,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "pair_min_from_gG",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 1278,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "surplus_case_c",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 1306,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "surplus_case_e",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 1335,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "surplus_case_d",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 1374,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "exists_two_of_24",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 1380,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "exists_four_of_24",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 1386,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "two_24_false",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 1409,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "card_24_le_one",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 1421,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "pairSurp_not24",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 1460,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "pairSurp_24",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 1473,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "surplus_case_42",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 1552,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "pairSurp_high",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 1565,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "pairSurp_ge_neg_third",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 1576,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "pairSurp_low_sum3",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 1586,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "pairSurp_low_sum4",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 1596,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "n3_le_n4_succ",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 1643,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "low_group_surplus",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 1717,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "strad_card_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 1730,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "surplus_f_cut",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 1885,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "surplus_f_from_split",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 1990,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "surplus_f_all_high",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 2017,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "pair_three_way",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 2044,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "pair_three_way_rev",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 2071,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "straddle_neg_third",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 2091,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "surplus_case_f",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 2234,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "surplus_ge",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 2272,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "scarce_of_surplus",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Paper C Lemma 4.1\u2032 (monotone pairing), closed half-cells: each colour of `\u230a2 x_j\u230b` has at least `H/3 - 2` terms.",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 2294,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "sweep_monotone_cell",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 2310,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "reflect_steps",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 2320,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "reflect_mono",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 2332,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "reflect_anti",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 2344,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "reflect_mono_or_anti",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Paper C Lemma 4.1\u2032: at least `H/3 - 2` of the terms have `{x_j} < 1/2`.",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 2357,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "sweep_monotone_fract_lt_half",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Paper C Lemma 4.1\u2032: at least `H/3 - 2` of the terms have `{x_j} \u2265 1/2`.",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 2373,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "sweep_monotone_fract_ge_half",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Paper C Lemma 4.1\u2032, left-open cells, by reflection `j \u21a6 -x_{H-1-j}`.",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 2389,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "sweep_monotone_ceil",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Paper C Lemma 4.1\u2032, left-open cells: representative at most `1/2`.",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 2423,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "sweep_monotone_rep_le_half",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Paper C Lemma 4.1\u2032, left-open cells: representative above `1/2`.",
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "line": 2438,
+      "module": "Problems.Juggler.FateSweepMonotone",
+      "name": "sweep_monotone_rep_gt_half",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The log-mass `\u03a3_{1 \u2264 n \u2264 x, n \u2208 A} 1/n`.",
+      "file": "formal/Problems/Juggler/FateTaoReduction.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 46,
+      "module": "Problems.Juggler.FateTaoReduction",
+      "name": "logMass",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The odd log-mass `\u03a3_{1 \u2264 n \u2264 x odd, n \u2208 A} 1/n`.",
+      "file": "formal/Problems/Juggler/FateTaoReduction.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 50,
+      "module": "Problems.Juggler.FateTaoReduction",
+      "name": "oddLogMass",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The odd members of `A` in `(y, 2y]`.",
+      "file": "formal/Problems/Juggler/FateTaoReduction.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 54,
+      "module": "Problems.Juggler.FateTaoReduction",
+      "name": "oddMembers",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateTaoReduction.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 57,
+      "module": "Problems.Juggler.FateTaoReduction",
+      "name": "oddMembers_not_reachesOne",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`n` descends to `n\u2080` in exactly `j` steps, all of them even: `n` lies at level `j` of the `E`-tree of `n\u2080`.",
+      "file": "formal/Problems/Juggler/FateTaoReduction.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 66,
+      "module": "Problems.Juggler.FateTaoReduction",
+      "name": "EvenDescent",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateTaoReduction.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 69,
+      "module": "Problems.Juggler.FateTaoReduction",
+      "name": "evenDescent_zero",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateTaoReduction.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 76,
+      "module": "Problems.Juggler.FateTaoReduction",
+      "name": "evenDescent_succ",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Level `j` of the `E`-tree of `n\u2080` sits above `n\u2080^{2^j}`.",
+      "file": "formal/Problems/Juggler/FateTaoReduction.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 88,
+      "module": "Problems.Juggler.FateTaoReduction",
+      "name": "evenDescent_pow_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Level `j` of the `E`-tree of `n\u2080`, cut at `x`.",
+      "file": "formal/Problems/Juggler/FateTaoReduction.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 103,
+      "module": "Problems.Juggler.FateTaoReduction",
+      "name": "treeLevel",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The even block of `m`: the even `n` with `m\u00b2 \u2264 n < (m+1)\u00b2`.",
+      "file": "formal/Problems/Juggler/FateTaoReduction.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 107,
+      "module": "Problems.Juggler.FateTaoReduction",
+      "name": "evenBlock",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Level `j + 1` is covered by the even blocks of level `j`.",
+      "file": "formal/Problems/Juggler/FateTaoReduction.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 111,
+      "module": "Problems.Juggler.FateTaoReduction",
+      "name": "treeLevel_succ_subset",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Lemma 3.1, the upper count: an even block has at most `m + 1` elements.",
+      "file": "formal/Problems/Juggler/FateTaoReduction.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 128,
+      "module": "Problems.Juggler.FateTaoReduction",
+      "name": "evenBlock_card_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Lemma 3.1, the upper log-mass: `\u03a3_{n \u2208 E(m)} 1/n \u2264 (m+1)/m\u00b2`.",
+      "file": "formal/Problems/Juggler/FateTaoReduction.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 144,
+      "module": "Problems.Juggler.FateTaoReduction",
+      "name": "evenBlock_logMass_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A sum over a union of finsets is at most the sum of the sums, for nonnegative terms.",
+      "file": "formal/Problems/Juggler/FateTaoReduction.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 161,
+      "module": "Problems.Juggler.FateTaoReduction",
+      "name": "sum_biUnion_le_sum",
+      "trust": "kernel"
+    },
+    {
+      "doc": "One level up multiplies the log-mass by at most `1 + n\u2080^{-2^j}`.",
+      "file": "formal/Problems/Juggler/FateTaoReduction.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 173,
+      "module": "Problems.Juggler.FateTaoReduction",
+      "name": "treeLevel_logMass_succ_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateTaoReduction.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 200,
+      "module": "Problems.Juggler.FateTaoReduction",
+      "name": "treeLevel_zero_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The telescoped level bound: `\u03a3_{level j} 1/n \u2264 (1/n\u2080)(1 - u^{2^j})/(1 - u)`, `u = 1/n\u2080`.",
+      "file": "formal/Problems/Juggler/FateTaoReduction.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 212,
+      "module": "Problems.Juggler.FateTaoReduction",
+      "name": "treeLevel_logMass_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Every level of the `E`-tree of `n\u2080 \u2265 3` has log-mass at most `(3/2)/n\u2080`.",
+      "file": "formal/Problems/Juggler/FateTaoReduction.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 239,
+      "module": "Problems.Juggler.FateTaoReduction",
+      "name": "treeLevel_logMass_le'",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Every member of a forward-closed class excluding `1` lies at a level `j \u2264 log\u2082 log\u2082 x` of the `E`-tree of an odd member `n\u2080 \u2264 x`.",
+      "file": "formal/Problems/Juggler/FateTaoReduction.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 262,
+      "module": "Problems.Juggler.FateTaoReduction",
+      "name": "logMass_le_treeLevels",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The `E`-tree bound.** The log-mass of a forward-closed class excluding `1` is at most `(3/2)(1 + log\u2082 log\u2082 x)` times its odd log-mass.",
+      "file": "formal/Problems/Juggler/FateTaoReduction.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 307,
+      "module": "Problems.Juggler.FateTaoReduction",
+      "name": "logMass_le_oddLogMass",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateTaoReduction.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 332,
+      "module": "Problems.Juggler.FateTaoReduction",
+      "name": "oddLogMass_double",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateTaoReduction.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 354,
+      "module": "Problems.Juggler.FateTaoReduction",
+      "name": "oddLogMass_mono",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateTaoReduction.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 359,
+      "module": "Problems.Juggler.FateTaoReduction",
+      "name": "oddLogMass_nonneg",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateTaoReduction.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 362,
+      "module": "Problems.Juggler.FateTaoReduction",
+      "name": "oddMembers_sum_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Doubling `K` times from `y\u2080`: the odd log-mass grows by at most the dyadic rates.",
+      "file": "formal/Problems/Juggler/FateTaoReduction.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 372,
+      "module": "Problems.Juggler.FateTaoReduction",
+      "name": "oddLogMass_pow_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The telescoping Bernoulli bound `\u03a3_{k=1}^{K} k^{-e} \u2264 K^{1-e}/(1-e)` for `0 < e < 1`.",
+      "file": "formal/Problems/Juggler/FateTaoReduction.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 395,
+      "module": "Problems.Juggler.FateTaoReduction",
+      "name": "sum_rpow_neg_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The dyadic sum.** A rate `y (log y)^{-e}` on the odd members of every block `(y, 2y]`, `y \u2265 y\u2080 \u2265 2`, bounds the odd log-mass up to `x` by `oddLogMass y\u2080 + (log 2)^{-e} (log\u2082 x + 1)^{1-e}/(1-e)`.",
+      "file": "formal/Problems/Juggler/FateTaoReduction.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 444,
+      "module": "Problems.Juggler.FateTaoReduction",
+      "name": "oddLogMass_le_of_dyadic",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateTaoReduction.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 486,
+      "module": "Problems.Juggler.FateTaoReduction",
+      "name": "natLog_le_logb",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateTaoReduction.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 490,
+      "module": "Problems.Juggler.FateTaoReduction",
+      "name": "log_le_rpow_div",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateTaoReduction.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 496,
+      "module": "Problems.Juggler.FateTaoReduction",
+      "name": "exists_rpow_gt",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The upper bound at every `x \u2265 3`: `logMass A x \u2264 D (log x)^{\u03b4 + 1 - e}` for an explicit `D`, once the dyadic rate holds with `0 < e < 1` from `y\u2080 \u2265 2` and `0 < \u03b4 \u2264 1`.",
+      "file": "formal/Problems/Juggler/FateTaoReduction.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 511,
+      "module": "Problems.Juggler.FateTaoReduction",
+      "name": "logMass_le_rpow",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Paper C Theorem 7.2 (Theorem A of the Tao-reduction note), given the contagion bound.** Let `A` be forward-closed and exclude `1`. Suppose the contagion bound holds for `A` whenever it is nonempty \u2014 `\u03a3_{n \u2264 x, n \u2208 A} 1/n \u2265 K (log x)^\u03bb` for all large `x`, some `K > 0` \u2014 and that its odd members satisfy the Tao-type rate `#{n odd in (y, 2y] : n \u2208 A} \u2264 y (log y)^{-e}` for all large `y`, with `e > 1 - \u03bb`. Then `A` has no positive member.",
+      "file": "formal/Problems/Juggler/FateTaoReduction.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 621,
+      "module": "Problems.Juggler.FateTaoReduction",
+      "name": "tao_rate_implies_empty",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Paper C Theorem 7.2 on the failure set.** If the contagion bound holds for the failure set whenever it is nonempty, and the odd failures satisfy the Tao-type rate with `e > 1 - \u03bb`, then every positive integer reaches `1`.",
+      "file": "formal/Problems/Juggler/FateTaoReduction.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 691,
+      "module": "Problems.Juggler.FateTaoReduction",
+      "name": "tao_rate_implies_conjecture",
       "trust": "kernel"
     },
     {
@@ -68226,7 +70056,10 @@
         "Problems.Juggler.FateFirstLetter",
         "Problems.Juggler.FatePressure",
         "Problems.Juggler.FateRecursion",
+        "Problems.Juggler.FateSeed",
         "Problems.Juggler.FateSweep",
+        "Problems.Juggler.FateSweepMonotone",
+        "Problems.Juggler.FateTaoReduction",
         "Problems.Juggler.FirstETransportEval",
         "Problems.Juggler.FirstInternalOO",
         "Problems.Juggler.FirstPassage",
@@ -68976,7 +70809,21 @@
       "ledger": [
         {
           "id": "J-fate-recursion-lemma",
-          "statement": "Paper C Lemma 5.1 (recursion lemma). Let e_i \u2208 [e_min, e_max] with 0 < e_min and e_max < 1, c_i real, \u03bb > 0 with \u03b6 := \u03a3_i c_i e_i^\u03bb - 1 > 0, t_1 > 0, c_0 > 0. Let g : \u211d \u2192 \u211d satisfy g(t) \u2265 \u03a3_i (c_i - \u03b7_i(t)) g(e_i t) - \u03b7_0(t) for all t \u2265 t_1, where 0 \u2264 \u03b7_i(t) \u2264 c_i, \u03a3_i \u03b7_i(t) e_i^\u03bb \u2264 \u03b6/3 and \u03b7_0(t) \u2264 (2\u03b6/3) c_0 for t \u2265 t_1, and g \u2265 c_0 on [e_min t_1, t_1]. Then g(t) \u2265 c_0 t_1^{-\u03bb} t^\u03bb for all t \u2265 e_min t_1 (recursion_lemma). The proof is the paper's induction on N over [e_min t_1, t_1 e_max^{-N}], with exists_pow_lt_of_lt_one supplying N. Weaker hypotheses than the paper's: e_min, e_max are bounds rather than the extrema, \u03bb < 1 and g \u2265 0 are not needed. Kernel-checked, axioms propext, Classical.choice, Quot.sound only. This is the abstract analytic step of Theorem 5.3; the three-source inequality (5.2), its constants and the seed (Lemma 5.2) stay human proofs. Not a density theorem, not a halt theorem.",
+          "statement": "Paper C Lemma 5.1 (recursion lemma). Let e_i \u2208 [e_min, e_max] with 0 < e_min and e_max < 1, c_i real, \u03bb > 0 with \u03b6 := \u03a3_i c_i e_i^\u03bb - 1 > 0, t_1 > 0, c_0 > 0. Let g : \u211d \u2192 \u211d satisfy g(t) \u2265 \u03a3_i (c_i - \u03b7_i(t)) g(e_i t) - \u03b7_0(t) for all t \u2265 t_1, where 0 \u2264 \u03b7_i(t) \u2264 c_i, \u03a3_i \u03b7_i(t) e_i^\u03bb \u2264 \u03b6/3 and \u03b7_0(t) \u2264 (2\u03b6/3) c_0 for t \u2265 t_1, and g \u2265 c_0 on [e_min t_1, t_1]. Then g(t) \u2265 c_0 t_1^{-\u03bb} t^\u03bb for all t \u2265 e_min t_1 (recursion_lemma). The proof is the paper's induction on N over [e_min t_1, t_1 e_max^{-N}], with exists_pow_lt_of_lt_one supplying N. Weaker hypotheses than the paper's: e_min, e_max are bounds rather than the extrema, \u03bb < 1 and g \u2265 0 are not needed. Kernel-checked, axioms propext, Classical.choice, Quot.sound only. This is the abstract analytic step of Theorem 5.3; the three-source inequality (5.2) and its constants stay human proofs. The seed (Lemma 5.2) is Lean, row J-fate-seed. Not a density theorem, not a halt theorem.",
+          "tag": "EXACT \u2014 LEAN VERIFIED"
+        }
+      ]
+    },
+    "Problems.Juggler.FateSeed": {
+      "declarations": 18,
+      "file": "formal/Problems/Juggler/FateSeed.lean",
+      "imports": [
+        "Problems.Juggler.FateTaoReduction"
+      ],
+      "ledger": [
+        {
+          "id": "J-fate-seed",
+          "statement": "Paper C Lemma 5.2 (seed). Every nonempty backward-closed A with a positive member contains some m \u2265 3 (exists_ge_three_of_backwardClosed: 1 maps to 2 maps to 4 through even blocks). For any such m and every y \u2265 (m+1)^4, the log-mass of A on (\u221ay, y] is at least c_A = (1 \u2212 2/m^4)(3/8 \u00b7 1/(m+1) \u2212 1/((m+1)^2 \u2212 1)) (seed_lemma), and c_A > 0 (seed_constant_pos). Proof as in the paper: the even-block tree S_k of m lies in A and in [m^{2^k}, (m+1)^{2^k}); its log-mass grows by at least 1 \u2212 2 m^{-2^k} per level; the product is at least 3/4 by the geometric series 1/(m^2 \u2212 1) \u2264 1/8; at scale k = log2 log_{m+1} y the tree splits at floor(\u221ay) into members above \u221ay, members whose even blocks lie there, and at most one member equal to floor(\u221ay). The integer form y = floor(x) is the paper's g_A(log x). Kernel-checked, axioms propext, Classical.choice, Quot.sound only. This is one hypothesis of Theorem 5.3; the production inequalities stay human proofs. Not a density theorem, not a halt theorem.",
           "tag": "EXACT \u2014 LEAN VERIFIED"
         }
       ]
@@ -68992,6 +70839,28 @@
           "tag": "EXACT \u2014 LEAN VERIFIED"
         }
       ]
+    },
+    "Problems.Juggler.FateSweepMonotone": {
+      "declarations": 107,
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "imports": [
+        "Problems.Juggler.FateSweep"
+      ],
+      "ledger": [
+        {
+          "id": "J-fate-monotone-pairing-repair",
+          "statement": "Paper C Lemma 4.1' (monotone pairing), with a corrected proof and the same constant. Hypotheses of Lemma 4.1 (steps in [a, b], 0 < a \u2264 b \u2264 1/2, b \u2264 21a/20, (H\u22121) a \u2265 12) plus monotone steps: each half-cell colour receives at least H/3 \u2212 2 terms, in both cell conventions. The proof printed until 2026-09-08 claimed every pair of consecutive cells (\u03c1, \u03c1') has min \u2265 (\u03c1+\u03c1')/3, deduced from a step scale that 'drops by at most X/21 spread over the cells'; monotonicity does not give gradual change, and a = 10/41, b = 21/82 with points \u22122a, \u2212a, 0, a, 2a, 2a+b, 2a+2b, \u2026 (nondecreasing steps) has the interior pair (3, 1), ratio 1/4. It also paired the two partial end cells as if interior. Corrected proof: (a) for interior i < j, \u03c1_j \u2264 \u03c1_i + 1, because the \u03c1_i + 1 steps across cell i span more than 1/2 so one exceeds 1/(2(\u03c1_i+1)), every step inside cell j is at least that, and the \u03c1_j \u2212 1 steps inside cell j span less than 1/2; (b) pair the interior cells consecutively, leave at most three cells (\u2264 3G points) unpaired, so the scarcer colour has at least (H \u2212 3G)/3 + S with S the surplus \u03a3 (min \u2212 sum/3) over pairs, and it suffices that S \u2265 G \u2212 2; (c) G \u2265 7: 7g \u2265 5G so every pair has ratio \u2265 5/12 and S \u2265 (H \u2212 3G)/12 \u2265 (21G \u2212 23)/12 \u2265 G \u2212 2 using H \u2265 24G \u2212 23; (d) 3 \u2264 G \u2264 6, g \u2265 2: ratio \u2265 3/8 except (G, g) = (4, 2), where (a) gives {3,4}-pairs (\u2265 3/7) before {2,3}-pairs (\u2265 2/5) with at most one straddle, S \u2265 (H \u2212 18)/15 > 2; (e) G = 2: S \u2265 0; (f) G = 3, g = 1 (b > 1/4, 3b < 1, 7b < 2): after the first interior 1-cell all cells hold \u2264 2, adjacent (1,1) is impossible (three steps would span > 1), two consecutive pairs with six points are impossible (seven steps would span > 2), so any two consecutive {1,2}-pairs hold \u2265 7 points with \u2265 3 for the scarcer colour, S \u2265 (H \u2212 13)/15 \u2212 1 \u2265 1. Adversarial search over 4.2 \u00b7 10^6 two-valued monotone profiles at 64 phases each (X \u2208 [1, 6), b/a \u2208 {1, 1.02, 1.04, 1.05}, all switch points and 64 phases): no violation, least slack 1.33 over H/3 \u2212 2; fact (a) holds on every profile. Lemma 4.2 consumes the constant \u22122 verbatim, so nothing downstream changes. Kernel-checked in FateSweepMonotone.lean as sweep_monotone_cell, sweep_monotone_fract_lt_half, sweep_monotone_fract_ge_half, sweep_monotone_ceil, sweep_monotone_rep_le_half, sweep_monotone_rep_gt_half; axioms propext, Classical.choice, Quot.sound only. Not a parity theorem about the map.",
+          "tag": "EXACT \u2014 LEAN VERIFIED"
+        }
+      ]
+    },
+    "Problems.Juggler.FateTaoReduction": {
+      "declarations": 33,
+      "file": "formal/Problems/Juggler/FateTaoReduction.lean",
+      "imports": [
+        "Problems.Juggler.FateChernoff"
+      ],
+      "ledger": []
     },
     "Problems.Juggler.FinanceTransfer": {
       "declarations": 92,
@@ -70058,14 +71927,17 @@
         "Problems.Juggler.FateFirstLetter",
         "Problems.Juggler.FatePressure",
         "Problems.Juggler.FateRecursion",
+        "Problems.Juggler.FateSeed",
         "Problems.Juggler.FateSweep",
+        "Problems.Juggler.FateSweepMonotone",
+        "Problems.Juggler.FateTaoReduction",
         "Problems.Juggler.TerminationFloor257",
         "Problems.Juggler.TiltedShare"
       ],
       "ledger": [
         {
           "id": "J-paper-c-trust-surface",
-          "statement": "Paper C's Lean surface, as a build target and an axiom artifact, closing the asymmetry that Papers A and B had one and Paper C did not. formal/Problems/JugglerFatePaper.lean imports exactly the seven modules the paper cites (TerminationFloor257, FateContagion, CubeFiber, TiltedShare, FateRecursion, FateFirstLetter, FateSweep) and is a lake default target; formal/AxiomCheckPaperC.lean prints the axioms of the 99 cited declarations and AxiomCheckPaperC.expected records them: every line is a subset of [propext, Classical.choice, Quot.sound], no sorryAx, no Lean.ofReduceBool (native_decide). formalpedia's paper surface now carries Paper C (root Problems.JugglerFatePaper): no declaration it reaches runs the compiler and none cites one that does. Of the paper's nineteen verification-table rows (fifteen before the split), ten are Lean (Lemmas 2.1, 3.1, 3.2, 4.1, 4.7, 5.1, Theorem 6.1, Lemma 8.1 on Paper A's envelope, Proposition 6.3(i), Proposition 9.3 on the word-weight framework), seven are human proofs, one is a conditional hypothesis and one an observation; every result with analytic content (Theorems 1\u20135, 5.3, 7.2, 7.3, 8.3, 9.1, 9.2, Proposition 4.4, Lemmas 4.1', 4.2\u20134.6, 5.2, Section 10, Appendix C) is a human proof. The table had listed Proposition 9.3 as a human proof after TiltedShare.lean was written; corrected. This row records the artifact, not a theorem; nothing here bounds a density.",
+          "statement": "Paper C's Lean surface, as a build target and an axiom artifact. formal/Problems/JugglerFatePaper.lean imports exactly the twelve modules the paper cites (TerminationFloor257, FateContagion, CubeFiber, TiltedShare, FateRecursion, FateFirstLetter, FateSweep, FateSweepMonotone, FateChernoff, FatePressure, FateTaoReduction, FateSeed) and is a lake default target; formal/AxiomCheckPaperC.lean prints the axioms of the cited declarations and AxiomCheckPaperC.expected records them: every line is a subset of [propext, Classical.choice, Quot.sound], no sorryAx, no Lean.ofReduceBool (native_decide). formalpedia's paper surface carries Paper C (root Problems.JugglerFatePaper): no declaration it reaches runs the compiler and none cites one that does. The verification table has sixteen Lean rows (including Lemma 4.1', Lemma 5.2 and Theorem 7.2 with the contagion bound of Theorem 5.3 as a hypothesis), seven human proofs, one conditional hypothesis and one observation. Theorem 5.3 and Theorem 7.3 remain human proofs. This row records the artifact, not a theorem; nothing here bounds a density.",
           "tag": "COMPUTATIONALLY VERIFIED"
         }
       ]
@@ -70328,13 +72200,13 @@
     }
   },
   "totals": {
-    "declarations": 5065,
-    "declarations_with_a_ledger_row": 3307,
-    "ledger_rows_naming_a_file": 345,
-    "modules": 216,
+    "declarations": 5223,
+    "declarations_with_a_ledger_row": 3432,
+    "ledger_rows_naming_a_file": 347,
+    "modules": 219,
     "trust": {
       "compiler": 57,
-      "kernel": 5008
+      "kernel": 5166
     }
   }
 }
