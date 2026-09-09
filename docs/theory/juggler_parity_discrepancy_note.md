@@ -1,6 +1,6 @@
 ---
 title: "Parity Statistics of Nested Floor Powers"
-subtitle: "Four-Step Descent and Conditional Extensions for the Juggler Map"
+subtitle: "Finite-Step Descent and Conditional Extensions for the Juggler Map"
 author: Philippe Cochin
 date: 9 September 2026
 lang: en
@@ -12,22 +12,22 @@ The Juggler map applies the integer part of the square root at even
 positive integers and of the three-halves power at odd positive integers.
 We prove that the starting values admitting a power-envelope descent
 certificate within four operations have natural density \(13/16\).
-The analytic input is a mixed exponential-sum estimate for two nested
-floor powers and a smooth third coordinate. After one differencing,
-the remaining floor error is small in the required frequency range.
-An exact carry expansion and second-derivative estimates summed over
-every gap cell give the error \(O(N^{23/24}(\log(2N))^3)\) for the
-four-step count. We also repair the OE-branch third-letter count using
-an exact square-root identity, and give a partition-aware curvature
-estimate for a basic collision model. These arguments restore part of
-an earlier draft without asserting its general decorated kernel bound.
-Under two additional finite-chain correlation hypotheses the
-five-step certificate density is \(7/8\). Fair-share densities for
-every fixed-depth odd-rooted itinerary would imply density-one finite
-certificates; no uniformity in depth is needed for that implication.
-The general kernel estimate, its short-interval extension, and the
-remaining correlation hypotheses are unproved here. No result asserts
-universal arrival at \(1\).
+We also prove that the five-letter itinerary \(OOEOE\) has count
+\(N/32+O(N^{47/48})\). Together these give a specified certificate
+class of density \(27/32\), all of whose starts descend within five
+operations. The analytic arguments use exact carry expansions and
+second-derivative estimates summed over every gap cell. For the
+fifth letter, centering a Fourier expansion at the integer part of
+a smooth coefficient cancels the growing first-floor term; the
+additional interval boundaries are retained in a summed mixed-mode
+estimate. We also give a partition-aware curvature estimate for a
+basic collision model. The full five-step certificate density \(7/8\)
+requires only the remaining formal-chain correlation hypothesis for
+\(OOOEE\). Fair-share densities for every fixed-depth odd-rooted
+itinerary would imply density-one finite certificates. The general
+decorated kernel, its short-interval extension, and the remaining
+correlation hypotheses are unproved here. No result asserts universal
+arrival at \(1\).
 
 **Keywords:** Juggler map; nested floor powers; parity correlations;
 discrepancy; stopping time; conditional descent.
@@ -69,7 +69,9 @@ Collatz is transferred to the Juggler map.
 
 This version replaces an earlier working draft and the first conditional
 revision. Section 4.2 repairs the restricted \(23/24\) estimate needed
-for four-step certificates by a complete small-shift argument. The
+for four-step certificates by a complete small-shift argument.
+Section 4.3 proves the fifth-letter split of \(OOEO\), raising the
+unconditional certificate class to density \(27/32\). The
 general \(95/96\) kernel estimate remains open here. Section 7.2
 repairs a basic collision model while stating the additional work
 needed for the decorated kernel. The former threshold
@@ -241,7 +243,7 @@ and either parity of \(\lfloor n^{3/4}\rfloor\) have area \(1/4\).
 Each therefore counts \(P/8\) odd starts on the block, with the
 stated error. Sum dyadically. \(\square\)
 
-## 4. Explicit correlation hypotheses
+## 4. Correlation criteria and proved cases
 
 For a fixed odd-rooted word \(w\) of length \(d\) and nonempty
 \(A\subseteq\{1,\ldots,d-1\}\), define
@@ -555,7 +557,296 @@ from a large block is assumed on smaller ones. \(\square\)
 
 This establishes the hypothesis used for four-step certificates.
 It does not estimate the expanding third-level coordinate \(v^{3/2}\)
-or the other formal chains required at length five.
+or every formal chain required at length five. The next subsection
+handles the \(OOEOE\) chain.
+
+### 4.3 The fifth-letter split of OOEO
+
+Write
+\[
+X=n^{3/2},\quad m=\lfloor X\rfloor,\quad Y=m^{3/2},
+\quad v=\lfloor Y\rfloor,\quad U=v^{1/2},\quad
+w=\lfloor U\rfloor,\quad W=w^{3/2}.
+\]
+The four formal coordinates for \(OOEOE\) are \(X,Y,U,W\).
+The new floor is handled by centering its Fourier expansion at the
+integer part of a smooth coefficient. This introduces many intervals;
+the next two lemmas keep their boundary cost explicit.
+
+**Lemma 4.7 (a centered Fourier expansion).** For \(0\le\beta\le1\), put
+\[
+a_r(\beta)=\int_0^1e(-(\beta+r)t)\,dt .
+\]
+For integral \(T\ge2\), uniformly in real \(t\) and \(\beta\),
+\[
+e(-\beta\{t\})=\sum_{|r|\le T}a_r(\beta)e(rt)+O(E_T(t)),
+\qquad
+|a_r(\beta)|+|a_r'(\beta)|\ll(1+|r|)^{-1}.
+\tag{4.13}
+\]
+Here \(E_T\) is as in Lemma 4.3. If \(B=N+\beta\), \(N\in\mathbb Z\),
+then \(e(-B\{t\})=e(-Nt)e(-\beta\{t\})\) exactly.
+On an interval where \(N=\lfloor B(x)\rfloor\) is fixed and
+\(\beta(x)\) is monotone, the sum over \(|r|\le T\) of the
+supremum norms and total variations of \(a_r(\beta(x))\)
+is \(O(\log(2T))\).
+
+*Proof.* The integral defines the coefficients also at the removable
+singularities of
+\[
+a_r(\beta)=\frac{1-e(-\beta)}{2\pi i(r+\beta)}.
+\]
+Integration by parts gives the asserted bounds for \(|r|\ge2\),
+including for the derivative with respect to \(\beta\); the remaining
+coefficients and their derivatives are bounded by their integrals.
+For \(|r|\ge2\), the coefficient is
+\((1-e(-\beta))/(2\pi ir)+O(r^{-2})\), uniformly in \(\beta\).
+The tail of the first series is bounded by the argument of Lemma 4.3,
+and the absolutely convergent remainder has tail \(O(T^{-1})\).
+Near an integer the paired \(r,-r\) terms are bounded as in that lemma.
+At the integer itself both sides are bounded and \(E_T=1\).
+This proves (4.13) at every point. Finally the variation of \(\beta\)
+on one interval is at most one, and summing the coefficient bounds
+gives the logarithm. \(\square\)
+
+**Lemma 4.8 (mixed sums over the frequency intervals).** Set
+\[
+J_0=P^{1/48},\qquad H=\lfloor P^{1/12}\rfloor .
+\]
+Let \(1\le |k|\le J_0\), \(1/2\le u\le J_0/2\), and \(|i|\le J_0\).
+Partition a subinterval of \([P,2P]\) into \(D\) intervals \(I\), with
+\[
+D\ll |k|P^{9/16},\qquad |I|\ll L:=P^{7/16}/|k|.
+\]
+For a fixed constant \(C\), define
+\[
+M_I=\sup_{\substack{|R|\le C|k|P^{9/16}\\ I'\subseteq I}}
+\left|\sum_{\substack{n\in I'\\ n\ \mathrm{odd}}}
+e\left(\tfrac i2X(n)+uY(n)+\tfrac k2 n^{27/16}+Rn^{9/8}\right)\right|.
+\]
+The second supremum ranges over subintervals. Then
+\[
+\sum_I M_I\ll_C P^{23/24}.
+\tag{4.14}
+\]
+The constants in the partition assumptions are fixed. In particular,
+this is a bound after summing all the frequency intervals, not a
+rescaling of a full-block discrepancy estimate.
+
+*Proof.* Fix a shift \(1\le h<H\). The exact carry argument of
+Lemma 4.4 applies on every \(I\). The additional smooth part has
+differenced second derivative
+\[
+O\bigl(|i|hP^{-3/2}+|k|hP^{-21/16}
++|R|hP^{-15/8}\bigr)
+=O_C\bigl(J_0hP^{-3/2}+|k|hP^{-21/16}\bigr).
+\]
+This is \(o(uhP^{-3/4})\). Thus the zero-mode curvature and the
+dominance of every nonzero carry mode are unchanged.
+
+Intersecting the frequency intervals with the gap cells produces
+\(O(D+hP^{1/2})\) cells in total: on an interval of length \(\ell\),
+the gap function has variation \(O(hP^{-1/2}\ell)\).
+Retaining these boundaries, the zero carry modes cost
+\[
+\ll (uh)^{1/2}P^{5/8}
++(h/u)^{1/2}P^{7/8}
++D(uh)^{-1/2}P^{3/8}.
+\]
+With carry cutoff \(R_0=\lfloor P^{1/4}\rfloor\), the nonzero modes cost
+\[
+\ll R_0^{1/2}P^{3/4}+hP^{3/4}+DP^{1/4}.
+\]
+These follow by applying the second-derivative estimate on every
+intersection, exactly as in (4.10). The weights \(z,1-z\) in the
+carry identity have uniformly bounded variation on each intersection.
+
+The discarded floor terms cost \(O(uhP^{3/4}+uP^{1/4})\).
+The truncated carry error costs \(O(P^{5/6}+P^{3/4}\log P)\)
+over the whole partition. For each local sum, its two endpoints
+\(n,n+2h\) lie in the same \(I\), so this error is bounded by a fixed
+multiple of \(\sum_{n\in I}E_{R_0}(X(n))\). The disjoint intervals
+therefore charge (4.3) only once. The same bounds hold after taking
+the suprema over \(R\) and subintervals, because their local bounds
+use only \(|I|\), its gap-cell count, and this nonnegative error sum.
+
+If \(B_h\) denotes the sum over \(I\) of those supremum bounds for
+the differenced sums, the collected costs imply
+\[
+B_h\ll_C P^{7/8}(1+h^{1/2})
++|k|P^{15/16}h^{-1/2}.
+\tag{4.15}
+\]
+Indeed \(uh\le P^{5/48}/2\), \(u\ge1/2\), and
+\(DP^{1/4}\ll |k|P^{13/16}\le P^{5/6}\).
+
+Apply van der Corput's inequality to each local sum, padding by zero
+inside an interval of length \(O(L)\) when taking a subinterval.
+Since \(H\ll L\), its squared bound is
+\[
+O\left(\frac LH\left(\#I+\sum_{h<H}|T_{I,h}|\right)\right),
+\]
+where \(\#I\) counts odd integers and endpoint constants are harmless.
+Cauchy--Schwarz over the \(D\) intervals, together with \(DL\ll P\),
+gives
+\[
+\begin{split}
+\left(\sum_I M_I\right)^2
+&\ll_C \frac{P^2}{H}+\frac P H\sum_{h<H}B_h\\
+&\ll_C \frac{P^2}{H}+P^{15/8}H^{1/2}
++|k|P^{31/16}H^{-1/2}
+\ll_C P^{23/12}.
+\end{split}
+\]
+The three largest exponents are respectively
+\(2-1/12\), \(15/8+1/24\), and \(1/48+31/16-1/24\),
+all equal to \(23/12\). This proves (4.14), including partial
+endpoint intervals. \(\square\)
+
+**Theorem 4.9 (four formal coordinates).** Uniformly over nonzero
+integer quadruples with \(\max(|i|,|j|,|\ell|,|k|)\le P^{1/48}\),
+\[
+\left|\sum_{\substack{P<n\le2P\\n\ \mathrm{odd}}}
+e\left(\tfrac i2X+\tfrac j2Y+\tfrac\ell2U+\tfrac k2W\right)\right|
+\ll P^{23/24}\log(2P).
+\tag{4.16}
+\]
+
+*Proof.* We first bound the error in (4.13) along \(U(n)\).
+The comparison \(U=n^{9/8}+O(P^{-3/8})\) from Corollary 4.6 gives,
+for positive integer \(q\),
+\[
+\left|\sum e(qU)\right|
+\ll q^{1/2}P^{9/16}+q^{-1/2}P^{7/16}+qP^{5/8}.
+\]
+Erdős--Turán with cutoff \(\lfloor P^{1/8}\rfloor\) gives interval
+discrepancy \(O(P^{7/8})\) for \(\{U(n)\}\). The distance-strip
+argument of Lemma 4.3 therefore gives
+\[
+\sum E_T(U(n))\ll P\log(2T)/T+P^{7/8}.
+\tag{4.17}
+\]
+All sums here are over the same odd-input block.
+
+When \(k=0\), Theorem 4.5 and the comparison for \(U\) prove (4.16).
+Suppose \(k\ne0\), and put \(\theta=\{X\}\), \(\xi=\{U\}\).
+Taylor's theorem, with its second derivative bounded on the unit
+floor intervals, gives
+\[
+\begin{split}
+U&=n^{9/8}-\tfrac34\theta n^{-3/8}+O(P^{-9/8}),\\
+W&=n^{27/16}-\tfrac98\theta n^{3/16}
+-\tfrac32 n^{9/16}\xi+O(P^{-9/16}).
+\end{split}
+\tag{4.18}
+\]
+For clarity, \(U=m^{3/4}+O(P^{-9/8})\).
+Also \(W=v^{3/4}-(3/2)v^{1/4}\xi+O(P^{-9/16})\),
+\(v^{3/4}=m^{9/8}+O(P^{-9/16})\), and
+\(v^{1/4}=n^{9/16}+O(P^{-15/16})\); expanding \(m=X-\theta\)
+proves both displayed formulas.
+
+Set
+\[
+B(x)=\tfrac{3k}{4}x^{9/16},\qquad
+C(x)=\tfrac{9k}{16}x^{3/16},\qquad T=\lfloor P^{1/8}\rfloor.
+\]
+Partition by \(N=\lfloor B(x)\rfloor\), and put \(\beta=B-N\).
+Since \(|B'|\asymp |k|P^{-7/16}\), this partition has
+\(D\ll |k|P^{9/16}\) intervals, each of length
+\(O(P^{7/16}/|k|)\). The two endpoint intervals can be shorter.
+The total variation of \(\beta\) on any one interval is at most one.
+
+Use (4.18), then expand \(e(-B\{U\})\) by Lemma 4.7. Formula
+(4.17) bounds its total truncation error by \(O(P^{7/8}\log P)\);
+the initial Taylor error is \(O(|k|P^{7/16})\).
+On a fixed interval and for \(|r|\le T\), set
+\[
+R=r-N+\ell/2 .
+\]
+This is a fixed frequency on that interval. The corresponding phase is
+\[
+\tfrac i2X+\tfrac j2Y+\tfrac k2 n^{27/16}+RU-C\theta .
+\]
+The first formula in (4.18) replaces it by
+\[
+\tfrac i2X+\tfrac j2Y+\tfrac k2 n^{27/16}+Rn^{9/8}
+-\bigl(C+\tfrac34Rn^{-3/8}\bigr)\theta
++O(|R|P^{-9/8}).
+\]
+The essential cancellation is the exact identity
+\[
+C+\tfrac34Rn^{-3/8}
+=\tfrac34n^{-3/8}(B+R)
+=\tfrac34n^{-3/8}(r+\beta+\ell/2).
+\tag{4.19}
+\]
+Its absolute value is \(O((T+P^{1/48})P^{-3/8})\), so the
+remaining \(\theta\)-term can be deleted. Since
+\(|R|\ll |k|P^{9/16}\), all these replacements, summed with the
+coefficient masses, cost
+\[
+O\bigl((|k|P^{7/16}+P^{5/8}(T+P^{1/48}))\log P\bigr)
+\ll P^{3/4}\log P.
+\]
+Thus it remains to estimate the smooth-frequency phases in Lemma 4.8.
+If \(j\ne0\), conjugation if needed makes \(u=|j|/2\ge1/2\).
+Partial summation for the coefficients \(a_r(\beta)\), whose summed
+supremum norms and variations are \(O(\log P)\) on each interval,
+and (4.14) give \(O(P^{23/24}\log P)\).
+
+If \(j=0\), differentiate with \(R\) fixed. The remaining phase
+\(\Phi=iX/2+kn^{27/16}/2+Rn^{9/8}\) satisfies
+\[
+\begin{split}
+\Phi''(x)&=\tfrac{3i}{8}x^{-1/2}
++\tfrac{297k}{512}x^{-5/16}
++\tfrac{9R}{64}x^{-7/8}\\
+&=\tfrac{243k}{512}x^{-5/16}
++O\bigl(|i|P^{-1/2}+(T+|\ell|+1)P^{-7/8}\bigr).
+\end{split}
+\]
+The last equality substitutes \(R=-B(x)+(r+\beta(x)+\ell/2)\)
+only after differentiation. The error is \(o(|k|P^{-5/16})\).
+Summing the second-derivative bounds over every frequency interval
+costs
+\[
+O\bigl(|k|^{1/2}P^{27/32}
++D|k|^{-1/2}P^{5/32}\bigr)
+\ll |k|^{1/2}(P^{27/32}+P^{23/32}).
+\]
+The logarithmic coefficient mass still leaves this below (4.16).
+All zero coordinates and both signs of every mode have now been covered.
+\(\square\)
+
+**Corollary 4.10 (the OOEO split).** Each of the sixteen formal
+sign classes of \((\psi(X),\psi(Y),\psi(U),\psi(W))\) over odd
+\(n\le N\) has count
+\[
+N/32+O(N^{47/48}).
+\tag{4.20}
+\]
+In particular, for each \(a\in\{OOEOE,OOEOO\}\),
+\[
+\#\{n\le N:\operatorname{word}_5(n)=a\}
+=N/32+O(N^{47/48}).
+\]
+The hypothesis \(\mathrm H(OOEOE;1/48)\) holds.
+
+*Proof.* Apply four-dimensional Erdős--Turán--Koksma on each dyadic
+block with cutoff \(\lfloor P^{1/48}\rfloor\). Theorem 4.9 bounds
+its box discrepancy by
+\[
+O\bigl(P^{47/48}+P^{23/24}(\log(2P))^5\bigr)
+=O(P^{47/48}).
+\]
+The sixteen half-cubes have volume \(1/16\); the number of odd
+inputs is \(P/2+O(1)\). Summing dyadically proves (4.20).
+All fifteen nonempty sign products are bounded by summing these
+discrepancies. The signs \((-1,+1,-1,\pm1)\) select the two
+actual words by Lemma 2.2. This does not count the formal chain
+through the expanding third-level coordinate \(v^{3/2}\).
+\(\square\)
 
 ## 5. Finite-depth descent densities
 
@@ -590,42 +881,53 @@ and \(OOEE\). Theorem 3.1 supplies the first two counts. The
 so has count \(N/16+O(N^{23/24}(\log(2N))^3)\).
 Their densities add to \(1/2+1/4+1/16=13/16\). \(\square\)
 
-**Theorem 5.3 (conditional five-step density).** Fix
-\(0<\delta_0<1/24\). Suppose \(\mathrm H(w;\delta_w)\) holds for
-each
+**Theorem 5.3 (a five-step subfamily of density \(27/32\)).** Let
 \[
-w\in\mathcal W=\{OOOEE,OOEOE\},\qquad \delta_w>0.
+\mathcal D_5=\mathcal C_4\ \cup\
+\{n\ge2:\operatorname{word}_5(n)=OOEOE\}.
 \]
-Then
+Then \(\mathcal D_5\subseteq\mathcal C_5\) and
 \[
-\#(\mathcal C_5\cap[1,N])=\frac{7N}{8}+O(N^{1-\delta_*}),
-\qquad \delta_*=\min\bigl(\delta_0,\min_{w\in\mathcal W}\delta_w\bigr).
+\#(\mathcal D_5\cap[1,N])=27N/32+O(N^{47/48}).
 \]
-The two qualitative hypotheses \(\mathrm H_0(w)\) suffice for
+In particular the lower natural density of \(\mathcal C_5\) is at
+least \(27/32\).
+
+*Proof.* The added prefix is disjoint from \(E,OE,OOEE\), and
+\(3^3<2^5\) certifies its contraction. Add Corollary 4.10 to
+Theorem 5.2, absorbing the smaller four-step error. The main terms
+sum to \(13/16+1/32=27/32\). This does not assert that
+\(\mathcal D_5\) exhausts \(\mathcal C_5\). \(\square\)
+
+**Theorem 5.4 (conditional full five-step density).** Suppose
+\(\mathrm H(OOOEE;\delta)\) holds for some \(\delta>0\). Then
+\[
+\#(\mathcal C_5\cap[1,N])
+=\frac{7N}{8}+O(N^{1-\min(1/48,\delta)}).
+\]
+The qualitative hypothesis \(\mathrm H_0(OOOEE)\) suffices for
 natural density \(7/8\).
 
-*Proof.* The two additional prefix classes in (5.1) are disjoint
-from each other and from the four-step classes. Each has density
-\(1/32\) by Proposition 4.1. Add these counts to Theorem 5.2,
-absorbing its logarithmic factor into \(N^{1-\delta_0}\).
-The total density is \(13/16+1/32+1/32=7/8\), and Lemma 5.1
-exhausts certificates through length five. \(\square\)
+*Proof.* Lemma 5.1 shows that \(\mathcal C_5\) is the disjoint
+union of \(\mathcal D_5\) and the \(OOOEE\) class. Proposition 4.1
+counts the latter as \(N/32+O(N^{1-\delta})\), or with error
+\(o(N)\) in the qualitative case. Add Theorem 5.3. \(\square\)
 
 The exact fractions and their analytic requirements can be read together:
 
-| Certificate length | Minimal prefixes added | Cumulative density | Status |
+| Certificate family | Minimal prefixes added | Density | Status |
 |---|---|---|---|
-| 1 | \(E\) | \(1/2\) | Unconditional |
-| 2 | \(OE\) | \(3/4\) | Theorem 3.1 |
-| 4 | \(OOEE\) | \(13/16\) | Unconditional: Theorem 5.2 |
-| 5 | \(OOOEE,OOEOE\) | \(7/8\) | Conditional on the two hypotheses in Theorem 5.3 |
+| \(\mathcal C_1\) | \(E\) | \(1/2\) | Unconditional |
+| \(\mathcal C_2\) | \(OE\) | \(3/4\) | Theorem 3.1 |
+| \(\mathcal C_4\) | \(OOEE\) | \(13/16\) | Theorem 5.2 |
+| \(\mathcal D_5\subseteq\mathcal C_5\) | \(OOEOE\) | \(27/32\) | Theorem 5.3 |
+| \(\mathcal C_5\) | \(OOOEE\) | \(7/8\) | Conditional: Theorem 5.4 |
 
-For the five-letter words, the four tested real images are, respectively,
+For the remaining word \(OOOEE\), the four tested real images are
 \((n^{3/2},m^{3/2},v^{3/2},z^{1/2})\), with
-\(z=\lfloor v^{3/2}\rfloor\), and
-\((n^{3/2},m^{3/2},v^{1/2},u^{3/2})\), with
-\(u=\lfloor v^{1/2}\rfloor\). Each hypothesis concerns all fifteen
-nonempty sign products of its four coordinates.
+\(z=\lfloor v^{3/2}\rfloor\). The hypothesis concerns all fifteen
+nonempty sign products of these coordinates. This formal chain is
+different from the one proved in Corollary 4.10.
 
 Separately, if \(\mathrm H_0(w)\) holds for every odd-rooted word of
 length four, all eight such classes have density \(1/16\).
@@ -925,6 +1227,12 @@ Apply Lemma 7.5 with
 Its terms give (7.5); the extra \(M^{-1/2}\) is absorbed by
 \((h/u)^{1/2}P^{7/8}\). \(\square\)
 
+For integer \(w\) in the collision range, \(w\ge1\) implies
+\(uh\gg P^{1/4}\). Formula (7.5) is then \(O(P^{7/8})\):
+its second term is \(h(uh)^{-1/2}P^{7/8}\ll P^{7/8}\),
+and the remaining terms are no larger. This verifies that the basic
+integer collision band leaves a power saving.
+
 Thus the transition cost need not be paid independently on every
 gap cell: a global sublevel argument counts how many cells can meet
 each curvature band. To use this in the complete kernel proof one
@@ -944,7 +1252,8 @@ The status of the principal statements is as follows.
 | Certificate density \(3/4\) | Classical analytic proof in Theorem 3.1 |
 | Correlation-to-count and Fourier-to-parity implications | Proofs in Propositions 4.1 and 4.2 |
 | Certificate density \(13/16\) | Unconditional: Corollary 4.6 and Theorem 5.2 |
-| Certificate density \(7/8\) | Conditional: two five-letter hypotheses unproved |
+| Certificate subfamily density \(27/32\) | Unconditional: Corollary 4.10 and Theorem 5.3 |
+| Full five-step certificate density \(7/8\) | Conditional: the \(OOOEE\) hypothesis remains unproved |
 | Density-one finite certificates | Conditional on \(\mathrm{FD}\); no depth uniformity assumed |
 | Restricted mixed sums | Unconditional: Theorem 4.5 |
 | General decorated kernel and short-interval extension | Unproved; no numerical threshold certified |
@@ -958,7 +1267,9 @@ build, and an exact-arithmetic validation script. That script checks
 the finite certificate list, the indicator identity on a finite census,
 and selected algebraic inequalities. A second exact-arithmetic script checks
 the differenced identity, carry expansion, and exponent comparisons used in
-the repairs. Those checks support reproducibility;
+the four-step repairs. A third checks the exact fifth-letter centering
+identity, frozen-frequency curvature coefficient, and interval-boundary
+exponent budget. Those checks support reproducibility;
 they are not proofs of asymptotic cancellation.
 
 Earlier repository audits and Lean modules concern identities,
@@ -968,9 +1279,9 @@ complete manuscript. Earlier theorem numbers are superseded
 and should not be used as citations to unconditional nested estimates.
 Companion texts that rely on those estimates require their own review.
 
-The unconditional certificate density proved here is now \(13/16\).
-Reaching \(7/8\) by this route requires the two five-letter
-correlation hypotheses in Theorem 5.3. Section 7.2 supplies a
+The unconditional certificate subfamily proved here has density \(27/32\).
+The full five-step density \(7/8\) requires the remaining \(OOOEE\)
+correlation hypothesis in Theorem 5.4. Section 7.2 supplies a
 partition-aware estimate for a basic collision model, but all
 decorated phase families and their weights still need to be
 controlled before the former kernel theorem can be restored.
@@ -985,7 +1296,7 @@ earlier draft and this revision, including the formulation and review
 of proof arguments, drafting, programming, and discussion of Lean
 formalizations. The September 2026 review with OpenAI Codex identified
 unresolved analytic steps and prepared this conditional formulation,
-its proofs, the subsequent four-step and collision-model repairs,
+its proofs, the subsequent four-step, fifth-letter, and collision-model repairs,
 and its release materials. AI assistance and automated
 checks are not independent mathematical validation. The author is
 responsible for the statements, proofs, code, and final approval of

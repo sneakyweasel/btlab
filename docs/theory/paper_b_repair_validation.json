@@ -5,5 +5,5 @@
   "carry_expansion_cases": 2000,
   "exponent_comparisons": 40,
   "restored_four_step_density": "13/16, by Corollary 4.6 and Theorem 5.2 of the repaired manuscript",
-  "remaining_open": "General decorated kernel, its short-interval version, and five-step correlation hypotheses."
+  "remaining_open": "General decorated kernel, its short-interval version, and the OOOEE correlation hypothesis."
 }

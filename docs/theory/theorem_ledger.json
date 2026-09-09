@@ -1,5 +1,27 @@
 [
  {
+  "id": "J-cycle-ooe-family-chain-bound",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For odd r>=3 let X(r)=r^8+8 and Z(r)=r^9+9r-1, with the previously proved exact Juggler block J^3(X(r))=Z(r)>X(r). A consecutive family transition r->s requires s^8=r^9+9r-9 and forces r=1 modulo 48: odd eighth powers modulo32 force r=1 modulo16; r=2 modulo3 is impossible and 3|r gives right-side 3-adic valuation 2, impossible for an eighth power. For a transition whose destination can itself make another family transition, both r,s=1 modulo16, and factoring s^8-1=(r-1)(r^8+...+r+10) gives nu2(s-1)=nu2(r-1)-2. Therefore k consecutive family transitions from r satisfy k<=max(0,floor((nu2(r-1)-2)/2)); no infinite exact three-step concatenation exists. The final endpoint need not itself continue, so the valuation drop is asserted only through continuing destinations. Continuing transitions also have nu3(s-1)=nu3(r-1)+2. This excludes only repetition of this exact growth family, not later reentry after other step counts, another growth pattern, an escaping full orbit, or a cycle. The six archived parameters all fail r=1 modulo3 and their full finite traces reach 1, but universal family termination remains unproved. AI-assisted written proof with independent AI valuation audits; no new Lean verification or external priority claim.",
+  "source": "docs/problems/juggler_cycle_remainder_transport.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_remainder_transport.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cycle-ooe-exact-remainder-repair",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For a prescribed OOE block x->u->v->z with u>=3, retain the actual square remainder R=x^3-u^2, put X=x^3,B=X-R=u^2,t=sqrt X,eta=t-u in [0,1), and validate z^8<=B^3<(z+1)^8. With Delta=(t^3-u^3)/(2z^2) and C=3tR/(4z^2), the exact identity C-Delta=eta^2(t+2u)/(4z^2) gives 0<=C-Delta<5/6, using z^2>=u. Thus q=floor((t^3-z^4)/(2z^2)-C) and d=floor((u^3-z^4)/(2z^2)) satisfy d in {q,q+1}; q is signed and may a priori be -1. For K=2X-3R>0, q=(isqrt(K^2 X)-2z^4) floor-divided by 4z^2. Define h=min(q+1,2z),N=z^2+h. Then v=N-kappa for kappa in {0,1,2,3}, chosen as the smallest j with (N-j)^4<=B^3. For odd x,z the full OOE guard is exactly R even and N-kappa even, under the validated remainder record and endpoint cell. The specific OOEOE extension is recognized by validating z*=oddProjection(x^(9/8)), applying this prefix guard, then validating and applying the exact OE suffix guard. Retaining R requires initialization or certification and retains absolute-state information; this procedure still evaluates constituent guards and does not prove uniform arbitrary-word closure or a computational speedup. The existing aggregate-defect composition is background, not a new result. AI-assisted written proof with exact controls and AI audit; no new Lean or no-cycle claim.",
+  "source": "docs/problems/juggler_cycle_remainder_transport.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_remainder_transport.py"
+  ],
+  "related_conjectures": []
+ },
+ {
   "id": "J-cycle-oe-quotient-parity-carry",
   "tag": "EXACT — HUMAN PROOF",
   "statement": "For integers N>=1 and y>=1 with y^4<=N<(y+1)^4, put u=isqrt(N), c=u-y^2, d=floor((N-y^4)/(2y^2)), and h=min(d,2y). Then 0<=c<=2y and c=h-kappa with kappa in {0,1,2}. For q=y^2+h, kappa is 0 if q^2<=N, 1 if (q-1)^2<=N<q^2, and 2 otherwise; in the last case (q-2)^2<=N is guaranteed. Thus for an OE block with odd source x and odd exact endpoint y, N=x^3 yields a necessary-and-sufficient hidden parity guard: h-kappa is odd. The true OE block 93->896->29 has d=h=57,c=55,kappa=2, so the correction bound is attained. The identity uses one source-dependent integer quotient and two square comparisons; it is an exact guard for this single block, not closure under all return-word substitutions or a cycle theorem. AI-assisted written proof with exact boundary controls and AI audit; no new Lean verification or external novelty claim.",
@@ -4399,7 +4421,7 @@
  {
   "id": "J-depth5-contracting",
   "tag": "CONJECTURE",
-  "statement": "Publication review 9 September 2026: the analytic claim below is not established by Paper B and is retained only as a historical research target. The revised paper gives conditional implications, not this analytic proof. See docs/theory/paper_b_review.md. Historical target: Theorem T, Phase-27 repair, imported as Paper B Theorem 6.3: #OOOEE(N), #OOOEO(N) = N/32 + O(N^{1-1/96+eps}) and #OOEOE(N), #OOEOO(N) = N/32 + O(N^{47/48+eps}). The fifth-letter X-modes of the OOOE* sawtooth C θ, C ≍ l n^{3/16}, are Lemma 5.2 Stage-2 r-modes e(u X) with |u| ≤ P^{1/4} after Lemma 3.7 at T = R_0 = P^{1/4} and J_5 = 2 P^{1/96} (T ≥ 8(1+|C|) since |C| = O(P^{19/96})); they are not Lemma 5.2(ii) decorations and do not enlarge |q'|. Theorem 6.1 Steps D–E apply: the i-passenger stays (D3), the frozen theta-coefficient B = 27/32 k j nu^{3/8} is unchanged by the X-modes, and the sign-critical composites 243/512 and 1095/1024 survive. The OOEO* curvature λ_2 = (-81/1024) k n^{-5/16} + lower terms keeps sign under Lemma 3.10(a). Withdrawn from Paper B in Phase 26; restored in the laboratory record (lemma Part XII) and imported 2 September 2026. Not a termination claim.",
+  "statement": "OOEOE repair, 9 September 2026: the OOEOE/OOEOO portion is now proved by current Paper B Corollary 4.10, using a new centered-frequency proof with frozen curvature 243/512. The combined historical target below remains CONJECTURE because OOOEE/OOOEO are unproved. Publication review 9 September 2026: the analytic claim below is not established by Paper B and is retained only as a historical research target. The revised paper gives conditional implications, not this analytic proof. See docs/theory/paper_b_review.md. Historical target: Theorem T, Phase-27 repair, imported as Paper B Theorem 6.3: #OOOEE(N), #OOOEO(N) = N/32 + O(N^{1-1/96+eps}) and #OOEOE(N), #OOEOO(N) = N/32 + O(N^{47/48+eps}). The fifth-letter X-modes of the OOOE* sawtooth C θ, C ≍ l n^{3/16}, are Lemma 5.2 Stage-2 r-modes e(u X) with |u| ≤ P^{1/4} after Lemma 3.7 at T = R_0 = P^{1/4} and J_5 = 2 P^{1/96} (T ≥ 8(1+|C|) since |C| = O(P^{19/96})); they are not Lemma 5.2(ii) decorations and do not enlarge |q'|. Theorem 6.1 Steps D–E apply: the i-passenger stays (D3), the frozen theta-coefficient B = 27/32 k j nu^{3/8} is unchanged by the X-modes, and the sign-critical composites 243/512 and 1095/1024 survive. The OOEO* curvature λ_2 = (-81/1024) k n^{-5/16} + lower terms keeps sign under Lemma 3.10(a). Withdrawn from Paper B in Phase 26; restored in the laboratory record (lemma Part XII) and imported 2 September 2026. Not a termination claim.",
   "source": "docs/research/juggler_two_step_parity_lemma.md",
   "lean": "",
   "tests": [
@@ -4411,12 +4433,12 @@
  {
   "id": "J-five-step-descent-density",
   "tag": "EXACT — HUMAN PROOF",
-  "statement": "Conditional Paper B Theorem 5.3 (9 September 2026 repair): under H_0(w) for the two words w in {OOOEE, OOEOE}, the starts admitting a power-envelope certificate of length at most five have natural density 7/8. Under H(w; delta_w), any 0<delta_0<1/24 gives error O(N^(1-delta_*)), delta_*=min(delta_0,delta_w). The four-step contribution 13/16 is now unconditional; the two five-letter hypotheses remain unproved. No universal termination conclusion.",
+  "statement": "Conditional Paper B Theorem 5.4 (9 September 2026 OOEOE repair): H_0(OOOEE) suffices for natural density 7/8 of the entire five-step power-envelope certificate set C_5. Under H(OOOEE; delta), the count is 7N/8 + O(N^(1-min(1/48,delta))). The disjoint subfamily D_5 has unconditional density 27/32 by Theorem 5.3; the OOOEE correlation remains unproved. No universal termination conclusion.",
   "source": "docs/theory/juggler_parity_discrepancy_note.md",
   "lean": "",
   "tests": [
    "tools/validate_paper_b.py",
-   "tools/validate_paper_b_repairs.py"
+   "tools/validate_paper_b_ooeoe.py"
   ],
   "related_conjectures": []
  },
@@ -7468,7 +7490,7 @@
  {
   "id": "J-clotho-basin-every-block-criterion",
   "tag": "CONJECTURE",
-  "statement": "J-lachesis-walk-rotation does not know whether the orbit closes: the clock positions of a divergent orbit's states below y are the rotation orbit {c(n) + j alpha : j <= O(y)}, O(y) the odd count before the walk first exceeds u(y) = log2(ln y / ln n). Its basin has an E-burst in the block at y iff a point of that orbit lies within 1/ln y of c(y) mod 1; sufficient is gap(O(y)) <= 1/ln y, gap(O) the largest gap of {j alpha mod 1 : j <= O}, non-increasing in O. Thresholds O*(y) = min{O : gap(O) <= 1/ln y}: 40 at 1e12, 146 at 1e30, 252 at 1e50, 305 at 1e68, 358 at 1e100, 1635 at 1e300, 12275 at 1e1000 (O gap(O) swings between 1.26 and 6.56 with the continued fraction of alpha, three-distance). The gate is meaningful only for u(y) >= log2 3, i.e. y >= n^3: the hug band [0, log2 3) is the minimal invariant band of the walk (Lean hug_band_step_exists, narrow_band_dead, dead_zone_nonempty), and below 1 no even step is possible and at most one odd step fits (no_even_step_below_one, odd_steps_below_one_le_one), so for y < n^3 every orbit has O(y) <= 2 < O*(y) and no basin is every-block there; at n = 3.5e8 the 1e12 row (u = 0.49) is vacuous. Translated to the orbit: it must reach u(y) in at least O*(y) odd steps, so its odd share up to scale y must lie in the window (q*, s*(y)) with s* - q* = 0.0049 at 1e12, 0.0039 at 1e68, 0.0040 at 1e100, 0.0002 at 1e1000. The all-odd rate 0.585 is far outside the window at every scale. The p = 19 hug near-return rate, theta_19 / 12 = 0.00163 walk per odd step, is inside up to 1e300 but outside at 1e1000, where the gate is 0.00056; the p = 84 rate theta_84 / 53 = 5.7e-5 is inside everywhere tested (p = 1054 gives 9.5e-8). So the gate tightens with y and pushes a persistent escaper down the near-return spectrum 19, 84, 1054, ... - the cycle-period ladder of flight note Sec. 6. A Clotho basin is every-block at scale y exactly when the divergent orbit is a critical-share escaper up to that scale hugging a deep enough near-return - the kind the flight extract lets persist; a fast escaper has a lacunary basin, like a single seed. The density is then about (K / ln y) times the partial inverse sum over the states below y, K in [1, 3]; that partial sum is at least 1/n and, unlike the cycle's, is not pinned by finance. Excludes no fate; not a halt theorem.",
+  "statement": "J-lachesis-walk-rotation does not know whether the orbit closes: the clock positions of a divergent orbit's states below y are the rotation orbit {c(n) + j alpha : j <= O(y)}, O(y) the odd count before the walk first exceeds u(y) = log2(ln y / ln n). Its basin has an E-burst in the block at y iff a point of that orbit lies within 1/ln y of c(y) mod 1; sufficient is gap(O(y)) <= 1/ln y, gap(O) the largest gap of {j alpha mod 1 : j <= O}, non-increasing in O. Thresholds O*(y) = min {O : gap(O) <= 1/ln y}: 40 at 1e12, 146 at 1e30, 252 at 1e50, 305 at 1e68, 358 at 1e100, 1635 at 1e300, 12275 at 1e1000 (O gap(O) swings between 1.26 and 6.56 with the continued fraction of alpha, three-distance). The gate is meaningful only for u(y) >= log2 3, i.e. y >= n^3: the hug band [0, log2 3) is the minimal invariant band of the walk (Lean hug_band_step_exists, narrow_band_dead, dead_zone_nonempty), and below 1 no even step is possible and at most one odd step fits (no_even_step_below_one, odd_steps_below_one_le_one), so for y < n^3 every orbit has O(y) <= 2 < O*(y) and no basin is every-block there; at n = 3.5e8 the 1e12 row (u = 0.49) is vacuous. Translated to the orbit: it must reach u(y) in at least O*(y) odd steps, so its odd share up to scale y must lie in the window (q*, s*(y)) with s* - q* = 0.0049 at 1e12, 0.0039 at 1e68, 0.0040 at 1e100, 0.0002 at 1e1000. The all-odd rate 0.585 is far outside the window at every scale. The p = 19 hug near-return rate, theta_19 / 12 = 0.00163 walk per odd step, is inside up to 1e300 but outside at 1e1000, where the gate is 0.00056; the p = 84 rate theta_84 / 53 = 5.7e-5 is inside everywhere tested (p = 1054 gives 9.5e-8). So the gate tightens with y and pushes a persistent escaper down the near-return spectrum 19, 84, 1054, ... - the cycle-period ladder of flight note Sec. 6. A Clotho basin is every-block at scale y exactly when the divergent orbit is a critical-share escaper up to that scale hugging a deep enough near-return - the kind the flight extract lets persist; a fast escaper has a lacunary basin, like a single seed. The density is then about (K / ln y) times the partial inverse sum over the states below y, K in [1, 3]; that partial sum is at least 1/n and, unlike the cycle's, is not pinned by finance. Excludes no fate; not a halt theorem.",
   "source": "docs/problems/juggler_lachesis_loglog_clock.md",
   "lean": "Problems/Juggler/LogLogClock.lean",
   "tests": [
@@ -8066,12 +8088,56 @@
  {
   "id": "J-paper-b-frozen-gap-collision",
   "tag": "EXACT — HUMAN PROOF",
-  "statement": "Paper B Proposition 7.6: for u>=1/2, 1<=h<=P^(1/8), uh<=P^(1/2), and positive w comparable to uh P^(-1/4), the basic frozen-gap phase u A_h+(3u/2)floor(Delta_h x^(3/2))(x+2h)^(3/4)+w x^(3/2) has odd-input sum O((uh)^(1/2)P^(5/8)+(h/u)^(1/2)P^(7/8)+(uh)^(-1/3)P^(7/12)+h+P^(1/2)/h+1). The reference-curvature comparison is of values, not derivatives of the floor. This verifies only the basic model, not all decorated Fourier families.",
+  "statement": "Paper B Proposition 7.6: for u>=1/2, 1<=h<=P^(1/8), uh<=P^(1/2), and positive w comparable to uh P^(-1/4), the basic frozen-gap phase u A_h+(3u/2)floor(Delta_h x^(3/2))(x+2h)^(3/4)+w x^(3/2) has odd-input sum O((uh)^(1/2)P^(5/8)+(h/u)^(1/2)P^(7/8)+(uh)^(-1/3)P^(7/12)+h+P^(1/2)/h+1). The reference-curvature comparison is of values, not derivatives of the floor. This verifies only the basic model, not all decorated Fourier families. For integer w in the collision band, uh is at least a constant times P^(1/4), so this basic-model bound is O(P^(7/8)); this does not complete the decorated assembly.",
   "source": "docs/theory/juggler_parity_discrepancy_note.md",
   "lean": "",
   "tests": [
    "tools/validate_paper_b.py",
    "tools/validate_paper_b_repairs.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-paper-b-frequency-interval-sums",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Paper B Lemma 4.8: for 1<=|k|<=P^(1/48), 1/2<=u<=P^(1/48)/2, |i|<=P^(1/48), and D=O(|k|P^(9/16)) intervals of length O(P^(7/16)/|k|), the sum of local supremum norms of e(iX/2+uY+kn^(27/16)/2+Rn^(9/8)), |R|<=C|k|P^(9/16), is O_C(P^(23/24)). Every gap-cell and frequency-interval boundary is counted; this is a summed estimate, not proportional rescaling.",
+  "source": "docs/theory/juggler_parity_discrepancy_note.md",
+  "lean": "",
+  "tests": [
+   "tools/validate_paper_b_ooeoe.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-paper-b-four-coordinate-sums",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Paper B Theorem 4.9: with X=n^(3/2), m=floor(X), Y=m^(3/2), v=floor(Y), U=sqrt(v), w=floor(U), W=w^(3/2), all nonzero integer quadruples bounded by P^(1/48) give odd-input sums of e((iX+jY+ell U+kW)/2) bounded by O(P^(23/24) log(2P)). The exact centered identity (4.19) removes the growing first-floor term. Includes zero coordinates and mixed signs.",
+  "source": "docs/theory/juggler_parity_discrepancy_note.md",
+  "lean": "",
+  "tests": [
+   "tools/validate_paper_b_ooeoe.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-paper-b-ooeoe-split",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Paper B Corollary 4.10: each of the sixteen formal sign classes of (psi(X),psi(Y),psi(U),psi(W)) on odd n<=N has count N/32+O(N^(47/48)). In particular OOEOE and OOEOO each have this count, and H(OOEOE;1/48) is established. Does not count the OOOEE chain or all five-letter itineraries.",
+  "source": "docs/theory/juggler_parity_discrepancy_note.md",
+  "lean": "",
+  "tests": [
+   "tools/validate_paper_b_ooeoe.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-five-step-certificate-subfamily",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Unconditional Paper B Theorem 5.3: D_5=C_4 union {n>=2: word_5(n)=OOEOE} is a subset of C_5 with count 27N/32+O(N^(47/48)). The prefixes E, OE, OOEE, OOEOE are disjoint contracting certificates. Thus C_5 has lower natural density at least 27/32; its exact density is not asserted unconditionally.",
+  "source": "docs/theory/juggler_parity_discrepancy_note.md",
+  "lean": "",
+  "tests": [
+   "tools/validate_paper_b_ooeoe.py"
   ],
   "related_conjectures": []
  }

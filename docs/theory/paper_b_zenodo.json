@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "title": "Parity Statistics of Nested Floor Powers: Four-Step Descent and Conditional Extensions for the Juggler Map",
+    "title": "Parity Statistics of Nested Floor Powers: Finite-Step Descent and Conditional Extensions for the Juggler Map",
     "upload_type": "publication",
     "publication_type": "preprint",
     "creators": [
@@ -8,8 +8,8 @@
         "name": "Cochin, Philippe"
       }
     ],
-    "description": "<p>The Juggler map applies the integer part of the square root at even positive integers and of the three-halves power at odd positive integers. We prove that the starting values admitting a power-envelope descent certificate within four operations have natural density 13/16. The analytic input is a mixed exponential-sum estimate for two nested floor powers and a smooth third coordinate. After one differencing, the remaining floor error is small in the required frequency range. An exact carry expansion and second-derivative estimates summed over every gap cell give the error O(N^(23/24) log(2N)^3) for the four-step count. We also repair the OE-branch third-letter count using an exact square-root identity, and give a partition-aware curvature estimate for a basic collision model. These arguments restore part of an earlier draft without asserting its general decorated kernel bound. Under two additional finite-chain correlation hypotheses the five-step certificate density is 7/8. Fair-share densities for every fixed-depth odd-rooted itinerary would imply density-one finite certificates; no uniformity in depth is needed for that implication. The general kernel estimate, its short-interval extension, and the remaining correlation hypotheses are unproved here. No result asserts universal arrival at 1.</p>",
-    "version": "2026-09-09-four-step-repair",
+    "description": "<p>The Juggler map applies the integer part of the square root at even positive integers and of the three-halves power at odd positive integers. We prove that the starting values admitting a power-envelope descent certificate within four operations have natural density 13/16. We also prove that the five-letter itinerary OOEOE has count N/32 + O(N^(47/48)). Together these give a specified certificate class of density 27/32, all of whose starts descend within five operations. The analytic arguments use exact carry expansions and second-derivative estimates summed over every gap cell. For the fifth letter, centering a Fourier expansion at the integer part of a smooth coefficient cancels the growing first-floor term; the additional interval boundaries are retained in a summed mixed-mode estimate. We also give a partition-aware curvature estimate for a basic collision model. The full five-step certificate density 7/8 requires only the remaining formal-chain correlation hypothesis for OOOEE. Fair-share densities for every fixed-depth odd-rooted itinerary would imply density-one finite certificates. The general decorated kernel, its short-interval extension, and the remaining correlation hypotheses are unproved here. No result asserts universal arrival at 1.</p>",
+    "version": "2026-09-09-ooeoe-repair",
     "language": "eng",
     "access_right": "open",
     "license": "cc-by-4.0",
@@ -28,6 +28,6 @@
         "scheme": "url"
       }
     ],
-    "notes": "Repairs an earlier conditional revision: the four-step power-envelope certificate density 13/16 is proved here; the five-step density 7/8 and density-one extension remain conditional. The general decorated kernel and short-interval bounds are unproved. Earlier theorem numbering is superseded. AI assistance in proof development, drafting, code, and review is disclosed in the manuscript. No independent mathematical or peer-review certification is asserted. Set the actual first-publication date before deposit."
+    "notes": "The four-step certificate density 13/16 and a specified five-step certificate subfamily of density 27/32 are proved here. The full five-step density 7/8 remains conditional on the OOOEE correlation hypothesis. The general decorated kernel and short-interval bounds remain unproved. Earlier theorem numbering is superseded. AI assistance is disclosed in the manuscript. No independent mathematical or peer-review certification is asserted. Set the actual first-publication date before deposit."
   }
 }

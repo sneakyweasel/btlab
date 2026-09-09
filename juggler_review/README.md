@@ -1,4 +1,4 @@
-> **Paper B repair, 9 September 2026:** the current preprint proves four-step power-envelope certificate density 13/16. Five-step density 7/8 remains conditional on two correlation hypotheses; the general decorated kernel remains unproved. See [the repair report](paper_b_repair_report.md) and [build instructions](../docs/theory/PAPER_B_BUILD.md). Earlier theorem numbers and companion cross-citations require review.
+> **Paper B OOEOE repair, 9 September 2026:** the current preprint proves four-step certificate density 13/16 and a five-step certificate subfamily of density 27/32. Full five-step density 7/8 now requires only OOOEE. The general decorated kernel remains unproved. See [the current report](paper_b_ooeoe_report.md) and [build instructions](../docs/theory/PAPER_B_BUILD.md). Earlier theorem numbers and companion cross-citations require review.
 
 # Juggler reviewer bundle (three manuscripts)
 
@@ -13,8 +13,8 @@ must be rebuilt from `docs/theory/` before further external review.
 The stopped live-pressure hypothesis is unchanged and unproved.
 
 Status: Paper A is the regenerated Zenodo preprint of 9 September 2026; Paper B is the repaired
-preprint (unconditional four-step certificate density 13/16 and
-conditional five-step density 7/8); Paper C
+preprint (four-step certificate density 13/16, five-step subfamily density
+27/32, and conditional full five-step density 7/8); Paper C
 (fate contagion and the almost-all reformulation, 4 September 2026)
 is a complete draft whose main theorem is unconditional and whose
 Appendix C alone depends on Paper B.
@@ -56,19 +56,21 @@ https://sneakyweasel.github.io/btlab/
    `python tools/build_paper_a.py --check`. See
    [build instructions](../docs/theory/PAPER_A_BUILD.md).
 2. [juggler_parity_discrepancy_note.pdf](juggler_parity_discrepancy_note.pdf)
-   — **Paper B**: *Parity Statistics of Nested Floor Powers: Four-Step
+   — **Paper B**: *Parity Statistics of Nested Floor Powers: Finite-Step
    Descent and Conditional Extensions for the Juggler Map* (9 September 2026).
    Theorem 4.5 proves restricted mixed exponential sums by an exact carry
    expansion and estimates over every gap cell. Corollary 4.6 and Theorem
    5.2 give the unconditional four-step power-envelope certificate density
    \(13/16\), with error \(O(N^{23/24}(\log(2N))^3)\). Proposition 3.2
    repairs the OE count, and Proposition 7.6 treats a basic collision model.
-   Theorem 5.3's five-step density \(7/8\) requires two explicit hypotheses.
+   Corollary 4.10 proves the OOEOE split with error \(O(N^{47/48})\).
+   Theorem 5.3 gives a five-step certificate subfamily of density \(27/32\);
+   Theorem 5.4's full five-step density \(7/8\) requires only OOOEE.
    The general decorated kernel, short-interval extension, complete
    depth-four census, and density-one conclusion remain unproved or
    conditional as stated in the paper. These are written analytic arguments;
    no new Lean formalization or independent peer review is claimed.
-   See [the repair report](paper_b_repair_report.md). The
+   See [the current report](paper_b_ooeoe_report.md). The
    [historical audit ledger](paper_b_audit_ledger.md) concerns the superseded
    4 September draft and does not validate the current analytic proofs.
 3. [juggler_fate_almost_all_note.pdf](juggler_fate_almost_all_note.pdf)

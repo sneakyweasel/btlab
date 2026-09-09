@@ -164,7 +164,7 @@ Put \(u=\lfloor\sqrt N\rfloor\), \(c=u-y^2\),
 For \(q=y^2+h\), the correction is exactly
 \[
 \kappa=
-\begin{cases}
+\begin {cases}
 0,&q^2\le N,\\
 1,&(q-1)^2\le N<q^2,\\
 2,&N<(q-1)^2.
@@ -227,7 +227,7 @@ evaluation is involved.
 
 For every odd integer \(s\ge3\), set
 \[
-\begin{aligned}
+\begin {aligned}
 x&=s^8+8,\\
 u&=s^{12}+12s^4,\\
 v&=s^{18}+18s^{10}+54s^2-1,\\
@@ -434,3 +434,16 @@ Status: **STRUCTURAL**. Retain two scoped written results and their exact
 controls. Paper A, its Lean claims and its numerical cycle-length bound
 are not changed by this gate. Uniform wrong-parity intersection and
 global no-cycle remain unproved.
+
+## Authorized exact-remainder continuation
+
+[Finite family chains and remainder transport](juggler_cycle_remainder_transport.md)
+proves that this exact three-step family cannot concatenate indefinitely:
+the 2-adic valuation of a continuing parameter minus 1 decreases by 2.
+All six retained parameter examples reach 1 in finite exact computations.
+Keeping the actual source square remainder also repairs the suffix
+quotient to within one integer and recovers the full OOE guard.
+The bounded additive replacement refuted here remains false; the new
+repair retains additional absolute-state information. General orbit
+escape, universal family termination and uniform word closure remain open.
+

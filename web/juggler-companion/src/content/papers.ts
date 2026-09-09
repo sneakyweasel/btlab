@@ -23,7 +23,7 @@ export const PAPERS: readonly PaperRecord[] = [
   {
     letter: "B",
     title: "Parity",
-    hint: "Unconditional four-step certificate density 13/16; five-step density 7/8 requires two hypotheses. The general kernel remains unproved.",
+    hint: "Unconditional certificate subfamily density 27/32 within five steps; full five-step density 7/8 requires OOOEE. The general kernel remains unproved.",
     pdf: "juggler_parity_discrepancy_note.pdf",
   },
   {

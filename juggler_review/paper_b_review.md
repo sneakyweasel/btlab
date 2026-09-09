@@ -1,4 +1,4 @@
-> **Follow-up repair, 9 September 2026:** this report records the initial review. The current manuscript restores the four-step certificate density 13/16, repairs the OE count, and proves a basic collision-model estimate. The general kernel and five-step correlation estimates remain unproved. See [the repair report](paper_b_repair_report.md) for the current results.
+> **OOEOE follow-up, 9 September 2026:** the current manuscript also proves the OOEOE split and a certificate subfamily of density 27/32. The full five-step density 7/8 now requires only OOOEE. This report records an earlier review stage; see [the current report](paper_b_ooeoe_report.md).
 
 # Paper B publication review
 

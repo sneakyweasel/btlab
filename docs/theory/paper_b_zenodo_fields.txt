@@ -1,5 +1,5 @@
 TITLE
-Parity Statistics of Nested Floor Powers: Four-Step Descent and Conditional Extensions for the Juggler Map
+Parity Statistics of Nested Floor Powers: Finite-Step Descent and Conditional Extensions for the Juggler Map
 
 CREATOR
 Cochin, Philippe
@@ -9,7 +9,7 @@ RESOURCE TYPE
 Publication / Preprint
 
 VERSION
-2026-09-09-four-step-repair
+2026-09-09-ooeoe-repair
 
 PUBLICATION DATE
 Use the actual date this version is first made public.
@@ -28,7 +28,7 @@ juggler_parity_discrepancy_note.pdf
 paper_b_source_package.zip
 
 DESCRIPTION
-Use the abstract in paper_b_zenodo.json. It identifies the four-step certificate density 13/16 as proved, the five-step density 7/8 and density-one conclusions as conditional, and the general decorated kernel and short-interval estimates as unproved.
+Use the abstract in paper_b_zenodo.json. It identifies the four-step certificate density 13/16 and the specified five-step subfamily density 27/32 as proved. The full five-step density 7/8 requires the remaining OOOEE hypothesis. Density-one certificates, the general decorated kernel, and short-interval estimates remain conditional or unproved.
 
 RELATED SOFTWARE
 https://github.com/sneakyweasel/btlab
@@ -37,7 +37,7 @@ DOI
 No DOI has been reserved. Reserve one in the Zenodo draft if desired, then insert the actual identifier before publishing. Do not reuse a companion paper's DOI.
 
 RECORD STATUS
-Prepared locally only. No deposit has been created or published. This preprint proves the four-step certificate density and states conditional extensions. It does not prove the earlier general kernel theorem and has not been independently peer reviewed.
+Prepared locally only. No deposit has been created or published. This preprint proves the four-step density and a five-step certificate subfamily of density 27/32, with explicit conditional extensions. It does not prove the earlier general kernel theorem and has not been independently peer reviewed.
 
 AUTHOR NOTE
-Companion documents must distinguish the restored four-step theorem from the unproved general kernel and five-step claims; earlier theorem numbers require a separate dependency review.
+Companion documents must distinguish the restored four-step theorem and OOEOE split from the unproved general kernel and OOOEE claim; earlier theorem numbers require a separate dependency review.

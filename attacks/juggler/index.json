@@ -1467,6 +1467,23 @@
       "nk_cluster": "Finance leftover-killers are identities, not movers"
     },
     {
+      "id": "cycle_remainder_transport",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_remainder_transport.py",
+      "test": "tests/research/juggler_sequence/test_cycle_remainder_transport.py",
+      "dossier": "docs/problems/juggler_cycle_remainder_transport.md",
+      "data_dir": "data/research/juggler/cycle_remainder_transport",
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-cycle-ooe-family-chain-bound",
+        "J-cycle-ooe-exact-remainder-repair"
+      ],
+      "aliases": [],
+      "nk_cluster": "Unbounded parameter families do not establish orbit escape"
+    },
+    {
       "id": "cycle_rounding",
       "kind": "branch",
       "probe": "src/research/juggler_sequence/cycle_rounding.py",
@@ -5392,6 +5409,20 @@
       "ledger_ids": [],
       "aliases": [],
       "nk_cluster": "Flights"
+    },
+    {
+      "id": "paper_b_ooeoe_repair",
+      "kind": "dossier_only",
+      "probe": null,
+      "test": null,
+      "dossier": "docs/problems/juggler_paper_b_ooeoe_repair.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "paper_b_small_shift_repair",

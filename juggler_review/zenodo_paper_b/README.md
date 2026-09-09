@@ -18,8 +18,9 @@ publication date. No DOI has been reserved, and no external record has
 been created.
 
 The PDF is a preprint with an unconditional four-step certificate density
-13/16, proved by the restricted mixed-sum estimate. Five-step density 7/8
-requires the two formal-chain hypotheses in Theorem 5.3; density-one
+13/16 and a specified five-step certificate subfamily of density 27/32.
+The OOEOE split is proved in Corollary 4.10. Full five-step density 7/8
+requires only the OOOEE hypothesis in Theorem 5.4; density-one
 certificates require fixed-depth equidistribution. The general decorated
 kernel and short-interval estimates remain unproved. Arrival at 1 is not
 claimed. AI assistance is disclosed; no independent peer review is asserted.

@@ -14,7 +14,7 @@ Rebuild: `python -m research.juggler_sequence.branch_index`.
 ## Reading path
 
 1. [juggler_finite_dynamics_note.md](../../docs/theory/juggler_finite_dynamics_note.md) — Paper A: cycle-length lower bounds ([doi:10.5281/zenodo.22676453](https://doi.org/10.5281/zenodo.22676453)). Audit: `research.juggler_sequence.paper_a_audit`. Extracts: [juggler_walk_charge_note.md](../../docs/theory/juggler_walk_charge_note.md), [juggler_cycle_itinerary_structure_note.md](../../docs/theory/juggler_cycle_itinerary_structure_note.md). Paper D draft (not a review object): [juggler_near_convergent_diophantine_note.md](../../docs/theory/juggler_near_convergent_diophantine_note.md).
-2. [juggler_parity_discrepancy_note.md](../../docs/theory/juggler_parity_discrepancy_note.md) — Paper B: parity statistics of nested floor powers (9 September proof repair). Theorem 5.2 proves unconditional four-step certificate density 13/16 through the restricted mixed-sum estimate in Section 4.2. Five-step density 7/8 requires the two hypotheses in Theorem 5.3. The general decorated kernel and short-interval bounds remain unproved; see docs/theory/paper_b_repair_report.md. Audit ledger: [paper_b_audit_ledger.md](../../docs/theory/paper_b_audit_ledger.md) + `paper_b_audit`.
+2. [juggler_parity_discrepancy_note.md](../../docs/theory/juggler_parity_discrepancy_note.md) — Paper B: parity statistics of nested floor powers (9 September proof repair). Theorem 5.2 proves unconditional four-step certificate density 13/16 through the restricted mixed-sum estimate in Section 4.2. Theorem 5.3 adds the OOEOE split and a five-step certificate subfamily of density 27/32. Full five-step density 7/8 requires only OOOEE in Theorem 5.4. The general decorated kernel and short-interval bounds remain unproved; see docs/theory/paper_b_ooeoe_report.md. Audit ledger: [paper_b_audit_ledger.md](../../docs/theory/paper_b_audit_ledger.md) + `paper_b_audit`.
 3. [juggler_flight_note.md](../../docs/theory/juggler_flight_note.md) — descent-free flights. Not a paper; the flight program is descriptively terminal.
 4. [juggler_branch_ledger.md](../../docs/juggler_branch_ledger.md) — every branch, decision, and strongest evidence.
 5. [negative_knowledge.md](../../docs/negative_knowledge.md) — every recorded failure. Search before reopening.
@@ -58,7 +58,7 @@ Method: [docs/methodology.md](../../docs/methodology.md).
   valley-composition, or a bounded walk coboundary. Hug-cylinder
   stays PARK. Exclusion of divergent orbits is not claimed.
 - **Termination.** Conditional certificate density \(7/8\), under the revised Paper B correlation hypotheses
-  (`J-five-step-descent-density`). Four-step certificate class \(13/16\) is now unconditional (Paper B Theorem 5.2); the two five-letter correlation hypotheses remain open.
+  (`J-five-step-descent-density`). Four-step certificate class \(13/16\) is now unconditional (Paper B Theorem 5.2); the \(OOEOE\) split gives an unconditional five-step certificate subfamily of density \(27/32\). Only the \(OOOEE\) hypothesis remains for the full five-step count.
   Densities \(57/64\) and \(29/32\) remain CONJECTURE. Harvest
   counting is laboratory-terminal (`J-harvest-counting-terminal`).
   Remaining problem is external:

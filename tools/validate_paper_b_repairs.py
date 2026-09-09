@@ -67,7 +67,7 @@ def check():
         'carry_expansion_cases':carry_cases,
         'exponent_comparisons':exponent_cases,
         'restored_four_step_density':'13/16, by Corollary 4.6 and Theorem 5.2 of the repaired manuscript',
-        'remaining_open':'General decorated kernel, its short-interval version, and five-step correlation hypotheses.'
+        'remaining_open':'General decorated kernel, its short-interval version, and the OOOEE correlation hypothesis.'
     }
 
 

@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "scope": "Exact centering identities and exponent bookkeeping; the asymptotic results depend on the printed proofs.",
+  "centering_identity_cases": 1275,
+  "frozen_frequency_curvature": "243/512",
+  "squared_sum_exponents": {
+    "squared_diagonal": "23/12",
+    "squared_gap_boundary": "23/12",
+    "squared_frequency_boundary": "23/12",
+    "squared_floor_deletion": "89/48",
+    "squared_nonzero_carry": "15/8"
+  },
+  "strict_exponent_checks": {
+    "intervals_longer_than_shift": true,
+    "R_center_dominates_cutoff": true,
+    "residual_floor_error": true,
+    "Taylor_error": true,
+    "nonzero_carry_curvature": true,
+    "smooth_passenger_curvature": true,
+    "pure_mode_curvature": true,
+    "pure_mode_sum": true,
+    "Fourier_error": true,
+    "ETK_log_absorption": true
+  },
+  "certificate_subfamily_density": "27/32",
+  "full_five_step_density": "7/8 remains conditional on H_0(OOOEE)"
+}

@@ -1,3 +1,5 @@
+> **OOEOE follow-up, 9 September 2026:** the current manuscript also proves the OOEOE split and a certificate subfamily of density 27/32. The full five-step density 7/8 now requires only OOOEE. This report records an earlier review stage; see [the current report](paper_b_ooeoe_report.md).
+
 # Paper B: proof-repair report
 
 9 September 2026. Version: 2026-09-09-four-step-repair.

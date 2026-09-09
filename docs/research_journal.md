@@ -1,5 +1,28 @@
 # Research journal
 
+## Paper B OOEOE split: certificate subfamily density 27/32
+
+- **Date:** 9 September 2026. **Source:**
+  [OOEOE repair](problems/juggler_paper_b_ooeoe_repair.md).
+- **What was learned:** Centering the fifth-letter Fourier expansion at
+  the integer part of a smooth coefficient cancels the growing first-floor
+  term. The remaining frequency-interval boundaries fit the squared-sum
+  budget at fifth-letter cutoff P^(1/48).
+- **Strongest theorem:** Corollary 4.10 counts OOEOE and OOEOO as
+  N/32 + O(N^(47/48)). Theorem 5.3 gives a disjoint certificate
+  subfamily of density 27/32. Full five-step density 7/8 requires only
+  OOOEE in Theorem 5.4.
+- **Evidence:** EXACT — HUMAN PROOF in the written-proof sense. The
+  four-step argument was audited again without a new gap found. Exact
+  validators check centering and exponent bookkeeping; no independent
+  analytic validation or new Lean formalization is claimed.
+- **Kernel assessment:** The basic integer collision band costs O(P^(7/8)).
+  The full D2 expansion still needs both Fourier frequency ranges and its
+  slow-variable majorants accounted for. General kernel remains open.
+- **Decision:** PROMOTE the OOEOE result; retain the unproved kernel.
+- **Best next question:** Can complete D2 accounting retain a positive
+  saving sufficient for the remaining OOOEE correlation?
+
 ## Paper B proof repair: four-step certificates restored
 
 - **Date:** 9 September 2026. **Source:**
@@ -1218,8 +1241,8 @@ is restated or upgraded. The retired *Outcome A / B / C* labels map to
 - **Date:** 2026-08-24
 - **Objective:** Decide whether the multi-step energy law forces a length-independent live bound, or an energy-compatible expanding family in \(K_n\)
 - **Hypotheses:** H1, the telescope plus defect recurrence confines \(L_0\); H2, large-\(\lvert s_3\rvert\) slice ratios name an expanding eigen-direction that \(K_n\) still accepts; H3, a short interior block \(T_B^k(0)\) stays in \(K\) with \(\lvert s\rvert\to\infty\)
-- **Major results:** Lean `Ostrowski.NP.energy_telescope` (ledger `OST-np-energy-telescope`), novelty KNOWN, zero `sorry`; origin interpretation \(E_i=-\sum\) consumed, acceptance \(\sum w_j q_j=0\); defect step \(D_{n-1}^+(T_w s)=D_n^+(s)+(w^{\max}_{n-1}-w)q_{n-1}\) restates \(K_n\) (normalized, not coordinate-bounded); ratio bounds \(-4<\mathrm{lo}/q_n\le\mathrm{hi}/q_n<2\) for \(n\ge 2\); remaining-1 form \(s_2+2s_3\in[-2,1]\) on \(\lvert L_1\rvert=958\) from start \(20\) (length-dependent); slice argmax \(\lvert s_3\rvert\) at remaining \(1,2,3\) are \((-3,-37,19)\), \((21,22,-15)\), \((9,27,-12)\), ratios \(O(1)\) off the \(A\)-eigen ray; only zero blocks of length \(\le 3\) stay in \(K\) over four repeats; expanding \(w\equiv-4\) leaves \(K_n\). `kernel_unreachable_of_not_exceptional` and `energy_step` unchanged
-- **Refuted ideas:** that the defect is a live-set theorem; that remaining-1 \(s_2+2s_3\in[-2,1]\) is a global \(L_0\) bound; that large-\(\lvert s_3\rvert\) ratios stabilize to an expanding family; that a short interior repeating block is energy-compatible and unbounded
+- **Major results:** Lean `Ostrowski.NP.energy_telescope` (ledger `OST-np-energy-telescope`), novelty KNOWN, zero `sorry`; origin interpretation \(E_i=-\sum\) consumed, acceptance \(\sum w_j q_j=0\); defect step \(D_{n-1}^+(T_w s)=D_n^+(s)+(w^{\max}_{n-1}-w)q_{n-1}\) restates \(K_n\) (normalized, not coordinate-bounded); ratio bounds \(-4<\mathrm{lo}/q_n\le\mathrm{hi}/q_n<2\) for \(n\ge 2\); remaining-1 form \(s_2+2s_3\in [-2,1]\) on \(\lvert L_1\rvert=958\) from start \(20\) (length-dependent); slice argmax \(\lvert s_3\rvert\) at remaining \(1,2,3\) are \((-3,-37,19)\), \((21,22,-15)\), \((9,27,-12)\), ratios \(O(1)\) off the \(A\)-eigen ray; only zero blocks of length \(\le 3\) stay in \(K\) over four repeats; expanding \(w\equiv-4\) leaves \(K_n\). `kernel_unreachable_of_not_exceptional` and `energy_step` unchanged
+- **Refuted ideas:** that the defect is a live-set theorem; that remaining-1 \(s_2+2s_3\in [-2,1]\) is a global \(L_0\) bound; that large-\(\lvert s_3\rvert\) ratios stabilize to an expanding family; that a short interior repeating block is energy-compatible and unbounded
 - **Literature:** FS1996 unchanged. The telescope is the residual construction, not that paper
 - **Open:** \(\lvert L_0\rvert\). Not taken up
 - **Decision:** PARK \(\lvert L_0\rvert\). PROMOTE the KNOWN telescope only. Do not claim \(\lvert L_0\rvert\) finite or infinite. No order 4, CLI, or Walnut
@@ -11194,7 +11217,7 @@ Best next question
   \(a=-\tfrac{27}{10}(uh_1+u'h_2)\), \(b=\tfrac{81}{22}kh_1h_2\);
   the \(J_F\) replacement is in the expanded second derivative, not
   in the phase. Zero-offset curvature corrected to
-  \(\lambda_0\in[1.0,5.0]kh_1h_2P^{-5/8}\) from the same expansion
+  \(\lambda_0\in [1.0,5.0]kh_1h_2P^{-5/8}\) from the same expansion
   (old \([0.2,0.9]\) was inconsistent). Theorem 6.1 Step E now
   displays competitor ratios at \(\lambda_a'\) and the three
   regimes at \(\lambda_0'\). Corollary 4.9 restricted to \(E\),
@@ -12862,7 +12885,7 @@ Best next question
 - **Objective:** Test whether every CycleMin short tail \(O^bEO^cE\), \((b,c)\in S\), forces a predecessor cell at \(y=T_u(n)\) disjoint from the backward-feasible cell of that tail
 - **Hypotheses:** suffix re-rooting merges every short cluster into an already-forbidden leftover; the seven families share one predecessor/cell intersection; \(Q(b,c)\) reduces them to the excluded \((3,1)\) corner
 - **Major results:** Classification **BUNCHED_SHORT_FRONT_PARK**. Re-rooting never hits an excluded leftover **EXACT — HUMAN PROOF** (`J-cyclemin-short-reroot`). \((3,1)\) is the unique expanding pair in the short rectangle and is already `O^3EOE` **EXACT — HUMAN PROOF** (`J-cyclemin-short-31-exponent`). The 18 leftover-suffix returns are predecessor-infeasible; no CycleMin \(u{+}{+}O^bEO^cE\) on \(12\le n<256\) with \(e_u\in\{2,3\}\) **COMPUTATIONALLY VERIFIED** (`J-cyclemin-short-front-census`). Four interval leaks with \(S>n\) scatter across predecessor types and ranks; trailing-even overflow is \(S\ge n+1\), not a new cell. No Lean. No \(Z_5\). No length-11 assembler. Paper A unchanged
-- **Refuted ideas:** unavoidable concatenation into an excluded leftover; \(Q\) obstructs the short tails; the 18 returns are CycleMin fronts; \(S_{b,c}(y)\notin[n,y]\) for every CycleMin-shaped front; trailing-even overflow is a new invariant
+- **Refuted ideas:** unavoidable concatenation into an excluded leftover; \(Q\) obstructs the short tails; the 18 returns are CycleMin fronts; \(S_{b,c}(y)\notin [n,y]\) for every CycleMin-shaped front; trailing-even overflow is a new invariant
 - **Literature:** leftover-suffix `PARK`; last-cluster `PROMOTE`; prefix two-even and prefix bunched `PROMOTE`; four-even short-gap `PARK`
 - **Open:** a symbolic \(S_{b,c}(y)=n\) obstruction at a CycleMin front. Do not write \(Z_5\). Do not assemble `no_cycle_itinerary_length_eleven`
 - **Decision:** PARK. Predecessor infeasibility of the 18 returns and an empty cycle window are not yet a parameterized cell-intersection
@@ -12931,7 +12954,7 @@ Best next question
 ## Juggler exact short-cluster return sets
 
 - **Date:** 2026-08-30
-- **Objective:** Characterize \(R_{b,c}(n)=\{y\ge n:T_{O^bEO^cE}(y)=n\}\) from `floorPower` and test exact cycle closure against CycleMin prefixes; not the parked interval statement \(S\notin[n,y]\)
+- **Objective:** Characterize \(R_{b,c}(n)=\{y\ge n:T_{O^bEO^cE}(y)=n\}\) from `floorPower` and test exact cycle closure against CycleMin prefixes; not the parked interval statement \(S\notin [n,y]\)
 - **Hypotheses:** the seven short tails have extremely narrow exact preimage sets, incompatible with the constraints already imposed on \(y=T_u(n)\)
 - **Major results:** Classification **SHORT_RETURN_PARK**. Even inverse is the interval \([n^2,(n+1)^2)\cap 2\mathbb{Z}\), not \(\{n^2\}\) — **REFUTED** (`J-cyclemin-short-even-not-square`). Odd cell of \(n^2\) through 500: 477 empty, 10 even-blocked, 12 odd hits — **COMPUTATIONALLY VERIFIED** (`J-cyclemin-short-odd-square-cell`). CycleMin \(n\) is odd, so \(n^2\) is not in the last-even cell; last-odd layer of that cell has size \(\le 2\) for \(n\le 48\). \(R_{0,0}\) has order \(n^3\); \(R_{2,1}\) is almost empty. One two-even CycleMin landing below 64, no short tail follows, no exact hit — **COMPUTATIONALLY VERIFIED** (`J-cyclemin-short-return-census`). No Lean. No \(Z_5\). No length-11 assembler. Paper A unchanged
 - **Refuted ideas:** last even landing is \(n^2\); \(\lfloor z^{3/2}\rfloor=n^2\) is the CycleMin last-odd equation; every \(R_{b,c}\) is tiny; terminal exact arithmetic alone empties \(R\cap P\)
@@ -13207,7 +13230,7 @@ Best next question
 - **Date:** 2026-08-30
 - **Objective:** Decide whether `OOE.{OE,OOE}*` can remain CycleMin indefinitely, and what constraint the first later `OOO` satisfies
 - **Hypotheses:** the no-`OOO` language has a common envelope; first `OOO` is forced; the entrance state lies in a narrow corridor
-- **Major results:** Classification **FIRST_OOO_GREEN**. If \(x\ge n\) follows `OO`, then \(T^2(x)\ge n^2\) because \(\mathrm{isqrt}(n^3)^3\ge n^4\) — **EXACT — HUMAN PROOF** (`J-cyclemin-ooo-second-step-square`). \((OOE)^k\) stays below \(n^2\) iff \(k\le 5\). First `OOO` is not inevitable, and late `OE` after \(k\ge 3\) need not drop — **REFUTED** (`J-cyclemin-ooo-inevitable`): `365` does \((OOE)^4\) then `OE` and drops; `565` enters `OOO` from \(3039\in[565,565^2)\). Terminal clusters frozen. No Lean. No \(Z_5\). No length-11 assembler. Paper A unchanged
+- **Major results:** Classification **FIRST_OOO_GREEN**. If \(x\ge n\) follows `OO`, then \(T^2(x)\ge n^2\) because \(\mathrm{isqrt}(n^3)^3\ge n^4\) — **EXACT — HUMAN PROOF** (`J-cyclemin-ooo-second-step-square`). \((OOE)^k\) stays below \(n^2\) iff \(k\le 5\). First `OOO` is not inevitable, and late `OE` after \(k\ge 3\) need not drop — **REFUTED** (`J-cyclemin-ooo-inevitable`): `365` does \((OOE)^4\) then `OE` and drops; `565` enters `OOO` from \(3039\in [565,565^2)\). Terminal clusters frozen. No Lean. No \(Z_5\). No length-11 assembler. Paper A unchanged
 - **Refuted ideas:** every no-`OOO` continuation must reach `OOO`; every later `OE` drops
 - **Literature:** `OOEOOE` square cell; next-`O` envelope; `no_cycleMin_prefix_ooe_oe`; `no_cycleMin_ooeoooe`
 - **Open:** after first `OOO` from \(C_3(n)\), does completed `OOOE` force progress or an existing obstruction? Do not reopen bunched-short cells
@@ -13280,7 +13303,7 @@ Best next question
 - **Major results:** Classification **ODD_OOOE_GREEN**. `OOEOOOEO` loses the square-cell gap (\(512<729\)). The next-`O` square refinement fails (\(729>512\)), but \(q^{256}\le n^{729}<n^{768}\) so \(n^2\le q<n^3\) — **EXACT — HUMAN PROOF** (`J-cyclemin-odd-oooe-next-o`). Even \(q\) returns to \([n,n^{3/2})\); even–even drops (`319\to 60`). Even \(q\) always drops, and every branch shrinks — **REFUTED** (`J-cyclemin-odd-oooe-even-q-drops`): `483` has odd \(r=6623\); `491` has odd \(q\) in \([n^2,n^3)\). Both have \(w/n^2\approx 0.533\). Terminal clusters frozen. No Lean. No \(Z_5\). No length-11 assembler. Paper A unchanged
 - **Refuted ideas:** even \(q\) is FiniteProgress; a uniform descending cell hierarchy; \(483/491\) split by cell position
 - **Literature:** post-`OOO` `OOOE` envelope; cube lemma; `no_cycleMin_ooeoooe`
-- **Open:** after odd \(q\in[n^2,n^3)\), does the second `OO` still carry a cube-relative envelope? Do not reopen bunched-short cells
+- **Open:** after odd \(q\in [n^2,n^3)\), does the second `OO` still carry a cube-relative envelope? Do not reopen bunched-short cells
 - **Decision:** PROMOTE the three-way next-`O` split. Uniform shrinking is not a theorem
 
 ```text
@@ -13346,12 +13369,12 @@ Best next question
 ## Juggler second OO from the cube corridor
 
 - **Date:** 2026-08-30
-- **Objective:** Decide whether an inherited odd \(q\in[n^2,n^3)\) constrains its next `OO` beyond generic \(3/2\) growth
+- **Objective:** Decide whether an inherited odd \(q\in [n^2,n^3)\) constrains its next `OO` beyond generic \(3/2\) growth
 - **Hypotheses:** raising \(q^{256}\le n^{729}\) beats generic power growth; \(T^2(q)\) stays in \(C_2\cup C_3\); the scale graph is acyclic; consecutive defects are narrow
 - **Major results:** Classification **SECOND_OO_GREEN**. \(u^{512}\le n^{2187}\) so \(n^3\le T(q)<n^{2187/512}\) — **EXACT — HUMAN PROOF** (`J-cyclemin-second-oo-envelope`). Sharper than generic \(n^{9/2}\) (\(2187<2304\)). Even \(u\) lands in \([n^{3/2},n^{2187/1024})\); odd \(u\) continues with \(v^{1024}\le n^{6561}\). \(T^2(q)\) in \(C_2\cup C_3\), acyclic scale graph, even-\(u\) drop, and a narrow defect \(\Phi\) — **REFUTED** (`J-cyclemin-second-oo-scale-acyclic`): `491` has \(s=558757\) in \(C_2\); `1181` has \(v\) in \(C_6\); `501` returns to \(C_1\) at \(763\); `OOEOOOEOOEE` does not contract (\(2187>2048\)). Terminal clusters frozen. No Lean. No \(Z_5\). No length-11 assembler. Paper A unchanged
 - **Refuted ideas:** generic \(3/2\) is the only envelope; \(T^2(q)\in C_2\cup C_3\); acyclic scale automaton; even \(u\) is FiniteProgress; narrow two-step defects
 - **Literature:** odd-`OOOE` cube corridor; `q^{256}\le n^{729}`; cube lemma; `no_cycleMin_ooeoooe`
-- **Open:** after even \(u\), does \(s\in[n^{3/2},n^{2187/1024})\) still give a finite even/odd trap? Do not reopen bunched-short cells
+- **Open:** after even \(u\), does \(s\in [n^{3/2},n^{2187/1024})\) still give a finite even/odd trap? Do not reopen bunched-short cells
 - **Decision:** PROMOTE the inherited second-`OO` envelopes. The scale graph is not a no-cycle proof
 
 ```text
@@ -17945,7 +17968,7 @@ Best next question
 - **Date:** 2026-08-31
 - **Objective:** Characterize \(T_u(n)=T_v(m)=x\) with no earlier shared state, starting from the four last-letter parent types \(\mathtt{EE}\), \(\mathtt{EO}\), \(\mathtt{OE}\), \(\mathtt{OO}\)
 - **Hypotheses:** parent type plus the first-collision cut is a new seam: some type empties or thins in a way that is not the one-step cells
-- **Major results:** Classification **FIRST_COLLISION_CLOSED**. Off the sink \(\{1,2\}\), first collision iff last parents differ (\(9375\) itinerary meetings, \(5642\) first, \(3733\) same-parent, mixed lengths \(3234\), \(0\) mismatches). \(\mathtt{OO}\) empty (`odd_cell_unique`). One-step counts on \(x\in[3,400]\): \(\mathtt{EE}=21413594=P(P-1)\), \(\mathtt{EO}=\mathtt{OE}=4288=|\mathrm{Pred}_O|\cdot|\mathrm{Pred}_E|\), \(\mathtt{OO}=0\); fibres match `even_cell` / `odd_cell_integers`. Witnesses \(100\to 10\leftarrow 102\), \(5\xrightarrow{O}11\leftarrow_{E}122\). Same-parent \(16\xrightarrow{EE}2\leftarrow_{EE}18\) share \(4\). Sink overshoot \(4\xrightarrow{EEO}1\leftarrow_{E}2\) is the known \(2\to 1\to 1\) loop. Artifact `first_collision/summary.json`. No finance, no Paper A, no new Lean, no \(N_0\) raise
+- **Major results:** Classification **FIRST_COLLISION_CLOSED**. Off the sink \(\{1,2\}\), first collision iff last parents differ (\(9375\) itinerary meetings, \(5642\) first, \(3733\) same-parent, mixed lengths \(3234\), \(0\) mismatches). \(\mathtt{OO}\) empty (`odd_cell_unique`). One-step counts on \(x\in [3,400]\): \(\mathtt{EE}=21413594=P(P-1)\), \(\mathtt{EO}=\mathtt{OE}=4288=|\mathrm{Pred}_O|\cdot|\mathrm{Pred}_E|\), \(\mathtt{OO}=0\); fibres match `even_cell` / `odd_cell_integers`. Witnesses \(100\to 10\leftarrow 102\), \(5\xrightarrow{O}11\leftarrow_{E}122\). Same-parent \(16\xrightarrow{EE}2\leftarrow_{EE}18\) share \(4\). Sink overshoot \(4\xrightarrow{EEO}1\leftarrow_{E}2\) is the known \(2\to 1\to 1\) loop. Artifact `first_collision/summary.json`. No finance, no Paper A, no new Lean, no \(N_0\) raise
 - **Refuted ideas:** a parent-type first-collision taxonomy produces a new seam (`juggler_first_collision`); \(\mathtt{OO}\) first meetings; a thinner OE/EO or EE fibre
 - **Literature:** `odd_cell_unique`; `oddLanding_preimage_unique`; `even_cell_iff`; first-intersection CLOSE; cyclic-seam CLOSE; entry-corridor CLOSE; seam-sliding CLOSE; twin-flight CLOSE; backward-geometry CLOSE
 - **Open:** none from first-collision / ancestry
@@ -18118,7 +18141,7 @@ Best next question
 - **Date:** 2026-08-31
 - **Objective:** Decide whether CycleMin forces \(T^L(t)<n\) for every off-cycle parent \(t\) of a cycle point, using the boxed triple parent identity + ancestry depth + period that the fibre census throws away
 - **Hypotheses:** the cycle-lift \(c=T^L(t)\), \(T(t)=T(c)\), \(t\ne c\) produces a drop below the minimum that contradicts \(c\ge n\) and kills initial-cycle intersection
-- **Major results:** Classification **CYCLE_LIFT_ANCESTRY_CLOSED**. Lift identity (**EXACT — HUMAN PROOF** / **REPARAMETERIZATION**): \(T(t)=T(c)\) and \(T^L(c)=c\) imply \(T^L(t)=c\), so CycleMin forces \(T^L(t)\ge n\). Futures agree on every multi-parent fibre \(x\in[1,200]\) through \(12\) steps. Sink \(2\to 1\): \(T(2)=1\not<1\); depth-\(2\) grandparents \(\{4,6,8\}\) land on \(1\). Valley last-even scale \(\ge n^2\) at \(13\), \(25\), \(10^6+1\). Type-2 \(25\to 125\) starts below the image and would land at scale \(125^2\). Parent identity is `cell_same_next_state`. Ancestry depth only shifts the index. Artifact `cycle_lift_ancestry/summary.json`. No reopen of first-collision or seam ancestry, no finance, no Paper A, no new Lean, no \(N_0\) raise
+- **Major results:** Classification **CYCLE_LIFT_ANCESTRY_CLOSED**. Lift identity (**EXACT — HUMAN PROOF** / **REPARAMETERIZATION**): \(T(t)=T(c)\) and \(T^L(c)=c\) imply \(T^L(t)=c\), so CycleMin forces \(T^L(t)\ge n\). Futures agree on every multi-parent fibre \(x\in [1,200]\) through \(12\) steps. Sink \(2\to 1\): \(T(2)=1\not<1\); depth-\(2\) grandparents \(\{4,6,8\}\) land on \(1\). Valley last-even scale \(\ge n^2\) at \(13\), \(25\), \(10^6+1\). Type-2 \(25\to 125\) starts below the image and would land at scale \(125^2\). Parent identity is `cell_same_next_state`. Ancestry depth only shifts the index. Artifact `cycle_lift_ancestry/summary.json`. No reopen of first-collision or seam ancestry, no finance, no Paper A, no new Lean, no \(N_0\) raise
 - **Refuted ideas:** CycleMin circuit drop \(T^L(t)<n\) (`juggler_cycle_lift_ancestry`); surviving parent identity after one step; a depth-\(d\) drop that is not the same identity
 - **Literature:** `cell_same_next_state`; `first_even_freeze`; `cycle_last_even_interval`; `odd_cell_unique`; `cycleMin_not_end_odd`; first-collision CLOSE; seam-ancestry CLOSE; entry-corridor CLOSE
 - **Open:** none from this lift drop
@@ -18395,7 +18418,7 @@ Best next question
 - **Date:** 2026-09-01
 - **Objective:** Decide whether greedy \(E\)-when-legal prefix-minimizes \(a_k\) among admissible \(u\ge 0\) walks of a given \((L,o)\), and whether that itinerary's charge equals the certified survey \(B\) (and the mechanical \(C_*\)) at floor \(26254995\)
 - **Hypotheses:** \(g\) decreasing plus a pointwise min-\(u\) path identifies the DP maximizer as an \(O(L)\) hug itinerary; leftover \(C\) is then the ergodic average of that walk, including family offsets
-- **Major results:** Classification **WALK_GREEDY_GREEN**. Hug equals the prefix-min path on \(123/123\) feasible pairs with \(L\le 24\) and at leftover \(19,84,1054\); the streamed \(O(L)\) hug equals the \(O(Lo)\) table-greedy word on the same set. Streamed hug \(B\) matches certified survey \(B\) on all 19 leftovers (max relative error \(8.15\cdot 10^{-11}\)), including every \(1054\)-family offset. Leftover \(C\in[0.047946,0.047957]\) vs mechanical \(C_*=0.047947\) (relative spread \(2.12\cdot 10^{-4}\)). Uniform \(B/\theta<1\) at the fixed floor stays false (\(B/\theta=5.25\) at \(176251\)). Conjecture `juggler_walk_greedy_prefix` opened in `conjectures/active/`. Artifact `cycle_walk_greedy/summary.json`
+- **Major results:** Classification **WALK_GREEDY_GREEN**. Hug equals the prefix-min path on \(123/123\) feasible pairs with \(L\le 24\) and at leftover \(19,84,1054\); the streamed \(O(L)\) hug equals the \(O(Lo)\) table-greedy word on the same set. Streamed hug \(B\) matches certified survey \(B\) on all 19 leftovers (max relative error \(8.15\cdot 10^{-11}\)), including every \(1054\)-family offset. Leftover \(C\in [0.047946,0.047957]\) vs mechanical \(C_*=0.047947\) (relative spread \(2.12\cdot 10^{-4}\)). Uniform \(B/\theta<1\) at the fixed floor stays false (\(B/\theta=5.25\) at \(176251\)). Conjecture `juggler_walk_greedy_prefix` opened in `conjectures/active/`. Artifact `cycle_walk_greedy/summary.json`
 - **Refuted ideas:** none new; Christoffel prefix-dominance and uniform \(B/\theta<1\) at fixed \(N_0\) remain refuted
 - **Literature:** walk mechanical CLOSE; walk excursion; walk charge; `juggler_walk_christoffel_prefix` REFUTED; `juggler_christoffel_one_parameter` REFUTED; `juggler_baker_kills_near_convergents` REFUTED
 - **Open:** a human exchange lemma for the hug itinerary, and an explicit bound or integral for \(C_*(n')\)
@@ -18555,7 +18578,7 @@ Best next question
 - **Date:** 2026-09-01
 - **Objective:** Replace the 19-row occupancy cap with the census-free human envelope \(|C_L-C_*(n')|\le 2\,s(L)/L\), \(s(L)\) the Ostrowski digit sum of \(L\) over convergent denominators of \(\theta=\log(3/2)/\log 3\)
 - **Hypotheses:** Denjoy–Koksma per convergent block with \(\mathrm{Var}(F)\le 2\) gives constant \(2s(L)\), not the REFUTED constant \(1\); leftover digit sums are small and \(2s/L\) sits far below the \(J\)-gap
-- **Major results:** Classification **WALK_OSTROWSKI_GREEN**. \(\mathrm{Var}(F)<2\) and the Ostrowski block split are one-line human proofs; DK per block is KNOWN; so \(|C_L-C_*|\le 2s(L)/L\) for the exact IET prefix is **EXACT — HUMAN PROOF**. The \(q_j\) list \(1,2,3,8,19,65,84,485,1054,24727,50508,125743,176251\) is certified by an interval CF on the big-int sandwich \(2^{17087915}>3^{10781274}\), \(2^{16785921}<3^{10590737}\). On all 19 leftovers: greedy digits exact with \(s\in[1,6]\); the budgeted hug equals the exact IET prefix letter for letter (E iff \(3^a\ge 2^{k+1}\), decided by the certified sandwich) with exactly \(o_{\min}\) odds; excess\(\cdot L\le 1.868\le 2s\); \(2s/L\le 1.03\cdot 10^{-4}<\) \(J\)-gap \(0.0051\). DK margins: \(1.1196\) at \(50508\), 18 kills, \(176251\) survives (\(0.1588\)). The six Koksma \(+1/L\) failures are exactly the rows with excess\(\cdot L>1\), all inside \(2s\). Conjecture `juggler_walk_dk_envelope` EXACT — HUMAN PROOF; ledger row `J-cyclemin-walk-dk-envelope`. Artifact `cycle_walk_ostrowski/summary.json`
+- **Major results:** Classification **WALK_OSTROWSKI_GREEN**. \(\mathrm{Var}(F)<2\) and the Ostrowski block split are one-line human proofs; DK per block is KNOWN; so \(|C_L-C_*|\le 2s(L)/L\) for the exact IET prefix is **EXACT — HUMAN PROOF**. The \(q_j\) list \(1,2,3,8,19,65,84,485,1054,24727,50508,125743,176251\) is certified by an interval CF on the big-int sandwich \(2^{17087915}>3^{10781274}\), \(2^{16785921}<3^{10590737}\). On all 19 leftovers: greedy digits exact with \(s\in [1,6]\); the budgeted hug equals the exact IET prefix letter for letter (E iff \(3^a\ge 2^{k+1}\), decided by the certified sandwich) with exactly \(o_{\min}\) odds; excess\(\cdot L\le 1.868\le 2s\); \(2s/L\le 1.03\cdot 10^{-4}<\) \(J\)-gap \(0.0051\). DK margins: \(1.1196\) at \(50508\), 18 kills, \(176251\) survives (\(0.1588\)). The six Koksma \(+1/L\) failures are exactly the rows with excess\(\cdot L>1\), all inside \(2s\). Conjecture `juggler_walk_dk_envelope` EXACT — HUMAN PROOF; ledger row `J-cyclemin-walk-dk-envelope`. Artifact `cycle_walk_ostrowski/summary.json`
 - **Refuted ideas:** none new (Koksma constant \(1\) stays refuted; the correct constant is \(2s(L)\))
 - **Literature:** Denjoy–Koksma (Herman; Kuipers–Niederreiter, KNOWN); Ostrowski representation (KNOWN); crude envelope PROMOTE; walk Koksma CLOSE
 - **Open:** is \(s(L)\) uniformly bounded on the survivor-lattice lengths, so the DK envelope prices every future leftover census-free?
@@ -18601,9 +18624,9 @@ Best next question
 ## Juggler uniform window envelope
 
 - **Date:** 2026-09-01
-- **Objective:** Make the DK/Ostrowski envelope uniform: prove \(C_L<1/(\ln 3\,\ln n')\) for **every** \(L\in[50508,301994)\) at the certified floor, with no census and no DP
+- **Objective:** Make the DK/Ostrowski envelope uniform: prove \(C_L<1/(\ln 3\,\ln n')\) for **every** \(L\in [50508,301994)\) at the certified floor, with no census and no DP
 - **Hypotheses:** (i) budgeted hug \(=\) exact IET prefix is a theorem for all \(L\), not a 19-row check; (ii) greedy Ostrowski digits obey \(b_j\le a_{j+1}\), so \(s(L)\) is uniformly small and \(2s/L\) stays under the \(J\)-gap on the whole window
-- **Major results:** Classification **WALK_WINDOW_GREEN**. Itinerary identity is **EXACT — HUMAN PROOF**: the exact rule keeps \(u\in[0,1+\alpha)\), so the \(L\)-prefix uses exactly \(o_{\min}=\lceil Lx\rceil\) odds, and a first budget-forced divergence would make the exact prefix exceed one of its own letter totals. With the certified quotients, \(s(L)\le 47\) on the window and \(\ln n'\ge 17.07\), so \(2s/L\le 94/50508=1.87\cdot10^{-3}<0.00514\le\) \(J\)-gap — the envelope holds for every window length by the DK row. Exact scan of all \(251486\) lengths: every digit within cap (level \(1054\) hits \(23\) exactly), max \(s=37\) at \(L=275632\), worst \(2s/L\) over gap \(0.1823\) at \(L=74654\) — uniform margin \(\ge 5.48\). Integer-exact word spot checks at \(60000,123456,250000,301993\). Conjecture `juggler_walk_window_envelope` EXACT — HUMAN PROOF; ledger row `J-cyclemin-walk-window-envelope`. Artifact `cycle_walk_window/summary.json`
+- **Major results:** Classification **WALK_WINDOW_GREEN**. Itinerary identity is **EXACT — HUMAN PROOF**: the exact rule keeps \(u\in [0,1+\alpha)\), so the \(L\)-prefix uses exactly \(o_{\min}=\lceil Lx\rceil\) odds, and a first budget-forced divergence would make the exact prefix exceed one of its own letter totals. With the certified quotients, \(s(L)\le 47\) on the window and \(\ln n'\ge 17.07\), so \(2s/L\le 94/50508=1.87\cdot10^{-3}<0.00514\le\) \(J\)-gap — the envelope holds for every window length by the DK row. Exact scan of all \(251486\) lengths: every digit within cap (level \(1054\) hits \(23\) exactly), max \(s=37\) at \(L=275632\), worst \(2s/L\) over gap \(0.1823\) at \(L=74654\) — uniform margin \(\ge 5.48\). Integer-exact word spot checks at \(60000,123456,250000,301993\). Conjecture `juggler_walk_window_envelope` EXACT — HUMAN PROOF; ledger row `J-cyclemin-walk-window-envelope`. Artifact `cycle_walk_window/summary.json`
 - **Refuted ideas:** none new (no new kills claimed; uniform \(B/\theta\) stays false)
 - **Literature:** DK/Ostrowski envelope PROMOTE; Ostrowski digit bound (KNOWN); crude envelope superseded on the window
 - **Open:** is the DK constant \(2s(L)\) sharp here, or does the hug excess stay \(O(1)/L\) uniformly (leftover excesses were \(\le 1.87/L\) even at \(2s=12\))?
@@ -18696,7 +18719,7 @@ Best next question
 - **Date:** 2026-09-01
 - **Objective:** Consolidation entry (no new branch, no new milestone): assemble the walk-charge program — transport, hug identification, itinerary identity, DK/Ostrowski envelope, uniform window theorem, sharpness context — into one laboratory extract
 - **Hypotheses:** none (post-theorem consolidation; infrastructure after the theorems survived)
-- **Major results:** New note [docs/theory/juggler_walk_charge_note.md](theory/juggler_walk_charge_note.md) with the full human chain: transport to the reduced base (\(\ln n'\ge 17.07\)); hug as unique prefix-min maximizer and \(C_*\) Laplace integral; budgeted hug \(=\) exact IET prefix for every \(L\); \(|C_L-C_*|\le 2s(L)/L\) over certified Ostrowski blocks; \(C_L<1/(\ln 3\,\ln n')\) for every \(L\in[50508,301994)\), census-free and DP-free; 18 kills with \(L=176251\) surviving; refuted Koksma constant \(1\) and refuted uniform \(B/\theta\) recorded in place; sharpness census as context. Guard test `test_walk_charge_note.py`
+- **Major results:** New note [docs/theory/juggler_walk_charge_note.md](theory/juggler_walk_charge_note.md) with the full human chain: transport to the reduced base (\(\ln n'\ge 17.07\)); hug as unique prefix-min maximizer and \(C_*\) Laplace integral; budgeted hug \(=\) exact IET prefix for every \(L\); \(|C_L-C_*|\le 2s(L)/L\) over certified Ostrowski blocks; \(C_L<1/(\ln 3\,\ln n')\) for every \(L\in [50508,301994)\), census-free and DP-free; 18 kills with \(L=176251\) surviving; refuted Koksma constant \(1\) and refuted uniform \(B/\theta\) recorded in place; sharpness census as context. Guard test `test_walk_charge_note.py`
 - **Refuted ideas:** none new (consolidation)
 - **Literature:** the nine walk dossiers and five ledger rows named in the note
 - **Open:** unchanged — deeper certified quotients beyond \(q_{13}\); the Diophantine near-convergent survivors
@@ -19244,7 +19267,7 @@ Best next question
 - **Objective:** with the kill template `cycleMin_hug_kill_criterion` Lean, ask whether the 15 per-length kill evaluations (Thm 5.9 table, today Python verified computation) can become Lean-checked rational arithmetic via certified rational bounds on exp. Phase-0 was a feasibility estimate from the recorded kill data — no implementation
 - **Hypotheses:** falsifier was certificate size or precision incompatible with kernel checking at the tightest margin — it fired
 - **Major results (feasibility estimate, no code):**
-  - the recorded margins (`new_floor_kills/`) are tight: \(1.198\) at \(L=176251\) and \(352502\), so a certified charge-sum bound must hold ~15% relative precision across sums of \(1.8\)–\(4.5\cdot 10^5\) transcendental terms with \(W_k\nu\in[17,52]\)
+  - the recorded margins (`new_floor_kills/`) are tight: \(1.198\) at \(L=176251\) and \(352502\), so a certified charge-sum bound must hold ~15% relative precision across sums of \(1.8\)–\(4.5\cdot 10^5\) transcendental terms with \(W_k\nu\in [17,52]\)
   - the Lean-provable bound \(e^x\ge(1+1/m)^{\lfloor mx\rfloor}\) (`Real.add_one_le_exp`) needs \(m\approx 10^3\) for that precision, i.e. one \(\sim 1.5\cdot 10^5\)-digit rational power per term, times \(10^5\) terms, times 15 lengths — beyond any kernel/`native_decide` budget (float DP already runs \(10^3\)–\(10^4\) s per length); the exact weights \(3^{a_k}/2^k\) are \(\tfrac13\)-million-bit ratios, and compressing them certifiably is the PARKED DK route
   - **positive side-finding:** the Python kill table runs a charge-maximizing DP over admissible walks, but `hug_charge_maximal` (Lean) already proves hug dominance — any future certified evaluation needs only the straight hug-profile sum; the DP layer is subsumed by a Lean theorem
 - **Refuted ideas:** kill-table-in-Lean at Phase-0 scope (obstruction recorded in the walk-charge dossier, not a mathematical refutation)
@@ -20751,7 +20774,7 @@ Best next question
 - **Hypotheses:** a published theorem missed by the 3-name audit covers the exact composition; or the node-wise \(\beta>\beta_*\) fallback reduces to a finite Weyl family already in a known rate-free class; or the floor can be treated intrinsically without recreating \(n^{15/8}\theta\). Falsifier: every candidate misses \(\lfloor n^{3/2}\rfloor^{9/4}\); unwind recreates HH; the \(\beta\)-reduction stays the same unbuilt composition.
 - **Major results:**
   - **Published doors miss (KNOWN; no new ledger row).** Beyond Richter / Frantzikinakis / Boshernitzan: Tsinas 2023 is Hardy times (same slot as Richter); Bergelson–Leibman 2007 needs ordinary polynomials (\(n^{3/2}\) is not one); Fejér needs \(f'\to\infty\) (floor interpolant has \(F'=0\) a.e.; smooth leftover is not \(o(1)\)); joint-ergodicity Hardy iterates put the floor in the time slot; digital PS has a digital outer function; Beatty compositions have bounded inner error; Kolesnik / twice-iterated PS are rated and small-amplitude; Leibman / Green–Tao–Ziegler need polynomial orbits. Taylor expansion is not a citation. Classification `RATE_FREE_FLOOR_HARDY_DOOR_UNBUILT`.
-  - **Minimal missing theorem is the same composition (UNBUILT_DOOR).** After an odd landing \(x\), the next letter is E iff \(\{x^{3/2}/2\}\in[0,1/2)\). A tent of integral \(\tfrac12-\varepsilon\) (\(\varepsilon=0.12\) gives \(0.38>\beta_*\)) is uniformly approximable by a trigonometric polynomial of finite degree \(K(\beta)\), so the \(\beta\)-fallback is a finite Weyl family of one phase. Each harmonic \(e(k v^{9/4})\) still has \(A'\asymp n^{7/8}\gg 1\); finite \(K\) is not a species change.
+  - **Minimal missing theorem is the same composition (UNBUILT_DOOR).** After an odd landing \(x\), the next letter is E iff \(\{x^{3/2}/2\}\in [0,1/2)\). A tent of integral \(\tfrac12-\varepsilon\) (\(\varepsilon=0.12\) gives \(0.38>\beta_*\)) is uniformly approximable by a trigonometric polynomial of finite degree \(K(\beta)\), so the \(\beta\)-fallback is a finite Weyl family of one phase. Each harmonic \(e(k v^{9/4})\) still has \(A'\asymp n^{7/8}\gg 1\); finite \(K\) is not a species change.
   - **Unwind recreates \(n^{15/8}\theta\).** Mean-value leftover is \(o(1)\) iff the outer exponent is \(<1\). For \(\alpha=9/4\) the defect is \(\tfrac94 n^{15/8}\theta\), already HH. Intrinsic floor treatment is \(\{m^{9/4}\}\) along the PS image: Boshernitzan on \(\mathbb N\) does not transfer to a density-zero subsequence, and the linear exception is Frantzikinakis.
   - **No CF-free unique-ergodicity principle applies.** Weyl on the horizontal torus is the recorded reduction. The path is non-autonomous, so unique ergodicity of a map fails; unique ergodicity of a Hardy sequence requires Hardy-in-\(n\) entries. PET is not re-opened.
 - **Refuted ideas:** none new. The novelty hypothesis died by obstruction. PET, Theorem R, and \(\lambda=0\) were not re-tested.
@@ -22938,7 +22961,7 @@ Best next question
   - **What the weakest form does not need (§10.4):** any \(o(\log\log y)\) initial depths (so \(K_3\) and every fixed-depth split are irrelevant to the reduction); towers \(O^t\) biased below odd share \((1+e^{-\theta})/2=0.836\) (\(\mathrm H_q\) needs \(<0.6309\); the conclusion fails only above \(0.981\)); any individual cylinder unless over-populated by \(1.67^t\). Walsh sums of order \(|T|\) enter the moment with weight \(\tanh(\theta/2)^{|T|}\).
   - **What no form can avoid (§10.4(e)):** information at depth \(\to\infty\): the word measure fair to depth \(k\) and all-\(O\) afterwards satisfies every depth-\(\le k\) cylinder statement and violates the bound. Paper B's fixed-depth program is neither necessary nor sufficient for the reduction; the wall is the tilted average split of typical odd-heavy live words at depth \(\asymp\log\log y\) — a mean over cylinders, not a sup.
   - **Reparameterizations (`J-tao-cylinder-forms-reparameterization`):** almost-all-cylinder form (exceptional mass \(N(\log y)^{-B}\)) and its pair-correlation form (\(\sum_wD(w)^2=2^{-t-2}\sum_S|W_{S\cup\{t\}}|^2=\tfrac12\mathcal C_{t+1}-\tfrac14\mathcal C_t\), collision count \(\mathcal C_t\)) are equivalent up to exponents to \(\mathrm H(C,A)\) by Walsh inversion; recorded so they are not re-derived.
-  - **Pressure census (OBSERVATION, `pressure_census`):** \(40000\) exact orbits at each of \(y=10^{12},10^{20},10^{30},10^{50}\), depths \(\le 40\), \(\theta\in\{0.396,0.6\}\): \(s_\theta(t)\in[0.44,0.56]\) throughout, cumulative excess over \(\tfrac12\) equal to the positive-part noise (0.14–0.26), live moments within 5–8% of the fair-coin DP. No momentum to depth 40.
+  - **Pressure census (OBSERVATION, `pressure_census`):** \(40000\) exact orbits at each of \(y=10^{12},10^{20},10^{30},10^{50}\), depths \(\le 40\), \(\theta\in\{0.396,0.6\}\): \(s_\theta(t)\in [0.44,0.56]\) throughout, cumulative excess over \(\tfrac12\) equal to the positive-part noise (0.14–0.26), live moments within 5–8% of the fair-coin DP. No momentum to depth 40.
 - **Refuted ideas:** the framing "the hypothesis is the iterated \(O^t\to O^{t+1}\) split" (Tao note §9, AGENTS.md) — correct for \(\mathrm H_q\), not for the weakest form; corrected in place. The pair-correlation form as a genuinely weaker hypothesis — it is a reparameterization.
 - **Literature:** exponential Markov / Chernoff tilting; Walsh–Fourier analysis of \(\{O,E\}^d\); Paper B §§4–6 for what fixed depth gives.
 - **Open:** \(\mathrm P_\theta(C)\) itself (bulk depth); whether the free term \(\psi_F\) of the exact map admits the same exponentially weighted form (one frontier statement instead of two).
@@ -23133,8 +23156,8 @@ Best next question
 - **Objective:** Implement the review of Paper B ([docs/theory/juggler_parity_discrepancy_note.md](theory/juggler_parity_discrepancy_note.md)): an adversarial audit of the kernel argument (Sections 4–6), the localized and twisted forms of Theorems 4.4/4.7 as full theorems, a reframed outlook using Paper C, and the reviewer's editorial points.
 - **Audit (new Appendix A, one row per displayed estimate; probe `research.juggler_sequence.paper_b_audit`, artifact `data/research/juggler/paper_b_audit/summary.json`, test `tests/research/juggler_sequence/test_paper_b_audit.py`):**
   - Machine layer: exact identities of Lemma 4.3, Lemma 5.1(i)–(iv) (including the master identity and the carry-as-sawtooth identity) and Lemma 6.2 evaluated at 60–120 digits on 360 random odd starts, \(10^4\le n\le 2\cdot10^{14}\) — all hold; standing estimates (E1)–(E6) contain the observed values at \(P=10^6,10^8,10^{10}\); cell inventory exhaustive at \(P=10^5\) (394/787/1179 cells against 475/950/1424; full-cell lengths in \([0.66,0.95]P^{1/2}/h\)); frozen-run counts within bound; 75 displayed \(P\)-power comparisons of Section 5 hold as exact rationals; observation: \(|K_c(P)|\) at \(P\le3\cdot10^5\) is \(0.4\)–\(1.2\) times \((P/2)^{1/2}\).
-  - Hand layer: Lemma 5.1, the standing estimates ((E5) speed constant \(\tfrac{27}8\), (E6) constant \(\tfrac{945}{512}\)), Lemma 5.2 stage by stage (Stage 1 cancellation \(A_h=-\tfrac{27}8h^2\nu^{1/4}\); Stage 3–6 constants recomputed), Theorem 5.3 Steps 1–6 with 5a (\(\lambda_a\in[1.31,1.42]k|j|P^{-1/8}\); collision sums; run sums) and 5b (\(\tfrac{243}{128}=\tfrac{2673-729}{1024}\); \(a=-\tfrac{27}{10}\), \(b=\tfrac{81}{22}\); \(V/S\le3P^{-7/48}\); \(P^{89/96}\)) — all consistent.
-  - **Three corrections, none changing a statement:** Lemma 4.3's proof printed \(f''=\tfrac38(X-t)^{-1/2}\) (correct \(\tfrac34\); the Lagrange term is \(\tfrac38(X-\xi)^{-1/2}\theta^2\) directly); Lemma 3.9's "\(\ell^\infty\) operator norm 288" is the \(\ell^1\) norm — the \(\ell^\infty\) norm the proof needs is \(232\) (inverse \(\bigl(\begin{smallmatrix}10&68&32\\-24&-144&-64\\15&76&32\end{smallmatrix}\bigr)\)), so \(c_7=1/288\) stays valid; Lemma 6.2 absorbed the Lagrange remainders \(E_2,E_z\) into coefficients \(\tfrac34,\tfrac12\) that have no slack near \(\theta_2,\theta_z\to1\) — now displayed (orders \(n^{-45/16}\), \(n^{-81/16}\)).
+  - Hand layer: Lemma 5.1, the standing estimates ((E5) speed constant \(\tfrac{27}8\), (E6) constant \(\tfrac{945}{512}\)), Lemma 5.2 stage by stage (Stage 1 cancellation \(A_h=-\tfrac{27}8h^2\nu^{1/4}\); Stage 3–6 constants recomputed), Theorem 5.3 Steps 1–6 with 5a (\(\lambda_a\in [1.31,1.42]k|j|P^{-1/8}\); collision sums; run sums) and 5b (\(\tfrac{243}{128}=\tfrac{2673-729}{1024}\); \(a=-\tfrac{27}{10}\), \(b=\tfrac{81}{22}\); \(V/S\le3P^{-7/48}\); \(P^{89/96}\)) — all consistent.
+  - **Three corrections, none changing a statement:** Lemma 4.3's proof printed \(f''=\tfrac38(X-t)^{-1/2}\) (correct \(\tfrac34\); the Lagrange term is \(\tfrac38(X-\xi)^{-1/2}\theta^2\) directly); Lemma 3.9's "\(\ell^\infty\) operator norm 288" is the \(\ell^1\) norm — the \(\ell^\infty\) norm the proof needs is \(232\) (inverse \(\bigl(\begin {smallmatrix}10&68&32\\-24&-144&-64\\15&76&32\end{smallmatrix}\bigr)\)), so \(c_7=1/288\) stays valid; Lemma 6.2 absorbed the Lagrange remainders \(E_2,E_z\) into coefficients \(\tfrac34,\tfrac12\) that have no slack near \(\theta_2,\theta_z\to1\) — now displayed (orders \(n^{-45/16}\), \(n^{-81/16}\)).
 - **New Section 4.5 (`J-parity-triple-discrepancy-localized`):** Lemma 4.10 (a slow twist \(e(\tfrac\ell2n^{9/16})\), \(|\ell|\le P^{1/24}\), is removed by partial summation after differencing; total variation \(\le0.26P^{-5/16}\)); Theorems 4.11–4.12 (Theorems 4.4/4.7 on any \(I\subseteq(P,2P]\) of length \(Y\ge P^{1/2}\), with the twist), proved by re-running Steps 1–7 with \(Y\) and exhibiting the three absolute terms (\(5.2(jh)^{-1/2}P^{3/8}\), \(3.8P^{7/16}\), \(17P^{1/4}\)); Corollary 4.13 (the \(OOEEE\) count on \(I(m')\)). Paper C's Hypothesis L is now this theorem; Paper C's Appendix C status paragraph updated and rebuilt.
 - **Section 7.6 (new):** what each depth buys (contagion exponent \(0.4050\to0.4922\), certificate densities, Tao constants) and what no depth can buy (the frontier statement is insensitive to \(o(\log\log y)\) depths; no bounded-depth cylinder statement suffices; per-depth loss budget \(2^{1/19}=1.037\) against differencing's factor \(\ge2\)).
 - **Editorial:** novelty wording ("we are unaware of a published power-saving estimate…", the falsifiable new object named independently of the literature); "complete depth-4 parity equidistribution for odd-rooted itineraries" and "certificate density" throughout; Lemma 5.2 promoted in abstract, introduction and the Section 5 opening; §1.1 describes the audit without claiming independent verification; abstract states "first genuinely nested layers, not the infinite-depth problem".
@@ -23266,7 +23289,7 @@ Best next question
   - Stop: a sign change in the standing range, or a competitor not dominated.
 - **What was learned:**
   - Differenced total phase is \(\Delta\Delta(\tfrac k2 m^{9/4})-\Delta\Delta(c\theta_2)\) plus Step D passengers. Hold \(\beta_i\), \(J_F\) frozen; \(X(\nu)\) and the weights move.
-  - Offset leftover \(81/512\) after master-identity cancellation; window-centre \(324/512\); composite \(243/512\); \(\lambda_a'\in[0.40,0.52]\,k|j|P^{-1/8}\); \(B=\tfrac{27}{32}kj\nu^{3/8}\) (one and a half times the kernel \(9/16\), not the moving-gap \(45/32\)).
+  - Offset leftover \(81/512\) after master-identity cancellation; window-centre \(324/512\); composite \(243/512\); \(\lambda_a'\in [0.40,0.52]\,k|j|P^{-1/8}\); \(B=\tfrac{27}{32}kj\nu^{3/8}\) (one and a half times the kernel \(9/16\), not the moving-gap \(45/32\)).
   - Zero-offset \(\lambda_0'=\tfrac{1095}{1024}kh_1h_2\nu^{-5/8}\), which is \(2190/16929\) of the moving monomial \(16929/2048\). Interpolant \(b'=-365/176\).
   - The withdrawn \(405/512\) and \(8.27\) match only the fully-smooth fourth derivative, not the frozen total. Samples at \(P=10^6\): offset tot/81 near \(1\), \(B/(kj\nu^{3/8})\) near \(27/32\); zero-offset tot against \(16929/2048\) near \(2190/16929\).
   - Smaller \(\lambda\) shrinks the main vdC term; \(\lambda^{-1/2}\) grows by \(\sqrt{5/3}\) and stays \(P^{13/16}\). Competitors remain dominated. Exponent \(1-1/96\) unchanged.
@@ -23527,7 +23550,7 @@ Best next question
 
 - **Date:** 2026-09-04
 - **Objective:** \(P_0\) is carried entirely by the Lemma 3.9 comparison \(V\le c_7S/2\), so attack the constant. Asked specifically whether a different exponent triple would do it.
-- **Answer, part 1 — not by the triple.** \(c_7=1/\lVert M^{-1}\rVert_\infty\) depends only on the exponents, through \(\det M=\prod_{i<j}(x_j-x_i)\), and scales as the *square* of their gap: for an equally spaced triple of gap \(\delta\) about \(x_0\), \(\delta^2/c_7=x_0^2-2x_0+c\) with \(c\in[1.75,2]\) on \(\delta\in[1/8,1/2]\). Step 5b's triple \((5/4,11/8,3/2)=(10,11,12)/8\) is adjacent on the lattice \((1/8)\mathbb Z\) the whole paper lives on, and each entry is forced: \(3/2\) is the level-1 wave, \(11/8\) the frozen-shape model, \(5/4\) the differenced-wave monomial. Over all 165 triples of the paper's inventory \(c_7\) runs \(1/259\) to \(144/287\); the good end needs gaps \(3/2\).
+- **Answer, part 1 — not by the triple.** \(c_7=1/\lVert M^{-1}\rVert_\infty\) depends only on the exponents, through \(\det M=\prod_{i<j}(x_j-x_i)\), and scales as the *square* of their gap: for an equally spaced triple of gap \(\delta\) about \(x_0\), \(\delta^2/c_7=x_0^2-2x_0+c\) with \(c\in [1.75,2]\) on \(\delta\in [1/8,1/2]\). Step 5b's triple \((5/4,11/8,3/2)=(10,11,12)/8\) is adjacent on the lattice \((1/8)\mathbb Z\) the whole paper lives on, and each entry is forced: \(3/2\) is the level-1 wave, \(11/8\) the frozen-shape model, \(5/4\) the differenced-wave monomial. Over all 165 triples of the paper's inventory \(c_7\) runs \(1/259\) to \(144/287\); the good end needs gaps \(3/2\).
 - **Answer, part 2 — by dropping the uniform constant, under a factor 10, and not for free.** Lemma 3.9's proof needs only \(\lvert M^{-1}\rvert c\le1\) for a vector \(c=(c_2,c_3,c_4)\), one per derivative order, and only \(c_2\) gates the hypothesis. Ceiling \(c_2\le1/24\). But the uniform choice saturates the middle row exactly, \(24+144+64=232\): every gain in \(c_2\) is paid out of \(c_3,c_4\), which sit in \(C\).
 - **The finding that made this decidable.** A second threshold, not computed on the first pass: \(P_1=C^{96/7}\), the point where \(CP^{89/96}\log P\) beats \(P\). Presently \(C\approx542\), \(P_1\approx3.2\cdot10^{37}\). Minimising \(P_0\) alone gives \(4.6\cdot10^{13}\) (factor 820) but \(P_1=10^{56}\). Holding \(P_1\) fixed buys \(1.9\times\) in \(P_0\). Uniform constant kept.
 - **Not claimed:** no change to any estimate. The exponent \(1-1/96\) is unchanged; \(P_0=3.8\cdot10^{16}\) stands.
@@ -23662,7 +23685,7 @@ Best next question
 - **Date:** 2026-09-04
 - **Objective:** Replace the probe's 60-digit sampling of Lemma 5.1 by proof. This was the last place in Sections 4–6 where a claim rested on samples rather than argument.
 - **Result.** `formal/Problems/Juggler/MasterIdentity.lean`, 10 theorems, building against Mathlib `v4.33.0`.
-- **(iv) reduces to one substitution plus `ring`.** The four-point product rule \(\Delta\Delta(cf)=c_{11}\Delta\Delta f+(\Delta_2c)(n{+}d_1)\Delta_1f+(\Delta_1c)(n{+}d_2)\Delta_2f+(\Delta\Delta c)f\), which the manuscript verifies "by expanding both sides", is `ring` on eight reals. Every carry substitution in (iv) is the single lemma \(\{y{+}w\}-\{y\}=\{w\}-\kappa\), a corollary of the Lemma 4.3(ii) carry identity already proved. The bracket bound \(\le 2\) then follows from \(\{\cdot\}\in[0,1)\), \(\kappa\in\{0,1\}\).
+- **(iv) reduces to one substitution plus `ring`.** The four-point product rule \(\Delta\Delta(cf)=c_{11}\Delta\Delta f+(\Delta_2c)(n{+}d_1)\Delta_1f+(\Delta_1c)(n{+}d_2)\Delta_2f+(\Delta\Delta c)f\), which the manuscript verifies "by expanding both sides", is `ring` on eight reals. Every carry substitution in (iv) is the single lemma \(\{y{+}w\}-\{y\}=\{w\}-\kappa\), a corollary of the Lemma 4.3(ii) carry identity already proved. The bracket bound \(\le 2\) then follows from \(\{\cdot\}\in [0,1)\), \(\kappa\in\{0,1\}\).
 - **(i) has a closed form, like Lemma 4.3(i).** With \(a=\sqrt v\), \(b=\sqrt Y\): \(R=\tfrac14(b-a)^2(2b+a)\) exactly; \(R\ge0\) by inspection and \(Ra\le\tfrac3{16}\theta_2^2\) reduces to \((a+3b)(a-b)\le0\). Same pattern as 4.3(i) — the level-1 and level-2 defects share it, which is not a coincidence: both are \(x^{3/2}\) evaluated at a point and its floor.
 - **The printed \(3/16\) is nearly sharp:** sampling odd \(n\le10^7\) gives \(R\sqrt v\) up to \(0.1867\) against \(0.1875\).
 - **Not covered:** Lemma 5.1(iii)'s branch-freeze inventory is analytic (two mean value theorems, the numerical ranges of \(\beta_i\)) and stays outside, as does everything downstream.
@@ -23866,7 +23889,7 @@ Best next question
 - **Date:** 2026-09-04
 - **Objective:** Continue closing the wide (D3) case; attack the sliver \(P^{1/8}<u\le 6kh_1h_2P^{1/8}/h\) left open in case (b).
 - **Main result: case (b) confines the decoration.** Its defining condition \(|D_i|<q/(2\ell)\) reads \(\Psi'\in(q/2\ell,3q/2\ell)\); with \(q/\ell=\tfrac{27}{16}uh\nu^{-3/4}\) and \(\Psi'=\tfrac{27}{32}uh\nu^{-3/4}+\varphi''\) this pins \(0<\varphi''<\tfrac{27}{16}uh\nu^{-3/4}\). **In the only case left open, \(|\varphi''|\) is at most 4.83× the Stage-4 curvature** — the wide budget \(\Phi_2\), larger by \(P/(2h)\), is never attained there. The wide class collapses to a narrow one exactly where it mattered.
-- **Consequences.** \(\Psi\) is strictly increasing with \(\Psi'\in[0.84,2.53]uh\nu^{-3/4}\), so the cell frequencies \(\alpha_i\) increase with gaps in \([0.562,1.688]uP^{-1/4}\), bounded ratio 3. In the extreme sub-case \(\Psi'\equiv q/\ell\), \(\Psi'=q\delta_h'\) gives \(\alpha_i\approx qG_i+\)const with \(G_i\) consecutive integers — an approximate AP of difference \(q\asymp uP^{-1/4}\) which **drifts 19% across the block**, since \(q=\tfrac98u(\nu{+}2h)^{-1/4}\). That drift stops the progression locking onto a rational and is exactly the saving \(V\ell\) discards.
+- **Consequences.** \(\Psi\) is strictly increasing with \(\Psi'\in [0.84,2.53]uh\nu^{-3/4}\), so the cell frequencies \(\alpha_i\) increase with gaps in \([0.562,1.688]uP^{-1/4}\), bounded ratio 3. In the extreme sub-case \(\Psi'\equiv q/\ell\), \(\Psi'=q\delta_h'\) gives \(\alpha_i\approx qG_i+\)const with \(G_i\) consecutive integers — an approximate AP of difference \(q\asymp uP^{-1/4}\) which **drifts 19% across the block**, since \(q=\tfrac98u(\nu{+}2h)^{-1/4}\). That drift stops the progression locking onto a rational and is exactly the saving \(V\ell\) discards.
 - **The sliver, measured.** At \(h=1\), max over the free linear term: case (b) gives 192, 234 at \(P=8\cdot10^3\) (\(u=1,13\)) and 475, 546, 544 at \(P=3.2\cdot10^4\) (\(u=1,7,13\)), against printed bounds 5478, 4315, 18154, 13788, 13536 — ratios 0.035, 0.054, 0.026, 0.040, 0.040. **Stable across the sliver and falling with \(P\).** At \(u=13\), \(P=3.2\cdot10^4\) the crude \(V\ell\) is 34214 against an actual 544: lossy by 63×, and that factor is the whole remaining gap.
 - **Also mapped:** the second-derivative min-sum lemma covers \(u\gtrsim 5.6hP^{-1/8}\log P\) and the period-counting covers \(u\le0.9P^{1/8}\); the two ranges overlap for \(h\lesssim0.16P^{1/4}/\log P\), which at \(P_0=8.9\cdot10^{13}\) means \(h\le15\). Larger \(h\) still needs the drift argument.
 - **Decision:** progress recorded, three more Lean theorems. Paper B remains a working draft.
@@ -24312,7 +24335,7 @@ have opposite answers.
 **The x8 is intrinsic, and it is ~0.44 ln n'.** The charge prices a state at
 exponent \(u\) by \(f(u)=1/(x\ln x)\) with \(x=(n')^{2^u}\), so
 \(f(u)/f(0)=2^{-u}e^{-(2^u-1)\ln n'}\) --- doubly exponential decay in \(u\).
-Only the window \(u\in[0,O(1/(\ln3\ln n')))\) contributes, which is *the same
+Only the window \(u\in [0,O(1/(\ln3\ln n')))\) contributes, which is *the same
 quantity* Theorem 5.8 already has on its right-hand side. So the advantage over
 the length-only parity charge grows like \(\ln n'\). Measured at \(L=50508\) on
 the GPU lattice program over ten orders of magnitude in the floor, the ratio
@@ -26019,7 +26042,7 @@ this: my first draft said "far inside" without the scale.)
 
 So the two fates now share one visibility law: block density
 \(\approx(K/\ln y)\times\)(inverse sum of the landing seeds),
-\(K\in[1,3]\). For Lachesis the sum is fixed and pinned by Lean finance
+\(K\in [1,3]\). For Lachesis the sum is fixed and pinned by Lean finance
 between \(\theta(L)\ln n\) and \(L/n\). For Clotho it is a partial sum
 over the states below \(y\), at least \(1/n\), gated by the escape rate
 and not pinned by anything. The single escaping orbit that opened this
@@ -26439,13 +26462,13 @@ termination. Four things, one of them exact.
 
 **One visibility law.** For a backward-closed class with seed set
 \(S_0\), the \(E\)-visible density on the block at scale \(y\) is
-\(\approx(K/\ln y)\sum_{x\in S_0}1/x\), \(K\in[1,2]\). The fates differ
+\(\approx(K/\ln y)\sum_{x\in S_0}1/x\), \(K\in [1,2]\). The fates differ
 only in \(S_0\). Atropos: the interval \([1,N_0]\), bursts tile,
 \(\sum 1/x\approx\ln N_0=19.7\), density \(\approx 0.06\) at
 \(10^{68}\) — which is contagion note §5.3's
 \(\log N_0/(2\log y)\), recovered from the other side. Lachesis: the
 cycle, a rotation orbit with gaps \(5\cdot 10^{-6}\),
-\(\sum 1/x\in[\theta(L)\ln n,L/n]\) by Lean finance, density
+\(\sum 1/x\in [\theta(L)\ln n,L/n]\) by Lean finance, density
 \([4\cdot 10^{-7},4\cdot 10^{-5}]\) at \(10^{68}\) above the threshold.
 Clotho: the orbit's states below \(y\), every-block only under slow
 escape. So the certified floor's own \(E\)-forest outweighs any
@@ -39974,7 +39997,7 @@ the same identity.
 
 The congruence question I had set up would not have mattered, but it
 produced one fact worth keeping. The best bound any congruence mod m
-can give is B(m,a) = min{r >= 0 : a^3 - r is a square mod m}, because y
+can give is B(m,a) = min {r >= 0 : a^3 - r is a square mod m}, because y
 = floor(x^{3/2}) is not controlled by x mod m. On powers of two:
 x = 15 mod 16 forces rho_O >= 6, double the recorded x = 7 mod 8 giving
 rho_O >= 3 -- and max_a B(2^k, a) = 6 for every k >= 4, checked to
@@ -42215,4 +42238,35 @@ The family itself admits a polynomial correction plus one carry, so
 unbounded magnitude does not refute general arithmetic or parity-only
 closure. Exact remainder transport remains open. Paper A and its
 numerical period bound are unchanged by this gate.
+
+## 2026-09-09 — Family escape mechanism and exact remainder repair
+
+The user asked whether the unbounded OOE parameter family could escape,
+and authorized exact remainder transport as the next question.
+[The canonical dossier](problems/juggler_cycle_remainder_transport.md)
+separates growth across different initial values from the fate of one
+fixed orbit. An exact family return requires s^8=r^9+9r-9 and r=1 mod48.
+For continuing returns, nu2(s-1)=nu2(r-1)-2, giving the finite bound
+max(0,floor((nu2(r-1)-2)/2)) on consecutive family transitions.
+Leaving this description does not imply descent or termination.
+
+All six previously used parameters reach 1: r=3,5,11,101,10^6+1,10^20+1
+take respectively 28,13,64,24,60,54 steps. Their maxima have
+111,13,129,41,468,1480 decimal digits. Exact square-cell replay certifies
+the full recorded traces. No 500-step or 16384-bit cap was enlarged.
+The apparent growth can therefore coexist with large terminating
+excursions; the six cases do not settle all parameters.
+
+Retaining R=x^3-u^2 repairs the failed pure-power suffix quotient:
+the first-order correction overestimates the exact transport by
+eta^2(t+2u)/(4z^2)<5/6. The corrected floor differs from the true
+quotient by at most one, and four candidate cells recover v and both
+OOE source parities. A validated OOEOE procedure also works at this
+fixed depth. Existing global_defect_append already owns aggregate
+composition; it is not new uniform parity closure.
+
+**Decision: PROMOTE** these two scoped written results and bounded
+controls. Full fate after departure, universal family termination,
+arbitrary-word closure and global no-cycle remain unproved.
+No new Lean or Paper A change is claimed for this gate.
 
