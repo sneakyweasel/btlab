@@ -28,8 +28,9 @@ not a substitute for the mathematical verification described in the paper.
 The build synchronizes Paper A into `juggler_review/`, the historical-named
 PDF alias in `juggler_review/zenodo_paper_a/`, the website's `public/papers/`,
 and its `dist/papers/` if a local distribution exists. The website's prebuild
-checks the release and copies the canonical PDF before Vite runs. A source
-or proof change therefore requires a fresh paper build. Use `--sync` to
+checks the release and copies the canonical PDF before Vite runs. On Vercel
+the laboratory tree is excluded, so prebuild uses that already-synchronized
+public PDF. A source or proof change therefore requires a fresh paper build. Use `--sync` to
 repair an export only when the canonical release still matches its inputs.
 
 Mathematical checks:

@@ -35,7 +35,9 @@ pages set `VITE_BASE=/balanced_ternary/` in the workflow.
 
 Import the GitHub repository on [Vercel](https://vercel.com/new). The root
 `vercel.json` points the project at this package, so you do not need to set
-a Root Directory. Framework is Vite; Node 22.
+a Root Directory. Framework is Vite; Node 22. The repository `.vercelignore`
+drops the laboratory trees; `prebuild` then ships the committed
+`public/papers/` PDF instead of hashing `docs/theory/paper_a_release.json`.
 
 SPA routes (`/tour`, `/play/trajectory`, …) are rewritten to `index.html`.
 If you instead set the Vercel Root Directory to `web/juggler-companion`,

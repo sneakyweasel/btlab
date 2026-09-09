@@ -1,5 +1,7 @@
 # Laboratory trees only. Unanchored `src/` / `data/` also match
 # web/juggler-companion/src and its JSON snapshots.
+# Paper A provenance lives under /docs and /formal; the companion
+# prebuild uses the shipped public PDF when VERCEL is set.
 /formal/
 /data/
 /experiments/
