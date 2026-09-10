@@ -1,5 +1,43 @@
 # Research journal
 
+## 2026-09-10 — Actual upper-square complements: local Lean gain, global test closed
+
+The user authorized a symbolic audit of the actual integer complements on
+the two complete cubic-cycle arcs. **CLOSE** the tested global shortcuts;
+retain one local Lean theorem in the same canonical
+[rank-curvature dossier](problems/juggler_cycle_rank_curvature.md), Results
+10--13. No new trajectory, rank, modulus or minimum census was performed.
+
+`Problems.Juggler.UpperSquareGap` proves x^3+3<=(y+1)^2 for odd x,y
+with x^3<(y+1)^2, including the actual odd-to-odd floorPower adapter.
+An upper complement of one would factor x^3=y(y+2) into coprime odd
+factors, forcing positive cubes two apart. Row
+J-odd-image-upper-square-gap records precisely this kernel-checked local
+claim. The module is registered in the laboratory, not the Paper A barrel.
+
+The additional logarithmic cap shave is at most the previously saved
+D_max. Together with the earlier corrections it moves a signed box
+endpoint by less than 1.62e-12, far below the clearance greater than
+1.303e-6. This estimate is written analysis from existing interval bounds,
+not a newly formalized global theorem or a full integer-cycle model.
+
+The two complete arcs share their entire actual branch word. Their exact
+slack-product ratio nevertheless cancels to the existing endpoint
+curvature identity. Eliminating only the upper-complement definitions
+leaves the state polynomial ring unchanged; the supplied modular control
+does not impose the exact integer cells, grid, or total loss. The balanced
+rotation indicator gives first- and second-variation bounds but no bound
+on actual slack variation or its sign. A nonpositive paired slack needs
+a sufficiently large increase of its normalized integer complement;
+the shared square/cube secants do not yet control those increases.
+
+The missing arithmetic bound is stated once in the dossier's Decision.
+No cycle is excluded, no certified bound changes, and Paper A and its
+generated copies are preserved. The remaining analytic and global
+arguments have written proofs and no new Lean verification. No further
+gate is automatically opened.
+
+
 ## 2026-09-10 — Complete cubic rank caps: signed envelope test still closed
 
 The user authorized the missing full target-cap comparison after the

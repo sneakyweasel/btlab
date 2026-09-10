@@ -242,6 +242,7 @@ LAYERS: dict[str, Path] = {
     "QuarticLossBudget": JUGGLER_DIR / "QuarticLossBudget.lean",
     "QuarticDefect": JUGGLER_DIR / "QuarticDefect.lean",
     "QuarticGapSeparation": JUGGLER_DIR / "QuarticGapSeparation.lean",
+    "UpperSquareGap": JUGGLER_DIR / "UpperSquareGap.lean",
 }
 
 DYNAMICS = LAYERS["Dynamics"]

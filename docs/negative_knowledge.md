@@ -2336,3 +2336,32 @@ argument was already registered in J-cycle-absolute-cell-grid-charge;
 do not rebrand it as new finance. Its checked m<520000000 corollary at
 these counts narrows a cubic minimum range only, without killing the
 period, raising the descent floor, or excluding the taller regime.
+
+### Actual upper-square complements: three scoped global shortcuts
+
+[The canonical curvature record](problems/juggler_cycle_rank_curvature.md),
+Results 10--13, consolidates the symbolic continuation. **CLOSE** the
+following tested inferences, without claiming that every arithmetic use
+of the common integer cells must fail:
+
+- Complete paired-arc slack products have identical branch factors and
+  cancel to the old endpoint curvature identity. Ratios of logarithms are
+  not rational integer products; switching to raw rational factors loses
+  the source normalization needed for the signed log-log statistic.
+- Eliminating the auxiliary complements from their definitions alone
+  leaves a free state polynomial ring. A fully linked modular projection
+  also respects parity and the elementary complement boxes, but not the
+  exact integer cells, grid or total loss. Its unbounded minima violate
+  known finance at fixed counts. It is not a countermodel in the surviving
+  minimum range, and does not rule out state-dependent precision methods.
+- The exact balanced rotation indicator bounds the desired signed sum by
+  actual first or second variation. It supplies no small variation bound
+  or oriented sign. Shared integer secants have two competing terms.
+
+The retained local theorem J-odd-image-upper-square-gap is Lean verified:
+an actual odd-to-odd edge has upper-square complement at least three.
+Its written cap-shave estimate, added to prior corrections, changes an
+endpoint by less than 1.62e-12, far below the existing clearance exceeding
+1.303e-6. Do not promote this local improvement as a no-cycle mechanism.
+The weighted frequency and magnitude of normalized complement increases
+remains an unresolved input, with no new period exclusion or floor change.

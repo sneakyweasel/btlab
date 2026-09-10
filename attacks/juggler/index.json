@@ -1553,6 +1553,7 @@
       "conjecture": [],
       "decision": "CLOSE",
       "ledger_ids": [
+        "J-odd-image-upper-square-gap",
         "J-cycle-rank-capacity-envelope",
         "J-cycle-rank-curvature-window"
       ],
@@ -6136,7 +6137,8 @@
         "formal/Problems/Juggler/QuarticProjection.lean",
         "formal/Problems/Juggler/QuarticLossBudget.lean",
         "formal/Problems/Juggler/QuarticDefect.lean",
-        "formal/Problems/Juggler/QuarticGapSeparation.lean"
+        "formal/Problems/Juggler/QuarticGapSeparation.lean",
+        "formal/Problems/Juggler/UpperSquareGap.lean"
       ],
       "conjecture": [],
       "decision": null,

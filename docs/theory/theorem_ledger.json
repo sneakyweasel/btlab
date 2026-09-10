@@ -1,5 +1,16 @@
 [
  {
+  "id": "J-odd-image-upper-square-gap",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For odd natural numbers x and y with x^3<(y+1)^2, one has x^3+3<=(y+1)^2. If the positive odd upper-square complement were one, then y(y+2)=x^3; coprimality forces two positive cubes differing by two, which is impossible. Specialized in Lean to every actual odd-to-odd floorPower edge. This is a local arithmetic refinement only; no no-cycle conclusion, period or descent-floor improvement, or external novelty is claimed. The subsequent logarithmic cap comparison and global symbolic audits are written analysis, outside this Lean claim.",
+  "source": "docs/problems/juggler_cycle_rank_curvature.md",
+  "lean": "Problems/Juggler/UpperSquareGap",
+  "tests": [
+   "tests/research/juggler_sequence/test_layer_architecture.py"
+  ],
+  "related_conjectures": []
+ },
+ {
   "id": "J-cycle-rank-capacity-envelope",
   "tag": "COMPUTATIONALLY VERIFIED",
   "statement": "For L=780239, o=492276, e=287963 and actual minimum m>=350000001, all three universal target-cap sums from the sorted-grid/parity lower envelopes are enclosed by 24383 monotone rank blocks with exact modular phase counts. Their total lies between 4.775895159e-6 and 4.780397296e-6, above Lambda; the signed box endpoints remain about -1.307e-6 and +1.307e-6, far outside the fixed first-triple curvature window. The total CW44 compulsory-charge correction and the parity refinement of upper caps shift either endpoint by less than 9.714e-13. This certifies failure of this envelope test, not actual common-state feasibility. One outward scalar comparison using the existing J-cycle-absolute-cell-grid-charge theorem proves m<520000000 for actual cubic cycles with these exact counts. No new charge mechanism, descent floor, period bound, taller-cycle exclusion, or Lean theorem is claimed.",

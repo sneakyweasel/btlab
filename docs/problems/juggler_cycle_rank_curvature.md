@@ -4,14 +4,21 @@ Status: **ARCHIVED**. Decision: **CLOSE** the automatic transfer of the
 polynomial-family finite-difference obstruction using the sorted grid and
 total floor loss. This is the canonical record for the gate of 10 September
 2026. The actual integer-cell question remains unresolved. The analysis is
-AI-assisted and has not received independent human review or new Lean
-verification.
+AI-assisted and has not received independent human review. Result 10's
+integer inequality RC26 is Lean verified; the remaining new symbolic
+calculations are written proofs.
 
 The authorized continuation below evaluates all three rank-envelope cap
 sums, retains the CW44 compulsory-charge effects, and derives the exact
 adjacent-cap/slack identity. Its signed test also produces no exclusion.
 One numerical corollary of the existing grid-charge theorem restricts the
 minimum at the specified counts to m<520000000.
+
+The further actual-complement audit below retains one local Lean theorem:
+on an odd-to-odd edge, the next-square complement is at least three.
+Complete-arc products, congruence elimination, and rotation weighting do
+not supply the missing signed inequality. Their precise limitations are
+recorded in Results 11--13.
 
 ## Problem
 
@@ -81,6 +88,12 @@ upper-bound consequence. No trajectory, minimum sweep, or floor expansion
 is performed. A finer numerical integration is unnecessary once the signed
 interval remains separated from the exclusion window by a proved margin.
 
+The next authorized continuation is symbolic: test actual upper-square
+complements through complete-arc products, globally linked congruences,
+and the exact rotation indicator. It performs no new numerical census.
+Only a surviving local arithmetic lemma is added to the Lean laboratory;
+it does not change the Paper A review object.
+
 ## Balanced-ternary formulation
 
 The states and even integer second differences can be represented in balanced
@@ -100,6 +113,9 @@ No representation-specific advantage is established in this gate.
 - J-cycle-rank-capacity-envelope: **COMPUTATIONALLY VERIFIED**, the complete
   fixed cap-sum enclosures and the one cutoff corollary of the existing
   absolute-cell theorem. No new global inequality is claimed.
+- J-odd-image-upper-square-gap: **EXACT — LEAN VERIFIED**. An actual
+  odd-to-odd edge x->y satisfies x^3+3<=(y+1)^2. This is local arithmetic,
+  without a cycle exclusion or a claim of external novelty.
 - Exclusion from all actual integer cells: unresolved; no new conjecture is
   registered as a consequence of these controls.
 
@@ -140,10 +156,18 @@ parity guards, or upper unit-cell inequalities.
 
 ## Formalization
 
-No new Lean module is supplied. Existing cubic order, grid, and signed-arc
-kernels are indexed in Paper A and the weighted-remainder dossier. The new
-record is an AI-assisted written re-expression and an interval control, not
-an additional Lean-verified cycle exclusion.
+The laboratory module
+[UpperSquareGap.lean](../../formal/Problems/Juggler/UpperSquareGap.lean)
+proves `odd_mul_add_two_ne_cube`, `cube_add_one_ne_odd_succ_sq`,
+`cube_add_three_le_odd_succ_sq`, `odd_image_upper_gap`, and
+`floorPower_odd_image_upper_gap` in `Problems.Juggler.UpperSquareGap`.
+Its hypotheses and proof are stated in Result 10. It is registered in the
+laboratory barrel and layer map, but not in the Paper A review barrel.
+
+Existing cubic order, grid, and signed-arc kernels are indexed in Paper A
+and the weighted-remainder dossier. The new analytic identities, cap
+estimates, and symbolic limitation arguments below remain written proofs;
+none is a Lean-verified cycle exclusion.
 
 ## Results
 
@@ -574,6 +598,210 @@ The forbidden literal endpoint m_0 from earlier controls is not restored
 as a candidate. No assertion about taller cycles or other count pairs is
 made, and these inequalities do not exclude the stated period.
 
+### 10. A local upper-square gap on every odd-to-odd edge
+
+Let x and y be odd natural numbers with x^3<(y+1)^2. Then
+
+\[
+x^3+3\le(y+1)^2.
+\tag{RC26}
+\]
+
+Indeed U=(y+1)^2-x^3 is positive and odd. If U=1, then
+x^3=y(y+2). The two positive odd factors are coprime, so unique
+factorization makes both cubes: y=a^3 and y+2=b^3, with a>=1 and b>a.
+But b^3-a^3>2. Thus U cannot be one, and U>=3. The Lean module in
+Formalization proves this argument and specializes it to y=O(x) and to
+the actual `floorPower` map. No cycle or size hypothesis is needed.
+This upper-face result is distinct from the previously established
+lower-square remainder bound on odd-to-even edges.
+
+For y>1 put V_s(y)=Z((y+1)^2-s)-Z(y^2), where Z=log log. The old
+odd-to-odd upper cap V_1 is improved to V_3, and
+
+\[
+0<V_1(y)-V_3(y)
+=\int_{(y+1)^2-3}^{(y+1)^2-1}\frac{du}{u\log u}
+\le\frac1{y^2\log y}.
+\tag{RC27}
+\]
+
+The interval has length two and starts above y^2 for y>1. V_3 is
+positive and decreasing on y>=2: write its defining ratio as
+1+log(1+2/y-2/y^2)/(2 log y), whose numerator decreases there and
+whose denominator increases. It can therefore be used at the existing
+lower envelope targets. The total additional reduction is at most the
+same D_max from Result 7. Including both earlier corrections gives the
+conservative bound
+
+\[
+2(B_{\max}+2D_{\max})<1.62\cdot10^{-12}
+\tag{RC28}
+\]
+
+on either signed box endpoint's movement. This follows from the saved
+outward bounds B_max<1.619e-13 and D_max<3.238e-13; it needs no new
+scan. The proved separation greater than 1.303e-6 is unaffected at the
+displayed precision. The lemma strengthens a local cell constraint but
+does not establish a signed restriction for the actual common states.
+
+### 11. Complete-arc products cancel to the endpoint criterion
+
+Set ell=L-k and h=2k-L. Adding ell pairs Q=[h,k) with R=[k,L),
+shifting both source and target ranks down by one. No Q source crosses
+rank zero or the odd/even cutoff under this shift: those exceptional
+source times are zero and L-1, outside Q. The entire branch word W is
+therefore shared by the two actual paths, not merely its odd/even counts:
+
+\[
+F_W(c_2)=c_1,\qquad F_W(c_1)=m.
+\tag{RC29}
+\]
+
+For any actual length-n arc X_0,...,X_n with u odd steps, (RC20) gives
+
+\[
+\exp(s_{\rm arc})=
+\frac{2^n}{3^u}\frac{\log X_n}{\log X_0}
+\prod_{i=1}^{n}\frac{\log(X_i+1)}{\log X_i}.
+\tag{RC30}
+\]
+
+This follows by telescoping the log-log source/target terms on each
+edge, retaining its factor two or three. Taking the R/Q ratio cancels
+their identical word factors:
+
+\[
+\exp(s_R-s_Q)=e^\varepsilon
+\frac{\log m\,\log c_2}{(\log c_1)^2}.
+\tag{RC31}
+\]
+
+Substitution in RC22 cancels e^epsilon and returns exactly
+2c_1-m<c_2<2c_1-m+2. Thus this complete product is RC21, with no
+new inequality. Its logarithmic factors are not rational integer
+products, so an integer numerator/denominator gap cannot be applied.
+
+One can instead multiply the rational factors (y+1)^2/x^nu. Writing
+b=log((y+1)^2/x^nu), however, the relevant slack is
+s=log(1+b/log(x^nu)). The varying source normalization prevents
+transferring a signed b-sum to a signed s-sum. Even conditional rational
+nonvanishing only gives |log(A/B)|>=1/max(A,B). Bounding the unreduced
+numerator and denominator by [(M+1)^2 M^3]^ell yields only the
+exponentially small lower estimate [(M+1)^2 M^3]^(-ell). Neither the
+required sign nor nonvanishing of that different statistic has been
+established here.
+
+### 12. Congruence elimination needs additional cell information
+
+The exact definitions U_i=(c_(i+e)+1)^2-c_i^(nu_i), with cyclic
+indices and nu_i=3 or 1, imply
+
+\[
+\sum_i U_i=\sum_i(c_i+1)^2
+-\sum_{i<o}c_i^3-\sum_{i\ge o}c_i.
+\tag{RC32}
+\]
+
+For example its reductions modulo two and three give respectively
+sum U_i=L and sum U_i=L-#{i:c_i=1 mod 3} in those residue rings.
+These contain no new controlled residue count. Likewise the product of
+[(c_(i+e)+1)^2-U_i] is the already prescribed source product.
+
+More generally, over any commutative ring K, the ideal I generated by
+U_i-[(C_(i+e)+1)^2-C_i^(nu_i)] has
+
+\[
+K[C,U]/I\simeq K[C],\qquad I\cap K[C]=0.
+\tag{RC33}
+\]
+
+Substitution of the displayed expressions proves this isomorphism.
+Eliminating the auxiliary complements from their definitions alone
+cannot create a restriction on the state variables. Integer cell ranges
+and shared size estimates are extra hypotheses, not consequences of
+this algebraic observation.
+
+A limited modular control makes this distinction explicit. Given q>=1,
+let Q=lcm(4,q), m=1+Qn with n>=L+1, and set c_i=m+Qi for i<o and
+c_(o+t)=m^2+1+Qt for 0<=t<e. These are sorted, have the correct odd
+cutoff and cubic threshold, and have residues one on O and two on E
+modulo Q. The synthetic complements U_OO=3, U_OE=8, U_EO=2 satisfy
+all edge congruences simultaneously, the positive complement boxes,
+the prior OE lower-square gap, and the new OO bound RC26.
+
+This is only a modular projection: the complements do not satisfy the
+exact integer edge equalities, actual defects, sorted grid, or total-loss
+identity. At fixed counts, sufficiently large m also violates RC23.
+It is not a counterexample with the full constraints or with the fixed
+minimum range RC25. A modulus larger than an independently established
+magnitude bound could recover exact equality; no impossibility claim
+for all congruence methods follows.
+
+### 13. Balanced rotation counts do not bound actual slack variation
+
+Let theta=ell/L<1/2. The Q target set and its periodic indicator are
+
+\[
+J=\{j:\ell\le(\ell j\bmod L)<2\ell\},\qquad
+a_j=\left\lfloor(j-1)\theta\right\rfloor
+    -\left\lfloor(j-2)\theta\right\rfloor.
+\tag{RC34}
+\]
+
+Telescoping shows that the number of J indices in any integer interval
+differs from its length times theta by less than one. For the actual
+target-indexed periodic slack vector s_j, put S=s_R-s_Q. Then
+
+\[
+S=\sum_{j\in J}(s_{j-1}-s_j),\qquad
+|S|\le\frac{L-1}{2L}\sum_j|s_{j+1}-2s_j+s_{j-1}|,
+\qquad |S|\le\frac12\sum_j|s_j-s_{j-1}|.
+\tag{RC35}
+\]
+
+For the second-difference bound, the partial discrepancy is
+D_n=1-2theta-{(n-2)theta}, periodically extended, with oscillation
+(L-1)/L. Twice summing by parts expresses S as its scalar product
+with the second differences of s; subtract the midpoint of D's range.
+For the first-difference bound, the positive and negative parts of a
+periodic first difference have equal total size. These bounds apply to
+actual slacks but supply neither a bound on their variation nor a sign.
+
+The normalization matters. With A_j=(c_j+1)^2 and actual complement
+U_j, one has
+
+\[
+s_j=-\log(1-\rho_j),\qquad
+\rho_j=\frac{-\log(1-U_j/A_j)}{\log A_j}.
+\tag{RC36}
+\]
+
+For j in J, a nonpositive paired contribution s_(j-1)-s_j requires
+
+\[
+U_j\ge A_j\left[1-
+(1-U_{j-1}/A_{j-1})^{\log A_j/\log A_{j-1}}\right]
+>\frac{A_j}{A_{j-1}}U_{j-1}>U_{j-1}.
+\tag{RC37}
+\]
+
+Exponentiating RC36 gives the first inequality; 1-(1-t)^b>t for
+0<t<1 and b>1 gives the second. Paired sources and targets retain
+their respective parity, so this requires U_j>=U_(j-1)+2. Yet their
+exact common-source secant, for source pair x_-<x_+ on exponent nu,
+
+\[
+U_j-U_{j-1}=(c_j-c_{j-1})(c_j+c_{j-1}+2)
+-(x_+^\nu-x_-^\nu),
+\tag{RC38}
+\]
+
+does not order its competing terms. Substituting the exact slacks back
+into RC35 again gives S=epsilon+chi. The balanced indicator cannot by
+itself control the frequency or size of the normalized increases in
+RC37. Such control would require additional arithmetic information.
+
 ## Open questions
 
 The unresolved input is a signed estimate retaining the common actual
@@ -591,14 +819,23 @@ cap-sum continuation likewise fails its signed test, including the CW44
 charge correction. More precise integration of these same envelopes
 cannot close the proved gap. The fixed cutoff RC25 is retained as a
 corollary of existing machinery, without promoting a new no-cycle mechanism.
-The single best next question is whether the actual integer upper-cell
-complements obey the signed comparison RC22 along the two complete arcs.
-That question is left open; no further gate is automatically pursued.
+The actual-complement continuation closes the tested product cancellation,
+definition-only congruence elimination, and indicator-only weighting
+shortcuts. It retains the local Lean theorem RC26; its additional cap
+improvement is insufficient. This is not a proof that every arithmetic
+approach to actual upper-cell complements must fail.
+
+The single best next question is whether the shared integer secants in
+RC38 bound the weighted frequency and size of the normalized complement
+increases in RC37 strongly enough for RC22. This missing arithmetic input
+is left open; no further gate is automatically pursued.
 
 ## Publication assessment
 
 Status: **ARCHIVED**. This gate records a precision limitation, an exact
-conditional criterion, and a fixed minimum upper-bound corollary. It changes
-neither the certified descent floor nor the period bound and edits neither
-Paper A nor its generated copies. Independent human review and formal
-verification of the new written calculations remain outstanding.
+conditional criterion, a fixed minimum upper-bound corollary, and a local
+Lean-verified upper-square gap. It changes neither the certified descent
+floor nor the period bound and edits neither Paper A nor its generated
+copies. Independent human review remains outstanding. Only Result 10's
+integer inequality is newly formalized; the analytic comparisons and
+global shortcut audits remain written calculations.

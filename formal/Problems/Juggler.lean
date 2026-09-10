@@ -140,6 +140,7 @@ import Problems.Juggler.QuarticProjection
 import Problems.Juggler.QuarticLossBudget
 import Problems.Juggler.QuarticDefect
 import Problems.Juggler.QuarticGapSeparation
+import Problems.Juggler.UpperSquareGap
 
 /-!
 # Juggler laboratory barrel
