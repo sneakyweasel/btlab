@@ -1,5 +1,91 @@
 # Research journal
 
+## 2026-09-10 — Complete cubic rank caps: signed envelope test still closed
+
+The user authorized the missing full target-cap comparison after the
+first-rank curvature gate. **CLOSE** this specified envelope test; the
+continuation is consolidated in the same canonical
+[rank-curvature dossier](problems/juggler_cycle_rank_curvature.md), Results
+6--9, runner, tests, and data artifact.
+
+Exact modular counts and outward monotone block sums evaluate all three
+universal capacities at L=780239, o=492276, e=287963, with the existing
+minimum floor. Their total is about 4.778e-6 versus surplus 3.4712e-6.
+The signed box remains roughly plus/minus 1.307e-6; the fixed forbidden
+window is on the 1e-10 scale. The exact CW44 lower charges and parity-shaved
+upper caps can shift either endpoint by less than 9.714e-13. No actual
+integer cycle or combined full-cap/sorted-potential realization is supplied.
+
+The adjacent inverse-rank target sets also give the exact actual cap
+difference 0<epsilon=C_R-C_Q<eta(m). Actual loss is chi=-epsilon+s_R-s_Q,
+where each positive slack is the log-log gap from x or x^3 to the next
+square boundary. Eliminating the shared square/cube remainders reproduces
+existing transport and supplies no sign. The joint arithmetic comparison
+of these actual upper-cell slacks remains open.
+
+A proposed new total-cap bound was found to reproduce the already
+registered absolute-cell/grid charge theorem. Its sole new scalar control
+at m=520000000 gives the numerical corollary 350000000<m<520000000 for
+actual cubic cycles with the specified counts. This changes no certified
+floor, does not exclude the period, and says nothing about taller cycles.
+Row J-cycle-rank-capacity-envelope records the bounded computation; no new
+Lean module, manuscript edit, publication rebuild, or next gate is made.
+
+
+## 2026-09-10 — Cubic rank curvature: exact window, coarse transfer closed
+
+**CLOSE** the bounded automatic transfer of polynomial-family finite
+differences to sorted cubic cycles. The canonical
+[rank-curvature dossier](problems/juggler_cycle_rank_curvature.md) expresses
+the impossible even-integer curvature gap as H_0(c1)<chi<H_2(c1), where chi
+is an exact signed difference of the initialized chronological floor losses.
+It also records the exact closed-box capacity extrema. These are
+re-expressions of existing rank transport, not a new cycle exclusion.
+
+At the single fixed tuple L=780239, o=492276, e=287963, m=350000001, the
+ideal first-three-point curvature is about 0.282233. Outward intervals
+verify odd triples with curvature 0 and 2, positive shared group masses,
+and an ordered real total-defect extension. The chosen m already has an
+even O image and is not a candidate minimum. These controls do not satisfy
+all integer states, parities, or target-dependent upper floor caps. Their
+limited scope does not refute a successful argument using those constraints.
+
+The missing estimate must retain the actual common selected integer states
+and force their signed loss inside the narrow forbidden interval. No full
+capacity census, trajectory scan, floor increase, or next gate is performed.
+The proof record, fixed runner, interval data and tests are registered, with
+row J-cycle-rank-curvature-window tagged REPARAMETERIZATION. No new Lean
+module, Paper A edit, or publication rebuild is made by this gate.
+
+
+## 2026-09-10 — OOE escape constructions: residue and polynomial obstructions
+
+The user authorized an escape-construction gate after the OOE/OE return
+explanation. **PROMOTE** the scoped obstructions in
+[OOE escape families](problems/juggler_ooe_escape_families.md). Every odd
+residue class has arbitrarily large starts with even first O image.
+For one nonlinear polynomial value tail, every sufficiently late triple
+of parameters has a return outside that family. Inverse-polynomial finite
+differences and finite van der Waerden coloring strengthen this to finite
+unions of full nonlinear polynomial value tails with arbitrary integer
+updates. Linear tails fail the parity condition. A separate degree-valuation
+argument excludes finite polynomial update templates on an escaping path.
+
+These are written construction-class theorems, audited by AI agents;
+independent human review and new Lean formalization remain outstanding.
+Thin selected parameter sets with nonpolynomial updates remain open.
+No actual infinite chain, escape exclusion, or no-cycle result is claimed.
+
+The fixed control is limited to at most 20 actual OOE returns from each odd
+start 5..20001 and at most 12 returns from each of 15 known-family starts.
+No cap is reached; the maximum observed chain has five returns. The exact
+199->2807->148718->385 witness raises nu2(x-1) from 1 to 7, so the known
+single-family valuation cannot simply become a uniform shifted-state rank.
+Residue fixtures replay exact square margins. The canonical dossier, probe,
+data, tests and ledgers are registered; manuscript and release files are
+unchanged by this gate. No next branch is automatically opened.
+
+
 ## 2026-09-10 — Located O loss resolves split-pair accounting
 
 The user authorized the boundary/sign gate after Q82--Q92.

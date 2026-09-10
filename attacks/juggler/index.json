@@ -1543,6 +1543,23 @@
       "nk_cluster": "Raw preimage multiplicity and ordinary Hall do not supply a cycle deficit"
     },
     {
+      "id": "cycle_rank_curvature",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_rank_curvature.py",
+      "test": "tests/research/juggler_sequence/test_cycle_rank_curvature.py",
+      "dossier": "docs/problems/juggler_cycle_rank_curvature.md",
+      "data_dir": "data/research/juggler/cycle_rank_curvature",
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": [
+        "J-cycle-rank-capacity-envelope",
+        "J-cycle-rank-curvature-window"
+      ],
+      "aliases": [],
+      "nk_cluster": "Cubic first-rank curvature: total-loss transfer does not force parity"
+    },
+    {
       "id": "cycle_realizable_finance",
       "kind": "branch",
       "probe": "src/research/juggler_sequence/cycle_realizable_finance.py",
@@ -4091,6 +4108,24 @@
       "ledger_ids": [],
       "aliases": [],
       "nk_cluster": "Juggler language, residual, and geometry"
+    },
+    {
+      "id": "ooe_escape_families",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/ooe_escape_families.py",
+      "test": "tests/research/juggler_sequence/test_ooe_escape_families.py",
+      "dossier": "docs/problems/juggler_ooe_escape_families.md",
+      "data_dir": "data/research/juggler/ooe_escape_families",
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-ooe-escape-residue-obstruction",
+        "J-ooe-escape-polynomial-obstruction",
+        "J-ooe-escape-shifted-valuation"
+      ],
+      "aliases": [],
+      "nk_cluster": "OOE escape: full arithmetic families and shifted-state valuations"
     },
     {
       "id": "ooeooeoo_eighth",

@@ -1,5 +1,60 @@
 [
  {
+  "id": "J-cycle-rank-capacity-envelope",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "For L=780239, o=492276, e=287963 and actual minimum m>=350000001, all three universal target-cap sums from the sorted-grid/parity lower envelopes are enclosed by 24383 monotone rank blocks with exact modular phase counts. Their total lies between 4.775895159e-6 and 4.780397296e-6, above Lambda; the signed box endpoints remain about -1.307e-6 and +1.307e-6, far outside the fixed first-triple curvature window. The total CW44 compulsory-charge correction and the parity refinement of upper caps shift either endpoint by less than 9.714e-13. This certifies failure of this envelope test, not actual common-state feasibility. One outward scalar comparison using the existing J-cycle-absolute-cell-grid-charge theorem proves m<520000000 for actual cubic cycles with these exact counts. No new charge mechanism, descent floor, period bound, taller-cycle exclusion, or Lean theorem is claimed.",
+  "source": "docs/problems/juggler_cycle_rank_curvature.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_rank_curvature.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cycle-rank-curvature-window",
+  "tag": "REPARAMETERIZATION",
+  "statement": "For an actual primitive cubic cycle with at least three odd states, chi=log(log(c2)log(m)/log(c1)^2) equals a signed difference of inverse-rank chronological defect masses. With H_t=log(log(2c1-m+t)log(m)/log(c1)^2), H_0<chi<H_2 is exactly the forbidden even-integer curvature gap 0<c2-2c1+m<2. No bound forcing it is proved. At the single formal tuple (L,o,e,m)=(780239,492276,287963,350000001), outward interval controls with curvature 0 and 2 fit the nonnegative total-defect simplex and an ordered real extension. This m itself has even O(m), so is not an admissible actual minimum. The controls do not satisfy all actual integer cells or floor caps. CLOSE the coarse-grid transfer only; full signed integer-cell question remains open. AI-assisted written analysis and interval computation, not new Lean verification, period improvement, or cycle exclusion.",
+  "source": "docs/problems/juggler_cycle_rank_curvature.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_rank_curvature.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-ooe-escape-residue-obstruction",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For every even Q>=2, odd 1<=a<Q and integer h>=1, set t=2Qh and x=t^8+a. Exact square margins prove O(x)=t^12+(3a/2)t^4 is even. Thus every odd residue class contains arbitrarily large sources failing the second-O guard, and no nonempty eventual union of odd residue classes is a fully guarded all-OOE invariant domain. Finite fixed polynomial congruences are included; floor-output predicates, variable moduli and thin nonperiodic subsets are not. AI-assisted written proof, not Lean or independently human reviewed. No escape or no-escape theorem.",
+  "source": "docs/problems/juggler_ooe_escape_families.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_ooe_escape_families.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-ooe-escape-polynomial-obstruction",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For prescribed A=OOE with 0<=x^(9/8)-A(x)<2, the full eventual value set of a positive-leading integer-valued polynomial of degree>=2 misses A-return at one of every three sufficiently large consecutive parameters. No finite union of such nonlinear polynomial value tails is eventually A-invariant, even with arbitrary integer parameter updates and switching: minimal 2-adic degree, inverse-polynomial finite differences and finite van der Waerden coloring force a noninteger integer difference. Degree-one tails fail full actual OOE guards by the residue obstruction. Fixed parameter progressions and finite changes are allowed. A separate finite polynomial-update-template path loses at least three in nu2(state degree) per unbounded template. Sparse subsets with nonpolynomial updates and all individual escaping trajectories remain unexcluded. AI-assisted written proof, not Lean or independently human reviewed; no external novelty claim.",
+  "source": "docs/problems/juggler_ooe_escape_families.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_ooe_escape_families.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-ooe-escape-shifted-valuation",
+  "tag": "REFUTED",
+  "statement": "The proposed universal decreasing ranks nu2(x-1), nu2(x+1), and nu2(x-9) on actual OOE returns are refuted by exact finite witnesses. In particular 199->2807->148718->385 has guards odd/odd/even/odd and raises nu2(x-1) from 1 to 7. The fixed 9999-start OOE-only control has both increases and decreases for all three shifts, ignoring zero arguments. This does not refute the specific polynomial-family chain valuation or a rank using additional remainder data, and supplies neither an escape nor a no-escape conclusion.",
+  "source": "docs/problems/juggler_ooe_escape_families.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_ooe_escape_families.py"
+  ],
+  "related_conjectures": []
+ },
+ {
   "id": "J-cycle-loglog-surplus-window",
   "tag": "EXACT — HUMAN PROOF",
   "statement": "For a nontrivial primitive actual Juggler cycle with minimum m>1, period L and odd count o, write Lambda=o*log(3)-L*log(2) and b(m)=log(log(m^2+1)/(2*log(m))). Exact normalized logarithmic floor losses telescope to Lambda. The compulsory last-even loss and distinct integer targets give 0<b(m)<=Lambda<log(log(m+L)/log(m)). Consequently, IF L*Lambda<=C then L<=C/b(m)<C*(m^2+1)*log(m^2+1), without a cubic-height hypothesis. The two unconditional sides alone give only the vacuous lower bound L>sqrt(m^2+1)-m. AI-assisted written proof, not Lean or independently human reviewed. No uniform surplus estimate, unconditional period upper bound, or cycle exclusion is claimed.",

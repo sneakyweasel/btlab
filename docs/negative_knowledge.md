@@ -2265,3 +2265,74 @@ theorem. No-cycle orientation stays PARK; no floor or paper release
 changes and no new executable mechanism follows from this gate.
 Members: cycle_quartic_band, cycle_weighted_remainders,
 J-cycle-quartic-boundary-loss.
+
+## OOE escape: full arithmetic families and shifted-state valuations
+
+[OOE escape families](problems/juggler_ooe_escape_families.md), 10 September
+2026. Every nonempty eventual odd residue class contains a source with even
+O(x), so fixed source congruences cannot certify an all-OOE invariant set.
+A full nonlinear polynomial value tail misses one return in every late
+triple of parameters. Finite unions of full nonlinear polynomial tails
+also fail closure, even with arbitrary target parameters, by the integer
+finite-difference and finite-coloring argument. Linear tails fail the guard.
+Do not read these full-family obstructions as exclusion of a sparse orbit.
+Polynomial update templates are separately limited by a decrease of at
+least three in nu2(state-polynomial degree); that argument does not cover
+nonpolynomial updates or infinitely many templates.
+
+The proposed uniform ranks nu2(x-1), nu2(x+1), and nu2(x-9) are **REFUTED**.
+The exact actual return 199->2807->148718->385 increases the first rank
+from 1 to 7. The known X(r)=r^8+8 parameter-chain valuation remains valid
+with its original family hypotheses. Arbitrarily large finite blocks,
+bounded replay maxima, and family departure do not prove or refute one
+escaping trajectory. Rows J-ooe-escape-residue-obstruction,
+J-ooe-escape-polynomial-obstruction and J-ooe-escape-shifted-valuation.
+
+## Cubic first-rank curvature: total-loss transfer does not force parity
+
+[Rank curvature and signed floor loss](problems/juggler_cycle_rank_curvature.md),
+10 September 2026, **CLOSE**. The full-polynomial-tail finite-difference
+obstruction cannot simply be imposed on arbitrary sorted cycle states.
+The exact inverse-rank defect simplex and the ideal log-log grid allow
+ordered odd triples with curvature 0 and 2 at the fixed formal tuple
+(L,o,e,m)=(780239,492276,287963,350000001), with an ordered real extension.
+The ideal curvature about 0.282233 therefore supplies no contradiction
+under those relaxed assumptions. These are outward interval controls,
+not an actual cycle or a model satisfying every upper floor cap. The chosen
+m itself fails the odd-image condition, as O(m)=6547900454916 is even.
+
+Row J-cycle-rank-curvature-window is REPARAMETERIZATION: the exact target
+H_0(c1)<chi<H_2(c1) is the gap 0<c2-2c1+m<2 expressed through signed actual
+floor losses. A closed-box capacity formula is recorded, but its full
+target-dependent group sums are not evaluated. The cap into m exceeds the
+negative clearance in this fixed diagnostic; this is not a proof of
+independent variability or global feasibility with all actual cells.
+Do not reopen bare grid width, odd spacing, or the total budget as a new
+parity exclusion. A new result must retain the common selected integer
+states and prove a stronger signed estimate. That actual-cell question
+remains open; no no-cycle theorem or improved period bound is claimed.
+
+### Complete cap-envelope continuation of the cubic curvature gate
+
+[The same canonical record](problems/juggler_cycle_rank_curvature.md),
+Results 6--9, now evaluates all three target-envelope capacities at the
+fixed first surviving count pair. Their rigorous total is about 4.778e-6,
+leaving a signed interval about plus/minus 1.307e-6. Including the CW44
+compulsory charges and parity-refined independent upper caps changes
+either endpoint by less than 9.714e-13. More accurate integration of
+these same envelopes cannot put that interval inside the 1e-10 curvature
+window. **CLOSE** this cap-envelope test, row
+J-cycle-rank-capacity-envelope. The earlier real ordered control and the
+new capped aggregate control are different relaxations; do not claim one
+configuration satisfies their union or all actual integer cells.
+
+The actual Q/R cap totals themselves differ by epsilon in (0,eta(m)),
+because their targets are adjacent paired ranks. But chi=-epsilon+s_R-s_Q
+depends on the signed unused upper-cell slack, whose exact integer
+complement is (y+1)^2-x^h. Elimination of those remainders recovers existing
+transport; closeness of cap totals does not orient used losses. The
+shared-state integer comparison remains open. The total-cap/log-squared
+argument was already registered in J-cycle-absolute-cell-grid-charge;
+do not rebrand it as new finance. Its checked m<520000000 corollary at
+these counts narrows a cubic minimum range only, without killing the
+period, raising the descent floor, or excluding the taller regime.
