@@ -1,7 +1,8 @@
 """Exact finite checks for first-image parity locality and its sharp scale.
 
 These fixtures are not the asymptotic proof and give no growing-depth
-all-odd count, prefix-preserving matching, or termination assertion.
+all-odd count or termination assertion. The added finite block checks
+verify scoped assignments, not their asymptotic existence.
 """
 
 from __future__ import annotations
@@ -90,3 +91,43 @@ def test_target_neighbor_window_is_isolated_from_other_odd_source_images() -> No
             assert target % 2 == 1 and target - m <= radius
             # Strict monotonicity leaves no odd-source image between these neighbors.
             assert m < target < right_image
+
+
+
+def test_fixed_block_pairing_preserves_prefix_and_has_capacity_two() -> None:
+    """Twelve literal controls; the small radius at t=2,3,4 is not a theorem."""
+
+    def word(n: int, length: int) -> tuple[int, ...]:
+        result = []
+        for _ in range(length):
+            result.append(n % 2)
+            n = math.isqrt(n**3 if n % 2 else n)
+        return tuple(result)
+
+    for y in (2**20, 2**28, 2**36):
+        size = 32 * _ceil_fourth_root(y)
+        sources = list(range(y + 1, y + 2 * size, 2))
+        assert len(sources) == size and sources[-1] <= 2 * y
+        words = {n: word(n, 5) for n in sources}
+        for depth in (1, 2, 3, 4):
+            continuers = [
+                n for n in sources if words[n][:depth + 1] == (1,) * (depth + 1)
+            ]
+            exits = [
+                n for n in sources if words[n][:depth + 1] == (1,) * depth + (0,)
+            ]
+            if depth == 4:
+                expected = {2**20: (59, 63), 2**28: (218, 256), 2**36: (932, 983)}
+                assert (len(continuers), len(exits)) == expected[y]
+            assert len(continuers) <= 2 * len(exits)
+            if depth == 1:
+                assert 3 * size <= 8 * len(exits) <= 5 * size
+            capacity: dict[int, int] = {}
+            for i, n in enumerate(continuers):
+                target = exits[i // 2]
+                assert n != target
+                assert words[n][:depth] == words[target][:depth] == (1,) * depth
+                assert words[n][depth] == 1 and words[target][depth] == 0
+                assert abs(n - target) < 2 * size
+                capacity[target] = capacity.get(target, 0) + 1
+            assert max(capacity.values(), default=0) <= 2

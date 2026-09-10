@@ -45,7 +45,7 @@ on original runs, and preserve signed frequency and partition budgets.
 ## Experiments
 
 The aggregate validator runs nine existing exact control modules,
-checks all 93 equation tags and 77 appendix references, and verifies
+checks all 93 equation tags and 78 appendix references, and verifies
 that the proof has no external research-note dependency. The release
 check records the standalone rebuild, PDF inspection, and repository tests.
 
@@ -65,6 +65,12 @@ AI-assisted written proof and finite exact controls. No independent
 mathematical review or full Lean verification is claimed.
 
 ## Results
+
+The publication title is now *Five-Step Descent Certificates for the Juggler Map: Parity Statistics of Nested Floor Powers*.
+Version 2026-09-10-zenodo-preprint retains the mathematical text of the
+10 September proof audit byte for byte. The PDF title and metadata,
+Zenodo fields, download name, and source package use the new title.
+No new theorem or external deposit is part of this editorial revision.
 
 The 10 September follow-up audit supplies the bounded signed-residual
 extension of Lemma 4.7 and proves the required variation control in

@@ -1,0 +1,464 @@
+{
+  "decision": "CLOSE",
+  "scope": "rank and real unit-width-cell weighted averaging only",
+  "controls": [
+    {
+      "minimum": 3,
+      "length": 11,
+      "even_branch_count": 4,
+      "states": [
+        {
+          "numerator": 3,
+          "denominator": 1
+        },
+        {
+          "numerator": 3366929,
+          "denominator": 1000000
+        },
+        {
+          "numerator": 3824813,
+          "denominator": 1000000
+        },
+        {
+          "numerator": 4403547,
+          "denominator": 1000000
+        },
+        {
+          "numerator": 1286359,
+          "denominator": 250000
+        },
+        {
+          "numerator": 1222289,
+          "denominator": 200000
+        },
+        {
+          "numerator": 369559,
+          "denominator": 50000
+        },
+        {
+          "numerator": 9119187,
+          "denominator": 1000000
+        },
+        {
+          "numerator": 5751111,
+          "denominator": 500000
+        },
+        {
+          "numerator": 14866107,
+          "denominator": 1000000
+        },
+        {
+          "numerator": 9869267,
+          "denominator": 500000
+        }
+      ],
+      "strict_real_cells_checked": 11,
+      "minimum_lower_margin": {
+        "numerator": 119187,
+        "denominator": 1000000
+      },
+      "minimum_upper_margin": {
+        "numerator": 6880813,
+        "denominator": 1000000
+      },
+      "first_gap": {
+        "numerator": 366929,
+        "denominator": 1000000
+      },
+      "first_gap_below_two": true,
+      "noninteger_states": 10,
+      "exact_weight_variation_slope": {
+        "numerator": 17393,
+        "denominator": 12960
+      },
+      "both_variation_signs": true,
+      "integer_floor_cycle_asserted": false,
+      "all_actual_cycle_constraints_asserted": false
+    },
+    {
+      "minimum": 9,
+      "length": 84,
+      "even_branch_count": 31,
+      "states": [
+        {
+          "numerator": 9,
+          "denominator": 1
+        },
+        {
+          "numerator": 2316033,
+          "denominator": 250000
+        },
+        {
+          "numerator": 149057,
+          "denominator": 15625
+        },
+        {
+          "numerator": 9827149,
+          "denominator": 1000000
+        },
+        {
+          "numerator": 1265909,
+          "denominator": 125000
+        },
+        {
+          "numerator": 5220347,
+          "denominator": 500000
+        },
+        {
+          "numerator": 10768137,
+          "denominator": 1000000
+        },
+        {
+          "numerator": 2777591,
+          "denominator": 250000
+        },
+        {
+          "numerator": 11468191,
+          "denominator": 1000000
+        },
+        {
+          "numerator": 11842483,
+          "denominator": 1000000
+        },
+        {
+          "numerator": 6117081,
+          "denominator": 500000
+        },
+        {
+          "numerator": 12644211,
+          "denominator": 1000000
+        },
+        {
+          "numerator": 3268419,
+          "denominator": 250000
+        },
+        {
+          "numerator": 13523673,
+          "denominator": 1000000
+        },
+        {
+          "numerator": 13995393,
+          "denominator": 1000000
+        },
+        {
+          "numerator": 7245053,
+          "denominator": 500000
+        },
+        {
+          "numerator": 938073,
+          "denominator": 62500
+        },
+        {
+          "numerator": 15554029,
+          "denominator": 1000000
+        },
+        {
+          "numerator": 8063119,
+          "denominator": 500000
+        },
+        {
+          "numerator": 16727451,
+          "denominator": 1000000
+        },
+        {
+          "numerator": 8679721,
+          "denominator": 500000
+        },
+        {
+          "numerator": 18024107,
+          "denominator": 1000000
+        },
+        {
+          "numerator": 18723481,
+          "denominator": 1000000
+        },
+        {
+          "numerator": 9729871,
+          "denominator": 500000
+        },
+        {
+          "numerator": 20235227,
+          "denominator": 1000000
+        },
+        {
+          "numerator": 21052443,
+          "denominator": 1000000
+        },
+        {
+          "numerator": 21914081,
+          "denominator": 1000000
+        },
+        {
+          "numerator": 11411517,
+          "denominator": 500000
+        },
+        {
+          "numerator": 23782409,
+          "denominator": 1000000
+        },
+        {
+          "numerator": 24795549,
+          "denominator": 1000000
+        },
+        {
+          "numerator": 25866051,
+          "denominator": 1000000
+        },
+        {
+          "numerator": 6749447,
+          "denominator": 250000
+        },
+        {
+          "numerator": 28194933,
+          "denominator": 1000000
+        },
+        {
+          "numerator": 14730993,
+          "denominator": 500000
+        },
+        {
+          "numerator": 154019,
+          "denominator": 5000
+        },
+        {
+          "numerator": 16112807,
+          "denominator": 500000
+        },
+        {
+          "numerator": 1054159,
+          "denominator": 31250
+        },
+        {
+          "numerator": 35332337,
+          "denominator": 1000000
+        },
+        {
+          "numerator": 37029979,
+          "denominator": 1000000
+        },
+        {
+          "numerator": 38833173,
+          "denominator": 1000000
+        },
+        {
+          "numerator": 40749673,
+          "denominator": 1000000
+        },
+        {
+          "numerator": 21393941,
+          "denominator": 500000
+        },
+        {
+          "numerator": 11239229,
+          "denominator": 250000
+        },
+        {
+          "numerator": 47266663,
+          "denominator": 1000000
+        },
+        {
+          "numerator": 24863933,
+          "denominator": 500000
+        },
+        {
+          "numerator": 52352197,
+          "denominator": 1000000
+        },
+        {
+          "numerator": 55152351,
+          "denominator": 1000000
+        },
+        {
+          "numerator": 29071073,
+          "denominator": 500000
+        },
+        {
+          "numerator": 6133663,
+          "denominator": 100000
+        },
+        {
+          "numerator": 16188051,
+          "denominator": 250000
+        },
+        {
+          "numerator": 34203381,
+          "denominator": 500000
+        },
+        {
+          "numerator": 9039979,
+          "denominator": 125000
+        },
+        {
+          "numerator": 4782047,
+          "denominator": 62500
+        },
+        {
+          "numerator": 81008849,
+          "denominator": 1000000
+        },
+        {
+          "numerator": 85833647,
+          "denominator": 1000000
+        },
+        {
+          "numerator": 18203019,
+          "denominator": 200000
+        },
+        {
+          "numerator": 48291913,
+          "denominator": 500000
+        },
+        {
+          "numerator": 102573439,
+          "denominator": 1000000
+        },
+        {
+          "numerator": 21804163,
+          "denominator": 200000
+        },
+        {
+          "numerator": 4638659,
+          "denominator": 40000
+        },
+        {
+          "numerator": 61727489,
+          "denominator": 500000
+        },
+        {
+          "numerator": 411048,
+          "denominator": 3125
+        },
+        {
+          "numerator": 140261637,
+          "denominator": 1000000
+        },
+        {
+          "numerator": 149693359,
+          "denominator": 1000000
+        },
+        {
+          "numerator": 79948119,
+          "denominator": 500000
+        },
+        {
+          "numerator": 2670982,
+          "denominator": 15625
+        },
+        {
+          "numerator": 91456709,
+          "denominator": 500000
+        },
+        {
+          "numerator": 2448709,
+          "denominator": 12500
+        },
+        {
+          "numerator": 20999107,
+          "denominator": 100000
+        },
+        {
+          "numerator": 225305459,
+          "denominator": 1000000
+        },
+        {
+          "numerator": 30245103,
+          "denominator": 125000
+        },
+        {
+          "numerator": 130045747,
+          "denominator": 500000
+        },
+        {
+          "numerator": 279846811,
+          "denominator": 1000000
+        },
+        {
+          "numerator": 150696491,
+          "denominator": 500000
+        },
+        {
+          "numerator": 324915161,
+          "denominator": 1000000
+        },
+        {
+          "numerator": 14024793,
+          "denominator": 40000
+        },
+        {
+          "numerator": 189368733,
+          "denominator": 500000
+        },
+        {
+          "numerator": 8190513,
+          "denominator": 20000
+        },
+        {
+          "numerator": 443272503,
+          "denominator": 1000000
+        },
+        {
+          "numerator": 480300681,
+          "denominator": 1000000
+        },
+        {
+          "numerator": 520971901,
+          "denominator": 1000000
+        },
+        {
+          "numerator": 35355757,
+          "denominator": 62500
+        },
+        {
+          "numerator": 614917411,
+          "denominator": 1000000
+        },
+        {
+          "numerator": 66916081,
+          "denominator": 100000
+        }
+      ],
+      "strict_real_cells_checked": 84,
+      "minimum_lower_margin": {
+        "numerator": 8849,
+        "denominator": 1000000
+      },
+      "minimum_upper_margin": {
+        "numerator": 18991151,
+        "denominator": 1000000
+      },
+      "first_gap": {
+        "numerator": 66033,
+        "denominator": 250000
+      },
+      "first_gap_below_two": true,
+      "noninteger_states": 83,
+      "exact_weight_variation_slope": {
+        "numerator": 88666854969567072525669715146370595792208649725030101114904057332749,
+        "denominator": 68695376839378127542312983713876342437030888774888141791233076480000
+      },
+      "both_variation_signs": true,
+      "integer_floor_cycle_asserted": false,
+      "all_actual_cycle_constraints_asserted": false
+    }
+  ],
+  "fixed_grids": [
+    [
+      3,
+      11,
+      4
+    ],
+    [
+      9,
+      84,
+      31
+    ]
+  ],
+  "source_search": false,
+  "orbit_search": false,
+  "larger_floor": false,
+  "no_cycle_proved": false,
+  "new_actual_cycle_bound": false,
+  "new_lean_or_paper_claim": false,
+  "proof_owner": "docs/problems/juggler_cycle_weighted_remainders.md",
+  "proof_status": "AI-assisted written proofs; exact finite controls, not Lean"
+}

@@ -39,8 +39,8 @@ we also determine the complete rank order and mechanical itinerary,
 derive a uniform log-log grid bound, and prove the further height
 restriction \(M<m^3-m^{15/8}\) for \(m\ge7\), where \(m,M\) are the
 minimum and maximum. Successive genuine return-gap contractions sharpen
-this to \(M<m^3-\frac12m^{253/128}\) for \(m\ge2^{24}\), and to
-\(M<m^3-\frac12m^{127/64}\) for \(m\ge2^{128}\), with a slightly
+this to \(M<m^3-(1/2)m^{253/128}\) for \(m\ge2^{24}\), and to
+\(M<m^3-(1/2)m^{127/64}\) for \(m\ge2^{128}\), with a slightly
 stronger exponent in the latter case. A terminal word factorization
 identifies the expansion still uncontrolled by these contractions.
 Exact short-return cells identify the rounding information discarded
@@ -515,6 +515,14 @@ the short OE/OOE cells, subtractive rank returns, exact family-chain bound,
 and retained-remainder recovery. Its larger analytic constructions and
 full tower discussions remain written where Appendix A indicates.
 The new proofs use kernel verification and add no native scan.
+Section 3.12's two height restrictions are formalized from actual
+periodic-set hypotheses. The section, forced batches, odd endpoint gaps
+and genuine transfers are constructed internally. Appendix F's exact
+floor-loss bounds and finite certificate threshold are also formalized.
+Section 3.13 retains the specific written boundary identified in Appendix A:
+the terminal rank factorization and local cut inequality are checked,
+while the global adjacency identification and primitive termination
+argument remain written. No general no-cycle theorem is asserted.
 The real projection description and the higher-difference consequence
 are explanatory deductions from the listed results. The grid endpoints
 use the namespace `Problems.Juggler.CubicGrid`.
@@ -2062,7 +2070,7 @@ through \(C\) give
 z-w\ge6,\qquad
 z-w>\frac{26240}{59049}m^{13/128},
 \qquad
-M<m^3-\frac12m^{253/128}.
+M<m^3-\frac{1}{2}m^{253/128}.
 \tag{SR1}
 \]
 
@@ -2071,12 +2079,12 @@ gives
 \[
 z-w\ge8,\qquad z-w>\frac25m^\sigma,
 \qquad
-M<m^3-\frac12m^{381/128-\rho}.
+M<m^3-\frac{1}{2}m^{381/128-\rho}.
 \tag{SR2}
 \]
 In particular,
 \[
-M<m^3-\frac12m^{127/64}.
+M<m^3-\frac{1}{2}m^{127/64}.
 \tag{SR3}
 \]
 The exponent \(381/128-\rho\) is approximately \(1.98795995227\).
@@ -4324,6 +4332,13 @@ None of these distinctions is removed by compiling the barrel.
 | Theorem E.4 | `ooeFamilyReturn_mod_fortyeight`, `ooeFamilyReturn_valuation_drop`, `ooeFamily_juggler_chain_bound`, `ooeFamily_no_infinite_juggler_chain`. The additional 3-adic identity is written; six terminating traces are finite computations |
 | Appendix E.5 | Initialized record: `record_initializes`, `endpoint_validation`; correction and signed floors: `exact_remainder_correction`, `exact_quotient_gap`, `corrected_quotient_integer`; executable recovery and hidden guards: `recoverPeak_eq`, `recoverPeak_guard_iff`. The further OOEOE composition is written |
 | Appendix E.6 | Every-modulus witness: `guardResidueFamily_every_modulus`; cells and parities: `guardResidue_ooe_traces`, `guardResidue_nat_parities`; exact remainder and valuation: `guardResidue_first_remainders_zero`, `guardResidue_aggregate_valuation`; record collision and classifier obstruction: `guardResidueFamily_record_collision`, `guardResidueFamily_no_record_classifier`; common domain and threshold edges: `guardResidue_common_band_and_section`, `guardResidue_threshold_blocks`. The general positive-\(b\) construction and supplementary bookkeeping remain written |
+| Theorem 3.40 | Actual-cycle gap and height bounds: `dc_cycle_gap`, `lr_cycle_gap`, `dc_cycle_height`, `lr_cycle_height`. The last two include the displayed real bounds and exact integer endpoints, from the stated minimum and cubic-band hypotheses |
+| Theorem 3.40, cycle and threshold consequences | Ordinary cycle predicates: `cycleMin_dc_height`, `cycleMin_lr_height`. Wrong parity in the excluded threshold strips: `threshold_cycle_dc_wrong_parity`, `threshold_cycle_lr_wrong_parity` |
+| Appendix F.1 | Exact transported loss: `loss_exact`; concave-tail bound: `loss_lt_budget`; common-floor paired estimate: `paired_bound` |
+| Appendix F.2–F.3 | Unconditional word bounds: `c_loss`, `w_loss`; gap contraction: `c_contract`, `w_contract`. Required growth: `ac_grows`, `d_grows`, `v_grows`; the sharper written helper errors and the earlier \(2^{15}\) growth cutoff are not needed in these formal proofs |
+| Appendix F.2–F.4 | Actual section: `periodicExtrema_return_model`; forced batches: `dc_rank_stages`, `lr_rank_stage`; guarded pair placement: `periodicExtrema_dc_transfers`, `periodicExtrema_lr_transfers`; height transport: `height_of_power_gap` |
+| Proposition 3.41 and Appendix F.5 | Finite substitution factorization and actual guards at a two-point return: `induced_terminal_actual_factorization`. Local contraction at the absolute cut: `mixed_gap`. Identifying the terminal pair with the globally adjacent cut pair, and the full primitive termination argument, remain written |
+| Appendix F.6 | Exact necessary threshold for the stated sufficient certificate: `certificate_requires_large_minimum`. Its near-unit asymptotic interpretation remains written; this is not a counterexample to actual paired contraction |
 | Lemma 3.21b | canonical run form; Theorem 3.2 |
 | Lemma 3.21a | the case split of Theorem 3.22 |
 | Lemma 4.1 | `log_le_two_log_add` |
@@ -5610,7 +5625,7 @@ retains the actual cycle states and all intermediate parity guards.
 
 ### F.1. A general floor-loss and paired-gap certificate
 
-For a prescribed word of length \(L\ge1\), let \(a_j=3\) for an
+For a prescribed word of length \(L\ge1\) with positive integer source \(x\ge1\), let \(a_j=3\) for an
 \(O\) letter and \(a_j=1\) for an \(E\) letter. Let \(p_j\) be its ideal prefix
 exponents, \(p=p_L\), \(n_j\) its actual integer states, and
 \(\varepsilon_j=n_{j-1}^{a_j/2}-n_j\in[0,1)\).
@@ -5662,7 +5677,7 @@ when \(x\ge3\): \(O\) does not decrease a positive integer and
 The seven proper tail exponents are
 \[
 \frac{81}{128},\frac{27}{64},\frac{27}{32},
-\frac9{16},\frac38,\frac34,\frac12.
+\frac9{16},\frac38,\frac34,\frac{1}{2}.
 \]
 They are all below one. The concavity estimate in Section F.1 therefore yields
 \[
@@ -5713,7 +5728,7 @@ All intermediate \(A\)-iterates stay at least \(x\). Consequently
 \[
 A^3B(x)\ge
 \left(\frac78\right)^{907/256}x^{2187/2048}
->\frac12x^{2187/2048}>x
+>\frac{1}{2}x^{2187/2048}>x
 \quad(x\ge2^{15}).
 \tag{F5}
 \]
@@ -5852,7 +5867,7 @@ Write \(r=ks+u\), \(0\le u<s\). Thus \(k\ge3\).
 The next upper word is \(D^kC\) when \(u>0\); when \(u=0\),
 the terminal concatenation \(D^kC\) fixes the remaining ranks.
 
-The comparison word \(V=D^4C\) strictly grows on \(x\ge2^{128}\).
+The comparison word \(V=D^4C\), with exponent \(\eta=\delta^4\gamma=3^{53}/2^{84}\), strictly grows on \(x\ge2^{128}\).
 Here is a direct finite-word proof. Each nonempty proper prefix of
 \(C\) has exponent at least \(\alpha\). Each nonempty proper prefix
 of \(D=AC^2\) has exponent greater than \(\delta\).
@@ -6001,7 +6016,7 @@ All quantities being squared are positive, and
 M&<(a_*-R+1)^2-2\\
  &=a_*^2-2a_*R+R^2+2a_*-2R-1\\
  &<a_*^2-\frac32a_*R
-  =m^3-\frac12m^{15/8+\nu}.
+  =m^3-\frac{1}{2}m^{15/8+\nu}.
 \end{aligned}
 \tag{F11}
 \]

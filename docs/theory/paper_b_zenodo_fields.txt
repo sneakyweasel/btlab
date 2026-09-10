@@ -1,38 +1,36 @@
-PAPER B - PREPARED ZENODO RECORD
+GENERATED FROM docs/theory/; do not edit this export.
+Prepared metadata only; no external record has been created.
 
 TITLE
-Parity Statistics of Nested Floor Powers: Finite-Step Descent and Conditional Extensions for the Juggler Map
+Five-Step Descent Certificates for the Juggler Map: Parity Statistics of Nested Floor Powers
 
 CREATOR
 Cochin, Philippe
-No affiliation supplied.
+Affiliation: none
 
 RESOURCE TYPE
 Publication / Preprint
 
 VERSION
-2026-09-10-proof-audit
-
-PUBLICATION DATE
-Use the date this version is first made public. The manuscript is dated 10 September 2026.
+2026-09-10-zenodo-preprint
 
 LICENSE
-CC BY 4.0 for the manuscript and release documentation.
-MIT for the accompanying original code.
+cc-by-4.0
 
-DESCRIPTION
-The Juggler map applies the integer part of the square root at even positive integers and of the three-halves power at odd positive integers. We prove that the starting values admitting a power-envelope descent certificate within five operations have natural density 7/8. More precisely, their count up to N is 7N/8+O_epsilon(N^(127/128+epsilon)) for every epsilon>0. The four-step subfamily has density 13/16. The proof uses exact carry identities, centered Fourier expansions, and van der Corput differencing, with all floor exceptions and partition endpoints counted. The two five-letter classes OOEOE and OOOEE are treated through their distinct formal chains. For OOOEE, the full mixed phase is retained and its signed curvature is recomputed after each frequency center is frozen. The complete analytic argument is included in three appendices. Fair-share densities at every fixed depth would imply density-one finite certificates; that hypothesis, general decorated estimates, and short-interval localization remain open. No result asserts universal arrival at 1.
+PUBLICATION DATE
+Use the actual date this version is first made public.
 
 KEYWORDS
-Juggler map; nested floor powers; parity correlations; discrepancy; stopping time; finite-step descent
+Juggler map
+descent certificates
+nested floor powers
+parity correlations
+discrepancy
+exponential sums
+finite-step descent
+
+DESCRIPTION (HTML)
+<p>The Juggler map applies the integer part of the square root at even positive integers and of the three-halves power at odd positive integers. We prove that the starting values admitting a power-envelope descent certificate within five operations have natural density 7/8. More precisely, their count up to N is 7N/8+O_epsilon(N^(127/128+epsilon)) for every epsilon&gt;0. The four-step subfamily has density 13/16. The proof uses exact carry identities, centered Fourier expansions, and van der Corput differencing, with all floor exceptions and partition endpoints counted. The two five-letter classes OOEOE and OOOEE are treated through their distinct formal chains. For OOOEE, the full mixed phase is retained and its signed curvature is recomputed after each frequency center is frozen. The complete analytic argument is included in three appendices. Fair-share densities at every fixed depth would imply density-one finite certificates; that hypothesis, general decorated estimates, and short-interval localization remain open. No result asserts universal arrival at 1.</p>
 
 RELATED SOFTWARE
 https://github.com/sneakyweasel/btlab
-
-UPLOAD FILES
-juggler_parity_discrepancy_note.pdf
-paper_b_source_package.zip
-
-REVIEW STATUS
-AI-assisted written proof; exact controls pass. Independent mathematical review and full Lean verification are not claimed.
-No record has been created, no DOI reserved, and no files uploaded.

@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "title": "Parity Statistics of Nested Floor Powers: Finite-Step Descent and Conditional Extensions for the Juggler Map",
+    "title": "Five-Step Descent Certificates for the Juggler Map: Parity Statistics of Nested Floor Powers",
     "upload_type": "publication",
     "publication_type": "preprint",
     "creators": [
@@ -9,16 +9,17 @@
       }
     ],
     "description": "<p>The Juggler map applies the integer part of the square root at even positive integers and of the three-halves power at odd positive integers. We prove that the starting values admitting a power-envelope descent certificate within five operations have natural density 7/8. More precisely, their count up to N is 7N/8+O_epsilon(N^(127/128+epsilon)) for every epsilon&gt;0. The four-step subfamily has density 13/16. The proof uses exact carry identities, centered Fourier expansions, and van der Corput differencing, with all floor exceptions and partition endpoints counted. The two five-letter classes OOEOE and OOOEE are treated through their distinct formal chains. For OOOEE, the full mixed phase is retained and its signed curvature is recomputed after each frequency center is frozen. The complete analytic argument is included in three appendices. Fair-share densities at every fixed depth would imply density-one finite certificates; that hypothesis, general decorated estimates, and short-interval localization remain open. No result asserts universal arrival at 1.</p>",
-    "version": "2026-09-10-proof-audit",
+    "version": "2026-09-10-zenodo-preprint",
     "language": "eng",
     "access_right": "open",
     "license": "cc-by-4.0",
     "keywords": [
       "Juggler map",
+      "descent certificates",
       "nested floor powers",
       "parity correlations",
       "discrepancy",
-      "stopping time",
+      "exponential sums",
       "finite-step descent"
     ],
     "related_identifiers": [
@@ -28,6 +29,6 @@
         "scheme": "url"
       }
     ],
-    "notes": "Theorem 5.4 proves the five-step power-envelope certificate density 7/8 with error O_epsilon(N^(127/128+epsilon)). The complete OOOEE proof is consolidated into Appendices A-C. AI assistance is disclosed. Exact scripts support algebra and bookkeeping, not independent mathematical certification. Independent review remains outstanding. The historical 95/96 target, arbitrary decorations, localization, and all-depth fair-share hypotheses remain open. No universal termination claim. Use the actual first-publication date when creating the deposit. The 10 September proof audit adds the bounded signed-residual Fourier extension, verifies coefficient variation, clarifies notation and shift conventions, and repairs the reference link. Critical curvature coefficients were derived afresh with SymPy. This remains an AI-assisted written proof pending independent expert review."
+    "notes": "AI-assisted preprint. Theorem 5.4 gives the five-step power-envelope certificate count 7N/8+O_epsilon(N^(127/128+epsilon)); Theorem 4.11 and Appendices A-C contain the OOOEE argument. The 10 September proof audit supplies the bounded signed-residual Fourier extension and its variation checks. Exact and symbolic scripts check algebra and exponent bookkeeping; they do not certify asymptotic cancellation. Independent mathematical review and complete Lean verification remain outstanding. The historical 95/96 target, arbitrary decorations, short-interval localization, and all-depth fair-share hypotheses remain open. No universal termination claim is made. This edition changes the title and publication materials only; its mathematical text is identical to the 10 September proof-audit edition."
   }
 }

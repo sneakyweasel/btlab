@@ -1,5 +1,575 @@
 # Research journal
 
+## 2026-09-10 — Located O loss resolves split-pair accounting
+
+The user authorized the boundary/sign gate after Q82--Q92.
+**PROMOTE** the located O-edge charge and arbitrary coefficient
+support bounds in [quartic Results 37--39](problems/juggler_cycle_quartic_band.md).
+A classical Gaussian argument rules out unit incoming O remainder
+without using its following E edge. The preceding modulo7 statement
+is valid, but its interpretation is refined accordingly. Reserving
+kappa on O and only D-kappa on the remaining pair gives a stronger
+bound at cut pairs without double counting. Four small support
+theorems, including finite-sum versions, were consolidated in QuarticLossBudget;
+the Gaussian and full actual-cycle interpretations remain written.
+
+Actual cubic terminal placement forces P and mixed to split the same
+pair, while Q splits none. Both endpoints of every terminal interval
+tighten. Nevertheless the three coefficient vectors cancel edge by
+edge. The boundary-only net-loss deduction is **CLOSE**; no-cycle
+orientation remains **PARK**. No original quartic rank rotation is
+silently assumed. Three AI agents audited the mathematics, including
+the distinction between residual relaxation and integer realization.
+
+Controls comprise the exact Q=1 open pair 847->24650->157 and one
+fixed L19/e7 word/rank pattern with its finite endpoint residual
+allocations. The first-witness local search stopped after 71 candidates;
+no orbit census or floor increase occurred. The canonical proof owner
+and ledgers are updated. Paper A and its releases remain unchanged;
+independent human review and the remaining formal assembly are still
+outstanding. No further executable attack is established or launched.
+
+
+## 2026-09-10 — Shared OE remainders tighten the budget; endpoint equality is unbounded
+
+The authorized coupled-remainder gate **PROMOTES** a strict improvement
+in [quartic Results 34--35](problems/juggler_cycle_quartic_band.md).
+An actual odd/even/odd OE pair cannot have both remainders equal to one:
+the shared cube equation excludes this corner modulo7. Its positive
+additional charge reduces the residual loss allowance, with exact
+strict containment margins for the signed interval over whole return
+blocks. This goes beyond the old independent parity lower faces.
+The arithmetic restriction and exact O/B specialization are kernel
+checked in QuarticCells; the logarithmic and full actual-cycle assembly
+remain AI-assisted written proofs audited by three AI agents.
+
+The bounded endpoint-equality investigation produces an explicit
+unbounded guarded F=G family, Result 36. Ten polynomial certificates
+prove it uniformly for t>=8192, t=9 modulo16, independently expanded
+with rational symbolic and integer polynomial arithmetic. Three fixed
+large-scale replays extend the branch tests. Eventual local strictness
+from guards and a large valley is **CLOSE**; periodic membership and
+the all-equality actual-cycle case remain open. The auxiliary valley
+is even and its alternative O edge is prescribed.
+
+Actual no-cycle is **PARK**: the tighter interval has no proved
+orientation, and original-edge arcs cutting a pair still require
+boundary accounting. Aggregate elimination merely repeats target
+matching and is CLOSE as the tested shortcut. The canonical dossier
+and claim/branch records retain the proofs and scope. Paper A, release
+PDFs and the floors 350000000/780239 are unchanged. No further gate
+or cycle census was opened.
+
+
+## 2026-09-10 — Absolute quartic cells confine strict re-entry below 2m
+
+The user authorized the next absolute-cell gate after the six-module Lean
+consolidation. **PROMOTE** the conditional re-entry localization and exact
+augmented closure criterion in [quartic Results 30--33](problems/juggler_cycle_quartic_band.md),
+claim J-cycle-quartic-absolute-reentry. Under the existing Q43 condition,
+missing-valley O images lie between adjacent selected targets. A strict
+selected re-entry requires two F sources, consecutive auxiliary valleys,
+the preceding upper endpoint face, and a current valley at most 2m.
+The exact endpoint-equality face instead has one possible source at
+large valley v: ceil(v^(4/3)). Three AI agents audited the written proof.
+
+The requested absolute no-cycle exclusion is **PARK**. Adding all missing
+valleys closes a threshold cycle only in the all-equality case, which
+preserves original period and surplus while displaying wrong parities.
+An unbounded exact open G/F family with minimum t^6-4 retains separated
+cells, all four spacing inequalities and actual guards while the F valley
+and next O image remain absent. This closes the local anchoring shortcut.
+The known compulsory parity charges yield no new contrary residual sign.
+
+Five fixed checks extend the existing suite: the derived family at the
+same t=3,65,65537 scales, one small endpoint-equality path, and a clearly
+abstract target-matching control at the existing e=7 counts. No census,
+new floor, or infinite actual orbit. Lean sources, Paper A, PDFs and release
+copies are unchanged; these new written results still need their complete
+formalization and independent human review. The large-valley equality
+candidate is recorded as a next local question without opening that gate.
+
+
+## 2026-09-10 — Sorted quartic envelopes force every F cell to be uncovered
+
+After the requested five-module Lean consolidation passed, the user-authorized
+witness-transport gate produced a stronger conditional restriction in
+[quartic Results 27--29](problems/juggler_cycle_quartic_band.md), claim
+J-cycle-quartic-separated-cells. **PROMOTE:** sorting genuine lower power
+envelopes gives a positive pure-rotation defect even before excluding
+inversions. Coprime transport bounds every cyclic gap from below by
+[A-(e-1)Lambda]/e. Under exactly the previous small-product condition,
+this is at least eta(m), so exact OE cells force B injective on all H,
+every F uncovered, I=0 and pi=id. Three AI agents audited the proof.
+
+QuarticGapSeparation is the sixth scoped Lean module: its cyclic-cocycle
+kernel proves the gap bound and actual integer B-cell injectivity. The
+full primitive-cycle, sorted-envelope and original-count assembly remains
+at the AI-assisted written tier and awaits independent human review.
+
+Bare transport of the original witness is **CLOSE** as an upper-bound
+argument. It cancels the same omitted F losses and preserves a target
+witness. Two fixed controls at the existing e=12 and e=7 counts check
+the redistributed defects and a full circuit of unequal positive losses;
+neither realizes integer cells or actual cycles. No census or floor
+increase. Paper A and release artifacts remain unchanged. Uniform
+small-product/no-cycle and exact separated-rotation realization remain
+PARK. The latter is recorded as the next question, without opening
+another research gate.
+
+
+## 2026-09-10 — Quartic Lean consolidation with explicit assembly boundary
+
+Five laboratory modules now support the [canonical quartic dossier](problems/juggler_cycle_quartic_band.md):
+QuarticBand derives actual guarded closed returns and a complete sorted section
+permutation; QuarticCells proves the exact inversion criterion and logarithmic
+cell bound; QuarticProjection proves the finite rank/displacement kernels;
+QuarticLossBudget derives the strict disjoint-block budget and normalized
+unselected-valley witness from explicit certificates; QuarticDefect proves
+actual nonnegative block defects, strict F loss, and permutation telescoping.
+The scoped claims have individual Lean ledger rows. The existing global
+written claims keep their prior evidence tier: original-cycle counts,
+primitive transitivity, full cell-prefix rank assembly and all component
+certificate construction remain outstanding. The finite controls are not
+substitutes for those proofs. Paper A, PDFs, release artifacts and numerical
+floors remain unchanged. The user authorized the witness-transport attack
+after this consolidation; its outcome is recorded separately.
+
+
+## 2026-09-10 — Every projected component needs an uncovered gap witness
+
+The user authorized neighboring-cell actual-block comparisons.
+**PROMOTE** the conditional placement and gap theorem in
+[quartic Results 23--26](problems/juggler_cycle_quartic_band.md),
+claim J-cycle-quartic-component-gap-witness. Three AI agents
+audited the written proof; independent human review and Lean
+verification remain outstanding.
+
+The preceding selected G valley always exists, so projecting to
+it closes a nondecreasing H rank map. Its periodic restrictions
+remain two-block rotations, including lower fixed points. Genuine
+G partners supply disjoint actual H-return blocks. Their signed
+comparison, applied to one component at a time, combines with
+integer collapse displacement to force a normalized source gap.
+Under d=1 and (e-1)Lambda+e eta(m)<=log(3/2), every projected
+component contains an uncovered periodic F with gap/displacement
+>tau>=eta(m). Hence the uncovered count is at least the component
+count N, and transient uncovered sources cannot suffice. An
+adjacent selected H gap in each witness interval exceeds tau.
+
+No new small-product hypothesis is added beyond Q43, but it is
+still unproved uniformly, and the witness gap is not excluded.
+The coarse maximum neighboring-gap inequality is CLOSE because
+counts and interval span already force it. Dropping the target
+boundary during substitution is also CLOSE. The uniform gap and
+no-cycle target remains PARK.
+
+Two fixed abstract controls verify the transient-hole separation
+and the n=1,p=0 case, reusing existing small counts and their
+exact sufficient-condition check. No census, parameter campaign
+or numerical floor increase was made. The next question concerns
+transporting the witness interval through the actual return map;
+that next gate is not launched. Paper A, Lean, PDFs and release
+copies are unchanged by this turn.
+
+
+## 2026-09-10 — Full-cell displacement forces conditional uncovered F cells
+
+The user authorized the continuation beyond all participation.
+**PROMOTE** the covered-cell theorem in
+[quartic Results 19--22](problems/juggler_cycle_quartic_band.md),
+claim J-cycle-quartic-covered-cell-budget. Three AI agents audited
+the written argument; independent human review and Lean remain
+outstanding.
+
+All F cells are covered by selected G sources exactly when the
+auxiliary U is closed on the actual low set Y. Its H return
+collapses whole cells, including F sources after G. These late
+sources have negative actual-block replacement shifts, and their
+own F towers cannot absorb them. Exact cell width instead gives
+a uniform cap eta(m)=log(log(m+1)/log m). Every periodic late F
+also contributes at least one unit of full-cell rank displacement,
+so q_minus<=N Delta. The signed disjoint actual-block budget then
+forces t_tr Lambda>N Delta(log(3/2)-e eta(m)).
+
+For gcd(L,o)=1, the condition
+(e-1)Lambda+e eta(m)<=log(3/2) therefore forces an F source whose
+B value is not in Y, equivalently an F cell with no selected G.
+The explicit extra cost satisfies e eta(m)<e/(m log m). Neither
+the condition nor an unconditional uncovered-cell bound is proved
+uniformly, and an uncovered auxiliary valley is not a cycle
+contradiction.
+
+Five fixed regressions check the earlier-G family at t=3,65,65537,
+one abstract primitive permutation with only a late periodic F,
+and an exact rational sufficient condition at existing small
+counts. No census or numerical-floor campaign was performed.
+The own-tower and early-periodic-F shortcuts are CLOSE; the
+uniform uncovered-cell/no-cycle question remains PARK. The next
+question is a disjoint replacement across neighboring selected
+cells for an uncovered F; that next gate is not launched here.
+Paper A, Lean, PDFs and releases are unchanged by this turn.
+The certified minimum floor 350000000 and period floor 780239
+remain fixed.
+
+
+## 2026-09-10 — Disjoint actual returns force conditional quartic nonparticipants
+
+The user authorized the auxiliary periodic-component test.
+**PROMOTE** the conditional theorem in
+[quartic Results 15--18](problems/juggler_cycle_quartic_band.md),
+claim J-cycle-quartic-auxiliary-loss-budget. The written proof is
+AI-assisted and independently cross-checked by three AI agents;
+human review and Lean verification remain outstanding.
+
+Under c0=0 the auxiliary map is an exact return of the old cubic
+threshold map. At c=d-1 its unique periodic component lifts to
+period L/d with one wrong-parity high state, so the actual period
+floor is unavailable. The one-edge excursion identity alone gives
+no contradiction.
+
+The decisive comparison replaces periodic altered F blocks by
+their distinct transient G partners' genuine OE blocks. Their
+defects increase by log(log y/log x); all mapped blocks are
+disjoint, and every positive-loss actual F tower remains omitted.
+The resulting budget combines with the auxiliary rank defect.
+Full residue coverage requires (e-1)Lambda>d log(3/2).
+Thus d=1 and (e-1)Lambda<=log(3/2) force c0>=1, strengthened to
+c0>=2 for even c. No uniform small-product hypothesis is proved.
+
+Four fixed regressions cover the missing-residue component, a
+coprime abstract configuration excluded by the budget, exact
+integer surplus comparisons, and the archived S_3 wrong-state
+example. No cycle census or new runtime probe is added.
+The next question is extending the actual-block comparison when
+a nonparticipant has an earlier G partner or no selected partner.
+No such extension or next gate is launched.
+
+No whole-slab exclusion or global no-cycle theorem follows.
+Paper A, Lean and release copies are unchanged. The certified
+floor350000000 and period floor780239 remain fixed.
+
+
+## 2026-09-10 — Quartic nonparticipant audit: extremal descent and auxiliary closure
+
+The user authorized the next nonparticipant test. The target c_0>=1
+is **PARK**; the shared-cell theorem remains **PROMOTE**.
+[Quartic Results 12--14](problems/juggler_cycle_quartic_band.md) retain
+the exact diagnostics and close only the tested descent/aggregate
+exponent deductions. The AI-assisted written arguments were
+cross-checked by three AI agents, without new Lean verification.
+
+The maximal F source has an actual OOEOE descent below itself,
+using the existing exponent27/32 certificate. If it participates,
+its paired return gives v<W<T<a<b<w<t, but no smaller F label or
+invariant cycle is forced. At the sharp c=d-1 boundary, abstract
+growth and connectivity already permit all participation.
+
+On the taller side M>=m^3, under c_0=0 the selected low set is closed under an auxiliary O/B
+map. Its old F targets lose incoming edges; the map has transient
+states and cannot inherit the original return's injectivity.
+Every auxiliary periodic component must use a changed F edge.
+The aggregate exponent balance has an explicit negative indegree
+term, so full-set telescoping supplies no contradiction.
+
+The same fixed open family is checked at its listed minimum.
+Only u=3 is checked for the further maximum extension: its O(t)
+output is odd, so the claimed E step fails. This is recorded as a
+negative guard control, not a completed maximum diagram or cycle.
+No parameter search, census or new runtime probe was performed.
+
+The remaining arithmetic question concerns an auxiliary periodic
+component avoiding all changed F edges; no existence argument is
+provided by this gate. No new count, height or no-cycle restriction
+was obtained. Paper A and Lean are unchanged; floor350000000 and
+period floor780239 remain fixed. No next gate is launched.
+
+
+## 2026-09-10 — Shared OE cells sharpen the quartic inversion bound
+
+The user authorized the next shared-cell attack. **PROMOTE** the
+refinement in [quartic-band Results 8--11](problems/juggler_cycle_quartic_band.md),
+under the existing J-cycle-quartic-return-order claim.
+The proof is AI-assisted and cross-checked by three AI agents;
+independent human review and Lean verification remain outstanding.
+
+An F source x before a G source y inverts exactly when B(x)=B(y).
+Each actual G has a distinct low valley, so each exact cell contains
+at most one G. Whole image cells retain order, and the unique G moves
+to the front of its cell. Thus pi is a collection of disjoint prefix
+cycles, each F displacement is zero or one, and I is exactly the
+participating F count. This replaces I<=cD by I<=c, yielding
+\(\gcd(L,o)\le c+1\) and the stronger taller-side height parameter
+\(J=\max(1,\gcd(L,o)-1)\).
+
+The active F ranks must also connect the rotation residue classes.
+At I=d-1, this is necessary and sufficient for primitive closure of
+the abstract permutation. Fixed controls distinguish a primitive
+shuffle violating I<=c and prefix shuffles separated by connectivity.
+They are not actual Juggler realizations. The existing guarded family
+at t=3,65,65537 checks the new common-cell placement exactly.
+
+Targets without odd O predecessors remain available to their required
+even predecessors. The free target-slot count exceeds all free odd
+source candidates for v>=64, so that local comparison gives no deficit.
+The next question is a quantitative bound on actual nonparticipating
+F states that would conflict with the inversion or connectivity
+conditions. This gate stops here.
+
+No new cycle census, runtime probe, Lean module, Paper A revision or
+publication is added. The certified floor 350000000 and period floor
+780239 remain fixed; no whole-slab exclusion or global no-cycle proof.
+
+
+## 2026-09-10 — Quartic return order, inversion budget and population height bounds
+
+The user authorized the first taller slab \(m^3\le M<m^4\).
+**PROMOTE** the scoped structural theorem in the new canonical
+[quartic-band dossier](problems/juggler_cycle_quartic_band.md),
+claim J-cycle-quartic-return-order. The proof assumes m>=16 and is
+AI-assisted, independently cross-checked by three AI agents;
+independent human review and Lean verification remain outstanding.
+
+Two exact sections reduce the actual return map to F=OOE, G=OEO,
+B=OE. Its e ranks form a rotation with an oriented shuffle of
+displacement at most \(D=O(m^{4/9})\). Only an earlier F and later G
+can reverse order. Primitive closure requires
+\(d-1\le I\le\min(c,r-c)D\) and \(I\equiv d-1\pmod2\), with
+d=gcd(L,o), r=o-e, and c the number of high odd states.
+If \(J=\max(1,\lceil(d-1)/D\rceil)\), the taller side has
+\((M+1)^2>(m^2+2J)^3\), \(M\ge m^3+3mJ\), and
+\(M\ge(O(m)+2J)^2+1\). The last bound uses c distinct actual valleys.
+Thus the quartic slab now has additional necessary order and height
+restrictions, while remaining unexcluded.
+
+A symbolic guarded family at every odd t>=3 shows that local F/G
+cells alone do not force merged monotonicity. Fixed exact controls
+at t=3,65,65537 check every cell, guard and first-return placement.
+Fixed abstract permutations test composition and cycle-count
+conventions; they are not claimed to be Juggler realizations.
+No census or new runtime probe is added.
+
+One next question is whether the shared square and cube cells
+restrict the inversion count beyond these inequalities enough to
+exclude a class of the surviving primitive return permutations.
+This gate stops here. Paper A, release PDFs, Zenodo and Lean are
+unchanged; the certified floor 350000000 and period floor 780239
+remain fixed. No universal no-cycle or divergent-orbit result follows.
+
+
+## 2026-09-10 — Uniform signed return errors and complete terminal cancellation
+
+The user authorized the next signed-return test. **CLOSE** the tested
+affine, endpoint-loss cone and log-gap cocycle route as a no-cycle
+mechanism. The canonical proofs extend
+[weighted-remainder Results 14–16](problems/juggler_cycle_weighted_remainders.md)
+and the existing J-cycle-integer-weight-refinements ledger entry.
+They are AI-assisted written arguments, cross-checked by three AI agents;
+independent human review and Lean verification are outstanding.
+
+Signed affine records compose exactly on transported actual pairs.
+Full-word ideal-power errors require a further calibration whose sign
+depends on the suffix exponent. Shared states of paired return arcs
+cancel, giving absolute log-log discrepancy at most Lambda uniformly
+in induction depth. Compulsory parity charges refine its offset. These
+recover existing grid and charge information; the relative allowance
+still divides by a possibly small gap and has no prescribed sign.
+
+Keeping both terminal boundaries makes the prefix, mixed passage and
+suffix gap changes sum exactly to zero. The invariant nonnegative
+endpoint-loss cone and normalized secants likewise reduce to closure.
+They do not sign the raw products after their signed square-remainder
+corrections are dropped. Shared odd-cube arithmetic remains missing;
+no distinct executable next mechanism was established by this audit.
+
+No runtime code, numerical scan, local family, Lean module or paper
+revision was added. Existing dependency and registration checks concern
+record consistency, not universal verification of the new arguments.
+The certified floor 350000000 and period floor 780239 remain fixed.
+No subsequent gate is launched.
+
+
+## 2026-09-10 — Carry-level geometry and the return-depth dependency
+
+The user authorized the next carry-level test. **CLOSE** the tested
+nested-envelope and OE-box improvements. The canonical proofs extend
+[weighted-remainder Results 11–13](problems/juggler_cycle_weighted_remainders.md)
+and the existing J-cycle-integer-weight-refinements ledger entry.
+They are AI-assisted written arguments, cross-checked by other AI
+agents, pending independent review and Lean verification.
+
+The actual cap envelopes are intervals, but nested occupied levels
+inside them are exactly the independent carry boxes. Their optimizer
+already attains the old lower bound. Free ordered even-to-odd cells
+realize every E carry vector. Shared odd-cube predecessors and the
+dependence of the weights on the changed states remain additional
+constraints; no full-cycle assignment is constructed.
+
+The exact OE defect comparison is also redundant on its normalized
+local boxes. At zero outgoing carry it reproduces the incoming cap;
+at positive outgoing carry it is weaker. Its earlier positive
+distributional statement remains valid.
+
+The spatial downstream-weight ratio is now explicit as a terminal
+return product with its time-origin correction. Both terminal lengths
+must grow without bound along any hypothetical actual cycles with
+increasing minima. This explains the need for a signed paired-error
+estimate uniform in depth and retaining both cyclic boundaries.
+No such estimate or strict flux inequality was established.
+
+No runtime code, numerical scan, local family, Lean module or paper
+revision was added. The certified floor 350000000 and period floor
+780239 remain fixed. No subsequent gate is launched.
+
+
+## 2026-09-10 — Integer weighted transport: nonvanishing without contraction
+
+The user authorized the next attack after the joint-prefix capacity test.
+**CLOSE** this bounded transport/parity/entropy comparison as a route
+to a new no-cycle conclusion. The canonical source is
+[weighted-remainder Results 8–10](problems/juggler_cycle_weighted_remainders.md),
+registered as J-cycle-integer-weight-refinements, EXACT — HUMAN PROOF.
+The written proof was developed and cross-checked with AI assistance;
+independent human review and Lean verification remain outstanding.
+
+The positive integer wrap gap m^3-M lets every rank edge participate in
+one exact recurrence, including the algebraic cut and wrap transitions.
+The downstream weights give F=(P-1)ell_0. All coefficient numerators are
+odd and exactly two denominator factors are odd, so P!=1 and F!=0,
+with |F|>=2/productB and exact cleared valuation nu2(ell_0).
+This nonzero force is required by closure, not a contradiction.
+
+The compulsory parity contribution is positive, but a signed carry term
+remains. Its exact coordinate boxes and level-set boundary formula expose
+the missing estimate. Chronological weight changes do not establish
+spatial monotonicity. No sign or contraction bound is supplied by this audit.
+
+Separately, every actual OE passage ending odd has delta_E>delta_O by
+an explicit positive amount. At the cyclic extrema the logarithmic cut
+gap exceeds the wrap gap, forcing nonuniform defects and positive entropy.
+The resulting scalar comparison is weaker than the existing compulsory
+last-even loss, so no height, period or count-pair improvement follows.
+
+Fixed symbolic checks passed for the two lifted boundary polynomials
+and generic four-stage denominator clearing. No runtime probe extension,
+source census, new family, Lean module or manuscript revision was made.
+The existing tests retain their original scope and do not machine-verify
+these universal written results. The remaining question is an independent
+bound on actual carry-level flux; no subsequent gate is launched.
+Certified floor 350000000 and period floor 780239 remain fixed.
+
+
+## 2026-09-10 — Fifth odd-prefix split: resolution audit
+
+**CLOSE** the tested transfer by uniform last-floor freezing; the
+actual fifth-split and growing-depth counts remain PARK.
+[Neighbor-scale Results 6](problems/juggler_parity_neighbor_scale.md)
+records the exact expansion. Its remainder costs only O(P^(-31/48))
+in one mode up to P^(1/24). But the main correction coefficient
+is order P^(27/16), giving variation P^(79/48) at the available
+cell resolution, and the outer phase v^(9/4) has no supplied bound.
+This limits the specified approximation, not actual cancellation.
+
+The same three source blocks at y=2^20,2^28,2^36 give counts
+(OOOOO,OOOOE)=(59,63),(218,256),(932,983). All 1,209 assignments
+preserve four odd states, flip the fifth, stay within their blocks,
+and have multiplicity at most two. Exact integer-root checks and
+the existing regression file cover these finite claims only.
+No new asymptotic capacity, named theorem, paper edit, deeper scan,
+or termination result is obtained. The bounded test ends here.
+
+## 2026-09-10 — Quantitative middle joint capacity: bound and method limitations
+
+**CLOSE** the specified cumulative-prefix and structured-power-deletion
+mechanisms as deficit certificates in their stated regimes. The user
+authorized the joint A-source/A-target count. Its canonical proof is
+[preimage-capacity Results 9–12](problems/juggler_cycle_preimage_capacity.md),
+registered as J-cycle-joint-prefix-capacity, EXACT — HUMAN PROOF.
+This is an AI-assisted written proof, pending independent review and Lean
+verification; the prefix estimate is owned by current Paper B.
+
+The middle support is in bijection with fully guarded AA sources in[m,H],
+H=K(a+1)-1. Their seven state parities are OOEOOEO, including odd final
+output. Paper B Corollary4.10 bounds the containing OOEOO source class,
+giving alpha-beta <= (H-m+1)/32+C5(H^(47/48)+(m-1)^(47/48)).
+No full-AA density or numerical C5 is claimed.
+
+The new comparison is uniform: when L=o(m^(47/48)), the inherited
+positive endpoint error alone exceeds every rank quota on every nonempty
+source interval above m. The three imported prefix estimates all have
+this limitation under L=o(m^(5/6)). These statements concern their upper
+allowances, not actual discrepancies or actual support.
+
+Under the explicitly additional hypothesis Lambda<=C0/L along
+m,L->infinity, the grid gives H=m^(32/27+o(1)) and L=O_C0(m log m).
+A fixed positive whole-block leading term is then too large even without
+error. Source fourth powers are already excluded by OOEOO. Transported
+fourth-power deletions have only a sublinear upper budget, not a guaranteed
+new count, and cannot remove that leading term.
+
+No new runtime probe, source census, local family, manuscript edit or Lean
+module is added. Existing exact controls and registration checks cover
+their stated scope; they do not machine-verify these asymptotic proofs.
+No strict deficit or numerical period/height improvement is obtained.
+The remaining question is an arithmetic joint-support bound below a
+mandatory population that avoids these quantified limitations.
+No further gate is launched; floor350000000 and period780239 remain fixed.
+
+
+## Cycle-period parity follow-up: sharper cells, no upper surplus estimate
+
+- **Date:** 10 September 2026. [Existing dossier, Result 5](problems/juggler_cycle_period_upper_bound.md).
+- **What was learned:** At an actual edge, remainder parity gives
+  d<=rho<=2y-d, d=(source-target) mod2. A switch forces positive loss
+  but reduces the independent upper cap only by order 1/(y^2 log y).
+  Exact EO edges can still attain loss of order 1/(y log y).
+- **Strongest valid bound:** The four EO/OO/OE/EE target classes give
+  the explicit parity-aware packing budget (12). In the cubic band,
+  compulsory switch losses and the odd grid spacing give (13)-(14),
+  both lower constraints on surplus. These are bookkeeping refinements,
+  not a new restriction sufficient to bound L Lambda.
+- **Strongest obstruction:** For every odd y>=3, both y^2+1 and
+  y^2+2y-1 are exact even predecessors of y. The second attains the
+  full parity-compatible upper loss; it refutes replacing that upper
+  allowance by the compulsory lower loss. These are open single edges,
+  not full-cycle counterexamples. Fixed-residue aggregate obstructions
+  are already recorded and are not reopened.
+- **Machinery and evidence:** Written arithmetic audit, cross-checked
+  by AI agents, with two additional exact open-edge tests. No new
+  theorem-ledger claim, runtime probe, census, Lean module or paper edit.
+- **Decision:** PARK the existing actual-cycle approximation target;
+  the tested parity bookkeeping supplies no new mechanism and ends here.
+- **Next-step assessment:** No concrete new global estimate emerged.
+  Restating the full guard system or repeating the requested O(L^-2)
+  bound is not a new question to open automatically.
+
+## Cycle-period upper bound: the missing surplus estimate
+
+- **Date:** 10 September 2026. [Dossier](problems/juggler_cycle_period_upper_bound.md).
+- **What was learned:** Exact normalized floor losses telescope to
+  Lambda=o log3-L log2. The final even cell forces a positive loss,
+  while distinct targets give a telescoping upper budget. Coprimality,
+  minimal odd count and mechanical order do not bound L Lambda.
+- **Strongest theorem:** For an actual primitive cycle with minimum
+  m>1, b(m)=log(log(m^2+1)/(2 log m)) satisfies
+  0<b(m)<=Lambda<log(log(m+L)/log m). IF L Lambda<=C, then
+  L<=C/b(m)<C(m^2+1)log(m^2+1), with no cubic-height assumption.
+- **Strongest refutation:** An infinite family of primitive formal
+  mechanical words has L Lambda>=L log3/4. These are not realized
+  floor orbits. Separately, the saved exact S5 cycle refutes the sharp
+  convergent constant log3 for threshold closure; its eight wrong-parity
+  states prevent transfer to Juggler. It does not refute a larger constant.
+- **Machinery and evidence:** AI-assisted written proofs and three
+  exact regression tests, not independent human review or Lean.
+  No runtime probe, orbit census, floor increase or manuscript edit.
+- **Decision:** PARK the actual-cycle uniform surplus bound. Close
+  only the stated deductions from formal word properties and separate
+  loss budgets. No new unconditional period upper bound was obtained.
+- **Best next question:** Can full integer parity compatibility force
+  an upper approximation bound on o/L that the mechanical-word and
+  wrong-parity threshold models do not satisfy?
+- **Stop:** This bounded phase ends here; no next branch is opened.
+
 ## Paper B: consolidated five-step publication candidate
 
 - **Date:** 9 September 2026. [Dossier](problems/juggler_paper_b_consolidation.md).
@@ -42583,3 +43153,240 @@ are recorded in the release report. No unresolved gap was identified
 after these repairs, but this is another AI-assisted review, not
 independent mathematical certification or complete Lean verification.
 No external deposit or new research branch was opened.
+
+## 2026-09-10 — Paper B publication title and Zenodo preparation
+
+The author approved *Five-Step Descent Certificates for the Juggler Map: Parity Statistics of Nested Floor Powers*. Version 2026-09-10-zenodo-preprint
+updates the title, PDF metadata, current reading guides, catalog, and
+deposit filename. The mathematical body is byte-identical to the
+10 September proof-audit edition. Build, rendered-layout, exact-control,
+standalone-source, archive-integrity, and repository checks are recorded
+in the current release check. This continues the existing publication
+consolidation; no new research branch or external deposit was opened.
+
+
+## 2026-09-10 — Paper A successive-return consolidation
+
+**PROMOTE (consolidation).** The direction-change and later-return gates
+are now consolidated in Paper A Sections 3.12–3.13 and Appendix F.
+The manuscript is the written proof owner; both dossiers retain their
+fixed controls and decisions. The two actual-cycle height results are
+fully kernel checked, including ordinary orbit and CycleMin wrappers:
+\(253/128\) from \(2^{24}\), and the sharper \(381/128-3^{41}/2^{65}\)
+(hence \(127/64\)) from \(2^{128}\), always under \(M<m^3\).
+All actual guards, odd pair placement and genuine transfers are proved.
+The factorization, local mixed contraction and exact certificate threshold
+are formalized with the remaining written scope identified in Appendix A.
+The paper audit corrected a missing exponent definition and made positive
+sources explicit; neither height bound changed. No larger source scan,
+cycle census or descent run was performed. Published deposits, the
+descent floor 350000000 and period bound 780239 remain unchanged.
+
+The user separately authorized the next bounded question: joint absolute
+cell control of terminal-prefix amplification against the mixed passage
+and common suffix. This consolidation does not itself settle that question.
+
+
+## 2026-09-10 — Terminal joint absolute cells
+
+**PARK.** The authorized next question was whether shared absolute cells
+can control terminal P amplification against OE/EO and Q. The paths are
+complementary parts of the adjacent-gap orbit, and the exact identities
+V=P E and U=O Q organize them. Their unweighted defect sum and exact
+secant product are closure identities, not new cycle restrictions.
+
+Two symbolic local obstructions survive every current smooth height
+exclusion: guarded E secant distortion has sharp constants 2/3 and 2,
+and a guarded mixed-cell family has either sign of its paired floor loss
+while the common m,h,M,t,q data remain fixed. The families do not realize
+closed P/Q paths and are not cycles. The precise next requirement is a
+genuinely cyclic bound on the signed square-remainder differences with
+their nonconstant secant weights. No such bound was proved.
+
+Canonical proof owner: [joint-cell dossier](problems/juggler_cycle_terminal_joint_cells.md).
+The probe evaluates exactly three fixed parameter pairs, including one
+above the 2^128 minimum cutoff; all calculations use integer roots,
+fractions and powers. No census, trajectory extension or raised floor.
+These new scoped findings remain written research, separate from the
+preceding Paper A/Lean consolidation. No further branch was opened.
+
+
+## 2026-09-10 — Cyclic weighted remainder gate
+
+**CLOSE** the specified rank and real-cell averaging route. The user
+authorized a bounded attempt to turn cyclic placement into a strict signed
+remainder bound. Entropy is a positive-vector permutation identity, and a
+positive Green inverse still leaves signed adjacent-defect coefficients.
+Complete strict real unit-cell configurations exist at every prescribed
+minimum; small perturbations realize all centered defect directions and
+both signs of the stated common-edge weighted sums.
+
+These are real-valued configurations, not integer floor cycles. They need
+not retain odd spacing, the DC/LR height strips or actual guarded returns.
+The raw integer remainder identity has one positive parity jump plus a
+signed carry sum; its required parity pattern plus odd minimum is exactly
+the full guard test. No new actual cycle restriction was proved.
+
+Canonical source: [weighted-remainder dossier](problems/juggler_cycle_weighted_remainders.md).
+Two fixed rational grids supply 95 exact strict cell checks, with their
+failure of odd spacing explicitly recorded. No orbit search or raised floor.
+The best next arithmetic question is simultaneous exact odd O-predecessors
+for both terminal cut states; it is recorded but not opened by this decision.
+Paper A and Lean remain unchanged. Written results are AI-assisted and
+await independent human review.
+
+
+## 2026-09-10 — Simultaneous exact cut predecessors
+
+**CLOSE** the predecessor-only sign obstruction. The user authorized the
+joint odd O-predecessor test suggested by the weighted-remainder gate.
+Nonpositive mixed loss forces an odd ceiling of m^(4/3) within an explicit
+O(m^(-1/6)) upper window; cube minima have strictly positive mixed loss.
+However a polynomial family at r=3 mod16,r>=67 realizes both exact
+predecessors and both signs with the same m,h,M,t,q: Delta-<-3/4 and
+Delta+>2r-1. The upper predecessor changes by two. All displayed guards
+and cells hold, with m^3-M>2m^2.
+
+Canonical source: [cut-predecessor dossier](problems/juggler_cycle_cut_predecessors.md).
+The 25 rational coefficient bounds prove uniform polynomial positivity;
+only r=67,83,2^32+3 are evaluated as controls (eight actual edges each).
+The last minimum exceeds 2^192. No orbit/rank/source scan or raised floor.
+These are open paths, not a full return seam or cycle. The existing
+AB/BA transported-loss consequence gives no new height theorem here.
+
+The next bounded question is whether the entire initialized original
+return-seam rectangle, with all guards and quantitative gap restrictions,
+still admits a family. Do not infer no-cycle merely by eliminating this
+particular family, or continue indefinitely by adding local prefixes.
+No further gate is opened by this decision. Paper A and Lean are unchanged;
+the new proofs are AI-assisted written results awaiting human review.
+
+
+## 2026-09-10 — The entire initialized return seam survives
+
+**CLOSE** the finite initialized-seam obstruction. The user authorized
+the complete guarded A=OOE, B=OE rectangle suggested by the cut-predecessor
+gate. The symbolic refinement r=u^4+2 with u=65 mod2048,u>=2^32 supplies
+all four missing actual edges t->O H_t->E w and q->O H_q->E z, with even
+peaks and odd retained endpoints. Both earlier mixed-loss signs survive
+on the two alternative predecessor faces.
+
+The exact common gap is (216u^11+1188u^7+1863u^3-3)/64. It exceeds
+m^(11/24), hence the named DC/LR lower bounds, and remains below the
+existing mixed AB/BA upper bound even before its additive allowance.
+Full numerical order and m^3-M>2m^2 hold. The two faces are alternatives,
+not one injective cycle. No actual adjacency, C/W transfer arrays,
+cycle-compatible counts or complete periodic matching are supplied.
+
+Canonical source: [return-seam dossier](problems/juggler_cycle_return_seam.md).
+Fifteen exact rational polynomial certificates prove uniform cell/order
+inequalities; four integer polynomial congruences prove the guards.
+Three independent AI routes audited the written argument. Only the fixed
+controls u=2^32+65,2^40+65,2^64+65 were used for the successful subfamily:
+twelve distinct actual edges each, with minimum bit lengths 769, 961, 1537.
+The residue lift was derived algebraically, without a residue census.
+
+The next meaningful target is an interval preimage-capacity deficit forced
+by simultaneous ordered matching on the same retained set, strictly
+beyond known spacing/grid consequences. No such deficit is proved and
+no new gate is opened. Stop appending finite local words. No source,
+orbit, rank, or floor census; the certified floor and period bound remain
+350000000 and 780239. This is an AI-assisted written proof awaiting human
+review and Lean verification; this Phase-0 gate changes no Paper A copy.
+
+
+## 2026-09-10 — New Paper B theorem: all-odd projection and scope
+
+The user authorized continuation of the shorter-prefix counting question.
+[The pressure dossier](problems/juggler_pressure_external_average.md)
+checks the newly consolidated Paper B Theorem 4.11 and Corollary 4.12.
+Summing the two formal classes (-1,-1,-1,+/-1) proves the inherited
+OOOO count N/16+O_epsilon(N^(127/128+epsilon)). This is a fixed-depth
+corollary of the current AI-assisted written proof, not an independent
+cancellation theorem or a new named ledger result.
+
+The next odd coordinate is W=w^(3/2)=w U, where the theorem treats
+U=sqrt(w). The resulting coefficient w(n) varies with the source
+and has size y^(27/8), outside the fixed-mode range y^(1/24).
+Freezing w leaves at most one source. The exact source n=5^8 has
+four odd states but opposite parities for the formal even image
+and actual next odd image. Six literal controls verify this
+distinction; n=81 is retained as a negative OOOO control.
+
+**Decision: CLOSE** the direct-transfer test; **PARK** remains the
+status of the actual growing-depth count. The new finite theorem
+does not supply the y/(log y)^5 bound. Its inherited corollary
+improves a constant only; other high-odd-count words remain open.
+No paper edit, source census, floor increase, runtime module or
+formalization was made, and no further branch was opened.
+
+
+## 2026-09-10 — Distinct preimage support and the common retained set
+
+**CLOSE** ordinary multiplicity, guard-free density and fixed-target Hall
+counting as a new no-cycle mechanism. The user authorized testing a
+global capacity deficit after the initialized seam survived. The correct
+capacities count distinct targets, then intersect with the same retained
+set's source domains. The low/middle/high populations are beta,
+alpha-beta,beta, in S_A intersect T_B, S_A intersect T_A, and S_B
+intersect T_A respectively. No strict arithmetic shortfall is proved.
+
+Exact diagnostics expose both sides of the difficulty. The A=OOE inverse
+hull has width less than 44/45 at every target y>=8, so its only integer
+candidate is ceil(y^(8/9)); this still needs all cells and guards. Inside
+every old band, r^9 has no actual A preimage, although r^8 gives its
+prescribed endpoint: the final E guard fails. Conversely, the proper
+singleton B target (r^2+2)^3 has at least(r^2+3)/4 guarded preimages.
+The full exhibited cube subgraph has (r^2-1)/2 targets and
+(3r^4-2r^2-1)/16 sources. These symbolic counts are not enumerations.
+
+Canonical source: [preimage-capacity dossier](problems/juggler_cycle_preimage_capacity.md).
+Controls reuse only the three existing u values and four formula-selected
+boundary (v,j) pairs at each, with exact square inequalities. Fixed
+deterministic target fibers are disjoint, so their ordinary Hall tests
+reduce to nonempty singletons. Requiring the sources to be the same Y
+restores actual closure; iterating the rank constraints recovers the
+already known Euclidean return towers.
+
+The remaining arithmetic target is a strict deficit in a mandatory rank
+interval's exact shared support. Missing support at a point not forced
+into Y proves no such deficit. Removing forbidden odd fourth-power
+sources does strengthen the elementary packing bound, but the available
+population constraints do not yield a shortfall. Broader exact-support approaches are not
+refuted, but no new local-prefix or candidate-closure campaign is opened.
+Paper A and Lean are unchanged; floor 350000000 and period bound 780239
+remain fixed. Written proofs are AI-assisted and await independent review.
+
+
+## 2026-09-10 — Source-block pairing with bounded capacity
+
+The authorized source-pairing test obtains a scoped positive result.
+[Neighbor-scale Results 5](problems/juggler_parity_neighbor_scale.md)
+applies the classical second-derivative and Erdos--Turan inequalities
+to consecutive original odd sources. The even-image count is
+M/2+O(M y^(-1/6)+y^(1/4)); blocks of a sufficiently large fixed
+multiple of y^(1/4) have enough exits for a two-to-one assignment.
+Sort continuers and exits within each block and assign continuer i
+to exit ceil(i/2). Merge the final short block before assigning.
+The existing lower family proves the first-step displacement exponent
+1/4 is optimal; no optimal multiplicity or numerical constant is claimed.
+
+Endpoint subtraction of the current Paper B fixed-word counts extends
+the same assignment to prescribed odd prefixes of lengths two and three
+at radius O_epsilon(y^(127/128+epsilon)). This inherits the AI-assisted
+written Paper B proof and its review limitations. The first-step
+corollary uses only classical estimates, but is not independently
+reviewed or Lean verified here. No external novelty is claimed.
+
+Nine literal local blocks validate 18,078 assignments, all with
+capacity at most two, correct actual prefixes and the required next
+parity; fifteen finite partition cases check the merged-tail convention.
+The fixture multiplier 32 and small observed radii at t=2,3 are not
+certified universal constants or stronger asymptotic radius estimates.
+No full dyadic census, orbit search, floor increase or paper edit.
+
+**Decision: PARK** the growing-depth construction. Retain the standard
+fixed-depth corollaries under the existing neighbor-scale record.
+The t=4 capacity and all growing-depth capacities still require new
+arithmetic input; the five-to-one termination-related benchmark is
+not established. No further pairing rule was opened.

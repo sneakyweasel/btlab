@@ -122,6 +122,24 @@ import Problems.Juggler.RemainderCarry
 import Problems.Juggler.CubicReturn
 import Problems.Juggler.CubicReturnStrip
 import Problems.Juggler.GuardResidueFamily
+import Problems.Juggler.ReturnWordLoss
+import Problems.Juggler.ReturnWordData
+import Problems.Juggler.ReturnWordBounds
+import Problems.Juggler.ReturnWordFactorization
+import Problems.Juggler.ReturnSeams
+import Problems.Juggler.ReturnRankedCycle
+import Problems.Juggler.ReturnQuotients
+import Problems.Juggler.ReturnCycleTransfers
+import Problems.Juggler.ReturnGapHeight
+import Problems.Juggler.ReturnTransferHeight
+import Problems.Juggler.ReturnTerminal
+import Problems.Juggler.ReturnOrbitStrips
+import Problems.Juggler.QuarticBand
+import Problems.Juggler.QuarticCells
+import Problems.Juggler.QuarticProjection
+import Problems.Juggler.QuarticLossBudget
+import Problems.Juggler.QuarticDefect
+import Problems.Juggler.QuarticGapSeparation
 
 /-!
 # Juggler laboratory barrel

@@ -1,8 +1,10 @@
-# Paper B: prepared Zenodo preprint
+# Five-Step Descent Certificates for the Juggler Map
+
+Parity Statistics of Nested Floor Powers. Version 2026-09-10-zenodo-preprint.
 
 This folder is generated from the canonical editorial inputs in
 `docs/theory/`. The deposit filename
-`Parity_Statistics_of_Nested_Floor_Powers.pdf` is a byte-identical
+`Five_Step_Descent_Certificates_for_the_Juggler_Map.pdf` is a byte-identical
 alias of the current Paper B PDF, not an older edition.
 
 Use `python tools/build_paper_b.py --check` from the repository root
@@ -27,8 +29,10 @@ All-depth hypotheses, arbitrary decorated estimates, and localization
 remain open. AI assistance is disclosed; independent mathematical
 review and complete Lean verification remain outstanding.
 
+The delivery bundle `paper_b_zenodo_package.zip` contains the PDF, source
+archive, metadata, instructions, and release checks. See the
+[submission instructions](../../docs/theory/ZENODO_README.md).
 Start a deposit at <https://zenodo.org/uploads/new>. Upload the current
-Paper B PDF and the accompanying source/verification archive when
-desired; Papers A and C are separate works. Review the record before
+Paper B PDF and `paper_b_source_package.zip`. Review the record before
 publishing. After publication, record the version DOI in
 [paper_deposits.md](../../docs/theory/paper_deposits.md).

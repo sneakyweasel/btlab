@@ -5,11 +5,11 @@
   "files": [
     {
       "name": "juggler_parity_discrepancy_note.md",
-      "sha256": "2aa7455c01d6f16d032785973b6e34eb989406c099c81914e2835bbc7f4ed1f0"
+      "sha256": "52520173c7a5c3b99a6bb582c66a4c506f76eeb598d418e3297efbb960049b4f"
     },
     {
       "name": "article.tex",
-      "sha256": "f57d4e9e1587613663ce6212fefa3ce08340c33d2894815273ff584fb202277f"
+      "sha256": "7347f8c7227cdcdaf9f68a3238ee9762385cc33c7418fbae6aca57f6c29795ae"
     },
     {
       "name": "layout.lua",
@@ -17,15 +17,15 @@
     },
     {
       "name": "build_paper_b.py",
-      "sha256": "47cdadf5ed5a06c25d23dc4c573c4ba23e8f281c75dd5889671fa61a5b584c8e"
+      "sha256": "bd5556eba07db02106e3885b4d58c819bcd6711393b22dc2b14b123c5568609f"
     },
     {
       "name": "juggler_parity_discrepancy_note.tex",
-      "sha256": "3beef115eef6cb1cfa77dd07745a81ab042aa91bb8fe321bb52182d28e1db57a"
+      "sha256": "3c77d6cb29c809d7510d3d7f0a80c1c17271f41b3a7e4a3f7864462931c1222f"
     },
     {
       "name": "juggler_parity_discrepancy_note.pdf",
-      "sha256": "dc8debba9fd1dacc790a28e289307df033f659bfb7f0436ee813e3d84e252728"
+      "sha256": "8cdc176fa43e7a92c420845874803a81ad7d69e697d53c374f899b994342b350"
     }
   ]
 }

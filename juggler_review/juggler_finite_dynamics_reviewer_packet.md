@@ -1,6 +1,6 @@
 # Juggler reviewer packet (three manuscripts)
 
-Author: Philippe Cochin. Paper A release revision: 9 September 2026.
+Author: Philippe Cochin. Paper A release revision: 10 September 2026.
 Status: Paper A is a local revision of the published Zenodo preprint; Paper B is a revised
 working draft (8-section journal form, 4 September 2026; Theorem 5.3
 is the monomial \(c=\tfrac{3k}4 n^{9/8}\); certified density
@@ -39,6 +39,19 @@ The canonical proof source is the manuscript; research dossiers now
 point there and retain their branch decisions and controls.
 This local revision has not been uploaded to the
 [existing Zenodo record](https://doi.org/10.5281/zenodo.22676453).
+
+**Successive-return consolidation.** Section 3.12 and Appendix F prove
+\(M<m^3-\tfrac12m^{253/128}\) for \(m\ge2^{24}\), and
+\(M<m^3-\tfrac12m^{127/64}\) for \(m\ge2^{128}\), both under \(M<m^3\).
+The latter has the sharper exponent \(381/128-3^{41}/2^{65}\).
+The large cutoff is part of that theorem and must not be replaced by
+the smaller one. Only genuine adjacent-pair transfers are counted.
+The two research dossiers now point to these canonical written proofs.
+Appendix A and the formalization map delimit their Lean coverage.
+Section 3.13 identifies the terminal mixed passage: its local gap
+contracts, but the common prefix can amplify. Controlling that prefix
+jointly with the suffix remains necessary for this approach to no-cycle.
+No global no-cycle result or new numerical period floor is claimed.
 
 **Companion status.** The Paper B and C descriptions below are context,
 not dependencies of the cycle bounds. Their canonical sources may

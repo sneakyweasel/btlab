@@ -19,7 +19,7 @@ describe("published preprint records", () => {
     expect(paperByLetter("B").doi).toBeUndefined();
     expect(paperByLetter("B").zenodo).toBeUndefined();
     expect(paperByLetter("B").guide).toBeUndefined();
-    expect(paperByLetter("B").hint).toContain("Unconditional certificate subfamily density 27/32");
+    expect(paperByLetter("B").hint).toContain("Five-step power-envelope certificate density 7/8");
   });
 
   it("sends Paper A to the tour and Paper C to the contagion walk", () => {

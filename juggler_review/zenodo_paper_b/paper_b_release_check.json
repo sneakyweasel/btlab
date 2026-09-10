@@ -1,35 +1,33 @@
 {
   "status": "PASS_FOR_PAPER_B_WITH_UNRELATED_REPOSITORY_FAILURE",
-  "scope": "Editorial, symbolic, finite exact-control, build and artifact checks. Not independent mathematical certification.",
-  "version": "2026-09-10-proof-audit",
+  "scope": "Publication title, metadata, source reproducibility, finite exact and symbolic controls, and PDF/artifact verification. Not independent mathematical certification.",
+  "title": "Five-Step Descent Certificates for the Juggler Map: Parity Statistics of Nested Floor Powers",
+  "version": "2026-09-10-zenodo-preprint",
+  "publication_pdf": "Five_Step_Descent_Certificates_for_the_Juggler_Map.pdf",
   "pdf_pages": 37,
-  "pdf_bytes": 248262,
-  "pdf_sha256": "dc8debba9fd1dacc790a28e289307df033f659bfb7f0436ee813e3d84e252728",
-  "source_sha256": "2aa7455c01d6f16d032785973b6e34eb989406c099c81914e2835bbc7f4ed1f0",
-  "tex_sha256": "3beef115eef6cb1cfa77dd07745a81ab042aa91bb8fe321bb52182d28e1db57a",
-  "source_zip_sha256": "d407dfc93057429c01becdae0125df42e3b12810ddd00c1ec00b0a5189a0dfbb",
-  "review_report": "paper_b_proof_review.md",
-  "repairs": [
-    "bounded signed-residual Fourier extension with total variation control",
-    "explicit residual-variation verification in Appendix C",
-    "parity-sign and exponential definitions before use",
-    "translation convention and remainder derivative clarified",
-    "multi-digit subscripts, symbol collision, and reference link repaired"
-  ],
+  "pdf_bytes": 248361,
+  "pdf_sha256": "8cdc176fa43e7a92c420845874803a81ad7d69e697d53c374f899b994342b350",
+  "source_sha256": "52520173c7a5c3b99a6bb582c66a4c506f76eeb598d418e3297efbb960049b4f",
+  "tex_sha256": "3c77d6cb29c809d7510d3d7f0a80c1c17271f41b3a7e4a3f7864462931c1222f",
+  "source_zip_sha256": "85cbb4eee55db6b03b31dce9a650ccd2b40864a6a3e4d9b9b9f828a3e4208fcc",
+  "mathematical_body_byte_identical_to_proof_audit": true,
+  "mathematical_body_sha256": "d444073776b0c16176c2ead1042248fbfd02aaa99479f89765ec6321147b5229",
+  "prior_source_sha256": "2aa7455c01d6f16d032785973b6e34eb989406c099c81914e2835bbc7f4ed1f0",
   "written_result": "Theorem 5.4: five-step power-envelope certificate count 7N/8+O_epsilon(N^(127/128+epsilon)).",
-  "no_unresolved_gap_identified_in_this_review": true,
+  "review_report": "paper_b_proof_review.md; historical 10 September audit applies unchanged to the mathematical body.",
   "exact_control_modules": 9,
   "equation_tags": 93,
   "appendix_equation_references": 78,
-  "symbolic_derivation": "PASS; exact four-corner power derivatives produce -243/512, 3645/2048, and 81/512.",
-  "standalone_source_rebuild": "PASS; extracted source builds; generated LaTeX byte-identical; exact and symbolic JSON results identical. PDF timestamps may differ.",
-  "source_archive_members": 25,
+  "symbolic_derivation": "PASS; freshly rerun on extracted source, reproducing -243/512, 3645/2048, and 81/512.",
+  "standalone_source_rebuild": "PASS; source archive extracted and rebuilt; generated LaTeX byte-identical; exact and symbolic JSON results identical. PDF timestamps may differ.",
+  "source_archive_members": 26,
   "archive_integrity_and_checksums": "PASS",
-  "visual_review": "All 37 pages rendered with Poppler and inspected in seven contact sheets. New proof and variation passages on pages 9, 33, and 34 inspected individually.",
-  "compiler_checks": "No overfull boxes, missing glyphs, or undefined references.",
+  "visual_review": "All 37 pages rendered with Poppler. Changed page 1 inspected at full rendered size; pages 2-37 pixel-identical to the visually reviewed proof-audit edition.",
+  "compiler_checks": "No overfull boxes, missing glyphs, or undefined references in either build.",
   "all_fonts_embedded": true,
   "embedded_font_count": 22,
   "page_bounds": "PASS",
+  "title_author_metadata_agreement": "PASS",
   "pdf_hyperlinks": [
     "https://github.com/sneakyweasel/btlab",
     "https://oeis.org/A094683",
@@ -38,90 +36,44 @@
     "https://doi.org/10.4064/aa-30-3-241-252"
   ],
   "repository_integration": {
-    "passed": 118,
+    "passed": 120,
     "skipped": 11,
     "failed": 1,
-    "failure": "tests/integration/test_review_bundle_mirrors.py: Paper A canonical manuscript has concurrent 10 September changes while its review mirror is still dated 9 September.",
-    "paper_b_mirrors": "PASS; source, reviewer copy, companion PDF, and Zenodo alias agree.",
-    "paper_a_changes_by_this_review": false,
+    "failure": "tests/integration/test_review_bundle_mirrors.py: concurrent Paper A source and reviewer-packet changes differ from their review mirrors.",
+    "paper_b_mirrors": "PASS; canonical source, reviewer copy, companion PDF, renamed Zenodo PDF, and generated metadata fields agree.",
+    "paper_a_changes_by_this_release": false,
     "test_command": [
       "C:\\Users\\phili\\miniconda3\\python.exe",
       "-m",
       "pytest",
       "tests/integration",
       "tests/unit/test_theorem_ledger.py",
+      "tests/unit/test_paper_b_zenodo.py",
       "-q",
       "-p",
       "no:cacheprovider",
       "-o",
       "addopts=",
       "--basetemp",
-      "C:\\Users\\phili\\Documents\\Codex\\2026-09-09\\review-paper-b-x20\\work\\audit-2026-09-10\\pytest-final"
+      "C:\\Users\\phili\\Documents\\Codex\\2026-09-09\\review-paper-b-x20\\work\\zenodo-2026-09-10\\pytest-final"
     ],
-    "test_duration_seconds": 17.63
+    "test_duration_seconds": 18.39
   },
-  "repository_auxiliary_checks": [
-    {
-      "command": [
-        "C:\\Users\\phili\\miniconda3\\python.exe",
-        "tools/build_paper_b.py",
-        "--check"
-      ],
-      "status": "PASS"
-    },
-    {
-      "command": [
-        "C:\\Users\\phili\\miniconda3\\python.exe",
-        "tools/render_theorem_ledger.py",
-        "--check"
-      ],
-      "status": "PASS"
-    },
-    {
-      "command": [
-        "C:\\Users\\phili\\miniconda3\\python.exe",
-        "-m",
-        "research.juggler_sequence.branch_index",
-        "--check"
-      ],
-      "status": "PASS"
-    },
-    {
-      "command": [
-        "git",
-        "-c",
-        "safe.directory=C:/Users/phili/Desktop/balanced_ternary",
-        "diff",
-        "--check",
-        "--",
-        "docs/theory/juggler_parity_discrepancy_note.md",
-        "docs/theory/juggler_parity_discrepancy_note.tex",
-        "docs/theory/juggler_parity_discrepancy_note.pdf",
-        "docs/theory/paper_b_build.json",
-        "docs/theory/paper_b_zenodo.json",
-        "docs/theory/paper_b_zenodo_fields.txt",
-        "docs/theory/PAPER_B_BUILD.md",
-        "docs/theory/paper_b_proof_review.md",
-        "docs/theory/paper_b_consolidated_validation.json",
-        "docs/theory/paper_b_symbolic_review.json",
-        "juggler_review/paper_b_proof_review.md",
-        "tools/validate_paper_b_consolidated.py",
-        "tools/derive_paper_b_review.py",
-        "web/juggler-companion/dist/papers/juggler_parity_discrepancy_note.pdf",
-        "attacks/juggler/AGENT.md",
-        "docs/README.md",
-        "juggler_review/README.md",
-        "juggler_review/zenodo_paper_b/README.md",
-        "docs/problems/juggler_paper_b_consolidation.md",
-        "docs/juggler_branch_ledger.md",
-        "docs/research_journal.md",
-        "docs/theory/theorem_ledger.json"
-      ],
-      "status": "PASS"
-    }
-  ],
+  "catalog_tests": {
+    "passed": 4,
+    "failed": 0
+  },
+  "auxiliary_checks": {
+    "mirrors": "PASS",
+    "ledger": "PASS",
+    "index": "PASS",
+    "diff": "PASS",
+    "catalog": "PASS",
+    "standalone-controls": "PASS",
+    "standalone-symbolic": "PASS"
+  },
   "independent_mathematical_review": false,
   "complete_lean_verification": false,
   "historical_95_96_target": "CONJECTURE",
-  "publication_status": "Local preprint for author and expert review. No upload, record creation, DOI reservation, or publication performed."
+  "publication_status": "Local preprint package prepared for Zenodo submission. No upload, record creation, DOI reservation, or publication performed."
 }

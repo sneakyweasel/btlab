@@ -1,7 +1,7 @@
 ---
 title: "Lower Bounds for Cycle Lengths in the Juggler Map"
 author: Philippe Cochin
-date: 9 September 2026
+date: 10 September 2026
 keywords:
   - Juggler map
   - Juggler sequence
@@ -38,8 +38,13 @@ twenty-two. For cycles whose maximum is below the cube of their minimum,
 we also determine the complete rank order and mechanical itinerary,
 derive a uniform log-log grid bound, and prove the further height
 restriction \(M<m^3-m^{15/8}\) for \(m\ge7\), where \(m,M\) are the
-minimum and maximum. Exact short-return cells identify the rounding
-information discarded by several relaxed no-cycle criteria.
+minimum and maximum. Successive genuine return-gap contractions sharpen
+this to \(M<m^3-(1/2)m^{253/128}\) for \(m\ge2^{24}\), and to
+\(M<m^3-(1/2)m^{127/64}\) for \(m\ge2^{128}\), with a slightly
+stronger exponent in the latter case. A terminal word factorization
+identifies the expansion still uncontrolled by these contractions.
+Exact short-return cells identify the rounding information discarded
+by several relaxed no-cycle criteria.
 The core inequalities and selected classifications are
 formalized in Lean 4. The descent computations, per-length numerical
 comparisons, and remaining analytic identifications are distinguished
@@ -352,6 +357,15 @@ counterfamilies delimiting two proposed guard summaries. The family
 obstructions concern prescribed blocks; the height gap uses actual
 periodicity. None increases the numerical period floor.
 
+**Contribution 8 — successive return gaps and the terminal passage.**
+Theorem 3.40 strengthens the height strip through two and then three
+genuine changes of the return boundary, at the stated distinct minimum
+thresholds. It retains every floor error and actual intermediate guard.
+Proposition 3.41 factors the terminal words around a mixed \(OE/EO\)
+passage, whose gap contracts, and identifies the remaining uncontrolled
+prefix. Appendix F gives the full error, rank and height proofs, and
+the precise obstruction to a uniform one-sided error certificate.
+
 These statements are not interchangeable. Theorem 4.4 is
 the conceptual sharp inequality (constant \(1\)). Corollary 4.5
 is the convenient length-only statewise bound that turns a
@@ -501,6 +515,14 @@ the short OE/OOE cells, subtractive rank returns, exact family-chain bound,
 and retained-remainder recovery. Its larger analytic constructions and
 full tower discussions remain written where Appendix A indicates.
 The new proofs use kernel verification and add no native scan.
+Section 3.12's two height restrictions are formalized from actual
+periodic-set hypotheses. The section, forced batches, odd endpoint gaps
+and genuine transfers are constructed internally. Appendix F's exact
+floor-loss bounds and finite certificate threshold are also formalized.
+Section 3.13 retains the specific written boundary identified in Appendix A:
+the terminal rank factorization and local cut inequality are checked,
+while the global adjacency identification and primitive termination
+argument remain written. No general no-cycle theorem is asserted.
 The real projection description and the higher-difference consequence
 are explanatory deductions from the listed results. The grid endpoints
 use the namespace `Problems.Juggler.CubicGrid`.
@@ -2014,6 +2036,162 @@ wrong parities, including the even retained base \(14\).
 Thus the new necessary extrema conditions are not a complete guard test.
 Appendix E records the exact carry formulas and the limitations of
 several proposed summaries of the missing guards.
+
+
+### 3.12. Successive return gaps and larger height exclusions
+
+The ordered return section supplies further restrictions because
+selected neighboring states remain distinct after a common return word.
+The floor errors must be bounded before this discreteness can be used.
+Successive left inductions preserve one boundary pair; only genuine
+right inductions transport it.
+
+Retain the notation \(m,M,Y,t,w,z\) of Theorem 3.39, and use
+chronological words
+\[
+A=OOE,\quad B=OE,\quad C=A^2B,\quad D=AC^2,\quad W=D^3C.
+\]
+Write
+\[
+\gamma=\frac{243}{256},\qquad
+\delta=\frac{531441}{524288},\qquad
+\rho=\delta^3\gamma=\frac{3^{41}}{2^{65}},
+\qquad \sigma=\frac{13}{128}+1-\rho.
+\]
+Here \(7/64<\sigma<1/8\).
+
+**Theorem 3.40 (successive return height restrictions).** Let an
+actual Juggler cycle have minimum \(m\) and maximum \(M<m^3\).
+Then the following statements hold.
+
+(i) If \(m\ge2^{24}\), two genuine transfers of the original boundary
+through \(C\) give
+\[
+z-w\ge6,\qquad
+z-w>\frac{26240}{59049}m^{13/128},
+\qquad
+M<m^3-\frac{1}{2}m^{253/128}.
+\tag{SR1}
+\]
+
+(ii) If \(m\ge2^{128}\), a subsequent genuine transfer through \(W\)
+gives
+\[
+z-w\ge8,\qquad z-w>\frac25m^\sigma,
+\qquad
+M<m^3-\frac{1}{2}m^{381/128-\rho}.
+\tag{SR2}
+\]
+In particular,
+\[
+M<m^3-\frac{1}{2}m^{127/64}.
+\tag{SR3}
+\]
+The exponent \(381/128-\rho\) is approximately \(1.98795995227\).
+The clean bounds (SR1) and (SR3) have the respective integer forms
+\[
+m^{253}<\bigl[2(m^3-M)\bigr]^{128},\qquad
+m^{127}<\bigl[2(m^3-M)\bigr]^{64}.
+\]
+The natural-number gaps are positive under \(M<m^3\).
+
+*Proof.* The complete return on the sorted set
+\(Y=\{y_0<\cdots<y_{a+b-1}\}\) has lower word \(A\), upper word \(B\),
+and rank rotation \(i\mapsto i+b\pmod{a+b}\).
+Appendix F proves the forced batch identities
+\[
+a=2b+r,\quad b=2r+s,\quad 0<s<r
+\]
+on the first domain, and additionally
+\[
+r=3s+u,\qquad 0<u<s
+\]
+on the second. They place the successive boundary pairs at
+\[
+(y_{b-1},y_b),\quad
+(y_{b-r-1},y_{b-r}),\quad
+(y_{s-1},y_s),\quad
+(y_{s-u-1},y_{s-u}).
+\]
+The first two changes apply \(C\); the third applies \(W\).
+All displayed indices exist on their respective domains, and all
+traces belong to the same actual cycle.
+
+The prescribed maps have absolute losses below \(9/8\) and \(6/5\),
+respectively, at the stated cutoffs. Their paired estimates strictly
+contract every integer gap at least two. Since each displayed pair
+has distinct odd endpoints, each genuine transfer decreases the
+positive even gap by at least two. The quantitative versions give
+the gap bounds in (SR1)--(SR2). Appendix F.4 combines them with the
+original exact cells
+\[
+t^3+2\le[w(w+2)]^2,\qquad M+2\le(t+1)^2,\qquad z^8\le m^9,
+\]
+and proves the displayed height restrictions. \(\square\)
+
+These domains are materially different. The first cutoff is
+\(2^{24}=16777216\); the second is approximately \(3.4\cdot10^{38}\).
+The stronger exponent in (ii) does not replace the result in (i)
+below the larger cutoff. Both give wrong-parity obstructions for
+threshold cycles only in their stated excluded height strips.
+The remaining cubic region and every taller cycle are unexcluded,
+and the numerical period floor remains \(780239\).
+
+### 3.13. The terminal mixed passage
+
+The last two-point return must also be accounted for before gap
+contractions could imply no-cycle.
+
+**Proposition 3.41 (terminal prefix and suffix).** At every Euclidean
+return stage with words \(U,V\), there are chronological words \(P,Q\)
+such that
+\[
+UV=P\,OE\,Q,\qquad VU=P\,EO\,Q.
+\tag{SR4}
+\]
+Initially \(P=O,\ Q=OE\). A left substitution changes \(P\) to \(UP\);
+a right substitution changes \(Q\) to \(QV\).
+
+At a primitive actual cubic-band cycle's terminal two-base section
+\(\{m,v\}\), the common prefix sends this adjacent pair to the
+largest odd and smallest even source pair \((h,s)\). The mixed
+words \(OE,EO\) send it to \((t,q)=(E(M),O(m))\), and \(Q\) sends
+\((t,q)\) back to \((m,v)\). For \(m\ge3\),
+\[
+0<q-t<s-h.
+\tag{SR5}
+\]
+
+*Proof.* The concatenation identities follow by induction from
+\(U=OOE,\ V=OE\). Both full return traces follow their actual guards;
+their common prefix preserves adjacency until the labels differ.
+It therefore ends at the unique adjacent pair across the odd/even
+threshold. The middle and final images follow from
+\(O(h)=M,\ E(s)=m,\ U(m)=v,\ V(v)=m\).
+Moreover,
+\[
+h<m^2,\quad s\ge m^2+1,\quad
+t=\lfloor h^{3/4}\rfloor,\quad
+q=\lfloor(m^2)^{3/4}\rfloor.
+\]
+Since the derivative of \(x^{3/4}\) is below one for \(x\ge h\ge3\),
+\[
+q-t<(m^2)^{3/4}-h^{3/4}+1<m^2-h+1\le s-h.
+\]
+The cycle order gives \(t<q\). Appendix F.5 records the complete
+word and gap accounting. \(\square\)
+
+The mixed contraction supplies no bound on amplification through
+\(P\), and current estimates control only the certified factors
+of \(Q\). Their exact ideal exponent product is
+\[
+p_P\frac34p_Q=\frac{3^o}{2^L}>1.
+\]
+An additional estimate comparing the two parts is required.
+Appendix F.6 also shows why the present one-sided error certificate
+cannot stay uniform at a fixed minimum as the contracting word
+exponent approaches one. These observations leave the global
+no-cycle question open.
 
 
 ## 4. Cycle finance
@@ -3862,10 +4040,18 @@ with a positive length-uniform anchor contribution.
 
 Section 3.10 isolates a second unresolved question: whether absolute
 floor-cell alignment forces every threshold cycle to contain a
-wrong-parity state. Theorem 3.39 answers this only in the top strip
-\(m^3-m^{15/8}\le M<m^3\), \(m\ge7\). The remaining region
+wrong-parity state. Theorems 3.39--3.40 exclude successively wider
+top strips at their explicit minimum thresholds. The remaining region
 and the taller-cycle case are still unresolved. Appendix E's family
 and guard results do not establish the uniform conclusion.
+
+Proposition 3.41 identifies the next paired-gap issue: amplification
+through the terminal common prefix must be compared with the mixed
+passage and suffix contractions using the shared absolute cells.
+The present estimates cover only certified suffix factors. Their
+one-sided error certificate also requires increasingly large minima
+as the contracting exponent approaches one (Appendix F.6).
+Neither observation excludes the terminal mixed-word return.
 
 The result does not imply termination. The remaining
 finance-survivor lengths are uncontrolled, and existence of a
@@ -4146,6 +4332,13 @@ None of these distinctions is removed by compiling the barrel.
 | Theorem E.4 | `ooeFamilyReturn_mod_fortyeight`, `ooeFamilyReturn_valuation_drop`, `ooeFamily_juggler_chain_bound`, `ooeFamily_no_infinite_juggler_chain`. The additional 3-adic identity is written; six terminating traces are finite computations |
 | Appendix E.5 | Initialized record: `record_initializes`, `endpoint_validation`; correction and signed floors: `exact_remainder_correction`, `exact_quotient_gap`, `corrected_quotient_integer`; executable recovery and hidden guards: `recoverPeak_eq`, `recoverPeak_guard_iff`. The further OOEOE composition is written |
 | Appendix E.6 | Every-modulus witness: `guardResidueFamily_every_modulus`; cells and parities: `guardResidue_ooe_traces`, `guardResidue_nat_parities`; exact remainder and valuation: `guardResidue_first_remainders_zero`, `guardResidue_aggregate_valuation`; record collision and classifier obstruction: `guardResidueFamily_record_collision`, `guardResidueFamily_no_record_classifier`; common domain and threshold edges: `guardResidue_common_band_and_section`, `guardResidue_threshold_blocks`. The general positive-\(b\) construction and supplementary bookkeeping remain written |
+| Theorem 3.40 | Actual-cycle gap and height bounds: `dc_cycle_gap`, `lr_cycle_gap`, `dc_cycle_height`, `lr_cycle_height`. The last two include the displayed real bounds and exact integer endpoints, from the stated minimum and cubic-band hypotheses |
+| Theorem 3.40, cycle and threshold consequences | Ordinary cycle predicates: `cycleMin_dc_height`, `cycleMin_lr_height`. Wrong parity in the excluded threshold strips: `threshold_cycle_dc_wrong_parity`, `threshold_cycle_lr_wrong_parity` |
+| Appendix F.1 | Exact transported loss: `loss_exact`; concave-tail bound: `loss_lt_budget`; common-floor paired estimate: `paired_bound` |
+| Appendix F.2–F.3 | Unconditional word bounds: `c_loss`, `w_loss`; gap contraction: `c_contract`, `w_contract`. Required growth: `ac_grows`, `d_grows`, `v_grows`; the sharper written helper errors and the earlier \(2^{15}\) growth cutoff are not needed in these formal proofs |
+| Appendix F.2–F.4 | Actual section: `periodicExtrema_return_model`; forced batches: `dc_rank_stages`, `lr_rank_stage`; guarded pair placement: `periodicExtrema_dc_transfers`, `periodicExtrema_lr_transfers`; height transport: `height_of_power_gap` |
+| Proposition 3.41 and Appendix F.5 | Finite substitution factorization and actual guards at a two-point return: `induced_terminal_actual_factorization`. Local contraction at the absolute cut: `mixed_gap`. Identifying the terminal pair with the globally adjacent cut pair, and the full primitive termination argument, remain written |
+| Appendix F.6 | Exact necessary threshold for the stated sufficient certificate: `certificate_requires_large_minimum`. Its near-unit asymptotic interpretation remains written; this is not a counterexample to actual paired contraction |
 | Lemma 3.21b | canonical run form; Theorem 3.2 |
 | Lemma 3.21a | the case split of Theorem 3.22 |
 | Lemma 4.1 | `log_le_two_log_add` |
@@ -5422,6 +5615,561 @@ floor-defect identities unless a further estimate is supplied.
 Theorem 3.39 uses the coupled periodic order and actual odd-prefix
 cells to obtain a restriction beyond these bookkeeping identities.
 The uniform wrong-parity conclusion remains open.
+
+
+## Appendix F. Successive gaps and terminal return words
+
+This appendix supplies the complete written proof of Theorem 3.40
+and the terminal accounting of Proposition 3.41. Every application
+retains the actual cycle states and all intermediate parity guards.
+
+### F.1. A general floor-loss and paired-gap certificate
+
+For a prescribed word of length \(L\ge1\) with positive integer source \(x\ge1\), let \(a_j=3\) for an
+\(O\) letter and \(a_j=1\) for an \(E\) letter. Let \(p_j\) be its ideal prefix
+exponents, \(p=p_L\), \(n_j\) its actual integer states, and
+\(\varepsilon_j=n_{j-1}^{a_j/2}-n_j\in[0,1)\).
+The exact square remainder is
+\[
+R_j=n_{j-1}^{a_j}-n_j^2,\quad 0\le R_j\le2n_j,\quad
+\varepsilon_j=\frac{R_j}{\sqrt{n_j^2+R_j}+n_j}.
+\]
+Thus no remainder or intermediate parity has been replaced by an
+independent random choice.
+
+Assume every proper tail \(q_j=p/p_j\), \(j<L\), is below one.
+Telescoping gives the exact identity
+\[
+e_W(x):=x^p-F_W(x)=
+\sum_{j=1}^L\bigl[(n_j+\varepsilon_j)^{p/p_j}-n_j^{p/p_j}\bigr].
+\]
+If the proper states are at least \(m\ge1\), concavity implies
+\[
+0\le e_W(x)<K_W(m),\qquad
+K_W(m)=1+\sum_{j<L}q_jm^{q_j-1}.
+\tag{F1}
+\]
+This remains an absolute-loss estimate when \(p>1\), provided the
+proper tails are below one. For the paired conclusion assume \(0<p<1\)
+and two traces with sources \(z>w\ge m\) and proper states at least \(m\).
+Then, with \(\kappa=p m^{p-1}\),
+\[
+0\le F_W(z)-F_W(w)<\kappa(z-w)+K_W(m).
+\tag{F2}
+\]
+Consequently the sufficient certificate
+\[
+2\kappa+K_W(m)\le2
+\tag{F3}
+\]
+forces strict contraction for every input gap at least two. If the
+inputs and distinct outputs are odd, the even gap drops by at least two.
+The trace hypotheses are supplied by actual cycle membership in every
+application below.
+
+### F.2. Two transfers through the first contracting word
+
+**The floor-loss bound.**
+
+For \(C=OOEOOEOE\), all seven proper prefix states satisfy \(n_j\ge x\)
+when \(x\ge3\): \(O\) does not decrease a positive integer and
+\(A(x)\ge x\), by \(O(O(x))\ge x^2\).
+The seven proper tail exponents are
+\[
+\frac{81}{128},\frac{27}{64},\frac{27}{32},
+\frac9{16},\frac38,\frac34,\frac{1}{2}.
+\]
+They are all below one. The concavity estimate in Section F.1 therefore yields
+\[
+0\le e_C(x):=x^\gamma-C(x)<1+U(x),\qquad
+U(x)=\sum_j q_jx^{q_j-1}.
+\]
+At \(x\ge2^{24}\), the seven summands are bounded above respectively by
+\[
+\frac{81}{32768},\frac{27}{524288},\frac{27}{256},
+\frac9{16384},\frac3{262144},\frac3{256},\frac1{8192}.
+\]
+Their sum is \(63121/524288<1/8\). Hence
+\[
+0\le e_C(x)<\frac98. \tag{F4}
+\]
+This is unconditional for the prescribed map; it does not discard
+any guard in its subsequent application to actual cycle returns.
+
+For \(z>w\ge2^{24}\), concavity now gives
+\[
+C(z)-C(w)
+=z^\gamma-w^\gamma+e_C(w)-e_C(z)
+<\gamma w^{-13/256}(z-w)+\frac98.
+\]
+Also
+\[
+\gamma w^{-13/256}<\frac{27}{64}.
+\]
+Indeed \(w^{13/256}\ge2^{39/32}>2^{6/5}>9/4\);
+the last comparison follows by fifth powers from \(2^{16}>3^{10}\).
+For \(d\ge2\),
+\[
+\frac{27}{64}d+\frac98<d,
+\]
+since \((37/64)d\ge37/32>9/8\).
+Monotonicity of the prescribed branch maps supplies the lower bound
+in the paired estimate above. This proves the strict gap contraction.
+
+**Growing comparison words.**
+
+For \(x\ge16\),
+\[
+A(x)>\frac78x^{9/8},\qquad B(x)\ge\frac78x^{3/4}.
+\]
+Here \(A(x)>x^{9/8}-2\) is the exact two-cell bound and
+\(B(x)=\lfloor x^{3/4}\rfloor\).
+All intermediate \(A\)-iterates stay at least \(x\). Consequently
+\[
+A^3B(x)\ge
+\left(\frac78\right)^{907/256}x^{2187/2048}
+>\frac{1}{2}x^{2187/2048}>x
+\quad(x\ge2^{15}).
+\tag{F5}
+\]
+The coefficient exceeds \(1/2\) because \(907/256<4\) and
+\((7/8)^4>1/2\). The final comparison follows from
+\(15\cdot139=2085>2048\).
+
+Now set \(\alpha=9/8\), \(u=A(x)\), \(v=C(u)=A^3B(x)\).
+For \(x\ge2^{24}\), both \(u,v\ge x\). Concavity and (F4) give
+\[
+0\le x^{\alpha\gamma^2}-D(x)
+<2\gamma^2u^{\gamma^2-1}
+ +\frac98\gamma v^{\gamma-1}+\frac98
+<\frac{17}{4}.
+\]
+The exponent is \(\alpha\gamma^2=531441/524288\).
+Since \(24\cdot7153/524288>1/4\) and \(2^{1/4}>9/8\),
+\[
+D(x)>\frac98x-\frac{17}{4}>x
+\quad(x\ge2^{24}).
+\tag{F6}
+\]
+
+**The forced first two batches.**
+
+Order the retained set as \(Y=\{y_0<\cdots<y_{a+b-1}\}\).
+Its lower \(a\) bases execute \(A\); its upper \(b\) bases execute \(B\).
+The return sends rank \(i\) to \(i+b\) below \(a\), and to \(i-a\)
+above it. Both counts are positive: \(A(x)>x\) and \(B(x)<x\)
+throughout the present domain.
+
+We have \(a>2b\). Otherwise the full return word has ideal exponent
+at most
+\[
+(9/8)^{2b}(3/4)^b=(243/256)^b<1,
+\]
+and its prescribed floor composition cannot return a start \(>1\)
+to itself.
+
+Write \(a=qb+r\), \(0\le r<b\). Thus \(q\ge2\).
+If \(r>0\), the maximal left batch has words \(A,A^qB\),
+counts \(r,b\), and its upper branch strictly decreases rank.
+If \(r=0\), its terminal return \(A^qB\) fixes the retained prefix.
+For \(q\ge3\), (F5) makes \(A^qB(x)>x\), contradicting either case.
+Therefore
+\[
+a=2b+r,\qquad 0<r<b,
+\]
+and the new pair is \(A,C\).
+
+Write \(b=pr+s\), \(0\le s<r\).
+If \(p\ge3\), the next lower word \(AC^p\) has ideal exponent at most
+\[
+(9/8)(243/256)^3=129140163/134217728<1.
+\]
+It cannot increase rank in a nonterminal return, or fix a terminal
+prefix. If \(p=1\), the next strict left step makes
+\((AC)C=D\) an upper branch that must decrease rank, contrary to
+(F6). Finally \(p=2,s=0\) makes \(D\) the terminal fixed return,
+also contrary to (F6). Hence
+\[
+b=2r+s,\qquad 0<s<r.
+\tag{F7}
+\]
+Both right steps are genuine, with at least two retained bases.
+This proof applies to normalized threshold cycles on this domain
+before actual parity is imposed.
+
+**The two genuine transfers.**
+
+Initially
+\[
+w=y_{b-1}=B(t),\qquad z=y_b=A(m).
+\]
+A left induction step retains the prefix of length \(a\).
+Its new largest base \(t_1=y_{a-1}\) satisfies \(A(t_1)=t\),
+so its upper return \(AB(t_1)=w\). Its lower minimum image
+is still \(z\). The next left step again gives the same pair.
+Neither step supplies an additional independent gap.
+
+After the maximal left batch the counts are \(r,b\).
+At the first right step the boundary pair becomes
+\[
+(w_1,z_1)=(C(w),C(z))
+ =(y_{b-r-1},y_{b-r}).
+\]
+At the second right step it becomes
+\[
+(w_2,z_2)=(C(w_1),C(z_1))
+ =(y_{s-1},y_s).
+\]
+The indices exist by (F7). Every source and intermediate state
+is part of a genuine return tower in the original cycle. In an
+actual Juggler cycle, all four transferred endpoints and \(w,z\)
+are odd, and both transferred gaps are positive even integers.
+
+Put \(d_j=z_j-w_j\) and
+\(\kappa=\gamma m^{-13/256}<27/64\).
+Since every transferred source is at least \(m\), the paired estimate above gives
+\[
+d_1<\kappa d_0+\frac98,\qquad
+d_2<\kappa d_1+\frac98.
+\tag{F8}
+\]
+Each even positive gap drops by at least two. Thus \(d_0\ge6\).
+Also
+\[
+2\le d_2<\kappa^2d_0+\frac98(1+\kappa),
+\]
+and therefore
+\[
+d_0>\frac{2-\frac98(1+\kappa)}{\kappa^2}
+ \ge\frac{205}{512\kappa^2}
+ =\frac{26240}{59049}m^{13/128}.
+\]
+This proves the gap bound in (SR1). Retaining \(\kappa\) gives the sharper expression
+\[
+d_0>
+\frac{57344}{59049}m^{13/128}
+-\frac{32}{27}m^{13/256}.
+\]
+
+### F.3. The next batch and the 65-letter return
+
+The next word \(W=D^3C\) has ideal exponent \(\rho=3^{41}/2^{65}\). For every integer \(x\ge2^{128}\), we prove \(0\le x^\rho-W(x)<6/5\); for integers \(z>w\ge2^{128}\) with \(d=z-w\ge2\), we prove \(0\le W(z)-W(w)<\rho w^{\rho-1}d+6/5<d\).
+
+**The next forced batch.**
+
+Section F.2 leaves the pair \(D,C\) with counts \(r,s\), \(r>s>0\).
+The ideal exponent of a complete return is
+\(\delta^r\gamma^s>1\), since all floors lie below their ideal powers
+and a cycle returns a start greater than one to itself.
+Since \(\delta^3\gamma=\rho<1\), we must have \(r>3s\).
+
+Write \(r=ks+u\), \(0\le u<s\). Thus \(k\ge3\).
+The next upper word is \(D^kC\) when \(u>0\); when \(u=0\),
+the terminal concatenation \(D^kC\) fixes the remaining ranks.
+
+The comparison word \(V=D^4C\), with exponent \(\eta=\delta^4\gamma=3^{53}/2^{84}\), strictly grows on \(x\ge2^{128}\).
+Here is a direct finite-word proof. Each nonempty proper prefix of
+\(C\) has exponent at least \(\alpha\). Each nonempty proper prefix
+of \(D=AC^2\) has exponent greater than \(\delta\).
+It follows that every nonempty proper prefix of \(V\) has exponent
+at least \(\delta>\eta\). Therefore all its 83 proper tails are below
+one. Every actual prescribed state is at least one, so (F1) gives
+\[
+0\le x^\eta-V(x)<84.
+\]
+The exact rational comparisons
+\[
+\eta>1+\frac1{512},\qquad (9/8)^4<2
+\]
+give, for \(x\ge2^{128}\),
+\[
+V(x)>x^\eta-84>\frac98x-84>x.
+\]
+Also \(D(x)>x\) on this range by Section F.2. Monotonicity therefore
+gives \(D^kC(x)\ge D^4C(x)>x\) for \(k\ge4\), contrary to either an
+upper branch decreasing rank or a terminal fixed return.
+Thus \(k=3\), and \(r>3s\) excludes \(u=0\). This proves \(r=3s+u,\ 0<u<s\).
+
+**The exact error certificate.**
+
+For \(W=D^3C\), every proper prefix exponent is at least
+\(\delta>\rho\), by the same block calculation. All proper actual
+states are at least the source \(x\ge2^{128}\): \(D\) grows, its
+proper states stay above its source by the \(A,AC\) growth statements
+in Section F.2, and the proper \(C\) states stay above their source.
+
+Let \(p_j\) run through the 64 proper prefix exponents and put
+\(q_j=\rho/p_j\). The exact dyadic majorant at \(m=2^{128}\) is
+\[
+\begin{aligned}
+U_W(m)&:=\sum_{j=1}^{64}q_jm^{q_j-1}\\
+&\le\sum_{j=1}^{64}
+       \frac{q_j}{2^{\lfloor128(1-q_j)\rfloor}}\\
+&=\frac{277910493483851358096413315698577150111783}{2^{140}}
+ <\frac15.
+\end{aligned}
+\tag{F9}
+\]
+This is a finite rational identity obtained by expanding the prescribed
+word \(D^3C\); the verifier records every prefix, tail and summand.
+Equations (F1) and (F9) prove the claimed absolute-loss bound.
+
+For the slope, the exact comparisons
+\[
+128(1-\rho)>\frac{10}{7},\qquad
+2^{10}3^7>8^7
+\]
+imply \(m^{1-\rho}>2^{10/7}>8/3\), hence
+\[
+\kappa_W:=\rho m^{\rho-1}<\frac38.
+\]
+Since \(2(3/8)+6/5=39/20<2\), (F2) proves the claimed paired contraction.
+
+**A third genuine transfer.**
+
+The preceding two \(C\) transfers end at
+\[
+(w_2,z_2)=(y_{s-1},y_s).
+\]
+The next three left steps keep this exact boundary unchanged.
+After them the retained counts are \(u,s\), with words \(D,W\).
+Both seam points belong to the upper domain, because \(0<u<s\).
+Its first right step is therefore genuine and gives
+\[
+(w_3,z_3)=(W(w_2),W(z_2))
+          =(y_{s-u-1},y_{s-u}).
+\tag{F10}
+\]
+All indices exist. Every intermediate is in a first-return tower of
+the same original cycle; the sources and endpoints are at least \(m\).
+All four seams are pairs of distinct odd cycle states.
+Nothing in this step supplies a fourth or a terminal pair.
+
+Write \(d_j=z_j-w_j\) and
+\(\kappa_C=\gamma m^{-13/256}<1/64\).
+The three valid inequalities are
+\[
+d_1<\kappa_Cd_0+\frac98,\quad
+d_2<\kappa_Cd_1+\frac98,\quad
+d_3<\kappa_Wd_2+\frac65.
+\]
+All four gaps are positive even integers, so \(d_0\ge8\). Moreover,
+\[
+2\le d_3<
+\kappa_W\kappa_C^2d_0+
+\frac98\kappa_W(1+\kappa_C)+\frac65.
+\]
+The remaining numerator has the exact lower bound
+\[
+\frac45-\frac98\frac38\frac{65}{64}
+=\frac{7609}{20480}.
+\]
+Therefore
+\[
+\begin{aligned}
+d_0&>\frac{7609}{20480\,\rho\gamma^2}m^\sigma\\
+&>\frac{121744}{295245}m^\sigma
+ >\frac25m^\sigma.
+\end{aligned}
+\]
+The rational comparisons \(125/128<\rho<127/128\) give
+\(7/64<\sigma<1/8\). This proves the gap bounds in (SR2).
+
+### F.4. Transporting a seam gap to the maximum
+
+The original exact cells from Theorem 3.39 are
+\[
+t^3+2\le[w(w+2)]^2,\qquad
+M+2\le(t+1)^2,\qquad z^8\le m^9.
+\]
+The gaps at least six and eight give the respective integer restrictions
+\[
+t^3+2\le[(z-6)(z-4)]^2,\qquad
+t^3+2\le[(z-8)(z-6)]^2.
+\]
+All factors are positive because \(w\ge m>0\).
+
+For a common smooth consequence, suppose that \(m\ge2^{24}\),
+\(0<\nu\le1/8\), and
+\[
+H:=z-w-1>\frac13m^\nu.
+\]
+Set
+\[
+X=m^{9/8},\qquad a_*=m^{3/2},\qquad
+R=\frac13m^{3/8+\nu}.
+\]
+We have \(0<w+1=z-H\le X-H\). The elementary inequality
+\((1-u)^{4/3}\le1-u\), \(0\le u\le1\), gives
+\[
+t<(w+1)^{4/3}\le(X-H)^{4/3}
+\le X^{4/3}-X^{1/3}H<a_*-R.
+\]
+Here \(R\ge m^{3/8}/3\ge512/3>8\), and
+\(R/a_*\le1/(3m)<1/4\). Hence
+\[
+R^2\le a_*R/4,\qquad 2a_*\le a_*R/4.
+\]
+All quantities being squared are positive, and
+\[
+\begin{aligned}
+M&<(a_*-R+1)^2-2\\
+ &=a_*^2-2a_*R+R^2+2a_*-2R-1\\
+ &<a_*^2-\frac32a_*R
+  =m^3-\frac{1}{2}m^{15/8+\nu}.
+\end{aligned}
+\tag{F11}
+\]
+
+For the two-transfer case \(d_0=z-w\ge6\), so
+\[
+H=d_0-1\ge\frac56d_0>
+\frac{65600}{177147}m^{13/128}>\frac13m^{13/128}.
+\]
+Taking \(\nu=13/128\) proves (SR1).
+For three transfers \(d_0\ge8\), and
+\[
+H\ge\frac78d_0>\frac7{20}m^\sigma>\frac13m^\sigma.
+\]
+Taking \(\nu=\sigma\in(7/64,1/8)\) proves (SR2) and (SR3).
+
+An integer ceiling can be evaluated without real powers. In the first
+case take the least even \(G\ge6\) with
+\((59049G)^{128}>26240^{128}m^{13}\); in the second, take the least
+even \(G\ge8\) with \((5G)^{64}>2^{64}m^7\).
+Then \(d_0\ge G\). Let \(z_*\) be the greatest odd integer with
+\(z_*^8\le m^9\), and \(T\) the greatest positive odd integer satisfying
+\[
+T^3+2\le[(z_*-G)(z_*-G+2)]^2.
+\]
+The necessary ceiling is \(M\le(T+1)^2-2\). The latter recipe uses
+the clean \(7/64\) gap exponent, rather than the sharper \(\sigma\).
+At the single illustrative input \(m=2^{128}+1\), it gives \(G=6554\).
+This is a conditional arithmetic evaluation, not a periodic orbit.
+
+### F.5. The terminal mixed-word passage
+
+At a retained stage with words \(U,V\), exponents \(\lambda,\mu\),
+and counts \(a,b\), the exact exponent invariant is
+\[
+\lambda^a\mu^b=\frac{3^o}{2^L}>1.
+\]
+Left and right substitutions preserve it:
+\[
+\lambda^{a-b}(\lambda\mu)^b
+=\lambda^a\mu^b
+=(\lambda\mu)^a\mu^{b-a}.
+\]
+For a primitive cycle the final two-base stage is \(\{m,v\}\), with
+\[
+U(m)=v,\qquad V(v)=m.
+\]
+The terminal word \(UV\) fixes \(m\), has ideal exponent
+\(p=\lambda\mu=3^o/2^L>1\), and has exact loss
+\[
+e_{UV}(m)=m^p-m.
+\tag{F12}
+\]
+Applying \(V\) also to \(m\) would be an off-domain prescribed
+evaluation: periodicity supplies neither its cycle membership nor
+its guard pattern. The upper point disappears when the section
+becomes \(\{m\}\). Even strict contraction for every earlier selected
+upper map would only decrease finitely many positive gaps; it would
+not manufacture a surviving terminal pair.
+
+To exclude this terminal return one needs an absolute-loss estimate
+strictly below the positive excess \(m^p-m\), or a new incompatible
+shared-cell constraint. Bounds on the difference of two losses do
+not by themselves supply that absolute calibration. Equation (F12)
+alone is a restatement of closure, not a new no-cycle result.
+
+There is a more informative way to account for the terminal pair without
+inventing an extra same-word return. At every induced stage there are
+chronological words \(P,Q\) such that
+\[
+UV=P\,OE\,Q,\qquad VU=P\,EO\,Q.
+\tag{F13}
+\]
+Initially \(U=A,\ V=B,\ P=O,\ Q=OE\), and direct concatenation verifies
+both identities. A left substitution \((U,V)\mapsto(U,UV)\) changes
+\(P\) to \(UP\) and keeps \(Q\). A right substitution
+\((U,V)\mapsto(UV,V)\) keeps \(P\) and changes \(Q\) to \(QV\).
+These rules prove (F13) by induction.
+
+At the final primitive two-base stage write the bases as \(\{m,v\}\),
+so \(U(m)=v,\ V(v)=m\). They are the two smallest original cycle
+states and hence adjacent. Their full-cycle words \(UV,VU\) first
+apply the same \(P\). Common letters preserve adjacency inside the
+ordered cubic-band cycle until their labels diverge. Thus \(P\)
+sends \((m,v)\) to \((h,s)\), the largest odd source and smallest
+even source. The differing words \(OE,EO\) then send that pair to
+\[
+(t,q)=(E(M),O(m)),
+\]
+and the common suffix \(Q\) sends \((t,q)\) back to \((m,v)\).
+All these statements concern the actual two cycle traces, with every
+guard and square remainder retained.
+
+The mixed two-step passage itself strictly contracts for an actual
+cubic-band cycle with odd \(m\ge3\). Indeed
+\[
+h<m^2,\qquad s\ge m^2+1,\qquad
+t=\lfloor h^{3/4}\rfloor,\qquad
+q=\lfloor(m^2)^{3/4}\rfloor.
+\]
+The extra unit in the lower bound for \(s\) uses its even parity and
+the odd parity of \(m^2\). The normalized cycle order gives \(t<q\).
+Since the derivative of \(x^{3/4}\) is below one for \(x\ge h\ge3\),
+\[
+0<q-t
+<(m^2)^{3/4}-h^{3/4}+1
+<m^2-h+1\le s-h.
+\tag{F14}
+\]
+This closes the pair passage geometrically through the mixed block.
+It does not give a net contraction of the complete passage:
+the common prefix \(P\), which grows during left inductions, has
+not been controlled by the previous right-transfer estimates.
+Right-transfer words assemble \(Q\); the existing bounds control only
+the factors already certified.
+
+The exact ideal exponents make the missing comparison explicit:
+\[
+p_P\frac34p_Q=\frac{3^o}{2^L}>1.
+\tag{F15}
+\]
+Therefore simply multiplying ideal powers cannot turn (F14) into
+a contradiction. A successful gap proof needs an exact bound that
+compares amplification through \(P\) with loss through the mixed
+block and \(Q\). The local inequality (F14) is an elementary
+floor-cell consequence; the new bookkeeping explains precisely
+which part of the terminal argument it does and does not control.
+
+### F.6. The limitation of a fixed-minimum certificate
+
+Even if every inner loss were omitted optimistically, (F3) would
+require \(p m^{p-1}\le1/2\). For a word with a proper prefix,
+\(K_W(m)>1\), so it actually requires the strict inequality
+\[
+m>(2p)^{1/(1-p)}\qquad (1/2<p<1).
+\tag{F16}
+\]
+As \(p\to1^-\), the logarithm of this threshold grows like
+\((\log2)/(1-p)\). At any fixed \(m\), the slope
+\(p m^{p-1}\to1\), so (F3) eventually fails even before its
+positive inner-loss terms are added.
+
+This is a rigorous limitation of the specified sufficient certificate.
+It is not a counterexample to the true paired map inequality.
+Correlations between the two traces could conceivably improve the
+bound on \(e_W(w)-e_W(z)\).
+
+The qualification matters: not every possible later cycle-selected
+upper word has been proved to have exponent below one, or all its
+proper tails below one. Close to termination, a word of ideal exponent
+slightly above one can still decrease because of floors. One may not
+silently impose the infinite ideal Euclidean itinerary on an actual
+finite cycle.
 
 
 ## 7. Acknowledgments and use of AI

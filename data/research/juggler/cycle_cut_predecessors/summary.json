@@ -1,0 +1,582 @@
+{
+  "decision": "CLOSE",
+  "scope": "simultaneous cut O-predecessors do not force a mixed-loss sign",
+  "fixed_parameters": [
+    67,
+    83,
+    4294967299
+  ],
+  "uniform_coefficient_certificates": [
+    {
+      "polynomial": "a_lower",
+      "degree": 8,
+      "negative_to_leading_ratio": {
+        "numerator": 0,
+        "denominator": 1
+      },
+      "positive_for_every_r_at_least": 67
+    },
+    {
+      "polynomial": "a_upper",
+      "degree": 12,
+      "negative_to_leading_ratio": {
+        "numerator": 19491248522719279,
+        "denominator": 16365437809265714289122
+      },
+      "positive_for_every_r_at_least": 67
+    },
+    {
+      "polynomial": "h_lower",
+      "degree": 18,
+      "negative_to_leading_ratio": {
+        "numerator": 1767467283400755903894013,
+        "denominator": 1480391027713560112434162035465618
+      },
+      "positive_for_every_r_at_least": 67
+    },
+    {
+      "polynomial": "h_upper",
+      "degree": 12,
+      "negative_to_leading_ratio": {
+        "numerator": 0,
+        "denominator": 1
+      },
+      "positive_for_every_r_at_least": 67
+    },
+    {
+      "polynomial": "M_lower",
+      "degree": 9,
+      "negative_to_leading_ratio": {
+        "numerator": 121205,
+        "denominator": 54413068792589894
+      },
+      "positive_for_every_r_at_least": 67
+    },
+    {
+      "polynomial": "M_upper",
+      "degree": 2,
+      "negative_to_leading_ratio": {
+        "numerator": 0,
+        "denominator": 1
+      },
+      "positive_for_every_r_at_least": 67
+    },
+    {
+      "polynomial": "b_low_lower",
+      "degree": 10,
+      "negative_to_leading_ratio": {
+        "numerator": 8527424130450941,
+        "denominator": 21874053654621137388
+      },
+      "positive_for_every_r_at_least": 67
+    },
+    {
+      "polynomial": "b_low_upper",
+      "degree": 12,
+      "negative_to_leading_ratio": {
+        "numerator": 2436406750478044,
+        "denominator": 1822837804551761449
+      },
+      "positive_for_every_r_at_least": 67
+    },
+    {
+      "polynomial": "b_high_lower",
+      "degree": 12,
+      "negative_to_leading_ratio": {
+        "numerator": 4873175415089185,
+        "denominator": 16365437809265714289122
+      },
+      "positive_for_every_r_at_least": 67
+    },
+    {
+      "polynomial": "b_high_upper",
+      "degree": 8,
+      "negative_to_leading_ratio": {
+        "numerator": 20151139,
+        "denominator": 271375146507
+      },
+      "positive_for_every_r_at_least": 67
+    },
+    {
+      "polynomial": "s_low_lower",
+      "degree": 2,
+      "negative_to_leading_ratio": {
+        "numerator": 1,
+        "denominator": 26934
+      },
+      "positive_for_every_r_at_least": 67
+    },
+    {
+      "polynomial": "s_low_upper",
+      "degree": 6,
+      "negative_to_leading_ratio": {
+        "numerator": 2,
+        "denominator": 90458382169
+      },
+      "positive_for_every_r_at_least": 67
+    },
+    {
+      "polynomial": "s_high_lower",
+      "degree": 4,
+      "negative_to_leading_ratio": {
+        "numerator": 0,
+        "denominator": 1
+      },
+      "positive_for_every_r_at_least": 67
+    },
+    {
+      "polynomial": "s_high_upper",
+      "degree": 6,
+      "negative_to_leading_ratio": {
+        "numerator": 30226686,
+        "denominator": 90458382169
+      },
+      "positive_for_every_r_at_least": 67
+    },
+    {
+      "polynomial": "q_lower_scaled",
+      "degree": 9,
+      "negative_to_leading_ratio": {
+        "numerator": 350842538720226529,
+        "denominator": 435304550340719152
+      },
+      "positive_for_every_r_at_least": 67
+    },
+    {
+      "polynomial": "q_upper_scaled",
+      "degree": 9,
+      "negative_to_leading_ratio": {
+        "numerator": 4352680359,
+        "denominator": 678799699796176
+      },
+      "positive_for_every_r_at_least": 67
+    },
+    {
+      "polynomial": "a_minus_m",
+      "degree": 8,
+      "negative_to_leading_ratio": {
+        "numerator": 20151124,
+        "denominator": 90458382169
+      },
+      "positive_for_every_r_at_least": 67
+    },
+    {
+      "polynomial": "b_low_minus_a",
+      "degree": 4,
+      "negative_to_leading_ratio": {
+        "numerator": 8981,
+        "denominator": 40302242
+      },
+      "positive_for_every_r_at_least": 67
+    },
+    {
+      "polynomial": "t_minus_b_high",
+      "degree": 9,
+      "negative_to_leading_ratio": {
+        "numerator": 406067758161130,
+        "denominator": 27206534396294947
+      },
+      "positive_for_every_r_at_least": 67
+    },
+    {
+      "polynomial": "q_minus_t_scaled",
+      "degree": 5,
+      "negative_to_leading_ratio": {
+        "numerator": 17961,
+        "denominator": 80604484
+      },
+      "positive_for_every_r_at_least": 67
+    },
+    {
+      "polynomial": "h_minus_q_scaled",
+      "degree": 12,
+      "negative_to_leading_ratio": {
+        "numerator": 3248542145893511,
+        "denominator": 977041063239744136664
+      },
+      "positive_for_every_r_at_least": 67
+    },
+    {
+      "polynomial": "m_squared_minus_h",
+      "degree": 8,
+      "negative_to_leading_ratio": {
+        "numerator": 40306737,
+        "denominator": 180916764338
+      },
+      "positive_for_every_r_at_least": 67
+    },
+    {
+      "polynomial": "M_minus_s_high",
+      "degree": 18,
+      "negative_to_leading_ratio": {
+        "numerator": 8182721341039164297873,
+        "denominator": 740195513856780056217081017732809
+      },
+      "positive_for_every_r_at_least": 67
+    },
+    {
+      "polynomial": "height_margin",
+      "degree": 14,
+      "negative_to_leading_ratio": {
+        "numerator": 90009934751430142289500,
+        "denominator": 330590026466072061497408961
+      },
+      "positive_for_every_r_at_least": 67
+    },
+    {
+      "polynomial": "left_loss_margin",
+      "degree": 9,
+      "negative_to_leading_ratio": {
+        "numerator": 7757057,
+        "denominator": 435304550340719152
+      },
+      "positive_for_every_r_at_least": 67
+    }
+  ],
+  "controls": [
+    {
+      "r": 67,
+      "minimum": 90458395633,
+      "maximum": 740195513856812867297562949681296,
+      "a": 406067677556649,
+      "h": 8182718904633098958013,
+      "t": 27206534396295549,
+      "q": 27206540470504721,
+      "b_low": 406067758143171,
+      "b_high": 406067758143173,
+      "s_low": 8182721340496353497622,
+      "s_high": 8182721340496413950990,
+      "cube_deficit": 330516398379547835281419841,
+      "edges": [
+        {
+          "branch": "O",
+          "source": 406067677556649,
+          "target": 8182718904633098958013,
+          "square_remainder": 19491248522719280,
+          "upper_margin": 16365418318017675196747,
+          "actual_guard": true
+        },
+        {
+          "branch": "O",
+          "source": 8182718904633098958013,
+          "target": 740195513856812867297562949681296,
+          "square_remainder": 1480391025946158451194369995468581,
+          "upper_margin": 1767467283400755903894012,
+          "actual_guard": true
+        },
+        {
+          "branch": "E",
+          "source": 740195513856812867297562949681296,
+          "target": 27206534396295549,
+          "square_remainder": 54413068792469895,
+          "upper_margin": 121204,
+          "actual_guard": true
+        },
+        {
+          "branch": "O",
+          "source": 406067758143171,
+          "target": 8182721340496353497622,
+          "square_remainder": 21865531296160734327,
+          "upper_margin": 16343577149696546260918,
+          "actual_guard": true
+        },
+        {
+          "branch": "O",
+          "source": 406067758143173,
+          "target": 8182721340496413950990,
+          "square_remainder": 16365432936090299738617,
+          "upper_margin": 9744902528163364,
+          "actual_guard": true
+        },
+        {
+          "branch": "E",
+          "source": 8182721340496353497622,
+          "target": 90458395633,
+          "square_remainder": 26933,
+          "upper_margin": 180916764334,
+          "actual_guard": true
+        },
+        {
+          "branch": "E",
+          "source": 8182721340496413950990,
+          "target": 90458395633,
+          "square_remainder": 60480301,
+          "upper_margin": 180856310966,
+          "actual_guard": true
+        },
+        {
+          "branch": "O",
+          "source": 90458395633,
+          "target": 27206540470504721,
+          "square_remainder": 1320025747813296,
+          "upper_margin": 53093055193196147,
+          "actual_guard": true
+        }
+      ],
+      "negative_loss_upper_bound": {
+        "numerator": -5506586004491,
+        "denominator": 6060711605323
+      },
+      "positive_loss_lower_bound": {
+        "numerator": 180237847,
+        "denominator": 1203056
+      },
+      "cutoffs_active": {
+        "dc": true,
+        "lr": false
+      },
+      "checks": {
+        "strict_local_order": true,
+        "all_lower_states_odd": true,
+        "all_upper_states_even": true,
+        "unique_predecessor_h": true,
+        "unique_predecessor_s_low": true,
+        "unique_predecessor_s_high": true,
+        "upper_alignment_ceiling": true,
+        "noncube_minimum": true,
+        "cube_deficit_gt_twice_m_squared": true,
+        "prior_height_strip": true,
+        "dc_height_strip": true,
+        "lr_clean_height_strip": true,
+        "lr_sharp_exponent_lt_two": true,
+        "negative_loss_certificate": true,
+        "negative_loss_below_minus_three_quarters": true,
+        "positive_loss_certificate": true
+      },
+      "periodic_orbit_asserted": false,
+      "full_return_seam_asserted": false
+    },
+    {
+      "r": 83,
+      "minimum": 326940394033,
+      "maximum": 34946659039493446679564766943136496,
+      "a": 2252292232139049,
+      "h": 106890007738661693910013,
+      "t": 186940255267541149,
+      "q": 186940272990650535,
+      "b_low": 2252292421944771,
+      "b_high": 2252292421944773,
+      "s_low": 106890021250453302046422,
+      "s_high": 106890021250453444421390,
+      "cube_deficit": 6626325499257844979688097441,
+      "edges": [
+        {
+          "branch": "O",
+          "source": 2252292232139049,
+          "target": 106890007738661693910013,
+          "square_remainder": 108110027142674480,
+          "upper_margin": 213779907367296245145547,
+          "actual_guard": true
+        },
+        {
+          "branch": "O",
+          "source": 106890007738661693910013,
+          "target": 34946659039493446679564766943136496,
+          "square_remainder": 69893318055898651687578592625214181,
+          "upper_margin": 23088241671550941261058812,
+          "actual_guard": true
+        },
+        {
+          "branch": "E",
+          "source": 34946659039493446679564766943136496,
+          "target": 186940255267541149,
+          "square_remainder": 373880510534896295,
+          "upper_margin": 186004,
+          "actual_guard": true
+        },
+        {
+          "branch": "O",
+          "source": 2252292421944771,
+          "target": 106890021250453302046422,
+          "square_remainder": 186145214411423223927,
+          "upper_margin": 213593897286495180868918,
+          "actual_guard": true
+        },
+        {
+          "branch": "O",
+          "source": 2252292421944773,
+          "target": 106890021250453444421390,
+          "square_remainder": 213779988448504285485817,
+          "upper_margin": 54052402603356964,
+          "actual_guard": true
+        },
+        {
+          "branch": "E",
+          "source": 106890021250453302046422,
+          "target": 326940394033,
+          "square_remainder": 41333,
+          "upper_margin": 653880746734,
+          "actual_guard": true
+        },
+        {
+          "branch": "E",
+          "source": 106890021250453444421390,
+          "target": 326940394033,
+          "square_remainder": 142416301,
+          "upper_margin": 653738371766,
+          "actual_guard": true
+        },
+        {
+          "branch": "O",
+          "source": 326940394033,
+          "target": 186940272990650535,
+          "square_remainder": 16330224135447712,
+          "upper_margin": 357550321845853359,
+          "actual_guard": true
+        }
+      ],
+      "negative_loss_upper_bound": {
+        "numerator": -24479500284157,
+        "denominator": 27136050989627
+      },
+      "positive_loss_lower_bound": {
+        "numerator": 141653917,
+        "denominator": 762384
+      },
+      "cutoffs_active": {
+        "dc": true,
+        "lr": false
+      },
+      "checks": {
+        "strict_local_order": true,
+        "all_lower_states_odd": true,
+        "all_upper_states_even": true,
+        "unique_predecessor_h": true,
+        "unique_predecessor_s_low": true,
+        "unique_predecessor_s_high": true,
+        "upper_alignment_ceiling": true,
+        "noncube_minimum": true,
+        "cube_deficit_gt_twice_m_squared": true,
+        "prior_height_strip": true,
+        "dc_height_strip": true,
+        "lr_clean_height_strip": true,
+        "lr_sharp_exponent_lt_two": true,
+        "negative_loss_certificate": true,
+        "negative_loss_below_minus_three_quarters": true,
+        "positive_loss_certificate": true
+      },
+      "periodic_orbit_asserted": false,
+      "full_return_seam_asserted": false
+    },
+    {
+      "r": 4294967299,
+      "minimum": 6277101761693710281730161527983893752721898390190867612401,
+      "maximum": 247330404582753767311311449127611853377301830531475642539799386467761089212649182553188381299590687853579728930804639213707721711439186747557902554930280169109805686415936272,
+      "a": 115792089884354917017015979607930300002086289325093357813222891497882428381609,
+      "h": 39402006526658281183625640063222440588039629771651670683755851025795965621588443421336127626212168368114504407982013,
+      "t": 497323239536173060297942258976511479580220244427528751929898468781630157645724442971389,
+      "q": 497323239536173060297942258976511479586797001818486874860709275921259785363888294351033,
+      "b_low": 115792089884354917017015979607930300003447418796580063471671787877478382443203,
+      "b_high": 115792089884354917017015979607930300003447418796580063471671787877478382443205,
+      "s_low": 39402006526658281183625640063222440588734382310957800185820284292873385159909559341015169381331392994708255245117206,
+      "s_high": 39402006526658281183625640063222440588734382310957800185820284292873385159910580188118784410575285007225250648729614,
+      "cube_deficit": 6541548582629526292916261120712922964880265222346310775514965799892837554315487433351799749372543155885153934344590474304235150712180929,
+      "edges": [
+        {
+          "branch": "O",
+          "source": 115792089884354917017015979607930300002086289325093357813222891497882428381609,
+          "target": 39402006526658281183625640063222440588039629771651670683755851025795965621588443421336127626212168368114504407982013,
+          "square_remainder": 5558020314449036016816767021180654400100141887604481175034698791898356562317360,
+          "upper_margin": 78804013053316562367251280126444881170521239228854305350694935030411276843076744955067774077389637944330652253646667,
+          "actual_guard": true
+        },
+        {
+          "branch": "O",
+          "source": 39402006526658281183625640063222440588039629771651670683755851025795965621588443421336127626212168368114504407982013,
+          "target": 247330404582753767311311449127611853377301830531475642539799386467761089212649182553188381299590687853579728930804639213707721711439186747557902554930280169109805686415936272,
+          "square_remainder": 494660809165507534622622898255223706754603661062951285071087939525763989689635226852720715432164815676482696993918014605843514848615159464620011119440391633355042917117618213,
+          "upper_margin": 8510833409758188735663138253656047167016560030676760867691263821571928574263214030495793990420168704864568455714254332,
+          "actual_guard": true
+        },
+        {
+          "branch": "E",
+          "source": 247330404582753767311311449127611853377301830531475642539799386467761089212649182553188381299590687853579728930804639213707721711439186747557902554930280169109805686415936272,
+          "target": 497323239536173060297942258976511479580220244427528751929898468781630157645724442971389,
+          "square_remainder": 994646479072346120595884517953022959160440488855057503859796937562762253200762943346951,
+          "upper_margin": 498062090685942595828,
+          "actual_guard": true
+        },
+        {
+          "branch": "O",
+          "source": 115792089884354917017015979607930300003447418796580063471671787877478382443203,
+          "target": 39402006526658281183625640063222440588734382310957800185820284292873385159909559341015169381331392994708255245117206,
+          "square_remainder": 25631844610087286656581372503960218909736008491296587054738441074453902920372709734083572252879991,
+          "upper_margin": 78804013053316562341619435516357594520887392117955381461904560094450183265080677607576435842290076255332938237354422,
+          "actual_guard": true
+        },
+        {
+          "branch": "O",
+          "source": 115792089884354917017015979607930300003447418796580063471671787877478382443205,
+          "target": 39402006526658281183625640063222440588734382310957800185820284292873385159910580188118784410575285007225250648729614,
+          "square_remainder": 78804013053316562367251280126444881174689754464691082363282401889249992801992263617343518447852665014370934564251129,
+          "upper_margin": 2779010157224518008358166696496777517828896758894050373297905000079566733208100,
+          "actual_guard": true
+        },
+        {
+          "branch": "E",
+          "source": 39402006526658281183625640063222440588734382310957800185820284292873385159909559341015169381331392994708255245117206,
+          "target": 6277101761693710281730161527983893752721898390190867612401,
+          "square_remainder": 110680464596876132405,
+          "upper_margin": 12554203523387420563460323055967787505333116315784859092398,
+          "actual_guard": true
+        },
+        {
+          "branch": "E",
+          "source": 39402006526658281183625640063222440588734382310957800185820284292873385159910580188118784410575285007225250648729614,
+          "target": 6277101761693710281730161527983893752721898390190867612401,
+          "square_remainder": 1020847103615029244002692981592279744813,
+          "upper_margin": 12554203523387420562439475952352758261441103798789455479990,
+          "actual_guard": true
+        },
+        {
+          "branch": "O",
+          "source": 6277101761693710281730161527983893752721898390190867612401,
+          "target": 497323239536173060297942258976511479586797001818486874860709275921259785363888294351033,
+          "square_remainder": 124330808320850051635694185035597363635356472610069313109859011427661900005698499950112,
+          "upper_margin": 870315670751496068960190332917425595538237531026904436611559540414857670722078088751955,
+          "actual_guard": true
+        }
+      ],
+      "negative_loss_upper_bound": {
+        "numerator": -23589953463222033413570578924338270379490956715772197476658504010947,
+        "denominator": 26959946798969776514011120904678697066393261339029663660594704681099
+      },
+      "positive_loss_lower_bound": {
+        "numerator": 235580100809859621637456831329635623603,
+        "denominator": 24377896209318472114736625200
+      },
+      "cutoffs_active": {
+        "dc": true,
+        "lr": true
+      },
+      "checks": {
+        "strict_local_order": true,
+        "all_lower_states_odd": true,
+        "all_upper_states_even": true,
+        "unique_predecessor_h": true,
+        "unique_predecessor_s_low": true,
+        "unique_predecessor_s_high": true,
+        "upper_alignment_ceiling": true,
+        "noncube_minimum": true,
+        "cube_deficit_gt_twice_m_squared": true,
+        "prior_height_strip": true,
+        "dc_height_strip": true,
+        "lr_clean_height_strip": true,
+        "lr_sharp_exponent_lt_two": true,
+        "negative_loss_certificate": true,
+        "negative_loss_below_minus_three_quarters": true,
+        "positive_loss_certificate": true
+      },
+      "periodic_orbit_asserted": false,
+      "full_return_seam_asserted": false
+    }
+  ],
+  "source_search": false,
+  "orbit_search": false,
+  "raised_floor": false,
+  "new_actual_cycle_bound": false,
+  "no_cycle_proved": false,
+  "new_lean_or_paper_claim": false,
+  "proof_owner": "docs/problems/juggler_cycle_cut_predecessors.md",
+  "proof_status": "AI-assisted symbolic proof with exact finite controls, not Lean"
+}

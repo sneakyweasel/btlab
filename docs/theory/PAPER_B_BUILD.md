@@ -1,6 +1,8 @@
-# Paper B: consolidated five-step preprint
+# Five-Step Descent Certificates for the Juggler Map
 
-Version: 2026-09-10-proof-audit. Author: Philippe Cochin.
+Parity Statistics of Nested Floor Powers.
+
+Version: 2026-09-10-zenodo-preprint. Author: Philippe Cochin.
 
 The 37-page manuscript proves full five-step power-envelope certificate
 density 7/8, with count error O_epsilon(N^(127/128+epsilon)).
@@ -11,15 +13,16 @@ arbitrary decorations, localization, and all-depth hypotheses remain open.
 
 ## Deposit files
 
-Upload juggler_parity_discrepancy_note.pdf and paper_b_source_package.zip.
+Upload `Five_Step_Descent_Certificates_for_the_Juggler_Map.pdf` and `paper_b_source_package.zip`.
 The source ZIP contains the complete manuscript, generated LaTeX,
 build assets, all exact-control scripts, aggregate validation, fresh proof audit, metadata, and this guide. paper_b_zenodo_package.zip collects
 the prepared deposit materials for convenience.
 
 Prepared fields: paper_b_zenodo.json and paper_b_zenodo_fields.txt.
 The repository reviewer kit also contains the byte-identical PDF alias
-Parity_Statistics_of_Nested_Floor_Powers.pdf and generated ZENODO_FIELDS.txt.
-No deposit or DOI has been created. Use the actual first-publication date.
+Five_Step_Descent_Certificates_for_the_Juggler_Map.pdf and generated ZENODO_FIELDS.txt.
+Submission instructions are in ZENODO_README.md. No deposit or DOI has been
+created. Use the actual first-publication date.
 
 ## Standalone rebuild
 
@@ -72,7 +75,9 @@ are documented in paper_b_proof_review.md.
 
 ## Evidence and licensing
 
-The 10 September revision supplies the bounded signed-residual Fourier
+The current title leads with the finite-step result; the mathematical text is
+byte-identical to the 10 September proof-audit edition. That audit supplies
+the bounded signed-residual Fourier
 extension and its variation proof, defines the parity sign before use,
 clarifies shifts, and repairs subscripts and the reference link.
 The aggregate validator runs nine exact modules and checks 93 equation

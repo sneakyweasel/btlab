@@ -11,27 +11,27 @@
     {
       "path": "docs/theory/juggler_finite_dynamics_formalization.md",
       "mode": "text",
-      "sha256": "baa757c32ac7c995052f0ec153a1aa8ed770e96cfd24cc0066404f4d6a7372ea"
+      "sha256": "284902ee225cb01f117ab8b54d93d845ebcad0a32d15bef3cf8f255625caf4cf"
     },
     {
       "path": "docs/theory/juggler_finite_dynamics_note.md",
       "mode": "text",
-      "sha256": "58a4521c487139abdfafea027d89de878eee5f98937d8a5b47640fa0c2656758"
+      "sha256": "6841e1eb8bc72ce4e9bba22a394ee6cb9de87909a5403364e0f8a26c8bba7819"
     },
     {
       "path": "docs/theory/juggler_finite_dynamics_reviewer_packet.md",
       "mode": "text",
-      "sha256": "ede69e614de0f5baa3a815c0faf324ecd30dd5412d50a957c69818825ea0f5d3"
+      "sha256": "c6f14db48128eb60c56e0054338bb91f022a0787915b134062a13bcb70c27edc"
     },
     {
       "path": "formal/AxiomCheckPaperA.expected",
       "mode": "text",
-      "sha256": "092e3ca3bd58144e270bd82eb322153e0b6d691fbb9a5e0d46d79f166fa25ff9"
+      "sha256": "bd72b130e0ea5f36628f19f512d4bac6bb179b035a0db778ad26d0ebb28d0fab"
     },
     {
       "path": "formal/AxiomCheckPaperA.lean",
       "mode": "text",
-      "sha256": "2c3611dabd9f14dde705f8c2c10c95d92eacfebca161f5e857a691a3cb2a0302"
+      "sha256": "0bc54909c963cf89aa5768c3f9140d406a02c9680bc86d571fc227e61031c5da"
     },
     {
       "path": "formal/Problems/Juggler/BunchedTight.lean",
@@ -399,9 +399,69 @@
       "sha256": "6d3e2c7bca7eda1b22150757aebcc5ae8afe7a93bee9cca96d8072af8a70e29f"
     },
     {
+      "path": "formal/Problems/Juggler/ReturnCycleTransfers.lean",
+      "mode": "text",
+      "sha256": "2ffda32bde208bbc59f209028777357fcb0b4afd117a3962db50c9ae812e050e"
+    },
+    {
+      "path": "formal/Problems/Juggler/ReturnGapHeight.lean",
+      "mode": "text",
+      "sha256": "59b1b7a6fee9a350f85836126d22e8b6f4b743fb05813cee9c6e91442f6d821b"
+    },
+    {
       "path": "formal/Problems/Juggler/ReturnInduction.lean",
       "mode": "text",
       "sha256": "1f90280b69c0d003321448b683d34b64a1c8b270b7e60c1cb23e613f398ee9b9"
+    },
+    {
+      "path": "formal/Problems/Juggler/ReturnOrbitStrips.lean",
+      "mode": "text",
+      "sha256": "b8ef190fd03672b35eb46b2aa7f0ac4010d7a5f4b52eef72eb8931c1576cec0a"
+    },
+    {
+      "path": "formal/Problems/Juggler/ReturnQuotients.lean",
+      "mode": "text",
+      "sha256": "dc7b92bf164427e6ab0248ae482c8061d453783dd7778a3fdf498ce6dcc7f754"
+    },
+    {
+      "path": "formal/Problems/Juggler/ReturnRankedCycle.lean",
+      "mode": "text",
+      "sha256": "098a80e303b8594f04013061e1bb10df820ea317435372f0f186afe8ca1122b0"
+    },
+    {
+      "path": "formal/Problems/Juggler/ReturnSeams.lean",
+      "mode": "text",
+      "sha256": "aabd5ce38578f21ce0acd6a362ffac4ae50fb63abdff258b39714e4e25992921"
+    },
+    {
+      "path": "formal/Problems/Juggler/ReturnTerminal.lean",
+      "mode": "text",
+      "sha256": "80613ddee8f937b6223fad8e1113eb9eec63b3b6755cc3b59ea1355ba5bba623"
+    },
+    {
+      "path": "formal/Problems/Juggler/ReturnTransferHeight.lean",
+      "mode": "text",
+      "sha256": "fe3d9c306f696e8a14ad488b59d68f2d229d44661cde9c6c2dd77472fe237a8b"
+    },
+    {
+      "path": "formal/Problems/Juggler/ReturnWordBounds.lean",
+      "mode": "text",
+      "sha256": "05bb89562e2d9df4cbed607b7315869caaeeceecc575c9e8804b32a7a0d6cfb6"
+    },
+    {
+      "path": "formal/Problems/Juggler/ReturnWordData.lean",
+      "mode": "text",
+      "sha256": "6fc10c27cc00cc17381c127c51df2707fae6053da2580f92a0b3458d28a4f593"
+    },
+    {
+      "path": "formal/Problems/Juggler/ReturnWordFactorization.lean",
+      "mode": "text",
+      "sha256": "8ee635301995c2bdbe2fd9ebc2208a4e6302353ab03ee7049131419893409798"
+    },
+    {
+      "path": "formal/Problems/Juggler/ReturnWordLoss.lean",
+      "mode": "text",
+      "sha256": "42e9bfa4288f1fef72b2b897a1b8ec8ff4b47f11d6e4bf50c08915ea854a618a"
     },
     {
       "path": "formal/Problems/Juggler/RotationAverage.lean",
@@ -461,7 +521,7 @@
     {
       "path": "formal/Problems/JugglerPaper.lean",
       "mode": "text",
-      "sha256": "191fd4621451775190c4f828e68f5495e5e33b15555860b95cf2d5389cba6bc3"
+      "sha256": "4b49da2f985f80afac98c8bf0c2d04295688d9aad9fa16ea101b78f8e46d8a35"
     },
     {
       "path": "formal/lake-manifest.json",
@@ -503,17 +563,17 @@
     {
       "path": "docs/theory/juggler_finite_dynamics_note.pdf",
       "mode": "binary",
-      "sha256": "62b9c9b97d5d8becb08c9a051b0d90caacc920a050667408d00be5af96856a98"
+      "sha256": "b8837be450b6a1f1453e79131fd0b0c18f18400f5f5b19ec257e7c6c5a90a45a"
     },
     {
       "path": "docs/theory/cochin-juggler.tex",
       "mode": "text",
-      "sha256": "661a4654ad245ff7bf5619427af69b3ad4d01728394d5996d1f323a753da440f"
+      "sha256": "dc3d413b9d04b86d2aa74cc69a95dc36bbabab2b2f40b3c16a5957101293e511"
     },
     {
       "path": "docs/theory/paper_a_zenodo.json",
       "mode": "text",
-      "sha256": "232d8b81bf8e9a07468973d7ef9a526cbf6c207aadd42952b23d21c7fc99c4df"
+      "sha256": "bd47bb11460dfc598ed081aac33b106df2f2afa0003212b51c51bc4ed81516c4"
     }
   ]
 }

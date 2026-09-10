@@ -1005,3 +1005,55 @@ proofs. These distinctions do not weaken the fully formalized periodic
 height theorem. The six stored terminating family traces are checked
 computations and do not establish universal family termination.
 No global no-cycle theorem or universal escape exclusion is established.
+
+## 13. Successive return gaps and the terminal mixed passage
+
+Paper A Sections 3.12–3.13 and Appendix F own the written proofs.
+The new modules are registered in dependency order in both barrels.
+
+| Paper statement | Formal coverage and boundary |
+|---|---|
+| Theorem 3.40 | Actual-cycle gap and height bounds: `dc_cycle_gap`, `lr_cycle_gap`, `dc_cycle_height`, `lr_cycle_height`. The last two include the displayed real bounds and exact integer endpoints, from the stated minimum and cubic-band hypotheses |
+| Theorem 3.40, cycle and threshold consequences | Ordinary cycle predicates: `cycleMin_dc_height`, `cycleMin_lr_height`. Wrong parity in the excluded threshold strips: `threshold_cycle_dc_wrong_parity`, `threshold_cycle_lr_wrong_parity` |
+| Appendix F.1 | Exact transported loss: `loss_exact`; concave-tail bound: `loss_lt_budget`; common-floor paired estimate: `paired_bound` |
+| Appendix F.2–F.3 | Unconditional word bounds: `c_loss`, `w_loss`; gap contraction: `c_contract`, `w_contract`. Required growth: `ac_grows`, `d_grows`, `v_grows`; the sharper written helper errors and the earlier \(2^{15}\) growth cutoff are not needed in these formal proofs |
+| Appendix F.2–F.4 | Actual section: `periodicExtrema_return_model`; forced batches: `dc_rank_stages`, `lr_rank_stage`; guarded pair placement: `periodicExtrema_dc_transfers`, `periodicExtrema_lr_transfers`; height transport: `height_of_power_gap` |
+| Proposition 3.41 and Appendix F.5 | Finite substitution factorization and actual guards at a two-point return: `induced_terminal_actual_factorization`. Local contraction at the absolute cut: `mixed_gap`. Identifying the terminal pair with the globally adjacent cut pair, and the full primitive termination argument, remain written |
+| Appendix F.6 | Exact necessary threshold for the stated sufficient certificate: `certificate_requires_large_minimum`. Its near-unit asymptotic interpretation remains written; this is not a counterexample to actual paired contraction |
+
+The complete height theorems start with a bounded actual periodic set
+with attained minimum \(m\) and maximum \(M\). The earlier orbit-to-set
+construction supplies these hypotheses for an ordinary finite cycle.
+They assume \(m\ge2^{24}\) or \(m\ge2^{128}\), respectively, and \(M<m^3\).
+They do not assume a return section, a positive remainder, odd endpoint
+gaps, or the desired transfer inequalities: those facts are proved.
+
+The written height bounds and natural-number forms
+\(m^{253}<[2(m^3-M)]^{128}\) and
+\(m^{127}<[2(m^3-M)]^{64}\) are both covered. The later real exponent
+is the sharper \(381/128-3^{41}/2^{65}\). Its higher minimum cutoff is
+essential to the stated theorem. The generic scalar and pair helpers
+retain explicit premises; the unconditional periodic-set wrappers
+construct and discharge them.
+
+The growth lemmas use valid coarser loss estimates below 11, 19 and 84
+for \(AC,D,V\). They prove the needed first two growth claims from
+\(2^{24}\) and the last from \(2^{128}\). They do not formalize the
+stronger written \(D\)-loss bound \(17/4\), or the optional \(2^{15}\)
+cutoff for \(AC\). This distinction does not weaken Theorem 3.40.
+
+The terminal factorization is proved for every finite sequence of
+Euclidean substitutions. Its actual two-point-return theorem retains
+all prefix, middle and suffix guards. The local cut theorem proves
+the signed integer inequality \(q-t<s-h\) directly from the two
+absolute square cells and \(1\le h<m^2<s\).
+The written identification of that cut with the globally adjacent
+terminal pair, and termination at a primitive two-point section, are
+not advertised as fully formalized here.
+
+The general loss certificate requires concave proper tails and the
+stated trace floor; the concrete C/W theorems prove their trace floors
+internally. The certificate's exact minimum threshold is formalized.
+Its asymptotic interpretation does not prove that true paired
+contraction fails. Neither the terminal closure identity nor successful
+formalization resolves prefix amplification, general no-cycle or escape.

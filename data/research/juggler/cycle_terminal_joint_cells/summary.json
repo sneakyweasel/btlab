@@ -1,0 +1,356 @@
+{
+  "scope": {
+    "fixed_parameter_pairs": [
+      [
+        9,
+        5
+      ],
+      [
+        17,
+        17
+      ],
+      [
+        18446744073709551617,
+        340282366920938463463374607431768211457
+      ]
+    ],
+    "parameter_pairs": 3,
+    "symbolic_families": 2,
+    "source_census": false,
+    "cycle_search": false,
+    "rank_pair_scan": false,
+    "trajectory_extension": false,
+    "raised_floor": false
+  },
+  "arithmetic": "integer square roots, exact fractions and integer power comparisons",
+  "controls": [
+    {
+      "mixed": {
+        "r": 9,
+        "minimum": 81,
+        "h": 6401,
+        "maximum": 512120,
+        "t": 715,
+        "q": 729,
+        "s_low": 6562,
+        "s_high": 6722,
+        "output_gap": 14,
+        "cube_deficit": 19321,
+        "negative_certificate_margin": {
+          "numerator": 8711,
+          "denominator": 144
+        },
+        "positive_loss_lower_bound": {
+          "numerator": 403,
+          "denominator": 40
+        },
+        "signed_loss_conclusions": [
+          "Delta_B(s_low) < -1/2",
+          "Delta_B(s_high) > r"
+        ],
+        "cutoffs_active": {
+          "dc": false,
+          "lr": false
+        },
+        "checks": {
+          "odd_sources_and_outputs": true,
+          "even_sources_and_outputs": true,
+          "O_h": true,
+          "E_M": true,
+          "E_s_low": true,
+          "E_s_high": true,
+          "O_m": true,
+          "ordered_inside_cubic_band": true,
+          "mixed_gap_contracts_both": true,
+          "negative_sign_certificate": true,
+          "positive_sign_certificate": true,
+          "height_deficit_gt_twice_m_squared": true,
+          "prior_smooth_strip": true,
+          "dc_smooth_strip": true,
+          "lr_clean_smooth_strip": true,
+          "lr_sharp_exponent_lt_two": true
+        },
+        "periodic_closure_asserted": false
+      },
+      "even": {
+        "minimum": 5,
+        "faces": [
+          {
+            "face": "damping",
+            "x": 26,
+            "y": 62,
+            "outputs": [
+              5,
+              7
+            ],
+            "remainders": [
+              1,
+              13
+            ],
+            "cell_coefficient": {
+              "numerator": 2,
+              "denominator": 3
+            },
+            "checks": {
+              "actual_E_guards": true,
+              "odd_outputs": true,
+              "exact_root_cells": true,
+              "strict_order": true,
+              "surviving_height_margin": true,
+              "exact_coefficient": true,
+              "sharp_interval": true
+            }
+          },
+          {
+            "face": "amplification",
+            "x": 34,
+            "y": 50,
+            "outputs": [
+              5,
+              7
+            ],
+            "remainders": [
+              9,
+              1
+            ],
+            "cell_coefficient": {
+              "numerator": 3,
+              "denominator": 2
+            },
+            "checks": {
+              "actual_E_guards": true,
+              "odd_outputs": true,
+              "exact_root_cells": true,
+              "strict_order": true,
+              "surviving_height_margin": true,
+              "exact_coefficient": true,
+              "sharp_interval": true
+            }
+          }
+        ],
+        "periodic_closure_asserted": false
+      }
+    },
+    {
+      "mixed": {
+        "r": 17,
+        "minimum": 289,
+        "h": 82945,
+        "maximum": 23888304,
+        "t": 4887,
+        "q": 4913,
+        "s_low": 83522,
+        "s_high": 84098,
+        "output_gap": 26,
+        "cube_deficit": 249265,
+        "negative_certificate_margin": {
+          "numerator": 1001087,
+          "denominator": 4624
+        },
+        "positive_loss_lower_bound": {
+          "numerator": 529,
+          "denominator": 24
+        },
+        "signed_loss_conclusions": [
+          "Delta_B(s_low) < -1/2",
+          "Delta_B(s_high) > r"
+        ],
+        "cutoffs_active": {
+          "dc": false,
+          "lr": false
+        },
+        "checks": {
+          "odd_sources_and_outputs": true,
+          "even_sources_and_outputs": true,
+          "O_h": true,
+          "E_M": true,
+          "E_s_low": true,
+          "E_s_high": true,
+          "O_m": true,
+          "ordered_inside_cubic_band": true,
+          "mixed_gap_contracts_both": true,
+          "negative_sign_certificate": true,
+          "positive_sign_certificate": true,
+          "height_deficit_gt_twice_m_squared": true,
+          "prior_smooth_strip": true,
+          "dc_smooth_strip": true,
+          "lr_clean_smooth_strip": true,
+          "lr_sharp_exponent_lt_two": true
+        },
+        "periodic_closure_asserted": false
+      },
+      "even": {
+        "minimum": 17,
+        "faces": [
+          {
+            "face": "damping",
+            "x": 290,
+            "y": 398,
+            "outputs": [
+              17,
+              19
+            ],
+            "remainders": [
+              1,
+              37
+            ],
+            "cell_coefficient": {
+              "numerator": 2,
+              "denominator": 3
+            },
+            "checks": {
+              "actual_E_guards": true,
+              "odd_outputs": true,
+              "exact_root_cells": true,
+              "strict_order": true,
+              "surviving_height_margin": true,
+              "exact_coefficient": true,
+              "sharp_interval": true
+            }
+          },
+          {
+            "face": "amplification",
+            "x": 322,
+            "y": 362,
+            "outputs": [
+              17,
+              19
+            ],
+            "remainders": [
+              33,
+              1
+            ],
+            "cell_coefficient": {
+              "numerator": 9,
+              "denominator": 5
+            },
+            "checks": {
+              "actual_E_guards": true,
+              "odd_outputs": true,
+              "exact_root_cells": true,
+              "strict_order": true,
+              "surviving_height_margin": true,
+              "exact_coefficient": true,
+              "sharp_interval": true
+            }
+          }
+        ],
+        "periodic_closure_asserted": false
+      }
+    },
+    {
+      "mixed": {
+        "r": 18446744073709551617,
+        "minimum": 340282366920938463500268095579187314689,
+        "h": 115792089237316195448679391950234630909974271826154983557720504215496340537345,
+        "maximum": 39402006196394479225094962315669074300839374578330553700697589172372986731529896813271314117066319194738439124680704,
+        "t": 6277101735386680764856636523970481806520149382869903474687,
+        "q": 6277101735386680764856636523970481806547819498980467802113,
+        "s_low": 115792089237316195448679391950234630910654836559996860484721040406654715166722,
+        "s_high": 115792089237316195448679391950234630911335401293838737411721576597813089796098,
+        "output_gap": 27670116110564327426,
+        "cube_deficit": 347376267711948586346038175850703892730433239028846358368411914789857802584065,
+        "negative_certificate_margin": {
+          "numerator": 1389505070847794345384152703402815570926496909252278571962651412497539832741887,
+          "denominator": 5444517870735015416004289529266997035024
+        },
+        "positive_loss_lower_bound": {
+          "numerator": 680564733841876926951344873628482491729,
+          "denominator": 24595658764946068824
+        },
+        "signed_loss_conclusions": [
+          "Delta_B(s_low) < -1/2",
+          "Delta_B(s_high) > r"
+        ],
+        "cutoffs_active": {
+          "dc": true,
+          "lr": true
+        },
+        "checks": {
+          "odd_sources_and_outputs": true,
+          "even_sources_and_outputs": true,
+          "O_h": true,
+          "E_M": true,
+          "E_s_low": true,
+          "E_s_high": true,
+          "O_m": true,
+          "ordered_inside_cubic_band": true,
+          "mixed_gap_contracts_both": true,
+          "negative_sign_certificate": true,
+          "positive_sign_certificate": true,
+          "height_deficit_gt_twice_m_squared": true,
+          "prior_smooth_strip": true,
+          "dc_smooth_strip": true,
+          "lr_clean_smooth_strip": true,
+          "lr_sharp_exponent_lt_two": true
+        },
+        "periodic_closure_asserted": false
+      },
+      "even": {
+        "minimum": 340282366920938463463374607431768211457,
+        "faces": [
+          {
+            "face": "damping",
+            "x": 115792089237316195423570985008687907853950549399482440966384333222776666062850,
+            "y": 115792089237316195423570985008687907855992243601008071747164580867367275331598,
+            "outputs": [
+              340282366920938463463374607431768211457,
+              340282366920938463463374607431768211459
+            ],
+            "remainders": [
+              1,
+              680564733841876926926749214863536422917
+            ],
+            "cell_coefficient": {
+              "numerator": 2,
+              "denominator": 3
+            },
+            "checks": {
+              "actual_E_guards": true,
+              "odd_outputs": true,
+              "exact_root_cells": true,
+              "strict_order": true,
+              "surviving_height_margin": true,
+              "exact_coefficient": true,
+              "sharp_interval": true
+            }
+          },
+          {
+            "face": "amplification",
+            "x": 115792089237316195423570985008687907854631114133324317893311082437640202485762,
+            "y": 115792089237316195423570985008687907855311678867166194820237831652503738908682,
+            "outputs": [
+              340282366920938463463374607431768211457,
+              340282366920938463463374607431768211459
+            ],
+            "remainders": [
+              680564733841876926926749214863536422913,
+              1
+            ],
+            "cell_coefficient": {
+              "numerator": 170141183460469231731687303715884105729,
+              "denominator": 85070591730234615865843651857942052865
+            },
+            "checks": {
+              "actual_E_guards": true,
+              "odd_outputs": true,
+              "exact_root_cells": true,
+              "strict_order": true,
+              "surviving_height_margin": true,
+              "exact_coefficient": true,
+              "sharp_interval": true
+            }
+          }
+        ],
+        "periodic_closure_asserted": false
+      }
+    }
+  ],
+  "decision": "PARK",
+  "new_cycle_restriction": false,
+  "full_joint_cell_comparison_proved": false,
+  "no_cycle_proved": false,
+  "new_lean_or_paper_claim": false,
+  "proof_owner": "docs/problems/juggler_cycle_terminal_joint_cells.md",
+  "proof_status": "symbolic written proofs; finite controls are consistency checks"
+}

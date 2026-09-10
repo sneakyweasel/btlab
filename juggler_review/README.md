@@ -1,4 +1,4 @@
-> **Paper B proof audit, 10 September 2026:** the 37-page manuscript includes the bounded signed-residual Fourier extension and explicit variation checks. Fresh symbolic derivation confirms the critical curvature coefficients. The five-step certificate density remains 7/8 with error O_epsilon(N^(127/128+epsilon)). [Fresh proof audit](paper_b_proof_review.md). Independent expert review remains outstanding; no upload has occurred.
+> **Paper B, Five-Step Descent Certificates for the Juggler Map (10 September 2026):** the 37-page manuscript includes the bounded signed-residual Fourier extension and explicit variation checks. Fresh symbolic derivation confirms the critical curvature coefficients. The five-step certificate density remains 7/8 with error O_epsilon(N^(127/128+epsilon)). [Fresh proof audit](paper_b_proof_review.md). Independent expert review remains outstanding; no upload has occurred.
 
 # Juggler reviewer bundle (three manuscripts)
 
@@ -13,7 +13,7 @@ must be rebuilt from `docs/theory/` before further external review.
 The stopped live-pressure hypothesis is unchanged and unproved.
 
 Status: Paper A is the regenerated Zenodo preprint of 9 September 2026; Paper B is the repaired
-preprint (four-step certificate density 13/16, five-step subfamily density
+preprint (four-step certificate density 13/16, full five-step certificate density
 7/8 with its complete written proof); Paper C
 (fate contagion and the almost-all reformulation, 4 September 2026)
 is a complete draft whose main theorem is unconditional and whose
@@ -56,8 +56,8 @@ https://sneakyweasel.github.io/btlab/
    `python tools/build_paper_a.py --check`. See
    [build instructions](../docs/theory/PAPER_A_BUILD.md).
 2. [juggler_parity_discrepancy_note.pdf](juggler_parity_discrepancy_note.pdf)
-   — **Paper B**: *Parity Statistics of Nested Floor Powers: Finite-Step
-   Descent and Conditional Extensions for the Juggler Map* (10 September 2026).
+   — **Paper B**: *Five-Step Descent Certificates for the Juggler Map:
+   Parity Statistics of Nested Floor Powers* (10 September 2026).
    Theorem 4.5 proves restricted mixed exponential sums by an exact carry
    expansion and estimates over every gap cell. Corollary 4.6 and Theorem
    5.2 give the unconditional four-step power-envelope certificate density

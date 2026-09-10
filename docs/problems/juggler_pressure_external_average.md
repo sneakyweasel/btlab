@@ -253,6 +253,20 @@ No fate is excluded. No halt theorem.
 
 ## Branch budget
 
+**New Paper B transfer check (10 September 2026).**
+
+| Triage item | Scope |
+|---|---|
+| Mathematical target | Does the new mixed-mode theorem control the shorter growing all-odd prefix, through projection or one more odd operation? |
+| Novelty hypothesis | The newly proved coordinate family may supply additional actual all-odd counts. |
+| Falsifier | The next odd coordinate falls outside the theorem's phase family and parameter range. |
+| Already killed by? | Fixed-depth iteration and averaging on sparse selected images are already closed. This check uses the newly available theorem once and tests its actual next coordinate. |
+| Existing machinery | Paper B Theorem 4.11, Corollary 4.12, exact floor definitions, and the existing pressure calibration. |
+| Maximum Phase-0 scope | One projected corollary, one attempted extension, and six literal exact-floor controls. No census or new cancellation claim. |
+| Promotion criterion | A new arithmetic estimate valid for a growing number of odd operations. |
+| Stop criterion | Close direct reuse if the next coordinate is outside the theorem; keep the growing-depth count open. |
+
+
 **Shorter-prefix counting follow-up (9 September 2026).**
 
 | Triage item | Scope |
@@ -818,6 +832,73 @@ not an impossibility result for a different arithmetic method.
 
 **PARK** the actual arithmetic count. This is a conditional calibration of the existing pressure route, not a new counting theorem or named frontier hypothesis. No available estimate checked here meets the derived uniformity requirement. The remaining high-odd-count words also remain uncontrolled. No paper edit, orbit census, runtime module or formalization is introduced.
 
+
+### New Paper B transfer: four odd letters, then a different phase
+
+**10 September 2026.** The consolidated
+[Paper B](../theory/juggler_parity_discrepancy_note.md), Theorem 4.11
+and Corollary 4.12, now give every formal sign class of
+\[
+X=n^{3/2},\quad m=\lfloor X\rfloor,\quad Y=m^{3/2},
+\quad v=\lfloor Y\rfloor,\quad Z=v^{3/2},
+\quad w=\lfloor Z\rfloor,\quad U=\sqrt w
+\]
+on odd \(n\le N\) the count
+\(N/32+O_\varepsilon(N^{127/128+\varepsilon})\).
+This is the current AI-assisted written theorem; independent expert
+review and complete formal verification remain outstanding. See its
+[proof audit](../theory/paper_b_proof_review.md).
+
+The actual prefix \(OOOO\) is exactly the union of the two formal
+classes \((\psi(X),\psi(Y),\psi(Z),\psi(U))=(-1,-1,-1,\pm1)\).
+Summing gives the inherited fixed-depth corollary
+\[
+\#\{n\le N:\operatorname{word}_4(n)=OOOO\}
+=N/16+O_\varepsilon(N^{127/128+\varepsilon}).
+\]
+On \((y,2y]\) the main term is \(y/16\), or proportion \(1/8\)
+among odd starts. Choose \(0<\varepsilon<1/128\) for a power saving.
+This is a direct consequence of the new theorem, not an independent
+analytic result or a new ledger theorem.
+
+The fifth odd letter requires \(W=w^{3/2}=wU\), not \(U=\sqrt w\).
+The mixed phases with \(\ell W/2\) are outside Theorem 4.11.
+Rewriting this as a coefficient \(\ell w(n)\) of \(U/2\) is invalid
+as a direct application: the coefficient varies with the source,
+and for nonzero \(\ell\) has size at least of order \(y^{27/8}\),
+outside the fixed-frequency range \(Cy^{1/24}\).
+Increasing the fixed cutoff alone would not remove the dependence
+on \(n\). Freezing \(w=F^3(n)\), \(F(n)=\lfloor n^{3/2}\rfloor\),
+leaves at most one integer source because \(F\) is strictly increasing.
+This is the already-recorded constancy-cell limitation.
+
+There is also an exact counterexample to replacing the next parity
+by the formal \(U\) parity. At \(n=5^8\), the four odd sources are
+\(5^8,5^{12},5^{18},5^{27}\), but
+\[
+\lfloor\sqrt{5^{27}}\rfloor=2729575167\quad\text{is odd},\qquad
+\lfloor(5^{27})^{3/2}\rfloor
+=20336919783401660392056998432\quad\text{is even}.
+\]
+Six literal integer-root controls \(37,81,3^8,3^{16},5^8,7^8\)
+check the branch distinction; \(81\) is a negative control because
+its fourth formal source is \(2761448\), even. No source census
+or asymptotic counting experiment is involved.
+
+For every \(t\ge4\), exact inclusion therefore gives only
+\[
+|\mathcal O_t(y)|\le y/16+O_\varepsilon(y^{127/128+\varepsilon}).
+\]
+The fixed-depth factor cannot be iterated onto selected images
+using the theorem's original-source estimate alone. It supplies no
+bound of order \(y/(\log y)^5\) at \(t=\lceil5L(y)\rceil\).
+
+**CLOSE** the direct-reuse test; the actual growing-depth arithmetic
+question remains **PARK**. No new cancellation estimate was obtained.
+This checks the newly available input without reopening the closed
+fixed-prefix method or adding a frontier hypothesis. No paper,
+stopping-floor or formal-module change is made.
+
 ### One-sided sieve check: sublinear-order marginals are insufficient
 
 This refines the recorded fixed-order/Walsh information barrier. It
@@ -1294,6 +1375,24 @@ arithmetic question remains **PARK**. No counterexample to it is claimed;
 no new runtime code, formal module, or fixed-depth ladder is introduced.
 
 ## Open questions
+
+**Fifth-letter resolution audit (10 September 2026).**
+[Neighbor-scale Results 6](juggler_parity_neighbor_scale.md) closes
+the tested uniform last-floor freezing transfer: its correction
+coefficient has size P^(27/16), versus available resolution P^(1/24),
+and a new outer phase remains unestimated. All 1,209 assignments
+in the same three short blocks pass at prefix length four. This
+finite result supplies no asymptotic exit capacity; the fifth split
+and the growing-depth arithmetic target remain PARK.
+
+**Source-block pairing follow-up (10 September 2026).**
+[Neighbor-scale Results 5](juggler_parity_neighbor_scale.md) now gives
+a two-to-one pairing with first-step displacement O(y^(1/4)), from
+classical curvature/discrepancy estimates. Endpoint subtraction of the
+current Paper B counts also gives prefix lengths two and three at
+displacement O_epsilon(y^(127/128+epsilon)). The construction stays
+inside each original dyadic source window. Capacity for t=4 and for
+growing t is not established; the arithmetic-pressure target stays PARK.
 
 **Full-phase follow-up (9 September 2026): no new estimate.** Exact
 source pairing, partial summation, and grouping that retains the floor

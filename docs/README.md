@@ -37,7 +37,7 @@ The live publication task is the Juggler programme.
 
 1. [Paper A — cycle-length lower bounds](theory/juggler_finite_dynamics_note.md)
    ([doi:10.5281/zenodo.22676453](https://doi.org/10.5281/zenodo.22676453))
-2. [Paper B — parity results and conditional extensions](theory/juggler_parity_discrepancy_note.md)
+2. [Paper B — Five-Step Descent Certificates for the Juggler Map](theory/juggler_parity_discrepancy_note.md)
    ([10 September proof audit](theory/paper_b_proof_review.md))
 3. [Paper C — fate contagion](theory/juggler_fate_almost_all_note.md)
    ([doi:10.5281/zenodo.22678165](https://doi.org/10.5281/zenodo.22678165))

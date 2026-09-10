@@ -295,3 +295,36 @@
 'Problems.Juggler.guardResidueFamily_no_record_classifier' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.guardResidue_common_band_and_section' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.guardResidue_threshold_blocks' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.ReturnWordLoss.loss_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.ReturnWordLoss.loss_lt_budget' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.ReturnWordLoss.paired_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.ReturnWordBounds.ac_grows' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.ReturnWordBounds.d_grows' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.ReturnWordBounds.v_grows' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.ReturnWordBounds.c_loss' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.ReturnWordBounds.w_loss' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.ReturnWordBounds.c_contract' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.ReturnWordBounds.w_contract' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.ReturnWordBounds.certificate_requires_large_minimum' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problems.Juggler.ReturnWordFactorization.induced_terminal_actual_factorization' depends on axioms: [propext]
+'Problems.Juggler.ReturnSeams.periodicExtrema_return_model' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.ReturnSeams.dc_rank_stages' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.ReturnSeams.lr_rank_stage' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.ReturnSeams.periodicExtrema_dc_transfers' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.ReturnSeams.periodicExtrema_lr_transfers' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.ReturnGapHeight.height_of_power_gap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.ReturnTransferHeight.dc_cycle_gap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.ReturnTransferHeight.lr_cycle_gap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.ReturnTransferHeight.dc_cycle_height' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.ReturnTransferHeight.lr_cycle_height' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.ReturnTerminal.mixed_gap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.ReturnOrbitStrips.cycleMin_dc_height' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.ReturnOrbitStrips.cycleMin_lr_height' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.ReturnOrbitStrips.threshold_cycle_dc_wrong_parity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problems.Juggler.ReturnOrbitStrips.threshold_cycle_lr_wrong_parity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

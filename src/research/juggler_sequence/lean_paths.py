@@ -90,6 +90,18 @@ PAPER_MODULES: tuple[str, ...] = (
     "CubicReturn",
     "CubicReturnStrip",
     "GuardResidueFamily",
+    "ReturnWordLoss",
+    "ReturnWordData",
+    "ReturnWordBounds",
+    "ReturnWordFactorization",
+    "ReturnSeams",
+    "ReturnRankedCycle",
+    "ReturnQuotients",
+    "ReturnCycleTransfers",
+    "ReturnGapHeight",
+    "ReturnTransferHeight",
+    "ReturnTerminal",
+    "ReturnOrbitStrips",
 )
 
 LAYERS: dict[str, Path] = {
@@ -212,6 +224,24 @@ LAYERS: dict[str, Path] = {
     "CubicReturn": JUGGLER_DIR / "CubicReturn.lean",
     "CubicReturnStrip": JUGGLER_DIR / "CubicReturnStrip.lean",
     "GuardResidueFamily": JUGGLER_DIR / "GuardResidueFamily.lean",
+    "ReturnWordLoss": JUGGLER_DIR / "ReturnWordLoss.lean",
+    "ReturnWordData": JUGGLER_DIR / "ReturnWordData.lean",
+    "ReturnWordBounds": JUGGLER_DIR / "ReturnWordBounds.lean",
+    "ReturnWordFactorization": JUGGLER_DIR / "ReturnWordFactorization.lean",
+    "ReturnSeams": JUGGLER_DIR / "ReturnSeams.lean",
+    "ReturnRankedCycle": JUGGLER_DIR / "ReturnRankedCycle.lean",
+    "ReturnQuotients": JUGGLER_DIR / "ReturnQuotients.lean",
+    "ReturnCycleTransfers": JUGGLER_DIR / "ReturnCycleTransfers.lean",
+    "ReturnGapHeight": JUGGLER_DIR / "ReturnGapHeight.lean",
+    "ReturnTransferHeight": JUGGLER_DIR / "ReturnTransferHeight.lean",
+    "ReturnTerminal": JUGGLER_DIR / "ReturnTerminal.lean",
+    "ReturnOrbitStrips": JUGGLER_DIR / "ReturnOrbitStrips.lean",
+    "QuarticBand": JUGGLER_DIR / "QuarticBand.lean",
+    "QuarticCells": JUGGLER_DIR / "QuarticCells.lean",
+    "QuarticProjection": JUGGLER_DIR / "QuarticProjection.lean",
+    "QuarticLossBudget": JUGGLER_DIR / "QuarticLossBudget.lean",
+    "QuarticDefect": JUGGLER_DIR / "QuarticDefect.lean",
+    "QuarticGapSeparation": JUGGLER_DIR / "QuarticGapSeparation.lean",
 }
 
 DYNAMICS = LAYERS["Dynamics"]

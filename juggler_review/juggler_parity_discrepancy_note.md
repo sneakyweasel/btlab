@@ -1,6 +1,6 @@
 ---
-title: "Parity Statistics of Nested Floor Powers"
-subtitle: "Finite-Step Descent and Conditional Extensions for the Juggler Map"
+title: "Five-Step Descent Certificates for the Juggler Map"
+subtitle: "Parity Statistics of Nested Floor Powers"
 author: Philippe Cochin
 date: 10 September 2026
 lang: en

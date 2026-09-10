@@ -614,6 +614,23 @@
       "nk_cluster": "Euclidean induction does not discard parity guards"
     },
     {
+      "id": "cycle_cut_predecessors",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_cut_predecessors.py",
+      "test": "tests/research/juggler_sequence/test_cycle_cut_predecessors.py",
+      "dossier": "docs/problems/juggler_cycle_cut_predecessors.md",
+      "data_dir": "data/research/juggler/cycle_cut_predecessors",
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": [
+        "J-cycle-cut-predecessor-alignment",
+        "J-cycle-cut-predecessor-two-signs"
+      ],
+      "aliases": [],
+      "nk_cluster": "Exact odd cut predecessors still do not fix the mixed-loss sign"
+    },
+    {
       "id": "cycle_cyclic_seam",
       "kind": "branch",
       "probe": "src/research/juggler_sequence/cycle_cyclic_seam.py",
@@ -1509,6 +1526,23 @@
       "nk_cluster": "Finance leftover-killers are identities, not movers"
     },
     {
+      "id": "cycle_preimage_capacity",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_preimage_capacity.py",
+      "test": "tests/research/juggler_sequence/test_cycle_preimage_capacity.py",
+      "dossier": "docs/problems/juggler_cycle_preimage_capacity.md",
+      "data_dir": "data/research/juggler/cycle_preimage_capacity",
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": [
+        "J-cycle-preimage-capacity-diagnostics",
+        "J-cycle-joint-prefix-capacity"
+      ],
+      "aliases": [],
+      "nk_cluster": "Raw preimage multiplicity and ordinary Hall do not supply a cycle deficit"
+    },
+    {
       "id": "cycle_realizable_finance",
       "kind": "branch",
       "probe": "src/research/juggler_sequence/cycle_realizable_finance.py",
@@ -1554,6 +1588,22 @@
       ],
       "aliases": [],
       "nk_cluster": "Unbounded parameter families do not establish orbit escape"
+    },
+    {
+      "id": "cycle_return_seam",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_return_seam.py",
+      "test": "tests/research/juggler_sequence/test_cycle_return_seam.py",
+      "dossier": "docs/problems/juggler_cycle_return_seam.md",
+      "data_dir": "data/research/juggler/cycle_return_seam",
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": [
+        "J-cycle-return-seam-family"
+      ],
+      "aliases": [],
+      "nk_cluster": "Even the full initialized return seam leaves both mixed-loss signs"
     },
     {
       "id": "cycle_rounding",
@@ -1652,6 +1702,23 @@
       ],
       "aliases": [],
       "nk_cluster": "Finance leftover-killers are identities, not movers"
+    },
+    {
+      "id": "cycle_terminal_joint_cells",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_terminal_joint_cells.py",
+      "test": "tests/research/juggler_sequence/test_cycle_terminal_joint_cells.py",
+      "dossier": "docs/problems/juggler_cycle_terminal_joint_cells.md",
+      "data_dir": "data/research/juggler/cycle_terminal_joint_cells",
+      "lean": [],
+      "conjecture": [],
+      "decision": "PARK",
+      "ledger_ids": [
+        "J-cycle-terminal-even-distortion",
+        "J-cycle-terminal-mixed-loss-signs"
+      ],
+      "aliases": [],
+      "nk_cluster": "Terminal joint cells: local signs and relative errors do not close the cycle"
     },
     {
       "id": "cycle_top_excursion",
@@ -1960,6 +2027,23 @@
       ],
       "aliases": [],
       "nk_cluster": null
+    },
+    {
+      "id": "cycle_weighted_remainders",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_weighted_remainders.py",
+      "test": "tests/research/juggler_sequence/test_cycle_weighted_remainders.py",
+      "dossier": "docs/problems/juggler_cycle_weighted_remainders.md",
+      "data_dir": "data/research/juggler/cycle_weighted_remainders",
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": [
+        "J-cycle-real-cell-weight-obstruction",
+        "J-cycle-integer-weight-refinements"
+      ],
+      "aliases": [],
+      "nk_cluster": "Cyclic weighting does not replace the integer lattice"
     },
     {
       "id": "cyclemin_fudge",
@@ -5205,6 +5289,53 @@
       "nk_cluster": null
     },
     {
+      "id": "cycle_period_upper_bound",
+      "kind": "dossier_only",
+      "probe": null,
+      "test": null,
+      "dossier": "docs/problems/juggler_cycle_period_upper_bound.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PARK",
+      "ledger_ids": [
+        "J-cycle-loglog-surplus-window",
+        "J-cycle-period-surplus-word-obstruction"
+      ],
+      "aliases": [],
+      "nk_cluster": "Mechanical words do not supply a uniform period-surplus bound"
+    },
+    {
+      "id": "cycle_quartic_band",
+      "kind": "dossier_only",
+      "probe": null,
+      "test": null,
+      "dossier": "docs/problems/juggler_cycle_quartic_band.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-cycle-quartic-return-order",
+        "J-cycle-quartic-auxiliary-loss-budget",
+        "J-cycle-quartic-covered-cell-budget",
+        "J-cycle-quartic-component-gap-witness",
+        "J-cycle-quartic-formal-return",
+        "J-cycle-quartic-formal-cells",
+        "J-cycle-quartic-formal-projection",
+        "J-cycle-quartic-formal-budget",
+        "J-cycle-quartic-formal-defect",
+        "J-cycle-quartic-separated-cells",
+        "J-cycle-quartic-formal-gap-separation",
+        "J-cycle-quartic-absolute-reentry",
+        "J-cycle-quartic-coupled-remainder",
+        "J-cycle-quartic-unbounded-equality",
+        "J-cycle-quartic-boundary-loss"
+      ],
+      "aliases": [],
+      "nk_cluster": "Local quartic returns need not preserve merged order"
+    },
+    {
       "id": "descent_floor",
       "kind": "dossier_only",
       "probe": null,
@@ -5952,7 +6083,25 @@
         "formal/Problems/Juggler/RemainderCarry.lean",
         "formal/Problems/Juggler/CubicReturn.lean",
         "formal/Problems/Juggler/CubicReturnStrip.lean",
-        "formal/Problems/Juggler/GuardResidueFamily.lean"
+        "formal/Problems/Juggler/GuardResidueFamily.lean",
+        "formal/Problems/Juggler/ReturnWordLoss.lean",
+        "formal/Problems/Juggler/ReturnWordData.lean",
+        "formal/Problems/Juggler/ReturnWordBounds.lean",
+        "formal/Problems/Juggler/ReturnWordFactorization.lean",
+        "formal/Problems/Juggler/ReturnSeams.lean",
+        "formal/Problems/Juggler/ReturnRankedCycle.lean",
+        "formal/Problems/Juggler/ReturnQuotients.lean",
+        "formal/Problems/Juggler/ReturnCycleTransfers.lean",
+        "formal/Problems/Juggler/ReturnGapHeight.lean",
+        "formal/Problems/Juggler/ReturnTransferHeight.lean",
+        "formal/Problems/Juggler/ReturnTerminal.lean",
+        "formal/Problems/Juggler/ReturnOrbitStrips.lean",
+        "formal/Problems/Juggler/QuarticBand.lean",
+        "formal/Problems/Juggler/QuarticCells.lean",
+        "formal/Problems/Juggler/QuarticProjection.lean",
+        "formal/Problems/Juggler/QuarticLossBudget.lean",
+        "formal/Problems/Juggler/QuarticDefect.lean",
+        "formal/Problems/Juggler/QuarticGapSeparation.lean"
       ],
       "conjecture": [],
       "decision": null,

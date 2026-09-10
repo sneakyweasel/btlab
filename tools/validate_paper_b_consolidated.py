@@ -47,7 +47,7 @@ def validate(source):
         for split in re.findall(r"\\begin\{split\}[\s\S]*?\\end\{split\}",display):
             assert r"\tag{" not in split
     return {
-        "status":"PASS","version":"2026-09-10-proof-audit",
+        "status":"PASS","version":"2026-09-10-zenodo-preprint",
         "source_sha256":hashlib.sha256(source.read_bytes()).hexdigest(),
         "exact_control_modules":results,"equation_tags":len(tags),
         "appendix_equation_references":len(refs),

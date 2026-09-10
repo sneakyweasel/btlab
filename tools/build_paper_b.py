@@ -1,4 +1,4 @@
-"""Build the repaired Paper B PDF from Markdown using Pandoc and XeLaTeX.
+"""Build the Five-Step Descent Certificates preprint PDF from Markdown using Pandoc and XeLaTeX.
 
 Standalone package: python build_paper_b.py
 Repository: python tools/build_paper_b.py
@@ -18,7 +18,7 @@ STEM = 'juggler_parity_discrepancy_note'
 METADATA = 'docs/theory/paper_b_zenodo.json'
 PDF = f'docs/theory/{STEM}.pdf'
 ZENODO_DIR = 'juggler_review/zenodo_paper_b'
-ZENODO_PDF = f'{ZENODO_DIR}/Parity_Statistics_of_Nested_Floor_Powers.pdf'
+ZENODO_PDF = f'{ZENODO_DIR}/Five_Step_Descent_Certificates_for_the_Juggler_Map.pdf'
 ZENODO_FIELDS = f'{ZENODO_DIR}/ZENODO_FIELDS.txt'
 EXPORTS = [
     (f'docs/theory/{STEM}.md', f'juggler_review/{STEM}.md'),
@@ -125,8 +125,8 @@ def main() -> None:
     output.mkdir(parents=True, exist_ok=True)
     work.mkdir(parents=True, exist_ok=True)
     text = source.read_text(encoding='utf-8')
-    if 'Finite-Step Descent and Conditional Extensions' not in text[:350]:
-        raise RuntimeError('Expected the finite-step repair, not an earlier working draft')
+    if 'Five-Step Descent Certificates for the Juggler Map' not in text[:350] or 'Parity Statistics of Nested Floor Powers' not in text[:350]:
+        raise RuntimeError('Expected the current Five-Step Descent Certificates manuscript')
     pandoc, xelatex = executable('pandoc',args.pandoc), executable('xelatex',args.xelatex)
     tex = work/f'{STEM}.tex'
     run([pandoc,str(source),'--from=markdown+tex_math_single_backslash+autolink_bare_uris',

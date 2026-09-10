@@ -1,7 +1,7 @@
 {
   "status": "PASS",
-  "version": "2026-09-10-proof-audit",
-  "source_sha256": "2aa7455c01d6f16d032785973b6e34eb989406c099c81914e2835bbc7f4ed1f0",
+  "version": "2026-09-10-zenodo-preprint",
+  "source_sha256": "52520173c7a5c3b99a6bb582c66a4c506f76eeb598d418e3297efbb960049b4f",
   "exact_control_modules": {
     "validate_paper_b": {
       "status": "PASS",
