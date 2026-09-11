@@ -260,6 +260,7 @@ LAYERS: dict[str, Path] = {
     "CubicConstraintFusion": JUGGLER_DIR / "CubicConstraintFusion.lean",
     "CubicCriticalLocation": JUGGLER_DIR / "CubicCriticalLocation.lean",
     "CriticalCostKernel": JUGGLER_DIR / "CriticalCostKernel.lean",
+    "CubicRemainderAssembly": JUGGLER_DIR / "CubicRemainderAssembly.lean",
 }
 
 # Sources belonging to other targets or historical model interfaces. Keeping

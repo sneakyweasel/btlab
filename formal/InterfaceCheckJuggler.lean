@@ -1,6 +1,7 @@
 import Problems.Juggler.CubicOrbitCharge
 import Problems.Juggler.CubicChargeMonotonicity
 import Problems.Juggler.ReturnTerminal
+import Problems.Juggler.CubicRemainderAssembly
 
 /-!
 # Consumer checks for the cubic orbit interfaces
@@ -136,6 +137,30 @@ theorem terminal_word_cutoff {m M k : ℕ}
   exact (CubicGrid.nonlinearChargeBound_le_finiteGeometric Q.length hA).trans
     ((CubicGrid.finiteGeometricChargeBound_lt_closed Q.length hA).le.trans hclosed)
 
+/-- Leftover height from an actual charge certificate and m < 520000000. -/
+theorem leftover_gap_height {m M k : ℕ}
+    (Q : CubicGrid.OrbitUpperChargeCertificate m M k)
+    (hM : M < m ^ 3) (hmin : m < 520000000) (i : Fin Q.length) :
+    padicValNat 2 (CubicRemainderAssembly.gap Q i) ≤ 86 :=
+  CubicRemainderAssembly.leftover_gap_val_le Q hM hmin i
+
+/-- Fixed leftover counts and an assembled cover imply S >= 4483. -/
+theorem leftover_deviation_from_certificate {m M k : ℕ}
+    (Q : CubicGrid.OrbitUpperChargeCertificate m M k)
+    (hm : 1 < m) (hM : M < m ^ 3) (hmin : m < 520000000)
+    (hL : Q.length = 780239)
+    (βOO βOE βEO : ℕ)
+    (heven : ∀ i, i ∉ CubicRemainderAssembly.resets Q →
+      CubicRemainderAssembly.denom Q i % 2 = 0)
+    (hcover : CubicRemainderAssembly.resets Q ⊆
+      CubicRemainderAssembly.boundary Q hm hM ∪
+        CubicRemainderAssembly.deviations Q βOO βOE βEO ∪
+        (CubicRemainderAssembly.deviations Q βOO βOE βEO).image
+          (CubicRemainderAssembly.predIdx Q)) :
+    4483 ≤ (CubicRemainderAssembly.deviations Q βOO βOE βEO).card :=
+  CubicRemainderAssembly.leftover_deviation_lower_of_cover
+    Q hm hM hmin hL βOO βOE βEO heven hcover
+
 end Problems.Juggler.InterfaceChecks
 
 #print axioms Problems.Juggler.InterfaceChecks.legacy_terminal_entry
@@ -144,3 +169,5 @@ end Problems.Juggler.InterfaceChecks
 #print axioms Problems.Juggler.InterfaceChecks.certificate_terminal_totals
 #print axioms Problems.Juggler.InterfaceChecks.shared_terminal_totals
 #print axioms Problems.Juggler.InterfaceChecks.terminal_word_cutoff
+#print axioms Problems.Juggler.InterfaceChecks.leftover_gap_height
+#print axioms Problems.Juggler.InterfaceChecks.leftover_deviation_from_certificate

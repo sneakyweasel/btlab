@@ -1,5 +1,19 @@
 # Research journal
 
+## 2026-09-11 — Lean wrappers for Results 15, 19 and 20
+
+Laboratory formalization of already-PROMOTE rank-curvature theorems.
+CriticalCostKernel now includes `oo_equal_gap_triple`, the integer
+Result 15 family (cells, parities, raw remainders and opposite
+complement signs). CubicRemainderAssembly lifts an
+OrbitUpperChargeCertificate to positive gaps, remainders and the
+ordinary RC68 difference, proves leftover H<=86 from m<520000000, and
+feeds the existing Result 19/20 kernels once an even-denominator cover
+or supplied even-gap block costs are given. RC48, RC72, RC75 extraction
+and the even-denominator cover remain written. J-cubic-remainder-variation
+and J-cubic-critical-run-gap-budget stay EXACT — HUMAN PROOF. No Paper A
+edit, no floor or period change, and no missing-cycle claim.
+
 ## 2026-09-10 — Next paired-secant test: no second gain from the OO charge
 
 After authorizing the publication pass, the user requested the next best

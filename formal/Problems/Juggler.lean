@@ -151,6 +151,7 @@ import Problems.Juggler.CubicRemainderVariation
 import Problems.Juggler.CubicConstraintFusion
 import Problems.Juggler.CubicCriticalLocation
 import Problems.Juggler.CriticalCostKernel
+import Problems.Juggler.CubicRemainderAssembly
 
 /-!
 # Juggler laboratory barrel

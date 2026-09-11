@@ -16,6 +16,8 @@ CONSUMERS = {
     "Problems.Juggler.InterfaceChecks.certificate_terminal_totals",
     "Problems.Juggler.InterfaceChecks.shared_terminal_totals",
     "Problems.Juggler.InterfaceChecks.terminal_word_cutoff",
+    "Problems.Juggler.InterfaceChecks.leftover_gap_height",
+    "Problems.Juggler.InterfaceChecks.leftover_deviation_from_certificate",
 }
 STANDARD_DEPENDENCIES = {"propext", "Classical.choice", "Quot.sound"}
 RECORD = re.compile(

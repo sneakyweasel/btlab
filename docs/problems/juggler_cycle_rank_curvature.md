@@ -193,6 +193,23 @@ They verify the square-start reduction and actual source guards from
 integer cells. The joint equidistribution and infinitude theorem are
 outside this formal claim.
 
+CriticalCostKernel's \(\texttt{oo_equal_gap_triple}\) formalizes the
+integer Result 15 family: cells, parities, raw remainders, complements
+and opposite raw complement signs for every odd \(t\ge 9\). The
+normalized comparison RC48 remains written.
+
+The laboratory module
+[CubicRemainderAssembly.lean](../../formal/Problems/Juggler/CubicRemainderAssembly.lean)
+lifts an \(\texttt{OrbitUpperChargeCertificate}\) to positive gaps,
+square remainders and the ordinary RC68 remainder difference. It proves
+the leftover height \(H\le 86\) from \(m<520000000\), and it feeds the
+existing Result 19/20 kernels once an even-denominator hypothesis and a
+three-block cover (respectively supplied even-gap block costs) are
+given. It does not yet prove those cover facts or extract RC75 blocks,
+and it claims no missing cycle, signed RC37--RC38, or floor or period
+change. RC72 remains written. The module is laboratory-only and is not
+on the Paper A review barrel.
+
 ## Results
 
 ### 1. The exact shared defect simplex
@@ -1688,9 +1705,12 @@ because both odd-denominator positions are proved to be resets.
 
 The complete conversion from an actual cubic cycle to the lifted
 recurrence, the three source-rank blocks, and the forced special
-corrections is the written proof above. That assembly is not yet a
-Lean theorem. Independent AI audits agree on the proof; independent
-human review remains outstanding.
+corrections is the written proof above. CubicRemainderAssembly now
+extracts gaps, remainders and the ordinary RC68 difference from a
+charge certificate and proves leftover H<=86; the even-denominator
+cover and special-cut nonvanishing remain hypotheses or written.
+Independent AI audits agree on the written proof; independent human
+review remains outstanding.
 
 [Fixed controls](../../data/research/juggler/cycle_rank_curvature/remainder_variation_controls.json)
 check the integer ceiling arithmetic and a sharp generic valuation
@@ -2700,6 +2720,12 @@ weighted estimate in RC37--RC38 remains unresolved.
 
 ## Decision
 
+Laboratory Lean wrappers for Results 15, 19 and 20 are registered and
+do not change this decision: the equal-gap OO integer family is
+kernel-checked, leftover height is assembled from a charge certificate,
+and the Result 19/20 count consumers remain conditional on an explicit
+cover or supplied block costs.
+
 **PROMOTE** Result 21's bounded-run and selected-pair localization.
 Combining two absolute rank gap ceilings with critical suffix costs
 forces every contracted even-gap block to have at most 21 vertices.
@@ -2760,9 +2786,11 @@ conditional criterion, a fixed minimum upper-bound corollary, and a local
 Lean-verified upper-square gap. It changes neither the certified descent
 floor nor the period bound and edits neither Paper A nor its generated
 copies. Independent human review remains outstanding. The new formal
-statements are Result 10's integer inequality, Result 17's exact
-square-start cell bridge, and Result 19's conditional valuation,
-reset-count and deviation-support kernels. The analytic comparisons, joint equidistribution,
+statements are Result 10's integer inequality, Result 15's equal-gap OO
+triple, Result 17's exact square-start cell bridge, Result 19's
+conditional valuation, reset-count and deviation-support kernels, and
+the laboratory assembly that lifts a charge certificate to leftover
+height and those kernels. The analytic comparisons, joint equidistribution,
 infinitude, and global shortcut audits remain written calculations.
 Result 18 adds a bounded computational observation and an elementary
 fixed-point correctness proof. Its workspace Lean check is not a new
@@ -2770,17 +2798,21 @@ production module or a Paper A claim. No class exclusion was obtained.
 
 Result 19 adds a new written necessary distribution theorem for actual
 cubic cycles, with separately Lean-verified arithmetic and counting
-kernels. The 4483-deviation consequence is conditional on the already
-established fixed count tuple and height bound. It excludes neither
-that tuple nor cycles in general. The manuscript and its review copies
-remain unchanged; the complete cycle application still needs independent
-human review and a full Lean assembly.
+kernels. CubicRemainderAssembly now supplies the certificate-to-gap
+lift, the ordinary RC68 remainder difference and leftover H<=86; the
+even-denominator cover that unlocks S>=4483 remains a hypothesis, and
+RC72 remains written. The 4483-deviation consequence is conditional on
+the already established fixed count tuple and height bound. It excludes
+neither that tuple nor cycles in general. The manuscript and its review
+copies remain unchanged; the complete cycle application still needs
+independent human review.
 
 Result 20 merges actual integer recurrence, even-pair divisibility,
 mechanical visit counts and the common gap-size budget. It strengthens
 the fixed deviation count to 7284 and supplies an unsigned weighted-loss
-corollary. The full cycle assembly remains outside the conditional Lean
-kernels. No count-pair exclusion or manuscript change is claimed.
+corollary. Lean exposes the fixed-tuple runCost consumer; RC75 block
+extraction remains written. No count-pair exclusion or manuscript
+change is claimed.
 
 Result 21 adds a written localization theorem using two certified rank
 ceilings, a maximum block length of 21, and disjoint selected Q/R pairs.

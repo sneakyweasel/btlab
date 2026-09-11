@@ -273,4 +273,135 @@ theorem symmetric_unit_odd_cells {s : ℕ} (hs : 1 ≤ s) :
     apply Nat.eq_sqrt.mpr
     simpa only [pow_two] using hpcell
 
+/-- Exact equal-gap OO triple of Result 15. Integer cells, remainders,
+complements and opposite raw complement signs; the log-log comparison RC48
+remains written. -/
+theorem oo_equal_gap_triple {t : ℕ} (ht : 9 ≤ t) (hodd : t % 2 = 1) :
+    let xm := t ^ 2 - 4
+    let x0 := t ^ 2
+    let xp := t ^ 2 + 4
+    let ym := t ^ 3 - 6 * t
+    let y0 := t ^ 3
+    let yp := t ^ 3 + 6 * t
+    xm % 2 = 1 ∧ x0 % 2 = 1 ∧ xp % 2 = 1 ∧
+      ym % 2 = 1 ∧ y0 % 2 = 1 ∧ yp % 2 = 1 ∧
+      CubicReturn.O xm = ym ∧ CubicReturn.O x0 = y0 ∧ CubicReturn.O xp = yp ∧
+      xm ^ 3 = ym ^ 2 + (12 * t ^ 2 - 64) ∧
+      x0 ^ 3 = y0 ^ 2 ∧
+      xp ^ 3 = yp ^ 2 + (12 * t ^ 2 + 64) ∧
+      (ym + 1) ^ 2 = xm ^ 3 + (2 * t ^ 3 - 12 * t ^ 2 - 12 * t + 65) ∧
+      (y0 + 1) ^ 2 = x0 ^ 3 + (2 * t ^ 3 + 1) ∧
+      (yp + 1) ^ 2 = xp ^ 3 + (2 * t ^ 3 - 12 * t ^ 2 + 12 * t - 63) ∧
+      x0 - xm = 4 ∧ xp - x0 = 4 ∧
+      y0 - ym = 6 * t ∧ yp - y0 = 6 * t ∧
+      Nat.gcd 4 (6 * t) = 2 ∧
+      0 < 12 * t ^ 2 + 12 * t - 64 ∧
+      0 < 12 * t ^ 2 - 12 * t + 64 ∧
+      12 * t ^ 2 + 12 * t - 64 +
+          (2 * t ^ 3 - 12 * t ^ 2 - 12 * t + 65) = 2 * t ^ 3 + 1 ∧
+      12 * t ^ 2 - 12 * t + 64 +
+          (2 * t ^ 3 - 12 * t ^ 2 + 12 * t - 63) = 2 * t ^ 3 + 1 := by
+  obtain ⟨u, rfl⟩ := Nat.exists_eq_add_of_le ht
+  have hxm : (9 + u) ^ 2 - 4 = u ^ 2 + 18 * u + 77 := by ring_nf; omega
+  have hx0 : (9 + u) ^ 2 = u ^ 2 + 18 * u + 81 := by ring
+  have hxp : (9 + u) ^ 2 + 4 = u ^ 2 + 18 * u + 85 := by ring
+  have hym : (9 + u) ^ 3 - 6 * (9 + u) = u ^ 3 + 27 * u ^ 2 + 237 * u + 675 := by
+    ring_nf; omega
+  have hy0 : (9 + u) ^ 3 = u ^ 3 + 27 * u ^ 2 + 243 * u + 729 := by ring
+  have hyp : (9 + u) ^ 3 + 6 * (9 + u) = u ^ 3 + 27 * u ^ 2 + 249 * u + 783 := by
+    ring
+  have hrem : 12 * (9 + u) ^ 2 - 64 = 12 * u ^ 2 + 216 * u + 908 := by
+    ring_nf; omega
+  have hU : 2 * (9 + u) ^ 3 - 12 * (9 + u) ^ 2 - 12 * (9 + u) + 65 =
+      2 * u ^ 3 + 42 * u ^ 2 + 258 * u + 443 := by
+    ring_nf; omega
+  have hUp : 2 * (9 + u) ^ 3 - 12 * (9 + u) ^ 2 + 12 * (9 + u) - 63 =
+      2 * u ^ 3 + 42 * u ^ 2 + 282 * u + 531 := by
+    ring_nf; omega
+  have hΔ : 12 * (9 + u) ^ 2 + 12 * (9 + u) - 64 =
+      12 * u ^ 2 + 228 * u + 1016 := by
+    ring_nf; omega
+  have hΔ' : 12 * (9 + u) ^ 2 - 12 * (9 + u) + 64 =
+      12 * u ^ 2 + 204 * u + 928 := by
+    ring_nf; omega
+  have hrawm : ((9 + u) ^ 2 - 4) ^ 3 =
+      ((9 + u) ^ 3 - 6 * (9 + u)) ^ 2 + (12 * (9 + u) ^ 2 - 64) := by
+    rw [hxm, hym, hrem]; ring
+  have hraw0 : ((9 + u) ^ 2) ^ 3 = ((9 + u) ^ 3) ^ 2 := by ring
+  have hrawp : ((9 + u) ^ 2 + 4) ^ 3 =
+      ((9 + u) ^ 3 + 6 * (9 + u)) ^ 2 + (12 * (9 + u) ^ 2 + 64) := by ring
+  have hUmid : ((9 + u) ^ 3 - 6 * (9 + u) + 1) ^ 2 =
+      ((9 + u) ^ 2 - 4) ^ 3 +
+        (2 * (9 + u) ^ 3 - 12 * (9 + u) ^ 2 - 12 * (9 + u) + 65) := by
+    rw [hym, hxm, hU]; ring
+  have hU0id : ((9 + u) ^ 3 + 1) ^ 2 =
+      ((9 + u) ^ 2) ^ 3 + (2 * (9 + u) ^ 3 + 1) := by ring
+  have hUpid : ((9 + u) ^ 3 + 6 * (9 + u) + 1) ^ 2 =
+      ((9 + u) ^ 2 + 4) ^ 3 +
+        (2 * (9 + u) ^ 3 - 12 * (9 + u) ^ 2 + 12 * (9 + u) - 63) := by
+    rw [hyp, hxp, hUp]; ring
+  have hcellm :
+      ((9 + u) ^ 3 - 6 * (9 + u)) ^ 2 ≤ ((9 + u) ^ 2 - 4) ^ 3 ∧
+        ((9 + u) ^ 2 - 4) ^ 3 < ((9 + u) ^ 3 - 6 * (9 + u) + 1) ^ 2 := by
+    constructor
+    · rw [hrawm]; exact Nat.le_add_right _ _
+    · rw [hUmid, hU]; exact Nat.lt_add_of_pos_right (by positivity)
+  have hcell0 : ((9 + u) ^ 3) ^ 2 ≤ ((9 + u) ^ 2) ^ 3 ∧
+      ((9 + u) ^ 2) ^ 3 < ((9 + u) ^ 3 + 1) ^ 2 := by
+    constructor
+    · exact hraw0.symm.le
+    · rw [hU0id]; exact Nat.lt_add_of_pos_right (Nat.succ_pos _)
+  have hcellp :
+      ((9 + u) ^ 3 + 6 * (9 + u)) ^ 2 ≤ ((9 + u) ^ 2 + 4) ^ 3 ∧
+        ((9 + u) ^ 2 + 4) ^ 3 < ((9 + u) ^ 3 + 6 * (9 + u) + 1) ^ 2 := by
+    constructor
+    · rw [hrawp]; exact Nat.le_add_right _ _
+    · rw [hUpid, hUp]; exact Nat.lt_add_of_pos_right (by positivity)
+  have hparx0 : (9 + u) ^ 2 % 2 = 1 := by simp [Nat.pow_mod, hodd]
+  have hparxm : ((9 + u) ^ 2 - 4) % 2 = 1 := by omega
+  have hparxp : ((9 + u) ^ 2 + 4) % 2 = 1 := by omega
+  have hpary0 : (9 + u) ^ 3 % 2 = 1 := by simp [Nat.pow_mod, hodd]
+  have hparym : ((9 + u) ^ 3 - 6 * (9 + u)) % 2 = 1 := by omega
+  have hparyp : ((9 + u) ^ 3 + 6 * (9 + u)) % 2 = 1 := by omega
+  have hOm : CubicReturn.O ((9 + u) ^ 2 - 4) = (9 + u) ^ 3 - 6 * (9 + u) := by
+    unfold CubicReturn.O
+    symm
+    apply Nat.eq_sqrt.mpr
+    simpa only [pow_two] using hcellm
+  have hO0 : CubicReturn.O ((9 + u) ^ 2) = (9 + u) ^ 3 := by
+    unfold CubicReturn.O
+    symm
+    apply Nat.eq_sqrt.mpr
+    simpa only [pow_two] using hcell0
+  have hOp : CubicReturn.O ((9 + u) ^ 2 + 4) = (9 + u) ^ 3 + 6 * (9 + u) := by
+    unfold CubicReturn.O
+    symm
+    apply Nat.eq_sqrt.mpr
+    simpa only [pow_two] using hcellp
+  have hdx : (9 + u) ^ 2 - ((9 + u) ^ 2 - 4) = 4 := by omega
+  have hdxp : (9 + u) ^ 2 + 4 - (9 + u) ^ 2 = 4 := by omega
+  have hdy : (9 + u) ^ 3 - ((9 + u) ^ 3 - 6 * (9 + u)) = 6 * (9 + u) := by omega
+  have hdyp : (9 + u) ^ 3 + 6 * (9 + u) - (9 + u) ^ 3 = 6 * (9 + u) := by omega
+  have hgcd : Nat.gcd 4 (6 * (9 + u)) = 2 := by
+    have hmod : (6 * (9 + u)) % 4 = 2 := by
+      have hcases : (9 + u) % 4 = 1 ∨ (9 + u) % 4 = 3 := by omega
+      rcases hcases with h | h <;> rw [Nat.mul_mod, h]
+    rw [Nat.gcd_rec 4 (6 * (9 + u)), hmod]
+    decide
+  have hposΔ : 0 < 12 * (9 + u) ^ 2 + 12 * (9 + u) - 64 := by
+    rw [hΔ]; omega
+  have hposΔ' : 0 < 12 * (9 + u) ^ 2 - 12 * (9 + u) + 64 := by
+    rw [hΔ']; omega
+  have hsignm : 12 * (9 + u) ^ 2 + 12 * (9 + u) - 64 +
+      (2 * (9 + u) ^ 3 - 12 * (9 + u) ^ 2 - 12 * (9 + u) + 65) =
+        2 * (9 + u) ^ 3 + 1 := by
+    rw [hΔ, hU]; ring
+  have hsignp : 12 * (9 + u) ^ 2 - 12 * (9 + u) + 64 +
+      (2 * (9 + u) ^ 3 - 12 * (9 + u) ^ 2 + 12 * (9 + u) - 63) =
+        2 * (9 + u) ^ 3 + 1 := by
+    rw [hΔ', hUp]; ring
+  exact ⟨hparxm, hparx0, hparxp, hparym, hpary0, hparyp, hOm, hO0, hOp,
+    hrawm, hraw0, hrawp, hUmid, hU0id, hUpid, hdx, hdxp, hdy, hdyp, hgcd,
+    hposΔ, hposΔ', hsignm, hsignp⟩
+
 end Problems.Juggler.CriticalCostKernel

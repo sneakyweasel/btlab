@@ -1553,7 +1553,8 @@
         "formal/Problems/Juggler/CubicRemainderVariation.lean",
         "formal/Problems/Juggler/CubicConstraintFusion.lean",
         "formal/Problems/Juggler/CubicCriticalLocation.lean",
-        "formal/Problems/Juggler/CriticalCostKernel.lean"
+        "formal/Problems/Juggler/CriticalCostKernel.lean",
+        "formal/Problems/Juggler/CubicRemainderAssembly.lean"
       ],
       "conjecture": [],
       "decision": "PROMOTE",
@@ -1562,12 +1563,14 @@
         "J-cubic-ooe-square-start-packing",
         "J-cubic-critical-cost-compatibility",
         "J-cubic-critical-cost-kernels",
+        "J-cubic-equal-gap-oo-triple",
         "J-cubic-critical-selected-pair-localization",
         "J-cubic-critical-localization-kernels",
         "J-cubic-critical-run-gap-budget",
         "J-cubic-critical-run-kernels",
         "J-cubic-remainder-variation",
         "J-cubic-remainder-variation-kernels",
+        "J-cubic-remainder-assembly",
         "J-square-start-ooe-cells",
         "J-return-small-normalized-loss",
         "J-cycle-rank-capacity-envelope",
@@ -6166,7 +6169,8 @@
         "formal/Problems/Juggler/CubicRemainderVariation.lean",
         "formal/Problems/Juggler/CubicConstraintFusion.lean",
         "formal/Problems/Juggler/CubicCriticalLocation.lean",
-        "formal/Problems/Juggler/CriticalCostKernel.lean"
+        "formal/Problems/Juggler/CriticalCostKernel.lean",
+        "formal/Problems/Juggler/CubicRemainderAssembly.lean"
       ],
       "conjecture": [],
       "decision": null,

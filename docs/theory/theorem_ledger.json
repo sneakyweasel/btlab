@@ -79,6 +79,22 @@
   "lean_trust": "kernel"
  },
  {
+  "id": "J-cubic-equal-gap-oo-triple",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every odd t>=9, the three sources t^2-4, t^2, t^2+4 and images t^3-6t, t^3, t^3+6t are odd, CubicReturn.O hits those images, the lower remainders are 12t^2-64, 0, 12t^2+64, and the three upper complements are 2t^3-12t^2-12t+65, 2t^3+1, 2t^3-12t^2+12t-63. Adjacent pairs have source gap 4, image gap 6t and gcd 2. The two raw complement changes 12t^2+12t-64 and 12t^2-12t+64 are positive and each plus its matching complement equals 2t^3+1. This is the integer content of the Result 15 OO family only. The normalized log-log comparison RC48, signed orientation and any cycle theorem remain written.",
+  "source": "docs/problems/juggler_cycle_rank_curvature.md",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_rank_curvature.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py"
+  ],
+  "related_conjectures": [],
+  "lean": "Problems/Juggler/CriticalCostKernel.lean",
+  "decl": [
+   "oo_equal_gap_triple"
+  ],
+  "lean_trust": "kernel"
+ },
+ {
   "id": "J-cubic-critical-selected-pair-localization",
   "tag": "EXACT — HUMAN PROOF",
   "statement": "For an actual primitive nontrivial cubic Juggler cycle at (L,o,e)=(780239,492276,287963) in the established window 350000000<m<520000000, the sharp log-log grid and two outward-certified rank boundary comparisons give v2(ell_i)<=25 for i<204313 and <=19 for i<83650. Merging these caps with the mechanical critical-free suffix inequality forces every contracted even-gap block to have at most 21 vertices. Hence C>=37155 critical corrections, T>=37157 nonzero corrections, and S>=18577 deviations from any three chosen OO/OE/EO remainder constants. For chronological R=[478245,780239) and Q=[176251,478245), every 21-source R-window contains a critical event. Translation by 478245 pairs R bijectively and disjointly with Q at adjacent same-type source ranks. At least 14380 such pairs have unequal raw remainders; thus at least 14380 deviations from any typewise constants lie in Q union R. Absolute paired raw variation is at least 28760; choosing actual type minima gives at least 28760 raw excess units in Q union R and at least 37154 globally. This is an AI-assisted written actual-cycle proof with separately certified real scalar bounds; independent human review and the full Lean cycle assembly remain outstanding. No helpful normalized sign, count-pair exclusion, no-cycle theorem or changed floor/period bound follows.",
@@ -204,6 +220,33 @@
    "arithmetic_three_block_deviations",
    "fixed_count_reset_lower",
    "fixed_count_deviation_lower"
+  ],
+  "lean_trust": "kernel"
+ },
+ {
+  "id": "J-cubic-remainder-assembly",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "An OrbitUpperChargeCertificate with 1<m and M<m^3 has evenCount < oddCount, positive lifted gaps, square remainders and odd numerators. Off the last-odd cut and wrap, the signed RC68 correction equals the adjacent remainder difference. If m<520000000 then every gap has 2-adic valuation at most 86. Given an even-denominator hypothesis off the reset set and a three-block deviation cover, leftover_rc70_of_cover yields L<=87*(3+2S); at L=780239 this forces S>=4483. The Result 20 consumer leftover_run_critical_of_blocks, from supplied positive even-gap block lengths summing 780237, runCost inequalities and totalGap<=519999999^3-519999999, forces C>=14569, and the numeric adapters give T>=14571 and S>=7284 from their explicit support hypotheses. These statements do not prove the even-denominator or cover facts, do not extract critical blocks, and do not claim a missing cycle, signed RC37-RC38, unconditional m<520000000, or a period or floor improvement. RC72 and RC75 remain written.",
+  "source": "docs/problems/juggler_cycle_rank_curvature.md",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_rank_curvature.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py"
+  ],
+  "related_conjectures": [],
+  "lean": "Problems/Juggler/CubicRemainderAssembly.lean",
+  "decl": [
+   "evenCount_lt_oddCount",
+   "gap_pos",
+   "rem_add",
+   "numer_odd",
+   "rem_diff_ordinary",
+   "leftover_gap_val_le",
+   "leftover_rc70_of_cover",
+   "leftover_deviation_lower_of_cover",
+   "leftover_reset_lower_of_count",
+   "leftover_run_critical_of_blocks",
+   "leftover_run_nonzero_of_blocks",
+   "leftover_run_deviation_of_blocks"
   ],
   "lean_trust": "kernel"
  },

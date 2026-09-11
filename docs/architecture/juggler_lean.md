@@ -192,6 +192,15 @@ polynomial cost. Actual Nat.sqrt consumers supply their own cell witnesses;
 the stronger polynomial conclusion includes the cubic correction bound
 and the denominator comparison needed for the written 1/23 estimate.
 The unit-offset family now has exact O outputs and remainder identities
-proved in Lean. Logarithmic normalization, four-phase equidistribution,
+proved in Lean. The equal-gap OO triple `oo_equal_gap_triple` adds the
+integer Result 15 family (cells, remainders, complements and raw signs);
+RC48 remains written. Logarithmic normalization, four-phase equidistribution,
 infinitude and complete cycle extraction remain written in Results 22--23.
-The eight-declaration module is laboratory-only and outside PAPER_MODULES.
+The module is laboratory-only and outside PAPER_MODULES.
+
+CubicRemainderAssembly is the laboratory wrapper from an actual
+OrbitUpperChargeCertificate to lifted gaps, remainders and the ordinary
+RC68 difference. Leftover m<520000000 gives H<=86. Result 19's RC70/RC71
+consumers and Result 20's runCost count still take an even-denominator
+cover or supplied block costs as hypotheses. The module is not in
+PAPER_MODULES and claims no missing cycle or floor change.

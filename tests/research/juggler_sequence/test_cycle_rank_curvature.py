@@ -290,6 +290,29 @@ def test_critical_location_counts_and_critical_control():
     assert not row["scope"]["whole_cycle_signed_orientation_proved"]
 
 
+def test_equal_gap_oo_triple_identities():
+    """Replay the Result 15 integer family at the t=9 control, not a cycle."""
+    from math import gcd
+    t = 9
+    xm, x0, xp = t**2 - 4, t**2, t**2 + 4
+    ym, y0, yp = t**3 - 6 * t, t**3, t**3 + 6 * t
+    assert all(n % 2 == 1 for n in (xm, x0, xp, ym, y0, yp))
+    assert isqrt(xm**3) == ym and isqrt(x0**3) == y0 and isqrt(xp**3) == yp
+    assert xm**3 == ym**2 + (12 * t**2 - 64)
+    assert x0**3 == y0**2
+    assert xp**3 == yp**2 + (12 * t**2 + 64)
+    assert (ym + 1)**2 == xm**3 + (2 * t**3 - 12 * t**2 - 12 * t + 65)
+    assert (y0 + 1)**2 == x0**3 + (2 * t**3 + 1)
+    assert (yp + 1)**2 == xp**3 + (2 * t**3 - 12 * t**2 + 12 * t - 63)
+    assert x0 - xm == xp - x0 == 4
+    assert y0 - ym == yp - y0 == 6 * t
+    assert gcd(4, 6 * t) == 2
+    assert 0 < 12 * t**2 + 12 * t - 64
+    assert 0 < 12 * t**2 - 12 * t + 64
+    assert (12 * t**2 + 12 * t - 64) + (2 * t**3 - 12 * t**2 - 12 * t + 65) == 2 * t**3 + 1
+    assert (12 * t**2 - 12 * t + 64) + (2 * t**3 - 12 * t**2 + 12 * t - 63) == 2 * t**3 + 1
+
+
 def test_critical_cost_actual_pairs():
     """Exact cells, critical cosets and guarded returns at the prescribed controls only."""
     from math import gcd, comb

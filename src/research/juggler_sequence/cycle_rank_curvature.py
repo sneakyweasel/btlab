@@ -3,6 +3,7 @@
 The real-grid extension retains only the nonnegative total-defect relaxation.
 The branch's later valuation/counting kernels are in CubicRemainderVariation.lean,
 CubicConstraintFusion.lean, CubicCriticalLocation.lean and CriticalCostKernel.lean.
+The certificate-to-gap wrapper is CubicRemainderAssembly.lean.
 This interval probe does not establish their actual-cycle hypotheses.
 """
 from __future__ import annotations
