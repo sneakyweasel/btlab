@@ -1,4 +1,5 @@
 import Problems.Juggler.Itinerary
+import Problems.Juggler.ItineraryStats
 
 namespace Problems.Juggler.ReturnWordFactorization
 
@@ -30,6 +31,78 @@ inductive InducedPair : List Branch → List Branch → Prop
   | initial : InducedPair [.odd, .odd, .even] [.odd, .even]
   | left {U V} : InducedPair U V → InducedPair U (U ++ V)
   | right {U V} : InducedPair U V → InducedPair (U ++ V) V
+
+/-- Substitution preserves the unimodular matrix of letter counts. -/
+theorem InducedPair.count_determinant {U V : List Branch} (h : InducedPair U V) :
+    oddCount U * evenCount V = oddCount V * evenCount U + 1 := by
+  induction h with
+  | initial => norm_num [oddCount, evenCount]
+  | left _ ih => simp only [oddCount_append, evenCount_append]; nlinarith
+  | right _ ih => simp only [oddCount_append, evenCount_append]; nlinarith
+
+/-- Both columns of the induced count matrix are primitive. -/
+theorem InducedPair.count_coprime {U V : List Branch} (h : InducedPair U V) :
+    Nat.Coprime (oddCount U) (evenCount U) ∧
+      Nat.Coprime (oddCount V) (evenCount V) := by
+  have hdet := h.count_determinant
+  constructor
+  · change Nat.gcd (oddCount U) (evenCount U) = 1
+    apply Nat.dvd_one.mp
+    have ha := dvd_mul_of_dvd_left (Nat.gcd_dvd_left (oddCount U) (evenCount U))
+      (evenCount V)
+    have hb := dvd_mul_of_dvd_right (Nat.gcd_dvd_right (oddCount U) (evenCount U))
+      (oddCount V)
+    rw [hdet] at ha
+    exact (Nat.dvd_add_iff_right hb).mpr ha
+  · change Nat.gcd (oddCount V) (evenCount V) = 1
+    apply Nat.dvd_one.mp
+    have ha := dvd_mul_of_dvd_right (Nat.gcd_dvd_right (oddCount V) (evenCount V))
+      (oddCount U)
+    have hb := dvd_mul_of_dvd_left (Nat.gcd_dvd_left (oddCount V) (evenCount V))
+      (evenCount U)
+    rw [hdet] at ha
+    exact (Nat.dvd_add_iff_right hb).mpr ha
+
+/-- Expanded counts recover exactly the gcd of the two branch populations. -/
+theorem InducedPair.expanded_count_gcd {U V : List Branch} (h : InducedPair U V)
+    (a b : ℕ) :
+    Nat.gcd (a * oddCount U + b * oddCount V)
+      (a * evenCount U + b * evenCount V) = Nat.gcd a b := by
+  let O := a * oddCount U + b * oddCount V
+  let E := a * evenCount U + b * evenCount V
+  have hdet := h.count_determinant
+  have h₁ : O * evenCount V = E * oddCount V + a := by
+    dsimp [O, E]; nlinarith
+  have h₂ : E * oddCount U = O * evenCount U + b := by
+    dsimp [O, E]; nlinarith
+  apply Nat.dvd_antisymm
+  · apply Nat.dvd_gcd
+    · have hx := dvd_mul_of_dvd_left (Nat.gcd_dvd_left O E) (evenCount V)
+      have hy := dvd_mul_of_dvd_left (Nat.gcd_dvd_right O E) (oddCount V)
+      rw [h₁] at hx
+      exact (Nat.dvd_add_iff_right hy).mpr hx
+    · have hx := dvd_mul_of_dvd_left (Nat.gcd_dvd_right O E) (oddCount U)
+      have hy := dvd_mul_of_dvd_left (Nat.gcd_dvd_left O E) (evenCount U)
+      rw [h₂] at hx
+      exact (Nat.dvd_add_iff_right hy).mpr hx
+  · apply Nat.dvd_gcd <;> apply dvd_add
+    · exact dvd_mul_of_dvd_left (Nat.gcd_dvd_left a b) _
+    · exact dvd_mul_of_dvd_left (Nat.gcd_dvd_right a b) _
+    · exact dvd_mul_of_dvd_left (Nat.gcd_dvd_left a b) _
+    · exact dvd_mul_of_dvd_left (Nat.gcd_dvd_right a b) _
+
+/-- Conserved length and odd count transfer primitivity to retained populations. -/
+theorem InducedPair.coprime_of_totals {U V : List Branch} (h : InducedPair U V)
+    {a b L o : ℕ} (hL : a * U.length + b * V.length = L)
+    (ho : a * oddCount U + b * oddCount V = o) (hc : Nat.Coprime L o) :
+    Nat.Coprime a b := by
+  have he : a * evenCount U + b * evenCount V + o = L := by
+    have hu := evenCount_add_oddCount U
+    have hv := evenCount_add_oddCount V
+    nlinarith
+  have hg := h.expanded_count_gcd a b
+  rw [ho, ← Nat.gcd_add_self_right, he, Nat.gcd_comm] at hg
+  exact hg.symm.trans hc
 
 theorem induced_factorization {U V : List Branch} (h : InducedPair U V) :
     ∃ P Q, Factorization U V P Q := by

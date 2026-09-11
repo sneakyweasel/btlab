@@ -1,3 +1,4 @@
+import Problems.Juggler.RootCells
 import Problems.Juggler.Escape
 import Problems.Juggler.FunctionalGraph
 
@@ -124,31 +125,6 @@ theorem even_block_card (m : ℕ) :
   simpa using this
 
 /-! ### The OE fiber -/
-
-/-- Exact form of `⌊√⌊√N⌋⌋ = m`: the fourth-power cell. -/
-theorem sqrt_sqrt_eq_iff {N m : ℕ} :
-    (N.sqrt).sqrt = m ↔ m ^ 4 ≤ N ∧ N < (m + 1) ^ 4 := by
-  constructor
-  · intro h
-    have h' := Nat.eq_sqrt.mp h.symm
-    obtain ⟨h1, h2⟩ := h'
-    have h1' : (m * m) * (m * m) ≤ N := Nat.le_sqrt.mp h1
-    have h2' : N < ((m + 1) * (m + 1)) * ((m + 1) * (m + 1)) := Nat.sqrt_lt.mp h2
-    constructor
-    · calc m ^ 4 = (m * m) * (m * m) := by ring
-        _ ≤ N := h1'
-    · calc N < ((m + 1) * (m + 1)) * ((m + 1) * (m + 1)) := h2'
-        _ = (m + 1) ^ 4 := by ring
-  · rintro ⟨h1, h2⟩
-    symm
-    apply Nat.eq_sqrt.mpr
-    constructor
-    · apply Nat.le_sqrt.mpr
-      calc (m * m) * (m * m) = m ^ 4 := by ring
-        _ ≤ N := h1
-    · apply Nat.sqrt_lt.mpr
-      calc N < (m + 1) ^ 4 := h2
-        _ = ((m + 1) * (m + 1)) * ((m + 1) * (m + 1)) := by ring
 
 /-- OE fiber: an odd `n` with `m^4 ≤ n^3 < (m+1)^4` and even `⌊n^{3/2}⌋`
 has `J (J n) = m`.  The middle state is `Nat.sqrt (n^3)`; the second

@@ -1,4 +1,4 @@
-import Problems.Juggler.FateContagion
+import Problems.Juggler.RootCells
 
 namespace Problems.Juggler.ReturnCells
 
@@ -34,6 +34,47 @@ theorem ooe_actual {x : ℕ} (hx : x % 2 = 1)
     floorPower (floorPower (floorPower x)) = ooe x := by
   rw [floorPower_odd_eq hx, floorPower_odd_eq hu, floorPower_even_eq hv]
   rfl
+
+/-- A square start makes the first O step exact, leaving one fourth-power cell. -/
+theorem ooe_sq_eq_iff {t z : ℕ} :
+    ooe (t ^ 2) = z ↔ z ^ 4 ≤ t ^ 9 ∧ t ^ 9 < (z + 1) ^ 4 := by
+  have hs : ((t ^ 2) ^ 3).sqrt = t ^ 3 := by
+    rw [show (t ^ 2) ^ 3 = (t ^ 3) ^ 2 by ring, Nat.sqrt_eq']
+  unfold ooe
+  rw [hs]
+  rw [show t ^ 9 = (t ^ 3) ^ 3 by ring]
+  exact oe_eq_iff
+
+/-- The unconditional prescribed OOE cell at a square source. -/
+theorem ooe_sq_cell (t : ℕ) :
+    ooe (t ^ 2) ^ 4 ≤ t ^ 9 ∧ t ^ 9 < (ooe (t ^ 2) + 1) ^ 4 :=
+  ooe_sq_eq_iff.mp rfl
+
+/-- Exact cells and the source parities give all three actual OOE steps.
+The exit parity is a separate condition when selecting an odd return section. -/
+theorem ooe_sq_actual_of_cells {t v z : ℕ}
+    (ht : t % 2 = 1) (hv : v % 2 = 0)
+    (hvc : v ^ 2 ≤ t ^ 9 ∧ t ^ 9 < (v + 1) ^ 2)
+    (hzc : z ^ 4 ≤ t ^ 9 ∧ t ^ 9 < (z + 1) ^ 4) :
+    floorPower (t ^ 2) = t ^ 3 ∧
+      floorPower (t ^ 3) = v ∧ floorPower v = z := by
+  have ht2 : (t ^ 2) % 2 = 1 := by simp [Nat.pow_mod, ht]
+  have ht3 : (t ^ 3) % 2 = 1 := by simp [Nat.pow_mod, ht]
+  have hvroot : (t ^ 9).sqrt = v := by
+    symm
+    apply Nat.eq_sqrt.mpr
+    simpa [pow_two] using hvc
+  have hzroot : ((t ^ 9).sqrt).sqrt = z :=
+    Problems.Juggler.sqrt_sqrt_eq_iff.mpr hzc
+  rw [hvroot] at hzroot
+  refine ⟨?_, ?_, ?_⟩
+  · rw [floorPower_odd_eq ht2,
+      show (t ^ 2) ^ 3 = (t ^ 3) ^ 2 by ring, Nat.sqrt_eq']
+  · rw [floorPower_odd_eq ht3]
+    simpa [← pow_mul] using hvroot
+  · rw [floorPower_even_eq hv]
+    exact hzroot
+
 
 theorem ooe_upper_pow (x : ℕ) : ooe x ^ 8 ≤ x ^ 9 := by
   have h₁ := Nat.pow_le_pow_left (oe_cell ((x ^ 3).sqrt)).1 2

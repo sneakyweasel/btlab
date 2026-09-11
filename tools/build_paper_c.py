@@ -124,7 +124,7 @@ def check(root: Path, exports: bool = True) -> None:
 
 def zenodo_fields(meta: dict) -> str:
     return ("GENERATED FROM docs/theory/; do not edit this export.\n"
-            "Prepared metadata only; no external record has been created.\n\n"
+            "Prepared local metadata only; this build does not create or update an external record.\n\n"
             f"TITLE\n{meta['title']}\n\nCREATOR\n{meta['creators'][0]['name']}\n"
             "Affiliation: none\n\nRESOURCE TYPE\nPublication / Preprint\n\n"
             f"VERSION\n{meta['version']}\n\nLICENSE\n{meta['license']}\n\n"
@@ -170,6 +170,9 @@ def executable(name: str, explicit: str | None) -> str:
 
 
 def build(root: Path, args) -> None:
+    previous_release = root / MANIFEST
+    publication = (json.loads(previous_release.read_text(encoding="utf-8")).get("publication")
+                   if previous_release.is_file() else None)
     initial_inputs = {p: digest(root / p, "text") for p in input_files(root)}
     pandoc = executable("pandoc", args.pandoc)
     xelatex = executable("xelatex", args.xelatex)
@@ -224,6 +227,8 @@ def build(root: Path, args) -> None:
                "inputs": [{"path": p, "mode": "binary" if p.endswith(".png") else "text", "sha256": digest(root / p, "text")} for p in input_files(root)],
                "outputs": [{"path": p, "mode": "binary" if p == PDF else "text",
                             "sha256": digest(root / p, "binary" if p == PDF else "text")} for p in OUTPUTS]}
+    if publication is not None:
+        release["publication"] = publication
     (root / MANIFEST).write_text(json.dumps(release, indent=2) + "\n", encoding="utf-8")
     sync(root)
     check(root)

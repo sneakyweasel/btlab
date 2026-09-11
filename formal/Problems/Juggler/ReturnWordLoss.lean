@@ -1,4 +1,5 @@
-import Problems.Juggler.ReturnCells
+import Problems.Juggler.ItineraryStats
+import Problems.Juggler.NumericBridge
 import Mathlib.Analysis.Convex.SpecificFunctions.Basic
 
 namespace Problems.Juggler.ReturnWordLoss
@@ -23,6 +24,13 @@ def InnerAbove (m : ℝ) : ℕ → List Branch → Prop
   | _, [] => True
   | x, b :: w => (w ≠ [] → m ≤ (step b x : ℝ)) ∧ InnerAbove m (step b x) w
 
+/-- Local certificates for a heterogeneous list of blocks, evaluated successively.
+The boundary bound is required only when a nonempty suffix remains. -/
+def BlocksAbove (m : ℝ) : ℕ → List (List Branch) → Prop
+  | _, [] => True
+  | x, u :: us => InnerAbove m x u ∧
+      (us.flatten ≠ [] → m ≤ (eval u x : ℝ)) ∧ BlocksAbove m (eval u x) us
+
 noncomputable def budget (m : ℝ) : List Branch → ℝ
   | [] => 0
   | _ :: w => exponent w * m ^ (exponent w - 1) + budget m w
@@ -44,6 +52,15 @@ theorem exponent_append (u v : List Branch) :
   induction u with
   | nil => simp [exponent]
   | cons b u ih => simp [exponent, ih, mul_assoc]
+
+/-- The exact formal exponent is determined by the two word statistics. -/
+theorem exponent_eq_counts (w : List Branch) :
+    exponent w = (3 : ℝ) ^ oddCount w / (2 : ℝ) ^ w.length := by
+  induction w with
+  | nil => norm_num [exponent, oddCount]
+  | cons b w ih =>
+      cases b <;>
+        simp [exponent, alpha, branchExp, oddCount, List.length_cons, ih, pow_succ] <;> ring
 
 theorem step_pos (b : Branch) {x : ℕ} (hx : 0 < x) : 0 < step b x := by
   exact Nat.sqrt_pos.mpr (pow_pos hx _)
@@ -77,16 +94,14 @@ theorem eval_eq_image {x : ℕ} {w : List Branch} (hw : follows x w) :
 theorem step_cell (b : Branch) (x : ℕ) :
     (step b x : ℝ) ≤ (x : ℝ) ^ alpha b ∧
       (x : ℝ) ^ alpha b < (step b x : ℝ) + 1 := by
-  have hsq : ((x : ℝ) ^ alpha b) ^ 2 = (x ^ branchExp b : ℕ) := by
-    rw [← Real.rpow_natCast, ← Real.rpow_mul (Nat.cast_nonneg x)]
-    simp [alpha]
-  have hlo : (step b x : ℝ) ^ 2 ≤ (x ^ branchExp b : ℕ) := by
-    exact_mod_cast Nat.sqrt_le' (x ^ branchExp b)
-  have hhi : (x ^ branchExp b : ℕ) < ((step b x : ℝ) + 1) ^ 2 := by
-    exact_mod_cast Nat.lt_succ_sqrt' (x ^ branchExp b)
-  have hr : 0 ≤ (x : ℝ) ^ alpha b := Real.rpow_nonneg (Nat.cast_nonneg x) _
-  have hn : 0 ≤ (step b x : ℝ) := Nat.cast_nonneg _
-  constructor <;> nlinarith
+  have hr : Real.sqrt ((x ^ branchExp b : ℕ) : ℝ) = (x : ℝ) ^ alpha b := by
+    rw [Nat.cast_pow, Real.sqrt_eq_rpow, ← Real.rpow_natCast,
+      ← Real.rpow_mul (Nat.cast_nonneg x)]
+    congr 1
+    simp [alpha, div_eq_mul_inv]
+  constructor
+  · simpa only [step, hr] using (Real.nat_sqrt_le_real_sqrt (a := x ^ branchExp b))
+  · simpa only [step, hr] using (Real.real_sqrt_lt_nat_sqrt_succ (a := x ^ branchExp b))
 
 theorem rpow_sub_le {x y q : ℝ} (hx : 0 < x) (hxy : x ≤ y)
     (hq0 : 0 ≤ q) (hq1 : q ≤ 1) :
@@ -177,6 +192,24 @@ theorem paired_bound {m : ℝ} (hm : 0 < m) {w : List Branch} (hw : w ≠ [])
     (mul_le_mul_of_nonneg_left hc (exponent_pos w).le) (sub_nonneg.mpr hxy')
   linarith
 
+/-- Specialize the exact word loss to any certified scalar budget. -/
+theorem loss_of_budget {m B : ℝ} (hm : 0 < m) {w : List Branch}
+    (hw : w ≠ []) {x : ℕ} (hx : 0 < x)
+    (ht : ConcaveTails w) (ha : InnerAbove m x w) (hB : budget m w ≤ B) :
+    0 ≤ (x : ℝ) ^ exponent w - eval w x ∧
+      (x : ℝ) ^ exponent w - eval w x < B :=
+  ⟨sub_nonneg.mpr (eval_le_rpow w x), (loss_lt_budget hm hw hx ht ha).trans_le hB⟩
+
+/-- A paired estimate with a supplied scalar budget; positivity follows from the source bound. -/
+theorem paired_bound_of_budget {m B : ℝ} (hm : 0 < m) {w : List Branch}
+    (hw : w ≠ []) (ht : ConcaveTails w) (hp : exponent w ≤ 1) {x y : ℕ}
+    (hmx : m ≤ x) (hxy : x ≤ y) (ha : InnerAbove m x w) (hB : budget m w ≤ B) :
+    (eval w y : ℝ) - eval w x <
+      exponent w * m ^ (exponent w - 1) * ((y : ℝ) - x) + B := by
+  have hx : 0 < x := by exact_mod_cast hm.trans_le hmx
+  have h := paired_bound hm hw ht hp hx hmx hxy ha
+  linarith
+
 theorem innerAbove_append {m : ℝ} (u v : List Branch) (x : ℕ)
     (hu : InnerAbove m x u) (hv : InnerAbove m (eval u x) v)
     (hend : v ≠ [] → m ≤ (eval u x : ℝ)) : InnerAbove m x (u ++ v) := by
@@ -191,6 +224,14 @@ theorem innerAbove_append {m : ℝ} (u v : List Branch) (x : ℕ)
         exact hend (by simpa using hne)
       · exact hu.1 hu0
     · exact ih (step b x) hu.2 hv hend
+
+/-- Assemble arbitrary certified blocks without replacing their actual starting states. -/
+theorem innerAbove_flatten {m : ℝ} {ws : List (List Branch)} {x : ℕ}
+    (h : BlocksAbove m x ws) : InnerAbove m x ws.flatten := by
+  induction ws generalizing x with
+  | nil => trivial
+  | cons u us ih =>
+      exact innerAbove_append u us.flatten x h.1 (ih h.2.2) h.2.1
 
 noncomputable def transportedLoss (x : ℕ) : List Branch → ℝ
   | [] => 0
@@ -210,6 +251,16 @@ def DyadicCertificate (k : ℕ) : List Branch → List ℕ → Prop
   | [], [] => True
   | _ :: w, h :: hs => (h : ℝ) ≤ k * (1 - exponent w) ∧ DyadicCertificate k w hs
   | _, _ => False
+
+/-- The recursive certificate accounts for exactly one entry per word letter. -/
+theorem DyadicCertificate.length_eq {k : ℕ} {w : List Branch} {hs : List ℕ}
+    (h : DyadicCertificate k w hs) : hs.length = w.length := by
+  induction w generalizing hs with
+  | nil => cases hs <;> simp_all [DyadicCertificate]
+  | cons b w ih =>
+      cases hs with
+      | nil => simp [DyadicCertificate] at h
+      | cons a hs => exact congrArg Nat.succ (ih h.2)
 
 noncomputable def dyadicSum : List Branch → List ℕ → ℝ
   | [], _ => 0
@@ -259,3 +310,116 @@ theorem dyadic_rpow_lower {m q c : ℝ} {k a b : ℕ}
   exact lt_of_pow_lt_pow_left₀ b (Real.rpow_nonneg hm0 q) (hc.trans_le (h₃.trans h₂))
 
 end Problems.Juggler.ReturnWordLoss
+
+/-! Word-independent utilities retain their historical public namespace. -/
+namespace Problems.Juggler.ReturnWordBounds
+
+open ReturnWordLoss
+
+theorem innerAbove_mono {m n : ℝ} (hmn : m ≤ n) {x : ℕ} {w : List Branch}
+    (h : InnerAbove n x w) : InnerAbove m x w := by
+  induction w generalizing x with
+  | nil => trivial
+  | cons b w ih => exact ⟨fun hn => hmn.trans (h.1 hn), ih h.2⟩
+
+theorem innerAbove_one (w : List Branch) {x : ℕ} (hx : 0 < x) :
+    InnerAbove 1 x w := by
+  induction w generalizing x with
+  | nil => trivial
+  | cons b w ih =>
+    have hy := step_pos b hx
+    exact ⟨fun _ => by exact_mod_cast hy, ih hy⟩
+
+theorem budget_one_le_length (w : List Branch) (ht : ConcaveTails w) :
+    budget 1 w ≤ w.length := by
+  induction w with
+  | nil => simp [budget]
+  | cons b w ih =>
+    have hh := ih ht.2
+    simp only [budget, Real.one_rpow, mul_one, List.length_cons, Nat.cast_add, Nat.cast_one]
+    linarith [ht.1]
+
+theorem unit_loss_lt_length {w : List Branch} (hw : w ≠ [])
+    (ht : ConcaveTails w) {x : ℕ} (hx : 0 < x) :
+    (x : ℝ) ^ exponent w - eval w x < w.length :=
+  (loss_lt_budget (by norm_num) hw hx ht (innerAbove_one w hx)).trans_le
+    (budget_one_le_length w ht)
+
+/-- Compose a repeated block and a final block on their actual successive domains. -/
+theorem innerAbove_repeat_append {m : ℕ} (u v : List Branch)
+    (hu : ∀ x, m ≤ x → InnerAbove (x : ℝ) x u)
+    (hg : ∀ x, m ≤ x → x ≤ eval u x)
+    (hv : ∀ x, m ≤ x → InnerAbove (x : ℝ) x v)
+    (n x : ℕ) (hx : m ≤ x) :
+    InnerAbove (x : ℝ) x ((List.replicate n u).flatten ++ v) := by
+  induction n generalizing x with
+  | zero => simpa using hv x hx
+  | succ n ih =>
+      have hxy := hg x hx
+      have hxyR : (x : ℝ) ≤ eval u x := by exact_mod_cast hxy
+      have hnext := innerAbove_mono hxyR (ih (eval u x) (hx.trans hxy))
+      have h := innerAbove_append u ((List.replicate n u).flatten ++ v) x
+        (hu x hx) hnext (fun _ => hxyR)
+      simpa only [List.replicate_succ, List.flatten_cons, List.append_assoc] using h
+
+theorem grows_of_unit_loss {w : List Branch} (hw : w ≠ []) (ht : ConcaveTails w)
+    {x k : ℕ} (hx : (2 : ℝ) ^ k ≤ x) (hp : 1 < exponent w)
+    (he : (1 : ℝ) ≤ k * (exponent w - 1) * 4)
+    (hl : (8 : ℝ) * w.length < x) : x < eval w x := by
+  have hx0 : (0 : ℝ) < x := lt_of_lt_of_le (by positivity) hx
+  have hn : 0 < x := by exact_mod_cast hx0
+  have hpow := dyadic_rpow_lower (q := exponent w - 1) (c := (9 : ℝ) / 8)
+    (a := 1) (b := 4) hx (by linarith) (by simpa using he) (by norm_num)
+  have hid : (x : ℝ) ^ exponent w = (x : ℝ) ^ (exponent w - 1) * x := by
+    nth_rw 1 [show exponent w = (exponent w - 1) + 1 by ring]
+    rw [Real.rpow_add_one hx0.ne']
+  have hh := mul_lt_mul_of_pos_right hpow hx0
+  have hb := unit_loss_lt_length hw ht hn
+  rw [← hid] at hh
+  have hlt : (x : ℝ) < eval w x := by linarith
+  exact_mod_cast hlt
+
+theorem budget_ge_one {m : ℝ} (hm : 0 < m) {w : List Branch} (hw : w ≠ []) :
+    1 ≤ budget m w := by
+  induction w with
+  | nil => exact False.elim (hw rfl)
+  | cons b w ih =>
+    by_cases he : w = []
+    · subst w
+      simp [budget, exponent]
+    · have hb := ih he
+      have hp : 0 < exponent w * m ^ (exponent w - 1) :=
+        mul_pos (exponent_pos w) (Real.rpow_pos_of_pos hm _)
+      change 1 ≤ exponent w * m ^ (exponent w - 1) + budget m w
+      linarith
+
+theorem budget_gt_one {m : ℝ} (hm : 0 < m) {w : List Branch} (hw : 2 ≤ w.length) :
+    1 < budget m w := by
+  cases w with
+  | nil => simp at hw
+  | cons b w =>
+    have he : w ≠ [] := by intro he; simp [he] at hw
+    have hb := budget_ge_one hm he
+    have hp : 0 < exponent w * m ^ (exponent w - 1) :=
+      mul_pos (exponent_pos w) (Real.rpow_pos_of_pos hm _)
+    change 1 < exponent w * m ^ (exponent w - 1) + budget m w
+    linarith
+
+theorem certificate_requires_large_minimum {m : ℝ} (hm : 0 < m)
+    {w : List Branch} (hw : 2 ≤ w.length) (hp : exponent w < 1)
+    (hc : 2 * (exponent w * m ^ (exponent w - 1)) + budget m w ≤ 2) :
+    (2 * exponent w) ^ (1 / (1 - exponent w)) < m := by
+  have hb := budget_gt_one hm hw
+  have hκ : exponent w * m ^ (exponent w - 1) < 1 / 2 := by linarith
+  have hq : 0 < 1 - exponent w := by linarith
+  have hr : 0 < m ^ (1 - exponent w) := Real.rpow_pos_of_pos hm _
+  have he : m ^ (exponent w - 1) = (m ^ (1 - exponent w))⁻¹ := by
+    rw [show exponent w - 1 = -(1 - exponent w) by ring, Real.rpow_neg hm.le]
+  rw [he, ← div_eq_mul_inv] at hκ
+  have hh := (div_lt_iff₀ hr).mp hκ
+  rw [one_div]
+  apply (Real.rpow_inv_lt_iff_of_pos
+    (mul_nonneg (by norm_num : (0 : ℝ) ≤ 2) (exponent_pos w).le) hm.le hq).mpr
+  linarith
+
+end Problems.Juggler.ReturnWordBounds

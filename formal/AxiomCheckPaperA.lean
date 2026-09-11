@@ -1,23 +1,5 @@
-/-
-  Every Lean declaration Paper A cites, with its axiom dependencies.
-
-  `trust_boundary --paper a` checks that a cited name is declared and that its module is
-  reachable from Paper A's root, `Problems/JugglerPaper.lean`.  Neither says the declaration
-  is *proved*: a `sorry` anywhere in its dependency graph, or a `native_decide`, leaves the
-  name declared, the module reachable and the build green while the paper's machine-checked
-  column asserts something false.
-
-  Names are fully qualified because two modules of the layer, `FanLaw` and `DepthFourFive`,
-  declare into `Juggler.*` rather than `Problems.Juggler.*`; a single `open` would silently
-  miss them.
-
-  Run `lake env lean AxiomCheckPaperA.lean` from `formal/`.  Section 1.2 of the paper claims
-  one exception to kernel checking, `window_digit_scan`, so exactly the lines that depend on
-  it may name a further axiom.  `AxiomCheckPaperA.expected` is the recorded output, and the
-  self-audit test regenerates and diffs it rather than trusting it.
--/
-
 import Problems.JugglerPaper
+
 #print axioms Juggler.FanLaw.expansion_e4
 #print axioms Juggler.FanLaw.expansion_e5
 #print axioms Juggler.FanLaw.expansion_e6
@@ -39,8 +21,82 @@ import Problems.JugglerPaper
 #print axioms Juggler.FanLaw.step_lt_two
 #print axioms Juggler.FanLaw.walk_first_letter_odd
 #print axioms Juggler.FanLaw.walk_second_letter_odd
+#print axioms Problems.Juggler.CubicGrid.FullUpperCellChargeBounds.closedGeometric_cutoff_excludes
+#print axioms Problems.Juggler.CubicGrid.FullUpperCellChargeBounds.nonlinear_cutoff_excludes
+#print axioms Problems.Juggler.CubicGrid.RealizedGridBounds
+#print axioms Problems.Juggler.CubicGrid.closedGeometricChargeBound_strictAntiOn_minimum
 #print axioms Problems.Juggler.CubicGrid.cubicBand_cycle_grid
+#print axioms Problems.Juggler.CubicGrid.cubicBand_cycle_upper_charge
+#print axioms Problems.Juggler.CubicGrid.cycleMin_upper_charge
+#print axioms Problems.Juggler.CubicGrid.nonlinearChargeBound_strictAntiOn_minimum
+#print axioms Problems.Juggler.CubicGrid.periodicOrbit_upper_charge
+#print axioms Problems.Juggler.CubicGrid.power_cells_grid_charge
+#print axioms Problems.Juggler.CubicGrid.power_cells_scaled_charge
 #print axioms Problems.Juggler.CubicGrid.threshold_cycle_grid
+#print axioms Problems.Juggler.CubicGrid.threshold_cycle_upper_charge
+#print axioms Problems.Juggler.CubicReturn.cycleMin_all_states_height_strip
+#print axioms Problems.Juggler.CubicReturn.cycleMin_exact_return_seam
+#print axioms Problems.Juggler.CubicReturn.cycleMin_height_strip
+#print axioms Problems.Juggler.CubicReturn.threshold_cycle_wrong_parity
+#print axioms Problems.Juggler.CycleMin
+#print axioms Problems.Juggler.RemainderCarry.baseline_bounds
+#print axioms Problems.Juggler.RemainderCarry.baseline_one_iff
+#print axioms Problems.Juggler.RemainderCarry.baseline_two_iff
+#print axioms Problems.Juggler.RemainderCarry.baseline_zero_iff
+#print axioms Problems.Juggler.RemainderCarry.corrected_quotient_integer
+#print axioms Problems.Juggler.RemainderCarry.endpoint_validation
+#print axioms Problems.Juggler.RemainderCarry.exact_quotient_gap
+#print axioms Problems.Juggler.RemainderCarry.exact_remainder_correction
+#print axioms Problems.Juggler.RemainderCarry.record_initializes
+#print axioms Problems.Juggler.RemainderCarry.recoverPeak_eq
+#print axioms Problems.Juggler.RemainderCarry.recoverPeak_guard_iff
+#print axioms Problems.Juggler.RemainderCarry.square_guard_iff
+#print axioms Problems.Juggler.ReturnCells.oe_eq_iff
+#print axioms Problems.Juggler.ReturnCells.oe_perfect_power_hidden_odd
+#print axioms Problems.Juggler.ReturnCells.ooe_odd_maximal
+#print axioms Problems.Juggler.ReturnCells.ooe_one_integer
+#print axioms Problems.Juggler.ReturnGapHeight.even_transfers_positive
+#print axioms Problems.Juggler.ReturnGapHeight.even_transfers_sum
+#print axioms Problems.Juggler.ReturnGapHeight.height_of_power_gap
+#print axioms Problems.Juggler.ReturnInduction.left_subtractive_first_return
+#print axioms Problems.Juggler.ReturnInduction.left_word_statistics
+#print axioms Problems.Juggler.ReturnInduction.right_subtractive_first_return
+#print axioms Problems.Juggler.ReturnInduction.right_word_statistics
+#print axioms Problems.Juggler.ReturnOrbitStrips.cycleMin_dc_height
+#print axioms Problems.Juggler.ReturnOrbitStrips.cycleMin_lr_height
+#print axioms Problems.Juggler.ReturnOrbitStrips.threshold_cycle_dc_wrong_parity
+#print axioms Problems.Juggler.ReturnOrbitStrips.threshold_cycle_lr_wrong_parity
+#print axioms Problems.Juggler.ReturnSeams.RankedReturn.primitive_terminal
+#print axioms Problems.Juggler.ReturnSeams.dc_rank_stages
+#print axioms Problems.Juggler.ReturnSeams.lr_rank_stage
+#print axioms Problems.Juggler.ReturnSeams.periodicExtrema_dc_transfers
+#print axioms Problems.Juggler.ReturnSeams.periodicExtrema_lr_transfers
+#print axioms Problems.Juggler.ReturnSeams.periodicExtrema_return_model
+#print axioms Problems.Juggler.ReturnTerminal.mixed_gap
+#print axioms Problems.Juggler.ReturnTerminal.periodicExtrema_terminal_cut
+#print axioms Problems.Juggler.ReturnTerminal.periodicOrbit_terminal_cut
+#print axioms Problems.Juggler.ReturnTransferHeight.dc_cycle_gap
+#print axioms Problems.Juggler.ReturnTransferHeight.dc_cycle_height
+#print axioms Problems.Juggler.ReturnTransferHeight.lr_cycle_gap
+#print axioms Problems.Juggler.ReturnTransferHeight.lr_cycle_height
+#print axioms Problems.Juggler.ReturnWordBounds.ac_grows
+#print axioms Problems.Juggler.ReturnWordBounds.c_contract
+#print axioms Problems.Juggler.ReturnWordBounds.c_loss
+#print axioms Problems.Juggler.ReturnWordBounds.certificate_requires_large_minimum
+#print axioms Problems.Juggler.ReturnWordBounds.d_grows
+#print axioms Problems.Juggler.ReturnWordBounds.v_grows
+#print axioms Problems.Juggler.ReturnWordBounds.w_contract
+#print axioms Problems.Juggler.ReturnWordBounds.w_loss
+#print axioms Problems.Juggler.ReturnWordFactorization.InducedPair.count_coprime
+#print axioms Problems.Juggler.ReturnWordFactorization.InducedPair.count_determinant
+#print axioms Problems.Juggler.ReturnWordFactorization.InducedPair.expanded_count_gcd
+#print axioms Problems.Juggler.ReturnWordFactorization.induced_terminal_actual_factorization
+#print axioms Problems.Juggler.ReturnWordLoss.exponent_eq_counts
+#print axioms Problems.Juggler.ReturnWordLoss.loss_exact
+#print axioms Problems.Juggler.ReturnWordLoss.loss_lt_budget
+#print axioms Problems.Juggler.ReturnWordLoss.paired_bound
+#print axioms Problems.Juggler.UpperSquareGap.cube_add_one_ne_odd_succ_sq
+#print axioms Problems.Juggler.UpperSquareGap.floorPower_odd_image_upper_gap
 #print axioms Problems.Juggler.absorb_odd_step
 #print axioms Problems.Juggler.alpha_lt_half
 #print axioms Problems.Juggler.block_envelope
@@ -68,6 +124,7 @@ import Problems.JugglerPaper
 #print axioms Problems.Juggler.cubicRounding_exists_primitive
 #print axioms Problems.Juggler.cubicRounding_finite_invariant_rotation
 #print axioms Problems.Juggler.cubicRounding_real_loss
+#print axioms Problems.Juggler.cubic_return_height_algebra
 #print axioms Problems.Juggler.cycleMax_start_even
 #print axioms Problems.Juggler.cycleMin_charge_prefix
 #print axioms Problems.Juggler.cycleMin_defect_finance
@@ -110,6 +167,7 @@ import Problems.JugglerPaper
 #print axioms Problems.Juggler.even_finiteProgress
 #print axioms Problems.Juggler.expansion_fails_below_22
 #print axioms Problems.Juggler.expansion_holds_at_22
+#print axioms Problems.Juggler.follows_append
 #print axioms Problems.Juggler.follows_iff_itinerary
 #print axioms Problems.Juggler.four_block_pe_1999
 #print axioms Problems.Juggler.global_defect_append
@@ -120,6 +178,15 @@ import Problems.JugglerPaper
 #print axioms Problems.Juggler.greedy_eq_ostro
 #print axioms Problems.Juggler.greedy_eq_ostro_below_window
 #print axioms Problems.Juggler.greedy_reconstruct_all
+#print axioms Problems.Juggler.guardResidueFamily_every_modulus
+#print axioms Problems.Juggler.guardResidueFamily_no_record_classifier
+#print axioms Problems.Juggler.guardResidueFamily_record_collision
+#print axioms Problems.Juggler.guardResidue_aggregate_valuation
+#print axioms Problems.Juggler.guardResidue_common_band_and_section
+#print axioms Problems.Juggler.guardResidue_first_remainders_zero
+#print axioms Problems.Juggler.guardResidue_nat_parities
+#print axioms Problems.Juggler.guardResidue_ooe_traces
+#print axioms Problems.Juggler.guardResidue_threshold_blocks
 #print axioms Problems.Juggler.hugCharge
 #print axioms Problems.Juggler.hugCharge_sub_circleMean_le
 #print axioms Problems.Juggler.hugCharge_sub_circleMean_window
@@ -191,6 +258,11 @@ import Problems.JugglerPaper
 #print axioms Problems.Juggler.odd_run_lower_growth
 #print axioms Problems.Juggler.one_plus_eta_lt_succ_sq
 #print axioms Problems.Juggler.oo_suffix_threshold
+#print axioms Problems.Juggler.ooeFamilyReturn_mod_fortyeight
+#print axioms Problems.Juggler.ooeFamilyReturn_valuation_drop
+#print axioms Problems.Juggler.ooeFamily_juggler_block
+#print axioms Problems.Juggler.ooeFamily_juggler_chain_bound
+#print axioms Problems.Juggler.ooeFamily_no_infinite_juggler_chain
 #print axioms Problems.Juggler.ooo_suffix_threshold
 #print axioms Problems.Juggler.orbitCell
 #print axioms Problems.Juggler.orbitCell_inj
@@ -270,73 +342,3 @@ import Problems.JugglerPaper
 #print axioms Problems.Juggler.walkTheta_lt_upper
 #print axioms Problems.Juggler.window_digit_cap
 #print axioms Problems.Juggler.window_digit_scan
-
-#print axioms Problems.Juggler.follows_append
-#print axioms Problems.Juggler.CubicReturn.cycleMin_exact_return_seam
-#print axioms Problems.Juggler.CubicReturn.cycleMin_height_strip
-#print axioms Problems.Juggler.CubicReturn.cycleMin_all_states_height_strip
-#print axioms Problems.Juggler.CubicReturn.threshold_cycle_wrong_parity
-#print axioms Problems.Juggler.cubic_return_height_algebra
-#print axioms Problems.Juggler.ReturnCells.oe_eq_iff
-#print axioms Problems.Juggler.ReturnCells.ooe_one_integer
-#print axioms Problems.Juggler.ReturnCells.ooe_odd_maximal
-#print axioms Problems.Juggler.ReturnCells.oe_perfect_power_hidden_odd
-#print axioms Problems.Juggler.ReturnInduction.left_subtractive_first_return
-#print axioms Problems.Juggler.ReturnInduction.right_subtractive_first_return
-#print axioms Problems.Juggler.ReturnInduction.left_word_statistics
-#print axioms Problems.Juggler.ReturnInduction.right_word_statistics
-#print axioms Problems.Juggler.ooeFamily_juggler_block
-#print axioms Problems.Juggler.ooeFamilyReturn_mod_fortyeight
-#print axioms Problems.Juggler.ooeFamilyReturn_valuation_drop
-#print axioms Problems.Juggler.ooeFamily_juggler_chain_bound
-#print axioms Problems.Juggler.ooeFamily_no_infinite_juggler_chain
-#print axioms Problems.Juggler.RemainderCarry.baseline_bounds
-#print axioms Problems.Juggler.RemainderCarry.baseline_zero_iff
-#print axioms Problems.Juggler.RemainderCarry.baseline_one_iff
-#print axioms Problems.Juggler.RemainderCarry.baseline_two_iff
-#print axioms Problems.Juggler.RemainderCarry.square_guard_iff
-#print axioms Problems.Juggler.RemainderCarry.exact_remainder_correction
-#print axioms Problems.Juggler.RemainderCarry.exact_quotient_gap
-#print axioms Problems.Juggler.RemainderCarry.endpoint_validation
-#print axioms Problems.Juggler.RemainderCarry.record_initializes
-#print axioms Problems.Juggler.RemainderCarry.corrected_quotient_integer
-#print axioms Problems.Juggler.RemainderCarry.recoverPeak_eq
-#print axioms Problems.Juggler.RemainderCarry.recoverPeak_guard_iff
-#print axioms Problems.Juggler.guardResidueFamily_every_modulus
-#print axioms Problems.Juggler.guardResidue_first_remainders_zero
-#print axioms Problems.Juggler.guardResidue_nat_parities
-#print axioms Problems.Juggler.guardResidue_ooe_traces
-
-#print axioms Problems.Juggler.guardResidue_aggregate_valuation
-#print axioms Problems.Juggler.guardResidueFamily_record_collision
-#print axioms Problems.Juggler.guardResidueFamily_no_record_classifier
-#print axioms Problems.Juggler.guardResidue_common_band_and_section
-#print axioms Problems.Juggler.guardResidue_threshold_blocks
-
-#print axioms Problems.Juggler.ReturnWordLoss.loss_exact
-#print axioms Problems.Juggler.ReturnWordLoss.loss_lt_budget
-#print axioms Problems.Juggler.ReturnWordLoss.paired_bound
-#print axioms Problems.Juggler.ReturnWordBounds.ac_grows
-#print axioms Problems.Juggler.ReturnWordBounds.d_grows
-#print axioms Problems.Juggler.ReturnWordBounds.v_grows
-#print axioms Problems.Juggler.ReturnWordBounds.c_loss
-#print axioms Problems.Juggler.ReturnWordBounds.w_loss
-#print axioms Problems.Juggler.ReturnWordBounds.c_contract
-#print axioms Problems.Juggler.ReturnWordBounds.w_contract
-#print axioms Problems.Juggler.ReturnWordBounds.certificate_requires_large_minimum
-#print axioms Problems.Juggler.ReturnWordFactorization.induced_terminal_actual_factorization
-#print axioms Problems.Juggler.ReturnSeams.periodicExtrema_return_model
-#print axioms Problems.Juggler.ReturnSeams.dc_rank_stages
-#print axioms Problems.Juggler.ReturnSeams.lr_rank_stage
-#print axioms Problems.Juggler.ReturnSeams.periodicExtrema_dc_transfers
-#print axioms Problems.Juggler.ReturnSeams.periodicExtrema_lr_transfers
-#print axioms Problems.Juggler.ReturnGapHeight.height_of_power_gap
-#print axioms Problems.Juggler.ReturnTransferHeight.dc_cycle_gap
-#print axioms Problems.Juggler.ReturnTransferHeight.lr_cycle_gap
-#print axioms Problems.Juggler.ReturnTransferHeight.dc_cycle_height
-#print axioms Problems.Juggler.ReturnTransferHeight.lr_cycle_height
-#print axioms Problems.Juggler.ReturnTerminal.mixed_gap
-#print axioms Problems.Juggler.ReturnOrbitStrips.cycleMin_dc_height
-#print axioms Problems.Juggler.ReturnOrbitStrips.cycleMin_lr_height
-#print axioms Problems.Juggler.ReturnOrbitStrips.threshold_cycle_dc_wrong_parity
-#print axioms Problems.Juggler.ReturnOrbitStrips.threshold_cycle_lr_wrong_parity

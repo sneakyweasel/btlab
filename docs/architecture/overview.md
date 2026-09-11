@@ -72,6 +72,7 @@ Do not continue past a red gate. Mathematical behaviour must not change.
 
 ## Related pages
 
+- [Juggler Lean interfaces](juggler_lean.md)
 - [Research Engine diagnosis loop](research_engine_loop.md)
 - [Core](core.md)
 - [Research modules](research_modules.md)

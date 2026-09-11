@@ -696,7 +696,7 @@ def test_the_paper_records_the_recomputation() -> None:
 def test_every_cited_declaration_rests_on_mathlibs_three_axioms() -> None:
     assert M.axiom_failures() == []
     results = M.axiom_check_results()
-    assert len(results) == 47
+    assert len(results) == 49
     assert set(results.values()) == {"[propext, Classical.choice, Quot.sound]"}
 
 
@@ -707,9 +707,35 @@ def test_the_artifact_asks_about_exactly_the_cited_names() -> None:
         "trust_boundary", ROOT / "tools" / "trust_boundary.py")
     tb = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(tb)
-    cited = sorted({r["name"] for r in tb.audit() if r["declared"]})
+    cited = sorted({r["qualified_name"] for r in tb.audit() if r["declared"]})
     assert M.axiom_check_names() == cited
-    assert len(cited) == 47
+    assert len(cited) == 49
+    assert {"Problems.Juggler.Gsecond_beta_cancellation",
+            "Problems.Juggler.Gsecond_naive_bound_fails"} <= set(cited)
+
+
+def test_dependency_readers_preserve_qualified_identities(tmp_path, monkeypatch) -> None:
+    request = tmp_path / "Check.lean"
+    output = tmp_path / "Check.expected"
+    names = ["Problems.Juggler.Left.result", "Problems.Juggler.Right.result"]
+    request.write_text("\n".join("#print axioms " + name for name in names), encoding="utf-8")
+    output.write_text("\n".join(
+        "'" + name + "' depends on axioms: " + M.MATHLIB_AXIOMS for name in names),
+        encoding="utf-8")
+    monkeypatch.setattr(M, "AXIOM_CHECK", request)
+    monkeypatch.setattr(M, "AXIOM_EXPECTED", output)
+    assert M.axiom_check_names() == names
+    assert M.axiom_check_results() == dict.fromkeys(names, M.MATHLIB_AXIOMS)
+
+
+def test_uppercase_citation_removed_from_requests_is_reported(tmp_path, monkeypatch) -> None:
+    name = "Problems.Juggler.Gsecond_beta_cancellation"
+    request = tmp_path / "Missing.lean"
+    source = M.AXIOM_CHECK.read_text(encoding="utf-8")
+    request.write_text(source.replace("#print axioms " + name + "\n", ""), encoding="utf-8")
+    monkeypatch.setattr(M, "AXIOM_CHECK", request)
+    assert M.axiom_failures() == [
+        {"name": name, "why": "cited and declared, but the artifact does not ask"}]
 
 
 def test_no_sorry_in_the_paper_b_modules() -> None:

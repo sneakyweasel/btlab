@@ -2,6 +2,30 @@ import Problems.Juggler.ReturnTransferHeight
 
 namespace Problems.Juggler.ReturnOrbitStrips
 
+/-- Compatibility over one positive threshold period yields the entire actual
+orbit and its bounded periodic-set certificate. -/
+theorem threshold_periodic_actual_model {b m M k : ℕ} (hb : 3 ≤ b)
+    (hx : InCubicBand b m) (hk : 0 < k) (hp : (thresholdMap b)^[k] m = m)
+    (hcompatible : ∀ j < k, ((thresholdMap b)^[j] m) % 2 = 1 ↔
+      (thresholdMap b)^[j] m < b ^ 2)
+    (hbound : ∀ j < k, m ≤ (thresholdMap b)^[j] m ∧ (thresholdMap b)^[j] m ≤ M)
+    (hmax : ∃ j < k, (thresholdMap b)^[j] m = M) :
+    (∀ j, (thresholdMap b)^[j] m = floorPower^[j] m) ∧
+      CubicReturn.PeriodicExtrema (Set.range (fun j : ℕ => floorPower^[j] m)) m M := by
+  have hper : Function.IsPeriodicPt (thresholdMap b) k m := hp
+  have hall : ∀ j, ((thresholdMap b)^[j] m) % 2 = 1 ↔
+      (thresholdMap b)^[j] m < b ^ 2 := by
+    intro j
+    rw [← hper.iterate_mod_apply j]
+    exact hcompatible _ (Nat.mod_lt _ hk)
+  have heq := threshold_iterates_eq_of_compatible hb hx hall
+  refine ⟨heq, CubicReturn.periodicExtrema_of_orbit hk ((heq k).symm.trans hp) ?_ ?_⟩
+  · intro j hj
+    rw [← heq j]
+    exact hbound j hj
+  · obtain ⟨j, hj, he⟩ := hmax
+    exact ⟨j, hj, (heq j).symm.trans he⟩
+
 /-- The DC strip applies to the repository's actual cycle-minimum predicate. -/
 theorem cycleMin_dc_height {m M : ℕ} {w : List Branch}
     (h : CycleMin m w) (hm : 2 ^ 24 ≤ m) (hM : M < m ^ 3)
@@ -57,23 +81,9 @@ theorem threshold_cycle_dc_wrong_parity {b m M k : ℕ} (hb : 3 ≤ b)
       (thresholdMap b)^[j] m < b ^ 2) := by
   by_contra hn
   push Not at hn
-  have hper : Function.IsPeriodicPt (thresholdMap b) k m := hp
-  have hcompatible : ∀ j,
-      ((thresholdMap b)^[j] m) % 2 = 1 ↔ (thresholdMap b)^[j] m < b ^ 2 := by
-    intro j
-    rw [← hper.iterate_mod_apply j]
-    exact hn _ (Nat.mod_lt _ hk)
-  have heq := threshold_iterates_eq_of_compatible hb hx hcompatible
-  have hpactual : floorPower^[k] m = m := (heq k).symm.trans hp
-  have hbactual : ∀ j < k, m ≤ floorPower^[j] m ∧ floorPower^[j] m ≤ M := by
-    intro j hj
-    rw [← heq j]
-    exact hbound j hj
-  have hmaxactual : ∃ j < k, floorPower^[j] m = M := by
-    obtain ⟨j, hj, he⟩ := hmax
-    exact ⟨j, hj, (heq j).symm.trans he⟩
+  have D := (threshold_periodic_actual_model hb hx hk hp hn hbound hmax).2
   exact (not_lt_of_ge hstrip)
-    (ReturnTransferHeight.periodicOrbit_dc_height hk hpactual hbactual hmaxactual hm hM).2
+    (ReturnTransferHeight.dc_cycle_height D hm hM).2
 
 /-- The clean LR exclusion has the same exact wrong-parity consequence. -/
 theorem threshold_cycle_lr_wrong_parity {b m M k : ℕ} (hb : 3 ≤ b)
@@ -87,22 +97,8 @@ theorem threshold_cycle_lr_wrong_parity {b m M k : ℕ} (hb : 3 ≤ b)
       (thresholdMap b)^[j] m < b ^ 2) := by
   by_contra hn
   push Not at hn
-  have hper : Function.IsPeriodicPt (thresholdMap b) k m := hp
-  have hcompatible : ∀ j,
-      ((thresholdMap b)^[j] m) % 2 = 1 ↔ (thresholdMap b)^[j] m < b ^ 2 := by
-    intro j
-    rw [← hper.iterate_mod_apply j]
-    exact hn _ (Nat.mod_lt _ hk)
-  have heq := threshold_iterates_eq_of_compatible hb hx hcompatible
-  have hpactual : floorPower^[k] m = m := (heq k).symm.trans hp
-  have hbactual : ∀ j < k, m ≤ floorPower^[j] m ∧ floorPower^[j] m ≤ M := by
-    intro j hj
-    rw [← heq j]
-    exact hbound j hj
-  have hmaxactual : ∃ j < k, floorPower^[j] m = M := by
-    obtain ⟨j, hj, he⟩ := hmax
-    exact ⟨j, hj, (heq j).symm.trans he⟩
+  have D := (threshold_periodic_actual_model hb hx hk hp hn hbound hmax).2
   exact (not_lt_of_ge hstrip)
-    (ReturnTransferHeight.periodicOrbit_lr_height hk hpactual hbactual hmaxactual hm hM).2.2
+    (ReturnTransferHeight.lr_cycle_height D hm hM).2.2
 
 end Problems.Juggler.ReturnOrbitStrips

@@ -2410,7 +2410,7 @@ use the roots of the displayed defining equations.
 
 - `formal/Problems/Juggler/FateContagion.lean`
 
-  SHA-256: `cac6a00884346fcc98a03603bf919e03a681f8f66b8b55f3cff9d336e83a2472`
+  SHA-256: `834198a6b0e8cc13c9fb91d9ad938f62ce5e783a3cc9009fb38334c913d5b7e2`
 
 - `formal/Problems/Juggler/CubeFiber.lean`
 
@@ -2434,7 +2434,7 @@ use the roots of the displayed defining equations.
 
 - `formal/Problems/Juggler/FateChernoff.lean`
 
-  SHA-256: `4eec5c05916226374815b586252aa8c7a147615d27088939044f80db3b94f515`
+  SHA-256: `bbf606d0f666cfc74209ef13dd8087f8b24e50226362704f88738b8fb5a0f92c`
 
 - `formal/Problems/Juggler/FatePressure.lean`
 

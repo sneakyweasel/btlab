@@ -9,6 +9,7 @@ silently.
 
 from __future__ import annotations
 
+import importlib.util
 import io
 import re
 from pathlib import Path
@@ -18,7 +19,10 @@ from research.juggler_sequence.lean_paths import LAYERS
 ROOT = Path(__file__).resolve().parents[3]
 JUGGLER = ROOT / "formal" / "Problems" / "Juggler"
 INCOMPLETE = ("sorry", "admit", "axiom")
-NAMESPACE = re.compile(r"^namespace\s+([A-Za-z0-9_.']+)", re.MULTILINE)
+
+_spec = importlib.util.spec_from_file_location("layer_trust_boundary", ROOT / "tools/trust_boundary.py")
+TB = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(TB)
 
 # Two modules declare into `Juggler.*` rather than the project root `Problems.Juggler.*`.
 # Pinned rather than fixed: both are inside Paper A's review object, so a rename touches the
@@ -49,12 +53,45 @@ def test_unregistered_modules_are_visible() -> None:
     assert len(outside) <= 20, outside
 
 
+def foreign_public_declarations(source: str, prefix: str) -> list[tuple[str, int]]:
+    """Check resolved public identities, not each relative namespace command."""
+    return [(name, line) for name, line in TB.source_declarations(source)
+            if not name.startswith(prefix + ".")]
+
+
 def test_namespace_convention_holds_except_where_pinned() -> None:
-    """Every module declares into `Problems.Juggler` except the two pinned above."""
-    offenders = set()
+    """Public declarations stay in the project namespace, allowing nested scopes."""
+    violations = {}
+    nonstandard = set()
     for path in modules():
-        src = io.open(path, encoding="utf-8", errors="replace").read()
-        roots = {n.split(".")[0] for n in NAMESPACE.findall(src)}
-        if roots and roots != {"Problems"}:
-            offenders.add(path.stem)
-    assert offenders == NON_STANDARD_ROOT, sorted(offenders)
+        src = path.read_text(encoding="utf-8")
+        expected = "Juggler" if path.stem in NON_STANDARD_ROOT else "Problems.Juggler"
+        foreign = foreign_public_declarations(src, expected)
+        if foreign:
+            violations[path.name] = foreign
+        if foreign_public_declarations(src, "Problems.Juggler"):
+            nonstandard.add(path.stem)
+    assert not violations, violations
+    assert nonstandard == NON_STANDARD_ROOT, sorted(nonstandard)
+
+
+def test_namespace_audit_resolves_nesting_and_rejects_root_escapes() -> None:
+    source = """namespace Problems
+namespace Juggler
+section parameters
+namespace CubicGrid
+theorem local_result : True := by trivial
+end CubicGrid
+end parameters
+theorem RootCells.fact : True := by trivial
+theorem _root_.Other.escaped : True := by trivial
+end Juggler
+end Problems
+"""
+    assert foreign_public_declarations(source, "Problems.Juggler") == [("Other.escaped", 9)]
+    # A pinned module is permitted in Juggler, not in arbitrary foreign namespaces.
+    pinned = "namespace Juggler\ntheorem fact : True := by trivial\nend Juggler\n"
+    assert foreign_public_declarations(pinned, "Juggler") == []
+    assert foreign_public_declarations(pinned.replace("Juggler", "Unrelated"), "Juggler") == [
+        ("Unrelated.fact", 2)
+    ]

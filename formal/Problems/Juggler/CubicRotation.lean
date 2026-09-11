@@ -111,6 +111,64 @@ theorem rankRotation_quotient_step {L e : ℕ} (hL : 0 < L) (he : e ≤ L) (k : 
     have hq : ((k * e) % L + e) / L = 0 := Nat.div_eq_of_lt (by omega)
     omega
 
+/-- The wrap identity is valid at every initial rank, not only at zero. -/
+theorem rankRotation_quotient_step_from {L e : ℕ} (hL : 0 < L) (he : e ≤ L)
+    (a k : ℕ) :
+    (a + (k + 1) * e) / L = (a + k * e) / L +
+      if L - e ≤ (a + k * e) % L then 1 else 0 := by
+  have hr := Nat.mod_lt (a + k * e) hL
+  have hsplit := Nat.mod_add_div (a + k * e) L
+  have hex : a + (k + 1) * e =
+      ((a + k * e) % L + e) + L * ((a + k * e) / L) := by nlinarith
+  rw [hex, Nat.add_mul_div_left _ _ hL]
+  by_cases h : L - e ≤ (a + k * e) % L
+  · rw [if_pos h]
+    have hq : ((a + k * e) % L + e) / L = 1 := by
+      apply Nat.div_eq_of_lt_le <;> omega
+    omega
+  · rw [if_neg h]
+    have hq : ((a + k * e) % L + e) / L = 0 := Nat.div_eq_of_lt (by omega)
+    omega
+
+/-- Exact upper-branch prefix count with an arbitrary initial rank. -/
+theorem rankRotation_upper_prefix_from {L e a : ℕ} (ha : a < L) (he : e ≤ L)
+    (k : ℕ) :
+    (∑ j ∈ Finset.range k, if L - e ≤ (a + j * e) % L then 1 else 0) =
+      (a + k * e) / L := by
+  induction k with
+  | zero => simp [Nat.div_eq_of_lt ha]
+  | succ k ih =>
+    rw [Finset.sum_range_succ, ih]
+    exact (rankRotation_quotient_step_from (Nat.zero_lt_of_lt ha) he a k).symm
+
+/-- Exact upper-branch prefix count along any orbit of the rank translation. -/
+theorem rankRotation_upper_orbit_prefix {L e : ℕ} (he : e ≤ L)
+    (p : Fin L → Fin L) (hrot : ∀ i, (p i).val = (i.val + e) % L)
+    (i : Fin L) (k : ℕ) :
+    (∑ j ∈ Finset.range k, if L - e ≤ (p^[j] i).val then 1 else 0) =
+      (i.val + k * e) / L := by
+  simp_rw [rankRotation_iterate p hrot]
+  exact rankRotation_upper_prefix_from i.isLt he k
+
+/-- The lower visits complement the upper visits at every initial rank. -/
+theorem rankRotation_lower_orbit_prefix {L e : ℕ} (he : e ≤ L)
+    (p : Fin L → Fin L) (hrot : ∀ i, (p i).val = (i.val + e) % L)
+    (i : Fin L) (k : ℕ) :
+    (∑ j ∈ Finset.range k, if (p^[j] i).val < L - e then 1 else 0) =
+      k - (i.val + k * e) / L := by
+  have hcomp : (∑ j ∈ Finset.range k, if (p^[j] i).val < L - e then 1 else 0) +
+      (∑ j ∈ Finset.range k, if L - e ≤ (p^[j] i).val then 1 else 0) = k := by
+    rw [← Finset.sum_add_distrib]
+    have : ∀ j ∈ Finset.range k,
+        (if (p^[j] i).val < L - e then 1 else 0) +
+        (if L - e ≤ (p^[j] i).val then 1 else 0) = (1 : ℕ) := by
+      intro j _
+      split_ifs <;> omega
+    rw [Finset.sum_congr rfl this]
+    simp
+  rw [rankRotation_upper_orbit_prefix he p hrot] at hcomp
+  omega
+
 /-- The number of upper visits from rank zero is the floor of k e / L. -/
 theorem rankRotation_upper_prefix {L e : ℕ} (hL : 0 < L) (he : e ≤ L) (k : ℕ) :
     (∑ j ∈ Finset.range k, if L - e ≤ (j * e) % L then 1 else 0) = k * e / L := by

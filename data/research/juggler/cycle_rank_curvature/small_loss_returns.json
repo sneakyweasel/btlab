@@ -1,0 +1,15 @@
+{
+ "scope": "Two fixed square-start OOE controls; no cycle or infinite trajectory is asserted. Infinitude is proved analytically in Result 17.",
+ "controls": [
+  {
+   "t": 275,
+   "fractional_loss_denominator": 10,
+   "trace": [75625, 20796875, 94841217882, 307963]
+  },
+  {
+   "t": 15587,
+   "fractional_loss_denominator": 100,
+   "trace": [242954569, 3786932867003, 7369387770836580146, 2714661631]
+  }
+ ]
+}

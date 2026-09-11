@@ -1,0 +1,126 @@
+{
+  "scope": "One complete rank box; at most four sweeps, no parameter subdivision.",
+  "counts": {
+    "L": 780239,
+    "o": 492276,
+    "e": 287963
+  },
+  "initial_minimum_interval": [
+    350000001,
+    519999999
+  ],
+  "initial_grid_blocks": 4086,
+  "interval_precision": 60,
+  "controls": {
+    "integer_root_checks": true,
+    "threshold_cycle_recovered": [
+      3,
+      5,
+      11
+    ],
+    "wrong_parity_cycle_excluded": true,
+    "trivial_cycle_preserved": true
+  },
+  "sweeps": [
+    {
+      "empty": false,
+      "lower_updates": 1734068,
+      "upper_updates": 1837318,
+      "minimum_interval": [
+        350000003,
+        519999999
+      ],
+      "smallest_domain_width": 169999996,
+      "singleton_domains": 0,
+      "sweep": 1,
+      "seconds": 7.571
+    },
+    {
+      "empty": false,
+      "lower_updates": 1231770,
+      "upper_updates": 1206273,
+      "minimum_interval": [
+        350000003,
+        519999997
+      ],
+      "smallest_domain_width": 169999994,
+      "singleton_domains": 0,
+      "sweep": 2,
+      "seconds": 8.025
+    },
+    {
+      "empty": false,
+      "lower_updates": 1222769,
+      "upper_updates": 1199923,
+      "minimum_interval": [
+        350000003,
+        519999997
+      ],
+      "smallest_domain_width": 169999994,
+      "singleton_domains": 0,
+      "sweep": 3,
+      "seconds": 7.977
+    },
+    {
+      "empty": false,
+      "lower_updates": 733861,
+      "upper_updates": 754941,
+      "minimum_interval": [
+        350000005,
+        519999995
+      ],
+      "smallest_domain_width": 169999990,
+      "singleton_domains": 0,
+      "sweep": 4,
+      "seconds": 6.431
+    }
+  ],
+  "empty": false,
+  "lower_endpoints_are_actual_cycle": false,
+  "existence_inferred_from_nonempty_domains": false,
+  "minimum_census": false,
+  "pdf_operations": false,
+  "seconds": 31.447,
+  "sample_domains": [
+    {
+      "rank": 0,
+      "lower": 350000005,
+      "upper": 519999995
+    },
+    {
+      "rank": 1,
+      "lower": 350000009,
+      "upper": 520139091
+    },
+    {
+      "rank": 2,
+      "lower": 350000011,
+      "upper": 520139091
+    },
+    {
+      "rank": 287962,
+      "lower": 6546141671633,
+      "upper": 11857824312595
+    },
+    {
+      "rank": 287963,
+      "lower": 6547900513145,
+      "upper": 11857824317545
+    },
+    {
+      "rank": 492275,
+      "lower": 122456130542808971,
+      "upper": 270399996879901287
+    },
+    {
+      "rank": 492276,
+      "lower": 122500002101347866,
+      "upper": 270399997920000002
+    },
+    {
+      "rank": 780238,
+      "lower": 42851970596311470496628992,
+      "upper": 140607997566323012362201742
+    }
+  ]
+}

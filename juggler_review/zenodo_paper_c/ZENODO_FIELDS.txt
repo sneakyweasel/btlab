@@ -1,5 +1,5 @@
 GENERATED FROM docs/theory/; do not edit this export.
-Prepared metadata only; no external record has been created.
+Prepared local metadata only; this build does not create or update an external record.
 
 TITLE
 Fate Contagion and Termination Criteria for the Juggler Map

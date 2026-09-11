@@ -1,0 +1,364 @@
+{
+  "families": {
+    "fixed_controls": [
+      {
+        "s": 3,
+        "a": 1,
+        "sources": [
+          35,
+          37
+        ],
+        "O_images": [
+          207,
+          225
+        ],
+        "remainders": [
+          26,
+          28
+        ],
+        "upper_margins": [
+          389,
+          423
+        ],
+        "source_gap": 2,
+        "target_gap": 18,
+        "critical_correction": 2,
+        "source_gap_valuation": 1,
+        "target_gap_valuation": 1,
+        "height_restoration": 0,
+        "actual_E_images_when_guarded": null,
+        "two_distinct_odd_E_returns": false
+      },
+      {
+        "s": 8,
+        "a": 1,
+        "sources": [
+          255,
+          257
+        ],
+        "O_images": [
+          4072,
+          4120
+        ],
+        "remainders": [
+          191,
+          193
+        ],
+        "upper_margins": [
+          7954,
+          8048
+        ],
+        "source_gap": 2,
+        "target_gap": 48,
+        "critical_correction": 2,
+        "source_gap_valuation": 1,
+        "target_gap_valuation": 4,
+        "height_restoration": 3,
+        "actual_E_images_when_guarded": [
+          63,
+          64
+        ],
+        "two_distinct_odd_E_returns": false
+      },
+      {
+        "s": 4,
+        "a": 3,
+        "sources": [
+          61,
+          67
+        ],
+        "O_images": [
+          476,
+          548
+        ],
+        "remainders": [
+          405,
+          459
+        ],
+        "upper_margins": [
+          548,
+          638
+        ],
+        "source_gap": 6,
+        "target_gap": 72,
+        "critical_correction": 54,
+        "source_gap_valuation": 1,
+        "target_gap_valuation": 3,
+        "height_restoration": 2,
+        "actual_E_images_when_guarded": [
+          21,
+          23
+        ],
+        "two_distinct_odd_E_returns": true
+      }
+    ],
+    "legacy_RC61_pair": {
+      "blocks": [
+        {
+          "b": 3,
+          "source": 83,
+          "middle": 756,
+          "return": 27,
+          "O_remainder": 251,
+          "E_remainder": 27,
+          "O_upper_gap": 1262,
+          "E_upper_gap": 28
+        },
+        {
+          "b": 5,
+          "source": 627,
+          "middle": 15700,
+          "return": 125,
+          "O_remainder": 1883,
+          "E_remainder": 75,
+          "O_upper_gap": 29518,
+          "E_upper_gap": 176
+        }
+      ],
+      "pair": {
+        "source_gap": 544,
+        "O_target_gap": 14944,
+        "return_gap": 98,
+        "O_correction": 1632,
+        "source_gap_valuation": 5,
+        "O_target_gap_valuation": 5,
+        "O_correction_valuation": 5,
+        "O_critical": true,
+        "E_correction": 48,
+        "E_critical": false
+      },
+      "common_band": {
+        "m": 27,
+        "cutoff": 729,
+        "ceiling": 19683
+      },
+      "scope": {
+        "existing_RC61_family": true,
+        "both_complete_OE_guards_actual": true,
+        "returns_distinct_odd": true,
+        "one_common_cubic_band": true,
+        "cycle_membership_or_adjacency_asserted": false
+      }
+    },
+    "fixed_regime_RC61_adjacency_exclusion": {
+      "minimum_upper": 519999999,
+      "c_strict_upper": 23000,
+      "gamma_strict_upper": [
+        1,
+        200000
+      ],
+      "log_source_strict_upper": 41,
+      "adjacent_gap_ratio_denominator": 4800,
+      "c_ge_seven_shifted_excess_coefficients_ascending": [
+        61,
+        137,
+        39,
+        3
+      ],
+      "c_five_exact_gap": 544,
+      "c_five_upper_source": 627,
+      "excludes_adjacent_source_ranks_only": true,
+      "general_proof_is_written": true
+    },
+    "scope": {
+      "source_or_parameter_search": false,
+      "actual_cycle_constructed": false,
+      "full_rank_model_constructed": false,
+      "uniform_all_OE_charge_claimed": false,
+      "proof_scope": "symmetric compatibility theorem and existing RC61 counterfamily; written proofs"
+    }
+  },
+  "windows": {
+    "saved_domain_audit": {
+      "full_arrays_saved": false,
+      "sample_count": 8,
+      "minimum_width": 169999990,
+      "sample_residue_support": [
+        {
+          "rank": 0,
+          "residue": 1,
+          "first_member": 350000005,
+          "lower": 350000005,
+          "upper": 519999995
+        },
+        {
+          "rank": 1,
+          "residue": 3,
+          "first_member": 350000011,
+          "lower": 350000009,
+          "upper": 520139091
+        },
+        {
+          "rank": 2,
+          "residue": 1,
+          "first_member": 350000013,
+          "lower": 350000011,
+          "upper": 520139091
+        },
+        {
+          "rank": 287962,
+          "residue": 1,
+          "first_member": 6546141671633,
+          "lower": 6546141671633,
+          "upper": 11857824312595
+        },
+        {
+          "rank": 287963,
+          "residue": 3,
+          "first_member": 6547900513147,
+          "lower": 6547900513145,
+          "upper": 11857824317545
+        },
+        {
+          "rank": 492275,
+          "residue": 3,
+          "first_member": 122456130542808971,
+          "lower": 122456130542808971,
+          "upper": 270399996879901287
+        },
+        {
+          "rank": 492276,
+          "residue": 0,
+          "first_member": 122500002101347868,
+          "lower": 122500002101347866,
+          "upper": 270399997920000002
+        },
+        {
+          "rank": 780238,
+          "residue": 0,
+          "first_member": 42851970596311470496628992,
+          "lower": 42851970596311470496628992,
+          "upper": 140607997566323012362201742
+        }
+      ]
+    },
+    "boolean_controls": {
+      "all_unknown_21_window_unchanged": true,
+      "twenty_false_forces_remaining_true": true,
+      "all_false_window_rejected": true
+    },
+    "actual_OO_controls": [
+      {
+        "states": [
+          43,
+          45,
+          281,
+          301
+        ],
+        "exponent": 3,
+        "source_gap": 2,
+        "target_gap": 20,
+        "correction": -22,
+        "source_height": 1,
+        "target_product_height": 3,
+        "critical": true
+      },
+      {
+        "states": [
+          49,
+          81,
+          343,
+          729
+        ],
+        "exponent": 3,
+        "source_gap": 32,
+        "target_gap": 386,
+        "correction": 0,
+        "source_height": 5,
+        "target_product_height": 5,
+        "critical": false
+      }
+    ],
+    "symmetric_OE_controls": [
+      {
+        "states": [
+          15,
+          17,
+          58,
+          70
+        ],
+        "exponent": 3,
+        "source_gap": 2,
+        "target_gap": 12,
+        "correction": 2,
+        "source_height": 1,
+        "target_product_height": 9,
+        "critical": true,
+        "s": 2,
+        "E_outputs": [
+          7,
+          8
+        ],
+        "distinct_odd_E_outputs": false
+      },
+      {
+        "states": [
+          143,
+          145,
+          1710,
+          1746
+        ],
+        "exponent": 3,
+        "source_gap": 2,
+        "target_gap": 36,
+        "correction": 2,
+        "source_height": 1,
+        "target_product_height": 9,
+        "critical": true,
+        "s": 6,
+        "E_outputs": [
+          41,
+          41
+        ],
+        "distinct_odd_E_outputs": false
+      }
+    ],
+    "compatible_symmetric_OE_control": {
+      "s": 4,
+      "a": 3,
+      "O_pair": {
+        "states": [
+          61,
+          67,
+          476,
+          548
+        ],
+        "exponent": 3,
+        "source_gap": 6,
+        "target_gap": 72,
+        "correction": 54,
+        "source_height": 1,
+        "target_product_height": 13,
+        "critical": true
+      },
+      "E_pair": {
+        "states": [
+          476,
+          548,
+          21,
+          23
+        ],
+        "exponent": 1,
+        "source_gap": 72,
+        "target_gap": 2,
+        "correction": -16,
+        "source_height": 3,
+        "target_product_height": 3,
+        "critical": false
+      },
+      "minimum_anchor": 21,
+      "distinct_odd_outputs": [
+        21,
+        23
+      ]
+    },
+    "scope": {
+      "no_new_full_sweeps": true,
+      "no_minimum_subdivision": true,
+      "full_rank_domains_reconstructed": false,
+      "actual_domain_pruning_claimed": false,
+      "residue_pattern_is_not_a_full_cell_solution": true,
+      "open_controls_are_not_cycles": true
+    }
+  }
+}

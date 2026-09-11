@@ -14,6 +14,7 @@ import json
 import os
 from pathlib import Path
 import re
+import runpy
 import shutil
 import subprocess
 
@@ -29,7 +30,10 @@ EDITORIAL = [SOURCE, "docs/theory/juggler_finite_dynamics_formalization.md",
              "docs/theory/juggler_finite_dynamics_reviewer_packet.md"]
 BUILD_INPUTS = ["tools/build_paper_a.py", "tools/paper_a/article.tex",
                 "tools/paper_a/layout.lua", "tools/check_paper_a_numeric.py",
-                "src/research/juggler_sequence/paper_a_audit.py"]
+                "tools/trust_boundary.py",
+                "src/research/juggler_sequence/paper_a_audit.py",
+                "src/research/juggler_sequence/cycle_rank_curvature.py",
+                "data/research/juggler/cycle_rank_curvature/controls.json"]
 PDF_EXPORTS = [f"juggler_review/{STEM}.pdf",
                f"web/juggler-companion/public/papers/{STEM}.pdf",
                "juggler_review/zenodo_paper_a/Lower_bounds_for_nontrivial_cycles_of_the_Juggler_map.pdf"]
@@ -48,15 +52,10 @@ def input_files(root: Path) -> list[str]:
     names = set(EDITORIAL + BUILD_INPUTS + ["formal/lean-toolchain",
                 "formal/lake-manifest.json", "formal/AxiomCheckPaperA.lean",
                 "formal/AxiomCheckPaperA.expected"])
-    pending = ["formal/Problems/JugglerPaper.lean"]
-    while pending:
-        name = pending.pop()
-        if name in names:
-            continue
-        names.add(name)
-        text = (root / name).read_text(encoding="utf-8")
-        for module in re.findall(r"^import\s+(Problems\.[\w.]+)", text, re.M):
-            pending.append("formal/" + module.replace(".", "/") + ".lean")
+    audit = runpy.run_path(str(Path(__file__).with_name("trust_boundary.py")))
+    modules = audit["reachable_module_names"](
+        root / "formal/Problems/JugglerPaper.lean", formal_root=root / "formal")
+    names.update("formal/" + module.replace(".", "/") + ".lean" for module in modules)
     return sorted(names)
 
 

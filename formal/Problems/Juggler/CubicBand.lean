@@ -49,6 +49,7 @@ theorem thresholdMap_ne_self {b x : ℕ} (hb : 3 ≤ b)
 theorem cubicBand_parity_iff {m x : ℕ}
     (hx : InCubicBand m x) (hj : InCubicBand m (floorPower x)) :
     x % 2 = 1 ↔ x < m ^ 2 := by
+  rcases hx with ⟨_, _⟩
   constructor
   · intro ho
     by_contra h
@@ -102,11 +103,11 @@ theorem twoBlock_rank_rotation {L o : ℕ} (ho : o ≤ L)
     intro a b hab
     dsimp [q]
     split_ifs with ha hb hb
-    · apply hhi <;> simp only [Fin.lt_def, Fin.val_mk] at * <;> omega
-    · apply hsep <;> simp only [Fin.val_mk] <;> omega
+    · apply hhi <;> simp only [Fin.lt_def] at * <;> omega
+    · apply hsep <;> simp only <;> omega
     · simp only [Fin.lt_def] at hab
       omega
-    · apply hlo <;> simp only [Fin.lt_def, Fin.val_mk] at * <;> omega
+    · apply hlo <;> simp only [Fin.lt_def] at * <;> omega
   have hident : ∀ j, p (q j) = j := fun _ => hmono.apply_eq
   by_cases hi : i.val < o
   · let j : Fin L := ⟨i.val + (L - o), by omega⟩
@@ -114,7 +115,7 @@ theorem twoBlock_rank_rotation {L o : ℕ} (ho : o ≤ L)
       dsimp [q, j]
       rw [dif_neg (by omega)]
       apply Fin.ext
-      simp only [Fin.val_mk]
+      simp only
       omega
     have hj := congrArg Fin.val (hident j)
     simpa [Function.comp_apply, hq, j, hi] using hj
@@ -123,7 +124,7 @@ theorem twoBlock_rank_rotation {L o : ℕ} (ho : o ≤ L)
       dsimp [q, j]
       rw [dif_pos (by omega)]
       apply Fin.ext
-      simp only [Fin.val_mk]
+      simp only
       omega
     have hj := congrArg Fin.val (hident j)
     simpa [Function.comp_apply, hq, j, hi] using hj

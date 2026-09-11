@@ -1,4 +1,7 @@
 import Problems.Juggler.Dynamics
+import Problems.Juggler.RootCells
+import Problems.Juggler.NumericBridge
+import Problems.Juggler.LogCells
 import Problems.Juggler.Iteration
 import Problems.Juggler.Termination
 import Problems.Juggler.Itinerary
@@ -48,6 +51,7 @@ import Problems.Juggler.CubicBand
 import Problems.Juggler.CubicRotation
 import Problems.Juggler.CubicGrid
 import Problems.Juggler.CubicLogGrid
+import Problems.Juggler.CubicUpperCells
 import Problems.Juggler.CubicRounding
 import Problems.Juggler.CubicInterlacing
 import Problems.Juggler.CubicConsequences
@@ -65,12 +69,15 @@ import Problems.Juggler.ReturnWordBounds
 import Problems.Juggler.ReturnWordFactorization
 import Problems.Juggler.ReturnSeams
 import Problems.Juggler.ReturnRankedCycle
+import Problems.Juggler.CubicOrbitCharge
+import Problems.Juggler.CubicChargeMonotonicity
 import Problems.Juggler.ReturnQuotients
 import Problems.Juggler.ReturnCycleTransfers
 import Problems.Juggler.ReturnGapHeight
 import Problems.Juggler.ReturnTransferHeight
 import Problems.Juggler.ReturnTerminal
 import Problems.Juggler.ReturnOrbitStrips
+import Problems.Juggler.UpperSquareGap
 
 /-!
 # Juggler paper barrel (Paper A)
@@ -211,6 +218,9 @@ The note's Lean-tagged theorems are listed in its Appendix A:
       theorem `hugCharge_sub_circleMean_window` has scope `L < 301994`.
       The paper's extension to the half-open window ending at
       `q₁₄ = 16785921` is human arithmetic, not a named Lean instance
+* Lemma 6.3a `cube_add_one_ne_odd_succ_sq`,
+      `floorPower_odd_image_upper_gap` (`UpperSquareGap.lean`):
+      the local odd-to-odd upper-square complement is at least three.
 * short certificates (Section 6):
       `even_finiteProgress`, `odd_even_finiteProgress`
 * no certificate implies odd-to-odd:

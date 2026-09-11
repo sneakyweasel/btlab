@@ -5,6 +5,7 @@ from __future__ import annotations
 import re
 
 from research.juggler_sequence.lean_paths import (
+    AUXILIARY_MODULES,
     DELETED_ENGINE,
     JUGGLER_DIR,
     JUGGLER_PAPER_BARREL,
@@ -64,6 +65,13 @@ def test_layers_exist_and_are_sorry_free():
         body = path.read_text(encoding="utf-8")
         for token in INCOMPLETE:
             assert token not in body, f"{name} contains {token}"
+
+
+def test_every_juggler_source_has_an_explicit_inventory_role():
+    sources = {path.stem for path in JUGGLER_DIR.glob("*.lean")}
+    assert not (set(LAYERS) & set(AUXILIARY_MODULES))
+    assert sources == set(LAYERS) | set(AUXILIARY_MODULES)
+    assert all(AUXILIARY_MODULES.values())
 
 
 def test_imports_are_one_way():

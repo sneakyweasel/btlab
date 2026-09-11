@@ -1,14 +1,245 @@
 [
  {
+  "id": "J-cubic-critical-ooe-pair-obstruction",
+  "tag": "EXACT — HUMAN PROOF",
+  "source": "docs/problems/juggler_cycle_rank_curvature.md",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_rank_curvature.py"
+  ],
+  "related_conjectures": [],
+  "lean": "",
+  "statement": "For every c>0 and H, there are odd parameters s with 4s^2-1>H for which both exact critical OO starts 4s^2±1 ->8s^3±3s extend through even second O images to distinct odd OOE returns. Their first paired correction is 2 and all six individual log-log losses divided by their respective floor-cell caps are below c. All eight states lie in one cubic band, and all four ordinary pair log-log gaps tend to zero as s grows. The four-phase equidistribution proof retains every floor and parity guard. This refutes a uniform positive local charge even with distinct OOE returns and isolated upper-spacing ceilings. It asserts neither a hit in the fixed minimum window nor membership in a complete sorted cycle, cyclic packing, an infinite orbit or no-cycle. AI-assisted written proof, independently AI-audited; human review and Lean verification of the analytic and infinitude argument remain outstanding."
+ },
+ {
+  "id": "J-cubic-ooe-square-start-packing",
+  "tag": "EXACT — HUMAN PROOF",
+  "source": "docs/problems/juggler_cycle_rank_curvature.md",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_rank_curvature.py"
+  ],
+  "related_conjectures": [],
+  "lean": "",
+  "statement": "In the actual primitive cubic regime(L,o,e)=(780239,492276,287963),350000000<m<520000000, the first 83650 ranks are OOE starts and the saved outward rank envelope places them below 80000^2. Zero first O loss occurs only at odd-square sources, whose possible odd parameters are 18709 through 79939: at most 30616 states. Therefore at least 53034 first O remainders are positive even integers, and their raw sum is at least 106068. A coarse strict loss lower bound is 106068/(69*512000000000000^2), approximately 5.86402e-27, which is far below the required fixed surplus>3e-6. This counts positive remainders, not deviations from actual type minima, and proves no positive constant for later return losses or count-pair exclusion. It is a written counting corollary of prior grid enclosures with exact scalar controls; the full cycle implication is not formalized and human review remains outstanding."
+ },
+ {
+  "id": "J-cubic-critical-cost-compatibility",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For s>=2 and positive odd a<=s, assume x_±=4s^2±a have exact odd-branch images y_±=8s^3±3sa, that both images are even, and that their E images are distinct odd integers. Then the critical correction is r=2a^3, 27r^2>32s^3, and each O log-log defect divided by its target cap eta(y)=loglog(y+1)-loglog(y) is greater than 1/23. This is only a symmetric-family theorem. Individual O pairs with a=1 have minimum critical correction 2 and normalized costs tending to zero; their even-s members fail the distinct odd next-return condition. The separate established RC61 family b^4+2 -> b^6+3b^2 -> b^3 at odd b<c has critical O correction 3(c^4-b^4), distinct complete OE returns and arbitrarily small normalized losses along c=b+2. In the fixed primitive cubic regime (L,o,e)=(780239,492276,287963), 350000000<m<520000000, no two distinct RC61 O sources can be adjacent sorted cycle ranks: the existing rank-gap bound gives gap<(c^4+2)/4800, whereas odd parameters 3<=b<c<23000 implies the reverse strict inequality. The shared mod4/window relaxation still admits all selected R events critical; no full-domain pruning is claimed. AI-assisted written proofs with independent human review outstanding; real normalization, general symmetric family identities and full cycle applications remain written; the unit-offset identities are subsequently formalized in Result23. No count pair or general cycle existence question is settled.",
+  "source": "docs/problems/juggler_cycle_rank_curvature.md",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_rank_curvature.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py"
+  ],
+  "related_conjectures": [],
+  "lean": ""
+ },
+ {
+  "id": "J-cubic-critical-cost-kernels",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For positive N,B,l,lprime with N odd and signed r=N*l-B*lprime, Critical l r iff v2(l)<v2(B)+v2(lprime). Even inputs x,y=x+D with distinct ordered odd proposed outputs t<q, supplied upper cell x<(t+1)^2 and lower cell q^2<=y satisfy D>=2t+6 and D^2>4x. Given s>=2, 1<=a<=s, the additive symmetric middle-state equations, their even parity, distinct odd outputs, and those two cell halves, symmetric_family_cost proves 5s<9a^2, s<2a^2 and s^3<3s^2*a^2-a^3. Finally distinct odd parameters 3<=b<c<23000 satisfy c^4+2<4800*(c^4-b^4). The logarithmic charge and actual cycle interpretation remain separate written bridges; no cycle construction or no-cycle theorem is formalized here. Consolidation preserves the original four signatures and adds actual Nat.sqrt separation and cost consumers; the separated polynomial helper proves 2s<3a^2, 32s^3<27*(2a^3)^2, the raw remainder bound and 2*yplus+1<23*Rminus. For every s>=1, symmetric_unit_odd_cells proves the exact prescribed O outputs of 4s^2±1 and the two remainder identities 3s^2±1. No equidistribution, infinitude, real normalized charge or full cycle theorem is included.",
+  "source": "docs/problems/juggler_cycle_rank_curvature.md",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_rank_curvature.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py"
+  ],
+  "related_conjectures": [],
+  "lean": "Problems/Juggler/CriticalCostKernel.lean",
+  "decl": [
+   "critical_iff_valuation_lt",
+   "even_cells_separation",
+   "even_sqrt_separation",
+   "symmetric_family_cost_of_separation",
+   "symmetric_family_cost",
+   "symmetric_family_sqrt_cost",
+   "quartic_family_gap",
+   "symmetric_unit_odd_cells"
+  ],
+  "lean_trust": "kernel"
+ },
+ {
+  "id": "J-cubic-critical-selected-pair-localization",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For an actual primitive nontrivial cubic Juggler cycle at (L,o,e)=(780239,492276,287963) in the established window 350000000<m<520000000, the sharp log-log grid and two outward-certified rank boundary comparisons give v2(ell_i)<=25 for i<204313 and <=19 for i<83650. Merging these caps with the mechanical critical-free suffix inequality forces every contracted even-gap block to have at most 21 vertices. Hence C>=37155 critical corrections, T>=37157 nonzero corrections, and S>=18577 deviations from any three chosen OO/OE/EO remainder constants. For chronological R=[478245,780239) and Q=[176251,478245), every 21-source R-window contains a critical event. Translation by 478245 pairs R bijectively and disjointly with Q at adjacent same-type source ranks. At least 14380 such pairs have unequal raw remainders; thus at least 14380 deviations from any typewise constants lie in Q union R. Absolute paired raw variation is at least 28760; choosing actual type minima gives at least 28760 raw excess units in Q union R and at least 37154 globally. This is an AI-assisted written actual-cycle proof with separately certified real scalar bounds; independent human review and the full Lean cycle assembly remain outstanding. No helpful normalized sign, count-pair exclusion, no-cycle theorem or changed floor/period bound follows.",
+  "source": "docs/problems/juggler_cycle_rank_curvature.md",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_rank_curvature.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py"
+  ],
+  "related_conjectures": [],
+  "lean": ""
+ },
+ {
+  "id": "J-cubic-critical-localization-kernels",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Conditional kernels: a positive integer gap below 2^(H+1) has binary valuation at most H. A finite rank path below 780239, with successors adding 287963 modulo 780239, supplied valuation caps 25 below 204313 and 19 below 83650, and supplied suffixHeight(d)=d+1+(d-1)*287963/780239 lower bounds (natural subtraction) has at most 21 vertices. Finite block lengths summing 780237 and bounded by 21 need at least 37155 blocks; supplied correction/support inequalities give T>=37157 and S>=18577. Generic disjoint-window hitting implies floor(n/w) event count, with an interval-filtered variant; the fixed R arc yields 14380. Explicit injective witnesses or disjoint responsible pairs transfer event count to deviation count. Real gap-cap certification, extraction of critical-free cycle blocks and actual R/Q pair coverage are not formalized by these conditional consumers.",
+  "source": "docs/problems/juggler_cycle_rank_curvature.md",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_rank_curvature.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py"
+  ],
+  "related_conjectures": [],
+  "lean": "Problems/Juggler/CubicCriticalLocation.lean",
+  "decl": [
+   "valuation_le_of_lt_pow_succ",
+   "valuation_le_twenty_five",
+   "valuation_le_nineteen",
+   "suffixHeight",
+   "three_rank_low",
+   "highlow_two_step_tiny",
+   "block_length_le_twenty_one",
+   "fixed_block_count_lower",
+   "fixed_nonzero_lower",
+   "fixed_deviation_lower",
+   "block_hits_card",
+   "window_hits_card",
+   "window_hits_interval_card",
+   "r_arc_critical_count",
+   "r_arc_interval_critical_count",
+   "injective_deviation_count",
+   "disjoint_pair_deviation_count",
+   "r_arc_deviation_count"
+  ],
+  "lean_trust": "kernel"
+ },
+ {
+  "id": "J-cubic-critical-run-gap-budget",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For an actual primitive nontrivial cubic Juggler cycle, let h_i=v2(ell_i) for its positive lifted integer gaps and call i critical when r_i!=0 and v2(|r_i|)=h_i in the exact signed gap recurrence. Every noncritical edge retains h_i>=v2(B_i)+h_sigma(i). Deleting the two consecutive odd gaps leaves N=L-2 even gaps in C nonempty blocks, where C is the critical count. Even-pair divisibility and the mechanical rank rotation give block cost F(n)=sum_(d=0)^(n-1) 2^(d+1+floor(max(d-1,0)*e/L)). Therefore m^3-m>=4+sum_j F(n_j), with sum n_j=L-2. Convexity yields C*(q*D_q-F(q))+(m^3-m)>=(L-2)*D_q+4, where D_q=F(q+1)-F(q), for every q>=1. At (L,o,e)=(780239,492276,287963), the prior m<520000000 and q=53 force C>=14569, at least14571 nonzero corrections, and S>=7284 deviations from any three chosen source-type remainder constants. Choosing block minima gives at least14568 excess raw remainder units. The support also gives an unsigned target-normalized loss bound; signed placement is not forced. AI-assisted written actual-cycle proof; independent human review and full Lean cycle assembly remain outstanding. No count-pair exclusion, no-cycle theorem, new floor or period bound follows.",
+  "source": "docs/problems/juggler_cycle_rank_curvature.md",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_rank_curvature.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py"
+  ],
+  "related_conjectures": [],
+  "lean": ""
+ },
+ {
+  "id": "J-cubic-critical-run-kernels",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Conditional kernels: a signed correction from positive N*l-B*l' with odd N that is not Critical retains v2(B)+v2(l')<=v2(l). Even endpoints with a difference divisible by four have sum divisible by four. Unit valuation drops and supplied per-edge bonuses telescope along any finite path. At the fixed rank counts, the defined integer runCost has increasing increments and a universally proved affine lower bound touching lengths53 and54. Exact evaluations plus finite summation show any positive block lengths summing780237, supplied costs at least runCost, odd-gap allowance4 and totalGap<=519999999^3-519999999 require at least14569 blocks. Numerical support/filter adapters give S>=7284 and T>=14571 from their explicitly supplied cardinality hypotheses. These statements do not extract the critical blocks or their costs from an actual cycle; the general mechanical-visit and cycle assembly are the written Result20 proof.",
+  "source": "docs/problems/juggler_cycle_rank_curvature.md",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_rank_curvature.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py"
+  ],
+  "related_conjectures": [],
+  "lean": "Problems/Juggler/CubicConstraintFusion.lean",
+  "decl": [
+   "Critical",
+   "valuation_sub_of_lt",
+   "noncritical_valuation_budget",
+   "even_sum_dvd_four_of_gap",
+   "weighted_run_budget",
+   "runIncrement",
+   "runCost",
+   "runIncrement_monotone",
+   "runCost_succ",
+   "runCost_affine_53",
+   "runIncrement_52",
+   "runCost_53",
+   "runCost_54",
+   "affine_block_cost_sum",
+   "run_cost_affine_budget",
+   "fixed_critical_count_lower",
+   "fixed_run_budget_critical_count_lower",
+   "fixed_deviation_lower",
+   "fixed_nonzero_lower"
+  ],
+  "lean_trust": "kernel"
+ },
+ {
+  "id": "J-cubic-remainder-variation",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Every actual primitive nontrivial cubic Juggler cycle with minimum m>1, maximum M<m^3, sorted states c_i and source blocks OO/OE/EO obeys L<=(H+1)(3+2S), where H is the maximum 2-adic valuation of the positive lifted gaps c_(i+1)-c_i and m^3-M, and S counts remainders differing from any one chosen constant per block. Every zero correction in the exact lifted-gap recurrence has an even denominator and strictly drops valuation; hence L<=(H+1)T for the nonzero-correction count T. At (L,o,e)=(780239,492276,287963), the previously proved m<520000000 gives H<=86, T>=8969, S>=4483. Choosing block minima forces at least 8966 total excess raw square-remainder units. This is an AI-assisted written actual-cycle proof, with independent human review outstanding. The conditional arithmetic/counting kernels are separately Lean verified; full cycle extraction, seam corrections and deviation cover are not yet assembled in Lean. No signed-loss bound, no-cycle result, new height or period exclusion, or claim of 4483 distinct remainder values follows.",
+  "source": "docs/problems/juggler_cycle_rank_curvature.md",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_rank_curvature.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py"
+  ],
+  "related_conjectures": [],
+  "lean": ""
+ },
+ {
+  "id": "J-cubic-remainder-variation-kernels",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Finite arithmetic kernels: N*l=B*l' for positive naturals and odd N transports 2-adic valuation exactly; even B forces a strict drop. A permutation potential bounded by H, nonincreasing off T and strictly decreasing off E union T, has cardinality at most |E|+(H+1)|T|. With strict drop off T the exception term vanishes. Covering T by at most three boundaries, a deviation set S and its predecessor image gives cardinality <=(H+1)(3+2|S|). The arithmetic consumer derives this from supplied positive gaps, off-T odd/even factors and product equations, valuation ceiling and support cover. Numeric consequences with cardinality 780239 and H<=86 give |T|>=8969 and |S|>=4483. These are conditional kernels only; construction of these inputs from an actual cubic cycle remains the written Result 19 proof.",
+  "source": "docs/problems/juggler_cycle_rank_curvature.md",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_rank_curvature.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py"
+  ],
+  "related_conjectures": [],
+  "lean": "Problems/Juggler/CubicRemainderVariation.lean",
+  "decl": [
+   "valuation_balance",
+   "valuation_target_le_source",
+   "valuation_drop",
+   "card_le_exception_add_reset",
+   "strict_off_reset_count",
+   "reset_card_le_boundary_add_twice",
+   "card_le_three_block_deviations",
+   "strict_three_block_deviations",
+   "arithmetic_three_block_deviations",
+   "fixed_count_reset_lower",
+   "fixed_count_deviation_lower"
+  ],
+  "lean_trust": "kernel"
+ },
+ {
+  "id": "J-square-start-ooe-cells",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For a natural square start t^2, the prescribed OOE output equals z exactly when z^4<=t^9<(z+1)^4. If t is odd, v is even, v^2<=t^9<(v+1)^2, and the fourth-power cell holds, the actual Juggler chain is t^2 -> t^3 -> v -> z. Final odd parity remains an additional condition when using this as a return to an odd section. The statements formalize the exact cell and source-guard reduction only; no equidistribution, analytic small-loss bound, infinitude, cycle, or escape theorem is formalized here.",
+  "source": "docs/problems/juggler_cycle_rank_curvature.md",
+  "lean": "Problems/Juggler/ReturnCells.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_rank_curvature.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py"
+  ],
+  "related_conjectures": [],
+  "decl": [
+   "ooe_sq_eq_iff",
+   "ooe_sq_cell",
+   "ooe_sq_actual_of_cells"
+  ],
+  "lean_trust": "kernel"
+ },
+ {
+  "id": "J-return-small-normalized-loss",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For every c>0 and H there is an actual OOE block x->u->v->z with x>H, odd/odd/even/odd parities, x<z<u<x^2<=v<x^3, first log-log defect zero, and both later defects less than c times their respective actual target caps eta. Its total loss is less than c times the sum of all three caps. The square starts x=t^2 come from joint equidistribution modulo one of (t^(9/2)/2,t^(9/4)/2) along odd t, with exact nested-root reduction; only fixed phase boxes are used. The explicit OE family b^4+2 -> b^6+3b^2 -> b^3 likewise has all cap-normalized losses tending to zero. Thus no positive uniform local compensation fraction holds for these genuine returns. This is an AI-assisted written derivation from classical van der Corput and Weyl results; independent human review remains outstanding. The exact square-start cell bridge is separately Lean verified. No shrinking-target rate, closed-cycle mean bound, orbit concatenation, escape, or cycle realization is claimed.",
+  "source": "docs/problems/juggler_cycle_rank_curvature.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_rank_curvature.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-ooe-polynomial-tail-departure",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For a positive-leading polynomial P of degree d>=2 which is positive integer-valued on an eventual integer tail, at least one of every three sufficiently large consecutive parameters n has prescribed A(P(n)) outside that same eventual value set, where A(x)=E(O(O(x))) and 0<=x^(9/8)-A(x)<2. The inverse-polynomial target coordinate has positive second difference asymptotic to (9C/64)n^(-7/8); a return parameter differs from it by O(n^(-(9/8)(d-1))), so three integer returns are impossible. Arbitrary target parameters and fixed source progressions are allowed. This is a full-domain obstruction, not an exclusion of sparse orbits or general escape. AI-assisted written proof; no new Lean verification or independent human review.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_ooe_escape_families.py"
+  ],
+  "related_conjectures": []
+ },
+ {
   "id": "J-odd-image-upper-square-gap",
   "tag": "EXACT — LEAN VERIFIED",
   "statement": "For odd natural numbers x and y with x^3<(y+1)^2, one has x^3+3<=(y+1)^2. If the positive odd upper-square complement were one, then y(y+2)=x^3; coprimality forces two positive cubes differing by two, which is impossible. Specialized in Lean to every actual odd-to-odd floorPower edge. This is a local arithmetic refinement only; no no-cycle conclusion, period or descent-floor improvement, or external novelty is claimed. The subsequent logarithmic cap comparison and global symbolic audits are written analysis, outside this Lean claim.",
-  "source": "docs/problems/juggler_cycle_rank_curvature.md",
-  "lean": "Problems/Juggler/UpperSquareGap",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/UpperSquareGap.lean",
   "tests": [
    "tests/research/juggler_sequence/test_layer_architecture.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "cube_add_one_ne_odd_succ_sq",
+   "floorPower_odd_image_upper_gap"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-cycle-rank-capacity-envelope",
@@ -36,7 +267,7 @@
   "id": "J-ooe-escape-residue-obstruction",
   "tag": "EXACT — HUMAN PROOF",
   "statement": "For every even Q>=2, odd 1<=a<Q and integer h>=1, set t=2Qh and x=t^8+a. Exact square margins prove O(x)=t^12+(3a/2)t^4 is even. Thus every odd residue class contains arbitrarily large sources failing the second-O guard, and no nonempty eventual union of odd residue classes is a fully guarded all-OOE invariant domain. Finite fixed polynomial congruences are included; floor-output predicates, variable moduli and thin nonperiodic subsets are not. AI-assisted written proof, not Lean or independently human reviewed. No escape or no-escape theorem.",
-  "source": "docs/problems/juggler_ooe_escape_families.md",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
   "lean": "",
   "tests": [
    "tests/research/juggler_sequence/test_ooe_escape_families.py"
@@ -90,9 +321,9 @@
  {
   "id": "J-cycle-later-return-certificate",
   "tag": "EXACT — HUMAN PROOF",
-  "statement": "For a prescribed word with full ideal exponent 0<p<1 and every proper tail q_j=p/p_j<1, two traces whose sources and proper states are at least m>=1 satisfy 0<=F(z)-F(w)<p*m^(p-1)*(z-w)+K_W(m), where K_W=1+sum(q_j*m^(q_j-1)). The condition 2*p*m^(p-1)+K_W<=2 forces strict contraction on gaps at least two. For p>1/2 and a proper prefix this sufficient certificate requires m>(2p)^(1/(1-p)); hence it cannot hold uniformly at a fixed minimum for a family with p approaching one from below. This is a limitation of the one-sided error estimate, not a counterexample to true paired contraction or a claim that every possible later upper word has these exponents. The exact transported loss, paired bound and necessary finite minimum threshold are kernel checked in ReturnWordLoss/ReturnWordBounds. The p-to-one asymptotic interpretation remains written, so this combined row retains its written-proof tag. No no-cycle conclusion.",
+  "statement": "For a prescribed word with full ideal exponent 0<p<1 and every proper tail q_j=p/p_j<1, two traces whose sources and proper states are at least m>=1 satisfy 0<=F(z)-F(w)<p*m^(p-1)*(z-w)+K_W(m), where K_W=1+sum(q_j*m^(q_j-1)). The condition 2*p*m^(p-1)+K_W<=2 forces strict contraction on gaps at least two. For p>1/2 and a proper prefix this sufficient certificate requires m>(2p)^(1/(1-p)); hence it cannot hold uniformly at a fixed minimum for a family with p approaching one from below. This is a limitation of the one-sided error estimate, not a counterexample to true paired contraction or a claim that every possible later upper word has these exponents. The exact transported loss, paired bound and necessary finite minimum threshold are kernel checked in ReturnWordLoss, retaining the published ReturnWordBounds namespace for the threshold. The p-to-one asymptotic interpretation remains written, so this combined row retains its written-proof tag. No no-cycle conclusion.",
   "source": "docs/theory/juggler_finite_dynamics_note.md",
-  "lean": "Problems/Juggler/ReturnWordBounds.lean",
+  "lean": "Problems/Juggler/ReturnWordLoss.lean",
   "tests": [
    "tests/research/juggler_sequence/test_cycle_later_returns.py"
   ],
@@ -115,16 +346,25 @@
  },
  {
   "id": "J-cycle-terminal-mixed-gap",
-  "tag": "EXACT — HUMAN PROOF",
-  "statement": "The Euclidean return pair U,V admits exact chronological factors UV=P OE Q and VU=P EO Q, initially P=O,Q=OE. Left substitution sends P to U P; right substitution sends Q to Q V. At a primitive actual cubic-band cycle terminal section {m,v}, the common prefix P takes the adjacent pair to the largest odd/smallest even source pair (h,s); OE/EO takes it to (t,q)=(E(M),O(m)); Q returns it to (m,v). For odd m>=3, h<m^2,s>=m^2+1 imply 0<q-t<s-h. This mixed contraction does not imply total contraction: the uncontrolled prefix P contributes amplification and p_P*(3/4)*p_Q=3^o/2^L>1. A new joint prefix/suffix cell estimate or terminal absolute-loss calibration is still required. All cycle memberships and intermediate guards are retained. The substitution factorization, guarded two-rank adapter and local signed cut inequality are now kernel checked in ReturnWordFactorization/ReturnCycleTransfers/ReturnTerminal. Global adjacency identification and primitive termination remain written; this combined row retains its written-proof tag. Not a no-cycle theorem.",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Every actual positive periodic orbit with minimum m>=3, attained maximum M<m^3 and all states in [m,M] supplies a primitive terminal two-base section {m,v}. The supplied period need not be least. The original adjacent pair follows induced words U,V with U(m)=v and V(v)=m, and guarded factors UV=P OE Q, VU=P EO Q. Their common prefix reaches the globally adjacent largest odd/smallest even pair (h,s), with O(h)=M and E(s)=m. The common suffix returns (floor(sqrt M),O(m)) to (m,v), and 0<O(m)-floor(sqrt M)<s-h. The periodic-set interface explicitly requires connectedness; the ordinary-orbit interface derives it. Primitive termination, original-set adjacency, exact cut identification and every guard are kernel checked. No contraction of the complete prefix/mixed/suffix passage or no-cycle conclusion is asserted. The stronger TerminalOrbitCut interface is indexed by the same PeriodicOrbitModel used for charge: terminal word lengths sum to its true least period, and odd/even totals equal the parity-filter cardinalities of its sorted states.",
   "source": "docs/theory/juggler_finite_dynamics_note.md",
   "lean": "Problems/Juggler/ReturnTerminal.lean",
   "tests": [
-   "tests/research/juggler_sequence/test_cycle_later_returns.py"
+   "tests/research/juggler_sequence/test_cycle_later_returns.py",
+   "tests/research/juggler_sequence/test_lean_interface_contracts.py"
   ],
   "related_conjectures": [],
   "lean_trust": "kernel",
-  "decl": "mixed_gap"
+  "decl": [
+   "mixed_gap",
+   "periodicExtrema_terminal_cut",
+   "periodicOrbit_terminal_cut",
+   "TerminalOrbitCut",
+   "terminal_cut_from_section",
+   "periodicOrbit_terminal_totals",
+   "cycleMin_terminal_totals"
+  ]
  },
  {
   "id": "J-cycle-direction-change-contraction",
@@ -500,13 +740,18 @@
  {
   "id": "J-cycle-absolute-cell-grid-charge",
   "tag": "EXACT — HUMAN PROOF",
-  "statement": "For a primitive exact threshold cycle S_b, or an actual Juggler cycle with minimum m>1 and maximum M<m^3, let L,o be its period and lower/odd count, T=log 3, Lambda=o log 3-L log 2>0, and A=(log m) exp(-(1-1/L)Lambda)>0. Then Lambda < exp(-A)/A times the finite sum over 0<=i<L of exp(-i T(A+1)/L), and exp(A) A(A+1)Lambda < A+1+L/T. The exact upper unit cells bound each logarithmic defect by 1/(y log y); the sorted grid bounds the total by a geometric sum. Along sequences with log m tending to infinity, log m=o(L), and Lambda log m tending to zero, this yields m(log m)^2 Lambda <= (1+o(1))L/log 3. In the explicitly conditional regime Lambda~c/L and polynomially growing m, this narrows the necessary scale to m(log m)^2<=(1+o(1))L^2/(c log 3). No uniform lower bound of order 1/L for Lambda is asserted. The result also holds for wrong-parity threshold cycles and does not prove a parity obstruction, no-cycle, or a new numerical period bound. AI-assisted written proof with a separate AI audit; no new Lean verification or independent human review claimed.",
-  "source": "docs/problems/juggler_cycle_absolute_cells.md",
-  "lean": "",
+  "statement": "For a primitive exact threshold cycle S_b, or an actual Juggler cycle with minimum m>1 and maximum M<m^3, let L,o be its period and lower/odd count, T=log 3, Lambda=o log 3-L log 2>0, and A=(log m) exp(-(1-1/L)Lambda)>0. Then Lambda < exp(-A)/A times the finite sum over 0<=i<L of exp(-i T(A+1)/L), and exp(A) A(A+1)Lambda < A+1+L/T. The exact upper unit cells bound each logarithmic defect by 1/(y log y); the sorted grid bounds the total by a geometric sum. Along sequences with log m tending to infinity, log m=o(L), and Lambda log m tending to zero, this yields m(log m)^2 Lambda <= (1+o(1))L/log 3. In the explicitly conditional regime Lambda~c/L and polynomially growing m, this narrows the necessary scale to m(log m)^2<=(1+o(1))L^2/(c log 3). No uniform lower bound of order 1/L for Lambda is asserted. The result also holds for wrong-parity threshold cycles and does not prove a parity obstruction, no-cycle, or a new numerical period bound. The exact finite and scaled scalar inequalities are kernel checked in CubicUpperCells. The asymptotic consequences remain written, so this combined row retains its written-proof tag. Independent human review is not claimed.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/CubicUpperCells.lean",
   "tests": [
    "tests/research/juggler_sequence/test_cycle_cubic_band.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "power_cells_grid_charge",
+   "power_cells_scaled_charge"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-cycle-absolute-cell-extrema",
@@ -8883,5 +9128,81 @@
   ],
   "related_conjectures": [],
   "statement": "Every actual positive odd-to-even O edge x->p has x^3-p^2>=3: the classical Gaussian factorization of p^2+1=x^3 excludes a unit remainder. Thus its excess over eta(p^2) is at least kappa(p)=loglog(p^2+3)-loglog(p^2+1)>0. In a genuine OE pair 0<kappa(p)<=D(v), where D is the earlier coupled charge. For fixed original-edge coefficients, reserving kappa on O and only D-kappa on the remaining pair gives the located min/max support bounds Q96, valid across cut pairs without double counting. Two equal proper chronological arcs split at most four OE pairs. For a hypothetical actual primitive cubic cycle m>=5,M<m^3 with the established P/mixed/Q factorization, P and mixed split exactly the m-landing OE pair with coefficients (+1,0) and (0,+1); Q splits none and assigns that pair (-1,-1). Both endpoints of every separate-charge interval improve strictly. The located charge additionally raises P's lower bound by kappa(s) and lowers the mixed upper bound by kappa(s). All three coefficient vectors still sum to zero on every edge, and no required signed contraction or no-cycle contradiction is proved. The cubic terminal table is not claimed for the original states of taller quartic cycles. Only the supplied-record support inequalities are newly Lean verified; Gaussian arithmetic, logarithmic and actual-cycle assembly are AI-assisted written proofs audited by three agents, pending full formalization and independent human review. No new floor, cycle, divergent orbit or paper release."
+ },
+ {
+  "id": "J-cycle-induced-count-determinant",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every word pair induced from (OOE,OE) by the two Euclidean substitutions, o(U)e(V)-o(V)e(U)=1 as an integer identity. Each word has coprime odd/even counts. For arbitrary natural section populations a,b, the expanded totals L=a|U|+b|V| and o=a o(U)+b o(V) satisfy gcd(L,o)=gcd(a,b). These count identities preserve the guards in separate actual-return interfaces; they alone do not construct a cycle.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/ReturnWordFactorization.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_paper_a_trust_boundary.py"
+  ],
+  "related_conjectures": [],
+  "decl": [
+   "InducedPair.count_determinant",
+   "InducedPair.count_coprime",
+   "InducedPair.expanded_count_gcd"
+  ],
+  "lean_trust": "kernel"
+ },
+ {
+  "id": "J-cycle-finite-even-transfer-budget",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For a finite sequence of even natural gaps d(0),...,d(n), if every step strictly decreases then d(n)+2n<=d(0). If the final gap is positive then 2(n+1)<=d(0). The previous two- and three-transfer bounds are special cases. Every strict transfer remains a hypothesis; no unlimited chain is inferred.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/ReturnGapHeight.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_paper_a_trust_boundary.py"
+  ],
+  "related_conjectures": [],
+  "decl": [
+   "even_transfers_sum",
+   "even_transfers_positive"
+  ],
+  "lean_trust": "kernel"
+ },
+ {
+  "id": "J-cycle-upper-charge-least-period",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "An actual positive closed orbit with minimum m>1, attained maximum M<m^3 and all states in [m,M] supplies an OrbitUpperChargeCertificate extending one complete PeriodicOrbitModel. The same sorted states and successor permutation retain full coverage, extrema, the exact odd count, parity and threshold cuts, rank rotation, coprimality, true least period, RealizedGridBounds and FullUpperCellChargeBounds. The latter retains the stronger finite nonlinear charge before its finite geometric and closed scalar relaxations. An existing model can be strengthened with equality of the projected base, so terminal and charge data share one witness. The CycleMin adapter handles repeated itineraries; older existential interfaces are unchanged projections. No numerical cutoff, asymptotic estimate or cycle exclusion is asserted.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/CubicOrbitCharge.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_paper_a_trust_boundary.py",
+   "tests/research/juggler_sequence/test_lean_interface_contracts.py"
+  ],
+  "related_conjectures": [],
+  "decl": [
+   "periodicOrbit_upper_charge",
+   "cycleMin_upper_charge",
+   "OrbitUpperChargeCertificate",
+   "orbitModel_upper_charge",
+   "periodicOrbit_upper_charge_certificate",
+   "cycleMin_upper_charge_certificate"
+  ],
+  "lean_trust": "kernel"
+ },
+ {
+  "id": "J-cycle-upper-charge-monotonicity",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For fixed positive primitive length L and odd count o, all three nonlinear, finite geometric and closed geometric upper-cell charge bounds decrease strictly with the minimum m>1. If the selected bound at a real cutoff m0>1 is at most logGridSurplus L o, any FullUpperCellChargeBounds certificate at the same counts has m<m0. OrbitUpperChargeCertificate adapters use its own true least period and odd count. The nonlinear bound is at most the finite geometric bound, which is strictly below the closed geometric bound at positive scale. This formalizes symbolic cutoff propagation only; the 520-million numerical interval comparison and UC3 asymptotics remain outside Lean. No descent floor or period bound is changed.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/CubicChargeMonotonicity.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_lean_interface_contracts.py",
+   "tests/research/juggler_sequence/test_paper_a_trust_boundary.py"
+  ],
+  "related_conjectures": [],
+  "decl": [
+   "nonlinearChargeBound_strictAntiOn_minimum",
+   "finiteGeometricChargeBound_strictAntiOn_minimum",
+   "closedGeometricChargeBound_strictAntiOn_minimum",
+   "nonlinearChargeBound_le_finiteGeometric",
+   "finiteGeometricChargeBound_lt_closed",
+   "nonlinear_cutoff_excludes",
+   "closedGeometric_cutoff_excludes"
+  ],
+  "lean_trust": "kernel"
  }
 ]

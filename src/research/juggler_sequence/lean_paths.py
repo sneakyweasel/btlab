@@ -30,6 +30,9 @@ ENGINE_DIR = FORMAL_DIR / "Problems" / "Engine"
 
 PAPER_MODULES: tuple[str, ...] = (
     "Dynamics",
+    "RootCells",
+    "NumericBridge",
+    "LogCells",
     "Iteration",
     "Termination",
     "Itinerary",
@@ -79,6 +82,7 @@ PAPER_MODULES: tuple[str, ...] = (
     "CubicRotation",
     "CubicGrid",
     "CubicLogGrid",
+    "CubicUpperCells",
     "CubicRounding",
     "CubicInterlacing",
     "CubicConsequences",
@@ -96,16 +100,22 @@ PAPER_MODULES: tuple[str, ...] = (
     "ReturnWordFactorization",
     "ReturnSeams",
     "ReturnRankedCycle",
+    "CubicOrbitCharge",
+    "CubicChargeMonotonicity",
     "ReturnQuotients",
     "ReturnCycleTransfers",
     "ReturnGapHeight",
     "ReturnTransferHeight",
     "ReturnTerminal",
     "ReturnOrbitStrips",
+    "UpperSquareGap",
 )
 
 LAYERS: dict[str, Path] = {
     "Dynamics": JUGGLER_DIR / "Dynamics.lean",
+    "RootCells": JUGGLER_DIR / "RootCells.lean",
+    "NumericBridge": JUGGLER_DIR / "NumericBridge.lean",
+    "LogCells": JUGGLER_DIR / "LogCells.lean",
     "Iteration": JUGGLER_DIR / "Iteration.lean",
     "Termination": JUGGLER_DIR / "Termination.lean",
     "TerminationFloor257": JUGGLER_DIR / "TerminationFloor257.lean",
@@ -213,6 +223,7 @@ LAYERS: dict[str, Path] = {
     "CubicRotation": JUGGLER_DIR / "CubicRotation.lean",
     "CubicGrid": JUGGLER_DIR / "CubicGrid.lean",
     "CubicLogGrid": JUGGLER_DIR / "CubicLogGrid.lean",
+    "CubicUpperCells": JUGGLER_DIR / "CubicUpperCells.lean",
     "CubicRounding": JUGGLER_DIR / "CubicRounding.lean",
     "CubicInterlacing": JUGGLER_DIR / "CubicInterlacing.lean",
     "CubicConsequences": JUGGLER_DIR / "CubicConsequences.lean",
@@ -230,6 +241,8 @@ LAYERS: dict[str, Path] = {
     "ReturnWordFactorization": JUGGLER_DIR / "ReturnWordFactorization.lean",
     "ReturnSeams": JUGGLER_DIR / "ReturnSeams.lean",
     "ReturnRankedCycle": JUGGLER_DIR / "ReturnRankedCycle.lean",
+    "CubicOrbitCharge": JUGGLER_DIR / "CubicOrbitCharge.lean",
+    "CubicChargeMonotonicity": JUGGLER_DIR / "CubicChargeMonotonicity.lean",
     "ReturnQuotients": JUGGLER_DIR / "ReturnQuotients.lean",
     "ReturnCycleTransfers": JUGGLER_DIR / "ReturnCycleTransfers.lean",
     "ReturnGapHeight": JUGGLER_DIR / "ReturnGapHeight.lean",
@@ -243,6 +256,29 @@ LAYERS: dict[str, Path] = {
     "QuarticDefect": JUGGLER_DIR / "QuarticDefect.lean",
     "QuarticGapSeparation": JUGGLER_DIR / "QuarticGapSeparation.lean",
     "UpperSquareGap": JUGGLER_DIR / "UpperSquareGap.lean",
+    "CubicRemainderVariation": JUGGLER_DIR / "CubicRemainderVariation.lean",
+    "CubicConstraintFusion": JUGGLER_DIR / "CubicConstraintFusion.lean",
+    "CubicCriticalLocation": JUGGLER_DIR / "CubicCriticalLocation.lean",
+    "CriticalCostKernel": JUGGLER_DIR / "CriticalCostKernel.lean",
+}
+
+# Sources belonging to other targets or historical model interfaces. Keeping
+# them explicit makes the disk inventory complete without implying that they
+# belong to Paper A's ordered publication layers.
+AUXILIARY_MODULES: dict[str, str] = {
+    "BranchFreeze": "Paper B review target",
+    "MasterIdentity": "Paper B review target",
+    "MeanValues": "Paper B review target",
+    "MonomialSplitting": "Paper B review target",
+    "PaperBAssembly": "Paper B review target",
+    "ThresholdCertificate": "Paper B review target",
+    "DepthFourFive": "Independent historical parity support",
+    "DividedBounds": "Independent historical parity support",
+    "CyclePosition": "Laboratory ideal-cycle model",
+    "IdealCycleMin": "Laboratory ideal-cycle model",
+    "IdealLollipop": "Laboratory ideal-cycle model",
+    "InverseBranches": "Laboratory inverse-branch interface",
+    "Seam": "Laboratory cycle-seam interface",
 }
 
 DYNAMICS = LAYERS["Dynamics"]

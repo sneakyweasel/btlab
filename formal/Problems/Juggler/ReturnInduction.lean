@@ -1,4 +1,4 @@
-import Problems.Juggler.EvenCountThree
+import Problems.Juggler.ItineraryStats
 
 namespace Problems.Juggler.ReturnInduction
 

@@ -2365,3 +2365,267 @@ endpoint by less than 1.62e-12, far below the existing clearance exceeding
 1.303e-6. Do not promote this local improvement as a no-cycle mechanism.
 The weighted frequency and magnitude of normalized complement increases
 remains an unresolved input, with no new period exclusion or floor change.
+
+### Whole-word upper-slack compensation is the same refined cap
+
+[Rank-curvature Result 14](problems/juggler_cycle_rank_curvature.md)
+retains the actual odd predecessors and every genuine OE/OOE block in
+the complete paired word. Its normalized gap differences telescope.
+The OO upper-square gap supplies a positive paired baseline b, but the
+residual r=s-b is exactly V-delta, with V=eta-b. This is an affine
+bijection with the already tested refined-cap box, including the total
+loss and known coordinate charges. **CLOSE** this independent-charge
+propagation: adding the baseline again after shaving the cap would
+double count it. No false global counterexample is inferred from free
+local E cells or box endpoints; a stronger inequality from exact shared
+integer secants remains unproved.
+
+## Shared secant quantization does not orient normalized slack
+
+The next [rank-curvature audit](problems/juggler_cycle_rank_curvature.md),
+Result 15, is **CLOSE** for the gap/gcd-only sign inference and automatic
+strict or global three-point convexity transfer. It does not close the actual shared-state
+problem. For paired genuine same-branch edges with positive even gaps
+d,D and g=gcd(d,D), the exact change satisfies
+Delta U=d modulo 2g. The normalized increase condition gives the
+lattice-rounded rational threshold RC44, a necessary test with no supplied
+global bound on the selected positive variation. The mod-eight sum leaves
+branch-weighted interior gaps; the open paired arcs cannot be assigned
+zero total complement difference.
+
+For every odd t>=9, the actual OO edges from t^2-4,t^2,t^2+4 have odd
+images t^3-6t,t^3,t^3+6t. Both adjacent pairs have source gap4,
+target gap6t, and gcd2, yet their normalized upper-slack differences
+have opposite signs. RC46--RC48 prove the cells and both signs uniformly.
+This is an unbounded family of local triples, not a cycle or a claim of
+cycle adjacency. It refutes orientation from these gap data, not a
+nonlocal bound retaining absolute cycle placement.
+
+Three-point secant transport is the difference of two paired equations
+and retains the unknown complement second difference. Its global log-log
+lift still telescopes, and synchronized triples cross mixed-parity and
+wrap positions. No new period, height, or minimum restriction is obtained.
+The conditional lattice test and written family are retained without a
+new production Lean module, source census, or PDF work.
+Members: cycle_rank_curvature.
+
+## Exact OO edges do not force a fixed local cap fraction
+
+[Rank-curvature Result 17](problems/juggler_cycle_rank_curvature.md)
+closes a positive universal local compensation fraction, even for genuine
+OOE first returns with zero initial OO loss. For every c>0 and height H,
+there are square starts x=t^2>H with actual guarded chain
+t^2 -> t^3 -> floor(t^(9/2)) -> floor(t^(9/4)), parities O,O,E,O,
+and x<z<u<x^2<=v<x^3. The first loss is zero; each later log-log loss
+is positive and less than c times its own target cap. The total loss is
+therefore less than c times the sum of all three caps.
+
+The construction uses joint equidistribution of two smooth powers along
+odd t and an exact nested-square-root identity. Epsilon is fixed before
+t tends to infinity; no shrinking-target rate is established. The
+explicit genuine OE family b^4+2 -> b^6+3b^2 -> b^3, for odd b>=3,
+also has both cap-normalized losses tending to zero.
+
+These are individual finite blocks at arbitrarily large heights, not a
+cycle, a concatenation theorem, or an escaping orbit. This result does
+not refute the smaller height-dependent integer charges or a bound that
+requires simultaneous selection by a complete cycle. Positivity at the
+parity changes cannot alone be promoted to a fixed fraction of the caps.
+
+ReturnCells formally verifies the square-start fourth-power cell and
+its guarded actual-chain adapter. Equidistribution, infinitude, and the
+analytic loss bounds remain a written AI-assisted proof with independent
+human review outstanding. Two fixed integer controls, found by bounded
+parameter searches and replayed exactly, illustrate rather than prove
+infinitude. No orbit census or certified-floor increase follows.
+Members: cycle_rank_curvature.
+
+## More ranks do not automatically improve absolute-cell precision
+
+[Rank-curvature Result 16](problems/juggler_cycle_rank_curvature.md)
+closes the tested rank-polynomial determinant and rearrangement-only
+inferences. The determinant with columns 1,j,...,j^(r-1),z_j is
+the product of factorials times the r-th finite difference. Its lattice
+divisibility and its independent error radius acquire the same factor.
+It therefore adds no precision to the previous grid test; this is not
+a claim about every determinant involving actual source/target cells.
+
+The existing Lean theorem cube_fiber_sqrt_odd already gives the exact
+parallel OO edges k^4+4j -> k^6+6k^2j for odd k>=3 and 0<=3j<=k.
+All states are odd and every higher rank difference vanishes on a long
+enough window. These are arbitrarily long finite collections of single
+edges, not consecutive orbit times or a full-grid cycle realization.
+Do not repackage this known affine-cell mechanism as a new family result.
+
+The squared matching cost has the wrong global Monge sign across the
+cubic branch cut. Putting even-source radicands before odd-source cubes
+restores the inequality, whose optimum is exactly the known rank rotation.
+The log-log state moment is the existing finance identity. No other
+useful moment comparison is established by this audit.
+
+Nor do wrong-parity points next to a periodic edge imply cycle coverage.
+For an even periodic upper source x with odd target y in a threshold map,
+both x-1 and y^2 are wrong upper states in the same square cell. Periodic
+injectivity forces them to be transient. A compatible cycle would have
+at least e distinct wrong transients of the first form. This is conditional
+and supplies no compatible cycle. The full shared absolute-cell problem
+remains open; no new restriction, census, Lean module, or PDF work follows.
+Members: cycle_rank_curvature.
+
+## Complete cell propagation needs an effective exhaustion argument
+
+[Rank-curvature Result 18](problems/juggler_cycle_rank_curvature.md)
+parks the bounded complete-cell campaign. Unlike independent cap boxes,
+exact forward and backward lower-endpoint contractors cannot stabilize
+at a false solution: opposite root inequalities force every actual edge
+on the same vector, and sortedness plus coprime rank rotation gives a
+primitive cycle. Finite valid upper bounds ensure eventual exhaustion
+or a solution under fair updates. This standard completeness argument
+supplies no useful runtime bound or no-cycle theorem.
+
+Four full sweeps at (L,o,e)=(780239,492276,287963), with outward grid
+initialization and no parameter subdivision, retain every domain nonempty.
+The minimum bracket narrows only to 350000005..519999995. The lower
+endpoints fail the exact-cycle check; this is neither a fixed point nor
+a cycle witness. Four odd endpoint values are trimmed in this fixed
+cubic model, without a count-pair exclusion or a certified-floor change.
+
+The independent-remainder modular shortcut is saturated when
+Q/gcd(2,Q)<=m0-1. At m0=350000001 this includes every even Q<=700000000.
+Use the least common multiple when several moduli constrain one remainder.
+The statement does not cover narrowed jointly coupled remainders, exact
+integer difference equations or additional finance constraints. Residues
+may accelerate the complete algorithm but are unnecessary for correctness.
+Neither larger generic machinery nor extra unfinished sweeps establish
+the missing efficient arithmetic obstruction. PDFs are unchanged.
+Members: cycle_rank_curvature.
+
+## Automatic crossing payment does not add a new defect budget
+
+[Rank-curvature Result 19](problems/juggler_cycle_rank_curvature.md)
+closes the automatic coarea payment mechanism. Each selected nonwrapping
+slack rise is already bounded by the preceding target's actual defect.
+For fixed caps, signed slack differences are linear in the old defect
+coordinates; crossing identities hold for every feasible vector in the
+old cap simplex. They alone cannot eliminate its optimizers.
+
+Raw complement levels also have target-dependent logarithmic cost, and
+the circular cap jump is nonzero. Three fixed genuine parallel OO edges
+45->301, 49->343, 95->925 refute paying the entire middle slack rise from
+the next downcrossing edge's actual defect on those local ordered cells.
+This does not assert their membership in one cycle or refute every
+subdivided crossing assignment using additional cycle arithmetic.
+
+A new global valuation argument does survive: every actual cubic cycle
+satisfies L<=(H+1)(3+2S), where S counts deviations from any chosen
+three typewise raw remainder constants and H is the maximum lifted-gap
+2-adic valuation. At the fixed tuple S>=4483; choosing block minima
+forces at least 8966 raw excess units. This supplies neither their
+location nor the weighted size needed by the signed criterion. Do not
+promote a support count alone to a no-cycle theorem. The full-cycle
+assembly remains a written AI-assisted proof; Lean verifies its
+conditional arithmetic/counting kernels. Independent human review is
+outstanding.
+Members: cycle_rank_curvature.
+
+## Splitting total remainder support does not locate signed loss
+
+[Rank-curvature Result 20](problems/juggler_cycle_rank_curvature.md)
+successfully merges critical valuation transport, even-pair divisibility,
+mechanical itinerary counts and the common lifted-gap budget. It raises
+the fixed deviation bound to 7284 and forces at least 14569 critical
+corrections. These events are not simply all nonzero corrections.
+
+The separate support-only signed fusion is closed. For any union A of
+rank/type/height bins, knowing S>=s0 alone gives only at least
+max(0,s0-|A complement|) deviations in A. At the fixed counts all 7284
+can fit in a source-type intersection with the neutral signed group,
+while retaining distance at least 7284 from every three-constant profile.
+This is a support relaxation, not a common-cell realization or a claim
+that the complete new critical-run constraints permit that placement.
+
+Exact remainder-to-defect integration gives a valid unsigned lower bound
+using the 7284 smallest target weights. The mandatory first two raw units
+at those locations cost less than 5e-15 in total; this additional minimum
+charge alone does not close the old signed-cap clearance above 1e-6.
+Actual excesses can be larger, and the unknown block-minimum baseline
+must not be equated with the old universal compulsory-charge budget.
+Further amplitude, placement or coupling is required. No cycle class
+is excluded, and no PDF work was performed.
+Members: cycle_rank_curvature.
+
+## Critical-event localization still does not orient paired slack
+
+[Rank-curvature Result 21](problems/juggler_cycle_rank_curvature.md)
+adds information omitted by the earlier support-only projection:
+absolute rank ceilings force blocks of at most 21 even-gap vertices,
+and each 21-source window in R meets a critical event. Disjoint pairing
+with Q forces at least 14380 deviations in Q union R, so an all-neutral
+placement is excluded under these full hypotheses. The earlier neutral
+construction remains valid at its explicitly weaker support-only scope.
+
+Criticality by itself still does not choose the helpful normalized
+sign. The exact Result 15 family t^2-4,t^2,t^2+4, for odd t>=9, maps
+on genuine OO cells to t^3-6t,t^3,t^3+6t. Both source gaps have
+valuation two, as do the nonzero corrections -4(3t^2-16) and
+4(3t^2+16). Yet the two normalized paired slack signs are opposite.
+This closes that local sign inference; the cells are not claimed to
+belong to a cycle. Unequal raw remainders also cannot automatically
+be identified with unequal normalized defects at different targets.
+
+The actual selected-pair theorem is a positive localization result.
+A signed estimate using the complete simultaneous cycle constraints
+remains open. No count pair is excluded and no PDF was rebuilt.
+Members: cycle_rank_curvature.
+
+## Critical correction cost and Boolean windows need joint arithmetic
+
+[Rank-curvature Result 22](problems/juggler_cycle_rank_curvature.md)
+closes a charge growing solely with valuation restoration. The exact
+O pairs 4s^2-1,4s^2+1 map to 8s^3-3s,8s^3+3s, with critical correction
+two and arbitrarily large restoration on the even-s OE subsequence.
+Their next E endpoints collide or cannot both be odd, so this control
+does not satisfy distinct complete returns. A symmetric generalization
+does pay normalized O cost greater than 1/23 when its complete guarded
+returns are distinct, under the stated family and parameter hypotheses.
+
+However, the existing RC61 family b^4+2 -> b^6+3b^2 -> b^3 at distinct
+odd b<c gives critical O correction 3(c^4-b^4), distinct guarded OE
+returns and normalized losses tending to zero along c=b+2. It fits a
+common cubic band, but does not assert cycle membership or adjacency.
+The fixed scale's adjacent log-log gap bound actually rules out two
+of these quartic source values as consecutive ranks. These different
+controls must not be combined into a fictitious full-cycle witness.
+
+The critical-window condition alone also leaves the shared mod-4
+marginal relaxation unchanged: ordinary gaps can all have valuation
+one, making every R event critical. Every saved marginal interval
+supports that pattern, but it is not a nonlinear cell solution. Only
+eight domain samples and aggregate widths were saved; no full-domain
+pruning claim follows. Further complete-cell elimination remains PARK,
+with no added sweep or minimum subdivision in this gate.
+Members: cycle_rank_curvature, J-cubic-critical-cost-compatibility,
+J-cubic-critical-cost-kernels.
+
+## Complete critical OOE pairs still have no uniform local charge
+
+[Rank-curvature Result 23](problems/juggler_cycle_rank_curvature.md)
+extends the cheap critical OO pair 4s^2-1,4s^2+1 through two genuine
+distinct OOE returns for arbitrarily large odd parameters selected by
+four simultaneous smooth phases. The initial correction is exactly two,
+all six cap-normalized losses can be arbitrarily small, and all states
+fit a common cubic band. All four ordinary pair log-log gaps also tend
+to zero. Thus criticality, exact OOE guards, injectivity, a shared cubic
+band and isolated positive gap ceilings do not force a uniform charge.
+This is a written four-phase derivative/Weyl argument; its infinitude
+and real estimates are not Lean verified and still need human review.
+
+The conclusion does not assert a parameter hit within the fixed minimum
+interval, a full sorted rank vector, simultaneous cyclic selection of
+many pairs, or one infinite orbit. Exact finite square-start counting
+forces at least 53034 positive first O remainders among the first 83650
+cycle ranks, but the displayed loss lower bound is below 10^-26 while
+the fixed surplus is above 3*10^-6. A positive count is not the missing
+signed or aggregate loss estimate. That complete-cycle question is PARK.
+Members: cycle_rank_curvature, J-cubic-critical-ooe-pair-obstruction,
+J-cubic-ooe-square-start-packing.

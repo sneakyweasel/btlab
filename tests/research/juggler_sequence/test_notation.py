@@ -1,15 +1,9 @@
-# Historical Paper B audit: the 2026-09-04 snapshot is not the conditional publication.
-"""Symbols that were separated stay separated, and the notation table stays true.
+"""Core notation regressions and the explicit scope of later local symbols.
 
-Paper A bound `e` to four things at once: the even count, Lemma 3.3's constant `e_a`, the
-per-step exponent (`x^e`, `e_i` -- sitting in the same formula as the per-step loss
-`\\varepsilon_i`), and Euler's number.  It bound `s` to the suffix length and to the Ostrowski
-digit sum `s(L)`, and `u` to a suffix and to the exponent walk.  Those are now `e`, `G_a`, `h`,
-`T(u)` and a subscripted `u_k`.
-
-A rename is only worth doing if it stays done, and the first attempt at this one was a partial
-rename that left `3e_a` behind and then a complete one that collided `d` with the depth of
-Section 6.  So the checks here are the ones that would have caught both.
+The original envelope, itinerary, finance and walk arguments distinguish
+the even count, branch exponent, floor loss and suffix exponent. Later
+return sections and appendices define their own local notation. The Paper B
+checks below still concern the historical 2026-09-04 snapshot.
 """
 
 from __future__ import annotations
@@ -20,7 +14,7 @@ from pathlib import Path
 
 import pytest
 
-from research.juggler_sequence.notation_audit import letter_census, letter_sites
+from research.juggler_sequence.notation_audit import letter_sites
 
 ROOT = Path(__file__).resolve().parents[3]
 PAPER = ROOT / "docs" / "theory" / "juggler_finite_dynamics_note.md"
@@ -36,8 +30,7 @@ def text() -> str:
 def body() -> str:
     """The paper with Section 1.3 removed.
 
-    The notation table names the superseded symbols on purpose -- it says which letter each one
-    became -- so the "no stale notation" checks must not read it.
+    Local-notation documentation is tested separately from formula uses.
     """
     src = text()
     start = src.index("### 1.3 Notation")
@@ -48,20 +41,40 @@ def math_spans(src: str) -> list[str]:
     return [m.group(0) for m in MATH.finditer(src)]
 
 
-def test_e_is_only_the_even_count_and_euler() -> None:
-    """No `e` with a variable subscript, and no `e` as an exponent letter.
+def section(start: str, end: str) -> str:
+    source = text()
+    begin = source.index(start)
+    return source[begin:source.index(end, begin)]
 
-    `e_{\\mathrm{left}}` survives on purpose: it is the *remaining even budget*, which is the
-    even count, not a second meaning.  Euler's number survives as `e^{...}` with a numeric or
-    expression exponent, never subscripted.
+
+def core_estimates() -> str:
+    """Envelope/early exclusions, finance/walk, and exact defect appendix.
+
+    Later return sections define local gap/carry/word symbols. They do not
+    change the branch-exponent convention in these original estimates.
     """
+    return "\n".join((section("## 2. Envelope", "### 3.10"),
+                       section("## 4. Cycle finance", "## 6. Limitations"),
+                       section("## Appendix C.", "## Appendix D.")))
+
+
+def stale_branch_exponents(source: str) -> list[str]:
     bad = []
-    for span in math_spans(body()):
-        for m in re.finditer(r"(?<![A-Za-z\\])e_(?!\{\\mathrm)", span):
-            bad.append(span[max(0, m.start() - 30):m.start() + 30].replace("\n", " "))
-        for m in re.finditer(r"\^e(?![A-Za-z0-9_])", span):
-            bad.append(span[max(0, m.start() - 30):m.start() + 30].replace("\n", " "))
-    assert not bad, bad[:5]
+    for span in math_spans(source):
+        if (re.search(r"(?<![A-Za-z\\])e_(?!\{\\mathrm)", span)
+                or re.search(r"\^[ed](?![A-Za-z0-9_])", span)):
+            bad.append(" ".join(span.split()))
+    return bad
+
+
+def test_core_even_count_does_not_replace_the_branch_exponent() -> None:
+    """The original e_a, x^e and x^d collisions remain forbidden locally."""
+    assert stale_branch_exponents(core_estimates()) == []
+
+
+@pytest.mark.parametrize("stale", [r"\(e_a\)", r"\(x^e\)", r"\(x^d\)"])
+def test_core_branch_collision_guard_detects_regressions(stale: str) -> None:
+    assert stale_branch_exponents(core_estimates() + stale)
 
 
 @pytest.mark.parametrize("sym,least,role", [
@@ -73,15 +86,14 @@ def test_the_replacement_symbols_are_actually_used(sym: str, least: int, role: s
     assert len(letter_sites(text(), sym)) >= least, (sym, role)
 
 
-def test_d_is_the_depth_and_nothing_else() -> None:
-    """The first complete rename sent the per-step exponent to `d`, which is the depth.
-
-    Section 6 writes "J^t(n) <= N_0 for some t <= d" and "after d <= 40 steps"; those are the
-    only two standalone uses `d` may have.
-    """
-    sites = letter_sites(body(), "d")
-    assert len(sites) == 2, sites
-    assert all("t\\le d" in s or "d\\le40" in s for _ln, s in sites), sites
+def test_branch_exponent_has_its_defined_values_in_finance_and_defect() -> None:
+    """The obsolete global d-depth census is replaced by the actual formulas."""
+    for source in (section("## 4. Cycle finance", "## 5."),
+                   section("## Appendix C.", "## Appendix D.")):
+        compact = re.sub(r"\s+", "", source)
+        assert "x^h" in compact
+        assert r"h=\begin{cases}1,&x" in compact
+        assert r"3,&x" in compact
 
 
 def test_s_and_l_no_longer_carry_the_suffix_shape() -> None:
@@ -117,29 +129,34 @@ def test_notation_table_exists_and_precedes_the_mathematics() -> None:
 
 @pytest.mark.parametrize("sym", [
     "J", "n", "N_0", "x_k", "w", "v", "u", "O", "E", "L", "o", "e", "a", "b", "c",
-    "r", "h", "d", "G_a", "B(u)", "T(u)", "\\theta", "\\Lambda", "\\mu", "u_k", "w_k",
+    "r", "h", "G_a", "B(u)", "T(u)", "\\theta", "\\Lambda", "\\mu", "u_k", "w_k",
     "n'", "C_L", "C_*", "g", "q_j", "b_j", "s(L)", "n_{\\max}(L)",
 ])
 def test_every_recurring_symbol_is_in_the_table(sym: str) -> None:
     assert sym in table(), sym
 
 
-def test_table_declares_the_two_deliberate_reuses() -> None:
-    """`e` is also Euler's number and `s` is also an integration variable; both are stated."""
+def test_table_distinguishes_core_and_locally_defined_notation() -> None:
     t = table()
     assert "Euler's number" in t
     assert "integration variable" in t
-    assert "No other symbol in the paper is bound twice." in t
+    assert "local notation" in t
+    assert "No other symbol in the paper is bound twice." not in t
+    for symbol in (r"I_b", r"m,M", r"Q(s)", r"U,V,P,Q", r"e_W(x)"):
+        assert symbol in t
 
 
-def test_no_new_letter_was_introduced_that_collides() -> None:
-    """G, h and T were unused before the renames; nothing else may have crept in."""
-    counts = letter_census(text())
-    for sym in ("G", "h", "T"):
-        assert counts.get(sym, 0) > 0, sym
-    # the letters still genuinely unused, kept free for future work
-    for sym in ("I", "M", "Q", "U", "V"):
-        assert counts.get(sym, 0) == 0, (sym, counts.get(sym))
+def test_return_symbols_are_explicitly_defined_in_their_own_sections() -> None:
+    order = section("### 3.10", "### 3.11")
+    boundary = section("### 3.11", "### 3.12")
+    terminal = section("### 3.13", "## 4.")
+    loss = section("## Appendix F.", "## 7.")
+    assert r"c_0=m<c_1<\cdots<c_{L-1}=M" in order
+    assert r"I_b=\{b,b+1,\ldots,b^3-1\}" in order
+    assert r"Let \(Q(s)\) denote the greatest odd integer not exceeding \(s\)." in boundary
+    assert r"return stage with words \(U,V\)" in terminal
+    assert r"UV=P\,OE\,Q,\qquad VU=P\,EO\,Q" in terminal
+    assert r"e_W(x):=x^p-F_W(x)=" in loss
 
 
 def test_mirror_carries_the_renames() -> None:

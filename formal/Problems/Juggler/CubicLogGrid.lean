@@ -1,5 +1,6 @@
 import Problems.Juggler.CubicGrid
 import Problems.Juggler.CubicBand
+import Problems.Juggler.CubicRotation
 import Mathlib.Logic.Equiv.Fin.Rotate
 
 /-!+# Power-cell realization of the uniform log-log grid
@@ -121,6 +122,15 @@ theorem logGrid_coboundary
   have hll := congrArg (fun r : ℝ => r * Real.log 3) hlen'
   split_ifs at hr hrr ⊢ with hi <;> field_simp <;> nlinarith
 
+/-- The total loss is obtained by permutation summation of the exact coordinates. -/
+theorem logCellDefect_sum [NeZero L]
+    (c : Fin L → ℝ) (σ : Equiv.Perm (Fin L)) (o e : ℕ)
+    (hc : ∀ i, 1 < c i) (hlen : L = o + e)
+    (hrank : ∀ i, (σ i).val = (i.val + e) % L) :
+    ∑ i, logCellDefect c σ o i = logGridSurplus L o :=
+  defect_sum_of_coboundary σ _ _ _ (Nat.pos_of_neZero L)
+    (logGrid_coboundary c σ o e (c 0) hc (hc 0) hlen hrank)
+
 /-- A realized power-cell cycle satisfies the claimed sharp log-log grid at every rank. -/
 theorem log_grid_of_power_cells [NeZero L]
     (c : Fin L → ℝ) (σ : Equiv.Perm (Fin L)) (o e : ℕ)
@@ -138,7 +148,7 @@ theorem log_grid_of_power_cells [NeZero L]
   have hw : ∀ i, w (σ i) - w i = logGridSurplus L o / (L : ℝ) - δ i :=
     logGrid_coboundary c σ o e (c 0) hc (hc 0) hlen hrank
   have hsum : ∑ i, δ i = logGridSurplus L o :=
-    defect_sum_of_coboundary σ w δ _ (Nat.pos_of_neZero L) hw
+    logCellDefect_sum c σ o e hc hlen hrank
   have hanchor : w 0 = 0 := by
     simp [w, logGridError, logCoordinate, ne_of_gt (Real.log_pos (hc 0))]
   exact defect_grid_at_anchor σ hcycle w δ _ hδ hsum hw 0 hanchor i
@@ -164,8 +174,7 @@ theorem logGridSurplus_pos_of_power_cells [NeZero L]
     (hrank : ∀ i, (σ i).val = (i.val + e) % L)
     (hcell : ∀ i, c (σ i) ^ 2 ≤ c i ^ (if i.val < o then 3 else 1)) :
     0 < logGridSurplus L o := by
-  have hw := logGrid_coboundary c σ o e (c 0) hc (hc 0) hlen hrank
-  have hsum := defect_sum_of_coboundary σ _ _ _ (Nat.pos_of_neZero L) hw
+  have hsum := logCellDefect_sum c σ o e hc hlen hrank
   have hnonneg : 0 ≤ logGridSurplus L o := by
     rw [← hsum]
     exact Finset.sum_nonneg (fun i _ => logCellDefect_nonneg c σ o hc hcell i)
@@ -180,15 +189,8 @@ theorem finRotate_val [NeZero L] (i : Fin L) :
 theorem rank_commute_finRotate [NeZero L]
     (σ : Equiv.Perm (Fin L)) (e : ℕ)
     (hrank : ∀ i, (σ i).val = (i.val + e) % L) :
-    Function.Commute σ (finRotate L) := by
-  intro i
-  apply Fin.ext
-  rw [hrank, finRotate_val, finRotate_val, hrank]
-  have erase (a b : ℕ) : (a % L + b) % L = (a + b) % L := by
-    rw [Nat.add_mod, Nat.mod_mod, ← Nat.add_mod]
-  rw [erase, erase]
-  congr 1
-  omega
+    Function.Commute σ (finRotate L) :=
+  rankRotation_commute_adjacent σ hrank
 
 /-- The seam definition agrees with the centered-error representation of a gap. -/
 theorem liftedLogGap_eq_error [NeZero L] (c : Fin L → ℝ) (i : Fin L) :
@@ -261,7 +263,7 @@ theorem log_gap_bounds_of_power_cells [NeZero L]
   have hw : ∀ i, w (σ i) - w i = logGridSurplus L o / (L : ℝ) - δ i :=
     logGrid_coboundary c σ o e (c 0) hc (hc 0) hlen hrank
   have hsum : ∑ i, δ i = logGridSurplus L o :=
-    defect_sum_of_coboundary σ w δ _ (Nat.pos_of_neZero L) hw
+    logCellDefect_sum c σ o e hc hlen hrank
   simpa only [liftedLogGap_eq_error] using
     adjacent_gap_bounds σ hcycle (finRotate L) (rank_commute_finRotate σ e hrank)
       w δ _ (Real.log 3 / (L : ℝ)) hδ hsum hw i j
@@ -333,6 +335,67 @@ def RealizedGridBounds [NeZero L] (c : Fin L → ℝ) (o : ℕ) : Prop :=
     |liftedLogGap c i - Real.log 3 / (L : ℝ)| ≤
       (1 - 1 / (L : ℝ)) * logGridSurplus L o)
 
+/-- A logarithmic grid error gives a lower bound for the ordinary logarithm. -/
+theorem log_lower_of_loglog_bound {x m t ω : ℝ}
+    (hx : 1 < x) (hm : 1 < m)
+    (h : |Real.log (Real.log x / Real.log m) - t| ≤ ω) :
+    Real.log m * Real.exp (-ω) * Real.exp t ≤ Real.log x := by
+  have hlm := Real.log_pos hm
+  have hratio := div_pos (Real.log_pos hx) hlm
+  have hlow : t - ω ≤ Real.log (Real.log x / Real.log m) := by
+    have := (abs_le.mp h).1
+    linarith
+  have hexp := Real.exp_le_exp.mpr hlow
+  rw [Real.exp_log hratio] at hexp
+  calc
+    Real.log m * Real.exp (-ω) * Real.exp t =
+        Real.log m * Real.exp (t - ω) := by
+      rw [show t - ω = -ω + t by ring, Real.exp_add]
+      ring
+    _ ≤ Real.log m * (Real.log x / Real.log m) := mul_le_mul_of_nonneg_left hexp hlm.le
+    _ = Real.log x := by field_simp
+
+/-- The anchored grid scale used by the absolute upper-cell estimate. -/
+noncomputable def logGridScale [NeZero L] (m : ℝ) (o : ℕ) : ℝ :=
+  Real.log m * Real.exp (-((1 - 1 / (L : ℝ)) * logGridSurplus L o))
+
+theorem logGridScale_pos [NeZero L] {m : ℝ} (hm : 1 < m) (o : ℕ) :
+    0 < logGridScale (L := L) m o :=
+  mul_pos (Real.log_pos hm) (Real.exp_pos _)
+
+namespace RealizedGridBounds
+
+variable [NeZero L] {c : Fin L → ℝ} {o : ℕ} (h : RealizedGridBounds c o)
+
+include h
+
+theorem surplus_pos : 0 < logGridSurplus L o := h.1
+
+theorem grid_bound (i : Fin L) :
+    |logGridError c (c 0) i| ≤ (1 - 1 / (L : ℝ)) * logGridSurplus L o := h.2.1 i
+
+theorem error_oscillation (i j : Fin L) :
+    |logGridError c (c 0) j - logGridError c (c 0) i| ≤
+      (1 - 1 / (L : ℝ)) * logGridSurplus L o := h.2.2.1 i j
+
+theorem gap_pos (i : Fin L) : 0 < liftedLogGap c i := h.2.2.2.1 i
+
+theorem gap_range (i j : Fin L) :
+    |liftedLogGap c j - liftedLogGap c i| ≤ logGridSurplus L o :=
+  (h.2.2.2.2 i j).1
+
+theorem gap_mean_bound (i : Fin L) :
+    |liftedLogGap c i - Real.log 3 / (L : ℝ)| ≤
+      (1 - 1 / (L : ℝ)) * logGridSurplus L o :=
+  (h.2.2.2.2 i i).2
+
+theorem log_state_lower (hc : ∀ i, 1 < c i) (i : Fin L) :
+    logGridScale (L := L) (c 0) o *
+      Real.exp ((i.val : ℝ) * Real.log 3 / (L : ℝ)) ≤ Real.log (c i) :=
+  log_lower_of_loglog_bound (hc i) (hc 0) (h.grid_bound i)
+
+end RealizedGridBounds
+
 /-- Full realization of both grid and gap bounds from power cells and sorted rank rotation. -/
 theorem realized_grid_bounds_of_power_cells [NeZero L]
     (c : Fin L → ℝ) (σ : Equiv.Perm (Fin L)) (o e : ℕ)
@@ -347,7 +410,7 @@ theorem realized_grid_bounds_of_power_cells [NeZero L]
     liftedLogGap_pos c hc hsorted hheight,
     log_gap_bounds_of_power_cells c σ o e hc hlen hrank hcycle hcell⟩
   have hw := logGrid_coboundary c σ o e (c 0) hc (hc 0) hlen hrank
-  have hsum := defect_sum_of_coboundary σ _ _ _ (Nat.pos_of_neZero L) hw
+  have hsum := logCellDefect_sum c σ o e hc hlen hrank
   exact defect_oscillation σ hcycle _ _ _ (logCellDefect_nonneg c σ o hc hcell) hsum hw
 
 /-- The cutoff and all quantitative bounds follow for an exact threshold invariant cycle. -/

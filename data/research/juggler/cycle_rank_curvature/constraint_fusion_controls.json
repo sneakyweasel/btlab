@@ -1,0 +1,110 @@
+{
+  "scope": "Fixed-tuple scalar formula checks only; no state, trajectory, or minimum enumeration.",
+  "counts": {
+    "L": 780239,
+    "o": 492276,
+    "e": 287963,
+    "even_gap_population": 780237
+  },
+  "budget": {
+    "maximum_odd_minimum": 519999999,
+    "gap_sum_upper": "140607999188800001040000000",
+    "odd_gap_lower_sum": 4
+  },
+  "hierarchy": {
+    "old_reset_lower": 8969,
+    "old_deviation_lower": 4483,
+    "elementary_run_reset_lower": 10782,
+    "elementary_run_deviation_lower": 5390,
+    "critical_lower": 14569,
+    "reset_lower": 14571,
+    "deviation_lower": 7284,
+    "raw_excess_lower": 14568
+  },
+  "affine_certificate": {
+    "q": 53,
+    "F53": "4387864922893216308702",
+    "F54": "13832597888632506736094",
+    "Dq": "9444732965739290427392",
+    "Bq": "496182982261289176343074",
+    "Bq_definition": "53*Dq-F53",
+    "numerator": "7228522115800726744157051908",
+    "critical_lower": 14569
+  },
+  "elementary_controls": [
+    {
+      "K": 10779,
+      "T": 10781,
+      "q": 72,
+      "r": 4149,
+      "minimum_gap_sum": "140990973712556127500086222",
+      "minimum_minus_budget": "382974523756126460086222",
+      "exceeds_budget": true
+    },
+    {
+      "K": 10780,
+      "T": 10782,
+      "q": 72,
+      "r": 4077,
+      "minimum_gap_sum": "140320397671988637879741388",
+      "minimum_minus_budget": "-287601516811363160258612",
+      "exceeds_budget": false
+    }
+  ],
+  "itinerary_controls": [
+    {
+      "C": 14568,
+      "q": 53,
+      "r": 8133,
+      "minimum_gap_sum": "140736429407066024231149876",
+      "minimum_minus_budget": "128430218266023191149876",
+      "exceeds_budget": true
+    },
+    {
+      "C": 14569,
+      "q": 53,
+      "r": 8080,
+      "minimum_gap_sum": "140240246424804735054806802",
+      "minimum_minus_budget": "-367752763995265985193198",
+      "exceeds_budget": false
+    }
+  ],
+  "actual_cycle_constructed": false,
+  "minimum_or_period_exclusion": false,
+  "all_block_phases_claimed_realizable": false,
+  "valuation_controls": [
+    {
+      "N": 1,
+      "B": 2,
+      "gap": 8,
+      "next_gap": 2,
+      "correction": 4,
+      "critical": false
+    },
+    {
+      "N": 1,
+      "B": 2,
+      "gap": 4,
+      "next_gap": 4,
+      "correction": -4,
+      "critical": true
+    },
+    {
+      "N": 1,
+      "B": 2,
+      "gap": 8,
+      "next_gap": 4,
+      "correction": 0,
+      "critical": false
+    },
+    {
+      "N": 1,
+      "B": 2,
+      "gap": 2,
+      "next_gap": 4,
+      "correction": -6,
+      "critical": true
+    }
+  ],
+  "controls_are_cycle_witnesses": false
+}

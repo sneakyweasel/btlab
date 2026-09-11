@@ -1,4 +1,5 @@
 import Problems.Juggler.ReturnCells
+import Problems.Juggler.NumericBridge
 
 namespace Problems.Juggler.RemainderCarry
 
@@ -170,15 +171,17 @@ theorem exact_remainder_correction {x u z R : ℕ}
   have ht : 0 ≤ t := Real.sqrt_nonneg _
   have hu0 : 0 ≤ (u : ℝ) := by positivity
   have hnatlo : u ^ 2 ≤ x ^ 3 := by rw [hu]; exact Nat.sqrt_le' _
-  have hnathi : x ^ 3 < (u + 1) ^ 2 := by rw [hu]; exact Nat.lt_succ_sqrt' _
   have hr : (R : ℝ) = t ^ 2 - (u : ℝ) ^ 2 := by
     rw [hR, Nat.cast_sub hnatlo, Nat.cast_pow, Nat.cast_pow, hsq]
+  have hroot : ((x ^ 3 : ℕ) : ℝ) = (x : ℝ) ^ 3 := by norm_cast
   have hlo : (u : ℝ) ≤ t := by
-    have hh : (u : ℝ) ^ 2 ≤ (x : ℝ) ^ 3 := by exact_mod_cast hnatlo
-    nlinarith
+    change (u : ℝ) ≤ Real.sqrt ((x : ℝ) ^ 3)
+    rw [← hroot, hu]
+    exact Real.nat_sqrt_le_real_sqrt
   have hhi : t < (u : ℝ) + 1 := by
-    have hh : (x : ℝ) ^ 3 < ((u : ℝ) + 1) ^ 2 := by exact_mod_cast hnathi
-    nlinarith
+    change Real.sqrt ((x : ℝ) ^ 3) < (u : ℝ) + 1
+    rw [← hroot, hu]
+    exact Real.real_sqrt_lt_nat_sqrt_succ
   have hzu : (u : ℝ) ≤ (z : ℝ) ^ 2 := by
     rw [hz]
     exact_mod_cast oe_sq_ge hmin

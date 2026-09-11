@@ -120,7 +120,11 @@ def test_dossier_boundary():
     assert "not a length-8" in dossier or "not a length-8/9" in dossier
     assert "Theorem 3.21" in note
     assert "no_cycle_itinerary_gapped_three_even_ee" in note
-    assert "remain open" not in note
+    # The settled short-word families must not be called open; Section 6
+    # must remain free to state the unresolved global cycle problem.
+    structural = note.split("## 3. Structural restrictions on cycle itineraries", 1)[1]
+    structural = structural.split("## 4. Cycle finance", 1)[0]
+    assert "remain open" not in structural
     assert "theorem no_cycle_itinerary_length_eight" not in note
     assert "theorem no_cycle_itinerary_length_nine" not in note
     flat = " ".join(note.split())

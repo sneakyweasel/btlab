@@ -993,7 +993,8 @@ def runlength_failures() -> list[dict[str, Any]]:
 # build green while the paper's machine-checked column asserts something false.
 #
 # `formal/AxiomCheckPaperB.lean` prints the axiom dependencies of every cited declaration and
-# `AxiomCheckPaperB.expected` records the output.  All forty-six read
+# `AxiomCheckPaperB.expected` records all 49 resolved citations in the historical snapshot.
+# Two uppercase citations were omitted by the former source index. Every result reads
 # [propext, Classical.choice, Quot.sound] -- Mathlib's three and nothing else.
 
 AXIOM_CHECK = REPO_ROOT / "formal" / "AxiomCheckPaperB.lean"
@@ -1002,16 +1003,16 @@ MATHLIB_AXIOMS = "[propext, Classical.choice, Quot.sound]"
 
 
 def axiom_check_names() -> list[str]:
-    """The declarations the artifact interrogates."""
-    return re.findall(r"^#print axioms ([A-Za-z0-9_']+)$",
+    """Fully qualified declarations interrogated by the historical Paper B artifact."""
+    return re.findall(r"^#print axioms ([A-Za-z_][A-Za-z0-9_'.]*)$",
                       AXIOM_CHECK.read_text(encoding="utf-8"), re.M)
 
 
 def axiom_check_results() -> dict[str, str]:
-    """Recorded output: declaration -> the axiom list it depends on."""
+    """Recorded output: fully qualified declaration -> dependency list."""
     out = {}
     for line in AXIOM_EXPECTED.read_text(encoding="utf-8").splitlines():
-        m = re.match(r"^'Problems\.Juggler\.([A-Za-z0-9_']+)' depends on axioms: (\[.*\])$", line)
+        m = re.match(r"^'([A-Za-z_][A-Za-z0-9_'.]*)' depends on axioms: (\[.*\])$", line)
         if m:
             out[m.group(1)] = m.group(2)
     return out
@@ -1022,8 +1023,8 @@ def axiom_failures() -> list[dict[str, Any]]:
     import importlib.util
     spec = importlib.util.spec_from_file_location("trust_boundary", REPO_ROOT / "tools" / "trust_boundary.py")
     tb = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(spec and tb)                              # type: ignore[arg-type]
-    cited = sorted({r["name"] for r in tb.audit() if r["declared"]})
+    spec.loader.exec_module(tb)
+    cited = sorted({r["qualified_name"] for r in tb.audit() if r["declared"]})
     listed, results = axiom_check_names(), axiom_check_results()
     bad: list[dict[str, Any]] = []
     for name in cited:

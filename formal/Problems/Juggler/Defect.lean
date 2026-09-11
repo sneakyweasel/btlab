@@ -1,3 +1,4 @@
+import Problems.Juggler.ItineraryStats
 import Problems.Juggler.Equality
 
 namespace Problems.Juggler
@@ -90,10 +91,6 @@ theorem localDefectOdd_lt_succ {x : ℕ} (hodd : x % 2 = 1) :
 def branchDefect : Branch → ℕ → ℕ
   | .even, x => localDefectEven x
   | .odd, x => localDefectOdd x
-
-def branchExp : Branch → ℕ
-  | .even => 1
-  | .odd => 3
 
 theorem branchDefect_add {x : ℕ} {b : Branch} (h : follows x [b]) :
     x ^ branchExp b = floorPower x ^ 2 + branchDefect b x := by

@@ -1018,7 +1018,7 @@ The new modules are registered in dependency order in both barrels.
 | Appendix F.1 | Exact transported loss: `loss_exact`; concave-tail bound: `loss_lt_budget`; common-floor paired estimate: `paired_bound` |
 | Appendix F.2–F.3 | Unconditional word bounds: `c_loss`, `w_loss`; gap contraction: `c_contract`, `w_contract`. Required growth: `ac_grows`, `d_grows`, `v_grows`; the sharper written helper errors and the earlier \(2^{15}\) growth cutoff are not needed in these formal proofs |
 | Appendix F.2–F.4 | Actual section: `periodicExtrema_return_model`; forced batches: `dc_rank_stages`, `lr_rank_stage`; guarded pair placement: `periodicExtrema_dc_transfers`, `periodicExtrema_lr_transfers`; height transport: `height_of_power_gap` |
-| Proposition 3.41 and Appendix F.5 | Finite substitution factorization and actual guards at a two-point return: `induced_terminal_actual_factorization`. Local contraction at the absolute cut: `mixed_gap`. Identifying the terminal pair with the globally adjacent cut pair, and the full primitive termination argument, remain written |
+| Proposition 3.41 and Appendix F.5 | Guarded factorization: `induced_terminal_actual_factorization`. Primitive termination: `primitive_terminal`. Full actual-orbit construction, global adjacency, cut/extrema identification and strict mixed gap for \(m\ge3\): `periodicExtrema_terminal_cut`, `periodicOrbit_terminal_cut`. The periodic-set interface requires connectedness; the orbit interface derives it. Local cell inequality: `mixed_gap` |
 | Appendix F.6 | Exact necessary threshold for the stated sufficient certificate: `certificate_requires_large_minimum`. Its near-unit asymptotic interpretation remains written; this is not a counterexample to actual paired contraction |
 
 The complete height theorems start with a bounded actual periodic set
@@ -1047,9 +1047,19 @@ Euclidean substitutions. Its actual two-point-return theorem retains
 all prefix, middle and suffix guards. The local cut theorem proves
 the signed integer inequality \(q-t<s-h\) directly from the two
 absolute square cells and \(1\le h<m^2<s\).
-The written identification of that cut with the globally adjacent
-terminal pair, and termination at a primitive two-point section, are
-not advertised as fully formalized here.
+The full `periodicOrbit_terminal_cut` theorem now constructs this geometry
+from an ordinary positive actual period, orbit bounds, an attained maximum,
+\(m\ge3\), and \(M<m^3\). The supplied period need not be least.
+Its `TerminalCut` record retains the two smallest original states, their
+guarded primitive return words, original-set adjacency through the common
+prefix, the largest odd and smallest even cut states, their images \(M,m\),
+and the guarded suffix from \((\lfloor\sqrt M\rfloor,O(m))\).
+The connected periodic-set version is `periodicExtrema_terminal_cut`.
+The `cycleMin_terminal_cut` adapter accepts a minimum-based closed itinerary
+with a bounded, attained maximum; its length may repeat the least period.
+Primitive termination follows by subtraction on positive coprime section
+counts; the original-set prefix witness prevents adjacency from being
+inferred merely from a retained list.
 
 The general loss certificate requires concave proper tails and the
 stated trace floor; the concrete C/W theorems prove their trace floors
@@ -1057,3 +1067,206 @@ internally. The certificate's exact minimum threshold is formalized.
 Its asymptotic interpretation does not prove that true paired
 contraction fails. Neither the terminal closure identity nor successful
 formalization resolves prefix amplification, general no-cycle or escape.
+
+## 14. Upper cells and full-domain obstructions
+
+### Lemma 6.3a (odd-to-odd upper-square gap)
+
+Source: `formal/Problems/Juggler/UpperSquareGap.lean`, in the namespace
+`Problems.Juggler.UpperSquareGap`.
+
+The arithmetic statement is
+
+```text
+cube_add_one_ne_odd_succ_sq
+  (hy : y % 2 = 1) :
+  x ^ 3 + 1 != (y + 1) ^ 2
+```
+
+It holds for all natural numbers x and y under the displayed oddness
+hypothesis; odd y is automatically positive. Factoring the alleged
+identity gives y(y+2)=x^3. The factors are coprime, so the standard
+coprime-power theorem makes both cubes. Positive cubes cannot differ
+by two.
+
+For the actual map the public endpoint is
+
+```text
+floorPower_odd_image_upper_gap
+  (hx : x % 2 = 1)
+  (hy : floorPower x % 2 = 1) :
+  x ^ 3 + 3 <= (floorPower x + 1) ^ 2
+```
+
+The exact square-root upper cell makes the complement positive; the
+two odd endpoint parities make it odd. The arithmetic theorem excludes
+one, giving the stated bound of three. Both the local arithmetic proof
+and the bridge to the actual map are checked by Lean's kernel.
+
+There is no minimum cutoff, cubic-height premise, periodicity premise,
+or numerical search in either theorem. This is an individual upper-cell
+restriction. It does not orient a signed sum of upper-cell slacks,
+exclude a cycle, improve a period bound, or prove termination. The
+upper-slack product and rotation arguments discussed with it remain
+written analyses; this module does not formalize those arguments.
+
+### Written and computational boundaries
+
+Proposition 6.3b's finite upper-cell/grid charge and scaled scalar
+consequence are verified in `CubicUpperCells.lean`: the public endpoints
+are `power_cells_grid_charge` and `power_cells_scaled_charge`. They
+require both exact cell faces, rank translation, and transitivity; the
+strict upper face is not inferred from a lower-cell relaxation.
+The `cubicBand_cycle_upper_charge` and `threshold_cycle_upper_charge`
+interfaces derive those hypotheses from the exact connected-cycle data.
+In `CubicOrbitCharge.lean`, `periodicOrbit_upper_charge` and
+`cycleMin_upper_charge` construct the full sorted model from an ordinary
+actual closed orbit, retain minimum and maximum anchors, and normalize
+the count and length to the actual least period.
+The shared scalar estimate is in `LogCells.lean`. Corollary 6.3c
+still adds written monotonicity and the outward interval comparison
+at the fixed counts. The asymptotic statement (UC3), numerical cutoff,
+and signed cap estimates are not claimed as newly verified Lean results. Propositions E.7--E.8 are written proofs
+about full eventual residue and polynomial domains; their asymptotic
+claims are not certified by the bounded Python controls. No escape or
+global no-cycle conclusion follows.
+
+
+## 15. Reusable interfaces and structural corollaries
+
+The 11 September 2026 refactor preserves published declaration names while
+moving elementary root facts to `RootCells`, signed and real conversions to
+`NumericBridge`, and logarithmic cell capacities to `LogCells`. Basic odd/even
+counts and branch exponents are in `ItineraryStats`. Generic word estimates
+and the necessary finite minimum threshold now reside in `ReturnWordLoss`;
+the latter retains its historical `ReturnWordBounds` namespace.
+
+The exact count identity is `exponent_eq_counts`. Dyadic certificates have
+a checked length interface. Word composition retains the actual next-block
+input and all required intermediate-state lower bounds.
+
+`ReturnWordFactorization.InducedPair.count_determinant` and `count_coprime`
+prove the determinant-one and primitive-count properties. `expanded_count_gcd`
+connects section populations to expanded counts. `ReturnGapHeight` contains
+`even_transfers_sum` and `even_transfers_positive`, with the former two/three
+transfer statements as special cases. These are finite structural statements,
+not assertions that further contractions exist.
+
+The grid API exposes its derived defect sum and named quantitative
+projections. The rotation count extends to an arbitrary starting rank;
+`cubicBand_phase_itinerary` connects it to actual guarded steps, and
+`cubicBand_cycle_minimalPeriod` identifies the distinct-state count with
+the least period under connectedness. A repeated closed itinerary or a
+disconnected periodic set cannot silently supply those primitive hypotheses.
+
+`periodicExtrema_return_section` exposes the original-set prefix coverage
+separately from the lightweight `RankedReturn` model. The `TransferChain`
+record uses finite indices for every source, target, word and guard;
+`periodicExtrema_dc_chain` and `periodicExtrema_lr_chain` construct it from
+actual periodic sets. The height proofs consume this record, while the
+earlier tuple interfaces remain available. `threshold_periodic_actual_model`
+shares the parity-to-actual-orbit bridge used by the wrong-parity strip
+theorems.
+
+The [architecture note](../architecture/juggler_lean.md) records the module
+interfaces and their maintenance rules. The source audit now resolves exact
+qualified declaration names and rejects ambiguous short names. The executable
+Lean dependency audit remains the proof check; source indexing alone is not.
+
+### Shared orbit, terminal totals, and nonlinear charge interfaces
+
+The subsequent 11 September interface pass retains one
+`ReturnSeams.PeriodicOrbitModel` for the actual sorted orbit: its distinct-state
+count, successor permutation, exact steps, transitivity, full coverage and
+extrema anchors, together with the supplied positive return time and its actual
+return equation. `periodicOrbit_model` constructs it from the original
+positive-period hypotheses; the supplied period can repeat the least period.
+
+`CubicGrid.OrbitUpperChargeCertificate` extends that same model with the true
+odd count, parity/threshold cuts, rank rotation, coprimality, least-period
+identification, grid and full charge. `orbitModel_upper_charge` strengthens a
+supplied model with equality of its projected base. The ordinary-orbit and
+minimum-based constructors are `periodicOrbit_upper_charge_certificate` and
+`cycleMin_upper_charge_certificate`; the previous theorem statements remain
+available as projections.
+
+`ReturnTerminal.TerminalOrbitCut` is indexed by that shared model. Besides all
+the earlier cut and guard fields, it retains
+
+\[
+|U|+|V|=L=\operatorname{minimalPeriod}(J,m),\qquad
+o(U)+o(V)=\#\{i:c_i\text{ odd}\},\qquad
+e(U)+e(V)=\#\{i:c_i\text{ even}\}.
+\]
+
+The original positive populations and exact substitution identities establish
+these counts. They are not equated with the length of an arbitrary repeated
+input itinerary. Applying the terminal constructor to the charge certificate's
+base keeps all counts and states aligned without a second sorting choice.
+The full ordinary-orbit and closed-itinerary constructors are
+`periodicOrbit_terminal_totals` and `cycleMin_terminal_totals`.
+
+The stronger `power_cells_nonlinear_charge` retains the finite estimate
+
+\[
+\Lambda<\frac1A\sum_{i=0}^{L-1}\exp(-A e^{t_i}-t_i),\qquad
+t_i=\frac{i\log3}{L}.
+\]
+
+Here \(A\) is the existing anchored grid scale. `FullUpperCellChargeBounds`
+retains this estimate and the old finite/closed geometric bounds.
+`power_cells_full_charge`, `threshold_cycle_full_upper_charge`, and
+`cubicBand_cycle_full_upper_charge` supply the combined interface with the same
+exact-cell and connectedness requirements. The strict upper face remains
+separate from the lower-cell grid hypotheses.
+
+The executable interface consumer checks the terminal and charge results on
+one model, compatibility of the earlier endpoints, and divisibility of the
+supplied return time by the true least period. These are source/interface
+improvements; the existing PDFs remain the last built snapshot until an
+explicit rebuild request. No prefix contraction or cycle exclusion is added.
+
+### Fixed-count charge monotonicity and symbolic exclusion
+
+`CubicChargeMonotonicity.lean` names the nonlinear, finite geometric,
+and closed geometric upper bounds. Each decreases strictly on positive grid
+scales. For a fixed positive primitive length L and odd count o, the anchored
+scale increases strictly with the minimum on m>1, so all three composed
+bounds decrease strictly there.
+
+The public minimum versions are
+`nonlinearChargeBound_strictAntiOn_minimum`,
+`finiteGeometricChargeBound_strictAntiOn_minimum`, and
+`closedGeometricChargeBound_strictAntiOn_minimum`.
+The existing nonlinear-to-finite and finite-to-closed comparisons are retained
+as `nonlinearChargeBound_le_finiteGeometric` and
+`finiteGeometricChargeBound_lt_closed`.
+
+For any cutoff m0>1, a comparison bound(m0)<=Lambda implies m<m0 for a
+`FullUpperCellChargeBounds` certificate at those same counts.
+The three `minimum_lt_of_nonlinear_cutoff`,
+`minimum_lt_of_finiteGeometric_cutoff`, and
+`minimum_lt_of_closedGeometric_cutoff` methods expose this conclusion.
+Corresponding `OrbitUpperChargeCertificate` methods use the retained
+true least period and odd count, without a second orbit extraction.
+
+This closes the symbolic monotonicity part of Corollary 6.3c. Its numerical
+interval comparison remains outside Lean, and UC3 remains a written asymptotic
+argument. No numerical threshold, certified descent floor or period bound
+is changed. The PDF remains the last built snapshot.
+
+### Square-start return cells used by the research small-loss construction
+
+ReturnCells now additionally proves the exact fourth-power characterization
+`ooe_sq_eq_iff`, its cell consequence `ooe_sq_cell`, and the actual-chain
+bridge `ooe_sq_actual_of_cells`. For an odd parameter t and supplied
+even intermediate v, exact square and fourth-power cells give all three
+actual steps t² -> t³ -> v -> z. An odd final endpoint is a further
+condition when claiming a return to the odd section.
+
+These declarations are in the existing Paper A import closure. The
+research theorem in [rank-curvature Result 17](../problems/juggler_cycle_rank_curvature.md)
+uses them as an exact integer reduction. Its joint smooth-phase
+equidistribution, infinitude, and arbitrarily small normalized losses
+remain written mathematics; they are not asserted as Lean theorems.
+The manuscript and its PDF have not been rebuilt for this research gate.

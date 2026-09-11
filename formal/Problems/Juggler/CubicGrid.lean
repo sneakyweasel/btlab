@@ -22,7 +22,7 @@ theorem cycleOn_of_bounded_reachable
     (hr : ∀ i j : Fin L, ∃ k < L, (σ ^ k) i = j) :
     σ.IsCycleOn (↑(Finset.univ : Finset (Fin L))) := by
   constructor
-  · simpa using σ.bijective
+  · simp
   · intro i _ j _
     obtain ⟨k, _, hk⟩ := hr i j
     exact ⟨(k : ℤ), by simpa using hk⟩
@@ -75,6 +75,22 @@ theorem orbit_increment_le
       have hi := hu ((σ ^ k) i)
       simp only [Equiv.Perm.coe_mul, Function.comp_apply] at *
       linarith
+
+/-- Exact loss accumulated along an arbitrary finite arc of the permutation. -/
+theorem defect_sum_along_arc
+    (w δ : Fin L → ℝ) (Λ : ℝ)
+    (hw : ∀ i, w (σ i) - w i = Λ / (L : ℝ) - δ i)
+    (i : Fin L) (k : ℕ) :
+    ∑ j ∈ Finset.range k, δ ((σ ^ j) i) =
+      (k : ℝ) * (Λ / (L : ℝ)) + w i - w ((σ ^ k) i) := by
+  induction k with
+  | zero => simp
+  | succ k ih =>
+    rw [Finset.sum_range_succ, ih, pow_succ']
+    have hi := hw ((σ ^ k) i)
+    simp only [Equiv.Perm.coe_mul, Function.comp_apply, Nat.cast_add,
+      Nat.cast_one] at *
+    linarith
 
 /-- An exact nonnegative-defect equation gives the sharp finite-size oscillation factor. -/
 theorem defect_oscillation

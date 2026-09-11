@@ -1,3 +1,4 @@
+import Problems.Juggler.LogCells
 import Mathlib.Analysis.SpecialFunctions.Log.Base
 import Mathlib.Analysis.SpecialFunctions.Pow.Real
 import Problems.Juggler.RateFreeDensity
@@ -166,10 +167,6 @@ noncomputable def pC (C : ℝ) : ℝ := (1 - 1 / C) / Real.logb 2 3
 
 /-- The paper's Chernoff exponent `e(C) = C D(p_C ‖ 1/2)/log 2`. -/
 noncomputable def chernoffExponent (C : ℝ) : ℝ := C * klHalf (pC C) / Real.log 2
-
-theorem one_lt_logb_two_three : 1 < Real.logb 2 3 := by
-  rw [Real.lt_logb_iff_rpow_lt (by norm_num) (by norm_num)]
-  norm_num
 
 /-- `log₂ 3 ≤ 8/5`, i.e. `3^5 ≤ 2^8`. -/
 theorem logb_two_three_le : Real.logb 2 3 ≤ 8 / 5 := by
@@ -427,7 +424,7 @@ theorem oddFailures_card_le_explicit {N₀ : ℕ} (hN : 2 ≤ N₀)
   have hddef : d = ⌈C * L⌉₊ := rfl
   have hy' : (2 : ℝ) ≤ y := by exact_mod_cast hy
   have hlogN : 0 < Real.log N₀ := Real.log_pos (by exact_mod_cast (by omega : 1 < N₀))
-  have hlog2y : 0 < Real.log (2 * y) := Real.log_pos (by push_cast; linarith)
+  have hlog2y : 0 < Real.log (2 * y) := Real.log_pos (by linarith)
   have hΛpos : 0 < Λ := div_pos hlog2y hlogN
   have hC0 : 0 < C := by linarith
   have hCL : 0 < C * L := Nat.ceil_pos.mp hd1

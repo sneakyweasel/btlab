@@ -318,13 +318,15 @@ def test_paper_c_records_the_ceiling_and_the_cap():
     text = Path("docs/theory/juggler_fate_almost_all_note.md").read_text(
         encoding="utf-8"
     )
+    # The editorial title may change; these claims must remain together in 5.7.
+    assert "### 5.7 " in text
+    section = text.split("### 5.7 ", 1)[1].split("\n## ", 1)[0]
     # Proposition 5.12 is an abstract ceiling; 5.13 is only a collapsed-power model.
-    assert "Proposition 5.12" in text and "Model calculation 5.13" in text
-    assert "1015" in text and "not an attained" in text
-    assert "### 5.7 The ceiling of the production calculus" in text
+    assert "Proposition 5.12" in section and "Model calculation 5.13" in section
+    assert "1015" in section and "not an attained" in section
     # the price list and the K_3 cap
     for value in ("0.6247", "0.7180", "0.7095", "0.8414"):
-        assert value in text
-    assert "K_3" in text
+        assert value in section
+    assert "K_3" in section
     # the superseded remark is gone
     assert "Depth two (\\(E\\), \\(OE\\)) carries" not in text

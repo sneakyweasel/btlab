@@ -1,5 +1,5 @@
 import Problems.Juggler.CubicBand
-import Problems.Juggler.FateContagion
+import Problems.Juggler.NumericBridge
 import Problems.Juggler.LandingValuation
 import Mathlib.Tactic
 
@@ -358,33 +358,17 @@ private theorem guard_int_sqrt_cell {a v : ℤ}
     (ha : 0 ≤ a) (hv : 0 ≤ v)
     (hlo : v^2 ≤ a^9) (hhi : a^9 < (v+1)^2) :
     Nat.sqrt ((a.toNat^3)^3) = v.toNat := by
-  have haN : (a.toNat : ℤ) = a := Int.toNat_of_nonneg ha
-  have hvN : (v.toNat : ℤ) = v := Int.toNat_of_nonneg hv
-  have hloZ : (v.toNat : ℤ)^2 ≤ ((a.toNat : ℤ)^3)^3 := by
-    rw [haN,hvN]
-    convert hlo using 1; ring
-  have hhiZ : ((a.toNat : ℤ)^3)^3 < ((v.toNat : ℤ)+1)^2 := by
-    rw [haN,hvN]
-    convert hhi using 1; ring
-  have hloN : v.toNat^2 ≤ (a.toNat^3)^3 := by exact_mod_cast hloZ
-  have hhiN : (a.toNat^3)^3 < (v.toNat+1)^2 := by exact_mod_cast hhiZ
-  exact (Nat.eq_sqrt.mpr ⟨by simpa only [pow_two] using hloN,
-    by simpa only [pow_two] using hhiN⟩).symm
+  have hc := NumericBridge.int_toNat_pow_cell ha hv hlo hhi
+  apply (Nat.eq_sqrt.mpr ?_).symm
+  simpa only [← pow_mul, Nat.reduceMul, pow_two] using hc
 
 private theorem guard_int_fourth_cell {a z : ℤ}
     (ha : 0 ≤ a) (hz : 0 ≤ z)
     (hlo : z^4 ≤ a^9) (hhi : a^9 < (z+1)^4) :
     (Nat.sqrt ((a.toNat^3)^3)).sqrt = z.toNat := by
   apply sqrt_sqrt_eq_iff.mpr
-  have haN : (a.toNat : ℤ) = a := Int.toNat_of_nonneg ha
-  have hzN : (z.toNat : ℤ) = z := Int.toNat_of_nonneg hz
-  have hloZ : (z.toNat : ℤ)^4 ≤ ((a.toNat : ℤ)^3)^3 := by
-    rw [haN,hzN]
-    convert hlo using 1; ring
-  have hhiZ : ((a.toNat : ℤ)^3)^3 < ((z.toNat : ℤ)+1)^4 := by
-    rw [haN,hzN]
-    convert hhi using 1; ring
-  exact ⟨by exact_mod_cast hloZ, by exact_mod_cast hhiZ⟩
+  simpa only [← pow_mul, Nat.reduceMul] using
+    NumericBridge.int_toNat_pow_cell ha hz hlo hhi
 
 private theorem guard_toNat_parity {a : ℤ} (ha : 0 ≤ a) (p : ℕ) (hp : a%2=p) :
     a.toNat%2=p := by

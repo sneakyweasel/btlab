@@ -190,45 +190,14 @@ so in particular
 \boxed{e^A A(A+1)\Lambda<A+1+L/T.}\tag{2}
 \]
 
-**Proof.** For successor \(y_i\), real branch exponent \(p_i\in\{1/2,3/2\}\),
-and defect \(\delta_i=\log(p_i\log c_i/\log y_i)\), the exact upper
-cell gives \(c_i^{p_i}<y_i+1\). Since all states exceed 1,
-
-\[
-0\le\delta_i<\log\frac{\log(y_i+1)}{\log y_i}
-=\log\left(1+\frac{\log(1+1/y_i)}{\log y_i}\right)
-<\frac1{y_i\log y_i}.
-\]
-
-Successors permute the states and \(\sum_i\delta_i=\Lambda\), hence
-\(\Lambda<\sum_i1/(c_i\log c_i)\). The uniform grid gives
-\(\log c_i\ge A e^{iT/L}\). For \(t=iT/L\ge0\), monotonicity of
-\(q e^q\) for \(q>0\), followed by \(e^t\ge1+t\), yields
-
-\[
-c_i\log c_i\ge A e^{Ae^t+t}\ge A e^A e^{(A+1)t}.
-\]
-
-This proves the first bound in (1). For \(z=T(A+1)/L>0\), the finite
-geometric sum is smaller than
-\(1/(1-e^{-z})=1+1/(e^z-1)<1+1/z\), proving (1)–(2).
-
-**Conditional asymptotic consequence.** Along a sequence with \(L\to\infty\),
-\(a=\log m\to\infty\), \(a=o(L)\), and \(\Lambda a\to0\), one has
-\(A/a\to1\) and \(e^A/m\to1\). Thus
-
-\[
-m(\log m)^2\Lambda\le(1+o(1))L/\log3.\tag{3}
-\]
-
-For example, if \(\Lambda\sim c/L\) with fixed \(c>0\) and \(m\) grows
-polynomially, then \(m(\log m)^2\le(1+o(1))L^2/(c\log3)\).
-For \(m\sim K L^2/(\log L)^2\), this requires
-\(K\le1/(4c\log3)\); a positive-constant scale \(m\sim K L^2/\log L\)
-is excluded under these hypotheses. This is narrower than the old
-statewise charge scale. No uniform lower bound \(\Lambda\gg1/L\), or
-actual-cycle scaling law, is asserted. Exact threshold cycles also obey
-(2), so this restriction does not itself detect wrong parity.
+**Canonical proof and asymptotic consequence.** Proposition 6.3b of
+[Paper A](../theory/juggler_finite_dynamics_note.md) now owns the written
+upper-cell/grid proof and its conditional scale consequence. Its
+Corollary 6.3c adds the fixed-count minimum upper bound. Edit those
+published arguments in the manuscript; this research record retains the
+statement, countermodels and decision. The proof applies also to exact
+threshold cycles, including ones with wrong parity, and therefore does
+not by itself supply a parity obstruction.
 
 ### Result 2 — absolute extrema strips and neighboring cells
 

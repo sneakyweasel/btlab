@@ -1,0 +1,56 @@
+{
+  "scope": "Fixed controls only; no actual cycle or census.",
+  "count_tuple": {
+    "L": 780239,
+    "o": 492276,
+    "e": 287963
+  },
+  "strict_minimum_upper_bound": 520000000,
+  "maximum_gap_valuation": 86,
+  "minimum_nonzero_corrections": 8969,
+  "minimum_three_block_deviations": 4483,
+  "minimum_total_excess_over_block_minima": 8966,
+  "upper_cube": 140608000000000000000000000,
+  "strict_power_of_two_ceiling": 154742504910672534362390528,
+  "parallel_oo_edges": [
+    {
+      "source": 45,
+      "target": 301,
+      "lower_remainder": 524,
+      "upper_complement": 79
+    },
+    {
+      "source": 49,
+      "target": 343,
+      "lower_remainder": 0,
+      "upper_complement": 687
+    },
+    {
+      "source": 95,
+      "target": 925,
+      "lower_remainder": 1750,
+      "upper_complement": 101
+    }
+  ],
+  "whole_rise_paid_by_next_downcrossing": false,
+  "generic_reset_bound_sharp_control": {
+    "levels": [
+      2,
+      1,
+      0
+    ],
+    "reset_indices": [
+      2
+    ]
+  },
+  "omitted_exception_monotonicity_countercontrol": {
+    "levels": [
+      0,
+      1
+    ],
+    "exception_indices": [
+      0
+    ],
+    "reset_indices": []
+  }
+}

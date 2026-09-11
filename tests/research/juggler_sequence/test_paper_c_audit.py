@@ -46,6 +46,16 @@ def test_published_artifact_hashes_match_the_reviewed_files() -> None:
         assert hashlib.sha256((root / relative).read_bytes()).hexdigest() == digest, relative
 
 
+def test_local_release_retains_the_registered_publication_identity() -> None:
+    root = Path(__file__).resolve().parents[3]
+    release = json.loads((root / "docs/theory/paper_c_release.json").read_text(encoding="utf-8"))
+    assert release["publication"] == {
+        "doi": "10.5281/zenodo.22678165",
+        "published_date": "2026-09-09",
+        "version": "1.0.0",
+    }
+
+
 @pytest.mark.parametrize("name", sorted(GROUPS))
 def test_every_printed_constant_reproduces(name: str) -> None:
     checks = GROUPS[name]()

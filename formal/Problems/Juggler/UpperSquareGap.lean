@@ -1,8 +1,22 @@
-import Problems.Juggler.CubicReturn
+import Problems.Juggler.RootCells
 import Mathlib.Algebra.GCDMonoid.Basic
+
+/-!
+# The upper square boundary on an odd output
+
+For odd `y`, the integer `y * (y + 2)` is not a cube: its two
+coprime factors would both be cubes, whereas positive cubes cannot
+differ by two. Equivalently, `x ^ 3 + 1 = (y + 1) ^ 2` is impossible.
+
+For an actual odd-to-odd step, the upper square complement is positive
+and odd. Excluding the value one therefore makes that complement at
+least three. The result is local and holds at every scale; it supplies
+no signed comparison between different edges or exclusion of cycles.
+-/
 
 namespace Problems.Juggler.UpperSquareGap
 
+/-- The two coprime odd factors `y` and `y + 2` cannot have a cubic product. -/
 theorem odd_mul_add_two_ne_cube {x y : ℕ} (hy : y % 2 = 1) :
     y * (y + 2) ≠ x ^ 3 := by
   intro h
@@ -27,12 +41,14 @@ theorem odd_mul_add_two_ne_cube {x y : ℕ} (hy : y % 2 = 1) :
   have hp := Nat.pow_le_pow_left (show a + 1 ≤ b by omega) 3
   nlinarith
 
+/-- A cube cannot be one below the successor square of an odd natural number. -/
 theorem cube_add_one_ne_odd_succ_sq {x y : ℕ} (hy : y % 2 = 1) :
     x ^ 3 + 1 ≠ (y + 1) ^ 2 := by
   intro h
   apply odd_mul_add_two_ne_cube hy
   nlinarith
 
+/-- An odd cube strictly below this even square has upper complement at least three. -/
 theorem cube_add_three_le_odd_succ_sq {x y : ℕ}
     (hx : x % 2 = 1) (hy : y % 2 = 1)
     (hcell : x ^ 3 < (y + 1) ^ 2) :
@@ -43,11 +59,13 @@ theorem cube_add_three_le_odd_succ_sq {x y : ℕ}
     simp [Nat.pow_mod, Nat.add_mod, hy]
   omega
 
+/-- The prescribed odd branch has the strengthened upper cell when both endpoints are odd. -/
 theorem odd_image_upper_gap {x : ℕ}
     (hx : x % 2 = 1) (hy : CubicReturn.O x % 2 = 1) :
     x ^ 3 + 3 ≤ (CubicReturn.O x + 1) ^ 2 :=
   cube_add_three_le_odd_succ_sq hx hy (CubicReturn.lt_O_succ_sq x)
 
+/-- Every actual odd-to-odd Juggler edge has upper square complement at least three. -/
 theorem floorPower_odd_image_upper_gap {x : ℕ}
     (hx : x % 2 = 1) (hy : floorPower x % 2 = 1) :
     x ^ 3 + 3 ≤ (floorPower x + 1) ^ 2 := by

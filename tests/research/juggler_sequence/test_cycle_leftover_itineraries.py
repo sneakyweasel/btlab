@@ -119,7 +119,11 @@ def test_note_records_census_without_overclaim():
     assert "Theorem 3.19" in note
     assert "Theorem 3.20" in note
     assert "Theorem 3.21" in note
-    assert "remain open" not in note
+    # This guard concerns the short-word census, not every open problem
+    # discussed elsewhere in the manuscript.
+    structural = note.split("## 3. Structural restrictions on cycle itineraries", 1)[1]
+    structural = structural.split("## 4. Cycle finance", 1)[0]
+    assert "remain open" not in structural
     assert "OOOEOE" in note
     assert "OOOOEE" in note
     assert "OOOOEOE" in note

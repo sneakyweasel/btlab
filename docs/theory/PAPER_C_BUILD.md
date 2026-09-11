@@ -2,6 +2,8 @@
 
 The canonical manuscript is [juggler_fate_almost_all_note.md](juggler_fate_almost_all_note.md). The 9 September 2026 revision is the Zenodo preprint [doi:10.5281/zenodo.22678165](https://doi.org/10.5281/zenodo.22678165). A local rebuild does not create or update that record.
 
+The local 11 September 2026 rebuild refreshes source hashes after a shared Lean refactor and repairs Unicode text encoding in the PDF template. It preserves the mathematical text, title and date; it does not update the deposited version.
+
 ## Build and provenance
 
 From the repository root, with Pandoc and XeLaTeX installed:

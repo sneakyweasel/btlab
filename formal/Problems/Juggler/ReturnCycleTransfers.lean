@@ -2,6 +2,59 @@ import Problems.Juggler.ReturnQuotients
 
 namespace Problems.Juggler.ReturnSeams
 
+/-- A finite chain of actual guarded transfers of ordered odd pairs. -/
+structure TransferChain (m n : ℕ) (words : Fin n → List Branch) where
+  lower : Fin (n + 1) → ℕ
+  upper : Fin (n + 1) → ℕ
+  minimum : ∀ i : Fin n, m ≤ lower i.castSucc
+  ordered : ∀ i, lower i < upper i
+  odd : ∀ i, lower i % 2 = 1 ∧ upper i % 2 = 1
+  guarded : ∀ i : Fin n,
+    follows (lower i.castSucc) (words i) ∧ follows (upper i.castSucc) (words i)
+  next_lower : ∀ i : Fin n,
+    ReturnWordLoss.eval (words i) (lower i.castSucc) = lower i.succ
+  next_upper : ∀ i : Fin n,
+    ReturnWordLoss.eval (words i) (upper i.castSucc) = upper i.succ
+
+namespace TransferChain
+
+def lowerNat {m n : ℕ} {words : Fin n → List Branch}
+    (T : TransferChain m n words) (i : ℕ) : ℕ :=
+  if hi : i < n + 1 then T.lower ⟨i, hi⟩ else 0
+
+def upperNat {m n : ℕ} {words : Fin n → List Branch}
+    (T : TransferChain m n words) (i : ℕ) : ℕ :=
+  if hi : i < n + 1 then T.upper ⟨i, hi⟩ else 0
+
+theorem minimum_nat {m n : ℕ} {words : Fin n → List Branch}
+    (T : TransferChain m n words) {i : ℕ} (hi : i < n) : m ≤ T.lowerNat i := by
+  simpa [lowerNat, show i < n + 1 by omega] using T.minimum ⟨i, hi⟩
+
+theorem ordered_nat {m n : ℕ} {words : Fin n → List Branch}
+    (T : TransferChain m n words) {i : ℕ} (hi : i < n + 1) :
+    T.lowerNat i < T.upperNat i := by
+  simpa [lowerNat, upperNat, hi] using T.ordered ⟨i, hi⟩
+
+theorem odd_nat {m n : ℕ} {words : Fin n → List Branch}
+    (T : TransferChain m n words) {i : ℕ} (hi : i < n + 1) :
+    T.lowerNat i % 2 = 1 ∧ T.upperNat i % 2 = 1 := by
+  simpa [lowerNat, upperNat, hi] using T.odd ⟨i, hi⟩
+
+theorem next_nat {m n : ℕ} {words : Fin n → List Branch}
+    (T : TransferChain m n words) {i : ℕ} (hi : i < n) :
+    ReturnWordLoss.eval (words ⟨i, hi⟩) (T.lowerNat i) = T.lowerNat (i + 1) ∧
+    ReturnWordLoss.eval (words ⟨i, hi⟩) (T.upperNat i) = T.upperNat (i + 1) := by
+  simpa [lowerNat, upperNat, show i < n + 1 by omega,
+    show i + 1 < n + 1 by omega] using
+    And.intro (T.next_lower ⟨i, hi⟩) (T.next_upper ⟨i, hi⟩)
+
+end TransferChain
+
+def dcWords : Fin 2 → List Branch := fun _ => ReturnWordBounds.wordC
+
+def lrWords (i : Fin 3) : List Branch :=
+  if i.val < 2 then ReturnWordBounds.wordC else ReturnWordBounds.wordW
+
 open ReturnWordLoss ReturnWordBounds
 
 /-- Two actual transfers, anchored to the original OOE/OE seam. -/
@@ -149,6 +202,50 @@ theorem periodicExtrema_lr_transfers {C : Set ℕ} {m M : ℕ}
   refine ⟨l, u, ?_, ?_, hmin, hlt, hod, hstep, hWl, hWu, hWli, hWui⟩
   · rw [hl, wordB, image_oe_eq hs.2.2.1, hyLast]
   · rw [hu, wordA, image_ooe_eq hs.1, hy0]
+
+/-- The actual DC placement packaged as a finite guarded chain. -/
+theorem periodicExtrema_dc_chain {C : Set ℕ} {m M : ℕ}
+    (D : CubicReturn.PeriodicExtrema C m M) (hm : 2 ^ 24 ≤ m) (hM : M < m ^ 3) :
+    ∃ T : TransferChain m 2 dcWords,
+      T.lowerNat 0 = ReturnCells.oe M.sqrt ∧ T.upperNat 0 = ReturnCells.ooe m := by
+  obtain ⟨l, u, hl, hu, hmin, hlt, hodd, hstep⟩ := periodicExtrema_dc_transfers D hm hM
+  let T : TransferChain m 2 dcWords := {
+    lower := fun i => l i.val
+    upper := fun i => u i.val
+    minimum := fun i => hmin i.val i.isLt
+    ordered := fun i => hlt i.val i.isLt
+    odd := fun i => hodd i.val i.isLt
+    guarded := fun i => ⟨(hstep i.val i.isLt).1, (hstep i.val i.isLt).2.1⟩
+    next_lower := fun i => (hstep i.val i.isLt).2.2.1
+    next_upper := fun i => (hstep i.val i.isLt).2.2.2 }
+  exact ⟨T, by simpa [T, TransferChain.lowerNat] using hl,
+    by simpa [T, TransferChain.upperNat] using hu⟩
+
+/-- The actual later placement packaged as two C steps and one W step. -/
+theorem periodicExtrema_lr_chain {C : Set ℕ} {m M : ℕ}
+    (D : CubicReturn.PeriodicExtrema C m M) (hm : 2 ^ 128 ≤ m) (hM : M < m ^ 3) :
+    ∃ T : TransferChain m 3 lrWords,
+      T.lowerNat 0 = ReturnCells.oe M.sqrt ∧ T.upperNat 0 = ReturnCells.ooe m := by
+  obtain ⟨l, u, hl, hu, hmin, hlt, hodd, hstep, hW⟩ := periodicExtrema_lr_transfers D hm hM
+  have hfull (i : Fin 3) :
+      follows (l i.val) (lrWords i) ∧ follows (u i.val) (lrWords i) ∧
+      eval (lrWords i) (l i.val) = l (i.val + 1) ∧
+      eval (lrWords i) (u i.val) = u (i.val + 1) := by
+    by_cases hi : i.val < 2
+    · simpa [lrWords, hi] using hstep i.val hi
+    · have hi2 : i.val = 2 := by omega
+      simpa [lrWords, hi2] using hW
+  let T : TransferChain m 3 lrWords := {
+    lower := fun i => l i.val
+    upper := fun i => u i.val
+    minimum := fun i => hmin i.val i.isLt
+    ordered := fun i => hlt i.val i.isLt
+    odd := fun i => hodd i.val i.isLt
+    guarded := fun i => ⟨(hfull i).1, (hfull i).2.1⟩
+    next_lower := fun i => (hfull i).2.2.1
+    next_upper := fun i => (hfull i).2.2.2 }
+  exact ⟨T, by simpa [T, TransferChain.lowerNat] using hl,
+    by simpa [T, TransferChain.upperNat] using hu⟩
 
 /-- At a two-rank terminal return the word invariant describes both actual paths. -/
 theorem RankedReturn.terminal_actual_factorization {U V : List Branch} {y : ℕ → ℕ}

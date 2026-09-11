@@ -66,3 +66,19 @@ def test_missing_output_record_is_rejected(release):
 
 def test_current_repository_release_is_synchronized():
     B.check(ROOT)
+
+
+def test_release_tracks_the_shared_full_import_closure(tmp_path):
+    folder = tmp_path / "formal/Problems"
+    folder.mkdir(parents=True)
+    (folder / "JugglerPaper.lean").write_text(
+        "/- import Problems.Phantom -/\n"
+        "  import Problems.One Problems.Two -- Problems.Unused\n", encoding="utf-8")
+    (folder / "One.lean").write_text("import Problems.Three\n", encoding="utf-8")
+    for name in ("Two", "Three"):
+        (folder / f"{name}.lean").write_text("-- no imports\n", encoding="utf-8")
+    inputs = set(B.input_files(tmp_path))
+    assert {name for name in inputs if name.startswith("formal/Problems/")} == {
+        "formal/Problems/JugglerPaper.lean", "formal/Problems/One.lean",
+        "formal/Problems/Two.lean", "formal/Problems/Three.lean"}
+    assert "tools/trust_boundary.py" in inputs

@@ -1,0 +1,993 @@
+{
+  "packing": {
+    "source_certificate": "cycle_rank_curvature/critical_location_controls.json",
+    "counts": {
+      "L": 780239,
+      "o": 492276,
+      "e": 287963,
+      "OOE_starts": 204313,
+      "OE_starts": 83650
+    },
+    "minimum_interval": [
+      350000001,
+      519999999
+    ],
+    "first_odd_square_parameter": 18709,
+    "rank_controls": [
+      {
+        "rank_prefix_length": 204313,
+        "state_upper_dyadic": [
+          "42000772730862195974538429882205128759237599044298951160252704489104947",
+          "100433627766186892221372630771322662657637687111424552206336"
+        ],
+        "last_integer_square_root": 646679,
+        "last_odd_parameter": 646679,
+        "odd_square_capacity": 313986,
+        "positive_first_O_remainders_lower": 0
+      },
+      {
+        "rank_prefix_length": 83650,
+        "state_upper_dyadic": [
+          "82153660162670576560757836527911070679969814489860571359611846184745055",
+          "12855504354071922204335696738729300820177623950262342682411008"
+        ],
+        "last_integer_square_root": 79940,
+        "last_odd_parameter": 79939,
+        "odd_square_capacity": 30616,
+        "positive_first_O_remainders_lower": 53034
+      }
+    ],
+    "first_loss_charge": {
+      "positive_remainder_count": 53034,
+      "raw_remainder_sum_lower": 106068,
+      "target_ceiling": 512000000000000,
+      "strict_rational_lower": [
+        "8839",
+        "1507328000000000000000000000000"
+      ],
+      "approximate_display": "5.86401897927989130434782608696E-27",
+      "surplus_lower_dyadic": [
+        "182779916895649462454858244725996459796378635940716284049719",
+        "52656145834278593348959013841835216159447547700274555627155488768"
+      ],
+      "charge_below_1e_minus_26": true,
+      "surplus_above_3e_minus_6": true
+    },
+    "scope": {
+      "existing_enclosures_only": true,
+      "new_interval_evaluation": false,
+      "rank_or_parameter_scan": false,
+      "exact_first_O_loss_only": true,
+      "type_minimum_deviation_count_claimed": false,
+      "positive_return_E_cost_claimed": false,
+      "cycle_excluded": false
+    }
+  },
+  "pairs": {
+    "scope": "Exactly eight prescribed parameters. Individual square/cube cells and guards only; no actual cycle, complete rank placement, finite-window phase-hit theorem, or infinitude inferred from these controls.",
+    "parameters": [
+      9355,
+      9999,
+      10001,
+      11111,
+      15587,
+      19999,
+      22221,
+      27501
+    ],
+    "controls": [
+      {
+        "s": 9355,
+        "branches": [
+          {
+            "states": [
+              350064099,
+              6549699282935,
+              16762239475538273625,
+              4094171402
+            ],
+            "parities": [
+              1,
+              1,
+              1,
+              0
+            ],
+            "residuals": [
+              262548074,
+              23884394132686109750,
+              6583628021
+            ],
+            "upper_cell_margins": [
+              13099136017797,
+              9640084818390437501,
+              1604714784
+            ],
+            "complete_actual_OOE": false
+          },
+          {
+            "states": [
+              350064101,
+              6549699339065,
+              16762239691013319837,
+              4094171429
+            ],
+            "parities": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "residuals": [
+              262548076,
+              31439956705659393056,
+              973417796
+            ],
+            "upper_cell_margins": [
+              13099136130055,
+              2084522676367246619,
+              7214925063
+            ],
+            "complete_actual_OOE": false
+          }
+        ],
+        "phases": [
+          {
+            "A_fraction": {
+              "lower_numerator": 200535832102173,
+              "upper_numerator": 200535832102174,
+              "denominator": 281474976710656,
+              "upper_strict": true
+            },
+            "B_fraction": {
+              "lower_numerator": 226312770270917,
+              "upper_numerator": 226312770270918,
+              "denominator": 281474976710656,
+              "upper_strict": true
+            },
+            "actual_E_fraction": {
+              "lower_numerator": 226312770246427,
+              "upper_numerator": 226312770246428,
+              "denominator": 281474976710656,
+              "upper_strict": true
+            }
+          },
+          {
+            "A_fraction": {
+              "lower_numerator": 263973109937510,
+              "upper_numerator": 263973109937511,
+              "denominator": 281474976710656,
+              "upper_strict": true
+            },
+            "B_fraction": {
+              "lower_numerator": 33461318910351,
+              "upper_numerator": 33461318910352,
+              "denominator": 281474976710656,
+              "upper_strict": true
+            },
+            "actual_E_fraction": {
+              "lower_numerator": 33461318878113,
+              "upper_numerator": 33461318878114,
+              "denominator": 281474976710656,
+              "upper_strict": true
+            }
+          }
+        ],
+        "both_complete_actual_OOE": false,
+        "exact_common_cubic_order": true,
+        "common_band_minimum": 350064099,
+        "minimum_in_fixed_window": true,
+        "source_lower_exceeds_known_minimum": true,
+        "four_loglog_gaps_upper_by_proof": {
+          "numerator": 4,
+          "denominator": 87516025
+        },
+        "coarse_bound_below_one_over_L": true,
+        "first_O_normalized_upper_by_proof": {
+          "numerator": 6,
+          "denominator": 46775
+        },
+        "phase_box_certificate_if_guarded": null
+      },
+      {
+        "s": 9999,
+        "branches": [
+          {
+            "states": [
+              399920003,
+              7997600209995,
+              22617236314833633155,
+              4755758227
+            ],
+            "parities": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "residuals": [
+              299940002,
+              17369254581400495850,
+              1155449626
+            ],
+            "upper_cell_margins": [
+              15994900479989,
+              27865218048266770461,
+              8356066829
+            ],
+            "complete_actual_OOE": false
+          },
+          {
+            "states": [
+              399920005,
+              7997600269989,
+              22617236569328439545,
+              4755758253
+            ],
+            "parities": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "residuals": [
+              299940004,
+              5678036978478201644,
+              8350827536
+            ],
+            "upper_cell_margins": [
+              15994900599975,
+              39556436160178677447,
+              1160688971
+            ],
+            "complete_actual_OOE": false
+          }
+        ],
+        "phases": [
+          {
+            "A_fraction": {
+              "lower_numerator": 108081519349352,
+              "upper_numerator": 108081519349353,
+              "denominator": 281474976710656,
+              "upper_strict": true
+            },
+            "B_fraction": {
+              "lower_numerator": 34193302219000,
+              "upper_numerator": 34193302219001,
+              "denominator": 281474976710656,
+              "upper_strict": true
+            },
+            "actual_E_fraction": {
+              "lower_numerator": 34193302207636,
+              "upper_numerator": 34193302207637,
+              "denominator": 281474976710656,
+              "upper_strict": true
+            }
+          },
+          {
+            "A_fraction": {
+              "lower_numerator": 35332020368190,
+              "upper_numerator": 35332020368191,
+              "denominator": 281474976710656,
+              "upper_strict": true
+            },
+            "B_fraction": {
+              "lower_numerator": 247126626395055,
+              "upper_numerator": 247126626395056,
+              "denominator": 281474976710656,
+              "upper_strict": true
+            },
+            "actual_E_fraction": {
+              "lower_numerator": 247126626391340,
+              "upper_numerator": 247126626391341,
+              "denominator": 281474976710656,
+              "upper_strict": true
+            }
+          }
+        ],
+        "both_complete_actual_OOE": false,
+        "exact_common_cubic_order": true,
+        "common_band_minimum": 399920003,
+        "minimum_in_fixed_window": true,
+        "source_lower_exceeds_known_minimum": true,
+        "four_loglog_gaps_upper_by_proof": {
+          "numerator": 4,
+          "denominator": 99980001
+        },
+        "coarse_bound_below_one_over_L": true,
+        "first_O_normalized_upper_by_proof": {
+          "numerator": 6,
+          "denominator": 49995
+        },
+        "phase_box_certificate_if_guarded": null
+      },
+      {
+        "s": 10001,
+        "branches": [
+          {
+            "states": [
+              400080003,
+              8002400210005,
+              22637600990365150961,
+              4757898799
+            ],
+            "parities": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "residuals": [
+              300060002,
+              41745543837196526604,
+              8839508560
+            ],
+            "upper_cell_margins": [
+              16004500360009,
+              3529658143533775319,
+              676289039
+            ],
+            "complete_actual_OOE": false
+          },
+          {
+            "states": [
+              400080005,
+              8002400270011,
+              22637601244987236572,
+              4757898826
+            ],
+            "parities": [
+              1,
+              1,
+              0,
+              0
+            ],
+            "residuals": [
+              300060004,
+              19751731091903700147,
+              6535058296
+            ],
+            "upper_cell_margins": [
+              16004500480019,
+              25523471398070772998,
+              2980739357
+            ],
+            "complete_actual_OOE": false
+          }
+        ],
+        "phases": [
+          {
+            "A_fraction": {
+              "lower_numerator": 259531166406494,
+              "upper_numerator": 259531166406495,
+              "denominator": 281474976710656,
+              "upper_strict": true
+            },
+            "B_fraction": {
+              "lower_numerator": 261470511583729,
+              "upper_numerator": 261470511583730,
+              "denominator": 281474976710656,
+              "upper_strict": true
+            },
+            "actual_E_fraction": {
+              "lower_numerator": 261470511556456,
+              "upper_numerator": 261470511556457,
+              "denominator": 281474976710656,
+              "upper_strict": true
+            }
+          },
+          {
+            "A_fraction": {
+              "lower_numerator": 122796094624200,
+              "upper_numerator": 122796094624201,
+              "denominator": 281474976710656,
+              "upper_strict": true
+            },
+            "B_fraction": {
+              "lower_numerator": 193305432600577,
+              "upper_numerator": 193305432600578,
+              "denominator": 281474976710656,
+              "upper_strict": true
+            },
+            "actual_E_fraction": {
+              "lower_numerator": 193305432587673,
+              "upper_numerator": 193305432587674,
+              "denominator": 281474976710656,
+              "upper_strict": true
+            }
+          }
+        ],
+        "both_complete_actual_OOE": false,
+        "exact_common_cubic_order": true,
+        "common_band_minimum": 400080003,
+        "minimum_in_fixed_window": true,
+        "source_lower_exceeds_known_minimum": true,
+        "four_loglog_gaps_upper_by_proof": {
+          "numerator": 4,
+          "denominator": 100020001
+        },
+        "coarse_bound_below_one_over_L": true,
+        "first_O_normalized_upper_by_proof": {
+          "numerator": 6,
+          "denominator": 50005
+        },
+        "phase_box_certificate_if_guarded": null
+      },
+      {
+        "s": 11111,
+        "branches": [
+          {
+            "states": [
+              493817283,
+              10973607651715,
+              36351651207866460185,
+              6029233053
+            ],
+            "parities": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "residuals": [
+              370362962,
+              37861230906467716650,
+              478759376
+            ],
+            "upper_cell_margins": [
+              21946844940469,
+              34842071509265203721,
+              11579706731
+            ],
+            "complete_actual_OOE": false
+          },
+          {
+            "states": [
+              493817285,
+              10973607718381,
+              36351651539127508514,
+              6029233080
+            ],
+            "parities": [
+              1,
+              1,
+              0,
+              0
+            ],
+            "residuals": [
+              370362964,
+              25628203808702612145,
+              6161222114
+            ],
+            "upper_cell_margins": [
+              21946845073799,
+              47075099269552404884,
+              5897244047
+            ],
+            "complete_actual_OOE": false
+          }
+        ],
+        "phases": [
+          {
+            "A_fraction": {
+              "lower_numerator": 146581912148857,
+              "upper_numerator": 146581912148858,
+              "denominator": 281474976710656,
+              "upper_strict": true
+            },
+            "B_fraction": {
+              "lower_numerator": 11175449942898,
+              "upper_numerator": 11175449942899,
+              "denominator": 281474976710656,
+              "upper_strict": true
+            },
+            "actual_E_fraction": {
+              "lower_numerator": 11175449930742,
+              "upper_numerator": 11175449930743,
+              "denominator": 281474976710656,
+              "upper_strict": true
+            }
+          },
+          {
+            "A_fraction": {
+              "lower_numerator": 99221050004096,
+              "upper_numerator": 99221050004097,
+              "denominator": 281474976710656,
+              "upper_strict": true
+            },
+            "B_fraction": {
+              "lower_numerator": 143818444905190,
+              "upper_numerator": 143818444905191,
+              "denominator": 281474976710656,
+              "upper_strict": true
+            },
+            "actual_E_fraction": {
+              "lower_numerator": 143818444896962,
+              "upper_numerator": 143818444896963,
+              "denominator": 281474976710656,
+              "upper_strict": true
+            }
+          }
+        ],
+        "both_complete_actual_OOE": false,
+        "exact_common_cubic_order": true,
+        "common_band_minimum": 493817283,
+        "minimum_in_fixed_window": true,
+        "source_lower_exceeds_known_minimum": true,
+        "four_loglog_gaps_upper_by_proof": {
+          "numerator": 4,
+          "denominator": 123454321
+        },
+        "coarse_bound_below_one_over_L": true,
+        "first_O_normalized_upper_by_proof": {
+          "numerator": 6,
+          "denominator": 55555
+        },
+        "phase_box_certificate_if_guarded": null
+      },
+      {
+        "s": 15587,
+        "branches": [
+          {
+            "states": [
+              971818275,
+              30295462889263,
+              166750209724388313667,
+              12913179690
+            ],
+            "parities": [
+              1,
+              1,
+              1,
+              0
+            ],
+            "residuals": [
+              728863706,
+              210339681234015927558,
+              18159817567
+            ],
+            "upper_cell_margins": [
+              60590196914821,
+              123160738214760699777,
+              7666541814
+            ],
+            "complete_actual_OOE": false
+          },
+          {
+            "states": [
+              971818277,
+              30295462982785,
+              166750210496524384812,
+              12913179720
+            ],
+            "parities": [
+              1,
+              1,
+              0,
+              0
+            ],
+            "residuals": [
+              728863708,
+              40924384884696311281,
+              15505106412
+            ],
+            "upper_cell_margins": [
+              60590197101863,
+              292576036108352458344,
+              10321253029
+            ],
+            "complete_actual_OOE": false
+          }
+        ],
+        "phases": [
+          {
+            "A_fraction": {
+              "lower_numerator": 177527083697611,
+              "upper_numerator": 177527083697612,
+              "denominator": 281474976710656,
+              "upper_strict": true
+            },
+            "B_fraction": {
+              "lower_numerator": 197919271220930,
+              "upper_numerator": 197919271220931,
+              "denominator": 281474976710656,
+              "upper_strict": true
+            },
+            "actual_E_fraction": {
+              "lower_numerator": 197919271214056,
+              "upper_numerator": 197919271214057,
+              "denominator": 281474976710656,
+              "upper_strict": true
+            }
+          },
+          {
+            "A_fraction": {
+              "lower_numerator": 34540257094781,
+              "upper_numerator": 34540257094782,
+              "denominator": 281474976710656,
+              "upper_strict": true
+            },
+            "B_fraction": {
+              "lower_numerator": 168986243542617,
+              "upper_numerator": 168986243542618,
+              "denominator": 281474976710656,
+              "upper_strict": true
+            },
+            "actual_E_fraction": {
+              "lower_numerator": 168986243541280,
+              "upper_numerator": 168986243541281,
+              "denominator": 281474976710656,
+              "upper_strict": true
+            }
+          }
+        ],
+        "both_complete_actual_OOE": false,
+        "exact_common_cubic_order": true,
+        "common_band_minimum": 971818275,
+        "minimum_in_fixed_window": false,
+        "source_lower_exceeds_known_minimum": true,
+        "four_loglog_gaps_upper_by_proof": {
+          "numerator": 4,
+          "denominator": 242954569
+        },
+        "coarse_bound_below_one_over_L": true,
+        "first_O_normalized_upper_by_proof": {
+          "numerator": 6,
+          "denominator": 77935
+        },
+        "phase_box_certificate_if_guarded": null
+      },
+      {
+        "s": 19999,
+        "branches": [
+          {
+            "states": [
+              1599840003,
+              63990400419995,
+              511884809359670004668,
+              22624871477
+            ],
+            "parities": [
+              1,
+              1,
+              0,
+              1
+            ],
+            "residuals": [
+              1199880002,
+              751990762754889709651,
+              8901843139
+            ],
+            "upper_cell_margins": [
+              127979600959989,
+              271778855964450299686,
+              36347899816
+            ],
+            "complete_actual_OOE": true
+          },
+          {
+            "states": [
+              1599840005,
+              63990400539989,
+              511884810799490011418,
+              22624871509
+            ],
+            "parities": [
+              1,
+              1,
+              0,
+              1
+            ],
+            "residuals": [
+              1199880004,
+              694403309738825647945,
+              730074337
+            ],
+            "upper_cell_margins": [
+              127979601199975,
+              329366311860154374892,
+              44519668682
+            ],
+            "complete_actual_OOE": true
+          }
+        ],
+        "phases": [
+          {
+            "A_fraction": {
+              "lower_numerator": 206752162364263,
+              "upper_numerator": 206752162364264,
+              "denominator": 281474976710656,
+              "upper_strict": true
+            },
+            "B_fraction": {
+              "lower_numerator": 55373708818080,
+              "upper_numerator": 55373708818081,
+              "denominator": 281474976710656,
+              "upper_strict": true
+            },
+            "actual_E_fraction": {
+              "lower_numerator": 55373708813511,
+              "upper_numerator": 55373708813512,
+              "denominator": 281474976710656,
+              "upper_strict": true
+            }
+          },
+          {
+            "A_fraction": {
+              "lower_numerator": 190919081122237,
+              "upper_numerator": 190919081122238,
+              "denominator": 281474976710656,
+              "upper_strict": true
+            },
+            "B_fraction": {
+              "lower_numerator": 4541410480789,
+              "upper_numerator": 4541410480790,
+              "denominator": 281474976710656,
+              "upper_strict": true
+            },
+            "actual_E_fraction": {
+              "lower_numerator": 4541410476570,
+              "upper_numerator": 4541410476571,
+              "denominator": 281474976710656,
+              "upper_strict": true
+            }
+          }
+        ],
+        "both_complete_actual_OOE": true,
+        "exact_common_cubic_order": true,
+        "common_band_minimum": 1599840003,
+        "minimum_in_fixed_window": false,
+        "source_lower_exceeds_known_minimum": true,
+        "four_loglog_gaps_upper_by_proof": {
+          "numerator": 4,
+          "denominator": 399960001
+        },
+        "coarse_bound_below_one_over_L": true,
+        "first_O_normalized_upper_by_proof": {
+          "numerator": 6,
+          "denominator": 99995
+        },
+        "phase_box_certificate_if_guarded": {
+          "epsilon_numerator": 206752162364265,
+          "denominator": 281474976710656,
+          "meaning": "Both A fractions and B fractions are strictly in (0, epsilon); A floors even and B floors odd."
+        }
+      },
+      {
+        "s": 22221,
+        "branches": [
+          {
+            "states": [
+              1975091363,
+              87777010332225,
+              822377419552419523458,
+              28677123627
+            ],
+            "parities": [
+              1,
+              1,
+              0,
+              1
+            ],
+            "residuals": [
+              1481318522,
+              1391322202649571612861,
+              34177888329
+            ],
+            "upper_cell_margins": [
+              175552539345929,
+              253432636455267434056,
+              23176358926
+            ],
+            "complete_actual_OOE": true
+          },
+          {
+            "states": [
+              1975091365,
+              87777010465551,
+              822377421426104184155,
+              28677123660
+            ],
+            "parities": [
+              1,
+              1,
+              1,
+              0
+            ],
+            "residuals": [
+              1481318524,
+              1194310955009492615126,
+              15172388555
+            ],
+            "upper_cell_margins": [
+              175552539612579,
+              450443887842715753185,
+              42181858766
+            ],
+            "complete_actual_OOE": false
+          }
+        ],
+        "phases": [
+          {
+            "A_fraction": {
+              "lower_numerator": 238103804455713,
+              "upper_numerator": 238103804455714,
+              "denominator": 281474976710656,
+              "upper_strict": true
+            },
+            "B_fraction": {
+              "lower_numerator": 167733355107226,
+              "upper_numerator": 167733355107227,
+              "denominator": 281474976710656,
+              "upper_strict": true
+            },
+            "actual_E_fraction": {
+              "lower_numerator": 167733355103074,
+              "upper_numerator": 167733355103075,
+              "denominator": 281474976710656,
+              "upper_strict": true
+            }
+          },
+          {
+            "A_fraction": {
+              "lower_numerator": 204388301215529,
+              "upper_numerator": 204388301215530,
+              "denominator": 281474976710656,
+              "upper_strict": true
+            },
+            "B_fraction": {
+              "lower_numerator": 74460879793624,
+              "upper_numerator": 74460879793625,
+              "denominator": 281474976710656,
+              "upper_strict": true
+            },
+            "actual_E_fraction": {
+              "lower_numerator": 74460879790061,
+              "upper_numerator": 74460879790062,
+              "denominator": 281474976710656,
+              "upper_strict": true
+            }
+          }
+        ],
+        "both_complete_actual_OOE": false,
+        "exact_common_cubic_order": true,
+        "common_band_minimum": 1975091363,
+        "minimum_in_fixed_window": false,
+        "source_lower_exceeds_known_minimum": true,
+        "four_loglog_gaps_upper_by_proof": {
+          "numerator": 4,
+          "denominator": 493772841
+        },
+        "coarse_bound_below_one_over_L": true,
+        "first_O_normalized_upper_by_proof": {
+          "numerator": 6,
+          "denominator": 111105
+        },
+        "phase_box_certificate_if_guarded": null
+      },
+      {
+        "s": 27501,
+        "branches": [
+          {
+            "states": [
+              3025220003,
+              166393150577505,
+              2146362971927856330735,
+              46328856794
+            ],
+            "parities": [
+              1,
+              1,
+              1,
+              0
+            ],
+            "residuals": [
+              2268915002,
+              100702615580556422400,
+              88896372299
+            ],
+            "upper_cell_margins": [
+              332784032240009,
+              4192023328275156239071,
+              3761341290
+            ],
+            "complete_actual_OOE": false
+          },
+          {
+            "states": [
+              3025220005,
+              166393150742511,
+              2146362975120560784655,
+              46328856829
+            ],
+            "parities": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "residuals": [
+              2268915004,
+              467215095418167309806,
+              38580849414
+            ],
+            "upper_cell_margins": [
+              332784032570019,
+              3825510854822954259505,
+              54076864245
+            ],
+            "complete_actual_OOE": false
+          }
+        ],
+        "phases": [
+          {
+            "A_fraction": {
+              "lower_numerator": 6603092474563,
+              "upper_numerator": 6603092474564,
+              "denominator": 281474976710656,
+              "upper_strict": true
+            },
+            "B_fraction": {
+              "lower_numerator": 270048799536868,
+              "upper_numerator": 270048799536869,
+              "denominator": 281474976710656,
+              "upper_strict": true
+            },
+            "actual_E_fraction": {
+              "lower_numerator": 270048799536796,
+              "upper_numerator": 270048799536797,
+              "denominator": 281474976710656,
+              "upper_strict": true
+            }
+          },
+          {
+            "A_fraction": {
+              "lower_numerator": 30635395696366,
+              "upper_numerator": 30635395696367,
+              "denominator": 281474976710656,
+              "upper_strict": true
+            },
+            "B_fraction": {
+              "lower_numerator": 117200643762346,
+              "upper_numerator": 117200643762347,
+              "denominator": 281474976710656,
+              "upper_strict": true
+            },
+            "actual_E_fraction": {
+              "lower_numerator": 117200643762016,
+              "upper_numerator": 117200643762017,
+              "denominator": 281474976710656,
+              "upper_strict": true
+            }
+          }
+        ],
+        "both_complete_actual_OOE": false,
+        "exact_common_cubic_order": true,
+        "common_band_minimum": 3025220003,
+        "minimum_in_fixed_window": false,
+        "source_lower_exceeds_known_minimum": true,
+        "four_loglog_gaps_upper_by_proof": {
+          "numerator": 4,
+          "denominator": 756305001
+        },
+        "coarse_bound_below_one_over_L": true,
+        "first_O_normalized_upper_by_proof": {
+          "numerator": 6,
+          "denominator": 137505
+        },
+        "phase_box_certificate_if_guarded": null
+      }
+    ],
+    "guard_success_parameters": [
+      19999
+    ],
+    "guard_success_in_fixed_minimum_window": []
+  },
+  "scope": {
+    "fixed_exact_controls_only": true,
+    "equidistribution_and_infinitude_are_written_proofs": true,
+    "formal_global_cycle_assembly": false,
+    "new_rank_or_minimum_census": false,
+    "new_cap_integration_or_propagation_sweep": false,
+    "actual_cycle_found_or_excluded": false
+  }
+}

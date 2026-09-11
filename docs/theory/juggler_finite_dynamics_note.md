@@ -1,7 +1,7 @@
 ---
 title: "Lower Bounds for Cycle Lengths in the Juggler Map"
 author: Philippe Cochin
-date: 10 September 2026
+date: 11 September 2026
 keywords:
   - Juggler map
   - Juggler sequence
@@ -366,6 +366,15 @@ passage, whose gap contracts, and identifies the remaining uncontrolled
 prefix. Appendix F gives the full error, rank and height proofs, and
 the precise obstruction to a uniform one-sided error certificate.
 
+Section 6.3 complements the height results with an upper-cell charge
+bound. At the exact counts \((780239,492276,287963)\), it restricts
+an actual cubic-cycle minimum to \(350000000<m<520000000\).
+The local odd-to-odd upper-square gap is Lean verified; the charge proof
+and its interval evaluation have separate evidence boundaries. Appendix
+E.7 rules out full eventually periodic and single-polynomial domains for
+an invariant all-\(OOE\) construction, while leaving sparse trajectories
+unexcluded.
+
 These statements are not interchangeable. Theorem 4.4 is
 the conceptual sharp inequality (constant \(1\)). Corollary 4.5
 is the convenient length-only statewise bound that turns a
@@ -519,10 +528,12 @@ Section 3.12's two height restrictions are formalized from actual
 periodic-set hypotheses. The section, forced batches, odd endpoint gaps
 and genuine transfers are constructed internally. Appendix F's exact
 floor-loss bounds and finite certificate threshold are also formalized.
-Section 3.13 retains the specific written boundary identified in Appendix A:
-the terminal rank factorization and local cut inequality are checked,
-while the global adjacency identification and primitive termination
-argument remain written. No general no-cycle theorem is asserted.
+Section 3.13's primitive terminal construction is also formalized from
+an ordinary actual periodic orbit, with its minimum and attained maximum.
+The proof retains original-set adjacency and all guards, identifies the
+absolute odd/even cut, and proves the strict mixed-gap inequality.
+Common-prefix amplification remains uncontrolled. No general no-cycle
+theorem is asserted.
 The real projection description and the higher-difference consequence
 are explanatory deductions from the listed results. The grid endpoints
 use the namespace `Problems.Juggler.CubicGrid`.
@@ -642,14 +653,13 @@ those hashes.
 
 ### 1.3 Notation
 
-Symbols that recur across sections are listed here with the one meaning
-each carries. Three letters were doing double duty in earlier drafts and
-have been separated: the constant of Lemma 3.3 is now \(G_a\) rather
-than \(e_a\), which freed \(e\) for the even count alone; the per-step
-exponent is \(h\) rather than \(e\), which also keeps it clear of
-\(\varepsilon_i\) in the same formula; and the backward exponent of a
-suffix is the named \(T(u)\) rather than a pair \(2^{s}/3^{l}\), which
-freed \(s\) for the digit sum of Section 5.
+The table records the core notation used in the envelope, itinerary
+exclusions, finance and walk estimates. Sections 3.10--3.13, 6.3 and
+Appendices E--F introduce additional local notation, defined where it is used.
+In the core estimates, \(G_a\) denotes the exponent in Lemma 3.3's
+constant, \(h\) the per-step exponent, and \(T(u)\) the backward
+exponent of a suffix. These are distinct from the even count \(e\),
+the step loss \(\varepsilon_i\), and the digit sum \(s(L)\).
 
 | symbol | meaning | first used |
 |---|---|---|
@@ -665,7 +675,6 @@ freed \(s\) for the digit sum of Section 5.
 | \(a_i\), \(a_k\) | the \(i\)-th odd run; the odd count after \(k\) steps | §4, §5 |
 | \(r\) | the length of a trailing even run | §3.9 |
 | \(h\) | the per-step exponent: \(1\) on an even letter, \(3\) on an odd one | §4 |
-| \(d\) | the depth of an itinerary | §6 only |
 | \(G_a\) | \(2(3^a-2^a)\), the exponent of \(2\) in Lemma 3.3's constant | §3 |
 | \(X_a\), \(Y_a\) | \(3(3^a-2^a)\) and \(2\cdot3^a-3\cdot2^a\), the sharp envelope exponents | §3.9 |
 | \(B(u)\) | the backward envelope of a suffix (Lemma 3.25) | §3.9 |
@@ -682,12 +691,17 @@ freed \(s\) for the digit sum of Section 5.
 | \(b_j\), \(s(L)\) | the Ostrowski digits of \(L=\sum_jb_jq_j\), and their sum | §5 |
 | \(n_{\max}(L)\) | the largest cycle minimum the kill criterion admits at length \(L\) | §1, §5 |
 
-Two letters are used in more than one way, deliberately and locally.
-\(e\) is also Euler's number in the numerical estimates of §3 and §5,
-where it appears only as \(e^{x}\) and never with a subscript. And
+In these core estimates, \(e\) is also Euler's number in the numerical
+displays of §3 and §5, where it appears as \(e^{x}\).
 \(s\) is an integration variable inside the two displays of §5.4 that
 evaluate \(C_*\); the digit sum always carries its argument, \(s(L)\).
-No other symbol in the paper is bound twice.
+These conventions govern the core estimates; local symbols are reset
+explicitly. In particular, \(I_b\) is the threshold interval and
+\(m,M\) are extrema in §3.10; \(Q(s)\) is an odd-integer projection
+in §3.11; \(U,V,P,Q\) are words in §3.13; and \(e_W(x)\) is the
+absolute word loss in Appendix F. Local \(d\) symbols in Appendices
+E--F denote quantities defined in their displays, including divisors,
+carries and gaps.
 
 ## 2. Envelope
 
@@ -1718,10 +1732,13 @@ specifically, for an unanchored rank \(i>0\), the interval for a state permitted
 of order \(c_i\log(c_i)\Lambda\) in the local regime
 \(\Lambda\log(c_i)\ll1\).
 In the illustrative regime \(\Lambda\) comparable to \(1/L\)
-and \(m\) comparable to \(L^2/\log L\), that permitted width is
-already of order \(L\) at low unanchored ranks, too large to determine
-parity. The minimum \(c_0=m\) itself is fixed exactly and has no such uncertainty. This is a limitation of this bound, not a lower bound on
-the actual error or a theorem about the scale of a real cycle.
+and \(m\) comparable to \(L^2/(\log L)^2\), that permitted width
+is already of order \(L/\log L\) at low unanchored ranks and
+therefore does not determine parity. The minimum \(c_0=m\) is fixed
+exactly and has no such uncertainty. This is a statement about the
+precision of (CB5), not a lower bound on the actual error or an assertion
+that a cycle realizes this scale. Proposition 6.3b supplies an additional
+upper-cell restriction, including a constraint on the leading constant.
 
 **Proposition 3.37 (one-unit successor allowance).** For every
 odd \(b\ge3\), define
@@ -3867,10 +3884,12 @@ is the GPU floating-point certified comparison of the same
 Theorem 5.9 criterion (Appendix B).
 
 At and beyond \(q_{14}=16785921\), the stated half-open window would need
-a further block argument and certified quotient data. Killing the remaining
-near-convergent survivors (starting with the fan member
-\(L=780239\), which is already inside the present window) is instead a
-Diophantine question about \(|3^o-2^L|\), and is not attempted here. The family leftover — the
+a further block argument and certified quotient data. Within this walk-charge criterion, the remaining
+near-convergent comparisons depend on the small positive forms
+\(o\log3-L\log2\), starting with the fan member \(L=780239\),
+which is already inside the present window. The geometric restrictions
+of Sections 3.10--3.13 and 6.3 supply separate necessary conditions.
+The family leftover --- the
 semiconvergent fans of \(\log 2/\log 3\) reduced to
 dangerous-position partial quotients — is the working draft
 [juggler_near_convergent_diophantine_note.md](juggler_near_convergent_diophantine_note.md).
@@ -4045,7 +4064,7 @@ top strips at their explicit minimum thresholds. The remaining region
 and the taller-cycle case are still unresolved. Appendix E's family
 and guard results do not establish the uniform conclusion.
 
-Proposition 3.41 identifies the next paired-gap issue: amplification
+Proposition 3.41 identifies a paired-gap issue: amplification
 through the terminal common prefix must be compared with the mixed
 passage and suffix contractions using the shared absolute cells.
 The present estimates cover only certified suffix factors. Their
@@ -4074,14 +4093,14 @@ consecutive expanding blocks occur already at
 
 The number \(p\) of odd runs on a minimum-based cycle ---
 equivalently, the number of excursions on the necklace of
-Section 4 --- looks like the next concrete direction. The run
+Section 4 --- is another natural statistic to test. The run
 form gives \(p\le e\) and, because the first odd run has length
 at least two, \(p\le o-1\), hence \(p\le\min(e,o-1)<0.3691\,L\)
 on an expanding itinerary; that is only the trivial ceiling, and
 a genuine lower bound on \(p\), or a peak-height / peak-count
 tradeoff, would feed Theorem 4.7.
 
-It is worth recording why we do not pursue it. A bound on \(p\)
+The following comparison records a limitation of this statistic. A bound on \(p\)
 is only useful if it constrains the *adversary*, and for the
 walk charge the adversary is the extremal walk of Theorem 5.3,
 which can be recovered from the lattice program by storing its
@@ -4258,6 +4277,194 @@ actual maximal odd runs or impose the no-\(EE\) hypothesis.
 A proof excluding all nontrivial cycles would need a further argument
 beyond the finite period bounds and the scoped limitation above.
 
+### 6.3 Absolute upper cells and the remaining signed-loss question
+
+The cubic rank grid also strengthens the total floor-loss bound. This
+section records that consequence, a local integer refinement, and the
+precision still needed to convert these restrictions into an exclusion.
+
+**Lemma 6.3a (odd-to-odd upper-square gap).** If both \(x\) and
+\(J(x)\) are odd, then
+\[
+x^3+3\le(J(x)+1)^2.
+\tag{UC1}
+\]
+
+*Proof.* More generally, let \(y\) be odd. The equality
+\(x^3+1=(y+1)^2\) would give \(x^3=y(y+2)\).
+Since \(\gcd(y,y+2)=1\), unique factorization would make both
+positive factors cubes, say \(y=a^3\) and \(y+2=b^3\).
+But \(a\ge1\), \(b\ge a+1\), and
+\(b^3-a^3\ge3a^2+3a+1\ge7\), a contradiction.
+For \(y=J(x)\), the exact upper cell makes
+\((y+1)^2-x^3\) positive; it is odd when \(x,y\) are odd.
+Having excluded one, it is at least three. \(\square\)
+
+The integer argument is formalized by `cube_add_one_ne_odd_succ_sq`
+and `floorPower_odd_image_upper_gap`. It is a local floor-cell
+restriction and requires no cycle assumption.
+
+**Proposition 6.3b (upper-cell charge on the sorted grid).** Let \(C\)
+be a primitive exact threshold cycle, or a primitive actual Juggler cycle
+with minimum \(m>1\) and maximum \(M<m^3\). Write \(m=\min C\),
+let \(L=|C|\) be its least period, and let \(o\) be its lower-branch
+count, equivalently its odd count in the actual case. Set
+\[
+T=\log3,\qquad \Lambda=o\log3-L\log2,
+\qquad A=(\log m)e^{-(1-1/L)\Lambda}.
+\]
+Then \(A>0\), \(\Lambda>0\), and
+\[
+\Lambda<\frac{e^{-A}}A
+ \sum_{i=0}^{L-1}e^{-iT(A+1)/L}
+<\frac{e^{-A}}A\left(1+\frac{L}{T(A+1)}\right).
+\tag{UC2}
+\]
+
+*Proof.* Retain the sorted states and defects of Proposition 3.36.
+For an edge with target \(y\) and real branch exponent
+\(p\in\{1/2,3/2\}\), the upper cell gives \(x^p<y+1\).
+Consequently
+\[
+0\le\delta=\log\frac{p\log x}{\log y}
+<\eta(y):=\log\frac{\log(y+1)}{\log y}
+<\frac1{y\log y}.
+\]
+The last inequality uses \(\log(1+t)<t\) twice. Since targets
+permute the states and the defects sum to \(\Lambda\),
+\(\Lambda<\sum_i1/(c_i\log c_i)\).
+The grid bound (CB5) gives \(\log c_i\ge A e^{iT/L}\).
+For \(t=iT/L\ge0\), monotonicity and \(e^t\ge1+t\) yield
+\[
+c_i\log c_i\ge A e^{Ae^t+t}
+\ge A e^A e^{(A+1)t}.
+\]
+This proves the first inequality in (UC2). With
+\(z=T(A+1)/L>0\), the geometric sum is less than
+\(1/(1-e^{-z})=1+1/(e^z-1)<1+1/z\), proving the second.
+\(\square\)
+
+For example, along a sequence with \(\log m\to\infty\),
+\(\log m=o(L)\), and \(\Lambda\log m\to0\), this gives
+\[
+m(\log m)^2\Lambda\le(1+o(1))\frac L{\log3}.
+\tag{UC3}
+\]
+Indeed \(A/\log m\to1\) and \(e^A/m\to1\). If additionally
+\(\Lambda\sim c/L\) with fixed \(c>0\) and \(m\) grows
+polynomially in \(L\), then
+\(m(\log m)^2\le(1+o(1))L^2/(c\log3)\).
+These are conditional scale restrictions, not an actual-cycle scaling
+law or a uniform lower bound for \(\Lambda\). The bound also applies
+to threshold cycles with wrong parity, so it does not itself detect
+that defect.
+
+**Corollary 6.3c (minimum range at the first surviving count pair).**
+An actual primitive cubic-band cycle with
+\[
+(L,o,e)=(780239,492276,287963)
+\]
+must satisfy
+\[
+350000000<m<520000000.
+\tag{UC4}
+\]
+
+*Proof and numerical boundary.* The lower bound is the certified descent
+input of Corollary 5.11. At these fixed counts,
+\[
+3.4711981668\cdot10^{-6}<\Lambda
+<3.4711981670\cdot10^{-6}.
+\]
+At \(m=520000000\), outward interval evaluation makes the last
+right-hand side of (UC2) less than
+\(3.230293215\cdot10^{-6}\). For fixed counts, \(A\) increases
+with \(m\), while both positive factors in that bound decrease.
+Thus (UC2) fails at every larger minimum as well. \(\square\)
+
+The scalar comparison and its rational outward endpoints are reproduced
+in the repository's cycle-rank-curvature control report, distributed
+with the software. The finite upper-cell and geometric bounds in (UC2)
+are now verified in Lean, including the scaled scalar consequence.
+The monotonicity argument is now formalized in
+`CubicGrid.closedGeometricChargeBound_strictAntiOn_minimum`.
+The symbolic exclusion is
+`CubicGrid.FullUpperCellChargeBounds.closedGeometric_cutoff_excludes`:
+an upper bound at one minimum excludes every larger minimum at the same
+fixed counts whenever that bound is at most the surplus. The nonlinear
+version uses `CubicGrid.nonlinearChargeBound_strictAntiOn_minimum`
+and `CubicGrid.FullUpperCellChargeBounds.nonlinear_cutoff_excludes`.
+The numerical interval comparison itself remains verified computation
+outside Lean. The asymptotic consequence (UC3) also remains written. The conclusion
+concerns these exact counts and the cubic-height
+hypothesis. It does not exclude period \(780239\) or raise the descent
+floor.
+
+**The unresolved signed comparison.** Return to an actual primitive
+cubic-band cycle. Suppose \(o\ge3\), let
+\(k=e^{-1}\pmod L\) lie in \((L/2,L)\), and put
+\(\ell=L-k\), \(h=2k-L\). Start the chronological orbit at \(m\).
+Its states at times \(h,k,L\) have ranks \(2,1,0\), respectively.
+Let \(Q=[h,k)\) and \(R=[k,L)\) denote their source-time arcs.
+Adding \(\ell\) pairs every Q edge with an R edge whose source
+and target ranks are both one lower. No source crosses a branch cut,
+so the complete two arcs have the same branch word.
+
+For an actual edge \(x\to y\), put \(N=x^3\) on O and \(N=x\)
+on E, and define the positive unused upper-cell capacity
+\[
+s=Z((y+1)^2)-Z(N),\qquad Z(t)=\log\log t.
+\]
+Write \(s_Q,s_R\) for its arc sums and \(C_Q,C_R\) for the sums
+of \(\eta(y)\). As \(\eta\) decreases and the target ranks are
+adjacent pairs,
+\[
+0<\varepsilon:=C_R-C_Q\le\eta(m)-\eta(M).
+\]
+Telescoping the actual losses along the two arcs gives
+\[
+s_R-s_Q=\varepsilon+\chi,\qquad
+\chi=\log\frac{\log c_2\,\log m}{(\log c_1)^2}.
+\tag{UC5}
+\]
+For \(t=0,2\), define
+\[
+H_t(y)=\log\frac{\log(2y-m+t)\,\log m}{(\log y)^2}.
+\]
+The condition
+\[
+H_0(c_1)+\varepsilon<s_R-s_Q<H_2(c_1)+\varepsilon
+\tag{UC6}
+\]
+would be equivalent to \(0<c_2-2c_1+m<2\), impossible for three
+odd integers. This is an exact reformulation of the missing estimate,
+not an inequality that has been established.
+
+The complete universal rank-envelope cap sums at the counts of
+Corollary 6.3c leave a relaxed signed-loss interval of approximately
+\([-1.307,1.307]\cdot10^{-6}\). At the boundary-scale first-triple
+control, the forbidden window has width of order \(10^{-10}\).
+That control uses \(m_0=350000001\) only as a diagnostic scale:
+\(O(m_0)=6547900454916\) is even, so it is not an actual cycle
+minimum. No simultaneous realization of all integer cells is asserted.
+
+Lemma 6.3a changes the odd-to-odd cap from
+\(V_1(y)\) to \(V_3(y)\), where
+\(V_a(y)=Z((y+1)^2-a)-Z(y^2)\). For \(y>1\),
+\[
+0<V_1(y)-V_3(y)
+=\int_{(y+1)^2-3}^{(y+1)^2-1}\frac{du}{u\log u}
+\le\frac1{y^2\log y}.
+\tag{UC7}
+\]
+Its total additional effect on those envelopes is at most
+\(L/(m_0^2\log m_0)<3.238\cdot10^{-13}\).
+It cannot repair this cap test's missing precision. Multiplying the
+actual arc identities likewise only exponentiates (UC5). Balanced
+rotation counts do not bound the variation of the actual unused
+capacities. What remains is an arithmetic restriction on their joint
+distribution at the shared integer states, strong enough to prove (UC6).
+
 ## Appendix A. Lean names and trust boundary
 
 The proof object is the import closure of `formal/Problems/JugglerPaper.lean`.
@@ -4334,10 +4541,12 @@ None of these distinctions is removed by compiling the barrel.
 | Appendix E.6 | Every-modulus witness: `guardResidueFamily_every_modulus`; cells and parities: `guardResidue_ooe_traces`, `guardResidue_nat_parities`; exact remainder and valuation: `guardResidue_first_remainders_zero`, `guardResidue_aggregate_valuation`; record collision and classifier obstruction: `guardResidueFamily_record_collision`, `guardResidueFamily_no_record_classifier`; common domain and threshold edges: `guardResidue_common_band_and_section`, `guardResidue_threshold_blocks`. The general positive-\(b\) construction and supplementary bookkeeping remain written |
 | Theorem 3.40 | Actual-cycle gap and height bounds: `dc_cycle_gap`, `lr_cycle_gap`, `dc_cycle_height`, `lr_cycle_height`. The last two include the displayed real bounds and exact integer endpoints, from the stated minimum and cubic-band hypotheses |
 | Theorem 3.40, cycle and threshold consequences | Ordinary cycle predicates: `cycleMin_dc_height`, `cycleMin_lr_height`. Wrong parity in the excluded threshold strips: `threshold_cycle_dc_wrong_parity`, `threshold_cycle_lr_wrong_parity` |
-| Appendix F.1 | Exact transported loss: `loss_exact`; concave-tail bound: `loss_lt_budget`; common-floor paired estimate: `paired_bound` |
+| Appendix F.1 | Exact transported loss: `loss_exact`; concave-tail bound: `loss_lt_budget`; common-floor paired estimate: `paired_bound`; exponent/count identity: `exponent_eq_counts` |
+| Appendix F, finite even-gap bookkeeping | `even_transfers_sum`, `even_transfers_positive`: each strict even-gap step consumes at least two, with every transfer retained as a hypothesis |
+| Appendix F.5, induced word counts | `count_determinant`, `count_coprime`, `expanded_count_gcd`: the induced count matrix has determinant one and preserves the gcd of the expanded totals |
 | Appendix F.2–F.3 | Unconditional word bounds: `c_loss`, `w_loss`; gap contraction: `c_contract`, `w_contract`. Required growth: `ac_grows`, `d_grows`, `v_grows`; the sharper written helper errors and the earlier \(2^{15}\) growth cutoff are not needed in these formal proofs |
 | Appendix F.2–F.4 | Actual section: `periodicExtrema_return_model`; forced batches: `dc_rank_stages`, `lr_rank_stage`; guarded pair placement: `periodicExtrema_dc_transfers`, `periodicExtrema_lr_transfers`; height transport: `height_of_power_gap` |
-| Proposition 3.41 and Appendix F.5 | Finite substitution factorization and actual guards at a two-point return: `induced_terminal_actual_factorization`. Local contraction at the absolute cut: `mixed_gap`. Identifying the terminal pair with the globally adjacent cut pair, and the full primitive termination argument, remain written |
+| Proposition 3.41 and Appendix F.5 | Guarded factorization: `induced_terminal_actual_factorization`. Primitive termination: `primitive_terminal`. Full actual-orbit construction, global adjacency, cut/extrema identification and strict mixed gap for \(m\ge3\): `periodicExtrema_terminal_cut`, `periodicOrbit_terminal_cut`. The periodic-set interface requires connectedness; the orbit interface derives it. Local cell inequality: `mixed_gap` |
 | Appendix F.6 | Exact necessary threshold for the stated sufficient certificate: `certificate_requires_large_minimum`. Its near-unit asymptotic interpretation remains written; this is not a counterexample to actual paired contraction |
 | Lemma 3.21b | canonical run form; Theorem 3.2 |
 | Lemma 3.21a | the case split of Theorem 3.22 |
@@ -4368,6 +4577,11 @@ None of these distinctions is removed by compiling the barrel.
 | Observation 5.13, Corollary 5.14 | finite fitted exponents and the separately evaluated conditional bound; computation, not Lean |
 | Corollary 5.10 | second floor and kill table; verified computation, not Lean |
 | Corollary 5.11 | third floor and kill table; verified computation, not Lean |
+| Lemma 6.3a | `cube_add_one_ne_odd_succ_sq`, `floorPower_odd_image_upper_gap` (`UpperSquareGap.lean`); the integer upper-square gap only |
+| Proposition 6.3b | Exact finite and closed charges: `power_cells_grid_charge`; scaled consequence: `power_cells_scaled_charge`; actual and threshold interfaces: `cubicBand_cycle_upper_charge`, `threshold_cycle_upper_charge`. Ordinary-orbit and minimum-based itinerary extraction at the true least period: `periodicOrbit_upper_charge`, `cycleMin_upper_charge`. The abstract statements retain both cell faces, rank translation, and transitivity; the interfaces derive these from actual connected cycles. The asymptotic consequence (UC3) remains written |
+| Corollary 6.3c | Fixed-count monotonicity and symbolic exclusion: `CubicGrid.closedGeometricChargeBound_strictAntiOn_minimum`, `CubicGrid.FullUpperCellChargeBounds.closedGeometric_cutoff_excludes`. The outward numerical interval comparison at the stated counts remains outside Lean |
+| Section 6.3 signed comparison | Written transport identities and interval controls; no inequality forcing the forbidden window is established |
+| Propositions E.7--E.8 | Written residue and inverse-polynomial finite-difference proofs; no uniform theorem is inferred from finite trajectory checks |
 | short certificates (Section 6) | `even_finiteProgress`, `odd_even_finiteProgress` |
 | no certificate \(\Rightarrow\) odd-to-odd | `no_finiteProgress_implies_odd_odd` |
 | induction to \(1\) | `reachesOne_of_all_finiteProgress` |
@@ -5617,6 +5831,128 @@ cells to obtain a restriction beyond these bookkeeping identities.
 The uniform wrong-parity conclusion remains open.
 
 
+### E.7. Full arithmetic domains cannot preserve every OOE return
+
+Write \(A=E\circ O\circ O\) for the prescribed three-step map, whether
+or not its intermediate states realize the indicated parities. Proposition
+E.1 and the growth argument used in Theorem 3.39 give
+
+\[
+0\le x^{9/8}-A(x)<2,\qquad A(x)>x\quad(x\ge5).
+\tag{E7a}
+\]
+
+Consequently a nonempty set \(S\) of odd integers at least five would
+give an infinite actual all-\(OOE\) trajectory if every \(x\in S\)
+had \(O(x)\) odd, \(O(O(x))\) even, and \(A(x)\in S\).
+The following restrictions concern this proposed invariant domain, rather
+than an arbitrary trajectory.
+
+**Proposition E.7 (eventually periodic domains).** Every odd residue
+class modulo an even positive integer contains arbitrarily large
+\(x\) for which \(O(x)\) is even. Hence no nonempty eventually
+periodic set of odd integers has the displayed invariant-domain property.
+
+*Proof.* Fix an even integer \(Q\ge2\), an odd residue
+\(1\le a<Q\), and an integer \(h\ge1\). Put
+
+\[
+t=2Qh,\qquad x=t^8+a,\qquad
+u=t^{12}+\frac{3a}{2}t^4.
+\]
+
+Then \(x\) is odd and congruent to \(a\) modulo \(Q\), while \(u\) is an even integer.
+Direct expansion gives
+
+\[
+4(x^3-u^2)=3a^2t^8+4a^3>0,
+\]
+\[
+4((u+1)^2-x^3)
+=8t^{12}-3a^2t^8-4a^3+12at^4+4>0.
+\]
+
+For the last sign, \(a\le t^2\) implies
+\(a^2t^8\le t^{12}\) and \(a^3\le t^6\le t^{12}\), leaving
+at least \(t^{12}+12at^4+4\). Thus \(O(x)=u\), which prevents
+the second O step. These sources grow without bound with \(h\). An infinite
+eventually periodic odd domain contains a tail of one odd residue class
+after refining its period to an even modulus. A nonempty finite domain
+above four cannot be invariant because \(A(x)>x\). \(\square\)
+
+**Proposition E.8 (one full polynomial value family).** Let \(P\) be a
+polynomial of degree \(d\ge2\), with positive leading coefficient,
+such that \(P(n)\) is a positive integer for every sufficiently large
+integer \(n\). Fix an eventual value set
+\(S_P=\{P(n):n\ge n_0\}\). At least one of every three sufficiently
+large consecutive integer parameters \(n\) has
+\(A(P(n))\notin S_P\).
+
+*Proof.* Let \(\alpha=9/8\), let \(a\) be the leading coefficient of \(P\),
+and use the increasing inverse branch of \(P\) near infinity to define
+
+\[
+w(t)=P^{-1}(P(t)^\alpha),\qquad
+C=a^{(\alpha-1)/d}>0.
+\]
+
+Leading terms give \(w(t)\sim Ct^\alpha\). Differentiating the exact
+identity \(P(w(t))=P(t)^\alpha\) first gives
+\(w'(t)\sim C\alpha t^{\alpha-1}\), and a second differentiation
+gives
+
+\[
+w''(t)=
+\frac{\alpha(\alpha-1)P(t)^{\alpha-2}P'(t)^2
+ +\alpha P(t)^{\alpha-1}P''(t)-P''(w(t))w'(t)^2}
+ {P'(w(t))}
+\sim\frac{9C}{64}t^{-7/8}.
+\tag{E7b}
+\]
+
+Thus the derivative estimate follows from an exact differentiated
+identity, without differentiating an unspecified error term.
+
+If \(A(P(n))=P(s_n)\) with integer \(s_n\ge n_0\), then
+\(s_n\sim Cn^\alpha\): sufficiently large outputs force the target parameter onto the increasing tail. The bound (E7a), the mean
+value theorem, and \(P'(u)\sim adu^{d-1}\) yield
+
+\[
+0\le w(n)-s_n=O(n^{-\alpha(d-1)})=o(n^{-7/8}).
+\tag{E7c}
+\]
+
+If the three parameters \(n,n+1,n+2\) all return into the family,
+integrating (E7b) over the unit square and applying (E7c) gives
+
+\[
+s_{n+2}-2s_{n+1}+s_n
+=\frac{9C}{64}n^{-7/8}(1+o(1)).
+\]
+
+For sufficiently large \(n\) this integer is strictly between zero and one,
+a contradiction. \(\square\)
+
+This theorem allows arbitrary integer target parameters \(s_n\);
+it assumes no polynomial update rule. Its hypothesis is that the entire
+eventual source value family is retained. It does not exclude an orbit
+using only a sparse subsequence of parameters. Finite changes to the value
+set have no effect, and a fixed arithmetic progression of parameters is
+covered by replacing \(P(n)\) with \(P(qn+b)\), for integers \(q>0,b\).
+A degree-one polynomial that is integer valued on a full integer tail has
+integer slope and constant; if its value tail is odd, Proposition E.7
+applies instead.
+
+The valuation in Theorem E.4 is specific to consecutive transitions inside
+that family. For example the actual return
+\[
+199\xrightarrow O2807\xrightarrow O148718\xrightarrow E385
+\]
+raises \(\nu_2(x-1)\) from one to seven. Neither the family valuation
+nor Propositions E.7--E.8 establish a decreasing rank for every actual OOE
+return. Existence of an infinite all-OOE trajectory remains open.
+
+
 ## Appendix F. Successive gaps and terminal return words
 
 This appendix supplies the complete written proof of Theorem 3.40
@@ -5953,7 +6289,11 @@ d_1<\kappa_Cd_0+\frac98,\quad
 d_2<\kappa_Cd_1+\frac98,\quad
 d_3<\kappa_Wd_2+\frac65.
 \]
-All four gaps are positive even integers, so \(d_0\ge8\). Moreover,
+All four gaps are positive even integers, so \(d_0\ge8\). More generally,
+\(n\) strict transfers between even natural gaps give
+\(d_0\ge d_n+2n\), and hence \(d_0\ge2(n+1)\) if the final gap is
+positive. This finite statement does not supply any additional valid
+transfer. Moreover,
 \[
 2\le d_3<
 \kappa_W\kappa_C^2d_0+
@@ -6095,6 +6435,21 @@ both identities. A left substitution \((U,V)\mapsto(U,UV)\) changes
 \(P\) to \(UP\) and keeps \(Q\). A right substitution
 \((U,V)\mapsto(UV,V)\) keeps \(P\) and changes \(Q\) to \(QV\).
 These rules prove (F13) by induction.
+
+
+The same substitutions give an exact count invariant. Write
+\(o(W),e(W)\) for the odd and even letter counts of a word. Then
+\[
+o(U)e(V)-o(V)e(U)=1.
+\]
+The initial vectors are \((2,1)\) and \((1,1)\); either substitution
+adds one vector to the other and preserves the determinant. Thus both
+count vectors are primitive. If
+\(L=a|U|+b|V|\) and \(o=a\,o(U)+b\,o(V)\), the same integer change of
+coordinates gives \(\gcd(a,b)=\gcd(L,o)\). Positive coprime section
+counts reach \((1,1)\) by strict subtraction, since \(a+b\) decreases
+until equality. The guard-preserving induction must accompany these
+count identities; the identities alone do not construct an actual orbit.
 
 At the final primitive two-base stage write the bases as \(\{m,v\}\),
 so \(U(m)=v,\ V(v)=m\). They are the two smallest original cycle
@@ -6242,13 +6597,13 @@ proofs, code, and final verification of this preprint.
     1985--86*, Progress in Mathematics 71, Birkhäuser, Boston, 1987,
     155--164.
     [doi:10.1007/978-1-4757-4267-1_11](https://doi.org/10.1007/978-1-4757-4267-1_11).
-16. P. Cochin, “Parity equidistribution of nested floor powers, with
-    descent applications to the Juggler map,” companion working manuscript
-    (Paper B), version consulted 9 September 2026. Repository copy:
-    [repository source](https://github.com/sneakyweasel/btlab/blob/main/docs/theory/juggler_parity_discrepancy_note.md).
-17. P. Cochin, “Fate contagion in the Juggler map and the almost-all
-    reduction of termination,” companion working manuscript (Paper C),
-    version consulted 9 September 2026. Repository [source](https://github.com/sneakyweasel/btlab/blob/main/docs/theory/juggler_fate_almost_all_note.md).
+16. P. Cochin, “Five-Step Descent Certificates for the Juggler Map:
+    Parity Statistics of Nested Floor Powers,” companion manuscript
+    (Paper B), revision of 10 September 2026.
+    [Source manuscript](https://github.com/sneakyweasel/btlab/blob/main/docs/theory/juggler_parity_discrepancy_note.md).
+17. P. Cochin, “Fate Contagion and Termination Criteria for the Juggler
+    Map,” companion manuscript (Paper C), revision of 9 September 2026.
+    [Source manuscript](https://github.com/sneakyweasel/btlab/blob/main/docs/theory/juggler_fate_almost_all_note.md).
 
 18. M. R. Herman, "Sur la conjugaison différentiable des difféomorphismes
     du cercle à des rotations," *Publ. Math. IHÉS* 49 (1979), 5--233,

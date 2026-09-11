@@ -138,4 +138,91 @@ theorem lt_of_concat_decreases {m : ℕ} (hm : m ≤ y 0) (ha : 0 < a)
 
 end RankedReturn
 
+/-- An ordered return prefix with coverage in its original periodic set. -/
+structure PrefixSection (C : Set ℕ) (n : ℕ) (y : ℕ → ℕ) : Prop where
+  positive : 0 < n
+  ordered : ∀ i j, i < j → j < n → y i < y j
+  member : ∀ i, i < n → y i ∈ C
+  initial : ∀ x ∈ C, x ≤ y (n - 1) → ∃ i < n, y i = x
+
+namespace PrefixSection
+
+theorem restrict {C : Set ℕ} {n k : ℕ} {y : ℕ → ℕ}
+    (h : PrefixSection C n y) (hk : 0 < k) (hkn : k ≤ n) :
+    PrefixSection C k y := by
+  refine ⟨hk, fun i j hij hj => h.ordered i j hij (by omega),
+    fun i hi => h.member i (by omega), ?_⟩
+  intro x hx hxl
+  have hlast : y (k - 1) ≤ y (n - 1) := by
+    by_cases he : k = n
+    · simp [he]
+    · exact (h.ordered _ _ (by omega) (by have := h.positive; omega)).le
+  obtain ⟨i, hi, hix⟩ := h.initial x hx (hxl.trans hlast)
+  refine ⟨i, ?_, hix⟩
+  by_contra hn
+  have ho := h.ordered (k - 1) i (by omega) hi
+  omega
+
+/-- Consecutive retained ranks are consecutive in the original set. -/
+theorem adjacent {C : Set ℕ} {n i : ℕ} {y : ℕ → ℕ}
+    (h : PrefixSection C n y) (hi : i + 1 < n) :
+    ¬ ∃ x ∈ C, y i < x ∧ x < y (i + 1) := by
+  rintro ⟨x, hx, hix, hxi⟩
+  have hlast : y (i + 1) ≤ y (n - 1) := by
+    by_cases he : i + 1 = n - 1
+    · simp [he]
+    · exact (h.ordered _ _ (by omega) (by omega)).le
+  obtain ⟨j, hj, hjx⟩ := h.initial x hx (hxi.le.trans hlast)
+  by_cases hji : j ≤ i
+  · by_cases he : j = i
+    · subst j; omega
+    · have hh := h.ordered j i (by omega) (by omega); omega
+  · by_cases he : j = i + 1
+    · subst j; omega
+    · have hh := h.ordered (i + 1) j (by omega) hj; omega
+
+end PrefixSection
+
+/-- Coprime positive populations reach a guarded two-point section in finitely
+many exact substitutions, preserving both expanded letter totals. -/
+theorem RankedReturn.primitive_terminal {a b : ℕ} {y : ℕ → ℕ} {U V : List Branch}
+    (h : RankedReturn a b y U V) (ha : 0 < a) (hb : 0 < b)
+    (hc : Nat.Coprime a b) (hw : ReturnWordFactorization.InducedPair U V) :
+    ∃ U' V', ReturnWordFactorization.InducedPair U' V' ∧ RankedReturn 1 1 y U' V' ∧
+      U'.length + V'.length = a * U.length + b * V.length ∧
+      oddCount U' + oddCount V' = a * oddCount U + b * oddCount V ∧
+      evenCount U' + evenCount V' = a * evenCount U + b * evenCount V := by
+  generalize hn : a + b = n
+  induction n using Nat.strong_induction_on generalizing a b U V with
+  | h n ih =>
+    by_cases hab : a = b
+    · have hb1 : b = 1 := by simpa [hab, Nat.Coprime] using hc
+      have ha1 : a = 1 := hab.trans hb1
+      exact ⟨U, V, hw, by simpa [ha1, hb1] using h,
+        by simp [ha1, hb1], by simp [ha1, hb1], by simp [ha1, hb1]⟩
+    · rcases lt_or_gt_of_ne hab with hab | hba
+      · obtain ⟨U', V', hw', ht, hL, ho, he⟩ :=
+          ih (a + (b - a)) (by omega) (h.right hab.le) ha (by omega)
+            ((Nat.coprime_sub_self_right hab.le).mpr hc) hw.right rfl
+        have hs := ReturnInduction.right_word_statistics hab.le U V
+        exact ⟨U', V', hw', ht, hL.trans hs.1, ho.trans hs.2.1, he.trans hs.2.2⟩
+      · obtain ⟨U', V', hw', ht, hL, ho, he⟩ :=
+          ih (a - b + b) (by omega) (h.left hba.le) (by omega) hb
+            ((Nat.coprime_sub_self_left hba.le).mpr hc) hw.left rfl
+        have hs := ReturnInduction.left_word_statistics hba.le U V
+        exact ⟨U', V', hw', ht, hL.trans hs.1, ho.trans hs.2.1, he.trans hs.2.2⟩
+
+/-- Primitive conserved expanded counts are sufficient for terminal induction. -/
+theorem RankedReturn.primitive_terminal_of_totals
+    {a b L o : ℕ} {y : ℕ → ℕ} {U V : List Branch}
+    (h : RankedReturn a b y U V) (ha : 0 < a) (hb : 0 < b)
+    (hw : ReturnWordFactorization.InducedPair U V)
+    (hL : a * U.length + b * V.length = L)
+    (ho : a * oddCount U + b * oddCount V = o) (hc : Nat.Coprime L o) :
+    ∃ U' V', ReturnWordFactorization.InducedPair U' V' ∧ RankedReturn 1 1 y U' V' ∧
+      U'.length + V'.length = L ∧ oddCount U' + oddCount V' = o := by
+  obtain ⟨U', V', hw', ht, hL', ho', _⟩ :=
+    h.primitive_terminal ha hb (hw.coprime_of_totals hL ho hc) hw
+  exact ⟨U', V', hw', ht, hL'.trans hL, ho'.trans ho⟩
+
 end Problems.Juggler.ReturnSeams

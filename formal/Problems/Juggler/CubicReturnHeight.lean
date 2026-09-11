@@ -1,5 +1,4 @@
-import Mathlib.Analysis.SpecialFunctions.Pow.Real
-import Mathlib.Tactic
+import Problems.Juggler.NumericBridge
 
 namespace Problems.Juggler
 
@@ -53,19 +52,13 @@ theorem cubic_return_height_algebra {m t z M : ℕ}
       (r - 2) * (r ^ 4 - r) + 1 := by ring
   have hMr : (M : ℝ) < r ^ 8 - r ^ 5 := by
     nlinarith only [htop, hsquare, hfactor, mul_nonneg (sub_nonneg.mpr hr2) hgap0]
-  have hMlt : M < m ^ 3 := by
-    have := pow_nonneg hr0 5
-    rw [hr8] at hMr
-    exact_mod_cast (show (M : ℝ) < (m : ℝ) ^ 3 by linarith)
-  have hdiff : r ^ 5 < ((m ^ 3 - M : ℕ) : ℝ) := by
-    rw [Nat.cast_sub (le_of_lt hMlt), Nat.cast_pow, ← hr8]
-    linarith
-  have hp := pow_lt_pow_left₀ hdiff (pow_nonneg hr0 5) (by norm_num : (8 : ℕ) ≠ 0)
-  have hid : (r ^ 5) ^ 8 = (m : ℝ) ^ 15 := by
-    calc
-      (r ^ 5) ^ 8 = (r ^ 8) ^ 5 := by ring
-      _ = (m : ℝ) ^ 15 := by rw [hr8]; ring
-  rw [hid] at hp
-  exact_mod_cast hp
+  have hr15 : r ^ 5 = (m : ℝ) ^ ((15 : ℝ) / 8) := by
+    dsimp [r]
+    rw [← Real.rpow_natCast, ← Real.rpow_mul hm0]
+    norm_num
+  have hstrip : (M : ℝ) < (m : ℝ) ^ 3 - (1 / (1 : ℝ)) * (m : ℝ) ^ ((15 : ℝ) / 8) := by
+    simpa only [← hr8, ← hr15, one_div_one, one_mul] using hMr
+  simpa only [one_mul] using NumericBridge.power_strip_of_real_strip
+    (q := 1) (by omega : 0 < m) (by decide : 0 < 8) (by decide : 0 < 1) (by simpa using hstrip)
 
 end Problems.Juggler

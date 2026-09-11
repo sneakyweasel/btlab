@@ -85,15 +85,36 @@ theorem periodic_extrema_lr_from_pairs {C : Set ℕ} {m M : ℕ} {l u : ℕ → 
   exact periodic_extrema_lr_height D (by omega) hM hg.1 hg.2
 
 
+/-- A typed DC transfer chain supplies the original scalar interface. -/
+theorem dc_gap_from_chain {m : ℕ} (hm : 2 ^ 24 ≤ m)
+    (T : ReturnSeams.TransferChain m 2 ReturnSeams.dcWords) :
+    6 ≤ T.upperNat 0 - T.lowerNat 0 ∧
+    (26240/59049 : ℝ) * (m : ℝ) ^ (13/128 : ℝ) <
+      (T.upperNat 0 - T.lowerNat 0 : ℕ) := by
+  exact dc_gap_from_pairs hm (fun _ hi => T.minimum_nat hi)
+    (fun _ hi => T.ordered_nat hi) (fun _ hi => T.odd_nat hi)
+    (fun _ hi => T.next_nat hi)
+
+/-- A typed C,C,W transfer chain supplies the later scalar interface. -/
+theorem lr_gap_from_chain {m : ℕ} (hm : 2 ^ 128 ≤ m)
+    (T : ReturnSeams.TransferChain m 3 ReturnSeams.lrWords) :
+    8 ≤ T.upperNat 0 - T.lowerNat 0 ∧
+    (2/5 : ℝ) * (m : ℝ) ^ (13/128+1-(3:ℝ)^41/2^65) <
+      (T.upperNat 0 - T.lowerNat 0 : ℕ) := by
+  apply lr_gap_from_pairs hm (fun _ hi => T.minimum_nat hi)
+    (fun _ hi => T.ordered_nat hi) (fun _ hi => T.odd_nat hi)
+  · intro i hi
+    simpa [ReturnSeams.lrWords, hi] using T.next_nat (show i < 3 by omega)
+  · simpa [ReturnSeams.lrWords] using T.next_nat (show 2 < 3 by omega)
+
 /-- Every actual cubic cycle on the DC domain supplies the two gap bounds. -/
 theorem dc_cycle_gap {C : Set ℕ} {m M : ℕ}
     (D : CubicReturn.PeriodicExtrema C m M) (hm : 2^24 ≤ m) (hM : M<m^3) :
     6 ≤ ReturnCells.ooe m-ReturnCells.oe M.sqrt ∧
     (26240/59049 : ℝ)*(m : ℝ)^(13/128 : ℝ) <
       (ReturnCells.ooe m-ReturnCells.oe M.sqrt : ℕ) := by
-  obtain ⟨l,u,hl0,hu0,hmin,hlt,hodd,hstep⟩ :=
-    ReturnSeams.periodicExtrema_dc_transfers D hm hM
-  have hg := dc_gap_from_pairs hm hmin hlt hodd (fun i hi => (hstep i hi).2.2)
+  obtain ⟨T, hl0, hu0⟩ := ReturnSeams.periodicExtrema_dc_chain D hm hM
+  have hg := dc_gap_from_chain hm T
   simpa only [hl0,hu0] using hg
 
 /-- Every actual cubic cycle on the LR domain supplies the third gap bound. -/
@@ -102,9 +123,8 @@ theorem lr_cycle_gap {C : Set ℕ} {m M : ℕ}
     8 ≤ ReturnCells.ooe m-ReturnCells.oe M.sqrt ∧
     (2/5 : ℝ)*(m : ℝ)^(13/128+1-(3:ℝ)^41/2^65) <
       (ReturnCells.ooe m-ReturnCells.oe M.sqrt : ℕ) := by
-  obtain ⟨l,u,hl0,hu0,hmin,hlt,hodd,hstep,hW⟩ :=
-    ReturnSeams.periodicExtrema_lr_transfers D hm hM
-  have hg := lr_gap_from_pairs hm hmin hlt hodd (fun i hi => (hstep i hi).2.2) hW.2.2
+  obtain ⟨T, hl0, hu0⟩ := ReturnSeams.periodicExtrema_lr_chain D hm hM
+  have hg := lr_gap_from_chain hm T
   simpa only [hl0,hu0] using hg
 
 /-- The unconditional actual-cycle DC height strip, including its integer form. -/

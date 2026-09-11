@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "canonical_source": "docs/theory/juggler_fate_almost_all_note.md",
-  "status": "preprint; Zenodo 10.5281/zenodo.22678165 (2026-09-09, v1.0.0)",
+  "status": "preprint; no external deposit performed",
   "verification_scope": "File provenance only. Mathematical trust boundaries are in the manuscript and PAPER_C_BUILD.md.",
   "tools": {
     "pandoc": "pandoc.EXE 3.6.3",
@@ -26,7 +26,7 @@
     {
       "path": "docs/theory/PAPER_C_BUILD.md",
       "mode": "text",
-      "sha256": "c3165b08dffc3d28d9d70c599387e2dbff360506128cb42a36e0be3ed3dcc202"
+      "sha256": "e67b96fc66d79dedf860c75c254d40b6387c5064b9ddb80a765614fe9e775164"
     },
     {
       "path": "docs/theory/figures/paper_c_decomposition.png",
@@ -51,7 +51,7 @@
     {
       "path": "docs/theory/juggler_fate_almost_all_note.md",
       "mode": "text",
-      "sha256": "27c7305067f8acd0af4241001e19a677b0304fc4badbf64a94993bb02565ccb0"
+      "sha256": "10e224b72e7e9a21a4e49ee97eb80cd8e70dd5c25efc1b53e0a994261272fa2a"
     },
     {
       "path": "formal/AxiomCheckPaperC.expected",
@@ -101,7 +101,7 @@
     {
       "path": "formal/Problems/Juggler/Defect.lean",
       "mode": "text",
-      "sha256": "a3f0b02f179f1670dd6e27479e7dc1c5ce43d20037ae37d69526d9f1630863d9"
+      "sha256": "9857d628fba797ef2bb62c25d5ff5c2a30cad24a8bb50c791e2dc3402d9bae45"
     },
     {
       "path": "formal/Problems/Juggler/DefectLowerBound.lean",
@@ -136,12 +136,12 @@
     {
       "path": "formal/Problems/Juggler/FateChernoff.lean",
       "mode": "text",
-      "sha256": "de99b56e1a95a80559aaba2152e01463f5df03c31c27a92bdfb0360ac022b1c0"
+      "sha256": "d82c5e1dbf85e503e41b44f266a2a51d7b90cbc5a6d8f533ccc6fc437cafd0b1"
     },
     {
       "path": "formal/Problems/Juggler/FateContagion.lean",
       "mode": "text",
-      "sha256": "58105934124ffbf80510fb988fc449ef70e492fdd943cc377460fe1f51a8bd50"
+      "sha256": "834198a6b0e8cc13c9fb91d9ad938f62ce5e783a3cc9009fb38334c913d5b7e2"
     },
     {
       "path": "formal/Problems/Juggler/FateFirstLetter.lean",
@@ -211,12 +211,17 @@
     {
       "path": "formal/Problems/Juggler/ItineraryStats.lean",
       "mode": "text",
-      "sha256": "e236b11909e7900e89db39b445679977c507afd63b18879dc5759f923a9e6262"
+      "sha256": "46667facf49ce603b70fdadac8b1ddc19639666cd894069f9ac60fa9fa8f4a27"
     },
     {
       "path": "formal/Problems/Juggler/LiveCountWeight.lean",
       "mode": "text",
       "sha256": "456aba09af342097f5a41a217a9863df967323463d8866f2d8d1671cf6b949b3"
+    },
+    {
+      "path": "formal/Problems/Juggler/LogCells.lean",
+      "mode": "text",
+      "sha256": "5b25451fa4568535238eacc093722cd768bd821c81ccd211c14108bf849e337d"
     },
     {
       "path": "formal/Problems/Juggler/Minimal.lean",
@@ -247,6 +252,11 @@
       "path": "formal/Problems/Juggler/Residuals.lean",
       "mode": "text",
       "sha256": "9d067f8496ae3782e30841f61181a2f38ddbca9244d665e4b2ac14118baed154"
+    },
+    {
+      "path": "formal/Problems/Juggler/RootCells.lean",
+      "mode": "text",
+      "sha256": "1257b97922e9f313411b86565259196ad0cfe1c63e2d60b49c14629c735f88ff"
     },
     {
       "path": "formal/Problems/Juggler/Scale.lean",
@@ -306,7 +316,7 @@
     {
       "path": "tools/build_paper_c.py",
       "mode": "text",
-      "sha256": "f51e90259dda5a74906468a91996a4356e018c88ec877862dd3e6b6fd3cf1f93"
+      "sha256": "efd5ca1bad56c18f2cc514b2c86d923125ff01eabd6bb153661fc378e2ec27e9"
     },
     {
       "path": "tools/check_paper_c_numeric.py",
@@ -316,7 +326,7 @@
     {
       "path": "tools/paper_c/article.tex",
       "mode": "text",
-      "sha256": "d62612a2cebac437ce734dd4c2e63e700038f232925c5c53a605162aeecd03f1"
+      "sha256": "7db5b3051094b5cdbcba256c111411370433c6158cebd16b281073f01f6f6503"
     },
     {
       "path": "tools/paper_c/layout.lua",
@@ -328,17 +338,22 @@
     {
       "path": "docs/theory/juggler_fate_almost_all_note.pdf",
       "mode": "binary",
-      "sha256": "168c613509670e1a8f5c31b62e86606843294799ee4e119cdc67ea3db121bd13"
+      "sha256": "a05f8761843a641e6dcd8570f03230f1aa1e720ac81684e63bfc3d7450bcf8dd"
     },
     {
       "path": "docs/theory/cochin-juggler-fates.tex",
       "mode": "text",
-      "sha256": "31103676f125076f4941cbe148d9898cf755252a715d217c72e338643de820b6"
+      "sha256": "5350ff34dad741cb0f603ec8c43630ed90bb27d008f7e465e8de07ce565aec80"
     },
     {
       "path": "docs/theory/paper_c_zenodo.json",
       "mode": "text",
       "sha256": "7d5e2d7f6b143891ba674479764aeeb283910485eeeb4323b9b7c395cffbc56c"
     }
-  ]
+  ],
+  "publication": {
+    "doi": "10.5281/zenodo.22678165",
+    "published_date": "2026-09-09",
+    "version": "1.0.0"
+  }
 }

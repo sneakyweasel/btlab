@@ -6,6 +6,13 @@ written proofs, independently checked by AI agents; independent human review
 and Lean formalization of the new results remain outstanding. They construct
 no escaping trajectory and prove no general no-escape or no-cycle theorem.
 
+
+**Publication consolidation.** Paper A, Appendix E.7, now owns the
+residue obstruction and the single-polynomial full-tail theorem.
+The finite-union extension, polynomial-update templates and bounded
+controls remain research results in this dossier; they are not added
+to the publication or relabeled as Lean proofs.
+
 ## Problem
 
 Can an explicit arithmetic family supply one actual trajectory consisting of
@@ -176,36 +183,12 @@ formalizations. No new Lean module or trust claim is introduced by this gate.
 
 ### 1. Every odd residue class contains a wrong second-O guard
 
-Let Q>=2 be even, let 1<=a<Q be odd, and set t=2Qh for any integer h>=1.
-Define
-
-\[
-x=t^8+a,\qquad U=t^{12}+\frac{3a}{2}t^4.
-\tag{EF4}
-\]
-
-The integer U is even: writing t=2b makes its second term 24ab^4.
-Also x is odd and congruent to a modulo Q. The exact square margins are
-
-\[
-4(x^3-U^2)=3a^2t^8+4a^3>0,
-\]
-\[
-4((U+1)^2-x^3)=8t^{12}-3a^2t^8-4a^3+12at^4+4.
-\tag{EF5}
-\]
-
-Here a<=t^2, so a^2t^8<=t^12 and a^3<=t^6<=t^12. The second margin is
-at least t^12+12at^4+4>0. Therefore O(x)=U exactly, and its even parity
-prevents the next O step. Increasing h proves the assertion at arbitrarily
-large sources in every odd residue class.
-
-Refining finitely many residue conditions to one common even modulus proves
-the obstruction for any nonempty eventually periodic odd domain. A finite
-Boolean combination of fixed congruences in integer polynomials of x is
-also periodic modulo a common modulus. Conditions on floor outputs,
-variable moduli, unbounded valuations, and thin nonperiodic subsets are
-outside this argument.
+The canonical statement and adjacent-square proof are now Proposition
+E.7 of [Paper A](../theory/juggler_finite_dynamics_note.md). Every odd
+residue class contains arbitrarily large sources with an even first odd
+image, so no nonempty eventual union of odd residue classes is a fully
+guarded invariant OOE domain. The construction is retained by the exact
+arithmetic controls here; edit its publication proof in the manuscript.
 
 ### 2. One polynomial family misses a return in every late triple
 

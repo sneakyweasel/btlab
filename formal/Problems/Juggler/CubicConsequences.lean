@@ -67,4 +67,36 @@ theorem cubicBand_mechanical_itinerary {m L : ℕ} (hL : 0 < L)
   simp_rw [← hconj, hcut]
   exact rankRotation_mechanical_prefix hL (Nat.add_sub_of_le ho) p hrot k
 
+/-- The ambient sorted size is the actual least period when the orbit is connected. -/
+theorem cubicBand_cycle_minimalPeriod {m L : ℕ} (hL : 0 < L)
+    (c : Fin L → ℕ) (hc : StrictMono c) (p : Equiv.Perm (Fin L))
+    (hband : ∀ i, InCubicBand m (c i))
+    (hstep : ∀ i, c (p i) = floorPower (c i))
+    (hconnected : ∀ i j, ∃ k : ℕ, floorPower^[k] (c i) = c j) (i : Fin L) :
+    Function.minimalPeriod floorPower (c i) = L := by
+  obtain ⟨o, _, _, _, hrot⟩ := cubicBand_sorted_rotation c hc p hband hstep
+  have hcycle : p.IsCycleOn (↑(Finset.univ : Finset (Fin L))) := by
+    simpa using rank_isCycleOn_of_connected c hc.injective p floorPower hstep hconnected
+  have hcop := rankRotation_coprime hL p hrot hcycle
+  rw [← cubic_conjugacy_minimalPeriod c hc.injective p floorPower hstep,
+    rankRotation_minimalPeriod p hrot, hcop.gcd_eq_one, Nat.div_one]
+
+/-- Actual odd prefixes at any initial rank, including separate periodic components. -/
+theorem cubicBand_phase_itinerary {m L : ℕ}
+    (c : Fin L → ℕ) (hc : StrictMono c) (p : Equiv.Perm (Fin L))
+    (hband : ∀ i, InCubicBand m (c i))
+    (hstep : ∀ i, c (p i) = floorPower (c i)) :
+    ∃ o ≤ L, (Finset.univ.filter (fun i => c i % 2 = 1)).card = o ∧
+      ∀ i k, (∑ j ∈ Finset.range k,
+        if floorPower^[j] (c i) % 2 = 1 then 1 else 0) =
+          k - (i.val + k * (L - o)) / L := by
+  classical
+  obtain ⟨o, ho, hcut, hcard, hrot⟩ := cubicBand_sorted_rotation c hc p hband hstep
+  refine ⟨o, ho, hcard, ?_⟩
+  intro i k
+  have hconj := cubic_conjugacy_iterate c p floorPower hstep
+  simp_rw [← hconj, hcut]
+  have hle : L - o ≤ L := Nat.sub_le _ _
+  simpa only [Nat.sub_sub_self ho] using rankRotation_lower_orbit_prefix hle p hrot i k
+
 end Problems.Juggler

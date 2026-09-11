@@ -1,12 +1,10 @@
 import Problems.Juggler.ReturnWordLoss
-import Problems.Juggler.CubicReturn
+import Problems.Juggler.ReturnCells
 
 namespace Problems.Juggler.ReturnWordBounds
 
 open ReturnWordLoss
 
-set_option maxRecDepth 4096
-set_option maxHeartbeats 2000000
 
 def wordA : List Branch := [.odd, .odd, .even]
 def wordB : List Branch := [.odd, .even]
@@ -27,9 +25,13 @@ theorem exponent_C : exponent wordC = (243 : ℝ) / 256 := by
 theorem exponent_D : exponent wordD = (531441 : ℝ) / 524288 := by
   norm_num [wordD, exponent_append, exponent_A, exponent_C]
 
+set_option maxRecDepth 4096 in
+set_option maxHeartbeats 2000000 in
 theorem exponent_W : exponent wordW = (3 : ℝ) ^ 41 / 2 ^ 65 := by
   norm_num [wordW, exponent_append, exponent_D, exponent_C]
 
+set_option maxRecDepth 4096 in
+set_option maxHeartbeats 2000000 in
 theorem exponent_V : exponent wordV = (3 : ℝ) ^ 53 / 2 ^ 84 := by
   norm_num [wordV, exponent_append, exponent_D, exponent_C]
 
@@ -38,66 +40,30 @@ theorem eval_A (x : ℕ) : eval wordA x = ReturnCells.ooe x := by
 theorem eval_B (x : ℕ) : eval wordB x = ReturnCells.oe x := by
   simp [wordB, eval, step, branchExp, ReturnCells.oe]
 
+set_option maxRecDepth 4096 in
+set_option maxHeartbeats 2000000 in
 theorem c_tails : ConcaveTails wordC := by
   norm_num [wordC, wordA, wordB, ConcaveTails, exponent, alpha, branchExp]
 
+set_option maxRecDepth 4096 in
+set_option maxHeartbeats 2000000 in
 theorem d_tails : ConcaveTails wordD := by
   norm_num [wordD, wordC, wordA, wordB, ConcaveTails, exponent, alpha, branchExp]
 
+set_option maxRecDepth 4096 in
+set_option maxHeartbeats 2000000 in
 theorem ac_tails : ConcaveTails (wordA ++ wordC) := by
   norm_num [wordC, wordA, wordB, ConcaveTails, exponent, alpha, branchExp]
 
+set_option maxRecDepth 4096 in
+set_option maxHeartbeats 2000000 in
 theorem w_tails : ConcaveTails wordW := by
   norm_num [wordW, wordD, wordC, wordA, wordB, ConcaveTails, exponent, alpha, branchExp]
 
+set_option maxRecDepth 4096 in
+set_option maxHeartbeats 2000000 in
 theorem v_tails : ConcaveTails wordV := by
   norm_num [wordV, wordD, wordC, wordA, wordB, ConcaveTails, exponent, alpha, branchExp]
-
-theorem innerAbove_mono {m n : ℝ} (hmn : m ≤ n) {x : ℕ} {w : List Branch}
-    (h : InnerAbove n x w) : InnerAbove m x w := by
-  induction w generalizing x with
-  | nil => trivial
-  | cons b w ih => exact ⟨fun hn => hmn.trans (h.1 hn), ih h.2⟩
-
-theorem innerAbove_one (w : List Branch) {x : ℕ} (hx : 0 < x) :
-    InnerAbove 1 x w := by
-  induction w generalizing x with
-  | nil => trivial
-  | cons b w ih =>
-    have hy := step_pos b hx
-    exact ⟨fun _ => by exact_mod_cast hy, ih hy⟩
-
-theorem budget_one_le_length (w : List Branch) (ht : ConcaveTails w) :
-    budget 1 w ≤ w.length := by
-  induction w with
-  | nil => simp [budget]
-  | cons b w ih =>
-    have hh := ih ht.2
-    simp only [budget, Real.one_rpow, mul_one, List.length_cons, Nat.cast_add, Nat.cast_one]
-    linarith [ht.1]
-
-theorem unit_loss_lt_length {w : List Branch} (hw : w ≠ [])
-    (ht : ConcaveTails w) {x : ℕ} (hx : 0 < x) :
-    (x : ℝ) ^ exponent w - eval w x < w.length :=
-  (loss_lt_budget (by norm_num) hw hx ht (innerAbove_one w hx)).trans_le
-    (budget_one_le_length w ht)
-
-theorem grows_of_unit_loss {w : List Branch} (hw : w ≠ []) (ht : ConcaveTails w)
-    {x k : ℕ} (hx : (2 : ℝ) ^ k ≤ x) (hp : 1 < exponent w)
-    (he : (1 : ℝ) ≤ k * (exponent w - 1) * 4)
-    (hl : (8 : ℝ) * w.length < x) : x < eval w x := by
-  have hx0 : (0 : ℝ) < x := lt_of_lt_of_le (by positivity) hx
-  have hn : 0 < x := by exact_mod_cast hx0
-  have hpow := dyadic_rpow_lower (q := exponent w - 1) (c := (9 : ℝ) / 8)
-    (a := 1) (b := 4) hx (by linarith) (by simpa using he) (by norm_num)
-  have hid : (x : ℝ) ^ exponent w = (x : ℝ) ^ (exponent w - 1) * x := by
-    nth_rw 1 [show exponent w = (exponent w - 1) + 1 by ring]
-    rw [Real.rpow_add_one hx0.ne']
-  have hh := mul_lt_mul_of_pos_right hpow hx0
-  have hb := unit_loss_lt_length hw ht hn
-  rw [← hid] at hh
-  have hlt : (x : ℝ) < eval w x := by linarith
-  exact_mod_cast hlt
 
 theorem ac_grows {x : ℕ} (hx : 2 ^ 24 ≤ x) :
     x < eval (wordA ++ wordC) x := by
@@ -149,17 +115,10 @@ theorem b_innerAbove (x : ℕ) : InnerAbove (x : ℝ) x wordB := by
   exact_mod_cast odd_step_ge x
 
 theorem c_innerAbove {x : ℕ} (hx : 3 ≤ x) : InnerAbove (x : ℝ) x wordC := by
-  have h₁ := a_ge hx
-  have h₂ := a_ge (hx.trans h₁)
-  have h₁' : (x : ℝ) ≤ eval wordA x := by exact_mod_cast h₁
-  have h₂' : (x : ℝ) ≤ eval wordA (eval wordA x) := by exact_mod_cast h₁.trans h₂
-  unfold wordC
-  apply innerAbove_append wordA (wordA ++ wordB) x (a_innerAbove x)
-  · apply innerAbove_append wordA wordB (eval wordA x)
-    · exact innerAbove_mono h₁' (a_innerAbove _)
-    · exact innerAbove_mono h₂' (b_innerAbove _)
-    · intro _; exact h₂'
-  · intro _; exact h₁'
+  have h := innerAbove_repeat_append (m := 3) wordA wordB
+    (fun y _ => a_innerAbove y) (fun _ hy => a_ge hy)
+    (fun y _ => b_innerAbove y) 2 x hx
+  simpa [wordC, List.replicate_succ, List.append_assoc] using h
 
 theorem ac_innerAbove {x : ℕ} (hx : 3 ≤ x) :
     InnerAbove (x : ℝ) x (wordA ++ wordC) := by
@@ -179,22 +138,9 @@ theorem d_innerAbove {x : ℕ} (hx : 2 ^ 24 ≤ x) :
 
 theorem w_innerAbove {x : ℕ} (hx : 2 ^ 24 ≤ x) :
     InnerAbove (x : ℝ) x wordW := by
-  have h₁ := d_grows hx
-  have h₂ := d_grows (hx.trans h₁.le)
-  have h₃ := d_grows ((hx.trans h₁.le).trans h₂.le)
-  have h₁' : (x : ℝ) ≤ eval wordD x := by exact_mod_cast h₁.le
-  have h₂' : (x : ℝ) ≤ eval wordD (eval wordD x) := by exact_mod_cast h₁.le.trans h₂.le
-  have h₃' : (x : ℝ) ≤ eval wordD (eval wordD (eval wordD x)) := by
-    exact_mod_cast (h₁.le.trans h₂.le).trans h₃.le
-  unfold wordW
-  apply innerAbove_append wordD (wordD ++ wordD ++ wordC) x (d_innerAbove hx)
-  · apply innerAbove_append wordD (wordD ++ wordC) (eval wordD x)
-    · exact innerAbove_mono h₁' (d_innerAbove (hx.trans h₁.le))
-    · apply innerAbove_append wordD wordC (eval wordD (eval wordD x))
-      · exact innerAbove_mono h₂' (d_innerAbove ((hx.trans h₁.le).trans h₂.le))
-      · exact innerAbove_mono h₃' (c_innerAbove (by omega))
-      · intro _; exact h₃'
-    · intro _; exact h₂'
-  · intro _; exact h₁'
+  have h := innerAbove_repeat_append (m := 2 ^ 24) wordD wordC
+    (fun _ hy => d_innerAbove hy) (fun _ hy => (d_grows hy).le)
+    (fun _ hy => c_innerAbove (by omega)) 3 x hx
+  simpa [wordW, List.replicate_succ, List.append_assoc] using h
 
 end Problems.Juggler.ReturnWordBounds

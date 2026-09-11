@@ -1,4 +1,7 @@
 import Problems.Juggler.Dynamics
+import Problems.Juggler.RootCells
+import Problems.Juggler.NumericBridge
+import Problems.Juggler.LogCells
 import Problems.Juggler.Iteration
 import Problems.Juggler.Termination
 import Problems.Juggler.TerminationFloor257
@@ -111,6 +114,7 @@ import Problems.Juggler.CubicBand
 import Problems.Juggler.CubicRotation
 import Problems.Juggler.CubicGrid
 import Problems.Juggler.CubicLogGrid
+import Problems.Juggler.CubicUpperCells
 import Problems.Juggler.CubicRounding
 import Problems.Juggler.CubicInterlacing
 import Problems.Juggler.CubicConsequences
@@ -128,6 +132,8 @@ import Problems.Juggler.ReturnWordBounds
 import Problems.Juggler.ReturnWordFactorization
 import Problems.Juggler.ReturnSeams
 import Problems.Juggler.ReturnRankedCycle
+import Problems.Juggler.CubicOrbitCharge
+import Problems.Juggler.CubicChargeMonotonicity
 import Problems.Juggler.ReturnQuotients
 import Problems.Juggler.ReturnCycleTransfers
 import Problems.Juggler.ReturnGapHeight
@@ -141,6 +147,10 @@ import Problems.Juggler.QuarticLossBudget
 import Problems.Juggler.QuarticDefect
 import Problems.Juggler.QuarticGapSeparation
 import Problems.Juggler.UpperSquareGap
+import Problems.Juggler.CubicRemainderVariation
+import Problems.Juggler.CubicConstraintFusion
+import Problems.Juggler.CubicCriticalLocation
+import Problems.Juggler.CriticalCostKernel
 
 /-!
 # Juggler laboratory barrel

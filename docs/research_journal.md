@@ -1,5 +1,42 @@
 # Research journal
 
+## 2026-09-10 — Next paired-secant test: no second gain from the OO charge
+
+After authorizing the publication pass, the user requested the next best
+no-cycle attack. The bounded complete-word compensation audit is
+**CLOSE**, consolidated in rank-curvature Result 14. It retains actual
+odd predecessors, intermediate parity guards and the entire common
+OE/OOE word. The positive located upper-slack baseline is real, but its
+residual is exactly the complement of the previously refined loss cap.
+The resulting optimization is unchanged; counting both as separate gains
+would double count one restriction. An independent mathematical audit
+by another AI agent checked the signs and scope. This is written
+analysis, not independent human review or a new Lean/no-cycle theorem.
+No enumeration, floor increase or further gate was pursued.
+
+
+## 2026-09-10 — Paper A: upper cells and full-domain consolidation
+
+The user explicitly requested a publication consolidation and the next
+bounded no-cycle attack. Paper A Section 6.3 now owns the local
+odd-to-odd upper-square proof, the upper-cell/grid charge theorem,
+its fixed-count 350000000<m<520000000 corollary, and the signed-loss
+criterion's limitations. Appendix E.7 adds the full eventual-residue
+and single-polynomial-domain obstructions; the finite-union extension
+remains in its research record. No all-cycle or escape theorem follows.
+
+The UpperSquareGap source has explanatory docstrings with unchanged
+proof bodies. It is included in the Paper A review barrel and cited-name
+dependency audit. Only its local integer inequality is newly Lean
+verified; analytic estimates, asymptotic arguments and interval controls
+retain their distinct proof status. The reviewer packet is now focused
+on Paper A, with links to companion sources instead of stale claim maps.
+The release inventory additionally pins the numerical runner and saved
+control artifact used by Section 6.3. Generated copies are rebuilt from
+the canonical manuscript. This is a local revision, with no external
+upload or claim of independent human review.
+
+
 ## 2026-09-10 — Actual upper-square complements: local Lean gain, global test closed
 
 The user authorized a symbolic audit of the actual integer complements on
@@ -43514,3 +43551,441 @@ fixed-depth corollaries under the existing neighbor-scale record.
 The t=4 capacity and all growing-depth capacities still require new
 arithmetic input; the five-to-one termination-related benchmark is
 not established. No further pairing rule was opened.
+
+
+## 2026-09-11 — Paper A Lean interface consolidation
+
+Applied the requested architecture review within the existing Paper A results.
+Elementary root cells, sign/cast transport and logarithmic capacities now have
+separate lower modules. Word statistics and generic loss/composition APIs sit
+below the concrete certificates, preserving the published declaration names.
+Actual return sections expose original-set coverage; finite transfer records
+retain all guards and endpoint equations.
+
+Kernel-checked extensions include the induced count determinant and gcd
+invariant, general finite even-gap budgets, arbitrary-phase itinerary counts,
+and the exact finite/scaled upper-cell charge. Ordinary-orbit and CycleMin
+charge interfaces normalize to the actual least period. The complete terminal
+construction now proves primitive termination, original adjacency, the absolute
+odd/even cut, extrema identification and the strict mixed gap from actual
+periodic-orbit hypotheses. No common-prefix contraction is assumed or obtained.
+
+The qualified citation audit rejects ambiguous declaration identities and
+tracks full module reachability. Paper A, its formalization map and reviewer
+packet record the new formal coverage. Numerical 520-million comparison and
+UC3 asymptotics remain written/computational claims. No new period floor,
+descent input, global no-cycle theorem or escaping trajectory is claimed.
+This is consolidation of the existing branch, not a new attack or deposit.
+
+Final validation passed the default Lake build (8,963 jobs), 6,081 fast tests
+and 30 separately selected slow tests. The remaining slow hygiene test skipped
+on the warm cache. Executable dependency audits checked 338 Paper A, 49 Paper B
+and 141 Paper C declarations. Qualified citation fixes also restored two
+previously omitted uppercase Paper B references. Final PDF font corrections
+were followed by 136 affected Paper A tests and 37 Paper C tests, all passing.
+Paper A (103 pages) and the collateral Paper C refresh (41 pages) passed visual
+and page-boundary checks; their release manifests and generated copies agree.
+The shared XeLaTeX templates now render Unicode section signs correctly.
+
+## 2026-09-11 — Shared Lean orbit certificates
+
+Applied the requested terminal/charge interface improvements. One complete
+PeriodicOrbitModel now supports both the strengthened charge certificate and
+the terminal cut with its conserved word totals. The model keeps the actual
+sorted states, successor permutation, coverage and extrema. Charge retains
+rotation, coprimality and the stronger finite nonlinear sum; terminal counts
+match the same model's odd/even cardinalities and true least period. Existing
+public theorem signatures remain available. A compiled consumer exercises the
+combined interface and repeated-period normalization.
+
+This is interface consolidation of established results. No new no-cycle,
+prefix-contraction, numerical-cutoff or escape theorem is asserted. The four
+audit-tool findings from the preceding validation are separate and remain
+open. Manuscript mathematics and PDF artifacts are unchanged; PDF rebuilding
+and whole-PDF checks remain deferred until explicitly requested.
+
+Validation completed: the default Lake build passed all 8,963 jobs; all 73 public source declarations in the changed modules use only standard Lean dependencies; Paper A's 338 dependency reports match the existing expected record. All 46 targeted tests passed, including five compiled interface consumers. All 44 previous public theorem/record interfaces are preserved.
+
+## 2026-09-11 — Charge monotonicity and audit repairs
+
+Promoted the symbolic monotonicity part of Paper A Corollary 6.3c to Lean.
+`CubicChargeMonotonicity` proves strict decrease of all three charge
+bounds at fixed primitive length and odd count, and converts a comparison at
+m0>1 into m<m0. The same-certificate adapters and a compiled terminal-word
+consumer retain the true least period and parity totals. The numerical interval
+comparison and UC3 asymptotics remain outside Lean; no floor or period changed.
+
+Fixed regular Lean identifier truncation and exhaustive dependency-policy checks,
+and repaired the scoped warning and live orphan-inventory gates. All theorem
+hypotheses were preserved while eight linter warnings were removed. The default
+Lean build passed 8,964 jobs; all 4,347 public source declarations passed the
+four-root dependency audit; Paper A's 342 cited declarations passed its refreshed
+audit. The warning gate passed under the original cap of two.
+
+The fast suite plus targeted recheck, excluding both PDF/release modules, leaves 6119 passes,
+1 failures and 31 skips. The remaining failure
+is newly visible maintenance debt: 411 unresolved lexical orphan candidates
+against the unchanged 285 budget. A fresh expression-reference audit confirms 43
+real uses, leaving 368 candidates for review. These counts do not establish dead
+code. No declarations were deleted or fake references added to force a pass.
+The source scanner remains a documented regular-syntax index, complemented by
+actual Lean execution.
+
+The next mathematical question remains the weighted frequency and size of
+normalized upper-complement increases at the same actual integer states on
+paired arcs. Existing cap boxes and endpoint telescoping do not supply that
+bound. This pass formalizes existing cutoff propagation and does not reopen
+those closed relaxations. PDFs were neither rebuilt nor tested.
+
+## 2026-09-11 — Exact shared secants: quantization without orientation
+
+Completed the next user-authorized mathematical attack in
+[rank curvature](problems/juggler_cycle_rank_curvature.md), Result 15.
+For paired same-branch edges the upper-complement difference is congruent
+to the source gap modulo twice the gcd of the source and target gaps.
+Combining this with the normalized increase condition gives the exact
+lattice-rounded necessary test RC44. It does not bound the weighted
+positive variation over the selected cycle arcs.
+
+An exact infinite OO triple supplies a narrow falsifier: for every odd
+t>=9, t^2-4,t^2,t^2+4 map to t^3-6t,t^3,t^3+6t, all odd.
+The two adjacent pairs have identical gap/gcd data but opposite normalized
+slack signs. The dossier proves the cells and signs at all such parameters.
+Symbolic polynomial checks and outward interval checks at t=9,101,1000001
+corroborate the written proof; these three controls are not a census.
+
+Decision **CLOSE** the gap/gcd-only orientation and automatic strict or
+global three-point convexity shortcuts. The full shared-state no-cycle question remains open.
+The valid conditional arithmetic test has no new global consumer, so this
+gate adds no production Lean machinery. Paper A and all PDF artifacts are
+unchanged; no minimum or period bound was raised.
+
+## 2026-09-11 — Many-rank alignment and global-matching triage
+
+The next authorized attack tested whether many-rank determinants or
+global matching could retain the absolute information lost by the
+gap-only sign test. [Rank-curvature Result 16](problems/juggler_cycle_rank_curvature.md)
+records the bounded outcome. Rank-polynomial determinant divisibility
+and error both scale by the same factorial, so the determinant has the
+same precision as the finite difference. The existing CubeFiber Lean
+theorem already supplies arbitrarily long affine collections of exact
+OO edges, without any assertion of full-grid or cyclic realization.
+
+The natural matching inequality changes sign across the branch cut;
+correctly reordered, it recovers the known rank rotation. Exact wrong
+states at a periodic upper edge's cell boundary are transient by periodic
+injectivity, so nearby holes do not imply that a cycle meets a wrong state.
+
+Decision **CLOSE** these tested automatic inferences, with the full
+simultaneous integer-cell problem unresolved. No genuinely additional
+global restriction survived this triage, so no production implementation
+or new Lean declaration was added. Paper A and all PDFs are unchanged.
+
+## 2026-09-11 — Arbitrarily small local charges in genuine OOE returns
+
+[Rank-curvature Result 17](problems/juggler_cycle_rank_curvature.md)
+settles the authorized local compensation question negatively. Joint
+equidistribution of t^(9/2)/2 and t^(9/4)/2 along odd t gives arbitrarily
+large actual OOE first returns starting at t^2. The first OO step is
+exact; both subsequent losses can be less than any fixed positive
+fraction of their actual target caps. All source guards, final oddness,
+and the order x<z<u<x^2<=v<x^3 are retained. A separate explicit OE
+family has both normalized losses tending to zero.
+
+The written proof invokes classical derivative estimates and the
+multivariate Weyl criterion with fixed frequencies and fixed phase
+rectangles. It supplies no shrinking-target rate, cyclic selection,
+concatenation, or escape. Independent human review remains outstanding.
+Decision **CLOSE** the universal local cap-fraction mechanism; full
+cycle closure and the existing smaller integer charges remain relevant.
+
+Added three kernel-checked declarations to the existing ReturnCells
+module: ooe_sq_eq_iff, ooe_sq_cell, and ooe_sq_actual_of_cells. They
+formalize the exact fourth-power cell and guarded three-step adapter,
+not the equidistribution or infinitude argument. The module and a
+concrete consumer compile with only standard logical dependencies.
+
+Two bounded odd-parameter searches, stopping at the first witnesses for
+raw errors below 1/10 and 1/100, found t=275 and t=15587. The registered
+test replays only these fixed controls using exact integer inequalities;
+this is not an orbit/minimum census or the proof of infinitude. The
+theorem and branch records distinguish the formal and written results.
+Paper A's manuscript and all PDFs are unchanged; its formalization map
+records the new exact bridge without extending the formal claim to
+the analytic construction. No floor or period bound changed.
+
+## 2026-09-11 — Complete rank-cell propagation: completeness without exclusion
+
+The authorized interval/residue attack is recorded in
+[rank-curvature Result 18](problems/juggler_cycle_rank_curvature.md).
+One shared variable per rank retains exact square/cube cells, source
+parities, strict order, the complete rotation, and the known grid bracket.
+The exact backward interval formula handles unattained O outputs and
+strict perfect-power boundaries correctly.
+
+A useful method distinction emerged: at a common exact lower-endpoint
+fixed point, forward and backward inequalities force equality on every
+edge. Thus a sorted fixed vector is an actual primitive cycle, not a
+relaxed model. Solution preservation and the fixed-point implication
+were checked in a workspace Lean consumer, with only standard logical
+dependencies. No production module was added for this elementary
+monotone-constraint argument; efficient exhaustion is not proved.
+
+The bounded experiment used 4086 monotone outward grid blocks at 60
+decimal digits and exactly four full edge sweeps on 780239 rank domains.
+All small controls passed: threshold cycle 3->5->11->3 recovered when
+its wrong parity is allowed, excluded with the actual guards, and the
+trivial fixed point preserved. The full run retained nonempty domains
+and narrowed m only to 350000005..519999995; its lower endpoints are
+not an actual cycle. No parameter subdivision, orbit/minimum census,
+count-pair exclusion, or new floor/period bound occurred.
+
+The symbolic residue audit shows independent parity-remainder windows
+are saturated if Q/gcd(2,Q)<=m0-1, including even Q<=700000000 at the
+present lower endpoint. Jointly narrowed remainders or larger joint
+moduli are outside that limitation. Decision **PARK** exact feasibility
+pending a justified acceleration or new arithmetic restriction. Keep
+the independent-remainder small-modulus shortcut closed. The canonical
+dossier, branch records and bounded data are updated. Paper A, production
+Lean sources and all PDFs are unchanged. No next gate is opened.
+
+## 2026-09-11 — Global remainder variation from lifted-gap valuations
+
+The bounded global-charging triage retained a new necessary restriction
+for actual primitive cubic cycles. In the exact ordinary/cut/wrap gap
+recurrence, every numerator is odd and both odd-denominator positions
+have nonzero corrections. Thus every zero correction strictly lowers
+the positive gap's 2-adic valuation under the rank permutation. Summing
+these drops gives L<=(H+1)T. Away from three block boundaries, a nonzero
+correction needs an adjacent deviation from any chosen typewise constant,
+so T<=3+2S and L<=(H+1)(3+2S).
+
+At (L,o,e)=(780239,492276,287963), the prior m<520000000 cutoff gives
+H<=86 by an integer power comparison. Hence T>=8969 and S>=4483;
+choosing each block's actual minimum yields at least 8966 raw excess
+remainder units. [Rank-curvature Result 19](problems/juggler_cycle_rank_curvature.md)
+contains the complete written proof and seams. Two independent AI audits
+accepted the strengthened exception-free bound. Independent human review
+remains outstanding.
+
+The new laboratory module CubicRemainderVariation verifies valuation
+transport from an exact positive product equality, finite-permutation
+reset counting, support covering, their conditional arithmetic consumer,
+and the fixed cardinality implications. It does not yet assemble these
+hypotheses from an actual cubic cycle. Fixed data retain only integer
+threshold controls and three parallel genuine OO cells; no cycle witness
+or orbit/minimum census is supplied.
+
+Decision **PROMOTE** the necessary remainder-variation theorem.
+Automatic crossing payment supplies no additional budget and is closed.
+The forced variation lacks the signed arc location and normalized size
+needed for exclusion. Result 18 feasibility remains PARK. There is no
+new floor or period bound, and no next gate is opened automatically.
+Paper A and all PDF artifacts remain unchanged.
+
+Verification for this gate: the installed module compiled directly and
+the full Problems.Juggler laboratory target built successfully. All 11
+new declarations passed exact dependency validation with no exceptions
+to the standard logical dependencies. The fixed-control replay and 46
+registration, ledger, branch-index and documentation checks passed.
+The theorem ledger and generated branch index are synchronized.
+
+## 2026-09-11 — Split and merge exact cycle constraints
+
+The user requested combining the many constraints on a hypothetical cycle.
+[Rank-curvature Result 20](problems/juggler_cycle_rank_curvature.md)
+records a successful fusion. A correction is critical only when its
+nonzero signed remainder has the same 2-adic valuation as its source
+gap. Every other correction preserves the full denominator valuation
+drop, even if the correction is nonzero.
+
+Deleting the two consecutive odd gaps and cutting at critical events
+leaves C nonempty blocks of even gaps. The exact rank rotation guarantees
+floor(k*e/L) even-source visits in each length-k orbit segment. Away from
+a block's last node, every such visit forces a denominator divisible by
+four, adding to the obligatory valuation drop. The resulting exponential
+block cost is summed against the single telescoping budget m^3-m, then
+bounded by an affine support line to its convex cost sequence.
+
+At the established count tuple, the elementary gap-budget fusion already
+raises S from 4483 to 5390. The full itinerary/critical fusion gives
+C>=14569, T>=14571, S>=7284 and at least 14568 raw remainder units above
+the three block minima. Two fixed large-integer comparisons establish
+the threshold. Three independent derivations/audits agree. This is a
+written AI-assisted actual-cycle theorem; human review remains outstanding.
+
+The conditional arithmetic, divisibility, run-sum and cost implications
+are recorded in CubicConstraintFusion. Full extraction of the actual
+cycle partition and the mechanical visit count on its blocks remains
+the written proof. The theorem and kernel claims are separated in the
+ledger. No source/orbit/minimum census or interval campaign was run.
+
+A separate signed/type/height partition audit yields an exact unsigned
+weighted lower bound, but total support alone can fit in the neutral
+signed group. Its minimally forced two-unit charges are too small by
+themselves to close the prior cap gap. This does not upper-bound actual
+excesses or impose the full cell equations on the illustrative support
+profiles.
+
+Decision **PROMOTE** the merged critical-run budget; close the support-only
+signed shortcut. No cycle count pair is excluded and no floor or period
+bound is changed. Paper A and all PDFs are unchanged. This bounded
+fusion pass ends here.
+
+Validation: the merged source compiled directly and the registered
+Problems.Juggler laboratory target built successfully. All 19 new public
+declarations passed exact dependency validation with standard logical
+dependencies only; the installed source hash matches the audited source.
+Both fixed-control tests and all 46 registration, ledger, branch-index
+and documentation checks passed. The generated theorem ledger and branch
+index are synchronized. No PDF generation or PDF validation was run.
+
+
+## 11 September 2026 — Critical runs meet the selected signed arcs
+
+**What was learned**
+
+- Two prescribed rank-envelope ceilings give binary gap valuations at
+  most 25 below rank 204313 and at most 19 below rank 83650.
+- Mechanical suffix costs and the three-step low-rank cover force
+  every contracted noncritical even-gap block to have at most 21 vertices.
+- The resulting global C>=37155/T>=37157/S>=18577 bounds also localize:
+  at least 14380 deviations occur in disjoint selected Q/R pairs.
+
+**Strongest theorem.** Under the established actual primitive cubic-cycle
+hypotheses at (780239,492276,287963), every 21-source window in R contains
+a critical event; pairing R with Q forces S_QR>=14380 for any three
+typewise constants. Choosing actual type minima gives at least 28760 raw
+excess units in Q union R. Written proof: [Result 21](problems/juggler_cycle_rank_curvature.md),
+RC82--RC89. The real gap ceilings have exact outward dyadic certificates.
+
+**Strongest refutation.** The existing genuine OO triple at odd t>=9 has
+two critical corrections but opposite normalized slack signs. Thus
+criticality alone cannot orient the selected signed contribution.
+
+**Reusable machinery.** CubicCriticalLocation has 18 conditional
+declarations for positive-gap valuation caps, finite-path length,
+finite block covers, interval window hitting and disjoint-pair transfer.
+The complete actual-cycle extraction and real interval comparisons
+remain outside that Lean module. Independent AI mathematical audits
+agree; independent human review remains outstanding.
+
+**Branch status: PROMOTE.** Unlike the weaker support projection, the
+merged rank and itinerary constraints force actual selected-pair
+placement. They supply no signed normalized exclusion. Result 18's
+integer-cell continuation remains PARK; prior results remain valid.
+
+**Best next question.** Can complete cyclic coupling of these compulsory
+Q/R pairs force the signed target-normalized estimate in RC37--RC38?
+
+**Validation.** The exact merged source compiled, and the registered
+Problems.Juggler laboratory target built successfully. All 18 public
+declarations passed exhaustive dependency checks with standard logical
+dependencies only; the installed source matches the audited bytes.
+Both fixed scalar/control tests and all 46 registration, ledger,
+branch-index and documentation checks passed. The generated theorem
+ledger and branch index are synchronized, and scoped diff checks pass.
+The bounded gate used two rank boundary evaluations and exact integer
+controls, with no source/rank/minimum census, cap reintegration, new
+propagation sweep or PDF work. Paper A unchanged.
+
+
+## 11 September 2026 — Critical cost and shared-cell compatibility
+
+**What was learned**
+
+- Criticality is exactly a strict binary-valuation inequality. The scaled
+  correction has a prescribed odd residue modulo 2^(d+1), but its least
+  absolute representative need not exceed one.
+- Genuine O pairs can restore arbitrarily much valuation at correction
+  two. Their next-step cells reject the tested OE family by collision or
+  parity; the symmetric extension pays normalized O cost greater than1/23
+  when both guarded E returns remain distinct, under its explicit hypotheses.
+- Complete open OE pairs from RC61 remain critical and arbitrarily cheap.
+  The fixed rank-gap bound nevertheless excludes their O sources from
+  adjacent cycle ranks. A complete open path is not a cycle-rank witness.
+- Critical windows alone leave the shared mod4/marginal projection
+  unchanged; no whole minimum interval has been excluded.
+
+**Strongest theorem.** The conditional symmetric-family normalized charge
+and fixed-regime RC61 adjacency exclusion are written in
+[Result 22](problems/juggler_cycle_rank_curvature.md), RC90--RC98.
+The exact residue-distance total-loss formula remains conditional on
+the actual shared residues and has no new aggregate lower estimate.
+
+**Strongest refutation.** Criticality, including complete distinct guarded
+OE returns, does not imply a uniform positive normalized loss. The RC61
+family supplies the exact counterexample at the stated open-path scope.
+
+**Reusable machinery.** CriticalCostKernel proves the exact valuation
+classifier, parity-sensitive two-step separation, the supplied symmetric
+raw-cost inequality, and the bounded quartic parameter-gap inequality.
+The analytic and actual-cycle bridges remain written. Independent AI
+audits agree; independent human review remains outstanding.
+
+**Branch status: PROMOTE** the conditional family restrictions and arithmetic
+interfaces. The standalone restoration-cost claim and window-only
+enhancement are CLOSE. General aggregate residue cost and complete-cell
+elimination remain PARK. The prior Result21 global/localized counts stand.
+
+**Why.** Coupling explicit cheap examples to the same next-step cells and
+rank ceilings gives precise restrictions; it supplies no count-pair
+contradiction. No larger search or additional sweep was justified.
+
+**Best next question.** Can the actual OOE returns of cheap critical OO
+pairs, together with their rank spacing, force a useful aggregate cost?
+
+**Validation.** The exact source compiled, and the registered
+Problems.Juggler laboratory target built successfully. All four public
+declarations passed exhaustive dependency checks with standard logical
+dependencies only; the installed source matches the audited bytes.
+Both fixed-control tests and all 46 registration, ledger, branch-index
+and documentation checks passed. The generated theorem ledger and branch
+index are synchronized, and scoped diff checks pass. All experiments are
+fixed symbolic/control calculations. No full state arrays were
+reconstructed, no propagation sweep or minimum subdivision was added,
+and no Paper A or PDF artifact was changed.
+
+
+## 11 September 2026 — Lean consolidation and complete paired OOE returns
+
+**What was learned.** The minimum-cost critical OO pair extends to
+distinct complete OOE returns with all six normalized losses arbitrarily
+small along a four-phase selected unbounded parameter set. Its simultaneous
+ordinary pair gaps tend to zero. No full rank vector or single infinite
+orbit is supplied by that construction. The fixed rank prefix nevertheless
+admits at most 30616 zero-loss first O steps among its 83650 states, forcing
+53034 positive remainders. Their displayed elementary charge is too small
+to settle the total-loss comparison.
+
+**Reusable machinery.** CriticalCostKernel preserves its four existing
+signatures, shares the noncritical valuation budget, separates square-cell
+geometry from polynomial cost, and supplies actual Nat.sqrt consumers.
+The stronger cost conclusion and denominator comparison now cover the
+integer part of the written 1/23 estimate. Exact prescribed O images and
+raw remainders for the unit-offset family are also formalized. The
+analytic normalization, four-phase proof and complete cycle placement
+remain written, with independent human review outstanding.
+
+**Decision: PARK** the aggregate cost question. CLOSE the uniform local
+paired OOE charge, retaining the finite packing consequence and consolidated
+integer interfaces. No new count-pair exclusion, descent floor or period
+bound follows. The established Result21 critical/localized counts remain.
+
+**Why.** Complete local paths and simultaneous gap ceilings still omit
+cyclic selection by the same full rank vector. The four smooth phase modes
+survive the integer-frequency cancellation audit. Exact finite packing of
+zero-loss starts gives a separate positive-remainder count, not the missing
+signed weighted estimate. No larger experiment was warranted.
+
+**Validation.** All eight public declarations and three interface
+consumer examples compile cleanly. The four existing signatures are
+preserved; exact-source dependency checks accept standard logical
+dependencies only, and canonical proof bytes match the audited source.
+The Problems.Juggler laboratory build passed. All four focused exact-control
+tests and all 46 registration, ledger, branch-index and documentation
+checks passed. The generated ledger and branch index are synchronized,
+and scoped diff checks pass. Only the two saved rank enclosures and
+eight prescribed path controls were used. No rank/minimum census,
+propagation sweep, cap integration or PDF work was performed.
+Paper A and all generated paper snapshots remain unchanged.

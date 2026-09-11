@@ -1549,11 +1549,27 @@
       "test": "tests/research/juggler_sequence/test_cycle_rank_curvature.py",
       "dossier": "docs/problems/juggler_cycle_rank_curvature.md",
       "data_dir": "data/research/juggler/cycle_rank_curvature",
-      "lean": [],
+      "lean": [
+        "formal/Problems/Juggler/CubicRemainderVariation.lean",
+        "formal/Problems/Juggler/CubicConstraintFusion.lean",
+        "formal/Problems/Juggler/CubicCriticalLocation.lean",
+        "formal/Problems/Juggler/CriticalCostKernel.lean"
+      ],
       "conjecture": [],
-      "decision": "CLOSE",
+      "decision": "PROMOTE",
       "ledger_ids": [
-        "J-odd-image-upper-square-gap",
+        "J-cubic-critical-ooe-pair-obstruction",
+        "J-cubic-ooe-square-start-packing",
+        "J-cubic-critical-cost-compatibility",
+        "J-cubic-critical-cost-kernels",
+        "J-cubic-critical-selected-pair-localization",
+        "J-cubic-critical-localization-kernels",
+        "J-cubic-critical-run-gap-budget",
+        "J-cubic-critical-run-kernels",
+        "J-cubic-remainder-variation",
+        "J-cubic-remainder-variation-kernels",
+        "J-square-start-ooe-cells",
+        "J-return-small-normalized-loss",
         "J-cycle-rank-capacity-envelope",
         "J-cycle-rank-curvature-window"
       ],
@@ -4121,6 +4137,7 @@
       "conjecture": [],
       "decision": "PROMOTE",
       "ledger_ids": [
+        "J-ooe-polynomial-tail-departure",
         "J-ooe-escape-residue-obstruction",
         "J-ooe-escape-polynomial-obstruction",
         "J-ooe-escape-shifted-valuation"
@@ -5229,7 +5246,6 @@
       "conjecture": [],
       "decision": "PARK",
       "ledger_ids": [
-        "J-cycle-absolute-cell-grid-charge",
         "J-cycle-absolute-cell-extrema",
         "J-cycle-threshold-phase-plateau"
       ],
@@ -6002,6 +6018,9 @@
       "data_dir": null,
       "lean": [
         "formal/Problems/Juggler/Dynamics.lean",
+        "formal/Problems/Juggler/RootCells.lean",
+        "formal/Problems/Juggler/NumericBridge.lean",
+        "formal/Problems/Juggler/LogCells.lean",
         "formal/Problems/Juggler/Iteration.lean",
         "formal/Problems/Juggler/Termination.lean",
         "formal/Problems/Juggler/TerminationFloor257.lean",
@@ -6109,6 +6128,7 @@
         "formal/Problems/Juggler/CubicRotation.lean",
         "formal/Problems/Juggler/CubicGrid.lean",
         "formal/Problems/Juggler/CubicLogGrid.lean",
+        "formal/Problems/Juggler/CubicUpperCells.lean",
         "formal/Problems/Juggler/CubicRounding.lean",
         "formal/Problems/Juggler/CubicInterlacing.lean",
         "formal/Problems/Juggler/CubicConsequences.lean",
@@ -6126,6 +6146,8 @@
         "formal/Problems/Juggler/ReturnWordFactorization.lean",
         "formal/Problems/Juggler/ReturnSeams.lean",
         "formal/Problems/Juggler/ReturnRankedCycle.lean",
+        "formal/Problems/Juggler/CubicOrbitCharge.lean",
+        "formal/Problems/Juggler/CubicChargeMonotonicity.lean",
         "formal/Problems/Juggler/ReturnQuotients.lean",
         "formal/Problems/Juggler/ReturnCycleTransfers.lean",
         "formal/Problems/Juggler/ReturnGapHeight.lean",
@@ -6138,7 +6160,11 @@
         "formal/Problems/Juggler/QuarticLossBudget.lean",
         "formal/Problems/Juggler/QuarticDefect.lean",
         "formal/Problems/Juggler/QuarticGapSeparation.lean",
-        "formal/Problems/Juggler/UpperSquareGap.lean"
+        "formal/Problems/Juggler/UpperSquareGap.lean",
+        "formal/Problems/Juggler/CubicRemainderVariation.lean",
+        "formal/Problems/Juggler/CubicConstraintFusion.lean",
+        "formal/Problems/Juggler/CubicCriticalLocation.lean",
+        "formal/Problems/Juggler/CriticalCostKernel.lean"
       ],
       "conjecture": [],
       "decision": null,

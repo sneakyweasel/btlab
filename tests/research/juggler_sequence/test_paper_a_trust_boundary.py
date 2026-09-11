@@ -55,6 +55,11 @@ def test_every_cited_declaration_is_reachable_from_paper_a_barrel() -> None:
     assert not unreachable, unreachable
 
 
+def test_every_cited_declaration_has_an_unambiguous_identity() -> None:
+    ambiguous = {str(r["name"]): r["candidates"] for r in rows() if r["ambiguous"]}
+    assert not ambiguous, ambiguous
+
+
 def test_the_undeclared_citations_are_all_carve_outs() -> None:
     """Anything backticked and not declared must be a checksum, a probe, or a tactic."""
     undeclared = sorted(str(r["name"]) for r in rows() if not r["declared"])
@@ -70,36 +75,22 @@ def test_the_paper_names_the_barrel_it_tells_you_to_build() -> None:
 
 def test_the_axiom_check_covers_exactly_the_cited_declarations() -> None:
     """The check file must ask about every declared citation and nothing else."""
-    asked = set(re.findall(r"^#print axioms\s+([A-Za-z0-9_.']+)$",
-                           io.open(CHECK, encoding="utf-8").read(), re.M))
-    cited = {str(r["name"]) for r in rows() if r["declared"]}
-    assert {a.rsplit(".", 1)[-1] for a in asked} == cited
+    asked = set(TB.dependency_requests(CHECK.read_text(encoding="utf-8")))
+    cited = {str(r["qualified_name"]) for r in rows() if r["declared"]}
+    assert asked == cited
 
 
-def records(raw: str) -> list[str]:
-    """`#print axioms` wraps long lines; a record starts at a quote."""
-    out: list[str] = []
-    cur = ""
-    for line in raw.splitlines():
-        if line.startswith("'"):
-            if cur:
-                out.append(cur)
-            cur = line
-        else:
-            cur += " " + line.strip()
-    if cur:
-        out.append(cur)
-    return out
+NATIVE_DEPENDENCY = "Problems.Juggler.window_digit_scan._native.native_decide.ax_1_1"
+NATIVE_EXCEPTIONS = {
+    "Problems.Juggler.window_digit_cap": {NATIVE_DEPENDENCY},
+    "Problems.Juggler.window_digit_scan": {NATIVE_DEPENDENCY},
+}
 
 
 def test_only_the_declared_exception_leaves_the_kernel() -> None:
-    """Section 1.2 claims one `native_decide`. Its consumers inherit the axiom and the
-    paper says so, but nothing else may carry one."""
-    recs = records(io.open(EXPECTED, encoding="utf-8").read())
-    assert len(recs) == len([r for r in rows() if r["declared"]])
-    off = sorted(r.split("'")[1] for r in recs if "native_decide" in r)
-    assert off == ["Problems.Juggler.window_digit_cap",
-                   "Problems.Juggler.window_digit_scan"], off
+    """Check every dependency, including any extra attached to an authorized native consumer."""
+    cited = {str(row["qualified_name"]) for row in rows() if row["declared"]}
+    TB.validate_dependency_records(EXPECTED.read_text(encoding="utf-8"), cited, NATIVE_EXCEPTIONS)
     text = io.open(PAPER, encoding="utf-8").read()
     assert "`window_digit_scan`" in text
 
@@ -109,10 +100,94 @@ def test_the_axiom_check_actually_runs() -> None:
     if shutil.which("lake") is None:
         pytest.skip("no lake on PATH")
     out = subprocess.run(["lake", "env", "lean", "AxiomCheckPaperA.lean"],
-                         cwd=FORMAL, capture_output=True, text=True, timeout=900)
-    assert out.returncode == 0, out.stderr[-2000:]
+                         cwd=FORMAL, capture_output=True, text=True,
+                         encoding="utf-8", errors="replace", timeout=900)
+    assert out.returncode == 0, (out.stdout + out.stderr)[-8000:]
+    assert not out.stderr.strip(), out.stderr
+    TB.validate_dependency_records(out.stdout, set(TB.dependency_requests(CHECK.read_text(encoding="utf-8"))),
+                                   NATIVE_EXCEPTIONS)
     assert out.stdout.strip() == io.open(EXPECTED, encoding="utf-8").read().strip()
 
 
 def test_mirror_carries_the_paper() -> None:
     assert io.open(PAPER, encoding="utf-8").read() == io.open(MIRROR, encoding="utf-8").read()
+
+
+
+def dependency_control(extra: str = "") -> tuple[str, set[str]]:
+    ordinary = "Problems.Example.clean"
+    lines = [f"'{ordinary}' depends on axioms: [propext{extra}]\n"]
+    lines.extend(f"'{name}' depends on axioms: [propext,\n {NATIVE_DEPENDENCY}]\n"
+                 for name in NATIVE_EXCEPTIONS)
+    return "".join(lines), {ordinary, *NATIVE_EXCEPTIONS}
+
+
+def test_complete_dependency_policy_accepts_exact_named_native_exceptions():
+    raw, expected = dependency_control()
+    records = TB.validate_dependency_records(raw, expected, NATIVE_EXCEPTIONS)
+    assert records["Problems.Example.clean"] == frozenset({"propext"})
+    for name in NATIVE_EXCEPTIONS:
+        assert records[name] - TB.STANDARD_DEPENDENCIES == {NATIVE_DEPENDENCY}
+
+
+@pytest.mark.parametrize("extra", ["Unexpected.foundation", "Lean.ofReduceBool", "sorryAx", NATIVE_DEPENDENCY])
+def test_any_nonstandard_dependency_on_an_ordinary_consumer_is_rejected(extra):
+    raw, expected = dependency_control(", " + extra)
+    with pytest.raises(ValueError, match="Unexpected dependencies"):
+        TB.validate_dependency_records(raw, expected, NATIVE_EXCEPTIONS)
+
+
+def test_named_native_consumer_cannot_hide_an_additional_dependency():
+    raw, expected = dependency_control()
+    raw = raw.replace(NATIVE_DEPENDENCY + "]", NATIVE_DEPENDENCY + ", Hidden.foundation]", 1)
+    with pytest.raises(ValueError, match="Unexpected dependencies"):
+        TB.validate_dependency_records(raw, expected, NATIVE_EXCEPTIONS)
+
+
+def test_native_exception_is_required_and_cannot_move_to_another_consumer():
+    raw, expected = dependency_control()
+    with pytest.raises(ValueError, match="Unexpected dependencies"):
+        TB.validate_dependency_records(raw.replace(",\n " + NATIVE_DEPENDENCY, "", 1),
+                                       expected, NATIVE_EXCEPTIONS)
+    with pytest.raises(ValueError, match="Unexpected dependencies"):
+        TB.validate_dependency_records(raw, expected,
+                                       {"Problems.Example.clean": {NATIVE_DEPENDENCY}})
+
+
+@pytest.mark.parametrize("change", ["missing", "extra", "duplicate", "warning", "garbage", "malformed"])
+def test_incomplete_or_malformed_dependency_output_is_rejected(change):
+    raw, expected = dependency_control()
+    if change == "missing":
+        raw = raw.split("\n", 1)[1]
+    elif change == "extra":
+        raw += "'Extra.result' does not depend on any axioms\n"
+    elif change == "duplicate":
+        raw += raw.split("\n", 1)[0] + "\n"
+    elif change == "warning":
+        raw = "warning: unexpected diagnostic\n" + raw
+    elif change == "garbage":
+        raw += "trailing output"
+    else:
+        raw = raw.replace("[propext]", "[propext,]")
+    with pytest.raises(ValueError):
+        TB.validate_dependency_records(raw, expected, NATIVE_EXCEPTIONS)
+
+
+def test_empty_and_wrapped_dependency_sets_with_full_identifiers():
+    raw = ("'Problems.Example.getLast?_append_cons' depends on axioms: [propext,\n"
+           " Classical.choice, Quot.sound]\n"
+           "'Problems.Example.A₁' does not depend on any axioms\n"
+           "'Problems.Example.primed\'' depends on axioms: []\n")
+    expected = {"Problems.Example.getLast?_append_cons", "Problems.Example.A₁", "Problems.Example.primed'"}
+    records = TB.validate_dependency_records(raw, expected)
+    assert not records["Problems.Example.A₁"]
+    assert records["Problems.Example.getLast?_append_cons"] == TB.STANDARD_DEPENDENCIES
+
+
+def test_dependency_requests_keep_question_marks_and_unicode_and_reject_duplicates():
+    source = ("import Problems.Example\n-- #print axioms Wrong.result\n"
+              "#print axioms Problems.Example.getLast?_append_cons\n"
+              "#print axioms Problems.Example.A₁\n")
+    assert TB.dependency_requests(source) == ["Problems.Example.getLast?_append_cons", "Problems.Example.A₁"]
+    with pytest.raises(ValueError, match="Repeated"):
+        TB.dependency_requests(source + "#print axioms Problems.Example.A₁\n")

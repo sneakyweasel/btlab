@@ -1,3 +1,5 @@
+'Problems.Juggler.Gsecond_beta_cancellation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.Gsecond_naive_bound_fails' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.c6_eleven_eighths_five_fourths' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.c6_eleven_eighths_five_fourths_attained' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.carry_as_sawtooth' depends on axioms: [propext, Classical.choice, Quot.sound]

@@ -11,21 +11,60 @@ theorem even_gap_drop {a b : ℕ} {k e : ℝ}
     (hstep : (b : ℝ) < k*a+e) : b+2 ≤ a := by
   have ha2 : 2 ≤ a := by omega
   have ha2r : (2 : ℝ) ≤ a := by exact_mod_cast ha2
-  have hprod : 0 ≤ (1-k)*((a : ℝ)-2) := mul_nonneg (by linarith) (by linarith)
-  have hlt : (b : ℝ) < a := by nlinarith
+  have hlt : (b : ℝ) < a := NumericBridge.affine_gap_lt ha2r hk he.le hstep
   have hltN : b < a := by exact_mod_cast hlt
+  omega
+
+/-- Every strict step between even natural gaps consumes at least two. -/
+theorem even_transfers_sum (d : ℕ → ℕ) (n : ℕ)
+    (heven : ∀ i ≤ n, d i % 2 = 0)
+    (hstep : ∀ i < n, d (i + 1) < d i) :
+    d n + 2 * n ≤ d 0 := by
+  induction n with
+  | zero => simp
+  | succ n ih =>
+      have hn := ih (fun i hi => heven i (by omega))
+        (fun i hi => hstep i (by omega))
+      have ha := heven n (by omega)
+      have hb := heven (n + 1) (by omega)
+      have hs := hstep n (by omega)
+      omega
+
+/-- A positive final gap gives the usual finite transfer lower bound. -/
+theorem even_transfers_positive (d : ℕ → ℕ) (n : ℕ)
+    (heven : ∀ i ≤ n, d i % 2 = 0)
+    (hstep : ∀ i < n, d (i + 1) < d i)
+    (hpositive : 0 < d n) :
+    2 * (n + 1) ≤ d 0 := by
+  have h := even_transfers_sum d n heven hstep
+  have hn := heven n (by omega)
   omega
 
 theorem two_even_transfers {d0 d1 d2 : ℕ}
     (h0 : d0 % 2 = 0) (h1 : d1 % 2 = 0) (h2 : d2 % 2 = 0)
     (hp : 0 < d2) (hs1 : d1 < d0) (hs2 : d2 < d1) : 6 ≤ d0 := by
-  omega
+  let d : ℕ → ℕ := fun i => if i = 0 then d0 else if i = 1 then d1 else d2
+  have he : ∀ i ≤ 2, d i % 2 = 0 := by
+    intro i hi
+    interval_cases i <;> simp_all [d]
+  have hs : ∀ i < 2, d (i + 1) < d i := by
+    intro i hi
+    interval_cases i <;> simp_all [d]
+  simpa [d] using even_transfers_positive d 2 he hs (by simpa [d] using hp)
 
 theorem three_even_transfers {d0 d1 d2 d3 : ℕ}
     (h0 : d0 % 2 = 0) (h1 : d1 % 2 = 0)
     (h2 : d2 % 2 = 0) (h3 : d3 % 2 = 0)
     (hp : 0 < d3) (hs1 : d1 < d0) (hs2 : d2 < d1) (hs3 : d3 < d2) :
-    8 ≤ d0 := by omega
+    8 ≤ d0 := by
+  let d : ℕ → ℕ := fun i => if i = 0 then d0 else if i = 1 then d1 else if i = 2 then d2 else d3
+  have he : ∀ i ≤ 3, d i % 2 = 0 := by
+    intro i hi
+    interval_cases i <;> simp_all [d]
+  have hs : ∀ i < 3, d (i + 1) < d i := by
+    intro i hi
+    interval_cases i <;> simp_all [d]
+  simpa [d] using even_transfers_positive d 3 he hs (by simpa [d] using hp)
 
 /-- The two-step affine estimate retains the exact positive numerator. -/
 theorem two_affine_gap {k d0 d1 d2 : ℝ}
@@ -197,24 +236,9 @@ theorem cw_slope_scale {m rho : ℝ} (hm : 0 < m) :
 /-- Clear a rational height exponent without losing the strict inequality. -/
 theorem power_strip_of_real_strip {m M a b : ℕ} (hm : 0 < m) (hb : 0 < b)
     (h : (M : ℝ) < (m : ℝ)^3-(1/2 : ℝ)*(m : ℝ)^((a : ℝ)/b)) :
-    m^a < (2*(m^3-M))^b := by
-  have hmR : 0 < (m : ℝ) := by exact_mod_cast hm
-  have hp0 := Real.rpow_pos_of_pos hmR ((a : ℝ)/b)
-  have hM : M < m^3 := by
-    exact_mod_cast (show (M : ℝ) < (m : ℝ)^3 by linarith)
-  have hd : (m : ℝ)^((a : ℝ)/b) < (2*(m^3-M) : ℕ) := by
-    rw [Nat.cast_mul, Nat.cast_sub hM.le, Nat.cast_pow]
-    norm_num
-    linarith
-  have hp := pow_lt_pow_left₀ hd hp0.le (by omega : b ≠ 0)
-  have he : ((m : ℝ)^((a : ℝ)/b))^b = (m : ℝ)^a := by
-    rw [← Real.rpow_natCast, ← Real.rpow_mul hmR.le]
-    have hbR : (b : ℝ) ≠ 0 := by exact_mod_cast (by omega : b ≠ 0)
-    rw [div_mul_cancel₀ _ hbR, Real.rpow_natCast]
-  rw [he] at hp
-  exact_mod_cast hp
+    m^a < (2*(m^3-M))^b :=
+  NumericBridge.power_strip_of_real_strip hm hb (by decide : 0 < 2) h
 
-/-- The DC quantitative gap implies the exponent 253/128 height strip. -/
 theorem dc_height_of_gap {m t w z M d : ℕ}
     (hm : 2^24 ≤ m) (hz : z^8 ≤ m^9) (ht : t^3+2 ≤ (w*(w+2))^2)
     (hM : M+2 ≤ (t+1)^2) (hwz : w ≤ z) (hd : d = z-w)
