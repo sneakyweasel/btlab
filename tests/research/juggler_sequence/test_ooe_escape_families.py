@@ -4,6 +4,7 @@ import json
 import pytest
 
 from research.juggler_sequence import ooe_escape_families as probe
+from research.juggler_sequence.lean_paths import DATA_ROOT
 
 
 @pytest.fixture(scope="module")
@@ -156,3 +157,128 @@ def test_report_and_default_cli_are_read_only_write_is_explicit(tmp_path, monkey
     assert status["record_written"] is True
     written = data_root / "ooe_escape_families" / "controls.json"
     assert json.loads(written.read_text(encoding="utf-8")) == report
+
+
+def test_sparse_invariant_paired_seed_failures():
+    """Two prior seeds leave the template and fail the next OOE guard."""
+    report = json.loads((DATA_ROOT / "ooe_escape_families" /
+                         "sparse_invariant_controls.json").read_text(encoding="utf-8"))["paired"]
+    assert report["parameter"] == 19999
+    assert report["seeds"] == [1599840003, 1599840005]
+    assert report["maximum_prescribed_blocks"] == 8
+    controls = report["controls"]
+    assert len(controls) == 2
+    expected_returns = [22624871477, 22624871509]
+    expected_next_O = [3403135028556724, 3403135035776676]
+    returned = []
+    for index, row in enumerate(controls):
+        assert row["seed"] == report["seeds"][index]
+        assert row["valid_blocks"] == 1
+        assert row["cap_reached"] is False
+        assert len(row["blocks"]) == 2
+        first, failed = row["blocks"]
+        assert [first["block_index"], failed["block_index"]] == [0, 1]
+        assert first["full_repeated_OOE_guard"] is True
+        assert first["first_failed_guard"] is None
+        assert first["actual_prefix_edges"] == 3
+        assert first["parities"] == [1, 1, 0, 1]
+        assert first["phase_box_epsilon_three_quarters"] is True
+        x, u, v, z = first["prescribed_states"]
+        assert x == 4*19999**2 + (-1 if index == 0 else 1)
+        assert z == expected_returns[index]
+        returned.append(z)
+        # This verifies the fixed rational phase box without floating point.
+        assert v*v < u**3 and 16*u**3 < (4*v+3)**2
+        assert z**4 < u**3 and 256*u**3 < (4*z+3)**4
+        assert first["source_template"]["member"] is True
+        assert first["source_template"]["representations"] == [
+            {"t": 19999, "sign": -1 if index == 0 else 1}]
+        assert z % 32 == first["return_template"]["residue_mod_32"] == 21
+        # Every odd t has t²=1 mod8, so 4t²±1 is 3 or5 mod32.
+        assert z % 32 not in (3, 5)
+        assert first["return_template"]["member"] is False
+        assert first["return_template"]["representations"] == []
+        assert failed["prescribed_states"][0] == z
+        assert failed["prescribed_states"][1] == expected_next_O[index]
+        assert expected_next_O[index] % 2 == 0
+        assert failed["full_repeated_OOE_guard"] is False
+        assert failed["first_failed_guard"] == "second_O_requires_odd_u"
+        assert failed["actual_prefix_edges"] == 1
+        for block in row["blocks"]:
+            a, b, c, d = block["prescribed_states"]
+            assert block["parities"] == [n % 2 for n in (a, b, c, d)]
+            radicands, roots = (a**3, b**3, c), (b, c, d)
+            for radicand, root in zip(radicands, roots):
+                assert root*root <= radicand < (root+1)**2
+            assert block["residuals"] == [n-r*r for n, r in zip(radicands, roots)]
+            assert block["upper_margins"] == [(r+1)**2-n for n, r in zip(radicands, roots)]
+            assert all(margin > 0 for margin in block["upper_margins"])
+        # Only the first edge of the failed prescribed block is an actual edge.
+        assert failed["parities"][0:2] == [1, 0]
+    gap = returned[1]-returned[0]
+    assert gap == 32 and gap > 2
+    assert gap*gap < 64*returned[0]
+
+
+def test_sparse_invariant_inverse_cells():
+    """Replay fixed exact cells, not a search or an infinitude test."""
+    import json
+    from math import isqrt
+
+    data = json.loads((DATA_ROOT / "ooe_escape_families" /
+                       "sparse_invariant_controls.json").read_text(encoding="utf-8"))["inverse"]
+
+    def ceiling_cube(n):
+        lo, hi = 0, 1 << ((n.bit_length() + 2) // 3)
+        while lo < hi:
+            mid = (lo + hi) // 2
+            if mid**3 < n:
+                lo = mid + 1
+            else:
+                hi = mid
+        assert (lo == 0 or (lo - 1)**3 < n) and n <= lo**3
+        return lo
+
+    def threshold(y):
+        return ceiling_cube(ceiling_cube(y**4)**2)
+
+    expected = [[9, 11], [199, 385],
+                [7939, 24391, 86225, 356933, 1764655, 10653499]]
+    assert [row["known_return_trace"] for row in data["known_chain_controls"]] == expected
+    for row in data["known_chain_controls"]:
+        trace = row["known_return_trace"]
+        assert len(row["actual_blocks"]) == len(trace) - 1
+        for (x, h, p, y), source, target in zip(row["actual_blocks"], trace, trace[1:]):
+            assert (x, y) == (source, target) and x < y
+            assert [x % 2, h % 2, p % 2, y % 2] == [1, 1, 0, 1]
+            assert h*h <= x**3 < (h + 1)**2
+            assert p*p <= h**3 < (p + 1)**2
+            assert y*y <= p < (y + 1)**2
+            assert (threshold(y), threshold(y + 1)) == (x, x + 1)
+        lo, hi = trace[-1], trace[-1] + 1
+        for _ in range(len(trace) - 1):
+            lo, hi = threshold(lo), threshold(hi)
+        assert [lo, hi] == row["terminal_inverse_interval"] == [trace[0], trace[0] + 1]
+
+    assert data["last_known_chain_next_O_guard_fails"]
+    assert isqrt(expected[-1][-1]**3) == 34772699236
+    assert 34772699236 % 2 == 0
+    assert data["empty_prescribed_target"] == {"target": 9, "inverse_interval": [8, 8]}
+    assert threshold(9) == threshold(10) == 8
+    hole = data["guard_hole"]
+    x, y = hole["source"], hole["target"]
+    assert (x, y) == (3**8, 3**9)
+    assert [threshold(y), threshold(y + 1)] == hole["prescribed_inverse_interval"] == [x, x + 1]
+    assert isqrt(isqrt(x**3)**3) == 3**18
+    assert hole["second_O_output_odd"] and 3**18 % 2 == 1
+    for row in data["abstract_nested_residue_controls"]:
+        n, modulus, representative = row["depth"], row["modulus"], row["representative"]
+        assert n in (1, 2, 5) and modulus == 4**n
+        assert 3*representative + 1 == modulus and representative > 0 and representative % 2 == 1
+        assert ((4**(n + 1) - 1)//3 - representative) % modulus == 0
+    assert data["scope"] == {
+        "fixed_known_chains_only": True, "new_seed_search": False,
+        "infinite_actual_chain_constructed": False,
+        "profinite_control_is_not_an_actual_cell_model": True,
+        "finite_controls_prove_infinitude": False,
+    }

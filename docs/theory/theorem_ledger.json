@@ -1,5 +1,27 @@
 [
  {
+  "id": "J-ooe-escape-sparse-pair-obstruction",
+  "tag": "EXACT — HUMAN PROOF",
+  "source": "docs/problems/juggler_ooe_escape_families.md",
+  "tests": [
+   "tests/research/juggler_sequence/test_ooe_escape_families.py"
+  ],
+  "related_conjectures": [],
+  "lean": "",
+  "statement": "Let T={4t^2±1: t>=1 odd} and A be prescribed OOE. For every integer s>=5, the two returns zminus=A(4s^2-1), zplus=A(4s^2+1) satisfy 2<zplus-zminus<8sqrt(zminus). Distinct elements of T have gap two at a common parameter, or gap greater than eight times the square root of the smaller value at distinct parameters. Therefore at least one return lies outside T, so no A-invariant subset of T can contain both paired starts at such a parameter. This permits arbitrary sparse parameter selection but does not exclude one-sided subsets. Both prior s=19999 seeds fail their next repeated-OOE guard by exact square-cell checks. AI-assisted written proof with an independent AI audit; human review and Lean verification of this universal obstruction remain outstanding. No general no-escape or invariant-set existence theorem is claimed."
+ },
+ {
+  "id": "J-ooe-escape-power-tube-obstruction",
+  "tag": "EXACT — HUMAN PROOF",
+  "source": "docs/problems/juggler_ooe_escape_families.md",
+  "tests": [
+   "tests/research/juggler_sequence/test_ooe_escape_families.py"
+  ],
+  "related_conjectures": [],
+  "lean": "",
+  "statement": "Fix a real base c>1 and 0<=epsilon<1/17. No infinite prescribed OOE chain x_(n+1)=A(x_n), x_0>=5, can eventually satisfy |log_c(x_n)-d_n|<=epsilon for integers d_n. Above x>max(5,c^epsilon,16/((1-17epsilon)log(c))), the exact endpoint error gives |8d_next-9d|<1, hence 8d_next=9d with positive exponents. Every k-step segment staying above the threshold in the tubes has 3k<=v2(d_start), excluding an infinite tail. The exponent set and update are arbitrary; fixed bounded additive errors from fixed-base powers and ratios x_n/c^d_n tending to one are corollaries. The width is sufficient, not asserted optimal. This is an AI-assisted written proof independently AI-audited, using existing Lean endpoint/growth theorems; the new analytic and infinite-chain statement is not Lean verified and human review remains outstanding. Arbitrary sparse invariant sets, wider tubes, varying bases and general escape remain unresolved."
+ },
+ {
   "id": "J-cubic-critical-ooe-pair-obstruction",
   "tag": "EXACT — HUMAN PROOF",
   "source": "docs/problems/juggler_cycle_rank_curvature.md",

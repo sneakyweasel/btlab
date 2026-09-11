@@ -43989,3 +43989,48 @@ and scoped diff checks pass. Only the two saved rank enclosures and
 eight prescribed path controls were used. No rank/minimum census,
 propagation sweep, cap integration or PDF work was performed.
 Paper A and all generated paper snapshots remain unchanged.
+
+
+## 11 September 2026 — Attempt to construct a sparse invariant OOE set
+
+**Requested outcome.** An explicitly described admissible invariant set
+with nonemptiness proved from a fixed ordinary integer. This outcome was
+not achieved; no escaping trajectory was constructed.
+
+**What was tried.** Sparse selection from the latest paired phase family,
+one-sided continuation from its two established seeds, narrow fixed-base
+power ladders with unrestricted exponent updates, and exact backward
+cells with nested survival conditions. Only the two prior paired seeds
+were extended; each stopped at the first failed OOE guard. Small existing
+inverse fixtures were replayed without expanding a seed range.
+
+**What was proved.** Every paired unit-offset parameter s>=5 sends at
+least one endpoint outside the whole odd-parameter template. Both fixed
+s=19999 endpoints leave the template and encounter an even next O image.
+More generally, logarithmic tubes of width below 1/17 about powers of any
+fixed real base cannot contain an infinite prescribed OOE tail: exact
+endpoint control forces a three-unit binary-valuation drop of positive
+integer exponents. This allows arbitrary sparse exponent sets and
+nonpolynomial updates. Full proofs and caveats are Sections 5--7 of the
+[escape dossier](problems/juggler_ooe_escape_families.md).
+
+**Why the other method did not finish.** Inverse thresholds compose
+exactly, but changing terminal targets changes the initial seed.
+Decreasing nonempty finite-depth survivor sets require a fixed finite
+initial set to force one common ordinary integer. No such bounded
+anchor, seed, or inherited guard condition was obtained. A compatible
+2-adic limit would not supply an ordinary integer automatically.
+
+**Decision: PARK** the requested general construction. CLOSE the paired
+template and narrow fixed-base power routes, retaining the new written
+obstructions. These do not exclude arbitrary sparse one-sided families,
+varying bases, wider tubes, or an actual infinite OOE orbit. No further
+research gate is automatically pursued.
+
+**Validation.** Both new fixed-control tests and 35 registration and
+documentation tests passed. The generated theorem ledger and branch index
+passed their checks, as did the scoped whitespace check. The arithmetic
+tests verify the finite fixtures, not the new universal statements.
+Those statements are written proofs with independent AI audits; no new
+Lean trust claim is made. Lean sources, Paper A, release copies, and PDFs
+remain unchanged.

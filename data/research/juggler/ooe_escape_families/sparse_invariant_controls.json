@@ -1,0 +1,328 @@
+{
+  "paired": {
+    "scope": "Exactly two prior witness seeds. No state after the first invalid prescribed OOE branch is used as a new orbit source. Finite controls do not determine later actual orbit fate.",
+    "parameter": 19999,
+    "seeds": [
+      1599840003,
+      1599840005
+    ],
+    "maximum_prescribed_blocks": 8,
+    "controls": [
+      {
+        "seed": 1599840003,
+        "blocks": [
+          {
+            "prescribed_states": [
+              1599840003,
+              63990400419995,
+              511884809359670004668,
+              22624871477
+            ],
+            "parities": [
+              1,
+              1,
+              0,
+              1
+            ],
+            "residuals": [
+              1199880002,
+              751990762754889709651,
+              8901843139
+            ],
+            "upper_margins": [
+              127979600959989,
+              271778855964450299686,
+              36347899816
+            ],
+            "full_repeated_OOE_guard": true,
+            "first_failed_guard": null,
+            "actual_prefix_edges": 3,
+            "phase_box_epsilon_three_quarters": true,
+            "source_template": {
+              "member": true,
+              "representations": [
+                {
+                  "t": 19999,
+                  "sign": -1
+                }
+              ],
+              "residue_mod_32": 3
+            },
+            "return_template": {
+              "member": false,
+              "representations": [],
+              "residue_mod_32": 21
+            },
+            "block_index": 0
+          },
+          {
+            "prescribed_states": [
+              22624871477,
+              3403135028556724,
+              198526630633980288516263,
+              445563273434
+            ],
+            "parities": [
+              1,
+              0,
+              1,
+              0
+            ],
+            "residuals": [
+              2790850715196157,
+              238234456135522865586255,
+              758838363907
+            ],
+            "upper_margins": [
+              4015419341917292,
+              158818805132437711446272,
+              132288182962
+            ],
+            "full_repeated_OOE_guard": false,
+            "first_failed_guard": "second_O_requires_odd_u",
+            "actual_prefix_edges": 1,
+            "phase_box_epsilon_three_quarters": false,
+            "source_template": {
+              "member": false,
+              "representations": [],
+              "residue_mod_32": 21
+            },
+            "return_template": {
+              "member": false,
+              "representations": [],
+              "residue_mod_32": 26
+            },
+            "block_index": 1
+          }
+        ],
+        "valid_blocks": 1,
+        "cap_reached": false
+      },
+      {
+        "seed": 1599840005,
+        "blocks": [
+          {
+            "prescribed_states": [
+              1599840005,
+              63990400539989,
+              511884810799490011418,
+              22624871509
+            ],
+            "parities": [
+              1,
+              1,
+              0,
+              1
+            ],
+            "residuals": [
+              1199880004,
+              694403309738825647945,
+              730074337
+            ],
+            "upper_margins": [
+              127979601199975,
+              329366311860154374892,
+              44519668682
+            ],
+            "full_repeated_OOE_guard": true,
+            "first_failed_guard": null,
+            "actual_prefix_edges": 3,
+            "phase_box_epsilon_three_quarters": true,
+            "source_template": {
+              "member": true,
+              "representations": [
+                {
+                  "t": 19999,
+                  "sign": 1
+                }
+              ],
+              "residue_mod_32": 5
+            },
+            "return_template": {
+              "member": false,
+              "representations": [],
+              "residue_mod_32": 21
+            },
+            "block_index": 0
+          },
+          {
+            "prescribed_states": [
+              22624871509,
+              3403135035776676,
+              198526631265759250839949,
+              445563274143
+            ],
+            "parities": [
+              1,
+              0,
+              1,
+              1
+            ],
+            "residuals": [
+              1394504003916253,
+              204515450185813542721175,
+              729078455500
+            ],
+            "upper_margins": [
+              5411766067637100,
+              192537812345704958958724,
+              162048092787
+            ],
+            "full_repeated_OOE_guard": false,
+            "first_failed_guard": "second_O_requires_odd_u",
+            "actual_prefix_edges": 1,
+            "phase_box_epsilon_three_quarters": false,
+            "source_template": {
+              "member": false,
+              "representations": [],
+              "residue_mod_32": 21
+            },
+            "return_template": {
+              "member": false,
+              "representations": [],
+              "residue_mod_32": 31
+            },
+            "block_index": 1
+          }
+        ],
+        "valid_blocks": 1,
+        "cap_reached": false
+      }
+    ]
+  },
+  "inverse": {
+    "known_chain_controls": [
+      {
+        "known_return_trace": [
+          9,
+          11
+        ],
+        "actual_blocks": [
+          [
+            9,
+            27,
+            140,
+            11
+          ]
+        ],
+        "terminal_inverse_interval": [
+          9,
+          10
+        ]
+      },
+      {
+        "known_return_trace": [
+          199,
+          385
+        ],
+        "actual_blocks": [
+          [
+            199,
+            2807,
+            148718,
+            385
+          ]
+        ],
+        "terminal_inverse_interval": [
+          199,
+          200
+        ]
+      },
+      {
+        "known_return_trace": [
+          7939,
+          24391,
+          86225,
+          356933,
+          1764655,
+          10653499
+        ],
+        "actual_blocks": [
+          [
+            7939,
+            707373,
+            594939382,
+            24391
+          ],
+          [
+            24391,
+            3809293,
+            7434753396,
+            86225
+          ],
+          [
+            86225,
+            25319189,
+            127401542438,
+            356933
+          ],
+          [
+            356933,
+            213245587,
+            3114010543432,
+            1764655
+          ],
+          [
+            1764655,
+            2344173307,
+            113497050251894,
+            10653499
+          ]
+        ],
+        "terminal_inverse_interval": [
+          7939,
+          7940
+        ]
+      }
+    ],
+    "last_known_chain_next_O_guard_fails": true,
+    "empty_prescribed_target": {
+      "target": 9,
+      "inverse_interval": [
+        8,
+        8
+      ]
+    },
+    "guard_hole": {
+      "target": 19683,
+      "source": 6561,
+      "prescribed_inverse_interval": [
+        6561,
+        6562
+      ],
+      "second_O_output_odd": true
+    },
+    "abstract_nested_residue_controls": [
+      {
+        "depth": 1,
+        "modulus": 4,
+        "representative": 1
+      },
+      {
+        "depth": 2,
+        "modulus": 16,
+        "representative": 5
+      },
+      {
+        "depth": 5,
+        "modulus": 1024,
+        "representative": 341
+      }
+    ],
+    "scope": {
+      "fixed_known_chains_only": true,
+      "new_seed_search": false,
+      "infinite_actual_chain_constructed": false,
+      "profinite_control_is_not_an_actual_cell_model": true,
+      "finite_controls_prove_infinitude": false
+    }
+  },
+  "scope": {
+    "new_seed_census": false,
+    "fixed_seed_invariant_set_found": false,
+    "new_obstructions_are_written_proofs": true,
+    "new_obstructions_lean_verified": false,
+    "general_no_escape_proved": false,
+    "whole_pdf_work": false
+  }
+}

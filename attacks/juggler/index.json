@@ -4137,6 +4137,8 @@
       "conjecture": [],
       "decision": "PROMOTE",
       "ledger_ids": [
+        "J-ooe-escape-sparse-pair-obstruction",
+        "J-ooe-escape-power-tube-obstruction",
         "J-ooe-polynomial-tail-departure",
         "J-ooe-escape-residue-obstruction",
         "J-ooe-escape-polynomial-obstruction",
