@@ -1099,6 +1099,33 @@ inherits the current AI-assisted Paper B proof and its review limitations.
 See the new-theorem transfer subsection of
 [the pressure dossier](problems/juggler_pressure_external_average.md).
 
+**Inverse-cell Hardy peel (11 September 2026).** The unique-preimage
+coordinate `{m^{2/3}}` is Hardy in `m`, but it bounds the all-odd
+count (C3) only on the set `A_t` of depth-`t` all-odd states. That
+set is a Hardy cylinder solely for `t <= 2`, where the peel
+reproduces the known `OO` density `1/8`. From the third odd letter
+the membership condition is `{floor(m^{3/2})^{3/2}}`, a superlinear
+floor-Hardy leftover of size `m^{3/4}`. This is the recorded
+composition door, not a growing-depth estimate. Empirical
+continuation near `1/2` on a dyadic window of `10^6` is not a
+proof of (C3). CLOSE the peel; PARK the actual count. Same
+dossier.
+
+**Elementary pairing cannot feed Lemma B (11 September 2026).**
+The second boxed question of
+[juggler_rate_free_floor_hardy](problems/juggler_rate_free_floor_hardy.md)
+asked for a node-wise even-share `β>β*` that does not identify
+the next letter through `{x^{3/2}}`. Monotone pairing `H/3-2`
+and the adversarial sweep `H/7` are the laboratory's elementary
+half-interval devices; both read that same coordinate. Their
+constants miss the gate: `1/3 < 1 - log 2 / log 3` because
+`8<9`. The exact defect identity
+`{n^{3/2}}=ρ/(n^{3/2}+m)` is the same fractional part, not a
+new coupling. The recommended tame-axis Weyl sum is already
+Theorems 9–10 of
+[exponent_pair_two_monomial.md](theory/exponent_pair_two_monomial.md)
+and is not reopened. CLOSE the elementary fork.
+
 
 A separate 10 September block construction supplies a fixed-depth
 positive result without rescuing that pullback: classical second-derivative
@@ -2660,3 +2687,49 @@ compactness countermodel, not an actual OOE counterexample. The general
 sparse invariant-set construction remains PARK, with no escape proof.
 Members: ooe_escape_families, J-ooe-escape-sparse-pair-obstruction,
 J-ooe-escape-power-tube-obstruction.
+
+## Pinned cubic-cell composition does not cover an actual cycle
+
+[Absolute floor cells](problems/juggler_cycle_absolute_cells.md) and
+[rank curvature](problems/juggler_cycle_rank_curvature.md),
+11 September 2026, **CLOSE**. At the first walk-charge survivor
+`(L,o,e)=(780239,492276,287963)` with `350000000<m<520000000`,
+composing the already-proved height strip, Lean wrong-parity in that
+strip, the sorted-grid oscillation, Lemma 6.3a, and Result 2 does
+not exclude a cubic-band cycle and does not force the signed
+comparison (UC6).
+
+An actual cubic-band orbit satisfies `m^15<(m^3-M)^8`, so its
+cube-gap is strictly larger than `m^{15/8}` (about `1.05e16` at
+`m=350000001`). The Lean theorem `threshold_cycle_wrong_parity`
+applies only when the gap is at most that size. The two regions
+meet only on the excluded equality. The CB5 oscillation
+`(1-1/L)Λ≈3.471e-6` leaves the largest-odd log-log coordinate
+about `2.06e-6` above `log 2` and the first-even coordinate about
+`3.47e-6` below it, so it does not locate the cut `m^2`. Result 2
+only guarantees a gap of order `2m^{3/2}` (about `1.31e13`), which
+sits below the strip. Lemma 6.3a's total envelope is
+`<3.24e-13`. The counts are coprime, so interlacing is not an
+escape. Do not reopen as a larger `m`-census, a sharper numerical
+integration of the same envelopes, or another pairing of these
+same statements. The uniform `B_b` intersection remains PARK.
+Members: cycle_absolute_cells, cycle_rank_curvature.
+
+The immediate follow-up, the orbit arc from the minimum to the
+largest odd rank, is the same CLOSE. Paper A's pair formula
+gives `k=301993` steps (`k/L≈0.387`), a modest gain on the
+uniform oscillation and a slack ratio still about `8.5e5` short
+of the height-strip cap on `u`. The length-`L-1` arc is the
+only defect-tight pair and recovers the seam `c_o≥m^2`, not a
+far-from-cube obstruction. Do not reopen as an arc census or
+as a demand that most defects spend a fraction of `Λ`
+(that kill would be a function of the surplus).
+
+**UC6 is not an unproved estimate (CLOSE / REPARAMETERIZATION).**
+The identity `s_R-s_Q=ε+χ` is exact, so Paper A's (UC6) is
+identical to `0<c_2-2c_1+m<2`. On an actual cubic-band cycle
+those three states are odd and the second difference is even,
+so the open window is empty. Do not reopen (UC6) as a missing
+inequality on unused capacities; eliminating the complements
+recovers the existing transport, as already recorded in
+J-cycle-rank-curvature-window.

@@ -1,5 +1,94 @@
 # Research journal
 
+## 2026-09-11 — Paper A Lean: circle-mean identity and q14 window
+
+Three Lean packaging items, no new mathematical claim. `circleMean_eq_rotationAverage` identifies the circle integral with `rotationAverage (log n')` by the printed change of variables (endpoint null, then scale, then `s=2^u`). `hugCharge_sub_circleMean_extended` names Theorem 5.8 on `[50508, q_{14})` from the mixed `q_{13}` list; the old `L<301994` instance stays. The barrel comment now lists Appendix A's Theorems 3.33--3.41 and Propositions 6.3b--c. Rhin, kill tables, and the numeric `C_L<1/(\ln3\ln n')` comparison remain outside Lean. Period bound and floor unchanged.
+
+## 2026-09-11 — Pairing cannot feed Lemma B
+
+Authorized Phase-0 on the second boxed question of the
+rate-free floor-Hardy record: a node-wise even-share
+`β>β*` after two odds that does not go through
+`{x^{3/2}}`. The recommended Weyl sum
+`{floor(n^{3/2})^{3/2}}` is already the tame axis
+(Theorems 9–10 of the exported two-monomial note); that
+inversion is not rerun. Pairing `H/3-2` and sweep `H/7`
+identify the same half-interval. Both constants sit
+strictly below `β*=1-log 2/log 3` because `8<9`. The
+defect form `{n^{3/2}}=ρ/(n^{3/2}+m)` is the same
+coordinate. On OO-images the pairing walk hypotheses fail
+anyway (phase jumps `M^{5/6}`). **CLOSE** the elementary
+fork. No paper, Lean, probe, or ledger row.
+
+## 2026-09-11 — All-odd inverse-cell peel dies at the third odd letter
+
+Termination Phase-0 on the pressure leftover (C3). The unique
+odd preimage of `m` sits in a cell of length about `m^{-1/3}`, so
+equidistribution of `{m^{2/3}}` on the all-odd set `A_t` would
+multiply the all-odd density by `1/2` at each extra letter. For
+`t <= 2` the pair `(m^{2/3}, m^{3/2})` is a published Hardy joint
+law and recovers only the known `OO` count (density `1/8`). For
+`t >= 3` the set `A_t` uses `{floor(m^{3/2})^{3/2}}`, whose
+Theorem-9 leftover grows like `m^{3/4}`. That is the recorded
+floor-Hardy door, not a new C3 estimate. On `(10^6, 2*10^6]` the
+all-odd continuation stays near `1/2` through depth 12 and does
+not approach the C3 danger threshold `0.87`. **CLOSE** the peel;
+**PARK** the actual count. No paper, Lean, or registered probe.
+
+## 2026-09-11 — UC6 is empty on actual odd triples
+
+Human integer argument on Paper A (UC6). The unused-capacity
+identity (UC5) is exact: `s_R-s_Q=ε+χ` with
+`χ=log((log c_2 log m)/(log c_1)^2)`. Therefore (UC6) holds
+if and only if `0<c_2-2c_1+m<2`. For an actual cubic-band
+cycle with `o>=3` the states `m,c_1,c_2` are odd, the second
+difference is even, and the open interval contains no even
+integer. So (UC6) is false on every such cycle and cannot be
+proved to exclude one. The closed variant is curvature 0 or 2,
+already the RC4 controls. **CLOSE** as REPARAMETERIZATION /
+REFUTED of (UC6) as an open estimate. No Paper A edit, no
+floor or period change.
+
+## 2026-09-11 — Min-to-u orbit arc does not force height-strip
+
+Follow-up Phase-0 on the far-from-cube door. The pair-specific
+CB8 bound from rank 0 to the largest odd rank `o-1` uses
+`k e ≡ o-1 (mod L)` with `k=301993=q_{13}-1` and `k/L≈0.387`.
+It beats the uniform oscillation (`w≥-2.13e-6` against
+`-3.47e-6`) but the implied slack `m^2-u` is still about
+`1.70e13` at the certified floor, against a height-strip need
+of about `2.00e7` (ratio `8.54e5`). The unique defect-tight
+arc has length `L-1` and lands on the first even rank `o`,
+recovering `c_o≥m^2` with equality in the bound — the known
+seam, not a cube-gap contradiction. Modular inverse
+`e^{-1}≡478245=L_1` is fan arithmetic, not a new identity.
+**CLOSE.** Do not scan other arcs. No Paper A edit.
+
+## 2026-09-11 — Pinned cubic-cell composition does not exclude 780239
+
+Authorized Phase-0 on Paper A's remaining no-cycle door: whether
+absolute square cells force a visit to the wrong-parity set, uniformly
+or at the first walk-charge survivor
+`(L,o,e)=(780239,492276,287963)` with `350000000<m<520000000`.
+No new probe, no floor raise, no Paper A edit.
+
+The existing Lean pair is complementary, not covering. An actual
+cubic-band cycle obeys `height_strip`
+(`m^15<(m^3-M)^8`), so its cube-gap is strictly larger than
+`m^{15/8}` (about `1.05e16` at the certified floor). The only Lean
+wrong-parity theorem, `threshold_cycle_wrong_parity`, applies only
+inside that strip. They share no orbit. The sorted-grid oscillation
+`(1-1/L)Λ≈3.471e-6` does not force the largest odd state above
+`m^2` nor the first even state below it (margin about `2.06e-6`
+the wrong way). Result 2's gap lower bound is only `2m^{3/2}`
+(about `1.31e13`), below the strip. Lemma 6.3a's envelope remains
+`<3.24e-13` and cannot close the signed box. Counts are coprime, so
+there is no interlacing escape.
+
+**CLOSE** this composition. The uniform `B_b` question stays PARK on
+the absolute-cell dossier. Not a period improvement and not a
+missing-cycle claim.
+
 ## 2026-09-11 — Lean wrappers for Results 15, 19 and 20
 
 Laboratory formalization of already-PROMOTE rank-curvature theorems.

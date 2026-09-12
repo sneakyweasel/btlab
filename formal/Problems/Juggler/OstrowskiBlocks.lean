@@ -19,6 +19,8 @@ it as the "Denjoy--Koksma comparison". It is this file.
   hypothesis: the ergodic sum of `L` letters is within `2 s(L)` of `L · C_*`.
 * `theta_block_envelope_window` — on the certified window `L < 301994` the digit cap
   `theta_digitSum_le` turns that into the constant `94 = 2 · 47`.
+* `ostroBlocksExtended` — `b` copies of `q13Convergent` plus the remainder list;
+  `theta_block_envelope_extended` is the mixed-list display.
 
 The general list lemmas at the top are stated for a `flatMap` of `replicate`s because that is
 the shape "a pair repeated once per digit" has; nothing in them is about `θ`.
@@ -121,5 +123,59 @@ theorem theta_block_envelope_window {n' : ℝ} (hn : 1 < n') {L : ℕ} (hL : L <
   have : ((∑ i ∈ Finset.range 13, ostroDigit thetaDenomFn L 12 i : ℕ) : ℝ) ≤ 47 := by
     exact_mod_cast hcap
   linarith
+
+/-! ### Mixed list through `q₁₄`
+
+For `L = b·q₁₃ + r` the printed window uses `b` copies of `q13Convergent`
+plus the certified remainder list.  This is *not* a fourteenth entry of
+`thetaConvergents`; `block_envelope` accepts the mixed list directly.
+-/
+
+/-- `b` copies of `(p₁₃, q₁₃)` followed by the 13-level remainder. -/
+def ostroBlocksExtended (L : ℕ) : List (ℕ × ℕ) :=
+  List.replicate (L / 301994) q13Convergent ++ ostroBlocks (L % 301994)
+
+theorem ostroBlocksExtended_snd_sum (L : ℕ) :
+    ((ostroBlocksExtended L).map Prod.snd).sum = L := by
+  simp [ostroBlocksExtended, q13Convergent, ostroBlocks_snd_sum]
+  rw [Nat.mul_comm]
+  exact Nat.div_add_mod L 301994
+
+theorem ostroBlocksExtended_length (L : ℕ) :
+    (ostroBlocksExtended L).length =
+      L / 301994 + (ostroBlocks (L % 301994)).length := by
+  simp [ostroBlocksExtended]
+
+theorem ostroBlocksExtended_digitSum_le (L : ℕ) :
+    (ostroBlocksExtended L).length ≤ L / 301994 + 47 := by
+  rw [ostroBlocksExtended_length, ostroBlocks_length]
+  exact Nat.add_le_add_left (theta_digitSum_le (Nat.mod_lt L (by norm_num))) _
+
+theorem ostroBlocksExtended_mem {L : ℕ} {pq : ℕ × ℕ}
+    (h : pq ∈ ostroBlocksExtended L) :
+    pq = q13Convergent ∨ pq ∈ thetaConvergents := by
+  rw [ostroBlocksExtended, List.mem_append] at h
+  rcases h with h | h
+  · exact Or.inl (List.eq_of_mem_replicate h)
+  · exact Or.inr (ostroBlocks_mem h)
+
+theorem ostroBlocksExtended_hypothesis {L : ℕ} {pq : ℕ × ℕ}
+    (h : pq ∈ ostroBlocksExtended L) :
+    0 < pq.2 ∧ Nat.Coprime pq.1 pq.2 ∧
+      |walkTheta - (pq.1 : ℝ) / pq.2| ≤ 1 / (pq.2 : ℝ) ^ 2 := by
+  rcases ostroBlocksExtended_mem h with rfl | hθ
+  · exact q13_block_hypothesis
+  · exact thetaConvergents_block_hypothesis pq hθ
+
+/-- **Theorem 5.7 on the mixed list.**  For every `L`, the ergodic sum of
+`L` letters is within `2(b + s(r))` of `L · C_*`, where `L = b q₁₃ + r`. -/
+theorem theta_block_envelope_extended {n' : ℝ} (hn : 1 < n') (L : ℕ) (x : ℝ) :
+    |∑ k ∈ Finset.range L, periodicObservable n' (x + k * walkTheta)
+       - (L : ℝ) * ∫ t in (0:ℝ)..1, periodicObservable n' t|
+      ≤ (ostroBlocksExtended L).length * 2 := by
+  have h := block_envelope hn (ostroBlocksExtended L)
+    (fun _ hpq => ostroBlocksExtended_hypothesis hpq) x
+  rw [ostroBlocksExtended_snd_sum] at h
+  exact h
 
 end Problems.Juggler

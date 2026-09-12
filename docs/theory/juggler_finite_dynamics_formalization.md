@@ -631,7 +631,7 @@ diagonal \(o=o_{\min}(L)\) — \((1054,665)\), \((25781,16266)\),
 Laplace bound and convergence to the circle integral in Proposition 5.5
 are Lean; the latter follows from `denjoy_koksma_blocks` for the
 bounded-variation observable. The change of variables from `circleMean`
-to the displayed `rotationAverage` remains human.
+to the displayed `rotationAverage` is `circleMean_eq_rotationAverage`.
 
 `WalkTransport.lean` proves the transport inequality of Theorem 5.3
 end to end in log form. The walk weight \(w_k=2^{u_k}=3^{a_k}/2^k\)
@@ -718,8 +718,9 @@ denominators reconstruct \(L\) and sum to at most \(37\)
 (`window_digit_scan`, pointwise `window_digit_cap`), attained at
 \(L=275632\) (`window_digit_max`). Since the paper's window was extended
 to \(q_{14}\), that scan sharpens the constant rather than establishing
-the full theorem; the named Lean window instance remains restricted to
-\(L<q_{13}\).
+the full theorem; `hugCharge_sub_circleMean_window` remains restricted to
+\(L<q_{13}\), while `hugCharge_sub_circleMean_extended` names the printed
+window.
 The Denjoy–Koksma hypotheses are certified as well: the matching
 numerator list \(0,1,1,3,7,24,31,179,389,9126,18641,46408,65049\)
 (`theta_convergent_numerators`, `thetaConvergents_eq_zip`),
@@ -749,8 +750,8 @@ antiderivative (`quadPrim`, `hasDerivAt_quadPrim`), whose boundary
 term \(-e^{-2\nu}(9/\nu+10/\nu^2+6/\nu^3)\) drops with the right
 sign. Lean's `denjoy_koksma_blocks` identifies the infinite-hug-itinerary
 average with `circleMean`, with bounded variation formalized in
-`JumpVariation.lean`; no theorem equates that definition with the explicit
-`rotationAverage (log n')` integral.
+`JumpVariation.lean`; `circleMean_eq_rotationAverage` equates that
+definition with the explicit `rotationAverage (log n')` integral.
 
 `OstrowskiNumeration.lean` proves the digit-cap step of Theorem 5.8
 in general form: for any denominator sequence \(q\) with \(q_0>0\),
@@ -764,8 +765,9 @@ and the digit-sum cap (`ostro_digitSum_le`). The instantiated theorem
 \(L<q_{13}=301994\); the function/fold bridge and `greedyDigitSum_le`
 have that same endpoint. The further estimate \(s(L)\le b+47\) on
 \(L=bq_{13}+r\), \(b\le a_{14}=55\), and hence the extension to
-\([50508,q_{14})\), is human arithmetic using the general Lean block
-envelope. No named Lean theorem instantiates that extended window. It is
+\([50508,q_{14})\), is the named instance
+`hugCharge_sub_circleMean_extended`, using the mixed `q_{13}` list
+with the general Lean block envelope. It is
 half-open, so it contains fan members \(L_0,\ldots,L_{54}\), not
 \(L_{55}=q_{14}=16785921\). Denjoy–Koksma's variation and orbit
 comparison are Lean (`denjoy_koksma_rotation`,
@@ -866,7 +868,7 @@ Denjoy--Koksma Lean end to end (`DenjoyKoksma.lean`, `DenjoyKoksmaOrbit.lean`): 
 
 ### Theorem 5.8
 
-Lean proves the general numeration lemmas `ostroDigit_le`, `ostro_sum_eq`, `ostro_digitSum_le`, the instantiated cap `theta_digitSum_le`, `greedyDigitSum_le`, and `hugCharge_sub_circleMean_window` only for \(L<q_{13}=301994\), uniformly in the starting phase; `window_digit_scan`, `window_digit_cap`, `window_digit_max` sharpen that old sub-window. The extension to \([50508,q_{14})\) is human arithmetic: write \(L=bq_{13}+r\), use \(s(L)\le b+47\), and combine it with the general Lean block envelope. The endpoint inequalities at \(q_{14},q_{15}\) are Lean (`theta_sandwich_lower`, `theta_sandwich_upper`), but no named Lean theorem instantiates the extended window. Since the interval is half-open it contains fan members \(L_0,\ldots,L_{54}\), not \(L_{55}=q_{14}\)
+Lean proves the general numeration lemmas `ostroDigit_le`, `ostro_sum_eq`, `ostro_digitSum_le`, the instantiated cap `theta_digitSum_le`, `greedyDigitSum_le`, and `hugCharge_sub_circleMean_window` only for \(L<q_{13}=301994\), uniformly in the starting phase; `window_digit_scan`, `window_digit_cap`, `window_digit_max` sharpen that old sub-window. The extension to \([50508,q_{14})\) is `hugCharge_sub_circleMean_extended`: write \(L=bq_{13}+r\), use \(s(L)\le b+47\), and combine it with the mixed-list Lean block envelope. The endpoint inequalities at \(q_{14},q_{15}\) are Lean (`theta_sandwich_lower`, `theta_sandwich_upper`). Since the interval is half-open it contains fan members \(L_0,\ldots,L_{54}\), not \(L_{55}=q_{14}\)
 
 ### Detailed formalization note: Corollary 4.5
 

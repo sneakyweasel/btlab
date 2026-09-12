@@ -219,8 +219,10 @@ export function WalkChargeExplorer({ compact = false }: WalkChargeExplorerProps)
         <WalkFloorTable selectedN={nearestFloor(walkN)} onSelect={loadFloor} />
         <WalkHierarchy />
         <p className="text-sm text-muted">
-          Theorem 5.8 bounds the charge, not the kill. Exhausting the fan is a
-          10¹²-scale floor, not a halt theorem. The staircase lives on{" "}
+          Theorem 5.7 is the Ostrowski / Denjoy–Koksma envelope
+          |C_L − C_*| ≤ 2s(L)/L. Theorem 5.8 bounds the charge, not the kill;
+          780,239 still survives. Exhausting the fan is a 10¹²-scale floor, not
+          a halt theorem. The staircase lives on{" "}
           <Link to="/play/fan">the Fan tab</Link>.
         </p>
       </Movement>

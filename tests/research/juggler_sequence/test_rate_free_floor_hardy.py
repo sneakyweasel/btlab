@@ -90,6 +90,21 @@ def test_taylor_transfer_threshold_is_alpha_lt_one():
     assert alpha > 1.0
 
 
+def test_pairing_constant_misses_lemma_b():
+    """Monotone pairing is 1/3; Lemma B needs β > 1 - log 2 / log 3.
+
+    The comparison is 8 < 9: log 2 / log 3 < 2/3 iff 8 < 9.
+    """
+
+    assert 8 < 9
+    assert (1.0 / 3.0) < BETA_STAR
+    assert (1.0 / 7.0) < (1.0 / 3.0)
+    dossier = DOSSIER.read_text(encoding="utf-8")
+    assert "8<9" in dossier or "8 < 9" in dossier
+    assert "pairing" in dossier.lower()
+    assert "Lemma B" in dossier
+
+
 def test_conjecture_stays_active():
     text = CONJECTURE.read_text(encoding="utf-8")
     assert '"status": "ACTIVE"' in text or '"status":"ACTIVE"' in text

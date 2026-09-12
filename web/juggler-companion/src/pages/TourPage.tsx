@@ -13,6 +13,9 @@ import {
   RunSuffixWidget,
   WalkChargeWidget,
   FanWidget,
+  CubicBandWidget,
+  HeightGapWidget,
+  UpperCellsWidget,
 } from "../components/TourWidgets";
 import { Prose, ProseInline } from "../components/Prose";
 import {
@@ -34,6 +37,9 @@ const SHORT_TERM: Record<TourSlug, string> = {
   "gap-transfer": "Gap",
   "walk-charge": "Walk",
   fan: "Fan",
+  "cubic-band": "Cubic",
+  "height-gap": "Height",
+  "upper-cells": "Window",
 };
 
 const WIDGETS: Record<TourSlug, () => JSX.Element> = {
@@ -48,6 +54,9 @@ const WIDGETS: Record<TourSlug, () => JSX.Element> = {
   "gap-transfer": GapTransferWidget,
   "walk-charge": WalkChargeWidget,
   fan: FanWidget,
+  "cubic-band": CubicBandWidget,
+  "height-gap": HeightGapWidget,
+  "upper-cells": UpperCellsWidget,
 };
 
 export function TourIndexPage() {

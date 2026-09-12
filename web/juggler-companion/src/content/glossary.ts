@@ -9,7 +9,10 @@ export type TourSlug =
   | "finance"
   | "gap-transfer"
   | "walk-charge"
-  | "fan";
+  | "fan"
+  | "cubic-band"
+  | "height-gap"
+  | "upper-cells";
 
 export type TourChapter = {
   slug: TourSlug;
@@ -38,9 +41,9 @@ export const TOUR_CHAPTERS: TourChapter[] = [
     blurb:
       "The black ring marks CycleMin, the smallest value. That bead is odd and the next one is too; an even returns, and four evens are forced in Lean (Theorem 3.22); eight once the minimum is at least 300 (Theorem 3.31).",
     body:
-      "A cycle itinerary is a nonempty word that sends $n$ back to $n$. CycleMin is the rotation at the smallest value: it starts OO and ends E. The stem is the walk before the first visit — not a cycle itinerary. The unique known loop is 1.",
+      "A cycle itinerary is a nonempty word that sends $n$ back to $n$. CycleMin is the rotation at the smallest value: it starts OO and ends E. The stem is the walk before the first visit — not a cycle itinerary. The unique known loop is 1. Letter counts are not the whole word: under the height hypothesis $M<m^3$, Theorem 3.33 names the spelling itself as the ceiling mechanical word of slope $o/L$.",
     paper:
-      "§1 and Theorem 3.2: CycleMin. Theorem 3.22: $\\#E \\ge 4$ in Lean. Theorem 3.31: $\\#E \\ge 8$ once the minimum is at least 300. `IdealCycleMin.lean`.",
+      "§1 and Theorem 3.2: CycleMin. Theorem 3.22: $\\#E \\ge 4$ in Lean. Theorem 3.31: $\\#E \\ge 8$ once the minimum is at least 300. Theorem 3.33: the mechanical word under $M<m^3$. `IdealCycleMin.lean`.",
   },
   {
     slug: "cycle-survivors",
@@ -88,8 +91,8 @@ export const TOUR_CHAPTERS: TourChapter[] = [
     term: "Verified descent floor N₀",
     blurb: "Every start from 2 through $N_0$ has already been checked to reach 1. A floor is an input.",
     body:
-      "$N_0$ is not the theorem. It is a certified computation you feed the inequality. Paper A uses four floors: the known $10^6$, the laboratory floor $26{,}254{,}995$, the second floor $162{,}849{,}448$, and the main printed floor $350{,}000{,}000$. Combined with finance and walk charge, those floors become period lower bounds. Raising $N_0$ is more computation, not a new idea, and it is not a halt theorem.",
-    paper: "§1 and Proposition 1.3 / 5.1, Corollaries 5.10–5.11: floors are computational inputs.",
+      "$N_0$ is not the theorem. It is a certified computation you feed the inequality. Paper A uses four floors: the known $10^6$, the laboratory floor $26{,}254{,}995$, the second floor $162{,}849{,}448$, and the main printed floor $350{,}000{,}000$. Combined with finance and walk charge, those floors become period lower bounds. Further $N_0$ campaigns are parked: the next useful floor is $5.54\\cdot 10^8$, and this site does not raise $N_0$. A floor is more computation, not a new idea, and it is not a halt theorem.",
+    paper: "§1 and Proposition 1.3 / 5.1, Corollaries 5.10–5.11: floors are computational inputs. Further floors stay parked.",
   },
   {
     slug: "finance",
@@ -119,20 +122,53 @@ export const TOUR_CHAPTERS: TourChapter[] = [
     term: "Walk charge",
     blurb: "Section 5 carries the same floor crumbs to one common currency, then prices the worst itinerary.",
     body:
-      "**Transport.** How do the crumbs become one number? Theorem 5.3 packages the floor losses as $D=1.05 e/n+0.7 o/n^{3/2}$ and a reduced base $n'=ne^{-D}$. Finance then runs at $n'$. Lean name `cycleMin_transport`; the hypothesis is $n\\ge 400$. At the laboratory floor a window length has $D\\le 4.6\\cdot 10^{-3}$.\n\n**The adversary.** Which word is worst? The hug rule takes $E$ where $u\\ge 1$, else $O$, with $u=(1+\\mu)a-k$ and $\\mu=\\log_2(3/2)$. Only two words are shipped: $L=11$, $o=7$ and $L=19$, $o=12$. A picture of Theorem 5.4, Lean `hug_charge_maximal` / `budgetedWord_eq_hugWord`, not a calculator.\n\n**Charge versus kill.** Why is the window census-free if the bound is not? On $[50508,\\,16785921)$ the charge envelope is uniform; the comparison against $\\theta(L)$ is still per-length. That is Theorem 5.8: it bounds the charge, not the kill. Corollaries 5.10--5.11 print $L\\ge 478245$ and $L\\ge 780239$. Exhausting the fan is a $10^{12}$-scale floor, not a halt theorem.",
+      "**Transport.** How do the crumbs become one number? Theorem 5.3 packages the floor losses as $D=1.05 e/n+0.7 o/n^{3/2}$ and a reduced base $n'=ne^{-D}$. Finance then runs at $n'$. Lean name `cycleMin_transport`; the hypothesis is $n\\ge 400$. At the laboratory floor a window length has $D\\le 4.6\\cdot 10^{-3}$.\n\n**The adversary.** Which word is worst? The hug rule takes $E$ where $u\\ge 1$, else $O$, with $u=(1+\\mu)a-k$ and $\\mu=\\log_2(3/2)$. Only two words are shipped: $L=11$, $o=7$ and $L=19$, $o=12$. A picture of Theorem 5.4, Lean `hug_charge_maximal` / `budgetedWord_eq_hugWord`, not a calculator.\n\n**Ostrowski.** How is the envelope census-free? The infinite hug is rotation by $\\alpha=\\log_2(3/2)$ on a circle of length $1+\\alpha$. Its mean charge is the Laplace integral $C_*$. Ostrowski digits of $L$ against $\\theta=\\log(3/2)/\\log 3$ have sum $s(L)$, and Denjoy--Koksma on certified convergent blocks gives $\\lvert C_L-C_*\\rvert\\le 2s(L)/L$. That is Theorem 5.7. The Lean sandwich (`OstrowskiSandwich.lean`, `HugChargeEnvelope.lean`, `RotationAverage.lean`) certifies the convergents and the assembly; the variation bound is human. The envelope still bounds the charge, not the kill: $L=780239$ survives.\n\n**Charge versus kill.** Why is the window census-free if the bound is not? On $[50508,\\,16785921)$ the charge envelope is uniform; the comparison against $\\theta(L)$ is still per-length. That is Theorem 5.8: it bounds the charge, not the kill. Corollaries 5.10--5.11 print $L\\ge 478245$ and $L\\ge 780239$. Exhausting the fan is a $10^{12}$-scale floor, not a halt theorem.",
     paper:
-      "Theorem 5.3 (`cycleMin_transport`, `WalkTransport.lean`). Theorem 5.4 (`hug_charge_maximal`, `budgetedWord_eq_hugWord`). Theorem 5.8 (human proof: charge, not kill). Corollaries 5.10--5.11.",
+      "Theorem 5.3 (`cycleMin_transport`, `WalkTransport.lean`). Theorem 5.4 (`hug_charge_maximal`, `budgetedWord_eq_hugWord`). Theorem 5.7 (Ostrowski / Denjoy--Koksma envelope). Theorem 5.8 (human proof: charge, not kill). Corollaries 5.10--5.11.",
   },
   {
     slug: "fan",
     number: 11,
     term: "The fan",
     blurb:
-      "The leftover after Corollary 5.11 is one arithmetic progression of 56 terms. Each step is priced. That is not a halt theorem.",
+      "At the certified floor the live leftover is $L=780239$. The rest of the fan is priced. That is not a halt theorem.",
     body:
-      "**The progression.** Why is the leftover one arithmetic progression? Proposition 5.12 says $L_k=176251+301994k$ and $o_k=111202+190537k$ for $0\\le k\\le 55$. The linear form $\\Lambda_k$ is affine in $k$, and $k=55$ is the last positive index because $\\Lambda_0/\\lvert\\Lambda'\\rvert=55.81$. The last member is $L_{55}=16785921=q_{14}$. Lean names `fanLambda_55_pos` / `fanLambda_56_neg`, `FanLaw.lean`.\n\n**The price.** What does the next step cost? Height is the shipped finance $n_{\\max}(L_k)$, the floor at which finance alone would pass that member. The printed walk-charge bound is a different comparison: $k=0$ at Theorem 5.9, $k=1$ at Corollary 5.10, $k=2$ at Corollary 5.11. At the present frontier the walk charge is worth about a factor $8$ in descent floor.\n\n**What it does not buy.** Why can this never become a halt theorem? Finance $n_{\\max}$ at the last interior member $L_{54}$ is $2.2\\cdot 10^{12}$; the last member is $L_{55}=q_{14}$ itself, at $4.9\\cdot 10^{12}$. The fans recur at every convergent. Corollary 5.14 is conditional on a floor nobody has certified. Not a halt theorem.",
+      "**The progression.** Why is the leftover one arithmetic progression? Proposition 5.12 says $L_k=176251+301994k$ and $o_k=111202+190537k$ for $0\\le k\\le 55$. The linear form $\\Lambda_k$ is affine in $k$, and $k=55$ is the last positive index because $\\Lambda_0/\\lvert\\Lambda'\\rvert=55.81$. The last member is $L_{55}=16785921=q_{14}$. Lean names `fanLambda_55_pos` / `fanLambda_56_neg`, `FanLaw.lean`.\n\n**The price.** What does the next step cost? Height is the shipped finance $n_{\\max}(L_k)$, the floor at which finance alone would pass that member. The printed walk-charge bound is a different comparison: $k=0$ at Theorem 5.9, $k=1$ at Corollary 5.10, $k=2$ at Corollary 5.11. At the certified floor the kill table leaves $L=780239=176251+2\\cdot 301994$. At the present frontier the walk charge is worth about a factor $8$ in descent floor.\n\n**What it does not buy.** Why can this never become a halt theorem? A laboratory kill of the remaining near-convergents is closed. Finance $n_{\\max}$ at the last interior member $L_{54}$ is $2.2\\cdot 10^{12}$; the last member is $L_{55}=q_{14}$ itself, at $4.9\\cdot 10^{12}$. The fans recur at every convergent. Corollary 5.14 is conditional on a floor nobody has certified. Not a halt theorem.",
     paper:
-      "Proposition 5.12 (`fanLength`, `fanLambda_55_pos`, `fanLambda_56_neg`, `FanLaw.lean`). Corollaries 5.10--5.11. Corollary 5.14 is conditional.",
+      "Proposition 5.12 (`fanLength`, `fanLambda_55_pos`, `fanLambda_56_neg`, `FanLaw.lean`). Corollaries 5.10--5.11. Corollary 5.14 is conditional. Laboratory-kill of the leftover is closed.",
+  },
+  {
+    slug: "cubic-band",
+    number: 12,
+    term: "Cubic-band order",
+    blurb:
+      "If the maximum stays below the cube of the minimum, the word itself is forced.",
+    body:
+      "**The height cut.** A primitive cycle with $m>1$ and $M<m^3$ is a cubic-band cycle. Odds sit below $m^2$; evens sit at or above $m^2$. The sorted states rotate by the even count $e$: $J(c_i)=c_{(i+e)\\bmod L}$, and $\\gcd(L,o)=1$.\n\n**The mechanical word.** From the minimum, the number of odd letters in the first $k$ steps is $\\lceil ko/L\\rceil$. That is the ceiling mechanical word of slope $o/L$, not only the letter counts. A CycleMin spelling that is not this word, or whose counts share a common factor, must satisfy $M\\ge m^3+1$.\n\n**A different map.** The threshold map $S_b$ chooses its branch by size, not by parity. A cycle of $S_b$ is a Juggler cycle only if every state has the matching parity. The uniform wrong-parity intersection remains open. None of this raises the period $780239$.",
+    paper:
+      "Theorem 3.33 (cubic-band order). Proposition 3.36: the log-log grid. Propositions 3.37--3.38: one-unit and branch-difference controls. The wrong-parity question stays open.",
+  },
+  {
+    slug: "height-gap",
+    number: 13,
+    term: "Height gap",
+    blurb:
+      "Periodicity carves a growing strip off the top of the cube. The period $780239$ does not move.",
+    body:
+      "**The first strip.** For an actual cubic-band cycle with $m\\ge 7$, Theorem 3.39 strengthens $M<m^3$ to $M<m^3-m^{15/8}$. The argument uses the ordered returns of the minimum and the maximum retained state, then the exact parity faces of the floor cells.\n\n**Later strips.** Theorem 3.40 keeps every floor error. At $m\\ge 2^{24}$ two genuine transfers give $M<m^3-\\tfrac12 m^{253/128}$. At $m\\ge 2^{128}$ a further transfer gives $M<m^3-\\tfrac12 m^{127/64}$. Those domains do not replace each other.\n\n**The terminal passage.** Proposition 3.41 factors the last two-base return around a mixed $OE/EO$ passage whose gap contracts. The prefix amplification is uncontrolled, so the contraction does not close no-cycle. None of these strips raises the period $780239$.",
+    paper:
+      "Theorems 3.39--3.40, Proposition 3.41. Appendix E: exact short-return cells. Appendix F: successive-return proofs.",
+  },
+  {
+    slug: "upper-cells",
+    number: 14,
+    term: "Leftover minimum window",
+    blurb:
+      "At the first surviving counts the minimum is trapped between two certified numbers. That does not exclude the length.",
+    body:
+      "**The local gap.** On an odd-to-odd edge the unused upper cell is at least three: $x^3+3\\le(J(x)+1)^2$. Lean name `floorPower_odd_image_upper_gap`.\n\n**The grid charge.** Upper cells on the sorted log-log grid give a charge bound (UC2) on the surplus $\\Lambda$. At the exact leftover counts $(L,o,e)=(780239,492276,287963)$ that bound fails for every $m\\ge 520{,}000{,}000$. Combined with the certified floor, an actual cubic-band cycle at those counts must satisfy $350{,}000{,}000<m<520{,}000{,}000$.\n\n**What it does not exclude.** Corollary 6.3c does not exclude period $780239$. The signed first-triple test (UC6) is an exact reformulation of $0<c_2-2c_1+m<2$, not a proved inequality. Wrong-parity intersection stays open.\n\n**The live stack.** A hypothetical nontrivial cycle must still obey: four evens in Lean (eight once the minimum is at least 300); finance plus a certified floor, so $L\\ge 780239$ at $N_0=350{,}000{,}000$; the walk-charge Ostrowski envelope on the window (charge, not kill); if $M<m^3$, the mechanical word and $\\gcd(L,o)=1$; the height strips of Theorems 3.39--3.40; and, at the leftover counts, the window $350{,}000{,}000<m<520{,}000{,}000$. That is not a halt theorem.",
+    paper:
+      "Lemma 6.3a (`floorPower_odd_image_upper_gap`). Proposition 6.3b (upper-cell charge). Corollary 6.3c (minimum range). The signed comparison (UC6) remains open.",
   },
 ];
 

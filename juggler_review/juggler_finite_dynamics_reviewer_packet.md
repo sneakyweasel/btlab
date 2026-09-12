@@ -77,8 +77,9 @@ error constants and optional lower cutoffs in the written derivation are
 not all formalized; the stated height theorems are.
 
 Theorem 5.8's full half-open window is \([50508,16785921)\).
-The named Lean cap and constant-window instance stop at
-\(L<q_{13}=301994\). The extension uses the written decomposition
+The older named Lean cap `hugCharge_sub_circleMean_window` stops at
+\(L<q_{13}=301994\). The printed-window instance
+`hugCharge_sub_circleMean_extended` uses the mixed-list decomposition
 \(L=bq_{13}+r\) and \(s(L)\le b+47\). It covers
 \(L_0,\ldots,L_{54}\), not \(L_{55}=q_{14}\).
 The full window uses \(16.41<\nu<17.084\) and the scan-free bound

@@ -33168,7 +33168,7 @@
       "file": "formal/Problems/Juggler/HugChargeEnvelope.lean",
       "kind": "def",
       "ledger": [],
-      "line": 40,
+      "line": 42,
       "module": "Problems.Juggler.HugChargeEnvelope",
       "name": "hugWalkPos",
       "trust": "kernel"
@@ -33178,7 +33178,7 @@
       "file": "formal/Problems/Juggler/HugChargeEnvelope.lean",
       "kind": "def",
       "ledger": [],
-      "line": 45,
+      "line": 47,
       "module": "Problems.Juggler.HugChargeEnvelope",
       "name": "hugCharge",
       "trust": "kernel"
@@ -33188,7 +33188,7 @@
       "file": "formal/Problems/Juggler/HugChargeEnvelope.lean",
       "kind": "def",
       "ledger": [],
-      "line": 49,
+      "line": 51,
       "module": "Problems.Juggler.HugChargeEnvelope",
       "name": "circleMean",
       "trust": "kernel"
@@ -33198,7 +33198,7 @@
       "file": "formal/Problems/Juggler/HugChargeEnvelope.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 52,
+      "line": 54,
       "module": "Problems.Juggler.HugChargeEnvelope",
       "name": "sum_periodicObservable_eq_walk",
       "trust": "kernel"
@@ -33208,7 +33208,7 @@
       "file": "formal/Problems/Juggler/HugChargeEnvelope.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 60,
+      "line": 62,
       "module": "Problems.Juggler.HugChargeEnvelope",
       "name": "hugCharge_sub_circleMean_le",
       "trust": "kernel"
@@ -33218,9 +33218,29 @@
       "file": "formal/Problems/Juggler/HugChargeEnvelope.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 84,
+      "line": 86,
       "module": "Problems.Juggler.HugChargeEnvelope",
       "name": "hugCharge_sub_circleMean_window",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Theorem 5.7 for the mixed `q\u2081\u2083` list.** The charge per letter is within `2(b + s(r))/L` of the circle mean.",
+      "file": "formal/Problems/Juggler/HugChargeEnvelope.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 98,
+      "module": "Problems.Juggler.HugChargeEnvelope",
+      "name": "hugCharge_sub_circleMean_extended_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Theorem 5.8's named window instance.** On the printed half-open window `[50508, q\u2081\u2084)` the mixed-list digit cap gives the uniform bound `94/50508`. The binding term is `94/50508` on `L < q\u2081\u2083`; the tail is `2(b+47)/(b q\u2081\u2083) \u2264 96/q\u2081\u2083`.",
+      "file": "formal/Problems/Juggler/HugChargeEnvelope.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 124,
+      "module": "Problems.Juggler.HugChargeEnvelope",
+      "name": "hugCharge_sub_circleMean_extended",
       "trust": "kernel"
     },
     {
@@ -47093,6 +47113,76 @@
       "trust": "kernel"
     },
     {
+      "doc": "`b` copies of `(p\u2081\u2083, q\u2081\u2083)` followed by the 13-level remainder.",
+      "file": "formal/Problems/Juggler/OstrowskiBlocks.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 133,
+      "module": "Problems.Juggler.OstrowskiBlocks",
+      "name": "ostroBlocksExtended",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OstrowskiBlocks.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 136,
+      "module": "Problems.Juggler.OstrowskiBlocks",
+      "name": "ostroBlocksExtended_snd_sum",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OstrowskiBlocks.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 142,
+      "module": "Problems.Juggler.OstrowskiBlocks",
+      "name": "ostroBlocksExtended_length",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OstrowskiBlocks.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 147,
+      "module": "Problems.Juggler.OstrowskiBlocks",
+      "name": "ostroBlocksExtended_digitSum_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OstrowskiBlocks.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 152,
+      "module": "Problems.Juggler.OstrowskiBlocks",
+      "name": "ostroBlocksExtended_mem",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OstrowskiBlocks.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 160,
+      "module": "Problems.Juggler.OstrowskiBlocks",
+      "name": "ostroBlocksExtended_hypothesis",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Theorem 5.7 on the mixed list.** For every `L`, the ergodic sum of `L` letters is within `2(b + s(r))` of `L \u00b7 C_*`, where `L = b q\u2081\u2083 + r`.",
+      "file": "formal/Problems/Juggler/OstrowskiBlocks.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 170,
+      "module": "Problems.Juggler.OstrowskiBlocks",
+      "name": "theta_block_envelope_extended",
+      "trust": "kernel"
+    },
+    {
       "doc": "Greedy remainder: `ostroRem q L n i` is what is left of `L` after greedily peeling levels `n, n-1, \u2026, n-i+1`.",
       "file": "formal/Problems/Juggler/OstrowskiNumeration.lean",
       "kind": "def",
@@ -47645,13 +47735,61 @@
       "trust": "kernel"
     },
     {
+      "doc": "The \u03b8-convergent at `q\u2081\u2083`. Complementary to FanLaw's `(190537, 301994)`: `301994 \u2212 111457 = 190537`.",
+      "file": "formal/Problems/Juggler/OstrowskiSandwich.lean",
+      "kind": "def",
+      "ledger": [
+        "J-cyclemin-walk-ostrowski-arithmetic"
+      ],
+      "line": 297,
+      "module": "Problems.Juggler.OstrowskiSandwich",
+      "name": "q13Convergent",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OstrowskiSandwich.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-cyclemin-walk-ostrowski-arithmetic"
+      ],
+      "line": 299,
+      "module": "Problems.Juggler.OstrowskiSandwich",
+      "name": "q13_coprime",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Quality of `(p\u2081\u2083, q\u2081\u2083)` against the same sandwich as `theta_convergent_quality`.",
+      "file": "formal/Problems/Juggler/OstrowskiSandwich.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-cyclemin-walk-ostrowski-arithmetic"
+      ],
+      "line": 304,
+      "module": "Problems.Juggler.OstrowskiSandwich",
+      "name": "q13_convergent_quality",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Denjoy\u2013Koksma block hypothesis at `q\u2081\u2083`.",
+      "file": "formal/Problems/Juggler/OstrowskiSandwich.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-cyclemin-walk-ostrowski-arithmetic"
+      ],
+      "line": 316,
+      "module": "Problems.Juggler.OstrowskiSandwich",
+      "name": "q13_block_hypothesis",
+      "trust": "kernel"
+    },
+    {
       "doc": "Multiplication by a coprime residue permutes `ZMod q` \u2014 the block-permutation fact behind Denjoy\u2013Koksma: the `q` rotation steps of one certified block visit the `q` grid cells bijectively.",
       "file": "formal/Problems/Juggler/OstrowskiSandwich.lean",
       "kind": "theorem",
       "ledger": [
         "J-cyclemin-walk-ostrowski-arithmetic"
       ],
-      "line": 290,
+      "line": 325,
       "module": "Problems.Juggler.OstrowskiSandwich",
       "name": "residue_mul_bijective",
       "trust": "kernel"
@@ -47663,7 +47801,7 @@
       "ledger": [
         "J-cyclemin-walk-ostrowski-arithmetic"
       ],
-      "line": 295,
+      "line": 330,
       "module": "Problems.Juggler.OstrowskiSandwich",
       "name": "theta_block_permutations",
       "trust": "kernel"
@@ -47675,7 +47813,7 @@
       "ledger": [
         "J-cyclemin-walk-ostrowski-arithmetic"
       ],
-      "line": 322,
+      "line": 357,
       "module": "Problems.Juggler.OstrowskiSandwich",
       "name": "theta_gt_third",
       "trust": "kernel"
@@ -47687,7 +47825,7 @@
       "ledger": [
         "J-cyclemin-walk-ostrowski-arithmetic"
       ],
-      "line": 328,
+      "line": 363,
       "module": "Problems.Juggler.OstrowskiSandwich",
       "name": "theta_lt_three_eighths",
       "trust": "kernel"
@@ -47699,7 +47837,7 @@
       "ledger": [
         "J-cyclemin-walk-ostrowski-arithmetic"
       ],
-      "line": 336,
+      "line": 371,
       "module": "Problems.Juggler.OstrowskiSandwich",
       "name": "grid_cells_collide_at_eight",
       "trust": "kernel"
@@ -57677,7 +57815,7 @@
       "ledger": [
         "J-cyclemin-rotation-average"
       ],
-      "line": 43,
+      "line": 46,
       "module": "Problems.Juggler.RotationAverage",
       "name": "inv_sq_le_quad",
       "trust": "kernel"
@@ -57689,7 +57827,7 @@
       "ledger": [
         "J-cyclemin-rotation-average"
       ],
-      "line": 52,
+      "line": 55,
       "module": "Problems.Juggler.RotationAverage",
       "name": "quadPrim",
       "trust": "kernel"
@@ -57701,7 +57839,7 @@
       "ledger": [
         "J-cyclemin-rotation-average"
       ],
-      "line": 58,
+      "line": 61,
       "module": "Problems.Juggler.RotationAverage",
       "name": "hasDerivAt_quadPrim",
       "trust": "kernel"
@@ -57713,7 +57851,7 @@
       "ledger": [
         "J-cyclemin-rotation-average"
       ],
-      "line": 91,
+      "line": 94,
       "module": "Problems.Juggler.RotationAverage",
       "name": "integral_quad_exp_le",
       "trust": "kernel"
@@ -57725,7 +57863,7 @@
       "ledger": [
         "J-cyclemin-rotation-average"
       ],
-      "line": 123,
+      "line": 126,
       "module": "Problems.Juggler.RotationAverage",
       "name": "rotation_average_le",
       "trust": "kernel"
@@ -57737,7 +57875,7 @@
       "ledger": [
         "J-cyclemin-rotation-average"
       ],
-      "line": 145,
+      "line": 148,
       "module": "Problems.Juggler.RotationAverage",
       "name": "expPrim",
       "trust": "kernel"
@@ -57749,7 +57887,7 @@
       "ledger": [
         "J-cyclemin-rotation-average"
       ],
-      "line": 149,
+      "line": 152,
       "module": "Problems.Juggler.RotationAverage",
       "name": "hasDerivAt_expPrim",
       "trust": "kernel"
@@ -57761,7 +57899,7 @@
       "ledger": [
         "J-cyclemin-rotation-average"
       ],
-      "line": 164,
+      "line": 167,
       "module": "Problems.Juggler.RotationAverage",
       "name": "integral_exp_lt",
       "trust": "kernel"
@@ -57773,7 +57911,7 @@
       "ledger": [
         "J-cyclemin-rotation-average"
       ],
-      "line": 181,
+      "line": 184,
       "module": "Problems.Juggler.RotationAverage",
       "name": "rotation_average_lt",
       "trust": "kernel"
@@ -57785,7 +57923,7 @@
       "ledger": [
         "J-cyclemin-rotation-average"
       ],
-      "line": 203,
+      "line": 206,
       "module": "Problems.Juggler.RotationAverage",
       "name": "rotationAverage",
       "trust": "kernel"
@@ -57797,7 +57935,7 @@
       "ledger": [
         "J-cyclemin-rotation-average"
       ],
-      "line": 207,
+      "line": 210,
       "module": "Problems.Juggler.RotationAverage",
       "name": "rotationAverage_lt",
       "trust": "kernel"
@@ -57809,7 +57947,7 @@
       "ledger": [
         "J-cyclemin-rotation-average"
       ],
-      "line": 216,
+      "line": 219,
       "module": "Problems.Juggler.RotationAverage",
       "name": "rotationAverage_le",
       "trust": "kernel"
@@ -57821,9 +57959,21 @@
       "ledger": [
         "J-cyclemin-rotation-average"
       ],
-      "line": 229,
+      "line": 232,
       "module": "Problems.Juggler.RotationAverage",
       "name": "rotationAverage_gap",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Proposition 5.5, change of variables.** For `n' > 1` the circle mean of the periodic observable is the displayed rotation average at `\u03bd = log n'`. The integrands differ at the endpoint `t = 1`, which is null.",
+      "file": "formal/Problems/Juggler/RotationAverage.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-cyclemin-rotation-average"
+      ],
+      "line": 248,
+      "module": "Problems.Juggler.RotationAverage",
+      "name": "circleMean_eq_rotationAverage",
       "trust": "kernel"
     },
     {
@@ -81701,7 +81851,7 @@
       ]
     },
     "Problems.Juggler.HugChargeEnvelope": {
-      "declarations": 6,
+      "declarations": 8,
       "file": "formal/Problems/Juggler/HugChargeEnvelope.lean",
       "imports": [
         "Problems.Juggler.HugRotation",
@@ -82225,7 +82375,7 @@
       ]
     },
     "Problems.Juggler.OstrowskiBlocks": {
-      "declarations": 12,
+      "declarations": 19,
       "file": "formal/Problems/Juggler/OstrowskiBlocks.lean",
       "imports": [
         "Problems.Juggler.JumpVariation",
@@ -82242,13 +82392,13 @@
       "ledger": [
         {
           "id": "J-cyclemin-walk-ostrowski-numeration",
-          "statement": "General Ostrowski numeration and the structural digit cap (Paper A Theorem 5.8, digit-cap step, previously human). For any denominator sequence q with 0 < q 0 and q monotone satisfying the convergent recurrence bound q(j+1) \u2264 a(j+1)\u00b7q(j) + q(j\u22121), the greedy digits from any L < q(n+1) obey the remainder invariant (ostroRem_lt), the digit cap b_j \u2264 a_{j+1} (ostroDigit_le), exact reconstruction L = \u03a3 b_j q_j when q 0 = 1 (ostro_sum_eq), and the digit-sum cap \u03a3 b_j \u2264 \u03a3 a_j (ostro_digitSum_le) \u2014 problem-independent, reusable for any deeper certified quotient list. Instantiated at the certified \u03b8 denominators closed at q\u2081\u2083 = 301994: every L < 301994 has greedy digit sum at most 47 = a\u2081+\u22ef+a\u2081\u2083, structurally, with exact decomposition (theta_digitSum_le, theta_sum_eq); the function form agrees with the fold form greedyDigitSum for every L (greedy_eq_ostro), structurally and kernel-checked: the two are the same algorithm written twice, the fold peeling L/q and keeping L mod q over the descending denominator list and the recursion doing the same indexed by 12-i, with the two lists equal entry for entry. That replaces a native_decide scan of all 301994 lengths and is stronger than it, since the scan bounded L for no reason; greedy_eq_ostro_below_window is retained in its bounded shape as a corollary, and the fold corollary greedyDigitSum_le follows. Reconstruction went the same way: greedy_reconstruct_all is the division algorithm thirteen times and holds for every L, so window_digit_scan now certifies only the sharp constant 37. The scan cap 37 on [50508, 301994) stays the sharper bound. The Denjoy\u2013Koksma comparison is now Lean: `theta_block_envelope_of_length` and `hugCharge_sub_circleMean_le` give the 2s(L)/L bound for the fixed certified thirteen-level assembly when n' > 1 and L > 0, while `theta_block_envelope_window` and `hugCharge_sub_circleMean_window` give the constant cap only for L < 301994. The extension to [50508, 16785921) and the equality between `circleMean` and the explicit `rotationAverage` integral remain human steps. Not a cycle obstruction and not a halt theorem.",
+          "statement": "General Ostrowski numeration and the structural digit cap (Paper A Theorem 5.8, digit-cap step, previously human). For any denominator sequence q with 0 < q 0 and q monotone satisfying the convergent recurrence bound q(j+1) \u2264 a(j+1)\u00b7q(j) + q(j\u22121), the greedy digits from any L < q(n+1) obey the remainder invariant (ostroRem_lt), the digit cap b_j \u2264 a_{j+1} (ostroDigit_le), exact reconstruction L = \u03a3 b_j q_j when q 0 = 1 (ostro_sum_eq), and the digit-sum cap \u03a3 b_j \u2264 \u03a3 a_j (ostro_digitSum_le) \u2014 problem-independent, reusable for any deeper certified quotient list. Instantiated at the certified \u03b8 denominators closed at q\u2081\u2083 = 301994: every L < 301994 has greedy digit sum at most 47 = a\u2081+\u22ef+a\u2081\u2083, structurally, with exact decomposition (theta_digitSum_le, theta_sum_eq); the function form agrees with the fold form greedyDigitSum for every L (greedy_eq_ostro), structurally and kernel-checked: the two are the same algorithm written twice, the fold peeling L/q and keeping L mod q over the descending denominator list and the recursion doing the same indexed by 12-i, with the two lists equal entry for entry. That replaces a native_decide scan of all 301994 lengths and is stronger than it, since the scan bounded L for no reason; greedy_eq_ostro_below_window is retained in its bounded shape as a corollary, and the fold corollary greedyDigitSum_le follows. Reconstruction went the same way: greedy_reconstruct_all is the division algorithm thirteen times and holds for every L, so window_digit_scan now certifies only the sharp constant 37. The scan cap 37 on [50508, 301994) stays the sharper bound. The Denjoy\u2013Koksma comparison is now Lean: `theta_block_envelope_of_length` and `hugCharge_sub_circleMean_le` give the 2s(L)/L bound for the fixed certified thirteen-level assembly when n' > 1 and L > 0, while `theta_block_envelope_window` and `hugCharge_sub_circleMean_window` give the constant cap only for L < 301994. The printed-window instance `hugCharge_sub_circleMean_extended` on [50508, 16785921) uses the mixed q13 list, and `circleMean_eq_rotationAverage` identifies the circle integral with the explicit rotation average. Not a cycle obstruction and not a halt theorem.",
           "tag": "EXACT \u2014 LEAN VERIFIED"
         }
       ]
     },
     "Problems.Juggler.OstrowskiSandwich": {
-      "declarations": 34,
+      "declarations": 38,
       "file": "formal/Problems/Juggler/OstrowskiSandwich.lean",
       "imports": [],
       "ledger": [
@@ -82747,13 +82897,15 @@
       "ledger": []
     },
     "Problems.Juggler.RotationAverage": {
-      "declarations": 13,
+      "declarations": 14,
       "file": "formal/Problems/Juggler/RotationAverage.lean",
-      "imports": [],
+      "imports": [
+        "Problems.Juggler.HugChargeEnvelope"
+      ],
       "ledger": [
         {
           "id": "J-cyclemin-rotation-average",
-          "statement": "The rotation average Laplace bound (Paper A Proposition 5.5, quantitative half, previously human). For every \u03bd > 0 the rotation average C*(\u03bd) = (1/log 3)\u00b7\u222b_1^3 e^{\u03bd(1\u2212t)} t\u207b\u00b2 dt satisfies C*(\u03bd) < 1/(log 3\u00b7\u03bd) and the sharper Laplace bound C*(\u03bd) \u2264 (1 \u2212 2/\u03bd + 6/\u03bd\u00b2)/(log 3\u00b7\u03bd), hence the gap form (2/\u03bd \u2212 6/\u03bd\u00b2)/(log 3\u00b7\u03bd) \u2264 1/(log 3\u00b7\u03bd) \u2212 C*(\u03bd) consumed by the Theorem 5.8 window computation (rotation_average_lt, rotation_average_le, rotationAverage_lt, rotationAverage_le, rotationAverage_gap, RotationAverage.lean). No quadrature: the quadratic majorant 1/t\u00b2 \u2264 1 \u2212 2(t\u22121) + 3(t\u22121)\u00b2 on [1,3] (inv_sq_le_quad; the product with t\u00b2 is 1 + 4(t\u22121)\u00b3 + 3(t\u22121)\u2074) turns the bound into an exact fundamental-theorem-of-calculus evaluation with explicit antiderivative (quadPrim, hasDerivAt_quadPrim), whose boundary term \u2212e^{\u22122\u03bd}(9/\u03bd + 10/\u03bd\u00b2 + 6/\u03bd\u00b3) drops with the right sign. Separately, Lean proves that the finite hug average differs from the circle integral `circleMean n'` by at most 2s(L)/L for n' > 1 and L > 0 (`hugCharge_sub_circleMean_le`, via `denjoy_koksma_blocks`). No Lean declaration currently identifies `circleMean n'` with `rotationAverage (log n')`; that elementary change of variables, rather than unique ergodicity, is the remaining prose link in the first half of Proposition 5.5. Not a cycle obstruction and not a halt theorem.",
+          "statement": "The rotation average Laplace bound (Paper A Proposition 5.5, quantitative half, previously human). For every \u03bd > 0 the rotation average C*(\u03bd) = (1/log 3)\u00b7\u222b_1^3 e^{\u03bd(1\u2212t)} t\u207b\u00b2 dt satisfies C*(\u03bd) < 1/(log 3\u00b7\u03bd) and the sharper Laplace bound C*(\u03bd) \u2264 (1 \u2212 2/\u03bd + 6/\u03bd\u00b2)/(log 3\u00b7\u03bd), hence the gap form (2/\u03bd \u2212 6/\u03bd\u00b2)/(log 3\u00b7\u03bd) \u2264 1/(log 3\u00b7\u03bd) \u2212 C*(\u03bd) consumed by the Theorem 5.8 window computation (rotation_average_lt, rotation_average_le, rotationAverage_lt, rotationAverage_le, rotationAverage_gap, RotationAverage.lean). No quadrature: the quadratic majorant 1/t\u00b2 \u2264 1 \u2212 2(t\u22121) + 3(t\u22121)\u00b2 on [1,3] (inv_sq_le_quad; the product with t\u00b2 is 1 + 4(t\u22121)\u00b3 + 3(t\u22121)\u2074) turns the bound into an exact fundamental-theorem-of-calculus evaluation with explicit antiderivative (quadPrim, hasDerivAt_quadPrim), whose boundary term \u2212e^{\u22122\u03bd}(9/\u03bd + 10/\u03bd\u00b2 + 6/\u03bd\u00b3) drops with the right sign. Separately, Lean proves that the finite hug average differs from the circle integral `circleMean n'` by at most 2s(L)/L for n' > 1 and L > 0 (`hugCharge_sub_circleMean_le`, via `denjoy_koksma_blocks`). The elementary change of variables `circleMean n' = rotationAverage (log n')` is `circleMean_eq_rotationAverage`. Not a cycle obstruction and not a halt theorem.",
           "tag": "EXACT \u2014 LEAN VERIFIED"
         }
       ]
@@ -82958,7 +83110,7 @@
       "ledger": [
         {
           "id": "J-cyclemin-hug-charge-max",
-          "statement": "Hug charge maximality and the \u00a75.2 defect-to-charge consequence of Paper A, Lean end to end (Theorem 5.4 analytic half, previously human). The per-state charge stateCharge \u03bd W = 1/(e^{W\u03bd}\u00b7W\u00b7\u03bd) \u2014 the paper's g(u) = 1/(n'^{2^u}\u00b72^u\u00b7log n') written through the rational weight W = 3^a/2^k \u2014 is antitone in the weight (stateCharge_antitone, WalkChargeMax.lean); since the hug itinerary carries the pointwise-least admissible odd count (hugOdds_le_of_admissible), the exact hug itinerary maximises the total walk charge over ALL admissible exponent walks (hug_charge_maximal), strengthening the paper's fixed-(L,o) statement. Chained with the transport inequality: on a CycleMin cycle with n \u2265 400 and positive reduced log-base \u03bd = log n \u2212 D, the cyclic defect sum obeys \u03a3_k 1/(x_k log x_k) \u2264 \u03a3_k g(w_k) \u2264 \u03a3_k g(hugWeight k) (cycleMin_defect_le_charge, cycleMin_defect_le_hug_charge), exponentiating cycleMin_transport via exp monotonicity only \u2014 no charge integral. Strict within-(L,o) uniqueness is also Lean: if an admissible profile has the same total charge as the hug profile, then every prefix weight and odd count agrees (`stateCharge_strictAnti`, `stateCharge_inj`, `hug_charge_unique`, with \u03bd > 0). Denjoy\u2013Koksma and its block composition are separately Lean; its hug-charge conclusion is relative to the circle integral `circleMean`. The elementary identification of that integral with Proposition 5.5's displayed `rotationAverage (log n')`, and the final kill evaluations, remain human/verified computation. Not a cycle obstruction and not a halt theorem.",
+          "statement": "Hug charge maximality and the \u00a75.2 defect-to-charge consequence of Paper A, Lean end to end (Theorem 5.4 analytic half, previously human). The per-state charge stateCharge \u03bd W = 1/(e^{W\u03bd}\u00b7W\u00b7\u03bd) \u2014 the paper's g(u) = 1/(n'^{2^u}\u00b72^u\u00b7log n') written through the rational weight W = 3^a/2^k \u2014 is antitone in the weight (stateCharge_antitone, WalkChargeMax.lean); since the hug itinerary carries the pointwise-least admissible odd count (hugOdds_le_of_admissible), the exact hug itinerary maximises the total walk charge over ALL admissible exponent walks (hug_charge_maximal), strengthening the paper's fixed-(L,o) statement. Chained with the transport inequality: on a CycleMin cycle with n \u2265 400 and positive reduced log-base \u03bd = log n \u2212 D, the cyclic defect sum obeys \u03a3_k 1/(x_k log x_k) \u2264 \u03a3_k g(w_k) \u2264 \u03a3_k g(hugWeight k) (cycleMin_defect_le_charge, cycleMin_defect_le_hug_charge), exponentiating cycleMin_transport via exp monotonicity only \u2014 no charge integral. Strict within-(L,o) uniqueness is also Lean: if an admissible profile has the same total charge as the hug profile, then every prefix weight and odd count agrees (`stateCharge_strictAnti`, `stateCharge_inj`, `hug_charge_unique`, with \u03bd > 0). Denjoy\u2013Koksma and its block composition are separately Lean; its hug-charge conclusion is relative to the circle integral `circleMean`. The elementary identification of that integral with Proposition 5.5's displayed `rotationAverage (log n')` is `circleMean_eq_rotationAverage`. The final kill evaluations remain verified computation. Not a cycle obstruction and not a halt theorem.",
           "tag": "EXACT \u2014 LEAN VERIFIED"
         }
       ]
@@ -83304,13 +83456,13 @@
     }
   },
   "totals": {
-    "declarations": 6110,
-    "declarations_with_a_ledger_row": 4154,
+    "declarations": 6124,
+    "declarations_with_a_ledger_row": 4159,
     "ledger_rows_naming_a_file": 385,
     "modules": 264,
     "trust": {
       "compiler": 57,
-      "kernel": 6053
+      "kernel": 6067
     }
   }
 }

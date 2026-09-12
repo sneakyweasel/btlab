@@ -24,6 +24,9 @@ import { EnvelopePanel, EnvelopeSlack } from "../visuals/EnvelopeSlack";
 import { RegimeDoors } from "../visuals/RegimeDoors";
 import { FinanceBalance, FinanceHierarchy } from "../visuals/FinanceBalance";
 import { FloorLadder } from "../visuals/FloorLadder";
+import { CubicBandOrder } from "../visuals/CubicBandOrder";
+import { HeightStrip } from "../visuals/HeightStrip";
+import { UpperCellRange } from "../visuals/UpperCellRange";
 import { NmaxStaircase } from "../visuals/NmaxStaircase";
 import { NecklaceExplorer } from "./NecklaceExplorer";
 import { FloorCut } from "../visuals/FloorCut";
@@ -497,8 +500,8 @@ export function FloorWidget() {
     <div className="space-y-3">
       <FloorLadder />
       <p className="text-sm text-muted">
-        These four numbers are certified computations already finished. This
-        page does not search for new floors.
+        These four numbers are certified computations already finished. The
+        next useful floor 5.54·10⁸ is parked; this page does not raise N₀.
       </p>
     </div>
   );
@@ -603,4 +606,40 @@ export function WalkChargeWidget() {
 
 export function FanWidget() {
   return <FanExplorer compact />;
+}
+
+export function CubicBandWidget() {
+  return (
+    <div className="space-y-3">
+      <CubicBandOrder />
+      <p className="text-sm text-muted">
+        Sorted odds then evens, rotated by the even count. The leftover
+        counts force that mechanical word only if M stays below m³.
+      </p>
+    </div>
+  );
+}
+
+export function HeightGapWidget() {
+  return (
+    <div className="space-y-3">
+      <HeightStrip />
+      <p className="text-sm text-muted">
+        Each strip is a necessary ceiling on the maximum. None of them
+        raises the period 780,239.
+      </p>
+    </div>
+  );
+}
+
+export function UpperCellsWidget() {
+  return (
+    <div className="space-y-3">
+      <UpperCellRange />
+      <p className="text-sm text-muted">
+        The leftover length still survives. The signed first-triple test
+        remains open.
+      </p>
+    </div>
+  );
 }

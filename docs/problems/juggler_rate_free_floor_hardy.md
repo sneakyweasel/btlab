@@ -5,11 +5,11 @@ genuinely rate-free published route through
 \(\lfloor n^{3/2}\rfloor^{9/4}\); the floor-Hardy composition is
 the irreducible door. The \(\beta>\beta_*\) fallback is a finite
 Weyl family of that same composition, not a weaker species.
+The 11 September 2026 elementary-share fork is also closed:
+pairing, sweep, and defect normalisation cannot feed Lemma B.
 Nearby reformulations stop. Rate-free conjecture stays ACTIVE
 as the external problem
-\(f(\lfloor h(n)\rfloor)\) with nonlinear Hardy \(f,h\), or a
-route to \(\beta>\beta_*\) that does not pass through that
-composition.)
+\(f(\lfloor h(n)\rfloor)\) with nonlinear Hardy \(f,h\).)
 
 Successor of
 [juggler_v94_rate_free](juggler_v94_rate_free.md) (**CLOSE**),
@@ -280,23 +280,66 @@ Classification **RATE_FREE_FLOOR_HARDY_DOOR_UNBUILT**.
 - Not claimed: equidistribution; density-one; a \(K_3\)
   bound; that the rate-free conjecture is false.
 
+**Elementary even-share devices (11 September 2026;
+EXACT — HUMAN PROOF; no new ledger row).** Lemma B needs a
+node-wise even-share \(\beta>\beta_*=1-\log 2/\log 3\). The
+laboratory's elementary half-interval devices are the
+adversarial sweep \(H/7\) and monotone pairing \(H/3-2\)
+(Paper C Lemmas 4.1 and 4.1'). Both identify the next letter
+through \(\{x^{3/2}/2\}\in[0,1/2)\), so they are not a
+different coordinate. They also miss the numerical gate:
+
+\[
+\frac13<\beta_*\iff\frac{\log 2}{\log 3}<\frac23
+\iff 3\log 2<2\log 3\iff 8<9.
+\]
+
+Sweep \(1/7\) is smaller. The comparison is exact; no
+census. On the OO-image sequence the pairing hypotheses fail
+independently: consecutive odd images of odd sources are
+spaced \(\asymp M^{1/3}\), so the phase \(\{m^{3/2}\}\) jumps
+by \(\asymp M^{5/6}\gg 1\) and is not a monotone walk with
+steps in \([a,b]\), \(b\le 1/2\).
+
+The exact defect of an odd step \(n\mapsto m=\mathrm{isqrt}(n^3)\)
+is \(\rho=n^3-m^2\), and
+\(\{n^{3/2}\}=\rho/(n^{3/2}+m)\). The next letter after
+landing on \(m\) is the same identity at the next edge:
+\(\{m^{3/2}\}=\rho'/(m^{3/2}+m')\). That is the original
+half-interval, not a new coupling. Free residues of \(\rho\)
+modulo an even \(Q\) were already recorded as excluding no
+class ([pressure dossier](juggler_pressure_external_average.md),
+direct-source follow-up).
+
+The recommended Weyl sum
+\(\sum e(k\lfloor n^{3/2}\rfloor^{3/2})\) is the tame axis of
+Theorems 9–10 in
+[exponent_pair_two_monomial.md](../theory/exponent_pair_two_monomial.md).
+This fork does not rerun that inversion.
+
 ## Open questions
 
-The laboratory door is closed. Two remaining problems, neither
-a nearby reformulation:
+The laboratory door is closed. One remaining problem, not a
+nearby reformulation:
 
 - Prove a rate-free equidistribution theorem for
   \(f(\lfloor h(n)\rfloor)\) with nonlinear Hardy \(f,h\)
   (Leibman / Richter composition; the circle case is
   \(\{f(\lfloor h(n)\rfloor)\}\) equidistributes whenever
-  \(\{f(h(n))\}\) does and \(f'\circ h\not\to 0\)). External;
-  not opened as a laboratory branch.
-- Or discover a completely different route to the node-wise
-  E-share \(\beta>\beta_*\approx 0.36907\): a mechanism that
-  does **not** identify the next letter through
-  \(\{x^{3/2}\}\) / \(\{v^{9/4}\}\) and does **not** reduce
-  to the same Weyl family. The \(\beta\)-fallback of
-  `J-rate-free-density-one` is not such a route.
+  \(\{f(h(n))\}\) does and \(f'\circ h\not\to 0\)). The
+  laboratory instance after two odds is the tame axis
+  \(\{\lfloor n^{3/2}\rfloor^{3/2}\}\), already placed by
+  Theorems 9–10 of
+  [exponent_pair_two_monomial.md](../theory/exponent_pair_two_monomial.md)
+  at the sub-density line \(p/2+q<2/3\) against hull
+  \(275/388\). External; not opened as a laboratory branch.
+
+The second boxed question of the original record — a route
+to \(\beta>\beta_*\) that does not pass through
+\(\{x^{3/2}\}\) / \(\{v^{9/4}\}\) — is answered below:
+pairing, sweep, and the defect normalisation of the next
+letter are the same half-interval, and their elementary
+constants sit strictly below \(\beta_*\).
 
 Nearby (closed; do not reopen): another literature name for
 the same composition; finite Weyl / tent / Fejér of \(\beta\);
@@ -305,7 +348,11 @@ Taylor unwind of \(\lfloor h\rfloor\); keep-\(v\) / keep-\(m\)
 packaging; qualitative van der Corput on \(\{v^{9/4}\}\) or
 \(\{v^{5/4}\}\); Hardy-along-PS transfer; Theorem R /
 \(\lambda=0\) / BB/GG/JJ; joint-ergodicity Hardy iterates;
-digital PS / Beatty / Kolesnik.
+digital PS / Beatty / Kolesnik; inverse-cell Hardy peel of
+`{m^{2/3}}` on all-odd sets past depth two; elementary
+pairing or sweep as a Lemma B feed; defect normalisation
+\(\rho/(\sqrt{n^3}+m)\) as a different coordinate; a second
+PS inversion of the tame axis.
 
 ## Decision
 
@@ -314,14 +361,21 @@ genuinely rate-free mathematical route through
 \(\lfloor n^{3/2}\rfloor^{9/4}\) in the published theory, and
 the floor-Hardy composition itself is the irreducible door.
 The \(\beta>\beta_*\) fallback does not weaken the species.
+
+**CLOSE** the 11 September 2026 elementary-share fork: every
+recorded pairing or sweep constant is at most \(1/3\), and
+\(1/3<\beta_*\) because \(8<9\). Those devices identify the
+same half-interval \(\{x^{3/2}/2\}\in[0,1/2)\), as does the
+exact defect form of the next letter. They cannot feed
+Lemma B and they are not a different coordinate.
+
 Nearby reformulations stop. The rate-free conjecture stays
-ACTIVE as that external composition problem. Best next
-question: none from this door. The live target is the boxed
-pair above — prove
+ACTIVE as the external composition problem. Best next
+question: none from this door. The live target is Theorems
+9–10 of the exported two-monomial note — prove
 \(f(\lfloor h(n)\rfloor)\) equidistribution for nonlinear
-Hardy \(f,h\), or find a route to \(\beta>\beta_*\) that
-does not pass through that composition. No closed route is
-reopened.
+Hardy \(f,h\), or the pair \(p/2+q<2/3\) for
+\(km^{3/2}-jm^{2/3}\). No closed route is reopened.
 
 ## Publication assessment
 

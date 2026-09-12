@@ -284,6 +284,41 @@ theorem theta_convergent_quality :
     · exact lt_of_lt_of_le (sub_lt_sub_right hhi _) (by norm_num)
     · exact lt_of_lt_of_le (sub_lt_sub_left hlo _) (by norm_num)
 
+/-!
+The next θ-convergent `(p₁₃, q₁₃) = (111457, 301994)` is *not* appended
+to `thetaConvergents`: that list has thirteen pairs, and the `fin_cases`
+/ `decide` proofs above are written against it.  The pair is named
+separately so the printed half-open window `[50508, q₁₄)` can reuse
+`block_envelope` without restating the certified list.
+-/
+
+/-- The θ-convergent at `q₁₃`.  Complementary to FanLaw's
+`(190537, 301994)`: `301994 − 111457 = 190537`. -/
+def q13Convergent : ℕ × ℕ := (111457, 301994)
+
+theorem q13_coprime : Nat.Coprime q13Convergent.1 q13Convergent.2 := by
+  decide
+
+/-- Quality of `(p₁₃, q₁₃)` against the same sandwich as
+`theta_convergent_quality`. -/
+theorem q13_convergent_quality :
+    |walkTheta - (q13Convergent.1 : ℝ) / q13Convergent.2|
+      < 1 / (q13Convergent.2 : ℝ) ^ 2 := by
+  have hlo := lower_lt_walkTheta
+  have hhi := walkTheta_lt_upper
+  unfold q13Convergent
+  rw [abs_sub_lt_iff]
+  constructor
+  · exact lt_of_lt_of_le (sub_lt_sub_right hhi _) (by norm_num)
+  · exact lt_of_lt_of_le (sub_lt_sub_left hlo _) (by norm_num)
+
+/-- Denjoy–Koksma block hypothesis at `q₁₃`. -/
+theorem q13_block_hypothesis :
+    0 < q13Convergent.2 ∧ Nat.Coprime q13Convergent.1 q13Convergent.2 ∧
+      |walkTheta - (q13Convergent.1 : ℝ) / q13Convergent.2|
+        ≤ 1 / (q13Convergent.2 : ℝ) ^ 2 :=
+  ⟨by norm_num [q13Convergent], q13_coprime, le_of_lt q13_convergent_quality⟩
+
 /-- Multiplication by a coprime residue permutes `ZMod q` — the
 block-permutation fact behind Denjoy–Koksma: the `q` rotation steps
 of one certified block visit the `q` grid cells bijectively. -/

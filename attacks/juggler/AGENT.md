@@ -71,7 +71,9 @@ Method: [docs/methodology.md](../../docs/methodology.md).
   `juggler_tower_rate_free_equidistribution` stays ACTIVE. PS
   inversion and Bombieri–Iwaniec follow-ups are CLOSE. Do not
   reopen the composition door, the \(\beta\)-fallback, PET,
-  Theorem R, or \(\lambda=0\).
+  Theorem R, \(\lambda=0\), or pairing / sweep / defect
+  normalisation as a Lemma B feed (\(1/3<\beta_*\) because
+  \(8<9\)).
 - **Fates.** Every realized fate class has
   \(\sum_{n\le x}1/n\gg(\log x)^{\lambda}\) for
   \(\lambda<\lambda^{**}=0.4926\) (`J-fate-log-density`).

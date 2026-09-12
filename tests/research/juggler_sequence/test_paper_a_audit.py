@@ -285,10 +285,13 @@ def test_paper_companions_state_the_window_trust_boundary() -> None:
     assert "change of variables identifying that circle\nintegral" in paper
     assert "not \\(L_{55}=q_{14}\\)" in packet
     for formalization in (canonical_map, review_map):
-        assert "no named lean theorem instantiat" in formalization.lower()
+        assert "hugCharge_sub_circleMean_extended" in formalization
+        assert "circleMean_eq_rotationAverage" in formalization
         assert "\\(L_0,\\ldots,L_{54}\\)" in formalization
     assert "named Lean instance" in barrel
     assert "scope `L < 301994`" in barrel
+    assert "hugCharge_sub_circleMean_extended" in barrel
+    assert "circleMean_eq_rotationAverage" in barrel
 
 
 def test_digit_sum_cap_is_the_sum_of_quotients() -> None:

@@ -57,6 +57,24 @@ export const CLAIM_ROWS = [
     tag: "EXACT — LEAN VERIFIED",
   },
   {
+    plain:
+      "If the maximum stays below the cube of the minimum, the sorted states rotate by the even count, the period and odd count are coprime, and the CycleMin word is the ceiling mechanical word.",
+    theorem: "Theorem 3.33 cubic-band order",
+    tag: "EXACT — HUMAN PROOF",
+  },
+  {
+    plain:
+      "For an actual cubic-band cycle with minimum at least 7, the maximum sits below m³ − m^{15/8}.",
+    theorem: "Theorem 3.39 periodic return height restriction",
+    tag: "EXACT — HUMAN PROOF",
+  },
+  {
+    plain:
+      "Successive genuine return transfers carve still deeper height strips at minima 2^{24} and 2^{128}. The terminal mixed OE/EO passage contracts and does not close no-cycle.",
+    theorem: "Theorem 3.40 / Proposition 3.41",
+    tag: "EXACT — HUMAN PROOF",
+  },
+  {
     plain: "At a cycle minimum, n log n times the surplus cannot exceed L · 3^o.",
     theorem: "Theorem 4.4 finance inequality",
     tag: "EXACT — LEAN VERIFIED",
@@ -93,6 +111,12 @@ export const CLAIM_ROWS = [
     plain: `At the laboratory floor ${LAB_FLOOR.toLocaleString("en-US")} the same table gives period ≥ ${LAB_PARITY_PERIOD.toLocaleString("en-US")}.`,
     theorem: "Theorem 5.2",
     tag: "COMPUTATIONALLY VERIFIED",
+  },
+  {
+    plain:
+      "The hug walk is a rotation. Its mean charge is C_*, Ostrowski digits of L have sum s(L), and Denjoy–Koksma on certified convergent blocks gives |C_L − C_*| ≤ 2s(L)/L. Lean certifies the sandwich arithmetic; the variation bound is written.",
+    theorem: "Theorem 5.7 Ostrowski / Denjoy–Koksma envelope",
+    tag: "EXACT — HUMAN PROOF",
   },
   {
     plain:
@@ -145,6 +169,24 @@ export const CLAIM_ROWS = [
     theorem: "Corollary 5.14",
     tag: "COMPUTATIONALLY VERIFIED",
   },
+  {
+    plain:
+      "On an odd-to-odd edge the unused upper cell is at least three: x³ + 3 ≤ (J(x)+1)².",
+    theorem: "Lemma 6.3a (floorPower_odd_image_upper_gap)",
+    tag: "EXACT — LEAN VERIFIED",
+  },
+  {
+    plain:
+      "Upper cells on the sorted log-log grid bound the surplus. The finite geometric form is Lean; the written charge supplies the cells.",
+    theorem: "Proposition 6.3b upper-cell charge (Lean finite bounds; written cells)",
+    tag: "EXACT — HUMAN PROOF",
+  },
+  {
+    plain:
+      "An actual cubic-band cycle at the leftover counts (780239, 492276, 287963) must have 350,000,000 < m < 520,000,000. Lean owns the cutoff shape; the numerical comparison is computation. This does not exclude period 780239.",
+    theorem: "Corollary 6.3c leftover minimum window",
+    tag: "COMPUTATIONALLY VERIFIED",
+  },
 ] as const;
 
 export const DEFINITIONS = [
@@ -190,6 +232,16 @@ export const DEFINITIONS = [
     term: "N₀",
     meaning: "A verified descent floor: a computational input, not the theorem.",
   },
+  {
+    term: "Cubic band",
+    meaning:
+      "A primitive cycle with minimum m > 1 and maximum M < m³. Odds sit below m²; the CycleMin word is mechanical.",
+  },
+  {
+    term: "Leftover counts",
+    meaning:
+      "The first surviving triple after Corollary 5.11: (L, o, e) = (780239, 492276, 287963).",
+  },
 ] as const;
 
 export const NOT_CLAIMED = [
@@ -200,6 +252,11 @@ export const NOT_CLAIMED = [
   "Proposition 5.8b/5.8c bound the relaxation at the lengths where it can be measured. They do not prove the extremal walk is realizable at every length.",
   "Corollary 4.11 is a floor-free reduction. It is weaker than the finance table at every certified floor and does not kill the long survivors.",
   "Corollary 5.14 is conditional on a descent floor nobody has certified. It is a priced next step, not a theorem about periods.",
+  "Cubic-band order and the height strips are not a halt theorem and do not raise the period 780239.",
+  "Corollary 6.3c does not exclude period 780239. It only squeezes the minimum at those leftover counts.",
+  "The uniform wrong-parity intersection on the threshold map remains open.",
+  "A laboratory kill of the remaining near-convergents is closed. The next useful floor 5.54·10⁸ is parked; this site does not raise N₀.",
+  "The signed first-triple test (UC6) is an exact reformulation, not a proved inequality.",
   "Theorem 3.31 needs a cycle minimum at least 300 and an enumeration of 325452 seven-even forms. Theorem 3.22 remains the statement proved in Lean for every n at least 2, and the interactive checker implements that one.",
   "No independence-from-Peano-arithmetic claim is made. Goodstein is a different theorem.",
   "Paper B (parity discrepancy and descent densities) is a different manuscript.",

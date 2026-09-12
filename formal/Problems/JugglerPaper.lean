@@ -150,6 +150,25 @@ The note's Lean-tagged theorems are listed in its Appendix A:
 * 3.23 `cycle_itinerary_length_ge_eleven`
 * 3.28 `absorb_odd_step`, `cross_mul_pow`, `odd_run_ge`,
       `o7_image_ge_succ_pow16` (`O7EEEEGap.lean`)
+* 3.33 `cubicBand_sorted_rotation`, `cubicBand_mechanical_itinerary`
+* Prop 3.34 `thresholdMap_invariant`, `thresholdMap_ne_self`,
+      `thresholdMap_exists_primitive`, `threshold_sorted_rotation`,
+      `thresholdMap_eq_floorPower_iff`
+* 3.35 `threshold_all_periodic_rank_rotation`, `threshold_periods_equal`
+* Prop 3.36 `threshold_cycle_grid`, `cubicBand_cycle_grid`
+* Prop 3.37 `cubicParityProject_greatest`, `cubicRounding_eq_or_pred`,
+      `cubicRounding_exists_primitive`, `cubicRounding_real_loss`,
+      `cubicRounding_finite_invariant_rotation`
+* Prop 3.38 `branchOffset_same_branch_difference`,
+      `branchOffset_same_branch_smooth_gap`, `branchOffset_nearest_even_gap`
+* 3.39 `cycleMin_exact_return_seam`, `cubic_return_height_algebra`,
+      `cycleMin_height_strip`, `cycleMin_all_states_height_strip`,
+      `threshold_cycle_wrong_parity`
+* 3.40 `dc_cycle_gap`, `lr_cycle_gap`, `dc_cycle_height`,
+      `lr_cycle_height`, `cycleMin_dc_height`, `cycleMin_lr_height`
+* Prop 3.41 `induced_terminal_actual_factorization`, `primitive_terminal`,
+      `periodicExtrema_terminal_cut`, `periodicOrbit_terminal_cut`,
+      `mixed_gap`
 * 4.1 `log_le_two_log_add`
 * 4.2 `log_step_even`, `log_step_odd`
 * 4.3 `cycleMin_log_envelope`
@@ -192,8 +211,8 @@ The note's Lean-tagged theorems are listed in its Appendix A:
       `rotationAverage_lt`, gap form `rotationAverage_gap`
       (`RotationAverage.lean`); `denjoy_koksma_blocks` proves convergence
       of the hug averages to `circleMean`.  The change of variables
-      identifying `circleMean n'` with `rotationAverage (log n')`
-      remains human
+      identifying `circleMean n'` with `rotationAverage (log n')` is
+      `circleMean_eq_rotationAverage`
 * 5.6 `budgetedWord_eq_hugWord`, `hugOdds_pow_ge`, `hugOdds_pow_lt`,
       `hugOdds_pow_gt`, `hugOdds_least` (`WalkChargeItineraries.lean`)
 * 5.5 (certified quotient arithmetic) `theta_sandwich_upper`,
@@ -216,11 +235,16 @@ The note's Lean-tagged theorems are listed in its Appendix A:
       (`OstrowskiSandwich.lean`); `hugCharge_sub_circleMean_le` is the
       general Lean block envelope, while the instantiated constant-cap
       theorem `hugCharge_sub_circleMean_window` has scope `L < 301994`.
-      The paper's extension to the half-open window ending at
-      `q₁₄ = 16785921` is human arithmetic, not a named Lean instance
+      The named Lean instance on the printed half-open window
+      `[50508, q₁₄)` is `hugCharge_sub_circleMean_extended`
 * Lemma 6.3a `cube_add_one_ne_odd_succ_sq`,
       `floorPower_odd_image_upper_gap` (`UpperSquareGap.lean`):
       the local odd-to-odd upper-square complement is at least three.
+* Prop 6.3b `power_cells_grid_charge`, `power_cells_scaled_charge`,
+      `cubicBand_cycle_upper_charge`, `threshold_cycle_upper_charge`,
+      `periodicOrbit_upper_charge`, `cycleMin_upper_charge`
+* Cor 6.3c `CubicGrid.closedGeometricChargeBound_strictAntiOn_minimum`,
+      `CubicGrid.FullUpperCellChargeBounds.closedGeometric_cutoff_excludes`
 * short certificates (Section 6):
       `even_finiteProgress`, `odd_even_finiteProgress`
 * no certificate implies odd-to-odd:

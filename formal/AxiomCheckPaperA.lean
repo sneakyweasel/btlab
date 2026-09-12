@@ -115,6 +115,7 @@ import Problems.JugglerPaper
 #print axioms Problems.Juggler.cheap_le_internal
 #print axioms Problems.Juggler.cheap_le_valley
 #print axioms Problems.Juggler.circleMean
+#print axioms Problems.Juggler.circleMean_eq_rotationAverage
 #print axioms Problems.Juggler.comparison_fails_upward
 #print axioms Problems.Juggler.cross_mul_pow
 #print axioms Problems.Juggler.cubicBand_mechanical_itinerary
@@ -188,6 +189,7 @@ import Problems.JugglerPaper
 #print axioms Problems.Juggler.guardResidue_ooe_traces
 #print axioms Problems.Juggler.guardResidue_threshold_blocks
 #print axioms Problems.Juggler.hugCharge
+#print axioms Problems.Juggler.hugCharge_sub_circleMean_extended
 #print axioms Problems.Juggler.hugCharge_sub_circleMean_le
 #print axioms Problems.Juggler.hugCharge_sub_circleMean_window
 #print axioms Problems.Juggler.hugEvens_eq_floor

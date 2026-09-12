@@ -2777,7 +2777,23 @@ controls, not a simultaneous realization of the full constraints.
 Result 17 closes a uniform positive local compensation fraction even
 on genuine OOE first returns. It leaves a lower bound requiring the
 simultaneous selection of blocks by a complete cycle unresolved.
-No further gate is automatically pursued.
+
+**CLOSE** the 11 September 2026 attempt to exclude the pinned
+first-survivor window by composing `height_strip` with
+`threshold_cycle_wrong_parity` and the CB5 oscillation. Those
+statements cover complementary cube-gap regions. They do not
+force (UC6) and they do not improve the signed box.
+
+**CLOSE** the same day's attempt to prove (UC6) as an independent
+integer estimate. By the exact transport (UC5)/(RC21),
+(UC6) is identical to `0<c_2-2c_1+m<2`. On an actual cubic-band
+cycle the first three sorted states are odd, so that second
+difference is an even integer and (UC6) is false. The open
+window is empty; the closed window is `D in {0,2}` and is
+already realized by the odd-triple controls. This is the
+existing REPARAMETERIZATION, now stated as a refutation of
+(UC6) rather than as a missing inequality. No further gate is
+automatically pursued.
 
 ## Publication assessment
 

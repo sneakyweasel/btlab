@@ -331,13 +331,30 @@ threshold cycles do not provide that incompatibility.
 
 ## Decision
 
-**PARK.** Retain the upper-cell charge refinement, the exact extrema strips,
-and the positive phase plateau with their stated scopes. No uniform
-wrong-parity intersection or numerical period improvement was proved.
-The one best next question is: **what parity-specific global unit-cell
-obstruction excludes a closed threshold cycle in the surviving grid
-region?** This question does not authorize automatically opening another
-branch or enlarging a computation.
+**PARK** the uniform wrong-parity intersection. Retain the upper-cell
+charge refinement, the exact extrema strips, and the positive phase
+plateau with their stated scopes. No uniform wrong-parity intersection
+or numerical period improvement was proved.
+
+**CLOSE** the 11 September 2026 composition of already-proved
+restrictions at the first walk-charge survivor. The Lean height strip
+and `threshold_cycle_wrong_parity` occupy complementary cube-gap
+regions and share no actual orbit. Proposition 3.36 does not locate
+the branch cut `m^2` to one rank at these counts. Lemma 6.3a remains
+local. Do not reopen as a larger census, a finer grid oscillation, or
+another pairing of those same three tools.
+
+**CLOSE** the min-to-`u` orbit-arc refinement the same day. The
+CB8 pair bound at `k=301993` (`k/L≈0.387`) leaves
+`m^2-u` about `8.5e5` times larger than the height-strip
+requirement. The only defect-tight arc has length `L-1` and
+recovers the seam `c_o≥m^2`. Do not scan further arcs, and do
+not reopen as a surplus-weighted lower bound on many `δ_i`.
+
+The uniform `B_b` question remains PARK. A new attempt needs an
+absolute-cell identity that is not an oscillation bound along
+rank rotation. This decision does not authorize automatically
+opening another branch.
 
 ## Publication assessment
 

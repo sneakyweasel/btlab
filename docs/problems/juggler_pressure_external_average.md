@@ -1466,6 +1466,53 @@ Can a one-sided arithmetic counting argument prove the necessary
 all-odd bound (C3) at growing depth? No bound for it, or for the
 remaining high-odd-count words, is established here.
 
+### Inverse-cell Hardy peel (11 September 2026)
+
+The unique odd preimage of an odd state `m` lies in the interval
+`[m^{2/3}, (m+1)^{2/3})`, of length about `(2/3) m^{-1/3}`. Write
+`A_t(z)` for the odd integers `m <= z` whose first `t` letters are
+odd. Then the depth-`(t+1)` all-odd starts in `(y, 2y]` are exactly
+the odd preimages of `A_t` at scale `y^{3/2}`. If `{m^{2/3}}` were
+equidistributed on each `A_t`, the expected cell hit would multiply
+the all-odd density by `1/2` at every extra letter.
+
+For `t <= 2` this is published Hardy-field equidistribution, not a
+nested floor. The pair `(m^{2/3}, m^{3/2})` has distinct non-integer
+exponents, so Fejer / Boshernitzan give joint equidistribution on
+the torus. Membership in `A_1` is oddness of `m`. Membership in
+`A_2` is the half-interval for `{m^{3/2}/2}`. Restricting a jointly
+equidistributed pair to one half-interval leaves `{m^{2/3}}` uniform.
+Together with the one-step Fejer law for `{n^{3/2}}` on odd sources,
+this recovers the rate-free `OO` count of density `1/8` among all
+starts in `(y, 2y]`. That count is already the rated corollary
+`J-automatic-descent-density` at exponent `5/6`; the peel adds no
+new density and no growing-depth saving.
+
+For `t >= 3`, membership in `A_t` uses
+`{floor(m^{3/2})^{3/2}}`. Theorem 9 of
+[exponent_pair_two_monomial.md](../theory/exponent_pair_two_monomial.md)
+applies with outer exponent `3/2 > 1`: the leftover is of size
+`m^{3/4}` and does not tend to `0`. The inverse-cell coordinate
+`{m^{2/3}}` is Hardy in `m`, but the set `A_t` is not a Hardy
+cylinder. This is the recorded floor-Hardy composition door, now
+located at the third odd letter of (C3), not a new estimate.
+
+A dyadic window `(10^6, 2*10^6]` of `500000` odd starts has
+all-odd continuation rates `0.500, 0.499, 0.498, 0.502, 0.504`
+at depths `1` through `5`, and stays inside `[0.488, 0.539]`
+through depth `12` (after which the survivor count is below
+`300`). The empirical odd-continuation is far below the C3
+danger threshold `0.87`. On the same window, `{n^{2/3}}` on the
+`OOO` sources has mean `0.502` and Kolmogorov distance `0.0036`
+from uniform, matching the ambient odd sample. This is an
+observation, not a discrepancy theorem and not a growing-depth
+bound.
+
+**CLOSE** the inverse-cell Hardy peel as a C3 proof. **PARK**
+the actual count. Do not reopen as a deeper Hardy pair, a
+Theorem-9 unwind of `{floor(m^{3/2})^{3/2}}`, or a claim that
+continuation `1/2` on a finite window proves (C3).
+
 ## Decision
 
 **PARK** the arithmetic-estimate follow-up. The conditional
@@ -1504,11 +1551,17 @@ spacing at every depth. Neither growing-depth boundary hits nor the
 complementary pressure has been bounded.
 
 The completed-sum, Walsh, sparse-forward-image and inverse-production
-methods remain closed. No third formulation, census, potential
-framework, floor increase or paper rewrite is introduced. The phase
-ends here. **Best next question:** what arithmetic estimate can bound
-the actual growing-depth all-odd count (C3) while retaining the floor
-corrections?
+methods remain closed. The inverse-cell Hardy peel is closed: it is
+rate-free through depth two and re-enters the floor-Hardy door at
+the third odd letter. No third formulation, registered census,
+potential framework, floor increase or paper rewrite is introduced.
+The phase ends here. **Best next question:** what arithmetic estimate
+can bound the actual growing-depth all-odd count (C3) while retaining
+the floor corrections past the third odd letter? Elementary pairing,
+sweep, and defect normalisation of the next letter are not that
+estimate: they read the same half-interval and miss
+\(\beta_*\) because \(8<9\)
+([rate-free floor-Hardy](juggler_rate_free_floor_hardy.md)).
 
 ## Publication assessment
 

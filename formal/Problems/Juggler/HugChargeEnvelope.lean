@@ -27,8 +27,10 @@ theorems are what make it the defensible one.
 ## Statements
 
 * `hugCharge_sub_circleMean_le` — `|C_L − C_*| ≤ 2·s(L)/L` for every `L > 0`, no window
-  hypothesis, with `s(L)` the Ostrowski digit sum.
-* `hugCharge_sub_circleMean_window` — on the certified window the digit cap makes it `94/L`.
+  hypothesis, with `s(L)` the 13-level Ostrowski digit sum.
+* `hugCharge_sub_circleMean_window` — on `L < 301994` the digit cap makes it `94/L`.
+* `hugCharge_sub_circleMean_extended` — on the printed window `[50508, 16785921)` the
+  mixed `q₁₃` list makes it `94/50508`.
 -/
 
 import Problems.Juggler.OstrowskiBlocks
@@ -90,5 +92,73 @@ theorem hugCharge_sub_circleMean_window {n' : ℝ} (hn : 1 < n') {L : ℕ}
     exact_mod_cast theta_digitSum_le hLw
   rw [div_le_div_iff₀ hLR hLR]
   nlinarith
+
+/-- **Theorem 5.7 for the mixed `q₁₃` list.**  The charge per letter is
+within `2(b + s(r))/L` of the circle mean. -/
+theorem hugCharge_sub_circleMean_extended_le {n' : ℝ} (hn : 1 < n') {L : ℕ}
+    (hL : 0 < L) :
+    |hugCharge n' L - circleMean n'|
+      ≤ 2 * ((ostroBlocksExtended L).length : ℝ) / L := by
+  have hLR : (0:ℝ) < (L : ℝ) := by exact_mod_cast hL
+  have hinv : (0:ℝ) < 1 / (L : ℝ) := by positivity
+  have h := theta_block_envelope_extended hn L 0
+  rw [sum_periodicObservable_eq_walk] at h
+  simp only [hugCharge, circleMean]
+  have hfac : (∑ k ∈ Finset.range L, blockObservable n' (hugWalkPos k)) / (L : ℝ)
+        - ∫ t in (0:ℝ)..1, periodicObservable n' t
+      = (1 / (L : ℝ)) * ((∑ k ∈ Finset.range L, blockObservable n' (hugWalkPos k))
+          - (L : ℝ) * ∫ t in (0:ℝ)..1, periodicObservable n' t) := by
+    field_simp
+  rw [hfac, abs_mul, abs_of_pos hinv]
+  calc (1 / (L : ℝ)) * |(∑ k ∈ Finset.range L, blockObservable n' (hugWalkPos k))
+          - (L : ℝ) * ∫ t in (0:ℝ)..1, periodicObservable n' t|
+      ≤ (1 / (L : ℝ)) * (((ostroBlocksExtended L).length : ℝ) * 2) :=
+        mul_le_mul_of_nonneg_left h (le_of_lt hinv)
+    _ = 2 * ((ostroBlocksExtended L).length : ℝ) / L := by
+        ring
+
+/-- **Theorem 5.8's named window instance.**  On the printed half-open
+window `[50508, q₁₄)` the mixed-list digit cap gives the uniform bound
+`94/50508`.  The binding term is `94/50508` on `L < q₁₃`; the tail is
+`2(b+47)/(b q₁₃) ≤ 96/q₁₃`. -/
+theorem hugCharge_sub_circleMean_extended {n' : ℝ} (hn : 1 < n') {L : ℕ}
+    (hLo : 50508 ≤ L) (_hHi : L < 16785921) :
+    |hugCharge n' L - circleMean n'| ≤ 94 / 50508 := by
+  have hL : 0 < L := lt_of_lt_of_le (by norm_num : (0:ℕ) < 50508) hLo
+  have hLR : (0:ℝ) < (L : ℝ) := by exact_mod_cast hL
+  refine (hugCharge_sub_circleMean_extended_le hn hL).trans ?_
+  have hlen : (ostroBlocksExtended L).length ≤ L / 301994 + 47 :=
+    ostroBlocksExtended_digitSum_le L
+  by_cases hsmall : L < 301994
+  · have hb : L / 301994 = 0 := Nat.div_eq_of_lt hsmall
+    have hcap : (ostroBlocksExtended L).length ≤ 47 := by
+      simpa [hb] using hlen
+    have hnum : ((ostroBlocksExtended L).length : ℝ) ≤ 47 := by exact_mod_cast hcap
+    have hLlo : (50508 : ℝ) ≤ L := by exact_mod_cast hLo
+    have hstep : (2:ℝ) * (ostroBlocksExtended L).length / L ≤ 94 / L := by
+      rw [div_le_div_iff₀ hLR hLR]
+      nlinarith
+    have hwin : (94:ℝ) / L ≤ 94 / 50508 := by
+      exact div_le_div_of_nonneg_left (by norm_num) (by norm_num) hLlo
+    exact hstep.trans hwin
+  · push Not at hsmall
+    set b := L / 301994
+    have hbpos : 1 ≤ b := (Nat.one_le_div_iff (by norm_num : (0:ℕ) < 301994)).mpr hsmall
+    have hbR : (0:ℝ) < (b : ℝ) := by
+      exact_mod_cast (lt_of_lt_of_le (by norm_num : (0:ℕ) < 1) hbpos)
+    have hLbR : (301994 : ℝ) * b ≤ L := by
+      exact_mod_cast (show 301994 * b ≤ L by simpa [b] using Nat.mul_div_le L 301994)
+    have hnum : ((ostroBlocksExtended L).length : ℝ) ≤ (b : ℝ) + 47 := by
+      exact_mod_cast hlen
+    have hden : (0:ℝ) < (301994 : ℝ) * b := mul_pos (by norm_num) hbR
+    have hstep : (2:ℝ) * (ostroBlocksExtended L).length / L
+        ≤ (2:ℝ) * ((b : ℝ) + 47) / ((301994 : ℝ) * b) := by
+      rw [div_le_div_iff₀ hLR hden]
+      nlinarith
+    have htail : (2:ℝ) * ((b : ℝ) + 47) / ((301994 : ℝ) * b) ≤ 96 / 301994 := by
+      rw [div_le_div_iff₀ hden (by norm_num : (0:ℝ) < 301994)]
+      nlinarith [show (1:ℝ) ≤ b by exact_mod_cast hbpos]
+    have hcmp : (96:ℝ) / 301994 ≤ 94 / 50508 := by norm_num
+    exact (hstep.trans htail).trans hcmp
 
 end Problems.Juggler
