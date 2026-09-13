@@ -44569,3 +44569,54 @@ sampling that make Lemma 4.5, Fubini in (1), and the identification of
 the theta-measure with max(0, 1/2 - range). The row stays "human
 proof". Twenty-four Lean rows, four human, and now every one of the
 four human rows has its exact layer in Lean and says so.
+
+
+## Two productions are enough for an exponent, and they need no analysis
+
+The production inequality (5.2) is built from three families of members
+of A on (sqrt x, x]. Reading Section 5.1 again with the question "which
+of these needs the exponential sums", the answer is: only the middle
+one. The E-images of the members at scale t/2 come from Lemma 3.1,
+which is Lean. The OE-fibers of the members at scale 3t/4 come from
+Lemma 4.2 on the good fibers and Lemma 4.3 on the bad ones, both Lean
+since this week. Only the OE-images of E-blocks at scale 3t/8 go
+through Proposition 4.4, and that is the one family whose coefficient
+1/9 rests on the exponential sums.
+
+So drop it. What remains is a two-production inequality,
+
+  g_A(t) >= (1 - 4e^{-t/4}) g_A(t/2) + (2/9 - (50/9)e^{-t/8}) g_A(3t/4)
+            - 2e^{-t/2} - (4/9)e^{-3t/4} - 136 e^{-t/8},
+
+for t >= 40, with no hypothesis. The paper's sqrt x is floor(e^{t/2})
+exactly (the floor of the square root of the floor of e^t is the floor
+of e^{t/2}), the fibers of the 3t/4 scale land in the shell by the
+landing window, the good fibers carry (2/9)(1 - 12.5 m^{-1/3})/m each,
+the bad ones carry at most 306 U^{-1/3} in total by Lemma 4.3, and the
+errors are all floors and exponentials. Then the recursion lemma on the
+two productions (1/2, 1) and (3/4, 2/9), with zeta(3/10) > 0 certified
+by 0.81^10 <= 1/8 and 0.91^10 <= 27/64, gives the theorem:
+
+  every nonempty backward-closed set has log-mass at least
+  K (log x)^{3/10} up to x, for all large x, unconditionally,
+
+and so do the failures if any exist. The root of 2^{-lambda} + (2/9)
+(3/4)^lambda = 1 is about 0.325, so 3/10 has room. This is Theorem 5.3
+with 3/10 in place of lambda** = 0.4926, and it is the first theorem of
+this shape in the repository with no analytic hypothesis: the paper
+mentions the sweep-only variant in passing with the weaker H/7 sweep
+(root 0.138) and never states it.
+
+What the exponential sums buy is the difference between 0.325 and
+0.49: the block-average family adds the production (3/8, 1/9), and
+Appendix D's ladder adds five more. Those stay hypotheses, so (5.2)
+stays a human row; the table gains a Lean row for the unconditional
+3/10. Twenty-five Lean rows, four human.
+
+Two lessons from the day's Lean. First, nlinarith with a large
+context is what timed out twice; every product it needed was already
+provable by hand, and linarith with those products as hints is
+instant. Second, set is dangerous in a proof that will call lemmas
+later: the lemma's conclusion mentions the unfolded term, linarith
+sees two atoms, and the proof fails for no visible reason. Generalizing
+the floors into variables with equations avoided it.

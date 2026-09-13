@@ -108,9 +108,9 @@ The production inequality itself and the root \(\lambda^{**}\) stay
 human.
 
 **The build root (COMPUTATIONALLY VERIFIED).**
-`formal/Problems/JugglerFatePaper.lean` imports exactly the twenty-two
+`formal/Problems/JugglerFatePaper.lean` imports exactly the twenty-three
 modules Paper C cites; `formal/AxiomCheckPaperC.lean` prints the axioms
-of the 281 cited declarations and `AxiomCheckPaperC.expected` records
+of the 305 cited declarations and `AxiomCheckPaperC.expected` records
 them, every list a subset of `propext`, `Classical.choice`,
 `Quot.sound`, no `sorryAx`, no `native_decide`.
 
@@ -253,6 +253,30 @@ Fubini in (1), and the identification of the \(\theta\)-measure
 with \(\max(0,\tfrac12-\text{range})\). The row stays **human
 proof** and says which parts are Lean. Nothing in Sections 5--10
 depends on this subsection.
+
+**The production inequality without its exponential sums, and an
+unconditional theorem (EXACT — LEAN VERIFIED, 13 September 2026).**
+Section 5.1 builds (5.2) from three families. Two of them need no
+analysis: the \(E\)-images of the members at scale \(t/2\) through
+Lemma 3.1 (`Production.family_E`), and the \(OE\)-fibers of the
+members at scale \(3t/4\) through Lemma 4.2 on the good fibers and
+Lemma 4.3 for the bad ones (`Production.family_OE`, on the per-fiber
+bound `good_fiber_logMass_ge`, \((2/9)(1-\tfrac{25}2m^{-1/3})/m\)).
+Together, with the paper's \(\sqrt x\) read as \(\lfloor e^{t/2}\rfloor\)
+(`sqrt_floor_exp`), they give
+\(g_A(t)\ge(1-4e^{-t/4})g_A(t/2)+(\tfrac29-\tfrac{50}9e^{-t/8})g_A(3t/4)-\eta_0(t)\)
+for \(t\ge40\), every error explicit (`production_two`). The recursion
+lemma on these two productions, with \(\zeta(3/10)>0\) certified by
+two rational bounds (`zeta2_pos`), then gives **Theorem 5.3 for every
+\(0<\lambda\le3/10\) with no hypothesis at all**
+(`contagion_elementary`, `logMass_contagion_elementary`), and Corollary
+5.5(2) at that exponent (`failures_logMass_ge`). The root of
+\(2^{-\lambda}+\tfrac29(\tfrac34)^\lambda=1\) is about \(0.325\). The
+third family, the \(OE\)-images of \(E\)-blocks through Proposition
+4.4, is what carries the exponent to \(0.49\), and it needs the two
+exponential-sum bounds that `FateBlockAverage` takes as hypotheses; the
+ladder (5.10) needs Appendix D. So (5.2) itself stays a human row, and
+the table gains a Lean row for the unconditional \(3/10\).
 
 ## Current literature
 

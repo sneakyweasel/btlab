@@ -271,6 +271,7 @@ LAYERS: dict[str, Path] = {
     "FateBlockAverage": JUGGLER_DIR / "FateBlockAverage.lean",
     "FateShareLaw": JUGGLER_DIR / "FateShareLaw.lean",
     "FateContagionBound": JUGGLER_DIR / "FateContagionBound.lean",
+    "FateProduction": JUGGLER_DIR / "FateProduction.lean",
 }
 
 # Sources belonging to other targets or historical model interfaces. Keeping
