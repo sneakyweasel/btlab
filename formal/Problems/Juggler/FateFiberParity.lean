@@ -26,7 +26,7 @@ so that `⌊2 x(n)⌋ = ⌊√(n³)⌋ = Nat.sqrt (n³)` and the image is even i
 lies in `[(3/2) v, (3/2) u]` by `(2u + v)(u - v) ≥ 0` and `(u + 2v)(u - v) ≥ 0`
 (`xval_step_ge`, `xval_step_le`), and is nondecreasing in `n` because the upper bound at `n`
 is the lower bound at `n + 2` (`xval_step_mono`); no derivative is needed. The fiber holds
-at least `(2/3) m^{1/3} - 1` odd integers by Bernoulli on `(1 + 1/m)^{4/3}` (`fiber_card_ge`).
+at least `(2/3) m^{1/3} - 1` odd integers by Bernoulli on `(1 + 1/m)^{4/3}` (`oeFiber_card_ge`).
 
 Case 1 (`α_m ≤ 1/2 - 2 m^{-1/3}`) subtracts `j ⌊A_m⌋` from `x_j`, which keeps every fractional
 part and puts the steps in `[α_m, α_m + η_m]` with `η_m ≤ m^{-1/3}`; Case 2
@@ -261,7 +261,7 @@ theorem rpow_two_thirds_succ_le {m : ℕ} (hm : 1 ≤ m) :
         rw [h13]; field_simp
 
 /-- The fiber holds at least `(2/3) m^{1/3} - 1` odd integers (`m ≥ 1`). -/
-theorem fiber_card_ge {m : ℕ} (hm : 1 ≤ m) :
+theorem oeFiber_card_ge {m : ℕ} (hm : 1 ≤ m) :
     2 / 3 * (m : ℝ) ^ ((1 : ℝ) / 3) - 1 ≤ (oeFiber m).card := by
   have hm0 : (0 : ℝ) < m := by exact_mod_cast hm
   set L := (m : ℝ) ^ ((4 : ℝ) / 3) with hL
@@ -413,7 +413,7 @@ theorem step_le (hm : 1 ≤ m) {j : ℕ} (hj : j + 1 < Hlen m hne) :
   have := upper_step_le hm
   linarith
 
-theorem step_mono' (j : ℕ) :
+theorem nseq_step_mono (j : ℕ) :
     xval (nseq m hne (j + 1)) - xval (nseq m hne j) ≤
       xval (nseq m hne (j + 2)) - xval (nseq m hne (j + 1)) := by
   have e1 : nseq m hne (j + 1) = nseq m hne j + 2 := nseq_succ hne j
@@ -466,7 +466,7 @@ theorem fiber_parity_good {m : ℕ} (hm : 10 ^ 6 ≤ m) (hgood : Good m) :
     have : eps m * (m : ℝ) ^ ((1 : ℝ) / 3) < eps m * 100 :=
       mul_lt_mul_of_pos_left hlt hεpos
     linarith
-  have hcard := fiber_card_ge hm1
+  have hcard := oeFiber_card_ge hm1
   have hne : (oeFiber m).Nonempty := by
     rw [← Finset.card_pos]
     have : (1 : ℝ) ≤ (oeFiber m).card := by linarith
@@ -522,7 +522,7 @@ theorem fiber_parity_good {m : ℕ} (hm : 10 ^ 6 ≤ m) (hgood : Good m) :
       constructor <;> linarith
     have hmono : Sweep.MonoSteps y H := by
       intro j _
-      have := step_mono' hne j
+      have := nseq_step_mono hne j
       simp only [hy]
       push_cast
       linarith
@@ -570,7 +570,7 @@ theorem fiber_parity_good {m : ℕ} (hm : 10 ^ 6 ≤ m) (hgood : Good m) :
       constructor <;> linarith
     have hanti : Sweep.AntiSteps z H := by
       intro j _
-      have := step_mono' hne j
+      have := nseq_step_mono hne j
       simp only [hz]
       push_cast
       linarith

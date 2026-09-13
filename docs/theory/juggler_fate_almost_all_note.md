@@ -2403,7 +2403,7 @@ abstract lemmas listed here, not the analytic density estimates.
 | Lemma 5.2 (seed), in `Problems/Juggler/FateSeed.lean` | `exists_ge_three_of_backwardClosed`, `seed_lemma`, `seed_constant_pos` |
 | Theorem 7.2 (Tao-type rate, contagion as a hypothesis), in `Problems/Juggler/FateTaoReduction.lean` | `logMass_le_oddLogMass`, `oddLogMass_le_of_dyadic`, `tao_rate_implies_empty`, `tao_rate_implies_conjecture` |
 | Corollary 8.4 (the conjecture from a cylinder bound), in `Problems/Juggler/FateCylinderCorollary.lean` | `CylinderBound`, `one_le_depth`, `chernoffExponent_nonneg`, `oddFailures_eventually_le`, `cylinder_bound_implies_conjecture` |
-| Lemma 4.2 (fiber parity), in `Problems/Juggler/FateFiberParity.lean` | `FiberParity.xval`, `FiberParity.two_xval`, `FiberParity.floor_two_xval`, `FiberParity.cell_xval_even_iff`, `FiberParity.xval_step`, `FiberParity.xval_step_ge`, `FiberParity.xval_step_le`, `FiberParity.xval_step_mono`, `FiberParity.oeFiber`, `FiberParity.mem_oeFiber`, `FiberParity.oeFiber_eq_image`, `FiberParity.oeFiber_card`, `FiberParity.evenImageCount`, `FiberParity.fiber_ge_rpow`, `FiberParity.fiber_lt_rpow`, `FiberParity.rpow_four_thirds_succ_ge`, `FiberParity.rpow_two_thirds_succ_le`, `FiberParity.fiber_card_ge`, `FiberParity.Am`, `FiberParity.alpha`, `FiberParity.eps`, `FiberParity.Good`, `FiberParity.eps_le`, `FiberParity.step_ge`, `FiberParity.step_le`, `FiberParity.fiber_parity_good` |
+| Lemma 4.2 (fiber parity), in `Problems/Juggler/FateFiberParity.lean` | `FiberParity.xval`, `FiberParity.two_xval`, `FiberParity.floor_two_xval`, `FiberParity.cell_xval_even_iff`, `FiberParity.xval_step`, `FiberParity.xval_step_ge`, `FiberParity.xval_step_le`, `FiberParity.xval_step_mono`, `FiberParity.oeFiber`, `FiberParity.mem_oeFiber`, `FiberParity.oeFiber_eq_image`, `FiberParity.oeFiber_card`, `FiberParity.evenImageCount`, `FiberParity.fiber_ge_rpow`, `FiberParity.fiber_lt_rpow`, `FiberParity.rpow_four_thirds_succ_ge`, `FiberParity.rpow_two_thirds_succ_le`, `FiberParity.oeFiber_card_ge`, `FiberParity.Am`, `FiberParity.alpha`, `FiberParity.eps`, `FiberParity.Good`, `FiberParity.eps_le`, `FiberParity.step_ge`, `FiberParity.step_le`, `FiberParity.fiber_parity_good` |
 | Lemma 4.3 (thin fibers), in `Problems/Juggler/FateThinFibers.lean` | `FiberParity.span_ge_of_step`, `FiberParity.arc_count_le`, `FiberParity.Am_step_le`, `FiberParity.Am_step_ge`, `FiberParity.eps_antitone`, `FiberParity.bad_mem_arc`, `FiberParity.two_rpow_third_le`, `FiberParity.two_rpow_two_thirds_le`, `FiberParity.rpow_two_thirds_ge`, `FiberParity.eps_div_eps_double`, `FiberParity.Am_double_sub_le`, `FiberParity.bad_count_le`, `FiberParity.bad_block_logMass_le`, `FiberParity.bad_sum_dyadic_le`, `FiberParity.eps_pow_two_mul`, `FiberParity.two_rpow_neg_third_le`, `FiberParity.bad_logMass_le` |
 | Proposition 4.4, Theorem 5.3, Theorem 7.3, Sections 8--10 except Lemma 8.2, the explicit form of Theorem 8.3, Corollary 8.4, the exact form of Theorem 9.2 and Proposition 9.3, Appendix C | human proofs |
 
@@ -2465,7 +2465,7 @@ use the roots of the displayed defining equations.
 
 - `formal/Problems/Juggler/FateContagion.lean`
 
-  SHA-256: `834198a6b0e8cc13c9fb91d9ad938f62ce5e783a3cc9009fb38334c913d5b7e2`
+  SHA-256: `42c5e8e94cc83a97c9a004d5f6bfe91202b9820964eb9b2790b822a025857a85`
 
 - `formal/Problems/Juggler/CubeFiber.lean`
 
@@ -2489,7 +2489,7 @@ use the roots of the displayed defining equations.
 
 - `formal/Problems/Juggler/FateChernoff.lean`
 
-  SHA-256: `bbf606d0f666cfc74209ef13dd8087f8b24e50226362704f88738b8fb5a0f92c`
+  SHA-256: `5b6601a5bdfd75796ca4a421057b4166a944b76abfcd497d20a2d10b8efb7c89`
 
 - `formal/Problems/Juggler/FatePressure.lean`
 
@@ -2501,7 +2501,7 @@ use the roots of the displayed defining equations.
 
 - `formal/Problems/Juggler/FateFiberParity.lean`
 
-  SHA-256: `4bdf21105e14b32d233a8f38f08e51dea5c86d355b4b341baaa54e0d96ccba41`
+  SHA-256: `519dab1e8f50343a16560107cb28191b409189e532ff517168cf2f55a4678fea`
 
 - `formal/Problems/Juggler/FateThinFibers.lean`
 
@@ -2513,7 +2513,7 @@ use the roots of the displayed defining equations.
 
 - `formal/AxiomCheckPaperC.expected`
 
-  SHA-256: `ab93666ada304709e27c62447a2c462b2f98b7960d5ec12bc3f4320d72382869`
+  SHA-256: `a8d4b2e3b4fb97c4b9eeb5ef00666cb2104f03df1d30591282b6684ee5f26fc0`
 
 - `src/research/juggler_sequence/fate_contagion.py`
 

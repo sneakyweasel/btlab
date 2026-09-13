@@ -36,7 +36,7 @@ open Problems.Juggler
 #print axioms FiberParity.eps_pow_two_mul
 #print axioms FiberParity.evenImageCount_eq
 #print axioms FiberParity.evenImageCount_eq'
-#print axioms FiberParity.fiber_card_ge
+#print axioms FiberParity.oeFiber_card_ge
 #print axioms FiberParity.fiber_ge_rpow
 #print axioms FiberParity.fiber_lt_rpow
 #print axioms FiberParity.fiber_parity_good
@@ -55,7 +55,7 @@ open Problems.Juggler
 #print axioms FiberParity.sqrt_rpow_four_thirds
 #print axioms FiberParity.step_ge
 #print axioms FiberParity.step_le
-#print axioms FiberParity.step_mono'
+#print axioms FiberParity.nseq_step_mono
 #print axioms FiberParity.two_rpow_neg_third_le
 #print axioms FiberParity.two_rpow_third_le
 #print axioms FiberParity.two_rpow_two_thirds_le
