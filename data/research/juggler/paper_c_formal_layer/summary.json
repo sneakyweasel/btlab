@@ -7,6 +7,7 @@
     "Problems.Juggler.TiltedShare",
     "Problems.Juggler.FateRecursion",
     "Problems.Juggler.FateFirstLetter",
+    "Problems.Juggler.FateCylinderEnergy",
     "Problems.Juggler.FateLandingWindow",
     "Problems.Juggler.FateWindowCount",
     "Problems.Juggler.FateSweep",
@@ -22,24 +23,24 @@
     "Problems.Juggler.FateContagionBound"
   ],
   "artifact": {
-    "asked": 240,
-    "recorded": 240,
+    "asked": 244,
+    "recorded": 244,
     "axiom_lists": [
       "propext",
       "propext, Classical.choice, Quot.sound",
       "propext, Quot.sound"
     ]
   },
-  "appendix_a_names": 226,
+  "appendix_a_names": 233,
   "surface": {
-    "modules": 51,
-    "declarations": 1602,
+    "modules": 52,
+    "declarations": 1609,
     "compiler_trusted": [],
     "compiler_dependent": [],
     "open": []
   },
   "table": {
-    "rows": 29,
+    "rows": 30,
     "lean": [
       "Fate classes closed; trichotomy; exclusion (Lemma 2.1)",
       "Even block is an interval (Lemma 3.1)",
@@ -63,6 +64,7 @@
       "Theorem 8.3, explicit form \\(y\\Lambda^{-e(C)}+2\\Lambda^Cy(\\log y)^{-A}\\) at every \\(y\\)",
       "Pressure form (Theorem 9.2, exact: a pressure bound \\(Na_\\theta^dE\\) gives at most \\(Ne^{-dD(p_C\\Vert 1/2)}E\\) live starts)",
       "Pressure telescoping (Proposition 9.3)",
+      "Cylinder-splitting identity for the first-letter bias (Section 10(d), second equality)",
       "Exact landing windows of the nested productions ((D.1), (D.2))"
     ],
     "human": [
@@ -82,5 +84,5 @@
     "label": "PAPER_C_LEAN_SURFACE_CONSISTENT",
     "problems": 0
   },
-  "git_commit": "302df89ec9d72ad4fd3a87fe11c89c3d6e25a6e0"
+  "git_commit": "2ede3c8d4561f5014145f1a9be25fbbca1e84492"
 }

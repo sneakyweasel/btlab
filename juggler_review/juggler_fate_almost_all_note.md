@@ -318,7 +318,7 @@ type Paper B proves enters Appendix C as an explicit hypothesis.
 
 Statements carry one of four roles. *Lean*: the exact combinatorial
 layer is formalized in Lean 4; the root `formal/Problems/JugglerFatePaper.lean`
-imports exactly the nineteen modules this paper cites and builds with
+imports exactly the twenty modules this paper cites and builds with
 `lake build Problems.JugglerFatePaper`, without `sorry` and without
 `native_decide`; `formal/AxiomCheckPaperC.lean` prints the axiom
 dependencies of every cited name and `AxiomCheckPaperC.expected`
@@ -358,6 +358,7 @@ constants; they prove nothing and are labelled wherever they appear.
 | Pressure form (Theorem 9.2, exact: a pressure bound \(Na_\theta^dE\) gives at most \(Ne^{-dD(p_C\Vert 1/2)}E\) live starts) | Lean, on the live weight |
 | Pressure telescoping (Proposition 9.3) | Lean, on the word-weight framework |
 | Azuma and exponential-moment arguments (Sections 8--10, except Lemma 8.2, Theorem 8.3, Theorem 9.2 and Proposition 9.3 in their exact forms) | human proof |
+| Cylinder-splitting identity for the first-letter bias (Section 10(d), second equality) | Lean; the Parseval form in Walsh sums, and the exceptional-atom estimate it is meant to supply, are human |
 | Exact landing windows of the nested productions ((D.1), (D.2)) | Lean; the smooth comparison (D.3), the multiplicities and the production inequality they feed are human |
 | Localized triple discrepancy (Appendix C) | hypothesis, conditional |
 | Numerical experiments (Section 11) | observation |
@@ -2109,6 +2110,17 @@ exact identities
  |W_{S\cup\{t\}}|^2
  =\tfrac12\mathcal C_{t+1}-\tfrac14\mathcal C_t.
 \]
+Lean: the second equality,
+\(\sum_wD(w)^2=\tfrac12\mathcal C_{t+1}-\tfrac14\mathcal C_t\), is
+`CylinderEnergy.sum_bias_sq` in
+`formal/Problems/Juggler/FateCylinderEnergy.lean`, for an arbitrary
+finite set of starts; it rests on the cylinder splitting
+\(\#[w]=\#[wE]+\#[wO]\) (`CylinderEnergy.wordCount_split`) and is
+otherwise the algebra of
+\((b-\tfrac{a+b}2)^2=\tfrac{a^2+b^2}2-\tfrac{(a+b)^2}4\). The
+Parseval equality with the Walsh sums is not formalized; no Walsh
+transform appears in that file.
+
 An additional quantitative bound on these sums can supply an
 exceptional-atom estimate. No rate-independent equivalence with
 the restricted bad-cylinder hypothesis is asserted. Full-population
@@ -2409,7 +2421,7 @@ No nontrivial cycle or unbounded orbit is excluded by this paper.
 ## Appendix A. Lean names
 
 All in `formal/Problems/Juggler/FateContagion.lean` unless noted. The
-root `formal/Problems/JugglerFatePaper.lean` imports exactly the nineteen
+root `formal/Problems/JugglerFatePaper.lean` imports exactly the twenty
 modules named here and builds with `lake build Problems.JugglerFatePaper`
 without `sorry` and without `native_decide`;
 `formal/AxiomCheckPaperC.expected` records the axioms of every name
@@ -2429,6 +2441,7 @@ abstract lemmas listed here, not the analytic density estimates.
 | Lean floor \(N_0=260\) | `reachesOne_of_lt_two_hundred_sixty_one` |
 | Lemma 4.7 (cube fibers), in `Problems/Juggler/CubeFiber.lean` | `cube_fiber_range`, `cube_fiber_sqrt_even`, `cube_fiber_even_image`, `even_cube_fiber_full`, `cube_fiber_sqrt_odd`, `cube_fiber_alternating`, `odd_cube_fiber_alternating` |
 | Shared counting of Lemmas 4.1, 4.1' and 4.3 (separated sequences in a window), in `Problems/Juggler/FateWindowCount.lean` | `WindowCount.StepGe`, `WindowCount.StepLe`, `WindowCount.span_ge`, `WindowCount.span_le`, `WindowCount.mono_of_stepGe`, `WindowCount.window_card_le`, `WindowCount.window_card_le_nat` |
+| Section 10(d), the cylinder-splitting identity, in `Problems/Juggler/FateCylinderEnergy.lean` | `CylinderEnergy.itinerary_succ_append`, `CylinderEnergy.wordCount`, `CylinderEnergy.wordCount_split`, `CylinderEnergy.energy`, `CylinderEnergy.bias`, `CylinderEnergy.energy_succ`, `CylinderEnergy.sum_bias_sq` |
 | Appendix D.1, the exact landing windows (D.1) and (D.2), in `Problems/Juggler/FateLandingWindow.lean` | `LandingWindow.cell34`, `LandingWindow.cell34_eq_floorPower_two`, `LandingWindow.le_cell34_iff`, `LandingWindow.cell34_lt_iff`, `LandingWindow.windowStart`, `LandingWindow.windowStart_exists`, `LandingWindow.windowStart_le_iff`, `LandingWindow.lt_windowStart_iff`, `LandingWindow.exact_endpoints`, `LandingWindow.setOf_cell34_mem_Ico`, `LandingWindow.exact_endpoints_iterate`, `LandingWindow.setOf_iterate_mem_Ico` |
 | Lemma 4.1 (sweep), in `Problems/Juggler/FateSweep.lean` | `Sweep.cell`, `Sweep.sweep_cell`, `sweep_fract_lt_half`, `sweep_fract_ge_half`, `sweep_ceil`, `sweep_rep_le_half`, `sweep_rep_gt_half` |
 | Lemma 4.1' (monotone pairing), in `Problems/Juggler/FateSweepMonotone.lean` | `Sweep.sweep_monotone_cell`, `sweep_monotone_fract_lt_half`, `sweep_monotone_fract_ge_half`, `sweep_monotone_ceil`, `sweep_monotone_rep_le_half`, `sweep_monotone_rep_gt_half` |
@@ -2523,6 +2536,10 @@ use the roots of the displayed defining equations.
 
   SHA-256: `7defa672e0ea746d14bfc88b13d40603c05097507847bc901162334bce38c4fa`
 
+- `formal/Problems/Juggler/FateCylinderEnergy.lean`
+
+  SHA-256: `575b3ae4938c0f97f729873f375b75f0860927be11b606dcff2db2c560aca5eb`
+
 - `formal/Problems/Juggler/FateLandingWindow.lean`
 
   SHA-256: `ef28985363d3b855e0a9ec4b8fba687855d34ab8cf1ff9b355a50e9377e29545`
@@ -2565,11 +2582,11 @@ use the roots of the displayed defining equations.
 
 - `formal/Problems/JugglerFatePaper.lean`
 
-  SHA-256: `03ca42cce5198bb136a616b8f563160226b5cc5fb5178840f96b65391d9cf57a`
+  SHA-256: `9b9c072544ec252917c248b6e8cef94ed605bec3dc758eda5c4fce300561a7c9`
 
 - `formal/AxiomCheckPaperC.expected`
 
-  SHA-256: `27e8282d9ac8257b214c844276cdf3a307aa5eb77b89597ca2af3dc90d0898b5`
+  SHA-256: `4a6ac4a22b5e9be90f1f960c354fbcd20975d75a50fe9c1938b9bb60dd84a89b`
 
 - `src/research/juggler_sequence/fate_contagion.py`
 

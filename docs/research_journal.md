@@ -44413,3 +44413,37 @@ This does not touch the production inequality. What Appendix D does
 with the window, the smooth comparison (D.3), the endpoint error
 O_k(P^{1-s}) and the inner-layer multiplicities, is exactly the part
 that stays human. Twenty-three Lean rows, four human.
+
+
+## Half a Parseval identity
+
+Section 10(d) of Paper C compares the first-letter bias of a cylinder,
+D(w) = #[wO] - #[w]/2, with the Walsh sums on the same starts, and
+records a display with two equal signs: a Parseval identity on the left
+and a counting identity on the right,
+
+  sum_w D(w)^2 = 2^{-t-2} sum_S |W_{S u {t}}|^2 = C_{t+1}/2 - C_t/4,
+
+with C_t the energy sum_{|w|=t} #[w]^2. The right-hand equality is the
+one the argument uses, and it needs no Fourier analysis at all. A
+cylinder splits into its two children, #[w] = #[wE] + #[wO], because the
+(t+1)-st letter of a start's itinerary is the parity of its t-th image.
+Write a = #[wE] and b = #[wO]; then D(w) = (b - a)/2, and
+
+  (b - (a+b)/2)^2 = (a^2 + b^2)/2 - (a+b)^2/4
+
+term by term. Summing over the words of length t is the identity.
+
+FateCylinderEnergy states it for an arbitrary finite set of starts, so
+it covers the note's odd starts of a dyadic block and the full range
+alike. The Parseval half is not formalized and no Walsh transform
+appears in the module; neither does the quantitative bound on those
+sums that the note says could supply an exceptional-atom estimate. The
+table gained a row for the counting half only, phrased that way.
+
+That is the last exact statement I can find in Paper C. Twenty-four Lean
+rows, four human, and the four are analysis: the block average, the
+share law, the production inequality, and the Azuma and exponential-
+moment bookkeeping. Nothing exact is left for a small attack; what is
+left needs either an analytic argument or the hypothesis-as-input
+treatment the large attacks use.

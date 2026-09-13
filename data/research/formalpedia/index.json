@@ -28505,6 +28505,90 @@
       "trust": "kernel"
     },
     {
+      "doc": "The `(d+1)`-st letter of an itinerary is the parity of the `d`-th image, so depth grows by appending on the right.",
+      "file": "formal/Problems/Juggler/FateCylinderEnergy.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-cylinder-energy"
+      ],
+      "line": 34,
+      "module": "Problems.Juggler.FateCylinderEnergy",
+      "name": "itinerary_succ_append",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`#[w]`: the starts of `S` whose length-`|w|` itinerary is `w`.",
+      "file": "formal/Problems/Juggler/FateCylinderEnergy.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-cylinder-energy"
+      ],
+      "line": 43,
+      "module": "Problems.Juggler.FateCylinderEnergy",
+      "name": "wordCount",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A cylinder is the disjoint union of its two children: `#[w] = #[wE] + #[wO]`.",
+      "file": "formal/Problems/Juggler/FateCylinderEnergy.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-cylinder-energy"
+      ],
+      "line": 47,
+      "module": "Problems.Juggler.FateCylinderEnergy",
+      "name": "wordCount_split",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`C_t = \u03a3_{|w| = t} #[w]\u00b2`, the energy of the depth-`t` cylinders.",
+      "file": "formal/Problems/Juggler/FateCylinderEnergy.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-cylinder-energy"
+      ],
+      "line": 81,
+      "module": "Problems.Juggler.FateCylinderEnergy",
+      "name": "energy",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`D(w) = #[wO] - #[w]/2`, the bias of a cylinder towards an odd next letter.",
+      "file": "formal/Problems/Juggler/FateCylinderEnergy.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-cylinder-energy"
+      ],
+      "line": 85,
+      "module": "Problems.Juggler.FateCylinderEnergy",
+      "name": "bias",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateCylinderEnergy.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-cylinder-energy"
+      ],
+      "line": 88,
+      "module": "Problems.Juggler.FateCylinderEnergy",
+      "name": "energy_succ",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The counting identity of Section 10(d).** `\u03a3_{|w|=t} D(w)\u00b2 = C_{t+1}/2 - C_t/4`, exactly. The Parseval form of the same quantity in terms of Walsh sums is not formalized.",
+      "file": "formal/Problems/Juggler/FateCylinderEnergy.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-cylinder-energy"
+      ],
+      "line": 114,
+      "module": "Problems.Juggler.FateCylinderEnergy",
+      "name": "sum_bias_sq",
+      "trust": "kernel"
+    },
+    {
       "doc": "`x(n) = n \u221an / 2 = n^{3/2}/2`.",
       "file": "formal/Problems/Juggler/FateFiberParity.lean",
       "kind": "def",
@@ -82261,6 +82345,7 @@
         "Problems.Juggler.FateContagion",
         "Problems.Juggler.FateContagionBound",
         "Problems.Juggler.FateCylinderCorollary",
+        "Problems.Juggler.FateCylinderEnergy",
         "Problems.Juggler.FateFiberParity",
         "Problems.Juggler.FateFirstLetter",
         "Problems.Juggler.FateLandingWindow",
@@ -83310,6 +83395,20 @@
         {
           "id": "J-fate-cylinder-corollary",
           "statement": "Paper C Corollary 8.4 (the conjecture from a cylinder bound), as the composition of Theorem 8.3 in explicit form (row J-fate-tao-union-bound) with Theorem 7.2 (FateTaoReduction, tao_rate_implies_conjecture, the contagion bound of Theorem 5.3 as hypothesis). CylinderBound N\u2080 C A y is the paper's H(C, A) at the scale y: every O-rooted L(y)-bad cylinder of depth d(y) = \u2308C L(y)\u2309 holds at most 2^{\u2212(d\u22121)} y/2 + y (log y)^{\u2212A} starts. (i) one_le_depth: d(y) \u2265 1 once 2y > N\u2080. (ii) oddFailures_eventually_le: for N\u2080 \u2265 2 with the floor, C \u2265 5, A > C + e(C), any e < e(C), and H(C, A) at all y \u2265 y\u2081, there is y\u2080 with #{odd failures in (y, 2y]} \u2264 y (log y)^{\u2212e} for all y \u2265 y\u2080; proof: \u039b = log 2y / log N\u2080 satisfies log y / log N\u2080 \u2264 \u039b \u2264 2 log y / log N\u2080 for y \u2265 2, so the explicit bound y \u039b^{\u2212e(C)} + 2 \u039b^C y (log y)^{\u2212A} is at most (log N\u2080)^{e(C)} y (log y)^{\u2212e} (log y)^{\u2212(e(C)\u2212e)} + 2 (2/log N\u2080)^C y (log y)^{\u2212e} (log y)^{\u2212(A\u2212C\u2212e)}, and each of the two negative powers is at most 1/(2 (log N\u2080)^{e(C)}) and 1/(4 (2/log N\u2080)^C) once log y exceeds the thresholds supplied by exists_rpow_gt; so each term is at most y (log y)^{\u2212e}/2. (iii) cylinder_bound_implies_conjecture: if H(C, A) holds at all large scales with C \u2265 5 and A > C + e(C), and for the failure set the contagion bound K (log x)^\u03bb \u2264 logMass holds for x \u2265 x\u2080 with 0 < \u03bb < 1 and 1 \u2212 \u03bb < e(C), then every positive integer reaches 1 (e := (1 \u2212 \u03bb + e(C))/2). Kernel-checked, axioms propext, Classical.choice, Quot.sound only. The contagion bound is a hypothesis; the paper's numerical form C \u2265 19 (e(19) = 0.527 > 0.5074 = 1 \u2212 \u03bb**) is about the root \u03bb** and is checked by paper_c_audit, not by Lean. Conditional on the cylinder bound; nothing here proves H(C, A); not a halt theorem.",
+          "tag": "EXACT \u2014 LEAN VERIFIED"
+        }
+      ]
+    },
+    "Problems.Juggler.FateCylinderEnergy": {
+      "declarations": 7,
+      "file": "formal/Problems/Juggler/FateCylinderEnergy.lean",
+      "imports": [
+        "Problems.Juggler.RateFreeDensity"
+      ],
+      "ledger": [
+        {
+          "id": "J-fate-cylinder-energy",
+          "statement": "Paper C Section 10(d), the counting half of the Parseval display. For an arbitrary finite set S of starts, write #[w] for the starts of S whose length-|w| itinerary is w (wordCount), D(w) = #[wO] - #[w]/2 for the first-letter bias (bias) and C_t = sum over |w| = t of #[w]^2 for the cylinder energy (energy). A cylinder splits into its two children, #[w] = #[wE] + #[wO] (wordCount_split), because the (t+1)-st letter of an itinerary is the parity of the t-th image (itinerary_succ_append). Hence sum over |w| = t of D(w)^2 = C_{t+1}/2 - C_t/4 exactly (sum_bias_sq), which is the second equality of the note's display; the algebra behind it is (b - (a+b)/2)^2 = (a^2+b^2)/2 - (a+b)^2/4. NOT formalized: the first equality, Parseval for the Walsh sums on the same starts -- no Walsh transform appears in the module -- and the quantitative bound on these sums that would supply an exceptional-atom estimate. Nothing here bounds a discrepancy and nothing here is a halt theorem.",
           "tag": "EXACT \u2014 LEAN VERIFIED"
         }
       ]
@@ -84875,6 +84974,7 @@
         "Problems.Juggler.FateContagion",
         "Problems.Juggler.FateContagionBound",
         "Problems.Juggler.FateCylinderCorollary",
+        "Problems.Juggler.FateCylinderEnergy",
         "Problems.Juggler.FateFiberParity",
         "Problems.Juggler.FateFirstLetter",
         "Problems.Juggler.FateLandingWindow",
@@ -84893,7 +84993,7 @@
       "ledger": [
         {
           "id": "J-paper-c-trust-surface",
-          "statement": "Paper C's Lean surface, as a build target and an axiom artifact. formal/Problems/JugglerFatePaper.lean imports exactly the nineteen modules the paper cites (TerminationFloor257, FateContagion, CubeFiber, TiltedShare, FateRecursion, FateFirstLetter, FateLandingWindow, FateWindowCount, FateSweep, FateSweepMonotone, FateChernoff, FatePressure, FateTaoReduction, FateSeed, FateCylinderCorollary, FateNumerics, FateFiberParity, FateThinFibers, FateContagionBound) and is a lake default target; formal/AxiomCheckPaperC.lean prints the axioms of the cited declarations and AxiomCheckPaperC.expected records them: every line is a subset of [propext, Classical.choice, Quot.sound], no sorryAx, no Lean.ofReduceBool (native_decide). formalpedia's paper surface carries Paper C (root Problems.JugglerFatePaper): no declaration it reaches runs the compiler and none cites one that does. The verification table has twenty-three Lean rows (including Lemma 4.1', Lemmas 4.2 and 4.3, Lemma 5.2, Theorem 5.3 given the production inequality (5.2), Theorem 7.2 and Theorem 7.3 with the contagion bound as a hypothesis, and Corollary 8.4) and four human proofs (the block average 4.4, the share law, the production inequality (5.2), the identity (6.1), the asymptotic bookkeeping). FateNumerics holds the two numerical moves the fiber lemmas share, roots by powering and Bernoulli at a point; FateWindowCount holds the counting move, a sequence rising by at least d has at most w/d + 1 terms in a window of width w. This row records the artifact, not a theorem; nothing here bounds a density.",
+          "statement": "Paper C's Lean surface, as a build target and an axiom artifact. formal/Problems/JugglerFatePaper.lean imports exactly the twenty modules the paper cites (TerminationFloor257, FateContagion, FateCylinderEnergy, CubeFiber, TiltedShare, FateRecursion, FateFirstLetter, FateLandingWindow, FateWindowCount, FateSweep, FateSweepMonotone, FateChernoff, FatePressure, FateTaoReduction, FateSeed, FateCylinderCorollary, FateNumerics, FateFiberParity, FateThinFibers, FateContagionBound) and is a lake default target; formal/AxiomCheckPaperC.lean prints the axioms of the cited declarations and AxiomCheckPaperC.expected records them: every line is a subset of [propext, Classical.choice, Quot.sound], no sorryAx, no Lean.ofReduceBool (native_decide). formalpedia's paper surface carries Paper C (root Problems.JugglerFatePaper): no declaration it reaches runs the compiler and none cites one that does. The verification table has twenty-four Lean rows (including Lemma 4.1', Lemmas 4.2 and 4.3, Lemma 5.2, Theorem 5.3 given the production inequality (5.2), Theorem 7.2 and Theorem 7.3 with the contagion bound as a hypothesis, and Corollary 8.4) and four human proofs (the block average 4.4, the share law, the production inequality (5.2), the identity (6.1), the asymptotic bookkeeping). FateNumerics holds the two numerical moves the fiber lemmas share, roots by powering and Bernoulli at a point; FateWindowCount holds the counting move, a sequence rising by at least d has at most w/d + 1 terms in a window of width w. This row records the artifact, not a theorem; nothing here bounds a density.",
           "tag": "COMPUTATIONALLY VERIFIED"
         }
       ]
@@ -85190,13 +85290,13 @@
     }
   },
   "totals": {
-    "declarations": 6259,
-    "declarations_with_a_ledger_row": 4276,
-    "ledger_rows_naming_a_file": 392,
-    "modules": 271,
+    "declarations": 6266,
+    "declarations_with_a_ledger_row": 4283,
+    "ledger_rows_naming_a_file": 393,
+    "modules": 272,
     "trust": {
       "compiler": 57,
-      "kernel": 6202
+      "kernel": 6209
     }
   }
 }
