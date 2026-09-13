@@ -154,6 +154,7 @@ import Problems.Juggler.CubicCriticalLocation
 import Problems.Juggler.CriticalCostKernel
 import Problems.Juggler.CubicRemainderAssembly
 import Problems.Juggler.FateCylinderCorollary
+import Problems.Juggler.FateBlockAverage
 import Problems.Juggler.FateCylinderEnergy
 import Problems.Juggler.FateLandingWindow
 import Problems.Juggler.FateNumerics

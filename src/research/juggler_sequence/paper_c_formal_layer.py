@@ -53,6 +53,7 @@ CITED_MODULES = (
     "Problems.Juggler.TiltedShare",
     "Problems.Juggler.FateRecursion",
     "Problems.Juggler.FateFirstLetter",
+    "Problems.Juggler.FateBlockAverage",
     "Problems.Juggler.FateCylinderEnergy",
     "Problems.Juggler.FateLandingWindow",
     "Problems.Juggler.FateWindowCount",

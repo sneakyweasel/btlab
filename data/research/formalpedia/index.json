@@ -27242,6 +27242,174 @@
       "trust": "kernel"
     },
     {
+      "doc": "The paper's `E(m')`: the even `m` with `m'\u00b2 \u2264 m < (m'+1)\u00b2`.",
+      "file": "formal/Problems/Juggler/FateBlockAverage.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-block-average-layer"
+      ],
+      "line": 52,
+      "module": "Problems.Juggler.FateBlockAverage",
+      "name": "blockE",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The odd integers of the paper's `I(m') = [m'^{8/3}, (m'+1)^{8/3})`, written exactly with the landing window of Appendix D.1.",
+      "file": "formal/Problems/Juggler/FateBlockAverage.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-block-average-layer"
+      ],
+      "line": 56,
+      "module": "Problems.Juggler.FateBlockAverage",
+      "name": "oddBlock",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Membership in the block is the exact condition `m'\u00b2 \u2264 \u230an^{3/4}\u230b < (m'+1)\u00b2`.",
+      "file": "formal/Problems/Juggler/FateBlockAverage.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-block-average-layer"
+      ],
+      "line": 60,
+      "module": "Problems.Juggler.FateBlockAverage",
+      "name": "mem_oddBlock",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The fiber of `\u230an^{3/4}\u230b` over `m`, among the odd integers, is the paper's `\u03a6(m)`.",
+      "file": "formal/Problems/Juggler/FateBlockAverage.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-block-average-layer"
+      ],
+      "line": 70,
+      "module": "Problems.Juggler.FateBlockAverage",
+      "name": "mem_oeFiber_iff_cell34",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`U(m')`: the odd `n` of the block whose two floors are both even.",
+      "file": "formal/Problems/Juggler/FateBlockAverage.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-block-average-layer"
+      ],
+      "line": 75,
+      "module": "Problems.Juggler.FateBlockAverage",
+      "name": "U",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateBlockAverage.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-block-average-layer"
+      ],
+      "line": 80,
+      "module": "Problems.Juggler.FateBlockAverage",
+      "name": "oddBlock_card_eq",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The proposition's first sentence, exactly.** `U(m')` is the disjoint union of the even-image parts of the fibers `\u03a6(m)` over the even `m` of the block, so its size is the sum of the even-image counts of Lemma 4.2.",
+      "file": "formal/Problems/Juggler/FateBlockAverage.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-block-average-layer"
+      ],
+      "line": 103,
+      "module": "Problems.Juggler.FateBlockAverage",
+      "name": "U_card_eq",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The parity wave `\u03c8(z) = (-1)^{\u230az\u230b}`, at an integer floor value.",
+      "file": "formal/Problems/Juggler/FateBlockAverage.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-block-average-layer"
+      ],
+      "line": 129,
+      "module": "Problems.Juggler.FateBlockAverage",
+      "name": "psi",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`\u03a3 \u03c8(n^{3/4})`, the slow sum.",
+      "file": "formal/Problems/Juggler/FateBlockAverage.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-block-average-layer"
+      ],
+      "line": 132,
+      "module": "Problems.Juggler.FateBlockAverage",
+      "name": "slowSum",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`\u03a3 \u03c8(n^{3/2})`, the fast sum.",
+      "file": "formal/Problems/Juggler/FateBlockAverage.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-block-average-layer"
+      ],
+      "line": 135,
+      "module": "Problems.Juggler.FateBlockAverage",
+      "name": "fastSum",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`\u03a3 \u03c8(n^{3/4}) \u03c8(n^{3/2})`, the product sum.",
+      "file": "formal/Problems/Juggler/FateBlockAverage.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-block-average-layer"
+      ],
+      "line": 138,
+      "module": "Problems.Juggler.FateBlockAverage",
+      "name": "productSum",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Expanding the two indicators**, exactly: `4|U(m')| = M + S\u2081 + S\u2082 + S\u2081\u2082`, where `M` is the number of odd integers of the block. This is the identity the paper's proof starts from; the three sums are what its exponential-sum estimates bound.",
+      "file": "formal/Problems/Juggler/FateBlockAverage.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-block-average-layer"
+      ],
+      "line": 143,
+      "module": "Problems.Juggler.FateBlockAverage",
+      "name": "four_card_U",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Proposition 4.4, equation (4.1), given the exponential-sum bounds.** If each of the three parity sums is at most `B` in absolute value, then `|U(m')|` is within `3B/4` of a quarter of the odd integers of the block. Exact; the content of the proposition is that `B` may be taken to be `C m'^{11/9} log(m'+1)`, which is the hypothesis, not the conclusion.",
+      "file": "formal/Problems/Juggler/FateBlockAverage.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-block-average-layer"
+      ],
+      "line": 171,
+      "module": "Problems.Juggler.FateBlockAverage",
+      "name": "block_average_of_bounds",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Proposition 4.4 in the paper's shape: with each parity sum bounded by `C m'^{11/9} log(m'+1)` \u2014 the analytic input, assumed here \u2014 equation (4.1) holds with `C_B = 3C/4`.",
+      "file": "formal/Problems/Juggler/FateBlockAverage.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-block-average-layer"
+      ],
+      "line": 192,
+      "module": "Problems.Juggler.FateBlockAverage",
+      "name": "block_average_bound",
+      "trust": "kernel"
+    },
+    {
       "doc": "",
       "file": "formal/Problems/Juggler/FateChernoff.lean",
       "kind": "theorem",
@@ -82341,6 +82509,7 @@
         "Problems.Juggler.ExpansionSlack",
         "Problems.Juggler.FamilyChains",
         "Problems.Juggler.FanLaw",
+        "Problems.Juggler.FateBlockAverage",
         "Problems.Juggler.FateChernoff",
         "Problems.Juggler.FateContagion",
         "Problems.Juggler.FateContagionBound",
@@ -83308,6 +83477,21 @@
           "id": "J-lean-arithmetic-certificates-kernel-checked",
           "statement": "Trust-boundary audit of the Juggler Lean layer, 5 Sep 2026. Of 325 native_decide sites, 302 run the dynamics or a structure (floorPower iteration, itinerary lists, List.all over ranges, the floor-257 orbit tables) and stay; 23 sites covering 18 distinct theorems are pure Nat literal arithmetic and all 18 convert to norm_num, so they are checked by the kernel rather than by the compiled runtime. The converted set is load-bearing: FanLaw.fan_step_pow (3^190537 < 2^301994) is the negativity of the affine step in Paper A Proposition 5.12, the reason the semiconvergent fan has 56 members; RunSurvivorLattice.three_pow_step_gt_two_pow_step and three_pow_pred_step_le_two_pow_step (3^665 > 2^1054, 3^664 <= 2^1054) are Proposition 4.9's survivor lattice; CycleHeightFinance.l84_height_cap_nat is the leftover-84 height cap; O7EEEEGap.three_mul_pow256_gt_pow257 is the O^7EEEE gap; ten more are the leftover cell evaluations of LeftoverEval. With theta_sandwich_upper and theta_sandwich_lower moved in the same pass, twenty of the layer's arithmetic certificates now rest on the kernel. Counts 325 -> 307; the barrel builds (3473 jobs) and tools/trust_boundary.py still reports every cited identifier declared and reachable. The dividing line is goal shape, not size: a six-hundred-thousand-bit comparison converts in under a second because Nat literal arithmetic is GMP-backed in the kernel, while a twenty-step orbit table does not convert at all because the kernel would have to unfold a definition. No theorem statement changed and no proof was weakened. Extended 5 Sep 2026 to the whole layer: the elaborator's decide is stuck on floorPower (reduction does not unfold Nat.sqrt) but decide +kernel is not, so all 307 remaining sites were converted and the barrel built. Two failed with (kernel) deterministic timeout and were reverted, both quarter-million-length scans: window_digit_scan over [50508, 301994) and greedy_eq_ostro_below_window over [0, 301994), each running a thirteen-denominator greedy decomposition per length. Final state 305 decide +kernel, 20 norm_num, 2 native_decide, from 327 before the three passes. Verified by #print axioms rather than by counting: reachesOne_n193 depends on [propext], FanLaw.fan_step_pow on [propext, Classical.choice, Quot.sound], and the holdout window_digit_scan on [propext, window_digit_scan._native.native_decide.ax_1_1] - the converted proofs carry no compiler-trust assumption and each holdout carries a named one. The ReachesOne class alone is 130 sites, deepest witness k = 73 from n = 193. Three regimes, three tactics: literal arithmetic to norm_num, closed computations over definitions to decide +kernel, and large scans staying native. No theorem statement changed and no proof was weakened.",
           "tag": "COMPUTATIONALLY VERIFIED"
+        }
+      ]
+    },
+    "Problems.Juggler.FateBlockAverage": {
+      "declarations": 14,
+      "file": "formal/Problems/Juggler/FateBlockAverage.lean",
+      "imports": [
+        "Problems.Juggler.FateFiberParity",
+        "Problems.Juggler.FateLandingWindow"
+      ],
+      "ledger": [
+        {
+          "id": "J-fate-block-average-layer",
+          "statement": "The exact layer of Paper C Proposition 4.4, and equation (4.1) given the paper's exponential-sum bounds as hypotheses. The block: the odd n of I(m') = [m'^{8/3}, (m'+1)^{8/3}) are exactly the odd n with m'^2 <= floor(n^{3/4}) < (m'+1)^2 (mem_oddBlock, through the landing window of Appendix D.1). The decomposition: U(m'), the odd n of the block with both floor(n^{3/4}) and floor(n^{3/2}) even, is the disjoint union of the even-image parts of the fibers Phi(m) over the even m of the block, so |U(m')| is the sum of Lemma 4.2's evenImageCount over E(m') (U_card_eq); the whole block is the disjoint union of the fibers (oddBlock_card_eq). The expansion: 4|U(m')| = M + S1 + S2 + S12 exactly, where M is the number of odd n of the block and the S are the parity sums of psi(floor(n^{3/4})) and psi(floor(n^{3/2})) (four_card_U). Given |S1|, |S2|, |S12| <= C m'^{11/9} log(m'+1), equation (4.1) follows with C_B = 3C/4 (block_average_bound, on block_average_of_bounds). THE BOUNDS ARE HYPOTHESES, NOT THEOREMS: Vaaler's interval approximation, the second-derivative test and Kusmin-Landau are not formalized here or anywhere in this repository, and Proposition 4.4 remains a human proof in the paper's verification table. The asymptotic form |U(m')| = m'^{5/3}/3 (1 + O(m'^{-4/9} log)) is not formalized: it needs in addition a two-sided count of the odd integers of the block. Nothing here bounds a density and nothing here is a halt theorem.",
+          "tag": "EXACT \u2014 LEAN VERIFIED"
         }
       ]
     },
@@ -84970,6 +85154,7 @@
       "file": "formal/Problems/JugglerFatePaper.lean",
       "imports": [
         "Problems.Juggler.CubeFiber",
+        "Problems.Juggler.FateBlockAverage",
         "Problems.Juggler.FateChernoff",
         "Problems.Juggler.FateContagion",
         "Problems.Juggler.FateContagionBound",
@@ -84993,7 +85178,7 @@
       "ledger": [
         {
           "id": "J-paper-c-trust-surface",
-          "statement": "Paper C's Lean surface, as a build target and an axiom artifact. formal/Problems/JugglerFatePaper.lean imports exactly the twenty modules the paper cites (TerminationFloor257, FateContagion, FateCylinderEnergy, CubeFiber, TiltedShare, FateRecursion, FateFirstLetter, FateLandingWindow, FateWindowCount, FateSweep, FateSweepMonotone, FateChernoff, FatePressure, FateTaoReduction, FateSeed, FateCylinderCorollary, FateNumerics, FateFiberParity, FateThinFibers, FateContagionBound) and is a lake default target; formal/AxiomCheckPaperC.lean prints the axioms of the cited declarations and AxiomCheckPaperC.expected records them: every line is a subset of [propext, Classical.choice, Quot.sound], no sorryAx, no Lean.ofReduceBool (native_decide). formalpedia's paper surface carries Paper C (root Problems.JugglerFatePaper): no declaration it reaches runs the compiler and none cites one that does. The verification table has twenty-four Lean rows (including Lemma 4.1', Lemmas 4.2 and 4.3, Lemma 5.2, Theorem 5.3 given the production inequality (5.2), Theorem 7.2 and Theorem 7.3 with the contagion bound as a hypothesis, and Corollary 8.4) and four human proofs (the block average 4.4, the share law, the production inequality (5.2), the identity (6.1), the asymptotic bookkeeping). FateNumerics holds the two numerical moves the fiber lemmas share, roots by powering and Bernoulli at a point; FateWindowCount holds the counting move, a sequence rising by at least d has at most w/d + 1 terms in a window of width w. This row records the artifact, not a theorem; nothing here bounds a density.",
+          "statement": "Paper C's Lean surface, as a build target and an axiom artifact. formal/Problems/JugglerFatePaper.lean imports exactly the twenty-one modules the paper cites (TerminationFloor257, FateBlockAverage, FateContagion, FateCylinderEnergy, CubeFiber, TiltedShare, FateRecursion, FateFirstLetter, FateLandingWindow, FateWindowCount, FateSweep, FateSweepMonotone, FateChernoff, FatePressure, FateTaoReduction, FateSeed, FateCylinderCorollary, FateNumerics, FateFiberParity, FateThinFibers, FateContagionBound) and is a lake default target; formal/AxiomCheckPaperC.lean prints the axioms of the cited declarations and AxiomCheckPaperC.expected records them: every line is a subset of [propext, Classical.choice, Quot.sound], no sorryAx, no Lean.ofReduceBool (native_decide). formalpedia's paper surface carries Paper C (root Problems.JugglerFatePaper): no declaration it reaches runs the compiler and none cites one that does. The verification table has twenty-four Lean rows (including Lemma 4.1', Lemmas 4.2 and 4.3, Lemma 5.2, Theorem 5.3 given the production inequality (5.2), Theorem 7.2 and Theorem 7.3 with the contagion bound as a hypothesis, and Corollary 8.4) and four human proofs (the block average 4.4, the share law, the production inequality (5.2), the identity (6.1), the asymptotic bookkeeping). FateNumerics holds the two numerical moves the fiber lemmas share, roots by powering and Bernoulli at a point; FateWindowCount holds the counting move, a sequence rising by at least d has at most w/d + 1 terms in a window of width w. This row records the artifact, not a theorem; nothing here bounds a density.",
           "tag": "COMPUTATIONALLY VERIFIED"
         }
       ]
@@ -85290,13 +85475,13 @@
     }
   },
   "totals": {
-    "declarations": 6266,
-    "declarations_with_a_ledger_row": 4283,
-    "ledger_rows_naming_a_file": 393,
-    "modules": 272,
+    "declarations": 6280,
+    "declarations_with_a_ledger_row": 4297,
+    "ledger_rows_naming_a_file": 394,
+    "modules": 273,
     "trust": {
       "compiler": 57,
-      "kernel": 6209
+      "kernel": 6223
     }
   }
 }
