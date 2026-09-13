@@ -44177,3 +44177,41 @@ Paper C: seventeen Lean rows, six human. What is left human is the
 block average, the fiber parity lemmas, the contagion theorem itself,
 the identity (6.1), Theorem 7.3, Theorem 9.1 and Appendix C.
 
+## Lemma 4.2 without the integral
+
+The fiber-parity lemma is where Paper C's constants 2/9 and 4/9 come
+from: on a good fiber, Lemma 4.1' gives each parity at least H/3 - 2.
+The paper proves it by writing the step of x_j = n_j^{3/2}/2 as an
+integral of (3/4) t^{1/2} and reading off bounds.
+
+In Lean the step has a cleaner form. With u = sqrt(n+2) and v = sqrt(n)
+the step is (u^3 - v^3)/2 = (u^2 + uv + v^2)/(u + v), because u^2 - v^2 = 2
+makes u - v = 2/(u + v). The two bounds (3/2) v and (3/2) u are the two
+factorizations 2u^2 - uv - v^2 = (2u + v)(u - v) and
+u^2 + uv - 2v^2 = (u + 2v)(u - v), and monotonicity of the step is free:
+the upper bound at n is the lower bound at n + 2. No derivative, no
+integral, no convexity.
+
+Two constants moved, both harmlessly. The paper's upper step uses
+n_j + 2 <= (m+1)^{4/3} + 2, giving eta_m <= 1.02 m^{-1/3}; but n_j + 2 is
+n_{j+1}, itself a fiber member, so the upper step is (3/2)(m+1)^{2/3}
+and eta_m <= m^{-1/3} by Bernoulli on (1 + 1/m)^{2/3}. And the fiber
+count is at least (2/3) m^{1/3} - 1 from the odd integers 2k + 1 in
+[m^{4/3}, (m+1)^{4/3}), with Bernoulli on (1 + 1/m)^{4/3} for the width;
+the paper's 0.646 m^{1/3} is never needed, since (H - 1) a >= 44/3 - 44
+m^{-1/3} clears 12 with room.
+
+The two cases are the paper's. Subtracting j floor(A_m) keeps every
+fractional part and gives nondecreasing steps in [alpha, alpha +
+eps]; j(floor(A_m) + 1) - x_j gives nonincreasing steps and the
+ceiling identity ceil(2 z_j) = 2 j (N + 1) - floor(2 x_j) carries the
+parity. Both feed the monotone sweep of FateSweepMonotone directly.
+
+Also today: the other session's Paper A commit had left the layer gate
+red (HugChargeEnvelope imports WalkChargeMax, ranked after it). The
+layer table is now ordered by a stable topological sort of the actual
+import graph, which is what the gate was checking by hand.
+
+Paper C: eighteen Lean rows, seven human. Below the block average only
+Lemma 4.3 is left.
+

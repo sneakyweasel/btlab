@@ -13,27 +13,28 @@
     "Problems.Juggler.FatePressure",
     "Problems.Juggler.FateTaoReduction",
     "Problems.Juggler.FateSeed",
-    "Problems.Juggler.FateCylinderCorollary"
+    "Problems.Juggler.FateCylinderCorollary",
+    "Problems.Juggler.FateFiberParity"
   ],
   "artifact": {
-    "asked": 145,
-    "recorded": 145,
+    "asked": 177,
+    "recorded": 177,
     "axiom_lists": [
       "propext",
       "propext, Classical.choice, Quot.sound",
       "propext, Quot.sound"
     ]
   },
-  "appendix_a_names": 129,
+  "appendix_a_names": 155,
   "surface": {
-    "modules": 45,
-    "declarations": 1487,
+    "modules": 46,
+    "declarations": 1528,
     "compiler_trusted": [],
     "compiler_dependent": [],
     "open": []
   },
   "table": {
-    "rows": 26,
+    "rows": 27,
     "lean": [
       "Fate classes closed; trichotomy; exclusion (Lemma 2.1)",
       "Even block is an interval (Lemma 3.1)",
@@ -42,6 +43,7 @@
       "Envelope descent into the floor (Lemma 8.1)",
       "Sweep lemma (Lemma 4.1), both half-cell conventions",
       "Monotone pairing (Lemma 4.1')",
+      "Fiber parity (Lemma 4.2), goodness unpacked",
       "Cube fibers full or alternating (Lemma 4.7)",
       "Recursion lemma (Lemma 5.1)",
       "Seed (Lemma 5.2)",
@@ -54,7 +56,7 @@
       "Pressure telescoping (Proposition 9.3)"
     ],
     "human": [
-      "Fiber parity, thin fibers (Lemmas 4.2--4.3)",
+      "Thin fibers (Lemma 4.3)",
       "Block average (Proposition 4.4), asymptotic",
       "Share law and its three corollaries (Lemma 4.5, Corollary 4.6)",
       "Contagion (Theorem 5.3)",
@@ -73,5 +75,5 @@
     "label": "PAPER_C_LEAN_SURFACE_CONSISTENT",
     "problems": 0
   },
-  "git_commit": "b0e2517d4dc34a45ac635e60f17f23993e5eed61"
+  "git_commit": "1fcfa112d7197b7085f4983102998ce1c4434336"
 }
