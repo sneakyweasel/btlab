@@ -26,18 +26,18 @@
     "Problems.Juggler.FateContagionBound"
   ],
   "artifact": {
-    "asked": 305,
-    "recorded": 305,
+    "asked": 307,
+    "recorded": 307,
     "axiom_lists": [
       "propext",
       "propext, Classical.choice, Quot.sound",
       "propext, Quot.sound"
     ]
   },
-  "appendix_a_names": 310,
+  "appendix_a_names": 312,
   "surface": {
     "modules": 55,
-    "declarations": 1686,
+    "declarations": 1688,
     "compiler_trusted": [],
     "compiler_dependent": [],
     "open": []
@@ -88,5 +88,5 @@
     "label": "PAPER_C_LEAN_SURFACE_CONSISTENT",
     "problems": 0
   },
-  "git_commit": "9bb3abc37449e2a00338ba38ab8f8e9c657026cb"
+  "git_commit": "b0df1a4b9afe011325c94f090dac442b05a6c0ec"
 }

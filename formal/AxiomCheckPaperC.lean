@@ -113,6 +113,8 @@ open Problems.Juggler
 #print axioms Numerics.rpow_le_iff_pow
 #print axioms Numerics.rpow_lt_iff_pow
 #print axioms Production.coef2_ge
+#print axioms Production.conjecture_of_cylinder_bound
+#print axioms Production.conjecture_of_tao_rate
 #print axioms Production.contagion_elementary
 #print axioms Production.err2_le
 #print axioms Production.err2_nonneg

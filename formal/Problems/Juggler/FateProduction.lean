@@ -1,6 +1,7 @@
 import Problems.Juggler.FateContagionBound
 import Problems.Juggler.FateThinFibers
 import Problems.Juggler.FateRecursion
+import Problems.Juggler.FateCylinderCorollary
 
 namespace Problems.Juggler
 
@@ -644,6 +645,32 @@ theorem failures_logMass_ge {a : ℕ} (ha : 1 ≤ a) (hfail : ¬ReachesOne a) {l
     ∃ K : ℝ, 0 < K ∧ ∃ x₀ : ℕ, ∀ x : ℕ, x₀ ≤ x →
       K * Real.log x ^ lam ≤ logMass (fun n => ¬ReachesOne n) x :=
   logMass_contagion_elementary not_reachesOne_backwardClosed ha hfail hlam0 hlam
+
+/-! ### The conjecture from a rate, with no other hypothesis -/
+
+/-- **Theorem 7.2 with its contagion hypothesis discharged.** If the odd failures in `(y, 2y]`
+number at most `y (log y)^{-e}` for all large `y`, for some `e > 7/10`, then every positive
+integer reaches `1`. The contagion bound at exponent `3/10` is `failures_logMass_ge`, so
+nothing is assumed beyond the rate; the paper's conditional form needs `e > 0.51` and the
+production inequality (5.2). -/
+theorem conjecture_of_tao_rate {e : ℝ} (he : 7 / 10 < e)
+    (htao : ∃ y₀ : ℕ, ∀ y : ℕ, y₀ ≤ y → ((oddFailures y).card : ℝ) ≤ y * Real.log y ^ (-e)) :
+    ∀ n, 1 ≤ n → ReachesOne n :=
+  tao_rate_implies_conjecture (lam := 3 / 10) (by norm_num) (by norm_num) (by linarith)
+    (fun ⟨a, ha, hfail⟩ => failures_logMass_ge ha hfail (by norm_num) le_rfl) htao
+
+/-- **Corollary 8.4 with its contagion hypothesis discharged.** A cylinder bound `H(C, A)` at
+all large scales with `A > C + e(C)` and `e(C) > 7/10`, above a certified floor `N₀`, gives
+the conjecture; nothing else is assumed. -/
+theorem conjecture_of_cylinder_bound {N₀ : ℕ} (hN : 2 ≤ N₀)
+    (hfloor : ∀ m, 1 ≤ m → m ≤ N₀ → ReachesOne m) (C A : ℝ) (hC : 5 ≤ C)
+    (hA : C + chernoffExponent C < A)
+    (hcyl : ∃ y₁ : ℕ, ∀ y, y₁ ≤ y → CylinderBound N₀ C A y)
+    (he : 7 / 10 < chernoffExponent C) :
+    ∀ n, 1 ≤ n → ReachesOne n :=
+  cylinder_bound_implies_conjecture hN hfloor C A hC hA hcyl (lam := 3 / 10) (by norm_num)
+    (by norm_num) (by linarith)
+    (fun ⟨a, ha, hfail⟩ => failures_logMass_ge ha hfail (by norm_num) le_rfl)
 
 end Production
 

@@ -44620,3 +44620,25 @@ instant. Second, set is dangerous in a proof that will call lemmas
 later: the lemma's conclusion mentions the unfolded term, linarith
 sees two atoms, and the proof fails for no visible reason. Generalizing
 the floors into variables with equations avoided it.
+
+
+## The conjecture from a rate above 0.7, and nothing else
+
+Theorem 7.2 and Corollary 8.4 both take the contagion bound as a
+hypothesis, and the WIZARD session wrote that hypothesis in exactly the
+shape my failures_logMass_ge produces: if some start fails, the failures
+have log-mass at least K (log x)^lambda for large x. So the composition
+is two lines each. A Tao-type rate, at most y (log y)^{-e} odd failures
+in (y, 2y] for all large y with e > 7/10, implies that every positive
+integer reaches 1; and a cylinder bound H(C, A) with e(C) > 7/10 above a
+certified floor does the same. Neither needs the production inequality,
+the exponential sums, or anything else on the contagion side.
+
+The paper's route needs e > 1 - lambda** = 0.51 and (5.2). The
+unconditional route needs e > 1 - 0.3 = 0.7. That is the whole exchange
+rate: the exponential sums of Proposition 4.4 and the ladder of Appendix
+D buy 0.19 of rate on the other side of the pincer. Whether a cylinder
+bound at 0.7 is any easier or harder to prove than one at 0.51 is not a
+question this repository can answer today; it is the analytic question
+of Appendix C in both cases. What is settled is that one half of the
+pincer no longer has a hypothesis.
