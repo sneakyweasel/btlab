@@ -108,9 +108,9 @@ The production inequality itself and the root \(\lambda^{**}\) stay
 human.
 
 **The build root (COMPUTATIONALLY VERIFIED).**
-`formal/Problems/JugglerFatePaper.lean` imports exactly the twenty-three
+`formal/Problems/JugglerFatePaper.lean` imports exactly the twenty-four
 modules Paper C cites; `formal/AxiomCheckPaperC.lean` prints the axioms
-of the 305 cited declarations and `AxiomCheckPaperC.expected` records
+of the 322 cited declarations and `AxiomCheckPaperC.expected` records
 them, every list a subset of `propext`, `Classical.choice`,
 `Quot.sound`, no `sorryAx`, no `native_decide`.
 
@@ -294,6 +294,32 @@ price of dropping the exponential sums is the rate \(0.7\) in place
 of \(0.51\). Whether a cylinder bound of that strength is provable is
 the open analytic question of Appendix C; nothing here decides it.
 
+**Theorem 9.1 without the martingale (EXACT — LEAN VERIFIED, 13
+September 2026).** The paper proves the one-sided form with the
+Azuma--Hoeffding inequality on a stopped martingale and remarks, after
+Proposition 9.3, that exponential moments give an exponent at least as
+good. `FateOneSided.lean` carries out the remark exactly. The tilted
+mass of the \(L\)-bad cylinders of depth \(t\),
+\(\sum_{w\ \text{bad}}\#[w]\,x^{o(w)}\) (`OneSided.badMass`), obeys
+\(\mathrm{badMass}(t+1)\le(1+(x-1)q)\,\mathrm{badMass}(t)+(x-1)\,\mathrm{err}\,(2x)^t\)
+under the one-sided hypothesis (`OneSided.badMass_succ_le`), because
+bad words are prefix-closed and a cylinder splits into its two
+children; unrolled (`OneSided.badMass_le`) and combined with Lemma 8.1
+and the Markov tilt (`OneSided.oddFailures_card_le_badMass`), the odd
+failures of \((y,2y]\) number at most
+\((xa_q^{d-1}N+(x-1)\,\mathrm{err}\,(d-1)(2x)^{d-1})/x^{p_Cd}\) at
+every scale, every depth \(d\ge CL(y)\) and every tilt \(x\ge1\)
+(`OneSided.one_sided_bound`), with main term \((x/a_q)Ne^{-dD(p_C\|q)}\)
+at the re-centring tilt (`OneSided.one_sided_bound_kl`). No martingale,
+no stopping, no \(\varepsilon\). What is not Lean: the error carries
+\((2x)^{d-1}/x^{p_Cd}\) where the paper's Markov step carries \(2^d\),
+so absorbing it into the rate needs \(A>C(1+(1-p_C)\log_2x)+r\) rather
+than \(A>C+r\); that absorption, the substitution
+\(d=\lceil CL(y)\rceil\) and the displayed asymptotic form stay human,
+and so does the rest of the Section 8--10 bookkeeping, which keeps its
+human row with Theorem 9.1 added to the exact exceptions. Twenty-six
+Lean rows, four human.
+
 ## Current literature
 
 - Paper C §1.4, Appendix A — `known`: the paper's own list of what is
@@ -393,10 +419,12 @@ declarations in namespace `FiberParity`),
 declarations in namespace `FiberParity`),
 `formal/Problems/Juggler/FateContagionBound.lean` (Theorem 5.3 given (5.2),
 Theorem 7.3, Corollary 8.4 through (5.2), 21 declarations),
+`formal/Problems/Juggler/FateOneSided.lean` (Theorem 9.1 in exact form by
+exponential moments, 20 declarations in namespace `OneSided`),
 `formal/Problems/JugglerFatePaper.lean` (barrel),
 `formal/AxiomCheckPaperC.lean` and `.expected`. All kernel-checked; the
-Paper C surface (root `Problems.JugglerFatePaper`, 48 modules reached,
-1567 declarations) carries no `native_decide` and cites none.
+Paper C surface (root `Problems.JugglerFatePaper`, 56 modules reached,
+1708 declarations) carries no `native_decide` and cites none.
 
 Not formalized, and not claimed:
 Proposition 4.4, the share law 4.5–4.6, the production inequality (5.2)
@@ -411,9 +439,9 @@ Classification **PAPER_C_LEAN_SURFACE_CONSISTENT**.
 
 ```text
   Paper C verification table, before and after
-  Lean rows      15 -> 21  (Lemma 4.1', Corollary 8.4, Lemmas 4.2, 4.3, Theorem 5.3 given (5.2), Theorem 7.3 new)
-  human rows     7 -> 5    (Proposition 4.4, the share law, the production inequality (5.2), (6.1), Sections 8--10's asymptotics)
-  cited names    135 -> 211, all on subsets of Mathlib's three axioms; none native_decide
+  Lean rows      15 -> 26  (Lemma 4.1', Corollary 8.4, Lemmas 4.2, 4.3, Theorem 5.3 given (5.2) and at 3/10, Theorem 7.3, (6.1), Section 10(d), (D.1), Theorem 9.1 exact new)
+  human rows     7 -> 4    (Proposition 4.4, the share law, the production inequality (5.2), Sections 8--10's asymptotics)
+  cited names    135 -> 332, all on subsets of Mathlib's three axioms; none native_decide
 ```
 
 - The three proofs are the paper's; the sweep count is the paper's
@@ -483,10 +511,10 @@ windows (D.1) and (D.2) of Appendix D.1 (`FateLandingWindow.lean`), and
 the counting half of the Section 10(d) display
 (`FateCylinderEnergy.lean`), together with two consolidations,
 `FateNumerics.lean` and `FateWindowCount.lean`. The verification table
-is twenty-four Lean rows and four human, and the four are analysis: the
+is twenty-six Lean rows and four human, and the four are analysis: the
 block average 4.4, the share law 4.5--4.6, the production inequality
-(5.2), and the Azuma and exponential-moment bookkeeping of
-Sections 8--10. No small attack remains on this paper; what is left
+(5.2), and the asymptotic bookkeeping of Sections 8--10, whose exact
+forms (Lemma 8.2, Theorems 8.3, 9.1, 9.2, Proposition 9.3) are Lean. No small attack remains on this paper; what is left
 needs either a genuine analytic argument or the hypothesis-as-input
 treatment the large attacks use. The consolidation still open
 (`FateSweepMonotone`'s six span inductions, its two window counts, the

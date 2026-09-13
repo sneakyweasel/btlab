@@ -44642,3 +44642,41 @@ bound at 0.7 is any easier or harder to prove than one at 0.51 is not a
 question this repository can answer today; it is the analytic question
 of Appendix C in both cases. What is settled is that one half of the
 pincer no longer has a hypothesis.
+
+
+## Theorem 9.1 without the martingale
+
+The Azuma bookkeeping of Sections 8--10 was the last human row of
+Paper C's table that is not analysis proper. The paper proves the
+one-sided form, Theorem 9.1, by stopping the itinerary at the first
+prefix that is not L-bad, running Azuma--Hoeffding on the centred odd
+count, and absorbing the additive error of the hypothesis by Markov;
+and it remarks after Proposition 9.3 that exponential moments give an
+exponent at least as good. So I formalized the remark, not the proof.
+
+The device is to kill the words that are not bad. badMass(t) is the
+tilted mass, sum of #[w] x^{o(w)}, over the L-bad words of length t
+only. Bad words are prefix-closed, a cylinder splits into its two
+children, and the hypothesis bounds the odd child of every bad parent,
+so badMass(t+1) <= (1 + (x-1) q) badMass(t) + (x-1) err (2x)^t: an
+affine recursion with the fair factor a_q of Proposition 9.3 and an
+additive error that needs no lower bound on the live mass. Unrolled,
+and combined with Lemma 8.1 and the Markov tilt, the odd failures of
+(y, 2y] number at most (x a_q^{d-1} N + (x-1) err (d-1) (2x)^{d-1}) /
+x^{p_C d}, at every scale, every depth d >= C L(y) and every tilt
+x >= 1, with no epsilon and no martingale (OneSided.one_sided_bound);
+at the re-centring tilt the main term is (x/a_q) N e^{-d D(p_C||q)}
+(OneSided.one_sided_bound_kl), the Chernoff exponent the paper records
+is at least the Azuma one.
+
+What the exact form shows and the asymptotic one hides: the error
+term carries (2x)^{d-1} / x^{p_C d}, not 2^d. The tilt is paid on the
+error as well as on the main term, so absorbing it into y (log y)^{-r}
+needs A > C (1 + (1 - p_C) log_2 x) + r rather than the paper's
+A > C + r. A stronger hypothesis for a stronger exponent; the two are
+not the same theorem, and the table now says which is which. The
+absorption, the substitution d = ceil(C L(y)) and the displayed form
+with epsilon stay human, so the Azuma row stays a human row, with
+Theorem 9.1 added to its list of exact exceptions. Twenty-six Lean
+rows, four human, twenty-four modules, 322 declarations in the
+artifact.

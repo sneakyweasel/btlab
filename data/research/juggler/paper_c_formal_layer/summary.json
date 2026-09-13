@@ -10,6 +10,7 @@
     "Problems.Juggler.FateBlockAverage",
     "Problems.Juggler.FateShareLaw",
     "Problems.Juggler.FateProduction",
+    "Problems.Juggler.FateOneSided",
     "Problems.Juggler.FateCylinderEnergy",
     "Problems.Juggler.FateLandingWindow",
     "Problems.Juggler.FateWindowCount",
@@ -26,24 +27,24 @@
     "Problems.Juggler.FateContagionBound"
   ],
   "artifact": {
-    "asked": 307,
-    "recorded": 307,
+    "asked": 322,
+    "recorded": 322,
     "axiom_lists": [
       "propext",
       "propext, Classical.choice, Quot.sound",
       "propext, Quot.sound"
     ]
   },
-  "appendix_a_names": 312,
+  "appendix_a_names": 332,
   "surface": {
-    "modules": 55,
-    "declarations": 1688,
+    "modules": 56,
+    "declarations": 1708,
     "compiler_trusted": [],
     "compiler_dependent": [],
     "open": []
   },
   "table": {
-    "rows": 31,
+    "rows": 32,
     "lean": [
       "Fate classes closed; trichotomy; exclusion (Lemma 2.1)",
       "Even block is an interval (Lemma 3.1)",
@@ -68,6 +69,7 @@
       "Theorem 8.3, explicit form \\(y\\Lambda^{-e(C)}+2\\Lambda^Cy(\\log y)^{-A}\\) at every \\(y\\)",
       "Pressure form (Theorem 9.2, exact: a pressure bound \\(Na_\\theta^dE\\) gives at most \\(Ne^{-dD(p_C\\Vert 1/2)}E\\) live starts)",
       "Pressure telescoping (Proposition 9.3)",
+      "One-sided form (Theorem 9.1, exact: at every \\(y\\) the odd failures of \\((y,2y]\\) number at most \\((xa_q^{d-1}N+(x-1)\\,\\mathrm{err}\\,(d-1)(2x)^{d-1})/x^{p_Cd}\\) for every tilt \\(x\\ge1\\), by exponential moments)",
       "Cylinder-splitting identity for the first-letter bias (Section 10(d), second equality)",
       "Exact landing windows of the nested productions ((D.1), (D.2))"
     ],
@@ -75,7 +77,7 @@
       "Block average (Proposition 4.4), asymptotic",
       "Share law and its three corollaries (Lemma 4.5, Corollary 4.6)",
       "Production inequality (5.2) with the \\(V\\)-ladder terms of Section 5.7",
-      "Azuma and exponential-moment arguments (Sections 8--10, except Lemma 8.2, Theorem 8.3, Theorem 9.2 and Proposition 9.3 in their exact forms)"
+      "Azuma and exponential-moment arguments (Sections 8--10, except Lemma 8.2, Theorem 8.3, Theorem 9.1, Theorem 9.2 and Proposition 9.3 in their exact forms)"
     ],
     "other": [
       "Localized triple discrepancy (Appendix C)",
@@ -88,5 +90,5 @@
     "label": "PAPER_C_LEAN_SURFACE_CONSISTENT",
     "problems": 0
   },
-  "git_commit": "b0df1a4b9afe011325c94f090dac442b05a6c0ec"
+  "git_commit": "f5483693eb37bc3b62198e410653e929efbf6db9"
 }
