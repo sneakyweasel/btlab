@@ -108,9 +108,9 @@ The production inequality itself and the root \(\lambda^{**}\) stay
 human.
 
 **The build root (COMPUTATIONALLY VERIFIED).**
-`formal/Problems/JugglerFatePaper.lean` imports exactly the eighteen
+`formal/Problems/JugglerFatePaper.lean` imports exactly the nineteen
 modules Paper C cites; `formal/AxiomCheckPaperC.lean` prints the axioms
-of the 230 cited declarations and `AxiomCheckPaperC.expected` records
+of the 240 cited declarations and `AxiomCheckPaperC.expected` records
 them, every list a subset of `propext`, `Classical.choice`,
 `Quot.sound`, no `sorryAx`, no `native_decide`.
 
@@ -154,8 +154,23 @@ strictly increasing on the odd integers (`floorPower_odd_lt`,
 piece as the paper's sum over the odd images. What stays human is the
 normalization: the densities \(\varphi_A\), \(\varphi^{\rm fib}_A\)
 and \(\psi_A\), the identification of each piece with its term, and
-the boundary error \(O(e^{-t/4}/t)\) of Lemma 3.1. Twenty-two Lean
-rows, four human.
+the boundary error \(O(e^{-t/4}/t)\) of Lemma 3.1.
+
+**The exact landing window of a nested production (EXACT — LEAN
+VERIFIED, 13 September 2026).** Appendix D.1 opens with an exact
+claim, (D.1): along a production the two-step map is
+\(F(u)=\lfloor u^{3/4}\rfloor\), and
+\(\{n:a\le F(n)<b\}=[\Phi(a),\Phi(b))\) with
+\(\Phi(a)=\lceil a^{4/3}\rceil\). In exact arithmetic
+\(\Phi(a)\) is the least \(n\) with \(a^4\le n^3\), and the
+two maps are a Galois connection: `windowStart a ≤ n` and
+`a ≤ cell34 n` are both the inequality \(a^4\le n^3\). (D.1) is
+then one rewrite (`exact_endpoints`), and the nested window (D.2)
+one induction (`exact_endpoints_iterate`). `cell34_eq_floorPower_two`
+records that \(J^2=F\) on an \(OE\) step. What stays human is what
+the appendix does with the window: the smooth comparison (D.3), the
+endpoint error, the multiplicities, and the production inequality
+(5.2) they feed. Twenty-three Lean rows, four human.
 
 ## Current literature
 

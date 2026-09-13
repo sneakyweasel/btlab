@@ -4,6 +4,7 @@ import Problems.Juggler.CubeFiber
 import Problems.Juggler.TiltedShare
 import Problems.Juggler.FateRecursion
 import Problems.Juggler.FateFirstLetter
+import Problems.Juggler.FateLandingWindow
 import Problems.Juggler.FateWindowCount
 import Problems.Juggler.FateSweep
 import Problems.Juggler.FateSweepMonotone
@@ -20,7 +21,7 @@ import Problems.Juggler.FateContagionBound
 /-!
 # Paper C barrel — everything the repository checks for the fate-contagion note
 
-`docs/theory/juggler_fate_almost_all_note.md`. This file imports exactly the eighteen modules
+`docs/theory/juggler_fate_almost_all_note.md`. This file imports exactly the nineteen modules
 that paper cites and nothing else, so that a reader can build the formal side of Paper C on
 its own rather than selecting modules by hand out of the umbrella `Problems.Juggler`. It is a
 laboratory target, not a claim: building it does **not** corroborate the paper's counting.
@@ -41,6 +42,13 @@ laboratory target, not a claim: building it does **not** corroborate the paper's
   function on `(0, ∞)`.
 * `FateFirstLetter` — Proposition 6.3(i): the least failure is odd with an odd image
   (`minimal_failure_odd_odd`), and the first-letter trichotomy of Section 6.2.
+* `FateLandingWindow` — Appendix D.1: along a nested production the two-step map is
+  `F(u) = ⌊u^{3/4}⌋` (`LandingWindow.cell34`, equal to `J²` on an `OE` step), and the
+  integers whose `F`-image lands in `[a, b)` are exactly those of `[Φ(a), Φ(b))` with
+  `Φ(a) = ⌈a^{4/3}⌉` the least `n` with `a⁴ ≤ n³` (`LandingWindow.exact_endpoints`,
+  equation (D.1)), iterated to the nested window (D.2)
+  (`LandingWindow.exact_endpoints_iterate`). The smooth comparison (D.3) and the
+  multiplicities are not here.
 * `FateWindowCount` — the counting move Lemmas 4.1, 4.1′ and 4.3 share, for an arbitrary
   `f : ℕ → ℝ`: steps bounded below telescope (`WindowCount.span_ge`, `WindowCount.span_le`,
   `WindowCount.mono_of_stepGe`), and a `d`-separated sequence puts at most `w/d + 1` of its

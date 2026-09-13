@@ -65,6 +65,16 @@ open Problems.Juggler
 #print axioms FiberParity.xval_step_ge
 #print axioms FiberParity.xval_step_le
 #print axioms FiberParity.xval_step_mono
+#print axioms LandingWindow.cell34_eq_floorPower_two
+#print axioms LandingWindow.cell34_lt_iff
+#print axioms LandingWindow.exact_endpoints
+#print axioms LandingWindow.exact_endpoints_iterate
+#print axioms LandingWindow.le_cell34_iff
+#print axioms LandingWindow.lt_windowStart_iff
+#print axioms LandingWindow.setOf_cell34_mem_Ico
+#print axioms LandingWindow.setOf_iterate_mem_Ico
+#print axioms LandingWindow.windowStart_exists
+#print axioms LandingWindow.windowStart_le_iff
 #print axioms LBad_count_le
 #print axioms LBad_oddCount_ge
 #print axioms LBad_of_envelopeBad

@@ -318,7 +318,7 @@ type Paper B proves enters Appendix C as an explicit hypothesis.
 
 Statements carry one of four roles. *Lean*: the exact combinatorial
 layer is formalized in Lean 4; the root `formal/Problems/JugglerFatePaper.lean`
-imports exactly the eighteen modules this paper cites and builds with
+imports exactly the nineteen modules this paper cites and builds with
 `lake build Problems.JugglerFatePaper`, without `sorry` and without
 `native_decide`; `formal/AxiomCheckPaperC.lean` prints the axiom
 dependencies of every cited name and `AxiomCheckPaperC.expected`
@@ -358,6 +358,7 @@ constants; they prove nothing and are labelled wherever they appear.
 | Pressure form (Theorem 9.2, exact: a pressure bound \(Na_\theta^dE\) gives at most \(Ne^{-dD(p_C\Vert 1/2)}E\) live starts) | Lean, on the live weight |
 | Pressure telescoping (Proposition 9.3) | Lean, on the word-weight framework |
 | Azuma and exponential-moment arguments (Sections 8--10, except Lemma 8.2, Theorem 8.3, Theorem 9.2 and Proposition 9.3 in their exact forms) | human proof |
+| Exact landing windows of the nested productions ((D.1), (D.2)) | Lean; the smooth comparison (D.3), the multiplicities and the production inequality they feed are human |
 | Localized triple discrepancy (Appendix C) | hypothesis, conditional |
 | Numerical experiments (Section 11) | observation |
 
@@ -2408,7 +2409,7 @@ No nontrivial cycle or unbounded orbit is excluded by this paper.
 ## Appendix A. Lean names
 
 All in `formal/Problems/Juggler/FateContagion.lean` unless noted. The
-root `formal/Problems/JugglerFatePaper.lean` imports exactly the eighteen
+root `formal/Problems/JugglerFatePaper.lean` imports exactly the nineteen
 modules named here and builds with `lake build Problems.JugglerFatePaper`
 without `sorry` and without `native_decide`;
 `formal/AxiomCheckPaperC.expected` records the axioms of every name
@@ -2428,6 +2429,7 @@ abstract lemmas listed here, not the analytic density estimates.
 | Lean floor \(N_0=260\) | `reachesOne_of_lt_two_hundred_sixty_one` |
 | Lemma 4.7 (cube fibers), in `Problems/Juggler/CubeFiber.lean` | `cube_fiber_range`, `cube_fiber_sqrt_even`, `cube_fiber_even_image`, `even_cube_fiber_full`, `cube_fiber_sqrt_odd`, `cube_fiber_alternating`, `odd_cube_fiber_alternating` |
 | Shared counting of Lemmas 4.1, 4.1' and 4.3 (separated sequences in a window), in `Problems/Juggler/FateWindowCount.lean` | `WindowCount.StepGe`, `WindowCount.StepLe`, `WindowCount.span_ge`, `WindowCount.span_le`, `WindowCount.mono_of_stepGe`, `WindowCount.window_card_le`, `WindowCount.window_card_le_nat` |
+| Appendix D.1, the exact landing windows (D.1) and (D.2), in `Problems/Juggler/FateLandingWindow.lean` | `LandingWindow.cell34`, `LandingWindow.cell34_eq_floorPower_two`, `LandingWindow.le_cell34_iff`, `LandingWindow.cell34_lt_iff`, `LandingWindow.windowStart`, `LandingWindow.windowStart_exists`, `LandingWindow.windowStart_le_iff`, `LandingWindow.lt_windowStart_iff`, `LandingWindow.exact_endpoints`, `LandingWindow.setOf_cell34_mem_Ico`, `LandingWindow.exact_endpoints_iterate`, `LandingWindow.setOf_iterate_mem_Ico` |
 | Lemma 4.1 (sweep), in `Problems/Juggler/FateSweep.lean` | `Sweep.cell`, `Sweep.sweep_cell`, `sweep_fract_lt_half`, `sweep_fract_ge_half`, `sweep_ceil`, `sweep_rep_le_half`, `sweep_rep_gt_half` |
 | Lemma 4.1' (monotone pairing), in `Problems/Juggler/FateSweepMonotone.lean` | `Sweep.sweep_monotone_cell`, `sweep_monotone_fract_lt_half`, `sweep_monotone_fract_ge_half`, `sweep_monotone_ceil`, `sweep_monotone_rep_le_half`, `sweep_monotone_rep_gt_half` |
 | Lemma 5.1 (recursion), in `Problems/Juggler/FateRecursion.lean` | `recursion_lemma` |
@@ -2521,6 +2523,10 @@ use the roots of the displayed defining equations.
 
   SHA-256: `7defa672e0ea746d14bfc88b13d40603c05097507847bc901162334bce38c4fa`
 
+- `formal/Problems/Juggler/FateLandingWindow.lean`
+
+  SHA-256: `ef28985363d3b855e0a9ec4b8fba687855d34ab8cf1ff9b355a50e9377e29545`
+
 - `formal/Problems/Juggler/FateWindowCount.lean`
 
   SHA-256: `9d790163433899c73993a24b434ff20ae45aba3dbe47b717507dba840307b6a3`
@@ -2559,11 +2565,11 @@ use the roots of the displayed defining equations.
 
 - `formal/Problems/JugglerFatePaper.lean`
 
-  SHA-256: `89923131d97f3cd1331888083944f5fb498407a17aeeccd8a30dc503af8a5682`
+  SHA-256: `03ca42cce5198bb136a616b8f563160226b5cc5fb5178840f96b65391d9cf57a`
 
 - `formal/AxiomCheckPaperC.expected`
 
-  SHA-256: `affe3b6766ba600e0573e4575fa140e2e67e76c4478aea5a9a0ec5e41ba66868`
+  SHA-256: `27e8282d9ac8257b214c844276cdf3a307aa5eb77b89597ca2af3dc90d0898b5`
 
 - `src/research/juggler_sequence/fate_contagion.py`
 
@@ -2840,6 +2846,17 @@ endpoint error \(O_k(P^{1-s})\) relative to the smooth window
 \]
 Here and below interval length and integer count differ by at most
 a bounded endpoint error.
+
+Lean: (D.1) is `LandingWindow.exact_endpoints` and
+`LandingWindow.setOf_cell34_mem_Ico`, and the nested window (D.2) is
+`LandingWindow.exact_endpoints_iterate`, in
+`formal/Problems/Juggler/FateLandingWindow.lean`. There
+\(F\) is `cell34` and \(\Phi(a)=\lceil a^{4/3}\rceil\) is
+`windowStart`, the least \(n\) with \(a^4\le n^3\), which is what
+the ceiling means in exact arithmetic; the two are a Galois connection,
+and that is the whole proof. `cell34_eq_floorPower_two` is
+\(J^2=F\) on an \(OE\) step. The smooth comparison (D.3), the
+endpoint error and the multiplicities are not formalized.
 
 We also need the multiplicity of an inner-layer integer after
 earlier layers have been summed out. For a fixed \(i\ge1\), put
