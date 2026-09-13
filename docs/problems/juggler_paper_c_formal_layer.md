@@ -108,9 +108,9 @@ The production inequality itself and the root \(\lambda^{**}\) stay
 human.
 
 **The build root (COMPUTATIONALLY VERIFIED).**
-`formal/Problems/JugglerFatePaper.lean` imports exactly the twenty-one
+`formal/Problems/JugglerFatePaper.lean` imports exactly the twenty-two
 modules Paper C cites; `formal/AxiomCheckPaperC.lean` prints the axioms
-of the 267 cited declarations and `AxiomCheckPaperC.expected` records
+of the 281 cited declarations and `AxiomCheckPaperC.expected` records
 them, every list a subset of `propext`, `Classical.choice`,
 `Quot.sound`, no `sorryAx`, no `native_decide`.
 
@@ -227,6 +227,32 @@ the asymptotic form holds with the explicit error \(B/2+2(m'+1)\)
 (`block_average_asymptotic`). The row stays **human proof**, because
 the two remaining sums are the exponential sums and are the
 proposition; the row says which parts are Lean.
+
+**The share law's exact layer (EXACT — LEAN VERIFIED, 13 September
+2026).** Lemma 4.5 is an equidistribution statement and Corollary
+4.6 is measure theory; neither is formalized. `FateShareLaw.lean`
+has the exact mathematics both rest on. The expansion of the fiber
+phase about its first term,
+\(x_j=x_1+\tfrac32\sqrt{n_1}(j-1)+\tfrac34(j-1)^2/\sqrt{n_1}+E_j\)
+with \(|E_j|\le\tfrac14(j-1)^3n_1^{-3/2}\), is `xval_expansion`;
+the paper's Taylor step becomes, after \(v=\sqrt{1+u}\), the
+polynomial inequality
+\(0\le1+\tfrac32(v^2-1)+\tfrac38(v^2-1)^2-v^3\le(v^2-1)^3/16\)
+(`taylor_three_halves`), and on a fiber the remainder is at most
+\(\tfrac2{27}(m+1)/m^2\) (`xval_expansion_fiber`, the paper's
+\(O(1/m)\) with a constant). The range of the quadratic phase
+\(\beta s+\tfrac13s^2\) on \([0,1]\) in Corollary 4.6(2)'s three
+cases is `phiRange`, attained and never exceeded, and it is at most
+\(\tfrac12\) exactly for \(\beta\in[-\tfrac56,\tfrac16]\)
+(`phiRange_le_half_iff`). The integral of Corollary 4.6(3),
+\(\tfrac1{72}+\tfrac{11}{108}+\tfrac{11}{108}+\tfrac1{72}=\tfrac{25}{108}\),
+is `integral_extremeMeasure`, an interval integral over the four
+polynomial pieces. What stays human: the reduction modulo 1 with its
+\(O(1/H_m)\) error, the inverse-image and grid-sampling estimates,
+Fubini in (1), and the identification of the \(\theta\)-measure
+with \(\max(0,\tfrac12-\text{range})\). The row stays **human
+proof** and says which parts are Lean. Nothing in Sections 5--10
+depends on this subsection.
 
 ## Current literature
 

@@ -5,6 +5,7 @@ import Problems.Juggler.TiltedShare
 import Problems.Juggler.FateRecursion
 import Problems.Juggler.FateFirstLetter
 import Problems.Juggler.FateBlockAverage
+import Problems.Juggler.FateShareLaw
 import Problems.Juggler.FateCylinderEnergy
 import Problems.Juggler.FateLandingWindow
 import Problems.Juggler.FateWindowCount
@@ -23,7 +24,7 @@ import Problems.Juggler.FateContagionBound
 /-!
 # Paper C barrel — everything the repository checks for the fate-contagion note
 
-`docs/theory/juggler_fate_almost_all_note.md`. This file imports exactly the twenty-one modules
+`docs/theory/juggler_fate_almost_all_note.md`. This file imports exactly the twenty-two modules
 that paper cites and nothing else, so that a reader can build the formal side of Paper C on
 its own rather than selecting modules by hand out of the umbrella `Problems.Juggler`. It is a
 laboratory target, not a claim: building it does **not** corroborate the paper's counting.
@@ -53,6 +54,14 @@ laboratory target, not a claim: building it does **not** corroborate the paper's
   (`BlockAverage.block_average_bound`) — and those bounds, which are the content of the
   proposition, are hypotheses here, not theorems: Vaaler's approximation and the van der
   Corput estimates are not formalized anywhere in this repository.
+* `FateShareLaw` — the exact layer of Section 4.3: the fiber phase expanded about its first
+  term with the cubic remainder as polynomial algebra (`ShareLaw.xval_expansion`, on
+  `ShareLaw.taylor_three_halves`; at most `(2/27)(m+1)/m²` on a fiber,
+  `ShareLaw.xval_expansion_fiber`), the range of the quadratic phase `β s + s²/3` on `[0, 1]`
+  and its threshold `β ∈ [-5/6, 1/6]` (`ShareLaw.phiRange_le_half_iff`, Corollary 4.6(2)'s
+  arithmetic), and `∫ max(0, 1/2 - range) dβ = 25/108` (`ShareLaw.integral_extremeMeasure`,
+  Corollary 4.6(3)'s arithmetic). Lemma 4.5 itself, an equidistribution statement, and the
+  measure-theoretic parts of Corollary 4.6 are not here.
 * `FateCylinderEnergy` — the counting identity of Section 10(d): a cylinder splits into
   its two children (`CylinderEnergy.wordCount_split`), so the first-letter biases
   `D(w) = #[wO] - #[w]/2` satisfy `Σ_{|w|=t} D(w)² = C_{t+1}/2 - C_t/4` exactly

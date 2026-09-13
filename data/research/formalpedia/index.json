@@ -30140,6 +30140,210 @@
       "trust": "kernel"
     },
     {
+      "doc": "Second-order Taylor of `(1+u)^{3/2}` in `u = v\u00b2 - 1`, with the cubic remainder, as polynomial algebra: `0 \u2264 1 + (3/2)u + (3/8)u\u00b2 - v\u00b3 \u2264 u\u00b3/16` for `v \u2265 1`. In `w = v - 1` the middle expression is `w\u00b3/2 + 3w\u2074/8` and the right side is that plus `3w\u2074/8 + 3w\u2075/8 + w\u2076/16`.",
+      "file": "formal/Problems/Juggler/FateShareLaw.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-share-law-layer"
+      ],
+      "line": 49,
+      "module": "Problems.Juggler.FateShareLaw",
+      "name": "taylor_three_halves",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The fiber phase expanded about its first term.** With `x_j = xval n_j = n_j^{3/2}/2` and `n_j = n\u2081 + 2d`: `x_j = x\u2081 + (3/2)\u221an\u2081 d + (3/4) d\u00b2/\u221an\u2081 + E` where `|E| \u2264 (1/4) d\u00b3/n\u2081^{3/2}`.",
+      "file": "formal/Problems/Juggler/FateShareLaw.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-share-law-layer"
+      ],
+      "line": 60,
+      "module": "Problems.Juggler.FateShareLaw",
+      "name": "xval_expansion",
+      "trust": "kernel"
+    },
+    {
+      "doc": "On a fiber `\u03a6(m)`, `m \u2265 1`, the remainder is at most `(2/27)(m+1)/m\u00b2`: `d \u2264 (2/3)(m+1)^{1/3}` since both ends lie in the fiber, and `\u221an\u2081\u00b3 = n\u2081^{3/2} \u2265 m\u00b2`. The paper's `|E_j| \u226a m^{-1}`.",
+      "file": "formal/Problems/Juggler/FateShareLaw.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-share-law-layer"
+      ],
+      "line": 103,
+      "module": "Problems.Juggler.FateShareLaw",
+      "name": "xval_expansion_fiber",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The quadratic phase `\u03c6_\u03b2(s) = \u03b2 s + s\u00b2/3`.",
+      "file": "formal/Problems/Juggler/FateShareLaw.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-share-law-layer"
+      ],
+      "line": 137,
+      "module": "Problems.Juggler.FateShareLaw",
+      "name": "phi",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The range of `\u03c6_\u03b2` on `[0, 1]`: the three cases of Corollary 4.6(2).",
+      "file": "formal/Problems/Juggler/FateShareLaw.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-share-law-layer"
+      ],
+      "line": 140,
+      "module": "Problems.Juggler.FateShareLaw",
+      "name": "phiRange",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`\u03c6_\u03b2(s) \u2265 -(3/4)\u03b2\u00b2` everywhere: complete the square.",
+      "file": "formal/Problems/Juggler/FateShareLaw.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-share-law-layer"
+      ],
+      "line": 146,
+      "module": "Problems.Juggler.FateShareLaw",
+      "name": "phi_ge_min",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`\u03c6_\u03b2` is convex, so on `[0, 1]` it lies below its chord: `\u03c6_\u03b2(s) \u2264 s (\u03b2 + 1/3)`.",
+      "file": "formal/Problems/Juggler/FateShareLaw.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-share-law-layer"
+      ],
+      "line": 151,
+      "module": "Problems.Juggler.FateShareLaw",
+      "name": "phi_le_chord",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Two values of `\u03c6_\u03b2` on `[0, 1]` differ by at most the range.",
+      "file": "formal/Problems/Juggler/FateShareLaw.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-share-law-layer"
+      ],
+      "line": 157,
+      "module": "Problems.Juggler.FateShareLaw",
+      "name": "phi_sub_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The range is attained: two points of `[0, 1]` realize it.",
+      "file": "formal/Problems/Juggler/FateShareLaw.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-share-law-layer"
+      ],
+      "line": 183,
+      "module": "Problems.Juggler.FateShareLaw",
+      "name": "exists_phi_sub_eq",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Corollary 4.6(2), the arithmetic.** The range is at most `1/2` exactly for `\u03b2 \u2208 [-5/6, 1/6]`; in the middle case it never exceeds `1/3`.",
+      "file": "formal/Problems/Juggler/FateShareLaw.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-share-law-layer"
+      ],
+      "line": 199,
+      "module": "Problems.Juggler.FateShareLaw",
+      "name": "phiRange_le_half_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`max(0, 1/2 - range(\u03b2))`: the `\u03b8`-measure of the fibers at drift `\u03b2` whose share is extreme, by the first sentence of the proof of Corollary 4.6(3). The identification with that measure is not formalized; the arithmetic below is.",
+      "file": "formal/Problems/Juggler/FateShareLaw.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-share-law-layer"
+      ],
+      "line": 218,
+      "module": "Problems.Juggler.FateShareLaw",
+      "name": "extremeMeasure",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Outside `[-5/6, 1/6]` no fiber is extreme.",
+      "file": "formal/Problems/Juggler/FateShareLaw.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-share-law-layer"
+      ],
+      "line": 221,
+      "module": "Problems.Juggler.FateShareLaw",
+      "name": "extremeMeasure_eq_zero",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateShareLaw.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-share-law-layer"
+      ],
+      "line": 230,
+      "module": "Problems.Juggler.FateShareLaw",
+      "name": "extremeMeasure_piece1",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateShareLaw.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-share-law-layer"
+      ],
+      "line": 236,
+      "module": "Problems.Juggler.FateShareLaw",
+      "name": "extremeMeasure_piece2",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateShareLaw.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-share-law-layer"
+      ],
+      "line": 246,
+      "module": "Problems.Juggler.FateShareLaw",
+      "name": "extremeMeasure_piece3",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateShareLaw.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-share-law-layer"
+      ],
+      "line": 256,
+      "module": "Problems.Juggler.FateShareLaw",
+      "name": "extremeMeasure_piece4",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Corollary 4.6(3), the arithmetic.** `\u222b max(0, 1/2 - range) d\u03b2 = 25/108`, as `1/72 + 11/108 + 11/108 + 1/72` over the four pieces `[-5/6, -2/3]`, `[-2/3, -1/3]`, `[-1/3, 0]`, `[0, 1/6]`.",
+      "file": "formal/Problems/Juggler/FateShareLaw.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-share-law-layer"
+      ],
+      "line": 265,
+      "module": "Problems.Juggler.FateShareLaw",
+      "name": "integral_extremeMeasure",
+      "trust": "kernel"
+    },
+    {
       "doc": "The half-cell index of a real: `\u230a2x\u230b`. Even cells are `{x} < 1/2`, odd cells are `{x} \u2265 1/2`.",
       "file": "formal/Problems/Juggler/FateSweep.lean",
       "kind": "def",
@@ -82714,6 +82918,7 @@
         "Problems.Juggler.FatePressure",
         "Problems.Juggler.FateRecursion",
         "Problems.Juggler.FateSeed",
+        "Problems.Juggler.FateShareLaw",
         "Problems.Juggler.FateSweep",
         "Problems.Juggler.FateSweepMonotone",
         "Problems.Juggler.FateTaoReduction",
@@ -83881,6 +84086,20 @@
         {
           "id": "J-fate-seed",
           "statement": "Paper C Lemma 5.2 (seed). Every nonempty backward-closed A with a positive member contains some m \u2265 3 (exists_ge_three_of_backwardClosed: 1 maps to 2 maps to 4 through even blocks). For any such m and every y \u2265 (m+1)^4, the log-mass of A on (\u221ay, y] is at least c_A = (1 \u2212 2/m^4)(3/8 \u00b7 1/(m+1) \u2212 1/((m+1)^2 \u2212 1)) (seed_lemma), and c_A > 0 (seed_constant_pos). Proof as in the paper: the even-block tree S_k of m lies in A and in [m^{2^k}, (m+1)^{2^k}); its log-mass grows by at least 1 \u2212 2 m^{-2^k} per level; the product is at least 3/4 by the geometric series 1/(m^2 \u2212 1) \u2264 1/8; at scale k = log2 log_{m+1} y the tree splits at floor(\u221ay) into members above \u221ay, members whose even blocks lie there, and at most one member equal to floor(\u221ay). The integer form y = floor(x) is the paper's g_A(log x). Kernel-checked, axioms propext, Classical.choice, Quot.sound only. This is one hypothesis of Theorem 5.3; the production inequalities stay human proofs. Not a density theorem, not a halt theorem.",
+          "tag": "EXACT \u2014 LEAN VERIFIED"
+        }
+      ]
+    },
+    "Problems.Juggler.FateShareLaw": {
+      "declarations": 17,
+      "file": "formal/Problems/Juggler/FateShareLaw.lean",
+      "imports": [
+        "Problems.Juggler.FateFiberParity"
+      ],
+      "ledger": [
+        {
+          "id": "J-fate-share-law-layer",
+          "statement": "The exact layer of Paper C Section 4.3, the share law (Lemma 4.5) and Corollary 4.6. The expansion: along a fiber n_j = n_1 + 2(j-1) the phase x_j = n_j^{3/2}/2 (xval) equals x_1 + (3/2) sqrt(n_1) (j-1) + (3/4) (j-1)^2 / sqrt(n_1) + E_j with |E_j| <= (1/4)(j-1)^3 n_1^{-3/2} (xval_expansion); the Taylor step is, after v = sqrt(1+u), the polynomial inequality 0 <= 1 + (3/2)(v^2-1) + (3/8)(v^2-1)^2 - v^3 <= (v^2-1)^3/16 (taylor_three_halves), no derivative taken; on a fiber Phi(m) the remainder is at most (2/27)(m+1)/m^2 (xval_expansion_fiber), the paper's O(1/m) with a constant. The range: phi_beta(s) = beta s + s^2/3 has on [0,1] the range beta + 1/3 for beta >= 0, -beta - 1/3 for beta <= -2/3, and max(0, beta + 1/3) + (3/4) beta^2 between (phiRange; never exceeded, phi_sub_le; attained, exists_phi_sub_eq), and that range is at most 1/2 exactly for beta in [-5/6, 1/6] (phiRange_le_half_iff), the arithmetic of Corollary 4.6(2). The integral: max(0, 1/2 - range) vanishes outside [-5/6, 1/6] (extremeMeasure_eq_zero) and its interval integral over [-5/6, 1/6] is 25/108, as 1/72 + 11/108 + 11/108 + 1/72 over four polynomial pieces (integral_extremeMeasure), the arithmetic of Corollary 4.6(3). NOT formalized: the reduction of x_j modulo 1 to theta_m + beta_m s + s^2/3 with its O(1/H_m) error, the inverse-image and grid-sampling estimates that give Lemma 4.5, the Fubini argument of Corollary 4.6(1), and the identification of the theta-measure of the extreme fibers with max(0, 1/2 - range) in (2) and (3); the share law stays a human proof in the paper's table. Nothing in Sections 5-10 of the paper depends on this subsection, nothing here bounds a density, and nothing here is a halt theorem.",
           "tag": "EXACT \u2014 LEAN VERIFIED"
         }
       ]
@@ -85359,6 +85578,7 @@
         "Problems.Juggler.FatePressure",
         "Problems.Juggler.FateRecursion",
         "Problems.Juggler.FateSeed",
+        "Problems.Juggler.FateShareLaw",
         "Problems.Juggler.FateSweep",
         "Problems.Juggler.FateSweepMonotone",
         "Problems.Juggler.FateTaoReduction",
@@ -85370,7 +85590,7 @@
       "ledger": [
         {
           "id": "J-paper-c-trust-surface",
-          "statement": "Paper C's Lean surface, as a build target and an axiom artifact. formal/Problems/JugglerFatePaper.lean imports exactly the twenty-one modules the paper cites (TerminationFloor257, FateBlockAverage, FateContagion, FateCylinderEnergy, CubeFiber, TiltedShare, FateRecursion, FateFirstLetter, FateLandingWindow, FateWindowCount, FateSweep, FateSweepMonotone, FateChernoff, FatePressure, FateTaoReduction, FateSeed, FateCylinderCorollary, FateNumerics, FateFiberParity, FateThinFibers, FateContagionBound) and is a lake default target; formal/AxiomCheckPaperC.lean prints the axioms of the cited declarations and AxiomCheckPaperC.expected records them: every line is a subset of [propext, Classical.choice, Quot.sound], no sorryAx, no Lean.ofReduceBool (native_decide). formalpedia's paper surface carries Paper C (root Problems.JugglerFatePaper): no declaration it reaches runs the compiler and none cites one that does. The verification table has twenty-four Lean rows (including Lemma 4.1', Lemmas 4.2 and 4.3, Lemma 5.2, Theorem 5.3 given the production inequality (5.2), Theorem 7.2 and Theorem 7.3 with the contagion bound as a hypothesis, and Corollary 8.4) and four human proofs (the block average 4.4, the share law, the production inequality (5.2), the identity (6.1), the asymptotic bookkeeping). FateNumerics holds the two numerical moves the fiber lemmas share, roots by powering and Bernoulli at a point; FateWindowCount holds the counting move, a sequence rising by at least d has at most w/d + 1 terms in a window of width w. This row records the artifact, not a theorem; nothing here bounds a density.",
+          "statement": "Paper C's Lean surface, as a build target and an axiom artifact. formal/Problems/JugglerFatePaper.lean imports exactly the twenty-two modules the paper cites (TerminationFloor257, FateBlockAverage, FateShareLaw, FateContagion, FateCylinderEnergy, CubeFiber, TiltedShare, FateRecursion, FateFirstLetter, FateLandingWindow, FateWindowCount, FateSweep, FateSweepMonotone, FateChernoff, FatePressure, FateTaoReduction, FateSeed, FateCylinderCorollary, FateNumerics, FateFiberParity, FateThinFibers, FateContagionBound) and is a lake default target; formal/AxiomCheckPaperC.lean prints the axioms of the cited declarations and AxiomCheckPaperC.expected records them: every line is a subset of [propext, Classical.choice, Quot.sound], no sorryAx, no Lean.ofReduceBool (native_decide). formalpedia's paper surface carries Paper C (root Problems.JugglerFatePaper): no declaration it reaches runs the compiler and none cites one that does. The verification table has twenty-four Lean rows (including Lemma 4.1', Lemmas 4.2 and 4.3, Lemma 5.2, Theorem 5.3 given the production inequality (5.2), Theorem 7.2 and Theorem 7.3 with the contagion bound as a hypothesis, and Corollary 8.4) and four human proofs (the block average 4.4, the share law, the production inequality (5.2), the identity (6.1), the asymptotic bookkeeping). FateNumerics holds the two numerical moves the fiber lemmas share, roots by powering and Bernoulli at a point; FateWindowCount holds the counting move, a sequence rising by at least d has at most w/d + 1 terms in a window of width w. This row records the artifact, not a theorem; nothing here bounds a density.",
           "tag": "COMPUTATIONALLY VERIFIED"
         }
       ]
@@ -85667,13 +85887,13 @@
     }
   },
   "totals": {
-    "declarations": 6296,
-    "declarations_with_a_ledger_row": 4313,
-    "ledger_rows_naming_a_file": 394,
-    "modules": 273,
+    "declarations": 6313,
+    "declarations_with_a_ledger_row": 4330,
+    "ledger_rows_naming_a_file": 395,
+    "modules": 274,
     "trust": {
       "compiler": 57,
-      "kernel": 6239
+      "kernel": 6256
     }
   }
 }
