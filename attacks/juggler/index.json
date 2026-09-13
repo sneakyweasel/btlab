@@ -4202,7 +4202,8 @@
         "J-fate-chernoff-count",
         "J-fate-tao-union-bound",
         "J-fate-pressure-form",
-        "J-fate-cylinder-corollary"
+        "J-fate-cylinder-corollary",
+        "J-fate-fiber-parity"
       ],
       "aliases": [],
       "nk_cluster": null
@@ -6102,11 +6103,11 @@
         "formal/Problems/Juggler/OstrowskiNumeration.lean",
         "formal/Problems/Juggler/OstrowskiBlocks.lean",
         "formal/Problems/Juggler/HugRotation.lean",
-        "formal/Problems/Juggler/HugChargeEnvelope.lean",
-        "formal/Problems/Juggler/RotationAverage.lean",
         "formal/Problems/Juggler/FanLaw.lean",
         "formal/Problems/Juggler/WalkTransport.lean",
         "formal/Problems/Juggler/WalkChargeMax.lean",
+        "formal/Problems/Juggler/HugChargeEnvelope.lean",
+        "formal/Problems/Juggler/RotationAverage.lean",
         "formal/Problems/Juggler/DefectFinance.lean",
         "formal/Problems/Juggler/FinanceTransfer.lean",
         "formal/Problems/Juggler/AboveAnchorWalk.lean",
@@ -6172,7 +6173,8 @@
         "formal/Problems/Juggler/CubicCriticalLocation.lean",
         "formal/Problems/Juggler/CriticalCostKernel.lean",
         "formal/Problems/Juggler/CubicRemainderAssembly.lean",
-        "formal/Problems/Juggler/FateCylinderCorollary.lean"
+        "formal/Problems/Juggler/FateCylinderCorollary.lean",
+        "formal/Problems/Juggler/FateFiberParity.lean"
       ],
       "conjecture": [],
       "decision": null,

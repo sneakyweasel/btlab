@@ -318,7 +318,7 @@ type Paper B proves enters Appendix C as an explicit hypothesis.
 
 Statements carry one of four roles. *Lean*: the exact combinatorial
 layer is formalized in Lean 4; the root `formal/Problems/JugglerFatePaper.lean`
-imports exactly the thirteen modules this paper cites and builds with
+imports exactly the fourteen modules this paper cites and builds with
 `lake build Problems.JugglerFatePaper`, without `sorry` and without
 `native_decide`; `formal/AxiomCheckPaperC.lean` prints the axiom
 dependencies of every cited name and `AxiomCheckPaperC.expected`
@@ -339,7 +339,8 @@ constants; they prove nothing and are labelled wherever they appear.
 | Envelope descent into the floor (Lemma 8.1) | Lean, on Paper A's power envelope |
 | Sweep lemma (Lemma 4.1), both half-cell conventions | Lean |
 | Monotone pairing (Lemma 4.1') | Lean |
-| Fiber parity, thin fibers (Lemmas 4.2--4.3) | human proof |
+| Fiber parity (Lemma 4.2), goodness unpacked | Lean, through Lemma 4.1' |
+| Thin fibers (Lemma 4.3) | human proof |
 | Block average (Proposition 4.4), asymptotic | human proof |
 | Share law and its three corollaries (Lemma 4.5, Corollary 4.6) | human proof |
 | Cube fibers full or alternating (Lemma 4.7) | Lean |
@@ -689,6 +690,23 @@ for the representative of \(z\) modulo \(1\) in \((0,1]\). Then
 
 The middle range \(|\alpha_m-\tfrac12|<2m^{-1/3}\) and the range
 \(\|\alpha_m\|<22m^{-1/3}\) are excluded by goodness. \(\square\)
+
+Lean: `FiberParity.fiber_parity_good` in
+`formal/Problems/Juggler/FateFiberParity.lean`, with goodness unpacked
+as \(22m^{-1/3}\le\alpha_m\le 1-22m^{-1/3}\) and
+\(\alpha_m\le\tfrac12-2m^{-1/3}\) or \(\alpha_m\ge\tfrac12+2m^{-1/3}\)
+(`FiberParity.Good`). The step of \(x(n)=n\sqrt n/2\) over two units is
+\((u^2+uv+v^2)/(u+v)\) with \(u=\sqrt{n+2}\), \(v=\sqrt n\)
+(`xval_step`), which lies in \([\tfrac32v,\tfrac32u]\) by
+\((2u+v)(u-v)\ge 0\) and \((u+2v)(u-v)\ge 0\) and is nondecreasing
+because the upper bound at \(n\) is the lower bound at \(n+2\); no
+integral is needed. The upper step is taken at \(n_{j+1}\in\Phi(m)\),
+so \(B_m=\tfrac32(m+1)^{2/3}\) and \(\eta_m\le m^{-1/3}\) by Bernoulli
+on \((1+1/m)^{2/3}\); the fiber has at least \(\tfrac23m^{1/3}-1\)
+members by Bernoulli on \((1+1/m)^{4/3}\). Both cases go through
+`Sweep.sweep_monotone_cell` and `sweep_monotone_ceil` of
+`FateSweepMonotone`, with \(\lceil 2z_j\rceil\equiv\lfloor 2x_j\rfloor\)
+(mod \(2\)) in Case 2.
 
 **Lemma 4.3 (bad fibers are thin).** For \(u\ge 10^6\),
 \[
@@ -2338,7 +2356,7 @@ No nontrivial cycle or unbounded orbit is excluded by this paper.
 ## Appendix A. Lean names
 
 All in `formal/Problems/Juggler/FateContagion.lean` unless noted. The
-root `formal/Problems/JugglerFatePaper.lean` imports exactly the thirteen
+root `formal/Problems/JugglerFatePaper.lean` imports exactly the fourteen
 modules named here and builds with `lake build Problems.JugglerFatePaper`
 without `sorry` and without `native_decide`;
 `formal/AxiomCheckPaperC.expected` records the axioms of every name
@@ -2368,7 +2386,8 @@ abstract lemmas listed here, not the analytic density estimates.
 | Lemma 5.2 (seed), in `Problems/Juggler/FateSeed.lean` | `exists_ge_three_of_backwardClosed`, `seed_lemma`, `seed_constant_pos` |
 | Theorem 7.2 (Tao-type rate, contagion as a hypothesis), in `Problems/Juggler/FateTaoReduction.lean` | `logMass_le_oddLogMass`, `oddLogMass_le_of_dyadic`, `tao_rate_implies_empty`, `tao_rate_implies_conjecture` |
 | Corollary 8.4 (the conjecture from a cylinder bound), in `Problems/Juggler/FateCylinderCorollary.lean` | `CylinderBound`, `one_le_depth`, `chernoffExponent_nonneg`, `oddFailures_eventually_le`, `cylinder_bound_implies_conjecture` |
-| Lemmas 4.2--4.3, Proposition 4.4, Theorem 5.3, Theorem 7.3, Sections 8--10 except Lemma 8.2, the explicit form of Theorem 8.3, Corollary 8.4, the exact form of Theorem 9.2 and Proposition 9.3, Appendix C | human proofs |
+| Lemma 4.2 (fiber parity), in `Problems/Juggler/FateFiberParity.lean` | `FiberParity.xval`, `FiberParity.two_xval`, `FiberParity.floor_two_xval`, `FiberParity.cell_xval_even_iff`, `FiberParity.xval_step`, `FiberParity.xval_step_ge`, `FiberParity.xval_step_le`, `FiberParity.xval_step_mono`, `FiberParity.oeFiber`, `FiberParity.mem_oeFiber`, `FiberParity.oeFiber_eq_image`, `FiberParity.oeFiber_card`, `FiberParity.evenImageCount`, `FiberParity.fiber_ge_rpow`, `FiberParity.fiber_lt_rpow`, `FiberParity.rpow_four_thirds_succ_ge`, `FiberParity.rpow_two_thirds_succ_le`, `FiberParity.fiber_card_ge`, `FiberParity.Am`, `FiberParity.alpha`, `FiberParity.eps`, `FiberParity.Good`, `FiberParity.eps_le`, `FiberParity.step_ge`, `FiberParity.step_le`, `FiberParity.fiber_parity_good` |
+| Lemma 4.3, Proposition 4.4, Theorem 5.3, Theorem 7.3, Sections 8--10 except Lemma 8.2, the explicit form of Theorem 8.3, Corollary 8.4, the exact form of Theorem 9.2 and Proposition 9.3, Appendix C | human proofs |
 
 ## Appendix B. Constants and artifacts
 
@@ -2462,13 +2481,17 @@ use the roots of the displayed defining equations.
 
   SHA-256: `0a0f47af277d28598e0fdddfe50e5762ff21835e88251f21d59629a2475f7ec5`
 
+- `formal/Problems/Juggler/FateFiberParity.lean`
+
+  SHA-256: `4bdf21105e14b32d233a8f38f08e51dea5c86d355b4b341baaa54e0d96ccba41`
+
 - `formal/Problems/JugglerFatePaper.lean`
 
-  SHA-256: `3f5836b5da1bebe4a1e3add299b5a694a3156c1623d3fecf0b9553e0b328bd21`
+  SHA-256: `ec93feda3d80ccae45fc9f289c1b90a3cfb81feefff054cd8d53757a16f7465d`
 
 - `formal/AxiomCheckPaperC.expected`
 
-  SHA-256: `e498d07112371b5586b44c0f3cb26219b651b0f8b51bf9ad56ef65af1ea81bcb`
+  SHA-256: `96abc5b68ae1fbf807bf69a271d850e93afd3183602d1c6ead3826566f300c81`
 
 - `src/research/juggler_sequence/fate_contagion.py`
 

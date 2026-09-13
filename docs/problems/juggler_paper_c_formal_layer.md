@@ -191,12 +191,14 @@ contagion),
 `formal/Problems/Juggler/FateSeed.lean` (Lemma 5.2),
 `formal/Problems/Juggler/FateCylinderCorollary.lean` (Corollary 8.4 as the
 composition of Theorems 8.3 and 7.2, 5 declarations),
+`formal/Problems/Juggler/FateFiberParity.lean` (Lemma 4.2, fiber parity, 41
+declarations in namespace `FiberParity`),
 `formal/Problems/JugglerFatePaper.lean` (barrel),
 `formal/AxiomCheckPaperC.lean` and `.expected`. All kernel-checked; the
 Paper C surface (root `Problems.JugglerFatePaper`, 45 modules reached,
 1487 declarations) carries no `native_decide` and cites none.
 
-Not formalized, and not claimed: Lemmas 4.2–4.3,
+Not formalized, and not claimed: Lemma 4.3,
 Proposition 4.4, the share law 4.5–4.6, Theorem 5.3, Theorem 7.3,
 the asymptotic forms of Theorems 8.3 and 9.2, Theorem 9.1, Section 10, Appendix C, and the log-mass bookkeeping
 that turns the first-letter trichotomy into the identity (6.1).
@@ -207,8 +209,8 @@ Classification **PAPER_C_LEAN_SURFACE_CONSISTENT**.
 
 ```text
   Paper C verification table, before and after
-  Lean rows      15 -> 17  (Lemma 4.1' on FateSweepMonotone; Corollary 8.4 on FateCylinderCorollary)
-  human rows     7 -> 7    (4.2--4.3 stay human; Theorems 5.3 and 7.3 stay human)
+  Lean rows      15 -> 18  (Lemma 4.1', Corollary 8.4, Lemma 4.2 new)
+  human rows     7 -> 7    (rows split; Lemma 4.3, Theorems 5.3 and 7.3 stay human)
   cited names    135 -> 145, all on subsets of Mathlib's three axioms; none native_decide
 ```
 
@@ -221,6 +223,13 @@ Classification **PAPER_C_LEAN_SURFACE_CONSISTENT**.
 - The stale table line: Proposition 9.3 was Lean since
   `TiltedShare.lean` (row `J-tilted-share-telescoping`) and the paper
   still said human proof. Corrected in §1.4, §9.2 and Appendix A.
+- Lemma 4.2 (13 September): the step of \(x(n)=n\sqrt n/2\) over two
+  units is \((u^2+uv+v^2)/(u+v)\), bounded by \(	frac32v\) and
+  \(	frac32u\) through two factorizations, monotone because the upper
+  bound at \(n\) is the lower bound at \(n+2\); the paper's integral is
+  not needed, and its \(1.02m^{-1/3}\) becomes \(m^{-1/3}\) because the
+  upper step is taken at a fiber member. Both cases of the paper go
+  through the monotone sweep of `FateSweepMonotone`.
 - Corollary 8.4 (13 September): the explicit bound of Theorem 8.3 is
   absorbed into the rate \(y(\log y)^{-e}\) for every \(e<e(C)\) once
   \(\log y\) is large (`oddFailures_eventually_le`), and the composition
@@ -231,19 +240,21 @@ Classification **PAPER_C_LEAN_SURFACE_CONSISTENT**.
 
 ## Open questions
 
-- Lemma 4.2 (fiber parity) is the direct consumer of Lemma 4.1' and is
-  elementary once the step of \(n^{3/2}/2\) is written as
-  \((u^3-v^3)/2\) with \(u^2=n+2\), \(v^2=n\); the fiber width needs
-  Bernoulli on \((1+1/m)^{4/3}\). The next small attack.
+- Lemma 4.3 (bad fibers are thin) is a monotone-drift count on
+  \(\{	frac32m^{2/3}\}\): consecutive values advance by
+  \([(m+1)^{-1/3},m^{-1/3}]\), so each pass through the two bad arcs
+  costs at most \(\sim 48\) values of \(m\); elementary, medium.
 - The numerical threshold of Corollary 8.4, \(e(19)>1-\lambda^{**}\),
   would need \(\lambda^{**}\) in Lean; not a small attack.
 
 ## Decision
 
-**PROMOTE.** Lemma 4.1' and Corollary 8.4 are now on the barrel with
-the rest of the exact layer; the paper's headline conditional result
-is one Lean theorem with one analytic hypothesis. Nothing here changes
-a constant or an exponent. Best next question: Lemma 4.2 in Lean.
+**PROMOTE.** Lemmas 4.1', 4.2 and Corollary 8.4 are now on the barrel
+with the rest of the exact layer; the paper's headline conditional
+result is one Lean theorem with one analytic hypothesis, and the
+constants \(2/9\), \(4/9\) of the fiber share rest on Lean below the
+block average. Nothing here changes a constant or an exponent. Best
+next question: Lemma 4.3 in Lean.
 
 ## Publication assessment
 
