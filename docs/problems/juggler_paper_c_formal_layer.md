@@ -110,7 +110,7 @@ human.
 **The build root (COMPUTATIONALLY VERIFIED).**
 `formal/Problems/JugglerFatePaper.lean` imports exactly the eighteen
 modules Paper C cites; `formal/AxiomCheckPaperC.lean` prints the axioms
-of the 224 cited declarations and `AxiomCheckPaperC.expected` records
+of the 230 cited declarations and `AxiomCheckPaperC.expected` records
 them, every list a subset of `propext`, `Classical.choice`,
 `Quot.sound`, no `sorryAx`, no `native_decide`.
 
@@ -140,6 +140,22 @@ call them: four inductions and two `min'`/`max'` arguments became one
 of each, 111 lines out for 43 in, no statement changed. The six further
 copies in `FateSweepMonotone` belong to the WIZARD session and were
 left alone; that session has been sent the interface.
+
+**The exact layer of identity (6.1) (EXACT — LEAN VERIFIED, 13
+September 2026).** The paper's table called (6.1) a human proof of
+exact combinatorics. The exact part is now Lean: `first_letter_split`
+says that for any weight and any finite index set the weighted mass of
+a two-way closed class is the sum of its even, \(OE\)-type and
+\(OO\)-type pieces, each indexed by its image lying in the class as
+the paper indexes it; `shellLogMass_split` is the log-mass form on a
+shell. The free term's \(n(m)\) is well defined because \(J\) is
+strictly increasing on the odd integers (`floorPower_odd_lt`,
+`floorPower_odd_injective`), and `sum_image_ooPiece` rewrites that
+piece as the paper's sum over the odd images. What stays human is the
+normalization: the densities \(\varphi_A\), \(\varphi^{\rm fib}_A\)
+and \(\psi_A\), the identification of each piece with its term, and
+the boundary error \(O(e^{-t/4}/t)\) of Lemma 3.1. Twenty-two Lean
+rows, four human.
 
 ## Current literature
 

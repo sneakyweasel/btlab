@@ -44348,3 +44348,38 @@ needs no new lemma either, since a sequence falling by at least d is
 StepGe for j |-> -x j; I have sent that session the interface and the
 remark. Eighteen modules in the barrel now, 224 asked declarations, all
 on Mathlib's three axioms.
+
+
+## The exact half of the first-letter identity
+
+Paper C's table called (6.1) a human proof of exact combinatorics,
+which was half right. (6.1) says that the density of a two-way closed
+class at scale t is half its density at t/2, plus a quarter of a fiber-
+weighted density at 3t/4, plus a quarter of a free term, plus
+O(e^{-t/4}/t). The densities and the error are analysis. Underneath
+them is a partition with no error at all: every member of the class is
+even, or odd with even image, or odd with odd image, and those three
+sets are disjoint and exhaust it.
+
+first_letter_split states that partition as a mass identity for an
+arbitrary weight w and an arbitrary finite index set: the weighted mass
+of the class is the sum of the three pieces, each piece indexed the way
+the paper indexes it, by the image lying in the class rather than the
+member. Two-way closure is what makes those the same set, and it is the
+only hypothesis. shellLogMass_split is the log-mass instance on a shell
+(y, x], which is the shape (6.1) normalizes.
+
+The third piece needed one more exact fact. The paper writes it as a
+sum over m of 1/n(m), "where n(m) is the unique odd preimage", and
+uniqueness was never checked. It holds: J is strictly increasing on the
+odd integers, because two odd numbers differ by at least two and
+(floor(sqrt(n^3)) + 1)^2 <= n^3 + 2n^2 + 1 <= (n+2)^3. So J is
+injective there, n(m) is well defined, and sum_image_ooPiece rewrites
+the piece as the paper's sum over the odd images.
+
+What is still human, and is the whole analytic content: the densities
+phi, phi^fib and psi, the identification of each piece with its term of
+(6.1) through Lemmas 3.1, 3.2 and 4.2, and the boundary error. The
+table now reads twenty-two Lean rows and four human. The four are the
+block average 4.4, the share law, the production inequality (5.2), and
+the Azuma and exponential-moment bookkeeping of Sections 8 to 10.

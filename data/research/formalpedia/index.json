@@ -29001,7 +29001,8 @@
       "file": "formal/Problems/Juggler/FateFirstLetter.lean",
       "kind": "def",
       "ledger": [
-        "J-fate-minimal-failure-oo"
+        "J-fate-minimal-failure-oo",
+        "J-fate-first-letter-split"
       ],
       "line": 28,
       "module": "Problems.Juggler.FateFirstLetter",
@@ -29013,7 +29014,8 @@
       "file": "formal/Problems/Juggler/FateFirstLetter.lean",
       "kind": "theorem",
       "ledger": [
-        "J-fate-minimal-failure-oo"
+        "J-fate-minimal-failure-oo",
+        "J-fate-first-letter-split"
       ],
       "line": 33,
       "module": "Problems.Juggler.FateFirstLetter",
@@ -29025,7 +29027,8 @@
       "file": "formal/Problems/Juggler/FateFirstLetter.lean",
       "kind": "theorem",
       "ledger": [
-        "J-fate-minimal-failure-oo"
+        "J-fate-minimal-failure-oo",
+        "J-fate-first-letter-split"
       ],
       "line": 46,
       "module": "Problems.Juggler.FateFirstLetter",
@@ -29037,7 +29040,8 @@
       "file": "formal/Problems/Juggler/FateFirstLetter.lean",
       "kind": "theorem",
       "ledger": [
-        "J-fate-minimal-failure-oo"
+        "J-fate-minimal-failure-oo",
+        "J-fate-first-letter-split"
       ],
       "line": 63,
       "module": "Problems.Juggler.FateFirstLetter",
@@ -29049,7 +29053,8 @@
       "file": "formal/Problems/Juggler/FateFirstLetter.lean",
       "kind": "theorem",
       "ledger": [
-        "J-fate-minimal-failure-oo"
+        "J-fate-minimal-failure-oo",
+        "J-fate-first-letter-split"
       ],
       "line": 77,
       "module": "Problems.Juggler.FateFirstLetter",
@@ -29061,7 +29066,8 @@
       "file": "formal/Problems/Juggler/FateFirstLetter.lean",
       "kind": "theorem",
       "ledger": [
-        "J-fate-minimal-failure-oo"
+        "J-fate-minimal-failure-oo",
+        "J-fate-first-letter-split"
       ],
       "line": 88,
       "module": "Problems.Juggler.FateFirstLetter",
@@ -29073,11 +29079,116 @@
       "file": "formal/Problems/Juggler/FateFirstLetter.lean",
       "kind": "theorem",
       "ledger": [
-        "J-fate-minimal-failure-oo"
+        "J-fate-minimal-failure-oo",
+        "J-fate-first-letter-split"
       ],
       "line": 104,
       "module": "Problems.Juggler.FateFirstLetter",
       "name": "first_letter_pieces_disjoint",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The members of `A` in a finite index set, weighted by `w`, split by first letter into the three pieces of Section 6.2: even, `OE`-type, `OO`-type. Each piece is indexed by its image lying in `A`, as the paper's `\u2294_{m \u2208 A}` writes it; that is the same set of `n` by two-way closure. The identity is exact: it is the partition, with no error term.",
+      "file": "formal/Problems/Juggler/FateFirstLetter.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-minimal-failure-oo",
+        "J-fate-first-letter-split"
+      ],
+      "line": 120,
+      "module": "Problems.Juggler.FateFirstLetter",
+      "name": "first_letter_split",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The log-mass of `A` on a shell `(y, x]`, the `\u2113_A` of Section 6.2.",
+      "file": "formal/Problems/Juggler/FateFirstLetter.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-minimal-failure-oo",
+        "J-fate-first-letter-split"
+      ],
+      "line": 137,
+      "module": "Problems.Juggler.FateFirstLetter",
+      "name": "shellLogMass",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The exact layer of identity (6.1).** On any shell the log-mass of a two-way closed class is the sum of the log-masses of its even, `OE`-type and `OO`-type members. The paper's (6.1) is this identity after each piece is normalized (`\u03c6_A`, `\u03c6^fib_A`, `\u03c8_A`) and the boundary term of Lemma 3.1 is estimated; the normalization and the error `O(e^{-t/4}/t)` are not formalized.",
+      "file": "formal/Problems/Juggler/FateFirstLetter.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-minimal-failure-oo",
+        "J-fate-first-letter-split"
+      ],
+      "line": 145,
+      "module": "Problems.Juggler.FateFirstLetter",
+      "name": "shellLogMass_split",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`J` is strictly increasing on the odd integers: two odd states differ by at least two, and `(\u230a\u221a(n\u00b3)\u230b + 1)\u00b2 \u2264 n\u00b3 + 2n\u00b2 + 1 \u2264 (n + 2)\u00b3`.",
+      "file": "formal/Problems/Juggler/FateFirstLetter.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-minimal-failure-oo",
+        "J-fate-first-letter-split"
+      ],
+      "line": 159,
+      "module": "Problems.Juggler.FateFirstLetter",
+      "name": "floorPower_odd_lt",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The odd preimage is unique: `J` is injective on the odd integers, so each odd image `m` of an odd `n` determines its `n(m)`.",
+      "file": "formal/Problems/Juggler/FateFirstLetter.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-minimal-failure-oo",
+        "J-fate-first-letter-split"
+      ],
+      "line": 177,
+      "module": "Problems.Juggler.FateFirstLetter",
+      "name": "floorPower_odd_injective",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The `OO`-type members of `A` in a shell: the odd members with odd image.",
+      "file": "formal/Problems/Juggler/FateFirstLetter.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-minimal-failure-oo",
+        "J-fate-first-letter-split"
+      ],
+      "line": 185,
+      "module": "Problems.Juggler.FateFirstLetter",
+      "name": "ooPiece",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The free term as a sum over the odd images.** Summing any weight over the odd images of the `OO`-type members is summing it over those members through `J`: the paper's `\u03a3_{m \u2208 A \u2229 S_odd} 1/n(m)`, with `n(m)` well defined by `floorPower_odd_injective`.",
+      "file": "formal/Problems/Juggler/FateFirstLetter.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-minimal-failure-oo",
+        "J-fate-first-letter-split"
+      ],
+      "line": 191,
+      "module": "Problems.Juggler.FateFirstLetter",
+      "name": "sum_image_ooPiece",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The odd images of the `OO`-type members are as many as the members themselves.",
+      "file": "formal/Problems/Juggler/FateFirstLetter.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-minimal-failure-oo",
+        "J-fate-first-letter-split"
+      ],
+      "line": 198,
+      "module": "Problems.Juggler.FateFirstLetter",
+      "name": "card_image_ooPiece",
       "trust": "kernel"
     },
     {
@@ -83075,7 +83186,7 @@
       ]
     },
     "Problems.Juggler.FateFirstLetter": {
-      "declarations": 7,
+      "declarations": 15,
       "file": "formal/Problems/Juggler/FateFirstLetter.lean",
       "imports": [
         "Problems.Juggler.FateContagion"
@@ -83084,6 +83195,11 @@
         {
           "id": "J-fate-minimal-failure-oo",
           "statement": "Paper C Proposition 6.3(i) and the first-letter trichotomy of Section 6.2. If some positive n does not reach 1, the failure set has a least positive member (exists_minimal_failure), and that member is odd with an odd image, i.e. an OO-type start (minimal_failure_odd_odd): an even member n \u2265 2 has the smaller positive member floor(sqrt n) (floorPower_even_lt), and an odd member with even image has the smaller positive member floor(sqrt(floor(n^{3/2}))) < n (floorPower_odd_even_two_step_lt). Stated for any forward-closed class excluding 1 (minimalMember_odd, minimalMember_image_odd). For a two-way closed class A, A n iff exactly one of: n even with J(n) \u2208 A; n odd, J(n) even, J(n) \u2208 A; n odd, J(n) odd, J(n) \u2208 A (first_letter_trichotomy, first_letter_pieces_disjoint) \u2014 the three pieces of the identity (6.1). Kernel-checked, axioms propext, Classical.choice, Quot.sound only. The log-mass bookkeeping of (6.1), the fiber weights and the free term \u03c8_F are not formalized; not a density theorem, not a halt theorem.",
+          "tag": "EXACT \u2014 LEAN VERIFIED"
+        },
+        {
+          "id": "J-fate-first-letter-split",
+          "statement": "The exact layer of Paper C's first-letter identity (6.1). For a two-way closed class A (ForwardClosed and BackwardClosed), any weight w and any finite index set s, the weighted mass of A splits exactly into three pieces by first letter: the even members, the odd members with even image (OE-type) and the odd members with odd image (OO-type), each piece indexed by its image lying in A as the paper indexes it (first_letter_split); shellLogMass_split is the log-mass form on a shell (y, x]. The map J is strictly increasing on the odd integers (floorPower_odd_lt), hence injective there (floorPower_odd_injective), so the paper's odd preimage n(m) of the free term is well defined, and sum_image_ooPiece rewrites the OO-type piece as a sum over the odd images. This is the partition, with no error term. The identity (6.1) itself is not formalized: the densities phi_A, phi^fib_A and psi_A, the identification of each piece with its term of (6.1), and the boundary error O(e^{-t/4}/t) of Lemma 3.1 stay human. Nothing here bounds a density and nothing here is a halt theorem.",
           "tag": "EXACT \u2014 LEAN VERIFIED"
         }
       ]
@@ -84617,7 +84733,7 @@
       "ledger": [
         {
           "id": "J-paper-c-trust-surface",
-          "statement": "Paper C's Lean surface, as a build target and an axiom artifact. formal/Problems/JugglerFatePaper.lean imports exactly the eighteen modules the paper cites (TerminationFloor257, FateContagion, CubeFiber, TiltedShare, FateRecursion, FateFirstLetter, FateWindowCount, FateSweep, FateSweepMonotone, FateChernoff, FatePressure, FateTaoReduction, FateSeed, FateCylinderCorollary, FateNumerics, FateFiberParity, FateThinFibers, FateContagionBound) and is a lake default target; formal/AxiomCheckPaperC.lean prints the axioms of the cited declarations and AxiomCheckPaperC.expected records them: every line is a subset of [propext, Classical.choice, Quot.sound], no sorryAx, no Lean.ofReduceBool (native_decide). formalpedia's paper surface carries Paper C (root Problems.JugglerFatePaper): no declaration it reaches runs the compiler and none cites one that does. The verification table has twenty-one Lean rows (including Lemma 4.1', Lemmas 4.2 and 4.3, Lemma 5.2, Theorem 5.3 given the production inequality (5.2), Theorem 7.2 and Theorem 7.3 with the contagion bound as a hypothesis, and Corollary 8.4) and five human proofs (the block average 4.4, the share law, the production inequality (5.2), the identity (6.1), the asymptotic bookkeeping). FateNumerics holds the two numerical moves the fiber lemmas share, roots by powering and Bernoulli at a point; FateWindowCount holds the counting move, a sequence rising by at least d has at most w/d + 1 terms in a window of width w. This row records the artifact, not a theorem; nothing here bounds a density.",
+          "statement": "Paper C's Lean surface, as a build target and an axiom artifact. formal/Problems/JugglerFatePaper.lean imports exactly the eighteen modules the paper cites (TerminationFloor257, FateContagion, CubeFiber, TiltedShare, FateRecursion, FateFirstLetter, FateWindowCount, FateSweep, FateSweepMonotone, FateChernoff, FatePressure, FateTaoReduction, FateSeed, FateCylinderCorollary, FateNumerics, FateFiberParity, FateThinFibers, FateContagionBound) and is a lake default target; formal/AxiomCheckPaperC.lean prints the axioms of the cited declarations and AxiomCheckPaperC.expected records them: every line is a subset of [propext, Classical.choice, Quot.sound], no sorryAx, no Lean.ofReduceBool (native_decide). formalpedia's paper surface carries Paper C (root Problems.JugglerFatePaper): no declaration it reaches runs the compiler and none cites one that does. The verification table has twenty-two Lean rows (including Lemma 4.1', Lemmas 4.2 and 4.3, Lemma 5.2, Theorem 5.3 given the production inequality (5.2), Theorem 7.2 and Theorem 7.3 with the contagion bound as a hypothesis, and Corollary 8.4) and four human proofs (the block average 4.4, the share law, the production inequality (5.2), the identity (6.1), the asymptotic bookkeeping). FateNumerics holds the two numerical moves the fiber lemmas share, roots by powering and Bernoulli at a point; FateWindowCount holds the counting move, a sequence rising by at least d has at most w/d + 1 terms in a window of width w. This row records the artifact, not a theorem; nothing here bounds a density.",
           "tag": "COMPUTATIONALLY VERIFIED"
         }
       ]
@@ -84914,13 +85030,13 @@
     }
   },
   "totals": {
-    "declarations": 6239,
-    "declarations_with_a_ledger_row": 4256,
-    "ledger_rows_naming_a_file": 390,
+    "declarations": 6247,
+    "declarations_with_a_ledger_row": 4264,
+    "ledger_rows_naming_a_file": 391,
     "modules": 270,
     "trust": {
       "compiler": 57,
-      "kernel": 6182
+      "kernel": 6190
     }
   }
 }

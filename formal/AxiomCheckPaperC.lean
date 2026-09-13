@@ -104,6 +104,7 @@ open Problems.Juggler
 #print axioms Sweep.three_g_ge
 #print axioms ancestor_backwardClosed
 #print axioms backwardClosed_iterate
+#print axioms card_image_ooPiece
 #print axioms chernoffExponent_nonneg
 #print axioms conjecture_of_cylinder_bound_of_production
 #print axioms contagion_of_production_inequality
@@ -138,9 +139,12 @@ open Problems.Juggler
 #print axioms exists_odd_ancestor_ge_three
 #print axioms fate_trichotomy
 #print axioms first_letter_pieces_disjoint
+#print axioms first_letter_split
 #print axioms first_letter_trichotomy
 #print axioms floorPower_even_block
 #print axioms floorPower_odd_even_two_step_lt
+#print axioms floorPower_odd_injective
+#print axioms floorPower_odd_lt
 #print axioms floorPower_oe_fiber
 #print axioms gA_seed
 #print axioms half_le_pC
@@ -209,7 +213,9 @@ open Problems.Juggler
 #print axioms recursion_lemma
 #print axioms seed_constant_pos
 #print axioms seed_lemma
+#print axioms shellLogMass_split
 #print axioms sqrt_sqrt_eq_iff
+#print axioms sum_image_ooPiece
 #print axioms sweep_ceil
 #print axioms sweep_fract_ge_half
 #print axioms sweep_fract_lt_half
