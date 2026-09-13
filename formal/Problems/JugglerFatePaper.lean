@@ -4,6 +4,7 @@ import Problems.Juggler.CubeFiber
 import Problems.Juggler.TiltedShare
 import Problems.Juggler.FateRecursion
 import Problems.Juggler.FateFirstLetter
+import Problems.Juggler.FateBlockAverage
 import Problems.Juggler.FateCylinderEnergy
 import Problems.Juggler.FateLandingWindow
 import Problems.Juggler.FateWindowCount
@@ -22,7 +23,7 @@ import Problems.Juggler.FateContagionBound
 /-!
 # Paper C barrel — everything the repository checks for the fate-contagion note
 
-`docs/theory/juggler_fate_almost_all_note.md`. This file imports exactly the twenty modules
+`docs/theory/juggler_fate_almost_all_note.md`. This file imports exactly the twenty-one modules
 that paper cites and nothing else, so that a reader can build the formal side of Paper C on
 its own rather than selecting modules by hand out of the umbrella `Problems.Juggler`. It is a
 laboratory target, not a claim: building it does **not** corroborate the paper's counting.
@@ -43,6 +44,15 @@ laboratory target, not a claim: building it does **not** corroborate the paper's
   function on `(0, ∞)`.
 * `FateFirstLetter` — Proposition 6.3(i): the least failure is odd with an odd image
   (`minimal_failure_odd_odd`), and the first-letter trichotomy of Section 6.2.
+* `FateBlockAverage` — Proposition 4.4 **given its exponential-sum bounds**, and its exact
+  layer: the paper's `I(m')` written with the landing window (`BlockAverage.mem_oddBlock`),
+  `U(m')` as the disjoint union of the even-image parts of the fibers over the even `m` of
+  the block (`BlockAverage.U_card_eq`, on Lemma 4.2's `evenImageCount`), and the expansion
+  `4|U(m')| = M + S₁ + S₂ + S₁₂` the proof starts from (`BlockAverage.four_card_U`).
+  Equation (4.1) follows once the three parity sums are bounded
+  (`BlockAverage.block_average_bound`) — and those bounds, which are the content of the
+  proposition, are hypotheses here, not theorems: Vaaler's approximation and the van der
+  Corput estimates are not formalized anywhere in this repository.
 * `FateCylinderEnergy` — the counting identity of Section 10(d): a cylinder splits into
   its two children (`CylinderEnergy.wordCount_split`), so the first-letter biases
   `D(w) = #[wO] - #[w]/2` satisfy `Σ_{|w|=t} D(w)² = C_{t+1}/2 - C_t/4` exactly

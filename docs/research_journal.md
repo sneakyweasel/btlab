@@ -44447,3 +44447,46 @@ share law, the production inequality, and the Azuma and exponential-
 moment bookkeeping. Nothing exact is left for a small attack; what is
 left needs either an analytic argument or the hypothesis-as-input
 treatment the large attacks use.
+
+
+## Proposition 4.4 without its exponential sums
+
+The block average is the first analytic step of Paper C and the first
+thing in the paper that Lean cannot reach. Its proof is Vaaler's
+interval approximation to the parity wave, the van der Corput second-
+derivative test on a fast phase, and Kusmin-Landau on a slow one.
+Mathlib has none of the three. So this is the treatment Theorem 5.3
+got: formalize everything around the estimate, take the estimate as a
+hypothesis, and say loudly which is which.
+
+What the layer turned out to be is more than bookkeeping. Three things:
+
+The block is exact. The paper writes I(m') = [m'^{8/3}, (m'+1)^{8/3}),
+a real interval, and its odd integers. Those are exactly the odd n with
+m'^2 <= floor(n^{3/4}) < (m'+1)^2, which is the landing window (D.1) I
+formalized an hour earlier. The appendix and Section 4.2 turn out to be
+the same statement, and the Lean file says so in one rewrite.
+
+The decomposition is exact. U(m') is the disjoint union of the even-
+image parts of the fibers Phi(m) over the even m of the block. So
+|U(m')| is a sum of Lemma 4.2's evenImageCount over E(m'), and the
+block average is literally an average of the fiber counts the sweep
+lemma bounds. That sentence in the paper is now a fiberwise partition
+in Lean.
+
+The expansion is exact. Expanding the two parity indicators gives
+4|U(m')| = M + S1 + S2 + S12 with no error, where the S are the parity
+sums. The proof's first move is an identity, not an estimate.
+
+Then (4.1) is a triangle inequality away from bounds on the three sums,
+and those bounds are the hypotheses of block_average_bound. The
+verification table row stays "human proof", because the estimate is the
+proposition; it now says which part is Lean and which is not. I did not
+move the row to the Lean column and the gate test that pins it to the
+human column still passes, which is the right outcome: what I added is
+the scaffolding, not the theorem.
+
+Left for whoever discharges it: Vaaler's approximation with an interval
+majorant, the second-derivative test, Kusmin-Landau, and a two-sided
+count of the odd integers of the block for the asymptotic form. That is
+a Mathlib-scale project, not a session.

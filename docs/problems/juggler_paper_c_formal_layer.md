@@ -108,9 +108,9 @@ The production inequality itself and the root \(\lambda^{**}\) stay
 human.
 
 **The build root (COMPUTATIONALLY VERIFIED).**
-`formal/Problems/JugglerFatePaper.lean` imports exactly the twenty
+`formal/Problems/JugglerFatePaper.lean` imports exactly the twenty-one
 modules Paper C cites; `formal/AxiomCheckPaperC.lean` prints the axioms
-of the 244 cited declarations and `AxiomCheckPaperC.expected` records
+of the 251 cited declarations and `AxiomCheckPaperC.expected` records
 them, every list a subset of `propext`, `Classical.choice`,
 `Quot.sound`, no `sorryAx`, no `native_decide`.
 
@@ -187,6 +187,28 @@ itinerary is the parity of the \(t\)-th image
 Parseval equality with the Walsh sums is not formalized, and neither
 is the exceptional-atom estimate it is meant to supply.
 Twenty-four Lean rows, four human.
+
+**Proposition 4.4 given its exponential-sum bounds (EXACT — LEAN
+VERIFIED for the deduction; the bounds are HYPOTHESES, 13 September
+2026).** The proposition is an exponential-sum estimate, and the
+estimate is not formalized: Vaaler's interval approximation, the
+second-derivative test and Kusmin--Landau are nowhere in the
+repository, and Mathlib does not carry them. What
+`FateBlockAverage.lean` has is the layer around it. The paper's
+\(I(m')=[m'^{8/3},(m'+1)^{8/3})\) is exactly the odd \(n\) with
+\(m'^2\le\lfloor n^{3/4}\rfloor<(m'+1)^2\), by the landing window
+(`mem_oddBlock`); \(U(m')\) is the disjoint union of the even-image
+parts of the fibers \(\Phi(m)\) over the even \(m\) of the block,
+so the block average is an average of Lemma 4.2's fiber counts
+(`U_card_eq`); and expanding the two parity indicators gives the
+four sums exactly, \(4|U(m')|=M+S_1+S_2+S_{12}\)
+(`four_card_U`). Equation (4.1) then follows from bounds on the
+three parity sums by a triangle inequality
+(`block_average_of_bounds`, `block_average_bound`), the bounds being
+hypotheses. The row stays **human proof** in the verification table,
+because the estimate is the proposition; the row now says which part
+is Lean. The asymptotic form also needs a two-sided count of the odd
+integers of the block, which is not formalized.
 
 ## Current literature
 

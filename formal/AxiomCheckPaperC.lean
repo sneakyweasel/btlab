@@ -15,6 +15,13 @@ import Problems.JugglerFatePaper
 
 open Problems.Juggler
 
+#print axioms BlockAverage.block_average_bound
+#print axioms BlockAverage.block_average_of_bounds
+#print axioms BlockAverage.four_card_U
+#print axioms BlockAverage.mem_oddBlock
+#print axioms BlockAverage.mem_oeFiber_iff_cell34
+#print axioms BlockAverage.U_card_eq
+#print axioms BlockAverage.oddBlock_card_eq
 #print axioms CylinderEnergy.energy_succ
 #print axioms CylinderEnergy.itinerary_succ_append
 #print axioms CylinderEnergy.sum_bias_sq

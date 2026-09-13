@@ -318,7 +318,7 @@ type Paper B proves enters Appendix C as an explicit hypothesis.
 
 Statements carry one of four roles. *Lean*: the exact combinatorial
 layer is formalized in Lean 4; the root `formal/Problems/JugglerFatePaper.lean`
-imports exactly the twenty modules this paper cites and builds with
+imports exactly the twenty-one modules this paper cites and builds with
 `lake build Problems.JugglerFatePaper`, without `sorry` and without
 `native_decide`; `formal/AxiomCheckPaperC.lean` prints the axiom
 dependencies of every cited name and `AxiomCheckPaperC.expected`
@@ -341,7 +341,7 @@ constants; they prove nothing and are labelled wherever they appear.
 | Monotone pairing (Lemma 4.1') | Lean |
 | Fiber parity (Lemma 4.2), goodness unpacked | Lean, through Lemma 4.1' |
 | Thin fibers (Lemma 4.3): the count on \((u,2u]\) and the log-mass of the bad \(m>U\) | Lean |
-| Block average (Proposition 4.4), asymptotic | human proof |
+| Block average (Proposition 4.4), asymptotic | human proof; the exact layer and the deduction of (4.1) from the exponential-sum bounds are Lean, the bounds themselves are not |
 | Share law and its three corollaries (Lemma 4.5, Corollary 4.6) | human proof |
 | Production inequality (5.2) with the \(V\)-ladder terms of Section 5.7 | human proof |
 | Cube fibers full or alternating (Lemma 4.7) | Lean |
@@ -833,6 +833,23 @@ bounded by a constant times the sum of the two majorants. These
 estimates prove (4.1) for sufficiently large \(m'\); increasing
 the unspecified absolute constant covers the finitely many smaller
 integers \(m'\ge2\). \(\square\)
+
+Lean: the exact layer and the conditional deduction, in
+`formal/Problems/Juggler/FateBlockAverage.lean`. The block is
+`BlockAverage.oddBlock`, exactly the odd \(n\) with
+\(m'^2\le\lfloor n^{3/4}\rfloor<(m'+1)^2\) by the landing window of
+Appendix D.1 (`mem_oddBlock`); `U_card_eq` is the sentence that
+\(U(m')\) is the disjoint union of the even-image parts of the
+\(\Phi(m)\) over the even \(m\) of the block, with
+`oddBlock_card_eq` the same for the whole block; and `four_card_U` is
+the expansion
+\(4|U(m')|=M+S_1+S_2+S_{12}\) that the proof starts from. Given
+bounds on the three parity sums, (4.1) is `block_average_bound`. The
+bounds are hypotheses there, not theorems: Vaaler's approximation, the
+second-derivative test and Kusmin--Landau are not formalized, so this
+proposition stays a human proof and the table says so. The asymptotic
+form needs in addition a two-sided count of the odd integers of the
+block, which is not formalized either.
 
 *Revision note.* The earlier value \(C_0=250\) depended on an
 unverified explicit majorant and small-parameter inequalities that
@@ -2421,7 +2438,7 @@ No nontrivial cycle or unbounded orbit is excluded by this paper.
 ## Appendix A. Lean names
 
 All in `formal/Problems/Juggler/FateContagion.lean` unless noted. The
-root `formal/Problems/JugglerFatePaper.lean` imports exactly the twenty
+root `formal/Problems/JugglerFatePaper.lean` imports exactly the twenty-one
 modules named here and builds with `lake build Problems.JugglerFatePaper`
 without `sorry` and without `native_decide`;
 `formal/AxiomCheckPaperC.expected` records the axioms of every name
@@ -2441,6 +2458,7 @@ abstract lemmas listed here, not the analytic density estimates.
 | Lean floor \(N_0=260\) | `reachesOne_of_lt_two_hundred_sixty_one` |
 | Lemma 4.7 (cube fibers), in `Problems/Juggler/CubeFiber.lean` | `cube_fiber_range`, `cube_fiber_sqrt_even`, `cube_fiber_even_image`, `even_cube_fiber_full`, `cube_fiber_sqrt_odd`, `cube_fiber_alternating`, `odd_cube_fiber_alternating` |
 | Shared counting of Lemmas 4.1, 4.1' and 4.3 (separated sequences in a window), in `Problems/Juggler/FateWindowCount.lean` | `WindowCount.StepGe`, `WindowCount.StepLe`, `WindowCount.span_ge`, `WindowCount.span_le`, `WindowCount.mono_of_stepGe`, `WindowCount.window_card_le`, `WindowCount.window_card_le_nat` |
+| Proposition 4.4, the exact layer and the deduction from the exponential-sum bounds (the bounds are hypotheses), in `Problems/Juggler/FateBlockAverage.lean` | `BlockAverage.blockE`, `BlockAverage.oddBlock`, `BlockAverage.mem_oddBlock`, `BlockAverage.mem_oeFiber_iff_cell34`, `BlockAverage.U`, `BlockAverage.oddBlock_card_eq`, `BlockAverage.U_card_eq`, `BlockAverage.psi`, `BlockAverage.slowSum`, `BlockAverage.fastSum`, `BlockAverage.productSum`, `BlockAverage.four_card_U`, `BlockAverage.block_average_of_bounds`, `BlockAverage.block_average_bound` |
 | Section 10(d), the cylinder-splitting identity, in `Problems/Juggler/FateCylinderEnergy.lean` | `CylinderEnergy.itinerary_succ_append`, `CylinderEnergy.wordCount`, `CylinderEnergy.wordCount_split`, `CylinderEnergy.energy`, `CylinderEnergy.bias`, `CylinderEnergy.energy_succ`, `CylinderEnergy.sum_bias_sq` |
 | Appendix D.1, the exact landing windows (D.1) and (D.2), in `Problems/Juggler/FateLandingWindow.lean` | `LandingWindow.cell34`, `LandingWindow.cell34_eq_floorPower_two`, `LandingWindow.le_cell34_iff`, `LandingWindow.cell34_lt_iff`, `LandingWindow.windowStart`, `LandingWindow.windowStart_exists`, `LandingWindow.windowStart_le_iff`, `LandingWindow.lt_windowStart_iff`, `LandingWindow.exact_endpoints`, `LandingWindow.setOf_cell34_mem_Ico`, `LandingWindow.exact_endpoints_iterate`, `LandingWindow.setOf_iterate_mem_Ico` |
 | Lemma 4.1 (sweep), in `Problems/Juggler/FateSweep.lean` | `Sweep.cell`, `Sweep.sweep_cell`, `sweep_fract_lt_half`, `sweep_fract_ge_half`, `sweep_ceil`, `sweep_rep_le_half`, `sweep_rep_gt_half` |
@@ -2458,7 +2476,7 @@ abstract lemmas listed here, not the analytic density estimates.
 | Lemma 4.2 (fiber parity), in `Problems/Juggler/FateFiberParity.lean` | `FiberParity.xval`, `FiberParity.two_xval`, `FiberParity.floor_two_xval`, `FiberParity.cell_xval_even_iff`, `FiberParity.xval_step`, `FiberParity.xval_step_ge`, `FiberParity.xval_step_le`, `FiberParity.xval_step_mono`, `FiberParity.oeFiber`, `FiberParity.mem_oeFiber`, `FiberParity.oeFiber_eq_image`, `FiberParity.oeFiber_card`, `FiberParity.evenImageCount`, `FiberParity.fiber_ge_rpow`, `FiberParity.fiber_lt_rpow`, `FiberParity.rpow_four_thirds_succ_ge`, `FiberParity.rpow_two_thirds_succ_le`, `FiberParity.oeFiber_card_ge`, `FiberParity.Am`, `FiberParity.alpha`, `FiberParity.eps`, `FiberParity.Good`, `FiberParity.eps_le`, `FiberParity.step_ge`, `FiberParity.step_le`, `FiberParity.fiber_parity_good` |
 | Lemma 4.3 (thin fibers), in `Problems/Juggler/FateThinFibers.lean` | `FiberParity.span_ge_of_step`, `FiberParity.arc_count_le`, `FiberParity.Am_step_le`, `FiberParity.Am_step_ge`, `FiberParity.eps_antitone`, `FiberParity.bad_mem_arc`, `FiberParity.two_rpow_third_le`, `FiberParity.two_rpow_two_thirds_le`, `FiberParity.rpow_two_thirds_ge`, `FiberParity.eps_div_eps_double`, `FiberParity.Am_double_sub_le`, `FiberParity.bad_count_le`, `FiberParity.bad_block_logMass_le`, `FiberParity.bad_sum_dyadic_le`, `FiberParity.eps_pow_two_mul`, `FiberParity.two_rpow_neg_third_le`, `FiberParity.bad_logMass_le` |
 | Theorem 5.3 given (5.2), Theorem 7.3, Corollary 8.4 through (5.2), in `Problems/Juggler/FateContagionBound.lean` | `productionRate`, `productionCoeff`, `productionRate_pos`, `productionRate_ge`, `productionRate_le`, `productionRate_le_one`, `productionCoeff_ge`, `productionCoeff_nonneg`, `zeta`, `zeta_antitone`, `le_rpow_div_of_pow_le`, `zeta_pos_49`, `seedConst`, `gA`, `gA_seed`, `logMass_ge_gA`, `contagion_of_production_inequality`, `logMass_contagion_of_production`, `oddFailures_eq_empty`, `tao_rate_iff_conjecture`, `conjecture_of_cylinder_bound_of_production` |
-| Proposition 4.4, the production inequality (5.2), Sections 8--10 except Lemma 8.2, the explicit form of Theorem 8.3, Corollary 8.4, the exact form of Theorem 9.2 and Proposition 9.3, Appendix C; Theorems 5.3, 7.2, 7.3 and Corollary 8.4 only with (5.2) or the contagion bound as a hypothesis | human proofs |
+| Proposition 4.4 (its exponential-sum bounds; the exact layer and the deduction of (4.1) from those bounds are Lean), the production inequality (5.2), Sections 8--10 except Lemma 8.2, the explicit form of Theorem 8.3, Corollary 8.4, the exact form of Theorem 9.2 and Proposition 9.3, Appendix C; Theorems 5.3, 7.2, 7.3 and Corollary 8.4 only with (5.2) or the contagion bound as a hypothesis | human proofs |
 
 ## Appendix B. Constants and artifacts
 
@@ -2536,6 +2554,10 @@ use the roots of the displayed defining equations.
 
   SHA-256: `7defa672e0ea746d14bfc88b13d40603c05097507847bc901162334bce38c4fa`
 
+- `formal/Problems/Juggler/FateBlockAverage.lean`
+
+  SHA-256: `fd2d59caa3fa67676be0f9a1924c1dd6f4a5fbf24a8a9720ebdb3efa18905181`
+
 - `formal/Problems/Juggler/FateCylinderEnergy.lean`
 
   SHA-256: `575b3ae4938c0f97f729873f375b75f0860927be11b606dcff2db2c560aca5eb`
@@ -2582,11 +2604,11 @@ use the roots of the displayed defining equations.
 
 - `formal/Problems/JugglerFatePaper.lean`
 
-  SHA-256: `9b9c072544ec252917c248b6e8cef94ed605bec3dc758eda5c4fce300561a7c9`
+  SHA-256: `f155ecf9241f268b1cb4014bfab17fd378af59786ff87e6682acb899e3c5a985`
 
 - `formal/AxiomCheckPaperC.expected`
 
-  SHA-256: `4a6ac4a22b5e9be90f1f960c354fbcd20975d75a50fe9c1938b9bb60dd84a89b`
+  SHA-256: `ad6f9755a8ea830a4bbbcbf0d127562352e2232e3a6c84bcf3035175c1f62cd9`
 
 - `src/research/juggler_sequence/fate_contagion.py`
 
