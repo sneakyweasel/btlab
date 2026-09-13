@@ -28172,6 +28172,279 @@
       "trust": "kernel"
     },
     {
+      "doc": "The contraction factors `e_i` of the eight productions: `E`, the pairing at depth two, the rest at depth two, `OEOEE`, and the ladder `V_3` to `V_6`.",
+      "file": "formal/Problems/Juggler/FateContagionBound.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-contagion-conditional",
+        "J-fate-tao-equivalence"
+      ],
+      "line": 53,
+      "module": "Problems.Juggler.FateContagionBound",
+      "name": "productionRate",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The coefficients `c_i` of the eight productions.",
+      "file": "formal/Problems/Juggler/FateContagionBound.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-contagion-conditional",
+        "J-fate-tao-equivalence"
+      ],
+      "line": 64,
+      "module": "Problems.Juggler.FateContagionBound",
+      "name": "productionCoeff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateContagionBound.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-contagion-conditional",
+        "J-fate-tao-equivalence"
+      ],
+      "line": 74,
+      "module": "Problems.Juggler.FateContagionBound",
+      "name": "productionRate_pos",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateContagionBound.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-contagion-conditional",
+        "J-fate-tao-equivalence"
+      ],
+      "line": 77,
+      "module": "Problems.Juggler.FateContagionBound",
+      "name": "productionRate_ge",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateContagionBound.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-contagion-conditional",
+        "J-fate-tao-equivalence"
+      ],
+      "line": 80,
+      "module": "Problems.Juggler.FateContagionBound",
+      "name": "productionRate_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateContagionBound.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-contagion-conditional",
+        "J-fate-tao-equivalence"
+      ],
+      "line": 83,
+      "module": "Problems.Juggler.FateContagionBound",
+      "name": "productionRate_le_one",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateContagionBound.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-contagion-conditional",
+        "J-fate-tao-equivalence"
+      ],
+      "line": 86,
+      "module": "Problems.Juggler.FateContagionBound",
+      "name": "productionCoeff_ge",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateContagionBound.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-contagion-conditional",
+        "J-fate-tao-equivalence"
+      ],
+      "line": 89,
+      "module": "Problems.Juggler.FateContagionBound",
+      "name": "productionCoeff_nonneg",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The paper's `\u03b6(\u03bb) = \u03a3_i c_i e_i^\u03bb - 1`; Theorem 5.3 holds for every `\u03bb` with `\u03b6(\u03bb) > 0`.",
+      "file": "formal/Problems/Juggler/FateContagionBound.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-contagion-conditional",
+        "J-fate-tao-equivalence"
+      ],
+      "line": 93,
+      "module": "Problems.Juggler.FateContagionBound",
+      "name": "zeta",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`\u03b6` is antitone: every `e_i \u2264 1`.",
+      "file": "formal/Problems/Juggler/FateContagionBound.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-contagion-conditional",
+        "J-fate-tao-equivalence"
+      ],
+      "line": 97,
+      "module": "Problems.Juggler.FateContagionBound",
+      "name": "zeta_antitone",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A rational lower bound for a rational power: `r \u2264 x^{p/q}` from `r^q \u2264 x^p`.",
+      "file": "formal/Problems/Juggler/FateContagionBound.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-contagion-conditional",
+        "J-fate-tao-equivalence"
+      ],
+      "line": 106,
+      "module": "Problems.Juggler.FateContagionBound",
+      "name": "le_rpow_div_of_pow_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`\u03b6(0.49) > 0`: the eight production terms at `\u03bb = 49/100` sum to more than `1`, by exact rational lower bounds (`e_i^{49} \u2265 r_i^{100}`). The paper's root is `\u03bb** = 0.4926\u2026`.",
+      "file": "formal/Problems/Juggler/FateContagionBound.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-contagion-conditional",
+        "J-fate-tao-equivalence"
+      ],
+      "line": 116,
+      "module": "Problems.Juggler.FateContagionBound",
+      "name": "zeta_pos_49",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The seed constant `c_A` of Lemma 5.2.",
+      "file": "formal/Problems/Juggler/FateContagionBound.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-contagion-conditional",
+        "J-fate-tao-equivalence"
+      ],
+      "line": 172,
+      "module": "Problems.Juggler.FateContagionBound",
+      "name": "seedConst",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The paper's `g_A(t)`: the log-mass of `A` on `(\u221ax, x]` at `x = e^t`, on the integers of `(\u230a\u221a\u230ax\u230b\u230b, \u230ax\u230b]`.",
+      "file": "formal/Problems/Juggler/FateContagionBound.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-contagion-conditional",
+        "J-fate-tao-equivalence"
+      ],
+      "line": 177,
+      "module": "Problems.Juggler.FateContagionBound",
+      "name": "gA",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Lemma 5.2 in the form `g_A(t) \u2265 c_A` for `t \u2265 4 log(m+1)`.",
+      "file": "formal/Problems/Juggler/FateContagionBound.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-contagion-conditional",
+        "J-fate-tao-equivalence"
+      ],
+      "line": 181,
+      "module": "Problems.Juggler.FateContagionBound",
+      "name": "gA_seed",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`g_A(log x)` is at most the full log-mass up to `x`.",
+      "file": "formal/Problems/Juggler/FateContagionBound.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-contagion-conditional",
+        "J-fate-tao-equivalence"
+      ],
+      "line": 195,
+      "module": "Problems.Juggler.FateContagionBound",
+      "name": "logMass_ge_gA",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Paper C Theorem 5.3, given the production inequality (5.2).** Let `A` be backward-closed with a positive member, `0 < \u03bb \u2264 0.49`, and suppose `g_A(t) \u2265 \u03a3_i (c_i - \u03b7_i(t)) g_A(e_i t) - \u03b7\u2080(t)` for all `t \u2265 t\u2080`, with errors `\u03b7_i(t), \u03b7\u2080(t) \u2265 0` that tend to `0`. Then `g_A(t) \u2265 K t^\u03bb` for all large `t`, some `K > 0`. The proof is the paper's: the seed of Lemma 5.2 on `[e_min t\u2081, t\u2081]`, the recursion lemma with `\u03b6(\u03bb) \u2265 \u03b6(0.49) > 0`, and `t\u2081` large enough that the errors are below `\u03b6/24` and `(2\u03b6/3) c_A`.",
+      "file": "formal/Problems/Juggler/FateContagionBound.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-contagion-conditional",
+        "J-fate-tao-equivalence"
+      ],
+      "line": 216,
+      "module": "Problems.Juggler.FateContagionBound",
+      "name": "contagion_of_production_inequality",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Theorem 5.3 given (5.2), in the form Theorem 7.2 consumes: `\u03a3_{n \u2264 x, n \u2208 A} 1/n \u2265 K (log x)^\u03bb` for all large `x`.",
+      "file": "formal/Problems/Juggler/FateContagionBound.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-contagion-conditional",
+        "J-fate-tao-equivalence"
+      ],
+      "line": 279,
+      "module": "Problems.Juggler.FateContagionBound",
+      "name": "logMass_contagion_of_production",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Every positive integer reaching `1` empties the odd failures of every block.",
+      "file": "formal/Problems/Juggler/FateContagionBound.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-contagion-conditional",
+        "J-fate-tao-equivalence"
+      ],
+      "line": 303,
+      "module": "Problems.Juggler.FateContagionBound",
+      "name": "oddFailures_eq_empty",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Paper C Theorem 7.3 (equivalence), with the contagion bound of Theorem 5.3 as a hypothesis.** Every positive integer reaches `1` iff the odd failures satisfy a Tao-type rate `y (log y)^{-e}` with some `e > 1 - \u03bb` at all large scales.",
+      "file": "formal/Problems/Juggler/FateContagionBound.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-contagion-conditional",
+        "J-fate-tao-equivalence"
+      ],
+      "line": 312,
+      "module": "Problems.Juggler.FateContagionBound",
+      "name": "tao_rate_iff_conjecture",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Corollary 8.4 with Theorem 5.3 discharged through the production inequality.** If the cylinder hypothesis `H(C, A)` holds at all large scales with `C \u2265 5`, `A > C + e(C)` and `1 - \u03bb < e(C)` for some `0 < \u03bb \u2264 0.49`, and the failure set (if nonempty) satisfies the production inequality (5.2) with vanishing errors, then every positive integer reaches `1`.",
+      "file": "formal/Problems/Juggler/FateContagionBound.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-contagion-conditional",
+        "J-fate-tao-equivalence"
+      ],
+      "line": 333,
+      "module": "Problems.Juggler.FateContagionBound",
+      "name": "conjecture_of_cylinder_bound_of_production",
+      "trust": "kernel"
+    },
+    {
       "doc": "The cylinder hypothesis `H(C, A)` at the scale `y`: every `O`-rooted `L(y)`-bad cylinder of depth `d(y) = \u2308C L(y)\u2309` holds at most `2^{-(d-1)} y/2 + y (log y)^{-A}` starts.",
       "file": "formal/Problems/Juggler/FateCylinderCorollary.lean",
       "kind": "def",
@@ -81577,6 +81850,7 @@
         "Problems.Juggler.FanLaw",
         "Problems.Juggler.FateChernoff",
         "Problems.Juggler.FateContagion",
+        "Problems.Juggler.FateContagionBound",
         "Problems.Juggler.FateCylinderCorollary",
         "Problems.Juggler.FateFiberParity",
         "Problems.Juggler.FateFirstLetter",
@@ -82588,6 +82862,27 @@
         {
           "id": "J-fate-envelope-floor",
           "statement": "Envelope descent into a certified floor. For a realized word w at n (follows n w), if n ^ 3^{#O(w)} \u2264 N\u2080 ^ 2^{|w|} as integers then floorPower^[|w|] n \u2264 N\u2080 (iterate_le_of_envelope, from power_bound_word and Nat.pow_le_pow_iff_left); if moreover every 1 \u2264 m \u2264 N\u2080 lies in a backward-closed class A, then n \u2208 A (mem_of_envelope_floor); in particular, with A = ReachesOne and the realized itinerary of the first k steps, n ^ 3^{#O(itinerary n k)} \u2264 N\u2080 ^ 2^k implies ReachesOne n (reachesOne_of_itinerary_envelope). This is the exact step of the Tao-type reduction: a start whose exponent walk reaches \u2212L(y) = \u2212log\u2082(log 2y / log N\u2080) within d steps enters [1, N\u2080]. Not a halt theorem.",
+          "tag": "EXACT \u2014 LEAN VERIFIED"
+        }
+      ]
+    },
+    "Problems.Juggler.FateContagionBound": {
+      "declarations": 21,
+      "file": "formal/Problems/Juggler/FateContagionBound.lean",
+      "imports": [
+        "Problems.Juggler.FateCylinderCorollary",
+        "Problems.Juggler.FateRecursion",
+        "Problems.Juggler.FateSeed"
+      ],
+      "ledger": [
+        {
+          "id": "J-fate-contagion-conditional",
+          "statement": "Paper C Theorem 5.3 (contagion) given the production inequality (5.2), for every 0 < \u03bb \u2264 0.49. Data: productionRate/productionCoeff are the eight productions (e_i, c_i) = (1/2, 1), (3/8, 1/9), (3/4, 2/9), (9/32, 1/27), (27/128, 1/81), (81/512, 1/243), (243/2048, 1/729), (729/8192, 1/2187); zeta \u03bb = \u03a3 c_i e_i^\u03bb \u2212 1 is antitone in \u03bb (zeta_antitone) and zeta (49/100) > 0 (zeta_pos_49): each e_i^{49/100} is bounded below by a five-digit rational r_i through r_i^100 \u2264 e_i^49 in exact integer arithmetic (le_rpow_div_of_pow_le), and \u03a3 c_i r_i \u2212 1 = 0.00168 > 0 (the exact value of \u03b6(0.49) is 0.001683; the paper's root is \u03bb** = 0.4926). gA A t = halfLogMass A \u230ae^t\u230b\u208a is the paper's g_A(t) (the integers in (\u221ax, x] are those in (\u230a\u221a\u230ax\u230b\u230b, \u230ax\u230b]); gA_seed is Lemma 5.2 in the form g_A(t) \u2265 c_A for t \u2265 4 log(m+1); logMass_ge_gA compares with the full log-mass. Theorem (contagion_of_production_inequality): A backward-closed with a positive member, 0 < \u03bb \u2264 49/100, errors \u03b7_i(t) \u2265 0 and \u03b7\u2080(t) with (\u2200 \u03b5 > 0, \u2203 T, \u2200 t \u2265 T, \u03b7_i(t) \u2264 \u03b5 and \u03b7\u2080(t) \u2264 \u03b5), and g_A(t) \u2265 \u03a3_i (c_i \u2212 \u03b7_i(t)) g_A(e_i t) \u2212 \u03b7\u2080(t) for all t \u2265 t\u2080: then \u2203 K > 0, \u2203 t\u2081 > 0, \u2200 t \u2265 t\u2081, K t^\u03bb \u2264 g_A(t). Proof as in the paper: m \u2265 3 in A (exists_ge_three_of_backwardClosed), \u03b5 = min(\u03b6/24, 2\u03b6c_A/3, 1/2187), t\u2081 \u2265 max(T, t\u2080, 1, 4 log(m+1)\u00b78192/729), then recursion_lemma with e_min = 729/8192, e_max = 3/4 and the seed on [e_min t\u2081, t\u2081]; the hypothesis \u03b7\u2080 \u2265 0 is never used. logMass_contagion_of_production is the same in the form \u03a3_{n \u2264 x, n \u2208 A} 1/n \u2265 K (log x)^\u03bb for x \u2265 x\u2080, which Theorem 7.2 consumes. conjecture_of_cylinder_bound_of_production: Corollary 8.4 with Theorem 5.3 discharged through (5.2) \u2014 H(C, A) at all large scales with C \u2265 5 and A > C + e(C), some 0 < \u03bb \u2264 0.49 with 1 \u2212 \u03bb < e(C), and (5.2) for the failure set give that every positive integer reaches 1 (C \u2265 19 still suffices since e(19) = 0.527 > 0.51, a numerical fact the audit checks, not Lean). Kernel-checked, axioms propext, Classical.choice, Quot.sound only. The production inequality (5.2) itself (Proposition 4.4, Lemmas 4.2\u20134.3 and the audited productions of Section 5.7) and the root \u03bb** stay human; the range 0.49 < \u03bb < \u03bb** is not formalized. Conditional; not a density theorem on its own, not a halt theorem.",
+          "tag": "EXACT \u2014 LEAN VERIFIED"
+        },
+        {
+          "id": "J-fate-tao-equivalence",
+          "statement": "Paper C Theorem 7.3 (the almost-all equivalence), with the contagion bound of Theorem 5.3 as a hypothesis, as for Theorem 7.2 (row J-tao-rate-implies-conjecture). tao_rate_iff_conjecture: for 0 < \u03bb < 1 and the contagion bound K (log x)^\u03bb \u2264 logMass (\u00acReachesOne) x for x \u2265 x\u2080 whenever the failure set is nonempty, every positive integer reaches 1 iff there is e > 1 \u2212 \u03bb and y\u2080 with #{odd n in (y, 2y] : n does not reach 1} \u2264 y (log y)^{\u2212e} for all y \u2265 y\u2080. Forward: an empty failure set has no odd failures on any block (oddFailures_eq_empty), so any e (e = 2 \u2212 \u03bb) works; backward: tao_rate_implies_conjecture. Kernel-checked, axioms propext, Classical.choice, Quot.sound only. With row J-fate-contagion-conditional the contagion hypothesis can be replaced by the production inequality (5.2). Not a halt theorem: the rate is not proved.",
           "tag": "EXACT \u2014 LEAN VERIFIED"
         }
       ]
@@ -84131,6 +84426,7 @@
         "Problems.Juggler.CubeFiber",
         "Problems.Juggler.FateChernoff",
         "Problems.Juggler.FateContagion",
+        "Problems.Juggler.FateContagionBound",
         "Problems.Juggler.FateCylinderCorollary",
         "Problems.Juggler.FateFiberParity",
         "Problems.Juggler.FateFirstLetter",
@@ -84444,13 +84740,13 @@
     }
   },
   "totals": {
-    "declarations": 6203,
-    "declarations_with_a_ledger_row": 4233,
-    "ledger_rows_naming_a_file": 388,
-    "modules": 267,
+    "declarations": 6224,
+    "declarations_with_a_ledger_row": 4254,
+    "ledger_rows_naming_a_file": 390,
+    "modules": 268,
     "trust": {
       "compiler": 57,
-      "kernel": 6146
+      "kernel": 6167
     }
   }
 }

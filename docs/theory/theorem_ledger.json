@@ -7858,7 +7858,7 @@
  {
   "id": "J-fate-log-density",
   "tag": "EXACT — HUMAN PROOF",
-  "statement": "Logarithmic density of a fate class (fate-contagion note, Theorem 4.2 and Corollary 4.3; Paper C Theorem 1). Let λ** = 0.4925715447… be the root of 2^{−λ} + (1/9)(3/8)^λ + (2/9)(3/4)^λ + (1/27)(9/32)^λ + (1/81)(27/128)^λ + (1/243)(81/512)^λ + (1/729)(243/2048)^λ + (1/2187)(729/8192)^λ = 1 (V_5 truncation 0.4924 of the first seven terms; V_4 truncation 0.4916 of the first six terms; V_3 truncation 0.4891 of the first five terms; OEOEE truncation 0.4801 of the first four terms; pairing-only root 0.4480 of the first three; λ* ≈ 0.3774, root of 2^{−λ} + (1/3)(3/8)^λ = 1, without pairing; the adversarial sweep 1/7 gave 0.4050). For every nonempty backward-closed A ⊆ ℕ and every λ < λ** there are c, x_0 > 0 with Σ_{n ∈ A, n ≤ x} 1/n ≥ c (log x)^λ for x ≥ x_0. Proof: even blocks contribute g(t/2)(1 − o(1)), OE images of E-blocks contribute (1/3) g(3t/8)(1 − o(1)), OE images of the rest contribute (2/9)·(g(3t/4) − g(3t/8))·(1 − o(1)) by monotone pairing, the elementary OEOEE production contributes (1/27) g(9t/32)(1 − o(1)) (J-fate-oeoee-production), the V_3 = OEOEOEE production contributes (1/81) g(27t/128)(1 − o(1)) (J-fate-v3-production), the V_4 = OEOEOEOEE production contributes (1/243) g(81t/512)(1 − o(1)) (J-fate-v4-production), the V_5 = OEOEOEOEOEE production contributes (1/729) g(243t/2048)(1 − o(1)) (J-fate-v5-production), and the V_6 = OEOEOEOEOEOEE production contributes (1/2187) g(729t/8192)(1 − o(1)) (J-fate-v6-production), all in (√x, x] and pairwise disjoint after removing those shares from family 3. The formal ideal depth-two recursion has root 0.4927; this is a model ceiling, not an attained infinite-family theorem. Not a halt theorem; no fate is excluded. The 9 September publication revision supplies a self-contained finite-depth proof in Appendix D using exact nested inverse endpoints, smooth multiplicity weights and averaged cancellation; no unproved pointwise cancellation on each short fiber is assumed. The analytic production estimates remain outside Lean.",
+  "statement": "Logarithmic density of a fate class (fate-contagion note, Theorem 4.2 and Corollary 4.3; Paper C Theorem 1). Let λ** = 0.4925715447… be the root of 2^{−λ} + (1/9)(3/8)^λ + (2/9)(3/4)^λ + (1/27)(9/32)^λ + (1/81)(27/128)^λ + (1/243)(81/512)^λ + (1/729)(243/2048)^λ + (1/2187)(729/8192)^λ = 1 (V_5 truncation 0.4924 of the first seven terms; V_4 truncation 0.4916 of the first six terms; V_3 truncation 0.4891 of the first five terms; OEOEE truncation 0.4801 of the first four terms; pairing-only root 0.4480 of the first three; λ* ≈ 0.3774, root of 2^{−λ} + (1/3)(3/8)^λ = 1, without pairing; the adversarial sweep 1/7 gave 0.4050). For every nonempty backward-closed A ⊆ ℕ and every λ < λ** there are c, x_0 > 0 with Σ_{n ∈ A, n ≤ x} 1/n ≥ c (log x)^λ for x ≥ x_0. Proof: even blocks contribute g(t/2)(1 − o(1)), OE images of E-blocks contribute (1/3) g(3t/8)(1 − o(1)), OE images of the rest contribute (2/9)·(g(3t/4) − g(3t/8))·(1 − o(1)) by monotone pairing, the elementary OEOEE production contributes (1/27) g(9t/32)(1 − o(1)) (J-fate-oeoee-production), the V_3 = OEOEOEE production contributes (1/81) g(27t/128)(1 − o(1)) (J-fate-v3-production), the V_4 = OEOEOEOEE production contributes (1/243) g(81t/512)(1 − o(1)) (J-fate-v4-production), the V_5 = OEOEOEOEOEE production contributes (1/729) g(243t/2048)(1 − o(1)) (J-fate-v5-production), and the V_6 = OEOEOEOEOEOEE production contributes (1/2187) g(729t/8192)(1 − o(1)) (J-fate-v6-production), all in (√x, x] and pairwise disjoint after removing those shares from family 3. The formal ideal depth-two recursion has root 0.4927; this is a model ceiling, not an attained infinite-family theorem. Not a halt theorem; no fate is excluded. The 9 September publication revision supplies a self-contained finite-depth proof in Appendix D using exact nested inverse endpoints, smooth multiplicity weights and averaged cancellation; no unproved pointwise cancellation on each short fiber is assumed. The analytic production estimates remain outside Lean. The recursion-and-seed half of the proof is Lean given the production inequality (5.2), for every λ ≤ 0.49: row J-fate-contagion-conditional (contagion_of_production_inequality in FateContagionBound.lean); (5.2) itself and the root λ** stay human.",
   "source": "docs/theory/juggler_fate_almost_all_note.md",
   "lean": "",
   "tests": [
@@ -9307,6 +9307,34 @@
   "source": "docs/problems/juggler_paper_c_formal_layer.md",
   "lean": "Problems/Juggler/FateThinFibers.lean",
   "decl": "bad_logMass_le",
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_paper_c_formal_layer.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-fate-contagion-conditional",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Paper C Theorem 5.3 (contagion) given the production inequality (5.2), for every 0 < λ ≤ 0.49. Data: productionRate/productionCoeff are the eight productions (e_i, c_i) = (1/2, 1), (3/8, 1/9), (3/4, 2/9), (9/32, 1/27), (27/128, 1/81), (81/512, 1/243), (243/2048, 1/729), (729/8192, 1/2187); zeta λ = Σ c_i e_i^λ − 1 is antitone in λ (zeta_antitone) and zeta (49/100) > 0 (zeta_pos_49): each e_i^{49/100} is bounded below by a five-digit rational r_i through r_i^100 ≤ e_i^49 in exact integer arithmetic (le_rpow_div_of_pow_le), and Σ c_i r_i − 1 = 0.00168 > 0 (the exact value of ζ(0.49) is 0.001683; the paper's root is λ** = 0.4926). gA A t = halfLogMass A ⌊e^t⌋₊ is the paper's g_A(t) (the integers in (√x, x] are those in (⌊√⌊x⌋⌋, ⌊x⌋]); gA_seed is Lemma 5.2 in the form g_A(t) ≥ c_A for t ≥ 4 log(m+1); logMass_ge_gA compares with the full log-mass. Theorem (contagion_of_production_inequality): A backward-closed with a positive member, 0 < λ ≤ 49/100, errors η_i(t) ≥ 0 and η₀(t) with (∀ ε > 0, ∃ T, ∀ t ≥ T, η_i(t) ≤ ε and η₀(t) ≤ ε), and g_A(t) ≥ Σ_i (c_i − η_i(t)) g_A(e_i t) − η₀(t) for all t ≥ t₀: then ∃ K > 0, ∃ t₁ > 0, ∀ t ≥ t₁, K t^λ ≤ g_A(t). Proof as in the paper: m ≥ 3 in A (exists_ge_three_of_backwardClosed), ε = min(ζ/24, 2ζc_A/3, 1/2187), t₁ ≥ max(T, t₀, 1, 4 log(m+1)·8192/729), then recursion_lemma with e_min = 729/8192, e_max = 3/4 and the seed on [e_min t₁, t₁]; the hypothesis η₀ ≥ 0 is never used. logMass_contagion_of_production is the same in the form Σ_{n ≤ x, n ∈ A} 1/n ≥ K (log x)^λ for x ≥ x₀, which Theorem 7.2 consumes. conjecture_of_cylinder_bound_of_production: Corollary 8.4 with Theorem 5.3 discharged through (5.2) — H(C, A) at all large scales with C ≥ 5 and A > C + e(C), some 0 < λ ≤ 0.49 with 1 − λ < e(C), and (5.2) for the failure set give that every positive integer reaches 1 (C ≥ 19 still suffices since e(19) = 0.527 > 0.51, a numerical fact the audit checks, not Lean). Kernel-checked, axioms propext, Classical.choice, Quot.sound only. The production inequality (5.2) itself (Proposition 4.4, Lemmas 4.2–4.3 and the audited productions of Section 5.7) and the root λ** stay human; the range 0.49 < λ < λ** is not formalized. Conditional; not a density theorem on its own, not a halt theorem.",
+  "source": "docs/problems/juggler_paper_c_formal_layer.md",
+  "lean": "Problems/Juggler/FateContagionBound.lean",
+  "decl": "contagion_of_production_inequality",
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_paper_c_formal_layer.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-fate-tao-equivalence",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Paper C Theorem 7.3 (the almost-all equivalence), with the contagion bound of Theorem 5.3 as a hypothesis, as for Theorem 7.2 (row J-tao-rate-implies-conjecture). tao_rate_iff_conjecture: for 0 < λ < 1 and the contagion bound K (log x)^λ ≤ logMass (¬ReachesOne) x for x ≥ x₀ whenever the failure set is nonempty, every positive integer reaches 1 iff there is e > 1 − λ and y₀ with #{odd n in (y, 2y] : n does not reach 1} ≤ y (log y)^{−e} for all y ≥ y₀. Forward: an empty failure set has no odd failures on any block (oddFailures_eq_empty), so any e (e = 2 − λ) works; backward: tao_rate_implies_conjecture. Kernel-checked, axioms propext, Classical.choice, Quot.sound only. With row J-fate-contagion-conditional the contagion hypothesis can be replaced by the production inequality (5.2). Not a halt theorem: the rate is not proved.",
+  "source": "docs/problems/juggler_paper_c_formal_layer.md",
+  "lean": "Problems/Juggler/FateContagionBound.lean",
+  "decl": "tao_rate_iff_conjecture",
   "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_paper_c_formal_layer.py",

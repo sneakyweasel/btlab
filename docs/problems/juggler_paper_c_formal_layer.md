@@ -91,10 +91,26 @@ log-mass is at least \(K(\log x)^\lambda\) whenever nonempty, with
 (`tao_rate_implies_empty`, `tao_rate_implies_conjecture` on the
 failure set). The contagion bound itself stays a human proof.
 
+**Theorem 5.3 given (5.2), Theorem 7.3, and Corollary 8.4 through (5.2)
+(EXACT — LEAN VERIFIED given hypotheses, `FateContagionBound.lean`).** For
+a backward-closed class with a positive member, every \(0<\lambda\le 0.49\),
+and the production inequality
+\(g_A(t)\ge\sum_i(c_i-\eta_i(t))g_A(e_it)-\eta_0(t)\) for \(t\ge t_0\)
+with vanishing errors, \(g_A(t)\ge Kt^\lambda\) for all large \(t\)
+(`contagion_of_production_inequality`), hence
+\(\sum_{n\le x,n\in A}1/n\ge K(\log x)^\lambda\)
+(`logMass_contagion_of_production`); \(\zeta(0.49)>0\) is `zeta_pos_49`,
+by eight exact rational bounds \(r_i^{100}\le e_i^{49}\), and \(\zeta\)
+is antitone (`zeta_antitone`). Theorem 7.3 with the contagion bound as a
+hypothesis is `tao_rate_iff_conjecture`; Corollary 8.4 with Theorem 5.3
+discharged through (5.2) is `conjecture_of_cylinder_bound_of_production`.
+The production inequality itself and the root \(\lambda^{**}\) stay
+human.
+
 **The build root (COMPUTATIONALLY VERIFIED).**
-`formal/Problems/JugglerFatePaper.lean` imports exactly the eleven
+`formal/Problems/JugglerFatePaper.lean` imports exactly the sixteen
 modules Paper C cites; `formal/AxiomCheckPaperC.lean` prints the axioms
-of the 135 cited declarations and `AxiomCheckPaperC.expected` records
+of the 211 cited declarations and `AxiomCheckPaperC.expected` records
 them, every list a subset of `propext`, `Classical.choice`,
 `Quot.sound`, no `sorryAx`, no `native_decide`.
 
@@ -195,13 +211,17 @@ composition of Theorems 8.3 and 7.2, 5 declarations),
 declarations in namespace `FiberParity`),
 `formal/Problems/Juggler/FateThinFibers.lean` (Lemma 4.3, thin fibers, 17
 declarations in namespace `FiberParity`),
+`formal/Problems/Juggler/FateContagionBound.lean` (Theorem 5.3 given (5.2),
+Theorem 7.3, Corollary 8.4 through (5.2), 21 declarations),
 `formal/Problems/JugglerFatePaper.lean` (barrel),
 `formal/AxiomCheckPaperC.lean` and `.expected`. All kernel-checked; the
-Paper C surface (root `Problems.JugglerFatePaper`, 45 modules reached,
-1487 declarations) carries no `native_decide` and cites none.
+Paper C surface (root `Problems.JugglerFatePaper`, 48 modules reached,
+1567 declarations) carries no `native_decide` and cites none.
 
 Not formalized, and not claimed:
-Proposition 4.4, the share law 4.5–4.6, Theorem 5.3, Theorem 7.3,
+Proposition 4.4, the share law 4.5–4.6, the production inequality (5.2)
+(Theorem 5.3 is Lean given it, for \(\lambda\le 0.49\)), the unconditional
+Theorems 7.2 and 7.3, the root \(\lambda^{**}\),
 the asymptotic forms of Theorems 8.3 and 9.2, Theorem 9.1, Section 10, Appendix C, and the log-mass bookkeeping
 that turns the first-letter trichotomy into the identity (6.1).
 
@@ -211,9 +231,9 @@ Classification **PAPER_C_LEAN_SURFACE_CONSISTENT**.
 
 ```text
   Paper C verification table, before and after
-  Lean rows      15 -> 19  (Lemma 4.1', Corollary 8.4, Lemmas 4.2, 4.3 new)
-  human rows     7 -> 6    (Theorems 5.3 and 7.3, Proposition 4.4, the share law, (6.1), Sections 8--10's asymptotics)
-  cited names    135 -> 145, all on subsets of Mathlib's three axioms; none native_decide
+  Lean rows      15 -> 21  (Lemma 4.1', Corollary 8.4, Lemmas 4.2, 4.3, Theorem 5.3 given (5.2), Theorem 7.3 new)
+  human rows     7 -> 5    (Proposition 4.4, the share law, the production inequality (5.2), (6.1), Sections 8--10's asymptotics)
+  cited names    135 -> 211, all on subsets of Mathlib's three axioms; none native_decide
 ```
 
 - The three proofs are the paper's; the sweep count is the paper's
@@ -244,14 +264,28 @@ Classification **PAPER_C_LEAN_SURFACE_CONSISTENT**.
   contagion bound as the only analytic hypothesis
   (`cylinder_bound_implies_conjecture`). The threshold \(C\ge 19\) is a
   statement about \(\lambda^{**}\) and stays with the audit.
+- Theorem 5.3 given (5.2), and Theorem 7.3 (13 September, later): the
+  root \(\lambda^{**}\) is replaced by the rational \(\lambda=0.49\),
+  where \(\zeta(0.49)=0.00168>0\) is certified by eight exact
+  inequalities \(r_i^{100}\le e_i^{49}\) between 400-digit integers
+  (`zeta_pos_49`); \(\zeta\) is antitone, so every \(\lambda\le 0.49\)
+  inherits the theorem, and \(C\ge 19\) still clears the rate threshold
+  (\(e(19)=0.527>0.51\)). The recursion never needs \(\eta_0\ge 0\).
+  Theorem 7.3 is Theorem 7.2 plus the empty failure set, and Corollary
+  8.4 now closes with (5.2) in place of the contagion bound
+  (`conjecture_of_cylinder_bound_of_production`): from
+  \(\mathrm H(C,A)\) to the conjecture, (5.2) is the only analytic input.
 
 ## Open questions
 
 - Proposition 4.4 (the block average) is the first analytic step: an
   exponential-sum estimate. Not a small attack; with it, the whole
   fiber input of (5.2) would be Lean.
-- The numerical threshold of Corollary 8.4, \(e(19)>1-\lambda^{**}\),
-  would need \(\lambda^{**}\) in Lean; not a small attack.
+- The numerical threshold of Corollary 8.4 is now \(e(19)>0.51\)
+  (with \(\lambda=0.49\)); it needs bounds on \(D(p_{19}\Vert 1/2)\) in
+  Lean, not done. The range \(0.49<\lambda<\lambda^{**}\) of Theorem 5.3
+  needs \(\lambda^{**}\) as a root (intermediate value theorem on
+  \(\zeta\)); the constant certified is \(0.49\).
 
 ## Decision
 
@@ -260,7 +294,10 @@ barrel with the rest of the exact layer; the paper's headline
 conditional result is one Lean theorem with one analytic hypothesis,
 and every elementary step below the block average is Lean. Nothing here
 changes a constant or an exponent. Best next question: none that is
-small; Proposition 4.4 is the first analytic step.
+small; Proposition 4.4 is the first analytic step. Later the same day,
+Theorem 5.3 given (5.2) and Theorem 7.3 joined the Lean column
+(`FateContagionBound.lean`); the human residue of Paper C is the analysis
+of Sections 4, 5.7 and 8--10 and the identity (6.1).
 
 ## Publication assessment
 
