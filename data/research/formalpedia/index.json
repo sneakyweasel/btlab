@@ -29912,6 +29912,366 @@
       "trust": "kernel"
     },
     {
+      "doc": "`\u230a\u221a\u230ae^t\u230b\u230b = \u230ae^{t/2}\u230b`: the integer half-scale is what the paper's `\u221ax` means.",
+      "file": "formal/Problems/Juggler/FateProduction.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-contagion-elementary"
+      ],
+      "line": 39,
+      "module": "Problems.Juggler.FateProduction",
+      "name": "sqrt_floor_exp",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The floor of an exponential is at least half the exponential once the latter is `\u2265 2`.",
+      "file": "formal/Problems/Juggler/FateProduction.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-contagion-elementary"
+      ],
+      "line": 64,
+      "module": "Problems.Juggler.FateProduction",
+      "name": "floor_exp_ge_half",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Family 1.** For `s\u2081 = \u230a\u221ay\u230b` and `s\u2082 = \u230a\u221as\u2081\u230b`, the `E`-blocks of the members of `A` in `(s\u2082, s\u2081 - 1]` lie in `(s\u2081, y]`, are disjoint, and carry log-mass at least `(1 - 2/s\u2082) \u03a3_{m \u2208 A \u2229 (s\u2082, s\u2081-1]} 1/m`.",
+      "file": "formal/Problems/Juggler/FateProduction.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-contagion-elementary"
+      ],
+      "line": 74,
+      "module": "Problems.Juggler.FateProduction",
+      "name": "family_E",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A good fiber `\u03a6(m)`, `m \u2265 10\u2076`, carries even-image log-mass at least `(2/9)(1 - (25/2) m^{-1/3})/m`: at least `H_m/3 - 2 \u2265 (2/9)m^{1/3} - 7/3` even images (Lemmas 4.2 and 4.2's fiber bound), each above `1/(u\u2074 + 2u)` for `u = m^{1/3}`.",
+      "file": "formal/Problems/Juggler/FateProduction.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-contagion-elementary"
+      ],
+      "line": 127,
+      "module": "Problems.Juggler.FateProduction",
+      "name": "good_fiber_logMass_ge",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Family 3.** For `U = \u230a\u221ay''\u230b \u2265 10\u2076` and any shell `(s, y]` that contains every fiber `\u03a6(m)` with `U < m \u2264 y'' - 1`, the even-image parts of the good fibers of the members of `A` in `(U, y'' - 1]` are disjoint odd members of `A` in the shell, of total log-mass at least `(2/9)(1 - (25/2) U^{-1/3}) (\u03a3_{m \u2208 A \u2229 (U, y''-1]} 1/m - 306 U^{-1/3})`: Lemma 4.2 on the good fibers, Lemma 4.3 for the bad ones.",
+      "file": "formal/Problems/Juggler/FateProduction.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-contagion-elementary"
+      ],
+      "line": 190,
+      "module": "Problems.Juggler.FateProduction",
+      "name": "family_OE",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The loss on the `E`-family's coefficient, `4e^{-t/4}`.",
+      "file": "formal/Problems/Juggler/FateProduction.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-contagion-elementary"
+      ],
+      "line": 266,
+      "module": "Problems.Juggler.FateProduction",
+      "name": "errE",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The loss on the `OE`-family's coefficient, `(50/9)e^{-t/8}`.",
+      "file": "formal/Problems/Juggler/FateProduction.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-contagion-elementary"
+      ],
+      "line": 269,
+      "module": "Problems.Juggler.FateProduction",
+      "name": "errOE",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The additive error, `2e^{-t/2} + (4/9)e^{-3t/4} + 136e^{-t/8}`.",
+      "file": "formal/Problems/Juggler/FateProduction.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-contagion-elementary"
+      ],
+      "line": 272,
+      "module": "Problems.Juggler.FateProduction",
+      "name": "errAdd",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateProduction.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-contagion-elementary"
+      ],
+      "line": 275,
+      "module": "Problems.Juggler.FateProduction",
+      "name": "two_le_exp",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The reciprocal of a floored exponential is at most twice the reciprocal exponential.",
+      "file": "formal/Problems/Juggler/FateProduction.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-contagion-elementary"
+      ],
+      "line": 279,
+      "module": "Problems.Juggler.FateProduction",
+      "name": "one_div_floor_exp_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Dropping the top element of a half-shell costs at most its reciprocal.",
+      "file": "formal/Problems/Juggler/FateProduction.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-contagion-elementary"
+      ],
+      "line": 287,
+      "module": "Problems.Juggler.FateProduction",
+      "name": "sum_Ioc_le_sum_Ioc_pred",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The half-shell log-mass splits by parity.",
+      "file": "formal/Problems/Juggler/FateProduction.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-contagion-elementary"
+      ],
+      "line": 309,
+      "module": "Problems.Juggler.FateProduction",
+      "name": "halfLogMass_split",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The production inequality with two productions.** For `t \u2265 40`, `(1 - 4e^{-t/4}) g_A(t/2) + (2/9 - (50/9)e^{-t/8}) g_A(3t/4) - errAdd t \u2264 g_A(t)`: family 1 through Lemma 3.1, family 3 through Lemmas 4.2 and 4.3, with every error explicit and no hypothesis.",
+      "file": "formal/Problems/Juggler/FateProduction.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-contagion-elementary"
+      ],
+      "line": 326,
+      "module": "Problems.Juggler.FateProduction",
+      "name": "production_two",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The two productions: `E` at rate `1/2`, `OE` at rate `3/4`.",
+      "file": "formal/Problems/Juggler/FateProduction.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-contagion-elementary"
+      ],
+      "line": 475,
+      "module": "Problems.Juggler.FateProduction",
+      "name": "rate2",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Their coefficients, `1` and `2/9`.",
+      "file": "formal/Problems/Juggler/FateProduction.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-contagion-elementary"
+      ],
+      "line": 478,
+      "module": "Problems.Juggler.FateProduction",
+      "name": "coef2",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Their errors, `errE` and `errOE`.",
+      "file": "formal/Problems/Juggler/FateProduction.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-contagion-elementary"
+      ],
+      "line": 481,
+      "module": "Problems.Juggler.FateProduction",
+      "name": "err2",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateProduction.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-contagion-elementary"
+      ],
+      "line": 483,
+      "module": "Problems.Juggler.FateProduction",
+      "name": "rate2_ge",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateProduction.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-contagion-elementary"
+      ],
+      "line": 486,
+      "module": "Problems.Juggler.FateProduction",
+      "name": "rate2_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateProduction.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-contagion-elementary"
+      ],
+      "line": 489,
+      "module": "Problems.Juggler.FateProduction",
+      "name": "rate2_pos",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateProduction.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-contagion-elementary"
+      ],
+      "line": 491,
+      "module": "Problems.Juggler.FateProduction",
+      "name": "coef2_ge",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateProduction.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-contagion-elementary"
+      ],
+      "line": 494,
+      "module": "Problems.Juggler.FateProduction",
+      "name": "err2_nonneg",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateProduction.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-contagion-elementary"
+      ],
+      "line": 501,
+      "module": "Problems.Juggler.FateProduction",
+      "name": "err2_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The production inequality in the form the recursion lemma consumes.",
+      "file": "formal/Problems/Juggler/FateProduction.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-contagion-elementary"
+      ],
+      "line": 508,
+      "module": "Problems.Juggler.FateProduction",
+      "name": "production_two_sum",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`\u03b6(3/10) = 2^{-3/10} + (2/9)(3/4)^{3/10} - 1 > 0`, by two rational bounds: `0.81 \u2264 (1/2)^{3/10}` since `0.81^{10} \u2264 1/8`, and `0.91 \u2264 (3/4)^{3/10}` since `0.91^{10} \u2264 27/64`; then `0.81 + (2/9)(0.91) > 1`.",
+      "file": "formal/Problems/Juggler/FateProduction.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-contagion-elementary"
+      ],
+      "line": 519,
+      "module": "Problems.Juggler.FateProduction",
+      "name": "zeta2_pos",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`\u03b6` is antitone in `\u03bb`: both rates lie below `1`.",
+      "file": "formal/Problems/Juggler/FateProduction.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-contagion-elementary"
+      ],
+      "line": 531,
+      "module": "Problems.Juggler.FateProduction",
+      "name": "zeta2_antitone",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Every error is at most `139 e^{-t/8}` for `t \u2265 0`.",
+      "file": "formal/Problems/Juggler/FateProduction.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-contagion-elementary"
+      ],
+      "line": 542,
+      "module": "Problems.Juggler.FateProduction",
+      "name": "errors_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The errors vanish: past `T = max 0 (8 log(139/\u03b5))` all three are at most `\u03b5`.",
+      "file": "formal/Problems/Juggler/FateProduction.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-contagion-elementary"
+      ],
+      "line": 553,
+      "module": "Problems.Juggler.FateProduction",
+      "name": "errors_vanish",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Elementary contagion.** For every nonempty backward-closed `A` and `0 < \u03bb \u2264 3/10` there are `K > 0` and `t\u2081` with `g_A(t) \u2265 K t^\u03bb` for all `t \u2265 t\u2081`. No hypothesis: the seed is Lemma 5.2, the recursion is Lemma 5.1 on the two productions `E` and `OE`, and the production inequality is `production_two`, whose inputs are Lemmas 3.1, 4.2 and 4.3.",
+      "file": "formal/Problems/Juggler/FateProduction.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-contagion-elementary"
+      ],
+      "line": 571,
+      "module": "Problems.Juggler.FateProduction",
+      "name": "contagion_elementary",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Elementary contagion, as a log-mass bound.** For every nonempty backward-closed `A` and `0 < \u03bb \u2264 3/10` there are `K > 0` and `x\u2080` with `\u03a3_{n \u2208 A, n \u2264 x} 1/n \u2265 K (log x)^\u03bb` for all `x \u2265 x\u2080`. This is Theorem 5.3 of the paper with `3/10` in place of `\u03bb** \u2248 0.4926`, and with no hypothesis: the block-average family and the ladder, which need the exponential sums, are what lift the exponent.",
+      "file": "formal/Problems/Juggler/FateProduction.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-contagion-elementary"
+      ],
+      "line": 624,
+      "module": "Problems.Juggler.FateProduction",
+      "name": "logMass_contagion_elementary",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Corollary 5.5(2) at exponent `3/10`, unconditional.** If some positive integer does not reach `1`, the failures have log-mass at least `K (log x)^{3/10}` up to `x` for all large `x`: the failure set is backward-closed (Lemma 2.1) and nonempty.",
+      "file": "formal/Problems/Juggler/FateProduction.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-contagion-elementary"
+      ],
+      "line": 642,
+      "module": "Problems.Juggler.FateProduction",
+      "name": "failures_logMass_ge",
+      "trust": "kernel"
+    },
+    {
       "doc": "Paper C Lemma 5.1 (recursion lemma), with the range of the contraction factors given by two bounds `emin \u2264 e i \u2264 emax` rather than by a finite minimum and maximum. `K = c\u2080 * t\u2081 ^ (-\u03bb)`.",
       "file": "formal/Problems/Juggler/FateRecursion.lean",
       "kind": "theorem",
@@ -82916,6 +83276,7 @@
         "Problems.Juggler.FateLandingWindow",
         "Problems.Juggler.FateNumerics",
         "Problems.Juggler.FatePressure",
+        "Problems.Juggler.FateProduction",
         "Problems.Juggler.FateRecursion",
         "Problems.Juggler.FateSeed",
         "Problems.Juggler.FateShareLaw",
@@ -84060,6 +84421,22 @@
         {
           "id": "J-fate-pressure-form",
           "statement": "Paper C Theorem 9.2 (pressure form), exact. On the live weight of LiveCountWeight (starts n in {1, \u2026, N} with J^i(n) > N\u2080 for i \u2264 d, liveTo): livePressure N\u2080 N x d := weightGen (liveWeight N\u2080 N) x d = \u03a3_{n live} x^{o_d(n)}; the Markov step live_count_le_pressure gives #{n live, o_d(n) \u2265 k} \u2264 livePressure / x^k for x \u2265 1 (weight_markov on the live weight, liveCount_sum_oddCount); Lemma 8.1 on live starts: a live n \u2264 N has an itinerary that fails the envelope comparison at scale N at every prefix (envelopeBad_of_liveTo, from iterate_le_of_envelope), hence is L(N)-bad with L(N) = log_2(log N / log N\u2080) (LBad_of_liveTo) and has o_d \u2265 p_C d when d \u2265 C L(N) (live_oddCount_ge). Theorem: N\u2080 \u2265 2, N \u2265 2, C \u2265 5, d \u2265 1, d \u2265 C L(N), tilt x = p_C/(1 \u2212 p_C), a = (1 + x)/2; if livePressure N\u2080 N x d \u2264 N a^d E then #{n \u2264 N : liveTo N\u2080 n d} \u2264 N exp(\u2212d D(p_C\u20161/2)) E (live_count_le_of_pressure), by a^d / x^{p_C d} = exp(\u2212d D(p_C\u20161/2)) (tilt_value); E \u2265 0 is forced since the pressure is a nonnegative sum. This is the exponential-Markov step of Theorem 9.2 with the hypothesis P_\u03b8(C) at one scale and depth in the form pressure \u2264 N a_\u03b8^d E; the paper's E = e^{o(d)}, d = \u2308CL\u2309 and the displayed (y/2) \u039b^{\u2212(e(C)\u2212\u03b5)} are not formalized, and the paper counts odd starts in (y, 2y] where the Lean counts starts in {1, \u2026, N}. Kernel-checked, axioms propext, Classical.choice, Quot.sound only. Conditional on the pressure bound; nothing here bounds a pressure sum; not a halt theorem.",
+          "tag": "EXACT \u2014 LEAN VERIFIED"
+        }
+      ]
+    },
+    "Problems.Juggler.FateProduction": {
+      "declarations": 30,
+      "file": "formal/Problems/Juggler/FateProduction.lean",
+      "imports": [
+        "Problems.Juggler.FateContagionBound",
+        "Problems.Juggler.FateRecursion",
+        "Problems.Juggler.FateThinFibers"
+      ],
+      "ledger": [
+        {
+          "id": "J-fate-contagion-elementary",
+          "statement": "The production inequality of Paper C Section 5.1 without its exponential sums, and the unconditional theorem it yields. Of the three families of members of A on (sqrt x, x], the E-images of the members at scale t/2 (Lemma 3.1; Production.family_E) and the OE-fibers of the members at scale 3t/4 (Lemma 4.2 on good fibers, Lemma 4.3 for the bad; Production.family_OE, on the per-fiber bound (2/9)(1 - (25/2) m^{-1/3})/m) need no analysis. With the paper's sqrt x read as floor(e^{t/2}) (sqrt_floor_exp) they give, for t >= 40, g_A(t) >= (1 - 4e^{-t/4}) g_A(t/2) + (2/9 - (50/9)e^{-t/8}) g_A(3t/4) - eta_0(t) with eta_0(t) = 2e^{-t/2} + (4/9)e^{-3t/4} + 136 e^{-t/8}, every error explicit (production_two). Lemma 5.1 (recursion_lemma) on these two productions, with 2^{-3/10} + (2/9)(3/4)^{3/10} > 1 certified by 0.81^10 <= 1/8 and 0.91^10 <= 27/64 (zeta2_pos) and the seed of Lemma 5.2, gives: for every nonempty backward-closed A and every 0 < lambda <= 3/10 there are K > 0 and x_0 with sum_{n in A, n <= x} 1/n >= K (log x)^lambda for all x >= x_0 (contagion_elementary, logMass_contagion_elementary), WITH NO HYPOTHESIS; and if some positive integer does not reach 1 the failures have that log-mass (failures_logMass_ge, Corollary 5.5(2) at exponent 3/10). This is Theorem 5.3 with 3/10 in place of lambda** ~ 0.4926: the root of 2^{-lambda} + (2/9)(3/4)^lambda = 1 is about 0.325. NOT formalized: the block-average family (Section 5.1 item 2), which needs the two exponential-sum bounds of Proposition 4.4 (hypotheses in FateBlockAverage) and is what lifts the exponent to 0.49, and the ladder (5.10), whose Appendix D estimates are human; (5.2) itself remains a human row. Nothing here is a density theorem in the paper's sense and nothing here is a halt theorem.",
           "tag": "EXACT \u2014 LEAN VERIFIED"
         }
       ]
@@ -85576,6 +85953,7 @@
         "Problems.Juggler.FateLandingWindow",
         "Problems.Juggler.FateNumerics",
         "Problems.Juggler.FatePressure",
+        "Problems.Juggler.FateProduction",
         "Problems.Juggler.FateRecursion",
         "Problems.Juggler.FateSeed",
         "Problems.Juggler.FateShareLaw",
@@ -85590,7 +85968,7 @@
       "ledger": [
         {
           "id": "J-paper-c-trust-surface",
-          "statement": "Paper C's Lean surface, as a build target and an axiom artifact. formal/Problems/JugglerFatePaper.lean imports exactly the twenty-two modules the paper cites (TerminationFloor257, FateBlockAverage, FateShareLaw, FateContagion, FateCylinderEnergy, CubeFiber, TiltedShare, FateRecursion, FateFirstLetter, FateLandingWindow, FateWindowCount, FateSweep, FateSweepMonotone, FateChernoff, FatePressure, FateTaoReduction, FateSeed, FateCylinderCorollary, FateNumerics, FateFiberParity, FateThinFibers, FateContagionBound) and is a lake default target; formal/AxiomCheckPaperC.lean prints the axioms of the cited declarations and AxiomCheckPaperC.expected records them: every line is a subset of [propext, Classical.choice, Quot.sound], no sorryAx, no Lean.ofReduceBool (native_decide). formalpedia's paper surface carries Paper C (root Problems.JugglerFatePaper): no declaration it reaches runs the compiler and none cites one that does. The verification table has twenty-four Lean rows (including Lemma 4.1', Lemmas 4.2 and 4.3, Lemma 5.2, Theorem 5.3 given the production inequality (5.2), Theorem 7.2 and Theorem 7.3 with the contagion bound as a hypothesis, and Corollary 8.4) and four human proofs (the block average 4.4, the share law, the production inequality (5.2), the identity (6.1), the asymptotic bookkeeping). FateNumerics holds the two numerical moves the fiber lemmas share, roots by powering and Bernoulli at a point; FateWindowCount holds the counting move, a sequence rising by at least d has at most w/d + 1 terms in a window of width w. This row records the artifact, not a theorem; nothing here bounds a density.",
+          "statement": "Paper C's Lean surface, as a build target and an axiom artifact. formal/Problems/JugglerFatePaper.lean imports exactly the twenty-three modules the paper cites (TerminationFloor257, FateBlockAverage, FateShareLaw, FateProduction, FateContagion, FateCylinderEnergy, CubeFiber, TiltedShare, FateRecursion, FateFirstLetter, FateLandingWindow, FateWindowCount, FateSweep, FateSweepMonotone, FateChernoff, FatePressure, FateTaoReduction, FateSeed, FateCylinderCorollary, FateNumerics, FateFiberParity, FateThinFibers, FateContagionBound) and is a lake default target; formal/AxiomCheckPaperC.lean prints the axioms of the cited declarations and AxiomCheckPaperC.expected records them: every line is a subset of [propext, Classical.choice, Quot.sound], no sorryAx, no Lean.ofReduceBool (native_decide). formalpedia's paper surface carries Paper C (root Problems.JugglerFatePaper): no declaration it reaches runs the compiler and none cites one that does. The verification table has twenty-five Lean rows (including Lemma 4.1', Lemmas 4.2 and 4.3, Lemma 5.2, Theorem 5.3 given the production inequality (5.2), Theorem 7.2 and Theorem 7.3 with the contagion bound as a hypothesis, and Corollary 8.4) and four human proofs (the block average 4.4, the share law, the production inequality (5.2), the identity (6.1), the asymptotic bookkeeping). FateNumerics holds the two numerical moves the fiber lemmas share, roots by powering and Bernoulli at a point; FateWindowCount holds the counting move, a sequence rising by at least d has at most w/d + 1 terms in a window of width w. This row records the artifact, not a theorem; nothing here bounds a density.",
           "tag": "COMPUTATIONALLY VERIFIED"
         }
       ]
@@ -85887,13 +86265,13 @@
     }
   },
   "totals": {
-    "declarations": 6313,
-    "declarations_with_a_ledger_row": 4330,
-    "ledger_rows_naming_a_file": 395,
-    "modules": 274,
+    "declarations": 6343,
+    "declarations_with_a_ledger_row": 4360,
+    "ledger_rows_naming_a_file": 396,
+    "modules": 275,
     "trust": {
       "compiler": 57,
-      "kernel": 6256
+      "kernel": 6286
     }
   }
 }

@@ -6,6 +6,7 @@ import Problems.Juggler.FateRecursion
 import Problems.Juggler.FateFirstLetter
 import Problems.Juggler.FateBlockAverage
 import Problems.Juggler.FateShareLaw
+import Problems.Juggler.FateProduction
 import Problems.Juggler.FateCylinderEnergy
 import Problems.Juggler.FateLandingWindow
 import Problems.Juggler.FateWindowCount
@@ -24,7 +25,7 @@ import Problems.Juggler.FateContagionBound
 /-!
 # Paper C barrel — everything the repository checks for the fate-contagion note
 
-`docs/theory/juggler_fate_almost_all_note.md`. This file imports exactly the twenty-two modules
+`docs/theory/juggler_fate_almost_all_note.md`. This file imports exactly the twenty-three modules
 that paper cites and nothing else, so that a reader can build the formal side of Paper C on
 its own rather than selecting modules by hand out of the umbrella `Problems.Juggler`. It is a
 laboratory target, not a claim: building it does **not** corroborate the paper's counting.
@@ -62,6 +63,19 @@ laboratory target, not a claim: building it does **not** corroborate the paper's
   arithmetic), and `∫ max(0, 1/2 - range) dβ = 25/108` (`ShareLaw.integral_extremeMeasure`,
   Corollary 4.6(3)'s arithmetic). Lemma 4.5 itself, an equidistribution statement, and the
   measure-theoretic parts of Corollary 4.6 are not here.
+* `FateProduction` — the production inequality without its exponential sums, and what it
+  yields on its own. Of the three families of Section 5.1, the `E`-images through Lemma 3.1
+  (`Production.family_E`) and the `OE`-fibers through Lemmas 4.2 and 4.3
+  (`Production.family_OE`) need no analysis; together they give
+  `g_A(t) ≥ (1 - 4e^{-t/4}) g_A(t/2) + (2/9 - (50/9)e^{-t/8}) g_A(3t/4) - errAdd t` for
+  `t ≥ 40` (`Production.production_two`), with every error explicit. The recursion lemma on
+  these two productions, with `ζ(3/10) > 0` certified by two rational bounds
+  (`Production.zeta2_pos`), gives **an unconditional theorem**: every nonempty backward-closed
+  set has log-mass at least `K (log x)^λ` up to `x` for every `0 < λ ≤ 3/10`
+  (`Production.logMass_contagion_elementary`), and so do the failures if any exist
+  (`Production.failures_logMass_ge`). The block-average family, whose two exponential-sum
+  bounds are hypotheses in `FateBlockAverage`, and the five ladder productions of Section 5.7,
+  whose Appendix D estimates are human, are what lift `3/10` to the paper's `0.49`.
 * `FateCylinderEnergy` — the counting identity of Section 10(d): a cylinder splits into
   its two children (`CylinderEnergy.wordCount_split`), so the first-letter biases
   `D(w) = #[wO] - #[w]/2` satisfy `Σ_{|w|=t} D(w)² = C_{t+1}/2 - C_t/4` exactly

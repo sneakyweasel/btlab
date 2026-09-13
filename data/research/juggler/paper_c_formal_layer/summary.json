@@ -9,6 +9,7 @@
     "Problems.Juggler.FateFirstLetter",
     "Problems.Juggler.FateBlockAverage",
     "Problems.Juggler.FateShareLaw",
+    "Problems.Juggler.FateProduction",
     "Problems.Juggler.FateCylinderEnergy",
     "Problems.Juggler.FateLandingWindow",
     "Problems.Juggler.FateWindowCount",
@@ -25,24 +26,24 @@
     "Problems.Juggler.FateContagionBound"
   ],
   "artifact": {
-    "asked": 281,
-    "recorded": 281,
+    "asked": 305,
+    "recorded": 305,
     "axiom_lists": [
       "propext",
       "propext, Classical.choice, Quot.sound",
       "propext, Quot.sound"
     ]
   },
-  "appendix_a_names": 280,
+  "appendix_a_names": 310,
   "surface": {
-    "modules": 54,
-    "declarations": 1656,
+    "modules": 55,
+    "declarations": 1686,
     "compiler_trusted": [],
     "compiler_dependent": [],
     "open": []
   },
   "table": {
-    "rows": 30,
+    "rows": 31,
     "lean": [
       "Fate classes closed; trichotomy; exclusion (Lemma 2.1)",
       "Even block is an interval (Lemma 3.1)",
@@ -53,6 +54,7 @@
       "Monotone pairing (Lemma 4.1')",
       "Fiber parity (Lemma 4.2), goodness unpacked",
       "Thin fibers (Lemma 4.3): the count on \\((u,2u]\\) and the log-mass of the bad \\(m>U\\)",
+      "Theorem 5.3 at exponent \\(3/10\\), unconditional: two productions, no hypothesis",
       "Cube fibers full or alternating (Lemma 4.7)",
       "Recursion lemma (Lemma 5.1)",
       "Seed (Lemma 5.2)",
@@ -86,5 +88,5 @@
     "label": "PAPER_C_LEAN_SURFACE_CONSISTENT",
     "problems": 0
   },
-  "git_commit": "c4e44a5000266534018662610ebe6c8accda45d4"
+  "git_commit": "9bb3abc37449e2a00338ba38ab8f8e9c657026cb"
 }
