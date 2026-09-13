@@ -27248,7 +27248,7 @@
       "ledger": [
         "J-fate-block-average-layer"
       ],
-      "line": 52,
+      "line": 65,
       "module": "Problems.Juggler.FateBlockAverage",
       "name": "blockE",
       "trust": "kernel"
@@ -27260,7 +27260,7 @@
       "ledger": [
         "J-fate-block-average-layer"
       ],
-      "line": 56,
+      "line": 69,
       "module": "Problems.Juggler.FateBlockAverage",
       "name": "oddBlock",
       "trust": "kernel"
@@ -27272,7 +27272,7 @@
       "ledger": [
         "J-fate-block-average-layer"
       ],
-      "line": 60,
+      "line": 73,
       "module": "Problems.Juggler.FateBlockAverage",
       "name": "mem_oddBlock",
       "trust": "kernel"
@@ -27284,7 +27284,7 @@
       "ledger": [
         "J-fate-block-average-layer"
       ],
-      "line": 70,
+      "line": 83,
       "module": "Problems.Juggler.FateBlockAverage",
       "name": "mem_oeFiber_iff_cell34",
       "trust": "kernel"
@@ -27296,7 +27296,7 @@
       "ledger": [
         "J-fate-block-average-layer"
       ],
-      "line": 75,
+      "line": 88,
       "module": "Problems.Juggler.FateBlockAverage",
       "name": "U",
       "trust": "kernel"
@@ -27308,7 +27308,7 @@
       "ledger": [
         "J-fate-block-average-layer"
       ],
-      "line": 80,
+      "line": 93,
       "module": "Problems.Juggler.FateBlockAverage",
       "name": "oddBlock_card_eq",
       "trust": "kernel"
@@ -27320,7 +27320,7 @@
       "ledger": [
         "J-fate-block-average-layer"
       ],
-      "line": 103,
+      "line": 116,
       "module": "Problems.Juggler.FateBlockAverage",
       "name": "U_card_eq",
       "trust": "kernel"
@@ -27332,7 +27332,7 @@
       "ledger": [
         "J-fate-block-average-layer"
       ],
-      "line": 129,
+      "line": 142,
       "module": "Problems.Juggler.FateBlockAverage",
       "name": "psi",
       "trust": "kernel"
@@ -27344,7 +27344,7 @@
       "ledger": [
         "J-fate-block-average-layer"
       ],
-      "line": 132,
+      "line": 145,
       "module": "Problems.Juggler.FateBlockAverage",
       "name": "slowSum",
       "trust": "kernel"
@@ -27356,7 +27356,7 @@
       "ledger": [
         "J-fate-block-average-layer"
       ],
-      "line": 135,
+      "line": 148,
       "module": "Problems.Juggler.FateBlockAverage",
       "name": "fastSum",
       "trust": "kernel"
@@ -27368,7 +27368,7 @@
       "ledger": [
         "J-fate-block-average-layer"
       ],
-      "line": 138,
+      "line": 151,
       "module": "Problems.Juggler.FateBlockAverage",
       "name": "productSum",
       "trust": "kernel"
@@ -27380,7 +27380,7 @@
       "ledger": [
         "J-fate-block-average-layer"
       ],
-      "line": 143,
+      "line": 156,
       "module": "Problems.Juggler.FateBlockAverage",
       "name": "four_card_U",
       "trust": "kernel"
@@ -27392,7 +27392,7 @@
       "ledger": [
         "J-fate-block-average-layer"
       ],
-      "line": 171,
+      "line": 184,
       "module": "Problems.Juggler.FateBlockAverage",
       "name": "block_average_of_bounds",
       "trust": "kernel"
@@ -27404,9 +27404,177 @@
       "ledger": [
         "J-fate-block-average-layer"
       ],
-      "line": 192,
+      "line": 205,
       "module": "Problems.Juggler.FateBlockAverage",
       "name": "block_average_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateBlockAverage.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-block-average-layer"
+      ],
+      "line": 216,
+      "module": "Problems.Juggler.FateBlockAverage",
+      "name": "psi_succ",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateBlockAverage.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-block-average-layer"
+      ],
+      "line": 224,
+      "module": "Problems.Juggler.FateBlockAverage",
+      "name": "abs_psi",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Inside the block, the fiber of `\u230an^{3/4}\u230b` over `m` is `\u03a6(m)`.",
+      "file": "formal/Problems/Juggler/FateBlockAverage.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-block-average-layer"
+      ],
+      "line": 229,
+      "module": "Problems.Juggler.FateBlockAverage",
+      "name": "oddBlock_filter_eq",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The slow sum, fiber by fiber.** `S\u2081 = \u03a3_{m'\u00b2 \u2264 m < (m'+1)\u00b2} \u03c8(m) |\u03a6(m)|`: the parity of `\u230an^{3/4}\u230b` is constant on a fiber, so the slow sum is an alternating sum of fiber sizes.",
+      "file": "formal/Problems/Juggler/FateBlockAverage.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-block-average-layer"
+      ],
+      "line": 242,
+      "module": "Problems.Juggler.FateBlockAverage",
+      "name": "slowSum_eq_fibers",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Consecutive fibers differ by at most two members (`m \u2265 1`): the fiber bounds `(2/3)m^{1/3} - 1 \u2264 |\u03a6(m)| \u2264 (2/3)(m+1)^{1/3} + 1` overlap, and `(m+2)^{1/3} - m^{1/3} \u2264 (2/3) m^{-2/3} \u2264 2/3` by Bernoulli.",
+      "file": "formal/Problems/Juggler/FateBlockAverage.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-block-average-layer"
+      ],
+      "line": 259,
+      "module": "Problems.Juggler.FateBlockAverage",
+      "name": "oeFiber_card_succ_diff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "An alternating sum over `2k` consecutive terms whose neighbours differ by at most `d` is at most `k d` in absolute value: each pair telescopes to one difference.",
+      "file": "formal/Problems/Juggler/FateBlockAverage.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-block-average-layer"
+      ],
+      "line": 286,
+      "module": "Problems.Juggler.FateBlockAverage",
+      "name": "abs_alt_sum_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The slow sum is `O(m')`.** `|S\u2081| \u2264 2m' + (2/3)(m'+1)^{2/3} + 1`: the block is `m'` pairs of consecutive fibers, each contributing at most `2`, plus one fiber left over. This is the paper's \"pair consecutive fibers, whose odd-point counts differ by at most 3, and bound the remaining end fiber\", with `2` in place of `3`.",
+      "file": "formal/Problems/Juggler/FateBlockAverage.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-block-average-layer"
+      ],
+      "line": 312,
+      "module": "Problems.Juggler.FateBlockAverage",
+      "name": "slowSum_abs_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateBlockAverage.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-block-average-layer"
+      ],
+      "line": 348,
+      "module": "Problems.Juggler.FateBlockAverage",
+      "name": "card_Ico_block",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`M \u2264 (2m'+1)((2/3)(m'+1)^{2/3} + 1)`: every fiber of the block has at most `(2/3)((m'+1)\u00b2)^{1/3} + 1` members.",
+      "file": "formal/Problems/Juggler/FateBlockAverage.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-block-average-layer"
+      ],
+      "line": 355,
+      "module": "Problems.Juggler.FateBlockAverage",
+      "name": "oddBlock_card_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`(2m'+1)((2/3)m'^{2/3} - 1) \u2264 M`: every fiber of the block has at least `(2/3)(m'\u00b2)^{1/3} - 1` members.",
+      "file": "formal/Problems/Juggler/FateBlockAverage.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-block-average-layer"
+      ],
+      "line": 380,
+      "module": "Problems.Juggler.FateBlockAverage",
+      "name": "oddBlock_card_ge",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A quarter of the block is `m'^{5/3}/3` up to `m' + 1`: the \"in particular\" of the proposition, before the parity sums enter.",
+      "file": "formal/Problems/Juggler/FateBlockAverage.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-block-average-layer"
+      ],
+      "line": 403,
+      "module": "Problems.Juggler.FateBlockAverage",
+      "name": "oddBlock_quarter_close",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Proposition 4.4, equation (4.1), given the two exponential-sum bounds.** The slow sum is proved (`slowSum_abs_le`); the fast sum and the product sum remain hypotheses.",
+      "file": "formal/Problems/Juggler/FateBlockAverage.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-block-average-layer"
+      ],
+      "line": 436,
+      "module": "Problems.Juggler.FateBlockAverage",
+      "name": "block_average_two_bounds",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The asymptotic form of Proposition 4.4 with an explicit error**, given the two bounds: `|U(m')|` is within `B/2 + 2(m'+1)` of `m'^{5/3}/3`. With `B = C m'^{11/9} log(m'+1)` this is the paper's `|U(m')| = m'^{5/3}/3 (1 + O(m'^{-4/9} log(m'+1)))`.",
+      "file": "formal/Problems/Juggler/FateBlockAverage.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-block-average-layer"
+      ],
+      "line": 463,
+      "module": "Problems.Juggler.FateBlockAverage",
+      "name": "block_average_asymptotic",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Proposition 4.4 in the paper's shape with only the two exponential-sum hypotheses: for `m' \u2265 2` and both remaining sums at most `C m'^{11/9} log(m'+1)`, equation (4.1) holds with `C_B = C/2 + 2`.",
+      "file": "formal/Problems/Juggler/FateBlockAverage.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-block-average-layer"
+      ],
+      "line": 479,
+      "module": "Problems.Juggler.FateBlockAverage",
+      "name": "block_average_bound_two",
       "trust": "kernel"
     },
     {
@@ -29021,13 +29189,37 @@
       "trust": "kernel"
     },
     {
+      "doc": "Bernoulli at `m + 1`, descending: `(m+1)^{4/3} \u2264 m^{4/3} + (4/3)(m+1)^{1/3}`.",
+      "file": "formal/Problems/Juggler/FateFiberParity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-fiber-parity"
+      ],
+      "line": 284,
+      "module": "Problems.Juggler.FateFiberParity",
+      "name": "rpow_four_thirds_succ_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The fiber has at most `(2/3)(m+1)^{1/3} + 1` members: its odd integers are the `2k + 1` with `(L-1)/2 \u2264 k < (R-1)/2`, and `R - L \u2264 (4/3)(m+1)^{1/3}` by Bernoulli.",
+      "file": "formal/Problems/Juggler/FateFiberParity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-fiber-parity"
+      ],
+      "line": 295,
+      "module": "Problems.Juggler.FateFiberParity",
+      "name": "oeFiber_card_le",
+      "trust": "kernel"
+    },
+    {
       "doc": "`A_m = (3/2) m^{2/3}`, the lower step of the fiber.",
       "file": "formal/Problems/Juggler/FateFiberParity.lean",
       "kind": "def",
       "ledger": [
         "J-fate-fiber-parity"
       ],
-      "line": 286,
+      "line": 333,
       "module": "Problems.Juggler.FateFiberParity",
       "name": "Am",
       "trust": "kernel"
@@ -29039,7 +29231,7 @@
       "ledger": [
         "J-fate-fiber-parity"
       ],
-      "line": 289,
+      "line": 336,
       "module": "Problems.Juggler.FateFiberParity",
       "name": "alpha",
       "trust": "kernel"
@@ -29051,7 +29243,7 @@
       "ledger": [
         "J-fate-fiber-parity"
       ],
-      "line": 292,
+      "line": 339,
       "module": "Problems.Juggler.FateFiberParity",
       "name": "eps",
       "trust": "kernel"
@@ -29063,7 +29255,7 @@
       "ledger": [
         "J-fate-fiber-parity"
       ],
-      "line": 295,
+      "line": 342,
       "module": "Problems.Juggler.FateFiberParity",
       "name": "Good",
       "trust": "kernel"
@@ -29075,7 +29267,7 @@
       "ledger": [
         "J-fate-fiber-parity"
       ],
-      "line": 299,
+      "line": 346,
       "module": "Problems.Juggler.FateFiberParity",
       "name": "eps_pos",
       "trust": "kernel"
@@ -29087,7 +29279,7 @@
       "ledger": [
         "J-fate-fiber-parity"
       ],
-      "line": 302,
+      "line": 349,
       "module": "Problems.Juggler.FateFiberParity",
       "name": "eps_mul_cbrt",
       "trust": "kernel"
@@ -29099,7 +29291,7 @@
       "ledger": [
         "J-fate-fiber-parity"
       ],
-      "line": 309,
+      "line": 356,
       "module": "Problems.Juggler.FateFiberParity",
       "name": "eps_le",
       "trust": "kernel"
@@ -29111,7 +29303,7 @@
       "ledger": [
         "J-fate-fiber-parity"
       ],
-      "line": 321,
+      "line": 368,
       "module": "Problems.Juggler.FateFiberParity",
       "name": "upper_step_le",
       "trust": "kernel"
@@ -29123,7 +29315,7 @@
       "ledger": [
         "J-fate-fiber-parity"
       ],
-      "line": 334,
+      "line": 381,
       "module": "Problems.Juggler.FateFiberParity",
       "name": "nseq",
       "trust": "kernel"
@@ -29135,7 +29327,7 @@
       "ledger": [
         "J-fate-fiber-parity"
       ],
-      "line": 338,
+      "line": 385,
       "module": "Problems.Juggler.FateFiberParity",
       "name": "Hlen",
       "trust": "kernel"
@@ -29147,7 +29339,7 @@
       "ledger": [
         "J-fate-fiber-parity"
       ],
-      "line": 341,
+      "line": 388,
       "module": "Problems.Juggler.FateFiberParity",
       "name": "nseq_mem",
       "trust": "kernel"
@@ -29159,7 +29351,7 @@
       "ledger": [
         "J-fate-fiber-parity"
       ],
-      "line": 345,
+      "line": 392,
       "module": "Problems.Juggler.FateFiberParity",
       "name": "nseq_succ",
       "trust": "kernel"
@@ -29171,7 +29363,7 @@
       "ledger": [
         "J-fate-fiber-parity"
       ],
-      "line": 349,
+      "line": 396,
       "module": "Problems.Juggler.FateFiberParity",
       "name": "step_ge",
       "trust": "kernel"
@@ -29183,7 +29375,7 @@
       "ledger": [
         "J-fate-fiber-parity"
       ],
-      "line": 362,
+      "line": 409,
       "module": "Problems.Juggler.FateFiberParity",
       "name": "step_le",
       "trust": "kernel"
@@ -29195,7 +29387,7 @@
       "ledger": [
         "J-fate-fiber-parity"
       ],
-      "line": 376,
+      "line": 423,
       "module": "Problems.Juggler.FateFiberParity",
       "name": "nseq_step_mono",
       "trust": "kernel"
@@ -29207,7 +29399,7 @@
       "ledger": [
         "J-fate-fiber-parity"
       ],
-      "line": 385,
+      "line": 432,
       "module": "Problems.Juggler.FateFiberParity",
       "name": "Hlen_eq",
       "trust": "kernel"
@@ -29219,7 +29411,7 @@
       "ledger": [
         "J-fate-fiber-parity"
       ],
-      "line": 388,
+      "line": 435,
       "module": "Problems.Juggler.FateFiberParity",
       "name": "evenImageCount_eq'",
       "trust": "kernel"
@@ -29231,7 +29423,7 @@
       "ledger": [
         "J-fate-fiber-parity"
       ],
-      "line": 393,
+      "line": 440,
       "module": "Problems.Juggler.FateFiberParity",
       "name": "oddImageCount_eq'",
       "trust": "kernel"
@@ -29243,7 +29435,7 @@
       "ledger": [
         "J-fate-fiber-parity"
       ],
-      "line": 414,
+      "line": 461,
       "module": "Problems.Juggler.FateFiberParity",
       "name": "fiber_parity_good",
       "trust": "kernel"
@@ -83481,7 +83673,7 @@
       ]
     },
     "Problems.Juggler.FateBlockAverage": {
-      "declarations": 14,
+      "declarations": 28,
       "file": "formal/Problems/Juggler/FateBlockAverage.lean",
       "imports": [
         "Problems.Juggler.FateFiberParity",
@@ -83490,7 +83682,7 @@
       "ledger": [
         {
           "id": "J-fate-block-average-layer",
-          "statement": "The exact layer of Paper C Proposition 4.4, and equation (4.1) given the paper's exponential-sum bounds as hypotheses. The block: the odd n of I(m') = [m'^{8/3}, (m'+1)^{8/3}) are exactly the odd n with m'^2 <= floor(n^{3/4}) < (m'+1)^2 (mem_oddBlock, through the landing window of Appendix D.1). The decomposition: U(m'), the odd n of the block with both floor(n^{3/4}) and floor(n^{3/2}) even, is the disjoint union of the even-image parts of the fibers Phi(m) over the even m of the block, so |U(m')| is the sum of Lemma 4.2's evenImageCount over E(m') (U_card_eq); the whole block is the disjoint union of the fibers (oddBlock_card_eq). The expansion: 4|U(m')| = M + S1 + S2 + S12 exactly, where M is the number of odd n of the block and the S are the parity sums of psi(floor(n^{3/4})) and psi(floor(n^{3/2})) (four_card_U). Given |S1|, |S2|, |S12| <= C m'^{11/9} log(m'+1), equation (4.1) follows with C_B = 3C/4 (block_average_bound, on block_average_of_bounds). THE BOUNDS ARE HYPOTHESES, NOT THEOREMS: Vaaler's interval approximation, the second-derivative test and Kusmin-Landau are not formalized here or anywhere in this repository, and Proposition 4.4 remains a human proof in the paper's verification table. The asymptotic form |U(m')| = m'^{5/3}/3 (1 + O(m'^{-4/9} log)) is not formalized: it needs in addition a two-sided count of the odd integers of the block. Nothing here bounds a density and nothing here is a halt theorem.",
+          "statement": "The exact layer of Paper C Proposition 4.4, the slow sum, the block count, and equation (4.1) given the paper's two remaining exponential-sum bounds as hypotheses. The block: the odd n of I(m') = [m'^{8/3}, (m'+1)^{8/3}) are exactly the odd n with m'^2 <= floor(n^{3/4}) < (m'+1)^2 (mem_oddBlock, through the landing window of Appendix D.1). The decomposition: U(m') is the disjoint union of the even-image parts of the fibers Phi(m) over the even m of the block, so |U(m')| is the sum of Lemma 4.2's evenImageCount over E(m') (U_card_eq); the whole block is the disjoint union of the fibers (oddBlock_card_eq). The expansion: 4|U(m')| = M + S1 + S2 + S12 exactly (four_card_U). The slow sum S1 = sum psi(floor(n^{3/4})) is the alternating sum of fiber sizes over the block (slowSum_eq_fibers); the fiber bounds (2/3)m^{1/3} - 1 <= |Phi(m)| <= (2/3)(m+1)^{1/3} + 1 (FiberParity.oeFiber_card_ge, oeFiber_card_le) make consecutive fibers differ by at most 2 (oeFiber_card_succ_diff), and pairing the 2m'+1 fibers gives |S1| <= 2m' + (2/3)(m'+1)^{2/3} + 1 (slowSum_abs_le): the paper's 'the slow sum is O(m')', proved. The same fiber bounds give (2m'+1)((2/3)m'^{2/3} - 1) <= M <= (2m'+1)((2/3)(m'+1)^{2/3} + 1) (oddBlock_card_ge, oddBlock_card_le), hence |M/4 - m'^{5/3}/3| <= m' + 1 (oddBlock_quarter_close). Given |S2|, |S12| <= B, equation (4.1) holds as |U - M/4| <= B/2 + m' + 1 (block_average_two_bounds), in the paper's shape with B = C m'^{11/9} log(m'+1) and C_B = C/2 + 2 for m' >= 2 (block_average_bound_two), and the asymptotic form as |U - m'^{5/3}/3| <= B/2 + 2(m'+1) (block_average_asymptotic). THE TWO REMAINING BOUNDS ARE HYPOTHESES, NOT THEOREMS: the fast sum sum psi(floor(n^{3/2})) and the product sum are the exponential sums of the paper, estimated there by Vaaler's interval approximation, the second-derivative test and Kusmin-Landau, none of which is formalized here or anywhere in this repository; Proposition 4.4 remains a human proof in the paper's verification table. Nothing here bounds a density and nothing here is a halt theorem.",
           "tag": "EXACT \u2014 LEAN VERIFIED"
         }
       ]
@@ -83598,7 +83790,7 @@
       ]
     },
     "Problems.Juggler.FateFiberParity": {
-      "declarations": 41,
+      "declarations": 43,
       "file": "formal/Problems/Juggler/FateFiberParity.lean",
       "imports": [
         "Problems.Juggler.FateContagion",
@@ -85475,13 +85667,13 @@
     }
   },
   "totals": {
-    "declarations": 6280,
-    "declarations_with_a_ledger_row": 4297,
+    "declarations": 6296,
+    "declarations_with_a_ledger_row": 4313,
     "ledger_rows_naming_a_file": 394,
     "modules": 273,
     "trust": {
       "compiler": 57,
-      "kernel": 6223
+      "kernel": 6239
     }
   }
 }

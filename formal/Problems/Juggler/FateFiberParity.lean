@@ -280,6 +280,53 @@ theorem oeFiber_card_ge {m : ℕ} (hm : 1 ≤ m) :
   rw [hsub] at hcard'
   linarith
 
+/-- Bernoulli at `m + 1`, descending: `(m+1)^{4/3} ≤ m^{4/3} + (4/3)(m+1)^{1/3}`. -/
+theorem rpow_four_thirds_succ_le (m : ℕ) :
+    ((m : ℝ) + 1) ^ ((4 : ℝ) / 3) ≤
+      (m : ℝ) ^ ((4 : ℝ) / 3) + 4 / 3 * ((m : ℝ) + 1) ^ ((1 : ℝ) / 3) := by
+  have hm0 : (0 : ℝ) ≤ m := by positivity
+  have := Numerics.bernoulli_ge (a := (m : ℝ) + 1) (h := -1) (p := (4 : ℝ) / 3)
+    (q := (1 : ℝ) / 3) (by positivity) (by linarith) (by norm_num) (by norm_num)
+  rw [show (m : ℝ) + 1 + -1 = m by ring] at this
+  linarith
+
+/-- The fiber has at most `(2/3)(m+1)^{1/3} + 1` members: its odd integers are the `2k + 1`
+with `(L-1)/2 ≤ k < (R-1)/2`, and `R - L ≤ (4/3)(m+1)^{1/3}` by Bernoulli. -/
+theorem oeFiber_card_le (m : ℕ) :
+    ((oeFiber m).card : ℝ) ≤ 2 / 3 * ((m : ℝ) + 1) ^ ((1 : ℝ) / 3) + 1 := by
+  have hm0 : (0 : ℝ) ≤ m := by positivity
+  set L := (m : ℝ) ^ ((4 : ℝ) / 3) with hL
+  set R := ((m : ℝ) + 1) ^ ((4 : ℝ) / 3) with hR
+  have hRL : R ≤ L + 4 / 3 * ((m : ℝ) + 1) ^ ((1 : ℝ) / 3) := rpow_four_thirds_succ_le m
+  have hLR : L ≤ R := Real.rpow_le_rpow hm0 (by linarith) (by norm_num)
+  have hR1 : 1 ≤ R := Real.one_le_rpow (by linarith) (by norm_num)
+  set k₀ := ⌈(L - 1) / 2⌉₊ with hk₀
+  set k₁ := ⌈(R - 1) / 2⌉₊ with hk₁
+  -- every member is `2k + 1` with `k₀ ≤ k < k₁`
+  have hsub : oeFiber m ⊆ (Finset.Ico k₀ k₁).image (fun k => 2 * k + 1) := by
+    intro n hn
+    have hodd := (mem_oeFiber.mp hn).1
+    have hge : L ≤ n := fiber_ge_rpow hn
+    have hlt : (n : ℝ) < R := fiber_lt_rpow hn
+    have hn2 : (n : ℝ) = 2 * ((n / 2 : ℕ) : ℝ) + 1 := by
+      have : n = 2 * (n / 2) + 1 := by omega
+      exact_mod_cast this
+    rw [Finset.mem_image]
+    refine ⟨n / 2, Finset.mem_Ico.mpr ⟨?_, ?_⟩, by omega⟩
+    · rw [hk₀, Nat.ceil_le]; linarith
+    · rw [hk₁, Nat.lt_ceil]; linarith
+  have hcard := (Finset.card_le_card hsub).trans Finset.card_image_le
+  rw [Nat.card_Ico] at hcard
+  have hk₀k₁ : k₀ ≤ k₁ := by
+    rw [hk₀, hk₁]
+    exact Nat.ceil_le_ceil (by linarith)
+  have hk₁lt : (k₁ : ℝ) < (R - 1) / 2 + 1 := Nat.ceil_lt_add_one (by linarith)
+  have hk₀ge : (L - 1) / 2 ≤ (k₀ : ℝ) := Nat.le_ceil _
+  have hcard' : ((oeFiber m).card : ℝ) ≤ (k₁ : ℝ) - k₀ := by
+    have : ((oeFiber m).card : ℝ) ≤ ((k₁ - k₀ : ℕ) : ℝ) := by exact_mod_cast hcard
+    rwa [Nat.cast_sub hk₀k₁] at this
+  linarith
+
 /-! ### The constants and goodness -/
 
 /-- `A_m = (3/2) m^{2/3}`, the lower step of the fiber. -/
