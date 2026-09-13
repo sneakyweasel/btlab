@@ -44383,3 +44383,33 @@ phi, phi^fib and psi, the identification of each piece with its term of
 table now reads twenty-two Lean rows and four human. The four are the
 block average 4.4, the share law, the production inequality (5.2), and
 the Azuma and exponential-moment bookkeeping of Sections 8 to 10.
+
+
+## The landing window is a Galois connection
+
+Appendix D of Paper C is analysis: smooth windows, endpoint errors,
+multiplicities, all of it feeding the production inequality. It opens
+with one line that is not analysis. Along a nested production the two-
+step map is F(u) = floor(u^{3/4}), and (D.1) says the integers whose
+F-image lands in [a, b) are exactly the integers of [Phi(a), Phi(b)),
+where Phi(a) = ceil(a^{4/3}).
+
+Written with real numbers that needs a floor, a ceiling and a fractional
+power. Written exactly it needs none of them. Phi(a) is the least n with
+a^4 <= n^3, which is what ceil(a^{4/3}) means when a and n are integers,
+and a <= F(n) is the same inequality a^4 <= n^3, read the other way.
+So Phi and F are adjoint:
+
+  windowStart a <= n   <->   a^4 <= n^3   <->   a <= cell34 n.
+
+(D.1) is then a rewrite, and the nested window (D.2) for the i-fold
+image is an induction on i that applies (D.1) once per layer. No real
+number appears in the module, and no estimate. cell34_eq_floorPower_two
+records the one dynamical fact, that J^2 = F on an OE step; the parity
+conditions of V_k, which pick out the actual preimages inside the
+window, are imposed elsewhere and are not here.
+
+This does not touch the production inequality. What Appendix D does
+with the window, the smooth comparison (D.3), the endpoint error
+O_k(P^{1-s}) and the inner-layer multiplicities, is exactly the part
+that stays human. Twenty-three Lean rows, four human.

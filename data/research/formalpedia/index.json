@@ -29192,6 +29192,150 @@
       "trust": "kernel"
     },
     {
+      "doc": "`F(u) = \u230au^{3/4}\u230b` as an integer operation: `\u230a\u221a\u230a\u221a(u\u00b3)\u230b\u230b`.",
+      "file": "formal/Problems/Juggler/FateLandingWindow.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-landing-window"
+      ],
+      "line": 32,
+      "module": "Problems.Juggler.FateLandingWindow",
+      "name": "cell34",
+      "trust": "kernel"
+    },
+    {
+      "doc": "On an `OE` step the two-step map is `F`: `J\u00b2(n) = \u230an^{3/4}\u230b` for odd `n` with even image. This is the only place the dynamics enters; the rest is arithmetic.",
+      "file": "formal/Problems/Juggler/FateLandingWindow.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-landing-window"
+      ],
+      "line": 36,
+      "module": "Problems.Juggler.FateLandingWindow",
+      "name": "cell34_eq_floorPower_two",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`a \u2264 \u230an^{3/4}\u230b` is the exact inequality `a\u2074 \u2264 n\u00b3`.",
+      "file": "formal/Problems/Juggler/FateLandingWindow.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-landing-window"
+      ],
+      "line": 41,
+      "module": "Problems.Juggler.FateLandingWindow",
+      "name": "le_cell34_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`\u230an^{3/4}\u230b < b` is the exact inequality `n\u00b3 < b\u2074`.",
+      "file": "formal/Problems/Juggler/FateLandingWindow.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-landing-window"
+      ],
+      "line": 45,
+      "module": "Problems.Juggler.FateLandingWindow",
+      "name": "cell34_lt_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateLandingWindow.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-landing-window"
+      ],
+      "line": 48,
+      "module": "Problems.Juggler.FateLandingWindow",
+      "name": "windowStart_exists",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`\u03a6(a) = \u2308a^{4/3}\u2309`: the least integer whose cube is at least `a\u2074`.",
+      "file": "formal/Problems/Juggler/FateLandingWindow.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-landing-window"
+      ],
+      "line": 56,
+      "module": "Problems.Juggler.FateLandingWindow",
+      "name": "windowStart",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The Galois connection defining `\u03a6`.",
+      "file": "formal/Problems/Juggler/FateLandingWindow.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-landing-window"
+      ],
+      "line": 59,
+      "module": "Problems.Juggler.FateLandingWindow",
+      "name": "windowStart_le_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateLandingWindow.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-landing-window"
+      ],
+      "line": 65,
+      "module": "Problems.Juggler.FateLandingWindow",
+      "name": "lt_windowStart_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Equation (D.1), the exact endpoints.** `a \u2264 F(n) < b` exactly when `\u03a6(a) \u2264 n < \u03a6(b)`.",
+      "file": "formal/Problems/Juggler/FateLandingWindow.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-landing-window"
+      ],
+      "line": 70,
+      "module": "Problems.Juggler.FateLandingWindow",
+      "name": "exact_endpoints",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Equation (D.1) as the set identity the appendix writes: `{n : a \u2264 F(n) < b} = [\u03a6(a), \u03a6(b)) \u2229 \u2124`.",
+      "file": "formal/Problems/Juggler/FateLandingWindow.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-landing-window"
+      ],
+      "line": 76,
+      "module": "Problems.Juggler.FateLandingWindow",
+      "name": "setOf_cell34_mem_Ico",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Equation (D.2), the nested window.** Iterating (D.1): the integers whose `i`-fold `F`-image lands in `[a, b)` are exactly those of `[\u03a6^i(a), \u03a6^i(b))`.",
+      "file": "formal/Problems/Juggler/FateLandingWindow.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-landing-window"
+      ],
+      "line": 83,
+      "module": "Problems.Juggler.FateLandingWindow",
+      "name": "exact_endpoints_iterate",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Equation (D.2) as a set identity.",
+      "file": "formal/Problems/Juggler/FateLandingWindow.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-landing-window"
+      ],
+      "line": 94,
+      "module": "Problems.Juggler.FateLandingWindow",
+      "name": "setOf_iterate_mem_Ico",
+      "trust": "kernel"
+    },
+    {
       "doc": "`x^p \u2264 c \u2194 x^{p n} \u2264 c^n` for `x, c \u2265 0` and a natural `n \u2260 0`.",
       "file": "formal/Problems/Juggler/FateNumerics.lean",
       "kind": "theorem",
@@ -82119,6 +82263,7 @@
         "Problems.Juggler.FateCylinderCorollary",
         "Problems.Juggler.FateFiberParity",
         "Problems.Juggler.FateFirstLetter",
+        "Problems.Juggler.FateLandingWindow",
         "Problems.Juggler.FateNumerics",
         "Problems.Juggler.FatePressure",
         "Problems.Juggler.FateRecursion",
@@ -83200,6 +83345,20 @@
         {
           "id": "J-fate-first-letter-split",
           "statement": "The exact layer of Paper C's first-letter identity (6.1). For a two-way closed class A (ForwardClosed and BackwardClosed), any weight w and any finite index set s, the weighted mass of A splits exactly into three pieces by first letter: the even members, the odd members with even image (OE-type) and the odd members with odd image (OO-type), each piece indexed by its image lying in A as the paper indexes it (first_letter_split); shellLogMass_split is the log-mass form on a shell (y, x]. The map J is strictly increasing on the odd integers (floorPower_odd_lt), hence injective there (floorPower_odd_injective), so the paper's odd preimage n(m) of the free term is well defined, and sum_image_ooPiece rewrites the OO-type piece as a sum over the odd images. This is the partition, with no error term. The identity (6.1) itself is not formalized: the densities phi_A, phi^fib_A and psi_A, the identification of each piece with its term of (6.1), and the boundary error O(e^{-t/4}/t) of Lemma 3.1 stay human. Nothing here bounds a density and nothing here is a halt theorem.",
+          "tag": "EXACT \u2014 LEAN VERIFIED"
+        }
+      ]
+    },
+    "Problems.Juggler.FateLandingWindow": {
+      "declarations": 12,
+      "file": "formal/Problems/Juggler/FateLandingWindow.lean",
+      "imports": [
+        "Problems.Juggler.Dynamics"
+      ],
+      "ledger": [
+        {
+          "id": "J-fate-landing-window",
+          "statement": "Paper C Appendix D.1, equations (D.1) and (D.2), the exact landing windows of the nested productions. Write F(u) = floor(u^{3/4}) as the integer operation cell34 n = sqrt(sqrt(n^3)), which is J^2 on an OE step (cell34_eq_floorPower_two), and Phi(a) = ceil(a^{4/3}) as windowStart a, the least n with a^4 <= n^3 -- which is what the ceiling means in exact arithmetic. The two are a Galois connection: windowStart a <= n and a <= cell34 n are both a^4 <= n^3 (windowStart_le_iff, le_cell34_iff). Hence (D.1): {n : a <= F(n) < b} = [Phi(a), Phi(b)) exactly (exact_endpoints, setOf_cell34_mem_Ico), and by induction the nested window (D.2) for the i-fold image (exact_endpoints_iterate, setOf_iterate_mem_Ico). Exact, with no error term and no real number. What Appendix D does with the window is not formalized: the smooth comparison (D.3), the endpoint error O_k(P^{1-s}), the inner-layer multiplicities, and the production inequality (5.2) they feed all stay human, as does the imposition of the parity conditions of V_k. Nothing here bounds a density and nothing here is a halt theorem.",
           "tag": "EXACT \u2014 LEAN VERIFIED"
         }
       ]
@@ -84718,6 +84877,7 @@
         "Problems.Juggler.FateCylinderCorollary",
         "Problems.Juggler.FateFiberParity",
         "Problems.Juggler.FateFirstLetter",
+        "Problems.Juggler.FateLandingWindow",
         "Problems.Juggler.FateNumerics",
         "Problems.Juggler.FatePressure",
         "Problems.Juggler.FateRecursion",
@@ -84733,7 +84893,7 @@
       "ledger": [
         {
           "id": "J-paper-c-trust-surface",
-          "statement": "Paper C's Lean surface, as a build target and an axiom artifact. formal/Problems/JugglerFatePaper.lean imports exactly the eighteen modules the paper cites (TerminationFloor257, FateContagion, CubeFiber, TiltedShare, FateRecursion, FateFirstLetter, FateWindowCount, FateSweep, FateSweepMonotone, FateChernoff, FatePressure, FateTaoReduction, FateSeed, FateCylinderCorollary, FateNumerics, FateFiberParity, FateThinFibers, FateContagionBound) and is a lake default target; formal/AxiomCheckPaperC.lean prints the axioms of the cited declarations and AxiomCheckPaperC.expected records them: every line is a subset of [propext, Classical.choice, Quot.sound], no sorryAx, no Lean.ofReduceBool (native_decide). formalpedia's paper surface carries Paper C (root Problems.JugglerFatePaper): no declaration it reaches runs the compiler and none cites one that does. The verification table has twenty-two Lean rows (including Lemma 4.1', Lemmas 4.2 and 4.3, Lemma 5.2, Theorem 5.3 given the production inequality (5.2), Theorem 7.2 and Theorem 7.3 with the contagion bound as a hypothesis, and Corollary 8.4) and four human proofs (the block average 4.4, the share law, the production inequality (5.2), the identity (6.1), the asymptotic bookkeeping). FateNumerics holds the two numerical moves the fiber lemmas share, roots by powering and Bernoulli at a point; FateWindowCount holds the counting move, a sequence rising by at least d has at most w/d + 1 terms in a window of width w. This row records the artifact, not a theorem; nothing here bounds a density.",
+          "statement": "Paper C's Lean surface, as a build target and an axiom artifact. formal/Problems/JugglerFatePaper.lean imports exactly the nineteen modules the paper cites (TerminationFloor257, FateContagion, CubeFiber, TiltedShare, FateRecursion, FateFirstLetter, FateLandingWindow, FateWindowCount, FateSweep, FateSweepMonotone, FateChernoff, FatePressure, FateTaoReduction, FateSeed, FateCylinderCorollary, FateNumerics, FateFiberParity, FateThinFibers, FateContagionBound) and is a lake default target; formal/AxiomCheckPaperC.lean prints the axioms of the cited declarations and AxiomCheckPaperC.expected records them: every line is a subset of [propext, Classical.choice, Quot.sound], no sorryAx, no Lean.ofReduceBool (native_decide). formalpedia's paper surface carries Paper C (root Problems.JugglerFatePaper): no declaration it reaches runs the compiler and none cites one that does. The verification table has twenty-three Lean rows (including Lemma 4.1', Lemmas 4.2 and 4.3, Lemma 5.2, Theorem 5.3 given the production inequality (5.2), Theorem 7.2 and Theorem 7.3 with the contagion bound as a hypothesis, and Corollary 8.4) and four human proofs (the block average 4.4, the share law, the production inequality (5.2), the identity (6.1), the asymptotic bookkeeping). FateNumerics holds the two numerical moves the fiber lemmas share, roots by powering and Bernoulli at a point; FateWindowCount holds the counting move, a sequence rising by at least d has at most w/d + 1 terms in a window of width w. This row records the artifact, not a theorem; nothing here bounds a density.",
           "tag": "COMPUTATIONALLY VERIFIED"
         }
       ]
@@ -85030,13 +85190,13 @@
     }
   },
   "totals": {
-    "declarations": 6247,
-    "declarations_with_a_ledger_row": 4264,
-    "ledger_rows_naming_a_file": 391,
-    "modules": 270,
+    "declarations": 6259,
+    "declarations_with_a_ledger_row": 4276,
+    "ledger_rows_naming_a_file": 392,
+    "modules": 271,
     "trust": {
       "compiler": 57,
-      "kernel": 6190
+      "kernel": 6202
     }
   }
 }
