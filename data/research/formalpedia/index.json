@@ -29840,6 +29840,246 @@
       "trust": "kernel"
     },
     {
+      "doc": "A cylinder of depth `t` splits into its two children at depth `t + 1`.",
+      "file": "formal/Problems/Juggler/FateOneSided.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-one-sided-moments"
+      ],
+      "line": 54,
+      "module": "Problems.Juggler.FateOneSided",
+      "name": "cylinder_split",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Badness is inherited by prefixes: a bad child has a bad parent.",
+      "file": "formal/Problems/Juggler/FateOneSided.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-one-sided-moments"
+      ],
+      "line": 87,
+      "module": "Problems.Juggler.FateOneSided",
+      "name": "LBad_of_LBad_append",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A sum over the words of depth `t + 1` is a sum over the two children of each word of depth `t`.",
+      "file": "formal/Problems/Juggler/FateOneSided.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-one-sided-moments"
+      ],
+      "line": 95,
+      "module": "Problems.Juggler.FateOneSided",
+      "name": "sum_allWords_succ",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The tilted count of all words: `\u03a3_{|w|=t} x^{o(w)} = (1 + x)^t \u2264 (2x)^t` for `x \u2265 1`.",
+      "file": "formal/Problems/Juggler/FateOneSided.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-one-sided-moments"
+      ],
+      "line": 118,
+      "module": "Problems.Juggler.FateOneSided",
+      "name": "sum_pow_oddCount_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The bad weight at scale `y`: the cylinder count on `L`-bad words, `0` elsewhere.",
+      "file": "formal/Problems/Juggler/FateOneSided.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-one-sided-moments"
+      ],
+      "line": 143,
+      "module": "Problems.Juggler.FateOneSided",
+      "name": "badWeight",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateOneSided.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-one-sided-moments"
+      ],
+      "line": 146,
+      "module": "Problems.Juggler.FateOneSided",
+      "name": "badWeight_nonneg",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateOneSided.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-one-sided-moments"
+      ],
+      "line": 150,
+      "module": "Problems.Juggler.FateOneSided",
+      "name": "badWeight_le_card",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The tilted bad mass at depth `t`: `\u03a3_{|w|=t, w bad} #[w]_y x^{o(w)}`.",
+      "file": "formal/Problems/Juggler/FateOneSided.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-one-sided-moments"
+      ],
+      "line": 155,
+      "module": "Problems.Juggler.FateOneSided",
+      "name": "badMass",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The paper's one-sided hypothesis `H_q(C, A)` at scale `y`, for the depths `1 \u2264 t < d`: every `L`-bad cylinder sends at most the share `q` of its members, plus `err`, to an odd next letter.",
+      "file": "formal/Problems/Juggler/FateOneSided.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-one-sided-moments"
+      ],
+      "line": 161,
+      "module": "Problems.Juggler.FateOneSided",
+      "name": "OneSidedShare",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**One depth.** Under the hypothesis at depth `1 \u2264 t < d`, `badMass (t+1) \u2264 a_q \u00b7 badMass t + (x - 1) err (2x)^t` with `a_q = 1 + (x-1) q`.",
+      "file": "formal/Problems/Juggler/FateOneSided.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-one-sided-moments"
+      ],
+      "line": 167,
+      "module": "Problems.Juggler.FateOneSided",
+      "name": "badMass_succ_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The odd starts of `(y, 2y]` are the cylinder of the empty word, and number at most `y`.",
+      "file": "formal/Problems/Juggler/FateOneSided.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-one-sided-moments"
+      ],
+      "line": 232,
+      "module": "Problems.Juggler.FateOneSided",
+      "name": "card_cylinder_zero_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Depth one.** `badMass 1 \u2264 x N`, with `N` the odd starts of `(y, 2y]`.",
+      "file": "formal/Problems/Juggler/FateOneSided.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-one-sided-moments"
+      ],
+      "line": 237,
+      "module": "Problems.Juggler.FateOneSided",
+      "name": "badMass_one_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Unrolled.** Under the hypothesis up to depth `d`, for `t + 1 \u2264 d`, `badMass (t+1) \u2264 x a_q^t N + (x-1) err t (2x)^t`, using `a_q \u2264 2x`.",
+      "file": "formal/Problems/Juggler/FateOneSided.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-one-sided-moments"
+      ],
+      "line": 262,
+      "module": "Problems.Juggler.FateOneSided",
+      "name": "badMass_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Lemma 8.1 with the Markov tilt.** Every odd failure in `(y, 2y]` lies in a bad cylinder of depth `d \u2265 C L(y)` whose word has at least `p_C d` odd letters, so the failures number at most `badMass d / x^{p_C d}`.",
+      "file": "formal/Problems/Juggler/FateOneSided.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-one-sided-moments"
+      ],
+      "line": 318,
+      "module": "Problems.Juggler.FateOneSided",
+      "name": "oddFailures_card_le_badMass",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Theorem 9.1 by exponential moments, exact.** Under the one-sided hypothesis at scale `y` with depth `d \u2265 C L(y)`, above a certified floor `N\u2080`, the odd failures in `(y, 2y]` number at most `(x a_q^{d-1} N + (x-1) err (d-1) (2x)^{d-1}) / x^{p_C d}` for every tilt `x \u2265 1`, with `N` the odd starts of `(y, 2y]` and `a_q = 1 + (x-1) q`.",
+      "file": "formal/Problems/Juggler/FateOneSided.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-one-sided-moments"
+      ],
+      "line": 366,
+      "module": "Problems.Juggler.FateOneSided",
+      "name": "one_sided_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The relative entropy `D(p \u2016 q) = p log(p/q) + (1-p) log((1-p)/(1-q))`.",
+      "file": "formal/Problems/Juggler/FateOneSided.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-one-sided-moments"
+      ],
+      "line": 385,
+      "module": "Problems.Juggler.FateOneSided",
+      "name": "klDiv",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The re-centring tilt `x = p(1-q)/(q(1-p))`, at which the bound has exponent `D(p \u2016 q)`.",
+      "file": "formal/Problems/Juggler/FateOneSided.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-one-sided-moments"
+      ],
+      "line": 389,
+      "module": "Problems.Juggler.FateOneSided",
+      "name": "tilt",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateOneSided.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-one-sided-moments"
+      ],
+      "line": 391,
+      "module": "Problems.Juggler.FateOneSided",
+      "name": "tilt_ge_one",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`a_q^d / x^{p d} = e^{-d D(p \u2016 q)}` at the re-centring tilt (Proposition 9.3's identity).",
+      "file": "formal/Problems/Juggler/FateOneSided.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-one-sided-moments"
+      ],
+      "line": 397,
+      "module": "Problems.Juggler.FateOneSided",
+      "name": "tilt_pow_ratio",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Theorem 9.1 at the re-centring tilt.** With `q < p_C < 1` and `x = p_C(1-q)/(q(1-p_C))`, the main term is `(x/a_q) N e^{-d D(p_C \u2016 q)}`: the exponent `C D(p_C \u2016 q)/log 2` per unit of `L(y)`, which the paper records is at least the Azuma exponent `e_q(C)` of Theorem 9.1.",
+      "file": "formal/Problems/Juggler/FateOneSided.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-one-sided-moments"
+      ],
+      "line": 411,
+      "module": "Problems.Juggler.FateOneSided",
+      "name": "one_sided_bound_kl",
+      "trust": "kernel"
+    },
+    {
       "doc": "The live pressure `\u03a3_{n \u2208 {1,\u2026,N} live to depth d} x^{o_d(n)}`, as the generating function of the live weight.",
       "file": "formal/Problems/Juggler/FatePressure.lean",
       "kind": "def",
@@ -83299,6 +83539,7 @@
         "Problems.Juggler.FateFirstLetter",
         "Problems.Juggler.FateLandingWindow",
         "Problems.Juggler.FateNumerics",
+        "Problems.Juggler.FateOneSided",
         "Problems.Juggler.FatePressure",
         "Problems.Juggler.FateProduction",
         "Problems.Juggler.FateRecursion",
@@ -84433,6 +84674,22 @@
       "file": "formal/Problems/Juggler/FateNumerics.lean",
       "imports": [],
       "ledger": []
+    },
+    "Problems.Juggler.FateOneSided": {
+      "declarations": 20,
+      "file": "formal/Problems/Juggler/FateOneSided.lean",
+      "imports": [
+        "Problems.Juggler.FateChernoff",
+        "Problems.Juggler.FateCylinderEnergy",
+        "Problems.Juggler.TiltedShare"
+      ],
+      "ledger": [
+        {
+          "id": "J-fate-one-sided-moments",
+          "statement": "Paper C Theorem 9.1 (the one-sided form) in exact form, by exponential moments and without the martingale, carrying out the paper's remark after Proposition 9.3. For a tilt x >= 1 let badMass(t) be the sum over the L-bad words w of length t of #[w] x^{o(w)}, the tilted mass of the bad cylinders of depth t. Under the one-sided hypothesis OneSidedShare (every L-bad cylinder of depth 1 <= t < d sends at most q #[w] + err of its members to an odd next letter), bad words being prefix-closed and a cylinder splitting into its two children, badMass(t+1) <= (1 + (x-1) q) badMass(t) + (x-1) err (2x)^t (badMass_succ_le), which unrolls to badMass(t+1) <= x (1 + (x-1) q)^t N + (x-1) err t (2x)^t with N the odd starts of (y, 2y] (badMass_le). Lemma 8.1 and the Markov tilt put every odd failure of (y, 2y] in a bad cylinder of depth d with at least p_C d odd letters (oddFailures_card_le_badMass), so for every y >= 1 and every d >= max(1, C L(y)), L(y) = log_2(log 2y / log N_0), above a certified floor N_0 >= 2: #{odd failures in (y, 2y]} <= (x a_q^{d-1} N + (x-1) err (d-1) (2x)^{d-1}) / x^{p_C d} with a_q = 1 + (x-1) q, at every tilt x >= 1 and with no epsilon (one_sided_bound); at the re-centring tilt x = p_C (1-q)/(q (1-p_C)) the main term is (x/a_q) N exp(-d D(p_C || q)) (one_sided_bound_kl, on tilt_pow_ratio and tilt_exponent_eq_kl), the exponent C D(p_C || q)/log 2 of Proposition 9.3, which the paper records is at least the Azuma exponent e_q(C). NOT formalized: the error term carries (2x)^{d-1} / x^{p_C d} where the martingale proof's Markov step carries 2^d, so absorbing it into y (log y)^{-r} needs A > C (1 + (1 - p_C) log_2 x) + r in place of the paper's A > C + r; that absorption, the substitution d = ceil(C L(y)) and the displayed asymptotic form (log 2y / log N_0)^{-(e_q(C) - epsilon)} are human. Nothing here bounds a cylinder and nothing here is a halt theorem.",
+          "tag": "EXACT \u2014 LEAN VERIFIED"
+        }
+      ]
     },
     "Problems.Juggler.FatePressure": {
       "declarations": 6,
@@ -85977,6 +86234,7 @@
         "Problems.Juggler.FateFirstLetter",
         "Problems.Juggler.FateLandingWindow",
         "Problems.Juggler.FateNumerics",
+        "Problems.Juggler.FateOneSided",
         "Problems.Juggler.FatePressure",
         "Problems.Juggler.FateProduction",
         "Problems.Juggler.FateRecursion",
@@ -85993,7 +86251,7 @@
       "ledger": [
         {
           "id": "J-paper-c-trust-surface",
-          "statement": "Paper C's Lean surface, as a build target and an axiom artifact. formal/Problems/JugglerFatePaper.lean imports exactly the twenty-three modules the paper cites (TerminationFloor257, FateBlockAverage, FateShareLaw, FateProduction, FateContagion, FateCylinderEnergy, CubeFiber, TiltedShare, FateRecursion, FateFirstLetter, FateLandingWindow, FateWindowCount, FateSweep, FateSweepMonotone, FateChernoff, FatePressure, FateTaoReduction, FateSeed, FateCylinderCorollary, FateNumerics, FateFiberParity, FateThinFibers, FateContagionBound) and is a lake default target; formal/AxiomCheckPaperC.lean prints the axioms of the cited declarations and AxiomCheckPaperC.expected records them: every line is a subset of [propext, Classical.choice, Quot.sound], no sorryAx, no Lean.ofReduceBool (native_decide). formalpedia's paper surface carries Paper C (root Problems.JugglerFatePaper): no declaration it reaches runs the compiler and none cites one that does. The verification table has twenty-five Lean rows (including Lemma 4.1', Lemmas 4.2 and 4.3, Lemma 5.2, Theorem 5.3 given the production inequality (5.2), Theorem 7.2 and Theorem 7.3 with the contagion bound as a hypothesis, and Corollary 8.4) and four human proofs (the block average 4.4, the share law, the production inequality (5.2), the identity (6.1), the asymptotic bookkeeping). FateNumerics holds the two numerical moves the fiber lemmas share, roots by powering and Bernoulli at a point; FateWindowCount holds the counting move, a sequence rising by at least d has at most w/d + 1 terms in a window of width w. This row records the artifact, not a theorem; nothing here bounds a density.",
+          "statement": "Paper C's Lean surface, as a build target and an axiom artifact. formal/Problems/JugglerFatePaper.lean imports exactly the twenty-four modules the paper cites (TerminationFloor257, FateBlockAverage, FateShareLaw, FateProduction, FateOneSided, FateContagion, FateCylinderEnergy, CubeFiber, TiltedShare, FateRecursion, FateFirstLetter, FateLandingWindow, FateWindowCount, FateSweep, FateSweepMonotone, FateChernoff, FatePressure, FateTaoReduction, FateSeed, FateCylinderCorollary, FateNumerics, FateFiberParity, FateThinFibers, FateContagionBound) and is a lake default target; formal/AxiomCheckPaperC.lean prints the axioms of the cited declarations and AxiomCheckPaperC.expected records them: every line is a subset of [propext, Classical.choice, Quot.sound], no sorryAx, no Lean.ofReduceBool (native_decide). formalpedia's paper surface carries Paper C (root Problems.JugglerFatePaper): no declaration it reaches runs the compiler and none cites one that does. The verification table has twenty-six Lean rows (including Lemma 4.1', Lemmas 4.2 and 4.3, Lemma 5.2, Theorem 5.3 given the production inequality (5.2) and unconditionally at 3/10, Theorem 7.2 and Theorem 7.3 with the contagion bound as a hypothesis, Corollary 8.4, and Theorem 9.1 in exact form by exponential moments) and four human proofs (the block average 4.4, the share law, the production inequality (5.2), the asymptotic bookkeeping of Sections 8--10). FateNumerics holds the two numerical moves the fiber lemmas share, roots by powering and Bernoulli at a point; FateWindowCount holds the counting move, a sequence rising by at least d has at most w/d + 1 terms in a window of width w. This row records the artifact, not a theorem; nothing here bounds a density.",
           "tag": "COMPUTATIONALLY VERIFIED"
         }
       ]
@@ -86290,13 +86548,13 @@
     }
   },
   "totals": {
-    "declarations": 6345,
-    "declarations_with_a_ledger_row": 4362,
-    "ledger_rows_naming_a_file": 396,
-    "modules": 275,
+    "declarations": 6365,
+    "declarations_with_a_ledger_row": 4382,
+    "ledger_rows_naming_a_file": 397,
+    "modules": 276,
     "trust": {
       "compiler": 57,
-      "kernel": 6288
+      "kernel": 6308
     }
   }
 }

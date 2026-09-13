@@ -7,6 +7,7 @@ import Problems.Juggler.FateFirstLetter
 import Problems.Juggler.FateBlockAverage
 import Problems.Juggler.FateShareLaw
 import Problems.Juggler.FateProduction
+import Problems.Juggler.FateOneSided
 import Problems.Juggler.FateCylinderEnergy
 import Problems.Juggler.FateLandingWindow
 import Problems.Juggler.FateWindowCount
@@ -25,7 +26,7 @@ import Problems.Juggler.FateContagionBound
 /-!
 # Paper C barrel — everything the repository checks for the fate-contagion note
 
-`docs/theory/juggler_fate_almost_all_note.md`. This file imports exactly the twenty-three modules
+`docs/theory/juggler_fate_almost_all_note.md`. This file imports exactly the twenty-four modules
 that paper cites and nothing else, so that a reader can build the formal side of Paper C on
 its own rather than selecting modules by hand out of the umbrella `Problems.Juggler`. It is a
 laboratory target, not a claim: building it does **not** corroborate the paper's counting.
@@ -76,6 +77,19 @@ laboratory target, not a claim: building it does **not** corroborate the paper's
   (`Production.failures_logMass_ge`). The block-average family, whose two exponential-sum
   bounds are hypotheses in `FateBlockAverage`, and the five ladder productions of Section 5.7,
   whose Appendix D estimates are human, are what lift `3/10` to the paper's `0.49`.
+* `FateOneSided` — Theorem 9.1 in exact form, by exponential moments and without the
+  martingale, carrying out the paper's remark after Proposition 9.3. The tilted mass of the
+  `L`-bad cylinders, `badMass t = Σ_{|w|=t, w bad} #[w] x^{o(w)}`, obeys the affine recursion
+  `badMass (t+1) ≤ (1 + (x-1) q) badMass t + (x-1) err (2x)^t` under the one-sided hypothesis
+  `OneSided.OneSidedShare` (`OneSided.badMass_succ_le`), because bad words are prefix-closed
+  and a cylinder splits into its two children; it unrolls to `x a_q^t N + (x-1) err t (2x)^t`
+  (`OneSided.badMass_le`), and Lemma 8.1 with the Markov tilt bounds the odd failures of
+  `(y, 2y]` by `badMass d / x^{p_C d}` (`OneSided.oddFailures_card_le_badMass`), so at every
+  scale `#{odd failures} ≤ (x a_q^{d-1} N + (x-1) err (d-1) (2x)^{d-1}) / x^{p_C d}`
+  (`OneSided.one_sided_bound`); at the re-centring tilt the main term is
+  `(x/a_q) N e^{-d D(p_C ‖ q)}` (`OneSided.one_sided_bound_kl`). The absorption of the error
+  into the rate, which here costs `C (1 - p_C) log₂ x` more of `A` than the paper's Markov
+  step, and the displayed asymptotic form are not here.
 * `FateCylinderEnergy` — the counting identity of Section 10(d): a cylinder splits into
   its two children (`CylinderEnergy.wordCount_split`), so the first-letter biases
   `D(w) = #[wO] - #[w]/2` satisfy `Σ_{|w|=t} D(w)² = C_{t+1}/2 - C_t/4` exactly
@@ -156,8 +170,8 @@ laboratory target, not a claim: building it does **not** corroborate the paper's
 Proposition 4.4 (the block average), the
 share law 4.5–4.6, the production inequality (5.2) itself (Theorem 5.3 is here given (5.2),
 for every `λ ≤ 0.49`; the root `λ** = 0.4926…` and the range `0.49 < λ < λ**` are not),
-Corollaries 5.4–5.5, the asymptotic form of Theorem 8.3, Theorem 9.1, the asymptotic form of
-Theorem 9.2, Section 10 and Appendix C have no machine check of any kind. Theorems 7.2, 7.3
+Corollaries 5.4–5.5, the asymptotic forms of Theorems 8.3, 9.1 and 9.2, Section 10 and
+Appendix C have no machine check of any kind. Theorems 7.2, 7.3
 and Corollary 8.4 are here with the contagion bound as a hypothesis, and Corollary 8.4 also
 with (5.2) in its place. Nothing here is a
 density estimate, and nothing here is a halt theorem.

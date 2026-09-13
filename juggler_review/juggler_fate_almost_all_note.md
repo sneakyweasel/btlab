@@ -318,7 +318,7 @@ type Paper B proves enters Appendix C as an explicit hypothesis.
 
 Statements carry one of four roles. *Lean*: the exact combinatorial
 layer is formalized in Lean 4; the root `formal/Problems/JugglerFatePaper.lean`
-imports exactly the twenty-three modules this paper cites and builds with
+imports exactly the twenty-four modules this paper cites and builds with
 `lake build Problems.JugglerFatePaper`, without `sorry` and without
 `native_decide`; `formal/AxiomCheckPaperC.lean` prints the axiom
 dependencies of every cited name and `AxiomCheckPaperC.expected`
@@ -358,7 +358,8 @@ constants; they prove nothing and are labelled wherever they appear.
 | Theorem 8.3, explicit form \(y\Lambda^{-e(C)}+2\Lambda^Cy(\log y)^{-A}\) at every \(y\) | Lean; the \(\varepsilon\)-absorption into the displayed form is human |
 | Pressure form (Theorem 9.2, exact: a pressure bound \(Na_\theta^dE\) gives at most \(Ne^{-dD(p_C\Vert 1/2)}E\) live starts) | Lean, on the live weight |
 | Pressure telescoping (Proposition 9.3) | Lean, on the word-weight framework |
-| Azuma and exponential-moment arguments (Sections 8--10, except Lemma 8.2, Theorem 8.3, Theorem 9.2 and Proposition 9.3 in their exact forms) | human proof |
+| One-sided form (Theorem 9.1, exact: at every \(y\) the odd failures of \((y,2y]\) number at most \((xa_q^{d-1}N+(x-1)\,\mathrm{err}\,(d-1)(2x)^{d-1})/x^{p_Cd}\) for every tilt \(x\ge1\), by exponential moments) | Lean, without the martingale; the absorption of the error into the rate and the displayed asymptotic form are human |
+| Azuma and exponential-moment arguments (Sections 8--10, except Lemma 8.2, Theorem 8.3, Theorem 9.1, Theorem 9.2 and Proposition 9.3 in their exact forms) | human proof |
 | Cylinder-splitting identity for the first-letter bias (Section 10(d), second equality) | Lean; the Parseval form in Walsh sums, and the exceptional-atom estimate it is meant to supply, are human |
 | Exact landing windows of the nested productions ((D.1), (D.2)) | Lean; the smooth comparison (D.3), the multiplicities and the production inequality they feed are human |
 | Localized triple discrepancy (Appendix C) | hypothesis, conditional |
@@ -2028,6 +2029,37 @@ By the Azuma--Hoeffding inequality,
 with \(e_q^{(\kappa)}(C)=2((1-\kappa)C\mu-1)^2/(C(\log_2 3)^2\ln 2)\to e_q(C)\)
 as \(\kappa\to 0\). \(\square\)
 
+Lean: exact form, in `formal/Problems/Juggler/FateOneSided.lean`, by
+exponential moments and without the martingale, carrying out the
+remark after Proposition 9.3. `OneSided.badMass` is the tilted mass
+\(\sum_{|w|=t,\ w\ L\text{-bad}}\#[w]\,x^{o(w)}\) of the bad
+cylinders of depth \(t\); bad words are prefix-closed
+(`OneSided.LBad_of_LBad_append`) and a cylinder splits into its two
+children (`OneSided.cylinder_split`), so \(\mathrm H_q\) on the bad
+parents gives the affine recursion
+\(\mathrm{badMass}(t+1)\le a_q\,\mathrm{badMass}(t)+(x-1)\,\mathrm{err}\,(2x)^t\),
+\(a_q=1+(x-1)q\), for \(1\le t<d\) (`OneSided.badMass_succ_le`, under
+`OneSided.OneSidedShare`, the hypothesis with its additive error
+\(\mathrm{err}\) left symbolic), which unrolls to
+\(xa_q^{t}N+(x-1)\,\mathrm{err}\,t\,(2x)^t\) (`OneSided.badMass_le`).
+Lemma 8.1 and the Markov tilt put every odd failure in a bad cylinder
+of depth \(d\) with at least \(p_Cd\) odd letters
+(`OneSided.oddFailures_card_le_badMass`), so
+`OneSided.one_sided_bound` is the bound
+\((xa_q^{d-1}N+(x-1)\,\mathrm{err}\,(d-1)(2x)^{d-1})/x^{p_Cd}\) at
+every \(y\ge1\), every \(d\ge\max(1,CL(y))\) and every tilt
+\(x\ge1\), with no \(\varepsilon\); at the re-centring tilt
+\(x=p_C(1-q)/(q(1-p_C))\) the main term is
+\((x/a_q)\,N\,e^{-dD(p_C\|q)}\) (`OneSided.one_sided_bound_kl`, on
+`OneSided.tilt_pow_ratio` and `tilt_exponent_eq_kl`), the exponent
+\(e^{\rm Ch}_q(C)\) of Proposition 9.3. The error term carries
+\((2x)^{d-1}/x^{p_Cd}\) where the Markov step above carries \(2^d\):
+the tilt is paid on the error too, so its absorption into
+\(y(\log y)^{-r}\) needs \(A>C(1+(1-p_C)\log_2x)+r\) in place of
+\(A>C+r\). That absorption, the substitution
+\(d=\lceil CL(y)\rceil\) and the displayed form with \(\varepsilon\)
+are not formalized.
+
 So no lower bound on odd shares and no vanishing error are needed: if
 no \(L(y)\)-bad cylinder of depth below
 \(41\log_2(\log 2y/\log N_0)\) sends more than \(55\%\) of its members
@@ -2503,7 +2535,7 @@ No nontrivial cycle or unbounded orbit is excluded by this paper.
 ## Appendix A. Lean names
 
 All in `formal/Problems/Juggler/FateContagion.lean` unless noted. The
-root `formal/Problems/JugglerFatePaper.lean` imports exactly the twenty-three
+root `formal/Problems/JugglerFatePaper.lean` imports exactly the twenty-four
 modules named here and builds with `lake build Problems.JugglerFatePaper`
 without `sorry` and without `native_decide`;
 `formal/AxiomCheckPaperC.expected` records the axioms of every name
@@ -2544,6 +2576,7 @@ abstract lemmas listed here, not the analytic density estimates.
 | Lemma 4.3 (thin fibers), in `Problems/Juggler/FateThinFibers.lean` | `FiberParity.span_ge_of_step`, `FiberParity.arc_count_le`, `FiberParity.Am_step_le`, `FiberParity.Am_step_ge`, `FiberParity.eps_antitone`, `FiberParity.bad_mem_arc`, `FiberParity.two_rpow_third_le`, `FiberParity.two_rpow_two_thirds_le`, `FiberParity.rpow_two_thirds_ge`, `FiberParity.eps_div_eps_double`, `FiberParity.Am_double_sub_le`, `FiberParity.bad_count_le`, `FiberParity.bad_block_logMass_le`, `FiberParity.bad_sum_dyadic_le`, `FiberParity.eps_pow_two_mul`, `FiberParity.two_rpow_neg_third_le`, `FiberParity.bad_logMass_le` |
 | Theorem 5.3 given (5.2), Theorem 7.3, Corollary 8.4 through (5.2), in `Problems/Juggler/FateContagionBound.lean` | `productionRate`, `productionCoeff`, `productionRate_pos`, `productionRate_ge`, `productionRate_le`, `productionRate_le_one`, `productionCoeff_ge`, `productionCoeff_nonneg`, `zeta`, `zeta_antitone`, `le_rpow_div_of_pow_le`, `zeta_pos_49`, `seedConst`, `gA`, `gA_seed`, `logMass_ge_gA`, `contagion_of_production_inequality`, `logMass_contagion_of_production`, `oddFailures_eq_empty`, `tao_rate_iff_conjecture`, `conjecture_of_cylinder_bound_of_production` |
 | Proposition 4.4 (its two exponential-sum bounds, the fast sum and the product sum; the exact layer, the slow sum, the block count and the deduction of (4.1) and of the asymptotic form from those two bounds are Lean), the share law 4.5 and Corollary 4.6 (the phase expansion, the range of the quadratic phase and the integral 25/108 are Lean, the equidistribution and the measure identifications are not), the production inequality (5.2) (its `E`-family and `OE`-fiber family are Lean with explicit errors and give Theorem 5.3 at exponent 3/10 unconditionally; the block-average family and the ladder are not), Sections 8--10 except Lemma 8.2, the explicit form of Theorem 8.3, Corollary 8.4, the exact form of Theorem 9.2 and Proposition 9.3, Appendix C; Theorems 5.3, 7.2, 7.3 and Corollary 8.4 only with (5.2) or the contagion bound as a hypothesis | human proofs |
+| Theorem 9.1 (one-sided form, exact, by exponential moments), in `Problems/Juggler/FateOneSided.lean` | `OneSided.cylinder_split`, `OneSided.LBad_of_LBad_append`, `OneSided.sum_allWords_succ`, `OneSided.sum_pow_oddCount_le`, `OneSided.badWeight`, `OneSided.badWeight_nonneg`, `OneSided.badWeight_le_card`, `OneSided.badMass`, `OneSided.OneSidedShare`, `OneSided.badMass_succ_le`, `OneSided.card_cylinder_zero_le`, `OneSided.badMass_one_le`, `OneSided.badMass_le`, `OneSided.oddFailures_card_le_badMass`, `OneSided.one_sided_bound`, `OneSided.klDiv`, `OneSided.tilt`, `OneSided.tilt_ge_one`, `OneSided.tilt_pow_ratio`, `OneSided.one_sided_bound_kl` |
 
 ## Appendix B. Constants and artifacts
 
@@ -2629,6 +2662,10 @@ use the roots of the displayed defining equations.
 
   SHA-256: `37770c769607ce1fdcbf8aaa53610b591f4f2bfd08f8136e247d65304ce1d96b`
 
+- `formal/Problems/Juggler/FateOneSided.lean`
+
+  SHA-256: `6fbbd02546271fc2072439e4c88d037a80e04edf19eced4a61f8a12adef96d99`
+
 - `formal/Problems/Juggler/FateShareLaw.lean`
 
   SHA-256: `a229f4fa4cf48cb5b003c746672947eec10bf93d7287ad7eecaa3f84d5236e7c`
@@ -2679,11 +2716,11 @@ use the roots of the displayed defining equations.
 
 - `formal/Problems/JugglerFatePaper.lean`
 
-  SHA-256: `d72a4a772b8ea3e0dfa9701be2d48a993baee36f32344097498d6ec5d1fa5f5e`
+  SHA-256: `c58b414198f0296e488f973c3e911f887427a16b80c874528bd49ae6208124b5`
 
 - `formal/AxiomCheckPaperC.expected`
 
-  SHA-256: `571671d7dabfb6c66f38a6eaf16d1e103147292c6da377536f2118236fa89986`
+  SHA-256: `37a9e0849d7e94fc101a50995d8aeecf760ad24b248c37ead26b9907e04aafc2`
 
 - `src/research/juggler_sequence/fate_contagion.py`
 
