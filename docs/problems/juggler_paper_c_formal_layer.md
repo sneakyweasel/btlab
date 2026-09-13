@@ -278,6 +278,22 @@ exponential-sum bounds that `FateBlockAverage` takes as hypotheses; the
 ladder (5.10) needs Appendix D. So (5.2) itself stays a human row, and
 the table gains a Lean row for the unconditional \(3/10\).
 
+**The conjecture from a rate, with no other hypothesis (EXACT — LEAN
+VERIFIED, 13 September 2026).** Theorem 7.2 and Corollary 8.4 take the
+contagion bound as a hypothesis in exactly the shape
+`failures_logMass_ge` provides at exponent \(3/10\). Composing them:
+if the odd failures in \((y,2y]\) number at most \(y(\log y)^{-e}\)
+for all large \(y\) and some \(e>\tfrac7{10}\), every positive integer
+reaches \(1\) (`Production.conjecture_of_tao_rate`); and a
+cylinder bound \(\mathrm H(C,A)\) at all large scales with
+\(A>C+e(C)\) and \(e(C)>\tfrac7{10}\), above a certified floor,
+does the same (`Production.conjecture_of_cylinder_bound`).
+Nothing is assumed on the contagion side. The paper's conditional
+forms need \(e>1-\lambda^{**}\approx0.51\) together with (5.2); the
+price of dropping the exponential sums is the rate \(0.7\) in place
+of \(0.51\). Whether a cylinder bound of that strength is provable is
+the open analytic question of Appendix C; nothing here decides it.
+
 ## Current literature
 
 - Paper C §1.4, Appendix A — `known`: the paper's own list of what is

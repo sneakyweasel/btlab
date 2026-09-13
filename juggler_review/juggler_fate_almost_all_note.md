@@ -1279,7 +1279,17 @@ exponent (`Production.failures_logMass_ge`), in
 \(2^{-\lambda}+\tfrac29(\tfrac34)^\lambda=1\) is about \(0.325\); what
 lifts it to \(\lambda^{**}\) is the block-average family, which needs
 the two exponential-sum bounds of Proposition 4.4, and the ladder (5.10),
-which needs Appendix D.
+which needs Appendix D. Composed with Theorem 7.2 and Corollary 8.4,
+whose contagion hypothesis it discharges, this gives two statements
+with no hypothesis on the contagion side: a Tao-type rate
+\(\#\{\text{odd failures in }(y,2y]\}\le y(\log y)^{-e}\) with
+\(e>\tfrac7{10}\) implies the conjecture
+(`Production.conjecture_of_tao_rate`), and so does a cylinder
+bound \(\mathrm H(C,A)\) with \(e(C)>\tfrac7{10}\)
+(`Production.conjecture_of_cylinder_bound`). The paper's
+conditional forms need \(e>1-\lambda^{**}\approx0.51\) and the
+production inequality (5.2); the price of dropping the exponential sums
+is the stronger rate.
 
 **Corollary 5.4 (natural density, infinitely often).** For every
 \(\lambda<\lambda^{**}\) there is \(c>0\) such that for every
@@ -2514,7 +2524,7 @@ abstract lemmas listed here, not the analytic density estimates.
 | Lemma 4.7 (cube fibers), in `Problems/Juggler/CubeFiber.lean` | `cube_fiber_range`, `cube_fiber_sqrt_even`, `cube_fiber_even_image`, `even_cube_fiber_full`, `cube_fiber_sqrt_odd`, `cube_fiber_alternating`, `odd_cube_fiber_alternating` |
 | Shared counting of Lemmas 4.1, 4.1' and 4.3 (separated sequences in a window), in `Problems/Juggler/FateWindowCount.lean` | `WindowCount.StepGe`, `WindowCount.StepLe`, `WindowCount.span_ge`, `WindowCount.span_le`, `WindowCount.mono_of_stepGe`, `WindowCount.window_card_le`, `WindowCount.window_card_le_nat` |
 | Proposition 4.4, the exact layer and the deduction from the exponential-sum bounds (the bounds are hypotheses), in `Problems/Juggler/FateBlockAverage.lean` | `BlockAverage.blockE`, `BlockAverage.oddBlock`, `BlockAverage.mem_oddBlock`, `BlockAverage.mem_oeFiber_iff_cell34`, `BlockAverage.U`, `BlockAverage.oddBlock_card_eq`, `BlockAverage.U_card_eq`, `BlockAverage.psi`, `BlockAverage.slowSum`, `BlockAverage.fastSum`, `BlockAverage.productSum`, `BlockAverage.four_card_U`, `BlockAverage.block_average_of_bounds`, `BlockAverage.block_average_bound`, `BlockAverage.psi_succ`, `BlockAverage.abs_psi`, `BlockAverage.oddBlock_filter_eq`, `BlockAverage.slowSum_eq_fibers`, `BlockAverage.oeFiber_card_succ_diff`, `BlockAverage.abs_alt_sum_le`, `BlockAverage.slowSum_abs_le`, `BlockAverage.card_Ico_block`, `BlockAverage.oddBlock_card_le`, `BlockAverage.oddBlock_card_ge`, `BlockAverage.oddBlock_quarter_close`, `BlockAverage.block_average_two_bounds`, `BlockAverage.block_average_asymptotic`, `BlockAverage.block_average_bound_two` |
-| Section 5.1 without its exponential sums, and Theorem 5.3 at exponent 3/10 unconditionally, in `Problems/Juggler/FateProduction.lean` | `Production.sqrt_floor_exp`, `Production.floor_exp_ge_half`, `Production.family_E`, `Production.good_fiber_logMass_ge`, `Production.family_OE`, `Production.errE`, `Production.errOE`, `Production.errAdd`, `Production.two_le_exp`, `Production.one_div_floor_exp_le`, `Production.sum_Ioc_le_sum_Ioc_pred`, `Production.halfLogMass_split`, `Production.production_two`, `Production.rate2`, `Production.coef2`, `Production.err2`, `Production.rate2_ge`, `Production.rate2_le`, `Production.rate2_pos`, `Production.coef2_ge`, `Production.err2_nonneg`, `Production.err2_le`, `Production.production_two_sum`, `Production.zeta2_pos`, `Production.zeta2_antitone`, `Production.errors_le`, `Production.errors_vanish`, `Production.contagion_elementary`, `Production.logMass_contagion_elementary`, `Production.failures_logMass_ge` |
+| Section 5.1 without its exponential sums, and Theorem 5.3 at exponent 3/10 unconditionally, in `Problems/Juggler/FateProduction.lean` | `Production.sqrt_floor_exp`, `Production.floor_exp_ge_half`, `Production.family_E`, `Production.good_fiber_logMass_ge`, `Production.family_OE`, `Production.errE`, `Production.errOE`, `Production.errAdd`, `Production.two_le_exp`, `Production.one_div_floor_exp_le`, `Production.sum_Ioc_le_sum_Ioc_pred`, `Production.halfLogMass_split`, `Production.production_two`, `Production.rate2`, `Production.coef2`, `Production.err2`, `Production.rate2_ge`, `Production.rate2_le`, `Production.rate2_pos`, `Production.coef2_ge`, `Production.err2_nonneg`, `Production.err2_le`, `Production.production_two_sum`, `Production.zeta2_pos`, `Production.zeta2_antitone`, `Production.errors_le`, `Production.errors_vanish`, `Production.contagion_elementary`, `Production.logMass_contagion_elementary`, `Production.failures_logMass_ge`, `Production.conjecture_of_tao_rate`, `Production.conjecture_of_cylinder_bound` |
 | Section 4.3, the exact layer of the share law (the expansion, the range, the integral), in `Problems/Juggler/FateShareLaw.lean` | `ShareLaw.taylor_three_halves`, `ShareLaw.xval_expansion`, `ShareLaw.xval_expansion_fiber`, `ShareLaw.phi`, `ShareLaw.phiRange`, `ShareLaw.phi_ge_min`, `ShareLaw.phi_le_chord`, `ShareLaw.phi_sub_le`, `ShareLaw.exists_phi_sub_eq`, `ShareLaw.phiRange_le_half_iff`, `ShareLaw.extremeMeasure`, `ShareLaw.extremeMeasure_eq_zero`, `ShareLaw.extremeMeasure_piece1`, `ShareLaw.extremeMeasure_piece2`, `ShareLaw.extremeMeasure_piece3`, `ShareLaw.extremeMeasure_piece4`, `ShareLaw.integral_extremeMeasure` |
 | Section 10(d), the cylinder-splitting identity, in `Problems/Juggler/FateCylinderEnergy.lean` | `CylinderEnergy.itinerary_succ_append`, `CylinderEnergy.wordCount`, `CylinderEnergy.wordCount_split`, `CylinderEnergy.energy`, `CylinderEnergy.bias`, `CylinderEnergy.energy_succ`, `CylinderEnergy.sum_bias_sq` |
 | Appendix D.1, the exact landing windows (D.1) and (D.2), in `Problems/Juggler/FateLandingWindow.lean` | `LandingWindow.cell34`, `LandingWindow.cell34_eq_floorPower_two`, `LandingWindow.le_cell34_iff`, `LandingWindow.cell34_lt_iff`, `LandingWindow.windowStart`, `LandingWindow.windowStart_exists`, `LandingWindow.windowStart_le_iff`, `LandingWindow.lt_windowStart_iff`, `LandingWindow.exact_endpoints`, `LandingWindow.setOf_cell34_mem_Ico`, `LandingWindow.exact_endpoints_iterate`, `LandingWindow.setOf_iterate_mem_Ico` |
@@ -2617,7 +2627,7 @@ use the roots of the displayed defining equations.
 
 - `formal/Problems/Juggler/FateProduction.lean`
 
-  SHA-256: `4a6d209d6abeaf6133a0bc5f1b877c07c7acf6e271a2ebc1b6caa5a4251e3838`
+  SHA-256: `37770c769607ce1fdcbf8aaa53610b591f4f2bfd08f8136e247d65304ce1d96b`
 
 - `formal/Problems/Juggler/FateShareLaw.lean`
 
@@ -2673,7 +2683,7 @@ use the roots of the displayed defining equations.
 
 - `formal/AxiomCheckPaperC.expected`
 
-  SHA-256: `1da5da506ec44fb9832be3fa7dea2572d1228ec01d98ace3a3d8d1d1e37a39e6`
+  SHA-256: `571671d7dabfb6c66f38a6eaf16d1e103147292c6da377536f2118236fa89986`
 
 - `src/research/juggler_sequence/fate_contagion.py`
 
