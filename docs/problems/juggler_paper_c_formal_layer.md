@@ -193,12 +193,14 @@ contagion),
 composition of Theorems 8.3 and 7.2, 5 declarations),
 `formal/Problems/Juggler/FateFiberParity.lean` (Lemma 4.2, fiber parity, 41
 declarations in namespace `FiberParity`),
+`formal/Problems/Juggler/FateThinFibers.lean` (Lemma 4.3, thin fibers, 17
+declarations in namespace `FiberParity`),
 `formal/Problems/JugglerFatePaper.lean` (barrel),
 `formal/AxiomCheckPaperC.lean` and `.expected`. All kernel-checked; the
 Paper C surface (root `Problems.JugglerFatePaper`, 45 modules reached,
 1487 declarations) carries no `native_decide` and cites none.
 
-Not formalized, and not claimed: Lemma 4.3,
+Not formalized, and not claimed:
 Proposition 4.4, the share law 4.5–4.6, Theorem 5.3, Theorem 7.3,
 the asymptotic forms of Theorems 8.3 and 9.2, Theorem 9.1, Section 10, Appendix C, and the log-mass bookkeeping
 that turns the first-letter trichotomy into the identity (6.1).
@@ -209,8 +211,8 @@ Classification **PAPER_C_LEAN_SURFACE_CONSISTENT**.
 
 ```text
   Paper C verification table, before and after
-  Lean rows      15 -> 18  (Lemma 4.1', Corollary 8.4, Lemma 4.2 new)
-  human rows     7 -> 7    (rows split; Lemma 4.3, Theorems 5.3 and 7.3 stay human)
+  Lean rows      15 -> 19  (Lemma 4.1', Corollary 8.4, Lemmas 4.2, 4.3 new)
+  human rows     7 -> 6    (Theorems 5.3 and 7.3, Proposition 4.4, the share law, (6.1), Sections 8--10's asymptotics)
   cited names    135 -> 145, all on subsets of Mathlib's three axioms; none native_decide
 ```
 
@@ -230,6 +232,11 @@ Classification **PAPER_C_LEAN_SURFACE_CONSISTENT**.
   not needed, and its \(1.02m^{-1/3}\) becomes \(m^{-1/3}\) because the
   upper step is taken at a fiber member. Both cases of the paper go
   through the monotone sweep of `FateSweepMonotone`.
+- Lemma 4.3 (13 September): badness is membership in one of two arcs
+  after a shift by \(22u^{-1/3}\) that unwraps the arc around \(0\);
+  the arc count is the sweep's fibre-per-window argument with
+  \(d=(2u)^{-1/3}\) in place of the paper's \((3u)^{-1/3}\), and the
+  dyadic sum is a geometric series with \(2^{-1/3}\le 0.794\).
 - Corollary 8.4 (13 September): the explicit bound of Theorem 8.3 is
   absorbed into the rate \(y(\log y)^{-e}\) for every \(e<e(C)\) once
   \(\log y\) is large (`oddFailures_eventually_le`), and the composition
@@ -240,21 +247,20 @@ Classification **PAPER_C_LEAN_SURFACE_CONSISTENT**.
 
 ## Open questions
 
-- Lemma 4.3 (bad fibers are thin) is a monotone-drift count on
-  \(\{	frac32m^{2/3}\}\): consecutive values advance by
-  \([(m+1)^{-1/3},m^{-1/3}]\), so each pass through the two bad arcs
-  costs at most \(\sim 48\) values of \(m\); elementary, medium.
+- Proposition 4.4 (the block average) is the first analytic step: an
+  exponential-sum estimate. Not a small attack; with it, the whole
+  fiber input of (5.2) would be Lean.
 - The numerical threshold of Corollary 8.4, \(e(19)>1-\lambda^{**}\),
   would need \(\lambda^{**}\) in Lean; not a small attack.
 
 ## Decision
 
-**PROMOTE.** Lemmas 4.1', 4.2 and Corollary 8.4 are now on the barrel
-with the rest of the exact layer; the paper's headline conditional
-result is one Lean theorem with one analytic hypothesis, and the
-constants \(2/9\), \(4/9\) of the fiber share rest on Lean below the
-block average. Nothing here changes a constant or an exponent. Best
-next question: Lemma 4.3 in Lean.
+**PROMOTE.** Lemmas 4.1', 4.2, 4.3 and Corollary 8.4 are now on the
+barrel with the rest of the exact layer; the paper's headline
+conditional result is one Lean theorem with one analytic hypothesis,
+and every elementary step below the block average is Lean. Nothing here
+changes a constant or an exponent. Best next question: none that is
+small; Proposition 4.4 is the first analytic step.
 
 ## Publication assessment
 
