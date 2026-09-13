@@ -1,5 +1,5 @@
 import Mathlib.Analysis.SpecialFunctions.Pow.Real
-import Mathlib.Analysis.Convex.SpecificFunctions.Basic
+import Problems.Juggler.FateNumerics
 import Problems.Juggler.FateSweepMonotone
 import Problems.Juggler.FateContagion
 
@@ -197,27 +197,15 @@ theorem evenImageCount_eq {m : ℕ} (hne : (oeFiber m).Nonempty) :
 
 /-- `n ∈ Φ(m)` gives `m^{4/3} ≤ n` as reals. -/
 theorem fiber_ge_rpow {m n : ℕ} (hn : n ∈ oeFiber m) : (m : ℝ) ^ ((4 : ℝ) / 3) ≤ n := by
-  have h := (mem_oeFiber.mp hn).2.1
-  have h' : ((m : ℝ)) ^ (4 : ℕ) ≤ (n : ℝ) ^ (3 : ℕ) := by exact_mod_cast h
-  have hm : (0 : ℝ) ≤ m := by positivity
-  have key : ((m : ℝ) ^ ((4 : ℝ) / 3)) ^ (3 : ℕ) = (m : ℝ) ^ (4 : ℕ) := by
-    rw [← Real.rpow_natCast, ← Real.rpow_mul hm]
-    norm_num
-  rw [← pow_le_pow_iff_left₀ (Real.rpow_nonneg hm _) (by positivity) (by norm_num : (3 : ℕ) ≠ 0),
-    key]
-  exact h'
+  rw [Numerics.rpow_le_iff_pow (n := 3) (by positivity) (by positivity) (by norm_num)]
+  norm_num
+  exact_mod_cast (mem_oeFiber.mp hn).2.1
 
 /-- `n ∈ Φ(m)` gives `n < (m+1)^{4/3}` as reals. -/
 theorem fiber_lt_rpow {m n : ℕ} (hn : n ∈ oeFiber m) : (n : ℝ) < ((m : ℝ) + 1) ^ ((4 : ℝ) / 3) := by
-  have h := (mem_oeFiber.mp hn).2.2
-  have h' : (n : ℝ) ^ (3 : ℕ) < ((m : ℝ) + 1) ^ (4 : ℕ) := by exact_mod_cast h
-  have hm : (0 : ℝ) ≤ (m : ℝ) + 1 := by positivity
-  have key : (((m : ℝ) + 1) ^ ((4 : ℝ) / 3)) ^ (3 : ℕ) = ((m : ℝ) + 1) ^ (4 : ℕ) := by
-    rw [← Real.rpow_natCast, ← Real.rpow_mul hm]
-    norm_num
-  rw [← pow_lt_pow_iff_left₀ (by positivity) (Real.rpow_nonneg hm _) (by norm_num : (3 : ℕ) ≠ 0),
-    key]
-  exact h'
+  rw [Numerics.lt_rpow_iff_pow (n := 3) (by positivity) (by positivity) (by norm_num)]
+  norm_num
+  exact_mod_cast (mem_oeFiber.mp hn).2.2
 
 /-- `√(m^{4/3}) = m^{2/3}`. -/
 theorem sqrt_rpow_four_thirds (t : ℝ) (ht : 0 ≤ t) :
@@ -229,36 +217,17 @@ theorem sqrt_rpow_four_thirds (t : ℝ) (ht : 0 ≤ t) :
 theorem rpow_four_thirds_succ_ge {m : ℕ} (hm : 1 ≤ m) :
     (m : ℝ) ^ ((4 : ℝ) / 3) + 4 / 3 * (m : ℝ) ^ ((1 : ℝ) / 3) ≤ ((m : ℝ) + 1) ^ ((4 : ℝ) / 3) := by
   have hm0 : (0 : ℝ) < m := by exact_mod_cast hm
-  have hb := one_add_mul_self_le_rpow_one_add (s := 1 / (m : ℝ)) (by
-    have : (0 : ℝ) ≤ 1 / m := by positivity
-    linarith) (p := (4 : ℝ) / 3) (by norm_num)
-  have e : (1 : ℝ) + 1 / m = ((m : ℝ) + 1) / m := by field_simp
-  rw [e, Real.div_rpow (by positivity) hm0.le] at hb
-  have hpos : 0 < (m : ℝ) ^ ((4 : ℝ) / 3) := Real.rpow_pos_of_pos hm0 _
-  rw [le_div_iff₀ hpos] at hb
-  have h13 : (m : ℝ) ^ ((4 : ℝ) / 3) = (m : ℝ) ^ ((1 : ℝ) / 3) * m := by
-    rw [show (4 : ℝ) / 3 = 1 / 3 + 1 by norm_num, Real.rpow_add hm0, Real.rpow_one]
-  calc (m : ℝ) ^ ((4 : ℝ) / 3) + 4 / 3 * (m : ℝ) ^ ((1 : ℝ) / 3)
-      = (1 + 4 / 3 * (1 / (m : ℝ))) * (m : ℝ) ^ ((4 : ℝ) / 3) := by
-        rw [h13]; field_simp
-    _ ≤ ((m : ℝ) + 1) ^ ((4 : ℝ) / 3) := hb
+  have := Numerics.bernoulli_ge (h := 1) (p := (4 : ℝ) / 3) (q := (1 : ℝ) / 3) hm0 (by linarith)
+    (by norm_num) (by norm_num)
+  linarith
 
 /-- Bernoulli, upper: `(m+1)^{2/3} ≤ m^{2/3} + (2/3) m^{-1/3}` for `m ≥ 1`. -/
 theorem rpow_two_thirds_succ_le {m : ℕ} (hm : 1 ≤ m) :
     ((m : ℝ) + 1) ^ ((2 : ℝ) / 3) ≤ (m : ℝ) ^ ((2 : ℝ) / 3) + 2 / 3 * (m : ℝ) ^ (-((1 : ℝ) / 3)) := by
   have hm0 : (0 : ℝ) < m := by exact_mod_cast hm
-  have hb := rpow_one_add_le_one_add_mul_self (s := 1 / (m : ℝ)) (by
-    have : (0 : ℝ) ≤ 1 / m := by positivity
-    linarith) (p := (2 : ℝ) / 3) (by norm_num) (by norm_num)
-  have e : (1 : ℝ) + 1 / m = ((m : ℝ) + 1) / m := by field_simp
-  rw [e, Real.div_rpow (by positivity) hm0.le] at hb
-  have hpos : 0 < (m : ℝ) ^ ((2 : ℝ) / 3) := Real.rpow_pos_of_pos hm0 _
-  rw [div_le_iff₀ hpos] at hb
-  have h13 : (m : ℝ) ^ ((2 : ℝ) / 3) = (m : ℝ) ^ (-((1 : ℝ) / 3)) * m := by
-    rw [show (2 : ℝ) / 3 = -(1 / 3) + 1 by norm_num, Real.rpow_add hm0, Real.rpow_one]
-  calc ((m : ℝ) + 1) ^ ((2 : ℝ) / 3) ≤ (1 + 2 / 3 * (1 / (m : ℝ))) * (m : ℝ) ^ ((2 : ℝ) / 3) := hb
-    _ = (m : ℝ) ^ ((2 : ℝ) / 3) + 2 / 3 * (m : ℝ) ^ (-((1 : ℝ) / 3)) := by
-        rw [h13]; field_simp
+  have := Numerics.bernoulli_le (h := 1) (p := (2 : ℝ) / 3) (q := -((1 : ℝ) / 3)) hm0
+    (by linarith) (by norm_num) (by norm_num) (by norm_num)
+  linarith
 
 /-- The fiber holds at least `(2/3) m^{1/3} - 1` odd integers (`m ≥ 1`). -/
 theorem oeFiber_card_ge {m : ℕ} (hm : 1 ≤ m) :
@@ -279,24 +248,18 @@ theorem oeFiber_card_ge {m : ℕ} (hm : 1 ≤ m) :
     · -- `L ≤ 2k + 1`, hence `m⁴ = L³ ≤ (2k+1)³`
       have h1 : (L - 1) / 2 ≤ k := le_trans (Nat.le_ceil _) (by exact_mod_cast hk.1)
       have h2 : L ≤ ((2 * k + 1 : ℕ) : ℝ) := by push_cast; linarith
-      have key : L ^ (3 : ℕ) = (m : ℝ) ^ (4 : ℕ) := by
-        rw [hL, ← Real.rpow_natCast, ← Real.rpow_mul hm0.le]; norm_num
-      have h3 : L ^ (3 : ℕ) ≤ ((2 * k + 1 : ℕ) : ℝ) ^ (3 : ℕ) :=
-        pow_le_pow_left₀ (by linarith) h2 3
-      rw [key] at h3
-      exact_mod_cast h3
+      rw [hL, Numerics.rpow_le_iff_pow (n := 3) hm0.le (by positivity) (by norm_num)] at h2
+      norm_num at h2
+      exact_mod_cast h2
     · -- `k < (R - 1)/2`, hence `2k + 1 < R` and `(2k+1)³ < R³ = (m+1)⁴`
       have h1 : (k : ℝ) < (R - 1) / 2 := by
         have := hk.2
         rw [hk₁, Nat.lt_ceil] at this
         exact this
       have h2 : ((2 * k + 1 : ℕ) : ℝ) < R := by push_cast; linarith
-      have key : R ^ (3 : ℕ) = ((m : ℝ) + 1) ^ (4 : ℕ) := by
-        rw [hR, ← Real.rpow_natCast, ← Real.rpow_mul (by positivity)]; norm_num
-      have h3 : ((2 * k + 1 : ℕ) : ℝ) ^ (3 : ℕ) < R ^ (3 : ℕ) :=
-        pow_lt_pow_left₀ h2 (by positivity) (by norm_num)
-      rw [key] at h3
-      exact_mod_cast h3
+      rw [hR, Numerics.lt_rpow_iff_pow (n := 3) (by positivity) (by positivity) (by norm_num)] at h2
+      norm_num at h2
+      exact_mod_cast h2
   have hinj : Set.InjOn (fun k : ℕ => 2 * k + 1) ↑(Finset.Ico k₀ k₁) := by
     intro a _ b _ h
     simp only at h
@@ -344,18 +307,15 @@ theorem eps_mul_cbrt {m : ℕ} (hm : 1 ≤ m) : eps m * (m : ℝ) ^ ((1 : ℝ) /
 
 /-- `ε_m ≤ 1/100` for `m ≥ 10^6`. -/
 theorem eps_le {m : ℕ} (hm : 10 ^ 6 ≤ m) : eps m ≤ 1 / 100 := by
-  unfold eps
   have hm0 : (0 : ℝ) < m := by exact_mod_cast (by omega : 0 < m)
+  have h100 : (100 : ℝ) ≤ (m : ℝ) ^ ((1 : ℝ) / 3) := by
+    rw [Numerics.le_rpow_iff_pow (n := 3) hm0.le (by norm_num) (by norm_num)]
+    have : ((10 ^ 6 : ℕ) : ℝ) ≤ m := by exact_mod_cast hm
+    norm_num at this ⊢
+    linarith
+  unfold eps
   rw [Real.rpow_neg hm0.le, inv_eq_one_div]
-  apply one_div_le_one_div_of_le (by norm_num)
-  have h : ((100 : ℝ) ^ (3 : ℕ)) ^ ((1 : ℝ) / 3) = 100 := by
-    rw [← Real.rpow_natCast, ← Real.rpow_mul (by norm_num)]
-    norm_num
-  rw [← h]
-  apply Real.rpow_le_rpow (by positivity) _ (by norm_num)
-  have : ((10 ^ 6 : ℕ) : ℝ) ≤ m := by exact_mod_cast hm
-  norm_num at this ⊢
-  linarith
+  exact one_div_le_one_div_of_le (by norm_num) h100
 
 /-- The upper step `(3/2)(m+1)^{2/3}` is at most `A_m + ε_m`. -/
 theorem upper_step_le {m : ℕ} (hm : 1 ≤ m) :

@@ -69,6 +69,12 @@ open Problems.Juggler
 #print axioms LBad_oddCount_ge
 #print axioms LBad_of_envelopeBad
 #print axioms LBad_of_liveTo
+#print axioms Numerics.bernoulli_ge
+#print axioms Numerics.bernoulli_le
+#print axioms Numerics.le_rpow_iff_pow
+#print axioms Numerics.lt_rpow_iff_pow
+#print axioms Numerics.rpow_le_iff_pow
+#print axioms Numerics.rpow_lt_iff_pow
 #print axioms Sweep.card_le_cells_mul
 #print axioms Sweep.ceil_modEq_one_iff
 #print axioms Sweep.ceil_modEq_zero_iff

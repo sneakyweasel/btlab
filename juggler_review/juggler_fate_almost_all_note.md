@@ -318,7 +318,7 @@ type Paper B proves enters Appendix C as an explicit hypothesis.
 
 Statements carry one of four roles. *Lean*: the exact combinatorial
 layer is formalized in Lean 4; the root `formal/Problems/JugglerFatePaper.lean`
-imports exactly the twelve modules this paper cites and builds with
+imports exactly the seventeen modules this paper cites and builds with
 `lake build Problems.JugglerFatePaper`, without `sorry` and without
 `native_decide`; `formal/AxiomCheckPaperC.lean` prints the axiom
 dependencies of every cited name and `AxiomCheckPaperC.expected`
@@ -339,17 +339,20 @@ constants; they prove nothing and are labelled wherever they appear.
 | Envelope descent into the floor (Lemma 8.1) | Lean, on Paper A's power envelope |
 | Sweep lemma (Lemma 4.1), both half-cell conventions | Lean |
 | Monotone pairing (Lemma 4.1') | Lean |
-| Fiber parity, thin fibers (Lemmas 4.2--4.3) | human proof |
+| Fiber parity (Lemma 4.2), goodness unpacked | Lean, through Lemma 4.1' |
+| Thin fibers (Lemma 4.3): the count on \((u,2u]\) and the log-mass of the bad \(m>U\) | Lean |
 | Block average (Proposition 4.4), asymptotic | human proof |
 | Share law and its three corollaries (Lemma 4.5, Corollary 4.6) | human proof |
+| Production inequality (5.2) with the \(V\)-ladder terms of Section 5.7 | human proof |
 | Cube fibers full or alternating (Lemma 4.7) | Lean |
 | Recursion lemma (Lemma 5.1) | Lean |
 | Seed (Lemma 5.2) | Lean |
-| Contagion (Theorem 5.3) | human proof |
+| Contagion (Theorem 5.3), given the production inequality (5.2), for every \(\lambda\le 0.49\) | Lean; \(\zeta(0.49)>0\) by exact rational bounds, the root \(\lambda^{**}\) is human |
 | Least failure is \(OO\)-type; first-letter trichotomy (Proposition 6.3(i), Section 6.2) | Lean |
 | First-letter identity (6.1) | human proof (exact combinatorics) |
 | Tao-type rate implies the conjecture (Theorem 7.2), with the contagion bound of Theorem 5.3 as a hypothesis | Lean |
-| Almost-all equivalence (Theorem 7.3) | human proof |
+| Almost-all equivalence (Theorem 7.3), with the contagion bound of Theorem 5.3 as a hypothesis | Lean |
+| Corollary 8.4, the conjecture from a cylinder bound, with the contagion bound of Theorem 5.3 as a hypothesis | Lean |
 | Chernoff count of bad words (Lemma 8.2, exact form) | Lean |
 | Theorem 8.3, explicit form \(y\Lambda^{-e(C)}+2\Lambda^Cy(\log y)^{-A}\) at every \(y\) | Lean; the \(\varepsilon\)-absorption into the displayed form is human |
 | Pressure form (Theorem 9.2, exact: a pressure bound \(Na_\theta^dE\) gives at most \(Ne^{-dD(p_C\Vert 1/2)}E\) live starts) | Lean, on the live weight |
@@ -689,6 +692,23 @@ for the representative of \(z\) modulo \(1\) in \((0,1]\). Then
 The middle range \(|\alpha_m-\tfrac12|<2m^{-1/3}\) and the range
 \(\|\alpha_m\|<22m^{-1/3}\) are excluded by goodness. \(\square\)
 
+Lean: `FiberParity.fiber_parity_good` in
+`formal/Problems/Juggler/FateFiberParity.lean`, with goodness unpacked
+as \(22m^{-1/3}\le\alpha_m\le 1-22m^{-1/3}\) and
+\(\alpha_m\le\tfrac12-2m^{-1/3}\) or \(\alpha_m\ge\tfrac12+2m^{-1/3}\)
+(`FiberParity.Good`). The step of \(x(n)=n\sqrt n/2\) over two units is
+\((u^2+uv+v^2)/(u+v)\) with \(u=\sqrt{n+2}\), \(v=\sqrt n\)
+(`xval_step`), which lies in \([\tfrac32v,\tfrac32u]\) by
+\((2u+v)(u-v)\ge 0\) and \((u+2v)(u-v)\ge 0\) and is nondecreasing
+because the upper bound at \(n\) is the lower bound at \(n+2\); no
+integral is needed. The upper step is taken at \(n_{j+1}\in\Phi(m)\),
+so \(B_m=\tfrac32(m+1)^{2/3}\) and \(\eta_m\le m^{-1/3}\) by Bernoulli
+on \((1+1/m)^{2/3}\); the fiber has at least \(\tfrac23m^{1/3}-1\)
+members by Bernoulli on \((1+1/m)^{4/3}\). Both cases go through
+`Sweep.sweep_monotone_cell` and `sweep_monotone_ceil` of
+`FateSweepMonotone`, with \(\lceil 2z_j\rceil\equiv\lfloor 2x_j\rfloor\)
+(mod \(2\)) in Case 2.
+
 **Lemma 4.3 (bad fibers are thin).** For \(u\ge 10^6\),
 \[
 \#\{m\in(u,2u]:\ m\ \text{bad}\}\le 63\,u^{2/3},
@@ -707,6 +727,23 @@ most \(0.882u^{2/3}+2\) times, and each pass through an arc of length
 is at most \((0.882u^{2/3}+2)(48\cdot 3^{1/3}+2)\le 63\,u^{2/3}\) for
 \(u\ge 10^6\). Summing \(63\,(2^iU)^{-1/3}\) over \(i\ge 0\) gives
 \(63U^{-1/3}/(1-2^{-1/3})\le 306\,U^{-1/3}\). \(\square\)
+
+Lean: `FiberParity.bad_count_le` and `FiberParity.bad_logMass_le` in
+`formal/Problems/Juggler/FateThinFibers.lean`, with badness the
+negation of `FiberParity.Good` and the log-mass bound stated for every
+finite range \((U,N]\). The count is the paper's: the increments of
+\(\varphi\) lie in \([(m+1)^{-1/3},m^{-1/3}]\) by Bernoulli both ways;
+a bad \(m>u\) has \(\{\varphi(m)+22u^{-1/3}\}<44u^{-1/3}\) or
+\(\{\varphi(m)\}\in[\tfrac12-2u^{-1/3},\tfrac12+2u^{-1/3})\), so the
+wrap-around arc is a single arc after the shift; on an arc of width
+\(w\) a sequence increasing by at least \(d\) per step holds at most
+\(w/d+1\) points per integer window (`arc_count_le`), and at most
+\(\varphi(2u)-\varphi(u)+2\) windows are met. The formal count uses
+\(d=(2u)^{-1/3}\), sharper than the \((3u)^{-1/3}\) above, so
+\(w/d\) is \(44\cdot 2^{1/3}\) and \(4\cdot 2^{1/3}\) and the total
+\((0.882u^{2/3}+2)(48\cdot 2^{1/3}+2)\) clears \(63u^{2/3}\) with room.
+The dyadic sum uses \(2^{-1/3}\le 0.794\), whence
+\(63/(1-2^{-1/3})\le 306\).
 
 ### 4.2 The block average
 
@@ -1156,6 +1193,20 @@ up to \(t_1/(\tfrac34)=\tfrac43 t_1\), at which
 \(\sum_{n\in A,\,n\le x}1/n\ge g_A(\log x)\). For \(\lambda<\lambda^*\)
 use (5.1) with \((e_i,c_i)=(\tfrac12,1),(\tfrac38,\tfrac13)\). \(\square\)
 
+Lean: `contagion_of_production_inequality` and
+`logMass_contagion_of_production` in
+`formal/Problems/Juggler/FateContagionBound.lean`, with the inequality
+(5.2) — the eight productions \((e_i,c_i)\) above, with errors
+\(\eta_i,\eta_0\ge 0\) tending to \(0\) — as a hypothesis and for
+every \(0<\lambda\le 0.49\): the seed is Lemma 5.2 (`gA_seed`), the
+induction is Lemma 5.1, and \(\zeta(0.49)=0.00168>0\) is `zeta_pos_49`,
+eight exact rational lower bounds \(r_i\le e_i^{49/100}\) checked as
+\(r_i^{100}\le e_i^{49}\); \(\zeta\) is antitone in \(\lambda\)
+(`zeta_antitone`), so \(\lambda\le 0.49\) suffices. The root
+\(\lambda^{**}\) and the range \(0.49<\lambda<\lambda^{**}\) are not
+formalized, and neither is (5.2) itself. The hypothesis \(\eta_0\ge 0\)
+is not needed.
+
 **Corollary 5.4 (natural density, infinitely often).** For every
 \(\lambda<\lambda^{**}\) there is \(c>0\) such that for every
 \(X\ge x_0\) some \(y\in(\sqrt X,X]\) satisfies
@@ -1557,6 +1608,15 @@ large \(y\).
 *Proof.* If every integer reaches \(1\) the left side is \(0\).
 Conversely Theorem 7.2. \(\square\)
 
+Lean: `tao_rate_iff_conjecture` in
+`formal/Problems/Juggler/FateContagionBound.lean`, with the contagion
+bound of Theorem 5.3 as a hypothesis, as for Theorem 7.2; and
+`conjecture_of_cylinder_bound_of_production`, Corollary 8.4 with
+Theorem 5.3 replaced by the production inequality (5.2), so that the
+chain from \(\mathrm H(C,A)\) to the conjecture has (5.2) as its only
+analytic input, for any \(\lambda\le 0.49\) with \(1-\lambda<e(C)\)
+(\(C\ge 19\) still suffices: \(e(19)=0.527>0.51\)).
+
 The threshold \(1-\lambda^{**}\) is the complement of the contagion
 exponent; with \(\lambda^{***}\) of Appendix C it becomes \(0.4608\).
 Any improvement of the contagion exponent lowers the rate required of
@@ -1758,6 +1818,22 @@ with \(\lambda^{***}\) the threshold is \(0.4608<e(18)\approx0.480\).
 The pairing-only intermediate still needed \(C\ge 20\)
 (\(e(20)=0.574>0.5520\)).
 \(\square\)
+
+Lean: `cylinder_bound_implies_conjecture` in
+`formal/Problems/Juggler/FateCylinderCorollary.lean`: if
+\(\mathrm H(C,A)\) holds at all large scales (`CylinderBound`, the
+displayed bound on every \(O\)-rooted \(L(y)\)-bad cylinder of depth
+\(d(y)\)) with \(C\ge 5\) and \(A>C+e(C)\), and the contagion bound of
+Theorem 5.3 holds for the failure set with an exponent \(\lambda\)
+satisfying \(1-\lambda<e(C)\), then every positive integer reaches
+\(1\). The step from the explicit bound of Theorem 8.3 to the rate
+\(y(\log y)^{-e}\) of Theorem 7.2, for any \(e<e(C)\), is
+`oddFailures_eventually_le`: \(\Lambda\ge\log y/\log N_0\) turns the
+first term into \((\log N_0)^{e(C)}y(\log y)^{-e(C)}\),
+\(\Lambda\le 2\log y/\log N_0\) turns the second into
+\(2(2/\log N_0)^Cy(\log y)^{C-A}\), and both exponent gaps are
+positive. The numerical threshold \(C\ge 19\) is a statement about
+the root \(\lambda^{**}\) and stays with the audit.
 
 ### 8.4 Constants
 
@@ -2321,7 +2397,7 @@ No nontrivial cycle or unbounded orbit is excluded by this paper.
 ## Appendix A. Lean names
 
 All in `formal/Problems/Juggler/FateContagion.lean` unless noted. The
-root `formal/Problems/JugglerFatePaper.lean` imports exactly the twelve
+root `formal/Problems/JugglerFatePaper.lean` imports exactly the seventeen
 modules named here and builds with `lake build Problems.JugglerFatePaper`
 without `sorry` and without `native_decide`;
 `formal/AxiomCheckPaperC.expected` records the axioms of every name
@@ -2350,7 +2426,12 @@ abstract lemmas listed here, not the analytic density estimates.
 | Proposition 9.3 (pressure telescoping), in `Problems/Juggler/TiltedShare.lean` | `oddMass`, `tiltedShare`, `weightGen_succ_le_share`, `one_add_le_exp_excess`, `weightGen_le_pressure`, `count_le_pressure`, `NoMomentum`, `count_le_of_noMomentum`, `tilt_exponent_eq_kl`, `MeanShare`, `weightGen_le_of_meanShare`, `MeanShareOff`, `initial_depths_are_free`, `tower_ratio_lt_one` |
 | Lemma 5.2 (seed), in `Problems/Juggler/FateSeed.lean` | `exists_ge_three_of_backwardClosed`, `seed_lemma`, `seed_constant_pos` |
 | Theorem 7.2 (Tao-type rate, contagion as a hypothesis), in `Problems/Juggler/FateTaoReduction.lean` | `logMass_le_oddLogMass`, `oddLogMass_le_of_dyadic`, `tao_rate_implies_empty`, `tao_rate_implies_conjecture` |
-| Lemmas 4.2--4.3, Proposition 4.4, Theorem 5.3, Theorem 7.3, Sections 8--10 except Lemma 8.2, the explicit form of Theorem 8.3, the exact form of Theorem 9.2 and Proposition 9.3, Appendix C | human proofs |
+| Corollary 8.4 (the conjecture from a cylinder bound), in `Problems/Juggler/FateCylinderCorollary.lean` | `CylinderBound`, `one_le_depth`, `chernoffExponent_nonneg`, `oddFailures_eventually_le`, `cylinder_bound_implies_conjecture` |
+| Shared numerics of Lemmas 4.2, 4.3 and 8.2 (roots by powering, Bernoulli at a point), in `Problems/Juggler/FateNumerics.lean` | `Numerics.rpow_le_iff_pow`, `Numerics.le_rpow_iff_pow`, `Numerics.rpow_lt_iff_pow`, `Numerics.lt_rpow_iff_pow`, `Numerics.bernoulli_ge`, `Numerics.bernoulli_le` |
+| Lemma 4.2 (fiber parity), in `Problems/Juggler/FateFiberParity.lean` | `FiberParity.xval`, `FiberParity.two_xval`, `FiberParity.floor_two_xval`, `FiberParity.cell_xval_even_iff`, `FiberParity.xval_step`, `FiberParity.xval_step_ge`, `FiberParity.xval_step_le`, `FiberParity.xval_step_mono`, `FiberParity.oeFiber`, `FiberParity.mem_oeFiber`, `FiberParity.oeFiber_eq_image`, `FiberParity.oeFiber_card`, `FiberParity.evenImageCount`, `FiberParity.fiber_ge_rpow`, `FiberParity.fiber_lt_rpow`, `FiberParity.rpow_four_thirds_succ_ge`, `FiberParity.rpow_two_thirds_succ_le`, `FiberParity.oeFiber_card_ge`, `FiberParity.Am`, `FiberParity.alpha`, `FiberParity.eps`, `FiberParity.Good`, `FiberParity.eps_le`, `FiberParity.step_ge`, `FiberParity.step_le`, `FiberParity.fiber_parity_good` |
+| Lemma 4.3 (thin fibers), in `Problems/Juggler/FateThinFibers.lean` | `FiberParity.span_ge_of_step`, `FiberParity.arc_count_le`, `FiberParity.Am_step_le`, `FiberParity.Am_step_ge`, `FiberParity.eps_antitone`, `FiberParity.bad_mem_arc`, `FiberParity.two_rpow_third_le`, `FiberParity.two_rpow_two_thirds_le`, `FiberParity.rpow_two_thirds_ge`, `FiberParity.eps_div_eps_double`, `FiberParity.Am_double_sub_le`, `FiberParity.bad_count_le`, `FiberParity.bad_block_logMass_le`, `FiberParity.bad_sum_dyadic_le`, `FiberParity.eps_pow_two_mul`, `FiberParity.two_rpow_neg_third_le`, `FiberParity.bad_logMass_le` |
+| Theorem 5.3 given (5.2), Theorem 7.3, Corollary 8.4 through (5.2), in `Problems/Juggler/FateContagionBound.lean` | `productionRate`, `productionCoeff`, `productionRate_pos`, `productionRate_ge`, `productionRate_le`, `productionRate_le_one`, `productionCoeff_ge`, `productionCoeff_nonneg`, `zeta`, `zeta_antitone`, `le_rpow_div_of_pow_le`, `zeta_pos_49`, `seedConst`, `gA`, `gA_seed`, `logMass_ge_gA`, `contagion_of_production_inequality`, `logMass_contagion_of_production`, `oddFailures_eq_empty`, `tao_rate_iff_conjecture`, `conjecture_of_cylinder_bound_of_production` |
+| Proposition 4.4, the production inequality (5.2), Sections 8--10 except Lemma 8.2, the explicit form of Theorem 8.3, Corollary 8.4, the exact form of Theorem 9.2 and Proposition 9.3, Appendix C; Theorems 5.3, 7.2, 7.3 and Corollary 8.4 only with (5.2) or the contagion bound as a hypothesis | human proofs |
 
 ## Appendix B. Constants and artifacts
 
@@ -2410,7 +2491,7 @@ use the roots of the displayed defining equations.
 
 - `formal/Problems/Juggler/FateContagion.lean`
 
-  SHA-256: `834198a6b0e8cc13c9fb91d9ad938f62ce5e783a3cc9009fb38334c913d5b7e2`
+  SHA-256: `42c5e8e94cc83a97c9a004d5f6bfe91202b9820964eb9b2790b822a025857a85`
 
 - `formal/Problems/Juggler/CubeFiber.lean`
 
@@ -2434,19 +2515,39 @@ use the roots of the displayed defining equations.
 
 - `formal/Problems/Juggler/FateChernoff.lean`
 
-  SHA-256: `bbf606d0f666cfc74209ef13dd8087f8b24e50226362704f88738b8fb5a0f92c`
+  SHA-256: `8efefa16d81760b7768fe361265d9b4c461f7a3bf82fb75c08a33aff9b5ff1ee`
 
 - `formal/Problems/Juggler/FatePressure.lean`
 
   SHA-256: `f69ad74fcaed87b692451113cf72eeadc1182efc0ac8121e255e6b079bf2bbf2`
 
+- `formal/Problems/Juggler/FateCylinderCorollary.lean`
+
+  SHA-256: `0a0f47af277d28598e0fdddfe50e5762ff21835e88251f21d59629a2475f7ec5`
+
+- `formal/Problems/Juggler/FateNumerics.lean`
+
+  SHA-256: `8340b3a8a4ff2ce35bd77b7697ca95b9d36e5d61ea4173782287d0839b381737`
+
+- `formal/Problems/Juggler/FateFiberParity.lean`
+
+  SHA-256: `47edc94c530a031f8d4f5fb88c52d952cceec3b3d116f69e3fc22db3cd648530`
+
+- `formal/Problems/Juggler/FateThinFibers.lean`
+
+  SHA-256: `9c83deba803593d49874dd6bda4ff61fbe32aa436918561f9978b6d04f1036b0`
+
+- `formal/Problems/Juggler/FateContagionBound.lean`
+
+  SHA-256: `aa540158df5a0206644f49f3666f957fcdb615fe0efead577780493465d823e5`
+
 - `formal/Problems/JugglerFatePaper.lean`
 
-  SHA-256: `cb096d601d6c5ef6d19e7c7b81a52ae8a708f241d8311eb89794a699cec3af2b`
+  SHA-256: `42b0d75a4840a051ab2cf93b63b42a4f8db0742bad1598bc4d46fd6a3d971227`
 
 - `formal/AxiomCheckPaperC.expected`
 
-  SHA-256: `5939a49ce68518bbff9544fc34287bb41fdab54c11d2a2ba7817dfc2ee99f523`
+  SHA-256: `2b6e25210b261f7aea3c0b0e057ce9da2bab0430f8c29d9b89e8aa92bea00791`
 
 - `src/research/juggler_sequence/fate_contagion.py`
 

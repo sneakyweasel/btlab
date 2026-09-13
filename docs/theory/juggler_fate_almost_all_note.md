@@ -318,7 +318,7 @@ type Paper B proves enters Appendix C as an explicit hypothesis.
 
 Statements carry one of four roles. *Lean*: the exact combinatorial
 layer is formalized in Lean 4; the root `formal/Problems/JugglerFatePaper.lean`
-imports exactly the fifteen modules this paper cites and builds with
+imports exactly the seventeen modules this paper cites and builds with
 `lake build Problems.JugglerFatePaper`, without `sorry` and without
 `native_decide`; `formal/AxiomCheckPaperC.lean` prints the axiom
 dependencies of every cited name and `AxiomCheckPaperC.expected`
@@ -2397,7 +2397,7 @@ No nontrivial cycle or unbounded orbit is excluded by this paper.
 ## Appendix A. Lean names
 
 All in `formal/Problems/Juggler/FateContagion.lean` unless noted. The
-root `formal/Problems/JugglerFatePaper.lean` imports exactly the fifteen
+root `formal/Problems/JugglerFatePaper.lean` imports exactly the seventeen
 modules named here and builds with `lake build Problems.JugglerFatePaper`
 without `sorry` and without `native_decide`;
 `formal/AxiomCheckPaperC.expected` records the axioms of every name
@@ -2427,6 +2427,7 @@ abstract lemmas listed here, not the analytic density estimates.
 | Lemma 5.2 (seed), in `Problems/Juggler/FateSeed.lean` | `exists_ge_three_of_backwardClosed`, `seed_lemma`, `seed_constant_pos` |
 | Theorem 7.2 (Tao-type rate, contagion as a hypothesis), in `Problems/Juggler/FateTaoReduction.lean` | `logMass_le_oddLogMass`, `oddLogMass_le_of_dyadic`, `tao_rate_implies_empty`, `tao_rate_implies_conjecture` |
 | Corollary 8.4 (the conjecture from a cylinder bound), in `Problems/Juggler/FateCylinderCorollary.lean` | `CylinderBound`, `one_le_depth`, `chernoffExponent_nonneg`, `oddFailures_eventually_le`, `cylinder_bound_implies_conjecture` |
+| Shared numerics of Lemmas 4.2, 4.3 and 8.2 (roots by powering, Bernoulli at a point), in `Problems/Juggler/FateNumerics.lean` | `Numerics.rpow_le_iff_pow`, `Numerics.le_rpow_iff_pow`, `Numerics.rpow_lt_iff_pow`, `Numerics.lt_rpow_iff_pow`, `Numerics.bernoulli_ge`, `Numerics.bernoulli_le` |
 | Lemma 4.2 (fiber parity), in `Problems/Juggler/FateFiberParity.lean` | `FiberParity.xval`, `FiberParity.two_xval`, `FiberParity.floor_two_xval`, `FiberParity.cell_xval_even_iff`, `FiberParity.xval_step`, `FiberParity.xval_step_ge`, `FiberParity.xval_step_le`, `FiberParity.xval_step_mono`, `FiberParity.oeFiber`, `FiberParity.mem_oeFiber`, `FiberParity.oeFiber_eq_image`, `FiberParity.oeFiber_card`, `FiberParity.evenImageCount`, `FiberParity.fiber_ge_rpow`, `FiberParity.fiber_lt_rpow`, `FiberParity.rpow_four_thirds_succ_ge`, `FiberParity.rpow_two_thirds_succ_le`, `FiberParity.oeFiber_card_ge`, `FiberParity.Am`, `FiberParity.alpha`, `FiberParity.eps`, `FiberParity.Good`, `FiberParity.eps_le`, `FiberParity.step_ge`, `FiberParity.step_le`, `FiberParity.fiber_parity_good` |
 | Lemma 4.3 (thin fibers), in `Problems/Juggler/FateThinFibers.lean` | `FiberParity.span_ge_of_step`, `FiberParity.arc_count_le`, `FiberParity.Am_step_le`, `FiberParity.Am_step_ge`, `FiberParity.eps_antitone`, `FiberParity.bad_mem_arc`, `FiberParity.two_rpow_third_le`, `FiberParity.two_rpow_two_thirds_le`, `FiberParity.rpow_two_thirds_ge`, `FiberParity.eps_div_eps_double`, `FiberParity.Am_double_sub_le`, `FiberParity.bad_count_le`, `FiberParity.bad_block_logMass_le`, `FiberParity.bad_sum_dyadic_le`, `FiberParity.eps_pow_two_mul`, `FiberParity.two_rpow_neg_third_le`, `FiberParity.bad_logMass_le` |
 | Theorem 5.3 given (5.2), Theorem 7.3, Corollary 8.4 through (5.2), in `Problems/Juggler/FateContagionBound.lean` | `productionRate`, `productionCoeff`, `productionRate_pos`, `productionRate_ge`, `productionRate_le`, `productionRate_le_one`, `productionCoeff_ge`, `productionCoeff_nonneg`, `zeta`, `zeta_antitone`, `le_rpow_div_of_pow_le`, `zeta_pos_49`, `seedConst`, `gA`, `gA_seed`, `logMass_ge_gA`, `contagion_of_production_inequality`, `logMass_contagion_of_production`, `oddFailures_eq_empty`, `tao_rate_iff_conjecture`, `conjecture_of_cylinder_bound_of_production` |
@@ -2514,7 +2515,7 @@ use the roots of the displayed defining equations.
 
 - `formal/Problems/Juggler/FateChernoff.lean`
 
-  SHA-256: `5b6601a5bdfd75796ca4a421057b4166a944b76abfcd497d20a2d10b8efb7c89`
+  SHA-256: `8efefa16d81760b7768fe361265d9b4c461f7a3bf82fb75c08a33aff9b5ff1ee`
 
 - `formal/Problems/Juggler/FatePressure.lean`
 
@@ -2524,13 +2525,17 @@ use the roots of the displayed defining equations.
 
   SHA-256: `0a0f47af277d28598e0fdddfe50e5762ff21835e88251f21d59629a2475f7ec5`
 
+- `formal/Problems/Juggler/FateNumerics.lean`
+
+  SHA-256: `8340b3a8a4ff2ce35bd77b7697ca95b9d36e5d61ea4173782287d0839b381737`
+
 - `formal/Problems/Juggler/FateFiberParity.lean`
 
-  SHA-256: `519dab1e8f50343a16560107cb28191b409189e532ff517168cf2f55a4678fea`
+  SHA-256: `47edc94c530a031f8d4f5fb88c52d952cceec3b3d116f69e3fc22db3cd648530`
 
 - `formal/Problems/Juggler/FateThinFibers.lean`
 
-  SHA-256: `e1ce5621421dc3d69cafcde46f32fa42b0280239b23d61d44d9eec1676c67146`
+  SHA-256: `9c83deba803593d49874dd6bda4ff61fbe32aa436918561f9978b6d04f1036b0`
 
 - `formal/Problems/Juggler/FateContagionBound.lean`
 
@@ -2538,11 +2543,11 @@ use the roots of the displayed defining equations.
 
 - `formal/Problems/JugglerFatePaper.lean`
 
-  SHA-256: `bbe7bfaf250508144597877308ad3aee185770b09be3f8c36b0da3a8acf579c5`
+  SHA-256: `42b0d75a4840a051ab2cf93b63b42a4f8db0742bad1598bc4d46fd6a3d971227`
 
 - `formal/AxiomCheckPaperC.expected`
 
-  SHA-256: `98a640f51569d6826826d1d4d511fe6040f8a7339700ff9975366e999125934e`
+  SHA-256: `2b6e25210b261f7aea3c0b0e057ce9da2bab0430f8c29d9b89e8aa92bea00791`
 
 - `src/research/juggler_sequence/fate_contagion.py`
 

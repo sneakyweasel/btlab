@@ -144,26 +144,11 @@ theorem Am_step_le {m : ℕ} (hm : 1 ≤ m) : Am (m + 1) - Am m ≤ eps m := by
 theorem Am_step_ge {m : ℕ} (hm : 1 ≤ m) : eps (m + 1) ≤ Am (m + 1) - Am m := by
   unfold Am eps
   push_cast
-  have hm1 : (0 : ℝ) < (m : ℝ) + 1 := by positivity
-  -- `(1 - 1/(m+1))^{2/3} ≤ 1 - (2/3)/(m+1)`
-  have hb := rpow_one_add_le_one_add_mul_self (s := -(1 / ((m : ℝ) + 1))) (by
-    have : 1 / ((m : ℝ) + 1) ≤ 1 := by
-      rw [div_le_one hm1]; linarith
-    linarith) (p := (2 : ℝ) / 3) (by norm_num) (by norm_num)
-  have e : (1 : ℝ) + -(1 / ((m : ℝ) + 1)) = (m : ℝ) / ((m : ℝ) + 1) := by
-    field_simp
-    ring
-  rw [e, Real.div_rpow (by positivity) hm1.le] at hb
-  have hpos : 0 < ((m : ℝ) + 1) ^ ((2 : ℝ) / 3) := Real.rpow_pos_of_pos hm1 _
-  rw [div_le_iff₀ hpos] at hb
-  have h13 : ((m : ℝ) + 1) ^ ((2 : ℝ) / 3) = ((m : ℝ) + 1) ^ (-((1 : ℝ) / 3)) * ((m : ℝ) + 1) := by
-    rw [show (2 : ℝ) / 3 = -(1 / 3) + 1 by norm_num, Real.rpow_add hm1, Real.rpow_one]
-  have hb' : (m : ℝ) ^ ((2 : ℝ) / 3) ≤
-      ((m : ℝ) + 1) ^ ((2 : ℝ) / 3) - 2 / 3 * ((m : ℝ) + 1) ^ (-((1 : ℝ) / 3)) := by
-    calc (m : ℝ) ^ ((2 : ℝ) / 3)
-        ≤ (1 + 2 / 3 * -(1 / ((m : ℝ) + 1))) * ((m : ℝ) + 1) ^ ((2 : ℝ) / 3) := hb
-      _ = ((m : ℝ) + 1) ^ ((2 : ℝ) / 3) - 2 / 3 * ((m : ℝ) + 1) ^ (-((1 : ℝ) / 3)) := by
-          rw [h13]; field_simp; ring
+  have hm0 : (0 : ℝ) < m := by exact_mod_cast hm
+  -- Bernoulli at `m + 1` with `h = -1`: `m^{2/3} ≤ (m+1)^{2/3} - (2/3)(m+1)^{-1/3}`
+  have hb := Numerics.bernoulli_le (a := (m : ℝ) + 1) (h := -1) (p := (2 : ℝ) / 3)
+    (q := -((1 : ℝ) / 3)) (by positivity) (by linarith) (by norm_num) (by norm_num) (by norm_num)
+  rw [show (m : ℝ) + 1 + -1 = m by ring] at hb
   linarith
 
 /-- `ε` is antitone: `eps m ≤ eps u` for `1 ≤ u ≤ m`. -/
@@ -217,31 +202,19 @@ theorem bad_mem_arc {u m : ℕ} (hu : 10 ^ 6 ≤ u) (hm : u < m) (hbad : ¬ Good
 /-! ### Numerical constants -/
 
 theorem two_rpow_third_le : (2 : ℝ) ^ ((1 : ℝ) / 3) ≤ 1.26 := by
-  have h : ((2 : ℝ) ^ ((1 : ℝ) / 3)) ^ (3 : ℕ) = 2 := by
-    rw [← Real.rpow_natCast, ← Real.rpow_mul (by norm_num)]
-    norm_num
-  rw [← pow_le_pow_iff_left₀ (Real.rpow_nonneg (by norm_num) _) (by norm_num)
-    (by norm_num : (3 : ℕ) ≠ 0), h]
+  rw [Numerics.rpow_le_iff_pow (n := 3) (by norm_num) (by norm_num) (by norm_num)]
   norm_num
 
 theorem two_rpow_two_thirds_le : (2 : ℝ) ^ ((2 : ℝ) / 3) ≤ 1.588 := by
-  have h : ((2 : ℝ) ^ ((2 : ℝ) / 3)) ^ (3 : ℕ) = 4 := by
-    rw [← Real.rpow_natCast, ← Real.rpow_mul (by norm_num)]
-    norm_num
-  rw [← pow_le_pow_iff_left₀ (Real.rpow_nonneg (by norm_num) _) (by norm_num)
-    (by norm_num : (3 : ℕ) ≠ 0), h]
+  rw [Numerics.rpow_le_iff_pow (n := 3) (by norm_num) (by norm_num) (by norm_num)]
   norm_num
 
 /-- `u^{2/3} ≥ 10^4` for `u ≥ 10^6`. -/
 theorem rpow_two_thirds_ge {u : ℕ} (hu : 10 ^ 6 ≤ u) : (10000 : ℝ) ≤ (u : ℝ) ^ ((2 : ℝ) / 3) := by
-  have h : ((100 : ℝ) ^ (3 : ℕ)) ^ ((2 : ℝ) / 3) = 10000 := by
-    rw [← Real.rpow_natCast, ← Real.rpow_mul (by norm_num)]
-    norm_num
-  rw [← h]
-  apply Real.rpow_le_rpow (by positivity) _ (by norm_num)
-  have : ((10 ^ 6 : ℕ) : ℝ) ≤ u := by exact_mod_cast hu
-  norm_num at this ⊢
-  linarith
+  rw [Numerics.le_rpow_iff_pow (n := 3) (by positivity) (by norm_num) (by norm_num)]
+  have h6 : (10 ^ 6 : ℝ) ≤ u := by exact_mod_cast hu
+  norm_num
+  exact le_trans (by norm_num) (pow_le_pow_left₀ (by norm_num) h6 2)
 
 /-- `ε_u / ε_{2u} = 2^{1/3}`. -/
 theorem eps_div_eps_double {u : ℕ} (hu : 1 ≤ u) : eps u / eps (2 * u) = (2 : ℝ) ^ ((1 : ℝ) / 3) := by
@@ -421,11 +394,7 @@ theorem eps_pow_two_mul {U : ℕ} (hU : 1 ≤ U) (i : ℕ) :
   ring_nf
 
 theorem two_rpow_neg_third_le : (2 : ℝ) ^ (-((1 : ℝ) / 3)) ≤ 0.794 := by
-  have h : ((2 : ℝ) ^ (-((1 : ℝ) / 3))) ^ (3 : ℕ) = 1 / 2 := by
-    rw [← Real.rpow_natCast, ← Real.rpow_mul (by norm_num)]
-    norm_num
-  rw [← pow_le_pow_iff_left₀ (Real.rpow_nonneg (by norm_num) _) (by norm_num)
-    (by norm_num : (3 : ℕ) ≠ 0), h]
+  rw [Numerics.rpow_le_iff_pow (n := 3) (by norm_num) (by norm_num) (by norm_num)]
   norm_num
 
 /-- **Lemma 4.3, the log-mass.** For `U ≥ 10^6` and every `N`, the bad `m ∈ (U, N]` carry

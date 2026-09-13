@@ -44287,3 +44287,34 @@ Housekeeping: this session and the MAGE session both wrote FateSeed.lean
 on 8 September within the hour; the collision was caught by a compile
 that saw both texts, and the split (seed, 7.2 and downstream here; 4.1'
 and the fiber lemmas there) held through the week.
+
+
+## The numerics of Paper C in one module
+
+Lemmas 4.2, 4.3 and 8.2 certified their real powers the same way:
+raise both sides to the n-th power where pn is an integer, and let
+norm_num compare the numerals. Six proofs cubed (2^{1/3} <= 1.26,
+2^{2/3} <= 1.588, 2^{-1/3} <= 0.794, u^{2/3} >= 10^4, m^{-1/3} <= 1/100,
+m^{4/3} <= n on the fiber), one took a fifth power (log_2 3 <= 8/5),
+and two more cubed inside the fiber count. Three others instantiated
+Bernoulli's inequality about a point, (a+h)^p against a^p + p a^{p-1} h,
+each with its own change of variables s = h/a and its own cancellation.
+
+FateNumerics.lean holds the two moves once. Four iff-lemmas say x^p <= c
+exactly when x^{pn} <= c^n, with the reverse and the strict forms, for
+x, c >= 0 and a natural n; two Bernoulli lemmas take the exponent p - 1
+as a separate argument q, so that the caller gets m^{-1/3} rather than
+m^{2/3 - 1} and never has to normalize an exponent. The eleven sites
+are one to three lines each now: 119 lines went out of
+FateFiberParity, FateThinFibers and FateChernoff for 42 that came in,
+against a 79-line module. No statement changed; the artifact asks six
+more names (217), every one on Mathlib's three axioms; the barrel is
+seventeen modules and builds.
+
+What this is not: no new mathematics, nothing about the map. The same
+cubing move sits in CubicReturnHeight, ReturnGapHeight and
+NumericBridge on the Paper A side; those are other sessions' files and
+stay as they are. The remaining duplication in Paper C's Lean (the span
+and window lemmas of the sweep, the log-mass forms, the repeated sweep
+hypotheses) lives in files shared with the WIZARD session and waits on
+a message to it.

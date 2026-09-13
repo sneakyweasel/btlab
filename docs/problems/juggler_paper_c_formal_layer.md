@@ -108,11 +108,23 @@ The production inequality itself and the root \(\lambda^{**}\) stay
 human.
 
 **The build root (COMPUTATIONALLY VERIFIED).**
-`formal/Problems/JugglerFatePaper.lean` imports exactly the sixteen
+`formal/Problems/JugglerFatePaper.lean` imports exactly the seventeen
 modules Paper C cites; `formal/AxiomCheckPaperC.lean` prints the axioms
-of the 211 cited declarations and `AxiomCheckPaperC.expected` records
+of the 217 cited declarations and `AxiomCheckPaperC.expected` records
 them, every list a subset of `propext`, `Classical.choice`,
 `Quot.sound`, no `sorryAx`, no `native_decide`.
+
+**Shared numerics (EXACT — LEAN VERIFIED, 13 September 2026).** Lemmas
+4.2, 4.3 and 8.2 certified their real powers by one move, raise both
+sides to the \(n\)-th power where \(pn\) is an integer, and stepped
+their fibers by Bernoulli's inequality about a point, each with a
+private copy. `FateNumerics.lean` holds the two moves once:
+`Numerics.rpow_le_iff_pow` and its three siblings
+(\(x^p\le c\iff x^{pn}\le c^n\), the reverse, the strict forms) and
+`Numerics.bernoulli_ge` / `Numerics.bernoulli_le`
+(\((a+h)^p\gtrless a^p+pa^{q}h\) with \(p=q+1\)). The eleven sites in
+`FateFiberParity`, `FateThinFibers` and `FateChernoff` are one to three
+lines each; no statement changed. Nothing here is about the map.
 
 ## Current literature
 
