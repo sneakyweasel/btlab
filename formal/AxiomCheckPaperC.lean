@@ -36,17 +36,18 @@ open Problems.Juggler
 #print axioms FiberParity.eps_pow_two_mul
 #print axioms FiberParity.evenImageCount_eq
 #print axioms FiberParity.evenImageCount_eq'
-#print axioms FiberParity.oeFiber_card_ge
 #print axioms FiberParity.fiber_ge_rpow
 #print axioms FiberParity.fiber_lt_rpow
 #print axioms FiberParity.fiber_parity_good
 #print axioms FiberParity.floor_two_xval
 #print axioms FiberParity.mem_oeFiber
 #print axioms FiberParity.nseq_mem
+#print axioms FiberParity.nseq_step_mono
 #print axioms FiberParity.nseq_succ
 #print axioms FiberParity.oddImageCount_eq'
 #print axioms FiberParity.oeFiber_between
 #print axioms FiberParity.oeFiber_card
+#print axioms FiberParity.oeFiber_card_ge
 #print axioms FiberParity.oeFiber_eq_image
 #print axioms FiberParity.rpow_four_thirds_succ_ge
 #print axioms FiberParity.rpow_two_thirds_ge
@@ -55,7 +56,6 @@ open Problems.Juggler
 #print axioms FiberParity.sqrt_rpow_four_thirds
 #print axioms FiberParity.step_ge
 #print axioms FiberParity.step_le
-#print axioms FiberParity.nseq_step_mono
 #print axioms FiberParity.two_rpow_neg_third_le
 #print axioms FiberParity.two_rpow_third_le
 #print axioms FiberParity.two_rpow_two_thirds_le
@@ -92,6 +92,8 @@ open Problems.Juggler
 #print axioms ancestor_backwardClosed
 #print axioms backwardClosed_iterate
 #print axioms chernoffExponent_nonneg
+#print axioms conjecture_of_cylinder_bound_of_production
+#print axioms contagion_of_production_inequality
 #print axioms count_le_of_meanShare
 #print axioms count_le_of_meanShareOff
 #print axioms count_le_of_noMomentum
@@ -127,6 +129,7 @@ open Problems.Juggler
 #print axioms floorPower_even_block
 #print axioms floorPower_odd_even_two_step_lt
 #print axioms floorPower_oe_fiber
+#print axioms gA_seed
 #print axioms half_le_pC
 #print axioms initial_depths_are_free
 #print axioms iterate_le_of_envelope
@@ -134,11 +137,14 @@ open Problems.Juggler
 #print axioms juggler_count_le_of_noMomentum
 #print axioms klHalf_eq
 #print axioms klHalf_nonneg
+#print axioms le_rpow_div_of_pow_le
 #print axioms liveCount_sum_oddCount
 #print axioms liveWeight_weightSplit
 #print axioms live_count_le_of_pressure
 #print axioms live_count_le_pressure
 #print axioms live_oddCount_ge
+#print axioms logMass_contagion_of_production
+#print axioms logMass_ge_gA
 #print axioms logMass_le_oddLogMass
 #print axioms logb_two_three_le
 #print axioms meanShareOff_empty
@@ -154,6 +160,7 @@ open Problems.Juggler
 #print axioms oddFailures_card_le
 #print axioms oddFailures_card_le_chernoff
 #print axioms oddFailures_card_le_explicit
+#print axioms oddFailures_eq_empty
 #print axioms oddFailures_eventually_le
 #print axioms oddFailures_subset_bad_cylinders
 #print axioms oddLogMass_le_of_dyadic
@@ -172,6 +179,12 @@ open Problems.Juggler
 #print axioms power_bound_word
 #print axioms prod_le_mean_pow
 #print axioms prod_le_mean_pow_finset
+#print axioms productionCoeff_ge
+#print axioms productionCoeff_nonneg
+#print axioms productionRate_ge
+#print axioms productionRate_le
+#print axioms productionRate_le_one
+#print axioms productionRate_pos
 #print axioms reachesOne_backwardClosed
 #print axioms reachesOne_bounded
 #print axioms reachesOne_floorPower
@@ -194,6 +207,7 @@ open Problems.Juggler
 #print axioms sweep_monotone_rep_le_half
 #print axioms sweep_rep_gt_half
 #print axioms sweep_rep_le_half
+#print axioms tao_rate_iff_conjecture
 #print axioms tao_rate_implies_conjecture
 #print axioms tao_rate_implies_empty
 #print axioms tilt_exponent_eq_kl
@@ -210,3 +224,5 @@ open Problems.Juggler
 #print axioms weightGen_succ_le
 #print axioms weightGen_succ_le_share
 #print axioms weight_markov
+#print axioms zeta_antitone
+#print axioms zeta_pos_49

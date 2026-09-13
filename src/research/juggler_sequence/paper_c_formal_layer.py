@@ -62,6 +62,7 @@ CITED_MODULES = (
     "Problems.Juggler.FateCylinderCorollary",
     "Problems.Juggler.FateFiberParity",
     "Problems.Juggler.FateThinFibers",
+    "Problems.Juggler.FateContagionBound",
 )
 
 #: verification-table rows the paper marks Lean, with the module that carries each
@@ -85,6 +86,8 @@ TABLE_LEAN_ROWS = {
     "Corollary 8.4": "FateCylinderCorollary",
     "Lemma 4.2": "FateFiberParity",
     "Lemma 4.3": "FateThinFibers",
+    "Theorem 5.3": "FateContagionBound",
+    "Theorem 7.3": "FateContagionBound",
 }
 
 _IMPORT = re.compile(r"^import\s+([A-Za-z0-9_.]+)\s*$", re.M)
