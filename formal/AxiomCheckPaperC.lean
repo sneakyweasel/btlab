@@ -15,6 +15,10 @@ import Problems.JugglerFatePaper
 
 open Problems.Juggler
 
+#print axioms CylinderEnergy.energy_succ
+#print axioms CylinderEnergy.itinerary_succ_append
+#print axioms CylinderEnergy.sum_bias_sq
+#print axioms CylinderEnergy.wordCount_split
 #print axioms FiberParity.Am_double_sub_le
 #print axioms FiberParity.Am_step_ge
 #print axioms FiberParity.Am_step_le

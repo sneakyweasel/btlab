@@ -108,9 +108,9 @@ The production inequality itself and the root \(\lambda^{**}\) stay
 human.
 
 **The build root (COMPUTATIONALLY VERIFIED).**
-`formal/Problems/JugglerFatePaper.lean` imports exactly the nineteen
+`formal/Problems/JugglerFatePaper.lean` imports exactly the twenty
 modules Paper C cites; `formal/AxiomCheckPaperC.lean` prints the axioms
-of the 240 cited declarations and `AxiomCheckPaperC.expected` records
+of the 244 cited declarations and `AxiomCheckPaperC.expected` records
 them, every list a subset of `propext`, `Classical.choice`,
 `Quot.sound`, no `sorryAx`, no `native_decide`.
 
@@ -170,7 +170,23 @@ one induction (`exact_endpoints_iterate`). `cell34_eq_floorPower_two`
 records that \(J^2=F\) on an \(OE\) step. What stays human is what
 the appendix does with the window: the smooth comparison (D.3), the
 endpoint error, the multiplicities, and the production inequality
-(5.2) they feed. Twenty-three Lean rows, four human.
+(5.2) they feed.
+
+**The cylinder-splitting identity (EXACT — LEAN VERIFIED, 13
+September 2026).** Section 10(d) records
+\(\sum_wD(w)^2=2^{-t-2}\sum_S|W_{S\cup\{t\}}|^2
+=\tfrac12\mathcal C_{t+1}-\tfrac14\mathcal C_t\) for the
+first-letter biases \(D(w)=\#[wO]-\#[w]/2\). The second equality
+is counting, and is the one the argument uses: it is
+`CylinderEnergy.sum_bias_sq`, for an arbitrary finite set of starts.
+The input is that a cylinder splits into its two children
+(`wordCount_split`), because the \((t+1)\)-st letter of an
+itinerary is the parity of the \(t\)-th image
+(`itinerary_succ_append`); the rest is
+\((b-\tfrac{a+b}2)^2=\tfrac{a^2+b^2}2-\tfrac{(a+b)^2}4\). The
+Parseval equality with the Walsh sums is not formalized, and neither
+is the exceptional-atom estimate it is meant to supply.
+Twenty-four Lean rows, four human.
 
 ## Current literature
 

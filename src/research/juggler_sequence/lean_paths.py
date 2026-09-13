@@ -138,6 +138,7 @@ LAYERS: dict[str, Path] = {
     "Certificates": JUGGLER_DIR / "Certificates.lean",
     "Progress": JUGGLER_DIR / "Progress.lean",
     "RateFreeDensity": JUGGLER_DIR / "RateFreeDensity.lean",
+    "FateCylinderEnergy": JUGGLER_DIR / "FateCylinderEnergy.lean",
     "FirstInternalOO": JUGGLER_DIR / "FirstInternalOO.lean",
     "MinimumRelative": JUGGLER_DIR / "MinimumRelative.lean",
     "Minimal": JUGGLER_DIR / "Minimal.lean",

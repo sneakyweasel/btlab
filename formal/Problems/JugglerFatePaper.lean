@@ -4,6 +4,7 @@ import Problems.Juggler.CubeFiber
 import Problems.Juggler.TiltedShare
 import Problems.Juggler.FateRecursion
 import Problems.Juggler.FateFirstLetter
+import Problems.Juggler.FateCylinderEnergy
 import Problems.Juggler.FateLandingWindow
 import Problems.Juggler.FateWindowCount
 import Problems.Juggler.FateSweep
@@ -21,7 +22,7 @@ import Problems.Juggler.FateContagionBound
 /-!
 # Paper C barrel — everything the repository checks for the fate-contagion note
 
-`docs/theory/juggler_fate_almost_all_note.md`. This file imports exactly the nineteen modules
+`docs/theory/juggler_fate_almost_all_note.md`. This file imports exactly the twenty modules
 that paper cites and nothing else, so that a reader can build the formal side of Paper C on
 its own rather than selecting modules by hand out of the umbrella `Problems.Juggler`. It is a
 laboratory target, not a claim: building it does **not** corroborate the paper's counting.
@@ -42,6 +43,11 @@ laboratory target, not a claim: building it does **not** corroborate the paper's
   function on `(0, ∞)`.
 * `FateFirstLetter` — Proposition 6.3(i): the least failure is odd with an odd image
   (`minimal_failure_odd_odd`), and the first-letter trichotomy of Section 6.2.
+* `FateCylinderEnergy` — the counting identity of Section 10(d): a cylinder splits into
+  its two children (`CylinderEnergy.wordCount_split`), so the first-letter biases
+  `D(w) = #[wO] - #[w]/2` satisfy `Σ_{|w|=t} D(w)² = C_{t+1}/2 - C_t/4` exactly
+  (`CylinderEnergy.sum_bias_sq`), for an arbitrary finite set of starts. The Parseval form
+  in Walsh sums is not here, and neither is any discrepancy bound.
 * `FateLandingWindow` — Appendix D.1: along a nested production the two-step map is
   `F(u) = ⌊u^{3/4}⌋` (`LandingWindow.cell34`, equal to `J²` on an `OE` step), and the
   integers whose `F`-image lands in `[a, b)` are exactly those of `[Φ(a), Φ(b))` with
