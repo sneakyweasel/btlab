@@ -44490,3 +44490,42 @@ Left for whoever discharges it: Vaaler's approximation with an interval
 majorant, the second-derivative test, Kusmin-Landau, and a two-sided
 count of the odd integers of the block for the asymptotic form. That is
 a Mathlib-scale project, not a session.
+
+
+## Proposition 4.4, second pass: one of the three sums was never analysis
+
+The first pass took all three parity sums as hypotheses. That was one
+too many. The slow sum S_1 = sum psi(floor(n^{3/4})) over the block is
+not an exponential sum in disguise; it is an alternating sum of fiber
+sizes, sum_m (-1)^m |Phi(m)| over the 2m'+1 fibers of the block, because
+the parity of floor(n^{3/4}) is constant on a fiber. The paper says as
+much ("pair consecutive fibers, whose odd-point counts differ by at
+most 3") and then does not do it, because it does not need to: the
+whole proposition is swallowed by the fast sums anyway.
+
+Doing it costs one lemma. Lemma 4.2's file had the lower bound
+|Phi(m)| >= (2/3) m^{1/3} - 1; the matching upper bound
+|Phi(m)| <= (2/3) (m+1)^{1/3} + 1 is the same proof read backwards,
+with the descending Bernoulli step (m+1)^{4/3} <= m^{4/3} +
+(4/3)(m+1)^{1/3} that FateNumerics.bernoulli_ge gives at the point m+1
+with increment -1. The two bounds overlap: the upper bound at m and the
+lower bound at m+1 share the term (2/3)(m+1)^{1/3}, so consecutive
+fibers differ by at most two, no rounding argument needed, and the
+paper's 3 is a 2. Then the block pairs off into m' differences of size
+at most two plus one fiber, and |S_1| <= 2m' + (2/3)(m'+1)^{2/3} + 1.
+
+The same two fiber bounds, summed over the block, pin the odd count M
+between (2m'+1)((2/3) m'^{2/3} - 1) and (2m'+1)((2/3)(m'+1)^{2/3} + 1),
+which is the "M asymp m'^{5/3}" the paper states without a constant;
+|M/4 - m'^{5/3}/3| <= m' + 1 falls out. So the proposition now reads:
+given the fast sum and the product sum at most B, |U(m')| is within
+B/2 + m' + 1 of M/4 and within B/2 + 2(m'+1) of m'^{5/3}/3. In the
+paper's shape, C_B = C/2 + 2 for m' >= 2, where log 3 > 1 absorbs the
+linear term.
+
+What is left is exactly the analysis and nothing else: sum psi(floor
+n^{3/2}) over the block and its product with the slow wave. Those are
+the two hypotheses. The table row is still "human proof"; it now lists
+the slow sum and the block count among the Lean parts. The consolidation
+paid for itself today twice over: the descending Bernoulli step, the
+landing window and the fiber bounds were all on the shelf.

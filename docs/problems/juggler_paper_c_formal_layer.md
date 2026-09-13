@@ -110,7 +110,7 @@ human.
 **The build root (COMPUTATIONALLY VERIFIED).**
 `formal/Problems/JugglerFatePaper.lean` imports exactly the twenty-one
 modules Paper C cites; `formal/AxiomCheckPaperC.lean` prints the axioms
-of the 251 cited declarations and `AxiomCheckPaperC.expected` records
+of the 267 cited declarations and `AxiomCheckPaperC.expected` records
 them, every list a subset of `propext`, `Classical.choice`,
 `Quot.sound`, no `sorryAx`, no `native_decide`.
 
@@ -205,10 +205,28 @@ four sums exactly, \(4|U(m')|=M+S_1+S_2+S_{12}\)
 (`four_card_U`). Equation (4.1) then follows from bounds on the
 three parity sums by a triangle inequality
 (`block_average_of_bounds`, `block_average_bound`), the bounds being
-hypotheses. The row stays **human proof** in the verification table,
-because the estimate is the proposition; the row now says which part
-is Lean. The asymptotic form also needs a two-sided count of the odd
-integers of the block, which is not formalized.
+hypotheses.
+
+**Second pass, the same day.** One of the three sums needs no
+analysis. The slow sum \(S_1=\sum\psi(\lfloor n^{3/4}\rfloor)\) is
+the alternating sum \(\sum_m(-1)^m|\Phi(m)|\) over the block
+(`slowSum_eq_fibers`); the fiber bounds
+\(\tfrac23m^{1/3}-1\le|\Phi(m)|\le\tfrac23(m+1)^{1/3}+1\)
+(`FiberParity.oeFiber_card_ge`, the new `FiberParity.oeFiber_card_le`
+by the descending Bernoulli step of `FateNumerics`) make consecutive
+fibers differ by at most two members (`oeFiber_card_succ_diff`), and
+the block pairs off into \(m'\) differences plus one fiber, so
+\(|S_1|\le 2m'+\tfrac23(m'+1)^{2/3}+1\) (`slowSum_abs_le`), the
+paper's \(O(m')\) with a constant. The same fiber bounds pin the odd
+count of the block two-sidedly (`oddBlock_card_le`,
+`oddBlock_card_ge`), so \(|M/4-m'^{5/3}/3|\le m'+1\)
+(`oddBlock_quarter_close`). Equation (4.1) now needs only the fast sum
+and the product sum (`block_average_two_bounds`;
+`block_average_bound_two` in the paper's shape, \(C_B=C/2+2\)), and
+the asymptotic form holds with the explicit error \(B/2+2(m'+1)\)
+(`block_average_asymptotic`). The row stays **human proof**, because
+the two remaining sums are the exponential sums and are the
+proposition; the row says which parts are Lean.
 
 ## Current literature
 

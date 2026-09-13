@@ -6058,7 +6058,6 @@
         "formal/Problems/Juggler/Progress.lean",
         "formal/Problems/Juggler/RateFreeDensity.lean",
         "formal/Problems/Juggler/FateCylinderEnergy.lean",
-        "formal/Problems/Juggler/FateBlockAverage.lean",
         "formal/Problems/Juggler/FirstInternalOO.lean",
         "formal/Problems/Juggler/MinimumRelative.lean",
         "formal/Problems/Juggler/Minimal.lean",
@@ -6188,6 +6187,7 @@
         "formal/Problems/Juggler/FateCylinderCorollary.lean",
         "formal/Problems/Juggler/FateFiberParity.lean",
         "formal/Problems/Juggler/FateThinFibers.lean",
+        "formal/Problems/Juggler/FateBlockAverage.lean",
         "formal/Problems/Juggler/FateContagionBound.lean"
       ],
       "conjecture": [],

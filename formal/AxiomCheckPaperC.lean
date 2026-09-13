@@ -16,6 +16,20 @@ import Problems.JugglerFatePaper
 open Problems.Juggler
 
 #print axioms BlockAverage.block_average_bound
+#print axioms BlockAverage.abs_alt_sum_le
+#print axioms BlockAverage.abs_psi
+#print axioms BlockAverage.block_average_asymptotic
+#print axioms BlockAverage.block_average_bound_two
+#print axioms BlockAverage.block_average_two_bounds
+#print axioms BlockAverage.card_Ico_block
+#print axioms BlockAverage.oddBlock_card_ge
+#print axioms BlockAverage.oddBlock_card_le
+#print axioms BlockAverage.oddBlock_filter_eq
+#print axioms BlockAverage.oddBlock_quarter_close
+#print axioms BlockAverage.oeFiber_card_succ_diff
+#print axioms BlockAverage.psi_succ
+#print axioms BlockAverage.slowSum_abs_le
+#print axioms BlockAverage.slowSum_eq_fibers
 #print axioms BlockAverage.block_average_of_bounds
 #print axioms BlockAverage.four_card_U
 #print axioms BlockAverage.mem_oddBlock
@@ -59,8 +73,10 @@ open Problems.Juggler
 #print axioms FiberParity.oeFiber_between
 #print axioms FiberParity.oeFiber_card
 #print axioms FiberParity.oeFiber_card_ge
+#print axioms FiberParity.oeFiber_card_le
 #print axioms FiberParity.oeFiber_eq_image
 #print axioms FiberParity.rpow_four_thirds_succ_ge
+#print axioms FiberParity.rpow_four_thirds_succ_le
 #print axioms FiberParity.rpow_two_thirds_ge
 #print axioms FiberParity.rpow_two_thirds_succ_le
 #print axioms FiberParity.span_ge_of_step
