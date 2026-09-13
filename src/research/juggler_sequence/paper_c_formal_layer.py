@@ -79,6 +79,7 @@ TABLE_LEAN_ROWS = {
     "Lemma 4.7": "CubeFiber",
     "Lemma 5.1": "FateRecursion",
     "Proposition 6.3(i)": "FateFirstLetter",
+    "identity (6.1)": "FateFirstLetter",
     "Proposition 9.3": "TiltedShare",
     "Lemma 8.2": "FateChernoff",
     "Theorem 8.3": "FateChernoff",

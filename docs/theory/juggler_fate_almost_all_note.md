@@ -349,7 +349,7 @@ constants; they prove nothing and are labelled wherever they appear.
 | Seed (Lemma 5.2) | Lean |
 | Contagion (Theorem 5.3), given the production inequality (5.2), for every \(\lambda\le 0.49\) | Lean; \(\zeta(0.49)>0\) by exact rational bounds, the root \(\lambda^{**}\) is human |
 | Least failure is \(OO\)-type; first-letter trichotomy (Proposition 6.3(i), Section 6.2) | Lean |
-| First-letter identity (6.1) | human proof (exact combinatorics) |
+| First-letter identity (6.1) | Lean, the exact three-piece decomposition and the uniqueness of the odd preimage; the normalization to \(\varphi_A,\varphi^{\rm fib}_A,\psi_A\) and the boundary error are human |
 | Tao-type rate implies the conjecture (Theorem 7.2), with the contagion bound of Theorem 5.3 as a hypothesis | Lean |
 | Almost-all equivalence (Theorem 7.3), with the contagion bound of Theorem 5.3 as a hypothesis | Lean |
 | Corollary 8.4, the conjecture from a cylinder bound, with the contagion bound of Theorem 5.3 as a hypothesis | Lean |
@@ -1515,8 +1515,19 @@ decomposition. \(\square\)
 Lean: `minimal_failure_odd_odd` and `exists_minimal_failure` (the least
 failure is odd with odd image), and the three pieces as
 `first_letter_trichotomy` with `first_letter_pieces_disjoint`, in
-`formal/Problems/Juggler/FateFirstLetter.lean`; the log-mass
-bookkeeping of (6.1) is not formalized.
+`formal/Problems/Juggler/FateFirstLetter.lean`. The exact layer of
+(6.1) is `first_letter_split` there: for any weight and any finite
+index set, the weighted mass of a two-way closed class is the sum of
+its even, \(OE\)-type and \(OO\)-type pieces, each indexed as the
+paper indexes it, by the image lying in the class; `shellLogMass_split`
+is the log-mass form on a shell \((y,x]\). The free term's
+\(n(m)\) is well defined by `floorPower_odd_injective` (`J` is
+strictly increasing on the odd integers, `floorPower_odd_lt`), and
+`sum_image_ooPiece` rewrites the third piece as the paper's sum over
+the odd images. What is not formalized is the normalization: the
+densities \(\varphi_A\), \(\varphi^{\rm fib}_A\), \(\psi_A\),
+the identification of each piece with its term of (6.1), and the
+boundary error \(O(e^{-t/4}/t)\).
 
 **Remark 6.4 (the walk heuristic; not a theorem).** If \(F\) were
 \(S\)-fair, if the fiber weights were ideal
@@ -2420,7 +2431,7 @@ abstract lemmas listed here, not the analytic density estimates.
 | Lemma 4.1 (sweep), in `Problems/Juggler/FateSweep.lean` | `Sweep.cell`, `Sweep.sweep_cell`, `sweep_fract_lt_half`, `sweep_fract_ge_half`, `sweep_ceil`, `sweep_rep_le_half`, `sweep_rep_gt_half` |
 | Lemma 4.1' (monotone pairing), in `Problems/Juggler/FateSweepMonotone.lean` | `Sweep.sweep_monotone_cell`, `sweep_monotone_fract_lt_half`, `sweep_monotone_fract_ge_half`, `sweep_monotone_ceil`, `sweep_monotone_rep_le_half`, `sweep_monotone_rep_gt_half` |
 | Lemma 5.1 (recursion), in `Problems/Juggler/FateRecursion.lean` | `recursion_lemma` |
-| Section 6.2, Proposition 6.3(i), in `Problems/Juggler/FateFirstLetter.lean` | `MinimalMember`, `minimalMember_odd`, `minimalMember_image_odd`, `minimal_failure_odd_odd`, `exists_minimal_failure`, `first_letter_trichotomy`, `first_letter_pieces_disjoint` |
+| Section 6.2, Proposition 6.3(i) and the exact layer of (6.1), in `Problems/Juggler/FateFirstLetter.lean` | `MinimalMember`, `minimalMember_odd`, `minimalMember_image_odd`, `minimal_failure_odd_odd`, `exists_minimal_failure`, `first_letter_trichotomy`, `first_letter_pieces_disjoint`, `first_letter_split`, `shellLogMass`, `shellLogMass_split`, `floorPower_odd_lt`, `floorPower_odd_injective`, `ooPiece`, `sum_image_ooPiece`, `card_image_ooPiece` |
 | Lemma 8.2 (Chernoff count), in `Problems/Juggler/FateChernoff.lean` | `weightGen_one`, `count_oddCount_ge_le`, `count_oddCount_ge_real_le`, `entropyLog`, `klHalf`, `klHalf_eq`, `klHalf_nonneg`, `tilt_value`, `count_oddCount_ge_le_exp`, `count_oddCount_ge_le_kl`, `LBad`, `pC`, `chernoffExponent`, `logb_two_three_le`, `half_le_pC`, `pC_lt_one`, `LBad_oddCount_ge`, `LBad_count_le` |
 | Theorem 8.3 (explicit form), in `Problems/Juggler/FateChernoff.lean` | `cylinder`, `oddFailures`, `EnvelopeBad`, `oddFailures_subset_bad_cylinders`, `oddFailures_card_le`, `LBad_of_envelopeBad`, `oddFailures_card_le_chernoff`, `scaleRatio`, `scaleL`, `depth`, `cylinder_even_root_empty`, `oddFailures_card_le_explicit` |
 | Theorem 9.2 (pressure form), in `Problems/Juggler/FatePressure.lean` | `livePressure`, `live_count_le_pressure`, `envelopeBad_of_liveTo`, `LBad_of_liveTo`, `live_oddCount_ge`, `live_count_le_of_pressure` |
@@ -2508,7 +2519,7 @@ use the roots of the displayed defining equations.
 
 - `formal/Problems/Juggler/FateFirstLetter.lean`
 
-  SHA-256: `635bb6163f5a054085087eefcd2c62037c61538fe863d53e9dca69da8fddb3e9`
+  SHA-256: `7defa672e0ea746d14bfc88b13d40603c05097507847bc901162334bce38c4fa`
 
 - `formal/Problems/Juggler/FateWindowCount.lean`
 
@@ -2552,7 +2563,7 @@ use the roots of the displayed defining equations.
 
 - `formal/AxiomCheckPaperC.expected`
 
-  SHA-256: `bc9734764d7cc516d9ebcc27bb8b24b0431428d1ece6f8444dd2b20b83bf34f6`
+  SHA-256: `affe3b6766ba600e0573e4575fa140e2e67e76c4478aea5a9a0ec5e41ba66868`
 
 - `src/research/juggler_sequence/fate_contagion.py`
 

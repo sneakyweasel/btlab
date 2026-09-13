@@ -21,18 +21,18 @@
     "Problems.Juggler.FateContagionBound"
   ],
   "artifact": {
-    "asked": 224,
-    "recorded": 224,
+    "asked": 230,
+    "recorded": 230,
     "axiom_lists": [
       "propext",
       "propext, Classical.choice, Quot.sound",
       "propext, Quot.sound"
     ]
   },
-  "appendix_a_names": 206,
+  "appendix_a_names": 214,
   "surface": {
     "modules": 50,
-    "declarations": 1582,
+    "declarations": 1590,
     "compiler_trusted": [],
     "compiler_dependent": [],
     "open": []
@@ -54,6 +54,7 @@
       "Seed (Lemma 5.2)",
       "Contagion (Theorem 5.3), given the production inequality (5.2), for every \\(\\lambda\\le 0.49\\)",
       "Least failure is \\(OO\\)-type; first-letter trichotomy (Proposition 6.3(i), Section 6.2)",
+      "First-letter identity (6.1)",
       "Tao-type rate implies the conjecture (Theorem 7.2), with the contagion bound of Theorem 5.3 as a hypothesis",
       "Almost-all equivalence (Theorem 7.3), with the contagion bound of Theorem 5.3 as a hypothesis",
       "Corollary 8.4, the conjecture from a cylinder bound, with the contagion bound of Theorem 5.3 as a hypothesis",
@@ -66,7 +67,6 @@
       "Block average (Proposition 4.4), asymptotic",
       "Share law and its three corollaries (Lemma 4.5, Corollary 4.6)",
       "Production inequality (5.2) with the \\(V\\)-ladder terms of Section 5.7",
-      "First-letter identity (6.1)",
       "Azuma and exponential-moment arguments (Sections 8--10, except Lemma 8.2, Theorem 8.3, Theorem 9.2 and Proposition 9.3 in their exact forms)"
     ],
     "other": [
@@ -80,5 +80,5 @@
     "label": "PAPER_C_LEAN_SURFACE_CONSISTENT",
     "problems": 0
   },
-  "git_commit": "d400a2ac37bcb6a8c01ada076054c5968e2b5002"
+  "git_commit": "ed3258faf059c0defa81deb29a21ea05ab8ceca0"
 }
