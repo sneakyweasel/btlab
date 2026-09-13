@@ -27,6 +27,9 @@ htmlcov/
 .agents/
 *.swp
 
+# Local MCP server config (machine-specific absolute paths)
+.mcp.json
+
 # Node (Paper A reviewer companion)
 node_modules/
 web/juggler-companion/dist/
