@@ -11,6 +11,7 @@ import Problems.Juggler.FatePressure
 import Problems.Juggler.FateTaoReduction
 import Problems.Juggler.FateSeed
 import Problems.Juggler.FateCylinderCorollary
+import Problems.Juggler.FateNumerics
 import Problems.Juggler.FateFiberParity
 import Problems.Juggler.FateThinFibers
 import Problems.Juggler.FateContagionBound
@@ -18,7 +19,7 @@ import Problems.Juggler.FateContagionBound
 /-!
 # Paper C barrel — everything the repository checks for the fate-contagion note
 
-`docs/theory/juggler_fate_almost_all_note.md`. This file imports exactly the sixteen modules
+`docs/theory/juggler_fate_almost_all_note.md`. This file imports exactly the seventeen modules
 that paper cites and nothing else, so that a reader can build the formal side of Paper C on
 its own rather than selecting modules by hand out of the umbrella `Problems.Juggler`. It is a
 laboratory target, not a claim: building it does **not** corroborate the paper's counting.
@@ -72,6 +73,12 @@ laboratory target, not a claim: building it does **not** corroborate the paper's
   positive integer reaches `1` (`cylinder_bound_implies_conjecture`); the absorption of the
   explicit bound of Theorem 8.3 into the rate `y (log y)^{-e}` is `oddFailures_eventually_le`.
 
+* `FateNumerics` — the two numerical moves Lemmas 4.2, 4.3 and 8.2 share: a real power
+  compared through an integer power, `x^p ≤ c ↔ x^{pn} ≤ c^n` (`Numerics.rpow_le_iff_pow` and
+  its three siblings, which certify `2^{1/3} ≤ 1.26`, `u^{2/3} ≥ 10^4`, `log₂ 3 ≤ 8/5` and
+  `m^{4/3} ≤ n` on the fiber), and Bernoulli's inequality at a point,
+  `(a + h)^p ⋚ a^p + p a^{p-1} h` (`Numerics.bernoulli_ge`, `Numerics.bernoulli_le`, the
+  fiber steps of Lemmas 4.2 and 4.3). Nothing here is about the map.
 * `FateFiberParity` — Lemma 4.2: on a good fiber (`FiberParity.Good`, the paper's
   `‖α_m‖ ≥ 22 m^{-1/3}` and `‖α_m - 1/2‖ ≥ 2 m^{-1/3}` unpacked) with `m ≥ 10^6`, at least
   `H_m/3 - 2` images are even and at least `H_m/3 - 2` are odd

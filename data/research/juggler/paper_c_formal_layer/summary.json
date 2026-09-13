@@ -14,23 +14,24 @@
     "Problems.Juggler.FateTaoReduction",
     "Problems.Juggler.FateSeed",
     "Problems.Juggler.FateCylinderCorollary",
+    "Problems.Juggler.FateNumerics",
     "Problems.Juggler.FateFiberParity",
     "Problems.Juggler.FateThinFibers",
     "Problems.Juggler.FateContagionBound"
   ],
   "artifact": {
-    "asked": 211,
-    "recorded": 211,
+    "asked": 217,
+    "recorded": 217,
     "axiom_lists": [
       "propext",
       "propext, Classical.choice, Quot.sound",
       "propext, Quot.sound"
     ]
   },
-  "appendix_a_names": 193,
+  "appendix_a_names": 199,
   "surface": {
-    "modules": 48,
-    "declarations": 1567,
+    "modules": 49,
+    "declarations": 1573,
     "compiler_trusted": [],
     "compiler_dependent": [],
     "open": []
@@ -78,5 +79,5 @@
     "label": "PAPER_C_LEAN_SURFACE_CONSISTENT",
     "problems": 0
   },
-  "git_commit": "ac94102ab8b2db9f4db6621f59b0032de65539ef"
+  "git_commit": "2826cbe777b249717970597636f40629561c17d2"
 }

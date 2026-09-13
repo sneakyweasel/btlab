@@ -60,6 +60,7 @@ CITED_MODULES = (
     "Problems.Juggler.FateTaoReduction",
     "Problems.Juggler.FateSeed",
     "Problems.Juggler.FateCylinderCorollary",
+    "Problems.Juggler.FateNumerics",
     "Problems.Juggler.FateFiberParity",
     "Problems.Juggler.FateThinFibers",
     "Problems.Juggler.FateContagionBound",

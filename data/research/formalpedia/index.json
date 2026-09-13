@@ -27249,7 +27249,7 @@
         "J-fate-chernoff-count",
         "J-fate-tao-union-bound"
       ],
-      "line": 39,
+      "line": 40,
       "module": "Problems.Juggler.FateChernoff",
       "name": "weightGen_one",
       "trust": "kernel"
@@ -27262,7 +27262,7 @@
         "J-fate-chernoff-count",
         "J-fate-tao-union-bound"
       ],
-      "line": 57,
+      "line": 58,
       "module": "Problems.Juggler.FateChernoff",
       "name": "count_oddCount_ge_le",
       "trust": "kernel"
@@ -27275,7 +27275,7 @@
         "J-fate-chernoff-count",
         "J-fate-tao-union-bound"
       ],
-      "line": 64,
+      "line": 65,
       "module": "Problems.Juggler.FateChernoff",
       "name": "count_oddCount_ge_real_le",
       "trust": "kernel"
@@ -27288,7 +27288,7 @@
         "J-fate-chernoff-count",
         "J-fate-tao-union-bound"
       ],
-      "line": 83,
+      "line": 84,
       "module": "Problems.Juggler.FateChernoff",
       "name": "entropyLog",
       "trust": "kernel"
@@ -27301,7 +27301,7 @@
         "J-fate-chernoff-count",
         "J-fate-tao-union-bound"
       ],
-      "line": 86,
+      "line": 87,
       "module": "Problems.Juggler.FateChernoff",
       "name": "klHalf",
       "trust": "kernel"
@@ -27314,7 +27314,7 @@
         "J-fate-chernoff-count",
         "J-fate-tao-union-bound"
       ],
-      "line": 88,
+      "line": 89,
       "module": "Problems.Juggler.FateChernoff",
       "name": "klHalf_eq",
       "trust": "kernel"
@@ -27327,7 +27327,7 @@
         "J-fate-chernoff-count",
         "J-fate-tao-union-bound"
       ],
-      "line": 95,
+      "line": 96,
       "module": "Problems.Juggler.FateChernoff",
       "name": "klHalf_nonneg",
       "trust": "kernel"
@@ -27340,7 +27340,7 @@
         "J-fate-chernoff-count",
         "J-fate-tao-union-bound"
       ],
-      "line": 113,
+      "line": 114,
       "module": "Problems.Juggler.FateChernoff",
       "name": "tilt_value",
       "trust": "kernel"
@@ -27353,7 +27353,7 @@
         "J-fate-chernoff-count",
         "J-fate-tao-union-bound"
       ],
-      "line": 134,
+      "line": 135,
       "module": "Problems.Juggler.FateChernoff",
       "name": "count_oddCount_ge_le_exp",
       "trust": "kernel"
@@ -27366,7 +27366,7 @@
         "J-fate-chernoff-count",
         "J-fate-tao-union-bound"
       ],
-      "line": 144,
+      "line": 145,
       "module": "Problems.Juggler.FateChernoff",
       "name": "count_oddCount_ge_le_kl",
       "trust": "kernel"
@@ -27379,7 +27379,7 @@
         "J-fate-chernoff-count",
         "J-fate-tao-union-bound"
       ],
-      "line": 161,
+      "line": 162,
       "module": "Problems.Juggler.FateChernoff",
       "name": "LBad",
       "trust": "kernel"
@@ -27392,7 +27392,7 @@
         "J-fate-chernoff-count",
         "J-fate-tao-union-bound"
       ],
-      "line": 166,
+      "line": 167,
       "module": "Problems.Juggler.FateChernoff",
       "name": "pC",
       "trust": "kernel"
@@ -27405,7 +27405,7 @@
         "J-fate-chernoff-count",
         "J-fate-tao-union-bound"
       ],
-      "line": 169,
+      "line": 170,
       "module": "Problems.Juggler.FateChernoff",
       "name": "chernoffExponent",
       "trust": "kernel"
@@ -27418,7 +27418,7 @@
         "J-fate-chernoff-count",
         "J-fate-tao-union-bound"
       ],
-      "line": 172,
+      "line": 173,
       "module": "Problems.Juggler.FateChernoff",
       "name": "logb_two_three_le",
       "trust": "kernel"
@@ -27431,7 +27431,7 @@
         "J-fate-chernoff-count",
         "J-fate-tao-union-bound"
       ],
-      "line": 184,
+      "line": 178,
       "module": "Problems.Juggler.FateChernoff",
       "name": "pC_lt_one",
       "trust": "kernel"
@@ -27444,7 +27444,7 @@
         "J-fate-chernoff-count",
         "J-fate-tao-union-bound"
       ],
-      "line": 191,
+      "line": 185,
       "module": "Problems.Juggler.FateChernoff",
       "name": "half_le_pC",
       "trust": "kernel"
@@ -27457,7 +27457,7 @@
         "J-fate-chernoff-count",
         "J-fate-tao-union-bound"
       ],
-      "line": 201,
+      "line": 195,
       "module": "Problems.Juggler.FateChernoff",
       "name": "LBad_oddCount_ge",
       "trust": "kernel"
@@ -27470,7 +27470,7 @@
         "J-fate-chernoff-count",
         "J-fate-tao-union-bound"
       ],
-      "line": 218,
+      "line": 212,
       "module": "Problems.Juggler.FateChernoff",
       "name": "LBad_count_le",
       "trust": "kernel"
@@ -27483,7 +27483,7 @@
         "J-fate-chernoff-count",
         "J-fate-tao-union-bound"
       ],
-      "line": 249,
+      "line": 243,
       "module": "Problems.Juggler.FateChernoff",
       "name": "cylinder",
       "trust": "kernel"
@@ -27496,7 +27496,7 @@
         "J-fate-chernoff-count",
         "J-fate-tao-union-bound"
       ],
-      "line": 253,
+      "line": 247,
       "module": "Problems.Juggler.FateChernoff",
       "name": "oddFailures",
       "trust": "kernel"
@@ -27509,7 +27509,7 @@
         "J-fate-chernoff-count",
         "J-fate-tao-union-bound"
       ],
-      "line": 259,
+      "line": 253,
       "module": "Problems.Juggler.FateChernoff",
       "name": "EnvelopeBad",
       "trust": "kernel"
@@ -27522,7 +27522,7 @@
         "J-fate-chernoff-count",
         "J-fate-tao-union-bound"
       ],
-      "line": 264,
+      "line": 258,
       "module": "Problems.Juggler.FateChernoff",
       "name": "oddFailures_subset_bad_cylinders",
       "trust": "kernel"
@@ -27535,7 +27535,7 @@
         "J-fate-chernoff-count",
         "J-fate-tao-union-bound"
       ],
-      "line": 291,
+      "line": 285,
       "module": "Problems.Juggler.FateChernoff",
       "name": "oddFailures_card_le",
       "trust": "kernel"
@@ -27548,7 +27548,7 @@
         "J-fate-chernoff-count",
         "J-fate-tao-union-bound"
       ],
-      "line": 306,
+      "line": 300,
       "module": "Problems.Juggler.FateChernoff",
       "name": "LBad_of_envelopeBad",
       "trust": "kernel"
@@ -27561,7 +27561,7 @@
         "J-fate-chernoff-count",
         "J-fate-tao-union-bound"
       ],
-      "line": 343,
+      "line": 337,
       "module": "Problems.Juggler.FateChernoff",
       "name": "oddFailures_card_le_chernoff",
       "trust": "kernel"
@@ -27574,7 +27574,7 @@
         "J-fate-chernoff-count",
         "J-fate-tao-union-bound"
       ],
-      "line": 383,
+      "line": 377,
       "module": "Problems.Juggler.FateChernoff",
       "name": "scaleRatio",
       "trust": "kernel"
@@ -27587,7 +27587,7 @@
         "J-fate-chernoff-count",
         "J-fate-tao-union-bound"
       ],
-      "line": 386,
+      "line": 380,
       "module": "Problems.Juggler.FateChernoff",
       "name": "scaleL",
       "trust": "kernel"
@@ -27600,7 +27600,7 @@
         "J-fate-chernoff-count",
         "J-fate-tao-union-bound"
       ],
-      "line": 389,
+      "line": 383,
       "module": "Problems.Juggler.FateChernoff",
       "name": "depth",
       "trust": "kernel"
@@ -27613,7 +27613,7 @@
         "J-fate-chernoff-count",
         "J-fate-tao-union-bound"
       ],
-      "line": 392,
+      "line": 386,
       "module": "Problems.Juggler.FateChernoff",
       "name": "cylinder_even_root_empty",
       "trust": "kernel"
@@ -27626,7 +27626,7 @@
         "J-fate-chernoff-count",
         "J-fate-tao-union-bound"
       ],
-      "line": 409,
+      "line": 403,
       "module": "Problems.Juggler.FateChernoff",
       "name": "oddFailures_card_le_explicit",
       "trust": "kernel"
@@ -28715,7 +28715,7 @@
       "ledger": [
         "J-fate-fiber-parity"
       ],
-      "line": 211,
+      "line": 205,
       "module": "Problems.Juggler.FateFiberParity",
       "name": "fiber_lt_rpow",
       "trust": "kernel"
@@ -28727,7 +28727,7 @@
       "ledger": [
         "J-fate-fiber-parity"
       ],
-      "line": 223,
+      "line": 211,
       "module": "Problems.Juggler.FateFiberParity",
       "name": "sqrt_rpow_four_thirds",
       "trust": "kernel"
@@ -28739,7 +28739,7 @@
       "ledger": [
         "J-fate-fiber-parity"
       ],
-      "line": 229,
+      "line": 217,
       "module": "Problems.Juggler.FateFiberParity",
       "name": "rpow_four_thirds_succ_ge",
       "trust": "kernel"
@@ -28751,7 +28751,7 @@
       "ledger": [
         "J-fate-fiber-parity"
       ],
-      "line": 247,
+      "line": 225,
       "module": "Problems.Juggler.FateFiberParity",
       "name": "rpow_two_thirds_succ_le",
       "trust": "kernel"
@@ -28763,7 +28763,7 @@
       "ledger": [
         "J-fate-fiber-parity"
       ],
-      "line": 264,
+      "line": 233,
       "module": "Problems.Juggler.FateFiberParity",
       "name": "oeFiber_card_ge",
       "trust": "kernel"
@@ -28775,7 +28775,7 @@
       "ledger": [
         "J-fate-fiber-parity"
       ],
-      "line": 323,
+      "line": 286,
       "module": "Problems.Juggler.FateFiberParity",
       "name": "Am",
       "trust": "kernel"
@@ -28787,7 +28787,7 @@
       "ledger": [
         "J-fate-fiber-parity"
       ],
-      "line": 326,
+      "line": 289,
       "module": "Problems.Juggler.FateFiberParity",
       "name": "alpha",
       "trust": "kernel"
@@ -28799,7 +28799,7 @@
       "ledger": [
         "J-fate-fiber-parity"
       ],
-      "line": 329,
+      "line": 292,
       "module": "Problems.Juggler.FateFiberParity",
       "name": "eps",
       "trust": "kernel"
@@ -28811,7 +28811,7 @@
       "ledger": [
         "J-fate-fiber-parity"
       ],
-      "line": 332,
+      "line": 295,
       "module": "Problems.Juggler.FateFiberParity",
       "name": "Good",
       "trust": "kernel"
@@ -28823,7 +28823,7 @@
       "ledger": [
         "J-fate-fiber-parity"
       ],
-      "line": 336,
+      "line": 299,
       "module": "Problems.Juggler.FateFiberParity",
       "name": "eps_pos",
       "trust": "kernel"
@@ -28835,7 +28835,7 @@
       "ledger": [
         "J-fate-fiber-parity"
       ],
-      "line": 339,
+      "line": 302,
       "module": "Problems.Juggler.FateFiberParity",
       "name": "eps_mul_cbrt",
       "trust": "kernel"
@@ -28847,7 +28847,7 @@
       "ledger": [
         "J-fate-fiber-parity"
       ],
-      "line": 346,
+      "line": 309,
       "module": "Problems.Juggler.FateFiberParity",
       "name": "eps_le",
       "trust": "kernel"
@@ -28859,7 +28859,7 @@
       "ledger": [
         "J-fate-fiber-parity"
       ],
-      "line": 361,
+      "line": 321,
       "module": "Problems.Juggler.FateFiberParity",
       "name": "upper_step_le",
       "trust": "kernel"
@@ -28871,7 +28871,7 @@
       "ledger": [
         "J-fate-fiber-parity"
       ],
-      "line": 374,
+      "line": 334,
       "module": "Problems.Juggler.FateFiberParity",
       "name": "nseq",
       "trust": "kernel"
@@ -28883,7 +28883,7 @@
       "ledger": [
         "J-fate-fiber-parity"
       ],
-      "line": 378,
+      "line": 338,
       "module": "Problems.Juggler.FateFiberParity",
       "name": "Hlen",
       "trust": "kernel"
@@ -28895,7 +28895,7 @@
       "ledger": [
         "J-fate-fiber-parity"
       ],
-      "line": 381,
+      "line": 341,
       "module": "Problems.Juggler.FateFiberParity",
       "name": "nseq_mem",
       "trust": "kernel"
@@ -28907,7 +28907,7 @@
       "ledger": [
         "J-fate-fiber-parity"
       ],
-      "line": 385,
+      "line": 345,
       "module": "Problems.Juggler.FateFiberParity",
       "name": "nseq_succ",
       "trust": "kernel"
@@ -28919,7 +28919,7 @@
       "ledger": [
         "J-fate-fiber-parity"
       ],
-      "line": 389,
+      "line": 349,
       "module": "Problems.Juggler.FateFiberParity",
       "name": "step_ge",
       "trust": "kernel"
@@ -28931,7 +28931,7 @@
       "ledger": [
         "J-fate-fiber-parity"
       ],
-      "line": 402,
+      "line": 362,
       "module": "Problems.Juggler.FateFiberParity",
       "name": "step_le",
       "trust": "kernel"
@@ -28943,7 +28943,7 @@
       "ledger": [
         "J-fate-fiber-parity"
       ],
-      "line": 416,
+      "line": 376,
       "module": "Problems.Juggler.FateFiberParity",
       "name": "nseq_step_mono",
       "trust": "kernel"
@@ -28955,7 +28955,7 @@
       "ledger": [
         "J-fate-fiber-parity"
       ],
-      "line": 425,
+      "line": 385,
       "module": "Problems.Juggler.FateFiberParity",
       "name": "Hlen_eq",
       "trust": "kernel"
@@ -28967,7 +28967,7 @@
       "ledger": [
         "J-fate-fiber-parity"
       ],
-      "line": 428,
+      "line": 388,
       "module": "Problems.Juggler.FateFiberParity",
       "name": "evenImageCount_eq'",
       "trust": "kernel"
@@ -28979,7 +28979,7 @@
       "ledger": [
         "J-fate-fiber-parity"
       ],
-      "line": 433,
+      "line": 393,
       "module": "Problems.Juggler.FateFiberParity",
       "name": "oddImageCount_eq'",
       "trust": "kernel"
@@ -28991,7 +28991,7 @@
       "ledger": [
         "J-fate-fiber-parity"
       ],
-      "line": 454,
+      "line": 414,
       "module": "Problems.Juggler.FateFiberParity",
       "name": "fiber_parity_good",
       "trust": "kernel"
@@ -29078,6 +29078,66 @@
       "line": 104,
       "module": "Problems.Juggler.FateFirstLetter",
       "name": "first_letter_pieces_disjoint",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`x^p \u2264 c \u2194 x^{p n} \u2264 c^n` for `x, c \u2265 0` and a natural `n \u2260 0`.",
+      "file": "formal/Problems/Juggler/FateNumerics.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 28,
+      "module": "Problems.Juggler.FateNumerics",
+      "name": "rpow_le_iff_pow",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`c \u2264 x^p \u2194 c^n \u2264 x^{p n}` for `x, c \u2265 0` and a natural `n \u2260 0`.",
+      "file": "formal/Problems/Juggler/FateNumerics.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 34,
+      "module": "Problems.Juggler.FateNumerics",
+      "name": "le_rpow_iff_pow",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`x^p < c \u2194 x^{p n} < c^n` for `x, c \u2265 0` and a natural `n \u2260 0`.",
+      "file": "formal/Problems/Juggler/FateNumerics.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 40,
+      "module": "Problems.Juggler.FateNumerics",
+      "name": "rpow_lt_iff_pow",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`c < x^p \u2194 c^n < x^{p n}` for `x, c \u2265 0` and a natural `n \u2260 0`.",
+      "file": "formal/Problems/Juggler/FateNumerics.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 46,
+      "module": "Problems.Juggler.FateNumerics",
+      "name": "lt_rpow_iff_pow",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Bernoulli at a point, lower: `a^p + p a^q h \u2264 (a + h)^p` for `a > 0`, `h \u2265 -a`, and `p = q + 1 \u2265 1`.",
+      "file": "formal/Problems/Juggler/FateNumerics.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 55,
+      "module": "Problems.Juggler.FateNumerics",
+      "name": "bernoulli_ge",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Bernoulli at a point, upper: `(a + h)^p \u2264 a^p + p a^q h` for `a > 0`, `h \u2265 -a`, `0 \u2264 p \u2264 1` and `p = q + 1`.",
+      "file": "formal/Problems/Juggler/FateNumerics.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 67,
+      "module": "Problems.Juggler.FateNumerics",
+      "name": "bernoulli_le",
       "trust": "kernel"
     },
     {
@@ -31361,7 +31421,7 @@
       "ledger": [
         "J-fate-thin-fibers"
       ],
-      "line": 170,
+      "line": 155,
       "module": "Problems.Juggler.FateThinFibers",
       "name": "eps_antitone",
       "trust": "kernel"
@@ -31373,7 +31433,7 @@
       "ledger": [
         "J-fate-thin-fibers"
       ],
-      "line": 177,
+      "line": 162,
       "module": "Problems.Juggler.FateThinFibers",
       "name": "bad_mem_arc",
       "trust": "kernel"
@@ -31385,7 +31445,7 @@
       "ledger": [
         "J-fate-thin-fibers"
       ],
-      "line": 219,
+      "line": 204,
       "module": "Problems.Juggler.FateThinFibers",
       "name": "two_rpow_third_le",
       "trust": "kernel"
@@ -31397,7 +31457,7 @@
       "ledger": [
         "J-fate-thin-fibers"
       ],
-      "line": 227,
+      "line": 208,
       "module": "Problems.Juggler.FateThinFibers",
       "name": "two_rpow_two_thirds_le",
       "trust": "kernel"
@@ -31409,7 +31469,7 @@
       "ledger": [
         "J-fate-thin-fibers"
       ],
-      "line": 236,
+      "line": 213,
       "module": "Problems.Juggler.FateThinFibers",
       "name": "rpow_two_thirds_ge",
       "trust": "kernel"
@@ -31421,7 +31481,7 @@
       "ledger": [
         "J-fate-thin-fibers"
       ],
-      "line": 247,
+      "line": 220,
       "module": "Problems.Juggler.FateThinFibers",
       "name": "eps_div_eps_double",
       "trust": "kernel"
@@ -31433,7 +31493,7 @@
       "ledger": [
         "J-fate-thin-fibers"
       ],
-      "line": 256,
+      "line": 229,
       "module": "Problems.Juggler.FateThinFibers",
       "name": "Am_double_sub_le",
       "trust": "kernel"
@@ -31445,7 +31505,7 @@
       "ledger": [
         "J-fate-thin-fibers"
       ],
-      "line": 270,
+      "line": 243,
       "module": "Problems.Juggler.FateThinFibers",
       "name": "bad_count_le",
       "trust": "kernel"
@@ -31457,7 +31517,7 @@
       "ledger": [
         "J-fate-thin-fibers"
       ],
-      "line": 362,
+      "line": 335,
       "module": "Problems.Juggler.FateThinFibers",
       "name": "bad_block_logMass_le",
       "trust": "kernel"
@@ -31469,7 +31529,7 @@
       "ledger": [
         "J-fate-thin-fibers"
       ],
-      "line": 383,
+      "line": 356,
       "module": "Problems.Juggler.FateThinFibers",
       "name": "Ioc_disjoint_next",
       "trust": "kernel"
@@ -31481,7 +31541,7 @@
       "ledger": [
         "J-fate-thin-fibers"
       ],
-      "line": 391,
+      "line": 364,
       "module": "Problems.Juggler.FateThinFibers",
       "name": "bad_sum_dyadic_le",
       "trust": "kernel"
@@ -31493,7 +31553,7 @@
       "ledger": [
         "J-fate-thin-fibers"
       ],
-      "line": 412,
+      "line": 385,
       "module": "Problems.Juggler.FateThinFibers",
       "name": "eps_pow_two_mul",
       "trust": "kernel"
@@ -31505,7 +31565,7 @@
       "ledger": [
         "J-fate-thin-fibers"
       ],
-      "line": 423,
+      "line": 396,
       "module": "Problems.Juggler.FateThinFibers",
       "name": "two_rpow_neg_third_le",
       "trust": "kernel"
@@ -31517,7 +31577,7 @@
       "ledger": [
         "J-fate-thin-fibers"
       ],
-      "line": 433,
+      "line": 402,
       "module": "Problems.Juggler.FateThinFibers",
       "name": "bad_logMass_le",
       "trust": "kernel"
@@ -81854,6 +81914,7 @@
         "Problems.Juggler.FateCylinderCorollary",
         "Problems.Juggler.FateFiberParity",
         "Problems.Juggler.FateFirstLetter",
+        "Problems.Juggler.FateNumerics",
         "Problems.Juggler.FatePressure",
         "Problems.Juggler.FateRecursion",
         "Problems.Juggler.FateSeed",
@@ -82819,6 +82880,7 @@
       "file": "formal/Problems/Juggler/FateChernoff.lean",
       "imports": [
         "Problems.Juggler.FateContagion",
+        "Problems.Juggler.FateNumerics",
         "Problems.Juggler.LogCells",
         "Problems.Juggler.RateFreeDensity"
       ],
@@ -82906,6 +82968,7 @@
       "file": "formal/Problems/Juggler/FateFiberParity.lean",
       "imports": [
         "Problems.Juggler.FateContagion",
+        "Problems.Juggler.FateNumerics",
         "Problems.Juggler.FateSweepMonotone"
       ],
       "ledger": [
@@ -82929,6 +82992,12 @@
           "tag": "EXACT \u2014 LEAN VERIFIED"
         }
       ]
+    },
+    "Problems.Juggler.FateNumerics": {
+      "declarations": 6,
+      "file": "formal/Problems/Juggler/FateNumerics.lean",
+      "imports": [],
+      "ledger": []
     },
     "Problems.Juggler.FatePressure": {
       "declarations": 6,
@@ -84430,6 +84499,7 @@
         "Problems.Juggler.FateCylinderCorollary",
         "Problems.Juggler.FateFiberParity",
         "Problems.Juggler.FateFirstLetter",
+        "Problems.Juggler.FateNumerics",
         "Problems.Juggler.FatePressure",
         "Problems.Juggler.FateRecursion",
         "Problems.Juggler.FateSeed",
@@ -84443,7 +84513,7 @@
       "ledger": [
         {
           "id": "J-paper-c-trust-surface",
-          "statement": "Paper C's Lean surface, as a build target and an axiom artifact. formal/Problems/JugglerFatePaper.lean imports exactly the twelve modules the paper cites (TerminationFloor257, FateContagion, CubeFiber, TiltedShare, FateRecursion, FateFirstLetter, FateSweep, FateSweepMonotone, FateChernoff, FatePressure, FateTaoReduction, FateSeed) and is a lake default target; formal/AxiomCheckPaperC.lean prints the axioms of the cited declarations and AxiomCheckPaperC.expected records them: every line is a subset of [propext, Classical.choice, Quot.sound], no sorryAx, no Lean.ofReduceBool (native_decide). formalpedia's paper surface carries Paper C (root Problems.JugglerFatePaper): no declaration it reaches runs the compiler and none cites one that does. The verification table has sixteen Lean rows (including Lemma 4.1', Lemma 5.2 and Theorem 7.2 with the contagion bound of Theorem 5.3 as a hypothesis), seven human proofs, one conditional hypothesis and one observation. Theorem 5.3 and Theorem 7.3 remain human proofs. This row records the artifact, not a theorem; nothing here bounds a density.",
+          "statement": "Paper C's Lean surface, as a build target and an axiom artifact. formal/Problems/JugglerFatePaper.lean imports exactly the seventeen modules the paper cites (TerminationFloor257, FateContagion, CubeFiber, TiltedShare, FateRecursion, FateFirstLetter, FateSweep, FateSweepMonotone, FateChernoff, FatePressure, FateTaoReduction, FateSeed, FateCylinderCorollary, FateNumerics, FateFiberParity, FateThinFibers, FateContagionBound) and is a lake default target; formal/AxiomCheckPaperC.lean prints the axioms of the cited declarations and AxiomCheckPaperC.expected records them: every line is a subset of [propext, Classical.choice, Quot.sound], no sorryAx, no Lean.ofReduceBool (native_decide). formalpedia's paper surface carries Paper C (root Problems.JugglerFatePaper): no declaration it reaches runs the compiler and none cites one that does. The verification table has twenty-one Lean rows (including Lemma 4.1', Lemmas 4.2 and 4.3, Lemma 5.2, Theorem 5.3 given the production inequality (5.2), Theorem 7.2 and Theorem 7.3 with the contagion bound as a hypothesis, and Corollary 8.4) and five human proofs (the block average 4.4, the share law, the production inequality (5.2), the identity (6.1), the asymptotic bookkeeping). FateNumerics holds the two numerical moves the fiber lemmas share, roots by powering and Bernoulli at a point. This row records the artifact, not a theorem; nothing here bounds a density.",
           "tag": "COMPUTATIONALLY VERIFIED"
         }
       ]
@@ -84740,13 +84810,13 @@
     }
   },
   "totals": {
-    "declarations": 6224,
+    "declarations": 6230,
     "declarations_with_a_ledger_row": 4254,
     "ledger_rows_naming_a_file": 390,
-    "modules": 268,
+    "modules": 269,
     "trust": {
       "compiler": 57,
-      "kernel": 6167
+      "kernel": 6173
     }
   }
 }

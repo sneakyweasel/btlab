@@ -3,6 +3,7 @@ import Mathlib.Analysis.SpecialFunctions.Log.Base
 import Mathlib.Analysis.SpecialFunctions.Pow.Real
 import Problems.Juggler.RateFreeDensity
 import Problems.Juggler.FateContagion
+import Problems.Juggler.FateNumerics
 
 namespace Problems.Juggler
 
@@ -170,16 +171,9 @@ noncomputable def chernoffExponent (C : ℝ) : ℝ := C * klHalf (pC C) / Real.l
 
 /-- `log₂ 3 ≤ 8/5`, i.e. `3^5 ≤ 2^8`. -/
 theorem logb_two_three_le : Real.logb 2 3 ≤ 8 / 5 := by
-  rw [Real.logb_le_iff_le_rpow (by norm_num) (by norm_num)]
-  have : (2 : ℝ) ^ ((8 : ℝ) / 5) = ((2 : ℝ) ^ (8 : ℕ)) ^ ((1 : ℝ) / 5) := by
-    rw [← Real.rpow_natCast, ← Real.rpow_mul (by norm_num)]
-    norm_num
-  rw [this]
-  have h3 : (3 : ℝ) = ((3 : ℝ) ^ (5 : ℕ)) ^ ((1 : ℝ) / 5) := by
-    rw [← Real.rpow_natCast, ← Real.rpow_mul (by norm_num)]
-    norm_num
-  rw [h3]
-  apply Real.rpow_le_rpow (by norm_num) (by norm_num) (by norm_num)
+  rw [Real.logb_le_iff_le_rpow (by norm_num) (by norm_num),
+    Numerics.le_rpow_iff_pow (n := 5) (by norm_num) (by norm_num) (by norm_num)]
+  norm_num
 
 theorem pC_lt_one (C : ℝ) (hC : 5 ≤ C) : pC C < 1 := by
   unfold pC
