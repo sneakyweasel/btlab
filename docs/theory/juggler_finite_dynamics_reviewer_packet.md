@@ -80,7 +80,8 @@ Theorem 5.8's full half-open window is \([50508,16785921)\).
 The older named Lean cap `hugCharge_sub_circleMean_window` stops at
 \(L<q_{13}=301994\). The printed-window instance
 `hugCharge_sub_circleMean_extended` uses the mixed-list decomposition
-\(L=bq_{13}+r\) and \(s(L)\le b+47\). It covers
+\(L=bq_{13}+r\) and \(s(L)\le b+47\); the printed \(C_*\) form is
+`hugCharge_sub_rotationAverage_extended`. It covers
 \(L_0,\ldots,L_{54}\), not \(L_{55}=q_{14}\).
 The full window uses \(16.41<\nu<17.084\) and the scan-free bound
 \(2s(L)/L<0.001862<0.00514212\). It bounds the charge; the

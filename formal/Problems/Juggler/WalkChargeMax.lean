@@ -33,9 +33,9 @@ Uniqueness of the maximiser is now here too (`hug_charge_unique`): the
 envelope used `stateCharge_antitone`, and the strict form
 `stateCharge_strictAnti` turns equality of the sums into equality of
 every term, so an admissible profile attaining the hug charge *is* the
-hug profile. The rotation average (Prop 5.5) and Denjoy–Koksma
-(Thm 5.7) remain analytic prose. Not a
-cycle obstruction and not a halt theorem.
+hug profile. The rotation average (Prop 5.5) and the printed
+`|C_L − C_*|` envelopes (Thm 5.7 / 5.8) are in
+`RotationAverage.lean`. Not a cycle obstruction and not a halt theorem.
 -/
 
 /-!
@@ -223,9 +223,9 @@ theorem cycleMin_defect_le_charge {n : ℕ} {w : List Branch}
 (the §5.2 consequence composed with Theorem 5.4): on a minimum-based
 cycle with `n ≥ 400` and positive reduced log-base, the cyclic
 defect sum is at most the hug charge of the same length. This is the
-full structural half of the walk-charge envelope; only the rotation
-average and Denjoy–Koksma evaluation of the right-hand side remain
-analytic. -/
+full structural half of the walk-charge envelope. The identification
+of that hug-charge sum with `hugCharge` is
+`hugCharge_eq_scaled_stateCharge` in `HugChargeEnvelope.lean`. -/
 theorem cycleMin_defect_le_hug_charge {n : ℕ} {w : List Branch}
     (hn : 400 ≤ n) (h : CycleMin n w)
     (hν : 0 < Real.log n - transportDeficit n w) :

@@ -37,8 +37,14 @@ Main results:
 
 The identification of the circle integral `circleMean n'` with
 `rotationAverage (log n')` is `circleMean_eq_rotationAverage` below
-(change of variables, not unique ergodicity). Not a cycle obstruction
-and not a halt theorem.
+(change of variables, not unique ergodicity). The printed hug-charge
+displays `|C_L − C_*(n')|` are the rewrites
+`hugCharge_sub_rotationAverage_le`,
+`hugCharge_sub_rotationAverage_window`, and
+`hugCharge_sub_rotationAverage_extended`. The slack form
+`hugCharge_lt_invLog_add_budget` adds the Laplace bound without
+claiming the numeric kill. Not a cycle obstruction and not a halt
+theorem.
 -/
 
 /-- The quadratic majorant: `1/t² ≤ 1 − 2(t−1) + 3(t−1)²` for
@@ -340,5 +346,75 @@ theorem circleMean_eq_rotationAverage {n' : ℝ} (hn : 1 < n') :
     _ = (∫ t in (1 : ℝ)..3, Real.exp (Real.log n' * (1 - t)) / t ^ 2) /
           Real.log 3 := by
         rw [hint]
+
+/-! ### Printed hug-charge envelopes against the rotation average
+
+The paper writes `|C_L − C_*(n')|` with `C_*` the rotation average of
+Proposition 5.5. The Denjoy–Koksma statements in `HugChargeEnvelope`
+are against `circleMean`; `circleMean_eq_rotationAverage` makes the
+printed display a rewrite. The numeric comparison
+`C_L < 1/(ln 3 ln n')` on a `ν`-window stays human.
+-/
+
+/-- **Theorem 5.7's printed display.**  `|C_L − C_*(n')| ≤ 2 s(L)/L`
+with `C_*` the rotation average. -/
+theorem hugCharge_sub_rotationAverage_le {n' : ℝ} (hn : 1 < n') {L : ℕ}
+    (hL : 0 < L) :
+    |hugCharge n' L - rotationAverage (Real.log n')|
+      ≤ 2 * ((∑ i ∈ Finset.range 13, ostroDigit thetaDenomFn L 12 i : ℕ) : ℝ)
+          / L := by
+  rw [← circleMean_eq_rotationAverage hn]
+  exact hugCharge_sub_circleMean_le hn hL
+
+/-- **On `L < 301994` the printed display is `94/L`.** -/
+theorem hugCharge_sub_rotationAverage_window {n' : ℝ} (hn : 1 < n') {L : ℕ}
+    (hL : 0 < L) (hLw : L < 301994) :
+    |hugCharge n' L - rotationAverage (Real.log n')| ≤ 94 / L := by
+  rw [← circleMean_eq_rotationAverage hn]
+  exact hugCharge_sub_circleMean_window hn hL hLw
+
+/-- **Theorem 5.7 on the mixed list, against `C_*`.** -/
+theorem hugCharge_sub_rotationAverage_extended_le {n' : ℝ} (hn : 1 < n')
+    {L : ℕ} (hL : 0 < L) :
+    |hugCharge n' L - rotationAverage (Real.log n')|
+      ≤ 2 * ((ostroBlocksExtended L).length : ℝ) / L := by
+  rw [← circleMean_eq_rotationAverage hn]
+  exact hugCharge_sub_circleMean_extended_le hn hL
+
+/-- **Theorem 5.8's printed display.**  On `[50508, q₁₄)` the mixed-list
+cap gives `|C_L − C_*(n')| ≤ 94/50508`. -/
+theorem hugCharge_sub_rotationAverage_extended {n' : ℝ} (hn : 1 < n') {L : ℕ}
+    (hLo : 50508 ≤ L) (hHi : L < 16785921) :
+    |hugCharge n' L - rotationAverage (Real.log n')| ≤ 94 / 50508 := by
+  rw [← circleMean_eq_rotationAverage hn]
+  exact hugCharge_sub_circleMean_extended hn hLo hHi
+
+/-- Prop 5.5 plus Theorem 5.7, without the numeric kill: `C_L` sits
+strictly below the crude Laplace bound plus the 13-level budget. -/
+theorem hugCharge_lt_invLog_add_budget {n' : ℝ} (hn : 1 < n') {L : ℕ}
+    (hL : 0 < L) :
+    hugCharge n' L <
+      1 / (Real.log 3 * Real.log n') +
+        2 * ((∑ i ∈ Finset.range 13, ostroDigit thetaDenomFn L 12 i : ℕ) : ℝ)
+          / L := by
+  have hν : 0 < Real.log n' := Real.log_pos hn
+  set ε :=
+    (2 : ℝ) * ((∑ i ∈ Finset.range 13, ostroDigit thetaDenomFn L 12 i : ℕ) : ℝ)
+      / L
+  have hle : hugCharge n' L ≤ rotationAverage (Real.log n') + ε :=
+    le_add_of_sub_left_le (abs_le.mp (hugCharge_sub_rotationAverage_le hn hL)).2
+  have havg := rotationAverage_lt hν
+  linarith
+
+/-- The same slack on the printed window, still not a kill. -/
+theorem hugCharge_lt_invLog_add_extended {n' : ℝ} (hn : 1 < n') {L : ℕ}
+    (hLo : 50508 ≤ L) (hHi : L < 16785921) :
+    hugCharge n' L < 1 / (Real.log 3 * Real.log n') + 94 / 50508 := by
+  have hν : 0 < Real.log n' := Real.log_pos hn
+  have hle : hugCharge n' L ≤ rotationAverage (Real.log n') + 94 / 50508 :=
+    le_add_of_sub_left_le
+      (abs_le.mp (hugCharge_sub_rotationAverage_extended hn hLo hHi)).2
+  have havg := rotationAverage_lt hν
+  linarith
 
 end Problems.Juggler

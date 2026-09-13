@@ -1,3 +1,4 @@
+import Mathlib.Analysis.SpecialFunctions.Pow.Real
 import Problems.Juggler.CycleFinance
 
 namespace Problems.Juggler
@@ -15,12 +16,14 @@ bounds from below. The two are tied by the elementary inequality
 
 (`cycleMin_gap_transfer`). Any lower bound `ε ≤ 1` on `Λ` therefore
 becomes a length bound `n log n · ε ≤ 2 L` (`cycleMin_length_of_gap`).
-With Rhin's effective measure `Λ > e^{−13.3(0.46057 + log L)}` this is
+With Rhin's effective measure `Λ ≥ L^{−13.3}` this is
 Corollary 4.11: every nontrivial cycle satisfies
 `n log n ≤ 2 e^{6.1256} L^{14.3}`, so the no-cycle problem is exactly
 the exclusion of long cycles `L^{14.3} > n log n / 914.9`. The
 transcendence input is classical and stays a hypothesis here; the
-transfer itself is fully proved.
+transfer itself is fully proved. The printed first display under that
+hypothesis is `cycleMin_length_of_rhin`. The calculator step
+`2 e^{6.1256} < 915` stays human.
 
 This is a reduction, not a kill: at every certified floor the bound is
 weaker than the finance table (the REFUTED Baker transfer of
@@ -103,5 +106,75 @@ theorem cycleMin_length_of_gap {n : ℕ} {w : List Branch} {ε : ℝ}
           min ((oddCount w : ℝ) * Real.log 3 - (w.length : ℝ) * Real.log 2) 1 :=
         mul_le_mul_of_nonneg_left hmin hP0
     _ ≤ 2 * (w.length : ℝ) := ht
+
+/-- The weaker printed Rhin budget `e^{−6.1256} L^{−13.3}`. -/
+noncomputable def rhinBudget (L : ℕ) : ℝ :=
+  Real.exp (-(6.1256 : ℝ)) * (L : ℝ) ^ (-(13.3 : ℝ))
+
+theorem rhinBudget_pos {L : ℕ} (hL : 0 < L) : 0 < rhinBudget L := by
+  unfold rhinBudget
+  positivity
+
+/-- For `L ≥ 1` the printed budget is at most one. -/
+theorem rhinBudget_le_one {L : ℕ} (hL : 0 < L) : rhinBudget L ≤ 1 := by
+  have hL1 : (1 : ℝ) ≤ L := by exact_mod_cast (Nat.succ_le_of_lt hL)
+  have hpow : (L : ℝ) ^ (-(13.3 : ℝ)) ≤ 1 :=
+    Real.rpow_le_one_of_one_le_of_nonpos hL1 (by norm_num)
+  have hexp : Real.exp (-(6.1256 : ℝ)) ≤ 1 :=
+    (Real.exp_le_one_iff).mpr (by norm_num)
+  unfold rhinBudget
+  exact mul_le_one₀ hexp (Real.rpow_nonneg (by exact_mod_cast hL.le) _) hpow
+
+/-- **Corollary 4.11, first display.**  Rhin's printed lower bound
+`L^{−13.3} ≤ Λ` is a hypothesis. The calculator comparison
+`2 e^{6.1256} < 915` is not used. -/
+theorem cycleMin_length_of_rhin {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleMin n w) (hL : 0 < w.length)
+    (hRhin : (w.length : ℝ) ^ (-(13.3 : ℝ)) ≤
+               (oddCount w : ℝ) * Real.log 3 - (w.length : ℝ) * Real.log 2) :
+    (n : ℝ) * Real.log n ≤
+      2 * Real.exp (6.1256 : ℝ) * (w.length : ℝ) ^ (14.3 : ℝ) := by
+  set L := w.length
+  set ε := rhinBudget L
+  have hε1 : ε ≤ 1 := rhinBudget_le_one hL
+  have hεΛ : ε ≤ (oddCount w : ℝ) * Real.log 3 - (L : ℝ) * Real.log 2 := by
+    have hexp : Real.exp (-(6.1256 : ℝ)) ≤ 1 :=
+      (Real.exp_le_one_iff).mpr (by norm_num)
+    have hpow0 : 0 ≤ (L : ℝ) ^ (-(13.3 : ℝ)) :=
+      Real.rpow_nonneg (by exact_mod_cast hL.le) _
+    change rhinBudget L ≤ _
+    exact le_trans (mul_le_of_le_one_left hpow0 hexp) hRhin
+  have hgap := cycleMin_length_of_gap hn h hε1 hεΛ
+  have hεpos : 0 < ε := rhinBudget_pos hL
+  have hP : (n : ℝ) * Real.log n ≤ 2 * (L : ℝ) / ε :=
+    (le_div_iff₀ hεpos).mpr (by linarith [hgap])
+  have hLpos : (0 : ℝ) < L := by exact_mod_cast hL
+  have hrewrite : 2 * (L : ℝ) / ε =
+      2 * Real.exp (6.1256 : ℝ) * (L : ℝ) ^ (14.3 : ℝ) := by
+    change 2 * (L : ℝ) / rhinBudget L =
+      2 * Real.exp (6.1256 : ℝ) * (L : ℝ) ^ (14.3 : ℝ)
+    unfold rhinBudget
+    have hdiv :
+        1 / (Real.exp (-(6.1256 : ℝ)) * (L : ℝ) ^ (-(13.3 : ℝ))) =
+          Real.exp (6.1256 : ℝ) * (L : ℝ) ^ (13.3 : ℝ) := by
+      rw [Real.rpow_neg hLpos.le, div_mul_eq_div_div, div_inv_eq_mul,
+        one_div, Real.exp_neg, inv_inv]
+    have hpow : (L : ℝ) * (L : ℝ) ^ (13.3 : ℝ) = (L : ℝ) ^ (14.3 : ℝ) := by
+      have h := Real.rpow_add hLpos (1 : ℝ) (13.3 : ℝ)
+      rw [Real.rpow_one] at h
+      have hsum : (1 : ℝ) + 13.3 = 14.3 := by norm_num
+      rw [hsum] at h
+      exact h.symm
+    calc 2 * (L : ℝ) / (Real.exp (-(6.1256 : ℝ)) * (L : ℝ) ^ (-(13.3 : ℝ)))
+        = 2 * (L : ℝ) *
+            (1 / (Real.exp (-(6.1256 : ℝ)) * (L : ℝ) ^ (-(13.3 : ℝ)))) := by
+          field_simp
+      _ = 2 * (L : ℝ) * (Real.exp (6.1256 : ℝ) * (L : ℝ) ^ (13.3 : ℝ)) := by
+          rw [hdiv]
+      _ = 2 * Real.exp (6.1256 : ℝ) * ((L : ℝ) * (L : ℝ) ^ (13.3 : ℝ)) := by
+          ring
+      _ = 2 * Real.exp (6.1256 : ℝ) * (L : ℝ) ^ (14.3 : ℝ) := by
+          rw [hpow]
+  exact hP.trans_eq hrewrite
 
 end Problems.Juggler

@@ -99,6 +99,7 @@ import Problems.JugglerPaper
 #print axioms Problems.Juggler.UpperSquareGap.floorPower_odd_image_upper_gap
 #print axioms Problems.Juggler.absorb_odd_step
 #print axioms Problems.Juggler.alpha_lt_half
+#print axioms Problems.Juggler.blockObservable_eq_stateCharge
 #print axioms Problems.Juggler.block_envelope
 #print axioms Problems.Juggler.branchOffsetCycle_bounds
 #print axioms Problems.Juggler.branchOffsetCycle_cells
@@ -139,6 +140,7 @@ import Problems.JugglerPaper
 #print axioms Problems.Juggler.cycleMin_hug_kill_criterion
 #print axioms Problems.Juggler.cycleMin_iterate_ge
 #print axioms Problems.Juggler.cycleMin_length_of_gap
+#print axioms Problems.Juggler.cycleMin_length_of_rhin
 #print axioms Problems.Juggler.cycleMin_log_envelope
 #print axioms Problems.Juggler.cycleMin_log_envelope_inv
 #print axioms Problems.Juggler.cycleMin_log_le_weight
@@ -189,9 +191,14 @@ import Problems.JugglerPaper
 #print axioms Problems.Juggler.guardResidue_ooe_traces
 #print axioms Problems.Juggler.guardResidue_threshold_blocks
 #print axioms Problems.Juggler.hugCharge
+#print axioms Problems.Juggler.hugCharge_eq_scaled_stateCharge
+#print axioms Problems.Juggler.hugCharge_lt_invLog_add_budget
 #print axioms Problems.Juggler.hugCharge_sub_circleMean_extended
 #print axioms Problems.Juggler.hugCharge_sub_circleMean_le
 #print axioms Problems.Juggler.hugCharge_sub_circleMean_window
+#print axioms Problems.Juggler.hugCharge_sub_rotationAverage_extended
+#print axioms Problems.Juggler.hugCharge_sub_rotationAverage_le
+#print axioms Problems.Juggler.hugCharge_sub_rotationAverage_window
 #print axioms Problems.Juggler.hugEvens_eq_floor
 #print axioms Problems.Juggler.hugLetter_iff_floor_step
 #print axioms Problems.Juggler.hugOdds

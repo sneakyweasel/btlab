@@ -609,11 +609,12 @@ integral. Its observable's variation is
 itself on every unit window; `denjoy_koksma_rotation` is Lean from
 positivity, coprimality and \(|\theta-p/q|\le1/q^2\), and
 `denjoy_koksma_blocks` composes the blocks uniformly in their starting
-phase. The one-statement display is `hugCharge_sub_circleMean_le`. Two
-bridges in the printed Theorem 5.7 stay human: it quantifies over any
-decomposition into actual convergents while that named theorem fixes the
-certified Ostrowski assembly, and it writes the circle integral as the
-explicit \(C_*\) of Proposition 5.5.
+phase. The one-statement display against the circle integral is
+`hugCharge_sub_circleMean_le`; the printed \(|C_L-C_*|\) form is
+`hugCharge_sub_rotationAverage_le`. One bridge in the printed
+Theorem 5.7 stays human: it quantifies over any decomposition into
+actual convergents while that named theorem fixes the certified
+Ostrowski assembly.
 Lemma 5.6 is Lean on both halves: the itinerary identity
 (`budgetedWord_eq_hugWord`) and the rotation identification
 (`hugOdds_eq_sub_floor`, `hugWalk_eq_fract`, `HugRotation.lean`).
@@ -2980,6 +2981,10 @@ If \(B<A<2B\), then
 The Lean form is `cycleMin_gap_transfer`; the abstract corollary
 "\(\varepsilon\le\min(\Lambda,1)\) implies
 \(n\log n\cdot\varepsilon\le 2L\)" is `cycleMin_length_of_gap`.
+The printed first display of Corollary 4.11, with Rhin's
+\(L^{-13.3}\le\Lambda\) as a hypothesis, is
+`cycleMin_length_of_rhin`. The comparison \(2e^{6.1256}<915\)
+stays a calculator step.
 
 **Corollary 4.11 (short cycles are excluded).**
 Rhin's effective estimate [15, Proposition, p. 160, (7)] applies
@@ -3260,7 +3265,8 @@ gap form `rotationAverage_gap`). Lean's
 `hugCharge_sub_circleMean_le` identifies the limiting hug average with
 the circle integral `circleMean n'`; the elementary change of variables
 equating that integral with the displayed \(C_*(n')\) is
-`circleMean_eq_rotationAverage`.
+`circleMean_eq_rotationAverage`, and the printed
+\(|C_L-C_*(n')|\) display is `hugCharge_sub_rotationAverage_le`.
 The observable has one wrap discontinuity, so bare unique ergodicity —
 uniform Birkhoff convergence for *continuous* observables — is not
 invoked directly. But the observable is monotone with a single jump,
@@ -3455,8 +3461,11 @@ identification --- is Lean as well (`HugRotation.lean`), so the chain
 from the integer rule to the envelope is formal throughout, and
 `HugChargeEnvelope.lean` states the theorem once rather than leaving it
 a chain to compose: `hugCharge_sub_circleMean_le` is
-\(|C_L-C_*|\le 2s(L)/L\) at every \(L>0\), and
+\(|C_L-\mathrm{circleMean}|\le 2s(L)/L\) at every \(L>0\), and
 `hugCharge_sub_circleMean_window` is \(94/L\) on the certified window.
+The printed \(|C_L-C_*|\) forms, with \(C_*\) the rotation average, are
+`hugCharge_sub_rotationAverage_le` and
+`hugCharge_sub_rotationAverage_window`.
 
 One thing there is a definition and not a theorem, and the file says so.
 `hugCharge` is *defined* as the average of this section's observable
@@ -3474,7 +3483,8 @@ classical. The observable is monotone with one jump, hence of bounded
 variation, and the display above forces
 \(|C_L-\mathrm{circleMean}|\le s(L)\,\mathrm{Var}(F)/L\). The elementary
 change of variables from `circleMean n'` to the displayed explicit
-\(C_*(n')\) is `circleMean_eq_rotationAverage`. Unique ergodicity is not needed once
+\(C_*(n')\) is `circleMean_eq_rotationAverage`, so the printed
+Theorem 5.7 display is `hugCharge_sub_rotationAverage_le`. Unique ergodicity is not needed once
 Denjoy--Koksma is available --- which is why Mathlib's not having
 `UniquelyErgodic` costs this paper nothing.
 
@@ -3562,7 +3572,8 @@ denominator sequence satisfying the convergent recurrence
 `theta_digitSum_le` supplies \(s(L)\le47\) only for \(L<q_{13}=301994\),
 and `hugCharge_sub_circleMean_window` has the same range. The extension
 from \(q_{13}\) to \(q_{14}\) is the named instance
-`hugCharge_sub_circleMean_extended`: identify the next quotient
+`hugCharge_sub_circleMean_extended`, with printed \(C_*\) form
+`hugCharge_sub_rotationAverage_extended`: identify the next quotient
 \(a_{14}=55\), write \(L=bq_{13}+r\), and apply the mixed-list block
 envelope with \(s(L)\le b+47\). Lean also certifies the
 endpoint power inequalities
@@ -4481,8 +4492,10 @@ trust-boundary tests enforce that condition.
 The core financing, transport, hug domination, and bounded-variation
 rotation estimates are Lean theorems. The displayed change of variables
 identifying the circle mean with \(C_*\) is `circleMean_eq_rotationAverage`,
-and the explicit extension of Theorem 5.8 beyond \(q_{13}\) is
-`hugCharge_sub_circleMean_extended`. The use of Rhin remains a human argument.
+the printed \(|C_L-C_*|\) displays are `hugCharge_sub_rotationAverage_le`
+and `hugCharge_sub_rotationAverage_extended`, and the explicit extension
+of Theorem 5.8 beyond \(q_{13}\) is `hugCharge_sub_circleMean_extended`.
+The use of Rhin remains a human argument.
 The descent floors, per-length comparisons, and Theorem 3.31's enumeration
 are computational inputs. The native digit scan is recorded separately.
 None of these distinctions is removed by compiling the barrel.
@@ -4565,15 +4578,15 @@ None of these distinctions is removed by compiling the barrel.
 | Theorem 4.8 | run-type table; verified computation, not Lean |
 | Proposition 4.9 | `run_survivor_unimodular`, `run_survivor_seed_F2`, `run_survivor_seed_F3`, `three_pow_step_gt_two_pow_step`, `runSurvivors_length` |
 | Theorem 4.10 | `cycleMin_gap_transfer`; abstract length bound `cycleMin_length_of_gap` (`GapTransfer.lean`) |
-| Corollary 4.11 | `cycleMin_length_of_gap` with Rhin's measure [15] as hypothesis; the transcendence input is classical, not Lean |
+| Corollary 4.11 | printed first display `cycleMin_length_of_rhin` from `cycleMin_length_of_gap`, with Rhin's measure [15] as the hypothesis that \(L^{-13.3}\le\Lambda\); the transcendence input is classical, not Lean; the calculator step \(2e^{6.1256}<915\) stays human |
 | Proposition 5.1 | laboratory floor; certified computation, not Lean |
 | Theorem 5.2 | raised cutoff; verified computation, not Lean |
 | Theorem 5.3 | transport inequality `cycleMin_transport`, per-step losses `log_floorPower_even_ge`, `log_floorPower_odd_ge` (`WalkTransport.lean`); §5.2 consequence `cycleMin_defect_le_charge`, `cycleMin_defect_le_hug_charge` (`WalkChargeMax.lean`) |
-| Theorem 5.4 | combinatorial core `hugOdds_le_of_admissible`; cycle-itinerary domination `cycleMin_prefix_odds_ge_hug`, `cycleMin_odds_ge_hug`; charge maximisation `stateCharge_antitone`, `hug_charge_maximal` (`WalkChargeMax.lean`); strict uniqueness `stateCharge_strictAnti`, `stateCharge_inj`, `hug_charge_unique` — an admissible profile attaining the hug charge *is* the hug profile |
-| Proposition 5.5 | Lean proves convergence of the finite hug average to `circleMean` by `denjoy_koksma_blocks` and the Laplace bounds `inv_sq_le_quad`, `rotation_average_le`, `rotation_average_lt`, `rotationAverage_le`, `rotationAverage_lt`, `rotationAverage_gap`; the elementary change of variables identifying `circleMean n'` with the displayed `rotationAverage (log n')` is `circleMean_eq_rotationAverage` |
+| Theorem 5.4 | combinatorial core `hugOdds_le_of_admissible`; cycle-itinerary domination `cycleMin_prefix_odds_ge_hug`, `cycleMin_odds_ge_hug`; charge maximisation `stateCharge_antitone`, `hug_charge_maximal` (`WalkChargeMax.lean`); strict uniqueness `stateCharge_strictAnti`, `stateCharge_inj`, `hug_charge_unique` — an admissible profile attaining the hug charge *is* the hug profile; the two charge normalisations meet at `blockObservable_eq_stateCharge` and `hugCharge_eq_scaled_stateCharge` |
+| Proposition 5.5 | Lean proves convergence of the finite hug average to `circleMean` by `denjoy_koksma_blocks` and the Laplace bounds `inv_sq_le_quad`, `rotation_average_le`, `rotation_average_lt`, `rotationAverage_le`, `rotationAverage_lt`, `rotationAverage_gap`; the elementary change of variables identifying `circleMean n'` with the displayed `rotationAverage (log n')` is `circleMean_eq_rotationAverage`; the printed `|C_L-C_*|` display is `hugCharge_sub_rotationAverage_le`; the slack form `hugCharge_lt_invLog_add_budget` adds the Laplace bound without the numeric kill |
 | Lemma 5.6 | itinerary identity `budgetedWord_eq_hugWord`, `hugOdds_pow_ge`, `hugOdds_pow_lt`, `hugOdds_pow_gt`, `hugOdds_least`; rotation identification (`HugRotation.lean`) `hugOdds_eq_ceil`, `hugOdds_eq_sub_floor`, `hugEvens_eq_floor`, `hugLetter_iff_floor_step`, `hugWalk_eq_fract`, and the Birkhoff reading `periodicObservable_hugWalk` |
 | Theorem 5.7 | `value_sub_mean_le_variation`, `sum_eVariationOn_Icc`, `denjoy_koksma_abstract`, `orbitCell_inj`, `orbit_mem_cell`; detailed scope in the formalization map |
-| Theorem 5.8 | `ostroDigit_le`, `ostro_sum_eq`, `ostro_digitSum_le`, `theta_digitSum_le`, `greedyDigitSum_le`; named window instance `hugCharge_sub_circleMean_extended` on \([50508,16785921)\); detailed scope in the formalization map |
+| Theorem 5.8 | `ostroDigit_le`, `ostro_sum_eq`, `ostro_digitSum_le`, `theta_digitSum_le`, `greedyDigitSum_le`; named window instance `hugCharge_sub_circleMean_extended` on \([50508,16785921)\), with printed \(C_*\) form `hugCharge_sub_rotationAverage_extended` and older-window form `hugCharge_sub_rotationAverage_window`; detailed scope in the formalization map |
 | Theorem 5.9 | kill template `cycleMin_hug_kill_criterion` (`DefectFinance.lean`); the per-length kill table is verified computation |
 | Proposition 5.12 | `fanLength`, `fanOdd`, `fanLambda`, affine step `fanLambda_affine`, negativity `fan_step_pow`, `fanLambda_step_neg`, monotonicity `fanLambda_strictAnti`, endpoints `fanLambda_55_pos`, `fanLambda_56_neg` (these *are* `theta_sandwich_lower` and `theta_sandwich_upper`), length `fan_positive_iff`, and `fan_frontiers`, `fan_endpoint`, `fan_past_endpoint` (`FanLaw.lean`) |
 | Propositions 5.8b, 5.8c | the two forced walk letters `walk_first_letter_odd`, `walk_second_letter_odd`, `step_lt_two` (`FanLaw.lean`); the relaxation and flatness measurements are verified computation |

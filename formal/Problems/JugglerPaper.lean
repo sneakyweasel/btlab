@@ -184,8 +184,9 @@ The note's Lean-tagged theorems are listed in its Appendix A:
       (human proof and verified computation; not Lean)
 * 4.10 (gap transfer) `cycleMin_gap_transfer`, abstract length bound
       `cycleMin_length_of_gap` (`GapTransfer.lean`); Corollary 4.11
-      instantiates the latter with Rhin's effective measure, which
-      stays a classical hypothesis
+      instantiates the latter as `cycleMin_length_of_rhin`, with
+      Rhin's printed lower bound `L^{−13.3} ≤ Λ` as a hypothesis.
+      The calculator step `2 e^{6.1256} < 915` stays human
 * 4.9 `run_survivor_unimodular`, `run_survivor_seed_F2`,
       `run_survivor_seed_F3`, `three_pow_step_gt_two_pow_step`,
       `runSurvivors_length`
@@ -200,8 +201,10 @@ The note's Lean-tagged theorems are listed in its Appendix A:
       `cycleMin_odds_ge_hug` (`WalkChargeItineraries.lean`); analytic
       half (charge maximisation) `stateCharge_antitone`,
       `hug_charge_maximal`, with strict within-`(L,o)` uniqueness
-      `stateCharge_strictAnti`, `stateCharge_inj`, `hug_charge_unique`
-      (`WalkChargeMax.lean`)
+      `stateCharge_strictAnti`, `stateCharge_inj`,       `hug_charge_unique`
+      (`WalkChargeMax.lean`); the two charge normalisations meet at
+      `blockObservable_eq_stateCharge` and
+      `hugCharge_eq_scaled_stateCharge` (`HugChargeEnvelope.lean`)
 * 5.9 (kill mechanism) `cycleMin_hug_kill_criterion`
       (`DefectFinance.lean`): finance vs hug charge as one Lean
       implication; the per-length numeric kill evaluations stay
@@ -212,7 +215,12 @@ The note's Lean-tagged theorems are listed in its Appendix A:
       (`RotationAverage.lean`); `denjoy_koksma_blocks` proves convergence
       of the hug averages to `circleMean`.  The change of variables
       identifying `circleMean n'` with `rotationAverage (log n')` is
-      `circleMean_eq_rotationAverage`
+      `circleMean_eq_rotationAverage`.  The printed `|C_L − C_*|`
+      displays are `hugCharge_sub_rotationAverage_le`,
+      `hugCharge_sub_rotationAverage_window`, and
+      `hugCharge_sub_rotationAverage_extended`; the slack form
+      `hugCharge_lt_invLog_add_budget` adds the Laplace bound without
+      the numeric kill
 * 5.6 `budgetedWord_eq_hugWord`, `hugOdds_pow_ge`, `hugOdds_pow_lt`,
       `hugOdds_pow_gt`, `hugOdds_least` (`WalkChargeItineraries.lean`)
 * 5.5 (certified quotient arithmetic) `theta_sandwich_upper`,
@@ -232,11 +240,15 @@ The note's Lean-tagged theorems are listed in its Appendix A:
       `theta_digitSum_le`, `greedyDigitSum_le`
       (`OstrowskiNumeration.lean`); window scan `window_digit_scan`,
       `window_digit_cap`, `window_digit_max`
-      (`OstrowskiSandwich.lean`); `hugCharge_sub_circleMean_le` is the
+      (`OstrowskiSandwich.lean`);       `hugCharge_sub_circleMean_le` is the
       general Lean block envelope, while the instantiated constant-cap
       theorem `hugCharge_sub_circleMean_window` has scope `L < 301994`.
       The named Lean instance on the printed half-open window
-      `[50508, q₁₄)` is `hugCharge_sub_circleMean_extended`
+      `[50508, q₁₄)` is `hugCharge_sub_circleMean_extended`; the printed
+      `C_*` forms of those three are
+      `hugCharge_sub_rotationAverage_le`,
+      `hugCharge_sub_rotationAverage_window`, and
+      `hugCharge_sub_rotationAverage_extended`
 * Lemma 6.3a `cube_add_one_ne_odd_succ_sq`,
       `floorPower_odd_image_upper_gap` (`UpperSquareGap.lean`):
       the local odd-to-odd upper-square complement is at least three.

@@ -146,6 +146,15 @@ theorem ostroBlocksExtended_length (L : ℕ) :
       L / 301994 + (ostroBlocks (L % 301994)).length := by
   simp [ostroBlocksExtended]
 
+/-- Below `q₁₃` the mixed list is the 13-level list.  The 13-level assembly
+remains a valid Denjoy–Koksma list for every `L`; this just records that
+the two readings agree on the old window. -/
+theorem ostroBlocksExtended_eq_ostroBlocks {L : ℕ} (h : L < 301994) :
+    ostroBlocksExtended L = ostroBlocks L := by
+  have hb : L / 301994 = 0 := Nat.div_eq_of_lt h
+  have hr : L % 301994 = L := Nat.mod_eq_of_lt h
+  simp [ostroBlocksExtended, hb, hr]
+
 theorem ostroBlocksExtended_digitSum_le (L : ℕ) :
     (ostroBlocksExtended L).length ≤ L / 301994 + 47 := by
   rw [ostroBlocksExtended_length, ostroBlocks_length]
