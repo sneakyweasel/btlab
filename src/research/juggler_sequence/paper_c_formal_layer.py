@@ -61,6 +61,7 @@ CITED_MODULES = (
     "Problems.Juggler.FateSeed",
     "Problems.Juggler.FateCylinderCorollary",
     "Problems.Juggler.FateFiberParity",
+    "Problems.Juggler.FateThinFibers",
 )
 
 #: verification-table rows the paper marks Lean, with the module that carries each
@@ -83,6 +84,7 @@ TABLE_LEAN_ROWS = {
     "Theorem 7.2": "FateTaoReduction",
     "Corollary 8.4": "FateCylinderCorollary",
     "Lemma 4.2": "FateFiberParity",
+    "Lemma 4.3": "FateThinFibers",
 }
 
 _IMPORT = re.compile(r"^import\s+([A-Za-z0-9_.]+)\s*$", re.M)
