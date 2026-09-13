@@ -44242,3 +44242,48 @@ nothing is left; what remains human is the analysis -- the block
 average, the share law, the contagion theorem, the identity (6.1),
 Theorem 7.3 and the asymptotic bookkeeping of Sections 8 to 10.
 
+
+## Theorem 5.3 is Lean modulo the production inequality
+
+Theorem 5.3 has three inputs: the recursion lemma, the seed, and the
+production inequality (5.2). The first two were Lean; this evening the
+theorem itself joined them, with (5.2) as a hypothesis. What had kept it
+out was not the recursion but the root: zeta(lambda) = sum c_i e_i^lambda
+- 1 must be positive, and lambda** = 0.4926 is transcendental. The way
+through is to certify a rational lambda instead. zeta(0.49) = 0.00168 > 0,
+and each of the eight terms e_i^{49/100} is bounded below by a five-digit
+rational r_i through r_i^100 <= e_i^49, an inequality between 400-digit
+integers that norm_num settles in a second. zeta is antitone in lambda,
+so every lambda <= 0.49 inherits the theorem; "every lambda < lambda**"
+is what the paper says, and the 0.0026 between 0.49 and the root is
+what the Lean does not say.
+
+The rest is the paper's proof read for Lean: epsilon = min(zeta/24,
+2 zeta c_A/3, 1/2187), T from the vanishing errors, t_1 at least
+max(T, t_0, 1, 4 log(m+1) 8192/729), and Lemma 5.1 does the induction
+with the seed on [e_min t_1, t_1]. g_A(t) is the half log-mass at
+floor(e^t); the integers in (sqrt x, x] are the integers in
+(floor(sqrt(floor x)), floor x], so the integer form loses nothing. One
+hypothesis the paper writes, eta_0 >= 0, the recursion never uses, and
+it is gone from the statement.
+
+With it two composites close. Theorem 7.3 is one line from 7.2 (an
+empty failure set has no odd failures on any block), so it is Lean with
+the contagion bound as a hypothesis, like 7.2. And Corollary 8.4, which
+took the contagion bound as its analytic hypothesis, now takes (5.2)
+instead: H(C, A) at all large scales, 1 - lambda < e(C) for some
+lambda <= 0.49, and the production inequality for the failure set give
+the conjecture (conjecture_of_cylinder_bound_of_production). C >= 19
+survives the truncation to 0.49, since e(19) = 0.527 > 0.51. The chain
+from the cylinder hypothesis to the conjecture is now one kernel-checked
+theorem whose only analytic inputs are (5.2) and H(C, A) itself.
+
+Paper C's table: twenty-one Lean rows, five human. What is human is
+exactly the analysis: the block average, the share law, the production
+inequality they feed, the identity (6.1), and the Azuma arguments of
+Sections 8 to 10.
+
+Housekeeping: this session and the MAGE session both wrote FateSeed.lean
+on 8 September within the hour; the collision was caught by a compile
+that saw both texts, and the split (seed, 7.2 and downstream here; 4.1'
+and the fiber lemmas there) held through the week.

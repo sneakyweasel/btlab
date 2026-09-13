@@ -343,14 +343,15 @@ constants; they prove nothing and are labelled wherever they appear.
 | Thin fibers (Lemma 4.3): the count on \((u,2u]\) and the log-mass of the bad \(m>U\) | Lean |
 | Block average (Proposition 4.4), asymptotic | human proof |
 | Share law and its three corollaries (Lemma 4.5, Corollary 4.6) | human proof |
+| Production inequality (5.2) with the \(V\)-ladder terms of Section 5.7 | human proof |
 | Cube fibers full or alternating (Lemma 4.7) | Lean |
 | Recursion lemma (Lemma 5.1) | Lean |
 | Seed (Lemma 5.2) | Lean |
-| Contagion (Theorem 5.3) | human proof |
+| Contagion (Theorem 5.3), given the production inequality (5.2), for every \(\lambda\le 0.49\) | Lean; \(\zeta(0.49)>0\) by exact rational bounds, the root \(\lambda^{**}\) is human |
 | Least failure is \(OO\)-type; first-letter trichotomy (Proposition 6.3(i), Section 6.2) | Lean |
 | First-letter identity (6.1) | human proof (exact combinatorics) |
 | Tao-type rate implies the conjecture (Theorem 7.2), with the contagion bound of Theorem 5.3 as a hypothesis | Lean |
-| Almost-all equivalence (Theorem 7.3) | human proof |
+| Almost-all equivalence (Theorem 7.3), with the contagion bound of Theorem 5.3 as a hypothesis | Lean |
 | Corollary 8.4, the conjecture from a cylinder bound, with the contagion bound of Theorem 5.3 as a hypothesis | Lean |
 | Chernoff count of bad words (Lemma 8.2, exact form) | Lean |
 | Theorem 8.3, explicit form \(y\Lambda^{-e(C)}+2\Lambda^Cy(\log y)^{-A}\) at every \(y\) | Lean; the \(\varepsilon\)-absorption into the displayed form is human |
@@ -1192,6 +1193,20 @@ up to \(t_1/(\tfrac34)=\tfrac43 t_1\), at which
 \(\sum_{n\in A,\,n\le x}1/n\ge g_A(\log x)\). For \(\lambda<\lambda^*\)
 use (5.1) with \((e_i,c_i)=(\tfrac12,1),(\tfrac38,\tfrac13)\). \(\square\)
 
+Lean: `contagion_of_production_inequality` and
+`logMass_contagion_of_production` in
+`formal/Problems/Juggler/FateContagionBound.lean`, with the inequality
+(5.2) — the eight productions \((e_i,c_i)\) above, with errors
+\(\eta_i,\eta_0\ge 0\) tending to \(0\) — as a hypothesis and for
+every \(0<\lambda\le 0.49\): the seed is Lemma 5.2 (`gA_seed`), the
+induction is Lemma 5.1, and \(\zeta(0.49)=0.00168>0\) is `zeta_pos_49`,
+eight exact rational lower bounds \(r_i\le e_i^{49/100}\) checked as
+\(r_i^{100}\le e_i^{49}\); \(\zeta\) is antitone in \(\lambda\)
+(`zeta_antitone`), so \(\lambda\le 0.49\) suffices. The root
+\(\lambda^{**}\) and the range \(0.49<\lambda<\lambda^{**}\) are not
+formalized, and neither is (5.2) itself. The hypothesis \(\eta_0\ge 0\)
+is not needed.
+
 **Corollary 5.4 (natural density, infinitely often).** For every
 \(\lambda<\lambda^{**}\) there is \(c>0\) such that for every
 \(X\ge x_0\) some \(y\in(\sqrt X,X]\) satisfies
@@ -1592,6 +1607,15 @@ large \(y\).
 
 *Proof.* If every integer reaches \(1\) the left side is \(0\).
 Conversely Theorem 7.2. \(\square\)
+
+Lean: `tao_rate_iff_conjecture` in
+`formal/Problems/Juggler/FateContagionBound.lean`, with the contagion
+bound of Theorem 5.3 as a hypothesis, as for Theorem 7.2; and
+`conjecture_of_cylinder_bound_of_production`, Corollary 8.4 with
+Theorem 5.3 replaced by the production inequality (5.2), so that the
+chain from \(\mathrm H(C,A)\) to the conjecture has (5.2) as its only
+analytic input, for any \(\lambda\le 0.49\) with \(1-\lambda<e(C)\)
+(\(C\ge 19\) still suffices: \(e(19)=0.527>0.51\)).
 
 The threshold \(1-\lambda^{**}\) is the complement of the contagion
 exponent; with \(\lambda^{***}\) of Appendix C it becomes \(0.4608\).
@@ -2405,7 +2429,8 @@ abstract lemmas listed here, not the analytic density estimates.
 | Corollary 8.4 (the conjecture from a cylinder bound), in `Problems/Juggler/FateCylinderCorollary.lean` | `CylinderBound`, `one_le_depth`, `chernoffExponent_nonneg`, `oddFailures_eventually_le`, `cylinder_bound_implies_conjecture` |
 | Lemma 4.2 (fiber parity), in `Problems/Juggler/FateFiberParity.lean` | `FiberParity.xval`, `FiberParity.two_xval`, `FiberParity.floor_two_xval`, `FiberParity.cell_xval_even_iff`, `FiberParity.xval_step`, `FiberParity.xval_step_ge`, `FiberParity.xval_step_le`, `FiberParity.xval_step_mono`, `FiberParity.oeFiber`, `FiberParity.mem_oeFiber`, `FiberParity.oeFiber_eq_image`, `FiberParity.oeFiber_card`, `FiberParity.evenImageCount`, `FiberParity.fiber_ge_rpow`, `FiberParity.fiber_lt_rpow`, `FiberParity.rpow_four_thirds_succ_ge`, `FiberParity.rpow_two_thirds_succ_le`, `FiberParity.oeFiber_card_ge`, `FiberParity.Am`, `FiberParity.alpha`, `FiberParity.eps`, `FiberParity.Good`, `FiberParity.eps_le`, `FiberParity.step_ge`, `FiberParity.step_le`, `FiberParity.fiber_parity_good` |
 | Lemma 4.3 (thin fibers), in `Problems/Juggler/FateThinFibers.lean` | `FiberParity.span_ge_of_step`, `FiberParity.arc_count_le`, `FiberParity.Am_step_le`, `FiberParity.Am_step_ge`, `FiberParity.eps_antitone`, `FiberParity.bad_mem_arc`, `FiberParity.two_rpow_third_le`, `FiberParity.two_rpow_two_thirds_le`, `FiberParity.rpow_two_thirds_ge`, `FiberParity.eps_div_eps_double`, `FiberParity.Am_double_sub_le`, `FiberParity.bad_count_le`, `FiberParity.bad_block_logMass_le`, `FiberParity.bad_sum_dyadic_le`, `FiberParity.eps_pow_two_mul`, `FiberParity.two_rpow_neg_third_le`, `FiberParity.bad_logMass_le` |
-| Proposition 4.4, Theorem 5.3, Theorem 7.3, Sections 8--10 except Lemma 8.2, the explicit form of Theorem 8.3, Corollary 8.4, the exact form of Theorem 9.2 and Proposition 9.3, Appendix C | human proofs |
+| Theorem 5.3 given (5.2), Theorem 7.3, Corollary 8.4 through (5.2), in `Problems/Juggler/FateContagionBound.lean` | `productionRate`, `productionCoeff`, `productionRate_pos`, `productionRate_ge`, `productionRate_le`, `productionRate_le_one`, `productionCoeff_ge`, `productionCoeff_nonneg`, `zeta`, `zeta_antitone`, `le_rpow_div_of_pow_le`, `zeta_pos_49`, `seedConst`, `gA`, `gA_seed`, `logMass_ge_gA`, `contagion_of_production_inequality`, `logMass_contagion_of_production`, `oddFailures_eq_empty`, `tao_rate_iff_conjecture`, `conjecture_of_cylinder_bound_of_production` |
+| Proposition 4.4, the production inequality (5.2), Sections 8--10 except Lemma 8.2, the explicit form of Theorem 8.3, Corollary 8.4, the exact form of Theorem 9.2 and Proposition 9.3, Appendix C; Theorems 5.3, 7.2, 7.3 and Corollary 8.4 only with (5.2) or the contagion bound as a hypothesis | human proofs |
 
 ## Appendix B. Constants and artifacts
 
@@ -2507,13 +2532,17 @@ use the roots of the displayed defining equations.
 
   SHA-256: `e1ce5621421dc3d69cafcde46f32fa42b0280239b23d61d44d9eec1676c67146`
 
+- `formal/Problems/Juggler/FateContagionBound.lean`
+
+  SHA-256: `aa540158df5a0206644f49f3666f957fcdb615fe0efead577780493465d823e5`
+
 - `formal/Problems/JugglerFatePaper.lean`
 
-  SHA-256: `e55de62252e149d60815c5939aed7f7373c8b94f7b041a395049b9b8fb0b29ec`
+  SHA-256: `bbe7bfaf250508144597877308ad3aee185770b09be3f8c36b0da3a8acf579c5`
 
 - `formal/AxiomCheckPaperC.expected`
 
-  SHA-256: `a8d4b2e3b4fb97c4b9eeb5ef00666cb2104f03df1d30591282b6684ee5f26fc0`
+  SHA-256: `98a640f51569d6826826d1d4d511fe6040f8a7339700ff9975366e999125934e`
 
 - `src/research/juggler_sequence/fate_contagion.py`
 

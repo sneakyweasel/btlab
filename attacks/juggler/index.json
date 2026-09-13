@@ -4204,7 +4204,9 @@
         "J-fate-pressure-form",
         "J-fate-cylinder-corollary",
         "J-fate-fiber-parity",
-        "J-fate-thin-fibers"
+        "J-fate-thin-fibers",
+        "J-fate-contagion-conditional",
+        "J-fate-tao-equivalence"
       ],
       "aliases": [],
       "nk_cluster": null
@@ -6176,7 +6178,8 @@
         "formal/Problems/Juggler/CubicRemainderAssembly.lean",
         "formal/Problems/Juggler/FateCylinderCorollary.lean",
         "formal/Problems/Juggler/FateFiberParity.lean",
-        "formal/Problems/Juggler/FateThinFibers.lean"
+        "formal/Problems/Juggler/FateThinFibers.lean",
+        "formal/Problems/Juggler/FateContagionBound.lean"
       ],
       "conjecture": [],
       "decision": null,
