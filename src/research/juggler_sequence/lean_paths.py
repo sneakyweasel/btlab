@@ -261,6 +261,7 @@ LAYERS: dict[str, Path] = {
     "CubicCriticalLocation": JUGGLER_DIR / "CubicCriticalLocation.lean",
     "CriticalCostKernel": JUGGLER_DIR / "CriticalCostKernel.lean",
     "CubicRemainderAssembly": JUGGLER_DIR / "CubicRemainderAssembly.lean",
+    "FateCylinderCorollary": JUGGLER_DIR / "FateCylinderCorollary.lean",
 }
 
 # Sources belonging to other targets or historical model interfaces. Keeping

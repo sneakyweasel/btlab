@@ -41,6 +41,7 @@ open Problems.Juggler
 #print axioms Sweep.three_g_ge
 #print axioms ancestor_backwardClosed
 #print axioms backwardClosed_iterate
+#print axioms chernoffExponent_nonneg
 #print axioms count_le_of_meanShare
 #print axioms count_le_of_meanShareOff
 #print axioms count_le_of_noMomentum
@@ -57,6 +58,7 @@ open Problems.Juggler
 #print axioms cycle_basin_bounded
 #print axioms cycle_basin_not_escapes
 #print axioms cycles_or_escapes
+#print axioms cylinder_bound_implies_conjecture
 #print axioms cylinder_even_root_empty
 #print axioms envelopeBad_of_liveTo
 #print axioms escapes_backwardClosed
@@ -87,8 +89,8 @@ open Problems.Juggler
 #print axioms live_count_le_of_pressure
 #print axioms live_count_le_pressure
 #print axioms live_oddCount_ge
-#print axioms logb_two_three_le
 #print axioms logMass_le_oddLogMass
+#print axioms logb_two_three_le
 #print axioms meanShareOff_empty
 #print axioms meanShare_of_noMomentum
 #print axioms mem_iff_floorPower_mem
@@ -102,6 +104,7 @@ open Problems.Juggler
 #print axioms oddFailures_card_le
 #print axioms oddFailures_card_le_chernoff
 #print axioms oddFailures_card_le_explicit
+#print axioms oddFailures_eventually_le
 #print axioms oddFailures_subset_bad_cylinders
 #print axioms oddLogMass_le_of_dyadic
 #print axioms oddMass_le_weightGen
@@ -111,6 +114,7 @@ open Problems.Juggler
 #print axioms oe_fiber_disjoint
 #print axioms oe_fiber_mem
 #print axioms one_add_le_exp_excess
+#print axioms one_le_depth
 #print axioms one_lt_logb_two_three
 #print axioms pC_lt_one
 #print axioms periodic_iterate_mod

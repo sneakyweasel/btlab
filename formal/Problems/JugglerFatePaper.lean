@@ -10,11 +10,12 @@ import Problems.Juggler.FateChernoff
 import Problems.Juggler.FatePressure
 import Problems.Juggler.FateTaoReduction
 import Problems.Juggler.FateSeed
+import Problems.Juggler.FateCylinderCorollary
 
 /-!
 # Paper C barrel — everything the repository checks for the fate-contagion note
 
-`docs/theory/juggler_fate_almost_all_note.md`. This file imports exactly the twelve modules
+`docs/theory/juggler_fate_almost_all_note.md`. This file imports exactly the thirteen modules
 that paper cites and nothing else, so that a reader can build the formal side of Paper C on
 its own rather than selecting modules by hand out of the umbrella `Problems.Juggler`. It is a
 laboratory target, not a claim: building it does **not** corroborate the paper's counting.
@@ -61,6 +62,12 @@ laboratory target, not a claim: building it does **not** corroborate the paper's
   (`exists_ge_three_of_backwardClosed`), and its log-mass on `(√y, y]` is at least the paper's
   `c_A = (1 - 2/m⁴)(3/8 · 1/(m+1) - 1/((m+1)² - 1))` for every `y ≥ (m+1)⁴` (`seed_lemma`,
   `seed_constant_pos`), on the even-block tree `blockTree`.
+
+* `FateCylinderCorollary` — Corollary 8.4: the cylinder hypothesis `H(C, A)` at all large
+  scales (`CylinderBound`) with `A > C + e(C)`, together with the contagion bound of
+  Theorem 5.3 for the failure set at an exponent `λ` with `1 - λ < e(C)`, gives that every
+  positive integer reaches `1` (`cylinder_bound_implies_conjecture`); the absorption of the
+  explicit bound of Theorem 8.3 into the rate `y (log y)^{-e}` is `oddFailures_eventually_le`.
 
 ## What is not here, and cannot be
 
