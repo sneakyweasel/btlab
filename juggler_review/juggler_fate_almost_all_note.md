@@ -318,7 +318,7 @@ type Paper B proves enters Appendix C as an explicit hypothesis.
 
 Statements carry one of four roles. *Lean*: the exact combinatorial
 layer is formalized in Lean 4; the root `formal/Problems/JugglerFatePaper.lean`
-imports exactly the twenty-one modules this paper cites and builds with
+imports exactly the twenty-two modules this paper cites and builds with
 `lake build Problems.JugglerFatePaper`, without `sorry` and without
 `native_decide`; `formal/AxiomCheckPaperC.lean` prints the axiom
 dependencies of every cited name and `AxiomCheckPaperC.expected`
@@ -342,7 +342,7 @@ constants; they prove nothing and are labelled wherever they appear.
 | Fiber parity (Lemma 4.2), goodness unpacked | Lean, through Lemma 4.1' |
 | Thin fibers (Lemma 4.3): the count on \((u,2u]\) and the log-mass of the bad \(m>U\) | Lean |
 | Block average (Proposition 4.4), asymptotic | human proof; the exact layer, the slow sum \(O(m')\), the two-sided count of the block and the deduction of (4.1) and of the asymptotic form from the two remaining exponential-sum bounds are Lean, those two bounds are not |
-| Share law and its three corollaries (Lemma 4.5, Corollary 4.6) | human proof |
+| Share law and its three corollaries (Lemma 4.5, Corollary 4.6) | human proof; the phase expansion with its cubic remainder, the range of the quadratic phase with its threshold \([-\tfrac56,\tfrac16]\), and the integral \(\tfrac{25}{108}\) are Lean, the equidistribution and the measure identifications are not |
 | Production inequality (5.2) with the \(V\)-ladder terms of Section 5.7 | human proof |
 | Cube fibers full or alternating (Lemma 4.7) | Lean |
 | Recursion lemma (Lemma 5.1) | Lean |
@@ -966,6 +966,30 @@ Integrating the four pieces of (2),
 \]
 The statement for \(S=1\) is the reflection \(\theta\mapsto\theta+\tfrac12\).
 \(\square\)
+
+Lean: the exact layer, in `formal/Problems/Juggler/FateShareLaw.lean`.
+The expansion of \(x_j\) about \(n_1\) with the remainder
+\(|E_j|\le\tfrac14(j-1)^3n_1^{-3/2}\) is `ShareLaw.xval_expansion`;
+its Taylor step is, after \(v=\sqrt{1+u}\), the polynomial inequality
+\(0\le1+\tfrac32(v^2-1)+\tfrac38(v^2-1)^2-v^3\le(v^2-1)^3/16\)
+(`ShareLaw.taylor_three_halves`), so no derivative is taken, and on a
+fiber the remainder is at most \(\tfrac2{27}(m+1)/m^2\)
+(`ShareLaw.xval_expansion_fiber`). The range of
+\(\varphi(s)=\beta s+\tfrac13s^2\) on \([0,1]\) in the three cases
+of (2) is `ShareLaw.phiRange`, attained (`ShareLaw.exists_phi_sub_eq`)
+and never exceeded (`ShareLaw.phi_sub_le`), and it is at most
+\(\tfrac12\) exactly for \(\beta\in[-\tfrac56,\tfrac16]\)
+(`ShareLaw.phiRange_le_half_iff`). The integral of (3),
+\(\int\max(0,\tfrac12-\text{range})\,d\beta=\tfrac{25}{108}\) as
+\(\tfrac1{72}+\tfrac{11}{108}+\tfrac{11}{108}+\tfrac1{72}\), is
+`ShareLaw.integral_extremeMeasure`, with the integrand vanishing outside
+\([-\tfrac56,\tfrac16]\) (`ShareLaw.extremeMeasure_eq_zero`). Not
+formalized: the reduction of \(x_j\) modulo \(1\) to
+\(\theta_m+\beta_ms+\tfrac13s^2\) with its \(O(1/H_m)\) error, the
+inverse-image and grid-sampling estimates that make Lemma 4.5 from it,
+the Fubini argument of (1), and the identification of the
+\(\theta\)-measure with \(\max(0,\tfrac12-\text{range})\) in (2)
+and (3).
 
 Part (1) is the reason no aggregate count in this paper sees the
 extreme fibers: they are compensated at every drift separately, which
@@ -2449,7 +2473,7 @@ No nontrivial cycle or unbounded orbit is excluded by this paper.
 ## Appendix A. Lean names
 
 All in `formal/Problems/Juggler/FateContagion.lean` unless noted. The
-root `formal/Problems/JugglerFatePaper.lean` imports exactly the twenty-one
+root `formal/Problems/JugglerFatePaper.lean` imports exactly the twenty-two
 modules named here and builds with `lake build Problems.JugglerFatePaper`
 without `sorry` and without `native_decide`;
 `formal/AxiomCheckPaperC.expected` records the axioms of every name
@@ -2470,6 +2494,7 @@ abstract lemmas listed here, not the analytic density estimates.
 | Lemma 4.7 (cube fibers), in `Problems/Juggler/CubeFiber.lean` | `cube_fiber_range`, `cube_fiber_sqrt_even`, `cube_fiber_even_image`, `even_cube_fiber_full`, `cube_fiber_sqrt_odd`, `cube_fiber_alternating`, `odd_cube_fiber_alternating` |
 | Shared counting of Lemmas 4.1, 4.1' and 4.3 (separated sequences in a window), in `Problems/Juggler/FateWindowCount.lean` | `WindowCount.StepGe`, `WindowCount.StepLe`, `WindowCount.span_ge`, `WindowCount.span_le`, `WindowCount.mono_of_stepGe`, `WindowCount.window_card_le`, `WindowCount.window_card_le_nat` |
 | Proposition 4.4, the exact layer and the deduction from the exponential-sum bounds (the bounds are hypotheses), in `Problems/Juggler/FateBlockAverage.lean` | `BlockAverage.blockE`, `BlockAverage.oddBlock`, `BlockAverage.mem_oddBlock`, `BlockAverage.mem_oeFiber_iff_cell34`, `BlockAverage.U`, `BlockAverage.oddBlock_card_eq`, `BlockAverage.U_card_eq`, `BlockAverage.psi`, `BlockAverage.slowSum`, `BlockAverage.fastSum`, `BlockAverage.productSum`, `BlockAverage.four_card_U`, `BlockAverage.block_average_of_bounds`, `BlockAverage.block_average_bound`, `BlockAverage.psi_succ`, `BlockAverage.abs_psi`, `BlockAverage.oddBlock_filter_eq`, `BlockAverage.slowSum_eq_fibers`, `BlockAverage.oeFiber_card_succ_diff`, `BlockAverage.abs_alt_sum_le`, `BlockAverage.slowSum_abs_le`, `BlockAverage.card_Ico_block`, `BlockAverage.oddBlock_card_le`, `BlockAverage.oddBlock_card_ge`, `BlockAverage.oddBlock_quarter_close`, `BlockAverage.block_average_two_bounds`, `BlockAverage.block_average_asymptotic`, `BlockAverage.block_average_bound_two` |
+| Section 4.3, the exact layer of the share law (the expansion, the range, the integral), in `Problems/Juggler/FateShareLaw.lean` | `ShareLaw.taylor_three_halves`, `ShareLaw.xval_expansion`, `ShareLaw.xval_expansion_fiber`, `ShareLaw.phi`, `ShareLaw.phiRange`, `ShareLaw.phi_ge_min`, `ShareLaw.phi_le_chord`, `ShareLaw.phi_sub_le`, `ShareLaw.exists_phi_sub_eq`, `ShareLaw.phiRange_le_half_iff`, `ShareLaw.extremeMeasure`, `ShareLaw.extremeMeasure_eq_zero`, `ShareLaw.extremeMeasure_piece1`, `ShareLaw.extremeMeasure_piece2`, `ShareLaw.extremeMeasure_piece3`, `ShareLaw.extremeMeasure_piece4`, `ShareLaw.integral_extremeMeasure` |
 | Section 10(d), the cylinder-splitting identity, in `Problems/Juggler/FateCylinderEnergy.lean` | `CylinderEnergy.itinerary_succ_append`, `CylinderEnergy.wordCount`, `CylinderEnergy.wordCount_split`, `CylinderEnergy.energy`, `CylinderEnergy.bias`, `CylinderEnergy.energy_succ`, `CylinderEnergy.sum_bias_sq` |
 | Appendix D.1, the exact landing windows (D.1) and (D.2), in `Problems/Juggler/FateLandingWindow.lean` | `LandingWindow.cell34`, `LandingWindow.cell34_eq_floorPower_two`, `LandingWindow.le_cell34_iff`, `LandingWindow.cell34_lt_iff`, `LandingWindow.windowStart`, `LandingWindow.windowStart_exists`, `LandingWindow.windowStart_le_iff`, `LandingWindow.lt_windowStart_iff`, `LandingWindow.exact_endpoints`, `LandingWindow.setOf_cell34_mem_Ico`, `LandingWindow.exact_endpoints_iterate`, `LandingWindow.setOf_iterate_mem_Ico` |
 | Lemma 4.1 (sweep), in `Problems/Juggler/FateSweep.lean` | `Sweep.cell`, `Sweep.sweep_cell`, `sweep_fract_lt_half`, `sweep_fract_ge_half`, `sweep_ceil`, `sweep_rep_le_half`, `sweep_rep_gt_half` |
@@ -2487,7 +2512,7 @@ abstract lemmas listed here, not the analytic density estimates.
 | Lemma 4.2 (fiber parity), in `Problems/Juggler/FateFiberParity.lean` | `FiberParity.xval`, `FiberParity.two_xval`, `FiberParity.floor_two_xval`, `FiberParity.cell_xval_even_iff`, `FiberParity.xval_step`, `FiberParity.xval_step_ge`, `FiberParity.xval_step_le`, `FiberParity.xval_step_mono`, `FiberParity.oeFiber`, `FiberParity.mem_oeFiber`, `FiberParity.oeFiber_eq_image`, `FiberParity.oeFiber_card`, `FiberParity.evenImageCount`, `FiberParity.fiber_ge_rpow`, `FiberParity.fiber_lt_rpow`, `FiberParity.rpow_four_thirds_succ_ge`, `FiberParity.rpow_four_thirds_succ_le`, `FiberParity.rpow_two_thirds_succ_le`, `FiberParity.oeFiber_card_ge`, `FiberParity.oeFiber_card_le`, `FiberParity.Am`, `FiberParity.alpha`, `FiberParity.eps`, `FiberParity.Good`, `FiberParity.eps_le`, `FiberParity.step_ge`, `FiberParity.step_le`, `FiberParity.fiber_parity_good` |
 | Lemma 4.3 (thin fibers), in `Problems/Juggler/FateThinFibers.lean` | `FiberParity.span_ge_of_step`, `FiberParity.arc_count_le`, `FiberParity.Am_step_le`, `FiberParity.Am_step_ge`, `FiberParity.eps_antitone`, `FiberParity.bad_mem_arc`, `FiberParity.two_rpow_third_le`, `FiberParity.two_rpow_two_thirds_le`, `FiberParity.rpow_two_thirds_ge`, `FiberParity.eps_div_eps_double`, `FiberParity.Am_double_sub_le`, `FiberParity.bad_count_le`, `FiberParity.bad_block_logMass_le`, `FiberParity.bad_sum_dyadic_le`, `FiberParity.eps_pow_two_mul`, `FiberParity.two_rpow_neg_third_le`, `FiberParity.bad_logMass_le` |
 | Theorem 5.3 given (5.2), Theorem 7.3, Corollary 8.4 through (5.2), in `Problems/Juggler/FateContagionBound.lean` | `productionRate`, `productionCoeff`, `productionRate_pos`, `productionRate_ge`, `productionRate_le`, `productionRate_le_one`, `productionCoeff_ge`, `productionCoeff_nonneg`, `zeta`, `zeta_antitone`, `le_rpow_div_of_pow_le`, `zeta_pos_49`, `seedConst`, `gA`, `gA_seed`, `logMass_ge_gA`, `contagion_of_production_inequality`, `logMass_contagion_of_production`, `oddFailures_eq_empty`, `tao_rate_iff_conjecture`, `conjecture_of_cylinder_bound_of_production` |
-| Proposition 4.4 (its two exponential-sum bounds, the fast sum and the product sum; the exact layer, the slow sum, the block count and the deduction of (4.1) and of the asymptotic form from those two bounds are Lean), the production inequality (5.2), Sections 8--10 except Lemma 8.2, the explicit form of Theorem 8.3, Corollary 8.4, the exact form of Theorem 9.2 and Proposition 9.3, Appendix C; Theorems 5.3, 7.2, 7.3 and Corollary 8.4 only with (5.2) or the contagion bound as a hypothesis | human proofs |
+| Proposition 4.4 (its two exponential-sum bounds, the fast sum and the product sum; the exact layer, the slow sum, the block count and the deduction of (4.1) and of the asymptotic form from those two bounds are Lean), the share law 4.5 and Corollary 4.6 (the phase expansion, the range of the quadratic phase and the integral 25/108 are Lean, the equidistribution and the measure identifications are not), the production inequality (5.2), Sections 8--10 except Lemma 8.2, the explicit form of Theorem 8.3, Corollary 8.4, the exact form of Theorem 9.2 and Proposition 9.3, Appendix C; Theorems 5.3, 7.2, 7.3 and Corollary 8.4 only with (5.2) or the contagion bound as a hypothesis | human proofs |
 
 ## Appendix B. Constants and artifacts
 
@@ -2569,6 +2594,10 @@ use the roots of the displayed defining equations.
 
   SHA-256: `b12cde9bd7fe5bb93be7054c9b8a50b4dc4962abecfbb26cac4694d2fd76a763`
 
+- `formal/Problems/Juggler/FateShareLaw.lean`
+
+  SHA-256: `a229f4fa4cf48cb5b003c746672947eec10bf93d7287ad7eecaa3f84d5236e7c`
+
 - `formal/Problems/Juggler/FateCylinderEnergy.lean`
 
   SHA-256: `575b3ae4938c0f97f729873f375b75f0860927be11b606dcff2db2c560aca5eb`
@@ -2615,11 +2644,11 @@ use the roots of the displayed defining equations.
 
 - `formal/Problems/JugglerFatePaper.lean`
 
-  SHA-256: `f155ecf9241f268b1cb4014bfab17fd378af59786ff87e6682acb899e3c5a985`
+  SHA-256: `a9c1b7af7c99c553470acb85bc07908d86e9c86a5327d0f394e9ef5ba58fea73`
 
 - `formal/AxiomCheckPaperC.expected`
 
-  SHA-256: `33e2719a7a75a2f19cd88bd6a2ad1aac6d7da84e6c52bb45bedd81bd5704771f`
+  SHA-256: `908449df625afedcbf81afb36a6fed61ac9399bc06bfda61ed9426d3cc04b896`
 
 - `src/research/juggler_sequence/fate_contagion.py`
 

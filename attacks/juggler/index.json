@@ -4201,6 +4201,7 @@
         "J-fate-landing-window",
         "J-fate-cylinder-energy",
         "J-fate-block-average-layer",
+        "J-fate-share-law-layer",
         "J-paper-c-trust-surface",
         "J-fate-monotone-pairing-repair",
         "J-fate-chernoff-count",
@@ -6188,6 +6189,7 @@
         "formal/Problems/Juggler/FateFiberParity.lean",
         "formal/Problems/Juggler/FateThinFibers.lean",
         "formal/Problems/Juggler/FateBlockAverage.lean",
+        "formal/Problems/Juggler/FateShareLaw.lean",
         "formal/Problems/Juggler/FateContagionBound.lean"
       ],
       "conjecture": [],

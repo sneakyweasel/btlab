@@ -44529,3 +44529,43 @@ the two hypotheses. The table row is still "human proof"; it now lists
 the slow sum and the block count among the Lean parts. The consolidation
 paid for itself today twice over: the descending Bernoulli step, the
 landing window and the fiber bounds were all on the shelf.
+
+
+## The share law's three exact facts
+
+Section 4.3 of Paper C is the one part of the paper nothing else
+depends on: it says what the even-image share of a fiber is, not just
+that it is at least a third. Lemma 4.5 is an equidistribution statement
+with an O(H^{-1/2}) error, and Corollary 4.6 is measure theory about
+the function S(beta, theta) it produces. I did not formalize either.
+Underneath them are three exact facts, and those are now Lean.
+
+First, the expansion. The proof opens by expanding x_j = n_j^{3/2}/2
+about n_1 to second order with a cubic remainder, |E_j| <= (1/4)(j-1)^3
+n_1^{-3/2}. Written as a Taylor theorem this needs three derivatives of
+a fractional power. Written after the substitution v = sqrt(1 + u) it
+needs none: the remainder is 1 + (3/2)(v^2-1) + (3/8)(v^2-1)^2 - v^3,
+which in w = v - 1 is exactly w^3/2 + 3w^4/8, nonnegative, and below
+(v^2-1)^3/16 = w^3/2 + 3w^4/4 + 3w^5/8 + w^6/16 term by term. Two
+nlinarith calls. On a fiber, with both ends in Phi(m), the fiber
+bounds of the morning give the remainder at most (2/27)(m+1)/m^2,
+which is the paper's O(1/m) with a constant.
+
+Second, the range. Corollary 4.6(2) rests on the range of beta s +
+s^2/3 over [0, 1] in three cases: beta + 1/3, -beta - 1/3, and max(0,
+beta + 1/3) + 3 beta^2/4 in the dip. That range is at most 1/2 exactly
+when beta lies in [-5/6, 1/6], and in the middle case it never exceeds
+1/3. Completing the square and the chord inequality do all of it.
+
+Third, the integral. Corollary 4.6(3) integrates max(0, 1/2 - range)
+over the four pieces and gets 1/72 + 11/108 + 11/108 + 1/72 = 25/108.
+The integrand is a polynomial on each piece and continuous across the
+joins, so the interval integral splits and each piece is integral_pow
+and norm_num. The paper's arithmetic is right.
+
+What is not Lean is the analysis proper: the reduction of x_j modulo
+one with its O(1/H) error, the inverse-image lengths and the grid
+sampling that make Lemma 4.5, Fubini in (1), and the identification of
+the theta-measure with max(0, 1/2 - range). The row stays "human
+proof". Twenty-four Lean rows, four human, and now every one of the
+four human rows has its exact layer in Lean and says so.

@@ -269,6 +269,7 @@ LAYERS: dict[str, Path] = {
     "FateFiberParity": JUGGLER_DIR / "FateFiberParity.lean",
     "FateThinFibers": JUGGLER_DIR / "FateThinFibers.lean",
     "FateBlockAverage": JUGGLER_DIR / "FateBlockAverage.lean",
+    "FateShareLaw": JUGGLER_DIR / "FateShareLaw.lean",
     "FateContagionBound": JUGGLER_DIR / "FateContagionBound.lean",
 }
 
