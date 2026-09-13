@@ -370,8 +370,22 @@ and every elementary step below the block average is Lean. Nothing here
 changes a constant or an exponent. Best next question: none that is
 small; Proposition 4.4 is the first analytic step. Later the same day,
 Theorem 5.3 given (5.2) and Theorem 7.3 joined the Lean column
-(`FateContagionBound.lean`); the human residue of Paper C is the analysis
-of Sections 4, 5.7 and 8--10 and the identity (6.1).
+(`FateContagionBound.lean`). On 13 September the exact layer was
+finished: the decomposition behind the identity (6.1) with the
+uniqueness of the odd preimage (`FateFirstLetter.lean`), the landing
+windows (D.1) and (D.2) of Appendix D.1 (`FateLandingWindow.lean`), and
+the counting half of the Section 10(d) display
+(`FateCylinderEnergy.lean`), together with two consolidations,
+`FateNumerics.lean` and `FateWindowCount.lean`. The verification table
+is twenty-four Lean rows and four human, and the four are analysis: the
+block average 4.4, the share law 4.5--4.6, the production inequality
+(5.2), and the Azuma and exponential-moment bookkeeping of
+Sections 8--10. No small attack remains on this paper; what is left
+needs either a genuine analytic argument or the hypothesis-as-input
+treatment the large attacks use. The consolidation still open
+(`FateSweepMonotone`'s six span inductions, its two window counts, the
+log-mass forms, the repeated sweep hypotheses) sits in files the WIZARD
+session owns and has been sent to it.
 
 ## Publication assessment
 
