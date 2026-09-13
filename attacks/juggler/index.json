@@ -4201,7 +4201,8 @@
         "J-fate-monotone-pairing-repair",
         "J-fate-chernoff-count",
         "J-fate-tao-union-bound",
-        "J-fate-pressure-form"
+        "J-fate-pressure-form",
+        "J-fate-cylinder-corollary"
       ],
       "aliases": [],
       "nk_cluster": null
@@ -6170,7 +6171,8 @@
         "formal/Problems/Juggler/CubicConstraintFusion.lean",
         "formal/Problems/Juggler/CubicCriticalLocation.lean",
         "formal/Problems/Juggler/CriticalCostKernel.lean",
-        "formal/Problems/Juggler/CubicRemainderAssembly.lean"
+        "formal/Problems/Juggler/CubicRemainderAssembly.lean",
+        "formal/Problems/Juggler/FateCylinderCorollary.lean"
       ],
       "conjecture": [],
       "decision": null,

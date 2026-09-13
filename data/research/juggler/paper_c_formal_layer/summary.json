@@ -12,27 +12,28 @@
     "Problems.Juggler.FateChernoff",
     "Problems.Juggler.FatePressure",
     "Problems.Juggler.FateTaoReduction",
-    "Problems.Juggler.FateSeed"
+    "Problems.Juggler.FateSeed",
+    "Problems.Juggler.FateCylinderCorollary"
   ],
   "artifact": {
-    "asked": 141,
-    "recorded": 141,
+    "asked": 145,
+    "recorded": 145,
     "axiom_lists": [
       "propext",
       "propext, Classical.choice, Quot.sound",
       "propext, Quot.sound"
     ]
   },
-  "appendix_a_names": 124,
+  "appendix_a_names": 129,
   "surface": {
-    "modules": 42,
-    "declarations": 1465,
+    "modules": 45,
+    "declarations": 1487,
     "compiler_trusted": [],
     "compiler_dependent": [],
     "open": []
   },
   "table": {
-    "rows": 25,
+    "rows": 26,
     "lean": [
       "Fate classes closed; trichotomy; exclusion (Lemma 2.1)",
       "Even block is an interval (Lemma 3.1)",
@@ -46,6 +47,7 @@
       "Seed (Lemma 5.2)",
       "Least failure is \\(OO\\)-type; first-letter trichotomy (Proposition 6.3(i), Section 6.2)",
       "Tao-type rate implies the conjecture (Theorem 7.2), with the contagion bound of Theorem 5.3 as a hypothesis",
+      "Corollary 8.4, the conjecture from a cylinder bound, with the contagion bound of Theorem 5.3 as a hypothesis",
       "Chernoff count of bad words (Lemma 8.2, exact form)",
       "Theorem 8.3, explicit form \\(y\\Lambda^{-e(C)}+2\\Lambda^Cy(\\log y)^{-A}\\) at every \\(y\\)",
       "Pressure form (Theorem 9.2, exact: a pressure bound \\(Na_\\theta^dE\\) gives at most \\(Ne^{-dD(p_C\\Vert 1/2)}E\\) live starts)",
@@ -71,5 +73,5 @@
     "label": "PAPER_C_LEAN_SURFACE_CONSISTENT",
     "problems": 0
   },
-  "git_commit": "unknown"
+  "git_commit": "b0e2517d4dc34a45ac635e60f17f23993e5eed61"
 }
