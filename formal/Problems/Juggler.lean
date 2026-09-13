@@ -155,6 +155,7 @@ import Problems.Juggler.CubicRemainderAssembly
 import Problems.Juggler.FateCylinderCorollary
 import Problems.Juggler.FateFiberParity
 import Problems.Juggler.FateThinFibers
+import Problems.Juggler.FateContagionBound
 
 /-!
 # Juggler laboratory barrel

@@ -13,11 +13,12 @@ import Problems.Juggler.FateSeed
 import Problems.Juggler.FateCylinderCorollary
 import Problems.Juggler.FateFiberParity
 import Problems.Juggler.FateThinFibers
+import Problems.Juggler.FateContagionBound
 
 /-!
 # Paper C barrel — everything the repository checks for the fate-contagion note
 
-`docs/theory/juggler_fate_almost_all_note.md`. This file imports exactly the fifteen modules
+`docs/theory/juggler_fate_almost_all_note.md`. This file imports exactly the sixteen modules
 that paper cites and nothing else, so that a reader can build the formal side of Paper C on
 its own rather than selecting modules by hand out of the umbrella `Problems.Juggler`. It is a
 laboratory target, not a claim: building it does **not** corroborate the paper's counting.
@@ -81,15 +82,23 @@ laboratory target, not a claim: building it does **not** corroborate the paper's
   are bad (`FiberParity.bad_count_le`), by an arc count on `{A_m}` with the wrap-around arc
   unwrapped by a shift, and the bad `m ∈ (U, N]` carry log-mass at most `306 U^{-1/3}` for
   every `N` (`FiberParity.bad_logMass_le`), by the dyadic sum.
+* `FateContagionBound` — Theorem 5.3 given the production inequality (5.2): the production
+  data `productionRate` / `productionCoeff`, `zeta` antitone in `λ` with `zeta_pos_49`
+  (`ζ(0.49) > 0` by eight exact rational bounds `r_i^100 ≤ e_i^49`), the paper's `gA` with
+  the seed of Lemma 5.2 (`gA_seed`), and `contagion_of_production_inequality` /
+  `logMass_contagion_of_production`, for every `0 < λ ≤ 0.49`; Theorem 7.3 with the
+  contagion bound as a hypothesis (`tao_rate_iff_conjecture`); and Corollary 8.4 with
+  Theorem 5.3 discharged through (5.2) (`conjecture_of_cylinder_bound_of_production`).
 
 ## What is not here, and cannot be
 
 Proposition 4.4 (the block average), the
-share law 4.5–4.6, Theorem 5.3 itself (its seed 5.2 and recursion 5.1 are here; the
-production inequality (5.2) and the root check `ζ > 0` are not), Theorem 5.3's corollaries,
-the asymptotic form of Theorem 8.3, Theorem 9.1, the asymptotic form of
-Theorem 9.2, Section 10 and Appendix C have no machine check of any kind. Theorem 7.2 is here
-only with the contagion bound as a hypothesis. Nothing here is a
+share law 4.5–4.6, the production inequality (5.2) itself (Theorem 5.3 is here given (5.2),
+for every `λ ≤ 0.49`; the root `λ** = 0.4926…` and the range `0.49 < λ < λ**` are not),
+Corollaries 5.4–5.5, the asymptotic form of Theorem 8.3, Theorem 9.1, the asymptotic form of
+Theorem 9.2, Section 10 and Appendix C have no machine check of any kind. Theorems 7.2, 7.3
+and Corollary 8.4 are here with the contagion bound as a hypothesis, and Corollary 8.4 also
+with (5.2) in its place. Nothing here is a
 density estimate, and nothing here is a halt theorem.
 
 This barrel is not imported by `Problems.lean`; build it with
