@@ -29447,7 +29447,7 @@
       "ledger": [
         "J-fate-sweep-lemma"
       ],
-      "line": 45,
+      "line": 46,
       "module": "Problems.Juggler.FateSweep",
       "name": "cell",
       "trust": "kernel"
@@ -29459,7 +29459,7 @@
       "ledger": [
         "J-fate-sweep-lemma"
       ],
-      "line": 47,
+      "line": 48,
       "module": "Problems.Juggler.FateSweep",
       "name": "cell_eq",
       "trust": "kernel"
@@ -29471,7 +29471,7 @@
       "ledger": [
         "J-fate-sweep-lemma"
       ],
-      "line": 61,
+      "line": 62,
       "module": "Problems.Juggler.FateSweep",
       "name": "cell_modEq_zero_iff",
       "trust": "kernel"
@@ -29483,7 +29483,7 @@
       "ledger": [
         "J-fate-sweep-lemma"
       ],
-      "line": 68,
+      "line": 69,
       "module": "Problems.Juggler.FateSweep",
       "name": "cell_modEq_one_iff",
       "trust": "kernel"
@@ -29495,7 +29495,7 @@
       "ledger": [
         "J-fate-sweep-lemma"
       ],
-      "line": 79,
+      "line": 80,
       "module": "Problems.Juggler.FateSweep",
       "name": "ceil_two_mul_eq",
       "trust": "kernel"
@@ -29507,7 +29507,7 @@
       "ledger": [
         "J-fate-sweep-lemma"
       ],
-      "line": 95,
+      "line": 96,
       "module": "Problems.Juggler.FateSweep",
       "name": "ceil_modEq_one_iff",
       "trust": "kernel"
@@ -29519,7 +29519,7 @@
       "ledger": [
         "J-fate-sweep-lemma"
       ],
-      "line": 102,
+      "line": 103,
       "module": "Problems.Juggler.FateSweep",
       "name": "ceil_modEq_zero_iff",
       "trust": "kernel"
@@ -29531,9 +29531,33 @@
       "ledger": [
         "J-fate-sweep-lemma"
       ],
-      "line": 112,
+      "line": 113,
       "module": "Problems.Juggler.FateSweep",
       "name": "Steps",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The gaps of `Steps` are the lower steps of `WindowCount` on `[0, H-1]`.",
+      "file": "formal/Problems/Juggler/FateSweep.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-sweep-lemma"
+      ],
+      "line": 121,
+      "module": "Problems.Juggler.FateSweep",
+      "name": "stepGe_of_steps",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The gaps of `Steps` are the upper steps of `WindowCount` on `[0, H-1]`.",
+      "file": "formal/Problems/Juggler/FateSweep.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-sweep-lemma"
+      ],
+      "line": 125,
+      "module": "Problems.Juggler.FateSweep",
+      "name": "stepLe_of_steps",
       "trust": "kernel"
     },
     {
@@ -29543,7 +29567,7 @@
       "ledger": [
         "J-fate-sweep-lemma"
       ],
-      "line": 119,
+      "line": 128,
       "module": "Problems.Juggler.FateSweep",
       "name": "step_lower",
       "trust": "kernel"
@@ -29555,7 +29579,7 @@
       "ledger": [
         "J-fate-sweep-lemma"
       ],
-      "line": 132,
+      "line": 134,
       "module": "Problems.Juggler.FateSweep",
       "name": "step_upper",
       "trust": "kernel"
@@ -29567,7 +29591,7 @@
       "ledger": [
         "J-fate-sweep-lemma"
       ],
-      "line": 145,
+      "line": 140,
       "module": "Problems.Juggler.FateSweep",
       "name": "mono",
       "trust": "kernel"
@@ -29579,7 +29603,7 @@
       "ledger": [
         "J-fate-sweep-lemma"
       ],
-      "line": 152,
+      "line": 144,
       "module": "Problems.Juggler.FateSweep",
       "name": "cell_mono",
       "trust": "kernel"
@@ -29591,7 +29615,7 @@
       "ledger": [
         "J-fate-sweep-lemma"
       ],
-      "line": 156,
+      "line": 148,
       "module": "Problems.Juggler.FateSweep",
       "name": "cell_succ_le",
       "trust": "kernel"
@@ -29603,7 +29627,7 @@
       "ledger": [
         "J-fate-sweep-lemma"
       ],
-      "line": 165,
+      "line": 157,
       "module": "Problems.Juggler.FateSweep",
       "name": "fiber_card_le",
       "trust": "kernel"
@@ -29615,7 +29639,7 @@
       "ledger": [
         "J-fate-sweep-lemma"
       ],
-      "line": 201,
+      "line": 171,
       "module": "Problems.Juggler.FateSweep",
       "name": "fiber_card_ge",
       "trust": "kernel"
@@ -29627,7 +29651,7 @@
       "ledger": [
         "J-fate-sweep-lemma"
       ],
-      "line": 289,
+      "line": 259,
       "module": "Problems.Juggler.FateSweep",
       "name": "cell_span",
       "trust": "kernel"
@@ -29639,7 +29663,7 @@
       "ledger": [
         "J-fate-sweep-lemma"
       ],
-      "line": 305,
+      "line": 275,
       "module": "Problems.Juggler.FateSweep",
       "name": "card_le_cells_mul",
       "trust": "kernel"
@@ -29651,7 +29675,7 @@
       "ledger": [
         "J-fate-sweep-lemma"
       ],
-      "line": 322,
+      "line": 292,
       "module": "Problems.Juggler.FateSweep",
       "name": "colour_card_ge",
       "trust": "kernel"
@@ -29663,7 +29687,7 @@
       "ledger": [
         "J-fate-sweep-lemma"
       ],
-      "line": 368,
+      "line": 338,
       "module": "Problems.Juggler.FateSweep",
       "name": "colour_cells_ge",
       "trust": "kernel"
@@ -29675,7 +29699,7 @@
       "ledger": [
         "J-fate-sweep-lemma"
       ],
-      "line": 383,
+      "line": 353,
       "module": "Problems.Juggler.FateSweep",
       "name": "three_g_ge",
       "trust": "kernel"
@@ -29687,7 +29711,7 @@
       "ledger": [
         "J-fate-sweep-lemma"
       ],
-      "line": 406,
+      "line": 376,
       "module": "Problems.Juggler.FateSweep",
       "name": "sweep_cell",
       "trust": "kernel"
@@ -29699,7 +29723,7 @@
       "ledger": [
         "J-fate-sweep-lemma"
       ],
-      "line": 460,
+      "line": 430,
       "module": "Problems.Juggler.FateSweep",
       "name": "sweep_fract_lt_half",
       "trust": "kernel"
@@ -29711,7 +29735,7 @@
       "ledger": [
         "J-fate-sweep-lemma"
       ],
-      "line": 474,
+      "line": 444,
       "module": "Problems.Juggler.FateSweep",
       "name": "sweep_fract_ge_half",
       "trust": "kernel"
@@ -29723,7 +29747,7 @@
       "ledger": [
         "J-fate-sweep-lemma"
       ],
-      "line": 488,
+      "line": 458,
       "module": "Problems.Juggler.FateSweep",
       "name": "sweep_ceil",
       "trust": "kernel"
@@ -29735,7 +29759,7 @@
       "ledger": [
         "J-fate-sweep-lemma"
       ],
-      "line": 525,
+      "line": 495,
       "module": "Problems.Juggler.FateSweep",
       "name": "sweep_rep_le_half",
       "trust": "kernel"
@@ -29747,7 +29771,7 @@
       "ledger": [
         "J-fate-sweep-lemma"
       ],
-      "line": 539,
+      "line": 509,
       "module": "Problems.Juggler.FateSweep",
       "name": "sweep_rep_gt_half",
       "trust": "kernel"
@@ -31385,7 +31409,7 @@
       "ledger": [
         "J-fate-thin-fibers"
       ],
-      "line": 55,
+      "line": 46,
       "module": "Problems.Juggler.FateThinFibers",
       "name": "arc_count_le",
       "trust": "kernel"
@@ -31397,7 +31421,7 @@
       "ledger": [
         "J-fate-thin-fibers"
       ],
-      "line": 137,
+      "line": 99,
       "module": "Problems.Juggler.FateThinFibers",
       "name": "Am_step_le",
       "trust": "kernel"
@@ -31409,7 +31433,7 @@
       "ledger": [
         "J-fate-thin-fibers"
       ],
-      "line": 144,
+      "line": 106,
       "module": "Problems.Juggler.FateThinFibers",
       "name": "Am_step_ge",
       "trust": "kernel"
@@ -31421,7 +31445,7 @@
       "ledger": [
         "J-fate-thin-fibers"
       ],
-      "line": 155,
+      "line": 117,
       "module": "Problems.Juggler.FateThinFibers",
       "name": "eps_antitone",
       "trust": "kernel"
@@ -31433,7 +31457,7 @@
       "ledger": [
         "J-fate-thin-fibers"
       ],
-      "line": 162,
+      "line": 124,
       "module": "Problems.Juggler.FateThinFibers",
       "name": "bad_mem_arc",
       "trust": "kernel"
@@ -31445,7 +31469,7 @@
       "ledger": [
         "J-fate-thin-fibers"
       ],
-      "line": 204,
+      "line": 166,
       "module": "Problems.Juggler.FateThinFibers",
       "name": "two_rpow_third_le",
       "trust": "kernel"
@@ -31457,7 +31481,7 @@
       "ledger": [
         "J-fate-thin-fibers"
       ],
-      "line": 208,
+      "line": 170,
       "module": "Problems.Juggler.FateThinFibers",
       "name": "two_rpow_two_thirds_le",
       "trust": "kernel"
@@ -31469,7 +31493,7 @@
       "ledger": [
         "J-fate-thin-fibers"
       ],
-      "line": 213,
+      "line": 175,
       "module": "Problems.Juggler.FateThinFibers",
       "name": "rpow_two_thirds_ge",
       "trust": "kernel"
@@ -31481,7 +31505,7 @@
       "ledger": [
         "J-fate-thin-fibers"
       ],
-      "line": 220,
+      "line": 182,
       "module": "Problems.Juggler.FateThinFibers",
       "name": "eps_div_eps_double",
       "trust": "kernel"
@@ -31493,7 +31517,7 @@
       "ledger": [
         "J-fate-thin-fibers"
       ],
-      "line": 229,
+      "line": 191,
       "module": "Problems.Juggler.FateThinFibers",
       "name": "Am_double_sub_le",
       "trust": "kernel"
@@ -31505,7 +31529,7 @@
       "ledger": [
         "J-fate-thin-fibers"
       ],
-      "line": 243,
+      "line": 205,
       "module": "Problems.Juggler.FateThinFibers",
       "name": "bad_count_le",
       "trust": "kernel"
@@ -31517,7 +31541,7 @@
       "ledger": [
         "J-fate-thin-fibers"
       ],
-      "line": 335,
+      "line": 297,
       "module": "Problems.Juggler.FateThinFibers",
       "name": "bad_block_logMass_le",
       "trust": "kernel"
@@ -31529,7 +31553,7 @@
       "ledger": [
         "J-fate-thin-fibers"
       ],
-      "line": 356,
+      "line": 318,
       "module": "Problems.Juggler.FateThinFibers",
       "name": "Ioc_disjoint_next",
       "trust": "kernel"
@@ -31541,7 +31565,7 @@
       "ledger": [
         "J-fate-thin-fibers"
       ],
-      "line": 364,
+      "line": 326,
       "module": "Problems.Juggler.FateThinFibers",
       "name": "bad_sum_dyadic_le",
       "trust": "kernel"
@@ -31553,7 +31577,7 @@
       "ledger": [
         "J-fate-thin-fibers"
       ],
-      "line": 385,
+      "line": 347,
       "module": "Problems.Juggler.FateThinFibers",
       "name": "eps_pow_two_mul",
       "trust": "kernel"
@@ -31565,7 +31589,7 @@
       "ledger": [
         "J-fate-thin-fibers"
       ],
-      "line": 396,
+      "line": 358,
       "module": "Problems.Juggler.FateThinFibers",
       "name": "two_rpow_neg_third_le",
       "trust": "kernel"
@@ -31577,9 +31601,79 @@
       "ledger": [
         "J-fate-thin-fibers"
       ],
-      "line": 402,
+      "line": 364,
       "module": "Problems.Juggler.FateThinFibers",
       "name": "bad_logMass_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`f` rises by at least `d` at every step from `lo` to `hi`.",
+      "file": "formal/Problems/Juggler/FateWindowCount.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 33,
+      "module": "Problems.Juggler.FateWindowCount",
+      "name": "StepGe",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`f` rises by at most `d` at every step from `lo` to `hi`.",
+      "file": "formal/Problems/Juggler/FateWindowCount.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 37,
+      "module": "Problems.Juggler.FateWindowCount",
+      "name": "StepLe",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`k` steps of at least `d` travel at least `k d`.",
+      "file": "formal/Problems/Juggler/FateWindowCount.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 41,
+      "module": "Problems.Juggler.FateWindowCount",
+      "name": "span_ge",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`k` steps of at most `d` travel at most `k d`.",
+      "file": "formal/Problems/Juggler/FateWindowCount.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 55,
+      "module": "Problems.Juggler.FateWindowCount",
+      "name": "span_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Nonnegative steps make `f` monotone on `[lo, hi]`.",
+      "file": "formal/Problems/Juggler/FateWindowCount.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 69,
+      "module": "Problems.Juggler.FateWindowCount",
+      "name": "mono_of_stepGe",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The window count.** Indices in `[lo, hi]` whose values are pairwise closer than `w` number at most `w/d + 1`, when the steps are at least `d > 0`: the first and the last are `(m\u2081 - m\u2080) d` apart and that is less than `w`.",
+      "file": "formal/Problems/Juggler/FateWindowCount.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 79,
+      "module": "Problems.Juggler.FateWindowCount",
+      "name": "window_card_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The window count as a bound on a natural number: at most `\u230aw/d\u230b + 1` indices.",
+      "file": "formal/Problems/Juggler/FateWindowCount.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 110,
+      "module": "Problems.Juggler.FateWindowCount",
+      "name": "window_card_le_nat",
       "trust": "kernel"
     },
     {
@@ -81922,6 +82016,7 @@
         "Problems.Juggler.FateSweepMonotone",
         "Problems.Juggler.FateTaoReduction",
         "Problems.Juggler.FateThinFibers",
+        "Problems.Juggler.FateWindowCount",
         "Problems.Juggler.FirstETransportEval",
         "Problems.Juggler.FirstInternalOO",
         "Problems.Juggler.FirstPassage",
@@ -83041,9 +83136,11 @@
       ]
     },
     "Problems.Juggler.FateSweep": {
-      "declarations": 26,
+      "declarations": 28,
       "file": "formal/Problems/Juggler/FateSweep.lean",
-      "imports": [],
+      "imports": [
+        "Problems.Juggler.FateWindowCount"
+      ],
       "ledger": [
         {
           "id": "J-fate-sweep-lemma",
@@ -83087,6 +83184,12 @@
           "tag": "EXACT \u2014 LEAN VERIFIED"
         }
       ]
+    },
+    "Problems.Juggler.FateWindowCount": {
+      "declarations": 7,
+      "file": "formal/Problems/Juggler/FateWindowCount.lean",
+      "imports": [],
+      "ledger": []
     },
     "Problems.Juggler.FinanceTransfer": {
       "declarations": 92,
@@ -84507,13 +84610,14 @@
         "Problems.Juggler.FateSweepMonotone",
         "Problems.Juggler.FateTaoReduction",
         "Problems.Juggler.FateThinFibers",
+        "Problems.Juggler.FateWindowCount",
         "Problems.Juggler.TerminationFloor257",
         "Problems.Juggler.TiltedShare"
       ],
       "ledger": [
         {
           "id": "J-paper-c-trust-surface",
-          "statement": "Paper C's Lean surface, as a build target and an axiom artifact. formal/Problems/JugglerFatePaper.lean imports exactly the seventeen modules the paper cites (TerminationFloor257, FateContagion, CubeFiber, TiltedShare, FateRecursion, FateFirstLetter, FateSweep, FateSweepMonotone, FateChernoff, FatePressure, FateTaoReduction, FateSeed, FateCylinderCorollary, FateNumerics, FateFiberParity, FateThinFibers, FateContagionBound) and is a lake default target; formal/AxiomCheckPaperC.lean prints the axioms of the cited declarations and AxiomCheckPaperC.expected records them: every line is a subset of [propext, Classical.choice, Quot.sound], no sorryAx, no Lean.ofReduceBool (native_decide). formalpedia's paper surface carries Paper C (root Problems.JugglerFatePaper): no declaration it reaches runs the compiler and none cites one that does. The verification table has twenty-one Lean rows (including Lemma 4.1', Lemmas 4.2 and 4.3, Lemma 5.2, Theorem 5.3 given the production inequality (5.2), Theorem 7.2 and Theorem 7.3 with the contagion bound as a hypothesis, and Corollary 8.4) and five human proofs (the block average 4.4, the share law, the production inequality (5.2), the identity (6.1), the asymptotic bookkeeping). FateNumerics holds the two numerical moves the fiber lemmas share, roots by powering and Bernoulli at a point. This row records the artifact, not a theorem; nothing here bounds a density.",
+          "statement": "Paper C's Lean surface, as a build target and an axiom artifact. formal/Problems/JugglerFatePaper.lean imports exactly the eighteen modules the paper cites (TerminationFloor257, FateContagion, CubeFiber, TiltedShare, FateRecursion, FateFirstLetter, FateWindowCount, FateSweep, FateSweepMonotone, FateChernoff, FatePressure, FateTaoReduction, FateSeed, FateCylinderCorollary, FateNumerics, FateFiberParity, FateThinFibers, FateContagionBound) and is a lake default target; formal/AxiomCheckPaperC.lean prints the axioms of the cited declarations and AxiomCheckPaperC.expected records them: every line is a subset of [propext, Classical.choice, Quot.sound], no sorryAx, no Lean.ofReduceBool (native_decide). formalpedia's paper surface carries Paper C (root Problems.JugglerFatePaper): no declaration it reaches runs the compiler and none cites one that does. The verification table has twenty-one Lean rows (including Lemma 4.1', Lemmas 4.2 and 4.3, Lemma 5.2, Theorem 5.3 given the production inequality (5.2), Theorem 7.2 and Theorem 7.3 with the contagion bound as a hypothesis, and Corollary 8.4) and five human proofs (the block average 4.4, the share law, the production inequality (5.2), the identity (6.1), the asymptotic bookkeeping). FateNumerics holds the two numerical moves the fiber lemmas share, roots by powering and Bernoulli at a point; FateWindowCount holds the counting move, a sequence rising by at least d has at most w/d + 1 terms in a window of width w. This row records the artifact, not a theorem; nothing here bounds a density.",
           "tag": "COMPUTATIONALLY VERIFIED"
         }
       ]
@@ -84810,13 +84914,13 @@
     }
   },
   "totals": {
-    "declarations": 6230,
-    "declarations_with_a_ledger_row": 4254,
+    "declarations": 6239,
+    "declarations_with_a_ledger_row": 4256,
     "ledger_rows_naming_a_file": 390,
-    "modules": 269,
+    "modules": 270,
     "trust": {
       "compiler": 57,
-      "kernel": 6173
+      "kernel": 6182
     }
   }
 }

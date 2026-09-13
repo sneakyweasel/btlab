@@ -6031,6 +6031,8 @@
         "formal/Problems/Juggler/RootCells.lean",
         "formal/Problems/Juggler/NumericBridge.lean",
         "formal/Problems/Juggler/LogCells.lean",
+        "formal/Problems/Juggler/FateNumerics.lean",
+        "formal/Problems/Juggler/FateWindowCount.lean",
         "formal/Problems/Juggler/Iteration.lean",
         "formal/Problems/Juggler/Termination.lean",
         "formal/Problems/Juggler/TerminationFloor257.lean",
@@ -6177,7 +6179,6 @@
         "formal/Problems/Juggler/CriticalCostKernel.lean",
         "formal/Problems/Juggler/CubicRemainderAssembly.lean",
         "formal/Problems/Juggler/FateCylinderCorollary.lean",
-        "formal/Problems/Juggler/FateNumerics.lean",
         "formal/Problems/Juggler/FateFiberParity.lean",
         "formal/Problems/Juggler/FateThinFibers.lean",
         "formal/Problems/Juggler/FateContagionBound.lean"

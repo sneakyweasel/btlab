@@ -76,6 +76,13 @@ open Problems.Juggler
 #print axioms Numerics.rpow_le_iff_pow
 #print axioms Numerics.rpow_lt_iff_pow
 #print axioms Sweep.card_le_cells_mul
+#print axioms Sweep.stepGe_of_steps
+#print axioms Sweep.stepLe_of_steps
+#print axioms WindowCount.mono_of_stepGe
+#print axioms WindowCount.span_ge
+#print axioms WindowCount.span_le
+#print axioms WindowCount.window_card_le
+#print axioms WindowCount.window_card_le_nat
 #print axioms Sweep.ceil_modEq_one_iff
 #print axioms Sweep.ceil_modEq_zero_iff
 #print axioms Sweep.ceil_two_mul_eq

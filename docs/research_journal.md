@@ -44318,3 +44318,33 @@ stay as they are. The remaining duplication in Paper C's Lean (the span
 and window lemmas of the sweep, the log-mass forms, the repeated sweep
 hypotheses) lives in files shared with the WIZARD session and waits on
 a message to it.
+
+
+## One window count for three sweep lemmas
+
+Lemma 4.1 counts how many terms of a separated sequence fit in a
+half-cell; Lemma 4.3 counts how many fit in an arc inside an integer
+window. They are the same count. A sequence rising by at least d per
+step travels at least k d in k steps, so its first and last index in a
+window of width w are fewer than w/d apart, so the window holds at most
+w/d + 1 terms. Lemma 4.1 reads w = 1/2 and gets the paper's
+floor(1/(2a)) + 1 per cell; Lemma 4.3 reads w as the arc width. Each
+had written out the induction and the min'/max' argument itself.
+
+FateWindowCount.lean has them once, for an arbitrary f : N -> R:
+StepGe and StepLe for steps bounded below and above on an index
+interval, span_ge and span_le for the telescoped forms,
+mono_of_stepGe, window_card_le for the real bound and
+window_card_le_nat for the floor form a natural-number card needs. The
+two call sites lost 111 lines and gained 43 against a 126-line module,
+and fiber_card_le no longer mentions min' at all: it names the window
+(a half-cell has width 1/2) and hands over two membership facts.
+
+The same count appears six more times in FateSweepMonotone, which the
+WIZARD session owns: three span inductions and one min'/max' count for
+the monotone half of Lemma 4.1', and the same four again for the
+anti-monotone half. I did not touch that file. The anti-monotone half
+needs no new lemma either, since a sequence falling by at least d is
+StepGe for j |-> -x j; I have sent that session the interface and the
+remark. Eighteen modules in the barrel now, 224 asked declarations, all
+on Mathlib's three axioms.
