@@ -31034,6 +31034,222 @@
       "trust": "kernel"
     },
     {
+      "doc": "A sequence increasing by at least `d` per step on `(u, v]` spans at least `(m' - m) d` between two of its indices.",
+      "file": "formal/Problems/Juggler/FateThinFibers.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-thin-fibers"
+      ],
+      "line": 37,
+      "module": "Problems.Juggler.FateThinFibers",
+      "name": "span_ge_of_step",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The arc count.** If `\u03c6` increases by at least `d > 0` per step on `(u, v]`, the indices `m \u2208 (u, v]` with `{\u03c6(m)} \u2208 [c, c + w)` number at most `(\u230a\u03c6(v)\u230b - \u230a\u03c6(u+1)\u230b + 1)(w/d + 1)`: within one integer window the points are `d`-separated inside an interval of length `w`.",
+      "file": "formal/Problems/Juggler/FateThinFibers.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-thin-fibers"
+      ],
+      "line": 55,
+      "module": "Problems.Juggler.FateThinFibers",
+      "name": "arc_count_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateThinFibers.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-thin-fibers"
+      ],
+      "line": 137,
+      "module": "Problems.Juggler.FateThinFibers",
+      "name": "Am_step_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Bernoulli, the other way: `(m+1)^{2/3} - m^{2/3} \u2265 (2/3) (m+1)^{-1/3}`.",
+      "file": "formal/Problems/Juggler/FateThinFibers.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-thin-fibers"
+      ],
+      "line": 144,
+      "module": "Problems.Juggler.FateThinFibers",
+      "name": "Am_step_ge",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`\u03b5` is antitone: `eps m \u2264 eps u` for `1 \u2264 u \u2264 m`.",
+      "file": "formal/Problems/Juggler/FateThinFibers.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-thin-fibers"
+      ],
+      "line": 170,
+      "module": "Problems.Juggler.FateThinFibers",
+      "name": "eps_antitone",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A bad `m > u \u2265 10^6` has `{A_m + 22 \u03b5_u} < 44 \u03b5_u` or `{A_m} \u2208 [1/2 - 2\u03b5_u, 1/2 + 2\u03b5_u)`.",
+      "file": "formal/Problems/Juggler/FateThinFibers.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-thin-fibers"
+      ],
+      "line": 177,
+      "module": "Problems.Juggler.FateThinFibers",
+      "name": "bad_mem_arc",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateThinFibers.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-thin-fibers"
+      ],
+      "line": 219,
+      "module": "Problems.Juggler.FateThinFibers",
+      "name": "two_rpow_third_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateThinFibers.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-thin-fibers"
+      ],
+      "line": 227,
+      "module": "Problems.Juggler.FateThinFibers",
+      "name": "two_rpow_two_thirds_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`u^{2/3} \u2265 10^4` for `u \u2265 10^6`.",
+      "file": "formal/Problems/Juggler/FateThinFibers.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-thin-fibers"
+      ],
+      "line": 236,
+      "module": "Problems.Juggler.FateThinFibers",
+      "name": "rpow_two_thirds_ge",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`\u03b5_u / \u03b5_{2u} = 2^{1/3}`.",
+      "file": "formal/Problems/Juggler/FateThinFibers.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-thin-fibers"
+      ],
+      "line": 247,
+      "module": "Problems.Juggler.FateThinFibers",
+      "name": "eps_div_eps_double",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`A_{2u} - A_u = (3/2)(2^{2/3} - 1) u^{2/3} \u2264 0.882 u^{2/3}`.",
+      "file": "formal/Problems/Juggler/FateThinFibers.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-thin-fibers"
+      ],
+      "line": 256,
+      "module": "Problems.Juggler.FateThinFibers",
+      "name": "Am_double_sub_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Lemma 4.3, the count.** For `u \u2265 10^6`, at most `63 u^{2/3}` of the `m \u2208 (u, 2u]` are bad.",
+      "file": "formal/Problems/Juggler/FateThinFibers.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-thin-fibers"
+      ],
+      "line": 270,
+      "module": "Problems.Juggler.FateThinFibers",
+      "name": "bad_count_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "On one dyadic block `(u, 2u]`, `u \u2265 10^6`, the bad fibers carry log-mass at most `63 u^{-1/3}`.",
+      "file": "formal/Problems/Juggler/FateThinFibers.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-thin-fibers"
+      ],
+      "line": 362,
+      "module": "Problems.Juggler.FateThinFibers",
+      "name": "bad_block_logMass_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateThinFibers.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-thin-fibers"
+      ],
+      "line": 383,
+      "module": "Problems.Juggler.FateThinFibers",
+      "name": "Ioc_disjoint_next",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The dyadic decomposition: the bad log-mass on `(U, 2^K U]` is at most `\u03a3_{i < K} 63 \u03b5(2^i U)`.",
+      "file": "formal/Problems/Juggler/FateThinFibers.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-thin-fibers"
+      ],
+      "line": 391,
+      "module": "Problems.Juggler.FateThinFibers",
+      "name": "bad_sum_dyadic_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`\u03b5(2^i U) = (2^{-1/3})^i \u03b5(U)`.",
+      "file": "formal/Problems/Juggler/FateThinFibers.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-thin-fibers"
+      ],
+      "line": 412,
+      "module": "Problems.Juggler.FateThinFibers",
+      "name": "eps_pow_two_mul",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateThinFibers.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-thin-fibers"
+      ],
+      "line": 423,
+      "module": "Problems.Juggler.FateThinFibers",
+      "name": "two_rpow_neg_third_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Lemma 4.3, the log-mass.** For `U \u2265 10^6` and every `N`, the bad `m \u2208 (U, N]` carry log-mass at most `306 U^{-1/3}`.",
+      "file": "formal/Problems/Juggler/FateThinFibers.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-thin-fibers"
+      ],
+      "line": 433,
+      "module": "Problems.Juggler.FateThinFibers",
+      "name": "bad_logMass_le",
+      "trust": "kernel"
+    },
+    {
       "doc": "`x \u21a6 1/(x log x)` is antitone on `[2, \u221e)`.",
       "file": "formal/Problems/Juggler/FinanceTransfer.lean",
       "kind": "theorem",
@@ -81370,6 +81586,7 @@
         "Problems.Juggler.FateSweep",
         "Problems.Juggler.FateSweepMonotone",
         "Problems.Juggler.FateTaoReduction",
+        "Problems.Juggler.FateThinFibers",
         "Problems.Juggler.FirstETransportEval",
         "Problems.Juggler.FirstInternalOO",
         "Problems.Juggler.FirstPassage",
@@ -82492,6 +82709,20 @@
         "Problems.Juggler.FateChernoff"
       ],
       "ledger": []
+    },
+    "Problems.Juggler.FateThinFibers": {
+      "declarations": 18,
+      "file": "formal/Problems/Juggler/FateThinFibers.lean",
+      "imports": [
+        "Problems.Juggler.FateFiberParity"
+      ],
+      "ledger": [
+        {
+          "id": "J-fate-thin-fibers",
+          "statement": "Paper C Lemma 4.3 (bad fibers are thin), badness being \u00acGood of row J-fate-fiber-parity. (i) bad_count_le: for u \u2265 10^6, #{m \u2208 (u, 2u] : \u00acGood m} \u2264 63 u^{2/3}. (ii) bad_logMass_le: for U \u2265 10^6 and every N, \u03a3_{m \u2208 (U, N], \u00acGood m} 1/m \u2264 306 U^{\u22121/3} (the paper's infinite sum, as a bound on every partial sum). Proof of (i): the increments of A_m = (3/2) m^{2/3} lie in [(m+1)^{\u22121/3}, m^{\u22121/3}] by Bernoulli both ways (Am_step_ge, Am_step_le); a bad m > u has {A_m + 22 u^{\u22121/3}} < 44 u^{\u22121/3} or {A_m} \u2208 [1/2 \u2212 2u^{\u22121/3}, 1/2 + 2u^{\u22121/3}) (bad_mem_arc; the shift makes the wrap-around arc a single arc); arc_count_le: a sequence increasing by at least d per step on (u, v] has at most (\u230a\u03c6(v)\u230b \u2212 \u230a\u03c6(u+1)\u230b + 1)(w/d + 1) indices with fractional part in an arc [c, c+w) \u2286 [0, 1), by the fibre-per-integer-window count; with d = (2u)^{\u22121/3} (sharper than the paper's (3u)^{\u22121/3}), w/d = 44\u00b72^{1/3} and 4\u00b72^{1/3}, the windows number at most A_{2u} \u2212 A_u + 2 \u2264 0.882 u^{2/3} + 2 (2^{2/3} \u2264 1.588), and (0.882 u^{2/3} + 2)(48\u00b72^{1/3} + 2) \u2264 63 u^{2/3} for u^{2/3} \u2265 10^4 (2^{1/3} \u2264 1.26). Proof of (ii): on one block (u, 2u] the bad log-mass is at most 63 u^{2/3}/u = 63 u^{\u22121/3} (bad_block_logMass_le); (U, N] \u2286 (U, 2^N U] which is the disjoint union of the blocks (2^i U, 2^{i+1} U], i < N (bad_sum_dyadic_le); (2^i U)^{\u22121/3} = (2^{\u22121/3})^i U^{\u22121/3} (eps_pow_two_mul); the geometric series gives 63 U^{\u22121/3}/(1 \u2212 2^{\u22121/3}) and 2^{\u22121/3} \u2264 0.794 (0.794^3 \u2265 1/2) gives 63/(1 \u2212 2^{\u22121/3}) \u2264 306. Kernel-checked, axioms propext, Classical.choice, Quot.sound only. Lemmas 4.2 and 4.3 together are the fiber input of the three-source inequality (5.2); Proposition 4.4 stays a human proof. Not a halt theorem.",
+          "tag": "EXACT \u2014 LEAN VERIFIED"
+        }
+      ]
     },
     "Problems.Juggler.FinanceTransfer": {
       "declarations": 92,
@@ -83909,6 +84140,7 @@
         "Problems.Juggler.FateSweep",
         "Problems.Juggler.FateSweepMonotone",
         "Problems.Juggler.FateTaoReduction",
+        "Problems.Juggler.FateThinFibers",
         "Problems.Juggler.TerminationFloor257",
         "Problems.Juggler.TiltedShare"
       ],
@@ -84212,13 +84444,13 @@
     }
   },
   "totals": {
-    "declarations": 6185,
-    "declarations_with_a_ledger_row": 4215,
-    "ledger_rows_naming_a_file": 387,
-    "modules": 266,
+    "declarations": 6203,
+    "declarations_with_a_ledger_row": 4233,
+    "ledger_rows_naming_a_file": 388,
+    "modules": 267,
     "trust": {
       "compiler": 57,
-      "kernel": 6128
+      "kernel": 6146
     }
   }
 }
