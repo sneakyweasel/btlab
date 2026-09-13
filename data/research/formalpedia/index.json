@@ -28232,6 +28232,498 @@
       "trust": "kernel"
     },
     {
+      "doc": "`x(n) = n \u221an / 2 = n^{3/2}/2`.",
+      "file": "formal/Problems/Juggler/FateFiberParity.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-fiber-parity"
+      ],
+      "line": 43,
+      "module": "Problems.Juggler.FateFiberParity",
+      "name": "xval",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateFiberParity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-fiber-parity"
+      ],
+      "line": 45,
+      "module": "Problems.Juggler.FateFiberParity",
+      "name": "two_xval",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateFiberParity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-fiber-parity"
+      ],
+      "line": 53,
+      "module": "Problems.Juggler.FateFiberParity",
+      "name": "floor_two_xval",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The image `\u230an^{3/2}\u230b` is even iff `{x(n)} < 1/2`, i.e. iff the half-cell of `x(n)` is even.",
+      "file": "formal/Problems/Juggler/FateFiberParity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-fiber-parity"
+      ],
+      "line": 57,
+      "module": "Problems.Juggler.FateFiberParity",
+      "name": "cell_xval_even_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateFiberParity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-fiber-parity"
+      ],
+      "line": 64,
+      "module": "Problems.Juggler.FateFiberParity",
+      "name": "cell_xval_odd_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateFiberParity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-fiber-parity"
+      ],
+      "line": 73,
+      "module": "Problems.Juggler.FateFiberParity",
+      "name": "xval_step",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateFiberParity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-fiber-parity"
+      ],
+      "line": 93,
+      "module": "Problems.Juggler.FateFiberParity",
+      "name": "xval_step_ge",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateFiberParity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-fiber-parity"
+      ],
+      "line": 103,
+      "module": "Problems.Juggler.FateFiberParity",
+      "name": "xval_step_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The steps are nondecreasing: the upper bound at `n` is the lower bound at `n + 2`.",
+      "file": "formal/Problems/Juggler/FateFiberParity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-fiber-parity"
+      ],
+      "line": 114,
+      "module": "Problems.Juggler.FateFiberParity",
+      "name": "xval_step_mono",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The `OE` fiber `\u03a6(m)`: odd `n` with `m\u2074 \u2264 n\u00b3 < (m+1)\u2074`.",
+      "file": "formal/Problems/Juggler/FateFiberParity.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-fiber-parity"
+      ],
+      "line": 125,
+      "module": "Problems.Juggler.FateFiberParity",
+      "name": "oeFiber",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateFiberParity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-fiber-parity"
+      ],
+      "line": 128,
+      "module": "Problems.Juggler.FateFiberParity",
+      "name": "mem_oeFiber",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Even images on the fiber.",
+      "file": "formal/Problems/Juggler/FateFiberParity.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-fiber-parity"
+      ],
+      "line": 146,
+      "module": "Problems.Juggler.FateFiberParity",
+      "name": "evenImageCount",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The fiber is an interval of odd integers: an odd `n` between two members is a member.",
+      "file": "formal/Problems/Juggler/FateFiberParity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-fiber-parity"
+      ],
+      "line": 150,
+      "module": "Problems.Juggler.FateFiberParity",
+      "name": "oeFiber_between",
+      "trust": "kernel"
+    },
+    {
+      "doc": "With `n\u2080 = min \u03a6(m)` and `n\u2081 = max \u03a6(m)`, the fiber is `{n\u2080 + 2j : j < (n\u2081 - n\u2080)/2 + 1}`.",
+      "file": "formal/Problems/Juggler/FateFiberParity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-fiber-parity"
+      ],
+      "line": 157,
+      "module": "Problems.Juggler.FateFiberParity",
+      "name": "oeFiber_eq_image",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The fiber's cardinality is the number of enumerated indices.",
+      "file": "formal/Problems/Juggler/FateFiberParity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-fiber-parity"
+      ],
+      "line": 182,
+      "module": "Problems.Juggler.FateFiberParity",
+      "name": "oeFiber_card",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The even-image count, enumerated.",
+      "file": "formal/Problems/Juggler/FateFiberParity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-fiber-parity"
+      ],
+      "line": 188,
+      "module": "Problems.Juggler.FateFiberParity",
+      "name": "evenImageCount_eq",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`n \u2208 \u03a6(m)` gives `m^{4/3} \u2264 n` as reals.",
+      "file": "formal/Problems/Juggler/FateFiberParity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-fiber-parity"
+      ],
+      "line": 199,
+      "module": "Problems.Juggler.FateFiberParity",
+      "name": "fiber_ge_rpow",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`n \u2208 \u03a6(m)` gives `n < (m+1)^{4/3}` as reals.",
+      "file": "formal/Problems/Juggler/FateFiberParity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-fiber-parity"
+      ],
+      "line": 211,
+      "module": "Problems.Juggler.FateFiberParity",
+      "name": "fiber_lt_rpow",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`\u221a(m^{4/3}) = m^{2/3}`.",
+      "file": "formal/Problems/Juggler/FateFiberParity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-fiber-parity"
+      ],
+      "line": 223,
+      "module": "Problems.Juggler.FateFiberParity",
+      "name": "sqrt_rpow_four_thirds",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Bernoulli, lower: `(m+1)^{4/3} \u2265 m^{4/3} + (4/3) m^{1/3}` for `m \u2265 1`.",
+      "file": "formal/Problems/Juggler/FateFiberParity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-fiber-parity"
+      ],
+      "line": 229,
+      "module": "Problems.Juggler.FateFiberParity",
+      "name": "rpow_four_thirds_succ_ge",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Bernoulli, upper: `(m+1)^{2/3} \u2264 m^{2/3} + (2/3) m^{-1/3}` for `m \u2265 1`.",
+      "file": "formal/Problems/Juggler/FateFiberParity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-fiber-parity"
+      ],
+      "line": 247,
+      "module": "Problems.Juggler.FateFiberParity",
+      "name": "rpow_two_thirds_succ_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The fiber holds at least `(2/3) m^{1/3} - 1` odd integers (`m \u2265 1`).",
+      "file": "formal/Problems/Juggler/FateFiberParity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-fiber-parity"
+      ],
+      "line": 264,
+      "module": "Problems.Juggler.FateFiberParity",
+      "name": "fiber_card_ge",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`A_m = (3/2) m^{2/3}`, the lower step of the fiber.",
+      "file": "formal/Problems/Juggler/FateFiberParity.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-fiber-parity"
+      ],
+      "line": 323,
+      "module": "Problems.Juggler.FateFiberParity",
+      "name": "Am",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`\u03b1_m = {A_m}`.",
+      "file": "formal/Problems/Juggler/FateFiberParity.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-fiber-parity"
+      ],
+      "line": 326,
+      "module": "Problems.Juggler.FateFiberParity",
+      "name": "alpha",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`\u03b5_m = m^{-1/3}`, the scale of the step drift.",
+      "file": "formal/Problems/Juggler/FateFiberParity.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-fiber-parity"
+      ],
+      "line": 329,
+      "module": "Problems.Juggler.FateFiberParity",
+      "name": "eps",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The paper's goodness, unpacked: `\u2016\u03b1_m\u2016 \u2265 22 \u03b5_m` and `\u2016\u03b1_m - 1/2\u2016 \u2265 2 \u03b5_m`.",
+      "file": "formal/Problems/Juggler/FateFiberParity.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-fiber-parity"
+      ],
+      "line": 332,
+      "module": "Problems.Juggler.FateFiberParity",
+      "name": "Good",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateFiberParity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-fiber-parity"
+      ],
+      "line": 336,
+      "module": "Problems.Juggler.FateFiberParity",
+      "name": "eps_pos",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateFiberParity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-fiber-parity"
+      ],
+      "line": 339,
+      "module": "Problems.Juggler.FateFiberParity",
+      "name": "eps_mul_cbrt",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`\u03b5_m \u2264 1/100` for `m \u2265 10^6`.",
+      "file": "formal/Problems/Juggler/FateFiberParity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-fiber-parity"
+      ],
+      "line": 346,
+      "module": "Problems.Juggler.FateFiberParity",
+      "name": "eps_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The upper step `(3/2)(m+1)^{2/3}` is at most `A_m + \u03b5_m`.",
+      "file": "formal/Problems/Juggler/FateFiberParity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-fiber-parity"
+      ],
+      "line": 361,
+      "module": "Problems.Juggler.FateFiberParity",
+      "name": "upper_step_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`n_j = n\u2080 + 2j`.",
+      "file": "formal/Problems/Juggler/FateFiberParity.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-fiber-parity"
+      ],
+      "line": 374,
+      "module": "Problems.Juggler.FateFiberParity",
+      "name": "nseq",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The enumeration length `H`.",
+      "file": "formal/Problems/Juggler/FateFiberParity.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-fiber-parity"
+      ],
+      "line": 378,
+      "module": "Problems.Juggler.FateFiberParity",
+      "name": "Hlen",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateFiberParity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-fiber-parity"
+      ],
+      "line": 381,
+      "module": "Problems.Juggler.FateFiberParity",
+      "name": "nseq_mem",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateFiberParity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-fiber-parity"
+      ],
+      "line": 385,
+      "module": "Problems.Juggler.FateFiberParity",
+      "name": "nseq_succ",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The step of `x` along the fiber, bounded below by `A_m`.",
+      "file": "formal/Problems/Juggler/FateFiberParity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-fiber-parity"
+      ],
+      "line": 389,
+      "module": "Problems.Juggler.FateFiberParity",
+      "name": "step_ge",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The step of `x` along the fiber, bounded above by `A_m + \u03b5_m`.",
+      "file": "formal/Problems/Juggler/FateFiberParity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-fiber-parity"
+      ],
+      "line": 402,
+      "module": "Problems.Juggler.FateFiberParity",
+      "name": "step_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateFiberParity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-fiber-parity"
+      ],
+      "line": 416,
+      "module": "Problems.Juggler.FateFiberParity",
+      "name": "step_mono'",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The number of enumerated indices is the fiber's cardinality.",
+      "file": "formal/Problems/Juggler/FateFiberParity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-fiber-parity"
+      ],
+      "line": 425,
+      "module": "Problems.Juggler.FateFiberParity",
+      "name": "Hlen_eq",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The even images, enumerated.",
+      "file": "formal/Problems/Juggler/FateFiberParity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-fiber-parity"
+      ],
+      "line": 428,
+      "module": "Problems.Juggler.FateFiberParity",
+      "name": "evenImageCount_eq'",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The odd images are the rest.",
+      "file": "formal/Problems/Juggler/FateFiberParity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-fiber-parity"
+      ],
+      "line": 433,
+      "module": "Problems.Juggler.FateFiberParity",
+      "name": "oddImageCount_eq'",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Lemma 4.2 (fiber parity).** On a good fiber with `m \u2265 10^6`, at least `H_m/3 - 2` images are even and at least `H_m/3 - 2` are odd.",
+      "file": "formal/Problems/Juggler/FateFiberParity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-fiber-parity"
+      ],
+      "line": 454,
+      "module": "Problems.Juggler.FateFiberParity",
+      "name": "fiber_parity_good",
+      "trust": "kernel"
+    },
+    {
       "doc": "`n` is a member of `A` below which `A` has no positive member.",
       "file": "formal/Problems/Juggler/FateFirstLetter.lean",
       "kind": "def",
@@ -80870,6 +81362,7 @@
         "Problems.Juggler.FateChernoff",
         "Problems.Juggler.FateContagion",
         "Problems.Juggler.FateCylinderCorollary",
+        "Problems.Juggler.FateFiberParity",
         "Problems.Juggler.FateFirstLetter",
         "Problems.Juggler.FatePressure",
         "Problems.Juggler.FateRecursion",
@@ -81892,6 +82385,21 @@
         {
           "id": "J-fate-cylinder-corollary",
           "statement": "Paper C Corollary 8.4 (the conjecture from a cylinder bound), as the composition of Theorem 8.3 in explicit form (row J-fate-tao-union-bound) with Theorem 7.2 (FateTaoReduction, tao_rate_implies_conjecture, the contagion bound of Theorem 5.3 as hypothesis). CylinderBound N\u2080 C A y is the paper's H(C, A) at the scale y: every O-rooted L(y)-bad cylinder of depth d(y) = \u2308C L(y)\u2309 holds at most 2^{\u2212(d\u22121)} y/2 + y (log y)^{\u2212A} starts. (i) one_le_depth: d(y) \u2265 1 once 2y > N\u2080. (ii) oddFailures_eventually_le: for N\u2080 \u2265 2 with the floor, C \u2265 5, A > C + e(C), any e < e(C), and H(C, A) at all y \u2265 y\u2081, there is y\u2080 with #{odd failures in (y, 2y]} \u2264 y (log y)^{\u2212e} for all y \u2265 y\u2080; proof: \u039b = log 2y / log N\u2080 satisfies log y / log N\u2080 \u2264 \u039b \u2264 2 log y / log N\u2080 for y \u2265 2, so the explicit bound y \u039b^{\u2212e(C)} + 2 \u039b^C y (log y)^{\u2212A} is at most (log N\u2080)^{e(C)} y (log y)^{\u2212e} (log y)^{\u2212(e(C)\u2212e)} + 2 (2/log N\u2080)^C y (log y)^{\u2212e} (log y)^{\u2212(A\u2212C\u2212e)}, and each of the two negative powers is at most 1/(2 (log N\u2080)^{e(C)}) and 1/(4 (2/log N\u2080)^C) once log y exceeds the thresholds supplied by exists_rpow_gt; so each term is at most y (log y)^{\u2212e}/2. (iii) cylinder_bound_implies_conjecture: if H(C, A) holds at all large scales with C \u2265 5 and A > C + e(C), and for the failure set the contagion bound K (log x)^\u03bb \u2264 logMass holds for x \u2265 x\u2080 with 0 < \u03bb < 1 and 1 \u2212 \u03bb < e(C), then every positive integer reaches 1 (e := (1 \u2212 \u03bb + e(C))/2). Kernel-checked, axioms propext, Classical.choice, Quot.sound only. The contagion bound is a hypothesis; the paper's numerical form C \u2265 19 (e(19) = 0.527 > 0.5074 = 1 \u2212 \u03bb**) is about the root \u03bb** and is checked by paper_c_audit, not by Lean. Conditional on the cylinder bound; nothing here proves H(C, A); not a halt theorem.",
+          "tag": "EXACT \u2014 LEAN VERIFIED"
+        }
+      ]
+    },
+    "Problems.Juggler.FateFiberParity": {
+      "declarations": 41,
+      "file": "formal/Problems/Juggler/FateFiberParity.lean",
+      "imports": [
+        "Problems.Juggler.FateContagion",
+        "Problems.Juggler.FateSweepMonotone"
+      ],
+      "ledger": [
+        {
+          "id": "J-fate-fiber-parity",
+          "statement": "Paper C Lemma 4.2 (fiber parity). For m \u2265 10^6 with A_m = (3/2) m^{2/3}, \u03b1_m = {A_m}, \u03b5_m = m^{\u22121/3}, call m good if 22 \u03b5_m \u2264 \u03b1_m \u2264 1 \u2212 22 \u03b5_m and (\u03b1_m \u2264 1/2 \u2212 2 \u03b5_m or \u03b1_m \u2265 1/2 + 2 \u03b5_m) \u2014 the paper's \u2016\u03b1_m\u2016 \u2265 22 m^{\u22121/3} and \u2016\u03b1_m \u2212 1/2\u2016 \u2265 2 m^{\u22121/3} unpacked (FiberParity.Good). On the OE fiber \u03a6(m) = {n odd : m\u2074 \u2264 n\u00b3 < (m+1)\u2074} (oeFiber) with H_m = |\u03a6(m)| and G_m = #{n \u2208 \u03a6(m) : Nat.sqrt(n\u00b3) even} (evenImageCount): if m is good then G_m \u2265 H_m/3 \u2212 2 and H_m \u2212 G_m \u2265 H_m/3 \u2212 2 (fiber_parity_good). Proof: x(n) = n \u221an / 2 has \u230a2 x(n)\u230b = Nat.sqrt(n\u00b3) (floor_two_xval, Real.floor_real_sqrt_eq_nat_sqrt), so the image is even iff the half-cell of x(n) is even; the step x(n+2) \u2212 x(n) = (u\u00b2 + uv + v\u00b2)/(u + v) with u = \u221a(n+2), v = \u221an (xval_step), lies in [(3/2)v, (3/2)u] by (2u+v)(u\u2212v) \u2265 0 and (u+2v)(u\u2212v) \u2265 0 (xval_step_ge, xval_step_le) and is nondecreasing since the upper bound at n is the lower bound at n+2 (xval_step_mono); the fiber is the odd integers of an interval, enumerated as n\u2080 + 2j (oeFiber_eq_image), with at least (2/3) m^{1/3} \u2212 1 members (fiber_card_ge, Bernoulli on (1+1/m)^{4/3}); along the fiber the steps lie in [A_m, A_m + \u03b5_m] (step_ge, step_le; the upper step at n_{j+1} \u2208 \u03a6(m) gives (3/2)(m+1)^{2/3} \u2264 A_m + \u03b5_m by Bernoulli on (1+1/m)^{2/3}). Case 1 (\u03b1_m \u2264 1/2 \u2212 2\u03b5_m): y_j = x_j \u2212 j\u230aA_m\u230b has nondecreasing steps in [\u03b1_m, \u03b1_m + \u03b5_m], b/a \u2264 21/20 and (H\u22121)a \u2265 44/3 \u2212 44\u03b5_m \u2265 12, and Sweep.sweep_monotone_cell (row J-fate-monotone-pairing-repair) counts both parities. Case 2 (\u03b1_m \u2265 1/2 + 2\u03b5_m): z_j = j(\u230aA_m\u230b+1) \u2212 x_j has nonincreasing steps in [1 \u2212 \u03b1_m \u2212 \u03b5_m, 1 \u2212 \u03b1_m], (H\u22121)a \u2265 14 \u2212 42\u03b5_m \u2265 12, and sweep_monotone_ceil counts \u23082z_j\u2309 \u2261 \u230a2x_j\u230b (mod 2). Kernel-checked, axioms propext, Classical.choice, Quot.sound only. The paper's \u03b7_m \u2264 1.02 m^{\u22121/3} becomes \u03b5_m; nothing downstream changes. Lemma 4.3 (bad fibers are thin) stays a human proof; not a statement about all fibers; not a halt theorem.",
           "tag": "EXACT \u2014 LEAN VERIFIED"
         }
       ]
@@ -83393,6 +83901,7 @@
         "Problems.Juggler.FateChernoff",
         "Problems.Juggler.FateContagion",
         "Problems.Juggler.FateCylinderCorollary",
+        "Problems.Juggler.FateFiberParity",
         "Problems.Juggler.FateFirstLetter",
         "Problems.Juggler.FatePressure",
         "Problems.Juggler.FateRecursion",
@@ -83703,13 +84212,13 @@
     }
   },
   "totals": {
-    "declarations": 6144,
-    "declarations_with_a_ledger_row": 4174,
-    "ledger_rows_naming_a_file": 386,
-    "modules": 265,
+    "declarations": 6185,
+    "declarations_with_a_ledger_row": 4215,
+    "ledger_rows_naming_a_file": 387,
+    "modules": 266,
     "trust": {
       "compiler": 57,
-      "kernel": 6087
+      "kernel": 6128
     }
   }
 }
