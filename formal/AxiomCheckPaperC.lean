@@ -15,6 +15,38 @@ import Problems.JugglerFatePaper
 
 open Problems.Juggler
 
+#print axioms FiberParity.Hlen_eq
+#print axioms FiberParity.cell_xval_even_iff
+#print axioms FiberParity.cell_xval_odd_iff
+#print axioms FiberParity.eps_le
+#print axioms FiberParity.eps_mul_cbrt
+#print axioms FiberParity.eps_pos
+#print axioms FiberParity.evenImageCount_eq
+#print axioms FiberParity.evenImageCount_eq'
+#print axioms FiberParity.fiber_card_ge
+#print axioms FiberParity.fiber_ge_rpow
+#print axioms FiberParity.fiber_lt_rpow
+#print axioms FiberParity.fiber_parity_good
+#print axioms FiberParity.floor_two_xval
+#print axioms FiberParity.mem_oeFiber
+#print axioms FiberParity.nseq_mem
+#print axioms FiberParity.nseq_succ
+#print axioms FiberParity.oddImageCount_eq'
+#print axioms FiberParity.oeFiber_between
+#print axioms FiberParity.oeFiber_card
+#print axioms FiberParity.oeFiber_eq_image
+#print axioms FiberParity.rpow_four_thirds_succ_ge
+#print axioms FiberParity.rpow_two_thirds_succ_le
+#print axioms FiberParity.sqrt_rpow_four_thirds
+#print axioms FiberParity.step_ge
+#print axioms FiberParity.step_le
+#print axioms FiberParity.step_mono'
+#print axioms FiberParity.two_xval
+#print axioms FiberParity.upper_step_le
+#print axioms FiberParity.xval_step
+#print axioms FiberParity.xval_step_ge
+#print axioms FiberParity.xval_step_le
+#print axioms FiberParity.xval_step_mono
 #print axioms LBad_count_le
 #print axioms LBad_oddCount_ge
 #print axioms LBad_of_envelopeBad

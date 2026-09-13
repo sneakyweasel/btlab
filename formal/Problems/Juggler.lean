@@ -153,6 +153,7 @@ import Problems.Juggler.CubicCriticalLocation
 import Problems.Juggler.CriticalCostKernel
 import Problems.Juggler.CubicRemainderAssembly
 import Problems.Juggler.FateCylinderCorollary
+import Problems.Juggler.FateFiberParity
 
 /-!
 # Juggler laboratory barrel

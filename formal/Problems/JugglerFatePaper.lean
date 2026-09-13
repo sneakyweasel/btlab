@@ -11,11 +11,12 @@ import Problems.Juggler.FatePressure
 import Problems.Juggler.FateTaoReduction
 import Problems.Juggler.FateSeed
 import Problems.Juggler.FateCylinderCorollary
+import Problems.Juggler.FateFiberParity
 
 /-!
 # Paper C barrel — everything the repository checks for the fate-contagion note
 
-`docs/theory/juggler_fate_almost_all_note.md`. This file imports exactly the thirteen modules
+`docs/theory/juggler_fate_almost_all_note.md`. This file imports exactly the fourteen modules
 that paper cites and nothing else, so that a reader can build the formal side of Paper C on
 its own rather than selecting modules by hand out of the umbrella `Problems.Juggler`. It is a
 laboratory target, not a claim: building it does **not** corroborate the paper's counting.
@@ -69,9 +70,15 @@ laboratory target, not a claim: building it does **not** corroborate the paper's
   positive integer reaches `1` (`cylinder_bound_implies_conjecture`); the absorption of the
   explicit bound of Theorem 8.3 into the rate `y (log y)^{-e}` is `oddFailures_eventually_le`.
 
+* `FateFiberParity` — Lemma 4.2: on a good fiber (`FiberParity.Good`, the paper's
+  `‖α_m‖ ≥ 22 m^{-1/3}` and `‖α_m - 1/2‖ ≥ 2 m^{-1/3}` unpacked) with `m ≥ 10^6`, at least
+  `H_m/3 - 2` images are even and at least `H_m/3 - 2` are odd
+  (`FiberParity.fiber_parity_good`), by Lemma 4.1' on `x(n) = n √n / 2` whose steps along the
+  fiber are `(u² + uv + v²)/(u + v)` with `u = √(n+2)`, `v = √n`.
+
 ## What is not here, and cannot be
 
-Lemmas 4.2–4.3, Proposition 4.4 (the block average), the
+Lemma 4.3, Proposition 4.4 (the block average), the
 share law 4.5–4.6, Theorem 5.3 itself (its seed 5.2 and recursion 5.1 are here; the
 production inequality (5.2) and the root check `ζ > 0` are not), Theorem 5.3's corollaries,
 the asymptotic form of Theorem 8.3, Theorem 9.1, the asymptotic form of

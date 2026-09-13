@@ -191,11 +191,11 @@ LAYERS: dict[str, Path] = {
     "OstrowskiNumeration": JUGGLER_DIR / "OstrowskiNumeration.lean",
     "OstrowskiBlocks": JUGGLER_DIR / "OstrowskiBlocks.lean",
     "HugRotation": JUGGLER_DIR / "HugRotation.lean",
-    "HugChargeEnvelope": JUGGLER_DIR / "HugChargeEnvelope.lean",
-    "RotationAverage": JUGGLER_DIR / "RotationAverage.lean",
     "FanLaw": JUGGLER_DIR / "FanLaw.lean",
     "WalkTransport": JUGGLER_DIR / "WalkTransport.lean",
     "WalkChargeMax": JUGGLER_DIR / "WalkChargeMax.lean",
+    "HugChargeEnvelope": JUGGLER_DIR / "HugChargeEnvelope.lean",
+    "RotationAverage": JUGGLER_DIR / "RotationAverage.lean",
     "DefectFinance": JUGGLER_DIR / "DefectFinance.lean",
     "FinanceTransfer": JUGGLER_DIR / "FinanceTransfer.lean",
     "AboveAnchorWalk": JUGGLER_DIR / "AboveAnchorWalk.lean",
@@ -262,6 +262,7 @@ LAYERS: dict[str, Path] = {
     "CriticalCostKernel": JUGGLER_DIR / "CriticalCostKernel.lean",
     "CubicRemainderAssembly": JUGGLER_DIR / "CubicRemainderAssembly.lean",
     "FateCylinderCorollary": JUGGLER_DIR / "FateCylinderCorollary.lean",
+    "FateFiberParity": JUGGLER_DIR / "FateFiberParity.lean",
 }
 
 # Sources belonging to other targets or historical model interfaces. Keeping
