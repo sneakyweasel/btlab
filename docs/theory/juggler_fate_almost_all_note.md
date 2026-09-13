@@ -318,7 +318,7 @@ type Paper B proves enters Appendix C as an explicit hypothesis.
 
 Statements carry one of four roles. *Lean*: the exact combinatorial
 layer is formalized in Lean 4; the root `formal/Problems/JugglerFatePaper.lean`
-imports exactly the fourteen modules this paper cites and builds with
+imports exactly the fifteen modules this paper cites and builds with
 `lake build Problems.JugglerFatePaper`, without `sorry` and without
 `native_decide`; `formal/AxiomCheckPaperC.lean` prints the axiom
 dependencies of every cited name and `AxiomCheckPaperC.expected`
@@ -340,7 +340,7 @@ constants; they prove nothing and are labelled wherever they appear.
 | Sweep lemma (Lemma 4.1), both half-cell conventions | Lean |
 | Monotone pairing (Lemma 4.1') | Lean |
 | Fiber parity (Lemma 4.2), goodness unpacked | Lean, through Lemma 4.1' |
-| Thin fibers (Lemma 4.3) | human proof |
+| Thin fibers (Lemma 4.3): the count on \((u,2u]\) and the log-mass of the bad \(m>U\) | Lean |
 | Block average (Proposition 4.4), asymptotic | human proof |
 | Share law and its three corollaries (Lemma 4.5, Corollary 4.6) | human proof |
 | Cube fibers full or alternating (Lemma 4.7) | Lean |
@@ -726,6 +726,23 @@ most \(0.882u^{2/3}+2\) times, and each pass through an arc of length
 is at most \((0.882u^{2/3}+2)(48\cdot 3^{1/3}+2)\le 63\,u^{2/3}\) for
 \(u\ge 10^6\). Summing \(63\,(2^iU)^{-1/3}\) over \(i\ge 0\) gives
 \(63U^{-1/3}/(1-2^{-1/3})\le 306\,U^{-1/3}\). \(\square\)
+
+Lean: `FiberParity.bad_count_le` and `FiberParity.bad_logMass_le` in
+`formal/Problems/Juggler/FateThinFibers.lean`, with badness the
+negation of `FiberParity.Good` and the log-mass bound stated for every
+finite range \((U,N]\). The count is the paper's: the increments of
+\(\varphi\) lie in \([(m+1)^{-1/3},m^{-1/3}]\) by Bernoulli both ways;
+a bad \(m>u\) has \(\{\varphi(m)+22u^{-1/3}\}<44u^{-1/3}\) or
+\(\{\varphi(m)\}\in[\tfrac12-2u^{-1/3},\tfrac12+2u^{-1/3})\), so the
+wrap-around arc is a single arc after the shift; on an arc of width
+\(w\) a sequence increasing by at least \(d\) per step holds at most
+\(w/d+1\) points per integer window (`arc_count_le`), and at most
+\(\varphi(2u)-\varphi(u)+2\) windows are met. The formal count uses
+\(d=(2u)^{-1/3}\), sharper than the \((3u)^{-1/3}\) above, so
+\(w/d\) is \(44\cdot 2^{1/3}\) and \(4\cdot 2^{1/3}\) and the total
+\((0.882u^{2/3}+2)(48\cdot 2^{1/3}+2)\) clears \(63u^{2/3}\) with room.
+The dyadic sum uses \(2^{-1/3}\le 0.794\), whence
+\(63/(1-2^{-1/3})\le 306\).
 
 ### 4.2 The block average
 
@@ -2356,7 +2373,7 @@ No nontrivial cycle or unbounded orbit is excluded by this paper.
 ## Appendix A. Lean names
 
 All in `formal/Problems/Juggler/FateContagion.lean` unless noted. The
-root `formal/Problems/JugglerFatePaper.lean` imports exactly the fourteen
+root `formal/Problems/JugglerFatePaper.lean` imports exactly the fifteen
 modules named here and builds with `lake build Problems.JugglerFatePaper`
 without `sorry` and without `native_decide`;
 `formal/AxiomCheckPaperC.expected` records the axioms of every name
@@ -2387,7 +2404,8 @@ abstract lemmas listed here, not the analytic density estimates.
 | Theorem 7.2 (Tao-type rate, contagion as a hypothesis), in `Problems/Juggler/FateTaoReduction.lean` | `logMass_le_oddLogMass`, `oddLogMass_le_of_dyadic`, `tao_rate_implies_empty`, `tao_rate_implies_conjecture` |
 | Corollary 8.4 (the conjecture from a cylinder bound), in `Problems/Juggler/FateCylinderCorollary.lean` | `CylinderBound`, `one_le_depth`, `chernoffExponent_nonneg`, `oddFailures_eventually_le`, `cylinder_bound_implies_conjecture` |
 | Lemma 4.2 (fiber parity), in `Problems/Juggler/FateFiberParity.lean` | `FiberParity.xval`, `FiberParity.two_xval`, `FiberParity.floor_two_xval`, `FiberParity.cell_xval_even_iff`, `FiberParity.xval_step`, `FiberParity.xval_step_ge`, `FiberParity.xval_step_le`, `FiberParity.xval_step_mono`, `FiberParity.oeFiber`, `FiberParity.mem_oeFiber`, `FiberParity.oeFiber_eq_image`, `FiberParity.oeFiber_card`, `FiberParity.evenImageCount`, `FiberParity.fiber_ge_rpow`, `FiberParity.fiber_lt_rpow`, `FiberParity.rpow_four_thirds_succ_ge`, `FiberParity.rpow_two_thirds_succ_le`, `FiberParity.fiber_card_ge`, `FiberParity.Am`, `FiberParity.alpha`, `FiberParity.eps`, `FiberParity.Good`, `FiberParity.eps_le`, `FiberParity.step_ge`, `FiberParity.step_le`, `FiberParity.fiber_parity_good` |
-| Lemma 4.3, Proposition 4.4, Theorem 5.3, Theorem 7.3, Sections 8--10 except Lemma 8.2, the explicit form of Theorem 8.3, Corollary 8.4, the exact form of Theorem 9.2 and Proposition 9.3, Appendix C | human proofs |
+| Lemma 4.3 (thin fibers), in `Problems/Juggler/FateThinFibers.lean` | `FiberParity.span_ge_of_step`, `FiberParity.arc_count_le`, `FiberParity.Am_step_le`, `FiberParity.Am_step_ge`, `FiberParity.eps_antitone`, `FiberParity.bad_mem_arc`, `FiberParity.two_rpow_third_le`, `FiberParity.two_rpow_two_thirds_le`, `FiberParity.rpow_two_thirds_ge`, `FiberParity.eps_div_eps_double`, `FiberParity.Am_double_sub_le`, `FiberParity.bad_count_le`, `FiberParity.bad_block_logMass_le`, `FiberParity.bad_sum_dyadic_le`, `FiberParity.eps_pow_two_mul`, `FiberParity.two_rpow_neg_third_le`, `FiberParity.bad_logMass_le` |
+| Proposition 4.4, Theorem 5.3, Theorem 7.3, Sections 8--10 except Lemma 8.2, the explicit form of Theorem 8.3, Corollary 8.4, the exact form of Theorem 9.2 and Proposition 9.3, Appendix C | human proofs |
 
 ## Appendix B. Constants and artifacts
 
@@ -2485,13 +2503,17 @@ use the roots of the displayed defining equations.
 
   SHA-256: `4bdf21105e14b32d233a8f38f08e51dea5c86d355b4b341baaa54e0d96ccba41`
 
+- `formal/Problems/Juggler/FateThinFibers.lean`
+
+  SHA-256: `e1ce5621421dc3d69cafcde46f32fa42b0280239b23d61d44d9eec1676c67146`
+
 - `formal/Problems/JugglerFatePaper.lean`
 
-  SHA-256: `ec93feda3d80ccae45fc9f289c1b90a3cfb81feefff054cd8d53757a16f7465d`
+  SHA-256: `e55de62252e149d60815c5939aed7f7373c8b94f7b041a395049b9b8fb0b29ec`
 
 - `formal/AxiomCheckPaperC.expected`
 
-  SHA-256: `96abc5b68ae1fbf807bf69a271d850e93afd3183602d1c6ead3826566f300c81`
+  SHA-256: `ab93666ada304709e27c62447a2c462b2f98b7960d5ec12bc3f4320d72382869`
 
 - `src/research/juggler_sequence/fate_contagion.py`
 

@@ -4203,7 +4203,8 @@
         "J-fate-tao-union-bound",
         "J-fate-pressure-form",
         "J-fate-cylinder-corollary",
-        "J-fate-fiber-parity"
+        "J-fate-fiber-parity",
+        "J-fate-thin-fibers"
       ],
       "aliases": [],
       "nk_cluster": null
@@ -6174,7 +6175,8 @@
         "formal/Problems/Juggler/CriticalCostKernel.lean",
         "formal/Problems/Juggler/CubicRemainderAssembly.lean",
         "formal/Problems/Juggler/FateCylinderCorollary.lean",
-        "formal/Problems/Juggler/FateFiberParity.lean"
+        "formal/Problems/Juggler/FateFiberParity.lean",
+        "formal/Problems/Juggler/FateThinFibers.lean"
       ],
       "conjecture": [],
       "decision": null,

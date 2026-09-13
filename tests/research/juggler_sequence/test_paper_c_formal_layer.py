@@ -57,16 +57,17 @@ def test_the_four_new_results_are_asked_about() -> None:
 def test_the_papers_table_carries_the_lean_rows() -> None:
     lean = [r[0] for r in verification_table() if r[1].startswith("Lean")]
     joined = " ".join(lean)
-    for key in ("Lemma 4.1)", "Lemma 4.1')", "Lemma 4.2)", "Lemma 5.1", "Lemma 5.2",
-                "Proposition 9.3", "Lemma 4.7", "Theorem 6.1", "Theorem 7.2", "Corollary 8.4"):
+    for key in ("Lemma 4.1)", "Lemma 4.1')", "Lemma 4.2)", "Lemma 4.3)", "Lemma 5.1",
+                "Lemma 5.2", "Proposition 9.3", "Lemma 4.7", "Theorem 6.1", "Theorem 7.2",
+                "Corollary 8.4"):
         assert key in joined, key
     human = [r[0] for r in verification_table() if r[1].startswith("human")]
     joined_h = " ".join(human)
     assert "Theorem 5.3" in joined_h
     assert "Proposition 4.4" in joined_h
-    assert "Lemma 4.3" in joined_h
     assert "4.1'" not in joined_h
     assert "4.2" not in joined_h
+    assert "4.3" not in joined_h
 
 
 def test_appendix_a_names_are_declared_reachable_and_kernel_checked() -> None:

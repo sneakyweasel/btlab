@@ -44215,3 +44215,30 @@ import graph, which is what the gate was checking by hand.
 Paper C: eighteen Lean rows, seven human. Below the block average only
 Lemma 4.3 is left.
 
+## Lemma 4.3, and the elementary floor of Paper C is Lean
+
+The thin-fibers lemma is a count: how many m in (u, 2u] are bad, and
+how much log-mass the bad m above U carry. The paper's proof says
+"passes through an arc" and "each pass takes at most w (3u)^{1/3} + 1
+values", which is right and is exactly the fibre-per-integer-window
+argument the sweep lemma already uses in Lean. So the arc count is a
+general lemma now: a sequence increasing by at least d per step visits
+at most w/d + 1 points of an arc of width w per integer window, and
+the number of windows is at most the total increase plus two.
+
+Two small things the formal version changed. Badness has a wrap-around
+arc, the points within 22 u^{-1/3} of an integer; shifting the sequence
+by 22 u^{-1/3} makes it a single arc [0, 44 u^{-1/3}), so there are two
+arcs and two extra points, as the paper's "+2" wanted. And the
+separation d can be (2u)^{-1/3} rather than (3u)^{-1/3}, since the
+increment at m is at least (m+1)^{-1/3} and m + 1 <= 2u on the block;
+that makes w/d = 44 * 2^{1/3} instead of 44 * 3^{1/3}, and the constant
+63 has room to spare. The dyadic sum is a geometric series in
+2^{-1/3}, and 63/(1 - 2^{-1/3}) <= 306 needs 2^{-1/3} <= 0.794, which is
+0.794^3 >= 1/2.
+
+Paper C's table: nineteen Lean rows, six human. Below the block average
+nothing is left; what remains human is the analysis -- the block
+average, the share law, the contagion theorem, the identity (6.1),
+Theorem 7.3 and the asymptotic bookkeeping of Sections 8 to 10.
+
