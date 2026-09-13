@@ -2,6 +2,7 @@ import Mathlib.Data.Int.CardIntervalMod
 import Mathlib.Algebra.Order.BigOperators.Group.Finset
 import Mathlib.Algebra.Order.Floor.Ring
 import Mathlib.Tactic
+import Problems.Juggler.FateWindowCount
 
 namespace Problems.Juggler
 
@@ -116,38 +117,29 @@ section Main
 
 variable {x : ℕ → ℝ} {H : ℕ} {a b : ℝ}
 
+/-- The gaps of `Steps` are the lower steps of `WindowCount` on `[0, H-1]`. -/
+theorem stepGe_of_steps (hs : Steps x H a b) : WindowCount.StepGe x 0 (H - 1) a :=
+  fun m _ hm => (hs m (by omega)).1
+
+/-- The gaps of `Steps` are the upper steps of `WindowCount` on `[0, H-1]`. -/
+theorem stepLe_of_steps (hs : Steps x H a b) : WindowCount.StepLe x 0 (H - 1) b :=
+  fun m _ hm => (hs m (by omega)).2
+
 theorem step_lower (hs : Steps x H a b) :
     ∀ d i, i + d < H → x i + d * a ≤ x (i + d) := by
-  intro d
-  induction d with
-  | zero => intro i _; simp
-  | succ d ih =>
-      intro i hi
-      have h1 := ih i (by omega)
-      have h2 := (hs (i + d) (by omega)).1
-      rw [← add_assoc]
-      push_cast
-      linarith
+  intro d i hi
+  have := WindowCount.span_ge (stepGe_of_steps hs) d i (Nat.zero_le _) (by omega)
+  linarith
 
 theorem step_upper (hs : Steps x H a b) :
     ∀ d i, i + d < H → x (i + d) ≤ x i + d * b := by
-  intro d
-  induction d with
-  | zero => intro i _; simp
-  | succ d ih =>
-      intro i hi
-      have h1 := ih i (by omega)
-      have h2 := (hs (i + d) (by omega)).2
-      rw [← add_assoc]
-      push_cast
-      linarith
+  intro d i hi
+  have := WindowCount.span_le (stepLe_of_steps hs) d i (Nat.zero_le _) (by omega)
+  linarith
 
 theorem mono (hs : Steps x H a b) (ha : 0 < a) {i j : ℕ} (hij : i ≤ j) (hj : j < H) :
-    x i ≤ x j := by
-  have := step_lower hs (j - i) i (by omega)
-  rw [Nat.add_sub_cancel' hij] at this
-  have : (0 : ℝ) ≤ ((j - i : ℕ) : ℝ) * a := by positivity
-  linarith
+    x i ≤ x j :=
+  WindowCount.mono_of_stepGe (stepGe_of_steps hs) ha.le (Nat.zero_le _) hij (by omega)
 
 theorem cell_mono (hs : Steps x H a b) (ha : 0 < a) {i j : ℕ} (hij : i ≤ j) (hj : j < H) :
     cell (x i) ≤ cell (x j) :=
@@ -164,38 +156,16 @@ theorem cell_succ_le (hs : Steps x H a b) (hb : b ≤ 1 / 2) {j : ℕ} (hj : j +
 /-- Every cell holds at most `⌊1/(2a)⌋ + 1` terms. -/
 theorem fiber_card_le (hs : Steps x H a b) (ha : 0 < a) (k : ℤ) :
     #{j ∈ range H | cell (x j) = k} ≤ ⌊1 / (2 * a)⌋₊ + 1 := by
-  set S := {j ∈ range H | cell (x j) = k} with hS
-  by_cases hne : S.Nonempty
-  · set j₀ := S.min' hne
-    set j₁ := S.max' hne
-    have hj₀ : j₀ ∈ S := Finset.min'_mem S hne
-    have hj₁ : j₁ ∈ S := Finset.max'_mem S hne
-    have hj₀₁ : j₀ ≤ j₁ := Finset.min'_le S j₁ hj₁
-    rw [hS, Finset.mem_filter, Finset.mem_range] at hj₀ hj₁
-    have hsub : S ⊆ Finset.Icc j₀ j₁ := by
-      intro j hj
-      rw [Finset.mem_Icc]
-      exact ⟨Finset.min'_le S j hj, Finset.le_max' S j hj⟩
-    have hcard : S.card ≤ j₁ + 1 - j₀ := by
-      have := Finset.card_le_card hsub
-      rwa [Nat.card_Icc] at this
-    -- the two extreme terms lie in the same half-cell
-    have hlo : (k : ℝ) ≤ 2 * x j₀ := by
-      have := (Int.floor_eq_iff.mp hj₀.2).1
-      exact this
-    have hhi : 2 * x j₁ < k + 1 := by
-      have := (Int.floor_eq_iff.mp hj₁.2).2
-      exact this
-    have hgap := step_lower hs (j₁ - j₀) j₀ (by omega)
-    rw [Nat.add_sub_cancel' hj₀₁] at hgap
-    have hlt : ((j₁ - j₀ : ℕ) : ℝ) < 1 / (2 * a) := by
-      rw [lt_div_iff₀ (by positivity)]
-      nlinarith
-    have hfl : j₁ - j₀ ≤ ⌊1 / (2 * a)⌋₊ := Nat.le_floor hlt.le
-    omega
-  · rw [Finset.not_nonempty_iff_eq_empty] at hne
-    rw [hne]
-    simp
+  -- the half-cell is a window of width `1/2`
+  rw [show (1 : ℝ) / (2 * a) = 1 / 2 / a by rw [div_div]]
+  refine WindowCount.window_card_le_nat (f := x) (lo := 0) (hi := H - 1)
+    (stepGe_of_steps hs) ha (by norm_num) (fun j hj => ?_) (fun j hj j' hj' => ?_)
+  · rw [Finset.mem_filter, Finset.mem_range] at hj
+    exact ⟨Nat.zero_le _, by omega⟩
+  · rw [Finset.mem_filter, Finset.mem_range] at hj hj'
+    have hlo : (k : ℝ) ≤ 2 * x j := (Int.floor_eq_iff.mp hj.2).1
+    have hhi : 2 * x j' < k + 1 := (Int.floor_eq_iff.mp hj'.2).2
+    linarith
 
 /-- Every strictly interior cell holds at least `⌊1/(2b)⌋` terms. -/
 theorem fiber_card_ge (hs : Steps x H a b) (ha : 0 < a) (hb0 : 0 < b) (hH : 1 ≤ H) {k : ℤ}

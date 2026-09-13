@@ -117,6 +117,7 @@ LAYERS: dict[str, Path] = {
     "NumericBridge": JUGGLER_DIR / "NumericBridge.lean",
     "LogCells": JUGGLER_DIR / "LogCells.lean",
     "FateNumerics": JUGGLER_DIR / "FateNumerics.lean",
+    "FateWindowCount": JUGGLER_DIR / "FateWindowCount.lean",
     "Iteration": JUGGLER_DIR / "Iteration.lean",
     "Termination": JUGGLER_DIR / "Termination.lean",
     "TerminationFloor257": JUGGLER_DIR / "TerminationFloor257.lean",

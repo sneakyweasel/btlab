@@ -318,7 +318,7 @@ type Paper B proves enters Appendix C as an explicit hypothesis.
 
 Statements carry one of four roles. *Lean*: the exact combinatorial
 layer is formalized in Lean 4; the root `formal/Problems/JugglerFatePaper.lean`
-imports exactly the seventeen modules this paper cites and builds with
+imports exactly the eighteen modules this paper cites and builds with
 `lake build Problems.JugglerFatePaper`, without `sorry` and without
 `native_decide`; `formal/AxiomCheckPaperC.lean` prints the axiom
 dependencies of every cited name and `AxiomCheckPaperC.expected`
@@ -2397,7 +2397,7 @@ No nontrivial cycle or unbounded orbit is excluded by this paper.
 ## Appendix A. Lean names
 
 All in `formal/Problems/Juggler/FateContagion.lean` unless noted. The
-root `formal/Problems/JugglerFatePaper.lean` imports exactly the seventeen
+root `formal/Problems/JugglerFatePaper.lean` imports exactly the eighteen
 modules named here and builds with `lake build Problems.JugglerFatePaper`
 without `sorry` and without `native_decide`;
 `formal/AxiomCheckPaperC.expected` records the axioms of every name
@@ -2416,6 +2416,7 @@ abstract lemmas listed here, not the analytic density estimates.
 | Lemma 8.1 (envelope descent) | `iterate_le_of_envelope`, `mem_of_envelope_floor`, `reachesOne_of_itinerary_envelope`; power envelope `power_bound_word` (Paper A layer) |
 | Lean floor \(N_0=260\) | `reachesOne_of_lt_two_hundred_sixty_one` |
 | Lemma 4.7 (cube fibers), in `Problems/Juggler/CubeFiber.lean` | `cube_fiber_range`, `cube_fiber_sqrt_even`, `cube_fiber_even_image`, `even_cube_fiber_full`, `cube_fiber_sqrt_odd`, `cube_fiber_alternating`, `odd_cube_fiber_alternating` |
+| Shared counting of Lemmas 4.1, 4.1' and 4.3 (separated sequences in a window), in `Problems/Juggler/FateWindowCount.lean` | `WindowCount.StepGe`, `WindowCount.StepLe`, `WindowCount.span_ge`, `WindowCount.span_le`, `WindowCount.mono_of_stepGe`, `WindowCount.window_card_le`, `WindowCount.window_card_le_nat` |
 | Lemma 4.1 (sweep), in `Problems/Juggler/FateSweep.lean` | `Sweep.cell`, `Sweep.sweep_cell`, `sweep_fract_lt_half`, `sweep_fract_ge_half`, `sweep_ceil`, `sweep_rep_le_half`, `sweep_rep_gt_half` |
 | Lemma 4.1' (monotone pairing), in `Problems/Juggler/FateSweepMonotone.lean` | `Sweep.sweep_monotone_cell`, `sweep_monotone_fract_lt_half`, `sweep_monotone_fract_ge_half`, `sweep_monotone_ceil`, `sweep_monotone_rep_le_half`, `sweep_monotone_rep_gt_half` |
 | Lemma 5.1 (recursion), in `Problems/Juggler/FateRecursion.lean` | `recursion_lemma` |
@@ -2509,9 +2510,13 @@ use the roots of the displayed defining equations.
 
   SHA-256: `635bb6163f5a054085087eefcd2c62037c61538fe863d53e9dca69da8fddb3e9`
 
+- `formal/Problems/Juggler/FateWindowCount.lean`
+
+  SHA-256: `9d790163433899c73993a24b434ff20ae45aba3dbe47b717507dba840307b6a3`
+
 - `formal/Problems/Juggler/FateSweep.lean`
 
-  SHA-256: `71c5c2472d2c2d31d7b2565e66f92e97b3ae9bd0c76aa45a1703eea7bd910d39`
+  SHA-256: `6d51546b1b82982b400e1c69b16f56f4d48bde60616dc5bf04faacc0a4ee79d3`
 
 - `formal/Problems/Juggler/FateChernoff.lean`
 
@@ -2535,7 +2540,7 @@ use the roots of the displayed defining equations.
 
 - `formal/Problems/Juggler/FateThinFibers.lean`
 
-  SHA-256: `9c83deba803593d49874dd6bda4ff61fbe32aa436918561f9978b6d04f1036b0`
+  SHA-256: `42307513f9cf4f8035e74049f29ce19c0c33c76a0d2c326b17b8b4e39525f745`
 
 - `formal/Problems/Juggler/FateContagionBound.lean`
 
@@ -2543,11 +2548,11 @@ use the roots of the displayed defining equations.
 
 - `formal/Problems/JugglerFatePaper.lean`
 
-  SHA-256: `42b0d75a4840a051ab2cf93b63b42a4f8db0742bad1598bc4d46fd6a3d971227`
+  SHA-256: `89923131d97f3cd1331888083944f5fb498407a17aeeccd8a30dc503af8a5682`
 
 - `formal/AxiomCheckPaperC.expected`
 
-  SHA-256: `2b6e25210b261f7aea3c0b0e057ce9da2bab0430f8c29d9b89e8aa92bea00791`
+  SHA-256: `bc9734764d7cc516d9ebcc27bb8b24b0431428d1ece6f8444dd2b20b83bf34f6`
 
 - `src/research/juggler_sequence/fate_contagion.py`
 

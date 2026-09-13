@@ -36,17 +36,8 @@ log-mass bound is the dyadic sum `Σ_i 63 (2^i U)^{-1/3} ≤ 63 U^{-1/3}/(1 - 2^
 between two of its indices. -/
 theorem span_ge_of_step {φ : ℕ → ℝ} {u v : ℕ} {d : ℝ}
     (hstep : ∀ m, u < m → m < v → d ≤ φ (m + 1) - φ m) :
-    ∀ k m, u < m → m + k ≤ v → (k : ℝ) * d ≤ φ (m + k) - φ m := by
-  intro k
-  induction k with
-  | zero => intro m _ _; simp
-  | succ k ih =>
-      intro m hm hk
-      have h1 := ih m hm (by omega)
-      have h2 := hstep (m + k) (by omega) (by omega)
-      rw [← add_assoc]
-      push_cast
-      linarith
+    ∀ k m, u < m → m + k ≤ v → (k : ℝ) * d ≤ φ (m + k) - φ m :=
+  WindowCount.span_ge (lo := u + 1) (hi := v) hstep
 
 /-- **The arc count.** If `φ` increases by at least `d > 0` per step on `(u, v]`, the
 indices `m ∈ (u, v]` with `{φ(m)} ∈ [c, c + w)` number at most
@@ -57,12 +48,8 @@ theorem arc_count_le (φ : ℕ → ℝ) (u v : ℕ) (huv : u < v) (d c w : ℝ) 
     (#{m ∈ Finset.Ioc u v | c ≤ Int.fract (φ m) ∧ Int.fract (φ m) < c + w} : ℝ) ≤
       ((⌊φ v⌋ - ⌊φ (u + 1)⌋ + 1 : ℤ) : ℝ) * (w / d + 1) := by
   -- monotonicity on `(u, v]`
-  have hmono : ∀ m m', u < m → m ≤ m' → m' ≤ v → φ m ≤ φ m' := by
-    intro m m' hm hmm' hm'v
-    have := span_ge_of_step hstep (m' - m) m hm (by omega)
-    rw [Nat.add_sub_cancel' hmm'] at this
-    have : (0 : ℝ) ≤ ((m' - m : ℕ) : ℝ) * d := by positivity
-    linarith
+  have hmono : ∀ m m', u < m → m ≤ m' → m' ≤ v → φ m ≤ φ m' := fun m m' hm hmm' hm'v =>
+    WindowCount.mono_of_stepGe (lo := u + 1) (hi := v) hstep hd.le hm hmm' hm'v
   set S := {m ∈ Finset.Ioc u v | c ≤ Int.fract (φ m) ∧ Int.fract (φ m) < c + w} with hS
   set W := Finset.Icc ⌊φ (u + 1)⌋ ⌊φ v⌋ with hW
   have hmaps : ((S : Finset ℕ) : Set ℕ).MapsTo (fun m => ⌊φ m⌋) (W : Set ℤ) := by
@@ -75,43 +62,18 @@ theorem arc_count_le (φ : ℕ → ℝ) (u v : ℕ) (huv : u < v) (d c w : ℝ) 
   -- each window holds at most `w/d + 1` of the points
   have hwin : ∀ k ∈ W, (#{m ∈ S | ⌊φ m⌋ = k} : ℝ) ≤ w / d + 1 := by
     intro k _
-    set T := {m ∈ S | ⌊φ m⌋ = k} with hT
-    by_cases hne : T.Nonempty
-    · set m₀ := T.min' hne
-      set m₁ := T.max' hne
-      have h₀ : m₀ ∈ T := Finset.min'_mem _ hne
-      have h₁ : m₁ ∈ T := Finset.max'_mem _ hne
-      have h₀₁ : m₀ ≤ m₁ := Finset.min'_le _ _ h₁
-      rw [hT, Finset.mem_filter, hS, Finset.mem_filter, Finset.mem_Ioc] at h₀ h₁
-      have hsub : T ⊆ Finset.Icc m₀ m₁ := by
-        intro m hm
-        rw [Finset.mem_Icc]
-        exact ⟨Finset.min'_le _ _ hm, Finset.le_max' _ _ hm⟩
-      have hcard : T.card ≤ m₁ + 1 - m₀ := by
-        have := Finset.card_le_card hsub
-        rwa [Nat.card_Icc] at this
-      -- `φ m₀ ≥ k + c` and `φ m₁ < k + c + w`
-      have hlo : (k : ℝ) + c ≤ φ m₀ := by
-        have := Int.floor_add_fract (φ m₀)
-        rw [h₀.2] at this
-        linarith [h₀.1.2.1]
-      have hhi : φ m₁ < k + c + w := by
-        have := Int.floor_add_fract (φ m₁)
-        rw [h₁.2] at this
-        linarith [h₁.1.2.2]
-      have hspan := span_ge_of_step hstep (m₁ - m₀) m₀ h₀.1.1.1 (by omega)
-      rw [Nat.add_sub_cancel' h₀₁] at hspan
-      have hlt : ((m₁ - m₀ : ℕ) : ℝ) < w / d := by
-        rw [lt_div_iff₀ hd]
-        linarith
-      have hcard' : (T.card : ℝ) ≤ ((m₁ - m₀ : ℕ) : ℝ) + 1 := by
-        have : T.card ≤ (m₁ - m₀) + 1 := by omega
-        exact_mod_cast this
-      linarith
-    · rw [Finset.not_nonempty_iff_eq_empty] at hne
-      rw [hne]
-      simp
-      positivity
+    -- all the points of one window have floor `k`, so their values differ by less than `w`
+    refine WindowCount.window_card_le (lo := u + 1) (hi := v) hstep hd hw ?_ ?_
+    · intro m hm
+      rw [Finset.mem_filter, hS, Finset.mem_filter, Finset.mem_Ioc] at hm
+      exact ⟨hm.1.1.1, hm.1.1.2⟩
+    · intro m hm m' hm'
+      rw [Finset.mem_filter, hS, Finset.mem_filter, Finset.mem_Ioc] at hm hm'
+      have e : φ m = k + Int.fract (φ m) := by
+        have := Int.floor_add_fract (φ m); rw [hm.2] at this; linarith
+      have e' : φ m' = k + Int.fract (φ m') := by
+        have := Int.floor_add_fract (φ m'); rw [hm'.2] at this; linarith
+      linarith [hm.1.2.1, hm'.1.2.2]
   have hsum : (S.card : ℝ) ≤ (W.card : ℝ) * (w / d + 1) := by
     rw [hfib]
     push_cast

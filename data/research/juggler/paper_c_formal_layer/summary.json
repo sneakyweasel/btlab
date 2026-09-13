@@ -7,6 +7,7 @@
     "Problems.Juggler.TiltedShare",
     "Problems.Juggler.FateRecursion",
     "Problems.Juggler.FateFirstLetter",
+    "Problems.Juggler.FateWindowCount",
     "Problems.Juggler.FateSweep",
     "Problems.Juggler.FateSweepMonotone",
     "Problems.Juggler.FateChernoff",
@@ -20,18 +21,18 @@
     "Problems.Juggler.FateContagionBound"
   ],
   "artifact": {
-    "asked": 217,
-    "recorded": 217,
+    "asked": 224,
+    "recorded": 224,
     "axiom_lists": [
       "propext",
       "propext, Classical.choice, Quot.sound",
       "propext, Quot.sound"
     ]
   },
-  "appendix_a_names": 199,
+  "appendix_a_names": 206,
   "surface": {
-    "modules": 49,
-    "declarations": 1573,
+    "modules": 50,
+    "declarations": 1582,
     "compiler_trusted": [],
     "compiler_dependent": [],
     "open": []
@@ -79,5 +80,5 @@
     "label": "PAPER_C_LEAN_SURFACE_CONSISTENT",
     "problems": 0
   },
-  "git_commit": "2826cbe777b249717970597636f40629561c17d2"
+  "git_commit": "d400a2ac37bcb6a8c01ada076054c5968e2b5002"
 }

@@ -4,6 +4,7 @@ import Problems.Juggler.CubeFiber
 import Problems.Juggler.TiltedShare
 import Problems.Juggler.FateRecursion
 import Problems.Juggler.FateFirstLetter
+import Problems.Juggler.FateWindowCount
 import Problems.Juggler.FateSweep
 import Problems.Juggler.FateSweepMonotone
 import Problems.Juggler.FateChernoff
@@ -19,7 +20,7 @@ import Problems.Juggler.FateContagionBound
 /-!
 # Paper C barrel — everything the repository checks for the fate-contagion note
 
-`docs/theory/juggler_fate_almost_all_note.md`. This file imports exactly the seventeen modules
+`docs/theory/juggler_fate_almost_all_note.md`. This file imports exactly the eighteen modules
 that paper cites and nothing else, so that a reader can build the formal side of Paper C on
 its own rather than selecting modules by hand out of the umbrella `Problems.Juggler`. It is a
 laboratory target, not a claim: building it does **not** corroborate the paper's counting.
@@ -40,6 +41,12 @@ laboratory target, not a claim: building it does **not** corroborate the paper's
   function on `(0, ∞)`.
 * `FateFirstLetter` — Proposition 6.3(i): the least failure is odd with an odd image
   (`minimal_failure_odd_odd`), and the first-letter trichotomy of Section 6.2.
+* `FateWindowCount` — the counting move Lemmas 4.1, 4.1′ and 4.3 share, for an arbitrary
+  `f : ℕ → ℝ`: steps bounded below telescope (`WindowCount.span_ge`, `WindowCount.span_le`,
+  `WindowCount.mono_of_stepGe`), and a `d`-separated sequence puts at most `w/d + 1` of its
+  terms into a window of width `w` (`WindowCount.window_card_le`, and
+  `WindowCount.window_card_le_nat` for the `⌊1/(2a)⌋ + 1` terms of a half-cell). Nothing here
+  is about the map.
 * `FateSweep` — Lemma 4.1, the sweep lemma, in both half-cell conventions
   (`sweep_fract_lt_half`, `sweep_fract_ge_half`, `sweep_rep_le_half`, `sweep_rep_gt_half`).
 * `FateSweepMonotone` — Lemma 4.1′, monotone pairing: each colour of `⌊2 x_j⌋` has at

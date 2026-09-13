@@ -59,11 +59,11 @@ inequality. With a floor \(N_0\ge 2\), the odd failures in \((y,2y]\)
 lie in the cylinders of the envelope-bad words
 (`oddFailures_subset_bad_cylinders`), which are \(L(y)\)-bad
 (`LBad_of_envelopeBad`), so a bound \(M\) on every bad cylinder of depth
-\(d\ge CL(y)\) gives \(\#\{	ext{odd failures}\}\le 2^d2^{-e(C)L(y)}M\)
+\(d\ge CL(y)\) gives \(\#\{\text{odd failures}\}\le 2^d2^{-e(C)L(y)}M\)
 (`oddFailures_card_le_chernoff`), and with \(d=\lceil CL(y)
 ceil\) and
 \(\mathrm H(C,A)\)'s bound on the \(O\)-rooted bad cylinders,
-\(\#\{	ext{odd failures}\}\le y\Lambda^{-e(C)}+2\Lambda^Cy(\log y)^{-A}\)
+\(\#\{\text{odd failures}\}\le y\Lambda^{-e(C)}+2\Lambda^Cy(\log y)^{-A}\)
 at every \(y\ge 2\) (`oddFailures_card_le_explicit`), a factor \(2\)
 against the paper's \(y/2\) and no \(arepsilon\). The absorption into
 the displayed form and Corollary 8.4 stay human proofs.
@@ -72,8 +72,8 @@ the displayed form and Corollary 8.4 stay human proofs.
 live weight of `LiveCountWeight`: the live pressure is the generating
 function of the live weight, a live start at depth \(d\ge CL(N)\) has
 at least \(p_Cd\) odd letters (Lemma 8.1 on live starts), and a
-pressure bound \(Na_	heta^dE\) at the tilt \(x=p_C/(1-p_C)\) gives at
-most \(N\exp(-dD(p_C\|	frac12))E\) live starts
+pressure bound \(Na_\theta^dE\) at the tilt \(x=p_C/(1-p_C)\) gives at
+most \(N\exp(-dD(p_C\|\tfrac12))E\) live starts
 (`live_count_le_of_pressure`). The \(o(d)\) bookkeeping stays human.
 
 **Lemma 5.2 (seed; EXACT — LEAN VERIFIED, `FateSeed.lean`).** A nonempty
@@ -108,9 +108,9 @@ The production inequality itself and the root \(\lambda^{**}\) stay
 human.
 
 **The build root (COMPUTATIONALLY VERIFIED).**
-`formal/Problems/JugglerFatePaper.lean` imports exactly the seventeen
+`formal/Problems/JugglerFatePaper.lean` imports exactly the eighteen
 modules Paper C cites; `formal/AxiomCheckPaperC.lean` prints the axioms
-of the 217 cited declarations and `AxiomCheckPaperC.expected` records
+of the 224 cited declarations and `AxiomCheckPaperC.expected` records
 them, every list a subset of `propext`, `Classical.choice`,
 `Quot.sound`, no `sorryAx`, no `native_decide`.
 
@@ -125,6 +125,21 @@ private copy. `FateNumerics.lean` holds the two moves once:
 (\((a+h)^p\gtrless a^p+pa^{q}h\) with \(p=q+1\)). The eleven sites in
 `FateFiberParity`, `FateThinFibers` and `FateChernoff` are one to three
 lines each; no statement changed. Nothing here is about the map.
+
+**Shared counting (EXACT — LEAN VERIFIED, 13 September 2026).** Lemmas
+4.1, 4.1' and 4.3 all count a separated sequence inside a window: the
+steps telescope, so a sequence rising by at least \(d\) puts at most
+\(w/d+1\) terms into a window of width \(w\). Lemma 4.1 reads the
+window as a half-cell and gets \(\lfloor 1/(2a)\rfloor+1\) per cell;
+Lemma 4.3 reads it as an arc inside an integer window.
+`FateWindowCount.lean` states both for an arbitrary \(f\colon\mathbb{N}\to\mathbb{R}\)
+(`WindowCount.span_ge`, `WindowCount.span_le`,
+`WindowCount.mono_of_stepGe`, `WindowCount.window_card_le`,
+`WindowCount.window_card_le_nat`), and `FateSweep` and `FateThinFibers`
+call them: four inductions and two `min'`/`max'` arguments became one
+of each, 111 lines out for 43 in, no statement changed. The six further
+copies in `FateSweepMonotone` belong to the WIZARD session and were
+left alone; that session has been sent the interface.
 
 ## Current literature
 
@@ -258,8 +273,8 @@ Classification **PAPER_C_LEAN_SURFACE_CONSISTENT**.
   `TiltedShare.lean` (row `J-tilted-share-telescoping`) and the paper
   still said human proof. Corrected in §1.4, §9.2 and Appendix A.
 - Lemma 4.2 (13 September): the step of \(x(n)=n\sqrt n/2\) over two
-  units is \((u^2+uv+v^2)/(u+v)\), bounded by \(	frac32v\) and
-  \(	frac32u\) through two factorizations, monotone because the upper
+  units is \((u^2+uv+v^2)/(u+v)\), bounded by \(\tfrac32v\) and
+  \(\tfrac32u\) through two factorizations, monotone because the upper
   bound at \(n\) is the lower bound at \(n+2\); the paper's integral is
   not needed, and its \(1.02m^{-1/3}\) becomes \(m^{-1/3}\) because the
   upper step is taken at a fiber member. Both cases of the paper go
