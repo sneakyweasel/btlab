@@ -318,7 +318,7 @@ type Paper B proves enters Appendix C as an explicit hypothesis.
 
 Statements carry one of four roles. *Lean*: the exact combinatorial
 layer is formalized in Lean 4; the root `formal/Problems/JugglerFatePaper.lean`
-imports exactly the twelve modules this paper cites and builds with
+imports exactly the thirteen modules this paper cites and builds with
 `lake build Problems.JugglerFatePaper`, without `sorry` and without
 `native_decide`; `formal/AxiomCheckPaperC.lean` prints the axiom
 dependencies of every cited name and `AxiomCheckPaperC.expected`
@@ -350,6 +350,7 @@ constants; they prove nothing and are labelled wherever they appear.
 | First-letter identity (6.1) | human proof (exact combinatorics) |
 | Tao-type rate implies the conjecture (Theorem 7.2), with the contagion bound of Theorem 5.3 as a hypothesis | Lean |
 | Almost-all equivalence (Theorem 7.3) | human proof |
+| Corollary 8.4, the conjecture from a cylinder bound, with the contagion bound of Theorem 5.3 as a hypothesis | Lean |
 | Chernoff count of bad words (Lemma 8.2, exact form) | Lean |
 | Theorem 8.3, explicit form \(y\Lambda^{-e(C)}+2\Lambda^Cy(\log y)^{-A}\) at every \(y\) | Lean; the \(\varepsilon\)-absorption into the displayed form is human |
 | Pressure form (Theorem 9.2, exact: a pressure bound \(Na_\theta^dE\) gives at most \(Ne^{-dD(p_C\Vert 1/2)}E\) live starts) | Lean, on the live weight |
@@ -1759,6 +1760,22 @@ The pairing-only intermediate still needed \(C\ge 20\)
 (\(e(20)=0.574>0.5520\)).
 \(\square\)
 
+Lean: `cylinder_bound_implies_conjecture` in
+`formal/Problems/Juggler/FateCylinderCorollary.lean`: if
+\(\mathrm H(C,A)\) holds at all large scales (`CylinderBound`, the
+displayed bound on every \(O\)-rooted \(L(y)\)-bad cylinder of depth
+\(d(y)\)) with \(C\ge 5\) and \(A>C+e(C)\), and the contagion bound of
+Theorem 5.3 holds for the failure set with an exponent \(\lambda\)
+satisfying \(1-\lambda<e(C)\), then every positive integer reaches
+\(1\). The step from the explicit bound of Theorem 8.3 to the rate
+\(y(\log y)^{-e}\) of Theorem 7.2, for any \(e<e(C)\), is
+`oddFailures_eventually_le`: \(\Lambda\ge\log y/\log N_0\) turns the
+first term into \((\log N_0)^{e(C)}y(\log y)^{-e(C)}\),
+\(\Lambda\le 2\log y/\log N_0\) turns the second into
+\(2(2/\log N_0)^Cy(\log y)^{C-A}\), and both exponent gaps are
+positive. The numerical threshold \(C\ge 19\) is a statement about
+the root \(\lambda^{**}\) and stays with the audit.
+
 ### 8.4 Constants
 
 The least integer depth constant in this sufficient criterion is \(C=19\) (\(e(19)\approx0.527>1-\lambda^{**}\)).
@@ -2321,7 +2338,7 @@ No nontrivial cycle or unbounded orbit is excluded by this paper.
 ## Appendix A. Lean names
 
 All in `formal/Problems/Juggler/FateContagion.lean` unless noted. The
-root `formal/Problems/JugglerFatePaper.lean` imports exactly the twelve
+root `formal/Problems/JugglerFatePaper.lean` imports exactly the thirteen
 modules named here and builds with `lake build Problems.JugglerFatePaper`
 without `sorry` and without `native_decide`;
 `formal/AxiomCheckPaperC.expected` records the axioms of every name
@@ -2350,7 +2367,8 @@ abstract lemmas listed here, not the analytic density estimates.
 | Proposition 9.3 (pressure telescoping), in `Problems/Juggler/TiltedShare.lean` | `oddMass`, `tiltedShare`, `weightGen_succ_le_share`, `one_add_le_exp_excess`, `weightGen_le_pressure`, `count_le_pressure`, `NoMomentum`, `count_le_of_noMomentum`, `tilt_exponent_eq_kl`, `MeanShare`, `weightGen_le_of_meanShare`, `MeanShareOff`, `initial_depths_are_free`, `tower_ratio_lt_one` |
 | Lemma 5.2 (seed), in `Problems/Juggler/FateSeed.lean` | `exists_ge_three_of_backwardClosed`, `seed_lemma`, `seed_constant_pos` |
 | Theorem 7.2 (Tao-type rate, contagion as a hypothesis), in `Problems/Juggler/FateTaoReduction.lean` | `logMass_le_oddLogMass`, `oddLogMass_le_of_dyadic`, `tao_rate_implies_empty`, `tao_rate_implies_conjecture` |
-| Lemmas 4.2--4.3, Proposition 4.4, Theorem 5.3, Theorem 7.3, Sections 8--10 except Lemma 8.2, the explicit form of Theorem 8.3, the exact form of Theorem 9.2 and Proposition 9.3, Appendix C | human proofs |
+| Corollary 8.4 (the conjecture from a cylinder bound), in `Problems/Juggler/FateCylinderCorollary.lean` | `CylinderBound`, `one_le_depth`, `chernoffExponent_nonneg`, `oddFailures_eventually_le`, `cylinder_bound_implies_conjecture` |
+| Lemmas 4.2--4.3, Proposition 4.4, Theorem 5.3, Theorem 7.3, Sections 8--10 except Lemma 8.2, the explicit form of Theorem 8.3, Corollary 8.4, the exact form of Theorem 9.2 and Proposition 9.3, Appendix C | human proofs |
 
 ## Appendix B. Constants and artifacts
 
@@ -2440,13 +2458,17 @@ use the roots of the displayed defining equations.
 
   SHA-256: `f69ad74fcaed87b692451113cf72eeadc1182efc0ac8121e255e6b079bf2bbf2`
 
+- `formal/Problems/Juggler/FateCylinderCorollary.lean`
+
+  SHA-256: `0a0f47af277d28598e0fdddfe50e5762ff21835e88251f21d59629a2475f7ec5`
+
 - `formal/Problems/JugglerFatePaper.lean`
 
-  SHA-256: `cb096d601d6c5ef6d19e7c7b81a52ae8a708f241d8311eb89794a699cec3af2b`
+  SHA-256: `3f5836b5da1bebe4a1e3add299b5a694a3156c1623d3fecf0b9553e0b328bd21`
 
 - `formal/AxiomCheckPaperC.expected`
 
-  SHA-256: `5939a49ce68518bbff9544fc34287bb41fdab54c11d2a2ba7817dfc2ee99f523`
+  SHA-256: `e498d07112371b5586b44c0f3cb26219b651b0f8b51bf9ad56ef65af1ea81bcb`
 
 - `src/research/juggler_sequence/fate_contagion.py`
 

@@ -189,15 +189,16 @@ declarations on the live weight),
 `formal/Problems/Juggler/FateTaoReduction.lean` (Theorem 7.2 given
 contagion),
 `formal/Problems/Juggler/FateSeed.lean` (Lemma 5.2),
+`formal/Problems/Juggler/FateCylinderCorollary.lean` (Corollary 8.4 as the
+composition of Theorems 8.3 and 7.2, 5 declarations),
 `formal/Problems/JugglerFatePaper.lean` (barrel),
 `formal/AxiomCheckPaperC.lean` and `.expected`. All kernel-checked; the
-Paper C surface (root `Problems.JugglerFatePaper`, 42 modules reached,
-1465 declarations) carries no `native_decide` and cites none.
+Paper C surface (root `Problems.JugglerFatePaper`, 45 modules reached,
+1487 declarations) carries no `native_decide` and cites none.
 
 Not formalized, and not claimed: Lemmas 4.2–4.3,
 Proposition 4.4, the share law 4.5–4.6, Theorem 5.3, Theorem 7.3,
-the asymptotic forms of Theorems 8.3 and 9.2, Corollary
-8.4, Theorem 9.1, Section 10, Appendix C, and the log-mass bookkeeping
+the asymptotic forms of Theorems 8.3 and 9.2, Theorem 9.1, Section 10, Appendix C, and the log-mass bookkeeping
 that turns the first-letter trichotomy into the identity (6.1).
 
 ## Results
@@ -206,9 +207,9 @@ Classification **PAPER_C_LEAN_SURFACE_CONSISTENT**.
 
 ```text
   Paper C verification table, before and after
-  Lean rows      15 -> 16  (Lemma 4.1' on FateSweepMonotone)
+  Lean rows      15 -> 17  (Lemma 4.1' on FateSweepMonotone; Corollary 8.4 on FateCylinderCorollary)
   human rows     7 -> 7    (4.2--4.3 stay human; Theorems 5.3 and 7.3 stay human)
-  cited names    135 -> 141, all on subsets of Mathlib's three axioms; none native_decide
+  cited names    135 -> 145, all on subsets of Mathlib's three axioms; none native_decide
 ```
 
 - The three proofs are the paper's; the sweep count is the paper's
@@ -220,18 +221,29 @@ Classification **PAPER_C_LEAN_SURFACE_CONSISTENT**.
 - The stale table line: Proposition 9.3 was Lean since
   `TiltedShare.lean` (row `J-tilted-share-telescoping`) and the paper
   still said human proof. Corrected in §1.4, §9.2 and Appendix A.
+- Corollary 8.4 (13 September): the explicit bound of Theorem 8.3 is
+  absorbed into the rate \(y(\log y)^{-e}\) for every \(e<e(C)\) once
+  \(\log y\) is large (`oddFailures_eventually_le`), and the composition
+  with Theorem 7.2 gives the conjecture from \(\mathrm H(C,A)\) with the
+  contagion bound as the only analytic hypothesis
+  (`cylinder_bound_implies_conjecture`). The threshold \(C\ge 19\) is a
+  statement about \(\lambda^{**}\) and stays with the audit.
 
 ## Open questions
 
-- Corollary 8.4 in Lean would need the contagion bound of Theorem 5.3,
-  which is the analytic core; not a small attack.
+- Lemma 4.2 (fiber parity) is the direct consumer of Lemma 4.1' and is
+  elementary once the step of \(n^{3/2}/2\) is written as
+  \((u^3-v^3)/2\) with \(u^2=n+2\), \(v^2=n\); the fiber width needs
+  Bernoulli on \((1+1/m)^{4/3}\). The next small attack.
+- The numerical threshold of Corollary 8.4, \(e(19)>1-\lambda^{**}\),
+  would need \(\lambda^{**}\) in Lean; not a small attack.
 
 ## Decision
 
-**PROMOTE.** Lemma 4.1' is now on the barrel with the rest of the
-exact combinatorial layer. Nothing here changes a constant or an
-exponent. Best next question: nothing on this branch; Theorem 5.3
-stays human.
+**PROMOTE.** Lemma 4.1' and Corollary 8.4 are now on the barrel with
+the rest of the exact layer; the paper's headline conditional result
+is one Lean theorem with one analytic hypothesis. Nothing here changes
+a constant or an exponent. Best next question: Lemma 4.2 in Lean.
 
 ## Publication assessment
 

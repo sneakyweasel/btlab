@@ -1,5 +1,13 @@
 # Research journal
 
+## 2026-09-12 — Paper A Lean: Rhin display and charge bridge
+
+Packaging only. `cycleMin_length_of_rhin` is Corollary 4.11's first display with Rhin's `L^{-13.3} ≤ Λ` as a hypothesis; the calculator step `2e^{6.1256}<915` stays human. `blockObservable_eq_stateCharge` and `hugCharge_eq_scaled_stateCharge` name the two charge normalisations. Rhin itself, kill tables, and `C_L<1/(ln 3 ln n')` stay outside Lean. Period bound and floor unchanged.
+
+## 2026-09-12 — Paper A Lean: printed C_* displays
+
+Packaging only. `hugCharge_sub_rotationAverage_le` (and the window / `q_{14}` companions) rewrite last night's circle-mean envelopes against `rotationAverage (log n')`, which is the printed `|C_L-C_*|`. The slack form `hugCharge_lt_invLog_add_budget` adds the Laplace bound without the numeric kill. The duplicated envelope-to-charge conversion is `hugCharge_sub_circleMean_of`; below `q_{13}` the two Ostrowski lists agree (`ostroBlocksExtended_eq_ostroBlocks`). Rhin, kill tables, and `C_L<1/(\ln3\ln n')` stay outside Lean. Period bound and floor unchanged.
+
 ## 2026-09-11 — Paper A Lean: circle-mean identity and q14 window
 
 Three Lean packaging items, no new mathematical claim. `circleMean_eq_rotationAverage` identifies the circle integral with `rotationAverage (log n')` by the printed change of variables (endpoint null, then scale, then `s=2^u`). `hugCharge_sub_circleMean_extended` names Theorem 5.8 on `[50508, q_{14})` from the mixed `q_{13}` list; the old `L<301994` instance stays. The barrel comment now lists Appendix A's Theorems 3.33--3.41 and Propositions 6.3b--c. Rhin, kill tables, and the numeric `C_L<1/(\ln3\ln n')` comparison remain outside Lean. Period bound and floor unchanged.
@@ -44137,3 +44145,35 @@ tests verify the finite fixtures, not the new universal statements.
 Those statements are written proofs with independent AI audits; no new
 Lean trust claim is made. Lean sources, Paper A, release copies, and PDFs
 remain unchanged.
+
+## Corollary 8.4 is one theorem now
+
+Reviewing the Lean corpus after five days of parallel work: Paper C's
+table reads sixteen Lean rows, the peer session landed Lemma 5.2,
+Theorem 7.2 with the contagion bound as hypothesis, and all of
+Lemma 4.1'. The obvious gap was Corollary 8.4, whose two halves were
+both theorems and whose proof in the paper is one sentence: Theorem 8.3
+gives Theorem 7.2's hypothesis.
+
+That sentence hides the step I had left human in September: the
+explicit bound y Lambda^{-e(C)} + 2 Lambda^C y (log y)^{-A} has to be
+absorbed into y (log y)^{-e} for some e > 1 - lambda. It is exactly the
+kind of bookkeeping Lean makes you write down. Lambda sits between
+log y / log N_0 and 2 log y / log N_0 for y >= 2, so the first term is
+(log N_0)^{e(C)} y (log y)^{-e(C)} and the second is
+2 (2/log N_0)^C y (log y)^{C - A}; with e < e(C) and A > C + e(C) both
+exponent gaps are positive, each term is at most y (log y)^{-e}/2
+once log y is large, and the peer's exists_rpow_gt supplies the
+threshold. Eighty lines of rpow.
+
+The composite, cylinder_bound_implies_conjecture, is the paper's
+headline conditional result with exactly one analytic hypothesis, the
+contagion bound of Theorem 5.3 at an exponent lambda with
+1 - lambda < e(C). The numerical threshold C >= 19 is a statement about
+the root lambda** and stays with the audit; the Lean keeps lambda
+abstract.
+
+Paper C: seventeen Lean rows, six human. What is left human is the
+block average, the fiber parity lemmas, the contagion theorem itself,
+the identity (6.1), Theorem 7.3, Theorem 9.1 and Appendix C.
+
