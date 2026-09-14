@@ -44940,3 +44940,36 @@ the table already has, the share law and (4.1), plus an exact
 propagation that is now in Lean. Nothing new is asked of analysis; the
 question is sharpened, not moved. Two theorems added to FateCollapse,
 380 declarations in the artifact, thirty-one Lean rows, four human.
+
+
+## One constant, no audit script
+
+The cheap piece of insurance from the list of analytic attacks: the
+unconditional criteria all carry the side condition e(C) > 0.7 on the
+Chernoff exponent, and the paper's numbers for it are an audit script.
+For one concrete C the script can leave the chain entirely, and now
+does. The device is that a logarithm is certified by an integer power
+comparison: if E <= e and x^n <= E^m then n log x <= m. With Mathlib's
+2.718 < e < 2.719, six comparisons do everything. 2^10 <= 2.718^7 gives
+log 2 <= 0.7; 2^84 <= 3^53 and 3^94 <= 2^149 pin log_2 3 to four
+decimals, hence p_30 to [0.6098, 0.61]; 2.719^19 <= (3049/2500)^100 and
+(50/39)^4 <= 2.718 bound the two logarithms in the relative entropy.
+Out comes D(p_30 || 1/2) >= 0.018312 and e(30) > 0.78, and in the other
+direction e(30) < 1.3, which turns the condition A > C + e(C) into
+A >= 32. Every step is a rational inequality closed by norm_num; the
+largest certificate is 3^94 <= 2^149, a forty-five-digit comparison.
+
+So the three unconditional criteria now exist with every constant a
+numeral: a cylinder bound H(30, A) with A >= 32, the pressure bound at
+C = 30, and the one-sided bound at C = 30 and the fair share q = 1/2
+with A >= 52. That last one needed two small extras: at q = 1/2 the
+one-sided exponent is the Chernoff exponent, because the relative
+entropy against the fair coin is the paper's D(p || 1/2), and log_2 of
+the re-centring tilt is at most 0.65 because (61/39)^20 <= 2^13.
+
+What this is not: C = 30 is an instance and not the least. The audit
+finds e(C) > 0.7 first at C = 23, and the paper's own threshold at
+C = 19 is a statement about lambda**; both stay with the audit, and the
+bounds here are deliberately loose, the true value being e(30) about
+1.05, because loose bounds have small certificates. Thirty-two Lean
+rows, four human, thirty modules, 409 declarations in the artifact.

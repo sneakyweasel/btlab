@@ -16,6 +16,7 @@
     "Problems.Juggler.FateOneSidedAtoms",
     "Problems.Juggler.FateEnergyAtoms",
     "Problems.Juggler.FateCollapse",
+    "Problems.Juggler.FateCertified",
     "Problems.Juggler.FateCylinderEnergy",
     "Problems.Juggler.FateLandingWindow",
     "Problems.Juggler.FateWindowCount",
@@ -32,24 +33,24 @@
     "Problems.Juggler.FateContagionBound"
   ],
   "artifact": {
-    "asked": 380,
-    "recorded": 380,
+    "asked": 409,
+    "recorded": 409,
     "axiom_lists": [
       "propext",
       "propext, Classical.choice, Quot.sound",
       "propext, Quot.sound"
     ]
   },
-  "appendix_a_names": 411,
+  "appendix_a_names": 440,
   "surface": {
-    "modules": 61,
-    "declarations": 1787,
+    "modules": 62,
+    "declarations": 1816,
     "compiler_trusted": [],
     "compiler_dependent": [],
     "open": []
   },
   "table": {
-    "rows": 37,
+    "rows": 38,
     "lean": [
       "Fate classes closed; trichotomy; exclusion (Lemma 2.1)",
       "Even block is an interval (Lemma 3.1)",
@@ -61,6 +62,7 @@
       "Fiber parity (Lemma 4.2), goodness unpacked",
       "Thin fibers (Lemma 4.3): the count on \\((u,2u]\\) and the log-mass of the bad \\(m>U\\)",
       "Theorem 5.3 at exponent \\(3/10\\), unconditional: two productions, no hypothesis",
+      "The side condition \\(e(C)>\\tfrac7{10}\\) of the unconditional criteria, at \\(C=30\\), by rational bounds on \\(e\\), \\(\\log 2\\) and \\(\\log_2 3\\)",
       "Cube fibers full or alternating (Lemma 4.7)",
       "Recursion lemma (Lemma 5.1)",
       "Seed (Lemma 5.2)",
@@ -100,5 +102,5 @@
     "label": "PAPER_C_LEAN_SURFACE_CONSISTENT",
     "problems": 0
   },
-  "git_commit": "99a5b0e7881b469196df6902dce09a4e849912d3"
+  "git_commit": "4f55a6855c4813a0cddb74e572fe0797a57b2936"
 }

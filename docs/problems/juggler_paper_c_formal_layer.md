@@ -108,9 +108,9 @@ The production inequality itself and the root \(\lambda^{**}\) stay
 human.
 
 **The build root (COMPUTATIONALLY VERIFIED).**
-`formal/Problems/JugglerFatePaper.lean` imports exactly the twenty-nine
+`formal/Problems/JugglerFatePaper.lean` imports exactly the thirty
 modules Paper C cites; `formal/AxiomCheckPaperC.lean` prints the axioms
-of the 380 cited declarations and `AxiomCheckPaperC.expected` records
+of the 409 cited declarations and `AxiomCheckPaperC.expected` records
 them, every list a subset of `propext`, `Classical.choice`,
 `Quot.sound`, no `sorryAx`, no `native_decide`.
 
@@ -460,6 +460,34 @@ human rows. What is not Lean: those, and any bound on the variation of
 a fiber profile beyond the propagation. Thirty-one Lean rows, four
 human.
 
+**The unconditional criteria at `C = 30`, every constant a numeral
+(EXACT — LEAN VERIFIED, 14 September 2026).** Every unconditional
+corollary carries the side condition \(e(C)>\tfrac7{10}\) on the
+Chernoff exponent, and the paper's numbers for it are an audit script.
+`FateCertified.lean` removes the script from the chain at one concrete
+constant. The device: a logarithm is certified by an integer power
+comparison, \(x^n\le E^m\) with \(E\le e\) giving \(n\log x\le m\)
+(`Certified.log_le_of_pow_le` and three siblings), on Mathlib's
+\(2.718<e<2.719\). Six comparisons give \(\log2\le\tfrac7{10}\) and
+\(\tfrac{84}{53}\le\log_23\le\tfrac{149}{94}\), hence
+\(p_{30}\in[0.6098,0.61]\) (`Certified.pC_thirty_ge`,
+`Certified.pC_thirty_le`), hence \(D(p_{30}\|\tfrac12)\ge0.018312\)
+(`Certified.klHalf_thirty_ge`) and \(e(30)>\tfrac{39}{50}\)
+(`Certified.chernoffExponent_thirty_gt`); two more give
+\(e(30)<\tfrac{13}{10}\), which turns the condition \(A>C+e(C)\) into
+\(A\ge32\). The three criteria follow with numerals throughout:
+`Certified.cylinder_bound_thirty`, `Certified.pressure_thirty`, and
+`Certified.one_sided_thirty` at the fair share \(q=\tfrac12\), where
+the one-sided exponent is the Chernoff one
+(`Certified.klDiv_half`, `Certified.oneSidedExponent_half`) and
+\(A\ge52\) suffices (`Certified.logb_tilt_thirty_le`). Every numeric
+step is a rational inequality closed by `norm_num`; the largest
+certificate is \(3^{94}\le2^{149}\). What is not Lean: \(C=30\) is an
+instance and not the least (the audit finds \(23\); the paper's own
+\(C=19\) is a statement about \(\lambda^{**}\)), and the bounds are
+deliberately loose, the true value being \(e(30)\approx1.05\), because
+loose bounds have small certificates. Thirty-two Lean rows, four human.
+
 ## Current literature
 
 - Paper C §1.4, Appendix A — `known`: the paper's own list of what is
@@ -572,10 +600,12 @@ exceptional atoms of the bad words, 15 declarations in namespace `Energy` and on
 `OneSided`),
 `formal/Problems/Juggler/FateCollapse.lean` (the collapsed component's next-letter
 bias, 26 declarations in namespace `Collapse`),
+`formal/Problems/Juggler/FateCertified.lean` (the unconditional criteria at
+`C = 30` with every constant a numeral, 29 declarations in namespace `Certified`),
 `formal/Problems/JugglerFatePaper.lean` (barrel),
 `formal/AxiomCheckPaperC.lean` and `.expected`. All kernel-checked; the
-Paper C surface (root `Problems.JugglerFatePaper`, 61 modules reached,
-1787 declarations) carries no `native_decide` and cites none.
+Paper C surface (root `Problems.JugglerFatePaper`, 62 modules reached,
+1816 declarations) carries no `native_decide` and cites none.
 
 Not formalized, and not claimed:
 Proposition 4.4, the share law 4.5–4.6, the production inequality (5.2)
@@ -590,9 +620,9 @@ Classification **PAPER_C_LEAN_SURFACE_CONSISTENT**.
 
 ```text
   Paper C verification table, before and after
-  Lean rows      15 -> 31  (Lemma 4.1', Corollary 8.4, Lemmas 4.2, 4.3, Theorem 5.3 given (5.2) and at 3/10, Theorem 7.3, (6.1), Section 10(d), (D.1), Theorem 9.1 exact, the three Section 9 consequences, the exceptional-atom form, the energy supply and the collapsed-component bias new)
+  Lean rows      15 -> 32  (Lemma 4.1', Corollary 8.4, Lemmas 4.2, 4.3, Theorem 5.3 given (5.2) and at 3/10, Theorem 7.3, (6.1), Section 10(d), (D.1), Theorem 9.1 exact, the three Section 9 consequences, the exceptional-atom form, the energy supply, the collapsed-component bias and the certified instance new)
   human rows     7 -> 4    (Proposition 4.4, the share law, the production inequality (5.2), Sections 8--10's asymptotics)
-  cited names    135 -> 411, all on subsets of Mathlib's three axioms; none native_decide
+  cited names    135 -> 440, all on subsets of Mathlib's three axioms; none native_decide
 ```
 
 - The three proofs are the paper's; the sweep count is the paper's
@@ -662,7 +692,7 @@ windows (D.1) and (D.2) of Appendix D.1 (`FateLandingWindow.lean`), and
 the counting half of the Section 10(d) display
 (`FateCylinderEnergy.lean`), together with two consolidations,
 `FateNumerics.lean` and `FateWindowCount.lean`. The verification table
-is thirty-one Lean rows and four human, and the four are analysis: the
+is thirty-two Lean rows and four human, and the four are analysis: the
 block average 4.4, the share law 4.5--4.6, the production inequality
 (5.2), and the asymptotic bookkeeping of Sections 8--10, whose exact
 forms (Lemma 8.2, Theorems 8.3, 9.1, 9.2, Proposition 9.3) are Lean. No small attack remains on this paper; what is left

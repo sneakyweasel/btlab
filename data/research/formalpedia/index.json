@@ -27579,6 +27579,354 @@
     },
     {
       "doc": "",
+      "file": "formal/Problems/Juggler/FateCertified.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-certified-thirty"
+      ],
+      "line": 59,
+      "module": "Problems.Juggler.FateCertified",
+      "name": "e_ge",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateCertified.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-certified-thirty"
+      ],
+      "line": 62,
+      "module": "Problems.Juggler.FateCertified",
+      "name": "e_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**An upper bound on a logarithm, certified by integers.** If `E \u2264 e` and `x^n \u2264 E^m` then `n log x \u2264 m`.",
+      "file": "formal/Problems/Juggler/FateCertified.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-certified-thirty"
+      ],
+      "line": 67,
+      "module": "Problems.Juggler.FateCertified",
+      "name": "log_le_of_pow_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**A lower bound on a logarithm, certified by integers.** If `e \u2264 E` and `E^m \u2264 x^n` then `m \u2264 n log x`.",
+      "file": "formal/Problems/Juggler/FateCertified.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-certified-thirty"
+      ],
+      "line": 78,
+      "module": "Problems.Juggler.FateCertified",
+      "name": "le_log_of_pow_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The same for a base-two logarithm: `x^n \u2264 2^m` gives `log\u2082 x \u2264 m/n`.",
+      "file": "formal/Problems/Juggler/FateCertified.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-certified-thirty"
+      ],
+      "line": 89,
+      "module": "Problems.Juggler.FateCertified",
+      "name": "logb_two_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "And `2^m \u2264 x^n` gives `m/n \u2264 log\u2082 x`.",
+      "file": "formal/Problems/Juggler/FateCertified.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-certified-thirty"
+      ],
+      "line": 99,
+      "module": "Problems.Juggler.FateCertified",
+      "name": "le_logb_two",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`log 2 \u2264 7/10`, from `2^10 = 1024 \u2264 1095 < 2.718^7`.",
+      "file": "formal/Problems/Juggler/FateCertified.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-certified-thirty"
+      ],
+      "line": 111,
+      "module": "Problems.Juggler.FateCertified",
+      "name": "log_two_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`2/3 \u2264 log 2`, from `2.719^2 < 8 = 2^3`.",
+      "file": "formal/Problems/Juggler/FateCertified.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-certified-thirty"
+      ],
+      "line": 118,
+      "module": "Problems.Juggler.FateCertified",
+      "name": "le_log_two",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`84/53 \u2264 log\u2082 3`, from `2^84 \u2264 3^53`.",
+      "file": "formal/Problems/Juggler/FateCertified.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-certified-thirty"
+      ],
+      "line": 125,
+      "module": "Problems.Juggler.FateCertified",
+      "name": "le_logb_three",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`log\u2082 3 \u2264 149/94`, from `3^94 \u2264 2^149`.",
+      "file": "formal/Problems/Juggler/FateCertified.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-certified-thirty"
+      ],
+      "line": 131,
+      "module": "Problems.Juggler.FateCertified",
+      "name": "logb_three_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`19/100 \u2264 log (3049/2500)`, from `2.719^19 \u2264 (3049/2500)^100`.",
+      "file": "formal/Problems/Juggler/FateCertified.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-certified-thirty"
+      ],
+      "line": 137,
+      "module": "Problems.Juggler.FateCertified",
+      "name": "le_log_lo",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`-(1/4) \u2264 log (39/50)`, from `(50/39)^4 \u2264 2.718`.",
+      "file": "formal/Problems/Juggler/FateCertified.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-certified-thirty"
+      ],
+      "line": 144,
+      "module": "Problems.Juggler.FateCertified",
+      "name": "le_log_hi",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`log (61/50) \u2264 1/5`, from `(61/50)^5 \u2264 2.718`.",
+      "file": "formal/Problems/Juggler/FateCertified.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-certified-thirty"
+      ],
+      "line": 155,
+      "module": "Problems.Juggler.FateCertified",
+      "name": "log_lo_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`log (1951/2500) \u2264 -(6/25)`, from `2.719^6 \u2264 (2500/1951)^25`.",
+      "file": "formal/Problems/Juggler/FateCertified.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-certified-thirty"
+      ],
+      "line": 162,
+      "module": "Problems.Juggler.FateCertified",
+      "name": "log_hi_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateCertified.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-certified-thirty"
+      ],
+      "line": 174,
+      "module": "Problems.Juggler.FateCertified",
+      "name": "logb_three_pos",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`0.6098 \u2264 p_30`.",
+      "file": "formal/Problems/Juggler/FateCertified.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-certified-thirty"
+      ],
+      "line": 179,
+      "module": "Problems.Juggler.FateCertified",
+      "name": "pC_thirty_ge",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`p_30 \u2264 0.61`.",
+      "file": "formal/Problems/Juggler/FateCertified.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-certified-thirty"
+      ],
+      "line": 186,
+      "module": "Problems.Juggler.FateCertified",
+      "name": "pC_thirty_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**A sandwich on `p` gives a lower bound on `D(p \u2016 1/2)`.**",
+      "file": "formal/Problems/Juggler/FateCertified.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-certified-thirty"
+      ],
+      "line": 193,
+      "module": "Problems.Juggler.FateCertified",
+      "name": "klHalf_ge_of",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**A sandwich on `p` gives an upper bound on `D(p \u2016 1/2)`.**",
+      "file": "formal/Problems/Juggler/FateCertified.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-certified-thirty"
+      ],
+      "line": 214,
+      "module": "Problems.Juggler.FateCertified",
+      "name": "klHalf_le_of",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`D(p_30 \u2016 1/2) \u2265 0.018312`.",
+      "file": "formal/Problems/Juggler/FateCertified.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-certified-thirty"
+      ],
+      "line": 238,
+      "module": "Problems.Juggler.FateCertified",
+      "name": "klHalf_thirty_ge",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`D(p_30 \u2016 1/2) \u2264 0.0284`.",
+      "file": "formal/Problems/Juggler/FateCertified.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-certified-thirty"
+      ],
+      "line": 248,
+      "module": "Problems.Juggler.FateCertified",
+      "name": "klHalf_thirty_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The certified instance.** `e(30) > 39/50`, with no audit script in the chain; in particular `e(30) > 7/10`, the side condition of every unconditional criterion.",
+      "file": "formal/Problems/Juggler/FateCertified.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-certified-thirty"
+      ],
+      "line": 259,
+      "module": "Problems.Juggler.FateCertified",
+      "name": "chernoffExponent_thirty_gt",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`e(30) < 13/10`, so the side condition `A > C + e(C)` is met by `A \u2265 32`.",
+      "file": "formal/Problems/Juggler/FateCertified.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-certified-thirty"
+      ],
+      "line": 268,
+      "module": "Problems.Juggler.FateCertified",
+      "name": "chernoffExponent_thirty_lt",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The conjecture from a cylinder bound at `C = 30`.** If every `O`-rooted `L(y)`-bad cylinder of depth `\u230830 L(y)\u2309` holds at most its fair share plus `y (log y)^{-A}`, at all large scales above a certified floor, for some `A \u2265 32`, then every positive integer reaches `1`.",
+      "file": "formal/Problems/Juggler/FateCertified.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-certified-thirty"
+      ],
+      "line": 281,
+      "module": "Problems.Juggler.FateCertified",
+      "name": "cylinder_bound_thirty",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The conjecture from the pressure hypothesis at `C = 30`.** If the live pressure at the tilt `p_30/(1 - p_30)` and depth `\u230830 L(y)\u2309` is at most `2y a_\u03b8^{d(y)}` at all large scales above a certified floor, then every positive integer reaches `1`.",
+      "file": "formal/Problems/Juggler/FateCertified.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-certified-thirty"
+      ],
+      "line": 291,
+      "module": "Problems.Juggler.FateCertified",
+      "name": "pressure_thirty",
+      "trust": "kernel"
+    },
+    {
+      "doc": "At `q = 1/2` the relative entropy is the paper's `D(p \u2016 1/2)`.",
+      "file": "formal/Problems/Juggler/FateCertified.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-certified-thirty"
+      ],
+      "line": 301,
+      "module": "Problems.Juggler.FateCertified",
+      "name": "klDiv_half",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Hence the one-sided exponent at `q = 1/2` is the Chernoff exponent.",
+      "file": "formal/Problems/Juggler/FateCertified.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-certified-thirty"
+      ],
+      "line": 308,
+      "module": "Problems.Juggler.FateCertified",
+      "name": "oneSidedExponent_half",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`log\u2082` of the re-centring tilt at `C = 30`, `q = 1/2`, is at most `13/20`: from `(61/39)^20 \u2264 2^13`.",
+      "file": "formal/Problems/Juggler/FateCertified.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-certified-thirty"
+      ],
+      "line": 315,
+      "module": "Problems.Juggler.FateCertified",
+      "name": "logb_tilt_thirty_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The conjecture from the one-sided hypothesis at `C = 30`, `q = 1/2`.** If no `L(y)`-bad cylinder of depth below `\u230830 L(y)\u2309` sends more than half of its members, plus `y (log y)^{-A}`, to an odd next letter, at all large scales above a certified floor, for some `A \u2265 52`, then every positive integer reaches `1`.",
+      "file": "formal/Problems/Juggler/FateCertified.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-certified-thirty"
+      ],
+      "line": 342,
+      "module": "Problems.Juggler.FateCertified",
+      "name": "one_sided_thirty",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
       "file": "formal/Problems/Juggler/FateChernoff.lean",
       "kind": "theorem",
       "ledger": [
@@ -84478,6 +84826,7 @@
         "Problems.Juggler.FamilyChains",
         "Problems.Juggler.FanLaw",
         "Problems.Juggler.FateBlockAverage",
+        "Problems.Juggler.FateCertified",
         "Problems.Juggler.FateChernoff",
         "Problems.Juggler.FateCollapse",
         "Problems.Juggler.FateContagion",
@@ -85467,6 +85816,20 @@
         {
           "id": "J-fate-block-average-layer",
           "statement": "The exact layer of Paper C Proposition 4.4, the slow sum, the block count, and equation (4.1) given the paper's two remaining exponential-sum bounds as hypotheses. The block: the odd n of I(m') = [m'^{8/3}, (m'+1)^{8/3}) are exactly the odd n with m'^2 <= floor(n^{3/4}) < (m'+1)^2 (mem_oddBlock, through the landing window of Appendix D.1). The decomposition: U(m') is the disjoint union of the even-image parts of the fibers Phi(m) over the even m of the block, so |U(m')| is the sum of Lemma 4.2's evenImageCount over E(m') (U_card_eq); the whole block is the disjoint union of the fibers (oddBlock_card_eq). The expansion: 4|U(m')| = M + S1 + S2 + S12 exactly (four_card_U). The slow sum S1 = sum psi(floor(n^{3/4})) is the alternating sum of fiber sizes over the block (slowSum_eq_fibers); the fiber bounds (2/3)m^{1/3} - 1 <= |Phi(m)| <= (2/3)(m+1)^{1/3} + 1 (FiberParity.oeFiber_card_ge, oeFiber_card_le) make consecutive fibers differ by at most 2 (oeFiber_card_succ_diff), and pairing the 2m'+1 fibers gives |S1| <= 2m' + (2/3)(m'+1)^{2/3} + 1 (slowSum_abs_le): the paper's 'the slow sum is O(m')', proved. The same fiber bounds give (2m'+1)((2/3)m'^{2/3} - 1) <= M <= (2m'+1)((2/3)(m'+1)^{2/3} + 1) (oddBlock_card_ge, oddBlock_card_le), hence |M/4 - m'^{5/3}/3| <= m' + 1 (oddBlock_quarter_close). Given |S2|, |S12| <= B, equation (4.1) holds as |U - M/4| <= B/2 + m' + 1 (block_average_two_bounds), in the paper's shape with B = C m'^{11/9} log(m'+1) and C_B = C/2 + 2 for m' >= 2 (block_average_bound_two), and the asymptotic form as |U - m'^{5/3}/3| <= B/2 + 2(m'+1) (block_average_asymptotic). THE TWO REMAINING BOUNDS ARE HYPOTHESES, NOT THEOREMS: the fast sum sum psi(floor(n^{3/2})) and the product sum are the exponential sums of the paper, estimated there by Vaaler's interval approximation, the second-derivative test and Kusmin-Landau, none of which is formalized here or anywhere in this repository; Proposition 4.4 remains a human proof in the paper's verification table. Nothing here bounds a density and nothing here is a halt theorem.",
+          "tag": "EXACT \u2014 LEAN VERIFIED"
+        }
+      ]
+    },
+    "Problems.Juggler.FateCertified": {
+      "declarations": 29,
+      "file": "formal/Problems/Juggler/FateCertified.lean",
+      "imports": [
+        "Problems.Juggler.FatePressureCorollary"
+      ],
+      "ledger": [
+        {
+          "id": "J-fate-certified-thirty",
+          "statement": "A certified instance of the side condition of Paper C's unconditional criteria, at C = 30, with no audit script in the chain. Device: a logarithm is certified by an integer power comparison. If E <= e and x^n <= E^m then n log x <= m (log_le_of_pow_le); if e <= E and E^m <= x^n then m <= n log x (le_log_of_pow_le); and the base-two pair logb_two_le, le_logb_two. With Mathlib's Real.exp_one_gt_d9 and exp_one_lt_d9 pinning 2.718 <= e <= 2.719 (e_ge, e_le), six comparisons closed by norm_num give: log 2 <= 7/10 (from 2^10 <= 2.718^7), 2/3 <= log 2 (2.719^2 <= 2^3), 84/53 <= log_2 3 (2^84 <= 3^53), log_2 3 <= 149/94 (3^94 <= 2^149), 19/100 <= log(3049/2500) (2.719^19 <= (3049/2500)^100) and log(39/50) >= -1/4 ((50/39)^4 <= 2.718). Hence p_30 = pC 30 lies in [3049/5000, 61/100] (pC_thirty_ge, pC_thirty_le), and by the sandwich klHalf_ge_of, D(p_30 || 1/2) >= 9156/500000 = 0.018312 (klHalf_thirty_ge); with log 2 <= 7/10 this gives e(30) = 30 D(p_30 || 1/2)/log 2 > 39/50 (chernoffExponent_thirty_gt), in particular > 7/10. Two further comparisons give D(p_30 || 1/2) <= 71/2500 and, with 2/3 <= log 2, e(30) < 13/10 (chernoffExponent_thirty_lt), which makes the side condition A > C + e(C) explicit as A >= 32. Consequences, each with every constant a numeral: cylinder_bound_thirty (Corollary 8.4 at C = 30: a cylinder bound H(30, A) at all large scales with A >= 32, above a certified floor N_0 >= 2, gives that every positive integer reaches 1), pressure_thirty (Theorem 9.2's criterion at C = 30 with no loss), and one_sided_thirty (Theorem 9.1's criterion at C = 30 and the fair share q = 1/2, with A >= 52; klDiv_half and oneSidedExponent_half identify the one-sided exponent at q = 1/2 with the Chernoff exponent, and logb_tilt_thirty_le bounds log_2 of the re-centring tilt by 13/20 from (61/39)^20 <= 2^13). NOT formalized: C = 30 is an instance, not the least; the audit finds e(C) > 7/10 first at C = 23, and the paper's own threshold e(C) > 1 - lambda** at C = 19 is a statement about lambda**. The bounds are deliberately loose (the true value is e(30) about 1.05). Nothing here proves any hypothesis, and nothing here is a halt theorem.",
           "tag": "EXACT \u2014 LEAN VERIFIED"
         }
       ]
@@ -87251,6 +87614,7 @@
       "imports": [
         "Problems.Juggler.CubeFiber",
         "Problems.Juggler.FateBlockAverage",
+        "Problems.Juggler.FateCertified",
         "Problems.Juggler.FateChernoff",
         "Problems.Juggler.FateCollapse",
         "Problems.Juggler.FateContagion",
@@ -87282,7 +87646,7 @@
       "ledger": [
         {
           "id": "J-paper-c-trust-surface",
-          "statement": "Paper C's Lean surface, as a build target and an axiom artifact. formal/Problems/JugglerFatePaper.lean imports exactly the twenty-nine modules the paper cites (TerminationFloor257, FateBlockAverage, FateShareLaw, FateProduction, FateOneSided, FateOneSidedCorollary, FatePressureCorollary, FateOneSidedAtoms, FateEnergyAtoms, FateCollapse, FateContagion, FateCylinderEnergy, CubeFiber, TiltedShare, FateRecursion, FateFirstLetter, FateLandingWindow, FateWindowCount, FateSweep, FateSweepMonotone, FateChernoff, FatePressure, FateTaoReduction, FateSeed, FateCylinderCorollary, FateNumerics, FateFiberParity, FateThinFibers, FateContagionBound) and is a lake default target; formal/AxiomCheckPaperC.lean prints the axioms of the cited declarations and AxiomCheckPaperC.expected records them: every line is a subset of [propext, Classical.choice, Quot.sound], no sorryAx, no Lean.ofReduceBool (native_decide). formalpedia's paper surface carries Paper C (root Problems.JugglerFatePaper): no declaration it reaches runs the compiler and none cites one that does. The verification table has thirty-one Lean rows (including Lemma 4.1', Lemmas 4.2 and 4.3, Lemma 5.2, Theorem 5.3 given the production inequality (5.2) and unconditionally at 3/10, Theorem 7.2 and Theorem 7.3 with the contagion bound as a hypothesis, Corollary 8.4, and Theorem 9.1 in exact form by exponential moments and its consequence, the conjecture from the one-sided hypothesis, and the conjecture from the pressure and no-momentum hypotheses of Section 9.2, Theorem 9.1 with the exceptional atoms of Section 10(d), the bias energy supplying those atoms, and the collapsed component's bias bound) and four human proofs (the block average 4.4, the share law, the production inequality (5.2), the asymptotic bookkeeping of Sections 8--10). FateNumerics holds the two numerical moves the fiber lemmas share, roots by powering and Bernoulli at a point; FateWindowCount holds the counting move, a sequence rising by at least d has at most w/d + 1 terms in a window of width w. This row records the artifact, not a theorem; nothing here bounds a density.",
+          "statement": "Paper C's Lean surface, as a build target and an axiom artifact. formal/Problems/JugglerFatePaper.lean imports exactly the thirty modules the paper cites (TerminationFloor257, FateBlockAverage, FateShareLaw, FateProduction, FateOneSided, FateOneSidedCorollary, FatePressureCorollary, FateOneSidedAtoms, FateEnergyAtoms, FateCollapse, FateCertified, FateContagion, FateCylinderEnergy, CubeFiber, TiltedShare, FateRecursion, FateFirstLetter, FateLandingWindow, FateWindowCount, FateSweep, FateSweepMonotone, FateChernoff, FatePressure, FateTaoReduction, FateSeed, FateCylinderCorollary, FateNumerics, FateFiberParity, FateThinFibers, FateContagionBound) and is a lake default target; formal/AxiomCheckPaperC.lean prints the axioms of the cited declarations and AxiomCheckPaperC.expected records them: every line is a subset of [propext, Classical.choice, Quot.sound], no sorryAx, no Lean.ofReduceBool (native_decide). formalpedia's paper surface carries Paper C (root Problems.JugglerFatePaper): no declaration it reaches runs the compiler and none cites one that does. The verification table has thirty-two Lean rows (including Lemma 4.1', Lemmas 4.2 and 4.3, Lemma 5.2, Theorem 5.3 given the production inequality (5.2) and unconditionally at 3/10, Theorem 7.2 and Theorem 7.3 with the contagion bound as a hypothesis, Corollary 8.4, and Theorem 9.1 in exact form by exponential moments and its consequence, the conjecture from the one-sided hypothesis, and the conjecture from the pressure and no-momentum hypotheses of Section 9.2, Theorem 9.1 with the exceptional atoms of Section 10(d), the bias energy supplying those atoms, the collapsed component's bias bound, and the unconditional criteria at C = 30 with every constant a numeral) and four human proofs (the block average 4.4, the share law, the production inequality (5.2), the asymptotic bookkeeping of Sections 8--10). FateNumerics holds the two numerical moves the fiber lemmas share, roots by powering and Bernoulli at a point; FateWindowCount holds the counting move, a sequence rising by at least d has at most w/d + 1 terms in a window of width w. This row records the artifact, not a theorem; nothing here bounds a density.",
           "tag": "COMPUTATIONALLY VERIFIED"
         }
       ]
@@ -87579,13 +87943,13 @@
     }
   },
   "totals": {
-    "declarations": 6444,
-    "declarations_with_a_ledger_row": 4461,
-    "ledger_rows_naming_a_file": 402,
-    "modules": 281,
+    "declarations": 6473,
+    "declarations_with_a_ledger_row": 4490,
+    "ledger_rows_naming_a_file": 403,
+    "modules": 282,
     "trust": {
       "compiler": 57,
-      "kernel": 6387
+      "kernel": 6416
     }
   }
 }

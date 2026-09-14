@@ -163,6 +163,7 @@ import Problems.Juggler.FatePressureCorollary
 import Problems.Juggler.FateOneSidedAtoms
 import Problems.Juggler.FateEnergyAtoms
 import Problems.Juggler.FateCollapse
+import Problems.Juggler.FateCertified
 import Problems.Juggler.FateCylinderEnergy
 import Problems.Juggler.FateLandingWindow
 import Problems.Juggler.FateNumerics
