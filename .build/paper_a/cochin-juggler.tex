@@ -501,21 +501,24 @@ certified computations. Appendix A records the Lean names. The finite
 tables used by Lemmas 3.5, 3.7, 3.11 and Theorems 3.12--3.20 are
 \texttt{decide\ +kernel} evaluations in the modules named there: the
 reduction is performed by the Lean kernel, so these tables add no trust
-assumption beyond it. That holds throughout the Juggler layer with one
-exception, \texttt{\nolinkurl{window_digit_scan}}: a scan of a quarter
-of a million window lengths in Section 5's Ostrowski certification,
-which uses \texttt{\nolinkurl{native_decide}} and so also trusts the
-Lean compiler and runtime. \texttt{\#print\ axioms} on any theorem
-displays whether it depends on it.
+assumption beyond it. That holds throughout the Juggler layer without
+exception. \texttt{\#print\ axioms} on any theorem displays that it
+depends on nothing but \texttt{\nolinkurl{propext}},
+\texttt{\nolinkurl{Classical.choice}} and
+\texttt{\nolinkurl{Quot.sound}}.
 
 The structural digit identity \texttt{\nolinkurl{greedy_eq_ostro}}
 identifies the fold and recursive algorithms for all lengths;
 \texttt{\nolinkurl{greedy_eq_ostro_below_window}} is its bounded
 corollary. Likewise \texttt{\nolinkurl{greedy_reconstruct_all}} is an
-exact reconstruction theorem. The remaining native scan sharpens the
-digit cap from \(47\) to \(37\) on its stated sub-window. The bound
-\texttt{\nolinkurl{window_digit_cap}} inherits that scan's runtime
-dependency, as recorded by the axiom audit.
+exact reconstruction theorem. Until 14 September 2026 a native scan,
+\texttt{\nolinkurl{window_digit_scan}}, sharpened the digit cap from
+\(47\) to \(37\) on a sub-window and was the layer's only proof off the
+kernel. Nothing consumed the sharper constant, so it was retired:
+\texttt{\nolinkurl{window_digit_cap}} is now proved from the structural
+\texttt{\nolinkurl{greedyDigitSum_le}} at \(47\), and
+\texttt{\nolinkurl{window_digit_max}} records --- kernel-checked ---
+that \(37\) is attained at \(L = 275632\).
 
 Section 3.10's finite-order statements, exact rounding results, and
 quantitative log-log grid inequalities are also formalized. The grid
@@ -647,8 +650,8 @@ charge-maximisation and strict-uniqueness halves of Theorem 5.4
 the instantiated cap below \(q_{13}=301994\)
 (\texttt{\nolinkurl{ostroDigit_le}},
 \texttt{\nolinkurl{theta_digitSum_le}},
-\texttt{\nolinkurl{window_digit_scan}}), and the kill template of
-Theorem 5.9 (\texttt{\nolinkurl{cycleMin_hug_kill_criterion}}) are
+\texttt{\nolinkurl{window_digit_cap}}), and the kill template of Theorem
+5.9 (\texttt{\nolinkurl{cycleMin_hug_kill_criterion}}) are
 Lean-verified; Theorems 5.2 and 5.9 are independently certified
 computations at the laboratory floor, with the same trust boundary as
 Theorem 4.6 (exact integer arithmetic plus guarded float comparisons).

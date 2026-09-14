@@ -47167,3 +47167,66 @@ Best next question
   ledger survive, and if it does, does the map's fence on that gap
   still describe the same object the dossier closed?
 ```
+
+
+## The Juggler Lean layer is off the compiler entirely
+
+`window_digit_scan` is retired. It was the last proof in the layer discharged
+by `native_decide` rather than by the kernel: a pass over 251486 window
+lengths certifying that the greedy Ostrowski digit sum stays at most 37.
+Paper A named it as its one documented exception, and `window_digit_cap`
+inherited its runtime dependency. Both statements are now false, which is the
+point.
+
+**The kernel route was re-priced before it was abandoned again.** The
+laboratory had rejected kernel reduction of the scan once already, and the
+rejection holds: `decide +kernel` takes 6.0 s of work for a thousand lengths
+and 33.2 s for four thousand, net of a 27.1 s import baseline, so the full
+251486 extrapolates past half an hour and superlinearly. That is not a build
+step. Measuring it again cost four minutes and is the only honest basis for
+saying the route is closed.
+
+**What retires it is that nothing wanted the sharp constant.** The structural
+cap `greedyDigitSum_le` gives 47 for every `L < 301994`, proved from the
+Ostrowski digit bound rather than scanned, and no theorem, kill or period
+bound consumed the 37 — the only references outside the module were an axiom
+probe and two docstrings. So `window_digit_cap` is reproved at 47 and moved to
+`OstrowskiNumeration`, where the structural cap lives; it could not stay where
+it was, because `OstrowskiNumeration` imports `OstrowskiSandwich` and the
+dependency runs the wrong way. `window_digit_max` stays in place and still
+records, kernel-checked, that 37 is attained at `L = 275632`. The sharp
+constant survives as a measured fact and stops being a certified bound.
+
+**The lower endpoint turned out to be unnecessary.** The structural proof needs
+only `L < 301994`, so `window_digit_cap`'s `50508 ≤ L` is now an unused binder,
+kept solely so the interface Paper A's appendix names is unchanged. The linter
+noticed before I did.
+
+**Paper A says something different now, and that is a strengthening.** Its
+trust paragraph read "throughout the Juggler layer with one exception"; it
+reads "without exception", and `#print axioms` on any theorem now displays
+nothing but `propext`, `Classical.choice` and `Quot.sound`. The regenerated
+axiom artifact confirms it: `window_digit_cap` went from carrying
+`window_digit_scan._native.native_decide.ax_1_1` to the three standard axioms,
+and the expected file contains the string `native_decide` nowhere at all. The
+paper still names the scan, historically, in the sentence recording what
+happened to it.
+
+**Two gates had to be taught not to go vacuous.** `NATIVE_EXCEPTIONS` is now
+empty, which would have made the trust validator's accept path loop over
+nothing and pass without checking anything; the control harness therefore uses
+a synthetic exception, so the machinery that would authorise a future scan
+stays tested while the repository authorises none. And the Paper A surface test
+asserted that `compiler_trusted` is a *proper* subset of `compiler_dependent`
+— true while something was off the kernel, false and meaningless when both are
+empty — so it now asserts the proper containment only in that regime, and
+emptiness of both in this one.
+
+Nine files of prose followed: the paper, its LaTeX source, the formalization
+appendix, the reviewer packet, three Lean docstrings, two ledger rows, and
+three `juggler_review` mirrors. The dated 5 September trust audit in
+`J-lean-arithmetic-certificates-kernel-checked` is left alone; it records what
+was true on its own date and says so.
+
+Cost: the window cap is 47 where it was 37. Nothing downstream notices, and
+the layer no longer asks anyone to trust a compiler.

@@ -32,8 +32,8 @@ This file certifies that arithmetic:
   (`theta_convergent_denominators`);
 * the greedy Ostrowski digit scan of Paper A Theorem 5.8: every
   window length `50508 ≤ L < 301994` decomposes into certified
-  blocks with digit sum at most `37` (`window_digit_scan`,
-  `window_digit_cap`), attained at `L = 275632`
+  blocks with digit sum at most `47` (`window_digit_cap`, in
+  `OstrowskiNumeration`), with `37` attained at `L = 275632`
   (`window_digit_max`);
 * the convergent quality behind Theorem 5.7's Denjoy–Koksma
   application: numerators (`theta_convergent_numerators`),
@@ -191,27 +191,15 @@ theorem greedy_reconstruct_all (L : ℕ) : greedyReconstruct L = L := by
   simp [greedyReconstruct, greedyDigits, thetaDenomsDesc]
   omega
 
-/-- **Window digit scan**: for every `L` in the window `[50508, 301994)`, the greedy digit
-sum is at most `37`.  This is the one thing here that is genuinely a scan: the structural
-cap of `OstrowskiNumeration` gives `47`, and `37` is the sharper constant measured on the
-window.  Reconstruction, which the scan used to re-certify alongside it, is
-`greedy_reconstruct_all` and holds everywhere. -/
-theorem window_digit_scan :
-    ((List.range' 50508 251486).all fun L =>
-      decide (greedyDigitSum L ≤ 37)) = true := by
-  native_decide
-
-/-- The cap `37` is attained, at `L = 275632`. -/
+/-- The sharp constant `37` is attained, at `L = 275632`, kernel-checked at its
+witness.  It is no longer certified as an upper bound over the window: the scan that
+did so, `window_digit_scan`, was the Juggler layer's last `native_decide` and was
+retired on 14 September 2026.  The pointwise bound is now `window_digit_cap` in
+`OstrowskiNumeration`, at the structural cap `47`.  Kernel reduction of the scan as it
+stood was priced again before retiring it and is still out of range: `decide +kernel`
+takes 6.0 s for a thousand lengths and 33.2 s for four thousand, net of imports, so the
+full 251486 extrapolates to over half an hour and superlinearly. -/
 theorem window_digit_max : greedyDigitSum 275632 = 37 := by decide +kernel
-
-/-- Pointwise form of the scan: any window length decomposes
-greedily into certified blocks with digit sum at most `37`. -/
-theorem window_digit_cap {L : ℕ} (h1 : 50508 ≤ L) (h2 : L < 301994) :
-    greedyReconstruct L = L ∧ greedyDigitSum L ≤ 37 := by
-  refine ⟨greedy_reconstruct_all L, ?_⟩
-  have hall := List.all_eq_true.mp window_digit_scan L
-    (List.mem_range'_1.mpr ⟨h1, by omega⟩)
-  exact of_decide_eq_true hall
 
 /-!
 ## Convergent quality (the Denjoy–Koksma hypothesis)

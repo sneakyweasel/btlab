@@ -238,8 +238,8 @@ The note's Lean-tagged theorems are listed in its Appendix A:
 * 5.8 (digit cap) general Ostrowski numeration `ostroDigit_le`,
       `ostro_sum_eq`, `ostro_digitSum_le`, θ instance
       `theta_digitSum_le`, `greedyDigitSum_le`
-      (`OstrowskiNumeration.lean`); window scan `window_digit_scan`,
-      `window_digit_cap`, `window_digit_max`
+      (`OstrowskiNumeration.lean`); window cap `window_digit_cap`
+      (`OstrowskiNumeration.lean`), `window_digit_max`
       (`OstrowskiSandwich.lean`);       `hugCharge_sub_circleMean_le` is the
       general Lean block envelope, while the instantiated constant-cap
       theorem `hugCharge_sub_circleMean_window` has scope `L < 301994`.

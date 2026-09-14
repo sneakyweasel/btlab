@@ -88,9 +88,10 @@ The full window uses \(16.41<\nu<17.084\) and the scan-free bound
 comparison that excludes each surviving length remains per-length.
 Observation 5.13 is a finite fit, not an asymptotic law.
 
-Most formal proofs use Lean's kernel and standard logical foundations.
-The one documented compiled-decision exception is `window_digit_scan`,
-inherited by `window_digit_cap`. The exact list is checked by
+All formal proofs use Lean's kernel and standard logical foundations.
+The one documented compiled-decision exception, `window_digit_scan`,
+was retired on 14 September 2026; nothing in the layer now runs off the
+kernel. The exact list is checked by
 `formal/AxiomCheckPaperA.lean` against its recorded output. The new
 upper-square, upper-cell charge and terminal-construction proofs introduce
 no additional exception.

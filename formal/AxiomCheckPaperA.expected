@@ -375,8 +375,5 @@
 'Problems.Juggler.value_sub_mean_le_variation' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.walkTheta' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.walkTheta_lt_upper' depends on axioms: [propext, Classical.choice, Quot.sound]
-'Problems.Juggler.window_digit_cap' depends on axioms: [propext,
- Quot.sound,
- Problems.Juggler.window_digit_scan._native.native_decide.ax_1_1]
-'Problems.Juggler.window_digit_scan' depends on axioms: [propext,
- Problems.Juggler.window_digit_scan._native.native_decide.ax_1_1]
+'Problems.Juggler.window_digit_cap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.window_digit_max' depends on axioms: [propext]

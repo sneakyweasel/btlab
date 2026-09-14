@@ -499,18 +499,20 @@ names. The finite tables used by Lemmas 3.5, 3.7, 3.11 and
 Theorems 3.12--3.20 are `decide +kernel` evaluations in the modules
 named there: the reduction is performed by the Lean kernel, so these
 tables add no trust assumption beyond it. That holds throughout the
-Juggler layer with one exception, `window_digit_scan`: a scan of a quarter
-of a million window lengths in Section 5's Ostrowski certification, which
-uses `native_decide` and so also trusts the Lean compiler and runtime.
-`#print axioms` on any theorem displays whether it depends on it.
+Juggler layer without exception. `#print axioms` on any theorem
+displays that it depends on nothing but `propext`, `Classical.choice`
+and `Quot.sound`.
 
 The structural digit identity `greedy_eq_ostro` identifies the
 fold and recursive algorithms for all lengths; `greedy_eq_ostro_below_window`
 is its bounded corollary. Likewise `greedy_reconstruct_all` is an exact
-reconstruction theorem. The remaining native scan sharpens the digit cap
-from \(47\) to \(37\) on its stated sub-window. The bound
-`window_digit_cap` inherits that scan's runtime dependency, as recorded
-by the axiom audit.
+reconstruction theorem. Until 14 September 2026 a native scan,
+`window_digit_scan`, sharpened the digit cap from \(47\) to \(37\) on a
+sub-window and was the layer's only proof off the kernel. Nothing
+consumed the sharper constant, so it was retired: `window_digit_cap`
+is now proved from the structural `greedyDigitSum_le` at \(47\), and
+`window_digit_max` records --- kernel-checked --- that \(37\) is
+attained at \(L = 275632\).
 
 Section 3.10's finite-order statements, exact rounding results, and
 quantitative log-log grid inequalities are also formalized. The grid proof
@@ -630,7 +632,7 @@ defect-to-hug-charge consequence of §5.2
 the charge-maximisation and strict-uniqueness halves of Theorem 5.4
 (`hug_charge_maximal`, `hug_charge_unique`), the general digit machinery
 and the instantiated cap below \(q_{13}=301994\) (`ostroDigit_le`,
-`theta_digitSum_le`, `window_digit_scan`), and the kill
+`theta_digitSum_le`, `window_digit_cap`), and the kill
 template of Theorem 5.9 (`cycleMin_hug_kill_criterion`) are
 Lean-verified; Theorems 5.2 and 5.9 are independently certified
 computations at the laboratory floor, with the same trust

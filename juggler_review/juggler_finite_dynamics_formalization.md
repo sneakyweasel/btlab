@@ -717,10 +717,12 @@ denominator list \(1,\ldots,176251\)
 (`theta_convergent_denominators`). The digit scan of Theorem 5.8 is
 also Lean, on the sub-window it was written for: for every
 \(50508\le L<301994\) the greedy Ostrowski digits over the certified
-denominators reconstruct \(L\) and sum to at most \(37\)
-(`window_digit_scan`, pointwise `window_digit_cap`), attained at
-\(L=275632\) (`window_digit_max`). Since the paper's window was extended
-to \(q_{14}\), that scan sharpens the constant rather than establishing
+denominators reconstruct \(L\) and sum to at most \(47\)
+(pointwise `window_digit_cap`, on the structural cap
+`greedyDigitSum_le`), with \(37\) attained at \(L=275632\)
+(`window_digit_max`). The native scan that certified \(37\) across the
+window was retired on 14 September 2026. Since the paper's window was extended
+to \(q_{14}\), that scan sharpened the constant rather than establishing
 the full theorem; `hugCharge_sub_circleMean_window` remains restricted to
 \(L<q_{13}\), while `hugCharge_sub_circleMean_extended` names the printed
 window. The printed \(C_*\) forms are
