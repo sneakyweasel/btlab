@@ -1,5 +1,63 @@
 # Research journal
 
+## 2026-09-14 — Thirteen control characters where LaTeX used to be
+
+`docs/research_journal.md` and `docs/problems/juggler_paper_c_formal_layer.md`
+carried thirteen ASCII control characters between them, twelve and one. They are
+the residue of patching prose through a non-raw Python string: `"\theta"` is not
+six characters, it is TAB followed by `heta`. Python raises `SyntaxWarning` for
+the escapes that *fail* --- `\(`, `\l` --- and says nothing at all about the ones
+that succeed, so `\varepsilon` became VT + `arepsilon`, `\text{guard}` became
+TAB + `ext{guard}`, and the rendered mathematics quietly stopped being
+mathematics. Nothing downstream complained, which is why thirteen of them
+accumulated across several sessions.
+
+```text
+0x09 TAB  x6   \theta x2, \tfrac, \text, \tau, and one "tests" path label
+0x08 BS   x3   block_average_plus_third, block_third_plus_ooeee, a regex \b
+0x0c FF   x2   fate_contagion.recursion_root, fate_contagion.py
+0x0b VT   x2   \varepsilon, \varrho
+```
+
+**The interesting half is the half that was never LaTeX.** Five of the thirteen
+restore a plain letter, not a command. FF + `ate_contagion` is the module
+`fate_contagion.py`, so it wants a literal `f`; BS + `lock_average_plus_third`
+is a function name and wants a literal `b`; TAB + `ests/research/...` is the
+label `tests` in front of a path. Reading every control character as a Greek
+letter would have produced `\frac{ate_contagion}` and worse. The rule that
+actually works is to ask whether the surrounding text is mathematics or a path
+before choosing the repair.
+
+The subtlest one sits at `used `\b` before `e_``, in the prose about a failed
+rename. A backspace before `eta` is usually `\beta`, but here the sentence goes
+on to say the pattern "does not match between a digit and a letter, so `3e_a`
+was skipped" --- which is the definition of a regex word boundary. The intended
+text was `\b` itself. Context decided it, not the character table.
+
+**A fourteenth, which the scan cannot see.** `\r` in a non-raw string becomes a
+carriage return, and a carriage return reads back as a real line break under
+universal newlines. So `\research` had already become a line ending followed by
+`esearch`, and the `- **Reusable machinery:**` bullet had been silently cut in
+half --- invisible to any check that scans decoded text for control characters,
+because by then it *is* a newline. Found only by searching the bytes. All
+repairs were done at the byte level for the same reason.
+
+**The gate.** `tests/integration/test_docs_control_characters.py` now refuses
+any control character other than the line ending in tracked Markdown, and
+reports file, line, byte offset and the command the character was probably
+eaten from. All 838 tracked Markdown files pass it today, so it is scoped to
+the whole corpus rather than to `docs/` alone; `AGENTS.md` and the attack
+capsules get the same protection for free. A second check flags a carriage
+return that is not part of a line ending --- a cheap backstop for the `\r` case,
+though a later CRLF normalisation pass can mask it, which is what happened
+here.
+
+The standing fix has not changed and is now enforced rather than remembered:
+write documentation patches with raw strings, `r"..."`, or put the patch in a
+scratch `.py` file and run that. An inline heredoc with LaTeX in a bare string
+is how all fourteen of these got in.
+
+
 ## 2026-09-14 — The orphan gate was measuring the wrong relation
 
 `test_orphan_declarations_do_not_grow` reported 439 unresolved candidates
@@ -24436,7 +24494,7 @@ Best next question
   - Mathematical target: is the OE-fiber scarcer half at least \(H/3-O(1)\) on good fibers, and what is the new elementary root?
   - Novelty hypothesis: the sweep \(H/7\) used only the interval of steps; OE-fiber steps are monotone, so run lengths cannot lock a \(3+1\) split.
   - Falsifier: a good fiber (or a monotone synthetic orbit) with scarcer share \(<1/3-O(1/H)\); or the abstract sweep already \(1/3\).
-  - Existing machinery: Lemmas 3.1--3.2, block-average recursion, ate_contagion.recursion_root.
+  - Existing machinery: Lemmas 3.1--3.2, block-average recursion, fate_contagion.recursion_root.
   - Phase-0 scope: pairing lemma + synthetic/adversarial check + new root.
   - Promotion: pairing theorem + \(\lambda^{**}\approx 0.448\) through Paper C Theorem 1 and the Tao rate.
   - Stop: pairing false, or the lift is only a reparameterization.
@@ -24448,9 +24506,8 @@ Best next question
   - Census: min scarcer on good fibers still \(0.328\) at \(\alpha_m\approx 1/3\) (e.g. \(m=1003635\), \(22/67\)). Classification OE_FIBER_PAIRING_CONSISTENT.
 - **Strongest theorem:** on a good OE fiber, both parities of \(\lfloor n^{3/2}\rfloor\) occur at least \(H_m/3-2\) times; every nonempty backward-closed set has \(\sum_{n\le x}1/n\gg(\log x)^\lambda\) for \(\lambda<\lambda^{**}=0.4480\) (J-fate-log-density).
 - **Strongest refutation:** the abstract sweep cannot be rewritten as \(1/3\); the \(3+1\) lock is realizable without monotonicity.
-- **Reusable machinery:** 
-esearch.juggler_sequence.oe_fiber_constant (pairing check, adversarial lock, \(\alpha\)-binned fibers); lock_average_plus_third / lock_third_plus_ooeee in ate_contagion.py.
-- **Records:** dossier docs/problems/juggler_oe_fiber_constant.md; probe src/research/juggler_sequence/oe_fiber_constant.py; artifact data/research/juggler/oe_fiber_constant/summary.json; tests 	ests/research/juggler_sequence/test_oe_fiber_constant.py; ledger rows J-fate-log-density, J-fate-fiber-sweep, J-fate-ooeee-production, J-tao-rate-implies-conjecture updated; parent dossier and branch-ledger row updated.
+- **Reusable machinery:** research.juggler_sequence.oe_fiber_constant (pairing check, adversarial lock, \(\alpha\)-binned fibers); block_average_plus_third / block_third_plus_ooeee in fate_contagion.py.
+- **Records:** dossier docs/problems/juggler_oe_fiber_constant.md; probe src/research/juggler_sequence/oe_fiber_constant.py; artifact data/research/juggler/oe_fiber_constant/summary.json; tests tests/research/juggler_sequence/test_oe_fiber_constant.py; ledger rows J-fate-log-density, J-fate-fiber-sweep, J-fate-ooeee-production, J-tao-rate-implies-conjecture updated; parent dossier and branch-ledger row updated.
 - **Decision:** PROMOTE. The remaining depth-two gap \(0.448\to 0.4927\) is \(1/3\) vs \(1/2\), not a uniform per-fiber statement. Not a halt theorem. Not a new production.
 
 ```text
@@ -25626,8 +25683,8 @@ cross-check.
 computation remains up to \(L=16785921\)". That is wrong, and the paper had
 the distinction right before I blurred it. The window theorem is a uniform
 upper bound on the *charge*; the kill decision is
-\(	heta(L)>	frac65B(L)\cdot	ext{guard}\), whose left-hand side
-\(	heta(L)=1-2^L/3^{o_{\min}(L)}\) is a per-length Diophantine quantity the
+\(\theta(L)>\tfrac65B(L)\cdot\text{guard}\), whose left-hand side
+\(\theta(L)=1-2^L/3^{o_{\min}(L)}\) is a per-length Diophantine quantity the
 envelope does not control --- and which Corollaries 5.10 and 5.11 name as the
 actual obstruction at the surviving fan members. What the extension removes is
 the per-length *dynamic program*, not the per-length *arithmetic*.
@@ -26326,7 +26383,7 @@ frees `s` for the Ostrowski digit sum `s(L)` of Section 5 and retires `l` entire
 5's `W = 2^u` became `W = 2^{u_k}`, matching its own neighbours and freeing bare `u` for the
 suffix of Section 3.9.
 
-**Two failed attempts, both instructive.** The first pass used `` before `e_`, which does not
+**Two failed attempts, both instructive.** The first pass used `\b` before `e_`, which does not
 match between a digit and a letter, so `3e_a` in the recurrences was skipped and the manuscript
 was left half-renamed --- strictly worse than not starting. The second pass was complete but
 sent the step exponent to `d`, which is already the *depth* in Section 6 ("after `d <= 40`
@@ -26385,9 +26442,9 @@ count brought a Hoeffding constant into a section that already had a kernel weig
 
 The model-problem objects took script letters --- `\mathcal S`, `\mathcal A`, `\mathcal B` ---
 which is the paper's own style (`\mathcal D` and `\mathcal O` were already there) and signals
-that they are the abstract model rather than the analysis. Markov's threshold became `	au` and
+that they are the abstract model rather than the analysis. Markov's threshold became `\tau` and
 the exceptional measure `\eta`, neither used in the section. The kernel weight became
-`arrho`, unused anywhere in the paper, which leaves `c` to the constants `c_2, c_3, c_4, c_7`
+`\varrho`, unused anywhere in the paper, which leaves `c` to the constants `c_2, c_3, c_4, c_7`
 and to Hoeffding's rate --- an unsubscripted `c` for a constant matches that family, an
 unsubscripted `c` for a function of `n` did not.
 
