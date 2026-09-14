@@ -9909,5 +9909,16 @@
    "tests/research/juggler_sequence/test_collision_large_sieve.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "id": "J-paper-b-meander-constant-splits",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "Paper B's meander constant is a product of two factors that behave nothing alike, and its slow convergence is entirely one of them. Exactly, from the change of measure with P_theta(w) = 2^-d e^{theta S(w)}/M(theta)^d: N_d/2^d = rho^d E_theta[1_survive e^{-theta S_d}], verified to nine figures at every depth tested. At the zero-drift tilt (J-the-two-tilts-are-one-measure) that splits into the survival probability, of order c1/sqrt(d), and the endpoint cost E[e^{-theta S_d} | survive], of order c2/d because S_d ~ sigma sqrt(d) and the meander density vanishes linearly at the origin -- together the d^{-3/2} of J-the-meander-is-shared-and-supplies-paper-bs-polynomial. Measured: P(surv) sqrt(d) is flat from d = 400 at 0.66746, the ladder constant, settled (0.66642 at d = 200, so it is the deeper depths that have converged). E[cost|surv] d is 14.75, 15.65, 16.12 at d = 400, 800, 1600 and only settles near 16.53 by d = 3200-6400 (increment -0.017 at 6400). The product is 11.03, which is the true limit of meander_constant; the depths it prints, 9.84, 10.45 and 10.76 at 400, 800 and 1600, are still 2.5% short at the deepest, so the printed sequence is evidence for the exponent as it claims but understates the constant. THE GAP TO FIRST PRINCIPLES. The Brownian meander gives the second factor as 1/(theta sigma)^2 = 14.936 against 16.53 measured, a factor 1.107 the continuum picture does not supply. That is the lattice ladder-height correction, and it is what a derivation of the constant from the meander still needs -- the exponent follows from the continuum, the constant does not. Measured to d = 6400, not proved. No bound moves.",
+  "source": "docs/research_journal.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_paper_b_prefix_count.py"
+  ],
+  "related_conjectures": []
  }
 ]
