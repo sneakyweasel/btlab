@@ -1289,6 +1289,13 @@ def collision_census(
         words.append(w)
         depths.append(bad_depth(w, L))
 
+    # The depth the hypothesis is actually used at is the half-exponent least C,
+    # which is a function of REQUIRED_RATE.  Freezing it at the value that rate
+    # happened to imply when this was written (32) silently measured the census at
+    # the wrong depth once the rate moved to 0.5074 and the constant became 30.
+    operative_C = half_exponent_least_C(REQUIRED_RATE)
+    operative_depth = math.ceil(operative_C * L)
+
     rows: list[dict[str, Any]] = []
     for d in range(1, d_max + 1):
         tally: dict[tuple[int, ...], int] = {}
@@ -1304,7 +1311,7 @@ def collision_census(
         null = samples * (samples - 1) * n_bad * 4.0 ** (-(d - 1)) + samples * p_bad
         rows.append({
             "d": d,
-            "is_operative_depth": d == math.ceil(32 * L),
+            "is_operative_depth": d == operative_depth,
             "sample_support": samples / n_bad if n_bad else None,
             "bad_words_available": n_bad,
             "bad_words_occupied": len(tally),
@@ -1315,7 +1322,8 @@ def collision_census(
             "ratio_to_null": collisions / null if null > 0 else None,
         })
     return {"log10_y": log10_y, "N0": n0, "samples": samples, "L": L, "d_max": d_max,
-            "seed": seed, "operative_depth_C32": math.ceil(32 * L), "rows": rows}
+            "seed": seed, "operative_C": operative_C,
+            "operative_depth": operative_depth, "rows": rows}
 
 
 def verdict(censuses: list[dict[str, Any]]) -> dict[str, Any]:

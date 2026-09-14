@@ -113,7 +113,12 @@ def test_the_null_absorbs_the_finite_sample_term_and_the_raw_excess_does_not() -
 
 def test_the_operative_depth_at_1e12_is_inside_the_measured_range() -> None:
     census = collision_census(12, samples=5_000, d_max=18)
-    assert census["operative_depth_C32"] == math.ceil(32 * census["L"]) == 17
+    # Both sides of this used to be the literal 32 -- the module's frozen constant
+    # compared against the test's copy of it, which cannot fail and did not notice
+    # when REQUIRED_RATE moved and the operative C became 30.  The depth is now
+    # derived, and the bare 16 is the gate: a rate change has to come here.
+    assert census["operative_C"] == half_exponent_least_C(REQUIRED_RATE) == 30
+    assert census["operative_depth"] == 16
     assert any(r["is_operative_depth"] for r in census["rows"])
 
 
@@ -205,7 +210,7 @@ def test_the_containment_costs_almost_nothing_at_the_operative_depth() -> None:
 
     from research.juggler_sequence.collision_large_sieve import tau_vs_sigma
 
-    for e10, C in ((12, 20), (20, 32)):
+    for e10, C in ((12, 20), (20, 30)):
         row = tau_vs_sigma(e10, C=C, samples=4_000)
         assert row["containment_cost"] is not None
         assert 1.0 <= row["containment_cost"] < 1.10, row
@@ -518,8 +523,15 @@ def test_renewal_link_is_the_cylinder_statement_at_summed_depth() -> None:
     from research.juggler_sequence.collision_large_sieve import link_depth_accounting
 
     out = link_depth_accounting(m0=10**8, count=400, depth=3)
+    # `identity_holds` is `via_M == via_n`, which is also true when both sides are
+    # empty, so the non-degeneracy is part of the claim rather than an extra.
+    assert any(v != 0 for v in out["via_M"]), out["via_M"]
     assert out["identity_holds"] and out["null_identity_holds"]
-    assert out["link_letters_covered_by_paper_b"] == out["paper_b_depth"] - 2
+    # This used to read `link_letters_covered_by_paper_b == paper_b_depth - 2`, and
+    # both of those are literals in the module: 2 == 4 - 2, true whatever the code
+    # computes. What the row actually claims is that the link adds no twist, which
+    # is the identity above holding at every excursion depth.
+    assert len(out["via_M"]) == out["depth"]
     tv = {(round(math.log10(t["P"])), i % 3): t for i, t in enumerate(out["twist_pricing"])}
     assert tv[(9, 1)]["tv_after_differencing"] < 0.5 < tv[(9, 2)]["tv_after_differencing"]
     assert abs(tv[(9, 2)]["twist_first_derivative"] - 2 / 3) < 1e-9
