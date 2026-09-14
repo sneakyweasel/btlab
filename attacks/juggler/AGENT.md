@@ -192,6 +192,22 @@ cd formal; lake env lean Problems/Juggler/<Module>.lean
 cd formal; lake build Problems.Juggler
 ```
 
+**Worktrees do not isolate these commands.** `pip install -e` resolves
+`research.juggler_sequence` from the main checkout, so `REPO_ROOT` and
+everything derived from it -- `BRANCHES_ROOT`, `DATA_ROOT`, `FORMAL_DIR`,
+the branch index path -- name the main checkout whatever worktree you run
+from. `branch_index` run from a worktree rewrites the *main* checkout's
+`attacks/juggler/index.json` and leaves the worktree copy stale, and
+`--check` then passes against main's copy rather than yours. Several
+sessions each regenerating "their own" index are writing one shared file.
+Prefix the command, and verify before trusting it:
+
+```powershell
+$env:PYTHONPATH = "<worktree>\src"
+python -c "from research.juggler_sequence.lean_paths import BRANCHES_ROOT; print(BRANCHES_ROOT)"
+python -m research.juggler_sequence.branch_index
+```
+
 ## Do not
 
 - Raise \(N_0\), reopen finance, or edit Paper A from a Phase-0 branch.
