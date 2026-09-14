@@ -279,6 +279,7 @@ LAYERS: dict[str, Path] = {
     "FateEnergyAtoms": JUGGLER_DIR / "FateEnergyAtoms.lean",
     "FateCollapse": JUGGLER_DIR / "FateCollapse.lean",
     "FateCertified": JUGGLER_DIR / "FateCertified.lean",
+    "GapTransferWW": JUGGLER_DIR / "GapTransferWW.lean",
 }
 
 # Sources belonging to other targets or historical model interfaces. Keeping

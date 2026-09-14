@@ -27,7 +27,9 @@ Full reading path, state of the problem, file map, and registration:
 \(5.54\cdot 10^8\) is PARK.
 
 **Live frontiers.** Cycles: Diophantine near-convergents (Paper D;
-laboratory-kill CLOSE). Termination: exported exponent-pair leftover,
+laboratory-kill CLOSE); the closure threshold is a minimum lower bound
+\(n\gg L^{5.1163051}\), never below \(L^{2}\)
+(`J-cyclemin-closure-threshold`). Termination: exported exponent-pair leftover,
 not a Juggler construction. Fates: contagion \(\lambda^{**}=0.4926\);
 Tao reduction is conditional. Flights: descriptively terminal.
 

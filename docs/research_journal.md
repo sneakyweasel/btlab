@@ -1,5 +1,117 @@
 # Research journal
 
+## 2026-09-14 — Corollary 4.11 was citing the wrong measure
+
+Paper A Corollary 4.11 substitutes `(a,b,c) = (0,-L,o)` into an
+effective linear-forms bound and reports `n log n <= 915 L^14.3`. The
+citation is Rhin, packaged through Simons-de Weger Lemma 12. But the
+laboratory already imports a sharper measure: `cycle_walk_fan_growth`
+cites Wu-Wang 2014, `|a + b log2 + c log3| >= H^(-4.1163051-eps)` with
+`H = max(|b|,|c|)`, and uses it only to cap fan widths. Corollary
+4.11's own substitution has `a = 0` and `H = max(L,o) = L`. That is
+exactly the shape Wu-Wang bounds. Nobody carried it back.
+
+Carrying it back:
+
+    n log n  <<_eps  L^5.1163051     against the printed L^14.3
+    L        >>      n^0.1954        against n^0.0699
+
+a factor 2.795 in the exponent for the price of a citation. The
+laboratory's own dossier even records that "Rhin's effective companion
+is worse (q^12.3)" — for the width transfer — and then leaves the
+corollary running on Rhin.
+
+Triage:
+
+```text
+Mathematical target     Does Wu-Wang apply to Corollary 4.11's own
+                        substitution, and what does the sharper exponent
+                        change?
+Novelty hypothesis      The measure is already in the repository, used
+                        for a different consequence. If it covers a = 0
+                        the floor-free reduction and the closure target
+                        both improve by 2.8 in the exponent.
+Falsifier               Wu-Wang does not cover a = 0; or it kills a
+                        length finance keeps, which would put this
+                        behind the REFUTED Diophantine wall.
+Already killed by?      No. The wall kills Baker/Rhin/SdW as a floor-level
+                        kill, the laboratory kill past 780239, and
+                        inhomogeneous Wu-Wang with a nonzero third
+                        coefficient. This is the floor-free complement
+                        that negative_knowledge itself files as
+                        "Complement, not a kill", at a better exponent,
+                        and its kill criterion is a period bound in n
+                        rather than a function of the surplus.
+Existing machinery      cycleMin_gap_transfer, cycleMin_length_of_gap,
+                        paper_a_audit, the Wu-Wang literature entry.
+Maximum Phase-0 scope   One Lean module parametric in the Diophantine
+                        exponent p, one probe, one dossier, ledger rows.
+                        No floor, no manuscript edit.
+Promotion criterion     The substitution is legitimate, the exponent
+                        improves, and nothing is killed.
+Stop criterion          Either failure mode above.
+```
+
+Stating the transfer parametrically in `p` was the right move, because
+the three things I wanted are three readings of one inequality.
+`cycleMin_length_of_gap_power` is `cycleMin_length_of_gap` at
+`eps = C L^(-p)`; Corollary 4.11 is `p = 13.3`, the Wu-Wang instance is
+`p = 4.1163051`, and the proof is the same four lines either way.
+
+**The period lower bound.** Read the inequality the other way and it is
+`L >= (C n log n / 2)^(1/(p+1))`. Floor-free. This is the only proved
+statement in the programme where a cycle's *period* grows with its
+*minimum* — every other relation runs the other way, and the descent
+floor is a constant. It is a different claim from the fan-width cap and
+from the refuted floor-level transfer, and the dossier says so
+explicitly, because the Diophantine wall is dense enough that an
+adjacent-looking statement needs its distinction written down.
+
+**The closure threshold.** This is the part I care about.
+`cycle_method_ceilings` ends with "reopen only on a lower bound for the
+minimum in terms of the period", and never says how strong. The
+transfer says: `n >> L^(p+1)` suffices. So the standing reopen
+condition is `n >> L^5.1163051` unconditionally, where it used to read
+`n >> L^14.3`. And Dirichlet gives `p >= 1` for every irrational, so
+`n >> L^2` is a hard floor — no improvement of the measure, no future
+theorem about `log2/log3`, ever asks for less. `no_cycleMin_of_gap_and_minimum`
+is the implication, both hypotheses unproved. A conditional in Lean is
+worth having here precisely because the target was previously a slogan.
+
+**A correction that fell out.** Section 6.2 says survivors sit at
+`n ~ L^1.7` and the band `[L, L^2]` cannot be emptied by a one-sided
+bound. The `1.7` is the logarithm, not an exponent below two:
+`n_max log n_max / L^2` is 0.675, 1.207, 0.698, 0.262, 0.164 at the
+five certified survivors. They sit at `L^2 / log n`, at the very edge of
+the band. Reading `1.7` as slack is the mistake the prose invites, and
+it matters here, because the distance from the survivors to the
+unconditional target is not "1.7 against 5.12" but the unbounded ratio
+`q_{k+1}/q_k` — which is exactly the quantity Paper D exports.
+
+**It kills nothing, and I checked rather than asserted.** Every one of
+the five survivors satisfies the sharpened bound with room. The largest
+certified quotient sits at `1.9e-5` of the Wu-Wang cap, which is why
+the cap cannot touch Paper D's family leftover. And the forced period
+at `N_0 = 3.5e8` is 4 with Rhin, 74 with Wu-Wang, and 58676 even at the
+Dirichlet floor `p = 1`, against the finance table's 780239. So no
+Diophantine input whatsoever makes the floor-free route compete with
+the table at this floor. That is the sharpest form of the recorded
+reason the floor-level Baker transfer is REFUTED, and this branch
+strengthens it rather than reopening it.
+
+**Not propagated to the manuscript.** Paper A is deposited
+(doi:10.5281/zenodo.22676453) and its abstract prints the 14.3 bound;
+OEIS A007320 and A094683 both link that record. The sharpened exponent
+stands beside the deposited text, not inside it. Any propagation is a
+Zenodo new-version operation, not a local rebuild, and that is a
+separate decision. `GapTransferWW` is deliberately out of
+`PAPER_MODULES` and out of `JugglerPaper.lean` for the same reason.
+
+Decision **PROMOTE**. Best next question: none in this branch. The two
+hypotheses of the closure threshold are owned elsewhere — the minimum
+lower bound has no mechanism (`cycle_method_ceilings`), and the CF
+quotients are Paper D's export.
+
 ## 2026-09-12 — Paper A Lean: Rhin display and charge bridge
 
 Packaging only. `cycleMin_length_of_rhin` is Corollary 4.11's first display with Rhin's `L^{-13.3} ≤ Λ` as a hypothesis; the calculator step `2e^{6.1256}<915` stays human. `blockObservable_eq_stateCharge` and `hugCharge_eq_scaled_stateCharge` name the two charge normalisations. Rhin itself, kill tables, and `C_L<1/(ln 3 ln n')` stay outside Lean. Period bound and floor unchanged.

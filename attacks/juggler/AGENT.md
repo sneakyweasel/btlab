@@ -45,7 +45,15 @@ Method: [docs/methodology.md](../../docs/methodology.md).
   are PARK (next useful floor \(5.54\cdot 10^8\); next seed
   \(4.54\cdot 10^{11}\)). Do not raise \(N_0\). Gap transfer + Rhin
   excludes short cycles (`J-cyclemin-short-cycle-rhin`); the leftover
-  is the long regime \(L\approx n^{0.59}\). Mechanical window CLOSE.
+  is the long regime \(L\approx n^{0.59}\). Wu-Wang applies to that
+  same substitution and sharpens the exponent \(14.3\to 5.1163051\),
+  so the floor-free period bound is \(L\gg n^{0.1954}\) and the
+  closure threshold is a minimum lower bound \(n\gg L^{5.1163051}\),
+  never below \(L^{2}\) by Dirichlet
+  (`J-cyclemin-period-lower-bound`, `J-cyclemin-closure-threshold`,
+  [juggler_cycle_wuwang_reduction.md](../../docs/problems/juggler_cycle_wuwang_reduction.md)).
+  Kills nothing; the deposited Corollary 4.11 text still prints
+  \(14.3\). Mechanical window CLOSE.
   Do not reopen as a short-interval Paper B, two-copy Sturmian rigidity,
   or a longer band scan.
 - **Flights.** Descriptively terminal. Extract:
