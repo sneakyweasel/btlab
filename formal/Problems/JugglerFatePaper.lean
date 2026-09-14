@@ -13,6 +13,7 @@ import Problems.Juggler.FatePressureCorollary
 import Problems.Juggler.FateOneSidedAtoms
 import Problems.Juggler.FateEnergyAtoms
 import Problems.Juggler.FateCollapse
+import Problems.Juggler.FateCertified
 import Problems.Juggler.FateCylinderEnergy
 import Problems.Juggler.FateLandingWindow
 import Problems.Juggler.FateWindowCount
@@ -31,7 +32,7 @@ import Problems.Juggler.FateContagionBound
 /-!
 # Paper C barrel — everything the repository checks for the fate-contagion note
 
-`docs/theory/juggler_fate_almost_all_note.md`. This file imports exactly the twenty-nine modules
+`docs/theory/juggler_fate_almost_all_note.md`. This file imports exactly the thirty modules
 that paper cites and nothing else, so that a reader can build the formal side of Paper C on
 its own rather than selecting modules by hand out of the umbrella `Problems.Juggler`. It is a
 laboratory target, not a claim: building it does **not** corroborate the paper's counting.
@@ -165,6 +166,20 @@ laboratory target, not a claim: building it does **not** corroborate the paper's
   are self-smoothing, and the analytic content sits in the first even step after an odd run,
   the share law. The variation bound on a fiber profile and the parity of the odd-preimage
   mass are not here.
+* `FateCertified` — the side condition `e(C) > 7/10` of the unconditional criteria, at
+  `C = 30`, with no audit script in the chain. A logarithm is certified by an integer power
+  comparison (`Certified.log_le_of_pow_le`, `Certified.le_log_of_pow_le`, and the base-two
+  pair, on Mathlib's `2.718 < e < 2.719`), and six such comparisons give `log 2 ≤ 7/10`,
+  `84/53 ≤ log₂ 3 ≤ 149/94`, hence `p_30 ∈ [0.6098, 0.61]`
+  (`Certified.pC_thirty_ge`, `Certified.pC_thirty_le`), hence `D(p_30 ‖ 1/2) ≥ 0.018312`
+  (`Certified.klHalf_thirty_ge`, on the sandwich `Certified.klHalf_ge_of`) and
+  `e(30) > 39/50` (`Certified.chernoffExponent_thirty_gt`), with `e(30) < 13/10` in the other
+  direction. The three unconditional criteria follow with every constant a numeral:
+  `Certified.cylinder_bound_thirty` (`A ≥ 32`), `Certified.pressure_thirty`, and
+  `Certified.one_sided_thirty` at the fair share `q = 1/2` (`A ≥ 52`, on
+  `Certified.oneSidedExponent_half` and `Certified.logb_tilt_thirty_le`). `C = 30` is an
+  instance, not the least; the least (`23`) and the paper's own threshold through `λ**` stay
+  with the audit.
 * `FateCylinderEnergy` — the counting identity of Section 10(d): a cylinder splits into
   its two children (`CylinderEnergy.wordCount_split`), so the first-letter biases
   `D(w) = #[wO] - #[w]/2` satisfy `Σ_{|w|=t} D(w)² = C_{t+1}/2 - C_t/4` exactly

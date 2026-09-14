@@ -318,7 +318,7 @@ type Paper B proves enters Appendix C as an explicit hypothesis.
 
 Statements carry one of four roles. *Lean*: the exact combinatorial
 layer is formalized in Lean 4; the root `formal/Problems/JugglerFatePaper.lean`
-imports exactly the twenty-nine modules this paper cites and builds with
+imports exactly the thirty modules this paper cites and builds with
 `lake build Problems.JugglerFatePaper`, without `sorry` and without
 `native_decide`; `formal/AxiomCheckPaperC.lean` prints the axiom
 dependencies of every cited name and `AxiomCheckPaperC.expected`
@@ -345,6 +345,7 @@ constants; they prove nothing and are labelled wherever they appear.
 | Share law and its three corollaries (Lemma 4.5, Corollary 4.6) | human proof; the phase expansion with its cubic remainder, the range of the quadratic phase with its threshold \([-\tfrac56,\tfrac16]\), and the integral \(\tfrac{25}{108}\) are Lean, the equidistribution and the measure identifications are not |
 | Production inequality (5.2) with the \(V\)-ladder terms of Section 5.7 | human proof; the \(E\)-family and the \(OE\)-fiber family are Lean with explicit errors, the block-average family needs the two exponential-sum bounds and the ladder needs Appendix D |
 | Theorem 5.3 at exponent \(3/10\), unconditional: two productions, no hypothesis | Lean |
+| The side condition \(e(C)>\tfrac7{10}\) of the unconditional criteria, at \(C=30\), by rational bounds on \(e\), \(\log 2\) and \(\log_2 3\) | Lean; the least such \(C\) (\(23\)) and the paper's own threshold through \(\lambda^{**}\) stay with the audit |
 | Cube fibers full or alternating (Lemma 4.7) | Lean |
 | Recursion lemma (Lemma 5.1) | Lean |
 | Seed (Lemma 5.2) | Lean |
@@ -1961,6 +1962,33 @@ hypothesis asks for the bad cylinders at depth \(d(y)\to\infty\) with
 relative error \(o(1)\) — weaker in rate than a power saving, unbounded
 in depth.
 
+Lean: a certified instance of the side condition, in
+`formal/Problems/Juggler/FateCertified.lean`. The constants above are
+an audit script; for one concrete \(C\) the script can be removed from
+the chain entirely. A logarithm is certified by an integer power
+comparison — if \(E\le e\) and \(x^n\le E^m\) then \(n\log x\le m\)
+(`Certified.log_le_of_pow_le`, and three siblings) — so with Mathlib's
+\(2.718<e<2.719\), six comparisons (\(2^{10}\le2.718^{7}\),
+\(2.719^{2}\le2^{3}\), \(2^{84}\le3^{53}\), \(3^{94}\le2^{149}\),
+\(2.719^{19}\le(3049/2500)^{100}\), \((50/39)^{4}\le2.718\)) give
+\(\log 2\le\tfrac7{10}\) and \(\tfrac{84}{53}\le\log_23\le\tfrac{149}{94}\),
+hence \(p_{30}\in[0.6098,0.61]\), hence
+\(D(p_{30}\|\tfrac12)\ge0.018312\) and
+\(e(30)>\tfrac{39}{50}\) (`Certified.chernoffExponent_thirty_gt`), with
+\(e(30)<\tfrac{13}{10}\) in the other direction. So
+`Certified.cylinder_bound_thirty` is Corollary 8.4 at \(C=30\) with
+every constant a numeral: a cylinder bound \(\mathrm H(30,A)\) at all
+large scales with \(A\ge32\), above a certified floor, gives the
+conjecture, and nothing in its proof reads a table.
+`Certified.pressure_thirty` and `Certified.one_sided_thirty` do the
+same for Theorem 9.2's and Theorem 9.1's criteria (the latter at the
+fair share \(q=\tfrac12\), where the one-sided exponent is the Chernoff
+one, `Certified.oneSidedExponent_half`, and \(A\ge52\) suffices by
+`Certified.logb_tilt_thirty_le`). The least \(C\) with
+\(e(C)>\tfrac7{10}\) is \(23\), and the paper's own threshold
+\(e(C)>1-\lambda^{**}\) at \(C=19\) is a statement about
+\(\lambda^{**}\); both stay with the audit.
+
 ## 9. Weaker forms of the hypothesis
 
 Theorem 8.3 asks for a fair-share upper bound on every envelope-bad
@@ -2700,7 +2728,7 @@ No nontrivial cycle or unbounded orbit is excluded by this paper.
 ## Appendix A. Lean names
 
 All in `formal/Problems/Juggler/FateContagion.lean` unless noted. The
-root `formal/Problems/JugglerFatePaper.lean` imports exactly the twenty-nine
+root `formal/Problems/JugglerFatePaper.lean` imports exactly the thirty
 modules named here and builds with `lake build Problems.JugglerFatePaper`
 without `sorry` and without `native_decide`;
 `formal/AxiomCheckPaperC.expected` records the axioms of every name
@@ -2747,6 +2775,7 @@ abstract lemmas listed here, not the analytic density estimates.
 | Section 10(d), Theorem 9.1 with exceptional atoms, in `Problems/Juggler/FateOneSidedAtoms.lean` | `OneSided.OneSidedShareExc`, `OneSided.oneSidedShareExc_of_share`, `OneSided.OneSidedBoundExc`, `OneSided.oneSidedBoundExc_of_bound`, `OneSided.badMass_succ_le_exc`, `OneSided.badMass_le_exc`, `OneSided.one_sided_bound_exc`, `OneSided.main_term_eq`, `OneSided.one_sided_bound_kl_exc`, `OneSided.pow_le_rpow_scale_gen`, `OneSided.tail_le`, `OneSided.oddFailures_le_of_exc`, `OneSided.exc_conj_of_contagion`, `OneSided.exc_implies_conjecture` |
 | Section 10(d), the bias energy supplying the exceptional atoms, in `Problems/Juggler/FateEnergyAtoms.lean` | `OneSided.OneSidedShareExc.mono_err`, `Energy.bias`, `Energy.energyOn`, `Energy.biasEnergy`, `Energy.badEnergy`, `Energy.violators`, `Energy.badEnergy_le_biasEnergy`, `Energy.card_allWords`, `Energy.mass_violators_le`, `Energy.oneSidedShareExc_of_energy`, `Energy.wordCount_cylinder`, `Energy.biasEnergy_eq`, `Energy.EnergyBound`, `Energy.oneSidedBoundExc_of_energy`, `Energy.energy_conj_of_contagion`, `Energy.energy_implies_conjecture` |
 | Section 10(d), the collapsed component, in `Problems/Juggler/FateCollapse.lean` | `Collapse.fiber`, `Collapse.window`, `Collapse.windowBias`, `Collapse.card_filter_window`, `Collapse.card_window`, `Collapse.windowBias_eq_sum`, `Collapse.abs_alt_sum_le`, `Collapse.Icc_eq_Ico`, `Collapse.abs_windowBias_le`, `Collapse.lt_sq_succ_of_floorPower_eq`, `Collapse.pre`, `Collapse.iterate_succ_eq`, `Collapse.fiber_succ`, `Collapse.pre_filter_even`, `Collapse.blockSum`, `Collapse.oddPart`, `Collapse.oddPart_nonneg`, `Collapse.fiber_succ_eq`, `Collapse.evenCount`, `Collapse.evenCount_le`, `Collapse.le_evenCount`, `Collapse.blockSum_sub_le`, `Collapse.sum_abs_oddPart_sub_le`, `Collapse.collapse_bias_le`, `Collapse.fiber_succ_sandwich`, `Collapse.collapse_bias_two_step` |
+| Section 8.4, the unconditional criteria at `C = 30` with every constant a numeral, in `Problems/Juggler/FateCertified.lean` | `Certified.e_ge`, `Certified.e_le`, `Certified.log_le_of_pow_le`, `Certified.le_log_of_pow_le`, `Certified.logb_two_le`, `Certified.le_logb_two`, `Certified.log_two_le`, `Certified.le_log_two`, `Certified.le_logb_three`, `Certified.logb_three_le`, `Certified.le_log_lo`, `Certified.le_log_hi`, `Certified.log_lo_le`, `Certified.log_hi_le`, `Certified.logb_three_pos`, `Certified.pC_thirty_ge`, `Certified.pC_thirty_le`, `Certified.klHalf_ge_of`, `Certified.klHalf_le_of`, `Certified.klHalf_thirty_ge`, `Certified.klHalf_thirty_le`, `Certified.chernoffExponent_thirty_gt`, `Certified.chernoffExponent_thirty_lt`, `Certified.cylinder_bound_thirty`, `Certified.pressure_thirty`, `Certified.klDiv_half`, `Certified.oneSidedExponent_half`, `Certified.logb_tilt_thirty_le`, `Certified.one_sided_thirty` |
 
 ## Appendix B. Constants and artifacts
 
@@ -2856,6 +2885,10 @@ use the roots of the displayed defining equations.
 
   SHA-256: `b8df8a147eaff611f40954cf5e2a49ff838d4331605caae42af7ad2e5cc48410`
 
+- `formal/Problems/Juggler/FateCertified.lean`
+
+  SHA-256: `44896d59d2a763aba3fa11c2433a14b92244ab49ed5a3fa51b9b75b03ef48996`
+
 - `formal/Problems/Juggler/FateShareLaw.lean`
 
   SHA-256: `a229f4fa4cf48cb5b003c746672947eec10bf93d7287ad7eecaa3f84d5236e7c`
@@ -2906,11 +2939,11 @@ use the roots of the displayed defining equations.
 
 - `formal/Problems/JugglerFatePaper.lean`
 
-  SHA-256: `5238baa805ae0fce3be99d547c2484c29e18ddaf1751cfa0df52a05b4899a96f`
+  SHA-256: `bd45b1b303e2fdb156b60bee5b3e799eaee4ae8e20fa573cb26facf6b03fa922`
 
 - `formal/AxiomCheckPaperC.expected`
 
-  SHA-256: `e0b1ea998b585fff7eec077db28366aa8022bf2fe38181e13df232ecb3007c4a`
+  SHA-256: `0d0c39ab51bceaad5cb402176dcd1fff40165c010fe5aec6a744668d3adf0b4d`
 
 - `src/research/juggler_sequence/fate_contagion.py`
 
