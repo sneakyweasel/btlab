@@ -59,6 +59,20 @@ def branch_refs(repo: Path, base: str = "main") -> list[str]:
     return sorted(r for r in raw.splitlines() if r.strip() and r not in skip and "->" not in r)
 
 
+def refs_are_visible(repo: Path) -> bool:
+    """Can this checkout see remote refs at all?
+
+    ``branch_refs`` returning nothing has two very different causes: a shallow or
+    single-branch clone, where drift cannot be measured, and a repository whose
+    branches have all been merged and deleted, where it can be and the answer is
+    none. Distinguish them by asking whether *any* remote ref exists -- a normal
+    clone always has ``origin/main`` -- so that a tidy repository runs the gate
+    instead of skipping it, and stale acknowledgements still surface.
+    """
+
+    return bool(_git(repo, "for-each-ref", "--format=%(refname:short)", "refs/remotes").strip())
+
+
 def _ledger_ids(repo: Path, ref: str) -> set[str]:
     raw = _git(repo, "show", f"{ref}:{LEDGER}")
     if not raw.strip():

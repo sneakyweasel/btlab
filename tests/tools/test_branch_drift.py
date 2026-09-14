@@ -31,23 +31,7 @@ import branch_drift as BD  # noqa: E402
 #: one without looking at what the branch holds.
 #:
 #: Assessed 14 September 2026.
-ACKNOWLEDGED: dict[str, str] = {
-    "claude/repo-progress-uq349e": (
-        "Its collision / large-sieve body was extracted in 94006052. The three "
-        "rows left behind are superseded and were dropped deliberately: "
-        "J-tao-cylinder-hypothesis-quantifier-defect by J-unstopped-cylinder-bound "
-        "on J-absorbed-cylinder, J-tower-threshold-two-readings by Paper C SS9.3(b) "
-        "which prints both readings already, J-oeoee-envelope-audited by the "
-        "Section 11 audit repairs of 14 September. Nothing further to take."
-    ),
-    "cursor/operator-fragment-nf-2862": (
-        "BTC-op-fragment-complete (EXACT — HUMAN PROOF, 23 August) states that with "
-        "N(D(x))→D(N(x)) every irreducible is Pref∘D^k∘N^ε and these inject into "
-        "maps Z→Z. Superseded: main carries BTC-op-fragment-nd-nf and "
-        "BTC-op-fragment-nd-semantic for the same enlarged TRS, both EXACT — LEAN "
-        "VERIFIED, which is strictly stronger than the human proof. Nothing to take."
-    ),
-}
+ACKNOWLEDGED: dict[str, str] = {}
 
 
 def _key(ref: str) -> str:
@@ -56,9 +40,8 @@ def _key(ref: str) -> str:
 
 @pytest.fixture(scope="module")
 def drifts() -> list[BD.Drift]:
-    refs = BD.branch_refs(REPO)
-    if not refs:
-        pytest.skip("no branch refs visible (shallow clone); drift cannot be measured")
+    if not BD.refs_are_visible(REPO):
+        pytest.skip("no remote refs at all (shallow or single-branch clone)")
     return BD.report(REPO)
 
 
@@ -88,24 +71,53 @@ def test_acknowledgements_are_not_stale(drifts: list[BD.Drift]) -> None:
     )
 
 
+
 def test_files_are_counted_against_the_merge_base_not_main() -> None:
     """The calibration that cost the orphan gate its first two readings.
 
-    Measuring 'present on the branch, absent from main' counts every file main
-    has *deleted* since the fork. The August cursor/* branches each scored 17
-    Lean files and 102 sources that way -- all of them casualties of the src/bt
-    restructure, none of them the branch's work. Counting additions since the
-    merge base gives zero, which is the truth.
+    Measuring "present on the branch, absent from main" counts every file main
+    has since *deleted*. The August cursor/* branches each scored 17 Lean files
+    and 102 sources that way -- all casualties of the src/bt restructure, none
+    of them the branch's work. Counting additions since the merge base gives
+    zero, which is the truth.
+
+    Those branches are merged and gone, so the property is exercised against a
+    throwaway ref at an ancestor commit rather than against whichever branch
+    happens to illustrate it. An ancestor is the sharpest case: its merge base
+    is itself, so it added nothing, while it still carries files main no longer
+    has. The naive metric is computed alongside to show the two disagree --
+    without that, a metric that always returned zero would pass.
     """
 
-    ref = "origin/cursor/operator-fragment-nd-commute-d502"
-    if ref not in BD.branch_refs(REPO):
-        pytest.skip(f"{ref} not present")
-    d = BD.drift_for(REPO, ref)
-    assert d.ahead == 1, d.ahead
-    assert not any(d.files.values()), d.files
+    import subprocess
 
+    ancestor = subprocess.run(
+        ["git", "rev-list", "-1", "HEAD", "--", "src/automata/modular.py"],
+        capture_output=True, cwd=REPO, text=True,
+    ).stdout.strip()
+    if not ancestor:
+        pytest.skip("pre-restructure history not present in this clone")
 
+    ref = "refs/drift-calibration"
+    subprocess.run(["git", "update-ref", ref, ancestor], cwd=REPO, check=True)
+    try:
+        on_ref = set(subprocess.run(
+            ["git", "ls-tree", "-r", "--name-only", ancestor], capture_output=True,
+            cwd=REPO, text=True).stdout.split())
+        on_main = set(subprocess.run(
+            ["git", "ls-tree", "-r", "--name-only", "main"], capture_output=True,
+            cwd=REPO, text=True).stdout.split())
+        naive = {f for f in on_ref - on_main if f.startswith(("src/", "formal/"))}
+        assert naive, "the control needs an ancestor that main has since pruned"
+
+        drift = BD.drift_for(REPO, ref)
+        assert drift.ahead == 0, "an ancestor is behind main, never ahead"
+        assert not any(drift.files.values()), (
+            f"the merge-base metric must ignore main's own deletions; naive would "
+            f"have reported {len(naive)} files"
+        )
+    finally:
+        subprocess.run(["git", "update-ref", "-d", ref], cwd=REPO, check=False)
 
 def test_artifacts_are_counted_and_not_only_ledger_rows() -> None:
     """The other calibration: a branch can carry a module and no ledger row.
