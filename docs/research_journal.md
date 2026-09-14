@@ -45584,3 +45584,49 @@ laboratory learned it twice because the first one sat on an unmerged branch.
 The second-pass audit also reports that the (T3) additive constant is 2 rather
 than 1 and that the 4(V+1) block count needs nearly equal block lengths.
 Neither is checked here and neither has been evaluated on main.
+
+
+## Two intervals counted as one: the (T3) additive constant
+
+The second-derivative test in the Section 11 toolkit reads
+|sum e(f)| <= (alpha lam M + 1)(2.26 lam^{-1/2} + 1), and its proof discards
+the near-integer set {||f'|| < delta} on each piece where floor(f') is
+constant. On such a piece f' runs over [k, k+1), so ||f'|| is small at *both*
+ends -- near f' = k and near f' = k+1. The discarded set is two intervals, not
+one. Their total length is 2 delta / lam, which is what the note says and is
+correct; but two disjoint intervals of length delta/lam carry up to
+2(delta/lam + 1) lattice points, and the note applies the single-interval count
+ell + 1 to the pair. The bracket is 2/(pi delta) + 2 delta/lam + 2, minimised
+at delta = sqrt(lam/pi) with value 4/sqrt(pi lam) + 2. The additive constant is
+2. The prefactor is untouched: 4/sqrt(pi) = 2.25676 <= 2.26, and the
+minimisation is right.
+
+**It is a wrong proof of a true bound, which is the opposite of the Lambda_3
+case.** Hunting for a counterexample to the printed form: f'' constant, so
+alpha = 1 on the nose, lam from 1e-4 to pi/4, M to 610, beta scanned densely;
+then rational lam = 2p/q up to q = 120 with M a multiple of q, where the
+complete Gauss sums are extremal; then small lam with lam*M up to 30 and M to
+200000. The worst ratio reached is 0.574 against the old bracket -- about 1.7x
+of slack, and consistent with the note's own reported 0.52 on its own family.
+Nothing refutes the printed constant. Contrast Lambda_3, where the same style
+of search found the displayed bound exceeded at the third value tried.
+
+**The correction costs nothing downstream.** The additive constant lives in a
+lower-order term. At the real Half A parameters the bound inflates by 1.72% at
+m'=60, 1.10% at m'=120, 0.78% at m'=200 -- shrinking like m'^{-2/3} -- while
+the sums themselves sit at ratio 0.29 of the corrected bound. The printed Half
+A prefactor 9.85 is assembled from the leading term 2.26 alpha lam^{1/2} L and
+does not see the additive constant at all, so it stands unchanged.
+
+So the note now prints the corrected bracket and a proof that counts the two
+intervals separately, with the old reading and the reason it was not fatal
+recorded beside it. `t3_prefactor` still checks only the prefactor -- it is a
+hand row over a hand derivation, and making it a data row would be checking
+arithmetic rather than the inequality -- but its docstring now states which
+constant the bracket carries and why.
+
+Of the three corrections the 7 September second-pass audit reported, two are
+now settled: Lambda_3 was a false constant and the audit falsifies it; (T3)
+was a false proof of a surviving constant. The third -- that the 4(V+1) block
+count needs blocks of nearly equal length rather than merely length <= delta --
+is a hypothesis gap rather than a number, and is still unchecked.
