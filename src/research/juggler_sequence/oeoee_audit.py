@@ -112,7 +112,12 @@ def t2_kusmin_gap() -> dict[str, Any]:
 
 
 def t3_prefactor() -> dict[str, Any]:
-    """4/sqrt(pi) <= 2.26, from minimising 2/(pi d) + 2d/lambda at d = sqrt(lambda/pi)."""
+    """4/sqrt(pi) <= 2.26, from minimising 2/(pi d) + 2d/lambda at d = sqrt(lambda/pi).
+
+    Only the prefactor is checked here.  The bracket's additive constant is 2,
+    not 1: the discarded set {||f'|| < d} is two intervals per piece, one at
+    each end, so it carries 2d/lambda + 2 lattice points rather than + 1.
+    """
 
     exact = 4.0 / math.sqrt(math.pi)
     ok = exact <= PRINTED["t3_prefactor"] and exact > 2.25
@@ -122,7 +127,7 @@ def t3_prefactor() -> dict[str, Any]:
         exact,
         ok,
         "hand",
-        "bracket 4/sqrt(pi lambda)+1; 4/sqrt(pi) = 2.25675... <= 2.26",
+        "bracket 4/sqrt(pi lambda)+2; 4/sqrt(pi) = 2.25675... <= 2.26",
     )
 
 
@@ -411,7 +416,7 @@ def delta_oscillatory_extra() -> dict[str, Any]:
 def half_a_prefactor() -> dict[str, Any]:
     """(4/3) * 2.26 * sqrt(8/3) * 2 = 9.85 from Vaaler 2/s times T3 times omega."""
 
-    # |sum_w e(g)| <= (alpha lambda L + 1)(2.26 lambda^{-1/2} + 1)
+    # |sum_w e(g)| <= (alpha lambda L + 1)(2.26 lambda^{-1/2} + 2)\n    # the additive 2 sits in a lower-order term; the 9.85 below comes from the\n    # leading 2.26 alpha lambda^{1/2} L and is unchanged by it
     # lambda = (3s/8) W^{-1/2}, L = (8/3) m'^{5/3}, W = m'^{8/3}
     # lambda L = s m'^{1/3}, lambda^{-1/2} = sqrt(8/(3s)) m'^{2/3}
     # leading: 2.26 * sqrt(8/3) * sqrt(s) * m'

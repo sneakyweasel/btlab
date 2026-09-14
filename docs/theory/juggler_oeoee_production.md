@@ -659,16 +659,30 @@ be positive powers.
 - **(T3) Second-derivative test**, derived from (T2). If
   \(\lambda\le|f''|\le\alpha\lambda\) on an interval of length \(M\) and
   \(0<\lambda\le\pi/4\), then
-  \(|\sum e(f)|\le(\alpha\lambda M+1)\bigl(2.26\lambda^{-1/2}+1\bigr)\).
+  \(|\sum e(f)|\le(\alpha\lambda M+1)\bigl(2.26\lambda^{-1/2}+2\bigr)\).
   *Proof.* Split by \(\lfloor f'\rfloor\); \(f'\) crosses at most
-  \(\alpha\lambda M+1\) integers. Discard \(\{\lVert f'\rVert<\delta\}\),
-  of length \(\le2\delta/\lambda\), i.e. \(\le2\delta/\lambda+1\)
-  integers; apply (T2) elsewhere. The bracket is
-  \(2/(\pi\delta)+2\delta/\lambda+1\), minimised at
+  \(\alpha\lambda M+1\) integers. On a piece \(\lfloor f'\rfloor=k\) the
+  set \(\{\lVert f'\rVert<\delta\}\) is **two** intervals, one at each
+  end, since \(\lVert f'\rVert\) is small near \(f'=k\) and near
+  \(f'=k+1\); each has length \(\le\delta/\lambda\), so the discarded set
+  has length \(\le2\delta/\lambda\) but carries
+  \(\le2(\delta/\lambda+1)=2\delta/\lambda+2\) integers. Apply (T2)
+  elsewhere. The bracket is
+  \(2/(\pi\delta)+2\delta/\lambda+2\), minimised at
   \(\delta=(\lambda/\pi)^{1/2}\) with value
-  \(4/\sqrt{\pi\lambda}+1\le2.26\lambda^{-1/2}+1\). \(\square\)
-  (Checked on \(4000\) random instances of \(f=\tfrac q2x^{3/2}\):
-  worst \(|{\sum}|/\text{bound}=0.52\).)
+  \(4/\sqrt{\pi\lambda}+2\le2.26\lambda^{-1/2}+2\). \(\square\)
+  (The additive constant read \(1\) until 14 September 2026, from
+  counting the two discarded intervals as one: an interval of length
+  \(\ell\) carries \(\le\ell+1\) integers, two disjoint ones
+  \(\le\ell+2\). The printed bound was not thereby false — an adversarial
+  search over \(f''\) constant, including rational \(\lambda=2p/q\) where
+  the Gauss sums are extremal, reaches only
+  \(|{\sum}|/\text{bound}=0.574\) against the old bracket — and the
+  correction costs \(0.8\%\)–\(3.4\%\) at the Half A parameters, against
+  \(3.4\times\) slack there. The note's own check, worst
+  \(|{\sum}|/\text{bound}=0.52\) on \(4000\) random instances of
+  \(f=\tfrac q2x^{3/2}\), was measured against the smaller bracket and so
+  holds a fortiori against this one.)
 - **(T4) Block counting.** If \(L\) consecutive blocks tile an
   \(\alpha\)-range of length \(V\), each of length \(\le\delta\), then
   for each \(j\ge0\) at most \(4(V+1)\) blocks meet the annulus
