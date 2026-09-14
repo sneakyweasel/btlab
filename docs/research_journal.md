@@ -48525,3 +48525,54 @@ descriptive: it identifies the object behind a constant Paper B can only measure
 It still does not improve Paper B's bound --- knowing the polynomial is a meander
 is not the same as replacing the step --- but it says what an improvement would
 have to be about, which the earlier links did not.
+
+
+## The constant splits, and only one half is slow
+
+Knowing the polynomial is a meander is not the same as producing its constant, so
+the next question was whether the meander supplies `10.8`. It supplies half of it
+cleanly and the other half not at all, and the split is the useful part.
+
+The change of measure is exact. With `P_theta(w) = 2^-d e^{theta S(w)}/M(theta)^d`,
+
+```text
+  N_d / 2^d  =  rho^d * E_theta[ 1_survive * e^{-theta S_d} ]
+```
+
+verified to nine figures at every depth tested. At the zero-drift tilt that
+splits into a survival probability of order `c1/sqrt(d)` and an endpoint cost of
+order `c2/d` --- the latter because `S_d ~ sigma sqrt(d)` and the meander density
+vanishes linearly at the origin. Together, `d^{-3/2}`.
+
+Measured, the two factors behave nothing alike:
+
+```text
+  d              400      800     1600     3200     6400
+  P(surv) sqrt d  0.66725  0.66748  0.66751  0.66751  0.66746
+  E[cost|s] d    14.7475  15.6495  16.1155  16.5482  16.5314
+```
+
+**The survival factor is settled** from `d = 400` at `0.66746` --- the ladder
+constant. (At `d = 200` it reads `0.66642`, so the claim starts at 400; I wrote
+200 first and the test caught me.)
+
+**The endpoint factor is the slow one.** It is still climbing at `d = 1600` and
+only settles near `16.53` by `3200`--`6400`. Their product is `11.03`, which is
+the true limit of `meander_constant`. The depths that function prints ---
+`9.84`, `10.45`, `10.76` at `400`, `800`, `1600` --- are still `2.5%` short at
+the deepest, so the printed sequence is honest evidence for the *exponent*, as
+its docstring claims, while understating the constant.
+
+### What a first-principles constant still needs
+
+The Brownian meander gives the second factor as `1/(theta sigma)^2 = 14.936`.
+Measured: `16.53`. A factor `1.107` the continuum picture does not supply.
+
+That is the lattice ladder-height correction --- a walk on a lattice does not
+touch `0`, it overshoots, and the overshoot distribution is a Wiener--Hopf
+object. So the position is precise: **the exponent follows from the continuum
+and the constant does not.** Anyone deriving `11.03` rather than measuring it
+needs the ladder-height law of this particular step distribution, and that is
+the same Wiener--Hopf machinery Paper C already carries --- which at `L = 0`
+degenerates, as recorded earlier. The two facts sit together uncomfortably and
+that is worth leaving visible rather than resolved.

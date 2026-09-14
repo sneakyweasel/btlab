@@ -950,6 +950,84 @@ def _beta_semiconvergent_denominators(limit: int) -> set[int]:
     return out
 
 
+def _tilt_constants() -> tuple[float, float, float, float]:
+    """(theta*, rho, p*, sigma) for the zero-drift tilt, in nats."""
+    a, b = math.log(3.0) - math.log(2.0), math.log(2.0)
+    theta = math.log(b / a) / (a + b)
+    rho = 0.5 * (math.exp(theta * a) + math.exp(-theta * b))
+    p = 0.5 * math.exp(theta * a) / rho
+    sigma = math.sqrt(p * a * a + (1 - p) * b * b - (p * a - (1 - p) * b) ** 2)
+    return theta, rho, p, sigma
+
+
+def _tilted_survival_and_cost(d: int) -> tuple[float, float]:
+    """P_theta(survive) and E_theta[e^{-theta S_d} | survive]."""
+    theta, _rho, p, _sigma = _tilt_constants()
+    a, b = math.log(3.0) - math.log(2.0), math.log(2.0)
+    st = {0: 1.0}
+    for step in range(1, d + 1):
+        nx: dict[int, float] = {}
+        for o, w in st.items():
+            for do, pr in ((1, p), (0, 1 - p)):
+                o2 = o + do
+                if o2 * a - (step - o2) * b < -1e-15:
+                    continue
+                nx[o2] = nx.get(o2, 0.0) + w * pr
+        st = nx
+    surv = sum(st.values())
+    cost = sum(w * math.exp(-theta * (o * a - (d - o) * b)) for o, w in st.items())
+    return surv, cost / surv
+
+
+def test_paper_bs_meander_constant_splits_and_only_one_half_is_slow() -> None:
+    """The constant is a product, and its non-convergence lives in one factor.
+
+    Exactly, from the change of measure: with P_theta(w) = 2^-d e^{theta S(w)} /
+    M(theta)^d,
+
+        N_d / 2^d = rho^d * E_theta[1_survive e^{-theta S_d}]
+
+    which is checked here to nine figures. At the zero-drift tilt that splits into
+    the survival probability, ~ c1/sqrt(d), and the endpoint cost, ~ c2/d because
+    S_d ~ sigma sqrt(d) and the meander density vanishes linearly at the origin.
+    Together, d^{-3/2}.
+
+    Measured, the two behave nothing alike. P(surv) sqrt(d) is flat from d = 400 at
+    0.66746 -- the ladder constant, settled. E[cost|surv] d is still climbing at
+    d = 1600 and only settles near 16.53 by d = 3200-6400. Their product is 11.03,
+    so that is the true limit of meander_constant; the depths it prints (9.84,
+    10.45, 10.76 at 400, 800, 1600) are still 2.5% short at the deepest.
+
+    The Brownian prediction for the second factor is 1/(theta sigma)^2 = 14.936,
+    against 16.53 measured: a factor 1.107 the continuum picture does not supply,
+    which is the lattice ladder-height correction.
+    """
+    theta, rho, _p, sigma = _tilt_constants()
+
+    # the identity, exactly
+    for d in (100, 400):
+        lhs = B.non_contracting(d) / 2 ** d
+        surv, cond = _tilted_survival_and_cost(d)
+        assert abs(lhs - rho ** d * cond * surv) / lhs < 1e-9, d
+
+    # the survival factor has converged
+    svals = [_tilted_survival_and_cost(d)[0] * math.sqrt(d) for d in (400, 800, 1600)]
+    assert all(abs(v - 0.6675) < 5e-4 for v in svals), svals
+    # it is not yet settled at 200, which is why the claim starts at 400
+    assert abs(_tilted_survival_and_cost(200)[0] * math.sqrt(200) - 0.6675) > 5e-4
+
+    # the endpoint factor has not, at the depths meander_constant prints
+    c800 = _tilted_survival_and_cost(800)[1] * 800
+    c1600 = _tilted_survival_and_cost(1600)[1] * 1600
+    assert 15.5 < c800 < 15.8 and 16.0 < c1600 < 16.3, (c800, c1600)
+    assert c1600 - c800 > 0.3, (c800, c1600)       # still climbing
+
+    # and the continuum prediction is short by the lattice factor
+    predicted = 1.0 / (theta * sigma) ** 2
+    assert abs(predicted - 14.936) < 1e-3, predicted
+    assert 1.09 < 16.53 / predicted < 1.12
+
+
 def test_the_least_peak_staircase_is_betas_ostrowski_skeleton() -> None:
     """Where the least peak rises is a Diophantine fact about BETA, not a numeric one.
 
