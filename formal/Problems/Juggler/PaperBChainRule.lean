@@ -203,6 +203,36 @@ theorem lt_two_congr (v w : List Letter)
     iter v < 2 ↔ iter w < 2 := by
   rw [iter_eq_of_counts v w ho hl]
 
+/-! ### Non-contraction forces the branch threshold
+
+A word is non-contracting through step `t` when `1 ≤ e_t`, i.e. the walk has not
+gone below its start.  The screen's branch-run condition is `e_{s-1} < 2`, so a
+letter is rejected on that ground exactly when the walk has risen a unit.
+
+These are the same object at two thresholds, and at step 2 the first forces the
+second: a prefix that has not contracted by its second letter is `OO`, whose
+`e_2` is `9/4`, and `9/4 > 2`.  The rest of the story is not this clean --- the
+walk is not monotone, so a later blocked defect can sit below the threshold
+again (`OOOEOOEE` does) --- but the entry point is forced, and that is why every
+contractor examined begins `OO`. -/
+
+/-- A prefix that has not contracted by step two is `OO`, and then `e_2 = 9/4`,
+which already exceeds the branch-run threshold `2`. -/
+theorem noncontracting_two_forces (c d : Letter)
+    (h₁ : 1 ≤ iter [c]) (h₂ : 1 ≤ iter [c, d]) :
+    c = Letter.O ∧ d = Letter.O ∧ iter [c, d] = 9 / 4 := by
+  cases c with
+  | E => exfalso; norm_num [iter, step] at h₁
+  | O =>
+      cases d with
+      | E => exfalso; norm_num [iter, step] at h₂
+      | O => exact ⟨rfl, rfl, by norm_num [iter, step]⟩
+
+/-- The threshold itself: `9/4` is above the `2` at which branch runs stop
+existing, so the second letter of a non-contracting word already sits above it.
+`3 > 2 ^ (3/2)` is the same fact in the walk's coordinates. -/
+theorem two_lt_nine_quarters : (2 : ℚ) < 9 / 4 := by norm_num
+
 /-! ### The three monomials Paper B prints
 
 Each is the rule evaluated at an explicit word and pair of letters.  They are
