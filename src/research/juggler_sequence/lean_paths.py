@@ -276,6 +276,7 @@ LAYERS: dict[str, Path] = {
     "FateOneSidedCorollary": JUGGLER_DIR / "FateOneSidedCorollary.lean",
     "FatePressureCorollary": JUGGLER_DIR / "FatePressureCorollary.lean",
     "FateOneSidedAtoms": JUGGLER_DIR / "FateOneSidedAtoms.lean",
+    "FateEnergyAtoms": JUGGLER_DIR / "FateEnergyAtoms.lean",
 }
 
 # Sources belonging to other targets or historical model interfaces. Keeping

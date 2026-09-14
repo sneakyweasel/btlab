@@ -60,6 +60,7 @@ CITED_MODULES = (
     "Problems.Juggler.FateOneSidedCorollary",
     "Problems.Juggler.FatePressureCorollary",
     "Problems.Juggler.FateOneSidedAtoms",
+    "Problems.Juggler.FateEnergyAtoms",
     "Problems.Juggler.FateCylinderEnergy",
     "Problems.Juggler.FateLandingWindow",
     "Problems.Juggler.FateWindowCount",
@@ -100,6 +101,7 @@ TABLE_LEAN_ROWS = {
     "the one-sided hypothesis": "FateOneSidedCorollary",
     "the pressure hypothesis": "FatePressureCorollary",
     "exceptional atoms": "FateOneSidedAtoms",
+    "bias energy supplies": "FateEnergyAtoms",
     "Lemma 5.2": "FateSeed",
     "Theorem 7.2": "FateTaoReduction",
     "Corollary 8.4": "FateCylinderCorollary",
@@ -210,7 +212,11 @@ def audit() -> dict[str, Any]:
 
     cited = appendix_a_names()
     for name in cited:
-        bare = name.split(".")[-1]
+        # the index records names relative to their namespace, so a cited `A.B.c` may be
+        # declared as `B.c` (a dotted name inside `A`) or as `c`; prefer the longest match
+        parts = name.split(".")
+        bare = next((c for c in (".".join(parts[i:]) for i in range(len(parts)))
+                     if c in decl_module), parts[-1])
         mod = decl_module.get(bare)
         if mod is None:
             problems.append({"kind": "paper", "why": "cited in Appendix A but not declared", "detail": name})

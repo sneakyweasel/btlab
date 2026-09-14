@@ -14,6 +14,7 @@
     "Problems.Juggler.FateOneSidedCorollary",
     "Problems.Juggler.FatePressureCorollary",
     "Problems.Juggler.FateOneSidedAtoms",
+    "Problems.Juggler.FateEnergyAtoms",
     "Problems.Juggler.FateCylinderEnergy",
     "Problems.Juggler.FateLandingWindow",
     "Problems.Juggler.FateWindowCount",
@@ -30,24 +31,24 @@
     "Problems.Juggler.FateContagionBound"
   ],
   "artifact": {
-    "asked": 351,
-    "recorded": 351,
+    "asked": 360,
+    "recorded": 360,
     "axiom_lists": [
       "propext",
       "propext, Classical.choice, Quot.sound",
       "propext, Quot.sound"
     ]
   },
-  "appendix_a_names": 369,
+  "appendix_a_names": 381,
   "surface": {
-    "modules": 59,
-    "declarations": 1745,
+    "modules": 60,
+    "declarations": 1757,
     "compiler_trusted": [],
     "compiler_dependent": [],
     "open": []
   },
   "table": {
-    "rows": 35,
+    "rows": 36,
     "lean": [
       "Fate classes closed; trichotomy; exclusion (Lemma 2.1)",
       "Even block is an interval (Lemma 3.1)",
@@ -76,6 +77,7 @@
       "The conjecture from the one-sided hypothesis \\(\\mathrm H_q(C,A)\\) (Theorem 9.1's consequence), with the contagion bound as a hypothesis, or with nothing else assumed when \\(e^{\\rm Ch}_q(C)>\\tfrac7{10}\\)",
       "The conjecture from the pressure hypothesis \\(\\mathrm P_\\theta(C)\\) and from the no-momentum hypothesis \\(\\mathrm M_{\\theta,q}(C)\\) (Section 9.2's consequences), with the contagion bound as a hypothesis, or with nothing else assumed when the exponent exceeds \\(\\tfrac7{10}\\)",
       "Theorem 9.1 with exceptional atoms (Section 10(d), first paragraph): the share bound may fail on bad atoms of total mass \\(y(\\log y)^{-B}\\) at each depth, and the conjecture still follows, with nothing else assumed when the exponent exceeds \\(\\tfrac7{10}\\)",
+      "The bias energy supplies the exceptional atoms (Section 10(d)): \\(\\sum_{\\lvert w\\rvert=t}D(w)^2\\le(q-\\tfrac12)^2y^2(\\log y)^{-2B}/2^t\\) at the depths below \\(\\lceil CL(y)\\rceil\\), at all large scales, gives the conjecture with nothing else assumed",
       "Cylinder-splitting identity for the first-letter bias (Section 10(d), second equality)",
       "Exact landing windows of the nested productions ((D.1), (D.2))"
     ],
@@ -96,5 +98,5 @@
     "label": "PAPER_C_LEAN_SURFACE_CONSISTENT",
     "problems": 0
   },
-  "git_commit": "aeb847fa54c100ba73f196064a7b8ab0b74672dd"
+  "git_commit": "aa267015a2791fe36e1331881d6dfc66041e4bd4"
 }

@@ -44780,3 +44780,31 @@ the mass of atoms with a large bias. That composition is the next
 unit, and after it the pincer's analytic question is a single
 mean-square statement. Twenty-nine Lean rows, four human,
 twenty-seven modules, 351 declarations in the artifact.
+
+
+## One Cauchy--Schwarz, and the pincer's question is a second moment
+
+The step promised yesterday. The bias energy at depth t is the sum of
+D(w)^2 over the words of length t, D(w) = #[wO] - #[w]/2 on the odd
+starts of (y, 2y], and it is exactly the paper's C_{t+1}/2 - C_t/4;
+the counting half of that identity was already in Lean. An atom that
+violates the share bound #[wO] <= q #[w] with q > 1/2 has
+D(w) > (q - 1/2) #[w], so the violators' squared masses are bounded
+by the energy over (q - 1/2)^2, and with at most 2^t atoms
+Cauchy--Schwarz bounds their total mass. That is the whole proof:
+an energy bound (q - 1/2)^2 exc^2 / 2^t at each depth is the
+one-sided hypothesis with exceptional atoms of mass exc and no error
+term, and yesterday's module runs it to the conjecture.
+
+So the rate-side jaw of the pincer now rests on one statement: at all
+large scales, at every depth below ceil(C L(y)), the sum of D(w)^2 is
+at most (q - 1/2)^2 y^2 (log y)^{-2B} / 2^t. Calibration: if cylinders
+split fairly with square-root fluctuations the sum is about y, and the
+bound allows y^2 (log y)^{-C-2B}, so the statement is far weaker than
+random-like behaviour. It is also exactly computable at moderate
+scales by enumeration, no sampling, which is what the next unit should
+do before anyone tries to prove it: if the energy ratio drifts, the
+pincer is numerically dead and the effort goes elsewhere; if it holds
+with room to spare, the analytic question has its shape. Thirty Lean
+rows, four human, twenty-eight modules, 360 declarations in the
+artifact.

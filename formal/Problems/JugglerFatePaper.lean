@@ -11,6 +11,7 @@ import Problems.Juggler.FateOneSided
 import Problems.Juggler.FateOneSidedCorollary
 import Problems.Juggler.FatePressureCorollary
 import Problems.Juggler.FateOneSidedAtoms
+import Problems.Juggler.FateEnergyAtoms
 import Problems.Juggler.FateCylinderEnergy
 import Problems.Juggler.FateLandingWindow
 import Problems.Juggler.FateWindowCount
@@ -29,7 +30,7 @@ import Problems.Juggler.FateContagionBound
 /-!
 # Paper C barrel — everything the repository checks for the fate-contagion note
 
-`docs/theory/juggler_fate_almost_all_note.md`. This file imports exactly the twenty-seven modules
+`docs/theory/juggler_fate_almost_all_note.md`. This file imports exactly the twenty-eight modules
 that paper cites and nothing else, so that a reader can build the formal side of Paper C on
 its own rather than selecting modules by hand out of the umbrella `Problems.Juggler`. It is a
 laboratory target, not a claim: building it does **not** corroborate the paper's counting.
@@ -131,6 +132,18 @@ laboratory target, not a claim: building it does **not** corroborate the paper's
   contagion bound as a hypothesis (`OneSided.exc_conj_of_contagion`) or with nothing else
   assumed (`OneSided.exc_implies_conjecture`), the weakest one-sided hypothesis the paper
   states. The paper's `B > e_q(C)` is not restated.
+* `FateEnergyAtoms` — Section 10(d)'s "additional quantitative bound on these sums can
+  supply an exceptional-atom estimate", exactly. The bias energy `Σ_{|w|=t} D(w)²` over the
+  odd starts of `(y, 2y]` (`Energy.biasEnergy`, equal to the paper's `C_{t+1}/2 - C_t/4` by
+  `Energy.biasEnergy_eq`) bounds the squared masses of the atoms violating `#[wO] ≤ q #[w]`
+  by `biasEnergy/(q - 1/2)²`, and Cauchy–Schwarz over at most `2^t` atoms bounds their total
+  mass (`Energy.mass_violators_le`); so an energy bound `(q - 1/2)² exc²/2^t` at every depth
+  gives the one-sided hypothesis with exceptional atoms of mass `exc` and no error term
+  (`Energy.oneSidedShareExc_of_energy`), and `FateOneSidedAtoms` runs it to the conjecture:
+  `Energy.energy_implies_conjecture` with nothing else assumed, `Energy.energy_conj_of_contagion`
+  with the contagion bound as a hypothesis. The pincer's rate-side question is thereby a single
+  second-moment statement about how cylinders split (`Energy.EnergyBound`). Nothing here
+  proves it.
 * `FateCylinderEnergy` — the counting identity of Section 10(d): a cylinder splits into
   its two children (`CylinderEnergy.wordCount_split`), so the first-letter biases
   `D(w) = #[wO] - #[w]/2` satisfy `Σ_{|w|=t} D(w)² = C_{t+1}/2 - C_t/4` exactly
@@ -212,8 +225,8 @@ Proposition 4.4 (the block average), the
 share law 4.5–4.6, the production inequality (5.2) itself (Theorem 5.3 is here given (5.2),
 for every `λ ≤ 0.49`; the root `λ** = 0.4926…` and the range `0.49 < λ < λ**` are not),
 Corollaries 5.4–5.5, the asymptotic forms of Theorems 8.3, 9.1 and 9.2, Section 10 except
-the counting identity of 10(d) and its exceptional-atom form of Theorem 9.1, and Appendix C
-have no machine check of any kind. Theorems 7.2, 7.3, Corollary 8.4 and the corollaries of
+the counting identity of 10(d), its exceptional-atom form of Theorem 9.1 and the energy
+bound's supply of those atoms, and Appendix C have no machine check of any kind. Theorems 7.2, 7.3, Corollary 8.4 and the corollaries of
 Theorem 9.1 (with and without exceptional atoms), Theorem 9.2 and Proposition 9.3 are here
 with the contagion bound as a hypothesis, Corollary 8.4 also with (5.2) in its place, and
 Theorem 7.2, Corollary 8.4 and the four Section 9 corollaries also with the contagion bound
