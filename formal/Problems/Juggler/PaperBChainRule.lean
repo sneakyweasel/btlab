@@ -132,6 +132,77 @@ theorem no_linearise_iff (pre mid : List Letter) :
   · intro h; nlinarith [h, hp]
   · intro h; exact mul_nonneg hp.le (by linarith)
 
+/-! ### The criterion is the exponent walk
+
+`e_t = 3^(o_t) / 2^t` with `o_t` the number of odd letters, so `log₂ e_t` is the
+exponent walk `u_t = o_t log₂ 3 - t` of the Paper C collision work.  Then
+`E = e_{t-1}/e_s = 2^(u_{t-1} - u_s)`, and `E < 2` says the walk climbs by less
+than one unit between the defect and the wave.
+
+Everything below stays in ℚ, which is stronger than the real-valued reading:
+`E < 2` becomes the exact integer inequality `3^a < 2^(a+b+1)` in the counts
+`a`, `b` of odd and even letters in the block.  Two consequences worth naming.
+The criterion does not see the *order* of the block, only its two counts.  And
+`E` is exactly the amplification factor `A_k` of
+`J-dominant-defect-at-walk-minimum`, so Paper B's composed map and Paper C's
+amplification are one object. -/
+
+/-- The number of odd letters in a word: `o_t`. -/
+def oddCount : List Letter → ℕ
+  | [] => 0
+  | Letter.O :: w => oddCount w + 1
+  | Letter.E :: w => oddCount w
+
+@[simp] theorem oddCount_nil : oddCount [] = 0 := rfl
+
+@[simp] theorem oddCount_cons_O (w : List Letter) :
+    oddCount (Letter.O :: w) = oddCount w + 1 := rfl
+
+@[simp] theorem oddCount_cons_E (w : List Letter) :
+    oddCount (Letter.E :: w) = oddCount w := rfl
+
+/-- **The exponent walk, exactly.**  `e_t = 3^(o_t) / 2^t`.  Taking `log₂` gives
+`u_t = o_t log₂ 3 - t`, the walk the Paper C work is built on; this is that
+statement before any logarithm, so it is exact. -/
+theorem iter_eq_pow (w : List Letter) :
+    iter w = 3 ^ (oddCount w) / 2 ^ w.length := by
+  induction w with
+  | nil => norm_num [iter, oddCount_nil]
+  | cons c w ih =>
+      cases c with
+      | O =>
+          rw [iter_cons, ih, oddCount_cons_O, List.length_cons,
+            show step Letter.O = 3 / 2 from rfl]
+          field_simp
+          ring
+      | E =>
+          rw [iter_cons, ih, oddCount_cons_E, List.length_cons,
+            show step Letter.E = 1 / 2 from rfl]
+          field_simp
+          ring
+
+/-- **The criterion in the counts.**  `E < 2` is the exact integer inequality
+`3^a < 2^(a+b+1)`, with `a` the odd letters of the block and `a + b` its length.
+No real logarithm and no floating point anywhere. -/
+theorem lt_two_iff_counts (w : List Letter) :
+    iter w < 2 ↔ (3 : ℚ) ^ (oddCount w) < 2 ^ (w.length + 1) := by
+  rw [iter_eq_pow, div_lt_iff₀ (by positivity : (0 : ℚ) < 2 ^ w.length), pow_succ]
+  ring_nf
+
+/-- **Order independence.**  The criterion does not see the order of the block,
+only how many of each letter it holds.  Immediate from `iter_eq_pow`, and not
+obvious from the product form. -/
+theorem iter_eq_of_counts (v w : List Letter)
+    (ho : oddCount v = oddCount w) (hl : v.length = w.length) :
+    iter v = iter w := by
+  rw [iter_eq_pow, iter_eq_pow, ho, hl]
+
+/-- The same statement for the criterion itself. -/
+theorem lt_two_congr (v w : List Letter)
+    (ho : oddCount v = oddCount w) (hl : v.length = w.length) :
+    iter v < 2 ↔ iter w < 2 := by
+  rw [iter_eq_of_counts v w ho hl]
+
 /-! ### The three monomials Paper B prints
 
 Each is the rule evaluated at an explicit word and pair of letters.  They are

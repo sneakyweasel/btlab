@@ -679,6 +679,85 @@ def test_the_second_order_exponent_is_e_s_times_E_minus_two() -> None:
     assert not disagreements, disagreements[:5]
 
 
+def _walk(w: str) -> list[float]:
+    """``u_t = o_t log2(3) - t``, the exponent walk of the Paper C collision work."""
+    u, o = [0.0], 0
+    for i, c in enumerate(w, start=1):
+        if c == "O":
+            o += 1
+        u.append(o * math.log2(3.0) - i)
+    return u
+
+
+def test_the_composed_map_is_two_to_the_walk_climb() -> None:
+    """``E = 2^(u_(t-1) - u_s)``, so ``E < 2`` is "the walk climbs less than one unit".
+
+    Paper B's screen and the Paper C collision work were built separately, and this
+    is the coordinate they share: the exponent walk whose minimum the ladder
+    factorisation splits at is the same object that decides whether a defect may be
+    linearised. Over ℚ the identity is exact, ``e_t = 3^(o_t)/2^t``; the walk is its
+    base-2 logarithm.
+    """
+    for w in _all_words(3, 10):
+        u = _walk(w)
+        e = B.iterate_exponents(w)
+        for t_ in range(1, len(w) + 1):
+            assert abs(float(e[t_ - 1]) - 2.0 ** u[t_]) < 1e-9 * max(1.0, 2.0 ** u[t_])
+        for t_ in range(2, len(w) + 1):
+            for s in range(1, t_):
+                E = B.composed_map(w, t_, s)
+                assert abs(float(E) - 2.0 ** (u[t_ - 1] - u[s])) < 1e-9 * max(1.0, float(E))
+                assert (E < 2) == ((u[t_ - 1] - u[s]) < 1.0 - 1e-12)
+
+
+def test_the_criterion_sees_only_the_letter_counts() -> None:
+    """``E`` is a function of ``(#O, #E)`` in the block, not of their order.
+
+    Immediate once ``E = 3^a/2^(a+b)`` and not visible in the product form. The
+    closed criterion is the exact integer inequality ``3^a < 2^(a+b+1)``.
+    """
+    seen: dict[tuple[int, int], Fraction] = {}
+    for w in _all_words(3, 10):
+        for t_ in range(2, len(w) + 1):
+            for s in range(1, t_):
+                mid = w[s:t_ - 1]
+                key = (mid.count("O"), mid.count("E"))
+                E = B.composed_map(w, t_, s)
+                if key in seen:
+                    assert seen[key] == E, (key, seen[key], E)
+                seen[key] = E
+    assert len(seen) == 45, len(seen)
+    for (a, b), E in seen.items():
+        assert (E < 2) == (3 ** a < 2 ** (a + b + 1)), (a, b, E)
+
+
+def test_the_screen_does_not_test_the_maximal_defect() -> None:
+    """The negative finding, pinned so it cannot drift.
+
+    ``E = e_(t-1)/e_s`` is maximised over ``s`` exactly at the walk minimum -- which
+    is the letter J-dominant-defect-at-walk-minimum calls dominant. Paper B's screen
+    tests the deepest *blocked* defect instead, and the two usually differ: a defect
+    the kernel keeps exact is never expanded, so its amplification is irrelevant to
+    linearisation. Not a defect in the screen; a structural fact about what it looks at.
+    """
+    same = diff = 0
+    for w in _all_words(3, 11):
+        u = _walk(w)
+        for t_ in range(3, len(w) + 1):
+            deep = B.deepest_blocked(w, t_)
+            if deep is None:
+                continue
+            s_walk = min(range(1, t_), key=lambda s: (u[s], s))
+            if deep[0] == s_walk:
+                same += 1
+            else:
+                diff += 1
+            # the algebra: E really is maximised at the walk minimum
+            best = max(range(1, t_), key=lambda s: B.composed_map(w, t_, s))
+            assert B.composed_map(w, t_, best) == B.composed_map(w, t_, s_walk)
+    assert (same, diff) == (1026, 3178), (same, diff)
+
+
 def test_the_screens_other_two_thresholds_are_not_identities() -> None:
     """The split the prospecting note demands, asserted rather than described.
 

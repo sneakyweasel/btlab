@@ -53374,7 +53374,8 @@
       "kind": "def",
       "ledger": [
         "J-paper-b-defect-coefficient-chain",
-        "J-paper-b-linearisation-E-lt-2"
+        "J-paper-b-linearisation-E-lt-2",
+        "J-paper-b-E-is-the-exponent-walk"
       ],
       "line": 53,
       "module": "Problems.Juggler.PaperBChainRule",
@@ -53387,7 +53388,8 @@
       "kind": "def",
       "ledger": [
         "J-paper-b-defect-coefficient-chain",
-        "J-paper-b-linearisation-E-lt-2"
+        "J-paper-b-linearisation-E-lt-2",
+        "J-paper-b-E-is-the-exponent-walk"
       ],
       "line": 59,
       "module": "Problems.Juggler.PaperBChainRule",
@@ -53400,7 +53402,8 @@
       "kind": "theorem",
       "ledger": [
         "J-paper-b-defect-coefficient-chain",
-        "J-paper-b-linearisation-E-lt-2"
+        "J-paper-b-linearisation-E-lt-2",
+        "J-paper-b-E-is-the-exponent-walk"
       ],
       "line": 67,
       "module": "Problems.Juggler.PaperBChainRule",
@@ -53413,7 +53416,8 @@
       "kind": "theorem",
       "ledger": [
         "J-paper-b-defect-coefficient-chain",
-        "J-paper-b-linearisation-E-lt-2"
+        "J-paper-b-linearisation-E-lt-2",
+        "J-paper-b-E-is-the-exponent-walk"
       ],
       "line": 72,
       "module": "Problems.Juggler.PaperBChainRule",
@@ -53426,7 +53430,8 @@
       "kind": "theorem",
       "ledger": [
         "J-paper-b-defect-coefficient-chain",
-        "J-paper-b-linearisation-E-lt-2"
+        "J-paper-b-linearisation-E-lt-2",
+        "J-paper-b-E-is-the-exponent-walk"
       ],
       "line": 79,
       "module": "Problems.Juggler.PaperBChainRule",
@@ -53439,7 +53444,8 @@
       "kind": "theorem",
       "ledger": [
         "J-paper-b-defect-coefficient-chain",
-        "J-paper-b-linearisation-E-lt-2"
+        "J-paper-b-linearisation-E-lt-2",
+        "J-paper-b-E-is-the-exponent-walk"
       ],
       "line": 83,
       "module": "Problems.Juggler.PaperBChainRule",
@@ -53452,7 +53458,8 @@
       "kind": "theorem",
       "ledger": [
         "J-paper-b-defect-coefficient-chain",
-        "J-paper-b-linearisation-E-lt-2"
+        "J-paper-b-linearisation-E-lt-2",
+        "J-paper-b-E-is-the-exponent-walk"
       ],
       "line": 96,
       "module": "Problems.Juggler.PaperBChainRule",
@@ -53465,7 +53472,8 @@
       "kind": "def",
       "ledger": [
         "J-paper-b-defect-coefficient-chain",
-        "J-paper-b-linearisation-E-lt-2"
+        "J-paper-b-linearisation-E-lt-2",
+        "J-paper-b-E-is-the-exponent-walk"
       ],
       "line": 102,
       "module": "Problems.Juggler.PaperBChainRule",
@@ -53478,7 +53486,8 @@
       "kind": "def",
       "ledger": [
         "J-paper-b-defect-coefficient-chain",
-        "J-paper-b-linearisation-E-lt-2"
+        "J-paper-b-linearisation-E-lt-2",
+        "J-paper-b-E-is-the-exponent-walk"
       ],
       "line": 105,
       "module": "Problems.Juggler.PaperBChainRule",
@@ -53491,7 +53500,8 @@
       "kind": "theorem",
       "ledger": [
         "J-paper-b-defect-coefficient-chain",
-        "J-paper-b-linearisation-E-lt-2"
+        "J-paper-b-linearisation-E-lt-2",
+        "J-paper-b-E-is-the-exponent-walk"
       ],
       "line": 109,
       "module": "Problems.Juggler.PaperBChainRule",
@@ -53504,7 +53514,8 @@
       "kind": "theorem",
       "ledger": [
         "J-paper-b-defect-coefficient-chain",
-        "J-paper-b-linearisation-E-lt-2"
+        "J-paper-b-linearisation-E-lt-2",
+        "J-paper-b-E-is-the-exponent-walk"
       ],
       "line": 117,
       "module": "Problems.Juggler.PaperBChainRule",
@@ -53517,11 +53528,82 @@
       "kind": "theorem",
       "ledger": [
         "J-paper-b-defect-coefficient-chain",
-        "J-paper-b-linearisation-E-lt-2"
+        "J-paper-b-linearisation-E-lt-2",
+        "J-paper-b-E-is-the-exponent-walk"
       ],
       "line": 127,
       "module": "Problems.Juggler.PaperBChainRule",
       "name": "no_linearise_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The number of odd letters in a word: `o_t`.",
+      "file": "formal/Problems/Juggler/PaperBChainRule.lean",
+      "kind": "def",
+      "ledger": [
+        "J-paper-b-defect-coefficient-chain",
+        "J-paper-b-linearisation-E-lt-2",
+        "J-paper-b-E-is-the-exponent-walk"
+      ],
+      "line": 151,
+      "module": "Problems.Juggler.PaperBChainRule",
+      "name": "oddCount",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The exponent walk, exactly.** `e_t = 3^(o_t) / 2^t`. Taking `log\u2082` gives `u_t = o_t log\u2082 3 - t`, the walk the Paper C work is built on; this is that statement before any logarithm, so it is exact.",
+      "file": "formal/Problems/Juggler/PaperBChainRule.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-defect-coefficient-chain",
+        "J-paper-b-linearisation-E-lt-2",
+        "J-paper-b-E-is-the-exponent-walk"
+      ],
+      "line": 167,
+      "module": "Problems.Juggler.PaperBChainRule",
+      "name": "iter_eq_pow",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The criterion in the counts.** `E < 2` is the exact integer inequality `3^a < 2^(a+b+1)`, with `a` the odd letters of the block and `a + b` its length. No real logarithm and no floating point anywhere.",
+      "file": "formal/Problems/Juggler/PaperBChainRule.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-defect-coefficient-chain",
+        "J-paper-b-linearisation-E-lt-2",
+        "J-paper-b-E-is-the-exponent-walk"
+      ],
+      "line": 187,
+      "module": "Problems.Juggler.PaperBChainRule",
+      "name": "lt_two_iff_counts",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Order independence.** The criterion does not see the order of the block, only how many of each letter it holds. Immediate from `iter_eq_pow`, and not obvious from the product form.",
+      "file": "formal/Problems/Juggler/PaperBChainRule.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-defect-coefficient-chain",
+        "J-paper-b-linearisation-E-lt-2",
+        "J-paper-b-E-is-the-exponent-walk"
+      ],
+      "line": 195,
+      "module": "Problems.Juggler.PaperBChainRule",
+      "name": "iter_eq_of_counts",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The same statement for the criterion itself.",
+      "file": "formal/Problems/Juggler/PaperBChainRule.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-defect-coefficient-chain",
+        "J-paper-b-linearisation-E-lt-2",
+        "J-paper-b-E-is-the-exponent-walk"
+      ],
+      "line": 201,
+      "module": "Problems.Juggler.PaperBChainRule",
+      "name": "lt_two_congr",
       "trust": "kernel"
     },
     {
@@ -53530,9 +53612,10 @@
       "kind": "theorem",
       "ledger": [
         "J-paper-b-defect-coefficient-chain",
-        "J-paper-b-linearisation-E-lt-2"
+        "J-paper-b-linearisation-E-lt-2",
+        "J-paper-b-E-is-the-exponent-walk"
       ],
-      "line": 145,
+      "line": 216,
       "module": "Problems.Juggler.PaperBChainRule",
       "name": "printed_thm53",
       "trust": "kernel"
@@ -53543,9 +53626,10 @@
       "kind": "theorem",
       "ledger": [
         "J-paper-b-defect-coefficient-chain",
-        "J-paper-b-linearisation-E-lt-2"
+        "J-paper-b-linearisation-E-lt-2",
+        "J-paper-b-E-is-the-exponent-walk"
       ],
-      "line": 150,
+      "line": 221,
       "module": "Problems.Juggler.PaperBChainRule",
       "name": "printed_thm63_C",
       "trust": "kernel"
@@ -53556,9 +53640,10 @@
       "kind": "theorem",
       "ledger": [
         "J-paper-b-defect-coefficient-chain",
-        "J-paper-b-linearisation-E-lt-2"
+        "J-paper-b-linearisation-E-lt-2",
+        "J-paper-b-E-is-the-exponent-walk"
       ],
-      "line": 155,
+      "line": 226,
       "module": "Problems.Juggler.PaperBChainRule",
       "name": "printed_thm63_B",
       "trust": "kernel"
@@ -53569,9 +53654,10 @@
       "kind": "theorem",
       "ledger": [
         "J-paper-b-defect-coefficient-chain",
-        "J-paper-b-linearisation-E-lt-2"
+        "J-paper-b-linearisation-E-lt-2",
+        "J-paper-b-E-is-the-exponent-walk"
       ],
-      "line": 162,
+      "line": 233,
       "module": "Problems.Juggler.PaperBChainRule",
       "name": "two_odd_not_safe",
       "trust": "kernel"
@@ -53582,9 +53668,10 @@
       "kind": "theorem",
       "ledger": [
         "J-paper-b-defect-coefficient-chain",
-        "J-paper-b-linearisation-E-lt-2"
+        "J-paper-b-linearisation-E-lt-2",
+        "J-paper-b-E-is-the-exponent-walk"
       ],
-      "line": 166,
+      "line": 237,
       "module": "Problems.Juggler.PaperBChainRule",
       "name": "odd_even_safe",
       "trust": "kernel"
@@ -88245,7 +88332,7 @@
       "ledger": []
     },
     "Problems.Juggler.PaperBChainRule": {
-      "declarations": 17,
+      "declarations": 22,
       "file": "formal/Problems/Juggler/PaperBChainRule.lean",
       "imports": [],
       "ledger": [
@@ -88257,6 +88344,11 @@
         {
           "id": "J-paper-b-linearisation-E-lt-2",
           "statement": "The E < 2 linearisation criterion of Paper B section 7, as an identity. With the notation of J-paper-b-defect-coefficient-chain, the squared-defect term in letter t's phase sits at exponent e_{t-1} - 2 e_s, and since e_{t-1} = e_s E this equals e_s (E - 2). As e_s > 0 always, the second-order exponent is negative exactly when E < 2: linearising theta_s inside letter t is safe precisely on that condition. The criterion is therefore not a threshold fitted to the words that happen to survive -- it is the point at which the second-order term stops growing, and 2 is forced by the squaring and nothing else. Checked as an identity on every word of length 3..10 and every pair s < t (75768 instances, no exception), with the sign of the second-order exponent agreeing with E < 2 in every instance. Positive second-order exponents at defects a kernel keeps exact are harmless because they are never expanded, which is why only the deepest blocked defect is tested. LEAN, 14 September 2026: `second_order` in PaperBChainRule.lean is the identity e_{t-1} - 2 e_s = e_s (E - 2), and `linearise_iff` is the equivalence the second-order exponent is negative iff E < 2, for every prefix and block; `no_linearise_iff` is the same statement from the other side, and `two_odd_not_safe` and `odd_even_safe` are the two smallest instances (E = 9/4 fails, E = 3/4 passes). The proof uses nothing about 3/2 and 1/2 beyond positivity, which is the content of the claim that 2 is forced by the squaring. Kernel-checked. Not a proof that any word contracts.",
+          "tag": "EXACT \u2014 HUMAN PROOF"
+        },
+        {
+          "id": "J-paper-b-E-is-the-exponent-walk",
+          "statement": "Paper B section 7's composed map is the exponent walk of the Paper C collision work, and its linearisation criterion is a unit climb of that walk. With the notation of J-paper-b-defect-coefficient-chain, e_t = 3^(o_t) / 2^t exactly, where o_t is the number of odd letters up to t (`iter_eq_pow`). Taking log base 2 gives e_t = 2^(u_t) with u_t = o_t log2(3) - t, which is the walk J-live-set-ladder-factorisation splits at, J-damping-at-running-minimum is about, and J-dominant-defect-at-walk-minimum measures the climb of. Hence E = e_{t-1}/e_s = 2^(u_{t-1} - u_s), and E < 2 says exactly that the walk climbs by less than one unit between the defect at letter s and the wave at letter t. Two consequences. (i) The criterion is an exact integer inequality in the counts: with a odd and b even letters in the block, E < 2 iff 3^a < 2^(a+b+1) (`lt_two_iff_counts`), so it never needs a logarithm or a float. (ii) It does not see the order of the block, only the two counts (`iter_eq_of_counts`, `lt_two_congr`), which is immediate from the closed form and invisible in the product form; 45 count pairs cover every block arising in words of length up to 10. The supporting declarations are `oddCount`, `oddCount_cons_O` and `oddCount_cons_E`. Kernel-checked, axioms propext, Classical.choice and Quot.sound. This is a reformulation and not an improvement: no bound moves, no density exponent changes, and the collision hypothesis is untouched. What it buys is that two screens developed separately are one test in one coordinate, and that E is literally the amplification factor A_k of J-dominant-defect-at-walk-minimum rather than an analogue of it.",
           "tag": "EXACT \u2014 HUMAN PROOF"
         }
       ]
@@ -89320,13 +89412,13 @@
     }
   },
   "totals": {
-    "declarations": 6590,
-    "declarations_with_a_ledger_row": 4548,
-    "ledger_rows_naming_a_file": 409,
+    "declarations": 6595,
+    "declarations_with_a_ledger_row": 4553,
+    "ledger_rows_naming_a_file": 410,
     "modules": 285,
     "trust": {
       "compiler": 56,
-      "kernel": 6534
+      "kernel": 6539
     }
   }
 }

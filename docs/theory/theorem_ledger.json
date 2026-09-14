@@ -9804,5 +9804,29 @@
    "tests/research/juggler_sequence/test_paper_b_prefix_count.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "id": "J-paper-b-E-is-the-exponent-walk",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Paper B section 7's composed map is the exponent walk of the Paper C collision work, and its linearisation criterion is a unit climb of that walk. With the notation of J-paper-b-defect-coefficient-chain, e_t = 3^(o_t) / 2^t exactly, where o_t is the number of odd letters up to t (`iter_eq_pow`). Taking log base 2 gives e_t = 2^(u_t) with u_t = o_t log2(3) - t, which is the walk J-live-set-ladder-factorisation splits at, J-damping-at-running-minimum is about, and J-dominant-defect-at-walk-minimum measures the climb of. Hence E = e_{t-1}/e_s = 2^(u_{t-1} - u_s), and E < 2 says exactly that the walk climbs by less than one unit between the defect at letter s and the wave at letter t. Two consequences. (i) The criterion is an exact integer inequality in the counts: with a odd and b even letters in the block, E < 2 iff 3^a < 2^(a+b+1) (`lt_two_iff_counts`), so it never needs a logarithm or a float. (ii) It does not see the order of the block, only the two counts (`iter_eq_of_counts`, `lt_two_congr`), which is immediate from the closed form and invisible in the product form; 45 count pairs cover every block arising in words of length up to 10. The supporting declarations are `oddCount`, `oddCount_cons_O` and `oddCount_cons_E`. Kernel-checked, axioms propext, Classical.choice and Quot.sound. This is a reformulation and not an improvement: no bound moves, no density exponent changes, and the collision hypothesis is untouched. What it buys is that two screens developed separately are one test in one coordinate, and that E is literally the amplification factor A_k of J-dominant-defect-at-walk-minimum rather than an analogue of it.",
+  "source": "docs/research_journal.md",
+  "lean": "Problems/Juggler/PaperBChainRule.lean",
+  "lean_trust": "kernel",
+  "decl": "iter_eq_pow",
+  "tests": [
+   "tests/research/juggler_sequence/test_paper_b_prefix_count.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-paper-b-screen-skips-the-maximal-defect",
+  "tag": "OBSERVATION",
+  "statement": "The defect with the largest amplification is usually not the one Paper B's screen examines. Since E = e_{t-1}/e_s = 2^(u_{t-1} - u_s), E is maximised over s exactly where u_s is minimised, so the letter carrying the largest amplification into letter t is the walk minimum before t -- which is the letter J-dominant-defect-at-walk-minimum calls dominant, measured on 58869 live orbits. The screen tests the deepest *blocked* defect instead. Over every word of length 3 to 11, of the 4204 letters that have a blocked defect the two selections agree 1026 times and differ 3178. The maximality itself was checked and holds with no exception. This is not a defect in the screen: a defect the kernel keeps exact is never expanded, so its amplification is irrelevant to whether linearisation is safe, and the screen is right to look elsewhere. It is a structural fact nobody had recorded, and it bears on reading the two papers together -- the letter Paper C identifies as dominant and the letter Paper B screens are different letters three times in four. Not a bound and not a refutation of anything.",
+  "source": "docs/research_journal.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_paper_b_prefix_count.py"
+  ],
+  "related_conjectures": []
  }
 ]

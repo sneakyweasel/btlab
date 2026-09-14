@@ -6435,7 +6435,9 @@
         "J-rate-free-density-one",
         "J-paper-b-defect-coefficient-chain",
         "J-paper-b-linearisation-E-lt-2",
-        "J-paper-b-screen-thresholds-are-hypotheses"
+        "J-paper-b-screen-thresholds-are-hypotheses",
+        "J-paper-b-E-is-the-exponent-walk",
+        "J-paper-b-screen-skips-the-maximal-defect"
       ],
       "aliases": [],
       "nk_cluster": null
