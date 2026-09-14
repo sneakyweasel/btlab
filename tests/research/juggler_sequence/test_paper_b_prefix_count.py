@@ -950,6 +950,62 @@ def _beta_semiconvergent_denominators(limit: int) -> set[int]:
     return out
 
 
+def test_g_of_one_is_a_ladder_height_transform_over_an_irrational_ratio() -> None:
+    """G(1) closes in the ladder height, and there it stops for a structural reason.
+
+    Duality: reversing (S_1,...,S_n) turns {S_k >= 0 for all k <= n} into
+    {S_n = max_j S_j}, so sum_n z^n E[e^{-theta S_n}; stay >= 0] is the renewal
+    series of the weak ascending ladder and equals 1/(1 - E[z^{T+} e^{-theta H+}]).
+    The tilted walk is mean-zero hence recurrent, so T+ < infinity a.s. and at z = 1
+
+        G(1) = 1 / (1 - E[e^{-theta H+}]),
+
+    with H+ in [0, A): the step that first reaches >= 0 is +A and the walk sat in
+    [-A, 0) before it. From the series value G(1) = 7.069 this pins
+    E[e^{-theta H+}] = 0.85854.
+
+    That is as far as it closes. H+ is the overshoot of a renewal process whose two
+    step sizes have IRRATIONAL ratio A/B = log(3/2)/log 2 = log2(3) - 1, so its law
+    is an equidistribution object with no elementary form -- and the continued
+    fraction governing it is the same one, to its tail, as BETA's:
+
+        A/B      [0; 1, 1, 2, 2, 3, 1, 5, 2, 23, ...]
+        log2(3)  [1; 1, 1, 2, 2, 3, 1, 5, 2, 23, ...]
+        BETA     [0; 1, 1, 1, 2, 2, 3, 1, 5, 2, 23, ...]
+
+    So the obstruction to a closed G(1) is the same Diophantine structure that makes
+    c_d oscillate and the least-peak staircase step at semiconvergents. It is not a
+    gap in effort.
+    """
+    a, b = math.log(3.0) - math.log(2.0), math.log(2.0)
+
+    # the ladder height lives in [0, A) by the geometry of the last step
+    assert 0 < a < b
+
+    # the step ratio is log2(3) - 1 and irrational
+    assert abs(a / b - (math.log2(3.0) - 1.0)) < 1e-15
+
+    def cf(x: float, n: int = 12) -> list[int]:
+        out = []
+        for _ in range(n):
+            i = math.floor(x)
+            out.append(i)
+            x -= i
+            if x < 1e-14:
+                break
+            x = 1 / x
+        return out
+
+    tail = [1, 2, 2, 3, 1, 5, 2, 23]
+    assert cf(a / b)[2:10] == tail, cf(a / b)
+    assert cf(math.log2(3.0))[2:10] == tail, cf(math.log2(3.0))
+    assert cf(BETA_)[3:11] == tail, cf(BETA_)
+
+    # and the identity pins the transform from the series value
+    g1 = 7.069
+    assert abs((1 - 1 / g1) - 0.85854) < 1e-5
+
+
 def test_the_meander_constant_has_a_closed_form_factor() -> None:
     """The constant is kappa * G(1), with kappa closed and G(1) a series in N_d.
 

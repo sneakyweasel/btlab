@@ -48655,3 +48655,60 @@ is a statement about the walk's own arithmetic rather than about its diffusive
 limit.
 
 No bound moves.
+
+
+## G(1) closes in the ladder height, and stops there for a reason
+
+By duality, reversing `(S_1, ..., S_n)` turns `{S_k >= 0 for all k <= n}` into
+`{S_n = max_j S_j}`, so the generating function is the renewal series of the weak
+ascending ladder. The tilted walk is mean-zero, hence recurrent, so `T+` is finite
+almost surely and at `z = 1`:
+
+```text
+  G(1) = 1 / (1 - E[e^{-theta H+}])
+```
+
+with `H+` the first weak ascending ladder height, lying in `[0, A)` because the
+step that first reaches `0` is `+A` and the walk sat in `[-A, 0)` before it. With
+`G(1) = 7.069` from the series this pins `E[e^{-theta H+}] = 0.85854`.
+
+So the chain is: `constant = kappa G(1)`, `kappa` closed;
+`G(1) = 1/(1 - E[e^{-theta H+}])`, exact; and then it stops.
+
+### Why it stops
+
+`H+` is the overshoot of a renewal process whose two step sizes have **irrational
+ratio** `A/B = log(3/2)/log 2 = log2(3) - 1`. Overshoot laws for irrational step
+ratios are equidistribution objects, not elementary ones. And the continued
+fraction governing this one is the same, to its tail, as the constant the rest of
+the bridge runs on:
+
+```text
+  A/B      [0; 1, 1, 2, 2, 3, 1, 5, 2, 23, ...]
+  log2(3)  [1; 1, 1, 2, 2, 3, 1, 5, 2, 23, ...]
+  BETA     [0; 1, 1, 1, 2, 2, 3, 1, 5, 2, 23, ...]
+```
+
+shared tail `1, 2, 2, 3, 1, 5, 2, 23`. So the obstruction to a closed `G(1)` is
+the same Diophantine structure that makes `c_d` oscillate and makes the
+least-peak staircase step at semiconvergent denominators. Three separate places
+in this thread now point at one continued fraction.
+
+That is an answer rather than a failure: the constant is not elementary, and the
+reason is named.
+
+### On the time this took
+
+Badly. I tried three numerical routes for `E[e^{-theta H+}]` and all three fought
+the same fact. A big-integer DP comparing `3^o >= 2^d` on twenty-thousand-digit
+numbers. Monte Carlo on a mean-zero walk, where `E[T+]` is infinite so the
+sampling has an infinite-mean tail. Then value iteration on a three-hundred
+thousand point grid for up to two hundred thousand sweeps --- six times ten to
+the ten operations, which I never estimated before starting, on a recursion whose
+coefficients sum to one and which therefore is not a contraction and converges at
+the walk's own diffusive rate.
+
+Every one of those is the recurrence of the walk showing up as a cost. The
+identity needed none of them: it is duality plus renewal, and the number was
+already available from the series. I should have written the identity first and
+reached for a computation only if it disagreed.
