@@ -4205,6 +4205,7 @@
         "J-fate-contagion-elementary",
         "J-fate-one-sided-moments",
         "J-fate-one-sided-conjecture",
+        "J-fate-pressure-conjecture",
         "J-paper-c-trust-surface",
         "J-fate-monotone-pairing-repair",
         "J-fate-chernoff-count",
@@ -6196,7 +6197,8 @@
         "formal/Problems/Juggler/FateContagionBound.lean",
         "formal/Problems/Juggler/FateProduction.lean",
         "formal/Problems/Juggler/FateOneSided.lean",
-        "formal/Problems/Juggler/FateOneSidedCorollary.lean"
+        "formal/Problems/Juggler/FateOneSidedCorollary.lean",
+        "formal/Problems/Juggler/FatePressureCorollary.lean"
       ],
       "conjecture": [],
       "decision": null,

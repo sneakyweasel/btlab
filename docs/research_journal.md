@@ -44717,3 +44717,37 @@ formalized either. Three names were shortened so the axiom artifact
 would not wrap them. Twenty-seven Lean rows, four human, twenty-five
 modules, 331 declarations in the artifact. The hypothesis itself is
 Appendix C's question in one-sided dress; nothing here touches it.
+
+
+## The pressure and no-momentum forms run to the conjecture too
+
+Same jaw, two more forms. Theorem 9.2 and Proposition 9.3 are stated
+on the live weight, the starts of {1, ..., N} that stay above the
+floor for d steps, and the failure set is the odd starts of (y, 2y]
+that never reach 1; the bridge between them is one line, a failure
+never enters the floor, so it is live at every depth. After that the
+two exact forms bound the failures by 2y e^{-dD} (log y)^eps, with D
+the half-divergence for the pressure form and D(p_C||q) - c_x delta
+for the no-momentum form, and one absorption lemma serves both:
+d >= C log_2 Lambda turns e^{-dD} into Lambda^{-CD/ln 2} and the
+comparison of Lambda with log y does the rest. Then Theorem 7.2, with
+the contagion bound as a hypothesis or discharged at 3/10.
+
+Two quantifications had to be chosen where the paper writes o(d). The
+pressure form's e^{o(d)} is (log y)^eps with eps a rate loss, so the
+exponent is e(C) - eps; the no-momentum form's o(d) is delta d, so
+the exponent is C (D(p_C||q) - c_x delta)/ln 2. Both are what the
+paper's proofs actually use, and both are stated so that the reader
+sees the loss rather than an epsilon. Neither hypothesis needs a sign
+condition on its loss; a negative one is a stronger hypothesis.
+
+So the rate-side jaw of the pincer is now closed in Lean for every
+hypothesis Paper C states on that side: cylinder (Corollary 8.4),
+one-sided (yesterday), pressure and no-momentum (today). Each runs to
+the conjecture with nothing else assumed once its exponent exceeds
+0.7, or above 1 - lambda given the contagion bound at lambda. What
+remains on the pincer is the analytic content itself: a proof of any
+one of those four hypotheses, which is Appendix C's question, and the
+exponential sums that would bring 0.7 down to 0.51. Twenty-eight Lean
+rows, four human, twenty-six modules, 339 declarations in the
+artifact.

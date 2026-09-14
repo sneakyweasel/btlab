@@ -12,6 +12,7 @@
     "Problems.Juggler.FateProduction",
     "Problems.Juggler.FateOneSided",
     "Problems.Juggler.FateOneSidedCorollary",
+    "Problems.Juggler.FatePressureCorollary",
     "Problems.Juggler.FateCylinderEnergy",
     "Problems.Juggler.FateLandingWindow",
     "Problems.Juggler.FateWindowCount",
@@ -28,24 +29,24 @@
     "Problems.Juggler.FateContagionBound"
   ],
   "artifact": {
-    "asked": 331,
-    "recorded": 331,
+    "asked": 339,
+    "recorded": 339,
     "axiom_lists": [
       "propext",
       "propext, Classical.choice, Quot.sound",
       "propext, Quot.sound"
     ]
   },
-  "appendix_a_names": 344,
+  "appendix_a_names": 355,
   "surface": {
-    "modules": 57,
-    "declarations": 1720,
+    "modules": 58,
+    "declarations": 1731,
     "compiler_trusted": [],
     "compiler_dependent": [],
     "open": []
   },
   "table": {
-    "rows": 33,
+    "rows": 34,
     "lean": [
       "Fate classes closed; trichotomy; exclusion (Lemma 2.1)",
       "Even block is an interval (Lemma 3.1)",
@@ -72,6 +73,7 @@
       "Pressure telescoping (Proposition 9.3)",
       "One-sided form (Theorem 9.1, exact: at every \\(y\\) the odd failures of \\((y,2y]\\) number at most \\((xa_q^{d-1}N+(x-1)\\,\\mathrm{err}\\,(d-1)(2x)^{d-1})/x^{p_Cd}\\) for every tilt \\(x\\ge1\\), by exponential moments)",
       "The conjecture from the one-sided hypothesis \\(\\mathrm H_q(C,A)\\) (Theorem 9.1's consequence), with the contagion bound as a hypothesis, or with nothing else assumed when \\(e^{\\rm Ch}_q(C)>\\tfrac7{10}\\)",
+      "The conjecture from the pressure hypothesis \\(\\mathrm P_\\theta(C)\\) and from the no-momentum hypothesis \\(\\mathrm M_{\\theta,q}(C)\\) (Section 9.2's consequences), with the contagion bound as a hypothesis, or with nothing else assumed when the exponent exceeds \\(\\tfrac7{10}\\)",
       "Cylinder-splitting identity for the first-letter bias (Section 10(d), second equality)",
       "Exact landing windows of the nested productions ((D.1), (D.2))"
     ],
@@ -92,5 +94,5 @@
     "label": "PAPER_C_LEAN_SURFACE_CONSISTENT",
     "problems": 0
   },
-  "git_commit": "e7fbd872064e7b14a430d34c2ade521f75e01ad5"
+  "git_commit": "c00ac170dc74f24340e16ee31d1cc527464ec26d"
 }

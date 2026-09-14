@@ -136,6 +136,14 @@ open Problems.Juggler
 #print axioms OneSided.sum_pow_oddCount_le
 #print axioms OneSided.tilt_ge_one
 #print axioms OneSided.tilt_pow_ratio
+#print axioms Pressure.absorb
+#print axioms Pressure.noMomentum_conj_of_contagion
+#print axioms Pressure.noMomentum_implies_conjecture
+#print axioms Pressure.oddFailures_le_of_noMomentum
+#print axioms Pressure.oddFailures_le_of_pressure
+#print axioms Pressure.oddFailures_subset_live
+#print axioms Pressure.pressure_conj_of_contagion
+#print axioms Pressure.pressure_implies_conjecture
 #print axioms Production.coef2_ge
 #print axioms Production.conjecture_of_cylinder_bound
 #print axioms Production.conjecture_of_tao_rate
