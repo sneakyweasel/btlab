@@ -3616,7 +3616,25 @@ scan of \([50508,2\cdot10^{6})\) puts the true maximum at
 \(9.3766\cdot10^{-4}\), attained at \(L=74654\) with \(s=35\). So the
 window costs nothing to extend across the nonendpoint members of the
 \(a_{14}=55\) fan, and it stops at \(q_{14}=16785921\) only because
-that is where the next partial quotient begins. The same sufficient comparison can be checked at another fixed
+that is where the next partial quotient begins.
+
+*What begins there.* The fans past \(q_{14}\) are much shorter. The
+next one on the same side of \(\beta=\log2/\log3\) is built on
+\(17087915\) and has four members, \(33873836\) through \(85137581\);
+the one after it has a single member, \(357638239\); the next cluster of
+comparable length, fifteen members, does not begin until \(987777136\).
+So the \(55\) fan is not the first of a lengthening sequence but the
+longest one at any reachable scale: the break-even floor
+\(n^{*}(L)\approx1442\,L^{0.948}\) fitted to the two certified instances
+\(n^{*}(478245)=3.483\cdot10^{8}\) and \(n^{*}(780239)=5.539\cdot10^{8}\)
+puts \(n^{*}(L_{55})\approx1.0\cdot10^{10}\) and the four-member fan
+already at \(2.0\cdot10^{10}\) to \(4.7\cdot10^{10}\), against a floor
+certified today at \(3.5\cdot10^{8}\). The remaining members of the
+\(55\) fan are therefore a bounded and priced amount of work with a known
+end, and the terrain past that end is shorter fans at floors this method
+does not reach. This is an observation about the cost of the present
+route, not a bound: it excludes nothing, and the fitted exponent is an
+empirical two-point fit rather than a proved growth rate. The same sufficient comparison can be checked at another fixed
 evaluation floor by bounding \(\nu\) for that floor and comparing
 \(h(\nu)\) with the digit bound above. No assertion uniform over
 arbitrarily large floors follows from the present calculation.
