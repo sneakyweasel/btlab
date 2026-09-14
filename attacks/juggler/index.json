@@ -6506,6 +6506,38 @@
       "nk_cluster": null
     },
     {
+      "id": "collision_large_sieve",
+      "kind": "support",
+      "probe": "src/research/juggler_sequence/collision_large_sieve.py",
+      "test": "tests/research/juggler_sequence/test_collision_large_sieve.py",
+      "dossier": null,
+      "data_dir": "data/research/juggler/collision_large_sieve",
+      "lean": [],
+      "conjecture": [],
+      "decision": null,
+      "ledger_ids": [
+        "J-collision-bound-half-exponent",
+        "J-collision-bound-does-not-invert",
+        "J-collision-bound-phase0-census",
+        "J-tau-le-sigma",
+        "J-walsh-downweighting-survives-live",
+        "J-bad-set-spectrum-cannot-win",
+        "J-walsh-restricted-product-shape",
+        "J-live-set-tilted-fair",
+        "J-tilted-live-mass-is-expanding",
+        "J-tilted-live-meander",
+        "J-dominant-defect-at-walk-minimum",
+        "J-damping-at-running-minimum",
+        "J-ladder-density-first-renewal",
+        "J-live-set-ladder-factorisation",
+        "J-excursion-parity-monomial-twists",
+        "J-first-renewal-density-three-phases",
+        "J-renewal-chain-conserves-depth"
+      ],
+      "aliases": [],
+      "nk_cluster": null
+    },
+    {
       "id": "cycle_floor_hard_seeds",
       "kind": "support",
       "probe": "src/research/juggler_sequence/cycle_floor_hard_seeds.py",
