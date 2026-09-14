@@ -113,6 +113,7 @@ open Problems.Juggler
 #print axioms Numerics.rpow_le_iff_pow
 #print axioms Numerics.rpow_lt_iff_pow
 #print axioms OneSided.LBad_of_LBad_append
+#print axioms OneSided.OneSidedShare.mono
 #print axioms OneSided.badMass_le
 #print axioms OneSided.badMass_one_le
 #print axioms OneSided.badMass_succ_le
@@ -120,9 +121,17 @@ open Problems.Juggler
 #print axioms OneSided.badWeight_nonneg
 #print axioms OneSided.card_cylinder_zero_le
 #print axioms OneSided.cylinder_split
+#print axioms OneSided.exact_share_implies_conjecture
+#print axioms OneSided.exp_le_rpow_scale
+#print axioms OneSided.implies_conjecture_of_contagion
+#print axioms OneSided.klDiv_nonneg
 #print axioms OneSided.oddFailures_card_le_badMass
+#print axioms OneSided.oddFailures_le_of_one_sided
+#print axioms OneSided.oneSidedBound_of_exact
 #print axioms OneSided.one_sided_bound
 #print axioms OneSided.one_sided_bound_kl
+#print axioms OneSided.one_sided_implies_conjecture
+#print axioms OneSided.pow_le_rpow_scale
 #print axioms OneSided.sum_allWords_succ
 #print axioms OneSided.sum_pow_oddCount_le
 #print axioms OneSided.tilt_ge_one

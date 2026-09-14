@@ -11,6 +11,7 @@
     "Problems.Juggler.FateShareLaw",
     "Problems.Juggler.FateProduction",
     "Problems.Juggler.FateOneSided",
+    "Problems.Juggler.FateOneSidedCorollary",
     "Problems.Juggler.FateCylinderEnergy",
     "Problems.Juggler.FateLandingWindow",
     "Problems.Juggler.FateWindowCount",
@@ -27,24 +28,24 @@
     "Problems.Juggler.FateContagionBound"
   ],
   "artifact": {
-    "asked": 322,
-    "recorded": 322,
+    "asked": 331,
+    "recorded": 331,
     "axiom_lists": [
       "propext",
       "propext, Classical.choice, Quot.sound",
       "propext, Quot.sound"
     ]
   },
-  "appendix_a_names": 332,
+  "appendix_a_names": 344,
   "surface": {
-    "modules": 56,
-    "declarations": 1708,
+    "modules": 57,
+    "declarations": 1720,
     "compiler_trusted": [],
     "compiler_dependent": [],
     "open": []
   },
   "table": {
-    "rows": 32,
+    "rows": 33,
     "lean": [
       "Fate classes closed; trichotomy; exclusion (Lemma 2.1)",
       "Even block is an interval (Lemma 3.1)",
@@ -70,6 +71,7 @@
       "Pressure form (Theorem 9.2, exact: a pressure bound \\(Na_\\theta^dE\\) gives at most \\(Ne^{-dD(p_C\\Vert 1/2)}E\\) live starts)",
       "Pressure telescoping (Proposition 9.3)",
       "One-sided form (Theorem 9.1, exact: at every \\(y\\) the odd failures of \\((y,2y]\\) number at most \\((xa_q^{d-1}N+(x-1)\\,\\mathrm{err}\\,(d-1)(2x)^{d-1})/x^{p_Cd}\\) for every tilt \\(x\\ge1\\), by exponential moments)",
+      "The conjecture from the one-sided hypothesis \\(\\mathrm H_q(C,A)\\) (Theorem 9.1's consequence), with the contagion bound as a hypothesis, or with nothing else assumed when \\(e^{\\rm Ch}_q(C)>\\tfrac7{10}\\)",
       "Cylinder-splitting identity for the first-letter bias (Section 10(d), second equality)",
       "Exact landing windows of the nested productions ((D.1), (D.2))"
     ],
@@ -90,5 +92,5 @@
     "label": "PAPER_C_LEAN_SURFACE_CONSISTENT",
     "problems": 0
   },
-  "git_commit": "f5483693eb37bc3b62198e410653e929efbf6db9"
+  "git_commit": "e7fbd872064e7b14a430d34c2ade521f75e01ad5"
 }

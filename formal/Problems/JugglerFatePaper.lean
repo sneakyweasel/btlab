@@ -8,6 +8,7 @@ import Problems.Juggler.FateBlockAverage
 import Problems.Juggler.FateShareLaw
 import Problems.Juggler.FateProduction
 import Problems.Juggler.FateOneSided
+import Problems.Juggler.FateOneSidedCorollary
 import Problems.Juggler.FateCylinderEnergy
 import Problems.Juggler.FateLandingWindow
 import Problems.Juggler.FateWindowCount
@@ -26,7 +27,7 @@ import Problems.Juggler.FateContagionBound
 /-!
 # Paper C barrel — everything the repository checks for the fate-contagion note
 
-`docs/theory/juggler_fate_almost_all_note.md`. This file imports exactly the twenty-four modules
+`docs/theory/juggler_fate_almost_all_note.md`. This file imports exactly the twenty-five modules
 that paper cites and nothing else, so that a reader can build the formal side of Paper C on
 its own rather than selecting modules by hand out of the umbrella `Problems.Juggler`. It is a
 laboratory target, not a claim: building it does **not** corroborate the paper's counting.
@@ -90,6 +91,18 @@ laboratory target, not a claim: building it does **not** corroborate the paper's
   `(x/a_q) N e^{-d D(p_C ‖ q)}` (`OneSided.one_sided_bound_kl`). The absorption of the error
   into the rate, which here costs `C (1 - p_C) log₂ x` more of `A` than the paper's Markov
   step, and the displayed asymptotic form are not here.
+* `FateOneSidedCorollary` — Theorem 9.1's consequence, the conjecture from the one-sided
+  hypothesis, in the pattern of Corollary 8.4. `OneSided.OneSidedBound` is `H_q(C, A)` at a
+  scale, `OneSided.oneSidedExponent` the Chernoff exponent `C D(p_C ‖ q)/log 2`; the
+  absorption of the exact bound into the rate `y (log y)^{-e}` for every `e < e_{C,q}` and
+  `A > C(1 + log₂ x) + 1 + e` (`OneSided.oddFailures_le_of_one_sided`, on Gibbs' inequality
+  `OneSided.klDiv_nonneg` and the two scale comparisons `OneSided.exp_le_rpow_scale`,
+  `OneSided.pow_le_rpow_scale`), then Theorem 7.2: with the contagion bound as a hypothesis
+  at an exponent `λ` with `1 - λ < e` (`OneSided.implies_conjecture_of_contagion`), or with
+  nothing else assumed when `e > 7/10` (`OneSided.one_sided_implies_conjecture`), and the
+  paper's remark after Theorem 9.1, a share bound with no error term
+  (`OneSided.exact_share_implies_conjecture`). The paper's condition `A > C + e_q(C)` and
+  its numerical forms are not here.
 * `FateCylinderEnergy` — the counting identity of Section 10(d): a cylinder splits into
   its two children (`CylinderEnergy.wordCount_split`), so the first-letter biases
   `D(w) = #[wO] - #[w]/2` satisfy `Σ_{|w|=t} D(w)² = C_{t+1}/2 - C_t/4` exactly
@@ -171,9 +184,10 @@ Proposition 4.4 (the block average), the
 share law 4.5–4.6, the production inequality (5.2) itself (Theorem 5.3 is here given (5.2),
 for every `λ ≤ 0.49`; the root `λ** = 0.4926…` and the range `0.49 < λ < λ**` are not),
 Corollaries 5.4–5.5, the asymptotic forms of Theorems 8.3, 9.1 and 9.2, Section 10 and
-Appendix C have no machine check of any kind. Theorems 7.2, 7.3
-and Corollary 8.4 are here with the contagion bound as a hypothesis, and Corollary 8.4 also
-with (5.2) in its place. Nothing here is a
+Appendix C have no machine check of any kind. Theorems 7.2, 7.3,
+Corollary 8.4 and Theorem 9.1's corollary are here with the contagion bound as a hypothesis,
+Corollary 8.4 also with (5.2) in its place, and Corollary 8.4 and Theorem 9.1's corollary also
+with the contagion bound discharged at exponent `3/10`. Nothing here is a
 density estimate, and nothing here is a halt theorem.
 
 This barrel is not imported by `Problems.lean`; build it with
