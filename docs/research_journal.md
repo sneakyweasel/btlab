@@ -48347,3 +48347,56 @@ Hoeffding's exponent is not where Paper B's loss lives.
 A test of mine failed on the way in, with a bound of `1e-7` where the gap goes
 like `BETA/C` and so sits at `6.3e-6` at `C = 1e5`. The test was right and the
 bound was mine.
+
+
+## CI was red for three runs and I did not know
+
+`41b9fba4` went up at 17:00 and its CI run failed. I had armed a watcher on it,
+was told CI did not matter, killed the watcher, and never saw the result. Two
+more pushes landed on top of a red build, each reported here as green on the
+strength of local targeted tests. Those tests were real and did pass. They were
+not CI.
+
+The `lean` job was green throughout, including for the new module. The failing
+job was `python`, at the `Pytest` step, and the cause has nothing to do with any
+of this session's work:
+
+```text
+tests/research/juggler_sequence/test_walk_runs.py::test_recovered_walk_attains_the_known_maximum
+  assert 1.0299920638612292e-18 < 1e-18
+  abs(0.0003527110759291309 - 0.00035271107592912986)
+```
+
+Two computations of the same charge, agreeing to sixteen significant figures.
+The test asserted an **absolute** difference below `1e-18` on a quantity of size
+`3.5e-4`, where one ULP is `5.4e-20`. So the tolerance was `18.4` ULP, and the
+two sides sit `16` ULP apart on Windows and `19` on Linux. The test passed on my
+machine and failed in CI **by half a ULP**, which is a statement about libm and
+summation order, not about the walk.
+
+Both sides call `walk_charge`, but on heights accumulated by different routes ---
+one from `admissible_words`, one rebuilt from the recovered word --- so they can
+only ever agree to accumulation noise. The assertion could not be robust.
+
+**The fix is a relative tolerance, and it costs nothing in strength.** The
+runner-up candidate sits `1.5e-2` away in relative terms against accumulation
+noise of `2.5e-15`: a separation of six thousand billion. `rel_tol=1e-12` leaves
+four hundred times the observed noise and still rejects the runner-up instantly,
+which was checked in both directions rather than assumed.
+
+The test dates to `2c05db4a` and is not mine. What is mine is three pushes onto
+a red build without looking.
+
+### The pattern, not chased
+
+There are roughly twenty absolute tolerances of this shape in the suite. Most
+compare against an exact constant, where one ULP is the honest expectation and
+`1e-15` at magnitude one is fine. The dangerous ones are where two *different
+accumulations* of the same quantity are compared, and there the tolerance has to
+be relative or it is a platform test.
+
+One other bare `1e-18` survives, at `test_cycle_trajectory_budget.py:95`, whose
+tolerance is `9.22` ULP --- tighter still. It is not at risk for the same
+reason: both sides are the same double round-tripped through JSON, which is
+exact, so the gap is zero rather than small. Worth knowing rather than worth
+changing.
