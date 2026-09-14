@@ -172,7 +172,7 @@ future import a one-line comparison instead of a derivation.
 **The unread equation.** Paper A cites Rhin's Proposition on p. 160 and
 takes equation (7), through Simons-de Weger, to print `L^14.3`. Equation
 (8) of that same Proposition is reported in the literature —
-Spiegelhofer-Wallner, *Collisions of digit sums in bases 2 and 3*,
+Spiegelhofer, *Collisions of digit sums in bases 2 and 3*,
 arXiv:2105.11173, introduction — as `mu(log3/log2) <= 8.616`, which
 converts to `L^8.616`. A sharper statement one equation further down the
 same page of the same citation.
@@ -45390,3 +45390,69 @@ carrying a vanishing fraction does not disturb them. Which is an
 argument for the global forms being the right ones, and for the
 certified instance at C = 30 pointing at the pressure criterion rather
 than the one-sided one.
+## The library errand: the report is faithful, and it is contradicted
+
+The audit closed with one errand it declined to do: read Rhin p. 160
+equation (8). I did not manage it. The 1987 Birkhauser volume is not
+freely available, and I will not claim to have read a page I have not
+seen. But going to the report at its source, instead of to the sentence
+about the report, changed the row anyway, and not in the direction I
+expected.
+
+The report is faithful. Spiegelhofer, Collisions of digit sums in bases
+2 and 3, writes mu(vartheta) <= 8.616 for vartheta = log3/log2, citing
+Rhin [48, Equation (8)], and in the very next sentence gives Wu-Wang's
+5.1163051 as a bound on mu(log 3). He is holding the ratio and the
+logarithm apart deliberately, so the attribution to the ratio is not a
+slip of notation, and the laboratory transcribed him correctly. Two
+smaller things fell out of reading it: the paper is by Lukas
+Spiegelhofer alone, not Spiegelhofer-Wallner as the dossier, the journal
+and negative knowledge all had it, and it is accepted in Israel J. Math.
+
+Then the contradiction. Zudilin's survey of irrationality measures,
+section 3.4, Theorem 3, cites the same Rhin 1987 paper for: the
+irrationality exponent of any nonzero theta in Q log2 + Q log3 satisfies
+mu(theta) < 8.616. That set contains log 3 and does not contain
+log3/log2, which is a ratio and not a linear combination. The log-3
+literature agrees with Zudilin rather than with Spiegelhofer: Wu-Wang's
+own framing, and Salikhov's 5.125 between them, both present 8.616 as
+Rhin's bound on mu(log 3).
+
+Only one of these can be equation (8). If it is Zudilin's, the row says
+nothing about the closure threshold, and the audit's headline finding --
+that Paper A's own citation contained a sharper statement one equation
+further down -- dissolves entirely, because there was never a ratio
+measure on that page to have missed. If it is Spiegelhofer's, the
+finding stands as recorded. I cannot tell which from here, and the
+honest status is no longer UNVERIFIED but DISPUTED: not an absence of
+checking, but two sources that cannot both be right. The row was
+load-bearing on nothing before and is load-bearing on nothing now, which
+is the only reason this is a curiosity rather than a problem.
+
+What it cost to find was one PDF and ten minutes, which is the argument
+for doing it. What it did not cost is worth saying too: I twice took a
+search engine's summary as evidence and was twice wrong -- first that
+8.616 was plainly mu(log 3) and the laboratory had blundered, then that
+Spiegelhofer had merely conflated two quantities. Both times the actual
+document, extracted and read, said something more specific than the
+summary of it. The gate this branch exists to enforce applies to the
+audit's own sources.
+
+The errand that replaces it. Spiegelhofer's next sentence attributes
+Wu-Wang's 5.1163051 to mu(log 3), while the laboratory uses Wu-Wang as a
+linear independence measure for |a + b log2 + c log3| specialised at
+a = 0 to get a ratio exponent. Both can be true of one paper -- a linear
+independence measure specialises to each -- and the laboratory's reading
+is the ordinary one for such a theorem. But it is recorded as verified
+against the primary source, it is the row actually in use, and the
+closure threshold n >> L^5.1163051 quoted in AGENTS.md rests on it. I
+could not reach the paper: J. Number Theory 142 (2014) 264-273 is
+paywalled. I have deliberately not touched its verified flag on the
+strength of a search summary, having just been burned twice by exactly
+that. Reading Wu-Wang matters more than reading Rhin p. 160, because
+Rhin equation (8) is used by nothing and Wu-Wang is used by everything
+on the cycle side.
+
+Status: OBSERVATION. Nothing proved, nothing refuted, one row
+reclassified, one attribution corrected in three places, and the next
+library errand named and ranked above this one.

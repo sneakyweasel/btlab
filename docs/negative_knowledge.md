@@ -681,11 +681,19 @@ chain into one identity: the closure-threshold exponent of
 \(n\log n\le(2/c)L^{\mu}\). That is why Dirichlet's \(\mu\ge2\) floors the
 cycle target at \(L^{2}\). It also found that Paper A cites Rhin p. 160
 equation (7) and prints \(14.3\), while equation (8) of the same
-Proposition is reported in the literature as \(\mu\le8.616\) — a sharper
-statement one equation further down the same citation. That row is
-**UNVERIFIED** (a third-party report; nobody here has read Rhin
-equation (8)) and load-bearing on nothing, since Wu-Wang's \(5.1163051\)
-is sharper still and is what the laboratory uses.
+Proposition is reported in the literature as \(\mu\le8.616\) — which
+would be a sharper statement one equation further down the same citation.
+That row is **UNVERIFIED and DISPUTED** and load-bearing on nothing.
+The report (Spiegelhofer, not Spiegelhofer–Wallner: the paper is
+single-authored) was checked at the source and is transcribed correctly,
+but Zudilin's survey (arXiv:math/0404523, §3.4 Theorem 3) attributes the
+same \(8.616\) to the irrationality exponent of any nonzero
+\(\theta\in\mathbb{Q}\log2+\mathbb{Q}\log3\) — a set containing
+\(\log3\) but **not** the ratio \(\log3/\log2\). Only one reading can be
+equation (8); under Zudilin's there is no sharper statement in Paper A's
+citation at all. Nobody here has read Rhin p. 160. Wu-Wang's
+\(5.1163051\) is sharper still either way and is what the laboratory
+uses.
 
 ## The elementary production ladder is finished
 
