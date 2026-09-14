@@ -44808,3 +44808,42 @@ pincer is numerically dead and the effort goes elsewhere; if it holds
 with room to spare, the analytic question has its shape. Thirty Lean
 rows, four human, twenty-eight modules, 360 declarations in the
 artifact.
+
+
+## The bad cylinders collapse
+
+The measurement the last entry asked for, and it did not say what I
+hoped. Every odd start of (y, 2y] enumerated to depth 30 at 10^4 to
+10^7, no sampling, the identity 4E = 2C_{t+1} - C_t checked on every
+row. Over all words the bias energy reaches its worst case by depth
+16 to 22: the absorbed cylinders, in numbers, which the lab already
+knew. Over the L(y)-bad words it reaches the worst case by depth 16
+to 20 as well, and not on singletons: at 10^7 the largest bad
+cylinder at depth 20 has 11939 members and every one of them has the
+same next letter. The reason is collapse. Three even letters take n
+to about n^{27/64}, so the whole scale contracts onto a few hundred
+values, and from there the letters are the deterministic orbit of
+that value; a bad word whose walk has dipped near -L(y) has done
+exactly this. At 10^6, depth 12, the largest bad cylinder has 755
+members spread over the whole interval and five distinct values of
+J^12; at depth 20 the largest are single fibers of one value, runs of
+consecutive odd starts.
+
+Two corrections followed. FateEnergyAtoms now states its hypothesis
+on the energy of the bad words, since the unrestricted energy was a
+sufficient condition nothing satisfies; and the dossier says plainly
+that even the bad energy has no numerical support, because a few
+collapsed atoms dominate the second moment while carrying little
+mass. The violating mass itself behaves better in the dense window,
+0.47, 0.26, 0.12, 0.05 of the bad mass at depth 10 across the four
+scales, and is a constant 0.42 to 0.49 in the collapse regime, which
+begins at a depth that grows only slowly with y. Paper C's depth
+d(y) lies in that regime as soon as Lambda^{C+1} exceeds N_0, so the
+per-cylinder forms of the hypothesis inherit the warning; the global
+forms, pressure and no-momentum, do not. The branch is CLOSE. The
+question it leaves is whether the collapsed fibers survive as bad
+words to depth d(y) with mass above the per-cylinder allowances once
+the bad words outnumber the collapse values, which would refute
+H(C, A) and H_q(C, A) by a construction in the pattern of the
+absorbed-cylinder theorem. That is a human-proof question, and the
+next best one.

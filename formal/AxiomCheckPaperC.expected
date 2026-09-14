@@ -23,6 +23,7 @@
 'Problems.Juggler.CylinderEnergy.itinerary_succ_append' depends on axioms: [propext]
 'Problems.Juggler.CylinderEnergy.sum_bias_sq' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.CylinderEnergy.wordCount_split' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.Energy.badEnergy_le_biasEnergy' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.Energy.biasEnergy_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.Energy.card_allWords' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.Energy.energy_conj_of_contagion' depends on axioms: [propext, Classical.choice, Quot.sound]
