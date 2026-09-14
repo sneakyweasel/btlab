@@ -6438,7 +6438,8 @@
         "J-paper-b-screen-thresholds-are-hypotheses",
         "J-paper-b-E-is-the-exponent-walk",
         "J-paper-b-screen-skips-the-maximal-defect",
-        "J-paper-b-screen-is-a-walk-condition"
+        "J-paper-b-screen-is-a-walk-condition",
+        "J-noncontracting-peak-supremum-log2-three"
       ],
       "aliases": [],
       "nk_cluster": null
