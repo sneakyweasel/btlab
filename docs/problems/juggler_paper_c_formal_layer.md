@@ -110,7 +110,7 @@ human.
 **The build root (COMPUTATIONALLY VERIFIED).**
 `formal/Problems/JugglerFatePaper.lean` imports exactly the twenty-nine
 modules Paper C cites; `formal/AxiomCheckPaperC.lean` prints the axioms
-of the 378 cited declarations and `AxiomCheckPaperC.expected` records
+of the 380 cited declarations and `AxiomCheckPaperC.expected` records
 them, every list a subset of `propext`, `Classical.choice`,
 `Quot.sound`, no `sorryAx`, no `native_decide`.
 
@@ -445,10 +445,20 @@ term is \(O(\bar f)\) per value against a window mass \(\bar fv\), a
 relative \(O(1/v)\). What this isolates: the excess odd share of the
 moment criterion can come only from the odd branch of the collapsed
 component, whose parity is the share law at bounded scale, and from
-the high walkers, whose values are large. What is not Lean: any bound
-on the variation of a fiber profile, a smoothness statement about the
-contracting composite map, and that share law. Thirty-one Lean rows,
-four human.
+the high walkers, whose values are large. And runs of even letters are
+self-smoothing (`Collapse.fiber_succ_sandwich`,
+`Collapse.collapse_bias_two_step`): a sandwich on the profile
+propagates through an even step as \(vm\le\mathrm{fiber}(t+1,v)\le(v+1)M+P\),
+so the relative oscillation is not amplified by an even step and the
+loss is a relative \(O(1/w)\) at the final scale; what an even run
+cannot repair is the oscillation it starts with, the profile after the
+preceding odd run, whose first even step is the share law of Section 4
+and whose block average is Proposition 4.4. That is the honest end of
+the profile-smoothness question on the exact side: the smoothness of
+the collapsed profile reduces to the share law and (4.1), which are the
+human rows. What is not Lean: those, and any bound on the variation of
+a fiber profile beyond the propagation. Thirty-one Lean rows, four
+human.
 
 ## Current literature
 
@@ -561,11 +571,11 @@ atoms, 14 declarations in namespace `OneSided`),
 exceptional atoms of the bad words, 15 declarations in namespace `Energy` and one in
 `OneSided`),
 `formal/Problems/Juggler/FateCollapse.lean` (the collapsed component's next-letter
-bias, 24 declarations in namespace `Collapse`),
+bias, 26 declarations in namespace `Collapse`),
 `formal/Problems/JugglerFatePaper.lean` (barrel),
 `formal/AxiomCheckPaperC.lean` and `.expected`. All kernel-checked; the
 Paper C surface (root `Problems.JugglerFatePaper`, 61 modules reached,
-1785 declarations) carries no `native_decide` and cites none.
+1787 declarations) carries no `native_decide` and cites none.
 
 Not formalized, and not claimed:
 Proposition 4.4, the share law 4.5–4.6, the production inequality (5.2)
@@ -582,7 +592,7 @@ Classification **PAPER_C_LEAN_SURFACE_CONSISTENT**.
   Paper C verification table, before and after
   Lean rows      15 -> 31  (Lemma 4.1', Corollary 8.4, Lemmas 4.2, 4.3, Theorem 5.3 given (5.2) and at 3/10, Theorem 7.3, (6.1), Section 10(d), (D.1), Theorem 9.1 exact, the three Section 9 consequences, the exceptional-atom form, the energy supply and the collapsed-component bias new)
   human rows     7 -> 4    (Proposition 4.4, the share law, the production inequality (5.2), Sections 8--10's asymptotics)
-  cited names    135 -> 409, all on subsets of Mathlib's three axioms; none native_decide
+  cited names    135 -> 411, all on subsets of Mathlib's three axioms; none native_decide
 ```
 
 - The three proofs are the paper's; the sweep count is the paper's

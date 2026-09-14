@@ -43,9 +43,11 @@ open Problems.Juggler
 #print axioms Collapse.card_filter_window
 #print axioms Collapse.card_window
 #print axioms Collapse.collapse_bias_le
+#print axioms Collapse.collapse_bias_two_step
 #print axioms Collapse.evenCount_le
 #print axioms Collapse.fiber_succ
 #print axioms Collapse.fiber_succ_eq
+#print axioms Collapse.fiber_succ_sandwich
 #print axioms Collapse.iterate_succ_eq
 #print axioms Collapse.le_evenCount
 #print axioms Collapse.lt_sq_succ_of_floorPower_eq

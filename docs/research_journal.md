@@ -44915,3 +44915,28 @@ share law. No positivity hypothesis on the starts turned out to be
 needed, since every preimage of v lies below (v+1)^2 regardless.
 Thirty-one Lean rows, four human, twenty-nine modules, 378
 declarations in the artifact.
+
+
+## Even runs are self-smoothing; the odd step is the share law
+
+Proceeding with the profile-smoothness bound, the honest result is a
+reduction, not a bound. A general smoothness statement for the fiber
+profile of the actual map is Proposition 4.4 and Appendix D's smooth
+comparison in another dress: at depth three the profile is the block
+average of the OE fiber shares, which is (4.1) exactly, and its
+smoothness is what the two exponential-sum bounds buy. What is exact
+is the propagation. A sandwich m <= fiber <= M on the block [v^2,
+(v+1)^2), with the odd branch at most P, gives v m <= fiber(t+1, v) <=
+(v+1) M + P, so two even steps bound the bias at depth t+2 by the
+depth-t sandwich with the relative oscillation not amplified and a
+loss of order one over the final scale. Iterated, a run of even
+letters leaves the oscillation it started with plus O(1/w) at its last
+scale; it cannot repair the oscillation it starts with. That
+oscillation is the profile after the preceding odd run, and its first
+even step is the share law of Section 4.
+
+So the collapsed component's fairness rests on exactly the human rows
+the table already has, the share law and (4.1), plus an exact
+propagation that is now in Lean. Nothing new is asked of analysis; the
+question is sharpened, not moved. Two theorems added to FateCollapse,
+380 declarations in the artifact, thirty-one Lean rows, four human.

@@ -426,6 +426,96 @@ theorem collapse_bias_le (S : Finset ℕ) (t a b : ℕ) (hab : a ≤ b)
         have := sum_abs_oddPart_sub_le S t a b
         linarith
 
+/-! ### Even steps are self-smoothing -/
+
+/-- **A sandwich propagates through an even step.** If the depth-`t` profile lies between `m`
+and `M` on the block `[v², (v+1)²)` and the odd branch at `v` carries at most `P`, then
+`v m ≤ fiber(t+1, v) ≤ (v+1) M + P`. -/
+theorem fiber_succ_sandwich (S : Finset ℕ) (t v : ℕ) {m M P : ℕ}
+    (hlo : ∀ u ∈ Ico (v * v) ((v + 1) * (v + 1)), m ≤ fiber S t u)
+    (hhi : ∀ u ∈ Ico (v * v) ((v + 1) * (v + 1)), fiber S t u ≤ M)
+    (hP : oddPart S t v ≤ P) :
+    v * m ≤ fiber S (t + 1) v ∧ fiber S (t + 1) v ≤ (v + 1) * M + P := by
+  have hsplit : fiber S (t + 1) v
+      = ∑ u ∈ (Ico (v * v) ((v + 1) * (v + 1))).filter (fun u => u % 2 = 0), fiber S t u
+        + ∑ u ∈ (pre v).filter (fun u => u % 2 = 1), fiber S t u := by
+    rw [fiber_succ S t v,
+      ← sum_filter_add_sum_filter_not (pre v) (fun u => u % 2 = 0) (fun u => fiber S t u),
+      pre_filter_even]
+    congr 1
+    apply sum_congr _ (fun _ _ => rfl)
+    apply filter_congr
+    intro u _
+    exact Nat.mod_two_ne_zero
+  have hodd : ∑ u ∈ (pre v).filter (fun u => u % 2 = 1), fiber S t u ≤ P := by
+    have h : ((∑ u ∈ (pre v).filter (fun u => u % 2 = 1), fiber S t u : ℕ) : ℝ) ≤ P := by
+      push_cast
+      exact hP
+    exact_mod_cast h
+  have hblo : evenCount v * m
+      ≤ ∑ u ∈ (Ico (v * v) ((v + 1) * (v + 1))).filter (fun u => u % 2 = 0), fiber S t u := by
+    have := card_nsmul_le_sum ((Ico (v * v) ((v + 1) * (v + 1))).filter (fun u => u % 2 = 0))
+      (fun u => fiber S t u) m (fun u hu => hlo u (mem_filter.mp hu).1)
+    simpa [evenCount, smul_eq_mul] using this
+  have hbhi : ∑ u ∈ (Ico (v * v) ((v + 1) * (v + 1))).filter (fun u => u % 2 = 0), fiber S t u
+      ≤ evenCount v * M := by
+    have := sum_le_card_nsmul ((Ico (v * v) ((v + 1) * (v + 1))).filter (fun u => u % 2 = 0))
+      (fun u => fiber S t u) M (fun u hu => hhi u (mem_filter.mp hu).1)
+    simpa [evenCount, smul_eq_mul] using this
+  have hc := evenCount_le v
+  have hc' := le_evenCount v
+  constructor
+  · calc v * m ≤ evenCount v * m := Nat.mul_le_mul_right m hc'
+      _ ≤ _ := hblo
+      _ ≤ fiber S (t + 1) v := by rw [hsplit]; exact Nat.le_add_right _ _
+  · calc fiber S (t + 1) v
+        ≤ evenCount v * M + P := by rw [hsplit]; exact Nat.add_le_add hbhi hodd
+      _ ≤ (v + 1) * M + P := Nat.add_le_add_right (Nat.mul_le_mul_right M hc) P
+
+/-- **Two even steps.** If the depth-`t` profile lies between `m w` and `M w` on the block
+`[w⁴, (w+2)⁴)` and the odd branch at depth `t` is at most `P w` on `[w², (w+2)²)`, for every
+`w` in `[a, b)`, the next-letter bias of the starts whose `(t+2)`-nd iterate lies in `[a, b]`
+is bounded by the propagated sandwich `w² m w ≤ fiber(t+1, ·) ≤ (w+2)² M w + P w`: the
+relative oscillation of the profile is not amplified by an even step, and the loss is a
+relative `O(1/w)`. -/
+theorem collapse_bias_two_step (S : Finset ℕ) (t a b : ℕ) (hab : a ≤ b) (m M P : ℕ → ℕ)
+    (hlo : ∀ w ∈ Ico a b, ∀ u ∈ Ico (w * w * (w * w)) ((w + 1 + 1) * (w + 1 + 1)
+      * ((w + 1 + 1) * (w + 1 + 1))), m w ≤ fiber S t u)
+    (hhi : ∀ w ∈ Ico a b, ∀ u ∈ Ico (w * w * (w * w)) ((w + 1 + 1) * (w + 1 + 1)
+      * ((w + 1 + 1) * (w + 1 + 1))), fiber S t u ≤ M w)
+    (hP : ∀ w ∈ Ico a b, ∀ v ∈ Ico (w * w) ((w + 1 + 1) * (w + 1 + 1)),
+      oddPart S t v ≤ P w) :
+    |windowBias S (t + 1 + 1) a b|
+      ≤ ∑ w ∈ Ico a b, ((w + 1) * ((((w + 1 + 1) * (w + 1 + 1) * M w + P w : ℕ) : ℝ)
+            - ((w * w * m w : ℕ) : ℝ))
+          + 2 * (((w + 1 + 1) * (w + 1 + 1) * M w + P w : ℕ) : ℝ))
+        + 2 * ∑ w ∈ Icc a b, oddPart S (t + 1) w + fiber S (t + 1 + 1) b := by
+  refine collapse_bias_le S (t + 1) a b hab (fun w => w * w * m w)
+    (fun w => (w + 1 + 1) * (w + 1 + 1) * M w + P w) ?_ ?_
+  · intro w hw v hv
+    rw [mem_Ico] at hv
+    have hsub : ∀ u ∈ Ico (v * v) ((v + 1) * (v + 1)),
+        u ∈ Ico (w * w * (w * w)) ((w + 1 + 1) * (w + 1 + 1) * ((w + 1 + 1) * (w + 1 + 1))) := by
+      intro u hu
+      rw [mem_Ico] at hu ⊢
+      constructor <;> nlinarith [hu.1, hu.2, hv.1, hv.2]
+    have h := (fiber_succ_sandwich S t v (fun u hu => hlo w hw u (hsub u hu))
+      (fun u hu => hhi w hw u (hsub u hu)) (hP w hw v (mem_Ico.mpr hv))).1
+    calc w * w * m w ≤ v * m w := Nat.mul_le_mul_right _ hv.1
+      _ ≤ fiber S (t + 1) v := h
+  · intro w hw v hv
+    rw [mem_Ico] at hv
+    have hsub : ∀ u ∈ Ico (v * v) ((v + 1) * (v + 1)),
+        u ∈ Ico (w * w * (w * w)) ((w + 1 + 1) * (w + 1 + 1) * ((w + 1 + 1) * (w + 1 + 1))) := by
+      intro u hu
+      rw [mem_Ico] at hu ⊢
+      constructor <;> nlinarith [hu.1, hu.2, hv.1, hv.2]
+    have h := (fiber_succ_sandwich S t v (fun u hu => hlo w hw u (hsub u hu))
+      (fun u hu => hhi w hw u (hsub u hu)) (hP w hw v (mem_Ico.mpr hv))).2
+    calc fiber S (t + 1) v ≤ (v + 1) * M w + P w := h
+      _ ≤ (w + 1 + 1) * (w + 1 + 1) * M w + P w :=
+          Nat.add_le_add_right (Nat.mul_le_mul_right _ (by omega)) _
+
 end Collapse
 
 end Problems.Juggler

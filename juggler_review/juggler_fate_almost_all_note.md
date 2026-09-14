@@ -363,7 +363,7 @@ constants; they prove nothing and are labelled wherever they appear.
 | The conjecture from the pressure hypothesis \(\mathrm P_\theta(C)\) and from the no-momentum hypothesis \(\mathrm M_{\theta,q}(C)\) (Section 9.2's consequences), with the contagion bound as a hypothesis, or with nothing else assumed when the exponent exceeds \(\tfrac7{10}\) | Lean; the paper's \(e^{o(d)}\) is quantified as \((\log y)^\varepsilon\) and its \(o(d)\) as \(\delta d\), the numerical forms are human |
 | Theorem 9.1 with exceptional atoms (Section 10(d), first paragraph): the share bound may fail on bad atoms of total mass \(y(\log y)^{-B}\) at each depth, and the conjecture still follows, with nothing else assumed when the exponent exceeds \(\tfrac7{10}\) | Lean; the condition is \(B>C\log_2x+1+e\) in place of the paper's \(B>e_q(C)\), sufficient and not sharp |
 | The bias energy of the \(L(y)\)-bad words supplies the exceptional atoms (Section 10(d)): \(\sum_{w\ \text{bad}}D(w)^2\le(q-\tfrac12)^2y^2(\log y)^{-2B}/2^t\) at the depths below \(\lceil CL(y)\rceil\), at all large scales, gives the conjecture with nothing else assumed | Lean, by Cauchy--Schwarz on the bad atoms that violate the share bound; the exact enumeration of Section 11 finds that energy at its worst-case value from depth \(16\)--\(20\) at every computable scale, so the hypothesis has no numerical support |
-| Collapsed-component bias (Section 10(d), after the measurement): the next-letter bias of the starts whose iterate lands in a window of values is an alternating sum of fiber sizes, bounded by the variation of the fiber profile, and the even branch smooths it, \((v+1)(M_v-m_v)+2M_v\) per value | Lean; the variation bound on a fiber profile and the parity of the odd-preimage mass are human |
+| Collapsed-component bias (Section 10(d), after the measurement): the next-letter bias of the starts whose iterate lands in a window of values is an alternating sum of fiber sizes, bounded by the variation of the fiber profile, the even branch smooths it, \((v+1)(M_v-m_v)+2M_v\) per value, and a sandwich on the profile propagates through even steps without amplification | Lean; the variation bound on a fiber profile and the parity of the odd-preimage mass are human |
 | Azuma and exponential-moment arguments (Sections 8--10, except Lemma 8.2, Theorem 8.3, Theorem 9.1, Theorem 9.2 and Proposition 9.3 in their exact forms) | human proof |
 | Cylinder-splitting identity for the first-letter bias (Section 10(d), second equality) | Lean; the Parseval form in Walsh sums, and the exceptional-atom estimate it is meant to supply, are human |
 | Exact landing windows of the nested productions ((D.1), (D.2)) | Lean; the smooth comparison (D.3), the multiplicities and the production inequality they feed are human |
@@ -2370,9 +2370,21 @@ profile, \(M_v-m_v\) of order \(\bar f/v\) on a block of size
 mass of \(\bar fv\) per value: the collapsed mass entering through the
 even branch is fair up to a relative \(O(1/v)\), and the excess share
 of the moment criterion sits in the odd branch and in the high walkers.
-Not here: any bound on the variation of a fiber profile, and the
-parity of the odd-preimage mass, which is the share law at bounded
-scale.
+Runs of even letters are self-smoothing: a sandwich
+\(m\le\mathrm{fiber}(t,\cdot)\le M\) on \([v^2,(v+1)^2)\) with odd branch
+at most \(P\) gives \(vm\le\mathrm{fiber}(t+1,v)\le(v+1)M+P\)
+(`Collapse.fiber_succ_sandwich`), so after two even steps the bias of
+a window at depth \(t+2\) is bounded by the depth-\(t\) sandwich with
+the relative oscillation not amplified and a loss of a relative
+\(O(1/w)\) at the final scale (`Collapse.collapse_bias_two_step`);
+iterated, the relative oscillation at the end of an even run is the
+one at its start plus \(O(1/w)\) at the last scale. What the even run
+cannot repair is the oscillation it starts with, the profile after
+the preceding odd run: its first even step is the share law of
+Section 4, and its block average is Proposition 4.4. Not here: any
+bound on the variation of a fiber profile beyond that propagation,
+and the parity of the odd-preimage mass, which is the share law at
+bounded scale.
 
 **(e) Bounded-depth statistics and the walk model.** Fix
 \(k\). The probability measure on parity words that is fair to depth
@@ -2734,7 +2746,7 @@ abstract lemmas listed here, not the analytic density estimates.
 | Section 9.2's consequences (the conjecture from the pressure and no-momentum hypotheses), in `Problems/Juggler/FatePressureCorollary.lean` | `Pressure.oddFailures_subset_live`, `Pressure.PressureBound`, `Pressure.NoMomentumBound`, `Pressure.momentumExponent`, `Pressure.absorb`, `Pressure.oddFailures_le_of_pressure`, `Pressure.pressure_conj_of_contagion`, `Pressure.pressure_implies_conjecture`, `Pressure.oddFailures_le_of_noMomentum`, `Pressure.noMomentum_conj_of_contagion`, `Pressure.noMomentum_implies_conjecture` |
 | Section 10(d), Theorem 9.1 with exceptional atoms, in `Problems/Juggler/FateOneSidedAtoms.lean` | `OneSided.OneSidedShareExc`, `OneSided.oneSidedShareExc_of_share`, `OneSided.OneSidedBoundExc`, `OneSided.oneSidedBoundExc_of_bound`, `OneSided.badMass_succ_le_exc`, `OneSided.badMass_le_exc`, `OneSided.one_sided_bound_exc`, `OneSided.main_term_eq`, `OneSided.one_sided_bound_kl_exc`, `OneSided.pow_le_rpow_scale_gen`, `OneSided.tail_le`, `OneSided.oddFailures_le_of_exc`, `OneSided.exc_conj_of_contagion`, `OneSided.exc_implies_conjecture` |
 | Section 10(d), the bias energy supplying the exceptional atoms, in `Problems/Juggler/FateEnergyAtoms.lean` | `OneSided.OneSidedShareExc.mono_err`, `Energy.bias`, `Energy.energyOn`, `Energy.biasEnergy`, `Energy.badEnergy`, `Energy.violators`, `Energy.badEnergy_le_biasEnergy`, `Energy.card_allWords`, `Energy.mass_violators_le`, `Energy.oneSidedShareExc_of_energy`, `Energy.wordCount_cylinder`, `Energy.biasEnergy_eq`, `Energy.EnergyBound`, `Energy.oneSidedBoundExc_of_energy`, `Energy.energy_conj_of_contagion`, `Energy.energy_implies_conjecture` |
-| Section 10(d), the collapsed component, in `Problems/Juggler/FateCollapse.lean` | `Collapse.fiber`, `Collapse.window`, `Collapse.windowBias`, `Collapse.card_filter_window`, `Collapse.card_window`, `Collapse.windowBias_eq_sum`, `Collapse.abs_alt_sum_le`, `Collapse.Icc_eq_Ico`, `Collapse.abs_windowBias_le`, `Collapse.lt_sq_succ_of_floorPower_eq`, `Collapse.pre`, `Collapse.iterate_succ_eq`, `Collapse.fiber_succ`, `Collapse.pre_filter_even`, `Collapse.blockSum`, `Collapse.oddPart`, `Collapse.oddPart_nonneg`, `Collapse.fiber_succ_eq`, `Collapse.evenCount`, `Collapse.evenCount_le`, `Collapse.le_evenCount`, `Collapse.blockSum_sub_le`, `Collapse.sum_abs_oddPart_sub_le`, `Collapse.collapse_bias_le` |
+| Section 10(d), the collapsed component, in `Problems/Juggler/FateCollapse.lean` | `Collapse.fiber`, `Collapse.window`, `Collapse.windowBias`, `Collapse.card_filter_window`, `Collapse.card_window`, `Collapse.windowBias_eq_sum`, `Collapse.abs_alt_sum_le`, `Collapse.Icc_eq_Ico`, `Collapse.abs_windowBias_le`, `Collapse.lt_sq_succ_of_floorPower_eq`, `Collapse.pre`, `Collapse.iterate_succ_eq`, `Collapse.fiber_succ`, `Collapse.pre_filter_even`, `Collapse.blockSum`, `Collapse.oddPart`, `Collapse.oddPart_nonneg`, `Collapse.fiber_succ_eq`, `Collapse.evenCount`, `Collapse.evenCount_le`, `Collapse.le_evenCount`, `Collapse.blockSum_sub_le`, `Collapse.sum_abs_oddPart_sub_le`, `Collapse.collapse_bias_le`, `Collapse.fiber_succ_sandwich`, `Collapse.collapse_bias_two_step` |
 
 ## Appendix B. Constants and artifacts
 
@@ -2842,7 +2854,7 @@ use the roots of the displayed defining equations.
 
 - `formal/Problems/Juggler/FateCollapse.lean`
 
-  SHA-256: `ec28f592785730f094bcb6add7cbaf5d98e139a4db0f006a3612a071a3e4f69b`
+  SHA-256: `b8df8a147eaff611f40954cf5e2a49ff838d4331605caae42af7ad2e5cc48410`
 
 - `formal/Problems/Juggler/FateShareLaw.lean`
 
@@ -2894,11 +2906,11 @@ use the roots of the displayed defining equations.
 
 - `formal/Problems/JugglerFatePaper.lean`
 
-  SHA-256: `e1aeff4bd7664a1347b5d3edaa8a185ad66f55b69935af3db3fdcaac8c9c1d81`
+  SHA-256: `5238baa805ae0fce3be99d547c2484c29e18ddaf1751cfa0df52a05b4899a96f`
 
 - `formal/AxiomCheckPaperC.expected`
 
-  SHA-256: `100f3bd450cb67441f7f7c82d931b4e68de19c82664c3f847fb4ab7358b127f4`
+  SHA-256: `e0b1ea998b585fff7eec077db28366aa8022bf2fe38181e13df232ecb3007c4a`
 
 - `src/research/juggler_sequence/fate_contagion.py`
 
