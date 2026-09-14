@@ -103,8 +103,6 @@ BOX = {
     "Cycles": (1.00, 0.50),
     "Cylinders": (1.08, 0.50),
 }
-DEFAULT_BOX = (1.68, 0.56)
-
 FIG_W = 11.05
 FIG_H = 4.70
 
