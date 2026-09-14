@@ -1,5 +1,5 @@
 {
-  "git_commit": "98f0dcc30c404d04fb9b48c77bc8f89b410b65a2",
+  "git_commit": "6b644417e67a368237a30f6085198e30eeac1f27",
   "note": "docs/theory/juggler_oeoee_production.md",
   "checks": [
     {
@@ -228,6 +228,15 @@
       "note": "worst at m'=80: exact 42 against 3965.8 (ratio 0.011)"
     },
     {
+      "name": "Half A pairing Lambda3 honest (2/3)m'^{17/9} + (8/9)m'^{14/9}",
+      "printed": 1.0,
+      "computed": 0.24640569131255602,
+      "abs_error": 0.7535943086874439,
+      "ok": true,
+      "kind": "script",
+      "note": "worst at m'=80: exact 846 against 3433.4 (ratio 0.246); the printed 0.89 row above stays as it is -- correcting the manuscript constant is a separate decision, gating its replacement is not"
+    },
+    {
       "name": "11.5 assembly 8*8.9 + 4*6.3 <= 100",
       "printed": 100.0,
       "computed": 96.4,
@@ -284,7 +293,7 @@
   ],
   "classification": {
     "name": "OEOEE_AUDIT_FALSIFIED",
-    "total_checks": 31,
+    "total_checks": 32,
     "failures": 1,
     "failing_names": [
       "Half A pairing Lambda3 0.89 m'^{14/9}"

@@ -47659,3 +47659,89 @@ belongs to the maintainer, not to an audit.
 
 Fourteen of the seventeen rows needed no change at all; three carried the
 retired constant and now do not.
+
+
+## Clearing the open items: a bound that was prose, a figure with two sources
+
+Four items had been carried as open. Three were bookkeeping and are closed;
+two are genuine research and are not.
+
+### The corrected Lambda_3 bound was documented and never evaluated
+
+The audit's own docstring says the printed \(0.89\,m'^{14/9}\) omits the
+\(V\Delta/2\) term of (T5) and that the honest bound is
+\((2/3)m'^{17/9} + (8/9)m'^{14/9}\), "which the data satisfy everywhere
+tested". Nothing evaluated it. The false printed constant had a row, and its
+replacement had a sentence --- so the claim rested on a run nobody repeats,
+which is the same shape as the rows that once compared a printed constant to
+itself.
+
+It is a row now, carried through the same loop over `PAIRING_SOURCES`, and it
+passes: worst at \(m'=80\), exact \(846\) against \(3433.4\), ratio
+\(0.246\). So the docstring was right.
+
+Worth recording alongside it, because the row makes it visible for the first
+time: **the correction is valid and much looser than what it replaces.** The
+printed \(0.89\,m'^{14/9}\) gives \(812.4\) against the exact \(846\) --- wrong,
+but only by 4%. The honest two-term form gives \(3433.4\), a factor of four of
+slack, because \((2/3)m'^{17/9}\) dominates at \(m'=80\). Whoever eventually
+corrects the manuscript constant inherits that: the cheapest valid replacement
+is far from the tightest one. The printed \(0.89\) is left exactly as it stands,
+per the standing decision that correcting it is a manuscript question and not a
+gate question. Gating its replacement is not.
+
+The section is now 32 checks, one failure, still Lambda_3. `total_checks` is
+floored at 20 rather than pinned, so a passing row can be deleted with no gate
+noticing --- which is how the replacement stayed prose. The new row is
+therefore named in the test the way the *failure* already was, and checked by
+disabling it and watching the suite break.
+
+Three documents still said 29 checks: the branch ledger, the dossier and the
+manuscript's status block. Journal entries that say 29 are dated records of the
+run they describe and are left alone.
+
+### The figure had two sources and the manuscript cites the wrong one
+
+`docs/theory/figures/juggler_lean_layers.png` did not reproduce from its own
+source: rendering is deterministic, the matplotlib version matches, and the
+output differed by 3386 bytes. Regenerated, and it now does.
+
+Checking which generator to run turned up something else.
+`juggler_finite_dynamics_formalization.md` says the figure is drawn
+"from source `figures/juggler_lean_layers.mmd`". It is not. The committed PNG
+carries `Software: Matplotlib` and the dimensions of
+`render_juggler_lean_layers.py` exactly, no build step anywhere in `tools/` or
+`.github/` invokes mermaid, and the `.mmd` has drifted: it names `Cells` and
+`WordStats` where the script has `Preimages` and `ItineraryStats`. So a reader
+following the cited source reaches a stale description of a different graph.
+
+That one is **not fixed**, and the reason is the coupling recorded earlier
+today: `juggler_finite_dynamics_formalization.md` is a Paper A editorial input,
+pinned by SHA-256 in `paper_a_release.json`, so correcting one sentence costs a
+full pandoc + xelatex republish. The figure itself is not pinned, which is why
+regenerating it was free --- and is its own small hazard worth naming: a figure
+that appears in a pinned document can change underneath it without the manifest
+noticing.
+
+### Prospecting 1.3 was closed this morning and still read half closed
+
+The note's status line said `native_decide` "now appears in exactly one Juggler
+file, `OstrowskiSandwich.lean`", and that half the stated consequence was
+banked. `7e4c3632` retired that last scan earlier the same day. The only two
+occurrences of the token under `formal/Problems/Juggler/` are now prose
+describing the retirement, and `formalpedia papers` reports "proofs running
+native_decide: none" for all three manuscripts. The whole consequence is
+banked. The candidate's body section is left unedited --- it is the candidate as
+originally priced --- with a marker pointing at the status line.
+
+### What is left, and why it is not a fix
+
+Candidates 1.1 (the coefficient rule and the \(E<2\) criterion) and 1.5 (the
+recursion lemma at the root of Paper C) stay open, and nothing here touches
+them. They are not stale records or ungated claims; they ask for a ledger row
+and a Lean counterpart that do not exist, which is mathematics to be done and
+not bookkeeping to be corrected. 1.5 carries its own instruction to re-price
+before acting, since adjacent Paper C material has been formalised since the
+note was written and the conditional spine is partly Lean without this entry
+being done. That re-pricing is the next real decision, and it is a judgement
+about where effort goes.

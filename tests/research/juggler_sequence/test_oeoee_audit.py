@@ -42,6 +42,9 @@ HEADINGS = (
 
 
 LAMBDA3_ROW = "Half A pairing Lambda3 0.89 m'^{14/9}"
+LAMBDA3_HONEST_ROW = (
+    "Half A pairing Lambda3 honest (2/3)m'^{17/9} + (8/9)m'^{14/9}"
+)
 
 
 def test_every_section_11_constant_recomputes_except_the_known_failure() -> None:
@@ -105,7 +108,27 @@ def test_summary_reports_the_one_false_constant() -> None:
     assert result["classification"]["failing_names"] == [LAMBDA3_ROW]
     assert result["classification"]["total_checks"] >= 20
     assert not result["classification"]["all_printed_constants_recompute"]
+    # The replacement the docstring names was prose until 14 September 2026:
+    # only the false printed constant was evaluated.  total_checks is a floor,
+    # not a pin, so this row is named here -- deleting it must break something.
+    honest = [r for r in _rows(result) if r["name"] == LAMBDA3_HONEST_ROW]
+    assert len(honest) == 1, [r["name"] for r in _rows(result)]
+    assert honest[0]["ok"], honest[0]
     assert result["classification"]["power_saving"] == "P^{-1/8}"
+
+
+def _rows(result):
+    """Every check row in the summary, wherever it is nested."""
+    def walk(o):
+        if isinstance(o, dict):
+            if "name" in o and "ok" in o:
+                yield o
+            for v in o.values():
+                yield from walk(v)
+        elif isinstance(o, list):
+            for v in o:
+                yield from walk(v)
+    return list(walk(result))
 
 
 def test_note_and_dossier_exist() -> None:

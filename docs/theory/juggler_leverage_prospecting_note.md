@@ -17,11 +17,15 @@ do not act on a rank without reading this first.
   gap the entry actually names is intact: the predicates are present
   (`prefixNoncontracting`, `CycleRunAlphabet.lean`) and no enumeration or
   class count exists anywhere in `formal/`.
-- **1.3 the two compiler-trust holdouts — HALF CLOSED.** `9e5d5051`
+- **1.3 the two compiler-trust holdouts — CLOSED, 14 September.** `9e5d5051`
   (7 September, "one of the layer's two off-kernel scans needed no
-  computation") retired `OstrowskiNumeration.lean`; `native_decide` now
-  appears in exactly one Juggler file, `OstrowskiSandwich.lean`. Half the
-  stated consequence is already banked.
+  computation") retired `OstrowskiNumeration.lean`, and `7e4c3632` ("the
+  Juggler Lean layer is off the compiler entirely") retired the second,
+  `window_digit_scan` in `OstrowskiSandwich.lean`. No Juggler proof runs
+  `native_decide`: the only two occurrences of the token under
+  `formal/Problems/Juggler/` are prose describing the retirement, and
+  `formalpedia papers` reports "proofs running native_decide: none" for all
+  three manuscripts. The whole stated consequence is banked, not half of it.
 - **1.4 audit of the first production member's constants — DONE,
   14 September.** It found the \(\Lambda_3\) pairing bound \(0.89\,m'^{14/9}\)
   false on \(J_2^{\rm sm}\), the (T3) additive constant wrong in its proof,
@@ -173,6 +177,10 @@ cost is small, which is exactly the behaviour the ratio is meant to
 have.
 
 ### 1.3 The last two compiler-trust holdouts
+
+> **Closed 14 September 2026.** Both scans have since been retired and no
+> Juggler proof runs `native_decide`; see the status line above. The section
+> below is the candidate as originally priced and is left unedited.
 
 Two scans in the Juggler Lean layer are discharged by `native_decide`
 rather than by the kernel:
