@@ -9975,5 +9975,16 @@
    "tests/research/juggler_sequence/test_paper_b_prefix_count.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "id": "J-cycle-period-bounds-are-one-semiconvergent-family",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "The laboratory's successive cycle period lower bounds are the first three members of a single semiconvergent family of BETA, and the family's length is readable from the continued fraction. The sign characterisation (J-the-cycle-staircase-split-is-a-sign-condition) reproduces all eight of cycle_gap_baker's RECORD_LENGTHS exactly -- 3, 11, 19, 84, 569, 1054, 25781, 50508 -- and correctly skips the entire 23-member below-side family 1539 ... 24727, which the module also skips. Continuing past 50508 gives 176251, 478245, 780239, 1082233, 1384227, ... and the ledger's three successive period bounds are the first three of those: J-cyclemin-walk-charge-instance at 176251, then J-cycle-period-four-hundred-seventy-eight-thousand, then J-cycle-period-seven-hundred-eighty-thousand, the last already recorded there as 780239 = 176251 + 2 x 301994 and called Diophantine rather than computational. THE PRICE OF THE ROUTE. The family is q_13 + j q_14 = 176251 + j x 301994 and it has 56 members, because a_15 = 55, ending at q_15 = 16785921. Three are cleared, so 53 remain. The current route -- raise the certified floor, kill the surviving leftover -- must be run 53 more times before this family is exhausted, and that count is a fact about BETA's continued fraction rather than something a search discovers. The Paper D draft already ties sharpness to unbounded dangerous-position partial quotients of log2/log3; this names the one currently binding, a_15 = 55, and prices it. Not a no-cycle theorem and no bound moves; it says what the existing route costs.",
+  "source": "docs/research_journal.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_paper_b_prefix_count.py"
+  ],
+  "related_conjectures": []
  }
 ]

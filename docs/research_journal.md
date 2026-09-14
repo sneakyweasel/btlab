@@ -48878,3 +48878,55 @@ closure condition.
 Both doors closed in this thread have the same shape --- the obvious way to
 combine the Juggler machinery does not combine --- and both were found by
 predicting, being wrong, and looking at why.
+
+
+## The period bounds are one family, and it has 53 members left
+
+The sign characterisation was tested to 1200. Pushing it further turned out to
+predict something the laboratory has been discovering one step at a time.
+
+**It reproduces every record length.** `cycle_gap_baker`'s `RECORD_LENGTHS` are
+`3, 11, 19, 84, 569, 1054, 25781, 50508`, and those are exactly the above-side
+semiconvergent denominators of `BETA` --- all eight, no misses, no extras. It also
+skips what the module skips: the family `1539, 2593, ..., 24727` has 23 members,
+all below-side, and the module jumps straight from `1054` to `25781`.
+
+**Continuing the rule past 50508** gives `176251, 478245, 780239, 1082233, ...`
+
+Those are the ledger's three successive period lower bounds, in order:
+`J-cyclemin-walk-charge-instance` at `176251`, then `478245`, then `780239` ---
+the last already recorded there as `780239 = 176251 + 2 x 301994` and described
+as *Diophantine, not computational*. The lab had the arithmetic; what was missing
+was that it generates the whole sequence.
+
+### The price of the current route
+
+```text
+  family  q_13 + j q_14 = 176251 + j x 301994
+  length  56 members, because a_15 = 55
+  ends    q_15 = 16785921
+  cleared j = 0, 1, 2   (176251, 478245, 780239)
+  left    53
+```
+
+The route in use --- raise the certified floor, kill the surviving leftover ---
+must be run **53 more times** before this family is exhausted. That count is not
+a guess or an extrapolation from three data points: it is `a_15`, read off the
+continued fraction of `log2/log3`.
+
+The Paper D draft already ties sharpness to *unbounded dangerous-position partial
+quotients* of `log2/log3`. This names the one currently binding --- `a_15 = 55`
+--- and prices it.
+
+### What it is and is not
+
+It is not a no-cycle theorem and no bound moves. It says what the existing route
+costs, in a number, and where the cost comes from. That is worth having before
+committing to fifty-three more floor raises: the next member is `1082233`, and
+after the family ends at `16785921` the next partial quotient decides whether the
+pattern repeats cheaply or expensively.
+
+It also reframes the two closed doors. Counting cannot bound cycles and the
+staircase cannot squeeze them, and now the reason the surviving route is
+expensive is the same continued fraction that closed both. Every obstruction this
+thread found is one arithmetic fact about `log2/log3` wearing different clothes.
