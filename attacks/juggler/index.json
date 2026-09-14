@@ -2629,6 +2629,20 @@
       "nk_cluster": null
     },
     {
+      "id": "external_input_audit",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/external_input_audit.py",
+      "test": "tests/research/juggler_sequence/test_external_input_audit.py",
+      "dossier": "docs/problems/juggler_external_input_audit.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "A sharper concentration inequality does not move Paper C's constants"
+    },
+    {
       "id": "extremal_control",
       "kind": "branch",
       "probe": "src/research/juggler_sequence/extremal_control.py",
