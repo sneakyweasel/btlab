@@ -158,8 +158,13 @@ laboratory target, not a claim: building it does **not** corroborate the paper's
   block sums differ by at most `(v+1)(M-m) + 2M` (`Collapse.blockSum_sub_le`, on the counts
   `v ≤ evenCount v ≤ v+1`). Hence `Collapse.collapse_bias_le`: the bias of the collapsed
   window is at most `Σ_v ((v+1)(M_v - m_v) + 2M_v)`, plus twice the odd-preimage mass, plus
-  one fiber. The variation bound on a fiber profile and the parity of the odd-preimage mass
-  are not here.
+  one fiber. A sandwich on the profile propagates through an even step,
+  `v m ≤ fiber(t+1, v) ≤ (v+1) M + P` (`Collapse.fiber_succ_sandwich`), so two even steps
+  give the bias bound from the depth-`t` sandwich with the relative oscillation not amplified
+  and a loss of a relative `O(1/w)` (`Collapse.collapse_bias_two_step`): runs of even letters
+  are self-smoothing, and the analytic content sits in the first even step after an odd run,
+  the share law. The variation bound on a fiber profile and the parity of the odd-preimage
+  mass are not here.
 * `FateCylinderEnergy` — the counting identity of Section 10(d): a cylinder splits into
   its two children (`CylinderEnergy.wordCount_split`), so the first-letter biases
   `D(w) = #[wO] - #[w]/2` satisfy `Σ_{|w|=t} D(w)² = C_{t+1}/2 - C_t/4` exactly
