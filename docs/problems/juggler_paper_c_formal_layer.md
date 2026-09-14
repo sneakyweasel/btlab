@@ -65,7 +65,7 @@ ceil\) and
 \(\mathrm H(C,A)\)'s bound on the \(O\)-rooted bad cylinders,
 \(\#\{\text{odd failures}\}\le y\Lambda^{-e(C)}+2\Lambda^Cy(\log y)^{-A}\)
 at every \(y\ge 2\) (`oddFailures_card_le_explicit`), a factor \(2\)
-against the paper's \(y/2\) and no \(arepsilon\). The absorption into
+against the paper's \(y/2\) and no \(\varepsilon\). The absorption into
 the displayed form and Corollary 8.4 stay human proofs.
 
 **Theorem 9.2 (EXACT — LEAN VERIFIED, `FatePressure.lean`).** On the
