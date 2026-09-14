@@ -44973,3 +44973,51 @@ C = 19 is a statement about lambda**; both stay with the audit, and the
 bounds here are deliberately loose, the true value being e(30) about
 1.05, because loose bounds have small certificates. Thirty-two Lean
 rows, four human, thirty modules, 409 declarations in the artifact.
+
+
+## Are the Section 9 hypotheses about anything?
+
+Everything built on the rate side is an implication from a hypothesis
+nobody has proved, and the lab has already refuted one member of the
+same family: the all-word cylinder bound is false because absorbed
+starts overpopulate a cylinder. So before building more, measure the
+quantity the surviving hypotheses bound. H_q(C,A) says every L(y)-bad
+cylinder of depth below d(y) has odd count at most q times its size
+plus y(log y)^{-A}; it holds exactly when the maximum excess over bad
+cylinders fits in that error.
+
+The first thing the measurement teaches is that the naive comparison
+is meaningless. At y = 10^7 with A = 32 the allowance is 10^{-38}, far
+below one member, so the hypothesis degenerates to an exact share
+bound that no finite sample obeys. The honest question is whether the
+map does worse than a fair coin with the same cylinder sizes, whose
+largest excess is sqrt(2 log W times n_max)/2. Answer: the largest A
+the measured excess permits over the hypothesis's own window is 2.62,
+2.84, 2.61, 1.59 across the four scales, against a fair-coin 2.62,
+2.86, 3.10, 3.34. The map is indistinguishable from a coin at 10^4 and
+10^5 and measurably worse at 10^6 and 10^7.
+
+But the fall at 10^7 is an artifact, and saying so is the point of
+measuring at four scales rather than one. It comes from depth 4, where
+two even letters already collapse the value because L(10^7) = 1.6; at
+a fixed shallow depth the shares move the other way, the largest bad
+cylinders at depth 4 having odd shares 0.53 at 10^4 and 0.5001 at
+10^7, because the number of distinct iterates a cylinder sits over
+widens with the scale. What does not move is the top of the window:
+the distinct iterates per bad cylinder at depth d(y)-1 are 1.14, 1.02,
+1.01, 1.00. At every scale measured, the deep end of the paper's own
+depth window consists of cylinders sitting over a single value, whose
+members therefore share a next letter whatever the map does.
+
+So the hypotheses are not refuted, and they now rest on one quantity
+with a known shape: the mass fraction of the largest parity-constant
+bad cylinder, which must fall below (log y)^{-A} with A above C. Here
+it is of order 10^{-3} with no visible decay across three decades,
+against an allowance of 10^{-23}; three decades cannot see a
+(log y)^{-19}, so that is a statement about the experiment, not about
+the map. The branch is PARK. The way past it is not a bigger forward
+enumeration but a backward one: a parity-constant cylinder is the
+fiber of a small value along a word, the preimage of a value under an
+even step is an interval, so the fiber can be computed from the value
+and the word at any scale, including where L(y) is 3 or 5 and the
+early-collapse artifact is gone. That is the next experiment.

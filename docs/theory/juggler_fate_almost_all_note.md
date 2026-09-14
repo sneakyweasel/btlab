@@ -2696,6 +2696,31 @@ of Sections 8--10 at their own scales; they show that their
 per-cylinder forms live, at every computable scale, in a regime where
 cylinders are parity-constant.
 
+*The excess of the bad cylinders (observation).* The same enumeration
+measures the quantity \(\mathrm H_q(C,A)\) bounds, namely
+\(\max_{w\ \text{bad}}(\#[wO]-q\#[w])\), at every depth of the
+hypothesis's own window \(1\le t<d(y)\)
+(`research.juggler_sequence.bad_cylinder_excess`). At these scales the
+additive error is inert — \(y(\log y)^{-A}\) is below \(10^{-38}\) at
+\(y=10^7\) for \(A\ge32\) — so the honest comparison is with a fair coin
+on the same cylinder sizes, whose largest excess is
+\(\sqrt{2\log W\cdot n_{\max}}/2\). The largest \(A\) the measured excess
+permits over the window at \(C=19\) is \(2.62,2.84,2.61,1.59\) at
+\(y=10^4,\dots,10^7\), against a fair-coin value of
+\(2.62,2.86,3.10,3.34\): the map is indistinguishable from a coin at the
+two smaller scales and measurably worse at the two larger. At a fixed
+shallow depth the shares move the other way, the three largest bad
+cylinders at depth \(4\) having odd shares \(0.53,0.53,0.52\) at \(10^4\)
+and \(0.5001,0.4994,0.5008\) at \(10^7\), because the number of distinct
+iterates a cylinder sits over widens with \(y\). What does not move with
+\(y\) is the top of the window: the distinct iterates per bad cylinder at
+\(t=d(y)-1\) are \(1.14,1.02,1.01,1.00\), so there the cylinders are
+parity-constant at every scale measured, and the hypothesis reduces to
+whether the mass of the largest such cylinder — a fraction of order
+\(10^{-3}\) here, with no visible decay — falls below \((\log y)^{-A}\).
+Three decades of \(y\) cannot see a \((\log y)^{-19}\); these observations
+neither establish nor refute the hypotheses of Sections 8--10.
+
 ## 12. Conclusions and open estimates
 
 The main unconditional result is the logarithmic counting lower
