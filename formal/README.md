@@ -18,6 +18,7 @@ The project contains no `sorry` or `admit`.
 | `BTCalculus/` | trit algebra, rewrite, jets, residuals, Newton stratum |
 | `Core/`, `Representation/`, `Operators/` | generic BT facts used by several problems |
 | `Problems/Collatz/` | Collatz-only theorems |
+| `Problems/Engine/` | problem-independent engine layers: control words, companion maps, information-field dynamics |
 | `Problems/Juggler/` | one-way Juggler layers; Engine copies deleted |
 | `Problems/Ostrowski/` | Ostrowski adder theorems |
 | `Automata/` | placeholder; do not invent proofs |
