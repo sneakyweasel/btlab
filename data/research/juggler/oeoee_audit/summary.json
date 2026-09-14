@@ -1,5 +1,5 @@
 {
-  "git_commit": "3ffbd154a5e903c2d3c22de0781bd3a0c4b9b05b",
+  "git_commit": "c72419e752b6488bf245aa95d39fedc2f95910c7",
   "note": "docs/theory/juggler_oeoee_production.md",
   "checks": [
     {
@@ -185,29 +185,29 @@
     {
       "name": "Half A pairing Lambda3 0.89 m'^{14/9}",
       "printed": 0.89,
-      "computed": 0.89,
-      "abs_error": 0.0,
-      "ok": true,
-      "kind": "hand",
-      "note": "T5 on consecutive v-levels; derived G ~ m'^{2/3} sits below m'^{14/9}"
+      "computed": 0.9268472400801276,
+      "abs_error": 0.03684724008012763,
+      "ok": false,
+      "kind": "script",
+      "note": "worst at m'=80: exact 846 against 812.4 (ratio 1.041)"
     },
     {
       "name": "Half A pairing Lambda1 Lambda3 1.33 m'^{17/9}",
       "printed": 1.33,
-      "computed": 1.33,
-      "abs_error": 0.0,
+      "computed": 0.09966909985863663,
+      "abs_error": 1.2303309001413634,
       "ok": true,
-      "kind": "hand",
-      "note": "Kusmin on f' = 1/2 + (3u/8) w^{-1/4}; printed is a pad over O(m'^{17/9})"
+      "kind": "script",
+      "note": "worst at m'=80: exact 392 against 5230.9 (ratio 0.075)"
     },
     {
       "name": "Half A pairing Lambda1 2.67 m'^{5/3}",
       "printed": 2.67,
-      "computed": 2.67,
-      "abs_error": 0.0,
+      "computed": 0.028276955306668464,
+      "abs_error": 2.6417230446933315,
       "ok": true,
-      "kind": "hand",
-      "note": "sum (-1)^w = O(1); times omega by partial summation is O(m'^{8/9})"
+      "kind": "script",
+      "note": "worst at m'=80: exact 42 against 3965.8 (ratio 0.011)"
     },
     {
       "name": "11.5 assembly 8*8.9 + 4*6.3 <= 100",
@@ -265,11 +265,13 @@
     }
   ],
   "classification": {
-    "name": "OEOEE_AUDIT_CONSISTENT",
+    "name": "OEOEE_AUDIT_FALSIFIED",
     "total_checks": 29,
-    "failures": 0,
-    "failing_names": [],
-    "all_printed_constants_recompute": true,
+    "failures": 1,
+    "failing_names": [
+      "Half A pairing Lambda3 0.89 m'^{14/9}"
+    ],
+    "all_printed_constants_recompute": false,
     "power_saving": "P^{-1/8}",
     "net_gain": "1/27",
     "lambda_root_if_promoted": 0.4801

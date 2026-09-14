@@ -746,11 +746,25 @@ ratio never above \(0.25\), so the constant \(100\) above is generous by
 some \(400\times\); Half B's bound is met with a factor \(8\) of slack
 and Half A's with \(30\)–\(500\).
 
-**Status.** The smooth-window constants were audited (6 September
-2026). Every displayed Section 11 constant recomputes from T1–T5, or
-is tightened and still saves a positive power of \(P\). Classification
-`OEOEE_AUDIT_CONSISTENT`; Lemma 1' transfers the asymptotic with an
-unspecified enlarged constant.
+**Status.** Classification `OEOEE_AUDIT_FALSIFIED` (14 September 2026):
+29 checks, one failure. The \(\Lambda_3\)-alone pairing bound
+\(0.89\,m'^{14/9}\) displayed above is **false on \(J_2^{\rm sm}\)**: the
+exact sum is \(846\) against \(812.4\) at \(m'=80\), and \(4031\) against
+\(3378.9\) on the exact fibre at \(m'=200\). It omits the \(V\Delta/2\)
+term of (T5) — consecutive level sets of \(\lfloor w^{3/4}\rfloor\) differ
+in length by one, so \(\Delta\) is of size \(\omega\) — and the honest
+bound is \(\tfrac23 m'^{17/9}+\tfrac89 m'^{14/9}\), which the data satisfy
+at every source tested. The printed constant is left as it stands pending a
+decision; the row is simply no longer asserted.
+
+The 6 September pass reported `OEOEE_AUDIT_CONSISTENT` because this row and
+the other two Half A pairing rows compared each printed constant to itself
+with `ok=True` hardcoded, and so could not fail. All three are evaluated on
+data now; the other two hold, with ratios \(0.075\) and \(0.011\). Every
+remaining Section 11 constant still recomputes from T1–T5, or is tightened
+and still saves a positive power of \(P\). Lemma 1' transfers the asymptotic
+with an unspecified enlarged constant. Neither the envelope nor the binding
+saving \(P^{-1/8}\) is affected.
 The \(V_2\) truncation is Theorem 1's previous exponent \(0.4801\).
 The \(V_3\) constants are Section 12.
 

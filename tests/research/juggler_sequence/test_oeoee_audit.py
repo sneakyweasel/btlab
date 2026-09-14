@@ -7,7 +7,7 @@ from math import pi, sqrt
 from pathlib import Path
 
 from research.juggler_sequence.oeoee_audit import (
-    CLASS_CONSISTENT,
+    CLASS_FALSIFIED,
     DATA_DIR,
     NOTE,
     PRINTED,
@@ -41,11 +41,22 @@ HEADINGS = (
 )
 
 
-def test_every_section_11_constant_recomputes() -> None:
+LAMBDA3_ROW = "Half A pairing Lambda3 0.89 m'^{14/9}"
+
+
+def test_every_section_11_constant_recomputes_except_the_known_failure() -> None:
+    """One printed constant is false on data; everything else recomputes.
+
+    The Lambda_3 pairing bound 0.89 m'^{14/9} omits the V Delta / 2 term of
+    (T5) and is exceeded on J_2^sm at m'=80 and m'=200.  It is pinned by name
+    rather than tolerated, so any *other* constant that stops recomputing
+    still fails this test.
+    """
+
     checks = all_checks()
     assert checks
     bad = [(c["name"], c["printed"], c["computed"]) for c in checks if not c["ok"]]
-    assert bad == [], bad
+    assert [name for name, _p, _c in bad] == [LAMBDA3_ROW], bad
 
 
 def test_t3_is_four_over_sqrt_pi() -> None:
@@ -80,12 +91,20 @@ def test_bookkeeping_is_one_twenty_seventh() -> None:
     assert bookkeeping()["ok"]
 
 
-def test_summary_is_clean() -> None:
+def test_summary_reports_the_one_false_constant() -> None:
+    """Was test_summary_is_clean, and asserted CLASS_CONSISTENT.
+
+    It passed because the three Half A pairing rows compared each printed
+    constant to itself with ok=True hardcoded.  With those rows evaluated on
+    data the section is falsified by exactly one of them.
+    """
+
     result = summary()
-    assert result["classification"]["name"] == CLASS_CONSISTENT
-    assert result["classification"]["failures"] == 0
+    assert result["classification"]["name"] == CLASS_FALSIFIED
+    assert result["classification"]["failures"] == 1
+    assert result["classification"]["failing_names"] == [LAMBDA3_ROW]
     assert result["classification"]["total_checks"] >= 20
-    assert result["classification"]["all_printed_constants_recompute"]
+    assert not result["classification"]["all_printed_constants_recompute"]
     assert result["classification"]["power_saving"] == "P^{-1/8}"
 
 
@@ -110,5 +129,7 @@ def test_stored_summary_matches_a_fresh_run() -> None:
     import json
 
     data = json.loads(stored.read_text(encoding="utf-8"))
-    assert data["classification"]["failures"] == 0
-    assert data["classification"]["name"] == summary()["classification"]["name"]
+    fresh = summary()["classification"]
+    assert data["classification"]["failures"] == fresh["failures"]
+    assert data["classification"]["failing_names"] == fresh["failing_names"]
+    assert data["classification"]["name"] == fresh["name"]

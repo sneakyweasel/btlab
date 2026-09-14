@@ -45525,3 +45525,62 @@ again -- a bulk edit whose damage is invisible because the generated document
 is never diffed against a regeneration -- and like that one it needs the
 surrounding sentence read before each site is repaired, since this laboratory
 uses "word" as a real term of art. Not touched here.
+
+
+## A check that compared a constant to itself, and the bound it was hiding
+
+Section 11 of the OEOEE production note prints, among the Half A pairing
+cases, that Lambda_3 alone gives at most 0.89 m'^{14/9}. It does not. On the
+smooth reference window J_2^sm the exact sum is 846 against 812.4 at m'=80;
+on the exact nested fibre it is 4031 against 3378.9 at m'=200, and the
+excess grows. The bound omits the V Delta / 2 term of (T5): consecutive
+level sets of floor(w^{3/4}) differ in length by one, so Delta is of size
+omega rather than negligible, and the honest bound is
+(2/3) m'^{17/9} + (8/9) m'^{14/9}, which the data meet at every source tested.
+
+**Why the audit said the opposite.** `oeoee_audit` classified the section
+OEOEE_AUDIT_CONSISTENT, 29 checks, 0 failures. Three of those checks were
+the Half A pairing rows, and each was built as
+`_row(name, PRINTED[key], <the same literal>, True, "hand", ...)`: printed
+compared to itself, `ok` hardcoded. No datum could have refuted them. The
+section's classification was therefore evidence about the other twenty-six
+rows only, and nothing at all about these three -- which is exactly the kind
+of claim a classification is read as covering. `t5_pairing` has the same
+shape; it is left alone because the pairing inequality itself is a standard
+lemma, and it was the *application* that was wrong, not the lemma.
+
+**The smooth-window defence, and why it fails.** Sections 11-15 restrict
+their constants to J_2^sm, so a violation measured on the exact fibre
+J_2^ex proves nothing on its own. It survives the restriction. The sum is
+sum over odd n of (-1)^{v(w(n))}, one sign per n, so changing the window can
+move it by at most the number of odd n the change adds or removes. The two
+windows differ by 36 integers at the low endpoint and 62 at the high one at
+m'=200 -- at most 51 odd n, against an excess of 652. Recomputed directly on
+J_2^sm with the note's own `ninth_root_floor` convention, the violation is
+still there at m'=80. The restriction narrows the claim; it does not rescue
+the constant.
+
+**What changed.** The three pairing rows now evaluate the sums they bound on
+J_2^sm at m' = 40, 60, 80, 120 and report the least constant the data demand.
+Lambda_1 Lambda_3 and Lambda_1 hold comfortably, at ratios 0.075 and 0.011 --
+the printed constants there are generous by more than a factor of ten. The
+Lambda_3 row fails, the section is now OEOEE_AUDIT_FALSIFIED at 29 checks and
+one failure, and the tests pin that one failure by name so a *second* constant
+going bad still breaks the suite. The printed 0.89 is left exactly as it
+stands: correcting it is a decision about the manuscript, not about the gate.
+
+**Not affected.** The envelope holds from m' >= 4, the binding saving
+P^{-1/8} stands, and lambda** = 0.4926 is untouched -- this is an
+intermediate constant in a chain with two orders of magnitude of slack.
+
+**Provenance, which is the uncomfortable part.** None of this is new. A peer
+session found it on 7 September, on branch claude/repo-progress-uq349e, in a
+second-pass audit that named all three corrections and tested them at
+m' = 60, 120, 200. That branch was never merged, and it is 321 commits behind.
+This session reached the same place from the other end -- re-rendering two
+dossiers to check an unrelated f-string change, noticing twenty-one lines of
+drift, and following it back. Two independent audits, a week apart, and the
+laboratory learned it twice because the first one sat on an unmerged branch.
+The second-pass audit also reports that the (T3) additive constant is 2 rather
+than 1 and that the 4(V+1) block count needs nearly equal block lengths.
+Neither is checked here and neither has been evaluated on main.
