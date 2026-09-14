@@ -375,3 +375,64 @@ def test_digest_flags_a_top_candidate_that_extends_a_runner_up() -> None:
         if any(top != c["decl"] and top.startswith(c["decl"]) for c in row["candidates"][1:]):
             flagged += 1
     assert text.count("Careful:") == flagged
+
+
+#: Every file this tool writes is committed, and until 14 September 2026 nothing
+#: compared any of them to a rebuild.  All four had drifted.  The index did not
+#: know InformationField's ninety declarations, still listed `window_digit_scan`
+#: after that scan was retired, and still placed `window_digit_cap` in
+#: OstrowskiSandwich after the declaration had moved to OstrowskiNumeration.  The
+#: claim DAG was missing 58 of its 177 modules and 68 ledger-row placements, which
+#: is the graph that answers "what does changing this module rebuild".  Four rows
+#: in the proposal queue pointed at a declaration that was no longer the best
+#: match.  And the review digest had lost its first 48 bytes -- its `# Declaration
+#: review queue` title and the opening words of the first sentence -- to the
+#: tool's own "wrote ..." success message, which is what a shell redirect onto a
+#: file the tool already writes itself does: the shell truncates, the tool writes
+#: the document, the banner lands back at offset 0.
+#:
+#: The failure was not that any one of these went stale.  It is that every other
+#: test in this file calls fp.build() fresh, so the artifacts on disk -- the ones
+#: a session actually reads -- were the only thing nobody checked.  A gate over
+#: one of the four would have left the same hole three times over.
+#:
+#: All four rebuild deterministically across hash seeds in about 1.4 seconds
+#: together, so the comparison is exact bytes and covers the whole set.
+def _generated() -> list[tuple[str, Path, str]]:
+    index = fp.build()
+    ledger = json.load(io.open(fp.LEDGER, encoding="utf-8"))
+    return [
+        ("build", fp.INDEX, fp.render(index)),
+        ("propose", fp.PROPOSALS, fp.render(fp.propose(index, ledger))),
+        ("dag", fp.DAG, fp.render(fp.dag(index, ledger))),
+        ("review", fp.REVIEW, fp.review_digest(index, ledger)),
+    ]
+
+
+def test_every_committed_artifact_matches_a_fresh_build() -> None:
+    stale = []
+    for cmd, path, fresh in _generated():
+        committed = path.read_text(encoding="utf-8").replace("\r\n", "\n")
+        if committed != fresh.replace("\r\n", "\n"):
+            rel = path.relative_to(REPO).as_posix()
+            stale.append(f"  {rel}: rebuild with `python tools/formalpedia.py {cmd}`")
+    assert not stale, (
+        "formalpedia artifacts on disk disagree with a fresh build:\n"
+        + "\n".join(stale)
+        + "\n\nThese are what the formalpedia skill tells a session to consult before "
+        "touching formal/. A stale one does not go quiet -- it answers wrong."
+    )
+
+
+def test_the_review_digest_still_opens_with_its_own_title() -> None:
+    """The specific corruption above, named so it cannot come back quietly.
+
+    Regenerating fixes it, but `formalpedia.py review > <the file it writes>` puts
+    it straight back, and the result still looks like a plausible document.
+    """
+    first = fp.REVIEW.read_text(encoding="utf-8").lstrip().splitlines()[0]
+    assert first.startswith("# "), (
+        f"{fp.REVIEW.name} starts with {first!r}, not a Markdown title. "
+        "It was most likely written by redirecting the tool's stdout into the "
+        "same file the tool writes itself, which drops the opening bytes."
+    )

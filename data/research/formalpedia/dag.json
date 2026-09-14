@@ -551,7 +551,7 @@
       }
     },
     "BTCalculus.WordSimpNewman": {
-      "declarations": 26,
+      "declarations": 27,
       "depends_on": [],
       "file": "formal/BTCalculus/WordSimpNewman.lean",
       "ledger": [
@@ -559,7 +559,7 @@
       ],
       "papers": [],
       "trust": {
-        "kernel": 26
+        "kernel": 27
       }
     },
     "BTCalculus.XCubeStateComplexity": {
@@ -616,7 +616,7 @@
       }
     },
     "Operators.Polynomial": {
-      "declarations": 7,
+      "declarations": 9,
       "depends_on": [
         "Representation.Words"
       ],
@@ -626,7 +626,7 @@
       ],
       "papers": [],
       "trust": {
-        "kernel": 7
+        "kernel": 9
       }
     },
     "Problems.BalancedTernary.DAddResidual": {
@@ -893,7 +893,7 @@
       }
     },
     "Problems.Collatz.Shortcut": {
-      "declarations": 12,
+      "declarations": 14,
       "depends_on": [],
       "file": "formal/Problems/Collatz/Shortcut.lean",
       "ledger": [
@@ -904,7 +904,7 @@
       "papers": [],
       "trust": {
         "compiler": 2,
-        "kernel": 10
+        "kernel": 12
       }
     },
     "Problems.Juggler.AboveAnchorWalk": {
@@ -922,6 +922,21 @@
         "kernel": 2
       }
     },
+    "Problems.Juggler.CriticalCostKernel": {
+      "declarations": 9,
+      "depends_on": [
+        "Problems.Juggler.CubicConstraintFusion"
+      ],
+      "file": "formal/Problems/Juggler/CriticalCostKernel.lean",
+      "ledger": [
+        "J-cubic-critical-cost-kernels",
+        "J-cubic-equal-gap-oo-triple"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 9
+      }
+    },
     "Problems.Juggler.CubeCorridor": {
       "declarations": 15,
       "depends_on": [
@@ -932,14 +947,219 @@
         "J-mixed-oe-eighth"
       ],
       "papers": [
-        "Paper A"
+        "Paper A",
+        "Paper C"
       ],
       "trust": {
         "kernel": 15
       }
     },
+    "Problems.Juggler.CubicBand": {
+      "declarations": 30,
+      "depends_on": [],
+      "file": "formal/Problems/Juggler/CubicBand.lean",
+      "ledger": [
+        "J-cycle-threshold-relaxation"
+      ],
+      "papers": [
+        "Paper A"
+      ],
+      "trust": {
+        "kernel": 30
+      }
+    },
+    "Problems.Juggler.CubicChargeMonotonicity": {
+      "declarations": 23,
+      "depends_on": [
+        "Problems.Juggler.CubicOrbitCharge"
+      ],
+      "file": "formal/Problems/Juggler/CubicChargeMonotonicity.lean",
+      "ledger": [
+        "J-cycle-upper-charge-monotonicity"
+      ],
+      "papers": [
+        "Paper A"
+      ],
+      "trust": {
+        "kernel": 23
+      }
+    },
+    "Problems.Juggler.CubicConsequences": {
+      "declarations": 6,
+      "depends_on": [
+        "Problems.Juggler.CubicBand"
+      ],
+      "file": "formal/Problems/Juggler/CubicConsequences.lean",
+      "ledger": [
+        "J-cycle-cubic-band-order"
+      ],
+      "papers": [
+        "Paper A"
+      ],
+      "trust": {
+        "kernel": 6
+      }
+    },
+    "Problems.Juggler.CubicConstraintFusion": {
+      "declarations": 19,
+      "depends_on": [
+        "Problems.Juggler.CubicRemainderVariation"
+      ],
+      "file": "formal/Problems/Juggler/CubicConstraintFusion.lean",
+      "ledger": [
+        "J-cubic-critical-run-kernels"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 19
+      }
+    },
+    "Problems.Juggler.CubicCriticalLocation": {
+      "declarations": 18,
+      "depends_on": [
+        "Problems.Juggler.CubicConstraintFusion"
+      ],
+      "file": "formal/Problems/Juggler/CubicCriticalLocation.lean",
+      "ledger": [
+        "J-cubic-critical-localization-kernels"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 18
+      }
+    },
+    "Problems.Juggler.CubicInterlacing": {
+      "declarations": 9,
+      "depends_on": [],
+      "file": "formal/Problems/Juggler/CubicInterlacing.lean",
+      "ledger": [
+        "J-cycle-threshold-common-period"
+      ],
+      "papers": [
+        "Paper A"
+      ],
+      "trust": {
+        "kernel": 9
+      }
+    },
+    "Problems.Juggler.CubicLogGrid": {
+      "declarations": 38,
+      "depends_on": [
+        "Problems.Juggler.CubicBand"
+      ],
+      "file": "formal/Problems/Juggler/CubicLogGrid.lean",
+      "ledger": [
+        "J-cycle-cubic-sorted-grid"
+      ],
+      "papers": [
+        "Paper A"
+      ],
+      "trust": {
+        "kernel": 38
+      }
+    },
+    "Problems.Juggler.CubicOrbitCharge": {
+      "declarations": 7,
+      "depends_on": [
+        "Problems.Juggler.CubicConsequences",
+        "Problems.Juggler.CubicUpperCells",
+        "Problems.Juggler.CycleCore",
+        "Problems.Juggler.ReturnCells",
+        "Problems.Juggler.ReturnInduction",
+        "Problems.Juggler.ReturnWordFactorization"
+      ],
+      "file": "formal/Problems/Juggler/CubicOrbitCharge.lean",
+      "ledger": [
+        "J-cycle-upper-charge-least-period"
+      ],
+      "papers": [
+        "Paper A"
+      ],
+      "trust": {
+        "kernel": 7
+      }
+    },
+    "Problems.Juggler.CubicRemainderAssembly": {
+      "declarations": 58,
+      "depends_on": [
+        "Problems.Juggler.CriticalCostKernel",
+        "Problems.Juggler.CubicCriticalLocation",
+        "Problems.Juggler.CubicOrbitCharge"
+      ],
+      "file": "formal/Problems/Juggler/CubicRemainderAssembly.lean",
+      "ledger": [
+        "J-cubic-remainder-assembly"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 58
+      }
+    },
+    "Problems.Juggler.CubicRemainderVariation": {
+      "declarations": 11,
+      "depends_on": [],
+      "file": "formal/Problems/Juggler/CubicRemainderVariation.lean",
+      "ledger": [
+        "J-cubic-remainder-variation-kernels"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 11
+      }
+    },
+    "Problems.Juggler.CubicReturnStrip": {
+      "declarations": 5,
+      "depends_on": [
+        "Problems.Juggler.CubicBand",
+        "Problems.Juggler.CycleCore",
+        "Problems.Juggler.ReturnCells"
+      ],
+      "file": "formal/Problems/Juggler/CubicReturnStrip.lean",
+      "ledger": [
+        "J-cycle-periodic-return-height-strip"
+      ],
+      "papers": [
+        "Paper A"
+      ],
+      "trust": {
+        "kernel": 5
+      }
+    },
+    "Problems.Juggler.CubicRounding": {
+      "declarations": 47,
+      "depends_on": [
+        "Problems.Juggler.CubicBand"
+      ],
+      "file": "formal/Problems/Juggler/CubicRounding.lean",
+      "ledger": [
+        "J-cycle-branch-offset-obstruction",
+        "J-cycle-unit-perturbation"
+      ],
+      "papers": [
+        "Paper A"
+      ],
+      "trust": {
+        "kernel": 47
+      }
+    },
+    "Problems.Juggler.CubicUpperCells": {
+      "declarations": 26,
+      "depends_on": [
+        "Problems.Juggler.CubicLogGrid"
+      ],
+      "file": "formal/Problems/Juggler/CubicUpperCells.lean",
+      "ledger": [
+        "J-cycle-absolute-cell-grid-charge"
+      ],
+      "papers": [
+        "Paper A"
+      ],
+      "trust": {
+        "kernel": 26
+      }
+    },
     "Problems.Juggler.CycleCore": {
-      "declarations": 71,
+      "declarations": 72,
       "depends_on": [
         "Problems.Juggler.MinimumRelative"
       ],
@@ -948,10 +1168,11 @@
         "J-cycle-trailing-evens"
       ],
       "papers": [
-        "Paper A"
+        "Paper A",
+        "Paper C"
       ],
       "trust": {
-        "kernel": 71
+        "kernel": 72
       }
     },
     "Problems.Juggler.CycleFinance": {
@@ -1003,7 +1224,7 @@
       }
     },
     "Problems.Juggler.CycleHeightFinance": {
-      "declarations": 58,
+      "declarations": 59,
       "depends_on": [
         "Problems.Juggler.CycleFinanceLeftovers"
       ],
@@ -1013,7 +1234,7 @@
       ],
       "papers": [],
       "trust": {
-        "kernel": 58
+        "kernel": 59
       }
     },
     "Problems.Juggler.CycleMinFudge": {
@@ -1062,7 +1283,7 @@
       "trust": {}
     },
     "Problems.Juggler.DefectFinance": {
-      "declarations": 11,
+      "declarations": 12,
       "depends_on": [
         "Problems.Juggler.WalkChargeMax"
       ],
@@ -1074,7 +1295,7 @@
         "Paper A"
       ],
       "trust": {
-        "kernel": 11
+        "kernel": 12
       }
     },
     "Problems.Juggler.DefectLowerBound": {
@@ -1087,7 +1308,8 @@
         "J-first-defect-amplification"
       ],
       "papers": [
-        "Paper A"
+        "Paper A",
+        "Paper C"
       ],
       "trust": {
         "kernel": 69
@@ -1104,7 +1326,8 @@
         "J-power-envelope-contraction"
       ],
       "papers": [
-        "Paper A"
+        "Paper A",
+        "Paper C"
       ],
       "trust": {
         "kernel": 48
@@ -1127,13 +1350,15 @@
         "J-no-cycle-no-bounded-nonterm",
         "J-trajectory-cycle-or-escape"
       ],
-      "papers": [],
+      "papers": [
+        "Paper C"
+      ],
       "trust": {
         "kernel": 70
       }
     },
     "Problems.Juggler.EvenCountThree": {
-      "declarations": 51,
+      "declarations": 44,
       "depends_on": [
         "Problems.Juggler.LeftoverFamilies",
         "Problems.Juggler.Residuals"
@@ -1149,7 +1374,7 @@
         "Paper A"
       ],
       "trust": {
-        "kernel": 51
+        "kernel": 44
       }
     },
     "Problems.Juggler.ExpandingGrammar": {
@@ -1200,8 +1425,25 @@
         "kernel": 25
       }
     },
+    "Problems.Juggler.FamilyChains": {
+      "declarations": 24,
+      "depends_on": [
+        "Problems.Juggler.LandingValuation"
+      ],
+      "file": "formal/Problems/Juggler/FamilyChains.lean",
+      "ledger": [
+        "J-cycle-ooe-family-chain-bound",
+        "J-cycle-ooe-polynomial-block"
+      ],
+      "papers": [
+        "Paper A"
+      ],
+      "trust": {
+        "kernel": 24
+      }
+    },
     "Problems.Juggler.FanLaw": {
-      "declarations": 20,
+      "declarations": 21,
       "depends_on": [
         "Problems.Juggler.OstrowskiSandwich"
       ],
@@ -1213,11 +1455,78 @@
         "Paper A"
       ],
       "trust": {
-        "kernel": 20
+        "kernel": 21
+      }
+    },
+    "Problems.Juggler.FateBlockAverage": {
+      "declarations": 28,
+      "depends_on": [
+        "Problems.Juggler.FateFiberParity",
+        "Problems.Juggler.FateLandingWindow"
+      ],
+      "file": "formal/Problems/Juggler/FateBlockAverage.lean",
+      "ledger": [
+        "J-fate-block-average-layer"
+      ],
+      "papers": [
+        "Paper C"
+      ],
+      "trust": {
+        "kernel": 28
+      }
+    },
+    "Problems.Juggler.FateCertified": {
+      "declarations": 29,
+      "depends_on": [
+        "Problems.Juggler.FatePressureCorollary"
+      ],
+      "file": "formal/Problems/Juggler/FateCertified.lean",
+      "ledger": [
+        "J-fate-certified-thirty"
+      ],
+      "papers": [
+        "Paper C"
+      ],
+      "trust": {
+        "kernel": 29
+      }
+    },
+    "Problems.Juggler.FateChernoff": {
+      "declarations": 30,
+      "depends_on": [
+        "Problems.Juggler.FateContagion",
+        "Problems.Juggler.RateFreeDensity"
+      ],
+      "file": "formal/Problems/Juggler/FateChernoff.lean",
+      "ledger": [
+        "J-fate-chernoff-count",
+        "J-fate-tao-union-bound"
+      ],
+      "papers": [
+        "Paper C"
+      ],
+      "trust": {
+        "kernel": 30
+      }
+    },
+    "Problems.Juggler.FateCollapse": {
+      "declarations": 26,
+      "depends_on": [
+        "Problems.Juggler.FateChernoff"
+      ],
+      "file": "formal/Problems/Juggler/FateCollapse.lean",
+      "ledger": [
+        "J-fate-collapse-bias"
+      ],
+      "papers": [
+        "Paper C"
+      ],
+      "trust": {
+        "kernel": 26
       }
     },
     "Problems.Juggler.FateContagion": {
-      "declarations": 37,
+      "declarations": 36,
       "depends_on": [
         "Problems.Juggler.Escape"
       ],
@@ -1228,9 +1537,320 @@
         "J-fate-odd-generation",
         "J-fate-oe-fiber-cell"
       ],
-      "papers": [],
+      "papers": [
+        "Paper C"
+      ],
       "trust": {
-        "kernel": 37
+        "kernel": 36
+      }
+    },
+    "Problems.Juggler.FateContagionBound": {
+      "declarations": 21,
+      "depends_on": [
+        "Problems.Juggler.FateCylinderCorollary",
+        "Problems.Juggler.FateRecursion",
+        "Problems.Juggler.FateSeed"
+      ],
+      "file": "formal/Problems/Juggler/FateContagionBound.lean",
+      "ledger": [
+        "J-fate-contagion-conditional",
+        "J-fate-tao-equivalence"
+      ],
+      "papers": [
+        "Paper C"
+      ],
+      "trust": {
+        "kernel": 21
+      }
+    },
+    "Problems.Juggler.FateCylinderCorollary": {
+      "declarations": 5,
+      "depends_on": [
+        "Problems.Juggler.FateChernoff"
+      ],
+      "file": "formal/Problems/Juggler/FateCylinderCorollary.lean",
+      "ledger": [
+        "J-fate-cylinder-corollary"
+      ],
+      "papers": [
+        "Paper C"
+      ],
+      "trust": {
+        "kernel": 5
+      }
+    },
+    "Problems.Juggler.FateCylinderEnergy": {
+      "declarations": 7,
+      "depends_on": [
+        "Problems.Juggler.RateFreeDensity"
+      ],
+      "file": "formal/Problems/Juggler/FateCylinderEnergy.lean",
+      "ledger": [
+        "J-fate-cylinder-energy"
+      ],
+      "papers": [
+        "Paper C"
+      ],
+      "trust": {
+        "kernel": 7
+      }
+    },
+    "Problems.Juggler.FateEnergyAtoms": {
+      "declarations": 16,
+      "depends_on": [
+        "Problems.Juggler.FateOneSidedAtoms"
+      ],
+      "file": "formal/Problems/Juggler/FateEnergyAtoms.lean",
+      "ledger": [
+        "J-fate-energy-atoms"
+      ],
+      "papers": [
+        "Paper C"
+      ],
+      "trust": {
+        "kernel": 16
+      }
+    },
+    "Problems.Juggler.FateFiberParity": {
+      "declarations": 43,
+      "depends_on": [
+        "Problems.Juggler.FateContagion",
+        "Problems.Juggler.FateSweepMonotone"
+      ],
+      "file": "formal/Problems/Juggler/FateFiberParity.lean",
+      "ledger": [
+        "J-fate-fiber-parity"
+      ],
+      "papers": [
+        "Paper C"
+      ],
+      "trust": {
+        "kernel": 43
+      }
+    },
+    "Problems.Juggler.FateFirstLetter": {
+      "declarations": 15,
+      "depends_on": [
+        "Problems.Juggler.FateContagion"
+      ],
+      "file": "formal/Problems/Juggler/FateFirstLetter.lean",
+      "ledger": [
+        "J-fate-first-letter-split",
+        "J-fate-minimal-failure-oo"
+      ],
+      "papers": [
+        "Paper C"
+      ],
+      "trust": {
+        "kernel": 15
+      }
+    },
+    "Problems.Juggler.FateLandingWindow": {
+      "declarations": 12,
+      "depends_on": [],
+      "file": "formal/Problems/Juggler/FateLandingWindow.lean",
+      "ledger": [
+        "J-fate-landing-window"
+      ],
+      "papers": [
+        "Paper C"
+      ],
+      "trust": {
+        "kernel": 12
+      }
+    },
+    "Problems.Juggler.FateOneSided": {
+      "declarations": 20,
+      "depends_on": [
+        "Problems.Juggler.FateChernoff",
+        "Problems.Juggler.FateCylinderEnergy",
+        "Problems.Juggler.TiltedShare"
+      ],
+      "file": "formal/Problems/Juggler/FateOneSided.lean",
+      "ledger": [
+        "J-fate-one-sided-moments"
+      ],
+      "papers": [
+        "Paper C"
+      ],
+      "trust": {
+        "kernel": 20
+      }
+    },
+    "Problems.Juggler.FateOneSidedAtoms": {
+      "declarations": 14,
+      "depends_on": [
+        "Problems.Juggler.FateOneSidedCorollary"
+      ],
+      "file": "formal/Problems/Juggler/FateOneSidedAtoms.lean",
+      "ledger": [
+        "J-fate-one-sided-atoms"
+      ],
+      "papers": [
+        "Paper C"
+      ],
+      "trust": {
+        "kernel": 14
+      }
+    },
+    "Problems.Juggler.FateOneSidedCorollary": {
+      "declarations": 12,
+      "depends_on": [
+        "Problems.Juggler.FateOneSided",
+        "Problems.Juggler.FateProduction"
+      ],
+      "file": "formal/Problems/Juggler/FateOneSidedCorollary.lean",
+      "ledger": [
+        "J-fate-one-sided-conjecture"
+      ],
+      "papers": [
+        "Paper C"
+      ],
+      "trust": {
+        "kernel": 12
+      }
+    },
+    "Problems.Juggler.FatePressure": {
+      "declarations": 6,
+      "depends_on": [
+        "Problems.Juggler.FateChernoff",
+        "Problems.Juggler.TiltedShare"
+      ],
+      "file": "formal/Problems/Juggler/FatePressure.lean",
+      "ledger": [
+        "J-fate-pressure-form"
+      ],
+      "papers": [
+        "Paper C"
+      ],
+      "trust": {
+        "kernel": 6
+      }
+    },
+    "Problems.Juggler.FatePressureCorollary": {
+      "declarations": 11,
+      "depends_on": [
+        "Problems.Juggler.FateOneSidedCorollary",
+        "Problems.Juggler.FatePressure"
+      ],
+      "file": "formal/Problems/Juggler/FatePressureCorollary.lean",
+      "ledger": [
+        "J-fate-pressure-conjecture"
+      ],
+      "papers": [
+        "Paper C"
+      ],
+      "trust": {
+        "kernel": 11
+      }
+    },
+    "Problems.Juggler.FateProduction": {
+      "declarations": 32,
+      "depends_on": [
+        "Problems.Juggler.FateContagionBound",
+        "Problems.Juggler.FateThinFibers"
+      ],
+      "file": "formal/Problems/Juggler/FateProduction.lean",
+      "ledger": [
+        "J-fate-contagion-elementary"
+      ],
+      "papers": [
+        "Paper C"
+      ],
+      "trust": {
+        "kernel": 32
+      }
+    },
+    "Problems.Juggler.FateRecursion": {
+      "declarations": 1,
+      "depends_on": [],
+      "file": "formal/Problems/Juggler/FateRecursion.lean",
+      "ledger": [
+        "J-fate-recursion-lemma"
+      ],
+      "papers": [
+        "Paper C"
+      ],
+      "trust": {
+        "kernel": 1
+      }
+    },
+    "Problems.Juggler.FateSeed": {
+      "declarations": 18,
+      "depends_on": [
+        "Problems.Juggler.FateChernoff"
+      ],
+      "file": "formal/Problems/Juggler/FateSeed.lean",
+      "ledger": [
+        "J-fate-seed"
+      ],
+      "papers": [
+        "Paper C"
+      ],
+      "trust": {
+        "kernel": 18
+      }
+    },
+    "Problems.Juggler.FateShareLaw": {
+      "declarations": 17,
+      "depends_on": [
+        "Problems.Juggler.FateFiberParity"
+      ],
+      "file": "formal/Problems/Juggler/FateShareLaw.lean",
+      "ledger": [
+        "J-fate-share-law-layer"
+      ],
+      "papers": [
+        "Paper C"
+      ],
+      "trust": {
+        "kernel": 17
+      }
+    },
+    "Problems.Juggler.FateSweep": {
+      "declarations": 28,
+      "depends_on": [],
+      "file": "formal/Problems/Juggler/FateSweep.lean",
+      "ledger": [
+        "J-fate-sweep-lemma"
+      ],
+      "papers": [
+        "Paper C"
+      ],
+      "trust": {
+        "kernel": 28
+      }
+    },
+    "Problems.Juggler.FateSweepMonotone": {
+      "declarations": 107,
+      "depends_on": [
+        "Problems.Juggler.FateSweep"
+      ],
+      "file": "formal/Problems/Juggler/FateSweepMonotone.lean",
+      "ledger": [
+        "J-fate-monotone-pairing-repair"
+      ],
+      "papers": [
+        "Paper C"
+      ],
+      "trust": {
+        "kernel": 107
+      }
+    },
+    "Problems.Juggler.FateThinFibers": {
+      "declarations": 18,
+      "depends_on": [
+        "Problems.Juggler.FateFiberParity"
+      ],
+      "file": "formal/Problems/Juggler/FateThinFibers.lean",
+      "ledger": [
+        "J-fate-thin-fibers"
+      ],
+      "papers": [
+        "Paper C"
+      ],
+      "trust": {
+        "kernel": 18
       }
     },
     "Problems.Juggler.FirstInternalOO": {
@@ -1243,7 +1863,8 @@
         "J-cyclemin-first-oo-r-bound"
       ],
       "papers": [
-        "Paper A"
+        "Paper A",
+        "Paper C"
       ],
       "trust": {
         "kernel": 26
@@ -1255,7 +1876,6 @@
       "file": "formal/Problems/Juggler/GapCells.lean",
       "ledger": [
         "J-kernel-cancellation",
-        "J-nested-parity-discrepancy",
         "J-tier2-gap-and-shifted-forms"
       ],
       "papers": [],
@@ -1264,7 +1884,7 @@
       }
     },
     "Problems.Juggler.GapTransfer": {
-      "declarations": 2,
+      "declarations": 6,
       "depends_on": [
         "Problems.Juggler.CycleFinance"
       ],
@@ -1276,7 +1896,23 @@
         "Paper A"
       ],
       "trust": {
-        "kernel": 2
+        "kernel": 6
+      }
+    },
+    "Problems.Juggler.GapTransferWW": {
+      "declarations": 9,
+      "depends_on": [
+        "Problems.Juggler.GapTransfer"
+      ],
+      "file": "formal/Problems/Juggler/GapTransferWW.lean",
+      "ledger": [
+        "J-cyclemin-closure-threshold",
+        "J-cyclemin-gap-power-transfer",
+        "J-cyclemin-period-lower-bound"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 9
       }
     },
     "Problems.Juggler.GlobalDefect": {
@@ -1289,10 +1925,28 @@
         "J-global-defect-identity"
       ],
       "papers": [
-        "Paper A"
+        "Paper A",
+        "Paper C"
       ],
       "trust": {
         "kernel": 36
+      }
+    },
+    "Problems.Juggler.GuardResidueFamily": {
+      "declarations": 50,
+      "depends_on": [
+        "Problems.Juggler.CubicBand",
+        "Problems.Juggler.LandingValuation"
+      ],
+      "file": "formal/Problems/Juggler/GuardResidueFamily.lean",
+      "ledger": [
+        "J-cycle-fixed-residue-witness"
+      ],
+      "papers": [
+        "Paper A"
+      ],
+      "trust": {
+        "kernel": 50
       }
     },
     "Problems.Juggler.Itinerary": {
@@ -1306,14 +1960,15 @@
         "J-itinerary-semantics"
       ],
       "papers": [
-        "Paper A"
+        "Paper A",
+        "Paper C"
       ],
       "trust": {
         "kernel": 33
       }
     },
     "Problems.Juggler.ItineraryStats": {
-      "declarations": 31,
+      "declarations": 39,
       "depends_on": [
         "Problems.Juggler.Itinerary"
       ],
@@ -1322,10 +1977,11 @@
         "J-exponent-expanding-append"
       ],
       "papers": [
-        "Paper A"
+        "Paper A",
+        "Paper C"
       ],
       "trust": {
-        "kernel": 31
+        "kernel": 39
       }
     },
     "Problems.Juggler.LandingParity": {
@@ -1354,7 +2010,9 @@
         "J-odd-odd-remainder-mod-eight",
         "J-pe-history-valuation"
       ],
-      "papers": [],
+      "papers": [
+        "Paper A"
+      ],
       "trust": {
         "kernel": 18
       }
@@ -1423,7 +2081,7 @@
       }
     },
     "Problems.Juggler.LogLogClock": {
-      "declarations": 22,
+      "declarations": 23,
       "depends_on": [
         "Problems.Juggler.FateContagion",
         "Problems.Juggler.TerminationFloor257"
@@ -1444,7 +2102,7 @@
       ],
       "papers": [],
       "trust": {
-        "kernel": 22
+        "kernel": 23
       }
     },
     "Problems.Juggler.MinimumRelative": {
@@ -1459,7 +2117,8 @@
         "J-cube-odd-even-reset"
       ],
       "papers": [
-        "Paper A"
+        "Paper A",
+        "Paper C"
       ],
       "trust": {
         "kernel": 14
@@ -1508,7 +2167,9 @@
       "ledger": [
         "J-o7eeee-gap"
       ],
-      "papers": [],
+      "papers": [
+        "Paper A"
+      ],
       "trust": {
         "kernel": 30
       }
@@ -1529,7 +2190,7 @@
       }
     },
     "Problems.Juggler.OstrowskiNumeration": {
-      "declarations": 15,
+      "declarations": 18,
       "depends_on": [
         "Problems.Juggler.OstrowskiSandwich"
       ],
@@ -1541,12 +2202,11 @@
         "Paper A"
       ],
       "trust": {
-        "compiler": 1,
-        "kernel": 14
+        "kernel": 18
       }
     },
     "Problems.Juggler.OstrowskiSandwich": {
-      "declarations": 29,
+      "declarations": 36,
       "depends_on": [],
       "file": "formal/Problems/Juggler/OstrowskiSandwich.lean",
       "ledger": [
@@ -1556,8 +2216,7 @@
         "Paper A"
       ],
       "trust": {
-        "compiler": 1,
-        "kernel": 28
+        "kernel": 36
       }
     },
     "Problems.Juggler.PrefixBunched": {
@@ -1620,7 +2279,8 @@
         "J-inverse-preimage-asymmetry"
       ],
       "papers": [
-        "Paper A"
+        "Paper A",
+        "Paper C"
       ],
       "trust": {
         "kernel": 124
@@ -1637,14 +2297,105 @@
         "J-finite-progress-boundary"
       ],
       "papers": [
-        "Paper A"
+        "Paper A",
+        "Paper C"
       ],
       "trust": {
         "kernel": 20
       }
     },
+    "Problems.Juggler.QuarticBand": {
+      "declarations": 23,
+      "depends_on": [
+        "Problems.Juggler.CubicConsequences",
+        "Problems.Juggler.CycleCore",
+        "Problems.Juggler.ReturnCells",
+        "Problems.Juggler.ReturnInduction",
+        "Problems.Juggler.ReturnWordFactorization"
+      ],
+      "file": "formal/Problems/Juggler/QuarticBand.lean",
+      "ledger": [
+        "J-cycle-quartic-formal-return"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 23
+      }
+    },
+    "Problems.Juggler.QuarticCells": {
+      "declarations": 39,
+      "depends_on": [
+        "Problems.Juggler.CubicBand",
+        "Problems.Juggler.CycleCore",
+        "Problems.Juggler.ReturnCells"
+      ],
+      "file": "formal/Problems/Juggler/QuarticCells.lean",
+      "ledger": [
+        "J-cycle-quartic-formal-cells"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 39
+      }
+    },
+    "Problems.Juggler.QuarticDefect": {
+      "declarations": 15,
+      "depends_on": [
+        "Problems.Juggler.QuarticBand",
+        "Problems.Juggler.QuarticCells"
+      ],
+      "file": "formal/Problems/Juggler/QuarticDefect.lean",
+      "ledger": [
+        "J-cycle-quartic-formal-defect"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 15
+      }
+    },
+    "Problems.Juggler.QuarticGapSeparation": {
+      "declarations": 7,
+      "depends_on": [
+        "Problems.Juggler.CubicLogGrid",
+        "Problems.Juggler.QuarticCells"
+      ],
+      "file": "formal/Problems/Juggler/QuarticGapSeparation.lean",
+      "ledger": [
+        "J-cycle-quartic-formal-gap-separation"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 7
+      }
+    },
+    "Problems.Juggler.QuarticLossBudget": {
+      "declarations": 23,
+      "depends_on": [
+        "Problems.Juggler.QuarticCells"
+      ],
+      "file": "formal/Problems/Juggler/QuarticLossBudget.lean",
+      "ledger": [
+        "J-cycle-quartic-formal-budget"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 23
+      }
+    },
+    "Problems.Juggler.QuarticProjection": {
+      "declarations": 35,
+      "depends_on": [],
+      "file": "formal/Problems/Juggler/QuarticProjection.lean",
+      "ledger": [
+        "J-cycle-quartic-formal-projection"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 35
+      }
+    },
     "Problems.Juggler.RateFreeDensity": {
-      "declarations": 40,
+      "declarations": 41,
       "depends_on": [
         "Problems.Juggler.Progress"
       ],
@@ -1654,9 +2405,28 @@
         "J-rate-free-floor-certificates",
         "J-rate-free-prop-j-finite"
       ],
-      "papers": [],
+      "papers": [
+        "Paper C"
+      ],
       "trust": {
-        "kernel": 40
+        "kernel": 41
+      }
+    },
+    "Problems.Juggler.RemainderCarry": {
+      "declarations": 36,
+      "depends_on": [
+        "Problems.Juggler.ReturnCells"
+      ],
+      "file": "formal/Problems/Juggler/RemainderCarry.lean",
+      "ledger": [
+        "J-cycle-oe-quotient-parity-carry",
+        "J-cycle-ooe-exact-remainder-repair"
+      ],
+      "papers": [
+        "Paper A"
+      ],
+      "trust": {
+        "kernel": 36
       }
     },
     "Problems.Juggler.Residuals": {
@@ -1670,15 +2440,178 @@
         "J-two-block-persistent-expanding"
       ],
       "papers": [
-        "Paper A"
+        "Paper A",
+        "Paper C"
       ],
       "trust": {
         "kernel": 70
       }
     },
-    "Problems.Juggler.RotationAverage": {
-      "declarations": 10,
+    "Problems.Juggler.ReturnCells": {
+      "declarations": 17,
       "depends_on": [],
+      "file": "formal/Problems/Juggler/ReturnCells.lean",
+      "ledger": [
+        "J-cycle-short-return-cells",
+        "J-square-start-ooe-cells"
+      ],
+      "papers": [
+        "Paper A"
+      ],
+      "trust": {
+        "kernel": 17
+      }
+    },
+    "Problems.Juggler.ReturnGapHeight": {
+      "declarations": 24,
+      "depends_on": [
+        "Problems.Juggler.CubicBand",
+        "Problems.Juggler.CycleCore",
+        "Problems.Juggler.ReturnCells"
+      ],
+      "file": "formal/Problems/Juggler/ReturnGapHeight.lean",
+      "ledger": [
+        "J-cycle-finite-even-transfer-budget"
+      ],
+      "papers": [
+        "Paper A"
+      ],
+      "trust": {
+        "kernel": 24
+      }
+    },
+    "Problems.Juggler.ReturnInduction": {
+      "declarations": 9,
+      "depends_on": [
+        "Problems.Juggler.ItineraryStats"
+      ],
+      "file": "formal/Problems/Juggler/ReturnInduction.lean",
+      "ledger": [
+        "J-cycle-subtractive-return-step"
+      ],
+      "papers": [
+        "Paper A"
+      ],
+      "trust": {
+        "kernel": 9
+      }
+    },
+    "Problems.Juggler.ReturnQuotients": {
+      "declarations": 6,
+      "depends_on": [
+        "Problems.Juggler.CubicConsequences",
+        "Problems.Juggler.CycleCore",
+        "Problems.Juggler.ReturnCells",
+        "Problems.Juggler.ReturnInduction",
+        "Problems.Juggler.ReturnWordFactorization",
+        "Problems.Juggler.ReturnWordLoss"
+      ],
+      "file": "formal/Problems/Juggler/ReturnQuotients.lean",
+      "ledger": [
+        "J-cycle-direction-change-batches"
+      ],
+      "papers": [
+        "Paper A"
+      ],
+      "trust": {
+        "kernel": 6
+      }
+    },
+    "Problems.Juggler.ReturnTerminal": {
+      "declarations": 19,
+      "depends_on": [
+        "Problems.Juggler.CubicConsequences",
+        "Problems.Juggler.CycleCore",
+        "Problems.Juggler.ReturnCells",
+        "Problems.Juggler.ReturnInduction",
+        "Problems.Juggler.ReturnWordFactorization",
+        "Problems.Juggler.ReturnWordLoss"
+      ],
+      "file": "formal/Problems/Juggler/ReturnTerminal.lean",
+      "ledger": [
+        "J-cycle-terminal-mixed-gap"
+      ],
+      "papers": [
+        "Paper A"
+      ],
+      "trust": {
+        "kernel": 19
+      }
+    },
+    "Problems.Juggler.ReturnTransferHeight": {
+      "declarations": 13,
+      "depends_on": [
+        "Problems.Juggler.ReturnGapHeight",
+        "Problems.Juggler.ReturnQuotients",
+        "Problems.Juggler.ReturnWordBounds"
+      ],
+      "file": "formal/Problems/Juggler/ReturnTransferHeight.lean",
+      "ledger": [
+        "J-cycle-direction-change-height",
+        "J-cycle-later-return-height"
+      ],
+      "papers": [
+        "Paper A"
+      ],
+      "trust": {
+        "kernel": 13
+      }
+    },
+    "Problems.Juggler.ReturnWordBounds": {
+      "declarations": 17,
+      "depends_on": [
+        "Problems.Juggler.ReturnCells",
+        "Problems.Juggler.ReturnWordLoss"
+      ],
+      "file": "formal/Problems/Juggler/ReturnWordBounds.lean",
+      "ledger": [
+        "J-cycle-direction-change-contraction"
+      ],
+      "papers": [
+        "Paper A"
+      ],
+      "trust": {
+        "kernel": 17
+      }
+    },
+    "Problems.Juggler.ReturnWordFactorization": {
+      "declarations": 11,
+      "depends_on": [
+        "Problems.Juggler.ItineraryStats"
+      ],
+      "file": "formal/Problems/Juggler/ReturnWordFactorization.lean",
+      "ledger": [
+        "J-cycle-induced-count-determinant"
+      ],
+      "papers": [
+        "Paper A"
+      ],
+      "trust": {
+        "kernel": 11
+      }
+    },
+    "Problems.Juggler.ReturnWordLoss": {
+      "declarations": 45,
+      "depends_on": [
+        "Problems.Juggler.ItineraryStats"
+      ],
+      "file": "formal/Problems/Juggler/ReturnWordLoss.lean",
+      "ledger": [
+        "J-cycle-later-return-certificate"
+      ],
+      "papers": [
+        "Paper A"
+      ],
+      "trust": {
+        "kernel": 45
+      }
+    },
+    "Problems.Juggler.RotationAverage": {
+      "declarations": 20,
+      "depends_on": [
+        "Problems.Juggler.OstrowskiNumeration",
+        "Problems.Juggler.WalkChargeMax"
+      ],
       "file": "formal/Problems/Juggler/RotationAverage.lean",
       "ledger": [
         "J-cyclemin-rotation-average"
@@ -1687,7 +2620,7 @@
         "Paper A"
       ],
       "trust": {
-        "kernel": 10
+        "kernel": 20
       }
     },
     "Problems.Juggler.RunSurvivorLattice": {
@@ -1716,7 +2649,9 @@
         "J-peak-transports-to-oo",
         "J-sequential-defect-oo"
       ],
-      "papers": [],
+      "papers": [
+        "Paper A"
+      ],
       "trust": {
         "kernel": 14
       }
@@ -1746,7 +2681,8 @@
         "J-residual-floor-fifty-three"
       ],
       "papers": [
-        "Paper A"
+        "Paper A",
+        "Paper C"
       ],
       "trust": {
         "kernel": 40
@@ -1763,14 +2699,15 @@
         "J-residual-floor-two-hundred-sixty-one"
       ],
       "papers": [
-        "Paper A"
+        "Paper A",
+        "Paper C"
       ],
       "trust": {
         "kernel": 108
       }
     },
     "Problems.Juggler.TiltedShare": {
-      "declarations": 8,
+      "declarations": 28,
       "depends_on": [
         "Problems.Juggler.RateFreeDensity"
       ],
@@ -1778,9 +2715,11 @@
       "ledger": [
         "J-tilted-share-telescoping"
       ],
-      "papers": [],
+      "papers": [
+        "Paper C"
+      ],
       "trust": {
-        "kernel": 8
+        "kernel": 28
       }
     },
     "Problems.Juggler.TowerAbsorption": {
@@ -1791,6 +2730,20 @@
         "J-tower-absorption"
       ],
       "papers": [],
+      "trust": {
+        "kernel": 5
+      }
+    },
+    "Problems.Juggler.UpperSquareGap": {
+      "declarations": 5,
+      "depends_on": [],
+      "file": "formal/Problems/Juggler/UpperSquareGap.lean",
+      "ledger": [
+        "J-odd-image-upper-square-gap"
+      ],
+      "papers": [
+        "Paper A"
+      ],
       "trust": {
         "kernel": 5
       }
@@ -1814,7 +2767,7 @@
       }
     },
     "Problems.Juggler.WalkChargeMax": {
-      "declarations": 9,
+      "declarations": 14,
       "depends_on": [
         "Problems.Juggler.WalkChargeItineraries",
         "Problems.Juggler.WalkTransport"
@@ -1827,11 +2780,11 @@
         "Paper A"
       ],
       "trust": {
-        "kernel": 9
+        "kernel": 14
       }
     },
     "Problems.Juggler.WalkTransport": {
-      "declarations": 22,
+      "declarations": 25,
       "depends_on": [
         "Problems.Juggler.CycleCore"
       ],
@@ -1845,11 +2798,31 @@
         "Paper A"
       ],
       "trust": {
-        "kernel": 22
+        "kernel": 25
       }
     },
+    "Problems.JugglerFatePaper": {
+      "declarations": 0,
+      "depends_on": [
+        "Problems.Juggler.FateBlockAverage",
+        "Problems.Juggler.FateCertified",
+        "Problems.Juggler.FateCollapse",
+        "Problems.Juggler.FateEnergyAtoms",
+        "Problems.Juggler.FateFirstLetter",
+        "Problems.Juggler.FateShareLaw",
+        "Problems.Juggler.TerminationFloor257"
+      ],
+      "file": "formal/Problems/JugglerFatePaper.lean",
+      "ledger": [
+        "J-paper-c-trust-surface"
+      ],
+      "papers": [
+        "Paper C"
+      ],
+      "trust": {}
+    },
     "Problems.Ostrowski.NP.Energy": {
-      "declarations": 79,
+      "declarations": 86,
       "depends_on": [
         "Problems.Ostrowski.NP.Recurrence"
       ],
@@ -1873,7 +2846,7 @@
       ],
       "papers": [],
       "trust": {
-        "kernel": 79
+        "kernel": 86
       }
     },
     "Problems.Ostrowski.NP.KernelFamily": {
@@ -1891,7 +2864,7 @@
       }
     },
     "Problems.Ostrowski.NP.Reachability": {
-      "declarations": 4,
+      "declarations": 12,
       "depends_on": [
         "Problems.Ostrowski.NP.KernelFamily"
       ],
@@ -1901,12 +2874,12 @@
       ],
       "papers": [],
       "trust": {
-        "compiler": 1,
-        "kernel": 3
+        "compiler": 4,
+        "kernel": 8
       }
     },
     "Problems.Ostrowski.NP.Recurrence": {
-      "declarations": 21,
+      "declarations": 22,
       "depends_on": [],
       "file": "formal/Problems/Ostrowski/NP/Recurrence.lean",
       "ledger": [
@@ -1915,7 +2888,7 @@
       "papers": [],
       "trust": {
         "compiler": 3,
-        "kernel": 18
+        "kernel": 19
       }
     },
     "Problems.Primes.Residual": {
@@ -1937,7 +2910,7 @@
       }
     },
     "Representation.Words": {
-      "declarations": 30,
+      "declarations": 31,
       "depends_on": [],
       "file": "formal/Representation/Words.lean",
       "ledger": [
@@ -1946,14 +2919,14 @@
       ],
       "papers": [],
       "trust": {
-        "kernel": 30
+        "kernel": 31
       }
     }
   },
   "totals": {
-    "edges": 127,
-    "edges_before_reduction": 987,
-    "ledger_rows_placed": 326,
-    "nodes": 119
+    "edges": 228,
+    "edges_before_reduction": 1712,
+    "ledger_rows_placed": 394,
+    "nodes": 177
   }
 }
