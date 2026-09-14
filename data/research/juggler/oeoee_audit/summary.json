@@ -1,5 +1,5 @@
 {
-  "git_commit": "c72419e752b6488bf245aa95d39fedc2f95910c7",
+  "git_commit": "98f0dcc30c404d04fb9b48c77bc8f89b410b65a2",
   "note": "docs/theory/juggler_oeoee_production.md",
   "checks": [
     {
@@ -18,25 +18,43 @@
       "abs_error": 0.0032416658089746697,
       "ok": true,
       "kind": "hand",
-      "note": "bracket 4/sqrt(pi lambda)+1; 4/sqrt(pi) = 2.25675... <= 2.26"
+      "note": "bracket 4/sqrt(pi lambda)+2; 4/sqrt(pi) = 2.25675... <= 2.26"
     },
     {
-      "name": "T4 annulus factor 4(V+1)",
+      "name": "T4 annulus factor 4(V+1) at m'=60",
       "printed": 4.0,
       "computed": 4.029602362663871,
       "abs_error": 0.029602362663871062,
       "ok": true,
       "kind": "hand",
-      "note": "step ratio at m'=60 is 1.01480; abstract T4 needs steps ~ d"
+      "note": "step ratio 1.01480; honest constant 2(1+rho) = 4.0296 > 4, within the 4->5 retune the Half B pad covers"
     },
     {
-      "name": "T4 annulus factor 4(V+1)",
+      "name": "T4 annulus factor 4(V+1) at m'=20",
       "printed": 4.0,
       "computed": 4.0886464307497095,
       "abs_error": 0.08864643074970946,
       "ok": true,
       "kind": "hand",
-      "note": "step ratio at m'=20 is 1.04432; abstract T4 needs steps ~ d"
+      "note": "step ratio 1.04432; honest constant 2(1+rho) = 4.0886 > 4, within the 4->5 retune the Half B pad covers"
+    },
+    {
+      "name": "T4 measured annulus count at m'=20",
+      "printed": 4.0886464307497095,
+      "computed": 3.9609422429194785,
+      "abs_error": 0.12770418783023096,
+      "ok": true,
+      "kind": "script",
+      "note": "worst at q=2: 3.9609(V+1) against 2(1+rho) = 4.0886; exceeds the printed 4: False; min step/delta = 0.957719 >= 1-8/(9m') = 0.955556"
+    },
+    {
+      "name": "T4 measured annulus count at m'=60",
+      "printed": 4.029602362663871,
+      "computed": 4.00080395486405,
+      "abs_error": 0.02879840779982068,
+      "ok": true,
+      "kind": "script",
+      "note": "worst at q=6: 4.0008(V+1) against 2(1+rho) = 4.0296; exceeds the printed 4: True; min step/delta = 0.985423 >= 1-8/(9m') = 0.985185"
     },
     {
       "name": "T5 pairing V Delta/2 + G",
@@ -266,7 +284,7 @@
   ],
   "classification": {
     "name": "OEOEE_AUDIT_FALSIFIED",
-    "total_checks": 29,
+    "total_checks": 31,
     "failures": 1,
     "failing_names": [
       "Half A pairing Lambda3 0.89 m'^{14/9}"
