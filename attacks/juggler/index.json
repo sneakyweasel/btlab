@@ -355,7 +355,8 @@
         "J-live-set-ladder-factorisation",
         "J-excursion-parity-monomial-twists",
         "J-first-renewal-density-three-phases",
-        "J-renewal-chain-conserves-depth"
+        "J-renewal-chain-conserves-depth",
+        "J-the-meander-is-shared-and-supplies-paper-bs-polynomial"
       ],
       "aliases": [],
       "nk_cluster": null

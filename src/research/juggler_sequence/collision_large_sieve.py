@@ -761,6 +761,14 @@ def tilted_live_meander(L: float, d: int | None = None, C: int = 20) -> dict[str
     e, pc = math.exp(theta), p_of_C(C)
     mu = pc * (LOG2_3 - 1.0) - (1.0 - pc)
     sigma = math.sqrt(pc * (LOG2_3 - 1.0) ** 2 + (1.0 - pc) - mu**2)
+    # The tilt weights are unnormalised and grow like e^{theta d} times the
+    # surviving path count, overflowing float64 near d = 780: the total is
+    # 3.0e295 at d = 750 and inf at d = 800.  Only the shape of the distribution
+    # is used, so rescaling by the running total each step is free and keeps the
+    # DP exact at any depth.  Before this, `tilted_live_meander` failed at large
+    # d as `KeyError: 0.1` from its quantile loop -- an overflow reported as a
+    # missing key -- and `tilted_live_split` was worse: inf/inf returned nan with
+    # no exception at all.
     st = {1: e}
     for t in range(2, d + 1):
         nx: dict[int, float] = {}
@@ -769,6 +777,9 @@ def tilted_live_meander(L: float, d: int | None = None, C: int = 20) -> dict[str
                 nx[o] = nx.get(o, 0.0) + w
             if (o + 1) * LOG2_3 - t > -L:
                 nx[o + 1] = nx.get(o + 1, 0.0) + w * e
+        scale = sum(nx.values())
+        if scale > 0.0:
+            nx = {o: w / scale for o, w in nx.items()}
         st = nx
     tot = sum(st.values())
     us = sorted((o * LOG2_3 - d, w / tot) for o, w in st.items())
@@ -823,6 +834,14 @@ def tilted_live_split(L: float, d: int, C: int = 20) -> dict[str, Any]:
 
     theta = theta_of_C(C)
     e = math.exp(theta)
+    # The tilt weights are unnormalised and grow like e^{theta d} times the
+    # surviving path count, overflowing float64 near d = 780: the total is
+    # 3.0e295 at d = 750 and inf at d = 800.  Only the shape of the distribution
+    # is used, so rescaling by the running total each step is free and keeps the
+    # DP exact at any depth.  Before this, `tilted_live_meander` failed at large
+    # d as `KeyError: 0.1` from its quantile loop -- an overflow reported as a
+    # missing key -- and `tilted_live_split` was worse: inf/inf returned nan with
+    # no exception at all.
     st = {1: e}
     for t in range(2, d + 1):
         nx: dict[int, float] = {}
@@ -831,6 +850,9 @@ def tilted_live_split(L: float, d: int, C: int = 20) -> dict[str, Any]:
                 nx[o] = nx.get(o, 0.0) + w
             if (o + 1) * LOG2_3 - t > -L:
                 nx[o + 1] = nx.get(o + 1, 0.0) + w * e
+        scale = sum(nx.values())
+        if scale > 0.0:
+            nx = {o: w / scale for o, w in nx.items()}
         st = nx
     tot = sum(st.values())
     con = sum(w for o, w in st.items() if o * LOG2_3 - d < 0.0)

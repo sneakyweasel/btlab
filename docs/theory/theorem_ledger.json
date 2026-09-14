@@ -9898,5 +9898,16 @@
    "tests/research/juggler_sequence/test_paper_b_prefix_count.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "id": "J-the-meander-is-shared-and-supplies-paper-bs-polynomial",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "Paper C's meander is Paper B's, and it is the object that explains the loss Paper B measures but does not derive. tilted_live_meander reports implied_meander_c = (mean + L)/(sigma sqrt d), the endpoint height in units of sigma sqrt d. Under the C = 20 tilt the walk has drift -0.050 and c is about 0.84, which is not universal and should not be. Paper B works under the zero-drift tilt, C to infinity (J-the-two-tilts-are-one-measure), and there c converges to the Brownian meander endpoint mean sqrt(pi/2) = 1.25331: measured 1.2302, 1.2364, 1.2447 at d = 400, 1000, 4000, the gap halving as d quadruples. This matters because Paper B's Hoeffding loss is entirely polynomial (J-paper-c-exponent-is-paper-b-rate-at-level-zero): the exponent is sharp to one part in eighty and the whole 25.7x at d = 24 is the d^{-3/2} meander_constant names, which is d^{-1/2} for survival and a further d^{-1} for the endpoint sitting at height ~sqrt(d). So the polynomial Paper B measures empirically is the meander Paper C analyses. DEFECT FOUND AND FIXED on the way. Both tilted DPs carried unnormalised weights growing like e^{theta d} times the surviving path count, overflowing float64 near d = 780 -- total 3.0e295 at d = 750, inf at d = 800. tilted_live_meander then failed as KeyError: 0.1 from its quantile loop, an overflow reported as a missing key; tilted_live_split only forms ratios, so inf/inf gave it nan with no exception at all, which is the more dangerous of the two. Both now rescale by the running total each step, which is free because only the shape is read and leaves every value below the old threshold bit-identical. Current callers all sit below d = 780, so no published number moves. Measured, not proved, and not a bound.",
+  "source": "docs/research_journal.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_collision_large_sieve.py"
+  ],
+  "related_conjectures": []
  }
 ]
