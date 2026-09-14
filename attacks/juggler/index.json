@@ -119,6 +119,20 @@
       "nk_cluster": null
     },
     {
+      "id": "barrier_collapse",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/barrier_collapse.py",
+      "test": "tests/research/juggler_sequence/test_barrier_collapse.py",
+      "dossier": "docs/problems/juggler_barrier_collapse.md",
+      "data_dir": "data/research/juggler/barrier_collapse",
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
+    },
+    {
       "id": "block_map_q",
       "kind": "branch",
       "probe": "src/research/juggler_sequence/block_map_q.py",
