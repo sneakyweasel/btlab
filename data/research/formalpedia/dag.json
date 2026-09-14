@@ -2236,18 +2236,19 @@
       }
     },
     "Problems.Juggler.PaperBChainRule": {
-      "declarations": 24,
+      "declarations": 27,
       "depends_on": [],
       "file": "formal/Problems/Juggler/PaperBChainRule.lean",
       "ledger": [
         "J-paper-b-E-is-the-exponent-walk",
+        "J-paper-b-count-is-the-level-zero-bad-count",
         "J-paper-b-defect-coefficient-chain",
         "J-paper-b-linearisation-E-lt-2",
         "J-paper-b-screen-is-a-walk-condition"
       ],
       "papers": [],
       "trust": {
-        "kernel": 24
+        "kernel": 27
       }
     },
     "Problems.Juggler.PrefixBunched": {
@@ -2957,7 +2958,7 @@
   "totals": {
     "edges": 229,
     "edges_before_reduction": 1739,
-    "ledger_rows_placed": 399,
+    "ledger_rows_placed": 400,
     "nodes": 179
   }
 }
