@@ -5765,6 +5765,20 @@
       "nk_cluster": "Flights"
     },
     {
+      "id": "orphan_declaration_gate",
+      "kind": "dossier_only",
+      "probe": null,
+      "test": null,
+      "dossier": "docs/problems/juggler_orphan_declaration_gate.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PARK",
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
+    },
+    {
       "id": "paper_b_consolidation",
       "kind": "dossier_only",
       "probe": null,

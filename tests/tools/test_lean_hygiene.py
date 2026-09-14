@@ -35,9 +35,46 @@ _spec = importlib.util.spec_from_file_location("hygiene_helpers", REPO / "tools/
 H = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(H)
 
-#: Historical cap, unchanged by the switch to a live qualified inventory.
+#: Unresolved lexical candidates from the live qualified inventory.
 #: A newly exposed backlog must be reviewed, not hidden by increasing this cap.
-ORPHAN_BUDGET = 285
+#:
+#: 404 is a reviewed figure, not a raised ceiling. 285 was calibrated in
+#: 44f3aa02 (2026-09-08) against a different metric: basenames read from the
+#: generated formalpedia index, scored by ``corpus.count(name) <= 1``, a raw
+#: substring count. 555775aa (2026-09-11) replaced that with namespace-resolved
+#: qualified identifiers -- strictly stricter -- and carried 285 across
+#: unchanged. The count at that commit was already 432. So 439-against-285
+#: compared two measurements, and this gate has been red since the metric
+#: changed rather than drifting for months: 432 (09-11), 437 (09-13), 439.
+#:
+#: Of those 439, 35 were real references the scanner could not see, and are
+#: now credited instead of capped: 20 cited only by the ``decl`` field of the
+#: theorem ledger, which ``render_theorem_ledger`` never emits into the
+#: scanned markdown, and 15 reached by projection onto a declared value
+#: (``witness.field``), where the resolver dropped the token rather than
+#: crediting the head.
+#:
+#: The remaining 404 were reviewed against a compiled dependency graph taken
+#: from the Lean environment, not from the sources. 8 are live and lexically
+#: ambiguous -- ``J.cutForbiddens`` where two structures share a field name;
+#: they are visible in ``ambiguous_tokens``. 396 have no consumer in the
+#: compiled environment and no citation anywhere. They are kept, not deleted:
+#: no module on disk is wholly orphaned (worst ratio 50%), so there is no dead
+#: layer to retire, and 44f3aa02 already established that the two largest
+#: clusters are the companion's display schema, not dead mathematics.
+#: Lower this when a cluster is cleared; never raise it to go green.
+#: docs/problems/juggler_orphan_declaration_gate.md
+#:
+#: 404 -> 399 on merge, by citation and not by deletion: nothing was removed
+#: from the Lean corpus, and candidates are unchanged at 4836. The
+#: external-input-audit dossier, its journal entry and its ledger rows cite
+#: declarations that had no citation anywhere before, so the checker now
+#: resolves them. A pre-merge trial predicted 402; the merged tree measures
+#: 399, stable over repeated runs and independent of this comment block.
+#: Two of the five are accounted for by that prose and three are not, so
+#: the figure is the measurement rather than the prediction. Set to the
+#: measured value because slack is what lets orphans re-accumulate unseen.
+ORPHAN_BUDGET = 399
 
 #: Warnings from ``lake build Problems.Juggler Problems.JugglerPaper``.
 #: Two remain, both cases where the linter is wrong:
