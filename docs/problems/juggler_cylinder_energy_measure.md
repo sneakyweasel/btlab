@@ -169,16 +169,45 @@ is the worst one.
 
 ## Open questions
 
-Whether the collapsed-but-bad cylinders survive to depth \(d(y)\) with
-mass above the per-cylinder allowances of \(\mathrm H(C,A)\) and
-\(\mathrm H_q(C,A)\) at scales where the bad words outnumber the
-collapse values (\(\Lambda^C\gg N_0^2\), i.e. \(y\gg10^{42}\) at the
-certified floor). If they do, both per-cylinder hypotheses are false
-as stated, by a construction in the pattern of `J-absorbed-cylinder`
-with a dip to a bounded value above the floor in place of absorption;
-if the long orbits of the collapse values are too rare, they survive.
+*The collapsed-fiber construction, assessed at triage (14 September
+2026; reasoning, not a theorem).* Could a dip to a bounded value give,
+at infinitely many scales, a bad cylinder of depth \(d(y)\) with mass
+above the per-cylinder allowances of \(\mathrm H(C,A)\) and
+\(\mathrm H_q(C,A)\), in the pattern of `J-absorbed-cylinder`? Two
+regimes, neither of which does it for large \(y\).
+
+*Early dip.* The word \(OE^m\) with \(m\approx L(y)\) collapses the
+scale onto values \(v\approx N_0^{\theta}\), \(\theta\in[1.5,3]\), in
+fibers of mass about \(y/N_0^{\theta}\), a fixed fraction of \(y\); but
+the word stays \(L(y)\)-bad to depth \(d(y)\) only if the orbit of \(v\)
+stays above the floor for about \((C-1)L(y)\) further steps, and the
+entrance time into \([1,N_0]\) is bounded on any bounded set of values
+(assuming the conjecture there; a divergent \(v\) would settle the
+matter the other way). So for large \(y\) no such \(v\) exists: early
+collapse produces absorbed cylinders, never bad ones at depth \(d(y)\).
+
+*Late dip.* The bad mass at depth \(d-k\) whose walk is within \(O(1)\)
+of \(-L(y)\) is a constant fraction of the bad mass (the crossing rate,
+about a tenth per step in the data) and sits in fibers \(F_v\) of
+bounded values \(v\); every member of \(F_v\) has next letter the
+parity of \(v\), whatever its word, so a bad cylinder \([w]\) is a
+union of pieces \([w]\cap F_v\) and its odd share is the odd-\(v\) mass
+fraction. At computable scales each word sees one value, which is the
+measured single-fiber cylinder. Asymptotically the backward tree of a
+bounded value branches through about \(2v\) even preimages at each
+even step, so its paths into \((y,2y]\) are numerous and their parity
+words diverse, and a bad word can receive pieces from many values of
+both parities, with a share near \(\tfrac12\) up to a fluctuation of
+order one over the square root of the number of values it sees. The
+construction therefore does not refute the per-cylinder hypotheses;
+it reduces them, at depth \(d(y)\), to whether the parity words of the
+backward paths of bounded values are equidistributed enough that every
+bad word sees both parities in comparable mass. That is a nested-floor
+parity question of Paper B's type at growing depth: Appendix C's
+question, not a construction. No branch is opened for it.
+
 The global forms (\(\mathrm P_\theta(C)\), \(\mathrm M_{\theta,q}(C)\))
-are untouched by either outcome.
+are untouched by any of this.
 
 ## Decision
 
@@ -194,12 +223,15 @@ constant fraction of the bad mass in the collapse regime, and Paper C's
 depth \(d(y)\) lies in the collapse regime as soon as
 \(\Lambda^{C+1}\gg N_0\). Do not reopen as a
 larger enumeration, a sampled run at \(10^{20}\), or a different
-second-moment normalisation. Best next question: a human-proof attempt
-at the collapsed-fiber construction, that is, a bad word of depth
-\(d(y_k)\) at infinitely many scales whose cylinder is a single fiber
-of a bounded value with a long orbit above the floor and mass
-\(\gg y_k(\log y_k)^{-A}\); or its refutation by counting the long
-orbits of the collapse values.
+second-moment normalisation. Best next question: none on the
+per-cylinder side without a new analytic idea. The collapsed-fiber
+construction was assessed at triage (Open questions) and fails for
+large \(y\) in both regimes; what it leaves is the equidistribution of
+backward-path parity words at growing depth, which is Appendix C's
+question in another dress. On the formal side the one decoration left
+is a certified numerical instance of the unconditional corollaries,
+for example \(e(C)>\tfrac7{10}\) at \(C=25\) by rational bounds on the
+entropy function.
 
 ## Publication assessment
 
