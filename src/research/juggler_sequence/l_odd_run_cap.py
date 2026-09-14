@@ -278,7 +278,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
         "",
         "Any finite `K` must come from non-existence of `n` following",
         "`L+O^k`, not from `power_bound_contracts`. That realization",
-        "question is not an word census in this phase.",
+        "question is not an itinerary census in this phase.",
         "",
     ]
     lines.extend(["## Lean", ""])

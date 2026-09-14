@@ -154,7 +154,7 @@ def next_oo_start(n: int, *, up: bool = True, cap: int = 10_000) -> int | None:
 def word_independent_hull(n_lo: int, n_hi: int, odd_count: int, length: int) -> dict[str, Any]:
     """Envelope hull of T_w on [n_lo, n_hi] using only (L,o).
 
-    Upper: T ≤ n^{3^o/2^L} = n^{P_L}. Lower without an word is 1.
+    Upper: T ≤ n^{3^o/2^L} = n^{P_L}. Lower without an itinerary is 1.
     """
 
     _, theta = o_min_and_theta(length)

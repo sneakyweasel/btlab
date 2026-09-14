@@ -45,7 +45,7 @@ realizes `k=5` and does not follow `W_5`.
 
 Any finite `K` must come from non-existence of `n` following
 `L+O^k`, not from `power_bound_contracts`. That realization
-question is not an word census in this phase.
+question is not an itinerary census in this phase.
 
 ## Lean
 

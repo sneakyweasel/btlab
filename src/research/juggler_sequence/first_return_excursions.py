@@ -637,7 +637,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
         "## G. Same word / same (k,o) / same run",
         "",
         f"- multi-start words: `{scan['same_word']['multi_start_words']}`",
-        f"- margin varies on an word: `{scan['same_word']['margin_varies']}`",
+        f"- margin varies on an itinerary: `{scan['same_word']['margin_varies']}`",
         f"- (k,o) groups that split M: `{scan['same_ko']['groups_split']}`",
         f"- strongest (k,o) split: `{scan['same_ko']['strongest']}`",
         f"- run-signature groups that split M: `{scan['same_run']['groups_split']}`",
