@@ -49154,3 +49154,39 @@ Separately, my own patch script mangled `\approx` into `\a` + `pprox` inside a
 non-raw Python string --- the hazard already recorded for `\r` and `\t` --- and
 the dry run passed anyway, because the anchors it checks did not include the
 replacement text. Caught by grepping the script, not by any gate.
+
+## Paper C's version of the same step is already sharp
+
+Having found that Theorem 6.1 retreats from its own sharp threshold, the obvious
+question is whether Paper C does the same. It does not.
+
+`chernoff_exponent` bounds `P(u_t > -L for all t <= d)` at `d = CL` by the
+endpoint bound `exp(-d KL(p_C))` with `p_C = (1 - 1/C)/log2(3)`. That threshold
+is exact: the bad event is `o log2(3) - d > -L`, i.e. `o/d > (1 - L/d)/log2(3)`,
+and `L/d` is exactly `1/C`. There is no leading letter spent before the counting
+starts, so there is no `-1` to absorb and nothing to retreat from.
+
+What Paper C does give away is the barrier constraint, and it costs far less
+than in Paper B. The barrier `-L` recedes proportionally to `d`, so the cheapest
+path reaches it only at time `d`, and against the exact DP the ratio measures
+`17.5, 24.0, 32.5, 43.4, 63.1` at `d = 190 .. 3040` --- log-log slope `0.46`
+over a sixteenfold range, with `ratio/sqrt(d)` inside `[1.11, 1.28]` throughout.
+`Theta(sqrt d)`, against Paper B's `d^(3/2)` on top of an exponential.
+
+Recorded as a checked negative. It closes a question rather than opening one:
+the repair that worked for Theorem 6.1 is unavailable here and would gain a
+square root at most.
+
+### A bug the measurement could not have avoided finding
+
+Both exact DPs ended with `sum(counts.values()) / 2.0**d`. The counts are exact
+Python integers at any depth, but the float power raises `OverflowError` at
+`d >= 1024` --- so the two functions were unusable exactly at the depths where
+the asymptotics they exist to measure become readable. Integer division rounds
+correctly at any depth and underflows to `0.0` rather than raising.
+
+Two of my own brackets were again tighter than the data: `ratio/sqrt(d)` topped
+out at `1.27068` against an asserted `<= 1.27`, and I assumed
+`odd_start = 2 x bad_word_probability` at `L = 80`, where the doubling holds
+only for `L < 1` and the true factor is `1.206`. The second was already
+documented in the test directly above mine.

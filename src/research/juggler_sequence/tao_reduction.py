@@ -106,7 +106,9 @@ def bad_word_probability(L: float, d: int) -> float:
         counts = nxt
         if not counts:
             return 0.0
-    return sum(counts.values()) / 2.0**d
+    # `2.0**d` overflows at d >= 1024 while the DP itself is exact; integer
+    # division rounds correctly at any depth and underflows to 0.0 gracefully.
+    return sum(counts.values()) / 2**d
 
 
 def azuma_exponent(C: float, q: float) -> float:
@@ -271,7 +273,9 @@ def bad_word_probability_odd_start(L: float, d: int) -> float:
         counts = nxt
         if not counts:
             return 0.0
-    return sum(counts.values()) / 2.0 ** (d - 1)
+    # Integer division, for the same reason as `bad_word_probability`: the float
+    # power overflows at d >= 1025 although the counts are exact.
+    return sum(counts.values()) / 2 ** (d - 1)
 
 
 def chernoff_biased_exponent(C: int, q: float) -> float:

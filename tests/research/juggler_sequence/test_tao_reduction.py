@@ -9,6 +9,7 @@ from research.juggler_sequence.tao_reduction import (
     REQUIRED_RATE,
     bad_word_probability,
     chernoff_exponent,
+    kl_bernoulli,
     least_C,
     required_depth,
     scale_L,
@@ -173,3 +174,62 @@ def test_required_depth_grows_like_log_log() -> None:
     d100 = required_depth(100 * math.log(10.0), 350_000_000, 0.6)
     d1000 = required_depth(1000 * math.log(10.0), 350_000_000, 0.6)
     assert d20 == 19 and d100 == 56 and d1000 == 117
+
+
+def test_the_exact_bad_word_dp_survives_past_depth_one_thousand() -> None:
+    """Both exact DPs divided by a float power, which overflows while the DP does not.
+
+    ``2.0**d`` raises OverflowError at ``d >= 1024``; the counts themselves are exact
+    Python integers at any depth, and integer division rounds correctly and underflows
+    to 0.0 rather than raising.  Before this the two functions were unusable exactly
+    where the asymptotics they exist to measure become readable.
+    """
+    from research.juggler_sequence.tao_reduction import bad_word_probability_odd_start
+
+    deep = bad_word_probability(80.0, 1520)
+    assert 0.0 < deep < 1e-13, deep
+    odd = bad_word_probability_odd_start(80.0, 1520)
+    # L > 1 here, so the factor is strictly between 1 and 2 as
+    # test_odd_start_conditioning_doubles_finite_depth_bad_probability records.
+    assert 1.0 < odd / deep < 2.0, odd / deep
+
+    # unchanged where it already worked
+    assert abs(bad_word_probability(5.0, 95) - 1.168717e-02) < 1e-8
+
+
+def test_paper_cs_chernoff_step_is_already_sharp() -> None:
+    """Paper C gives away only sqrt(d), unlike Paper B's Theorem 6.1.
+
+    Paper C bounds P(u_t > -L for all t <= d), d = C L, by the endpoint Chernoff bound
+    exp(-d KL(p_C)) with p_C = (1 - 1/C)/log2(3).  That threshold is exact -- the bad
+    event is o log2(3) - d > -L, i.e. o/d > (1 - L/d)/log2(3), and L/d is exactly 1/C
+    -- so there is no analogue of the (p+1/2)/2 retreat in
+    J-theorem-six-one-threshold-is-slack, which cost that proof three quarters of its
+    exponent.
+
+    What the endpoint bound does give away is the barrier constraint.  Because the
+    barrier -L recedes proportionally to d, the cheapest path reaches it only at time
+    d, and the cost is Theta(sqrt d) rather than Paper B's d^(3/2): measured, the ratio
+    grows like d^0.46 over a sixteenfold range in d, and ratio/sqrt(d) stays inside
+    [1.11, 1.28] throughout.
+
+    This is a checked negative: sharpening Paper C's Chernoff step is not where effort
+    should go.
+    """
+    C = least_C()
+    assert C == 19, C
+    p_C = (1 - 1 / C) / LOG2_3
+    assert abs(p_C - 0.597722924) < 1e-9, p_C
+    kl = kl_bernoulli(p_C)
+
+    scaled = []
+    for L in (10, 20, 40, 80, 160):
+        d = C * L
+        truth = bad_word_probability(float(L), d)
+        assert truth > 0.0, d
+        scaled.append(math.exp(-d * kl) / truth / math.sqrt(d))
+    assert all(1.10 <= s <= 1.28 for s in scaled), scaled
+
+    lo, hi = scaled[0] * math.sqrt(190), scaled[-1] * math.sqrt(3040)
+    slope = math.log(hi / lo) / math.log(3040 / 190)
+    assert 0.40 < slope < 0.55, slope          # sqrt, not d^(3/2)

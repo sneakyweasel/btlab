@@ -10021,5 +10021,16 @@
    "tests/research/juggler_sequence/test_paper_b_prefix_count.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "id": "J-paper-c-chernoff-step-is-already-sharp",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "Paper C's Chernoff step has no analogue of the slack found in Paper B's Theorem 6.1, and sharpening it is not where effort should go. THE THRESHOLD IS EXACT. chernoff_exponent bounds P(u_t > -L for all t <= d) at d = C L by the endpoint bound exp(-d KL(p_C)) with p_C = (1 - 1/C)/log2(3). The bad event is o log2(3) - d > -L, i.e. o/d > (1 - L/d)/log2(3), and L/d is exactly 1/C, so p_C is the break-even threshold with nothing given away -- unlike the retreat from p to (p+1/2)/2 recorded in J-theorem-six-one-threshold-is-slack, which cost that proof 75.2% of its exponent. The strictness of u_t > -L moves the threshold by at most one lattice point, an O(1/d) effect on p_C and O(1) on the bound. WHAT IS GIVEN AWAY IS ONLY sqrt(d). Bounding a barrier probability by an endpoint one does cost something, but far less than in Paper B, because the barrier -L recedes proportionally to d and the cheapest path reaches it only at time d. Against the exact DP bad_word_probability at C = 19, the ratio exp(-d KL(p_C)) / truth measures 17.5, 24.0, 32.5, 43.4, 63.1 at d = 190, 380, 760, 1520, 3040, a log-log slope of 0.46 over a sixteenfold range; ratio/sqrt(d) stays inside [1.11, 1.28] throughout. So the slack is Theta(sqrt d) rather than Paper B's d^(3/2), and rather than Paper B's published midpoint version whose overshoot is exponential. A CHECKED NEGATIVE. This is recorded because it closes a question rather than opens one: the parallel repair that worked for Theorem 6.1 is unavailable here and would gain a square root at most. Found while measuring it, and fixed: both exact DPs divided their integer counts by a float power, so bad_word_probability and bad_word_probability_odd_start raised OverflowError at d >= 1024 and 1025 -- precisely the depths at which the asymptotics they exist to measure become readable. Integer division rounds correctly at any depth and underflows to 0.0 rather than raising.",
+  "source": "docs/theory/juggler_fate_almost_all_note.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_tao_reduction.py"
+  ],
+  "related_conjectures": []
  }
 ]
