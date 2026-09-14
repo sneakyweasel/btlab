@@ -2251,6 +2251,18 @@
         "kernel": 27
       }
     },
+    "Problems.Juggler.PeriodFamily": {
+      "declarations": 14,
+      "depends_on": [],
+      "file": "formal/Problems/Juggler/PeriodFamily.lean",
+      "ledger": [
+        "J-period-family-arithmetic-in-lean"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 14
+      }
+    },
     "Problems.Juggler.PrefixBunched": {
       "declarations": 40,
       "depends_on": [
@@ -2958,7 +2970,7 @@
   "totals": {
     "edges": 229,
     "edges_before_reduction": 1739,
-    "ledger_rows_placed": 400,
-    "nodes": 179
+    "ledger_rows_placed": 401,
+    "nodes": 180
   }
 }

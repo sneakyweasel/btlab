@@ -1,0 +1,17 @@
+{
+  "start": 14750003,
+  "stop": 15000002,
+  "odds_walked": 125000,
+  "step_failures": [],
+  "bit_failures": [],
+  "other_failures": [],
+  "max_steps": 219,
+  "hardest_seed": 14805033,
+  "max_bits": 1337620,
+  "max_bits_seed": 14756009,
+  "total_steps": 745784,
+  "step_cap": 100000,
+  "bit_cap": 512000000,
+  "exact_integer": true,
+  "floating_point_used": false
+}
