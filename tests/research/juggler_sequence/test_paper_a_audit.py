@@ -10,6 +10,8 @@ from __future__ import annotations
 import hashlib
 import json
 import math
+import sys
+from pathlib import Path
 
 import pytest
 
@@ -17,11 +19,17 @@ from research.juggler_sequence import paper_a_audit as A
 from research.juggler_sequence import run_suffix_law as R
 from research.juggler_sequence.lean_paths import DATA_ROOT, DOCS_THEORY
 
+_TOOLS = Path(__file__).resolve().parents[3] / "tools"
+if str(_TOOLS) not in sys.path:
+    sys.path.insert(0, str(_TOOLS))
+
+from artifact_digest import content_sha256  # noqa: E402
+
 APPENDIX_B_CHUNK = (
     DATA_ROOT / "cycle_finance" / "floor_verify" / "N26254995" / "chunks" / "3_250002.json"
 )
 APPENDIX_B_CHUNK_SHA256 = (
-    "6303b62c9b1819deaf9715338f84899c1d75eb50dcab850a7b8fb28874ec19bc"
+    "435616f9a9ef4e880b8c30e78c4557728868896cfa52090a2b3339a8376a646d"
 )
 
 
@@ -414,8 +422,7 @@ def test_remark_3_32_census_counts_match_the_law() -> None:
 def test_appendix_b_million_certificate_is_the_opening_chunk() -> None:
     """Prop 1.3's 253 steps at 78901 live in the N26254995 opening chunk, not floor.json."""
     raw = APPENDIX_B_CHUNK.read_bytes()
-    digest = hashlib.sha256(raw).hexdigest()
-    assert digest == APPENDIX_B_CHUNK_SHA256
+    assert content_sha256(APPENDIX_B_CHUNK) == APPENDIX_B_CHUNK_SHA256
     payload = json.loads(raw)
     assert payload["max_steps"] == 253
     assert payload["hardest_seed"] == 78901

@@ -2892,67 +2892,67 @@ use the roots of the displayed defining equations.
 
 - `data/research/juggler/fate_contagion/summary.json`
 
-  SHA-256: `85030bcb5f4964b814b101683c2721efa5f7299b687afa9e399febe60343a10c`
+  SHA-256: `d322b8549e2239c5fc78279c7a579332766a3287811f73ee4d225d6eb9e5cc7b`
 
 - `data/research/juggler/tao_reduction/summary.json`
 
-  SHA-256: `76c0ae713d34569cdf8efd90231712f9281f7d5083346a2d9384c536f7cd34cc`
+  SHA-256: `2316e5339e3670d283c1983a5b5b0c11bc92101ab327c477072b7897619a587f`
 
 - `formal/Problems/Juggler/FateContagion.lean`
 
-  SHA-256: `42c5e8e94cc83a97c9a004d5f6bfe91202b9820964eb9b2790b822a025857a85`
+  SHA-256: `834198a6b0e8cc13c9fb91d9ad938f62ce5e783a3cc9009fb38334c913d5b7e2`
 
 - `formal/Problems/Juggler/CubeFiber.lean`
 
-  SHA-256: `acbf621b4651782eff7922512d096832aa20ea59a59261839b3e5926189dedba`
+  SHA-256: `2b0add4108651218c43fb741a207d3d6860525a2ad13ad1341ece9fc5c37f8e9`
 
 - `formal/Problems/Juggler/TiltedShare.lean`
 
-  SHA-256: `cfb1b2b6cbe08be3a9acc1f4fa33c9afaa2dfa73beed2125dbe0793c540e239e`
+  SHA-256: `7dcafa45a2a0e9bca182a713b495d791cf812e4c70d6472c67bf85b0b736aef4`
 
 - `formal/Problems/Juggler/FateRecursion.lean`
 
-  SHA-256: `13de9eb27d4e34b58d783d589574838028d767bcb5ea3f2bb8449e74e3be04d3`
+  SHA-256: `e6d050acc924867abcf5c03b4a3e59b62363f40bbba452e2ced83afe474dd435`
 
 - `formal/Problems/Juggler/FateFirstLetter.lean`
 
-  SHA-256: `7defa672e0ea746d14bfc88b13d40603c05097507847bc901162334bce38c4fa`
+  SHA-256: `a383c715010cb1e7323359a414aeaa99242550f59f7213049cc528232e37875a`
 
 - `formal/Problems/Juggler/FateBlockAverage.lean`
 
-  SHA-256: `b12cde9bd7fe5bb93be7054c9b8a50b4dc4962abecfbb26cac4694d2fd76a763`
+  SHA-256: `5cef5c273577376b72799732865415a91c6b91f8bdb06e79bd398d9c478d0b07`
 
 - `formal/Problems/Juggler/FateProduction.lean`
 
-  SHA-256: `37770c769607ce1fdcbf8aaa53610b591f4f2bfd08f8136e247d65304ce1d96b`
+  SHA-256: `7f933224ef6fac3accdcff64fcb6027d3fb1b19a142e6f9d8ce4511e858b06cc`
 
 - `formal/Problems/Juggler/FateOneSided.lean`
 
-  SHA-256: `6fbbd02546271fc2072439e4c88d037a80e04edf19eced4a61f8a12adef96d99`
+  SHA-256: `7ae0aa4cab061a24ef51eff381a0f4bbd4e4569ae2578f04e4c3677b5999bddc`
 
 - `formal/Problems/Juggler/FateOneSidedCorollary.lean`
 
-  SHA-256: `397e4f79c3e7bf496da9fd485e1377ac181f043cb07def59581b492bec8937c5`
+  SHA-256: `b3387d9f3feb9969ee900c6810cfa229e52c8db0f2152d23414c84666c9a01bd`
 
 - `formal/Problems/Juggler/FatePressureCorollary.lean`
 
-  SHA-256: `005ec5285b6bfe1d33df8f88b88ae1fcb2c26e73a4686dc622f751a062ce5be3`
+  SHA-256: `39bdba3c4b5505b52844243766d708e6a09a4bcbb5ec122c768b0c51ae94f03f`
 
 - `formal/Problems/Juggler/FateOneSidedAtoms.lean`
 
-  SHA-256: `973ec7afc338ee3f6ef61ee6eb2a38434ea603dbee767d35e523c7762752e888`
+  SHA-256: `9401b63621cf3af1b1aeb04c46845573760508c1e761fe3fe6a03fde9786a99f`
 
 - `formal/Problems/Juggler/FateEnergyAtoms.lean`
 
-  SHA-256: `f92b54dd95f3a4055b94424ed5947ce164075f1e84c4963afce12e7895ea8cd9`
+  SHA-256: `422f8bede16e0953c91d55b230e291ca37e6882c8210c02cb22af2837a60b8fb`
 
 - `formal/Problems/Juggler/FateCollapse.lean`
 
-  SHA-256: `b8df8a147eaff611f40954cf5e2a49ff838d4331605caae42af7ad2e5cc48410`
+  SHA-256: `56ba2f731fdd02ea1d19a6e6ef909534947c8c30b48828c72f8009901ed06e06`
 
 - `formal/Problems/Juggler/FateCertified.lean`
 
-  SHA-256: `44896d59d2a763aba3fa11c2433a14b92244ab49ed5a3fa51b9b75b03ef48996`
+  SHA-256: `57492ff859c6f3f88a6190cd5aeafd9d44a837046877be2b9576ffb048d89351`
 
 - `formal/Problems/Juggler/FateShareLaw.lean`
 
@@ -2960,7 +2960,7 @@ use the roots of the displayed defining equations.
 
 - `formal/Problems/Juggler/FateCylinderEnergy.lean`
 
-  SHA-256: `575b3ae4938c0f97f729873f375b75f0860927be11b606dcff2db2c560aca5eb`
+  SHA-256: `274cd6b960bdd1de8c1b637bd2dee86c8cbe67e883e25937812dadcbe98d6a0b`
 
 - `formal/Problems/Juggler/FateLandingWindow.lean`
 
@@ -2972,11 +2972,11 @@ use the roots of the displayed defining equations.
 
 - `formal/Problems/Juggler/FateSweep.lean`
 
-  SHA-256: `6d51546b1b82982b400e1c69b16f56f4d48bde60616dc5bf04faacc0a4ee79d3`
+  SHA-256: `a5ede4a6d25cec71d6b6c7fb99e577df3335366175dd22f361581456669a72cc`
 
 - `formal/Problems/Juggler/FateChernoff.lean`
 
-  SHA-256: `8efefa16d81760b7768fe361265d9b4c461f7a3bf82fb75c08a33aff9b5ff1ee`
+  SHA-256: `3b808649443805fa3dd41b89333afe886f3cbc7e36f1bdae23f6c93fe95a7032`
 
 - `formal/Problems/Juggler/FatePressure.lean`
 
@@ -2984,7 +2984,7 @@ use the roots of the displayed defining equations.
 
 - `formal/Problems/Juggler/FateCylinderCorollary.lean`
 
-  SHA-256: `0a0f47af277d28598e0fdddfe50e5762ff21835e88251f21d59629a2475f7ec5`
+  SHA-256: `e2ffc98f56268a31826b86f54115e0fed949e62651d05936d545cd829761b4d2`
 
 - `formal/Problems/Juggler/FateNumerics.lean`
 
@@ -2992,19 +2992,19 @@ use the roots of the displayed defining equations.
 
 - `formal/Problems/Juggler/FateFiberParity.lean`
 
-  SHA-256: `7d8d7b943da882325e1a2b6003503b4a7a75c2e832bfe8b10c196419cb6d68ee`
+  SHA-256: `bf2b1c6058c3d00f0f9cf24f11bb7bee7a17a75375c2ddc7223e065621e64131`
 
 - `formal/Problems/Juggler/FateThinFibers.lean`
 
-  SHA-256: `42307513f9cf4f8035e74049f29ce19c0c33c76a0d2c326b17b8b4e39525f745`
+  SHA-256: `3fbcd3e9f7adf13967e7494691aa8f62779630e0446fe81e813486947478cb74`
 
 - `formal/Problems/Juggler/FateContagionBound.lean`
 
-  SHA-256: `aa540158df5a0206644f49f3666f957fcdb615fe0efead577780493465d823e5`
+  SHA-256: `238cf115eca99ca070b5c29b983cbcebacf9701c5303a96a2ea96030f008d33d`
 
 - `formal/Problems/JugglerFatePaper.lean`
 
-  SHA-256: `bd45b1b303e2fdb156b60bee5b3e799eaee4ae8e20fa573cb26facf6b03fa922`
+  SHA-256: `9b1d9ae60f0c07ddb80839eba76fa3ba04b414715a307986f3d3e31f4b6ac740`
 
 - `formal/AxiomCheckPaperC.expected`
 
@@ -3012,15 +3012,15 @@ use the roots of the displayed defining equations.
 
 - `src/research/juggler_sequence/fate_contagion.py`
 
-  SHA-256: `84bafabf891e9be8c764eed222d7b72a96b4971708502cbb7dd43287deaf6ec0`
+  SHA-256: `6442eb4af160876678b734e261575c7a4ce2181b21c400697b66cf39e4a90c74`
 
 - `src/research/juggler_sequence/tao_reduction.py`
 
-  SHA-256: `73e6cfb53a094ccbc998eff6bbf422361fc6a7cbef5f32807215bae6a41c0471`
+  SHA-256: `8725a2660a6ab279b2b1c23a831053fed07064aae53a6c0eb2f306f2ab01cdcb`
 
 - `docs/theory/figures/render_paper_c_figures.py`
 
-  SHA-256: `fa186851c24f9c4bbf78ffaff6eff1e90627019c4737a99250087ed769d6dc82`
+  SHA-256: `f2590a6ec45bd859e1a5ca1eadd403187b0229285a2114f77101cfd187f43d38`
 
 The archived records retain the parameter names and values of their
 original runs (including the older pairing-only threshold). Current

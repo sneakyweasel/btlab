@@ -5,6 +5,7 @@ from __future__ import annotations
 import hashlib
 import json
 import math
+import sys
 from pathlib import Path
 
 from research.juggler_sequence.cycle_walk_charge import (
@@ -16,6 +17,12 @@ from research.juggler_sequence.cycle_walk_charge import (
     transport_bound,
     walk_budget,
 )
+
+_TOOLS = Path(__file__).resolve().parents[3] / "tools"
+if str(_TOOLS) not in sys.path:
+    sys.path.insert(0, str(_TOOLS))
+
+from artifact_digest import content_sha256  # noqa: E402
 
 ARTIFACT = Path("data/research/juggler/cycle_walk_charge/summary.json")
 DOSSIER = Path("docs/problems/juggler_cycle_walk_charge.md")
@@ -99,7 +106,7 @@ N350_KILL_DIR = Path("data/research/juggler/cycle_walk_charge/N350000000_kills")
 N350_LEFTOVERS = Path(
     "data/research/juggler/cycle_walk_charge/N350000000_parity_leftovers.json"
 )
-N350_KILL_SHA = "d16ccfed52757d4a44368a6549a8149ccbc926472737276c577912346db854ab"
+N350_KILL_SHA = "d24d6422036bafb41f032b59f9aaa118b206e5d18f07d11e5e25b36ae7afe80f"
 N350_BELOW_SURVIVOR = (
     176251,
     226759,
@@ -111,10 +118,10 @@ N350_BELOW_SURVIVOR = (
 
 
 def test_n350_walk_kills_ten_and_leaves_780239():
-    blob = b"".join(
-        (N350_KILL_DIR / f"L{length}.json").read_bytes() for length in N350_KILLS
+    assert (
+        content_sha256(*((N350_KILL_DIR / f"L{length}.json") for length in N350_KILLS))
+        == N350_KILL_SHA
     )
-    assert hashlib.sha256(blob).hexdigest() == N350_KILL_SHA
     for length in N350_KILLS:
         report = json.loads(
             (N350_KILL_DIR / f"L{length}.json").read_text(encoding="utf-8")

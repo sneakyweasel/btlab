@@ -16,7 +16,7 @@
  "all_ten_exclude": true,
  "survivor_excludes": false,
  "survivor_margin": 0.6048881510063475,
- "sha256_ten_kill_records": "d16ccfed52757d4a44368a6549a8149ccbc926472737276c577912346db854ab",
+ "sha256_ten_kill_records": "d24d6422036bafb41f032b59f9aaa118b206e5d18f07d11e5e25b36ae7afe80f",
  "parity_leftover_count": 17,
  "parity_leftover_path": "data/research/juggler/cycle_walk_charge/N350000000_parity_leftovers.json"
 }
