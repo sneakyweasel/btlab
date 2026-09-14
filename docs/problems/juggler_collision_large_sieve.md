@@ -157,10 +157,17 @@ instead of left open as a maybe.
 Three things this does **not** license. It is not a second proof of Theorem
 8.3 --- it is weaker in the exponent and conditional on more. It does not
 reopen the fenced Parseval / large-sieve object. And its seventeen rows carry
-their own tags but have not been audited since they were written: they were
-extracted from an unmerged branch on 14 September 2026 on the strength of
-compiling, linting and passing their tests, which is a statement about the code
-and not about the proofs.
+their own tags, and they were extracted from an unmerged branch on 14 September
+2026 on the strength of compiling, linting and passing their tests, which is a
+statement about the code and not about the proofs. **Audited 14 September 2026.**
+No claim was wrong and no tag fraudulent; fourteen rows needed no change. Three
+carried a `REQUIRED_RATE` that had since moved, the Phase-0 census was marking
+its operative depth at the retired constant (without changing the verdict), two
+test assertions could not fail, and `J-tau-le-sigma` drew "at most 4%" from two
+single-seed draws that a third seed exceeds. All five are fixed; see the research
+journal. What is still not audited is nothing in the bookkeeping --- it is that
+the eight EXACT --- HUMAN PROOF rows have been read for internal consistency and
+backing, not independently re-derived.
 
 ## Publication assessment
 
