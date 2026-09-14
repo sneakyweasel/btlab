@@ -1,5 +1,63 @@
 # Research journal
 
+## 2026-09-14 — The orphan gate was measuring the wrong relation
+
+`test_orphan_declarations_do_not_grow` reported 439 unresolved candidates
+against a cap of 285, and the brief I was handed bucketed them by namespace
+and concluded the parked cubic-band and quartic-band layers should be retired.
+Both halves of that turned out to be wrong, and the check's own docstring said
+why: it "is not a dead-code proof", and type-directed references "need
+compiled evidence". Nobody had gone and got the compiled evidence.
+
+So I got it. The main checkout carries a full build and its Lean sources are
+byte-identical to this branch modulo line endings, so pointing the module
+search path at that build and walking the constant map gives the real relation:
+which constants mention a Juggler declaration in their type or value. 10346
+Juggler constants, against 4836 public source declarations.
+
+The 439 partition four ways:
+
+     12  live, consumed in the compiled environment
+     20  cited only by a theorem-ledger `decl` field
+      8  live, but reached only through an ambiguous token
+    384  no consumer and no citation
+
+`SeamData.cycleParent` has eleven consumers and was on the list, because every
+use of it is a projection on a binder. `JoinFigure.rigidity` has eight. The
+retirement I was asked to consider would have deleted both.
+
+Two defects, both repaired. The resolver dropped `witness.field` entirely when
+the head was a known declaration and the field was a structure component, so
+the use of the head was lost rather than left ambiguous; it now credits the
+head. And `render_theorem_ledger` never emits the `decl` field into the
+markdown it renders, while JSON is outside the scanned suffixes — so a row in
+the laboratory's own declaration registry was not a citation. Twenty
+declarations were orphans for that reason alone. The generated formalpedia
+inventories stay excluded, which was the point of the 2026-09-08 correction.
+
+That leaves 404, of which 8 are known live and lexically ambiguous.
+
+The cap is the other half of the story. 285 was calibrated in 44f3aa02 against
+a completely different metric — basenames from a generated index, scored by a
+raw substring count. 555775aa replaced that with namespace-resolved qualified
+identifiers, which is strictly stricter, and carried 285 across unchanged. I
+measured the count at 555775aa: 432. The gate was red the day the
+implementation landed. Since then, 432, 437, 439 across three days. It has not
+been drifting for months; it was never calibrated.
+
+Nothing is deleted. No module on disk is wholly orphaned — the worst ratio is
+50 percent, and the largest clusters are `IdealCycleMin` and `IdealLollipop`,
+which are the companion's display schema, exactly as 44f3aa02 already found.
+There is no dead layer to retire. The namespace grouping that made one look
+coherent was not a module grouping at all: the twenty declarations under
+namespace `Problems.Juggler.CubicGrid` sit in five different modules, and the
+`CubicGrid` module contributes one.
+
+Budget set to 404 with the reasoning recorded at the constant, and the
+remaining 396 recorded as a reviewed backlog rather than a green number.
+[Dossier](problems/juggler_orphan_declaration_gate.md).
+
+
 ## 2026-09-14 — The audit: one identity, one unread equation, one closed door
 
 Ran the external-input audit after `cycle_wuwang_reduction`, on the
@@ -84,6 +142,7 @@ own.
 
 Decision **PROMOTE**, and the concentration half **CLOSE**. Best next
 question: none here.
+
 
 ## 2026-09-14 — Corollary 4.11 was citing the wrong measure
 
@@ -8718,7 +8777,6 @@ Best next question
   search bound, recorded only as COMPUTATIONALLY OBSERVED / NOT
   OBSERVED WITHIN SEARCH BOUND?
 ```
-
 
 
 ## Juggler word atlas scientific census
@@ -20617,7 +20675,6 @@ Best next question
 ```
 
 
-
 ## Juggler flight envelope (fly exponent = peak walk weight)
 
 - **Date:** 2026-09-01
@@ -20664,7 +20721,6 @@ Best next question
 - does the re-anchored excursion envelope compose across
   valleys into a whole-trajectory height law?
 ```
-
 
 
 ## Paper A editorial pass (two-review arbitrage; not a numbered milestone)
@@ -23830,7 +23886,6 @@ Best next question
 - unchanged from the fan-minimum terminal: unboundedness of
   the dangerous-position partial quotients of log 2/log 3
 ```
-
 
 
 ## Gap transfer, short-cycle reduction, and the mechanical window (not a numbered milestone)
@@ -43337,7 +43392,6 @@ The new obstructions show why a proof must retain absolute unit-cell
 positions or couple the branch offsets discarded by gap subtraction.
 The no-cycle claim is unproved; M>=m^3 is separately unresolved, and no
 floor, period lower bound, Paper A source or release artifact is changed.
-
 
 
 ## 2026-09-09 — Cubic-band results consolidated into Lean and Paper A
