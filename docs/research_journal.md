@@ -48712,3 +48712,61 @@ Every one of those is the recurrence of the walk showing up as a cost. The
 identity needed none of them: it is duality plus renewal, and the number was
 already available from the series. I should have written the identity first and
 reached for a computation only if it disagreed.
+
+
+## Does any of this help termination or no-cycle? Mostly no, and one exact coincidence
+
+Worth asking directly, since a week of structure is not the same as a step
+toward either theorem.
+
+### Termination: no
+
+The Tao-type reduction needs a *rate* --- an almost-all bound at
+`(log y)^{-e}` with `e > 1 - lambda** = 0.5074`. Everything in this thread lives
+below that. I showed Paper B's Hoeffding exponent is already sharp to one part
+in eighty and that the entire `25.7x` loss at `d = 24` is polynomial. **A
+polynomial factor cannot move an exponent.** So deriving `10.90` moves no
+`lambda`, no `e`, and no least `C`.
+
+The one place an exponential factor does appear --- Proposition 7.1's error term
+improving by `2^d/N_d` --- was already recorded in the module before any of this.
+What I added there is the constant, which is second order to a gain that was
+known.
+
+### No-cycle: one walk, and a split that closes a door
+
+The CycleMin finance walk is `u_k = log2(3/2)(#odds) - (#evens)`. That is this
+walk: `o log2(3) - t = o log2(3/2) - #evens`, identically, checked over every
+word to length 15 with no mismatch. Its standing constraint `u_k >= 0` is Paper
+B's non-contracting condition. So the object the no-cycle work charges and the
+object Paper B counts are the same object.
+
+A cycle needs one thing more: near-closure, `|o log2(3) - d|` tiny, i.e. `o/d` an
+exceptionally good approximation to `BETA` --- exactly what `cycle_gap_baker`
+bounds below through Rhin and Simons--de Weger. So both sides are reading
+`BETA`'s continued fraction.
+
+**And they take opposite halves of it.** The cycle module's near-convergent
+`RECORD_LENGTHS` below 1200 are
+
+```text
+  3, 11, 19, 84, 569, 1054
+```
+
+and those are *exactly* the semiconvergent denominators at which the least-peak
+staircase does **not** step --- the convergents approaching `BETA` from the other
+side. Equality, checked rather than eyeballed.
+
+### Why that is a closed door and not a lever
+
+The tempting hope is a squeeze: force a contradiction by making a cycle pay the
+non-contracting cost at the depth where it wants to close. The split says you
+cannot. **The lengths at which a cycle is Diophantine-plausible are exactly the
+lengths at which the non-contracting constraint demands no new peak.** Had the
+two coincided there would have been a tension worth exploiting. They are
+complementary, so there is nothing to play off against anything.
+
+That is worth recording precisely because it is the argument a reader would try
+next. It does not weaken either side; it says the two sides do not combine in the
+obvious way, and the reason is one continued fraction being read from two
+directions.
