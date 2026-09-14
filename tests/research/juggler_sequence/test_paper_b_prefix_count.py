@@ -950,6 +950,85 @@ def _beta_semiconvergent_denominators(limit: int) -> set[int]:
     return out
 
 
+def test_the_meander_constant_has_a_closed_form_factor() -> None:
+    """The constant is kappa * G(1), with kappa closed and G(1) a series in N_d.
+
+    Wiener-Hopf / Spitzer: with P_theta(w) = 2^-d e^{theta S(w)}/M(theta)^d,
+
+        sum_d z^d E[e^{-theta S_d}; survive]  =  exp( sum_n (z^n/n) a_n ),
+        a_n = E[e^{-theta S_n}; S_n >= 0] ~ kappa / sqrt(n).
+
+    The exponent carries a -2 sqrt(pi) kappa sqrt(1-z) singularity, so the
+    coefficients go like kappa G(1) d^{-3/2} and the meander constant is
+
+        kappa * G(1),   G(1) = sum_d N_d / (2 rho)^d.
+
+    The walk is NOT on a lattice -- S_n = o log 3 - n log 2 with log3/log2
+    irrational -- so no lattice correction enters, and kappa is the non-lattice
+    local-limit constant 1/(sqrt(2 pi) theta sigma).
+
+    Two closed forms fall out. The variance is exactly the product of the two step
+    sizes, sigma^2 = log(3/2) log 2, and theta* = log(log2/log(3/2))/log 3.
+    """
+    a, b = math.log(3.0) - math.log(2.0), math.log(2.0)
+    theta, _rho, _p, sigma = _tilt_constants()
+
+    # sigma^2 is exactly the product of the step sizes
+    assert abs(sigma ** 2 - a * b) < 1e-15, (sigma ** 2, a * b)
+    # and theta has the stated closed form
+    assert abs(theta - math.log(b / a) / (a + b)) < 1e-15
+
+    kappa = 1.0 / (math.sqrt(2 * math.pi) * theta * sigma)
+    assert abs(kappa - 1.541814521) < 1e-8, kappa
+
+
+def test_the_derived_constant_matches_the_measured_one() -> None:
+    """kappa * G(1) is about 10.90, and c_d oscillates around it rather than rising to it.
+
+    G(1) = sum_d N_d/(2 rho)^d is computed with an exact integer mask (o log2(3) >= d
+    tested as o * floor(log2(3) * 10^30) >= d * 10^30, exact for any depth here) and
+    a d^{-3/2} tail. It settles at 7.07, giving kappa G(1) = 10.90 stable across
+    d = 1600 to 12000.
+
+    c_d = (N_d/2^d)/(rho^d d^{-3/2}) does NOT climb monotonically to that: it reads
+    10.757, 11.046, 11.034, 11.063, 10.566 at d = 1600, 3200, 6400, 9600, 12000. It
+    oscillates, which is why a single sample is not the limit -- an earlier reading
+    of this called 11.03 "the true limit" on the strength of d = 3200 alone.
+    """
+    _theta, rho, _p, _sigma = _tilt_constants()
+    from decimal import Decimal, getcontext
+
+    getcontext().prec = 50
+    K = 10 ** 30
+    l23 = int((Decimal(3).ln() / Decimal(2).ln()) * K)
+    scale = 1.0 / (2 * rho)
+
+    st, G, last = {0: 1.0}, 1.0, 0.0
+    D = 1600
+    for d in range(1, D + 1):
+        nx: dict[int, float] = {}
+        dk = d * K
+        for o, w in st.items():
+            for do in (0, 1):
+                o2 = o + do
+                if o2 * l23 >= dk:
+                    nx[o2] = nx.get(o2, 0.0) + w * scale
+        st = nx
+        last = sum(st.values())
+        G += last
+
+    theta, _r, _pp, sigma = _tilt_constants()
+    kappa = 1.0 / (math.sqrt(2 * math.pi) * theta * sigma)
+    g_full = G + 2.0 * last * D                    # d^{-3/2} tail
+    assert 7.0 < g_full < 7.15, g_full
+    assert 10.8 < kappa * g_full < 11.0, kappa * g_full
+
+    # the exact-mask DP reproduces Paper B's own count, compared in logs since
+    # (2 rho)^1600 overflows a float
+    expected = math.log(B.non_contracting(D)) - D * math.log(2 * rho)
+    assert abs(math.log(last) - expected) < 1e-9, (math.log(last), expected)
+
+
 def _tilt_constants() -> tuple[float, float, float, float]:
     """(theta*, rho, p*, sigma) for the zero-drift tilt, in nats."""
     a, b = math.log(3.0) - math.log(2.0), math.log(2.0)

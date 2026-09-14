@@ -48576,3 +48576,82 @@ needs the ladder-height law of this particular step distribution, and that is
 the same Wiener--Hopf machinery Paper C already carries --- which at `L = 0`
 degenerates, as recorded earlier. The two facts sit together uncomfortably and
 that is worth leaving visible rather than resolved.
+
+
+## The constant, derived
+
+Two corrections first, both to yesterday's entry, and the second is the one that
+opened the route.
+
+**The walk is not on a lattice.** `S_n = o log 3 - n log 2` and `log3/log2` is
+irrational, so the values are dense. I had attributed the missing factor to a
+"lattice ladder-height correction". There is no lattice correction. What was
+missing was a Wiener--Hopf term, and once named it is computable.
+
+**And `11.03` was not a limit.** It was one sample, at `d = 3200`, of a quantity
+that oscillates.
+
+### The derivation
+
+Wiener--Hopf / Spitzer, with `P_theta(w) = 2^-d e^{theta S(w)}/M(theta)^d`:
+
+```text
+  sum_d z^d E[e^{-theta S_d}; survive]  =  exp( sum_n (z^n/n) a_n ),
+  a_n = E[e^{-theta S_n}; S_n >= 0]
+```
+
+Non-lattice, so the local limit theorem gives `a_n ~ kappa/sqrt(n)` with
+`kappa = 1/(sqrt(2 pi) theta sigma)`. That puts a `-2 sqrt(pi) kappa sqrt(1-z)`
+singularity in the exponent at `z = 1`, and coefficient extraction gives
+`[z^d] ~ kappa G(1) d^{-3/2}`. So
+
+```text
+  meander constant = kappa * G(1),      G(1) = sum_d N_d / (2 rho)^d
+```
+
+**Two closed forms fall out, and one is pretty.** The variance is exactly the
+product of the two step sizes:
+
+```text
+  sigma^2 = log(3/2) * log 2 = 0.281046996501        (checked to 1e-15)
+  theta*  = log( log 2 / log(3/2) ) / log 3 = 0.488077132
+  kappa   = log 3 / ( sqrt(2 pi) log(log2/log(3/2)) sqrt(log(3/2) log 2) )
+          = 1.541814521
+```
+
+`sigma^2 = AB` is not a coincidence of arithmetic: with zero drift `betaA =
+(1-beta)B`, so `sigma^2 = betaA·A + (1-beta)B·B = betaA(A+B) = AB`.
+
+### The number
+
+`G(1)` computed with an exact integer mask --- `o log2(3) >= d` tested as
+`o * floor(log2(3) * 10^30) >= d * 10^30`, exact at any depth reached --- and a
+`d^{-3/2}` tail:
+
+```text
+  d        1600     3200     6400     9600    12000
+  c_d    10.757   11.046   11.034   11.063   10.566
+  G(1)    7.063    7.072    7.069    7.069    7.059
+  kG(1)  10.890   10.904   10.899   10.899   10.884
+```
+
+`kappa G(1)` is stable at **10.89--10.90**. `c_d` oscillates around it rather
+than climbing to it, which is what makes any single sample --- including the
+`11.03` I quoted --- not the limit. The oscillation is the same three-distance
+signature as the least-peak staircase.
+
+### What is and is not proved
+
+The identity and the closed forms are proved. `G(1)` is a convergent series
+evaluated numerically, not in closed form, so the constant is derived *up to that
+series*: `kappa` is exact, `G(1) = 7.07` is computed. Getting `G(1)` in closed
+form would need the full Wiener--Hopf factorisation of this step distribution,
+which is the object Paper C carries and which degenerates at `L = 0`.
+
+The earlier note that the exponent follows from the continuum and the constant
+does not now reads differently: the exponent *and* `kappa` follow from the
+continuum plus non-lattice local limit theory. What does not is `G(1)`, and that
+is a statement about the walk's own arithmetic rather than about its diffusive
+limit.
+
+No bound moves.
