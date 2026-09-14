@@ -47535,3 +47535,127 @@ declaration-level diff is exact about why: zero declarations added, zero
 removed, twenty-eight entries differing, and `line` the only field that differs
 in any of them. No `kind`, no `trust`, no `ledger`, no `doc`. Eighty-three
 warnings left the build and not one proof changed.
+
+
+## Auditing the seventeen collision rows: the mathematics held, the bookkeeping did not
+
+The collision / large-sieve rows were extracted on 14 September 2026 on the
+strength of compiling, linting and passing their tests, which the dossier said
+plainly was a statement about code and not about proofs. This is the separate
+pass it said they deserved.
+
+The rows are the ones added by `94006052`, identified from that commit rather
+than by keyword --- twenty-three rows mention collisions or the large sieve, and
+six of those predate the extraction. The seventeen sort exactly as the dossier
+claims: eight **EXACT --- HUMAN PROOF**, six **OBSERVATION**, one **REFUTED**,
+one **CONJECTURE**, one **REPARAMETERIZATION**.
+
+**The verdict is that no claim is wrong and no tag is fraudulent.** Every row has
+a backing test, all thirty-four pass, and the backing is real rather than
+decorative: the ladder factorisation checks to 1e-10 against the direct DP, the
+damping lemma reports zero violations across 132796 steps, and the three-phase
+model reproduces `f(M)` fibre by fibre. What did not hold up was the
+bookkeeping, in five places.
+
+### A retired constant, still quoted in three rows
+
+The unconditional `REQUIRED_RATE` moved from 0.5520 to 0.5074 after this work was
+written, which drops the half-exponent least `C` from 32 to 30. Three rows still
+carried the old branch: `J-collision-bound-half-exponent` (the constant, the
+threshold, the graded family `[32,27,24,22,20]`, and the γ = 1 value),
+`J-collision-bound-phase0-census` (`ceil(32 L) = 17`), and `J-tau-le-sigma`
+(the containment cost quoted at `C = 32`).
+
+The λ*** branch of every one of them matches the live module exactly --- 28,
+0.4608, `[28,24,21,19,18]`. Only the unconditional branch drifted, because only
+the unconditional rate moved.
+
+What makes this worth recording is where it did *not* happen. The test file was
+updated when the rate moved, and it even keeps the old family deliberately:
+
+```python
+assert [graded_least_C(g) for g in (0, .25, .5, .75, 1)] == [30, 25, 23, 21, 19]
+assert [graded_least_C(g, 1.0 - 0.4480) for g in ...] == [32, 27, 24, 22, 20]
+```
+
+So the module was pinned and the prose was not, because nothing compares prose
+to module. The ledger is the artifact a reader consults and the one thing no gate
+reads.
+
+### The census was measuring at the retired depth
+
+`collision_large_sieve.py` computed the price live from `REQUIRED_RATE` and then
+marked the Phase-0 census's operative depth with a hardcoded `ceil(32 * L)`. So
+`ratio_at_the_operative_depth` --- the single number that answers "does the
+hypothesis hold where it is actually used" --- was evaluated one letter deep of
+where it is used.
+
+It does not change the verdict, and saying so precisely matters more than the
+finding: at y = 1e12 the ratio is 0.9885 at d = 16 against 0.9922 at d = 17, both
+far below anything that would fire the falsifier, which stays unfired. The depth
+is now derived from `half_exponent_least_C(REQUIRED_RATE)` and the census records
+which `C` it came from. Checked both ways: at the live rate it returns C = 30,
+depth 16; forced to 0.5520 it reproduces C = 32, depth 17 exactly.
+
+### Two assertions that could not fail
+
+```python
+assert out["link_letters_covered_by_paper_b"] == out["paper_b_depth"] - 2
+assert census["operative_depth_C32"] == math.ceil(32 * census["L"]) == 17
+```
+
+The first is `2 == 4 - 2`: both values are literals in the module, independent of
+every argument, verified by reading the source. The second compares the module's
+frozen 32 against the test's copy of the same 32. Neither could ever fail, and
+the second is why the retired constant survived a rate change inside a test file
+that was otherwise updated for it.
+
+Replacing them turned up a third hazard in the assertion next door.
+`identity_holds` is `via_M == via_n`, which is also true when both sides are
+empty --- a silently degenerate computation would have passed. Measured, it is
+not degenerate (`via_M = [8446, -77, -681]`), and the non-degeneracy is now
+asserted rather than assumed.
+
+### A measured claim that a seed draw exceeds
+
+`J-tau-le-sigma` reported the containment cost at y = 1e20 as 1.037 and 1.026 and
+concluded the substitution "loses at most 4% at the scales reachable". Both
+figures are single-seed draws, and the statistic is seed-sensitive at the order
+of the effect it reports. Over seeds 3, 7, 11, 17, 23, 31 at 4000 starts:
+
+```text
+C = 20   1.0185 .. 1.0476
+C = 30   1.0000 .. 1.0446
+C = 32   1.0000 .. 1.0483
+```
+
+So "at most 4%" is exceeded by a draw, and the honest reading is 2--5% at
+y = 1e20 and free at the other three scales. The row now says that, with the
+seeds. The exact content of the row is untouched --- tau <= sigma is a proof,
+read off Lemma 8.1 at t = sigma, and the direction of the substitution does not
+depend on the size of the loss.
+
+### What was right, and one thing left alone
+
+`J-collision-bound-phase0-census` is the model the others should follow. It
+states "depths ≤ 18", names y = 1e12 as the only scale whose operative depth is
+inside the measured range, and closes "it is not evidence that the hypothesis
+holds." That caveat is load-bearing and was worth checking: at 1e20, 1e30 and
+1e50 the operative depths are 40, 59 and 82 against a census ceiling of 18, so
+the census reaches the operative depth at one scale in four, exactly as the row
+says. The dossier's own numbers were correct throughout; it was the rows that
+lagged it.
+
+Two rows mix tag languages, and that is left as an observation rather than a
+change. `J-walsh-downweighting-survives-live` is **EXACT --- HUMAN PROOF** and
+carries a CORRECTED block from adversarial review saying its quantitative claim
+"is not the trivial bound and is not unconditionally true", with the superseded
+numbers still stated first. `J-live-set-ladder-factorisation` embeds a
+**COMPUTATIONALLY VERIFIED** sub-claim inside an EXACT row. The second of those
+is arguably good practice rather than a defect --- labelling a sub-claim with its
+own weaker tag is what honest mixing looks like. The first is a question about
+what an EXACT tag may contain, which is a judgement about claim strength and
+belongs to the maintainer, not to an audit.
+
+Fourteen of the seventeen rows needed no change at all; three carried the
+retired constant and now do not.

@@ -1,5 +1,5 @@
 {
-  "git_commit": "551e49dbfb30470c5908bbd55bca84ae006dfaf0",
+  "git_commit": "41b9fba4e2b6b850ea6c9be8a6d28b0ad10ae7d0",
   "N0": 350000000,
   "price": {
     "true_least_C_unconditional": 20,
@@ -100,7 +100,8 @@
       "L": 0.5257840793414886,
       "d_max": 18,
       "seed": 20260906,
-      "operative_depth_C32": 17,
+      "operative_C": 30,
+      "operative_depth": 16,
       "rows": [
         {
           "d": 1,
@@ -284,7 +285,7 @@
         },
         {
           "d": 16,
-          "is_operative_depth": false,
+          "is_operative_depth": true,
           "sample_support": 28.38221381267739,
           "bad_words_available": 4228,
           "bad_words_occupied": 4113,
@@ -296,7 +297,7 @@
         },
         {
           "d": 17,
-          "is_operative_depth": true,
+          "is_operative_depth": false,
           "sample_support": 16.010673782521682,
           "bad_words_available": 7495,
           "bad_words_occupied": 6301,
@@ -327,7 +328,8 @@
       "L": 1.2485578843236127,
       "d_max": 18,
       "seed": 20260906,
-      "operative_depth_C32": 40,
+      "operative_C": 30,
+      "operative_depth": 38,
       "rows": [
         {
           "d": 1,
@@ -554,7 +556,8 @@
       "L": 1.8263717930623344,
       "d_max": 18,
       "seed": 20260906,
-      "operative_depth_C32": 59,
+      "operative_C": 30,
+      "operative_depth": 55,
       "rows": [
         {
           "d": 1,
@@ -781,7 +784,8 @@
       "L": 2.55759290016367,
       "d_max": 18,
       "seed": 20260906,
-      "operative_depth_C32": 82,
+      "operative_C": 30,
+      "operative_depth": 77,
       "rows": [
         {
           "d": 1,
@@ -1006,7 +1010,7 @@
     "worst_ratio_to_finite_sample_null": 1.0086731531903788,
     "worst_depth_to_depth_growth_of_that_ratio": 1.0085014170847968,
     "ratio_at_the_operative_depth": {
-      "1e12": 0.9922143683971238
+      "1e12": 0.9885318763011235
     },
     "worst_raw_excess_over_fair_coin": 2.090109102062185,
     "worst_excess_where_the_sample_supports_it": 1.126919937533901,
