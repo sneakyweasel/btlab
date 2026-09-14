@@ -1,5 +1,90 @@
 # Research journal
 
+## 2026-09-14 — The audit: one identity, one unread equation, one closed door
+
+Ran the external-input audit after `cycle_wuwang_reduction`, on the
+theory that the Rhin/Wu-Wang miss was not a one-off. Primary target was
+Paper C's concentration constants, because `tao_reduction` uses
+Azuma-Hoeffding in the biased branch and Chernoff-KL in the unbiased one,
+and Azuma is a range-only bound that is strictly lossy for two-valued
+increments. That looked like the same shape of defect: the sharp tool
+already in the file, applied on one path and not the other.
+
+It is the same defect, and it is worth nothing. Azuma is lossy — at
+`C=19, q=1/2` it gives `0.523541` against KL's `0.526927` — and the
+integers do not move. Least `C` is 19 at `q=0.5` and 41 at `q=0.55` under
+both inequalities. Only `q=0.6` moves, 223 to 214, and nothing consumes
+`q=0.6`.
+
+Second target, same file: the endpoint Chernoff bound against the exact
+first-passage probability, which `bad_word_probability` already computes
+by DP and which nothing uses to set a constant. The excess is real and
+vanishes. At `C=18` it is 0.2205, 0.1231, 0.0673 at `L=20,40,80`, while
+`excess*L` *grows*: 4.41, 4.92, 5.38. That is `O(log L / L)`, not
+`O(1/L)`, so the limit is `e(C)` and the surplus is a finite-depth
+artefact. The reason is standard: a negative-drift walk conditioned to
+stay above a level pays the same exponential cost as one merely ending
+above it, so the endpoint bound already has the right rate. Both are now
+in negative knowledge with the numbers, because I would otherwise have
+proposed the Bernstein/Freedman version of the first one within a month.
+
+A note on method. `bad_word_probability` divides by `2.0**d` and
+overflows to `inf` past `d = 1023`, so the asymptotics I needed were not
+readable from the existing function at all — at `L=10` the exponent reads
+0.89 against a bound of 0.48 and looks like a large permanent gap. Only
+at `L=80`, which needs the logarithmic form, does it come down to 0.55
+and the trend become visible. I nearly concluded there was a real gap
+from the small-`L` numbers. The lesson is narrow: when a quantity is a
+limit, compute it where the limit is visible, and if the existing helper
+cannot go there, that is a fact about the helper and not about the
+mathematics.
+
+**The half that paid.** Assembling every Diophantine input the cycle side
+can use turned out to collapse to one line. Everything enters through a
+lower bound on `Lambda = o log3 - L log2`, and
+`|Lambda| = L log3 |alpha - o/L| >= c L^(1-mu)` feeds
+`n log n <= (2/c) L^mu`. So `p + 1 = mu` exactly:
+
+    the closure-threshold exponent IS the irrationality measure of
+    log2/log3 that you can prove.
+
+Which is the clean reason for the Dirichlet floor I wrote this morning as
+a separate observation: `mu >= 2` for every irrational, so no Diophantine
+theorem ever takes the cycle target below `L^2`. It also makes every
+future import a one-line comparison instead of a derivation.
+
+**The unread equation.** Paper A cites Rhin's Proposition on p. 160 and
+takes equation (7), through Simons-de Weger, to print `L^14.3`. Equation
+(8) of that same Proposition is reported in the literature —
+Spiegelhofer-Wallner, *Collisions of digit sums in bases 2 and 3*,
+arXiv:2105.11173, introduction — as `mu(log3/log2) <= 8.616`, which
+converts to `L^8.616`. A sharper statement one equation further down the
+same page of the same citation.
+
+It changes nothing today: Wu-Wang's 5.1163051 beats 8.616 and is what the
+laboratory now uses. What it changes is the *effective* companion. Wu-Wang
+is eps-asymptotic with an implied constant; when you need an explicit one
+you quote Rhin, and the right Rhin row is 8.616, not 14.3.
+
+I have left it UNVERIFIED and load-bearing on nothing, with a test
+asserting that an unverified row is never the one in use. I am relying on
+a third-party report and have not read Rhin. Recording it as a finding
+while refusing to use it is the whole point: the failure mode this branch
+exists to catch is exactly a citation trusted without being read to the
+end, and I am not going to commit that error in the act of documenting
+it. Reading p. 160 equation (8) is a library errand.
+
+The two findings are the same shape, and so is the peer's orphan result
+from today — 439 lexical candidates of which 12 have real compiled
+consumers. A cheap indirect measure standing in for the expensive real
+one, and being believed: lexical references for compiled consumers, one
+equation for a whole Proposition, a range bound for a Bernoulli tail.
+That is worth more as a standing suspicion than either finding is on its
+own.
+
+Decision **PROMOTE**, and the concentration half **CLOSE**. Best next
+question: none here.
+
 ## 2026-09-14 — Corollary 4.11 was citing the wrong measure
 
 Paper A Corollary 4.11 substitutes `(a,b,c) = (0,-L,o)` into an
