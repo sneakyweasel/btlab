@@ -105,6 +105,20 @@
       "nk_cluster": "Juggler language, residual, and geometry"
     },
     {
+      "id": "bad_cylinder_excess",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/bad_cylinder_excess.py",
+      "test": "tests/research/juggler_sequence/test_bad_cylinder_excess.py",
+      "dossier": "docs/problems/juggler_bad_cylinder_excess.md",
+      "data_dir": "data/research/juggler/bad_cylinder_excess",
+      "lean": [],
+      "conjecture": [],
+      "decision": "PARK",
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
+    },
+    {
       "id": "block_map_q",
       "kind": "branch",
       "probe": "src/research/juggler_sequence/block_map_q.py",
