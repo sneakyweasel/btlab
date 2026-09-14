@@ -501,11 +501,6 @@ def analyze(edges: list[dict[str, Any]], *, n_max: int = N_MAX) -> dict[str, Any
         for row in ok
         if row["n"] in DEFINITIONAL + HARD_PROBES[:2] + (5, 7, 11)
     ]
-    inverse_new = any(
-        rec.get("cell") not in {"Pred_O(m)", "Pred_O then Pred_E^1", "Pred_O then Pred_E^{}".format(rec.get("b"))}
-        and rec.get("ok")
-        for rec in inverse_examples
-    )
     # inverse is always the existing cells; flag only if a start is missing
     inverse_cells = all(rec.get("contains_start") or not rec.get("ok") for rec in inverse_examples)
 

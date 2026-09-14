@@ -29,6 +29,7 @@ from research.juggler_sequence.lean_paths import (
     DOCS_RESEARCH,
     JUGGLER_DIR,
     RESIDUALS,
+    declares_name,
     engine_floor_text,
     juggler_text,
 )
@@ -328,7 +329,6 @@ def functions_census(rows: list[dict[str, Any]]) -> dict[str, Any]:
                 }
             )
 
-    history_keys = ("A", "G", "cell")
     history_varies = []
     for y, grp in by_y.items():
         hist = {(item["A"], item["G"], item["cell"]) for item in grp}
@@ -490,7 +490,7 @@ def lean_api_present() -> dict[str, bool]:
     floor = engine_floor_text()
     combined = text + corpus
     named = {name: f"def {name}" in text or f"inductive {name}" in text for name in EXISTING_DEFS}
-    forbidden_hits = [name for name in FORBIDDEN_ENGINES if f"def {name}" in combined or f"structure {name}" in combined]
+    forbidden_hits = [name for name in FORBIDDEN_ENGINES if declares_name(combined, name)]
     return {
         "sorry_free": "sorry" not in combined and "admit" not in combined,
         **named,

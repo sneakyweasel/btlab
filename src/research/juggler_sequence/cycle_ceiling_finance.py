@@ -314,8 +314,6 @@ def log_peak_row(n: int, k: int, log2_tau_base: float, base_index: int) -> dict[
 def killing_thresholds(n: int, *, heights: list[int], m: int = 3) -> dict[str, int]:
     """Least odd p that kills m=3 under each proved constant."""
 
-    theta = theta_of()
-    need = theta * LEAN_LOG_CERT
     six_p = None
     inv_p = None
     start = n if n % 2 else n + 1

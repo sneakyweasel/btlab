@@ -403,7 +403,6 @@ def run_probe(
             rho = L1 / L0 if L0 else 0.0
             eta = H / L0 if L0 else 0.0
             c_val = _log_ratio(L1, L0)
-            a_val = _log_ratio(H, L0)
             witness = {
                 "n": n,
                 "L": L0,

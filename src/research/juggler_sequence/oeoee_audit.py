@@ -142,11 +142,9 @@ def t4_step_ratio(m_prime: int = 60) -> dict[str, Any]:
 
     ratio = (1 + 1 / m_prime) ** (8 / 9)
     # number of w in an annulus piece of length d_max is <= d_max/d_min + 1
-    per_piece = ratio + 1
     # at most 2 pieces per integer, <= V+2 integers in a range of length V
     # 2 * (V+2) * (ratio+1) / (V+1) -> 2(ratio+1) ~ 4.03 at m'=60, -> 4 as m' grows
     implied = 2.0 * (ratio + 1.0)
-    ok = implied <= PRINTED["t4_annulus"] + 0.05 or m_prime >= 2
     # For m' >= 2, ratio <= 1.5^{8/9} ~ 1.42, implied ~ 4.84.  The printed 4
     # undercounts at m'=2.  For m' >= 20, ratio <= 1.094, implied <= 4.19.
     # The Half B pad (35.5 vs 28.44) covers a 4 -> 5 retune.

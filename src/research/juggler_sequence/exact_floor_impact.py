@@ -631,6 +631,17 @@ def _fmt_pct(value: float | None) -> str:
     return f"{100.0 * value:.3f}%"
 
 
+def _fmt_ratio(value: float | None) -> str:
+    """Three decimals, or the literal ``None``.
+
+    Kept as a helper rather than a nested f-string: reusing the outer quote
+    inside a replacement field needs PEP 701, and CI runs Python 3.11.
+    """
+    if value is None:
+        return "None"
+    return f"{value:.3f}"
+
+
 def write_research_note(summary: dict[str, Any]) -> None:
     descent = summary["descent"]
     pe = summary["pe"]
@@ -687,7 +698,7 @@ def write_research_note(summary: dict[str, Any]) -> None:
             f"- E-certificates: `{descent['e_certs']}` with exact descending even "
             f"`{descent['e_certs_exact']}` (observed {_fmt_pct(descent['e_observed'])}, "
             f"baseline {_fmt_pct(descent['e_baseline'])}, ratio "
-            f"{descent['e_ratio'] if descent['e_ratio'] is None else f'{descent['e_ratio']:.3f}'})",
+            f"{_fmt_ratio(descent['e_ratio'])})",
             f"- class mix, start is a square: `{descent['class_start_square']}`",
             f"- class mix, mid-path isolated exact: `{descent['class_mid_isolated']}`",
             f"- class mix, no isolated exact: `{descent['class_none']}`",

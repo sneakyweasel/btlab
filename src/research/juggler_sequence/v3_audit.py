@@ -409,7 +409,6 @@ def assembly() -> dict[str, Any]:
         + 8 * PRINTED["case4_over_Y"]
     )
     printed = PRINTED["assembly"]
-    ok = at_16 <= printed and crude > printed
     return _row(
         "12.5 assembly 400 for m' >= 16",
         printed,

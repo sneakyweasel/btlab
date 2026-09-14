@@ -862,7 +862,6 @@ def phase1_payload(
 ) -> dict[str, Any]:
     matrix = []
     for item in reports:
-        strongest = item.strongest
         survivors = len(item.survivors)
         if survivors:
             first = "none on the stated domain"

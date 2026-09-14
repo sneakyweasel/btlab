@@ -452,7 +452,6 @@ def summarize_walk(walk: dict[str, Any]) -> dict[str, Any]:
     margin = None
     if walk["returned"] and return_state is not None and isinstance(return_state, int):
         margin = (n - return_state) / n
-    log_peak = L_peak  # log log; also keep log peak
     log_peak_nat = None
     if peak_step is not None:
         if walk["peak"] is not None:
@@ -947,7 +946,6 @@ def decide(payload: dict[str, Any]) -> dict[str, Any]:
 
     freq_green = p_close
     named = False
-    words = [e["word"][:8] for e in exc]
     o_runs = [e["initial_O_run"] for e in exc]
     only_long_o = bool(o_runs) and sum(1 for r in o_runs if r >= 3) >= max(1, int(0.8 * len(o_runs)))
     mods = Counter(e["n_mod8"] for e in exc)

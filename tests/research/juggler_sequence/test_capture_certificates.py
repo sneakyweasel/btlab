@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from research.juggler_sequence.capture_certificates import (
+    CLASS_ESCAPE,
     CLASS_FRAME,
     LEAN_THEOREMS,
     classify,
@@ -78,6 +79,22 @@ def test_classify_framework():
     assert "global_termination" in text
     kinds = {row["kind"] for row in known_blocks()}
     assert "CAPTURE" in kinds and "DESCENT" in kinds
+
+
+def test_classify_escape_path_is_reachable():
+    """The non-capture branch used to raise NameError on an unbound `large`.
+
+    It is the branch that fires exactly when a large witness is not capture,
+    so the probe crashed on the one input it exists to report.
+    """
+    lean = dict.fromkeys(LEAN_THEOREMS, True) | {"sorry_free": True}
+    blocks = [
+        {"word": "OEO", "n": 9, "kind": "ESCAPE"},
+        {"word": "EOO", "n": 12, "kind": "DESCENT"},
+    ]
+    decision = classify(blocks, lean)
+    assert decision["classification"] == CLASS_ESCAPE
+    assert "OEO" in decision["reason"]
 
 
 def test_committed_artifacts_schema():
