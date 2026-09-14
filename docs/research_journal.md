@@ -44751,3 +44751,32 @@ one of those four hypotheses, which is Appendix C's question, and the
 exponential sums that would bring 0.7 down to 0.51. Twenty-eight Lean
 rows, four human, twenty-six modules, 339 declarations in the
 artifact.
+
+
+## Exceptional atoms cost C less
+
+Philippe set the loop to proceed with the next best question, and the
+ranking put Section 10(d)'s first paragraph first: Theorem 9.1 with
+the share bound allowed to fail on bad atoms of total mass
+y (log y)^{-B} at each depth. On the exponential-moment proof it is
+one extra term. An exceptional bad atom sends at most its whole mass
+to its odd child, which costs (x - a_q) #[w] x^{o(w)} in the tilted
+mass, so the recursion gains (x-1)(1-q) exc x^t next to the error's
+(x-1) err (2x)^t, and everything downstream is the same bookkeeping.
+I factored the tail estimate into one lemma used twice, once with
+z = 2x for the error and once with z = x for the exceptional mass,
+and the difference between the two is the whole point: the
+exceptional atoms are not doubled at each depth, so their condition
+is B > C log_2 x + 1 + e where the error's is A > C(1 + log_2 x) + 1
++ e. Both are sufficient and not sharp, as before; the paper's
+B > e_q(C) is the Markov absorption of the martingale proof and is
+not restated.
+
+So the weakest one-sided hypothesis the paper states now runs to the
+conjecture with nothing else assumed. This is the form the cylinder
+energy of Section 10(d) is meant to supply: a second-moment bound on
+how cylinders split would give, by Cauchy--Schwarz, exactly a bound on
+the mass of atoms with a large bias. That composition is the next
+unit, and after it the pincer's analytic question is a single
+mean-square statement. Twenty-nine Lean rows, four human,
+twenty-seven modules, 351 declarations in the artifact.

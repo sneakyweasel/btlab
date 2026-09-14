@@ -30080,6 +30080,174 @@
       "trust": "kernel"
     },
     {
+      "doc": "The one-sided hypothesis with exceptional atoms: at each depth `1 \u2264 t < d` there is a set `E` of words of total cylinder mass at most `exc` such that every `L`-bad word outside `E` sends at most the share `q` of its members, plus `err`, to an odd next letter.",
+      "file": "formal/Problems/Juggler/FateOneSidedAtoms.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-one-sided-atoms"
+      ],
+      "line": 42,
+      "module": "Problems.Juggler.FateOneSidedAtoms",
+      "name": "OneSidedShareExc",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The original hypothesis is the case of no exceptional atoms.",
+      "file": "formal/Problems/Juggler/FateOneSidedAtoms.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-one-sided-atoms"
+      ],
+      "line": 49,
+      "module": "Problems.Juggler.FateOneSidedAtoms",
+      "name": "oneSidedShareExc_of_share",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`H_q(C, A)` with exceptional atoms of mass `y (log y)^{-B}` at the scale `y`.",
+      "file": "formal/Problems/Juggler/FateOneSidedAtoms.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-one-sided-atoms"
+      ],
+      "line": 56,
+      "module": "Problems.Juggler.FateOneSidedAtoms",
+      "name": "OneSidedBoundExc",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateOneSidedAtoms.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-one-sided-atoms"
+      ],
+      "line": 59,
+      "module": "Problems.Juggler.FateOneSidedAtoms",
+      "name": "oneSidedBoundExc_of_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**One depth, with exceptional atoms.** Under the hypothesis at depth `1 \u2264 t < d`, `badMass (t+1) \u2264 a_q \u00b7 badMass t + (x - 1) (err (2x)^t + (1 - q) exc x^t)`.",
+      "file": "formal/Problems/Juggler/FateOneSidedAtoms.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-one-sided-atoms"
+      ],
+      "line": 67,
+      "module": "Problems.Juggler.FateOneSidedAtoms",
+      "name": "badMass_succ_le_exc",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Unrolled.** For `t + 1 \u2264 d`, `badMass (t+1) \u2264 x a_q^t N + (x-1) t (err (2x)^t + (1-q) exc x^t)`, using `a_q \u2264 2x` and `a_q \u2264 x`.",
+      "file": "formal/Problems/Juggler/FateOneSidedAtoms.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-one-sided-atoms"
+      ],
+      "line": 175,
+      "module": "Problems.Juggler.FateOneSidedAtoms",
+      "name": "badMass_le_exc",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Theorem 9.1 with exceptional atoms, exact.**",
+      "file": "formal/Problems/Juggler/FateOneSidedAtoms.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-one-sided-atoms"
+      ],
+      "line": 219,
+      "module": "Problems.Juggler.FateOneSidedAtoms",
+      "name": "one_sided_bound_exc",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The main term at the re-centring tilt, split off: `(x a^{d-1} N + R) / x^{p d} = (x/a) N e^{-d D(p \u2016 q)} + R / x^{p d}`.",
+      "file": "formal/Problems/Juggler/FateOneSidedAtoms.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-one-sided-atoms"
+      ],
+      "line": 238,
+      "module": "Problems.Juggler.FateOneSidedAtoms",
+      "name": "main_term_eq",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Theorem 9.1 with exceptional atoms at the re-centring tilt.**",
+      "file": "formal/Problems/Juggler/FateOneSidedAtoms.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-one-sided-atoms"
+      ],
+      "line": 256,
+      "module": "Problems.Juggler.FateOneSidedAtoms",
+      "name": "one_sided_bound_kl_exc",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`z^{d-1} \u2264 \u039b^{C log\u2082 z}` once `d - 1 \u2264 C log\u2082 \u039b`, for `z \u2265 1` and `\u039b \u2265 1`.",
+      "file": "formal/Problems/Juggler/FateOneSidedAtoms.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-one-sided-atoms"
+      ],
+      "line": 274,
+      "module": "Problems.Juggler.FateOneSidedAtoms",
+      "name": "pow_le_rpow_scale_gen",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**One tail term.** At a scale `y \u2265 max(N\u2080, 2)`, with `d = \u2308C L(y)\u2309` and `z \u2265 1`, `(d-1) z^{d-1} \u00b7 y (log y)^{-A} \u2264 K_d M_z \u00b7 y (log y)^{C log\u2082 z + 1 - A}`.",
+      "file": "formal/Problems/Juggler/FateOneSidedAtoms.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-one-sided-atoms"
+      ],
+      "line": 296,
+      "module": "Problems.Juggler.FateOneSidedAtoms",
+      "name": "tail_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The absorption with exceptional atoms.** Under `H_q(C, A)` with exceptional atoms of mass `y (log y)^{-B}` at all large scales, with `q < p_C`, `A > C(1 + log\u2082 x) + 1 + e`, `B > C log\u2082 x + 1 + e` and `e < e_{C,q}`, the odd failures in `(y, 2y]` number at most `y (log y)^{-e}` for all large `y`.",
+      "file": "formal/Problems/Juggler/FateOneSidedAtoms.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-one-sided-atoms"
+      ],
+      "line": 378,
+      "module": "Problems.Juggler.FateOneSidedAtoms",
+      "name": "oddFailures_le_of_exc",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Section 10(d)'s corollary, with the contagion bound as a hypothesis.**",
+      "file": "formal/Problems/Juggler/FateOneSidedAtoms.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-one-sided-atoms"
+      ],
+      "line": 601,
+      "module": "Problems.Juggler.FateOneSidedAtoms",
+      "name": "exc_conj_of_contagion",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Section 10(d)'s corollary with nothing else assumed.** The one-sided hypothesis with exceptional atoms of mass `y (log y)^{-B}` at all large scales above a certified floor, with `C \u2265 5`, `0 < q < p_C`, `A > C(1 + log\u2082 x) + 1 + e`, `B > C log\u2082 x + 1 + e` and `7/10 < e < e_{C,q}`, gives that every positive integer reaches `1`.",
+      "file": "formal/Problems/Juggler/FateOneSidedAtoms.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-one-sided-atoms"
+      ],
+      "line": 619,
+      "module": "Problems.Juggler.FateOneSidedAtoms",
+      "name": "exc_implies_conjecture",
+      "trust": "kernel"
+    },
+    {
       "doc": "The one-sided hypothesis `H_q(C, A)` at the scale `y`: every `L(y)`-bad cylinder of depth `1 \u2264 t < d(y) = \u2308C L(y)\u2309` sends at most the share `q` of its members, plus `y (log y)^{-A}`, to an odd next letter.",
       "file": "formal/Problems/Juggler/FateOneSidedCorollary.lean",
       "kind": "def",
@@ -83816,6 +83984,7 @@
         "Problems.Juggler.FateLandingWindow",
         "Problems.Juggler.FateNumerics",
         "Problems.Juggler.FateOneSided",
+        "Problems.Juggler.FateOneSidedAtoms",
         "Problems.Juggler.FateOneSidedCorollary",
         "Problems.Juggler.FatePressure",
         "Problems.Juggler.FatePressureCorollary",
@@ -84965,6 +85134,20 @@
         {
           "id": "J-fate-one-sided-moments",
           "statement": "Paper C Theorem 9.1 (the one-sided form) in exact form, by exponential moments and without the martingale, carrying out the paper's remark after Proposition 9.3. For a tilt x >= 1 let badMass(t) be the sum over the L-bad words w of length t of #[w] x^{o(w)}, the tilted mass of the bad cylinders of depth t. Under the one-sided hypothesis OneSidedShare (every L-bad cylinder of depth 1 <= t < d sends at most q #[w] + err of its members to an odd next letter), bad words being prefix-closed and a cylinder splitting into its two children, badMass(t+1) <= (1 + (x-1) q) badMass(t) + (x-1) err (2x)^t (badMass_succ_le), which unrolls to badMass(t+1) <= x (1 + (x-1) q)^t N + (x-1) err t (2x)^t with N the odd starts of (y, 2y] (badMass_le). Lemma 8.1 and the Markov tilt put every odd failure of (y, 2y] in a bad cylinder of depth d with at least p_C d odd letters (oddFailures_card_le_badMass), so for every y >= 1 and every d >= max(1, C L(y)), L(y) = log_2(log 2y / log N_0), above a certified floor N_0 >= 2: #{odd failures in (y, 2y]} <= (x a_q^{d-1} N + (x-1) err (d-1) (2x)^{d-1}) / x^{p_C d} with a_q = 1 + (x-1) q, at every tilt x >= 1 and with no epsilon (one_sided_bound); at the re-centring tilt x = p_C (1-q)/(q (1-p_C)) the main term is (x/a_q) N exp(-d D(p_C || q)) (one_sided_bound_kl, on tilt_pow_ratio and tilt_exponent_eq_kl), the exponent C D(p_C || q)/log 2 of Proposition 9.3, which the paper records is at least the Azuma exponent e_q(C). NOT formalized: the error term carries (2x)^{d-1} / x^{p_C d} where the martingale proof's Markov step carries 2^d, so absorbing it into y (log y)^{-r} needs A > C (1 + (1 - p_C) log_2 x) + r in place of the paper's A > C + r; that absorption, the substitution d = ceil(C L(y)) and the displayed asymptotic form (log 2y / log N_0)^{-(e_q(C) - epsilon)} are human. Nothing here bounds a cylinder and nothing here is a halt theorem.",
+          "tag": "EXACT \u2014 LEAN VERIFIED"
+        }
+      ]
+    },
+    "Problems.Juggler.FateOneSidedAtoms": {
+      "declarations": 14,
+      "file": "formal/Problems/Juggler/FateOneSidedAtoms.lean",
+      "imports": [
+        "Problems.Juggler.FateOneSidedCorollary"
+      ],
+      "ledger": [
+        {
+          "id": "J-fate-one-sided-atoms",
+          "statement": "Paper C Section 10(d), first paragraph: Theorem 9.1 with exceptional atoms, on the exponential-moment proof. OneSidedShareExc y L q err exc d: at each depth 1 <= t < d there is a set E of words of total cylinder mass at most exc such that every L-bad word outside E sends at most q #[w] + err of its members to an odd next letter; the original hypothesis is the case E empty (oneSidedShareExc_of_share). An exceptional bad atom sends at most its whole mass to its odd child, which costs (x - a_q) #[w] x^{o(w)} = (x-1)(1-q) #[w] x^{o(w)} in the tilted mass, so badMass(t+1) <= a_q badMass(t) + (x-1)(err (2x)^t + (1-q) exc x^t) (badMass_succ_le_exc), unrolled to x a_q^t N + (x-1) t (err (2x)^t + (1-q) exc x^t) (badMass_le_exc), and with Lemma 8.1 and the Markov tilt the odd failures of (y, 2y] number at most (x a_q^{d-1} N + (x-1)(d-1)(err (2x)^{d-1} + (1-q) exc x^{d-1})) / x^{p_C d} (one_sided_bound_exc), whose main term at the re-centring tilt is (x/a_q) N exp(-d D(p_C || q)) (one_sided_bound_kl_exc, on main_term_eq). Absorption (oddFailures_le_of_exc, on the one-tail lemma tail_le: (d-1) z^{d-1} y (log y)^{-A} <= K y (log y)^{C log_2 z + 1 - A} for z >= 1): with err = y (log y)^{-A}, exc = y (log y)^{-B}, A > C (1 + log_2 x) + 1 + e, B > C log_2 x + 1 + e and e < C D(p_C || q) / log 2, the odd failures number at most y (log y)^{-e} for all large y; the exceptional atoms cost C less than the error because they are not doubled at each depth. Then Theorem 7.2: exc_conj_of_contagion with the contagion bound as a hypothesis, exc_implies_conjecture with nothing else assumed when 7/10 < e. This is the weakest one-sided hypothesis the paper states, and the form the cylinder-energy statistic of Section 10(d) is meant to supply. NOT formalized: the paper's condition B > e_q(C), which is the Markov absorption of the martingale proof; the conditions here are sufficient and not sharp. Nothing here bounds a share, and nothing here is a halt theorem.",
           "tag": "EXACT \u2014 LEAN VERIFIED"
         }
       ]
@@ -86543,6 +86726,7 @@
         "Problems.Juggler.FateLandingWindow",
         "Problems.Juggler.FateNumerics",
         "Problems.Juggler.FateOneSided",
+        "Problems.Juggler.FateOneSidedAtoms",
         "Problems.Juggler.FateOneSidedCorollary",
         "Problems.Juggler.FatePressure",
         "Problems.Juggler.FatePressureCorollary",
@@ -86561,7 +86745,7 @@
       "ledger": [
         {
           "id": "J-paper-c-trust-surface",
-          "statement": "Paper C's Lean surface, as a build target and an axiom artifact. formal/Problems/JugglerFatePaper.lean imports exactly the twenty-six modules the paper cites (TerminationFloor257, FateBlockAverage, FateShareLaw, FateProduction, FateOneSided, FateOneSidedCorollary, FatePressureCorollary, FateContagion, FateCylinderEnergy, CubeFiber, TiltedShare, FateRecursion, FateFirstLetter, FateLandingWindow, FateWindowCount, FateSweep, FateSweepMonotone, FateChernoff, FatePressure, FateTaoReduction, FateSeed, FateCylinderCorollary, FateNumerics, FateFiberParity, FateThinFibers, FateContagionBound) and is a lake default target; formal/AxiomCheckPaperC.lean prints the axioms of the cited declarations and AxiomCheckPaperC.expected records them: every line is a subset of [propext, Classical.choice, Quot.sound], no sorryAx, no Lean.ofReduceBool (native_decide). formalpedia's paper surface carries Paper C (root Problems.JugglerFatePaper): no declaration it reaches runs the compiler and none cites one that does. The verification table has twenty-eight Lean rows (including Lemma 4.1', Lemmas 4.2 and 4.3, Lemma 5.2, Theorem 5.3 given the production inequality (5.2) and unconditionally at 3/10, Theorem 7.2 and Theorem 7.3 with the contagion bound as a hypothesis, Corollary 8.4, and Theorem 9.1 in exact form by exponential moments and its consequence, the conjecture from the one-sided hypothesis, and the conjecture from the pressure and no-momentum hypotheses of Section 9.2) and four human proofs (the block average 4.4, the share law, the production inequality (5.2), the asymptotic bookkeeping of Sections 8--10). FateNumerics holds the two numerical moves the fiber lemmas share, roots by powering and Bernoulli at a point; FateWindowCount holds the counting move, a sequence rising by at least d has at most w/d + 1 terms in a window of width w. This row records the artifact, not a theorem; nothing here bounds a density.",
+          "statement": "Paper C's Lean surface, as a build target and an axiom artifact. formal/Problems/JugglerFatePaper.lean imports exactly the twenty-seven modules the paper cites (TerminationFloor257, FateBlockAverage, FateShareLaw, FateProduction, FateOneSided, FateOneSidedCorollary, FatePressureCorollary, FateOneSidedAtoms, FateContagion, FateCylinderEnergy, CubeFiber, TiltedShare, FateRecursion, FateFirstLetter, FateLandingWindow, FateWindowCount, FateSweep, FateSweepMonotone, FateChernoff, FatePressure, FateTaoReduction, FateSeed, FateCylinderCorollary, FateNumerics, FateFiberParity, FateThinFibers, FateContagionBound) and is a lake default target; formal/AxiomCheckPaperC.lean prints the axioms of the cited declarations and AxiomCheckPaperC.expected records them: every line is a subset of [propext, Classical.choice, Quot.sound], no sorryAx, no Lean.ofReduceBool (native_decide). formalpedia's paper surface carries Paper C (root Problems.JugglerFatePaper): no declaration it reaches runs the compiler and none cites one that does. The verification table has twenty-nine Lean rows (including Lemma 4.1', Lemmas 4.2 and 4.3, Lemma 5.2, Theorem 5.3 given the production inequality (5.2) and unconditionally at 3/10, Theorem 7.2 and Theorem 7.3 with the contagion bound as a hypothesis, Corollary 8.4, and Theorem 9.1 in exact form by exponential moments and its consequence, the conjecture from the one-sided hypothesis, and the conjecture from the pressure and no-momentum hypotheses of Section 9.2, and Theorem 9.1 with the exceptional atoms of Section 10(d)) and four human proofs (the block average 4.4, the share law, the production inequality (5.2), the asymptotic bookkeeping of Sections 8--10). FateNumerics holds the two numerical moves the fiber lemmas share, roots by powering and Bernoulli at a point; FateWindowCount holds the counting move, a sequence rising by at least d has at most w/d + 1 terms in a window of width w. This row records the artifact, not a theorem; nothing here bounds a density.",
           "tag": "COMPUTATIONALLY VERIFIED"
         }
       ]
@@ -86858,13 +87042,13 @@
     }
   },
   "totals": {
-    "declarations": 6388,
-    "declarations_with_a_ledger_row": 4405,
-    "ledger_rows_naming_a_file": 399,
-    "modules": 278,
+    "declarations": 6402,
+    "declarations_with_a_ledger_row": 4419,
+    "ledger_rows_naming_a_file": 400,
+    "modules": 279,
     "trust": {
       "compiler": 57,
-      "kernel": 6331
+      "kernel": 6345
     }
   }
 }
