@@ -927,6 +927,74 @@ def test_the_hoeffding_step_loses_a_factor_that_grows_with_depth() -> None:
         assert path > 1.5 and hoeff > 2.0, (d, path, hoeff)
 
 
+def _beta_semiconvergent_denominators(limit: int) -> set[int]:
+    """Ostrowski skeleton of BETA = log3(2): denominators q_(k-1) + j q_k."""
+    x, a = BETA_, []
+    for _ in range(14):
+        i = math.floor(x)
+        a.append(i)
+        x -= i
+        if x < 1e-15:
+            break
+        x = 1 / x
+    q = [0, 1]
+    for ai in a[1:]:
+        q.append(ai * q[-1] + q[-2])
+    q = q[1:]
+    out = set()
+    for k in range(1, len(q) - 1):
+        for j in range(0, a[k + 1] + 1):
+            d = q[k - 1] + j * q[k]
+            if 2 <= d <= limit:
+                out.add(d)
+    return out
+
+
+def test_the_least_peak_staircase_is_betas_ostrowski_skeleton() -> None:
+    """Where the least peak rises is a Diophantine fact about BETA, not a numeric one.
+
+    The walk is u_t = o log2(3) - t, so it hugs a level exactly when o/t approximates
+    1/log2(3) = BETA = log3(2). The least peak P(k) is set by how closely a reachable
+    level creeps below 1 - c, an inhomogeneous one-sided approximation to BETA, so the
+    staircase should step only at BETA's best approximation denominators.
+
+    It does. Up to length 1200 the jumps are 2, 5, 8, 27, 46, 65, 149, 233, 317, 401,
+    485 -- every one a semiconvergent denominator of BETA, with no exception. The
+    structure is visible in the differences: 2, 5, 8 steps by 3; 8, 27, 46, 65 by 19;
+    65, 149, 233, 317, 401, 485 by 84, and 3, 19, 84 are themselves convergent
+    denominators.
+
+    The converse fails, and informatively: 3, 19, 84 and 1054 are semiconvergents that
+    are not jumps. Those are the convergents approaching BETA from the other side, and
+    the staircase is one-sided by construction.
+
+    This is the same constant the Juggler Ostrowski Lean layer certifies -- its theta
+    denominators close at q = 301994, which is a convergent denominator of BETA.
+    """
+    limit = 1200
+    peaks = _least_peak(limit)
+    jumps = {k + 1 for k in range(1, len(peaks)) if peaks[k] > peaks[k - 1] + 1e-12}
+    jumps.add(2)
+    assert sorted(jumps) == [2, 5, 8, 27, 46, 65, 149, 233, 317, 401, 485], sorted(jumps)
+
+    semis = _beta_semiconvergent_denominators(limit)
+    assert jumps <= semis, sorted(jumps - semis)
+    # one-sided: the other side's convergents are semiconvergents but not jumps
+    assert {3, 19, 84} <= semis - jumps, sorted(semis - jumps)
+
+    # and 301994, which the Lean layer certifies, is a convergent denominator
+    x, a = BETA_, []
+    for _ in range(16):
+        i = math.floor(x)
+        a.append(i)
+        x -= i
+        x = 1 / x
+    q = [0, 1]
+    for ai in a[1:]:
+        q.append(ai * q[-1] + q[-2])
+    assert 301994 in q, q[:16]
+
+
 def _least_peak(kmax: int) -> list[float]:
     """Least achievable walk peak over non-contracting words, by length.
 

@@ -9887,5 +9887,16 @@
    "tests/research/juggler_sequence/test_paper_b_prefix_count.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "id": "J-least-peak-staircase-is-beta-ostrowski",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "Where the least peak of a non-contracting walk rises is a Diophantine fact about BETA, and it ties the Juggler Ostrowski layer to the Paper B / Paper C walk. The walk is u_t = o log2(3) - t, so it hugs a level exactly when o/t approximates 1/log2(3) = BETA = log3(2); the least peak P(k) is set by how closely a reachable level creeps below 1 - c (J-noncontracting-peak-supremum-log2-three), an inhomogeneous one-sided approximation to BETA. Up to length 1200 P rises at exactly 2, 5, 8, 27, 46, 65, 149, 233, 317, 401, 485, and every one is a semiconvergent denominator of BETA -- no exception. The skeleton is visible in the differences: 2, 5, 8 steps by 3; 8, 27, 46, 65 by 19; 65, 149, 233, 317, 401, 485 by 84, and 3, 19 and 84 are themselves convergent denominators, so the jumps are the Ostrowski intermediate denominators q_(k-1) + j q_k. The converse fails and says why: 3, 19, 84 and 1054 are semiconvergents that are not jumps, and those are the convergents approaching BETA from the other side, while the staircase is one-sided by construction. THE TIE. BETA is the constant the rest of the correspondence runs on -- Paper B's Hoeffding threshold, the limit of Paper C's p_C, and the tilted odd-probability of the shared measure (J-the-two-tilts-are-one-measure). It is also the constant the Juggler Ostrowski Lean layer certifies: its theta denominators close at 301994, which is a convergent denominator of BETA, with structural digit-sum cap 47 (J-cyclemin-walk-ostrowski-numeration). So the walk's extremal geometry is numerated by the same continued fraction that layer already proves things about. Measured to length 1200 by dynamic program; the containment of jumps in semiconvergents is not proved for all k. No bound moves and this is not a halt theorem.",
+  "source": "docs/research_journal.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_paper_b_prefix_count.py"
+  ],
+  "related_conjectures": []
  }
 ]
