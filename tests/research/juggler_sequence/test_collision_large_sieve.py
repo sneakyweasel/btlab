@@ -11,6 +11,8 @@ import json
 import math
 from pathlib import Path
 
+import pytest
+
 
 def fp_root() -> Path:
     return Path(__file__).resolve().parents[3]
@@ -535,3 +537,68 @@ def test_renewal_link_is_the_cylinder_statement_at_summed_depth() -> None:
     tv = {(round(math.log10(t["P"])), i % 3): t for i, t in enumerate(out["twist_pricing"])}
     assert tv[(9, 1)]["tv_after_differencing"] < 0.5 < tv[(9, 2)]["tv_after_differencing"]
     assert abs(tv[(9, 2)]["twist_first_derivative"] - 2 / 3) < 1e-9
+
+
+def test_the_tilted_dp_survives_past_the_overflow_depth() -> None:
+    """The tilt weights are unnormalised and used to overflow float64 near d = 780.
+
+    The DP multiplies by e^theta on every odd step and never rescales, so the total
+    grows like e^{theta d} times the surviving path count: 3.0e295 at d = 750, inf at
+    d = 800. The two consumers failed differently and the quiet one was worse.
+    `tilted_live_meander` raised `KeyError: 0.1` from its quantile loop, an overflow
+    reported as a missing key. `tilted_live_split` only ever forms ratios, so inf/inf
+    gave it `nan` with no exception at all -- a number that would have propagated into
+    a summary and compared equal to nothing.
+
+    Rescaling by the running total each step is free, because only the shape of the
+    distribution is read, and it leaves every value below the old threshold unchanged.
+    """
+    from research.juggler_sequence.collision_large_sieve import (
+        tilted_live_meander,
+        tilted_live_split,
+    )
+
+    # unchanged where it used to work
+    assert tilted_live_meander(2.0, d=600, C=20)["implied_meander_c"] == pytest.approx(
+        0.740268533, abs=1e-9)
+    assert tilted_live_split(2.0, d=600)["contracting_fraction"] == pytest.approx(
+        0.024466798, abs=1e-9)
+
+    # and finite where it used to break
+    for d in (800, 1500):
+        a = tilted_live_meander(2.0, d=d, C=20)
+        b = tilted_live_split(2.0, d=d)
+        assert math.isfinite(a["implied_meander_c"]), d
+        assert math.isfinite(a["mean_u_d"]) and math.isfinite(a["q50"]), d
+        assert math.isfinite(b["contracting_fraction"]), d
+        assert not math.isnan(b["mean_u_d"]), d
+
+
+def test_the_meander_constant_is_paper_bs_at_the_zero_drift_tilt() -> None:
+    """Paper C's meander is Paper B's, once the tilt is taken to zero drift.
+
+    `implied_meander_c` is the endpoint height in units of sigma sqrt(d). Under the
+    C = 20 tilt the walk has drift -0.050 and c is about 0.84, which is not a
+    universal constant and should not be. Paper B works under the *zero-drift* tilt,
+    which is C -> infinity, and there c converges to the Brownian meander endpoint
+    mean sqrt(pi/2) = 1.25331: measured 1.2302, 1.2364, 1.2447 at d = 400, 1000, 4000,
+    with the gap halving as d quadruples.
+
+    That is the polynomial Paper B measures and cannot derive. Its Hoeffding loss is
+    entirely polynomial -- the exponent is sharp to one part in eighty -- and the
+    d^{-3/2} it names is the meander's: d^{-1/2} for survival, another d^{-1} for the
+    endpoint sitting at height ~sqrt(d).
+    """
+    from research.juggler_sequence.collision_large_sieve import tilted_live_meander
+
+    target = math.sqrt(math.pi / 2)
+    cs = [tilted_live_meander(0.5, d=d, C=100000)["implied_meander_c"]
+          for d in (400, 1000, 4000)]
+    assert all(0 < target - c < 0.03 for c in cs), cs
+    assert cs[0] < cs[1] < cs[2], cs          # rising toward it
+    assert target - cs[2] < (target - cs[0]) / 2, cs
+
+    # the C = 20 tilt is not zero drift, so its c is a different number
+    slow = tilted_live_meander(0.5, d=400, C=20)
+    assert slow["step_mean"] == pytest.approx(-0.05, abs=1e-9)
+    assert slow["implied_meander_c"] < 1.0

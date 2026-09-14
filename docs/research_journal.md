@@ -48466,3 +48466,62 @@ Measured to length 1200 by dynamic program. The containment of jumps in
 semiconvergents is not proved for all `k`, and I am not claiming it is. No bound
 moves, nothing here is a halt theorem, and the `log2(3)` ceiling stays exactly
 where it was --- what is new is that the approach to it has a name.
+
+
+## The meander is shared, and it is the thing Paper B could not derive
+
+The one place the bridge looked like it might *pay* rather than reorganise: Paper
+B's Hoeffding loss is entirely polynomial --- the exponent is sharp to one part
+in eighty --- and the polynomial it names, `d^{-3/2}`, is a meander exponent.
+Paper C has meander machinery.
+
+They are the same meander, once the tilt is taken to the right level.
+`implied_meander_c` is the endpoint height in units of `sigma sqrt(d)`. Under the
+`C = 20` tilt the walk has drift `-0.050` and `c` is about `0.84`, which is not a
+universal constant and should not be. Paper B works under the *zero-drift* tilt,
+which is `C -> infinity`, and there:
+
+```text
+  d        400      1000     4000
+  c      1.2302   1.2364   1.2447      -> sqrt(pi/2) = 1.253314
+  gap    0.0231   0.0169   0.0086
+```
+
+The gap halves as `d` quadruples. That is the Brownian meander endpoint mean, and
+it is Paper B's polynomial: `d^{-1/2}` for survival and a further `d^{-1}` for
+the endpoint sitting at height `~sqrt(d)`. Paper B measures the constant
+(`meander_constant`, about 10.8) and says it converges; Paper C analyses the
+object that produces it.
+
+### A defect found on the way, and the quiet one was worse
+
+Both tilted DPs carry unnormalised weights. They grow like `e^{theta d}` times
+the surviving path count and overflow float64 near `d = 780`: the total is
+`3.0e295` at `d = 750` and `inf` at `d = 800`. I measured that rather than
+reasoned it --- my first explanation, that `e^{theta d}` alone overflows, was
+wrong by two hundred orders of magnitude.
+
+The two consumers then failed differently:
+
+- `tilted_live_meander` raised `KeyError: 0.1` from its quantile loop. An
+  overflow reported as a missing dictionary key.
+- `tilted_live_split` only ever forms ratios, so `inf/inf` handed it `nan` **with
+  no exception at all**. A number that would propagate into a summary and compare
+  equal to nothing.
+
+The second is the dangerous one and it is this session's recurring shape: not a
+check that failed, a computation that stopped computing without saying so.
+
+Both now rescale by the running total each step. That is free --- only the shape
+of the distribution is read --- and every value below the old threshold is
+bit-identical, checked at `d = 100, 300, 600, 750`. Every current caller sits
+below `d = 780`, and regenerating the summary moves nothing but its
+`git_commit` stamp, so no published number changes.
+
+### Where the bridge stands
+
+Five links now, and this is the first one that is load-bearing rather than
+descriptive: it identifies the object behind a constant Paper B can only measure.
+It still does not improve Paper B's bound --- knowing the polynomial is a meander
+is not the same as replacing the step --- but it says what an improvement would
+have to be about, which the earlier links did not.
