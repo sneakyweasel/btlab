@@ -45688,3 +45688,1294 @@ percent. (T4): insufficient hypothesis and a constant small by a quarter of a
 percent, absorbed downstream. The branch said of (T4) that "with that hypothesis
 it holds"; that is the one place its own account was too generous, since with
 the hypothesis the constant is 2(1 + rho) and not 4.
+
+
+## Extracted: the collision / large-sieve body from an unmerged branch
+
+The thirteen entries that follow were written on 6 and 7 September 2026 on
+claude/repo-progress-uq349e, a branch that was never merged and is now 321
+commits behind. They are imported verbatim, in their original order, because
+they are the record of the mathematics and the branch is the only place they
+existed. The module they built -- src/research/juggler_sequence/
+collision_large_sieve.py, 1418 lines, 35 callables, with a 572-line test and a
+1023-line Phase-0 census -- had no counterpart here at all.
+
+Read them with three corrections in mind, none of which is theirs.
+
+**The depth constants improved under them.** The work was done against
+lambda** = 0.4480, so REQUIRED_RATE was 0.5520. The laboratory's lambda** is
+now 0.4926 and the rate is 0.5074, so every depth constant in these entries
+falls: the half-exponent least C is 30 where they write 32, and the graded
+family reads [30, 25, 23, 21, 19] where they write [32, 27, 24, 22, 20]. The
+module reproduces their numbers exactly when called with the old rate, so the
+eleven-to-twelve letters of depth the collision route costs are unchanged and
+only the baseline moved. Their result is stronger here than where it was
+written. The committed census has been regenerated against the live constants;
+the two tests that pinned the old numbers now assert both, new and old.
+
+**Three of the branch's findings were left behind.** Its H(C,A) quantifier
+defect is superseded: this laboratory refuted the unrestricted form more
+generally as J-unstopped-cylinder-bound, built on J-absorbed-cylinder, and
+restricted H to bad words and H_q to bad prefixes in the manuscript. Its
+tower-threshold repair is superseded: Paper C SS9.3(b) already prints both
+readings, 0.836 at theta_19 and 0.981 at C = 19, with a caveat the branch
+lacked. Its Loop 9 OEOEE audit was mined separately on 14 September and all
+three of its corrections are now settled. Four manuscript-wording tests that
+asserted the branch's phrasing for those arcs were dropped with the arcs; the
+numeric half of the tower test is kept.
+
+**Nothing here has been checked as mathematics.** The module imports cleanly,
+lints, and its 34 tests pass against the current constants; the Phase-0
+falsifier still does not fire. That is a statement about the code, not about
+the proofs. Seventeen ledger rows come with it and carry their own tags.
+
+
+## The collision route: half the exponent, twelve letters of depth, and a falsifier that did not fire
+
+The last entry ended by asking whether a large sieve applies to the Walsh sums
+of the live population. It does not, and the question was mis-posed twice over.
+
+The classical large sieve draws its power from *spacing* of the frequencies --
+Montgomery-Vaughan's \(N+\delta^{-1}\), the Bombieri-Davenport character
+forms. The Walsh characters of a parity word have no spacing input: they are an
+orthonormal basis of \(\{0,1\}^d\), so the abstract large sieve over them
+degenerates to Parseval, which Section 9.3(d) already uses. There is no
+inequality to import. And the vehicle was wrong anyway: the Walsh expansion
+computes the *unstopped* moment, which is too large by \(L^{5.2}\) because
+\(J(1)=1\) is odd and every terminating start carries an all-\(O\) tail. That
+is the "stopping is essential" remark, and it kills the route with no reference
+to any sieve.
+
+What survives is not a sieve but the shape of one: an \(L^2\) count where the
+argument wants an \(L^1\) one.
+
+```text
+Mathematical target     is  sum over L-bad w of #[w]^2  <=  K N^2 2^{-(d-1)}
+                        at d(y) = C log2 L -- one-sided, constant K -- true of
+                        the Juggler map, or does the ratio grow with depth?
+Novelty hypothesis      Cauchy-Schwarz against that count gives Theorem 8.3 at
+                        half the exponent; Paper C rules out the polylog-accurate
+                        pair correlation as a reparameterization of H(C,A) and
+                        never states the crude one-sided form, which does not
+                        invert back to H
+Falsifier               the measured count over a matched fair-coin null grows
+                        geometrically in d
+Existing machinery      tao_reduction (e(C), L(y), the walk DP), exact integer
+                        orbits, pressure_direct's census pattern
+Maximum Phase-0 scope   one probe: price the route, count bad words exactly,
+                        measure the ratio at four scales. No new estimate, no
+                        Paper B import, no manuscript edit.
+Promotion criterion     ratio bounded in d -> state and export the hypothesis
+Stop criterion          ratio grows -> the route is dead
+```
+
+**The step is three lines.** Liveness forces badness (Lemma 8.1), so
+\(M=\#\{\tau>d\}\le\sum_{w\ \mathrm{bad}}\#[w]\); Cauchy-Schwarz against
+Lemma 8.2's count \(\#\mathrm{bad}\le2^{d-1}2^{-e(C)L}\) gives
+\(M\le\sqrt K\,N\,2^{-e(C)L/2}\). Exactly half the exponent, bought back by
+depth: \(e(32)/2=0.5758>0.5520\) and \(e(28)/2=0.4784>0.4608\), so the least
+depth constant moves from 20 to 32 unconditionally and from 18 to 28 under
+\(\lambda^{***}\). Twelve letters and ten.
+
+**Restricting to bad words is the whole trick.** Over *all* words the collision
+count is dominated by terminating starts sharing an all-\(O\) tail -- the same
+tail that inflates the unstopped moment. But reaching the floor means the walk
+reached \(-L\), and an \(O\)-run afterwards cannot restore badness, so the
+bad-word restriction excludes exactly the population that was going to ruin the
+count. The two failures have one cause and one cure.
+
+**And it does not invert.** Section 9.3(d)'s equivalence consumes the accuracy:
+from \(K\) in place of \(1+(\log y)^{-A'}\) one recovers only
+\(\sum_T|W_T|^2\le KN^2\), hence \(|W_T|\le\sqrt K N\) per character, which
+is no saving on any Walsh sum and no cylinder bound at all. The crude form sits
+strictly below the equivalence, and it meets all four conditions the previous
+entry set out: a mean and not a supremum, at depth \(d(y)\to\infty\),
+one-sided, and not drawing cancellation per cylinder.
+
+**The falsifier did not fire.** 120000 exact odd orbits at each of
+\(y=10^{12},10^{20},10^{30},10^{50}\), depths \(\le18\): the measured count
+against a matched null stays in \([0.98,1.01]\) everywhere, worst
+depth-to-depth growth 1.009. At \(y=10^{12}\) the operative depth
+\(\lceil32L\rceil=17\) is inside the range and the ratio there is 0.992; at
+the other three scales the operative depths are 40, 59 and 82, and no sample can
+see collisions once \(2^d\) passes it.
+
+The null has to be the finite-sample one, and this is where the measurement
+nearly lied. Compared with the \(N\to\infty\) fair value the ratio climbs to
+2.09 by \(d=18\) -- monotonically, across every scale, exactly the shape the
+falsifier was written to catch -- and all of it is the Poisson term: at that
+depth every bad word is occupied at most once. A falsifier stated on the raw
+excess would have killed a live route on sample size. Both statistics are
+reported, with the sample support beside them, and one test exists only to hold
+them apart.
+
+What this does not do is make the hypothesis easier than the conclusion.
+Cauchy-Schwarz is saturated when the bad mass spreads uniformly over the bad
+words, so the \(L^2\) statement is tight against the \(L^1\) one it proves and
+the factor 2 is not removable at that step. The claim is narrower: the target
+has changed shape, from a first moment over an unknown live set to a pair count
+over a set defined by the walk alone, and pair counts are the objects
+mean-value methods reach when pointwise bounds fail.
+
+```text
+What was learned
+- no large sieve is importable: over an orthonormal Walsh basis the abstract
+  form is Parseval, which the paper already uses, and the classical form needs
+  a spacing input the parity characters do not have
+- the Walsh expansion is the wrong vehicle regardless -- it computes the
+  unstopped moment, too large by L^5.2 for the reason J(1) = 1 is odd
+- the crude one-sided collision bound gives Theorem 8.3 at half the exponent,
+  and half is bought back by moving C from 20 to 32 (18 to 28 conditionally)
+- restricting to bad words excludes the all-O tails by construction, so the
+  two ways this route could have died have one cause and one cure
+- the constant-factor form does not invert to H(C,A): the Walsh-inversion
+  argument consumes the polylog accuracy, and without it every character bound
+  is trivial
+- the falsifier did not fire, at the operative depth where that depth is
+  reachable -- but only against a finite-sample null; against the naive one it
+  fires spuriously and monotonically
+Strongest theorem
+- the collision bound implies the Tao-type bound at half the exponent, hence
+  the conjecture at C >= 32 (J-collision-bound-half-exponent)
+Strongest refutation
+- the large-sieve question of the previous entry, answered no on two
+  independent grounds
+Reusable machinery
+- collision_large_sieve: half_exponent_least_C, bad_word_count (the walk DP in
+  integers), bad_depth (prefix-closed, one pass), collision_census with the
+  matched null
+Branch status
+- PARK
+Why
+  The route is stated, priced and not visibly false, and that is all. It is not
+  a promotion because there is no theorem about the Juggler map here -- only a
+  reduction of one unproved statement to another of the same tightness, in a
+  shape that a different family of methods addresses. What it buys is that the
+  next attempt has an inequality to attack rather than a phrase, and a number
+  (32) to hit rather than an aspiration.
+Best next question
+- the bad-word collision count is #{(n,n') in (y,2y]^2 : word_d(n) = word_d(n'),
+  both bad}, a two-fold correlation of the itinerary at depth log log y. Paper
+  B's machinery counts one orbit at a time. Does the pair count admit a
+  treatment the single count does not -- and at what depth does it stop?
+```
+
+## tau and sigma are ordered, not equal -- and nothing uses the difference
+
+The question the last entry left: the pressure form is stated over live starts,
+which is already a restricted population. Is that restriction the same
+\(\sigma\) the \(\mathrm H_q\) repair stops at, or is \(\tau\) strictly
+finer --- and if it is, does anything in Section 9.2 quietly use the difference?
+
+**They are ordered, and the order is a theorem.** \(\tau\le\sigma\) always:
+Lemma 8.1 read at \(t=\sigma\) says \(u_\sigma\le-L\) forces
+\(J^\sigma(n)\le N_0\). Equivalently \(\{\tau>t\}\subseteq\{\sigma>t\}\)
+--- the live starts are a subfamily of those whose depth-\(t\) word is bad.
+
+**They are not equal.** The power envelope \(J^t(n)^{2^t}\le n^{3^{o_t}}\) is an
+upper bound, and the orbit usually sits well under it because every floor loses,
+so an orbit can pass below \(N_0\) before the envelope certifies it. Measured on
+exact orbits, 4000 odd starts per scale: \(\tau>\sigma\) never occurs, 0 of
+12000; \(\tau=\sigma\) throughout at \(y=10^{12}\) and \(10^{30}\); and
+\(\tau<\sigma\) for \(12.3\%\) of starts at \(y=10^{20}\), with gaps
+\(1,2,4,5,7,8\).
+
+**Nothing uses the difference.** The relation is asserted exactly once in
+Section 9.2 --- "By Lemma 8.1, \(\tau(n)>t\) implies \(u_t(n)>-L(y)\)" ---
+which is the containment and not the equality, and it is the safe direction.
+Theorem 9.2 uses only \(\{\tau>d\}\subseteq\{o_d\ge p_Cd\}\), which factors
+through it; Proposition 9.3 telescopes sums over \(\{\tau>t\}\) and needs no
+relation at all. Section 9.3(b) is the one place that speaks in cylinders, and
+it charges a cylinder \(\#[w]e^{\theta o(w)}\) where the live members alone
+enter \(\mathrm P_\theta\) --- an over-estimate, so its conclusions (a tower
+harmless below \(0.836\), a cylinder mattering only at over-population
+\(1.67^t\)) are conservative. For the tower \(O^t\) it is exact anyway: an
+all-odd orbit grows monotonically from \(n>y>N_0\), so no member has descended
+and live is the whole cylinder.
+
+**And the difference is nearly free where it is used.** Theorem 8.3 and the
+collision route share a first step, replacing the live count by the bad-word
+count. The containment cost \(\#\{\sigma>d\}/\#\{\tau>d\}\) at the operative
+depth is \(1.000\) at \(y=10^{12}\), \(10^{30}\) and \(10^{50}\) for both
+\(C=20\) and \(C=32\), and \(1.037\) and \(1.026\) at \(y=10^{20}\). The
+pointwise gap is real and the aggregate cost is under 4%, because a start with
+\(\tau<\sigma\) still has both fired long before the operative depth; only the
+thin band \(\tau\le d<\sigma\) contributes.
+
+**The structural difference, which is the reason the last entry needed
+\(\sigma\).** \(\sigma\) is \(\mathcal F_t\)-measurable and \(\tau\) is not:
+\(\sigma\) depends on the word alone, \(\tau\) on the magnitudes, so two
+starts in the same cylinder can have different \(\tau\). Only \(\sigma\) can
+serve as a stopping time for the walk's filtration, which is exactly why the
+\(\mathrm H_q\) repair stops there. Had the two been interchangeable the repair
+would have had a choice; they are not, and it does not.
+
+```text
+What was learned
+- tau <= sigma is a theorem, not an observation: Lemma 8.1 read at t = sigma
+- they are not equal -- 12.3% of starts at y = 1e20 have tau < sigma, gaps to 8
+  -- because the power envelope is an upper bound the orbit sits under
+- Section 9.2 asserts the relation once, in the containment direction, and no
+  proof there uses more than that
+- 9.3(b) charges whole cylinders where only live members enter, which
+  over-estimates and so errs safe; for the tower it is exact
+- the containment costs at most 4% at every reachable scale and operative
+  depth, so the shared first step of Theorem 8.3 and the collision route loses
+  essentially nothing
+- sigma is F_t-measurable and tau is not, which is why the H_q repair had to
+  stop at sigma
+Strongest theorem
+- tau <= sigma, with {tau > t} contained in {sigma > t} (J-tau-le-sigma)
+Strongest refutation
+- none; the audit found no place that uses the difference
+Reusable machinery
+- tau_vs_sigma, and two tests: the pointwise order with a witness of
+  strictness, and the containment cost at the operative depth
+Branch status
+- PARK
+Why
+  This is the third statement-hygiene question in a row and the first that
+  came back clean. That is worth recording as plainly as the two defects were:
+  the reduction distinguishes its two stopped notions correctly everywhere it
+  uses them, and the one substitution it makes between them is measured at
+  under 4%.
+Best next question
+- 9.3(b) charges whole cylinders and calls a tower harmless below odd share
+  0.836. That number was computed from the fair total with #[w], not with the
+  live count. Does the threshold move when the live restriction is carried
+  through, and in which direction?
+```
+
+## The Walsh down-weighting does not inherit rho, and 9.3(c) needs no repair
+
+The question the last entry left: Section 9.3(c) labels its Walsh identity as
+the unstopped moment but draws a conclusion about the live one. Does the
+per-letter down-weighting \(\tanh(\theta/2)\) survive the live restriction, or
+inherit a factor of \(\rho\) as the tower threshold did?
+
+It survives, exactly, and the reason it does is the reason the tower did not.
+
+**The weights are an identity about the tilt.** They come from factorising
+\(e^{\theta X_s}=a_\theta+b_\theta(-1)^{J^s(n)}\) one letter at a time, with
+\(-b_\theta/a_\theta=\tanh(\theta/2)\). Nothing in that factorisation
+mentions which \(n\) are summed, so restricting to the \(L\)-bad words leaves
+every weight where it is and moves the restriction into the sums themselves:
+\(W_T\) becomes \(W_T^{\mathrm{bad}}\), the same character summed over the bad
+\(n\) alone. Checked by exhaustive expansion at \(d=9\) against the direct sum.
+
+**Why the tower was different.** That threshold was a *ratio* --- a tower's
+tilted weight against the tilted mass it is measured in --- and the live
+restriction shrank the denominator. Here there is no denominator. \(\rho\) was
+never a property of the tilt; it was a property of that comparison, and it does
+not travel.
+
+**What the restriction does buy.** The trivial bound on each restricted sum
+improves from \(\lvert W_T\rvert\le N\) to
+\(\lvert W_T^{\mathrm{bad}}\rvert\le Np_{\mathrm{bad}}\), and since
+\(p_{\mathrm{bad}}\asymp2^{-e(C)L}\) the tail exponent falls by exactly
+\(e(C)\):
+
+| \(C\) | \(\tanh(\theta/2)\) | tail, unstopped | tail, live | shaved by |
+|---|---|---|---|---|
+| 19 | 0.1954 | \(2^{4.893L}\) | \(2^{4.367L}\) | \(e(19)=0.5269\) |
+| 20 | 0.1988 | \(2^{5.231L}\) | \(2^{4.657L}\) | \(e(20)=0.5738\) |
+
+Both remain exponential in \(L\), so the section's conclusion --- high-order
+characters exponentially down-weighted, the tail \(e^{\Theta(d)}\) and carrying
+the high-depth information --- holds for the live moment with a smaller
+constant. That the shave is exactly \(e(C)\) is not a coincidence: it is the
+bad-word density appearing as the only thing the restriction knows.
+
+**No repair needed.** The passage is correct as written and its label is
+accurate; it simply did not say whether the conclusion transfers, and now the
+answer is recorded. That is the fourth statement question of this run and the
+second to come back clean.
+
+```text
+What was learned
+- the down-weighting tanh(theta/2) is a property of the tilt and is unchanged
+  by the live restriction; the restriction lands in the Walsh sums instead
+- rho was a property of a ratio with a shrinking denominator, not of the tilt,
+  so it does not travel to a statement with no denominator
+- the restriction improves the trivial bound on each sum by p_bad, shaving the
+  tail exponent by exactly e(C) -- 5.231L to 4.657L at C = 20
+- the tail stays exponential, so 9.3(c) is untouched
+- 9.3(c) needed no repair: correct as written, correctly labelled, silent only
+  on whether the conclusion transfers
+Strongest theorem
+- the expansion holds verbatim on the restricted sum, verified exhaustively at
+  d = 9 (J-walsh-downweighting-survives-live)
+Strongest refutation
+- none
+Reusable machinery
+- walsh_downweighting; a test that expands the restricted moment exhaustively
+  and one that pins the down-weighting against the tower's rho
+Branch status
+- PARK
+Why
+  Four statement questions, two defects and two clean. The distinction that
+  organises all four is whether the quantity is a ratio: a ratio inherits
+  whatever the live restriction does to its denominator, a sum does not. That
+  is what separated H from H_q, and the tower threshold from this one.
+Best next question
+- the shave is exactly e(C) because p_bad is the only thing the restriction
+  contributes to a trivial bound. Is there a non-trivial bound on
+  W_T^{bad} -- the bad set is walk-defined and its spectrum is computable by
+  the same DP as bad_word_count -- and does any cancellation between that
+  spectrum and the Walsh energy beat p_bad?
+```
+
+## The bad-set spectrum cannot beat its own density
+
+The question the last entry left: the tail shave is exactly \(e(C)\) because
+\(p_{\mathrm{bad}}\) is all the restriction contributes to a *trivial* bound. Is
+there a non-trivial bound on \(W_T^{\mathrm{bad}}\)? The bad set is
+walk-defined and its spectrum is computable by the same DP as
+`bad_word_count`. Does any cancellation between that spectrum and the Walsh
+energy beat \(p_{\mathrm{bad}}\)?
+
+No, and the obstruction is sharper than "the arithmetic does not work out".
+
+**The spectrum has no slack to give.** Since \(1_{\mathrm{bad}}\) is not a
+character, \(W_T^{\mathrm{bad}}=\sum_S\hat b_SW_{S\triangle T}\), and
+Cauchy--Schwarz splits that into a bad-set factor and a Walsh-energy factor. The
+bad-set factor is
+\[
+\Bigl(\sum_S\hat b_S^2\Bigr)^{1/2}=\sqrt{p_{\mathrm{bad}}}
+\]
+*exactly* --- Parseval for a \(0/1\) indicator, an identity and not an
+inequality. So the thing the question proposed to learn more about enters
+through a quantity that is already known in closed form, and no sharper
+knowledge of it can improve the bound by anything. Every loss is on the other
+factor.
+
+**And the other factor is the object the restriction exists to remove.**
+\(\sum_U\lvert W_U\rvert^2=2^{d-1}\mathcal C_d\) is the *unrestricted*
+collision count --- dominated by the all-\(O\) tails of terminating starts,
+which is why the bad restriction was introduced in the first place. Writing
+\(\mathcal C_d=K_{\mathrm{all}}N^22^{-(d-1)}\), the route beats the trivial
+bound iff \(K_{\mathrm{all}}<p_{\mathrm{bad}}\), and \(K_{\mathrm{all}}\ge1\)
+while \(p_{\mathrm{bad}}<1\). It can never win. Measured on 20000 exact orbits
+at \(y=10^{12}\):
+
+| \(d\) | \(p_{\mathrm{bad}}\) | \(K_{\mathrm{all}}\) | trivial\(/N\) | C--S\(/N\) |
+|---|---|---|---|---|
+| 12 | 0.177 | 8.81 | 0.177 | 1.25 |
+| 16 | 0.127 | 133.33 | 0.127 | 4.12 |
+| 18 | 0.093 | 532.30 | 0.093 | 7.02 |
+
+Worse by \(7\times\) to \(75\times\), and from \(d=16\) on it is worse than
+the vacuous bound \(N\) itself.
+
+**The two escapes both fail, and measurably.** Hölder against the Wiener norm
+gives \(\lVert\hat b\rVert_1\cdot N\), and \(\lVert\hat b\rVert_1\) is
+\(3.81,7.75,26.25,57.65\) at \(d=8,12,16,20\) --- growing like \(1.25^d\), so
+\(\lVert\hat b\rVert_1/p_{\mathrm{bad}}\) is already \(378\) at \(d=20\).
+Splitting the sum by order would rescue Cauchy--Schwarz if the spectrum were
+low-degree concentrated, and it is not: the \(\ell^2\) weight above order 2 is
+\(0.218,0.269,0.303\) at \(d=12,16,20\) --- *rising* with depth --- and
+\(0.073\) still sits above order 10 at \(d=20\). A constant fraction survives
+every cut, so the split gains a constant where the tail needs an exponential.
+
+So only genuine correlation between the bad-set spectrum and the Walsh energy
+could win, and that is exactly what no bound on individual \(\lvert W_U\rvert\)
+supplies. This is the quantified form of the remark recorded three entries ago
+--- that the restricted count is a bilinear form in the Walsh family weighted by
+the bad-set spectrum, strictly harder than the family itself --- and it closes
+that line rather than opening one.
+
+```text
+What was learned
+- the bad-set factor in Cauchy-Schwarz is an identity, sqrt(p_bad), so better
+  knowledge of the spectrum is worth exactly nothing on that side
+- the whole loss is the unrestricted Walsh energy, which is the all-O-tail
+  object the restriction was introduced to avoid: the route re-imports it
+- C-S beats trivial iff K_all < p_bad, impossible since K_all >= 1 > p_bad;
+  measured it loses by 7x to 75x and is worse than vacuous from d = 16
+- the Wiener norm grows like 1.25^d, so the Hoelder route is worse still
+- the spectrum is not low-degree concentrated and spreads with depth, so an
+  order split gains a constant where an exponential is needed
+Strongest theorem
+- none; this is a method obstruction
+Strongest refutation
+- the spectral bound on W_T^bad, in all three forms
+  (J-bad-set-spectrum-cannot-win)
+Reusable machinery
+- bad_set_spectrum: density, Wiener norm, the Parseval identity as a check,
+  and the l2 tail profile by order; three tests
+Branch status
+- CLOSE
+Why
+  The question was whether knowing the bad set better could help, and the
+  answer has the cleanest possible shape: the only place that knowledge enters
+  is a quantity already known exactly. That is a stronger negative than a
+  failed estimate, because it does not depend on how hard anyone tries. The
+  pair-count line that began five entries ago ends here.
+Best next question
+- none on this line. The collision route stays as J-collision-bound-half-exponent
+  states it, with the trivial p_bad the only thing the restriction contributes,
+  and the four unrun lenses from the pair-count investigation -- recursion,
+  analytic, literature, depth ceiling -- remain the open work.
+```
+
+## The spectral kill, narrowed by its own adversarial review
+
+The adversarial workflow launched against the last entry finished --- nine of
+twelve agents before a session limit --- and every lens agreed the CLOSE stands
+for the reduction's purposes. Three of them also found that the entry stated
+its negative in the wrong units and one order too broadly. Both are mine, both
+are now corrected in the ledger and in negative knowledge, and the review
+surfaced one genuinely open question that had not been recorded.
+
+**Wrong units.** The entry compared everything against "the trivial bound
+\(\lvert W_T^{\mathrm{bad}}\rvert\le Np_{\mathrm{bad}}\)". That bound is
+neither trivial nor unconditional. The unconditional bound is \(M\), the number
+of starts whose depth-\(d\) word is bad, and \(W_\emptyset^{\mathrm{bad}}=M\)
+identically. Moreover \(M\le Np_{\mathrm{bad}}\) with the *exact*
+\(p_{\mathrm{bad}}\) is stronger than Theorem 8.3's conclusion, since exact
+\(p_{\mathrm{bad}}=0.106\) at \(y=10^{20}\), \(d=25\) sits far below the
+Chernoff surrogate \(2^{-e(C)L}=0.609\). Measured, \(M/(Np_{\mathrm{bad}})\)
+is \(0.998\) to \(1.005\) --- an equality in practice, not a reliable
+inequality. So "beat \(Np_{\mathrm{bad}}\)" contained the goal, and the
+previous entry's "shave by exactly \(e(C)\)" was conditional on
+\(H(C,A)\)'s own output. Every conclusion survives a fortiori, because the
+Cauchy--Schwarz bound exceeds \(M\) by the same margins it exceeded
+\(Np_{\mathrm{bad}}\); but the rows now say what is free and what is not.
+
+**One order too broad.** What is proved is that no bound *uniform in \(T\)*
+improves on \(M\) by more than a constant. The order-1 identity
+\(W_{\{s\}}^{\mathrm{bad}}=(1-2q_s)M\), with badness forcing odd-heaviness,
+gives \(\max_T\lvert W_T^{\mathrm{bad}}\rvert\ge(2p_C-1)M-O(1/d)\), and
+\(2p_C-1=\tanh(\theta_C/2)\) exactly --- \(0.1988\) at \(C=20\), measured
+\(0.62M\). A uniform saving on the characters is therefore a saving on \(M\)
+itself, self-referential, and the kill covers Cauchy--Schwarz, Hölder, the
+order split and every \(T\)-uniform bound. It does *not* cover per-order
+bounds. The aggregate tail \(\sum_{T\ne\emptyset}\tanh(\theta/2)^{|T|}
+\lvert W_T^{\mathrm{bad}}\rvert\) is measured at \(1.19M\) against a trivial
+\(6.35M\) at \(d=12\) --- a gap of \(5.3\times\), which I reproduced --- and
+\(2.91M\) against \(76.6M\) at \(y=10^{20}\), \(d=25\), the gap growing
+geometrically; from order three on the restricted sums sit at measurement noise.
+
+**A sharp per-character bound, and its ceiling.** Under \(H(C,A)\) on bad
+cylinders the counting identity
+\(\#\{w\in B:\chi_T(w)=+1\}=2^{d-2}(p_{\mathrm{bad}}+\hat b_T)\) gives
+\(\lvert W_T^{\mathrm{bad}}\rvert\le\tfrac N2(p_{\mathrm{bad}}+\lvert\hat b_T\rvert)\),
+attained by an admissible count vector and robust to imposing any collision
+count. Its gain is \((1+\lvert\hat b_T\rvert/p_{\mathrm{bad}})/2\in[\tfrac12,1)\):
+a proved ceiling of two, and no exponent moves. This is the exact form of
+"per character cannot win".
+
+**The open question the review surfaced.** Jensen on
+\(\mathbb E_{\mathrm{bad}}[(\sum_s\chi_s)^k]\) for even \(k\) extends the
+order-1 floor to order \(k\): the floor is \(b^k\) with \(b=\tanh(\theta/2)\),
+not \(1\). So a product-shape bound
+\(\lvert W_T^{\mathrm{bad}}\rvert\le KMb^{|T|}\) is consistent with every floor
+proved, says nothing about \(M\), and is measured to hold with a per-order
+rate \(r\approx0.30\)--\(0.35\) between the floor and the trivial \(1\).
+Recorded as `J-walsh-restricted-product-shape`, CONJECTURE. Priced honestly:
+it moves the live tail from \(2^{5.231L}M\) to \(2^{1.118L}M\) at the floor
+rate, and it does **not** yield \(\mathrm P_\theta\) at any \(C\) --- the
+per-letter slope \(\log_2(1+t_C^2)\to0.0559\) exceeds \(e(C)/C\to0.0503\),
+checked at \(C=20,32,50,100\). A refinement of the constant, not a route.
+
+**Two smaller things.** The literature lens reports that an exponentially
+large Wiener norm is the *generic* behaviour of threshold and ballot
+indicators, so the Hölder route was dead structurally and not numerically ---
+which strengthens the kill. And the machine has no Lean toolchain, so the
+standing request to formalise as much as possible cannot be honoured here
+without violating the no-`sorry`, kernel-checked standard; unverified Lean
+will not be committed to `formal/`.
+
+```text
+What was learned
+- the trivial bound on a restricted Walsh sum is M, not N p_bad; the latter
+  with exact p_bad is stronger than the theorem it was meant to serve, and
+  is measured as an equality
+- the kill is of T-uniform bounds: the order-1 floor (2p_C - 1) M makes any
+  uniform saving self-referential, and 2p_C - 1 = tanh(theta_C/2) exactly
+- per-order bounds are not killed; the aggregate tail is 5-26x below trivial
+  and the gap grows
+- the sharp per-character bound (N/2)(p_bad + |bhat_T|) caps the uniform
+  gain at a factor 2, attained
+- the product-shape bound is open, consistent with the proved b^k floors,
+  measured at r = 0.30-0.35, and worth a factor in the tail exponent but not
+  P_theta at any C
+Strongest theorem
+- the sharp per-character bound with its extremiser, and the order-k floor
+  b^k - O_k(1/d)
+Strongest refutation
+- my own headline "no non-trivial bound on W_T^bad exists": true uniformly
+  in T, false per order
+Reusable machinery
+- the corrected rows; the identity 2p_C - 1 = tanh(theta_C/2)
+Branch status
+- PARK (was CLOSE): the spectral line has one open question again, and it is
+  a refinement, not a route
+Why
+  An adversarial pass that agrees with the verdict and disagrees with the
+  statement is the useful kind. The verdict was right for every purpose the
+  reduction has; the statement claimed one order more than was proved and
+  measured against a yardstick that was itself the theorem. Both are the
+  sort of thing a referee finds in the first hour.
+Best next question
+- the product-shape rate: is r bounded away from 1 as d grows at fixed L,
+  and does it tend to the floor b or to something between? The measured
+  0.30-0.35 at d = 18 and 25 is two points.
+```
+
+## Loop, iteration 1: the rate sits on the floor, and the live set is tilted-fair to 0.3%
+
+A ten-minute loop opened on the live mass of odd starts. The brief names the
+only concentration target --- \(\mathrm M_{\theta,q}\), hence
+\(\mathrm P_\theta\) --- and lists the doors already shut. This iteration
+takes the one question the adversarial review left open on the spectral line
+and measures it.
+
+**The per-order rate is the floor.** The review estimated \(r\approx0.30\)--\(0.35\)
+for the product-shape bound \(\lvert W_T^{\mathrm{bad}}\rvert\le KMb^{|T|}\); that
+came from an aggregate fit with \(K\) folded in. Per order, on 400000 exact
+orbits at \(y=10^{20}\):
+
+| \(d\) | \(M\) | mean \(\lvert W_T^{\mathrm{bad}}\rvert/M\), \(k=1,2,3\) | \(r_{1\to2}\) | \(r_{2\to3}\) |
+|---|---|---|---|---|
+| 16 | 78490 | 0.338, 0.075, 0.014 | 0.221 | 0.183 |
+| 20 | 61126 | 0.320, 0.072, 0.011 | 0.227 | 0.155 |
+
+The floor is \(b=\tanh(\theta_{20}/2)=0.1988\). The rate brackets it, and
+\(K=\mathrm{mean}_1/b\approx1.6\) fits three orders to within 15%. Orders
+four and up sit at the noise floor \(1/\sqrt M\approx0.004\) and are
+unresolved at any reachable sample size. So the conjecture is sharper than it
+was recorded: not "somewhere between \(b\) and 1" but \(1.6\,M\,b^{|T|}\).
+Its payoff verdict does not move --- \(C\log_2(1+b^2)\) exceeds \(e(C)\) at
+every \(C\) --- but a conjecture with a constant is a different object from
+one with a range.
+
+**The direct object.** Rather than bound the tail, measure what the tail is a
+bound for. Let \(R_d\) be the live tilted moment divided by its fair
+unrestricted value \(Ne^{\theta}a_\theta^{d-1}\), and \(\varphi_d\) the same
+ratio for a fair coin restricted to bad words. \(\mathrm P_\theta\) asks
+\(R_d\le e^{o(d)}\); \(R_d=\varphi_d\) would be \(\mathrm P_\theta\) with the
+fair-coin constant.
+
+| \(d\) | \(M/N\) | \(R_d\) | \(\varphi_d\) | \(R_d/\varphi_d\) |
+|---|---|---|---|---|
+| 12 | 0.308 | 0.5405 | 0.5405 | 1.000 |
+| 16 | 0.196 | 0.4418 | 0.4414 | 1.001 |
+| 20 | 0.153 | 0.4003 | 0.3990 | 1.003 |
+
+The live set is tilted-fair to three decimals. This is a far tighter statement
+than the pressure census's "within 5--8% of the fair-coin DP", which compared
+against a different normalisation, and it is the cleanest observation of the
+hypothesis on record. It is also exactly what it is: \(L=1.25\), \(d\le20\),
+about a statement at \(L\to\infty\).
+
+One consequence worth writing down. \(\varphi_d\) decays like \(\rho^d\) with
+\(\rho=0.998\) per letter, the barrier rate of the tower entry, which is
+\(2^{-0.06L}\) at \(d=20L\). So if \(R_d=\varphi_d(1+o(1))\) held to the
+operative depth, \(\mathrm P_\theta\) would follow with room to spare. The
+whole hypothesis is the persistence of one ratio at one.
+
+**Lean.** The brief asks for as much as possible in Lean. There is no Lean
+toolchain on this machine, so nothing was formalised: the repository's standard
+is no `sorry` and kernel-checked, and unverified Lean would not meet it.
+
+```text
+What was learned
+- the product-shape rate is the floor b, measured 0.16-0.23 at orders 1-3
+  against b = 0.199, with K = 1.6; orders >= 4 are noise at any reachable M
+- the review's 0.30-0.35 was an aggregate artefact with K folded in
+- R_d / phi_d = 1.000, 1.001, 1.003: the live set is tilted-fair, which is
+  P_theta with the fair-coin constant
+- phi_d decays at 0.998 per letter, so persistence of that ratio to the
+  operative depth would give P_theta with room
+- no Lean toolchain here
+Strongest theorem
+- none; two measurements
+Strongest refutation
+- the review's rate estimate, replaced by a per-order one
+Reusable machinery
+- restricted_walsh_profile: per-order means, ratios, K, and R_d against
+  phi_d from one sample; two tests
+Branch status
+- PARK
+Why
+  The loop's first step should sharpen the one open object rather than open a
+  new one, and it did: the conjecture now carries a constant, and the
+  hypothesis it serves has a measured value of one to three decimals at every
+  depth the machine can reach. Neither is a proof and the entry says so.
+Best next question
+- R_d / phi_d = 1 is a statement about the whole live set. Does it hold
+  conditionally on the first k letters -- is every cylinder's live tilted
+  moment its fair value -- or does it hold only in aggregate, with cylinders
+  compensating? The first would be H-strength; the second is what M_theta,q
+  actually asks.
+```
+
+## Loop, iteration 2: fair by odd count, Poisson by cylinder, and not because the orbits are huge
+
+The question iteration 1 left: is the live set tilted-fair cylinder by cylinder,
+or only in aggregate with cylinders compensating? And the sharper version --- is
+the whole odd-count distribution on the live set fair, or only its
+\(\theta_C\)-tilted moment? Both answered by one sample, and the answers are
+the strong ones.
+
+**Error bars first.** \(R_d/\varphi_d=1.0033\pm0.0044\) at \(y=10^{20}\) and
+\(0.9986\pm0.0046\) at \(y=10^{50}\), \(d=20\): \(+0.7\sigma\) and
+\(-0.3\sigma\) from one. Iteration 1's "1.003" was within noise of exactly one
+and should be read that way.
+
+**The whole distribution is fair.** On \(10^6\) exact orbits at \(y=10^{20}\),
+the live count at each odd count \(o\), divided by the fair-coin count of bad
+words with that many odd letters:
+
+| \(d\) | \(o\) | ratio |
+|---|---|---|
+| 16 | 10, 11, 12, 13, 14, 15 | 0.999, 0.999, 0.991, 0.991, 0.978, 1.005 |
+| 20 | 12, 13, 14, 15, 16, 17, 18 | 0.996, 0.999, 0.999, 0.984, 1.004, 0.988, 0.944 |
+
+Every resolved cell within Poisson noise; the odd-heavy end, where momentum
+would show first, has no systematic excess and if anything a slight deficit. The
+same at \(y=10^{50}\), worst resolved cell \(1.03\) on \(554\) expected. So the
+tilt at \(\theta_C\) is not special: the Laplace transform of the live odd-count
+distribution matches fair at every \(\theta\) the data can resolve.
+
+**Poisson by cylinder.** The relative variance of \(\#[w]\) over the bad cells
+at depth 12 is \(0.996\) times Poisson at \(y=10^{20}\) (632 cells, 488 per
+cell) and \(1.025\) at \(y=10^{50}\) (1134 cells, 146 per cell). Bad cylinders
+are individually fair to sampling resolution; nothing is compensating. That is
+the answer to iteration 1's question, and it is the answer at the top of the
+hierarchy: at accessible depth the population satisfies \(H(C,A)\) with the fair
+constant, and the weakenings \(\mathrm H_q\), \(\mathrm M_{\theta,q}\),
+\(\mathrm P_\theta\) buy nothing there. The entire question is
+\(d\to\infty\), as the brief says.
+
+**The obvious mechanism is not the mechanism.** One would like to say: a live
+orbit has grown, a grown orbit is astronomically large, and the fractional part
+of \(x^{3/2}\) for astronomical \(x\) is fresh. Measured, live orbits at
+\(d=20\) have \(\log_{10}\) magnitude from \(10\) (minimum) through \(31\)
+(median) to \(277\) (90th percentile) and \(66850\) (maximum) from
+\(y=10^{20}\), and \(26/76/685/55753\) from \(y=10^{50}\). The bulk sits
+within a few dozen digits of the floor. Whatever makes the median live orbit's
+next parity fair, it is not that the orbit is enormous. That is the sharper
+question this leaves: is the next-letter share fair *conditional on the
+magnitude* of \(J^t(n)\), and in particular for live orbits within a factor
+\(10^{5}\) of \(N_0\), where a Paper-B-style saving would be weakest?
+
+One correction to my own probe on the way: a first version tallied cylinder
+counts only over starts surviving to \(d\) while comparing against the
+depth-12 fair value, and read the depletion as a variance thirteen times
+Poisson. The ad-hoc script that produced \(0.996\) had it right; the probe now
+does too, and returns \(1.023\).
+
+**Lean.** Still no toolchain on this machine; nothing formalised.
+
+```text
+What was learned
+- R_d / phi_d is one within noise at both scales: +0.7 sigma and -0.3 sigma
+- the whole live odd-count distribution matches the fair-coin bad-word count
+  cell by cell, with no excess in the odd-heavy tail
+- bad cylinders have Poisson variance (0.996, 1.025): individually fair, no
+  compensation -- H-strength at accessible depth, not merely M_theta,q
+- live orbits are not uniformly huge; median 10^31 at d = 20 from 10^20, so
+  magnitude alone does not explain the fairness
+- a probe that tallies over the wrong population reads depletion as variance
+Strongest theorem
+- none; three measurements
+Strongest refutation
+- "the live set is fair because its orbits are astronomical" -- the median
+  is not
+Reusable machinery
+- live_fairness_profile: odd-count histogram against the exact fair DP,
+  per-cylinder variance against Poisson, live-orbit magnitudes; one test
+Branch status
+- PARK
+Why
+  The data now say the strongest thing they could say at reachable depth, and
+  say it three ways. That sharpens what a proof would have to explain and
+  removes one explanation. It does not shorten the distance to d -> infinity
+  by a single letter, and the entry does not pretend otherwise.
+Best next question
+- condition on magnitude: among live starts at depth t, is the next-letter odd
+  share 1/2 in every band of log10 J^t(n), including the band within 10^5 of
+  the floor? If the smallest live orbits are the least fair, that is where a
+  proof must work hardest and where a laboratory estimate could still bite.
+```
+
+## Loop, iteration 3: fair in every band, and the tilted mass is on the hard class
+
+The question iteration 2 left: is the next-letter share fair conditional on the
+magnitude of \(J^t(n)\), including the band just above the floor? And a
+structural cut suggested itself: a prefix at depth \(t\) has exponent
+\(e=3^{o_t}/2^t=2^{u_t}\), and *contracting* prefixes (\(e<1\)) map their
+cylinder many-to-one onto a dense integer interval, where the parity of the
+image is a block-counting question, while *expanding* ones have sparse images,
+the class Paper B addresses at depth \(\le4\) and no one addresses beyond.
+
+**Fair in every band.** On \(10^6\) exact orbits at \(y=10^{20}\), live
+starts at \(t=8,12,16\) binned by \(u_t\) and separately by
+\(\log_{10}J^t(n)\): every bin of fifty or more has odd share within
+\(2\sigma\) of one half. The worst is \(z=-1.89\) on 218700 starts. The band
+\(10^{10}\)--\(10^{15}\), a few orders above the floor and the place a
+laboratory estimate would be weakest, sits at \(0.4978\), \(z=-1.2\) on
+73872. The band above \(10^{50}\) sits at \(0.4999\). The smallest live orbits
+are not the least fair, and at this depth the expanding class is not visibly
+harder than the contracting one.
+
+**Where the tilt puts its weight --- and an intuition corrected mid-iteration.**
+The tilt at \(\theta_C\) selects odd share \(p_C=0.599\), below
+\(1/\log_23=0.631\), so I expected the tilted live mass to sit on contracting
+prefixes, where the counting argument lives and the closed reset door
+("high-walk \(E\)-images are sparse") does not reach. Measured, and then
+computed exactly by the fair-coin DP, which the measurement matches to three
+decimals:
+
+| \(L\) | \(d=20L\) | contracting share of tilted-live mass | mean \(u_d\), tilted-live | unconditioned |
+|---|---|---|---|---|
+| 1.25 | 25 | 0.063 | +2.8 | −0.6 |
+| 4 | 80 | 0.247 | +3.3 | −3.4 |
+| 8 | 160 | 0.373 | +2.0 | −7.4 |
+| 12 | 240 | 0.565 | 0.0 | −11.4 |
+
+The tilt is chosen so that the walk's mean endpoint sits at the barrier, so
+conditioning on survival always selects upward paths, and the surviving tilted
+mass has mean exponent \(2^{2.8}\) to \(2^{3.3}\) --- the orbit at \(n^4\) to
+\(n^9\) in envelope terms --- until \(L\approx12\), which is
+\(\log2y\approx2^{12}\log N_0\), \(y\approx10^{35000}\). Everywhere short of
+that, \(\mathrm M_{\theta,q}\) is predominantly a statement about expanding
+prefixes with sparse images. The dense-image class, where a counting argument
+would work, carries 6% to 37% of the mass for \(L\le8\).
+
+So the dichotomy is a valid decomposition and it cuts the wrong way for hope:
+the closed door's reason applies to the class that carries the weight. That is
+worth having exactly, because the natural reading of "the tilt selects
+sixty-percent-odd words" is that they contract, and they do not survive the
+barrier by contracting.
+
+**Lean.** No toolchain; nothing formalised.
+
+```text
+What was learned
+- next-letter fairness on live starts is independent of exponent class and of
+  orbit magnitude, every bin within 2 sigma, including the band just above
+  the floor
+- the tilted live mass sits on EXPANDING prefixes, mean u_d = +2 to +3, until
+  L ~ 12 (y ~ 10^35000): survivorship under the barrier beats the tilt's
+  contracting drift, because theta_C puts the mean endpoint at the barrier
+- the dense-image counting class is 6-37% of the tilted mass for L <= 8; the
+  closed reset door's reason applies to the class that carries the weight
+- the measured split matches the fair-coin DP to three decimals, so this is a
+  property of the walk under the barrier, not of the Juggler map
+Strongest theorem
+- none; a DP and a measurement
+Strongest refutation
+- my own in-iteration expectation that the tilt selects contracting prefixes
+Reusable machinery
+- tilted_live_split (exact DP), fairness_by_class; two tests
+Branch status
+- PARK
+Why
+  Locating the hypothesis's weight is the kind of thing that decides where a
+  proof must work, and the answer is the unwelcome one: on the sparse-image
+  class, at every scale that will ever be computed. That closes the hopeful
+  reading of the dichotomy rather than opening it, and it does so with a
+  number and a crossover scale.
+Best next question
+- the surviving tilted mass has mean exponent 4 to 9 for L <= 8. On such
+  prefixes J^t(n) ~ n^e with e ~ 2^{u}, and the parity of the next floor is a
+  Piatetski-Shapiro question at exponent 3e/2 in n. Paper B's savings are for
+  e <= 27/8 at depth 4. What does the standard exponent-pair machinery give
+  for the parity of floor(x^{3/2}) over x in the depth-t image of a cylinder
+  at exponent e ~ 4 to 9 -- and is the obstruction the sparsity of the image,
+  or the size of e?
+```
+
+## Loop, iteration 4: the tilted walk is a meander, so the exponent is bounded and the floors are the barrier
+
+The question iteration 3 left: on the expanding prefixes that carry the tilted
+mass, exponent \(e\approx4\)--\(9\), is the obstruction the sparsity of the
+image or the size of \(e\)? Both --- but only one of them grows with depth, and
+seeing which required deriving the shape of iteration 3's table rather than
+reading it.
+
+**A meander.** Under the \(\theta_C\) tilt the exponent walk steps
+\(+(\log_23-1)\) with probability \(p_C\) and \(-1\) otherwise: mean
+\(-0.050\), sd \(\sigma=0.777\) per letter. \(\theta_C\) is chosen so that
+the unconditioned mean endpoint sits at the barrier \(-L\), so conditioning on
+survival over \(d=20L\) letters is conditioning a drifting walk to stay above a
+barrier it is aimed at --- a meander, whose endpoint sits about one standard
+deviation above the barrier:
+\[
+u_d\;\approx\;-L+c\,\sigma\sqrt d .
+\]
+Against the exact DP the implied \(c\) is \(1.044,1.049,1.054,1.050,1.044,1.029,
+1.018,1.004,0.997,0.989,0.983\) at \(L=1,1.25,2,3,4,6,8,10,12,14,16\):
+constant to 7% across a factor sixteen in \(L\). The formula's stationary
+point \(L^*=(c\sigma\sqrt{20}/2)^2=3.3\) is where the DP mean peaks, at
+\(u\approx3.3\); the mean crosses zero near \(L=12\), which is the crossover
+iteration 3 found by hand; the 90th percentile saturates near 10--11.
+
+**So the exponent is bounded.** The envelope exponent \(2^{u_d}\) at which the
+hypothesis puts its weight has median below \(2^{3.4}\approx10\) and 90th
+percentile below \(2^{10.8}\) at every scale, however large \(y\). On real
+orbits at \(y=10^{20}\), \(d=20\), the \(\theta\)-tilted quantiles of
+\(\log_{10}J^d(n)\) are \(31/92/830\) against untilted \(10/31/277\): the tilt
+moves the weight from the \(10^{31}\) median orbit to \(10^{92}\), which
+reconciles iteration 2 (the untilted median is not astronomical) with
+iteration 3 (the tilted mass is).
+
+**Pricing the two obstructions.** The next parity on a prefix of exponent
+\(e\) is that of \(\lfloor x^{3/2}\rfloor\) over the depth-\(t\) image, so two
+things enter: the pure monomial sum \(\sum e(n^{3e/2}/2)\), and the nested
+floors. For the monomial, the \(k\)-th derivative test gives a saving
+\(N^{-\delta}\) with
+
+| \(e\) | best \(k\) | \(\delta\) |
+|---|---|---|
+| 4 | 5 | 0.033 |
+| 7 | 8 | 0.0039 |
+| 10 | 11 | 0.00049 |
+
+decaying like \(2^{-e}\): tiny, but since \(e\) is bounded it is a cost paid
+once. For the floors, each of the \(t\) intermediate defects contributes a
+sawtooth of polynomial amplitude \(n^{e-3/2}(3/2)^{k}\) to the phase, and
+\(t\to\infty\). So **the difficulty that grows with depth is the nesting count
+alone; the exponent is a fixed, small factor.** That relocates the
+unbounded-depth barrier: not "the orbits get too big" but "the floors
+accumulate", at bounded magnitude ratio.
+
+This does not open a door. It says which door is the door. The sparsity of the
+image is the accumulated floors, and the closed reset entry's reason ("high-walk
+\(E\)-images are sparse") is this same fact at one step.
+
+**Lean.** No toolchain; nothing formalised.
+
+```text
+What was learned
+- the tilted-live exponent walk is a meander: u_d = -L + c sigma sqrt(d)
+  with c = 1.0-1.05 across L = 1..16, peak at L* = 3.3 where the DP peaks,
+  zero crossing near L = 12 where iteration 3 found it by hand
+- the hypothesis's exponent is bounded at every scale: median 2^u <= 10,
+  90th percentile <= 2^10.8
+- the tilt moves the weight from the 10^31 median orbit to 10^92, which
+  reconciles iterations 2 and 3
+- the size-of-e cost is N^{-delta} with delta ~ 2^{-e}: 0.033 at e = 4,
+  0.00049 at e = 10, fixed in depth
+- the difficulty that grows with depth is the count of nested floors, not
+  the exponent
+Strongest theorem
+- the van der Corput pricing is a standard bound applied; the meander law
+  is fitted against an exact DP, not proved
+Strongest refutation
+- none
+Reusable machinery
+- tilted_live_meander (DP with quantiles and implied c),
+  van_der_corput_saving; two tests
+Branch status
+- PARK
+Why
+  A fitted asymptotic with a derived stationary point and a verified
+  crossover is a small theorem's worth of structure about where the
+  hypothesis lives, and it decides a question the brief poses in the
+  abstract -- which obstruction grows. The answer removes one worry
+  (magnitude) and names the other (nesting) with its rate. It shortens no
+  distance; it says which distance.
+Best next question
+- with e bounded and t unbounded, the accumulated floor defect at depth t
+  on the tilted-typical prefix is a sum of t sawteeth with amplitudes
+  n^{e_k - 3/2} (3/2)^{t-k}. Which single defect dominates the phase at
+  the last step -- the innermost, amplified most, or the outermost, largest
+  in n -- and does the answer change the shape of the barrier from "t
+  objects" to "one object at each depth"?
+```
+
+## Loop, iteration 5: the dominant defect is at the walk minimum, and the climb from it is the barrier
+
+The question iteration 4 left: with the exponent bounded and the nesting
+unbounded, which of the \(t\) floor defects dominates the last-step phase, and
+does the answer collapse "\(t\) objects" to one?
+
+**A one-line derivative settles where.** Write \(x_k=X_k-D_k\) with
+\(X_k=n^{e_k}\) the floorless composition. The defect \(\theta_k\) injected
+when \(x_k\) is formed reaches \(x_{T-1}\) multiplied by the derivative of the
+composed map \(x_k\mapsto x_{T-1}\), which is \(x\mapsto x^{e_{T-1}/e_k}\), so
+\[
+A_k\;\approx\;\frac{e_{T-1}}{e_k}\,\frac{x_{T-1}}{x_k}
+\;\approx\;\frac{e_{T-1}}{e_k}\,n^{\,e_{T-1}-e_k}.
+\]
+That is decreasing in \(e_k\), so the dominant defect is the one injected at
+the **walk minimum**. On 58869 live orbits at \(y=10^{20}\), depth 16, the
+argmax of the exactly computed \(A_k\) is the walk minimum in 100.0% of cases;
+the law's residual is \(+0.00/+0.30/+0.65\) in \(\log_{10}\) at the 10/50/90th
+percentiles, against a median \(\log_{10}A_{k^*}=26.3\) and a 90th percentile
+of 300.
+
+**But not one object mod 1.** A defect enters the parity of \(x_T\) iff
+\(A_k\ge1\), i.e. iff \(u_k\le u_{T-1}\): the steps at which the walk was at
+or below its final value. For a meander ending high that is most of them ---
+median 9 of 15, tilted mean 10.1. So the last-step phase is one object in size
+and \(\Theta(T)\) objects mod 1. The hierarchy of amplifications does not
+reduce the nesting count; it orders it.
+
+**The provability gap, priced at the object that carries it.** The dominant
+defect is injected where the prefix is at its most contracting and its image
+\(\{x_{k^*-1}\}\) at its densest --- iteration 3's dense-image class, at the
+one step of every live orbit where it is guaranteed to occur. The parity of
+\(x_T\) probes \(\theta_{k^*}=\{x_{k^*-1}^{3/2}\}\) at scale
+\(1/A_{k^*}=n^{-(e_{T-1}-e_{k^*})}\), tilted-mean exponent \(\Delta e=10.9\).
+The discrepancy of \(\{m^{3/2}\}\) over that image, of size about
+\(n^{e_{k^*-1}}\), resolves at best \(n^{-e_{k^*-1}/2}\), tilted-mean exponent
+\(0.70\). The requirement exceeds the resolution by \(n^{10.2}\) on tilted
+average --- \(10^{205}\) at this \(y\).
+
+That is Paper B's growing sawtooth, located and priced. The amplification that
+makes the parity fair *in fact* --- a huge multiple of a fractional part is as
+mixed as anything can be --- is exactly what puts it beyond any equidistribution
+bound on the defect that carries it. Both are measured by one number: the
+walk's climb from its minimum, \(e_{T-1}-e_{k^*}\).
+
+**What it does and does not change.** It does not open a door. It replaces
+"\(t\) sawteeth of growing amplitude" with a structure: one dominant defect at
+a known location, amplified by a known factor, plus \(\Theta(t)\) active
+subordinates; and it says why the obvious proof strategy --- equidistribute the
+dominant defect --- fails by two hundred orders of magnitude rather than by a
+constant. Any proof has to get its cancellation without resolving
+\(\theta_{k^*}\) at scale \(n^{-\Delta e}\). That is the same sentence Paper C
+writes as "a mean over characters, not a supremum", now with the character
+named.
+
+**Lean.** No toolchain; nothing formalised.
+
+```text
+What was learned
+- A_k ~ (e_{T-1}/e_k) n^{e_{T-1}-e_k}: the dominant defect is at the walk
+  minimum, 100.0% of live orbits, law residual within a factor 4
+- a defect is active mod 1 iff u_k <= u_{T-1}; tilted mean 10.1 of 15 are,
+  so the nesting count is ordered, not reduced
+- the dominant defect is injected on the densest image of the orbit and
+  probed at scale n^{-Delta e}, Delta e = 10.9 tilted mean, against a best
+  resolution n^{-0.7}: a gap of n^{10}, 10^205 at y = 1e20
+- the climb from the walk minimum is the one number that measures both why
+  the parity is fair and why that cannot be proved by equidistribution
+Strongest theorem
+- the dominant-defect proposition (J-dominant-defect-at-walk-minimum), a
+  derivative computation verified exactly
+Strongest refutation
+- "equidistribute the dominant defect" as a proof strategy, by 205 orders
+Reusable machinery
+- dominant_defect_profile; one test
+Branch status
+- PARK
+Why
+  Five iterations have turned the barrier from a phrase into a located,
+  priced structure: bounded exponent, meander walk, dominant defect at the
+  minimum, Theta(t) active subordinates, and a two-hundred-order gap between
+  what parity probes and what discrepancy resolves. None of it is a route.
+  All of it is what a route would have to route around.
+Best next question
+- the gap is between scale n^{-Delta e} and resolution n^{-e_{k*-1}/2}. A
+  proof that does not resolve theta_{k*} must average over it. The only
+  averaging the hypothesis permits is over cylinders under the tilt. Does the
+  tilt-weighted average over live orbits of (-1)^{x_T} decompose along the
+  walk minimum -- condition on (k*, x_{k*}) -- into a sum whose inner terms
+  are single-floor sums over dense images, with the outer sum over the
+  meander's minimum carrying all the nesting? If so the nesting has moved
+  from the phase into the measure, which is a different kind of object.
+```
+
+## Loop 6: the split at the minimum is a Wiener–Hopf factorisation, and it sorts the floors by sign
+
+Iteration 5 ended on a question: does the tilt-weighted parity sum over live
+orbits decompose along the walk minimum into single-floor inner sums, with the
+nesting moved from the phase into the measure? The answer is exact, and it is
+no in the way hoped and yes in a way that is worth having.
+
+**A damping lemma, the mirror of iteration 5.** With \(x_k=X_k-D_k\) and
+\(X_k=n^{e_k}\), monotonicity and one convexity inequality per step give
+\(0\le D_k<1+c_kD_{k-1}\), \(c_k=\tfrac32X_{k-1}^{1/2}\) on an odd step and
+\(\tfrac12x_{k-1}^{-1/2}\) on an even one, hence \(D_k<1+\Delta_k\) with
+\(\Delta_k=\sum_{j<k}\prod_{i=j+1}^k c_i\) — the same derivative products as
+the amplifications \(A_j\), now read in the other direction. At a *running
+minimum* \(s\) of the walk every earlier exponent is larger, every product is
+about \((e_s/e_j)n^{e_s-e_j}<1\), and so \(x_s\in\{\lfloor X_s\rfloor,
+\lfloor X_s\rfloor-1\}\), with equality to the floor whenever
+\(\{X_s\}\ge\Delta_s\). Verified on 19615 live orbits at \(y=10^{20}\), depth
+16: all 19917 running minima, 0 exceptions, and the general bound at all
+132796 steps small enough to check exactly. (An even step absorbs the floor
+before it outright, \(\lfloor\sqrt{\lfloor a\rfloor}\rfloor=\lfloor\sqrt a\rfloor\),
+so \(OE^j\) gives \(\lfloor n^{3/2^{j+1}}\rfloor\) with no exception at all.)
+Amplification and damping are one derivative with two signs; the walk minimum
+is the seam.
+
+**The factorisation.** Levels \(u_t\) are distinct for distinct \((o_t,t)\),
+so every \(L\)-bad word has a unique argmin \(k^*\) and splits as a descent to
+a strict new minimum followed by a positive excursion. The tilt factorises
+across the split:
+\[
+N^\theta_{\rm bad}(L,d)=\mathrm{Exc}_\theta(d)+\sum_{k^*\ge1,\,o^*}
+e^{\theta o^*}N_{\rm desc}(k^*,o^*)\,\mathrm{Exc}_\theta(d-k^*),
+\]
+the descent counted by time reversal, the excursion count level-free. Checked
+against the direct tilted DP to \(2\cdot10^{-15}\) up to \(d=480\). On orbits
+the fibre of the minimum state \(m\) is an interval of consecutive \(n\) and the
+continuation is a function of \(m\), so the live parity sum is exactly
+\(\sum_{k^*}\sum_m\mu_{k^*}(m)\chi_{d-k^*}(m)\): \(\mu\) carries the \(k^*\)
+damped floors, \(\chi\) the \(d-k^*\) amplified ones. **Floors are conserved.**
+The decomposition sorts them; it removes none.
+
+**The ladder law says which side is heavy.** Tilted, \(C=20\), by DP and
+cross-checked on exact orbits (\(P(k^*{=}0)=0.440\) DP vs \(0.437\) orbits):
+\(P(k^*{=}0)\) falls \(0.43\to0.012\) and the mean of \(k^*/d\) rises
+\(0.25\to0.69\) from \(L=1.25\) to \(24\). The argmin moves *late* as \(L\)
+grows: at large \(L\) most floors sit on the damped side. The minimum's
+overshoot above the barrier grows sublinearly (median \(1.0\to8.4\) walk
+units), so its scale \(N_0^{2^{u^*+L}}\) is far from both \(N_0\) and \(y\).
+And the descent is not one object: the tilted mean number of strict descending
+ladder epochs is \(0.93,\,2.58,\,4.96,\,10.6\) at \(L=1.25,\,3.3,\,6,\,12\),
+about \(0.9\) per unit \(L\), one every \(22\)–\(27\) letters — one per \(C\).
+
+**So this is what "nesting in the measure" means.** The live measure is a
+Markov renewal chain over \(\mathbb N\): states \(m_i\) at the ladder epochs,
+links \(m_i=\lfloor m_{i-1}^{e_i}\rfloor\) that are single Piatetski–Shapiro
+contractions (the damping lemma), weights that are the nested parity selection
+of one positive excursion of mean length \(\approx C\) from \(m_{i-1}\), and
+\(\Theta(L)\) such segments; the phase is the final excursion, of length
+\((1-k^*/d)\,d\). That is a different kind of object from one \(d\)-deep
+composition, and the question it isolates is *coarse/fine independence at a
+renewal*: is the parity selection of the excursion from \(m_{i-1}\), which is
+fine in \(m_{i-1}\), independent of the next state \(\lfloor m_{i-1}^{e}\rfloor\),
+which is coarse?
+
+**Seen once, at the shortest segment.** For the prefix \(OE\) the fibre of
+\(m\) has \((4/3)m^{1/3}\) integers and the ladder density \(f(m)\) is a
+short-interval parity count of \(\lfloor n^{3/2}\rfloor\) whose local frequency
+\(\gamma(m)=\{\tfrac32m^{2/3}\}\) drifts by \(m^{-1/3}\) per step. It is not
+smooth plus noise: its mean is \(0.500\pm0.004\) in every \(\gamma\)-bin, its
+spread is a quarter of Poisson off resonance and four to fifteen times that in
+the bins at \(\gamma\approx0\), and consecutive \(m\) are as different as random
+ones. Against the excursion parity to depth \(8\) it is orthogonal: every
+correlation within \(1/\sqrt n\), the decomposition sum within \(1.4\) noise
+units of its null at every depth.
+
+**What it is not.** Not a door. The per-segment selection at unbounded segment
+length is the original problem, and the tilted mass of long segments is the
+live-pressure bound at segment level — the hypothesis again, restricted to one
+excursion from the barrier. What it is: the first reformulation in which the
+unbounded depth is a product over \(\Theta(L)\) renewals of bounded-mean-length
+pieces, with the tilt factorising across each, and with the hypothesis's own
+anatomy (tolerance for rare odd-heavy towers) reappearing as the exponential
+tail of the segment-length law.
+
+**Lean.** No toolchain; nothing formalised. The damping lemma is the most
+Lean-ready statement so far: two real inequalities (\(\sqrt X-\sqrt x\le
+(X-x)/2\sqrt x\), \(X^{3/2}-x^{3/2}\le\tfrac32\sqrt X\,(X-x)\)) and an
+induction over the word.
+
+```text
+What was learned
+- damping lemma: at a running minimum x_s = floor(n^{e_s}) or one less, and
+  the floor itself whenever {X_s} >= Delta_s; 0 exceptions on 19917 minima
+- the live set factorises at the walk minimum (Wiener-Hopf); the tilt
+  factorises with it; identity checked to 2e-15 to d = 480
+- floors are conserved: k* damped into the measure, d - k* amplified into
+  the phase; nothing becomes single-floor
+- the argmin moves late with L (mean k*/d 0.25 -> 0.69), so at large L the
+  damped side is the heavy one, cut by ~0.9 L ladder epochs into segments
+  of mean length ~ C linked by single floors
+- the first-renewal density is quasi-periodic in its local frequency, mean
+  1/2 in every bin, orthogonal to the excursion parity to depth 8
+Strongest theorem
+- J-damping-at-running-minimum and J-live-set-ladder-factorisation (both
+  EXACT, the second with a DP identity verified to machine precision)
+Strongest refutation
+- "the inner sums become single-floor": no, by conservation of floors
+Reusable machinery
+- damping_at_running_minima, ladder_factorisation,
+  ladder_density_first_renewal; three tests
+Branch status
+- PARK, with a named object: the renewal chain over ladder epochs
+Why
+  The unbounded depth is now a chain of Theta(L) bounded-mean-length
+  segments linked by single floors, and the hypothesis is a law of large
+  numbers over that chain plus coarse/fine independence at each link. The
+  link is proved; the independence is seen once; the segment selection at
+  unbounded segment length is the same problem it always was.
+Best next question
+- coarse/fine independence with a rate: for a segment of length 2..5 (Paper
+  B's depth) from a state m, is the parity selection independent of
+  floor(m^e) on fibres of length (1/e) m^{1/e-1} -- a short-interval version
+  of Paper B's bounds? If Paper B's exponential-sum estimates localise to
+  intervals of that length with a saving, the chain's links are proved for
+  short segments, and the whole hypothesis reduces to the tilted mass of
+  segments longer than B, one-sided, from the barrier.
+```
+
+## Loop 7: the shortest link, made exact — three phases, one of them fine
+
+Loop 6 left the renewal chain with one question: coarse/fine independence at
+a link, with a rate, for short segments. This iteration takes the shortest
+link there is — the \(OE\) renewal, state \(M=\lfloor n^{3/4}\rfloor\) — and
+writes its ladder density down exactly.
+
+**Three phases.** Let \(n_0\) be the least odd \(n\) in the fibre of \(M\)
+and \(H\) the number of odd \(n\) in it. With \(n=n_0+2j\),
+\[
+n^{3/2}=n_0^{3/2}+3\sqrt{n_0}\,j+\tfrac32n_0^{-1/2}j^2-\tfrac12n_0^{-3/2}j^3+\dots,
+\]
+so \(f(M)=H^{-1}\#\{j<H:\{\mathrm{off}+gj+qj^2+cj^3\}_2<1\}\) with offset
+\(\mathrm{off}=\{n_0^{3/2}\}_2\), frequency \(g=\{3\sqrt{n_0}\}_2\) and
+curvature \(q\). Checked fibre by fibre on 6000 states at \(M=10^9\): exact in
+\(99.98\%\) of fibres, within one count in all.
+
+**Which coordinate is fine.** The model has total variation at most \(2\) in
+the offset (measured \(0.86\)–\(1.88\)) and of order \(H\) in the frequency
+(measured \(\approx80\) on a coarse sweep against the bound \(H/2=333\)). So
+the offset — a level-2 wave with exponents \((4/3,3/2)\), the same "wave riding
+a frozen floor" as Paper B's kernel with \((3/2,3/2)\) — is needed only at
+\(O(1)\) frequencies, while the frequency is needed at resolution \(1/H\). And
+the frequency is the *monomial* \(\{3M^{2/3}\}_2\) to within \(3\cdot10^{-6}\),
+far below \(1/H=1.5\cdot10^{-3}\): Weyl sums of \(3M^{2/3}\) at frequencies up
+to \(M^{1/3}\), inside van der Corput's range. That is why loop 6's coarse
+binning explained nothing: the dependence lives at scale \(1/H\).
+
+**So the link is not a short-interval statement.** Coarse/fine independence
+at the \(OE\) renewal with the first \(\ell\) excursion letters is the joint
+equidistribution of one level-2 wave at \(O(1)\) frequencies, one monomial at
+frequencies up to \(M^{1/3}\), and the forward nested parities to depth
+\(\ell\). The fibre's structure has been traded for a twist: Paper B at depth
+\(\ell\) with one extra kernel of a different exponent pair and one monomial
+twist in van der Corput's range.
+
+**The monomial part, measured.** On two million odd states from \(10^9\),
+restricted at each depth to positive excursions, every twisted mean of the
+excursion parity by \(e(a\tfrac34M^{2/3}+bM^{4/3}+c\tfrac43M^{1/3})\) for ten
+small twists sits at noise to depth \(5\) (worst \(2.0\sigma\)); the untwisted
+excursion parities are fair to \(10^{-3}\). A warning for anyone repeating
+this: over *all* states the depth-\(4\) and \(5\) means are \(0.11\) and
+\(0.20\), which is not bias — contracting words send the whole range to one
+constant state — so a census of nested parities on a short range of states
+must restrict to expanding words.
+
+**Lean.** No toolchain; nothing formalised.
+
+```text
+What was learned
+- the OE ladder density is exactly f = H^{-1} #{j : {off + g j + q j^2}_2 < 1}
+  with off a (4/3, 3/2) level-2 wave, g the monomial {3 M^{2/3}}_2, q a
+  parameter; exact in 99.98% of 6000 fibres, within one count in all
+- BV <= 2 in the offset, TV ~ H in the frequency: the offset needs O(1)
+  frequencies, the frequency needs resolution 1/H, and it is a monomial
+  to 3e-6, so that resolution is van der Corput's range
+- the link is Paper B at depth l with one more level-2 kernel (exponent
+  pair (4/3, 3/2)) and one monomial twist -- not a short-interval statement
+- excursion parities to depth 5 are orthogonal to the monomial twists at
+  noise level on 2e6 states; the "all states" census is an artefact of
+  contracting words and is recorded as a warning
+Strongest theorem
+- J-first-renewal-density-three-phases (EXACT, verified fibre by fibre)
+Strongest refutation
+- "the link is a short-interval Paper B" -- it is a twisted one
+Reusable machinery
+- first_renewal_phase_representation, twisted_excursion_census; two tests
+Branch status
+- PARK, sharpened: the shortest link is a named Paper-B-type estimate
+Why
+  The renewal chain's links are now concrete objects: a level-2 kernel with
+  a new exponent pair, a monomial twist inside van der Corput's range, and
+  Paper B's forward parities. Whether Paper B's Lemma 5.2 survives the
+  extra kernel is a question about that paper, not about the laboratory.
+  The long-segment mass is untouched and is the hypothesis.
+Best next question
+- does Paper B's kernel estimate |q|^{-1/6} P^{23/24+eps} for the level-2
+  wave e(q floor(n^{3/2})^{3/2}) hold with the exponent pair (4/3, 3/2),
+  and jointly with a monomial twist e(a 3M^{2/3}) for a up to M^{1/3}? If
+  both, the OE link is proved to depth 4 with a power saving, and the
+  general first-passage link OOEE (e = 9/16, fibre length (16/9) M^{7/9})
+  is the next exponent pair to price.
+```
+
+## Loop 8: the chain conserves depth
+
+Loop 7 ended by asking whether Paper B's kernel estimate survives a second
+exponent pair and a monomial twist, because that looked like what the
+shortest link of the renewal chain needed. Before pricing it, sum the link
+identity the other way.
+
+**The identity summed over \(n\).** Independence at the \(OE\) renewal with
+\(\ell\) forward letters is \(\sum_M\mu(M)\chi_\ell(M)\approx\bar f\sum_M|F_M|\chi_\ell(M)\).
+Summed over \(n\) instead of \(M\), the left side is exactly
+\(\sum_{n\ \mathrm{odd},\,x_1\ \mathrm{even}}(-1)^{x_{2+\ell}(n)}\mathbf 1[\text{excursion}]\)
+— the parity balance of the cylinder \(OE\cdot w\) at depth \(2+\ell\), Paper
+B's own object, with no twist and no short interval — and the null is the
+same sum over all odd \(n\) for the counterfactual orbit of
+\(\lfloor n^{3/4}\rfloor\). Verified exactly on \(3000\) fibres at \(M=10^9\) to
+depth four (\(4892/4892\), \(3804/3804\), \(13778/13778\), \(2635/2635\)).
+So loop 7's twisted Paper B is a harder proof of the same depth-\((2+\ell)\)
+statement, and Paper B's depth-four theorem already gives this link for
+\(\ell\le2\).
+
+**Why, in general.** A link whose ladder measure carries \(k\) floors of
+history against \(\ell\) forward letters is the depth-\((k+\ell)\) statement.
+The damping lemma makes the measure's *support* a single floor; its
+*density* carries the whole history at full frequency — the earliest
+segment's parities wind fastest across the fibre, so recovering them from
+the epoch state needs the highest harmonics. Chaining the links is the
+depth-\(d\) statement it always was. Floors were conserved across the split
+(loop 6); depth is conserved across the chain. The Markov property a renewal
+argument needs is not a weaker hypothesis than fixed-depth equidistribution
+at the summed depth.
+
+**Two prices, for the record.** Paper B's slow-twist localization (Theorem
+4.11 via Lemma 4.10) removes a twist after differencing when its total
+variation \(2h|I|\sup|g''|\) is small; for the monomial \(a\cdot\tfrac34M^{2/3}\)
+that is \((a/3)P^{-1/4}\), fine for \(a\ll P^{1/4}\), while the link's
+frequency coordinate needs \(a\) up to \(\tfrac43P^{1/3}\), where the
+variation is \(2.5\) to \(20.6\) and the twist's first derivative is \(2/3\).
+And a supermartingale bound epoch by epoch would need a uniform-in-state
+bound on the tilted excursion mass from one state — the every-cylinder form
+of \(\mathrm H(C,A)\). Neither matters now: nothing beyond depth four is
+bought either way.
+
+**What the three loops leave.** Two exact structures (the factorisation
+with its tilt, the damping lemma), one named object (the renewal chain),
+and the knowledge that it does not shorten anything. And one identity that
+was always there and now has a use: an even step absorbs the floor before
+it, so every word without consecutive \(O\)'s is an exact iterated
+\(\lfloor\cdot^{3/4}\rfloor\). That is the fate note's \(OEOEE\) route —
+fifteen sign sums, second-derivative test and Kusmin–Landau, savings
+\(P^{-3/32}\) and \(P^{-1/16}\), no Paper B, no exceptional set — which
+raises \(\lambda^{**}\) from \(0.4480\) to \(0.4801\) unconditionally and is
+the first item of door 3. It has been pending since the note was written.
+
+**Lean.** No toolchain; nothing formalised.
+
+```text
+What was learned
+- the OE-link identity summed over n is the depth-(2+l) cylinder balance,
+  exactly; the twisted Paper B of loop 7 is a harder proof of the same
+  statement; Paper B depth 4 covers l <= 2 already
+- in general k floors of history against l forward letters is the
+  depth-(k+l) statement: the chain conserves depth as the split conserved
+  floors; support is single-floor, density is full-history
+- Paper B's slow twist reaches a << P^{1/4}; the link needs a <= P^{1/3},
+  twist first derivative 2/3 there; moot either way beyond depth 4
+Strongest theorem
+- none new; J-renewal-chain-conserves-depth is a reparameterisation
+Strongest refutation
+- "the renewal chain makes the unbounded depth a chain of bounded pieces"
+Reusable machinery
+- link_depth_accounting; one test; negative-knowledge entry
+Branch status
+- CLOSE for the renewal chain as a route; its two exact lemmas stay
+Why
+  Three iterations built a genuinely new decomposition and then found the
+  conservation law that makes it a reparameterisation. That is the right
+  order and the right ending. The only thing it hands on is an exact
+  identity with a priced, unconditional, still-unexecuted use.
+Best next question
+- execute the OEOEE route: the fifteen sign sums of the fate note, eight
+  one-variable sums in w = floor(n^{3/4}) by the second-derivative test
+  and the Proposition 4.4 pairing, seven by Cauchy-Schwarz and
+  Kusmin-Landau per block, savings P^{-3/32} and P^{-1/16}; measure each
+  of the fifteen on exact orbits first, then write the proof. It lifts
+  lambda** from 0.4480 to 0.4801 unconditionally and needs no Paper B.
+```

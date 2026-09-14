@@ -909,6 +909,61 @@ campaign (fixed-order characters are \(e^{o(d)}\); the tail is
 reparameterization). Direct-attack dossier:
 [juggler_pressure_direct](problems/juggler_pressure_direct.md)
 (`J-pressure-direct-routes`).
+
+**The bad-set spectrum cannot beat its own density.** Killed claim:
+expanding \(1_{\mathrm{bad}}\) in the Walsh basis and bounding
+\(W_T^{\mathrm{bad}}=\sum_S\hat b_SW_{S\triangle T}\) improves on the
+trivial \(\lvert W_T^{\mathrm{bad}}\rvert\le Np_{\mathrm{bad}}\).
+Kill: Cauchy--Schwarz's bad-set factor is
+\((\sum_S\hat b_S^2)^{1/2}=\sqrt{p_{\mathrm{bad}}}\) *exactly* --- Parseval
+for a 0/1 indicator, an identity with no slack --- so no sharper knowledge
+of the spectrum can help; the whole loss sits on the other factor, the
+*unrestricted* Walsh energy \(2^{d-1}\mathcal C_d\), which is the object
+the all-\(O\) tails dominate and the bad restriction exists to remove. It
+beats the trivial bound iff \(K_{\mathrm{all}}<p_{\mathrm{bad}}\), and
+\(K_{\mathrm{all}}\ge1>p_{\mathrm{bad}}\) always (measured: \(8.81\),
+\(133.33\), \(532.30\) at \(d=12,16,18\), \(y=10^{12}\)). Hölder against
+the Wiener norm is worse (\(\lVert\hat b\rVert_1/p_{\mathrm{bad}}=378\) at
+\(d=20\), growing like \(1.25^d\)), and splitting by order does not rescue
+it because the spectrum is not low-degree concentrated and spreads with
+depth (\(\ell^2\) weight above order 2: \(0.218,0.269,0.303\) at
+\(d=12,16,20\)).
+Kind: `REFUTED` / `METHOD_OBSTRUCTION`.
+Narrowed after adversarial review (same day): the units are \(M\), the
+number of bad starts, not \(Np_{\mathrm{bad}}\), which is not free ---
+\(M\le Np_{\mathrm{bad}}\) with exact \(p_{\mathrm{bad}}\) is stronger than
+Theorem 8.3's conclusion. What is killed is every bound *uniform in
+\(T\)*: the order-1 floor \(\max_T\lvert W_T^{\mathrm{bad}}\rvert\ge
+(2p_C-1)M\) makes a uniform saving self-referential, and the sharp
+per-character bound \((N/2)(p_{\mathrm{bad}}+\lvert\hat b_T\rvert)\) caps
+the gain at a factor 2. Per-order bounds are NOT killed: the aggregate
+tail is measured 5--26x below trivial and growing.
+Do not: route any bound through \(\sum_U\lvert W_U\rvert^2\); expect an
+order split to concentrate the spectrum; seek a \(T\)-uniform saving
+beyond the factor 2; use \(Np_{\mathrm{bad}}\) as a yardstick.
+Open: the product-shape bound \(\lvert W_T^{\mathrm{bad}}\rvert\le KMb^{\lvert T\rvert}\),
+\(b=\tanh(\theta/2)\), `J-walsh-restricted-product-shape` --- a refinement
+of the tail constant that does not by itself reach \(\mathrm P_\theta\).
+Members: `J-bad-set-spectrum-cannot-win`.
+
+**The renewal chain conserves depth.** Killed claim (loops 6--7): splitting
+the live set at the walk minimum into a ladder measure and a forward
+excursion, and iterating over the \(\Theta(L)\) strict descending ladder
+epochs, turns the \(d\)-deep parity statement into a chain of
+bounded-mean-length links whose coarse/fine independence is a short-interval
+or twisted Paper B estimate. Kill: summed over \(n\) instead of the epoch
+state, the independence statement at a link with \(k\) floors of history and
+\(\ell\) forward letters *is* the depth-\((k+\ell)\) cylinder balance ---
+verified exactly at the \(OE\) link to depth \(4\) --- so chaining the links
+is the depth-\(d\) statement it always was, and the twisted formulation is a
+harder proof of the same thing. The damping lemma makes the ladder measure's
+*support* a single floor; its *density* carries the whole history at full
+frequency. Paper B's depth-\(4\) theorem already gives the \(OE\) link for
+\(\ell\le2\) with no twist; its slow-twist localization reaches
+\(a\ll P^{1/4}\) while the link would need \(a\le P^{1/3}\), where the twist's
+first derivative is \(2/3\) (`J-renewal-chain-conserves-depth`). What survives:
+the exact factorisation and damping lemma as structure, and the
+\(E\)-absorbs-floor identity behind the pending \(OEOEE\) rate lift.
 For “external averaging” after that CLOSE, completing the single live-tilted odd sum
 without a Walsh expansion of the tilt is a cylinder-weighted nested
 phase (Vaaler of \(1_{\mathrm{odd}}(J^t n)\); Walsh tail, two-monomial
