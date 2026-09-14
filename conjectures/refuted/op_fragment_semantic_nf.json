@@ -4,7 +4,7 @@
   ],
   "first_seen": "operator-fragment unique-NF Phase-0",
   "id": "op_fragment_semantic_nf",
-  "lean_reference": "BTCalculus.Rewrite.rewrite_N_D proves the integer identity; it is not a tree rule",
+  "lean_reference": "BTCalculus.Rewrite.rewrite_N_D proves the integer identity; in that system it was not a tree rule",
   "literature": [],
   "mathematical_domain": "balanced ternary calculus",
   "notes": "Unique syntactic NF of the tree TRS without N(D)→D(N) is a different claim and is proved (BTC-op-fragment-nf). This entry only refutes semantic canonicity of those irreducibles. After adding N(D)→D(N) as a tree rule the twins join; that enlarged claim is op_fragment_nd_semantic / BTC-op-fragment-nd-semantic.",
