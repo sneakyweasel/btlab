@@ -16,8 +16,15 @@ do not act on a rank without reading this first.
   exception — rather than on agreement at the five constants the paper prints:
   \(E=e_{t-1}/e_s\) makes the chain rule a rule, and
   \(e_{t-1}-2e_s=e_s(E-2)\) makes \(E<2\) the point where the second-order
-  term stops growing rather than a fitted threshold. No Lean counterpart, which
-  is the part of this entry that stays open.
+  term stops growing rather than a fitted threshold. **The Lean counterpart
+  landed the same day**:
+  [PaperBChainRule.lean](../../formal/Problems/Juggler/PaperBChainRule.lean)
+  proves both for every prefix and every intervening block over exact
+  rationals — `chain_rule`, `second_order`, `linearise_iff` — kernel-checked,
+  with the axioms `propext`, `Classical.choice` and `Quot.sound` and no
+  `ofReduceBool`. The proof uses nothing about \(3/2\) and \(1/2\)
+  beyond positivity, which is what makes the \(2\) forced rather than
+  chosen. **CLOSED.**
 - **1.2 never-contracting word count in Lean — PARTLY MOVED, not the part it
   asks for.** Of the four sibling rows named with empty Lean columns,
   `J-rate-free-density-one` now cites `RateFreeDensity.lean`; the other three

@@ -2235,6 +2235,19 @@
         "kernel": 36
       }
     },
+    "Problems.Juggler.PaperBChainRule": {
+      "declarations": 17,
+      "depends_on": [],
+      "file": "formal/Problems/Juggler/PaperBChainRule.lean",
+      "ledger": [
+        "J-paper-b-defect-coefficient-chain",
+        "J-paper-b-linearisation-E-lt-2"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 17
+      }
+    },
     "Problems.Juggler.PrefixBunched": {
       "declarations": 40,
       "depends_on": [
@@ -2942,7 +2955,7 @@
   "totals": {
     "edges": 229,
     "edges_before_reduction": 1739,
-    "ledger_rows_placed": 395,
-    "nodes": 178
+    "ledger_rows_placed": 397,
+    "nodes": 179
   }
 }

@@ -67,6 +67,7 @@ import Problems.Juggler.OddLandingSets
 import Problems.Juggler.ItineraryLanguage
 import Problems.Juggler.GapCells
 import Problems.Juggler.MonomialSplitting
+import Problems.Juggler.PaperBChainRule
 import Problems.Juggler.PaperBAssembly
 import Problems.Juggler.MasterIdentity
 import Problems.Juggler.BranchFreeze

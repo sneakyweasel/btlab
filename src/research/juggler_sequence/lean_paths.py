@@ -292,6 +292,7 @@ AUXILIARY_MODULES: dict[str, str] = {
     "MeanValues": "Paper B review target",
     "MonomialSplitting": "Paper B review target",
     "PaperBAssembly": "Paper B review target",
+    "PaperBChainRule": "Paper B review target",
     "ThresholdCertificate": "Paper B review target",
     "DepthFourFive": "Independent historical parity support",
     "DividedBounds": "Independent historical parity support",

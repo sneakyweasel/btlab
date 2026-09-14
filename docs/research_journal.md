@@ -47831,3 +47831,86 @@ The body now says so.
 
 What stays open in 1.1 is the Lean counterpart, which is the half of the entry
 nothing here touches.
+
+
+## 1.1 in Lean: the 2 is forced by the squaring, and now that is a proof
+
+The rows written earlier closed the bookkeeping half of candidate 1.1. This is
+the half that was left: a Lean counterpart, which the entry had carried as open
+since the note was written.
+
+`formal/Problems/Juggler/PaperBChainRule.lean`, seventeen declarations, all
+kernel-checked. The axioms are `propext`, `Classical.choice` and `Quot.sound`,
+with no `ofReduceBool`, so the Juggler layer stays off the compiler entirely.
+
+### What is proved
+
+Letters are a two-element inductive type, `step` sends `O` to `3/2` and `E` to
+`1/2`, and `iter w` is the product over a word — the iterate exponent `e_t`, in
+exact rationals rather than floats.
+
+**`chain_rule`.** `E = e_{t-1} / e_s`, for every prefix and every intervening
+block. It rests on `iter_split`, that the product over a concatenation is the
+product of the pieces, which is the composition of power maps and is the whole
+content of the rule.
+
+**`second_order`.** `e_{t-1} - 2 e_s = e_s (E - 2)`, by `iter_split` and `ring`.
+
+**`linearise_iff`.** The second-order exponent is negative if and only if
+`E < 2`, with `no_linearise_iff` the same statement from the other side.
+
+The three monomials Paper B prints are `printed_thm53`, `printed_thm63_C` and
+`printed_thm63_B`, each the rule evaluated at its own word and pair of letters.
+
+### The one thing the proof reveals
+
+`linearise_iff` uses nothing about `3/2` and `1/2` beyond `iter_pos` — that the
+product of step exponents is positive. The values never enter the argument. That
+is the formal content of the claim the prose made and could not quite
+demonstrate: the `2` is not a threshold chosen because it sorts the words
+conveniently, it is forced by the squaring and by positivity alone. Any
+alternative Juggler-like map with positive step exponents would have the same
+criterion at the same constant.
+
+Stating it structurally rather than by index arithmetic is what made that
+visible. A version quantified over `w`, `s` and `t` with `take` and `drop` and
+`t-1` would have proved the same theorem and buried the reason inside the
+indexing.
+
+### Two corrections on the way in
+
+The three printed monomials failed on the first build. My `(pre, mid)` splits
+were wrong — I had guessed them from the shape of the statement instead of
+computing them, and the guesses put the wrong letters in each half. Recomputed
+against `paper_b_prefix_count.defect_coefficient` and checked to agree on all
+three before rebuilding: `(OOOO, 4, 2)` is `pre = OO`, `mid = O`; `(OOOEO, 5, 1)`
+is `pre = O`, `mid = OOE`; `(EOO, 3, 1)` is `pre = E`, `mid = O`.
+
+The first draft also used `push_neg`, which this Mathlib deprecates, and three
+uses would have put three new warnings into a build that had just been cleaned
+to zero. Replaced with `nlinarith` against the positivity fact, which is shorter
+anyway.
+
+### The orphan gate, a third time
+
+The new module pushed the orphan count from 402 to 411: nine declarations that
+nothing outside their own file cites, which is what a new leaf module looks like.
+The budget was not raised. The two headline results are now the `decl` field of
+their rows, and the other seven are named in those rows' statements, which is the
+citation route the gate's own note documents. Back to 402 exactly.
+
+That is the third time today this gate has moved, and each time for a different
+reason: a name collision crediting a dead simp argument, then worktree copies
+before that, now a genuinely new module. The gate is doing its job; what keeps
+changing is what "referenced" means.
+
+### What this does not do
+
+It does not prove that any word contracts, and it does not touch the screen's
+other two conditions — the `9/4` where Conjecture 7.3 says methods stop, and the
+branch-run sufficiency claim, both of which remain hypotheses relative to Paper
+B's toolkit and are recorded as such. The scope split the entry demanded holds in
+the Lean as it does in the rows: the file proves the criterion and says in its
+own header that the other two are not proved there.
+
+Candidate 1.1 is closed, both halves.
