@@ -17,7 +17,7 @@ jobs:
       - name: Ledger is generated
         run: python tools/render_theorem_ledger.py --check
       - name: Ruff (runtime, unused, repeated keys)
-        run: python -m ruff check src tests tools
+        run: python -m ruff check .
       - name: Pyright (bt core)
         run: python -m pyright src/bt
       - name: Pytest
