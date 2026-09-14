@@ -129,7 +129,7 @@ def cubic (A B lin cst : ℤ) : ℤ[X] :=
 theorem eval_cubic (A B lin cst x : ℤ) :
     eval x (cubic A B lin cst) = A * x ^ 3 + B * x ^ 2 + lin * x + cst := by
   unfold cubic
-  simp [eval_add, eval_mul, eval_C, eval_pow, eval_X, mul_comm, mul_left_comm, mul_assoc]
+  simp [eval_add, eval_mul, eval_pow, eval_X]
 
 /-- Newton (falling-factorial) form of a cubic: `cst + (A+B+lin) x + (3A+B) x(x-1) + A x(x-1)(x-2)`. -/
 theorem cubic_newton_eval (A B lin cst x : ℤ) :
@@ -207,8 +207,7 @@ theorem vanishesMod_cubic_iff (k : ℕ) (A B lin cst : ℤ) :
         simpa [heq] using hΔ2
       exact three_pow_dvd_of_two_mul h2mid
     exact ⟨hcst, hsum, hmid, hΔ3⟩
-  · intro ⟨hcst, hsum, hmid, h6⟩
-    intro x
+  · intro ⟨hcst, hsum, hmid, h6⟩ x
     obtain ⟨qF, hF⟩ := six_dvd_falling_three x
     have hAf : A * (x * (x - 1) * (x - 2)) = (6 * A) * qF := by
       have : x * (x - 1) * (x - 2) = 6 * qF := hF
@@ -298,7 +297,7 @@ theorem sectionDeriv_X_pow_three (a : ℤ) :
   have hR :
       eval x (C (DZ (a ^ 3)) + C (3 * a ^ 2) * X + C (9 * a) * X ^ 2 + C 9 * X ^ 3) =
         DZ (a ^ 3) + 3 * a ^ 2 * x + 9 * a * x ^ 2 + 9 * x ^ 3 := by
-    simp [eval_add, eval_mul, eval_C, eval_pow, eval_X]
+    simp [eval_add, eval_mul, eval_pow, eval_X]
   exact hL.trans hR.symm
 
 /-- `D (-1) = 0`. -/
@@ -337,7 +336,7 @@ theorem x3_merge_eval_diff (x : ℤ) :
       - eval x (residualAlong [(1 : ℤ)] ((X : ℤ[X]) ^ 3)) =
       -18 * x ^ 2 := by
   rw [residual_X_pow_three_neg, residual_X_pow_three_pos]
-  simp [eval_add, eval_mul, eval_C, eval_pow, eval_X]
+  simp [eval_add, eval_mul, eval_pow, eval_X]
   ring
 
 /-- First ``x^3`` residual merge: the sign of a length-1 prefix is
@@ -395,7 +394,7 @@ theorem residual_X_pow_four_zero :
   refine Polynomial.funext (fun x => ?_)
   have hL := eval_sectionDeriv_X_pow_four_zero x
   have hR : eval x (C (27 : ℤ) * X ^ 4) = 27 * x ^ 4 := by
-    simp [eval_mul, eval_C, eval_pow, eval_X]
+    simp [eval_mul, eval_pow, eval_X]
   have hrw : residualAlong [(0 : ℤ)] ((X : ℤ[X]) ^ 4) =
       sectionDeriv 0 ((X : ℤ[X]) ^ 4) := rfl
   rw [hrw, hL, hR]
@@ -405,9 +404,9 @@ theorem eval_sectionDeriv_27_X_pow_four_zero (x : ℤ) :
     eval x (sectionDeriv 0 (C (27 : ℤ) * X ^ 4)) = 729 * x ^ 4 := by
   have hrec := section_reconstruction_eval (C (27 : ℤ) * X ^ 4) 0 x
   have hf : eval (0 + 3 * x) (C (27 : ℤ) * X ^ 4) = 27 * (3 * x) ^ 4 := by
-    simp [eval_mul, eval_C, eval_pow, eval_X]
+    simp [eval_mul, eval_pow, eval_X]
   have ha : eval 0 (C (27 : ℤ) * X ^ 4) = 0 := by
-    simp [eval_mul, eval_C, eval_pow, eval_X]
+    simp [eval_mul, eval_pow, eval_X]
   have hexp : 27 * (3 * x) ^ 4 = 2187 * x ^ 4 := by ring
   rw [hf, ha, lsdZ_zero] at hrec
   have : 3 * eval x (sectionDeriv 0 (C (27 : ℤ) * X ^ 4)) = 3 * (729 * x ^ 4) := by
@@ -425,7 +424,7 @@ theorem residual_X_pow_four_zero_zero :
     simpa [residualAlong] using residual_X_pow_four_zero
   have hL := eval_sectionDeriv_27_X_pow_four_zero x
   have hR : eval x (C (729 : ℤ) * X ^ 4) = 729 * x ^ 4 := by
-    simp [eval_mul, eval_C, eval_pow, eval_X]
+    simp [eval_mul, eval_pow, eval_X]
   rw [hsd, h27, hL, hR]
 
 /-- The two `X^4` residuals differ by `-702 x^4`, which places the merge at `k = 3`. -/
@@ -434,7 +433,7 @@ theorem x4_merge_eval_diff (x : ℤ) :
       - eval x (residualAlong [(0 : ℤ), 0] ((X : ℤ[X]) ^ 4)) =
       -702 * x ^ 4 := by
   rw [residual_X_pow_four_zero, residual_X_pow_four_zero_zero]
-  simp [eval_mul, eval_C, eval_pow, eval_X]
+  simp [eval_mul, eval_pow, eval_X]
   ring
 
 /-- First ``x^4`` residual merge: ``27 x^4`` and ``729 x^4`` agree as

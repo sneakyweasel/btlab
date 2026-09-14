@@ -38,7 +38,7 @@ theorem newtonCoeff_zero (f : ℤ[X]) : newtonCoeff 0 f = eval 0 f :=
 
 theorem eval_polyFwdDiff (f : ℤ[X]) (n : ℤ) :
     eval n (polyFwdDiff f) = eval (n + 1) f - eval n f := by
-  simp [polyFwdDiff, eval_sub, eval_comp, eval_add, eval_X, eval_C]
+  simp [polyFwdDiff, eval_sub, eval_comp, eval_add, eval_X]
 
 theorem fwdDiff_eval (f : ℤ[X]) :
     fwdDiff (fun m => eval m f) = fun n => eval n (polyFwdDiff f) := by
@@ -122,7 +122,7 @@ lemma natDegree_polyFwdDiff_lt {f : ℤ[X]} (hd : 0 < f.natDegree) :
     omega
   have hdeg_eq : degree (f.comp (X + C 1)) = degree f := by
     rw [degree_eq_natDegree hcomp0, degree_eq_natDegree hf0, hcomp]
-  have hlt := degree_sub_lt hdeg_eq hcomp0 hlc
+  have hlt := degree_sub_lt_left hdeg_eq hcomp0 hlc
   rw [hdeg_eq] at hlt
   by_cases hD : polyFwdDiff f = 0
   · simp [hD]

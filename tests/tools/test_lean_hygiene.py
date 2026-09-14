@@ -82,10 +82,34 @@ _spec.loader.exec_module(H)
 ORPHAN_BUDGET = 402
 
 #: Warnings from ``lake build Problems.Juggler Problems.JugglerPaper``.
-#: Two remain, both cases where the linter is wrong:
-#: ``FinanceTransfer:796`` — its suggested ``(tac1; tac2)`` does not compile,
-#: because ``<;>`` runs ``omega`` per remaining goal and one branch has none;
-#: ``DenjoyKoksmaOrbit:44`` — ``if_pos`` is half a compound ``simp only`` term.
+#: Two remain, and the reason recorded here until 14 September 2026 was
+#: wrong.  It said both were cases where the linter is mistaken, and both
+#: were in fact fixable -- the fixes compile, and were verified by deleting
+#: the module's oleans and building it from source:
+#:
+#:   FinanceTransfer:796   cases c <;> simp [ih]; omega
+#:   DenjoyKoksmaOrbit:44  simp only at h
+#:
+#: The earlier note described a different edit than the one that works.  For
+#: FinanceTransfer it read the suggestion as ``cases c <;> (simp [ih]; omega)``,
+#: which does run ``omega`` once per branch and does fail where a branch has
+#: no goal left; ``;`` binds looser than ``<;>``, so ``cases c <;> simp [ih];
+#: omega`` is ``(cases c <;> simp [ih]); omega`` and ``omega`` sees one goal.
+#: For DenjoyKoksmaOrbit it removed ``if_pos`` alone and left ``rfl``; the
+#: linter's column covers the whole compound term ``if_pos rfl``.
+#:
+#: They stay for an unrelated reason, and it is not a Lean one.  Both files
+#: are pinned by ``docs/theory/paper_a_release.json``, which records a
+#: SHA-256 of every Paper A input as a provenance claim about the built PDF.
+#: Editing either invalidates that manifest, and restoring it means a full
+#: pandoc + xelatex rebuild that rewrites the PDF, the TeX, the Zenodo
+#: metadata and four export copies -- a published binary changing in git for
+#: two tactic cleanups that alter no statement.  That trade was put to the
+#: maintainer on 14 September 2026 and declined.
+#:
+#: So this budget is now a record of a coupling, not of a linter defect:
+#: Paper A's byte-level input pin makes its Lean unrefactorable without a
+#: republish.  Lower it to 0 in the same change that next rebuilds Paper A.
 WARNING_BUDGET = 2
 
 

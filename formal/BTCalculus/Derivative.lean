@@ -41,7 +41,7 @@ theorem lsdZ_mod (n : ℤ) : n ≡ lsdZ n [ZMOD 3] := by
   · change n % 3 = (-1 : ℤ) % 3
     simp [h, minus_one_emod3]
   · change n % 3 = (n % 3) % 3
-    simp [Int.emod_emod]
+    simp
 
 theorem trit_mod_unique {a b : ℤ}
     (ha : a = -1 ∨ a = 0 ∨ a = 1)
@@ -83,7 +83,7 @@ theorem decomp (n : ℤ) : n = lsdZ n + 3 * DZ n := by
 theorem D_after_S_int (n : ℤ) : DZ (SZ n) = n := by
   unfold DZ SZ lsdZ
   have hmod : (3 * n) % 3 = 0 := by
-    simp [Int.mul_emod_left]
+    simp
   simp [hmod]
 
 theorem S_after_D_int (n : ℤ) : SZ (DZ n) = n - lsdZ n := by

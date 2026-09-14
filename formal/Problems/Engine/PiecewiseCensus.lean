@@ -24,7 +24,7 @@ theorem hiddenCongruenceA_mod0 {x : ℤ} (h : x % 3 = 0) :
 theorem hiddenCongruenceA_mod1 {x : ℤ} (h : x % 3 = 1) :
     hiddenCongruenceA x = x - 4 := by
   have hne : x % 3 ≠ 0 := by omega
-  simp [hiddenCongruenceA, h, hne]
+  simp [hiddenCongruenceA, h]
 
 theorem hiddenCongruenceA_mod2 {x : ℤ} (h : x % 3 = 2) :
     hiddenCongruenceA x = 3 * x := by

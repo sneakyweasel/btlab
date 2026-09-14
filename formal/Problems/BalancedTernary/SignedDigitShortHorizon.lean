@@ -16,7 +16,7 @@ theorem signedTrace_take (gain s : ℤ) :
   | [], n => by simp [signedTrace]
   | u :: rest, 0 => by simp [signedTrace]
   | u :: rest, n + 1 => by
-    simp [signedTrace_cons, List.take_cons]
+    simp [signedTrace_cons]
     exact signedTrace_take gain (signedNext gain s u) rest n
 
 theorem pow_three_succ (L : ℕ) :

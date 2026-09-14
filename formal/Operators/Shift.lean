@@ -18,7 +18,7 @@ theorem mapNeg_involutive (w : List Trit) : mapNeg (mapNeg w) = w := by
   | nil => rfl
   | cons d rest ih =>
       simp [mapNeg] at ih ⊢
-      simp [Trit.negate_negate, ih]
+      simp [ih]
 
 theorem eval_mapNeg_involutive (w : List Trit) :
     evalMSD (mapNeg (mapNeg w)) = evalMSD w := by

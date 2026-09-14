@@ -154,7 +154,7 @@ theorem lambda2Word_abs_le {m n : ℕ} (h : n ≤ m.pred) :
       | zero =>
         simp at h
       | succ k =>
-        simp [Nat.pred_succ] at h
+        simp at h
         omega
 
 /-- Every nonnegative even point of the sharp ``λ=2`` box is reached. -/

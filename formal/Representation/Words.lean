@@ -155,7 +155,7 @@ theorem dropLeadingZeros_replicate_zero_append (m : ℕ) (w : List Trit) :
   induction m with
   | zero => simp [dropLeadingZeros]
   | succ m ih =>
-      simp [List.replicate_succ, dropLeadingZeros, List.dropWhile, ih]
+      simp [List.replicate_succ, dropLeadingZeros]
 
 theorem warpWord_append_zeros (w : List Trit) (m : ℕ) :
     warpWord (w ++ List.replicate m Trit.zero) = warpWord w := by

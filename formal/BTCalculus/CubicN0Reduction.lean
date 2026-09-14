@@ -41,7 +41,7 @@ theorem iterDZ_pow_mul : ∀ (j e : Nat) (n : Int),
 
 theorem iterDZ_pow_mul_ge : ∀ (e j : Nat) (n : Int),
     e ≤ j → iterDZ j ((3 : Int) ^ e * n) = iterDZ (j - e) n
-  | 0, j, n, _ => by simp [iterDZ]
+  | 0, j, n, _ => by simp
   | e + 1, j, n, h => by
     have hshape : (3 : Int) ^ (e + 1) * n = 3 * ((3 : Int) ^ e * n) := by
       rw [pow_succ']

@@ -19,7 +19,7 @@ theorem eval_X_sq (x : ℤ) : eval x ((X : ℤ[X]) ^ 2) = x ^ 2 := by
   simp [eval_pow, eval_X]
 
 theorem eval_three_X_sq (x : ℤ) : eval x (C (3 : ℤ) * X ^ 2) = 3 * x ^ 2 := by
-  simp [eval_mul, eval_C, eval_pow, eval_X]
+  simp [eval_mul, eval_pow, eval_X]
 
 /-- Distinct residuals of ``x^2`` along ``ε`` and ``0`` are already
 ``≡_1``-separated. This is a lower-bound witness, not a closed form for
@@ -28,7 +28,7 @@ theorem x_sq_not_equiv_one_three :
     ¬ equivK 1 ((X : ℤ[X]) ^ 2) (C 3 * X ^ 2) := by
   intro h
   have h1 := (h 1 (Or.inr (Or.inr rfl))).1
-  simp [eval_X_sq, eval_three_X_sq, lsdZ] at h1
+  simp [lsdZ] at h1
 
 theorem residualAlong_nil (f : ℤ[X]) : residualAlong [] f = f :=
   rfl

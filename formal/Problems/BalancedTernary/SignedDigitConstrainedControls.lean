@@ -56,7 +56,7 @@ theorem any_word_separation {gain s t : ℤ} {w : List ℤ}
           have : intVal3 (s' - t') = intVal3 ((s - t) / 3) := by
             simpa [hst'] using intVal3_mul_not_dvd (a := gain) (b := (s - t) / 3) hgain
           omega
-        have hlt : n - 1 < n := Nat.sub_lt (Nat.succ_le.mp hnpos) (by decide : 0 < 1)
+        have hlt : n - 1 < n := Nat.sub_lt (Nat.succ_le_iff.mp hnpos) (by decide : 0 < 1)
         have hrest : rest.length = intVal3 (s' - t') + 1 := by
           have : n - 1 + 1 = n := Nat.sub_add_cancel hnpos
           omega

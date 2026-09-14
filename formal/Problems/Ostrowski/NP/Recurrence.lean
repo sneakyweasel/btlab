@@ -70,7 +70,7 @@ theorem q_triple_mod3_period8 (n : ℕ) :
       have h0 : (q (n + 3) : ZMod 3) =
           2 * (q (n + 2) : ZMod 3) + (q (n + 1) : ZMod 3) :=
         q_mod_three n
-      simp [Nat.add_assoc, Nat.add_comm, Nat.add_left_comm] at h8 h0 hB hC ⊢
+      simp [Nat.add_comm, Nat.add_left_comm] at h8 h0 hB hC ⊢
       rw [h8, hC, hB, h0]
     simp [Nat.add_assoc, Nat.add_comm, Nat.add_left_comm] at hB hC hNext ⊢
     exact ⟨hB, hC, hNext⟩
@@ -160,7 +160,7 @@ theorem q_triple_mod9_period24 (n : ℕ) :
       have h0 : (q (n + 3) : ZMod 9) =
           2 * (q (n + 2) : ZMod 9) + (q (n + 1) : ZMod 9) + 3 * (q n : ZMod 9) :=
         q_mod_nine n
-      simp [Nat.add_assoc, Nat.add_comm, Nat.add_left_comm] at h24 h0 hA' hB hC ⊢
+      simp [Nat.add_comm, Nat.add_left_comm] at h24 h0 hA' hB hC ⊢
       rw [h24, hC, hB, hA', h0]
     simp [Nat.add_assoc, Nat.add_comm, Nat.add_left_comm] at hB hC hNext ⊢
     exact ⟨hB, hC, hNext⟩

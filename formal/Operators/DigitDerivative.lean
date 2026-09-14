@@ -42,7 +42,7 @@ theorem evalMSD_dropLSD (w : List Trit) (hw : w ≠ []) :
 
 /-- `D ∘ S = id` on words: dropping a freshly appended zero restores `w`. -/
 theorem D_after_S (w : List Trit) : dropLSD (shiftWord w) = w := by
-  simp [dropLSD, shiftWord, dropLast_snoc]
+  simp [dropLSD, shiftWord]
 
 theorem eval_D_after_S (w : List Trit) :
     evalMSD (dropLSD (shiftWord w)) = evalMSD w := by
@@ -57,7 +57,7 @@ theorem map_dropLast {α β : Type*} (f : α → β) :
 /-- Negation commutes with dropping the LSD. -/
 theorem N_commutes_D (w : List Trit) :
     mapNeg (dropLSD w) = dropLSD (mapNeg w) := by
-  simp [dropLSD, mapNeg, map_dropLast]
+  simp [dropLSD, mapNeg]
 
 theorem dropLSD_snoc (d : Trit) (w : List Trit) :
     dropLSD (w ++ [d]) = w :=

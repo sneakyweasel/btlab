@@ -20,7 +20,7 @@ theorem powShift_spec (a : ℤ) :
     simp [powShift]
   | n + 1 => by
     rw [pow_succ, powShift_spec a n, powShift]
-    simp [map_mul]
+    simp
     ring
 
 theorem powShift_eval (a x : ℤ) (n : ℕ) :
@@ -34,7 +34,7 @@ def sectionDeriv (a : ℤ) (f : ℤ[X]) : ℤ[X] :=
 theorem eval_sectionDeriv (f : ℤ[X]) (a x : ℤ) :
     eval x (sectionDeriv a f) =
       DZ (eval a f) + ∑ n ∈ f.support, f.coeff n * eval x (powShift a n) := by
-  simp [sectionDeriv, eval_add, eval_C, eval_finsetSum, eval_mul]
+  simp [sectionDeriv, eval_add, eval_finsetSum, eval_mul]
 
 theorem section_reconstruction_eval (f : ℤ[X]) (a x : ℤ) :
     eval (a + 3 * x) f =
@@ -57,7 +57,7 @@ theorem section_reconstruction_eval (f : ℤ[X]) (a x : ℤ) :
         (∑ n ∈ f.support, f.coeff n * a ^ n) +
           3 * ∑ n ∈ f.support, f.coeff n * eval x (powShift a n) := by
     rw [hterms, Finset.sum_add_distrib, Finset.mul_sum]
-    simp [mul_left_comm, mul_assoc, mul_comm]
+    simp [mul_assoc, mul_comm]
   have hde : eval a f = lsdZ (eval a f) + 3 * DZ (eval a f) := decomp (eval a f)
   have hsd := eval_sectionDeriv f a x
   calc
