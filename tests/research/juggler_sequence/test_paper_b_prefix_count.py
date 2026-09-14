@@ -1163,6 +1163,67 @@ def test_paper_bs_meander_constant_splits_and_only_one_half_is_slow() -> None:
     assert 1.09 < 16.53 / predicted < 1.12
 
 
+def _endpoint_profile(d: int) -> tuple[int, list[tuple[float, float]]]:
+    """(N_d, [(endpoint level, share of N_d)]) with an exact integer mask."""
+    from decimal import Decimal, getcontext
+
+    getcontext().prec = 50
+    log2_3 = math.log2(3.0)
+    k = 10 ** 30
+    l23k = int((Decimal(3).ln() / Decimal(2).ln()) * k)
+    st = {0: 1}
+    for step in range(1, d + 1):
+        nx: dict[int, int] = {}
+        tk = step * k
+        for o, c in st.items():
+            for do in (0, 1):
+                o2 = o + do
+                if o2 * l23k >= tk:
+                    nx[o2] = nx.get(o2, 0) + c
+        st = nx
+    tot = sum(st.values())
+    return tot, sorted((o * log2_3 - d, c / tot) for o, c in st.items())
+
+
+def test_near_closure_costs_nothing_in_word_count() -> None:
+    """A cycle must nearly close, and that is free at the word-counting level.
+
+    The endpoint u_d = o log2(3) - d takes values spaced log2(3) = 1.585 apart, so
+    "u_d small and positive" is not a continuum event: at most one o qualifies at a
+    given d, and generically none. The continuum meander density vanishes linearly
+    at the origin, which would suggest the smallest positive level carries almost no
+    mass. It does not.
+
+    The profile over the lattice depends on the INDEX, not on the level's value. At
+    d = 1054 the lowest level is 6.3e-5 and carries 7.65% of all non-contracting
+    words; at d = 700 the lowest is 0.553 -- four orders of magnitude larger -- and
+    carries 9.88%. The bottom level sits at roughly 40% of the next one up either
+    way, which is the descending-ladder renewal function being positive at the
+    origin rather than vanishing there.
+
+    Consequence, and it is a closed door: near-closure provides NO word-counting
+    suppression. Cycle candidates are not rare among non-contracting words, so a
+    counting argument cannot bound them, and the Baker / Rhin lower bound on
+    |L log 2 - o log 3| is doing all the work on the cycle side. That is presumably
+    why the cycle module reaches for transcendence rather than for counting.
+    """
+    for d, expect_low in ((700, 0.0988), (1054, 0.0765)):
+        tot, levels = _endpoint_profile(d)
+        assert tot > 0
+        u0, s0 = levels[0]
+        _u1, s1 = levels[1]
+        assert abs(s0 - expect_low) < 2e-3, (d, u0, s0)
+        # the bottom level is depressed relative to the next, but only by ~2.5x,
+        # nothing like the factor u0 a linear density would demand
+        assert 0.3 < s0 / s1 < 0.55, (d, s0, s1)
+
+    # the share of the lowest level is insensitive to how small that level is
+    _t7, l7 = _endpoint_profile(700)
+    _t10, l10 = _endpoint_profile(1054)
+    assert l7[0][0] > 100 * l10[0][0]          # levels differ by >2 orders
+    assert abs(l7[0][1] - l10[0][1]) < 0.03    # shares do not
+
+
 def test_the_two_families_are_opposite_signs_of_one_approximation() -> None:
     """The complementarity is forced by sign, not by anything about log2(3).
 

@@ -48821,3 +48821,60 @@ that survives any amount of further computation.
 Three places in this thread pointed at one continued fraction --- the staircase,
 the ladder height behind `G(1)`, and the cycle records. This says the third is
 the mirror of the first.
+
+
+## Near-closure is free, so counting cannot bound cycles
+
+The natural next move after the sign split: a cycle word must stay
+non-contracting *and* end with the walk just above zero. The first is what `N_d`
+counts. If the second were rare among those, cycle candidates would be rare and
+there would be a counting route to no-cycle.
+
+I predicted it would be rare, for a specific reason: the continuum meander
+density vanishes linearly at the origin, so an endpoint pinned near the barrier
+should carry almost no mass. **The prediction was wrong, and the data said so
+immediately** --- my first probe returned zero words with `u_d < 0.4` at every
+depth, which is not "rare" but "not a continuum event at all".
+
+The endpoint `u_d = o log2(3) - d` takes values spaced `log2(3) = 1.585` apart.
+At most one `o` lands in a window of width `0.4`, and generically none. So
+near-closure is a Diophantine condition on `d` --- the same one that selects the
+cycle record lengths --- and not a small-probability event.
+
+### What the mass actually does
+
+```text
+  lattice index      d = 1054            d = 700
+                   (u_0 = 6.3e-5)     (u_0 = 0.553)
+        0             0.0765             0.0988
+        1             0.1793             0.2060
+        2             0.1952             0.1974
+        3             0.1649             0.1581
+```
+
+**The profile depends on the index, not on the level's value.** The lowest level
+carries eight to ten percent whether it sits at `6.3e-5` or at `0.553`, four
+orders of magnitude apart. The continuum density would have demanded a share
+proportional to the level --- about `1e-5` at `d = 1054` --- against a measured
+`0.0765`.
+
+What governs it is the descending-ladder renewal function, which is *positive* at
+the origin rather than vanishing there. The bottom level is depressed relative to
+the next by about a factor two and a half, and that is all. It is the same ladder
+object that sits behind `G(1)`, showing up a second time.
+
+### The door this closes
+
+**Near-closure buys no suppression.** Roughly one non-contracting word in twelve,
+at a record length, ends essentially at the barrier. Cycle candidates are not
+rare among non-contracting words, so no counting argument can bound them.
+
+That is a second closed door on the no-cycle side, and it explains a design
+choice rather than criticising one: the Baker / Rhin lower bound on
+`|L log 2 - o log 3|` is doing all the work, and `cycle_gap_baker` reaches for
+transcendence rather than counting because counting genuinely cannot see the
+closure condition.
+
+Both doors closed in this thread have the same shape --- the obvious way to
+combine the Juggler machinery does not combine --- and both were found by
+predicting, being wrong, and looking at why.
