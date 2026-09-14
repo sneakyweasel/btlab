@@ -318,7 +318,7 @@ type Paper B proves enters Appendix C as an explicit hypothesis.
 
 Statements carry one of four roles. *Lean*: the exact combinatorial
 layer is formalized in Lean 4; the root `formal/Problems/JugglerFatePaper.lean`
-imports exactly the twenty-six modules this paper cites and builds with
+imports exactly the twenty-seven modules this paper cites and builds with
 `lake build Problems.JugglerFatePaper`, without `sorry` and without
 `native_decide`; `formal/AxiomCheckPaperC.lean` prints the axiom
 dependencies of every cited name and `AxiomCheckPaperC.expected`
@@ -361,6 +361,7 @@ constants; they prove nothing and are labelled wherever they appear.
 | One-sided form (Theorem 9.1, exact: at every \(y\) the odd failures of \((y,2y]\) number at most \((xa_q^{d-1}N+(x-1)\,\mathrm{err}\,(d-1)(2x)^{d-1})/x^{p_Cd}\) for every tilt \(x\ge1\), by exponential moments) | Lean, without the martingale; the absorption of the error into the rate and the displayed asymptotic form are human |
 | The conjecture from the one-sided hypothesis \(\mathrm H_q(C,A)\) (Theorem 9.1's consequence), with the contagion bound as a hypothesis, or with nothing else assumed when \(e^{\rm Ch}_q(C)>\tfrac7{10}\) | Lean; the exponent is the Chernoff one of Proposition 9.3 with \(A>C(1+\log_2x)+1+e\), the paper's numerical forms are human |
 | The conjecture from the pressure hypothesis \(\mathrm P_\theta(C)\) and from the no-momentum hypothesis \(\mathrm M_{\theta,q}(C)\) (Section 9.2's consequences), with the contagion bound as a hypothesis, or with nothing else assumed when the exponent exceeds \(\tfrac7{10}\) | Lean; the paper's \(e^{o(d)}\) is quantified as \((\log y)^\varepsilon\) and its \(o(d)\) as \(\delta d\), the numerical forms are human |
+| Theorem 9.1 with exceptional atoms (Section 10(d), first paragraph): the share bound may fail on bad atoms of total mass \(y(\log y)^{-B}\) at each depth, and the conjecture still follows, with nothing else assumed when the exponent exceeds \(\tfrac7{10}\) | Lean; the condition is \(B>C\log_2x+1+e\) in place of the paper's \(B>e_q(C)\), sufficient and not sharp |
 | Azuma and exponential-moment arguments (Sections 8--10, except Lemma 8.2, Theorem 8.3, Theorem 9.1, Theorem 9.2 and Proposition 9.3 in their exact forms) | human proof |
 | Cylinder-splitting identity for the first-letter bias (Section 10(d), second equality) | Lean; the Parseval form in Walsh sums, and the exceptional-atom estimate it is meant to supply, are human |
 | Exact landing windows of the nested productions ((D.1), (D.2)) | Lean; the smooth comparison (D.3), the multiplicities and the production inequality they feed are human |
@@ -2266,6 +2267,27 @@ probability \(O((\log y)^{-B})\) at each depth, with
 \(B>e_q(C)\): the expected accumulated excess is
 \(O(d(\log y)^{-B})\), and Markov's inequality absorbs it.
 
+Lean: this variant, on the exponential-moment proof, in
+`formal/Problems/Juggler/FateOneSidedAtoms.lean`.
+`OneSided.OneSidedShareExc` allows at each depth an exceptional set
+of words of total cylinder mass at most \(\mathrm{exc}\) on which the
+share bound may fail; an exceptional bad atom sends at most its whole
+mass to its odd child, which costs \((x-a_q)\#[w]x^{o(w)}\) in the
+tilted mass, so the recursion of Theorem 9.1's Lean proof reads
+\(\mathrm{badMass}(t+1)\le a_q\,\mathrm{badMass}(t)+(x-1)\bigl(\mathrm{err}\,(2x)^t+(1-q)\,\mathrm{exc}\,x^t\bigr)\)
+(`OneSided.badMass_succ_le_exc`), with the exact bound
+`OneSided.one_sided_bound_exc` and its re-centred form
+`OneSided.one_sided_bound_kl_exc`. With
+\(\mathrm{exc}=y(\log y)^{-B}\) the absorption
+(`OneSided.oddFailures_le_of_exc`) needs \(B>C\log_2x+1+e\), against
+\(A>C(1+\log_2x)+1+e\) for the error: the exceptional atoms are not
+doubled at each depth. `OneSided.exc_implies_conjecture` runs this
+weakest one-sided form to the conjecture with nothing else assumed
+when \(e^{\rm Ch}_q(C)>\tfrac7{10}\), and
+`OneSided.exc_conj_of_contagion` with the contagion bound as a
+hypothesis. The condition on \(B\) is sufficient and not the
+\(B>e_q(C)\) of the Markov absorption above, which is not restated.
+
 For comparison, let \(D(w)=\#[wO]-\tfrac12\#[w]\),
 \(\mathcal C_t=\sum_{|w|=t}\#[w]^2\), and let \(W_T\) be the
 Walsh sums on the same full set of odd starts. Parseval gives the
@@ -2586,7 +2608,7 @@ No nontrivial cycle or unbounded orbit is excluded by this paper.
 ## Appendix A. Lean names
 
 All in `formal/Problems/Juggler/FateContagion.lean` unless noted. The
-root `formal/Problems/JugglerFatePaper.lean` imports exactly the twenty-six
+root `formal/Problems/JugglerFatePaper.lean` imports exactly the twenty-seven
 modules named here and builds with `lake build Problems.JugglerFatePaper`
 without `sorry` and without `native_decide`;
 `formal/AxiomCheckPaperC.expected` records the axioms of every name
@@ -2630,6 +2652,7 @@ abstract lemmas listed here, not the analytic density estimates.
 | Theorem 9.1 (one-sided form, exact, by exponential moments), in `Problems/Juggler/FateOneSided.lean` | `OneSided.cylinder_split`, `OneSided.LBad_of_LBad_append`, `OneSided.sum_allWords_succ`, `OneSided.sum_pow_oddCount_le`, `OneSided.badWeight`, `OneSided.badWeight_nonneg`, `OneSided.badWeight_le_card`, `OneSided.badMass`, `OneSided.OneSidedShare`, `OneSided.badMass_succ_le`, `OneSided.card_cylinder_zero_le`, `OneSided.badMass_one_le`, `OneSided.badMass_le`, `OneSided.oddFailures_card_le_badMass`, `OneSided.one_sided_bound`, `OneSided.klDiv`, `OneSided.tilt`, `OneSided.tilt_ge_one`, `OneSided.tilt_pow_ratio`, `OneSided.one_sided_bound_kl` |
 | Theorem 9.1's consequence (the conjecture from the one-sided hypothesis), in `Problems/Juggler/FateOneSidedCorollary.lean` | `OneSided.OneSidedBound`, `OneSided.OneSidedExact`, `OneSided.oneSidedExponent`, `OneSided.OneSidedShare.mono`, `OneSided.oneSidedBound_of_exact`, `OneSided.klDiv_nonneg`, `OneSided.exp_le_rpow_scale`, `OneSided.pow_le_rpow_scale`, `OneSided.oddFailures_le_of_one_sided`, `OneSided.implies_conjecture_of_contagion`, `OneSided.one_sided_implies_conjecture`, `OneSided.exact_share_implies_conjecture` |
 | Section 9.2's consequences (the conjecture from the pressure and no-momentum hypotheses), in `Problems/Juggler/FatePressureCorollary.lean` | `Pressure.oddFailures_subset_live`, `Pressure.PressureBound`, `Pressure.NoMomentumBound`, `Pressure.momentumExponent`, `Pressure.absorb`, `Pressure.oddFailures_le_of_pressure`, `Pressure.pressure_conj_of_contagion`, `Pressure.pressure_implies_conjecture`, `Pressure.oddFailures_le_of_noMomentum`, `Pressure.noMomentum_conj_of_contagion`, `Pressure.noMomentum_implies_conjecture` |
+| Section 10(d), Theorem 9.1 with exceptional atoms, in `Problems/Juggler/FateOneSidedAtoms.lean` | `OneSided.OneSidedShareExc`, `OneSided.oneSidedShareExc_of_share`, `OneSided.OneSidedBoundExc`, `OneSided.oneSidedBoundExc_of_bound`, `OneSided.badMass_succ_le_exc`, `OneSided.badMass_le_exc`, `OneSided.one_sided_bound_exc`, `OneSided.main_term_eq`, `OneSided.one_sided_bound_kl_exc`, `OneSided.pow_le_rpow_scale_gen`, `OneSided.tail_le`, `OneSided.oddFailures_le_of_exc`, `OneSided.exc_conj_of_contagion`, `OneSided.exc_implies_conjecture` |
 
 ## Appendix B. Constants and artifacts
 
@@ -2727,6 +2750,10 @@ use the roots of the displayed defining equations.
 
   SHA-256: `005ec5285b6bfe1d33df8f88b88ae1fcb2c26e73a4686dc622f751a062ce5be3`
 
+- `formal/Problems/Juggler/FateOneSidedAtoms.lean`
+
+  SHA-256: `973ec7afc338ee3f6ef61ee6eb2a38434ea603dbee767d35e523c7762752e888`
+
 - `formal/Problems/Juggler/FateShareLaw.lean`
 
   SHA-256: `a229f4fa4cf48cb5b003c746672947eec10bf93d7287ad7eecaa3f84d5236e7c`
@@ -2777,11 +2804,11 @@ use the roots of the displayed defining equations.
 
 - `formal/Problems/JugglerFatePaper.lean`
 
-  SHA-256: `51dcd8dfb872f2b77bdd8016b72bbaf22473ef9303acd5bb65e3d7de95efadbf`
+  SHA-256: `32cdfd222d896f3ce1539e26d336455ef0ba9b8e1b2fdbea96b4e08392cbbfea`
 
 - `formal/AxiomCheckPaperC.expected`
 
-  SHA-256: `618235c241d7aeb11aa5b8d7fa739b5e7f00bfadaed7a23b540693c4a72c5a75`
+  SHA-256: `9765e2f4255e816f91cffca16f8095d7a83858c2351991fda983e6a5476eda72`
 
 - `src/research/juggler_sequence/fate_contagion.py`
 

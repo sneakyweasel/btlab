@@ -10,6 +10,7 @@ import Problems.Juggler.FateProduction
 import Problems.Juggler.FateOneSided
 import Problems.Juggler.FateOneSidedCorollary
 import Problems.Juggler.FatePressureCorollary
+import Problems.Juggler.FateOneSidedAtoms
 import Problems.Juggler.FateCylinderEnergy
 import Problems.Juggler.FateLandingWindow
 import Problems.Juggler.FateWindowCount
@@ -28,7 +29,7 @@ import Problems.Juggler.FateContagionBound
 /-!
 # Paper C barrel — everything the repository checks for the fate-contagion note
 
-`docs/theory/juggler_fate_almost_all_note.md`. This file imports exactly the twenty-six modules
+`docs/theory/juggler_fate_almost_all_note.md`. This file imports exactly the twenty-seven modules
 that paper cites and nothing else, so that a reader can build the formal side of Paper C on
 its own rather than selecting modules by hand out of the umbrella `Problems.Juggler`. It is a
 laboratory target, not a claim: building it does **not** corroborate the paper's counting.
@@ -117,6 +118,19 @@ laboratory target, not a claim: building it does **not** corroborate the paper's
   bound as a hypothesis (`Pressure.pressure_conj_of_contagion`,
   `Pressure.noMomentum_conj_of_contagion`) and with nothing else assumed
   (`Pressure.pressure_implies_conjecture`, `Pressure.noMomentum_implies_conjecture`).
+* `FateOneSidedAtoms` — Section 10(d), first paragraph: Theorem 9.1 survives if the share
+  bound fails on bad atoms of total mass `y (log y)^{-B}` at each depth. The hypothesis
+  `OneSided.OneSidedShareExc` allows an exceptional set of words of mass at most `exc` at
+  each depth; an exceptional bad atom sends at most its whole mass to its odd child, so the
+  affine recursion gains the term `(x - 1)(1 - q) exc x^t` (`OneSided.badMass_succ_le_exc`),
+  unrolls (`OneSided.badMass_le_exc`) and gives the exact bound
+  (`OneSided.one_sided_bound_exc`, `OneSided.one_sided_bound_kl_exc` at the re-centring
+  tilt). The absorption (`OneSided.oddFailures_le_of_exc`, on the one-tail lemma
+  `OneSided.tail_le`) needs `B > C log₂ x + 1 + e`, `C` less than the error's condition
+  because the exceptional atoms are not doubled at each depth; then Theorem 7.2 with the
+  contagion bound as a hypothesis (`OneSided.exc_conj_of_contagion`) or with nothing else
+  assumed (`OneSided.exc_implies_conjecture`), the weakest one-sided hypothesis the paper
+  states. The paper's `B > e_q(C)` is not restated.
 * `FateCylinderEnergy` — the counting identity of Section 10(d): a cylinder splits into
   its two children (`CylinderEnergy.wordCount_split`), so the first-letter biases
   `D(w) = #[wO] - #[w]/2` satisfy `Σ_{|w|=t} D(w)² = C_{t+1}/2 - C_t/4` exactly
@@ -197,11 +211,12 @@ laboratory target, not a claim: building it does **not** corroborate the paper's
 Proposition 4.4 (the block average), the
 share law 4.5–4.6, the production inequality (5.2) itself (Theorem 5.3 is here given (5.2),
 for every `λ ≤ 0.49`; the root `λ** = 0.4926…` and the range `0.49 < λ < λ**` are not),
-Corollaries 5.4–5.5, the asymptotic forms of Theorems 8.3, 9.1 and 9.2, Section 10 and
-Appendix C have no machine check of any kind. Theorems 7.2, 7.3,
-Corollary 8.4 and the corollaries of Theorem 9.1, Theorem 9.2 and Proposition 9.3 are here
+Corollaries 5.4–5.5, the asymptotic forms of Theorems 8.3, 9.1 and 9.2, Section 10 except
+the counting identity of 10(d) and its exceptional-atom form of Theorem 9.1, and Appendix C
+have no machine check of any kind. Theorems 7.2, 7.3, Corollary 8.4 and the corollaries of
+Theorem 9.1 (with and without exceptional atoms), Theorem 9.2 and Proposition 9.3 are here
 with the contagion bound as a hypothesis, Corollary 8.4 also with (5.2) in its place, and
-Theorem 7.2, Corollary 8.4 and the three Section 9 corollaries also with the contagion bound
+Theorem 7.2, Corollary 8.4 and the four Section 9 corollaries also with the contagion bound
 discharged at exponent `3/10`. Nothing here is a
 density estimate, and nothing here is a halt theorem.
 

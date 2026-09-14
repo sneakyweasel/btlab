@@ -13,6 +13,7 @@
     "Problems.Juggler.FateOneSided",
     "Problems.Juggler.FateOneSidedCorollary",
     "Problems.Juggler.FatePressureCorollary",
+    "Problems.Juggler.FateOneSidedAtoms",
     "Problems.Juggler.FateCylinderEnergy",
     "Problems.Juggler.FateLandingWindow",
     "Problems.Juggler.FateWindowCount",
@@ -29,24 +30,24 @@
     "Problems.Juggler.FateContagionBound"
   ],
   "artifact": {
-    "asked": 339,
-    "recorded": 339,
+    "asked": 351,
+    "recorded": 351,
     "axiom_lists": [
       "propext",
       "propext, Classical.choice, Quot.sound",
       "propext, Quot.sound"
     ]
   },
-  "appendix_a_names": 355,
+  "appendix_a_names": 369,
   "surface": {
-    "modules": 58,
-    "declarations": 1731,
+    "modules": 59,
+    "declarations": 1745,
     "compiler_trusted": [],
     "compiler_dependent": [],
     "open": []
   },
   "table": {
-    "rows": 34,
+    "rows": 35,
     "lean": [
       "Fate classes closed; trichotomy; exclusion (Lemma 2.1)",
       "Even block is an interval (Lemma 3.1)",
@@ -74,6 +75,7 @@
       "One-sided form (Theorem 9.1, exact: at every \\(y\\) the odd failures of \\((y,2y]\\) number at most \\((xa_q^{d-1}N+(x-1)\\,\\mathrm{err}\\,(d-1)(2x)^{d-1})/x^{p_Cd}\\) for every tilt \\(x\\ge1\\), by exponential moments)",
       "The conjecture from the one-sided hypothesis \\(\\mathrm H_q(C,A)\\) (Theorem 9.1's consequence), with the contagion bound as a hypothesis, or with nothing else assumed when \\(e^{\\rm Ch}_q(C)>\\tfrac7{10}\\)",
       "The conjecture from the pressure hypothesis \\(\\mathrm P_\\theta(C)\\) and from the no-momentum hypothesis \\(\\mathrm M_{\\theta,q}(C)\\) (Section 9.2's consequences), with the contagion bound as a hypothesis, or with nothing else assumed when the exponent exceeds \\(\\tfrac7{10}\\)",
+      "Theorem 9.1 with exceptional atoms (Section 10(d), first paragraph): the share bound may fail on bad atoms of total mass \\(y(\\log y)^{-B}\\) at each depth, and the conjecture still follows, with nothing else assumed when the exponent exceeds \\(\\tfrac7{10}\\)",
       "Cylinder-splitting identity for the first-letter bias (Section 10(d), second equality)",
       "Exact landing windows of the nested productions ((D.1), (D.2))"
     ],
@@ -94,5 +96,5 @@
     "label": "PAPER_C_LEAN_SURFACE_CONSISTENT",
     "problems": 0
   },
-  "git_commit": "c00ac170dc74f24340e16ee31d1cc527464ec26d"
+  "git_commit": "aeb847fa54c100ba73f196064a7b8ab0b74672dd"
 }
