@@ -200,6 +200,18 @@ from. `branch_index` run from a worktree rewrites the *main* checkout's
 `attacks/juggler/index.json` and leaves the worktree copy stale, and
 `--check` then passes against main's copy rather than yours. Several
 sessions each regenerating "their own" index are writing one shared file.
+
+Probes are the case that will actually bite: any
+`python -m research.juggler_sequence.<branch>` writes its output under
+main's `data/research/juggler/`, never the worktree's. Confirmed
+2026-09-14 -- the `cyclic_feasibility` cluster and
+`twin_flight/summary.json`, last committed 2026-09-08 and 2026-08-31,
+were both rewritten from a worktree with byte-identical content, so no
+`git status` anywhere showed a thing. That was benign only because the
+content matched. A probe whose worktree code differs from main
+overwrites main's data silently, and the diff is then attributed to
+whoever next commits in main.
+
 Prefix the command, and verify before trusting it:
 
 ```powershell
