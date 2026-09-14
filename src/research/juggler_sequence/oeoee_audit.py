@@ -582,8 +582,17 @@ def pairing_cases() -> list[dict[str, Any]]:
         ("pair_lam1", "Lambda1 2.67 m'^{5/3}", 5 / 3, 0),
     )
     worst: dict[str, tuple[float, int, int]] = {}
+    #: The replacement named in the docstring was prose.  Only the false printed
+    #: constant was ever evaluated, so "which the data satisfy everywhere tested"
+    #: rested on a run nobody repeats.  The honest two-term bound is now carried
+    #: through the same loop and gated as its own row.
+    worst_honest = (0.0, 0, 0.0, 0.0)
     for mp in PAIRING_SOURCES:
         sums = half_a_pairing_sums(mp)
+        honest = (2 / 3) * mp ** (17 / 9) + (8 / 9) * mp ** (14 / 9)
+        ratio = sums[1] / honest
+        if ratio > worst_honest[0]:
+            worst_honest = (ratio, mp, sums[1], honest)
         for key, _label, exponent, slot in cases:
             needed = sums[slot] / mp**exponent
             if key not in worst or needed > worst[key][0]:
@@ -604,6 +613,20 @@ def pairing_cases() -> list[dict[str, Any]]:
                 f" (ratio {exact / (printed * mp**exponent):.3f})",
             )
         )
+
+    ratio, mp, exact, bound = worst_honest
+    rows.append(
+        _row(
+            "Half A pairing Lambda3 honest (2/3)m'^{17/9} + (8/9)m'^{14/9}",
+            1.0,
+            ratio,
+            ratio <= 1.0,
+            "script",
+            f"worst at m'={mp}: exact {exact} against {bound:.1f} (ratio {ratio:.3f});"
+            " the printed 0.89 row above stays as it is -- correcting the manuscript"
+            " constant is a separate decision, gating its replacement is not",
+        )
+    )
     return rows
 
 

@@ -126,7 +126,7 @@ human. No `sorry`.
 
 ## Results
 
-**PROMOTE.** Classification `OEOEE_AUDIT_FALSIFIED`, 29 checks, one
+**PROMOTE.** Classification `OEOEE_AUDIT_FALSIFIED`, 32 checks, one
 failure (`research.juggler_sequence.oeoee_audit`). The \(\Lambda_3\)-alone
 pairing bound \(0.89\,m'^{14/9}\) is false on \(J_2^{\rm sm}\) — \(846\)
 against \(812.4\) at \(m'=80\) — because it omits the \(V\Delta/2\) term of

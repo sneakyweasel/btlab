@@ -780,7 +780,7 @@ some \(400\times\); Half B's bound is met with a factor \(8\) of slack
 and Half A's with \(30\)–\(500\).
 
 **Status.** Classification `OEOEE_AUDIT_FALSIFIED` (14 September 2026):
-29 checks, one failure. The \(\Lambda_3\)-alone pairing bound
+32 checks, one failure. The \(\Lambda_3\)-alone pairing bound
 \(0.89\,m'^{14/9}\) displayed above is **false on \(J_2^{\rm sm}\)**: the
 exact sum is \(846\) against \(812.4\) at \(m'=80\), and \(4031\) against
 \(3378.9\) on the exact fibre at \(m'=200\). It omits the \(V\Delta/2\)
