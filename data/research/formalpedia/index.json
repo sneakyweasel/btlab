@@ -53375,7 +53375,8 @@
       "ledger": [
         "J-paper-b-defect-coefficient-chain",
         "J-paper-b-linearisation-E-lt-2",
-        "J-paper-b-E-is-the-exponent-walk"
+        "J-paper-b-E-is-the-exponent-walk",
+        "J-paper-b-screen-is-a-walk-condition"
       ],
       "line": 53,
       "module": "Problems.Juggler.PaperBChainRule",
@@ -53389,7 +53390,8 @@
       "ledger": [
         "J-paper-b-defect-coefficient-chain",
         "J-paper-b-linearisation-E-lt-2",
-        "J-paper-b-E-is-the-exponent-walk"
+        "J-paper-b-E-is-the-exponent-walk",
+        "J-paper-b-screen-is-a-walk-condition"
       ],
       "line": 59,
       "module": "Problems.Juggler.PaperBChainRule",
@@ -53403,7 +53405,8 @@
       "ledger": [
         "J-paper-b-defect-coefficient-chain",
         "J-paper-b-linearisation-E-lt-2",
-        "J-paper-b-E-is-the-exponent-walk"
+        "J-paper-b-E-is-the-exponent-walk",
+        "J-paper-b-screen-is-a-walk-condition"
       ],
       "line": 67,
       "module": "Problems.Juggler.PaperBChainRule",
@@ -53417,7 +53420,8 @@
       "ledger": [
         "J-paper-b-defect-coefficient-chain",
         "J-paper-b-linearisation-E-lt-2",
-        "J-paper-b-E-is-the-exponent-walk"
+        "J-paper-b-E-is-the-exponent-walk",
+        "J-paper-b-screen-is-a-walk-condition"
       ],
       "line": 72,
       "module": "Problems.Juggler.PaperBChainRule",
@@ -53431,7 +53435,8 @@
       "ledger": [
         "J-paper-b-defect-coefficient-chain",
         "J-paper-b-linearisation-E-lt-2",
-        "J-paper-b-E-is-the-exponent-walk"
+        "J-paper-b-E-is-the-exponent-walk",
+        "J-paper-b-screen-is-a-walk-condition"
       ],
       "line": 79,
       "module": "Problems.Juggler.PaperBChainRule",
@@ -53445,7 +53450,8 @@
       "ledger": [
         "J-paper-b-defect-coefficient-chain",
         "J-paper-b-linearisation-E-lt-2",
-        "J-paper-b-E-is-the-exponent-walk"
+        "J-paper-b-E-is-the-exponent-walk",
+        "J-paper-b-screen-is-a-walk-condition"
       ],
       "line": 83,
       "module": "Problems.Juggler.PaperBChainRule",
@@ -53459,7 +53465,8 @@
       "ledger": [
         "J-paper-b-defect-coefficient-chain",
         "J-paper-b-linearisation-E-lt-2",
-        "J-paper-b-E-is-the-exponent-walk"
+        "J-paper-b-E-is-the-exponent-walk",
+        "J-paper-b-screen-is-a-walk-condition"
       ],
       "line": 96,
       "module": "Problems.Juggler.PaperBChainRule",
@@ -53473,7 +53480,8 @@
       "ledger": [
         "J-paper-b-defect-coefficient-chain",
         "J-paper-b-linearisation-E-lt-2",
-        "J-paper-b-E-is-the-exponent-walk"
+        "J-paper-b-E-is-the-exponent-walk",
+        "J-paper-b-screen-is-a-walk-condition"
       ],
       "line": 102,
       "module": "Problems.Juggler.PaperBChainRule",
@@ -53487,7 +53495,8 @@
       "ledger": [
         "J-paper-b-defect-coefficient-chain",
         "J-paper-b-linearisation-E-lt-2",
-        "J-paper-b-E-is-the-exponent-walk"
+        "J-paper-b-E-is-the-exponent-walk",
+        "J-paper-b-screen-is-a-walk-condition"
       ],
       "line": 105,
       "module": "Problems.Juggler.PaperBChainRule",
@@ -53501,7 +53510,8 @@
       "ledger": [
         "J-paper-b-defect-coefficient-chain",
         "J-paper-b-linearisation-E-lt-2",
-        "J-paper-b-E-is-the-exponent-walk"
+        "J-paper-b-E-is-the-exponent-walk",
+        "J-paper-b-screen-is-a-walk-condition"
       ],
       "line": 109,
       "module": "Problems.Juggler.PaperBChainRule",
@@ -53515,7 +53525,8 @@
       "ledger": [
         "J-paper-b-defect-coefficient-chain",
         "J-paper-b-linearisation-E-lt-2",
-        "J-paper-b-E-is-the-exponent-walk"
+        "J-paper-b-E-is-the-exponent-walk",
+        "J-paper-b-screen-is-a-walk-condition"
       ],
       "line": 117,
       "module": "Problems.Juggler.PaperBChainRule",
@@ -53529,7 +53540,8 @@
       "ledger": [
         "J-paper-b-defect-coefficient-chain",
         "J-paper-b-linearisation-E-lt-2",
-        "J-paper-b-E-is-the-exponent-walk"
+        "J-paper-b-E-is-the-exponent-walk",
+        "J-paper-b-screen-is-a-walk-condition"
       ],
       "line": 127,
       "module": "Problems.Juggler.PaperBChainRule",
@@ -53543,7 +53555,8 @@
       "ledger": [
         "J-paper-b-defect-coefficient-chain",
         "J-paper-b-linearisation-E-lt-2",
-        "J-paper-b-E-is-the-exponent-walk"
+        "J-paper-b-E-is-the-exponent-walk",
+        "J-paper-b-screen-is-a-walk-condition"
       ],
       "line": 151,
       "module": "Problems.Juggler.PaperBChainRule",
@@ -53557,7 +53570,8 @@
       "ledger": [
         "J-paper-b-defect-coefficient-chain",
         "J-paper-b-linearisation-E-lt-2",
-        "J-paper-b-E-is-the-exponent-walk"
+        "J-paper-b-E-is-the-exponent-walk",
+        "J-paper-b-screen-is-a-walk-condition"
       ],
       "line": 167,
       "module": "Problems.Juggler.PaperBChainRule",
@@ -53571,7 +53585,8 @@
       "ledger": [
         "J-paper-b-defect-coefficient-chain",
         "J-paper-b-linearisation-E-lt-2",
-        "J-paper-b-E-is-the-exponent-walk"
+        "J-paper-b-E-is-the-exponent-walk",
+        "J-paper-b-screen-is-a-walk-condition"
       ],
       "line": 187,
       "module": "Problems.Juggler.PaperBChainRule",
@@ -53585,7 +53600,8 @@
       "ledger": [
         "J-paper-b-defect-coefficient-chain",
         "J-paper-b-linearisation-E-lt-2",
-        "J-paper-b-E-is-the-exponent-walk"
+        "J-paper-b-E-is-the-exponent-walk",
+        "J-paper-b-screen-is-a-walk-condition"
       ],
       "line": 195,
       "module": "Problems.Juggler.PaperBChainRule",
@@ -53599,11 +53615,42 @@
       "ledger": [
         "J-paper-b-defect-coefficient-chain",
         "J-paper-b-linearisation-E-lt-2",
-        "J-paper-b-E-is-the-exponent-walk"
+        "J-paper-b-E-is-the-exponent-walk",
+        "J-paper-b-screen-is-a-walk-condition"
       ],
       "line": 201,
       "module": "Problems.Juggler.PaperBChainRule",
       "name": "lt_two_congr",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A prefix that has not contracted by step two is `OO`, and then `e_2 = 9/4`, which already exceeds the branch-run threshold `2`.",
+      "file": "formal/Problems/Juggler/PaperBChainRule.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-defect-coefficient-chain",
+        "J-paper-b-linearisation-E-lt-2",
+        "J-paper-b-E-is-the-exponent-walk",
+        "J-paper-b-screen-is-a-walk-condition"
+      ],
+      "line": 221,
+      "module": "Problems.Juggler.PaperBChainRule",
+      "name": "noncontracting_two_forces",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The threshold itself: `9/4` is above the `2` at which branch runs stop existing, so the second letter of a non-contracting word already sits above it. `3 > 2 ^ (3/2)` is the same fact in the walk's coordinates.",
+      "file": "formal/Problems/Juggler/PaperBChainRule.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-defect-coefficient-chain",
+        "J-paper-b-linearisation-E-lt-2",
+        "J-paper-b-E-is-the-exponent-walk",
+        "J-paper-b-screen-is-a-walk-condition"
+      ],
+      "line": 234,
+      "module": "Problems.Juggler.PaperBChainRule",
+      "name": "two_lt_nine_quarters",
       "trust": "kernel"
     },
     {
@@ -53613,9 +53660,10 @@
       "ledger": [
         "J-paper-b-defect-coefficient-chain",
         "J-paper-b-linearisation-E-lt-2",
-        "J-paper-b-E-is-the-exponent-walk"
+        "J-paper-b-E-is-the-exponent-walk",
+        "J-paper-b-screen-is-a-walk-condition"
       ],
-      "line": 216,
+      "line": 246,
       "module": "Problems.Juggler.PaperBChainRule",
       "name": "printed_thm53",
       "trust": "kernel"
@@ -53627,9 +53675,10 @@
       "ledger": [
         "J-paper-b-defect-coefficient-chain",
         "J-paper-b-linearisation-E-lt-2",
-        "J-paper-b-E-is-the-exponent-walk"
+        "J-paper-b-E-is-the-exponent-walk",
+        "J-paper-b-screen-is-a-walk-condition"
       ],
-      "line": 221,
+      "line": 251,
       "module": "Problems.Juggler.PaperBChainRule",
       "name": "printed_thm63_C",
       "trust": "kernel"
@@ -53641,9 +53690,10 @@
       "ledger": [
         "J-paper-b-defect-coefficient-chain",
         "J-paper-b-linearisation-E-lt-2",
-        "J-paper-b-E-is-the-exponent-walk"
+        "J-paper-b-E-is-the-exponent-walk",
+        "J-paper-b-screen-is-a-walk-condition"
       ],
-      "line": 226,
+      "line": 256,
       "module": "Problems.Juggler.PaperBChainRule",
       "name": "printed_thm63_B",
       "trust": "kernel"
@@ -53655,9 +53705,10 @@
       "ledger": [
         "J-paper-b-defect-coefficient-chain",
         "J-paper-b-linearisation-E-lt-2",
-        "J-paper-b-E-is-the-exponent-walk"
+        "J-paper-b-E-is-the-exponent-walk",
+        "J-paper-b-screen-is-a-walk-condition"
       ],
-      "line": 233,
+      "line": 263,
       "module": "Problems.Juggler.PaperBChainRule",
       "name": "two_odd_not_safe",
       "trust": "kernel"
@@ -53669,9 +53720,10 @@
       "ledger": [
         "J-paper-b-defect-coefficient-chain",
         "J-paper-b-linearisation-E-lt-2",
-        "J-paper-b-E-is-the-exponent-walk"
+        "J-paper-b-E-is-the-exponent-walk",
+        "J-paper-b-screen-is-a-walk-condition"
       ],
-      "line": 237,
+      "line": 267,
       "module": "Problems.Juggler.PaperBChainRule",
       "name": "odd_even_safe",
       "trust": "kernel"
@@ -88332,7 +88384,7 @@
       "ledger": []
     },
     "Problems.Juggler.PaperBChainRule": {
-      "declarations": 22,
+      "declarations": 24,
       "file": "formal/Problems/Juggler/PaperBChainRule.lean",
       "imports": [],
       "ledger": [
@@ -88349,6 +88401,11 @@
         {
           "id": "J-paper-b-E-is-the-exponent-walk",
           "statement": "Paper B section 7's composed map is the exponent walk of the Paper C collision work, and its linearisation criterion is a unit climb of that walk. With the notation of J-paper-b-defect-coefficient-chain, e_t = 3^(o_t) / 2^t exactly, where o_t is the number of odd letters up to t (`iter_eq_pow`). Taking log base 2 gives e_t = 2^(u_t) with u_t = o_t log2(3) - t, which is the walk J-live-set-ladder-factorisation splits at, J-damping-at-running-minimum is about, and J-dominant-defect-at-walk-minimum measures the climb of. Hence E = e_{t-1}/e_s = 2^(u_{t-1} - u_s), and E < 2 says exactly that the walk climbs by less than one unit between the defect at letter s and the wave at letter t. Two consequences. (i) The criterion is an exact integer inequality in the counts: with a odd and b even letters in the block, E < 2 iff 3^a < 2^(a+b+1) (`lt_two_iff_counts`), so it never needs a logarithm or a float. (ii) It does not see the order of the block, only the two counts (`iter_eq_of_counts`, `lt_two_congr`), which is immediate from the closed form and invisible in the product form; 45 count pairs cover every block arising in words of length up to 10. The supporting declarations are `oddCount`, `oddCount_cons_O` and `oddCount_cons_E`. Kernel-checked, axioms propext, Classical.choice and Quot.sound. This is a reformulation and not an improvement: no bound moves, no density exponent changes, and the collision hypothesis is untouched. What it buys is that two screens developed separately are one test in one coordinate, and that E is literally the amplification factor A_k of J-dominant-defect-at-walk-minimum rather than an analogue of it.",
+          "tag": "EXACT \u2014 HUMAN PROOF"
+        },
+        {
+          "id": "J-paper-b-screen-is-a-walk-condition",
+          "statement": "All three conditions of Paper B section 7's screen are functions of the exponent walk u_t = o_t log2(3) - t alone, and two of them are unit conditions on it. With e_t = 2^(u_t) (J-paper-b-E-is-the-exponent-walk): the branch-run condition e_{s-1} < 2 is u_{s-1} < 1, an absolute height; the linearisation criterion E < 2 is u_{t-1} - u_s < 1, a climb; and the 9/4 stopping threshold e_{t-1} - e_s > 9/4 is 2^(u_{t-1}) - 2^(u_s) > 9/4. Checked over every word of length 3 to 11: 4204 letters with a blocked defect, no mismatch on any of the three. Non-contraction is a condition on the same walk (1 <= e_t, i.e. u_t >= 0), so the property defining a contractor and the property tripping the branch-run hypothesis are one constraint at thresholds 0 and 1. At step two the first forces the second: a prefix not contracted by its second letter must be OO, since E gives u_1 = -1 and OE gives u_2 = log2(3) - 2 < 0, so e_2 = 9/4 > 2, the branch-run threshold, because 3 > 2^(3/2) (`noncontracting_two_forces`, kernel-checked; `two_lt_nine_quarters` is the threshold comparison). Every one of the 140 contractors at depths 4 to 13 begins OO. The forcing does NOT extend along the word and is not claimed to: the walk is not monotone, and OOOEOOEE has a blocked defect at s = 5 with u_4 = 0.755, below the threshold. What is measured rather than proved is that from depth ten the hypothesis fires on every contractor anyway (12 of 12, 30 of 30, 85 of 85), and that the least peak a contractor's walk can have rises 1.170, 1.340, 1.510 with depth. Not a halt theorem, no bound moves, and no density exponent changes.",
           "tag": "EXACT \u2014 HUMAN PROOF"
         }
       ]
@@ -89412,13 +89469,13 @@
     }
   },
   "totals": {
-    "declarations": 6595,
-    "declarations_with_a_ledger_row": 4553,
-    "ledger_rows_naming_a_file": 410,
+    "declarations": 6597,
+    "declarations_with_a_ledger_row": 4555,
+    "ledger_rows_naming_a_file": 411,
     "modules": 285,
     "trust": {
       "compiler": 56,
-      "kernel": 6539
+      "kernel": 6541
     }
   }
 }

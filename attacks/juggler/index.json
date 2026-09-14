@@ -6437,7 +6437,8 @@
         "J-paper-b-linearisation-E-lt-2",
         "J-paper-b-screen-thresholds-are-hypotheses",
         "J-paper-b-E-is-the-exponent-walk",
-        "J-paper-b-screen-skips-the-maximal-defect"
+        "J-paper-b-screen-skips-the-maximal-defect",
+        "J-paper-b-screen-is-a-walk-condition"
       ],
       "aliases": [],
       "nk_cluster": null

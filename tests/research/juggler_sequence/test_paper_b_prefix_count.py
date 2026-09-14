@@ -758,6 +758,75 @@ def test_the_screen_does_not_test_the_maximal_defect() -> None:
     assert (same, diff) == (1026, 3178), (same, diff)
 
 
+def test_all_three_screen_conditions_are_walk_functionals() -> None:
+    """Every condition in the screen is a function of the exponent walk alone.
+
+        no branch runs  <=>  u_(s-1) >= 1              (absolute height)
+        E >= 2          <=>  u_(t-1) - u_s >= 1        (a climb)
+        coefficient>9/4 <=>  2^u_(t-1) - 2^u_s > 9/4   (a difference of heights)
+
+    Two of the three are unit conditions on the same walk, one absolute and one
+    relative. So the screen and the Paper C collision machinery are functionals of
+    one object, not two related ones.
+    """
+    checked = 0
+    for w in _all_words(3, 11):
+        u = _walk(w)
+        e = B.iterate_exponents(w)
+        for t_ in range(3, len(w) + 1):
+            deep = B.deepest_blocked(w, t_)
+            if deep is None:
+                continue
+            s = deep[0]
+            checked += 1
+            no_runs = not B.has_branch_runs(B.branch_base(w, t_))
+            assert no_runs == (u[s - 1] >= 1.0 - 1e-12), (w, t_, s)
+            beyond = bool(B.beyond_methods(w, t_))
+            pred = any(float(e[t_ - 2]) - float(e[j - 1]) > 2.25 + 1e-12
+                       for j in range(1, t_))
+            assert beyond == pred, (w, t_)
+    assert checked == 4204, checked
+
+
+def test_non_contraction_forces_the_branch_threshold() -> None:
+    """Staying non-contracting and tripping the branch-run hypothesis are the same
+    constraint at two thresholds, 0 and 1, and at step two the first forces the second.
+
+    A prefix that has not contracted by step two must be OO -- E first gives
+    u_1 = -1, and OE gives u_2 = log2(3) - 2 < 0 -- so u_2 = 2 log2(3) - 2 = 1.1699,
+    above the branch-run threshold of 1 because 3 > 2^(3/2). Every contractor begins
+    OO for that reason. The Lean is `noncontracting_two_forces`.
+
+    The forcing does not extend along the word: the walk is not monotone, so a later
+    blocked defect can sit back below 1 (OOOEOOEE does, at s = 5 with u_4 = 0.755).
+    What is measured here is that from depth ten the hypothesis nevertheless fires on
+    every contractor.
+    """
+    contractors = [w + "E" for d in range(4, 14) for w in B.dying_words(d)]
+    assert len(contractors) == 140
+    assert {w[:2] for w in contractors} == {"OO"}
+
+    peaks_by_depth = {}
+    fires_by_depth = {}
+    for d in range(4, 14):
+        words = [w + "E" for w in B.dying_words(d)]
+        if not words:
+            continue
+        peaks_by_depth[d] = min(max(_walk(w)) for w in words)
+        fires_by_depth[d] = sum(
+            1 for w in words
+            if any(B.deepest_blocked(w, t_) is not None
+                   and not B.has_branch_runs(B.branch_base(w, t_))
+                   for t_ in range(3, len(w) + 1)))
+    # the minimum peak a contractor can have rises with depth, and never dips to 1
+    assert all(p > 1.0 for p in peaks_by_depth.values()), peaks_by_depth
+    assert round(peaks_by_depth[4], 3) == 1.170
+    assert round(peaks_by_depth[13], 3) == 1.510
+    # and from depth ten the branch-run hypothesis fires on every one
+    assert fires_by_depth[10] == 12 and fires_by_depth[12] == 30
+    assert fires_by_depth[13] == 85
+
+
 def _screen_verdict(word: str, use_theorem: bool) -> bool:
     """`unobstructed`, with the E < 2 criterion optionally switched off."""
     for t_ in range(3, len(word) + 1):

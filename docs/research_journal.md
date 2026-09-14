@@ -48048,3 +48048,67 @@ every depth separately, and not a reason for it.
 That is worth leaving open rather than filling with the first story that fits.
 The three audit rows that compared constants to themselves got there by
 accepting a plausible account of why a number was what it was.
+
+
+## The whole screen is a condition on one walk
+
+Digging past the criterion turned up that all three of Paper B section 7's
+screen conditions are functions of the exponent walk, and two of them are unit
+conditions on it:
+
+```text
+  no branch runs    e_{s-1} >= 2        u_{s-1} >= 1            an absolute height
+  E >= 2            e_{t-1}/e_s >= 2    u_{t-1} - u_s >= 1      a climb
+  coefficient>9/4   e_{t-1}-e_s > 9/4   2^u_{t-1} - 2^u_s > 9/4 a difference of heights
+```
+
+Checked on every word of length 3 to 11 --- 4204 letters with a blocked defect,
+no mismatch on any of the three. So the screen is not three heterogeneous tests;
+it is three readings of one object, and that object is the same walk the Paper C
+collision work is built on.
+
+### Why the hypotheses saturate
+
+That gives the mechanism I failed to find last time. Non-contraction is also a
+condition on the walk: `1 <= e_t`, which is `u_t >= 0`. So **the property that
+defines a contractor and the property that trips the branch-run hypothesis are
+the same constraint at two thresholds, 0 and 1.**
+
+At step two the first forces the second, exactly. A prefix not contracted by its
+second letter must be `OO`: starting `E` gives `u_1 = -1`, and `OE` gives
+`u_2 = log2(3) - 2 < 0`. So `e_2 = 9/4`, and `9/4 > 2` --- the branch-run
+threshold --- because `3 > 2^(3/2)`. Every one of the 140 contractors at depths
+4 to 13 begins `OO`, and now that is a proof rather than an observation
+(`noncontracting_two_forces`, kernel-checked).
+
+### What the forcing does not do
+
+It does not extend along the word, and I checked rather than assumed. The walk
+is not monotone, so a later blocked defect can sit back below the threshold:
+`OOOEOOEE` has one at `s = 5` with `u_4 = 0.755`. My first guess --- that a
+blocked defect at `s >= 3` must trip the hypothesis --- has exactly that
+counterexample, so the clean statement is the exact one, `u_{s-1} >= 1`, and not
+a shortcut in terms of position.
+
+What is measured and not proved: the least peak a contractor's walk can have
+rises with depth (1.170, then 1.340, then 1.510), and from depth ten the
+branch-run hypothesis fires on every contractor --- 12 of 12, 30 of 30, 85 of
+85. Below that it does not: 0 of 1, 0 of 2, 2 of 3, 5 of 7.
+
+### What this changes
+
+It reframes the emptiness. "Not one of the 127 contractors at depths 10, 12 and
+13 is free of an obstruction" reads as 127 independent checks. It is closer to
+one structural fact: staying non-contracting drives the walk up, the branch-run
+hypothesis fires when the walk is up, and by depth ten the first has forced the
+second on every word in range. That does not make the screen wrong or the
+classification invalid --- negative evidence is still what Paper B calls it ---
+but it does mean the depth-ten-and-beyond emptiness is much weaker evidence than
+a count of 127 suggests, because the 127 are not independent.
+
+Combined with the previous entry, where the screen's one proved condition turned
+out decisive on none of them: the classification rests on two hypotheses, and
+one of those two is largely forced by the definition of the words it is applied
+to.
+
+Nothing here moves a bound.

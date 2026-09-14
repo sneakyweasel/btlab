@@ -9828,5 +9828,18 @@
    "tests/research/juggler_sequence/test_paper_b_prefix_count.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "id": "J-paper-b-screen-is-a-walk-condition",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "All three conditions of Paper B section 7's screen are functions of the exponent walk u_t = o_t log2(3) - t alone, and two of them are unit conditions on it. With e_t = 2^(u_t) (J-paper-b-E-is-the-exponent-walk): the branch-run condition e_{s-1} < 2 is u_{s-1} < 1, an absolute height; the linearisation criterion E < 2 is u_{t-1} - u_s < 1, a climb; and the 9/4 stopping threshold e_{t-1} - e_s > 9/4 is 2^(u_{t-1}) - 2^(u_s) > 9/4. Checked over every word of length 3 to 11: 4204 letters with a blocked defect, no mismatch on any of the three. Non-contraction is a condition on the same walk (1 <= e_t, i.e. u_t >= 0), so the property defining a contractor and the property tripping the branch-run hypothesis are one constraint at thresholds 0 and 1. At step two the first forces the second: a prefix not contracted by its second letter must be OO, since E gives u_1 = -1 and OE gives u_2 = log2(3) - 2 < 0, so e_2 = 9/4 > 2, the branch-run threshold, because 3 > 2^(3/2) (`noncontracting_two_forces`, kernel-checked; `two_lt_nine_quarters` is the threshold comparison). Every one of the 140 contractors at depths 4 to 13 begins OO. The forcing does NOT extend along the word and is not claimed to: the walk is not monotone, and OOOEOOEE has a blocked defect at s = 5 with u_4 = 0.755, below the threshold. What is measured rather than proved is that from depth ten the hypothesis fires on every contractor anyway (12 of 12, 30 of 30, 85 of 85), and that the least peak a contractor's walk can have rises 1.170, 1.340, 1.510 with depth. Not a halt theorem, no bound moves, and no density exponent changes.",
+  "source": "docs/research_journal.md",
+  "lean": "Problems/Juggler/PaperBChainRule.lean",
+  "lean_trust": "kernel",
+  "decl": "noncontracting_two_forces",
+  "tests": [
+   "tests/research/juggler_sequence/test_paper_b_prefix_count.py"
+  ],
+  "related_conjectures": []
  }
 ]
