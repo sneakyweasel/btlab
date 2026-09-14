@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import re
 from pathlib import Path
 
 
@@ -476,3 +477,15 @@ def has_named(text: str, name: str) -> bool:
         f"{kind} {name}" in text
         for kind in ("theorem", "def", "inductive", "abbrev", "structure")
     )
+
+
+def declares_name(text: str, name: str, kinds: tuple[str, ...] = ("def", "structure")) -> bool:
+    """Does ``text`` declare exactly ``name`` under one of ``kinds``?
+
+    ``has_named`` matches on a bare substring, so ``"def Energy"`` also
+    fires on ``def EnergyBound``. A forbidden-engine guard must not be
+    tripped by an unrelated declaration that merely shares a prefix, so
+    the name has to end where the match ends.
+    """
+    pattern = rf"\b(?:{'|'.join(re.escape(kind) for kind in kinds)})\s+{re.escape(name)}\b"
+    return re.search(pattern, text) is not None

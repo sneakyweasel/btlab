@@ -252,7 +252,6 @@ def _check_lemma_6_2_fixed_precision(n: int) -> dict[str, Any]:
     th2 = Y - v
     v3half = mp.power(mp.mpf(v), mp.mpf(3) / 2)
     z = math.isqrt(v * v * v)
-    thz = v3half - z
     n27 = mp.power(mp.mpf(n), mp.mpf(27) / 16)
     n3 = mp.power(mp.mpf(n), mp.mpf(3) / 16)
     # (i)

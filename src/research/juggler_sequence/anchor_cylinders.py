@@ -472,7 +472,6 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
         if row["isolated"] and row["k"] + 4 < trivial_depth
     ]
     m_k = scan["M_k"]
-    m_hard = scan["M_k_hard"]
     generic_tail = bool(m_k) and m_k[-1] <= 16
     hard_tracks_generic = not scan["hard_thinner_max"]
 

@@ -17,7 +17,7 @@ from research_engine.control.replay import (
 from research_engine.control.store import ControlStore
 from research_engine.control.types import CampaignType, COMPARISON_DIMENSIONS, REPLAY_V22_TARGETS
 from research_engine.memory.store import BOARD_PATH, SEED_PATH
-from research_engine.memory.types import BlindPacket
+from research_engine.memory.types import BlindPacket, MemoryExperiment
 
 
 def _isolated_clone(historical: MemoryExperiment, source_target_id: str) -> MemoryExperiment:
