@@ -45021,3 +45021,64 @@ fiber of a small value along a word, the preimage of a value under an
 even step is an interval, so the fiber can be computed from the value
 and the word at any scale, including where L(y) is 3 or 5 and the
 early-collapse artifact is gone. That is the next experiment.
+
+
+## The barrier word, and what the one-sided hypothesis would have to be true
+
+The previous entry left the question as one decaying quantity and said
+the way past it was backwards, not forwards. That turned out to be
+right, and the reason is a single structural fact: the value at the
+barrier is bounded independently of the scale. One more even letter
+would cross the floor, one fewer leaves the value below its square, so
+the barrier word's value sits in (N_0, N_0^2) at every y. The object
+is small however large y is, and the computation is exact.
+
+The word is O followed by even letters, with the length maximal
+subject to badness. Its walk is log_2 3 minus the depth, so it is bad
+while the depth is below L(y) + 1.585, which puts it at depth of order
+L(y), far inside the window that reaches 19 L(y). On its cylinder the
+map is the plain composite of one three-halves power and then square
+roots, with no parity tests, because the letters say exactly that the
+intermediates are even; and that composite is monotone, so the image
+of the dyadic block is an interval of integers computable with two
+big-integer evaluations.
+
+The image narrows. Its width is 126, 91, 6760, 3271, 1609, 799, 3, 3,
+2, 3, 1 as y runs from 10^7 to 10^20000, following v log v / log y
+with v bounded. At 10^20000 it is a single value, 4593, which is odd.
+So every start in the block whose word is O E^13 has next letter O.
+The exact odd share of that cylinder is 1, not one half. I constructed
+an explicit witness: a 20000-digit odd start, built by walking the
+chain back through even preimages and searching the one odd step,
+since a value generically has no odd preimage. Its itinerary checks
+forward, its minimum prefix walk is -12.415 against a barrier of
+-13.016, and its depth is 14 against a window of 248.
+
+What that demands: with the odd count equal to the cylinder size, the
+hypothesis requires the cylinder to be at most y (log y)^{-A} over one
+minus q, which at A = C = 19 is 10^{-88} y against a fair share of
+6 x 10^{-5}. Eighty-four orders of magnitude, and the deficit grows
+without bound with y. The exponent the barrier word permits tends to
+1, while the criteria need more than 19.
+
+This is not a refutation, and I will not call it one. It needs a lower
+bound on the cylinder's size, and counting the starts whose thirteen
+intermediates are all even is an equidistribution statement. But it is
+a bounded-depth one, thirteen nested-floor parities, closer to Paper
+B's five-step certificates than to Proposition 4.4. What the finding
+does settle is the presumption: the one-sided hypothesis should not be
+assumed to hold, and the Lean criteria built on it, which are correct
+as implications, now carry that warning in the paper, the dossier and
+the ledger. The mechanism is the absorbed-cylinder obstruction moved
+one step: the bad-word restriction removes the starts that have
+reached 1, but not the starts that hover just above the floor.
+
+Two things survive untouched. The cylinder hypothesis H(C,A) is asked
+at the single depth d(y), and the barrier word cannot reach there,
+because a bounded value enters the floor in a bounded number of steps.
+And the pressure and no-momentum forms constrain an average over the
+live mass rather than each cylinder, so a single lopsided cylinder
+carrying a vanishing fraction does not disturb them. Which is an
+argument for the global forms being the right ones, and for the
+certified instance at C = 30 pointing at the pressure criterion rather
+than the one-sided one.

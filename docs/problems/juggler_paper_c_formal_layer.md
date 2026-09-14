@@ -488,6 +488,23 @@ instance and not the least (the audit finds \(23\); the paper's own
 deliberately loose, the true value being \(e(30)\approx1.05\), because
 loose bounds have small certificates. Thirty-two Lean rows, four human.
 
+**A warning on the one-sided hypothesis (14 September 2026).** The
+criteria built on \(\mathrm H_q(C,A)\) — `OneSided.one_sided_implies_conjecture`,
+`OneSided.exc_implies_conjecture`, `Energy.energy_implies_conjecture` and
+`Certified.one_sided_thirty` — are implications and remain correct, but
+their hypothesis should not be presumed to hold. The *barrier word*
+\(OE^{t-1}\) with \(t\) maximal subject to badness sits at depth
+\(O(L(y))\), well inside the window, and its cylinder maps to a single
+value at large scales: at \(y\approx10^{20000}\) every member has next
+letter \(O\), so \(\mathrm H_q(C,A)\) demands that cylinder be \(84\)
+orders of magnitude below its fair share
+([the barrier word](juggler_barrier_collapse.md)). A lower bound on the
+cylinder's size would turn this into a refutation and is not available.
+The cylinder form \(\mathrm H(C,A)\) of Corollary 8.4 is untouched, being
+asked at the single depth \(d(y)\), where the barrier word cannot reach:
+a bounded value reaches the floor in a bounded number of steps. The
+pressure and no-momentum forms are untouched too, being averages.
+
 ## Current literature
 
 - Paper C §1.4, Appendix A — `known`: the paper's own list of what is

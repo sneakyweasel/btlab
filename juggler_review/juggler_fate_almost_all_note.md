@@ -360,7 +360,7 @@ constants; they prove nothing and are labelled wherever they appear.
 | Pressure form (Theorem 9.2, exact: a pressure bound \(Na_\theta^dE\) gives at most \(Ne^{-dD(p_C\Vert 1/2)}E\) live starts) | Lean, on the live weight |
 | Pressure telescoping (Proposition 9.3) | Lean, on the word-weight framework |
 | One-sided form (Theorem 9.1, exact: at every \(y\) the odd failures of \((y,2y]\) number at most \((xa_q^{d-1}N+(x-1)\,\mathrm{err}\,(d-1)(2x)^{d-1})/x^{p_Cd}\) for every tilt \(x\ge1\), by exponential moments) | Lean, without the martingale; the absorption of the error into the rate and the displayed asymptotic form are human |
-| The conjecture from the one-sided hypothesis \(\mathrm H_q(C,A)\) (Theorem 9.1's consequence), with the contagion bound as a hypothesis, or with nothing else assumed when \(e^{\rm Ch}_q(C)>\tfrac7{10}\) | Lean; the exponent is the Chernoff one of Proposition 9.3 with \(A>C(1+\log_2x)+1+e\), the paper's numerical forms are human |
+| The conjecture from the one-sided hypothesis \(\mathrm H_q(C,A)\) (Theorem 9.1's consequence), with the contagion bound as a hypothesis, or with nothing else assumed when \(e^{\rm Ch}_q(C)>\tfrac7{10}\) | Lean; the exponent is the Chernoff one of Proposition 9.3 with \(A>C(1+\log_2x)+1+e\), the paper's numerical forms are human. The hypothesis \(\mathrm H_q(C,A)\) itself is doubtful: see the barrier word in Section 9.1 |
 | The conjecture from the pressure hypothesis \(\mathrm P_\theta(C)\) and from the no-momentum hypothesis \(\mathrm M_{\theta,q}(C)\) (Section 9.2's consequences), with the contagion bound as a hypothesis, or with nothing else assumed when the exponent exceeds \(\tfrac7{10}\) | Lean; the paper's \(e^{o(d)}\) is quantified as \((\log y)^\varepsilon\) and its \(o(d)\) as \(\delta d\), the numerical forms are human |
 | Theorem 9.1 with exceptional atoms (Section 10(d), first paragraph): the share bound may fail on bad atoms of total mass \(y(\log y)^{-B}\) at each depth, and the conjecture still follows, with nothing else assumed when the exponent exceeds \(\tfrac7{10}\) | Lean; the condition is \(B>C\log_2x+1+e\) in place of the paper's \(B>e_q(C)\), sufficient and not sharp |
 | The bias energy of the \(L(y)\)-bad words supplies the exceptional atoms (Section 10(d)): \(\sum_{w\ \text{bad}}D(w)^2\le(q-\tfrac12)^2y^2(\log y)^{-2B}/2^t\) at the depths below \(\lceil CL(y)\rceil\), at all large scales, gives the conjecture with nothing else assumed | Lean, by Cauchy--Schwarz on the bad atoms that violate the share bound; the exact enumeration of Section 11 finds that energy at its worst-case value from depth \(16\)--\(20\) at every computable scale, so the hypothesis has no numerical support |
@@ -2098,6 +2098,40 @@ no \(L(y)\)-bad cylinder of depth below
 \(41\log_2(\log 2y/\log N_0)\) sends more than \(55\%\) of its members
 to an odd state, every positive integer reaches \(1\).
 
+**The barrier word (observation; this hypothesis is doubtful).** Unlike
+\(\mathrm H(C,A)\), which is asked at the single depth \(d(y)\),
+\(\mathrm H_q(C,A)\) is asked at *every* depth below \(d(y)\), and the
+shallow depths carry an obstruction of the same shape as the
+[absorbed-cylinder one](../problems/juggler_absorbed_cylinder.md).
+Consider the *barrier word* \(w=OE^{t-1}\): one odd letter, then even
+letters, with \(t\) maximal subject to badness. Its prefix walk is
+\(u_s=\log_23-s\), so \(w\) is \(L(y)\)-bad exactly while
+\(t<L(y)+\log_23\), and its depth is \(O(L(y))\), far inside the
+window. On \([w]\) the map is the plain composite
+\(G=\lfloor\cdot^{1/2}\rfloor^{t-1}\lfloor n^{3/2}\rfloor\), which is
+monotone, and its value sits in \((N_0,N_0^2)\) at every scale — one
+more even letter would cross the floor, one fewer leaves the value
+below its square. So the image \(G((y,2y])\) is an interval of about
+\(v_0\log v_0/\log y\) integers with \(v_0\) bounded, and it narrows to
+a point: computed exactly, its width is
+\(126,91,6760,3271,1609,799,3,3,2,3,1\) at
+\(y=10^{7},10^{15},10^{25},10^{50},10^{100},10^{200},10^{435},10^{1000},
+10^{2000},10^{5000},10^{20000}\). At \(y\approx10^{20000}\),
+\(G(y+1)=G(2y)=4593\), an odd number: *every* member of \([OE^{13}]\)
+has next letter \(O\), and an explicit \(20000\)-digit witness is given
+in [the dossier](../problems/juggler_barrier_collapse.md). Then
+\(\#[wO]=\#[w]\), so \(\mathrm H_q(C,A)\) requires
+\((1-q)\#[w]\le y(\log y)^{-A}\), that is \(\#[w]\le10^{-88}y\) at
+\(A=C=19\), against a fair share \(2^{-14}=6.1\cdot10^{-5}\): a deficit
+of \(84\) orders of magnitude, growing without bound with \(y\). What
+is not established is a lower bound on \(\#[w]\) — a bounded-depth
+nested-floor parity count, not formalized and not proved here — so this
+is not a refutation. But \(\mathrm H_q(C,A)\) should not be presumed to
+hold, and Theorem 9.1 and its corollaries are stated conditionally for
+that reason. The pressure and no-momentum forms of Section 9.2 are
+untouched: they constrain an average over the live mass, not each
+cylinder.
+
 Lean: the consequence, in `formal/Problems/Juggler/FateOneSidedCorollary.lean`,
 in the pattern of Corollary 8.4. `OneSided.OneSidedBound` is
 \(\mathrm H_q(C,A)\) at a scale, `OneSided.oneSidedExponent` the
@@ -2719,7 +2753,13 @@ parity-constant at every scale measured, and the hypothesis reduces to
 whether the mass of the largest such cylinder — a fraction of order
 \(10^{-3}\) here, with no visible decay — falls below \((\log y)^{-A}\).
 Three decades of \(y\) cannot see a \((\log y)^{-19}\); these observations
-neither establish nor refute the hypotheses of Sections 8--10.
+neither establish nor refute the hypotheses of Sections 8--10. The
+backward computation of the barrier word, recorded with Theorem 9.1
+above and in
+[its dossier](../problems/juggler_barrier_collapse.md)
+(`research.juggler_sequence.barrier_collapse`), reaches
+\(y=10^{20000}\) and is what turns that measurement into a statement
+about \(\mathrm H_q(C,A)\) at the scales where it is asserted.
 
 ## 12. Conclusions and open estimates
 
