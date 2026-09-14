@@ -470,56 +470,78 @@ def half_a_balance() -> list[dict[str, Any]]:
     ]
 
 
-def pairing_cases() -> list[dict[str, Any]]:
-    """T5 pairing cases: Lambda3, Lambda1 Lambda3, Lambda1.  Order-of-magnitude only.
+PAIRING_SOURCES = (40, 60, 80, 120)
 
-    Lambda3: consecutive v-level lengths differ by O(v^{-2/3}); V ~ m'^2;
-    the printed 0.89 m'^{14/9} is Y/m' scale.  Lambda1 is O(omega) after
-    partial summation, printed 2.67 m'^{5/3} (larger than needed).
-    These sit below the Half A/B terms; they do not set the envelope.
+
+def half_a_pairing_sums(m_prime: int) -> tuple[int, int, int]:
+    """Exact |sum L1|, |sum L3|, |sum L1 L3| over the odds of J_2^sm(m').
+
+    Same smooth reference window as ``oeoee_count``, because Section 11's
+    constants are asserted for J_2^sm only.  Each odd n contributes one sign,
+    so these are sums of +-1 and a change of window can move them by at most
+    the number of odd n it adds or removes.
     """
 
-    # Lambda3: |K_v| = (4/3) v^{1/3}, Delta = (4/3)((v+1)^{1/3}-v^{1/3}) <= (4/9) v^{-2/3}
-    # number of v: w^{3/4} ranges over an interval of length (3/4) W^{-1/4} L
-    # W = m'^{8/3}, L = (8/3) m'^{5/3}, W^{-1/4} = m'^{-2/3}
-    # (3/4)*(8/3) m'^{5/3 - 2/3} = 2 m'
-    # T5: (V Delta)/2 + G with G ~ (4/3) (m'^2)^{1/3} = (4/3) m'^{2/3}
-    # V * (4/9) v^{-2/3} / 2, v ~ m'^2, v^{-2/3} ~ m'^{-4/3}
-    # V ~ 2 m', so (2 m') * (4/9) m'^{-4/3} / 2 = (4/9) m'^{-1/3}  -- tiny
-    #
-    # Wait, the sum is sum_v (-1)^v |K_v| and |K_v| ~ W^{1/4} = m'^{2/3}.
-    # Pairing of consecutive |K_v|: each pair differs by Delta ~ v^{-2/3} ~ m'^{-4/3}
-    # number of pairs ~ m', contribution m' * m'^{-4/3} = m'^{-1/3}, plus G ~ m'^{2/3}.
-    # That's much smaller than m'^{14/9} = m'^{1.555}.  Printed is generous.
-    #
-    # Against Y ~ m'^{23/9}: m'^{2/3} / m'^{23/9} = m'^{6/9 - 23/9} = m'^{-17/9},
-    # while they claim 0.5 Y m'^{-1}.  Yes, lower order.
-    return [
-        _row(
-            "Half A pairing Lambda3 0.89 m'^{14/9}",
-            PRINTED["pair_lam3"],
-            0.89,
-            True,
-            "hand",
-            "T5 on consecutive v-levels; derived G ~ m'^{2/3} sits below m'^{14/9}",
-        ),
-        _row(
-            "Half A pairing Lambda1 Lambda3 1.33 m'^{17/9}",
-            PRINTED["pair_lam13"],
-            1.33,
-            True,
-            "hand",
-            "Kusmin on f' = 1/2 + (3u/8) w^{-1/4}; printed is a pad over O(m'^{17/9})",
-        ),
-        _row(
-            "Half A pairing Lambda1 2.67 m'^{5/3}",
-            PRINTED["pair_lam1"],
-            2.67,
-            True,
-            "hand",
-            "sum (-1)^w = O(1); times omega by partial summation is O(m'^{8/9})",
-        ),
-    ]
+    a = ninth_root_floor(m_prime**32)
+    b = ninth_root_floor((m_prime + 1) ** 32 - 1)
+    s1 = s3 = s13 = 0
+    n = a | 1
+    while n <= b:
+        w = isqrt(isqrt(n**3))
+        v = isqrt(isqrt(w**3))
+        e1 = -1 if w & 1 else 1
+        e3 = -1 if v & 1 else 1
+        s1 += e1
+        s3 += e3
+        s13 += e1 * e3
+        n += 2
+    return abs(s1), abs(s3), abs(s13)
+
+
+def pairing_cases() -> list[dict[str, Any]]:
+    """T5 pairing cases, evaluated on data instead of by order of magnitude.
+
+    These three rows used to compare each printed constant to itself with
+    ok=True hardcoded, so no datum could refute them and the section could be
+    classified consistent while a printed bound was false.  Each row now
+    evaluates the sum it bounds on J_2^sm and reports, as ``computed``, the
+    least constant the data demand at the worst source in PAIRING_SOURCES.
+
+    Lambda_3 fails.  The printed 0.89 m'^{14/9} omits the V Delta / 2 term of
+    (T5): consecutive level sets of floor(w^{3/4}) differ in length by one, so
+    Delta is of size omega, and the honest bound is
+    (2/3) m'^{17/9} + (8/9) m'^{14/9}, which the data satisfy everywhere tested.
+    """
+
+    cases = (
+        ("pair_lam3", "Lambda3 0.89 m'^{14/9}", 14 / 9, 1),
+        ("pair_lam13", "Lambda1 Lambda3 1.33 m'^{17/9}", 17 / 9, 2),
+        ("pair_lam1", "Lambda1 2.67 m'^{5/3}", 5 / 3, 0),
+    )
+    worst: dict[str, tuple[float, int, int]] = {}
+    for mp in PAIRING_SOURCES:
+        sums = half_a_pairing_sums(mp)
+        for key, _label, exponent, slot in cases:
+            needed = sums[slot] / mp**exponent
+            if key not in worst or needed > worst[key][0]:
+                worst[key] = (needed, mp, sums[slot])
+
+    rows = []
+    for key, label, exponent, _slot in cases:
+        needed, mp, exact = worst[key]
+        printed = float(PRINTED[key])
+        rows.append(
+            _row(
+                f"Half A pairing {label}",
+                printed,
+                needed,
+                needed <= printed,
+                "script",
+                f"worst at m'={mp}: exact {exact} against {printed * mp**exponent:.1f}"
+                f" (ratio {exact / (printed * mp**exponent):.3f})",
+            )
+        )
+    return rows
 
 
 # ---------------------------------------------------------------------------

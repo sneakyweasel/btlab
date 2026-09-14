@@ -126,8 +126,13 @@ human. No `sorry`.
 
 ## Results
 
-**PROMOTE.** Classification `OEOEE_AUDIT_CONSISTENT`, 29 checks, 0
-failures (`research.juggler_sequence.oeoee_audit`). Every displayed
+**PROMOTE.** Classification `OEOEE_AUDIT_FALSIFIED`, 29 checks, one
+failure (`research.juggler_sequence.oeoee_audit`). The \(\Lambda_3\)-alone
+pairing bound \(0.89\,m'^{14/9}\) is false on \(J_2^{\rm sm}\) — \(846\)
+against \(812.4\) at \(m'=80\) — because it omits the \(V\Delta/2\) term of
+(T5); the 6 September pass reported `OEOEE_AUDIT_CONSISTENT` only because
+the three Half A pairing rows compared each printed constant to itself and
+could not fail. Every other displayed
 Section 11 constant recomputes from T1–T5, or is tightened and still
 saves a positive power of \(P\). Binding saving \(P^{-1/8}\) stands.
 The four-term root \(0.4801\) is a named intermediate. Official
