@@ -1566,7 +1566,7 @@
     "Problems.Juggler.FateCylinderCorollary": {
       "declarations": 5,
       "depends_on": [
-        "Problems.Juggler.FateChernoff"
+        "Problems.Juggler.FateTaoReduction"
       ],
       "file": "formal/Problems/Juggler/FateCylinderCorollary.lean",
       "ledger": [
@@ -1778,7 +1778,7 @@
     "Problems.Juggler.FateSeed": {
       "declarations": 18,
       "depends_on": [
-        "Problems.Juggler.FateChernoff"
+        "Problems.Juggler.FateTaoReduction"
       ],
       "file": "formal/Problems/Juggler/FateSeed.lean",
       "ledger": [
@@ -1835,6 +1835,22 @@
       ],
       "trust": {
         "kernel": 107
+      }
+    },
+    "Problems.Juggler.FateTaoReduction": {
+      "declarations": 33,
+      "depends_on": [
+        "Problems.Juggler.FateChernoff"
+      ],
+      "file": "formal/Problems/Juggler/FateTaoReduction.lean",
+      "ledger": [
+        "J-tao-rate-implies-conjecture"
+      ],
+      "papers": [
+        "Paper C"
+      ],
+      "trust": {
+        "kernel": 33
       }
     },
     "Problems.Juggler.FateThinFibers": {
@@ -2924,9 +2940,9 @@
     }
   },
   "totals": {
-    "edges": 228,
-    "edges_before_reduction": 1712,
-    "ledger_rows_placed": 394,
-    "nodes": 177
+    "edges": 229,
+    "edges_before_reduction": 1739,
+    "ledger_rows_placed": 395,
+    "nodes": 178
   }
 }

@@ -34807,7 +34807,9 @@
       "doc": "The log-mass `\u03a3_{1 \u2264 n \u2264 x, n \u2208 A} 1/n`.",
       "file": "formal/Problems/Juggler/FateTaoReduction.lean",
       "kind": "def",
-      "ledger": [],
+      "ledger": [
+        "J-tao-rate-implies-conjecture"
+      ],
       "line": 46,
       "module": "Problems.Juggler.FateTaoReduction",
       "name": "logMass",
@@ -34817,7 +34819,9 @@
       "doc": "The odd log-mass `\u03a3_{1 \u2264 n \u2264 x odd, n \u2208 A} 1/n`.",
       "file": "formal/Problems/Juggler/FateTaoReduction.lean",
       "kind": "def",
-      "ledger": [],
+      "ledger": [
+        "J-tao-rate-implies-conjecture"
+      ],
       "line": 50,
       "module": "Problems.Juggler.FateTaoReduction",
       "name": "oddLogMass",
@@ -34827,7 +34831,9 @@
       "doc": "The odd members of `A` in `(y, 2y]`.",
       "file": "formal/Problems/Juggler/FateTaoReduction.lean",
       "kind": "def",
-      "ledger": [],
+      "ledger": [
+        "J-tao-rate-implies-conjecture"
+      ],
       "line": 54,
       "module": "Problems.Juggler.FateTaoReduction",
       "name": "oddMembers",
@@ -34837,7 +34843,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/FateTaoReduction.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-tao-rate-implies-conjecture"
+      ],
       "line": 57,
       "module": "Problems.Juggler.FateTaoReduction",
       "name": "oddMembers_not_reachesOne",
@@ -34847,7 +34855,9 @@
       "doc": "`n` descends to `n\u2080` in exactly `j` steps, all of them even: `n` lies at level `j` of the `E`-tree of `n\u2080`.",
       "file": "formal/Problems/Juggler/FateTaoReduction.lean",
       "kind": "def",
-      "ledger": [],
+      "ledger": [
+        "J-tao-rate-implies-conjecture"
+      ],
       "line": 66,
       "module": "Problems.Juggler.FateTaoReduction",
       "name": "EvenDescent",
@@ -34857,7 +34867,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/FateTaoReduction.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-tao-rate-implies-conjecture"
+      ],
       "line": 69,
       "module": "Problems.Juggler.FateTaoReduction",
       "name": "evenDescent_zero",
@@ -34867,7 +34879,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/FateTaoReduction.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-tao-rate-implies-conjecture"
+      ],
       "line": 76,
       "module": "Problems.Juggler.FateTaoReduction",
       "name": "evenDescent_succ",
@@ -34877,7 +34891,9 @@
       "doc": "Level `j` of the `E`-tree of `n\u2080` sits above `n\u2080^{2^j}`.",
       "file": "formal/Problems/Juggler/FateTaoReduction.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-tao-rate-implies-conjecture"
+      ],
       "line": 88,
       "module": "Problems.Juggler.FateTaoReduction",
       "name": "evenDescent_pow_le",
@@ -34887,7 +34903,9 @@
       "doc": "Level `j` of the `E`-tree of `n\u2080`, cut at `x`.",
       "file": "formal/Problems/Juggler/FateTaoReduction.lean",
       "kind": "def",
-      "ledger": [],
+      "ledger": [
+        "J-tao-rate-implies-conjecture"
+      ],
       "line": 103,
       "module": "Problems.Juggler.FateTaoReduction",
       "name": "treeLevel",
@@ -34897,7 +34915,9 @@
       "doc": "The even block of `m`: the even `n` with `m\u00b2 \u2264 n < (m+1)\u00b2`.",
       "file": "formal/Problems/Juggler/FateTaoReduction.lean",
       "kind": "def",
-      "ledger": [],
+      "ledger": [
+        "J-tao-rate-implies-conjecture"
+      ],
       "line": 107,
       "module": "Problems.Juggler.FateTaoReduction",
       "name": "evenBlock",
@@ -34907,7 +34927,9 @@
       "doc": "Level `j + 1` is covered by the even blocks of level `j`.",
       "file": "formal/Problems/Juggler/FateTaoReduction.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-tao-rate-implies-conjecture"
+      ],
       "line": 111,
       "module": "Problems.Juggler.FateTaoReduction",
       "name": "treeLevel_succ_subset",
@@ -34917,7 +34939,9 @@
       "doc": "Lemma 3.1, the upper count: an even block has at most `m + 1` elements.",
       "file": "formal/Problems/Juggler/FateTaoReduction.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-tao-rate-implies-conjecture"
+      ],
       "line": 128,
       "module": "Problems.Juggler.FateTaoReduction",
       "name": "evenBlock_card_le",
@@ -34927,7 +34951,9 @@
       "doc": "Lemma 3.1, the upper log-mass: `\u03a3_{n \u2208 E(m)} 1/n \u2264 (m+1)/m\u00b2`.",
       "file": "formal/Problems/Juggler/FateTaoReduction.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-tao-rate-implies-conjecture"
+      ],
       "line": 144,
       "module": "Problems.Juggler.FateTaoReduction",
       "name": "evenBlock_logMass_le",
@@ -34937,7 +34963,9 @@
       "doc": "A sum over a union of finsets is at most the sum of the sums, for nonnegative terms.",
       "file": "formal/Problems/Juggler/FateTaoReduction.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-tao-rate-implies-conjecture"
+      ],
       "line": 161,
       "module": "Problems.Juggler.FateTaoReduction",
       "name": "sum_biUnion_le_sum",
@@ -34947,7 +34975,9 @@
       "doc": "One level up multiplies the log-mass by at most `1 + n\u2080^{-2^j}`.",
       "file": "formal/Problems/Juggler/FateTaoReduction.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-tao-rate-implies-conjecture"
+      ],
       "line": 173,
       "module": "Problems.Juggler.FateTaoReduction",
       "name": "treeLevel_logMass_succ_le",
@@ -34957,7 +34987,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/FateTaoReduction.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-tao-rate-implies-conjecture"
+      ],
       "line": 200,
       "module": "Problems.Juggler.FateTaoReduction",
       "name": "treeLevel_zero_le",
@@ -34967,7 +34999,9 @@
       "doc": "The telescoped level bound: `\u03a3_{level j} 1/n \u2264 (1/n\u2080)(1 - u^{2^j})/(1 - u)`, `u = 1/n\u2080`.",
       "file": "formal/Problems/Juggler/FateTaoReduction.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-tao-rate-implies-conjecture"
+      ],
       "line": 212,
       "module": "Problems.Juggler.FateTaoReduction",
       "name": "treeLevel_logMass_le",
@@ -34977,7 +35011,9 @@
       "doc": "Every level of the `E`-tree of `n\u2080 \u2265 3` has log-mass at most `(3/2)/n\u2080`.",
       "file": "formal/Problems/Juggler/FateTaoReduction.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-tao-rate-implies-conjecture"
+      ],
       "line": 239,
       "module": "Problems.Juggler.FateTaoReduction",
       "name": "treeLevel_logMass_le'",
@@ -34987,7 +35023,9 @@
       "doc": "Every member of a forward-closed class excluding `1` lies at a level `j \u2264 log\u2082 log\u2082 x` of the `E`-tree of an odd member `n\u2080 \u2264 x`.",
       "file": "formal/Problems/Juggler/FateTaoReduction.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-tao-rate-implies-conjecture"
+      ],
       "line": 262,
       "module": "Problems.Juggler.FateTaoReduction",
       "name": "logMass_le_treeLevels",
@@ -34997,7 +35035,9 @@
       "doc": "**The `E`-tree bound.** The log-mass of a forward-closed class excluding `1` is at most `(3/2)(1 + log\u2082 log\u2082 x)` times its odd log-mass.",
       "file": "formal/Problems/Juggler/FateTaoReduction.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-tao-rate-implies-conjecture"
+      ],
       "line": 307,
       "module": "Problems.Juggler.FateTaoReduction",
       "name": "logMass_le_oddLogMass",
@@ -35007,7 +35047,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/FateTaoReduction.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-tao-rate-implies-conjecture"
+      ],
       "line": 332,
       "module": "Problems.Juggler.FateTaoReduction",
       "name": "oddLogMass_double",
@@ -35017,7 +35059,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/FateTaoReduction.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-tao-rate-implies-conjecture"
+      ],
       "line": 354,
       "module": "Problems.Juggler.FateTaoReduction",
       "name": "oddLogMass_mono",
@@ -35027,7 +35071,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/FateTaoReduction.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-tao-rate-implies-conjecture"
+      ],
       "line": 359,
       "module": "Problems.Juggler.FateTaoReduction",
       "name": "oddLogMass_nonneg",
@@ -35037,7 +35083,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/FateTaoReduction.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-tao-rate-implies-conjecture"
+      ],
       "line": 362,
       "module": "Problems.Juggler.FateTaoReduction",
       "name": "oddMembers_sum_le",
@@ -35047,7 +35095,9 @@
       "doc": "Doubling `K` times from `y\u2080`: the odd log-mass grows by at most the dyadic rates.",
       "file": "formal/Problems/Juggler/FateTaoReduction.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-tao-rate-implies-conjecture"
+      ],
       "line": 372,
       "module": "Problems.Juggler.FateTaoReduction",
       "name": "oddLogMass_pow_le",
@@ -35057,7 +35107,9 @@
       "doc": "The telescoping Bernoulli bound `\u03a3_{k=1}^{K} k^{-e} \u2264 K^{1-e}/(1-e)` for `0 < e < 1`.",
       "file": "formal/Problems/Juggler/FateTaoReduction.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-tao-rate-implies-conjecture"
+      ],
       "line": 395,
       "module": "Problems.Juggler.FateTaoReduction",
       "name": "sum_rpow_neg_le",
@@ -35067,7 +35119,9 @@
       "doc": "**The dyadic sum.** A rate `y (log y)^{-e}` on the odd members of every block `(y, 2y]`, `y \u2265 y\u2080 \u2265 2`, bounds the odd log-mass up to `x` by `oddLogMass y\u2080 + (log 2)^{-e} (log\u2082 x + 1)^{1-e}/(1-e)`.",
       "file": "formal/Problems/Juggler/FateTaoReduction.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-tao-rate-implies-conjecture"
+      ],
       "line": 444,
       "module": "Problems.Juggler.FateTaoReduction",
       "name": "oddLogMass_le_of_dyadic",
@@ -35077,7 +35131,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/FateTaoReduction.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-tao-rate-implies-conjecture"
+      ],
       "line": 486,
       "module": "Problems.Juggler.FateTaoReduction",
       "name": "natLog_le_logb",
@@ -35087,7 +35143,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/FateTaoReduction.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-tao-rate-implies-conjecture"
+      ],
       "line": 490,
       "module": "Problems.Juggler.FateTaoReduction",
       "name": "log_le_rpow_div",
@@ -35097,7 +35155,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/FateTaoReduction.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-tao-rate-implies-conjecture"
+      ],
       "line": 496,
       "module": "Problems.Juggler.FateTaoReduction",
       "name": "exists_rpow_gt",
@@ -35107,7 +35167,9 @@
       "doc": "The upper bound at every `x \u2265 3`: `logMass A x \u2264 D (log x)^{\u03b4 + 1 - e}` for an explicit `D`, once the dyadic rate holds with `0 < e < 1` from `y\u2080 \u2265 2` and `0 < \u03b4 \u2264 1`.",
       "file": "formal/Problems/Juggler/FateTaoReduction.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-tao-rate-implies-conjecture"
+      ],
       "line": 511,
       "module": "Problems.Juggler.FateTaoReduction",
       "name": "logMass_le_rpow",
@@ -35117,7 +35179,9 @@
       "doc": "**Paper C Theorem 7.2 (Theorem A of the Tao-reduction note), given the contagion bound.** Let `A` be forward-closed and exclude `1`. Suppose the contagion bound holds for `A` whenever it is nonempty \u2014 `\u03a3_{n \u2264 x, n \u2208 A} 1/n \u2265 K (log x)^\u03bb` for all large `x`, some `K > 0` \u2014 and that its odd members satisfy the Tao-type rate `#{n odd in (y, 2y] : n \u2208 A} \u2264 y (log y)^{-e}` for all large `y`, with `e > 1 - \u03bb`. Then `A` has no positive member.",
       "file": "formal/Problems/Juggler/FateTaoReduction.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-tao-rate-implies-conjecture"
+      ],
       "line": 621,
       "module": "Problems.Juggler.FateTaoReduction",
       "name": "tao_rate_implies_empty",
@@ -35127,7 +35191,9 @@
       "doc": "**Paper C Theorem 7.2 on the failure set.** If the contagion bound holds for the failure set whenever it is nonempty, and the odd failures satisfy the Tao-type rate with `e > 1 - \u03bb`, then every positive integer reaches `1`.",
       "file": "formal/Problems/Juggler/FateTaoReduction.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-tao-rate-implies-conjecture"
+      ],
       "line": 691,
       "module": "Problems.Juggler.FateTaoReduction",
       "name": "tao_rate_implies_conjecture",
@@ -87228,7 +87294,13 @@
       "imports": [
         "Problems.Juggler.FateChernoff"
       ],
-      "ledger": []
+      "ledger": [
+        {
+          "id": "J-tao-rate-implies-conjecture",
+          "statement": "Theorem A of the Tao-reduction note. If for some e > 1 \u2212 \u03bb** = 0.5074\u2026 and all sufficiently large y, #{n odd in (y, 2y] : n does not reach 1} \u2264 y (log y)^{\u2212e}, then every positive integer reaches 1. Proof: every failure lies in the E-tree of an odd failure (forward closure), each E-tree level has log-mass \u2264 2/n\u2080 and at most 1 + log\u2082 log x levels meet [1, x], so the log-count of the failure set is \u226a (log x)^{1\u2212e} log log x, contradicting fate contagion (J-fate-log-density) for any \u03bb \u2208 (1 \u2212 e, \u03bb**). The E-tree bound, the dyadic sum and the contradiction given a contagion lower bound K (log x)^\u03bb are Lean (tao_rate_implies_conjecture in FateTaoReduction.lean); the contagion bound itself (Theorem 5.3) stays a human proof, so this row is not Lean-verified. The same holds for the hypothesis stated over all n in (y, 2y], and in logarithmic form it is Corollary 4.5 of the fate note. A Tao-type almost-all theorem with the bounded target [1, N\u2080] and rate (log y)^{\u22120.53} would therefore prove the Juggler conjecture; for the Collatz map the analogous implication fails (thin preimage trees). Not a halt theorem: the hypothesis is not proved.",
+          "tag": "EXACT \u2014 HUMAN PROOF"
+        }
+      ]
     },
     "Problems.Juggler.FateThinFibers": {
       "declarations": 18,
@@ -89010,8 +89082,8 @@
   },
   "totals": {
     "declarations": 6573,
-    "declarations_with_a_ledger_row": 4498,
-    "ledger_rows_naming_a_file": 406,
+    "declarations_with_a_ledger_row": 4531,
+    "ledger_rows_naming_a_file": 407,
     "modules": 284,
     "trust": {
       "compiler": 56,

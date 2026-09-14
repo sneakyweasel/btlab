@@ -6,9 +6,18 @@ Status: laboratory prospecting note. Date: 6 September 2026.
 remains a 6 September snapshot. Two of its five entries have since moved, so
 do not act on a rank without reading this first.
 
-- **1.1 coefficient rule / \(E<2\) criterion — OPEN.** No ledger row, no Lean
-  counterpart, still carried only as prose tables and
-  `paper_b_prefix_count.py` (1195 lines). Unchanged.
+- **1.1 coefficient rule / \(E<2\) criterion — ROWS WRITTEN, 14 September;
+  Lean still open.** The entry asked for a numbered lemma, and the scope split
+  it demanded is the shape of the answer: `J-paper-b-defect-coefficient-chain`
+  and `J-paper-b-linearisation-E-lt-2` are the mathematics, and
+  `J-paper-b-screen-thresholds-are-hypotheses` records that the other two
+  screen conditions are not. Both lemmas rest on identities now checked over
+  every word of length 3–10 and every pair \(s<t\) — 75768 instances, no
+  exception — rather than on agreement at the five constants the paper prints:
+  \(E=e_{t-1}/e_s\) makes the chain rule a rule, and
+  \(e_{t-1}-2e_s=e_s(E-2)\) makes \(E<2\) the point where the second-order
+  term stops growing rather than a fitted threshold. No Lean counterpart, which
+  is the part of this entry that stays open.
 - **1.2 never-contracting word count in Lean — PARTLY MOVED, not the part it
   asks for.** Of the four sibling rows named with empty Lean columns,
   `J-rate-free-density-one` now cites `RateFreeDensity.lean`; the other three
@@ -32,12 +41,24 @@ do not act on a rank without reading this first.
   and the (T4) block count short of its own hypothesis. The entry's reason for
   ranking it — that the consequence is a constant at the root of a table —
   was borne out.
-- **1.5 recursion lemma and tree count in Lean — OPEN**, but re-price before
-  acting: `J-tao-rate-implies-conjecture` still has an empty Lean column,
-  while adjacent Paper C material (Theorem 9.1 with exceptional atoms,
-  \(\mathrm H_q(C,A)\) implies the conjecture, the pressure and no-momentum
-  hypotheses) has since been formalised, so the conditional spine is partly
-  Lean without this entry being done.
+- **1.5 recursion lemma and tree count in Lean — CLOSED, 14 September, and it
+  was never open.** The re-price this entry asked for found the work already
+  done. `J-tao-rate-implies-conjecture` had an empty Lean column, which is what
+  the entry was scored on, but the row's own prose names the file and the
+  theorem: the E-tree bound, the dyadic sum and the contradiction are
+  `tao_rate_implies_conjecture` in
+  [FateTaoReduction.lean](../../formal/Problems/Juggler/FateTaoReduction.lean),
+  sorry-free and kernel-checked. All three objects this entry names are there —
+  the seed (`treeLevel_zero_le`), the recursion (`treeLevel_logMass_succ_le`),
+  the tree count (`treeLevel_logMass_le`) — and the abstract form
+  `tao_rate_implies_empty` is stated over any `ForwardClosed` class, which is
+  the "one machine-checked lemma" the entry wanted every exponent to feed.
+  `FateContagion.lean`'s header says the counting is not formalised *there*,
+  which is true and was read as *nowhere*. The columns are now filled
+  (`lean`, `lean_trust: kernel`, `decl`), which brought 33 declarations and one
+  module under ledger coverage. The tag stays **EXACT — HUMAN PROOF**: the
+  contagion bound (Theorem 5.3) that feeds the recursion is still a human
+  proof, exactly as this entry said it would remain.
 
 This re-check is bibliographic: it reads ledger columns, file contents and
 commit dates. It re-estimates no \(D\), \(F\) or cost, and it does not
@@ -137,8 +158,9 @@ Paper B section 7 screens contractor words by a per-letter rule: for
 letters \(s < t\) the coefficient of the phase variable of letter \(s\)
 inside letter \(t\) is a product of the intermediate exponents, and
 linearisation is safe when the expansion factor stays below \(2\) at
-the expanded defect. The rule is used to classify all \(127\)
-contractors at depth seven, and Paper B itself calls the screen
+the expanded defect. The rule is used to classify the \(127\)
+contractors across depths ten, twelve and thirteen (\(12+30+85\); at
+depth seven there are three), and Paper B itself calls the screen
 negative evidence only. It is carried as prose tables and as pinned
 Python in `paper_b_prefix_count`
 ([source](../../src/research/juggler_sequence/paper_b_prefix_count.py));
