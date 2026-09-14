@@ -2166,6 +2166,22 @@
       "nk_cluster": null
     },
     {
+      "id": "cylinder_energy_measure",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cylinder_energy_measure.py",
+      "test": "tests/research/juggler_sequence/test_cylinder_energy_measure.py",
+      "dossier": "docs/problems/juggler_cylinder_energy_measure.md",
+      "data_dir": "data/research/juggler/cylinder_energy_measure",
+      "lean": [
+        "formal/Problems/Juggler/FateEnergyAtoms.lean"
+      ],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
+    },
+    {
       "id": "decoration_budget",
       "kind": "branch",
       "probe": "src/research/juggler_sequence/decoration_budget.py",

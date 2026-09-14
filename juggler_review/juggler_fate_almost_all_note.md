@@ -362,7 +362,7 @@ constants; they prove nothing and are labelled wherever they appear.
 | The conjecture from the one-sided hypothesis \(\mathrm H_q(C,A)\) (Theorem 9.1's consequence), with the contagion bound as a hypothesis, or with nothing else assumed when \(e^{\rm Ch}_q(C)>\tfrac7{10}\) | Lean; the exponent is the Chernoff one of Proposition 9.3 with \(A>C(1+\log_2x)+1+e\), the paper's numerical forms are human |
 | The conjecture from the pressure hypothesis \(\mathrm P_\theta(C)\) and from the no-momentum hypothesis \(\mathrm M_{\theta,q}(C)\) (Section 9.2's consequences), with the contagion bound as a hypothesis, or with nothing else assumed when the exponent exceeds \(\tfrac7{10}\) | Lean; the paper's \(e^{o(d)}\) is quantified as \((\log y)^\varepsilon\) and its \(o(d)\) as \(\delta d\), the numerical forms are human |
 | Theorem 9.1 with exceptional atoms (Section 10(d), first paragraph): the share bound may fail on bad atoms of total mass \(y(\log y)^{-B}\) at each depth, and the conjecture still follows, with nothing else assumed when the exponent exceeds \(\tfrac7{10}\) | Lean; the condition is \(B>C\log_2x+1+e\) in place of the paper's \(B>e_q(C)\), sufficient and not sharp |
-| The bias energy supplies the exceptional atoms (Section 10(d)): \(\sum_{\lvert w\rvert=t}D(w)^2\le(q-\tfrac12)^2y^2(\log y)^{-2B}/2^t\) at the depths below \(\lceil CL(y)\rceil\), at all large scales, gives the conjecture with nothing else assumed | Lean, by Cauchy--Schwarz on the atoms that violate the share bound |
+| The bias energy of the \(L(y)\)-bad words supplies the exceptional atoms (Section 10(d)): \(\sum_{w\ \text{bad}}D(w)^2\le(q-\tfrac12)^2y^2(\log y)^{-2B}/2^t\) at the depths below \(\lceil CL(y)\rceil\), at all large scales, gives the conjecture with nothing else assumed | Lean, by Cauchy--Schwarz on the bad atoms that violate the share bound; the exact enumeration of Section 11 finds that energy at its worst-case value from depth \(16\)--\(20\) at every computable scale, so the hypothesis has no numerical support |
 | Azuma and exponential-moment arguments (Sections 8--10, except Lemma 8.2, Theorem 8.3, Theorem 9.1, Theorem 9.2 and Proposition 9.3 in their exact forms) | human proof |
 | Cylinder-splitting identity for the first-letter bias (Section 10(d), second equality) | Lean; the Parseval form in Walsh sums, and the exceptional-atom estimate it is meant to supply, are human |
 | Exact landing windows of the nested productions ((D.1), (D.2)) | Lean; the smooth comparison (D.3), the multiplicities and the production inequality they feed are human |
@@ -2315,29 +2315,35 @@ the restricted bad-cylinder hypothesis is asserted. Full-population
 fair collision bounds also face the absorbed-cylinder obstruction
 of Section 8.3.
 
-Lean: the supply, in `formal/Problems/Juggler/FateEnergyAtoms.lean`.
-`Energy.biasEnergy` is \(\sum_{|w|=t}D(w)^2\) over the odd starts of
-\((y,2y]\), equal to \(\tfrac12\mathcal C_{t+1}-\tfrac14\mathcal C_t\)
-(`Energy.biasEnergy_eq`, on `CylinderEnergy.sum_bias_sq`). An atom
-violating \(\#[wO]\le q\#[w]\) for \(q>\tfrac12\) has
-\(D(w)>(q-\tfrac12)\#[w]\), so the squared masses of the violators
-sum to at most \(\sum_wD(w)^2/(q-\tfrac12)^2\), and Cauchy--Schwarz
-over at most \(2^t\) atoms gives
-\(\bigl(\sum_{\text{violators}}\#[w]\bigr)^2\le2^t\sum_wD(w)^2/(q-\tfrac12)^2\)
+Lean: the supply, in `formal/Problems/Juggler/FateEnergyAtoms.lean`,
+for the energy of the \(L(y)\)-bad words. `Energy.badEnergy` is
+\(\sum_{w\ \text{bad}}D(w)^2\) over the odd starts of \((y,2y]\), and
+`Energy.biasEnergy` the sum over all words, equal to
+\(\tfrac12\mathcal C_{t+1}-\tfrac14\mathcal C_t\) (`Energy.biasEnergy_eq`,
+on `CylinderEnergy.sum_bias_sq`). A bad atom violating
+\(\#[wO]\le q\#[w]\) for \(q>\tfrac12\) has \(D(w)>(q-\tfrac12)\#[w]\),
+so the squared masses of the bad violators sum to at most the bad
+energy over \((q-\tfrac12)^2\), and Cauchy--Schwarz over at most
+\(2^t\) atoms gives
+\(\bigl(\sum_{\text{bad violators}}\#[w]\bigr)^2\le2^t\,\mathrm{badEnergy}/(q-\tfrac12)^2\)
 (`Energy.mass_violators_le`). Hence
-\(\sum_{|w|=t}D(w)^2\le(q-\tfrac12)^2\,\mathrm{exc}^2/2^t\) at every
+\(\mathrm{badEnergy}_t\le(q-\tfrac12)^2\,\mathrm{exc}^2/2^t\) at every
 depth \(1\le t<d\) is the one-sided hypothesis with exceptional atoms
 of mass \(\mathrm{exc}\) and no error term
-(`Energy.oneSidedShareExc_of_energy`), and the Lean form of this
-paragraph's first claim runs it to the conjecture:
-`Energy.energy_implies_conjecture` needs the energy bound with
-\(\mathrm{exc}=y(\log y)^{-B}\) at the depths below
+(`Energy.oneSidedShareExc_of_energy`), and
+`Energy.energy_implies_conjecture` runs it to the conjecture: the bad
+energy bound with \(\mathrm{exc}=y(\log y)^{-B}\) at the depths below
 \(\lceil CL(y)\rceil\) at all large scales (`Energy.EnergyBound`),
-\(\tfrac12<q<p_C\), \(B>C\log_2x+1+e\) and
-\(\tfrac7{10}<e<e^{\rm Ch}_q(C)\), and nothing else. For comparison,
-fair splitting with square-root fluctuations has
-\(\sum_wD(w)^2\approx y\), while the bound allows
-\(y^2(\log y)^{-C-2B}\). Nothing here proves the energy bound.
+\(\tfrac12<q<p_C\), \(B>C\log_2x+1+e\) and \(\tfrac7{10}<e<e^{\rm Ch}_q(C)\),
+and nothing else. The restriction to bad words is forced: the
+unrestricted energy (`Energy.badEnergy_le_biasEnergy`) is dominated by
+absorbed orbits, whose cylinders are fully biased. The exact
+enumeration of Section 11 then finds the bad energy itself at its
+worst-case value \(\tfrac14\sum_{w\ \text{bad}}\#[w]^2\) from depth
+\(16\)--\(20\) at every computable scale, because bad words that have
+dipped to a bounded value collapse onto single deterministic futures;
+the reduction stands, the hypothesis has no numerical support, and the
+per-cylinder forms it feeds inherit the warning.
 
 **(e) Bounded-depth statistics and the walk model.** Fix
 \(k\). The probability measure on parity words that is fair to depth
@@ -2601,6 +2607,26 @@ upper bound on the full live moment. These finite observations
 do not establish the hypotheses of Section 9 at depths tending
 to infinity.
 
+*Exact cylinder energies (observation).* An exact enumeration of every
+odd start of \((y,2y]\) to depth \(30\) at \(y=10^4,10^5,10^6,10^7\)
+(`research.juggler_sequence.cylinder_energy_measure`, no sampling)
+records the bias energy \(\sum_wD(w)^2\) over all words, over the
+\(L(y)\)-bad words and over the live starts, against the fair-coin value
+\(N/4\) and the worst case \(\tfrac14\sum_w\#[w]^2\). Over all words the
+worst case is reached by depth \(16\)--\(22\) at every scale, the
+absorbed-cylinder obstruction of Section 8.3 in numbers. Over the
+\(L(y)\)-bad words it is reached by depth \(16\)--\(20\) as well, on
+cylinders of up to \(11939\) members at \(10^7\): a bad word whose walk
+has dipped near \(-L(y)\) has collapsed onto a bounded value above the
+floor, and its cylinder's later letters are the deterministic orbit of
+that value. The mass of bad atoms violating \(\#[wO]\le0.55\,\#[w]\)
+falls with the scale in the dense window (\(0.47\), \(0.26\), \(0.12\),
+\(0.05\) of the bad mass at depth \(10\)) and is a constant \(0.42\)--\(0.49\)
+at depth \(20\). These finite observations do not test the hypotheses
+of Sections 8--10 at their own scales; they show that their
+per-cylinder forms live, at every computable scale, in a regime where
+cylinders are parity-constant.
+
 ## 12. Conclusions and open estimates
 
 The main unconditional result is the logarithmic counting lower
@@ -2678,7 +2704,7 @@ abstract lemmas listed here, not the analytic density estimates.
 | Theorem 9.1's consequence (the conjecture from the one-sided hypothesis), in `Problems/Juggler/FateOneSidedCorollary.lean` | `OneSided.OneSidedBound`, `OneSided.OneSidedExact`, `OneSided.oneSidedExponent`, `OneSided.OneSidedShare.mono`, `OneSided.oneSidedBound_of_exact`, `OneSided.klDiv_nonneg`, `OneSided.exp_le_rpow_scale`, `OneSided.pow_le_rpow_scale`, `OneSided.oddFailures_le_of_one_sided`, `OneSided.implies_conjecture_of_contagion`, `OneSided.one_sided_implies_conjecture`, `OneSided.exact_share_implies_conjecture` |
 | Section 9.2's consequences (the conjecture from the pressure and no-momentum hypotheses), in `Problems/Juggler/FatePressureCorollary.lean` | `Pressure.oddFailures_subset_live`, `Pressure.PressureBound`, `Pressure.NoMomentumBound`, `Pressure.momentumExponent`, `Pressure.absorb`, `Pressure.oddFailures_le_of_pressure`, `Pressure.pressure_conj_of_contagion`, `Pressure.pressure_implies_conjecture`, `Pressure.oddFailures_le_of_noMomentum`, `Pressure.noMomentum_conj_of_contagion`, `Pressure.noMomentum_implies_conjecture` |
 | Section 10(d), Theorem 9.1 with exceptional atoms, in `Problems/Juggler/FateOneSidedAtoms.lean` | `OneSided.OneSidedShareExc`, `OneSided.oneSidedShareExc_of_share`, `OneSided.OneSidedBoundExc`, `OneSided.oneSidedBoundExc_of_bound`, `OneSided.badMass_succ_le_exc`, `OneSided.badMass_le_exc`, `OneSided.one_sided_bound_exc`, `OneSided.main_term_eq`, `OneSided.one_sided_bound_kl_exc`, `OneSided.pow_le_rpow_scale_gen`, `OneSided.tail_le`, `OneSided.oddFailures_le_of_exc`, `OneSided.exc_conj_of_contagion`, `OneSided.exc_implies_conjecture` |
-| Section 10(d), the bias energy supplying the exceptional atoms, in `Problems/Juggler/FateEnergyAtoms.lean` | `OneSided.OneSidedShareExc.mono_err`, `Energy.biasEnergy`, `Energy.violators`, `Energy.card_allWords`, `Energy.mass_violators_le`, `Energy.oneSidedShareExc_of_energy`, `Energy.wordCount_cylinder`, `Energy.biasEnergy_eq`, `Energy.EnergyBound`, `Energy.oneSidedBoundExc_of_energy`, `Energy.energy_conj_of_contagion`, `Energy.energy_implies_conjecture` |
+| Section 10(d), the bias energy supplying the exceptional atoms, in `Problems/Juggler/FateEnergyAtoms.lean` | `OneSided.OneSidedShareExc.mono_err`, `Energy.bias`, `Energy.energyOn`, `Energy.biasEnergy`, `Energy.badEnergy`, `Energy.violators`, `Energy.badEnergy_le_biasEnergy`, `Energy.card_allWords`, `Energy.mass_violators_le`, `Energy.oneSidedShareExc_of_energy`, `Energy.wordCount_cylinder`, `Energy.biasEnergy_eq`, `Energy.EnergyBound`, `Energy.oneSidedBoundExc_of_energy`, `Energy.energy_conj_of_contagion`, `Energy.energy_implies_conjecture` |
 
 ## Appendix B. Constants and artifacts
 
@@ -2782,7 +2808,7 @@ use the roots of the displayed defining equations.
 
 - `formal/Problems/Juggler/FateEnergyAtoms.lean`
 
-  SHA-256: `02ee22081a703a9413e2c409aa9403dc13c03050dc0e3d21c77715d1b4a79407`
+  SHA-256: `f92b54dd95f3a4055b94424ed5947ce164075f1e84c4963afce12e7895ea8cd9`
 
 - `formal/Problems/Juggler/FateShareLaw.lean`
 
@@ -2838,7 +2864,7 @@ use the roots of the displayed defining equations.
 
 - `formal/AxiomCheckPaperC.expected`
 
-  SHA-256: `3c87f3d654b4e204c24467d3cb8e686ce59912923f033f0d0f527157393c76a2`
+  SHA-256: `fe28b8d11d20ca9c449b50db57667b498342bed10695276ca2af1a81830b879c`
 
 - `src/research/juggler_sequence/fate_contagion.py`
 

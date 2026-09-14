@@ -101,7 +101,7 @@ TABLE_LEAN_ROWS = {
     "the one-sided hypothesis": "FateOneSidedCorollary",
     "the pressure hypothesis": "FatePressureCorollary",
     "exceptional atoms": "FateOneSidedAtoms",
-    "bias energy supplies": "FateEnergyAtoms",
+    "supplies the exceptional atoms": "FateEnergyAtoms",
     "Lemma 5.2": "FateSeed",
     "Theorem 7.2": "FateTaoReduction",
     "Corollary 8.4": "FateCylinderCorollary",

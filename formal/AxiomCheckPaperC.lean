@@ -40,6 +40,7 @@ open Problems.Juggler
 #print axioms CylinderEnergy.itinerary_succ_append
 #print axioms CylinderEnergy.sum_bias_sq
 #print axioms CylinderEnergy.wordCount_split
+#print axioms Energy.badEnergy_le_biasEnergy
 #print axioms Energy.biasEnergy_eq
 #print axioms Energy.card_allWords
 #print axioms Energy.energy_conj_of_contagion

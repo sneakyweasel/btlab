@@ -28931,33 +28931,81 @@
       "ledger": [
         "J-fate-energy-atoms"
       ],
-      "line": 42,
+      "line": 49,
       "module": "Problems.Juggler.FateEnergyAtoms",
       "name": "OneSidedShareExc.mono_err",
       "trust": "kernel"
     },
     {
-      "doc": "The bias energy at depth `t`: `\u03a3_{|w|=t} (#[wO] - #[w]/2)\u00b2` over the odd starts of `(y, 2y]`.",
+      "doc": "The bias `D(w) = #[wO] - #[w]/2` of a cylinder of depth `t` at the scale `y`.",
       "file": "formal/Problems/Juggler/FateEnergyAtoms.lean",
       "kind": "def",
       "ledger": [
         "J-fate-energy-atoms"
       ],
-      "line": 55,
+      "line": 61,
+      "module": "Problems.Juggler.FateEnergyAtoms",
+      "name": "bias",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The bias energy `\u03a3_{w \u2208 S} D(w)\u00b2` of a set of words of depth `t`.",
+      "file": "formal/Problems/Juggler/FateEnergyAtoms.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-energy-atoms"
+      ],
+      "line": 65,
+      "module": "Problems.Juggler.FateEnergyAtoms",
+      "name": "energyOn",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The bias energy over all words of depth `t`.",
+      "file": "formal/Problems/Juggler/FateEnergyAtoms.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-energy-atoms"
+      ],
+      "line": 69,
       "module": "Problems.Juggler.FateEnergyAtoms",
       "name": "biasEnergy",
       "trust": "kernel"
     },
     {
-      "doc": "The atoms of depth `t` that violate the share bound `#[wO] \u2264 q #[w]`.",
+      "doc": "The bias energy over the `L`-bad words of depth `t`.",
       "file": "formal/Problems/Juggler/FateEnergyAtoms.lean",
       "kind": "def",
       "ledger": [
         "J-fate-energy-atoms"
       ],
-      "line": 60,
+      "line": 72,
+      "module": "Problems.Juggler.FateEnergyAtoms",
+      "name": "badEnergy",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The `L`-bad atoms of depth `t` that violate the share bound `#[wO] \u2264 q #[w]`.",
+      "file": "formal/Problems/Juggler/FateEnergyAtoms.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-energy-atoms"
+      ],
+      "line": 76,
       "module": "Problems.Juggler.FateEnergyAtoms",
       "name": "violators",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateEnergyAtoms.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-energy-atoms"
+      ],
+      "line": 80,
+      "module": "Problems.Juggler.FateEnergyAtoms",
+      "name": "badEnergy_le_biasEnergy",
       "trust": "kernel"
     },
     {
@@ -28967,31 +29015,31 @@
       "ledger": [
         "J-fate-energy-atoms"
       ],
-      "line": 65,
+      "line": 85,
       "module": "Problems.Juggler.FateEnergyAtoms",
       "name": "card_allWords",
       "trust": "kernel"
     },
     {
-      "doc": "**Cauchy\u2013Schwarz on the violators.** For a share `q > 1/2`, `(\u03a3_{w violating} #[w])\u00b2 \u2264 2^t \u00b7 biasEnergy / (q - 1/2)\u00b2`.",
+      "doc": "**Cauchy\u2013Schwarz on the bad violators.** For a share `q > 1/2`, `(\u03a3_{w bad, violating} #[w])\u00b2 \u2264 2^t \u00b7 badEnergy / (q - 1/2)\u00b2`.",
       "file": "formal/Problems/Juggler/FateEnergyAtoms.lean",
       "kind": "theorem",
       "ledger": [
         "J-fate-energy-atoms"
       ],
-      "line": 75,
+      "line": 95,
       "module": "Problems.Juggler.FateEnergyAtoms",
       "name": "mass_violators_le",
       "trust": "kernel"
     },
     {
-      "doc": "**Energy implies exceptional atoms.** If the bias energy at every depth `1 \u2264 t < d` is at most `(q - 1/2)\u00b2 exc\u00b2 / 2^t`, the violators of the share bound `#[wO] \u2264 q #[w]` have total mass at most `exc` at each depth, so the one-sided hypothesis holds with exceptional atoms of mass `exc` and no error term, for every `L`.",
+      "doc": "**Energy implies exceptional atoms.** If the bad energy at every depth `1 \u2264 t < d` is at most `(q - 1/2)\u00b2 exc\u00b2 / 2^t`, the bad violators of the share bound `#[wO] \u2264 q #[w]` have total mass at most `exc` at each depth, so the one-sided hypothesis holds with exceptional atoms of mass `exc` and no error term.",
       "file": "formal/Problems/Juggler/FateEnergyAtoms.lean",
       "kind": "theorem",
       "ledger": [
         "J-fate-energy-atoms"
       ],
-      "line": 124,
+      "line": 142,
       "module": "Problems.Juggler.FateEnergyAtoms",
       "name": "oneSidedShareExc_of_energy",
       "trust": "kernel"
@@ -29003,31 +29051,31 @@
       "ledger": [
         "J-fate-energy-atoms"
       ],
-      "line": 158,
+      "line": 176,
       "module": "Problems.Juggler.FateEnergyAtoms",
       "name": "wordCount_cylinder",
       "trust": "kernel"
     },
     {
-      "doc": "The bias energy is the paper's `C_{t+1}/2 - C_t/4`, with `C_t = \u03a3_{|w|=t} #[w]\u00b2` (`CylinderEnergy.sum_bias_sq`).",
+      "doc": "The unrestricted bias energy is the paper's `C_{t+1}/2 - C_t/4`, with `C_t = \u03a3_{|w|=t} #[w]\u00b2` (`CylinderEnergy.sum_bias_sq`).",
       "file": "formal/Problems/Juggler/FateEnergyAtoms.lean",
       "kind": "theorem",
       "ledger": [
         "J-fate-energy-atoms"
       ],
-      "line": 169,
+      "line": 187,
       "module": "Problems.Juggler.FateEnergyAtoms",
       "name": "biasEnergy_eq",
       "trust": "kernel"
     },
     {
-      "doc": "The energy hypothesis at the scale `y`: at every depth `1 \u2264 t < d(y) = \u2308C L(y)\u2309`, the bias energy is at most `(q - 1/2)\u00b2 (y (log y)^{-B})\u00b2 / 2^t`.",
+      "doc": "The energy hypothesis at the scale `y`: at every depth `1 \u2264 t < d(y) = \u2308C L(y)\u2309`, the bias energy of the `L(y)`-bad words is at most `(q - 1/2)\u00b2 (y (log y)^{-B})\u00b2 / 2^t`.",
       "file": "formal/Problems/Juggler/FateEnergyAtoms.lean",
       "kind": "def",
       "ledger": [
         "J-fate-energy-atoms"
       ],
-      "line": 182,
+      "line": 200,
       "module": "Problems.Juggler.FateEnergyAtoms",
       "name": "EnergyBound",
       "trust": "kernel"
@@ -29039,7 +29087,7 @@
       "ledger": [
         "J-fate-energy-atoms"
       ],
-      "line": 188,
+      "line": 206,
       "module": "Problems.Juggler.FateEnergyAtoms",
       "name": "oneSidedBoundExc_of_energy",
       "trust": "kernel"
@@ -29051,19 +29099,19 @@
       "ledger": [
         "J-fate-energy-atoms"
       ],
-      "line": 194,
+      "line": 212,
       "module": "Problems.Juggler.FateEnergyAtoms",
       "name": "energy_conj_of_contagion",
       "trust": "kernel"
     },
     {
-      "doc": "**The conjecture from the energy bound, with nothing else assumed.** If at all large scales above a certified floor the bias energy at every depth `1 \u2264 t < \u2308C L(y)\u2309` is at most `(q - 1/2)\u00b2 y\u00b2 (log y)^{-2B} / 2^t`, with `C \u2265 5`, `1/2 < q < p_C`, `B > C log\u2082 x + 1 + e` and `7/10 < e < e_{C,q}`, then every positive integer reaches `1`.",
+      "doc": "**The conjecture from the energy bound, with nothing else assumed.** If at all large scales above a certified floor the bias energy of the `L(y)`-bad words at every depth `1 \u2264 t < \u2308C L(y)\u2309` is at most `(q - 1/2)\u00b2 y\u00b2 (log y)^{-2B} / 2^t`, with `C \u2265 5`, `1/2 < q < p_C`, `B > C log\u2082 x + 1 + e` and `7/10 < e < e_{C,q}`, then every positive integer reaches `1`.",
       "file": "formal/Problems/Juggler/FateEnergyAtoms.lean",
       "kind": "theorem",
       "ledger": [
         "J-fate-energy-atoms"
       ],
-      "line": 215,
+      "line": 234,
       "module": "Problems.Juggler.FateEnergyAtoms",
       "name": "energy_implies_conjecture",
       "trust": "kernel"
@@ -85213,7 +85261,7 @@
       ]
     },
     "Problems.Juggler.FateEnergyAtoms": {
-      "declarations": 12,
+      "declarations": 16,
       "file": "formal/Problems/Juggler/FateEnergyAtoms.lean",
       "imports": [
         "Problems.Juggler.FateCylinderEnergy",
@@ -85222,7 +85270,7 @@
       "ledger": [
         {
           "id": "J-fate-energy-atoms",
-          "statement": "Paper C Section 10(d): the bias energy supplies the exceptional atoms. biasEnergy y t = sum over |w| = t of (#[wO] - #[w]/2)^2 over the odd starts of (y, 2y], equal to the paper's C_{t+1}/2 - C_t/4 with C_t = sum of #[w]^2 (biasEnergy_eq, on CylinderEnergy.sum_bias_sq; wordCount_cylinder identifies the word count over the odd starts with the cylinder). For a share q > 1/2, an atom violating #[wO] <= q #[w] has D(w) > (q - 1/2) #[w], so the squared masses of the violators sum to at most biasEnergy / (q - 1/2)^2, and Cauchy-Schwarz over the at most 2^t atoms of depth t (card_allWords) gives (sum over violators of #[w])^2 <= 2^t biasEnergy / (q - 1/2)^2 (mass_violators_le). Hence biasEnergy y t <= (q - 1/2)^2 exc^2 / 2^t at every depth 1 <= t < d gives OneSidedShareExc y L q 0 exc d for every L, the one-sided hypothesis with exceptional atoms of mass exc and no error term (oneSidedShareExc_of_energy), and with err = y (log y)^{-A} for any A (oneSidedBoundExc_of_energy, on OneSidedShareExc.mono_err). EnergyBound N_0 C q B y is that bound with exc = y (log y)^{-B} at the depths below ceil(C L(y)); composed with FateOneSidedAtoms: energy_conj_of_contagion with the contagion bound as a hypothesis, and energy_implies_conjecture with nothing else assumed: EnergyBound at all large scales above a certified floor, with C >= 5, 1/2 < q < p_C, B > C log_2 x + 1 + e and 7/10 < e < C D(p_C || q) / log 2, gives that every positive integer reaches 1. The rate-side question of the pincer is thereby a single second-moment statement about how cylinders split; for calibration, fair splitting with square-root fluctuations has sum D(w)^2 about y while the bound allows y^2 (log y)^{-C - 2B}. NOT formalized: the energy bound itself, and the Parseval form in Walsh sums. Nothing here is a halt theorem.",
+          "statement": "Paper C Section 10(d): the bias energy of the L-bad words supplies the exceptional atoms. energyOn y t S = sum over w in S of bias(w)^2 with bias(w) = #[wO] - #[w]/2 over the odd starts of (y, 2y]; biasEnergy y t is the sum over all words of length t, equal to the paper's C_{t+1}/2 - C_t/4 with C_t = sum of #[w]^2 (biasEnergy_eq, on CylinderEnergy.sum_bias_sq; wordCount_cylinder identifies the word count over the odd starts with the cylinder); badEnergy y L t is the sum over the L-bad words, at most the unrestricted one (badEnergy_le_biasEnergy). For a share q > 1/2, a bad atom violating #[wO] <= q #[w] has bias(w) > (q - 1/2) #[w], so the squared masses of the bad violators sum to at most badEnergy / (q - 1/2)^2, and Cauchy-Schwarz over the at most 2^t atoms of depth t (card_allWords) gives (sum over bad violators of #[w])^2 <= 2^t badEnergy / (q - 1/2)^2 (mass_violators_le). Hence badEnergy y L t <= (q - 1/2)^2 exc^2 / 2^t at every depth 1 <= t < d gives OneSidedShareExc y L q 0 exc d, the one-sided hypothesis with exceptional atoms of mass exc and no error term (oneSidedShareExc_of_energy), and with err = y (log y)^{-A} for any A (oneSidedBoundExc_of_energy, on OneSidedShareExc.mono_err). EnergyBound N_0 C q B y is that bound with L = L(y) and exc = y (log y)^{-B} at the depths below ceil(C L(y)); composed with FateOneSidedAtoms: energy_conj_of_contagion with the contagion bound as a hypothesis, and energy_implies_conjecture with nothing else assumed: EnergyBound at all large scales above a certified floor, with C >= 5, 1/2 < q < p_C, B > C log_2 x + 1 + e and 7/10 < e < C D(p_C || q) / log 2, gives that every positive integer reaches 1. The restriction to bad words is forced: the unrestricted energy is dominated by absorbed orbits (J-absorbed-cylinder). MEASURED (juggler_cylinder_energy_measure, exact enumeration at 10^4..10^7 to depth 30): the bad energy itself sits at its worst-case value sum of #[w]^2 / 4 from depth 16-20 at every computable scale, on cylinders of thousands of members, because bad words that dip to a bounded value collapse onto single deterministic futures; the reduction is exact, the hypothesis has no numerical support. NOT formalized: the energy bound itself, and the Parseval form in Walsh sums. Nothing here is a halt theorem.",
           "tag": "EXACT \u2014 LEAN VERIFIED"
         }
       ]
@@ -87203,13 +87251,13 @@
     }
   },
   "totals": {
-    "declarations": 6414,
-    "declarations_with_a_ledger_row": 4431,
+    "declarations": 6418,
+    "declarations_with_a_ledger_row": 4435,
     "ledger_rows_naming_a_file": 401,
     "modules": 280,
     "trust": {
       "compiler": 57,
-      "kernel": 6357
+      "kernel": 6361
     }
   }
 }

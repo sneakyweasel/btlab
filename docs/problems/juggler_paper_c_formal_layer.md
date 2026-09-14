@@ -110,7 +110,7 @@ human.
 **The build root (COMPUTATIONALLY VERIFIED).**
 `formal/Problems/JugglerFatePaper.lean` imports exactly the twenty-eight
 modules Paper C cites; `formal/AxiomCheckPaperC.lean` prints the axioms
-of the 360 cited declarations and `AxiomCheckPaperC.expected` records
+of the 361 cited declarations and `AxiomCheckPaperC.expected` records
 them, every list a subset of `propext`, `Classical.choice`,
 `Quot.sound`, no `sorryAx`, no `native_decide`.
 
@@ -393,29 +393,34 @@ sharp. This is the form the cylinder-energy statistic of Section
 target one Cauchy--Schwarz step away. Twenty-nine Lean rows, four
 human.
 
-**The bias energy supplies the exceptional atoms (EXACT — LEAN
-VERIFIED, 14 September 2026).** The Cauchy--Schwarz step, taken.
-`Energy.biasEnergy` is \(\sum_{|w|=t}D(w)^2\) over the odd starts of
-\((y,2y]\), the paper's \(\tfrac12\mathcal C_{t+1}-\tfrac14\mathcal C_t\)
-(`Energy.biasEnergy_eq`). A violator of \(\#[wO]\le q\#[w]\) with
+**The bias energy of the bad words supplies the exceptional atoms
+(EXACT — LEAN VERIFIED, 14 September 2026).** The Cauchy--Schwarz
+step, taken, and then measured. `Energy.badEnergy` is
+\(\sum_{w\ \text{bad}}D(w)^2\) over the odd starts of \((y,2y]\); the
+unrestricted sum is the paper's \(\tfrac12\mathcal C_{t+1}-\tfrac14\mathcal C_t\)
+(`Energy.biasEnergy_eq`). A bad violator of \(\#[wO]\le q\#[w]\) with
 \(q>\tfrac12\) has \(D(w)>(q-\tfrac12)\#[w]\), so the squared masses
-of the violators are at most the energy over \((q-\tfrac12)^2\), and
-with at most \(2^t\) atoms their total mass squared is at most
-\(2^t\) times that (`Energy.mass_violators_le`). So an energy bound
-\((q-\tfrac12)^2\,\mathrm{exc}^2/2^t\) at every depth gives the
-one-sided hypothesis with exceptional atoms of mass \(\mathrm{exc}\)
-and no error term (`Energy.oneSidedShareExc_of_energy`), and the
-previous paragraph runs it to the conjecture
-(`Energy.energy_implies_conjecture`). The pincer's rate-side question
-is now one second-moment statement about how cylinders split
-(`Energy.EnergyBound`): \(\sum_{|w|=t}D(w)^2\le(q-\tfrac12)^2y^2(\log y)^{-2B}/2^t\)
-at the depths below \(\lceil CL(y)\rceil\). For calibration, fair
-splitting with square-root fluctuations has \(\sum_wD(w)^2\approx y\)
-while the bound allows \(y^2(\log y)^{-C-2B}\); the statement is far
-weaker than random-like behaviour, and it is exactly computable at
-moderate scales, which is the measurement the next unit should make
-before anyone tries to prove it. Nothing here proves it. Thirty Lean
-rows, four human.
+of the bad violators are at most the bad energy over
+\((q-\tfrac12)^2\), and with at most \(2^t\) atoms their total mass
+squared is at most \(2^t\) times that (`Energy.mass_violators_le`).
+So a bad energy bound \((q-\tfrac12)^2\,\mathrm{exc}^2/2^t\) at every
+depth gives the one-sided hypothesis with exceptional atoms of mass
+\(\mathrm{exc}\) and no error term (`Energy.oneSidedShareExc_of_energy`),
+and the previous paragraph runs it to the conjecture
+(`Energy.energy_implies_conjecture`, hypothesis `Energy.EnergyBound`).
+The restriction to bad words is forced, not chosen: the unrestricted
+energy (`Energy.badEnergy_le_biasEnergy`) is dominated by absorbed
+orbits. Then the measurement
+([cylinder energy, measured](juggler_cylinder_energy_measure.md)):
+the exact enumeration at \(10^4\)--\(10^7\) finds the bad energy at its
+worst-case value from depth \(16\)--\(20\) at every scale, on cylinders
+of thousands of members, because bad words that dip to a bounded value
+collapse onto single deterministic futures; the second moment is
+dominated by a few collapsed atoms while the violating mass falls with
+the scale in the dense window. The reduction stands as an exact
+statement; as a hypothesis it has no numerical support, and the branch
+is CLOSE. The energy is the wrong statistic; the collapsed-fiber
+survival question is the open one. Thirty Lean rows, four human.
 
 ## Current literature
 
@@ -525,11 +530,12 @@ pressure and no-momentum hypotheses, 11 declarations in namespace `Pressure`),
 `formal/Problems/Juggler/FateOneSidedAtoms.lean` (Theorem 9.1 with exceptional
 atoms, 14 declarations in namespace `OneSided`),
 `formal/Problems/Juggler/FateEnergyAtoms.lean` (the bias energy supplies the
-exceptional atoms, 12 declarations in namespace `Energy` and one in `OneSided`),
+exceptional atoms of the bad words, 15 declarations in namespace `Energy` and one in
+`OneSided`),
 `formal/Problems/JugglerFatePaper.lean` (barrel),
 `formal/AxiomCheckPaperC.lean` and `.expected`. All kernel-checked; the
 Paper C surface (root `Problems.JugglerFatePaper`, 60 modules reached,
-1757 declarations) carries no `native_decide` and cites none.
+1761 declarations) carries no `native_decide` and cites none.
 
 Not formalized, and not claimed:
 Proposition 4.4, the share law 4.5–4.6, the production inequality (5.2)
@@ -546,7 +552,7 @@ Classification **PAPER_C_LEAN_SURFACE_CONSISTENT**.
   Paper C verification table, before and after
   Lean rows      15 -> 30  (Lemma 4.1', Corollary 8.4, Lemmas 4.2, 4.3, Theorem 5.3 given (5.2) and at 3/10, Theorem 7.3, (6.1), Section 10(d), (D.1), Theorem 9.1 exact, the three Section 9 consequences, the exceptional-atom form and the energy supply new)
   human rows     7 -> 4    (Proposition 4.4, the share law, the production inequality (5.2), Sections 8--10's asymptotics)
-  cited names    135 -> 381, all on subsets of Mathlib's three axioms; none native_decide
+  cited names    135 -> 385, all on subsets of Mathlib's three axioms; none native_decide
 ```
 
 - The three proofs are the paper's; the sweep count is the paper's
