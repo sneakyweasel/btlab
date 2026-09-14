@@ -28925,6 +28925,150 @@
       "trust": "kernel"
     },
     {
+      "doc": "A share bound with exceptional atoms and a smaller error is one with a larger error.",
+      "file": "formal/Problems/Juggler/FateEnergyAtoms.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-energy-atoms"
+      ],
+      "line": 42,
+      "module": "Problems.Juggler.FateEnergyAtoms",
+      "name": "OneSidedShareExc.mono_err",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The bias energy at depth `t`: `\u03a3_{|w|=t} (#[wO] - #[w]/2)\u00b2` over the odd starts of `(y, 2y]`.",
+      "file": "formal/Problems/Juggler/FateEnergyAtoms.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-energy-atoms"
+      ],
+      "line": 55,
+      "module": "Problems.Juggler.FateEnergyAtoms",
+      "name": "biasEnergy",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The atoms of depth `t` that violate the share bound `#[wO] \u2264 q #[w]`.",
+      "file": "formal/Problems/Juggler/FateEnergyAtoms.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-energy-atoms"
+      ],
+      "line": 60,
+      "module": "Problems.Juggler.FateEnergyAtoms",
+      "name": "violators",
+      "trust": "kernel"
+    },
+    {
+      "doc": "There are `2^t` words of length `t`.",
+      "file": "formal/Problems/Juggler/FateEnergyAtoms.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-energy-atoms"
+      ],
+      "line": 65,
+      "module": "Problems.Juggler.FateEnergyAtoms",
+      "name": "card_allWords",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Cauchy\u2013Schwarz on the violators.** For a share `q > 1/2`, `(\u03a3_{w violating} #[w])\u00b2 \u2264 2^t \u00b7 biasEnergy / (q - 1/2)\u00b2`.",
+      "file": "formal/Problems/Juggler/FateEnergyAtoms.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-energy-atoms"
+      ],
+      "line": 75,
+      "module": "Problems.Juggler.FateEnergyAtoms",
+      "name": "mass_violators_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Energy implies exceptional atoms.** If the bias energy at every depth `1 \u2264 t < d` is at most `(q - 1/2)\u00b2 exc\u00b2 / 2^t`, the violators of the share bound `#[wO] \u2264 q #[w]` have total mass at most `exc` at each depth, so the one-sided hypothesis holds with exceptional atoms of mass `exc` and no error term, for every `L`.",
+      "file": "formal/Problems/Juggler/FateEnergyAtoms.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-energy-atoms"
+      ],
+      "line": 124,
+      "module": "Problems.Juggler.FateEnergyAtoms",
+      "name": "oneSidedShareExc_of_energy",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The word count of `CylinderEnergy` over the odd starts of `(y, 2y]` is the cylinder.",
+      "file": "formal/Problems/Juggler/FateEnergyAtoms.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-energy-atoms"
+      ],
+      "line": 158,
+      "module": "Problems.Juggler.FateEnergyAtoms",
+      "name": "wordCount_cylinder",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The bias energy is the paper's `C_{t+1}/2 - C_t/4`, with `C_t = \u03a3_{|w|=t} #[w]\u00b2` (`CylinderEnergy.sum_bias_sq`).",
+      "file": "formal/Problems/Juggler/FateEnergyAtoms.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-energy-atoms"
+      ],
+      "line": 169,
+      "module": "Problems.Juggler.FateEnergyAtoms",
+      "name": "biasEnergy_eq",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The energy hypothesis at the scale `y`: at every depth `1 \u2264 t < d(y) = \u2308C L(y)\u2309`, the bias energy is at most `(q - 1/2)\u00b2 (y (log y)^{-B})\u00b2 / 2^t`.",
+      "file": "formal/Problems/Juggler/FateEnergyAtoms.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-energy-atoms"
+      ],
+      "line": 182,
+      "module": "Problems.Juggler.FateEnergyAtoms",
+      "name": "EnergyBound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The energy hypothesis gives `H_q(C, A)` with exceptional atoms of mass `y (log y)^{-B}`, for every `A`.",
+      "file": "formal/Problems/Juggler/FateEnergyAtoms.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-energy-atoms"
+      ],
+      "line": 188,
+      "module": "Problems.Juggler.FateEnergyAtoms",
+      "name": "oneSidedBoundExc_of_energy",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The conjecture from the energy bound, with the contagion bound as a hypothesis.**",
+      "file": "formal/Problems/Juggler/FateEnergyAtoms.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-energy-atoms"
+      ],
+      "line": 194,
+      "module": "Problems.Juggler.FateEnergyAtoms",
+      "name": "energy_conj_of_contagion",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The conjecture from the energy bound, with nothing else assumed.** If at all large scales above a certified floor the bias energy at every depth `1 \u2264 t < \u2308C L(y)\u2309` is at most `(q - 1/2)\u00b2 y\u00b2 (log y)^{-2B} / 2^t`, with `C \u2265 5`, `1/2 < q < p_C`, `B > C log\u2082 x + 1 + e` and `7/10 < e < e_{C,q}`, then every positive integer reaches `1`.",
+      "file": "formal/Problems/Juggler/FateEnergyAtoms.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-energy-atoms"
+      ],
+      "line": 215,
+      "module": "Problems.Juggler.FateEnergyAtoms",
+      "name": "energy_implies_conjecture",
+      "trust": "kernel"
+    },
+    {
       "doc": "`x(n) = n \u221an / 2 = n^{3/2}/2`.",
       "file": "formal/Problems/Juggler/FateFiberParity.lean",
       "kind": "def",
@@ -83979,6 +84123,7 @@
         "Problems.Juggler.FateContagionBound",
         "Problems.Juggler.FateCylinderCorollary",
         "Problems.Juggler.FateCylinderEnergy",
+        "Problems.Juggler.FateEnergyAtoms",
         "Problems.Juggler.FateFiberParity",
         "Problems.Juggler.FateFirstLetter",
         "Problems.Juggler.FateLandingWindow",
@@ -85063,6 +85208,21 @@
         {
           "id": "J-fate-cylinder-energy",
           "statement": "Paper C Section 10(d), the counting half of the Parseval display. For an arbitrary finite set S of starts, write #[w] for the starts of S whose length-|w| itinerary is w (wordCount), D(w) = #[wO] - #[w]/2 for the first-letter bias (bias) and C_t = sum over |w| = t of #[w]^2 for the cylinder energy (energy). A cylinder splits into its two children, #[w] = #[wE] + #[wO] (wordCount_split), because the (t+1)-st letter of an itinerary is the parity of the t-th image (itinerary_succ_append). Hence sum over |w| = t of D(w)^2 = C_{t+1}/2 - C_t/4 exactly (sum_bias_sq), which is the second equality of the note's display; the algebra behind it is (b - (a+b)/2)^2 = (a^2+b^2)/2 - (a+b)^2/4. NOT formalized: the first equality, Parseval for the Walsh sums on the same starts -- no Walsh transform appears in the module -- and the quantitative bound on these sums that would supply an exceptional-atom estimate. Nothing here bounds a discrepancy and nothing here is a halt theorem.",
+          "tag": "EXACT \u2014 LEAN VERIFIED"
+        }
+      ]
+    },
+    "Problems.Juggler.FateEnergyAtoms": {
+      "declarations": 12,
+      "file": "formal/Problems/Juggler/FateEnergyAtoms.lean",
+      "imports": [
+        "Problems.Juggler.FateCylinderEnergy",
+        "Problems.Juggler.FateOneSidedAtoms"
+      ],
+      "ledger": [
+        {
+          "id": "J-fate-energy-atoms",
+          "statement": "Paper C Section 10(d): the bias energy supplies the exceptional atoms. biasEnergy y t = sum over |w| = t of (#[wO] - #[w]/2)^2 over the odd starts of (y, 2y], equal to the paper's C_{t+1}/2 - C_t/4 with C_t = sum of #[w]^2 (biasEnergy_eq, on CylinderEnergy.sum_bias_sq; wordCount_cylinder identifies the word count over the odd starts with the cylinder). For a share q > 1/2, an atom violating #[wO] <= q #[w] has D(w) > (q - 1/2) #[w], so the squared masses of the violators sum to at most biasEnergy / (q - 1/2)^2, and Cauchy-Schwarz over the at most 2^t atoms of depth t (card_allWords) gives (sum over violators of #[w])^2 <= 2^t biasEnergy / (q - 1/2)^2 (mass_violators_le). Hence biasEnergy y t <= (q - 1/2)^2 exc^2 / 2^t at every depth 1 <= t < d gives OneSidedShareExc y L q 0 exc d for every L, the one-sided hypothesis with exceptional atoms of mass exc and no error term (oneSidedShareExc_of_energy), and with err = y (log y)^{-A} for any A (oneSidedBoundExc_of_energy, on OneSidedShareExc.mono_err). EnergyBound N_0 C q B y is that bound with exc = y (log y)^{-B} at the depths below ceil(C L(y)); composed with FateOneSidedAtoms: energy_conj_of_contagion with the contagion bound as a hypothesis, and energy_implies_conjecture with nothing else assumed: EnergyBound at all large scales above a certified floor, with C >= 5, 1/2 < q < p_C, B > C log_2 x + 1 + e and 7/10 < e < C D(p_C || q) / log 2, gives that every positive integer reaches 1. The rate-side question of the pincer is thereby a single second-moment statement about how cylinders split; for calibration, fair splitting with square-root fluctuations has sum D(w)^2 about y while the bound allows y^2 (log y)^{-C - 2B}. NOT formalized: the energy bound itself, and the Parseval form in Walsh sums. Nothing here is a halt theorem.",
           "tag": "EXACT \u2014 LEAN VERIFIED"
         }
       ]
@@ -86721,6 +86881,7 @@
         "Problems.Juggler.FateContagionBound",
         "Problems.Juggler.FateCylinderCorollary",
         "Problems.Juggler.FateCylinderEnergy",
+        "Problems.Juggler.FateEnergyAtoms",
         "Problems.Juggler.FateFiberParity",
         "Problems.Juggler.FateFirstLetter",
         "Problems.Juggler.FateLandingWindow",
@@ -86745,7 +86906,7 @@
       "ledger": [
         {
           "id": "J-paper-c-trust-surface",
-          "statement": "Paper C's Lean surface, as a build target and an axiom artifact. formal/Problems/JugglerFatePaper.lean imports exactly the twenty-seven modules the paper cites (TerminationFloor257, FateBlockAverage, FateShareLaw, FateProduction, FateOneSided, FateOneSidedCorollary, FatePressureCorollary, FateOneSidedAtoms, FateContagion, FateCylinderEnergy, CubeFiber, TiltedShare, FateRecursion, FateFirstLetter, FateLandingWindow, FateWindowCount, FateSweep, FateSweepMonotone, FateChernoff, FatePressure, FateTaoReduction, FateSeed, FateCylinderCorollary, FateNumerics, FateFiberParity, FateThinFibers, FateContagionBound) and is a lake default target; formal/AxiomCheckPaperC.lean prints the axioms of the cited declarations and AxiomCheckPaperC.expected records them: every line is a subset of [propext, Classical.choice, Quot.sound], no sorryAx, no Lean.ofReduceBool (native_decide). formalpedia's paper surface carries Paper C (root Problems.JugglerFatePaper): no declaration it reaches runs the compiler and none cites one that does. The verification table has twenty-nine Lean rows (including Lemma 4.1', Lemmas 4.2 and 4.3, Lemma 5.2, Theorem 5.3 given the production inequality (5.2) and unconditionally at 3/10, Theorem 7.2 and Theorem 7.3 with the contagion bound as a hypothesis, Corollary 8.4, and Theorem 9.1 in exact form by exponential moments and its consequence, the conjecture from the one-sided hypothesis, and the conjecture from the pressure and no-momentum hypotheses of Section 9.2, and Theorem 9.1 with the exceptional atoms of Section 10(d)) and four human proofs (the block average 4.4, the share law, the production inequality (5.2), the asymptotic bookkeeping of Sections 8--10). FateNumerics holds the two numerical moves the fiber lemmas share, roots by powering and Bernoulli at a point; FateWindowCount holds the counting move, a sequence rising by at least d has at most w/d + 1 terms in a window of width w. This row records the artifact, not a theorem; nothing here bounds a density.",
+          "statement": "Paper C's Lean surface, as a build target and an axiom artifact. formal/Problems/JugglerFatePaper.lean imports exactly the twenty-eight modules the paper cites (TerminationFloor257, FateBlockAverage, FateShareLaw, FateProduction, FateOneSided, FateOneSidedCorollary, FatePressureCorollary, FateOneSidedAtoms, FateEnergyAtoms, FateContagion, FateCylinderEnergy, CubeFiber, TiltedShare, FateRecursion, FateFirstLetter, FateLandingWindow, FateWindowCount, FateSweep, FateSweepMonotone, FateChernoff, FatePressure, FateTaoReduction, FateSeed, FateCylinderCorollary, FateNumerics, FateFiberParity, FateThinFibers, FateContagionBound) and is a lake default target; formal/AxiomCheckPaperC.lean prints the axioms of the cited declarations and AxiomCheckPaperC.expected records them: every line is a subset of [propext, Classical.choice, Quot.sound], no sorryAx, no Lean.ofReduceBool (native_decide). formalpedia's paper surface carries Paper C (root Problems.JugglerFatePaper): no declaration it reaches runs the compiler and none cites one that does. The verification table has thirty Lean rows (including Lemma 4.1', Lemmas 4.2 and 4.3, Lemma 5.2, Theorem 5.3 given the production inequality (5.2) and unconditionally at 3/10, Theorem 7.2 and Theorem 7.3 with the contagion bound as a hypothesis, Corollary 8.4, and Theorem 9.1 in exact form by exponential moments and its consequence, the conjecture from the one-sided hypothesis, and the conjecture from the pressure and no-momentum hypotheses of Section 9.2, Theorem 9.1 with the exceptional atoms of Section 10(d), and the bias energy supplying those atoms) and four human proofs (the block average 4.4, the share law, the production inequality (5.2), the asymptotic bookkeeping of Sections 8--10). FateNumerics holds the two numerical moves the fiber lemmas share, roots by powering and Bernoulli at a point; FateWindowCount holds the counting move, a sequence rising by at least d has at most w/d + 1 terms in a window of width w. This row records the artifact, not a theorem; nothing here bounds a density.",
           "tag": "COMPUTATIONALLY VERIFIED"
         }
       ]
@@ -87042,13 +87203,13 @@
     }
   },
   "totals": {
-    "declarations": 6402,
-    "declarations_with_a_ledger_row": 4419,
-    "ledger_rows_naming_a_file": 400,
-    "modules": 279,
+    "declarations": 6414,
+    "declarations_with_a_ledger_row": 4431,
+    "ledger_rows_naming_a_file": 401,
+    "modules": 280,
     "trust": {
       "compiler": 57,
-      "kernel": 6345
+      "kernel": 6357
     }
   }
 }

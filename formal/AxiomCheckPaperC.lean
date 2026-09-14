@@ -40,6 +40,14 @@ open Problems.Juggler
 #print axioms CylinderEnergy.itinerary_succ_append
 #print axioms CylinderEnergy.sum_bias_sq
 #print axioms CylinderEnergy.wordCount_split
+#print axioms Energy.biasEnergy_eq
+#print axioms Energy.card_allWords
+#print axioms Energy.energy_conj_of_contagion
+#print axioms Energy.energy_implies_conjecture
+#print axioms Energy.mass_violators_le
+#print axioms Energy.oneSidedBoundExc_of_energy
+#print axioms Energy.oneSidedShareExc_of_energy
+#print axioms Energy.wordCount_cylinder
 #print axioms FiberParity.Am_double_sub_le
 #print axioms FiberParity.Am_step_ge
 #print axioms FiberParity.Am_step_le
@@ -114,6 +122,7 @@ open Problems.Juggler
 #print axioms Numerics.rpow_lt_iff_pow
 #print axioms OneSided.LBad_of_LBad_append
 #print axioms OneSided.OneSidedShare.mono
+#print axioms OneSided.OneSidedShareExc.mono_err
 #print axioms OneSided.badMass_le
 #print axioms OneSided.badMass_le_exc
 #print axioms OneSided.badMass_one_le

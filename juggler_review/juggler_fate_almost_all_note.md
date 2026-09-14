@@ -318,7 +318,7 @@ type Paper B proves enters Appendix C as an explicit hypothesis.
 
 Statements carry one of four roles. *Lean*: the exact combinatorial
 layer is formalized in Lean 4; the root `formal/Problems/JugglerFatePaper.lean`
-imports exactly the twenty-seven modules this paper cites and builds with
+imports exactly the twenty-eight modules this paper cites and builds with
 `lake build Problems.JugglerFatePaper`, without `sorry` and without
 `native_decide`; `formal/AxiomCheckPaperC.lean` prints the axiom
 dependencies of every cited name and `AxiomCheckPaperC.expected`
@@ -362,6 +362,7 @@ constants; they prove nothing and are labelled wherever they appear.
 | The conjecture from the one-sided hypothesis \(\mathrm H_q(C,A)\) (Theorem 9.1's consequence), with the contagion bound as a hypothesis, or with nothing else assumed when \(e^{\rm Ch}_q(C)>\tfrac7{10}\) | Lean; the exponent is the Chernoff one of Proposition 9.3 with \(A>C(1+\log_2x)+1+e\), the paper's numerical forms are human |
 | The conjecture from the pressure hypothesis \(\mathrm P_\theta(C)\) and from the no-momentum hypothesis \(\mathrm M_{\theta,q}(C)\) (Section 9.2's consequences), with the contagion bound as a hypothesis, or with nothing else assumed when the exponent exceeds \(\tfrac7{10}\) | Lean; the paper's \(e^{o(d)}\) is quantified as \((\log y)^\varepsilon\) and its \(o(d)\) as \(\delta d\), the numerical forms are human |
 | Theorem 9.1 with exceptional atoms (Section 10(d), first paragraph): the share bound may fail on bad atoms of total mass \(y(\log y)^{-B}\) at each depth, and the conjecture still follows, with nothing else assumed when the exponent exceeds \(\tfrac7{10}\) | Lean; the condition is \(B>C\log_2x+1+e\) in place of the paper's \(B>e_q(C)\), sufficient and not sharp |
+| The bias energy supplies the exceptional atoms (Section 10(d)): \(\sum_{\lvert w\rvert=t}D(w)^2\le(q-\tfrac12)^2y^2(\log y)^{-2B}/2^t\) at the depths below \(\lceil CL(y)\rceil\), at all large scales, gives the conjecture with nothing else assumed | Lean, by Cauchy--Schwarz on the atoms that violate the share bound |
 | Azuma and exponential-moment arguments (Sections 8--10, except Lemma 8.2, Theorem 8.3, Theorem 9.1, Theorem 9.2 and Proposition 9.3 in their exact forms) | human proof |
 | Cylinder-splitting identity for the first-letter bias (Section 10(d), second equality) | Lean; the Parseval form in Walsh sums, and the exceptional-atom estimate it is meant to supply, are human |
 | Exact landing windows of the nested productions ((D.1), (D.2)) | Lean; the smooth comparison (D.3), the multiplicities and the production inequality they feed are human |
@@ -2314,6 +2315,30 @@ the restricted bad-cylinder hypothesis is asserted. Full-population
 fair collision bounds also face the absorbed-cylinder obstruction
 of Section 8.3.
 
+Lean: the supply, in `formal/Problems/Juggler/FateEnergyAtoms.lean`.
+`Energy.biasEnergy` is \(\sum_{|w|=t}D(w)^2\) over the odd starts of
+\((y,2y]\), equal to \(\tfrac12\mathcal C_{t+1}-\tfrac14\mathcal C_t\)
+(`Energy.biasEnergy_eq`, on `CylinderEnergy.sum_bias_sq`). An atom
+violating \(\#[wO]\le q\#[w]\) for \(q>\tfrac12\) has
+\(D(w)>(q-\tfrac12)\#[w]\), so the squared masses of the violators
+sum to at most \(\sum_wD(w)^2/(q-\tfrac12)^2\), and Cauchy--Schwarz
+over at most \(2^t\) atoms gives
+\(\bigl(\sum_{\text{violators}}\#[w]\bigr)^2\le2^t\sum_wD(w)^2/(q-\tfrac12)^2\)
+(`Energy.mass_violators_le`). Hence
+\(\sum_{|w|=t}D(w)^2\le(q-\tfrac12)^2\,\mathrm{exc}^2/2^t\) at every
+depth \(1\le t<d\) is the one-sided hypothesis with exceptional atoms
+of mass \(\mathrm{exc}\) and no error term
+(`Energy.oneSidedShareExc_of_energy`), and the Lean form of this
+paragraph's first claim runs it to the conjecture:
+`Energy.energy_implies_conjecture` needs the energy bound with
+\(\mathrm{exc}=y(\log y)^{-B}\) at the depths below
+\(\lceil CL(y)\rceil\) at all large scales (`Energy.EnergyBound`),
+\(\tfrac12<q<p_C\), \(B>C\log_2x+1+e\) and
+\(\tfrac7{10}<e<e^{\rm Ch}_q(C)\), and nothing else. For comparison,
+fair splitting with square-root fluctuations has
+\(\sum_wD(w)^2\approx y\), while the bound allows
+\(y^2(\log y)^{-C-2B}\). Nothing here proves the energy bound.
+
 **(e) Bounded-depth statistics and the walk model.** Fix
 \(k\). The probability measure on parity words that is fair to depth
 \(k\) and all-\(O\) afterwards satisfies every cylinder-count
@@ -2608,7 +2633,7 @@ No nontrivial cycle or unbounded orbit is excluded by this paper.
 ## Appendix A. Lean names
 
 All in `formal/Problems/Juggler/FateContagion.lean` unless noted. The
-root `formal/Problems/JugglerFatePaper.lean` imports exactly the twenty-seven
+root `formal/Problems/JugglerFatePaper.lean` imports exactly the twenty-eight
 modules named here and builds with `lake build Problems.JugglerFatePaper`
 without `sorry` and without `native_decide`;
 `formal/AxiomCheckPaperC.expected` records the axioms of every name
@@ -2653,6 +2678,7 @@ abstract lemmas listed here, not the analytic density estimates.
 | Theorem 9.1's consequence (the conjecture from the one-sided hypothesis), in `Problems/Juggler/FateOneSidedCorollary.lean` | `OneSided.OneSidedBound`, `OneSided.OneSidedExact`, `OneSided.oneSidedExponent`, `OneSided.OneSidedShare.mono`, `OneSided.oneSidedBound_of_exact`, `OneSided.klDiv_nonneg`, `OneSided.exp_le_rpow_scale`, `OneSided.pow_le_rpow_scale`, `OneSided.oddFailures_le_of_one_sided`, `OneSided.implies_conjecture_of_contagion`, `OneSided.one_sided_implies_conjecture`, `OneSided.exact_share_implies_conjecture` |
 | Section 9.2's consequences (the conjecture from the pressure and no-momentum hypotheses), in `Problems/Juggler/FatePressureCorollary.lean` | `Pressure.oddFailures_subset_live`, `Pressure.PressureBound`, `Pressure.NoMomentumBound`, `Pressure.momentumExponent`, `Pressure.absorb`, `Pressure.oddFailures_le_of_pressure`, `Pressure.pressure_conj_of_contagion`, `Pressure.pressure_implies_conjecture`, `Pressure.oddFailures_le_of_noMomentum`, `Pressure.noMomentum_conj_of_contagion`, `Pressure.noMomentum_implies_conjecture` |
 | Section 10(d), Theorem 9.1 with exceptional atoms, in `Problems/Juggler/FateOneSidedAtoms.lean` | `OneSided.OneSidedShareExc`, `OneSided.oneSidedShareExc_of_share`, `OneSided.OneSidedBoundExc`, `OneSided.oneSidedBoundExc_of_bound`, `OneSided.badMass_succ_le_exc`, `OneSided.badMass_le_exc`, `OneSided.one_sided_bound_exc`, `OneSided.main_term_eq`, `OneSided.one_sided_bound_kl_exc`, `OneSided.pow_le_rpow_scale_gen`, `OneSided.tail_le`, `OneSided.oddFailures_le_of_exc`, `OneSided.exc_conj_of_contagion`, `OneSided.exc_implies_conjecture` |
+| Section 10(d), the bias energy supplying the exceptional atoms, in `Problems/Juggler/FateEnergyAtoms.lean` | `OneSided.OneSidedShareExc.mono_err`, `Energy.biasEnergy`, `Energy.violators`, `Energy.card_allWords`, `Energy.mass_violators_le`, `Energy.oneSidedShareExc_of_energy`, `Energy.wordCount_cylinder`, `Energy.biasEnergy_eq`, `Energy.EnergyBound`, `Energy.oneSidedBoundExc_of_energy`, `Energy.energy_conj_of_contagion`, `Energy.energy_implies_conjecture` |
 
 ## Appendix B. Constants and artifacts
 
@@ -2754,6 +2780,10 @@ use the roots of the displayed defining equations.
 
   SHA-256: `973ec7afc338ee3f6ef61ee6eb2a38434ea603dbee767d35e523c7762752e888`
 
+- `formal/Problems/Juggler/FateEnergyAtoms.lean`
+
+  SHA-256: `02ee22081a703a9413e2c409aa9403dc13c03050dc0e3d21c77715d1b4a79407`
+
 - `formal/Problems/Juggler/FateShareLaw.lean`
 
   SHA-256: `a229f4fa4cf48cb5b003c746672947eec10bf93d7287ad7eecaa3f84d5236e7c`
@@ -2804,11 +2834,11 @@ use the roots of the displayed defining equations.
 
 - `formal/Problems/JugglerFatePaper.lean`
 
-  SHA-256: `32cdfd222d896f3ce1539e26d336455ef0ba9b8e1b2fdbea96b4e08392cbbfea`
+  SHA-256: `0ddc0c309b01cf7cd6eede6e963cf8a397f88bd1486e516c7251a398f5bf9089`
 
 - `formal/AxiomCheckPaperC.expected`
 
-  SHA-256: `9765e2f4255e816f91cffca16f8095d7a83858c2351991fda983e6a5476eda72`
+  SHA-256: `3c87f3d654b4e204c24467d3cb8e686ce59912923f033f0d0f527157393c76a2`
 
 - `src/research/juggler_sequence/fate_contagion.py`
 
