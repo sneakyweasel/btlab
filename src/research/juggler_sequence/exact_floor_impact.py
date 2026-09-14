@@ -7,7 +7,7 @@ current letter, tower iff the image is a square. This probe asks
 whether isolated exact steps bias first-descent class or PE
 continuation beyond that package.
 
-Not a halt theorem, not an word-atlas recensus, not a floor-boundary
+Not a halt theorem, not an itinerary-atlas recensus, not a floor-boundary
 reopen, and not a Paper A edit.
 """
 
@@ -659,7 +659,7 @@ def write_research_note(summary: dict[str, Any]) -> None:
         "",
         f"- First-descent starts n <= {descent['n_max']}, step cap {descent['step_cap']}.",
         f"- PE subsample odd-odd n <= {pe['n_max']}.",
-        "- No GPU. No word-atlas recensus. No new Lean. No Paper A edit.",
+        "- No GPU. No itinerary-atlas recensus. No new Lean. No Paper A edit.",
         "",
         "## Fixtures",
         "",

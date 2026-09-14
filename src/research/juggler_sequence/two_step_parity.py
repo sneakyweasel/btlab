@@ -364,7 +364,7 @@ def ooee_indicator_identity_check(n_max: int) -> dict[str, Any]:
 
 
 def deep_word_counts(n_max: int, depth: int) -> dict[str, int]:
-    """Exact census of length-`depth` word words on odd starts."""
+    """Exact census of length-`depth` itinerary words on odd starts."""
     counts: dict[str, int] = {}
     for n in range(3, n_max + 1, 2):
         w = itinerary_word(n, depth)

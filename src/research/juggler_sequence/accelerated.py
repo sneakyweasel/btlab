@@ -1278,7 +1278,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
     lines.extend(
         [
             "",
-            "The only statement that is not an immediate rewrite of an word /",
+            "The only statement that is not an immediate rewrite of an itinerary /",
             "floor-power theorem is the first-return distinction: a J-return",
             "below n may land on an even intermediate before A(n).",
             "That is a warning against replacing J by A, not a simpler law.",

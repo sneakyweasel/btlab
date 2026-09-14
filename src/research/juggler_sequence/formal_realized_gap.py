@@ -813,7 +813,7 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
             "classification": CLASS_CLOSED,
             "reason": (
                 "D_N stays rich and F_j has no simple exact P beyond envelope "
-                "or scale; the formal abstraction is not losing an word-level law"
+                "or scale; the formal abstraction is not losing an itinerary-level law"
             ),
         }
     return {

@@ -2,7 +2,7 @@
 
 CycReal(w) means some n>=2 realises the exact Juggler word w and
 returns: T^k(n)=n. Phase 0 asks whether joint floor-cell closure
-adds an word-independent obstruction beyond the existing CycleItinerary
+adds an itinerary-independent obstruction beyond the existing CycleItinerary
 layer (envelope, all-odd expansion, even-count <= 3, length >= 11).
 
 Not a Research Engine control-layer experiment. Not a reopen of

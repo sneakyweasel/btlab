@@ -1,6 +1,6 @@
 """Juggler word languages. Not a termination theorem.
 
-Existential languages: an word is in L if some n realises it, in L_up
+Existential languages: an itinerary is in L if some n realises it, in L_up
 if some realisation expands, and in the PE languages if it is a
 persistent-expanding residual block or a concatenation of such blocks.
 The census compares realised factor/prefix/suffix sets to the known

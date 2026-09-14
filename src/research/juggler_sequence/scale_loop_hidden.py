@@ -421,7 +421,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
         "",
         decision["reason"] + ".",
         "",
-        "## Attack 1 — the loop is an word",
+        "## Attack 1 — the loop is an itinerary",
         "",
         "Even-even `C2 -> C4 -> C2 -> C1` from inherited odd `q` is",
         f"`OEE` on `q`, equivalently `{WORD}` on `n`. The return",

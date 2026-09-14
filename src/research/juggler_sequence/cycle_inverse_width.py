@@ -175,7 +175,7 @@ def inverse_walk(word: str, y: int) -> dict[str, Any]:
     """
 
     if y < 1 or not word:
-        raise ValueError("inverse_walk requires a positive endpoint and an word")
+        raise ValueError("inverse_walk requires a positive endpoint and an itinerary")
     kind = "points"
     points = [y]
     hull_lo, hull_hi = float(y), float(y) + 1.0
