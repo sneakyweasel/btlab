@@ -758,6 +758,55 @@ def test_the_screen_does_not_test_the_maximal_defect() -> None:
     assert (same, diff) == (1026, 3178), (same, diff)
 
 
+def _screen_verdict(word: str, use_theorem: bool) -> bool:
+    """`unobstructed`, with the E < 2 criterion optionally switched off."""
+    for t_ in range(3, len(word) + 1):
+        if B.deepest_blocked(word, t_) is None:
+            continue
+        if not B.has_branch_runs(B.branch_base(word, t_)):
+            return False
+        if B.beyond_methods(word, t_):
+            return False
+        if use_theorem and not B.linearisation_safe(word, t_):
+            return False
+    return True
+
+
+def test_the_screens_only_theorem_is_decisive_on_no_contractor() -> None:
+    """The screen is hypothesis-driven end to end on the words it is applied to.
+
+    Of its three conditions only E < 2 is proved. It fires on 60 of the 140
+    contractors at depths 4..13 and changes the verdict on none of them: the same
+    five words survive whether or not it is switched on. The two hypotheses --
+    Conjecture 7.3's 9/4 and the branch-run sufficiency claim -- reject 135 of 140
+    unaided.
+
+    The criterion is not vacuous in general; it is decisive on 556 of the 4088 words
+    of length 3..11. It is redundant specifically on contractors, which are the only
+    words the screen sees. So the 227/256 certified density and the emptiness of the
+    screen at depths 10, 12 and 13 rest on two unproved thresholds, with no proved
+    ingredient contributing to any verdict.
+    """
+    words = [w + "E" for d in range(4, 14) for w in B.dying_words(d)]
+    assert len(words) == 140, len(words)
+
+    full = [w for w in words if _screen_verdict(w, True)]
+    without = [w for w in words if _screen_verdict(w, False)]
+    assert full == without, set(full) ^ set(without)
+    assert len(full) == 5, full
+
+    fires = [w for w in words
+             if any(B.deepest_blocked(w, t_) is not None
+                    and not B.linearisation_safe(w, t_)
+                    for t_ in range(3, len(w) + 1))]
+    assert len(fires) == 60, len(fires)
+
+    # and the criterion is not vacuous away from the contractors
+    decisive = [w for w in _all_words(3, 11)
+                if _screen_verdict(w, True) != _screen_verdict(w, False)]
+    assert len(decisive) == 556, len(decisive)
+
+
 def test_the_screens_other_two_thresholds_are_not_identities() -> None:
     """The split the prospecting note demands, asserted rather than described.
 
