@@ -30296,6 +30296,138 @@
       "trust": "kernel"
     },
     {
+      "doc": "**Failures never enter the floor.** Above a certified floor `N\u2080`, an odd failure of `(y, 2y]` is a start of `{1, \u2026, 2y}` that is live to every depth.",
+      "file": "formal/Problems/Juggler/FatePressureCorollary.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-pressure-conjecture"
+      ],
+      "line": 40,
+      "module": "Problems.Juggler.FatePressureCorollary",
+      "name": "oddFailures_subset_live",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The pressure hypothesis `P_\u03b8(C)` at the scale `y`, with the paper's `e^{o(d)}` quantified as `(log y)^\u03b5`: the live pressure of `{1, \u2026, 2y}` at the tilt `x = p_C/(1-p_C)` and depth `d(y) = \u2308C L(y)\u2309` is at most `2y a_\u03b8^{d(y)} (log y)^\u03b5`.",
+      "file": "formal/Problems/Juggler/FatePressureCorollary.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-pressure-conjecture"
+      ],
+      "line": 56,
+      "module": "Problems.Juggler.FatePressureCorollary",
+      "name": "PressureBound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The no-momentum hypothesis `M_{\u03b8,q}(C)` at the scale `y`: on the live weight of `{1, \u2026, 2y}` at the re-centring tilt `x = p_C(1-q)/(q(1-p_C))`, the excess odd shares `(s_x(t) - q)^+` over the depths `t < d(y)` sum to at most `\u03b4 d(y)`.",
+      "file": "formal/Problems/Juggler/FatePressureCorollary.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-pressure-conjecture"
+      ],
+      "line": 63,
+      "module": "Problems.Juggler.FatePressureCorollary",
+      "name": "NoMomentumBound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The exponent `C (D(p_C \u2016 q) - c_x \u03b4) / log 2` of Proposition 9.3 under no momentum, with `c_x = (x - 1)/a_q` at the re-centring tilt.",
+      "file": "formal/Problems/Juggler/FatePressureCorollary.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-pressure-conjecture"
+      ],
+      "line": 68,
+      "module": "Problems.Juggler.FatePressureCorollary",
+      "name": "momentumExponent",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The shared absorption.** A bound `2y e^{-d(y) D} (log y)^\u03b5` on the odd failures of `(y, 2y]` at all large scales, with `d(y) = \u2308C L(y)\u2309` and `D \u2265 0`, is below `y (log y)^{-e}` for every `e < C D / log 2 - \u03b5` and all large `y`.",
+      "file": "formal/Problems/Juggler/FatePressureCorollary.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-pressure-conjecture"
+      ],
+      "line": 75,
+      "module": "Problems.Juggler.FatePressureCorollary",
+      "name": "absorb",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Theorem 9.2 absorbed.** Under `P_\u03b8(C)` at all large scales with the loss `\u03b5`, the odd failures in `(y, 2y]` number at most `y (log y)^{-e}` for every `e < e(C) - \u03b5` and all large `y`.",
+      "file": "formal/Problems/Juggler/FatePressureCorollary.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-pressure-conjecture"
+      ],
+      "line": 162,
+      "module": "Problems.Juggler.FatePressureCorollary",
+      "name": "oddFailures_le_of_pressure",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Theorem 9.2's corollary, with the contagion bound as a hypothesis.**",
+      "file": "formal/Problems/Juggler/FatePressureCorollary.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-pressure-conjecture"
+      ],
+      "line": 203,
+      "module": "Problems.Juggler.FatePressureCorollary",
+      "name": "pressure_conj_of_contagion",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Theorem 9.2's corollary with nothing else assumed.** The pressure hypothesis `P_\u03b8(C)` at all large scales above a certified floor, with `C \u2265 5` and a loss `\u03b5` such that `7/10 < e < e(C) - \u03b5` for some `e` (a negative `\u03b5` is a stronger hypothesis), gives that every positive integer reaches `1`.",
+      "file": "formal/Problems/Juggler/FatePressureCorollary.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-pressure-conjecture"
+      ],
+      "line": 219,
+      "module": "Problems.Juggler.FatePressureCorollary",
+      "name": "pressure_implies_conjecture",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Proposition 9.3 absorbed.** Under `M_{\u03b8,q}(C)` at all large scales with the momentum `\u03b4`, the odd failures in `(y, 2y]` number at most `y (log y)^{-e}` for every `0 \u2264 e < C (D(p_C \u2016 q) - c_x \u03b4) / log 2` and all large `y`.",
+      "file": "formal/Problems/Juggler/FatePressureCorollary.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-pressure-conjecture"
+      ],
+      "line": 231,
+      "module": "Problems.Juggler.FatePressureCorollary",
+      "name": "oddFailures_le_of_noMomentum",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Proposition 9.3's corollary, with the contagion bound as a hypothesis.**",
+      "file": "formal/Problems/Juggler/FatePressureCorollary.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-pressure-conjecture"
+      ],
+      "line": 307,
+      "module": "Problems.Juggler.FatePressureCorollary",
+      "name": "noMomentum_conj_of_contagion",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Proposition 9.3's corollary with nothing else assumed.** The no-momentum hypothesis `M_{\u03b8,q}(C)` at all large scales above a certified floor, at the re-centring tilt, with `C \u2265 5`, `0 < q < p_C` and a momentum `\u03b4` such that `7/10 < e < C (D(p_C \u2016 q) - c_x \u03b4) / log 2` for some `e`, gives that every positive integer reaches `1`.",
+      "file": "formal/Problems/Juggler/FatePressureCorollary.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-pressure-conjecture"
+      ],
+      "line": 324,
+      "module": "Problems.Juggler.FatePressureCorollary",
+      "name": "noMomentum_implies_conjecture",
+      "trust": "kernel"
+    },
+    {
       "doc": "`\u230a\u221a\u230ae^t\u230b\u230b = \u230ae^{t/2}\u230b`: the integer half-scale is what the paper's `\u221ax` means.",
       "file": "formal/Problems/Juggler/FateProduction.lean",
       "kind": "theorem",
@@ -83686,6 +83818,7 @@
         "Problems.Juggler.FateOneSided",
         "Problems.Juggler.FateOneSidedCorollary",
         "Problems.Juggler.FatePressure",
+        "Problems.Juggler.FatePressureCorollary",
         "Problems.Juggler.FateProduction",
         "Problems.Juggler.FateRecursion",
         "Problems.Juggler.FateSeed",
@@ -84862,6 +84995,21 @@
         {
           "id": "J-fate-pressure-form",
           "statement": "Paper C Theorem 9.2 (pressure form), exact. On the live weight of LiveCountWeight (starts n in {1, \u2026, N} with J^i(n) > N\u2080 for i \u2264 d, liveTo): livePressure N\u2080 N x d := weightGen (liveWeight N\u2080 N) x d = \u03a3_{n live} x^{o_d(n)}; the Markov step live_count_le_pressure gives #{n live, o_d(n) \u2265 k} \u2264 livePressure / x^k for x \u2265 1 (weight_markov on the live weight, liveCount_sum_oddCount); Lemma 8.1 on live starts: a live n \u2264 N has an itinerary that fails the envelope comparison at scale N at every prefix (envelopeBad_of_liveTo, from iterate_le_of_envelope), hence is L(N)-bad with L(N) = log_2(log N / log N\u2080) (LBad_of_liveTo) and has o_d \u2265 p_C d when d \u2265 C L(N) (live_oddCount_ge). Theorem: N\u2080 \u2265 2, N \u2265 2, C \u2265 5, d \u2265 1, d \u2265 C L(N), tilt x = p_C/(1 \u2212 p_C), a = (1 + x)/2; if livePressure N\u2080 N x d \u2264 N a^d E then #{n \u2264 N : liveTo N\u2080 n d} \u2264 N exp(\u2212d D(p_C\u20161/2)) E (live_count_le_of_pressure), by a^d / x^{p_C d} = exp(\u2212d D(p_C\u20161/2)) (tilt_value); E \u2265 0 is forced since the pressure is a nonnegative sum. This is the exponential-Markov step of Theorem 9.2 with the hypothesis P_\u03b8(C) at one scale and depth in the form pressure \u2264 N a_\u03b8^d E; the paper's E = e^{o(d)}, d = \u2308CL\u2309 and the displayed (y/2) \u039b^{\u2212(e(C)\u2212\u03b5)} are not formalized, and the paper counts odd starts in (y, 2y] where the Lean counts starts in {1, \u2026, N}. Kernel-checked, axioms propext, Classical.choice, Quot.sound only. Conditional on the pressure bound; nothing here bounds a pressure sum; not a halt theorem.",
+          "tag": "EXACT \u2014 LEAN VERIFIED"
+        }
+      ]
+    },
+    "Problems.Juggler.FatePressureCorollary": {
+      "declarations": 11,
+      "file": "formal/Problems/Juggler/FatePressureCorollary.lean",
+      "imports": [
+        "Problems.Juggler.FateOneSidedCorollary",
+        "Problems.Juggler.FatePressure"
+      ],
+      "ledger": [
+        {
+          "id": "J-fate-pressure-conjecture",
+          "statement": "Paper C Section 9.2's consequences: the pressure hypothesis P_theta(C) and the no-momentum hypothesis M_{theta,q}(C) each imply the conjecture, in the pattern of Corollary 8.4. Bridge: above a certified floor N_0, an odd failure of (y, 2y] is a start of {1, ..., 2y} that stays above N_0 for every number of steps (oddFailures_subset_live), so the live weight of LiveCountWeight, on which Theorem 9.2 (live_count_le_of_pressure) and Proposition 9.3 under no momentum (juggler_count_le_of_noMomentum) are stated, counts the failures. PressureBound N_0 C eps y is P_theta(C) at the scale y with the paper's e^{o(d)} quantified as (log y)^eps: the live pressure of {1, ..., 2y} at the tilt x = p_C/(1 - p_C) and depth d(y) = ceil(C L(y)) is at most 2y a_theta^{d(y)} (log y)^eps. NoMomentumBound N_0 C q delta y is M_{theta,q}(C) at the scale y: on the live weight of {1, ..., 2y} at the re-centring tilt x = p_C (1-q)/(q (1-p_C)), the excess odd shares (s_x(t) - q)^+ over t < d(y) sum to at most delta d(y); momentumExponent C q delta = C (D(p_C || q) - c_x delta) / log 2 with c_x = (x-1)/a_q. Shared absorption (absorb): a bound 2y exp(-d(y) D) (log y)^eps on the odd failures at all large scales, with D >= 0, is below y (log y)^{-e} for every e < C D / log 2 - eps and all large y, on exp_le_rpow_scale and log y / log N_0 <= Lambda. Hence (oddFailures_le_of_pressure, oddFailures_le_of_noMomentum) the dyadic rate y (log y)^{-e} for every e < e(C) - eps, respectively every 0 <= e < momentumExponent C q delta, and by Theorem 7.2: with the contagion bound of Theorem 5.3 as a hypothesis at an exponent lambda with 1 - lambda < e (pressure_conj_of_contagion, noMomentum_conj_of_contagion), or with nothing else assumed through the unconditional Theorem 5.3 at exponent 3/10 when 7/10 < e (pressure_implies_conjecture, noMomentum_implies_conjecture): every positive integer reaches 1. With FateOneSidedCorollary this closes the rate-side jaw of the pincer in Lean for every hypothesis Paper C states on that side (cylinder, one-sided, pressure, no-momentum). NOT formalized: the paper's numerical forms (the least C at each q). Nothing here proves any of the hypotheses, and nothing here is a halt theorem.",
           "tag": "EXACT \u2014 LEAN VERIFIED"
         }
       ]
@@ -86397,6 +86545,7 @@
         "Problems.Juggler.FateOneSided",
         "Problems.Juggler.FateOneSidedCorollary",
         "Problems.Juggler.FatePressure",
+        "Problems.Juggler.FatePressureCorollary",
         "Problems.Juggler.FateProduction",
         "Problems.Juggler.FateRecursion",
         "Problems.Juggler.FateSeed",
@@ -86412,7 +86561,7 @@
       "ledger": [
         {
           "id": "J-paper-c-trust-surface",
-          "statement": "Paper C's Lean surface, as a build target and an axiom artifact. formal/Problems/JugglerFatePaper.lean imports exactly the twenty-five modules the paper cites (TerminationFloor257, FateBlockAverage, FateShareLaw, FateProduction, FateOneSided, FateOneSidedCorollary, FateContagion, FateCylinderEnergy, CubeFiber, TiltedShare, FateRecursion, FateFirstLetter, FateLandingWindow, FateWindowCount, FateSweep, FateSweepMonotone, FateChernoff, FatePressure, FateTaoReduction, FateSeed, FateCylinderCorollary, FateNumerics, FateFiberParity, FateThinFibers, FateContagionBound) and is a lake default target; formal/AxiomCheckPaperC.lean prints the axioms of the cited declarations and AxiomCheckPaperC.expected records them: every line is a subset of [propext, Classical.choice, Quot.sound], no sorryAx, no Lean.ofReduceBool (native_decide). formalpedia's paper surface carries Paper C (root Problems.JugglerFatePaper): no declaration it reaches runs the compiler and none cites one that does. The verification table has twenty-seven Lean rows (including Lemma 4.1', Lemmas 4.2 and 4.3, Lemma 5.2, Theorem 5.3 given the production inequality (5.2) and unconditionally at 3/10, Theorem 7.2 and Theorem 7.3 with the contagion bound as a hypothesis, Corollary 8.4, and Theorem 9.1 in exact form by exponential moments and its consequence, the conjecture from the one-sided hypothesis) and four human proofs (the block average 4.4, the share law, the production inequality (5.2), the asymptotic bookkeeping of Sections 8--10). FateNumerics holds the two numerical moves the fiber lemmas share, roots by powering and Bernoulli at a point; FateWindowCount holds the counting move, a sequence rising by at least d has at most w/d + 1 terms in a window of width w. This row records the artifact, not a theorem; nothing here bounds a density.",
+          "statement": "Paper C's Lean surface, as a build target and an axiom artifact. formal/Problems/JugglerFatePaper.lean imports exactly the twenty-six modules the paper cites (TerminationFloor257, FateBlockAverage, FateShareLaw, FateProduction, FateOneSided, FateOneSidedCorollary, FatePressureCorollary, FateContagion, FateCylinderEnergy, CubeFiber, TiltedShare, FateRecursion, FateFirstLetter, FateLandingWindow, FateWindowCount, FateSweep, FateSweepMonotone, FateChernoff, FatePressure, FateTaoReduction, FateSeed, FateCylinderCorollary, FateNumerics, FateFiberParity, FateThinFibers, FateContagionBound) and is a lake default target; formal/AxiomCheckPaperC.lean prints the axioms of the cited declarations and AxiomCheckPaperC.expected records them: every line is a subset of [propext, Classical.choice, Quot.sound], no sorryAx, no Lean.ofReduceBool (native_decide). formalpedia's paper surface carries Paper C (root Problems.JugglerFatePaper): no declaration it reaches runs the compiler and none cites one that does. The verification table has twenty-eight Lean rows (including Lemma 4.1', Lemmas 4.2 and 4.3, Lemma 5.2, Theorem 5.3 given the production inequality (5.2) and unconditionally at 3/10, Theorem 7.2 and Theorem 7.3 with the contagion bound as a hypothesis, Corollary 8.4, and Theorem 9.1 in exact form by exponential moments and its consequence, the conjecture from the one-sided hypothesis, and the conjecture from the pressure and no-momentum hypotheses of Section 9.2) and four human proofs (the block average 4.4, the share law, the production inequality (5.2), the asymptotic bookkeeping of Sections 8--10). FateNumerics holds the two numerical moves the fiber lemmas share, roots by powering and Bernoulli at a point; FateWindowCount holds the counting move, a sequence rising by at least d has at most w/d + 1 terms in a window of width w. This row records the artifact, not a theorem; nothing here bounds a density.",
           "tag": "COMPUTATIONALLY VERIFIED"
         }
       ]
@@ -86709,13 +86858,13 @@
     }
   },
   "totals": {
-    "declarations": 6377,
-    "declarations_with_a_ledger_row": 4394,
-    "ledger_rows_naming_a_file": 398,
-    "modules": 277,
+    "declarations": 6388,
+    "declarations_with_a_ledger_row": 4405,
+    "ledger_rows_naming_a_file": 399,
+    "modules": 278,
     "trust": {
       "compiler": 57,
-      "kernel": 6320
+      "kernel": 6331
     }
   }
 }

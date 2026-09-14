@@ -108,9 +108,9 @@ The production inequality itself and the root \(\lambda^{**}\) stay
 human.
 
 **The build root (COMPUTATIONALLY VERIFIED).**
-`formal/Problems/JugglerFatePaper.lean` imports exactly the twenty-five
+`formal/Problems/JugglerFatePaper.lean` imports exactly the twenty-six
 modules Paper C cites; `formal/AxiomCheckPaperC.lean` prints the axioms
-of the 331 cited declarations and `AxiomCheckPaperC.expected` records
+of the 339 cited declarations and `AxiomCheckPaperC.expected` records
 them, every list a subset of `propext`, `Classical.choice`,
 `Quot.sound`, no `sorryAx`, no `native_decide`.
 
@@ -346,6 +346,29 @@ at each \(q\)) are human. Nothing here proves the hypothesis; it is
 the analytic question of Appendix C in its one-sided dress.
 Twenty-seven Lean rows, four human.
 
+**The conjecture from the pressure and no-momentum hypotheses (EXACT —
+LEAN VERIFIED, 14 September 2026).** The same jaw for the two other
+forms of Section 9. A failure never enters the floor, so the odd
+failures of \((y,2y]\) are live starts of \(\{1,\dots,2y\}\) at every
+depth (`Pressure.oddFailures_subset_live`), which is the bridge from
+the live weight of `LiveCountWeight`, where Theorem 9.2 and Proposition
+9.3 live, to the failure set. `FatePressureCorollary.lean` takes
+\(\mathrm P_\theta(C)\) at all large scales with the paper's
+\(e^{o(d)}\) quantified as \((\log y)^\varepsilon\)
+(`Pressure.PressureBound`), or \(\mathrm M_{\theta,q}(C)\) on the live
+weight at the re-centring tilt with the \(o(d)\) as \(\delta d\)
+(`Pressure.NoMomentumBound`), bounds the failures by
+\(2y\,e^{-dD}(\log y)^\varepsilon\) through the exact forms, and absorbs
+that into the rate \(y(\log y)^{-e}\) for every \(e<CD/\ln2-\varepsilon\)
+by one shared lemma (`Pressure.absorb`). Then Theorem 7.2, with the
+contagion bound as a hypothesis or with nothing else assumed when the
+exponent exceeds \(\tfrac7{10}\) (`Pressure.pressure_implies_conjecture`,
+`Pressure.noMomentum_implies_conjecture`). With the one-sided corollary
+this closes the rate-side jaw of the pincer, in Lean, for every
+hypothesis Paper C states on that side: cylinder, one-sided, pressure
+and no-momentum. The numerical forms are human, and nothing here
+proves any of the hypotheses. Twenty-eight Lean rows, four human.
+
 ## Current literature
 
 - Paper C §1.4, Appendix A — `known`: the paper's own list of what is
@@ -449,10 +472,12 @@ Theorem 7.3, Corollary 8.4 through (5.2), 21 declarations),
 exponential moments, 20 declarations in namespace `OneSided`),
 `formal/Problems/Juggler/FateOneSidedCorollary.lean` (the conjecture from the
 one-sided hypothesis, 12 declarations in namespace `OneSided`),
+`formal/Problems/Juggler/FatePressureCorollary.lean` (the conjecture from the
+pressure and no-momentum hypotheses, 11 declarations in namespace `Pressure`),
 `formal/Problems/JugglerFatePaper.lean` (barrel),
 `formal/AxiomCheckPaperC.lean` and `.expected`. All kernel-checked; the
-Paper C surface (root `Problems.JugglerFatePaper`, 57 modules reached,
-1720 declarations) carries no `native_decide` and cites none.
+Paper C surface (root `Problems.JugglerFatePaper`, 58 modules reached,
+1731 declarations) carries no `native_decide` and cites none.
 
 Not formalized, and not claimed:
 Proposition 4.4, the share law 4.5–4.6, the production inequality (5.2)
@@ -467,9 +492,9 @@ Classification **PAPER_C_LEAN_SURFACE_CONSISTENT**.
 
 ```text
   Paper C verification table, before and after
-  Lean rows      15 -> 27  (Lemma 4.1', Corollary 8.4, Lemmas 4.2, 4.3, Theorem 5.3 given (5.2) and at 3/10, Theorem 7.3, (6.1), Section 10(d), (D.1), Theorem 9.1 exact and its consequence new)
+  Lean rows      15 -> 28  (Lemma 4.1', Corollary 8.4, Lemmas 4.2, 4.3, Theorem 5.3 given (5.2) and at 3/10, Theorem 7.3, (6.1), Section 10(d), (D.1), Theorem 9.1 exact and the three Section 9 consequences new)
   human rows     7 -> 4    (Proposition 4.4, the share law, the production inequality (5.2), Sections 8--10's asymptotics)
-  cited names    135 -> 344, all on subsets of Mathlib's three axioms; none native_decide
+  cited names    135 -> 355, all on subsets of Mathlib's three axioms; none native_decide
 ```
 
 - The three proofs are the paper's; the sweep count is the paper's
@@ -539,7 +564,7 @@ windows (D.1) and (D.2) of Appendix D.1 (`FateLandingWindow.lean`), and
 the counting half of the Section 10(d) display
 (`FateCylinderEnergy.lean`), together with two consolidations,
 `FateNumerics.lean` and `FateWindowCount.lean`. The verification table
-is twenty-seven Lean rows and four human, and the four are analysis: the
+is twenty-eight Lean rows and four human, and the four are analysis: the
 block average 4.4, the share law 4.5--4.6, the production inequality
 (5.2), and the asymptotic bookkeeping of Sections 8--10, whose exact
 forms (Lemma 8.2, Theorems 8.3, 9.1, 9.2, Proposition 9.3) are Lean. No small attack remains on this paper; what is left
