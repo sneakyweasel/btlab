@@ -9865,5 +9865,16 @@
    "tests/research/juggler_sequence/test_paper_b_prefix_count.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "id": "J-paper-c-exponent-is-paper-b-rate-at-level-zero",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "The two papers' large-deviation exponents are one rate function of one walk, evaluated at the level each needs. The bad-word condition at depth d = CL is u_d > -L, so the odd fraction must exceed p(C) = (1 - 1/C)/log2(3), and Paper C's e(C) is C KL(p(C) || 1/2)/log 2. Paper B sits at L = 0, which is C to infinity, where p(C) tends to 1/log2(3) = BETA = log2/log3, the threshold its own Hoeffding step uses. So e(C)/C converges to Paper B's rate in bits, 0.050044473: measured gaps 4.8e-3 at C = 100, 4.9e-4 at 1000, 4.9e-5 at 10000, 4.9e-6 at 100000, i.e. like 1/C. With J-paper-b-count-is-the-level-zero-bad-count this closes the correspondence: the conditions, the counts and now the exponents are the same objects at two levels. COROLLARY, and it corrects a reading recorded earlier the same day. Paper B's Hoeffding exponent is nearly sharp, not lossy: chernoff_rate() returns the minimised MGF rho, so the sharp rate is -log(rho), which equals kl_bernoulli(BETA) = 0.034688185 exactly, against HOEFFDING_C = 0.034285201 -- a slack of 1.0118 per letter, the module's own 'right to one part in eighty'. Over 24 letters that contributes 1.01x of a total loss of 25.7x. Essentially all of the loss is the polynomial d^(-3/2) that meander_constant names, whose constant converges to about 10.8. An earlier entry described the loss as splitting between the endpoint-versus-path gap and Hoeffding's own constant, which is true of those two ratios but invites the wrong conclusion: the exponent contributes essentially nothing. Not a bound and not an improvement to either paper.",
+  "source": "docs/research_journal.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_paper_b_prefix_count.py"
+  ],
+  "related_conjectures": []
  }
 ]
