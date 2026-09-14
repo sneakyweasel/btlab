@@ -318,7 +318,7 @@ type Paper B proves enters Appendix C as an explicit hypothesis.
 
 Statements carry one of four roles. *Lean*: the exact combinatorial
 layer is formalized in Lean 4; the root `formal/Problems/JugglerFatePaper.lean`
-imports exactly the twenty-four modules this paper cites and builds with
+imports exactly the twenty-five modules this paper cites and builds with
 `lake build Problems.JugglerFatePaper`, without `sorry` and without
 `native_decide`; `formal/AxiomCheckPaperC.lean` prints the axiom
 dependencies of every cited name and `AxiomCheckPaperC.expected`
@@ -359,6 +359,7 @@ constants; they prove nothing and are labelled wherever they appear.
 | Pressure form (Theorem 9.2, exact: a pressure bound \(Na_\theta^dE\) gives at most \(Ne^{-dD(p_C\Vert 1/2)}E\) live starts) | Lean, on the live weight |
 | Pressure telescoping (Proposition 9.3) | Lean, on the word-weight framework |
 | One-sided form (Theorem 9.1, exact: at every \(y\) the odd failures of \((y,2y]\) number at most \((xa_q^{d-1}N+(x-1)\,\mathrm{err}\,(d-1)(2x)^{d-1})/x^{p_Cd}\) for every tilt \(x\ge1\), by exponential moments) | Lean, without the martingale; the absorption of the error into the rate and the displayed asymptotic form are human |
+| The conjecture from the one-sided hypothesis \(\mathrm H_q(C,A)\) (Theorem 9.1's consequence), with the contagion bound as a hypothesis, or with nothing else assumed when \(e^{\rm Ch}_q(C)>\tfrac7{10}\) | Lean; the exponent is the Chernoff one of Proposition 9.3 with \(A>C(1+\log_2x)+1+e\), the paper's numerical forms are human |
 | Azuma and exponential-moment arguments (Sections 8--10, except Lemma 8.2, Theorem 8.3, Theorem 9.1, Theorem 9.2 and Proposition 9.3 in their exact forms) | human proof |
 | Cylinder-splitting identity for the first-letter bias (Section 10(d), second equality) | Lean; the Parseval form in Walsh sums, and the exceptional-atom estimate it is meant to supply, are human |
 | Exact landing windows of the nested productions ((D.1), (D.2)) | Lean; the smooth comparison (D.3), the multiplicities and the production inequality they feed are human |
@@ -2065,6 +2066,29 @@ no \(L(y)\)-bad cylinder of depth below
 \(41\log_2(\log 2y/\log N_0)\) sends more than \(55\%\) of its members
 to an odd state, every positive integer reaches \(1\).
 
+Lean: the consequence, in `formal/Problems/Juggler/FateOneSidedCorollary.lean`,
+in the pattern of Corollary 8.4. `OneSided.OneSidedBound` is
+\(\mathrm H_q(C,A)\) at a scale, `OneSided.oneSidedExponent` the
+exponent \(e^{\rm Ch}_q(C)=CD(p_C\|q)/\ln2\) of Proposition 9.3, and
+`OneSided.oddFailures_le_of_one_sided` the absorption of the exact
+bound above into \(y(\log y)^{-e}\) for all large \(y\), every
+\(e<e^{\rm Ch}_q(C)\) and \(A>C(1+\log_2x)+1+e\) at the re-centring
+tilt \(x\), on Gibbs' inequality \(D(p_C\|q)\ge0\)
+(`OneSided.klDiv_nonneg`) and \(e^{-dD}\le\Lambda^{-e^{\rm Ch}_q(C)}\),
+\((2x)^{d-1}\le\Lambda^{C(1+\log_2x)}\) for \(d=\lceil CL(y)\rceil\)
+(`OneSided.exp_le_rpow_scale`, `OneSided.pow_le_rpow_scale`). Then
+Theorem 7.2: `OneSided.implies_conjecture_of_contagion` keeps the
+contagion bound as a hypothesis at an exponent \(\lambda\) with
+\(1-\lambda<e\), `OneSided.one_sided_implies_conjecture` discharges it
+through the unconditional Theorem 5.3 at exponent \(\tfrac3{10}\), so
+that \(\mathrm H_q(C,A)\) at all large scales with
+\(e^{\rm Ch}_q(C)>\tfrac7{10}\) gives the conjecture with nothing else
+assumed, and `OneSided.exact_share_implies_conjecture` is the remark
+above with no error term, where \(A\) disappears. The condition on
+\(A\) is sufficient, not the paper's \(A>C+e_q(C)\): the exact form
+pays the tilt on the error and bounds \(d\) crudely. The numerical
+forms, the least \(C\) at each \(q\), are not formalized.
+
 ### 9.2 The pressure form
 
 Let \(N=y/2\), let \(\tau(n)=\min\{t\ge1:J^t(n)\le N_0\}\), with
@@ -2535,7 +2559,7 @@ No nontrivial cycle or unbounded orbit is excluded by this paper.
 ## Appendix A. Lean names
 
 All in `formal/Problems/Juggler/FateContagion.lean` unless noted. The
-root `formal/Problems/JugglerFatePaper.lean` imports exactly the twenty-four
+root `formal/Problems/JugglerFatePaper.lean` imports exactly the twenty-five
 modules named here and builds with `lake build Problems.JugglerFatePaper`
 without `sorry` and without `native_decide`;
 `formal/AxiomCheckPaperC.expected` records the axioms of every name
@@ -2577,6 +2601,7 @@ abstract lemmas listed here, not the analytic density estimates.
 | Theorem 5.3 given (5.2), Theorem 7.3, Corollary 8.4 through (5.2), in `Problems/Juggler/FateContagionBound.lean` | `productionRate`, `productionCoeff`, `productionRate_pos`, `productionRate_ge`, `productionRate_le`, `productionRate_le_one`, `productionCoeff_ge`, `productionCoeff_nonneg`, `zeta`, `zeta_antitone`, `le_rpow_div_of_pow_le`, `zeta_pos_49`, `seedConst`, `gA`, `gA_seed`, `logMass_ge_gA`, `contagion_of_production_inequality`, `logMass_contagion_of_production`, `oddFailures_eq_empty`, `tao_rate_iff_conjecture`, `conjecture_of_cylinder_bound_of_production` |
 | Proposition 4.4 (its two exponential-sum bounds, the fast sum and the product sum; the exact layer, the slow sum, the block count and the deduction of (4.1) and of the asymptotic form from those two bounds are Lean), the share law 4.5 and Corollary 4.6 (the phase expansion, the range of the quadratic phase and the integral 25/108 are Lean, the equidistribution and the measure identifications are not), the production inequality (5.2) (its `E`-family and `OE`-fiber family are Lean with explicit errors and give Theorem 5.3 at exponent 3/10 unconditionally; the block-average family and the ladder are not), Sections 8--10 except Lemma 8.2, the explicit form of Theorem 8.3, Corollary 8.4, the exact form of Theorem 9.2 and Proposition 9.3, Appendix C; Theorems 5.3, 7.2, 7.3 and Corollary 8.4 only with (5.2) or the contagion bound as a hypothesis | human proofs |
 | Theorem 9.1 (one-sided form, exact, by exponential moments), in `Problems/Juggler/FateOneSided.lean` | `OneSided.cylinder_split`, `OneSided.LBad_of_LBad_append`, `OneSided.sum_allWords_succ`, `OneSided.sum_pow_oddCount_le`, `OneSided.badWeight`, `OneSided.badWeight_nonneg`, `OneSided.badWeight_le_card`, `OneSided.badMass`, `OneSided.OneSidedShare`, `OneSided.badMass_succ_le`, `OneSided.card_cylinder_zero_le`, `OneSided.badMass_one_le`, `OneSided.badMass_le`, `OneSided.oddFailures_card_le_badMass`, `OneSided.one_sided_bound`, `OneSided.klDiv`, `OneSided.tilt`, `OneSided.tilt_ge_one`, `OneSided.tilt_pow_ratio`, `OneSided.one_sided_bound_kl` |
+| Theorem 9.1's consequence (the conjecture from the one-sided hypothesis), in `Problems/Juggler/FateOneSidedCorollary.lean` | `OneSided.OneSidedBound`, `OneSided.OneSidedExact`, `OneSided.oneSidedExponent`, `OneSided.OneSidedShare.mono`, `OneSided.oneSidedBound_of_exact`, `OneSided.klDiv_nonneg`, `OneSided.exp_le_rpow_scale`, `OneSided.pow_le_rpow_scale`, `OneSided.oddFailures_le_of_one_sided`, `OneSided.implies_conjecture_of_contagion`, `OneSided.one_sided_implies_conjecture`, `OneSided.exact_share_implies_conjecture` |
 
 ## Appendix B. Constants and artifacts
 
@@ -2666,6 +2691,10 @@ use the roots of the displayed defining equations.
 
   SHA-256: `6fbbd02546271fc2072439e4c88d037a80e04edf19eced4a61f8a12adef96d99`
 
+- `formal/Problems/Juggler/FateOneSidedCorollary.lean`
+
+  SHA-256: `397e4f79c3e7bf496da9fd485e1377ac181f043cb07def59581b492bec8937c5`
+
 - `formal/Problems/Juggler/FateShareLaw.lean`
 
   SHA-256: `a229f4fa4cf48cb5b003c746672947eec10bf93d7287ad7eecaa3f84d5236e7c`
@@ -2716,11 +2745,11 @@ use the roots of the displayed defining equations.
 
 - `formal/Problems/JugglerFatePaper.lean`
 
-  SHA-256: `c58b414198f0296e488f973c3e911f887427a16b80c874528bd49ae6208124b5`
+  SHA-256: `6e335c63d0a2f09c0c2313c0ea5e707301d2fec7dc4631fe64b5f3fb26f1b5c4`
 
 - `formal/AxiomCheckPaperC.expected`
 
-  SHA-256: `37a9e0849d7e94fc101a50995d8aeecf760ad24b248c37ead26b9907e04aafc2`
+  SHA-256: `f862222b374f8fd486602a35c23a5021d17a734d70fb3e4257789df781057500`
 
 - `src/research/juggler_sequence/fate_contagion.py`
 

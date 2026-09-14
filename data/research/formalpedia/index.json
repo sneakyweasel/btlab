@@ -30080,6 +30080,150 @@
       "trust": "kernel"
     },
     {
+      "doc": "The one-sided hypothesis `H_q(C, A)` at the scale `y`: every `L(y)`-bad cylinder of depth `1 \u2264 t < d(y) = \u2308C L(y)\u2309` sends at most the share `q` of its members, plus `y (log y)^{-A}`, to an odd next letter.",
+      "file": "formal/Problems/Juggler/FateOneSidedCorollary.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-one-sided-conjecture"
+      ],
+      "line": 53,
+      "module": "Problems.Juggler.FateOneSidedCorollary",
+      "name": "OneSidedBound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The paper's remark after Theorem 9.1: the share bound with no error term.",
+      "file": "formal/Problems/Juggler/FateOneSidedCorollary.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-one-sided-conjecture"
+      ],
+      "line": 57,
+      "module": "Problems.Juggler.FateOneSidedCorollary",
+      "name": "OneSidedExact",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The exponent `e_{C,q} = C D(p_C \u2016 q) / log 2` of Proposition 9.3.",
+      "file": "formal/Problems/Juggler/FateOneSidedCorollary.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-one-sided-conjecture"
+      ],
+      "line": 61,
+      "module": "Problems.Juggler.FateOneSidedCorollary",
+      "name": "oneSidedExponent",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A share bound with a smaller error is a share bound with a larger one.",
+      "file": "formal/Problems/Juggler/FateOneSidedCorollary.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-one-sided-conjecture"
+      ],
+      "line": 64,
+      "module": "Problems.Juggler.FateOneSidedCorollary",
+      "name": "OneSidedShare.mono",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The exact share bound implies `H_q(C, A)` for every `A`.",
+      "file": "formal/Problems/Juggler/FateOneSidedCorollary.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-one-sided-conjecture"
+      ],
+      "line": 70,
+      "module": "Problems.Juggler.FateOneSidedCorollary",
+      "name": "oneSidedBound_of_exact",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Gibbs' inequality: `D(p \u2016 q) \u2265 0` for `0 < p, q < 1`.",
+      "file": "formal/Problems/Juggler/FateOneSidedCorollary.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-one-sided-conjecture"
+      ],
+      "line": 75,
+      "module": "Problems.Juggler.FateOneSidedCorollary",
+      "name": "klDiv_nonneg",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`e^{-dD} \u2264 \u039b^{-CD/log 2}` once `d \u2265 C log\u2082 \u039b` and `D \u2265 0`.",
+      "file": "formal/Problems/Juggler/FateOneSidedCorollary.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-one-sided-conjecture"
+      ],
+      "line": 93,
+      "module": "Problems.Juggler.FateOneSidedCorollary",
+      "name": "exp_le_rpow_scale",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`(2x)^{d-1} \u2264 \u039b^{C(1 + log\u2082 x)}` once `d - 1 \u2264 C log\u2082 \u039b`, for `x \u2265 1` and `\u039b \u2265 1`.",
+      "file": "formal/Problems/Juggler/FateOneSidedCorollary.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-one-sided-conjecture"
+      ],
+      "line": 107,
+      "module": "Problems.Juggler.FateOneSidedCorollary",
+      "name": "pow_le_rpow_scale",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The absorption.** Under `H_q(C, A)` at all large scales, with `q < p_C`, `A > C(1 + log\u2082 x) + 1 + e` for the re-centring tilt `x`, and `e < e_{C,q}`, the odd failures in `(y, 2y]` number at most `y (log y)^{-e}` for all large `y`.",
+      "file": "formal/Problems/Juggler/FateOneSidedCorollary.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-one-sided-conjecture"
+      ],
+      "line": 132,
+      "module": "Problems.Juggler.FateOneSidedCorollary",
+      "name": "oddFailures_le_of_one_sided",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Theorem 9.1's corollary, with the contagion bound as a hypothesis.** If `H_q(C, A)` holds at all large scales with `C \u2265 5`, `0 < q < p_C`, `A > C(1 + log\u2082 x) + 1 + e` and `e < e_{C,q}`, and the contagion bound of Theorem 5.3 holds for the failure set with an exponent `\u03bb` satisfying `1 - \u03bb < e`, then every positive integer reaches `1`.",
+      "file": "formal/Problems/Juggler/FateOneSidedCorollary.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-one-sided-conjecture"
+      ],
+      "line": 339,
+      "module": "Problems.Juggler.FateOneSidedCorollary",
+      "name": "implies_conjecture_of_contagion",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Theorem 9.1's corollary with nothing else assumed.** If `H_q(C, A)` holds at all large scales above a certified floor, with `C \u2265 5`, `0 < q < p_C`, `A > C(1 + log\u2082 x) + 1 + e` and `7/10 < e < e_{C,q}`, then every positive integer reaches `1`; the contagion side is the unconditional Theorem 5.3 at exponent `3/10`.",
+      "file": "formal/Problems/Juggler/FateOneSidedCorollary.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-one-sided-conjecture"
+      ],
+      "line": 356,
+      "module": "Problems.Juggler.FateOneSidedCorollary",
+      "name": "one_sided_implies_conjecture",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The paper's remark after Theorem 9.1, with nothing else assumed.** If no `L(y)`-bad cylinder of depth below `\u2308C L(y)\u2309` sends more than the share `q` of its members to an odd next letter, at all large scales above a certified floor, with `C \u2265 5`, `0 < q < p_C` and `e_{C,q} > 7/10`, then every positive integer reaches `1`.",
+      "file": "formal/Problems/Juggler/FateOneSidedCorollary.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-one-sided-conjecture"
+      ],
+      "line": 369,
+      "module": "Problems.Juggler.FateOneSidedCorollary",
+      "name": "exact_share_implies_conjecture",
+      "trust": "kernel"
+    },
+    {
       "doc": "The live pressure `\u03a3_{n \u2208 {1,\u2026,N} live to depth d} x^{o_d(n)}`, as the generating function of the live weight.",
       "file": "formal/Problems/Juggler/FatePressure.lean",
       "kind": "def",
@@ -83540,6 +83684,7 @@
         "Problems.Juggler.FateLandingWindow",
         "Problems.Juggler.FateNumerics",
         "Problems.Juggler.FateOneSided",
+        "Problems.Juggler.FateOneSidedCorollary",
         "Problems.Juggler.FatePressure",
         "Problems.Juggler.FateProduction",
         "Problems.Juggler.FateRecursion",
@@ -84687,6 +84832,21 @@
         {
           "id": "J-fate-one-sided-moments",
           "statement": "Paper C Theorem 9.1 (the one-sided form) in exact form, by exponential moments and without the martingale, carrying out the paper's remark after Proposition 9.3. For a tilt x >= 1 let badMass(t) be the sum over the L-bad words w of length t of #[w] x^{o(w)}, the tilted mass of the bad cylinders of depth t. Under the one-sided hypothesis OneSidedShare (every L-bad cylinder of depth 1 <= t < d sends at most q #[w] + err of its members to an odd next letter), bad words being prefix-closed and a cylinder splitting into its two children, badMass(t+1) <= (1 + (x-1) q) badMass(t) + (x-1) err (2x)^t (badMass_succ_le), which unrolls to badMass(t+1) <= x (1 + (x-1) q)^t N + (x-1) err t (2x)^t with N the odd starts of (y, 2y] (badMass_le). Lemma 8.1 and the Markov tilt put every odd failure of (y, 2y] in a bad cylinder of depth d with at least p_C d odd letters (oddFailures_card_le_badMass), so for every y >= 1 and every d >= max(1, C L(y)), L(y) = log_2(log 2y / log N_0), above a certified floor N_0 >= 2: #{odd failures in (y, 2y]} <= (x a_q^{d-1} N + (x-1) err (d-1) (2x)^{d-1}) / x^{p_C d} with a_q = 1 + (x-1) q, at every tilt x >= 1 and with no epsilon (one_sided_bound); at the re-centring tilt x = p_C (1-q)/(q (1-p_C)) the main term is (x/a_q) N exp(-d D(p_C || q)) (one_sided_bound_kl, on tilt_pow_ratio and tilt_exponent_eq_kl), the exponent C D(p_C || q)/log 2 of Proposition 9.3, which the paper records is at least the Azuma exponent e_q(C). NOT formalized: the error term carries (2x)^{d-1} / x^{p_C d} where the martingale proof's Markov step carries 2^d, so absorbing it into y (log y)^{-r} needs A > C (1 + (1 - p_C) log_2 x) + r in place of the paper's A > C + r; that absorption, the substitution d = ceil(C L(y)) and the displayed asymptotic form (log 2y / log N_0)^{-(e_q(C) - epsilon)} are human. Nothing here bounds a cylinder and nothing here is a halt theorem.",
+          "tag": "EXACT \u2014 LEAN VERIFIED"
+        }
+      ]
+    },
+    "Problems.Juggler.FateOneSidedCorollary": {
+      "declarations": 12,
+      "file": "formal/Problems/Juggler/FateOneSidedCorollary.lean",
+      "imports": [
+        "Problems.Juggler.FateOneSided",
+        "Problems.Juggler.FateProduction"
+      ],
+      "ledger": [
+        {
+          "id": "J-fate-one-sided-conjecture",
+          "statement": "Paper C Theorem 9.1's consequence, the conjecture from the one-sided hypothesis, in the pattern of Corollary 8.4. OneSidedBound N_0 C q A y is H_q(C, A) at the scale y: every L(y)-bad cylinder of depth 1 <= t < ceil(C L(y)) sends at most q #[w] + y (log y)^{-A} of its members to an odd next letter; oneSidedExponent C q = C D(p_C || q) / log 2 is the Chernoff exponent of Proposition 9.3. Absorption (oddFailures_le_of_one_sided): under H_q(C, A) at all large scales, with C >= 5, 0 < q < p_C, A > C (1 + log_2 x) + 1 + e for the re-centring tilt x = p_C (1-q)/(q (1-p_C)), and e < C D(p_C || q) / log 2, the odd failures in (y, 2y] number at most y (log y)^{-e} for all large y; on Gibbs' inequality D(p || q) >= 0 (klDiv_nonneg), exp(-d D) <= Lambda^{-C D / log 2} for d >= C log_2 Lambda (exp_le_rpow_scale) and (2x)^{d-1} <= Lambda^{C (1 + log_2 x)} for d - 1 <= C log_2 Lambda (pow_le_rpow_scale), with log y / log N_0 <= Lambda <= 2 log y / log N_0. Then Theorem 7.2: implies_conjecture_of_contagion keeps the contagion bound of Theorem 5.3 as a hypothesis at an exponent lambda with 1 - lambda < e, and one_sided_implies_conjecture discharges it through the unconditional Theorem 5.3 at exponent 3/10 (Production.failures_logMass_ge): H_q(C, A) at all large scales above a certified floor N_0 >= 2, with 7/10 < e < C D(p_C || q) / log 2, gives that every positive integer reaches 1, with nothing else assumed. exact_share_implies_conjecture is the paper's remark after Theorem 9.1: a share bound with no error term (OneSidedExact) at all large scales with C D(p_C || q) / log 2 > 7/10 gives the conjecture, and A disappears. NOT the paper's statement: the paper has the Azuma exponent e_q(C) and A > C + e_q(C); here the exponent is the Chernoff one, which the paper records is at least e_q(C), and the condition on A is sufficient, not sharp (the exact form pays the tilt on the error, and d - 1 is bounded by a multiple of log y). The numerical forms, the least C at each q, are not formalized. Nothing here proves the one-sided hypothesis, and nothing here is a halt theorem.",
           "tag": "EXACT \u2014 LEAN VERIFIED"
         }
       ]
@@ -86235,6 +86395,7 @@
         "Problems.Juggler.FateLandingWindow",
         "Problems.Juggler.FateNumerics",
         "Problems.Juggler.FateOneSided",
+        "Problems.Juggler.FateOneSidedCorollary",
         "Problems.Juggler.FatePressure",
         "Problems.Juggler.FateProduction",
         "Problems.Juggler.FateRecursion",
@@ -86251,7 +86412,7 @@
       "ledger": [
         {
           "id": "J-paper-c-trust-surface",
-          "statement": "Paper C's Lean surface, as a build target and an axiom artifact. formal/Problems/JugglerFatePaper.lean imports exactly the twenty-four modules the paper cites (TerminationFloor257, FateBlockAverage, FateShareLaw, FateProduction, FateOneSided, FateContagion, FateCylinderEnergy, CubeFiber, TiltedShare, FateRecursion, FateFirstLetter, FateLandingWindow, FateWindowCount, FateSweep, FateSweepMonotone, FateChernoff, FatePressure, FateTaoReduction, FateSeed, FateCylinderCorollary, FateNumerics, FateFiberParity, FateThinFibers, FateContagionBound) and is a lake default target; formal/AxiomCheckPaperC.lean prints the axioms of the cited declarations and AxiomCheckPaperC.expected records them: every line is a subset of [propext, Classical.choice, Quot.sound], no sorryAx, no Lean.ofReduceBool (native_decide). formalpedia's paper surface carries Paper C (root Problems.JugglerFatePaper): no declaration it reaches runs the compiler and none cites one that does. The verification table has twenty-six Lean rows (including Lemma 4.1', Lemmas 4.2 and 4.3, Lemma 5.2, Theorem 5.3 given the production inequality (5.2) and unconditionally at 3/10, Theorem 7.2 and Theorem 7.3 with the contagion bound as a hypothesis, Corollary 8.4, and Theorem 9.1 in exact form by exponential moments) and four human proofs (the block average 4.4, the share law, the production inequality (5.2), the asymptotic bookkeeping of Sections 8--10). FateNumerics holds the two numerical moves the fiber lemmas share, roots by powering and Bernoulli at a point; FateWindowCount holds the counting move, a sequence rising by at least d has at most w/d + 1 terms in a window of width w. This row records the artifact, not a theorem; nothing here bounds a density.",
+          "statement": "Paper C's Lean surface, as a build target and an axiom artifact. formal/Problems/JugglerFatePaper.lean imports exactly the twenty-five modules the paper cites (TerminationFloor257, FateBlockAverage, FateShareLaw, FateProduction, FateOneSided, FateOneSidedCorollary, FateContagion, FateCylinderEnergy, CubeFiber, TiltedShare, FateRecursion, FateFirstLetter, FateLandingWindow, FateWindowCount, FateSweep, FateSweepMonotone, FateChernoff, FatePressure, FateTaoReduction, FateSeed, FateCylinderCorollary, FateNumerics, FateFiberParity, FateThinFibers, FateContagionBound) and is a lake default target; formal/AxiomCheckPaperC.lean prints the axioms of the cited declarations and AxiomCheckPaperC.expected records them: every line is a subset of [propext, Classical.choice, Quot.sound], no sorryAx, no Lean.ofReduceBool (native_decide). formalpedia's paper surface carries Paper C (root Problems.JugglerFatePaper): no declaration it reaches runs the compiler and none cites one that does. The verification table has twenty-seven Lean rows (including Lemma 4.1', Lemmas 4.2 and 4.3, Lemma 5.2, Theorem 5.3 given the production inequality (5.2) and unconditionally at 3/10, Theorem 7.2 and Theorem 7.3 with the contagion bound as a hypothesis, Corollary 8.4, and Theorem 9.1 in exact form by exponential moments and its consequence, the conjecture from the one-sided hypothesis) and four human proofs (the block average 4.4, the share law, the production inequality (5.2), the asymptotic bookkeeping of Sections 8--10). FateNumerics holds the two numerical moves the fiber lemmas share, roots by powering and Bernoulli at a point; FateWindowCount holds the counting move, a sequence rising by at least d has at most w/d + 1 terms in a window of width w. This row records the artifact, not a theorem; nothing here bounds a density.",
           "tag": "COMPUTATIONALLY VERIFIED"
         }
       ]
@@ -86548,13 +86709,13 @@
     }
   },
   "totals": {
-    "declarations": 6365,
-    "declarations_with_a_ledger_row": 4382,
-    "ledger_rows_naming_a_file": 397,
-    "modules": 276,
+    "declarations": 6377,
+    "declarations_with_a_ledger_row": 4394,
+    "ledger_rows_naming_a_file": 398,
+    "modules": 277,
     "trust": {
       "compiler": 57,
-      "kernel": 6308
+      "kernel": 6320
     }
   }
 }

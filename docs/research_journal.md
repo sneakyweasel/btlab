@@ -44680,3 +44680,40 @@ with epsilon stay human, so the Azuma row stays a human row, with
 Theorem 9.1 added to its list of exact exceptions. Twenty-six Lean
 rows, four human, twenty-four modules, 322 declarations in the
 artifact.
+
+
+## The one-sided hypothesis runs to the conjecture
+
+Philippe asked what the best attacks against no cycle are, and the
+repository's own record answers: the basin pincer, because its kill
+criterion is a rate exponent and not the surplus theta that empties
+every mechanism of Paper A at the near-convergent lengths. He said to
+proceed with it. The rate-side jaw was closed in Lean for the cylinder
+form (Corollary 8.4) but not for the one-sided form, which is the most
+concrete hypothesis the corpus has: a share bound on bad cylinders,
+nothing about their size. So this unit closes it.
+
+FateOneSidedCorollary.lean absorbs yesterday's exact Theorem 9.1 into
+the dyadic rate. The depth d >= C log_2 Lambda turns e^{-dD} into
+Lambda^{-C D/ln 2}, the Chernoff exponent of Proposition 9.3; d - 1 <=
+C log_2 Lambda turns (2x)^{d-1} into Lambda^{C(1 + log_2 x)}; and the
+two-sided comparison of Lambda with log y / log N_0 that Corollary 8.4
+already used does the rest, with Gibbs' inequality to keep the sign.
+Then Theorem 7.2, with the contagion bound as a hypothesis or
+discharged at 3/10. The statement with nothing else assumed reads: if
+no L(y)-bad cylinder of depth below ceil(C L(y)) sends more than the
+share q < p_C of its members to an odd letter, at all large scales
+above the floor, and C D(p_C||q)/ln 2 > 0.7, every positive integer
+reaches 1. No martingale, no epsilon, no A when the share bound is
+exact.
+
+Two honesty notes. The condition on A when there is an error term is
+A > C(1 + log_2 x) + 1 + e, sufficient and not the paper's
+A > C + e_q(C): the exact form pays the tilt on the error and I bounded
+d by a multiple of log y rather than absorbing it into an epsilon.
+And the exponent is the Chernoff one, not Azuma's; the paper records
+the first is at least the second, and that comparison is not
+formalized either. Three names were shortened so the axiom artifact
+would not wrap them. Twenty-seven Lean rows, four human, twenty-five
+modules, 331 declarations in the artifact. The hypothesis itself is
+Appendix C's question in one-sided dress; nothing here touches it.
