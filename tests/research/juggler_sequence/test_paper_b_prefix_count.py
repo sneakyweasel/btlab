@@ -1163,6 +1163,64 @@ def test_paper_bs_meander_constant_splits_and_only_one_half_is_slow() -> None:
     assert 1.09 < 16.53 / predicted < 1.12
 
 
+def test_the_two_families_are_opposite_signs_of_one_approximation() -> None:
+    """The complementarity is forced by sign, not by anything about log2(3).
+
+    A cycle needs 3^o > 2^d: the CycleMin finance bound
+    n ln n <= (6/5) L 3^o/(3^o - 2^L) is only meaningful when 3^o - 2^L > 0, i.e.
+    the walk gap o log2(3) - d is POSITIVE. The staircase's binding level sits just
+    below 1 - c = 2 - log2(3), where both E and OE are illegal and the walk must
+    take OO; that is (o+1) log2(3) - (d+2) slightly NEGATIVE.
+
+    So the two read the same approximation error with opposite signs. Measured: all
+    eleven staircase jumps below 1200 have gap < 0, all six cycle record lengths
+    have gap > 0. And a denominator has one sign, so the two sets are disjoint by
+    construction -- for any irrational, checked on sqrt(2), the golden ratio, e and
+    pi as well as log2(3).
+
+    That is what makes the closed door permanent rather than a fact about the
+    depths tried: no d can serve both constraints, at any depth, for any slope.
+    """
+    log2_3 = math.log2(3.0)
+
+    def gap(d: int) -> float:
+        o = round(d / log2_3)
+        return min(((abs(c * log2_3 - d), c * log2_3 - d) for c in (o - 1, o, o + 1)))[1]
+
+    jumps = [2, 5, 8, 27, 46, 65, 149, 233, 317, 401, 485]
+    records = [3, 11, 19, 84, 569, 1054]
+    assert all(gap(d) < 0 for d in jumps), [(d, gap(d)) for d in jumps]
+    assert all(gap(d) > 0 for d in records), [(d, gap(d)) for d in records]
+
+    # and the split into signs is disjoint for any irrational, not just this one
+    def cf(x: float, n: int = 13) -> list[int]:
+        out = []
+        for _ in range(n):
+            i = math.floor(x)
+            out.append(i)
+            x -= i
+            if x < 1e-15:
+                break
+            x = 1 / x
+        return out
+
+    for alpha in (log2_3, math.sqrt(2.0), (1 + math.sqrt(5.0)) / 2, math.e, math.pi):
+        a = cf(alpha)
+        q = [0, 1]
+        for ai in a[1:]:
+            q.append(ai * q[-1] + q[-2])
+        q = q[1:]
+        below, above = set(), set()
+        for k in range(1, len(q) - 1):
+            for j in range(0, a[k + 1] + 1):
+                d = q[k - 1] + j * q[k]
+                if not (2 <= d <= 3000):
+                    continue
+                (below if d * alpha - round(d * alpha) < 0 else above).add(d)
+        assert below and above, alpha
+        assert below.isdisjoint(above), (alpha, sorted(below & above)[:5])
+
+
 def test_the_cycle_record_lengths_are_the_staircase_non_jumps() -> None:
     """The no-cycle side and this bridge share one walk and split its Ostrowski skeleton.
 

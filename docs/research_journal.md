@@ -48770,3 +48770,54 @@ That is worth recording precisely because it is the argument a reader would try
 next. It does not weaken either side; it says the two sides do not combine in the
 obvious way, and the reason is one continued fraction being read from two
 directions.
+
+
+## The split is a sign, so the door stays shut
+
+The complementarity between the cycle record lengths and the staircase jumps
+looked like an exact coincidence of `BETA`'s continued fraction. It is not a
+coincidence and it is not about `BETA`.
+
+**A cycle needs one sign.** The CycleMin finance bound
+`n ln n <= (6/5) L 3^o / (3^o - 2^L)` is only meaningful when `3^o - 2^L > 0`.
+In walk terms the gap `o log2(3) - d` must be **positive**.
+
+**The staircase needs the other.** Its binding configuration is a level just
+*below* `1 - c = 2 - log2(3)`, because from there both `E` and `OE` are illegal
+and the walk is forced into two odd steps. That level is
+`(o+1) log2(3) - (d+2)` slightly **negative**.
+
+So the two constraints read the same approximation error from opposite sides:
+
+```text
+  staircase jumps    2  5  8  27  46  65  149  233  317  401  485   all gap < 0
+  cycle records      3  11  19  84  569  1054                        all gap > 0
+```
+
+Eleven of eleven and six of six, no exception.
+
+### Why that matters more than the coincidence did
+
+A denominator has one sign. So the two sets are disjoint **by construction**, not
+by arithmetic luck, and the same sign split is disjoint for `sqrt(2)`, the golden
+ratio, `e` and `pi` as readily as for `log2(3)`.
+
+That upgrades the closed door from an observation about the depths I happened to
+examine into something permanent. **No depth can satisfy both constraints --- at
+any scale, for any slope.** The squeeze a reader would try next --- charge a cycle
+the non-contracting peak cost at the depth where it wants to close --- is ruled
+out by sign alone. It cannot be repaired by going deeper, by sharpening a
+constant, or by a better Baker bound, because none of those change which side of
+the approximation a given length sits on.
+
+### What this is worth
+
+It removes a route rather than opening one. That is the honest accounting: no
+bound moves, no exponent moves, and nothing here is a step toward either theorem.
+What it buys is that the most natural way to combine the two halves of the
+laboratory's Juggler work is now known not to combine, with a one-line reason
+that survives any amount of further computation.
+
+Three places in this thread pointed at one continued fraction --- the staircase,
+the ladder height behind `G(1)`, and the cycle records. This says the third is
+the mirror of the first.

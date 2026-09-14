@@ -9953,5 +9953,16 @@
    "tests/research/juggler_sequence/test_paper_b_prefix_count.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "id": "J-the-cycle-staircase-split-is-a-sign-condition",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "The complementarity between cycle record lengths and staircase jumps is forced by a sign, and therefore permanent. A cycle needs 3^o > 2^d: the CycleMin finance bound n ln n <= (6/5) L 3^o/(3^o - 2^L) is only meaningful when 3^o - 2^L > 0, so the walk gap o log2(3) - d must be POSITIVE. The staircase's binding configuration is a level just below 1 - c = 2 - log2(3), where both E and OE are illegal and the walk must take two odd steps; that level is (o+1) log2(3) - (d+2) slightly NEGATIVE. The two constraints read the same approximation error with opposite signs. Measured: all eleven staircase jumps below 1200 have gap < 0 and all six cycle record lengths have gap > 0, with no exception. Since a given denominator has one sign, the two sets are disjoint by construction, and this is a fact about continued fractions rather than about log2(3) -- the same sign split is disjoint for sqrt(2), the golden ratio, e and pi. CONSEQUENCE. The closed door recorded in J-cycle-records-are-the-staircase-non-jumps is permanent, not an artefact of the depths examined: no depth can satisfy both constraints, at any scale, for any slope. An argument hoping to squeeze cycles by charging them the non-contracting peak cost at the depth where they want to close is ruled out by sign alone, and cannot be repaired by going deeper or by sharpening a constant. Not a no-cycle theorem and no bound moves; it removes a route.",
+  "source": "docs/research_journal.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_paper_b_prefix_count.py"
+  ],
+  "related_conjectures": []
  }
 ]
