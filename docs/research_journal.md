@@ -46979,3 +46979,57 @@ Best next question
   of the fifteen on exact orbits first, then write the proof. It lifts
   lambda** from 0.4480 to 0.4801 unconditionally and needs no Paper B.
 ```
+
+
+## Nothing was watching the branches
+
+Three times this month a finding was made, left on a branch, and made again
+weeks later from the other end. The Python 3.11 f-string repair was written on
+7 September and rewritten on the 14th. The itinerary restoration, same pair of
+dates, same two files. All three Section 11 constant corrections -- the false
+Lambda_3 pairing bound, the (T3) additive constant, the (T4) block-count floor
+-- were found on 7 September and found again on the 14th by someone who had
+started from a completely unrelated f-string change. Each time the branch was
+sitting on origin the whole while. Nothing noticed, because nothing was
+looking.
+
+`tools/branch_drift.py` looks. For every local and remote branch it reports the
+ledger rows the branch has and main does not, and the Lean modules, probes,
+tests and dossiers the branch added. `tests/tools/test_branch_drift.py` turns
+that into a gate that does not forbid drift -- branches are where work happens
+-- but forbids nobody having read it. A branch carrying something main lacks
+must appear in ACKNOWLEDGED with one line saying superseded, pending, or
+abandoned. A new one fails the suite until someone looks.
+
+**Two ways to measure this wrong, both found before the gate was written.**
+
+The first: counting ledger rows alone. `information-field-dynamics-8eexis`
+carries a 938-line Lean module with 90 declarations and adds not one ledger id,
+so by rows it scores zero and vanishes. Files are counted too.
+
+The second is the orphan gate's mistake, in a new costume. Asking which files
+are "on the branch and not on main" counts every file main has since deleted.
+Two August cursor/* branches scored 17 Lean files and 102 sources that way, and
+all 119 were casualties of the src/bt restructure -- not one was the branch's
+work. Files are counted as additions since the merge base, which gives zero for
+those two, which is the truth. The gate has a test pinning each of these so the
+metric cannot quietly revert.
+
+**It found something on its first run.** `cursor/operator-fragment-nf-2862`,
+one commit ahead and 1025 behind since 23 August, holds BTC-op-fragment-complete
+-- EXACT — HUMAN PROOF, that with N(D(x))→D(N(x)) every irreducible is
+Pref∘D^k∘N^ε and these inject into maps Z→Z. Read: superseded. Main carries
+BTC-op-fragment-nd-nf and BTC-op-fragment-nd-semantic for the same enlarged
+TRS, both EXACT — LEAN VERIFIED, which is strictly stronger. Nothing to take,
+but three weeks of nobody knowing that is the point.
+
+Three branches are acknowledged today. Two are closed: repo-progress after the
+collision extraction, operator-fragment-nf as superseded. One is open work --
+information-field-dynamics, whose Lean module builds against Lean 4.33.1 with
+no errors and no warnings, and which is 410 commits behind and will not merge.
+Its extraction is the next thing this gate is pointing at.
+
+The gate was checked for the failure this session kept finding elsewhere: with
+one acknowledgement removed it fails, naming the branch and what it holds, and
+passes again when restored. A gate that cannot fail is the defect, not the
+absence of failures.
