@@ -47994,3 +47994,57 @@ look like an orphan.
 
 The module went from 402 orphans to 410 and back to 402 without the budget
 moving, by the same citation route as before.
+
+
+## The screen's only theorem does no work
+
+Having written that one of the three screen conditions is a theorem and two are
+hypotheses, the obvious next question is which one does the rejecting. The
+answer is that the theorem does not.
+
+```text
+ d  contractors  survive (full)  survive (no thm)  thm fires on  thm decisive
+ 4            1               1                 1             0             0
+ 5            2               2                 2             0             0
+ 7            3               1                 1             1             0
+ 8            7               1                 1             2             0
+10           12               0                 0             5             0
+12           30               0                 0            11             0
+13           85               0                 0            41             0
+all        140               5                 5            60             0
+```
+
+The `E < 2` criterion fires on 60 of the 140 contractors, and switching it off
+changes no verdict at any depth. The same five words survive either way. The two
+hypotheses --- Conjecture 7.3's `9/4` and the branch-run sufficiency claim ---
+reject 135 of 140 unaided, which is 96.4% of the input, leaving the criterion no
+room to matter.
+
+**This is not vacuity.** The criterion is decisive on 556 of the 4088 words of
+length 3 to 11, and at the letter level 1356 letters fail it with neither
+hypothesis firing, so it is not subsumed as a condition. It is redundant
+specifically on *contractors*, which are the only words the screen is ever
+applied to.
+
+The consequence is worth stating plainly. The \(227/256\) certified density and
+the emptiness of the screen at depths 10, 12 and 13 rest on Conjecture 7.3 and a
+toolkit sufficiency claim, with no proved ingredient contributing to a single
+verdict. Paper B calls the screen negative evidence, which is the right label;
+what this measures is that the strength of that negative evidence is exactly the
+strength of its two unproved thresholds.
+
+### A mechanism I proposed and had to drop
+
+The natural explanation was that `E < 2` is a statement about the walk climbing,
+contractors are words whose walk descends, so the criterion should rarely bite
+on them. It does not survive contact with the numbers. Contractors have a
+*higher* mean net climb than the words where the criterion is decisive
+(\(-0.458\) against \(-0.576\)), their odd-fractions are nearly identical
+(\(0.606\) against \(0.597\)), and every one of the 140 has net climb above the
+least decisive word's. The separation is not in the walk's global shape, and I do
+not currently have a mechanism --- what is established is the measurement, at
+every depth separately, and not a reason for it.
+
+That is worth leaving open rather than filling with the first story that fits.
+The three audit rows that compared constants to themselves got there by
+accepting a plausible account of why a number was what it was.
