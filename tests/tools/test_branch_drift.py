@@ -32,16 +32,6 @@ import branch_drift as BD  # noqa: E402
 #:
 #: Assessed 14 September 2026.
 ACKNOWLEDGED: dict[str, str] = {
-    "claude/information-field-dynamics-8eexis": (
-        "Carries formal/Problems/Engine/InformationField.lean (938 lines, 90 "
-        "declarations, no sorry, the three standard Mathlib axioms) and its "
-        "prospecting-note test. Verified to build against Lean 4.33.1 / Mathlib "
-        "v4.33.1 on 14 September: 1279 jobs, no errors, no warnings. Its two "
-        "housekeeping commits are both superseded -- the 3.11 f-string repair by "
-        "ab04ce80 and the itinerary restoration by c72419e7 -- so what remains is "
-        "mathematics. EXTRACTION PENDING; the branch is 410 behind and will not "
-        "merge."
-    ),
     "claude/repo-progress-uq349e": (
         "Its collision / large-sieve body was extracted in 94006052. The three "
         "rows left behind are superseded and were dropped deliberately: "
@@ -116,18 +106,35 @@ def test_files_are_counted_against_the_merge_base_not_main() -> None:
     assert not any(d.files.values()), d.files
 
 
+
 def test_artifacts_are_counted_and_not_only_ledger_rows() -> None:
     """The other calibration: a branch can carry a module and no ledger row.
 
-    information-field-dynamics adds a 938-line Lean module and not one ledger
-    id, so a ledger-only gate reports it as clean. Whatever else changes, this
-    branch must be visible while it exists.
+    information-field-dynamics was the live example -- a 938-line Lean module
+    and not one ledger id, invisible to a rows-only gate. Extracting it in
+    7b93d626 dissolved that example, which is the point of extracting it, so
+    the property is asserted against the classifier rather than against
+    whichever branch happens to illustrate it today.
     """
 
-    ref = "origin/claude/information-field-dynamics-8eexis"
-    if ref not in BD.branch_refs(REPO):
-        pytest.skip(f"{ref} not present")
-    d = BD.drift_for(REPO, ref)
-    assert d.ledger_ids == [], d.ledger_ids
-    assert d.files["lean"], "the Lean module must register as drift"
-    assert d.carries_work
+    rows_only = BD.Drift(ref="x", ahead=1, behind=0, last_commit="2026-09-07")
+    assert not rows_only.carries_work, "a branch adding nothing must not register"
+
+    module_only = BD.Drift(
+        ref="x",
+        ahead=1,
+        behind=0,
+        last_commit="2026-09-07",
+        ledger_ids=[],
+        files={"lean": ["formal/Problems/Engine/Whatever.lean"], "probe": [], "test": [], "dossier": []},
+    )
+    assert module_only.carries_work, "a Lean module with no ledger row must register"
+
+    row_only = BD.Drift(
+        ref="x", ahead=1, behind=0, last_commit="2026-09-07", ledger_ids=["J-something"]
+    )
+    assert row_only.carries_work, "a ledger row with no files must register"
+
+    assert {"lean", "probe", "test", "dossier"} <= set(BD.ARTIFACTS), (
+        "the artifact classes a branch can strand must all be scanned"
+    )

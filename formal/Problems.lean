@@ -41,3 +41,4 @@ import Problems.Juggler
 import Problems.Engine.ReverseAdd
 import Problems.Engine.FactorConcat
 import Problems.Engine.CyclicTag
+import Problems.Engine.InformationField

@@ -47033,3 +47033,137 @@ The gate was checked for the failure this session kept finding elsewhere: with
 one acknowledgement removed it fails, naming the branch and what it holds, and
 passes again when restored. A gate that cannot fail is the defect, not the
 absence of failures.
+
+
+## Extracted: the information-field module, and the note that predicted today
+
+claude/information-field-dynamics-8eexis is the second branch the drift gate
+pointed at, and the last one it was pointing at. Three files come across:
+formal/Problems/Engine/InformationField.lean (938 lines, 90 declarations,
+no sorry, only propext / Classical.choice / Quot.sound, and compose_assoc
+depending on no axiom at all), the prospecting note it was written to support,
+and that note's consistency test. It builds: 1279 jobs alone, and the full
+Problems target builds with it at 8945, so the root import is live and the
+warning budget is unmoved.
+
+**The module carries no ledger row and no index entry, and that is correct.**
+Problems/Engine holds seventeen other modules and not one of them is cited by
+a theorem-ledger row or registered in attacks/juggler/index.json; the engine
+layer is problem-independent and sits outside the Juggler ceremony. What was
+missing was smaller and older: formal/README.md's directory table had no row
+for Problems/Engine at all, though the directory has existed for a long time.
+It has one now.
+
+**Three commits were left behind, all three superseded.** Its Python 3.11
+f-string repair is ab04ce80 here; its itinerary restoration is c72419e7; its
+provenance-hash drop was a test-run artifact. The branch's whole housekeeping
+half is now this laboratory's, arrived at twice.
+
+**The note is a dated snapshot and reads like one.** It ranks five candidate
+objects by estimated leverage as of 6 September and says so in its own second
+line. It is imported for the record, not as current guidance. One thing in it
+is worth reading today: rank 4 was the audit of the first production member's
+constants -- the Section 11 OEOEE audit -- and its reason was that "the
+consequence is a constant at the root of a table", so a successful audit would
+recompute many printed numbers at once. That audit happened on 14 September and
+found the Lambda_3 pairing bound false on data, the (T3) additive constant
+wrong in its proof, and the (T4) block count short of its own hypothesis. The
+ranking was right about where to look, a week before anyone looked. Whether its
+other four entries have moved is unchecked.
+
+**Nothing here is checked as mathematics.** The module compiles and is
+axiom-clean; that is a statement about the kernel, not about whether the
+definitions model anything. No ledger row claims otherwise, which is the
+honest position for a module that arrived without one.
+
+With this the drift gate has nothing outstanding to point at. Its
+acknowledgement for this branch is retired in the same commit, which is what
+the staleness half of the gate is for.
+
+
+## Prospecting the corpus: what a leverage ranking finds, and what it cannot (consolidation, not a finding)
+
+The exercise was to treat the program's own written record as a search
+space and ask which visible object has a consequence large relative to
+its cost — not "what lemma is missing" but "which apparently small
+perturbation would collapse the most remaining proof complexity".
+Fifty-four candidate objects were read out of the manuscripts, the
+ledgers, the conjecture records, the branch decisions, and the Lean
+layer; sixteen were scored; twelve of those failed an admission test
+and were dropped; thirteen survived to a ranking. The note is
+[docs/theory/juggler_leverage_prospecting_note.md](theory/juggler_leverage_prospecting_note.md).
+
+Three of the twelve exclusions are worth recording on their own,
+because they are places where a fresh reading of the corpus mistook a
+settled object for an open one: the closed form for the triple constant
+of Lemma 3.9, the fan-minimum balance law, and the per-thread contagion
+corollary are all already established, the last carrying the ledger row
+`J-clotho-threads-per-thread-contagion`. The rest of the exclusions
+are fences that stand — the derandomization obstruction, the refuted
+localization, the walk-competition cluster, the flight programme.
+
+The ranking's own conclusion is the useful part, and it is negative.
+Every candidate that survived sits below the frontier. None touches the
+free term of Paper C, the derandomization wall of Paper B, the
+classical analytic bricks under Paper A, or the equidistribution
+hypothesis that the density statements rest on. The objects with the
+largest documented reach are exactly the ones whose estimated
+proofability is near zero, so a leverage ratio demotes them. Ranking by
+leverage tells you where the written argument is compressible; it does
+not tell you where the problem is, and it cannot manufacture a route
+past a wall.
+
+One live discrepancy came out of the pass and is the reason for the
+next question. The laboratory map records the gap from 0.4480 to
+0.4927 as a dynamical averaging problem that is not opened, while the
+OEOEE dossier records the first member of the family as reduced with
+its constants written end to end and measured with slack, its own
+status paragraph saying the promotion is bookkeeping after an audit in
+the style of the Paper B ledger. Both can be true of different objects
+— the fence may be about the tail of the family and the dossier about
+its first member — but the corpus does not currently say so anywhere,
+and a reader meets the two statements without a reconciliation.
+
+An abstract by-product entered the platform on the same branch:
+`formal/Problems/Engine/InformationField.lean` now carries the ordering
+mathematics this exercise used — a priority ratio, its division-free
+comparison, and Smith's rule (sorting candidates by ratio minimizes the
+value-weighted waiting cost of a schedule). It is generic and says
+nothing about the Juggler map.
+
+```text
+What was learned
+- fifty-four visible objects, thirteen admissible after adversarial
+  checking against the ledgers; three of the exclusions were objects
+  already proved that a fresh reading took for open
+- every surviving candidate is below the frontier: high documented
+  reach and near-zero estimated proofability are the same objects, and
+  a leverage ratio demotes exactly those
+- the three leading candidates differ by less than the granularity of
+  the score vector; the ranking supports bands, not an order
+- the map's fence on the 0.448 to 0.4927 gap and the OEOEE dossier's
+  "constants pending, promotion is bookkeeping" are not reconciled
+  anywhere in the corpus
+- three otherwise cheap candidates require a manuscript sentence to
+  change, so they are consolidation-turn work, not Phase-0 work
+Strongest theorem
+- none new
+Strongest refutation
+- none; no candidate was falsified, three were found already settled
+Reusable machinery
+- none for the Juggler application; the generic ordering layer
+  (priority ratio, Smith's rule) went to formal/Problems/Engine
+Branch status
+- PARK (no branch opened by this note)
+Why
+  The pass did what it was meant to do and returned an honest negative:
+  the compressible parts of the record are cheap and small, and the
+  parts that would move the problem are unchanged in difficulty. That
+  is worth one note and no branch. The single actionable residue is a
+  documentation discrepancy, which is a reading task rather than a
+  mathematical one.
+Best next question
+- does an audit of the OEOEE constants in the style of the Paper B
+  ledger survive, and if it does, does the map's fence on that gap
+  still describe the same object the dossier closed?
+```

@@ -181,6 +181,7 @@ OTHER_LATEX_DOCS = (
     ROOT / "docs" / "theory" / "juggler_fate_contagion_note.md",
     ROOT / "docs" / "theory" / "juggler_flight_note.md",
     ROOT / "docs" / "theory" / "juggler_tao_reduction_note.md",
+    ROOT / "docs" / "theory" / "juggler_leverage_prospecting_note.md",
 )
 
 
