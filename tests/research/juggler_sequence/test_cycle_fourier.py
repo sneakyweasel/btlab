@@ -90,7 +90,14 @@ def test_spotlight_25781_spectrum_does_not_beat_run_type():
     assert row["closed_ok"]
     assert row["closed_hits_target"]
     assert row["packed_matches_budget"]
-    assert row["packed_rhs"] == budget_rhs(START, 25781, odd_count)
+    # Same quantity by two code paths, so compare as reals rather than bit
+    # patterns: they agree exactly on Windows and differ by ~500 ulp (relative
+    # 1.1e-13) on the Linux CI runner, which failed this test on 14 September
+    # 2026. The claim being made is that the packed row carries the budget, not
+    # that two float expressions round identically on every libm.
+    assert math.isclose(
+        row["packed_rhs"], budget_rhs(START, 25781, odd_count), rel_tol=1e-12
+    )
     assert theta < row["budget_rhs"]
     assert not row["spectral_excludes"]
     assert not row["budget_excludes"]
