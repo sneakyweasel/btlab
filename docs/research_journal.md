@@ -48291,3 +48291,59 @@ so. Every caller is correct: `meander_constant` uses it as `rho ** d`, and the
 test converts with `-math.log(...)`. The mislabel is in the name and one phrase,
 nothing computes the wrong thing, and the wrong ratio in my first probe was mine
 and not the repo's.
+
+
+## The measure closes it: four levels, one walk
+
+Paper C picks `theta_C` so the unconditioned tilted mean endpoint sits at the
+barrier `-L`. At `L = 0` --- `C -> infinity` --- that is zero drift, which is the
+tilt `meander_constant` says Paper B works under, and which is the minimiser
+`chernoff_rate` computes. So the last thing to check was whether the two tilts
+are the same change of measure.
+
+They are, and the check went through a discrepancy first.
+
+**The measures agree outright.** The MGF minimiser gives tilted `P(O) = `
+`0.630929753`; `p_C` converges to `BETA = 1/log2(3) = 0.630929754`; the tilted
+walk drift measures `-1.1e-9`.
+
+**The parameters do not, and should not.** `theta*` is `0.488077132` and
+`theta_C` converges to `0.536207535`. For a few minutes that looked like the
+correspondence failing. It is the two papers tilting by different statistics:
+Paper C by the odd count `o`, Paper B by the walk value in nats. On words of
+fixed length `t`,
+
+```text
+  e^{theta sum X} = e^{theta(o log3 - t log2)} = const(t) * e^{(theta log3) o}
+```
+
+so the coordinates differ by exactly `log 3`, and `theta_C = theta* log 3` holds
+to machine precision: `0.536207535` against `0.488077132 x 1.098612289`. Both
+have closed forms --- `theta* = log(log2 / log(3/2)) / log 3` and
+`theta_C = log(log2 / log(3/2)) = log(BETA/(1-BETA))`.
+
+### Where this thread ends
+
+Four levels, checked one at a time, each a different kind of object:
+
+```text
+  conditions   all three screen tests are functions of u_t, two of them unit conditions
+  counts       N_d = bad_word_count(0, d), exactly, and exactly for a reason
+  exponents    e(C)/C -> KL(BETA)/log 2, Paper B's rate, like 1/C
+  measure      same tilt, coordinates differing by log 3
+```
+
+Paper B and Paper C were written as separate pieces of machinery and they are
+one object viewed at two levels of the same walk, `L = 0` and `L = L(y)`.
+
+That is a reorganisation, not a result. No bound moved at any point in this
+thread, no density exponent changed, and nothing here is a halt theorem. What it
+buys is that a reader who wants to move a constant in one paper now knows
+exactly what it is in the other, and three specific things have been ruled out
+along the way: the ladder factorisation is empty at Paper B's level, the height
+route to the depth-ten emptiness is closed by the `log2(3)` ceiling, and
+Hoeffding's exponent is not where Paper B's loss lives.
+
+A test of mine failed on the way in, with a bound of `1e-7` where the gap goes
+like `BETA/C` and so sits at `6.3e-6` at `C = 1e5`. The test was right and the
+bound was mine.

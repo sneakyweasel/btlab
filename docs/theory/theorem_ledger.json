@@ -9876,5 +9876,16 @@
    "tests/research/juggler_sequence/test_paper_b_prefix_count.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "id": "J-the-two-tilts-are-one-measure",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Paper B's zero-drift tilt and Paper C's theta_C are one change of measure in two coordinate systems, and Paper B is the level-zero member. Paper C picks theta_C so the unconditioned tilted mean endpoint sits at the barrier -L; at L = 0, i.e. C to infinity, that is zero drift, which is the tilt meander_constant works under and the minimiser of the MGF chernoff_rate computes. The measures agree outright: the MGF minimiser gives tilted P(O) = 0.630929753 and p_C converges to BETA = 1/log2(3) = 0.630929754, with the tilted walk drift measured at -1.1e-9. The tilt PARAMETERS do not agree and should not, because the papers tilt by different statistics -- Paper C by the odd count o, Paper B by the walk value in nats. On words of fixed length t, e^{theta sum X} = e^{theta(o log 3 - t log 2)} = const(t) e^{(theta log 3) o}, so the coordinates differ by exactly log 3: theta_C = theta* log 3, verified to machine precision (0.536207535 against 0.488077132 times 1.098612289). Closed forms: theta* = log(log 2 / log(3/2))/log 3 and theta_C = log(log 2 / log(3/2)) = log(BETA/(1 - BETA)). This is the fourth and last level of the correspondence, after the conditions (J-paper-b-screen-is-a-walk-condition), the counts (J-paper-b-count-is-the-level-zero-bad-count) and the exponents (J-paper-c-exponent-is-paper-b-rate-at-level-zero): condition, count, exponent and measure are the same objects at two levels of one walk. Nothing here is a bound, and no result in either paper changes.",
+  "source": "docs/research_journal.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_paper_b_prefix_count.py"
+  ],
+  "related_conjectures": []
  }
 ]
