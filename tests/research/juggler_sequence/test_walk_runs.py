@@ -8,6 +8,8 @@ p at the trivial ceiling, longest odd run 2, and legal under Theorem 3.2.
 
 from __future__ import annotations
 
+import math
+
 import pytest
 
 from research.juggler_sequence.paper_a_audit import o_min
@@ -25,13 +27,27 @@ def _charge_of(word: list[int], n: int) -> float:
 
 
 def test_recovered_walk_attains_the_known_maximum() -> None:
-    """Path recovery must return an actual optimum, not merely a feasible walk."""
+    """Path recovery must return an actual optimum, not merely a feasible walk.
+
+    The comparison is relative, and it has to be.  Both sides call ``walk_charge``
+    but on heights accumulated by different routes -- one from ``admissible_words``,
+    one rebuilt from the recovered word -- so they agree only to accumulation noise.
+    An absolute ``1e-18`` was 18.4 ULP at this magnitude, and the two sides sat 16
+    ULP apart on Windows and 19 on Linux: the test passed here and failed in CI on
+    half a ULP, which is a statement about libm and not about the walk.
+
+    The tolerance below is not slack.  The runner-up candidate is 1.5e-2 away in
+    relative terms against accumulation noise of 2.5e-15, a separation of six
+    thousand billion, so ``rel_tol=1e-12`` still fails instantly on a walk that is
+    genuinely not optimal while leaving four hundred times the observed noise.
+    """
     L, n = 18, 1000
     o = o_min(L)
     best = max(walk_charge(us, n) for _m, us in admissible_words(L, o))
     word = extremal_walk(L, o, n)
     assert sum(word) == o
-    assert abs(_charge_of(word, n) - best) < 1e-18
+    got = _charge_of(word, n)
+    assert math.isclose(got, best, rel_tol=1e-12), (got, best, abs(got - best))
 
 
 def test_run_length_encoding() -> None:
