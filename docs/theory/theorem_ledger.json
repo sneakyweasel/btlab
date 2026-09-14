@@ -9986,5 +9986,16 @@
    "tests/research/juggler_sequence/test_paper_b_prefix_count.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "id": "J-the-55-family-is-the-last-hard-one-in-reach",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "16785921 is the end of the cycle-length difficulty, not the start of worse. BETA's partial quotients are stable to 80 terms between 200- and 400-digit arithmetic, and the first 24 are identical at 100, 200, 400 and 800 digits, so the tail is not a precision artefact. From a_16 they run 1, 4, 3, 1, 1, 15, 1, 9, 2, 5, 7, 1, 1, 4, 8, 1, 11, 1, 20, 2, 1, 10. The above-side semiconvergent families -- the ones the cycle work must walk, by J-cycle-period-bounds-are-one-semiconvergent-family -- are then: 55 members on q_14 = 301994 running 478245 to 16785921; 4 members on q_16 = 17087915 running 33873836 to 85137581; 1 member on q_18 = 272500658 at 357638239; 15 members on q_20 = 630138897 running 987777136 to 9809721694. So the cost drops from 55 to 4 to 1 immediately after the current family, and the next comparable cluster of 15 begins near 10^9, at lengths whose certified floor is far out of reach -- the ledger's next seed already waits at 4.54e11 for far shorter lengths. PRACTICAL READING: the 55-member family now being walked, of which three are cleared and 53 remain, is the binding obstruction and the last one at an accessible scale. Finishing it is not the start of an unbounded sequence of similar families; it is the expensive stretch, after which the lengths themselves outrun any reachable floor. Not a no-cycle theorem and no bound moves; it prices the horizon of the existing route.",
+  "source": "docs/research_journal.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_paper_b_prefix_count.py"
+  ],
+  "related_conjectures": []
  }
 ]

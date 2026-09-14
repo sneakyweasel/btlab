@@ -48930,3 +48930,49 @@ It also reframes the two closed doors. Counting cannot bound cycles and the
 staircase cannot squeeze them, and now the reason the surviving route is
 expensive is the same continued fraction that closed both. Every obstruction this
 thread found is one arithmetic fact about `log2/log3` wearing different clothes.
+
+
+## a_16 onward: the 55-family is the last hard one in reach
+
+The question the previous entry left was whether `16785921` ends the difficulty
+or begins a worse one. It ends it.
+
+**Precision first, since the answer is a continued fraction tail.** `BETA`'s
+partial quotients agree to 80 terms between 200- and 400-digit arithmetic, and
+the first 24 are identical at 100, 200, 400 and 800 digits. The tail used below
+is not an artefact of rounding.
+
+```text
+  a_16 onward:  1, 4, 3, 1, 1, 15, 1, 9, 2, 5, 7, 1, 1, 4, 8, 1, 11, 1, 20, 2, 1, 10
+```
+
+### The above-side families, which are the ones that cost
+
+```text
+  built on q_14 = 301994          55 members      478245 ..     16785921
+  built on q_16 = 17087915         4 members    33873836 ..     85137581
+  built on q_18 = 272500658        1 member    357638239
+  built on q_20 = 630138897       15 members   987777136 ..   9809721694
+```
+
+The cost drops **55 -> 4 -> 1** immediately after the current family. The next
+comparable cluster is the 15 on `q_20`, and its first member sits near `10^9` ---
+at lengths whose certified floor is far beyond reach, when the ledger's next
+*seed* already waits at `4.54e11` for lengths three orders of magnitude shorter.
+
+### What that means for the route
+
+The 55-member family now being walked --- three cleared, 53 left --- **is the
+binding obstruction and the last one at an accessible scale.** Finishing it is
+not the opening of an unbounded sequence of similar families. It is the expensive
+stretch, and after it the lengths themselves outrun any floor the laboratory
+could certify.
+
+That changes how the 53 should be read. They are not evidence that the route is
+hopeless; they are a bounded, priced amount of work with a known end, and the
+terrain past the end is easier rather than harder. Whether 53 floor raises is a
+good use of effort is a judgement about cost, not about whether the route
+terminates --- and that judgement is now possible because the count exists.
+
+Nothing here is a no-cycle theorem and no bound moves. It prices the horizon of
+the existing route, which is the last thing this thread had left to say about it.
