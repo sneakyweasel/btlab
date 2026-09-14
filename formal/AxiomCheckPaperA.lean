@@ -350,4 +350,4 @@ import Problems.JugglerPaper
 #print axioms Problems.Juggler.walkTheta
 #print axioms Problems.Juggler.walkTheta_lt_upper
 #print axioms Problems.Juggler.window_digit_cap
-#print axioms Problems.Juggler.window_digit_scan
+#print axioms Problems.Juggler.window_digit_max

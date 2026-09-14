@@ -24,9 +24,9 @@ unchanged. The θ instance closes the window at
 
 This subsumes the digit-cap step of Theorem 5.8 (previously a
 human proof); the Denjoy–Koksma comparison stays analytic
-(KNOWN). The scan `window_digit_scan` remains the sharper bound
-(`≤ 37`) on the window. Not a cycle obstruction and not a halt
-theorem.
+(KNOWN). The structural cap `47` is now the window bound as well:
+`window_digit_scan` was retired on 14 September 2026. Not a cycle
+obstruction and not a halt theorem.
 -/
 
 section General
@@ -220,5 +220,20 @@ theorem greedyDigitSum_le {L : ℕ} (hL : L < 301994) :
   have heq := greedy_eq_ostro L
   have := theta_digitSum_le hL
   omega
+
+
+/-- **Pointwise window bound, structurally.**  Any window length decomposes greedily
+into certified blocks, and the digit sum is at most `47`.  This carried `≤ 37` until
+14 September 2026, on the strength of `window_digit_scan`, a `native_decide` pass over
+251486 lengths that was the Juggler layer's last compiler-trusted proof.  Retiring it
+costs the sharpening and nothing else: no theorem, kill or period bound consumed the
+`37`, the downstream results already use this structural cap, and `window_digit_max`
+still records — kernel-checked — that `37` is attained at `L = 275632`.
+The window's lower endpoint is no longer needed and is kept only so the
+interface Paper A's appendix names is unchanged: `greedyDigitSum_le` holds for
+every `L < 301994`, so the structural bound is the more general statement. -/
+theorem window_digit_cap {L : ℕ} (_h1 : 50508 ≤ L) (h2 : L < 301994) :
+    greedyReconstruct L = L ∧ greedyDigitSum L ≤ 47 :=
+  ⟨greedy_reconstruct_all L, greedyDigitSum_le h2⟩
 
 end Problems.Juggler

@@ -20,15 +20,19 @@ if str(TOOLS) not in sys.path:
 
 import formalpedia as fp
 
-JUGGLER_COMPILER_TRUST = {
-    "window_digit_scan",
-}
-"""The one Ostrowski scan Paper A names as the only proof off the kernel in its layer.
+JUGGLER_COMPILER_TRUST: set[str] = set()
+"""Nothing in the Juggler Lean layer runs off the kernel, as of 14 September 2026.
 
 It was two.  `greedy_eq_ostro_below_window` scanned all 301994 lengths to identify the
 fold-form digits with the function-form ones; they are the same algorithm written twice,
 so `greedy_eq_ostro` proves it structurally for every `L` and the scan is a corollary.
-What remains genuinely scanned is the sharp constant 37, the structural cap being 47."""
+Then `window_digit_scan`, which sharpened the Ostrowski digit cap from the structural 47
+to 37 over 251486 window lengths: nothing consumed the 37, so `window_digit_cap` was
+reproved from `greedyDigitSum_le` at 47 and the scan retired.  `window_digit_max` still
+records, kernel-checked, that 37 is attained at L = 275632.
+
+Keep this empty.  A name here is a compiler-trust assumption inside a deposited paper's
+surface; it belongs in the paper's prose before it belongs in this set."""
 
 
 def test_the_index_covers_the_libraries_and_not_the_build_output() -> None:
@@ -52,7 +56,7 @@ def test_the_corpus_carries_no_sorry() -> None:
     assert open_ == [], open_
 
 
-def test_the_juggler_layer_keeps_only_the_two_named_scans_off_the_kernel() -> None:
+def test_the_juggler_layer_keeps_nothing_off_the_kernel() -> None:
     index = fp.build()
     found = {
         d["name"]
@@ -152,36 +156,45 @@ def test_every_proposed_candidate_lives_in_the_row_s_own_file() -> None:
             assert c["decl"] in names, f"{r['id']}: {c['decl']} not in {lean}"
 
 
-PAPER_A_OFF_KERNEL = ["window_digit_scan"]
+PAPER_A_OFF_KERNEL: list[str] = []
 """Paper A's Section 1.2 states the trust boundary positively: kernel-checked throughout the
 layer except the one Ostrowski scan.  This is that sentence, as an assertion."""
 
 
-def test_paper_a_keeps_exactly_the_one_ostrowski_scan_off_the_kernel() -> None:
+def test_paper_a_keeps_nothing_off_the_kernel() -> None:
     surface = fp.paper_surface(fp.build())["Paper A"]
     assert surface["present"], "Problems.JugglerPaper is missing from the index"
     assert surface["compiler_trusted"] == PAPER_A_OFF_KERNEL, surface["compiler_trusted"]
 
 
-PAPER_A_COMPILER_DEPENDENT = ["window_digit_cap", "window_digit_scan"]
+PAPER_A_COMPILER_DEPENDENT: list[str] = []
 """What rests on the compiler, as opposed to what runs it.
 
-Section 1.2's sentence is about proofs that call ``native_decide``, and one does.  A reader
-asking the other question -- which of Paper A's theorems would fall if the compiler were
-wrong -- gets a second name: ``window_digit_cap`` cites the scan.  Both are true; they are
-different sentences, and the ledger now carries both.
+Section 1.2's sentence is about proofs that call ``native_decide``, and none does any
+more.  A reader asking the other question -- which of Paper A's theorems would fall if
+the compiler were wrong -- used to get a second name, ``window_digit_cap``, because it
+cited the scan.  With ``window_digit_scan`` retired on 14 September 2026 both answers are
+empty and the two sentences coincide.
 """
 
 
-def test_paper_a_rests_on_the_compiler_through_one_more_declaration() -> None:
+def test_paper_a_rests_on_the_compiler_nowhere() -> None:
     surface = fp.paper_surface(fp.build())["Paper A"]
     assert surface["compiler_dependent"] == PAPER_A_COMPILER_DEPENDENT, (
         surface["compiler_dependent"]
     )
-    assert set(surface["compiler_trusted"]) < set(surface["compiler_dependent"]), (
-        "if these ever agree the transitive pass has stopped finding anything and the "
-        "syntactic label would say the same thing more cheaply"
-    )
+    trusted, dependent = set(surface["compiler_trusted"]), set(surface["compiler_dependent"])
+    if trusted:
+        assert trusted < dependent, (
+            "if these ever agree while something is off the kernel, the transitive pass "
+            "has stopped finding anything and the syntactic label would say the same "
+            "thing more cheaply"
+        )
+    else:
+        assert not dependent, (
+            "nothing runs the compiler, so nothing may rest on it either: a citation "
+            "without a caller means the transitive pass is reading a stale index"
+        )
 
 
 def test_paper_b_is_kernel_checked_throughout() -> None:
