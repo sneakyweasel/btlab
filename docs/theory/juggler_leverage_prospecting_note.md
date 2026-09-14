@@ -2,6 +2,42 @@
 
 Status: laboratory prospecting note. Date: 6 September 2026.
 
+**Status re-check, 14 September 2026.** The ranking below is unedited and
+remains a 6 September snapshot. Two of its five entries have since moved, so
+do not act on a rank without reading this first.
+
+- **1.1 coefficient rule / \(E<2\) criterion — OPEN.** No ledger row, no Lean
+  counterpart, still carried only as prose tables and
+  `paper_b_prefix_count.py` (1195 lines). Unchanged.
+- **1.2 never-contracting word count in Lean — PARTLY MOVED, not the part it
+  asks for.** Of the four sibling rows named with empty Lean columns,
+  `J-rate-free-density-one` now cites `RateFreeDensity.lean`; the other three
+  are still empty. That column was filled in `c367c7c7`, also dated
+  6 September, so whether it preceded or followed this note is unknown. The
+  gap the entry actually names is intact: the predicates are present
+  (`prefixNoncontracting`, `CycleRunAlphabet.lean`) and no enumeration or
+  class count exists anywhere in `formal/`.
+- **1.3 the two compiler-trust holdouts — HALF CLOSED.** `9e5d5051`
+  (7 September, "one of the layer's two off-kernel scans needed no
+  computation") retired `OstrowskiNumeration.lean`; `native_decide` now
+  appears in exactly one Juggler file, `OstrowskiSandwich.lean`. Half the
+  stated consequence is already banked.
+- **1.4 audit of the first production member's constants — DONE,
+  14 September.** It found the \(\Lambda_3\) pairing bound \(0.89\,m'^{14/9}\)
+  false on \(J_2^{\rm sm}\), the (T3) additive constant wrong in its proof,
+  and the (T4) block count short of its own hypothesis. The entry's reason for
+  ranking it — that the consequence is a constant at the root of a table —
+  was borne out.
+- **1.5 recursion lemma and tree count in Lean — OPEN**, but re-price before
+  acting: `J-tao-rate-implies-conjecture` still has an empty Lean column,
+  while adjacent Paper C material (Theorem 9.1 with exceptional atoms,
+  \(\mathrm H_q(C,A)\) implies the conjecture, the pressure and no-momentum
+  hypotheses) has since been formalised, so the conditional spine is partly
+  Lean without this entry being done.
+
+This re-check is bibliographic: it reads ledger columns, file contents and
+commit dates. It re-estimates no \(D\), \(F\) or cost, and it does not
+re-rank.
 Every ranking below is an **OBSERVATION** about the corpus as it stands
 on this date. Nothing here is a theorem. This note is not a halt
 theorem, not a "no cycle of any length" claim, not a termination
