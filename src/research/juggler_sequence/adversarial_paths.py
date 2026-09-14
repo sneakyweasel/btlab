@@ -359,7 +359,6 @@ def same_word_spread(rows: list[dict[str, Any]]) -> dict[str, Any]:
 
 
 def swap_test(rows: list[dict[str, Any]], words: list[str]) -> dict[str, Any]:
-    realized = {row["word"]: row for row in rows if row["returned"]}
     by_word: dict[str, list[dict[str, Any]]] = defaultdict(list)
     for row in rows:
         if row["returned"]:

@@ -89,7 +89,6 @@ def test_separation_distinguishes_bound_from_equivalence():
 
 
 def test_quotient_count_matches_engine_mealy():
-    spec = ObservableCountdownSpec(start_remaining=2)
 
     def step(state, control):
         return (0,), int(control)

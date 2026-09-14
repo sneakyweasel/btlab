@@ -161,7 +161,9 @@ def phase3_payload(
         "default_attack_order_unchanged": True,
         "deferred_attacks_unchanged": list(DEFERRED_ATTACKS) == ["symbolic"],
         "experimental_attacks": sorted(EXPERIMENTAL_ATTACKS),
-        "not_in_default_order": [name for name in EXPERIMENTAL_ATTACKS if name not in DEFAULT_ATTACK_ORDER],
+        "not_in_default_order": sorted(
+            name for name in EXPERIMENTAL_ATTACKS if name not in DEFAULT_ATTACK_ORDER
+        ),
         "targets": [item.as_dict() for item in reports],
         "grey_loot": grey_loot(reports),
     }

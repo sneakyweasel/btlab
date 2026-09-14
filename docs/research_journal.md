@@ -45456,3 +45456,72 @@ on the cycle side.
 Status: OBSERVATION. Nothing proved, nothing refuted, one row
 reclassified, one attribution corrected in three places, and the next
 library errand named and ranked above this one.
+
+
+## Six failures, one prefix: the guard that could not tell Energy from EnergyBound
+
+Three residual probes -- residual_state, future_quotient, residual_minimize
+-- each carry a FORBIDDEN_ENGINES tuple naming the objects a branch is not
+allowed to introduce, and each tested it the same way: the substring
+`def {name}` in the Lean corpus. FORBIDDEN_ENGINES lists Energy. On
+14 September 2026 `def EnergyBound` landed in FateEnergyAtoms.lean with the
+Paper C bias-energy atoms, and `def Energy` is a prefix of `def EnergyBound`.
+All three probes reported a forbidden engine, lean_ok collapsed, and their
+classifications fell to RESIDUAL_STATE_INCOMPLETE and RESIDUAL_MN_INCOMPLETE.
+Six test failures, nothing forbidden added, and the mathematics untouched.
+
+The repair is to make the name end where the match ends: `declares_name` in
+lean_paths.py anchors both sides on a word boundary. `has_named` in the same
+module matches by bare substring too and has 154 callers; it is left alone,
+because today only Energy collides and a blanket tightening there is a
+separate question with a much larger blast radius.
+
+**The gate that should have caught it was already dark.** CI pins Python
+3.11. Two modules had picked up PEP 701 syntax that only parses on 3.12+ --
+a nested f-string reusing the outer quote in exact_floor_impact, a backslash
+inside a replacement field in two_adic_bridge. On 3.11 those are SyntaxError,
+so three test modules could not even be collected, and ruff could not parse
+the files it was asked to lint. Local development runs 3.13, which is why the
+split went unnoticed since 28 August. Both are now hoisted into helpers that
+parse everywhere, and both render byte-identically: the notes were
+regenerated from their committed JSON and the diff was empty.
+
+**What the dark gate was hiding.** classify() in capture_certificates built
+its escape report by iterating `large`, a name that is never bound; the
+rename to `collapse` had missed one site. F821 had been reporting it since
+27 August. The branch is reached exactly when a large witness is not capture
+-- the one input the function exists to describe -- so the probe would have
+raised NameError on its own finding. Fixed, and pinned by a test that drives
+the branch with a synthetic non-capture witness.
+
+**Committed artifacts that changed without anyone changing them.** Two
+payload fields serialised set iteration order: `not_in_default_order` over a
+frozenset, and `stored_statistics` over a set difference. Both are
+PYTHONHASHSEED-dependent, so every probe run reshuffled them and the churn
+rode into at least five commits, one of which contains nothing else. The line
+directly above the first already used sorted(). Both are sorted now. This was
+not theory: running the suite at the start of this session dirtied the tree
+with exactly that reorder.
+
+**Two silences I did not fill.** The F841 sweep that follows from turning the
+ruff gate back on removed nineteen dead locals, and two of them were not dead
+so much as orphaned. cycle_extrema and cycle_internal_e read Minimal.lean into
+a local and never use it; the sibling probes cycle_arith and cycle_e_term read
+it for a `MinimalNonTerm_not_rewritten` guard that those two do not have. The
+read is gone, but the guard is still missing, and restoring it means choosing
+the itinerary token per module -- ooe for cycle_arith, oooe for cycle_e_term,
+and an open question for the other two. Separately, excursion_transfer records
+a witness with `c` = log-ratio of L1 to L0 but no `a` for the symmetric
+log-ratio of H to L0, though it computed one; adding the field changes a
+committed schema. Both are recorded here rather than guessed at.
+
+**Found in passing, not repaired.** Re-rendering the two notes to check the
+f-string rewrites turned up prose that is not English: "an word", "word word",
+"every word of length k". Commit 64330557 of 2 September, a 1128-file rename
+that moved the companion app from Word to Itinerary, also ran the substitution
+backwards through Python docstrings and report templates. Fourteen modules and
+four already-committed documents carry it. It is the control-character lesson
+again -- a bulk edit whose damage is invisible because the generated document
+is never diffed against a regeneration -- and like that one it needs the
+surrounding sentence read before each site is repaired, since this laboratory
+uses "word" as a real term of art. Not touched here.

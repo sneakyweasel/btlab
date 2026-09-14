@@ -555,7 +555,7 @@ def lean_status_for(classification: WeightedPairClass) -> str:
 def tautology_checks() -> dict[str, Any]:
     return {
         "definitional_identity": "T(x)=sum_i s_i 3^i is not a candidate",
-        "stored_statistics": list(CANDIDATE_STATISTICS.keys() - {"not_stored"}),
+        "stored_statistics": sorted(CANDIDATE_STATISTICS.keys() - {"not_stored"}),
         "forbidden_keys": sorted(FORBIDDEN_STATISTIC_KEYS),
         "candidates_reconstruct_T": False,
         "coarser_than_full_sum": True,
