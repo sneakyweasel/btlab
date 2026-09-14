@@ -2757,9 +2757,15 @@ in the collapse regime. The Lean reduction `Energy.energy_implies_conjecture`
 has no numerical support and, with the constants of the reduction, is
 met by fair splitting only beyond `10^{124}`. Do not reopen as a larger
 enumeration, a sampled run at `10^{20}`, a different normalisation of
-the second moment, or an all-word energy. What is not closed: whether
-the collapsed fibers survive as bad words to depth `d(y)` with mass
-above the per-cylinder allowances of `H(C, A)` and `H_q(C, A)` once
-`Lambda^C` exceeds `N_0^2`; that is a construction question in the
-pattern of `J-absorbed-cylinder`, not a measurement.
+the second moment, or an all-word energy. The collapsed-fiber
+construction (a bad word of depth `d(y)` whose cylinder is one fiber
+of a bounded value) was assessed at triage and does not refute
+`H(C, A)` or `H_q(C, A)` for large `y`: an early dip cannot stay bad
+to depth `d(y)` because entrance times are bounded on bounded sets of
+values, and a late dip's fiber is shared among the many backward paths
+of its value, whose parity words are diverse, so each bad word sees
+many values of both parities. What that leaves is the equidistribution
+of backward-path parity words at growing depth, Appendix C's question;
+do not reopen the construction as a refutation route, and do not open
+a branch for it without a new analytic idea.
 Members: cylinder_energy_measure.

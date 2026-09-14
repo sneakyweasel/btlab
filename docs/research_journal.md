@@ -44847,3 +44847,41 @@ the bad words outnumber the collapse values, which would refute
 H(C, A) and H_q(C, A) by a construction in the pattern of the
 absorbed-cylinder theorem. That is a human-proof question, and the
 next best one.
+
+
+## The collapsed-fiber construction does not survive triage
+
+The question the last entry left: can a dip to a bounded value give,
+at infinitely many scales, a bad cylinder of depth d(y) with mass
+above the per-cylinder allowances, the way the absorbed-cylinder
+theorem did for the all-word version? Two regimes, and neither does
+it. An early dip, the word O E^m with m near L(y), collapses the
+scale onto values around N_0^theta in fibers of mass a fixed fraction
+of y; but the word stays bad to depth d(y) only if that value's orbit
+stays above the floor for about (C-1) L(y) more steps, and entrance
+times are bounded on a bounded set of values, so for large y there
+is no such value. Early collapse gives absorbed cylinders, which the
+lab already has, never bad ones at depth d(y). A late dip is a
+constant fraction of the bad mass, sitting in fibers of bounded
+values whose members all share the next letter; but asymptotically
+the backward tree of a bounded value branches through about 2v even
+preimages at every even step, its paths into (y, 2y] are numerous and
+their parity words diverse, and a bad word can receive pieces from
+many values of both parities. At computable scales a word sees one
+value, which is exactly what the enumeration showed; at the scales
+of the hypotheses it may see many, and its share is then fair up to
+one over the square root of that number.
+
+So the per-cylinder hypotheses are not refuted by collapse. They are
+reduced, at depth d(y), to whether the parity words of backward paths
+of bounded values are equidistributed enough that every bad word
+sees both parities in comparable mass: a nested-floor parity question
+of Paper B's type at growing depth, which is Appendix C's question
+in another dress. No branch is opened for it. Where this leaves the
+pincer: the rate-side jaw is closed in Lean for all four hypotheses
+and their two weakenings; the energy statistic is the wrong one and
+is closed; the per-cylinder forms rest on backward-path
+equidistribution and the global forms on the moment criterion, both
+analytic and both open. The loop stops here, because the next
+questions are a decoration (a certified numerical instance) or
+weeks of exponential sums, and that choice is Philippe's.
