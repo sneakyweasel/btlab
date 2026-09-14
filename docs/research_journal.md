@@ -47230,3 +47230,40 @@ was true on its own date and says so.
 
 Cost: the window cap is 47 where it was 37. Nothing downstream notices, and
 the layer no longer asks anyone to trust a compiler.
+
+
+## Deleting every branch made the drift gate stop looking
+
+Twenty-one branches went today: seventeen fully merged and holding nothing,
+four harvested first. The repository has one ref now, and the gate written
+yesterday to watch the branches responded by skipping all three of its
+branch-facing tests and reporting nothing at all.
+
+The fixture read `if not branch_refs(): skip("shallow clone")`. That conflates
+two states which are not alike. A shallow or single-branch clone genuinely
+cannot measure drift. A repository whose branches have all been merged and
+deleted can measure it perfectly well, and the answer is none. Treating the
+second as the first means the gate goes quiet exactly when the work is done --
+and the two acknowledgements left in the file, both describing branches that no
+longer exist, sat unnoticed behind the skip. The staleness check existed
+precisely to catch that and had been switched off by the tidying.
+
+`refs_are_visible` now distinguishes them by asking whether any remote ref
+exists at all, `origin/main` included. A tidy repository runs the gate; a
+shallow clone still skips.
+
+The second calibration test had the same disease as the first, and for the same
+reason. It pinned "files are counted against the merge base, not against main"
+to `cursor/operator-fragment-nd-commute-d502` as the live example, and deleting
+that branch turned the test into a skip. It now builds a throwaway ref at an
+ancestor commit instead -- the sharpest case available, since an ancestor's
+merge base is itself, so it added nothing while still carrying files main has
+since pruned -- and computes the naive metric alongside, asserting the two
+disagree. Without that second half a metric that always returned zero would
+pass. Both calibrations are now independent of which branches happen to exist.
+
+That is twice in two days that this gate has failed on its author, both times
+by depending on transient repository state. The lesson is narrow and worth
+keeping: a calibration test must not be pinned to the thing it was written to
+describe, because the reason to write it is usually the reason that thing is
+about to change.
