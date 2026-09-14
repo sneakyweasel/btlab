@@ -9997,5 +9997,18 @@
    "tests/research/juggler_sequence/test_paper_b_prefix_count.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "id": "J-period-family-arithmetic-in-lean",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "The integer arithmetic behind the cycle period-bound sequence is now kernel-checked. PeriodFamily.lean carries the convergent denominators q_0..q_15 of BETA = log2/log3 as a list, checks every one from q_2 on against the recurrence q_k = a_k q_(k-1) + q_(k-2) so the list is generated rather than asserted (denomsRec), and proves the facts the period sequence rests on: q_13 = 176251, q_14 = 301994, a_15 = 55, the family closure 176251 + 55 x 301994 = 16785921 (familyClosed), the identification of the three published bounds as j = 0, 1, 2 (periodBoundsAreFamily, over fanMember, giving 176251, 478245, 780239), the next member 1082233 (nextMember), the partial quotient itself (a15), that fanMember(55) is q_15 (lastMember), and that the family is strictly increasing (member_strictMono) so its members really are successive bounds rather than a set to be searched in any order. Axioms: familyClosed, periodBoundsAreFamily and lastMember depend on propext alone; denomsRec on propext, Classical.choice and Quot.sound. INDEPENDENT CONFIRMATION, NOT A DISCOVERY. Paper A already had this structure and states it more precisely: its Theorem 5.8 window is [50508, 16785921), it names the a_14 = 55 fan (its indexing; a_15 here, same numbers), identifies q_14 = 16785921 as L_55 the last fan member, and observes the window stops there only because the next partial quotient begins. What this session did was reach the same family from the Paper B side -- through the non-contracting word count and its Ostrowski staircase -- and check that cycle_gap_baker RECORD_LENGTHS are exactly the above-side semiconvergents. The Lean is the arithmetic made machine-checkable; the mathematics was already in the manuscript. Nothing here proves a period bound: the bounds rest on the certified descent floors recorded elsewhere.",
+  "source": "docs/research_journal.md",
+  "lean": "Problems/Juggler/PeriodFamily.lean",
+  "lean_trust": "kernel",
+  "decl": "familyClosed",
+  "tests": [
+   "tests/research/juggler_sequence/test_paper_b_prefix_count.py"
+  ],
+  "related_conjectures": []
  }
 ]

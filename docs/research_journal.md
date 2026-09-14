@@ -48976,3 +48976,90 @@ terminates --- and that judgement is now possible because the count exists.
 
 Nothing here is a no-cycle theorem and no bound moves. It prices the horizon of
 the existing route, which is the last thing this thread had left to say about it.
+
+
+## Consolidation: what the bridge thread actually added, and what Paper A already had
+
+Asked to fold the thread into Lean and into Paper A, the first honest task was
+finding out how much of it was new. Less than I expected, and the discovery is
+worth recording plainly.
+
+### Paper A had the family first, and states it better
+
+I had reconstructed, from the Paper B side, that the cycle period bounds are one
+semiconvergent family of `BETA`, that it has 56 members because a partial
+quotient is 55, and that it ends at `16785921`. Paper A has all of it:
+
+- Theorem 5.8's window is `[50508, 16785921)`;
+- it names the `a_14 = 55` fan (its indexing; `a_15` in mine, same numbers);
+- it identifies `q_14 = 16785921` as `L_55`, the last fan member;
+- it observes the window covers `L_0, ..., L_54` and stops at the endpoint
+  "only because that is where the next partial quotient begins";
+- and it already knows that on a cycle minimum every proper prefix is
+  non-contracting, which is the link I thought I was supplying.
+
+It goes further than I did in one respect that matters: it states exactly what
+removing the remaining per-length work would take --- "a lower bound on the
+Diophantine deficit that is uniform along the fan --- a genuinely different
+statement, and one this paper does not prove."
+
+So this thread did not find the family. It reached the same family from the
+other side, through the non-contracting word count and its Ostrowski staircase,
+and confirmed that `cycle_gap_baker`'s `RECORD_LENGTHS` are exactly the
+above-side semiconvergents. Independent confirmation by a different route is
+worth something; it is not a discovery, and recording it as one would have been
+wrong.
+
+### What went into Lean
+
+`PeriodFamily.lean`, seventeen declarations, kernel-checked. The convergent
+denominators `q_0 ... q_15` are carried as a list and every one from `q_2` is
+checked against `q_k = a_k q_(k-1) + q_(k-2)`, so the list is generated rather
+than asserted. Then the facts the period sequence rests on: `q_13 = 176251`,
+`q_14 = 301994`, `a_15 = 55`, the closure `176251 + 55 x 301994 = 16785921`, the
+three published bounds as `j = 0, 1, 2`, the next member `1082233`, and
+`member 55 = q_15`.
+
+`familyClosed`, `periodBoundsAreFamily` and `lastMember` depend on `propext`
+alone. The mathematics was in the manuscript; what is new is that the arithmetic
+is now machine-checked rather than read off a table.
+
+### What is genuinely new, and it is one paragraph
+
+Paper A says the window stops at `q_14` "only because that is where the next
+partial quotient begins". It does not say what begins there. From `a_16` onward
+the above-side fans run
+
+```text
+  q_16 = 17087915      4 members    33873836 ..    85137581
+  q_18 = 272500658     1 member    357638239
+  q_20 = 630138897    15 members   987777136 ..  9809721694
+```
+
+so the cost drops `55 -> 4 -> 1` immediately past the current fan, and the next
+comparable cluster starts near `10^9`, at lengths whose certified floor is far
+out of reach. That is a horizon statement Paper A does not make, and it changes
+how the remaining fan members read: they are the expensive stretch, not the
+opening of an unbounded sequence.
+
+Whether one paragraph justifies a Paper A republish --- which regenerates the
+PDF, the TeX, the Zenodo metadata and four export copies --- is a maintainer's
+call and is put as one.
+
+### A name collision, caught by the gate I had been reporting on
+
+The new module's `member` shadowed
+`Problems.Juggler.ReturnSeams.PeriodicOrbitModel.member` and pushed the orphan
+count to 403. The orphan scan matches on the last name component, so my
+declaration took the citations that had been keeping the older one credited ---
+the same mechanism as `pred_succ` this morning and the worktree copies in
+`1336c145`, now three instances in one day.
+
+Renamed to `fanMember`, and the count returned to 402 with the older declaration
+credited again. Worth noting that the fix is a rename rather than a citation:
+adding prose would have papered over a real shadowing, and the gate was right
+that something had changed.
+
+A second slip on the way: the rename was a `\bmember\b` regex, which rewrote the
+docstring prose as well as the identifier, leaving sentences like "the first
+fanMember of the family". Restored by hand.

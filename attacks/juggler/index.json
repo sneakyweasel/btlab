@@ -6452,7 +6452,8 @@
         "J-the-cycle-staircase-split-is-a-sign-condition",
         "J-near-closure-costs-nothing-in-word-count",
         "J-cycle-period-bounds-are-one-semiconvergent-family",
-        "J-the-55-family-is-the-last-hard-one-in-reach"
+        "J-the-55-family-is-the-last-hard-one-in-reach",
+        "J-period-family-arithmetic-in-lean"
       ],
       "aliases": [],
       "nk_cluster": null

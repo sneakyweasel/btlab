@@ -53911,6 +53911,174 @@
       "trust": "kernel"
     },
     {
+      "doc": "Partial quotients `a\u2081 \u2026 a\u2081\u2085` of `\u03b2 = log 2 / log 3`, after the leading `a\u2080 = 0`. Stable to eighty terms across 200- and 400-digit arithmetic; only these are used.",
+      "file": "formal/Problems/Juggler/PeriodFamily.lean",
+      "kind": "def",
+      "ledger": [
+        "J-period-family-arithmetic-in-lean"
+      ],
+      "line": 41,
+      "module": "Problems.Juggler.PeriodFamily",
+      "name": "betaQuotients",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Convergent denominators `q\u2080 \u2026 q\u2081\u2085` of `\u03b2`.",
+      "file": "formal/Problems/Juggler/PeriodFamily.lean",
+      "kind": "def",
+      "ledger": [
+        "J-period-family-arithmetic-in-lean"
+      ],
+      "line": 44,
+      "module": "Problems.Juggler.PeriodFamily",
+      "name": "betaDenoms",
+      "trust": "kernel"
+    },
+    {
+      "doc": "One step of the convergent recurrence.",
+      "file": "formal/Problems/Juggler/PeriodFamily.lean",
+      "kind": "def",
+      "ledger": [
+        "J-period-family-arithmetic-in-lean"
+      ],
+      "line": 48,
+      "module": "Problems.Juggler.PeriodFamily",
+      "name": "recStep",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The list is generated, not asserted.** Every denominator from `q\u2082` on is `a_k q_{k-1} + q_{k-2}`, so `betaDenoms` is determined by `betaQuotients`.",
+      "file": "formal/Problems/Juggler/PeriodFamily.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-period-family-arithmetic-in-lean"
+      ],
+      "line": 52,
+      "module": "Problems.Juggler.PeriodFamily",
+      "name": "denomsRec",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`q\u2081\u2083`, the first member of the family and the first published period bound.",
+      "file": "formal/Problems/Juggler/PeriodFamily.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-period-family-arithmetic-in-lean"
+      ],
+      "line": 60,
+      "module": "Problems.Juggler.PeriodFamily",
+      "name": "q13",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`q\u2081\u2084`, the step of the family.",
+      "file": "formal/Problems/Juggler/PeriodFamily.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-period-family-arithmetic-in-lean"
+      ],
+      "line": 63,
+      "module": "Problems.Juggler.PeriodFamily",
+      "name": "q14",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`a\u2081\u2085 = 55`, the partial quotient that fixes the family's length.",
+      "file": "formal/Problems/Juggler/PeriodFamily.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-period-family-arithmetic-in-lean"
+      ],
+      "line": 66,
+      "module": "Problems.Juggler.PeriodFamily",
+      "name": "a15",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The family closes.** The semiconvergents `q\u2081\u2083 + j q\u2081\u2084` reach `q\u2081\u2085` exactly at `j = 55`, which is why the family is finite and has `56` members rather than continuing indefinitely.",
+      "file": "formal/Problems/Juggler/PeriodFamily.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-period-family-arithmetic-in-lean"
+      ],
+      "line": 71,
+      "module": "Problems.Juggler.PeriodFamily",
+      "name": "familyClosed",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The `j`-th member of the family.",
+      "file": "formal/Problems/Juggler/PeriodFamily.lean",
+      "kind": "def",
+      "ledger": [
+        "J-period-family-arithmetic-in-lean"
+      ],
+      "line": 74,
+      "module": "Problems.Juggler.PeriodFamily",
+      "name": "fanMember",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The three published period bounds are `j = 0, 1, 2`.** `J-cyclemin-walk-charge-instance` at `176251`, then `478245`, then `780239`.",
+      "file": "formal/Problems/Juggler/PeriodFamily.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-period-family-arithmetic-in-lean"
+      ],
+      "line": 78,
+      "module": "Problems.Juggler.PeriodFamily",
+      "name": "periodBoundsAreFamily",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The next member, which a certified floor at `554000000` would bank.",
+      "file": "formal/Problems/Juggler/PeriodFamily.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-period-family-arithmetic-in-lean"
+      ],
+      "line": 83,
+      "module": "Problems.Juggler.PeriodFamily",
+      "name": "nextMember",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The family's last member is `q\u2081\u2085`.",
+      "file": "formal/Problems/Juggler/PeriodFamily.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-period-family-arithmetic-in-lean"
+      ],
+      "line": 86,
+      "module": "Problems.Juggler.PeriodFamily",
+      "name": "lastMember",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**`53` remain** after `j = 0, 1, 2` are cleared: the family has `56` members, `j = 0 \u2026 55`.",
+      "file": "formal/Problems/Juggler/PeriodFamily.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-period-family-arithmetic-in-lean"
+      ],
+      "line": 90,
+      "module": "Problems.Juggler.PeriodFamily",
+      "name": "remaining",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The family is strictly increasing, so the members really are successive bounds rather than a set to be searched in any order.",
+      "file": "formal/Problems/Juggler/PeriodFamily.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-period-family-arithmetic-in-lean"
+      ],
+      "line": 94,
+      "module": "Problems.Juggler.PeriodFamily",
+      "name": "member_strictMono",
+      "trust": "kernel"
+    },
+    {
       "doc": "",
       "file": "formal/Problems/Juggler/PrefixBunched.lean",
       "kind": "theorem",
@@ -86435,6 +86603,7 @@
         "Problems.Juggler.PaperBAssembly",
         "Problems.Juggler.PaperBChainRule",
         "Problems.Juggler.ParityComplexity",
+        "Problems.Juggler.PeriodFamily",
         "Problems.Juggler.PrefixBunched",
         "Problems.Juggler.PrefixBunchedEval",
         "Problems.Juggler.PrefixTwoEven",
@@ -88495,6 +88664,18 @@
       ],
       "ledger": []
     },
+    "Problems.Juggler.PeriodFamily": {
+      "declarations": 14,
+      "file": "formal/Problems/Juggler/PeriodFamily.lean",
+      "imports": [],
+      "ledger": [
+        {
+          "id": "J-period-family-arithmetic-in-lean",
+          "statement": "The integer arithmetic behind the cycle period-bound sequence is now kernel-checked. PeriodFamily.lean carries the convergent denominators q_0..q_15 of BETA = log2/log3 as a list, checks every one from q_2 on against the recurrence q_k = a_k q_(k-1) + q_(k-2) so the list is generated rather than asserted (denomsRec), and proves the facts the period sequence rests on: q_13 = 176251, q_14 = 301994, a_15 = 55, the family closure 176251 + 55 x 301994 = 16785921 (familyClosed), the identification of the three published bounds as j = 0, 1, 2 (periodBoundsAreFamily, over fanMember, giving 176251, 478245, 780239), the next member 1082233 (nextMember), the partial quotient itself (a15), that fanMember(55) is q_15 (lastMember), and that the family is strictly increasing (member_strictMono) so its members really are successive bounds rather than a set to be searched in any order. Axioms: familyClosed, periodBoundsAreFamily and lastMember depend on propext alone; denomsRec on propext, Classical.choice and Quot.sound. INDEPENDENT CONFIRMATION, NOT A DISCOVERY. Paper A already had this structure and states it more precisely: its Theorem 5.8 window is [50508, 16785921), it names the a_14 = 55 fan (its indexing; a_15 here, same numbers), identifies q_14 = 16785921 as L_55 the last fan member, and observes the window stops there only because the next partial quotient begins. What this session did was reach the same family from the Paper B side -- through the non-contracting word count and its Ostrowski staircase -- and check that cycle_gap_baker RECORD_LENGTHS are exactly the above-side semiconvergents. The Lean is the arithmetic made machine-checkable; the mathematics was already in the manuscript. Nothing here proves a period bound: the bounds rest on the certified descent floors recorded elsewhere.",
+          "tag": "EXACT \u2014 LEAN VERIFIED"
+        }
+      ]
+    },
     "Problems.Juggler.PrefixBunched": {
       "declarations": 40,
       "file": "formal/Problems/Juggler/PrefixBunched.lean",
@@ -89546,13 +89727,13 @@
     }
   },
   "totals": {
-    "declarations": 6600,
-    "declarations_with_a_ledger_row": 4558,
-    "ledger_rows_naming_a_file": 412,
-    "modules": 285,
+    "declarations": 6614,
+    "declarations_with_a_ledger_row": 4572,
+    "ledger_rows_naming_a_file": 413,
+    "modules": 286,
     "trust": {
       "compiler": 56,
-      "kernel": 6544
+      "kernel": 6558
     }
   }
 }
