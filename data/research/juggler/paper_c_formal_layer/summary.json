@@ -15,6 +15,7 @@
     "Problems.Juggler.FatePressureCorollary",
     "Problems.Juggler.FateOneSidedAtoms",
     "Problems.Juggler.FateEnergyAtoms",
+    "Problems.Juggler.FateCollapse",
     "Problems.Juggler.FateCylinderEnergy",
     "Problems.Juggler.FateLandingWindow",
     "Problems.Juggler.FateWindowCount",
@@ -31,24 +32,24 @@
     "Problems.Juggler.FateContagionBound"
   ],
   "artifact": {
-    "asked": 361,
-    "recorded": 361,
+    "asked": 378,
+    "recorded": 378,
     "axiom_lists": [
       "propext",
       "propext, Classical.choice, Quot.sound",
       "propext, Quot.sound"
     ]
   },
-  "appendix_a_names": 385,
+  "appendix_a_names": 409,
   "surface": {
-    "modules": 60,
-    "declarations": 1761,
+    "modules": 61,
+    "declarations": 1785,
     "compiler_trusted": [],
     "compiler_dependent": [],
     "open": []
   },
   "table": {
-    "rows": 36,
+    "rows": 37,
     "lean": [
       "Fate classes closed; trichotomy; exclusion (Lemma 2.1)",
       "Even block is an interval (Lemma 3.1)",
@@ -78,6 +79,7 @@
       "The conjecture from the pressure hypothesis \\(\\mathrm P_\\theta(C)\\) and from the no-momentum hypothesis \\(\\mathrm M_{\\theta,q}(C)\\) (Section 9.2's consequences), with the contagion bound as a hypothesis, or with nothing else assumed when the exponent exceeds \\(\\tfrac7{10}\\)",
       "Theorem 9.1 with exceptional atoms (Section 10(d), first paragraph): the share bound may fail on bad atoms of total mass \\(y(\\log y)^{-B}\\) at each depth, and the conjecture still follows, with nothing else assumed when the exponent exceeds \\(\\tfrac7{10}\\)",
       "The bias energy of the \\(L(y)\\)-bad words supplies the exceptional atoms (Section 10(d)): \\(\\sum_{w\\ \\text{bad}}D(w)^2\\le(q-\\tfrac12)^2y^2(\\log y)^{-2B}/2^t\\) at the depths below \\(\\lceil CL(y)\\rceil\\), at all large scales, gives the conjecture with nothing else assumed",
+      "Collapsed-component bias (Section 10(d), after the measurement): the next-letter bias of the starts whose iterate lands in a window of values is an alternating sum of fiber sizes, bounded by the variation of the fiber profile, and the even branch smooths it, \\((v+1)(M_v-m_v)+2M_v\\) per value",
       "Cylinder-splitting identity for the first-letter bias (Section 10(d), second equality)",
       "Exact landing windows of the nested productions ((D.1), (D.2))"
     ],
@@ -98,5 +100,5 @@
     "label": "PAPER_C_LEAN_SURFACE_CONSISTENT",
     "problems": 0
   },
-  "git_commit": "9aa6f0bc5fe5d1134a58824b70bab90588e838b5"
+  "git_commit": "067db7ee97a6ee692dc2c1dadf968afb96023211"
 }

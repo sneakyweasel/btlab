@@ -318,7 +318,7 @@ type Paper B proves enters Appendix C as an explicit hypothesis.
 
 Statements carry one of four roles. *Lean*: the exact combinatorial
 layer is formalized in Lean 4; the root `formal/Problems/JugglerFatePaper.lean`
-imports exactly the twenty-eight modules this paper cites and builds with
+imports exactly the twenty-nine modules this paper cites and builds with
 `lake build Problems.JugglerFatePaper`, without `sorry` and without
 `native_decide`; `formal/AxiomCheckPaperC.lean` prints the axiom
 dependencies of every cited name and `AxiomCheckPaperC.expected`
@@ -363,6 +363,7 @@ constants; they prove nothing and are labelled wherever they appear.
 | The conjecture from the pressure hypothesis \(\mathrm P_\theta(C)\) and from the no-momentum hypothesis \(\mathrm M_{\theta,q}(C)\) (Section 9.2's consequences), with the contagion bound as a hypothesis, or with nothing else assumed when the exponent exceeds \(\tfrac7{10}\) | Lean; the paper's \(e^{o(d)}\) is quantified as \((\log y)^\varepsilon\) and its \(o(d)\) as \(\delta d\), the numerical forms are human |
 | Theorem 9.1 with exceptional atoms (Section 10(d), first paragraph): the share bound may fail on bad atoms of total mass \(y(\log y)^{-B}\) at each depth, and the conjecture still follows, with nothing else assumed when the exponent exceeds \(\tfrac7{10}\) | Lean; the condition is \(B>C\log_2x+1+e\) in place of the paper's \(B>e_q(C)\), sufficient and not sharp |
 | The bias energy of the \(L(y)\)-bad words supplies the exceptional atoms (Section 10(d)): \(\sum_{w\ \text{bad}}D(w)^2\le(q-\tfrac12)^2y^2(\log y)^{-2B}/2^t\) at the depths below \(\lceil CL(y)\rceil\), at all large scales, gives the conjecture with nothing else assumed | Lean, by Cauchy--Schwarz on the bad atoms that violate the share bound; the exact enumeration of Section 11 finds that energy at its worst-case value from depth \(16\)--\(20\) at every computable scale, so the hypothesis has no numerical support |
+| Collapsed-component bias (Section 10(d), after the measurement): the next-letter bias of the starts whose iterate lands in a window of values is an alternating sum of fiber sizes, bounded by the variation of the fiber profile, and the even branch smooths it, \((v+1)(M_v-m_v)+2M_v\) per value | Lean; the variation bound on a fiber profile and the parity of the odd-preimage mass are human |
 | Azuma and exponential-moment arguments (Sections 8--10, except Lemma 8.2, Theorem 8.3, Theorem 9.1, Theorem 9.2 and Proposition 9.3 in their exact forms) | human proof |
 | Cylinder-splitting identity for the first-letter bias (Section 10(d), second equality) | Lean; the Parseval form in Walsh sums, and the exceptional-atom estimate it is meant to supply, are human |
 | Exact landing windows of the nested productions ((D.1), (D.2)) | Lean; the smooth comparison (D.3), the multiplicities and the production inequality they feed are human |
@@ -2345,6 +2346,34 @@ dipped to a bounded value collapse onto single deterministic futures;
 the reduction stands, the hypothesis has no numerical support, and the
 per-cylinder forms it feeds inherit the warning.
 
+Lean: the collapsed component, in
+`formal/Problems/Juggler/FateCollapse.lean`, the exact layer of the
+observation that the collapsed mass, taken as a whole, is nearly fair.
+For a finite set of starts, `Collapse.fiber` counts the starts whose
+\(t\)-th iterate is a given value, and the next-letter bias of the
+starts whose iterate lands in a window \([a,b]\) of values
+(`Collapse.windowBias`) is the alternating sum
+\(-\sum_{v=a}^{b}(-1)^v\,\mathrm{fiber}(v)\) (`Collapse.windowBias_eq_sum`),
+hence at most the total variation of the fiber profile over the window
+plus one fiber (`Collapse.abs_windowBias_le`, by summation by parts).
+One step of the map sums fibers over preimages, the even numbers of
+\([v^2,(v+1)^2)\) plus at most one odd preimage (`Collapse.fiber_succ_eq`,
+on Lemma 3.1's even block in fiber form), and the even branch smooths:
+with the depth-\(t\) profile between \(m_v\) and \(M_v\) on the double
+block \([v^2,(v+2)^2)\), consecutive block sums differ by at most
+\((v+1)(M_v-m_v)+2M_v\) (`Collapse.blockSum_sub_le`). Hence
+`Collapse.collapse_bias_le`: the bias of a collapsed window at depth
+\(t+1\) is at most \(\sum_v\bigl((v+1)(M_v-m_v)+2M_v\bigr)\) plus twice
+the mass arriving through odd preimages plus one fiber. With a smooth
+profile, \(M_v-m_v\) of order \(\bar f/v\) on a block of size
+\(\bar fv\), the first term is \(O(\bar f)\) per value against a window
+mass of \(\bar fv\) per value: the collapsed mass entering through the
+even branch is fair up to a relative \(O(1/v)\), and the excess share
+of the moment criterion sits in the odd branch and in the high walkers.
+Not here: any bound on the variation of a fiber profile, and the
+parity of the odd-preimage mass, which is the share law at bounded
+scale.
+
 **(e) Bounded-depth statistics and the walk model.** Fix
 \(k\). The probability measure on parity words that is fair to depth
 \(k\) and all-\(O\) afterwards satisfies every cylinder-count
@@ -2659,7 +2688,7 @@ No nontrivial cycle or unbounded orbit is excluded by this paper.
 ## Appendix A. Lean names
 
 All in `formal/Problems/Juggler/FateContagion.lean` unless noted. The
-root `formal/Problems/JugglerFatePaper.lean` imports exactly the twenty-eight
+root `formal/Problems/JugglerFatePaper.lean` imports exactly the twenty-nine
 modules named here and builds with `lake build Problems.JugglerFatePaper`
 without `sorry` and without `native_decide`;
 `formal/AxiomCheckPaperC.expected` records the axioms of every name
@@ -2705,6 +2734,7 @@ abstract lemmas listed here, not the analytic density estimates.
 | Section 9.2's consequences (the conjecture from the pressure and no-momentum hypotheses), in `Problems/Juggler/FatePressureCorollary.lean` | `Pressure.oddFailures_subset_live`, `Pressure.PressureBound`, `Pressure.NoMomentumBound`, `Pressure.momentumExponent`, `Pressure.absorb`, `Pressure.oddFailures_le_of_pressure`, `Pressure.pressure_conj_of_contagion`, `Pressure.pressure_implies_conjecture`, `Pressure.oddFailures_le_of_noMomentum`, `Pressure.noMomentum_conj_of_contagion`, `Pressure.noMomentum_implies_conjecture` |
 | Section 10(d), Theorem 9.1 with exceptional atoms, in `Problems/Juggler/FateOneSidedAtoms.lean` | `OneSided.OneSidedShareExc`, `OneSided.oneSidedShareExc_of_share`, `OneSided.OneSidedBoundExc`, `OneSided.oneSidedBoundExc_of_bound`, `OneSided.badMass_succ_le_exc`, `OneSided.badMass_le_exc`, `OneSided.one_sided_bound_exc`, `OneSided.main_term_eq`, `OneSided.one_sided_bound_kl_exc`, `OneSided.pow_le_rpow_scale_gen`, `OneSided.tail_le`, `OneSided.oddFailures_le_of_exc`, `OneSided.exc_conj_of_contagion`, `OneSided.exc_implies_conjecture` |
 | Section 10(d), the bias energy supplying the exceptional atoms, in `Problems/Juggler/FateEnergyAtoms.lean` | `OneSided.OneSidedShareExc.mono_err`, `Energy.bias`, `Energy.energyOn`, `Energy.biasEnergy`, `Energy.badEnergy`, `Energy.violators`, `Energy.badEnergy_le_biasEnergy`, `Energy.card_allWords`, `Energy.mass_violators_le`, `Energy.oneSidedShareExc_of_energy`, `Energy.wordCount_cylinder`, `Energy.biasEnergy_eq`, `Energy.EnergyBound`, `Energy.oneSidedBoundExc_of_energy`, `Energy.energy_conj_of_contagion`, `Energy.energy_implies_conjecture` |
+| Section 10(d), the collapsed component, in `Problems/Juggler/FateCollapse.lean` | `Collapse.fiber`, `Collapse.window`, `Collapse.windowBias`, `Collapse.card_filter_window`, `Collapse.card_window`, `Collapse.windowBias_eq_sum`, `Collapse.abs_alt_sum_le`, `Collapse.Icc_eq_Ico`, `Collapse.abs_windowBias_le`, `Collapse.lt_sq_succ_of_floorPower_eq`, `Collapse.pre`, `Collapse.iterate_succ_eq`, `Collapse.fiber_succ`, `Collapse.pre_filter_even`, `Collapse.blockSum`, `Collapse.oddPart`, `Collapse.oddPart_nonneg`, `Collapse.fiber_succ_eq`, `Collapse.evenCount`, `Collapse.evenCount_le`, `Collapse.le_evenCount`, `Collapse.blockSum_sub_le`, `Collapse.sum_abs_oddPart_sub_le`, `Collapse.collapse_bias_le` |
 
 ## Appendix B. Constants and artifacts
 
@@ -2810,6 +2840,10 @@ use the roots of the displayed defining equations.
 
   SHA-256: `f92b54dd95f3a4055b94424ed5947ce164075f1e84c4963afce12e7895ea8cd9`
 
+- `formal/Problems/Juggler/FateCollapse.lean`
+
+  SHA-256: `ec28f592785730f094bcb6add7cbaf5d98e139a4db0f006a3612a071a3e4f69b`
+
 - `formal/Problems/Juggler/FateShareLaw.lean`
 
   SHA-256: `a229f4fa4cf48cb5b003c746672947eec10bf93d7287ad7eecaa3f84d5236e7c`
@@ -2860,11 +2894,11 @@ use the roots of the displayed defining equations.
 
 - `formal/Problems/JugglerFatePaper.lean`
 
-  SHA-256: `0ddc0c309b01cf7cd6eede6e963cf8a397f88bd1486e516c7251a398f5bf9089`
+  SHA-256: `e1aeff4bd7664a1347b5d3edaa8a185ad66f55b69935af3db3fdcaac8c9c1d81`
 
 - `formal/AxiomCheckPaperC.expected`
 
-  SHA-256: `fe28b8d11d20ca9c449b50db57667b498342bed10695276ca2af1a81830b879c`
+  SHA-256: `100f3bd450cb67441f7f7c82d931b4e68de19c82664c3f847fb4ab7358b127f4`
 
 - `src/research/juggler_sequence/fate_contagion.py`
 

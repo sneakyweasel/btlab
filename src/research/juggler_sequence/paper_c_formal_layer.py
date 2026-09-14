@@ -61,6 +61,7 @@ CITED_MODULES = (
     "Problems.Juggler.FatePressureCorollary",
     "Problems.Juggler.FateOneSidedAtoms",
     "Problems.Juggler.FateEnergyAtoms",
+    "Problems.Juggler.FateCollapse",
     "Problems.Juggler.FateCylinderEnergy",
     "Problems.Juggler.FateLandingWindow",
     "Problems.Juggler.FateWindowCount",
@@ -102,6 +103,7 @@ TABLE_LEAN_ROWS = {
     "the pressure hypothesis": "FatePressureCorollary",
     "exceptional atoms": "FateOneSidedAtoms",
     "supplies the exceptional atoms": "FateEnergyAtoms",
+    "Collapsed-component bias": "FateCollapse",
     "Lemma 5.2": "FateSeed",
     "Theorem 7.2": "FateTaoReduction",
     "Corollary 8.4": "FateCylinderCorollary",
@@ -180,14 +182,12 @@ def audit() -> dict[str, Any]:
     index = fp.build()
     reach = fp.reachable(index)
     reached = reach.get(ROOT_MODULE, set()) | {ROOT_MODULE}
-    decl_module: dict[str, str] = {}
-    decl_trust: dict[str, str] = {}
-    decl_kind: dict[str, str] = {}
+    # the index records names relative to their namespace, and a bare name can be declared
+    # in several modules; keep every declaration and prefer one reachable from the root
+    decls_by_name: dict[str, list[dict[str, str]]] = {}
     for d in index["declarations"]:
-        # the index records bare names; Appendix A qualifies the `Sweep.*` machinery
-        decl_module.setdefault(d["name"], d["module"])
-        decl_trust.setdefault(d["name"], d["trust"])
-        decl_kind.setdefault(d["name"], d.get("kind", ""))
+        decls_by_name.setdefault(d["name"], []).append(
+            {"module": d["module"], "trust": d["trust"], "kind": d.get("kind", "")})
 
     problems: list[dict[str, str]] = []
 
@@ -216,17 +216,19 @@ def audit() -> dict[str, Any]:
         # declared as `B.c` (a dotted name inside `A`) or as `c`; prefer the longest match
         parts = name.split(".")
         bare = next((c for c in (".".join(parts[i:]) for i in range(len(parts)))
-                     if c in decl_module), parts[-1])
-        mod = decl_module.get(bare)
-        if mod is None:
+                     if c in decls_by_name), parts[-1])
+        candidates = decls_by_name.get(bare)
+        if not candidates:
             problems.append({"kind": "paper", "why": "cited in Appendix A but not declared", "detail": name})
             continue
+        chosen = next((d for d in candidates if d["module"] in reached), candidates[0])
+        mod = chosen["module"]
         if mod not in reached:
             problems.append({"kind": "paper", "why": "declared but not reachable from the root",
                              "detail": f"{name} in {mod}"})
-        if decl_trust.get(bare) != "kernel":
+        if chosen["trust"] != "kernel":
             problems.append({"kind": "paper", "why": "not kernel-checked", "detail": name})
-        is_def = decl_kind.get(bare) in ("def", "abbrev", "structure", "noncomputable def")
+        is_def = chosen["kind"] in ("def", "abbrev", "structure", "noncomputable def")
         if not is_def and name not in asked:
             problems.append({"kind": "artifact", "why": "cited theorem the artifact does not ask about",
                              "detail": name})
