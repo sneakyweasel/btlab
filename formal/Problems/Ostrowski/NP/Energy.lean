@@ -257,7 +257,7 @@ private theorem adjointDet_two : adjointDet 2 = 1 := by
   simp [adjointDet, tripleDet, adjointU, qShift, q]
 
 private theorem adjointDet_three : adjointDet 3 = 3 := by
-  simp [adjointDet, tripleDet, adjointU, qShift, q, q_rec]
+  simp [adjointDet, tripleDet, adjointU, qShift, q]
 
 private theorem adjointDet_succ_of_four (n : ℕ) (hn : 4 ≤ n) :
     adjointDet (n + 1) = 3 * adjointDet n := by

@@ -22,7 +22,7 @@ theorem decode_derivative (w : List Trit) (hw : w ≠ []) :
                 Int.mul_emod_right 3 _
               rw [h0]
           _ = (w.getLast hw).toInt % 3 := by
-              simp [Int.emod_emod]
+              simp
     exact hmod
   unfold DZ
   rw [hlsd]

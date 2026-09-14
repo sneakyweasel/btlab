@@ -72,7 +72,7 @@ theorem dAdd_not_lsd_sum_local : ¬ DLocalLsdSum fun x y => DZ (x + y) := by
   have l0m : lsdZ ((0 : ℤ) + (-1)) = -1 := by native_decide
   have h2 : DZ ((1 : ℤ) + 1) = 1 := by native_decide
   have hm1 : DZ ((0 : ℤ) + (-1)) = 0 := by native_decide
-  simp [d1, d0, dm, l11, l0m, h2, hm1] at h11 h0m
+  simp [d1, d0, dm] at h11 h0m
   exact absurd (h11.trans h0m.symm) (by decide : (1 : ℤ) ≠ 0)
 
 /-- On the diagonal `a = b` the residual step is `D (s + 2a)`. -/

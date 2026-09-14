@@ -80419,7 +80419,7 @@
         "BTA-x3-x",
         "BTA-coeffwise-nec"
       ],
-      "line": 229,
+      "line": 228,
       "module": "BTCalculus.PolynomialFunctionsMod",
       "name": "three_dvd_x_pow_three_sub_x",
       "trust": "kernel"
@@ -80437,7 +80437,7 @@
         "BTA-x3-x",
         "BTA-coeffwise-nec"
       ],
-      "line": 241,
+      "line": 240,
       "module": "BTCalculus.PolynomialFunctionsMod",
       "name": "X_pow_three_sub_X_vanishes_one",
       "trust": "kernel"
@@ -80455,7 +80455,7 @@
         "BTA-x3-x",
         "BTA-coeffwise-nec"
       ],
-      "line": 247,
+      "line": 246,
       "module": "BTCalculus.PolynomialFunctionsMod",
       "name": "not_three_dvd_coeff_X_pow_three_sub_X",
       "trust": "kernel"
@@ -80473,7 +80473,7 @@
         "BTA-x3-x",
         "BTA-coeffwise-nec"
       ],
-      "line": 255,
+      "line": 254,
       "module": "BTCalculus.PolynomialFunctionsMod",
       "name": "X_pow_three_sub_X_eq_cubic",
       "trust": "kernel"
@@ -80491,7 +80491,7 @@
         "BTA-x3-x",
         "BTA-coeffwise-nec"
       ],
-      "line": 262,
+      "line": 261,
       "module": "BTCalculus.PolynomialFunctionsMod",
       "name": "X_pow_three_sub_X_not_vanishes_two",
       "trust": "kernel"
@@ -80509,7 +80509,7 @@
         "BTA-x3-x",
         "BTA-coeffwise-nec"
       ],
-      "line": 271,
+      "line": 270,
       "module": "BTCalculus.PolynomialFunctionsMod",
       "name": "eval_X_pow_three",
       "trust": "kernel"
@@ -80527,7 +80527,7 @@
         "BTA-x3-x",
         "BTA-coeffwise-nec"
       ],
-      "line": 275,
+      "line": 274,
       "module": "BTCalculus.PolynomialFunctionsMod",
       "name": "eval_sectionDeriv_X_pow_three",
       "trust": "kernel"
@@ -80545,7 +80545,7 @@
         "BTA-x3-x",
         "BTA-coeffwise-nec"
       ],
-      "line": 293,
+      "line": 292,
       "module": "BTCalculus.PolynomialFunctionsMod",
       "name": "sectionDeriv_X_pow_three",
       "trust": "kernel"
@@ -80563,7 +80563,7 @@
         "BTA-x3-x",
         "BTA-coeffwise-nec"
       ],
-      "line": 305,
+      "line": 304,
       "module": "BTCalculus.PolynomialFunctionsMod",
       "name": "DZ_neg_one",
       "trust": "kernel"
@@ -80581,7 +80581,7 @@
         "BTA-x3-x",
         "BTA-coeffwise-nec"
       ],
-      "line": 309,
+      "line": 308,
       "module": "BTCalculus.PolynomialFunctionsMod",
       "name": "DZ_one",
       "trust": "kernel"
@@ -80599,7 +80599,7 @@
         "BTA-x3-x",
         "BTA-coeffwise-nec"
       ],
-      "line": 313,
+      "line": 312,
       "module": "BTCalculus.PolynomialFunctionsMod",
       "name": "residual_X_pow_three_neg",
       "trust": "kernel"
@@ -80617,7 +80617,7 @@
         "BTA-x3-x",
         "BTA-coeffwise-nec"
       ],
-      "line": 325,
+      "line": 324,
       "module": "BTCalculus.PolynomialFunctionsMod",
       "name": "residual_X_pow_three_pos",
       "trust": "kernel"
@@ -80635,7 +80635,7 @@
         "BTA-x3-x",
         "BTA-coeffwise-nec"
       ],
-      "line": 335,
+      "line": 334,
       "module": "BTCalculus.PolynomialFunctionsMod",
       "name": "x3_merge_eval_diff",
       "trust": "kernel"
@@ -80653,7 +80653,7 @@
         "BTA-x3-x",
         "BTA-coeffwise-nec"
       ],
-      "line": 345,
+      "line": 344,
       "module": "BTCalculus.PolynomialFunctionsMod",
       "name": "x3_first_merge_equiv_two",
       "trust": "kernel"
@@ -80671,7 +80671,7 @@
         "BTA-x3-x",
         "BTA-coeffwise-nec"
       ],
-      "line": 356,
+      "line": 355,
       "module": "BTCalculus.PolynomialFunctionsMod",
       "name": "x3_first_merge_not_equiv_three",
       "trust": "kernel"
@@ -80689,7 +80689,7 @@
         "BTA-x3-x",
         "BTA-coeffwise-nec"
       ],
-      "line": 373,
+      "line": 372,
       "module": "BTCalculus.PolynomialFunctionsMod",
       "name": "eval_X_pow_four",
       "trust": "kernel"
@@ -80707,7 +80707,7 @@
         "BTA-x3-x",
         "BTA-coeffwise-nec"
       ],
-      "line": 377,
+      "line": 376,
       "module": "BTCalculus.PolynomialFunctionsMod",
       "name": "lsdZ_zero",
       "trust": "kernel"
@@ -80725,7 +80725,7 @@
         "BTA-x3-x",
         "BTA-coeffwise-nec"
       ],
-      "line": 381,
+      "line": 380,
       "module": "BTCalculus.PolynomialFunctionsMod",
       "name": "eval_sectionDeriv_X_pow_four_zero",
       "trust": "kernel"
@@ -80743,7 +80743,7 @@
         "BTA-x3-x",
         "BTA-coeffwise-nec"
       ],
-      "line": 393,
+      "line": 392,
       "module": "BTCalculus.PolynomialFunctionsMod",
       "name": "residual_X_pow_four_zero",
       "trust": "kernel"
@@ -80761,7 +80761,7 @@
         "BTA-x3-x",
         "BTA-coeffwise-nec"
       ],
-      "line": 404,
+      "line": 403,
       "module": "BTCalculus.PolynomialFunctionsMod",
       "name": "eval_sectionDeriv_27_X_pow_four_zero",
       "trust": "kernel"
@@ -80779,7 +80779,7 @@
         "BTA-x3-x",
         "BTA-coeffwise-nec"
       ],
-      "line": 418,
+      "line": 417,
       "module": "BTCalculus.PolynomialFunctionsMod",
       "name": "residual_X_pow_four_zero_zero",
       "trust": "kernel"
@@ -80797,7 +80797,7 @@
         "BTA-x3-x",
         "BTA-coeffwise-nec"
       ],
-      "line": 432,
+      "line": 431,
       "module": "BTCalculus.PolynomialFunctionsMod",
       "name": "x4_merge_eval_diff",
       "trust": "kernel"
@@ -80815,7 +80815,7 @@
         "BTA-x3-x",
         "BTA-coeffwise-nec"
       ],
-      "line": 442,
+      "line": 441,
       "module": "BTCalculus.PolynomialFunctionsMod",
       "name": "x4_first_merge_equiv_three",
       "trust": "kernel"
@@ -80833,7 +80833,7 @@
         "BTA-x3-x",
         "BTA-coeffwise-nec"
       ],
-      "line": 453,
+      "line": 452,
       "module": "BTCalculus.PolynomialFunctionsMod",
       "name": "x4_first_merge_not_equiv_four",
       "trust": "kernel"
@@ -83648,7 +83648,7 @@
       "ledger": [
         "BTC-word-simp-nf"
       ],
-      "line": 283,
+      "line": 282,
       "module": "BTCalculus.WordSimpNewman",
       "name": "locally_confluent",
       "trust": "kernel"
@@ -83660,7 +83660,7 @@
       "ledger": [
         "BTC-word-simp-nf"
       ],
-      "line": 303,
+      "line": 302,
       "module": "BTCalculus.WordSimpNewman",
       "name": "confluent",
       "trust": "kernel"
@@ -83672,7 +83672,7 @@
       "ledger": [
         "BTC-word-simp-nf"
       ],
-      "line": 320,
+      "line": 319,
       "module": "BTCalculus.WordSimpNewman",
       "name": "normal_rtc",
       "trust": "kernel"
@@ -83684,7 +83684,7 @@
       "ledger": [
         "BTC-word-simp-nf"
       ],
-      "line": 330,
+      "line": 329,
       "module": "BTCalculus.WordSimpNewman",
       "name": "unique_normal_form",
       "trust": "kernel"

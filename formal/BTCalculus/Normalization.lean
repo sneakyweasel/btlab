@@ -71,7 +71,7 @@ theorem addHead_value (q : ℤ) (cs : List ℤ) :
   | nil =>
     simp [addHead, coeffValue]
   | cons c rest =>
-    simp [addHead, coeffValue, add_comm, add_left_comm, add_assoc]
+    simp [addHead, coeffValue, add_comm, add_assoc]
 
 /-- One rewrite at the LSD. Legal whenever the head is not a trit. -/
 def stepZero : List ℤ → List ℤ
@@ -273,7 +273,7 @@ def irreducible (cs : List ℤ) : Prop :=
 theorem allTrits_irreducible : ∀ cs, allTrits cs → irreducible cs
   | [], _ => by
     intro i
-    simp [irreducible, getCoeff, isTrit]
+    simp [getCoeff, isTrit]
   | c :: cs, h => by
     intro i
     cases i with

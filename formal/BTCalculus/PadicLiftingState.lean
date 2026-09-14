@@ -73,7 +73,7 @@ theorem sectionDeriv_smul_of_root {a : ℤ} {f : ℤ[X]} (lam : ℤ)
   rw [h] at hf
   rw [hscaled] at hg
   have hmul : eval (a + 3 * x) (C lam * f) = lam * eval (a + 3 * x) f := by
-    simp [eval_mul, eval_C]
+    simp [eval_mul]
   have hkey : (3 : ℤ) * eval x (sectionDeriv a (C lam * f))
       = 3 * (lam * eval x (sectionDeriv a f)) := by
     have h1 : (0 : ℤ) + 3 * eval x (sectionDeriv a (C lam * f))
@@ -82,7 +82,7 @@ theorem sectionDeriv_smul_of_root {a : ℤ} {f : ℤ[X]} (lam : ℤ)
     linarith [h1]
   have hL := mul_left_cancel₀ (by decide : (3 : ℤ) ≠ 0) hkey
   rw [hL]
-  simp [eval_mul, eval_C]
+  simp [eval_mul]
 
 /-- For `λ` coprime to 3, survival of a trit is unchanged by scaling. -/
 theorem root_smul_iff {a lam : ℤ} {f : ℤ[X]} (hlam : ¬ (3 : ℤ) ∣ lam) :

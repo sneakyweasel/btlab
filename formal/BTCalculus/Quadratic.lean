@@ -29,7 +29,7 @@ def packWord (w : List ℤ) : ℤ :=
 theorem eval_quad (A B c0 x : ℤ) :
     eval x (quad A B c0) = A * x ^ 2 + B * x + c0 := by
   unfold quad
-  simp [eval_add, eval_mul, eval_C, eval_pow, eval_X, mul_comm, mul_left_comm, mul_assoc]
+  simp [eval_add, eval_mul, eval_pow, eval_X]
 
 theorem coeff_quad_zero (A B c0 : ℤ) : coeff (quad A B c0) 0 = c0 := by
   unfold quad

@@ -116,11 +116,11 @@ private theorem step_rank_lt_coords {t u : OpFrag} (h : Step t u) :
           (rank u).2.1 = (rank t).2.1 ∧ (rank u).2.2 < (rank t).2.2) := by
   induction h
   case i0 => simp [rank, i0Count, nInversion, size]
-  case d_im => simp [rank, i0Count, nInversion, size, pushableDesc] <;> omega
-  case d_ip => simp [rank, i0Count, nInversion, size, pushableDesc] <;> omega
-  case d_i0 => simp [rank, i0Count, nInversion, size, pushableDesc]
-  case d_s => simp [rank, i0Count, nInversion, size, pushableDesc] <;> omega
-  case n_n => simp [rank, i0Count, nInversion, size, pushableDesc] <;> omega
+  case d_im => simp [rank, i0Count, nInversion, size]; omega
+  case d_ip => simp [rank, i0Count, nInversion, size]; omega
+  case d_i0 => simp [rank, i0Count, nInversion, size]
+  case d_s => simp [rank, i0Count, nInversion, size]; omega
+  case n_n => simp [rank, i0Count, nInversion, size, pushableDesc]; omega
   case n_s => simp [rank, i0Count, nInversion, size, pushableDesc]
   case n_i0 => simp [rank, i0Count, nInversion, size, pushableDesc]
   case n_im => simp [rank, i0Count, nInversion, size, pushableDesc]
@@ -143,7 +143,7 @@ private theorem step_rank_lt_coords {t u : OpFrag} (h : Step t u) :
     omega
   case cong_N hstep ih =>
     have hle := counts_le_of_step hstep
-    simp [rank, i0Count, nInversion, size, pushableDesc] at ih hle ⊢
+    simp [rank, i0Count, nInversion, size] at ih hle ⊢
     omega
 
 /-- Every one-step contraction strictly decreases the lex rank. -/

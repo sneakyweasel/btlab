@@ -106,7 +106,7 @@ theorem D_add (x y : ℤ) :
                 Int.mul_emod_right 3 _
               rw [h0]
           _ = (addDigit (lsdZ x) (lsdZ y)).1 % 3 := by
-              simp [Int.emod_emod]
+              simp
     exact hmod
   unfold DZ
   rw [hlsd, hexp]

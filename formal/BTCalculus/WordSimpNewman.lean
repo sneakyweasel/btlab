@@ -48,7 +48,7 @@ lemma join_disjoint (pre mid suf : Word) (r1 r2 : Rule) :
 lemma same_src_of_append {r1 r2 : Rule} {suf1 suf2 : Word}
     (h : r1.src ++ suf1 = r2.src ++ suf2) : r1 = r2 ∧ suf1 = suf2 := by
   cases r1 <;> cases r2 <;> simp [Rule.src] at h <;>
-    first | exact ⟨rfl, h⟩ | cases h
+    exact ⟨rfl, h⟩
 
 /-! ### Documented critical pairs -/
 
@@ -265,8 +265,7 @@ lemma join_oriented (pre mid suf1 suf2 : Word) (r1 r2 : Rule)
     | cons x xs =>
       have hr1len : r1.src.length = 2 := by
         rcases src_length r1 with h1 | h2
-        · have : (x :: xs).length < 1 := by simpa [h1] using hlt
-          simp at this
+        · simp [h1] at hlt
         · exact h2
       have hxs : xs = [] := by
         have hlt' : (x :: xs).length < 2 := by

@@ -47426,3 +47426,112 @@ finding. No declaration was added, removed, proved or broken by any of it; the
 trust boundary is where it was. What changed is that four generated files now
 say what the corpus actually contains, and that they cannot quietly stop
 saying it again.
+
+
+## Eighty-five warnings, and the one citation that was holding a gate up
+
+`lake build` was already exit 0, so "pristine" here meant the eighty-five
+warnings standing between *compiles* and *clean*. They sorted into five kinds:
+seventy-two unused `simp` arguments, six unnecessary `<;>` focuses, three
+deprecated lemma names, one `first` alternative that two separate linters
+flagged at once, one unnecessary `simpa`, and one `intro` Lean offered to
+merge. Eighty-three are now gone. The two that remain are not Lean's fault and
+are discussed at the end.
+
+The unused `simp` arguments were removed by source span rather than by name.
+The linter reports the column of the argument itself, and an identifier can
+legitimately appear twice on a line, used by one call and dead in the other, so
+matching on the name is the wrong tool. As a check that costs nothing, Lean
+emits the corrected tactic in an `[apply]` line: for the fifty-six lines
+carrying exactly one flagged argument, my rewrite was compared against Lean's
+own suggestion and agreed in all fifty-six. Five lines carried more than one
+flagged argument and had no single suggestion to check against; the rebuild is
+their only witness, and it passed.
+
+### The orphan gate was resting on a name collision
+
+Removing dead `simp` arguments pushed the orphan count from 402 to 403, one
+over budget. The new orphan is
+`Problems.Juggler.CubicRemainderAssembly.pred_succ`, a theorem about
+`OrbitUpperChargeCertificate`.
+
+At HEAD, its only two lexical citations in the whole tracked corpus were these:
+
+```text
+formal/Problems/BalancedTernary/SignedDigitResidual.lean:104
+    simp [Nat.pred_succ] at hs h3 ⊢
+formal/Problems/BalancedTernary/SignedDigitResidualGeometry.lean:157
+    simp [Nat.pred_succ] at h
+```
+
+Neither is a reference to it. Both name Mathlib's `Nat.pred_succ`, an unrelated
+lemma about the naturals, in a different problem area; the hygiene scan matches
+on the final path component, so `pred_succ` was credited to the Juggler
+theorem. And both arguments were dead --- Lean had been saying so on every
+build. So a Juggler declaration was being counted as referenced by a simp
+argument that referred to something else and did nothing.
+
+That is the same shape as the rest of this session, and it is the second time
+this particular gate has shown it: `1336c145` found it counting agent worktree
+copies as citations. The pattern is not that the gate was too loose. It is that
+the thing being counted was never the thing the gate claimed to count.
+
+The true orphan count was always 403. The budget is not raised, because the
+note on it says --- correctly --- never to raise it to go green, and because
+there is a better move the same note already documents: writing the ceremony
+prose for an orphan cites it, and a cited declaration has been reviewed, which
+is what the list is for. Naming
+`Problems.Juggler.CubicRemainderAssembly.pred_succ` in this paragraph is that
+citation. This was verified against the scanner rather than assumed: `.md` is
+in `SCAN_SUFFIXES` and `docs/research_journal.md` is not in
+`GENERATED_REFERENCE_FILES`.
+
+What this does **not** establish is that the theorem is dead. The gate's own
+docstring is careful that unresolved lexical candidates are not proved dead
+code --- namespace, open-namespace and type-directed references need a compiled
+dependency review. What is established is narrower and worth having: its
+apparent citation was never real, and nobody knew that.
+
+### Two warnings stay, and not because the linter is wrong
+
+`FinanceTransfer:796` and `DenjoyKoksmaOrbit:44` were recorded in
+`test_lean_hygiene.py` as cases where the linter is mistaken. That was wrong,
+and the fixes compile:
+
+```text
+FinanceTransfer:796   cases c <;> simp [ih]; omega
+DenjoyKoksmaOrbit:44  simp only at h
+```
+
+The old note had described a different edit than the one that works. It read
+the suggestion for `FinanceTransfer` as `cases c <;> (simp [ih]; omega)`, which
+genuinely does fail --- that form runs `omega` once per branch and one branch
+has no goal left. But `;` binds looser than `<;>`, so `cases c <;> simp [ih];
+omega` is `(cases c <;> simp [ih]); omega` and `omega` sees a single goal. For
+`DenjoyKoksmaOrbit` it had removed `if_pos` and left `rfl` behind; the linter's
+column covers the whole compound term `if_pos rfl`. Both were verified by
+deleting the module's oleans and rebuilding from source, not by trusting an
+incremental cache.
+
+They stay for a reason that has nothing to do with Lean. Both files are pinned
+by `docs/theory/paper_a_release.json`, which records a SHA-256 of every Paper A
+input as a provenance claim about the built PDF. Editing either invalidates the
+manifest, and restoring it means a full pandoc + xelatex rebuild that rewrites
+the PDF, the TeX, the Zenodo metadata and four export copies --- a published
+binary changing in git for two tactic cleanups that alter no statement. Put to
+the maintainer, that trade was declined, and the budget note now records the
+coupling instead of the fiction.
+
+That coupling is the durable finding here: Paper A's byte-level input pin makes
+its Lean unrefactorable without a republish. Two warnings today; it applies to
+every future cleanup touching those 117 files.
+
+### What did not change
+
+Nothing mathematical. The trust boundary is where it was --- 6573 declarations
+across 284 modules, 6517 kernel-checked against 56 compiler-dependent, all
+identical before and after. The formalpedia index was regenerated and the
+declaration-level diff is exact about why: zero declarations added, zero
+removed, twenty-eight entries differing, and `line` the only field that differs
+in any of them. No `kind`, no `trust`, no `ledger`, no `doc`. Eighty-three
+warnings left the build and not one proof changed.

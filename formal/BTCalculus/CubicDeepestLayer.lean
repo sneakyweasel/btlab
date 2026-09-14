@@ -392,6 +392,6 @@ theorem sign_deepest {k : ℕ} (hk : 1 ≤ k) (p : ℤ) :
   · intro h0
     refine ⟨?_, (sign_n0 (k := k) (m := k - 1) (p := p)).2 h0⟩
     refine (deepest_n1_iff hk p (-p)).2 ?_
-    simp [sq_factor]
+    simp
 
 end BTCalculus

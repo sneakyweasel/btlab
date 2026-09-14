@@ -18,7 +18,7 @@ theorem trit_toInt_is_trit (a : Trit) :
 theorem IZ_mod (a : Trit) (x : ℤ) : IZ a x ≡ a.toInt [ZMOD 3] := by
   unfold IZ
   change (a.toInt + 3 * x) % 3 = a.toInt % 3
-  have : (3 * x) % 3 = 0 := by simp [Int.mul_emod_left]
+  have : (3 * x) % 3 = 0 := by simp
   rw [Int.add_emod, this, add_zero, Int.emod_emod]
 
 theorem lsdZ_IZ (a : Trit) (x : ℤ) : lsdZ (IZ a x) = a.toInt :=

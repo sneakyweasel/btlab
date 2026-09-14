@@ -76,6 +76,6 @@ theorem mixedRadix_reconstruction
   | zero => simpa using hR0
   | succ m ih =>
       rw [S.lift_step m, ih]
-      simp [Finset.sum_range_succ, Nat.add_assoc, Nat.add_comm, Nat.add_left_comm]
+      simp [Finset.sum_range_succ, Nat.add_comm, Nat.add_left_comm]
 
 end Problems.Collatz

@@ -93,7 +93,7 @@ theorem i0Count_append (xs ys : Word) :
   induction xs with
   | nil => simp [i0Count]
   | cons x xs ih =>
-    cases x <;> simp [i0Count, ih] <;> omega
+    cases x <;> simp [i0Count, ih]; omega
 
 /-- Lex termination rank `(I0-count, length)`. -/
 def rank (w : Word) : ℕ × ℕ := (i0Count w, w.length)
@@ -186,22 +186,22 @@ theorem starts?_sound {w : Word} {r : Rule} {rest : Word}
     (h : starts? w = some (r, rest)) : w = r.src ++ rest := by
   unfold starts? at h
   split at h
-  · simp [Rule.src] at h; obtain ⟨rfl, rfl⟩ := h; rfl
-  · simp [Rule.src] at h; obtain ⟨rfl, rfl⟩ := h; rfl
-  · simp [Rule.src] at h; obtain ⟨rfl, rfl⟩ := h; rfl
-  · simp [Rule.src] at h; obtain ⟨rfl, rfl⟩ := h; rfl
-  · simp [Rule.src] at h; obtain ⟨rfl, rfl⟩ := h; rfl
-  · simp [Rule.src] at h; obtain ⟨rfl, rfl⟩ := h; rfl
-  · simp [Rule.src] at h; obtain ⟨rfl, rfl⟩ := h; rfl
-  · simp [Rule.src] at h; obtain ⟨rfl, rfl⟩ := h; rfl
-  · simp [Rule.src] at h; obtain ⟨rfl, rfl⟩ := h; rfl
-  · simp [Rule.src] at h; obtain ⟨rfl, rfl⟩ := h; rfl
-  · simp [Rule.src] at h; obtain ⟨rfl, rfl⟩ := h; rfl
-  · simp [Rule.src] at h; obtain ⟨rfl, rfl⟩ := h; rfl
-  · simp [Rule.src] at h; obtain ⟨rfl, rfl⟩ := h; rfl
-  · simp [Rule.src] at h; obtain ⟨rfl, rfl⟩ := h; rfl
-  · simp [Rule.src] at h; obtain ⟨rfl, rfl⟩ := h; rfl
-  · simp [Rule.src] at h; obtain ⟨rfl, rfl⟩ := h; rfl
+  · simp at h; obtain ⟨rfl, rfl⟩ := h; rfl
+  · simp at h; obtain ⟨rfl, rfl⟩ := h; rfl
+  · simp at h; obtain ⟨rfl, rfl⟩ := h; rfl
+  · simp at h; obtain ⟨rfl, rfl⟩ := h; rfl
+  · simp at h; obtain ⟨rfl, rfl⟩ := h; rfl
+  · simp at h; obtain ⟨rfl, rfl⟩ := h; rfl
+  · simp at h; obtain ⟨rfl, rfl⟩ := h; rfl
+  · simp at h; obtain ⟨rfl, rfl⟩ := h; rfl
+  · simp at h; obtain ⟨rfl, rfl⟩ := h; rfl
+  · simp at h; obtain ⟨rfl, rfl⟩ := h; rfl
+  · simp at h; obtain ⟨rfl, rfl⟩ := h; rfl
+  · simp at h; obtain ⟨rfl, rfl⟩ := h; rfl
+  · simp at h; obtain ⟨rfl, rfl⟩ := h; rfl
+  · simp at h; obtain ⟨rfl, rfl⟩ := h; rfl
+  · simp at h; obtain ⟨rfl, rfl⟩ := h; rfl
+  · simp at h; obtain ⟨rfl, rfl⟩ := h; rfl
   · simp at h
 
 def firstStep : Word → Option Word

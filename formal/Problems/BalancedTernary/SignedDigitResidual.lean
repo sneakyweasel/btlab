@@ -101,7 +101,7 @@ theorem lambda2_sharp_box {s u : ℤ} {m : ℕ}
     cases m with
     | zero => omega
     | succ k =>
-      simp [Nat.pred_succ] at hs h3 ⊢
+      simp at hs h3 ⊢
       omega
   omega
 
