@@ -96,4 +96,9 @@ If you're Fable don't spend ages fixing tests - focus on the math.
 You have access to a Windows 11 machine with an AMD Ryzen 9 3900X (12C/24T), 64 GB RAM, and an RTX 5090 (32 GB VRAM, CUDA 13.3), so don't be afraid to use it.
 
 Persistent policy lives in [.cursor/rules/](.cursor/rules/). Streamlit work uses
-[.agents/skills/developing-with-streamlit/SKILL.md](.agents/skills/developing-with-streamlit/SKILL.md).
+the `developing-with-streamlit` skill, which ships with the `streamlit`
+dependency rather than living in this repository: after
+`pip install -e ".[dev,ui]"` it is at
+`<site-packages>/streamlit/.agents/skills/developing-with-streamlit/SKILL.md`.
+`.agents/` is a gitignored convenience symlink to it and is absent from a
+fresh clone, so do not link it as a repository path.
