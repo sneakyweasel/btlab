@@ -641,6 +641,16 @@ def review_digest(index: dict[str, Any], ledger: list[dict[str, Any]]) -> str:
     return "\n".join(out) + "\n"
 
 
+def render(payload: Any) -> str:
+    """The exact bytes every generated artifact here is written as.
+
+    The staleness gate in tests compares the committed file to a fresh
+    build through this function, so the two sides cannot drift apart by
+    someone changing an indent or a sort on one of them alone.
+    """
+    return json.dumps(payload, indent=2, sort_keys=True) + "\n"
+
+
 def load() -> dict[str, Any]:
     if not INDEX.is_file():
         sys.exit("no index; run: python tools/formalpedia.py build")
@@ -678,7 +688,7 @@ def main(argv: list[str] | None = None) -> int:
     if args.cmd == "build":
         index = build()
         INDEX.parent.mkdir(parents=True, exist_ok=True)
-        INDEX.write_text(json.dumps(index, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+        INDEX.write_text(render(index), encoding="utf-8")
         t = index["totals"]
         print(f"{t['declarations']} declarations in {t['modules']} modules")
         print(f"  trust: {t['trust']}")
@@ -712,7 +722,7 @@ def main(argv: list[str] | None = None) -> int:
         ledger = json.load(io.open(LEDGER, encoding="utf-8"))
         out = propose(index, ledger)
         PROPOSALS.parent.mkdir(parents=True, exist_ok=True)
-        PROPOSALS.write_text(json.dumps(out, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+        PROPOSALS.write_text(render(out), encoding="utf-8")
         print(f"{out['unresolved']} unresolved rows; {out['worth_reviewing']} worth reviewing; "
               f"{out['composite']} name two or more of their own declarations")
         return 0
@@ -722,7 +732,7 @@ def main(argv: list[str] | None = None) -> int:
         ledger = json.load(io.open(LEDGER, encoding="utf-8"))
         graph = dag(index, ledger)
         DAG.parent.mkdir(parents=True, exist_ok=True)
-        DAG.write_text(json.dumps(graph, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+        DAG.write_text(render(graph), encoding="utf-8")
         g = graph["totals"]
         print(f"{g['nodes']} modules carry {g['ledger_rows_placed']} ledger rows")
         print(f"  {g['edges_before_reduction']} edges -> {g['edges']} after transitive reduction")

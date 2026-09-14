@@ -1,10 +1,11 @@
-wrote docs\research\formalpedia_decl_review.md
-didate leads its file clearly.  Each entry is the ledger row's own
+# Declaration review queue
+
+Rows where one candidate leads its file clearly.  Each entry is the ledger row's own
 statement beside the candidate's docstring; the question is only whether they say the
-same thing.  Measured against all 156 single-declaration rows the scorer gets
-57 of the 70 it fires on right, 81% precise, so roughly one in
+same thing.  Measured against all 201 single-declaration rows the scorer gets
+61 of the 75 it fires on right, 81% precise, so roughly one in
 5 below is wrong.
-17 rows below, of 103 unresolved.
+18 rows below, of 105 unresolved.
 
 
 Two failure modes are not scored at all, and both record a part as the whole.
@@ -173,7 +174,25 @@ theorem large_lambda_successor_q_bound {y : ℕ}
 
 *Runners-up: `ooe_one_plus_slack_lt_succ_ratio` (0.15), `even_remainder_bound` (0.118)*
 
-## 9. `J-finite-progress-boundary`
+## 9. `J-inverse-preimage-asymmetry`
+
+**Row.** The even fiber J(n)=m is the parity-restricted square interval m² ≤ n < (m+1)², while the odd fiber is the parity-restricted cube-to-square interval m² ≤ n³ < (m+1)²; any odd fiber contains at most one integer.
+
+**Candidate.** `odd_cube_interval_of_odd_cbrt_implies_square` &mdash; kernel-checked, `Problems/Juggler/Preimages.lean:199`
+
+```lean
+theorem odd_cube_interval_of_odd_cbrt_implies_square {n a : ℕ}
+    (hodd : n % 2 = 1)
+    (hcbrt : Nat.nthRoot 3 (a ^ 8) % 2 = 1)
+    (h : a ^ 8 ≤ n ^ 3 ∧ n ^ 3 < (a ^ 4 + 1) ^ 2) :
+    n.sqrt ^ 2 = n
+```
+
+*Runners-up: `floorPower_odd_eq_iff_cube_interval` (0.19), `noncube_odd_cbrt_fourth_window_cube_even` (0.188)*
+
+*If this row describes a definition rather than a theorem: `itineraryEOO`, `itineraryOOE`*
+
+## 10. `J-finite-progress-boundary`
 
 **Row.** Universal FiniteProgress for starts above one implies universal reachability of one. Every even start n ≥ 2 and every odd start n ≥ 2 whose first image is even has FiniteProgress; consequently, any start without FiniteProgress is odd and has an odd first image. This isolates the automatic odd-to-odd frontier without proving universal prog
 
@@ -191,11 +210,11 @@ theorem odd_even_finiteProgress {n : ℕ} (hn : 2 ≤ n)
 
 *If this row describes a definition rather than a theorem: `FiniteProgress`*
 
-## 10. `J-first-even-overshoots`
+## 11. `J-first-even-overshoots`
 
 **Row.** On a MinimalNonTerm or CycleMin start, the first even residual always overshoots: T(O^a E)(n) > n and the even residual sits at or above (n+1)^2. The return-to-n cell of the first-even dichotomy is an even-count-1 cycle itinerary, now excluded by no_cycle_itinerary_even_count_le_three. Lean theorems minimal_first_even_overshoots and cycle
 
-**Candidate.** `minimal_first_even_overshoots` &mdash; kernel-checked, `Problems/Juggler/EvenCountThree.lean:649`
+**Candidate.** `minimal_first_even_overshoots` &mdash; kernel-checked, `Problems/Juggler/EvenCountThree.lean:584`
 
 > On a `MinimalNonTerm` start the first even residual always overshoots. The return cell is an even-count-1 cycle itinerary. This is not a halt theorem.
 
@@ -210,13 +229,11 @@ theorem minimal_first_even_overshoots {n a : ℕ}
 
 *Runners-up: `cycleMin_first_even_overshoots` (0.3), `cycleMin_max_ge_succ_sq` (0.278)*
 
-*If this row describes a definition rather than a theorem: `evenCount`*
-
-## 11. `J-cyclemax-succ-sq`
+## 12. `J-cyclemax-succ-sq`
 
 **Row.** On a CycleMin start n ≥ 2 the cycle maximum satisfies (n+1)^2 ≤ M. Equivalently, on a CycleMax the rotated minimum m satisfies (m+1)^2 ≤ M, so T(M) > m. The first-cell family m^2 < M < (m+1)^2 is impossible. cycle_distinguished_order_succ_sq is the distinguished-order package with that scale. Corollary of cycleMin_first_even_overshoots: t
 
-**Candidate.** `cycleMin_max_ge_succ_sq` &mdash; kernel-checked, `Problems/Juggler/EvenCountThree.lean:734`
+**Candidate.** `cycleMin_max_ge_succ_sq` &mdash; kernel-checked, `Problems/Juggler/EvenCountThree.lean:669`
 
 > On a cycle minimum the maximum sits at or above `(n+1)^2`. The first even residual already overshoots, so the first-cell family `n^2 < M < (n+1)^2` is impossible. Not a halt theorem.
 
@@ -233,9 +250,7 @@ theorem cycleMin_max_ge_succ_sq {n : ℕ} {w : List Branch}
 
 *Runners-up: `cycleMax_min_succ_sq_le` (0.222), `minimal_first_even_overshoots` (0.214)*
 
-*If this row describes a definition rather than a theorem: `evenCount`*
-
-## 12. `J-cyclemin-transport-oo`
+## 13. `J-cyclemin-transport-oo`
 
 **Row.** On a CycleMin, after the first O^a E with a ≥ 2, an immediate odd run of length at least two overshoots the landing y = T_{O^a E}(n) > n: the next two-odd residual is at least (y+1)^2, hence at least (n+2)^2. Lean: cycleMin_transport_second_oo, cycleMin_transport_second_oo_ge in CycleMinObstruction.lean. The second residual lies outside t
 
@@ -256,7 +271,7 @@ theorem cycleMin_transport_second_oo {n a b : ℕ} {v : List Branch}
 
 *Runners-up: `cycleMin_transport_second_oo_ge` (0.27), `follows_replicate_odd_of_le` (0.029)*
 
-## 13. `J-ce-third-residual-preimages`
+## 14. `J-ce-third-residual-preimages`
 
 **Row.** If n ≥ 2 follows OOEOOEOO, then T_OOEOOEOO(n) < n^3 because x^{256} ≤ n^{729} forbids n^3 ≤ x (768 > 729). If n follows OOEOOEOOE, then T_OOEOOEOOE(n) < n^2 because y^{512} ≤ n^{729} forbids n^2 ≤ y (1024 > 729). A CE that follows OOEOOE follows OOEOOEOO. On MinimalNonTerm a completed third OOE cannot land even: an even landing below n^2 
 
@@ -274,7 +289,7 @@ theorem minimal_ooeooeooe_not_even_landing {n : ℕ}
 
 *If this row describes a definition rather than a theorem: `itineraryOOEOOEOO`, `itineraryOOEOOEOOE`*
 
-## 14. `J-cube-odd-even-reset`
+## 15. `J-cube-odd-even-reset`
 
 **Row.** If n ≥ 2 and n^2 ≤ x < n^3 with x odd, then n^3 ≤ T(x) < n^5 and T(x)^2 < n^9. If T(x) is even, the first return satisfies n ≤ T^2(x) < x < n^3 and T^2(x)^4 < n^9. If T(x) is odd, then x < T^2(x) and n^4 ≤ T^2(x). An even reset that is itself even and already below n^2 is FiniteProgress; on MinimalNonTerm that case is impossible. This is 
 
@@ -291,7 +306,7 @@ theorem aboveAnchor_not_odd_even {n : ℕ} {v : List Branch}
 
 *If this row describes a definition rather than a theorem: `AboveAnchor`*
 
-## 15. `J-small-cycle-census-ten`
+## 16. `J-small-cycle-census-ten`
 
 **Row.** No itinerary of length at most ten is a Juggler cycle itinerary at any n ≥ 2; equivalently a nontrivial Juggler cycle, if one exists, has period at least eleven. Lengths ≤ 8 are the census J-small-cycle-census-eight; lengths 9 and 10 are excluded by the finance inequality at the residual floor 12 (no_cycle_itinerary_length_nine, no_cycle_
 
@@ -310,7 +325,7 @@ theorem no_cycle_itinerary_length_le_ten {n : ℕ} {w : List Branch}
 
 *If this row describes a definition rather than a theorem: `financeRows53`, `financeRows257`*
 
-## 16. `J-cyclemin-defect-finance-kill`
+## 17. `J-cyclemin-defect-finance-kill`
 
 **Row.** The defect-sum finance inequality (the certified identity of Paper A Theorem 4.6, previously human) and the walk-charge kill criterion (Theorem 5.9 mechanism), Lean end to end (DefectFinance.lean). Finance: on a CycleMin cycle with minimum n ≥ 400, 1 − 2^L/3^o ≤ (6/5)·Σ_k 1/(x_k·log x_k) (cycleMin_defect_finance). Ingredients all Lean: pe
 
@@ -331,11 +346,13 @@ theorem cycleMin_hug_kill_criterion {n : ℕ} {w : List Branch}
 
 *Runners-up: `cycleMin_defect_finance` (0.134), `log_floorPower_even_ge_sub` (0.11)*
 
-## 17. `J-loglog-clock-band-word-forced-lean`
+*If this row describes a definition rather than a theorem: `prefixCharge`*
+
+## 18. `J-loglog-clock-band-word-forced-lean`
 
 **Row.** Inside the hug band the parity letter is forced. band_step_forced_odd: from u < 1 a step staying in [0, 1 + alphaClock) must be the odd one, v = u + alphaClock (the even step goes negative). band_step_forced_even: from 1 <= u it must be the even one, v = u - 1 (the odd step exceeds the band). band_successor_unique: a band-confined walk ha
 
-**Candidate.** `band_successor_unique` &mdash; kernel-checked, `Problems/Juggler/LogLogClock.lean:152`
+**Candidate.** `band_successor_unique` &mdash; kernel-checked, `Problems/Juggler/LogLogClock.lean:148`
 
 > **The band walk is the rotation by `alphaClock`.** A walk confined to the hug band has a single admissible successor at every point, given by the lift of the rotation: `u + alphaClock` below `1`, `u - 1` above. So the parity word of a band-confined orbit is determined by nothing but the starting walk — it is the mechanical word of the rotation, the hug itinerary.
 
@@ -349,5 +366,5 @@ theorem band_successor_unique {u v w : ℝ} (_h0 : 0 ≤ u) (_h1 : u < 1 + alpha
 
 *Runners-up: `band_step_forced_odd` (0.263), `band_step_forced_even` (0.263)*
 
-*If this row describes a definition rather than a theorem: `WalkStep`*
+*If this row describes a definition rather than a theorem: `WalkStep`, `alphaClock`*
 

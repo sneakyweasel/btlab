@@ -1,5 +1,5 @@
 {
-  "composite": 28,
+  "composite": 26,
   "note": "Proposals for human review. Calibration: 86% precision (42 of 49 fires) against all resolved rows. Nothing here has been written into the ledger.",
   "rows": [
     {
@@ -38,7 +38,7 @@
         }
       ],
       "id": "BT-Pn3",
-      "in_file": 5,
+      "in_file": 7,
       "lean": "Operators/Polynomial.lean",
       "names_own": [],
       "statement": "P_n(3) = n"
@@ -427,47 +427,6 @@
       "lean": "BTCalculus/Normalization.lean",
       "names_own": [],
       "statement": "LSD step strictly decreases the abs-lex rank"
-    },
-    {
-      "candidates": [
-        {
-          "decl": "stripHigh_value",
-          "line": 53,
-          "score": 0.231,
-          "trust": "kernel"
-        },
-        {
-          "decl": "stripHigh_trit_encodeZ",
-          "line": 228,
-          "score": 0.214,
-          "trust": "kernel"
-        },
-        {
-          "decl": "encodeZ_stripped",
-          "line": 213,
-          "score": 0.154,
-          "trust": "kernel"
-        }
-      ],
-      "composite": false,
-      "confidence": "low",
-      "definitions": [
-        {
-          "decl": "stripHigh",
-          "line": 26,
-          "score": 0.154
-        },
-        {
-          "decl": "rewriteAt",
-          "line": 275,
-          "score": 0.077
-        }
-      ],
-      "id": "BTN-confluence",
-      "in_file": 37,
-      "lean": "BTCalculus/Confluence.lean",
-      "names_own": [],
-      "statement": "stripped coefficient rewrite is locally and globally confluent; unique NF is encodeZ(value); [-5,2] joins after stripHigh"
     },
     {
       "candidates": [
@@ -1800,621 +1759,6 @@
     {
       "candidates": [
         {
-          "decl": "doubledTrit_reach_one",
-          "line": 76,
-          "score": 0.4,
-          "trust": "compiler"
-        },
-        {
-          "decl": "doubledTrit_reach_neg",
-          "line": 80,
-          "score": 0.364,
-          "trust": "compiler"
-        },
-        {
-          "decl": "doubledNext_abs_le_one",
-          "line": 84,
-          "score": 0.308,
-          "trust": "compiler"
-        }
-      ],
-      "composite": false,
-      "confidence": "low",
-      "definitions": [
-        {
-          "decl": "doubledNext",
-          "line": 13,
-          "score": 0.111
-        },
-        {
-          "decl": "doubledOut",
-          "line": 16,
-          "score": 0.111
-        }
-      ],
-      "id": "BTN-doubled-closure",
-      "in_file": 14,
-      "lean": "Problems/BalancedTernary/FiniteStateDynamics.lean",
-      "names_own": [],
-      "statement": "The LSD carry of normalizing the doubled trit stream 2 d_i, d_i in {-1,0,1}, stays in {-1,0,1}; 1 and -1 are reachable from 0."
-    },
-    {
-      "candidates": [
-        {
-          "decl": "carryGain3_eq",
-          "line": 143,
-          "score": 0.154,
-          "trust": "kernel"
-        },
-        {
-          "decl": "carryGain3_unbounded",
-          "line": 150,
-          "score": 0.071,
-          "trust": "kernel"
-        },
-        {
-          "decl": "isTrit_natAbs",
-          "line": 46,
-          "score": 0.062,
-          "trust": "kernel"
-        }
-      ],
-      "composite": false,
-      "confidence": "review",
-      "definitions": [
-        {
-          "decl": "doubledNext",
-          "line": 13,
-          "score": 0.0
-        },
-        {
-          "decl": "doubledOut",
-          "line": 16,
-          "score": 0.0
-        }
-      ],
-      "id": "BTN-carry-gain-3",
-      "in_file": 14,
-      "lean": "Problems/BalancedTernary/FiniteStateDynamics.lean",
-      "names_own": [],
-      "statement": "The synthetic map T_3(c,d)=3 DZ(c+2d) satisfies c_n=3n along the all-+1 word, so the residual set is unbounded. This is not value-preserving normalization."
-    },
-    {
-      "candidates": [
-        {
-          "decl": "lsdZ_expandingD",
-          "line": 34,
-          "score": 0.2,
-          "trust": "kernel"
-        },
-        {
-          "decl": "lsdZ_expandingD_IZ",
-          "line": 56,
-          "score": 0.2,
-          "trust": "kernel"
-        },
-        {
-          "decl": "lsdZ_of_isTrit",
-          "line": 138,
-          "score": 0.2,
-          "trust": "kernel"
-        }
-      ],
-      "composite": false,
-      "confidence": "low",
-      "definitions": [
-        {
-          "decl": "jet3",
-          "line": 221,
-          "score": 0.125
-        },
-        {
-          "decl": "expandingD",
-          "line": 15,
-          "score": 0.0
-        }
-      ],
-      "id": "BTN-expanding-lsd",
-      "in_file": 44,
-      "lean": "Problems/BalancedTernary/ExpandingD.lean",
-      "names_own": [],
-      "statement": "For T(n)=3n-lsd(n), lsd(T(n))=-lsd(n) and lsd(T^k(n))=(-1)^k lsd(n). Future LSD observations depend only on lsd(n)."
-    },
-    {
-      "candidates": [
-        {
-          "decl": "lsdZ_expandingD",
-          "line": 34,
-          "score": 0.143,
-          "trust": "kernel"
-        },
-        {
-          "decl": "lsdZ_expandingD_IZ",
-          "line": 56,
-          "score": 0.143,
-          "trust": "kernel"
-        },
-        {
-          "decl": "lsdZ_of_isTrit",
-          "line": 138,
-          "score": 0.143,
-          "trust": "kernel"
-        }
-      ],
-      "composite": false,
-      "confidence": "low",
-      "definitions": [
-        {
-          "decl": "jet3",
-          "line": 221,
-          "score": 0.1
-        },
-        {
-          "decl": "expandingD",
-          "line": 15,
-          "score": 0.0
-        }
-      ],
-      "id": "BTN-expanding-right-inverse",
-      "in_file": 44,
-      "lean": "Problems/BalancedTernary/ExpandingD.lean",
-      "names_own": [],
-      "statement": "Laboratory DZ is a left inverse of T: DZ(T(n))=n. Canonical T is the section I_{-lsd(n)}(n), not a constant-section I_a."
-    },
-    {
-      "candidates": [
-        {
-          "decl": "lsdZ_expandingD",
-          "line": 34,
-          "score": 0.167,
-          "trust": "kernel"
-        },
-        {
-          "decl": "lsdZ_expandingD_IZ",
-          "line": 56,
-          "score": 0.167,
-          "trust": "kernel"
-        },
-        {
-          "decl": "lsdZ_of_isTrit",
-          "line": 138,
-          "score": 0.167,
-          "trust": "kernel"
-        }
-      ],
-      "composite": false,
-      "confidence": "low",
-      "definitions": [
-        {
-          "decl": "jet3",
-          "line": 221,
-          "score": 0.111
-        },
-        {
-          "decl": "expandingD",
-          "line": 15,
-          "score": 0.0
-        }
-      ],
-      "id": "BTN-expanding-section",
-      "in_file": 44,
-      "lean": "Problems/BalancedTernary/ExpandingD.lean",
-      "names_own": [],
-      "statement": "T(I_a(x))=9x+2a and lsd(T(I_a(x)))=-a, independent of the higher-digit residual x."
-    },
-    {
-      "candidates": [
-        {
-          "decl": "lsdZ_of_isTrit",
-          "line": 138,
-          "score": 0.182,
-          "trust": "kernel"
-        },
-        {
-          "decl": "neg_lsdZ_is_trit",
-          "line": 30,
-          "score": 0.167,
-          "trust": "kernel"
-        },
-        {
-          "decl": "lsdZ_expandingD",
-          "line": 34,
-          "score": 0.083,
-          "trust": "kernel"
-        }
-      ],
-      "composite": false,
-      "confidence": "low",
-      "definitions": [
-        {
-          "decl": "jet3",
-          "line": 221,
-          "score": 0.143
-        },
-        {
-          "decl": "expandingD",
-          "line": 15,
-          "score": 0.0
-        }
-      ],
-      "id": "BTN-expanding-lambda",
-      "in_file": 44,
-      "lean": "Problems/BalancedTernary/ExpandingD.lean",
-      "names_own": [],
-      "statement": "For T_\u03bb(n)=3n-\u03bb lsd(n), lsd(T_2(n))=lsd(n) and lsd(T_3(n))=0. The observational residual remains a trit; \u03bb changes the residue map, not the need for the full integer."
-    },
-    {
-      "candidates": [
-        {
-          "decl": "lsdZ_of_isTrit",
-          "line": 138,
-          "score": 0.167,
-          "trust": "kernel"
-        },
-        {
-          "decl": "jet2_of_window",
-          "line": 171,
-          "score": 0.167,
-          "trust": "kernel"
-        },
-        {
-          "decl": "jet3_of_window",
-          "line": 247,
-          "score": 0.167,
-          "trust": "kernel"
-        }
-      ],
-      "composite": false,
-      "confidence": "low",
-      "definitions": [
-        {
-          "decl": "jet3",
-          "line": 221,
-          "score": 0.417
-        },
-        {
-          "decl": "jet2",
-          "line": 158,
-          "score": 0.083
-        }
-      ],
-      "id": "BTN-expanding-j2",
-      "in_file": 44,
-      "lean": "Problems/BalancedTernary/ExpandingD.lean",
-      "names_own": [],
-      "statement": "For T(n)=3n-lsd(n), the length-2 integer jet satisfies J2(T(n))=(-lsd(n), lsd(n)). The map depends only on the first digit; every trit window (a,b) is sent to (-a,a)."
-    },
-    {
-      "candidates": [
-        {
-          "decl": "lsdZ_expandingD",
-          "line": 34,
-          "score": 0.125,
-          "trust": "kernel"
-        },
-        {
-          "decl": "lsdZ_expandingD_IZ",
-          "line": 56,
-          "score": 0.125,
-          "trust": "kernel"
-        },
-        {
-          "decl": "lsdZ_of_isTrit",
-          "line": 138,
-          "score": 0.125,
-          "trust": "kernel"
-        }
-      ],
-      "composite": false,
-      "confidence": "low",
-      "definitions": [
-        {
-          "decl": "jet3",
-          "line": 221,
-          "score": 0.091
-        },
-        {
-          "decl": "expandingD",
-          "line": 15,
-          "score": 0.0
-        }
-      ],
-      "id": "BTN-expanding-j2-lambda",
-      "in_file": 44,
-      "lean": "Problems/BalancedTernary/ExpandingD.lean",
-      "names_own": [],
-      "statement": "J2(T_2(n))=(lsd(n),0) and J2(T_3(n))=(0,0). Order-2 observation distinguishes T_2 from T, unlike the one-digit residual."
-    },
-    {
-      "candidates": [
-        {
-          "decl": "lsdZ_expandingD",
-          "line": 34,
-          "score": 0.125,
-          "trust": "kernel"
-        },
-        {
-          "decl": "lsdZ_expandingD_IZ",
-          "line": 56,
-          "score": 0.125,
-          "trust": "kernel"
-        },
-        {
-          "decl": "lsdZ_of_isTrit",
-          "line": 138,
-          "score": 0.125,
-          "trust": "kernel"
-        }
-      ],
-      "composite": false,
-      "confidence": "low",
-      "definitions": [
-        {
-          "decl": "jet3",
-          "line": 221,
-          "score": 0.091
-        },
-        {
-          "decl": "expandingD",
-          "line": 15,
-          "score": 0.0
-        }
-      ],
-      "id": "BTN-expanding-j3-lambda",
-      "in_file": 44,
-      "lean": "Problems/BalancedTernary/ExpandingD.lean",
-      "names_own": [],
-      "statement": "J3(T_2(n))=(lsd(n),0,lsd(DZ(n))) and J3(T_3(n))=(0,0,lsd(DZ(n))). T_3 collapses J1 and J2 but does not collapse J3: the second input digit survives."
-    },
-    {
-      "candidates": [
-        {
-          "decl": "dAdd_minimal_residual",
-          "line": 53,
-          "score": 0.235,
-          "trust": "compiler"
-        },
-        {
-          "decl": "dAdd_residual_closure",
-          "line": 85,
-          "score": 0.231,
-          "trust": "compiler"
-        },
-        {
-          "decl": "dAdd_fiber_three",
-          "line": 42,
-          "score": 0.154,
-          "trust": "compiler"
-        }
-      ],
-      "composite": false,
-      "confidence": "low",
-      "definitions": [
-        {
-          "decl": "dAddNext",
-          "line": 15,
-          "score": 0.0
-        },
-        {
-          "decl": "dAddOut",
-          "line": 18,
-          "score": 0.0
-        }
-      ],
-      "id": "BTN-dadd-closure",
-      "in_file": 8,
-      "lean": "Problems/BalancedTernary/DAddResidual.lean",
-      "names_own": [],
-      "statement": "If s,a,b are trits then D(s+a+b) is a trit. The streaming residual of trit addition is exactly {-1,0,1}. Three values occur on D(x)=D(y)=0, so the residual is minimal."
-    },
-    {
-      "candidates": [
-        {
-          "decl": "shortcutC_even",
-          "line": 11,
-          "score": 0.222,
-          "trust": "kernel"
-        },
-        {
-          "decl": "shortcutC_odd",
-          "line": 15,
-          "score": 0.222,
-          "trust": "kernel"
-        },
-        {
-          "decl": "shortcutC_terminal_cycle",
-          "line": 25,
-          "score": 0.2,
-          "trust": "kernel"
-        }
-      ],
-      "composite": false,
-      "confidence": "low",
-      "definitions": [
-        {
-          "decl": "shortcutC",
-          "line": 8,
-          "score": 0.4
-        },
-        {
-          "decl": "shortcutCIter",
-          "line": 52,
-          "score": 0.083
-        }
-      ],
-      "id": "C-shortcut-welldefined",
-      "in_file": 9,
-      "lean": "Problems/Collatz/Shortcut.lean",
-      "names_own": [],
-      "statement": "The shortcut map C(n)=n/2 (even) or (3n+1)/2 (odd) is well-defined on positive integers, and {1,2} is a 2-cycle."
-    },
-    {
-      "candidates": [
-        {
-          "decl": "multi_trit_carry_bound",
-          "line": 373,
-          "score": 0.188,
-          "trust": "kernel"
-        },
-        {
-          "decl": "lambda2_box_invariant",
-          "line": 69,
-          "score": 0.118,
-          "trust": "kernel"
-        },
-        {
-          "decl": "DZ_of_trit",
-          "line": 24,
-          "score": 0.083,
-          "trust": "kernel"
-        }
-      ],
-      "composite": false,
-      "confidence": "review",
-      "definitions": [
-        {
-          "decl": "signedNext",
-          "line": 15,
-          "score": 0.0
-        },
-        {
-          "decl": "signedOut",
-          "line": 18,
-          "score": 0.0
-        }
-      ],
-      "id": "BTN-sdr-multi-trit",
-      "in_file": 33,
-      "lean": "Problems/BalancedTernary/SignedDigitResidual.lean",
-      "names_own": [],
-      "statement": "r-way trit addition s'=D(s+a_1+\u22ef+a_r) is F_{1,U_r}: a trit sum of length r has absolute value at most r, so the \u03bb=1 box |s|\u2264\u230ar/2\u230b is invariant. The count 2\u230ar/2\u230b+1 equals 1,3,3,5 for r=1,2,3,4."
-    },
-    {
-      "candidates": [
-        {
-          "decl": "gain3_control2_unbounded",
-          "line": 105,
-          "score": 0.154,
-          "trust": "kernel"
-        },
-        {
-          "decl": "lsdZ_le_one",
-          "line": 134,
-          "score": 0.083,
-          "trust": "kernel"
-        },
-        {
-          "decl": "gain3_control2_eq",
-          "line": 102,
-          "score": 0.077,
-          "trust": "kernel"
-        }
-      ],
-      "composite": false,
-      "confidence": "review",
-      "definitions": [
-        {
-          "decl": "signedNext",
-          "line": 15,
-          "score": 0.0
-        },
-        {
-          "decl": "signedOut",
-          "line": 18,
-          "score": 0.0
-        }
-      ],
-      "id": "BTN-sdr-escape-general",
-      "in_file": 33,
-      "lean": "Problems/BalancedTernary/SignedDigitResidual.lean",
-      "names_own": [],
-      "statement": "If \u03bb\u22653 and |u|\u22652 then the constant-control orbit of F_{\u03bb,U} from 0 is unbounded: at \u03bb=3 one has s'=s+u-lsd(s+u) so each step moves by at least 1; at \u03bb\u22654 the step is strictly expanding on the matching ray."
-    },
-    {
-      "candidates": [
-        {
-          "decl": "lambda1_interval_reachable",
-          "line": 80,
-          "score": 0.25,
-          "trust": "kernel"
-        },
-        {
-          "decl": "lambda1_interval_reachable_neg",
-          "line": 96,
-          "score": 0.2,
-          "trust": "kernel"
-        },
-        {
-          "decl": "lambda1Word_fold",
-          "line": 52,
-          "score": 0.125,
-          "trust": "kernel"
-        }
-      ],
-      "composite": false,
-      "confidence": "low",
-      "definitions": [
-        {
-          "decl": "lambda1Word",
-          "line": 48,
-          "score": 0.143
-        },
-        {
-          "decl": "lambda2Word",
-          "line": 125,
-          "score": 0.143
-        }
-      ],
-      "id": "BTN-sdrg-lambda1-interval",
-      "in_file": 18,
-      "lean": "Problems/BalancedTernary/SignedDigitResidualGeometry.lean",
-      "names_own": [],
-      "statement": "For \u03bb=1 and U_m, every integer s with |s|\u2264\u230am/2\u230b is reached from 0 by an admissible word. The explicit positive word is u=2,4,...,2n."
-    },
-    {
-      "candidates": [
-        {
-          "decl": "lambda1_interval_reachable",
-          "line": 80,
-          "score": 0.286,
-          "trust": "kernel"
-        },
-        {
-          "decl": "lambda2_even_reachable",
-          "line": 161,
-          "score": 0.214,
-          "trust": "kernel"
-        },
-        {
-          "decl": "lambda1_interval_reachable_neg",
-          "line": 96,
-          "score": 0.167,
-          "trust": "kernel"
-        }
-      ],
-      "composite": false,
-      "confidence": "low",
-      "definitions": [
-        {
-          "decl": "lambda1Word",
-          "line": 48,
-          "score": 0.1
-        },
-        {
-          "decl": "lambda2Word",
-          "line": 125,
-          "score": 0.1
-        }
-      ],
-      "id": "BTN-sdrg-lambda2-evens",
-      "in_file": 18,
-      "lean": "Problems/BalancedTernary/SignedDigitResidualGeometry.lean",
-      "names_own": [],
-      "statement": "For \u03bb=2 and U_m, every even 2n with |n|\u2264(m-1)_+ is reached from 0 by an admissible word. The explicit nonnegative word uses letters k+2 at step k."
-    },
-    {
-      "candidates": [
-        {
           "decl": "signedTrace_nil",
           "line": 17,
           "score": 0.167,
@@ -2486,49 +1830,8 @@
     {
       "candidates": [
         {
-          "decl": "product_raw_is_trit",
-          "line": 33,
-          "score": 0.429,
-          "trust": "kernel"
-        },
-        {
-          "decl": "product_factor_through_raw",
-          "line": 24,
-          "score": 0.4,
-          "trust": "kernel"
-        },
-        {
-          "decl": "product3_factor_through_raw",
-          "line": 67,
-          "score": 0.375,
-          "trust": "kernel"
-        }
-      ],
-      "composite": false,
-      "confidence": "low",
-      "definitions": [
-        {
-          "decl": "productRaw",
-          "line": 14,
-          "score": 0.286
-        },
-        {
-          "decl": "product3Raw",
-          "line": 61,
-          "score": 0.286
-        }
-      ],
-      "id": "BTN-mr-factor-through-raw",
-      "in_file": 10,
-      "lean": "Problems/BalancedTernary/MultiplicativeResidual.lean",
-      "names_own": [],
-      "statement": "If F(s,c)=\u03bb\u00b7D(s+h(c)) then F(s,(d1,d2))=\u03bb\u00b7D(s+d1 d2). Two-trit product residual factors through the raw contribution."
-    },
-    {
-      "candidates": [
-        {
           "decl": "expanding_defect_lower_bound",
-          "line": 776,
+          "line": 774,
           "score": 0.209,
           "trust": "kernel"
         },
@@ -2550,7 +1853,7 @@
       "definitions": [
         {
           "decl": "amplifyDefect",
-          "line": 378,
+          "line": 376,
           "score": 0.175
         },
         {
@@ -2762,20 +2065,20 @@
     {
       "candidates": [
         {
-          "decl": "itinerary_length",
-          "line": 57,
-          "score": 0.118,
+          "decl": "image_eq_iterate",
+          "line": 111,
+          "score": 0.125,
           "trust": "kernel"
         },
         {
-          "decl": "image_eq_iterate",
-          "line": 105,
+          "decl": "itinerary_length",
+          "line": 60,
           "score": 0.118,
           "trust": "kernel"
         },
         {
           "decl": "image_word",
-          "line": 112,
+          "line": 118,
           "score": 0.118,
           "trust": "kernel"
         }
@@ -2785,12 +2088,12 @@
       "definitions": [
         {
           "decl": "follows",
-          "line": 30,
+          "line": 33,
           "score": 0.211
         },
         {
           "decl": "followsB",
-          "line": 265,
+          "line": 281,
           "score": 0.143
         }
       ],
@@ -2845,34 +2148,34 @@
       "candidates": [
         {
           "decl": "odd_cube_interval_of_odd_cbrt_implies_square",
-          "line": 195,
+          "line": 199,
           "score": 0.286,
           "trust": "kernel"
         },
         {
           "decl": "floorPower_odd_eq_iff_cube_interval",
-          "line": 35,
-          "score": 0.2,
+          "line": 39,
+          "score": 0.19,
           "trust": "kernel"
         },
         {
           "decl": "noncube_odd_cbrt_fourth_window_cube_even",
-          "line": 186,
+          "line": 190,
           "score": 0.188,
           "trust": "kernel"
         }
       ],
       "composite": false,
-      "confidence": "low",
+      "confidence": "review",
       "definitions": [
         {
           "decl": "itineraryEOO",
-          "line": 268,
+          "line": 272,
           "score": 0.0
         },
         {
           "decl": "itineraryOOE",
-          "line": 269,
+          "line": 273,
           "score": 0.0
         }
       ],
@@ -2993,19 +2296,19 @@
       "candidates": [
         {
           "decl": "image_one_sevenOdds",
-          "line": 29,
+          "line": 27,
           "score": 0.081,
           "trust": "kernel"
         },
         {
           "decl": "o7_image_ge_succ_pow16",
-          "line": 333,
+          "line": 331,
           "score": 0.081,
           "trust": "kernel"
         },
         {
           "decl": "no_cycle_itinerary_oooooooeeee",
-          "line": 359,
+          "line": 357,
           "score": 0.081,
           "trust": "kernel"
         }
@@ -3015,7 +2318,7 @@
       "definitions": [
         {
           "decl": "itineraryO7EEEE",
-          "line": 21,
+          "line": 19,
           "score": 0.054
         }
       ],
@@ -3032,34 +2335,28 @@
       "candidates": [
         {
           "decl": "minimal_first_even_overshoots",
-          "line": 649,
+          "line": 584,
           "score": 0.517,
           "trust": "kernel"
         },
         {
           "decl": "cycleMin_first_even_overshoots",
-          "line": 672,
+          "line": 607,
           "score": 0.3,
           "trust": "kernel"
         },
         {
           "decl": "cycleMin_max_ge_succ_sq",
-          "line": 734,
+          "line": 669,
           "score": 0.278,
           "trust": "kernel"
         }
       ],
       "composite": true,
       "confidence": "review",
-      "definitions": [
-        {
-          "decl": "evenCount",
-          "line": 24,
-          "score": 0.069
-        }
-      ],
+      "definitions": [],
       "id": "J-first-even-overshoots",
-      "in_file": 49,
+      "in_file": 43,
       "lean": "Problems/Juggler/EvenCountThree.lean",
       "names_own": [
         "minimal_first_even_overshoots",
@@ -3117,34 +2414,28 @@
       "candidates": [
         {
           "decl": "cycleMin_max_ge_succ_sq",
-          "line": 734,
+          "line": 669,
           "score": 0.472,
           "trust": "kernel"
         },
         {
           "decl": "cycleMax_min_succ_sq_le",
-          "line": 761,
+          "line": 696,
           "score": 0.222,
           "trust": "kernel"
         },
         {
           "decl": "minimal_first_even_overshoots",
-          "line": 649,
+          "line": 584,
           "score": 0.214,
           "trust": "kernel"
         }
       ],
       "composite": true,
       "confidence": "review",
-      "definitions": [
-        {
-          "decl": "evenCount",
-          "line": 24,
-          "score": 0.056
-        }
-      ],
+      "definitions": [],
       "id": "J-cyclemax-succ-sq",
-      "in_file": 49,
+      "in_file": 43,
       "lean": "Problems/Juggler/EvenCountThree.lean",
       "names_own": [
         "cycle_distinguished_order_succ_sq",
@@ -3730,34 +3021,28 @@
       "candidates": [
         {
           "decl": "cycleMin_not_last_odd_run_ge_two",
-          "line": 267,
+          "line": 202,
           "score": 0.326,
           "trust": "kernel"
         },
         {
           "decl": "cycleMin_last_odd_run_eq_one",
-          "line": 282,
+          "line": 217,
           "score": 0.235,
           "trust": "kernel"
         },
         {
           "decl": "exists_cycleMin_last_odd_run",
-          "line": 292,
+          "line": 227,
           "score": 0.234,
           "trust": "kernel"
         }
       ],
       "composite": true,
       "confidence": "low",
-      "definitions": [
-        {
-          "decl": "evenCount",
-          "line": 24,
-          "score": 0.044
-        }
-      ],
+      "definitions": [],
       "id": "J-cyclemin-last-odd-run",
-      "in_file": 49,
+      "in_file": 43,
       "lean": "Problems/Juggler/EvenCountThree.lean",
       "names_own": [
         "no_cycleMin_odd_run",
@@ -3819,21 +3104,21 @@
     {
       "candidates": [
         {
-          "decl": "residue_mul_bijective",
-          "line": 279,
-          "score": 0.117,
+          "decl": "hug_charge_maximal",
+          "line": 118,
+          "score": 0.191,
           "trust": "kernel"
         },
         {
-          "decl": "theta_convergent_denominators",
-          "line": 146,
-          "score": 0.094,
+          "decl": "cycleMin_defect_le_hug_charge",
+          "line": 229,
+          "score": 0.172,
           "trust": "kernel"
         },
         {
-          "decl": "theta_convergent_quality",
-          "line": 264,
-          "score": 0.085,
+          "decl": "cycleMin_defect_le_charge",
+          "line": 190,
+          "score": 0.16,
           "trust": "kernel"
         }
       ],
@@ -3841,73 +3126,27 @@
       "confidence": "low",
       "definitions": [
         {
-          "decl": "greedyDigits",
-          "line": 174,
-          "score": 0.059
+          "decl": "hugWeight",
+          "line": 79,
+          "score": 0.111
         },
         {
-          "decl": "convergentDenoms",
-          "line": 136,
-          "score": 0.051
+          "decl": "stateCharge",
+          "line": 48,
+          "score": 0.089
         }
       ],
-      "id": "J-cyclemin-walk-ostrowski-arithmetic",
-      "in_file": 20,
-      "lean": "Problems/Juggler/OstrowskiSandwich.lean",
-      "names_own": [
-        "theta_sandwich_upper",
-        "lower_lt_walkTheta",
-        "walkTheta_lt_upper",
-        "cf_lower_prefix",
-        "cf_upper_prefix",
-        "cf_lower_continues",
-        "cf_upper_continues",
-        "theta_convergent_denominators",
-        "window_digit_scan",
-        "window_digit_cap",
-        "window_digit_max",
-        "theta_convergent_numerators",
-        "thetaConvergents_eq_zip",
-        "theta_convergents_unimodular",
-        "theta_convergents_coprime",
-        "theta_convergent_quality",
-        "residue_mul_bijective",
-        "theta_block_permutations"
-      ],
-      "statement": "Certified quotient arithmetic behind the Denjoy\u2013Koksma block envelope (Paper A Theorem 5.7) and the window digit caps (Theorem 5.8). Lean proves: the big-integer sandwich 3^10781274 < 2^17087915 and 2^16785921 < 3^10590737 (theta_sandwich_upper/lower, norm_num, kernel-checked); the real bounds 6195184/16785921 < log(3/2)/log 3 < 6306641/17087915 (lower_lt_walkTheta, walkTheta_lt_upper, via Real.lo"
-    },
-    {
-      "candidates": [
-        {
-          "decl": "cycleMin_defect_le_hug_charge",
-          "line": 172,
-          "score": 0.233,
-          "trust": "kernel"
-        },
-        {
-          "decl": "hug_charge_maximal",
-          "line": 115,
-          "score": 0.203,
-          "trust": "kernel"
-        },
-        {
-          "decl": "cycleMin_defect_le_charge",
-          "line": 133,
-          "score": 0.195,
-          "trust": "kernel"
-        }
-      ],
-      "composite": true,
-      "confidence": "low",
-      "definitions": [],
       "id": "J-cyclemin-hug-charge-max",
-      "in_file": 9,
+      "in_file": 12,
       "lean": "Problems/Juggler/WalkChargeMax.lean",
       "names_own": [
         "stateCharge_antitone",
         "hug_charge_maximal",
         "cycleMin_defect_le_charge",
-        "cycleMin_defect_le_hug_charge"
+        "cycleMin_defect_le_hug_charge",
+        "stateCharge_strictAnti",
+        "stateCharge_inj",
+        "hug_charge_unique"
       ],
       "statement": "Hug charge maximality and the \u00a75.2 defect-to-charge consequence of Paper A, Lean end to end (Theorem 5.4 analytic half, previously human). The per-state charge stateCharge \u03bd W = 1/(e^{W\u03bd}\u00b7W\u00b7\u03bd) \u2014 the paper's g(u) = 1/(n'^{2^u}\u00b72^u\u00b7log n') written through the rational weight W = 3^a/2^k \u2014 is antitone in the weight (stateCharge_antitone, WalkChargeMax.lean); since the hug itinerary carries the pointw"
     },
@@ -3934,7 +3173,13 @@
       ],
       "composite": true,
       "confidence": "review",
-      "definitions": [],
+      "definitions": [
+        {
+          "decl": "prefixCharge",
+          "line": 255,
+          "score": 0.044
+        }
+      ],
       "id": "J-cyclemin-defect-finance-kill",
       "in_file": 11,
       "lean": "Problems/Juggler/DefectFinance.lean",
@@ -3954,59 +3199,21 @@
     {
       "candidates": [
         {
-          "decl": "rotationAverage_gap",
-          "line": 229,
-          "score": 0.14,
+          "decl": "greedy_eq_ostro",
+          "line": 199,
+          "score": 0.153,
           "trust": "kernel"
         },
         {
-          "decl": "rotation_average_le",
-          "line": 123,
-          "score": 0.135,
+          "decl": "window_digit_cap",
+          "line": 235,
+          "score": 0.152,
           "trust": "kernel"
         },
-        {
-          "decl": "integral_quad_exp_le",
-          "line": 91,
-          "score": 0.123,
-          "trust": "kernel"
-        }
-      ],
-      "composite": true,
-      "confidence": "low",
-      "definitions": [],
-      "id": "J-cyclemin-rotation-average",
-      "in_file": 10,
-      "lean": "Problems/Juggler/RotationAverage.lean",
-      "names_own": [
-        "rotation_average_lt",
-        "rotation_average_le",
-        "rotationAverage_lt",
-        "rotationAverage_le",
-        "rotationAverage_gap",
-        "inv_sq_le_quad",
-        "hasDerivAt_quadPrim"
-      ],
-      "statement": "The rotation average Laplace bound (Paper A Proposition 5.5, quantitative half, previously human). For every \u03bd > 0 the rotation average C*(\u03bd) = (1/log 3)\u00b7\u222b_1^3 e^{\u03bd(1\u2212t)} t\u207b\u00b2 dt satisfies C*(\u03bd) < 1/(log 3\u00b7\u03bd) and the sharper Laplace bound C*(\u03bd) \u2264 (1 \u2212 2/\u03bd + 6/\u03bd\u00b2)/(log 3\u00b7\u03bd), hence the gap form (2/\u03bd \u2212 6/\u03bd\u00b2)/(log 3\u00b7\u03bd) \u2264 1/(log 3\u00b7\u03bd) \u2212 C*(\u03bd) consumed by the Theorem 5.8 window computation (rotation_avera"
-    },
-    {
-      "candidates": [
         {
           "decl": "greedy_eq_ostro_below_window",
-          "line": 193,
-          "score": 0.229,
-          "trust": "compiler"
-        },
-        {
-          "decl": "theta_digitSum_le",
-          "line": 170,
-          "score": 0.197,
-          "trust": "kernel"
-        },
-        {
-          "decl": "ostroDigit_le",
-          "line": 62,
-          "score": 0.164,
+          "line": 210,
+          "score": 0.132,
           "trust": "kernel"
         }
       ],
@@ -4016,16 +3223,16 @@
         {
           "decl": "thetaDenomFn",
           "line": 135,
-          "score": 0.074
+          "score": 0.046
         },
         {
           "decl": "thetaQuotFn",
           "line": 142,
-          "score": 0.069
+          "score": 0.044
         }
       ],
       "id": "J-cyclemin-walk-ostrowski-numeration",
-      "in_file": 11,
+      "in_file": 14,
       "lean": "Problems/Juggler/OstrowskiNumeration.lean",
       "names_own": [
         "ostroRem_lt",
@@ -4034,8 +3241,10 @@
         "ostro_digitSum_le",
         "theta_digitSum_le",
         "theta_sum_eq",
+        "greedy_eq_ostro",
         "greedy_eq_ostro_below_window",
-        "greedyDigitSum_le"
+        "greedyDigitSum_le",
+        "window_digit_cap"
       ],
       "statement": "General Ostrowski numeration and the structural digit cap (Paper A Theorem 5.8, digit-cap step, previously human). For any denominator sequence q with 0 < q 0 and q monotone satisfying the convergent recurrence bound q(j+1) \u2264 a(j+1)\u00b7q(j) + q(j\u22121), the greedy digits from any L < q(n+1) obey the remainder invariant (ostroRem_lt), the digit cap b_j \u2264 a_{j+1} (ostroDigit_le), exact reconstruction L = "
     },
@@ -4062,7 +3271,18 @@
       ],
       "composite": true,
       "confidence": "low",
-      "definitions": [],
+      "definitions": [
+        {
+          "decl": "prefixDeficit",
+          "line": 232,
+          "score": 0.066
+        },
+        {
+          "decl": "transportDeficit",
+          "line": 261,
+          "score": 0.047
+        }
+      ],
       "id": "J-flight-envelope-transport",
       "in_file": 20,
       "lean": "Problems/Juggler/WalkTransport.lean",
@@ -4078,19 +3298,19 @@
       "candidates": [
         {
           "decl": "fate_trichotomy",
-          "line": 199,
+          "line": 175,
           "score": 0.25,
           "trust": "kernel"
         },
         {
           "decl": "cycle_basin_bounded",
-          "line": 366,
+          "line": 342,
           "score": 0.188,
           "trust": "kernel"
         },
         {
           "decl": "escapes_floorPower",
-          "line": 77,
+          "line": 78,
           "score": 0.171,
           "trust": "kernel"
         }
@@ -4100,17 +3320,17 @@
       "definitions": [
         {
           "decl": "ForwardClosed",
-          "line": 224,
+          "line": 200,
           "score": 0.061
         },
         {
           "decl": "BackwardClosed",
-          "line": 30,
+          "line": 31,
           "score": 0.057
         }
       ],
       "id": "J-fate-classes-backward-closed",
-      "in_file": 34,
+      "in_file": 33,
       "lean": "Problems/Juggler/FateContagion.lean",
       "names_own": [
         "reachesOne_backwardClosed",
@@ -4132,19 +3352,19 @@
       "candidates": [
         {
           "decl": "floorPower_oe_fiber",
-          "line": 156,
+          "line": 132,
           "score": 0.257,
           "trust": "kernel"
         },
         {
           "decl": "oe_fiber_disjoint",
-          "line": 174,
+          "line": 150,
           "score": 0.25,
           "trust": "kernel"
         },
         {
           "decl": "even_block_card",
-          "line": 107,
+          "line": 108,
           "score": 0.161,
           "trust": "kernel"
         }
@@ -4154,23 +3374,22 @@
       "definitions": [
         {
           "decl": "BackwardClosed",
-          "line": 30,
+          "line": 31,
           "score": 0.059
         },
         {
           "decl": "ForwardClosed",
-          "line": 224,
+          "line": 200,
           "score": 0.03
         }
       ],
       "id": "J-fate-oe-fiber-cell",
-      "in_file": 34,
+      "in_file": 33,
       "lean": "Problems/Juggler/FateContagion.lean",
       "names_own": [
         "floorPower_even_block",
         "even_block_mem",
         "even_block_card",
-        "sqrt_sqrt_eq_iff",
         "floorPower_oe_fiber",
         "oe_fiber_mem",
         "oe_fiber_disjoint"
@@ -4181,19 +3400,19 @@
       "candidates": [
         {
           "decl": "nonempty_iff_odd_image_mem",
-          "line": 277,
+          "line": 253,
           "score": 0.197,
           "trust": "kernel"
         },
         {
           "decl": "exists_odd_ancestor",
-          "line": 242,
+          "line": 218,
           "score": 0.18,
           "trust": "kernel"
         },
         {
           "decl": "odd_mem_iff",
-          "line": 292,
+          "line": 268,
           "score": 0.15,
           "trust": "kernel"
         }
@@ -4203,17 +3422,17 @@
       "definitions": [
         {
           "decl": "BackwardClosed",
-          "line": 30,
+          "line": 31,
           "score": 0.048
         },
         {
           "decl": "ForwardClosed",
-          "line": 224,
+          "line": 200,
           "score": 0.033
         }
       ],
       "id": "J-fate-odd-generation",
-      "in_file": 34,
+      "in_file": 33,
       "lean": "Problems/Juggler/FateContagion.lean",
       "names_own": [
         "reachesOne_forwardClosed",
@@ -4231,19 +3450,19 @@
       "candidates": [
         {
           "decl": "reachesOne_of_itinerary_envelope",
-          "line": 324,
+          "line": 300,
           "score": 0.13,
           "trust": "kernel"
         },
         {
           "decl": "nonempty_iff_odd_image_mem",
-          "line": 277,
+          "line": 253,
           "score": 0.104,
           "trust": "kernel"
         },
         {
           "decl": "mem_iff_floorPower_mem",
-          "line": 236,
+          "line": 212,
           "score": 0.1,
           "trust": "kernel"
         }
@@ -4253,17 +3472,17 @@
       "definitions": [
         {
           "decl": "BackwardClosed",
-          "line": 30,
+          "line": 31,
           "score": 0.071
         },
         {
           "decl": "ForwardClosed",
-          "line": 224,
+          "line": 200,
           "score": 0.049
         }
       ],
       "id": "J-fate-envelope-floor",
-      "in_file": 34,
+      "in_file": 33,
       "lean": "Problems/Juggler/FateContagion.lean",
       "names_own": [
         "iterate_le_of_envelope",
@@ -4276,19 +3495,19 @@
       "candidates": [
         {
           "decl": "fract_walk_depends_only_on_odd_count",
-          "line": 60,
+          "line": 61,
           "score": 0.237,
           "trust": "kernel"
         },
         {
           "decl": "fract_walk_eq_fract_rotation",
-          "line": 54,
+          "line": 55,
           "score": 0.184,
           "trust": "kernel"
         },
         {
           "decl": "fract_mul_sub_nat_eq_fract_mul_sub_one",
-          "line": 46,
+          "line": 47,
           "score": 0.154,
           "trust": "kernel"
         }
@@ -4297,13 +3516,18 @@
       "confidence": "low",
       "definitions": [
         {
+          "decl": "alphaClock",
+          "line": 41,
+          "score": 0.122
+        },
+        {
           "decl": "WalkStep",
-          "line": 74,
+          "line": 75,
           "score": 0.093
         }
       ],
       "id": "J-loglog-clock-walk-rotation-lean",
-      "in_file": 21,
+      "in_file": 20,
       "lean": "Problems/Juggler/LogLogClock.lean",
       "names_own": [
         "fract_mul_sub_nat_eq_fract_mul_sub_one",
@@ -4316,19 +3540,19 @@
       "candidates": [
         {
           "decl": "even_chain_mem_burst",
-          "line": 180,
+          "line": 176,
           "score": 0.242,
           "trust": "kernel"
         },
         {
           "decl": "even_chain_log_offset",
-          "line": 218,
+          "line": 214,
           "score": 0.226,
           "trust": "kernel"
         },
         {
           "decl": "not_reachesOne_even_chain_ge",
-          "line": 250,
+          "line": 246,
           "score": 0.139,
           "trust": "kernel"
         }
@@ -4337,13 +3561,18 @@
       "confidence": "low",
       "definitions": [
         {
+          "decl": "alphaClock",
+          "line": 41,
+          "score": 0.083
+        },
+        {
           "decl": "WalkStep",
-          "line": 74,
+          "line": 75,
           "score": 0.081
         }
       ],
       "id": "J-loglog-clock-even-chain-burst-lean",
-      "in_file": 21,
+      "in_file": 20,
       "lean": "Problems/Juggler/LogLogClock.lean",
       "names_own": [
         "even_chain_mem_burst",
@@ -4356,19 +3585,19 @@
       "candidates": [
         {
           "decl": "hug_band_step_exists",
-          "line": 109,
+          "line": 105,
           "score": 0.195,
           "trust": "kernel"
         },
         {
           "decl": "narrow_band_dead",
-          "line": 118,
+          "line": 114,
           "score": 0.195,
           "trust": "kernel"
         },
         {
           "decl": "odd_steps_below_one_le_one",
-          "line": 165,
+          "line": 161,
           "score": 0.195,
           "trust": "kernel"
         }
@@ -4378,12 +3607,17 @@
       "definitions": [
         {
           "decl": "WalkStep",
-          "line": 74,
+          "line": 75,
           "score": 0.14
+        },
+        {
+          "decl": "alphaClock",
+          "line": 41,
+          "score": 0.116
         }
       ],
       "id": "J-loglog-clock-hug-band-lean",
-      "in_file": 21,
+      "in_file": 20,
       "lean": "Problems/Juggler/LogLogClock.lean",
       "names_own": [
         "hug_band_step_exists",
@@ -4392,7 +3626,6 @@
         "no_even_step_below_one",
         "odd_steps_below_one_le_one",
         "half_lt_alphaClock",
-        "one_lt_logb_two_three",
         "logb_two_three_lt_two"
       ],
       "statement": "WalkStep u v := v = u + alphaClock or v = u - 1. hug_band_step_exists: from any u in [0, 1 + alphaClock) some step stays in the band. narrow_band_dead: if w - alphaClock <= u < 1 then no step from u stays in [0, w); dead_zone_nonempty: for 0 < w < 1 + alphaClock such a u exists in [0, w) - so the hug band [0, log2 3) is the minimal invariant band of the exponent walk. no_even_step_below_one and od"
@@ -4401,19 +3634,19 @@
       "candidates": [
         {
           "decl": "band_successor_unique",
-          "line": 152,
+          "line": 148,
           "score": 0.475,
           "trust": "kernel"
         },
         {
           "decl": "band_step_forced_odd",
-          "line": 134,
+          "line": 130,
           "score": 0.263,
           "trust": "kernel"
         },
         {
           "decl": "band_step_forced_even",
-          "line": 142,
+          "line": 138,
           "score": 0.263,
           "trust": "kernel"
         }
@@ -4423,12 +3656,17 @@
       "definitions": [
         {
           "decl": "WalkStep",
-          "line": 74,
+          "line": 75,
           "score": 0.189
+        },
+        {
+          "decl": "alphaClock",
+          "line": 41,
+          "score": 0.132
         }
       ],
       "id": "J-loglog-clock-band-word-forced-lean",
-      "in_file": 21,
+      "in_file": 20,
       "lean": "Problems/Juggler/LogLogClock.lean",
       "names_own": [
         "band_step_forced_odd",
@@ -4441,19 +3679,19 @@
       "candidates": [
         {
           "decl": "not_reachesOne_even_chain_ge",
-          "line": 250,
+          "line": 246,
           "score": 0.214,
           "trust": "kernel"
         },
         {
           "decl": "even_chain_mem_burst",
-          "line": 180,
+          "line": 176,
           "score": 0.159,
           "trust": "kernel"
         },
         {
           "decl": "not_reachesOne_ge",
-          "line": 243,
+          "line": 239,
           "score": 0.071,
           "trust": "kernel"
         }
@@ -4463,12 +3701,17 @@
       "definitions": [
         {
           "decl": "WalkStep",
-          "line": 74,
+          "line": 75,
           "score": 0.042
+        },
+        {
+          "decl": "walk",
+          "line": 44,
+          "score": 0.022
         }
       ],
       "id": "J-floor-stratifies-even-cylinders-lean",
-      "in_file": 21,
+      "in_file": 20,
       "lean": "Problems/Juggler/LogLogClock.lean",
       "names_own": [
         "not_reachesOne_even_chain_ge",
@@ -4513,42 +3756,154 @@
       "statement": "Even steps never deepen the Juggler floor tower. For every j, Nat.sqrt^[j] x = s iff s^(2^j) <= x < (s+1)^(2^j) (sqrt_iter_eq_iff); on an even run floorPower is iterated Nat.sqrt (floorPower_iter_of_even); an odd step followed by j even steps equals Nat.sqrt^[j+1] (n^3), i.e. floor(n^(3/2^(j+1))) with one floor and no nesting (floorPower_odd_even_run, floorPower_odd_even_run_eq_iff); the OE fiber "
     },
     {
+      "candidates": [],
+      "composite": false,
+      "confidence": "low",
+      "definitions": [],
+      "id": "J-depth-one-arithmetic-layer",
+      "in_file": 0,
+      "lean": "formal/Problems/Juggler/DepthOneMainTerm.lean",
+      "names_own": [],
+      "statement": "The arithmetic tier beneath J-depth-one-main-term, machine-checked. (a) dual_phase: for the phase F(M) = alpha M^(3/2), at the stationary point M_nu = s^2 with s = 2 nu / (3 alpha) (stationary_point) the Legendre value alpha s^3 - nu s^2 equals -4 nu^3 / (27 alpha^2), a cubic whose coefficient is rational whenever alpha is; at alpha = 1/2 it is -16 nu^3 / 27 (dual_phase_half), so the dual modulus "
+    },
+    {
       "candidates": [
         {
+          "decl": "count_le_of_noMomentum",
+          "line": 181,
+          "score": 0.226,
+          "trust": "kernel"
+        },
+        {
           "decl": "count_le_pressure",
-          "line": 161,
-          "score": 0.217,
+          "line": 162,
+          "score": 0.167,
           "trust": "kernel"
         },
         {
-          "decl": "weightGen_le_pressure",
-          "line": 124,
-          "score": 0.17,
-          "trust": "kernel"
-        },
-        {
-          "decl": "oddMass_le_weightGen",
-          "line": 45,
-          "score": 0.146,
+          "decl": "tilt_exponent_eq_kl",
+          "line": 209,
+          "score": 0.133,
           "trust": "kernel"
         }
       ],
       "composite": true,
       "confidence": "low",
-      "definitions": [],
+      "definitions": [
+        {
+          "decl": "NoMomentum",
+          "line": 175,
+          "score": 0.091
+        },
+        {
+          "decl": "MeanShare",
+          "line": 285,
+          "score": 0.074
+        }
+      ],
       "id": "J-tilted-share-telescoping",
-      "in_file": 8,
+      "in_file": 23,
       "lean": "Problems/Juggler/TiltedShare.lean",
       "names_own": [
         "weightGen_succ_le",
         "weightGen_succ_le_share",
         "one_add_le_exp_excess",
         "weightGen_le_pressure",
-        "count_le_pressure"
+        "count_le_pressure",
+        "count_le_of_noMomentum",
+        "tilt_exponent_eq_kl"
       ],
       "statement": "Paper C Proposition 9.3 on the word-weight framework of RateFreeDensity. For a nonnegative word weight mu with WeightSplit (each word's two children carry at most the parent's weight) and x >= 1: the tilted generating function Z_d = weightGen mu x d satisfies Z_{d+1} <= Z_d + (x-1) oddMass_d (weightGen_succ_le) and Z_{d+1} <= Z_d (1 + (x-1) s_d) with s_d = tiltedShare mu x d = oddMass_d / Z_d (wei"
+    },
+    {
+      "candidates": [],
+      "composite": false,
+      "confidence": "low",
+      "definitions": [],
+      "id": "J-live-count-weight",
+      "in_file": 0,
+      "lean": "formal/Problems/Juggler/LiveCountWeight.lean",
+      "names_own": [],
+      "statement": "The live count liveCount N0 N w = #{n in [1,N] : itinerary n |w| = w and n, J n, ..., J^|w| n all exceed N0} is a WeightSplit weight (liveWeight_weightSplit: the two one-letter extensions have disjoint live classes inside the parent's), and juggler_count_le_of_noMomentum instantiates the chain on it: if NoMomentum (liveWeight N0 N) x q delta d holds, then #{n in [1,N] : live for d steps, oddCount("
+    },
+    {
+      "candidates": [],
+      "composite": false,
+      "confidence": "low",
+      "definitions": [],
+      "id": "J-mean-share-form",
+      "in_file": 0,
+      "lean": "formal/Problems/Juggler/TiltedShare.lean",
+      "names_own": [],
+      "statement": "Mean-share form of the no-momentum hypothesis. MeanShare mu x q d := sum_{t<d} s_t <= q d, with s_t the tilted odd share of the WeightSplit weight mu at tilt x. Then (weightGen_le_of_meanShare) Z_d <= Z_0 a_q^d with a_q = 1 + (x-1) q and no exponential slack, by the product form Z_d <= Z_0 prod_{t<d} (1 + (x-1) s_t) (weightGen_le_prod) and AM-GM (prod_le_mean_pow, Jensen for log); hence (count_le_"
+    },
+    {
+      "candidates": [],
+      "composite": false,
+      "confidence": "low",
+      "definitions": [],
+      "id": "J-mean-share-exceptional-depths",
+      "in_file": 0,
+      "lean": "formal/Problems/Juggler/TiltedShare.lean",
+      "names_own": [],
+      "statement": "What the mean-share hypothesis does not need, machine-checked. Paper C section 9.3(a) and 9.3(b) were prose; these are the statements. (a) MeanShareOff mu x q d E := sum over t in [0,d) minus E of s_t <= q |[0,d) minus E|, with nothing whatever assumed on the exceptional set E. Then weightGen_le_of_meanShareOff gives Z_d <= Z_0 x^|[0,d) cap E| a_q^|[0,d) minus E|: each excluded depth costs exactly"
+    },
+    {
+      "candidates": [],
+      "composite": false,
+      "confidence": "low",
+      "definitions": [],
+      "id": "J-cycle-run-alphabet",
+      "in_file": 0,
+      "lean": "formal/Problems/Juggler/CycleRunAlphabet.lean",
+      "names_own": [],
+      "statement": "Exact run inequalities, with no height-to-alphabet conclusion. odd_run_upper: if the first r iterates from v are odd, y = T^[r] v satisfies y^(2^r) <= v^(3^r), an UPPER growth bound, not (3/2)^r <= log M/log m. even_run_contracts: under the stated even-iterate condition, z^(2^g) <= w. oo_step_lower: if x and T(x) are odd and T(x) >= 8, then x^9 < 2(T^2(x)+1)^4; retain the factor two and shift. odd"
+    },
+    {
+      "candidates": [],
+      "composite": false,
+      "confidence": "low",
+      "definitions": [],
+      "id": "J-cycle-band-discrepancy",
+      "in_file": 0,
+      "lean": "formal/Problems/Juggler/CycleRunAlphabet.lean",
+      "names_own": [],
+      "statement": "Conditional abstract word identities, not actual cycle geometry. walk_eq_discrepancy assumes L>0 and o alpha = (L-o) beta and proves o_t alpha - (t-o_t) beta = (alpha+beta)(o_t - t o/L). Without that supplied closure the drift term (t/L)(o alpha-(L-o) beta) must be retained; no log R = log 3 Delta identity for actual Juggler cycles is claimed. band_min_needs_three_climbs: if prefixNoncontracting ("
+    },
+    {
+      "candidates": [],
+      "composite": false,
+      "confidence": "low",
+      "definitions": [],
+      "id": "J-parity-factor-exhaustion",
+      "in_file": 0,
+      "lean": "formal/Problems/Juggler/ParityComplexity.lean",
+      "names_own": [],
+      "statement": "The depth-one parity sequence a(k) = floor((2k+1)^(3/2)) mod 2, the letter after the odd step from 2k+1 (oddCubeParity_eq_floorPower: it is floorPower (2k+1) % 2), contains every binary word of length at most six, and the words of length 3, 4, 5, 6 are exhausted at exactly 18, 48, 169, 574 terms: factorCount (parityPrefix 574) 6 = 64 and factorCount (parityPrefix 573) 6 = 63 (factorCount_six_satur"
+    },
+    {
+      "candidates": [],
+      "composite": false,
+      "confidence": "low",
+      "definitions": [],
+      "id": "J-localized-kernel-arithmetic",
+      "in_file": 0,
+      "lean": "formal/Problems/Juggler/LocalizedKernel.lean",
+      "names_own": [],
+      "statement": "Rational bookkeeping only, not an exponential-sum estimate. LocalizedKernel.lean proves absTail_eq: three nested half-averages give (7y+a)/8; threshold_iff and threshold_value: retaining saving 1/96 requires y>=29/48. Legacy companionY=23/32 is explicitly a reference scale, not a production scale; absTail_companion=533/768, target_companion=17/24, margin_companion=11/768 remain true. The repaired "
+    },
+    {
+      "candidates": [],
+      "composite": false,
+      "confidence": "low",
+      "definitions": [],
+      "id": "J-cube-fiber-exact",
+      "in_file": 0,
+      "lean": "formal/Problems/Juggler/CubeFiber.lean",
+      "names_own": [],
+      "statement": "The OE fiber of a perfect cube is full or exactly alternating. For every a >= 1 and every n with (2a)^4 <= n and n^3 < ((2a)^3+1)^4, floor(n^(3/2)) = Nat.sqrt (n^3) is even (even_cube_fiber_full); for every odd n with (2a+1)^4 <= n and n^3 < ((2a+1)^3+1)^4, Nat.sqrt (n^3) + (n - (2a+1)^4)/2 is odd (odd_cube_fiber_alternating), so consecutive fiber elements have opposite image parity. Both rest on "
     }
   ],
-  "unresolved": 115,
-  "worth_reviewing": 20
+  "unresolved": 105,
+  "worth_reviewing": 18
 }

@@ -47321,3 +47321,108 @@ Problems/Engine holds seventeen other modules and not one carries a ledger row
 or an index entry. The engine layer sits outside the Juggler ceremony by
 design, and its prospecting note is already registered in manuscript
 consistency.
+
+
+## The four files the Lean layer answers from were all wrong
+
+The consolidation question was whether the Lean side needed the same pass the
+prose side had just had. It did, and not in the place I expected. The Lean
+itself is fine: 6573 declarations across 284 modules, sorry-free, and 6517 of
+them kernel-checked with the 56 compiler-dependent ones already named and
+fenced. What had rotted was the layer that answers questions *about* it.
+
+`tools/formalpedia.py` writes four files, all committed, and the formalpedia
+skill tells a session to consult them before touching anything under `formal/`.
+Every one of the four had drifted from what the tool would write today.
+
+```text
+index.json          6413 -> 6503 declarations   +91 added, -1 removed
+dag.json            119 -> 177 modules, 326 -> 394 ledger rows placed
+decl_proposals.json 115 -> 105 unresolved; 4 rows' best candidate changed
+formalpedia_decl_review.md   353 -> 370 lines, and see below
+```
+
+The index did not know `InformationField` existed --- ninety declarations, zero
+mentions. It still listed `window_digit_scan` as a declaration after that scan
+was retired, and it still placed `window_digit_cap` in `OstrowskiSandwich`
+after the declaration had moved to `OstrowskiNumeration`. A session that asked
+it where to find `window_digit_cap` would have been sent to the wrong module
+and told about a scan that no longer exists. That is worse than an index being
+absent: absent is a question you notice you cannot answer.
+
+The claim DAG was missing 58 of its 177 modules and 68 of its ledger-row
+placements. That graph is what answers "what does changing this module
+rebuild", so a third of the corpus was invisible to impact analysis.
+
+And four rows of the proposal queue pointed at a declaration that is no longer
+the best match for them, including `J-cyclemin-walk-ostrowski-numeration`,
+which still named `greedy_eq_ostro_below_window` --- the scan retired three
+paragraphs ago --- where `greedy_eq_ostro` is now the structural answer.
+
+### The review digest was not stale, it was corrupted
+
+`docs/research/formalpedia_decl_review.md` began, in the committed copy, with
+the line `wrote docs\research\formalpedia_decl_review.md`, and its second line
+started mid-word at `didate leads its file clearly.` The first 48 bytes of the
+document --- its `# Declaration review queue` title, a blank line, and the
+opening `Rows where one can` of the first sentence --- were gone, replaced by
+exactly 48 bytes of the tool's own success message.
+
+The mechanism is `python tools/formalpedia.py review > docs/research/formalpedia_decl_review.md`.
+The tool writes that file itself; the redirect is not how you invoke it. The
+shell truncates the file, the tool writes the whole digest into it, and then
+the shell writes `wrote ...` back at offset 0, over the beginning. The result
+is a document that still looks like a document. It has 353 plausible lines. It
+just lost its title and opens in the middle of a word, and it was committed
+that way and read that way for a week.
+
+### Why none of this was caught
+
+Sixteen tests in `tests/tools/test_formalpedia.py` exercise this tool, and every
+single one calls `fp.build()` fresh. They test the builder thoroughly and the
+artifacts not at all. The files on disk --- the only ones a session actually
+reads --- were the one thing nobody compared to anything.
+
+This is the same shape as everything else found today, and it is worth being
+precise about the shape, because it is not "someone forgot to regenerate". It
+is that the check and the thing being checked were never connected. The three
+audit rows compared constants to themselves. The orphan gate counted agent
+worktrees as citations. The collision work classified itself into the category
+its own dossier gate exempts. Here, sixteen tests could all pass on a corpus
+whose committed answers were a week out of date, because passing never required
+opening those files.
+
+### The gate
+
+`test_every_committed_artifact_matches_a_fresh_build` rebuilds all four and
+compares exact bytes. Not one of the four --- a gate over the index alone would
+have left the identical hole three more times, which is the mistake the tests
+already made in the other direction. All four rebuild deterministically across
+`PYTHONHASHSEED` 1, 2 and 3, and together take 1.4 seconds, so there is no
+reason for the comparison to be anything looser than bytes.
+
+Each of the four was verified to fail the gate individually by restoring the
+stale copy and watching it fire; a gate this cheap to write is also cheap to
+write wrongly, and the first draft of it did exactly that --- it passed on a
+correct index for the wrong reason, because a `.replace()` in the patch script
+silently did nothing and left it comparing against `indent=1`.
+
+`test_the_review_digest_still_opens_with_its_own_title` names the corruption
+specifically. Regenerating fixes it, but the redirect that caused it puts it
+straight back, and the product still reads as a plausible file. A staleness
+gate alone would catch that only for as long as nobody regenerates afterwards.
+
+The serialisation itself was the other half of the risk: the gate had to
+hardcode `indent=2, sort_keys=True` to match the writer, which is a second
+place for the same fact. Both sides now call `formalpedia.render`, and the
+three JSON writers call it too, so an indent change cannot make the artifacts
+and their gate disagree. The refactor was checked to be byte-neutral before it
+was kept.
+
+### What this does not say
+
+Nothing about the Lean corpus changed, and nothing here is a mathematical
+finding. No declaration was added, removed, proved or broken by any of it; the
+trust boundary is where it was. What changed is that four generated files now
+say what the corpus actually contains, and that they cannot quietly stop
+saying it again.

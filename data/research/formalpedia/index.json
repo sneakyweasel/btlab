@@ -6708,6 +6708,926 @@
       "trust": "compiler"
     },
     {
+      "doc": "A perturbation of the informational field.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "abbrev",
+      "ledger": [],
+      "line": 78,
+      "module": "Problems.Engine.InformationField",
+      "name": "Perturbation",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A map through which information affects physical or computational reality.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "abbrev",
+      "ledger": [],
+      "line": 82,
+      "module": "Problems.Engine.InformationField",
+      "name": "Interface",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Applying an informational perturbation.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 87,
+      "module": "Problems.Engine.InformationField",
+      "name": "perturb",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Composition of perturbations: `compose T\u2081 T\u2082` applies `T\u2082` first, then `T\u2081`.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 92,
+      "module": "Problems.Engine.InformationField",
+      "name": "compose",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 103,
+      "module": "Problems.Engine.InformationField",
+      "name": "compose_assoc",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The evolution `x\u2080 \u2192 T 0 x\u2080 \u2192 T 1 (T 0 x\u2080) \u2192 \u22ef` of the information field under a sequence of perturbations.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 115,
+      "module": "Problems.Engine.InformationField",
+      "name": "trajectory",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Pointwise magnitude of an informational perturbation.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 134,
+      "module": "Problems.Engine.InformationField",
+      "name": "perturbationSize",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Downstream (physical or computational) effect of a perturbation seen through the interface `\u03a6`.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 139,
+      "module": "Problems.Engine.InformationField",
+      "name": "physicalEffect",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Local informational leverage: downstream effect per unit of informational change, with the convention `0` for a perturbation that fixes `x`.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 145,
+      "module": "Problems.Engine.InformationField",
+      "name": "leverage",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 150,
+      "module": "Problems.Engine.InformationField",
+      "name": "perturbationSize_nonneg",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 154,
+      "module": "Problems.Engine.InformationField",
+      "name": "physicalEffect_nonneg",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 157,
+      "module": "Problems.Engine.InformationField",
+      "name": "leverage_nonneg",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 163,
+      "module": "Problems.Engine.InformationField",
+      "name": "perturbationSize_eq_zero_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 177,
+      "module": "Problems.Engine.InformationField",
+      "name": "leverage_of_ne",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The defining identity: effect equals leverage times size, including the degenerate case of a perturbation that fixes `x`.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 184,
+      "module": "Problems.Engine.InformationField",
+      "name": "leverage_mul_size",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A `K`-Lipschitz interface has leverage at most `K` everywhere.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 193,
+      "module": "Problems.Engine.InformationField",
+      "name": "leverage_le_of_lipschitz",
+      "trust": "kernel"
+    },
+    {
+      "doc": "An interface *amplifies* when its leverage is unbounded: an arbitrarily small informational change can produce a downstream change of any prescribed ratio.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 206,
+      "module": "Problems.Engine.InformationField",
+      "name": "Amplifies",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 209,
+      "module": "Problems.Engine.InformationField",
+      "name": "not_amplifies_of_lipschitz",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Leverage is unbounded exactly when the interface is not Lipschitz for any constant. The perturbation `fun _ => y` at `x` realizes every Lipschitz quotient `dist (\u03a6 x) (\u03a6 y) / dist x y`.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 218,
+      "module": "Problems.Engine.InformationField",
+      "name": "amplifies_iff_not_lipschitz",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Triangle inequality for the effect of a composite perturbation.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 244,
+      "module": "Problems.Engine.InformationField",
+      "name": "physicalEffect_compose_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 249,
+      "module": "Problems.Engine.InformationField",
+      "name": "perturbationSize_compose_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Chain rule for leverage under composition of perturbations: the weighted leverage of `T\u2081 \u2218 T\u2082` is at most the sum of the weighted leverages of the two steps.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 257,
+      "module": "Problems.Engine.InformationField",
+      "name": "leverage_compose_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Exact chain rule for composing interfaces. If `\u0398 : I \u2192 J` and `\u03a8 : J \u2192 M`, and `T'` is any perturbation of `J` that moves `\u0398 x` to `\u0398 (T x)`, then the leverage of `\u03a8 \u2218 \u0398` factors as the leverage of `\u03a8` at `\u0398 x` times the leverage of `\u0398` at `x`.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 268,
+      "module": "Problems.Engine.InformationField",
+      "name": "leverage_interface_comp",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The information field moves at most the sum of the step sizes.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 292,
+      "module": "Problems.Engine.InformationField",
+      "name": "dist_trajectory_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The physical state moves at most the sum of the step effects.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 307,
+      "module": "Problems.Engine.InformationField",
+      "name": "dist_interface_trajectory_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Cumulative chain rule: the physical displacement along a trajectory is bounded by the sum of the step-wise weighted leverages.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 322,
+      "module": "Problems.Engine.InformationField",
+      "name": "dist_interface_trajectory_le_leverage",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Through a `K`-Lipschitz interface, a trajectory can move the physical state at most `K` times the total information moved.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 331,
+      "module": "Problems.Engine.InformationField",
+      "name": "dist_interface_trajectory_le_of_lipschitz",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Computational leverage of `T` at `x` for a capability functional `C : I \u2192 \u211d`: the leverage of `C` viewed as an interface into `\u211d`.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 349,
+      "module": "Problems.Engine.InformationField",
+      "name": "computationalLeverage",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 352,
+      "module": "Problems.Engine.InformationField",
+      "name": "computationalLeverage_eq",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The change in capability is exactly leverage times informational size.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 359,
+      "module": "Problems.Engine.InformationField",
+      "name": "abs_sub_eq_computationalLeverage_mul",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Capability cannot change without an informational change.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 372,
+      "module": "Problems.Engine.InformationField",
+      "name": "capability_eq_of_fixed",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The gain ratio `\u039b(T; x) = C x / C (T x)` of a perturbation for a cost functional `C` (resources needed before over resources needed after).",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 378,
+      "module": "Problems.Engine.InformationField",
+      "name": "gainRatio",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`T` improves the cost at `x`.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 382,
+      "module": "Problems.Engine.InformationField",
+      "name": "Improves",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 385,
+      "module": "Problems.Engine.InformationField",
+      "name": "one_lt_gainRatio_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 389,
+      "module": "Problems.Engine.InformationField",
+      "name": "gainRatio_id",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Multiplicative chain rule for the gain ratio: `\u039b(T\u2081 \u2218 T\u2082; x) = \u039b(T\u2082; x) \u00b7 \u039b(T\u2081; T\u2082 x)`.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 394,
+      "module": "Problems.Engine.InformationField",
+      "name": "gainRatio_compose",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Along a trajectory the total gain telescopes into the product of the step gains.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 401,
+      "module": "Problems.Engine.InformationField",
+      "name": "gainRatio_trajectory",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Cost of a perturbation measured by a complexity functional `\u03ba : I \u2192 \u211d` (description length, entropy, \u2026): the absolute change in complexity.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 426,
+      "module": "Problems.Engine.InformationField",
+      "name": "informationCost",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 429,
+      "module": "Problems.Engine.InformationField",
+      "name": "informationCost_nonneg",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Subadditivity of cost under composition.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 436,
+      "module": "Problems.Engine.InformationField",
+      "name": "informationCost_compose_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Efficiency of a perturbation: downstream gain per unit of cost.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 445,
+      "module": "Problems.Engine.InformationField",
+      "name": "efficiency",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A finite menu of candidate perturbations has a most efficient member: the optimal perturbation `argmax_T gain T / cost T` exists.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 450,
+      "module": "Problems.Engine.InformationField",
+      "name": "exists_optimal_perturbation",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A threshold interface `\u211d \u2192 \u211d`: one bit of output that flips at `0`.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 462,
+      "module": "Problems.Engine.InformationField",
+      "name": "step",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Leverage of the shift `x \u21a6 x + \u03b5` at the threshold is `1 / \u03b5`.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 466,
+      "module": "Problems.Engine.InformationField",
+      "name": "leverage_step",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The threshold interface amplifies: leverage `1 / \u03b5` is unbounded as `\u03b5 \u2192 0`.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 479,
+      "module": "Problems.Engine.InformationField",
+      "name": "step_amplifies",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Consequently the threshold interface is not Lipschitz for any constant.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 488,
+      "module": "Problems.Engine.InformationField",
+      "name": "step_not_lipschitz",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Leverage of perturbations that stay inside `A` is bounded by `K`.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 507,
+      "module": "Problems.Engine.InformationField",
+      "name": "LeverageBoundedOn",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The original locus at level `K`: states from which some perturbation has leverage above `K`.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 512,
+      "module": "Problems.Engine.InformationField",
+      "name": "originalLocus",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 515,
+      "module": "Problems.Engine.InformationField",
+      "name": "amplifies_iff_originalLocus_nonempty",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 519,
+      "module": "Problems.Engine.InformationField",
+      "name": "leverageBoundedOn_of_lipschitzOnWith",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 528,
+      "module": "Problems.Engine.InformationField",
+      "name": "lipschitzOnWith_of_leverageBoundedOn",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A region is normal (bounded leverage for some constant) exactly when the interface is Lipschitz on it.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 545,
+      "module": "Problems.Engine.InformationField",
+      "name": "leverageBoundedOn_iff_lipschitzOnWith",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A perturbation whose leverage exceeds the Lipschitz constant of a region starts or lands outside that region.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 552,
+      "module": "Problems.Engine.InformationField",
+      "name": "exit_of_lt_leverage",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Original content inside a normal region is reached only by perturbations that leave the region.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 563,
+      "module": "Problems.Engine.InformationField",
+      "name": "originalLocus_inter_subset",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Compounding: if every step of a trajectory has gain ratio at least `g \u2265 0`, the total gain is at least `g ^ n`. One high-leverage lemma multiplies everything downstream of it.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 583,
+      "module": "Problems.Engine.InformationField",
+      "name": "pow_le_gainRatio_trajectory",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Exchange principle for mining order: in a menu with nonnegative gains, replacing a candidate by one of larger gain never lowers the total (multiplicative) gain.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 596,
+      "module": "Problems.Engine.InformationField",
+      "name": "prod_le_prod_exchange",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Among all `k`-element sub-menus of a finite menu there is one of maximal total gain: the `k` lemmas to mine first exist.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 607,
+      "module": "Problems.Engine.InformationField",
+      "name": "exists_optimal_menu",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A candidate proposition with its estimated discovery probability `D(p)`, expected downstream impact `F(p)` and cost.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "structure",
+      "ledger": [],
+      "line": 629,
+      "module": "Problems.Engine.InformationField",
+      "name": "Prospect",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Expected downstream value `D(p) \u00b7 F(p)`.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 640,
+      "module": "Problems.Engine.InformationField",
+      "name": "value",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The priority ratio `R(p) = D(p) F(p) / cost(p)`.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 644,
+      "module": "Problems.Engine.InformationField",
+      "name": "priority",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`p` is mined before `q`: `R p \u2265 R q`, stated without division so that it makes sense for every cost.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 649,
+      "module": "Problems.Engine.InformationField",
+      "name": "Before",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 652,
+      "module": "Problems.Engine.InformationField",
+      "name": "before_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 657,
+      "module": "Problems.Engine.InformationField",
+      "name": "before_total",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Difficulty without consequence has no priority.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 661,
+      "module": "Problems.Engine.InformationField",
+      "name": "priority_of_impact_eq_zero",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Consequence without any chance of novelty has no priority either.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 665,
+      "module": "Problems.Engine.InformationField",
+      "name": "priority_of_discovery_eq_zero",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A finite menu of prospects has a member of maximal priority.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 672,
+      "module": "Problems.Engine.InformationField",
+      "name": "exists_max_priority",
+      "trust": "kernel"
+    },
+    {
+      "doc": "States whose density of useful information is below `\u03c4\u2080`.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 679,
+      "module": "Problems.Engine.InformationField",
+      "name": "noiseRegion",
+      "trust": "kernel"
+    },
+    {
+      "doc": "States of ordinary density, between `\u03c4\u2080` and `\u03c4\u2081`.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 683,
+      "module": "Problems.Engine.InformationField",
+      "name": "ordinaryRegion",
+      "trust": "kernel"
+    },
+    {
+      "doc": "States of unusually high density: the original region.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 687,
+      "module": "Problems.Engine.InformationField",
+      "name": "originalRegion",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The three regimes cover the landscape.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 701,
+      "module": "Problems.Engine.InformationField",
+      "name": "regions_cover",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 712,
+      "module": "Problems.Engine.InformationField",
+      "name": "noise_disjoint_ordinary",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 717,
+      "module": "Problems.Engine.InformationField",
+      "name": "ordinary_disjoint_original",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 723,
+      "module": "Problems.Engine.InformationField",
+      "name": "noise_disjoint_original",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Factorial impact. If the `k`-th step of a mining trajectory eliminates one more family of cases than the step before it \u2014 gain ratio at least `k + 1` \u2014 then `n` steps multiply capability by at least `n!`: the consequence of the sequence is combinatorial in its length.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 733,
+      "module": "Problems.Engine.InformationField",
+      "name": "factorial_le_gainRatio_trajectory",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 764,
+      "module": "Problems.Engine.InformationField",
+      "name": "before_refl",
+      "trust": "kernel"
+    },
+    {
+      "doc": "With positive costs the priority order is transitive: from `v_p c_q \u2265 v_q c_p` and `v_q c_r \u2265 v_r c_q` follows `v_p c_r \u2265 v_r c_p`. Positivity is genuinely needed: with `c_p = c_r = -1`, `c_q = 1`, `v_p = 10`, `v_q = v_r = 0` the hypotheses hold and the conclusion fails.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 772,
+      "module": "Problems.Engine.InformationField",
+      "name": "before_trans",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Total expected value `\u03a3 D_i F_i` of a schedule.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 786,
+      "module": "Problems.Engine.InformationField",
+      "name": "totalValue",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The total value does not depend on the mining order.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 797,
+      "module": "Problems.Engine.InformationField",
+      "name": "totalValue_perm",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Value-weighted waiting cost of mining a schedule in order: `\u03a3_i D_i F_i \u00b7 (c_1 + \u22ef + c_i)`. Recursively, the head `p` pays `v_p c_p`, its cost `c_p` delays the whole value of the tail, and the tail is then mined on its own.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 805,
+      "module": "Problems.Engine.InformationField",
+      "name": "waitingCost",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The waiting cost charged when a prefix cost `c` has already been paid before the schedule starts.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 818,
+      "module": "Problems.Engine.InformationField",
+      "name": "waitingCostFrom",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 822,
+      "module": "Problems.Engine.InformationField",
+      "name": "waitingCostFrom_eq",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The recursive waiting cost is the prefix-sum form `\u03a3_i D_i F_i \u00b7 (c_1 + \u22ef + c_i)`.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 832,
+      "module": "Problems.Engine.InformationField",
+      "name": "waitingCost_eq_waitingCostFrom",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The difference made by an adjacent exchange: mining `q` right before `p` rather than `p` right before `q` costs `v_p c_q - v_q c_p` more, independently of the rest of the schedule.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 839,
+      "module": "Problems.Engine.InformationField",
+      "name": "waitingCost_swap",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Adjacent exchange, the local form of Smith's rule: mining `p` just before `q` is no more expensive than the reverse order exactly when `p` has the larger priority ratio.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 848,
+      "module": "Problems.Engine.InformationField",
+      "name": "waitingCost_swap_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 854,
+      "module": "Problems.Engine.InformationField",
+      "name": "totalValue_orderedInsert",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Inserting `p` at its priority position in `l` never costs more than mining `p` first: each prospect that `p` is pushed behind has a larger priority ratio, so each of those adjacent exchanges is profitable.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 861,
+      "module": "Problems.Engine.InformationField",
+      "name": "waitingCost_orderedInsert_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The sorted schedule mines exactly the same prospects.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 875,
+      "module": "Problems.Engine.InformationField",
+      "name": "insertionSort_perm",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 879,
+      "module": "Problems.Engine.InformationField",
+      "name": "totalValue_insertionSort",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Smith's rule.** Mining prospects in order of decreasing priority ratio `R = D F / c` (highest first) never increases the value-weighted waiting cost `\u03a3_i D_i F_i \u00b7 (c_1 + \u22ef + c_i)` of the schedule. No sign condition on the costs is needed: the adjacent exchange is profitable whenever the priority relation says so.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 888,
+      "module": "Problems.Engine.InformationField",
+      "name": "waitingCost_insertionSort_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A perturbation of landscapes adds structure when it never lowers the density anywhere.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 918,
+      "module": "Problems.Engine.InformationField",
+      "name": "AddsStructure",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 921,
+      "module": "Problems.Engine.InformationField",
+      "name": "originalRegion_mono",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Along a trajectory of landscapes whose steps only add structure, the original region never shrinks: the discovery loop is self-amplifying in the weak sense that it never destroys a high-density region.",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 928,
+      "module": "Problems.Engine.InformationField",
+      "name": "originalRegion_trajectory_mono",
+      "trust": "kernel"
+    },
+    {
       "doc": "Integer points of the strip ``4x-2 \u2264 3y \u2264 4x-1`` with ``x \u2265 3``.",
       "file": "formal/Problems/Engine/LinearConstraintLoops.lean",
       "kind": "def",
@@ -51629,6 +52549,18 @@
       "trust": "kernel"
     },
     {
+      "doc": "**Pointwise window bound, structurally.** Any window length decomposes greedily into certified blocks, and the digit sum is at most `47`. This carried `\u2264 37` until 14 September 2026, on the strength of `window_digit_scan`, a `native_decide` pass over 251486 lengths that was the Juggler layer's last compiler-trusted proof. Retiring it costs the sharpening and nothing else: no theorem, kill or period bound consumed the `37`, the downstream results already use this structural cap, and `window_digit_max` still records \u2014 kernel-checked \u2014 that `37` is attained at `L = 275632`. The window's lower endpoint is no longer needed and is kept only so the interface Paper A's appendix names is unchanged: `greedyDigitSum_le` holds for every `L < 301994`, so the structural bound is the more general statement.",
+      "file": "formal/Problems/Juggler/OstrowskiNumeration.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-cyclemin-walk-ostrowski-numeration"
+      ],
+      "line": 235,
+      "module": "Problems.Juggler.OstrowskiNumeration",
+      "name": "window_digit_cap",
+      "trust": "kernel"
+    },
+    {
       "doc": "Upper side of the sandwich: `3^10781274 < 2^17087915`, hence `log 2 / log 3 > 10781274 / 17087915`. Proved by `norm_num`, so the comparison is checked by the kernel rather than by the compiled runtime: these two inequalities carry the whole Ostrowski certification, and `Nat` literal arithmetic is GMP-backed in the kernel, so the five-million-digit comparison costs well under a second. Only the exponent threshold is raised, and only for this declaration: it gates whether the power is evaluated at all, whereas `maxRecDepth` is not consulted on this route.",
       "file": "formal/Problems/Juggler/OstrowskiSandwich.lean",
       "kind": "theorem",
@@ -51857,39 +52789,15 @@
       "trust": "kernel"
     },
     {
-      "doc": "**Window digit scan**: for every `L` in the window `[50508, 301994)`, the greedy digit sum is at most `37`. This is the one thing here that is genuinely a scan: the structural cap of `OstrowskiNumeration` gives `47`, and `37` is the sharper constant measured on the window. Reconstruction, which the scan used to re-certify alongside it, is `greedy_reconstruct_all` and holds everywhere.",
+      "doc": "The sharp constant `37` is attained, at `L = 275632`, kernel-checked at its witness. It is no longer certified as an upper bound over the window: the scan that did so, `window_digit_scan`, was the Juggler layer's last `native_decide` and was retired on 14 September 2026. The pointwise bound is now `window_digit_cap` in `OstrowskiNumeration`, at the structural cap `47`. Kernel reduction of the scan as it stood was priced again before retiring it and is still out of range: `decide +kernel` takes 6.0 s for a thousand lengths and 33.2 s for four thousand, net of imports, so the full 251486 extrapolates to over half an hour and superlinearly.",
       "file": "formal/Problems/Juggler/OstrowskiSandwich.lean",
       "kind": "theorem",
       "ledger": [
         "J-cyclemin-walk-ostrowski-arithmetic"
       ],
-      "line": 199,
-      "module": "Problems.Juggler.OstrowskiSandwich",
-      "name": "window_digit_scan",
-      "trust": "compiler"
-    },
-    {
-      "doc": "The cap `37` is attained, at `L = 275632`.",
-      "file": "formal/Problems/Juggler/OstrowskiSandwich.lean",
-      "kind": "theorem",
-      "ledger": [
-        "J-cyclemin-walk-ostrowski-arithmetic"
-      ],
-      "line": 205,
+      "line": 202,
       "module": "Problems.Juggler.OstrowskiSandwich",
       "name": "window_digit_max",
-      "trust": "kernel"
-    },
-    {
-      "doc": "Pointwise form of the scan: any window length decomposes greedily into certified blocks with digit sum at most `37`.",
-      "file": "formal/Problems/Juggler/OstrowskiSandwich.lean",
-      "kind": "theorem",
-      "ledger": [
-        "J-cyclemin-walk-ostrowski-arithmetic"
-      ],
-      "line": 209,
-      "module": "Problems.Juggler.OstrowskiSandwich",
-      "name": "window_digit_cap",
       "trust": "kernel"
     },
     {
@@ -51899,7 +52807,7 @@
       "ledger": [
         "J-cyclemin-walk-ostrowski-arithmetic"
       ],
-      "line": 230,
+      "line": 218,
       "module": "Problems.Juggler.OstrowskiSandwich",
       "name": "convergentNums",
       "trust": "kernel"
@@ -51911,7 +52819,7 @@
       "ledger": [
         "J-cyclemin-walk-ostrowski-arithmetic"
       ],
-      "line": 239,
+      "line": 227,
       "module": "Problems.Juggler.OstrowskiSandwich",
       "name": "theta_convergent_numerators",
       "trust": "kernel"
@@ -51923,7 +52831,7 @@
       "ledger": [
         "J-cyclemin-walk-ostrowski-arithmetic"
       ],
-      "line": 245,
+      "line": 233,
       "module": "Problems.Juggler.OstrowskiSandwich",
       "name": "thetaConvergents",
       "trust": "kernel"
@@ -51935,7 +52843,7 @@
       "ledger": [
         "J-cyclemin-walk-ostrowski-arithmetic"
       ],
-      "line": 252,
+      "line": 240,
       "module": "Problems.Juggler.OstrowskiSandwich",
       "name": "thetaConvergents_eq_zip",
       "trust": "kernel"
@@ -51947,7 +52855,7 @@
       "ledger": [
         "J-cyclemin-walk-ostrowski-arithmetic"
       ],
-      "line": 260,
+      "line": 248,
       "module": "Problems.Juggler.OstrowskiSandwich",
       "name": "theta_convergents_unimodular",
       "trust": "kernel"
@@ -51959,7 +52867,7 @@
       "ledger": [
         "J-cyclemin-walk-ostrowski-arithmetic"
       ],
-      "line": 268,
+      "line": 256,
       "module": "Problems.Juggler.OstrowskiSandwich",
       "name": "theta_convergents_coprime",
       "trust": "kernel"
@@ -51971,7 +52879,7 @@
       "ledger": [
         "J-cyclemin-walk-ostrowski-arithmetic"
       ],
-      "line": 275,
+      "line": 263,
       "module": "Problems.Juggler.OstrowskiSandwich",
       "name": "theta_convergent_quality",
       "trust": "kernel"
@@ -51983,7 +52891,7 @@
       "ledger": [
         "J-cyclemin-walk-ostrowski-arithmetic"
       ],
-      "line": 297,
+      "line": 285,
       "module": "Problems.Juggler.OstrowskiSandwich",
       "name": "q13Convergent",
       "trust": "kernel"
@@ -51995,7 +52903,7 @@
       "ledger": [
         "J-cyclemin-walk-ostrowski-arithmetic"
       ],
-      "line": 299,
+      "line": 287,
       "module": "Problems.Juggler.OstrowskiSandwich",
       "name": "q13_coprime",
       "trust": "kernel"
@@ -52007,7 +52915,7 @@
       "ledger": [
         "J-cyclemin-walk-ostrowski-arithmetic"
       ],
-      "line": 304,
+      "line": 292,
       "module": "Problems.Juggler.OstrowskiSandwich",
       "name": "q13_convergent_quality",
       "trust": "kernel"
@@ -52019,7 +52927,7 @@
       "ledger": [
         "J-cyclemin-walk-ostrowski-arithmetic"
       ],
-      "line": 316,
+      "line": 304,
       "module": "Problems.Juggler.OstrowskiSandwich",
       "name": "q13_block_hypothesis",
       "trust": "kernel"
@@ -52031,7 +52939,7 @@
       "ledger": [
         "J-cyclemin-walk-ostrowski-arithmetic"
       ],
-      "line": 325,
+      "line": 313,
       "module": "Problems.Juggler.OstrowskiSandwich",
       "name": "residue_mul_bijective",
       "trust": "kernel"
@@ -52043,7 +52951,7 @@
       "ledger": [
         "J-cyclemin-walk-ostrowski-arithmetic"
       ],
-      "line": 330,
+      "line": 318,
       "module": "Problems.Juggler.OstrowskiSandwich",
       "name": "theta_block_permutations",
       "trust": "kernel"
@@ -52055,7 +52963,7 @@
       "ledger": [
         "J-cyclemin-walk-ostrowski-arithmetic"
       ],
-      "line": 357,
+      "line": 345,
       "module": "Problems.Juggler.OstrowskiSandwich",
       "name": "theta_gt_third",
       "trust": "kernel"
@@ -52067,7 +52975,7 @@
       "ledger": [
         "J-cyclemin-walk-ostrowski-arithmetic"
       ],
-      "line": 363,
+      "line": 351,
       "module": "Problems.Juggler.OstrowskiSandwich",
       "name": "theta_lt_three_eighths",
       "trust": "kernel"
@@ -52079,7 +52987,7 @@
       "ledger": [
         "J-cyclemin-walk-ostrowski-arithmetic"
       ],
-      "line": 371,
+      "line": 359,
       "module": "Problems.Juggler.OstrowskiSandwich",
       "name": "grid_cells_collide_at_eight",
       "trust": "kernel"
@@ -84295,6 +85203,7 @@
         "Problems.Engine.ControlWord",
         "Problems.Engine.CyclicTag",
         "Problems.Engine.FactorConcat",
+        "Problems.Engine.InformationField",
         "Problems.Engine.LinearConstraintLoops",
         "Problems.Engine.MatrixWord",
         "Problems.Engine.MatthewsMod3",
@@ -84826,6 +85735,12 @@
     "Problems.Engine.FactorConcat": {
       "declarations": 5,
       "file": "formal/Problems/Engine/FactorConcat.lean",
+      "imports": [],
+      "ledger": []
+    },
+    "Problems.Engine.InformationField": {
+      "declarations": 92,
+      "file": "formal/Problems/Engine/InformationField.lean",
       "imports": [],
       "ledger": []
     },
@@ -87004,7 +87919,7 @@
       "ledger": []
     },
     "Problems.Juggler.OstrowskiNumeration": {
-      "declarations": 17,
+      "declarations": 18,
       "file": "formal/Problems/Juggler/OstrowskiNumeration.lean",
       "imports": [
         "Problems.Juggler.OstrowskiSandwich"
@@ -87012,19 +87927,19 @@
       "ledger": [
         {
           "id": "J-cyclemin-walk-ostrowski-numeration",
-          "statement": "General Ostrowski numeration and the structural digit cap (Paper A Theorem 5.8, digit-cap step, previously human). For any denominator sequence q with 0 < q 0 and q monotone satisfying the convergent recurrence bound q(j+1) \u2264 a(j+1)\u00b7q(j) + q(j\u22121), the greedy digits from any L < q(n+1) obey the remainder invariant (ostroRem_lt), the digit cap b_j \u2264 a_{j+1} (ostroDigit_le), exact reconstruction L = \u03a3 b_j q_j when q 0 = 1 (ostro_sum_eq), and the digit-sum cap \u03a3 b_j \u2264 \u03a3 a_j (ostro_digitSum_le) \u2014 problem-independent, reusable for any deeper certified quotient list. Instantiated at the certified \u03b8 denominators closed at q\u2081\u2083 = 301994: every L < 301994 has greedy digit sum at most 47 = a\u2081+\u22ef+a\u2081\u2083, structurally, with exact decomposition (theta_digitSum_le, theta_sum_eq); the function form agrees with the fold form greedyDigitSum for every L (greedy_eq_ostro), structurally and kernel-checked: the two are the same algorithm written twice, the fold peeling L/q and keeping L mod q over the descending denominator list and the recursion doing the same indexed by 12-i, with the two lists equal entry for entry. That replaces a native_decide scan of all 301994 lengths and is stronger than it, since the scan bounded L for no reason; greedy_eq_ostro_below_window is retained in its bounded shape as a corollary, and the fold corollary greedyDigitSum_le follows. Reconstruction went the same way: greedy_reconstruct_all is the division algorithm thirteen times and holds for every L, so window_digit_scan now certifies only the sharp constant 37. The scan cap 37 on [50508, 301994) stays the sharper bound. The Denjoy\u2013Koksma comparison is now Lean: `theta_block_envelope_of_length` and `hugCharge_sub_circleMean_le` give the 2s(L)/L bound for the fixed certified thirteen-level assembly when n' > 1 and L > 0, while `theta_block_envelope_window` and `hugCharge_sub_circleMean_window` give the constant cap only for L < 301994. The printed-window instance `hugCharge_sub_circleMean_extended` on [50508, 16785921) uses the mixed q13 list; the printed C_* forms are `hugCharge_sub_rotationAverage_le` and `hugCharge_sub_rotationAverage_extended`; and `circleMean_eq_rotationAverage` identifies the circle integral with the explicit rotation average. Not a cycle obstruction and not a halt theorem.",
+          "statement": "General Ostrowski numeration and the structural digit cap (Paper A Theorem 5.8, digit-cap step, previously human). For any denominator sequence q with 0 < q 0 and q monotone satisfying the convergent recurrence bound q(j+1) \u2264 a(j+1)\u00b7q(j) + q(j\u22121), the greedy digits from any L < q(n+1) obey the remainder invariant (ostroRem_lt), the digit cap b_j \u2264 a_{j+1} (ostroDigit_le), exact reconstruction L = \u03a3 b_j q_j when q 0 = 1 (ostro_sum_eq), and the digit-sum cap \u03a3 b_j \u2264 \u03a3 a_j (ostro_digitSum_le) \u2014 problem-independent, reusable for any deeper certified quotient list. Instantiated at the certified \u03b8 denominators closed at q\u2081\u2083 = 301994: every L < 301994 has greedy digit sum at most 47 = a\u2081+\u22ef+a\u2081\u2083, structurally, with exact decomposition (theta_digitSum_le, theta_sum_eq); the function form agrees with the fold form greedyDigitSum for every L (greedy_eq_ostro), structurally and kernel-checked: the two are the same algorithm written twice, the fold peeling L/q and keeping L mod q over the descending denominator list and the recursion doing the same indexed by 12-i, with the two lists equal entry for entry. That replaces a native_decide scan of all 301994 lengths and is stronger than it, since the scan bounded L for no reason; greedy_eq_ostro_below_window is retained in its bounded shape as a corollary, and the fold corollary greedyDigitSum_le follows. Reconstruction went the same way: greedy_reconstruct_all is the division algorithm thirteen times and holds for every L, so window_digit_scan certified only the sharp constant 37, and was itself retired on 14 September 2026 as the layer last proof off the kernel. The structural 47 is now the window bound too, via window_digit_cap; 37 remains recorded as attained at L = 275632 (window_digit_max, kernel-checked) but is no longer certified across the window. The Denjoy\u2013Koksma comparison is now Lean: `theta_block_envelope_of_length` and `hugCharge_sub_circleMean_le` give the 2s(L)/L bound for the fixed certified thirteen-level assembly when n' > 1 and L > 0, while `theta_block_envelope_window` and `hugCharge_sub_circleMean_window` give the constant cap only for L < 301994. The printed-window instance `hugCharge_sub_circleMean_extended` on [50508, 16785921) uses the mixed q13 list; the printed C_* forms are `hugCharge_sub_rotationAverage_le` and `hugCharge_sub_rotationAverage_extended`; and `circleMean_eq_rotationAverage` identifies the circle integral with the explicit rotation average. Not a cycle obstruction and not a halt theorem.",
           "tag": "EXACT \u2014 LEAN VERIFIED"
         }
       ]
     },
     "Problems.Juggler.OstrowskiSandwich": {
-      "declarations": 38,
+      "declarations": 36,
       "file": "formal/Problems/Juggler/OstrowskiSandwich.lean",
       "imports": [],
       "ledger": [
         {
           "id": "J-cyclemin-walk-ostrowski-arithmetic",
-          "statement": "Certified quotient arithmetic behind the Denjoy\u2013Koksma block envelope (Paper A Theorem 5.7) and the window digit caps (Theorem 5.8). Lean proves: the big-integer sandwich 3^10781274 < 2^17087915 and 2^16785921 < 3^10590737 (theta_sandwich_upper/lower, norm_num, kernel-checked); the real bounds 6195184/16785921 < log(3/2)/log 3 < 6306641/17087915 (lower_lt_walkTheta, walkTheta_lt_upper, via Real.log monotonicity); both rational endpoints open with the continued-fraction quotients [2,1,2,2,3,1,5,2,23,2,2,1] and continue past them (cf_lower_prefix, cf_upper_prefix, cf_lower_continues, cf_upper_continues); and the standard convergent recurrence on those quotients yields the block-denominator list 1,2,3,8,19,65,84,485,1054,24727,50508,125743,176251 (theta_convergent_denominators); and the greedy Ostrowski digit scan of Theorem 5.8 \u2014 for every window length 50508 \u2264 L < 301994 the greedy digits over the certified denominators reconstruct L and sum to at most 37 (window_digit_scan, pointwise window_digit_cap), attained at L = 275632 (window_digit_max), replacing the previously computational scan of J-cyclemin-walk-window-envelope. Convergent quality (the DK hypothesis, 1 Sep 2026 extension): the numerator recurrence yields 0,1,1,3,7,24,31,179,389,9126,18641,46408,65049 (theta_convergent_numerators, thetaConvergents_eq_zip), consecutive pairs are unimodular with p_{j+1}q_j \u2212 p_jq_{j+1} = (\u22121)^j (theta_convergents_unimodular), every pair is coprime (theta_convergents_coprime), every certified pair satisfies |\u03b8 \u2212 p/q| < 1/q\u00b2 against the sandwich bounds (theta_convergent_quality \u2014 the quantitative hypothesis Denjoy\u2013Koksma needs per block), and multiplication by p permutes ZMod q (residue_mul_bijective, theta_block_permutations). The endpoint-cylinder identification of the displayed list as a literal continued-fraction prefix of \u03b8 remains human prose, but the formal block bound does not require it: `theta_convergent_quality` supplies the approximation hypothesis directly. The variation-versus-integral inequality, signed anchored orbit-cell argument, mean form, and uniform block composition are Lean (`denjoy_koksma_abstract`, `denjoy_koksma_rotation`, `denjoy_koksma_rotation_mean`, `denjoy_koksma_blocks`); the broader analytic/numerical row J-cyclemin-walk-dk-envelope keeps its human tag for the scope distinctions stated there. Not a cycle obstruction and not a halt theorem.",
+          "statement": "Certified quotient arithmetic behind the Denjoy\u2013Koksma block envelope (Paper A Theorem 5.7) and the window digit caps (Theorem 5.8). Lean proves: the big-integer sandwich 3^10781274 < 2^17087915 and 2^16785921 < 3^10590737 (theta_sandwich_upper/lower, norm_num, kernel-checked); the real bounds 6195184/16785921 < log(3/2)/log 3 < 6306641/17087915 (lower_lt_walkTheta, walkTheta_lt_upper, via Real.log monotonicity); both rational endpoints open with the continued-fraction quotients [2,1,2,2,3,1,5,2,23,2,2,1] and continue past them (cf_lower_prefix, cf_upper_prefix, cf_lower_continues, cf_upper_continues); and the standard convergent recurrence on those quotients yields the block-denominator list 1,2,3,8,19,65,84,485,1054,24727,50508,125743,176251 (theta_convergent_denominators); and the greedy Ostrowski digit scan of Theorem 5.8 \u2014 for every window length 50508 \u2264 L < 301994 the greedy digits over the certified denominators reconstruct L and reconstruct L and sum to at most 47 (pointwise window_digit_cap, on the structural cap greedyDigitSum_le), with 37 attained at L = 275632 (window_digit_max). The native scan window_digit_scan that certified the sharper 37 across the window was retired on 14 September 2026, leaving the Juggler layer with nothing off the kernel; nothing consumed the 37, replacing the previously computational scan of J-cyclemin-walk-window-envelope. Convergent quality (the DK hypothesis, 1 Sep 2026 extension): the numerator recurrence yields 0,1,1,3,7,24,31,179,389,9126,18641,46408,65049 (theta_convergent_numerators, thetaConvergents_eq_zip), consecutive pairs are unimodular with p_{j+1}q_j \u2212 p_jq_{j+1} = (\u22121)^j (theta_convergents_unimodular), every pair is coprime (theta_convergents_coprime), every certified pair satisfies |\u03b8 \u2212 p/q| < 1/q\u00b2 against the sandwich bounds (theta_convergent_quality \u2014 the quantitative hypothesis Denjoy\u2013Koksma needs per block), and multiplication by p permutes ZMod q (residue_mul_bijective, theta_block_permutations). The endpoint-cylinder identification of the displayed list as a literal continued-fraction prefix of \u03b8 remains human prose, but the formal block bound does not require it: `theta_convergent_quality` supplies the approximation hypothesis directly. The variation-versus-integral inequality, signed anchored orbit-cell argument, mean form, and uniform block composition are Lean (`denjoy_koksma_abstract`, `denjoy_koksma_rotation`, `denjoy_koksma_rotation_mean`, `denjoy_koksma_blocks`); the broader analytic/numerical row J-cyclemin-walk-dk-envelope keeps its human tag for the scope distinctions stated there. Not a cycle obstruction and not a halt theorem.",
           "tag": "EXACT \u2014 LEAN VERIFIED"
         }
       ]
@@ -88094,13 +89009,13 @@
     }
   },
   "totals": {
-    "declarations": 6482,
-    "declarations_with_a_ledger_row": 4499,
+    "declarations": 6573,
+    "declarations_with_a_ledger_row": 4498,
     "ledger_rows_naming_a_file": 406,
-    "modules": 283,
+    "modules": 284,
     "trust": {
-      "compiler": 57,
-      "kernel": 6425
+      "compiler": 56,
+      "kernel": 6517
     }
   }
 }
