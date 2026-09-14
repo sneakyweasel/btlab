@@ -19,6 +19,7 @@ from __future__ import annotations
 
 import importlib.util
 import pathlib
+import shutil
 import subprocess
 from types import SimpleNamespace
 
@@ -161,7 +162,18 @@ def test_lean_build_warning_budget() -> None:
     Juggler warnings are evidence even without a recompile. Truly silent
     scoped output is skipped, and excess warnings are checked before that
     decision. Dependency diagnostics do not consume the Juggler budget.
+
+    Skips without a toolchain. This is the only Lean-calling test in the suite
+    that lacked that guard, and it is why CI's python job failed the moment the
+    ruff gate stopped failing first: no lake on that runner, FileNotFoundError,
+    the whole Pytest step down in seconds. The guard leaves a hole -- CI's
+    python job has no lake and the lean job does not run pytest, so nothing
+    enforces this budget in CI. It is enforced locally and by whoever runs
+    --runslow with a toolchain. Closing that hole means giving the lean job a
+    Python and pointing it here.
     """
+    if shutil.which("lake") is None:
+        pytest.skip("no lake on PATH; the warning budget needs a toolchain")
     proc = subprocess.run(
         ["lake", "build", "Problems.Juggler", "Problems.JugglerPaper"],
         cwd=FORMAL,
@@ -186,6 +198,7 @@ def test_lean_build_warning_budget() -> None:
 def test_warning_gate_counts_actual_and_cached_diagnostics(status, monkeypatch) -> None:
     output = (f"⚠ [42/99] {status} Problems.Juggler.Example\n"
               "warning: Problems/Juggler/Example.lean:7:2: unused tactic\n")
+    monkeypatch.setattr(shutil, "which", lambda _name: "/usr/bin/lake")
     monkeypatch.setattr(subprocess, "run", lambda *a, **kw: SimpleNamespace(returncode=0, stdout=output))
     monkeypatch.setitem(globals(), "WARNING_BUDGET", 0)
     with pytest.raises(AssertionError, match="1 Juggler warnings"):
@@ -194,6 +207,7 @@ def test_warning_gate_counts_actual_and_cached_diagnostics(status, monkeypatch) 
 
 def test_warning_gate_does_not_skip_unadorned_scoped_warnings(monkeypatch) -> None:
     output = "warning: Problems/Juggler/Example.lean:7:2: unused tactic\n"
+    monkeypatch.setattr(shutil, "which", lambda _name: "/usr/bin/lake")
     monkeypatch.setattr(subprocess, "run", lambda *a, **kw: SimpleNamespace(returncode=0, stdout=output))
     monkeypatch.setitem(globals(), "WARNING_BUDGET", 0)
     with pytest.raises(AssertionError, match="1 Juggler warnings"):
@@ -218,6 +232,7 @@ warning: .lake/packages/vendor/Problems/Juggler/External.lean:1:1: external
 
 def test_warning_gate_skips_only_unobserved_scope(monkeypatch) -> None:
     output = "✔ [1/1] Built Mathlib.Other\nBuild completed successfully (1 jobs).\n"
+    monkeypatch.setattr(shutil, "which", lambda _name: "/usr/bin/lake")
     monkeypatch.setattr(subprocess, "run", lambda *a, **kw: SimpleNamespace(returncode=0, stdout=output))
     with pytest.raises(pytest.skip.Exception, match="warning state not observed"):
         test_lean_build_warning_budget()
@@ -226,6 +241,7 @@ def test_warning_gate_skips_only_unobserved_scope(monkeypatch) -> None:
 
 def test_warning_gate_reports_missing_scope_instead_of_claiming_zero(monkeypatch) -> None:
     output = "warning: diagnostic without a source or module\nBuild completed successfully (0 jobs).\n"
+    monkeypatch.setattr(shutil, "which", lambda _name: "/usr/bin/lake")
     monkeypatch.setattr(subprocess, "run", lambda *a, **kw: SimpleNamespace(returncode=0, stdout=output))
     with pytest.raises(AssertionError, match="Unscoped warning"):
         test_lean_build_warning_budget()
