@@ -1,0 +1,202 @@
+{
+  "exponents": [
+    {
+      "source": "rhin-1987 (printed, effective)",
+      "diophantine_exponent_p": 13.3,
+      "length_exponent": 14.3,
+      "period_exponent_in_n": 0.06993006993006992,
+      "minimum_lower_bound_needed": 14.3,
+      "constant_effective": true,
+      "forced_period_at_N0": 3.026086998449691
+    },
+    {
+      "source": "wu-wang-2014 (asymptotic)",
+      "diophantine_exponent_p": 4.1163051,
+      "length_exponent": 5.1163051,
+      "period_exponent_in_n": 0.19545355104018328,
+      "minimum_lower_bound_needed": 5.1163051,
+      "constant_effective": false,
+      "forced_period_at_N0": 73.11804556529472
+    },
+    {
+      "source": "bondareva-luchin-salikhov-2018",
+      "diophantine_exponent_p": 4.116201,
+      "length_exponent": 5.116201,
+      "period_exponent_in_n": 0.19545752795873345,
+      "minimum_lower_bound_needed": 5.116201,
+      "constant_effective": false,
+      "forced_period_at_N0": 73.12443134587299
+    },
+    {
+      "source": "Dirichlet floor (no measure beats it)",
+      "diophantine_exponent_p": 1.0,
+      "length_exponent": 2.0,
+      "period_exponent_in_n": 0.5,
+      "minimum_lower_bound_needed": 2.0,
+      "constant_effective": false,
+      "forced_period_at_N0": 58675.82679160433
+    }
+  ],
+  "checks": [
+    {
+      "check": "Wu-Wang length exponent is 4.1163051 + 1",
+      "ok": true,
+      "value": 5.1163051
+    },
+    {
+      "check": "period exponent in n rises from 1/14.3 to 1/5.1163051",
+      "ok": true,
+      "value": 0.19545355104018328
+    },
+    {
+      "check": "the swap is worth a factor 2.8 in the exponent",
+      "ok": true,
+      "value": 2.794985779874621
+    },
+    {
+      "check": "still toothless at the certified floor: forced period below 780239",
+      "ok": true,
+      "value": 73.11804556529472
+    },
+    {
+      "check": "but stronger than Rhin at that floor",
+      "ok": true,
+      "value": 24.16287107622446
+    },
+    {
+      "check": "Dirichlet floor: no measure takes the target below L^2",
+      "ok": true,
+      "value": 2.0
+    }
+  ],
+  "survivor_band": [
+    {
+      "L": 25781,
+      "n_max": 26254995,
+      "paper_a_exponent": 0.5945779409718651,
+      "n_max_logn_over_L2": 0.6748168035066291,
+      "wuwang_allowance": 3.7115511829762083e+22,
+      "inside_wuwang_allowance": true
+    },
+    {
+      "L": 50508,
+      "n_max": 162848324,
+      "paper_a_exponent": 0.5727574637359233,
+      "n_max_logn_over_L2": 1.2070245913603332,
+      "wuwang_allowance": 1.158312209312853e+24,
+      "inside_wuwang_allowance": true
+    },
+    {
+      "L": 176251,
+      "n_max": 1044093213,
+      "paper_a_exponent": 0.5816923442528824,
+      "n_max_logn_over_L2": 0.6979713781416631,
+      "wuwang_allowance": 6.931221980366475e+26,
+      "inside_wuwang_allowance": true
+    },
+    {
+      "L": 478245,
+      "n_max": 2755936624,
+      "paper_a_exponent": 0.6016407267744824,
+      "n_max_logn_over_L2": 0.2619198531531933,
+      "wuwang_allowance": 1.1450501376318207e+29,
+      "inside_wuwang_allowance": true
+    },
+    {
+      "L": 780239,
+      "n_max": 4479642886,
+      "paper_a_exponent": 0.6105148750493137,
+      "n_max_logn_over_L2": 0.16352608577648084,
+      "wuwang_allowance": 1.4009879488418984e+30,
+      "inside_wuwang_allowance": true
+    }
+  ],
+  "quotient_cap": [
+    {
+      "q": 19,
+      "q_next": 65,
+      "cap": 3487334.210409875,
+      "ratio": 1.8638878890922354e-05,
+      "inside": true
+    },
+    {
+      "q": 65,
+      "q_next": 84,
+      "cap": 1885462297.31454,
+      "ratio": 4.455140795954447e-08,
+      "inside": true
+    },
+    {
+      "q": 84,
+      "q_next": 485,
+      "cap": 7001642386.245587,
+      "ratio": 6.926946182695088e-08,
+      "inside": true
+    },
+    {
+      "q": 485,
+      "q_next": 1054,
+      "cap": 55090175321428.28,
+      "ratio": 1.9132268028742836e-11,
+      "inside": true
+    },
+    {
+      "q": 1054,
+      "q_next": 24727,
+      "cap": 2922636702841381.5,
+      "ratio": 8.460511009103683e-12,
+      "inside": true
+    },
+    {
+      "q": 24727,
+      "q_next": 50508,
+      "cap": 2.9978188531472294e+22,
+      "ratio": 1.6848249502125418e-18,
+      "inside": true
+    },
+    {
+      "q": 50508,
+      "q_next": 125743,
+      "cap": 1.158312209312853e+24,
+      "ratio": 1.0855708762199328e-19,
+      "inside": true
+    },
+    {
+      "q": 125743,
+      "q_next": 176251,
+      "cap": 1.2317287073233904e+26,
+      "ratio": 1.4309238629584469e-21,
+      "inside": true
+    },
+    {
+      "q": 176251,
+      "q_next": 301994,
+      "cap": 6.931221980366475e+26,
+      "ratio": 4.357009497826423e-22,
+      "inside": true
+    },
+    {
+      "q": 301994,
+      "q_next": 16785921,
+      "cap": 1.0897912697838972e+28,
+      "ratio": 1.5402877106300003e-21,
+      "inside": true
+    }
+  ],
+  "closure_threshold": {
+    "statement": "a lower bound n log n > (2/C) L^(p+1) on cycle minima excludes every nontrivial cycle",
+    "unconditional_exponent": 5.1163051,
+    "previous_exponent_rhin": 14.3,
+    "hard_floor_exponent": 2.0,
+    "lean": "Problems.Juggler.no_cycleMin_of_gap_and_minimum",
+    "proved_here": false,
+    "no_cycle_of_any_length": false
+  },
+  "all_checks_ok": true,
+  "every_survivor_inside_allowance": true,
+  "every_quotient_inside_cap": true,
+  "max_quotient_cap_ratio": 1.8638878890922354e-05,
+  "kills_nothing_new": true,
+  "is_halt_theorem": false,
+  "raises_descent_floor": false
+}

@@ -2111,6 +2111,27 @@
       "nk_cluster": "Cyclic weighting does not replace the integer lattice"
     },
     {
+      "id": "cycle_wuwang_reduction",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_wuwang_reduction.py",
+      "test": "tests/research/juggler_sequence/test_cycle_wuwang_reduction.py",
+      "dossier": "docs/problems/juggler_cycle_wuwang_reduction.md",
+      "data_dir": null,
+      "lean": [
+        "formal/Problems/Juggler/GapTransferWW.lean",
+        "formal/Problems/Juggler/GapTransfer.lean"
+      ],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-cyclemin-gap-power-transfer",
+        "J-cyclemin-period-lower-bound",
+        "J-cyclemin-closure-threshold"
+      ],
+      "aliases": [],
+      "nk_cluster": "Paper A's mechanisms have measured ceilings"
+    },
+    {
       "id": "cyclemin_fudge",
       "kind": "branch",
       "probe": "src/research/juggler_sequence/cyclemin_fudge.py",
@@ -6250,7 +6271,8 @@
         "formal/Problems/Juggler/FateOneSidedAtoms.lean",
         "formal/Problems/Juggler/FateEnergyAtoms.lean",
         "formal/Problems/Juggler/FateCollapse.lean",
-        "formal/Problems/Juggler/FateCertified.lean"
+        "formal/Problems/Juggler/FateCertified.lean",
+        "formal/Problems/Juggler/GapTransferWW.lean"
       ],
       "conjecture": [],
       "decision": null,

@@ -137,7 +137,23 @@ and worth \(O(e/n)\): at the floor where each length matters it is
 \(e\approx0.37L\). Distinctness is available, and empty.
 
 Survivors sit at \(L\approx n^{0.59}\), that is \(n\approx L^{1.7}\),
-inside the band \([L, L^{2}]\) that a one-sided bound cannot empty.
+inside the band \([L, L^{2}]\) that a one-sided bound cannot empty. The
+\(1.7\) is the logarithm and not a genuine exponent: \(n\log n/L^{2}\)
+lies in \([0.164,1.207]\) across all five certified survivors, so they
+sit at \(L^{2}/\log n\), at the very edge of the band.
+
+**How strong the missing bound has to be.** The gap transfer supplies
+the number this dossier left unstated. A Diophantine budget
+\(C L^{-p}\le\Lambda\) gives \(n\log n\le (2/C)L^{p+1}\), so a lower
+bound \(n\gg L^{p+1}\) on cycle minima excludes every nontrivial cycle.
+Wu-Wang's measure applies to Corollary 4.11's own substitution and puts
+the unconditional target at \(n\gg L^{5.1163051}\), against \(L^{14.3}\)
+from Rhin; Dirichlet's \(p\ge 1\) makes \(n\gg L^{2}\) a hard floor no
+improvement of the measure can go below
+([juggler_cycle_wuwang_reduction](juggler_cycle_wuwang_reduction.md),
+`J-cyclemin-closure-threshold`). This is a restatement of the reopen
+condition, not a mechanism for it, and its kill criterion is a period
+bound in \(n\), not a function of the surplus.
 
 ## Branch budget
 
