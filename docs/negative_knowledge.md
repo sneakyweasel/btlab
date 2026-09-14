@@ -625,9 +625,16 @@ and period runs one way: finance bounds \(n\log n\lesssim L^{\mu}\), and
 leaves \(n\lesssim L^{2}\). Nothing bounds \(n\) *below* in terms of
 \(L\) — the descent floor is a constant, and counting the \(L\) distinct
 states gives no window, since a cycle's states are not confined to one.
-Survivors sit at \(n\approx L^{1.7}\), inside the band a one-sided bound
-cannot empty. Reopen only on a lower bound for the minimum in terms of
-the period, or an argument uniform over shapes.
+Survivors sit at \(n\log n\asymp L^{2}\) — the ratio
+\(n\log n/L^{2}\) lies in \([0.164,1.207]\) across all five certified
+survivors, so the quoted \(n\approx L^{1.7}\) is the logarithm, not an
+exponent below two — inside the band a one-sided bound cannot empty.
+Reopen only on a lower bound for the minimum in terms of the period, or
+an argument uniform over shapes. That first condition now carries a
+number: \(n\gg L^{5.1163051}\) suffices unconditionally, and Dirichlet
+makes \(n\gg L^{2}\) a hard floor no Diophantine input can go below
+([juggler_cycle_wuwang_reduction](problems/juggler_cycle_wuwang_reduction.md),
+`J-cyclemin-closure-threshold`).
 Kind: `REPARAMETERIZATION` / `PARK_STOP`.
 Branch: [juggler_cycle_method_ceilings](problems/juggler_cycle_method_ceilings.md).
 
@@ -700,7 +707,13 @@ Members: `juggler_baker_kills_near_convergents`,
 \(n\log n\cdot\min(\Lambda,1)\le 2L\) (Paper A Thm 4.10, Lean
 `cycleMin_gap_transfer`) with Rhin's measure excludes every cycle
 with \(L^{14.3}\le n\log n/915\) — the *short* regime, where the
-REFUTED floor-level transfer never competed. It reparameterizes the
+REFUTED floor-level transfer never competed. Corollary 4.11's own
+substitution \((a,b,c)=(0,-L,o)\) has \(a=0\) and \(H=L\), so Wu-Wang
+applies to it and sharpens the exponent to \(5.1163051\)
+([juggler_cycle_wuwang_reduction](problems/juggler_cycle_wuwang_reduction.md),
+`J-cyclemin-gap-power-transfer`); that is still the complement and still
+kills nothing, since even a perfect measure forces only \(58676\) at
+\(N_0=3.5\cdot10^8\) against the table's \(780239\). It reparameterizes the
 no-cycle problem as "no long cycle" and excludes nothing the table
 did not; the mechanical fixed-point band of a survivor word has the
 finance-predicted count and a fair-coin realized parity depth
@@ -2739,7 +2752,9 @@ J-cycle-rank-curvature-window.
 **CLOSE (the energy route of Paper C Section 10(d) as a numerical
 hypothesis).** The bias energy `sum_w D(w)^2`, `D(w) = #[wO] - #[w]/2`,
 over the odd starts of `(y, 2y]`, computed exactly by enumeration to
-depth 30 at `y = 10^4..10^7` (`cylinder_energy_measure`), reaches its
+depth 30 at `y = 10^4..10^7`
+([cylinder energy, measured](problems/juggler_cylinder_energy_measure.md)),
+reaches its
 worst-case value `sum_w #[w]^2 / 4` by depth 16-22 over all words (the
 absorbed cylinders of `J-absorbed-cylinder`, in numbers) and by depth
 16-20 over the `L(y)`-bad words as well, on cylinders of up to 11939
