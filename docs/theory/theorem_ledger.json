@@ -9852,5 +9852,18 @@
    "tests/research/juggler_sequence/test_paper_b_prefix_count.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "id": "J-paper-b-count-is-the-level-zero-bad-count",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Paper B's non-contracting word count and Paper C's bad-word count are one function at two levels. N_d of Proposition 7.1 counts length-d words whose walk u_t = o_t log2(3) - t stays at or above 0; bad_word_count(L, d) counts those whose walk never reaches -L. Both are the same dynamic program over (steps, odd letters), written independently in paper_b_prefix_count and collision_large_sieve, and N_d = bad_word_count(0, d) exactly for d = 1 to 16 (1, 1, 2, 3, 4, 8, 13, 19, 38, 64, 128, 226, 367, 734, 1295, 2114). The agreement is exact and not approximate although one bound is strict and the other is not, because u_t = 0 would need 3^(o_t) = 2^t, which forces o_t = t = 0 (`three_pow_eq_two_pow`, `iter_eq_one_iff`, kernel-checked): the walk is never back at its starting level after a letter, so on a non-empty word the two readings of non-contraction coincide (`one_le_iff_one_lt`). The O-rooting costs nothing either, since a word starting E has u_1 = -1. TRANSFER, and its limit. Because the counts coincide, Paper C's tools apply to Paper B's object; the sharpest, the Wiener-Hopf ladder factorisation at the walk minimum (J-live-set-ladder-factorisation), does specialise correctly and computes with exact identity error 0 at L = 0.05 and 0.25. But it degenerates there: at L -> 0 the argmin sits at the start with probability 1, so every word is a positive excursion and the split has no descending side. The transfer is valid and empty at Paper B's level, which is worth recording so it is not attempted twice. Not a bound and not an improvement to either paper.",
+  "source": "docs/research_journal.md",
+  "lean": "Problems/Juggler/PaperBChainRule.lean",
+  "lean_trust": "kernel",
+  "decl": "iter_eq_one_iff",
+  "tests": [
+   "tests/research/juggler_sequence/test_paper_b_prefix_count.py"
+  ],
+  "related_conjectures": []
  }
 ]

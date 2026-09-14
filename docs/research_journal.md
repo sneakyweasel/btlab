@@ -48169,3 +48169,69 @@ The constant is `log2(3)`, which is the constant the map is built from, and the
 rate of approach is a Diophantine question about how well `log2(3)` is
 approximated from below --- the same object the Ostrowski layer already handles.
 That is a connection, not a result, and I have not pursued it.
+
+
+## Two papers, one counting function
+
+The bridge says every condition in either paper that is stated in the iterate
+exponents is a condition on one walk. The obvious thing to ask next is whether
+the two papers' *counts* are also one object. They are.
+
+Paper B's Proposition 7.1 counts length-`d` words with no contracting prefix:
+the walk stays at or above `0`. Paper C's `bad_word_count(L, d)` counts words
+whose walk never reaches `-L`. Both are the same dynamic program over
+`(steps, odd letters)` --- the level depends on nothing else --- written
+independently in two modules that do not import each other. And
+
+```text
+  d       1   2   3   4   5   6    7    8    9   10   11   12   13   14    15    16
+  N_d     1   1   2   3   4   8   13   19   38   64  128  226  367  734  1295  2114
+  bad(0)  1   1   2   3   4   8   13   19   38   64  128  226  367  734  1295  2114
+```
+
+`N_d = bad_word_count(0, d)`, exactly, at every depth checked.
+
+**Exactly, and that needed a reason.** One bound is strict and the other is not,
+so the two could have differed whenever the walk sits exactly at `0`. It never
+does: `u_t = 0` means `3^(o_t) = 2^t`, which forces `o_t = t = 0`. After any
+letter the walk is strictly off its own starting level. That is
+`three_pow_eq_two_pow` and `iter_eq_one_iff`, kernel-checked. The `O`-rooting in
+Paper C's count is free for the same kind of reason: a word starting `E` has
+`u_1 = -1`.
+
+### The transfer, and its limit
+
+If the counts coincide then Paper C's tools apply to Paper B's object. The
+sharpest is the Wiener--Hopf ladder factorisation at the walk minimum, which is
+exactly the machinery for a path condition rather than an endpoint one --- and
+the endpoint/path gap is precisely what Paper B's own docstring says its
+Hoeffding step gives away.
+
+It specialises correctly. `ladder_factorisation` runs at `L = 0.05` and `0.25`
+with exact identity error `0`. **And it is empty there.** At `L -> 0` the argmin
+sits at the start with probability `1`, so every word is a positive excursion and
+the split has no descending side. The factorisation is true at Paper B's level
+and says nothing.
+
+That is worth writing down as a closed door rather than leaving as an obvious
+idea someone tries again. The factorisation earns its keep at `L > 0`, where the
+descending side is non-empty; Paper B sits at exactly the level where it is not.
+
+### What the Hoeffding step actually costs
+
+Measured, since the identity makes `N_d` available as the exact object:
+
+```text
+  d        6      12      24
+  Hoeff/N_d   6.5    12.0    25.7
+  endpoint/N_d 2.8    3.5     4.4
+  Hoeff/endpoint 2.3  3.4     5.8
+```
+
+The loss grows with depth rather than sitting at a constant, and it splits
+roughly evenly between the two causes the module names: the endpoint ignoring
+the requirement at every `t`, and Hoeffding's own implied constant. Neither
+dominates. Paper B already knows to replace the density term by `N_d/2^d`; this
+says what that replacement is worth and that it is worth more at larger `d`.
+
+Nothing here moves a bound in either paper.

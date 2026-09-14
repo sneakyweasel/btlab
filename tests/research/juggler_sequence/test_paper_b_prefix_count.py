@@ -788,6 +788,60 @@ def test_all_three_screen_conditions_are_walk_functionals() -> None:
     assert checked == 4204, checked
 
 
+def test_paper_b_count_is_paper_c_count_at_level_zero() -> None:
+    """N_d is the L = 0 member of the bad-word count: two papers, one function.
+
+    Paper B's Proposition 7.1 counts words with no contracting prefix, i.e. whose
+    walk stays at or above 0. Paper C's bad-word count counts words whose walk never
+    reaches -L. They are the same dynamic program over (steps, odd letters) at two
+    levels, written independently in two modules, and at L = 0 they agree exactly.
+
+    Exactly, not nearly: the two differ in whether the bound is strict, and that
+    never bites because u_t = 0 would need 3^(o_t) = 2^t, forcing o_t = t = 0. The
+    Lean is `three_pow_eq_two_pow` and `iter_eq_one_iff`.
+    """
+    from research.juggler_sequence.collision_large_sieve import bad_word_count
+
+    for d in range(1, 17):
+        nd = B.non_contracting(d)
+        assert nd == bad_word_count(0.0, d), (d, nd, bad_word_count(0.0, d))
+        assert nd == bad_word_count(1e-9, d), d
+
+    # every non-contracting word starts with O, so the count's O-rooting is free
+    assert all(w[0] == "O" for w in B.surviving_words(8))
+
+    # and the family is monotone in the level
+    for d in (8, 12):
+        row = [bad_word_count(L, d) for L in (0.0, 0.5, 1.0, 2.0, 4.0)]
+        assert row == sorted(row), row
+
+
+def test_the_hoeffding_step_loses_a_factor_that_grows_with_depth() -> None:
+    """Paper B's own docstring names two losses; this measures them apart.
+
+    The combinatorial step of Proposition 7.1 bounds N_d by Hoeffding on the
+    endpoint. Two things are given away: the endpoint ignores the requirement at
+    every t <= d, and Hoeffding's implied constant is poor in the certified range.
+    The total loss grows with depth -- 6.5x at d = 6 and 25.7x at d = 24 -- and
+    splits roughly evenly between the two causes.
+    """
+    rows = []
+    for d in (6, 12, 24):
+        nd = B.non_contracting(d)
+        ep = B.endpoint_only(d)
+        hb = B.hoeffding_bound(d)
+        rows.append((d, hb / nd, ep / nd, hb / ep))
+    total = {d: tot for d, tot, _, _ in rows}
+    assert 6.0 < total[6] < 7.0, total
+    assert 11.5 < total[12] < 12.5, total
+    assert 25.0 < total[24] < 26.5, total
+    # the loss is growing, not a fixed constant
+    assert total[6] < total[12] < total[24]
+    # and neither cause dominates
+    for d, tot, path, hoeff in rows:
+        assert path > 1.5 and hoeff > 2.0, (d, path, hoeff)
+
+
 def _least_peak(kmax: int) -> list[float]:
     """Least achievable walk peak over non-contracting words, by length.
 

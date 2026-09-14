@@ -203,6 +203,45 @@ theorem lt_two_congr (v w : List Letter)
     iter v < 2 ↔ iter w < 2 := by
   rw [iter_eq_of_counts v w ho hl]
 
+/-! ### The walk never returns to its start
+
+`u_t = 0` would mean `3^(o_t) = 2^t`, which forces `o_t = t = 0`.  So after any
+letter the walk is strictly off its own starting level, and "stays at or above 0"
+and "never reaches 0" pick out the same words.  That is why Paper B's
+non-contracting count and the `L = 0` member of Paper C's bad-word count are the
+same number and not merely close. -/
+
+/-- `3 ^ a = 2 ^ n` only for `a = n = 0`. -/
+theorem three_pow_eq_two_pow {a n : ℕ} (h : 3 ^ a = 2 ^ n) : a = 0 ∧ n = 0 := by
+  have ha : a = 0 := by
+    by_contra hane
+    have h3 : (3 : ℕ) ∣ 2 ^ n := h ▸ dvd_pow_self 3 hane
+    have := (Nat.prime_three.dvd_of_dvd_pow h3)
+    omega
+  subst ha
+  simpa using h.symm
+
+/-- The walk is never back at its starting level after a letter: `e_t = 1` only
+for the empty word. -/
+theorem iter_eq_one_iff (w : List Letter) : iter w = 1 ↔ w = [] := by
+  constructor
+  · intro h
+    rw [iter_eq_pow, div_eq_one_iff_eq (by positivity)] at h
+    have hn : (3 : ℕ) ^ oddCount w = 2 ^ w.length := by exact_mod_cast h
+    have := three_pow_eq_two_pow hn
+    exact List.length_eq_zero_iff.mp this.2
+  · rintro rfl; simp [iter]
+
+/-- Hence on a non-empty word the two readings of non-contraction agree. -/
+theorem one_le_iff_one_lt {w : List Letter} (hw : w ≠ []) :
+    1 ≤ iter w ↔ 1 < iter w := by
+  constructor
+  · intro h
+    rcases lt_or_eq_of_le h with h' | h'
+    · exact h'
+    · exact absurd ((iter_eq_one_iff w).mp h'.symm) hw
+  · exact le_of_lt
+
 /-! ### Non-contraction forces the branch threshold
 
 A word is non-contracting through step `t` when `1 ≤ e_t`, i.e. the walk has not
