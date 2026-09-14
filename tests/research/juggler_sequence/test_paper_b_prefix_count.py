@@ -1185,6 +1185,59 @@ def _endpoint_profile(d: int) -> tuple[int, list[tuple[float, float]]]:
     return tot, sorted((o * log2_3 - d, c / tot) for o, c in st.items())
 
 
+def _beta_cf_and_denominators(n: int = 20):
+    from decimal import Decimal, getcontext
+
+    getcontext().prec = 120
+    beta = Decimal(2).ln() / Decimal(3).ln()
+    a, x = [], beta
+    for _ in range(n):
+        i = int(x)
+        a.append(i)
+        x -= i
+        if x == 0:
+            break
+        x = 1 / x
+    q = [0, 1]
+    for ai in a[1:]:
+        q.append(ai * q[-1] + q[-2])
+    return a, q[1:]
+
+
+def test_the_cycle_period_bounds_are_one_semiconvergent_family() -> None:
+    """The lab's successive period lower bounds are j = 0, 1, 2 of one family.
+
+    cycle_gap_baker's RECORD_LENGTHS are exactly the above-side semiconvergent
+    denominators of BETA (J-the-cycle-staircase-split-is-a-sign-condition), which
+    reproduces all eight of them and correctly skips the 23-member below-side family
+    1539 ... 24727 that the module also skips.
+
+    Continuing the rule past 50508 gives 176251, 478245, 780239, 1082233, ... -- and
+    the ledger's three successive period bounds are the first three of those:
+    J-cyclemin-walk-charge-instance at 176251, then 478245, then 780239, the last
+    recorded there as 780239 = 176251 + 2 x 301994 and called Diophantine rather
+    than computational.
+
+    The family is q_13 + j q_14 = 176251 + j x 301994. It has 56 members because
+    a_15 = 55, ending at q_15 = 16785921. Three are cleared, so 53 remain: that is
+    the price of the current one-leftover-at-a-time route through this family,
+    read off the continued fraction rather than discovered by search.
+    """
+    a, q = _beta_cf_and_denominators()
+    assert q[13] == 176251 and q[14] == 301994, (q[13], q[14])
+    assert a[15] == 55, a[15]
+    assert q[15] == 16785921, q[15]
+
+    family = [q[13] + j * q[14] for j in range(0, a[15] + 1)]
+    assert len(family) == 56, len(family)
+    assert family[:3] == [176251, 478245, 780239], family[:3]
+    assert family[-1] == q[15]
+
+    cleared = [176251, 478245, 780239]
+    assert [(c - q[13]) // q[14] for c in cleared] == [0, 1, 2]
+    assert len(family) - len(cleared) == 53
+
+
 def test_near_closure_costs_nothing_in_word_count() -> None:
     """A cycle must nearly close, and that is free at the word-counting level.
 
