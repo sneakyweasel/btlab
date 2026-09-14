@@ -53369,6 +53369,227 @@
       "trust": "kernel"
     },
     {
+      "doc": "The per-letter power map `p_q`: `3/2` after an odd letter, `1/2` after an even one. These are the only two values a Juggler step contributes.",
+      "file": "formal/Problems/Juggler/PaperBChainRule.lean",
+      "kind": "def",
+      "ledger": [
+        "J-paper-b-defect-coefficient-chain",
+        "J-paper-b-linearisation-E-lt-2"
+      ],
+      "line": 53,
+      "module": "Problems.Juggler.PaperBChainRule",
+      "name": "step",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`iter w = \u220f p_q` over the letters of `w`. For a prefix of length `t` this is the iterate exponent `e_t`, so that `J^t(n)` sits at scale `n^(e_t)`.",
+      "file": "formal/Problems/Juggler/PaperBChainRule.lean",
+      "kind": "def",
+      "ledger": [
+        "J-paper-b-defect-coefficient-chain",
+        "J-paper-b-linearisation-E-lt-2"
+      ],
+      "line": 59,
+      "module": "Problems.Juggler.PaperBChainRule",
+      "name": "iter",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Every step exponent is positive.",
+      "file": "formal/Problems/Juggler/PaperBChainRule.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-defect-coefficient-chain",
+        "J-paper-b-linearisation-E-lt-2"
+      ],
+      "line": 67,
+      "module": "Problems.Juggler.PaperBChainRule",
+      "name": "step_pos",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Every iterate exponent is positive. This is the only fact about the values `3/2` and `1/2` that the criterion below uses.",
+      "file": "formal/Problems/Juggler/PaperBChainRule.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-defect-coefficient-chain",
+        "J-paper-b-linearisation-E-lt-2"
+      ],
+      "line": 72,
+      "module": "Problems.Juggler.PaperBChainRule",
+      "name": "iter_pos",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBChainRule.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-defect-coefficient-chain",
+        "J-paper-b-linearisation-E-lt-2"
+      ],
+      "line": 79,
+      "module": "Problems.Juggler.PaperBChainRule",
+      "name": "iter_ne_zero",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Splitting.** `e` over a concatenation is the product of the two pieces. This is the composition of power maps, and everything below is a consequence.",
+      "file": "formal/Problems/Juggler/PaperBChainRule.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-defect-coefficient-chain",
+        "J-paper-b-linearisation-E-lt-2"
+      ],
+      "line": 83,
+      "module": "Problems.Juggler.PaperBChainRule",
+      "name": "iter_split",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The chain rule.** `E = e_{t-1} / e_s`: the product of the step exponents strictly between letters `s` and `t` is the ratio of the iterate exponents at `t-1` and at `s`. `pre` is the prefix of length `s`, so `iter pre = e_s`; `mid` is the block of letters `s+1 \u2026 t-1`, so `iter mid = E` and `iter (pre ++ mid) = e_{t-1}`.",
+      "file": "formal/Problems/Juggler/PaperBChainRule.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-defect-coefficient-chain",
+        "J-paper-b-linearisation-E-lt-2"
+      ],
+      "line": 96,
+      "module": "Problems.Juggler.PaperBChainRule",
+      "name": "chain_rule",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The coefficient of `\u03b8_s` in letter `t`'s phase, in units of `k`: it is `E / 2`, with `E` the composed map of `chain_rule`.",
+      "file": "formal/Problems/Juggler/PaperBChainRule.lean",
+      "kind": "def",
+      "ledger": [
+        "J-paper-b-defect-coefficient-chain",
+        "J-paper-b-linearisation-E-lt-2"
+      ],
+      "line": 102,
+      "module": "Problems.Juggler.PaperBChainRule",
+      "name": "coeff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The exponent that coefficient sits at: `e_{t-1} - e_s`.",
+      "file": "formal/Problems/Juggler/PaperBChainRule.lean",
+      "kind": "def",
+      "ledger": [
+        "J-paper-b-defect-coefficient-chain",
+        "J-paper-b-linearisation-E-lt-2"
+      ],
+      "line": 105,
+      "module": "Problems.Juggler.PaperBChainRule",
+      "name": "coeffExponent",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The second-order identity.** The squared-defect term sits at `e_{t-1} - 2 e_s`, and that equals `e_s (E - 2)`.",
+      "file": "formal/Problems/Juggler/PaperBChainRule.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-defect-coefficient-chain",
+        "J-paper-b-linearisation-E-lt-2"
+      ],
+      "line": 109,
+      "module": "Problems.Juggler.PaperBChainRule",
+      "name": "second_order",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The `E < 2` criterion.** The second-order exponent is negative exactly when `E < 2`. The equivalence is one-line given `second_order` and `iter_pos`, and that is the point: `2` is where the squared term stops growing, forced by the squaring and by nothing about which words survive.",
+      "file": "formal/Problems/Juggler/PaperBChainRule.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-defect-coefficient-chain",
+        "J-paper-b-linearisation-E-lt-2"
+      ],
+      "line": 117,
+      "module": "Problems.Juggler.PaperBChainRule",
+      "name": "linearise_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The companion direction, stated positively: a defect whose composed map reaches `2` has a second-order term that does not decay.",
+      "file": "formal/Problems/Juggler/PaperBChainRule.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-defect-coefficient-chain",
+        "J-paper-b-linearisation-E-lt-2"
+      ],
+      "line": 127,
+      "module": "Problems.Juggler.PaperBChainRule",
+      "name": "no_linearise_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Theorem 5.3's kernel monomial `(3k/4) n^(9/8)`: coefficient `3/4` in units of `k`, at exponent `9/8`.",
+      "file": "formal/Problems/Juggler/PaperBChainRule.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-defect-coefficient-chain",
+        "J-paper-b-linearisation-E-lt-2"
+      ],
+      "line": 145,
+      "module": "Problems.Juggler.PaperBChainRule",
+      "name": "printed_thm53",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Theorem 6.3's `C = (9k/16) n^(3/16)`.",
+      "file": "formal/Problems/Juggler/PaperBChainRule.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-defect-coefficient-chain",
+        "J-paper-b-linearisation-E-lt-2"
+      ],
+      "line": 150,
+      "module": "Problems.Juggler.PaperBChainRule",
+      "name": "printed_thm63_C",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Theorem 6.3's `B = (3k/4) v^(1/4)`.",
+      "file": "formal/Problems/Juggler/PaperBChainRule.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-defect-coefficient-chain",
+        "J-paper-b-linearisation-E-lt-2"
+      ],
+      "line": 155,
+      "module": "Problems.Juggler.PaperBChainRule",
+      "name": "printed_thm63_B",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A worked instance of the criterion: two odd letters give `E = 9/4 \u2265 2`, so the defect two letters back may not be linearised \u2014 this is the `9/4` shape the screen's other threshold also names, here as a statement about `E` alone.",
+      "file": "formal/Problems/Juggler/PaperBChainRule.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-defect-coefficient-chain",
+        "J-paper-b-linearisation-E-lt-2"
+      ],
+      "line": 162,
+      "module": "Problems.Juggler.PaperBChainRule",
+      "name": "two_odd_not_safe",
+      "trust": "kernel"
+    },
+    {
+      "doc": "One odd and one even give `E = 3/4 < 2`, which is safe.",
+      "file": "formal/Problems/Juggler/PaperBChainRule.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-defect-coefficient-chain",
+        "J-paper-b-linearisation-E-lt-2"
+      ],
+      "line": 166,
+      "module": "Problems.Juggler.PaperBChainRule",
+      "name": "odd_even_safe",
+      "trust": "kernel"
+    },
+    {
       "doc": "Parity of `\u230a(2k+1)^{3/2}\u230b`: the letter following the odd step from `2k+1`.",
       "file": "formal/Problems/Juggler/ParityComplexity.lean",
       "kind": "def",
@@ -86001,6 +86222,7 @@
         "Problems.Juggler.OstrowskiNumeration",
         "Problems.Juggler.OstrowskiSandwich",
         "Problems.Juggler.PaperBAssembly",
+        "Problems.Juggler.PaperBChainRule",
         "Problems.Juggler.ParityComplexity",
         "Problems.Juggler.PrefixBunched",
         "Problems.Juggler.PrefixBunchedEval",
@@ -88022,6 +88244,23 @@
       "imports": [],
       "ledger": []
     },
+    "Problems.Juggler.PaperBChainRule": {
+      "declarations": 17,
+      "file": "formal/Problems/Juggler/PaperBChainRule.lean",
+      "imports": [],
+      "ledger": [
+        {
+          "id": "J-paper-b-defect-coefficient-chain",
+          "statement": "Paper B section 7's per-letter coefficient rule, as an identity rather than a table. For a word w over {O,E} write p_q = 3/2 if letter q is O and 1/2 if it is E, and e_t = prod_{q<=t} p_q, so J^t(n) sits at scale n^{e_t}. For letters s < t the coefficient of the phase variable theta_s inside letter t's phase is (k/2) E at exponent e_{t-1} - e_s, where E = prod_{q=s+1}^{t-1} p_q. Proof: letter t's wave is e(k J^{t-1}/2), and J^{t-1} depends on theta_s only through the chain of power maps between them; composing power maps composes to a single power, so the chain contributes exactly the product of its step exponents. The identity that makes this a rule and not a table is E = e_{t-1}/e_s, checked on every word of length 3..10 and every pair s < t -- 75768 instances, no exception. It reproduces the three monomials Paper B prints: (3k/4) n^{9/8} at (w, t, s) = (OOOO, 4, 2), C = (9k/16) n^{3/16} at (OOOEO, 5, 1), and B = (3k/4) v^{1/4} at (EOO, 3, 1). LEAN, 14 September 2026: `chain_rule` in PaperBChainRule.lean proves E = e_{t-1}/e_s for every prefix and every intervening block, over exact rationals, on the back of `iter_split` (the product over a concatenation splits) and `iter_pos`; `iter_nil` is its unit case. The three printed monomials are `printed_thm53`, `printed_thm63_C` and `printed_thm63_B`, each the rule evaluated at its own word. Kernel-checked: the axioms are propext, Classical.choice and Quot.sound, with no ofReduceBool. Not a density statement and not a contraction proof: it prices a coefficient, it does not bound a sum.",
+          "tag": "EXACT \u2014 HUMAN PROOF"
+        },
+        {
+          "id": "J-paper-b-linearisation-E-lt-2",
+          "statement": "The E < 2 linearisation criterion of Paper B section 7, as an identity. With the notation of J-paper-b-defect-coefficient-chain, the squared-defect term in letter t's phase sits at exponent e_{t-1} - 2 e_s, and since e_{t-1} = e_s E this equals e_s (E - 2). As e_s > 0 always, the second-order exponent is negative exactly when E < 2: linearising theta_s inside letter t is safe precisely on that condition. The criterion is therefore not a threshold fitted to the words that happen to survive -- it is the point at which the second-order term stops growing, and 2 is forced by the squaring and nothing else. Checked as an identity on every word of length 3..10 and every pair s < t (75768 instances, no exception), with the sign of the second-order exponent agreeing with E < 2 in every instance. Positive second-order exponents at defects a kernel keeps exact are harmless because they are never expanded, which is why only the deepest blocked defect is tested. LEAN, 14 September 2026: `second_order` in PaperBChainRule.lean is the identity e_{t-1} - 2 e_s = e_s (E - 2), and `linearise_iff` is the equivalence the second-order exponent is negative iff E < 2, for every prefix and block; `no_linearise_iff` is the same statement from the other side, and `two_odd_not_safe` and `odd_even_safe` are the two smallest instances (E = 9/4 fails, E = 3/4 passes). The proof uses nothing about 3/2 and 1/2 beyond positivity, which is the content of the claim that 2 is forced by the squaring. Kernel-checked. Not a proof that any word contracts.",
+          "tag": "EXACT \u2014 HUMAN PROOF"
+        }
+      ]
+    },
     "Problems.Juggler.ParityComplexity": {
       "declarations": 11,
       "file": "formal/Problems/Juggler/ParityComplexity.lean",
@@ -89081,13 +89320,13 @@
     }
   },
   "totals": {
-    "declarations": 6573,
-    "declarations_with_a_ledger_row": 4531,
-    "ledger_rows_naming_a_file": 407,
-    "modules": 284,
+    "declarations": 6590,
+    "declarations_with_a_ledger_row": 4548,
+    "ledger_rows_naming_a_file": 409,
+    "modules": 285,
     "trust": {
       "compiler": 56,
-      "kernel": 6517
+      "kernel": 6534
     }
   }
 }
