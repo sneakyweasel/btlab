@@ -26,6 +26,16 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Mathematics",
 ]
 
+# Imported unguarded by src/, so required for any install -- not just an extra.
+# Both were absent from this table until 14 September 2026 and CI never noticed,
+# because pip install -e ".[dev]" on a clean runner got neither and the suite had
+# been failing earlier, at the ruff gate, for weeks. Locally they were present by
+# accident: sympy depends on mpmath, and the development environment had sympy.
+dependencies = [
+    "mpmath>=1.3",
+    "numpy>=1.26",
+]
+
 [project.optional-dependencies]
 dev = [
     "pytest>=8",
@@ -33,6 +43,7 @@ dev = [
     "ruff>=0.6",
     "hypothesis>=6.100",
     "pyright>=1.1",
+    "sympy>=1.12",  # tools/derive_paper_b_review.py imports it unguarded
 ]
 ui = ["streamlit>=1.62", "pandas>=2"]
 experiments = ["pyarrow>=14"]
