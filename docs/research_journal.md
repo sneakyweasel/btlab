@@ -48112,3 +48112,60 @@ one of those two is largely forced by the definition of the words it is applied
 to.
 
 Nothing here moves a bound.
+
+
+## The route closes: the cheapest non-contracting walk has a ceiling, and it is log2(3)
+
+The obvious next move was to turn the depth-ten emptiness into a theorem. If
+staying non-contracting for `d` steps forces the walk ever higher, then past
+some depth every contractor trips the branch-run hypothesis and the emptiness
+stops being evidence. The brute force only reached length 13, where the least
+peak was climbing: 1.170, 1.340, 1.510.
+
+It stops climbing. A dynamic program over `(steps, odd letters)` --- the level
+depends on nothing else --- gives the least peak `P(k)` to length 3000:
+
+```text
+  k      13      100      400     1000     2000     3000
+  P   1.5098   1.5684   1.5775   1.5835   1.5836   1.5836
+  gap 7.5e-2   1.7e-2   7.5e-3   1.5e-3   1.4e-3   1.3e-3
+```
+
+`P` is non-decreasing and always strictly below `log2(3) = 1.58496`. It
+approaches it and never reaches it.
+
+**The supremum has a reason.** With `c = log2(3) - 1`, from a level `u < 1 - c`
+both `E` and `OE` are illegal --- one gives `u - 1 < 0`, the other
+`u + c - 1 < 0` --- so the walk must take two odd steps and land at `u + 2c`.
+The levels `a log2(3) - t` come arbitrarily close below `1 - c`, which forces a
+peak arbitrarily close to `(1 - c) + 2c = 1 + c = log2(3)`, and never equal to
+it because `log2(3)` is irrational. The check on the argument is that the
+measured gap to `log2(3)` at `k = 3000` is `1.349e-3` and the gap of the closest
+reachable level below `1 - c` is `1.349e-3` --- the same number.
+
+In exact terms the peak of `e` lives in `[9/4, 3)`.
+
+### What it settles, in both directions
+
+**The threshold is always cleared, and that half is proved.** `P(k) > 1` for
+every `k >= 2`, because `P(2) = 2 log2(3) - 2 = 1.1699` and `P` is
+non-decreasing. So the branch-run hypothesis is never out of reach at any depth.
+That is `noncontracting_two_forces`, kernel-checked.
+
+**And the height route to a theorem is closed.** The peak is bounded above by
+`log2(3)`. No argument of the form "at depth `d` the walk must exceed `T`" can
+be made for any `T >= log2(3)`, and the branch-run threshold sits at `1`, well
+below the ceiling. So the fact that the hypothesis fires on 12 of 12, 30 of 30
+and 85 of 85 at depths ten, twelve and thirteen is not explained by the walk
+being driven upward --- it cannot be, since the cheapest walk never passes
+1.5836. Whatever explains it has to be about *where* blocked defects sit
+relative to high points, not how high the walk goes.
+
+That is worth having as a closed door rather than an open one. I spent this
+sequence looking for a forcing argument and the measurement says the shape of
+argument I was looking for does not exist.
+
+The constant is `log2(3)`, which is the constant the map is built from, and the
+rate of approach is a Diophantine question about how well `log2(3)` is
+approximated from below --- the same object the Ostrowski layer already handles.
+That is a connection, not a result, and I have not pursued it.

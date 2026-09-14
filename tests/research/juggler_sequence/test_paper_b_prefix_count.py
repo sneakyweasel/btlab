@@ -788,6 +788,68 @@ def test_all_three_screen_conditions_are_walk_functionals() -> None:
     assert checked == 4204, checked
 
 
+def _least_peak(kmax: int) -> list[float]:
+    """Least achievable walk peak over non-contracting words, by length.
+
+    State is (steps, odd letters), which fixes the level, so this is a DP rather
+    than a search over 2^k words.
+    """
+    log2_3 = math.log2(3.0)
+    f = {0: 0.0}
+    out = []
+    for step in range(1, kmax + 1):
+        g: dict[int, float] = {}
+        for a, peak in f.items():
+            for da in (0, 1):
+                a2 = a + da
+                u = a2 * log2_3 - step
+                if u < -1e-12:
+                    continue
+                p = max(peak, u)
+                if a2 not in g or p < g[a2] - 1e-12:
+                    g[a2] = p
+        f = g
+        out.append(min(f.values()))
+    return out
+
+
+def test_the_noncontracting_peak_is_bounded_and_its_supremum_is_log2_three() -> None:
+    """The height route to a large-depth emptiness theorem is closed.
+
+    The least peak a non-contracting walk can have is non-decreasing in length and
+    always strictly below log2(3) = 1.58496, approaching it: the gap is 7.5e-2 at
+    length 13 and 1.3e-3 at 3000. So the walk of the cheapest contractor does NOT
+    get arbitrarily high, and no argument of the form "at depth d the walk must
+    exceed T" can be made for T >= log2(3).
+
+    The supremum has a reason. From a level u < 1 - c (c = log2(3) - 1) both E and
+    OE are illegal, so the walk must take two O steps and reach u + 2c; levels
+    a*log2(3) - t come arbitrarily close below 1 - c, forcing a peak arbitrarily
+    close to (1 - c) + 2c = log2(3), and never equal to it because log2(3) is
+    irrational. The measured gap to log2(3) matches the gap of the closest
+    reachable level below 1 - c to three figures.
+
+    The lower end is proved rather than measured: 2 log2(3) - 2 = 1.1699 at length
+    two, which is `noncontracting_two_forces` in Lean, and it is above the
+    branch-run threshold of 1. So the threshold is always cleared and the peak is
+    always bounded -- the first is why the hypothesis can fire at every depth, the
+    second is why that cannot be turned into a theorem by height alone.
+    """
+    log2_3 = math.log2(3.0)
+    peaks = _least_peak(1200)
+
+    assert all(peaks[i] <= peaks[i + 1] + 1e-12 for i in range(len(peaks) - 1))
+    assert all(p < log2_3 - 1e-15 for p in peaks)
+    assert peaks[1] == pytest.approx(2 * log2_3 - 2, abs=1e-9)
+    assert peaks[1] > 1.0
+
+    assert peaks[12] == pytest.approx(1.509775, abs=1e-5)
+    assert peaks[99] == pytest.approx(1.568425, abs=1e-5)
+    assert peaks[999] == pytest.approx(1.583488, abs=1e-5)
+    # approaching log2(3), and still short of it
+    assert 0 < log2_3 - peaks[999] < 2e-3
+
+
 def test_non_contraction_forces_the_branch_threshold() -> None:
     """Staying non-contracting and tripping the branch-run hypothesis are the same
     constraint at two thresholds, 0 and 1, and at step two the first forces the second.
