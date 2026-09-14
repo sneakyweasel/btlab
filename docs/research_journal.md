@@ -48400,3 +48400,69 @@ tolerance is `9.22` ULP --- tighter still. It is not at risk for the same
 reason: both sides are the same double round-tripped through JSON, which is
 exact, so the gap is zero rather than small. Worth knowing rather than worth
 changing.
+
+
+## The third leg: the walk's extremal geometry is Ostrowski, in the bridge's own constant
+
+I had noted the `log2(3)` ceiling's rate of approach as "a Diophantine question
+about how well `log2(3)` is approximated from below --- the same object the
+Ostrowski layer already handles", and left it as a connection rather than a
+result. It is a result.
+
+First a dead end, recorded so it is not retried: the general Ostrowski layer in
+`src/research/ostrowski/` is about the order-`m` adder and does not use
+`log2(3)` at all. There is no bridge there. The *Juggler* Ostrowski layer is a
+different matter.
+
+**Its constant is `BETA`.** `OstrowskiNumeration` certifies theta denominators
+closing at `q = 301994` with structural digit-sum cap `47`, and `301994` is a
+convergent denominator of `log3(2) = BETA`. (Their `q_13` is my `q_14`; they
+drop the leading `a_0 = 0`. The partial-quotient sum is `47` on their indexing
+and `46` on mine, and both are right --- not a discrepancy.)
+
+`BETA` is the constant everything else in this correspondence runs on: Paper B's
+Hoeffding threshold, the limit of Paper C's `p_C`, and the tilted odd-probability
+of the shared measure.
+
+### The staircase
+
+The walk `u_t = o log2(3) - t` hugs a level exactly when `o/t` approximates
+`1/log2(3) = BETA`. So the least peak `P(k)` should step only where `BETA` gains
+a good one-sided approximation. To length 1200 it rises at
+
+```text
+  2, 5, 8, 27, 46, 65, 149, 233, 317, 401, 485
+```
+
+and **every one is a semiconvergent denominator of `BETA`**, with no exception.
+The structure is in the differences:
+
+```text
+  2, 5, 8                          step 3
+  8, 27, 46, 65                    step 19
+  65, 149, 233, 317, 401, 485      step 84
+```
+
+and `3`, `19`, `84` are themselves convergent denominators. These are the
+Ostrowski intermediate denominators `q_(k-1) + j q_k`.
+
+**The converse fails, and that is the confirmation rather than a gap.** `3`,
+`19`, `84` and `1054` are semiconvergents that are *not* jumps --- and they are
+exactly the convergents approaching `BETA` from the other side. The staircase is
+one-sided by construction, because what forces a peak is a level creeping below
+`1 - c` from below. A characterisation that caught both sides would have been
+the wrong one.
+
+### What this adds
+
+The correspondence had four levels, all of them between Paper B and Paper C. This
+is a different kind of link: it connects the walk to a layer that already exists
+in Lean and was built for another purpose. The Juggler Ostrowski layer proves
+things about `BETA`'s continued fraction structurally, kernel-checked, up to
+`q = 301994`; the walk's extremal geometry is numerated by that same continued
+fraction.
+
+Measured to length 1200 by dynamic program. The containment of jumps in
+semiconvergents is not proved for all `k`, and I am not claiming it is. No bound
+moves, nothing here is a halt theorem, and the `log2(3)` ceiling stays exactly
+where it was --- what is new is that the approach to it has a name.
