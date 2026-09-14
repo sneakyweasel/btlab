@@ -11,6 +11,7 @@ replaces.
 from __future__ import annotations
 
 import io
+import itertools
 import math
 import re
 from fractions import Fraction
@@ -630,6 +631,77 @@ def test_the_extra_cost_is_recorded_rather_than_hidden() -> None:
 
 
 # --- the coefficient rule with its constants, and the deepest blocked defect ---
+
+
+def _all_words(lo: int, hi: int) -> list[str]:
+    return ["".join(c) for d in range(lo, hi + 1)
+            for c in itertools.product("OE", repeat=d)]
+
+
+def test_the_composed_map_is_the_exponent_ratio() -> None:
+    """``E = prod_{q=s+1}^{t-1} p_q`` is ``e_{t-1} / e_s``, identically.
+
+    The chain rule for the coefficient of ``theta_s`` in letter ``t``'s phase is
+    ``(k/2) E`` at exponent ``e_{t-1} - e_s``, so the whole rule rests on the
+    product of intermediate step exponents being the ratio of iterate exponents.
+    That is what makes it a rule rather than a table: it is checked here on every
+    word of length 3..10 and every pair ``s < t``, not at the five points the
+    paper prints.
+    """
+    checked = 0
+    for w in _all_words(3, 10):
+        e = B.iterate_exponents(w)
+        for t_ in range(2, len(w) + 1):
+            for s in range(1, t_):
+                assert B.composed_map(w, t_, s) == e[t_ - 2] / e[s - 1], (w, t_, s)
+                checked += 1
+    assert checked == 75_768, checked
+
+
+def test_the_second_order_exponent_is_e_s_times_E_minus_two() -> None:
+    """``e_{t-1} - 2 e_s = e_s (E - 2)``, so it is negative exactly when ``E < 2``.
+
+    This is the ``E < 2`` linearisation criterion as an identity.  ``e_s > 0``
+    always, so the sign of the squared-defect exponent is the sign of ``E - 2``
+    and nothing else -- the criterion is not a threshold chosen to fit the words,
+    it is where the second-order term stops growing.
+    """
+    disagreements = []
+    for w in _all_words(3, 10):
+        e = B.iterate_exponents(w)
+        for t_ in range(2, len(w) + 1):
+            for s in range(1, t_):
+                soe = B.second_order_exponent(w, t_, s)
+                E = B.composed_map(w, t_, s)
+                assert soe == e[s - 1] * (E - 2), (w, t_, s, soe, E)
+                if (soe < 0) != (E < 2):
+                    disagreements.append((w, t_, s))
+    assert not disagreements, disagreements[:5]
+
+
+def test_the_screens_other_two_thresholds_are_not_identities() -> None:
+    """The split the prospecting note demands, asserted rather than described.
+
+    ``E < 2`` is a theorem about where the second-order term sits.  The other two
+    conditions in ``unobstructed`` are not: ``9/4`` is the coefficient past which
+    *Conjecture 7.3* says every method stops, and branch runs are a sufficiency
+    claim relative to Paper B's toolkit.  Both are hypotheses, and a row that
+    called them lemmas would be a definition wearing a theorem's label.  What can
+    be checked is that they are genuinely independent of the criterion -- if they
+    were implied by it, the distinction would be empty.
+    """
+    combos = set()
+    for w in _all_words(3, 9):
+        for t_ in range(3, len(w) + 1):
+            if B.deepest_blocked(w, t_) is None:
+                continue
+            base = B.branch_base(w, t_)
+            combos.add((B.linearisation_safe(w, t_),
+                        bool(B.has_branch_runs(base)),
+                        bool(B.beyond_methods(w, t_))))
+    # E < 2 holding tells you nothing about either threshold.
+    assert len({c[1] for c in combos if c[0]}) == 2, combos
+    assert len({c[2] for c in combos if c[0]}) == 2, combos
 
 
 def test_the_rule_returns_the_papers_named_constants_exactly() -> None:

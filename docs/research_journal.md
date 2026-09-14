@@ -47745,3 +47745,89 @@ before acting, since adjacent Paper C material has been formalised since the
 note was written and the conditional spine is partly Lean without this entry
 being done. That re-pricing is the next real decision, and it is a judgement
 about where effort goes.
+
+
+## Candidates 1.1 and 1.5: one was already done, the other needed its scope split
+
+### 1.5 was never open
+
+The entry said to re-price before acting, and the re-price is the whole result.
+`J-tao-rate-implies-conjecture` had an empty Lean column, which is what the
+candidate was scored on --- but the row's own prose names the file and the
+theorem. The E-tree bound, the dyadic sum and the contradiction are
+`tao_rate_implies_conjecture` in `FateTaoReduction.lean`, sorry-free and
+kernel-checked, in a module of 33 declarations.
+
+All three objects the entry names are there: the seed (`treeLevel_zero_le`), the
+recursion (`treeLevel_logMass_succ_le`), the tree count (`treeLevel_logMass_le`).
+So is the thing the entry actually wanted, which was not a proof but a shape ---
+"one machine-checked lemma" every exponent could feed. That is
+`tao_rate_implies_empty`, stated over any `ForwardClosed` class, with the failure
+set as one instance.
+
+The misreading has a specific source worth naming. `FateContagion.lean`'s header
+says the analytic counting "is not formalized **here**". That is true of that
+file and was read as true of the corpus. A file saying what it does not contain
+is not a statement about what exists elsewhere.
+
+Filling the three columns (`lean`, `lean_trust: kernel`, `decl`) took
+declarations under a ledger row from 4498 to 4531 and modules carrying rows from
+177 to 178 --- a whole module that no row had pointed at. The tag stays
+**EXACT --- HUMAN PROOF**, because the contagion bound (Theorem 5.3) that feeds
+the recursion is still a human proof; that is not an oversight, it is what the
+entry itself predicted would remain.
+
+### 1.1 needed the split it asked for
+
+The entry is explicit that the scope must be divided when this is written: the
+chain rule and the \(E<2\) criterion are mathematics, the drift and stop
+thresholds are hypotheses relative to Paper B's toolkit, and "a row that
+conflates them would be a definition wearing a theorem's label". Three rows,
+not one.
+
+**The chain rule** (`J-paper-b-defect-coefficient-chain`). The coefficient of
+\(\theta_s\) in letter \(t\)'s phase is \((k/2)E\) at exponent
+\(e_{t-1}-e_s\), with \(E=\prod_{q=s+1}^{t-1}p_q\). What turns that from a table
+into a rule is \(E=e_{t-1}/e_s\) --- the product of intermediate step exponents
+is the ratio of iterate exponents.
+
+**The criterion** (`J-paper-b-linearisation-E-lt-2`). The squared-defect term
+sits at \(e_{t-1}-2e_s\), which is \(e_s(E-2)\). Since \(e_s>0\), its sign is the
+sign of \(E-2\) and nothing else. So the 2 is not a threshold fitted to the words
+that survive; it is where the second-order term stops growing, forced by the
+squaring.
+
+Both were checked as identities on every word of length 3--10 and every pair
+\(s<t\): 75768 instances, no exception, with the sign of the second-order
+exponent agreeing with \(E<2\) every time. That is the difference the entry
+asked for --- the depth-seven classification and the certified density rest on a
+stated identity now, not on a formula agreeing at the five constants somebody
+printed.
+
+**The hypotheses** (`J-paper-b-screen-thresholds-are-hypotheses`, OBSERVATION).
+The screen's other two conditions are not lemmas. The \(9/4\) is where
+*Conjecture 7.3* says every method stops. Branch runs have an exact run-length
+exponent \(2-e\), but that runs longer than one *suffice* is a claim about the
+toolkit, not about the word. The row asserts their independence rather than
+asserting it in prose: among letters of words of length \(\le 9\) with a blocked
+defect, \(E<2\) holding is compatible with both values of each of the other two,
+and a test now checks that. If the thresholds followed from the criterion the
+distinction would be empty, and it is not.
+
+### Two numbers checked, one of which I had wrong
+
+The entry cites "all \(127\) contractors at depth seven" and a \(227/256\)
+ceiling. Both looked wrong at first and only one is.
+
+\(227/256\) is right. It is the certified density --- \(7/8 = 224/256\) plus
+\(3/256\) from two words --- and not `ceiling(8)`, which is \(237/256\). Two
+different quantities that differ by a digit, which is exactly the kind of
+coincidence that makes a fast reading confident and wrong.
+
+The \(127\) is right as a number and wrong where the entry puts it. It is the
+contractor count across depths ten, twelve and thirteen --- \(12+30+85\), which
+is what the journal entry that produced it says. At depth seven there are three.
+The body now says so.
+
+What stays open in 1.1 is the Lean counterpart, which is the half of the entry
+nothing here touches.
