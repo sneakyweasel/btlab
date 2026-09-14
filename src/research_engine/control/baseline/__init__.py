@@ -34,8 +34,25 @@ class BaselineImmutableError(RuntimeError):
 
 
 def sha256_file(path: Path) -> str:
+    """Digest the seed's *content*, not its line endings.
+
+    The freeze protects what the v2.3 baseline says, and that is the same text
+    on every platform. Hashing raw bytes made it platform-dependent instead:
+    this repository is checked out with core.autocrlf on Windows, so the seed
+    files are CRLF in a Windows working tree and LF in the stored blob, and the
+    recorded digests -- computed on Windows -- were rejected everywhere else.
+    CI failed 39 tests with BaselineImmutableError on 14 September 2026 for
+    exactly that reason, the first time it ever got far enough to run them.
+
+    Normalising first, the way tools/build_paper_a.py already digests text,
+    makes the freeze mean what it claims. The recorded hashes in manifest.json
+    move once, to the normalised digest of byte-identical content: parsing both
+    encodings yields equal JSON, and the size difference is exactly the CRLF
+    count.
+    """
+
     digest = hashlib.sha256()
-    digest.update(path.read_bytes())
+    digest.update(path.read_bytes().replace(b"\r\n", b"\n").replace(b"\r", b"\n"))
     return digest.hexdigest()
 
 

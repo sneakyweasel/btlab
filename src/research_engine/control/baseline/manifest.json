@@ -2,8 +2,8 @@
   "identifier": "RESEARCH_ENGINE_V2_3_BASELINE",
   "engine_control_version": "0.2.7",
   "files": {
-    "historical.json": "ca69ff9b24e11d3d9f19a00faaa3258adc703b6b38a987c5dcc7d1736b9b7de9",
-    "target_board.json": "310d307234283faf6d6e1d4d488e0027e25fb643d9cb69c054e5c80dfde83227"
+    "historical.json": "3227b4de7e20d558a6335524780189823ebbde8b9c3d5f143fff28a8c9ee5a4d",
+    "target_board.json": "3adbd9b65ea8204df8a3596a6333898f64843c5cc720b196d38359b8244f5a94"
   },
   "campaign_order": [
     "mx_plus_r_7x1_class_obstruction",
