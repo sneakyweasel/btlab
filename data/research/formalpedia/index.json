@@ -36198,6 +36198,132 @@
       "trust": "kernel"
     },
     {
+      "doc": "The Diophantine budget `C * L^{-p}` fed to `cycleMin_length_of_gap`.",
+      "file": "formal/Problems/Juggler/GapTransferWW.lean",
+      "kind": "def",
+      "ledger": [
+        "J-cyclemin-gap-power-transfer",
+        "J-cyclemin-period-lower-bound",
+        "J-cyclemin-closure-threshold"
+      ],
+      "line": 45,
+      "module": "Problems.Juggler.GapTransferWW",
+      "name": "gapBudget",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/GapTransferWW.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-cyclemin-gap-power-transfer",
+        "J-cyclemin-period-lower-bound",
+        "J-cyclemin-closure-threshold"
+      ],
+      "line": 48,
+      "module": "Problems.Juggler.GapTransferWW",
+      "name": "gapBudget_pos",
+      "trust": "kernel"
+    },
+    {
+      "doc": "For `L >= 1`, `C <= 1` and `p >= 0` the budget is at most one, which is what `cycleMin_length_of_gap` needs.",
+      "file": "formal/Problems/Juggler/GapTransferWW.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-cyclemin-gap-power-transfer",
+        "J-cyclemin-period-lower-bound",
+        "J-cyclemin-closure-threshold"
+      ],
+      "line": 56,
+      "module": "Problems.Juggler.GapTransferWW",
+      "name": "gapBudget_le_one",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Power-budget gap transfer.** A Diophantine lower bound `C * L^{-p} <= o log 3 - L log 2` on a cycle gives the floor-free length bound `n log n <= (2/C) * L^{p+1}`. Instances: `p = 13.3`, `C = e^{-6.1256}` is Paper A Corollary 4.11 (Rhin, effective). `p = 4.1163051` is the Wu-Wang instance, exponent `5.1163051`, with `C = C_eps` implied.",
+      "file": "formal/Problems/Juggler/GapTransferWW.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-cyclemin-gap-power-transfer",
+        "J-cyclemin-period-lower-bound",
+        "J-cyclemin-closure-threshold"
+      ],
+      "line": 72,
+      "module": "Problems.Juggler.GapTransferWW",
+      "name": "cycleMin_length_of_gap_power",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The same inequality read as a period lower bound.** Under the same Diophantine budget, a nontrivial cycle of minimum `n` has period at least `(C * n log n / 2)^{1/(p+1)}`. No descent floor enters: the bound grows with the minimum, which is the one direction the finite tables cannot supply. At `p = 13.3` (Rhin) the exponent in `n` is `1/14.3 = 0.0699...`; at `p = 4.1163051` (Wu-Wang) it is `1/5.1163051 = 0.1954...`.",
+      "file": "formal/Problems/Juggler/GapTransferWW.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-cyclemin-gap-power-transfer",
+        "J-cyclemin-period-lower-bound",
+        "J-cyclemin-closure-threshold"
+      ],
+      "line": 106,
+      "module": "Problems.Juggler.GapTransferWW",
+      "name": "cycleMin_period_ge",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/GapTransferWW.lean",
+      "kind": "instance",
+      "ledger": [
+        "J-cyclemin-gap-power-transfer",
+        "J-cyclemin-period-lower-bound",
+        "J-cyclemin-closure-threshold"
+      ],
+      "line": 144,
+      "module": "Problems.Juggler.GapTransferWW",
+      "name": "of",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The closure threshold.** If the Diophantine budget holds on every nontrivial cycle and cycle minima obey the matching lower bound `n log n > (2/C) L^{p+1}`, then every cycle word based at a minimum `n >= 2` is empty: there is no nontrivial cycle. This is the numerical content of the standing reopen condition \"a lower bound on the cycle minimum in terms of the period\" (`docs/problems/juggler_cycle_method_ceilings.md`). Neither hypothesis is proved here. The Wu-Wang instance `p = 4.1163051` sets the unconditional target at `n >> L^{5.1163051}`; since `p >= 1` for every irrational, no instance of this scheme can ask for less than `n >> L^{2}`.",
+      "file": "formal/Problems/Juggler/GapTransferWW.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-cyclemin-gap-power-transfer",
+        "J-cyclemin-period-lower-bound",
+        "J-cyclemin-closure-threshold"
+      ],
+      "line": 145,
+      "module": "Problems.Juggler.GapTransferWW",
+      "name": "no_cycleMin_of_gap_and_minimum",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Wu-Wang instance of the transfer.** `C * L^{-4.1163051} <= Lambda` gives `n log n <= (2/C) L^{5.1163051}`, against Corollary 4.11's `L^{14.3}`.",
+      "file": "formal/Problems/Juggler/GapTransferWW.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-cyclemin-gap-power-transfer",
+        "J-cyclemin-period-lower-bound",
+        "J-cyclemin-closure-threshold"
+      ],
+      "line": 163,
+      "module": "Problems.Juggler.GapTransferWW",
+      "name": "cycleMin_length_of_wuWang",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Wu-Wang period lower bound.** Every nontrivial cycle has `L >= (C n log n / 2)^{1/5.1163051}`, floor-free.",
+      "file": "formal/Problems/Juggler/GapTransferWW.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-cyclemin-gap-power-transfer",
+        "J-cyclemin-period-lower-bound",
+        "J-cyclemin-closure-threshold"
+      ],
+      "line": 175,
+      "module": "Problems.Juggler.GapTransferWW",
+      "name": "cycleMin_period_ge_wuWang",
+      "trust": "kernel"
+    },
+    {
       "doc": "Exact increment of an `e`-th power under a nonnegative addend.",
       "file": "formal/Problems/Juggler/GlobalDefect.lean",
       "kind": "def",
@@ -84858,6 +84984,7 @@
         "Problems.Juggler.FunctionalGraph",
         "Problems.Juggler.GapCells",
         "Problems.Juggler.GapTransfer",
+        "Problems.Juggler.GapTransferWW",
         "Problems.Juggler.GlobalDefect",
         "Problems.Juggler.GuardResidueFamily",
         "Problems.Juggler.IdealCycleMin",
@@ -86284,6 +86411,30 @@
         {
           "id": "J-cyclemin-gap-transfer",
           "statement": "Gap transfer (Paper A Theorem 4.10). On a Juggler CycleMin start n \u2265 2 with word w of length L and oddCount o, n \u00b7 log n \u00b7 min(o log 3 \u2212 L log 2, 1) \u2264 2 L (cycleMin_gap_transfer). Proof: Theorem 4.4 reads P(A \u2212 B) \u2264 L A with A = 3^o, B = 2^L, P = n log n; if A \u2264 B the left side is nonpositive, if A \u2265 2B then P \u2264 2L, and if B < A < 2B then \u039b = log(A/B) \u2264 (A \u2212 B)/B and P(A \u2212 B)/B \u2264 LA/B \u2264 2L. Abstract form cycleMin_length_of_gap: any \u03b5 \u2264 min(\u039b, 1) gives n log n \u00b7 \u03b5 \u2264 2L. The printed Corollary 4.11 display under the hypothesis L^{\u221213.3} \u2264 \u039b is cycleMin_length_of_rhin. Floor-free; the classical transcendence input is a hypothesis, not a Lean theorem. Not a halt theorem and not a period bound at any floor.",
+          "tag": "EXACT \u2014 LEAN VERIFIED"
+        }
+      ]
+    },
+    "Problems.Juggler.GapTransferWW": {
+      "declarations": 9,
+      "file": "formal/Problems/Juggler/GapTransferWW.lean",
+      "imports": [
+        "Problems.Juggler.GapTransfer"
+      ],
+      "ledger": [
+        {
+          "id": "J-cyclemin-gap-power-transfer",
+          "statement": "Power-budget gap transfer. On a Juggler CycleMin start n \u2265 2 with word w of positive length L and oddCount o, for real 0 < C \u2264 1 and p \u2265 0, a Diophantine budget C \u00b7 L^{\u2212p} \u2264 \u039b = o log 3 \u2212 L log 2 gives n log n \u2264 (2/C) L^{p+1} (cycleMin_length_of_gap_power). It is cycleMin_length_of_gap at \u03b5 = C L^{\u2212p}, with gapBudget_le_one supplying \u03b5 \u2264 1; the transcendence input stays a hypothesis, as Rhin does in GapTransfer.lean. Instances: p = 13.3, C = e^{\u22126.1256} is Paper A Corollary 4.11; p = 4.1163051 is the Wu\u2013Wang instance cycleMin_length_of_wuWang, length exponent 5.1163051. Floor-free. Not a halt theorem, not a kill, and not a period bound at any floor.",
+          "tag": "EXACT \u2014 LEAN VERIFIED"
+        },
+        {
+          "id": "J-cyclemin-period-lower-bound",
+          "statement": "Floor-free period lower bound. Under the same budget C \u00b7 L^{\u2212p} \u2264 \u039b, a nontrivial Juggler cycle of minimum n has period L \u2265 (C n log n / 2)^{1/(p+1)} (cycleMin_period_ge; Wu\u2013Wang form cycleMin_period_ge_wuWang). This is Paper A Corollary 4.11 read as a bound on the period rather than the minimum, and it is the only proved statement in which a cycle's period grows with its minimum \u2014 the descent floor is a constant. The exponent in n rises from 1/14.3 = 0.0699 with Rhin to 1/5.1163051 = 0.1954 with Wu\u2013Wang (wu-wang-2014-irrationality-measure-log3, |a + b log 2 + c log 3| \u2265 H^{\u22124.1163051\u2212\u03b5} at a = 0, H = max(L, o) = L). Distinct from the fan-width cap of juggler_cycle_walk_fan_growth and from the REFUTED floor-level Baker transfer of juggler_cycle_gap_baker: no floor enters and nothing is excluded. At N_0 = 3.5\u00b710^8 it forces L \u2265 74 against 780239 from the finance table, and only 58676 even at the Dirichlet floor p = 1. Not a halt theorem.",
+          "tag": "EXACT \u2014 LEAN VERIFIED"
+        },
+        {
+          "id": "J-cyclemin-closure-threshold",
+          "statement": "Closure threshold for the no-cycle problem. If a Diophantine budget C \u00b7 L^{\u2212p} \u2264 \u039b holds on every nontrivial Juggler cycle and cycle minima satisfy the matching lower bound n log n > (2/C) L^{p+1}, then every CycleMin word based at a minimum n \u2265 2 is empty: there is no nontrivial cycle (no_cycleMin_of_gap_and_minimum). Neither hypothesis is proved here; the theorem is the implication. It puts a number on the standing reopen condition of juggler_cycle_method_ceilings, \"a lower bound on the cycle minimum in terms of the period\": the unconditional target is n \u226b L^{5.1163051} via Wu\u2013Wang, against n \u226b L^{14.3} via Rhin, and since p \u2265 1 for every irrational by Dirichlet no instance of the scheme ever asks for less than n \u226b L^{2}. The finance survivors sit at n log n \u224d L^{2} (ratio n log n / L^{2} in [0.164, 1.207] at L = 25781, 50508, 176251, 478245, 780239), so the gap to the unconditional target is the unbounded ratio q_{k+1}/q_k that Paper D exports. Not a halt theorem, not a proof of either hypothesis, and no cycle of any length is claimed.",
           "tag": "EXACT \u2014 LEAN VERIFIED"
         }
       ]
@@ -87943,13 +88094,13 @@
     }
   },
   "totals": {
-    "declarations": 6473,
-    "declarations_with_a_ledger_row": 4490,
-    "ledger_rows_naming_a_file": 403,
-    "modules": 282,
+    "declarations": 6482,
+    "declarations_with_a_ledger_row": 4499,
+    "ledger_rows_naming_a_file": 406,
+    "modules": 283,
     "trust": {
       "compiler": 57,
-      "kernel": 6416
+      "kernel": 6425
     }
   }
 }
