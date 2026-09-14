@@ -47267,3 +47267,57 @@ by depending on transient repository state. The lesson is narrow and worth
 keeping: a calibration test must not be pinned to the thing it was written to
 describe, because the reason to write it is usually the reason that thing is
 about to change.
+
+
+## The extracted work had classified itself out of the requirement
+
+Seventeen ledger rows, a 1418-line module, a Phase-0 census on exact odd
+orbits, and nothing in the branch ledger. A session reading
+`docs/juggler_branch_ledger.md` -- which the agent guide calls every branch,
+decision and strongest evidence -- would not have found the collision /
+large-sieve work at all, five commits after it landed.
+
+The mechanism is worth recording because it is not carelessness. The index
+builder assigns `kind` from what it finds: no dossier, so `kind: support`. The
+dossier completeness gate then exempts `support`. The entry classified itself
+out of the requirement that would have caught it, and every gate stayed green
+while the largest single body of mathematics extracted today sat undiscoverable.
+That is the same shape as the three audit rows that compared constants to
+themselves: not a check that failed, a check that had arranged never to apply.
+
+It has a dossier now, with every TEMPLATE heading, and the index re-reads it as
+`kind: branch`, `decision: PROMOTE`, seventeen rows attached.
+
+**PROMOTE, and the conditionality is the promotion.** What is promoted is an
+implication, not a bound. If the depth-d(y) collision count restricted to
+L-bad words is at most K N^2 2^{-(d-1)} with K = O(1), then Paper C Theorem 8.3
+follows at half the exponent; the hypothesis is unproved, so no stated Juggler
+result improves today. Three things earn it anyway: the implication is stated
+with its exponent and its price, the separation from H(C,A) is proved rather
+than hoped, and the obvious route to the hypothesis is closed with measured
+numbers rather than left open as a maybe.
+
+The price is depth. Half the exponent moves least C from 20 to 30, and the
+graded family reads [30, 25, 23, 21, 19] across accuracy 0 to 1, so the fully
+accurate member costs nothing and the crude one costs eleven letters.
+
+**The fence was checked, not assumed.** Negative knowledge forbids reopening
+Parseval / large sieve as the pair-correlation form of H(C,A). That fence binds
+the asymptotic; `J-collision-bound-does-not-invert` proves the one-sided
+constant-factor form separates from it, so the fenced object stays closed. A
+dossier that quietly omitted this would have been the more comfortable document
+and the wrong one.
+
+**What the dossier does not claim.** Not a second proof of Theorem 8.3 -- it is
+weaker in the exponent and conditional on more. Not evidence for the
+hypothesis: the Phase-0 falsifier declines to fire at worst ratio 1.0087, which
+is a failure to refute. And not audited: the seventeen rows carry tags from
+EXACT -- HUMAN PROOF through REFUTED, and they were taken on the strength of
+compiling, linting and passing their tests, which is a statement about code.
+Auditing them is a separate pass and deserves to be one.
+
+InformationField needed none of this, and that was checked rather than assumed:
+Problems/Engine holds seventeen other modules and not one carries a ledger row
+or an index entry. The engine layer sits outside the Juggler ceremony by
+design, and its prospecting note is already registered in manuscript
+consistency.
