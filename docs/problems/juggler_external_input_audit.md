@@ -50,22 +50,47 @@ target below \(L^2\).
 | \(2\) | Dirichlet | yes | the hard floor |
 | \(5.116201\) | BLS 2018 | no | recorded, knowingly unimported |
 | \(5.1163051\) | Wu-Wang 2014, linear form at \(a=0\), \(H=L\) | no (\(C_\varepsilon\)) | `J-cyclemin-gap-power-transfer` |
-| \(8.616\) | Rhin p.160 eq. (8), the ratio measure | yes | **nothing** |
+| \(8.616\) | Rhin p.160 eq. (8), *reported as* the ratio measure; disputed | unknown | **nothing** |
 | \(14.3\) | Rhin p.160 eq. (7) via Simons-de Weger Lemma 12 | yes (constant \(915\)) | Paper A Corollary 4.11, deposited |
 
-**The finding (OBSERVATION; UNVERIFIED against the primary source).**
-Paper A cites Rhin's Proposition on p. 160 and takes equation (7). The
-literature reports equation (8) of that same Proposition as
+**The finding (OBSERVATION; UNVERIFIED, and now DISPUTED).**
+Paper A cites Rhin's Proposition on p. 160 and takes equation (7).
+Equation (8) of that same Proposition is reported as
 \(\mu(\log3/\log2)\le 8.616\)
-([Spiegelhofer–Wallner, *Collisions of digit sums in bases 2 and 3*,
-arXiv:2105.11173](https://arxiv.org/abs/2105.11173), introduction:
-Rhin [48, Equation (8)]). Converting, that is \(n\log n\ll L^{8.616}\)
-against the printed \(L^{14.3}\) — a sharper statement one equation
-further down the same page of the same citation. **This is a third-party
-report. Nobody in the laboratory has read Rhin equation (8), and whether
-its constant is explicit is not established.** It must not be used until
-someone does; the probe and its test enforce that an unverified row is
-never the one in use.
+([Spiegelhofer, *Collisions of digit sums in bases 2 and 3*,
+arXiv:2105.11173v2](https://arxiv.org/abs/2105.11173), introduction:
+Rhin [48, Equation (8)]). Converting, that would be
+\(n\log n\ll L^{8.616}\) against the printed \(L^{14.3}\) — a sharper
+statement one equation further down the same page of the same citation.
+
+**The report was checked at the source and is transcribed correctly.**
+Spiegelhofer writes \(\mu(\vartheta)\le 8.616\) for
+\(\vartheta=\log3/\log2\), and distinguishes it in the very next sentence
+from \(\mu(\log 3)\le 5.1163051\) (Wu-Wang), so it is not a notational
+slip on his part. Two corrections to the laboratory's own record fall out
+of reading it: the paper is by **Lukas Spiegelhofer alone**, not
+Spiegelhofer–Wallner, and it is accepted in *Israel J. Math*.
+
+**But an independent source attributes the same constant to a different
+quantity.** Zudilin, [*An essay on irrationality measures of \(\pi\) and
+other logarithms*, arXiv:math/0404523](https://arxiv.org/abs/math/0404523),
+§3.4, Theorem 3, citing the same Rhin 1987 paper, states: *the
+irrationality exponent of any nonzero \(\theta\in\mathbb{Q}\log2
++\mathbb{Q}\log3\) satisfies \(\mu(\theta)<8.616\)*. Now
+\(\log3\in\mathbb{Q}\log2+\mathbb{Q}\log3\) but the **ratio**
+\(\log3/\log2\) is not, and the log-3 literature (Salikhov 2007,
+Wu-Wang 2014) uniformly reports Rhin's 8.616 as \(\mu(\log3)\).
+
+The two readings are incompatible; only one can be equation (8). Under
+Zudilin's, the row says nothing about the closure threshold and there is
+no sharper statement hiding in Paper A's citation at all. **Nobody in the
+laboratory has read Rhin p. 160.** The row must not be used until someone
+does; the probe and its test enforce that an unverified row is never the
+one in use, and the probe now also carries the contradicting source.
+
+**What reading p. 160 would settle.** Which quantity equation (8) bounds;
+whether its constant is explicit; and, if it is the ratio after all,
+whether \(8.616\) or \(14.3\) is the right effective companion to quote.
 
 It changes no current result: Wu-Wang's \(5.1163051\) is sharper than
 \(8.616\) and is what the laboratory uses. Its interest is that Paper A's
@@ -103,9 +128,15 @@ VERIFIED).** Both were the audit's primary target and both came up empty.
 - Rhin 1987 — **KNOWN** (`rhin-1987-pade-irrationality`). Equation (7)
   is what the laboratory records; equation (8) is the gap this branch
   names and does not close.
-- Spiegelhofer–Wallner, *Collisions of digit sums in bases 2 and 3* —
+- Spiegelhofer, *Collisions of digit sums in bases 2 and 3* —
   **KNOWN**, `independent`; used here only as a secondary report of
   Rhin equation (8), not as mathematics. Not yet a `literature/` id.
+  (Recorded as Spiegelhofer–Wallner until 14 September 2026; the paper
+  is single-authored.)
+- Zudilin, *An essay on irrationality measures of \(\pi\) and other
+  logarithms* (arXiv:math/0404523) — **KNOWN**, `independent`; the
+  source that disputes the reading of Rhin equation (8). Not yet a
+  `literature/` id.
 - BLS 2018 — **KNOWN**
   (`bondareva-luchin-salikhov-2018-log3-irrationality`); sharper than
   Wu-Wang by \(1.04\cdot10^{-4}\), deliberately unimported per
