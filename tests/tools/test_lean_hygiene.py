@@ -65,16 +65,20 @@ _spec.loader.exec_module(H)
 #: Lower this when a cluster is cleared; never raise it to go green.
 #: docs/problems/juggler_orphan_declaration_gate.md
 #:
-#: 404 -> 399 on merge, by citation and not by deletion: nothing was removed
-#: from the Lean corpus, and candidates are unchanged at 4836. The
-#: external-input-audit dossier, its journal entry and its ledger rows cite
-#: declarations that had no citation anywhere before, so the checker now
-#: resolves them. A pre-merge trial predicted 402; the merged tree measures
-#: 399, stable over repeated runs and independent of this comment block.
-#: Two of the five are accounted for by that prose and three are not, so
-#: the figure is the measurement rather than the prediction. Set to the
-#: measured value because slack is what lets orphans re-accumulate unseen.
-ORPHAN_BUDGET = 399
+#: 404 -> 402 on merge, by citation and not by deletion: nothing was removed
+#: from the Lean corpus and candidates are unchanged at 4836. The two that
+#: cleared are SeamData.cycleParent and JoinFigure.rigidity, named as
+#: counterexamples in the gate dossier, the journal entry and a ledger row --
+#: documenting an orphan cites it, so writing the ceremony prose for one
+#: removes it from the list. Any budget measured before that prose exists is
+#: systematically too loose.
+#:
+#: A first attempt at this merge read 399 and was wrong. The scan walked
+#: .claude/worktrees, where concurrent agent sessions keep full repository
+#: copies, and a copy's declaration line counts as a reference to the
+#: original -- so the figure fell by however many worktrees happened to be on
+#: disk. ".claude" is now in SCAN_SKIP; see the note there.
+ORPHAN_BUDGET = 402
 
 #: Warnings from ``lake build Problems.Juggler Problems.JugglerPaper``.
 #: Two remain, both cases where the linter is wrong:
