@@ -419,7 +419,6 @@ def classify(payload: dict[str, Any]) -> dict[str, Any]:
     all_e = [row for row in inverse if row["name"] == "all_e"]
     all_e_explodes = all(row["survived"] or row["hulled"] for row in all_e)
 
-    near_forward = [row for row in forward if row["family"] == "near"]
     packed_forward = [row for row in forward if row["name"] == "packed_mechanical"]
     scale_growth = bool(packed_forward) and packed_forward[-1]["max"] > packed_forward[0]["max"] + 2
     same_prefix_span = 0

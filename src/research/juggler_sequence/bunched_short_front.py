@@ -431,7 +431,6 @@ def analyze_return(row: dict[str, Any]) -> dict[str, Any]:
     y3, n = row["y3"], row["n"]
     preceding = "O" * a + "E"
     y_enter = image_after(y3, preceding)
-    tail = short_tail(b, c)
     z = apply_odds(y_enter, b)
     rec: dict[str, Any] = {
         **row,

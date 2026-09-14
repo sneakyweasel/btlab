@@ -177,7 +177,7 @@ def classify(blocks: list[dict[str, Any]], lean: dict[str, bool]) -> dict[str, A
             "classification": CLASS_ONE,
             "reason": "large changing-family witnesses capture into {1}",
         }
-    escaped = [row for row in large if row["kind"] != "CAPTURE"]
+    escaped = [row for row in collapse if row["kind"] != "CAPTURE"]
     return {
         "classification": CLASS_ESCAPE,
         "reason": f"a large witness was not capture: {escaped}",

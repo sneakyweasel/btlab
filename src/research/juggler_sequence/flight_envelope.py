@@ -127,7 +127,6 @@ def flight(n: int, step_cap: int = STEP_CAP, bit_cap: int = BIT_CAP) -> dict[str
 
     if n < 2:
         raise ValueError("flight needs n >= 2")
-    ln_n = math.log(n)
     log2_n = math.log2(n)
     x = n
     odds = 0

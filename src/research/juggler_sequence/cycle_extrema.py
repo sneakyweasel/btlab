@@ -149,7 +149,6 @@ def lean_api_present() -> dict[str, bool]:
     corpus = juggler_text()
     floor = engine_floor_text()
     progress = PROGRESS_PATH.read_text(encoding="utf-8")
-    minimal = MIN_PATH.read_text(encoding="utf-8")
     combined = text + corpus + progress
     named: dict[str, bool] = {}
     for name in LEAN_THEOREMS:
