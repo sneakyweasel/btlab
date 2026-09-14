@@ -69,6 +69,7 @@ import Problems.Juggler.GapCells
 import Problems.Juggler.MonomialSplitting
 import Problems.Juggler.PeriodFamily
 import Problems.Juggler.PaperBChainRule
+import Problems.Juggler.PaperBThreshold
 import Problems.Juggler.PaperBAssembly
 import Problems.Juggler.MasterIdentity
 import Problems.Juggler.BranchFreeze

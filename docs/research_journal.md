@@ -49063,3 +49063,94 @@ that something had changed.
 A second slip on the way: the rename was a `\bmember\b` regex, which rewrote the
 docstring prose as well as the identifier, leaving sentences like "the first
 fanMember of the family". Restored by hand.
+## Paper B's Theorem 6.1 throws away three quarters of its own exponent
+
+Reading Theorem 6.1's proof for the first time in the bridge thread, the
+threshold step is
+
+> Choose `q=(p+1/2)/2`, so `1/2<q<p`. For all sufficiently large fixed `d`,
+> `pd-1 >= q(d-1)`.
+
+The midpoint is not forced by anything. What forces a retreat from the sharp
+threshold `q=p` is the `-1`: the leading `O` is spent before the binomial
+starts, so `pd-1 >= p(d-1)` reduces to `p >= 1`, which is false. But that costs
+`O(1/d)`, not half the distance to `1/2`.
+
+The break-even threshold is `q_d = p - (1-p)/(d-1)`, and it makes the step an
+**equality** --- so it is the largest admissible threshold at each depth rather
+than one convenient choice among many, and nothing sharper is available by this
+route. Its only other constraint is `q_d > 1/2`, which turns out to reduce to
+two integer facts: `q_4 = (4p-1)/3 > 1/2` is `2^8 > 3^5`, i.e. `256 > 243`, and
+`q_3 <= 1/2` is `2^3 < 3^2`, i.e. `8 < 9`. So the bound holds at every depth
+from four on and the published "for all sufficiently large fixed `d`" can be
+deleted outright.
+
+### The sharp rate was already in the paper's own inequality
+
+`chernoff_rate` minimises `E[e^(tX)]` for the step `X` in `{log(3/2), -log2}`.
+The walk stays nonnegative exactly when `o log3 >= d log2`, so that Cramér rate
+and the binomial large-deviation rate at threshold `p` are the same event and
+the same number --- they agree to `1.1e-16`. Theorem 6.1's inequality reaches it
+at `q_d`; the midpoint reports `0.0085959587` per letter against the available
+`0.0346881850`, which is `24.8%`.
+
+### The constant is `p`, and every factor of `1-p` cancels
+
+The surprise was that sharpening does not just fix the rate. With
+`KL(q) = -log theta(q)` and `KL'(q) = log(q/(1-q))`,
+
+    (1/2) theta(q_d)^(d-1) / rho^d
+        -> (1/2) e^KL(p) e^((1-p) KL'(p))
+         = p^p (1-p)^(1-p) . (p/(1-p))^(1-p)
+         = p^p p^(1-p) = p.
+
+So Theorem 6.1 reads `dens(N \ C_d) <= p rho^d (1 + O(1/d))` with both constants
+explicit and no unspecified "some fixed `t > 0`". I checked the `O(1/d)`
+numerically: it decays by exactly a factor ten per decade of `d` from `1e3` to
+`1e5`.
+
+### What is left is the meander polynomial, and it recovers `C = 10.90`
+
+`N_d/2^d ~ C rho^d d^(-3/2)` with `C = kappa G(1) = 10.90`, so
+`truth/(p rho^d) . d^(3/2)` should tend to `C/p = 17.28`; it measures `16.4`,
+`17.0`, `16.6` at `d = 640, 1280, 2560`. That is an independent route to the
+meander constant --- only the exact DP count and the sharpened inequality, none
+of the ladder-height transform that produced `G(1)` in the first place.
+
+The midpoint version admits no such reading. Its overshoot is `1.2e6` at
+`d = 320` and `6.9e17` at `d = 1280`, log-log slope `25.5` and rising: the gap
+it leaves is not a polynomial at all.
+
+### What does not move
+
+Theorem 6.1's conclusion is density one, which follows from any `theta < 1` and
+is untouched. This is a rate, not a new theorem; it excludes no cycle and proves
+no termination. What it does close is the gap between Theorem 6.1 as published
+and the measured constant --- after sharpening, the only thing between them is
+the meander factor already identified.
+
+The algebra is in `formal/Problems/Juggler/PaperBThreshold.lean`, kernel-checked
+on `propext, Classical.choice, Quot.sound` alone, stated over any field with
+order added only where it is used. Sharpening the proof also made `theta` depend
+on `d`, so the paper now writes `theta_d` and carries the uniform bound
+`theta_d <= theta_4 < 1` that the limit argument needs. `theta_4` is `0.99987`:
+the bound has almost no content at depth four and earns it back as `d` grows,
+which is the honest reading.
+
+### Two gate notes
+
+`log_three_pos` collided with `HugRotation.log_three_pos` --- the fourth
+last-component collision in two days. Inlined it rather than renaming, since the
+proof term is one line.
+
+The orphan gate then still read `403`. The cause was that I had written the
+citation as `... and first_usable_depth.` at the end of a sentence, and the
+identifier tokenizer drops a token with a trailing dot, so a sentence-final
+citation silently is not one. The gate caught it, but the failure message points
+at `DepthFourFive` declarations rather than the real cause. Reworded so the name
+is not sentence-final.
+
+Separately, my own patch script mangled `\approx` into `\a` + `pprox` inside a
+non-raw Python string --- the hazard already recorded for `\r` and `\t` --- and
+the dry run passed anyway, because the anchors it checks did not include the
+replacement text. Caught by grepping the script, not by any gate.
