@@ -790,6 +790,47 @@ def test_all_three_screen_conditions_are_walk_functionals() -> None:
     assert checked == 4204, checked
 
 
+def test_the_two_tilts_are_one_measure_in_different_coordinates() -> None:
+    """Paper B's zero-drift tilt is the C -> infinity member of Paper C's theta_C.
+
+    Paper C picks theta_C so the unconditioned tilted mean endpoint sits at the
+    barrier -L; at L = 0 that is zero drift, which is the tilt meander_constant
+    says Paper B works under, and which is the minimiser of the MGF chernoff_rate
+    computes.
+
+    The tilted odd-probabilities agree outright: p_C -> BETA, and Paper B's tilted
+    P(O) is BETA. The tilt *parameters* do not, because the two papers tilt by
+    different statistics -- Paper C by the odd count o, Paper B by the walk value
+    in nats. On words of fixed length t, e^{theta sum X} = e^{theta(o log3 - t log2)}
+    is const(t) * e^{(theta log 3) o}, so the two coordinates differ by exactly
+    log 3, and theta_C = theta* log 3 to machine precision.
+    """
+    from research.juggler_sequence.tao_reduction import p_of_C, theta_of_C
+
+    a, b = math.log(1.5), math.log(2.0)
+    theta_star = math.log(b / a) / (a + b)          # the MGF minimiser, in closed form
+
+    # the tilt really is zero-drift, and its O-probability is BETA
+    m = 0.5 * (math.exp(theta_star * a) + math.exp(-theta_star * b))
+    p_star = 0.5 * math.exp(theta_star * a) / m
+    assert abs(p_star - BETA_) < 1e-12
+    log2_3 = math.log2(3.0)
+    drift = p_star * (log2_3 - 1.0) + (1 - p_star) * (-1.0)
+    assert abs(drift) < 1e-9, drift
+
+    # Paper C's tilted probability converges to the same number
+    for C in (1000, 10000, 100000):
+        assert abs(p_of_C(C) - BETA_) < 20.0 / C, C
+    # the gap goes like BETA/C, so 6.3e-6 at C = 1e5
+    assert abs(p_of_C(100000) - BETA_) < 1e-5
+
+    # and the parameters differ by exactly log 3
+    theta_C_limit = math.log(BETA_ / (1 - BETA_))
+    assert abs(theta_C_limit - math.log(b / a)) < 1e-12
+    assert abs(theta_C_limit - theta_star * math.log(3.0)) < 1e-12
+    assert abs(theta_of_C(100000) - theta_C_limit) < 1e-4
+
+
 def test_paper_c_exponent_is_paper_b_rate_at_level_zero() -> None:
     """e(C) and Paper B's rate are one rate function at two levels.
 
