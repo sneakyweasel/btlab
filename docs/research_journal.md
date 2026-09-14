@@ -44885,3 +44885,33 @@ equidistribution and the global forms on the moment criterion, both
 analytic and both open. The loop stops here, because the next
 questions are a decoration (a certified numerical instance) or
 weeks of exponential sums, and that choice is Philippe's.
+
+
+## The collapsed component is nearly fair, exactly
+
+Philippe asked which analytic attacks the Lean progress suggests, and
+said to proceed with the first: the collapsed mass, taken as a whole,
+should split its next letter evenly, because the fiber sizes of
+bounded values vary slowly. The exact layer of that is now in Lean.
+The next-letter bias of the starts whose iterate lands in a window of
+values is an alternating sum of fiber sizes, so summation by parts
+bounds it by the total variation of the fiber profile plus one fiber.
+One step of the map sums fibers over preimages, the even numbers of
+[v^2, (v+1)^2) plus at most one odd preimage, which is Lemma 3.1's
+even block read backwards; and the even branch smooths, because
+consecutive blocks have v or v+1 even members and the block sums of a
+profile sandwiched between m and M differ by at most (v+1)(M-m) + 2M.
+So the bias of a collapsed window at depth t+1 is at most that, summed
+over the window, plus twice the odd-preimage mass, plus one fiber.
+
+What it isolates, and what it does not do. Against a smooth profile
+the even-branch term is O(f) per value against a window mass of f v,
+a relative O(1/v); so an excess odd share in the moment criterion can
+come only from the odd branch of the collapsed component, whose parity
+is the share law at bounded scale, and from the high walkers. The
+variation bound on a fiber profile, the smoothness of the contracting
+composite map, is the analytic input and is not here; neither is the
+share law. No positivity hypothesis on the starts turned out to be
+needed, since every preimage of v lies below (v+1)^2 regardless.
+Thirty-one Lean rows, four human, twenty-nine modules, 378
+declarations in the artifact.

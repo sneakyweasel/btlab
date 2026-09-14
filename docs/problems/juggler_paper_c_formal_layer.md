@@ -108,9 +108,9 @@ The production inequality itself and the root \(\lambda^{**}\) stay
 human.
 
 **The build root (COMPUTATIONALLY VERIFIED).**
-`formal/Problems/JugglerFatePaper.lean` imports exactly the twenty-eight
+`formal/Problems/JugglerFatePaper.lean` imports exactly the twenty-nine
 modules Paper C cites; `formal/AxiomCheckPaperC.lean` prints the axioms
-of the 361 cited declarations and `AxiomCheckPaperC.expected` records
+of the 378 cited declarations and `AxiomCheckPaperC.expected` records
 them, every list a subset of `propext`, `Classical.choice`,
 `Quot.sound`, no `sorryAx`, no `native_decide`.
 
@@ -422,6 +422,34 @@ statement; as a hypothesis it has no numerical support, and the branch
 is CLOSE. The energy is the wrong statistic; the collapsed-fiber
 survival question is the open one. Thirty Lean rows, four human.
 
+**The collapsed component is nearly fair (EXACT — LEAN VERIFIED, 14
+September 2026).** The exact layer of what the measurement suggested
+on the other side: taken as a whole, the collapsed mass splits its next
+letter evenly. `Collapse.fiber S t v` counts the starts whose \(t\)-th
+iterate is \(v\); the next-letter bias of the starts whose iterate
+lands in a window \([a,b]\) is the alternating sum
+\(-\sum_v(-1)^v\,\mathrm{fiber}(v)\) (`Collapse.windowBias_eq_sum`), so
+by summation by parts it is at most the total variation of the fiber
+profile plus one fiber (`Collapse.abs_windowBias_le`). One step of the
+map sums fibers over preimages, the even numbers of \([v^2,(v+1)^2)\)
+plus at most one odd preimage (`Collapse.fiber_succ_eq`), and the even
+branch smooths: with the depth-\(t\) profile between \(m_v\) and
+\(M_v\) on the double block \([v^2,(v+2)^2)\), consecutive block sums
+differ by at most \((v+1)(M_v-m_v)+2M_v\) (`Collapse.blockSum_sub_le`,
+on \(v\le\mathrm{evenCount}(v)\le v+1\)). So
+`Collapse.collapse_bias_le`: the bias of a collapsed window at depth
+\(t+1\) is at most \(\sum_v((v+1)(M_v-m_v)+2M_v)\), plus twice the
+odd-preimage mass, plus one fiber. Read against a smooth profile,
+\(M_v-m_v\approx\bar f/v\) on a block of size \(\bar fv\): the first
+term is \(O(\bar f)\) per value against a window mass \(\bar fv\), a
+relative \(O(1/v)\). What this isolates: the excess odd share of the
+moment criterion can come only from the odd branch of the collapsed
+component, whose parity is the share law at bounded scale, and from
+the high walkers, whose values are large. What is not Lean: any bound
+on the variation of a fiber profile, a smoothness statement about the
+contracting composite map, and that share law. Thirty-one Lean rows,
+four human.
+
 ## Current literature
 
 - Paper C §1.4, Appendix A — `known`: the paper's own list of what is
@@ -532,10 +560,12 @@ atoms, 14 declarations in namespace `OneSided`),
 `formal/Problems/Juggler/FateEnergyAtoms.lean` (the bias energy supplies the
 exceptional atoms of the bad words, 15 declarations in namespace `Energy` and one in
 `OneSided`),
+`formal/Problems/Juggler/FateCollapse.lean` (the collapsed component's next-letter
+bias, 24 declarations in namespace `Collapse`),
 `formal/Problems/JugglerFatePaper.lean` (barrel),
 `formal/AxiomCheckPaperC.lean` and `.expected`. All kernel-checked; the
-Paper C surface (root `Problems.JugglerFatePaper`, 60 modules reached,
-1761 declarations) carries no `native_decide` and cites none.
+Paper C surface (root `Problems.JugglerFatePaper`, 61 modules reached,
+1785 declarations) carries no `native_decide` and cites none.
 
 Not formalized, and not claimed:
 Proposition 4.4, the share law 4.5–4.6, the production inequality (5.2)
@@ -550,9 +580,9 @@ Classification **PAPER_C_LEAN_SURFACE_CONSISTENT**.
 
 ```text
   Paper C verification table, before and after
-  Lean rows      15 -> 30  (Lemma 4.1', Corollary 8.4, Lemmas 4.2, 4.3, Theorem 5.3 given (5.2) and at 3/10, Theorem 7.3, (6.1), Section 10(d), (D.1), Theorem 9.1 exact, the three Section 9 consequences, the exceptional-atom form and the energy supply new)
+  Lean rows      15 -> 31  (Lemma 4.1', Corollary 8.4, Lemmas 4.2, 4.3, Theorem 5.3 given (5.2) and at 3/10, Theorem 7.3, (6.1), Section 10(d), (D.1), Theorem 9.1 exact, the three Section 9 consequences, the exceptional-atom form, the energy supply and the collapsed-component bias new)
   human rows     7 -> 4    (Proposition 4.4, the share law, the production inequality (5.2), Sections 8--10's asymptotics)
-  cited names    135 -> 385, all on subsets of Mathlib's three axioms; none native_decide
+  cited names    135 -> 409, all on subsets of Mathlib's three axioms; none native_decide
 ```
 
 - The three proofs are the paper's; the sweep count is the paper's
@@ -622,7 +652,7 @@ windows (D.1) and (D.2) of Appendix D.1 (`FateLandingWindow.lean`), and
 the counting half of the Section 10(d) display
 (`FateCylinderEnergy.lean`), together with two consolidations,
 `FateNumerics.lean` and `FateWindowCount.lean`. The verification table
-is thirty Lean rows and four human, and the four are analysis: the
+is thirty-one Lean rows and four human, and the four are analysis: the
 block average 4.4, the share law 4.5--4.6, the production inequality
 (5.2), and the asymptotic bookkeeping of Sections 8--10, whose exact
 forms (Lemma 8.2, Theorems 8.3, 9.1, 9.2, Proposition 9.3) are Lean. No small attack remains on this paper; what is left

@@ -4224,6 +4224,7 @@
         "J-fate-pressure-conjecture",
         "J-fate-one-sided-atoms",
         "J-fate-energy-atoms",
+        "J-fate-collapse-bias",
         "J-paper-c-trust-surface",
         "J-fate-monotone-pairing-repair",
         "J-fate-chernoff-count",
@@ -6218,7 +6219,8 @@
         "formal/Problems/Juggler/FateOneSidedCorollary.lean",
         "formal/Problems/Juggler/FatePressureCorollary.lean",
         "formal/Problems/Juggler/FateOneSidedAtoms.lean",
-        "formal/Problems/Juggler/FateEnergyAtoms.lean"
+        "formal/Problems/Juggler/FateEnergyAtoms.lean",
+        "formal/Problems/Juggler/FateCollapse.lean"
       ],
       "conjecture": [],
       "decision": null,

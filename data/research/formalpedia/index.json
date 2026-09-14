@@ -27968,6 +27968,294 @@
       "trust": "kernel"
     },
     {
+      "doc": "The fiber of the value `v` at depth `t`: the starts of `S` whose `t`-th iterate is `v`.",
+      "file": "formal/Problems/Juggler/FateCollapse.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-collapse-bias"
+      ],
+      "line": 48,
+      "module": "Problems.Juggler.FateCollapse",
+      "name": "fiber",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The starts of `S` whose `t`-th iterate lies in the window `[a, b]`.",
+      "file": "formal/Problems/Juggler/FateCollapse.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-collapse-bias"
+      ],
+      "line": 52,
+      "module": "Problems.Juggler.FateCollapse",
+      "name": "window",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The next-letter bias of the window: the starts of the window whose `t`-th iterate is odd (next letter `O`) minus those whose `t`-th iterate is even.",
+      "file": "formal/Problems/Juggler/FateCollapse.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-collapse-bias"
+      ],
+      "line": 57,
+      "module": "Problems.Juggler.FateCollapse",
+      "name": "windowBias",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The starts of the window whose iterate satisfies `p` are counted by the fibers over the values of `[a, b]` satisfying `p`.",
+      "file": "formal/Problems/Juggler/FateCollapse.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-collapse-bias"
+      ],
+      "line": 65,
+      "module": "Problems.Juggler.FateCollapse",
+      "name": "card_filter_window",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateCollapse.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-collapse-bias"
+      ],
+      "line": 85,
+      "module": "Problems.Juggler.FateCollapse",
+      "name": "card_window",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The bias is the alternating sum of the fibers.",
+      "file": "formal/Problems/Juggler/FateCollapse.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-collapse-bias"
+      ],
+      "line": 92,
+      "module": "Problems.Juggler.FateCollapse",
+      "name": "windowBias_eq_sum",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Summation by parts: `|\u03a3_{i<n} (-1)^i h_i| \u2264 \u03a3_{i<n-1} |h_{i+1} - h_i| + h_{n-1}` for nonnegative `h`.",
+      "file": "formal/Problems/Juggler/FateCollapse.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-collapse-bias"
+      ],
+      "line": 125,
+      "module": "Problems.Juggler.FateCollapse",
+      "name": "abs_alt_sum_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateCollapse.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-collapse-bias"
+      ],
+      "line": 156,
+      "module": "Problems.Juggler.FateCollapse",
+      "name": "Icc_eq_Ico",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The bias is bounded by the variation of the fiber profile.**",
+      "file": "formal/Problems/Juggler/FateCollapse.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-collapse-bias"
+      ],
+      "line": 161,
+      "module": "Problems.Juggler.FateCollapse",
+      "name": "abs_windowBias_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A preimage of `v` under the map lies below `(v+1)\u00b2`.",
+      "file": "formal/Problems/Juggler/FateCollapse.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-collapse-bias"
+      ],
+      "line": 187,
+      "module": "Problems.Juggler.FateCollapse",
+      "name": "lt_sq_succ_of_floorPower_eq",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The preimages of `v` under the map.",
+      "file": "formal/Problems/Juggler/FateCollapse.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-collapse-bias"
+      ],
+      "line": 197,
+      "module": "Problems.Juggler.FateCollapse",
+      "name": "pre",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateCollapse.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-collapse-bias"
+      ],
+      "line": 200,
+      "module": "Problems.Juggler.FateCollapse",
+      "name": "iterate_succ_eq",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The fiber at depth `t+1` is the sum of the depth-`t` fibers over the preimages.",
+      "file": "formal/Problems/Juggler/FateCollapse.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-collapse-bias"
+      ],
+      "line": 204,
+      "module": "Problems.Juggler.FateCollapse",
+      "name": "fiber_succ",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The even preimages of `v` are the even numbers of `[v\u00b2, (v+1)\u00b2)` (Lemma 3.1's even block, in fiber form).",
+      "file": "formal/Problems/Juggler/FateCollapse.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-collapse-bias"
+      ],
+      "line": 225,
+      "module": "Problems.Juggler.FateCollapse",
+      "name": "pre_filter_even",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The even branch: the depth-`t` mass of the even numbers of `[v\u00b2, (v+1)\u00b2)`.",
+      "file": "formal/Problems/Juggler/FateCollapse.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-collapse-bias"
+      ],
+      "line": 240,
+      "module": "Problems.Juggler.FateCollapse",
+      "name": "blockSum",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The odd branch: the depth-`t` mass of the odd preimages of `v`.",
+      "file": "formal/Problems/Juggler/FateCollapse.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-collapse-bias"
+      ],
+      "line": 244,
+      "module": "Problems.Juggler.FateCollapse",
+      "name": "oddPart",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateCollapse.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-collapse-bias"
+      ],
+      "line": 247,
+      "module": "Problems.Juggler.FateCollapse",
+      "name": "oddPart_nonneg",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`fiber(t+1, v) = blockSum + oddPart`.",
+      "file": "formal/Problems/Juggler/FateCollapse.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-collapse-bias"
+      ],
+      "line": 251,
+      "module": "Problems.Juggler.FateCollapse",
+      "name": "fiber_succ_eq",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The number of even numbers of `[v\u00b2, (v+1)\u00b2)`.",
+      "file": "formal/Problems/Juggler/FateCollapse.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-collapse-bias"
+      ],
+      "line": 267,
+      "module": "Problems.Juggler.FateCollapse",
+      "name": "evenCount",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateCollapse.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-collapse-bias"
+      ],
+      "line": 270,
+      "module": "Problems.Juggler.FateCollapse",
+      "name": "evenCount_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateCollapse.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-collapse-bias"
+      ],
+      "line": 288,
+      "module": "Problems.Juggler.FateCollapse",
+      "name": "le_evenCount",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The even branch smooths.** If the depth-`t` profile lies between `m` and `M` on the double block `[v\u00b2, (v+2)\u00b2)`, consecutive block sums differ by at most `(v+1)(M-m) + 2M`.",
+      "file": "formal/Problems/Juggler/FateCollapse.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-collapse-bias"
+      ],
+      "line": 307,
+      "module": "Problems.Juggler.FateCollapse",
+      "name": "blockSum_sub_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The variation of the odd branch over a window is at most twice its mass.",
+      "file": "formal/Problems/Juggler/FateCollapse.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-collapse-bias"
+      ],
+      "line": 361,
+      "module": "Problems.Juggler.FateCollapse",
+      "name": "sum_abs_oddPart_sub_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The collapsed component is nearly fair.** If the depth-`t` fiber profile lies between `m v` and `M v` on the double block `[v\u00b2, (v+2)\u00b2)` for every `v` in `[a, b)`, the next-letter bias of the starts whose `(t+1)`-st iterate lies in `[a, b]` is at most `\u03a3_{v \u2208 [a,b)} ((v+1)(M v - m v) + 2 M v)`, plus twice the mass arriving through odd preimages, plus one fiber.",
+      "file": "formal/Problems/Juggler/FateCollapse.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-collapse-bias"
+      ],
+      "line": 395,
+      "module": "Problems.Juggler.FateCollapse",
+      "name": "collapse_bias_le",
+      "trust": "kernel"
+    },
+    {
       "doc": "`A` is closed under taking one-step preimages.",
       "file": "formal/Problems/Juggler/FateContagion.lean",
       "kind": "def",
@@ -84167,6 +84455,7 @@
         "Problems.Juggler.FanLaw",
         "Problems.Juggler.FateBlockAverage",
         "Problems.Juggler.FateChernoff",
+        "Problems.Juggler.FateCollapse",
         "Problems.Juggler.FateContagion",
         "Problems.Juggler.FateContagionBound",
         "Problems.Juggler.FateCylinderCorollary",
@@ -85176,6 +85465,20 @@
         {
           "id": "J-fate-tao-union-bound",
           "statement": "Paper C Theorem 8.3 (Tao-type bound from the cylinder hypothesis), exact and explicit forms. cylinder y d w is the set of odd n in (y, 2y] with itinerary n d = w; oddFailures y the odd n in (y, 2y] with \u00acReachesOne n; EnvelopeBad N\u2080 Y w says N\u2080^{2^t} < Y^{3^{o_t(w)}} for every prefix t \u2264 |w|. (i) oddFailures_subset_bad_cylinders: if every start up to N\u2080 reaches 1, then oddFailures y \u2286 \u22c3 {cylinder y d w : w \u2208 allWords d, EnvelopeBad N\u2080 (2y) w} \u2014 Lemma 8.1 (reachesOne_of_itinerary_envelope) in covering form, using n \u2264 2y. (ii) oddFailures_card_le: if every envelope-bad cylinder has at most M starts then #oddFailures y \u2264 #{envelope-bad words} \u00b7 M. (iii) LBad_of_envelopeBad: for N\u2080, Y \u2265 2, envelope-bad at scale Y implies L-bad with L = log_2(log Y / log N\u2080). (iv) oddFailures_card_le_chernoff: N\u2080 \u2265 2, y \u2265 1, C \u2265 5, d \u2265 1, d \u2265 C L(y) with L(y) = log_2(log 2y / log N\u2080), M \u2265 0, and every L(y)-bad cylinder of depth d has at most M starts: then #oddFailures y \u2264 2^d \u00b7 2^{\u2212e(C) L(y)} \u00b7 M, by (i)\u2013(iii) and row J-fate-chernoff-count. (v) oddFailures_card_le_explicit: with d = \u2308C L(y)\u2309 \u2265 1 (depth), y \u2265 2, and the bound of H(C, A) at the scale y on every O-rooted L(y)-bad cylinder of depth d (E-rooted cylinders are empty, cylinder_even_root_empty), the odd failures in (y, 2y] number at most y \u039b^{\u2212e(C)} + 2 \u039b^C y (log y)^{\u2212A} with \u039b = log 2y / log N\u2080 (scaleRatio) \u2014 at every y, no \u03b5, a factor 2 in the main term against the paper's y/2 \u039b^{\u2212(e(C)\u2212\u03b5)}. Kernel-checked, axioms propext, Classical.choice, Quot.sound only. The paper's displayed form is (v) with the factor 2 absorbed into \u039b^\u03b5 and the second term into the first for A > C + e(C), not formalized; Corollary 8.4 (the conjecture from a cylinder bound) rests on Theorem 7.2 and stays a human proof. Conditional on the cylinder bound; not a density theorem, not a halt theorem.",
+          "tag": "EXACT \u2014 LEAN VERIFIED"
+        }
+      ]
+    },
+    "Problems.Juggler.FateCollapse": {
+      "declarations": 24,
+      "file": "formal/Problems/Juggler/FateCollapse.lean",
+      "imports": [
+        "Problems.Juggler.FateChernoff"
+      ],
+      "ledger": [
+        {
+          "id": "J-fate-collapse-bias",
+          "statement": "The collapsed component is nearly fair, exact layer (Paper C Section 10(d), after the cylinder-energy measurement). For a finite set S of starts and a depth t, fiber S t v = #{n in S : J^t(n) = v}, window S t a b = the starts whose t-th iterate lies in [a, b], and windowBias S t a b = #{odd iterate} - #{even iterate} in the window, the bias of the next letter. windowBias = - sum over v in [a, b] of (-1)^v fiber(v) (windowBias_eq_sum, on card_filter_window), hence |windowBias| <= sum over v in [a, b) of |fiber(v+1) - fiber(v)| + fiber(b) (abs_windowBias_le), by summation by parts on alternating sums with the partial sums of (-1)^i bounded by 1 (abs_alt_sum_le). One step of the map: fiber(t+1, v) = sum of fiber(t, u) over the preimages u of v, all below (v+1)^2 (fiber_succ, lt_sq_succ_of_floorPower_eq); the even preimages are the even numbers of [v^2, (v+1)^2) (pre_filter_even, Lemma 3.1's even block in fiber form), so fiber(t+1, v) = blockSum + oddPart (fiber_succ_eq). The even branch smooths: v <= evenCount v <= v + 1 (le_evenCount, evenCount_le), so if m <= fiber(t, u) <= M on the double block [v^2, (v+2)^2) then |blockSum(v+1) - blockSum(v)| <= (v+1)(M - m) + 2M (blockSum_sub_le); the odd branch's variation over a window is at most twice its mass (sum_abs_oddPart_sub_le). Hence collapse_bias_le: |windowBias S (t+1) a b| <= sum over v in [a, b) of ((v+1)(M_v - m_v) + 2 M_v) + 2 sum over v in [a, b] of oddPart(v) + fiber(t+1, b) whenever the depth-t profile is sandwiched between m_v and M_v on each double block. Read against a smooth profile, M_v - m_v of order f/v on a block of size f v, the first term is O(f) per value against a window mass of f v: the collapsed mass entering through the even branch is fair up to a relative O(1/v). NOT formalized: any bound on the variation of a fiber profile (a smoothness statement about the contracting composite map), and the parity of the odd-preimage mass, the share law at bounded scale. Nothing here is a halt theorem.",
           "tag": "EXACT \u2014 LEAN VERIFIED"
         }
       ]
@@ -86925,6 +87228,7 @@
         "Problems.Juggler.CubeFiber",
         "Problems.Juggler.FateBlockAverage",
         "Problems.Juggler.FateChernoff",
+        "Problems.Juggler.FateCollapse",
         "Problems.Juggler.FateContagion",
         "Problems.Juggler.FateContagionBound",
         "Problems.Juggler.FateCylinderCorollary",
@@ -86954,7 +87258,7 @@
       "ledger": [
         {
           "id": "J-paper-c-trust-surface",
-          "statement": "Paper C's Lean surface, as a build target and an axiom artifact. formal/Problems/JugglerFatePaper.lean imports exactly the twenty-eight modules the paper cites (TerminationFloor257, FateBlockAverage, FateShareLaw, FateProduction, FateOneSided, FateOneSidedCorollary, FatePressureCorollary, FateOneSidedAtoms, FateEnergyAtoms, FateContagion, FateCylinderEnergy, CubeFiber, TiltedShare, FateRecursion, FateFirstLetter, FateLandingWindow, FateWindowCount, FateSweep, FateSweepMonotone, FateChernoff, FatePressure, FateTaoReduction, FateSeed, FateCylinderCorollary, FateNumerics, FateFiberParity, FateThinFibers, FateContagionBound) and is a lake default target; formal/AxiomCheckPaperC.lean prints the axioms of the cited declarations and AxiomCheckPaperC.expected records them: every line is a subset of [propext, Classical.choice, Quot.sound], no sorryAx, no Lean.ofReduceBool (native_decide). formalpedia's paper surface carries Paper C (root Problems.JugglerFatePaper): no declaration it reaches runs the compiler and none cites one that does. The verification table has thirty Lean rows (including Lemma 4.1', Lemmas 4.2 and 4.3, Lemma 5.2, Theorem 5.3 given the production inequality (5.2) and unconditionally at 3/10, Theorem 7.2 and Theorem 7.3 with the contagion bound as a hypothesis, Corollary 8.4, and Theorem 9.1 in exact form by exponential moments and its consequence, the conjecture from the one-sided hypothesis, and the conjecture from the pressure and no-momentum hypotheses of Section 9.2, Theorem 9.1 with the exceptional atoms of Section 10(d), and the bias energy supplying those atoms) and four human proofs (the block average 4.4, the share law, the production inequality (5.2), the asymptotic bookkeeping of Sections 8--10). FateNumerics holds the two numerical moves the fiber lemmas share, roots by powering and Bernoulli at a point; FateWindowCount holds the counting move, a sequence rising by at least d has at most w/d + 1 terms in a window of width w. This row records the artifact, not a theorem; nothing here bounds a density.",
+          "statement": "Paper C's Lean surface, as a build target and an axiom artifact. formal/Problems/JugglerFatePaper.lean imports exactly the twenty-nine modules the paper cites (TerminationFloor257, FateBlockAverage, FateShareLaw, FateProduction, FateOneSided, FateOneSidedCorollary, FatePressureCorollary, FateOneSidedAtoms, FateEnergyAtoms, FateCollapse, FateContagion, FateCylinderEnergy, CubeFiber, TiltedShare, FateRecursion, FateFirstLetter, FateLandingWindow, FateWindowCount, FateSweep, FateSweepMonotone, FateChernoff, FatePressure, FateTaoReduction, FateSeed, FateCylinderCorollary, FateNumerics, FateFiberParity, FateThinFibers, FateContagionBound) and is a lake default target; formal/AxiomCheckPaperC.lean prints the axioms of the cited declarations and AxiomCheckPaperC.expected records them: every line is a subset of [propext, Classical.choice, Quot.sound], no sorryAx, no Lean.ofReduceBool (native_decide). formalpedia's paper surface carries Paper C (root Problems.JugglerFatePaper): no declaration it reaches runs the compiler and none cites one that does. The verification table has thirty-one Lean rows (including Lemma 4.1', Lemmas 4.2 and 4.3, Lemma 5.2, Theorem 5.3 given the production inequality (5.2) and unconditionally at 3/10, Theorem 7.2 and Theorem 7.3 with the contagion bound as a hypothesis, Corollary 8.4, and Theorem 9.1 in exact form by exponential moments and its consequence, the conjecture from the one-sided hypothesis, and the conjecture from the pressure and no-momentum hypotheses of Section 9.2, Theorem 9.1 with the exceptional atoms of Section 10(d), the bias energy supplying those atoms, and the collapsed component's bias bound) and four human proofs (the block average 4.4, the share law, the production inequality (5.2), the asymptotic bookkeeping of Sections 8--10). FateNumerics holds the two numerical moves the fiber lemmas share, roots by powering and Bernoulli at a point; FateWindowCount holds the counting move, a sequence rising by at least d has at most w/d + 1 terms in a window of width w. This row records the artifact, not a theorem; nothing here bounds a density.",
           "tag": "COMPUTATIONALLY VERIFIED"
         }
       ]
@@ -87251,13 +87555,13 @@
     }
   },
   "totals": {
-    "declarations": 6418,
-    "declarations_with_a_ledger_row": 4435,
-    "ledger_rows_naming_a_file": 401,
-    "modules": 280,
+    "declarations": 6442,
+    "declarations_with_a_ledger_row": 4459,
+    "ledger_rows_naming_a_file": 402,
+    "modules": 281,
     "trust": {
       "compiler": 57,
-      "kernel": 6361
+      "kernel": 6385
     }
   }
 }

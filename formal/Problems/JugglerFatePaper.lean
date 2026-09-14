@@ -12,6 +12,7 @@ import Problems.Juggler.FateOneSidedCorollary
 import Problems.Juggler.FatePressureCorollary
 import Problems.Juggler.FateOneSidedAtoms
 import Problems.Juggler.FateEnergyAtoms
+import Problems.Juggler.FateCollapse
 import Problems.Juggler.FateCylinderEnergy
 import Problems.Juggler.FateLandingWindow
 import Problems.Juggler.FateWindowCount
@@ -30,7 +31,7 @@ import Problems.Juggler.FateContagionBound
 /-!
 # Paper C barrel — everything the repository checks for the fate-contagion note
 
-`docs/theory/juggler_fate_almost_all_note.md`. This file imports exactly the twenty-eight modules
+`docs/theory/juggler_fate_almost_all_note.md`. This file imports exactly the twenty-nine modules
 that paper cites and nothing else, so that a reader can build the formal side of Paper C on
 its own rather than selecting modules by hand out of the umbrella `Problems.Juggler`. It is a
 laboratory target, not a claim: building it does **not** corroborate the paper's counting.
@@ -144,6 +145,21 @@ laboratory target, not a claim: building it does **not** corroborate the paper's
   with the contagion bound as a hypothesis. The pincer's rate-side question is thereby a single
   second-moment statement about how cylinders split (`Energy.EnergyBound`). Nothing here
   proves it.
+* `FateCollapse` — the collapsed component is nearly fair, exact layer. For a finite set of
+  starts, `Collapse.fiber S t v` counts the starts whose `t`-th iterate is `v`, and the
+  next-letter bias of the starts whose iterate lands in a window `[a, b]`
+  (`Collapse.windowBias`) is the alternating sum `-Σ_{v ∈ [a,b]} (-1)^v fiber(v)`
+  (`Collapse.windowBias_eq_sum`), hence at most the total variation of the fiber profile
+  plus one fiber (`Collapse.abs_windowBias_le`, by summation by parts,
+  `Collapse.abs_alt_sum_le`). One step of the map sums fibers over preimages, the even
+  numbers of `[v², (v+1)²)` plus at most one odd preimage (`Collapse.fiber_succ`,
+  `Collapse.fiber_succ_eq`, `Collapse.pre_filter_even`), and the even branch smooths: with
+  the depth-`t` profile between `m` and `M` on the double block `[v², (v+2)²)`, consecutive
+  block sums differ by at most `(v+1)(M-m) + 2M` (`Collapse.blockSum_sub_le`, on the counts
+  `v ≤ evenCount v ≤ v+1`). Hence `Collapse.collapse_bias_le`: the bias of the collapsed
+  window is at most `Σ_v ((v+1)(M_v - m_v) + 2M_v)`, plus twice the odd-preimage mass, plus
+  one fiber. The variation bound on a fiber profile and the parity of the odd-preimage mass
+  are not here.
 * `FateCylinderEnergy` — the counting identity of Section 10(d): a cylinder splits into
   its two children (`CylinderEnergy.wordCount_split`), so the first-letter biases
   `D(w) = #[wO] - #[w]/2` satisfy `Σ_{|w|=t} D(w)² = C_{t+1}/2 - C_t/4` exactly

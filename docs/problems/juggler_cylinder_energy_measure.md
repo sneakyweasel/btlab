@@ -104,8 +104,12 @@ None sought; the branch is a measurement.
 the measurement tests (`Energy.mass_violators_le`,
 `Energy.oneSidedShareExc_of_energy`, `Energy.energy_implies_conjecture`),
 restricted to the \(L(y)\)-bad words after this measurement showed the
-unrestricted form empty. Nothing here is proved about the map beyond
-the identity checked on every row.
+unrestricted form empty. `formal/Problems/Juggler/FateCollapse.lean`
+carries the other side of the observation, exactly: the next-letter
+bias of a window of collapsed values is bounded by the variation of
+the fiber profile, and the even branch smooths it
+(`Collapse.collapse_bias_le`). Nothing here is proved about the map
+beyond the identity checked on every row.
 
 ## Results
 
