@@ -6,6 +6,7 @@ import hashlib
 import json
 import math
 import re
+import sys
 from pathlib import Path
 
 import pytest
@@ -26,6 +27,12 @@ from research.juggler_sequence.paper_c_audit import (
     tao_checks,
 )
 
+_TOOLS = Path(__file__).resolve().parents[3] / "tools"
+if str(_TOOLS) not in sys.path:
+    sys.path.insert(0, str(_TOOLS))
+
+from artifact_digest import content_sha256  # noqa: E402
+
 GROUPS = {
     "contagion": contagion_checks,
     "tao": tao_checks,
@@ -43,7 +50,7 @@ def test_published_artifact_hashes_match_the_reviewed_files() -> None:
     assert entries
     root = Path(__file__).resolve().parents[3]
     for relative, digest in entries:
-        assert hashlib.sha256((root / relative).read_bytes()).hexdigest() == digest, relative
+        assert content_sha256(root / relative) == digest, relative
 
 
 def test_local_release_retains_the_registered_publication_identity() -> None:

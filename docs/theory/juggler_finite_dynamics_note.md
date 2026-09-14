@@ -4645,7 +4645,7 @@ The \(10^6\) longest first-passage figures of Proposition 1.3
 laboratory-floor certificate,
 `data/research/juggler/cycle_finance/floor_verify/N26254995/chunks/3_250002.json`
 (\(3\le n\le 250002\); SHA-256
-`6303b62c9b1819deaf9715338f84899c1d75eb50dcab850a7b8fb28874ec19bc`).
+`435616f9a9ef4e880b8c30e78c4557728868896cfa52090a2b3339a8376a646d`).
 The file `floor.json` in the same directory as
 `exceptions_parity.json` is a later \(n_{\mathrm{top}}=2\cdot10^6\)
 companion and is not the \(10^6\) certificate. The parity table is
@@ -4710,7 +4710,7 @@ Its parity survivor scan is
 and the \(10\) kill records under
 `data/research/juggler/cycle_walk_charge/N350000000_kills/` have
 SHA-256
-`d16ccfed52757d4a44368a6549a8149ccbc926472737276c577912346db854ab`
+`d24d6422036bafb41f032b59f9aaa118b206e5d18f07d11e5e25b36ae7afe80f`
 (concatenated in length order); the direct non-kill record for
 the survivor \(780239\) (margin \(0.6049\)) is stored alongside.
 The exact-integer CPU computation with guarded comparisons is

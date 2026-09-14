@@ -51,17 +51,17 @@
     {
       "path": "docs/theory/juggler_fate_almost_all_note.md",
       "mode": "text",
-      "sha256": "10e224b72e7e9a21a4e49ee97eb80cd8e70dd5c25efc1b53e0a994261272fa2a"
+      "sha256": "b46caf57cc6e91efd5924c2e2477dc04db297d0ab1108ae90275f962dd218afb"
     },
     {
       "path": "formal/AxiomCheckPaperC.expected",
       "mode": "text",
-      "sha256": "5939a49ce68518bbff9544fc34287bb41fdab54c11d2a2ba7817dfc2ee99f523"
+      "sha256": "0d0c39ab51bceaad5cb402176dcd1fff40165c010fe5aec6a744668d3adf0b4d"
     },
     {
       "path": "formal/AxiomCheckPaperC.lean",
       "mode": "text",
-      "sha256": "d9f7daaa88d929f3589450cdeba73d116162e184289d61718910bcbac370e880"
+      "sha256": "444511b5892989356a62e97ea14b210eb7f66ae81c6f5b2a1b3babbf7add969c"
     },
     {
       "path": "formal/Problems/Juggler/Certificates.lean",
@@ -134,9 +134,24 @@
       "sha256": "bb4d4a348692a6720ad05c22b33c7d92501666e5235273f4465b621cb6de95c7"
     },
     {
+      "path": "formal/Problems/Juggler/FateBlockAverage.lean",
+      "mode": "text",
+      "sha256": "5cef5c273577376b72799732865415a91c6b91f8bdb06e79bd398d9c478d0b07"
+    },
+    {
+      "path": "formal/Problems/Juggler/FateCertified.lean",
+      "mode": "text",
+      "sha256": "57492ff859c6f3f88a6190cd5aeafd9d44a837046877be2b9576ffb048d89351"
+    },
+    {
       "path": "formal/Problems/Juggler/FateChernoff.lean",
       "mode": "text",
-      "sha256": "d82c5e1dbf85e503e41b44f266a2a51d7b90cbc5a6d8f533ccc6fc437cafd0b1"
+      "sha256": "3b808649443805fa3dd41b89333afe886f3cbc7e36f1bdae23f6c93fe95a7032"
+    },
+    {
+      "path": "formal/Problems/Juggler/FateCollapse.lean",
+      "mode": "text",
+      "sha256": "56ba2f731fdd02ea1d19a6e6ef909534947c8c30b48828c72f8009901ed06e06"
     },
     {
       "path": "formal/Problems/Juggler/FateContagion.lean",
@@ -144,14 +159,74 @@
       "sha256": "834198a6b0e8cc13c9fb91d9ad938f62ce5e783a3cc9009fb38334c913d5b7e2"
     },
     {
+      "path": "formal/Problems/Juggler/FateContagionBound.lean",
+      "mode": "text",
+      "sha256": "238cf115eca99ca070b5c29b983cbcebacf9701c5303a96a2ea96030f008d33d"
+    },
+    {
+      "path": "formal/Problems/Juggler/FateCylinderCorollary.lean",
+      "mode": "text",
+      "sha256": "e2ffc98f56268a31826b86f54115e0fed949e62651d05936d545cd829761b4d2"
+    },
+    {
+      "path": "formal/Problems/Juggler/FateCylinderEnergy.lean",
+      "mode": "text",
+      "sha256": "274cd6b960bdd1de8c1b637bd2dee86c8cbe67e883e25937812dadcbe98d6a0b"
+    },
+    {
+      "path": "formal/Problems/Juggler/FateEnergyAtoms.lean",
+      "mode": "text",
+      "sha256": "422f8bede16e0953c91d55b230e291ca37e6882c8210c02cb22af2837a60b8fb"
+    },
+    {
+      "path": "formal/Problems/Juggler/FateFiberParity.lean",
+      "mode": "text",
+      "sha256": "bf2b1c6058c3d00f0f9cf24f11bb7bee7a17a75375c2ddc7223e065621e64131"
+    },
+    {
       "path": "formal/Problems/Juggler/FateFirstLetter.lean",
       "mode": "text",
-      "sha256": "635bb6163f5a054085087eefcd2c62037c61538fe863d53e9dca69da8fddb3e9"
+      "sha256": "a383c715010cb1e7323359a414aeaa99242550f59f7213049cc528232e37875a"
+    },
+    {
+      "path": "formal/Problems/Juggler/FateLandingWindow.lean",
+      "mode": "text",
+      "sha256": "ef28985363d3b855e0a9ec4b8fba687855d34ab8cf1ff9b355a50e9377e29545"
+    },
+    {
+      "path": "formal/Problems/Juggler/FateNumerics.lean",
+      "mode": "text",
+      "sha256": "8340b3a8a4ff2ce35bd77b7697ca95b9d36e5d61ea4173782287d0839b381737"
+    },
+    {
+      "path": "formal/Problems/Juggler/FateOneSided.lean",
+      "mode": "text",
+      "sha256": "7ae0aa4cab061a24ef51eff381a0f4bbd4e4569ae2578f04e4c3677b5999bddc"
+    },
+    {
+      "path": "formal/Problems/Juggler/FateOneSidedAtoms.lean",
+      "mode": "text",
+      "sha256": "9401b63621cf3af1b1aeb04c46845573760508c1e761fe3fe6a03fde9786a99f"
+    },
+    {
+      "path": "formal/Problems/Juggler/FateOneSidedCorollary.lean",
+      "mode": "text",
+      "sha256": "b3387d9f3feb9969ee900c6810cfa229e52c8db0f2152d23414c84666c9a01bd"
     },
     {
       "path": "formal/Problems/Juggler/FatePressure.lean",
       "mode": "text",
       "sha256": "f69ad74fcaed87b692451113cf72eeadc1182efc0ac8121e255e6b079bf2bbf2"
+    },
+    {
+      "path": "formal/Problems/Juggler/FatePressureCorollary.lean",
+      "mode": "text",
+      "sha256": "39bdba3c4b5505b52844243766d708e6a09a4bcbb5ec122c768b0c51ae94f03f"
+    },
+    {
+      "path": "formal/Problems/Juggler/FateProduction.lean",
+      "mode": "text",
+      "sha256": "7f933224ef6fac3accdcff64fcb6027d3fb1b19a142e6f9d8ce4511e858b06cc"
     },
     {
       "path": "formal/Problems/Juggler/FateRecursion.lean",
@@ -164,9 +239,14 @@
       "sha256": "62b804568a8eba85538417928bdf2a08f0d704983c375bd43917cc2ee7fa8f15"
     },
     {
+      "path": "formal/Problems/Juggler/FateShareLaw.lean",
+      "mode": "text",
+      "sha256": "a229f4fa4cf48cb5b003c746672947eec10bf93d7287ad7eecaa3f84d5236e7c"
+    },
+    {
       "path": "formal/Problems/Juggler/FateSweep.lean",
       "mode": "text",
-      "sha256": "155b8a1496b4e45af76693dd8bce65e905ae99ff8810b6e4164d1b35417e6577"
+      "sha256": "a5ede4a6d25cec71d6b6c7fb99e577df3335366175dd22f361581456669a72cc"
     },
     {
       "path": "formal/Problems/Juggler/FateSweepMonotone.lean",
@@ -177,6 +257,16 @@
       "path": "formal/Problems/Juggler/FateTaoReduction.lean",
       "mode": "text",
       "sha256": "a25a13fb15686d8b9932e9e21d5489cda248fdec8ec04f2186c356469a6381fd"
+    },
+    {
+      "path": "formal/Problems/Juggler/FateThinFibers.lean",
+      "mode": "text",
+      "sha256": "3fbcd3e9f7adf13967e7494691aa8f62779630e0446fe81e813486947478cb74"
+    },
+    {
+      "path": "formal/Problems/Juggler/FateWindowCount.lean",
+      "mode": "text",
+      "sha256": "9d790163433899c73993a24b434ff20ae45aba3dbe47b717507dba840307b6a3"
     },
     {
       "path": "formal/Problems/Juggler/FirstInternalOO.lean",
@@ -281,7 +371,7 @@
     {
       "path": "formal/Problems/JugglerFatePaper.lean",
       "mode": "text",
-      "sha256": "d959e0a3221bdbe79d61ccc76bccba9fca8f9f555d8c5c2293eb21ffd8edb81a"
+      "sha256": "9b1d9ae60f0c07ddb80839eba76fa3ba04b414715a307986f3d3e31f4b6ac740"
     },
     {
       "path": "formal/lake-manifest.json",
@@ -306,7 +396,7 @@
     {
       "path": "src/research/juggler_sequence/paper_c_formal_layer.py",
       "mode": "text",
-      "sha256": "d428a1355c79408b3e7362f95bb5ea75237d583109fa3a6617af553e591bfb96"
+      "sha256": "f1a001f8fab0bea16132ad0eccafd29385f6b3098896ab6b621fed82d211c74e"
     },
     {
       "path": "src/research/juggler_sequence/tao_reduction.py",
@@ -338,12 +428,12 @@
     {
       "path": "docs/theory/juggler_fate_almost_all_note.pdf",
       "mode": "binary",
-      "sha256": "a05f8761843a641e6dcd8570f03230f1aa1e720ac81684e63bfc3d7450bcf8dd"
+      "sha256": "1717a34cf988753e45362995d955a3d712de38a5e13cdc9fc3b804166bc17877"
     },
     {
       "path": "docs/theory/cochin-juggler-fates.tex",
       "mode": "text",
-      "sha256": "5350ff34dad741cb0f603ec8c43630ed90bb27d008f7e465e8de07ce565aec80"
+      "sha256": "bd874a59c897f8d3aaeff544602e124b53e67492723dd811b10e5f4299f19f52"
     },
     {
       "path": "docs/theory/paper_c_zenodo.json",
