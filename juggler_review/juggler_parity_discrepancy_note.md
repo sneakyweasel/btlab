@@ -1035,8 +1035,16 @@ of odd letters is distributed as  \(1+B_{d-1}\), where
 \((d-1,1/2)\). This is an auxiliary count on words, not a stochastic
 model asserted for the Juggler orbit.
 
-Choose  \(q=(p+1/2)/2\), so  \(1/2<q<p\). For all sufficiently
-large fixed  \(d\),  \(pd-1\ge q(d-1)\). For  \(t>0\), the
+Choose  \(q=q_d:=p-(1-p)/(d-1)\). This is the largest threshold
+the step admits: it makes  \(pd-1\ge q(d-1)\)  an equality, so every
+admissible  \(q\)  is at most  \(q_d\). The one remaining constraint,
+\(q_d>1/2\), holds at every  \(d\ge4\)  and fails at  \(d=3\), because
+\(q_4=(4p-1)/3>1/2\)  reduces to  \(p>5/8\), which is  \(2^8>3^5\),
+and  \(q_3=(3p-1)/2\le1/2\)  reduces to  \(p\le2/3\), which is
+\(2^3<3^2\). No "sufficiently large  \(d\)" clause is needed. The
+sharp threshold  \(q=p\)  is itself unavailable, and only because the
+leading  \(O\)  is spent before the binomial begins: the step at
+\(q=p\)  reduces to  \(p\ge1\). For  \(t>0\), the
 exponential Markov inequality and the binomial generating function give
 \[
 \Pr(B_{d-1}\ge q(d-1))
@@ -1044,16 +1052,20 @@ exponential Markov inequality and the binomial generating function give
 \]
 The logarithm of the expression in parentheses is zero at  \(t=0\)
 and has derivative  \(1/2-q<0\)  there. Hence some fixed  \(t>0\)
-makes it a number  \(\vartheta<1\).
+makes it a number  \(\vartheta<1\); optimising  \(t\)  gives
+\(\vartheta(q)=q^{-q}(1-q)^{q-1}/2=e^{-\mathrm{KL}(q\|1/2)}\). Write
+\(\vartheta_d:=\vartheta(q_d)\). Since  \(\vartheta\)  decreases on
+\((1/2,1)\)  and  \(q_d\)  increases in  \(d\), the  \(\vartheta_d\)
+decrease, so  \(\vartheta_d\le\vartheta_4<1\)  for every  \(d\ge4\).
 
 For fixed  \(d\),  \(\mathrm{FD}\)  and a finite sum over surviving
 words show that the natural density of  \(\mathbb N\setminus\mathcal C_d\)
 is their number divided by  \(2^d\). It is at most
-\(\tfrac12\vartheta^{d-1}\)  for sufficiently large  \(d\).
+\(\tfrac12\vartheta_d^{\,d-1}\)  for every  \(d\ge4\).
 Since  \(\mathcal C_d\subseteq\mathcal C_\infty\),
 \[
 \overline{\operatorname{dens}}(\mathbb N\setminus\mathcal C_\infty)
-\le\tfrac12\vartheta^{d-1}.
+\le\tfrac12\vartheta_d^{\,d-1}.
 \]
 Letting  \(d\to\infty\)  proves the assertion. In this argument
 \(N\to\infty\)  is taken first, with  \(d\)  fixed.  \(\square\)
@@ -1064,6 +1076,60 @@ samples avoid an exceptional set. Even a density-zero exceptional set
 can contain a nontrivial cycle. No interchange of the two limits, and
 no assertion of finite stopping time for every start, follows from
 Theorem 6.1.
+
+**Remark 6.2 (the threshold, and what it leaves).** The threshold
+\(q_d\)  is chosen to be sharp rather than convenient, and the
+difference is not a constant factor. An earlier version of this proof
+took  \(q=(p+1/2)/2\), which is admissible at every depth but halves
+the distance to  \(1/2\)  when the  \(-1\)  costs only  \(O(1/d)\).
+The exponents are
+\[
+-\log\vartheta\bigl((p+\tfrac12)/2\bigr)=0.0085959587,\qquad
+-\log\vartheta(p)=0.0346881850,
+\]
+so the convenient threshold reports  \(24.8\%\)  of the exponent its
+own inequality supplies.
+
+The sharp value is not an accident of the binomial. A word has no
+contracting prefix only if  \(o\log3\ge d\log2\)  at the endpoint, so
+the event is a large deviation of the same walk whose step is
+\(\log(3/2)\)  or  \(-\log2\)  with equal probability; its Cramér rate
+\(\varrho=\min_t\mathbb E[e^{tX}]=0.9659065532\)  and  \(\vartheta(p)\)
+are the same number, and the inequality above reaches it.
+
+At  \(q_d\)  the bound has a closed form. Writing
+\(\mathrm{KL}(q)=-\log\vartheta(q)\), so
+\(\mathrm{KL}'(q)=\log\bigl(q/(1-q)\bigr)\),
+\[
+\tfrac12\vartheta(q_d)^{d-1}\big/\varrho^{d}
+\longrightarrow\tfrac12e^{\mathrm{KL}(p)}e^{(1-p)\mathrm{KL}'(p)}
+=p^{p}(1-p)^{1-p}\Bigl(\frac{p}{1-p}\Bigr)^{1-p}=p,
+\]
+every factor of  \(1-p\)  cancelling, so the bound of Theorem 6.1 reads
+\[
+\overline{\operatorname{dens}}(\mathbb N\setminus\mathcal C_d)
+\le p\,\varrho^{d}\bigl(1+O(1/d)\bigr),
+\]
+with both constants explicit and no unspecified  \(t\).
+
+What remains between this and the truth is a polynomial and nothing
+more. The exact count satisfies  \(N_d/2^d\sim C\varrho^{d}d^{-3/2}\)
+with  \(C\approx10.90\)  measured from the exact dynamic-programming
+count over  \((t,o_t)\), so
+\(\bigl(N_d/2^d\bigr)\big/\bigl(p\varrho^{d}\bigr)\cdot d^{3/2}\)
+should tend to  \(C/p\approx17.3\); it measures  \(16.4\),  \(17.0\),
+\(16.6\)  at  \(d=640,1280,2560\). This is an independent route to that
+constant, using only the exact dynamic-programming count and the
+sharpened inequality. The convenient threshold admits no such reading:
+its overshoot is  \(1.2\cdot10^{6}\)  at  \(d=320\)  and
+\(6.9\cdot10^{17}\)  at  \(d=1280\), growing without bound.
+
+None of this changes Theorem 6.1, whose conclusion follows from any
+\(\vartheta<1\). The algebra of the threshold — that  \(q_d\)
+saturates the step, that no admissible threshold exceeds it, that
+\(q=p\)  is blocked only by  \(p<1\), and that  \(d\ge4\)  is the first
+usable depth — is machine-checked in
+`formal/Problems/Juggler/PaperBThreshold.lean`.
 
 ## 7. Exact floor defects and separate analytic questions
 
