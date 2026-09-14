@@ -28,6 +28,11 @@ MIRRORED = (
     "juggler_fate_almost_all_note.md",
     "paper_b_audit_ledger.md",
     "juggler_finite_dynamics_reviewer_packet.md",
+    # Build guides.  `PAPER_A_BUILD.md` was missing from the bundle entirely
+    # while the reviewer packet told reviewers it was there; `PAPER_C_BUILD.md`
+    # was already a verbatim copy that nothing enforced.
+    "PAPER_A_BUILD.md",
+    "PAPER_C_BUILD.md",
 )
 
 
