@@ -71,6 +71,7 @@ python -m research.juggler_sequence.branch_index show <id>
 python -m research.juggler_sequence.branch_index search <query>
 python -m research.juggler_sequence.branch_index new <id>
 python tools/render_theorem_ledger.py --check
+python tools/branch_drift.py                        # results stranded on branches
 $env:PATH = "$env:USERPROFILE\.elan\bin;$env:PATH"
 cd formal; lake build                               # no sorry / admit
 ```
