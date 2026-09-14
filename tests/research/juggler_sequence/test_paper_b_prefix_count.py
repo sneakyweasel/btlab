@@ -19,6 +19,8 @@ from pathlib import Path
 
 import pytest
 
+BETA_ = math.log(2.0) / math.log(3.0)
+
 from research.juggler_sequence import paper_b_prefix_count as B
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -786,6 +788,48 @@ def test_all_three_screen_conditions_are_walk_functionals() -> None:
                        for j in range(1, t_))
             assert beyond == pred, (w, t_)
     assert checked == 4204, checked
+
+
+def test_paper_c_exponent_is_paper_b_rate_at_level_zero() -> None:
+    """e(C) and Paper B's rate are one rate function at two levels.
+
+    The bad-word condition at depth d = CL is u_d > -L, so the odd fraction must
+    exceed p(C) = (1 - 1/C)/log2(3), and e(C) = C * KL(p(C) || 1/2)/log 2. Paper B
+    sits at L = 0, which is C -> infinity, where p(C) -> 1/log2(3) = BETA. So
+    e(C)/C converges to Paper B's own rate in bits, and the two papers' exponents
+    are the same function of the same walk evaluated at the level each needs.
+    """
+    from research.juggler_sequence.tao_reduction import chernoff_exponent, kl_bernoulli
+
+    target = kl_bernoulli(BETA_) / math.log(2.0)
+    for C in (100, 1000, 10000, 100000):
+        gap = target - chernoff_exponent(C) / C
+        assert gap > 0, C
+        assert gap < 5.0 / C, (C, gap)          # converges like 1/C
+    assert abs(target - chernoff_exponent(100000) / 100000) < 1e-5
+
+
+def test_the_hoeffding_loss_is_polynomial_not_exponential() -> None:
+    """Hoeffding's exponent is nearly sharp; essentially all the loss is the polynomial.
+
+    chernoff_rate() returns the minimised MGF rho, so the sharp rate is -log(rho),
+    and that equals the Bernoulli KL at BETA exactly. HOEFFDING_C is 0.034285
+    against 0.034688, slack 1.0118 per letter -- "right to one part in eighty" as
+    the module says. Over 24 letters that is 1.01x of a total loss of 25.7x. The
+    other 25.5x is the d^(-3/2) factor meander_constant names.
+    """
+    from research.juggler_sequence.tao_reduction import kl_bernoulli
+
+    rho = B.chernoff_rate()
+    kl = kl_bernoulli(BETA_)
+    assert abs(-math.log(rho) - kl) < 1e-9
+    assert 1.011 < kl / B.HOEFFDING_C < 1.012
+
+    for d in (6, 12, 24):
+        total = B.hoeffding_bound(d) / B.non_contracting(d)
+        exponential = math.exp((kl - B.HOEFFDING_C) * d)
+        assert exponential < 1.02, (d, exponential)
+        assert total / exponential > 6.0, (d, total, exponential)
 
 
 def test_paper_b_count_is_paper_c_count_at_level_zero() -> None:

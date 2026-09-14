@@ -48235,3 +48235,59 @@ dominates. Paper B already knows to replace the density term by `N_d/2^d`; this
 says what that replacement is worth and that it is worth more at larger `d`.
 
 Nothing here moves a bound in either paper.
+
+
+## The exponents close the correspondence, and correct something I wrote this morning
+
+Conditions, then counts, now rates. The bad-word condition at depth `d = CL` is
+`u_d > -L`, so the odd fraction must clear `p(C) = (1 - 1/C)/log2(3)`, and Paper
+C's `e(C)` is `C KL(p(C) || 1/2)/log 2`. Paper B sits at `L = 0`, which is
+`C -> infinity`, where `p(C) -> 1/log2(3) = BETA = log2/log3` --- the very
+threshold its own Hoeffding step uses.
+
+```text
+  C          100      1000     10000    100000
+  e(C)/C   0.04529   0.049558  0.049996  0.0500396
+  gap      4.8e-3    4.9e-4    4.9e-5    4.9e-6      -> 0.050044473
+```
+
+`e(C)/C` converges to Paper B's rate in bits, like `1/C`. So the two papers'
+exponents are one rate function of one walk at two levels, and with the counting
+identity the correspondence is complete: conditions, counts, exponents.
+
+### The correction
+
+This morning I recorded that Paper B's Hoeffding loss "splits roughly evenly
+between the two causes the module names". That is true of the two ratios I
+measured --- endpoint against path, and Hoeffding against endpoint --- but it
+invites a conclusion that is wrong, and the rate computation makes it wrong
+visibly.
+
+`chernoff_rate()` returns the minimised MGF `rho`, so the sharp rate is
+`-log(rho)`, and that equals `kl_bernoulli(BETA) = 0.034688185` exactly.
+`HOEFFDING_C` is `0.034285201`. The slack is `1.0118` per letter --- the
+module's own "right to one part in eighty". Over 24 letters:
+
+```text
+  d          6      12      24
+  total    6.5x   12.0x   25.7x
+  exponent 1.00x   1.00x   1.01x
+  the rest 6.5x   12.0x   25.5x
+```
+
+**Essentially none of the loss is exponential.** Hoeffding's exponent is nearly
+sharp; what it throws away is the polynomial `d^(-3/2)` that `meander_constant`
+names, whose constant converges to about 10.8. Saying the loss splits between
+two causes was not false but was the wrong emphasis: the exponent contributes
+nothing worth naming, and an improvement to Paper B's step has to come from the
+polynomial or not at all.
+
+### A near-miss worth recording
+
+I briefly read `chernoff_rate` as a bug. It is named a rate and its docstring
+opens "the sharp large-deviation rate", but it returns `min_theta E[e^(theta X)]`
+--- which is `e^(-rate)`, not the rate --- and the docstring's own formula says
+so. Every caller is correct: `meander_constant` uses it as `rho ** d`, and the
+test converts with `-math.log(...)`. The mislabel is in the name and one phrase,
+nothing computes the wrong thing, and the wrong ratio in my first probe was mine
+and not the repo's.
