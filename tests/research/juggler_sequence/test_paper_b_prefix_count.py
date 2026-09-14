@@ -1163,6 +1163,48 @@ def test_paper_bs_meander_constant_splits_and_only_one_half_is_slow() -> None:
     assert 1.09 < 16.53 / predicted < 1.12
 
 
+def test_the_cycle_record_lengths_are_the_staircase_non_jumps() -> None:
+    """The no-cycle side and this bridge share one walk and split its Ostrowski skeleton.
+
+    The CycleMin finance walk is u_k = log2(3/2)(#odds) - (#evens), which is this
+    walk: o log2(3) - t = o log2(3/2) - #evens identically. Its constraint u_k >= 0
+    is Paper B's non-contracting condition, and a cycle must also nearly close --
+    |o log2(3) - d| tiny, i.e. o/d an exceptionally good approximation to BETA,
+    which is what cycle_gap_baker bounds below via Rhin / Simons-de Weger.
+
+    So both sides are reading BETA's continued fraction, and they take opposite
+    halves of it. The cycle module's near-convergent RECORD_LENGTHS below 1200 are
+    3, 11, 19, 84, 569, 1054 -- exactly the semiconvergent denominators at which the
+    least-peak staircase does NOT step, which are the convergents approaching BETA
+    from the other side.
+
+    That is a closed door rather than a lever: the lengths where a cycle is
+    Diophantine-plausible are exactly the lengths where the non-contracting
+    constraint costs nothing extra, so the two cannot be played against each other
+    at a common d.
+    """
+    from research.juggler_sequence.cycle_gap_baker import RECORD_LENGTHS
+    from research.juggler_sequence.cycle_walk_charge import MU, STEP
+
+    log2_3 = math.log2(3.0)
+    # the cycle walk is this walk
+    assert abs(MU - (log2_3 - 1.0)) < 1e-15
+    assert abs(STEP - log2_3) < 1e-15
+    for w in _all_words(3, 10):
+        o = w.count("O")
+        assert abs((o * log2_3 - len(w)) - (MU * o - (len(w) - o))) < 1e-12, w
+
+    limit = 1200
+    peaks = _least_peak(limit)
+    jumps = {k + 1 for k in range(1, len(peaks)) if peaks[k] > peaks[k - 1] + 1e-12}
+    jumps.add(2)
+    semis = _beta_semiconvergent_denominators(limit)
+
+    non_jumps = sorted(semis - jumps)
+    records = sorted(r for r in RECORD_LENGTHS if 2 <= r <= limit)
+    assert non_jumps == records == [3, 11, 19, 84, 569, 1054], (non_jumps, records)
+
+
 def test_the_least_peak_staircase_is_betas_ostrowski_skeleton() -> None:
     """Where the least peak rises is a Diophantine fact about BETA, not a numeric one.
 

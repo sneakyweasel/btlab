@@ -9942,5 +9942,16 @@
    "tests/research/juggler_sequence/test_paper_b_prefix_count.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "id": "J-cycle-records-are-the-staircase-non-jumps",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "The no-cycle machinery and the Paper B / Paper C bridge are one walk, and they take complementary halves of its Ostrowski skeleton. The CycleMin finance walk is u_k = log2(3/2)(#odds) - (#evens); that is identically this walk, since o log2(3) - t = o log2(3/2) - #evens, verified over every word of length 1 to 15 with no mismatch, and cycle_walk_charge's MU and STEP are log2(3) - 1 and log2(3) exactly. Its standing constraint u_k >= 0 is Paper B's non-contracting condition. A cycle must additionally nearly close: |o log2(3) - d| tiny, i.e. o/d an exceptionally good rational approximation to BETA, which is precisely the quantity cycle_gap_baker bounds from below through Rhin and Simons-de Weger. So both sides read BETA's continued fraction. THE SPLIT. cycle_gap_baker's near-convergent RECORD_LENGTHS below 1200 are 3, 11, 19, 84, 569, 1054, and those are exactly the semiconvergent denominators of BETA at which the least-peak staircase does NOT step (J-least-peak-staircase-is-beta-ostrowski) -- the convergents approaching BETA from the other side. Equality checked, not eyeballed. WHAT IT MEANS, and it is a closed door rather than a lever: the lengths at which a cycle is Diophantine-plausible are exactly the lengths at which the non-contracting constraint demands no new peak, so the two constraints cannot be played against each other at a common depth to force a contradiction. Had they coincided there would have been a tension to exploit; they are complementary instead. Not a no-cycle theorem, not a halt theorem, and no bound moves.",
+  "source": "docs/research_journal.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_paper_b_prefix_count.py"
+  ],
+  "related_conjectures": []
  }
 ]
