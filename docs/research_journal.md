@@ -45630,3 +45630,61 @@ now settled: Lambda_3 was a false constant and the audit falsifies it; (T3)
 was a false proof of a surviving constant. The third -- that the 4(V+1) block
 count needs blocks of nearly equal length rather than merely length <= delta --
 is a hypothesis gap rather than a number, and is still unchecked.
+
+
+## The block count needed a floor, and 4 was never the constant
+
+(T4) says: if L consecutive blocks tile an alpha-range of length V, each of
+length <= delta, then at most 4(V+1) of them meet any annulus
+{j delta <= ||alpha|| < (j+1) delta}. As stated this is false, and not
+marginally. Nothing stops the blocks from being short: tile V = 3 with blocks
+of length delta/100 at delta = 0.05 and 600 of them meet the j = 0 annulus,
+against the stated 16. The hypothesis needs a floor on the block length, and
+with blocks in [delta/rho, delta] the constant is 2(1 + rho) -- two annulus
+intervals per integer, at most V+1 integers, and at most rho + 1 blocks across
+an interval of length delta.
+
+The laboratory already knew the first half. `t4_step_ratio` has carried the
+sentence "T4 as printed (only length <= d) is false for arbitrary short steps"
+since the 6 September audit, and computed the honest constant 2(1 + rho) with
+rho = (1+1/m')^{8/9}. What it then did with that number was return ok = True,
+hardcoded, while its own computed value exceeded the printed one at every
+source: 4.0886 at m' = 20, 4.0296 at 60, 4.0148 at 120, 4.0089 at 200. The
+constant tends to 4 from above and never reaches it. Its four siblings --
+v3_audit through v6_audit -- do this honestly, with `ok = implied <= 5.0`
+against the 4 -> 5 retune the pad covers. Only the V_2 audit hardcoded the
+answer. That is the third row in this section to assert a pass on a comparison
+it fails, after the two Lambda pairing rows.
+
+**And the printed 4 is genuinely exceeded, not merely underived.** Counting
+exactly which annuli each block meets -- ||.|| is piecewise linear, so the
+annuli are those between floor(min/delta) and floor(max/delta), with min = 0
+across an integer and max = 1/2 across a half-integer, no sampling -- the worst
+count over q <= 12 is 4.0008 (V+1) at m' = 60, 4.0101 at 120 and 4.0060 at 200.
+Over 4 at all three. Each is within its 2(1 + rho), and at m' = 20 the count is
+3.9609, under both. So the honest constant is right and the printed one is
+small by about a quarter of a percent.
+
+Nothing downstream moves. The retune needed is 4 -> 4.03, a factor 1.0074 at
+m' = 60, against a Half B pad of 35.5/28.44 = 1.248. In passing: the comment
+justifying the hardcoded pass claimed that pad "covers a 4 -> 5 retune", and it
+does not quite -- 1.24824 against the 1.25 that needs -- but the retune actually
+required is covered some thirty times over, so the conclusion held even though
+the stated reason overstated.
+
+The note now carries the hypothesis, the constant 2(1 + rho), the counterexample
+that forces the floor, the measured step ratio against its floor 1 - 8/(9m'),
+and the fact that the 4 in the Half B chain is an undercount that the pad
+absorbs. `t4_step_ratio` checks against 5 like its siblings instead of against
+nothing, and a new data row `t4_annulus_measured` counts the annuli exactly at
+m' = 20 and 60 and compares against 2(1 + rho) -- checking the inequality rather
+than the arithmetic. 31 checks now, still one failure, still Lambda_3. A literal
+Unicode delta where \delta was meant, in the annulus definition, is fixed too.
+
+That closes all three corrections from the 7 September second-pass audit on
+claude/repo-progress-uq349e. Lambda_3: false constant, no slack, now falsified
+by the audit. (T3): false proof of a true bound, corrected at a cost of three
+percent. (T4): insufficient hypothesis and a constant small by a quarter of a
+percent, absorbed downstream. The branch said of (T4) that "with that hypothesis
+it holds"; that is the one place its own account was too generous, since with
+the hypothesis the constant is 2(1 + rho) and not 4.

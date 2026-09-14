@@ -684,9 +684,28 @@ be positive powers.
   \(f=\tfrac q2x^{3/2}\), was measured against the smaller bracket and so
   holds a fortiori against this one.)
 - **(T4) Block counting.** If \(L\) consecutive blocks tile an
-  \(\alpha\)-range of length \(V\), each of length \(\le\delta\), then
-  for each \(j\ge0\) at most \(4(V+1)\) blocks meet the annulus
-  \(\{jδ\le\lVert\alpha\rVert<(j+1)\delta\}\).
+  \(\alpha\)-range of length \(V\), each of length in
+  \([\delta/\rho,\delta]\) for some \(\rho\ge1\), then for each
+  \(j\ge0\) at most \(2(1+\rho)(V+1)\) blocks meet the annulus
+  \(\{j\delta\le\lVert\alpha\rVert<(j+1)\delta\}\).
+  *The lower bound on the block length is necessary*, and was missing
+  here until 14 September 2026. With blocks merely of length
+  \(\le\delta\) the count is unbounded: tiling by blocks of length
+  \(\delta/K\) puts \(\asymp K\) of them inside one annulus interval,
+  \(600\) against \(4(V+1)=16\) at \(V=3\), \(\delta=0.05\), \(K=100\).
+  *In the application* \(\alpha_q(w)=\tfrac{3q}{2}w^{2/3}\) on
+  \(K=[m'^{8/3},(m'+1)^{8/3})\) has step \(\alpha'(w)=qw^{-1/3}\)
+  varying by \(\rho=(1+1/m')^{8/9}\), so the blocks are near-equal:
+  measured \(\min(\text{step})/\delta=0.985423\) at \(m'=60\) against the
+  floor \(1-8/(9m')=0.985185\). The constant is then \(2(1+\rho)\) —
+  \(4.0296\), \(4.0148\), \(4.0089\) at \(m'=60,120,200\) — decreasing to
+  \(4\) but never reaching it, so **the \(4\) used in the Half B chain
+  below is an undercount**. It is exceeded: the exact worst annulus count
+  over \(q\le12\) is \(4.0008\), \(4.0101\), \(4.0060\) times \((V+1)\) at
+  those three sources, each within \(2(1+\rho)\). The Half B pad absorbs
+  the retune — a factor \(1.0074\) at \(m'=60\) against a pad of
+  \(35.5/28.44=1.248\) — and the \(V_3\)–\(V_6\) audits already carry it
+  as a \(4\to5\) retune.
 - **(T5) Pairing.** \(|g(v{+}1)-g(v)|\le\Delta\), \(|g|\le G\):
   \(\bigl|\sum_{v\le V}(-1)^vg(v)\bigr|\le V\Delta/2+G\).
 

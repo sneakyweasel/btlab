@@ -27,6 +27,8 @@ from math import isqrt
 from pathlib import Path
 from typing import Any
 
+import numpy as np
+
 from research.juggler_sequence.cycle_finance import git_commit
 
 DATA_DIR = DATA_ROOT / "oeoee_audit"
@@ -140,27 +142,72 @@ def t4_step_ratio(m_prime: int = 60) -> dict[str, Any]:
     """T4 as printed (only length <= d) is false for arbitrary short steps.
 
     For alpha_q(w) = (3q/2) w^{2/3} on K = [m'^{8/3}, (m'+1)^{8/3}) the
-    step alpha'(w) = q w^{-1/3} varies by (1+1/m')^{8/9}, so steps are
-    comparable to d_q and 4(V+1) holds.  Hypothesis tightened, application
-    valid.
+    step alpha'(w) = q w^{-1/3} varies by rho = (1+1/m')^{8/9}, so the blocks
+    are near-equal and the constant is 2(1+rho).  That exceeds the printed 4
+    at every finite m' -- 4.0296, 4.0148, 4.0089 at m' = 60, 120, 200 -- so
+    the printed 4 is an undercount, and t4_annulus_measured shows it is
+    actually exceeded.  Checked against 5 rather than 4, which is the retune
+    the Half B pad covers and the convention the V3-V6 audits already use;
+    ok = True was hardcoded here until 14 September 2026.
     """
 
     ratio = (1 + 1 / m_prime) ** (8 / 9)
-    # number of w in an annulus piece of length d_max is <= d_max/d_min + 1
-    # at most 2 pieces per integer, <= V+2 integers in a range of length V
-    # 2 * (V+2) * (ratio+1) / (V+1) -> 2(ratio+1) ~ 4.03 at m'=60, -> 4 as m' grows
     implied = 2.0 * (ratio + 1.0)
-    # For m' >= 2, ratio <= 1.5^{8/9} ~ 1.42, implied ~ 4.84.  The printed 4
-    # undercounts at m'=2.  For m' >= 20, ratio <= 1.094, implied <= 4.19.
-    # The Half B pad (35.5 vs 28.44) covers a 4 -> 5 retune.
-    ok_for_theorem = True  # application valid once m' is large; see half_b
     return _row(
-        "T4 annulus factor 4(V+1)",
+        f"T4 annulus factor 4(V+1) at m'={m_prime}",
         PRINTED["t4_annulus"],
         implied,
-        ok_for_theorem,
+        implied <= 5.0,
         "hand",
-        f"step ratio at m'={m_prime} is {ratio:.5f}; abstract T4 needs steps ~ d",
+        f"step ratio {ratio:.5f}; honest constant 2(1+rho) = {implied:.4f} > 4,"
+        " within the 4->5 retune the Half B pad covers",
+    )
+
+
+T4_SOURCES = ((20, (1, 2, 3, 6, 12)), (60, (1, 2, 3, 6, 12)))
+
+
+def t4_annulus_measured(m_prime: int, qs: tuple[int, ...]) -> dict[str, Any]:
+    """Worst exact blocks-per-annulus, in units of (V+1), against 2(1+rho).
+
+    The blocks are [alpha_q(w), alpha_q(w+1)); ||.|| is piecewise linear, so
+    the annuli a block meets are exactly those between floor(min/d) and
+    floor(max/d), with min = 0 when the block straddles an integer and
+    max = 1/2 when it straddles a half-integer.  No sampling.
+    """
+
+    lo_w, hi_w = icbrt_ceil(m_prime**8), icbrt_ceil((m_prime + 1) ** 8)
+    w = np.arange(lo_w, hi_w + 1, dtype=float)
+    worst, worst_q, worst_step = 0.0, qs[0], 1.0
+    for q in qs:
+        al = (3 * q / 2) * w ** (2 / 3)
+        a0, a1 = al[:-1], al[1:]
+        step = a1 - a0
+        d = step.max()
+        V = al[-1] - al[0]
+        worst_step = min(worst_step, step.min() / d)
+        f0, f1 = np.abs(a0 - np.round(a0)), np.abs(a1 - np.round(a1))
+        lo = np.where(np.floor(a1) > np.floor(a0), 0.0, np.minimum(f0, f1))
+        hi = np.where(np.floor(a1 - 0.5) > np.floor(a0 - 0.5), 0.5, np.maximum(f0, f1))
+        jlo = np.floor(lo / d).astype(np.int64)
+        jhi = np.floor(hi / d).astype(np.int64)
+        diff = np.zeros(int(jhi.max()) + 3, dtype=np.int64)
+        np.add.at(diff, jlo, 1)
+        np.add.at(diff, jhi + 1, -1)
+        per = float(np.cumsum(diff)[:-1].max()) / (V + 1)
+        if per > worst:
+            worst, worst_q = per, q
+    rho = (1 + 1 / m_prime) ** (8 / 9)
+    honest = 2.0 * (1.0 + rho)
+    return _row(
+        f"T4 measured annulus count at m'={m_prime}",
+        honest,
+        worst,
+        worst <= honest,
+        "script",
+        f"worst at q={worst_q}: {worst:.4f}(V+1) against 2(1+rho) = {honest:.4f};"
+        f" exceeds the printed 4: {worst > PRINTED['t4_annulus']};"
+        f" min step/delta = {worst_step:.6f} >= 1-8/(9m') = {1 - 8 / (9 * m_prime):.6f}",
     )
 
 
@@ -178,6 +225,17 @@ def t5_pairing() -> dict[str, Any]:
 # ---------------------------------------------------------------------------
 # 11.2 sizes
 # ---------------------------------------------------------------------------
+
+
+def icbrt_ceil(a: int) -> int:
+    """Least integer r with r**3 >= a."""
+
+    r = round(a ** (1 / 3))
+    while r**3 < a:
+        r += 1
+    while r > 0 and (r - 1) ** 3 >= a:
+        r -= 1
+    return r
 
 
 def ninth_root_floor(x: int) -> int:
@@ -659,6 +717,7 @@ def all_checks() -> list[dict[str, Any]]:
         t3_prefactor(),
         t4_step_ratio(60),
         t4_step_ratio(20),
+        *(t4_annulus_measured(mp, qs) for mp, qs in T4_SOURCES),
         t5_pairing(),
         sizes_L(),
         sizes_omega(),
