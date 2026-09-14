@@ -47914,3 +47914,83 @@ the Lean as it does in the rows: the file proves the criterion and says in its
 own header that the other two are not proved there.
 
 Candidate 1.1 is closed, both halves.
+
+
+## Paper B's screen and Paper C's walk are the same coordinate
+
+This came out of the Lean rather than out of looking for it. `linearise_iff`
+uses nothing about `3/2` and `1/2` beyond positivity, and once that is visible
+the obvious question is what the criterion *does* depend on.
+
+**The identity.** `e_t = 3^(o_t) / 2^t` exactly, with `o_t` the number of odd
+letters (`iter_eq_pow`). Taking log base 2 gives `e_t = 2^(u_t)` with
+`u_t = o_t log₂3 - t` --- the exponent walk. Not an analogue of it, not a
+related quantity: the same function. Hence
+
+```text
+E = e_{t-1}/e_s = 2^(u_{t-1} - u_s)        E < 2  ⟺  u_{t-1} - u_s < 1
+```
+
+Paper B's linearisation criterion is "the exponent walk climbs by less than one
+unit between the defect and the wave". The walk is the object
+`J-live-set-ladder-factorisation` splits at, `J-damping-at-running-minimum` is
+about, and `J-dominant-defect-at-walk-minimum` measures the climb of. Two
+screens built separately are one test in one coordinate.
+
+Sharper: `E = e_{t-1}/e_s` is exactly the amplification factor `A_k` of
+`J-dominant-defect-at-walk-minimum`, which reads
+`A_k ≈ (e_{T-1}/e_k)·x_{T-1}/x_k`. Paper B's composed map and Paper C's
+amplification are one object, and `E < 2` says the amplification is under 2.
+
+**Two corollaries.** The criterion is an exact integer inequality in the counts:
+with `a` odd and `b` even letters in the block, `E < 2` iff `3^a < 2^(a+b+1)`
+(`lt_two_iff_counts`). No logarithm, no float. And it does not see the *order*
+of the block, only the two counts (`iter_eq_of_counts`, `lt_two_congr`) ---
+immediate from the closed form, invisible in the product form. Forty-five count
+pairs cover every block arising in words to length ten. Concretely: with no even
+letters one odd is safe and two block; with one even, three are safe and four
+block; in general at most `⌈1.7095(1+b)⌉ - 1` odds.
+
+### The thing I expected and did not find
+
+If `E` is maximised where `u` is minimised, and Paper C calls the defect at the
+walk minimum dominant, then Paper B's screen ought to be testing that same
+letter. It is not.
+
+Over every word of length 3 to 11, of the 4204 letters carrying a blocked
+defect the two selections agree 1026 times and differ 3178. The maximality
+itself holds with no exception --- `E` really is largest at the walk minimum ---
+so the disagreement is in the selection rule, not the algebra.
+
+There is no contradiction, and it took reading `deepest_blocked` to see why: a
+defect the kernel keeps *exact* is never expanded, so its amplification is
+irrelevant to whether linearisation is safe. The screen is right to look
+elsewhere. But the fact stands and nobody had written it down: **the letter
+Paper C identifies as dominant and the letter Paper B screens are different
+letters three times in four.** That belongs in the record as an observation,
+which is what `J-paper-b-screen-skips-the-maximal-defect` is.
+
+### What this is not
+
+No bound moves. No density exponent changes. The collision hypothesis is
+untouched, the contagion bound is untouched, and nothing here is a halt theorem
+or a floor raise. It is a reformulation plus one negative structural fact. The
+reason it is worth the rows is that it converts a resemblance into an identity:
+before this, someone noticing that both papers talk about exponents could have
+guessed they were related and had no way to check.
+
+### Two mistakes on the way
+
+`field_simp [step]` does not unfold a definition given by pattern match on a
+constructor; the goals came back with `step Letter.O` still in them. Unfolded
+with an explicit `show ... from rfl` instead.
+
+Then I deleted `oddCount_nil` as an unused `@[simp]` lemma. It is not unused ---
+`norm_num` was reaching it through the simp set in the `nil` branch, and the
+build broke immediately. Restored, and now named explicitly at its use site,
+which is also what makes the lexical orphan scan see it. That scan cannot see
+simp-set usage, which is worth knowing: a lemma can be load-bearing and still
+look like an orphan.
+
+The module went from 402 orphans to 410 and back to 402 without the budget
+moving, by the same citation route as before.
