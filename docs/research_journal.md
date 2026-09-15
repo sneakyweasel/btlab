@@ -50389,3 +50389,57 @@ Boundedness is verified through `q = 84` and stops. The deeper convergents `485`
 So `psi`'s boundedness is settled where the arithmetic is easy and open where it
 is hard, which is the same frontier the cycle work meets from the other side. Two
 independent lines in this laboratory now stop at the same partial quotients.
+
+## R is a step function on the same orbit, and a prediction of mine dies
+
+Went after the resonance ceiling by computing `R` at arbitrary phases instead of
+sampling it along the orbit. That works, and it turned up the structure --- but the
+amplitudes it produces are not good enough for the question I built it for, and a
+prediction I made on the way is refuted.
+
+### R is piecewise constant
+
+The set of `phi` with `frac(phi - (j+1)beta) >= 1 - beta` is an arc of length
+`beta` with endpoints `j beta` **and** `(j+1) beta`. So a length-`K` word flips
+only at `{k beta : k = 0..K}` and is constant between them; `Pi_phi`, computed
+from the word alone, is constant there too.
+
+`R` is a step function whose jump set is the orbit --- the same orbit `psi` jumps
+on. Verified: 8192 phases against a 1200-step word, 1100 changes, **none**
+strictly inside a gap, no gap boundary without one. Sizes `0.1171, 0.0358,
+0.0179, 0.0089, 0.0068`.
+
+### Which kills the prediction I had just made
+
+I reasoned that `f` carries a single jump, so `|f_hat(q)| ~ |J|/(2 pi q)` and
+hence `|psi_hat(q_j)| ~ |J| a_(j+1)/(4 pi^2)` --- proportional to the **next partial
+quotient**. That would have tied `psi`'s regularity directly to `beta`'s
+Diophantine type.
+
+It does not hold: ratios run `0.03` to `4.7` across the convergents. The reason
+is above --- `f = log(1 - bR/2) - log rho` inherits `R`'s jumps on top of its own,
+so it was never a single-jump function. The control shows it plainly: measured
+`|f_hat(84)|` is `37x` below the pure-jump value.
+
+Recorded as refuted in the form stated. A version accounting for `R`'s own jumps
+is untested.
+
+### The new machinery, and why it does not settle the open question
+
+`boundary_fraction_at_phases` removes the turn-count ceiling. But its convergence
+is slower than the `d^(-2)` forgetting: relative error `0.119, 0.037, 0.019,
+0.008` at `steps = 300, 900, 1500, 2500`, about `steps^(-1.5)`. A few thousand
+steps buys a percent.
+
+That is ample for locating structure and not ample for amplitudes --- the Fourier
+coefficients at deep resonances are smaller than the error. So the deep-resonance
+question is still open, and I nearly recorded conclusions from a `3%`-accurate
+`R` before checking it against the forward profile.
+
+### Three off-by-ones in one day
+
+The test flagged one change inside a gap. Not a violation --- my orbit ran `k < K`
+when the arcs need `k <= K`, and `frac(400 beta) = 0.3719` is exactly where the
+stranded change sat. That is the third off-by-one today, after `b_0 = 1` and the
+`ceil` identity at `t = 0`. All three were at a boundary of a recursion, and all
+three announced themselves as a small anomaly rather than an error.

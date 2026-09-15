@@ -221,6 +221,52 @@ def boundary_fraction_profile(depth: int, shape: int = 0) -> list[float] | tuple
     return (ratios, shapes) if shape else ratios
 
 
+def boundary_fraction_at_phases(phases, steps: int = 1200, cap: int = 140) -> list[float]:
+    """``R(phi)`` at ARBITRARY phases, computed rather than sampled along the orbit.
+
+    The barrier word read backward from a phase is determined by that phase alone, so
+    running ``steps`` of the phase-determined word from any distribution approaches
+    ``Pi_phi``.  MEASURED CONVERGENCE, which is slower than the ``d^(-2)`` of
+    ``J-killed-walk-forgets-polynomially``: against the exact forward profile the relative
+    error runs 0.119, 0.037, 0.019, 0.008 at ``steps`` = 300, 900, 1500, 2500, i.e. about
+    ``steps^(-1.5)``.  So a few thousand steps buys about a percent.  That is ample for
+    locating structure and NOT ample for amplitudes -- in particular the Fourier
+    coefficients at deep resonances are smaller than this error, so do not use this for
+    them without raising ``steps`` far higher and checking against the forward profile.
+
+    This exists because the orbit estimator cannot reach the deep resonances: its factor
+    turns at rate ``||q BETA||``, which is tiny at a convergent denominator by
+    construction, so ``q = 1054`` completes under one turn over any feasible depth
+    (``J-psi-bounded-only-at-resolvable-resonances``).  A uniform grid has no such limit.
+
+    The result is a STEP function: ``w_j`` flips exactly when the phase crosses ``j*BETA``,
+    so the whole word, and hence ``R``, is constant between orbit points.
+    """
+    import math
+
+    beta = LOG2 / LOG3
+    phi = [p % 1.0 for p in phases]
+    mass = [[0.0] * cap for _ in phi]
+    for row in mass:
+        row[0] = 1.0
+    for j in range(steps - 1, -1, -1):
+        for i, p in enumerate(phi):
+            row = mass[i]
+            rises = ((p - (j + 1) * beta) % 1.0) >= 1 - beta
+            nxt = [0.0] * cap
+            if rises:
+                for m in range(cap - 1):
+                    nxt[m] = 0.5 * (row[m] + row[m + 1])
+                nxt[cap - 1] = 0.5 * row[cap - 1]
+            else:
+                nxt[0] = 0.5 * row[0]
+                for m in range(1, cap):
+                    nxt[m] = 0.5 * (row[m] + row[m - 1])
+            total = sum(nxt)
+            mass[i] = [v / total for v in nxt]
+    return [row[0] for row in mass]
+
+
 def meander_constant(d_values: tuple[int, ...] = (400, 800, 1600)) -> list[float]:
     """``(N_d/2^d) / (rho^d d^(-3/2))`` -- the constant in the polynomial correction.
 
