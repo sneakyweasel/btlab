@@ -53911,6 +53911,66 @@
       "trust": "kernel"
     },
     {
+      "doc": "`log (rho b)` written out: `-b log b + (b-1) log (1-b) - log 2`.",
+      "file": "formal/Problems/Juggler/PaperBSlopeRate.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 51,
+      "module": "Problems.Juggler.PaperBSlopeRate",
+      "name": "logRho",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The closed form, in logs.**",
+      "file": "formal/Problems/Juggler/PaperBSlopeRate.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 55,
+      "module": "Problems.Juggler.PaperBSlopeRate",
+      "name": "log_rho_eq",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The Chernoff exponent as a function of the tilt `lam` and the barrier slope `b`.",
+      "file": "formal/Problems/Juggler/PaperBSlopeRate.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 65,
+      "module": "Problems.Juggler.PaperBSlopeRate",
+      "name": "chernoffExp",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The rate is the exponent at the tilt**, at every slope.",
+      "file": "formal/Problems/Juggler/PaperBSlopeRate.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 69,
+      "module": "Problems.Juggler.PaperBSlopeRate",
+      "name": "chernoffExp_at_lamStar",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The tilt is a stationary point of the exponent**: the `lam`-derivative vanishes there. This is the double root, in the tilt variable.",
+      "file": "formal/Problems/Juggler/PaperBSlopeRate.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 87,
+      "module": "Problems.Juggler.PaperBSlopeRate",
+      "name": "chernoffExp_lam_deriv",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The slope derivative of the rate is the tilt.** `d/db log (rho b) = -lamStar b`.",
+      "file": "formal/Problems/Juggler/PaperBSlopeRate.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 108,
+      "module": "Problems.Juggler.PaperBSlopeRate",
+      "name": "logRho_deriv",
+      "trust": "kernel"
+    },
+    {
       "doc": "The break-even threshold at depth `d`.",
       "file": "formal/Problems/Juggler/PaperBThreshold.lean",
       "kind": "def",
@@ -87053,6 +87113,7 @@
         "Problems.Juggler.PaperBAssembly",
         "Problems.Juggler.PaperBBarrierStep",
         "Problems.Juggler.PaperBChainRule",
+        "Problems.Juggler.PaperBSlopeRate",
         "Problems.Juggler.PaperBThreshold",
         "Problems.Juggler.PaperBTilt",
         "Problems.Juggler.ParityComplexity",
@@ -89115,6 +89176,14 @@
         }
       ]
     },
+    "Problems.Juggler.PaperBSlopeRate": {
+      "declarations": 6,
+      "file": "formal/Problems/Juggler/PaperBSlopeRate.lean",
+      "imports": [
+        "Problems.Juggler.PaperBTilt"
+      ],
+      "ledger": []
+    },
     "Problems.Juggler.PaperBThreshold": {
       "declarations": 16,
       "file": "formal/Problems/Juggler/PaperBThreshold.lean",
@@ -90198,13 +90267,13 @@
     }
   },
   "totals": {
-    "declarations": 6659,
+    "declarations": 6665,
     "declarations_with_a_ledger_row": 4572,
-    "ledger_rows_naming_a_file": 421,
-    "modules": 289,
+    "ledger_rows_naming_a_file": 422,
+    "modules": 290,
     "trust": {
       "compiler": 56,
-      "kernel": 6603
+      "kernel": 6609
     }
   }
 }

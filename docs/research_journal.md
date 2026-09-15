@@ -50906,3 +50906,53 @@ distance alone" as a negative result and moved on. It was true, and it was the
 least interesting true thing available. The scatter was the signal; I had simply
 plotted it against the wrong variable. A quantity that looks like noise in `n`
 and is monotone in `frac(-n p/q)` was never noisy --- it was indexed wrong.
+
+## Consolidating in Lean: one function, two derivatives
+
+`PaperBTilt` already defines `rho b` for every slope `b`, not just for `beta`, and
+proves it is the tilted normaliser. What that file never says is that the slope is
+a *variable* one may differentiate in. `PaperBSlopeRate` says it, and the payoff is
+that two ledger rows found months apart by different routes collapse into one
+calculation.
+
+Write `chernoffExp lam b = -lam*b + log((1 + exp lam)/2)`. Then
+
+* `chernoffExp_at_lamStar` --- at `lam = lamStar b` the exponent equals `log (rho b)`,
+  at every slope;
+* `chernoffExp_lam_deriv` --- the `lam`-derivative vanishes there. This is the double
+  root of `J-rho-has-a-tail-variable-variational-formula`, in the tilt variable rather
+  than the tail variable `r = exp(-lam)` that `PaperBTilt` uses;
+* `logRho_deriv` --- the `b`-derivative of `log (rho b)` is `-lamStar b`. This is
+  `J-rate-slope-derivative-is-the-tilt`, and it is legal as an envelope statement
+  *because* the `lam`-derivative above vanishes.
+
+All four print `[propext, Classical.choice, Quot.sound]`. So `lamStar` carries three
+roles --- the mean-zero tilt, the reciprocal of the tail base, and the sensitivity of
+the rate to the barrier slope --- and they are now one stationary point in Lean rather
+than three coincidences in prose.
+
+### What the friction was
+
+Nothing mathematical. Three hours of it were instance diamonds. `HasDerivAt.mul`
+on `hasDerivAt_id` produces the *pointwise function product* `id * log` carrying
+`normedCommRing.toAddCommGroup`, while a goal written as `fun x => x * log x` carries
+`instAddCommGroup`. Same structure, different path, and `convert using 1` responds by
+asking me to prove `instAddCommGroup = normedCommRing.toAddCommGroup`.
+
+The fix was to notice which of my own `have`s had already worked. `hlin : HasDerivAt
+(fun x => x - 1) 1 b` went through `simpa using (hasDerivAt_id b).sub_const 1` without
+complaint, so the bridge exists --- `simpa` will cross the diamond when there is an
+intermediate combinator to re-elaborate through. `(hasDerivAt_id b).add_const 0` gives
+the same crossing for the bare identity, and after that `.mul` behaves exactly as it
+did for the term that had always worked.
+
+Worth writing down because the diagnosis was available in my own file the whole time.
+Two `have`s of the same shape, one green and one red, is a better error message than
+the error message.
+
+### What is and is not in Lean now
+
+The identities are. The measurement is not, and should not be: that a rational barrier
+of slope `p/q` really decays at `rho(p/q)`, with no dependence on `q`, is a fact about
+a numerical eigenproblem and stays a COMPUTATIONALLY VERIFIED row. The ledger row now
+says which half is which, which it did not before.
