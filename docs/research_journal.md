@@ -50529,3 +50529,40 @@ root --- is a consequence of that one relation.
 
 What is unproved is unchanged and is now stated in its smallest form: that the
 iteration converges.
+
+## The convergence is not Diophantine, which excludes the second of three attacks
+
+Asked whether the cocycle converges *evenly* in the phase, or degrades where
+`beta`'s continued fraction is awkward. If it degraded at the convergent
+denominators, the missing link would be a small-divisor problem and the whole
+thread would meet the same wall the cycle work does.
+
+It does not degrade. Rescaled by the local power, the values at `q = 485` and
+`q = 1054` sit at the median --- `87.9` and `99.6` against `97.9` --- with
+neighbours `484, 486, 1053, 1055` indistinguishable at `84.1, 86.3, 98.7, 96.9`,
+and the whole sample spread only `1.6x` across 78 depths.
+
+So the divisors enter `psi` **only** through `f_hat` in the coboundary, not through
+the convergence of the cocycle itself. Whatever makes the quasi-stationary limit
+hard is the criticality --- the double root --- and not the arithmetic of `beta`.
+
+Two of the three natural attacks are now excluded by measurement rather than by
+argument: Birkhoff contraction, because the forgetting is polynomial; and a
+small-divisor analysis of the convergence, because there are no small divisors in
+it.
+
+### What I could not claim, and a mistake on the way
+
+The exponent. By octave it steepens `-0.97, -1.04, -1.12, -1.27, -1.60` across
+`d = 500..12000` and does not settle, so no power is asserted.
+
+My first pass rescaled by `d^2`, on the strength of the two-start forgetting
+settling at `-1.985`. The scaled quantity grew from `865` to `30086` --- a factor
+`35` --- which I read as a spread across depths before noticing it was a trend.
+They are different comparisons: two starts at the same depth versus a finite
+history against an infinite one. Carrying an exponent from one to the other was
+unjustified, and the row says so.
+
+That is the seventh time today a number was right about one thing and imported
+into another. The pattern is stable enough to name: the error is never in the
+measurement, it is in assuming the quantity measured is the quantity wanted.
