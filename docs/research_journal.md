@@ -50040,3 +50040,58 @@ This proves an identity about the counting function. `psi`'s existence is
 untouched and remains exactly where it was this morning: a local limit theorem
 for a killed walk against a Sturmian barrier. What has changed is that one thing
 in this thread is now proved rather than measured.
+
+## The count recursion, and the s_k = 1 rule I could not find
+
+One identity closes both cases:
+
+    N_(d+1) = 2 N_d - b_d M_d
+
+`N_d` survivors of length `d`, `M_d` those of them sitting **on** the barrier
+(`o_d = ceil(d beta)`), `b_d` the barrier rise. Exact in integers, checked for
+`d = 1..58` with no floating point in the recursion.
+
+### The proof
+
+Every survivor has two extensions. If `b_d = 0` both survive. If `b_d = 1`, a
+survivor strictly above the barrier still keeps both --- one more odd letter
+cannot be needed when the count already exceeds the old ceiling --- and a
+survivor exactly on the barrier loses precisely the even extension, and only
+that one. So exactly `b_d M_d` extensions are lost.
+
+Dividing by `2^(d+1)`: `P_(d+1) = P_d - b_d Q_d / 2`, with `Q_d = M_d/2^d` the
+mass on the barrier.
+
+### The rule I was asked for and could not give
+
+When you asked what governs the `s_k = 1` steps, the best I had was that the
+ratio splits by position in the Sturmian run --- `0.983` against `0.932`, 3.9
+standard deviations apart --- and no single number covers it. That was true and
+uninformative.
+
+It is a difference of boundary occupations. The two depths bracketing `k*beta`
+share `b = s_k`, so
+
+    a_(k+1) - a_k  =  -s_k (Q_(d-) - Q_(d+)) / 2
+
+and the `0.983`/`0.932` split is that difference seen through the normalisation.
+Never a numerical pattern. I spent a while fitting run-position statistics to
+something that had a two-line derivation.
+
+### Why the coordinate matters more than the formula
+
+`Q_d` is boundary local time for the killed walk, and that is what a local limit
+theorem produces. The measured envelope `a_k ~ 1.12 k^(-1.09)` becomes a
+statement about how `Q_d` varies between bracketing depths.
+
+So `psi`'s existence --- still open, still untouched --- now has a shape. This
+morning the target was "some limit exists". It is now the asymptotics of `Q_d`
+for a walk killed at a Sturmian barrier, which is a question with a literature
+rather than a description of a mystery.
+
+### Lean
+
+`dies_iff_on_barrier` and `survives_succ_of_above_barrier` join
+`survives_succ_of_no_rise`; all kernel-clean, no warnings. The cardinality step
+is again one sentence of counting, stated in the ledger and in the file's
+docstring rather than formalised, and both say so.
