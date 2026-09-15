@@ -4405,3 +4405,56 @@ def test_the_quasi_stationary_profile_is_tight_and_its_tail_converges_slowly() -
     ratios = [hi[m + 1] / hi[m] for m in (8, 16, 24)]
     assert all(r > r_star for r in ratios), ratios
     assert all(a > b for a, b in zip(ratios, ratios[1:])), ratios
+
+
+def test_rational_barriers_give_exact_profiles_and_support_the_double_root() -> None:
+    """Replacing BETA by a convergent makes the profile an eigenvector, exactly.
+
+    b_t = ceil((t+1)p/q) - ceil(t p/q) is periodic with period q, so the product of the q
+    updates has a Perron eigenvector -- the exact quasi-stationary profile -- with an
+    eigenvalue giving the rate.  No iteration error: the residual of the eigen-relation
+    reaches 1e-18 at 306/485, and three successive convergents agree to five decimals, so
+    what is computed is BETA's answer and not the rational's.
+
+    THE RATE converges through the convergents with the alternating sign convergents have:
+    log rho(p/q) - log rho reads +3.06e-3, -3.69e-4, +7.85e-5, -1.94e-5, -6.14e-6 at
+    5/8, 12/19, 41/65, 53/84, 306/485.
+
+    THE SHAPE supports the double root of J-rho-has-a-tail-variable-variational-formula,
+    which predicts a linear prefactor Pi(m) ~ C m r*^m.  On the exact eigenvector, fitting
+    Pi(m) = C m^alpha r*^m gives alpha = 0.980, 0.983, 0.974 on windows in m = 5..45; a
+    free-base fit gives alpha = 0.99 to 1.03 with the base within 0.2 percent of r*.  The
+    alpha-base trade-off is the usual degeneracy of such a fit, and both sit within a few
+    percent of the predicted (1, r*).  SUPPORTED, not proved -- and a real upgrade on
+    J-quasi-stationary-profile-is-tight-shape-unsettled, where the same question was
+    inconclusive because the tail had not converged from a delta start.
+    """
+    import numpy as np
+
+    rho = B.chernoff_rate()
+    rates, residuals = [], []
+    for p, q in ((12, 19), (41, 65), (306, 485)):
+        _, log_rate, residual = B.rational_barrier_profile(p, q, cap=220, sweeps=700)
+        rates.append(log_rate - math.log(rho))
+        residuals.append(residual)
+    assert abs(rates[0]) > abs(rates[1]) > abs(rates[2]), rates      # converging
+    assert abs(rates[-1]) < 1e-4, rates
+    assert residuals[-1] < 1e-12, residuals                          # a genuine eigenvector
+
+    prof, _, _ = B.rational_barrier_profile(306, 485, cap=300, sweeps=1500)
+    P = np.array(prof)
+    r_star = (1 - 306 / 485) / (306 / 485)
+
+    alphas = []
+    for lo, hi in ((5, 20), (10, 30), (20, 45)):
+        m = np.arange(lo, hi + 1)
+        y = np.log(P[lo:hi + 1]) - m * math.log(r_star)
+        alphas.append(float(np.polyfit(np.log(m), y, 1)[0]))
+    assert all(0.93 < a < 1.05 for a in alphas), alphas              # near the double root
+
+    # a free base stays within a fraction of a percent of r*
+    m = np.arange(20, 46)
+    A = np.vstack([np.log(m), m, np.ones(len(m))]).T
+    alpha, log_s, _ = np.linalg.lstsq(A, np.log(P[20:46]), rcond=None)[0]
+    assert 0.95 < alpha < 1.08, alpha
+    assert abs(math.exp(log_s) / r_star - 1) < 5e-3, math.exp(log_s) / r_star

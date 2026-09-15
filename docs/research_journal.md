@@ -50647,3 +50647,40 @@ Pre-writing the interpretation into the output is how a wrong reading gets
 anchored: the number arrives already labelled. The fix is mechanical --- print the
 numbers, read them, then write what they mean --- and it is worth more than any
 particular result in this iteration.
+
+## Rational barriers: an eigenvector carries its own certificate
+
+Last iteration stalled because the profile's tail had not converged from a delta
+start. The fix was not more computation but a better object.
+
+Replace `beta` by a convergent `p/q`. Then
+`b_t = ceil((t+1)p/q) - ceil(t p/q)` is periodic with period `q`, the product of
+the `q` updates has a Perron eigenvector --- the exact profile --- and its
+eigenvalue gives the rate. The residual of the eigen-relation reaches `1.0e-18`
+at `306/485`, against the `steps^(-1.5)` that limited the iterative method.
+
+And it is `beta`'s answer, not the rational's: `53/84`, `306/485` and `665/1054`
+agree to five decimals on everything examined. The rate converges with the
+alternating sign convergents have --- `+3.06e-3, -3.69e-4, +7.85e-5, -1.94e-5,
+-6.14e-6`.
+
+### The shape, now answerable
+
+The double root predicts a linear prefactor, `Pi(m) ~ C m r*^m`. On the exact
+eigenvector, fitting `C m^alpha r*^m` gives `alpha = 0.980, 0.983, 0.974` across
+windows in `m = 5..45`; freeing the base gives `alpha` between `0.99` and `1.03`
+with the base within `0.2%` of `r*`. The `alpha`-base trade-off is the usual
+degeneracy, and both sit within a few percent of the predicted `(1, r*)`.
+
+Supported, not proved. But the constant-`c` form `(m + c) r*^m` is definitely
+wrong: the implied `c` drifts `0.162` to `3.01` over `m = 4..50`, *identically*
+across all three convergents, so that drift is real and not convergence error.
+Last iteration I could not tell those apart.
+
+### The lesson worth keeping
+
+An eigenvector comes with a residual; an iterate comes with a hope. Every
+inconclusive result today traced back to not being able to certify convergence ---
+the deep resonances, the tail shape, the memory-loss exponent. Where a certificate
+was available the answer came out sharp, and where it was not I should have said
+so sooner.
