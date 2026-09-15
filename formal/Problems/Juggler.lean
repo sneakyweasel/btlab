@@ -72,6 +72,7 @@ import Problems.Juggler.PaperBChainRule
 import Problems.Juggler.PaperBThreshold
 import Problems.Juggler.PaperBTilt
 import Problems.Juggler.PaperBSlopeRate
+import Problems.Juggler.PaperBBackwardWord
 import Problems.Juggler.PaperBBarrierStep
 import Problems.Juggler.PaperBAssembly
 import Problems.Juggler.MasterIdentity
