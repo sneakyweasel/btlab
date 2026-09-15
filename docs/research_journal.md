@@ -49190,3 +49190,39 @@ out at `1.27068` against an asserted `<= 1.27`, and I assumed
 `odd_start = 2 x bad_word_probability` at `L = 80`, where the doubling holds
 only for `L < 1` and the true factor is `1.206`. The second was already
 documented in the test directly above mine.
+
+## Does the sharpened Theorem 6.1 reopen the cycle door? No, and the reason is structural
+
+Having sharpened Theorem 6.1's density bound by nine orders of magnitude at
+`d = 800`, the obvious hope is that the cycle side moves with it:
+`J-near-closure-costs-nothing-in-word-count` found that near-closing words are a
+flat `~8%` of all non-contracting words at every depth, so a much smaller count
+of non-contracting words would mean a much smaller pool of cycle candidates.
+
+It does not work, and the reason is that the density was never the obstruction.
+The truth is
+
+    N_d ~ C (2 rho)^d d^(-3/2),    2 rho = 1.931813106 > 1,
+
+measured as `N_d/((2 rho)^d d^(-3/2)) = 8.919, 9.840, 10.446, 10.757` at
+`d = 200, 400, 800, 1600`, rising into the oscillating band `10.566..11.063`
+that `meander_constant` already reports. The *absolute* number of
+non-contracting words grows exponentially, and a flat `8%` of an exponential is
+still an exponential.
+
+Sharpening an upper bound on the density cannot change that. At `d = 800` the
+bound moved from `5.202e-4` to `5.598e-13` against a truth of `4.096e-16` --
+nine orders gained, landing within four of the truth -- while `log10 N_d` at
+that same depth is `225.4`. A counting argument cannot bound a set that grows,
+however sharply the growing set is counted.
+
+Recorded as an addendum on the near-closure row rather than as a new row,
+because it is the same conclusion reinforced and the two should not be readable
+apart. The route stays removed; Baker / Rhin keeps doing all the work on the
+cycle side.
+
+Two notes from doing it. The `d = 3200` point costs 20 s, so it is quoted in the
+ledger as measured separately rather than pinned in a test. And my scratch
+script hit the same `int too large to convert to float` that I had just fixed in
+`tao_reduction` --- `non_contracting(1600)` is an exact integer past float range,
+so the ratios have to be formed in logs.
