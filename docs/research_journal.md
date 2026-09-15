@@ -50602,3 +50602,48 @@ also removes the last place where the manuscript still implied `psi`'s structure
 was empirical.
 
 Rebuilt, all four copies and the Zenodo kit synchronised, every paper gate green.
+
+## An inconclusive iteration, and a habit that caused two of its wrong turns
+
+Went to test the double root's prediction that the quasi-stationary profile is
+`(m + c) r*^m`. The answer is that I cannot tell at these horizons, and getting
+there took two false readings that came from the same bad habit.
+
+### What is solid
+
+The limit is **tight**: mass below `m = 50` is `1.000000` at every horizon, and
+the mean settles at about `3.07` --- `2.799, 2.970, 3.037, 3.060, 3.068` across
+`K = 500..40000`. So the pointwise limit is a probability measure, not a
+sub-probability. Worth checking, since a critical killed process need not have
+one.
+
+Convergence in the word length **degrades with m**: `Pi(m)/r*^m` is converged to
+four digits at `m = 4` by `K = 5000`, and at `m = 32` is still climbing by half
+between `K = 20000` and `60000`.
+
+### What is not settled
+
+The ratio `Pi(m+1)/Pi(m)` approaches `r*` from above --- `0.652, 0.619, 0.608,
+0.601` at `m = 8, 16, 24, 32` --- and a pure geometric cannot do that, so the
+prefactor is not constant. But the implied `c` drifts `1.05` to `2.59` over
+`m = 6..26`, varies with the phase from `1.05` to `0.29`, and shrinks as `K`
+grows. Consistent with an unconverged tail; equally consistent with the form being
+wrong. Recorded as inconclusive so nobody repeats it expecting an answer.
+
+### The habit
+
+Twice in this one iteration I wrote the interpretation into the script's own
+`print` before seeing the numbers, and twice the numbers said otherwise.
+
+- "if the peak marches outward, the tail is not converged" --- it did march, and
+  that part was right, but I then read the hump as *refuting* the linear form when
+  it is the tail still filling in.
+- "so mass escapes diffusively, which is exactly the critical case" --- printed
+  underneath a table showing `mass m<50 = 1.000000` and a mean converging to
+  `3.07`. Mass does not escape. I had written the conclusion into the script
+  before running it.
+
+Pre-writing the interpretation into the output is how a wrong reading gets
+anchored: the number arrives already labelled. The fix is mechanical --- print the
+numbers, read them, then write what they mean --- and it is worth more than any
+particular result in this iteration.
