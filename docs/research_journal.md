@@ -50344,3 +50344,48 @@ quasi-stationary convergence `R_d -> R(frac(d beta))`.
 What is new is that everything downstream of `R` is now a single classical
 equation instead of a list of measurements. The jumps, the `1/k` envelope, the
 Ostrowski peaks, the absent amplification: one line.
+
+## Boundedness holds where it can be checked, and the check runs out before the hard part
+
+The coboundary equation makes `psi` bounded exactly when `|f_hat|` decays at
+least as fast as `||n beta||` along the resonant `n`. Measured at the convergent
+denominators:
+
+    q                1        2        3        8       19       65       84
+    |f_hat|/||q b||  4.57e-2  3.09e-2  3.19e-2  1.75e-2  1.21e-2  3.62e-3  5.08e-3
+
+Decreasing by a factor nine across the range. So `psi_hat` decays at those
+resonances and `psi` is bounded there.
+
+### Where it stops
+
+The estimator averages `f` against `e^(-2 pi i q d beta)`, and that factor turns
+at rate `||q beta||` --- which is tiny at a convergent denominator **by
+construction**. Over 22000 depths `q = 84` completes 42 turns, `q = 485` completes
+20, and `q = 1054` completes `0.9`. The raw reading at `q = 1054` is `5.68e-1`
+against a trend of `1.6e-3`: an artefact, not a violation.
+
+### A diagnostic of mine that fails
+
+Splitting the depths and comparing halves is the check this thread has leaned on
+since the morning. Here it **passes `q = 1054`** with a half-ratio of `1.91`
+while **failing `q = 485`** at `2.29`.
+
+At `0.9` turns both halves are noise, and two noise values can agree by accident.
+Window agreement is necessary and not sufficient. The turn count
+`||q beta|| x window length` is the criterion and should be checked first.
+
+That is the second time today the orbit estimator broke at a large convergent
+denominator, and the first time the diagnostic I introduced to catch it let one
+through. Recorded in the row, because the same test is used in four other places
+in this file.
+
+### What it means
+
+Boundedness is verified through `q = 84` and stops. The deeper convergents `485`,
+`1054`, `24727` are out of reach at this horizon --- and they are exactly where
+`beta`'s partial quotients grow, `a_9 = 23` and `a_14 = 55`.
+
+So `psi`'s boundedness is settled where the arithmetic is easy and open where it
+is hard, which is the same frontier the cycle work meets from the other side. Two
+independent lines in this laboratory now stop at the same partial quotients.
