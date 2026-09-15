@@ -51059,3 +51059,84 @@ identity is between the intended things. Against the ledger's own numbers:
 A proof that compiles tells you the statement follows. It does not tell you the
 statement is the one you meant, and for a definitional bridge that is the entire
 risk.
+
+## Going at the Tao rate hypothesis, and what was actually there
+
+The chain is `H(C,A)` (or the weaker scale-averaged pressure) ⟹ the almost-all
+rate ⟹ the conjecture. I went in expecting to push Paper B's depth, since the
+record says "depth ≤ 4 is Paper B, depth 5 is the K₃ wall". That instinct is
+already dead and the negative-knowledge file says why: *any* `o(log log y)`
+initial depths are free, because a word measure fair to depth `k` and all-`O`
+afterwards satisfies every depth-`≤k` statement and violates the bound. Finite
+depth cannot reach this, however far it is pushed.
+
+Reading the rest of that entry, nearly every natural attack is already killed and
+documented — Walsh expansion of the bad set (Parseval, an identity with no slack),
+the renewal chain (conserves depth), almost-all-cylinder and pair-correlation
+(reparameterizations), Weyl differencing (per-depth budget 1.037, differencing
+loses ≥ 2). The one open spectral conjecture is *priced*: even at the floor rate
+`C log₂(1+b²)` exceeds `e(C)` at every `C`, so proving it would not yield `P_θ`.
+
+That leaves the scale-averaged pressure, whose "actual arithmetic average remains
+unproved". I did not prove it. What I did instead was audit the evidence.
+
+### The recorded evidence was reading its own noise
+
+`J-tao-pressure-form` records "cumulative excess over 1/2 equal to the positive-part
+noise" as support for no-momentum. That sentence is true and carries no
+information, and the reason is the shape of the statistic. `Σ_t (s_θ(t) − 1/2)^+`
+takes a POSITIVE PART, which turns symmetric sampling error into a positive
+contribution. Under the exact null `s_θ ≡ 1/2` it already sits at
+`Σ_t sd_t/√(2π)`. Worse, that floor *grows with depth*, because the effective
+sample size falls as liveness thins the sample and the tilt concentrates the
+weights: ESS is 40000 at depth 1 and 553 at depth 40, from 40000 samples.
+
+Against the exact null — same live set, same weights, next letter replaced by a
+fair coin — the measured `0.1873` sits against `0.1714 ± 0.0459`, `p = 0.365`, with
+the analytic floor `0.1722` matching the simulation. The statistic equals the noise
+because it *is* the noise.
+
+### The signed sum, which has power, says no momentum
+
+Drop the positive part and the estimator becomes unbiased. Six independent seeds at
+`y = 1e20`, 80000 samples: `z` of `+0.65, +0.10, −1.13, +0.27, −0.87, −0.65`, mean
+`−0.27`, sd `0.71`, `t = −0.94` on 5 df. Centred at zero. So `M_{θ,1/2}` is
+*supported* at these depths — and better supported than the positive-part reading
+could ever show, since that one cannot tell support from noise.
+
+### The trap I walked into on the way
+
+Before running replicates I had `z = −0.07, +1.06, +1.98` at `y = 1e12, 1e20, 1e30`
+and a tidy story about momentum growing with the scale. All three used the same
+default seed. Independent seeds centre at zero.
+
+This is the third time this session that a smooth-looking trend was an artifact of
+a parameter I was holding fixed, and the second where the fix was cheap and I
+nearly skipped it. The cheap check here is scaling: a real offset holds `z` up when
+samples grow, noise lets it fall. Quadrupling took `z` from 1.9 to 1.4 — falling,
+not doubling — which was the signal to replicate rather than to write it up.
+
+I also shipped an argument-order bug into a diagnostic (`run(log10_y, dmax,
+samples)` against a signature of `(log10_y, samples, dmax)`) and caught it only
+because depth 1 must have ESS equal to the live count — every start is odd there,
+so the weights are equal — and it didn't. An invariant the data must satisfy is
+worth more than reading the code again.
+
+### Decision
+
+One more trap, caught by a gate rather than by me: `tilted_share_power` first
+went into `tao_reduction.py`, which is a pinned Paper C input, and the paper-release
+gate went red. Both Pandoc and XeLaTeX are installed so a rebuild was available,
+but rebuilding a published paper to add unrelated research tooling is the wrong
+trade. `pressure_direct.py` is not pinned and its own docstring is "Phase-0 direct
+estimates of `M_{θ,q}` / `P_θ`" --- the function's actual subject. Rehomed there;
+the pinned file reverted to byte-identical. The gate is the reason the wrong
+version never left the machine, and it is the same gate that was red all day
+earlier in this session for exactly this file.
+
+### Decision
+
+`CLOSE` on attacking the hypothesis through the census statistic: the statistic
+cannot discriminate, and the replacement finds nothing to act on. No bound moves
+and no fate is excluded. What survives is `tilted_share_power`, the sizing rule
+`ESS_t ≳ 1/(4ε²)`, and a corrected reading of the row's evidence.

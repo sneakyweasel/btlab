@@ -28,6 +28,7 @@ from research.juggler_sequence.tao_reduction import (
     fair_tilted_live,
     fair_tilted_live_suffix_odd_mass,
     least_C_pressure,
+    live_word_prefix,
     p_of_C,
     scale_L,
     theta_of_C,
@@ -245,3 +246,74 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
+
+def tilted_share_power(
+    log10_y: int, N0: int, samples: int, d_max: int, theta: float, seed: int = 20260903
+) -> dict[str, Any]:
+    """The no-momentum statistic together with the noise floor it has to clear.
+
+    ``pressure_census`` reports ``sum_t (s_theta(t) - 1/2)^+``, which is the form hypothesis
+    ``M_{theta,q}`` is stated in.  As an ESTIMATOR that statistic is biased upward, because a
+    positive part turns symmetric sampling error into a positive contribution: under the exact
+    null ``s_theta == 1/2`` its expectation is ``sum_t sd_t / sqrt(2 pi)`` with
+    ``sd_t = 1/(2 sqrt(ESS_t))``, and the effective sample size ``ESS_t`` FALLS with depth because
+    liveness thins the sample and the tilt concentrates the weights.  So the null value grows with
+    ``d``, and "the measured excess equals the positive-part noise" is the expected reading whether
+    or not there is momentum.  At ``y = 1e12``, 40000 samples, ``d = 40``, ``theta = 0.396`` the
+    measured 0.1873 sits against a null of 0.1714 +/- 0.0459 (p = 0.365): no information.
+
+    The SIGNED sum is unbiased and is what has power.  Six independent seeds at ``y = 1e20`` with
+    80000 samples give ``z`` of +0.65, +0.10, -1.13, +0.27, -0.87, -0.65 -- mean -0.27, sd 0.71 --
+    so it is centred at zero, and no momentum is detected.  That is support for ``M_{theta,1/2}``
+    at these depths, and better support than the positive-part reading can give.
+
+    Returns the measured signed and positive-part sums, the per-depth effective sample sizes, the
+    analytic null floor for the positive-part statistic and the null standard deviation for the
+    signed one.  Sizing a future census: detecting a per-depth excess ``eps`` needs
+    ``ESS_t >~ 1/(4 eps^2)``, and at ``d = 40`` the census loses a factor of about 72 from samples
+    to ``ESS``.
+    """
+    import random
+
+    rng = random.Random(seed)
+    y = 10**log10_y
+    words: list[list[int]] = []
+    for _ in range(samples):
+        n = rng.randrange(y + 1, 2 * y + 1)
+        if n % 2 == 0:
+            n += 1
+        letters, _tau, _cap = live_word_prefix(n, N0, d_max + 1)
+        words.append(letters)
+
+    signed = positive = variance = 0.0
+    ess_by_depth: list[float] = []
+    null_positive = 0.0
+    for t in range(1, d_max + 1):
+        weights = [math.exp(theta * sum(w[:t])) for w in words if len(w) > t]
+        nxt = [w[t] for w in words if len(w) > t]
+        if not weights:
+            ess_by_depth.append(0.0)
+            continue
+        total = sum(weights)
+        share = sum(a * b for a, b in zip(weights, nxt)) / total
+        ess = total * total / sum(v * v for v in weights)
+        ess_by_depth.append(ess)
+        sd = 0.5 / math.sqrt(ess)
+        signed += share - 0.5
+        positive += max(0.0, share - 0.5)
+        variance += sd * sd
+        null_positive += sd / math.sqrt(2.0 * math.pi)
+    return {
+        "log10_y": log10_y,
+        "samples": samples,
+        "d_max": d_max,
+        "theta": theta,
+        "L": scale_L(log10_y * math.log(10.0), N0),
+        "signed_excess": signed,
+        "positive_part_excess": positive,
+        "null_positive_part": null_positive,
+        "null_signed_sd": math.sqrt(variance),
+        "signed_z": signed / math.sqrt(variance) if variance > 0 else float("nan"),
+        "ess_by_depth": ess_by_depth,
+    }
