@@ -3875,3 +3875,51 @@ def test_rho_is_recovered_from_the_boundary_fraction_by_ergodic_averaging() -> N
     integral = float(np.mean(np.log(1.0 - (centres >= 1 - BETA_) * Rb / 2.0)))
     assert abs(integral - math.log(rho)) < 1e-4, (integral, math.log(rho))
     assert abs(math.exp(integral) - rho) < 1e-4
+
+
+def test_rho_has_a_second_variational_formula_in_the_tail_variable() -> None:
+    """rho = min over r of [(1+1/r)/2]^(1-BETA) [(1+r)/2]^BETA, attained at (1-BETA)/BETA.
+
+    A geometric tail r^m keeps its shape under both update maps -- T_0 multiplies its mass
+    by (1+1/r)/2 and T_1 by (1+r)/2 -- so along a word with density BETA of rises the tail
+    is reproduced with the factor above.  Setting that equal to rho is the characteristic
+    equation for the quasi-stationary tail.
+
+    It has a DOUBLE root.  The exponent is stationary at r* = (1-BETA)/BETA, which is
+    exp(-lamStar), and its value there is
+
+        -[log 2 + BETA log BETA + (1-BETA) log(1-BETA)]  =  -KL(BETA || 1/2)  =  log rho,
+
+    so the minimum touches log rho rather than crossing it.  That is the critical case, and
+    it is the structural reason a polynomial factor accompanies rho^d instead of a pure
+    exponential.  It also gives rho a second variational characterisation, in the TAIL
+    variable, dual to the Cramer one in the tilt variable.
+
+    Substitutions formalised as PaperBTilt.one_add_inv_tailRoot, one_add_tailRoot and
+    tailRoot_mul_odds, with stationary_iff_eq_tailRoot for the first-order condition.
+    """
+    rho = B.chernoff_rate()
+    lam = math.log(BETA_ / (1 - BETA_))
+
+    def g(r: float) -> float:
+        return (1 - BETA_) * math.log((1 + 1 / r) / 2) + BETA_ * math.log((1 + r) / 2)
+
+    r_star = (1 - BETA_) / BETA_
+    assert math.isclose(r_star, math.exp(-lam), rel_tol=1e-15)
+    assert math.isclose(r_star, 0.584962501, rel_tol=1e-9)
+
+    # the value at the stationary point IS log rho -- a double root, not a crossing
+    assert abs(g(r_star) - math.log(rho)) < 1e-15, (g(r_star), math.log(rho))
+    for delta in (0.2, 0.05, 0.01, 0.001):
+        assert g(r_star - delta) > math.log(rho), delta
+        assert g(r_star + delta) > math.log(rho), delta
+
+    # the substitutions the identity turns on
+    assert math.isclose(1 + 1 / r_star, 1 / (1 - BETA_), rel_tol=1e-15)
+    assert math.isclose(1 + r_star, 1 / BETA_, rel_tol=1e-15)
+
+    # and the measured tail passes through r*, from above
+    pi = B.boundary_fraction_profile(6000, shape=120)[1][6000]
+    ratios = [pi[m + 1] / pi[m] for m in (10, 20, 40)]
+    assert ratios[0] > ratios[1] > ratios[2], ratios
+    assert ratios[0] > r_star > ratios[-1] or abs(ratios[-1] - r_star) < 0.02, (ratios, r_star)
