@@ -51284,3 +51284,50 @@ the same reason, and the first time I had already written the warning into a
 docstring. Writing it down is not the same as reaching for it. The check that
 caught it both times was cheap and external: does the answer agree with a number
 I already trust?
+
+
+## A change of space that is not a weight, and why the question dissolves
+
+Fredholm theory answers the literal question before any experiment. For a
+half-line operator whose tail is translation-invariant, the essential spectrum
+is fixed by the tail symbol, and a diagonal weight is the only similarity that
+moves that symbol; a non-diagonal similarity within one space preserves the
+essential spectrum outright. The remaining option is to change the phase space
+rather than the function space --- the skew product, Fourier-decomposed in the
+phase --- and that reproduces the lab's own coboundary picture, small divisors
+and all. So there is no new space.
+
+What there is, is the realisation that the spectral framing was never required.
+A gap is *sufficient* for the quasi-stationary limit. What a coupling argument
+needs is summable memory loss, and `d^-2` is summable. So the useful question is
+not "which space" but "on which class is the memory loss uniform", and nobody had
+measured that.
+
+### The answer, in two halves
+
+The domain of attraction is full. That was not guaranteed --- a rho-null chain can
+attract only a restricted class --- but geometric initial tails from `0.45` to
+`0.80`, run to depth `40000`, all reach total variation below `7e-3` against the
+`delta_0` run and are still falling.
+
+The exponent is not uniform. Over `d = 8000..40000` it reads `-1.957, -1.721,
+-0.986, -0.319` at bases `0.45, 0.55, r*, 0.62`. Tails strictly lighter than `r*`
+forget at `d^-2`; *at* `r*` the rate halves to `d^-1`; just above it the
+relaxation nearly stalls.
+
+So a coupling proof is viable, on initial conditions with tails strictly lighter
+than `r*`. The process starts at `delta_0`, which is compactly supported and in
+the fast class. The comparison object --- the quasi-stationary profile itself,
+tail `m r*^m` --- sits exactly on the boundary where the rate halves. That
+boundary is the double root again, the same object that makes the chain rho-null
+and that no weight could remove.
+
+### What today's three results are, together
+
+The double root appears in all of them and it is the same fact each time. It
+makes `chi` stationary at `r*`, so no weight separates the rate from the
+essential spectrum. It puts a linear factor on both Perron vectors, so
+`sum nu h` diverges and the chain is rho-null. And it puts the stationary
+profile's own tail exactly at the exponent where memory loss degrades. One
+degeneracy, three consequences, and the third is the one that says what a proof
+would have to handle rather than what it cannot use.
