@@ -51008,3 +51008,54 @@ over the quasi-stationary profile, whose existence is exactly the open obligatio
 The Lean now covers the exact half of both rows and stops where the measurement
 starts --- which is the line the ledger draws, and it is better to have it drawn in
 the artifact than only in the prose.
+
+## The bridge was already built from both sides
+
+Two more rows tagged EXACT --- HUMAN PROOF with no Lean: the claim that Paper B's
+rate and Paper C's exponent are one rate function at two levels, and that their
+two tilts are one change of measure in two coordinate systems.
+
+I was about to define a Bernoulli KL divergence when the index stopped me. It
+exists. `klHalf` has been in `FateChernoff` for months, proved for Paper C's
+Chernoff count, with `klHalf_eq` giving `p log(2p) + (1-p) log(2(1-p))`. And
+`PaperBSlopeRate.logRho` --- written yesterday for an entirely different reason ---
+is its negative. Not approximately, and not under hypotheses:
+
+    neg_logRho_eq_klHalf :  -logRho b = klHalf b       for every real b
+
+proved by `ring`, because both sides are the same arrangement of `b log b`,
+`(1-b) log(1-b)` and `log 2`. The two papers' large-deviation apparatus had been
+sitting in the Lean corpus twice, in two namespaces, neither aware of the other.
+That is exactly the duplication the formalpedia rule exists to catch, and it
+caught it in the one direction that matters: not "you are about to reprove this"
+but "the thing you are about to define is the other half of a bridge".
+
+### The dictionary
+
+`beta_odds` --- `beta/(1-beta) = log 2 / log(3/2)` --- is the identity behind both
+closed forms, and explains why `log(3/2)` turns up where one expects
+`log 3 - log 2`. From it `lamStar_beta_closed` reads Paper C's tilt off as
+`log(log 2 / log(3/2))`.
+
+`tilt_coordinate_change` is the substantive half. On words of length `t` with `o`
+odd letters the walk value is `o log 3 - t log 2`, so tilting by *that* with
+parameter `theta` is tilting by the odd count *alone* with parameter
+`theta log 3`, times a factor depending only on `t`. The measures agree; the
+parameters differ by exactly `log 3` and must. Paper B tilts by the walk value in
+nats, Paper C by the odd count, and neither is wrong.
+
+Then the level-zero limits: `pC_tendsto_beta` and `eOverC_tendsto`. `L = 0` is
+`C = infinity`, and there Paper C's threshold is `beta` and its exponent per unit
+`C` is Paper B's rate in bits.
+
+### Checking I formalised the right objects
+
+`ring` proves an identity, which is exactly what makes it worth asking whether the
+identity is between the intended things. Against the ledger's own numbers:
+`-logRho(BETA) = klHalf(BETA) = 0.034688185232`, `klHalf(BETA)/log 2 =
+0.050044473`, `lamStar(BETA) = log(log2/log(3/2)) = 0.536207535`, and
+`theta* = lamStar/log 3 = 0.488077132`. Four numbers the rows quote, four matches.
+
+A proof that compiles tells you the statement follows. It does not tell you the
+statement is the one you meant, and for a definitional bridge that is the entire
+risk.
