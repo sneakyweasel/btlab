@@ -50956,3 +50956,55 @@ The identities are. The measurement is not, and should not be: that a rational b
 of slope `p/q` really decays at `rho(p/q)`, with no dependence on `q`, is a fact about
 a numerical eigenproblem and stays a COMPUTATIONALLY VERIFIED row. The ledger row now
 says which half is which, which it did not before.
+
+## The backward word, and a definition written against the wrong anchor
+
+Two rows in the psi thread were tagged EXACT --- HUMAN PROOF with no Lean file, which
+makes them the honest targets for consolidation: the mathematics is already
+claimed exact, so formalising it adds a check rather than a result.
+
+`J-boundary-fraction-is-a-step-function-on-the-orbit` rests on one line. The
+`j`-th letter of the backward word is
+
+    w_j(phi) = 1 { fract(phi - (j+1) b) >= 1 - b },
+
+and the row asserts that the set of `phi` satisfying it is an arc with endpoints
+`j b` and `(j+1) b`. Proving that in Lean made the point sharper than the prose
+did: the letter is *written* against the anchor `(j+1) b` but it *is* the
+indicator of an arc anchored at `j b`,
+
+    w_j(phi)  ↔  fract(phi - j b) < b.
+
+That is the whole row. Once the condition is stated against `j b`, "a length-`K`
+word flips only at `{k b}`" stops being an argument and becomes a reading of the
+statement, and the two corollaries --- on over `[j b, (j+1) b)`, off over
+`[(j+1) b, j b + 1)` --- fall out by `Int.fract_eq_self`.
+
+The definition was written against the anchor that makes the barrier condition
+natural, and the anchor that makes the *jump structure* natural is one step over.
+Both are correct; only one is legible. That is worth noticing because the
+laboratory keeps meeting this object and had been reading it through the harder
+anchor every time.
+
+### The shift, which was already half done
+
+`J-phase-shift-is-one-update-and-R-halves` claims two things: that advancing the
+phase by `b` shifts the word one place, and that `R` then halves at a non-rising
+phase. The second was already in Lean --- `PaperBBarrierStep.update_false_at_zero`,
+proved months ago for a different purpose. The first, `backWord_shift`, turns out
+to be trivial once stated without natural-number subtraction: `phi + b - (j+2) b`
+and `phi - (j+1) b` are the same real number, so the two letters are the same
+proposition after a `ring`.
+
+So both halves of that row's mechanism are now machine-checked, and the work was
+finding that half of it already existed. `formalpedia search` is what surfaced it;
+I would not have guessed that a lemma about a profile at `m = 0` was the corollary
+this row needed.
+
+### The boundary, stated
+
+Not formalised, and deliberately: the step from the word to `R`. That quantifies
+over the quasi-stationary profile, whose existence is exactly the open obligation.
+The Lean now covers the exact half of both rows and stops where the measurement
+starts --- which is the line the ledger draws, and it is better to have it drawn in
+the artifact than only in the prose.

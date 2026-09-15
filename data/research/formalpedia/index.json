@@ -53369,6 +53369,86 @@
       "trust": "kernel"
     },
     {
+      "doc": "The `j`-th letter of the backward word at phase `phi`: the barrier rises `j` steps back.",
+      "file": "formal/Problems/Juggler/PaperBBackwardWord.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 41,
+      "module": "Problems.Juggler.PaperBBackwardWord",
+      "name": "backWord",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Subtracting a sub-unit amount that the fractional part cannot absorb wraps once.",
+      "file": "formal/Problems/Juggler/PaperBBackwardWord.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 45,
+      "module": "Problems.Juggler.PaperBBackwardWord",
+      "name": "fract_sub_wrap",
+      "trust": "kernel"
+    },
+    {
+      "doc": "And absorbs it otherwise.",
+      "file": "formal/Problems/Juggler/PaperBBackwardWord.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 55,
+      "module": "Problems.Juggler.PaperBBackwardWord",
+      "name": "fract_sub_stay",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The letter is an arc anchored at `j * b`.** Written against `(j+1) * b`, the condition `fract (phi - (j+1) * b) >= 1 - b` says exactly that `phi` lies within `b` of `j * b`. This is why the flips sit on the orbit rather than anywhere else.",
+      "file": "formal/Problems/Juggler/PaperBBackwardWord.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 66,
+      "module": "Problems.Juggler.PaperBBackwardWord",
+      "name": "backWord_iff_fract_lt",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Constant on the arc.** Between `j * b` and `(j+1) * b` the letter is on.",
+      "file": "formal/Problems/Juggler/PaperBBackwardWord.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 81,
+      "module": "Problems.Juggler.PaperBBackwardWord",
+      "name": "backWord_of_mem_arc",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Constant on the gap.** Between `(j+1) * b` and the next orbit point the letter is off.",
+      "file": "formal/Problems/Juggler/PaperBBackwardWord.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 88,
+      "module": "Problems.Juggler.PaperBBackwardWord",
+      "name": "not_backWord_of_mem_gap",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The letter depends on the phase only through its position relative to the anchor.**",
+      "file": "formal/Problems/Juggler/PaperBBackwardWord.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 95,
+      "module": "Problems.Juggler.PaperBBackwardWord",
+      "name": "backWord_congr",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Shifting the phase shifts the word.** `w_(j+1) (phi + b) = w_j (phi)`, which is the relation the cocycle of `J-phase-shift-is-one-update-and-R-halves` is built from.",
+      "file": "formal/Problems/Juggler/PaperBBackwardWord.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 102,
+      "module": "Problems.Juggler.PaperBBackwardWord",
+      "name": "backWord_shift",
+      "trust": "kernel"
+    },
+    {
       "doc": "The barrier at depth `t`: a surviving word needs at least this many odd letters.",
       "file": "formal/Problems/Juggler/PaperBBarrierStep.lean",
       "kind": "def",
@@ -87111,6 +87191,7 @@
         "Problems.Juggler.OstrowskiNumeration",
         "Problems.Juggler.OstrowskiSandwich",
         "Problems.Juggler.PaperBAssembly",
+        "Problems.Juggler.PaperBBackwardWord",
         "Problems.Juggler.PaperBBarrierStep",
         "Problems.Juggler.PaperBChainRule",
         "Problems.Juggler.PaperBSlopeRate",
@@ -89138,6 +89219,14 @@
       "imports": [],
       "ledger": []
     },
+    "Problems.Juggler.PaperBBackwardWord": {
+      "declarations": 8,
+      "file": "formal/Problems/Juggler/PaperBBackwardWord.lean",
+      "imports": [
+        "Problems.Juggler.PaperBTilt"
+      ],
+      "ledger": []
+    },
     "Problems.Juggler.PaperBBarrierStep": {
       "declarations": 11,
       "file": "formal/Problems/Juggler/PaperBBarrierStep.lean",
@@ -90267,13 +90356,13 @@
     }
   },
   "totals": {
-    "declarations": 6665,
+    "declarations": 6673,
     "declarations_with_a_ledger_row": 4572,
-    "ledger_rows_naming_a_file": 422,
-    "modules": 290,
+    "ledger_rows_naming_a_file": 423,
+    "modules": 291,
     "trust": {
       "compiler": 56,
-      "kernel": 6609
+      "kernel": 6617
     }
   }
 }
