@@ -3109,3 +3109,48 @@ def test_the_depth_dependent_theta_is_still_uniformly_below_one() -> None:
     assert 0.5 * th[0] ** 3 < 0.5
     rho = B.chernoff_rate()
     assert all(_theta(p - (1 - p) / (d - 1)) > rho for d in (10, 100, 1000))
+
+
+def test_sharpening_theorem_six_one_does_not_reopen_the_near_closure_door() -> None:
+    """A 4x better exponent does not make cycle candidates rare. Checked, not assumed.
+
+    J-theorem-six-one-threshold-is-slack improved Theorem 6.1's bound on the DENSITY of
+    non-contracting words by orders of magnitude.  The obvious hope is that this helps
+    the cycle side, where J-near-closure-costs-nothing-in-word-count found that near-
+    closing words are a flat ~8% of all non-contracting words at every depth.  It does
+    not, and the reason is that the density was never the obstruction.
+
+    The truth, untouched by any sharpening of an upper bound, is
+
+        N_d ~ C (2 rho)^d d^(-3/2),   2 rho = 1.9318 > 1,
+
+    so the ABSOLUTE number of non-contracting words grows exponentially, and ~8% of
+    that is still exponential.  A counting argument cannot bound a set that grows.
+    Baker / Rhin keeps doing all the work on the cycle side.
+    """
+    rho = B.chernoff_rate()
+    assert 2 * rho > 1.0
+    assert math.isclose(2 * rho, 1.931813106, rel_tol=1e-9), 2 * rho
+
+    # N_d / ((2 rho)^d d^-1.5) -- computed in logs; the exact counts exceed float range
+    seen = []
+    for d in (200, 400, 800, 1600):
+        log_N = math.log(B.non_contracting(d))
+        seen.append(math.exp(log_N - d * math.log(2 * rho) + 1.5 * math.log(d)))
+    assert all(a < b for a, b in zip(seen, seen[1:])), seen      # rising toward the constant
+    assert math.isclose(seen[0], 8.919, rel_tol=2e-3), seen
+    assert math.isclose(seen[-1], 10.757, rel_tol=2e-3), seen
+    # meander_constant's c_d oscillates in 10.566..11.063, so this is a range not a limit
+    assert 8.5 < seen[-1] < 11.1
+
+    # the bound moved a great deal; what it bounds did not
+    p = BETA_
+    mid = 0.5 * _theta((p + 0.5) / 2) ** 799
+    sharp = p * rho ** 800
+    truth = math.exp(math.log(B.non_contracting(800)) - 800 * math.log(2.0))
+    assert mid > sharp > truth, (mid, sharp, truth)
+    assert mid / sharp > 1e8, mid / sharp          # sharpening gained 9 orders here
+    assert sharp / truth < 1e4                     # and lands within 4 of the truth
+
+    # yet the absolute count at that same depth is astronomically large
+    assert math.log10(B.non_contracting(800)) > 225.0
