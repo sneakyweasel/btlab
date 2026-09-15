@@ -54491,6 +54491,76 @@
       "trust": "kernel"
     },
     {
+      "doc": "**The rate is symmetric in the slope.** Swapping a slope for its complement exchanges the two entropy terms and fixes their sum.",
+      "file": "formal/Problems/Juggler/PaperBWeightGap.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 53,
+      "module": "Problems.Juggler.PaperBWeightGap",
+      "name": "logRho_symm",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The gap to the minimum is a relative entropy.** `chernoffExp lam b - logRho b` is `D(b || p)` at the probability the tilt itself names, `p = exp lam / (1 + exp lam)`.",
+      "file": "formal/Problems/Juggler/PaperBWeightGap.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 59,
+      "module": "Problems.Juggler.PaperBWeightGap",
+      "name": "chernoffExp_sub_logRho",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**A Chernoff exponent is bounded below by its own closed form**, at every tilt.",
+      "file": "formal/Problems/Juggler/PaperBWeightGap.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 84,
+      "module": "Problems.Juggler.PaperBWeightGap",
+      "name": "logRho_le_chernoffExp",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The log essential spectral radius of the killed operator at exponential weight `r^m`.",
+      "file": "formal/Problems/Juggler/PaperBWeightGap.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 96,
+      "module": "Problems.Juggler.PaperBWeightGap",
+      "name": "chi",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The weight variable is the tilt variable.** At `r = exp s` the weighted radius is the Chernoff exponent at the complementary slope, which is what makes the family computable.",
+      "file": "formal/Problems/Juggler/PaperBWeightGap.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 101,
+      "module": "Problems.Juggler.PaperBWeightGap",
+      "name": "chi_eq_chernoffExp",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**No exponential weight separates the rate from the essential spectrum.**",
+      "file": "formal/Problems/Juggler/PaperBWeightGap.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 111,
+      "module": "Problems.Juggler.PaperBWeightGap",
+      "name": "no_weight_separates",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Equality holds at the tail base**: the optimal weight is the one the quasi-stationary profile already decays at, so the weight buys nothing that the profile does not already have.",
+      "file": "formal/Problems/Juggler/PaperBWeightGap.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 119,
+      "module": "Problems.Juggler.PaperBWeightGap",
+      "name": "chi_tailRoot_eq",
+      "trust": "kernel"
+    },
+    {
       "doc": "Parity of `\u230a(2k+1)^{3/2}\u230b`: the letter following the odd step from `2k+1`.",
       "file": "formal/Problems/Juggler/ParityComplexity.lean",
       "kind": "def",
@@ -87298,6 +87368,7 @@
         "Problems.Juggler.PaperBSlopeRate",
         "Problems.Juggler.PaperBThreshold",
         "Problems.Juggler.PaperBTilt",
+        "Problems.Juggler.PaperBWeightGap",
         "Problems.Juggler.ParityComplexity",
         "Problems.Juggler.PeriodFamily",
         "Problems.Juggler.PrefixBunched",
@@ -89395,6 +89466,15 @@
       "imports": [],
       "ledger": []
     },
+    "Problems.Juggler.PaperBWeightGap": {
+      "declarations": 7,
+      "file": "formal/Problems/Juggler/PaperBWeightGap.lean",
+      "imports": [
+        "Problems.Juggler.FateOneSidedCorollary",
+        "Problems.Juggler.PaperBSlopeRate"
+      ],
+      "ledger": []
+    },
     "Problems.Juggler.ParityComplexity": {
       "declarations": 11,
       "file": "formal/Problems/Juggler/ParityComplexity.lean",
@@ -90466,13 +90546,13 @@
     }
   },
   "totals": {
-    "declarations": 6683,
+    "declarations": 6690,
     "declarations_with_a_ledger_row": 4572,
-    "ledger_rows_naming_a_file": 425,
-    "modules": 292,
+    "ledger_rows_naming_a_file": 426,
+    "modules": 293,
     "trust": {
       "compiler": 56,
-      "kernel": 6627
+      "kernel": 6634
     }
   }
 }
