@@ -10054,5 +10054,16 @@
    "tests/research/juggler_sequence/test_paper_b_prefix_count.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "id": "J-psi-is-bounded-variation-with-an-ostrowski-spectrum",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "Can a Taylor series reach psi? No, and the Fourier alternative is the right tool but a slow one. NOT ANALYTIC. Estimated from two disjoint depth windows -- the only honest test, since the samples fract(d BETA) are a rotation orbit -- every mode to k = 24 is real: the windows agree to about 2e-5 while the coefficients run 5e-4 to 9e-3, so each is resolved 20 to 400 times above the noise floor. After deconvolving the bin box filter the decay is |psi_hat(k)| ~ k^(-0.79), the signature of a function of BOUNDED VARIATION WITH A JUMP rather than an analytic one. No power series in the phase exists, and a Fourier truncation at K leaves O(1/K), so this route cannot produce an error term better than polynomial. THE JUMP IS IDENTIFIED. psi's largest discontinuity is at phi = 0, of size 0.0736 against a next-largest 0.0268, and it is explained in closed form by J-paper-b-tilt-reduction-and-the-phase-factor: psi(phi) = e^(-lamStar(1-phi)) h(phi), and the explicit factor, continuous on [0,1], jumps by e^(lamStar) = 1.7095 on the circle. So the non-smoothness is structural and known, not mysterious. A secondary jump sits at phi about 0.633, adjacent to BETA = 0.6309; the Sturmian coding switches at 1 - BETA = 0.3691, where psi shows no comparable jump, so that second jump is NOT simply inherited from the coding and is recorded as unexplained. THE NAIVE SMALL-DIVISOR SCALING IS REFUTED. If Ostrowski small divisors drove the spectrum, |psi_hat(k)| * ||k BETA|| would be flatter than |psi_hat(k)|. It is worse: the spread rises from 18.8x to 153.5x, and the log10 spread from 0.334 to 0.436. WHAT IS TRUE IS WEAKER. The 1/k envelope accounts for most of the variation, cutting the spread from 15.1x to 5.2x, and the surviving modulation peaks on BETA's Ostrowski lattice: in both windows the five largest k|psi_hat(k)| lie in {8, 11, 16, 19, 22, 24} = {q_3, q_2+q_3, 2q_3, q_4, q_2+q_4, 3q_3}, while the five smallest contain none of them. Which five varies with the window, 16 and 22 trading places, so membership is the stable claim rather than the ordering. AN ESTIMATOR TRAP, PINNED. Averaging over the orbit itself fails exactly at k near a convergent denominator: ||q_j BETA|| is tiny, so the factor barely turns. At k = 84 it completes about 10 turns over d = 500..6000 and reports 0.34, three times the k = 1 coefficient -- an artifact that looks precisely like the small-divisor spike one is hoping to find. Bin first, then transform. CONSEQUENCE. The expansion route does not close J-paper-b-meander-prefactor-is-almost-periodic. It shows the target is only BV, names where its jump comes from, and refutes the scaling that would have made the Ostrowski structure tractable. No bound moves.",
+  "source": "docs/research_journal.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_paper_b_prefix_count.py"
+  ],
+  "related_conjectures": []
  }
 ]

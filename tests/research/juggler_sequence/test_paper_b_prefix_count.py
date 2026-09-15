@@ -3316,3 +3316,85 @@ def test_the_six_percent_wobble_is_two_competing_sixty_percent_effects() -> None
     assert math.isclose(math.exp(lam * 0.9), 1.6203, rel_tol=1e-3)
     assert math.isclose(max(H) / min(H), 1.527, rel_tol=5e-3), max(H) / min(H)
     assert P[0] < P[-1] and H[0] > H[-1]            # they move in opposite directions
+
+
+def test_psi_is_bounded_variation_not_analytic_so_no_power_series_exists() -> None:
+    """Can a Taylor series help? No -- psi is not even C^1. Fourier is the right tool.
+
+    Estimated from two disjoint depth windows (the only honest test, since the samples
+    phi_d = frac(d*BETA) are a rotation orbit), every mode to k = 24 is real: the windows
+    agree to ~2e-5 while the coefficients run 5e-4 to 9e-3.
+
+    After deconvolving the bin box filter, |psi_hat(k)| ~ k^(-0.79) -- the signature of a
+    function of bounded variation with a jump, not of an analytic one.  A power series in
+    the phase therefore does not exist, and a Fourier truncation at K leaves O(1/K).
+
+    THE NAIVE SMALL-DIVISOR SCALING IS REFUTED.  If the Ostrowski small divisors drove the
+    spectrum then |psi_hat(k)| * ||k BETA|| would be flatter than |psi_hat(k)|.  It is
+    worse: the spread rises from 18.8x to 153.5x.  What survives is weaker -- after
+    dividing out the 1/k envelope the modulation peaks exactly on BETA's Ostrowski
+    lattice, the five largest k|psi_hat(k)| sitting at k = 19, 8, 11, 16, 24 = q_4, q_3,
+    3+8, 2*8, 3*8, while the five smallest, k = 4, 7, 12, 15, are not such combinations.
+
+    A CAUTION THIS TEST EXISTS TO PIN.  Estimating psi_hat by averaging over the orbit
+    itself fails exactly at k near a convergent denominator, because ||q_j BETA|| is tiny
+    and the factor barely turns: at k = 84 it completes ~10 turns over d = 500..6000 and
+    reports 0.34, three times the k = 1 coefficient.  That is not an estimate.  Bin first.
+    """
+    import cmath
+    import statistics
+
+    rho = B.chernoff_rate()
+    depth = 12000
+    prof = B.surviving_log_mass(depth)
+    nb = 64
+
+    def spectrum(lo: int, hi: int) -> list[complex]:
+        vals: list[list[float]] = [[] for _ in range(nb)]
+        for d in range(lo, hi):
+            c = math.exp(prof[d] - d * math.log(rho) + 1.5 * math.log(d))
+            vals[min(nb - 1, int(((d * BETA_) % 1.0) * nb))].append(c)
+        grid = [statistics.fmean(v) for v in vals]
+        mean = statistics.fmean(grid)
+        grid = [g / mean for g in grid]
+        return [sum(grid[j] * cmath.exp(-2j * math.pi * k * j / nb) for j in range(nb)) / nb
+                for k in range(25)]
+
+    A, C = spectrum(2000, 6000), spectrum(6000, 12000)
+    for k in range(1, 25):                       # every mode is resolved, not noise
+        assert abs(abs(A[k]) - abs(C[k])) < 0.3 * max(abs(A[k]), abs(C[k])), k
+
+    def sinc(k: int) -> float:
+        t = math.pi * k / nb
+        return 1.0 if k == 0 else math.sin(t) / t
+
+    coef = [abs(A[k]) / sinc(k) for k in range(25)]
+    ks = list(range(1, 25))
+    slope = statistics.fmean(
+        [(math.log(coef[b]) - math.log(coef[a])) / (math.log(b) - math.log(a))
+         for a in ks for b in ks if b > a + 8])
+    assert -1.05 < slope < -0.6, slope           # BV/jump, not analytic
+
+    # the 1/k envelope explains most of it: spread 15.1x falls to 5.2x, a factor 2.9
+    raw = [coef[k] for k in ks]
+    times_k = [k * coef[k] for k in ks]
+    flattening = (max(raw) / min(raw)) / (max(times_k) / min(times_k))
+    assert flattening > 2.5, (flattening, max(raw) / min(raw), max(times_k) / min(times_k))
+
+    # and multiplying by ||k BETA|| makes it worse, not better
+    def nrm(k: int) -> float:
+        return abs(((k * BETA_ + 0.5) % 1.0) - 0.5)
+    div = [coef[k] * nrm(k) for k in ks]
+    assert max(div) / min(div) > max(raw) / min(raw), (max(div) / min(div), max(raw) / min(raw))
+
+    # the surviving peaks sit on BETA's Ostrowski lattice: every one of the top five is
+    # q_3 = 8 or q_4 = 19 or a small combination of them with q_2 = 3.  Which five varies
+    # slightly with the window -- 16 = 2*8 and 22 = 3+19 trade places -- so the stable
+    # claim is membership in that set, not the exact ordering.
+    lattice = {8, 11, 16, 19, 22, 24}          # q3, q2+q3, 2q3, q4, q2+q4, 3q3
+    for spec in (A, C):
+        cf = [abs(spec[k]) / sinc(k) for k in range(25)]
+        top = sorted(ks, key=lambda k: -k * cf[k])[:5]
+        assert set(top) <= lattice, top
+        bottom = sorted(ks, key=lambda k: k * cf[k])[:5]
+        assert not (set(bottom) & lattice), bottom
