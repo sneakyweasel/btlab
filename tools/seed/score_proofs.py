@@ -99,6 +99,16 @@ def score(r: dict, header_only: bool) -> dict | None:
     }
 
 
+def write_progress(job: str, done: int, total: int, rate, finished: bool = False) -> None:
+    """A small JSON that narrowing/progress.py renders as a bar."""
+    p = {"job": job, "unit": "proofs", "done": done, "total": total, "finished": finished,
+         "updated": time.strftime("%H:%M:%S")}
+    if rate:
+        p["rate_per_min"] = rate * 60
+        p["eta_min"] = (total - done) / rate / 60
+    (ROOT / "data" / "seed" / "progress.json").write_text(json.dumps(p), encoding="utf-8")
+
+
 def summary(rows: list[dict], header_only: bool) -> str:
     long = [x for x in rows if x["n_tokens"] >= MIN_TOKENS_FOR_RANKING and not x["truncated"]]
     mode = "header-only setup" if header_only else "file-prefix setup"
@@ -147,14 +157,17 @@ def main() -> None:
     if n:
         records = records[:n]
     rows, t0 = [], time.time()
+    job = "proof scoring (header)" if header_only else "proof scoring (prefix)"
     for i, r in enumerate(records):
         x = score(r, header_only)
         if x:
             rows.append(x)
-        if (i + 1) % 100 == 0:
+        if (i + 1) % 50 == 0:
             rate = (i + 1) / (time.time() - t0)
+            write_progress(job, i + 1, len(records), rate)
             print(f"  {i + 1}/{len(records)}  {rate:.1f}/s  "
                   f"eta {(len(records) - i - 1) / rate / 60:.1f} min", file=sys.stderr, flush=True)
+    write_progress(job, len(records), len(records), None, finished=True)
     out_path.parent.mkdir(parents=True, exist_ok=True)
     with open(out_path, "w", newline="", encoding="utf-8") as fh:
         w = csv.DictWriter(fh, fieldnames=list(rows[0]))
