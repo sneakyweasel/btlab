@@ -90033,7 +90033,7 @@
   "totals": {
     "declarations": 6643,
     "declarations_with_a_ledger_row": 4572,
-    "ledger_rows_naming_a_file": 415,
+    "ledger_rows_naming_a_file": 416,
     "modules": 288,
     "trust": {
       "compiler": 56,
