@@ -99,11 +99,7 @@ Underfull \hbox (badness 4518) in paragraph at lines 4958--4967
 2849448 \TU/lmr/m/n/12 evaluates the non-
 [77] [78] [79] [80] [81] [82] [83] [84] [85] [86] [87] [88] [89] [90] [91]
 [92] [93] [94] [95] [96] [97] [98] [99] [100] [101] [102] [103] [104]
-(cochin-juggler.aux)
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- )
+(cochin-juggler.aux) )
 (see the transcript file for additional information)
 Output written on cochin-juggler.pdf (104 pages).
 Transcript written on cochin-juggler.log.
