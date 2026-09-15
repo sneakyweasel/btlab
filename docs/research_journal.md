@@ -50290,3 +50290,57 @@ The double root said the walk is critical: the characteristic minimum touches
 `log rho` rather than crossing it. Criticality produces polynomials everywhere ---
 `d^(-3/2)` in the survival probability, `d^(-2)` in the forgetting. Two
 independent measurements, one cause.
+
+## log psi is a coboundary, and one equation accounts for the whole thread
+
+The proved recursion and the normalisation, put together, give a cohomological
+equation over the rotation:
+
+    log psi(phi + beta) - log psi(phi) = f(phi),
+    f(phi) = log(1 - b(phi) R(phi) / 2) - log rho,
+
+whose mean over the circle is zero --- that being the ergodic identity already
+recorded. So `psi_hat(n) = f_hat(n) / (e^(2 pi i n beta) - 1)`.
+
+Verified spectrally: `|f_hat|/divisor` reproduces `|psi_hat|` to a few percent
+across fifteen modes, `9.197e-3` against `9.150e-3` at `n=1`, `2.786e-3` against
+`2.804e-3` at `n=8`, `1.832e-3` against `1.895e-3` at `n=19`, on through `n=65`.
+
+### Everything measured today falls out of it
+
+`f` carries exactly **one** jump, where `b` switches at `phi = 1 - beta`, of size
+`log(1 - R(1-beta)/2) = -0.076694` --- `R` itself is continuous there. A coboundary
+over a rotation spreads a single jump of the data over the orbit of that point,
+and `1 - beta + beta = 0`. So `psi`'s largest jump sits at `0`, measures
+`-0.069445`, `0.906` of `f`'s, and the cascade on `{k beta}` follows.
+
+The jump set was not a coincidence of the barrier arithmetic. It is the shape of a
+coboundary.
+
+### The small-divisor question, finally settled
+
+This has been circling all day. The divisors are real: `||19 beta|| = 0.0123`
+would amplify by eighty. No amplification appears --- and the reason is that
+`f_hat` itself dies at the resonances, mean `3.0e-4` where `||n beta|| < 0.06`
+against `1.5e-3` where it exceeds `0.20`.
+
+That cancellation is what keeps `psi` bounded, and it explains two earlier
+readings that looked like contradictions. This morning: multiplying `|psi_hat|` by
+`||n beta||` made the spread worse. An hour ago: `n ||n beta|| |psi_hat(n)|` is not
+flat either, `14.4x` against `5.1x` for `n |psi_hat(n)|`. Both tests assume
+`f_hat` is flat across the resonances. It is not. The Ostrowski structure in
+`psi`'s spectrum is **inherited from f**, not manufactured by the divisor.
+
+I recorded the small-divisor scaling as refuted this morning. That was right about
+the scaling and wrong about the mechanism, and the row now says which.
+
+### Where it leaves things
+
+`psi` exists as a bounded function exactly when this equation has a bounded
+solution, which is a question about how fast `f_hat` decays at the resonances ---
+that is, a question about `R`. The unproved link is unchanged: the
+quasi-stationary convergence `R_d -> R(frac(d beta))`.
+
+What is new is that everything downstream of `R` is now a single classical
+equation instead of a list of measurements. The jumps, the `1/k` envelope, the
+Ostrowski peaks, the absent amplification: one line.
