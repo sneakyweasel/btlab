@@ -10186,5 +10186,16 @@
    "tests/research/juggler_sequence/test_paper_b_prefix_count.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "id": "J-log-psi-is-a-coboundary-over-the-rotation",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "log psi is the coboundary of an explicit function over the rotation by BETA, and that single equation accounts for every feature of psi measured in this thread. THE EQUATION. From the proved recursion P_(d+1) = P_d (1 - b_d R_d / 2) of J-count-recursion-is-the-boundary-mass together with P_d = psi(phi_d) rho^d d^(-3/2), letting d grow gives log psi(phi + BETA) - log psi(phi) = f(phi) with f(phi) = log(1 - b(phi) R(phi)/2) - log rho, whose mean over the circle is zero -- that being the ergodic identity of J-boundary-fraction-is-the-clean-coordinate. Hence psi_hat(n) = f_hat(n) / (e^(2 pi i n BETA) - 1). VERIFIED SPECTRALLY: |f_hat(n)| divided by the divisor reproduces |psi_hat(n)| to a few percent across fifteen modes, 9.197e-3 against 9.150e-3 at n = 1, 5.168e-3 against 5.155e-3 at n = 3, 2.786e-3 against 2.804e-3 at n = 8, 1.832e-3 against 1.895e-3 at n = 19, and on through n = 65. WHAT IT EXPLAINS. f carries exactly ONE jump, where b switches at phi = 1 - BETA, of size log(1 - R(1-BETA)/2) = -0.076694, since R is continuous there. A coboundary over a rotation spreads a single jump of the data over the orbit of that point, and 1 - BETA + BETA = 1 = 0: psi's largest jump sits at 0 and measures -0.069445 in log terms, 0.906 of f's, with the cascade on {k BETA} following. So J-psi-jumps-are-the-rotation-orbit-of-zero is not a coincidence of the barrier arithmetic but the shape of a coboundary. THE SMALL-DIVISOR QUESTION, SETTLED. The divisors are real -- ||19 BETA|| = 0.0123 would amplify by eighty -- and no amplification appears, because f_hat itself dies at the resonances: mean |f_hat| is 3.0e-4 over n with ||n BETA|| < 0.06 against 1.5e-3 over n with ||n BETA|| >= 0.20, a factor five. That cancellation is what keeps psi bounded. It also explains the finding of J-psi-is-bounded-variation-with-an-ostrowski-spectrum that multiplying by ||n BETA|| made the spread WORSE, and the finding today that n ||n BETA|| |psi_hat(n)| is not flat either, spread 14.4x against 5.1x for n |psi_hat(n)|: both assume f_hat is flat across the resonances, and it is not. The Ostrowski structure in psi's spectrum is inherited from f, not manufactured by the divisor. WHERE IT LEAVES THE OPEN PROBLEM. psi exists as a bounded function exactly when this cohomological equation has a bounded solution, which is a question about how fast f_hat decays at the resonances -- that is, about R. The unproved link is unchanged and is still the quasi-stationary convergence R_d -> R(frac(d BETA)); what is new is that everything downstream of R is now one classical equation rather than a list of measurements.",
+  "source": "docs/research_journal.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_paper_b_prefix_count.py"
+  ],
+  "related_conjectures": []
  }
 ]
