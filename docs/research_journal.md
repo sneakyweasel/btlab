@@ -50095,3 +50095,35 @@ rather than a description of a mystery.
 `survives_succ_of_no_rise`; all kernel-clean, no warnings. The cardinality step
 is again one sentence of counting, stated in the ledger and in the file's
 docstring rather than formalised, and both say so.
+
+## The paper gates now run in the suite
+
+Both of today's stale papers were found by hand. Nothing in the test suite ran a
+paper gate: Papers A and B each had a test calling their own `check`, Paper C had
+none, and CI ran none of the three directly.
+
+`tests/integration/test_paper_release_gates.py` **discovers** `tools/build_paper_*.py`
+rather than listing them, asserts each exposes a callable `check`, and runs it on
+the live repository. A paper that ships with a build script and no working gate
+fails there rather than going quiet, and a fourth paper is picked up without
+anyone remembering to add it.
+
+Verified it can fail, which after today is not a formality: appending one line to
+`tao_reduction.py` --- a pinned Paper C input --- turns it red with
+*"Stale or missing Paper C file ...; rebuild required"*, and restoring the file
+turns it green.
+
+The failure message says what to do: rebuild and commit the regenerated
+artifacts. It does not mean the test is wrong, and a future session finding it
+red should not reach for the test first.
+
+### The general shape of the day's gate problems
+
+Three distinct ones, and they rhyme. `build_paper_b.py --check` printed
+*"source, review copies, companion PDF, and Zenodo kit agree"* while comparing
+none of the source against the PDF. The formalpedia artifacts were never diffed
+against a regeneration. And the paper gates existed and worked but nothing ran
+them.
+
+A gate that cannot fail, a gate with no test, and a gate nobody calls are the
+same defect wearing three hats: the check is present, so nobody looks again.
