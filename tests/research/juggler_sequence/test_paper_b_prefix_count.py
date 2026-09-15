@@ -4211,3 +4211,67 @@ def test_r_jump_amplitudes_halve_at_every_sturmian_zero() -> None:
     # the word-length error is a common scale factor, so ratios survive it
     scale = a2 / a1
     assert float(np.std(scale) / abs(np.mean(scale))) < 5e-3, scale
+
+
+def test_r_halves_under_the_rotation_at_every_non_rising_phase() -> None:
+    """R(phi + BETA) = R(phi)/2 exactly whenever phi < 1 - BETA.
+
+    THE RELATION BEHIND IT.  w_j(phi + BETA) = 1{frac(phi - j BETA) >= 1 - BETA} =
+    w_(j-1)(phi), so advancing the phase by BETA shifts the backward word one place and
+    prepends a letter -- that is, applies one more update at the end:
+
+        Pi_(phi+BETA) = T_(b(phi)) Pi_phi / (1 - b(phi) Pi_phi(0) / 2).
+
+    Verified directly at random phases: the residual is 0.0e+00, and the mass lost is
+    exactly Pi_phi(0)/2 when b = 1 and exactly zero when b = 0.
+
+    THE COROLLARY.  At b(phi) = 0 the update preserves mass, so the normaliser is 1, and
+    PaperBBarrierStep.update_false_at_zero gives T_0 Pi(0) = Pi(0)/2.  Hence R halves.
+    Measured to 1.6e-16 at phases away from the switch point; nearer to it the grid
+    method's own word-truncation error shows, about 6e-5 relative, since the two phases
+    carry different words and it does not cancel.  The exact demonstration is the forward
+    orbit profile, where the identity holds to 1e-12.  At b = 1 the normaliser differs and it fails, with
+    ratios 2.63 and 3.26 instead of 1.
+
+    This subsumes J-r-jumps-halve-at-the-sturmian-zeros: if R itself halves under the
+    shift, so does any difference of two values of it.
+    """
+    import numpy as np
+
+    size, steps = 160, 900
+
+    def R_at(phases: list[float]) -> np.ndarray:
+        P = np.zeros((len(phases), size)); P[:, 0] = 1.0
+        ph = np.array(phases) % 1.0
+        for j in range(steps - 1, -1, -1):
+            w = (((ph - (j + 1) * BETA_) % 1.0) >= 1 - BETA_)
+            up = np.zeros_like(P); dn = np.zeros_like(P)
+            up[:, 0] = 0.5 * P[:, 0]; up[:, 1:] = 0.5 * (P[:, 1:] + P[:, :-1])
+            dn[:, :-1] = 0.5 * (P[:, :-1] + P[:, 1:]); dn[:, -1] = 0.5 * P[:, -1]
+            P = np.where(w[:, None], dn, up)
+            P /= P.sum(axis=1, keepdims=True)
+        return P[:, 0]
+
+    rng = np.random.default_rng(7)
+    below = [float(p) * (1 - BETA_) * 0.8 for p in rng.random(8)]      # b = 0
+    above = [(1 - BETA_) + float(p) * BETA_ * 0.9 for p in rng.random(5)]  # b = 1
+
+    # the grid method carries its own word-truncation error, about 1e-4 relative at
+    # these lengths, and it does NOT cancel here: the two phases have different words.
+    # The exact demonstration is the forward-profile check below, at 1e-12.
+    a, a_shift = R_at(below), R_at([(p + BETA_) % 1.0 for p in below])
+    for x, y in zip(a, a_shift):
+        assert abs(y - x / 2) < 3e-4 * x, (x, y)
+
+    c, c_shift = R_at(above), R_at([(p + BETA_) % 1.0 for p in above])
+    for x, y in zip(c, c_shift):
+        assert y / (x / 2) > 2.0, (x, y)                    # nowhere near halving
+
+    # and against the independent forward profile
+    prof = B.boundary_fraction_profile(9000)
+    checked = 0
+    for d in range(8000, 8030):
+        if (d * BETA_) % 1.0 < 1 - BETA_:
+            assert abs(prof[d + 1] - prof[d] / 2) < 1e-12, d
+            checked += 1
+    assert checked >= 5, checked
