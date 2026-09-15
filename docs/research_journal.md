@@ -49445,3 +49445,76 @@ exact integer DP to `7e-15`. It exists because the oscillation is only visible i
 *consecutive* depths, and the exact DP costs 20 s at `d = 3200` and overflows
 float past it --- sampling a few depths, which is what had been done, cannot see
 this at all.
+
+## Proving the psi version: the reduction is exact, the limit theorem is not mine
+
+Asked to prove `N_d/2^d = psi(frac(d*BETA)) rho^d d^(-3/2) (1+o(1))`. What is
+provable is the whole reduction; what is not is the limit theorem at the end of
+it. Both halves are now written down, and the boundary between them is sharp.
+
+### The tilt, and an identity that was recorded as a coincidence
+
+Steps `Y = X - BETA`, `X ~ Bernoulli(1/2)`, so
+`Lam(l) = -l BETA + log((e^l+1)/2)`. Then `Lam'(l) = -BETA + e^l/(e^l+1)` vanishes
+exactly at `lamStar = log(BETA/(1-BETA)) = 0.536207535136`, where **the tilted coin
+is Bernoulli(BETA)** and the walk `o_t - t BETA` is mean zero with per-step
+variance `BETA(1-BETA)`. So `BETA` is the threshold for a structural reason, not
+by fitting --- which is the sentence the whole of Paper B's Section 6 is about.
+
+And then
+
+    rho = exp(Lam(lamStar)) = exp(-lamStar BETA) / (2(1-BETA))
+        = BETA^(-BETA) (1-BETA)^(BETA-1) / 2 = theta(BETA).
+
+`theta(p) = rho` was recorded this morning as agreeing to `1.1e-16`. It is an
+algebraic identity, and it is now proved in `PaperBTilt.rho_closed_form`,
+kernel-checked on the standard three axioms. That is the second time today a
+numerical agreement in this thread turned out to be an identity.
+
+### Where the phase comes from, exactly
+
+`N_d/2^d = rho^d E~[e^(-lamStar S_d); S_t >= 0 for all t]`, checked against the
+integer DP to `1e-12`. On the event, `S_d = m_d + (1 - fract(d BETA))` with
+`m_d = o_d - ceil(d BETA)` a nonnegative integer, and `1 - fract(d BETA)` is
+**exactly** the least attainable endpoint. So
+
+    N_d/2^d = rho^d . e^(-lamStar (1 - fract(d BETA))) . G(d),   G integer-indexed.
+
+That is the phase, in closed form, with no asymptotics involved.
+
+### Why the classical theorem does not apply
+
+`m_(t+1) = m_t + X_(t+1) - b_t` with `b_t = ceil((t+1)BETA) - ceil(t BETA)` in
+`{0,1}` --- the Sturmian word of `BETA`. The killed walk runs against a *Sturmian
+barrier*, not a straight line. The non-lattice step distribution invites the
+classical local limit theorem and the classical theorem does not apply.
+
+### The two effects nearly cancel, which is the discouraging part
+
+The explicit factor rises by `e^(0.9 lamStar) = 1.6203` across the circle. `psi`
+rises by only `1.0606`. So the integer part `h` must fall by `1.527`, and it
+does. The small oscillation is the residue of two large opposed ones: a wider
+barrier gap costs `e^(-lamStar(1-phi))` in the tilt and buys survival room in
+`h`.
+
+So stripping the elementary factor does not simplify the problem --- it exchanges
+a 6% oscillation for a 53% one. Whoever proves the limit theorem has to handle
+`h` head-on; there is no cheap decomposition here.
+
+### What is proved and what is not
+
+Everything above is an identity. The existence of `psi`, i.e. convergence of
+`d^(3/2) G(d)` along `fract(d BETA) -> phi`, needs a local limit theorem for this
+Sturmian-driven killed walk, and it is not proved here or anywhere in the
+laboratory. The ledger row says so in those words. What has changed is that the
+obligation is now a single precisely stated analytic statement, with everything
+around it exact and most of it machine-checked.
+
+### The same gate trap, twice in one row
+
+Both `beta_mean_zero` and `ceil_sub_eq_one_sub_fract` were cited at the end of a
+sentence, and the orphan scan drops a token with a trailing dot, so neither
+counted and the count went to `404` against a budget of `402`. Identical to the
+`first_usable_depth` slip this morning. Reworded so both sit mid-sentence. Three
+occurrences now; the tokenizer will keep doing this and the fix is to never end a
+sentence on a declaration name.

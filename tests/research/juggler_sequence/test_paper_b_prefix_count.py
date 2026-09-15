@@ -3228,3 +3228,91 @@ def test_the_meander_prefactor_is_not_a_constant_but_a_function_of_the_offset() 
     # psi is increasing in the offset, as the shrinking barrier gap predicts
     assert last[0] < last[-1]
     assert abs(last[0] - 10.37) < 0.05 and abs(last[-1] - 11.00) < 0.05, last
+
+
+def test_the_mean_zero_tilt_is_bernoulli_beta_and_rho_is_its_closed_form() -> None:
+    """The reduction behind psi, and an identity that was recorded as a coincidence.
+
+    Steps Y = X - BETA with X ~ Bernoulli(1/2), so
+    Lam(l) = -l*BETA + log((e^l + 1)/2).  Lam'(l) = -BETA + e^l/(e^l+1) vanishes exactly
+    at l* = log(BETA/(1-BETA)), where the tilted coin is Bernoulli(BETA) -- so BETA is the
+    threshold for a structural reason, not by fitting.
+
+    Then rho = exp(Lam(l*)) = exp(-l* BETA)/(2(1-BETA)) = BETA^(-BETA) (1-BETA)^(BETA-1)/2,
+    which IS theta(BETA).  J-theorem-six-one-threshold-is-slack recorded theta(p) = rho as
+    agreeing to 1.1e-16; it is an algebraic identity, proved in
+    Problems.Juggler.PaperBTilt.rho_closed_form.
+    """
+    lam = math.log(BETA_ / (1 - BETA_))
+    assert math.isclose(lam, 0.536207535136, rel_tol=1e-11), lam
+
+    # the mean-zero condition, and the tilted law
+    assert abs(-BETA_ + math.exp(lam) / (math.exp(lam) + 1)) < 1e-15
+    assert math.isclose(math.exp(lam) / (math.exp(lam) + 1), BETA_, rel_tol=1e-15)
+
+    rho = B.chernoff_rate()
+    assert math.isclose(math.exp(-lam * BETA_) / (2 * (1 - BETA_)), rho, rel_tol=1e-15)
+    assert math.isclose(BETA_ ** (-BETA_) * (1 - BETA_) ** (BETA_ - 1) / 2, rho, rel_tol=1e-15)
+    assert math.isclose(_theta(BETA_), rho, rel_tol=1e-15)
+
+
+def test_the_change_of_measure_is_exact_and_the_gap_is_the_phase() -> None:
+    """N_d/2^d = rho^d E~[e^(-l* S_d); S_t >= 0], and min S_d = 1 - frac(d*BETA).
+
+    The second half is what puts frac(d*BETA) into the asymptotic: on the event the
+    endpoint is S_d = m_d + (1 - frac(d*BETA)) with m_d = o_d - ceil(d*BETA) a NONNEGATIVE
+    INTEGER, so the walk cannot end closer to the barrier than that gap.  Hence the exact
+    factorisation N_d/2^d = rho^d e^(-l*(1-frac(d*BETA))) G(d) with G integer-indexed.
+    """
+    lam = math.log(BETA_ / (1 - BETA_))
+    rho = B.chernoff_rate()
+
+    for d in (50, 200, 500):
+        mass = {0: 1.0}
+        for t in range(1, d + 1):
+            nxt: dict[int, float] = {}
+            for o, m in mass.items():
+                nxt[o + 1] = nxt.get(o + 1, 0.0) + BETA_ * m
+                nxt[o] = nxt.get(o, 0.0) + (1 - BETA_) * m
+            mass = {o: m for o, m in nxt.items() if o >= t * BETA_}
+        tilted = sum(m * math.exp(-lam * (o - d * BETA_)) for o, m in mass.items())
+        assert math.isclose(B.non_contracting(d) / 2 ** d, rho ** d * tilted, rel_tol=1e-12), d
+
+        # the gap, and that it is attained
+        gap = math.ceil(d * BETA_) - d * BETA_
+        assert math.isclose(gap, 1 - (d * BETA_) % 1.0, rel_tol=1e-12)
+        assert math.isclose(min(o - d * BETA_ for o in mass), gap, rel_tol=1e-12)
+
+
+def test_the_six_percent_wobble_is_two_competing_sixty_percent_effects() -> None:
+    """psi = e^(-l*(1-phi)) * h(phi), and the two factors nearly cancel.
+
+    The explicit phase factor rises by e^(0.9 l*) = 1.620 across the circle.  psi rises by
+    only 1.061.  So h -- the integer-indexed part, whose existence is the open local limit
+    theorem -- must FALL by 1.527, and it does.  The small observed oscillation is the
+    residue of two large opposed ones: a wider barrier gap costs e^(-l*(1-phi)) in the tilt
+    and buys survival room in h.
+
+    That is why stripping the elementary factor does not make the problem easier: it
+    exchanges a 6% oscillation for a 53% one.
+    """
+    import statistics
+
+    lam = math.log(BETA_ / (1 - BETA_))
+    rho = B.chernoff_rate()
+    depth = 4000
+    prof = B.surviving_log_mass(depth)
+    ds = range(3000, depth)
+    c = {d: math.exp(prof[d] - d * math.log(rho) + 1.5 * math.log(d)) for d in ds}
+    phi = {d: (d * BETA_) % 1.0 for d in ds}
+    h = {d: c[d] * math.exp(lam * (1 - phi[d])) for d in ds}
+
+    def binned(v: dict[int, float]) -> list[float]:
+        return [statistics.fmean([v[d] for d in ds if k / 10 <= phi[d] < (k + 1) / 10])
+                for k in range(10)]
+
+    P, H = binned(c), binned(h)
+    assert math.isclose(max(P) / min(P), 1.0606, rel_tol=5e-3), max(P) / min(P)
+    assert math.isclose(math.exp(lam * 0.9), 1.6203, rel_tol=1e-3)
+    assert math.isclose(max(H) / min(H), 1.527, rel_tol=5e-3), max(H) / min(H)
+    assert P[0] < P[-1] and H[0] > H[-1]            # they move in opposite directions
