@@ -4820,3 +4820,28 @@ def test_the_killed_chain_is_rho_null_so_no_weight_restores_the_gap() -> None:
     assert all(1.5 < e < 2.0 for e in exponents), exponents     # grows, and short of m^2 under a cap
     assert exponents[1] > exponents[0], exponents               # rising toward 2 as the cap recedes
     assert sums[1] > 4 * sums[0], sums                          # the partial sums diverge with cap
+
+
+def test_memory_loss_is_polynomial_and_its_exponent_is_not_uniform() -> None:
+    """A gap is sufficient for the quasi-stationary limit, not necessary -- coupling needs only
+    summable memory loss, and ``d^-2`` is summable.  This pins the class on which it is uniform.
+
+    Every geometric initial tail converges to the same family, so the domain of attraction is full
+    and not the restricted one a rho-null chain may have.  But the exponent degrades as the initial
+    tail approaches ``r*``: -1.957, -1.721, -0.986, -0.319 at bases 0.45, 0.55, r*, 0.62 over
+    d = 8000..40000.  Lighter than ``r*`` forgets at ``d^-2``; at ``r*`` the rate halves.
+    """
+    r_star = (1 - B.BETA) / B.BETA
+    depths = (2000, 8000)
+    out = B.barrier_memory_loss(306, 485, (0.45, r_star, 0.62), depths, cap=400)
+
+    for base, tv in out.items():
+        assert tv[1] < tv[0], (base, tv)                       # everything is converging
+        assert tv[1] < 2e-2, (base, tv)
+
+    light = math.log(out[0.45][1] / out[0.45][0]) / math.log(4)
+    at_r = math.log(out[r_star][1] / out[r_star][0]) / math.log(4)
+    heavy = math.log(out[0.62][1] / out[0.62][0]) / math.log(4)
+    assert light < -1.5, light                                  # lighter than r*: near d^-2
+    assert -1.5 < at_r < -0.6, at_r                             # at r*: the rate has halved
+    assert heavy > at_r, (at_r, heavy)                          # just above r*: slower still

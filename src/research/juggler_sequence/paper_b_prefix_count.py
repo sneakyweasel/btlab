@@ -652,6 +652,55 @@ def barrier_harmonic_function(p: int, q: int, cap: int, tol: float = 1e-15) -> "
     raise RuntimeError("adjoint of %d/%d at cap %d did not reach tol %g" % (p, q, cap, tol))
 
 
+def barrier_memory_loss(p: int, q: int, tails: tuple[float, ...], depths: tuple[int, ...],
+                        cap: int = 600) -> dict[float, list[float]]:
+    """How fast two runs of the same barrier word forget that they started differently.
+
+    Each geometric initial profile ``base^m`` is run against a ``delta_0`` run under the SAME word,
+    and the total-variation distance is reported at each depth.  A spectral gap would make this
+    geometric; there is none (J-no-exponential-weight-restores-the-gap,
+    J-killed-chain-is-rho-null), so it is polynomial -- and the point of this function is that the
+    polynomial EXPONENT is not uniform.
+
+    WHAT IT SHOWS.  Everything converges: at ``306/485`` with depths to 40000, tails from 0.45 to
+    0.80 all reach TV below 7e-3 and are still falling, so the quasi-stationary family has full
+    domain of attraction and not the restricted one a rho-null chain may have.  But the rate
+    degrades as the initial tail approaches ``r* = (1-BETA)/BETA``: measured exponents -1.957,
+    -1.721, -0.986, -0.319 at bases 0.45, 0.55, r*, 0.62.  Tails strictly lighter than ``r*``
+    forget at ``d^-2``; at ``r*`` the rate halves; just above it the relaxation nearly stalls.
+
+    WHY IT MATTERS.  A spectral gap is SUFFICIENT for the quasi-stationary limit, not necessary --
+    what a coupling argument needs is summable memory loss, and ``d^-2`` is summable.  This says on
+    which class it is uniform: initial conditions with tails strictly lighter than ``r*``.  The
+    process itself starts at ``delta_0``, which is compactly supported and so in the fast class;
+    the comparison object, the profile of J-rational-barriers-give-exact-profiles, has tail
+    ``m r*^m`` and sits exactly at the boundary where the rate halves.
+
+    From ``delta_m`` rather than a geometric tail the constant scales like ``m^2``:
+    ``TV * (d/m)^2`` is flat at 26 to 34 over ``m = 5..80`` and ``d = 800..3999``.
+    """
+    import numpy as np
+
+    word = _barrier_rises(p, q)
+    period = len(word)
+    start = np.zeros(cap)
+    start[0] = 1.0
+    runs = {None: start}
+    for base in tails:
+        v = np.array([base ** m for m in range(cap)])
+        runs[base] = v / v.sum()
+    out: dict[float, list[float]] = {base: [] for base in tails}
+    probe = set(depths)
+    for t in range(max(depths)):
+        rise = bool(word[t % period])
+        for key in runs:
+            runs[key] = _advance(runs[key], rise, cap)
+        if t + 1 in probe:
+            for base in tails:
+                out[base].append(0.5 * float(np.abs(runs[base] - runs[None]).sum()))
+    return out
+
+
 def meander_constant(d_values: tuple[int, ...] = (400, 800, 1600)) -> list[float]:
     """``(N_d/2^d) / (rho^d d^(-3/2))`` -- the constant in the polynomial correction.
 
