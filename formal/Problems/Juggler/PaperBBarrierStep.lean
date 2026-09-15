@@ -166,6 +166,53 @@ theorem update_true_at_zero (pi : ℕ → ℝ) :
     update true pi 0 = (pi 0 + pi 1) / 2 := by
   simp [update]
 
+
+/-! ### The ratio cone, and where it fails
+
+A coupling or Birkhoff argument for the quasi-stationary limit would run on a cone of profiles
+with controlled decay.  The natural one is the ratio cone `pi (m+1) <= s * pi m`.  Both updates
+preserve it in the BULK, and for a reason with no content beyond addition: the updated value at a
+site is an average of two neighbouring old values, and the bound at the two sites adds.
+
+It fails at the barrier, and `boundary_ratio_at_least_one` says how: a non-rising step sends mass
+up, so at `m = 0` the updated ratio is at least `1`, exceeding any `s < 1`.  The defect is exactly
+one site wide, which the measurements confirm -- bulk ratios sit at the initial value to four
+decimals while the ratio at `m = 0` oscillates over `0.45, 1.45, 0.86, 1.67`.
+
+None of this yields a contraction.  Measured on the light-tail class, the Hilbert projective
+metric decays POLYNOMIALLY and not geometrically -- fitting `log d_H` against `d` and against
+`log d` over `d = 2000..12000` gives residual standard deviations `0.20` and `0.011`, a factor of
+twenty in favour of the polynomial, with exponents `-1.87, -1.96, -1.61`.  So Birkhoff contraction
+fails even after the cone restriction, which is the same criticality as
+`J-no-exponential-weight-restores-the-gap` seen from the projective side.  What survives is that
+the distance is summable, and a summable non-contractive argument is a different proof.
+-/
+
+/-- **A rising step preserves the ratio cone.**  Adding the bound at the two sites is the whole
+proof: the updated value at a site is an average of the two old neighbours. -/
+theorem update_true_ratio {pi : ℕ → ℝ} {s : ℝ} {m : ℕ}
+    (h1 : pi (m + 1) ≤ s * pi m) (h2 : pi (m + 2) ≤ s * pi (m + 1)) :
+    update true pi (m + 1) ≤ s * update true pi m := by
+  simp only [update]
+  norm_num
+  linarith
+
+/-- **A non-rising step preserves it too, away from the barrier.** -/
+theorem update_false_ratio {pi : ℕ → ℝ} {s : ℝ} {m : ℕ}
+    (h1 : pi (m + 1) ≤ s * pi m) (h2 : pi (m + 2) ≤ s * pi (m + 1)) :
+    update false pi (m + 2) ≤ s * update false pi (m + 1) := by
+  simp only [update, Bool.false_eq_true]
+  norm_num
+  linarith
+
+/-- **And at the barrier it fails.**  A non-rising step sends mass up, so the ratio at `m = 0` is
+at least one and no cone with `s < 1` survives there.  The defect is one site wide. -/
+theorem boundary_ratio_at_least_one {pi : ℕ → ℝ} (h : 0 ≤ pi 1) :
+    update false pi 0 ≤ update false pi 1 := by
+  simp only [update, Bool.false_eq_true]
+  norm_num
+  linarith
+
 end PaperBBarrierStep
 
 end Problems.Juggler

@@ -51331,3 +51331,48 @@ essential spectrum. It puts a linear factor on both Perron vectors, so
 profile's own tail exactly at the exponent where memory loss degrades. One
 degeneracy, three consequences, and the third is the one that says what a proof
 would have to handle rather than what it cannot use.
+
+
+## The coupling proof, attempted
+
+The cone works and the contraction does not.
+
+**The cone is invariant, exactly.** Both updates carry `pi(m+1) <= s pi(m)` forward
+in the bulk, at every `s`, and the proof is addition: the updated value at a site is
+an average of the two neighbouring old values, so the bound at the two sites adds.
+Two lines each in Lean. I had expected to have to work for this.
+
+**It fails at the barrier and only there.** A non-rising step sends mass up, so the
+updated ratio at `m = 0` is at least `1` and no cone with `s < 1` survives it. The
+defect is exactly one site wide --- measured, the bulk ratios sit at the initial
+value to four decimals while the ratio at `m = 0` oscillates over `0.45, 1.45,
+0.86, 1.67`.
+
+**And Birkhoff still fails.** The Hilbert projective metric does decay on the
+light-tail class, `6.22` to `0.011` over twelve thousand steps, but polynomially.
+Fitting `log d_H` against `d` and against `log d` over `d = 2000..12000` gives
+residual standard deviations `0.20` and `0.011` --- a factor of twenty for the
+polynomial --- with exponents `-1.87, -1.96, -1.61`. So the cone restriction does
+not restore the contraction that no weight could, and this is the same criticality
+from the projective side.
+
+### A transient that looked like a result
+
+Over `d <= 2000` the local exponent was *rising* --- `0.74, 1.90` --- which is what
+eventual geometric decay looks like, and I wrote "suggests faster-than-polynomial"
+before testing it. Running to `12000` and fitting both models settles it at `d^-2`.
+
+That is the same mistake as the momentum trend and the `e^(-0.163 q)` law, for the
+third time in this thread: a quantity still in its transient, read as if it were in
+its asymptotic. The tell each time was that I had a *shape* in mind and the early
+data was compatible with it. The fix each time was to extend the window and fit the
+competing model explicitly rather than eyeballing the trend --- cheap, and I did not
+do it until the conclusion was already drafted.
+
+### Where this leaves the proof
+
+`d_H` is summable at `d^-2`, so a summable non-contractive argument is still open ---
+but it needs the polynomial rate as an *input* rather than producing it, and that
+rate is the original problem. Birkhoff would have produced it. That is the
+difference between the two, and it is why the cone, which is real, does not finish
+the job.
