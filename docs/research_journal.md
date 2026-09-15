@@ -49837,3 +49837,47 @@ positions, no error estimate, and a spread that came from `k` sharing one
 dataset. The difference today is not more data but a better comparison --- equal
 depths, equal gaps, and a convergence to watch rather than a single number to
 trust.
+
+## There is no s_k = 1 rule: the ratio is second order in the Sturmian word
+
+Asked what governs the `s_k = 1` steps. Nothing does, taken one letter at a
+time. The ratio depends on the **pair** `(s_(k-1), s_k)`.
+
+### Divide out the envelope first
+
+Fitted over `k = 20..69`, `a_k ~ 1.1244 k^(-1.0917)`. Set `h_k = a_k k` and the
+step ratios fall into three cases:
+
+    s_k = 0                  h-ratio 1.066 +- 0.018    = (1/rho)(k+1)/k
+    s_k = 1, s_(k-1) = 0     h-ratio 0.983 +- 0.007
+    s_k = 1, s_(k-1) = 1     h-ratio 0.932 +- 0.013
+
+Runs of 1s in this word have length 1 or 2, so those are the only sub-cases. The
+gap between them is `0.0514` against a larger sd of `0.0133` --- `3.9` standard
+deviations. One Sturmian letter does not determine the ratio; two do.
+
+### The bounded-variation question got worse, not better
+
+I measured `a_k k` as `0.87, 0.85, 0.79, 0.81, 0.80, 0.77` across `k = 20..69`,
+called it flat, and said in as many words that `a_k ~ C/k` makes `sum a_k`
+diverge, so `psi` is not BV. Then I fitted it: the exponent is `-1.0917`, the sum
+**converges**, and BV is back. The eye is not a fit at this margin, and I should
+not have announced the conclusion between the two.
+
+Where that leaves it is worse than either answer, and honest:
+
+- amplitude exponent `-1.09` -> `sum a_k` converges -> **BV**, total variation
+  about `12.5` in raw units against `psi`'s range `0.63`;
+- spectral decay `k^(-0.79)` -> slower than the `k^(-1)` BV requires -> **not
+  BV**.
+
+Both within `0.1` of the boundary exponent `-1`, pointing opposite ways. So the
+softening this afternoon was not merely cautious, it was necessary: `psi` is
+recorded as discontinuous with observed jumps and nothing stronger, and the two
+numbers that would settle it disagree.
+
+### What is solid
+
+The three-case split itself, with its tight standard deviations, and the `1/rho`
+identification at the zeros. Those are structure. The envelope exponent is a fit
+over fifty points near a boundary and should be treated as one.

@@ -10098,5 +10098,16 @@
    "tests/research/juggler_sequence/test_paper_b_prefix_count.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "id": "J-psi-amplitude-rule-is-second-order-in-the-sturmian-word",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "There is no s_k = 1 rule to match the s_k = 0 one: the amplitude ratio depends on the PAIR (s_(k-1), s_k), not on s_k alone. THE ENVELOPE FIRST. Fitted over k = 20..69, a_k ~ 1.1244 k^(-1.0917); normalised by psi's mean the constant is 0.105. Setting h_k = a_k k removes it, and the step ratios then separate into three cases: s_k = 0 gives 1.066 +- 0.018, which is (1/rho)(k+1)/k and so is the same statement as J-psi-amplitude-ratio-is-one-over-rho-at-the-sturmian-zeros; s_k = 1 with s_(k-1) = 0 gives 0.983 +- 0.007; s_k = 1 with s_(k-1) = 1 gives 0.932 +- 0.013. Runs of 1s in this Sturmian word have length 1 or 2, so those are the only two sub-cases. The gap between them is 0.0514 against a larger sd of 0.0133, i.e. 3.9 standard deviations: one Sturmian letter does not determine the ratio and two do. THE BOUNDED-VARIATION QUESTION IS STILL OPEN, and the two available measurements now point OPPOSITE WAYS. The fitted amplitude exponent -1.0917 makes sum a_k converge -- total variation about 12.5 in raw units against psi's range 0.63, so BV with heavy oscillation. The spectral decay k^(-0.79) of J-psi-is-bounded-variation-with-an-ostrowski-spectrum is SLOWER than the k^(-1) bounded variation requires, and denies it. Both sit within about 0.1 of the boundary exponent -1 and neither is claimed. That disagreement is the reason psi is recorded as discontinuous with observed jumps and nothing stronger, and it supersedes the bare reading of either number alone. A correction to a claim made in passing: a_k k looked flat at 0.87, 0.85, 0.79, 0.81, 0.80, 0.77 across k = 20..69 and was called flat, which would have forced divergence and denied BV; the fit says it is slowly decaying, exponent -1.09, which does not. The eye is not a fit at this margin.",
+  "source": "docs/research_journal.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_paper_b_prefix_count.py"
+  ],
+  "related_conjectures": []
  }
 ]
