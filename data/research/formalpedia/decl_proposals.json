@@ -3902,8 +3902,19 @@
       "lean": "formal/Problems/Juggler/CubeFiber.lean",
       "names_own": [],
       "statement": "The OE fiber of a perfect cube is full or exactly alternating. For every a >= 1 and every n with (2a)^4 <= n and n^3 < ((2a)^3+1)^4, floor(n^(3/2)) = Nat.sqrt (n^3) is even (even_cube_fiber_full); for every odd n with (2a+1)^4 <= n and n^3 < ((2a+1)^3+1)^4, Nat.sqrt (n^3) + (n - (2a+1)^4)/2 is odd (odd_cube_fiber_alternating), so consecutive fiber elements have opposite image parity. Both rest on "
+    },
+    {
+      "candidates": [],
+      "composite": false,
+      "confidence": "low",
+      "definitions": [],
+      "id": "J-theorem-six-one-threshold-is-slack",
+      "in_file": 0,
+      "lean": "formal/Problems/Juggler/PaperBThreshold.lean",
+      "names_own": [],
+      "statement": "Paper B's Theorem 6.1 discards three quarters of its own exponent, and the discard is avoidable at no cost. THE STEP. The proof needs a Chernoff threshold q with 1/2 < q < p, p = log2/log3, satisfying p*d - 1 >= q*(d-1); the -1 is the leading O, spent before the binomial starts. The published proof takes q = (p+1/2)/2. THE SHARP CHOICE. The break-even threshold is q_d = p - (1-p)/(d-1), at which t"
     }
   ],
-  "unresolved": 105,
+  "unresolved": 106,
   "worth_reviewing": 18
 }
