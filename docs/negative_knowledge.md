@@ -2896,3 +2896,73 @@ of backward-path parity words at growing depth, Appendix C's question;
 do not reopen the construction as a refutation route, and do not open
 a branch for it without a new analytic idea.
 Members: cylinder_energy_measure.
+
+## The quasi-stationary link has no off-the-shelf theorem, and the meander literature gives the order not the prefactor
+
+Literature search, 15 September 2026, on the one link still missing in
+`J-boundary-fraction-is-the-clean-coordinate`: the convergence
+\(R_d\to R(\{d\beta\})\).
+
+**The uncited import, and its discount.** Denisov--Sakhanenko--Wachtel,
+*First-passage times over moving boundaries for asymptotically stable
+walks* (arXiv:1801.04136), give the tail of \(T_g\) and convergence of
+the conditioned walk to the stable meander for **every** boundary with
+\(g_n=o(c_n)\). A Sturmian barrier's sawtooth is \(O(1)=o(\sqrt n)\), so
+it qualifies, and nothing in `docs/` cited this line before today. What
+it is NOT: its conclusion is about the *rescaled* walk, so it supplies
+the order and the meander limit, which the laboratory already derives by
+Wiener--Hopf / Spitzer with the non-lattice local limit theorem
+(`J-paper-b-meander-constant-derived`, \(\kappa=1.541814521\)). The open
+link is finer --- the phase-indexed profile \(R(\{d\beta\})\) --- and a
+diffusive limit averages exactly that away. Import it for the
+moving-boundary framing and the first-passage tail; do not expect it to
+produce \(\psi\).
+
+**The gap that is in the literature, not only here.** Operator renewal
+theory handles polynomial memory loss --- Sarig, and Gouëzel
+(arXiv:math/0202147) --- but for *autonomous* maps: Pomeau--Manneville
+intermittent interval maps, Chernov--Markarian--Zhang billiards.
+Transfer-operator *cocycles* are handled by semi-invertible Oseledets
+theorems (Froyland--Lloyd--Quas, arXiv:1001.5313; González-Tokman--Quas)
+--- but under quasi-compactness, that is, a spectral gap, which is
+geometric memory. This operator is **driven** (the Sturmian word over
+the rotation by \(\beta\)) **and critical** (polynomial forgetting,
+`J-killed-walk-forgets-polynomially`). Searches surfaced each half and
+nothing combining them.
+Kind: `EXTERNAL_GAP`.
+Consequence: do not spend a session looking for an off-the-shelf theorem
+for the quasi-stationary convergence; there is not one to find. If the
+link closes it will be by proving the combination, and the laboratory
+already holds the input such a proof consumes ---
+`J-bump-kernel-factorises-into-distance-and-phase` gives
+\(K(n)=n^{-2-\varepsilon}g(\{-ns\})\) with \(\varepsilon\approx0.22\),
+additive to \(0.1\%\) at separations \(\ge70\).
+
+**Externals that are already imported; do not propose them as new.** The
+ANTEDB of Tao--Trudgian--Yang (arXiv:2501.16779) is already consulted at
+its August 2026 vertices and moves neither \(95/112\) nor \(275/388\)
+([exponent_pair_two_monomial](theory/exponent_pair_two_monomial.md));
+and the question there needs \(\tfrac54p+q<\tfrac23\) against a hull
+minimum \(95/112\), so any pair below the line is itself a subconvexity
+result past \(1/12\) --- not an optimisation run. Wiener--Hopf, Spitzer
+and the Brownian meander are in use. Piatetski--Shapiro is a dossier
+already ([juggler_ps_inversion_barrier](problems/juggler_ps_inversion_barrier.md)).
+
+**The nearest external result stops short of the exponent.**
+Spiegelhofer's normality of the Thue--Morse sequence along
+\(\lfloor n^c\rfloor\) is proved for \(1<c<4/3\) (arXiv:1707.05112) and
+extended to \(c<3/2\); \(c=3/2\) is excluded either way. It is in any
+case a *harder* statistic than the one needed --- Thue--Morse is the
+digit-sum parity, while the Juggler letter is \(\lfloor n^{3/2}\rfloor
+\bmod 2\), whose single-step equidistribution is classical --- and the
+difficulty here is the iterated/joint version. Adjacent, not applicable.
+
+There is no research literature on Juggler termination; public
+verification stands at \(7110200\) against the laboratory's certified
+floor \(N_0=3.5\cdot10^8\).
+Do not: re-propose ANTEDB, Wiener--Hopf, Piatetski--Shapiro or the
+digit-sum line as new external inputs; expect Denisov--Sakhanenko--Wachtel
+to supply the prefactor; or search again for a driven-critical renewal
+theorem.
+Members: none --- this records the state of the external literature, not
+a laboratory claim.
