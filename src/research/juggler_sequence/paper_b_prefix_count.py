@@ -616,6 +616,42 @@ def barrier_bump_response(n: int, p: int, q: int,
     return _word_boundary_fraction(tuple(swapped), caps) - _word_boundary_fraction(word, caps)
 
 
+def barrier_harmonic_function(p: int, q: int, cap: int, tol: float = 1e-15) -> "Any":
+    """The rho-harmonic function of the killed barrier walk: the LEFT Perron vector.
+
+    ``_period_fixed_point`` gives the right vector, which is the quasi-stationary profile and
+    decays like ``r*^m``.  This gives the left one, which grows like ``r*^-m``.  The adjoint of a
+    rising step has the shape of a non-rising step and vice versa, and the period is applied in
+    reverse, so the same one-step map serves with the flag flipped.
+
+    WHY BOTH.  Vere-Jones classifies a killed chain by whether ``sum_m nu(m) h(m)`` converges:
+    rho-POSITIVE (convergent) means the h-transformed chain is positive recurrent and the Perron
+    eigenvalue is isolated -- a spectral gap in the h-transformed space, which is the best any
+    weight can do.  rho-NULL (divergent) means no weight achieves one.  Here the double root of
+    J-rho-has-a-tail-variable-variational-formula puts a linear factor on each, so the product
+    grows like ``m^2``: measured exponents 1.867 and 1.902 over the bulk at caps 400 and 800, rising
+    toward 2 as the truncation recedes, with the product peaking at ``cap/2`` because the cap
+    confines both ends symmetrically.  The chain is rho-null and no weight restores the gap.
+
+    Diagonalising is not an alternative here for the same reason as elsewhere in this module: at
+    ``41/65`` ``eigvals`` returns a per-step rate of -0.0331 where the iteration gives -0.0346, and
+    reports a product that CONVERGES -- the opposite classification.
+    """
+    import numpy as np
+
+    word = _barrier_rises(p, q)
+    f = np.zeros(cap)
+    f[0] = 1.0
+    previous = None
+    for sweep in range(1, (200 * cap * cap) // q + 3):
+        for rise in reversed(list(word)):
+            f = _advance(f, not rise, cap)
+        if previous is not None and float(np.abs(f - previous).sum()) <= tol:
+            return f
+        previous = f.copy()
+    raise RuntimeError("adjoint of %d/%d at cap %d did not reach tol %g" % (p, q, cap, tol))
+
+
 def meander_constant(d_values: tuple[int, ...] = (400, 800, 1600)) -> list[float]:
     """``(N_d/2^d) / (rho^d d^(-3/2))`` -- the constant in the polynomial correction.
 

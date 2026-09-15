@@ -51240,3 +51240,47 @@ this contract" is now known to be a dead end rather than an untried idea, and
 the negative-knowledge entry from earlier today --- that the driven-critical
 combination has no literature --- now has a theorem under it explaining why one
 would not expect the autonomous machinery to transfer.
+
+
+## Non-exponential weights, and a theorem that was already general
+
+The obvious next question after "no exponential weight restores the gap" is
+whether some other weight does. It does not, and there are two independent
+reasons, one of which I already had and had not noticed.
+
+**The theorem is pointwise.** `chi(r) >= log rho` holds for every `r`
+separately. A non-exponential weight `w` is just a weight whose local ratio
+`w(m+1)/w(m)` varies with `m`; the essential radius is an average of `chi` over
+those ratios, and no average of values bounded below by `log rho` falls below
+`log rho`. The exponential case is the constant-ratio one, and it was never
+special. I proved the general statement this afternoon and wrote "non-exponential
+weights are untouched" in the commit message, which was wrong in the direction
+of understating what I had.
+
+**And the optimal weight lands on null recurrence.** The h-transform is the best
+weight by construction --- it makes the Perron eigenvector constant --- so the
+whole question is Vere-Jones' dichotomy: does `sum_m nu(m) h(m)` converge?
+Convergent is rho-positive and means a gap; divergent is rho-null and means none
+exists. Here `nu` decays like `r*^m` and `h` grows like `r*^-m`, with the double
+root putting a linear factor on each, so the product grows like `m^2` and the sum
+diverges. Measured exponents `1.799, 1.867, 1.902` at caps `200, 400, 800`,
+rising toward 2 as the truncation recedes, with the product peaking at exactly
+`cap/2` every time --- the cap confining both ends, the same Dirichlet picture as
+the truncation bias.
+
+So the double root is not merely *why* the convergence is polynomial. It is the
+obstruction itself: a simple root would separate `nu` and `h` geometrically and
+give a gap, and the root is double.
+
+### The same method warning, a second time
+
+`numpy.linalg.eig` on this operator returns a per-step rate of `-0.0331` at
+`41/65` where the iteration gives `-0.0346`, and reports the product as
+*convergent* --- the opposite classification. I ran it first, got rho-positive,
+and only disbelieved it because it contradicted a gap measurement I already had.
+
+That is the second time today the same tool has failed on the same operator for
+the same reason, and the first time I had already written the warning into a
+docstring. Writing it down is not the same as reaching for it. The check that
+caught it both times was cheap and external: does the answer agree with a number
+I already trust?
