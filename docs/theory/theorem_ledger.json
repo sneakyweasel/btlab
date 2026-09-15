@@ -10252,5 +10252,16 @@
    "tests/research/juggler_sequence/test_paper_b_prefix_count.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "id": "J-quasi-stationary-profile-is-tight-shape-unsettled",
+  "tag": "OBSERVATION",
+  "statement": "The quasi-stationary limit is a genuine probability distribution, and its SHAPE is not settled by the horizons reachable here. TIGHT. Mass below m = 50 is 1.000000 at every horizon tried, and the mean converges to about 3.07 rather than growing: 2.799, 2.970, 3.037, 3.060, 3.068 at K = 500, 1500, 4500, 13500, 40000. Nothing escapes to infinity, so the pointwise limit is a probability measure rather than a sub-probability -- which was worth checking, since a critical killed process need not have one. THE TAIL IS THE SLOW PART. Convergence in the word length degrades with m: Pi(m)/r*^m reads 0.9416, 0.9418, 0.9419 at m = 4 across K = 5000, 20000, 60000, converged to four digits, but 4.26, 5.95, 6.41 at m = 32, still climbing by half. Any statement about the profile's shape at moderate m needs horizons well past these. WHAT IS NOT CLAIMED. The double root of J-rho-has-a-tail-variable-variational-formula predicts a linear prefactor, Pi(m) ~ (m + c) r*^m. The ratio Pi(m+1)/Pi(m) does approach r* from above -- 0.652, 0.619, 0.608, 0.601 at m = 8, 16, 24, 32 -- and a pure geometric cannot do that, so the prefactor is not constant. But the implied c is not constant either: it drifts 1.05 to 2.59 over m = 6..26 at K = 60000, varies with the phase from 1.05 to 0.29, and shrinks as K grows. That is consistent with an unconverged tail and equally consistent with the form being wrong. INCONCLUSIVE, recorded so the computation is not repeated in the belief that it settles something. Two earlier readings within this same attempt were also wrong and are noted for the shape of the error: a hump in Pi(m)/r*^m marching outward as the square root of the horizon was taken for a refutation of the linear form when it is the tail still filling in, and the tightness check was written up as mass escaping to infinity before the numbers were read, which show the opposite.",
+  "source": "docs/research_journal.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_paper_b_prefix_count.py"
+  ],
+  "related_conjectures": []
  }
 ]
