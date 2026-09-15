@@ -49518,3 +49518,77 @@ counted and the count went to `404` against a budget of `402`. Identical to the
 `first_usable_depth` slip this morning. Reworded so both sit mid-sentence. Three
 occurrences now; the tokenizer will keep doing this and the fix is to never end a
 sentence on a declaration name.
+
+## Can a Taylor series help? No, and the Fourier alternative refutes its own best hope
+
+Asked whether a series expansion reaches `psi`. Three answers, in order of how
+much they cost to establish.
+
+### Taylor: no, because `psi` is not smooth
+
+Estimated from two disjoint depth windows --- the only honest test, since the
+samples `fract(d BETA)` are a rotation orbit --- every Fourier mode to `k = 24`
+is real: the windows agree to `~2e-5` while the coefficients run `5e-4` to
+`9e-3`, so each is resolved 20 to 400 times above the floor.
+
+After deconvolving the bin box filter, `|psi_hat(k)| ~ k^(-0.79)`. That is the
+signature of a function of **bounded variation with a jump**, not of an analytic
+one. No power series in the phase exists. A Fourier truncation at `K` leaves
+`O(1/K)`, so the expansion route cannot deliver an error term better than
+polynomial --- which is worse than the `1+o(1)` already measured.
+
+### The jump is identified, and it is the factor I already had in closed form
+
+`psi`'s largest discontinuity is at `phi = 0`, size `0.0736` against a
+next-largest `0.0268`. It is explained exactly: `psi(phi) = e^(-lamStar(1-phi))
+h(phi)`, and the explicit factor --- continuous on `[0,1]` --- jumps by
+`e^(lamStar) = 1.7095` on the circle. So the non-smoothness is structural and
+known rather than mysterious.
+
+A secondary jump sits at `phi ~ 0.633`, adjacent to `BETA = 0.6309`. The Sturmian
+coding switches at `1 - BETA = 0.3691`, where `psi` shows no comparable jump, so
+that second one is *not* inherited from the coding. Recorded as unexplained
+rather than narrated into a story.
+
+### The small-divisor hope, refuted by its own test
+
+The attractive idea is that the Ostrowski small divisors `1/||k BETA||` drive the
+spectrum, which would tie `psi` to `BETA`'s continued fraction --- machinery this
+laboratory already has. If that were so, `|psi_hat(k)| * ||k BETA||` would be
+*flatter* than `|psi_hat(k)|`.
+
+It is worse. The spread rises from `18.8x` to `153.5x`, log10 spread `0.334 ->
+0.436`. The scaling is refuted.
+
+What survives is weaker and still worth having: the `1/k` envelope accounts for
+most of the variation, cutting the spread `15.1x -> 5.2x`, and the surviving
+modulation peaks on `BETA`'s Ostrowski lattice. In both windows the five largest
+`k|psi_hat(k)|` lie in `{8, 11, 16, 19, 22, 24}` --- `q_3`, `q_2+q_3`, `2q_3`,
+`q_4`, `q_2+q_4`, `3q_3` --- while the five smallest contain none of them. Which
+five varies with the window (`16` and `22` trade places), so membership is the
+claim and not the ordering.
+
+### A trap that imitates the answer
+
+My first spectrum was computed by averaging over the orbit itself, and it showed
+enormous spikes exactly at the convergent denominators: `k=65` at `5.2e-2`,
+`k=84` at `3.4e-1` --- larger than `k=1`. That is precisely what a small-divisor
+mechanism would look like, and I nearly reported it.
+
+It is an artifact of the estimator. Averaging `y * exp(-2pi i k d BETA)` over an
+orbit turns at rate `||k BETA||`, which is tiny at `k = q_j` by construction: at
+`k = 84` the factor completes about ten turns over `d = 500..6000`. Ten turns is
+not an estimate. Binning first and transforming the grid removes it, and the two
+estimators then agree at small `k` and part company exactly where the turn count
+collapses --- `k=19`: `0.020` binned against `0.029` direct.
+
+The moral is uncomfortable and worth keeping: the artifact and the hypothesis had
+the same shape. Bin first, then transform.
+
+### Also caught, twice
+
+My detrending fit gave `a = -2.01` and *raised* the within-bin scatter from
+`0.0116` to `0.0258` --- a correction larger than the 6% signal it was correcting.
+Dropped in favour of normalising each window by its own mean, which needs no fit.
+And an assertion margin was again tighter than the data: `15.05` against a
+required `15.48`.
