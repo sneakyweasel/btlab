@@ -49936,3 +49936,52 @@ today described a limit; nothing proved there is one.
 
 Paper B's Remark updated accordingly and rebuilt: the manuscript no longer offers
 `k^(-0.8)` as evidence against bounded variation.
+
+## The 1/rho rule is an exact identity, and it was a normalisation all along
+
+Went to check the mechanism behind `a_(k+1)/a_k -> 1/rho` before recommending it
+as work. It is not a limit to be proved. It is an identity.
+
+### The measurement
+
+Fix a depth band; let `d-(k)`, `d+(k)` be the depths in it whose phase is nearest
+`k*beta` from below and above. Stepping `k` by one steps **both depths by exactly
+one**, every time. And when `s_k = 0`, the *raw* difference
+
+    N_(d-)/2^(d-) - N_(d+)/2^(d+)
+
+is unchanged from `k` to `k+1`. The log difference is `0.000e+00` --- at 32
+positions across two disjoint bands, `[12000,20000)` and `[20000,30000)`. When
+`s_k = 1` it changes, `-0.054` in log on average, and no such position gives zero
+in both bands.
+
+### What that means for everything measured before it
+
+`1/rho` was never the content. The content is the invariance; `1/rho` is what
+`c_d = (N_d/2^d)/(rho^d d^(-3/2))` makes of one extra step of depth. And the
+residual drift I could not explain this afternoon --- ratios sliding from
+`1.03523` down to `1.03474` instead of sitting on `1/rho = 1.0352968` --- is the
+`d^(-3/2)` factor. Not noise, not contamination from nearby orbit points. I spent
+a while treating that drift as a defect of the measurement when it was a term in
+the formula.
+
+### The mechanism, and what a proof actually needs
+
+`s_k = 0` means the barrier does not rise between `k` and `k+1`, so the two
+configurations are translates: the same word one step further from the end.
+`s_k = 1` inserts a barrier step and breaks it.
+
+But the proof is not a term-by-term correspondence. `N_(d-)/2^(d-)` and
+`N_(d+)/2^(d+)` are **not** individually preserved under `d -> d+1`; only their
+difference is. So what is needed is a bijection on the difference, which is a
+combinatorial problem and a self-contained one --- unlike the existence of `psi`,
+which is still a local limit theorem for a killed walk against a Sturmian barrier
+and is untouched by any of this.
+
+### Why this is worth stopping on
+
+Everything else in this thread about `psi` is a measurement with error bars.
+This is an agreement at floating-point zero across 32 independent positions. In a
+day that produced three separate artifacts wearing the costume of a finding, that
+distinction is the one worth recording: a fit near a boundary is a hypothesis, an
+exact zero repeated 32 times is a theorem someone has not written down yet.
