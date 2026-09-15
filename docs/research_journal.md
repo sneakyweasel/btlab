@@ -49713,3 +49713,64 @@ copies and the Zenodo kit synchronised.
 `.build/paper_a` and `.build/paper_c` are tracked; Paper B has never tracked a
 build log. I removed the transient work directory rather than start tracking one
 unilaterally. Worth a decision at some point, not mine to make here.
+
+## Pinning the jump amplitudes: mostly a failure, and two of my claims were too strong
+
+### What is resolved
+
+With a slope-corrected estimator --- a line fitted each side of the jump and
+extrapolated to it, which removes `psi`'s local trend as a plain window mean does
+not --- the amplitudes at `k = 0..7` are
+
+    0.074850  0.038159  0.019259  0.019942  0.015267  0.010299  0.010664  0.008857
+
+The same estimator at points *off* the orbit returns up to `0.00735`. That is the
+floor, and everything from `k = 8` down (`0.00656` and below) is **not resolved**.
+
+### The rule that looked beautiful and is not evidence
+
+Over the full depth window, `a_(k+1)/a_k` equals `1.0355` at exactly the `k`
+where the Sturmian word `s_k = ceil((k+1)b) - ceil(kb)` vanishes --- `k = 2, 5,
+8, 10, 13` --- with spread `4.3e-5`. And `1/rho = 1.0352968`.
+
+Five for five, including a position I predicted before measuring. It is still
+not evidence:
+
+- the spread is *across k sharing one dataset*, not an independent error;
+- splitting the depths into three windows raises the spread to `0.19`, `0.48`,
+  `0.43` --- the sub-windows confirm nothing;
+- of the five positions only `k = 2` and `k = 5` have amplitudes above the floor.
+
+So: suggested at two points, and the constant is **not** shown to be `1/rho`. I
+had it written up as a finding before I ran the sub-window check.
+
+### Why sampling cannot do better
+
+`psi`'s apparently smooth part is itself a sum of dense small jumps, the orbit
+being dense. No local fit separates a small jump from its neighbours. The floor
+is structural, not a matter of more depths.
+
+### The exact route, which I did not finish
+
+Crossing `k*beta` turns `b_(d-1-k)` on and `b_(d-k)` off, so the barrier sits one
+higher during exactly one step and the amplitude is a difference of two DP runs
+--- no sampling at all. But computed at fixed `d` it is phase-dependent: `k = 0`
+reads `0.174`, `0.184`, `0.045` at `d = 2000, 4000, 8000`, because the barrier
+word near the end depends on `fract(d beta)`. Getting `a_k` needs the backward
+formulation with the Sturmian word as input. That is where this resumes, and it
+is a better lead than the sampling route ever was.
+
+### Two claims of mine, softened
+
+`J-psi-is-bounded-variation-with-an-ostrowski-spectrum` and Paper B's Remark 6.2
+both called `psi` a function of bounded variation. The jumps are observed; the
+*summability of their amplitudes* is not, and the measured decay `k^(-0.79)` is
+**slower** than the `k^(-1)` bounded variation would give. I read `k^(-0.79)` as
+"close to `1/k`, so a jump" and did not notice it points the wrong way for the
+conclusion I drew from it.
+
+Both softened: `psi` has downward jumps on the orbit and is discontinuous, which
+is all the no-Taylor conclusion needs. Paper B rebuilt, all copies synced.
+
+The row id `J-psi-is-bounded-variation-...` now overstates its own statement. I
+left the id --- ids are referenced elsewhere --- and said so in the row.
