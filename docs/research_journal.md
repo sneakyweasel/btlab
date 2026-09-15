@@ -51140,3 +51140,45 @@ earlier in this session for exactly this file.
 cannot discriminate, and the replacement finds nothing to act on. No bound moves
 and no fate is excluded. What survives is `tilted_share_power`, the sizing rule
 `ESS_t ≳ 1/(4ε²)`, and a corrected reading of the row's evidence.
+
+## What the literature actually has, and what it does not
+
+I proposed four external angles for the frontier. Searching them, three
+were already imported here and I should say so plainly: the ANTEDB is
+already consulted at its August 2026 vertices, Wiener--Hopf and the
+Brownian meander are in daily use with `kappa` in closed form, and
+Piatetski--Shapiro is a dossier. Reading the lab's own exported question
+also corrected my framing of it: it needs `(5/4)p + q < 2/3` against a
+hull minimum of `95/112`, and the note observes that any pair below the
+line *is itself a subconvexity result past 1/12*. That is not an
+optimisation run, and suggesting one was naive about the size of the gap.
+
+Two things survived, and both are now in negative knowledge.
+
+**Denisov--Sakhanenko--Wachtel**, first-passage over moving boundaries,
+covers every boundary with `g_n = o(c_n)` --- a Sturmian sawtooth is
+`O(1)`, so it qualifies --- and is cited nowhere in `docs/`. But its
+conclusion is about the *rescaled* walk, so it gives the order and the
+meander limit, which the lab already derives. The open link is the
+phase-indexed profile, and a diffusive limit averages exactly that away.
+A genuine import with a genuine discount, and the discount is the part
+worth recording.
+
+**The driven-critical gap.** Operator renewal theory handles polynomial
+memory but for autonomous maps; transfer-operator cocycles handle driven
+systems but under quasi-compactness, which is geometric memory. This
+operator is both driven and critical. Each half exists; nothing combines
+them. That is the more useful of the two findings, because it converts
+"go and look it up" into "this would be a small research contribution",
+and the lab already holds the input such a proof consumes.
+
+### On the shape of the answer
+
+The honest yield of the search was mostly subtraction: three suggestions
+removed, one import discounted, one gap identified. That is a worse
+result than I wanted and a better one than repeating the suggestions
+would have been, and the reason to write it down is that the next session
+to ask "what field could help here" will otherwise regenerate the same
+four names from the same background knowledge. Negative knowledge about
+the *literature* is as reusable as negative knowledge about the
+mathematics; the index had the second kind and not the first.
