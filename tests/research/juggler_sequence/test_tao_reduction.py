@@ -4,6 +4,8 @@ from __future__ import annotations
 
 import math
 
+from research.juggler_sequence.pressure_direct import tilted_share_power
+
 from research.juggler_sequence.tao_reduction import (
     LOG2_3,
     REQUIRED_RATE,
@@ -233,3 +235,43 @@ def test_paper_cs_chernoff_step_is_already_sharp() -> None:
     lo, hi = scaled[0] * math.sqrt(190), scaled[-1] * math.sqrt(3040)
     slope = math.log(hi / lo) / math.log(3040 / 190)
     assert 0.40 < slope < 0.55, slope          # sqrt, not d^(3/2)
+
+
+def test_the_no_momentum_statistic_is_reading_its_own_noise() -> None:
+    """``sum_t (s_theta(t) - 1/2)^+`` cannot distinguish momentum from sampling error.
+
+    A positive part turns symmetric error into a positive contribution, so under the exact null
+    ``s_theta == 1/2`` the statistic already sits at ``sum_t sd_t / sqrt(2 pi)``.  Worse, that floor
+    GROWS with depth, because the effective sample size falls as liveness thins the sample and the
+    tilt concentrates the weights.  So "the measured excess equals the positive-part noise" -- the
+    reading recorded for the census -- is what one expects whether or not momentum is present.
+
+    At the recorded settings (y = 1e12, 40000 samples, d = 40, theta = 0.396) the measured 0.1873
+    sits against a null of 0.1714 +/- 0.0459, p = 0.365.  Here the same comparison is made at a
+    size a test can afford; the assertion is that the two are the same order, not that they agree.
+    """
+    r = tilted_share_power(12, 350_000_000, 3000, 30, 0.396, seed=101)
+    assert 0.25 < r["positive_part_excess"] / r["null_positive_part"] < 2.0, r
+
+    ess = r["ess_by_depth"]
+    assert abs(ess[0] - 3000) < 1e-6                        # depth 1: every start is odd, weights equal
+    assert ess[0] > ess[14] > ess[29] > 0, ess              # and the sample thins with depth
+    assert ess[0] / ess[29] > 10, ess                       # by more than an order of magnitude
+
+
+def test_the_signed_excess_is_the_statistic_with_power() -> None:
+    """Unbiased, and it finds no momentum.
+
+    Six independent seeds at ``y = 1e20`` with 80000 samples give ``z`` of +0.65, +0.10, -1.13,
+    +0.27, -0.87, -0.65 -- mean -0.27, sd 0.71, t = -0.94 on 5 df -- so the signed sum is centred
+    at zero and ``M_{theta,1/2}`` is supported at these depths.
+
+    Guarding a trap.  An earlier pass read ``z`` of -0.07, +1.06, +1.98 at y = 1e12, 1e20, 1e30 and
+    saw a trend rising with the scale.  All three used the same default seed; independent seeds
+    centre at zero.  Quadrupling the samples is the cheap check that separates the two -- a real
+    offset holds ``z`` up while noise lets it fall, and here it fell.
+    """
+    zs = [tilted_share_power(12, 350_000_000, 3000, 30, 0.396, seed=s)["signed_z"]
+          for s in (101, 102, 103)]
+    assert all(abs(z) < 3.5 for z in zs), zs                # no momentum at any seed
+    assert min(zs) < 0.0 < max(zs) or abs(sum(zs) / 3) < 2.0, zs   # not a consistent offset
