@@ -181,6 +181,46 @@ def backward_prefix_ratio(phi: float, depth: int, cap: int = 300) -> float:
     return math.exp(1.5 * math.log(depth) - lam * (1 - phi) + scale + math.log(weight[0]))
 
 
+def boundary_fraction_profile(depth: int, shape: int = 0) -> list[float] | tuple[list[float], list[list[float]]]:
+    """``R_d = Q_d / P_d``, the share of survivors sitting exactly on the barrier.
+
+    ``Q_d`` counts survivors with ``o_d = ceil(d BETA)``.  ``R_d`` is the coordinate the
+    count recursion is written in -- ``P_(d+1) = P_d (1 - b_d R_d / 2)`` exactly, by
+    ``J-count-recursion-is-the-boundary-mass`` -- and unlike ``psi`` it needs no
+    normalisation at all, being a ratio, so it carries no ``rho^d d^(-3/2)`` and no
+    ``1 + o(1)``.  That is why it resolves an order of magnitude better.
+
+    With ``shape > 0`` the conditional distribution ``pi_d(m)`` for ``m < shape`` is
+    returned alongside; ``R_d`` is its value at ``m = 0``.
+    """
+    import math
+
+    beta = LOG2 / LOG3
+    mass = [0.0] * (depth + 2)
+    mass[0] = 1.0
+    ratios = [1.0]
+    shapes: list[list[float]] = [[1.0] + [0.0] * (shape - 1)] if shape else []
+    for t in range(1, depth + 1):
+        nxt = [0.0] * (depth + 2)
+        for o in range(t):
+            m = mass[o]
+            if m:
+                nxt[o + 1] += 0.5 * m
+                nxt[o] += 0.5 * m
+        floor = math.ceil(t * beta)
+        for o in range(floor):
+            nxt[o] = 0.0
+        total = sum(nxt)
+        if total == 0.0:
+            raise ValueError(f"no surviving mass at depth {t}")
+        mass = [v / total for v in nxt]
+        ratios.append(mass[floor])
+        if shape:
+            shapes.append([mass[floor + j] if floor + j < len(mass) else 0.0
+                           for j in range(shape)])
+    return (ratios, shapes) if shape else ratios
+
+
 def meander_constant(d_values: tuple[int, ...] = (400, 800, 1600)) -> list[float]:
     """``(N_d/2^d) / (rho^d d^(-3/2))`` -- the constant in the polynomial correction.
 
