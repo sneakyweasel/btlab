@@ -4104,3 +4104,48 @@ def test_psi_is_bounded_at_every_resonance_that_can_be_resolved() -> None:
     a1054, b1054 = fhat(1054, 8000, 19000), fhat(1054, 19000, 30000)
     assert a485 / b485 > 2.0                               # correctly flagged
     assert 0.5 < a1054 / b1054 < 2.0                       # spuriously passed
+
+
+def test_the_boundary_fraction_is_a_step_function_on_the_rotation_orbit() -> None:
+    """R(phi) is piecewise constant, changing exactly at the orbit points {k BETA}.
+
+    The backward word has w_j(phi) = 1{frac(phi - (j+1)BETA) >= 1 - BETA}, which flips
+    exactly when phi crosses j*BETA.  So a length-K word -- and therefore Pi_phi computed
+    from it -- is constant on every interval free of {0, BETA, ..., (K-1)BETA}.  R is a
+    step function whose jump set is that orbit, the same one psi jumps on.
+
+    Checked on a uniform grid against the orbit {k BETA : k = 0..K} -- both endpoints of
+    each arc, so K+1 points for a length-K word: every change in R sits on an orbit point
+    and none falls strictly inside a gap.  On 8192 phases against a 1200-step word there
+    are 1100 changes, all on boundaries.  Jump sizes decay -- 0.1171 at k=0, 0.0358, 0.0179, 0.0089, 0.0068 after.
+
+    CONSEQUENCE FOR f.  f = log(1 - b R / 2) - log rho therefore inherits R's jumps on top
+    of its own at 1 - BETA, so f is NOT a single-jump function.  That is why |f_hat(q)| is
+    far below the pure-jump prediction |J|/(2 pi q) -- by a factor 37 at q = 84 -- and why
+    the reading |psi_hat(q_j)| ~ |J| a_(j+1) / (4 pi^2) does not hold, its ratios running
+    from 0.03 to 4.7.
+    """
+    import numpy as np
+
+    n = 2048
+    phases = [(k + 0.5) / n for k in range(n)]
+    R = np.array(B.boundary_fraction_at_phases(phases, steps=400, cap=90))
+
+    steps_at = np.nonzero(np.diff(R) != 0)[0]
+    assert len(steps_at) > 200, len(steps_at)
+
+    # the arc {p : frac(p - (j+1)BETA) >= 1 - BETA} has TWO endpoints, j*BETA and
+    # (j+1)*BETA, so a length-K word flips at k = 0 .. K inclusive.  Dropping the last
+    # one leaves a real change stranded inside a phantom gap at frac(400 BETA) = 0.3719.
+    orbit = np.sort(np.array([(k * BETA_) % 1.0 for k in range(401)]))
+    cell = np.searchsorted(orbit, np.array(phases))
+    inside = [i for i in steps_at if cell[i] == cell[i + 1]]
+    assert inside == [], inside[:5]           # no change strictly inside an orbit gap
+
+    # the biggest steps land on the low-index orbit points
+    order = np.argsort(np.abs(np.diff(R)))[::-1][:6]
+    for i in order:
+        loc = phases[i + 1]
+        near = min(min(abs((k * BETA_) % 1.0 - loc), 1 - abs((k * BETA_) % 1.0 - loc))
+                   for k in range(20))
+        assert near < 3.0 / n, (loc, near)
