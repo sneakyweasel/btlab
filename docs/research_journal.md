@@ -49592,3 +49592,65 @@ My detrending fit gave `a = -2.01` and *raised* the within-bin scatter from
 Dropped in favour of normalising each window by its own mean, which needs no fit.
 And an assertion margin was again tighter than the data: `15.05` against a
 required `15.48`.
+
+## The second jump is BETA, and it is one of a cascade at every k*BETA
+
+Left `phi ~ 0.633` unexplained in the last entry, noting only that it sits next
+to `BETA = 0.6309` and that the Sturmian coding switches at `1 - BETA = 0.3691`
+instead. It is explained, and the explanation subsumes it.
+
+### The arithmetic
+
+The barrier increment is `b_t = 1` iff `fract(t BETA) >= 1 - BETA`, and
+`fract((d-1-k)BETA) = fract(d BETA) - (k+1)BETA`. So the condition on `phi_d` for
+the barrier step `k+1` from the end is
+
+    phi - (k+1) BETA  mod 1  >=  1 - BETA,
+
+an arc of length `BETA` whose **endpoints are `k BETA` and `(k+1) BETA`**. Taking
+the union over `k`, the jump set of `psi` is the forward rotation orbit
+`{k BETA mod 1 : k >= 0}` --- countable, dense, summable sizes.
+
+`k = 0` gives the jump at `0`. `k = 1` gives `BETA = 0.6309`, which is the one I
+could not place. The coding's own switch point `1 - BETA` is not in the set,
+which is why looking for it there failed.
+
+### The measurement
+
+At 512 bins over 20001 depths the nine largest jumps land on `k BETA` for
+`k = 0..8` with no exception, each within `0.0006` of target against a bin width
+of `0.00195`. Sizes, from 0.02-wide windows either side:
+
+    k     0        1        2        3        4        5        6        7        8
+    j  -.07112  -.03415  -.01505  -.01559  -.01078  -.00573  -.00593  -.00403  -.00172
+
+Every one negative. So `psi` **drops** crossing each `k BETA` upward and recovers
+smoothly between: a sawtooth on the orbit. The sizes pair at `k = (2,3)`,
+`(5,6)`, `(8,9)`, `(10,11)` --- differences of `3 = q_2` --- which is the
+three-distance structure of the orbit showing up in the amplitudes.
+
+From `k = 8` the jumps fall to where a window comparison also picks up `psi`'s
+local slope; off-orbit controls read up to `0.0056`. So the tail is not
+individually resolved and I claim nothing for it.
+
+### What it explains, and one attribution it corrects
+
+Both earlier readings at once. Jumps give the `k^(-0.79)` Fourier decay; a jump
+set which *is* a rotation orbit gives the Ostrowski peaks, the transform of the
+jump measure being `sum_k a_k e^(-2 pi i j k BETA)`. The spectrum was never a
+small-divisor effect --- it is the Fourier transform of a sawtooth on the orbit,
+which is why multiplying by `||k BETA||` made it worse.
+
+It also corrects what I said about the `k = 0` jump. I attributed it to the
+explicit factor `e^(-lamStar(1-phi))`, which jumps by `e^(lamStar) = 1.7095` on
+the circle. The measured net jump at `0` is only `7%`, so `h` cancels most of it
+--- the same two-competing-effects cancellation as everywhere else in this
+thread. The jumps at `k >= 1` are `h` alone, the explicit factor being smooth
+away from `0`.
+
+### Status
+
+`psi`'s *structure* is now understood: a BV sawtooth whose jump set is the
+rotation orbit of `0`, with geometrically decaying amplitudes. Its *existence*
+--- the convergence of `d^(3/2) G(d)` --- is untouched and still open. Knowing
+the shape of a limit is not proving there is one.
