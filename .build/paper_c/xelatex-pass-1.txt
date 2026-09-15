@@ -74,13 +74,10 @@ echeck.sty
 (C:\Users\phili\AppData\Local\Programs\MiKTeX\tex/generic/uniquecounter\uniquec
 ounter.sty)))
 (C:\Users\phili\AppData\Local\Programs\MiKTeX\tex/latex/l3kernel\l3backend-xete
-x.def)
-No file cochin-juggler-fates.aux.
+x.def) (cochin-juggler-fates.aux)
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
-
-Package hyperref Warning: Rerun to get /PageLabels entry.
-
+(cochin-juggler-fates.out) (cochin-juggler-fates.out)
 (C:\Users\phili\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd)
 (C:\Users\phili\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd)
 [1] [2] [3] [4] [5] [6] [7] [8] [9] [10] [11] [12] [13] [14] [15] [16] [17]
@@ -90,16 +87,7 @@ Package hyperref Warning: Rerun to get /PageLabels entry.
 Underfull \hbox (badness 3138) in paragraph at lines 3867--3878
 \TU/lmr/m/n/10.95 code is run by \TU/lmtt/m/n/10.95 python -m research.juggler_
 sequence.fate_contagion \TU/lmr/m/n/10.95 and \TU/lmtt/m/n/10.95 python
-[49] [50] [51] [52] [53] [54] [55] (cochin-juggler-fates.aux)
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-
-Package rerunfilecheck Warning: File `cochin-juggler-fates.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
- )
+[49] [50] [51] [52] [53] [54] [55] (cochin-juggler-fates.aux) )
 (see the transcript file for additional information)
 Output written on cochin-juggler-fates.pdf (55 pages).
 Transcript written on cochin-juggler-fates.log.

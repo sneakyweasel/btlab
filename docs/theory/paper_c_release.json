@@ -401,7 +401,7 @@
     {
       "path": "src/research/juggler_sequence/tao_reduction.py",
       "mode": "text",
-      "sha256": "8725a2660a6ab279b2b1c23a831053fed07064aae53a6c0eb2f306f2ab01cdcb"
+      "sha256": "6c3b6db26c2c0d130a52a04d2b38a54b88f10c054542ed83c21710ec495653f5"
     },
     {
       "path": "tools/build_paper_c.py",
@@ -428,7 +428,7 @@
     {
       "path": "docs/theory/juggler_fate_almost_all_note.pdf",
       "mode": "binary",
-      "sha256": "1717a34cf988753e45362995d955a3d712de38a5e13cdc9fc3b804166bc17877"
+      "sha256": "61ae15f2db1070c95e5947d39b6133141f9a73ef622d4c0cb49e483ec5ad496e"
     },
     {
       "path": "docs/theory/cochin-juggler-fates.tex",
