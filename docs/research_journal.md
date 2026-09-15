@@ -50179,3 +50179,62 @@ That is the third time today the problem changed shape, each time toward
 something more standard: from "a constant that does not exist", to "the
 asymptotics of a boundary local time", to "a quasi-stationary distribution in a
 rotating environment". The mathematics did not get easier; it got named.
+
+## The double root: why there is a polynomial at all
+
+Kept digging on the quasi-stationary picture and found the reason for `d^(-3/2)`.
+
+### The two maps, and what a geometric tail does under them
+
+In the `m` coordinate the conditional law updates by
+
+    T_0 pi(m) = (pi(m) + pi(m-1))/2      barrier does not rise
+    T_1 pi(m) = (pi(m) + pi(m+1))/2      barrier rises, losing pi(0)/2
+
+A geometric tail `r^m` keeps its **shape** under both: `T_0` multiplies its mass by
+`(1+1/r)/2`, `T_1` by `(1+r)/2`. So along a word with density `beta` of rises the
+tail reproduces with factor
+
+    [ (1+1/r)/2 ]^(1-beta) [ (1+r)/2 ]^beta
+
+and setting that equal to `rho` is the characteristic equation for the tail.
+
+### It is a double root, and that is the whole point
+
+My bisection found no root, which was the finding rather than a bug. The exponent
+is stationary exactly at
+
+    r* = (1-beta)/beta = exp(-lambda*) = 0.584962501
+
+and there `1 + 1/r* = 1/(1-beta)` and `1 + r* = 1/beta`, so the value collapses to
+
+    -[ log2 + beta log beta + (1-beta) log(1-beta) ]  =  -KL(beta || 1/2)  =  log rho.
+
+The minimum **touches** `log rho` instead of crossing it --- verified to `5.55e-17`,
+with `g(r* ± delta) > log rho` at every `delta` tried.
+
+So `rho = min_r [ (1+1/r)/2 ]^(1-beta) [ (1+r)/2 ]^beta`, attained at the tilt: a
+second variational formula for `rho`, in the **tail** variable, dual to the Cramér
+one in the tilt variable.
+
+A simple root would give a pure geometric tail and a pure exponential decay. A
+double root is the critical case and forces a polynomial correction. That is where
+`d^(-3/2)` comes from, and it is the first explanation of that exponent in this
+thread rather than a measurement of it.
+
+It also ties two threads together: the rate at which the conditional profile
+decays away from the barrier is the same number that makes the walk mean zero.
+
+### One thing I guessed wrong and checked
+
+I said the measured tail settles on `r*` and that the later fall-off was my grid
+edge. The fall-off is real: `0.5940, 0.5819, 0.5699, 0.5498` at `m = 40, 80, 150,
+300`, **identical** on grids of width 600, 1200 and 2400. So it is a finite-depth
+cutoff at large `m`, not an artefact of the box. Recorded as measured and not
+explained.
+
+### Status
+
+`psi`'s existence is still open, and nothing here proves the quasi-stationary
+limit exists. But the polynomial is no longer an empirical exponent: it is what a
+double root produces.

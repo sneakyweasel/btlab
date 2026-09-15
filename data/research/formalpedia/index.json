@@ -54161,6 +54161,56 @@
       "trust": "kernel"
     },
     {
+      "doc": "The tail ratio of the quasi-stationary profile: `(1 - b) / b`.",
+      "file": "formal/Problems/Juggler/PaperBTilt.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 137,
+      "module": "Problems.Juggler.PaperBTilt",
+      "name": "tailRoot",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The tail ratio is the tilt.** `tailRoot b * exp (lamStar b) = 1`, so the rate at which the conditional profile decays away from the barrier is the reciprocal of the tilt that makes the walk mean zero. Stated multiplicatively to stay inside field algebra.",
+      "file": "formal/Problems/Juggler/PaperBTilt.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 142,
+      "module": "Problems.Juggler.PaperBTilt",
+      "name": "tailRoot_mul_odds",
+      "trust": "kernel"
+    },
+    {
+      "doc": "At the tail ratio, `1 + 1/r` collapses to `1/(1-b)`. One of the two substitutions that turn the characteristic exponent into `-KL(b \u2016 1/2)`, which is `log rho`.",
+      "file": "formal/Problems/Juggler/PaperBTilt.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 151,
+      "module": "Problems.Juggler.PaperBTilt",
+      "name": "one_add_inv_tailRoot",
+      "trust": "kernel"
+    },
+    {
+      "doc": "And `1 + r` collapses to `1/b`. The other substitution.",
+      "file": "formal/Problems/Juggler/PaperBTilt.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 161,
+      "module": "Problems.Juggler.PaperBTilt",
+      "name": "one_add_tailRoot",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The tail ratio is the stationary point of the characteristic exponent.** The exponent `(1-b) log((1+1/r)/2) + b log((1+r)/2)` has derivative proportional to `b - (1-b)/r`, vanishing exactly at `tailRoot b`. Its value there is `log rho`, by the two substitutions above together with `rho_closed_form`, so the characteristic equation has a DOUBLE root \u2014 the critical case, and the structural reason a polynomial factor accompanies `rho^d`.",
+      "file": "formal/Problems/Juggler/PaperBTilt.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 174,
+      "module": "Problems.Juggler.PaperBTilt",
+      "name": "stationary_iff_eq_tailRoot",
+      "trust": "kernel"
+    },
+    {
       "doc": "Parity of `\u230a(2k+1)^{3/2}\u230b`: the letter following the odd step from `2k+1`.",
       "file": "formal/Problems/Juggler/ParityComplexity.lean",
       "kind": "def",
@@ -89032,7 +89082,7 @@
       "ledger": []
     },
     "Problems.Juggler.PaperBTilt": {
-      "declarations": 13,
+      "declarations": 18,
       "file": "formal/Problems/Juggler/PaperBTilt.lean",
       "imports": [],
       "ledger": []
@@ -90108,13 +90158,13 @@
     }
   },
   "totals": {
-    "declarations": 6650,
+    "declarations": 6655,
     "declarations_with_a_ledger_row": 4572,
-    "ledger_rows_naming_a_file": 418,
+    "ledger_rows_naming_a_file": 419,
     "modules": 289,
     "trust": {
       "compiler": 56,
-      "kernel": 6594
+      "kernel": 6599
     }
   }
 }

@@ -133,6 +133,60 @@ theorem beta_rho_closed :
     Real.exp (-(lamStar beta) * beta) / (2 * (1 - beta)) = rho beta :=
   rho_closed_form beta_pos beta_lt_one
 
+/-- The tail ratio of the quasi-stationary profile: `(1 - b) / b`. -/
+noncomputable def tailRoot (b : ℝ) : ℝ := (1 - b) / b
+
+/-- **The tail ratio is the tilt.**  `tailRoot b * exp (lamStar b) = 1`, so the rate at
+which the conditional profile decays away from the barrier is the reciprocal of the tilt
+that makes the walk mean zero.  Stated multiplicatively to stay inside field algebra. -/
+theorem tailRoot_mul_odds (h0 : 0 < b) (h1 : b < 1) :
+    tailRoot b * (b / (1 - b)) = 1 := by
+  have hb : (1 : ℝ) - b ≠ 0 := ne_of_gt (by linarith)
+  have hb0 : b ≠ 0 := ne_of_gt h0
+  simp only [tailRoot]
+  field_simp
+
+/-- At the tail ratio, `1 + 1/r` collapses to `1/(1-b)`.  One of the two substitutions that
+turn the characteristic exponent into `-KL(b ‖ 1/2)`, which is `log rho`. -/
+theorem one_add_inv_tailRoot (h0 : 0 < b) (h1 : b < 1) :
+    1 + (tailRoot b)⁻¹ = (1 - b)⁻¹ := by
+  have hb : (1 : ℝ) - b ≠ 0 := ne_of_gt (by linarith)
+  have hb0 : b ≠ 0 := ne_of_gt h0
+  simp only [tailRoot]
+  rw [inv_div]
+  field_simp
+  ring
+
+/-- And `1 + r` collapses to `1/b`.  The other substitution. -/
+theorem one_add_tailRoot (h0 : 0 < b) :
+    1 + tailRoot b = b⁻¹ := by
+  have hb0 : b ≠ 0 := ne_of_gt h0
+  simp only [tailRoot]
+  field_simp
+  ring
+
+/-- **The tail ratio is the stationary point of the characteristic exponent.**  The
+exponent `(1-b) log((1+1/r)/2) + b log((1+r)/2)` has derivative proportional to
+`b - (1-b)/r`, vanishing exactly at `tailRoot b`.  Its value there is `log rho`, by the
+two substitutions above together with `rho_closed_form`, so the characteristic equation
+has a DOUBLE root — the critical case, and the structural reason a polynomial factor
+accompanies `rho^d`. -/
+theorem stationary_iff_eq_tailRoot {r : ℝ} (h0 : 0 < b) (hr : r ≠ 0) :
+    b - (1 - b) / r = 0 ↔ r = tailRoot b := by
+  have hb0 : b ≠ 0 := ne_of_gt h0
+  simp only [tailRoot]
+  constructor
+  · intro h
+    field_simp at h
+    field_simp
+    linarith
+  · intro h
+    subst h
+    have hb : (1 : ℝ) - b ≠ 0 := by
+      intro hz; rw [hz] at hr; simp at hr
+    field_simp
+    ring
+
 end PaperBTilt
 
 end Problems.Juggler
