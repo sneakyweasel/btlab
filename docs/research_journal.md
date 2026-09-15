@@ -49881,3 +49881,58 @@ numbers that would settle it disagree.
 The three-case split itself, with its tight standard deviations, and the `1/rho`
 identification at the zeros. Those are structure. The envelope exponent is a fit
 over fifty points near a boundary and should be treated as one.
+
+## The reconstruction closes: psi is its jumps, and the exponents never disagreed
+
+`psi = mean + sum_k a_k B_1(x - k beta) + residual`, with
+`B_1(x) = {x} - 1/2` dropping by one at zero.
+
+### It works, with no fitted parameter
+
+    K        1        5       25      100      400
+    L2 var  47.6%   84.3%   91.1%   91.3%   91.2%
+
+and `93`–`95%` of each low-order Fourier coefficient. It **saturates by
+`K = 25`** --- adding amplitudes past there changes nothing, which is the same
+fact as their lying below the resolution floor found this afternoon. The two
+measurements agree about where the method stops.
+
+### The residual is real, and is not a smooth part
+
+`7.7x` the per-bin standard error, so not binning noise. But its spectrum is
+**flat** --- low-`n` mean `0.00175` against high-`n` `0.00134`, ratio `1.31`. Flat
+is what an unresolved tail of small jumps on a dense orbit gives; a genuine
+smooth remainder would sit at low `n`. So `psi` is jump part plus unresolved jump
+tail, with no evidence of anything else in it.
+
+### The bounded-variation disagreement was my own arithmetic
+
+The jump part has transform `-S(n)/(2 pi i n)` with
+`S(n) = sum_k a_k e^(-2 pi i n k beta)`, and this reproduces the measured
+spectrum to `0.3%` at `n = 1, 2, 3` --- again with nothing fitted. And `S` is
+**not bounded**: `|S(n)| ~ n^(+0.055)`.
+
+So `|psi_hat(n)|` is a `1/n` envelope times a growing Ostrowski modulation.
+Fitting a single exponent to that product *must* read slower than `1/n`. The
+`k^(-0.79)` and the amplitude exponent `-1.09` were never in conflict; I was
+fitting one power to two factors and then reporting the mismatch as a tension in
+the mathematics.
+
+Worse, I had already measured the modulation. The "Ostrowski peaks" recorded this
+morning --- the five largest `k|psi_hat(k)|` at `8, 11, 16, 19, 22, 24` --- **are**
+`S(n)`. I found the explanation before I found the problem and did not connect
+them for six hours.
+
+### Status
+
+`psi`'s structure is now explicit: jumps `a_k` at `k beta`, amplitudes obeying
+`1/rho` at the Sturmian zeros and a second-order rule otherwise, envelope
+`~ k^(-1.09)`, reconstructing the function to `91%` and its low spectrum to
+`95%`. Bounded variation stays open --- the amplitude exponent is still a fit near
+the boundary --- and `psi` is claimed only as discontinuous with these jumps.
+
+And `psi`'s *existence* is exactly as open as it was this morning. Everything
+today described a limit; nothing proved there is one.
+
+Paper B's Remark updated accordingly and rebuilt: the manuscript no longer offers
+`k^(-0.8)` as evidence against bounded variation.
