@@ -51376,3 +51376,51 @@ but it needs the polynomial rate as an *input* rather than producing it, and tha
 rate is the original problem. Birkhoff would have produced it. That is the
 difference between the two, and it is why the cone, which is real, does not finish
 the job.
+
+
+## Going rational, and a correction
+
+The idea was that a rational barrier removes the driving --- the period-`q` map is
+a single autonomous operator --- so the renewal-theory literature I had recorded
+as inapplicable would apply after all, with the limit `p/q -> beta` controlled by
+the slope-only result. The first check killed it, and identified the object
+exactly.
+
+**What the Q-process is.** The h-transform of the period map is a genuine Markov
+chain: row sums `1.000000`, eigenvalue `0.105441` against the predicted
+`rho^65 = 0.105505`, eigen-relation residual `4.1e-13`. Its drift is `c/m` with `c`
+constant to three figures over `m = 10..80`, the per-period variance is
+`q beta(1-beta) = 15.13`, and `2c/sigma^2 = 1.94` --- which is the invariant-measure
+exponent `m^2` measured independently, from a different computation. It is discrete
+BES(3). That is the expected answer, since BES(3) is Brownian motion conditioned to
+stay positive and this is a killed walk conditioned to survive, and it is pleasant
+to have it come out with the constants matching rather than just the shape.
+
+**And it is transient**, which is the redirect. Renewal theory is machinery for
+R-*null* operators --- intermittent maps, where the chain returns infinitely often
+and mixes slowly. A transient Q-process is not what it consumes. So removing the
+driving does not hand the problem to that literature; the object is a Yaglom limit
+and the reading is quasi-stationary-distribution theory. PARK on the renewal route.
+
+### The correction
+
+Yesterday I recorded the chain as rho-null on the strength of `sum nu h = infinity`.
+That measurement is right and the inference was not: the criterion separates
+R-positive from R-null only *within* R-recurrence, and says nothing when the chain
+is transient. The classification is decided by the h-chain's expected return count,
+which converges --- return probability `n^-1.26` and steepening toward the `n^-3/2`
+of BES(3), with the `n^0.5` normalisation decaying from `0.103` to `0.017`, ruling
+out the `n^-1/2` of null recurrence.
+
+The no-gap conclusion is unaffected: R-transient is further from a gap than R-null,
+and the theorem is independent. But the label was wrong, and I reached for the
+convergence criterion I happened to remember rather than the one that decides the
+question. The row id stays as it is --- other rows and the journal reference it ---
+with the correction in the body and a pointer to the right object.
+
+### What this Phase-0 was worth
+
+It killed the route I proposed in four hours, identified the object to three
+figures, corrected an error in the record, and pointed at the correct literature.
+That is a good outcome for a route that does not work, and better than the route
+working would have been if the object had stayed unidentified.

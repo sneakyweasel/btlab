@@ -701,6 +701,59 @@ def barrier_memory_loss(p: int, q: int, tails: tuple[float, ...], depths: tuple[
     return out
 
 
+def barrier_h_transform(p: int, q: int, cap: int) -> tuple["Any", float]:
+    """The Doob h-transform of the period map, as an honest stochastic matrix, with its eigenvalue.
+
+    For a RATIONAL barrier the period-``q`` map is a single autonomous operator, so the driving that
+    makes this problem hard disappears and the classical apparatus for one killed operator applies.
+    Its h-transform ``Ptilde(m,m') = h(m') P(m,m') / (lam h(m))`` is a genuine Markov chain -- the
+    Q-process, the walk conditioned never to hit the barrier.
+
+    WHAT IT IS.  Discrete BES(3), quantitatively.  The drift is ``c/m`` with ``c`` constant to three
+    figures over ``m = 10..80`` (14.69, 14.82, 14.54, 13.94, 13.05 per period at ``41/65``), the
+    per-period variance is ``q * BETA * (1 - BETA) = 15.13``, and ``2c/sigma^2 = 1.94``, which is the
+    exponent of the invariant measure ``nu * h ~ m^2`` measured independently.  BES(3) is Brownian
+    motion conditioned to stay positive, so a killed walk conditioned to survive landing on it is
+    the expected answer and the numbers say it is the right one.
+
+    AND IT IS TRANSIENT, not null recurrent.  The return probability ``Ptilde^n(m,m)`` falls like
+    ``n^-1.26`` over ``n = 40..320`` and is still steepening toward the ``n^-3/2`` of BES(3); the
+    ``n^0.5`` normalisation decays from 0.103 to 0.017, which rules out the ``n^-1/2`` of null
+    recurrence, and the partial sums converge.  So the killed chain is R-TRANSIENT.
+
+    WHY THAT MATTERS FOR ROUTES.  Operator renewal theory is machinery for R-NULL operators --
+    intermittent maps, where the chain returns infinitely often and mixes slowly.  It is not the
+    apparatus for a transient Q-process, so going rational to remove the driving does not hand the
+    problem to that literature after all.  The object is instead a YAGLOM LIMIT for a killed walk,
+    and the right reading is quasi-stationary-distribution theory.
+
+    Building this requires the UNNORMALISED one-step map; ``_advance`` normalises, and using it here
+    destroys linearity and returns an eigenvalue of exactly 1 with rows that do not sum to one.  The
+    stochasticity of the result is the check that the construction is right.
+    """
+    import numpy as np
+
+    word = [bool(x) for x in _barrier_rises(p, q)]
+
+    def step(v: "Any", rise: bool) -> "Any":
+        nxt = np.empty(cap)
+        if rise:
+            nxt[:-1] = 0.5 * (v[:-1] + v[1:]); nxt[-1] = 0.5 * v[-1]
+        else:
+            nxt[0] = 0.5 * v[0]; nxt[1:] = 0.5 * (v[1:] + v[:-1])
+        return nxt
+
+    matrix = np.zeros((cap, cap))
+    for m in range(cap):
+        v = np.zeros(cap); v[m] = 1.0
+        for rise in word:
+            v = step(v, rise)
+        matrix[:, m] = v
+    h = np.asarray(barrier_harmonic_function(p, q, cap), dtype=float)
+    lam = float((matrix.T @ h)[cap // 20] / h[cap // 20])
+    return (matrix.T * h[None, :]) / (lam * h[:, None]), lam
+
+
 def meander_constant(d_values: tuple[int, ...] = (400, 800, 1600)) -> list[float]:
     """``(N_d/2^d) / (rho^d d^(-3/2))`` -- the constant in the polynomial correction.
 
