@@ -83,6 +83,19 @@ def digit_profiles(cf: dict[str, Any], limit: int = LIMIT) -> dict[str, Any]:
     denominators = sorted(set(cf["denominators"]), reverse=True)
     ascending = sorted(set(cf["denominators"]))
     level = {q: j for j, q in enumerate(ascending)}
+    # The greedy expansion is a valid Ostrowski representation only while every
+    # digit obeys b_j <= a_{j+1}.  With a truncated CF the top digit silently
+    # runs past that bound and s(L) is INFLATED -- and since the envelope reads
+    # |e| / 2s, an inflated s understates the ratio, i.e. the error runs toward
+    # the safe-looking conclusion.  At L = 780239 a CF stopping at 176251 gives
+    # s = 6 against a true s = 3.  Refuse rather than flatter.
+    quotients = list(cf.get("partial_quotients") or ())
+    top = len(ascending) - 1
+    if limit > max(ascending) and top + 1 >= len(quotients):
+        raise ValueError(
+            f"digit_profiles: cf reaches {max(ascending)} but limit={limit} needs a "
+            f"denominator beyond it; extend certified_theta_cf before extending the census"
+        )
     signs = [1 if level[q] % 2 == 0 else -1 for q in denominators]
     s_arr = np.zeros(limit, dtype=np.int64)
     a_arr = np.zeros(limit, dtype=np.int64)
@@ -94,6 +107,13 @@ def digit_profiles(cf: dict[str, Any], limit: int = LIMIT) -> dict[str, Any]:
         for q, sign in zip(denominators, signs):
             if q <= rem:
                 b = rem // q
+                j = level[q]
+                if j + 1 < len(quotients) and b > quotients[j + 1]:
+                    raise ValueError(
+                        f"digit_profiles: Ostrowski digit {b} at level {j} exceeds its "
+                        f"partial quotient {quotients[j + 1]} for L={length}; the CF is "
+                        f"too short for this limit and s(L) would be inflated"
+                    )
                 rem -= b * q
                 s += b
                 alt += sign * b

@@ -49329,3 +49329,55 @@ So the pattern is real but rare: one row in 135. The sweep's other value is
 negative knowledge about the sweep itself --- the K3 line and the bad-set line
 are more solid than they looked, and the tower-threshold row already samples its
 extremum.
+
+## The PARK sweep: a census that stopped short of the lengths it is used at
+
+Parks divide the same way refutations do. A park for a **structural obstruction**
+is as solid as a refutation by witness --- the K3 line behind BB/GG/JJ, the
+dispersion route, the nil-transfer. A park for a **cost** or a **measurement
+limit** can expire, and `5.54e8` already did once. Of 162 journal PARK decisions
+and 25 branch rows, the cost- and limit-reasoned ones are a small minority; the
+one that repaid reading is the DK sharpness census.
+
+### `juggler_cycle_walk_sharpness`: the excess is one-sided only inside its census
+
+The census measures `e(L) = sum_{k<L} F({k alpha}) - L C_*` for **all L <
+301994**, and the park's headline reading is *one-sided window-bounded excess*.
+`301994` is `q_13` of `theta = 1 - beta` --- which I mis-flagged at first as an
+off-by-one, since `beta`'s own indexing puts `301994` at `q_14`; the module's
+comment is right and mine was the error.
+
+But 301994 sits **below every length the cycle kills use**. The fan members are
+`478245`, `780239`, `1082233`; the census stops between the first and the
+second. Extending fivefold, to `L < 1.5e6`:
+
+- the **maximum is unchanged**, `4.96958`, still attained at `L = 238541` inside
+  the recorded range. The upper saturation is what the envelope currency, the
+  kill table and the period bound rest on, and it is now confirmed five times
+  further out. Nothing moves;
+- the **minimum falls 7.6x**, from `-0.27750` at `L = 151031` to `-2.10047` at
+  `L = 1359007`. At the fan members themselves `e` reads `-0.2695`, `-0.7326`,
+  `-1.1780` --- already past the recorded floor at the *first* one.
+
+So the conservative half of the park is confirmed and the characterization is
+not: beyond its own census the excess is two-sided. This is not numerics ---
+`C_*` converges to `0.047941275456` and a `256x` quadrature refinement moves the
+minimum by `3e-4`.
+
+### The trap in extending it, which runs the flattering way
+
+`certified_theta_cf` reaches only `176251`, and `digit_profiles` expands `L`
+greedily over whatever denominators it is handed. From `L = 352502` the top
+greedy digit exceeds its Ostrowski bound and `s(L)` inflates: at `L = 780239`,
+an actual kill length, it reads `6` against a true `3`.
+
+The envelope reads `|e| / 2s`. An inflated `s` **understates** the ratio --- so
+the error runs toward the safe-looking conclusion, which is the direction that
+never announces itself. `digit_profiles` now raises instead of flattering, and
+the shipped census at `LIMIT` sits exactly on the validity boundary and is
+untouched. The guard fires at `L = 352502`, the first length that needs a
+denominator the CF does not have.
+
+The lesson generalizes past this module: the census limit and the continued
+fraction were two constants that had to agree, and nothing checked that they
+did.
