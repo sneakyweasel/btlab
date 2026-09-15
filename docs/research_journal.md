@@ -49774,3 +49774,66 @@ is all the no-Taylor conclusion needs. Paper B rebuilt, all copies synced.
 
 The row id `J-psi-is-bounded-variation-...` now overstates its own statement. I
 left the id --- ids are referenced elsewhere --- and said so in the row.
+
+## The backward DP: the rule is real, and one structural limit is now recorded
+
+The amplitudes are pinned. `a_(k+1)/a_k -> 1/rho` exactly at the `k` where the
+Sturmian word `s_k = ceil((k+1)b) - ceil(kb)` vanishes.
+
+### The machinery, and the bug that found itself
+
+The barrier increments read backward from the end, `w_j = b_(d-1-j)`, depend on
+the **phase alone** --- that is what makes a phase-indexed recursion possible.
+`backward_prefix_ratio` runs the tilted walk against that word and reproduces
+`non_contracting(d)/2^d` to `1e-13`.
+
+It did not at first: it was off by a factor near two, growing with depth. The
+word has one exception. `b_t = 1` iff `frac(t b) >= 1-b` follows from
+`ceil(x) = x + 1 - frac(x)`, which fails at `t = 0` where `ceil(0) = 0`. So
+`b_0 = 1` while the formula says `0` --- and that step is exactly the constraint
+forcing the first letter odd. One entry in a word of thousands, worth a factor of
+two.
+
+### The structural limit, which cost me an hour and is worth recording
+
+The obvious use of a phase-indexed recursion is to evaluate `psi(phi)` at any
+`phi` and let the depth grow. **That does not converge**, and the reason is not
+numerical: at most one `d` has `frac(d b) = phi`, so depth and phase are not
+independent, and the limit defining `psi` ties them together. Evaluating at fixed
+`phi` reads `a_0 = 0.174, 0.184, 0.045` at `d = 2000, 4000, 8000`.
+
+So the amplitudes still have to be reached through depths on the orbit. What
+changed is that the continued fraction supplies them.
+
+### The measurement that worked
+
+For each `k`, pair the two depths whose phase is nearest `k*beta` from either
+side **within one narrow depth band**, so the `1+o(1)` cancels in the difference
+instead of being fitted. The pairs land on convergent denominators of their own
+accord --- `d- = 25781 + k` and `d+ = 24727 + k`, and `25781 = 24727 + 1054` ---
+so the gaps are identical for every `k` and the comparison is uniform across
+them.
+
+Then watch the gap tighten:
+
+    gaps ~3.9e-4   mean 1.0838     diff from 1/rho  +4.85e-02   sd 4.1e-02
+    gaps ~3.5e-4   mean 1.0445     diff             +9.24e-03   sd 4.9e-03
+    gaps ~2.0e-5   mean 1.034972   diff             -3.25e-04   sd 1.7e-04
+
+A 150-fold collapse, sign turning over at the end, against
+`1/rho = 1.0352968`, at seven positions instead of this morning's two.
+
+### What is not covered
+
+The `s_k = 1` ratios are not constant --- `0.518, 0.518, 0.777, 0.691, 0.842,
+0.758, 0.873, 0.915`, drifting upward with `k`. So no single rule covers both
+cases and the amplitudes are not geometric. And none of this proves `psi` exists;
+it is structure of a limit still unproved.
+
+### On the morning's version
+
+I recorded the `1/rho` rule as unconfirmed eight hours ago and was right to: two
+positions, no error estimate, and a spread that came from `k` sharing one
+dataset. The difference today is not more data but a better comparison --- equal
+depths, equal gaps, and a convergence to watch rather than a single number to
+trust.

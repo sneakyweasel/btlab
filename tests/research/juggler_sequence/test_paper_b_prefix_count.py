@@ -3454,3 +3454,85 @@ def test_psis_jumps_are_the_rotation_orbit_of_zero() -> None:
         loc = (i + 1) / nb
         near = min(min(abs(o - loc), 1 - abs(o - loc)) for o in orbit)
         assert near < 2.0 / nb, (loc, near)
+
+
+def test_the_backward_recursion_reproduces_the_exact_forward_count() -> None:
+    """psi driven by the Sturmian word at a phase, checked against exact integers.
+
+    The barrier word read backward from the end depends on the phase alone, which is what
+    makes a phase-indexed recursion possible at all.  The one exception is b_0 = 1: at
+    t = 0 the identity ceil(t BETA) = t BETA + 1 - frac(t BETA) fails, and that step is
+    what forces the first letter odd.  Getting it wrong costs a factor of two and grows
+    with depth, which is how it was found.
+    """
+    rho = B.chernoff_rate()
+    for d in (8, 60, 200, 500):
+        phi = (d * BETA_) % 1.0
+        back = B.backward_prefix_ratio(phi, d)
+        fwd = math.exp(math.log(B.non_contracting(d)) - d * math.log(2.0)
+                       - d * math.log(rho) + 1.5 * math.log(d))
+        assert math.isclose(back, fwd, rel_tol=1e-12), (d, back, fwd)
+
+    # the b_0 exception is real: the plain formula gives 0 there
+    d = 8
+    phi = (d * BETA_) % 1.0
+    w = B.backward_sturmian_word(phi, d)
+    plain = 1 if ((phi - d * BETA_) % 1.0) >= 1 - BETA_ else 0
+    assert plain == 0 and w[d - 1] == 1
+    assert w[:-1] == [math.ceil((t + 1) * BETA_) - math.ceil(t * BETA_)
+                      for t in range(d)][::-1][:-1]
+
+
+def test_the_amplitude_ratio_at_the_sturmian_zeros_converges_to_one_over_rho() -> None:
+    """a_(k+1)/a_k -> 1/rho exactly where s_k = ceil((k+1)BETA) - ceil(k BETA) vanishes.
+
+    Measured by pairing, for each k, the two depths whose phase is nearest k*BETA from
+    either side WITHIN ONE NARROW DEPTH BAND, so the 1+o(1) cancels in the difference
+    instead of being fitted.  The pairs come out on convergent denominators of BETA of
+    their own accord -- d- = 25781 + k and d+ = 24727 + k in the deepest band -- so the
+    gaps are identical for every k and the comparison is uniform.
+
+    As the phase gap shrinks the discrepancy collapses, which is the evidence:
+
+        gaps ~3.9e-4   mean 1.0838    diff from 1/rho  +4.85e-2   sd 4.1e-2
+        gaps ~3.5e-4   mean 1.0445    diff             +9.24e-3   sd 4.9e-3
+        gaps ~2.0e-5   mean 1.03497   diff             -3.25e-4   sd 1.7e-4
+
+    A 150x collapse, with the sign turning over at the end. This supersedes the earlier
+    reading in J-psi-jump-amplitudes-are-only-partly-resolvable, where the rule rested on
+    two positions and could not be confirmed; there are seven here.
+    """
+    import numpy as np
+
+    rho = B.chernoff_rate()
+    depth = 30000
+    prof = np.array(B.surviving_log_mass(depth))
+    d = np.arange(1, depth + 1)
+    c = np.exp(prof[1:] - d * math.log(rho) + 1.5 * np.log(d))
+    phi = (d * BETA_) % 1.0
+    sw = [math.ceil((k + 1) * BETA_) - math.ceil(k * BETA_) for k in range(24)]
+
+    def ratios(lo: int, hi: int) -> tuple[list[float], float]:
+        m = (d >= lo) & (d < hi)
+        amps, gap = [], 0.0
+        for k in range(20):
+            delta = (phi[m] - (k * BETA_) % 1.0 + 0.5) % 1.0 - 0.5
+            below, above = delta < 0, delta > 0
+            amps.append(c[m][below][np.argmax(delta[below])]
+                        - c[m][above][np.argmin(delta[above])])
+            if k == 0:
+                gap = max(-delta[below].max(), delta[above].min())
+        return [amps[k + 1] / amps[k] for k in range(19) if sw[k] == 0], gap
+
+    out = [ratios(*b) for b in ((6000, 12000), (12000, 20000), (20000, 30000))]
+    diffs = [abs(float(np.mean(r)) - 1 / rho) for r, _ in out]
+    gaps = [g for _, g in out]
+    assert gaps[-1] < gaps[0] / 10, gaps                 # the window really does tighten
+    assert diffs[0] > diffs[1] > diffs[2], diffs         # and the discrepancy collapses
+    assert diffs[0] / diffs[2] > 100, diffs
+    assert diffs[2] < 1e-3, diffs[2]
+
+    deepest, _ = out[-1]
+    assert len(deepest) == 7, len(deepest)               # seven positions, not two
+    assert float(np.std(deepest)) < 5e-4
+    assert all(abs(r - 1 / rho) < 1e-3 for r in deepest), deepest

@@ -132,6 +132,55 @@ def surviving_log_mass(depth: int) -> list[float]:
     return out
 
 
+def backward_sturmian_word(phi: float, depth: int) -> list[int]:
+    """The barrier increments read backward from depth ``depth`` at phase ``phi``.
+
+    ``w[j] = b_(d-1-j)`` where ``b_t = ceil((t+1)BETA) - ceil(t BETA)``.  For ``t >= 1``
+    that is ``1`` exactly when ``frac(t BETA) >= 1 - BETA``; at ``t = 0`` the derivation
+    fails, because ``ceil(0) = 0`` rather than ``0 + 1 - frac(0)``, and ``b_0 = 1`` -- the
+    step that forces the first letter odd.  That single exception is the last entry.
+
+    The word depends on ``phi`` alone, which is the point: it is what makes the backward
+    recursion a function of the phase rather than of the depth.
+    """
+    beta = LOG2 / LOG3
+    word = [1 if ((phi - (j + 1) * beta) % 1.0) >= 1 - beta else 0 for j in range(depth)]
+    word[depth - 1] = 1
+    return word
+
+
+def backward_prefix_ratio(phi: float, depth: int, cap: int = 300) -> float:
+    """``d^(3/2) e^(-lam(1-phi)) G(d)`` by a backward recursion on the tilted walk.
+
+    Agrees with ``non_contracting(d) / 2^d`` to 1e-13 when ``phi = frac(d BETA)``.
+
+    A caution this exists to record: evaluating at an arbitrary ``phi`` and letting
+    ``depth`` grow does NOT converge to psi(phi).  At most one ``d`` has
+    ``frac(d BETA) = phi``, so depth and phase are not independent and the limit defining
+    psi ties them together.  Use this at ``phi = frac(d BETA)`` for the matching ``d``.
+    """
+    import math
+
+    beta = LOG2 / LOG3
+    lam = math.log(beta / (1 - beta))
+    weight = [math.exp(-lam * m) for m in range(cap + 2)]
+    scale = 0.0
+    for b in backward_sturmian_word(phi, depth):
+        nxt = [0.0] * (cap + 2)
+        for m in range(cap + 2):
+            hi, lo = m + 1 - b, m - b
+            if 0 <= hi <= cap + 1:
+                nxt[m] += beta * weight[hi]
+            if 0 <= lo <= cap + 1:
+                nxt[m] += (1 - beta) * weight[lo]
+        top = max(nxt)
+        if top == 0.0:
+            raise ValueError(f"no surviving mass at phase {phi}")
+        weight = [v / top for v in nxt]
+        scale += math.log(top)
+    return math.exp(1.5 * math.log(depth) - lam * (1 - phi) + scale + math.log(weight[0]))
+
+
 def meander_constant(d_values: tuple[int, ...] = (400, 800, 1600)) -> list[float]:
     """``(N_d/2^d) / (rho^d d^(-3/2))`` -- the constant in the polynomial correction.
 
