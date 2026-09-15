@@ -53369,6 +53369,56 @@
       "trust": "kernel"
     },
     {
+      "doc": "The barrier at depth `t`: a surviving word needs at least this many odd letters.",
+      "file": "formal/Problems/Juggler/PaperBBarrierStep.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 41,
+      "module": "Problems.Juggler.PaperBBarrierStep",
+      "name": "barrier",
+      "trust": "kernel"
+    },
+    {
+      "doc": "How much the barrier rises in one step.",
+      "file": "formal/Problems/Juggler/PaperBBarrierStep.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 44,
+      "module": "Problems.Juggler.PaperBBarrierStep",
+      "name": "barrierRise",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**A non-rising step costs nothing.** If the barrier does not rise at `d`, then any odd-count history that survives to `d` also survives to `d+1`, whatever the next letter is \u2014 the count is monotone, so no choice can fall below a barrier that did not move. This is the whole reason the raw jump repeats.",
+      "file": "formal/Problems/Juggler/PaperBBarrierStep.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 50,
+      "module": "Problems.Juggler.PaperBBarrierStep",
+      "name": "survives_succ_of_no_rise",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Conversely a survivor to `d+1` survives to `d`, so the extension map is onto the survivors of one more letter. Together with `survives_succ_of_no_rise` this is the bijection that makes the count double.",
+      "file": "formal/Problems/Juggler/PaperBBarrierStep.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 70,
+      "module": "Problems.Juggler.PaperBBarrierStep",
+      "name": "survives_of_survives_succ",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**When the barrier does not rise.** Exactly when the next point has not yet passed the current ceiling. For `b = beta` this is the Sturmian condition that indexes the measured `s_k`; stated this way it needs no fractional parts.",
+      "file": "formal/Problems/Juggler/PaperBBarrierStep.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 77,
+      "module": "Problems.Juggler.PaperBBarrierStep",
+      "name": "noRise_iff_le_ceil",
+      "trust": "kernel"
+    },
+    {
       "doc": "The per-letter power map `p_q`: `3/2` after an odd letter, `1/2` after an even one. These are the only two values a Juggler step contributes.",
       "file": "formal/Problems/Juggler/PaperBChainRule.lean",
       "kind": "def",
@@ -86891,6 +86941,7 @@
         "Problems.Juggler.OstrowskiNumeration",
         "Problems.Juggler.OstrowskiSandwich",
         "Problems.Juggler.PaperBAssembly",
+        "Problems.Juggler.PaperBBarrierStep",
         "Problems.Juggler.PaperBChainRule",
         "Problems.Juggler.PaperBThreshold",
         "Problems.Juggler.PaperBTilt",
@@ -88916,6 +88967,12 @@
       "imports": [],
       "ledger": []
     },
+    "Problems.Juggler.PaperBBarrierStep": {
+      "declarations": 5,
+      "file": "formal/Problems/Juggler/PaperBBarrierStep.lean",
+      "imports": [],
+      "ledger": []
+    },
     "Problems.Juggler.PaperBChainRule": {
       "declarations": 27,
       "file": "formal/Problems/Juggler/PaperBChainRule.lean",
@@ -90031,13 +90088,13 @@
     }
   },
   "totals": {
-    "declarations": 6643,
+    "declarations": 6648,
     "declarations_with_a_ledger_row": 4572,
-    "ledger_rows_naming_a_file": 416,
-    "modules": 288,
+    "ledger_rows_naming_a_file": 417,
+    "modules": 289,
     "trust": {
       "compiler": 56,
-      "kernel": 6587
+      "kernel": 6592
     }
   }
 }

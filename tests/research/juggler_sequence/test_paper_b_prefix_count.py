@@ -3729,3 +3729,29 @@ def test_the_sturmian_zero_step_leaves_the_raw_jump_exactly_invariant() -> None:
         assert max(abs(v) for v in zeros) == 0.0, max(abs(v) for v in zeros)
         assert all(abs(v) > 1e-3 for v in ones), min(abs(v) for v in ones)
         assert -0.07 < float(np.mean(ones)) < -0.04, float(np.mean(ones))
+
+
+def test_a_non_rising_barrier_step_doubles_the_surviving_count() -> None:
+    """N_(d+1) = 2 N_d exactly when the barrier does not rise, which proves the identity.
+
+    If ceil((d+1)BETA) = ceil(d BETA) then for a survivor w of length d and either letter
+    x, the odd count is monotone, so o_(d+1) = o_d + x >= o_d >= ceil(d BETA) =
+    ceil((d+1)BETA), and w ++ [x] survives.  Conversely a survivor of length d+1 restricts
+    to one of length d.  So (w, x) -> w ++ [x] is a bijection and the count doubles; hence
+    P_(d+1) = P_d.
+
+    That settles J-sturmian-zero-step-leaves-the-raw-jump-invariant, and corrects it: each
+    of the two bracketing terms is preserved on its own, so no bijection on their
+    difference is needed.  Formalised as PaperBBarrierStep.survives_succ_of_no_rise.
+    """
+    for d in range(1, 60):
+        rise = math.ceil((d + 1) * BETA_) - math.ceil(d * BETA_)
+        n_d, n_next = B.non_contracting(d), B.non_contracting(d + 1)
+        if rise == 0:
+            assert n_next == 2 * n_d, (d, n_d, n_next)
+            assert n_d / 2 ** d == n_next / 2 ** (d + 1), d       # P_(d+1) = P_d exactly
+        else:
+            assert n_next < 2 * n_d, (d, n_d, n_next)             # and strictly less if it rises
+
+    # the count is monotone in the sense the proof uses: extending never lowers o
+    assert all(math.ceil((t + 1) * BETA_) >= math.ceil(t * BETA_) for t in range(200))

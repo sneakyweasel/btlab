@@ -49985,3 +49985,58 @@ This is an agreement at floating-point zero across 32 independent positions. In 
 day that produced three separate artifacts wearing the costume of a finding, that
 distinction is the one worth recording: a fit near a boundary is a hypothesis, an
 exact zero repeated 32 times is a theorem someone has not written down yet.
+
+## The bijection: there isn't one, because none is needed
+
+Set out to prove the invariance recorded an hour ago. It is elementary, and the
+framing I gave it was wrong in a way worth writing down.
+
+### The proof
+
+Write `N_d` for the survivors of length `d` and `P_d = N_d/2^d`. Suppose the
+barrier does not rise at `d`, i.e. `ceil((d+1)b) = ceil(d b)`. Let `w` survive to
+length `d` and let `x` be either letter. The odd count is monotone, so
+
+    o_(d+1) = o_d + x >= o_d >= ceil(d b) = ceil((d+1)b),
+
+and `w ++ [x]` survives. Conversely a survivor of length `d+1` restricts to one
+of length `d`. So `(w, x) -> w ++ [x]` is a bijection, `N_(d+1) = 2 N_d`, and
+`P_(d+1) = P_d` **exactly**.
+
+When `s_k = 0` both depths bracketing `k*beta` have a non-rising barrier, so each
+`P` is individually unchanged, and therefore so is any combination of them. The
+`1/rho` is what the `rho^d d^(-3/2)` normalisation makes of one free step.
+
+### What I got wrong, and how
+
+I recorded that a proof needed "a bijection on the DIFFERENCE", because "the two
+terms are not individually preserved under `d -> d+1`; only their difference is."
+
+Both halves are false. Each term is individually preserved, to floating-point
+zero --- and I had never checked it. I inferred it from the shape of the
+measurement: I had been differencing two depths all afternoon, so I read the
+invariance as a property of the difference. One line of code would have told me
+otherwise, and did, the moment I asked.
+
+That is the fourth time today a statement was true of how I measured something
+rather than of the thing. The other three were caught by independent checks. This
+one I caught only because I went to prove it, which is the check of last resort
+and the one that works.
+
+### Lean
+
+`survives_succ_of_no_rise` is the content; `survives_of_survives_succ` the
+converse restriction; `noRise_iff_le_ceil` characterises the non-rising step as
+`(t+1)b <= ceil(t b)`, which for `b = beta` is the Sturmian condition indexing
+`s_k`. Kernel-checked on the standard three axioms, no warnings.
+
+The cardinality step `N_(d+1) = 2 N_d` is the bijection above and is not
+formalised --- it is one line of counting, stated in the ledger rather than in
+Lean, and the file says so.
+
+### Scope
+
+This proves an identity about the counting function. `psi`'s existence is
+untouched and remains exactly where it was this morning: a local limit theorem
+for a killed walk against a Sturmian barrier. What has changed is that one thing
+in this thread is now proved rather than measured.
