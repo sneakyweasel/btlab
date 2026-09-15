@@ -50782,3 +50782,68 @@ calculation.
 Which is the honest reason `lamStar` kept turning up. It is not that one constant
 happens to serve three purposes; it is that the tilt, the tail base and the slope
 sensitivity are three readings of the same stationary point.
+
+## R as a function of the slope, which is a staircase
+
+The rate turned out to see only the slope, smoothly. The obvious next question
+was whether `R` --- the boundary fraction, the clean coordinate --- does the same.
+It does not. `R(s)` is a jump function: discontinuous at *every* rational,
+continuous from the right.
+
+The asymmetry is forced, and once seen it is obvious. The profile at phase 0
+depends only on the past, `m < 0`. There `m s` *decreases* as `s` grows, so
+`ceil(m s)` is right-continuous in `s`, and `R` inherits it. Approaching `12/19`
+from above lands on `R(12/19)`; from below it lands `7.0e-4` lower, and stays
+there.
+
+The left limit is readable at period `q`, which is what makes any of this
+affordable. For `s` just below `p/q` the past barrier is `floor(m p/q) + 1`, so
+the past word is the **floor** word --- with one exception at `m = -1`, where
+`ceil(0) = 0` exactly. The limit is that word's fixed point advanced to position
+`q-1` and then given a single non-rising step.
+
+I got both halves wrong first. Reading the floor word at position 0 gives
+`0.1876` where the truth is `0.0740`. That is a factor of 2.5, not a rounding
+error, and it only surfaced because I checked against a genuine approach --- five
+rationals at shrinking `delta`, converging cleanly to `0.0739500`. A factor of
+2.5 is the kind of wrong that a plausible-looking derivation produces and no
+amount of rereading the derivation catches.
+
+### The threshold that decides the variation
+
+Crossing `p/q` moves the barrier at every negative multiple of `q` at once, so
+the denominator governs the jump. Summing a jump of `c q^-2` over the rationals
+of an interval gives `sum phi(q) c / q^2`, which is `sum c / q` up to a constant
+--- log-divergent at fixed `c`. So `q^-2` is precisely the borderline, and
+whether `R` has finite variation in the slope turns on whether `c` decays.
+
+It does. `c = jump * q^2` reads `0.228, 0.190, 0.150, 0.112, 0.083` at
+`q = 100 ... 1600`, for local exponents `2.27, 2.34, 2.42, 2.44` --- rising, not
+settling. The variation looks summable and the margin widens.
+
+But the asymptotic exponent is not measured. Past `q` about 1000 the cap sets
+disagree by 3% at 1600 and 20% at 3200, so those points are not evidence in
+either direction. And `c` is a function of the slope as well as the denominator
+--- it vanishes at `s = 1/2` and peaks near `s = 0.68` --- so there is no single
+constant to quote.
+
+### Two traps, one shape
+
+I nearly lost this twice to the same failure. First: `c(t)` appeared to decline
+at large `t`, which I immediately suspected was the cap eating the signal, since
+the cap imposes a memory horizon at `cap^2/3.45` steps and the jump is built from
+perturbations `t, 2t, 3t` steps back. That suspicion was *wrong* --- four times
+the cap changed nothing up to `q = 565`. But the same check at `q = 3200` showed
+a 20% disagreement, which is where the real limit sits.
+
+Second: the straddle estimates. Measuring the jump by sampling either side of
+`k/t` works while the offsets are wide compared with neighbouring rationals'
+own jumps, and stops working when they are not --- which happens smoothly as `t`
+grows, producing a fake steepening. That is the sweep-budget error again, in a
+different costume: a computational parameter interacting with the very variable
+under study, and degrading *smoothly* in it.
+
+Smoothly is the dangerous word. A parameter that fails abruptly announces
+itself. One that fails gradually in the variable you are plotting against
+produces a clean line on a log-log plot, and a clean line is what I am
+predisposed to believe.
