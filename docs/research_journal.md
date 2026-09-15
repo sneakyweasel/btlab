@@ -49281,3 +49281,51 @@ one. Row amended, tag unchanged.
 The pattern worth carrying forward: a claim quantified over a range, evidenced
 at two convenient interior points, where the quantity being compared degenerates
 at the range's edge. Cheap to check by sweeping; the sweep is now the test.
+
+## The full REFUTED sweep: 135 rows, one weak margin, one refutation strengthened
+
+Triaged all 135 `REFUTED` rows for the pattern found on
+`J-pressure-log-order-certificate`: a claim quantified over a range, evidenced
+at a few convenient interior points.
+
+The decisive distinction is the refutation's logical shape. **Refutation by
+witness is complete** --- one counterexample kills a universal, and no sweep can
+add anything. `J-cyclemin-necklace` (two explicit itineraries with N0 = 55 and
+42), the BTN rewrite rows (literal `(a,b)` pairs), and the bulk of the 135 are
+of this kind. Only a **universal negative over a range** --- "nothing in this
+family can work" --- can hide a sampled margin.
+
+Three signatures were used: prose triage for universal-negative-without-witness
+(9 hits), a scan of the backing tests for `for ... in ((...),(...))` loops over
+two to four hardcoded parameter points (11 hits), and statements citing evidence
+at a short list of scales (5 hits). Union examined by hand.
+
+**Sound as recorded.** `J-bad-set-spectrum-cannot-win` was already adversarially
+re-scoped on 6 Sep and turns on `K_all >= 1 > p_bad` with a Parseval identity
+carrying no slack --- structural, not sampled; it even names its own uncovered
+case (`J-walsh-restricted-product-shape`, OPEN). `J-unstopped-cylinder-bound` is
+a clean asymptotic contradiction, `y/(216 log y)` against `o(y/log y)`, for any
+`C,A>1`. `J-dispersion-count-route` turns on the `k=1` harmonic carrying weight
+one while dispersion controls only `k`-averages. None of these sample anything.
+
+**Correctly sampled.** `test_the_tower_threshold_has_two_readings_and_they_differ
+_slightly` asserts at `C = 19, 20` only. Swept to `C = 1000`: no violations, and
+the gap shrinks monotonically --- `0.231%` at `C=19` down to `0.0001%` at
+`C=1000`. The recorded point is the worst case. That is the right way to sample
+and worth noting as the counterexample to the pattern.
+
+**Strengthened.** The three K3 falsifier rows all rest on run-length scans at
+`P = 10^4, 10^5, 10^6`. The direction was safe a priori --- a run needs the
+increment to repeat, and the increment grows like `P^{1/4}` --- and extending to
+`10^7` and `10^8` confirms it: runs stay at 1 and the separation
+`mean_abs_d_floor_dY / pred_P14` widens from `82` to `1773`. Costs 0.01 s per
+scale, so all five are now pinned. These refutations are *stronger* than their
+recorded evidence.
+
+**Weak margin: one.** `J-pressure-log-order-certificate`, amended in the previous
+entry.
+
+So the pattern is real but rare: one row in 135. The sweep's other value is
+negative knowledge about the sweep itself --- the K3 line and the bad-set line
+are more solid than they looked, and the tower-threshold row already samples its
+extremum.
