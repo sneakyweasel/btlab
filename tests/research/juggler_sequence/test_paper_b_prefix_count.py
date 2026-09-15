@@ -4845,3 +4845,31 @@ def test_memory_loss_is_polynomial_and_its_exponent_is_not_uniform() -> None:
     assert light < -1.5, light                                  # lighter than r*: near d^-2
     assert -1.5 < at_r < -0.6, at_r                             # at r*: the rate has halved
     assert heavy > at_r, (at_r, heavy)                          # just above r*: slower still
+
+
+def test_the_q_process_is_bessel_three_and_transient() -> None:
+    """Going rational removes the driving, and the resulting Q-process is discrete BES(3).
+
+    The h-transform of the period map is a genuine Markov chain -- row sums exactly one, which is
+    the check that the construction used the UNNORMALISED step.  Its drift is ``c/m`` with
+    ``2c/sigma^2`` equal to the invariant-measure exponent 2, and BES(3) is Brownian motion
+    conditioned to stay positive, which is what a killed walk conditioned to survive should be.
+
+    It is TRANSIENT, which is the part that redirects the route: operator renewal theory is
+    machinery for R-NULL operators, so removing the driving does not hand this to that literature.
+    """
+    import numpy as np
+
+    p, q, cap = 41, 65, 240
+    chain, lam = B.barrier_h_transform(p, q, cap)
+    assert abs(lam - math.exp(q * math.log(B.chernoff_rate()))) < 5e-3, lam
+
+    rows = chain.sum(axis=1)
+    assert abs(rows[5:cap - 60] - 1.0).max() < 1e-9, rows[5:cap - 60].min()   # stochastic
+
+    index = np.arange(cap)
+    drift = (chain * (index[None, :] - index[:, None])).sum(axis=1)
+    scaled = [drift[m] * m for m in (10, 20, 40)]
+    assert max(scaled) / min(scaled) < 1.10, scaled          # drift ~ c/m
+    sigma_sq = q * B.BETA * (1 - B.BETA)
+    assert 1.6 < 2 * scaled[1] / sigma_sq < 2.3, (scaled[1], sigma_sq)   # BES(3): 2c/sigma^2 = 2
