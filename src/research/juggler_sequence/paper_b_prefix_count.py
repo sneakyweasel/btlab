@@ -457,6 +457,108 @@ def rational_barrier_rate_limit(p: int, q: int, caps: tuple[int, int, int] = (16
     return r3 - a - b
 
 
+def _period_fixed_point(word: "Any", cap: int, tol: float = 1e-15) -> "Any":
+    """The Perron profile of a periodic rise word, as the state entering position 0."""
+    import numpy as np
+
+    period = len(word)
+    profile = np.zeros(cap)
+    profile[0] = 1.0
+    previous = None
+    for sweep in range(1, (200 * cap * cap) // period + 3):
+        for rise in word:
+            profile = _advance(profile, rise, cap)
+        if previous is not None and float(np.abs(profile - previous).sum()) <= tol:
+            return profile
+        previous = profile.copy()
+    raise RuntimeError("period-%d word did not reach tol %g in %d steps" % (period, tol, sweep * period))
+
+
+def _advance(profile: "Any", rise: bool, cap: int) -> "Any":
+    import numpy as np
+
+    nxt = np.empty(cap)
+    if rise:
+        nxt[:-1] = 0.5 * (profile[:-1] + profile[1:])
+        nxt[-1] = 0.5 * profile[-1]
+    else:
+        nxt[0] = 0.5 * profile[0]
+        nxt[1:] = 0.5 * (profile[1:] + profile[:-1])
+    return nxt / nxt.sum()
+
+
+def _cap_limit(values: tuple[float, float, float]) -> float:
+    """Richardson on ``f(cap) = f + A cap^-2 + B cap^-3`` over three doubling caps."""
+    small, mid, large = values
+    b = ((small - mid) - 4.0 * (mid - large)) / 28.0
+    a = ((mid - large) - 7.0 * b) / 3.0
+    return large - a - b
+
+
+def boundary_fraction_at_slope(p: int, q: int, caps: tuple[int, int, int] = (40, 80, 160)) -> float:
+    """``R(p/q)``: the share of the profile sitting on the barrier, at phase 0, slope ``p/q``.
+
+    The barrier ``ceil(t p/q)`` is periodic, so this is one component of the Perron profile, with
+    the cap dependence extrapolated away as in ``barrier_truncation_bias``.  It is also the RIGHT
+    limit of ``R`` at ``p/q`` -- see ``boundary_fraction_jump`` for why the left limit differs.
+    """
+    def at(cap: int) -> float:
+        return float(_period_fixed_point(_barrier_rises(p, q), cap)[0])
+
+    return _cap_limit(tuple(at(cap) for cap in caps))
+
+
+def boundary_fraction_left_limit(p: int, q: int, caps: tuple[int, int, int] = (40, 80, 160)) -> float:
+    """``R(p/q -)``: the limit of ``R(s)`` as ``s`` rises to ``p/q``, evaluated at period ``q``.
+
+    Reading it off at period ``q`` rather than by approaching costs nothing and is exact.  For
+    ``s = p/q - delta`` the profile at phase 0 depends only on the past, and there ``ceil(m s)``
+    equals ``floor(m p/q) + 1`` -- so the past word is the FLOOR word, not the ceiling word.  It
+    carries one exception: at ``m = -1`` the barrier is 0 rather than 1, because ``ceil(0) = 0``
+    exactly.  So the value is the floor word's fixed point advanced to position ``q - 1`` and then
+    given a single non-rising step.
+
+    Both halves of that are easy to get wrong, and getting either wrong is not subtle: reading the
+    floor word at position 0 instead of ``q - 1`` returns 0.1876 where the truth is 0.0740, a
+    factor of 2.5.  The check that catches it is to approach ``p/q`` from below with genuine
+    rationals; this agrees with that limit to 1e-7 at ``12/19``, ``29/46`` and ``41/65``.
+    """
+    word = [((m + 1) * p) // q - (m * p) // q == 1 for m in range(q)]
+
+    def at(cap: int) -> float:
+        profile = _period_fixed_point(word, cap)
+        for rise in word[: q - 1]:
+            profile = _advance(profile, rise, cap)
+        return float(_advance(profile, False, cap)[0])
+
+    return _cap_limit(tuple(at(cap) for cap in caps))
+
+
+def boundary_fraction_jump(p: int, q: int, caps: tuple[int, int, int] = (40, 80, 160)) -> float:
+    """``R(p/q) - R(p/q -)``: the jump of the boundary fraction at the rational ``p/q``.
+
+    ``R`` is a jump function of the barrier slope, discontinuous at EVERY rational and continuous
+    from the right.  The asymmetry is forced: the profile at phase 0 depends on the past ``m < 0``,
+    where ``m s`` DEcreases as ``s`` grows, so ``ceil(m s)`` is right-continuous in ``s`` there.
+    Crossing ``p/q`` moves the barrier at every negative multiple of ``q`` at once, which is what
+    sets the ``q^-2`` scale.  The numerator is not idle, though -- it fixes the slope, and the
+    coefficient on that scale depends on it; see the last paragraph.
+
+    SIZE.  The jump falls off faster than ``q^-2``, which is the threshold that decides whether the
+    total variation of ``R`` is finite: summing ``c q^-2`` over the rationals of an interval gives
+    ``sum phi(q) c / q^2 ~ sum c / q``, log-divergent at a constant ``c``.  Measured, ``c = jump *
+    q^2`` falls -- 0.228, 0.190, 0.150, 0.112, 0.083 at ``q = 100, 200, 400, 800, 1600`` -- for a
+    local exponent of 2.27, 2.34, 2.42, 2.44, rising rather than settling.  So the variation looks
+    summable, with the margin widening.  THE ASYMPTOTIC EXPONENT IS NOT PINNED HERE: past ``q``
+    about 1000 the cap sets disagree by 3 percent at 1600 and 20 percent at 3200, so those points
+    are not evidence either way.
+
+    ``c`` is a function of the slope as well: it vanishes at ``s = 1/2`` (0.0001 at ``q = 60``) and
+    peaks near ``s = 0.68``, so there is no single constant to quote.
+    """
+    return boundary_fraction_at_slope(p, q, caps) - boundary_fraction_left_limit(p, q, caps)
+
+
 def meander_constant(d_values: tuple[int, ...] = (400, 800, 1600)) -> list[float]:
     """``(N_d/2^d) / (rho^d d^(-3/2))`` -- the constant in the polynomial correction.
 

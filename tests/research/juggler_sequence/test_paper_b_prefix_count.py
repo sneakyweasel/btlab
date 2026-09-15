@@ -4592,3 +4592,92 @@ def test_the_double_root_and_the_slope_derivative_are_one_function() -> None:
 
         d_lam = (B.chernoff_exponent(lam + 1e-6, s) - B.chernoff_exponent(lam - 1e-6, s)) / 2e-6
         assert abs(d_lam) < 1e-7, s                               # stationary: the double root
+
+
+def test_the_boundary_fraction_jumps_at_every_rational() -> None:
+    """``R`` is discontinuous at every rational slope, and the period-q formula gets the limit.
+
+    The left limit is read off at period ``q`` rather than approached, so it has to be checked
+    against a genuine approach: at ``12/19``, stepping to ``s = 12/19 - 1/47500`` lands within
+    ``3e-6`` of it, while ``R(12/19)`` itself is ``7e-4`` away.  That gap is the jump.
+    """
+    from math import gcd
+
+    for p, q in ((12, 19), (29, 46), (41, 65)):
+        here = B.boundary_fraction_at_slope(p, q)
+        left = B.boundary_fraction_left_limit(p, q)
+        assert here - left > 0, (p, q, here, left)                # the jump is upward
+        assert abs(B.boundary_fraction_jump(p, q) - (here - left)) < 1e-15
+
+    n = 2500
+    num, den = 12 * n - 1, 19 * n
+    g = gcd(num, den)
+    approached = B.boundary_fraction_at_slope(num // g, den // g, caps=(24, 48, 96))
+    left = B.boundary_fraction_left_limit(12, 19)
+    assert abs(approached - left) < 3e-6, (approached, left)
+    assert B.boundary_fraction_at_slope(12, 19) - left > 6e-4     # not the same limit
+
+
+def test_the_boundary_fraction_is_right_continuous_in_the_slope() -> None:
+    """Continuous from above, discontinuous from below -- and the asymmetry is forced.
+
+    The profile at phase 0 depends on the past ``m < 0``.  There ``m s`` DEcreases as ``s`` grows,
+    so ``ceil(m s)`` is right-continuous in ``s``, and the barrier -- hence ``R`` -- inherits that.
+    Approaching ``12/19`` from above therefore lands on ``R(12/19)``; from below it does not.
+    """
+    from math import gcd
+
+    n = 2500
+    values = {}
+    for sign in (+1, -1):
+        num, den = 12 * n + sign, 19 * n
+        g = gcd(num, den)
+        values[sign] = B.boundary_fraction_at_slope(num // g, den // g, caps=(24, 48, 96))
+
+    here = B.boundary_fraction_at_slope(12, 19)
+    left = B.boundary_fraction_left_limit(12, 19)
+    assert abs(values[+1] - here) < 3e-6, (values[+1], here)      # from above: continuous
+    assert abs(values[-1] - left) < 3e-6, (values[-1], left)      # from below: the other limit
+    assert values[+1] - values[-1] > 6e-4
+
+
+def test_the_jump_falls_faster_than_the_summability_threshold() -> None:
+    """``q^-2`` is the borderline for the total variation, and the jump beats it.
+
+    Summing a jump of ``c q^-2`` over the rationals of an interval gives ``sum phi(q) c / q^2``,
+    which is ``sum c / q`` up to a constant -- log-divergent at fixed ``c``.  So whether ``R`` has
+    finite variation in the slope turns on whether ``c`` decays, and it does: the local exponent
+    reads 2.27, 2.34, 2.42 across ``q = 100, 200, 400, 800``, rising rather than settling.
+
+    NOT AN ASYMPTOTIC CLAIM.  Past ``q`` about 1000 the cap sets disagree -- 3 percent at 1600, 20
+    percent at 3200 -- so the exponent's limit is not measured here, only that it exceeds 2 over
+    the range where the computation is trustworthy.
+    """
+    qs = (100, 200, 400, 800)
+    cs = []
+    for q in qs:
+        p = round(q * B.BETA)
+        while math.gcd(p, q) != 1:
+            p += 1
+        cs.append(B.boundary_fraction_jump(p, q) * q * q)
+
+    assert all(a > b for a, b in zip(cs, cs[1:])), cs             # c decays
+    for (q0, c0), (q1, c1) in zip(zip(qs, cs), list(zip(qs, cs))[1:]):
+        exponent = 2 - math.log(c1 / c0) / math.log(q1 / q0)
+        assert 2.15 < exponent < 2.65, (q0, q1, exponent)
+
+
+def test_the_jump_constant_collapses_at_slope_one_half() -> None:
+    """``c`` is a function of the slope too, so there is no single constant to quote.
+
+    At ``s = 1/2`` the barrier rises every other step and the jump all but vanishes; it grows
+    through the range and peaks near ``s = 0.68``.
+    """
+    c = {}
+    for p in (29, 31, 37, 41):
+        if math.gcd(p, 60) == 1:
+            c[p] = B.boundary_fraction_jump(p, 60) * 3600
+    assert c[29] < 1e-3, c                                        # s = 0.483
+    assert c[31] < 0.05, c                                        # s = 0.517
+    assert c[37] > 0.20, c                                        # s = 0.617
+    assert c[41] > c[37], c                                       # still climbing at s = 0.683
