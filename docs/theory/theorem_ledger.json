@@ -10263,5 +10263,16 @@
    "tests/research/juggler_sequence/test_paper_b_prefix_count.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "id": "J-rational-barriers-give-exact-profiles",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "Replacing BETA by a convergent turns the quasi-stationary profile into an exact eigenvector, which settles the shape question the iterative method could not. THE METHOD. For p/q rational, b_t = ceil((t+1)p/q) - ceil(t p/q) is periodic with period q, so the product of the q updates has a Perron eigenvector -- the profile -- with an eigenvalue giving the rate. There is no iteration error: the residual of the eigen-relation reaches 1.0e-18 at 306/485, against the steps^(-1.5) convergence that limited boundary_fraction_at_phases. And it is BETA's answer, not the rational's: 53/84, 306/485 and 665/1054 agree to five decimals on every quantity examined. THE RATE converges with the alternating sign convergents have, log rho(p/q) - log rho reading +3.06e-3, -3.69e-4, +7.85e-5, -1.94e-5, -6.14e-6 at 5/8, 12/19, 41/65, 53/84, 306/485. THE SHAPE supports the double root of J-rho-has-a-tail-variable-variational-formula, which predicts a linear prefactor Pi(m) ~ C m r*^m. Fitting Pi(m) = C m^alpha r*^m on the exact eigenvector gives alpha = 0.980, 0.983, 0.974 on windows in m = 5..45, and a free-base fit gives alpha between 0.99 and 1.03 with the base within 0.2 percent of r*. The alpha-base trade-off is the usual degeneracy of such a fit and both sit within a few percent of the predicted pair (1, r*). SUPPORTED, NOT PROVED -- but an upgrade on J-quasi-stationary-profile-is-tight-shape-unsettled, where the same question was inconclusive because the tail had not converged from a delta start. What changed is not more computation but a better object: an eigenvector carries its own certificate, and an iterate does not. The constant-c form (m + c) r*^m is definitely wrong -- the implied c drifts 0.162 to 3.01 over m = 4..50, identically across all three convergents, so that drift is real and not convergence error. Machinery: rational_barrier_profile.",
+  "source": "docs/research_journal.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_paper_b_prefix_count.py"
+  ],
+  "related_conjectures": []
  }
 ]

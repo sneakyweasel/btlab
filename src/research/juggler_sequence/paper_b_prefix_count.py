@@ -267,6 +267,55 @@ def boundary_fraction_at_phases(phases, steps: int = 1200, cap: int = 140) -> li
     return [row[0] for row in mass]
 
 
+def rational_barrier_profile(p: int, q: int, cap: int = 400, sweeps: int = 4000):
+    """The quasi-stationary profile for the RATIONAL barrier ``p/q``, as an eigenvector.
+
+    Replacing BETA by a convergent ``p/q`` makes ``b_t = ceil((t+1)p/q) - ceil(t p/q)``
+    periodic with period ``q``, so the product of the ``q`` updates over one period has a
+    Perron eigenvector -- the exact profile -- and its eigenvalue gives the rate.  That
+    removes the iteration error of ``boundary_fraction_at_phases`` entirely: the residual
+    of the eigen-relation reaches 0 at the deeper convergents, and three successive
+    convergents agree to five decimals, so the answer is BETA's and not the rational's.
+
+    Returns ``(profile, log_rate_per_step, residual)``.  Convergents of BETA are
+    5/8, 12/19, 41/65, 53/84, 306/485, 665/1054; at 306/485 the rate already matches
+    ``chernoff_rate`` to 6e-6 in the log.
+    """
+    import math
+
+    def ceil_div(a: int, b: int) -> int:
+        return -((-a) // b)
+
+    rises = [ceil_div((t + 1) * p, q) - ceil_div(t * p, q) for t in range(q)]
+    profile = [0.0] * cap
+    profile[0] = 1.0
+
+    def advance(vec: list[float], rise: bool) -> tuple[list[float], float]:
+        nxt = [0.0] * cap
+        if rise:
+            for m in range(cap - 1):
+                nxt[m] = 0.5 * (vec[m] + vec[m + 1])
+            nxt[cap - 1] = 0.5 * vec[cap - 1]
+        else:
+            nxt[0] = 0.5 * vec[0]
+            for m in range(1, cap):
+                nxt[m] = 0.5 * (vec[m] + vec[m - 1])
+        total = sum(nxt)
+        return [v / total for v in nxt], total
+
+    rate = 0.0
+    for _ in range(sweeps):
+        rate = 0.0
+        for b in rises:
+            profile, total = advance(profile, b == 1)
+            rate += math.log(total)
+    check = profile
+    for b in rises:
+        check, _ = advance(check, b == 1)
+    residual = sum(abs(a - b) for a, b in zip(check, profile))
+    return profile, rate / q, residual
+
+
 def meander_constant(d_values: tuple[int, ...] = (400, 800, 1600)) -> list[float]:
     """``(N_d/2^d) / (rho^d d^(-3/2))`` -- the constant in the polynomial correction.
 
