@@ -49381,3 +49381,67 @@ denominator the CF does not have.
 The lesson generalizes past this module: the census limit and the continued
 fraction were two constants that had to agree, and nothing checked that they
 did.
+
+## The d^(-3/2) proof: the exponent is right and the constant does not exist
+
+Went to prove `N_d/2^d ~ C rho^d d^(-3/2)`. Checked the statement first, which was
+the right order to do it in: **the constant is not a constant**.
+
+### Why I checked before proving
+
+The step distribution is non-lattice --- `log(3/2)/log2 = log2(3) - 1` is
+irrational --- which is the hypothesis a local limit theorem wants, and which
+made the target look routine. But at each *fixed* `d` the endpoint
+`S_d = o log3 - d log2` is determined by `o` alone, so it lies on a lattice of
+spacing `log3` whose offset `-d log2 mod log3` **shifts with `d`** and
+equidistributes. Non-lattice as a walk, lattice at every fixed time. That is
+exactly the configuration in which a prefactor oscillates.
+
+Put the other way: in the `o` coordinate the event is `o_t >= t*BETA` for all
+`t <= d` --- a simple walk on the integers against a line of irrational slope.
+
+### It oscillates, and it collapses
+
+`c_d = (N_d/2^d)/(rho^d d^(-3/2))` over twenty consecutive depths keeps a spread
+of `1.069, 1.069, 1.067` at `d` near `1000, 2000, 4000`. It does not shrink, so
+`c_d` does not converge.
+
+Binned by `frac(d*BETA)` it collapses: within-bin scatter `0.065` against an
+across-bin range `0.628`, a `9.7x` signal. Across disjoint depth windows the
+*shape* is identical --- per-bin differences have sd `0.0037, 0.0020, 0.0019` ---
+while only the *level* drifts, by `+0.287, +0.124, +0.054` as the window doubles.
+The drift is the `1+o(1)`; the shape is `psi`.
+
+The sign is the mechanism's rather than a fit: larger `frac(d*BETA)` means a
+smaller gap between the barrier at `0` and the lowest available state, hence more
+survivors, hence larger `c`. `psi` rises `10.3685 -> 10.9968` across the circle.
+One departure from monotonicity near offset `0.65` is not explained by the
+endpoint offset alone and is presumably a path effect; recorded as such.
+
+### What this corrects, including my own claim from this session
+
+The recorded constant `10.90` is one sample of `psi`, and the recorded band
+`10.566..11.063` is `psi`'s range --- explained rather than noted. And
+`J-theorem-six-one-threshold-is-slack`, written earlier today, quoted
+`truth/(p rho^d) . d^(3/2)` as tending to `C/p = 17.28` from the samples `16.4,
+17.0, 16.6`. Those wobbled because they are samples of `psi/p`, not because of
+measurement noise. Both rows amended. The sharpened upper bound `p rho^d` and the
+`d^(-3/2)` exponent are untouched.
+
+### What a proof would now have to be
+
+Not the one I set out to write. A local limit theorem delivering a constant
+prefactor cannot hold here. The correct target carries `psi`, and reaching it
+needs a local limit theorem for a lattice walk against an irrational barrier ---
+not the non-lattice statement the step distribution invites, which is precisely
+the trap the irrational ratio sets. That is a harder and more interesting
+problem, and it is now stated correctly rather than attempted against a false
+target.
+
+### Machinery
+
+`surviving_log_mass` gives every depth in one rescaled pass and agrees with the
+exact integer DP to `7e-15`. It exists because the oscillation is only visible in
+*consecutive* depths, and the exact DP costs 20 s at `d = 3200` and overflows
+float past it --- sampling a few depths, which is what had been done, cannot see
+this at all.
