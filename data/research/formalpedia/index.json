@@ -53559,6 +53559,36 @@
       "trust": "kernel"
     },
     {
+      "doc": "**A rising step preserves the ratio cone.** Adding the bound at the two sites is the whole proof: the updated value at a site is an average of the two old neighbours.",
+      "file": "formal/Problems/Juggler/PaperBBarrierStep.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 193,
+      "module": "Problems.Juggler.PaperBBarrierStep",
+      "name": "update_true_ratio",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**A non-rising step preserves it too, away from the barrier.**",
+      "file": "formal/Problems/Juggler/PaperBBarrierStep.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 201,
+      "module": "Problems.Juggler.PaperBBarrierStep",
+      "name": "update_false_ratio",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**And at the barrier it fails.** A non-rising step sends mass up, so the ratio at `m = 0` is at least one and no cone with `s < 1` survives there. The defect is one site wide.",
+      "file": "formal/Problems/Juggler/PaperBBarrierStep.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 210,
+      "module": "Problems.Juggler.PaperBBarrierStep",
+      "name": "boundary_ratio_at_least_one",
+      "trust": "kernel"
+    },
+    {
       "doc": "The per-letter power map `p_q`: `3/2` after an odd letter, `1/2` after an even one. These are the only two values a Juggler step contributes.",
       "file": "formal/Problems/Juggler/PaperBChainRule.lean",
       "kind": "def",
@@ -89400,7 +89430,7 @@
       "ledger": []
     },
     "Problems.Juggler.PaperBBarrierStep": {
-      "declarations": 11,
+      "declarations": 14,
       "file": "formal/Problems/Juggler/PaperBBarrierStep.lean",
       "imports": [],
       "ledger": []
@@ -90546,13 +90576,13 @@
     }
   },
   "totals": {
-    "declarations": 6690,
+    "declarations": 6693,
     "declarations_with_a_ledger_row": 4572,
-    "ledger_rows_naming_a_file": 426,
+    "ledger_rows_naming_a_file": 427,
     "modules": 293,
     "trust": {
       "compiler": 56,
-      "kernel": 6634
+      "kernel": 6637
     }
   }
 }
