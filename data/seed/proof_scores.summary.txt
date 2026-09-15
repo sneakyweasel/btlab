@@ -1,0 +1,139 @@
+4280 proofs scored with qwen3-8b-base, file-prefix setup; 3718 with at least 12 tokens and not truncated
+Spearman(mean_surprise, n_tokens) = -0.077
+Spearman(mean_pmi, n_tokens) = -0.949
+median mean_surprise = 0.641 nats/token
+median mean_pmi = 3.571 nats/token
+
+MOST SURPRISING PROOFS (mean surprise per token, given the setup)
+    3.074     48 tok  obtain     height_strip  (formal/Problems/Juggler/CubicReturnStrip.lean:8)
+    2.699     17 tok  simpa      cycle_remainders_project_to_envelope  (formal/Problems/Juggler/CycleExtrema.lean:1112)
+    2.662     15 tok  rw         follows_eoo_two  (formal/Problems/Juggler/Preimages.lean:304)
+    2.645     19 tok  unfold     cubicResid_one_neg  (formal/BTCalculus/CubicResidual.lean:386)
+    2.559     15 tok  norm_num   exponent_A  (formal/Problems/Juggler/ReturnWordData.lean:16)
+    2.497     34 tok  let        succIdx_val_of_lt  (formal/Problems/Juggler/CubicRemainderAssembly.lean:303)
+    2.482     29 tok  norm_num   c_certificate  (formal/Problems/Juggler/ReturnWordBounds.lean:14)
+    2.435     29 tok  unfold     warp_wordThree  (formal/Operators/Algebra.lean:38)
+    2.431     51 tok  have       guard_int_sqrt_cell  (formal/Problems/Juggler/GuardResidueFamily.lean:357)
+    2.366     27 tok  unfold     PZ_zero_eq  (formal/Problems/BalancedTernary/SignedP0.lean:21)
+    2.346     30 tok  exact      actual_OE_lower_cube  (formal/Problems/Juggler/QuarticCells.lean:271)
+    2.340     42 tok  have       cycleMin_finance_inv_sum  (formal/Problems/Juggler/CycleFinance.lean:377)
+    2.288     37 tok  intro      necklacePinMiss2005_not_admit  (formal/Problems/Juggler/IdealCycleMin.lean:1027)
+    2.259     78 tok  rcases     low_odd  (formal/Problems/Juggler/QuarticBand.lean:15)
+    2.244     45 tok  simpa      no_cycle_itinerary_ooooooee  (formal/Problems/Juggler/LengthEightCensus.lean:232)
+    2.229     32 tok  have       packWord_integerJet_balWidth  (formal/BTCalculus/CubicDeepestLayer.lean:134)
+    2.190     42 tok  have       odd_run_lower_growth  (formal/Problems/Juggler/LeftoverPreimage.lean:185)
+    2.187     25 tok  rw         even_run_contracts  (formal/Problems/Juggler/CycleRunAlphabet.lean:101)
+    2.085     31 tok  simp       cycleItineraryB_iff  (formal/Problems/Juggler/LeftoverShort.lean:32)
+    2.076     35 tok  rw         oddCount_take_succ  (formal/Problems/Juggler/WalkTransport.lean:187)
+
+MOST INEVITABLE PROOFS (lowest mean surprise)
+    0.000     27 tok  rw         row_39_c4  (formal/Problems/Juggler/ThresholdCertificate.lean:339)
+    0.000     18 tok  cases      maxT_assoc  (formal/BTCalculus/Trit.lean:27)
+    0.000     18 tok  cases      max_distrib_min  (formal/BTCalculus/Trit.lean:52)
+    0.000     13 tok  cases      absorb_max_min  (formal/BTCalculus/Trit.lean:39)
+    0.001     13 tok  cases      de_morgan_max  (formal/BTCalculus/Trit.lean:60)
+    0.001     98 tok  have       gappedThreeEvenEOE_get_a  (formal/Problems/Juggler/LeftoverFamilies.lean:2680)
+    0.001    251 tok  intro      no_cycle_itinerary_length_thirteen  (formal/Problems/Juggler/CycleFinanceLeftovers.lean:179)
+    0.001     63 tok  intro      no_cycle_itinerary_two_even_eoe  (formal/Problems/Juggler/LeftoverFamilies.lean:269)
+    0.001     25 tok  simp       Im_plus_Im  (formal/BTCalculus/RewriteAddBoundary.lean:136)
+    0.001    258 tok  intro      no_cycle_itinerary_length_sixteen  (formal/Problems/Juggler/CycleFinanceLeftovers.lean:201)
+    0.001    167 tok  unfold     coeff_cubic_three  (formal/BTCalculus/CubicResidual.lean:91)
+    0.001     18 tok  simpa      join_ws  (formal/BTCalculus/WordSimpNewman.lean:79)
+    0.001     15 tok  rw         follows_eoo_fourteen  (formal/Problems/Juggler/Preimages.lean:310)
+    0.001    563 tok  have       eoee_tail_six_succ  (formal/Problems/Juggler/LeftoverFamilies.lean:689)
+    0.001     32 tok  simp       right_word_statistics  (formal/Problems/Juggler/ReturnInduction.lean:95)
+    0.001     20 tok  rintro     ooeoWord_not_monochrome  (formal/Problems/Juggler/DefectLowerBound.lean:315)
+    0.001    167 tok  unfold     coeff_cubic_two  (formal/BTCalculus/CubicResidual.lean:76)
+    0.002     19 tok  simpa      join_wk3  (formal/BTCalculus/WordSimpNewman.lean:71)
+    0.002     59 tok  intro      no_cycle_itinerary_ooooeoe  (formal/Problems/Juggler/LeftoverShort.lean:783)
+    0.002    248 tok  intro      no_cycle_itinerary_length_twelve  (formal/Problems/Juggler/CycleFinanceLeftovers.lean:157)
+
+PROOFS THE SETUP EARNS MOST (mean pmi per token)
+   10.534     15 tok  rw         follows_eoo_fourteen  (formal/Problems/Juggler/Preimages.lean:310)
+   10.514     15 tok  rw         follows_eoo_twelve  (formal/Problems/Juggler/Preimages.lean:307)
+   10.012     20 tok  simpa      residualAlong_Xcube_pos  (formal/BTCalculus/CubicResidual.lean:420)
+    9.977     14 tok  simp       evalMSD_append_plus  (formal/Representation/Words.lean:76)
+    9.963     13 tok  simp       classCount_eq  (formal/Problems/Juggler/RateFreeDensity.lean:102)
+    9.825     20 tok  simpa      aboveAnchor_odds_ge_hug  (formal/Problems/Juggler/AboveAnchorWalk.lean:45)
+    9.807     13 tok  simp       gappedEEBootstrap_split  (formal/Problems/Juggler/LeftoverFamilies.lean:2774)
+    9.807     14 tok  rw         iterate_cons_odd  (formal/Problems/Juggler/Preimages.lean:650)
+    9.756     13 tok  simp       digitSum_append_plus  (formal/Representation/Words.lean:72)
+    9.698     13 tok  unfold     badWeight_le_card  (formal/Problems/Juggler/FateOneSided.lean:150)
+    9.677     12 tok  simp       eoo_contracts_on_preimage  (formal/Problems/Juggler/Preimages.lean:602)
+    9.648     14 tok  simp       gappedEOEBootstrap_split  (formal/Problems/Juggler/LeftoverFamilies.lean:2780)
+    9.636     13 tok  simp       periodicObservable_zero  (formal/Problems/Juggler/JumpVariation.lean:275)
+    9.627     24 tok  rw         hugCharge_sub_rotationAverage_extended_le  (formal/Problems/Juggler/RotationAverage.lean:377)
+    9.586     14 tok  rw         iterate_cons_even  (formal/Problems/Juggler/Preimages.lean:646)
+    9.566     15 tok  unfold     branchOffsetCycle_bounds  (formal/Problems/Juggler/CubicRounding.lean:422)
+    9.551     18 tok  simpa      odd_image_mem  (formal/Problems/Juggler/QuarticBand.lean:64)
+    9.537     14 tok  rw         ostroBlocks_length  (formal/Problems/Juggler/OstrowskiBlocks.lean:101)
+    9.452     19 tok  rw         floorPower_odd_even_run_eq_iff  (formal/Problems/Juggler/TowerAbsorption.lean:55)
+    9.444     12 tok  simp       isolatedPrefix_succ  (formal/Problems/Juggler/FirstInternalOO.lean:41)
+
+PROOFS THE SETUP EARNS LEAST (lowest mean pmi)
+    0.252    859 tok  have       floorPower_oooee_pow_chain  (formal/Problems/Juggler/Envelope.lean:19)
+    0.371    306 tok  unfold     starts?_sound  (formal/BTCalculus/WordSimp.lean:185)
+    0.385    975 tok  have       adjointDet_succ_of_four  (formal/Problems/Ostrowski/NP/Energy.lean:262)
+    0.476    405 tok  rw         lowerDenom_oooooo  (formal/Problems/Juggler/LeftoverFamilies.lean:297)
+    0.486    640 tok  have       q_unit_diff  (formal/BTCalculus/XCubeStateComplexity.lean:154)
+    0.495    387 tok  calc       floorPower_oooeeeoo_pow_chain  (formal/Problems/Juggler/Envelope.lean:394)
+    0.536    972 tok  have       succ_cube_lt_two_mul_pow4  (formal/Problems/Juggler/LeftoverShort.lean:101)
+    0.539   1012 tok  set        pow_sub_pow_gt_sub  (formal/Problems/Juggler/Defect.lean:458)
+    0.546    822 tok  have       two_mul_succ_cube_lt_succ_pow6  (formal/Problems/Juggler/LeftoverFamilies.lean:1204)
+    0.549   1006 tok  have       seven_g_ge_five_G  (formal/Problems/Juggler/FateSweepMonotone.lean:453)
+    0.552    614 tok  have       q_one_diff  (formal/BTCalculus/MismatchedCubicInvariant.lean:36)
+    0.553    730 tok  set        surplus_ge  (formal/Problems/Juggler/FateSweepMonotone.lean:2234)
+    0.554    530 tok  have       succ_pow512_lt  (formal/Problems/Juggler/LeftoverFamilies.lean:354)
+    0.571    902 tok  have       guardResidue_zplus_lower_scaled  (formal/Problems/Juggler/GuardResidueFamily.lean:117)
+    0.573    334 tok  rw         lowerDenom_ooooo  (formal/Problems/Juggler/LeftoverShort.lean:458)
+    0.586    913 tok  have       n1_core_square_iff  (formal/BTCalculus/XCubeStateComplexity.lean:265)
+    0.587    554 tok  have       eoee_tail_five_succ  (formal/Problems/Juggler/LeftoverFamilies.lean:660)
+    0.603    478 tok  have       succ_pow64_lt  (formal/Problems/Juggler/LeftoverPreimage.lean:48)
+    0.614    661 tok  have       four_block_pe_1999  (formal/Problems/Juggler/ExpansionSlack.lean:215)
+    0.622    684 tok  have       succ_pow13766_lt_of_ge_30  (formal/Problems/Juggler/CycleMinFudge.lean:592)
+
+BOLDEST OPENING MOVES (surprise of the first tactic word)
+    9.348    173 tok  symm       cube_fiber_sqrt_even  (formal/Problems/Juggler/CubeFiber.lean:43)
+    8.880     28 tok  have       hiddenCongruenceA_mod1  (formal/Problems/Engine/PiecewiseCensus.lean:24)
+    8.602     15 tok  interval_cases eoo_sqrt_cube_pow_of_small  (formal/Problems/Juggler/Preimages.lean:393)
+    8.506    163 tok  classical  slowSum_eq_fibers  (formal/Problems/Juggler/FateBlockAverage.lean:242)
+    8.432     16 tok  linear_combination compose_two_affine  (formal/Problems/Engine/ControlWord.lean:14)
+    8.413     61 tok  by_cases   qShift_succ_two  (formal/Problems/Ostrowski/NP/Energy.lean:752)
+    8.325    319 tok  wlog       fourth_window_occupancy  (formal/Problems/Juggler/Preimages.lean:134)
+    8.303    236 tok  wlog       three_zpow_inj  (formal/BTCalculus/OpFragSemantic.lean:309)
+    8.225    382 tok  generalize RankedReturn.primitive_terminal  (formal/Problems/Juggler/ReturnSeams.lean:188)
+    8.209    388 tok  wlog       three_pow_inj_of_dvd  (formal/BTCalculus/Quadratic.lean:455)
+    8.138     74 tok  calc       warpWord_mapNeg  (formal/Representation/Words.lean:140)
+    7.833     75 tok  omega      firstDefectFrom_prefix_zero  (formal/Problems/Juggler/DefectLowerBound.lean:40)
+    7.823     89 tok  unfold     pairSurp_ge_neg_third  (formal/Problems/Juggler/FateSweepMonotone.lean:1565)
+    7.801    783 tok  generalize any_word_separation  (formal/Problems/BalancedTernary/SignedDigitConstrainedControls.lean:16)
+    7.695     91 tok  match      q_succ_impulse  (formal/Problems/Ostrowski/NP/Energy.lean:760)
+    7.548    101 tok  constructor localDefectOdd_eq_zero_iff  (formal/Problems/Juggler/Defect.lean:51)
+    7.465    107 tok  match      eArrival_odd_parent_start_ge_two  (formal/Problems/Juggler/CyclePosition.lean:431)
+    7.422     19 tok  refine     proportional_chain  (formal/Problems/Juggler/LocalizedKernel.lean:127)
+    7.411    763 tok  wlog       odd_preimage_unique  (formal/Problems/Juggler/Preimages.lean:705)
+    7.385     16 tok  refine     stepB_m_block_is_taylor  (formal/Problems/Juggler/DepthFourFive.lean:87)
+
+MEAN SURPRISE BY FIRST TACTIC (n >= 20)
+   1.642  n=  22  omega
+   1.186  n= 184  decide
+   0.774  n= 394  rw
+   0.750  n=  42  apply
+   0.735  n=  35  let
+   0.726  n= 279  simp
+   0.721  n=  82  simpa
+   0.719  n=  59  by_contra
+   0.712  n= 231  unfold
+   0.699  n= 205  obtain
+   0.694  n= 317  intro
+   0.689  n=  51  classical
+   0.655  n= 115  refine
+   0.651  n=  99  constructor
+   0.649  n=  70  set
+   0.643  n= 195  induction
+   0.636  n=1413  have
+   0.633  n= 104  rcases
+   0.632  n=  27  by_cases
+   0.587  n=  85  norm_num
+   0.563  n= 109  cases
+   0.549  n=  22  ext
