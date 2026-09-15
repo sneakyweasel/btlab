@@ -51182,3 +51182,61 @@ to ask "what field could help here" will otherwise regenerate the same
 four names from the same background knowledge. Negative knowledge about
 the *literature* is as reusable as negative knowledge about the
 mathematics; the index had the second kind and not the first.
+
+
+## The criticality is not a coordinate artifact
+
+The driven-critical gap turned out to have a piece that is provable in an
+afternoon, and it is the piece that says why the gap is there.
+
+`J-killed-walk-forgets-polynomially` records that memory loss is polynomial
+rather than geometric and concludes that a contraction argument "does not
+describe this walk however it is set up". That quantified clause was an
+observation --- reasonable, and never proved. It is now proved for the class
+of arguments it is usually aimed at.
+
+On the space weighted by `r^m` the two updates act on `r^m` by multiplication,
+by `(1+1/r)/2` and `(1+r)/2`, so the log essential radius at weight `r` is the
+`beta`-average
+
+    chi(r) = (1-beta) log((1+1/r)/2) + beta log((1+r)/2).
+
+The theorem is `logRho beta <= chi r` for every `r > 0`, with equality exactly
+at `r = (1-beta)/beta`. Since `logRho beta` *is* the decay rate, the Perron
+eigenvalue never drops below the essential radius at any weight. The best an
+exponential weight can do is make them equal --- and it does that at the tail
+base the profile already carries, so the weight buys nothing the profile did
+not already have. A spectral gap is not missing from the naive space; it is
+absent from the whole exponentially weighted family.
+
+### Why it was an afternoon and not a project
+
+Every piece existed and none of them knew about the others. Substituting
+`r = exp s` collapses `chi` onto the Chernoff exponent at the *complementary*
+slope, `chi(exp s) = chernoffExp s (1-beta)` --- the function I put in Lean
+yesterday morning for an unrelated reason. `logRho` is symmetric under
+`b -> 1-b`, so the target is its own minimum. And the gap between a Chernoff
+exponent and that minimum is a relative entropy,
+`chernoffExp lam b - logRho b = klDiv b (e^lam/(1+e^lam))`, which is
+nonnegative by Gibbs --- and `OneSided.klDiv_nonneg` has been in the fate layer
+for months.
+
+That is the third time in two days the index has stopped me from proving
+something that already existed, and the second time the thing I was about to
+build turned out to be one half of a bridge. The habit is worth more than any
+of the individual results it has saved.
+
+### What it does not do
+
+It closes contraction in the exponentially weighted class. It does not close
+every contraction argument --- a non-exponential weight, or a change of space
+that is not multiplication by a function of `m`, is untouched. No bound moves
+and no fate is excluded. It is a statement about a class of proofs, not about
+the Juggler map, and the quasi-stationary limit is exactly as open as it was
+this morning.
+
+What changed is the shape of the remaining problem. "Find a weight that makes
+this contract" is now known to be a dead end rather than an untried idea, and
+the negative-knowledge entry from earlier today --- that the driven-critical
+combination has no literature --- now has a theorem under it explaining why one
+would not expect the autonomous machinery to transfer.
