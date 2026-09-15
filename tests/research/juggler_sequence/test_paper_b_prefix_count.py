@@ -4779,3 +4779,44 @@ def test_the_bump_kernel_decays_faster_than_the_inverse_square() -> None:
     coarse = B.barrier_bump_response(1024, _BUMP_P, _BUMP_Q, caps=(40, 80, 160))
     fine = B.barrier_bump_response(1024, _BUMP_P, _BUMP_Q, caps=(160, 320, 640))
     assert abs(fine / coarse - 1) < 0.02, (coarse, fine)
+
+
+def test_the_killed_chain_is_rho_null_so_no_weight_restores_the_gap() -> None:
+    """Vere-Jones: rho-POSITIVE means some weight gives a spectral gap, rho-NULL means none does.
+
+    The test is whether ``sum_m nu(m) h(m)`` converges, with ``nu`` the quasi-stationary profile
+    (right Perron vector, decaying like ``r*^m``) and ``h`` the harmonic function (left Perron
+    vector, growing like ``r*^-m``).  The double root puts a linear factor on each, so the product
+    grows like ``m^2`` and the sum diverges: the h-transformed chain is null recurrent, and the
+    h-transform is the best weight there is.
+
+    That is the non-exponential half of the story.  The exponential half is proved --
+    ``PaperBWeightGap.no_weight_separates`` -- and it is pointwise in the ratio, so a weight with
+    VARYING ratio only samples ``chi`` at several points, each already at least ``log rho``.  No
+    average of values bounded below by ``log rho`` falls below it.
+
+    Both ends of the bulk are confined by the cap, which is why the product peaks at ``cap/2``; the
+    fitted exponent is read below the peak and rises toward 2 as the cap recedes (1.80, 1.87 at
+    caps 200 and 400).
+    """
+    import numpy as np
+
+    exponents, sums = [], []
+    for cap in (200, 400):
+        nu = np.asarray(B._period_fixed_point(B._barrier_rises(41, 65), cap), dtype=float)
+        h = np.asarray(B.barrier_harmonic_function(41, 65, cap), dtype=float)
+        nu = nu / nu.sum()
+        h = h / h[0]
+        product = nu * h
+
+        peak = int(np.argmax(product))
+        assert abs(peak - cap // 2) <= cap // 20, (cap, peak)   # confined symmetrically
+
+        lo, hi = 20, peak // 2
+        slope = float(np.polyfit(np.log(np.arange(lo, hi)), np.log(product[lo:hi]), 1)[0])
+        exponents.append(slope)
+        sums.append(float(product[:hi].sum()))
+
+    assert all(1.5 < e < 2.0 for e in exponents), exponents     # grows, and short of m^2 under a cap
+    assert exponents[1] > exponents[0], exponents               # rising toward 2 as the cap recedes
+    assert sums[1] > 4 * sums[0], sums                          # the partial sums diverge with cap
