@@ -1112,24 +1112,56 @@ every factor of  \(1-p\)  cancelling, so the bound of Theorem 6.1 reads
 \]
 with both constants explicit and no unspecified  \(t\).
 
-What remains between this and the truth is a polynomial and nothing
-more. The exact count satisfies  \(N_d/2^d\sim C\varrho^{d}d^{-3/2}\)
-with  \(C\approx10.90\)  measured from the exact dynamic-programming
-count over  \((t,o_t)\), so
-\(\bigl(N_d/2^d\bigr)\big/\bigl(p\varrho^{d}\bigr)\cdot d^{3/2}\)
-should tend to  \(C/p\approx17.3\); it measures  \(16.4\),  \(17.0\),
-\(16.6\)  at  \(d=640,1280,2560\). This is an independent route to that
-constant, using only the exact dynamic-programming count and the
-sharpened inequality. The convenient threshold admits no such reading:
-its overshoot is  \(1.2\cdot10^{6}\)  at  \(d=320\)  and
+What remains between this and the truth is a polynomial together
+with an oscillation, and the oscillation is not a defect of the
+measurement. Writing  \(\beta=p\)  for the threshold, the exact count
+satisfies
+\[
+N_d/2^d=\psi\bigl(\{d\beta\}\bigr)\,\varrho^{d}d^{-3/2}\bigl(1+o(1)\bigr),
+\]
+with  \(\psi\)  a non-constant function on the circle: over twenty
+consecutive depths the ratio keeps a spread of  \(1.07\)  at
+\(d\approx1000,2000,4000\)  alike, and binning by  \(\{d\beta\}\)
+collapses it, the within-bin scatter being one tenth of the
+across-bin range. The reason is arithmetic rather than probabilistic:
+at each fixed  \(d\)  the endpoint  \(o\log3-d\log2\)  lies on a
+lattice of spacing  \(\log3\)  whose offset  \(-d\log2\bmod\log3\)
+equidistributes, so the barrier at  \(0\)  is approached from a
+different distance at every depth, namely  \(1-\{d\beta\}\).
+
+Consequently  \(\bigl(N_d/2^d\bigr)\big/\bigl(p\varrho^{d}\bigr)\cdot
+d^{3/2}\)  does not converge. Its values  \(16.4\),  \(17.0\),
+\(16.6\)  at  \(d=640,1280,2560\)  are samples of  \(\psi/p\)  and not
+approaches to a limit; the mean of  \(\psi\)  is about  \(10.9\),
+which is the constant such measurements had previously been read as
+estimating. The convenient threshold admits no reading of this kind at
+all: its overshoot is  \(1.2\cdot10^{6}\)  at  \(d=320\)  and
 \(6.9\cdot10^{17}\)  at  \(d=1280\), growing without bound.
+
+The shape of  \(\psi\)  is known and its existence is not. Exactly,
+\(N_d/2^d=\varrho^{d}e^{-\lambda^{*}(1-\{d\beta\})}G(d)\)  with
+\(\lambda^{*}=\log\bigl(\beta/(1-\beta)\bigr)\)  the mean-zero tilt and
+\(G\)  indexed by integers; the tilted letter law is  \(\mathrm{Bernoulli}
+(\beta)\), which is why  \(\beta\)  is the threshold. Empirically
+\(\psi\)  is of bounded variation with jumps exactly on the rotation
+orbit  \(\{k\beta\bmod 1\}\), all downward, of sizes  \(0.071\),
+\(0.034\),  \(0.015\),  \(0.016\),  \(0.011\), …  at  \(k=0,1,2,3,4\):
+a sawtooth on the orbit, whence its Fourier coefficients decay like
+\(k^{-0.79}\). No Taylor expansion of  \(\psi\)  exists. What is not
+proved, here or elsewhere, is that  \(\psi\)  exists at all: that
+\(d^{3/2}G(d)\)  converges along  \(\{d\beta\}\to\varphi\). That is a
+local limit theorem for a lattice walk against a Sturmian barrier, and
+the classical statement, which the non-lattice step distribution
+invites, does not apply.
 
 None of this changes Theorem 6.1, whose conclusion follows from any
 \(\vartheta<1\). The algebra of the threshold — that  \(q_d\)
 saturates the step, that no admissible threshold exceeds it, that
 \(q=p\)  is blocked only by  \(p<1\), and that  \(d\ge4\)  is the first
 usable depth — is machine-checked in
-`formal/Problems/Juggler/PaperBThreshold.lean`.
+`formal/Problems/Juggler/PaperBThreshold.lean`, and the tilt, its closed
+form and the arithmetic of the barrier gap in
+`formal/Problems/Juggler/PaperBTilt.lean`.
 
 ## 7. Exact floor defects and separate analytic questions
 

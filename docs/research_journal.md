@@ -49654,3 +49654,62 @@ away from `0`.
 rotation orbit of `0`, with geometrically decaying amplitudes. Its *existence*
 --- the convergence of `d^(3/2) G(d)` --- is untouched and still open. Knowing
 the shape of a limit is not proving there is one.
+
+## Consolidation: Paper B was shipping a claim its own successor had refuted
+
+Two things needed fixing, and the second explains why the first went unnoticed.
+
+### Remark 6.2 asserted a constant that does not exist
+
+This morning's sharpening added a Remark 6.2 ending
+
+> The exact count satisfies `N_d/2^d ~ C rho^d d^(-3/2)` with `C ~ 10.90` ... so
+> `(N_d/2^d)/(p rho^d) . d^(3/2)` **should tend to** `C/p ~ 17.3`; it measures
+> `16.4`, `17.0`, `16.6`.
+
+By evening I had shown it does not tend to anything. Rewritten: the prefactor is
+`psi({d beta})`, non-constant, with the arithmetic reason given (the endpoint
+lattice's offset equidistributes, so the barrier is approached from a different
+distance at every depth); the three numbers are named as samples of `psi/p` and
+`10.9` as `psi`'s mean; and the structure is stated --- the exact factorisation
+through `lamStar`, `psi` of bounded variation with jumps on the rotation orbit
+`{k beta}`, Fourier decay `k^(-0.79)`, no Taylor expansion --- followed by what
+is *not* proved, that `psi` exists at all.
+
+### The PDF had been stale since this morning, and the gate said otherwise
+
+`build_paper_b.py --check` compares the `EXPORTS` pairs --- PDF-to-PDF copies
+plus the `.md` mirror --- and the Zenodo fields, then prints
+
+    Paper B source, review copies, companion PDF, and Zenodo kit agree.
+
+It never consults `paper_b_build.json`, which has recorded a digest for the
+source, the TeX and the PDF all along. So editing `docs/theory` and copying to
+`juggler_review` satisfies every comparison the gate makes. **That is exactly how
+the Theorem 6.1 sharpening shipped without a rebuild**: I edited the source,
+updated the mirror, ran the mirror test, saw it pass, and pushed a PDF that did
+not contain the change.
+
+Measured on entry: the recorded source digest was `52520173...`, the file
+`6a10a2b1...`.
+
+Paper A caught the same situation immediately this morning --- *"Stale or missing
+Paper A file ...; rebuild required"* --- and Paper C's `read_release` verifies
+every input and output digest. Only Paper B was missing the check. Added as
+`check_manifest`, with `check` now calling `check_exports` and `check_manifest`;
+the existing tmp-tree test calls `check_exports`, which is what it was ever
+testing.
+
+Two regression tests pin it: the exact scenario that slipped through (source and
+mirror both moved, PDF untouched) and the fact that `build_paper_b.py` is itself
+a pinned input --- which the new check demonstrated by rejecting the very patch
+that added it.
+
+Paper B rebuilt with pandoc 3.6.3 and MiKTeX-XeTeX, no layout warnings, all four
+copies and the Zenodo kit synchronised.
+
+### A smaller inconsistency, left alone
+
+`.build/paper_a` and `.build/paper_c` are tracked; Paper B has never tracked a
+build log. I removed the transient work directory rather than start tracking one
+unilaterally. Worth a decision at some point, not mine to make here.
