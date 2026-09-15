@@ -85,6 +85,59 @@ proofs whose route is genuinely unusual for their statement (`height_strip`,
 `cycleMin_finance_inv_sum`, `low_odd`). The metric does not separate the
 three kinds; a reader does.
 
+**The three kinds, separated.** `tools/seed/rank_unusual.py` tags every proof:
+`copy` (mean surprise under 0.05), `template` (an earlier proof that a later
+near-copy in the same file resembles at difflib ratio 0.8 or more),
+`certificate` (short `decide` or `norm_num` proofs, or a digit fraction above
+0.12), and `unusual` for the rest. Counts: 3651 unusual, 278 copies, 155
+templates, 196 certificates. The filter matters less at the top than feared:
+of the twenty most surprising proofs, 16 are unusual, 2 templates, 2
+certificates. The twenty most surprising unusual proofs, with statements and
+proofs, are in `data/seed/rating_sheet.md` for a reader to mark routine, neat,
+or wrong-list. Reading the first six: their surprise sits on which lemma is
+called (`exact_return_seam`, `cubic_return_height_algebra`,
+`power_bound_word` through `image_eq_iterate`) and on which simp set is fed,
+not on tactic structure. Short proofs by a well-chosen lemma are the good
+kind of surprising in a library; `tools/seed/surprise_by_token.py` is written
+to test that reading by splitting surprise across identifier, tactic, numeral
+and structure tokens.
+
+**Header-only versus file-prefix.** The same 3718 proofs scored with only the
+header context (`--header-only`, `data/seed/proof_scores_header.csv`):
+mean surprise 1.24 nats per token against 0.67 with the file prefix, and the
+two rankings agree only weakly (Spearman 0.38). The file explains 42% of the
+surprise of unusual proofs, 48% of templates, 59% of certificates and 99% of
+copies. Without the prefix a length confound appears (Spearman with length
+-0.45), so the prefix setup is the right one and stays the default. The
+proofs that remain surprising with the prefix and barely change without it
+(`height_strip`, `cubicResid_one_neg`, `succIdx_val_of_lt`,
+`warp_wordThree`, `guard_int_sqrt_cell`, `low_odd`) are the residue: their
+surprise is not about the file they sit in.
+
+**Where the surprise sits.** `tools/seed/surprise_by_token.py` on the 200
+most surprising unusual proofs against 200 from the middle of the ranking:
+
+| token class | top 200: share of surprise, nats per token | middle 200: share, nats per token |
+|---|---:|---:|
+| identifier | 63.6%, 2.08 | 50.5%, 0.82 |
+| tactic keyword | 10.2%, 2.00 | 13.6%, 1.26 |
+| structure | 22.2%, 1.36 | 27.8%, 0.58 |
+| numeral | 1.8%, 0.80 | 3.9%, 0.42 |
+
+The top proofs are surprising because of which names they call, two and a
+half times more surprising per identifier than the middle, while tactic
+keywords are only modestly more surprising. Read plainly: what the model
+cannot foresee in this repository is premise selection, the choice of
+lemma, not tactic structure. That is the direct design consequence for the
+local-prover loop: the hard part is retrieval of lemma names, so the loop
+should show the prover candidate premises (the formalpedia index is already
+the retrieval surface) rather than rely on the model to guess them.
+
+**Incongruity is a different list.** Ranking unusual proofs by the largest
+surprise-minus-entropy token gives `cell_eq`, `carry_eq_floor_shifted`,
+`carry_identity`, `balWidth_mul_pow`, `mem_oeFiber`: long proofs with one
+token the model was confident about and wrong. Not yet inspected.
+
 **Opening moves.** Surprise of the first tactic word ranks the proofs that
 begin unusually: `symm` in `cube_fiber_sqrt_even` (9.3 nats), `interval_cases`
 in `eoo_sqrt_cube_pow_of_small`, `wlog` in `fourth_window_occupancy`,
@@ -97,9 +150,13 @@ and `cases` and `ext` the least (0.56, 0.55).
 
 **PARK.** Half the promotion criterion holds: the ranking is not length and
 not numerals. The other half, that the top twenty are non-obvious to a
-reader, is a judgment this session cannot make alone, and the top is visibly
-a mixture. What the scorer does establish is a map of copied proofs, which
-is a maintenance result rather than a mathematical one.
+reader, is a judgment this session cannot make alone; the rating sheet is
+ready for it. What the scorer does establish is two things short of an
+elegance measure: a map of copied proofs, which is a maintenance result, and
+the finding that the model's surprise in this repository is mostly about
+which lemma is called. The second is the one that changes the local-prover
+design, and it transfers to the loop as a retrieval requirement rather than
+as a reward.
 
 Priced next steps, none opened here:
 
