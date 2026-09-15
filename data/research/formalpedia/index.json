@@ -53961,6 +53961,136 @@
       "trust": "kernel"
     },
     {
+      "doc": "The tilt parameter: `log (b / (1 - b))`.",
+      "file": "formal/Problems/Juggler/PaperBTilt.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 43,
+      "module": "Problems.Juggler.PaperBTilt",
+      "name": "lamStar",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The tilt exponentiates to the odds ratio.**",
+      "file": "formal/Problems/Juggler/PaperBTilt.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 46,
+      "module": "Problems.Juggler.PaperBTilt",
+      "name": "expLamStar",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The tilt is exactly the mean-zero one.** Tilting a fair coin by `exp (lamStar * X)` gives `Bernoulli b`, so the walk `o_t - t*b` has mean zero under the tilted law. This is the statement that `b` is the threshold rather than a convenient nearby value.",
+      "file": "formal/Problems/Juggler/PaperBTilt.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 53,
+      "module": "Problems.Juggler.PaperBTilt",
+      "name": "lamStar_mean_zero",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The minimised moment generating function, in closed form.",
+      "file": "formal/Problems/Juggler/PaperBTilt.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 63,
+      "module": "Problems.Juggler.PaperBTilt",
+      "name": "rho",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**`rho` is the tilted normaliser.** `exp (-lamStar * b) / (2 * (1 - b))` is what the change of measure produces; this says it equals the closed form, which is `theta b`.",
+      "file": "formal/Problems/Juggler/PaperBTilt.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 67,
+      "module": "Problems.Juggler.PaperBTilt",
+      "name": "rho_closed_form",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The barrier gap at depth `d`: the least value the walk may end at.",
+      "file": "formal/Problems/Juggler/PaperBTilt.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 80,
+      "module": "Problems.Juggler.PaperBTilt",
+      "name": "gap",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The gap is `1 - fract x`** away from the integers, which is where `psi`'s argument comes from: at depth `d` the endpoint cannot be closer to the barrier than this.",
+      "file": "formal/Problems/Juggler/PaperBTilt.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 84,
+      "module": "Problems.Juggler.PaperBTilt",
+      "name": "ceil_sub_eq_one_sub_fract",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The barrier moves by `0` or `1`.** So the killed walk does not run against a straight line but against the Sturmian word of `b`, which is what makes the remaining local limit theorem a different problem from the classical one.",
+      "file": "formal/Problems/Juggler/PaperBTilt.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 102,
+      "module": "Problems.Juggler.PaperBTilt",
+      "name": "sturmian_step",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`beta = log 2 / log 3`, the threshold of the whole construction.",
+      "file": "formal/Problems/Juggler/PaperBTilt.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 113,
+      "module": "Problems.Juggler.PaperBTilt",
+      "name": "beta",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBTilt.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 115,
+      "module": "Problems.Juggler.PaperBTilt",
+      "name": "beta_pos",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBTilt.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 119,
+      "module": "Problems.Juggler.PaperBTilt",
+      "name": "beta_lt_one",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**At `beta` the tilt is mean zero**, which is the sentence \"the walk stays nonnegative exactly when at least a `beta` fraction of the letters are odd\".",
+      "file": "formal/Problems/Juggler/PaperBTilt.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 126,
+      "module": "Problems.Juggler.PaperBTilt",
+      "name": "beta_mean_zero",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The rate is the closed form at `beta`.** Recorded as a numerical agreement to `1.1e-16` in `J-theorem-six-one-threshold-is-slack`; it is an algebraic identity.",
+      "file": "formal/Problems/Juggler/PaperBTilt.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 132,
+      "module": "Problems.Juggler.PaperBTilt",
+      "name": "beta_rho_closed",
+      "trust": "kernel"
+    },
+    {
       "doc": "Parity of `\u230a(2k+1)^{3/2}\u230b`: the letter following the odd step from `2k+1`.",
       "file": "formal/Problems/Juggler/ParityComplexity.lean",
       "kind": "def",
@@ -86763,6 +86893,7 @@
         "Problems.Juggler.PaperBAssembly",
         "Problems.Juggler.PaperBChainRule",
         "Problems.Juggler.PaperBThreshold",
+        "Problems.Juggler.PaperBTilt",
         "Problems.Juggler.ParityComplexity",
         "Problems.Juggler.PeriodFamily",
         "Problems.Juggler.PrefixBunched",
@@ -88823,6 +88954,12 @@
       "imports": [],
       "ledger": []
     },
+    "Problems.Juggler.PaperBTilt": {
+      "declarations": 13,
+      "file": "formal/Problems/Juggler/PaperBTilt.lean",
+      "imports": [],
+      "ledger": []
+    },
     "Problems.Juggler.ParityComplexity": {
       "declarations": 11,
       "file": "formal/Problems/Juggler/ParityComplexity.lean",
@@ -89894,13 +90031,13 @@
     }
   },
   "totals": {
-    "declarations": 6630,
+    "declarations": 6643,
     "declarations_with_a_ledger_row": 4572,
-    "ledger_rows_naming_a_file": 414,
-    "modules": 287,
+    "ledger_rows_naming_a_file": 415,
+    "modules": 288,
     "trust": {
       "compiler": 56,
-      "kernel": 6574
+      "kernel": 6587
     }
   }
 }

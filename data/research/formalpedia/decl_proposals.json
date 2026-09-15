@@ -3913,8 +3913,19 @@
       "lean": "formal/Problems/Juggler/PaperBThreshold.lean",
       "names_own": [],
       "statement": "Paper B's Theorem 6.1 discards three quarters of its own exponent, and the discard is avoidable at no cost. THE STEP. The proof needs a Chernoff threshold q with 1/2 < q < p, p = log2/log3, satisfying p*d - 1 >= q*(d-1); the -1 is the leading O, spent before the binomial starts. The published proof takes q = (p+1/2)/2. THE SHARP CHOICE. The break-even threshold is q_d = p - (1-p)/(d-1), at which t"
+    },
+    {
+      "candidates": [],
+      "composite": false,
+      "confidence": "low",
+      "definitions": [],
+      "id": "J-paper-b-tilt-reduction-and-the-phase-factor",
+      "in_file": 0,
+      "lean": "formal/Problems/Juggler/PaperBTilt.lean",
+      "names_own": [],
+      "statement": "The exact reduction behind the almost-periodic prefactor of J-paper-b-meander-prefactor-is-almost-periodic, together with the one step of it that is NOT proved. Steps Y = X - BETA with X ~ Bernoulli(1/2), so Lam(l) = -l BETA + log((e^l+1)/2). THE TILT. Lam'(l) = -BETA + e^l/(e^l+1) vanishes exactly at lamStar = log(BETA/(1-BETA)) = 0.536207535136, where the tilted coin is Bernoulli(BETA) and the w"
     }
   ],
-  "unresolved": 106,
+  "unresolved": 107,
   "worth_reviewing": 18
 }
