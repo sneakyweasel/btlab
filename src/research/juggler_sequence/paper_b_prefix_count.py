@@ -559,6 +559,63 @@ def boundary_fraction_jump(p: int, q: int, caps: tuple[int, int, int] = (40, 80,
     return boundary_fraction_at_slope(p, q, caps) - boundary_fraction_left_limit(p, q, caps)
 
 
+@lru_cache(maxsize=None)
+def _ceiling_word(p: int, q: int) -> tuple[bool, ...]:
+    """The rise word of the barrier ``ceil(m p/q)``, as a hashable period-``q`` tuple."""
+    return tuple(-((-(m + 1) * p) // q) + ((-m * p) // q) == 1 for m in range(q))
+
+
+@lru_cache(maxsize=None)
+def _word_boundary_fraction(word: tuple[bool, ...], caps: tuple[int, int, int]) -> float:
+    return _cap_limit(tuple(float(_period_fixed_point(list(word), cap)[0]) for cap in caps))
+
+
+def barrier_bump_response(n: int, p: int, q: int,
+                          caps: tuple[int, int, int] = (40, 80, 160)) -> float:
+    """``K(n)``: how far ``R`` at phase 0 moves when the barrier is bumped once, ``n`` steps back.
+
+    Moving the barrier by one at ``m = -n`` swaps the adjacent rise letters there, so it exists
+    only where the word already changes letter; elsewhere there is no single-step bump and this
+    raises.  A swap that lowers the barrier raises ``R`` and vice versa.
+
+    THE SHAPE.  ``K`` is not a function of the distance.  It factorises,
+
+        K(n) = n^(-2-eps) g(frac(-n p/q)),
+
+    and the phase argument is the whole of the apparent noise: at consecutive ``n`` the values
+    separate cleanly into two branches, and inside each ``|K| n^2`` is monotone in the phase.
+
+    Which branch is decided exactly.  A lowering bump needs ``b(-n) = 0`` and ``b(-n-1) = 1``,
+    which for the ceiling word forces ``frac(-n p/q) <= 1 - p/q``; a raising one forces
+    ``frac(-n p/q) >= p/q``.  The open interval ``(1 - p/q, p/q)`` therefore carries no
+    single-step bump at all -- over the whole period of ``2585/4096`` that is 1511 lowering and
+    1510 raising positions with none in the gap, the only phase on a boundary being ``n = 1``.  Read in phase order a raising bump gives 0.362, 0.336, 0.264, 0.242, 0.213, 0.181,
+    0.163 and a lowering one 0.158, 0.145, 0.117, 0.101, 0.091, 0.060, 0.053.
+
+    THE EXPONENT.  Held at one phase and swept over ``n``, ``|K| n^2`` still falls -- 0.268, 0.246,
+    0.216, 0.175, 0.131 at ``n = 40 .. 1024`` on phase 0.75, and 0.101, 0.098, 0.072, 0.058, 0.047
+    at ``n = 71 .. 1196`` on phase 0.20 -- for ``eps`` of 0.22 and 0.27.  So the memory decays
+    strictly faster than the inverse square.  Quadrupling the caps moves this by 0.9 percent at
+    ``n = 1024`` against a factor-two effect, so it is not the truncation.
+
+    ADDITIVITY.  Separated bumps add: the response to two of them agrees with the sum of the two
+    single responses to within 0.1 percent at separations of 70 and more, degrading to 4 percent
+    when they are 8 apart.  That is what licenses reading ``boundary_fraction_jump`` as a sum over
+    the bumps at every multiple of the denominator.
+    """
+    if not 0 < n < q:
+        raise ValueError("bump distance %d must lie inside the period %d" % (n, q))
+    word = _ceiling_word(p, q)
+    i = q - n
+    if word[i - 1] == word[i]:
+        raise ValueError(
+            "no single-step bump at m = -%d for %d/%d: the barrier does not turn there" % (n, p, q)
+        )
+    swapped = list(word)
+    swapped[i - 1], swapped[i] = word[i], word[i - 1]
+    return _word_boundary_fraction(tuple(swapped), caps) - _word_boundary_fraction(word, caps)
+
+
 def meander_constant(d_values: tuple[int, ...] = (400, 800, 1600)) -> list[float]:
     """``(N_d/2^d) / (rho^d d^(-3/2))`` -- the constant in the polynomial correction.
 
