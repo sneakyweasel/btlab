@@ -3672,3 +3672,60 @@ def test_psi_is_reconstructed_from_its_jumps_and_that_settles_the_bv_tension() -
          for n in range(1, 25)]
     slope = float(np.polyfit(np.log(np.arange(1, 25)), np.log(S), 1)[0])
     assert slope > 0.0, slope
+
+
+def test_the_sturmian_zero_step_leaves_the_raw_jump_exactly_invariant() -> None:
+    """The 1/rho rule is an exact identity plus a normalisation, not an empirical limit.
+
+    Fix a depth band and let d-(k), d+(k) be the depths in it whose phase is nearest
+    k*BETA from below and above.  Then d±(k+1) = d±(k) + 1 always -- stepping k by one
+    steps both depths by one -- and when s_k = 0 the RAW difference
+
+        N_(d-)/2^(d-) - N_(d+)/2^(d+)
+
+    is unchanged.  Not approximately: to floating-point zero, at 32 positions across two
+    disjoint bands.  When s_k = 1 it changes, by -0.054 in log on average.
+
+    So a_(k+1)/a_k = 1/rho in
+    J-psi-amplitude-ratio-is-one-over-rho-at-the-sturmian-zeros is this invariance seen
+    through c_d = (N_d/2^d)/(rho^d d^(-3/2)): one extra step of depth contributes exactly
+    rho^(-1), and the residual drift in the measured ratios is the d^(-3/2) factor rather
+    than noise.
+
+    The mechanism, which this is evidence for and not a proof of: s_k = 0 means the
+    barrier does not rise between k and k+1, so the two configurations are translates --
+    the same word one step further from the end.  s_k = 1 inserts a barrier step between
+    them and breaks it.  What a proof needs is a bijection on the DIFFERENCE, since the
+    two terms are not individually preserved.
+    """
+    import numpy as np
+
+    depth = 30000
+    prof = np.array(B.surviving_log_mass(depth))
+    d = np.arange(1, depth + 1)
+    phi = (d * BETA_) % 1.0
+    sw = [math.ceil((k + 1) * BETA_) - math.ceil(k * BETA_) for k in range(50)]
+
+    def band(lo: int, hi: int, K: int = 45):
+        m = (d >= lo) & (d < hi)
+        out = []
+        for k in range(K + 1):
+            delta = (phi[m] - (k * BETA_) % 1.0 + 0.5) % 1.0 - 0.5
+            below, above = delta < 0, delta > 0
+            dm = int(d[m][below][np.argmax(delta[below])])
+            dp = int(d[m][above][np.argmin(delta[above])])
+            x, y = prof[dm], prof[dp]
+            big, small = (x, y) if x > y else (y, x)
+            out.append((big + math.log(abs(math.expm1(small - big))), dm, dp))
+        return out
+
+    for lo, hi in ((12000, 20000), (20000, 30000)):
+        L = band(lo, hi)
+        assert all(L[k + 1][1] == L[k][1] + 1 and L[k + 1][2] == L[k][2] + 1
+                   for k in range(45)), (lo, hi)
+        zeros = [L[k + 1][0] - L[k][0] for k in range(45) if sw[k] == 0]
+        ones = [L[k + 1][0] - L[k][0] for k in range(1, 45) if sw[k] == 1]
+        assert len(zeros) == 16, len(zeros)
+        assert max(abs(v) for v in zeros) == 0.0, max(abs(v) for v in zeros)
+        assert all(abs(v) > 1e-3 for v in ones), min(abs(v) for v in ones)
+        assert -0.07 < float(np.mean(ones)) < -0.04, float(np.mean(ones))
