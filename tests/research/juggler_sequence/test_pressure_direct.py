@@ -229,3 +229,49 @@ def test_summary_artifact_exists() -> None:
     assert data["classification"]["decision"] == "CLOSE"
     assert data["classification"]["reset_is_H_q_at_unbounded_depth"] is True
     assert data["classification"]["S_sampling_is_S_fairness"] is True
+
+
+def test_the_certificate_obstruction_is_swept_not_sampled() -> None:
+    """The refutation holds across the whole admissible region, and its margin is not flat.
+
+    J-pressure-log-order-certificate claims the pointwise certificate fails "for C>1,
+    0<q<p_C", but recorded two instances -- (19, 1/2) and (41, 0.55) -- and quoted the
+    penalty at q=1/2.  Both sides of the comparison vanish as q -> p_C (theta -> 0), so
+    a two-point sample cannot see the margin's shape.
+
+    Swept on a 20000-point q grid across nine decades of C, the gap
+
+        theta * Q_CRIT - log((1-q)/(1-p_C)),    theta = log(p_C(1-q)/(q(1-p_C)))
+
+    is strictly positive everywhere.  The conclusion is safe.  The MARGIN is not flat:
+    the per-step penalty falls from 1.0329 at q=1/2 to 1.0000041 as q -> p_C at C=19,
+    and to 1.000000002 at C=10^6.  The dossier's own operative q is q* = 1/2 + mu_k/2,
+    which at k=4 is 0.567..0.584 -- there the penalty is 1.0061..1.0023 and the
+    necessary log-order oscillation is 0.0033..0.0088, not the 0.0467 the row quotes.
+    """
+    def gap(C: int, q: float) -> float:
+        p = p_of_C(C)
+        theta = math.log(p * (1.0 - q) / (q * (1.0 - p)))
+        return theta * Q_CRIT - math.log(1.0 - q + q * math.exp(theta))
+
+    for C in (2, 5, 19, 41, 100, 1000, 10 ** 4, 10 ** 6, 10 ** 9):
+        p = p_of_C(C)
+        worst = min(gap(C, p * i / 20000) for i in range(1, 20000))
+        assert worst > 0.0, (C, worst)              # the refutation, swept
+
+    # the margin collapses toward the edge, which two interior points cannot show
+    p19 = p_of_C(19)
+    assert math.isclose(math.exp(gap(19, 0.5)), 1.0329022, rel_tol=1e-6)
+    edge = math.exp(min(gap(19, p19 * i / 20000) for i in range(1, 20000)))
+    assert 1.0 < edge < 1.00001, edge
+    deep = math.exp(min(gap(10 ** 6, p_of_C(10 ** 6) * i / 20000) for i in range(1, 20000)))
+    assert 1.0 < deep < 1.0000001, deep
+
+    # at the q the dossier says actually arises for k=4, the obstruction is much weaker
+    for q, lo, hi in ((0.567, 1.0061, 1.0062), (0.584, 1.0022, 1.0023)):
+        assert q < p19
+        assert lo < math.exp(gap(19, q)) < hi, (q, math.exp(gap(19, q)))
+        assert gap(19, q) / math.log(2.0) < 0.009      # vs the row's 0.0467
+
+    # k=3's q* exceeds p_C outright, so that case never reaches the comparison
+    assert 0.611 > p19 and 0.625 > p19

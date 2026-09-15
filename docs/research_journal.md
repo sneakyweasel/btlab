@@ -49226,3 +49226,58 @@ ledger as measured separately rather than pinned in a test. And my scratch
 script hit the same `int too large to convert to float` that I had just fixed in
 `tao_reduction` --- `non_contracting(1600)` is an exact integer past float range,
 so the ratios have to be formed in logs.
+
+## An audit of closed and parked decisions against this session's findings
+
+Three examined. One was already caught and reversed, one is reinforced, one was
+recorded with a margin that is not the operative one.
+
+### The 5.54e8 floor campaign: parked as "not worth it", then correctly reopened
+
+The 2026-09-03 entry decided *"PARK further N_0 campaigns --- the next useful
+floor is 5.54e8 and buys exactly one fan member. Do not open it."* A later entry
+lists as its strongest refutation *"my own framing last entry: 'the next step
+costs 12.8x' is true only of finance alone, and misleads about reachability"*,
+notes the floor is only `1.58x` the present one and the kill table complete,
+flips the branch to ADVANCE, and names the run as the next step. The job now
+running is the one that entry recommends. Nothing to change; recorded because it
+is the clearest worked example of the pattern being looked for.
+
+### The kernel-localization PARK (gain C 19 -> 18): reinforced, not reopened
+
+Parked because the forty-odd displayed estimates of Steps 3-5 are not
+re-derived, with the prize a drop from `C=19` to `C=18`. The obvious hope after
+this session is that `least_C` was resting on a loose bound. It was not:
+`J-paper-c-chernoff-step-is-already-sharp` shows Paper C's endpoint bound gives
+away only `Theta(sqrt d)`, and a square root cannot move an exponent threshold.
+`C=19` is a real threshold, so the localization really is the only way down. The
+PARK stands and is now better justified than when it was made.
+
+### `J-pressure-log-order-certificate`: conclusion safe, margin overstated
+
+The row claims the pointwise certificate fails "for C>1, 0<q<p_C" and records
+two instances, `(19, 1/2)` and `(41, 0.55)`, quoting a per-step penalty of
+`1.0329022` and a necessary log-order oscillation of `0.046704`.
+
+Both sides of the comparison vanish as `q -> p_C`, because `theta -> 0` there,
+so two interior points cannot show the margin's shape. Swept on a
+20000-point `q` grid at `C = 2, 5, 19, 41, 100, 1e3, 1e4, 1e6, 1e9`, the gap is
+strictly positive everywhere. **The conclusion is safe**, and is now swept
+rather than sampled.
+
+The margin is another matter. At `C=19` the penalty falls from `1.0329022` at
+`q=1/2` to `1.000004129` as `q -> p_C`; at `C=1e6`, to `1.000000002`. And
+`q=1/2` is not the `q` that arises --- the dossier's own operative value is
+`q* = 1/2 + mu_k/2`, which at `k=4` is `0.567..0.584`. There the penalty is
+`1.0061494..1.0022766` and the necessary oscillation `0.008845..0.003281`:
+**weaker than the recorded figure by a factor five to fourteen**. (At `k=3`,
+`q*` in `[0.611,0.625]` exceeds `p_C = 0.59772292` outright, so the comparison
+is never reached.)
+
+Nothing reopens. What changes is that anyone pricing a revisit from the recorded
+`3.3%` would be working from a margin far more comfortable than the operative
+one. Row amended, tag unchanged.
+
+The pattern worth carrying forward: a claim quantified over a range, evidenced
+at two convenient interior points, where the quantity being compared degenerates
+at the range's edge. Cheap to check by sweeping; the sweep is now the test.
