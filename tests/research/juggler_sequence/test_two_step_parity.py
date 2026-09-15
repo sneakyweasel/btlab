@@ -535,14 +535,22 @@ def test_x_cells_have_no_j_runs():
     # Increment-first falsifier: on genuine floor(ΔX) b-runs, both
     # the raw increment and the κ-fixed branch increment of Y have
     # run length 1. X-cells do not create v-level J-runs.
-    for p in (10**4, 10**5, 10**6):
+    # Extended from 10^6 to 10^8 in the REFUTED-row sweep: the falsifier is a
+    # "run length 1" claim, and a run needs an increment to repeat while the
+    # increment itself grows like P^{1/4}, so depth can only help.  It does --
+    # mean_abs_d_floor_dY / pred_P14 widens from 82x here to 1773x at 10^8.
+    margins = []
+    for p in (10**4, 10**5, 10**6, 10**7, 10**8):
         result = x_cell_increment_scan(p, 400)
+        margins.append(result["mean_abs_d_floor_dY"] / result["pred_P14"])
         assert result["no_j_runs_on_x_cells"] is True
         assert result["floor_dY_mean_run"] == 1.0
         assert result["dv_mean_run"] == 1.0
         assert result["branch_j_max_run"] == 1
         assert result["b_run_max"] >= 2
         assert result["mean_abs_d_floor_dY"] > result["pred_P14"]
+    assert margins[-1] > margins[0] * 10, margins       # the separation grows with P
+    assert margins[0] > 50 and margins[-1] > 1000, margins
 
 
 def test_v2_amplitude_jumps_each_step():
