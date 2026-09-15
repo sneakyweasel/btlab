@@ -3063,10 +3063,15 @@ def test_what_remains_after_sharpening_is_exactly_the_meander_polynomial() -> No
     N_d/2^d ~ C rho^d d^(-3/2) with C = kappa G(1) = 10.90 (J-paper-b-meander-constant...),
     and the sharpened bound is p rho^d, so the ratio is (C/p) d^(-3/2) inverted:
 
-        (p rho^d) / (N_d/2^d) ~ (p/C) d^(3/2),   truth/(p rho^d) . d^(3/2) -> C/p = 17.3.
+        (p rho^d) / (N_d/2^d) ~ (p/C) d^(3/2),   truth/(p rho^d) . d^(3/2) ~ psi/p.
 
-    This is an independent route to the same constant: nothing here uses the ladder-height
-    transform, only the exact DP count and the sharpened Chernoff bound.  The published
+    C is NOT a constant -- see
+    test_the_meander_prefactor_is_not_a_constant_but_a_function_of_the_offset -- so the
+    three numbers below are samples of psi/p over about 16.4..17.4, not approaches to a
+    limit, and their wobble is the oscillation rather than measurement noise. The mean
+    still recovers the recorded 10.90/p, which is what makes this an independent route to
+    that value: nothing here uses the ladder-height transform, only the exact DP count and
+    the sharpened Chernoff bound.  The published
     midpoint version by contrast overshoots by an exponentially growing factor -- 1.2e6 at
     d = 320 and 6.9e17 at d = 1280 -- so the gap it leaves is not a polynomial at all.
     """
@@ -3154,3 +3159,72 @@ def test_sharpening_theorem_six_one_does_not_reopen_the_near_closure_door() -> N
 
     # yet the absolute count at that same depth is astronomically large
     assert math.log10(B.non_contracting(800)) > 225.0
+
+
+def test_the_meander_prefactor_is_not_a_constant_but_a_function_of_the_offset() -> None:
+    """N_d/2^d ~ C rho^d d^(-3/2) is FALSE: C is almost periodic, not constant.
+
+    In the o coordinate the event is o_t >= t*BETA for all t <= d -- a simple walk on the
+    integers against a line of IRRATIONAL slope.  The step distribution is non-lattice
+    (log(3/2)/log2 is irrational), but at each fixed d the endpoint
+    S_d = o log3 - d log2 lies on a lattice of spacing log3 whose offset -d log2 mod log3
+    equidistributes.  The barrier sits at 0, so what the asymptotic sees is the gap from
+    the barrier to the lowest available state, 1 - frac(d*BETA), and the prefactor is a
+    function of that, not a number.
+
+    Measured on the exact profile: binning c_d = (N_d/2^d)/(rho^d d^(-3/2)) by
+    frac(d*BETA) collapses it -- within-bin scatter 0.065 against an across-bin range
+    0.628, a 9.7x signal -- and the SHAPE is identical across disjoint depth windows
+    (per-bin differences have sd 0.002) while only the LEVEL drifts, by +0.287, +0.124,
+    +0.054 as the window doubles.  That drift is the 1+o(1); the shape is psi.
+
+    The sign is the mechanism's, not a fit: larger frac(d*BETA) means a smaller gap above
+    the barrier, hence more survivors, hence larger c.  psi rises from 10.37 at offset
+    0.05 to 11.00 at 0.95.
+
+    Consequences.  The previously recorded constant 10.90 is one sample of psi, and the
+    recorded band 10.566..11.063 is psi's range -- explained rather than noted.  The
+    d^(-3/2) exponent is unaffected.
+    """
+    import statistics
+
+    rho = B.chernoff_rate()
+    depth = 4000
+    prof = B.surviving_log_mass(depth)
+    c = {d: math.exp(prof[d] - d * math.log(rho) + 1.5 * math.log(d))
+         for d in range(500, depth)}
+    frac = {d: (d * BETA_) % 1.0 for d in c}
+
+    def binned(lo: int, hi: int) -> list[float]:
+        out = []
+        for k in range(10):
+            vals = [c[d] for d in c if lo <= d < hi and k / 10 <= frac[d] < (k + 1) / 10]
+            out.append(statistics.fmean(vals))
+        return out
+
+    windows = [binned(1000, 2000), binned(2000, 3000), binned(3000, 4000)]
+
+    # it does not converge: consecutive depths keep a fixed spread
+    for centre in (1000, 2000, 3900):
+        run = [c[d] for d in range(centre, centre + 20)]
+        assert max(run) / min(run) > 1.05, (centre, max(run) / min(run))
+
+    # it collapses onto a function of the offset
+    last = windows[-1]
+    scatter = statistics.fmean([
+        statistics.pstdev([c[d] for d in c
+                           if 3000 <= d < 4000 and k / 10 <= frac[d] < (k + 1) / 10])
+        for k in range(10)])
+    assert (max(last) - min(last)) / scatter > 8.0, (max(last) - min(last), scatter)
+
+    # the shape is stable; only the level drifts, and the drift is shrinking
+    shifts = []
+    for a, b in zip(windows, windows[1:]):
+        diff = [y - x for x, y in zip(a, b)]
+        assert statistics.pstdev(diff) < 0.01, diff      # same shape
+        shifts.append(statistics.fmean(diff))
+    assert all(s > 0 for s in shifts) and shifts[0] > 2 * shifts[-1], shifts
+
+    # psi is increasing in the offset, as the shrinking barrier gap predicts
+    assert last[0] < last[-1]
+    assert abs(last[0] - 10.37) < 0.05 and abs(last[-1] - 11.00) < 0.05, last

@@ -87,6 +87,51 @@ def chernoff_rate() -> float:
     return M((lo + hi) / 2)
 
 
+def surviving_log_mass(depth: int) -> list[float]:
+    """``log(N_d / 2^d)`` for every ``d <= depth`` in one rescaled pass.
+
+    ``non_contracting`` returns exact integers, which is right for a single depth but
+    costs 20 s at ``d = 3200`` and overflows ``float`` well before that.  Rescaling the
+    distribution at each step keeps the whole profile in range and agrees with the exact
+    integer DP to 7e-15, which is what makes the prefactor's ``d``-dependence readable at
+    all: the oscillation in ``J-paper-b-meander-prefactor-is-almost-periodic`` needs
+    consecutive depths, not a few sampled ones.
+
+    In the ``o`` coordinate the event is ``o_t >= t * BETA`` for all ``t <= d`` -- a simple
+    walk on the integers against a line of irrational slope.
+    """
+    import math
+
+    beta = LOG2 / LOG3
+    mass = [0.0] * (depth + 2)
+    mass[0] = 1.0
+    out = [0.0]
+    scale = 0.0
+    for t in range(1, depth + 1):
+        nxt = [0.0] * (depth + 2)
+        for o in range(t):
+            m = mass[o]
+            if m:
+                nxt[o + 1] += 0.5 * m
+                nxt[o] += 0.5 * m
+        floor = t * beta
+        total = 0.0
+        for o in range(t + 1):
+            if o < floor:
+                nxt[o] = 0.0
+            else:
+                total += nxt[o]
+        if total == 0.0:
+            raise ValueError(f"no surviving words at depth {t}")
+        inv = 1.0 / total
+        for o in range(t + 1):
+            nxt[o] *= inv
+        scale += math.log(total)
+        mass = nxt
+        out.append(scale)
+    return out
+
+
 def meander_constant(d_values: tuple[int, ...] = (400, 800, 1600)) -> list[float]:
     """``(N_d/2^d) / (rho^d d^(-3/2))`` -- the constant in the polynomial correction.
 
