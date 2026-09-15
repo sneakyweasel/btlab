@@ -16,6 +16,7 @@ import subprocess
 HERE = Path(__file__).resolve().parent
 STEM = 'juggler_parity_discrepancy_note'
 METADATA = 'docs/theory/paper_b_zenodo.json'
+BUILD_MANIFEST = 'docs/theory/paper_b_build.json'
 PDF = f'docs/theory/{STEM}.pdf'
 ZENODO_DIR = 'juggler_review/zenodo_paper_b'
 ZENODO_PDF = f'{ZENODO_DIR}/Five_Step_Descent_Certificates_for_the_Juggler_Map.pdf'
@@ -59,6 +60,31 @@ def sync(root: Path) -> None:
 
 
 def check(root: Path) -> None:
+    check_exports(root)
+    check_manifest(root)
+
+
+def check_manifest(root: Path) -> None:
+    """Verify the digests paper_b_build.json already records.
+
+    Without this `check` compared only the EXPORTS pairs and the Zenodo fields, so
+    editing the source and copying it to the mirror satisfied everything the gate
+    looked at while the PDF stayed behind. Paper A and Paper C both verify their
+    recorded inputs; this brings Paper B into line.
+    """
+    manifest = json.loads((root / BUILD_MANIFEST).read_text(encoding='utf-8'))
+    places = (root/'docs/theory', root/'tools/paper_b', root/'tools/build', root/'tools')
+    for record in manifest.get('files', ()):
+        built = next((d/record['name'] for d in places if (d/record['name']).is_file()), None)
+        if built is None:
+            raise ValueError(f'Missing Paper B build input: {record["name"]}; rebuild')
+        if hashlib.sha256(built.read_bytes()).hexdigest() != record['sha256']:
+            raise ValueError(
+                f'Stale Paper B build: {record["name"]} differs from the digest in '
+                f'{BUILD_MANIFEST}; rebuild with `python tools/build_paper_b.py`')
+
+
+def check_exports(root: Path) -> None:
     for source, target in EXPORTS:
         src, dest = root / source, root / target
         if not dest.is_file() or src.read_bytes() != dest.read_bytes():

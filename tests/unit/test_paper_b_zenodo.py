@@ -27,7 +27,62 @@ def test_stale_zenodo_pdf_is_rejected(tmp_path):
     (tmp_path / B.METADATA).parent.mkdir(parents=True, exist_ok=True)
     (tmp_path / B.METADATA).write_text(json.dumps(meta), encoding="utf-8")
     (tmp_path / B.ZENODO_FIELDS).write_text(B.zenodo_fields(meta), encoding="utf-8")
-    B.check(tmp_path)
+    B.check_exports(tmp_path)
     (tmp_path / B.ZENODO_PDF).write_bytes(b"old PDF")
     with pytest.raises(ValueError, match="Stale generated copy"):
-        B.check(tmp_path)
+        B.check_exports(tmp_path)
+
+
+def test_an_edited_source_is_rejected_even_when_the_mirror_is_updated_too():
+    """The gap that let a Paper B edit ship without rebuilding the PDF.
+
+    `check` compared the EXPORTS pairs -- which are PDF-to-PDF copies plus the .md
+    mirror -- and the Zenodo fields, and printed "Paper B source, review copies,
+    companion PDF, and Zenodo kit agree".  It never consulted the digests that
+    paper_b_build.json already records for the source, the TeX and the PDF.
+
+    So editing docs/theory and copying to juggler_review satisfied every comparison
+    the gate made, and the published PDF stayed behind its source.  That is exactly
+    how the Theorem 6.1 sharpening shipped unbuilt.  Paper A and Paper C both verify
+    their recorded input digests; only Paper B did not.
+
+    This pins the scenario the mirror check cannot see: source and mirror both moved,
+    PDF untouched.
+    """
+    import hashlib
+    import shutil
+
+    source = ROOT / "docs/theory/juggler_parity_discrepancy_note.md"
+    mirror = ROOT / "juggler_review/juggler_parity_discrepancy_note.md"
+    manifest = ROOT / "docs/theory/paper_b_build.json"
+
+    original = source.read_bytes()
+    original_mirror = mirror.read_bytes()
+    recorded = {r["name"]: r["sha256"] for r in json.loads(manifest.read_text(encoding="utf-8"))["files"]}
+    assert recorded["juggler_parity_discrepancy_note.md"] == hashlib.sha256(original).hexdigest()
+
+    try:
+        source.write_bytes(original + b"\n")
+        shutil.copyfile(source, mirror)          # the mirror check is now satisfied
+        with pytest.raises(ValueError, match="Stale Paper B build"):
+            B.check(ROOT)
+    finally:
+        source.write_bytes(original)
+        mirror.write_bytes(original_mirror)
+    B.check(ROOT)                                # and it passes again once restored
+
+
+def test_the_build_script_is_itself_a_pinned_input():
+    """Editing the builder invalidates the manifest, which is correct: it is an input.
+
+    paper_b_build.json records build_paper_b.py's own digest, so a change to the
+    build logic requires a rebuild rather than silently producing a PDF nobody can
+    reproduce.  This caught the very patch that added the check above.
+    """
+    import hashlib
+
+    recorded = {r["name"]: r["sha256"]
+                for r in json.loads((ROOT / "docs/theory/paper_b_build.json").read_text(encoding="utf-8"))["files"]}
+    assert "build_paper_b.py" in recorded
+    actual = hashlib.sha256((ROOT / "tools/build_paper_b.py").read_bytes()).hexdigest()
+    assert actual == recorded["build_paper_b.py"]
