@@ -99,6 +99,45 @@ theorem noRise_iff_le_ceil {b : ℝ} {t : ℕ} (hb : 0 ≤ b) :
     simp only [barrierRise]
     omega
 
+/-- **A rising step kills exactly the words sitting on the barrier that draw `E`.**
+If the barrier rises at `d`, a survivor to `d` fails to reach `d+1` precisely when its
+count is exactly the barrier and the next letter contributes nothing.  Every other
+survivor extends both ways, as in `survives_succ_of_no_rise`.
+
+Counting consequence, one line and not formalised here: writing `N_d` for the survivors
+of length `d` and `M_d` for those of them on the barrier, each survivor has two
+extensions and exactly the `M_d` on-barrier ones lose a single extension, so
+
+    `N_(d+1) = 2 * N_d - barrierRise * M_d`
+
+uniformly in both cases, and dividing by `2^(d+1)` gives
+`P_(d+1) = P_d - barrierRise * Q_d / 2` with `Q_d = M_d / 2^d` the mass on the barrier.
+Verified as an exact integer identity for `d = 1 .. 39` in the tests. -/
+theorem dies_iff_on_barrier {b : ℝ} {d : ℕ} {o : ℕ → ℤ} {x : ℤ}
+    (hrise : barrierRise b d = 1)
+    (hx0 : 0 ≤ x) (hx1 : x ≤ 1)
+    (hstep : o (d + 1) = o d + x)
+    (hsurv : barrier b d ≤ o d) :
+    ¬ (barrier b (d + 1) ≤ o (d + 1)) ↔ (o d = barrier b d ∧ x = 0) := by
+  have hb : barrier b (d + 1) = barrier b d + 1 := by
+    simp only [barrierRise] at hrise; omega
+  rw [hb, hstep]
+  omega
+
+/-- **Off the barrier, a rising step costs nothing either.**  The complement of
+`dies_iff_on_barrier`: a survivor strictly above the barrier extends both ways even when
+the barrier rises, which is why only the on-barrier mass appears in the count. -/
+theorem survives_succ_of_above_barrier {b : ℝ} {d : ℕ} {o : ℕ → ℤ} {x : ℤ}
+    (hrise : barrierRise b d = 1)
+    (hx0 : 0 ≤ x)
+    (hstep : o (d + 1) = o d + x)
+    (habove : barrier b d < o d) :
+    barrier b (d + 1) ≤ o (d + 1) := by
+  have hb : barrier b (d + 1) = barrier b d + 1 := by
+    simp only [barrierRise] at hrise; omega
+  rw [hb, hstep]
+  omega
+
 end PaperBBarrierStep
 
 end Problems.Juggler

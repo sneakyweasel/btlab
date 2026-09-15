@@ -53419,6 +53419,26 @@
       "trust": "kernel"
     },
     {
+      "doc": "**A rising step kills exactly the words sitting on the barrier that draw `E`.** If the barrier rises at `d`, a survivor to `d` fails to reach `d+1` precisely when its count is exactly the barrier and the next letter contributes nothing. Every other survivor extends both ways, as in `survives_succ_of_no_rise`. Counting consequence, one line and not formalised here: writing `N_d` for the survivors of length `d` and `M_d` for those of them on the barrier, each survivor has two extensions and exactly the `M_d` on-barrier ones lose a single extension, so `N_(d+1) = 2 * N_d - barrierRise * M_d` uniformly in both cases, and dividing by `2^(d+1)` gives `P_(d+1) = P_d - barrierRise * Q_d / 2` with `Q_d = M_d / 2^d` the mass on the barrier. Verified as an exact integer identity for `d = 1 .. 39` in the tests.",
+      "file": "formal/Problems/Juggler/PaperBBarrierStep.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 116,
+      "module": "Problems.Juggler.PaperBBarrierStep",
+      "name": "dies_iff_on_barrier",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Off the barrier, a rising step costs nothing either.** The complement of `dies_iff_on_barrier`: a survivor strictly above the barrier extends both ways even when the barrier rises, which is why only the on-barrier mass appears in the count.",
+      "file": "formal/Problems/Juggler/PaperBBarrierStep.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 130,
+      "module": "Problems.Juggler.PaperBBarrierStep",
+      "name": "survives_succ_of_above_barrier",
+      "trust": "kernel"
+    },
+    {
       "doc": "The per-letter power map `p_q`: `3/2` after an odd letter, `1/2` after an even one. These are the only two values a Juggler step contributes.",
       "file": "formal/Problems/Juggler/PaperBChainRule.lean",
       "kind": "def",
@@ -88968,7 +88988,7 @@
       "ledger": []
     },
     "Problems.Juggler.PaperBBarrierStep": {
-      "declarations": 5,
+      "declarations": 7,
       "file": "formal/Problems/Juggler/PaperBBarrierStep.lean",
       "imports": [],
       "ledger": []
@@ -90088,13 +90108,13 @@
     }
   },
   "totals": {
-    "declarations": 6648,
+    "declarations": 6650,
     "declarations_with_a_ledger_row": 4572,
-    "ledger_rows_naming_a_file": 417,
+    "ledger_rows_naming_a_file": 418,
     "modules": 289,
     "trust": {
       "compiler": 56,
-      "kernel": 6592
+      "kernel": 6594
     }
   }
 }

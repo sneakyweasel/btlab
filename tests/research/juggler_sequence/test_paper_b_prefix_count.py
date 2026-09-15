@@ -3755,3 +3755,42 @@ def test_a_non_rising_barrier_step_doubles_the_surviving_count() -> None:
 
     # the count is monotone in the sense the proof uses: extending never lowers o
     assert all(math.ceil((t + 1) * BETA_) >= math.ceil(t * BETA_) for t in range(200))
+
+
+def test_the_count_recursion_is_exact_in_both_barrier_cases() -> None:
+    """N_(d+1) = 2 N_d - b_d M_d, with M_d the survivors sitting ON the barrier.
+
+    Each survivor of length d has two extensions.  If the barrier does not rise, both
+    survive (PaperBBarrierStep.survives_succ_of_no_rise).  If it rises, a survivor
+    strictly above the barrier still keeps both (survives_succ_of_above_barrier) and one
+    sitting exactly on it loses the even extension and only that one
+    (dies_iff_on_barrier).  So exactly M_d extensions are lost when b_d = 1 and none when
+    b_d = 0, which is the single formula above.
+
+    Equivalently P_d - P_(d+1) = b_d Q_d / 2 with Q_d = M_d / 2^d the mass on the barrier.
+    That is the whole amplitude story: the s_k = 0 case is b_d = 0, proved earlier, and
+    the s_k = 1 case -- which had no rule -- is a difference of boundary occupations,
+    a_(k+1) - a_k = -s_k (Q_(d-) - Q_(d+)) / 2.
+
+    Checked as an exact integer identity, no floating point in the recursion at all.
+    """
+    counts: dict[int, tuple[int, int]] = {}
+    cur = {0: 1}
+    counts[0] = (1, 1)
+    for t in range(1, 60):
+        nxt: dict[int, int] = {}
+        for o, c in cur.items():
+            nxt[o + 1] = nxt.get(o + 1, 0) + c
+            nxt[o] = nxt.get(o, 0) + c
+        bar = math.ceil(t * BETA_)
+        cur = {o: c for o, c in nxt.items() if o >= bar}
+        counts[t] = (sum(cur.values()), cur.get(bar, 0))
+
+    for d in range(1, 59):
+        rise = math.ceil((d + 1) * BETA_) - math.ceil(d * BETA_)
+        n_d, m_d = counts[d]
+        assert counts[d + 1][0] == 2 * n_d - rise * m_d, (d, rise, n_d, m_d)
+
+    # and it agrees with the independently computed word count
+    for d in (10, 25, 40):
+        assert counts[d][0] == B.non_contracting(d), d
