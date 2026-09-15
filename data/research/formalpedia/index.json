@@ -53439,6 +53439,46 @@
       "trust": "kernel"
     },
     {
+      "doc": "The two updates on the conditional profile, indexed by whether the barrier rises. `rise = false` shifts mass up; `rise = true` shifts it down and drops what falls below the barrier. Both average the two neighbours, which is the fair coin.",
+      "file": "formal/Problems/Juggler/PaperBBarrierStep.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 144,
+      "module": "Problems.Juggler.PaperBBarrierStep",
+      "name": "update",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**A non-rising step halves the boundary value.** `m = 0` is reachable only from `m = 0`, so `update false pi 0 = pi 0 / 2` with no other contribution. Since the non-rising update also preserves total mass, no renormalisation intervenes, and a PERTURBATION of the boundary value halves too -- which is why `R`'s jump amplitudes satisfy `a_(k+1) = a_k / 2` exactly at every `k` where the Sturmian word vanishes.",
+      "file": "formal/Problems/Juggler/PaperBBarrierStep.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 153,
+      "module": "Problems.Juggler.PaperBBarrierStep",
+      "name": "update_false_at_zero",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The difference of two profiles inherits it, which is the statement the jump rule needs: whatever the two words agree on afterwards, a boundary gap halves per non-rising step.",
+      "file": "formal/Problems/Juggler/PaperBBarrierStep.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 159,
+      "module": "Problems.Juggler.PaperBBarrierStep",
+      "name": "update_false_sub_at_zero",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A rising step does NOT halve it: the boundary picks up the neighbour, so no rule of this kind holds at `s_k = 1`, matching the measured ratios there, which do not settle.",
+      "file": "formal/Problems/Juggler/PaperBBarrierStep.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 165,
+      "module": "Problems.Juggler.PaperBBarrierStep",
+      "name": "update_true_at_zero",
+      "trust": "kernel"
+    },
+    {
       "doc": "The per-letter power map `p_q`: `3/2` after an odd letter, `1/2` after an even one. These are the only two values a Juggler step contributes.",
       "file": "formal/Problems/Juggler/PaperBChainRule.lean",
       "kind": "def",
@@ -89038,7 +89078,7 @@
       "ledger": []
     },
     "Problems.Juggler.PaperBBarrierStep": {
-      "declarations": 7,
+      "declarations": 11,
       "file": "formal/Problems/Juggler/PaperBBarrierStep.lean",
       "imports": [],
       "ledger": []
@@ -90158,13 +90198,13 @@
     }
   },
   "totals": {
-    "declarations": 6655,
+    "declarations": 6659,
     "declarations_with_a_ledger_row": 4572,
-    "ledger_rows_naming_a_file": 419,
+    "ledger_rows_naming_a_file": 420,
     "modules": 289,
     "trust": {
       "compiler": 56,
-      "kernel": 6599
+      "kernel": 6603
     }
   }
 }

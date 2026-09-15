@@ -4149,3 +4149,65 @@ def test_the_boundary_fraction_is_a_step_function_on_the_rotation_orbit() -> Non
         near = min(min(abs((k * BETA_) % 1.0 - loc), 1 - abs((k * BETA_) % 1.0 - loc))
                    for k in range(20))
         assert near < 3.0 / n, (loc, near)
+
+
+def test_r_jump_amplitudes_halve_at_every_sturmian_zero() -> None:
+    """R's jumps satisfy a_(k+1) = a_k / 2 exactly where s_k = 0, and the reason is one line.
+
+    Crossing k*BETA flips exactly two letters of the backward word, w_(k-1) from 1 to 0 and
+    w_k from 0 to 1, so the jump is a difference of two word-driven runs.  Measured at
+    k = 0..21 the ratio is 0.50000 to five decimals at k = 2, 5, 8, 10, 13, 16, 18 --
+    precisely the s_k = 0 positions -- and unsettled elsewhere (0.988, 0.773, 1.166, 0.895,
+    1.258, 1.415, ...).
+
+    THE MECHANISM, formalised as PaperBBarrierStep.update_false_at_zero.  A non-rising step
+    is m -> m + X, so m = 0 is reachable only from m = 0 and the update sends pi(0) to
+    pi(0)/2; it also preserves total mass, so no renormalisation intervenes.  A boundary
+    PERTURBATION therefore halves -- update_false_sub_at_zero -- and R's jump with it.  A
+    rising step mixes in pi(1) (update_true_at_zero), which is why no rule holds at
+    s_k = 1.
+
+    A NOTE ON WHY THE RATIOS ARE TRUSTWORTHY WHEN THE AMPLITUDES ARE NOT.  Doubling the
+    word length from 1500 to 3000 moves every amplitude by 1.2 to 1.3 percent -- a common
+    scale factor, since both sides of each jump are run identically -- so it cancels in the
+    ratio.  The absolute amplitudes carry that error; the ratios do not.
+    """
+    import numpy as np
+
+    eps = 1e-9
+
+    def R_at(phases: list[float], K: int, cap: int = 160) -> np.ndarray:
+        P = np.zeros((len(phases), cap))
+        P[:, 0] = 1.0
+        ph = np.array(phases) % 1.0
+        for j in range(K - 1, -1, -1):
+            w = (((ph - (j + 1) * BETA_) % 1.0) >= 1 - BETA_)
+            up = np.zeros_like(P); dn = np.zeros_like(P)
+            up[:, 0] = 0.5 * P[:, 0]; up[:, 1:] = 0.5 * (P[:, 1:] + P[:, :-1])
+            dn[:, :-1] = 0.5 * (P[:, :-1] + P[:, 1:]); dn[:, -1] = 0.5 * P[:, -1]
+            P = np.where(w[:, None], dn, up)
+            P /= P.sum(axis=1, keepdims=True)
+        return P[:, 0]
+
+    ks = list(range(0, 20))
+    phases: list[float] = []
+    for k in ks:
+        phases += [((k * BETA_) - eps) % 1.0, ((k * BETA_) + eps) % 1.0]
+
+    def amps(K: int) -> np.ndarray:
+        v = R_at(phases, K)
+        return np.array([v[2 * i + 1] - v[2 * i] for i in range(len(ks))])
+
+    a1, a2 = amps(700), amps(1400)
+    sw = [math.ceil((k + 1) * BETA_) - math.ceil(k * BETA_) for k in ks]
+
+    for i, k in enumerate(ks[:-1]):
+        if sw[k] == 0:
+            assert abs(a2[i + 1] / a2[i] - 0.5) < 2e-4, (k, a2[i + 1] / a2[i])
+
+    unsettled = [a2[i + 1] / a2[i] for i, k in enumerate(ks[:-1]) if sw[k] == 1]
+    assert max(unsettled) - min(unsettled) > 0.3, unsettled     # no rule there
+
+    # the word-length error is a common scale factor, so ratios survive it
+    scale = a2 / a1
+    assert float(np.std(scale) / abs(np.mean(scale))) < 5e-3, scale
