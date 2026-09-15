@@ -138,6 +138,34 @@ theorem survives_succ_of_above_barrier {b : ℝ} {d : ℕ} {o : ℕ → ℤ} {x 
   rw [hb, hstep]
   omega
 
+/-- The two updates on the conditional profile, indexed by whether the barrier rises.
+`rise = false` shifts mass up; `rise = true` shifts it down and drops what falls below
+the barrier.  Both average the two neighbours, which is the fair coin. -/
+noncomputable def update (rise : Bool) (pi : ℕ → ℝ) : ℕ → ℝ :=
+  fun m => if rise then (pi m + pi (m + 1)) / 2
+           else (pi m + (if m = 0 then 0 else pi (m - 1))) / 2
+
+/-- **A non-rising step halves the boundary value.**  `m = 0` is reachable only from
+`m = 0`, so `update false pi 0 = pi 0 / 2` with no other contribution.  Since the
+non-rising update also preserves total mass, no renormalisation intervenes, and a
+PERTURBATION of the boundary value halves too -- which is why `R`'s jump amplitudes
+satisfy `a_(k+1) = a_k / 2` exactly at every `k` where the Sturmian word vanishes. -/
+theorem update_false_at_zero (pi : ℕ → ℝ) : update false pi 0 = pi 0 / 2 := by
+  simp [update]
+
+/-- The difference of two profiles inherits it, which is the statement the jump rule
+needs: whatever the two words agree on afterwards, a boundary gap halves per
+non-rising step. -/
+theorem update_false_sub_at_zero (pi sigma : ℕ → ℝ) :
+    update false pi 0 - update false sigma 0 = (pi 0 - sigma 0) / 2 := by
+  simp [update]; ring
+
+/-- A rising step does NOT halve it: the boundary picks up the neighbour, so no rule of
+this kind holds at `s_k = 1`, matching the measured ratios there, which do not settle. -/
+theorem update_true_at_zero (pi : ℕ → ℝ) :
+    update true pi 0 = (pi 0 + pi 1) / 2 := by
+  simp [update]
+
 end PaperBBarrierStep
 
 end Problems.Juggler

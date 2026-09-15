@@ -10219,5 +10219,16 @@
    "tests/research/juggler_sequence/test_paper_b_prefix_count.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "id": "J-r-jumps-halve-at-the-sturmian-zeros",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "R's jump amplitudes halve exactly at every Sturmian zero, and the reason is one line. THE RULE. Crossing k BETA flips exactly two letters of the backward word, w_(k-1) from 1 to 0 and w_k from 0 to 1, so R's jump there is a difference of two word-driven runs and is directly computable. Measured at k = 0..21 the ratio a_(k+1)/a_k is 0.50000 to five decimals at k = 2, 5, 8, 10, 13, 16, 18 -- exactly the k with s_k = 0 -- and unsettled elsewhere, running 0.988, 0.773, 1.166, 0.895, 1.258, 1.415, 1.060, 1.388. THE MECHANISM. A non-rising step is m -> m + X, so m = 0 is reachable only from m = 0 and the update sends pi(0) to pi(0)/2; it also preserves total mass, so no renormalisation intervenes. A boundary PERTURBATION therefore halves, and R's jump with it. A rising step mixes in pi(1), which is why no rule of this kind holds at s_k = 1. Formalised as PaperBBarrierStep.update, update_false_at_zero, update_false_sub_at_zero and update_true_at_zero, kernel-checked on propext, Classical.choice and Quot.sound alone. This is the exact companion of J-non-rising-barrier-step-doubles-the-count: a non-rising step doubles the count and halves the boundary value, both for the same reason, that nothing can fall below a barrier that did not move. WHY THE RATIOS ARE TRUSTWORTHY WHERE THE AMPLITUDES ARE NOT. Doubling the word length from 1500 to 3000 moves every amplitude by 1.2 to 1.3 percent. That is a COMMON scale factor, since both sides of each jump are run identically and for the same length, so it cancels in the ratio and not in the value: the absolute amplitudes carry the convergence error of J-boundary-fraction-is-a-step-function-on-the-orbit, the ratios do not. That is the reverse of the usual situation in this thread, where ratios were the suspect quantity.",
+  "source": "docs/research_journal.md",
+  "lean": "formal/Problems/Juggler/PaperBBarrierStep.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_paper_b_prefix_count.py"
+  ],
+  "related_conjectures": []
  }
 ]

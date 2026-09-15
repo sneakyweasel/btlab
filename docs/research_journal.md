@@ -50443,3 +50443,41 @@ when the arcs need `k <= K`, and `frac(400 beta) = 0.3719` is exactly where the
 stranded change sat. That is the third off-by-one today, after `b_0 = 1` and the
 `ceil` identity at `t = 0`. All three were at a boundary of a recursion, and all
 three announced themselves as a small anomaly rather than an error.
+
+## R's jumps halve, and the reason is the same one that doubles the count
+
+Crossing `k*beta` flips exactly two letters of the backward word --- `w_(k-1)`
+from 1 to 0 and `w_k` from 0 to 1 --- so `R`'s jump there is a difference of two
+word-driven runs and can be computed rather than sampled.
+
+    k          2      5      8     10     13     16     18
+    a_(k+1)/a_k  0.50000 0.50001 0.50001 0.50000 0.50000 0.50001 0.50000
+
+Exactly one half, to five decimals, at exactly the `s_k = 0` positions. Elsewhere
+the ratios do not settle: `0.988, 0.773, 1.166, 0.895, 1.258, 1.415`.
+
+### One line
+
+A non-rising step is `m -> m + X`, so `m = 0` is reachable only from `m = 0` and
+the update sends `pi(0)` to `pi(0)/2`. It also preserves total mass, so no
+renormalisation intervenes. A boundary **perturbation** halves, and `R`'s jump
+with it. A rising step mixes in `pi(1)`, which is why nothing of the kind holds at
+`s_k = 1`.
+
+That is the exact companion of the count recursion: a non-rising step **doubles
+the count** and **halves the boundary value**, both because nothing can fall below
+a barrier that did not move.
+
+### The error behaved backwards, for once
+
+Doubling the word length from 1500 to 3000 moves every amplitude by `1.2`–`1.3`
+percent. But it is a *common* scale factor --- both sides of each jump are run
+identically and for the same length --- so it cancels in the ratio and not in the
+value. The absolute amplitudes carry the convergence error; the ratios are good to
+five decimals.
+
+Which is the reverse of the usual situation in this thread. Ratios have been the
+suspect quantity all day: the `1/rho` rule that turned out to be a normalisation,
+the exponential fit that was a power law, the two-window agreement that passed
+noise. Here the ratio is the sound one and the amplitude is not, for a reason that
+can be stated rather than hoped.
