@@ -10241,5 +10241,16 @@
    "tests/research/juggler_sequence/test_paper_b_prefix_count.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "id": "J-quasi-stationary-convergence-is-not-diophantine",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "The cocycle converges to its quasi-stationary family evenly in the phase, with no excess at BETA's convergent denominators. That narrows what a proof has to fight. THE MEASUREMENT. pi_d is the forward profile from delta_0 after d steps of the true barrier word; Pi_(phi_d) is the same map driven by a far longer word at the same phase, so their total variation measures how much a finite history differs from an infinite one. Rescaled by the local power, the values at q = 485 and q = 1054 sit at the median -- 87.9 and 99.6 against a median of 97.9 -- with the immediate neighbours 484, 486, 1053, 1055 indistinguishable at 84.1, 86.3, 98.7, 96.9, and the whole sample spread only 1.6x across 78 depths, 1.45x on the deepest window. A small-divisor obstruction would show as a spike at those denominators. There is none. CONSEQUENCE. The divisors enter psi ONLY through f_hat in the coboundary of J-log-psi-is-a-coboundary-over-the-rotation, not through the convergence of the cocycle itself. So whatever makes the quasi-stationary limit hard to prove -- the one link still missing in J-boundary-fraction-is-the-clean-coordinate -- is not a Diophantine problem, and the difficulty is the criticality recorded in J-rho-has-a-tail-variable-variational-formula rather than the arithmetic of BETA. Combined with J-killed-walk-forgets-polynomially, which ruled out Birkhoff contraction, two of the three natural attacks are now excluded by measurement. WHAT IS NOT CLAIMED. The exponent. Fitted by octave it steepens -0.97, -1.04, -1.12, -1.27, -1.60 across d = 500 to 12000 and does not settle, so no power is asserted. It is a DIFFERENT comparison from the two-start forgetting, which settled at -1.985 over a comparable range, and the two should not be conflated: a first pass here rescaled by d^2 on the strength of that number and produced a quantity that grows rather than flattens.",
+  "source": "docs/research_journal.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_paper_b_prefix_count.py"
+  ],
+  "related_conjectures": []
  }
 ]
