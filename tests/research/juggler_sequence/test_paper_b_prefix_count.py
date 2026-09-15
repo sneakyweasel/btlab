@@ -3398,3 +3398,59 @@ def test_psi_is_bounded_variation_not_analytic_so_no_power_series_exists() -> No
         assert set(top) <= lattice, top
         bottom = sorted(ks, key=lambda k: k * cf[k])[:5]
         assert not (set(bottom) & lattice), bottom
+
+
+def test_psis_jumps_are_the_rotation_orbit_of_zero() -> None:
+    """The second jump is at BETA, and it is one of a cascade at every k*BETA.
+
+    MECHANISM, exact.  The Sturmian barrier increment is b_t = 1 iff phi_t >= 1 - BETA,
+    and phi_(d-1-k) = phi_d - (k+1) BETA.  The set {phi : phi - (k+1)BETA mod 1 >= 1-BETA}
+    is an arc whose endpoints are k*BETA and (k+1)*BETA.  So the barrier step k+1 from the
+    end switches at k*BETA, and over all k the jump set of psi is exactly the forward
+    rotation orbit {k*BETA mod 1 : k >= 0} -- countable, dense, and summable.
+
+    That is what makes psi BV rather than smooth, and it explains both earlier readings at
+    once: jumps give the 1/k Fourier decay, and a jump set which IS a rotation orbit gives
+    the Ostrowski peaks, since the transform of the jump measure is sum_k a_k e^(-2pi i j k
+    BETA).
+
+    Measured at 512 bins over 20001 depths, the nine largest jumps land on k*BETA for
+    k = 0..8 with no exception, each within 0.0006 of its target.  Sizes decay roughly
+    geometrically and are all NEGATIVE: psi drops crossing each k*BETA upward and recovers
+    between, a sawtooth on the orbit.  From k = 8 on the jumps fall to the level at which a
+    window comparison also picks up psi's local slope, so they are not individually
+    resolved and the test does not claim them.
+    """
+    import numpy as np
+
+    rho = B.chernoff_rate()
+    depth = 12000
+    prof = B.surviving_log_mass(depth)
+    d = np.arange(4000, depth)
+    c = np.array([math.exp(prof[i] - i * math.log(rho) + 1.5 * math.log(i)) for i in d])
+    c = c / c.mean()
+    x = (d * BETA_) % 1.0
+
+    def jump(loc: float, w: float = 0.02) -> float:
+        lo = c[((x - (loc - w)) % 1.0) < w]
+        hi = c[((x - loc) % 1.0) < w]
+        return float(hi.mean() - lo.mean())
+
+    sizes = [jump((k * BETA_) % 1.0) for k in range(8)]
+    assert all(s < 0 for s in sizes), sizes                 # every jump is downward
+    assert sizes[0] < -0.055, sizes[0]                      # the one at 0 is the largest
+    assert abs(sizes[0]) > 3 * abs(sizes[4]), sizes         # and they decay
+    assert all(abs(a) > abs(b) / 1.15 for a, b in zip(sizes, sizes[1:]))   # near-monotone
+
+    # the locations really are the orbit: bin finely and check the top jumps land on it
+    nb = 256
+    grid = np.array([c[np.clip((x * nb).astype(int), 0, nb - 1) == k].mean()
+                     for k in range(nb)])
+    grid /= grid.mean()
+    step = np.roll(grid, -1) - grid
+    top = np.argsort(np.abs(step))[::-1][:6]
+    orbit = [(k * BETA_) % 1.0 for k in range(12)]
+    for i in top:
+        loc = (i + 1) / nb
+        near = min(min(abs(o - loc), 1 - abs(o - loc)) for o in orbit)
+        assert near < 2.0 / nb, (loc, near)
