@@ -278,8 +278,15 @@ def rational_barrier_profile(p: int, q: int, cap: int = 400, sweeps: int = 4000)
     convergents agree to five decimals, so the answer is BETA's and not the rational's.
 
     Returns ``(profile, log_rate_per_step, residual)``.  Convergents of BETA are
-    5/8, 12/19, 41/65, 53/84, 306/485, 665/1054; at 306/485 the rate already matches
-    ``chernoff_rate`` to 6e-6 in the log.
+    5/8, 12/19, 41/65, 53/84, 306/485, 665/1054.
+
+    Two cautions this signature does not express.  ``sweeps`` is a budget and not a convergence
+    test, and the number of sweeps needed grows like ``cap^2 / q``: the default 4000 converges
+    ``306/485`` to machine precision but leaves ``5/8`` short by ``5e-9``, so the residual is
+    worth reading.  And the returned rate carries ``barrier_truncation_bias(cap)``, which is
+    ``-7.2e-6`` at the default cap -- larger than the barrier error of every convergent from
+    ``306/485`` on, so the rate's distance from ``chernoff_rate`` at the deep convergents is
+    mostly the cap.  ``rational_barrier_rate_limit`` stops on the change and removes the cap.
     """
     import math
 
@@ -314,6 +321,140 @@ def rational_barrier_profile(p: int, q: int, cap: int = 400, sweeps: int = 4000)
         check, _ = advance(check, b == 1)
     residual = sum(abs(a - b) for a, b in zip(check, profile))
     return profile, rate / q, residual
+
+
+def chernoff_rate_at(slope: float) -> float:
+    """``s^(-s) (1-s)^(s-1) / 2``: the non-contraction rate against a barrier of slope ``s``.
+
+    ``chernoff_rate`` is the ``s = BETA`` case computed by search; the same closed form holds at
+    every slope, because the Legendre transform of a fair coin is the binary entropy and the
+    barrier enters only through its slope.  Writing the rate as a function of ``s`` rather than a
+    constant is what makes ``barrier_tilt`` a derivative instead of a coincidence.
+    """
+    return slope ** (-slope) * (1.0 - slope) ** (slope - 1.0) / 2.0
+
+
+def chernoff_exponent(tilt: float, slope: float) -> float:
+    """``-lam s + log((1+e^lam)/2)``: the one function both the rate and its two derivatives come from.
+
+    ``chernoff_rate_at(s)`` is ``exp`` of this minimised over ``lam``, and the two facts that looked
+    separate are its two partial derivatives at the minimum.  Stationarity in ``lam`` is the DOUBLE
+    ROOT of J-rho-has-a-tail-variable-variational-formula -- the minimiser is ``barrier_tilt(s)``,
+    so the tail base ``e^(-lam*) = (1-s)/s`` is ``r*``.  The envelope in ``s`` is the SLOPE
+    DERIVATIVE, ``d/ds min_lam G = -lam*``, because the ``lam`` derivative vanishes there.
+    """
+    return -tilt * slope + math.log((1.0 + math.exp(tilt)) / 2.0)
+
+
+def barrier_tilt(slope: float) -> float:
+    """``log(s/(1-s))``: the tilt that makes the walk drift-free against a slope-``s`` barrier.
+
+    This is ``-d/ds log chernoff_rate_at(s)``, by differentiating the closed form:
+    ``log rate = -s log s + (s-1) log(1-s) - log 2`` has derivative ``-log(s/(1-s))``.  At
+    ``s = BETA`` it is ``lamStar = 0.536207535136...``, the tilt of ``surviving_profile``, so the
+    constant that reweights the walk and the sensitivity of the rate to the barrier are one number.
+    """
+    return math.log(slope / (1.0 - slope))
+
+
+def barrier_truncation_bias(cap: int, slope: float = BETA) -> float:
+    """``-pi^2 s(1-s) / (2 cap^2)``: what capping the profile costs the measured log rate.
+
+    Capping the profile at ``m = cap`` drops the mass that would cross it, which is an absorbing
+    wall; the barrier at ``m = 0`` is another.  A drift-free walk of step variance ``s(1-s)``
+    killed at both ends of an interval of length ``cap`` decays at ``pi^2 s(1-s) / (2 cap^2)`` per
+    step faster than the free walk, and that is the whole cap dependence to leading order.
+
+    The coefficient is not fitted.  Richardson over cap pairs -- ``(4/3) cap^2 (r(cap) - r(2cap))``,
+    which never refers to the limit -- gives 1.12153, 1.13511, 1.14206 at caps 40 to 320 for the
+    ``306/485`` barrier, extrapolating to 1.14900 against a predicted 1.149108.  It is the slope
+    that is being tracked and not some constant near 1.149: the ``11/19`` barrier at ``s = 0.5789``
+    extrapolates to 1.20283 against its own predicted 1.202943.  Both are one part in ten thousand.
+
+    The bias is barrier-independent at this order, so it cancels in differences between barriers
+    but not in any single measured rate: at the default ``cap = 400`` it is ``-7.2e-6``, which is
+    larger than the barrier error of every convergent from ``306/485`` on.
+    """
+    return -math.pi ** 2 * slope * (1.0 - slope) / (2.0 * cap ** 2)
+
+
+def _barrier_rises(p: int, q: int) -> "Any":
+    """The period-``q`` rise word ``ceil((t+1)p/q) - ceil(t p/q)`` as a boolean array."""
+    import numpy as np
+
+    return np.array([-((-(t + 1) * p) // q) + ((-t * p) // q) == 1 for t in range(q)], dtype=bool)
+
+
+def rational_barrier_log_rate(
+    p: int, q: int, cap: int = 320, tol: float = 1e-15,
+    max_steps: int | None = None,
+) -> float:
+    """Log rate per step against the exactly periodic barrier ``ceil(t p/q)``, at profile cap ``cap``.
+
+    Iterates the period map to its Perron eigenvector and reads off the eigenvalue.
+
+    The budget is counted in steps, not sweeps, and that distinction is the whole correctness of
+    this function.  The profile forgets its start polynomially (as ``n^-2``) until the diffusion
+    reaches the cap and geometrically after that.  The geometric rate is the truncated operator's
+    spectral gap, which is three times ``barrier_truncation_bias`` and not equal to it -- the
+    Dirichlet modes go as ``k^2``, so the second sits four deep where the first sits one -- giving
+    about ``3.45 / cap^2`` per step and measured at ``2.15e-5`` against ``7.18e-6`` at cap 400.
+    Convergence to ``1e-15`` therefore costs about ``10 cap^2`` *steps* whatever ``q`` is, which is
+    ``10 cap^2 / q`` sweeps.  A sweep budget therefore starves exactly the small-``q``
+    barriers, and it starves them smoothly in ``q`` -- which reads convincingly as an arithmetic
+    law rather than as the artefact it is.  A budget overrun raises instead of returning.
+
+    Diagonalising the period map is not an alternative: the operator is strongly non-normal (its
+    left eigenvector grows like ``(1/r*)^m`` where the right one decays like ``r*^m``), and at
+    small ``q`` the eigenvalues cluster, so ``eigvals`` scatters by ``1e-2`` where this agrees to
+    ``1e-9``.  It does agree with this to eight digits once ``q`` is in the hundreds.
+
+    The returned rate carries ``barrier_truncation_bias(cap)``; use ``rational_barrier_rate_limit``
+    for the cap-free value.
+    """
+    import numpy as np
+
+    rises = _barrier_rises(p, q)
+    profile = np.zeros(cap)
+    profile[0] = 1.0
+    previous = None
+    rate = 0.0
+    budget = max_steps if max_steps is not None else 200 * cap * cap
+    for sweep in range(1, budget // q + 2):
+        rate = 0.0
+        for rise in rises:
+            nxt = np.empty(cap)
+            if rise:
+                nxt[:-1] = 0.5 * (profile[:-1] + profile[1:])
+                nxt[-1] = 0.5 * profile[-1]
+            else:
+                nxt[0] = 0.5 * profile[0]
+                nxt[1:] = 0.5 * (profile[1:] + profile[:-1])
+            total = nxt.sum()
+            profile = nxt / total
+            rate += math.log(total)
+        if previous is not None and float(np.abs(profile - previous).sum()) <= tol:
+            return rate / q
+        previous = profile.copy()
+    raise RuntimeError(
+        "barrier %d/%d at cap %d did not reach tol %g in %d steps" % (p, q, cap, tol, sweep * q)
+    )
+
+
+def rational_barrier_rate_limit(p: int, q: int, caps: tuple[int, int, int] = (160, 320, 640)) -> float:
+    """``rational_barrier_log_rate`` with the cap dependence extrapolated away.
+
+    Richardson on ``r(cap) = r + A cap^-2 + B cap^-3`` over three doubling caps.  What is left
+    agrees with ``log chernoff_rate_at(p/q)`` to ``3e-11`` for ``q >= 149`` -- the floor of the
+    extrapolation itself -- so the rational barrier realises the closed form at its own slope.
+    """
+    small, mid, large = caps
+    r1 = rational_barrier_log_rate(p, q, cap=small)
+    r2 = rational_barrier_log_rate(p, q, cap=mid)
+    r3 = rational_barrier_log_rate(p, q, cap=large)
+    b = ((r1 - r2) - 4.0 * (r2 - r3)) / 28.0
+    a = ((r2 - r3) - 7.0 * b) / 3.0
+    return r3 - a - b
 
 
 def meander_constant(d_values: tuple[int, ...] = (400, 800, 1600)) -> list[float]:

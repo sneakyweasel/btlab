@@ -50684,3 +50684,101 @@ inconclusive result today traced back to not being able to certify convergence -
 the deep resonances, the tail shape, the memory-loss exponent. Where a certificate
 was available the answer came out sharp, and where it was not I should have said
 so sooner.
+
+## The rate sees the slope and nothing else
+
+The question was whether `beta`'s large partial quotient `a_10 = 23` --- the jump
+from `665/1054` to `15601/24727` --- leaves a mark on the rational-barrier method.
+If the convergents' agreement degraded there, that would be the first direct sign
+that the partial quotients reach `psi`.
+
+They do not, and the reason is better than the question deserved. The rate against
+a barrier of slope `s` is `s^(-s) (1-s)^(s-1) / 2` --- the same closed form as
+`rho`, with `beta` replaced by `s`. `chernoff_rate` was never a constant of the
+problem; it is `chernoff_rate_at(BETA)`. Measured against that, every rational
+barrier from `q = 3` to `q = 485` leaves a residual between `-6.8e-9` and
+`-7.7e-9`, which falls by sixteen when the caps double: it is the extrapolation's
+own floor, not a property of any barrier.
+
+The denominator leaves no trace at all. Across `12/19 ... 306/485` the denominator
+ranges over a factor of twenty-five and the residual is constant to `2e-12`; at
+the single denominator `19`, moving the numerator instead moves it by `1e-9`, five
+hundred times more. So `a_10 = 23` helps for the dull reason that it makes
+`665/1054` an unusually good barrier, and there is no resonance to find. This
+settles the rate only. `psi` is a different object and the divisors still enter it
+through `f_hat`.
+
+Differentiating the closed form costs one line and pays for the trip:
+`d/ds log rho(s) = -log(s/(1-s)) = -lamStar(s)`. The constant that tilts the walk
+to zero drift *is* the sensitivity of the rate to the barrier. `lamStar` already
+carried two roles --- the tilt, and through `r*` the base of the tail --- and this
+third one makes them one thing.
+
+### What the cap was doing
+
+Before any of that could be read, a bias had to come out. A capped profile decays
+faster than the true one by `pi^2 s(1-s) / (2 cap^2)`: the cap is an absorbing wall,
+the barrier at `m = 0` is another, and a drift-free walk of step variance `s(1-s)`
+killed at both ends of an interval of length `cap` loses exactly that per step. The
+coefficient was written down before it was measured and came back to one part in ten
+thousand --- and it tracks the *slope*, `11/19` matching its own `1.2029` as closely
+as `306/485` matches its `1.1491`.
+
+The striking part is that the wall matters at all: the profile holds less than
+`1e-100` of its mass near the cap. It matters because the operator is violently
+non-normal. The left eigenvector grows like `(1/r*)^m` exactly as fast as the right
+one decays, so the product that controls eigenvalue sensitivity is flat in `m`, and
+a wall where there is no mass counts as much as the bulk.
+
+That bias also explains an old figure. The recorded rate offsets `+3.06e-3 ...
+-6.14e-6` were read at a fixed cap, where the bias is `-7.2e-6`. From `306/485` on,
+the cap is larger than the barrier error, so the last number --- and the sign
+alternation I had attributed to the continued fraction --- was mostly the cap. The
+ledger row is amended rather than replaced.
+
+### The four-decade law that was my own stopping rule
+
+Midway through I had a clean result: the residual decays like `e^(-0.163 q)` over
+four decades, governed by the denominator and not the slope. I had a decoupling
+test for it --- fix `q`, vary the numerator --- and it passed. I was drafting the
+ledger row.
+
+It was entirely the iteration budget. Convergence costs a fixed number of *steps*,
+about `10 cap^2`, whatever `q` is; expressed in sweeps that is `10 cap^2 / q`. A
+sweep budget therefore starves small `q` and not large `q` --- and starves it
+*smoothly in* `q`, which is precisely what an arithmetic law looks like. The
+decoupling test confirmed it because a starved run does depend on `q` and not on
+the slope.
+
+Last iteration's lesson was that an eigenvector carries a certificate and an
+iterate carries a hope. This was worse than ignoring that. The certificate was
+computed, and printed, and I read past it: the first table of the day has `sw =
+20000` --- the budget, exactly --- in the `5/8` and `12/19` rows, next to residuals
+of `4.7e-9` and `6.7e-12` where the converged rows read `1.0e-14`. Two columns
+saying "not converged", in the output I was reading, an hour before I built a law
+on those two rows.
+
+So the rule is not "get a certificate". It is that a certificate you do not read is
+worth less than none, because it makes you feel covered. `rational_barrier_log_rate`
+now counts steps and raises rather than returning; a starved call is an exception,
+not a number. Diagonalising instead is no escape either --- the same non-normality
+that makes the cap matter makes `eigvals` scatter by `1e-2` at small `q`, where the
+iteration agrees to `1e-9`.
+
+### Two facts that were one
+
+The double root and the slope derivative are not neighbours; they are the two
+partial derivatives of a single function at a single point. Write
+
+    G(lam, s) = -lam s + log((1 + e^lam)/2),   log rho(s) = min_lam G.
+
+Stationarity in `lam` is the double root: the minimiser is `lamStar(s)`, and its
+exponential `e^(-lamStar) = (1-s)/s` is the tail base `r*`. The envelope in `s` is
+today's derivative, `d/ds min_lam G = -lamStar` --- and it is legal precisely
+*because* the `lam` derivative vanishes there. The ledger had the two as separate
+rows, found months apart by different routes. They are one line of the same
+calculation.
+
+Which is the honest reason `lamStar` kept turning up. It is not that one constant
+happens to serve three purposes; it is that the tilt, the tail base and the slope
+sensitivity are three readings of the same stationary point.
