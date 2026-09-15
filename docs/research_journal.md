@@ -50238,3 +50238,55 @@ explained.
 `psi`'s existence is still open, and nothing here proves the quasi-stationary
 limit exists. But the polynomial is no longer an empirical exponent: it is what a
 double root produces.
+
+## The walk forgets polynomially, which closes the obvious proof route
+
+Went to measure the contraction rate behind the quasi-stationary limit, expecting
+to hand a proof strategy to whoever writes it. Measured the opposite of what I
+first thought, and the correction is the finding.
+
+### It is a power, not a contraction
+
+Two initial laws driven by the same Sturmian word converge, so the limit does not
+depend on the start. But the implied power of the total variation reads
+
+    d       200     400     800    1600    3200    6400   12800   25600
+    power -1.583  -1.725  -1.844  -1.897  -1.989  -1.973  -1.981  -1.985
+
+settling near `-2` and staying there over four doublings. `TV ~ d^(-2)`.
+
+### The near miss
+
+An hour ago I fitted an exponential to the same quantity over `d <= 1500`, got
+`3.2e-3` per step, and reported a half-life of 220 steps --- in this conversation,
+though not, as it turns out, into the repository. Over `d >= 1600` the same fit
+gives `2.1e-4`, a factor fifteen smaller.
+
+A rate that shrinks with the horizon is exactly what fitting an exponential to a
+power law produces, and on a short horizon it is indistinguishable from a real
+contraction. The diagnostic is the per-doubling ratio: flat means a power, falling
+means an exponential. I had the ratios in front of me the first time --- `0.361,
+0.334, 0.302, 0.278` --- and read them as noise around a decaying exponential
+rather than as a constant.
+
+That is the sixth time today a statement was true of the fit rather than the
+object. It is also the first one I caught by going back to re-measure something I
+had already reported, which suggests the habit is worth keeping.
+
+### What it rules out
+
+The update is a product of two positive operators along the Sturmian word, which
+invites a Hilbert-metric contraction argument --- Birkhoff. **Birkhoff delivers
+geometric memory loss.** This is not geometric, so that route does not describe
+this walk however it is arranged.
+
+So the one missing link, the quasi-stationary convergence, needs critical-case
+machinery and not a contraction estimate. That is negative knowledge worth having
+before someone spends a week on the natural first attempt.
+
+### It is all one reading
+
+The double root said the walk is critical: the characteristic minimum touches
+`log rho` rather than crossing it. Criticality produces polynomials everywhere ---
+`d^(-3/2)` in the survival probability, `d^(-2)` in the forgetting. Two
+independent measurements, one cause.
