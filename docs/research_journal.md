@@ -50127,3 +50127,55 @@ them.
 
 A gate that cannot fail, a gate with no test, and a gate nobody calls are the
 same defect wearing three hats: the check is present, so nobody looks again.
+
+## Digging on: the boundary fraction is the coordinate psi should have been
+
+Followed the pointer from the count recursion and looked at `Q_d` directly, which
+I had never done.
+
+### The conditional law collapses, and far better than psi does
+
+Conditioned on survival, the law of `m_d = o_d - ceil(d beta)` depends on the
+depth only through `frac(d beta)`. Two disjoint depth windows agree to **5.1e-4**
+across every `m` and every phase bin.
+
+That is an order of magnitude tighter than `psi`'s collapse, and the reason is
+structural rather than lucky: `pi` is a *conditional* law, so `rho^d d^(-3/2)`
+cancels outright. No normalisation to derive, no `1 + o(1)` to outrun. All of
+this afternoon's fitting of envelopes and exponents was work `psi` created by
+being the wrong coordinate.
+
+The shape genuinely varies with the phase rather than rescaling: `Pi_phi(0)` runs
+`0.1846` down to `0.0750`, a factor `2.46`, while `Pi_phi(1)` barely moves and the
+higher states rise. Mass migrates away from the barrier as the phase advances.
+`R(phi) = Pi_phi(0)` has a `24.9x` signal against within-bin scatter, where `psi`
+had `9.7x`.
+
+### rho falls out of it
+
+`P_(d+1) = P_d (1 - b_d R_d / 2)` is exact and proved. So `(1/D) log P_D` is a
+Birkhoff average of `log(1 - b R / 2)` along the rotation, and it also tends to
+`log rho`. Unique ergodicity of an irrational rotation then forces
+
+    log rho = integral over the circle of log(1 - b(phi) R(phi) / 2)
+
+with the integrand vanishing below `1 - beta`. Measured: the Birkhoff average
+gives `-0.034924, -0.034827, -0.034792` over `d >= 1000, 5000, 10000` against
+`log rho = -0.034688185`, closing as the window deepens; the circle integral of
+the binned limit gives `-0.034717` at 100 bins, off by `2.9e-5`.
+
+This is a constraint and not a restatement: `rho` is independently known in closed
+form as `beta^(-beta)(1-beta)^(beta-1)/2`, proved in Lean this morning.
+
+### Where the open problem now sits
+
+One link is unproved: `R_d -> R(frac(d beta))`. The recursion is proved, the
+ergodic theorem is classical. So the analytic content of this entire thread has
+moved into a single named object --- the quasi-stationary distribution of a walk
+killed at a Sturmian barrier --- rather than living in the existence of an
+almost-periodic prefactor.
+
+That is the third time today the problem changed shape, each time toward
+something more standard: from "a constant that does not exist", to "the
+asymptotics of a boundary local time", to "a quasi-stationary distribution in a
+rotating environment". The mathematics did not get easier; it got named.

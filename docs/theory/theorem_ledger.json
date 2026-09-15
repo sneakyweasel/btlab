@@ -10153,5 +10153,16 @@
    "tests/research/juggler_sequence/test_paper_b_prefix_count.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "id": "J-boundary-fraction-is-the-clean-coordinate",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "The conditional law of the killed walk has a phase-indexed quasi-stationary limit, and rho is recovered from its boundary value by ergodic averaging. This is a better coordinate than psi in every respect measured. THE COLLAPSE. Conditioned on survival, the law of m_d = o_d - ceil(d BETA) depends on the depth only through frac(d BETA): two disjoint depth windows, d in [5000,12000) and [12000,20000), agree to 5.1e-4 across every m and every phase bin. That is an order of magnitude tighter than psi's collapse, for a structural reason -- pi is a conditional law, so rho^d d^(-3/2) cancels and there is no 1+o(1) to outrun. The shape varies with the phase rather than merely rescaling: Pi_phi(0) runs 0.1846 down to 0.0750 across the circle, a factor 2.46, while Pi_phi(1) barely moves and the higher states rise, so mass migrates away from the barrier as the phase advances. R(phi) = Pi_phi(0) has a 24.9x signal against within-bin scatter, compared with 9.7x for psi. THE ERGODIC IDENTITY. P_(d+1) = P_d (1 - b_d R_d / 2) is exact and proved by J-count-recursion-is-the-boundary-mass, so (1/D) log P_D is a Birkhoff average of log(1 - b R / 2) along the rotation and also tends to log rho. Unique ergodicity of an irrational rotation then forces log rho = integral over the circle of log(1 - b(phi) R(phi) / 2), the integrand vanishing below 1 - BETA where b = 0. MEASURED: the direct Birkhoff average gives -0.034924, -0.034827, -0.034792 over d >= 1000, 5000, 10000 against log rho = -0.034688185, closing as the window deepens; the circle integral of the binned limit gives -0.034717 at 100 bins, a difference of 2.9e-5, and exp(integral) = 0.9658769 against rho = 0.9659066. This is a genuine constraint rather than a restatement, since rho is independently known in closed form as BETA^(-BETA)(1-BETA)^(BETA-1)/2 by J-paper-b-tilt-reduction-and-the-phase-factor. WHAT REMAINS UNPROVED is exactly one link: the convergence R_d -> R(frac(d BETA)), which is the quasi-stationary statement. The recursion is proved and the ergodic theorem is classical, so the open analytic content of this whole thread now sits in a single named object -- the quasi-stationary distribution of a walk killed at a Sturmian barrier -- rather than in the existence of an almost-periodic prefactor. Machinery: boundary_fraction_profile, which returns R_d and optionally the conditional shape.",
+  "source": "docs/research_journal.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_paper_b_prefix_count.py"
+  ],
+  "related_conjectures": []
  }
 ]
