@@ -1138,33 +1138,81 @@ estimating. The convenient threshold admits no reading of this kind at
 all: its overshoot is  \(1.2\cdot10^{6}\)  at  \(d=320\)  and
 \(6.9\cdot10^{17}\)  at  \(d=1280\), growing without bound.
 
-The shape of  \(\psi\)  is known and its existence is not. Exactly,
-\(N_d/2^d=\varrho^{d}e^{-\lambda^{*}(1-\{d\beta\})}G(d)\)  with
-\(\lambda^{*}=\log\bigl(\beta/(1-\beta)\bigr)\)  the mean-zero tilt and
-\(G\)  indexed by integers; the tilted letter law is  \(\mathrm{Bernoulli}
-(\beta)\), which is why  \(\beta\)  is the threshold. Empirically
-\(\psi\)  has downward jumps on the rotation orbit
-\(\{k\beta\bmod 1\}\), of sizes  \(0.075\),  \(0.038\),  \(0.019\),
-\(0.020\),  \(0.015\),  \(0.010\),  \(0.011\),  \(0.009\)  at
-\(k=0,\dots,7\), below which the measurement floor is reached. Writing
-\(B_1(x)=\{x\}-\tfrac12\), the series  \(\sum_k a_kB_1(x-k\beta)\)
-reproduces  \(91\%\)  of  \(\psi\)'s variance about its mean and
-\(93\)–\(95\%\)  of each low-order Fourier coefficient, with no fitted
-parameter, saturating by  \(K=25\); the residual is flat in frequency,
-as the unresolved tail of small jumps on a dense orbit should be, and
-shows no smooth component. The jump part has transform
-\(-S(n)/(2\pi in)\)  with  \(S(n)=\sum_ka_ke^{-2\pi inkb}\), and
-\(\lvert S(n)\rvert\sim n^{0.055}\)  grows, so the measured decay
-\(k^{-0.8}\)  is a  \(k^{-1}\)  envelope times an Ostrowski modulation
-rather than evidence against bounded variation; that question stays
-open and  \(\psi\)  is claimed only to be discontinuous with these
-jumps. No Taylor expansion of  \(\psi\)  exists, since it is not
-continuous. What is not
-proved, here or elsewhere, is that  \(\psi\)  exists at all: that
-\(d^{3/2}G(d)\)  converges along  \(\{d\beta\}\to\varphi\). That is a
-local limit theorem for a lattice walk against a Sturmian barrier, and
-the classical statement, which the non-lattice step distribution
-invites, does not apply.
+The shape of  \(\psi\)  is known and its existence is not, and the
+structure behind it is exact down to one missing limit.
+
+*The count recursion.*  Write  \(N_d\)  for the surviving words of length
+\(d\),  \(M_d\)  for those of them with  \(o_d=\lceil d\beta\rceil\)
+exactly — sitting *on* the barrier — and  \(b_d=\lceil(d+1)\beta\rceil-
+\lceil d\beta\rceil\).  Every survivor has two extensions; if the barrier
+does not rise both survive, and if it rises then a survivor strictly
+above the barrier still keeps both while one exactly on it loses the even
+extension and only that one.  Hence
+\[
+N_{d+1}=2N_d-b_dM_d,\qquad P_{d+1}=P_d\Bigl(1-\tfrac12 b_dR_d\Bigr),
+\]
+with  \(P_d=N_d/2^d\)  and  \(R_d=M_d/2^d\big/P_d\)  the share of
+survivors on the barrier.  This is exact and elementary; it is checked
+against the integer counts and machine-checked in
+`formal/Problems/Juggler/PaperBBarrierStep.lean`.
+
+*The right coordinate is  \(R\).*  Conditioned on survival, the law of
+\(m_d=o_d-\lceil d\beta\rceil\)  depends on the depth only through
+\(\{d\beta\}\), and far more cleanly than  \(\psi\)  does, because a
+conditional law carries no  \(\varrho^{d}d^{-3/2}\)  to divide out.
+Advancing the phase by  \(\beta\)  shifts the barrier word one place and
+so applies one more update,
+\[
+\Pi_{\varphi+\beta}=T_{b(\varphi)}\Pi_\varphi\big/\bigl(1-\tfrac12
+b(\varphi)\Pi_\varphi(0)\bigr),
+\]
+where  \(T_0\pi(m)=\tfrac12(\pi(m)+\pi(m-1))\)  and
+\(T_1\pi(m)=\tfrac12(\pi(m)+\pi(m+1))\).  Because  \(T_0\)  preserves
+mass and sends  \(\pi(0)\)  to  \(\pi(0)/2\), this gives
+\(R(\varphi+\beta)=R(\varphi)/2\)  whenever  \(\varphi<1-\beta\),
+confirmed to  \(10^{-12}\).  Averaging the logarithm of the recursion
+over the circle recovers the rate,
+\(\log\varrho=\int_0^1\log\bigl(1-\tfrac12 b(\varphi)R(\varphi)\bigr)
+\,d\varphi\), to  \(3\cdot10^{-5}\)  — a constraint rather than a
+restatement, since  \(\varrho\)  is known in closed form.
+
+*Why a polynomial appears at all.*  A geometric tail  \(r^m\)  keeps its
+shape under both updates, reproducing with factor
+\(\bigl[\tfrac12(1+1/r)\bigr]^{1-\beta}\bigl[\tfrac12(1+r)\bigr]^{\beta}\).
+That expression is stationary exactly at  \(r=(1-\beta)/\beta=
+e^{-\lambda^{*}}\), and there it equals  \(-\mathrm{KL}(\beta\|\tfrac12)
+=\log\varrho\)  identically.  So the characteristic equation has a
+**double** root:  \(\varrho\)  is the *minimum* of that expression, a
+second variational formula in the tail variable dual to the Cramér one
+in the tilt variable.  A simple root would give a pure exponential; a
+double root is the critical case and forces the polynomial factor.
+
+*Where  \(\psi\)  comes from.*  Combining the recursion with
+\(P_d=\psi(\{d\beta\})\varrho^{d}d^{-3/2}\)  makes  \(\log\psi\)  a
+coboundary over the rotation,
+\[
+\log\psi(\varphi+\beta)-\log\psi(\varphi)=f(\varphi),\qquad
+f=\log\bigl(1-\tfrac12 b R\bigr)-\log\varrho,
+\]
+whose mean vanishes by the identity above, so
+\(\hat\psi(n)=\hat f(n)/(e^{2\pi in\beta}-1)\)  — reproduced to a few
+percent across fifteen modes.  \(R\)  is a step function whose jumps sit
+on  \(\{k\beta\}\), so  \(f\)  jumps there and at  \(1-\beta\), and a
+coboundary spreads those over the same orbit:  \(\psi\)'s jumps are not
+an accident of the barrier arithmetic but the shape of a coboundary.
+The Ostrowski structure in  \(\hat\psi\)  is inherited from  \(\hat f\),
+not manufactured by the divisor —  \(\hat f\)  is five times smaller at
+the resonances than away from them, which is what keeps  \(\psi\)
+bounded.
+
+*What is open, and what is excluded.*  One link is unproved: that the
+iteration converges, \(R_d\to R(\{d\beta\})\).  Everything above is
+exact or elementary given it.  Two natural attacks are ruled out by
+measurement rather than by argument.  Birkhoff contraction on the
+product of positive operators would give geometric memory loss, and the
+loss is polynomial.  A small-divisor obstruction would show as an excess
+at  \(\beta\)'s convergent denominators, and the convergence is uniform
+across them.  What remains is the criticality itself.
 
 None of this changes Theorem 6.1, whose conclusion follows from any
 \(\vartheta<1\). The algebra of the threshold — that  \(q_d\)

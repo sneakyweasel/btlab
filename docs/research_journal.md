@@ -50566,3 +50566,39 @@ unjustified, and the row says so.
 That is the seventh time today a number was right about one thing and imported
 into another. The pattern is stable enough to name: the error is never in the
 measurement, it is in assuming the quantity measured is the quantity wanted.
+
+## Consolidation: Paper B now derives psi instead of listing measurements of it
+
+The manuscript had fallen several findings behind the ledger. Remark 6.2 read as
+a list of figures --- jump sizes, a `91%` reconstruction, a spectral exponent ---
+which was accurate when written and is now the wrong shape, because the structure
+underneath turned out to be exact.
+
+Rewritten as a derivation, in five moves:
+
+1. **The count recursion.** `N_(d+1) = 2 N_d - b_d M_d`, hence
+   `P_(d+1) = P_d (1 - b_d R_d / 2)`. Elementary, proved, Lean-checked.
+2. **`R` is the right coordinate.** The conditional law collapses onto the phase,
+   and advancing the phase by `beta` applies one more update:
+   `Pi_(phi+beta) = T_b Pi_phi / (1 - b Pi_phi(0)/2)`. Hence `R` halves at every
+   non-rising phase, and averaging the log of the recursion recovers `log rho`.
+3. **Why a polynomial appears.** A geometric tail keeps its shape under both
+   updates; the resulting characteristic expression is stationary at
+   `r = (1-beta)/beta = e^(-lambda*)` and equals `log rho` there identically. A
+   **double** root. `rho` is its minimum --- a second variational formula, in the
+   tail variable, dual to the Cramér one in the tilt variable.
+4. **Where `psi` comes from.** `log psi` is the coboundary of
+   `f = log(1 - bR/2) - log rho`, so `psi_hat(n) = f_hat(n)/(e^(2 pi i n beta)-1)`.
+   `R` is a step function on `{k beta}`, so `f` jumps there, and a coboundary
+   spreads those over the same orbit. The Ostrowski structure is inherited from
+   `f`, not manufactured by the divisor.
+5. **What is open and what is excluded.** One link: that the iteration converges.
+   Birkhoff is out, the loss being polynomial; small divisors are out, the
+   convergence being uniform across the convergents. What remains is the
+   criticality.
+
+That is shorter per claim than what it replaced and says considerably more. It
+also removes the last place where the manuscript still implied `psi`'s structure
+was empirical.
+
+Rebuilt, all four copies and the Zenodo kit synchronised, every paper gate green.
