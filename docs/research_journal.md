@@ -50847,3 +50847,62 @@ Smoothly is the dangerous word. A parameter that fails abruptly announces
 itself. One that fails gradually in the variable you are plotting against
 produces a clean line on a log-log plot, and a clean line is what I am
 predisposed to believe.
+
+## The kernel, and what the scatter was
+
+`R(s)` jumps at every rational because crossing `p/q` moves the barrier at every
+negative multiple of `q` at once. That suggests reading the jump as a sum of
+single-bump responses --- so the single bump is the object to measure. Define
+`K(n)` as the change in `R` at phase 0 when the barrier is moved by one at
+`m = -n`. In rise-word terms that is a swap of the adjacent letters there, so it
+exists only where the word turns.
+
+Measured across scales, `K` looked like noise: `|K| n^2` ran from 0.021 to 0.34
+with no pattern, and consecutive doublings gave exponents of 1.69 and then 4.19.
+My first reading was that the kernel picture had failed and `K` was not a
+function of distance.
+
+That reading was half right, and the useful half was the other one. `K` is not a
+function of distance --- but the scatter is not noise, it is the phase:
+
+    K(n) = n^(-2-eps) g(frac(-n p/q)).
+
+Sorted by phase instead of by `n`, the same numbers are two clean monotone
+branches. A bump that lowers the barrier only ever lands at phase below `0.36`
+and one that raises it only above `0.66`, and within each branch the response
+decreases with the phase, strictly, across every sample. It is the orbit
+structure of `R(phi)` seen from the perturbation side.
+
+### The exponent, twice
+
+Held at one phase and swept in `n`, `|K| n^2` still falls --- `0.268, 0.246,
+0.216, 0.175, 0.131` at `n = 40 .. 1024` on phase `0.75` --- giving `eps` of
+`0.22`, and `0.27` on phase `0.20`. The memory decays strictly faster than the
+inverse square.
+
+That is the same margin that makes the rational-slope jumps summable, arrived at
+by a completely different measurement. The jump route gave local exponents `2.27,
+2.34, 2.42, 2.44`; the kernel route gives `2 + eps` of about `2.22`. They agree
+at the low end. Neither pins the asymptotic value, and I am not going to pretend
+that two measurements agreeing makes an asymptotic claim --- they share a method
+and could share a bias. But they do not share a failure mode, and that is worth
+something.
+
+### What made it legible
+
+Additivity. Separated bumps add to within `0.1%` at separations of 70 and more,
+degrading to `4%` at separation 8 --- the interaction is local. Without that, the
+sum-over-multiples reading of the jump would have been decoration.
+
+And a cap control I have now run three times in two days, each time expecting it
+to find the artefact, each time finding none until it found a real one. At
+`n = 1024` quadrupling the caps moves the answer by `0.9%` against a factor-two
+effect. The discipline is cheap and the one time it fires it saves a paper.
+
+### On reading scatter
+
+The thing worth keeping: I nearly recorded "the kernel is not a function of
+distance alone" as a negative result and moved on. It was true, and it was the
+least interesting true thing available. The scatter was the signal; I had simply
+plotted it against the wrong variable. A quantity that looks like noise in `n`
+and is monotone in `frac(-n p/q)` was never noisy --- it was indexed wrong.

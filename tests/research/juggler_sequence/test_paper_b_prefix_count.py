@@ -4681,3 +4681,101 @@ def test_the_jump_constant_collapses_at_slope_one_half() -> None:
     assert c[31] < 0.05, c                                        # s = 0.517
     assert c[37] > 0.20, c                                        # s = 0.617
     assert c[41] > c[37], c                                       # still climbing at s = 0.683
+
+
+# the slope used for the bump kernel: 2585/4096 sits 1.8e-4 above BETA and is coprime
+_BUMP_P, _BUMP_Q = 2585, 4096
+
+
+def test_the_bump_kernel_factorises_into_distance_and_phase() -> None:
+    """``K`` is not a function of the distance; the phase accounts for all of the scatter.
+
+    At consecutive ``n`` the responses look erratic -- ``|K| n^2`` ranges over a factor of three
+    across a band of 20.  Sorted by ``frac(-n p/q)`` instead, they fall into two clean monotone
+    branches: a lowering bump (which raises ``R``) only ever sits at phase below 0.36, a raising
+    one only above 0.66, and inside each branch the response decreases with the phase.
+    """
+    lowering, raising = [], []
+    for n in range(60, 81):
+        try:
+            k = B.barrier_bump_response(n, _BUMP_P, _BUMP_Q)
+        except ValueError:
+            continue                                   # the barrier does not turn at this n
+        phase = (-n * _BUMP_P / _BUMP_Q) % 1.0
+        (lowering if k > 0 else raising).append((phase, abs(k) * n * n))
+
+    assert len(lowering) >= 4 and len(raising) >= 4, (lowering, raising)
+    slope = _BUMP_P / _BUMP_Q
+    assert max(p for p, _ in lowering) <= 1 - slope, lowering
+    assert min(p for p, _ in raising) >= slope, raising
+
+    # the branches are exact, so check them over the whole period rather than this band
+    word = B._ceiling_word(_BUMP_P, _BUMP_Q)
+    counts = {"lower": 0, "raise": 0, "gap": 0}
+    for n in range(1, _BUMP_Q):
+        if word[_BUMP_Q - n - 1] == word[_BUMP_Q - n]:
+            continue
+        phase = (-n * _BUMP_P / _BUMP_Q) % 1.0
+        if word[_BUMP_Q - n - 1] and not word[_BUMP_Q - n]:
+            counts["lower"] += 1
+            assert phase <= 1 - slope + 1e-12, (n, phase)
+        else:
+            counts["raise"] += 1
+            assert phase >= slope - 1e-12, (n, phase)
+        if 1 - slope + 1e-12 < phase < slope - 1e-12:
+            counts["gap"] += 1
+    assert counts == {"lower": 1511, "raise": 1510, "gap": 0}, counts
+    for branch in (lowering, raising):
+        by_phase = [v for _, v in sorted(branch)]
+        assert by_phase == sorted(by_phase, reverse=True), branch
+
+
+def test_separated_bumps_add() -> None:
+    """The response to two bumps is the sum of the two, which is what licenses reading the jump
+    of ``boundary_fraction_jump`` as a sum over the bumps at every multiple of the denominator.
+
+    Additivity is a statement about separation, not about size: at 70 apart and more the defect is
+    under 0.1 percent of the larger term, and at 8 apart it is 4 percent.  The interaction is local.
+    """
+    word = B._ceiling_word(_BUMP_P, _BUMP_Q)
+
+    def swap(w: tuple, n: int) -> tuple:
+        i = _BUMP_Q - n
+        assert w[i - 1] != w[i], n
+        out = list(w)
+        out[i - 1], out[i] = w[i], w[i - 1]
+        return tuple(out)
+
+    caps = (40, 80, 160)
+    base = B._word_boundary_fraction(word, caps)
+    for n1, n2, tolerance in ((62, 143, 0.005), (143, 471, 0.005), (62, 70, 0.10)):
+        k1 = B._word_boundary_fraction(swap(word, n1), caps) - base
+        k2 = B._word_boundary_fraction(swap(word, n2), caps) - base
+        both = B._word_boundary_fraction(swap(swap(word, n1), n2), caps) - base
+        defect = abs(both - (k1 + k2)) / max(abs(k1), abs(k2))
+        assert defect < tolerance, (n1, n2, defect)
+
+
+def test_the_bump_kernel_decays_faster_than_the_inverse_square() -> None:
+    """Held at one phase, ``|K| n^2`` still falls: the memory is not exactly ``n^-2``.
+
+    That margin is the same one that makes ``boundary_fraction_jump`` summable, reached by a
+    different measurement -- here ``eps`` is about 0.22, there the local exponents ran 2.27 to 2.44.
+    The two agree at the low end; neither pins the asymptotic value.
+
+    The cap is controlled rather than assumed: quadrupling it moves the ``n = 1024`` point by under
+    2 percent, against the factor of two that is being claimed.
+    """
+    at_phase = [(40, 0.75586), (143, 0.75220), (246, 0.74854), (471, 0.75024), (1024, 0.75000)]
+    values = []
+    for n, expected_phase in at_phase:
+        assert abs((-n * _BUMP_P / _BUMP_Q) % 1.0 - expected_phase) < 1e-4, n
+        values.append(abs(B.barrier_bump_response(n, _BUMP_P, _BUMP_Q)) * n * n)
+
+    assert values == sorted(values, reverse=True), values
+    eps = math.log(values[0] / values[-1]) / math.log(at_phase[-1][0] / at_phase[0][0])
+    assert 0.15 < eps < 0.35, eps                      # strictly faster than n^-2
+
+    coarse = B.barrier_bump_response(1024, _BUMP_P, _BUMP_Q, caps=(40, 80, 160))
+    fine = B.barrier_bump_response(1024, _BUMP_P, _BUMP_Q, caps=(160, 320, 640))
+    assert abs(fine / coarse - 1) < 0.02, (coarse, fine)
