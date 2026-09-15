@@ -71,6 +71,7 @@ import Problems.Juggler.PeriodFamily
 import Problems.Juggler.PaperBChainRule
 import Problems.Juggler.PaperBThreshold
 import Problems.Juggler.PaperBTilt
+import Problems.Juggler.PaperBBarrierStep
 import Problems.Juggler.PaperBAssembly
 import Problems.Juggler.MasterIdentity
 import Problems.Juggler.BranchFreeze
