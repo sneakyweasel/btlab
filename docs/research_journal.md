@@ -51424,3 +51424,54 @@ It killed the route I proposed in four hours, identified the object to three
 figures, corrected an error in the record, and pointed at the correct literature.
 That is a good outcome for a route that does not work, and better than the route
 working would have been if the object had stayed unidentified.
+
+
+## The audit flags the citation it does not use
+
+Went after the irrationality measure of `log2/log3`, on the reasoning that it is
+the only lever in the laboratory that touches a bound: the closure-threshold
+exponent *is* `mu`, so improving `mu` improves the cycle target directly.
+
+There is nothing newer than Wu-Wang 2014 to import. The chain `8.616` (Rhin
+1987), `5.125` (Salikhov 2007), `5.1163051` (Wu-Wang 2014) is what the literature
+reports, and BLS 2018 is sharper by `1.04e-4` and ineffective, which is why the
+laboratory declined it. No improvement available.
+
+I also thought I had resolved the standing dispute over Rhin equation (8), and I
+had not. The secondary chain reports `8.616` as `mu(log 3)`, which is exactly what
+the audit dossier already says --- and it does not settle anything, because
+Spiegelhofer distinguishes `mu(log3/log2) <= 8.616` from `mu(log 3) <= 5.1163051`
+in consecutive sentences, so both can be honest reports of different equations.
+Rhin p. 160 is still unread and still the only thing that decides it. My first
+draft of the ledger row said RESOLVED; reading the dossier properly meant
+retracting that before it was committed.
+
+### What survived
+
+An asymmetry. Equation (8) is flagged UNVERIFIED and is used for **nothing**. The
+Wu-Wang import *is* used --- it is the whole of the current closure threshold ---
+and rests on a claim of the same kind. The reduction dossier states that Wu-Wang
+give `|a + b log 2 + c log 3| >= H^(-4.1163051-eps)`, a **three-term** linear
+independence measure, and substitutes `a = 0, b = -L, c = o`. The published
+headline is `mu(log 3) <= 5.1163051`, which is the **two-term** statement
+`|q log 3 - p|`, the `b = 0` case, and does not on its own bound a form in two
+logarithms --- `Lambda = o log 3 - L log 2` needs Baker-type input, which is what
+Rhin equation (7) supplies for the `L^14.3` version.
+
+It is entirely plausible the paper proves the three-term measure as its technical
+core and derives the headline from it; that is how Rhin's own Proposition is
+built, with (7) and (8) under one construction. So this is a query, not a
+refutation. ScienceDirect returns 403 and no secondary source states it either
+way.
+
+Nothing formal is at risk: `cycleMin_length_of_wuWang` takes the budget as the
+hypothesis `hWW`, so the Lean is conditional and stays true. What is at risk is
+whether anything supplies that hypothesis --- and if not, the threshold reverts
+from `L^5.1163051` to `L^14.3`.
+
+### The lesson, which is about audits
+
+The audit asks "are the imported classical results the strongest available?" and
+answers it carefully for the result it does not use. The one it does use got a
+row in a table. An input is easiest to leave unchecked precisely when it is load
+bearing, because checking it has a cost and nothing has gone wrong.

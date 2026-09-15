@@ -49,7 +49,7 @@ target below \(L^2\).
 |---|---|---|---|
 | \(2\) | Dirichlet | yes | the hard floor |
 | \(5.116201\) | BLS 2018 | no | recorded, knowingly unimported |
-| \(5.1163051\) | Wu-Wang 2014, linear form at \(a=0\), \(H=L\) | no (\(C_\varepsilon\)) | `J-cyclemin-gap-power-transfer` |
+| \(5.1163051\) | Wu-Wang 2014, linear form at \(a=0\), \(H=L\) --- **QUERIED 15 Sep 2026**, `J-wuwang-import-is-unread-at-source`: the published headline is the TWO-term \(\mu(\log3)\), the \(b=0\) case; the substitution needs \(b\neq0\). Plausible the paper's technical core is three-term, as Rhin's is, but unread at source | no (\(C_\varepsilon\)) | `J-cyclemin-gap-power-transfer`, conditionally |
 | \(8.616\) | Rhin p.160 eq. (8), *reported as* the ratio measure; disputed | unknown | **nothing** |
 | \(14.3\) | Rhin p.160 eq. (7) via Simons-de Weger Lemma 12 | yes (constant \(915\)) | Paper A Corollary 4.11, deposited |
 
