@@ -51636,3 +51636,51 @@ If it is explicit, Paper A's effective cycle threshold improves from `L^14.3` to
 bound available**, because Wu-Wang's `5.1163051` supplies nothing at any `L` a
 search reaches. So p. 160 is now worth reading for one number, and the number is
 worth a real improvement rather than a bookkeeping fix.
+
+
+## The Yaglom literature has the rate, and it explains our exponent
+
+Ocafrain, *Polynomial rate of convergence to the Yaglom limit for Brownian motion
+with drift* (ECP 2020, arXiv:1911.03693): for Brownian motion with drift
+conditioned not to reach zero, the 1-Wasserstein distance to the Yaglom limit
+decays as `1/t`, for Dirac and compactly supported starts --- and the same speed
+holds towards the **Bessel-3 process**.
+
+Bessel-3 is what `barrier_h_transform` found the Q-process to be, yesterday, from
+the drift and the invariant measure, without knowing this paper existed. That is
+the continuum analogue of our killed barrier walk, and it comes with a rate.
+
+But the rate is `1/t` and we had measured `d^-2`. Those are different quantities,
+and the difference suggested a mechanism worth testing: if `pi_d = Pi + c/d +
+O(1/d^2)` with `c` independent of the initial condition, then convergence to the
+limit is `d^-1` while the difference between two runs is `d^-2`. For a rational
+barrier the limit is exactly computable, so this is checkable rather than
+plausible.
+
+    convergence TO the limit        d^-1.021, d^-1.012
+    difference BETWEEN two runs     d^-1.974, d^-1.973
+
+and at `d = 16000` the three runs sit `1.1729e-3`, `1.1696e-3`, `1.1259e-3` from
+the limit and `3.3e-6` from each other. The leading correction is universal and
+cancels. Both numbers are right, and they are one phenomenon at two orders.
+
+### What it corrects and what it narrows
+
+The laboratory had `d^-2` recorded as *the* rate. It is the rate of forgetting the
+initial condition, not the rate of reaching the limit, and those differ by exactly
+one order for a structural reason. That distinction was not drawn anywhere.
+
+And the negative-knowledge entry I wrote two days ago said the driven-critical
+combination has no literature. Half of that is now wrong in a useful direction: the
+*undriven* case is covered, with the right rate and the right Q-process. The
+missing combination is driven-and-lattice, not driven-and-critical. Criticality is
+not the exotic part; the Sturmian driving is.
+
+### On the pull
+
+This is the shape I said I look for --- two things collapsing into one --- and it
+is the shape that produced three artefacts this week. The difference here is that
+the collapse made a numerical prediction before I measured it, and the prediction
+had a number attached that could have come out wrong. `-1.02` and `-1.97` were not
+chosen by me. That is the only version of the pull I should trust: the one that
+commits to a number first.

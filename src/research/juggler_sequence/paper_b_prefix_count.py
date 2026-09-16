@@ -754,6 +754,50 @@ def barrier_h_transform(p: int, q: int, cap: int) -> tuple["Any", float]:
     return (matrix.T * h[None, :]) / (lam * h[:, None]), lam
 
 
+def yaglom_distance(p: int, q: int, starts: tuple[int, ...], depths: tuple[int, ...],
+                    cap: int = 400) -> dict[int, list[float]]:
+    """Total variation from the forward run to the EXACT quasi-stationary family, by depth.
+
+    For a rational barrier the limit is computable: the period map's fixed point is the profile at
+    phase 0, and advancing it gives the whole family, so the distance to the limit can be measured
+    rather than inferred.  Each start is a point mass at ``m``.
+
+    WHY BOTH THIS AND ``barrier_memory_loss``.  They measure different exponents and the difference
+    is the point.  Convergence to the limit is ``d^-1`` -- measured -1.021, -1.012 from delta_0 and
+    delta_5 over d = 2000..16000 at ``306/485`` -- which is the rate Ocafrain (Electron. Commun.
+    Probab. 2020) proves for Brownian motion with drift conditioned not to hit zero, the continuum
+    analogue, whose Q-process is Bessel-3 exactly as ``barrier_h_transform`` finds here.  The
+    difference BETWEEN two runs is ``d^-2``, measured -1.974 and -1.973 on the same window.  Both
+    hold because the leading ``1/d`` correction does not depend on the initial condition and
+    cancels: at ``d = 16000`` the three runs sit 1.17e-3, 1.17e-3, 1.13e-3 from the limit and only
+    3.3e-6 from each other.
+
+    So ``pi_d = Pi_(phi_d) + c/d + O(1/d^2)`` with ``c`` independent of the start, to the accuracy
+    reachable here.  A start far from the barrier is slower into the regime -- ``delta_20`` reads
+    -0.876 and is still transient at these depths, its distance rising before it falls.
+    """
+    import numpy as np
+
+    word = _barrier_rises(p, q)
+    family = [_period_fixed_point(word, cap)]
+    v = family[0].copy()
+    for t in range(q - 1):
+        v = _advance(v, bool(word[t]), cap)
+        family.append(v.copy())
+
+    probe = set(depths)
+    out: dict[int, list[float]] = {}
+    for m in starts:
+        v = np.zeros(cap); v[m] = 1.0
+        row = []
+        for t in range(max(depths)):
+            v = _advance(v, bool(word[t % q]), cap)
+            if t + 1 in probe:
+                row.append(0.5 * float(np.abs(v - family[(t + 1) % q]).sum()))
+        out[m] = row
+    return out
+
+
 def meander_constant(d_values: tuple[int, ...] = (400, 800, 1600)) -> list[float]:
     """``(N_d/2^d) / (rho^d d^(-3/2))`` -- the constant in the polynomial correction.
 

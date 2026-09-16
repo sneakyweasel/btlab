@@ -4873,3 +4873,28 @@ def test_the_q_process_is_bessel_three_and_transient() -> None:
     assert max(scaled) / min(scaled) < 1.10, scaled          # drift ~ c/m
     sigma_sq = q * B.BETA * (1 - B.BETA)
     assert 1.6 < 2 * scaled[1] / sigma_sq < 2.3, (scaled[1], sigma_sq)   # BES(3): 2c/sigma^2 = 2
+
+
+def test_the_yaglom_rate_is_one_over_d_and_the_difference_is_its_square() -> None:
+    """Convergence to the limit is ``d^-1``; memory loss is ``d^-2``; both, for one reason.
+
+    Ocafrain (ECP 2020) proves ``1/t`` for Brownian motion with drift conditioned not to hit zero
+    -- the continuum analogue, with Q-process Bessel-3, which is what ``barrier_h_transform`` finds
+    here.  The laboratory had measured ``d^-2`` and taken that as the rate; it is the rate with the
+    leading term removed, because the ``1/d`` correction does not depend on the initial condition
+    and cancels between two runs.
+    """
+    import numpy as np
+
+    depths = (2000, 16000)
+    to_limit = B.yaglom_distance(306, 485, (0, 5), depths, cap=400)
+    for m, row in to_limit.items():
+        exponent = math.log(row[1] / row[0]) / math.log(8)
+        assert -1.20 < exponent < -0.85, (m, exponent)          # the Yaglom rate, d^-1
+
+    between = B.barrier_memory_loss(306, 485, (0.45,), depths, cap=400)[0.45]
+    exponent = math.log(between[1] / between[0]) / math.log(8)
+    assert exponent < -1.6, exponent                            # the difference, near d^-2
+
+    # and the runs are far closer to each other than either is to the limit
+    assert between[1] < 0.1 * min(row[1] for row in to_limit.values()), between
