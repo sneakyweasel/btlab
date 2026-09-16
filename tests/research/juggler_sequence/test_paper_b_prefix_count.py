@@ -5152,3 +5152,67 @@ def test_psi_jump_amplitudes_are_summable_so_psi_has_bounded_variation() -> None
     # and the partial sums are visibly settling rather than growing like a harmonic series
     total = np.abs(a).cumsum()
     assert total[199] - total[149] < 0.7 * (total[99] - total[49]), total[[49, 99, 149, 199]]
+
+
+def _beta_semiconvergents(limit: int) -> tuple[set[int], set[int]]:
+    """Semiconvergent denominators of BETA up to ``limit``, split by the sign of the gap."""
+    log2_3 = math.log2(3.0)
+    x, partial = 1.0 / log2_3, []
+    for _ in range(20):
+        i = int(x // 1)
+        partial.append(i)
+        x -= i
+        if x < 1e-14:
+            break
+        x = 1.0 / x
+    q = [0, 1]
+    for a in partial[1:]:
+        q.append(a * q[-1] + q[-2])
+    q = q[1:]
+
+    def gap(d: int) -> float:
+        o = round(d / log2_3)
+        return min(((abs(c * log2_3 - d), c * log2_3 - d) for c in (o - 1, o, o + 1)))[1]
+
+    below, above = set(), set()
+    for k in range(1, len(q) - 1):
+        for j in range(1, partial[k + 1] + 1):
+            d = q[k - 1] + j * q[k]
+            if 2 <= d <= limit:
+                (below if gap(d) < 0 else above).add(d)
+    return below, above
+
+
+def test_the_staircase_jumps_are_exactly_the_one_sided_semiconvergents() -> None:
+    """Not a containment: an equality, once the sign is imposed.
+
+    ``J-least-peak-staircase-is-beta-ostrowski`` measures the jumps to length 1200 and records
+    that the converse fails, 3, 19, 84 and 1054 being semiconvergents that are not jumps.  Those
+    are the semiconvergents on the OTHER side, and with the sign condition the containment becomes
+    an equality.  The family after 485 is ``485 + j * 1054``, whose first member 1539 sits just
+    past the old range -- which is what makes this a prediction rather than a refit.
+    """
+    limit = 3000
+    jumps = set(B.staircase_jumps(limit)) - {1}
+    below, above = _beta_semiconvergents(limit)
+
+    assert jumps == below, (sorted(jumps - below), sorted(below - jumps))
+    assert 1539 in jumps and 2593 in jumps, sorted(jumps)      # the predicted family
+    assert not (jumps & above), sorted(jumps & above)          # the two sides stay disjoint
+    assert {3, 19, 84, 1054} <= above                          # the recorded "converse failures"
+
+
+def test_the_cycle_record_lengths_are_the_other_side_of_the_same_split() -> None:
+    """The cycle module's Diophantine record lengths are the gap > 0 semiconvergents, exactly.
+
+    So Paper B's walk geometry and the cycle side's near-convergent lengths are two halves of one
+    semiconvergent split of BETA.  ``25781`` follows from the staircase side and is independently
+    present in ``cycle_gap_baker.RECORD_LENGTHS``.
+    """
+    from research.juggler_sequence.cycle_gap_baker import RECORD_LENGTHS
+
+    limit = 50508
+    _below, above = _beta_semiconvergents(limit)
+    recorded = {d for d in RECORD_LENGTHS if 2 <= d <= limit}
+    assert above == recorded, (sorted(above - recorded), sorted(recorded - above))
+    assert 25781 in above and 25781 in recorded

@@ -52280,3 +52280,68 @@ something structural, and the reframing feels like progress because it is elegan
 Twice today that instinct produced a correct-sounding reduction of a quantity I had
 not measured properly. The unglamorous move --- build the exact instrument, check it
 three ways, push the range --- is what actually closed it.
+
+## 16 September 2026 --- the staircase and the cycle records are one split
+
+Moved to the cycle side. `J-least-peak-staircase-is-beta-ostrowski` says the
+least-peak staircase jumps at `2, 5, 8, 27, 46, 65, 149, 233, 317, 401, 485`, that
+every one is a semiconvergent denominator of `beta`, and that *the converse fails*
+because `3, 19, 84, 1054` are semiconvergents that do not jump.
+
+The converse does not fail. It needs the sign.
+
+### A prediction the old range just missed
+
+Semiconvergents come in families `q_(k-1) + j q_k` and the families alternate sides:
+
+```text
+  65 + j*84,   j=1..5    ->  149, 233, 317, 401, 485        jumps
+  84 + j*485,  j=1..2    ->  569, 1054                      cycle records
+ 485 + j*1054, j=1..23   ->  1539, 2593, ... , 24727        predicted jumps
+```
+
+The row measured to length 1200. The next family starts at 1539. It stopped 339
+short of its own next prediction --- which is the good kind of luck, because it
+makes this a test rather than a refit.
+
+All twenty-three appear. Nothing between 485 and 1539, nothing after 24727, and
+24727 is exactly `23*1054 + 485`, the next convergent. Then the equality:
+
+```text
+{staircase jumps, d <= 26000} == {semiconvergents with gap < 0}
+   34 elements each, no exception in either direction
+```
+
+### And the other half was already in the repository
+
+The `gap > 0` semiconvergents up to 50508 are `3, 11, 19, 84, 569, 1054, 25781,
+50508`. That is `cycle_gap_baker.RECORD_LENGTHS` exactly, apart from the trivial 1.
+
+I derived `25781` from the staircase side and then went to look for it in the cycle
+module, expecting to have to justify it. It was already there, in a tuple written
+for an entirely different purpose. Paper B's walk geometry and the cycle side's
+near-convergent record lengths are the two halves of one semiconvergent split, and
+neither half knew it.
+
+`J-the-two-families-are-opposite-signs-of-one-approximation` had the disjointness
+and the reason for it. What it did not have is that the two sets are
+COMPLEMENTARY --- together they are all the semiconvergents, with nothing left over.
+
+### What made the range reachable
+
+The dynamic program had state `(t, a)` in a dict and reached 1200. But the level
+`u = a log2(3) - t` depends on the NEW state alone, not on which predecessor got
+there, so the whole thing collapses to one array recurrence:
+
+```text
+new[a] = max( min(prev[a], prev[a-1]), a*log2(3) - t )
+```
+
+26000 in two seconds, and identical to the dict form to 0.0 over the old range.
+That is the same lesson as the psi work an hour ago: the question was not waiting
+on an idea, it was waiting on someone to notice the computation was needlessly
+expensive and push the range.
+
+No bound moves. But the cycle side and Paper B now share a skeleton rather than a
+resemblance, and the sign condition that separates them is exactly the one that
+makes a cycle Diophantine-plausible.
