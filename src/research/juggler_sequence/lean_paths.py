@@ -293,6 +293,7 @@ AUXILIARY_MODULES: dict[str, str] = {
     "MonomialSplitting": "Paper B review target",
     "PaperBAssembly": "Paper B review target",
     "PaperBChainRule": "Paper B review target",
+    "PaperBAmplitudeCocycle": "Paper B profile: the amplitude cocycle",
     "PaperBBackwardWord": "Paper B barrier word: the arc form",
     "PaperBBarrierStep": "Paper B barrier word: one update step",
     "PaperBPaperCBridge": "Paper B/C bridge: one rate function",

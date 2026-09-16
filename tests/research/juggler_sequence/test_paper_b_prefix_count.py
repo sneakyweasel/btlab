@@ -5041,3 +5041,36 @@ def test_the_prefactor_phase_dependence_is_a_sawtooth_of_slope_minus_one() -> No
             state[cap] = B._advance(state[cap], bool(word[t % q]), cap)
 
     assert max(seen) - min(seen) < 8e-3, seen                # constant once the phase is put back
+
+
+def test_the_tail_amplitude_follows_an_exact_cocycle_over_the_rotation() -> None:
+    """``A(phi)`` is not a new unknown: the update determines it from the boundary fraction.
+
+    The phase shift is one application of the update (``J-phase-shift-is-one-update-and-R-halves``),
+    and pushing ``A (m + c) r*^m`` through that update closes in the same form, giving
+    ``A' = A / (2(1-s))`` at a non-rising step and ``A' = A / (2 s (1 - R/2))`` at a rising one.
+    The non-rising multiplier depends on nothing but the slope.
+    """
+    rows = B.amplitude_cocycle_check(306, 485, steps=8, cap=500, tol=1e-11)
+    assert rows, rows
+    for rise, measured, predicted in rows:
+        assert abs(measured / predicted - 1) < 2e-3, (rise, measured, predicted)
+
+    # the non-rising multiplier is the same number every time it occurs
+    flat = [m for rise, m, _ in rows if not rise]
+    assert len(flat) >= 2, rows
+    assert max(flat) - min(flat) < 1e-4, flat
+    assert abs(flat[0] - 1.0 / (2 * (1 - 306 / 485))) < 1e-3, flat
+
+
+def test_the_cocycle_average_is_the_ergodic_identity() -> None:
+    """Single-valuedness of ``A`` forces ``log rho = H(beta) - log 2``, which holds identically.
+
+    Averaging ``log`` of the two multipliers over the circle gives
+    ``integral over {b=1} of log(1 - R/2) = -(1-b)log(2(1-b)) - b log(2b) = H(b) - log 2``, and the
+    left side is ``log rho`` by ``J-boundary-fraction-is-the-clean-coordinate``.  So the cocycle
+    reproduces that row's ergodic identity, which is derived there from the count recursion.
+    """
+    b = B.BETA
+    entropy = -b * math.log(b) - (1 - b) * math.log(1 - b)
+    assert abs((entropy - math.log(2)) - math.log(B.chernoff_rate())) < 1e-15

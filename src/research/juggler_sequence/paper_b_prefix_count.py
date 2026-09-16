@@ -940,6 +940,68 @@ def quasi_stationary_prefactor(p: int, q: int, caps: tuple[int, int] = (400, 700
     return (fitted[b] * b * b - fitted[a] * a * a) / (b * b - a * a)
 
 
+def amplitude_cocycle_check(p: int, q: int, steps: int = 14, cap: int = 900,
+                            window: tuple[int, int] = (8, 25),
+                            tol: float = 1e-13) -> list[tuple[bool, float, float]]:
+    """``(rise, measured, predicted)`` for the tail amplitude's multiplier, one row per phase step.
+
+    A(phi) IS NOT A NEW UNKNOWN.  ``J-phase-shift-is-one-update-and-R-halves`` makes the phase
+    shift exactly one update, ``Pi_(phi+s) = T_b Pi_phi / (1 - b Pi_phi(0) / 2)``.  Pushing the
+    tail form ``A (m + c) r*^m`` through that update is algebra, and it closes:
+
+        b = 0   Pi'(m) = (Pi(m) + Pi(m-1)) / 2       c' = c - s        A' = A / (2(1-s))
+        b = 1   Pi'(m) = (Pi(m) + Pi(m+1)) / 2 / N   c' = c + (1-s)    A' = A / (2 s (1 - R/2))
+
+    with ``N = 1 - R/2`` and ``R = Pi_phi(0)``.  So the amplitude is determined by the boundary
+    fraction through an explicit multiplicative cocycle over the rotation, and the profile's only
+    remaining unknown is ``R`` -- which is already the laboratory's clean coordinate.
+
+    THE NON-RISING MULTIPLIER DEPENDS ON NOTHING BUT THE SLOPE: ``1/(2(1-s))``, which at BETA is
+    1.354756.  Measured at 306/485 it reads 1.3549281, 1.3549291, 1.3549301, 1.3549280, 1.3549293
+    against a predicted 1.3547486 -- the five occurrences agree with each other to 1e-6 and with
+    the prediction to 1.3e-4, the gap being the cap and the fit window rather than scatter.  The
+    rising branch tracks its R-dependent prediction to 7.9e-5.
+
+    THE c RECURSION IS THE SAWTOOTH, AND THE BRANCH IS THE RISE LETTER.  ``c' = c - s`` or
+    ``c' = c + (1-s)`` is ``c = gamma - phi`` mod 1, and the wrap happens exactly when
+    ``frac(phi) >= 1 - s``, which is exactly ``b(phi) = 1``.  That settles the lattice-branch
+    confusion recorded in ``J-profile-is-linear-times-geometric-in-the-line-coordinate``: the
+    branch is not to be guessed, it is the Sturmian letter.
+
+    AND IT REPRODUCES THE ERGODIC IDENTITY.  For ``A`` to be single-valued on the circle the
+    cocycle must average to zero, which reads
+    ``(1-s) log(1/(2(1-s))) + integral over {b=1} of log(1/(2s(1-R/2))) = 0``, that is
+    ``integral over {b=1} of log(1 - R/2) = -(1-s)log(2(1-s)) - s log(2s) = H(s) - log 2``.  At
+    ``s = BETA`` that right-hand side is ``log rho`` identically, to 8.3e-17, since the Chernoff
+    rate is ``beta^(-beta) (1-beta)^(beta-1) / 2``.  So the cocycle recovers
+    ``J-boundary-fraction-is-the-clean-coordinate``'s ``log rho = integral log(1 - b R / 2)``,
+    which that row derives from the count recursion instead.  Two routes, one identity.
+    """
+    import numpy as np
+
+    s = p / q
+    r_star = (1.0 - s) / s
+    word = _barrier_rises(p, q)
+    lo, hi = window
+
+    def amplitude(profile: "Any") -> float:
+        ms = np.arange(lo, hi)
+        ys = np.array([profile[m] / r_star ** m for m in ms])
+        return float(np.polyfit(ms, ys, 1)[0])
+
+    profile = _period_fixed_point(word, cap, tol=tol)
+    previous, boundary = amplitude(profile), float(profile[0])
+    out: list[tuple[bool, float, float]] = []
+    for t in range(steps):
+        rise = bool(word[t % q])
+        profile = _advance(profile, rise, cap)
+        current = amplitude(profile)
+        predicted = 1.0 / (2 * s * (1 - boundary / 2)) if rise else 1.0 / (2 * (1 - s))
+        out.append((rise, current / previous, predicted))
+        previous, boundary = current, float(profile[0])
+    return out
+
+
 def meander_constant(d_values: tuple[int, ...] = (400, 800, 1600)) -> list[float]:
     """``(N_d/2^d) / (rho^d d^(-3/2))`` -- the constant in the polynomial correction.
 
