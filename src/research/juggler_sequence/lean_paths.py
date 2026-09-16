@@ -299,6 +299,7 @@ AUXILIARY_MODULES: dict[str, str] = {
     "PaperBPaperCBridge": "Paper B/C bridge: one rate function",
     "PaperBSlopeRate": "Paper B rate: double root and slope derivative",
     "PaperBSturmianBarrier": "Paper B barrier word: uniformity across slopes",
+    "PaperBTailSpectrum": "Paper B tail: the double root and the gap law",
     "PaperBThreshold": "Paper B review target",
     "PaperBTilt": "Paper B tilt: the psi reduction",
     "PaperBWeightGap": "Paper B spectrum: no weight restores the gap",

@@ -1146,16 +1146,56 @@ coboundary spreads those over the same orbit: \(\psi\)'s jumps are not
 an accident of the barrier arithmetic but the shape of a coboundary. The
 Ostrowski structure in \(\hat\psi\) is inherited from \(\hat f\), not
 manufactured by the divisor --- \(\hat f\) is five times smaller at the
-resonances than away from them, which is what keeps \(\psi\) bounded.
+resonances than away from them, which is what keeps \(\psi\) bounded. It
+is in fact of bounded variation. The jump amplitudes \(a_k\) at
+\(\{k\beta\}\) are summable: computed exactly from two depths straddling
+\(k\beta\), \(\sum_k\lvert a_k\rvert=4.58\) over \(k\le3000\) at two
+independent anchors agreeing to \(0.13\%\), with every amplitude
+negative and the partial sums settling. A single-exponent fit is
+misleading here because the exponent steepens with the window ---
+\(-1.13\) over \(k\le69\) against \(-1.77\) over \(100\le k\le3000\) ---
+so a short window reads it as nearly \(1/k\), which is exactly the
+summability boundary.
 
 \emph{What is open, and what is excluded.} One link is unproved: that
 the iteration converges, \(R_d\to R(\{d\beta\})\). Everything above is
-exact or elementary given it. Two natural attacks are ruled out by
-measurement rather than by argument. Birkhoff contraction on the product
-of positive operators would give geometric memory loss, and the loss is
-polynomial. A small-divisor obstruction would show as an excess at
-\(\beta\)'s convergent denominators, and the convergence is uniform
-across them. What remains is the criticality itself.
+exact or elementary given it. Three natural attacks are excluded, the
+third by argument rather than by measurement. Birkhoff contraction on
+the product of positive operators would give geometric memory loss, and
+the loss is polynomial. A small-divisor obstruction would show as an
+excess at \(\beta\)'s convergent denominators, and the convergence is
+uniform across them. A change of weight would restore a spectral gap,
+and none does: at weight \(r^m\) the log essential radius is the same
+expression whose stationary point is \(r^{*}\), so it meets
+\(\log\varrho\) there and lies strictly above it at every other \(r\).
+Equivalently a Foster--Lyapunov drift \(V(m)=\theta^{m}\) is pinned at
+exactly \(\varrho\) when \(\theta=1/r^{*}\) and is useless otherwise.
+That one is proved rather than measured.
+
+The literature reaches the driven case but stops short of this one.
+O\c{c}afrain treats absorbing boundaries that move periodically, and two
+of those results bear on the construction above. For a boundary that
+moves at all there is \emph{no} quasi-stationary distribution in the
+strict sense, so the phase-indexed family \(R(\varphi)\) is forced
+rather than chosen; and for a finite state space with a periodic
+boundary a quasi-ergodic distribution exists by an extension of
+Darroch--Seneta, which covers the truncated rational barrier. The
+general moving-boundary theorems assume a conditional Doeblin condition
+that is equivalent, in the time-homogeneous case, to \emph{exponential
+uniform} convergence to quasi-stationarity --- which this process fails
+precisely by being critical. So the missing combination is driven
+\emph{and} critical, and it is now the hypothesis of a named theorem
+rather than an absence in the record.
+
+The driving itself is not the obstruction. For a rational barrier
+\(p/q\) the period map is autonomous, and the constant in the
+convergence \(\mathrm{TV}\sim c/d\) is flat in \(q\): across six
+convergents of \(\beta\) from \(q=19\) to \(q=24727\) the exponent stays
+\(d^{-1}\) and \(c\) stays \(20.1\), the last two agreeing to six
+digits. Every barrier in the family is a bounded perturbation of the
+same line, \(\lvert\lceil ts\rceil-ts\rvert<1\) uniformly in \(t\) and
+\(s\), which is why \(q\to\infty\) costs nothing. What remains is the
+criticality itself.
 
 None of this changes Theorem 6.1, whose conclusion follows from any
 \(\vartheta<1\). The algebra of the threshold --- that \(q_d\) saturates
