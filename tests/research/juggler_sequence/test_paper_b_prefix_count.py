@@ -4971,3 +4971,73 @@ def test_the_yaglom_constant_is_the_diffusive_relaxation_time() -> None:
     sup = B._period_fixed_point(B._barrier_rises(306, 485), 400, tol=1e-10)
     assert float((sup * np.arange(400)).sum()) < 5.0            # tight, and cap-independent
     assert float(sup[:100].sum()) > 0.999
+
+
+def test_the_quasi_stationary_profile_is_linear_times_geometric() -> None:
+    """``Pi_phi(m) = A (m + gamma - phi) r*^m``: the form the double root predicts, confirmed.
+
+    ``J-quasi-stationary-profile-is-tight-shape-unsettled`` left this open because the implied
+    constant drifted in ``m`` and varied with the phase.  The drift is the cap -- the period map's
+    fixed point has no unconverged tail, unlike the forward iteration to ``K = 60000`` that row
+    used -- and the phase variation is a coordinate artefact, handled in the sawtooth test below.
+
+    Cheap settings on purpose: the whole cost is ``_period_fixed_point``.  The sharp numbers, at
+    caps 400/700/1200 and tol 1e-15, are in ``quasi_stationary_prefactor``.
+    """
+    import numpy as np
+
+    s = 306 / 485
+    r_star = (1.0 - s) / s
+    word = B._barrier_rises(306, 485)
+
+    residuals = []
+    for cap in (250, 400):
+        profile = B._period_fixed_point(word, cap, tol=1e-11)
+        ms = np.arange(8, 25)
+        ys = np.array([profile[m] / r_star ** m for m in ms])
+        slope, intercept = np.polyfit(ms, ys, 1)
+        residuals.append(float(np.max(np.abs(ys - (slope * ms + intercept)) / np.abs(ys))))
+    assert residuals[0] < 1e-2, residuals                    # close to linear already
+    assert residuals[1] < 0.6 * residuals[0], residuals      # departure is truncation, not the form
+
+    # gamma converges along the convergents, each barrier read against its OWN r*
+    coarse = B.quasi_stationary_prefactor(12, 19, caps=(250, 400), tol=1e-11)
+    fine = B.quasi_stationary_prefactor(665, 1054, caps=(250, 400), tol=1e-11)
+    assert 0.18 < coarse < 0.21, coarse
+    assert 0.155 < fine < 0.175, fine
+    assert fine < coarse, (coarse, fine)                     # converging downward toward ~0.167
+
+
+def test_the_prefactor_phase_dependence_is_a_sawtooth_of_slope_minus_one() -> None:
+    """``c(phi) = gamma - phi`` mod 1: the phase variation is the coordinate, not the shape.
+
+    ``ceil(x) - x = 1 - frac(x)``, so measuring the walk's distance from the barrier instead of
+    from the line ``d*s`` injects exactly ``-phi`` into the prefactor's zero.  Put it back and the
+    profile shape stops depending on the phase at all.
+    """
+    import numpy as np
+
+    q, r_star = 485, (1.0 - 306 / 485) / (306 / 485)
+    word = B._barrier_rises(306, q)
+    caps = (250, 400)
+    state = {cap: B._period_fixed_point(word, cap, tol=1e-11) for cap in caps}
+
+    def c_now() -> float:
+        fitted = {}
+        for cap, profile in state.items():
+            ms = np.arange(8, 25)
+            ys = np.array([profile[m] / r_star ** m for m in ms])
+            slope, intercept = np.polyfit(ms, ys, 1)
+            fitted[cap] = intercept / slope
+        a, b = caps
+        return (fitted[b] * b * b - fitted[a] * a * a) / (b * b - a * a)
+
+    seen, probes = [], {0, 23, 46, 69}
+    for t in range(max(probes) + 1):
+        if t in probes:
+            combined = c_now() + (t * B.BETA) % 1.0
+            seen.append(combined - 1.0 if combined > 1.0 else combined)
+        for cap in caps:
+            state[cap] = B._advance(state[cap], bool(word[t % q]), cap)
+
+    assert max(seen) - min(seen) < 8e-3, seen                # constant once the phase is put back
