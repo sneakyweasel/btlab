@@ -52142,3 +52142,70 @@ author, and what it lacks is now precisely statable rather than vaguely absent. 
 gap you can name the hypothesis of is a different object from a gap you cannot find
 the edge of. Plus two things the laboratory can now cite instead of assert: the
 phase-indexed family is forced, and the capped rational case is Darroch--Seneta.
+
+## 16 September 2026 --- bounded variation is a critical exponent, not a fit
+
+The ledger scan that picked the last tick had a clear second place I had not
+touched: `J-psi-is-bounded-variation-with-an-ostrowski-spectrum`, seven citations,
+with a companion row saying outright that the bounded-variation question is open.
+I did not settle it. I did work out why it has resisted, which turned out to be
+worth the tick.
+
+### The reduction
+
+BV holds iff `sum |a_k|` converges. Setting `h_k = a_k k`, the recorded step ratios
+split by Sturmian letter pair --- `1.066`, `0.983`, `0.932` --- and the letter-pair
+frequencies at slope `beta` are `1-beta`, `1-beta`, `2 beta - 1`. So the question
+is the sign of one number, the Birkhoff average of `log(ratio)`:
+
+```text
+average = -0.001180        negative -> h_k decays -> BV holds
+                           zero     -> a_k ~ C/k  -> harmonic, BV fails
+```
+
+And the recorded standard deviations propagate to `+- 0.007687`. The uncertainty is
+**6.5 times the value**. So it is not that the existing measurement leans one way
+and needs confirming; it cannot see the sign at all. That is a more useful
+statement of the difficulty than 'a fit near the boundary'.
+
+### But the model is wrong anyway
+
+Constant step ratios imply `h_k` decays *exponentially*. The envelope fit reports a
+*power law*, `k^(-0.0917)`. Those are different functional forms and the record
+holds both at once. Checking against the recorded `h_k` over `k = 20..69`:
+
+```text
+recorded    0.87 0.85 0.79 0.81 0.80 0.77   -> ratio 0.885
+exponential, c = 0.00118                    -> ratio 0.944
+power law,  k^-0.0917                       -> ratio 0.893
+```
+
+The power law fits and the constant-ratio exponential does not.
+
+### Which is the criticality again, for the fifth time
+
+`a_k` is the 0-component of the perturbation vector `Pi_(phi+) - Pi_(phi-)` carried
+by the tangent cocycle of the update. So `a_(k+1)/a_k` is that cocycle's growth,
+and its top Lyapunov exponent is **zero** --- which is exactly
+`J-killed-walk-forgets-polynomially`, that perturbations decay polynomially rather
+than geometrically. A critical cocycle decays at an *exponent*, not a *rate*. So the
+BV question is a polynomial exponent sitting on the summability boundary, and no
+amount of fitting `a_k` over `k = 20..69` --- a lever of 3.5 --- can resolve `1.00`
+from `1.09`.
+
+That is the fifth guise: absent spectral gap, transient Q-process, polynomial
+memory loss, degenerate tail spectrum, and now the jump amplitudes pinned at the
+harmonic boundary. I have stopped being surprised when a new obstruction turns out
+to be the double root wearing a hat.
+
+### What would actually settle it
+
+Not more fitting. One of the three ratios is already exact ---
+`R(phi + beta) = R(phi)/2` at a non-rising step, so that jump halves exactly. The
+rising one is not a pure ratio, because the update mixes the jump in `Pi_phi(1)`
+into the jump in `R`: the tangent cocycle is vector-valued. Computing its exponent
+exactly is the route, and today's exact update machinery is the right instrument
+for it. That is a real piece of work rather than a tick.
+
+I am recording this as an OBSERVATION and claiming nothing about BV. `psi` remains
+discontinuous with observed jumps, exactly as before.
