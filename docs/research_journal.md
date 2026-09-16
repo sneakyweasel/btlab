@@ -51585,3 +51585,54 @@ and it is the only thing between here and an explicit `H_0`. I would not start i
 without a reason to want `H_0` specifically, because the answer is already known to
 be astronomically large, and "astronomically large" is what the practical
 conclusion above depends on, not its precise value.
+
+
+## Rhin equation (8): the dispute was a false dichotomy
+
+I could not read p. 160 --- a 1987 Birkhauser seminar volume is not online --- but
+both secondary sources are on arXiv and the laboratory had only paraphrased them.
+Reading them at first hand settled it, and the answer is that nobody was wrong.
+
+Spiegelhofer defines `alpha = log3/log2` on p. 1 and writes on p. 2: *"a bound for
+the irrationality measure `mu(alpha)` of `alpha` ... was given by Rhin [48,
+Equation (8)]: we have `mu(alpha) <= 8.616`. Also, Wu and Wang [60] obtained the
+bound `mu(log 3) <= 5.1163051`."* The transcription in the dossier is exact and he
+does mean the ratio.
+
+Zudilin, section 3.4, says how Rhin gets it: *"Rhin constructs in [Rh2]
+**simultaneous approximations to `a_1 = 2/3`, `a_2 = 4/3`**"*, and states Theorem 3
+for `gamma in Q log 2 + Q log 3`.
+
+That construction is the resolution. Simultaneous approximation to `log(2/3)` and
+`log(4/3)` is a linear independence measure for `(1, u, v)` with `u = log2 - log3`,
+`v = 2log2 - log3` --- and the change of basis is integral *both ways*, since
+`log2 = v - u` and `log3 = v - 2u`. Same lattice, same exponent, `H` moved by at
+most a factor 2. From that one measure, `a = 0` gives `mu(log3/log2) <= 8.616`
+(Spiegelhofer), `b = 0` gives `mu(log 3) <= 8.616` (how Wu-Wang cite it), and
+`gamma in Q log2 + Q log3` gives Zudilin's Theorem 3. Three corollaries, one
+theorem.
+
+The dossier's framing --- *"the two readings are incompatible; only one can be
+equation (8)"* --- is a false dichotomy. What made it look like one is that Zudilin
+states a corollary which happens to *exclude* the ratio, while the theorem under it
+does not. The trap is subtle and worth naming: a corollary's scope was read as the
+theorem's scope.
+
+It is also the same architecture as Wu-Wang, which I had verified at source the day
+before --- Theorem 1 three-term, Corollary 1 the two-term headline. Having just seen
+that, I should have expected Rhin to be built the same way. Twice in two days the
+answer was "the technical theorem is more general than the advertised consequence",
+and the second time I had the first time in hand.
+
+### What this changes
+
+The question moves from *which quantity* to *what constant*. Rhin's title is
+*mesures **effectives** d'irrationalite* and the laboratory already uses equation
+(7) effectively with constant `915`, so (8) is very likely effective too --- but its
+constant is recorded nowhere reachable.
+
+If it is explicit, Paper A's effective cycle threshold improves from `L^14.3` to
+`L^8.616`. And by yesterday's `H_0` reduction that would be the **best effective
+bound available**, because Wu-Wang's `5.1163051` supplies nothing at any `L` a
+search reaches. So p. 160 is now worth reading for one number, and the number is
+worth a real improvement rather than a bookkeeping fix.
