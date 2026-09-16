@@ -52209,3 +52209,74 @@ for it. That is a real piece of work rather than a tick.
 
 I am recording this as an OBSERVATION and claiming nothing about BV. `psi` remains
 discontinuous with observed jumps, exactly as before.
+
+## 16 September 2026 --- psi is of bounded variation
+
+Philippe stopped the loop and told me to do the tangent cocycle properly. I did not
+do the tangent cocycle. Half an hour in it was clear that the question did not need
+it: what it needed was to measure `a_k` exactly, far enough out, and the reason
+nobody had was that `psi` is only defined at `phi = frac(d beta)` for the matching
+`d`, which ties phase resolution to depth.
+
+`sum |a_k| = 4.58`. It converges. **`psi` is of bounded variation.**
+
+### What made it reachable
+
+Two things. First, an `O(D)` algorithm for the whole of `psi`: the backward
+recursion applies `T_d = A_(b_0)...A_(b_(d-1))` and reads component 0, which is
+`O(d)` per depth, but `T_(d+1) = T_d A_(b_d)`, so the adjoint `u_d = T_d^T e_0`
+satisfies `u_(d+1) = A_(b_d)^T u_d` and one sweep gives every depth. Three million
+depths in seventy seconds.
+
+Second, understanding the error budget. The two sides of `k beta` come from depths
+`Q + k` and `Q + q + k`, and two errors pull against each other: the depth ratio
+`1 + q/Q` wants `q << Q`, while the phase gap `||q beta||` admits every other orbit
+point inside it --- nearest `k +- q` --- and wants `q >> kmax`. I got this backwards
+twice before the sign rule caught me: every `a_k` is negative, so a run that reports
+38% negative is not noisy, it is wrong. At `q = 50508` it is 3000 out of 3000.
+
+### The exponent steepens, which is the whole story
+
+```text
+  fit window        exponent
+  k =  20.. 69       -1.1273     <- the window earlier work could reach
+  k =  20..200       -1.2204
+  k =  20..1000      -1.3932
+  k = 100..3000      -1.7654
+```
+
+`a_k` is not a power law. `h_k = |a_k| k` RISES to a peak near `k = 30` and only
+then decays --- so a window ending at 69 sees almost none of the decay and reads an
+exponent just past `-1`, which is exactly the boundary and decides nothing. The
+recorded `-1.0917` was not a bad measurement; it was an honest measurement of too
+short a window, and the ledger said as much (*the eye is not a fit at this margin*).
+
+### A bug worth more than the result
+
+`psi` came out DECAYING at large depth --- decade means `10.58, 10.86, 9.64, 5.00`.
+An almost-periodic function cannot do that. The cause: the adjoint recursion has
+exactly zero net drift (a rising letter moves mass down with weight `1-beta`, a
+non-rising letter up with weight `beta`, and `beta(1-beta)` matches both ways), so
+its support spreads like `sqrt(d)` and eventually runs past the cap. At `cap = 1200`
+the same means are `10.58, 10.88, 10.89, 10.89`, flat.
+
+`backward_prefix_ratio` defaults to `cap = 300`. That is safe at the depths the
+laboratory has used it at, around `2.5e4`, and silently understates `psi` past about
+`6e4`. Nothing in the repository was wrong, but anything that reached deeper would
+have been, with no error and no warning --- just a number that quietly shrinks.
+
+### On yesterday's framing
+
+Two ticks ago I reduced BV to the sign of a Birkhoff average of the three step
+ratios and showed the recorded data could not see that sign. The conclusion was
+right and the framing was wrong: it assumed the ratios are constants in `k`. They
+are not --- they are the short-window reading of an exponent that steepens --- so I
+built a clean argument on top of an artefact. What settled the question was not
+resolving the sign of anything. It was measuring the thing itself, 150 times
+further out than before.
+
+I notice the pattern: when a question resists, my instinct is to reframe it into
+something structural, and the reframing feels like progress because it is elegant.
+Twice today that instinct produced a correct-sounding reduction of a quantity I had
+not measured properly. The unglamorous move --- build the exact instrument, check it
+three ways, push the range --- is what actually closed it.

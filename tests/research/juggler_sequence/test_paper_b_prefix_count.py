@@ -5104,3 +5104,51 @@ def test_the_tail_spectrum_has_a_double_root_and_a_closing_gap() -> None:
         assert 0.6 < gaps[q] / predicted < 1.15, (q, gaps[q], predicted)
 
     assert gaps[485] < 0.6 * gaps[65], gaps                        # the gap closes with q
+
+
+def test_psi_by_depth_agrees_with_the_scalar_routine_and_needs_a_growing_cap() -> None:
+    """One sweep reproduces ``backward_prefix_ratio``; and ``cap = 300`` fails at depth.
+
+    The adjoint recursion has zero net drift, so its support spreads like ``sqrt(d)`` and a fixed
+    cap eventually truncates it.  ``psi`` is almost periodic, so its mean over a decade must be
+    flat; under a too-small cap it collapses instead.
+    """
+    psi = B.psi_by_depth(2000)
+    for d in (137, 1054):
+        assert abs(psi[d] / B.backward_prefix_ratio((d * B.BETA) % 1.0, d) - 1) < 1e-10, d
+
+    good = B.psi_by_depth(60000)                       # default cap ~ 3 sqrt(d)
+    bad = B.psi_by_depth(60000, cap=300)
+    early, late = (1000, 2000), (40000, 60000)
+    assert abs(good[early[0]:early[1]].mean() / good[late[0]:late[1]].mean() - 1) < 0.05
+    assert bad[late[0]:late[1]].mean() < good[late[0]:late[1]].mean()   # truncation bleeds mass
+
+
+def test_psi_jump_amplitudes_are_summable_so_psi_has_bounded_variation() -> None:
+    """``sum |a_k|`` converges: the jump amplitudes decay faster than ``1/k``.
+
+    ``J-psi-reconstructed-from-its-jump-measure`` finds psi to be jump part plus unresolved jump
+    tail with no smooth component, so summable jumps give psi bounded variation.  The exponent
+    STEEPENS with the window -- -1.13 over the k = 20..69 that earlier work could reach, -1.39
+    over 20..1000, -1.77 over 100..3000 -- so a short window reads it as nearly 1/k and cannot
+    decide summability.  Cheap settings here; the long run is in ``psi_jump_amplitudes``.
+    """
+    import numpy as np
+
+    a = B.psi_jump_amplitudes(kmax=200, anchor=24727, offset=1054)
+    assert (a < 0).all(), (a < 0).mean()                     # the sign rule, and the diagnostic
+
+    # the exact ratio rule at the Sturmian zeros
+    s = [math.ceil((k + 1) * B.BETA) - math.ceil(k * B.BETA) for k in range(32)]
+    zeros = [k for k in range(1, 29) if s[k] == 0]
+    assert zeros, s
+    for k in zeros:
+        assert abs(a[k] / a[k - 1] - 1 / B.chernoff_rate()) < 2e-3, (k, a[k] / a[k - 1])
+
+    # h_k = |a_k| k rises to a peak near k ~ 30 and then decays; the decay is what matters
+    h = np.abs(a) * np.arange(1, len(a) + 1)
+    assert h[100:200].mean() < 0.85 * h[15:45].mean(), (h[15:45].mean(), h[100:200].mean())
+
+    # and the partial sums are visibly settling rather than growing like a harmonic series
+    total = np.abs(a).cumsum()
+    assert total[199] - total[149] < 0.7 * (total[99] - total[49]), total[[49, 99, 149, 199]]

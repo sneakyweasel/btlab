@@ -1049,6 +1049,87 @@ def tail_spectrum(p: int, q: int) -> "Any":
     return roots[np.argsort(np.abs(roots - r_star))]
 
 
+def psi_by_depth(dmax: int, cap: int | None = None) -> "Any":
+    """``psi`` at every depth ``d = 1..dmax`` in ONE sweep, by the adjoint recursion.
+
+    ``backward_prefix_ratio`` applies ``T_d = A_(b_0) ... A_(b_(d-1))`` to a fixed start vector and
+    reads component 0, which costs ``O(d)`` per depth.  Since ``T_(d+1) = T_d A_(b_d)``, the adjoint
+    ``u_d = T_d^T e_0`` obeys ``u_(d+1) = A_(b_d)^T u_d``, so one forward sweep gives every depth:
+    ``O(dmax)`` in total rather than per depth.  Reproduces ``backward_prefix_ratio`` to 1e-12.
+
+    THE CAP MUST SCALE LIKE sqrt(dmax) AND THE DEFAULT 300 SILENTLY FAILS PAST d ~ 6e4.  The
+    adjoint has ZERO net drift -- a rising letter moves mass down with weight ``1-BETA`` and a
+    non-rising letter moves it up with weight ``BETA``, and ``BETA(1-BETA)`` matches both ways -- so
+    ``u`` diffuses and its support grows like ``sqrt(d)``.  Once that passes the cap the truncation
+    bleeds mass and ``psi`` decays instead of staying almost periodic.  Measured at ``cap = 300``:
+    the mean of ``psi`` over a decade reads 10.5843, 10.8766, 9.6430, 5.0011 at ``d`` in
+    [1e3,2e3), [2e4,4e4), [1e5,2e5), [2.5e5,3e5) -- a collapse.  At ``cap = 1200`` and ``cap = 3000``
+    the same means are identical at 10.5843, 10.8766, 10.8894, 10.8910, flat as an almost-periodic
+    function requires.  The default here is ``3 * sqrt(dmax)``, which was ample in every check.
+    ``backward_prefix_ratio``'s own ``cap = 300`` is safe only at the depths it has been used at.
+    """
+    import numpy as np
+
+    lam_star = math.log(BETA / (1 - BETA))
+    if cap is None:
+        cap = max(300, int(3.0 * math.sqrt(dmax)))
+    size = cap + 2
+    start = np.exp(-lam_star * np.arange(size))
+    ceils = np.ceil(np.arange(dmax + 2) * BETA)
+    word = (ceils[1:] - ceils[:-1]).astype(int)
+
+    u = np.zeros(size)
+    u[0] = 1.0
+    log_scale = 0.0
+    out = np.empty(dmax + 1)
+    out[0] = np.nan
+    for d in range(1, dmax + 1):
+        nxt = np.empty(size)
+        if word[d - 1] == 0:
+            nxt[:] = (1 - BETA) * u
+            nxt[1:] += BETA * u[:-1]
+        else:
+            nxt[:] = BETA * u
+            nxt[:-1] += (1 - BETA) * u[1:]
+        top = nxt.max()
+        u = nxt / top
+        log_scale += math.log(top)
+        phi = (d * BETA) % 1.0
+        out[d] = math.exp(1.5 * math.log(d) - lam_star * (1 - phi) + log_scale
+                          + math.log(float(u @ start)))
+    return out
+
+
+def psi_jump_amplitudes(kmax: int = 3000, anchor: int = 3019940, offset: int = 50508,
+                        cap: int | None = None) -> "Any":
+    """``a_k``, psi's jump at the orbit point ``k BETA``, for ``k = 1..kmax``.
+
+    HOW THE JUMP IS READ.  ``psi`` is only defined at ``phi = frac(d BETA)`` for the matching ``d``,
+    so the two sides of ``k BETA`` come from two depths: ``frac((Q+k)BETA) = frac(k BETA) +
+    frac(Q BETA)``, so an ``anchor`` ``Q`` with ``frac(Q BETA)`` tiny and positive lands just right
+    of ``k BETA``, and ``Q + q`` with ``q`` a left-landing convergent denominator lands just left.
+
+    TWO ERRORS PULL AGAINST EACH OTHER AND BOTH MUST BE CONTROLLED.  The depth ratio ``1 + q/Q``
+    governs how well the ``1 + o(1)`` cancels, so ``Q`` must dwarf ``q``.  The phase gap is
+    ``||q BETA||``, and EVERY other orbit point inside it contributes its own jump -- the nearest
+    being ``k +- q`` -- so ``q`` must dwarf ``kmax``.  Choosing ``q`` small to help the first ruins
+    the second: at ``q = 1054`` and ``kmax = 3000`` only 38 percent of the amplitudes come out
+    negative, against the sign rule that all of them are.  The defaults here, ``Q = 10 * 301994``
+    and ``q = 50508``, give ratio 1.0167 and contamination index 50508, and deliver 3000 out of
+    3000 negative.  THE SIGN IS THE DIAGNOSTIC: use it before trusting any other number here.
+
+    VALIDATED three ways.  Against ``backward_prefix_ratio`` to 1e-12; against the exact ratio rule
+    ``a_(k+1)/a_k = 1/rho`` at the Sturmian zeros, giving 1.03530 at every one of them against
+    1.0352968; and between two anchors, ``Q = 3019940`` and ``Q = 6039880``, which agree to 4.4e-6
+    at ``k = 1``, 3.3e-4 at ``k = 100`` and 1.05e-1 at ``k = 3000``, with total variations 4.5800
+    and 4.5741 -- 0.13 percent apart.
+    """
+    import numpy as np
+
+    psi = psi_by_depth(anchor + offset + kmax + 2, cap)
+    return np.array([psi[anchor + k] - psi[anchor + offset + k] for k in range(1, kmax + 1)])
+
+
 def meander_constant(d_values: tuple[int, ...] = (400, 800, 1600)) -> list[float]:
     """``(N_d/2^d) / (rho^d d^(-3/2))`` -- the constant in the polynomial correction.
 
