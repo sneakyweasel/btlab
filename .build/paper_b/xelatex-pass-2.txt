@@ -73,13 +73,15 @@ x.def) (juggler_parity_discrepancy_note.aux)
 Underfull \hbox (badness 2384) in paragraph at lines 263--266
 []\T1/lmr/m/n/10.95 On a dyadic block ap-ply the two-dimensional Erd®s--Turán--
 Koksma in-equal-ity to
-[4] [5
-dvipdfmx:fatal: Unable to open "juggler_parity_discrepancy_note.pdf".
+[4] [5] [6] [7] [8] [9] [10] [11] [12] [13] [14] [15] [16] [17] [18] [19]
+[20]
 
-No output PDF file written.
+Package amsmath Warning: Foreign command \over;
+(amsmath)                \frac or \genfrac should be used instead
+(amsmath)                 on input line 1598.
 
-Sorry, but C:\Users\phili\AppData\Local\Programs\MiKTeX\miktex\bin\x64\xelatex.EXE did not succeed.
-
-The log file hopefully contains the information to get MiKTeX going again:
-
-  C:\Users\phili\AppData\Local\MiKTeX\miktex\log\xelatex.log
+[21] [22] [23] [24] [25] [26] [27] [28] [29] [30] [31] [32] [33] [34] [35]
+[36] [37] [38] [39] (juggler_parity_discrepancy_note.aux) )
+(see the transcript file for additional information)
+Output written on juggler_parity_discrepancy_note.pdf (39 pages).
+Transcript written on juggler_parity_discrepancy_note.log.

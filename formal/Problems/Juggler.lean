@@ -78,6 +78,7 @@ import Problems.Juggler.PaperBAmplitudeCocycle
 import Problems.Juggler.PaperBTailSpectrum
 import Problems.Juggler.PaperBChernoff
 import Problems.Juggler.PaperBMarkov
+import Problems.Juggler.PaperBDensity
 import Problems.Juggler.PaperBPaperCBridge
 import Problems.Juggler.PaperBWeightGap
 import Problems.Juggler.PaperBBarrierStep

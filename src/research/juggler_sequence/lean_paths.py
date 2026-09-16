@@ -294,6 +294,7 @@ AUXILIARY_MODULES: dict[str, str] = {
     "PaperBAssembly": "Paper B review target",
     "PaperBChainRule": "Paper B review target",
     "PaperBAmplitudeCocycle": "Paper B profile: the amplitude cocycle",
+    "PaperBDensity": "Paper B: Hypothesis FD to density one, conditionally",
     "PaperBChernoff": "Paper B estimate: the Chernoff factor is below one",
     "PaperBMarkov": "Paper B estimate: the exponential Markov step",
     "PaperBBackwardWord": "Paper B barrier word: the arc form",
