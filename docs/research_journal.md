@@ -52078,3 +52078,67 @@ double root pins at exactly `rho` when `theta = 1/r*` and strictly above `rho`
 otherwise. So no weight gives a usable drift --- which is `no_weight_separates`,
 proved in Lean this morning. The Lyapunov route looks obviously available until
 you write down the multiplier, and I would have spent a tick on it if I had not.
+
+## 16 September 2026 --- the literature exists, and it excludes us
+
+Four ticks of descending into the profile, each answering the previous tick's
+question. That is a gradient walk, and the instruction was *best*, not *next*. So
+I scanned the ledger for what is load-bearing and weakly supported instead of
+following the slope, and the answer was unambiguous:
+`J-boundary-fraction-is-the-clean-coordinate`, nine citations, COMPUTATIONALLY
+VERIFIED, with an open obligation that reads *the profile converges*. Everything I
+built today rests on it.
+
+So I finally ran the literature search I had deferred twice.
+
+### What exists
+
+It is Ocafrain's, and there are three papers. The one that matters most is ALEA
+15:429-451 (2018), *Quasi-stationarity and quasi-ergodicity for discrete-time
+Markov chains with absorbing boundaries moving periodically* --- discrete time,
+periodic moving boundary, and it ends on random walks. That is the rational-barrier
+Juggler walk, named.
+
+Its Proposition 2.1 is worth quoting: if `A_l` differs from `A_m` for any two times,
+there is **no** measure with `P_nu(X_n in . | tau > n) = nu` for all `n`. As soon
+as the boundary moves, the quasi-stationary distribution does not exist. The
+laboratory has been carrying a phase-indexed family `Pi_phi` because that is what
+the measurements showed; it turns out to be forced, and now citably so. Theorem 1.4
+then gives the quasi-ergodic distribution for a finite state space with a periodic
+boundary, via Darroch--Seneta (1965) --- finite Perron--Frobenius, which is exactly
+the elementary route I had sketched for the capped chain.
+
+### Why it does not reach us
+
+The finiteness is load-bearing; the half-line is not covered. And every general
+moving-boundary theorem in the other two papers runs on Assumption (A'), which
+arXiv:2010.05483 says outright is the Champagnat--Villemonais condition, *equivalent
+to exponential uniform convergence*. This process converges polynomially and has no
+spectral gap in any exponential weight --- I proved that in Lean this morning. So
+(A') fails, not marginally but by the defining property of the object.
+
+The driven theory covers the non-critical regime. Criticality is precisely what it
+excludes.
+
+### Which means I was wrong this morning
+
+After finding the Yaglom rate I narrowed the negative-knowledge entry: the missing
+combination is *driven-and-lattice, not driven-and-critical; the criticality has a
+rate in the literature and it is the right one*. That was reasoning from a
+fixed-boundary result to a moving-boundary conclusion. With the moving-boundary
+papers actually read, the driven half is covered only under exponential uniformity,
+so the uncovered combination is driven-and-critical, as the entry said before I
+touched it. I have reverted my own narrowing and said why.
+
+That is twice today I improved a record by making it more optimistic and had to put
+it back. The pattern is the same as `1/6`: the pleasing version arrives first and I
+do not interrogate it as hard as the disappointing one.
+
+### What the tick was worth anyway
+
+The entry used to say *there is not one to find*. That was an instruction to stop
+looking, and it was wrong --- there is a literature, it is three papers by one
+author, and what it lacks is now precisely statable rather than vaguely absent. A
+gap you can name the hypothesis of is a different object from a gap you cannot find
+the edge of. Plus two things the laboratory can now cite instead of assert: the
+phase-indexed family is forced, and the capped rational case is Darroch--Seneta.

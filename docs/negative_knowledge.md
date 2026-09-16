@@ -2931,7 +2931,17 @@ the rotation by \(\beta\)) **and critical** (polynomial forgetting,
 nothing combining them.
 Kind: `EXTERNAL_GAP`.
 Consequence: do not spend a session looking for an off-the-shelf theorem
-for the quasi-stationary convergence; there is not one to find.
+for the quasi-stationary convergence. **Amended 16 September 2026:** there IS a
+literature and it is Ocafrain's three papers above --- the searching is done, and
+the result of it is recorded rather than the absence. What those papers lack is
+precisely statable: every general theorem among them assumes (A'), which is
+equivalent to exponential uniform convergence and which this process fails by
+being critical. Two things they DO give: the strict quasi-stationary distribution
+provably does not exist once the boundary moves (Ocafrain 2018, Proposition 2.1),
+so the phase-indexed family is forced and not a modelling choice; and for a FINITE
+state space with a periodic boundary the quasi-ergodic distribution exists by
+Darroch--Seneta, which covers the capped rational barrier at fixed `q` and cap.
+Do not re-run this search; cite these instead.
 **NARROWED 16 September 2026**
 (`J-yaglom-rate-is-one-over-d`): the UNDRIVEN continuum case IS covered ---
 Ocafrain, ECP 2020, gives \(1/t\) to the Yaglom limit for Brownian motion
@@ -2961,6 +2971,22 @@ family is a bounded perturbation of the SAME line,
 combination is now driven-and-LATTICE alone, and the driving costs four
 percent of a constant. What is still absent is a THEOREM; the numbers now say
 what it should assert.
+
+**THAT NARROWING WAS WRONG, corrected 16 September 2026**
+(`J-moving-boundary-qsd-literature-exists-and-excludes-us`). The moving-boundary
+literature was then read at source, and the driven half IS covered --- Ocafrain,
+ALEA 15:429-451 (2018) for discrete-time chains with periodically moving
+absorbing boundaries; Stoch. Proc. Appl. 130(6) (2020) and arXiv:2010.05483 for
+the general theory. But all of the general machinery runs on Assumption (A'), a
+conditional Doeblin condition plus a Harnack-like survival comparison, and
+arXiv:2010.05483 states that in the time-homogeneous framework this IS the
+Champagnat--Villemonais condition, *equivalent to exponential uniform convergence*
+to quasi-stationarity. This process converges polynomially and has no spectral gap
+in any exponential weight (`no_weight_separates`, Lean), so (A') provably fails.
+The driven theory covers the non-critical regime; criticality is exactly what it
+excludes. So the uncovered combination is driven-AND-critical after all, as this
+entry originally said, and the lattice is not the obstruction. I narrowed on the
+strength of a fixed-boundary result and should not have.
 
 
 **Externals that are already imported; do not propose them as new.** The
