@@ -52680,3 +52680,59 @@ backslash level and wrote a literal carriage return into the source. Fifth occur
 today of the same failure mode, each one after reading the memory note that warns
 about it. The note is not the problem. I have stopped using heredocs for anything
 containing a backslash, which is what the note has said since 14 September.
+
+## 16 September 2026 --- R survives the reduction
+
+Went after `R`, the last unknown in the quasi-stationary profile, and found a reason
+to think it was not an unknown at all.
+
+The profile is normalised. So `R + sum_(m>=1) Pi(m) = 1`, exactly, and after today's
+shape and amplitude work that tail sum has a closed form in `A` and `c`:
+
+```text
+R  =?=  1 - A r* [ 1/(1-r*)^2 + c/(1-r*) ]
+```
+
+If that held, `R` would follow from the cocycle and `gamma`, the whole phase-indexed
+apparatus would collapse to one scalar recursion over the rotation, and the
+laboratory's clean coordinate would become computable rather than measured. That
+would have been the best result of the day by some distance.
+
+### It fails, and the failure converges
+
+```text
+residual at phase 0, by cap:  +2.33e-2  +7.12e-3  +3.52e-3  +3.52e-3
+                              cap 400   800       1600      3200
+```
+
+Identical at the last two caps to three figures. Converged, and not to zero. The same
+at other phases: `-7.38e-4`, `-2.76e-4`, `+3.90e-3`.
+
+I was ready to read the shrinking residual as convergence to zero --- `2.33e-2` to
+`3.52e-3` looks like it is heading somewhere --- and the only reason I did not is that
+I added `cap = 3200` before extrapolating. It stopped moving. Had I extrapolated from
+the first three caps I would have reported the reduction as holding.
+
+### What the residual is
+
+Exactly minus the boundary-layer mass, and this follows from the normalisation being
+exact rather than from any fitting: residual = extrapolated tail sum minus true sum
+over `m >= 1`, which is the mass the pure tail misses near the barrier. Those are the
+complex modes from this morning's spectrum work, showing up on the other side of the
+ledger.
+
+Over 200 phases: `-2.9e-3` to `+7.3e-3`, mean `+1.1e-3`, which is `-3.3%` to `+9.8%`
+of `R`. Not explained by the rise letter, and correlating only weakly with the phase
+or with `R` itself.
+
+### Where that leaves the day
+
+The profile costs one constant, one cocycle, and `R`. Today's structure work brought
+the first two from nothing to exact, and this measures how close they come to
+determining the third: about five percent, and never exactly. `R` stays the
+fundamental unknown, and the open obligation of
+`J-boundary-fraction-is-the-clean-coordinate` --- that the iteration converges --- is not
+reduced by any of it.
+
+That is worth being plain about. A great deal got characterised today and the thing
+it was all pointing at did not move.

@@ -5266,3 +5266,19 @@ def test_the_leftover_gaps_are_betas_ostrowski_denominators() -> None:
     denominators = below | above | {1, 2, 3, 8, 19, 65, 84, 485, 1054, 24727, 50508}
     for gap, count in gaps.most_common(4):
         assert gap in denominators, (gap, count, sorted(denominators)[:20])
+
+
+def test_the_tail_does_not_determine_the_boundary_fraction() -> None:
+    """The profile does not close into a scalar cocycle: R stays an independent unknown.
+
+    The profile is normalised, so ``R + sum_(m>=1) Pi(m) = 1`` and the tail sum has a closed
+    form in ``A`` and ``c``.  If the tail form held down to ``m = 1`` exactly, ``R`` would follow
+    from the cocycle and the whole phase-indexed apparatus would be one scalar recursion.  The
+    residual is converged in the cap and nonzero, and it is exactly the boundary-layer mass.
+    """
+    rows = B.tail_predicts_boundary(306, 485, phases=(0, 23, 46), cap=800, tol=1e-11)
+    assert len(rows) == 3, rows
+    for actual, predicted, residual in rows:
+        assert 0.05 < actual < 0.25, actual                  # R sits where the row says
+        assert abs(residual) < 0.05 * actual + 1e-2          # the tail gets it roughly right
+    assert max(abs(r) for _, _, r in rows) > 1e-4, rows      # but not exactly: the reduction fails

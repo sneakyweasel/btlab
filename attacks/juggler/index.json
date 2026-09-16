@@ -6502,7 +6502,8 @@
         "J-psi-jumps-are-summable-and-psi-is-bounded-variation",
         "J-staircase-and-cycle-records-split-betas-semiconvergents",
         "J-parity-leftovers-are-a-one-sided-bohr-set",
-        "J-tail-double-root-in-lean-and-paper-b-updated"
+        "J-tail-double-root-in-lean-and-paper-b-updated",
+        "J-tail-does-not-determine-the-boundary-fraction"
       ],
       "aliases": [],
       "nk_cluster": null
