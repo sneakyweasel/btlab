@@ -1085,7 +1085,7 @@ the distance to  \(1/2\)  when the  \(-1\)  costs only  \(O(1/d)\).
 The exponents are
 \[
 -\log\vartheta\bigl((p+\tfrac12)/2\bigr)=0.0085959587,\qquad
--\log\vartheta(p)=0.0346881850,
+-\log\vartheta(p)=0.0346881852,
 \]
 so the convenient threshold reports  \(24.8\%\)  of the exponent its
 own inequality supplies.

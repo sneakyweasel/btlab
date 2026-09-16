@@ -103,3 +103,87 @@ audit reports retain their historical dates and scope.
 Decision: **PROMOTE** the corrected manuscript for author and expert
 review. No external publication, DOI operation, or claim of independent
 mathematical certification was made.
+
+## Re-audit, 16 September 2026
+
+Version 2026-09-16-proof-audit. The audit above is dated 10 September and the
+manuscript has changed six times since, so it no longer covered the text it
+certified. This pass closes that gap. It is scoped to the difference — 202 inserted
+and 5 deleted lines — and does not re-derive the unchanged bulk, which continues to
+rest on the audit above.
+
+Like that one, this is an AI-assisted review. It is not independent expert review
+and not formal verification.
+
+### What changed, and what it was checked against
+
+The substantive change is in Theorem 6.1's proof. An unquantified *for all
+sufficiently large fixed d* was replaced by the sharp threshold
+`q_d = p - (1-p)/(d-1)` with an explicit range `d >= 4`. Every step was checked
+numerically:
+
+| Claim | Result |
+| --- | --- |
+| `q_d` makes `pd - 1 >= q(d-1)` an equality | exact at `d = 3,4,5,10,100` |
+| `q_4 > 1/2` reduces to `p > 5/8`, i.e. `2^8 > 3^5` | `256 > 243`, holds |
+| `q_3 <= 1/2` reduces to `p <= 2/3`, i.e. `2^3 < 3^2` | `8 < 9`, holds |
+| `theta(q) = q^-q (1-q)^(q-1)/2 = exp(-KL(q||1/2))` | agree to `1e-12` |
+| `theta_d` decreasing, `theta_d <= theta_4 < 1` | `theta_4 = 0.999875`, monotone |
+| density bound to `0`, with `theta_d -> rho` | `theta(p) = 0.9659065532` |
+
+`theta_4 = 0.999875` makes the `d = 4` bound `0.4998`, which is vacuous. That is not
+a defect: the proof takes `d -> infinity`, and the manuscript states the limit order
+explicitly. The change is a genuine sharpening, and removing the unquantified clause
+is worth more than the constant it gains.
+
+Remark 6.2's printed constants were each recomputed:
+
+| Printed | Recomputed |
+| --- | --- |
+| `-log theta((p+1/2)/2) = 0.0085959587` | exact |
+| `-log theta(p) = 0.0346881850` | **wrong**, see below |
+| convenient threshold reports `24.8%` | `24.78%` |
+| `rho = 0.9659065532`, equal to `theta(p)` | exact |
+| closed form `= p`, the `(1-p)` factors cancelling | exact, and the algebra checks |
+| overshoot `1.2e6` at `d=320`, `6.9e17` at `d=1280` | `1.246e6`, `6.864e17` |
+| `psi/p` samples `16.4, 17.0, 16.6` at `d=640,1280,2560` | `16.39, 17.04, 16.64` |
+| mean of `psi` about `10.9` | `10.888` asymptotically |
+
+The count recursion `N_(d+1) = 2N_d - b_d M_d` was checked to be equivalent to
+`P_(d+1) = P_d(1 - b_d R_d / 2)` under `P_d = N_d/2^d` and `R_d = M_d/N_d`, and the
+stated `T_0`, `T_1` match the implementation they are checked against.
+
+### Finding
+
+One defect. `-log theta(p)` was printed as `0.0346881850`; the value is
+`0.0346881852320175`, which rounds to `0.0346881852`. Misrounded in the last two
+digits. Repaired in this version. Nothing depends on the digits beyond the eighth,
+and no conclusion moves.
+
+Two checks that look like findings and are not. The mean of `psi` reads `10.576` over
+`d = 500..3000` against a printed `10.9`; it converges upward — `10.814`, `10.871`,
+`10.884`, `10.888` over successive windows to `d = 1.2e5` — so the printed value is
+the asymptotic one and is right. And the overshoot figures disagree by a factor of
+350 if measured against `p rho^d`; they are measured against the true density
+`psi rho^d d^(-3/2)`, and against that they are right. Both are recorded because a
+reader repeating the check will hit them.
+
+### What this pass does not cover
+
+The analytic core — Theorem 4.11, Theorem 5.4, Appendices A to C — is unchanged and
+was not re-derived here. The estimates were not re-checked against their parameter
+ranges; that was the 10 September pass's work and it stands or falls on its own.
+
+Part of the audited difference is text added on 16 September by the same agent
+performing this audit — the revised *what is open, and what is excluded* discussion
+in Remark 6.2. Self-review carries less weight than the rest of this pass and should
+be read as unaudited.
+
+### Decision
+
+Unchanged: **PROMOTE** for author and expert review. This pass removes the
+staleness objection — the manuscript is now audited as it stands rather than as it
+stood five revisions ago — and repairs one misrounded constant. It does not supply
+independent expert review, and it does not extend the formal layer, which by its own
+barrel's statement contains no estimate. Those two remain the substantive reasons
+not to treat the manuscript as certified, and neither is a defect in the text.
