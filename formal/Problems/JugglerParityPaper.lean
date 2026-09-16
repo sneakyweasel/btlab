@@ -4,6 +4,7 @@ import Problems.Juggler.MeanValues
 import Problems.Juggler.MonomialSplitting
 import Problems.Juggler.PaperBAssembly
 import Problems.Juggler.PaperBChernoff
+import Problems.Juggler.PaperBMarkov
 import Problems.Juggler.ThresholdCertificate
 
 /-!
@@ -15,9 +16,11 @@ own rather than selecting modules by hand out of the umbrella `Problems.Juggler`
 
 Building it corroborates the paper's analysis in exactly one place. Until 16 September 2026
 every declaration reachable from here was an identity, a constant, or a threshold, and not one
-of them was an estimate. `PaperBChernoff` is the exception: `theta_lt_one` is a strict
-inequality, and it is the one that makes Theorem 6.1's density bound decay rather than merely
-fail to grow. Everything else reachable from here is still an identity, a constant, or a
+of them was an estimate. Two modules are now exceptions. `PaperBMarkov` proves the
+exponential Markov step that Theorem 6.1's bound comes from, and `PaperBChernoff` proves that
+the resulting factor is strictly below one, which is what makes the bound decay rather than
+merely fail to grow. `tilt_gives_theta` joins them: at the optimal tilt the Markov bound IS
+`theta q ^ n`. Everything else reachable from here is still an identity, a constant, or a
 threshold, so the paper's analytic core remains unformalised and the trust-boundary discussion
 of Section 1 still governs.
 
@@ -40,12 +43,17 @@ of Section 1 still governs.
   (`step5b_curvature_norm`), the vector transfer (`step5b_vector_transfer`), the record that
   the manuscript's weaker `1/288` follows (`step5b_c7_printed`), and the `c₂` lever
   (`step5b_c2_ceiling`, `step5b_c2_optimum_feasible`, `step5b_uniform_saturates`).
-* `PaperBChernoff` — **the one estimate.** Strict Gibbs (`klDiv_pos`) from the strict log
+* `PaperBChernoff` — **an estimate.** Strict Gibbs (`klDiv_pos`) from the strict log
   bound (`one_sub_inv_lt_log`), the bridge from the manuscript's printed
   `theta q = q^(-q)(1-q)^(q-1)/2` to `exp(-D(q | 1/2))` (`theta_eq_exp_neg_klDiv`), and hence
   `theta q < 1` for `q` away from `1/2` (`theta_lt_one`, with `theta_pow_lt` in the form
   Theorem 6.1 uses). The fate layer's `klDiv_nonneg` gives only `theta q <= 1`, which leaves
   the bound vacuous at every depth; strictness is the whole content.
+* `PaperBMarkov` — **an estimate.** The binomial generating function
+  (`sum_choose_mul_pow`), the exponential Markov step on the word count (`chernoff_tail`,
+  `chernoff_density`), and the optimisation as an identity: at `t = log(q/(1-q))` and
+  `a = q n` the bound is exactly `theta q ^ n` (`tilt_gives_theta`). Stated combinatorially,
+  over binomial coefficients, because the paper counts words rather than sampling them.
 * `PaperBAssembly` — Lemma 4.3's exact linearization (`lemma43_closed_form`, `lemma43_nonneg`,
   `lemma43_upper`, `lemma43_remainder_of_sqrt`) with its carries (`carry_identity`,
   `carry_mem_zero_one`), and Lemma 5.2b's interpolant (`interpolant_assembly`,

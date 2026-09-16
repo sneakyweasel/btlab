@@ -70,6 +70,19 @@ theorem klDiv_pos {p q : ℝ} (hp0 : 0 < p) (hp1 : p < 1) (hq0 : 0 < q) (hq1 : q
   have h2' := (mul_lt_mul_of_pos_left h2 (by linarith : (0 : ℝ) < 1 - p))
   linarith
 
+/-- `D(q ‖ 1/2) = log 2 + q log q + (1-q) log(1-q)`: the binary relative entropy, expanded. -/
+theorem klDiv_half_eq {q : ℝ} (hq0 : 0 < q) (hq1 : q < 1) :
+    klDiv q (1 / 2) = Real.log 2 + q * Real.log q + (1 - q) * Real.log (1 - q) := by
+  have h1 : (0 : ℝ) < 1 - q := by linarith
+  have ha : q / (1 / 2 : ℝ) = 2 * q := by
+    rw [div_eq_iff (by norm_num : (1 / 2 : ℝ) ≠ 0)]; ring
+  have hb : (1 - q) / (1 - 1 / 2 : ℝ) = 2 * (1 - q) := by
+    rw [div_eq_iff (by norm_num : (1 - 1 / 2 : ℝ) ≠ 0)]; ring
+  unfold klDiv
+  rw [ha, hb, Real.log_mul two_ne_zero (ne_of_gt hq0),
+    Real.log_mul two_ne_zero (ne_of_gt h1)]
+  ring
+
 /-- The Chernoff factor of Theorem 6.1, as the manuscript writes it. -/
 noncomputable def theta (q : ℝ) : ℝ := q ^ (-q) * (1 - q) ^ (q - 1) / 2
 
@@ -81,11 +94,7 @@ theorem theta_eq_exp_neg_klDiv {q : ℝ} (hq0 : 0 < q) (hq1 : q < 1) :
     rw [div_eq_iff (by norm_num : (1 / 2 : ℝ) ≠ 0)]; ring
   have hb : (1 - q) / (1 - 1 / 2 : ℝ) = 2 * (1 - q) := by
     rw [div_eq_iff (by norm_num : (1 - 1 / 2 : ℝ) ≠ 0)]; ring
-  have e : klDiv q (1 / 2) = Real.log 2 + q * Real.log q + (1 - q) * Real.log (1 - q) := by
-    unfold klDiv
-    rw [ha, hb, Real.log_mul two_ne_zero (ne_of_gt hq0),
-      Real.log_mul two_ne_zero (ne_of_gt h1)]
-    ring
+  have e := klDiv_half_eq hq0 hq1
   have hsplit : -(Real.log 2 + q * Real.log q + (1 - q) * Real.log (1 - q))
       = (Real.log q * -q + Real.log (1 - q) * (q - 1)) - Real.log 2 := by ring
   rw [theta, e, Real.rpow_def_of_pos hq0, Real.rpow_def_of_pos h1, ← Real.exp_add, hsplit,
