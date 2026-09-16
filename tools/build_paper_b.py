@@ -13,6 +13,19 @@ from pathlib import Path
 import shutil
 import subprocess
 
+
+# Reproducible output.  XeLaTeX stamps a build time into the PDF's compressed metadata, so
+# without this a no-op rebuild changes the bytes and therefore the sha256 in the manifest.
+# The epoch is fixed to the version this guide records rather than taken from git, because a
+# git-derived date lags one build behind an edit and merely relocates the churn.
+_SOURCE_DATE_EPOCH = "1788998400"  # Paper B version 2026-09-10-zenodo-preprint
+
+
+def _pin_build_date() -> None:
+    """Pin SOURCE_DATE_EPOCH unless the caller already set one."""
+    os.environ.setdefault("SOURCE_DATE_EPOCH", _SOURCE_DATE_EPOCH)
+    os.environ.setdefault("FORCE_SOURCE_DATE", "1")
+
 HERE = Path(__file__).resolve().parent
 STEM = 'juggler_parity_discrepancy_note'
 METADATA = 'docs/theory/paper_b_zenodo.json'
@@ -119,6 +132,7 @@ def executable(name: str, supplied: str | None) -> str:
 
 
 def main() -> None:
+    _pin_build_date()
     local = HERE/f'{STEM}.md'
     default_source = local if local.exists() else HERE.parent/'docs/theory'/f'{STEM}.md'
     default_assets = HERE/'build' if (HERE/'build/article.tex').exists() else HERE/'paper_b'

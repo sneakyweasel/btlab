@@ -571,7 +571,7 @@
     {
       "path": "tools/build_paper_a.py",
       "mode": "text",
-      "sha256": "3e71e343fa3d96f582a826969dcfe4907e58ff904b284cc4e0787ad030a55ee9"
+      "sha256": "27b4c838c274507d533b669bc5ef764a331722efe896f758880ea4ab9287e36f"
     },
     {
       "path": "tools/check_paper_a_numeric.py",
@@ -598,7 +598,7 @@
     {
       "path": "docs/theory/juggler_finite_dynamics_note.pdf",
       "mode": "binary",
-      "sha256": "4c0d7fcd188497fc13495a3adf2ddec942574a002de8f68a705a38c51e3e94a2"
+      "sha256": "789f326245b191baa357bb50de680bf5b1d1ad065777fd89b0629676896761a4"
     },
     {
       "path": "docs/theory/cochin-juggler.tex",

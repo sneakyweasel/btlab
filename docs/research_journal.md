@@ -52636,3 +52636,47 @@ more.
 The barrel's sentence has now been corrected twice in one day. It read *not one of
 them is an estimate*; it names two modules now, and still says the analytic core is
 unformalised. I would rather correct it twice than leave it overstating either way.
+
+## 16 September 2026 --- the paper builds are reproducible now
+
+Every paper commit today carried five binary artefacts that had not changed in
+substance. A no-op rebuild moved 58 bytes of the PDF --- XeLaTeX stamps a build time
+into the compressed metadata stream --- and since the build manifest records the
+PDF's sha256, the gate then demanded a rebuild, which produced a different PDF, and
+so on. Self-sustaining churn.
+
+`SOURCE_DATE_EPOCH` with `FORCE_SOURCE_DATE` fixes it. All three builds are now
+byte-identical across consecutive runs, verified.
+
+### Why a fixed epoch rather than git
+
+The obvious choice is the git commit time of the source manuscript. It is wrong here,
+and the failure is subtle: edit the manuscript, build --- git still reports the
+PREVIOUS commit, so the PDF carries the old date --- commit both, and now the next
+build sees the new commit time and changes the PDF again. The churn moves rather than
+goes away. A fixed epoch per paper, keyed to the version its build guide already
+records, removes it outright, and an epoch in the environment still wins for anyone
+who wants to override.
+
+### Two things surfaced on the way
+
+The Paper C build failed once with `[Errno 22] Invalid argument` writing a PDF in
+`juggler_review/`. The file was writable a moment later; Edge had it open. Worth
+knowing because that is the *same errno* the pytest-xdist workers die with, and I had
+assumed that was a stdin problem. It may be the same Windows file-handle contention
+in both, which would make the morning's two lost hours a symptom rather than a
+configuration mistake. Not diagnosed further; recorded so the next person does not
+start from the stdin hypothesis as I did.
+
+And my patch script skipped Papers A and C on the first run, reporting `no import os`
+when both have it on line 14. The regex was `^import os$`, and those files are CRLF,
+so `$` would not match before the `\r`. That is the third distinct way CRLF has bitten
+me today, after `write_text` rewriting whole files and the earlier anchor mismatches.
+
+### And the heredoc, for the fifth time
+
+Fixing that regex, I used a Bash heredoc to patch the patch script, and it ate a
+backslash level and wrote a literal carriage return into the source. Fifth occurrence
+today of the same failure mode, each one after reading the memory note that warns
+about it. The note is not the problem. I have stopped using heredocs for anything
+containing a backslash, which is what the note has said since 14 September.

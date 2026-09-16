@@ -406,7 +406,7 @@
     {
       "path": "tools/build_paper_c.py",
       "mode": "text",
-      "sha256": "efd5ca1bad56c18f2cc514b2c86d923125ff01eabd6bb153661fc378e2ec27e9"
+      "sha256": "2abae5342a17dbfc2c85cd75f6abf4e9ecbb296db6caa9b0ef89eb7f73d0614a"
     },
     {
       "path": "tools/check_paper_c_numeric.py",
@@ -428,7 +428,7 @@
     {
       "path": "docs/theory/juggler_fate_almost_all_note.pdf",
       "mode": "binary",
-      "sha256": "61ae15f2db1070c95e5947d39b6133141f9a73ef622d4c0cb49e483ec5ad496e"
+      "sha256": "71ac00b686acbf901be7d5091790f318fb232c23c0989bebdc9a7f10b3b8bef7"
     },
     {
       "path": "docs/theory/cochin-juggler-fates.tex",
