@@ -52586,3 +52586,53 @@ Fourth time today the Bash heredoc ate a backslash level and produced a script t
 silently searched for control characters. My memory note has said *use the Write tool*
 since September 14. I read it, judged this case safe, and was wrong again. The note
 now says to use Write unconditionally; the thing to change is not the note.
+
+## 16 September 2026 --- the Chernoff engine, formal end to end
+
+`PaperBChernoff` proved the inequality Theorem 6.1 is aimed at. This is the step that
+produces it: the exponential Markov bound, and the tilt that turns it into `theta`.
+
+### Stating it combinatorially was the whole trick
+
+My first instinct was measure theory --- `P(X >= a) <= e^(-ta) E[e^(tX)]`, a probability
+space, a binomial random variable, Mathlib's `ProbabilityTheory`. That would have been
+a long job.
+
+But Paper B does not sample. It COUNTS: words of length `d` by their number of odd
+letters, divided by `2^d`. So the honest statement is about binomial coefficients and
+finite sums, and then the whole thing is elementary:
+
+```text
+sum_(k >= a) C(n,k)  <=  exp(-t a) (1 + exp t)^n
+```
+
+charge every word with at least `a` odd letters the factor `1 <= exp(t(k-a))`, extend
+the sum to the full range, apply the binomial theorem. Four theorems, no measure
+theory, and closer to what the paper actually says than the probabilistic version
+would have been.
+
+That is twice today the cheaper formulation was also the more faithful one.
+
+### The optimisation is an identity
+
+The manuscript optimises `t` by differentiating the bracket. In Lean that is not
+needed: at `t = log(q/(1-q))` and `a = qn` the bound is *exactly* `theta q ^ n`. An
+equality between closed forms, checked to `1e-15` at three values of `q` and three of
+`n` before I trusted the Lean statement.
+
+`tilt_gives_theta` is what joins the two modules. The chain now reads, formally: word
+count `<= theta q ^ n`, and `theta q < 1`. Both halves machine-checked, both clean on
+`[propext, Classical.choice, Quot.sound]`.
+
+### What is still prose
+
+The passage from these word counts to the natural density of `N \ C_d` --- the `FD`
+step and the finite sum over surviving words --- and the identification of the
+surviving words as a binomial count in the first place. Theorem 6.1 is not
+formalised; its Chernoff engine is. Both module headers say so, because a reader
+finding two estimate modules under a theorem's name would otherwise reasonably assume
+more.
+
+The barrel's sentence has now been corrected twice in one day. It read *not one of
+them is an estimate*; it names two modules now, and still says the analytic core is
+unformalised. I would rather correct it twice than leave it overstating either way.

@@ -1050,6 +1050,13 @@ exponential Markov inequality and the binomial generating function give
 \Pr(B_{d-1}\ge q(d-1))
 \le\left(\frac{1+e^t}{2e^{qt}}\right)^{d-1}.
 \]
+Both steps are machine-checked in
+`formal/Problems/Juggler/PaperBMarkov.lean`, stated over binomial
+coefficients rather than over a probability space because the count here is
+over words: `sum_choose_mul_pow` is the generating function and
+`chernoff_density` the Markov bound. The optimisation below is an identity
+there rather than a differentiation — `tilt_gives_theta` shows the
+right-hand side at  \(t=\log(q/(1-q))\)  is exactly  \(\vartheta(q)^{d-1}\).
 The logarithm of the expression in parentheses is zero at  \(t=0\)
 and has derivative  \(1/2-q<0\)  there. Hence some fixed  \(t>0\)
 makes it a number  \(\vartheta<1\); optimising  \(t\)  gives
