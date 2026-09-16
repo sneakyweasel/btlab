@@ -843,3 +843,72 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
+
+def parity_leftover_window(n0: int, l_max: int = 200_000) -> dict[str, Any]:
+    """The parity layer's surviving lengths are a ONE-SIDED BOHR SET, and this fits its window.
+
+    THE CHARACTERISATION.  Write ``g(L) = o_min(L) * log2(3) - L``, the walk gap.  A cycle needs
+    ``3^o > 2^L``, so only ``g > 0`` is meaningful, and the finance bound
+    ``n ln n <= (6/5) L * 3^o / (3^o - 2^L)`` is ``(6/5) L / (1 - 2^(-g))``, which blows up as
+    ``g -> 0``.  So a length survives the floor exactly when ``g`` is small RELATIVE TO L:
+
+        survivors = { L : 0 < g(L) < kappa * L }.
+
+    Measured at floor 1e6 over ``l_max = 200000``: the largest ``g/L`` among survivors is
+    4.635150e-08 and the smallest among non-survivors is 4.647621e-08, so the two are cleanly
+    separated and a single threshold misclassifies NONE of the 199424 lengths with ``g > 0``.
+
+    THE WINDOW SCALES AS ``1/(n0 ln n0)``.  ``kappa * n0 * ln n0`` reads 0.6412, 0.6241, 0.6390,
+    0.6585 and 0.5453 at floors 1e6, 1e7, 26254995, 68000000 and 1e8 -- flat to about ten percent
+    across two decades.  (At 1e9 only one length survives below 200000, so the bracket is
+    degenerate and the figure there is not meaningful.)
+
+    THE GAPS ARE OSTROWSKI DENOMINATORS.  Consecutive survivors at floor 1e6 differ by 84, 485,
+    401, 569, 1054 and 317 -- 268, 132, 105, 24, 23 and 23 times respectively -- every one a
+    convergent or semiconvergent denominator of BETA, which is the three-distance theorem for a
+    Bohr set.  401 and 317 are least-peak staircase jumps and 569 and 1054 are cycle record
+    lengths, so this is the same skeleton as
+    ``J-staircase-and-cycle-records-split-betas-semiconvergents``.
+
+    WHAT THE LEFTOVERS ARE NOT.  They are not the semiconvergents.  Of the 576 survivors at floor
+    1e6 only 3 are semiconvergents and 8 are multiples of one; the other 565 are neither.  The
+    semiconvergents are the RECORD-SETTERS of the one-sided approximation, which is why one of them
+    is the FIRST survivor at each floor, not why the set is what it is.
+
+    ``separated`` is False exactly when ``n0`` is itself ``parity_n_max(L)`` for some ``L`` -- at
+    26254995 and at 162848325, which are ``n_max^par`` of 25781 and of 50508.  That length then
+    sits ON the threshold by construction and the strict comparison fails; it is not a
+    misclassification, and the survivor and excluded ratio sets still do not overlap.
+    """
+    import math
+
+    log2_3 = math.log2(3.0)
+    survivors: list[float] = []
+    excluded: list[float] = []
+    first: int | None = None
+    for length, odd_count, theta in iter_o_min(l_max):
+        gap = odd_count * log2_3 - length
+        if gap <= 0:
+            continue
+        ratio = gap / length
+        if layer_status(length, odd_count, theta, n0, layer="parity") == "certified_survive":
+            survivors.append(ratio)
+            if first is None:
+                first = length
+        else:
+            excluded.append(ratio)
+    if not survivors:
+        return {"floor": n0, "l_max": l_max, "first_exception": None, "survivor_count": 0,
+                "kappa": None, "separated": True, "kappa_times_n0_log_n0": None}
+    lo, hi = max(survivors), min(excluded)
+    kappa = 0.5 * (lo + hi)
+    return {
+        "floor": n0,
+        "l_max": l_max,
+        "first_exception": first,
+        "survivor_count": len(survivors),
+        "kappa": kappa,
+        "separated": lo < hi,
+        "kappa_times_n0_log_n0": kappa * n0 * math.log(n0),
+    }

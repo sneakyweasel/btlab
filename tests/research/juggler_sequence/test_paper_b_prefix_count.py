@@ -5216,3 +5216,53 @@ def test_the_cycle_record_lengths_are_the_other_side_of_the_same_split() -> None
     recorded = {d for d in RECORD_LENGTHS if 2 <= d <= limit}
     assert above == recorded, (sorted(above - recorded), sorted(recorded - above))
     assert 25781 in above and 25781 in recorded
+
+
+def test_the_parity_leftovers_are_a_one_sided_bohr_set() -> None:
+    """Survival is ``0 < o log2(3) - L < kappa L``: a one-sided Diophantine window, linear in L.
+
+    A cycle needs ``3^o > 2^L``, so only a positive walk gap is meaningful, and the finance bound
+    ``(6/5) L / (1 - 2^(-g))`` blows up as ``g -> 0``.  So a length survives exactly when its gap
+    is small RELATIVE to its length.  A single threshold separates the two sets with no
+    misclassification, and the window scales as ``1/(n0 ln n0)``.
+    """
+    from research.juggler_sequence.cycle_floor_sensitivity import parity_leftover_window
+
+    small = parity_leftover_window(1_000_000, l_max=60_000)
+    assert small["first_exception"] == 25781, small
+    assert small["separated"], small                       # a single threshold, no overlap
+
+    big = parity_leftover_window(350_000_000, l_max=200_000)
+    assert big["first_exception"] == 176251, big
+    assert big["survivor_count"] < small["survivor_count"]  # raising the floor thins the set
+    assert big["kappa"] < small["kappa"]
+
+    # the window scales like 1/(n0 ln n0), so the product is roughly floor-independent
+    mid = parity_leftover_window(10_000_000, l_max=200_000)
+    ratio = mid["kappa_times_n0_log_n0"] / small["kappa_times_n0_log_n0"]
+    assert 0.8 < ratio < 1.25, (small["kappa_times_n0_log_n0"], mid["kappa_times_n0_log_n0"])
+
+
+def test_the_leftover_gaps_are_betas_ostrowski_denominators() -> None:
+    """Consecutive surviving lengths differ by convergent or semiconvergent denominators.
+
+    That is the three-distance theorem for a Bohr set, and it is the same skeleton as
+    ``J-staircase-and-cycle-records-split-betas-semiconvergents``: the commonest gaps at floor
+    1e6 are 84, 485, 401, 569, 1054 and 317, of which 401 and 317 are least-peak staircase jumps
+    and 569 and 1054 are cycle record lengths.
+    """
+    import collections
+
+    from research.juggler_sequence.cycle_finance import EPS_CONST
+    from research.juggler_sequence.cycle_floor_sensitivity import iter_o_min, layer_status
+
+    surv = [L for L, o, th in iter_o_min(60_000)
+            if layer_status(L, o, th, 1_000_000, layer="parity", const=EPS_CONST)
+            == "certified_survive"]
+    assert len(surv) > 20, len(surv)
+    gaps = collections.Counter(surv[i + 1] - surv[i] for i in range(len(surv) - 1))
+
+    below, above = _beta_semiconvergents(200_000)
+    denominators = below | above | {1, 2, 3, 8, 19, 65, 84, 485, 1054, 24727, 50508}
+    for gap, count in gaps.most_common(4):
+        assert gap in denominators, (gap, count, sorted(denominators)[:20])
