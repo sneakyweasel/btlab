@@ -1056,7 +1056,12 @@ makes it a number  \(\vartheta<1\); optimising  \(t\)  gives
 \(\vartheta(q)=q^{-q}(1-q)^{q-1}/2=e^{-\mathrm{KL}(q\|1/2)}\). Write
 \(\vartheta_d:=\vartheta(q_d)\). Since  \(\vartheta\)  decreases on
 \((1/2,1)\)  and  \(q_d\)  increases in  \(d\), the  \(\vartheta_d\)
-decrease, so  \(\vartheta_d\le\vartheta_4<1\)  for every  \(d\ge4\).
+decrease, so  \(\vartheta_d\le\vartheta_4<1\)  for every  \(d\ge4\). The
+strict inequality  \(\vartheta(q)<1\)  for  \(q\ne1/2\)  — the step that
+makes this bound decay rather than merely not grow — is machine-checked in
+`formal/Problems/Juggler/PaperBChernoff.lean` as `theta_lt_one`, resting on
+strict Gibbs (`klDiv_pos`); the fate layer's `klDiv_nonneg` gives only
+\(\vartheta\le1\), which is vacuous at every depth.
 
 For fixed  \(d\),  \(\mathrm{FD}\)  and a finite sum over surviving
 words show that the natural density of  \(\mathbb N\setminus\mathcal C_d\)
