@@ -2931,7 +2931,14 @@ the rotation by \(\beta\)) **and critical** (polynomial forgetting,
 nothing combining them.
 Kind: `EXTERNAL_GAP`.
 Consequence: do not spend a session looking for an off-the-shelf theorem
-for the quasi-stationary convergence; there is not one to find. If the
+for the quasi-stationary convergence; there is not one to find.
+**NARROWED 16 September 2026**
+(`J-yaglom-rate-is-one-over-d`): the UNDRIVEN continuum case IS covered ---
+Ocafrain, ECP 2020, gives \(1/t\) to the Yaglom limit for Brownian motion
+with drift conditioned not to hit zero, with Q-process Bessel-3, both of
+which match what is measured here. So the missing combination is
+driven-and-lattice, not driven-and-critical; the criticality has a rate in
+the literature and it is the right one. If the
 link closes it will be by proving the combination, and the laboratory
 already holds the input such a proof consumes ---
 `J-bump-kernel-factorises-into-distance-and-phase` gives
