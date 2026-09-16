@@ -49,7 +49,7 @@ target below \(L^2\).
 |---|---|---|---|
 | \(2\) | Dirichlet | yes | the hard floor |
 | \(5.116201\) | BLS 2018 | no | recorded, knowingly unimported |
-| \(5.1163051\) | Wu-Wang 2014, linear form at \(a=0\), \(H=L\) --- **QUERIED 15 Sep 2026**, `J-wuwang-import-is-unread-at-source`: the published headline is the TWO-term \(\mu(\log3)\), the \(b=0\) case; the substitution needs \(b\neq0\). Plausible the paper's technical core is three-term, as Rhin's is, but unread at source | no (\(C_\varepsilon\)) | `J-cyclemin-gap-power-transfer`, conditionally |
+| \(5.1163051\) | Wu-Wang 2014 **Theorem 1**, p. 266: \(\lvert p+q_1\log2+q_2\log3\rvert\ge H^{-4.1163051-\varepsilon}\), \(H=\max(\lvert q_1\rvert,\lvert q_2\rvert)\) --- **VERIFIED AT SOURCE 16 Sep 2026**, `J-wuwang-import-verified-at-source`; the substitution \(p=0\) is exactly licensed and \(\mu(\log3)\le5.1163051\) is its Corollary 1 | effective but **uncomputed**: the paper states \(H_0(\varepsilon)\) is effectively computable and does not compute it | `J-cyclemin-gap-power-transfer` |
 | \(8.616\) | Rhin p.160 eq. (8), *reported as* the ratio measure; disputed | unknown | **nothing** |
 | \(14.3\) | Rhin p.160 eq. (7) via Simons-de Weger Lemma 12 | yes (constant \(915\)) | Paper A Corollary 4.11, deposited |
 
