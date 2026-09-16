@@ -52013,3 +52013,68 @@ quasi-stationary object reduced to one scalar function on the circle.
 Seven theorems in `PaperBAmplitudeCocycle`, clean axioms. They prove the
 consequences of the tail form, not the form itself --- the form is measured, and
 the module says so where someone would otherwise assume otherwise.
+
+## 16 September 2026 --- the boundary layer has a spectrum, and it closes
+
+Last tick I measured a residue beyond `m = 1` at the half-percent level, could
+not separate it from truncation, and wrote it into the ledger as unresolved. It
+turned out to be answerable exactly rather than by measurement, which is the
+lesson of the tick.
+
+A pure exponential `z^m` is multiplied by a scalar independent of `m` at every
+update --- `(1+z)/(2z)` non-rising, `(1+z)/2` rising. So over one period the
+characteristic equation is just
+
+```text
+((1+z)/2)^q  =  rho_q^q * z^(q-p)
+```
+
+a polynomial of degree `q`. On the positive reals
+`h(z) = log((1+z)/2) - (1-s) log z` has one minimum, equal to `log rho` at `r*`.
+So `r*` is the only positive root and it is double --- the laboratory's double root,
+restated as a fact about a polynomial rather than about a variational formula. The
+other `q - 2` roots are complex, and those are the boundary layer.
+
+At `306/485` the nearest pair is `0.44893 +- 0.11047i`. It decays `0.790` per site
+relative to the tail and oscillates with period `26` sites. My measurement said
+about `0.86` per site with an unexplained wobble at `m = 2,3`. That is what this
+mode looks like through a six-site window. The residue was real; I simply had no
+instrument for it.
+
+### And the gap closes
+
+The `q` roots come from the branches `h = log rho - 2 pi i k / q`, and `h` is
+quadratic at its minimum, so
+
+```text
+|z - r*|  ~  sqrt( 4 pi k / (q h''(r*)) ),     h''(r*) = s^3 / (1-s)
+```
+
+Measured over predicted at `k = 1`: `0.590, 0.748, 0.774, 0.898` at `12/19, 41/65,
+53/84, 306/485` --- rising to one, as an asymptotic formula should.
+
+So the gap between the tail and its boundary layer closes like `q^(-1/2)`, and in
+the Sturmian limit the two become degenerate. Which means the clean statement I
+was pleased with last tick --- *the exact tail plus one anomalous number* --- is a
+description of the rational family at fixed `q`, degrading as `q` grows. It is not
+a description of the irrational limit. I should record that as a limitation of
+yesterday's result rather than let it stand as a general claim.
+
+### Four guises
+
+This is the criticality again, and I can now count the forms it has taken: no
+exponential weight restores a spectral gap; the Q-process is transient rather than
+positive recurrent; memory loss is polynomial rather than geometric; and now the
+tail spectrum becomes degenerate as the barrier approaches the irrational slope.
+Four different instruments, one obstruction, and every time the double root is
+underneath it. I do not think that is a coincidence any more --- it is the same
+statement being read off four different objects.
+
+### A route I checked and did not take
+
+Before this I tried a Foster-Lyapunov argument for tightness, `V(m) = theta^m`.
+The per-step multiplier is `((1+theta)/2)^(1-s) ((1+1/theta)/2)^s`, which the
+double root pins at exactly `rho` when `theta = 1/r*` and strictly above `rho`
+otherwise. So no weight gives a usable drift --- which is `no_weight_separates`,
+proved in Lean this morning. The Lyapunov route looks obviously available until
+you write down the multiplier, and I would have spent a tick on it if I had not.

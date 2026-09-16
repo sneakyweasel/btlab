@@ -1002,6 +1002,53 @@ def amplitude_cocycle_check(p: int, q: int, steps: int = 14, cap: int = 900,
     return out
 
 
+def tail_spectrum(p: int, q: int) -> "Any":
+    """Roots of the tail recursion's characteristic equation, sorted by distance from ``r*``.
+
+    THE EQUATION.  A pure exponential ``z^m`` is multiplied by a scalar independent of ``m`` at
+    every update -- ``(1+z)/(2z)`` at a non-rising step, ``(1+z)/2`` at a rising one -- so over one
+    period of a ``p/q`` barrier the characteristic equation is
+
+        ((1+z)/2)^q = rho_q^q z^(q-p),
+
+    a polynomial of degree ``q``.  On the positive reals ``h(z) = log((1+z)/2) - (1-s) log z`` has
+    a single minimum, equal to ``log rho`` at ``z = r* = (1-s)/s``, so ``r*`` is the ONLY positive
+    root and it is double.  That is the double root of
+    ``J-rho-has-a-tail-variable-variational-formula``, here as a statement about a polynomial.
+
+    THE OTHER q-2 ROOTS ARE COMPLEX, AND THEY ARE THE BOUNDARY LAYER.  At 306/485 the nearest pair
+    is ``0.44893 +- 0.11047i``, modulus 0.46232, which decays by ``0.46232/0.584967 = 0.790`` per
+    site relative to the tail and oscillates with period ``2 pi / 0.2413 = 26`` sites.  That is the
+    residue ``J-profile-is-linear-times-geometric-in-the-line-coordinate`` records as unresolved
+    beyond ``m = 1``: measured decay about 0.86 per site with a wobble at ``m = 2,3``, against 0.790
+    and a quarter-cycle over that window.
+
+    THE GAP CLOSES LIKE q^(-1/2), WHICH IS THE CRITICALITY AGAIN.  The ``q`` roots come from the
+    branches ``h = log rho - 2 pi i k / q``, and ``h`` is quadratic at its minimum, so
+
+        |z - r*| ~ sqrt(4 pi k / (q h''(r*))),      h''(r*) = s^3 / (1 - s).
+
+    Measured against predicted at ``k = 1``: 0.58011/0.98346, 0.39867/0.53332, 0.36275/0.46883,
+    0.17524/0.19513 at 12/19, 41/65, 53/84, 306/485 -- ratios 0.590, 0.748, 0.774, 0.898, rising to
+    one as an asymptotic formula should.  So in the Sturmian limit the boundary-layer modes become
+    degenerate with the tail and there is no separation left.  The consequence for the profile:
+    "exact tail plus one anomalous value at the barrier" is exact for a FIXED rational barrier and
+    degrades as ``q`` grows, so it is a description of the rational family rather than of the
+    irrational limit.
+    """
+    import numpy as np
+
+    s = p / q
+    rho = chernoff_rate_at(s)
+    r_star = (1.0 - s) / s
+    coefficients = np.array([1.0])
+    for _ in range(q):
+        coefficients = np.convolve(coefficients, [0.5, 0.5])
+    coefficients[q - p] -= rho ** q
+    roots = np.roots(coefficients[::-1])
+    return roots[np.argsort(np.abs(roots - r_star))]
+
+
 def meander_constant(d_values: tuple[int, ...] = (400, 800, 1600)) -> list[float]:
     """``(N_d/2^d) / (rho^d d^(-3/2))`` -- the constant in the polynomial correction.
 
