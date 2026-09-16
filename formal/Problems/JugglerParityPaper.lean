@@ -5,6 +5,7 @@ import Problems.Juggler.MonomialSplitting
 import Problems.Juggler.PaperBAssembly
 import Problems.Juggler.PaperBChernoff
 import Problems.Juggler.PaperBMarkov
+import Problems.Juggler.PaperBDensity
 import Problems.Juggler.ThresholdCertificate
 
 /-!
@@ -20,7 +21,9 @@ of them was an estimate. Two modules are now exceptions. `PaperBMarkov` proves t
 exponential Markov step that Theorem 6.1's bound comes from, and `PaperBChernoff` proves that
 the resulting factor is strictly below one, which is what makes the bound decay rather than
 merely fail to grow. `tilt_gives_theta` joins them: at the optimal tilt the Markov bound IS
-`theta q ^ n`. Everything else reachable from here is still an identity, a constant, or a
+`theta q ^ n`.  `PaperBDensity` then carries that to the conclusion of Theorem 6.1 --
+but CONDITIONALLY, as the manuscript states it.  Hypothesis FD is a hypothesis, and
+the module proves the inference from it rather than the hypothesis itself. Everything else reachable from here is still an identity, a constant, or a
 threshold, so the paper's analytic core remains unformalised and the trust-boundary discussion
 of Section 1 still governs.
 
@@ -54,6 +57,12 @@ of Section 1 still governs.
   `chernoff_density`), and the optimisation as an identity: at `t = log(q/(1-q))` and
   `a = q n` the bound is exactly `theta q ^ n` (`tilt_gives_theta`). Stated combinatorially,
   over binomial coefficients, because the paper counts words rather than sampling them.
+* `PaperBDensity` — **the conditional step, not an estimate.** Finite additivity of density
+  (`density_of_finite_union`), which is the whole content of 'FD and a finite sum over
+  surviving words show that the natural density is their number divided by `2^d`'; and the
+  `d -> infinity` at the end of the proof (`tendsto_zero_of_eventually_le`,
+  `exceptional_density_zero`).  It does NOT prove Hypothesis FD, which is open, nor that the
+  bad set is a finite union of word classes.  Theorem 6.1 stays conditional.
 * `PaperBAssembly` — Lemma 4.3's exact linearization (`lemma43_closed_form`, `lemma43_nonneg`,
   `lemma43_upper`, `lemma43_remainder_of_sqrt`) with its carries (`carry_identity`,
   `carry_mem_zero_one`), and Lemma 5.2b's interpolant (`interpolant_assembly`,

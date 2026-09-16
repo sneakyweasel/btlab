@@ -52783,3 +52783,58 @@ exactly what the next person will reach for.
 Not diagnosed: why the teardown races at all. pytest 9.0.2 with xdist 3.8.0 is a new
 pairing and xdist declares only `pytest>=7.0.0`, which is not evidence either way.
 That is where someone should start if it becomes worth fixing rather than knowing.
+
+## 16 September 2026 --- the FD step is a hypothesis, and that is the finding
+
+I proposed the FD step as the thing that would take Theorem 6.1 from *engine formal*
+to *theorem formal*. Then I read it.
+
+```text
+**Hypothesis FD.** For every fixed d >= 1 and every odd-rooted word w of length d,
+   #{n <= N : word_d(n) = w} = 2^(-d) N + o_w(N).
+No common error rate in d is assumed.
+```
+
+It is a hypothesis. Theorem 6.1 is headed *conditional density-one certificate
+theorem*, and the paper's own summary table lists the density-one certificates as
+conditional on FD. So there was never a step to prove --- and if I had started
+formalising before reading, I would have spent the session trying to prove something
+the manuscript openly assumes.
+
+### What there was to do instead
+
+State the hypothesis and formalise the inference. Which turns out to be small, and
+that smallness is the interesting part:
+
+`density_of_finite_union` --- if finitely many classes each have density `r`, the union
+has density `card * r`. That is the *entire* content of *FD and a finite sum over
+surviving words show that the natural density is their number divided by `2^d`*. FD
+gives `r = 2^(-d)` for one class; finite additivity does the rest. Writing it out
+makes obvious why the hypothesis is needed at each fixed `d` separately and why the
+manuscript is careful to say no uniformity in `d` is assumed --- finite additivity
+gives you nothing as `d` grows.
+
+And `tendsto_zero_of_eventually_le` for the `d -> infinity` at the end.
+
+### The chain, formally
+
+```text
+bad words <= 2^n theta^n     PaperBMarkov.chernoff_density
+theta < 1                    PaperBChernoff.theta_lt_one
+the two agree at the tilt    PaperBMarkov.tilt_gives_theta
+dominated density -> 0       PaperBDensity.exceptional_density_zero
+```
+
+Four modules, all clean on the three Mathlib axioms. What is NOT there: Hypothesis
+FD, which is open, and that the bad set at depth `d` is a finite union of word
+classes, which is the combinatorial reading of `word_d`. Theorem 6.1 is not
+formalised; its inference from FD is.
+
+### On not improving the statement
+
+There was a temptation here, and it is worth naming. Four modules under a theorem's
+name invite a reader to think the theorem is machine-checked. It is not, and the
+barrel and every module header now say so in those words. The formalisation must not
+quietly strengthen what the manuscript claims, and a conditional theorem whose
+hypothesis is open is exactly where that would be easiest to do by omission rather
+than by assertion.

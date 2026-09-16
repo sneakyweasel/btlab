@@ -1072,7 +1072,14 @@ strict Gibbs (`klDiv_pos`); the fate layer's `klDiv_nonneg` gives only
 
 For fixed  \(d\),  \(\mathrm{FD}\)  and a finite sum over surviving
 words show that the natural density of  \(\mathbb N\setminus\mathcal C_d\)
-is their number divided by  \(2^d\). It is at most
+is their number divided by  \(2^d\).  That inference is finite additivity
+of density and nothing more, which is why  \(\mathrm{FD}\)  is needed at
+each fixed  \(d\)  separately and no uniformity in  \(d\)  is claimed; it is
+machine-checked as `density_of_finite_union` in
+`formal/Problems/Juggler/PaperBDensity.lean`, together with the
+\(d\to\infty\)  passage below (`exceptional_density_zero`).  Neither
+formalises  \(\mathrm{FD}\)  itself, which is open, so Theorem 6.1 remains
+conditional exactly as stated. It is at most
 \(\tfrac12\vartheta_d^{\,d-1}\)  for every  \(d\ge4\).
 Since  \(\mathcal C_d\subseteq\mathcal C_\infty\),
 \[
