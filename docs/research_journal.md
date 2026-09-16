@@ -51684,3 +51684,107 @@ the collapse made a numerical prediction before I measured it, and the predictio
 had a number attached that could have come out wrong. `-1.02` and `-1.97` were not
 chosen by me. That is the only version of the pull I should trust: the one that
 commits to a number first.
+
+## 16 September 2026 --- the Sturmian driving costs four percent
+
+Yesterday the record said the quasi-stationary link needed a theorem combining
+driving with criticality and that no such theorem exists. Ocafrain removed the
+criticality half. What was left was the driving, and I had been carrying it as
+the hard part without ever asking what it costs.
+
+It is askable, and the answer is a number. For a **rational** barrier `p/q` the
+period map is autonomous, so the driven problem *is* the undriven one at each
+`q`, and Ocafrain applies there. The irrational Sturmian barrier is the limit
+`q -> infinity`. So the whole question is whether the constant survives that
+limit --- not whether driving is hard in general.
+
+### The measurement
+
+```text
+cap 1600, d to 32000, against the exact phase-indexed limit
+
+      p/q     |s-beta|   c(4000)  c(8000) c(16000) c(32000)   exponent
+    12/19     6.49e-04   20.2174  19.8540  20.2953  19.8891   d^-0.9987
+    41/65     1.61e-04   20.6369  20.6215  20.5375  19.9729   d^-1.0231
+    53/84     2.26e-05   20.0926  20.0083  20.4896  20.1174   d^-0.9961
+   306/485    1.92e-06   20.1271  20.3098  20.1953  20.1983   d^-1.0040
+   665/1054   3.77e-08   20.1156  20.2815  20.1518  20.1266   d^-1.0055
+ 15601/24727  6.70e-10   20.1158  20.2816  20.1520  20.1273   d^-1.0055
+```
+
+Three orders of magnitude in the denominator, one exponent and one constant. The
+last two rows agree to six digits. The constant does not merely stay bounded as
+`q` grows --- it converges, which is the stronger statement and the one the
+irrational case actually needs.
+
+### The cap nearly sold me a law
+
+The first version of this table, at `cap = 400`, showed the constant sliding
+`19.6 -> 17.3` and an exponent of `-1.0886`. A drift like that invites a story,
+and I had one ready before I checked it. The truncated operator's gap is of
+order `cap^-2`, so the free `d^-1` law only holds while `d << cap^2`; at
+`cap = 400` that ceiling is `160000` and my last probe at `32000` was already
+leaving the regime. At 800 the exponent reads `-1.0182`, at 1600 `-1.0040` and
+the constant goes flat. The drift was my grid.
+
+That is the fourth time a resolution parameter has produced a clean-looking law
+in this problem. The tell each time was the same: the effect was smooth in the
+very parameter I was sweeping.
+
+### Why it is uniform, which is not the reason I first gave
+
+My first explanation was homogenisation --- average the word over the diffusive
+scale and only the slope survives. That requires `d >> q^2`, which at
+`q = 24727` means `d >> 6e8`. My deepest probe is `32000`, and the `q = 1054`
+and `q = 24727` rows already agree at `d = 4000`. The explanation was wrong by
+four orders of magnitude and would have sounded fine in a paper.
+
+The real reason is smaller and better. Every barrier in the family, rational or
+irrational, is within `1` of the *same* straight line: `|ceil(t*s) - t*s| < 1`,
+for every `t` and every `s`, with no constant depending on either. Uniform by
+construction. Denisov--Sakhanenko--Wachtel assume `g_n = o(c_n)` for moving
+boundaries; a Sturmian barrier is `O(1)`, far inside that.
+
+### Then the letters, where I got the exponent wrong
+
+I wanted the letter-level version: how many of the first `T` letters does a
+convergent's word get wrong? `ceil(t*s) - ceil(t*s')` moves by about
+`T|s-s'|` over `[0,T]`, so if it is monotone the words differ that often, plus
+one. For `665/1054` against `beta` out to `T = 32000` that predicts about two
+errors.
+
+The count is twelve. The difference is not monotone --- it is
+`t(s-s') + delta(ts) - delta(ts')` with each `delta` in `[0,1)`, so it crosses
+back and forth and its total variation says nothing. The arc form I formalised
+last week gives the right count: a letter is a rise iff `frac(t*s)` lies in
+`(1-s, 1)`, the orbits separate as `t|s-s'|`, and integrating the straddling
+probability gives `|s-s'| T^2`. A whole power of `T` above my guess.
+
+```text
+306/485 against beta, observed / (|s-s'| T^2)
+  T =   8000   16000   32000   64000  128000
+       1.09    1.05    1.03    1.02    1.01
+```
+
+Sixteen-fold range, converging to one from above. And it closes the loop: the
+two deepest convergents reproduce `beta`'s word *exactly* out to `t = 24726`, so
+their forward runs are identical there and only their limit profiles can differ
+--- which is precisely why their constants agree to six digits at `d = 4000` and
+only five at `d = 32000`.
+
+### What moved
+
+No bound, no fate. What moved is the record. Three days ago the driven-critical
+gap read *no literature exists*. It now reads: the criticality is covered with
+the right rate and the right Q-process, the driving costs four percent of a
+constant and nothing in the exponent, and the missing item is a theorem asserting
+what six rows of numbers already assert. That is a much smaller thing to be
+missing, and for the first time it is a thing with a statement.
+
+### On having been wrong twice in one session
+
+Both errors were explanations, not measurements --- homogenisation, and the
+monotone bound. Both were the first thing that came to mind, both were clean,
+and both were checkable in under a minute against numbers I already had. I did
+not check either until the data disagreed with it. The measurements were fine
+throughout; what needed discipline was the sentence I put next to them.

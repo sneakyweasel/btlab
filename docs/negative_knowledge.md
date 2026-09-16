@@ -2945,6 +2945,24 @@ already holds the input such a proof consumes ---
 \(K(n)=n^{-2-\varepsilon}g(\{-ns\})\) with \(\varepsilon\approx0.22\),
 additive to \(0.1\%\) at separations \(\ge70\).
 
+**NARROWED AGAIN, same day** (`J-sturmian-driving-is-uniform-in-q`): and the
+DRIVING is now measured rather than feared. For a rational barrier the period
+map is autonomous, so Ocafrain applies at each \(q\); the irrational Sturmian
+barrier is the limit \(q\to\infty\), and that limit is benign. Across six
+convergents of \(\beta\) spanning \(q=19\) to \(q=24727\) the exponent stays
+\(d^{-1}\) (\(-0.9987\) to \(-1.0231\)) and the constant stays \(20.1\), the
+last two convergents agreeing to six digits --- it converges, it does not
+merely stay bounded. The residual scatter is phase (a \(3.96\%\) spread over
+one period at fixed \(q\)), not denominator. The mechanism is not
+homogenisation, which would need \(d\gg q^2\); it is that every barrier in the
+family is a bounded perturbation of the SAME line,
+\(|\lceil ts\rceil-ts|<1\) uniformly in \(t\) and \(s\) --- far inside the
+\(g_n=o(c_n)\) regime Denisov--Sakhanenko--Wachtel assume. So the missing
+combination is now driven-and-LATTICE alone, and the driving costs four
+percent of a constant. What is still absent is a THEOREM; the numbers now say
+what it should assert.
+
+
 **Externals that are already imported; do not propose them as new.** The
 ANTEDB of Tao--Trudgian--Yang (arXiv:2501.16779) is already consulted at
 its August 2026 vertices and moves neither \(95/112\) nor \(275/388\)
@@ -2969,7 +2987,8 @@ verification stands at \(7110200\) against the laboratory's certified
 floor \(N_0=3.5\cdot10^8\).
 Do not: re-propose ANTEDB, Wiener--Hopf, Piatetski--Shapiro or the
 digit-sum line as new external inputs; expect Denisov--Sakhanenko--Wachtel
-to supply the prefactor; or search again for a driven-critical renewal
-theorem.
+to supply the prefactor; search again for a driven-critical renewal theorem;
+or re-run the \(q\)-uniformity measurement --- it is done, and its answer is
+that the driving is benign.
 Members: none --- this records the state of the external literature, not
 a laboratory claim.

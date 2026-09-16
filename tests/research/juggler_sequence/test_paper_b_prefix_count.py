@@ -4898,3 +4898,46 @@ def test_the_yaglom_rate_is_one_over_d_and_the_difference_is_its_square() -> Non
 
     # and the runs are far closer to each other than either is to the limit
     assert between[1] < 0.1 * min(row[1] for row in to_limit.values()), between
+
+
+def test_the_yaglom_constant_does_not_depend_on_the_barrier_denominator() -> None:
+    """The Sturmian driving is benign: ``q -> infinity`` does not move the constant.
+
+    For a rational barrier the period map is autonomous, so the driven problem reduces to the
+    undriven one at each ``q`` and Ocafrain's ``1/t`` applies there.  The passage to the irrational
+    Sturmian barrier is the limit ``q -> infinity``, and it is benign only if the constant in
+    ``TV ~ c/d`` stays bounded.  It does better than that -- it converges.  At ``cap = 1600`` and
+    ``d`` up to 32000 the six convergents from 12/19 to 15601/24727 all read ``c = 20.1``, and the
+    last two agree to six digits.  The cheaper settings here keep the same conclusion.
+
+    The reason is not homogenisation, which would need ``d >> q^2``.  It is that every barrier in
+    the family is within 1 of the same straight line, uniformly in ``t`` and in the slope.
+    """
+    coarse = B.yaglom_constant(12, 19, depths=(2000, 8000), cap=400)
+    fine = B.yaglom_constant(665, 1054, depths=(2000, 8000), cap=400)
+
+    for c in coarse + fine:
+        assert 17.0 < c < 23.0, (coarse, fine)                  # the constant, near 20
+    # a 55-fold change of denominator moves it by less than a tenth
+    assert abs(coarse[1] - fine[1]) / fine[1] < 0.10, (coarse, fine)
+
+    exponent = math.log((fine[1] / 8000) / (fine[0] / 2000)) / math.log(4)
+    assert -1.15 < exponent < -0.85, exponent                   # d^-1, the Yaglom rate
+
+
+def test_a_convergent_rise_word_errs_at_rate_delta_times_t_squared() -> None:
+    """The count of wrong letters is ``|s - s'| T^2``, a full power of ``T`` above the naive bound.
+
+    ``ceil(t*s) - ceil(t*s')`` oscillates rather than climbing, so its total variation does not
+    bound the disagreements.  The arc form does: a letter is a rise iff ``frac(t*s)`` lies in
+    ``(1-s, 1)``, the orbits separate as ``t|s-s'|``, and equidistribution integrates that to
+    ``|s-s'| T^2``.  This is why ``yaglom_constant`` converges along the convergents.
+    """
+    delta = abs(B.BETA - 306 / 485)
+    for depth in (16000, 32000):
+        observed = B.sturmian_word_disagreements(306, 485, depth)
+        predicted = delta * depth * depth
+        assert 0.9 < observed / predicted < 1.2, (depth, observed, predicted)
+
+    # a deeper convergent reproduces beta exactly over the same window
+    assert B.sturmian_word_disagreements(665, 1054, 16000) == 0

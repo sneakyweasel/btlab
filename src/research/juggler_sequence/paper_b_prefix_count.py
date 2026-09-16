@@ -798,6 +798,87 @@ def yaglom_distance(p: int, q: int, starts: tuple[int, ...], depths: tuple[int, 
     return out
 
 
+def yaglom_constant(p: int, q: int, depths: tuple[int, ...] = (4000, 8000, 16000, 32000),
+                    cap: int = 1600, start: int = 0) -> list[float]:
+    """``TV(pi_d, Pi_(phi_d)) * d`` -- the Yaglom constant of a barrier, by depth.
+
+    THE STURMIAN DRIVING COSTS NOTHING IN THE EXPONENT AND FOUR PERCENT IN THE CONSTANT.  For a
+    rational barrier the period map is autonomous, so the driven problem reduces to the undriven
+    one AT EACH q; the whole question is whether that survives q -> infinity, which is the passage
+    to the irrational Sturmian barrier.  It does.  At ``cap = 1600`` the exponent is ``d^-1``
+    across ``q = 19..24727`` (measured -0.9987, -1.0231, -0.9961, -1.0040, -1.0055, -1.0055) and
+    the constant is ``20.1`` throughout, with the last two convergents agreeing to six digits at
+    ``d = 4000`` (20.1156 against 20.1158).  The constant does not merely stay bounded as ``q``
+    grows: it converges.
+
+    WHY THE CAP MUST BE LARGE.  The truncated operator's spectral gap is of order ``cap^-2``, so
+    the free ``d^-1`` law holds only while ``d << cap^2``.  At ``cap = 400`` the constant appears
+    to slide 19.6 -> 17.3 over ``d = 2000..32000`` and the exponent reads -1.0886; that drift is
+    the truncation, not the dynamics.  Raising to 800 gives -1.0182 and to 1600 gives -1.0040 with
+    a flat constant.  ``cap = 400`` suffices only out to ``d ~ 10^4``.
+
+    NOT HOMOGENISATION.  Averaging the word over the diffusive scale would need ``d >> q^2``, which
+    for ``q = 24727`` means ``d >> 6e8``; the ``q = 1054`` and ``q = 24727`` rows already agree at
+    ``d = 4000``.  What makes the family uniform is that every barrier in it, rational or not, is a
+    bounded perturbation of the SAME straight line -- ``|ceil(t*s) - t*s| < 1`` holds for every
+    ``t`` and every ``s``, with no constant depending on either.  That is far inside the
+    ``g_n = o(c_n)`` regime Denisov, Sakhanenko and Wachtel (arXiv:1801.04136) assume for moving
+    boundaries.
+
+    The residual scatter across ``q`` (19.89 to 20.64) is phase, not denominator: sweeping a full
+    period at fixed ``q`` moves the constant by 3.96 percent, the same size.  See
+    ``sturmian_word_disagreements`` for the letter-level statement behind the convergence.
+    """
+    import numpy as np
+
+    word = _barrier_rises(p, q)
+    limit = _period_fixed_point(word, cap)
+    v = np.zeros(cap); v[start] = 1.0
+    w = limit.copy()
+    probe, out = set(depths), []
+    for t in range(max(depths)):
+        rise = bool(word[t % q])
+        v = _advance(v, rise, cap)
+        w = _advance(w, rise, cap)
+        if t + 1 in probe:
+            out.append(0.5 * float(np.abs(v - w).sum()) * (t + 1))
+    return out
+
+
+def sturmian_word_disagreements(p: int, q: int, depth: int, slope: float = BETA) -> int:
+    """How many of the first ``depth`` letters the rational rise word gets wrong.
+
+    THE COUNT IS ``|s - s'| * T^2``, NOT ``|s - s'| * T``.  The natural guess is that
+    ``ceil(t*s) - ceil(t*s')`` is monotone, so the words differ at most as often as it moves, once
+    per unit of ``T|s-s'|``.  That is false -- the difference oscillates rather than climbing -- and
+    the true count is a full power of ``T`` larger.  The arc form (``backWord_iff_fract_lt``, Lean)
+    gives it: the letter at ``t`` is a rise iff ``frac(t*s)`` lies in ``(1-s, 1)``, the two orbits
+    separate linearly as ``|frac(t*s) - frac(t*s')| = t|s-s'|``, and equidistribution then puts
+    ``sum over t<T of 2*t*|s-s'| = |s-s'| T^2`` letters on opposite sides of the endpoint.  It
+    saturates at ``T/2``, where the words are independent.
+
+    Measured at ``306/485`` against ``beta``, observed over predicted: 1.09, 1.05, 1.03, 1.02, 1.01
+    at ``T = 8000, 16000, 32000, 64000, 128000`` -- a 16-fold range, converging to one from above.
+    Deeper convergents are pre-asymptotic because the orbit has not yet come near the endpoint;
+    ``665/1054`` reads 0.00, 0.00, 0.31, 0.65, 0.81 over the same window, climbing to one.
+
+    This is what makes ``yaglom_constant`` converge along the convergents: ``665/1054`` and
+    ``15601/24727`` both reproduce ``beta``'s word EXACTLY out to ``t = 24726``, so their forward
+    runs are identical there and only their limit profiles -- fixed points of different periodic
+    operators -- can differ.
+    """
+    import math
+    from fractions import Fraction
+
+    s = Fraction(p, q)
+    bad = 0
+    for t in range(depth):
+        rational = math.ceil((t + 1) * s) - math.ceil(t * s)
+        true = math.ceil((t + 1) * slope) - math.ceil(t * slope)
+        if rational != true:
+            bad += 1
+    return bad
+
 def meander_constant(d_values: tuple[int, ...] = (400, 800, 1600)) -> list[float]:
     """``(N_d/2^d) / (rho^d d^(-3/2))`` -- the constant in the polynomial correction.
 
