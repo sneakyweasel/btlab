@@ -49,7 +49,7 @@ target below \(L^2\).
 |---|---|---|---|
 | \(2\) | Dirichlet | yes | the hard floor |
 | \(5.116201\) | BLS 2018 | no | recorded, knowingly unimported |
-| \(5.1163051\) | Wu-Wang 2014 **Theorem 1**, p. 266: \(\lvert p+q_1\log2+q_2\log3\rvert\ge H^{-4.1163051-\varepsilon}\), \(H=\max(\lvert q_1\rvert,\lvert q_2\rvert)\) --- **VERIFIED AT SOURCE 16 Sep 2026**, `J-wuwang-import-verified-at-source`; the substitution \(p=0\) is exactly licensed and \(\mu(\log3)\le5.1163051\) is its Corollary 1 | effective but **uncomputed**: the paper states \(H_0(\varepsilon)\) is effectively computable and does not compute it | `J-cyclemin-gap-power-transfer` |
+| \(5.1163051\) | Wu-Wang 2014 **Theorem 1**, p. 266: \(\lvert p+q_1\log2+q_2\log3\rvert\ge H^{-4.1163051-\varepsilon}\), \(H=\max(\lvert q_1\rvert,\lvert q_2\rvert)\) --- **VERIFIED AT SOURCE 16 Sep 2026**, `J-wuwang-import-verified-at-source`; the substitution \(p=0\) is exactly licensed and \(\mu(\log3)\le5.1163051\) is its Corollary 1 | effective but **uncomputed**: the paper states \(H_0(\varepsilon)\) is effectively computable and does not compute it --- and see `J-wuwang-effectivity-is-a-saddle-point-cost`: H_0 is EXPONENTIAL in where the asymptotics become effective, the prime-number part is removable at a cost of 4.1163 to 4.2599 in the exponent, and the saddle-point error is the whole difficulty; for any L a cycle search reaches, Rhin eq. (7) with constant 915 is what actually applies | `J-cyclemin-gap-power-transfer` |
 | \(8.616\) | Rhin p.160 eq. (8), *reported as* the ratio measure; disputed | unknown | **nothing** |
 | \(14.3\) | Rhin p.160 eq. (7) via Simons-de Weger Lemma 12 | yes (constant \(915\)) | Paper A Corollary 4.11, deposited |
 
