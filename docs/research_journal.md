@@ -51950,3 +51950,66 @@ careless explanation: it came from using two slightly different values of the
 same constant in two places, which is a bookkeeping failure that a beautiful
 result then rewarded. I would not have looked for it if `0.166626` had been
 `0.171`.
+
+## 16 September 2026 --- A(phi) was never an unknown
+
+I went after the amplitude expecting to measure it, and the laboratory already had
+the tool: `J-phase-shift-is-one-update-and-R-halves` proves that shifting the phase
+by the slope IS one application of the update map. So I did not need to measure
+anything. I needed to push the tail form through the update and see whether it
+closed.
+
+It closes.
+
+```text
+b = 0   Pi'(m) = (Pi(m) + Pi(m-1))/2        c' = c - s        A' = A / (2(1-s))
+b = 1   Pi'(m) = (Pi(m) + Pi(m+1))/2 / N    c' = c + (1-s)    A' = A / (2s(1 - R/2))
+```
+
+So the amplitude is a multiplicative cocycle over the rotation, driven by the
+Sturmian letter and by the boundary fraction. The non-rising multiplier depends on
+nothing whatever except the slope --- `1/(2(1-s))`, which at `306/485` is
+`1.3547486`. Its five occurrences in fourteen steps measure `1.3549281, 1.3549291,
+1.3549301, 1.3549280, 1.3549293`: agreeing with each other to `1e-6`, and with the
+prediction to `1.3e-4`, which is the cap and the fit window.
+
+### Two things fell out that I was not looking for
+
+First, the branch. Last tick I could not work out when the linear factor's zero
+wraps, tried a `phi < gamma` rule, and recorded it as a false trail. The recursion
+answers it: `c - s` or `c + (1-s)`, and the wrap happens exactly when
+`frac(phi) >= 1 - s`, which is exactly `b(phi) = 1`. The branch is the Sturmian
+letter. It was never something to guess, and I should have derived it rather than
+pattern-matching numbers at it.
+
+Second, and better: for `A` to be single-valued on the circle the cocycle must
+average to zero. Write that condition out and it is
+
+```text
+integral over {b=1} of log(1 - R/2)  =  -(1-s)log(2(1-s)) - s log(2s)  =  H(s) - log 2
+```
+
+with `H` the binary entropy. And at `s = beta` that right-hand side is `log rho`
+identically --- to `8.3e-17` --- because the Chernoff rate just is
+`beta^(-beta) (1-beta)^(beta-1) / 2`. Which means the cocycle reproduces the
+ergodic identity `log rho = integral log(1 - b R / 2)` that
+`J-boundary-fraction-is-the-clean-coordinate` derives from the count recursion.
+Two independent routes to the same statement, and neither knew about the other.
+
+I briefly thought I had a discrepancy here --- I worked `H(beta) - log 2` out by
+hand as `-0.0347919` against `log rho = -0.0346882` and started wondering which
+assumption was wrong. The identity is exact; my arithmetic was not. Worth noting
+only because the instinct to hunt for a subtle cause before checking the sum is
+the same instinct that manufactured `1/6` two ticks ago.
+
+### Where the profile stands
+
+It started as three unknown functions of the phase: shape, zero, amplitude. The
+shape is universal. The zero is `gamma - phi` with `gamma` one constant. The
+amplitude is the cocycle above. Everything that is left is `R` --- and `R` is what
+the laboratory already calls the clean coordinate. That is the whole of Paper B's
+quasi-stationary object reduced to one scalar function on the circle.
+
+Seven theorems in `PaperBAmplitudeCocycle`, clean axioms. They prove the
+consequences of the tail form, not the form itself --- the form is measured, and
+the module says so where someone would otherwise assume otherwise.

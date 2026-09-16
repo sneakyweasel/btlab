@@ -6495,7 +6495,8 @@
         "J-sturmian-driving-is-uniform-in-q",
         "J-convergent-word-errs-at-delta-t-squared",
         "J-yaglom-constant-is-the-relaxation-time",
-        "J-profile-is-linear-times-geometric-in-the-line-coordinate"
+        "J-profile-is-linear-times-geometric-in-the-line-coordinate",
+        "J-tail-amplitude-is-a-cocycle-over-the-boundary-fraction"
       ],
       "aliases": [],
       "nk_cluster": null
