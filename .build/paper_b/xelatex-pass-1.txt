@@ -78,10 +78,14 @@ Koksma in-equal-ity to
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1577.
+(amsmath)                 on input line 1583.
 
 [21] [22] [23] [24] [25] [26] [27] [28] [29] [30] [31] [32] [33] [34] [35]
-[36] [37] [38] [39] (juggler_parity_discrepancy_note.aux) )
+[36] [37] [38] [39] (juggler_parity_discrepancy_note.aux)
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ )
 (see the transcript file for additional information)
 Output written on juggler_parity_discrepancy_note.pdf (39 pages).
 Transcript written on juggler_parity_discrepancy_note.log.

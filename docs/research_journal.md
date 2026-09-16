@@ -52529,3 +52529,60 @@ Building it touches nine artefacts downstream of one markdown file --- the root
 build logs, the generated tex, two PDFs, the release JSON, the review mirror, the
 zenodo copy and the web companion. Worth knowing before editing, which I now do for
 both papers.
+
+## 16 September 2026 --- one estimate, and it was one word
+
+Paper B's barrel says of itself: *every declaration reachable from here is an
+identity, a constant, or a threshold; not one of them is an estimate.* That is why
+49 axiom-checked declarations do not amount to corroboration, and it is the honest
+reason I gave Philippe for not putting the paper on Zenodo yet.
+
+So: get an estimate in. The surprise was how small the gap turned out to be.
+
+### The gap was the word `strict`
+
+The fate layer already has Gibbs' inequality, `klDiv_nonneg`, giving `D(p||q) >= 0`.
+Through `theta = exp(-D)` that gives `theta <= 1`. And Theorem 6.1's bound is
+`(1/2) theta_d^(d-1)` --- so with `theta <= 1` the bound reads `1/2` at every depth.
+Vacuous. The entire content of Section 6 rides on `theta < 1`, strictly, and that was
+the one thing not proved.
+
+`klDiv_nonneg` is built on `Real.one_sub_inv_le_log_of_pos`. The strict version
+follows from `Real.add_one_lt_exp`, which Mathlib has, and then the same proof goes
+through with `<` in place of `<=`. Six theorems, and the load-bearing one is a
+three-line adaptation of a proof already in the repository.
+
+That is worth recording as a pattern rather than a one-off: the formal layer was not
+missing machinery, it was missing a strengthening of machinery it already had. I
+would not have found that by looking for something big to formalise.
+
+### Wiring it in was the part that mattered
+
+A module nobody imports proves nothing about the paper. So `PaperBChernoff` is now
+imported by the Paper B barrel, the barrel's claim is corrected --- it now says one
+declaration is an estimate and the rest are not --- and the manuscript cites
+`theta_lt_one` at the point where `theta_d < 1` is used, beside the note that
+`klDiv_nonneg` alone would leave the bound vacuous.
+
+Correcting the barrel's own sentence was the satisfying part. It had been true when
+written and is now false, and the fix is a claim about exactly one module rather than
+a vaguer one about the whole.
+
+### What this does not do
+
+The exponential Markov step, the binomial generating function, and the passage from
+surviving words to natural density are all still written mathematics. This proves the
+inequality those steps are aimed at, not the steps. Paper B's analytic core --- Theorem
+4.11, Theorem 5.4, Appendices A to C --- is untouched, and the count is 49 identities,
+constants and thresholds plus one estimate, against Paper A's 335 and Paper C's 409.
+
+On the Zenodo question that prompted this: the third objection has moved, not
+cleared. I would still not call the formal layer corroboration of the analysis, and
+the module's own header says so.
+
+### Bookkeeping
+
+Fourth time today the Bash heredoc ate a backslash level and produced a script that
+silently searched for control characters. My memory note has said *use the Write tool*
+since September 14. I read it, judged this case safe, and was wrong again. The note
+now says to use Write unconditionally; the thing to change is not the note.

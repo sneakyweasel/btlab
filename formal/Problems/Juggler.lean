@@ -76,6 +76,7 @@ import Problems.Juggler.PaperBBackwardWord
 import Problems.Juggler.PaperBSturmianBarrier
 import Problems.Juggler.PaperBAmplitudeCocycle
 import Problems.Juggler.PaperBTailSpectrum
+import Problems.Juggler.PaperBChernoff
 import Problems.Juggler.PaperBPaperCBridge
 import Problems.Juggler.PaperBWeightGap
 import Problems.Juggler.PaperBBarrierStep
