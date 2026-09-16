@@ -52736,3 +52736,50 @@ reduced by any of it.
 
 That is worth being plain about. A great deal got characterised today and the thing
 it was all pointing at did not move.
+
+## 16 September 2026 --- the Errno 22 lead, and my wrong hypothesis about it
+
+I recorded this morning that the pytest-xdist crashes and the Paper C build failure
+shared an errno and might share a cause, and that this would make the two lost hours
+a symptom rather than a configuration mistake. Both halves of that were wrong, and
+the right answer is better news.
+
+### They are not the same failure
+
+The xdist one is `OSError: [Errno 22]` from `sys.stdin.readline()` --- a pipe read.
+The Paper C one is from `shutil.copyfile` writing a PDF --- a file write, transient,
+and the file was writable seconds later with Edge in the process list. Different
+syscalls on different object types. `EINVAL` on Windows is a generic mapping for many
+distinct native errors, so sharing it was never much evidence, and I should have
+treated the coincidence as a question rather than a lead.
+
+### What the xdist failure actually is
+
+Reproduced it with a verbose run and counted the progress characters:
+
+```text
+12 workers [322 items]        <- -n auto is 12 here, physical cores, not 24
+progress characters: 322 of 322
+failures marked F  : 1        <- and that F IS the node-down
+summary line present: False
+```
+
+Every test ran. Every test passed. THEN `gw0` failed to terminate. It is an
+end-of-session worker teardown race, and the `Errno 22` traceback is the orphaned
+worker reading a pipe the master had already closed --- downstream of the death, not
+its cause. The cost is the lost summary line and one spurious `F`, not a lost run.
+
+So this morning's two hours were not spent on a broken test suite. They were spent
+re-queueing runs whose results were fine, because I read a teardown race as a crash
+and could not see the summary that would have told me otherwise.
+
+### What I did not do
+
+I did not cap `-n auto`. Yesterday I would have, and it would have slowed every run
+on this machine and the peer's to fix something worker count has nothing to do with.
+The note now in `environment.mdc` says so explicitly, because capping workers is
+exactly what the next person will reach for.
+
+Not diagnosed: why the teardown races at all. pytest 9.0.2 with xdist 3.8.0 is a new
+pairing and xdist declares only `pytest>=7.0.0`, which is not evidence either way.
+That is where someone should start if it becomes worth fixing rather than knowing.
