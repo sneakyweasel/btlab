@@ -6492,7 +6492,8 @@
         "J-q-process-is-bessel-three-and-transient",
         "J-yaglom-rate-is-one-over-d",
         "J-sturmian-driving-is-uniform-in-q",
-        "J-convergent-word-errs-at-delta-t-squared"
+        "J-convergent-word-errs-at-delta-t-squared",
+        "J-yaglom-constant-is-the-relaxation-time"
       ],
       "aliases": [],
       "nk_cluster": null
