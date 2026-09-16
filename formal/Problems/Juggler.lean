@@ -73,6 +73,7 @@ import Problems.Juggler.PaperBThreshold
 import Problems.Juggler.PaperBTilt
 import Problems.Juggler.PaperBSlopeRate
 import Problems.Juggler.PaperBBackwardWord
+import Problems.Juggler.PaperBSturmianBarrier
 import Problems.Juggler.PaperBPaperCBridge
 import Problems.Juggler.PaperBWeightGap
 import Problems.Juggler.PaperBBarrierStep
