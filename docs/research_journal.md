@@ -52482,3 +52482,50 @@ Editing the manuscript staled its build digest. `tools/build_paper_b.py` regener
 the `.tex`, the PDF, the review-bundle mirror, the Zenodo package copy and the web
 companion's copy --- five artefacts downstream of one markdown file, all checked by
 gates. Worth knowing before editing a manuscript rather than after.
+
+## 16 September 2026 --- Remark 5.13, and a containment I did not need to fit
+
+Added the Bohr-set result to Paper A as Remark 5.13. Writing it changed what it
+is.
+
+I had the survivor set as a fitted condition: `0 < g(L) < kappa L` with `kappa`
+about `0.63/(N0 ln N0)`, separated cleanly but measured. Converting to Paper A's
+normalisation to write the remark, the containment fell out of Theorem 4.10 --- the
+paper's own theorem. `n log n min(Lambda,1) <= 2L` says directly that a length
+survives only if `Lambda <= 2L/(N0 log N0)`, with the positivity being the
+`3^o > 2^L` that makes financing meaningful at all. So the Bohr structure is proved,
+not fitted, and what I measured is only how much sharper the parity layer is:
+constant `0.44` against the crude `2`, a factor of about `4.5`.
+
+That is a better remark than the one I set out to write, and I would not have found
+it by staring at my own numbers. It came from having to express them in someone
+else's units.
+
+### Where it lands
+
+Section 5.8 ends by stating its own limitation: *no all-index transition theorem is
+asserted: excluding a fan member also requires ruling out intervening non-fan
+lengths.* The Bohr set is exactly what those intervening lengths are, so the caveat
+becomes an explicit finite set at each floor instead of an open worry.
+
+The remark also corrects a reading that Proposition 5.12 invites and that I fell
+for myself two hours earlier: the survivors are not the fan. Of 576 at `N0 = 1e6`,
+three are semiconvergents and eight are multiples; 565 are neither. The fan members
+are the record-setters, which is why one is always the first survivor and why the
+frontier climbs the fan --- not why the set is what it is.
+
+### On the revision question
+
+Philippe asked whether there is enough for a Paper A revision before asking for
+this. The honest answer was: yes, but almost none of it from today. Since the
+9 September deposit the manuscript has gained 1205 lines --- Contribution 8,
+Theorem 3.40, Proposition 3.41, three results in 6.3, two in Appendix E, and the
+whole of Appendix F --- all finished, all gated. What has NOT changed is the
+headline: `780239` and Corollary 5.11 were already in version 1.0.0. So a revision
+is the same result with substantially more supporting theory, and Remark 5.13 is
+one paragraph of it rather than the case for it.
+
+Building it touches nine artefacts downstream of one markdown file --- the root
+build logs, the generated tex, two PDFs, the release JSON, the review mirror, the
+zenodo copy and the web companion. Worth knowing before editing, which I now do for
+both papers.

@@ -3988,6 +3988,45 @@ also requires ruling out intervening non-fan lengths. (At
 \(n_{\max}(q_{12})\) in the same way and are all cleared by
 \(n_{\max}(L_1)\).)
 
+**Remark 5.13 (the intervening lengths form a one-sided Bohr set).**
+The lengths that intervene are not arbitrary, and Theorem 4.10 already
+says what they are. A cycle with minimum \(n\ge N_0\) satisfies
+\(n\log n\cdot\min(\Lambda,1)\le 2L\), so a length survives the floor
+only if
+\[
+0<\Lambda(L)\ \le\ \frac{2L}{N_0\log N_0},
+\]
+the positivity being the requirement \(3^{o}>2^{L}\) that makes the
+finance inequality meaningful at all. This is a one-sided inhomogeneous
+Diophantine condition whose window is *linear in \(L\)*: a Bohr set for
+the rotation by \(\log 2/\log 3\), one-sided because only one sign of
+\(\Lambda\) can finance a cycle. Two consequences are worth recording.
+
+First, the survivor set at any floor is explicit rather than tabulated.
+The containment above is proved; the sharp constant is not, and the
+parity layer of Section 5.7 is about \(4.5\) times sharper. Writing the
+threshold as \(\Lambda\le cL/(N_0\log N_0)\), the fitted \(c\) is
+\(0.4445\), \(0.4326\), \(0.4429\), \(0.4564\), \(0.3779\) at
+\(N_0=10^6\), \(10^7\), \(26254995\), \(68000000\), \(10^8\) — flat to
+about ten percent across two decades, against the crude constant \(2\)
+above. At each of these floors a single threshold separates survivors
+from excluded lengths with no misclassification among the \(199424\)
+lengths with \(\Lambda>0\) below \(2\cdot 10^5\).
+
+Second, and this corrects the natural reading of Proposition 5.12, the
+survivors are *not* the fan. Of the \(576\) survivors at \(N_0=10^6\)
+below \(2\cdot10^5\), three are semiconvergent denominators and eight
+are multiples of one; the remaining \(565\) are neither. The fan members
+are the record-setters of the one-sided approximation, which is why one
+of them is always the *first* survivor at a given floor and why the
+frontier climbs the fan — not why the survivor set is what it is. The
+three-distance theorem then predicts the shape of the rest: consecutive
+survivors at \(N_0=10^6\) differ by \(84\), \(485\), \(401\), \(569\),
+\(1054\) and \(317\) — appearing \(268\), \(132\), \(105\), \(24\),
+\(23\) and \(23\) times — each a convergent or semiconvergent
+denominator of \(\log 2/\log 3\). Nothing here is a new exclusion; it
+says which lengths the price list of this section has to price.
+
 | \(k\) | \(L_k\) | \(\Lambda_k\) | \(n_{\max}(L_k)\) = floor that passes \(L_k\) |
 |---|---|---|---|
 | \(0\) | \(176251\) | \(3.600\cdot10^{-6}\) | \(1.044\cdot10^{9}\) |
