@@ -51884,3 +51884,69 @@ describing it. The root cause turned out to be the Bash heredoc eating a
 backslash level even with a quoted delimiter, so the doubling I had been relying
 on as a defence was never a defence. Naming the cause is worth more than the
 three repairs.
+
+## 16 September 2026 --- the shape was settled all along, in the wrong coordinate
+
+With the external rows closed I went looking for the oldest open thing in Paper B,
+and it was the profile's shape. The double root predicts
+`Pi(m) ~ A(m + c) r*^m`. The row recording the attempt says the implied `c`
+drifted `1.05 -> 2.59` over `m = 6..26` and varied with the phase from `1.05` to
+`0.29`, and concludes that this is *equally consistent with the form being wrong*.
+
+Both effects were artefacts, and today's machinery removes them.
+
+### The drift in m was the cap
+
+That row measured the profile by iterating forward to `K = 60000`, which leaves
+the tail unconverged --- it says so. But for a rational barrier the period map's
+fixed point solves the thing directly, to whatever tolerance you ask. Do that and
+`Pi(m)/r*^m` is linear, with a maximum relative residual of `2.4e-4` at
+`cap = 1200`. Better: the residual falls like `cap^-2` --- `3.6e-2, 1.2e-2,
+3.8e-3` at caps `400, 700, 1200`, whose ratios are `1.75` and `1.75^2 = 3.06`.
+So the departure from linearity is the truncation, and the form is exact.
+
+### The phase variation was the coordinate
+
+This is the part I like. Sorting the measured `c` by phase and differencing:
+
+```text
+  d(phi)   0.171   0.171   0.144   0.027   0.144
+  d(c)    -0.172  -0.171  -0.144  -0.026  -0.1445
+```
+
+Slope exactly `-1`. So `c(phi) = gamma - phi`, a sawtooth, and over 18 phases
+`c(phi) + phi` has standard deviation `6.4e-4`.
+
+The reason is one line: `ceil(x) - x = 1 - frac(x)`. The laboratory measures the
+walk's height as `m = o_d - ceil(d*beta)`, distance to the *barrier*. Distance to
+the *line* is `m + 1 - frac(d beta)`. Choosing the barrier injects exactly `-phi`
+into the prefactor's zero. In the line coordinate the shape does not depend on the
+phase at all --- and the phase-dependence that has been treated as a feature of
+this problem since the psi work is, for the shape at least, a choice of origin.
+
+### And then 1/6, which was not real
+
+The extrapolated constant at `306/485` came out `0.166626`. Two independent
+Richardson pairs agreed to `1.3e-4`, and `1/6 = 0.1666667`. That is agreement to
+four significant figures and I wanted it.
+
+It is an artefact. `gamma` is amplified `237x` by relative error in `r*`, and I
+had paired the `306/485` barrier with `BETA`'s `r*` rather than its own --- a
+mismatch of `8e-6`, which is `2e-3` in `gamma`. Using the barrier's own double
+root gives `0.168457`. The `1/6` was manufactured by my own inconsistency.
+
+Along the convergents, each with its own `r*`, gamma does converge: `0.194344,
+0.175948, 0.174202, 0.168457, 0.167875`. The limit is near `0.167`, which is
+still consistent with `1/6`. I am not claiming it. The last two convergents
+differ by `6e-4` and the sensitivity is what it is.
+
+### Four for four
+
+That is the fourth clean number to evaporate today --- homogenisation, the
+monotone letter bound, the sub-critical non-convergence, and now `1/6`. In every
+case the measurement was fine and the story I put next to it was not. The one
+that worries me is this one, because unlike the others it did not come from a
+careless explanation: it came from using two slightly different values of the
+same constant in two places, which is a bookkeeping failure that a beautiful
+result then rewarded. I would not have looked for it if `0.166626` had been
+`0.171`.

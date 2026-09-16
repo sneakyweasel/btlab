@@ -6494,7 +6494,8 @@
         "J-yaglom-rate-is-one-over-d",
         "J-sturmian-driving-is-uniform-in-q",
         "J-convergent-word-errs-at-delta-t-squared",
-        "J-yaglom-constant-is-the-relaxation-time"
+        "J-yaglom-constant-is-the-relaxation-time",
+        "J-profile-is-linear-times-geometric-in-the-line-coordinate"
       ],
       "aliases": [],
       "nk_cluster": null

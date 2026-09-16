@@ -888,6 +888,58 @@ def sturmian_word_disagreements(p: int, q: int, depth: int, slope: float = BETA)
             bad += 1
     return bad
 
+def quasi_stationary_prefactor(p: int, q: int, caps: tuple[int, int] = (400, 700),
+                               window: tuple[int, int] = (8, 25), phase: int = 0,
+                               tol: float = 1e-15) -> float:
+    """``gamma`` in ``Pi_phi(m) = A(phi) (m + gamma - phi) r*^m``, Richardson-extrapolated in the cap.
+
+    THE SHAPE IS SETTLED, AND THE PHASE VARIATION WAS A COORDINATE ARTEFACT.
+    ``J-rho-has-a-tail-variable-variational-formula`` predicts a linear prefactor from the double
+    root at ``r* = (1-s)/s``, and ``J-quasi-stationary-profile-is-tight-shape-unsettled`` could not
+    confirm it: the implied constant drifted 1.05 to 2.59 over ``m = 6..26`` and varied with the
+    phase from 1.05 to 0.29, which that row recorded as "equally consistent with the form being
+    wrong".  Both effects are now explained and neither is the form.
+
+    The drift in ``m`` is the CAP.  Forward iteration to ``K = 60000`` leaves the tail unconverged;
+    the period map's fixed point solves it directly, and then ``Pi(m)/r*^m`` is linear with a
+    maximum relative residual of 2.4e-4 at ``cap = 1200`` over ``m = 8..24``, falling like
+    ``cap^-2`` (3.6e-2, 1.2e-2, 3.8e-3 at caps 400, 700, 1200 over the wider window).
+
+    The variation in PHASE is the coordinate.  Measuring ``m`` from the barrier ``ceil(d*s)`` rather
+    than from the line ``d*s`` injects exactly ``-phi``, since ``ceil(x) - x = 1 - frac(x)``.  So
+    ``c(phi) = gamma - phi`` mod 1, a sawtooth of slope exactly -1: measured over 18 phases the
+    combination ``c(phi) + phi`` has standard deviation 6.4e-4.  In the distance-to-the-line
+    coordinate the shape does not depend on the phase at all.
+
+    PRECISION WARNING, and it cost a false identification.  ``gamma`` is amplified 237x by relative
+    error in ``r*``: pairing the ``306/485`` barrier with BETA's ``r*`` instead of its own gives
+    0.166626 rather than 0.168581, and 0.166626 agrees with 1/6 to 4e-5, which is a coincidence of
+    the mismatch.  Always use the barrier's own ``r* = (1-p/q)/(p/q)``.
+
+    Along the convergents of BETA, gamma converges: 0.194344, 0.175948, 0.174202, 0.168457,
+    0.167875 at 12/19, 41/65, 53/84, 306/485, 665/1054.  The limit is near 0.167.  That is
+    consistent with 1/6 and is NOT an identification -- the spread of the last two is 6e-4 and the
+    ``r*`` sensitivity is what it is.
+    """
+    import numpy as np
+
+    s = p / q
+    r_star = (1.0 - s) / s
+    word = _barrier_rises(p, q)
+    lo, hi = window
+    fitted: dict[int, float] = {}
+    for cap in caps:
+        profile = _period_fixed_point(word, cap, tol=tol)
+        for t in range(phase):
+            profile = _advance(profile, bool(word[t % q]), cap)
+        ms = np.arange(lo, hi)
+        ys = np.array([profile[m] / r_star ** m for m in ms])
+        slope, intercept = np.polyfit(ms, ys, 1)
+        fitted[cap] = intercept / slope
+    a, b = caps
+    return (fitted[b] * b * b - fitted[a] * a * a) / (b * b - a * a)
+
+
 def meander_constant(d_values: tuple[int, ...] = (400, 800, 1600)) -> list[float]:
     """``(N_d/2^d) / (rho^d d^(-3/2))`` -- the constant in the polynomial correction.
 
