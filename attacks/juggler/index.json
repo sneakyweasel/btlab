@@ -6499,7 +6499,8 @@
         "J-profile-is-linear-times-geometric-in-the-line-coordinate",
         "J-tail-amplitude-is-a-cocycle-over-the-boundary-fraction",
         "J-tail-spectral-gap-closes-like-one-over-root-q",
-        "J-psi-jumps-are-summable-and-psi-is-bounded-variation"
+        "J-psi-jumps-are-summable-and-psi-is-bounded-variation",
+        "J-staircase-and-cycle-records-split-betas-semiconvergents"
       ],
       "aliases": [],
       "nk_cluster": null
