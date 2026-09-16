@@ -1195,6 +1195,63 @@ def staircase_jumps(kmax: int) -> list[int]:
     return out
 
 
+def tail_predicts_boundary(p: int, q: int, phases: tuple[int, ...] = (0, 23, 46, 69),
+                           cap: int = 1600, tol: float = 1e-13) -> list[tuple[float, float, float]]:
+    """``(R, R predicted from the tail, residual)`` per phase -- and the prediction FAILS.
+
+    THE REDUCTION THIS TESTS, AND WHY IT WOULD HAVE MATTERED.  After
+    ``J-profile-is-linear-times-geometric-in-the-line-coordinate`` and
+    ``J-tail-amplitude-is-a-cocycle-over-the-boundary-fraction`` the profile is
+    ``Pi_phi(m) = A(phi)(m + gamma - phi) r*^m`` for ``m >= 1``, with ``gamma`` one constant and
+    ``A`` following an explicit cocycle whose only input is ``R``.  Since the profile is
+    normalised, ``R + sum_(m>=1) Pi_phi(m) = 1`` exactly, and the tail sum has a closed form:
+
+        R  =?=  1 - A r* [ 1/(1-r*)^2 + c/(1-r*) ].
+
+    If that held, ``R`` would not be an independent unknown -- the whole phase-indexed apparatus
+    would close into a single scalar cocycle over the rotation, and the laboratory's clean
+    coordinate would be computable rather than measured.
+
+    IT DOES NOT HOLD.  The residual converges in the cap and does not converge to zero: at
+    306/485 it reads +2.33e-2, +7.12e-3, +3.52e-3, +3.52e-3 at caps 400, 800, 1600, 3200 for
+    phase 0 -- identical at the last two to three figures -- and likewise -7.38e-4 at phase 23,
+    -2.76e-4 at phase 46 and +3.90e-3 at phase 69.  Converged, and nonzero.
+
+    WHAT THE RESIDUAL IS.  Exactly minus the boundary-layer mass.  The normalisation is exact,
+    so the residual equals the extrapolated tail sum minus the true sum over ``m >= 1``, which is
+    the mass the pure tail form misses near the barrier.  Over 200 phases it runs -2.941e-3 to
+    +7.318e-3 with mean +1.076e-3, which is -3.3 to +9.8 percent of ``R``.
+
+    AND IT HAS NO SIMPLE RULE, on this evidence.  It is not explained by the rise letter (means
+    8.7e-4 against 1.19e-3, with standard deviations 8.9e-4 and 2.25e-3 swamping the gap), and
+    correlates only weakly with the phase (0.19) or with ``R`` itself (-0.16).
+
+    CONSEQUENCE.  ``R`` remains the fundamental unknown of the quasi-stationary profile.  The
+    description costs one constant, one cocycle, and ``R`` -- and this measures how close the
+    first two come to determining the third: within about five percent typically, and never
+    exactly.
+    """
+    import numpy as np
+
+    slope = p / q
+    r_star = (1.0 - slope) / slope
+    word = _barrier_rises(p, q)
+    profile = _period_fixed_point(word, cap, tol=tol)
+    wanted = set(phases)
+    out: list[tuple[float, float, float]] = []
+    for t in range(max(phases) + 1):
+        if t in wanted:
+            ms = np.arange(8, 25)
+            ys = np.array([profile[m] / r_star ** m for m in ms])
+            amplitude, intercept = np.polyfit(ms, ys, 1)
+            zero = intercept / amplitude
+            predicted = 1.0 - amplitude * r_star * (
+                1.0 / (1.0 - r_star) ** 2 + zero / (1.0 - r_star))
+            out.append((float(profile[0]), float(predicted), float(profile[0] - predicted)))
+        profile = _advance(profile, bool(word[t % q]), cap)
+    return out
+
+
 def meander_constant(d_values: tuple[int, ...] = (400, 800, 1600)) -> list[float]:
     """``(N_d/2^d) / (rho^d d^(-3/2))`` -- the constant in the polynomial correction.
 
