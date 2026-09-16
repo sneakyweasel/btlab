@@ -6501,7 +6501,8 @@
         "J-tail-spectral-gap-closes-like-one-over-root-q",
         "J-psi-jumps-are-summable-and-psi-is-bounded-variation",
         "J-staircase-and-cycle-records-split-betas-semiconvergents",
-        "J-parity-leftovers-are-a-one-sided-bohr-set"
+        "J-parity-leftovers-are-a-one-sided-bohr-set",
+        "J-tail-double-root-in-lean-and-paper-b-updated"
       ],
       "aliases": [],
       "nk_cluster": null

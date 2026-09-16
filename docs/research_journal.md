@@ -52415,3 +52415,70 @@ in the visualization layer --- it targets the Denjoy--Koksma competition, not th
 parity layer. So this says nothing about whether it is the right floor for its own
 purpose, and I checked what it was for before writing the sentence rather than
 after.
+
+## 16 September 2026 --- consolidation, and two papers left alone
+
+Asked to consolidate the day's results in Lean and bring papers A, B and C up to
+date. The Lean part was straightforward. The paper part turned out to be mostly a
+question of what NOT to touch.
+
+### Lean
+
+`PaperBTailSpectrum`, seven theorems. Everything the tail-spectrum row reads its
+numerics against is calculus on one function `h s z = log(1+z) - log 2 - (1-s)log z`:
+the derivative vanishes at `(1-s)/s`, so `r*` is the only positive root and it is
+double; the second derivative there is `s^3/(1-s)`, the constant in the `q^(-1/2)`
+gap law; and the minimum value is `H(s) - log 2`, which is `log rho`.
+
+That last one is worth noting. It is the same identity `PaperBAmplitudeCocycle`
+proves from the amplitude side, where it comes out of requiring the cocycle to be
+single-valued. Two routes, one identity, and neither knew about the other when I
+wrote them four hours apart.
+
+The proofs cost more than they should have. Two `field_simp` calls wanted a `ring`
+after them, and the derivative fought an instance diamond --- `HasDerivAt.sub` on
+two functions produces `normedAddCommGroup.toAddCommGroup` where the goal wants
+`instAddCommGroup`. `simpa [h]` could not bridge it and `unfold h` could. I have hit
+that diamond twice today now.
+
+### Paper B
+
+Not deposited --- the build guide says so explicitly --- so editing it is ordinary
+work. The passage worth updating is *what is open, and what is excluded*, and the
+open link is unchanged: the iteration's convergence. What changed is everything
+around it.
+
+Two attacks ruled out by measurement became three, and the third is ruled out by
+argument: no exponential weight restores a spectral gap, because the log essential
+radius at weight `r^m` is the same expression whose stationary point is `r*`. The
+literature is now named rather than reported absent --- Ocafrain's moving-boundary
+results, including that no strict quasi-stationary distribution exists once the
+boundary moves, which means the phase-indexed family the paper uses is forced and
+not a modelling choice. And `psi` was claimed bounded; it is of bounded variation.
+
+### Papers A and C, deliberately untouched
+
+Both are deposited with DOIs, so editing them is an outward-facing act and needs a
+reason. Neither has one.
+
+Paper A prints *with Rhin's effective measure this excludes every cycle with
+`L^14.3 <= n log n / 915`*. I spent part of today establishing that Rhin's (7)
+carries no constant and that the 915 belongs to Simons--de Weger's Lemma 12 --- and
+my first instinct was that this made the sentence loose. It does not. The paper says
+*with* Rhin's measure, credits Simons--de Weger separately for the financing, and
+lists Rhin under classical inputs *used only in Corollary 4.11*. The chain is
+described correctly. And killing Rhin (8) confirms `L^14.3` rather than changing it,
+since Paper A never claimed `L^8.616`.
+
+Paper C has no contact with anything from today.
+
+So the answer to *update papers A, B and C* is: one of them. Leaving the other two
+alone is the action here, not the absence of one, and it is worth writing down as a
+decision rather than letting it look like something I forgot.
+
+### One gate I broke and fixed
+
+Editing the manuscript staled its build digest. `tools/build_paper_b.py` regenerates
+the `.tex`, the PDF, the review-bundle mirror, the Zenodo package copy and the web
+companion's copy --- five artefacts downstream of one markdown file, all checked by
+gates. Worth knowing before editing a manuscript rather than after.
