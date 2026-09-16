@@ -62,13 +62,10 @@ echeck.sty
 (C:\Users\phili\AppData\Local\Programs\MiKTeX\tex/generic/uniquecounter\uniquec
 ounter.sty)))
 (C:\Users\phili\AppData\Local\Programs\MiKTeX\tex/latex/l3kernel\l3backend-xete
-x.def)
-No file juggler_parity_discrepancy_note.aux.
+x.def) (juggler_parity_discrepancy_note.aux)
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
-
-Package hyperref Warning: Rerun to get /PageLabels entry.
-
+(juggler_parity_discrepancy_note.out) (juggler_parity_discrepancy_note.out)
 (C:\Users\phili\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmtt.fd)
 (C:\Users\phili\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd)
 (C:\Users\phili\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd)
@@ -84,26 +81,7 @@ Package amsmath Warning: Foreign command \over;
 (amsmath)                 on input line 1577.
 
 [21] [22] [23] [24] [25] [26] [27] [28] [29] [30] [31] [32] [33] [34] [35]
-[36] [37]
-
-Package longtable Warning: Column widths have changed
-(longtable)                in table 4 on input line 2696.
-
-[38]
-
-Package longtable Warning: Table widths have changed. Rerun LaTeX.
-
-[39] (juggler_parity_discrepancy_note.aux)
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-
-Package rerunfilecheck Warning: File `juggler_parity_discrepancy_note.out' has 
-changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
- )
+[36] [37] [38] [39] (juggler_parity_discrepancy_note.aux) )
 (see the transcript file for additional information)
 Output written on juggler_parity_discrepancy_note.pdf (39 pages).
 Transcript written on juggler_parity_discrepancy_note.log.
