@@ -51475,3 +51475,52 @@ The audit asks "are the imported classical results the strongest available?" and
 answers it carefully for the result it does not use. The one it does use got a
 row in a table. An input is easiest to leave unchecked precisely when it is load
 bearing, because checking it has a cost and nothing has gone wrong.
+
+
+## Read at source: the import is right and the query was wrong
+
+Philippe supplied the paper. Wu and Wang, *J. Number Theory* 142 (2014) 264-273,
+Theorem 1, p. 266:
+
+> For any `eps > 0` there exists a positive integer `H_0(eps)` such that
+> `|p + q_1 log 2 + q_2 log 3| >= H^(-4.1163051-eps)` for all integers
+> `p, q_1, q_2` with `H = max(|q_1|,|q_2|) >= H_0(eps)`, where `H_0(eps)` is
+> effectively computable.
+
+That is the three-term linear independence measure the reduction dossier claims,
+with the same exponent and the same `H` convention. The substitution
+`p = 0, q_1 = -L, q_2 = o` is exactly licensed, and `mu(log 3) <= 5.1163051` is
+Corollary 1 --- derived *from* Theorem 1. The two-term headline is the consequence;
+the three-term measure is the technical core. The query is withdrawn and the
+closure threshold `n >> L^5.1163051` stands where it stood.
+
+### What the query got right, and where it went wrong
+
+Right: a two-term measure cannot bound a form in two logarithms, and the published
+headline is the two-term statement. Those remain true.
+
+Wrong: inferring from the headline what the paper proves. I had the shape of the
+argument correct and the premise unchecked, and I reasoned from a citation key
+(`wu-wang-2014-irrationality-measure-log3`), an abstract, and three secondary
+sources --- none of which states a technical theorem, because none of them needs
+to. The abstract advertises the corollary. Papers in this family always do; Rhin's
+own Proposition is built the same way, which I noted as a reason the query *might*
+be wrong and then did not weight properly.
+
+The irony is exact: this is the error the audit already flags for Rhin equation
+(8) --- trusting a secondary report over an unread primary --- committed while
+auditing that flag. I hedged the row carefully, which was right, but hedging is
+not the same as checking, and the check cost one PDF.
+
+### What survives
+
+One refinement. The audit records Wu-Wang as effective "no (`C_eps`)". Theorem 1
+asserts `H_0(eps)` is effectively computable, so the bound *is* effective in the
+technical sense; the paper simply does not compute `H_0`. "Effective but
+uncomputed" is the accurate entry, and it is a better description of what a future
+attempt would have to do --- compute `H_0(eps)`, not replace the theorem.
+
+Rhin equation (8) is untouched. Wu-Wang p. 265 cites Rhin 1987 as `mu(log 3) <=
+8.616`, a third reading consistent with Zudilin, but it is still secondary and
+Spiegelhofer's explicit distinction is still unexplained. That page is still
+unread, and now I believe the obligation rather than merely recording it.
