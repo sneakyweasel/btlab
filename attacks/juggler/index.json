@@ -6496,7 +6496,8 @@
         "J-convergent-word-errs-at-delta-t-squared",
         "J-yaglom-constant-is-the-relaxation-time",
         "J-profile-is-linear-times-geometric-in-the-line-coordinate",
-        "J-tail-amplitude-is-a-cocycle-over-the-boundary-fraction"
+        "J-tail-amplitude-is-a-cocycle-over-the-boundary-fraction",
+        "J-tail-spectral-gap-closes-like-one-over-root-q"
       ],
       "aliases": [],
       "nk_cluster": null

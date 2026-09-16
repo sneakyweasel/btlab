@@ -5074,3 +5074,33 @@ def test_the_cocycle_average_is_the_ergodic_identity() -> None:
     b = B.BETA
     entropy = -b * math.log(b) - (1 - b) * math.log(1 - b)
     assert abs((entropy - math.log(2)) - math.log(B.chernoff_rate())) < 1e-15
+
+
+def test_the_tail_spectrum_has_a_double_root_and_a_closing_gap() -> None:
+    """``r*`` is the only positive root and is double; the rest are complex and close in on it.
+
+    The gap between the double root and the nearest other root shrinks like ``q^(-1/2)`` with
+    constant ``sqrt(4 pi / (q h''(r*)))``, ``h''(r*) = s^3/(1-s)``.  So in the Sturmian limit the
+    boundary-layer modes become degenerate with the tail -- the criticality showing up once more,
+    and the reason "exact tail plus one number" describes the rational family, not the limit.
+    """
+    import numpy as np
+
+    gaps = {}
+    for p, q in ((41, 65), (306, 485)):
+        s = p / q
+        r_star = (1.0 - s) / s
+        roots = B.tail_spectrum(p, q)
+
+        near = np.abs(roots - r_star) < 1e-4
+        assert int(near.sum()) == 2, (p, q, int(near.sum()))       # the double root
+
+        positive = [z.real for z in roots
+                    if abs(z.imag) < 1e-9 and z.real > 1e-9 and abs(z.real - r_star) > 1e-4]
+        assert not positive, positive                              # and no other positive root
+
+        gaps[q] = float(np.abs(roots[2] - r_star))
+        predicted = math.sqrt(4 * math.pi / (q * s ** 3 / (1 - s)))
+        assert 0.6 < gaps[q] / predicted < 1.15, (q, gaps[q], predicted)
+
+    assert gaps[485] < 0.6 * gaps[65], gaps                        # the gap closes with q
