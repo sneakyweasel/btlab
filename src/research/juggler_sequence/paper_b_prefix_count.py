@@ -799,7 +799,7 @@ def yaglom_distance(p: int, q: int, starts: tuple[int, ...], depths: tuple[int, 
 
 
 def yaglom_constant(p: int, q: int, depths: tuple[int, ...] = (4000, 8000, 16000, 32000),
-                    cap: int = 1600, start: int = 0) -> list[float]:
+                    cap: int = 1600, start: int = 0, tol: float = 1e-15) -> list[float]:
     """``TV(pi_d, Pi_(phi_d)) * d`` -- the Yaglom constant of a barrier, by depth.
 
     THE STURMIAN DRIVING COSTS NOTHING IN THE EXPONENT AND FOUR PERCENT IN THE CONSTANT.  For a
@@ -828,11 +828,20 @@ def yaglom_constant(p: int, q: int, depths: tuple[int, ...] = (4000, 8000, 16000
     The residual scatter across ``q`` (19.89 to 20.64) is phase, not denominator: sweeping a full
     period at fixed ``q`` moves the constant by 3.96 percent, the same size.  See
     ``sturmian_word_disagreements`` for the letter-level statement behind the convergence.
+
+    THE CONSTANT IS THE RELAXATION TIME, AND THE SLOPE MUST EXCEED A HALF.  One step sends the
+    distance to the barrier ``m`` to ``m + X - r`` with ``X`` uniform on ``{0,1}``, so the drift is
+    ``mu = s - 1/2`` against variance ``sigma^2 = 1/4`` and the walk relaxes on ``sigma^2/mu^2``.
+    Phase-averaged over a full period, ``c * (s - 1/2)^2`` reads 0.3425, 0.3487, 0.3487, 0.3488,
+    0.3458, 0.3444, 0.3406, 0.3536 at ``s`` = 0.550 to 0.900 -- flat to two percent while ``c``
+    itself runs 136.99 down to 2.21.  Below ``s = 1/2`` there is no limit to measure: at ``s = 2/5``
+    the fixed point's mean distance is ``cap - 4.94`` at every cap, so it follows the truncation,
+    while at ``beta`` it is 3.46 independent of cap.  Tightness is the test there, not a rate.
     """
     import numpy as np
 
     word = _barrier_rises(p, q)
-    limit = _period_fixed_point(word, cap)
+    limit = _period_fixed_point(word, cap, tol=tol)
     v = np.zeros(cap); v[start] = 1.0
     w = limit.copy()
     probe, out = set(depths), []

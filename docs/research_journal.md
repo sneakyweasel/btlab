@@ -51788,3 +51788,42 @@ monotone bound. Both were the first thing that came to mind, both were clean,
 and both were checkable in under a minute against numbers I already had. I did
 not check either until the data disagreed with it. The measurements were fine
 throughout; what needed discipline was the sentence I put next to them.
+
+### Afterthought: what the constant is
+
+`c = 20.1` at `beta` invited the obvious question and it turned out to have a
+clean answer. One step of the update sends the distance to the barrier `m` to
+`m + X - r` with `X` uniform on `{0,1}`, so the drift is `s - 1/2` per step
+against variance `1/4`, and a killed walk relaxes on `sigma^2/mu^2`. That
+predicts `c(s) = K/(s - 1/2)^2`, and phase-averaged over a period it holds:
+
+```text
+  s      0.550  0.600  0.625  0.631  0.700  0.750  0.850  0.900
+  c     136.99  34.87  22.32  20.35   8.64   5.51   2.78   2.21
+  c*(s-1/2)^2  0.3425 0.3487 0.3487 0.3488 0.3458 0.3444 0.3406 0.3536
+```
+
+Flat to two percent while `c` moves by a factor of 62. I will not name `K`:
+`log(2)/2 = 0.34657` sits inside the scatter and so does a lot else, and two
+percent is not an identification. The scaling is the finding; the constant is a
+measurement.
+
+### And a third wrong explanation, caught by a test
+
+I wrote that below `s = 1/2` there is nothing to converge to and that the
+measured total variation stays near 1 at every depth. The first half is right
+and the second half is not: at `cap = 800` and `s = 2/5` it runs `1.0 -> 0.129`
+over `d = 4000..16000`. It converges perfectly well --- to the cap-pinned
+distribution. The limit is the truncation.
+
+The test that settles it is tightness, not a rate. At `s = 2/5` the fixed
+point's mean distance to the barrier is `395.06, 795.06, 1595.06` at cap `400,
+800, 1600` --- exactly `cap - 4.94`, following the grid --- with zero mass
+within 100 of the barrier. At `beta` it is `3.46` at all three caps with all the
+mass inside 100. That is the difference between a quasi-stationary distribution
+and an artefact, and no convergence rate can see it.
+
+Three wrong explanations in one session, all three caught, none of them by me
+noticing --- each time the data or a test I was writing anyway disagreed first.
+The pattern is consistent enough to name: I am reliable about what I measure and
+unreliable about why, and the gap between those does not announce itself.

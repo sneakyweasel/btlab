@@ -4913,8 +4913,8 @@ def test_the_yaglom_constant_does_not_depend_on_the_barrier_denominator() -> Non
     The reason is not homogenisation, which would need ``d >> q^2``.  It is that every barrier in
     the family is within 1 of the same straight line, uniformly in ``t`` and in the slope.
     """
-    coarse = B.yaglom_constant(12, 19, depths=(2000, 8000), cap=400)
-    fine = B.yaglom_constant(665, 1054, depths=(2000, 8000), cap=400)
+    coarse = B.yaglom_constant(12, 19, depths=(2000, 8000), cap=400, tol=1e-10)
+    fine = B.yaglom_constant(665, 1054, depths=(2000, 8000), cap=400, tol=1e-10)
 
     for c in coarse + fine:
         assert 17.0 < c < 23.0, (coarse, fine)                  # the constant, near 20
@@ -4941,3 +4941,33 @@ def test_a_convergent_rise_word_errs_at_rate_delta_times_t_squared() -> None:
 
     # a deeper convergent reproduces beta exactly over the same window
     assert B.sturmian_word_disagreements(665, 1054, 16000) == 0
+
+
+def test_the_yaglom_constant_is_the_diffusive_relaxation_time() -> None:
+    """``c(s) = K/(s - 1/2)^2``, and it diverges where the limit stops existing.
+
+    One step sends the distance to the barrier ``m`` to ``m + X - r`` with ``X`` uniform on
+    ``{0,1}``, so the drift is ``s - 1/2`` per step against variance ``1/4``; a killed walk
+    relaxes on ``sigma^2/mu^2``.  The scope ``s > 1/2`` is structural, not a convenience: below
+    it the profile has nowhere to settle, and the test for that is TIGHTNESS rather than a rate
+    -- a truncated chain converges happily to the cap-pinned distribution, which is an artefact.
+
+    Cheap settings on purpose.  The whole cost of this row is ``_period_fixed_point``, so the cap
+    is 400 and the tolerance 1e-10; the sharp table behind the claim is in ``yaglom_constant``.
+    """
+    import numpy as np
+
+    scaled = []
+    for p, q in ((11, 20), (7, 10), (17, 20)):
+        c = B.yaglom_constant(p, q, depths=(8000,), cap=400, tol=1e-10)[0]
+        scaled.append(c * (p / q - 0.5) ** 2)
+    assert max(scaled) / min(scaled) < 1.12, scaled             # flat while c moves 47-fold
+
+    # below the critical slope there is no limit object: the profile follows the cap
+    sub = B._period_fixed_point(B._barrier_rises(2, 5), 400, tol=1e-10)
+    assert float((sub * np.arange(400)).sum()) > 390.0          # sits at the truncation
+    assert float(sub[:100].sum()) < 1e-9                        # no mass near the barrier
+
+    sup = B._period_fixed_point(B._barrier_rises(306, 485), 400, tol=1e-10)
+    assert float((sup * np.arange(400)).sum()) < 5.0            # tight, and cap-independent
+    assert float(sup[:100].sum()) > 0.999
