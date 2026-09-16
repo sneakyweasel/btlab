@@ -17,6 +17,19 @@ import re
 import shutil
 import subprocess
 
+
+# Reproducible output.  XeLaTeX stamps a build time into the PDF's compressed metadata, so
+# without this a no-op rebuild changes the bytes and therefore the sha256 in the manifest.
+# The epoch is fixed to the version the build guide records rather than taken from git,
+# because a git-derived date lags one build behind an edit and merely relocates the churn.
+_SOURCE_DATE_EPOCH = "1788912000"  # Paper C publication revision, 9 September 2026
+
+
+def _pin_build_date() -> None:
+    """Pin SOURCE_DATE_EPOCH unless the caller already set one."""
+    os.environ.setdefault("SOURCE_DATE_EPOCH", _SOURCE_DATE_EPOCH)
+    os.environ.setdefault("FORCE_SOURCE_DATE", "1")
+
 ROOT = Path(__file__).resolve().parents[1]
 STEM = "juggler_fate_almost_all_note"
 SOURCE = f"docs/theory/{STEM}.md"
@@ -236,6 +249,7 @@ def build(root: Path, args) -> None:
 
 
 def main():
+    _pin_build_date()
     parser = argparse.ArgumentParser(description=__doc__)
     mode = parser.add_mutually_exclusive_group()
     mode.add_argument("--check", action="store_true")
