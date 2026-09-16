@@ -50,7 +50,7 @@ target below \(L^2\).
 | \(2\) | Dirichlet | yes | the hard floor |
 | \(5.116201\) | BLS 2018 | no | recorded, knowingly unimported |
 | \(5.1163051\) | Wu-Wang 2014 **Theorem 1**, p. 266: \(\lvert p+q_1\log2+q_2\log3\rvert\ge H^{-4.1163051-\varepsilon}\), \(H=\max(\lvert q_1\rvert,\lvert q_2\rvert)\) --- **VERIFIED AT SOURCE 16 Sep 2026**, `J-wuwang-import-verified-at-source`; the substitution \(p=0\) is exactly licensed and \(\mu(\log3)\le5.1163051\) is its Corollary 1 | effective but **uncomputed**: the paper states \(H_0(\varepsilon)\) is effectively computable and does not compute it --- and see `J-wuwang-effectivity-is-a-saddle-point-cost`: H_0 is EXPONENTIAL in where the asymptotics become effective, the prime-number part is removable at a cost of 4.1163 to 4.2599 in the exponent, and the saddle-point error is the whole difficulty; for any L a cycle search reaches, Rhin eq. (7) with constant 915 is what actually applies | `J-cyclemin-gap-power-transfer` |
-| \(8.616\) | Rhin p.160 eq. (8) --- **DISPUTE RESOLVED 16 Sep 2026**, `J-rhin-eight-readings-are-one-theorem`: the readings are corollaries of ONE linear independence measure (Zudilin records Rhin approximating \(\log(2/3),\log(4/3)\), an integral basis change from \(\log2,\log3\)), so Spiegelhofer's ratio bound and the \(\mu(\log3)\) reading are both correct | **likely** (Rhin's title is *mesures effectives*) but the constant is unrecorded | **nothing yet** --- would give \(L^{8.616}\), the best EFFECTIVE threshold, if the constant is explicit |
+| \(8.616\) | Rhin p.160 eq. (8) --- **DISPUTE RESOLVED 16 Sep 2026**, `J-rhin-eight-readings-are-one-theorem`: the readings are corollaries of ONE linear independence measure (Zudilin records Rhin approximating \(\log(2/3),\log(4/3)\), an integral basis change from \(\log2,\log3\)), so Spiegelhofer's ratio bound and the \(\mu(\log3)\) reading are both correct | **NO --- READ AT SOURCE 16 Sep 2026**, `J-rhin-eight-has-no-computed-threshold`: (8) holds only for \(H\ge H_0\) with \(H_0\) declared *effectivement calculable* and never computed, exactly the Wu-Wang failure mode | **nothing, and now permanently** --- \(L^{8.616}\) is unreachable without \(H_0\), and \(H_0=\exp(\Theta(n_0))\) puts it far above any \(L\) a cycle search reaches |
 | \(14.3\) | Rhin p.160 eq. (7) via Simons-de Weger Lemma 12 | yes (constant \(915\)) | Paper A Corollary 4.11, deposited |
 
 **The finding (OBSERVATION; UNVERIFIED, and now DISPUTED).**
@@ -83,10 +83,17 @@ Wu-Wang 2014) uniformly reports Rhin's 8.616 as \(\mu(\log3)\).
 
 The two readings are incompatible; only one can be equation (8). Under
 Zudilin's, the row says nothing about the closure threshold and there is
-no sharper statement hiding in Paper A's citation at all. **Nobody in the
-laboratory has read Rhin p. 160.** The row must not be used until someone
-does; the probe and its test enforce that an unverified row is never the
-one in use, and the probe now also carries the contradicting source.
+no sharper statement hiding in Paper A's citation at all. **Rhin p. 160 was read at source on 16
+September 2026** from the Seminaire scan. The Proposition reads: for
+\(H=\max(\lvert u_1\rvert,\lvert u_2\rvert)\ge2\) and
+\(\Lambda=u_0+u_1\log2+u_2\log3\), (7) \(\lvert\Lambda\rvert\ge H^{-13.3}\),
+and *de plus pour* \(H\ge H_0\) (\(H_0\) *effectivement calculable*), (8)
+\(\lvert\Lambda\rvert\ge H^{-7.616}\). Both are the THREE-TERM form, which
+settles the reading dispute at source. Two corrections follow. Rhin's (7)
+carries NO constant --- it is \(H^{-13.3}\) outright for \(H\ge2\) --- so the
+\(915\) belongs to Simons--de Weger's Lemma 12, not to Rhin; the chain is
+unaffected but the attribution was loose. And (8) is not usable: \(H_0\) is
+declared computable and never computed.
 
 **What reading p. 160 would settle.** Which quantity equation (8) bounds;
 whether its constant is explicit; and, if it is the ratio after all,
@@ -256,11 +263,17 @@ Classification **EXTERNAL_INPUT_AUDIT_MIXED**.
 
 ## Open questions
 
-Read Rhin, *Approximants de Padé et mesures effectives d'irrationalité*,
-Séminaire de Théorie des Nombres Paris 1985–86, p. 160, equation (8).
-Confirm the \(8.616\) ratio measure and whether its constant is explicit.
-That is a library errand, not a research branch, and it changes no
-current result either way.
+~~Read Rhin p. 160, equation (8), and confirm whether its constant is
+explicit.~~ **DONE 16 September 2026.** It is not. (8) is conditional on
+\(H\ge H_0\) with \(H_0\) never computed, so \(L^{8.616}\) is unreachable and
+\(L^{14.3}\) stands. The paper does print the whole construction behind (8)
+in Appendix 2 p. 162 --- two integrals over \([2,3]\) and \([3,4]\) of
+\(H_n(x)/x^{n+1}\) with \(H_n=12^{7}\prod_{i=1}^{6}Q_i^{[b_in]}\) and six
+explicit \(Q_i,b_i\) --- and that construction checks out numerically (see
+`J-rhin-eight-has-no-computed-threshold`), but computing \(H_0\) from it
+would not help: \(H_0=\exp(\Theta(n_0))\) by
+`J-wuwang-effectivity-is-a-saddle-point-cost`, astronomically above the
+\(L\lesssim10^6\) a cycle search reaches. No further errand here.
 
 ## Decision
 

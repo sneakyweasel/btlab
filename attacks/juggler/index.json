@@ -2674,7 +2674,8 @@
       "ledger_ids": [
         "J-wuwang-import-verified-at-source",
         "J-wuwang-effectivity-is-a-saddle-point-cost",
-        "J-rhin-eight-readings-are-one-theorem"
+        "J-rhin-eight-readings-are-one-theorem",
+        "J-rhin-eight-has-no-computed-threshold"
       ],
       "aliases": [],
       "nk_cluster": "A sharper concentration inequality does not move Paper C's constants"
