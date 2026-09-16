@@ -147,7 +147,7 @@ def main() -> None:
         return
     source, assets = args.source.resolve(), args.assets.resolve()
     output = (args.output_dir or source.parent).resolve()
-    work = (args.build_dir or output/'.build/paper_b').resolve()
+    work = (args.build_dir or root/'.build/paper_b').resolve()
     output.mkdir(parents=True, exist_ok=True)
     work.mkdir(parents=True, exist_ok=True)
     text = source.read_text(encoding='utf-8')
