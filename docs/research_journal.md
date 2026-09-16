@@ -52345,3 +52345,73 @@ expensive and push the range.
 No bound moves. But the cycle side and Paper B now share a skeleton rather than a
 resemblance, and the sign condition that separates them is exactly the one that
 makes a cycle Diophantine-plausible.
+
+## 16 September 2026 --- the leftover lengths are a Bohr set
+
+`J-residual-floor-twenty-six-million` is a completed verification with a SHA-256
+certificate, so there was nothing in it to check. What was worth asking is WHY
+26254995, and the answer connects it to the staircase work an hour earlier.
+
+The floor is `n_max^par(25781)`, and 25781 is the cycle record length I derived
+this morning as a one-sided semiconvergent of `beta`. So I asked what the parity
+layer's leftovers actually are.
+
+### One inequality
+
+A cycle needs `3^o > 2^L`, so only a positive walk gap `g = o log2(3) - L` is
+meaningful, and the finance bound is `(6/5) L / (1 - 2^(-g))`, which blows up as
+`g -> 0`. So survival is not about `g` being small --- it is about `g` being small
+*relative to L*:
+
+```text
+survivors = { L : 0 < g(L) < kappa * L }
+
+at floor 1e6:  largest g/L among survivors      4.635150e-08
+               smallest g/L among non-survivors 4.647621e-08
+```
+
+A single threshold, and it misclassifies none of the 199424 lengths with `g > 0`.
+And `kappa n0 ln n0` is 0.6412, 0.6241, 0.6390, 0.6585, 0.5453 across two decades
+of floor, so the window is `~0.63/(n0 ln n0)`.
+
+### The gaps give it away
+
+Consecutive survivors at floor 1e6 differ by `84, 485, 401, 569, 1054, 317` ---
+268, 132, 105, 24, 23 and 23 times. Every one is a convergent or semiconvergent
+denominator of `beta`. That is the three-distance theorem, which is what a Bohr set
+has to look like. And `401, 317` are staircase jumps while `569, 1054` are cycle
+records: the same skeleton as this morning, seen from the floor side.
+
+### Where I was wrong, again in the same direction
+
+Seeing 25781 and 50508 as the first exceptions, I assumed the leftovers WERE the
+semiconvergents. Of 576 survivors at floor 1e6, three are semiconvergents and eight
+are multiples of one. Five hundred and sixty-five are neither.
+
+The semiconvergents are the record-setters of the one-sided approximation, so one of
+them is the FIRST survivor at each floor --- which is what I was seeing --- but that
+is not what the set is. The tell was `101016 = 2 * 50508` turning up as a first
+exception, which is not a semiconvergent at all and would not have been if my guess
+had been right.
+
+### What it gives the floor work
+
+A closed form for which lengths survive at any floor, instead of a scan. The cutoff
+moves at `n_max^par` of the length being killed:
+
+```text
+floor          first exception
+1e6, 1e7             25781
+26254995 .. 1e8      50508      <- the row's floor, confirmed cheapest
+162848325           101016
+3.5e8               176251
+1044093214            none below 300000
+```
+
+One thing I noticed and am recording without drawing a conclusion: the parked
+`5.54e8` leaves the parity first exception at 176251, exactly where `3.5e8` leaves
+it. But `5.54e8` is `CONDITIONAL_FLOOR` in the Paper A audit and `DK_BREAKEVEN_FLOOR`
+in the visualization layer --- it targets the Denjoy--Koksma competition, not the
+parity layer. So this says nothing about whether it is the right floor for its own
+purpose, and I checked what it was for before writing the sentence rather than
+after.
