@@ -17,7 +17,7 @@
     },
     {
       "name": "build_paper_b.py",
-      "sha256": "0feafead7bcdf4dbac2d4cdc6c9bb7f8b5376aab5bba30bd5147f5e7198bbbc8"
+      "sha256": "f1f11728bd6a5b44a01ed2dede9f29689369034fd916af6fadbf9e08b675e6f4"
     },
     {
       "name": "juggler_parity_discrepancy_note.tex",
@@ -25,7 +25,7 @@
     },
     {
       "name": "juggler_parity_discrepancy_note.pdf",
-      "sha256": "f7f3ffa077877234a1f140f8bc4b17a5a349e00b973f6434c1d5d07885a73974"
+      "sha256": "7b6b25e89ccc24651092409d25d8c4e0afd11d996bbeb4e75a2e2f1794cdc439"
     }
   ]
 }
