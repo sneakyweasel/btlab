@@ -51827,3 +51827,60 @@ Three wrong explanations in one session, all three caught, none of them by me
 noticing --- each time the data or a test I was writing anyway disagreed first.
 The pattern is consistent enough to name: I am reliable about what I measure and
 unreliable about why, and the gap between those does not announce itself.
+
+## 16 September 2026 --- Rhin (8), read at last, and dead
+
+Philippe found the scan. The Proposition on p. 160 reads:
+
+```text
+Soient u0, u1, u2 trois entiers tels que H = max(|u1|,|u2|) >= 2.
+Alors la forme  A = u0 + u1 log 2 + u2 log 3  verifie
+  (7)   |A| >= H^(-13,3).
+De plus pour H >= H0  (H0 effectivement calculable)
+  (8)   |A| >= H^(-7,616).
+```
+
+So the answer to the errand is no. `H0` is declared computable and never
+computed --- the identical failure to Wu-Wang, which I analysed a week ago and
+which gives `H0 = exp(Theta(n0))`, astronomically past the `L ~ 10^6` a cycle
+search reaches. `L^8.616` is unreachable, `L^14.3` stands, and the row is now
+closed rather than open and hopeful. That is worth something: it had been sitting
+in the audit as the best available improvement for months.
+
+Two corrections fell out. Both (7) and (8) are the three-term form, so
+`J-rhin-eight-readings-are-one-theorem` --- which I reconstructed from Zudilin and
+Spiegelhofer without the paper --- is confirmed at source. And Rhin's (7) carries
+no constant at all: it is `H^(-13,3)` outright for `H >= 2`. The 915 the
+laboratory attributes to it is Simons-de Weger's, from Lemma 12. The chain is
+unaffected, but I had the provenance wrong.
+
+### The appendix, and a character settled by arithmetic
+
+Appendix 2 prints the whole construction behind (8): two integrals of
+`H_n(x)/x^(n+1)` over `[2,3]` and `[3,4]`, with `H_n = 12^7 * prod Q_i^[b_i n]`
+and six explicit polynomials and exponents. Two checks confirm I transcribed it
+right. The degrees: `sum b_i deg Q_i = 2.000000` exactly, matching `deg H_n <= 2n`
+from p. 159 --- six six-decimal numbers landing on an integer. And the Laplace
+rates of the two integrals agree to `7.3e-6`, which is the balanced optimum Rhin
+describes on p. 161 as Smyth's quasi-automatic search for good factors.
+
+One character on the scan I could not read: the exponent of 12. I guessed `7n`.
+The mathematics settled it --- with an `n` there the rate is `+15.8846` and the
+integrals diverge, so the construction would not work at all. It is a constant 7.
+I like that the numbers disambiguated the photocopy rather than my eyes.
+
+### On the shape of this errand
+
+Three days ago I told Philippe this was the one item left that would move a
+published number, and ranked it above the Sturmian work on exactly that ground.
+It moved nothing. That was the right ranking anyway: the expected value was in
+finding out, and a row that reads *unverified, would give the best effective
+threshold* is a standing invitation to someone to assume it. Now it reads
+*verified, and it gives nothing*.
+
+I also got the escape bug three times today while holding a memory note about the
+escape bug --- twice in the docs and once inside the sentence of the note
+describing it. The root cause turned out to be the Bash heredoc eating a
+backslash level even with a quoted delimiter, so the doubling I had been relying
+on as a defence was never a defence. Naming the cause is worth more than the
+three repairs.

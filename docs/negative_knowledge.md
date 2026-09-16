@@ -2985,10 +2985,26 @@ difficulty here is the iterated/joint version. Adjacent, not applicable.
 There is no research literature on Juggler termination; public
 verification stands at \(7110200\) against the laboratory's certified
 floor \(N_0=3.5\cdot10^8\).
+**Rhin equation (8) is dead, read at source 16 September 2026**
+(`J-rhin-eight-has-no-computed-threshold`). It had stood in the audit as the
+best available improvement --- \(L^{14.3}\to L^{8.616}\) on the effective cycle
+threshold --- pending only a look at p. 160. The Proposition gives (7)
+\(\lvert\Lambda\rvert\ge H^{-13.3}\) for \(H\ge2\) unconditionally, and (8)
+\(\lvert\Lambda\rvert\ge H^{-7.616}\) only for \(H\ge H_0\) with \(H_0\)
+*effectivement calculable* and never calculated. That is the Wu-Wang failure
+mode exactly, and by `J-wuwang-effectivity-is-a-saddle-point-cost`
+\(H_0=\exp(\Theta(n_0))\) sits astronomically above the \(L\lesssim10^6\) a
+cycle search reaches. Appendix 2 p. 162 does print the entire construction
+(two integrals, six explicit \(Q_i\) and \(b_i\), verified here by the degree
+identity \(\sum b_i\deg Q_i=2\) and by the two Laplace rates agreeing to
+\(7.3\cdot10^{-6}\)), so \(H_0\) is computable in principle --- computing it
+still would not help, for the reason just given.
+
 Do not: re-propose ANTEDB, Wiener--Hopf, Piatetski--Shapiro or the
 digit-sum line as new external inputs; expect Denisov--Sakhanenko--Wachtel
 to supply the prefactor; search again for a driven-critical renewal theorem;
-or re-run the \(q\)-uniformity measurement --- it is done, and its answer is
-that the driving is benign.
+re-run the \(q\)-uniformity measurement --- it is done, and its answer is
+that the driving is benign; or reopen Rhin (8), whose constant does not
+exist in print and would not close anything if it did.
 Members: none --- this records the state of the external literature, not
 a laboratory claim.
