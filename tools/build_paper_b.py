@@ -161,7 +161,7 @@ def main() -> None:
          '--output',str(tex)], work)
     for i in (1,2):
         run([xelatex,'-no-shell-escape','-interaction=nonstopmode','-halt-on-error',tex.name],
-            work,work/f'xelatex-{i}.log')
+            work,work/f'xelatex-pass-{i}.txt')
     log=(work/f'{STEM}.log').read_text(encoding='utf-8',errors='replace')
     for warning in ('Overfull', 'Missing character', 'undefined references'):
         if warning in log:
