@@ -51524,3 +51524,64 @@ Rhin equation (8) is untouched. Wu-Wang p. 265 cites Rhin 1987 as `mu(log 3) <=
 8.616`, a third reading consistent with Zudilin, but it is still secondary and
 Spiegelhofer's explicit distinction is still unexplained. That page is still
 unread, and now I believe the obligation rather than merely recording it.
+
+
+## H_0(eps): not computed, but localised
+
+I did not compute `H_0(eps)`. What I did was reduce it to its inputs, and the
+reduction says something useful: the prime-number part is cheap and the
+saddle-point part is the entire cost.
+
+**The transfer, written out.** Hata's Lemma 4 applied to `r_n = d D_n Q_n A_1` and
+`eps_n^(t) = d D_n Q_n I_n(d/2, s_t)` gives
+
+    r_n Lambda = [p r_n + q_1 P_n^(1) + q_2 P_n^(2)] + q_1 eps_n^(1) + q_2 eps_n^(2)
+
+with the bracket an integer. Choose `n` minimal with
+`H(|eps_n^(1)|+|eps_n^(2)|) <= 1/2`; then `|Lambda| >= 1/(2 r_n)`. Feeding in
+`r_n <= e^((sigma+delta)n)` and `|eps_n^(t)| <= e^(-(tau-delta)n)` for `n >= n_0(delta)`
+and taking `n = ceil(log(4H)/(tau-delta))`,
+
+    |Lambda| >= (1/2) (4H)^(-(sigma+delta)/(tau-delta)).
+
+So the exponent is `(sigma+delta)/(tau-delta)` and --- this is the point ---
+`H_0 = exp(Theta(n_0(delta)))`. The threshold is *exponential* in wherever the
+asymptotics become effective.
+
+**The three limits are not alike.** `lim (1/n) log Q_n = 0.490974 log 2` is exact,
+since `Q_n` is defined as a power of two. `lim (1/n) log d D_n = 1` is the prime
+number theorem. `lim (1/n) log |A_1|` and `lim (1/n) log |I_n|` are saddle point,
+and the paper gives limits only.
+
+A small simplification falls out: only the *upper* bound on `psi` is needed, because
+`r_n` and `eps_n` both carry `D_n` in the numerator.
+
+**The prime-number part is cheap.** An all-`x` bound `psi(n) <= c n` removes that
+threshold from `n_0` entirely, paid for in the exponent: `c = 1.03883` gives
+`nu = 4.259932` against `4.116307`, moving the cycle threshold from `L^5.1163` to
+`L^5.2599`. For a bound that is otherwise ineffective, that is a good trade and
+nobody has to prove anything new.
+
+**The saddle point is not cheap**, and it is severe because `H_0` is exponential in
+`n_0`. Even granting the optimistic `O(1/sqrt n)` error shape, `n_0 ~ delta^-2`
+gives `H_0 ~ exp(8.2e3)` at `eps = 0.05` --- around `10^3500`.
+
+### What that means for the laboratory
+
+The Wu-Wang supply of the Diophantine budget is asymptotic in a strong sense. For
+any period `L` a cycle search will ever reach, it supplies nothing, and Rhin
+equation (7) with its explicit constant `915` is what actually applies. So `L^14.3`
+is the *effective* statement and `L^5.1163051` the *asymptotic* one --- a
+distinction the audit table did not draw, and now does.
+
+The Lean is unaffected throughout: the budget is the hypothesis `hWW`, and a
+hypothesis does not care when it becomes supplyable.
+
+### What would finish it
+
+Explicit error terms for the two saddle-point asymptotics --- redoing the analysis
+of `I_n` and `A_1` with constants in place of limits. That is a real piece of work
+and it is the only thing between here and an explicit `H_0`. I would not start it
+without a reason to want `H_0` specifically, because the answer is already known to
+be astronomically large, and "astronomically large" is what the practical
+conclusion above depends on, not its precise value.
