@@ -53059,6 +53059,76 @@
       "trust": "kernel"
     },
     {
+      "doc": "A non-rising step averages `Pi(m)` with `Pi(m-1)`; the linear factor survives, its zero moved by `-1/(1+r)` and its amplitude scaled by `(1+r)/2`.",
+      "file": "formal/Problems/Juggler/PaperBAmplitudeCocycle.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 41,
+      "module": "Problems.Juggler.PaperBAmplitudeCocycle",
+      "name": "update_false_tail",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A rising step averages `Pi(m)` with `Pi(m+1)`; the zero moves by `+r/(1+r)`.",
+      "file": "formal/Problems/Juggler/PaperBAmplitudeCocycle.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 48,
+      "module": "Problems.Juggler.PaperBAmplitudeCocycle",
+      "name": "update_true_tail",
+      "trust": "kernel"
+    },
+    {
+      "doc": "At the tail root `r = (1-s)/s` the non-rising shift is exactly `-s`.",
+      "file": "formal/Problems/Juggler/PaperBAmplitudeCocycle.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 55,
+      "module": "Problems.Juggler.PaperBAmplitudeCocycle",
+      "name": "one_div_one_add_tailRoot",
+      "trust": "kernel"
+    },
+    {
+      "doc": "And the rising shift is exactly `+(1-s)`.",
+      "file": "formal/Problems/Juggler/PaperBAmplitudeCocycle.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 60,
+      "module": "Problems.Juggler.PaperBAmplitudeCocycle",
+      "name": "tailRoot_div_one_add",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The non-rising amplitude multiplier is `1/(2(1-s))`: it depends on nothing but the slope.",
+      "file": "formal/Problems/Juggler/PaperBAmplitudeCocycle.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 65,
+      "module": "Problems.Juggler.PaperBAmplitudeCocycle",
+      "name": "nonrising_multiplier",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The rising multiplier before the normaliser `1 - R/2` is `1/(2s)`.",
+      "file": "formal/Problems/Juggler/PaperBAmplitudeCocycle.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 71,
+      "module": "Problems.Juggler.PaperBAmplitudeCocycle",
+      "name": "rising_multiplier_base",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Single-valuedness of the amplitude averages the two multipliers to zero, and the condition is exactly `H(s) - log 2` -- the log of the Chernoff rate.",
+      "file": "formal/Problems/Juggler/PaperBAmplitudeCocycle.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 77,
+      "module": "Problems.Juggler.PaperBAmplitudeCocycle",
+      "name": "cocycle_average_eq",
+      "trust": "kernel"
+    },
+    {
       "doc": "**The closed form.** With `a = \u221am` and `b = \u221aX = n^(3/4)`, the remainder `E = m^(3/2) - (3/2)mX^(1/2) + (1/2)X^(3/2)` of Lemma 4.3(i) equals `\u00bd(a-b)\u00b2(2a+b)` identically. The manuscript obtains only `E = (3/8)(X-\u03be)^(-1/2)\u03b8\u00b2` for an unspecified mean value `\u03be`.",
       "file": "formal/Problems/Juggler/PaperBAssembly.lean",
       "kind": "theorem",
@@ -53589,6 +53659,282 @@
       "trust": "kernel"
     },
     {
+      "doc": "A nonempty word that contracts, with no proper nonempty contracting prefix. This is the exact reading of Paper B Lemma 5.1's \"contracting words ... with no proper contracting prefix\".",
+      "file": "formal/Problems/Juggler/PaperBCertificates.lean",
+      "kind": "def",
+      "ledger": [
+        "J-paper-b-lemma-5-1-minimal-certificates"
+      ],
+      "line": 28,
+      "module": "Problems.Juggler.PaperBCertificates",
+      "name": "IsMinimalCertificate",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The five words of Lemma 5.1.",
+      "file": "formal/Problems/Juggler/PaperBCertificates.lean",
+      "kind": "def",
+      "ledger": [
+        "J-paper-b-lemma-5-1-minimal-certificates"
+      ],
+      "line": 43,
+      "module": "Problems.Juggler.PaperBCertificates",
+      "name": "certE",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBCertificates.lean",
+      "kind": "def",
+      "ledger": [
+        "J-paper-b-lemma-5-1-minimal-certificates"
+      ],
+      "line": 44,
+      "module": "Problems.Juggler.PaperBCertificates",
+      "name": "certOE",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBCertificates.lean",
+      "kind": "def",
+      "ledger": [
+        "J-paper-b-lemma-5-1-minimal-certificates"
+      ],
+      "line": 45,
+      "module": "Problems.Juggler.PaperBCertificates",
+      "name": "certOOEE",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBCertificates.lean",
+      "kind": "def",
+      "ledger": [
+        "J-paper-b-lemma-5-1-minimal-certificates"
+      ],
+      "line": 46,
+      "module": "Problems.Juggler.PaperBCertificates",
+      "name": "certOOOEE",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBCertificates.lean",
+      "kind": "def",
+      "ledger": [
+        "J-paper-b-lemma-5-1-minimal-certificates"
+      ],
+      "line": 47,
+      "module": "Problems.Juggler.PaperBCertificates",
+      "name": "certOOEOE",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBCertificates.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-lemma-5-1-minimal-certificates"
+      ],
+      "line": 49,
+      "module": "Problems.Juggler.PaperBCertificates",
+      "name": "certE_is",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBCertificates.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-lemma-5-1-minimal-certificates"
+      ],
+      "line": 50,
+      "module": "Problems.Juggler.PaperBCertificates",
+      "name": "certOE_is",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBCertificates.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-lemma-5-1-minimal-certificates"
+      ],
+      "line": 51,
+      "module": "Problems.Juggler.PaperBCertificates",
+      "name": "certOOEE_is",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBCertificates.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-lemma-5-1-minimal-certificates"
+      ],
+      "line": 52,
+      "module": "Problems.Juggler.PaperBCertificates",
+      "name": "certOOOEE_is",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBCertificates.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-lemma-5-1-minimal-certificates"
+      ],
+      "line": 53,
+      "module": "Problems.Juggler.PaperBCertificates",
+      "name": "certOOEOE_is",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Formal cylinder measures of the five certificates sum to `7/8`.",
+      "file": "formal/Problems/Juggler/PaperBCertificates.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-lemma-5-1-minimal-certificates"
+      ],
+      "line": 56,
+      "module": "Problems.Juggler.PaperBCertificates",
+      "name": "certificate_measures_sum",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBCertificates.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-lemma-5-1-minimal-certificates"
+      ],
+      "line": 60,
+      "module": "Problems.Juggler.PaperBCertificates",
+      "name": "four_step_measures_sum",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBCertificates.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-lemma-5-1-minimal-certificates"
+      ],
+      "line": 64,
+      "module": "Problems.Juggler.PaperBCertificates",
+      "name": "twenty_seven_thirty_two_sum",
+      "trust": "kernel"
+    },
+    {
+      "doc": "An `E`-rooted word of length \u2265 2 is never minimal: its first letter already contracts.",
+      "file": "formal/Problems/Juggler/PaperBCertificates.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-lemma-5-1-minimal-certificates"
+      ],
+      "line": 69,
+      "module": "Problems.Juggler.PaperBCertificates",
+      "name": "not_minimal_of_even_head",
+      "trust": "kernel"
+    },
+    {
+      "doc": "An `OE`-rooted word of length \u2265 3 is never minimal.",
+      "file": "formal/Problems/Juggler/PaperBCertificates.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-lemma-5-1-minimal-certificates"
+      ],
+      "line": 79,
+      "module": "Problems.Juggler.PaperBCertificates",
+      "name": "not_minimal_of_OE_prefix",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Length one: only `E` contracts.",
+      "file": "formal/Problems/Juggler/PaperBCertificates.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-lemma-5-1-minimal-certificates"
+      ],
+      "line": 90,
+      "module": "Problems.Juggler.PaperBCertificates",
+      "name": "length_one",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Length two: only `OE`.",
+      "file": "formal/Problems/Juggler/PaperBCertificates.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-lemma-5-1-minimal-certificates"
+      ],
+      "line": 99,
+      "module": "Problems.Juggler.PaperBCertificates",
+      "name": "length_two",
+      "trust": "kernel"
+    },
+    {
+      "doc": "At length three no new certificate appears: `3^2 > 2^3`.",
+      "file": "formal/Problems/Juggler/PaperBCertificates.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-lemma-5-1-minimal-certificates"
+      ],
+      "line": 110,
+      "module": "Problems.Juggler.PaperBCertificates",
+      "name": "length_three",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Length four: only `OOEE`.",
+      "file": "formal/Problems/Juggler/PaperBCertificates.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-lemma-5-1-minimal-certificates"
+      ],
+      "line": 128,
+      "module": "Problems.Juggler.PaperBCertificates",
+      "name": "length_four",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Length five: `OOOEE` and `OOEOE`.",
+      "file": "formal/Problems/Juggler/PaperBCertificates.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-lemma-5-1-minimal-certificates"
+      ],
+      "line": 149,
+      "module": "Problems.Juggler.PaperBCertificates",
+      "name": "length_five",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Lemma 5.1.** The minimal certificates of length at most five are exactly `E`, `OE`, `OOEE`, `OOOEE`, and `OOEOE`.",
+      "file": "formal/Problems/Juggler/PaperBCertificates.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-lemma-5-1-minimal-certificates"
+      ],
+      "line": 180,
+      "module": "Problems.Juggler.PaperBCertificates",
+      "name": "lemma51",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The five named words are indeed the complete list through length five.",
+      "file": "formal/Problems/Juggler/PaperBCertificates.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-lemma-5-1-minimal-certificates"
+      ],
+      "line": 202,
+      "module": "Problems.Juggler.PaperBCertificates",
+      "name": "lemma51_complete",
+      "trust": "kernel"
+    },
+    {
       "doc": "The per-letter power map `p_q`: `3/2` after an odd letter, `1/2` after an even one. These are the only two values a Juggler step contributes.",
       "file": "formal/Problems/Juggler/PaperBChainRule.lean",
       "kind": "def",
@@ -54021,6 +54367,156 @@
       "trust": "kernel"
     },
     {
+      "doc": "The strict form of `1 - x\u207b\u00b9 \u2264 log x`.",
+      "file": "formal/Problems/Juggler/PaperBChernoff.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 44,
+      "module": "Problems.Juggler.PaperBChernoff",
+      "name": "one_sub_inv_lt_log",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Strict Gibbs: the relative entropy is strictly positive off the diagonal.",
+      "file": "formal/Problems/Juggler/PaperBChernoff.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 51,
+      "module": "Problems.Juggler.PaperBChernoff",
+      "name": "klDiv_pos",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`D(q \u2016 1/2) = log 2 + q log q + (1-q) log(1-q)`: the binary relative entropy, expanded.",
+      "file": "formal/Problems/Juggler/PaperBChernoff.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 74,
+      "module": "Problems.Juggler.PaperBChernoff",
+      "name": "klDiv_half_eq",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The Chernoff factor of Theorem 6.1, as the manuscript writes it.",
+      "file": "formal/Problems/Juggler/PaperBChernoff.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 87,
+      "module": "Problems.Juggler.PaperBChernoff",
+      "name": "theta",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The printed form is `exp(-D(q \u2016 1/2))`.",
+      "file": "formal/Problems/Juggler/PaperBChernoff.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 90,
+      "module": "Problems.Juggler.PaperBChernoff",
+      "name": "theta_eq_exp_neg_klDiv",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The estimate: the Chernoff factor is strictly below one away from the fair point.",
+      "file": "formal/Problems/Juggler/PaperBChernoff.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 104,
+      "module": "Problems.Juggler.PaperBChernoff",
+      "name": "theta_lt_one",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBChernoff.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 111,
+      "module": "Problems.Juggler.PaperBChernoff",
+      "name": "theta_pos",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The form Theorem 6.1 uses: the bound is strictly below `1/2` at every depth.",
+      "file": "formal/Problems/Juggler/PaperBChernoff.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 115,
+      "module": "Problems.Juggler.PaperBChernoff",
+      "name": "theta_pow_lt",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Finite additivity of density: finitely many classes of density `r` have density `card * r`.",
+      "file": "formal/Problems/Juggler/PaperBDensity.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 47,
+      "module": "Problems.Juggler.PaperBDensity",
+      "name": "density_of_finite_union",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The `d -> infinity` step: eventually below every member of a null sequence means null.",
+      "file": "formal/Problems/Juggler/PaperBDensity.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 58,
+      "module": "Problems.Juggler.PaperBDensity",
+      "name": "tendsto_zero_of_eventually_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Theorem 6.1's shape: a density dominated at every depth by a vanishing bound is zero.",
+      "file": "formal/Problems/Juggler/PaperBDensity.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 76,
+      "module": "Problems.Juggler.PaperBDensity",
+      "name": "exceptional_density_zero",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The binomial generating function.",
+      "file": "formal/Problems/Juggler/PaperBMarkov.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 43,
+      "module": "Problems.Juggler.PaperBMarkov",
+      "name": "sum_choose_mul_pow",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The exponential Markov step on the word count.",
+      "file": "formal/Problems/Juggler/PaperBMarkov.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 54,
+      "module": "Problems.Juggler.PaperBMarkov",
+      "name": "chernoff_tail",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The density form: the same bound divided by `2^n`.",
+      "file": "formal/Problems/Juggler/PaperBMarkov.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 95,
+      "module": "Problems.Juggler.PaperBMarkov",
+      "name": "chernoff_density",
+      "trust": "kernel"
+    },
+    {
+      "doc": "At the optimal tilt the bound is exactly `theta q ^ n`: the manuscript's optimisation, as an identity.",
+      "file": "formal/Problems/Juggler/PaperBMarkov.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 108,
+      "module": "Problems.Juggler.PaperBMarkov",
+      "name": "tilt_gives_theta",
+      "trust": "kernel"
+    },
+    {
       "doc": "**The rate and the relative entropy are one function.** Paper B minimises a moment generating function and calls the answer `rho`; Paper C writes a relative entropy to the fair coin. The two are negatives of each other identically -- no positivity hypothesis is needed, because both sides are the same arrangement of `b log b`, `(1-b) log (1-b)` and `log 2`.",
       "file": "formal/Problems/Juggler/PaperBPaperCBridge.lean",
       "kind": "theorem",
@@ -54178,6 +54674,166 @@
       "line": 108,
       "module": "Problems.Juggler.PaperBSlopeRate",
       "name": "logRho_deriv",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The ceiling gap is nonnegative: the barrier is never below its line.",
+      "file": "formal/Problems/Juggler/PaperBSturmianBarrier.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 37,
+      "module": "Problems.Juggler.PaperBSturmianBarrier",
+      "name": "ceil_sub_self_nonneg",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The ceiling gap is under one, uniformly in the argument -- no constant to track.",
+      "file": "formal/Problems/Juggler/PaperBSturmianBarrier.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 41,
+      "module": "Problems.Juggler.PaperBSturmianBarrier",
+      "name": "ceil_sub_self_lt_one'",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The barrier is within `1` of its line, for every time and every slope at once.",
+      "file": "formal/Problems/Juggler/PaperBSturmianBarrier.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 45,
+      "module": "Problems.Juggler.PaperBSturmianBarrier",
+      "name": "ceil_sub_self_lt_one",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Two ceilings separate no faster than their arguments do, plus one.",
+      "file": "formal/Problems/Juggler/PaperBSturmianBarrier.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 50,
+      "module": "Problems.Juggler.PaperBSturmianBarrier",
+      "name": "ceil_sub_ceil_lt",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The barrier form: at time `t` two slopes give barriers within `t * |s - s'| + 1`.",
+      "file": "formal/Problems/Juggler/PaperBSturmianBarrier.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 60,
+      "module": "Problems.Juggler.PaperBSturmianBarrier",
+      "name": "barrier_diff_lt",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The barrier difference is an integer, so once the lines are within `1` the barriers are.",
+      "file": "formal/Problems/Juggler/PaperBSturmianBarrier.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 68,
+      "module": "Problems.Juggler.PaperBSturmianBarrier",
+      "name": "barrier_diff_le_one_of_close",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The increments of a barrier of slope `s` in `[0,1]` are letters: each is `0` or `1`.",
+      "file": "formal/Problems/Juggler/PaperBSturmianBarrier.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 77,
+      "module": "Problems.Juggler.PaperBSturmianBarrier",
+      "name": "rise_mem_zero_one",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The tail exponent function: `log((1+z)/2) - (1-s) log z`.",
+      "file": "formal/Problems/Juggler/PaperBTailSpectrum.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 44,
+      "module": "Problems.Juggler.PaperBTailSpectrum",
+      "name": "h",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The tail root `(1-s)/s`, at which the characteristic equation has its double root.",
+      "file": "formal/Problems/Juggler/PaperBTailSpectrum.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 48,
+      "module": "Problems.Juggler.PaperBTailSpectrum",
+      "name": "tailRoot",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBTailSpectrum.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 50,
+      "module": "Problems.Juggler.PaperBTailSpectrum",
+      "name": "tailRoot_pos",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`1 + (1-s)/s = 1/s`: the algebra the whole module leans on.",
+      "file": "formal/Problems/Juggler/PaperBTailSpectrum.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 55,
+      "module": "Problems.Juggler.PaperBTailSpectrum",
+      "name": "one_add_tailRoot",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBTailSpectrum.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 60,
+      "module": "Problems.Juggler.PaperBTailSpectrum",
+      "name": "h_hasDerivAt",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`h` is stationary exactly at the tail root: this is the double root.",
+      "file": "formal/Problems/Juggler/PaperBTailSpectrum.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 72,
+      "module": "Problems.Juggler.PaperBTailSpectrum",
+      "name": "h_deriv_eq_zero_at_tailRoot",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The second derivative, `-(1+z)^(-2) + (1-s) z^(-2)`, is positive at the tail root.",
+      "file": "formal/Problems/Juggler/PaperBTailSpectrum.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 82,
+      "module": "Problems.Juggler.PaperBTailSpectrum",
+      "name": "h_secondDeriv_at_tailRoot",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBTailSpectrum.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 91,
+      "module": "Problems.Juggler.PaperBTailSpectrum",
+      "name": "h_secondDeriv_pos",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The minimum value is the binary entropy less `log 2` -- which is `log rho`.",
+      "file": "formal/Problems/Juggler/PaperBTailSpectrum.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 98,
+      "module": "Problems.Juggler.PaperBTailSpectrum",
+      "name": "h_at_tailRoot",
       "trust": "kernel"
     },
     {
@@ -87390,12 +88046,19 @@
         "Problems.Juggler.OddLandingSets",
         "Problems.Juggler.OstrowskiNumeration",
         "Problems.Juggler.OstrowskiSandwich",
+        "Problems.Juggler.PaperBAmplitudeCocycle",
         "Problems.Juggler.PaperBAssembly",
         "Problems.Juggler.PaperBBackwardWord",
         "Problems.Juggler.PaperBBarrierStep",
+        "Problems.Juggler.PaperBCertificates",
         "Problems.Juggler.PaperBChainRule",
+        "Problems.Juggler.PaperBChernoff",
+        "Problems.Juggler.PaperBDensity",
+        "Problems.Juggler.PaperBMarkov",
         "Problems.Juggler.PaperBPaperCBridge",
         "Problems.Juggler.PaperBSlopeRate",
+        "Problems.Juggler.PaperBSturmianBarrier",
+        "Problems.Juggler.PaperBTailSpectrum",
         "Problems.Juggler.PaperBThreshold",
         "Problems.Juggler.PaperBTilt",
         "Problems.Juggler.PaperBWeightGap",
@@ -89415,6 +90078,12 @@
         }
       ]
     },
+    "Problems.Juggler.PaperBAmplitudeCocycle": {
+      "declarations": 7,
+      "file": "formal/Problems/Juggler/PaperBAmplitudeCocycle.lean",
+      "imports": [],
+      "ledger": []
+    },
     "Problems.Juggler.PaperBAssembly": {
       "declarations": 31,
       "file": "formal/Problems/Juggler/PaperBAssembly.lean",
@@ -89434,6 +90103,20 @@
       "file": "formal/Problems/Juggler/PaperBBarrierStep.lean",
       "imports": [],
       "ledger": []
+    },
+    "Problems.Juggler.PaperBCertificates": {
+      "declarations": 23,
+      "file": "formal/Problems/Juggler/PaperBCertificates.lean",
+      "imports": [
+        "Problems.Juggler.ItineraryStats"
+      ],
+      "ledger": [
+        {
+          "id": "J-paper-b-lemma-5-1-minimal-certificates",
+          "statement": "Paper B Lemma 5.1: the contracting words of length at most five with no proper nonempty contracting prefix are exactly E, OE, OOEE, OOOEE, and OOEOE. Their formal cylinder measures sum to 1/2+1/4+1/16+1/32+1/32=7/8 (and the four-step and 27/32 subfamily sums likewise). Lean: Problems.Juggler.PaperBCertificates.lemma51 and certificate_measures_sum. This is the combinatorial classification only; it does not count starts, bound exponential sums, or prove Theorem 5.4.",
+          "tag": "EXACT \u2014 LEAN VERIFIED"
+        }
+      ]
     },
     "Problems.Juggler.PaperBChainRule": {
       "declarations": 27,
@@ -89467,6 +90150,28 @@
         }
       ]
     },
+    "Problems.Juggler.PaperBChernoff": {
+      "declarations": 8,
+      "file": "formal/Problems/Juggler/PaperBChernoff.lean",
+      "imports": [
+        "Problems.Juggler.FateOneSidedCorollary"
+      ],
+      "ledger": []
+    },
+    "Problems.Juggler.PaperBDensity": {
+      "declarations": 3,
+      "file": "formal/Problems/Juggler/PaperBDensity.lean",
+      "imports": [],
+      "ledger": []
+    },
+    "Problems.Juggler.PaperBMarkov": {
+      "declarations": 4,
+      "file": "formal/Problems/Juggler/PaperBMarkov.lean",
+      "imports": [
+        "Problems.Juggler.PaperBChernoff"
+      ],
+      "ledger": []
+    },
     "Problems.Juggler.PaperBPaperCBridge": {
       "declarations": 10,
       "file": "formal/Problems/Juggler/PaperBPaperCBridge.lean",
@@ -89482,6 +90187,18 @@
       "imports": [
         "Problems.Juggler.PaperBTilt"
       ],
+      "ledger": []
+    },
+    "Problems.Juggler.PaperBSturmianBarrier": {
+      "declarations": 7,
+      "file": "formal/Problems/Juggler/PaperBSturmianBarrier.lean",
+      "imports": [],
+      "ledger": []
+    },
+    "Problems.Juggler.PaperBTailSpectrum": {
+      "declarations": 9,
+      "file": "formal/Problems/Juggler/PaperBTailSpectrum.lean",
+      "imports": [],
       "ledger": []
     },
     "Problems.Juggler.PaperBThreshold": {
@@ -90380,6 +91097,11 @@
         "Problems.Juggler.MeanValues",
         "Problems.Juggler.MonomialSplitting",
         "Problems.Juggler.PaperBAssembly",
+        "Problems.Juggler.PaperBCertificates",
+        "Problems.Juggler.PaperBChernoff",
+        "Problems.Juggler.PaperBDensity",
+        "Problems.Juggler.PaperBMarkov",
+        "Problems.Juggler.PaperBThreshold",
         "Problems.Juggler.ThresholdCertificate"
       ],
       "ledger": []
@@ -90576,13 +91298,13 @@
     }
   },
   "totals": {
-    "declarations": 6693,
-    "declarations_with_a_ledger_row": 4572,
-    "ledger_rows_naming_a_file": 427,
-    "modules": 293,
+    "declarations": 6754,
+    "declarations_with_a_ledger_row": 4595,
+    "ledger_rows_naming_a_file": 435,
+    "modules": 300,
     "trust": {
       "compiler": 56,
-      "kernel": 6637
+      "kernel": 6698
     }
   }
 }
