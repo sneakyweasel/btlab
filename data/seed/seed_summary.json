@@ -1,0 +1,52 @@
+{
+  "source_index": "data/research/formalpedia/index.json",
+  "kernel_theorems": 5622,
+  "excluded_compiler_trust": 56,
+  "tactic": 4280,
+  "term": 1230,
+  "equations": 56,
+  "failed": [
+    {
+      "name": "at",
+      "why": "no top-level :="
+    },
+    {
+      "name": "needs",
+      "why": "no top-level :="
+    }
+  ],
+  "by_library": {
+    "Problems": 4735,
+    "BTCalculus": 774,
+    "Operators": 32,
+    "Representation": 22,
+    "Core": 3
+  },
+  "first_tactic": {
+    "have": 1413,
+    "rw": 394,
+    "intro": 317,
+    "simp": 279,
+    "unfold": 231,
+    "obtain": 205,
+    "induction": 195,
+    "decide": 184,
+    "refine": 115,
+    "cases": 109,
+    "rcases": 104,
+    "constructor": 99,
+    "norm_num": 85,
+    "simpa": 82,
+    "set": 70,
+    "by_contra": 59,
+    "classical": 51,
+    "apply": 42,
+    "let": 35,
+    "by_cases": 27,
+    "omega": 22,
+    "ext": 22,
+    "ring": 19,
+    "calc": 17,
+    "exact": 16
+  }
+}
