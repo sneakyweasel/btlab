@@ -54367,11 +54367,21 @@
       "trust": "kernel"
     },
     {
+      "doc": "Relative entropy `D(p \u2016 q) = p log(p/q) + (1-p) log((1-p)/(1-q))`. Same formula as `OneSided.klDiv`; defined here so this module does not import the fate layer.",
+      "file": "formal/Problems/Juggler/PaperBChernoff.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 46,
+      "module": "Problems.Juggler.PaperBChernoff",
+      "name": "klDiv",
+      "trust": "kernel"
+    },
+    {
       "doc": "The strict form of `1 - x\u207b\u00b9 \u2264 log x`.",
       "file": "formal/Problems/Juggler/PaperBChernoff.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 44,
+      "line": 50,
       "module": "Problems.Juggler.PaperBChernoff",
       "name": "one_sub_inv_lt_log",
       "trust": "kernel"
@@ -54381,7 +54391,7 @@
       "file": "formal/Problems/Juggler/PaperBChernoff.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 51,
+      "line": 57,
       "module": "Problems.Juggler.PaperBChernoff",
       "name": "klDiv_pos",
       "trust": "kernel"
@@ -54391,7 +54401,7 @@
       "file": "formal/Problems/Juggler/PaperBChernoff.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 74,
+      "line": 80,
       "module": "Problems.Juggler.PaperBChernoff",
       "name": "klDiv_half_eq",
       "trust": "kernel"
@@ -54401,7 +54411,7 @@
       "file": "formal/Problems/Juggler/PaperBChernoff.lean",
       "kind": "def",
       "ledger": [],
-      "line": 87,
+      "line": 93,
       "module": "Problems.Juggler.PaperBChernoff",
       "name": "theta",
       "trust": "kernel"
@@ -54411,7 +54421,7 @@
       "file": "formal/Problems/Juggler/PaperBChernoff.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 90,
+      "line": 96,
       "module": "Problems.Juggler.PaperBChernoff",
       "name": "theta_eq_exp_neg_klDiv",
       "trust": "kernel"
@@ -54421,7 +54431,7 @@
       "file": "formal/Problems/Juggler/PaperBChernoff.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 104,
+      "line": 110,
       "module": "Problems.Juggler.PaperBChernoff",
       "name": "theta_lt_one",
       "trust": "kernel"
@@ -54431,7 +54441,7 @@
       "file": "formal/Problems/Juggler/PaperBChernoff.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 111,
+      "line": 117,
       "module": "Problems.Juggler.PaperBChernoff",
       "name": "theta_pos",
       "trust": "kernel"
@@ -54441,7 +54451,7 @@
       "file": "formal/Problems/Juggler/PaperBChernoff.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 115,
+      "line": 121,
       "module": "Problems.Juggler.PaperBChernoff",
       "name": "theta_pow_lt",
       "trust": "kernel"
@@ -54744,6 +54754,282 @@
       "line": 77,
       "module": "Problems.Juggler.PaperBSturmianBarrier",
       "name": "rise_mem_zero_one",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Pascal step for the tail sum, in the exact form the word-count induction consumes: `S(d+1, a) = S(d, a) + S(d, a-1)`, with Nat truncation covering `a = 0`.",
+      "file": "formal/Problems/Juggler/PaperBSurvivorDecay.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-survivor-count-decay"
+      ],
+      "line": 61,
+      "module": "Problems.Juggler.PaperBSurvivorDecay",
+      "name": "choose_tail_succ",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`a \u2264 o + 1 \u2194 a - 1 \u2264 o`, uniformly in `a : \u2115`.",
+      "file": "formal/Problems/Juggler/PaperBSurvivorDecay.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-survivor-count-decay"
+      ],
+      "line": 95,
+      "module": "Problems.Juggler.PaperBSurvivorDecay",
+      "name": "le_add_one_iff_pred_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The exact binomial tail count: length-`d` words with at least `a` odd letters number `\u2211 k \u2208 Ico a (d+1), C(d,k)`.",
+      "file": "formal/Problems/Juggler/PaperBSurvivorDecay.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-survivor-count-decay"
+      ],
+      "line": 100,
+      "module": "Problems.Juggler.PaperBSurvivorDecay",
+      "name": "count_oddCount_ge",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The endpoint constraint as a real inequality: a length-`d` survivor carries at least `\u2308d\u00b7\u03b2\u2309\u208a` odd letters. This is `neverNeg_endpoint` after `Real.log`.",
+      "file": "formal/Problems/Juggler/PaperBSurvivorDecay.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-survivor-count-decay"
+      ],
+      "line": 189,
+      "module": "Problems.Juggler.PaperBSurvivorDecay",
+      "name": "oddCount_ge_of_mem_neverNeg",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`N_d` is at most the binomial tail above `\u2308d\u00b7\u03b2\u2309\u208a`.",
+      "file": "formal/Problems/Juggler/PaperBSurvivorDecay.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-survivor-count-decay"
+      ],
+      "line": 206,
+      "module": "Problems.Juggler.PaperBSurvivorDecay",
+      "name": "neverNegCount_le_choose_tail",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The manuscript's estimate with the endpoint tilt: `N_d / 2^d \u2264 theta \u03b2 ^ d`.",
+      "file": "formal/Problems/Juggler/PaperBSurvivorDecay.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-survivor-count-decay"
+      ],
+      "line": 215,
+      "module": "Problems.Juggler.PaperBSurvivorDecay",
+      "name": "neverNegCount_div_pow_le_theta",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The Chernoff factor at the endpoint is below one, so the survivor density bound decays to zero.",
+      "file": "formal/Problems/Juggler/PaperBSurvivorDecay.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-survivor-count-decay"
+      ],
+      "line": 269,
+      "module": "Problems.Juggler.PaperBSurvivorDecay",
+      "name": "theta_beta_lt_one",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBSurvivorDecay.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-survivor-count-decay"
+      ],
+      "line": 276,
+      "module": "Problems.Juggler.PaperBSurvivorDecay",
+      "name": "theta_beta_pos",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The decay half of the rate-free reduction, kernel-checked:** `N_d / 2^d \u2192 0` as `d \u2192 \u221e`.",
+      "file": "formal/Problems/Juggler/PaperBSurvivorDecay.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-survivor-count-decay"
+      ],
+      "line": 283,
+      "module": "Problems.Juggler.PaperBSurvivorDecay",
+      "name": "neverNegCount_div_pow_tendsto_zero",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The all-odd word survives at every depth, so `N_d \u2265 1`.",
+      "file": "formal/Problems/Juggler/PaperBSurvivorDecay.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-survivor-count-decay"
+      ],
+      "line": 291,
+      "module": "Problems.Juggler.PaperBSurvivorDecay",
+      "name": "one_le_neverNegCount",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Hypothesis FD, per class: every depth-`d` class count is asymptotic to `2^{-d} N`. This is the open input; nothing below proves it.",
+      "file": "formal/Problems/Juggler/PaperBSurvivorDecay.lean",
+      "kind": "def",
+      "ledger": [
+        "J-survivor-count-decay"
+      ],
+      "line": 299,
+      "module": "Problems.Juggler.PaperBSurvivorDecay",
+      "name": "FairClasses",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Under FD, the depth-`d` uncertified ratio tends to `N_d / 2^d`.",
+      "file": "formal/Problems/Juggler/PaperBSurvivorDecay.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-survivor-count-decay"
+      ],
+      "line": 304,
+      "module": "Problems.Juggler.PaperBSurvivorDecay",
+      "name": "uncertifiedCount_div_tendsto",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The assembled conditional Theorem 6.1.** Under per-class fairness, the never-certified starts have natural density zero: at each fixed depth the uncertified ratio tends to `N_d / 2^d`, and that bound itself tends to zero as `d \u2192 \u221e`. The hypothesis `FairClasses` is exactly what remains open.",
+      "file": "formal/Problems/Juggler/PaperBSurvivorDecay.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-survivor-count-decay"
+      ],
+      "line": 326,
+      "module": "Problems.Juggler.PaperBSurvivorDecay",
+      "name": "neverCertified_density_zero",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBSurvivorDecay.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-survivor-count-decay"
+      ],
+      "line": 363,
+      "module": "Problems.Juggler.PaperBSurvivorDecay",
+      "name": "neverNegCount_one",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBSurvivorDecay.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-survivor-count-decay"
+      ],
+      "line": 366,
+      "module": "Problems.Juggler.PaperBSurvivorDecay",
+      "name": "neverNegCount_two",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBSurvivorDecay.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-survivor-count-decay"
+      ],
+      "line": 369,
+      "module": "Problems.Juggler.PaperBSurvivorDecay",
+      "name": "neverNegCount_three",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBSurvivorDecay.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-survivor-count-decay"
+      ],
+      "line": 372,
+      "module": "Problems.Juggler.PaperBSurvivorDecay",
+      "name": "neverNegCount_four",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The depth-five survivors number four: this is the `4` behind Corollary 6.4's certificate density `1 - 4/32 = 7/8`, reached by counting words.",
+      "file": "formal/Problems/Juggler/PaperBSurvivorDecay.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-survivor-count-decay"
+      ],
+      "line": 377,
+      "module": "Problems.Juggler.PaperBSurvivorDecay",
+      "name": "neverNegCount_five",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The depth-five survivors, explicitly: `OOOOO`, `OOOOE`, `OOOEO`, `OOEOO`.",
+      "file": "formal/Problems/Juggler/PaperBSurvivorDecay.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-survivor-count-decay"
+      ],
+      "line": 381,
+      "module": "Problems.Juggler.PaperBSurvivorDecay",
+      "name": "neverNegWords_five",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Depth six: all eight children survive, so the certificate density stays `7/8`.",
+      "file": "formal/Problems/Juggler/PaperBSurvivorDecay.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-survivor-count-decay"
+      ],
+      "line": 390,
+      "module": "Problems.Juggler.PaperBSurvivorDecay",
+      "name": "neverNegCount_six",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBSurvivorDecay.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-survivor-count-decay"
+      ],
+      "line": 393,
+      "module": "Problems.Juggler.PaperBSurvivorDecay",
+      "name": "neverNegCount_seven",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBSurvivorDecay.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-survivor-count-decay"
+      ],
+      "line": 396,
+      "module": "Problems.Juggler.PaperBSurvivorDecay",
+      "name": "neverNegCount_eight",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The uncertified fraction at depth five is exactly `1/8`, complementing `DepthFourFive.cor64_density`'s `7/8`.",
+      "file": "formal/Problems/Juggler/PaperBSurvivorDecay.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-survivor-count-decay"
+      ],
+      "line": 401,
+      "module": "Problems.Juggler.PaperBSurvivorDecay",
+      "name": "uncertified_fraction_depth_five",
       "trust": "kernel"
     },
     {
@@ -88058,6 +88344,7 @@
         "Problems.Juggler.PaperBPaperCBridge",
         "Problems.Juggler.PaperBSlopeRate",
         "Problems.Juggler.PaperBSturmianBarrier",
+        "Problems.Juggler.PaperBSurvivorDecay",
         "Problems.Juggler.PaperBTailSpectrum",
         "Problems.Juggler.PaperBThreshold",
         "Problems.Juggler.PaperBTilt",
@@ -90151,11 +90438,9 @@
       ]
     },
     "Problems.Juggler.PaperBChernoff": {
-      "declarations": 8,
+      "declarations": 9,
       "file": "formal/Problems/Juggler/PaperBChernoff.lean",
-      "imports": [
-        "Problems.Juggler.FateOneSidedCorollary"
-      ],
+      "imports": [],
       "ledger": []
     },
     "Problems.Juggler.PaperBDensity": {
@@ -90194,6 +90479,23 @@
       "file": "formal/Problems/Juggler/PaperBSturmianBarrier.lean",
       "imports": [],
       "ledger": []
+    },
+    "Problems.Juggler.PaperBSurvivorDecay": {
+      "declarations": 23,
+      "file": "formal/Problems/Juggler/PaperBSurvivorDecay.lean",
+      "imports": [
+        "Problems.Juggler.PaperBDensity",
+        "Problems.Juggler.PaperBMarkov",
+        "Problems.Juggler.PaperBThreshold",
+        "Problems.Juggler.RateFreeDensity"
+      ],
+      "ledger": [
+        {
+          "id": "J-survivor-count-decay",
+          "statement": "The never-contracting word count N_d of the rate-free density-one reduction (rows J-equidistribution-implies-density-one, J-rate-free-density-one) is identified with a binomial tail and provably decays, closing the link PaperBMarkov's header listed as written mathematics. (i) count_oddCount_ge: length-d parity words with at least a odd letters number exactly sum_{k=a}^{d} C(d,k), by Pascal induction on d. (ii) oddCount_ge_of_mem_neverNeg: every survivor w of length d has oddCount w >= ceil(d beta) with beta = log2/log3 (neverNeg_endpoint plus log monotonicity). (iii) neverNegCount_div_pow_le_theta: N_d/2^d <= theta(beta)^d, the tilt taken at the endpoint q = beta itself (the published proof tilts at the midpoint; the upper bound needs no threshold admissibility). (iv) neverNegCount_div_pow_tendsto_zero: N_d/2^d -> 0, since theta(beta) < 1 (PaperBChernoff.theta_lt_one, beta != 1/2 via 2^8 > 3^5). (v) neverCertified_density_zero: under FairClasses (the manuscript's Hypothesis FD: per-class #w(N) = 2^{-d} N + o(N) at each fixed depth), the never-certified starts in {1,...,N} have natural density zero -- the conditional Theorem 6.1 assembled end-to-end, with RateFreeDensity.uncertifiedCount_eq_sum supplying the union step that J-fd-step-is-formal-and-theorem-six-one-stays-conditional recorded as written mathematics, and PaperBDensity.exceptional_density_zero supplying the limit order N -> infinity before d -> infinity. (vi) Kernel-computed values: N_1..N_8 = 1, 1, 2, 3, 4, 8, 13, 19; neverNegWords_five lists the depth-5 survivors OOOOO, OOOOE, OOOEO, OOEOO, the word count behind Corollary 6.4's 7/8 (uncertified_fraction_depth_five: 1 - 4/32 = 7/8); N_6 = 8 is the ledger's 'all eight children survive'. All kernel-trusted (decide +kernel for the values; no native_decide). What stays open is FD itself, the active conjecture juggler_tower_rate_free_equidistribution; the exact rate -log rho = 0.034688 (one part in eighty sharper than this endpoint-only Hoeffding majorant) is not formalised. Not a halt theorem; no unconditional density claim.",
+          "tag": "EXACT \u2014 LEAN VERIFIED"
+        }
+      ]
     },
     "Problems.Juggler.PaperBTailSpectrum": {
       "declarations": 9,
@@ -91097,7 +91399,6 @@
         "Problems.Juggler.MeanValues",
         "Problems.Juggler.MonomialSplitting",
         "Problems.Juggler.PaperBAssembly",
-        "Problems.Juggler.PaperBCertificates",
         "Problems.Juggler.PaperBChernoff",
         "Problems.Juggler.PaperBDensity",
         "Problems.Juggler.PaperBMarkov",
@@ -91298,13 +91599,13 @@
     }
   },
   "totals": {
-    "declarations": 6754,
-    "declarations_with_a_ledger_row": 4595,
-    "ledger_rows_naming_a_file": 435,
-    "modules": 300,
+    "declarations": 6778,
+    "declarations_with_a_ledger_row": 4618,
+    "ledger_rows_naming_a_file": 436,
+    "modules": 301,
     "trust": {
       "compiler": 56,
-      "kernel": 6698
+      "kernel": 6722
     }
   }
 }

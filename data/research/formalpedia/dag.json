@@ -2235,6 +2235,20 @@
         "kernel": 36
       }
     },
+    "Problems.Juggler.PaperBCertificates": {
+      "declarations": 23,
+      "depends_on": [
+        "Problems.Juggler.ItineraryStats"
+      ],
+      "file": "formal/Problems/Juggler/PaperBCertificates.lean",
+      "ledger": [
+        "J-paper-b-lemma-5-1-minimal-certificates"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 23
+      }
+    },
     "Problems.Juggler.PaperBChainRule": {
       "declarations": 27,
       "depends_on": [],
@@ -2249,6 +2263,20 @@
       "papers": [],
       "trust": {
         "kernel": 27
+      }
+    },
+    "Problems.Juggler.PaperBSurvivorDecay": {
+      "declarations": 23,
+      "depends_on": [
+        "Problems.Juggler.RateFreeDensity"
+      ],
+      "file": "formal/Problems/Juggler/PaperBSurvivorDecay.lean",
+      "ledger": [
+        "J-survivor-count-decay"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 23
       }
     },
     "Problems.Juggler.PeriodFamily": {
@@ -2968,9 +2996,9 @@
     }
   },
   "totals": {
-    "edges": 229,
-    "edges_before_reduction": 1739,
-    "ledger_rows_placed": 401,
-    "nodes": 180
+    "edges": 231,
+    "edges_before_reduction": 1750,
+    "ledger_rows_placed": 403,
+    "nodes": 182
   }
 }

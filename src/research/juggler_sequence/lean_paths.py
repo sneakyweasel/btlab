@@ -298,6 +298,8 @@ AUXILIARY_MODULES: dict[str, str] = {
     "PaperBDensity": "Paper B: Hypothesis FD to density one, conditionally",
     "PaperBChernoff": "Paper B estimate: the Chernoff factor is below one",
     "PaperBMarkov": "Paper B estimate: the exponential Markov step",
+    "PaperBSurvivorDecay": "Paper B Theorem 6.1 count: survivor density decays, conditional density one",
+    "PaperBSurvivorAsymptotic": "Paper B exact-rate skeleton: meander shape and sharpness up to d^(3/2)",
     "PaperBBackwardWord": "Paper B barrier word: the arc form",
     "PaperBBarrierStep": "Paper B barrier word: one update step",
     "PaperBPaperCBridge": "Paper B/C bridge: one rate function",
