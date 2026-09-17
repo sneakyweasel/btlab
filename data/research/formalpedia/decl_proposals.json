@@ -1,7 +1,50 @@
 {
-  "composite": 26,
+  "composite": 27,
   "note": "Proposals for human review. Calibration: 86% precision (42 of 49 fires) against all resolved rows. Nothing here has been written into the ledger.",
   "rows": [
+    {
+      "candidates": [
+        {
+          "decl": "lemma51",
+          "line": 180,
+          "score": 0.242,
+          "trust": "kernel"
+        },
+        {
+          "decl": "certificate_measures_sum",
+          "line": 56,
+          "score": 0.219,
+          "trust": "kernel"
+        },
+        {
+          "decl": "four_step_measures_sum",
+          "line": 60,
+          "score": 0.125,
+          "trust": "kernel"
+        }
+      ],
+      "composite": false,
+      "confidence": "low",
+      "definitions": [
+        {
+          "decl": "IsMinimalCertificate",
+          "line": 28,
+          "score": 0.162
+        },
+        {
+          "decl": "certE",
+          "line": 43,
+          "score": 0.061
+        }
+      ],
+      "id": "J-paper-b-lemma-5-1-minimal-certificates",
+      "in_file": 17,
+      "lean": "Problems/Juggler/PaperBCertificates.lean",
+      "names_own": [
+        "certificate_measures_sum"
+      ],
+      "statement": "Paper B Lemma 5.1: the contracting words of length at most five with no proper nonempty contracting prefix are exactly E, OE, OOEE, OOOEE, and OOEOE. Their formal cylinder measures sum to 1/2+1/4+1/16+1/32+1/32=7/8 (and the four-step and 27/32 subfamily sums likewise). Lean: Problems.Juggler.PaperBCertificates.lemma51 and certificate_measures_sum. This is the combinatorial classification only; it "
+    },
     {
       "candidates": [
         {
@@ -2367,6 +2410,50 @@
     {
       "candidates": [
         {
+          "decl": "neverCertified_density_zero",
+          "line": 326,
+          "score": 0.16,
+          "trust": "kernel"
+        },
+        {
+          "decl": "neverNegCount_div_pow_tendsto_zero",
+          "line": 283,
+          "score": 0.085,
+          "trust": "kernel"
+        },
+        {
+          "decl": "neverNegCount_five",
+          "line": 377,
+          "score": 0.084,
+          "trust": "kernel"
+        }
+      ],
+      "composite": true,
+      "confidence": "review",
+      "definitions": [
+        {
+          "decl": "FairClasses",
+          "line": 299,
+          "score": 0.061
+        }
+      ],
+      "id": "J-survivor-count-decay",
+      "in_file": 22,
+      "lean": "Problems/Juggler/PaperBSurvivorDecay.lean",
+      "names_own": [
+        "count_oddCount_ge",
+        "oddCount_ge_of_mem_neverNeg",
+        "neverNegCount_div_pow_le_theta",
+        "neverNegCount_div_pow_tendsto_zero",
+        "neverCertified_density_zero",
+        "neverNegWords_five",
+        "uncertified_fraction_depth_five"
+      ],
+      "statement": "The never-contracting word count N_d of the rate-free density-one reduction (rows J-equidistribution-implies-density-one, J-rate-free-density-one) is identified with a binomial tail and provably decays, closing the link PaperBMarkov's header listed as written mathematics. (i) count_oddCount_ge: length-d parity words with at least a odd letters number exactly sum_{k=a}^{d} C(d,k), by Pascal inducti"
+    },
+    {
+      "candidates": [
+        {
           "decl": "exponents_slack_add",
           "line": 325,
           "score": 0.147,
@@ -3924,8 +4011,63 @@
       "lean": "formal/Problems/Juggler/PaperBTilt.lean",
       "names_own": [],
       "statement": "The exact reduction behind the almost-periodic prefactor of J-paper-b-meander-prefactor-is-almost-periodic, together with the one step of it that is NOT proved. Steps Y = X - BETA with X ~ Bernoulli(1/2), so Lam(l) = -l BETA + log((e^l+1)/2). THE TILT. Lam'(l) = -BETA + e^l/(e^l+1) vanishes exactly at lamStar = log(BETA/(1-BETA)) = 0.536207535136, where the tilted coin is Bernoulli(BETA) and the w"
+    },
+    {
+      "candidates": [],
+      "composite": false,
+      "confidence": "low",
+      "definitions": [],
+      "id": "J-tail-amplitude-is-a-cocycle-over-the-boundary-fraction",
+      "in_file": 0,
+      "lean": "formal/Problems/Juggler/PaperBAmplitudeCocycle.lean",
+      "names_own": [],
+      "statement": "A(phi) is not an independent unknown: the update determines the tail amplitude from the boundary fraction through an explicit multiplicative cocycle over the rotation. THE DERIVATION, which is algebra and is exact. J-phase-shift-is-one-update-and-R-halves makes a phase shift by the slope exactly one application of the update, Pi_(phi+s) = T_b Pi_phi / (1 - b Pi_phi(0)/2). Pushing the tail form A ("
+    },
+    {
+      "candidates": [],
+      "composite": false,
+      "confidence": "low",
+      "definitions": [],
+      "id": "J-tail-double-root-in-lean-and-paper-b-updated",
+      "in_file": 0,
+      "lean": "formal/Problems/Juggler/PaperBTailSpectrum.lean",
+      "names_own": [],
+      "statement": "The tail variable's minimum is Lean-verified and Paper B's open-questions section is brought up to it. THE LEAN. PaperBTailSpectrum proves what J-tail-spectral-gap-closes-like-one-over-root-q reads its numerics against, for h s z = log(1+z) - log 2 - (1-s) log z: the derivative is 1/(1+z) - (1-s)/z (h_hasDerivAt); it vanishes at the tail root (1-s)/s (h_deriv_eq_zero_at_tailRoot), which is why r* "
+    },
+    {
+      "candidates": [],
+      "composite": false,
+      "confidence": "low",
+      "definitions": [],
+      "id": "J-paper-b-formal-layer-has-an-estimate",
+      "in_file": 0,
+      "lean": "formal/Problems/Juggler/PaperBChernoff.lean",
+      "names_own": [],
+      "statement": "Paper B's formal layer now contains an estimate, where before it contained none. THE STANDING POSITION, stated in the paper's own barrel JugglerParityPaper.lean: 'Building it does not corroborate the paper's analysis. Every declaration reachable from here is an identity, a constant, or a threshold; not one of them is an estimate.' That was accurate and is the reason 49 axiom-checked declarations d"
+    },
+    {
+      "candidates": [],
+      "composite": false,
+      "confidence": "low",
+      "definitions": [],
+      "id": "J-paper-b-chernoff-chain-is-formal",
+      "in_file": 0,
+      "lean": "formal/Problems/Juggler/PaperBMarkov.lean",
+      "names_own": [],
+      "statement": "Theorem 6.1's Chernoff chain is now formal end to end, from the word count to a bound that decays. PaperBMarkov, four theorems, axioms [propext, Classical.choice, Quot.sound], joining PaperBChernoff from earlier the same day. STATED COMBINATORIALLY, which is both closer to the manuscript and far cheaper: Paper B counts words of length d by their number of odd letters and divides by 2^d, so the sta"
+    },
+    {
+      "candidates": [],
+      "composite": false,
+      "confidence": "low",
+      "definitions": [],
+      "id": "J-fd-step-is-formal-and-theorem-six-one-stays-conditional",
+      "in_file": 0,
+      "lean": "formal/Problems/Juggler/PaperBDensity.lean",
+      "names_own": [],
+      "statement": "The FD step is formalised as an inference, and Theorem 6.1 stays conditional -- which is what the manuscript already says and what the formalisation must not quietly improve on. WHAT FD IS. A HYPOTHESIS, not a result: 'Hypothesis FD. For every fixed d >= 1 and every odd-rooted word w of length d, #{n <= N : word_d(n) = w} = 2^(-d) N + o_w(N). No common error rate in d is assumed.' Theorem 6.1 is h"
     }
   ],
-  "unresolved": 107,
-  "worth_reviewing": 18
+  "unresolved": 114,
+  "worth_reviewing": 19
 }

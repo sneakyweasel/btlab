@@ -73,6 +73,10 @@ Method: [docs/methodology.md](../../docs/methodology.md).
   no universal termination theorem follows.
   Densities \(57/64\) and \(29/32\) remain CONJECTURE. Harvest
   counting is laboratory-terminal (`J-harvest-counting-terminal`).
+  The rate-free reduction's decay half is kernel-checked in
+  `PaperBSurvivorDecay.lean` (`J-survivor-count-decay`):
+  \(N_d/2^d\to 0\), exact values \(N_5=4\) … \(N_8=19\), and the
+  conditional Theorem 6.1 assembled under FD alone. FD stays open.
   Remaining problem is external:
   [exponent_pair_two_monomial.md](../../docs/theory/exponent_pair_two_monomial.md).
   Do not wrap a nested-floor bound as a Juggler construction.

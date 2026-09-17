@@ -58,7 +58,9 @@ def test_unregistered_modules_are_visible() -> None:
     # registered with the rest.
     # 28 -> 29 on 17 September 2026: PaperBCertificates (Lemma 5.1), kept outside
     # the Paper B barrel because it imports the itinerary stack shared with Paper A.
-    assert len(outside) <= 29, outside
+    # 29 -> 30 on 17 September 2026: PaperBSurvivorDecay (the Theorem 6.1 count decay),
+    # outside the barrel for the same reason (it imports RateFreeDensity).
+    assert len(outside) <= 30, outside
 
 
 def foreign_public_declarations(source: str, prefix: str) -> list[tuple[str, int]]:

@@ -5,7 +5,7 @@ statement beside the candidate's docstring; the question is only whether they sa
 same thing.  Measured against all 208 single-declaration rows the scorer gets
 64 of the 79 it fires on right, 81% precise, so roughly one in
 5 below is wrong.
-18 rows below, of 107 unresolved.
+19 rows below, of 114 unresolved.
 
 
 Two failure modes are not scored at all, and both record a part as the whole.
@@ -229,7 +229,29 @@ theorem minimal_first_even_overshoots {n a : ℕ}
 
 *Runners-up: `cycleMin_first_even_overshoots` (0.3), `cycleMin_max_ge_succ_sq` (0.278)*
 
-## 12. `J-cyclemax-succ-sq`
+## 12. `J-survivor-count-decay`
+
+**Row.** The never-contracting word count N_d of the rate-free density-one reduction (rows J-equidistribution-implies-density-one, J-rate-free-density-one) is identified with a binomial tail and provably decays, closing the link PaperBMarkov's header listed as written mathematics. (i) count_oddCount_ge: length-d parity words with at least a odd le
+
+**Candidate.** `neverCertified_density_zero` &mdash; kernel-checked, `Problems/Juggler/PaperBSurvivorDecay.lean:326`
+
+> **The assembled conditional Theorem 6.1.** Under per-class fairness, the never-certified starts have natural density zero: at each fixed depth the uncertified ratio tends to `N_d / 2^d`, and that bound itself tends to zero as `d → ∞`. The hypothesis `FairClasses` is exactly what remains open.
+
+```lean
+theorem neverCertified_density_zero (h : FairClasses) :
+    Tendsto
+      (fun N : ℕ =>
+        (((Icc 1 N).filter fun n => ¬HasFiniteCoeffStop n).card : ℝ) / N)
+      atTop (𝓝 0)
+```
+
+*Statement names: `count_oddCount_ge`, `oddCount_ge_of_mem_neverNeg`, `neverNegCount_div_pow_le_theta`, `neverNegCount_div_pow_tendsto_zero`, `neverCertified_density_zero`, `neverNegWords_five`, `uncertified_fraction_depth_five`*
+
+*Runners-up: `neverNegCount_div_pow_tendsto_zero` (0.085), `neverNegCount_five` (0.084)*
+
+*If this row describes a definition rather than a theorem: `FairClasses`*
+
+## 13. `J-cyclemax-succ-sq`
 
 **Row.** On a CycleMin start n ≥ 2 the cycle maximum satisfies (n+1)^2 ≤ M. Equivalently, on a CycleMax the rotated minimum m satisfies (m+1)^2 ≤ M, so T(M) > m. The first-cell family m^2 < M < (m+1)^2 is impossible. cycle_distinguished_order_succ_sq is the distinguished-order package with that scale. Corollary of cycleMin_first_even_overshoots: t
 
@@ -250,7 +272,7 @@ theorem cycleMin_max_ge_succ_sq {n : ℕ} {w : List Branch}
 
 *Runners-up: `cycleMax_min_succ_sq_le` (0.222), `minimal_first_even_overshoots` (0.214)*
 
-## 13. `J-cyclemin-transport-oo`
+## 14. `J-cyclemin-transport-oo`
 
 **Row.** On a CycleMin, after the first O^a E with a ≥ 2, an immediate odd run of length at least two overshoots the landing y = T_{O^a E}(n) > n: the next two-odd residual is at least (y+1)^2, hence at least (n+2)^2. Lean: cycleMin_transport_second_oo, cycleMin_transport_second_oo_ge in CycleMinObstruction.lean. The second residual lies outside t
 
@@ -271,7 +293,7 @@ theorem cycleMin_transport_second_oo {n a b : ℕ} {v : List Branch}
 
 *Runners-up: `cycleMin_transport_second_oo_ge` (0.27), `follows_replicate_odd_of_le` (0.029)*
 
-## 14. `J-ce-third-residual-preimages`
+## 15. `J-ce-third-residual-preimages`
 
 **Row.** If n ≥ 2 follows OOEOOEOO, then T_OOEOOEOO(n) < n^3 because x^{256} ≤ n^{729} forbids n^3 ≤ x (768 > 729). If n follows OOEOOEOOE, then T_OOEOOEOOE(n) < n^2 because y^{512} ≤ n^{729} forbids n^2 ≤ y (1024 > 729). A CE that follows OOEOOE follows OOEOOEOO. On MinimalNonTerm a completed third OOE cannot land even: an even landing below n^2 
 
@@ -289,7 +311,7 @@ theorem minimal_ooeooeooe_not_even_landing {n : ℕ}
 
 *If this row describes a definition rather than a theorem: `itineraryOOEOOEOO`, `itineraryOOEOOEOOE`*
 
-## 15. `J-cube-odd-even-reset`
+## 16. `J-cube-odd-even-reset`
 
 **Row.** If n ≥ 2 and n^2 ≤ x < n^3 with x odd, then n^3 ≤ T(x) < n^5 and T(x)^2 < n^9. If T(x) is even, the first return satisfies n ≤ T^2(x) < x < n^3 and T^2(x)^4 < n^9. If T(x) is odd, then x < T^2(x) and n^4 ≤ T^2(x). An even reset that is itself even and already below n^2 is FiniteProgress; on MinimalNonTerm that case is impossible. This is 
 
@@ -306,7 +328,7 @@ theorem aboveAnchor_not_odd_even {n : ℕ} {v : List Branch}
 
 *If this row describes a definition rather than a theorem: `AboveAnchor`*
 
-## 16. `J-small-cycle-census-ten`
+## 17. `J-small-cycle-census-ten`
 
 **Row.** No itinerary of length at most ten is a Juggler cycle itinerary at any n ≥ 2; equivalently a nontrivial Juggler cycle, if one exists, has period at least eleven. Lengths ≤ 8 are the census J-small-cycle-census-eight; lengths 9 and 10 are excluded by the finance inequality at the residual floor 12 (no_cycle_itinerary_length_nine, no_cycle_
 
@@ -325,7 +347,7 @@ theorem no_cycle_itinerary_length_le_ten {n : ℕ} {w : List Branch}
 
 *If this row describes a definition rather than a theorem: `financeRows53`, `financeRows257`*
 
-## 17. `J-cyclemin-defect-finance-kill`
+## 18. `J-cyclemin-defect-finance-kill`
 
 **Row.** The defect-sum finance inequality (the certified identity of Paper A Theorem 4.6, previously human) and the walk-charge kill criterion (Theorem 5.9 mechanism), Lean end to end (DefectFinance.lean). Finance: on a CycleMin cycle with minimum n ≥ 400, 1 − 2^L/3^o ≤ (6/5)·Σ_k 1/(x_k·log x_k) (cycleMin_defect_finance). Ingredients all Lean: pe
 
@@ -348,7 +370,7 @@ theorem cycleMin_hug_kill_criterion {n : ℕ} {w : List Branch}
 
 *If this row describes a definition rather than a theorem: `prefixCharge`*
 
-## 18. `J-loglog-clock-band-word-forced-lean`
+## 19. `J-loglog-clock-band-word-forced-lean`
 
 **Row.** Inside the hug band the parity letter is forced. band_step_forced_odd: from u < 1 a step staying in [0, 1 + alphaClock) must be the odd one, v = u + alphaClock (the even step goes negative). band_step_forced_even: from 1 <= u it must be the even one, v = u - 1 (the odd step exceeds the band). band_successor_unique: a band-confined walk ha
 

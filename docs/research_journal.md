@@ -1,5 +1,45 @@
 # Research journal
 
+## 2026-09-17 — The Theorem 6.1 count decays, in Lean
+
+- **Objective:** Close the last unformalised link of the rate-free
+  density-one reduction: the identification of the never-contracting
+  word count `N_d` with a binomial tail, and its decay. `PaperBMarkov`'s
+  header listed it as still written mathematics.
+- **Triage:** target = kernel-checked `N_d / 2^d → 0` plus the
+  conditional Theorem 6.1 assembly; novelty = the machine-checked
+  binomial-tail identification, not the mathematics; falsifier = a
+  survivor below the endpoint barrier (`neverNeg_endpoint` blocks) or
+  `theta β ≥ 1` (`theta_lt_one` blocks, `β ≠ 1/2` via `2^8 > 3^5`);
+  already killed by? = none — the termination kill test targets Juggler
+  constructions of `e(u w^{3/2})`, and this is the combinatorial count
+  behind Theorem 6.1 (`harvest_counting` is the analytic leftover,
+  unrelated); machinery = `RateFreeDensity`, `PaperBMarkov`,
+  `PaperBChernoff`, `PaperBThreshold`, `PaperBDensity`; Phase-0 = one
+  auxiliary module; promote if the barrel builds; stop if choice-heavy
+  API is needed (did not fire).
+- **Major results:** `PaperBSurvivorDecay.lean` proves
+  `count_oddCount_ge` (words of length `d` with at least `a` odd letters
+  number exactly `∑_{k=a}^{d} C(d,k)`, Pascal induction),
+  `neverNegCount_div_pow_le_theta` (`N_d/2^d ≤ θ(β)^d` at the endpoint
+  tilt `q = β = log 2 / log 3` — the published proof tilts at the
+  midpoint; the upper bound needs no threshold admissibility),
+  `neverNegCount_div_pow_tendsto_zero`, and `neverCertified_density_zero`:
+  under `FairClasses` (Hypothesis FD, per class, no rate), the
+  never-certified starts have natural density zero — the conditional
+  Theorem 6.1 assembled end-to-end with the `N → ∞` before `d → ∞`
+  limit order. Kernel-decided values `N_1..N_8 = 1,1,2,3,4,8,13,19`;
+  `neverNegWords_five` lists `OOOOO, OOOOE, OOOEO, OOEOO`, the word
+  count behind Corollary 6.4's `7/8`. Ledger row
+  `J-survivor-count-decay`. The module stays out of the Paper B barrel:
+  it imports `RateFreeDensity`, which shares the itinerary stack with
+  Paper A — same reason `PaperBCertificates` stays out.
+- **Decision:** PROMOTE. FD itself stays open
+  (`juggler_tower_rate_free_equidistribution`); Paper B unchanged.
+- **Best next question:** the exact rate — the tilted-walk sharp value
+  `-log ρ = 0.034688` with its `d^{-3/2}` prefactor, against the
+  endpoint-only Hoeffding majorant `θ(β)` formalised here.
+
 ## 2026-09-17 — PaperBThreshold enters the Paper B barrel
 
 - **Objective:** Add the Mathlib-only Theorem 6.1 threshold algebra to

@@ -6040,6 +6040,22 @@
       "nk_cluster": null
     },
     {
+      "id": "survivor_count_decay",
+      "kind": "dossier_only",
+      "probe": null,
+      "test": null,
+      "dossier": "docs/problems/juggler_survivor_count_decay.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-survivor-count-decay"
+      ],
+      "aliases": [],
+      "nk_cluster": null
+    },
+    {
       "id": "three_halves_mod_one",
       "kind": "dossier_only",
       "probe": null,
