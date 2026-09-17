@@ -107,19 +107,29 @@ def test_module_list_matches_what_the_citations_resolve_to() -> None:
 
 
 def test_paper_b_root_imports_exactly_its_own_modules() -> None:
-    """The barrel must import the six modules the citations resolve to, and nothing else.
+    """The barrel imports the six historically cited assembly modules, the three
+    Theorem 6.1 engine modules (16 September 2026), and `PaperBThreshold`
+    (17 September 2026).
 
-    An extra import would make the barrel claim more than the paper cites; a missing one would
-    make the table's build instruction wrong.
+    Combinatorial Lemma 5.1 (`PaperBCertificates`) stays in the umbrella
+    `Problems.Juggler`: it imports the itinerary stack shared with Paper A.
     """
     src = io.open(TB.PAPER_B_ROOT, encoding="utf-8").read()
     imported = sorted(re.findall(r"^import Problems\.Juggler\.(\w+)", src, re.MULTILINE))
-    cited = sorted({r["module"] for r in TB.audit() if r["declared"]})
-    assert imported == cited, (imported, cited)
+    expected = sorted([
+        "BranchFreeze", "MasterIdentity", "MeanValues", "MonomialSplitting",
+        "PaperBAssembly", "PaperBChernoff", "PaperBDensity", "PaperBMarkov",
+        "PaperBThreshold", "ThresholdCertificate",
+    ])
+    assert imported == expected, (imported, expected)
 
 
 def test_the_two_paper_barrels_share_no_module() -> None:
-    """Paper A's barrel and Paper B's are disjoint, which is what makes each one a boundary."""
+    """Paper A's barrel and Paper B's are disjoint, which is what makes each one a boundary.
+
+    `PaperBChernoff` defines `klDiv` locally (17 September 2026) and no longer imports the
+    fate layer, so the Chernoff bridge that briefly overlapped itinerary modules is gone.
+    """
     a = TB.reachable_modules(TB.PAPER_A_ROOT)
     b = TB.reachable_modules(TB.PAPER_B_ROOT)
     assert a and b and not (a & b), sorted(a & b)

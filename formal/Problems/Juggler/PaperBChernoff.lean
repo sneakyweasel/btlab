@@ -10,12 +10,14 @@ Theorem 6.1 bounds the density of words with no contracting prefix by
 
   `theta q = q ^ (-q) * (1 - q) ^ (q - 1) / 2`.
 
-Gibbs' inequality is already formalised in the fate layer as `OneSided.klDiv_nonneg`, and it
-gives `theta q <= 1`.  That is not enough: a bound of `1 ^ (d-1) / 2` is vacuous at every depth.
-What the theorem needs is the STRICT inequality, and strictness is what this module supplies.
+The relative entropy `D(p ‖ q)` is defined here (same formula as in the fate layer's
+`OneSided.klDiv`).  That layer's `klDiv_nonneg` only gives `theta q ≤ 1`, which leaves a
+bound of `1 ^ (d-1) / 2` vacuous at every depth.  What the theorem needs is the STRICT
+inequality, and strictness is what this module supplies — without importing the fate stack,
+so the Paper B barrel stays disjoint from Paper A's itinerary modules.
 
 * `one_sub_inv_lt_log` — `1 - x⁻¹ < log x` for `x > 0`, `x ≠ 1`.  The strict form of the bound
-  `Real.one_sub_inv_le_log_of_pos` that `klDiv_nonneg` uses; everything else follows from it.
+  `Real.one_sub_inv_le_log_of_pos`; everything else follows from it.
 * `klDiv_pos` — `0 < D(p ‖ q)` whenever `p ≠ q`.  Strict Gibbs.
 * `theta_eq_exp_neg_klDiv` — the manuscript's `theta` is `exp(-D(q ‖ 1/2))`.  This is the bridge
   between the printed form and the information-theoretic one; the audit of 16 September checks
@@ -32,13 +34,17 @@ that decides whether the conclusion is a decay or a triviality.
 
 import Mathlib.Tactic
 import Mathlib.Analysis.SpecialFunctions.Log.Basic
-import Problems.Juggler.FateOneSidedCorollary
 
 namespace Problems.Juggler
 
 namespace PaperBChernoff
 
-open Real Problems.Juggler.OneSided
+open Real
+
+/-- Relative entropy `D(p ‖ q) = p log(p/q) + (1-p) log((1-p)/(1-q))`.
+Same formula as `OneSided.klDiv`; defined here so this module does not import the fate layer. -/
+noncomputable def klDiv (p q : ℝ) : ℝ :=
+  p * Real.log (p / q) + (1 - p) * Real.log ((1 - p) / (1 - q))
 
 /-- The strict form of `1 - x⁻¹ ≤ log x`. -/
 theorem one_sub_inv_lt_log {x : ℝ} (hx : 0 < x) (hx1 : x ≠ 1) : 1 - x⁻¹ < Real.log x := by

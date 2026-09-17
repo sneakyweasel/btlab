@@ -292,6 +292,7 @@ AUXILIARY_MODULES: dict[str, str] = {
     "MeanValues": "Paper B review target",
     "MonomialSplitting": "Paper B review target",
     "PaperBAssembly": "Paper B review target",
+    "PaperBCertificates": "Paper B Lemma 5.1: minimal certificates through length five",
     "PaperBChainRule": "Paper B review target",
     "PaperBAmplitudeCocycle": "Paper B profile: the amplitude cocycle",
     "PaperBDensity": "Paper B: Hypothesis FD to density one, conditionally",
