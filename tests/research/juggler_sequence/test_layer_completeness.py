@@ -56,7 +56,9 @@ def test_unregistered_modules_are_visible() -> None:
     # now in AUXILIARY_MODULES with roles; this budget records the new resting count.
     # 23 -> 25 the same day: PaperBAmplitudeCocycle and PaperBTailSpectrum, both
     # registered with the rest.
-    assert len(outside) <= 28, outside
+    # 28 -> 29 on 17 September 2026: PaperBCertificates (Lemma 5.1), kept outside
+    # the Paper B barrel because it imports the itinerary stack shared with Paper A.
+    assert len(outside) <= 29, outside
 
 
 def foreign_public_declarations(source: str, prefix: str) -> list[tuple[str, int]]:

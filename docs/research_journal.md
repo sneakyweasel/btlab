@@ -1,5 +1,46 @@
 # Research journal
 
+## 2026-09-17 — PaperBThreshold enters the Paper B barrel
+
+- **Objective:** Add the Mathlib-only Theorem 6.1 threshold algebra to
+  `JugglerParityPaper` now that the barrels are disjoint again.
+- **Result:** `PaperBThreshold` imported by the barrel; overlap with Paper A
+  remains empty.
+- **Decision:** PROMOTE. Best next question: formal-chain algebra of Theorems
+  5.2--5.4 without Fourier estimates?
+
+## 2026-09-17 — PaperBChernoff detached from the fate layer
+
+- **Objective:** Restore a disjoint Paper B Lean barrel by removing
+  `PaperBChernoff`'s import of `FateOneSidedCorollary`.
+- **Result:** `klDiv` is defined locally in `PaperBChernoff` (same formula as
+  `OneSided.klDiv`). Barrel reachable overlap with Paper A is empty again.
+  Trust-boundary test restored to strict disjointness.
+- **Decision:** PROMOTE the detach. Best next question: formal-chain algebra of
+  Theorems 5.2--5.4 without Fourier estimates?
+
+## 2026-09-17 — Paper B Lemma 5.1 in Lean
+
+- **Objective:** Extend Paper B Lean coverage past the Theorem 6.1 engine
+  (Markov / Chernoff / FD inference) by formalising the combinatorial
+  classification that Theorems 5.2--5.4 assemble on.
+- **Triage:** target = Lemma 5.1; novelty = first Lean certificate list;
+  falsifier = a sixth length-`<=5` minimal certificate; already killed by? =
+  none (finite enumeration); machinery = `exponentGap`; Phase-0 = one module;
+  promote if barrel builds; stop if analysis is required.
+- **Major results:** `PaperBCertificates.lean` proves the five words
+  `E, OE, OOEE, OOOEE, OOEOE` are exactly the minimal certificates of length
+  at most five (`lemma51`) and that their cylinder measures sum to `7/8`.
+  Ledger row `J-paper-b-lemma-5-1-minimal-certificates` tagged
+  `EXACT — LEAN VERIFIED`. Barrel also imports `PaperBThreshold` (already
+  proved). Analytic core still unformalised.
+- **Decision:** PROMOTE the Lean lemma; Paper B preprint status unchanged
+  (no DOI, independent review outstanding). `PaperBCertificates` stays outside
+  the Paper B barrel so the Chernoff→fate overlap is not widened.
+- **Best next question:** formal-chain algebra of Theorems 5.2--5.4 without
+  Fourier estimates? Or detach `PaperBChernoff` from `FateOneSidedCorollary`
+  to restore a disjoint barrel?
+
 ## 2026-09-14 — Thirteen control characters where LaTeX used to be
 
 `docs/research_journal.md` and `docs/problems/juggler_paper_c_formal_layer.md`
