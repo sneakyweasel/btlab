@@ -21,18 +21,20 @@ four-thousand-point grid with four hundred modelled jumps, a solution exists at
 (condition number `3.3` to `384`). The equation selects nothing.
 Kind: **REFUTED** route, `J-paper-b-jump-amplitude-is-not-a-fixed-point`.
 
-The obstruction behind it is sharper than the failed computation and is the part
-worth keeping. Of all the Fourier coefficients of `psi`, exactly one is in closed
-form independently of `a_1` -- the mean, `psihat_0 = kappa G(1)` -- and every
-coefficient with `k != 0` is proportional to `a_1`
-(`J-paper-b-psi-fourier-is-the-orbit-series`). So the one coefficient that could
-have closed the loop is the one `a_1` does not appear in. `a_1` is a constant of
-the problem, not a consequence of its shape, and a closed form for it is now
-equivalent to a closed form for `psi` outright.
+The reason is that `psi` cannot be levered against itself: the equation relates
+`psi` to `psi` and so fixes the shape and never the scale. Do not re-open this as
+a bootstrap, an eigenvalue problem or a self-consistency condition.
 
-Do not re-open this as a bootstrap, an eigenvalue problem or a self-consistency
-condition. What remains open is `psi` itself, and nothing measured suggests a
-closed form exists.
+**The pessimism this entry originally ended on was wrong, and is withdrawn the
+same day.** It concluded that `a_1` is therefore a constant of the problem rather
+than a consequence of its shape, on the grounds that `psihat_0 = kappa G(1)` is
+the only Fourier coefficient in closed form without `a_1`. It is not the only
+one. `psihat_k = Phihat_k G(e(-k beta))` holds for every `k`, the mean included,
+and the ladder profile `Phi` behind the Spitzer identity is closed form, so
+`a_1 = 1/(2 theta sqrt(2 pi beta (1-beta))) = 0.427956804`
+(`J-paper-b-jump-amplitude-is-closed-form`). What is shut is this route, not the
+question. The lesson is narrow and worth keeping: a self-referential relation
+fixes shape, so an amplitude has to come from outside the function.
 
 ## Paper B: the `1/rho` jump law is the empty-window theorem
 

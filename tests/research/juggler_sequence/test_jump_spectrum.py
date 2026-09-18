@@ -9,15 +9,19 @@ import pytest
 
 from research.juggler_sequence.jump_spectrum import (
     A_ONE,
-    A_ONE_BAND,
+    A_ZERO,
     BETA,
     KAPPA,
+    LADDER_JUMP,
+    LADDER_RATIO,
     CLASS_CLOSED_FORM,
     JSON_PATH,
     THETA,
     amplitude_ratio,
     barrier_index_consistency,
     fourier_coefficient,
+    ladder_fourier,
+    ladder_profile,
     mean_value,
     orbit_series,
     orbit_series_truncation,
@@ -136,17 +140,20 @@ def test_g_one_is_the_same_object_as_the_jump_spectrum(counts) -> None:
     assert partial == pytest.approx(g_one(counts), rel=1e-12)
 
 
-def test_a_one_is_reported_as_measured_with_a_band() -> None:
-    """The single fitted constant must never be published as exact.
+def test_a_one_is_closed_form_and_the_old_values_stay_withdrawn() -> None:
+    """`a_1` is not measured, and the two values that were must not come back.
 
-    Everything else in the branch is integer arithmetic; `a_1` is not, and the band has
-    to cover both estimators because the free-amplitude fit is biased low.
+    Both were biased low, by different mechanisms, and both were recorded on the same
+    day as the closed form that replaced them. A test that merely checked the current
+    number would not stop either from being re-derived.
     """
     data = json.loads(JSON_PATH.read_text(encoding="utf-8"))
-    low, high = data["a_one"]["band"]
-    assert low < data["a_one"]["estimate"] < high
-    assert high - low == pytest.approx(2 * A_ONE_BAND, rel=1e-9)
-    assert "only measured constant" in data["a_one"]["note"]
+    assert data["a_one"]["measured"] is False
+    assert data["a_one"]["value"] == pytest.approx(A_ONE, rel=1e-12)
+    assert sorted(data["a_one"]["withdrawn"]) == [0.42623, 0.426289]
+    for gone in data["a_one"]["withdrawn"]:
+        assert abs(gone - A_ONE) > 1e-3, "a withdrawn value must not sit on the answer"
+    assert "closed form, not measured" in data["a_one"]["note"]
 
 
 def test_probe_does_not_claim_to_have_determined_psi() -> None:
@@ -264,14 +271,38 @@ def test_truncation_of_the_orbit_series_is_reported_not_assumed(counts, deep) ->
     assert abs(orbit_series(deep, 1)) == pytest.approx(0.7584, rel=2e-3)
 
 
-def test_a_one_band_covers_both_independent_routes() -> None:
-    """The jump route and the Fourier route must both sit inside the recorded band.
+def test_the_ladder_profile_is_an_exponential_whose_mean_is_kappa() -> None:
+    """`A_n sqrt(n)` is a function of `frac(n beta)`, not a constant, and it is closed form.
 
-    They agree to `1.5e-4` and the band is `2e-4`. An earlier band of `1.5e-3` predated
-    the Fourier route and was ten times too wide; a band that does not cover both
-    estimators is the failure this guards against.
+    `kappa` is its mean -- identically, not numerically: `beta/(1-beta) = log2/log(3/2)`,
+    so `log(beta/(1-beta)) = theta* log 3` and `sqrt(2 pi beta (1-beta))` is
+    `sqrt(2 pi) sigma / log 3`. If these ever disagree, the ladder picture is wrong and
+    the closed form for `a_1` goes with it.
     """
-    jump_side, fourier_side = 0.426289, 0.426227
-    assert abs(jump_side - A_ONE) <= A_ONE_BAND
-    assert abs(fourier_side - A_ONE) <= A_ONE_BAND
-    assert A_ONE_BAND < 1e-3, "the band must not be loosened back to the pre-Fourier width"
+    assert KAPPA == pytest.approx(1.541814521, abs=1e-9)
+    grid = [i / 2000 for i in range(2000)]
+    mean = sum(ladder_profile(x) for x in grid) / len(grid)
+    assert mean == pytest.approx(KAPPA, rel=1e-3)
+    assert ladder_profile(1.0) - ladder_profile(0.0) == pytest.approx(LADDER_JUMP, rel=1e-12)
+    assert LADDER_RATIO == pytest.approx((1 - BETA) / BETA, rel=1e-12)
+    # convex, because it is an exponential rather than the sawtooth it first looked like
+    mid = ladder_profile(0.5)
+    chord = 0.5 * (ladder_profile(0.0) + ladder_profile(1.0))
+    assert mid < chord, "Phi is an exponential, not a straight ramp"
+
+
+def test_the_jump_of_psi_is_the_jump_of_the_ladder() -> None:
+    """`psihat_k = Phihat_k G(e(-k beta))` for every `k`, which is where `a_1` comes from.
+
+    Measured mode by mode on `psi` at depth `1e6`, the magnitude ratio is
+    `1.0015 +/- 0.0020` over `k <= 256`, and the free-amplitude level fit extrapolates
+    in `1/sqrt(N)` to `0.428027` against this `0.427957`.
+    """
+    assert A_ZERO == pytest.approx(LADDER_JUMP, rel=1e-12)
+    assert A_ONE == pytest.approx(A_ZERO / (2 * THETA), rel=1e-12)
+    assert A_ONE == pytest.approx(0.427956804, abs=1e-9)
+    # the 1/k tail of Phihat is the jump and nothing else
+    for k in (8, 40, 200):
+        assert k * abs(ladder_fourier(k)) == pytest.approx(LADDER_JUMP / (2 * 3.141592653589793),
+                                                           rel=2e-3), k
+    assert ladder_fourier(0).real == pytest.approx(KAPPA, rel=1e-12)

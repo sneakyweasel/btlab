@@ -108,11 +108,57 @@ Fourier data of `psi` is `G` on the orbit. Measured coefficients agree: `|psihat
 `k = 1, 2, 3, 5, 20` against `9.940e-2, 5.961e-2, 5.581e-2, 2.814e-2, 4.535e-3`
 predicted, with phases agreeing to `0.085/k`.
 
-This is a better instrument for `a_1` than the jumps are, because it never has to
-separate one jump from its neighbours: fitting the single constant against sixty
-modes is insensitive to the level count entirely -- `5000`, `20000` and `40000`
-levels give the same answer to six digits -- and gives `a_1 = 0.426227`, spread
-`0.426096` to `0.426358` over `d`-subranges, against `0.426289` from the jumps.
+Both routes were then used to **measure** `a_1`, giving `0.426227` from the
+Fourier side and `0.426289` from the jumps. Both are **withdrawn**: the closed
+form is `0.427956804`, and both readings were about `0.4%` low, for two different
+reasons worth keeping.
+
+The level-fit reading is low because a window of half-width `delta` around a jump
+contains every neighbouring jump, and those sum to about `17 sqrt(delta)` -- so
+any local reading is low by `O(1/sqrt(N))` and the level count has to be
+extrapolated, not read. The sequence was visibly still climbing: `0.425355`,
+`0.425679`, `0.426217`, `0.427025`, `0.428359` at `N = 2500` to `40000`, which
+extrapolates in `1/sqrt(N)` to `0.428027`. The earlier reading took a term of a
+convergent sequence for its limit.
+
+The Fourier reading is low for an unrelated reason: a complex least squares was
+fitted through a phase discrepancy of `0.085/k`, and `cos(0.085) = 0.9964` turns
+that phase into a magnitude deficit of almost exactly the `0.4%` involved. The
+magnitudes alone always agreed -- that they agreed and the complex fit did not is
+the signature, and I read the complex fit instead.
+
+**The ladder profile, which is where the amplitude comes from.** The Spitzer
+identity behind `J-paper-b-meander-constant-derived` exponentiates
+`A_n = P(S_n >= 0)/theta^n`, and quotes the non-lattice local limit theorem for
+`A_n ~ kappa/sqrt(n)`. That is true of the mean and of nothing else. Measured,
+`A_n sqrt(n)` is a function of `frac(n beta)` to **100%** of its variance --
+residual sd `0.0033` against a total sd of `0.238`, halves of the `n`-range
+agreeing to `0.00034` -- oscillating by about `15%` around `kappa`.
+
+It is closed form. `ceil(n beta) - n beta` is exactly `1 - frac(n beta)`, and
+consecutive binomial terms at `n beta` have ratio `r = (1-beta)/beta`, so the
+tail is geometric to `O(1/n)` and
+
+    Phi(x) = r^(1-x) / ((1 - r) sqrt(2 pi beta (1-beta))).
+
+Checked pointwise with no binning, the relative error is a pure `1/n` offset:
+`-7.8e-3`, `-1.9e-3`, `-8.1e-4` at `n` about `2000`, `8000`, `18000`, scatter
+falling from `2.7e-3` to `1.5e-4`. It is an exponential, not the sawtooth it
+first resembles -- `Phi(0.5)` sits below the chord.
+
+Two things follow in closed form. Its mean is
+`1/(log(beta/(1-beta)) sqrt(2 pi beta (1-beta)))`, which **is** `kappa`
+identically, agreeing to `2.2e-10`. And its jump at the origin is one binomial
+term at the large-deviation point, rescaled: `1/sqrt(2 pi beta (1-beta))`.
+
+Since `psihat_k = Phihat_k G(e(-k beta))` for every `k` -- the `k = 0` case being
+`psihat_0 = kappa G(1)`, because `Phihat_0 = kappa` -- both sides carry a `1/k`
+tail whose coefficient is a jump, so `psi`'s jump at the origin is `Phi`'s and
+
+    a_1 = a_0 / (2 theta) = 0.427956804.
+
+Checked mode by mode: `|psihat_k| / |Phihat_k G_k|` is `1.0015 +/- 0.0020` over
+`k <= 256` with no trend against `log k`.
 
 **`G(1)` sharpened.** `J-paper-b-meander-constant-derived` records
 `G(1) = 7.0606` with a band `[7.0422, 7.0725]`, `0.43%` wide, and attributes the
@@ -218,6 +264,15 @@ leaves numerical are the same object.
 `J-paper-b-sturmian-zero-law-is-the-empty-window` -- `REPARAMETERIZATION`.
 Retracts the `1/rho` reading recorded in this cluster.
 
+`J-paper-b-ladder-profile-is-closed-form` -- `COMPUTATIONALLY VERIFIED`. The
+non-lattice local limit theorem constant `kappa` is the mean of an explicit
+exponential profile on the circle, not a limit, and that profile's jump is
+`1/sqrt(2 pi beta (1-beta))`.
+
+`J-paper-b-jump-amplitude-is-closed-form` -- `COMPUTATIONALLY VERIFIED`.
+`a_1 = 1/(2 theta sqrt(2 pi beta (1-beta))) = 0.427956804`. No fitted constant
+remains anywhere in `psi`.
+
 `J-paper-b-psi-fourier-is-the-orbit-series` -- `COMPUTATIONALLY VERIFIED`. The
 Fourier coefficients of `psi` are the Wiener-Hopf series on the rotation orbit:
 `psihat_k = -(2 theta a_1 / (2 pi i k)) G(e(-k beta))` for `k != 0`, and
@@ -239,8 +294,16 @@ linear rise leaves a residual of `1.35e-02` against a level-fit noise floor of
 coordinate. It does not shrink with `d`, so it is structure in `psi` and not
 finite-depth contamination. What that component is, this branch does not say.
 
-`a_1` itself has no closed form, and the route this dossier first proposed for
-it does not work. **Correction, same day.** An earlier reading here called the
+**`a_1` has a closed form, found later the same day.** It is
+
+    a_1 = 1 / (2 theta sqrt(2 pi beta (1-beta))) = kappa theta* log 3 / (2 theta)
+        = 0.427956804
+
+and the route below is still shut; the amplitude came from somewhere else. See
+**The ladder profile** under Experiments. What follows is kept because the
+refutation is real and because the pessimism it ended on was wrong.
+
+**Correction, same day.** An earlier reading here called the
 self-referential relation `a_n = A psi(x_n) n^(-3/2)` together with periodicity
 a fixed-point equation determining `A`. It is not. Written out the relation is
 
@@ -252,16 +315,16 @@ numerically on a four-thousand-point grid with four hundred modelled jumps, a
 solution exists at `A = 0.2, 0.5, 0.82, 1.5, 3, 8` alike, with `I - A L` well
 conditioned throughout. The equation selects nothing.
 
-The obstruction is sharper than that, and is worth stating because it says `a_1`
-is a constant of the problem rather than a consequence of its shape. Of all the
-Fourier coefficients, exactly one is known in closed form independently:
-`psihat_0 = kappa G(1)`, the mean. Every coefficient with `k != 0` is
-proportional to `a_1`. So the one coefficient that could have closed the loop is
-the one `a_1` does not appear in.
+The reason it fails is that `psi` cannot be levered against itself: the equation
+relates `psi` to `psi` and fixes only the shape, never the scale. That much was
+right, and it is why the amplitude had to come from outside `psi` altogether.
 
-What is left open, and is the honest next question: `psi` is now determined up to
-`a_1`, so a closed form for `a_1` is a closed form for `psi` outright. Nothing
-here suggests one exists.
+What was wrong was the conclusion drawn from it -- that `a_1` is therefore a
+constant of the problem rather than a consequence of its shape, on the grounds
+that `psihat_0 = kappa G(1)` is the only coefficient in closed form without
+`a_1`. It is not the only one. `psihat_k = Phihat_k G(e(-k beta))` holds for
+**every** `k`, the mean included, and the ladder profile `Phi` is closed form,
+so all of them are.
 
 ## Decision
 
