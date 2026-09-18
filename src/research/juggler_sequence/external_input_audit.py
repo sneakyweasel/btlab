@@ -30,31 +30,51 @@ irrational, so no Diophantine input ever takes the target below `L^2`.
 
 **What the chain looks like once assembled.** Paper A prints `L^14.3`,
 from Rhin's Proposition p. 160 equation (7) repackaged by Simons-de
-Weger Lemma 12 with an explicit constant. Rhin's equation (8), on the
-same page of the same paper, is quoted by Spiegelhofer as
-`mu(log 3 / log 2) <= 8.616`, which would convert to `L^8.616`.
-Wu-Wang then gives `L^5.1163051`, which is what the laboratory now uses.
+Weger Lemma 12. Equation (8), the second half of the same Proposition,
+sharpens that to `L^8.616`. Wu-Wang then gives `L^5.1163051`, which is
+what the laboratory now uses.
 
-**The 8.616 row is UNVERIFIED and now also DISPUTED.** The report was
-read at the source and is transcribed correctly: Spiegelhofer, *Collisions
-of digit sums in bases 2 and 3* (arXiv:2105.11173v2, Israel J. Math),
-introduction, writes `mu(vartheta) <= 8.616` for `vartheta = log3/log2`
-citing "Rhin [48, Equation (8)]", and distinguishes it in the next
-sentence from `mu(log 3) <= 5.1163051` (Wu-Wang), so it is not a slip of
-notation on his part. But an independent secondary source attributes the
-same constant to a different quantity: Zudilin, *An essay on irrationality
-measures of pi and other logarithms* (arXiv:math/0404523), section 3.4,
-Theorem 3, citing the same Rhin 1987 paper, states "the irrationality
-exponent of any nonzero theta in Q log 2 + Q log 3 satisfies mu(theta)
-< 8.616". `log3/log2` is a ratio and is NOT in `Q log 2 + Q log 3`,
-whereas `log 3` is; and the log-3 literature (Salikhov 2007, Wu-Wang
-2014) uniformly reports Rhin's 8.616 as `mu(log 3)`.
+**Rhin equation (8) was READ AT SOURCE on 16 September 2026, and it is
+dead.** Two questions hung over that row; both are now answered.
 
-So the two readings are incompatible and only one can be what equation
-(8) says. Until someone reads p. 160, this row may be a measure for the
-ratio (Spiegelhofer) or for `Q log 2 + Q log 3` (Zudilin), and only the
-first would bear on the closure threshold at all. Whether its constant
-is explicit is likewise not established here.
+The reading dispute dissolves (`J-rhin-eight-readings-are-one-theorem`).
+Spiegelhofer, *Collisions of digit sums in bases 2 and 3*
+(arXiv:2105.11173v2, Israel J. Math), reports `mu(log3/log2) <= 8.616`
+citing "Rhin [48, Equation (8)]"; Zudilin, *An essay on irrationality
+measures of pi and other logarithms* (arXiv:math/0404523) section 3.4
+Theorem 3 reports the same constant for any nonzero `theta` in
+`Q log 2 + Q log 3`, which contains `log 3` but not the ratio. These
+were never rival readings. Rhin approximates `log(2/3)` and `log(4/3)`
+simultaneously, and that basis change is integral both ways
+(`log2 = v - u`, `log3 = v - 2u`), so it is one linear independence
+measure on one lattice and both statements are corollaries of it --
+the same Theorem-1-then-Corollary-1 architecture as Wu-Wang.
+
+The source settles it directly. The Proposition on p. 160 reads: for
+`H = max(|u_1|, |u_2|) >= 2` and `Lambda = u_0 + u_1 log2 + u_2 log3`,
+(7) `|Lambda| >= H^(-13.3)`, and *de plus pour* `H >= H_0` (`H_0`
+*effectivement calculable*) (8) `|Lambda| >= H^(-7.616)`. Both are the
+THREE-TERM form, so the dichotomy never had a fact behind it. Two
+corrections follow (`J-rhin-eight-has-no-computed-threshold`). Rhin's
+(7) carries NO constant -- it is `H^(-13.3)` outright for `H >= 2` --
+so the `915` belongs to Simons-de Weger's Lemma 12, not to Rhin. And
+(8) is unusable: `H_0` is declared computable and never computed, so
+`L^8.616` is unreachable and the row is closed permanently rather than
+left hopeful.
+
+**Effective and computed are two questions, so the chain carries two
+fields.** Wu-Wang Theorem 1 asserts that its `H_0(eps)` is effectively
+computable and does not compute it
+(`J-wuwang-import-verified-at-source`) -- the same shape as Rhin (8),
+not the `effective: no` this audit first recorded. So each row says
+whether the source asserts a computable threshold (`effective`) and
+whether anyone has the number (`constant_computed`), and a row that
+asserts the first without the second must say what is missing and what
+it costs. `J-wuwang-effectivity-is-a-saddle-point-cost` prices it:
+`H_0 = exp(Theta(n_0))`, about `1e3500` at `eps = 0.05`. So for any `L`
+a cycle search reaches, Wu-Wang supplies nothing and Rhin equation (7)
+is what actually applies: `L^14.3` is the effective statement and
+`L^5.1163051` the asymptotic one.
 
 **The Paper C concentration constants: two dead ends, measured.** The
 audit's first target was `tao_reduction.azuma_exponent`, on the
@@ -92,43 +112,59 @@ from research.juggler_sequence.tao_reduction import (
 #: `log 2 / log 3`, the number every cycle-side Diophantine input measures.
 ALPHA = math.log(2) / math.log(3)
 
-#: Each row: proved irrationality measure of `log 2 / log 3`, the exponent
-#: it puts on `L` in `n log n <= C L^mu`, whether the constant is explicit,
-#: and whether the laboratory has verified it against the primary source.
+#: Each row: proved irrationality measure of `log 2 / log 3`, the exponent it
+#: puts on `L` in `n log n <= C L^mu`, whether the source asserts an
+#: effectively computable threshold (`effective`), whether anyone has actually
+#: computed it (`constant_computed` -- the separate question, and the one that
+#: decides whether a row says anything at an `L` a cycle search reaches), and
+#: whether the laboratory has read the primary source. A row that is effective
+#: but uncomputed carries `uncomputed_threshold` saying what is missing.
 TRANSCENDENCE_CHAIN: tuple[dict[str, Any], ...] = (
     {
         "source": "rhin-1987-pade-irrationality",
-        "route": "Proposition p.160 eq.(7) via simons-de-weger Lemma 12",
+        "route": "Proposition p.160 eq.(7), three-term, via simons-de-weger Lemma 12",
         "mu": 14.3,
         "effective": True,
-        "constant": "915 (printed in Paper A)",
+        "constant_computed": True,
+        # Read at source 16 Sep 2026: Rhin prints |Lambda| >= H^(-13.3) outright
+        # for H >= 2 and no constant at all, so the 915 is Lemma 12's, not his.
+        "constant": "915, from Simons-de Weger Lemma 12; Rhin prints no constant",
         "verified_against_primary": True,
         "used_by": "Paper A Corollary 4.11 (deposited text)",
     },
     {
         "source": "rhin-1987-pade-irrationality",
-        "route": "Proposition p.160 eq.(8), reported as the ratio measure",
+        "route": "Proposition p.160 eq.(8), three-term, conditional on H >= H_0",
         "mu": 8.616,
         "effective": True,
-        "constant": "not extracted here",
-        "verified_against_primary": False,
-        # Two secondary sources, one constant, two different quantities. Until
-        # p.160 is read this row's SHAPE is unsettled, not just its constant.
-        "disputed_by": (
-            "zudilin-essay-irrationality-measures section 3.4 Theorem 3 gives "
-            "8.616 for any nonzero theta in Q log2 + Q log3, which contains "
-            "log 3 but not the ratio log3/log2"
+        "constant_computed": False,
+        "constant": "none: conditional on H >= H_0, and H_0 is never computed",
+        "verified_against_primary": True,
+        "uncomputed_threshold": (
+            "J-rhin-eight-has-no-computed-threshold: H_0 is declared "
+            "effectivement calculable and never computed, and H_0 = "
+            "exp(Theta(n_0)) puts it far above the L ~ 1e6 a cycle search "
+            "reaches"
         ),
         "reported_by": "spiegelhofer-2022-collisions-digit-sums introduction",
-        "used_by": "nothing -- never recorded in the laboratory",
+        # The Spiegelhofer (ratio) and Zudilin (Q log2 + Q log3) readings were
+        # never rivals: one linear independence measure on one lattice, and
+        # p.160 shows (7) and (8) alike in the three-term form.
+        "reading_resolved_by": "J-rhin-eight-readings-are-one-theorem",
+        "used_by": "nothing, and now permanently -- L^8.616 needs H_0",
     },
     {
         "source": "wu-wang-2014-irrationality-measure-log3",
-        "route": "linear form at a=0, H=max(L,o)=L",
+        "route": "Theorem 1, three-term linear form at p=0, H=max(L,o)=L",
         "mu": 5.1163051,
-        "effective": False,
-        "constant": "C_eps implied, eps-asymptotic",
+        "effective": True,
+        "constant_computed": False,
+        "constant": "none: H_0(eps) asserted effectively computable, never computed",
         "verified_against_primary": True,
+        "uncomputed_threshold": (
+            "J-wuwang-effectivity-is-a-saddle-point-cost: H_0 = exp(Theta(n_0)), "
+            "about 1e3500 at eps = 0.05, so it supplies nothing at a reachable L"
+        ),
         "used_by": "J-cyclemin-gap-power-transfer (cycle_wuwang_reduction)",
     },
     {
@@ -136,6 +172,7 @@ TRANSCENDENCE_CHAIN: tuple[dict[str, Any], ...] = (
         "route": "same shape, sharpened exponent",
         "mu": 5.116201,
         "effective": False,
+        "constant_computed": False,
         "constant": "implied",
         "verified_against_primary": True,
         "used_by": "recorded only; in the noise at 1e-4",
@@ -145,6 +182,7 @@ TRANSCENDENCE_CHAIN: tuple[dict[str, Any], ...] = (
         "route": "every irrational has mu >= 2",
         "mu": 2.0,
         "effective": True,
+        "constant_computed": True,
         "constant": "1",
         "verified_against_primary": True,
         "used_by": "the hard floor on the closure threshold",
@@ -190,6 +228,7 @@ def transcendence_checks() -> list[dict[str, Any]]:
     )
     printed = next(r for r in TRANSCENDENCE_CHAIN if r["used_by"].startswith("Paper A"))
     unrecorded = [r for r in TRANSCENDENCE_CHAIN if r["used_by"].startswith("nothing")]
+    eight = next(r for r in TRANSCENDENCE_CHAIN if r["mu"] == 8.616)
     return [
         {
             # Not an equality: BLS 2018 is sharper by 1.04e-4 and is deliberately
@@ -208,22 +247,34 @@ def transcendence_checks() -> list[dict[str, Any]]:
             "value": best,
         },
         {
-            # Arithmetic only, and it says less than it used to. It is the
-            # premise -- that eq.(8) is a ratio measure at all -- that is
-            # disputed; if Zudilin's reading is right, Paper A's text is not
-            # weaker than its own citation and there is nothing to find here.
-            "check": "IF eq.(8) is the ratio measure, Paper A's printed text is weaker",
-            "ok": printed["mu"] > 8.616,
+            # Arithmetic only, and since 16 September 2026 it buys nothing:
+            # eq.(8) is sharper than the printed eq.(7) and needs an H_0 nobody
+            # has, so Paper A's text is not in fact weaker than its own citation.
+            "check": "eq.(8) is sharper than Paper A's printed eq.(7) and still unusable",
+            "ok": printed["mu"] > 8.616 and not eight["constant_computed"],
             "value": printed["mu"] / 8.616,
         },
         {
-            "check": "the disputed row records the source that contradicts it",
+            "check": "every chain member is read at the primary source",
+            "ok": all(r["verified_against_primary"] for r in TRANSCENDENCE_CHAIN),
+            "value": sum(1 for r in TRANSCENDENCE_CHAIN if r["verified_against_primary"]),
+        },
+        {
+            # The distinction the 16 September readings forced into the data:
+            # Wu-Wang Theorem 1 and Rhin eq.(8) both assert a computable
+            # threshold and neither computes it, so `effective` alone would
+            # read as a printed constant.
+            "check": "a row that is effective but uncomputed says what is missing",
             "ok": all(
-                r.get("disputed_by") and r.get("reported_by")
+                r.get("uncomputed_threshold")
                 for r in TRANSCENDENCE_CHAIN
-                if not r["verified_against_primary"]
+                if r["effective"] and not r["constant_computed"]
             ),
-            "value": unrecorded[0].get("disputed_by", ""),
+            "value": [
+                r["source"]
+                for r in TRANSCENDENCE_CHAIN
+                if r["effective"] and not r["constant_computed"]
+            ],
         },
         {
             "check": "exactly one chain member is unrecorded in the laboratory",
@@ -231,9 +282,29 @@ def transcendence_checks() -> list[dict[str, Any]]:
             "value": len(unrecorded),
         },
         {
-            "check": "the unrecorded member is not yet verified against the primary source",
-            "ok": all(not r["verified_against_primary"] for r in unrecorded),
+            # It was unverified and hopeful; it is now verified and dead.
+            "check": "the unrecorded member is read at source and has no computed threshold",
+            "ok": all(
+                r["verified_against_primary"] and not r["constant_computed"]
+                for r in unrecorded
+            ),
             "value": unrecorded[0]["source"],
+        },
+        {
+            # J-wuwang-effectivity-is-a-saddle-point-cost, as arithmetic on the
+            # chain: the sharpest measure anyone can quote with a number in hand
+            # is the one Paper A already deposits, and it is not the one in use.
+            "check": "the effective statement is Paper A's 14.3, the asymptotic one Wu-Wang's",
+            "ok": (
+                min(
+                    r["mu"]
+                    for r in TRANSCENDENCE_CHAIN
+                    if r["constant_computed"] and r["mu"] > 2.0
+                )
+                == printed["mu"]
+                and not in_use["constant_computed"]
+            ),
+            "value": printed["mu"] / in_use["mu"],
         },
         {
             "check": "Dirichlet floors the closure exponent at 2",
@@ -349,11 +420,18 @@ def report() -> dict[str, Any]:
         "concentration": conc,
         "first_passage": passage,
         "all_transcendence_checks_ok": all(c["ok"] for c in checks),
+        "chain_is_read_at_source": all(r["verified_against_primary"] for r in chain),
         "sharpest_verified_mu": min(
             r["mu"] for r in chain if r["verified_against_primary"] and r["mu"] > 2.0
         ),
-        "unverified_candidate_mu": min(
-            (r["mu"] for r in chain if not r["verified_against_primary"]), default=None
+        # The two numbers `J-wuwang-effectivity-is-a-saddle-point-cost` separates:
+        # what can be quoted with a constant in hand, and what holds only past an
+        # H_0 nobody has computed.
+        "sharpest_computed_mu": min(
+            r["mu"] for r in chain if r["constant_computed"] and r["mu"] > 2.0
+        ),
+        "asymptotic_mu_in_use": next(
+            r["mu"] for r in chain if r["used_by"].startswith("J-cyclemin")
         ),
         "concentration_constants_move": any(r["moves"] for r in conc[:2]),
         "first_passage_excess_shrinks": all(
@@ -377,15 +455,18 @@ def main() -> None:
     data = write_artifacts()
     print("transcendence chain (mu = closure exponent = irrationality measure of log2/log3):")
     for row in data["transcendence_chain"]:
-        flag = "" if row["verified_against_primary"] else "  [UNVERIFIED]"
+        flag = "" if row["constant_computed"] else "  [NO COMPUTED CONSTANT]"
         print(
             f"  mu={row['mu']:<10} L>>n^{row['period_exponent_in_n']:.4f}  "
             f"{row['source']}{flag}"
         )
     print(
-        f"\nsharpest verified mu = {data['sharpest_verified_mu']}; "
-        f"unverified candidate = {data['unverified_candidate_mu']} "
-        "(Rhin eq.(8), never recorded here)"
+        f"\nevery row read at the primary source: {data['chain_is_read_at_source']}; "
+        f"sharpest verified mu = {data['sharpest_verified_mu']}; "
+        f"asymptotic mu in use = {data['asymptotic_mu_in_use']}; "
+        f"sharpest mu with a computed constant = {data['sharpest_computed_mu']} "
+        "(Rhin eq.(7) via Simons-de Weger -- eq.(8) and Wu-Wang alike wait on an "
+        "H_0 nobody has computed)"
     )
     print("\nPaper C concentration constants:")
     for row in data["concentration"]:
