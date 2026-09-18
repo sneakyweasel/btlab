@@ -54,7 +54,15 @@ def _short_lean(path: str) -> str:
     return path.removeprefix("formal/").removesuffix(".lean")
 
 
-def _short_tests(paths: list[str]) -> str:
+def _short_tests(paths: list[str], evidence: str = "") -> str:
+    """Test stems, or the declared reason a row has none.
+
+    A blank cell read as "nobody wired this up" whether or not that was true. A row whose
+    evidence is a reading of a primary source says so instead; the parentheses keep it from
+    reading as a filename.
+    """
+    if not paths and evidence:
+        return f"({evidence})"
     names = []
     for p in paths:
         names.append(Path(p).stem)
@@ -78,7 +86,7 @@ def render(entries: list[dict]) -> str:
         )
     lines = [HEADER]
     for row in entries:
-        tests = _short_tests(list(row.get("tests") or []))
+        tests = _short_tests(list(row.get("tests") or []), str(row.get("evidence") or ""))
         lean = _short_lean(str(row.get("lean") or ""))
         statement = str(row.get("statement") or "").replace("|", "\\|")
         source = str(row.get("source") or "")
