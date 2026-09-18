@@ -2235,6 +2235,20 @@
         "kernel": 36
       }
     },
+    "Problems.Juggler.PaperBCertificateLengths": {
+      "declarations": 21,
+      "depends_on": [
+        "Problems.Juggler.PaperBCertificates"
+      ],
+      "file": "formal/Problems/Juggler/PaperBCertificateLengths.lean",
+      "ledger": [
+        "J-paper-b-certificate-length-window"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 21
+      }
+    },
     "Problems.Juggler.PaperBCertificates": {
       "declarations": 23,
       "depends_on": [
@@ -3012,9 +3026,9 @@
     }
   },
   "totals": {
-    "edges": 233,
-    "edges_before_reduction": 1759,
-    "ledger_rows_placed": 405,
-    "nodes": 183
+    "edges": 234,
+    "edges_before_reduction": 1763,
+    "ledger_rows_placed": 406,
+    "nodes": 184
   }
 }

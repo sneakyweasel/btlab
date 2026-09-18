@@ -541,6 +541,18 @@
   "related_conjectures": []
  },
  {
+  "id": "J-paper-b-certificate-length-window",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Paper B Lemma 5.1 holds for every length, not only the printed five. Write CertWindow L o for 2^(L-1) <= 3^o < 2^L. (i) certWindow_unique: at most one o satisfies it, since consecutive powers of two differ by a factor 2 and 3 > 2. (ii) minimalCert_concat_even: a minimal certificate's last letter is E, because an odd one would need 3 * 3^o < 2^L while the length-(L-1) prefix gives 3^o >= 2^(L-1), that is 3 < 2. (iii) minimalCert_window: a minimal certificate of length L satisfies CertWindow L (oddCount w), so its odd count is forced by its length rather than chosen. (iv) blockWord_isMinimalCertificate: when the window holds, O^o E^(L-o) realises it, every proper prefix being all-odd (3^k > 2^k) or O^o E^j with j < L-o, which the window's lower bound blocks. (v) minimalCert_exists_iff: a minimal certificate of length L >= 1 exists exactly when some power of three lies in [2^(L-1), 2^L). With beta = log2/log3 that says the interval [(L-1)beta, L beta) holds an integer, so the carrying lengths are the jump points of floor(L beta) and the empty ones are the complement of a Beatty sequence; no real number appears in any statement or proof. The empty lengths through 16 are 3, 6, 9, 11, 14 -- not the multiples of three -- and window_empty_three, _six, _nine, _eleven and _fourteen close each. This explains the certificate-density plateaus: the density is flat from d-1 to d exactly at those lengths, which is why 7/8 holds at d = 5 and 6 and 237/256 at d = 8 and 9. Combinatorics only: no exponential sum, no density for the Juggler map, and no count of how many minimal certificates a carrying length has.",
+  "source": "docs/problems/juggler_paper_b_certificate_lengths.md",
+  "lean": "Problems/Juggler/PaperBCertificateLengths.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_layer_architecture.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
   "id": "J-paper-b-dyadic-kernel-127",
   "tag": "EXACT — HUMAN PROOF",
   "statement": "For every epsilon>0, uniformly over integers 1<=k<=P^(1/24), the undecorated dyadic sum K_k(P)=sum over odd P<n<=2P of e((3k/4)n^(9/8){floor(n^(3/2))^(3/2)}) is O_epsilon(P^(127/128+epsilon)). The complete doubly differenced inventory at h1<=P^(1/48),h2<=P^(1/24) has bound P^(31/32+epsilon), including both short centered expansions, all five binary carries, positive errors without an anchor, moving coefficient windows, actual carry restrictions, and every partition endpoint. The outer A-processes give 31/32 -> 63/64 -> 127/128 with both diagonal terms checked. This is weaker than the historical 95/96 target J-kernel-cancellation, which remains CONJECTURE. Arbitrary mixed decorations, short intervals, OOOEE correlations, and density 7/8 do not follow here. AI-assisted written proof using the wave-bearing and corrected offset-anchor supplements and a new moving-zero-offset specialization; exact controls only, with no independent review or Lean verification.",
