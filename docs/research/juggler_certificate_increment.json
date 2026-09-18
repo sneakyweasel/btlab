@@ -44,6 +44,24 @@
     "determined": false,
     "note": "b/a is not a constant. Over all classes it scatters by more than 100%; on well-conditioned classes it clusters near 41 but still moves several percent when a 1/d^2 term is added. Determined to a few percent at best, which identifies no closed form."
   },
+  "g_one": {
+    "head_depth": 3000,
+    "head": 6.669019199665843,
+    "tail_weight": 0.03651179451748865,
+    "psi_window": {
+      "min": 10.221327447955366,
+      "max": 11.051714851762826,
+      "mean": 10.72366772629091
+    },
+    "estimate": 7.060559552162001,
+    "band": [
+      7.0422182071415556,
+      7.072537141399285
+    ],
+    "relative_band": 0.00429412627055103,
+    "kappa_times_estimate": 10.88607324390863,
+    "note": "G(1) is downstream of psi, not independently open: a closed form for the tail is sum_n c_n Li_(3/2)(e(n beta)) over psi's Fourier coefficients, and psi is exactly what MeanderShape asserts and nobody has. Projecting those coefficients from counts to depth 3000 resolves only the mean; the higher modes sit at a noise floor, so these counts cannot say whether psi is smooth or has jumps."
+  },
   "monotone_classes": 306,
   "monotone_share": 1.0,
   "coordinate_control": {
