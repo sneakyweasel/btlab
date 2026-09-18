@@ -124,6 +124,13 @@ No Lean module is added, removed, or edited by this branch. The 396 reviewed
 declarations remain compiled and kernel-checked exactly as they were. No
 `sorry`, `admit` or `axiom` is introduced anywhere.
 
+The 18 September clearing keeps that property: it is documentation only. One
+page is new,
+[the ideal-cycle model](../architecture/juggler_ideal_cycle_model.md), and
+three existing ones gained sections. `lake build` output is therefore
+unchanged and the warning budget is untouched, which is also why this pass
+carries no build evidence: there is nothing for the compiler to say about it.
+
 ## Results
 
 `OBSERVATION` the docstring of the gate was accurate and was being read past.
@@ -168,6 +175,70 @@ review queue -- but it does mean the absolute number of uncited declarations
 can rise without the gate objecting, provided the cited corpus rises faster.
 A count would have caught that and did not survive long enough to.
 
+### Second episode, same day: the clusters cleared
+
+`OBSERVATION` the share went red again within hours, at 413 of 5168, and the
+branch that surfaced it was not the cause. The bound was 796/10000 at the
+time, which allowed 411 there, so the failure was by two. Removing the jump-spectrum module and re-running the
+report gives 413 of 5138, a share of 8.04 percent against the 7.99 percent
+the same corpus carries with it: the new module cites all thirty of its own
+declarations and *lowers* the share. The red was repo-wide and predated the
+branch, which is what a share is supposed to make visible and did.
+
+`OBSERVATION` the remedy was citation, not deletion, and it cleared six whole
+clusters rather than the two declarations the gate asked for. The two largest
+clusters by module are the ones this dossier already named:
+[the ideal-cycle model](../architecture/juggler_ideal_cycle_model.md) now
+documents `IdealCycleMin` (48) and `IdealLollipop` (43), which had no dossier,
+no ledger row and no account anywhere but their own module docstrings. The
+[Lean interfaces note](../architecture/juggler_lean.md) gained the
+`RankedReturn` Euclidean induction (11), the `RealizedGridBounds` (7) and
+`FullUpperCellChargeBounds` (7) accessors, and Paper B Section 6's printed
+constants in `DepthFourFive` (10). That is 126 declarations, 287 of 5168
+remaining, a share of 5.55 percent. Nothing was deleted, no Lean source
+changed, and the worst per-module ratio fell from 50 to 45 percent.
+
+`OBSERVATION` the Paper A release pin reaches prose, and the Section 6
+paragraph was written into the wrong file first. The formalization map is the
+natural home for it and is one of three markdown inputs whose SHA-256 sits in
+`paper_a_release.json`, so adding a sentence to it failed
+`test_paper_release_gates` and would have cost a manuscript rebuild. It moved
+to the interfaces note instead. This is the same coupling the warning budget
+records for two Lean tactic cleanups, and it had not been written down on the
+documentation side; it is now, in that note's maintenance section.
+
+`OBSERVATION` the level was reset by the owner while that work was in
+progress, and the two things are independent. 631e647c raises the numerator to
+1000, with the reasoning recorded at the constant: an explicit reset after the
+gate interrupted a third consecutive branch, taken as a decision about the
+level rather than as a measurement, with nothing cited to reach it. The
+headroom is the point of that decision. What the reset does not do is change
+the backlog it refuses, and that is what the clearing above addresses; the two
+are independent and both are recorded at the constant.
+
+`OBSERVATION` the documented ambiguity limitation was understated, and
+concentrated exactly where the review had least to go on. The earlier
+partition put 8 declarations laboratory-wide in the "live but reached only by
+an ambiguous token" part. Among the 126 just cleared alone, 16 were in that
+position, twice the figure recorded for the whole corpus:
+the seven display-contract projections shared by `SureLetterSite` and
+`JoinFigure`, `RankedReturn.left`, `RankedReturn.right` and
+`RankedReturn.terminal_actual_factorization`, the three
+`FullUpperCellChargeBounds` cutoff methods, and the two `surplus_pos` and one
+`gap_pos` shared across the charge and grid records. For those the scanner had
+seen a use and refused to attribute it, which is the correct conservative
+behaviour and is also why they sat in a backlog described as having no
+consumer and no citation. Fifteen such remain among the 287.
+
+`OBSERVATION` the partition's largest part was measuring the absence of
+documentation, not the absence of consumers. 396 declarations were recorded as
+having neither consumer nor citation, and the first 126 examined divided into
+undocumented public interfaces and the supporting halves of results whose
+headline was already cited -- not abandoned intermediates. The compiled
+dependency review that produced that figure was accurate about the reference
+graph; the inference from it to "backlog" was carrying the assumption that
+somebody had already tried to write the documentation down.
+
 ## Open questions
 
 Whether the 396 should eventually be pruned, and by what criterion. A
@@ -178,18 +249,52 @@ intermediate lemma, which the reference graph alone cannot do. The docstring
 coverage figure from 44f3aa02, 15 percent against 38 percent layer-wide,
 remains the best available proxy and is still unaddressed.
 
+The 18 September clearing narrows that question rather than answering it. 126
+of the 396 turned out to be neither terminal theorems nor abandoned
+intermediates but undocumented interfaces, a third category the partition had
+no column for, and the instrument that separated them was a person reading the
+module. The remaining 287 have not been triaged that way. What would decide
+the rest cheaply is still open, and the honest position is that the reference
+graph cannot do it: `SureLetterSite.isValley` and
+`RealizedGridBounds.gap_pos` are indistinguishable from dead code in the
+sources and are load bearing in the elaborated environment.
+
+The level is not among the open questions, and saying so is part of the
+record. 1000/10000 admits 516 against 5168 candidates and the figure is 287.
+The distance is 103 from the owner's reset, which took the allowance from 411
+to 516 against 413 orphans, and the 126 the clearing then removed from the
+count. The first of those is a deliberate decision about how often this gate
+should interrupt a branch, taken after it interrupted three in a row, and the
+room it leaves is the point of it rather than an oversight to be reclaimed. So
+the arithmetic is recorded here and nothing is proposed: the smallest
+numerator that still admits 287 of 5168 is 556. Recompute against the
+inventory of the day if that figure is ever wanted; it is the owner's to want.
+
 ## Decision
 
-`PARK`. The measurement is repaired and the cap now matches the metric it
-guards, with the reasoning recorded at the constant in
-[test_lean_hygiene.py](../../tests/tools/test_lean_hygiene.py). The 396
-remaining are kept rather than retired: no module is wholly dead, so there is
-no layer to retire and no parked branch whose removal is implied, and deleting
-proved lemmas scattered through eighty live modules would be churn with a real
-downside, a full revalidation cost, and no reader benefit. That is the same
-conclusion 44f3aa02 reached on the same clusters, for the same reason. Best
-next question: can a terminal theorem be distinguished from an abandoned
-intermediate lemma without a human reading each one?
+`PROMOTE`, superseding the `PARK` of the first pass on the same day. The
+measurement is repaired, the cap matches the metric it guards with the
+reasoning recorded at the constant in
+[test_lean_hygiene.py](../../tests/tools/test_lean_hygiene.py), and the two
+clusters that pass named as the largest are now documented rather than merely
+counted. The gate reads 287 of 5168, a share of 5.55 percent, which would pass
+at the 7.96 percent bound it was measured against as well as at the
+10 percent the owner reset it to.
+
+The declarations are still kept rather than retired, for the reason 44f3aa02
+gave and this branch has now tested on 126 of them: no module is wholly dead,
+so there is no layer to retire and no parked branch whose removal is implied,
+and the first cluster examined closely turned out to be a display contract the
+companion mirrors in TypeScript, where deleting a name silently breaks a
+figure. Deleting proved lemmas scattered through eighty live modules would be
+churn with a real downside, a full revalidation cost, and no reader benefit.
+
+Best next question: the 287 that remain sit in modules whose *other* results
+are cited, so the reader-facing question is no longer which declarations are
+dead but which modules have a documented interface and which have only a
+docstring. Is per-module documentation coverage the gate that would have
+caught this, where a share of the whole corpus did not say where the backlog
+was?
 
 ## Publication assessment
 

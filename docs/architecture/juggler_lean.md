@@ -46,6 +46,29 @@ original periodic set. A finite transfer certificate records the indexed
 words, ordered odd endpoints, guards, and endpoint equations. Existing
 convenience theorems retain their published signatures.
 
+The model is three fields: the ranked values increase strictly below `a + b`,
+each of the lower `a` ranks follows `U` to rank `i + b`, and each of the upper
+`b` ranks follows `V` back to rank `i - a`. `RankedReturn.min_le` anchors rank
+zero as the minimum. Its induction is Euclidean rather than one step at a
+time. `RankedReturn.left` reduces the pair to `a - b` and `b` on the words `U`
+and `U ++ V`, `RankedReturn.right` reduces it to `a` and `b - a` on `U ++ V`
+and `V`, and both carry the actual guards forward, not only the rank
+arithmetic. `RankedReturn.seam` and `RankedReturn.left_seam` give the boundary
+transitions at each stage, and `RankedReturn.odd_seam_gap` widens the seam gap
+to two when every ranked value is odd. The terminal equal-rank case is
+`RankedReturn.equality_fixes` and `RankedReturn.equality_removes_upper`: the
+final restriction keeps the lower seam point and drops the upper one.
+`RankedReturn.force_two_left` and `RankedReturn.force_three_left` are the
+quotient-forcing steps, where supplied descent on two or three concatenated
+copies together with growth on the next copy pins the quotient between two and
+three, or between three and four, and returns the reduced model.
+`RankedReturn.primitive_terminal_of_totals` carries coprime length and
+odd-count totals to a primitive one-one model with the same totals, and
+`RankedReturn.terminal_actual_factorization` factorises that primitive pair
+with the parity of both images made explicit. Consumers reach these as
+projections on a binder, so a lexical scan of the sources attributes none of
+them; the orphan gate reports the whole group for that reason alone.
+
 The induced word-count determinant, conserved counts, and the decreasing
 sum of positive section counts support the primitive terminal construction.
 `ReturnTerminal.periodicOrbit_terminal_cut` connects global adjacency and
@@ -76,6 +99,28 @@ connects it to logarithmic cell defects and sorted rank coordinates.
 `RealizedGridBounds` records quantitative conclusions; it does not replace
 the exact upper-cell, integrality, or primitive-cycle hypotheses.
 
+Its conclusions are a nested conjunction, and every component has a name.
+`RealizedGridBounds.surplus_pos` is positivity of the surplus;
+`RealizedGridBounds.grid_bound` bounds each logarithmic grid error by the
+surplus scaled by one minus the reciprocal length, and
+`RealizedGridBounds.error_oscillation` bounds any difference of two errors by
+the same quantity. On the gaps, `RealizedGridBounds.gap_pos` is positivity,
+`RealizedGridBounds.gap_range` bounds the spread of any two gaps by the
+surplus, and `RealizedGridBounds.gap_mean_bound` places each gap within the
+scaled surplus of the mean. `RealizedGridBounds.log_state_lower` converts the
+grid bound into a lower bound on the logarithm of each state, given that every
+state exceeds one. The corresponding upper-cell accessors are
+`FullUpperCellChargeBounds.scale_pos`,
+`FullUpperCellChargeBounds.surplus_pos`,
+`FullUpperCellChargeBounds.finite_geometric` and
+`FullUpperCellChargeBounds.closed_geometric`, and the three cutoff methods are
+`FullUpperCellChargeBounds.minimum_lt_of_nonlinear_cutoff`,
+`FullUpperCellChargeBounds.minimum_lt_of_finiteGeometric_cutoff` and
+`FullUpperCellChargeBounds.minimum_lt_of_closedGeometric_cutoff`. Both records
+share basenames with `OrbitUpperChargeCertificate`, so the qualified spelling
+above is the only one that identifies them; an unqualified `surplus_pos` or
+`minimum_lt_of_nonlinear_cutoff` names two declarations at once.
+
 `CubicUpperCells` combines the strict upper cell with the grid. Finite sums,
 their geometric majorants, and the closed scalar consequence are separate
 interfaces. A numerical cutoff or an asymptotic consequence requires its own
@@ -101,6 +146,52 @@ consume the same orbit certificate and turn a supplied bound at `m0 > 1` into
 `m < m0`. Numerical evaluation of that supplied comparison is a separate
 obligation. The interface consumer also checks this passage when the counts
 are supplied as terminal-word totals.
+
+## Laboratory ideal-cycle model
+
+`IdealCycleMin` names the bead model of a `CycleMin` word and `IdealLollipop`
+names what the companion's lollipop figure is allowed to paint. Neither is a
+research branch, so neither has a dossier or a ledger row; both are wrappers
+over existing cycle theorems, and the wrapping is what keeps a picture from
+claiming more than the theorems do. `CyclePosition` sits alongside them as the
+`CycleItinerary`-based general layer. The reader's entry is
+[the ideal-cycle model](juggler_ideal_cycle_model.md), which walks the schema
+and names the facts pinning each mark. Both modules belong to the laboratory
+barrel and to no paper barrel.
+
+## Laboratory parity support for Paper B Section 6
+
+`DepthFourFive` declares into the `Juggler.DepthFourFive` namespace rather than
+`Problems.Juggler`, is laboratory-only, and is in no paper module list. It
+contains no analytic estimate. Section 6 carries Paper B's headline density
+results and is the part the release record marks as postdating the proof
+audit; every constant it prints is rational arithmetic on top of one Taylor
+expansion, so this module checks that arithmetic rather than asking a reader
+to.
+
+Step B's depth-four identity is `DepthFourFive.stepB_structure`, the
+elimination that turns the cube minus three halves of the intermediate product
+into the printed two-term form. The two coefficient blocks are then shown to
+be Taylor polynomials rather than an ad hoc fit:
+`DepthFourFive.stepB_m_block_is_taylor` matches the m-block against the
+degree-two expansion of minus one half of `(1 + e) ^ (9/4)`, and
+`DepthFourFive.stepB_v_block_is_taylor` matches the v-block against three
+halves of `(1 + e) ^ (3/4)`. That is why the expansion is exact at the base
+point and why its error is of order `n ^ (-9/8)`.
+`DepthFourFive.stepE_S_bound` covers Step E's collision-band budget, checking
+that both the sharp `65` and the rounder printed `80` dominate sixty times the
+`1095/1024` anchor.
+
+Theorem 6.3's mixed `OOEO` branch is checked constant by constant.
+`DepthFourFive.lemma62_exponents` is Lemma 6.2's exponent bookkeeping;
+`DepthFourFive.oeoe_C_net` is the residual sawtooth coefficient that survives
+the window expansion; `DepthFourFive.oeoe_window_curvature` is its
+window-centre curvature `216/1024`; `DepthFourFive.oeoe_leading_coefficient`
+and `DepthFourFive.oeoe_leading_curvature` are the leading mode and its
+curvature `-297/1024`; and `DepthFourFive.oeoe_composite_nonzero` is the
+composite `-81/1024` together with its nonvanishing, which is what makes the
+curvature single-signed and Lemma 3.3 applicable. Corollary 6.4's density is
+`DepthFourFive.cor64_density`.
 
 ## Publication audit and maintenance
 
@@ -135,17 +226,37 @@ restriction on PDF checks. Run the slow suite before a release. Regenerate the
 explicit dependency audit when the cited set changes.
 PDF rebuilding and whole-PDF validation require an explicit user request;
 ordinary Lean/source work leaves the existing PDFs as the last built snapshot.
+That pin reaches prose as well as Lean. `docs/theory/paper_a_release.json`
+records a SHA-256 for three markdown inputs -- the Paper A note, its reviewer
+packet, and the formalization map -- so a sentence added to any of them fails
+`test_paper_release_gates` until the manuscript is rebuilt. Documentation
+about a laboratory module therefore belongs in this note or in a dossier, not
+in the formalization map, unless a republish is already intended.
 The release manifest includes the source-indexing audit tool and transitive
 local proof sources, so a relevant refactor cannot silently retain a stale
 publication package.
 
 The orphan gate reads current qualified declarations and identifier-aware
 references. It conservatively reports ambiguous methods as unresolved lexical
-candidates; it is not a dead-code proof. The 11 September 2026 repair exposes 411
-candidates against the unchanged 285 budget. A separate fresh Lean reference
-audit resolves 43 uses and leaves 368 for review, so the hygiene cap currently
-fails even though the proof and dependency checks pass. Generated inventories
-are not accepted as usage evidence.
+candidates; it is not a dead-code proof. Generated inventories are not
+accepted as usage evidence. Since 18 September 2026 the bound is a share of
+the live inventory rather than an absolute count, held as two integers and
+compared by cross-multiplication, so formalising more mathematics cannot fail
+it on its own. It stands at 1000/10000, reset to that level by the repository
+owner the same day; the share measured after the ideal-cycle, ranked-return,
+upper-cell and depth-four clusters were documented is 287 of 5168, or
+5.55 percent. The discipline is a ratchet:
+lower the share when a cluster clears, never raise it to go green, and only
+the owner resets the level.
+[The gate dossier](../problems/juggler_orphan_declaration_gate.md) carries the
+calibration history and the compiled-dependency review behind it.
+
+A declaration whose basename is shared with another namespace cannot be
+credited by its short name. The gate reports such a token in its ambiguous set
+rather than crediting every match, so documentation that means to cite one of
+them must spell enough of the namespace to disambiguate. That is not a
+scanner defect to route around: two declarations really do answer to that
+name, and prose naming only the basename does not tell a reader which.
 
 ## Laboratory remainder variation
 
