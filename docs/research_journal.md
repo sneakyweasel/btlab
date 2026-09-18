@@ -1,5 +1,45 @@
 # Research journal
 
+## 2026-09-18 -- the jump amplitudes carry the same Sturmian word as the jump locations
+
+- **Objective:** the previous entry's best-next question -- is the prefactor's
+  jump measure the barrier `psi`'s, or a different measure on the same orbit?
+- **Not decidable from the published numbers, and I should say so.** The ratio of
+  prefactor to barrier amplitudes runs `12.3, 14.3, 14.3, 15.9, 20.4, 20.4, 25.0,
+  43.7` at `n = 1..8`. That looks like a real difference until you notice the
+  barrier amplitudes come from 512 bins over 20001 depths and their smallest
+  entries sit at that resolution. The growth may be theirs. Remeasuring the
+  barrier `psi` at matching resolution would settle it; comparing as they stand
+  would not.
+- **What the dig did find.** The amplitudes `a_n` are not monotone in `n`, and
+  their up-down pattern is *exactly* the Sturmian barrier word:
+  `a_n > a_(n-1)` if and only if `s_n = ceil(n BETA) - ceil((n-1) BETA) = 0`.
+  **39 of 39 consecutive pairs for `n <= 40`, no exception.** The rises fall at
+  `n = 3, 6, 9, 11, 14, 17, 19, 22`, gaps `3,3,2,3,3,2,3`, density `1 - BETA`.
+  So the same word that *places* the jumps also *modulates* their sizes, which is
+  the shape an Ostrowski spectrum takes.
+- **Bounded variation, consistent.** Partial sums of `|a_n|` settle at `1.62,
+  2.29, 2.75, 3.07` over the first `10, 25, 50, 100`. The decay is not a power
+  law but steepens with the window -- `p = 0.96` for `n < 50`, `2.61` for
+  `50..150` -- which is the same signature
+  `J-psi-jumps-are-summable-and-psi-is-bounded-variation` records for the barrier.
+- **A limit I hit and am recording rather than hiding.** Past `n` about 50 the
+  measurement contaminates itself: the window half-width shrinks like `1/n` and
+  starts admitting orbit points outside the sizing set, and the amplitudes turn
+  spuriously negative. My first pass reported 89% agreement with the Sturmian law
+  and all 13 failures were in that regime. Restricting to where the amplitudes
+  dominate the contamination gives 100%, and nothing is claimed past `n = 40`.
+  Widening the exclusion set is not the fix either: convergent denominators put
+  orbit points within `1e-5` of some `n BETA`, which collapses the window to six
+  points.
+- **Decision:** the prefactor row is refined again; still no new branch, still no
+  claim on `MeanderShape`, no bound moves.
+- **Best next question:** remeasure the barrier `psi`'s amplitudes with
+  `surviving_prefactor_profile`-grade resolution. Both jump lists would then come
+  from one method, and "is the prefactor's jump measure the barrier's up to an
+  affine map" becomes a question the data can answer instead of one the published
+  resolution forbids.
+
 ## 2026-09-18 -- psi jumps, on the rotation orbit, and the 0.65 anomaly was the first jump
 
 - **Objective:** build a float-log DP deep enough to decide whether the meander

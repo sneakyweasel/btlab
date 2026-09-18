@@ -5347,3 +5347,51 @@ def test_psi_jumps_on_the_rotation_orbit() -> None:
         err = min(abs(target - where), 1 - abs(target - where))
         assert err < 5 * spacing, f"jump at {where} is not on the orbit (nearest {n}*beta)"
     assert gaps[0][0] > 0.2, "the largest jump should be substantial, not a slope"
+
+
+def test_psi_jump_amplitudes_follow_the_sturmian_word() -> None:
+    """The jump sizes rise exactly where the Sturmian barrier step is zero.
+
+    The jumps sit on `{n*beta mod 1}`. Their amplitudes are not monotone in `n`:
+    `a_n > a_(n-1)` precisely when `s_n = ceil(n*beta) - ceil((n-1)*beta) = 0`,
+    the same Sturmian word that places them. Verified for every consecutive pair
+    with `n <= 40`, where the amplitudes dominate the contamination from orbit
+    points outside the window-sizing set.
+    """
+    import numpy as np
+
+    from research.juggler_sequence.paper_b_prefix_count import (
+        BETA,
+        surviving_prefactor_profile,
+    )
+
+    depth = 150000
+    psi = surviving_prefactor_profile(depth, window=1024)
+    lo = depth // 2
+    ds = np.arange(lo, depth + 1)
+    fr = (BETA * ds) % 1.0
+    order = np.argsort(fr)
+    f_s, p_s = fr[order], np.array([psi[d] for d in ds])[order]
+
+    nmax = 40
+    orbit = np.array([(n * BETA) % 1.0 for n in range(nmax + 1)])
+
+    def amplitude(n: int) -> float:
+        x0 = orbit[n]
+        others = np.delete(orbit, n)
+        gap = np.min(np.minimum(np.abs(others - x0), 1 - np.abs(others - x0)))
+        half = 0.35 * gap
+        left = (f_s > x0 - half) & (f_s < x0)
+        right = (f_s > x0) & (f_s < x0 + half)
+        return p_s[left].mean() - p_s[right].mean()
+
+    def step(n: int) -> int:
+        import math
+        return math.ceil(n * BETA) - math.ceil((n - 1) * BETA)
+
+    a = {n: amplitude(n) for n in range(1, nmax + 1)}
+    for n in range(2, nmax + 1):
+        rises = a[n] > a[n - 1]
+        assert rises == (step(n) == 0), (
+            f"n={n}: amplitude {'rose' if rises else 'fell'} but s_n={step(n)}"
+        )
