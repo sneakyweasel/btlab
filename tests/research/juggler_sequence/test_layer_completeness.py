@@ -66,7 +66,9 @@ def test_unregistered_modules_are_visible() -> None:
     # RateFreeDensity and PaperBCertificates). Both are in AUXILIARY_MODULES.
     # 32 -> 33 on 18 September 2026: PaperBCertificateLengths, which generalises
     # Lemma 5.1 to every length and imports PaperBCertificates for its five words.
-    assert len(outside) <= 33, outside
+    # 33 -> 34 on 18 September 2026: PaperBCertificateRecursion, the one-step
+    # decomposition tying neverNegCount to minimalCertCount; imports both neighbours.
+    assert len(outside) <= 34, outside
 
 
 def foreign_public_declarations(source: str, prefix: str) -> list[tuple[str, int]]:

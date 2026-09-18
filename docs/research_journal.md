@@ -1,5 +1,45 @@
 # Research journal
 
+## 2026-09-18 -- the survivors and the certificates were the same recursion
+
+- **Objective:** the previous entry's best-next question -- is the
+  minimal-certificate count `M_d` the same constrained-walk quantity as the
+  survivor count `N_d`?
+- **Yes, and in one line.** Extend a survivor of length `d` by a letter. It
+  either contracts for the first time, which is exactly what a minimal
+  certificate of length `d+1` is, or it survives. Two extensions each, disjoint
+  and exhaustive, so `N_(d+1) + M_(d+1) = 2 N_d`. Verified against the
+  enumeration at every depth to 14 before a line of Lean was written.
+- **The density consequence is the useful form.** Taking complements inside
+  `2^d` gives `#C_(d+1) = 2 #C_d + M_(d+1)`, so the certificate density gains
+  *exactly* `M_(d+1)/2^(d+1)` at each step. `five_cylinders_card_sum` from the
+  five-step branch is that identity at depth five, read across the five words at
+  once; now it holds at every depth.
+- **The plateaus are proved rather than listed.** An empty odd-count window
+  leaves no minimal certificate, so the density does not move. Combined with the
+  length branch: the density is flat from `d` to `d+1` exactly when no power of
+  three lies in `[2^d, 2^(d+1))`. `7/8` at `d = 5, 6`; `237/256` at `d = 8, 9`;
+  `15/16` at `d = 10, 11` -- corollaries now, not computations.
+- **The rotation, visible in its own coordinate.** `M_d / (2 N_(d-1))` is zero
+  exactly when `frac(d beta) > beta`, and at the carrying depths it reads
+  `0.500, 0.250, 0.333, 0.188, 0.269, 0.158, 0.117, 0.188, 0.118, 0.184` --
+  oscillating, not converging. That is the almost-periodicity of
+  `J-paper-b-meander-prefactor-is-almost-periodic` seen from the finite side,
+  and the recursion gives it an exact meaning at every depth rather than only an
+  asymptotic one.
+- **What this does not do, stated plainly.** It does not prove `MeanderShape`.
+  By the recursion that hypothesis can now be phrased either as the shape of
+  `N_d` or as the behaviour of the increment `M_d / 2^d`, which is a
+  reformulation and not a proof; the local limit theorem for a walk against a
+  Sturmian barrier is still missing.
+- **Decision:** PROMOTE. Ledger row `J-paper-b-survivor-certificate-recursion`,
+  dossier `juggler_paper_b_certificate_recursion.md`.
+- **Best next question:** the recursion writes `N_d = 2^d * prod (1 - M_k / (2
+  N_(k-1)))`. Is the factor `M_k / (2 N_(k-1))` a function of `frac(k beta)`
+  alone? That is what an almost-periodic prefactor requires, it is checkable
+  against the data already in hand, and a negative answer would kill the
+  cleanest reading of the measurement.
+
 ## 2026-09-18 -- Lemma 5.1 is a statement about one irrational, at every length
 
 - **Objective:** `PaperBFiveStepDensity`'s enumeration showed the certificate

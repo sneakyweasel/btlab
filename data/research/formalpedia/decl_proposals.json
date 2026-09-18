@@ -1,5 +1,5 @@
 {
-  "composite": 31,
+  "composite": 32,
   "note": "Proposals for human review. Calibration: 86% precision (42 of 49 fires) against all resolved rows. Nothing here has been written into the ledger.",
   "rows": [
     {
@@ -189,6 +189,59 @@
         "window_empty_three"
       ],
       "statement": "Paper B Lemma 5.1 holds for every length, not only the printed five. Write CertWindow L o for 2^(L-1) <= 3^o < 2^L. (i) certWindow_unique: at most one o satisfies it, since consecutive powers of two differ by a factor 2 and 3 > 2. (ii) minimalCert_concat_even: a minimal certificate's last letter is E, because an odd one would need 3 * 3^o < 2^L while the length-(L-1) prefix gives 3^o >= 2^(L-1), t"
+    },
+    {
+      "candidates": [
+        {
+          "decl": "density_succ",
+          "line": 203,
+          "score": 0.231,
+          "trust": "kernel"
+        },
+        {
+          "decl": "neverNegCount_add_minimalCertCount",
+          "line": 171,
+          "score": 0.192,
+          "trust": "kernel"
+        },
+        {
+          "decl": "minimalCertCount_eq_zero_of_window_empty",
+          "line": 220,
+          "score": 0.128,
+          "trust": "kernel"
+        }
+      ],
+      "composite": true,
+      "confidence": "low",
+      "definitions": [
+        {
+          "decl": "minimalCertWords",
+          "line": 56,
+          "score": 0.064
+        },
+        {
+          "decl": "minimalCertCount",
+          "line": 60,
+          "score": 0.063
+        }
+      ],
+      "id": "J-paper-b-survivor-certificate-recursion",
+      "in_file": 14,
+      "lean": "Problems/Juggler/PaperBCertificateRecursion.lean",
+      "names_own": [
+        "neverNegCount_add_minimalCertCount",
+        "prefixNoncontracting_concat",
+        "isMinimalCertificate_concat",
+        "extensions_eq_survivors_union_certs",
+        "certifiedWordCount_succ",
+        "density_succ",
+        "minimalCertCount_eq_zero_of_window_empty",
+        "density_flat_of_window_empty",
+        "density_flat_five_to_six",
+        "density_flat_eight_to_nine",
+        "density_flat_ten_to_eleven"
+      ],
+      "statement": "The survivor count and the minimal-certificate count of Paper B are one recursion. Let N_d = neverNegCount d count the length-d parity words no prefix of which contracts and M_d = minimalCertCount d the minimal certificates of length d. (i) neverNegCount_add_minimalCertCount: N_(d+1) + M_(d+1) = 2 N_d, by one extension step -- extending a survivor by a letter either contracts for the first time, w"
     },
     {
       "candidates": [
@@ -4221,6 +4274,6 @@
       "statement": "The FD step is formalised as an inference, and Theorem 6.1 stays conditional -- which is what the manuscript already says and what the formalisation must not quietly improve on. WHAT FD IS. A HYPOTHESIS, not a result: 'Hypothesis FD. For every fixed d >= 1 and every odd-rooted word w of length d, #{n <= N : word_d(n) = w} = 2^(-d) N + o_w(N). No common error rate in d is assumed.' Theorem 6.1 is h"
     }
   ],
-  "unresolved": 117,
+  "unresolved": 118,
   "worth_reviewing": 19
 }

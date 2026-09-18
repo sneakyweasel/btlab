@@ -5835,6 +5835,22 @@
       "nk_cluster": null
     },
     {
+      "id": "paper_b_certificate_recursion",
+      "kind": "dossier_only",
+      "probe": null,
+      "test": null,
+      "dossier": "docs/problems/juggler_paper_b_certificate_recursion.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-paper-b-survivor-certificate-recursion"
+      ],
+      "aliases": [],
+      "nk_cluster": null
+    },
+    {
       "id": "paper_b_certificates",
       "kind": "dossier_only",
       "probe": null,
