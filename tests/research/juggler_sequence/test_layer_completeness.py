@@ -60,7 +60,11 @@ def test_unregistered_modules_are_visible() -> None:
     # the Paper B barrel because it imports the itinerary stack shared with Paper A.
     # 29 -> 30 on 17 September 2026: PaperBSurvivorDecay (the Theorem 6.1 count decay),
     # outside the barrel for the same reason (it imports RateFreeDensity).
-    assert len(outside) <= 30, outside
+    # 30 -> 32 on 18 September 2026, both outside the barrel for that same reason:
+    # PaperBSurvivorAsymptotic (the exact-rate skeleton, imports PaperBSurvivorDecay)
+    # and PaperBFiveStepDensity (the Theorem 5.2-5.4 count assembly, imports
+    # RateFreeDensity and PaperBCertificates). Both are in AUXILIARY_MODULES.
+    assert len(outside) <= 32, outside
 
 
 def foreign_public_declarations(source: str, prefix: str) -> list[tuple[str, int]]:
