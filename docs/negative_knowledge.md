@@ -1,5 +1,39 @@
 # Negative knowledge
 
+## Paper B: the jump amplitude is not fixed by a self-referential equation
+
+The jump spectrum of the meander prefactor satisfies
+`a_n = A psi(frac(n beta)) n^(-3/2)` asymptotically, with `A = 2 theta a_1`, and
+`psi` is its own jump function plus the linear rise periodicity on the circle
+forces. That looks like a bootstrap: `psi` determines the amplitudes and the
+amplitudes determine `psi`, with `A` scale-invariant, so `A` should be pinned by
+the equation rather than measured. It is not, and the scale invariance is exactly
+why.
+
+Written out the relation is
+
+    psi = C*1 + A*L psi,   where L psi at x is sum_n psi(x_n) n^(-3/2) (x - 1{x_n <= x})
+
+which is **affine** in `psi`, not an eigenvalue problem. For every `A` it has the
+solution `C (I - A L)^(-1) [1]`, a one-parameter family in `C`. Solved on a
+four-thousand-point grid with four hundred modelled jumps, a solution exists at
+`A = 0.2, 0.5, 0.82, 1.5, 3, 8` alike, with `I - A L` well conditioned throughout
+(condition number `3.3` to `384`). The equation selects nothing.
+Kind: **REFUTED** route, `J-paper-b-jump-amplitude-is-not-a-fixed-point`.
+
+The obstruction behind it is sharper than the failed computation and is the part
+worth keeping. Of all the Fourier coefficients of `psi`, exactly one is in closed
+form independently of `a_1` -- the mean, `psihat_0 = kappa G(1)` -- and every
+coefficient with `k != 0` is proportional to `a_1`
+(`J-paper-b-psi-fourier-is-the-orbit-series`). So the one coefficient that could
+have closed the loop is the one `a_1` does not appear in. `a_1` is a constant of
+the problem, not a consequence of its shape, and a closed form for it is now
+equivalent to a closed form for `psi` outright.
+
+Do not re-open this as a bootstrap, an eigenvalue problem or a self-consistency
+condition. What remains open is `psi` itself, and nothing measured suggests a
+closed form exists.
+
 ## Paper B: the `1/rho` jump law is the empty-window theorem
 
 The prefactor cluster recorded, twice, that the ratio of consecutive jump
