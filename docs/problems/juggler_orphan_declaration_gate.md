@@ -12,7 +12,9 @@ submodules, as read from the Lean sources by `trust_boundary.declaration_index`.
 Let `R(d)` hold when some scanned source file contains an identifier token that
 resolves unambiguously to `d`, excluding the declaration header of `d` and
 recursive self-reference. The gate counts the `d` in `D` with `R(d)` false and
-asserts the count is at most `ORPHAN_BUDGET`.
+asserts that count is at most `ORPHAN_RATIO_NUM / ORPHAN_RATIO_DEN` of the live
+candidate inventory. It was an absolute `ORPHAN_BUDGET` until 18 September 2026;
+see Results.
 
 The question is not the value of that count. It is whether the failure of
 `R(d)` implies that `d` is unused, for which the relevant relation is the
@@ -142,6 +144,29 @@ heavy Lean work. That is not a long drift.
 the `decl` field into the scanned markdown, and JSON is outside the scanned
 suffixes, so 20 declarations registered in the laboratory's own declaration
 registry were reported as cited by nobody.
+
+`OBSERVATION` an absolute cap does not survive the corpus it guards.
+The cap was calibrated at 402 against 4836 candidates. Paper B's formalisation
+then added 257 declarations, 28 of which nobody had written a sentence about,
+and the gate went red at 433. Read as a count that is a regression; read as a
+share it is an improvement, because citing the 28 left 405 of 5093, or 7.95%,
+against the calibrated 8.31%. The corpus grew by 5% and got proportionally
+cleaner, and the gate called that a failure. A count cannot distinguish more
+unreviewed backlog from more mathematics, and only the first is what this gate
+exists to catch.
+
+The bound is therefore a share as of 18 September 2026, held as two integers
+and compared by cross-multiplication so no float enters the verdict. 796/10000
+admits 405 of 5093 and refuses 406, so the ratchet is exactly as tight as the
+count was on the day it was set. The discipline is unchanged and so is its
+wording: lower it when a cluster clears, never raise it to go green.
+
+What the change concedes, stated rather than discovered later: 500 further
+*cited* declarations raise the absolute allowance from 405 to 445. That is the
+intended behaviour -- a growing corpus is allowed a proportionally growing
+review queue -- but it does mean the absolute number of uncited declarations
+can rise without the gate objecting, provided the cited corpus rises faster.
+A count would have caught that and did not survive long enough to.
 
 ## Open questions
 

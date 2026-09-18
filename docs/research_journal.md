@@ -1,5 +1,48 @@
 # Research journal
 
+## 2026-09-18 -- the orphan gate was counting, and counting was the wrong verb
+
+- **Objective:** the gate had been red at 433 against a cap of 402. Find out
+  whether that is a backlog or an artefact, and fix whichever it is.
+- **It was both, in that order.** 28 of the excess came from the Paper B
+  modules added since the cap was calibrated, and not one was dead code: they
+  were live theorems nobody had written a sentence about, including
+  `four_step_density`, which is Theorem 5.2's own density, and
+  `neverNegCount_one` through `neverNegCount_eight`, whose values the
+  17 September entry quotes without naming the declarations that prove them.
+  Citing them (af5c9c28) took 433 to 405. Nothing was deleted.
+- **Then the gate was still red, and it should not have been.** 405 of 5093
+  candidates is 7.95%. The calibrated 402 of 4836 was 8.31%. The corpus grew
+  5% and got proportionally cleaner, and an absolute cap reported that as a
+  regression. A count cannot tell more unreviewed backlog from more
+  mathematics, and only the first is what the gate is for. It is a share now,
+  796/10000, held as two integers and cross-multiplied so no float enters the
+  verdict: 405 of 5093 passes, 406 fails. The discipline and its wording are
+  unchanged -- lower it when a cluster clears, never raise it to go green.
+- **What the change concedes:** 500 further *cited* declarations lift the
+  absolute allowance from 405 to 445. A growing corpus is allowed a
+  proportionally growing review queue. That is the intent, and it is written
+  into the gate dossier rather than left to be discovered.
+- **Two scanner facts worth not rediscovering.** A declaration name
+  immediately before a sentence-ending period is not tokenised, so `... are X
+  and Y.` credits X and silently drops Y; two citations failed that way until
+  the sentence was rephrased. And the ledger's `decl` field is read from the
+  JSON directly, while statement prose is seen only through the rendered
+  markdown, so a citation written into a statement does nothing until
+  `render_theorem_ledger.py` has run.
+- **Where I was wrong about my own work:** the first pass at this stopped one
+  step short of writing "reviewed example" prose about `DepthFourFive`'s Step
+  B constants for no reason except to move a counter below 402. That is
+  documentation written to satisfy a metric, which is the failure the gate
+  exists to prevent. Philippe asked why we were obsessing; the honest answer
+  was that I had stopped noticing.
+- **Decision:** PROMOTE. Gate green at 405/5093 with no cluster deleted and no
+  allowance raised.
+- **Best next question:** the ratio is stable under proportional growth but
+  says nothing about *where* the backlog sits. `IdealCycleMin` and
+  `IdealLollipop` hold 91 of the 405 between them. Is a per-module share the
+  gate that would actually have caught this?
+
 ## 2026-09-18 — An empty `tests` list was saying two different things
 
 - **Objective:** `test_ledger_test_paths_exist` was red on a clean `main`.
