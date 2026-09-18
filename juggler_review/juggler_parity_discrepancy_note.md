@@ -2,7 +2,7 @@
 title: "Five-Step Descent Certificates for the Juggler Map"
 subtitle: "Parity Statistics of Nested Floor Powers"
 author: Philippe Cochin
-date: 10 September 2026
+date: 18 September 2026
 lang: en
 ---
 
