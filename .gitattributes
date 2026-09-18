@@ -1,0 +1,29 @@
+# What lands on disk is a property of the commit, not of the clone.
+#
+# Without this file core.autocrlf decides, and it decided differently in
+# different places: the main checkout held LF while every .claude worktree
+# checked out CRLF, so at one identical HEAD `tools/build_paper_b.py --check`
+# passed in one and reported a stale build in the other. The paper gates now
+# normalise before hashing, which is the repair that matters; this file removes
+# the divergence they are normalising around, so a digest taken over raw bytes
+# is not a trap waiting for the next person to set it.
+
+* text=auto eol=lf
+
+# Binaries. `binary` is the macro for `-text -diff`: git neither rewrites line
+# endings nor tries to diff them. Listing them by extension matters because
+# git's own text/binary heuristic samples only the first 8000 bytes for a NUL
+# and two files here have none. docs/theory/rewrite_calculus_note.pdf was
+# already being checked out 1843 bytes longer than its blob, with its xref
+# offsets broken; data/research/juggler/excursion_transfer/excursions.bin
+# survives today only because it happens to contain no lone LF, and would be
+# corrupted the same way as soon as its contents change.
+*.pdf     binary
+*.png     binary
+*.jpg     binary
+*.zip     binary
+*.bin     binary
+*.parquet binary
+
+# cmd.exe is the one consumer that still wants CRLF.
+*.bat text eol=crlf
