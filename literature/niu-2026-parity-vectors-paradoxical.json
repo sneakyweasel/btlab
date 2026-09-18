@@ -1,0 +1,21 @@
+{
+  "id": "niu-2026-parity-vectors-paradoxical",
+  "title": "Parity vectors and paradoxical sequences in the accelerated Collatz map",
+  "authors": ["Tong Niu"],
+  "year": 2026,
+  "identifiers": {
+    "arxiv": "2605.13886"
+  },
+  "url": {
+    "arxiv": "https://arxiv.org/abs/2605.13886"
+  },
+  "problem_area": "collatz",
+  "relevant_concepts": [
+    "parity vectors",
+    "paradoxical sequences",
+    "equidistribution mod 2^k"
+  ],
+  "project_relationship": "known",
+  "status": "withdrawn preprint",
+  "notes": "docs/problems/juggler_jump_spectrum.md. WITHDRAWN 20 May 2026, the author citing redundancy with rozier-terracol-2026; v1 remains downloadable and was read in full, 12 pages. Followed only because hikawa-2026-parity-vector-structures cites it for 'a sharp finitary form of Terras's density in the length basis', which sounded like the polynomial correction and is not. Its Theorem 2 is the mod-2^k statement: the parity vector of length k cuts out a single residue class, so the count in [1,N] lies between floor(N/2^k) and ceil(N/2^k) -- a deviation bounded by one element, an equidistribution sharpening and not an asymptotic for N_d. Its other results enumerate paradoxical sequences. Nothing here bears on the survivor asymptotic; the trail ends."
+}

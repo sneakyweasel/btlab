@@ -1,0 +1,23 @@
+{
+  "id": "winkler-2017-2026-deterministic-structures",
+  "title": "Deterministic Structures in the Stopping Time Dynamics of the 3x+1 Problem",
+  "authors": ["Mike Winkler"],
+  "year": 2026,
+  "identifiers": {
+    "arxiv": "1709.03385"
+  },
+  "url": {
+    "arxiv": "https://arxiv.org/abs/1709.03385"
+  },
+  "problem_area": "collatz",
+  "relevant_concepts": [
+    "coefficient stopping time",
+    "admissible position vectors",
+    "Pascal-type recursion",
+    "A076227",
+    "A100982"
+  ],
+  "project_relationship": "known",
+  "status": "preprint",
+  "notes": "docs/problems/juggler_jump_spectrum.md. Read in full at v8, 28 July 2026, 28 pages. Exact finite structure only. Proposition 8 is the Pascal-type recursion R(k,n) = R(k-1,n) + R(k-1,n-1); Proposition 9 proves that the row sum w(k) counts the residue classes modulo 2^k that have not reached their coefficient stopping time by time k, which is exactly this laboratory's N_k; Remark 10 identifies w(k) as A076227 and the column sums as A100982; Proposition 26 gives an exact coverage density, tabulated to N = 18. NO ASYMPTOTIC OF ANY KIND -- no growth constant, no power of k, no oscillation. Page 2 credits the asymptotic side elsewhere: the concurrent study of Hikawa derives logarithmic asymptotics for the associated counting sequences A100982 and A076227. The OEIS pointer See pp. 2, 4, 13 is to the ResearchGate copy, whose pagination differs from arXiv v8. A separate September 2026 preprint of the same author, Coefficient First-Passage Words for the 3x+1 Map, doi 10.13140/RG.2.2.31257.79200, refines A100982 by a local cut statistic through a Beatty-Ferrers model and is likewise exact-finite, with no asymptotic."
+}

@@ -1,0 +1,22 @@
+{
+  "id": "oeis-A076227",
+  "title": "Number of surviving Collatz residues mod 2^n",
+  "authors": ["OEIS contributors"],
+  "year": 2002,
+  "identifiers": {
+    "oeis": "A076227"
+  },
+  "url": {
+    "oeis": "https://oeis.org/A076227"
+  },
+  "problem_area": "collatz",
+  "relevant_concepts": [
+    "stopping time",
+    "parity vectors",
+    "surviving residue classes",
+    "Paper B survivor count"
+  ],
+  "project_relationship": "known",
+  "status": "classical-source",
+  "notes": "docs/problems/juggler_jump_spectrum.md. Paper B's survivor count N_d is this sequence exactly, checked against the Hikawa-Nakanishi b-file on all 3509 terms n = 0..3508 (J-paper-b-survivors-are-oeis-a076227). Entered by Labos Elemer, October 2002, as the number of residue classes modulo 2^n in which the stopping time A074473 is not constant; a comment of Kazunobu Hikawa, 21 July 2026, gives this laboratory's own definition outright -- binary words v(1)..v(n) with 2^m < 3^(v(1)+...+v(m)) for all m. The entry records only that the share tends to 0, bounded by a(16)/65536 or about 3.23 percent; it carries no growth constant, no d^(-3/2) and no oscillation. Those are settled from the papers it links and not from the entry: see lagarias-1985-3x+1-problem for the exponential rate and hikawa-2026-parity-vector-structures for the d^(-3/2) as a conjecture."
+}

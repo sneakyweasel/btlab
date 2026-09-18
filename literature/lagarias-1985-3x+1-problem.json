@@ -12,9 +12,10 @@
     "3x+1 problem",
     "stopping times",
     "parity sequences",
-    "generalized Collatz maps"
+    "generalized Collatz maps",
+    "entropy rate of the survivor count"
   ],
   "project_relationship": "known",
   "status": "survey",
-  "notes": "Classical AMM survey. Cited from the Juggler finite-dynamics note as the standard account of Collatz stopping times, parity words, and the gap between finite descent and totality. Not a Juggler theorem and not a Collatz claim."
+  "notes": "Classical AMM survey. Cited from the Juggler finite-dynamics note as the standard account of Collatz stopping times, parity words, and the gap between finite descent and totality. Not a Juggler theorem and not a Collatz claim. THEOREM D IS THIS LABORATORY'S EXPONENTIAL RATE, forty years early. In the survey's notation, for all k >= 1, (2.17) 1 - F(k) = lim_x (1/x) #{n <= x : sigma(n) > k} <= 2^(-eta k), where (2.18) eta = 1 - H(theta) is about .05004, H(x) = -x log_2 x - (1-x) log_2 (1-x) is the binary entropy function and theta = (log_2 3)^(-1) is this laboratory's beta. The proof sets C_2 = {v : v inflating, length(v) = k}, notes 2^(-k)|C_2| = 1 - F(k) -- so |C_2| IS N_k = A076227(k) -- and bounds |C_2| by the binomial tail sum over j > k theta of C(k,j), using Ash Lemma 4.7.2. The remark that follows supplies the matching lower bound: for any epsilon > 0, |C_2| >= 2^((H(theta)-epsilon)k) and hence 1 - F(k) >= 2^(-(eta+epsilon)k) for all large k. Numerically 2^(-eta) = beta^(-beta) (1-beta)^(beta-1) / 2 = 0.965906553233437723605537917803, equal to this laboratory's theta to thirty digits. So the laboratory's theta^d is (2.17)-(2.18) written multiplicatively, and the Lean bound neverNegCount_div_pow_le_theta of PaperBSurvivorDecay is Theorem D's upper half. WHAT THEOREM D IS NOT: it is a two-sided exponential-scale estimate with no polynomial factor, no asymptotic equivalence, no constant and no oscillation. Theorem D carries no attribution label in the survey, unlike Theorems A and C which are labelled (Terras); Lagarias's own annotated bibliography credits terras-1976-stopping-time only with natural density one. See docs/problems/juggler_jump_spectrum.md."
 }

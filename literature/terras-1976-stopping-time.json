@@ -4,12 +4,13 @@
   "identifiers": {
     "doi": "10.4064/aa-30-3-241-252"
   },
-  "notes": "docs/problems/syracuse.md",
+  "notes": "docs/problems/syracuse.md, docs/problems/juggler_jump_spectrum.md. ORIGINAL NOT READ HERE -- the matwbn scan is behind an anti-bot gate; what follows is from Lagarias's own annotation in the annotated bibliography and from the 1985 survey. Terras proves that the integers with stopping time k form residue classes modulo 2^k up to finitely many elements (Theorem C of the survey) and that the set with finite stopping time has natural density one (Theorem A); the annotation credits him with exactly that and with introducing the coefficient stopping time, not with a rate. Terras 1979 supplies details of the density proof after Moeller's 1978 criticism. THE EXPONENTIAL RATE 2^(-eta k) FOR THE SURVIVORS IS THE SURVEY'S THEOREM D, built on Terras's structure theorem but stated and proved there -- see lagarias-1985-3x+1-problem. Nakanishi 2026 Remark 8 reads Terras as a central-limit argument that the ratio of unconverged parity vectors vanishes, which is again the density and not the rate.",
   "problem_area": "collatz",
   "project_relationship": "known",
   "relevant_concepts": [
     "stopping times",
-    "density of contracting k-steps"
+    "density of contracting k-steps",
+    "parity vector structure theorem"
   ],
   "status": "classical",
   "title": "A stopping time problem on the positive integers",

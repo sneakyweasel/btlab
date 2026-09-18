@@ -1,0 +1,21 @@
+{
+  "id": "kontorovich-lagarias-2009-stochastic-models",
+  "title": "Stochastic Models for the 3x+1 and 5x+1 Problems",
+  "authors": ["Alex V. Kontorovich", "Jeffrey C. Lagarias"],
+  "year": 2009,
+  "identifiers": {
+    "arxiv": "0910.1944"
+  },
+  "url": {
+    "arxiv": "https://arxiv.org/abs/0910.1944"
+  },
+  "problem_area": "collatz",
+  "relevant_concepts": [
+    "stopping time density",
+    "lambda-stopping time",
+    "parity sequence symbolic dynamics"
+  ],
+  "project_relationship": "known",
+  "status": "survey",
+  "notes": "docs/problems/juggler_jump_spectrum.md. Read at the stopping-time section. Theorem 2.2 restates Terras and Everett: the set with finite lambda-stopping time has natural density one. Its proof sketch carries an independent cross-check on this laboratory's theta -- the decrease occurs 'for all but an exponentially small set of patterns, of size O(2^(0.94995k)) out of 2^k possible patterns', and 0.94995 is H(beta) = log_2(2 theta) = 0.94995552718833063481. Rate only: no polynomial correction, no oscillation, no constant. Generalizations attributed to Rawsthorne 1985 and Borovkov-Pfeifer 2000."
+}
