@@ -109,5 +109,24 @@ def test_probe_does_not_claim_the_meander_shape_is_refuted() -> None:
     """The tension must stay a tension: this probe refutes one reading, not a shape."""
     payload = probe_payload(max_depth=700, fit_from=200, period=PERIOD_SMALL)
     reason = payload["decision"]["reason"]
-    assert "tension, not a refutation of the shape" in reason
+    assert "a tension in the shape, not a refutation of it" in reason
     assert "neither proves nor refutes the meander shape" in payload["anti_overclaim"]
+    assert "no closed form is claimed" in reason
+
+
+def test_b_over_a_is_not_reported_as_a_constant() -> None:
+    """Guard against the overclaim this branch made and withdrew.
+
+    `b/a` scatters across all classes and shifts when a `1/d^2` term is added.
+    The artifact must say so, and must not be readable as a determined number.
+    """
+    data = json.loads(JSON_PATH.read_text(encoding="utf-8"))
+    stability = data["slope_stability"]
+    assert stability["determined"] is False
+    assert stability["all_classes"]["spread_across_classes"] > 0.5, (
+        "over all classes b/a must be reported as scattered, not constant"
+    )
+    assert stability["well_conditioned"]["relative_shift"] > 0.01, (
+        "the value must be reported as fit-dependent"
+    )
+    assert "not a constant" in stability["note"]

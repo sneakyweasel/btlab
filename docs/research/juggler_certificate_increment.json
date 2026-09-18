@@ -25,6 +25,25 @@
     "max": 898.048552350957
   },
   "meander_predicted_b": 1.4488598298501567,
+  "slope_stability": {
+    "all_classes": {
+      "classes": 305,
+      "two_parameter": 49.90218634986399,
+      "three_parameter": 23.9204664294077,
+      "relative_shift": 0.5206529376949254,
+      "spread_across_classes": 1.2499160832017455
+    },
+    "well_conditioned": {
+      "classes": 225,
+      "two_parameter": 40.97549257724245,
+      "three_parameter": 42.69512177310944,
+      "relative_shift": 0.04196726110431349,
+      "spread_across_classes": 0.009849562947929122
+    },
+    "well_conditioned_threshold": 1e-05,
+    "determined": false,
+    "note": "b/a is not a constant. Over all classes it scatters by more than 100%; on well-conditioned classes it clusters near 41 but still moves several percent when a 1/d^2 term is added. Determined to a few percent at best, which identifies no closed form."
+  },
   "monotone_classes": 306,
   "monotone_share": 1.0,
   "coordinate_control": {
@@ -67,7 +86,7 @@
   },
   "decision": {
     "classification": "INCREMENT_NOT_A_ROTATION_FUNCTION",
-    "reason": "Within one residue class mod 485 the rotation coordinate is fixed to 9.3e-04. Were r_d a function of that coordinate alone, a class would hold one value and its four or five members would scatter. They do not scatter: every class is strictly monotone in d, which scattered values would be about two to eight percent of the time, and in most classes the spread is more than ten times what the residual coordinate motion can explain. So r_d is not a function of frac(d*beta) alone. Separately and more weakly: the fitted slope b does not match the 3*theta/2 that the measured exponent -3/2 predicts, and b varies across classes while b/a does not. That is a tension, not a refutation of the shape."
+    "reason": "Within one residue class mod 485 the rotation coordinate is fixed to 9.3e-04. Were r_d a function of that coordinate alone, a class would hold one value and its four or five members would scatter. They do not scatter: every class is strictly monotone in d, which scattered values would be about two to eight percent of the time, and in most classes the spread is more than ten times what the residual coordinate motion can explain. So r_d is not a function of frac(d*beta) alone. Separately and more weakly: the fitted slope b does not match the 3*theta/2 that the measured exponent -3/2 predicts. b/a is class-independent, which is a real fact about the increment, but its VALUE is not determined -- adding a 1/d^2 term moves it several percent while leaving the limit a alone, so it is not a constant to read anything into. That is a tension in the shape, not a refutation of it, and no closed form is claimed."
   },
   "anti_overclaim": "Exact integer counts; the fits are the only floating point. This refutes one reading of the increment and neither proves nor refutes the meander shape."
 }

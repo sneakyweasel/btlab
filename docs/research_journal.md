@@ -1,5 +1,45 @@
 # Research journal
 
+## 2026-09-18 -- the 40.8 was mine, and it was not there
+
+- **Correction to the entry below.** I closed the increment branch calling `b/a`
+  "nearly constant at 40.8 across classes whose `a` varies by 60%" and named it
+  "the sharpest unexplained number this cluster has produced". It is not a
+  number. Philippe asked why pi was there, which is the right question to ask of
+  a three-figure constant, and asking it is what made me measure properly.
+- **Two separate errors, and the second is the one to remember.** The value is
+  not determined: adding a `1/d^2` term moves `b/a` from `40.98` to `42.70`, a
+  `4.2%` shift, while the limit `a` moves `0.08%`. And it is not even
+  class-independent: over *all* 305 classes `b/a` scatters by `125%`. The
+  apparent constancy came from six to eight classes I had picked by eye after
+  seeing the numbers. That is how a constant gets manufactured rather than found,
+  and I did it while writing a probe whose whole purpose was to test a claim
+  properly.
+- **What actually survives.** On a well-conditioned subset defined by a criterion
+  on the fit rather than on the answer -- residual below `1e-5`, 225 of 305
+  classes -- `b/a` clusters at `40.98` with a `1.0%` spread. Determined to a few
+  percent. `13*pi = 40.84` sits inside the two-parameter value and outside the
+  three-parameter one, which is the signature of numerology, not of a constant.
+  `slope_stability` in the probe now reports both readings so the artifact cannot
+  be read the way I read it.
+- **Where pi actually is, and it was already in the ledger.**
+  `J-paper-b-meander-constant-derived` has it:
+  `kappa = 1/(sqrt(2 pi) theta sigma)`, the `sqrt(2 pi)` from the *non-lattice*
+  local limit theorem -- the walk is `S_n = o log3 - n log2` and `log3/log2` is
+  irrational, so it is not on a lattice -- with a second `sqrt(pi)` entering
+  through the Wiener-Hopf singularity `-2 sqrt(pi) kappa sqrt(1-z)` whose
+  coefficient extraction *produces* the `d^(-3/2)`. Pi and the exponent are one
+  fact. Neither is in `b/a`.
+- **Decision:** the CLOSE stands; only the framing was wrong. Dossier, ledger row
+  and probe corrected.
+- **Best next question, replacing the one I withdrew:** `G(1) = sum_d N_d/(2 rho)^d`.
+  `J-paper-b-meander-constant-derived` gives closed forms for `kappa`,
+  `sigma^2 = log(3/2) log 2` and `theta*`, and leaves `G(1) ~ 7.07` as "a
+  convergent series evaluated numerically, not in closed form". It is the single
+  remaining numerical factor in the meander constant. Today's recursion rewrites
+  it as `sum_d prod_(k<=d) (1 - r_k) / rho^d`, a product-form series rather than
+  an opaque one. Does that form evaluate?
+
 ## 2026-09-18 -- the increment is not a rotation function, and that shuts a route
 
 - **Objective:** the previous entry's best-next question. The recursion writes

@@ -109,20 +109,47 @@ fitted to a residual of `3.2e-6` in the median class.
 
 The `1/d` correction does not have the size the measured exponent `-3/2`
 predicts. Under `N_d/2^d ~ psi(frac(d*beta)) * theta^d * d^(-3/2)` the increment
-expands as `a + b/d` with `b = (3/2) * theta * psi_d/psi_(d-1)`, giving
-`b` near `1.45`; the fits give `b` from `1.93` to `3.01`, varying by class, while
-`b/a` is nearly constant at `40.8`. Either `psi` carries its own `1/d` structure
-that compensates, or the expansion is too crude, or the exponent is not `-3/2`.
-**This is a tension and not a refutation of the shape**, and it is the first
-quantitative check the shape has had beyond the direct measurement.
+expands as `a + b/d` with `b = (3/2) * theta * psi_d/psi_(d-1)`, giving `b` near
+`1.45`; the fits give larger values that vary by class. **This is a tension and
+not a refutation of the shape.**
+
+**Correction, same day.** An earlier reading of this branch called `b/a`
+"nearly constant at 40.8" and proposed explaining that number. Both halves were
+wrong, and the way they were wrong is worth recording:
+
+- Over *all* 305 classes `b/a` is not constant: it scatters by 125% at two fit
+  parameters and by far more at three. The apparent constancy came from six to
+  eight classes chosen by eye after seeing the numbers, which is how one
+  manufactures a constant rather than finds one.
+- On an objectively defined well-conditioned subset (fit residual below `1e-5`,
+  225 of 305 classes, a criterion on the fit and not on the answer) `b/a` does
+  cluster, at `40.98` with a `1.0%` spread. But adding a `1/d^2` term moves it to
+  `42.70`, a `4.2%` shift, while the limit `a` barely moves. So `b/a` is
+  determined to a few percent at best.
+
+A few percent identifies no closed form. `13*pi = 40.84` sits inside the
+two-parameter value and outside the three-parameter one, which is the signature
+of numerology rather than of a constant.
+
+Where pi does belong in this cluster is settled and elsewhere:
+`J-paper-b-meander-constant-derived` derives `kappa = 1/(sqrt(2*pi)*theta*sigma)`,
+the `sqrt(2*pi)` being the non-lattice local limit theorem for
+`S_n = o*log3 - n*log2`, whose step ratio is irrational; a second `sqrt(pi)`
+enters through the Wiener-Hopf singularity `-2*sqrt(pi)*kappa*sqrt(1-z)` whose
+coefficient extraction produces the `d^(-3/2)` itself. Pi and the exponent are
+one fact, and neither is in `b/a`.
 
 ## Decision
 
 `CLOSE` — the question is answered, negatively and decisively, and the route it
 was testing (derive the almost-periodic prefactor from the recursion alone) is
 shut. Recorded in [negative_knowledge.md](../negative_knowledge.md). Best next
-question, and the one this opened: the `b/a` constancy at `40.8` across classes
-whose `a` varies by 60% is not explained by the `d^(-3/2)` expansion. What is it?
+question, after the correction above removed the one this branch first proposed:
+`G(1) = sum_d N_d/(2*rho)^d` is the single factor of the meander constant that
+`J-paper-b-meander-constant-derived` leaves numerical (`~7.07`) while `kappa`,
+`sigma^2` and `theta*` are all closed. The recursion of this cluster rewrites it
+as `sum_d prod_(k<=d) (1 - r_k) / rho^d`, a product-form series. Does that form
+evaluate?
 
 ## Publication assessment
 
