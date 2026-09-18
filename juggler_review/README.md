@@ -1,4 +1,4 @@
-> **Paper B, Five-Step Descent Certificates for the Juggler Map (10 September 2026):** the 37-page manuscript includes the bounded signed-residual Fourier extension and explicit variation checks. Fresh symbolic derivation confirms the critical curvature coefficients. The five-step certificate density remains 7/8 with error O_epsilon(N^(127/128+epsilon)). [Fresh proof audit](paper_b_proof_review.md). Independent expert review remains outstanding; no upload has occurred.
+> **Paper B, Five-Step Descent Certificates for the Juggler Map (18 September 2026):** the 39-page manuscript includes the bounded signed-residual Fourier extension and explicit variation checks. Fresh symbolic derivation confirms the critical curvature coefficients. The five-step certificate density remains 7/8 with error O_epsilon(N^(127/128+epsilon)). [Fresh proof audit](paper_b_proof_review.md). Independent expert review remains outstanding; no upload has occurred.
 
 # Juggler reviewer bundle (three manuscripts)
 
@@ -57,7 +57,7 @@ https://sneakyweasel.github.io/btlab/
    [build instructions](../docs/theory/PAPER_A_BUILD.md).
 2. [juggler_parity_discrepancy_note.pdf](juggler_parity_discrepancy_note.pdf)
    — **Paper B**: *Five-Step Descent Certificates for the Juggler Map:
-   Parity Statistics of Nested Floor Powers* (10 September 2026).
+   Parity Statistics of Nested Floor Powers* (18 September 2026).
    Theorem 4.5 proves restricted mixed exponential sums by an exact carry
    expansion and estimates over every gap cell. Corollary 4.6 and Theorem
    5.2 give the unconditional four-step power-envelope certificate density

@@ -15,6 +15,22 @@ MODULES=("validate_paper_b","validate_paper_b_repairs","validate_paper_b_ooeoe",
          "validate_paper_b_kernel_assembly","validate_paper_b_oooee_transfer")
 
 
+def digest(path,mode="binary"):
+    """SHA-256 of a recorded input, line endings normalised first in text mode.
+
+    Hashing raw bytes records the checkout rather than the manuscript: the
+    repository has no .gitattributes and core.autocrlf checks the Markdown out
+    CRLF on Windows and LF elsewhere, so one source hashed two ways. CI reported
+    exactly that on 14 September 2026; see tools/artifact_digest.py. The helper
+    is copied rather than imported because the standalone source package ships
+    this module without its siblings.
+    """
+    data=path.read_bytes()
+    if mode=="text":
+        data=data.replace(b"\r\n",b"\n").replace(b"\r",b"\n")
+    return hashlib.sha256(data).hexdigest()
+
+
 def validate(source):
     results={}
     for name in MODULES:
@@ -47,8 +63,8 @@ def validate(source):
         for split in re.findall(r"\\begin\{split\}[\s\S]*?\\end\{split\}",display):
             assert r"\tag{" not in split
     return {
-        "status":"PASS","version":"2026-09-10-zenodo-preprint",
-        "source_sha256":hashlib.sha256(source.read_bytes()).hexdigest(),
+        "status":"PASS","version":"2026-09-18-preprint",
+        "source_sha256":digest(source,"text"),
         "exact_control_modules":results,"equation_tags":len(tags),
         "appendix_equation_references":len(refs),
         "external_research_note_dependencies":False,
