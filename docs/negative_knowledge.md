@@ -2988,6 +2988,42 @@ excludes. So the uncovered combination is driven-AND-critical after all, as this
 entry originally said, and the lattice is not the obstruction. I narrowed on the
 strength of a fixed-boundary result and should not have.
 
+**The tail does not determine the boundary fraction, and the shortfall IS the
+boundary layer** (`J-tail-does-not-determine-the-boundary-fraction`, 16 September
+2026). Killed claim: the quasi-stationary profile is normalised, so
+`R + sum_(m>=1) Pi_phi(m) = 1` exactly; with the measured tail form
+`Pi_phi(m) = A(phi)(m + gamma - phi) r*^m` that sum is closed in `A` and `c`
+(`J-profile-is-linear-times-geometric-in-the-line-coordinate`,
+`J-tail-amplitude-is-a-cocycle-over-the-boundary-fraction`), so if the form held
+down to `m = 1` then `R = 1 - A r* [1/(1-r*)^2 + c/(1-r*)]`, the phase-indexed
+apparatus would collapse to a single scalar recursion over the rotation, and the
+laboratory's clean coordinate would be computable rather than measured.
+Kill: the residual `R - R_predicted` converges, and not to zero --- `+2.33e-2`,
+`+7.12e-3`, `+3.52e-3`, `+3.52e-3` at caps `400, 800, 1600, 3200` for phase 0 at
+`306/485`, identical at the last two caps to three figures; likewise `-7.38e-4`,
+`-2.76e-4` and `+3.90e-3` at phases 23, 46 and 69. It is not a fitting artefact:
+the normalisation is exact, so the residual *is* minus the boundary-layer mass ---
+the extrapolated tail sum minus the true sum over `m >= 1`, which is the mass the
+pure tail misses near the barrier. Those are the complex modes of
+`J-tail-spectral-gap-closes-like-one-over-root-q`, that is, this cluster's
+criticality read off the other side of the ledger, and the reason the shortfall
+cannot be tuned away. Over 200 phases it runs `-2.941e-3` to `+7.318e-3`, mean
+`+1.076e-3`, being `-3.3%` to `+9.8%` of `R`, and it has no simple rule on this
+evidence: not explained by the rise letter (means `8.7e-4` against `1.19e-3`, with
+standard deviations `8.9e-4` and `2.25e-3` swamping the gap), and correlating only
+weakly with the phase (`0.19`) or with `R` itself (`-0.16`).
+Kind: `REFUTED`.
+Consequence: the profile costs one constant, one cocycle, and `R`; this measures
+how close the first two come to determining the third --- about five percent
+typically, never exactly. `R` stays the fundamental unknown, and the open
+obligation of `J-boundary-fraction-is-the-clean-coordinate` is not reduced by any
+of the structure work that produced the tail form.
+Do not: re-derive the normalisation closure as a route to `R`; read a shrinking
+residual here as convergence to zero without carrying a fourth cap --- the first
+three alone would have reported the reduction as holding; or look for the
+boundary-layer mass in the rise letter or the phase.
+Machinery: `tail_predicts_boundary`. No bound moves.
+
 
 **Externals that are already imported; do not propose them as new.** The
 ANTEDB of Tao--Trudgian--Yang (arXiv:2501.16779) is already consulted at
@@ -3032,5 +3068,6 @@ to supply the prefactor; search again for a driven-critical renewal theorem;
 re-run the \(q\)-uniformity measurement --- it is done, and its answer is
 that the driving is benign; or reopen Rhin (8), whose constant does not
 exist in print and would not close anything if it did.
-Members: none --- this records the state of the external literature, not
-a laboratory claim.
+Members: `J-tail-does-not-determine-the-boundary-fraction`. The rest of this
+cluster records the state of the external literature rather than a laboratory
+claim.
