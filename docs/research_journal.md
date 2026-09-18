@@ -52980,3 +52980,81 @@ barrel and every module header now say so in those words. The formalisation must
 quietly strengthen what the manuscript claims, and a conditional theorem whose
 hypothesis is open is exactly where that would be easiest to do by omission rather
 than by assertion.
+
+## 18 September 2026 --- an empty `tests` list was saying two different things
+
+`test_ledger_test_paths_exist` requires every ledger row to name at least one test, and
+eleven rows carried `"tests": []`, so the gate was red on a clean `main`. The assertion
+is right and the rows are not all wrong. That combination is the finding: an empty list
+meant *nobody wired this up* for some rows and *no Python test reaches this* for others,
+and the gate could not tell them apart. So it is carried as data now, the way
+`lean_trust` carries the kernel boundary.
+
+### Six were a registration lapse, and their evidence was already committed
+
+Five name a Paper B Lean module and every *sibling* row on the same module was already
+cited. `PaperBBarrierStep` backs four rows; three cite `test_paper_b_prefix_count` and
+`J-birkhoff-fails-on-the-light-tail-cone` cited nothing. The three formal-layer rows ---
+`PaperBChernoff`, `PaperBMarkov`, `PaperBDensity` --- each claim *wired in, not merely
+present: the module is imported by the Paper B barrel*, which is verbatim what
+`test_trust_boundary.py::test_paper_b_root_imports_exactly_its_own_modules` asserts,
+naming all three. That test was cited by no ledger row at all, which is its own small
+gap. `test_layer_architecture` holds the modules present, inventoried and `sorry`-free,
+matching how `J-survivor-count-decay` and `J-paper-b-lemma-5-1-minimal-certificates` are
+wired.
+
+The sixth is the `OBSERVATION` row `J-bounded-variation-is-a-critical-cocycle-exponent`,
+superseded the same day it was written. Its inputs are not vague: the three Sturmian
+step ratios `1.066`, `0.983`, `0.932` are asserted to their recorded tolerances by
+`test_the_amplitude_rule_is_second_order_in_the_sturmian_word`, whose own docstring says
+the BV question is not settled by them. A superseded row still has evidence, and this is
+where it lives.
+
+### Five are not a lapse, and the obvious test would have been a false join
+
+The external-input audit rows --- Wu-Wang p. 266, Rhin p. 160, Ocafrain --- are readings
+of primary sources. `tests/research/juggler_sequence/test_external_input_audit.py` looks
+like their test and is not: it guards `TRANSCENDENCE_CHAIN`, which still records the
+state *before* the readings. The module marks the `8.616` row
+`verified_against_primary: False` and Wu-Wang `effective: False`, and the test asserts
+both --- with the message *8.616 is a third-party report; it must not be used before
+someone reads Rhin p.160 eq.(8)*. `J-rhin-eight-has-no-computed-threshold` records that
+page read at source on 16 September, and `J-wuwang-import-verified-at-source` corrects
+the effectivity entry to *effective but uncomputed*. The audit **document** carries both
+corrections; the **module** does not. Citing that file would have joined five rows to a
+test that contradicts them, which is worse than citing nothing.
+
+So those five declare `"evidence": "literature"` and the gate accepts it --- under two
+side conditions, because a waiver nobody can fail is not a gate. A row claiming it may
+not name a Lean module, and may not be tagged `EXACT — LEAN VERIFIED` or
+`COMPUTATIONALLY VERIFIED`. Both name an artifact that lives in the repository, and an
+artifact in the repository is something a test can reach. All five are
+`EXACT — HUMAN PROOF` with no Lean, which is exactly the shape of a reading.
+
+The rendered table says `(literature)` in the Tests column rather than leaving a blank,
+since the blank having two meanings is the whole of what went wrong. Doctored against
+the real ledger, the guard still catches a row going quiet with no reason, a Lean row or
+a computational row claiming the waiver, a reason outside the vocabulary, a waiver left
+behind after a test is wired, and a cited path that does not exist.
+
+### Three things this did not fix, recorded rather than repaired
+
+`J-birkhoff-fails-on-the-light-tail-cone` is tagged `COMPUTATIONALLY VERIFIED` and its
+Hilbert-metric numbers --- `6.22` to `0.011` over `d = 0..12000`, exponents `-1.865`,
+`-1.962`, `-1.606` --- are in the journal and in no committed probe. Its two neighbours
+name their machinery (`barrier_harmonic_function`, `barrier_memory_loss`); this one
+names none, and no `hilbert` or cone measurement exists anywhere in the tree. The row
+now cites `test_layer_architecture`, which holds the half that *is* committed: the cone
+theorems `update_true_ratio`, `update_false_ratio` and `boundary_ratio_at_least_one` in
+`PaperBBarrierStep.lean`. The measured half is unreproducible as it stands.
+
+`external_input_audit.py` should be brought up to the 16 September readings, and that is
+a change to the research record rather than to a test --- `verified_against_primary` and
+`effective` are claims about what has been read, and four assertions in its test file
+encode the older answer.
+
+And two failures in `tests/integration` predate this and are untouched by it:
+`test_every_refuted_ledger_row_is_cited` wants
+`J-tail-does-not-determine-the-boundary-fraction` indexed in `negative_knowledge.md`,
+and the Paper B release gate reports a stale build digest for
+`juggler_parity_discrepancy_note.md`.
