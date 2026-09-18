@@ -131,7 +131,57 @@ arithmetic.
   empty-window theorem, the transposition cost, the jump spectrum, `a_1` and the
   ladder profile all belong to both problems.
 
+## What the bridge says about the roadmap
+
+**Proposition J applied to Collatz is Terras 1976.** `J-equidistribution-implies-density-one`
+bounds the non-descending starts by `(N_d/2^d) N + N_d E_d(N)`. On the Collatz
+side the parity bijection makes `E_d(N) = O(1)`, the usable depth `log2 N`, and
+the bound `N^(1 - 0.050044)` -- the quantitative density-one stopping-time
+theorem.
+
+**So FD buys a delta-fraction of that.** Minimising the two terms over `d`
+converts an equidistribution exponent into a density exponent. With
+`E_d(N) = O(N^(1-delta))` the error overtakes the main term once `2^d` passes
+`N^delta`, so the usable depth is `delta log2 N` and the density exponent is
+`0.050044 delta` -- exactly `delta` times Collatz's. Parity needs `delta = 1`,
+bounded error per class, which is what a bijection gives and no Weyl-type
+discrepancy bound for `frac(n^(3/2))` will.
+
+The consequence is worth stating plainly: **if FD were proved outright, Juggler
+would arrive exactly where Collatz has been since 1976, and no further.** FD is
+a hard analytic theorem in a setting with no arithmetic and is worth wanting on
+those terms. It is not a step toward termination, because Collatz has had the
+density-one theorem for fifty years and termination is still open.
+
+**And the loss is the union bound, not the exponent.** `N_d E_d(N)` sums a
+per-word error over all `N_d` about `1.9318^d` good words, and that multiplier
+is what caps the depth. At the same `delta`:
+
+| combining the word classes | density exponent | against the union bound |
+|---|---|---|
+| union bound, as Proposition J states it | `0.050044 delta` | 1.00x |
+| square-root cancellation across words | `0.095319 delta` | 1.90x |
+| one direct estimate of the good set | `delta` | 19.98x |
+
+against which improving `delta` from `1/96` to `1/72` is worth `1.33x`. At the
+printed `1/96` the three readings are `N^0.999479`, `N^0.999007` and
+`N^0.989583`: **a direct estimate at the printed exponent already beats a union
+bound at `delta = 1/5`.**
+
+That is an observation about the shape of the bound and not a claim that a
+direct estimate is achievable -- the union bound is used because one word class
+is a simple condition on fractional parts and the good set is not. What makes it
+worth asking rather than dismissing is that the good set is not arbitrary
+either: it is the survivor set, carrying the transfer-operator structure of
+`PaperBJumpTransposition` and the closed-form spectrum of
+`J-paper-b-jump-spectrum-is-the-survivor-sequence`. Square-root cancellation is
+the more modest ask of the two and is worth `1.90` on its own.
+
 ## Open questions
+
+Whether the word classes can be combined better than by a union bound --
+worth `20x` against `1.33x` for the exponent work, and the largest single factor
+visible anywhere in the conditional chain. Nothing here says it can be done.
 
 Which recorded rows are shared rather than Juggler-specific. `collatz_reachable`
 in the probe is a vocabulary check, not an answer: it makes the question

@@ -171,6 +171,62 @@ def collatz_reachable(statement: str) -> bool:
             and not any(j in lowered for j in juggler_only))
 
 
+#: `-log2(theta)`. Collatz's unconditional density exponent, and the unit the
+#: conditional Juggler one is measured in.
+COLLATZ_EXPONENT = -math.log(
+    (math.log(2) / math.log(3)) ** (-math.log(2) / math.log(3))
+    * (1 - math.log(2) / math.log(3)) ** (math.log(2) / math.log(3) - 1) / 2
+) / math.log(2)
+
+
+def density_exponent(delta: float, combination: str = "union") -> float:
+    """What Hypothesis FD with power saving `delta` buys, as a density exponent.
+
+    Proposition J bounds the starts with no contracting prefix of length `<= d` by
+    `(N_d / 2^d) N + N_d E_d(N)`. The main term is about `theta^d N` and wants `d`
+    large; the error caps it. Minimising over `d` turns `delta` into an exponent, and
+    the answer depends on how the word classes are combined:
+
+    - `union`: the error is `N_d E_d(N) = (2 theta)^d N^(1-delta)`, the bound as
+      Proposition J states it. Gives `-log2(theta) * delta`.
+    - `sqrt`: if the per-word errors cancelled at square root, `sqrt(N_d) E_d(N)`.
+    - `direct`: one estimate of the whole good set, with no factor of `N_d` at all.
+      The error is then free of `d`, so the depth is capped only by the main term and
+      the exponent is `delta` itself.
+
+    The gap between the first and the last is a factor of about twenty, which is the
+    point: the combination step costs far more than the exponent does.
+    """
+    from math import log
+
+    beta = log(2) / log(3)
+    theta = beta ** (-beta) * (1 - beta) ** (beta - 1) / 2
+    if combination == "union":
+        return -log(theta) / log(2.0) * delta
+    if combination == "sqrt":
+        return 2.0 * (-log(theta)) / log(2.0 / theta) * delta
+    if combination == "direct":
+        return delta
+    raise ValueError(f"unknown combination {combination!r}")
+
+
+def collatz_is_proposition_j_at_delta_one() -> dict[str, float]:
+    """Proposition J applied to Collatz is Terras 1976, and this is the arithmetic.
+
+    Terras makes the parity map a bijection on `Z/2^d`, so a word class holds
+    `floor(N/2^d)` or `ceil(N/2^d)` integers and `E_d(N) = O(1)` -- the `delta = 1`
+    case. The usable depth is then `log2 N` and the non-descending starts are
+    `N^(1 - 0.0500)`, which is the quantitative form of the density-one stopping-time
+    theorem. So the laboratory's central conditional, if `FD` were proved outright,
+    would deliver for Juggler exactly what has been known for Collatz since 1976.
+    """
+    return {
+        "delta": 1.0,
+        "density_exponent": density_exponent(1.0),
+        "non_descenders": 1.0 - density_exponent(1.0),
+    }
+
+
 def probe_payload(max_depth: int = 10) -> dict[str, Any]:
     from research.juggler_sequence.jump_spectrum import survivor_counts
 
@@ -205,6 +261,26 @@ def probe_payload(max_depth: int = 10) -> dict[str, Any]:
             " and its relatives, and equal densities are Hypothesis FD, which is open."
             " Same combinatorics, incompatible arithmetic."
         ),
+        "calibration": {
+            "collatz_exponent": density_exponent(1.0),
+            "juggler_is_delta_times_collatz": True,
+            "printed_delta": 1.0 / 96,
+            "at_printed_delta": {
+                c: 1.0 - density_exponent(1.0 / 96, c)
+                for c in ("union", "sqrt", "direct")
+            },
+            "combination_is_worth": density_exponent(1.0, "direct")
+            / density_exponent(1.0, "union"),
+            "exponent_step_is_worth": 96.0 / 72.0,
+            "note": (
+                "Proposition J on Collatz is Terras 1976. For Juggler the same"
+                " proposition gives a density exponent of delta times Collatz's, so FD"
+                " with any power saving short of a bijection cannot reach it. The loss"
+                " is the union bound over N_d words, not the exponent: combining the"
+                " words better is worth about twenty times, improving delta from 1/96"
+                " to 1/72 about one and a third"
+            ),
+        },
         "decision": {
             "classification": CLASS_BRIDGE,
             "reason": (
