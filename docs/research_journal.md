@@ -1,5 +1,74 @@
 # Research journal
 
+## 2026-09-18 -- the fixed point was not one, and psi's Fourier data is the orbit series
+
+- **Objective:** go at the fixed-point equation for `a_1` that I proposed in the
+  jump-spectrum dossier this morning.
+- **It is not a fixed-point equation.** Written out, the relation is
+  `psi = C*1 + A*L[psi]`, which is **affine** in `psi`, not an eigenvalue
+  problem: for every `A` it has the solution `C (I - A L)^(-1)[1]`, a
+  one-parameter family in `C`. Solved on a 4000-point grid with 400 modelled
+  jumps, a solution exists at `A = 0.2, 0.5, 0.82, 1.5, 3, 8` alike and
+  `I - A L` stays well conditioned. My "`A` is scale-invariant, so `A` is in
+  principle determined" was wrong; the scale invariance is exactly what makes
+  it affine.
+- **Checked the repo before deriving anything, and it was the right instinct
+  twice over.** `J-paper-b-meander-constant-derived` already has the Spitzer /
+  Wiener-Hopf identity, `kappa = 1.541814521` in closed form, and the sentence
+  I would otherwise have re-derived a third time: "the tail is
+  `sum_n c_n Li_(3/2)(e(n beta))` over the Fourier coefficients of `psi`, so a
+  closed form for `G(1)` requires `psi` -- which is exactly what MeanderShape
+  asserts and nobody has."
+- **The jumps supply exactly that -- and half of it I already had.** That
+  `psi' = S - sum_n a_n delta_(x_n)`, hence `psihat_k = -S(k)/(2 pi i k)`, is in
+  `test_psi_is_reconstructed_from_its_jumps_and_that_settles_the_bv_tension`,
+  which I wrote this morning. What I did not see then is what `S(k)` *is*. With
+  `a_n = a_1 N_n/(2 theta)^(n-1)` in hand it is `2 theta a_1 G(e(-k beta))`,
+  so for `k != 0`
+
+      psihat_k = -(2 theta a_1 / (2 pi i k)) * G(e(-k beta))
+
+  the same Wiener-Hopf series, read on the rotation orbit. Measured against
+  coefficients taken independently from `psi` at depth `1e6`: `|psihat_k|` reads
+  `9.940e-2, 5.977e-2, 5.600e-2, 2.824e-2, 4.552e-3` at `k = 1, 2, 3, 5, 20`
+  against `9.940e-2, 5.961e-2, 5.581e-2, 2.814e-2, 4.535e-3` predicted, phases
+  agreeing to `0.085/k`.
+- **And it is a better instrument for `a_1` than the jumps are**, because it
+  never has to separate one jump from its neighbours: `5000`, `20000` and
+  `40000` levels give the same answer to six digits. `a_1 = 0.426227`, spread
+  `0.426096`-`0.426358`, against `0.426289` from the jump side. Two routes
+  agreeing to `1.5e-4`; the band I recorded this morning was ten times too wide.
+- **Why `a_1` still does not follow.** Exactly one coefficient is in closed form
+  without it -- the mean, `kappa G(1)` -- and every other is proportional to it.
+  The one coefficient that could close the loop is the one `a_1` is absent from.
+  So `a_1` is a constant of the problem, and a closed form for it is now
+  equivalent to a closed form for `psi` outright.
+- **`G(1)` sharpened, and honestly attributed.** With the Fourier data the tail
+  can be computed instead of feared: at cutoff `1e6` the oscillating modes
+  contribute `1e-9` and the mean mode `0.021785`, so the tail is provably
+  mean-only. An exact head of `7.043077` -- matching the exact integer counts to
+  `6.5e-9` where both run -- gives `G(1) = 7.064862` and
+  `kappa G(1) = 10.892707`, inside the recorded `[7.0422, 7.0725]` and about a
+  thousand times narrower. Most of that gain is the deeper head, not the Fourier
+  work; what the Fourier work supplies is the proof that the tail needs no more
+  than its mean.
+- **What is still unexplained, now with a shape -- and a correction.** The part of
+  `psi` the jump spectrum misses has a spectrum decaying like `k^(-1.74)`,
+  faster than `psi`'s own `k^(-1)`. So it is not another jump family -- it is
+  smoother than one. Past `k` about 30 the residual flattens near `0.4%`, which
+  is the level fit's floor, so no exponent is claimed. This supersedes this
+  morning's reading that the residual spectrum was **flat** and therefore "the
+  unresolved tail of small jumps on a dense orbit". That test differenced
+  amplitudes locally, which is biased low by `3.5%` at `k = 1` rising to `31%`
+  by `k = 12`, and a uniformly under-subtracted jump family leaves a jump-like
+  remainder with a flat spectrum. The flatness was the bias.
+- **Third time today** I have nearly claimed something this cluster already had.
+  The name check and the ledger check both passed; what caught it was reading the
+  slow tests. The lesson is specific enough to write down: in this cluster the
+  results live in test docstrings as much as in the ledger, so grep the tests.
+- **Decision:** `PROMOTE`, on the existing branch.
+  [Jump spectrum](problems/juggler_jump_spectrum.md).
+
 ## 2026-09-18 -- the jumps are the survivor sequence, and the law I found was the empty window
 
 - **Objective:** build the global jump fit, to reach `C_j` past the `j` about 25

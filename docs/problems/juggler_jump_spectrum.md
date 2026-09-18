@@ -89,6 +89,63 @@ and that amplitude reads `0.42629` -- stable to `5e-4` across `d`-subranges, to
 spectrum at `n >= 5`. The tightest split, a head of three jumps, reads `1.4%`
 high; below that the head carries too little of the variance to be pinned.
 
+**The Fourier side, and what it buys.** The first half of this is not new and is
+already recorded in this cluster, in
+`test_psi_is_reconstructed_from_its_jumps_and_that_settles_the_bv_tension`:
+`psi` jumps by `a_n` at `frac(n beta)` and rises linearly in between by exactly
+the amount periodicity demands, so as a distribution
+`psi' = S - sum_n a_n delta_(x_n)` and for `k != 0`
+
+    psihat_k = -(1/(2 pi i k)) sum_n a_n e(-k n beta)
+             = -(2 theta a_1 / (2 pi i k)) G(e(-k beta)).
+
+**What is new is the second equality.** The earlier reading had the first, with
+the sum written as an opaque `S(k) = sum_n a_n e(-k n beta)` whose growth was
+measured (`|S| ~ k^0.055`) and not identified. Once `a_n = a_1 N_n/(2 theta)^(n-1)`
+is available that sum *is* `2 theta a_1 G(e(-k beta))` -- the Wiener-Hopf series
+of `J-paper-b-meander-constant-derived`, read on the rotation orbit. So the
+Fourier data of `psi` is `G` on the orbit. Measured coefficients agree: `|psihat_k|` reads `9.940e-2, 5.977e-2, 5.600e-2, 2.824e-2, 4.552e-3` at
+`k = 1, 2, 3, 5, 20` against `9.940e-2, 5.961e-2, 5.581e-2, 2.814e-2, 4.535e-3`
+predicted, with phases agreeing to `0.085/k`.
+
+This is a better instrument for `a_1` than the jumps are, because it never has to
+separate one jump from its neighbours: fitting the single constant against sixty
+modes is insensitive to the level count entirely -- `5000`, `20000` and `40000`
+levels give the same answer to six digits -- and gives `a_1 = 0.426227`, spread
+`0.426096` to `0.426358` over `d`-subranges, against `0.426289` from the jumps.
+
+**`G(1)` sharpened.** `J-paper-b-meander-constant-derived` records
+`G(1) = 7.0606` with a band `[7.0422, 7.0725]`, `0.43%` wide, and attributes the
+width to `psi` still oscillating at the cutoff. With the Fourier data that width
+can be computed rather than feared: at a cutoff of `1e6` the oscillating modes
+contribute `1e-9` to the tail and the mean mode contributes `0.021785`, so the
+tail is provably mean-only there. An exact head of `7.043077` -- agreeing with
+the exact integer counts to `6.5e-9` where both run -- gives
+
+    G(1) = 7.064862,   kappa G(1) = 10.892707
+
+inside the recorded band and about a thousand times narrower. The gain is mostly
+the deeper head; what the Fourier data supplies is the proof that the tail needs
+no more than its mean.
+
+**What is still not explained, and a correction to an earlier reading of it.** The
+part of `psi` the jump spectrum misses has a Fourier spectrum decaying like
+`k^(-1.74)`, faster than `psi`'s own `k^(-1)`. So it is not another jump family --
+it is smoother than one. Beyond `k` about 30 the measured residual flattens near
+`0.4%`, which is the level fit's own floor rather than structure, so no exponent
+is claimed.
+
+That **supersedes** the reading in
+`test_psi_is_reconstructed_from_its_jumps_and_that_settles_the_bv_tension`, which
+found the residual spectrum flat (`0.00175` at low `n` against `0.00134` at high,
+ratio `1.31`) and concluded it was "the unresolved tail of small jumps on a dense
+orbit". The difference is the instrument, and the reason is now clear: that test
+measured its amplitudes by local differencing, which is biased low by `3.5%` at
+`n = 1` rising to `31%` by `n = 12`. A uniformly under-subtracted jump family
+leaves a jump-like remainder, and a jump-like remainder has a flat spectrum. With
+the exact amplitudes the remainder is smaller and decays, so the flatness was the
+bias and not the residual.
+
 ## Conjectures
 
 None. The identity is exact; the one constant is measured.
@@ -161,6 +218,13 @@ leaves numerical are the same object.
 `J-paper-b-sturmian-zero-law-is-the-empty-window` -- `REPARAMETERIZATION`.
 Retracts the `1/rho` reading recorded in this cluster.
 
+`J-paper-b-psi-fourier-is-the-orbit-series` -- `COMPUTATIONALLY VERIFIED`. The
+Fourier coefficients of `psi` are the Wiener-Hopf series on the rotation orbit:
+`psihat_k = -(2 theta a_1 / (2 pi i k)) G(e(-k beta))` for `k != 0`, and
+`psihat_0 = kappa G(1)`. Checked against coefficients measured independently
+from `psi` over `k = 1 .. 60`; the complex least squares recovers the amplitude
+to `2e-6` and the per-mode residual is `1.2%`.
+
 Three consequences follow immediately. `psi` is of bounded variation.
 `a_n ~ 2 theta a_1 psi(frac(n*beta)) n^(-3/2)`, so the jump of `psi` at the
 `n`-th orbit point is `psi` at that same point to a constant and a power.
@@ -175,11 +239,29 @@ linear rise leaves a residual of `1.35e-02` against a level-fit noise floor of
 coordinate. It does not shrink with `d`, so it is structure in `psi` and not
 finite-depth contamination. What that component is, this branch does not say.
 
-`a_1` itself has no closed form here. The self-referential relation
-`a_n = A psi(x_n) n^(-3/2)` together with periodicity is a fixed-point equation
-for `psi` in which `A` is scale-invariant, so `A` is in principle determined by
-the equation rather than by measurement. That is the obvious next question and
-is not attempted here.
+`a_1` itself has no closed form, and the route this dossier first proposed for
+it does not work. **Correction, same day.** An earlier reading here called the
+self-referential relation `a_n = A psi(x_n) n^(-3/2)` together with periodicity
+a fixed-point equation determining `A`. It is not. Written out the relation is
+
+    psi = C*1 + A*L psi,   where L psi at x is sum_n psi(x_n) n^(-3/2) (x - 1{x_n <= x})
+
+which is **affine** in `psi`, not an eigenvalue problem: for every `A` it has the
+solution `C (I - A L)^(-1) [1]`, a one-parameter family in `C`. Solved
+numerically on a four-thousand-point grid with four hundred modelled jumps, a
+solution exists at `A = 0.2, 0.5, 0.82, 1.5, 3, 8` alike, with `I - A L` well
+conditioned throughout. The equation selects nothing.
+
+The obstruction is sharper than that, and is worth stating because it says `a_1`
+is a constant of the problem rather than a consequence of its shape. Of all the
+Fourier coefficients, exactly one is known in closed form independently:
+`psihat_0 = kappa G(1)`, the mean. Every coefficient with `k != 0` is
+proportional to `a_1`. So the one coefficient that could have closed the loop is
+the one `a_1` does not appear in.
+
+What is left open, and is the honest next question: `psi` is now determined up to
+`a_1`, so a closed form for `a_1` is a closed form for `psi` outright. Nothing
+here suggests one exists.
 
 ## Decision
 

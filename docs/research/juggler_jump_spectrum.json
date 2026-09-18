@@ -5,10 +5,10 @@
   "max_depth": 4000,
   "identity": "a_n = a_1 * N_n / (2*theta)^(n-1)",
   "a_one": {
-    "estimate": 0.42629,
+    "estimate": 0.42623,
     "band": [
-      0.42479,
-      0.42779
+      0.42603,
+      0.42643
     ],
     "note": "the only measured constant in the closed form; the ratios a_n/a_1 are exact integers over a power and carry no fitted quantity at all"
   },
@@ -39,10 +39,10 @@
   "barrier_index": {
     "worst_class_disagreement": 0.0,
     "classes_checked": 200,
-    "C_1": 0.42629,
-    "C_25": 0.012876995379576584,
+    "C_1": 0.42623,
+    "C_25": 0.012875182952067672,
     "j_max": 2523,
-    "C_j_max": 2.131153635782567e-27,
+    "C_j_max": 2.1308536774956096e-27,
     "note": "closed form at every j; the previous branch reached about j = 25 by local differencing and no fit reaches further, because the data cannot constrain a high-n jump at all -- its column averages into the ramp"
   },
   "g_one": {
@@ -50,7 +50,7 @@
     "tail_estimate": 0.34468826495835336,
     "ledger_value": 7.07
   },
-  "total_variation": 4.711849907422307,
+  "total_variation": 4.711186718057215,
   "decision": {
     "classification": "JUMP_SPECTRUM_IS_THE_SURVIVOR_SEQUENCE",
     "reason": "the identity is verified two independent ways -- a transfer-operator propagation agreeing with the exact counts to machine precision, and a one-parameter fit of psi whose single amplitude is stable across d-subranges, across the number of modelled jumps, and to between 0.03 and 0.35 percent against a freely fitted head amplitude for splits of the spectrum at n >= 5"

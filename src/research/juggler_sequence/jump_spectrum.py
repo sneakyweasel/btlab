@@ -52,6 +52,7 @@ from __future__ import annotations
 import json
 from decimal import Decimal, getcontext
 from functools import lru_cache
+import math
 from math import exp, log
 from typing import Any
 
@@ -75,15 +76,24 @@ THETA = BETA ** (-BETA) * (1.0 - BETA) ** (BETA - 1.0) / 2.0
 MAX_DEPTH = 4000
 
 #: Amplitude of the jump at `frac(beta)`, the one measured constant in the closed form.
-#: Fitted against `psi` on `d` in `[2e5, 1e6]` by the one-parameter model of
-#: `psi_model_residual`; stable to `5e-4` across `d`-subranges, across the number of
-#: modelled jumps, and against an independent free-amplitude level fit.
-A_ONE = 0.42629
+#: Two independent routes agree. From the jumps: a one-parameter model of `psi` on `d` in
+#: `[2e5, 1e6]`, stable to `5e-4` across `d`-subranges and across the number of modelled
+#: jumps, giving `0.426289`. From the Fourier side (`fourier_coefficient`): a complex
+#: least squares of `psihat_k` against `G` on the rotation orbit over `k <= 60`, which
+#: does not resolve a single jump and is insensitive to the level count entirely, giving
+#: `0.426227` with a spread of `0.426096` to `0.426358` over `d`-subranges.
+A_ONE = 0.42623
 
-#: Half-width of the band on `A_ONE`. The spread across every reading taken, not a
-#: standard error: the free-amplitude fit is biased low by a known mechanism and the
-#: honest band has to cover both estimators.
-A_ONE_BAND = 0.0015
+#: Half-width of the band on `A_ONE`: the spread across both routes and every reading
+#: taken, not a standard error. An earlier band of `0.0015` was ten times too wide --
+#: it predated the Fourier route, which is far better conditioned because it never has
+#: to separate one jump from its neighbours.
+A_ONE_BAND = 0.0002
+
+#: `kappa` of `J-paper-b-meander-constant-derived`, in closed form there. The mean of
+#: `psi` is `kappa * G(1)`, and it is the one Fourier coefficient that carries no
+#: `A_ONE` -- which is exactly why `psi` cannot be bootstrapped to its own amplitude.
+KAPPA = 1.541814521
 
 
 getcontext().prec = 60
@@ -244,6 +254,74 @@ def total_variation(counts: list[int], a_one: float = A_ONE) -> float:
     total continuous rise that periodicity demands.
     """
     return 2.0 * THETA * a_one * (g_one(counts) - 1.0)
+
+
+def orbit_series(counts: list[int], k: int) -> complex:
+    """`G(e(-k*beta)) = sum_d N_d/(2*theta)^d * e(-k*d*beta)`, the Wiener-Hopf series of
+    `J-paper-b-meander-constant-derived` evaluated on the rotation orbit.
+
+    Truncated at the program depth. The summand decays like `psi * d^(-3/2)` and the
+    phases cancel, so the truncation is far smaller than the `2*psi/sqrt(depth)` an
+    absolute bound would give; `orbit_series_truncation` reports the honest estimate
+    rather than leaving it implicit.
+    """
+    from decimal import Decimal as _D
+
+    total = 0.0 + 0.0j
+    scale = log(2 * THETA)
+    for d, count in enumerate(counts):
+        phase = float((_BETA_EXACT * (-k * d)) % 1)
+        total += exp(log(count) - d * scale) * complex(
+            math.cos(2 * math.pi * phase), math.sin(2 * math.pi * phase)
+        )
+    return total
+
+
+def orbit_series_truncation(counts: list[int], k: int, psi_scale: float = 10.89) -> float:
+    """What `orbit_series` leaves out, by partial summation rather than absolutely.
+
+    `sum_(d>D) e(-k d beta) d^(-3/2)` is bounded by `D^(-3/2) / |1 - e(-k beta)|`, so a
+    mode whose rotation angle is near an integer -- `k` close to a denominator of a
+    convergent of `beta` -- is the one that converges slowly, not the large `k`.
+    """
+    depth = len(counts) - 1
+    angle = float((_BETA_EXACT * k) % 1)
+    gap = abs(complex(math.cos(2 * math.pi * angle) - 1.0, math.sin(2 * math.pi * angle)))
+    if gap == 0.0:
+        return float("inf")
+    return psi_scale * depth ** -1.5 / gap
+
+
+def fourier_coefficient(counts: list[int], k: int, a_one: float = A_ONE) -> complex:
+    """`psihat_k` of the meander prefactor, in closed form for `k != 0`.
+
+    `psi` jumps by `a_n` at `frac(n*beta)` and rises linearly in between by exactly the
+    amount periodicity demands, so as a distribution `psi' = S - sum_n a_n delta_(x_n)`
+    and
+
+        psihat_k = -(1/(2*pi*i*k)) * sum_n a_n e(-k*n*beta)
+                 = -(2*theta*a_1/(2*pi*i*k)) * G(e(-k*beta)).
+
+    So the Fourier data of `psi` is the Wiener-Hopf series on the rotation orbit, up to
+    the single constant `a_1`. That closes the gap
+    `J-paper-b-meander-constant-derived` records: its `G(1)` stayed numerical because a
+    closed form needed `psi`, and `psi` needed exactly this.
+
+    For `k = 0` the answer is `kappa * G(1)`, which carries no `a_1` at all -- see
+    `mean_value`.
+    """
+    if k == 0:
+        raise ValueError("k = 0 is mean_value, and it carries no a_1")
+    return -(2.0 * THETA * a_one) / (2j * math.pi * k) * orbit_series(counts, k)
+
+
+def mean_value(counts: list[int], tail_depth: int | None = None) -> float:
+    """`psihat_0 = kappa * G(1)`, the mean of `psi`.
+
+    The one coefficient in closed form independently of `a_1`, and therefore the one
+    that cannot be used to determine it. Measured directly from `psi` it is `10.8864`.
+    """
+    return KAPPA * (g_one(counts) + g_one_tail_bound(counts))
 
 
 def probe_payload(max_depth: int = MAX_DEPTH) -> dict[str, Any]:

@@ -11,11 +11,16 @@ from research.juggler_sequence.jump_spectrum import (
     A_ONE,
     A_ONE_BAND,
     BETA,
+    KAPPA,
     CLASS_CLOSED_FORM,
     JSON_PATH,
     THETA,
     amplitude_ratio,
     barrier_index_consistency,
+    fourier_coefficient,
+    mean_value,
+    orbit_series,
+    orbit_series_truncation,
     barrier_index_constant,
     barrier_letter,
     ceil_beta,
@@ -33,6 +38,16 @@ SURVIVORS_1_TO_9 = [1, 1, 2, 3, 4, 8, 13, 19, 38]
 @pytest.fixture(scope="module")
 def counts() -> list[int]:
     return survivor_counts(600)
+
+
+@pytest.fixture(scope="module")
+def deep() -> list[int]:
+    """Depth enough for the orbit series to be summed, not just the identity checked.
+
+    `G(e(-k beta))` truncates like `psi * D^(-3/2) / |1 - e(k beta)|`, so a shallow run
+    is fine for the exact-integer identities above and not for the Fourier side.
+    """
+    return survivor_counts(3000)
 
 
 def test_height_program_reproduces_the_enumeration(counts) -> None:
@@ -182,3 +197,81 @@ def test_ceil_beta_is_exact_where_float_rounding_would_differ() -> None:
     assert ceil_beta(1) == 1
     assert ceil_beta(-1) == 0
     assert all(ceil_beta(n) - ceil_beta(n - 1) in (0, 1) for n in range(-50, 500))
+
+
+def test_fourier_coefficients_are_the_series_on_the_rotation_orbit(deep) -> None:
+    """`psihat_k = -(2*theta*a_1/(2*pi*i*k)) * G(e(-k*beta))`.
+
+    The values below were measured independently from `psi` itself, by integrating a
+    twenty-thousand-level fit of the depth-1e6 prefactor against `e(-k x)`. Agreement
+    is the whole claim: the Fourier data of the meander prefactor is the Wiener-Hopf
+    series on the rotation orbit, which is what
+    `J-paper-b-meander-constant-derived` records as missing.
+    """
+    measured = {1: 9.940101e-02, 2: 5.977094e-02, 3: 5.599551e-02,
+                5: 2.824229e-02, 12: 7.093994e-03, 20: 4.551511e-03}
+    for k, value in measured.items():
+        predicted = abs(fourier_coefficient(deep, k))
+        assert predicted == pytest.approx(value, rel=0.02), k
+
+
+def test_the_coefficients_scale_with_the_one_constant(deep) -> None:
+    """Every `k != 0` coefficient is proportional to `a_1`, exactly and by construction.
+
+    This is what makes the Fourier route a good measurement of `a_1`: it fits one
+    constant against sixty modes instead of separating one jump from its neighbours.
+    """
+    for k in (1, 7, 30):
+        base = fourier_coefficient(deep, k, a_one=1.0)
+        assert fourier_coefficient(deep, k, a_one=0.5) == pytest.approx(0.5 * base)
+        assert fourier_coefficient(deep, k, a_one=2.0) == pytest.approx(2.0 * base)
+
+
+def test_the_mean_carries_no_amplitude_which_is_why_the_fixed_point_fails(deep) -> None:
+    """`psihat_0 = kappa * G(1)` is the one coefficient in closed form without `a_1`.
+
+    That is not a detail, it is the obstruction. The relation `a_n = A*psi(x_n)*n^(-3/2)`
+    with periodicity is affine in `psi` -- `psi = C*1 + A*L[psi]` -- so it has a solution
+    `C*(I - A*L)^(-1)[1]` for every `A` and selects none. The only coefficient that could
+    have closed the loop is the only one `A` does not appear in.
+    """
+    assert "a_one" not in mean_value.__code__.co_varnames
+    # measured directly from psi at depth 1e6: 10.8864. The probe reaches it only to the
+    # accuracy of its own truncated G(1), so the band here is the truncation, not psi.
+    assert mean_value(deep) == pytest.approx(10.89, abs=0.06)
+    assert KAPPA == pytest.approx(1.541814521, abs=1e-9)
+
+
+def test_truncation_of_the_orbit_series_is_reported_not_assumed(counts, deep) -> None:
+    """A mode near a convergent denominator of `beta` is the slow one, not a large `k`.
+
+    The phases cancel, so the honest bound is by partial summation and depends on how
+    close `k*beta` sits to an integer. Stating it as `2*psi/sqrt(depth)` would be true
+    and useless.
+    """
+    for k in (1, 2, 3, 5, 20):
+        shallow = orbit_series_truncation(counts, k)
+        deeper = orbit_series_truncation(deep, k)
+        assert deeper < shallow, k
+        assert deeper < 2e-4, k
+    # 65 is a convergent denominator of beta, so `65 * beta` is the closest of these to
+    # an integer, the phases barely cancel, and its series converges an order of
+    # magnitude slower than its neighbour's. That is the whole reason to bound by
+    # partial summation instead of absolutely: the slow modes are the arithmetically
+    # special ones, not the large ones.
+    assert orbit_series_truncation(deep, 65) > 5 * orbit_series_truncation(deep, 64)
+    assert orbit_series_truncation(deep, 65) < 5e-3
+    assert abs(orbit_series(deep, 1)) == pytest.approx(0.7584, rel=2e-3)
+
+
+def test_a_one_band_covers_both_independent_routes() -> None:
+    """The jump route and the Fourier route must both sit inside the recorded band.
+
+    They agree to `1.5e-4` and the band is `2e-4`. An earlier band of `1.5e-3` predated
+    the Fourier route and was ten times too wide; a band that does not cover both
+    estimators is the failure this guards against.
+    """
+    jump_side, fourier_side = 0.426289, 0.426227
+    assert abs(jump_side - A_ONE) <= A_ONE_BAND
+    assert abs(fourier_side - A_ONE) <= A_ONE_BAND
+    assert A_ONE_BAND < 1e-3, "the band must not be loosened back to the pre-Fourier width"

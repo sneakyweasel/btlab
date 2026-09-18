@@ -3615,6 +3615,15 @@ def test_psi_is_reconstructed_from_its_jumps_and_that_settles_the_bv_tension() -
     high-n 0.00134, ratio 1.31).  Flat is what the unresolved tail of small jumps on a
     dense orbit gives; a smooth remainder would be concentrated at low n.
 
+    SUPERSEDED, same day, by J-paper-b-psi-fourier-is-the-orbit-series.  The flatness was
+    this test's own instrument.  `amp` above differences locally, which is biased low by
+    3.5% at k = 1 rising to 31% by k = 12, and a uniformly under-subtracted jump family
+    leaves a jump-like remainder -- whose spectrum is flat.  Against the exact amplitudes
+    a_k = a_1 N_k/(2 theta)^(k-1) the remainder is smaller and DECAYS, like k^(-1.74), so
+    it is smoother than a jump family rather than more of one.  The assertions below still
+    hold and the 91% reconstruction still stands; it is the reading of what is left over
+    that changed.
+
     THE BOUNDED-VARIATION TENSION DISSOLVES.  The jump part has
     psi_hat(n) = -S(n)/(2 pi i n) with S(n) = sum_k a_k e^(-2 pi i n k BETA), and S is not
     bounded: it GROWS, |S(n)| ~ n^(+0.055).  So |psi_hat(n)| is a 1/n envelope times a
