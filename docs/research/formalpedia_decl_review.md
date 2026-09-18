@@ -245,9 +245,9 @@ theorem neverCertified_density_zero (h : FairClasses) :
       atTop (𝓝 0)
 ```
 
-*Statement names: `count_oddCount_ge`, `oddCount_ge_of_mem_neverNeg`, `neverNegCount_div_pow_le_theta`, `neverNegCount_div_pow_tendsto_zero`, `neverCertified_density_zero`, `neverNegWords_five`, `uncertified_fraction_depth_five`*
+*Statement names: `count_oddCount_ge`, `oddCount_ge_of_mem_neverNeg`, `neverNegCount_div_pow_le_theta`, `neverNegCount_div_pow_tendsto_zero`, `neverCertified_density_zero`, `neverNegWords_five`, `uncertified_fraction_depth_five`, `neverNegCount_one`, `neverNegCount_two`, `neverNegCount_three`, `neverNegCount_four`, `neverNegCount_five`, `neverNegCount_six`, `neverNegCount_seven`, `neverNegCount_eight`*
 
-*Runners-up: `neverNegCount_div_pow_tendsto_zero` (0.085), `neverNegCount_five` (0.084)*
+*Runners-up: `neverNegCount_five` (0.087), `neverNegCount_div_pow_tendsto_zero` (0.08)*
 
 *If this row describes a definition rather than a theorem: `FairClasses`*
 

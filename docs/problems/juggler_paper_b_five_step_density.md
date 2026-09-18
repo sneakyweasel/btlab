@@ -99,11 +99,20 @@ imported by the barrel `Problems.JugglerParityPaper`, which must stay disjoint
 from Paper A's itinerary stack: this module depends on `RateFreeDensity` and
 `PaperBCertificates`, both of which sit on that stack.
 
-Thirty-eight declarations, no `sorry`. Key names: `certifiedWordCount_four/five/six/seven`,
-`five_step_density`, `five_cylinders_cover`, `five_cylinders_card_sum`,
-`printed_measures_are_counts`, `sum_classCount_cylinder`, `certifiedCount_five_eq`,
-`no_minimal_certificate_six`, `minimal_certificates_seven`, `seven_step_density`,
-`error_exponents_ordered`, `error_absorb`, `five_step_error_assembly`.
+Thirty-eight declarations, no `sorry`. The depth counts are
+`certifiedWordCount_four`, `certifiedWordCount_five`, `certifiedWordCount_six` and
+`certifiedWordCount_seven`; their densities are `four_step_density` (Theorem 5.2's
+`13/16`), `five_step_density` (Theorem 5.4's `7/8`), `six_step_density` -- the value
+the manuscript has no reason to print, because depth six adds no certificate -- and
+`seven_step_density`. Two identities do the bookkeeping either side of the
+word/start boundary: `certifiedWordCount_add_neverNegCount` says every length-`d`
+word is certified or never-negative and never both (`#C_d + N_d = 2^d`), and
+`certifiedCount_add_uncertifiedCount` is the same split over the starts in
+`{1,...,N}`. The partition is `five_cylinders_cover`, `five_cylinders_card_sum` and
+`printed_measures_are_counts`; the bridge to starts is `sum_classCount_cylinder` and
+`certifiedCount_five_eq`; the length-seven extension is `no_minimal_certificate_six`
+and `minimal_certificates_seven`; the error bookkeeping is `error_exponents_ordered`,
+`error_absorb` and `five_step_error_assembly`.
 
 ## Results
 
