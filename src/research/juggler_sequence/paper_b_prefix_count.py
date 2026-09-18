@@ -132,6 +132,64 @@ def surviving_log_mass(depth: int) -> list[float]:
     return out
 
 
+def surviving_prefactor_profile(depth: int, window: int = 4096,
+                                flush: float = 1e-250) -> list[float]:
+    """`psi_d = (N_d / 2^d) / (rho^d d^(-3/2))` for every `d <= depth`, deep.
+
+    `surviving_log_mass` above is exact to `7e-15` and carries the whole profile,
+    which costs `O(d^2)` and puts `d` beyond about twenty thousand out of reach.
+    The prefactor's discontinuities are not resolvable there. This narrows the
+    state to a window riding the barrier and is `O(d * window)`: `d = 10^6` in
+    about thirty seconds.
+
+    Two things make it correct rather than merely fast, and both were found by
+    being wrong first.
+
+    The window must GROW. The walk is conditioned to stay above the barrier, so
+    its height above the barrier spreads like `sqrt(d)`; a fixed window silently
+    truncates once `sqrt(d)` approaches it, and the symptom is `psi` decaying
+    instead of oscillating. `window = 4096` is converged to `d = 10^6` (checked
+    against `8192`), and a run must be checked against a wider one, not assumed.
+
+    The far tail must be FLUSHED. Entries many orders below the peak fall into
+    the denormal range, where repeated addition and division are not faithful,
+    and the error migrates back into the bulk: at `window = 2000` and `d = 30000`
+    the total was wrong by a factor of two while `window = 1024` was right. A
+    relative floor removes it, and then wider windows agree exactly.
+    """
+    import numpy as np
+    from decimal import Decimal, getcontext
+
+    getcontext().prec = 80
+    beta = Decimal(2).ln() / Decimal(3).ln()   # exact ceil(k*beta) far past any depth
+    scale = 2.0 * _rho()
+    c = np.zeros(window)
+    c[0] = 1.0
+    prev = 0
+    out = [1.0]
+    for k in range(1, depth + 1):
+        v = beta * k
+        i = int(v)
+        cur = i if v == i else i + 1
+        step = cur - prev
+        prev = cur
+        nxt = np.concatenate(([0.0], c[:-1])) + c
+        if step:
+            nxt = np.append(nxt[1:], 0.0)
+        nxt /= scale
+        peak = nxt.max()
+        if peak:
+            nxt[nxt < flush * peak] = 0.0
+        c = nxt
+        out.append(c.sum() * k ** 1.5)
+    return out
+
+
+def _rho() -> float:
+    """`rho = theta(beta) = beta^(-beta) (1-beta)^(beta-1) / 2`, the survivor rate."""
+    return BETA ** (-BETA) * (1.0 - BETA) ** (BETA - 1.0) / 2.0
+
+
 def backward_sturmian_word(phi: float, depth: int) -> list[int]:
     """The barrier increments read backward from depth ``depth`` at phase ``phi``.
 

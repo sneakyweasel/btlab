@@ -5282,3 +5282,68 @@ def test_the_tail_does_not_determine_the_boundary_fraction() -> None:
         assert 0.05 < actual < 0.25, actual                  # R sits where the row says
         assert abs(residual) < 0.05 * actual + 1e-2          # the tail gets it roughly right
     assert max(abs(r) for _, _, r in rows) > 1e-4, rows      # but not exactly: the reduction fails
+
+
+def test_fast_prefactor_profile_agrees_with_the_exact_pass() -> None:
+    """The narrow-window DP must reproduce `surviving_log_mass`, not merely be fast."""
+    import math
+
+    from research.juggler_sequence.paper_b_prefix_count import (
+        _rho,
+        surviving_log_mass,
+        surviving_prefactor_profile,
+    )
+
+    rho = _rho()
+    fast = surviving_prefactor_profile(1500, window=512)
+    slow = surviving_log_mass(1500)
+    worst = max(
+        abs(fast[d] - math.exp(slow[d]) * d**1.5 / rho**d)
+        / (math.exp(slow[d]) * d**1.5 / rho**d)
+        for d in range(100, 1501)
+    )
+    assert worst < 1e-10, worst
+
+
+def test_prefactor_window_must_be_checked_not_assumed() -> None:
+    """A window too narrow for the depth truncates silently, and psi decays.
+
+    This is the failure that produced a wrong answer before it was caught: the
+    conditioned walk spreads like `sqrt(d)`, so the window has to grow with the
+    depth. The test pins the symptom so nobody reads a decaying psi as physics.
+    """
+    from research.juggler_sequence.paper_b_prefix_count import surviving_prefactor_profile
+
+    narrow = surviving_prefactor_profile(30000, window=64)
+    wide = surviving_prefactor_profile(30000, window=512)
+    assert narrow[30000] < 1.0, "a 64-wide window must visibly collapse by d=30000"
+    assert 10.0 < wide[30000] < 12.0, "a 512-wide window is converged at this depth"
+
+
+def test_psi_jumps_on_the_rotation_orbit() -> None:
+    """psi is a jump function and its discontinuities sit on {n*beta mod 1}.
+
+    The ledger's prefactor row records psi as almost-periodic with "one departure
+    from monotonicity near 0.65 ... presumably a path effect". That departure is
+    the n = 1 jump, at beta itself.
+    """
+    from research.juggler_sequence.paper_b_prefix_count import (
+        BETA,
+        surviving_prefactor_profile,
+    )
+
+    depth = 120000
+    psi = surviving_prefactor_profile(depth, window=1024)
+    lo = depth - 40000
+    pts = sorted(((BETA * d) % 1.0, psi[d]) for d in range(lo, depth + 1))
+    gaps = [(abs(pts[i + 1][1] - pts[i][1]), 0.5 * (pts[i][0] + pts[i + 1][0]))
+            for i in range(len(pts) - 1)]
+    gaps.sort(reverse=True)
+    spacing = 1.0 / len(pts)
+    for size, where in gaps[:4]:
+        n = min(range(1, 40), key=lambda k: min(abs((k * BETA) % 1 - where),
+                                                1 - abs((k * BETA) % 1 - where)))
+        target = (n * BETA) % 1.0
+        err = min(abs(target - where), 1 - abs(target - where))
+        assert err < 5 * spacing, f"jump at {where} is not on the orbit (nearest {n}*beta)"
+    assert gaps[0][0] > 0.2, "the largest jump should be substantial, not a slope"

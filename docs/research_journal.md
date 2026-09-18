@@ -1,5 +1,49 @@
 # Research journal
 
+## 2026-09-18 -- psi jumps, on the rotation orbit, and the 0.65 anomaly was the first jump
+
+- **Objective:** build a float-log DP deep enough to decide whether the meander
+  prefactor `psi` is smooth or jumps. The exact integer DP stops near `d = 3000`
+  and `J-paper-b-increment-is-not-a-rotation-function` had just recorded that its
+  Fourier projection is noise-limited there.
+- **Answer: it jumps, and the jump set is `{n BETA mod 1}`.** Sorting 100001
+  consecutive depths in `[9e5, 1e6]` by `frac(d BETA)` at spacing `1e-5`, the
+  twelve largest consecutive differences land on `n BETA` for
+  `n = 1, 3, 2, 4, 6, 5, 7, 9, 8, 11, 10, 12`, each within `3.13e-6` -- below the
+  spacing, so every one is an exact hit. Sizes `0.4214, 0.2230, 0.2154, 0.1718,
+  0.1210, 0.1169, ...`, decreasing in `n`. Median consecutive difference is 689x
+  the spacing; the largest is 42000x. That is a discontinuity, not a slope.
+- **It identifies a recorded anomaly.**
+  `J-paper-b-meander-prefactor-is-almost-periodic` notes "one departure from
+  monotonicity near 0.65 ... presumably a path effect". It is not a path effect:
+  it is the `n = 1` jump, at `BETA = 0.6309` itself. So the prefactor's
+  oscillation and the Sturmian cascade that
+  `J-psi-jumps-are-the-rotation-orbit-of-zero` proves for the barrier `psi` are
+  one structure.
+- **I rebuilt an instrument that already existed, and should have searched
+  first.** `surviving_log_mass` is in `paper_b_prefix_count` and is named in the
+  prefactor row. What is actually new is reach: it is `O(d^2)` and stops near
+  `d = 2e4`, where these jumps are not resolvable. `surviving_prefactor_profile`
+  narrows the state to a window riding the barrier, agrees with it to `1.4e-13`,
+  and reaches `d = 1e6` in about thirty seconds.
+- **Two errors made that instrument, and both produced confident wrong numbers
+  before being caught.** First, a fixed window: the conditioned walk spreads like
+  `sqrt(d)`, so `psi` silently decayed -- `10.3` at `d = 1e5`, `4.9` at `2e5`,
+  `0.41` at `4e5` -- and I read the collapse as physics for two runs. Second, the
+  denormal tail: at `window = 2000` and `d = 30000` the total was wrong by a
+  factor of two while `window = 1024` was right, because unfaithful denormal
+  arithmetic migrates back into the bulk. A wider window giving a *different*
+  answer than two narrower ones that agree is what exposed it. Both are now
+  pinned by tests rather than by my remembering.
+- **Decision:** the prefactor row is refined; no new branch. Nothing here proves
+  `MeanderShape` and no bound moves.
+- **Best next question:** the jump sizes. They decrease in `n` and
+  `J-psi-jumps-are-summable-and-psi-is-bounded-variation` establishes summability
+  and total variation `4.58` for the barrier `psi`. Is the prefactor's jump
+  measure the same one up to an affine map, or a different measure on the same
+  orbit? The instrument now reaches far enough to ask, and the two jump lists can
+  be compared directly.
+
 ## 2026-09-18 -- G(1) is not an independent open problem
 
 - **Objective:** the meander constant is `kappa G(1)`.
