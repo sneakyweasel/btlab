@@ -5447,3 +5447,60 @@ def test_psi_jump_amplitudes_multiply_by_one_over_rho_at_sturmian_zeros() -> Non
         assert a[n] / a[n - 1] == pytest.approx(1.0 / rho, rel=2e-3), (
             f"n={n}: ratio {a[n] / a[n - 1]} is not 1/rho = {1.0 / rho}"
         )
+
+
+def test_psi_jump_spectrum_factorises_through_the_barrier_index() -> None:
+    """`a^psi_n = C_(ceil(n*beta)) * rho^(-(n - ceil(n*beta)))`.
+
+    The `1/rho` growth at Sturmian zeros says the amplitude, renormalised by
+    `rho^(n - ceil(n*beta))`, cannot change at a zero. It does not: the
+    renormalised value is constant across every zero-step to a few parts in
+    `1e5`. So the spectrum is one sequence indexed by `ceil(n*beta)` times an
+    explicit exponential, rather than a free function of `n`.
+
+    What the sequence itself does is NOT established: splitting the one-steps by
+    whether a zero precedes them gives overlapping distributions at every range
+    tested, so no law is claimed for it.
+    """
+    import math
+
+    import numpy as np
+
+    from research.juggler_sequence.paper_b_prefix_count import (
+        BETA,
+        _rho,
+        surviving_prefactor_profile,
+    )
+
+    rho = _rho()
+    depth = 150000
+    psi = surviving_prefactor_profile(depth, window=1024)
+    lo = depth // 2
+    ds = np.arange(lo, depth + 1)
+    fr = (BETA * ds) % 1.0
+    order = np.argsort(fr)
+    f_s = fr[order]
+    p_s = np.array([psi[d] for d in ds])[order]
+
+    sizing, nmax = 60, 30
+    orbit = np.array([(n * BETA) % 1.0 for n in range(sizing + 1)])
+
+    def amplitude(n: int) -> float:
+        x0 = orbit[n]
+        others = np.delete(orbit, n)
+        gap = np.min(np.minimum(np.abs(others - x0), 1 - np.abs(others - x0)))
+        half = 0.35 * gap
+        left = (f_s > x0 - half) & (f_s < x0)
+        right = (f_s > x0) & (f_s < x0 + half)
+        return p_s[left].mean() - p_s[right].mean()
+
+    def bar(n: int) -> int:
+        return math.ceil(n * BETA)
+
+    c = {n: amplitude(n) * rho ** (n - bar(n)) for n in range(1, nmax + 1)}
+    zeros = [n for n in range(2, nmax + 1) if bar(n) == bar(n - 1)]
+    assert len(zeros) >= 8
+    for n in zeros:
+        assert c[n] / c[n - 1] == pytest.approx(1.0, abs=1e-3), (
+            f"n={n}: renormalised amplitude moved at a zero-step"
+        )
