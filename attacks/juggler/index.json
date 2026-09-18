@@ -312,7 +312,9 @@
       "decision": "CLOSE",
       "ledger_ids": [
         "J-paper-b-increment-is-not-a-rotation-function",
-        "J-paper-b-meander-constant-derived"
+        "J-paper-b-meander-constant-derived",
+        "J-paper-b-increment-tension-is-the-class-method",
+        "J-residue-classes-lose-a-square-root-on-jump-functions"
       ],
       "aliases": [],
       "nk_cluster": "The quasi-stationary link has no off-the-shelf theorem, and the meander literature gives the order not the prefactor"
@@ -3312,7 +3314,9 @@
         "J-paper-b-psi-fourier-is-the-orbit-series",
         "J-paper-b-jump-amplitude-is-not-a-fixed-point",
         "J-paper-b-ladder-profile-is-closed-form",
-        "J-paper-b-jump-amplitude-is-closed-form"
+        "J-paper-b-jump-amplitude-is-closed-form",
+        "J-paper-b-increment-tension-is-the-class-method",
+        "J-residue-classes-lose-a-square-root-on-jump-functions"
       ],
       "aliases": [],
       "nk_cluster": null

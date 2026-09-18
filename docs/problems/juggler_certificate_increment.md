@@ -107,7 +107,8 @@ fitted to a residual of `3.2e-6` in the median class.
 
 ## Open questions
 
-The `1/d` correction does not have the size the measured exponent `-3/2`
+**Answered 18 September 2026; see the Correction below.** The `1/d`
+correction does not have the size the measured exponent `-3/2`
 predicts. Under `N_d/2^d ~ psi(frac(d*beta)) * theta^d * d^(-3/2)` the increment
 expands as `a + b/d` with `b = (3/2) * theta * psi_d/psi_(d-1)`, giving `b` near
 `1.45`; the fits give larger values that vary by class. **This is a tension and
@@ -130,6 +131,29 @@ wrong, and the way they were wrong is worth recording:
 A few percent identifies no closed form. `13*pi = 40.84` sits inside the
 two-parameter value and outside the three-parameter one, which is the signature
 of numerology rather than of a constant.
+
+**Resolved, 18 September 2026.** The tension was this method, and neither
+reading of `b` was measuring anything. Once `psi`'s jump spectrum is known
+(`J-paper-b-jump-spectrum-is-the-survivor-sequence`) the shape's prediction has
+no free parameter at all: `r_d = 1 - theta t_d/t_(d-1)` exactly, so within a
+fixed coordinate `r_d = a + b/d` with `b = (3/2)(1 - a)`, and the testable
+statement is `b/(1-a) = 3/2`.
+
+But a class modulo `q` fixes the coordinate only to `delta = |frac(q beta)|`,
+and `psi` is a jump function on a dense orbit, so it varies across the class by
+about `17 sqrt(delta)` -- a square root more than the method assumes. At `485`
+that is `4.8%` of `psi`, against a `1/d` signal of a few percent at the depths
+used here. Across convergent denominators `65, 84, 485, 1054, 24727, 50508` the
+coordinate drift falls from `1.0e-2` to `6.6e-6`, `psi`'s variation from `1.74`
+to `0.044`, and the interquartile spread of `b/(1-a)` collapses from `51` to
+`1.06` while the median goes from chaos to `2.22` and then `1.99`, extrapolating
+to `1.59` against the predicted `1.50`.
+
+So the tension is withdrawn as evidence about the shape. It is **not**
+confirmation of the shape either: `b` is still unmeasured, and on this evidence
+cannot be measured at any depth reachable here, since fixing the coordinate
+tightly enough needs a class finer than the sample can fill. The general form of
+the lesson is `J-residue-classes-lose-a-square-root-on-jump-functions`.
 
 Where pi does belong in this cluster is settled and elsewhere:
 `J-paper-b-meander-constant-derived` derives `kappa = 1/(sqrt(2*pi)*theta*sigma)`,

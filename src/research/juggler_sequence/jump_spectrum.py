@@ -376,6 +376,79 @@ def mean_value(counts: list[int], tail_depth: int | None = None) -> float:
     return KAPPA * (g_one(counts) + g_one_tail_bound(counts))
 
 
+def increment(counts: list[int], d: int) -> float:
+    """`r_d = M_d / (2 N_(d-1))`, the fraction of survivors dying at step `d`.
+
+    Exactly `1 - theta * t_d / t_(d-1)` with `t_d = N_d/(2*theta)^d`, which is how the
+    certificate-increment branch measured it. Under the shape it expands within a fixed
+    rotation coordinate as `a + b/d` with `a = 1 - theta*rho` and `b = (3/2)(1 - a)`, so
+    `b` carries no free parameter -- see `class_coordinate_cost`.
+    """
+    return 1.0 - counts[d] / (2.0 * counts[d - 1])
+
+
+def class_coordinate_cost(period: int) -> dict[str, float]:
+    """What a residue class modulo `period` actually fixes, for a function that jumps.
+
+    A class fixes the rotation coordinate to `delta = |frac(period*beta)|`. The method
+    then assumes the target moves by `O(delta)`. `psi` does not: its jumps live on a
+    dense orbit with `sum_(n>1/delta) a_n` about `17*sqrt(delta)`, so it moves by a
+    SQUARE ROOT more. That gap is why the branch could not measure `b`, and it is a
+    property of the method rather than of the shape.
+    """
+    from decimal import Decimal as _D
+
+    frac = float((_BETA_EXACT * period) % 1)
+    drift = min(frac, 1.0 - frac)
+    return {
+        "period": period,
+        "coordinate_drift": drift,
+        "psi_variation": 17.0 * sqrt(drift),
+        "as_share_of_psi": 17.0 * sqrt(drift) / 10.89,
+    }
+
+
+def _binomial_tail_log(n: int, k0: int, terms: int = 80) -> float:
+    """`log P(Bin(n,1/2) >= k0)`, summed from the top term down.
+
+    Consecutive terms shrink by about `(1-beta)/beta = 0.585` at the large-deviation
+    point, so eighty of them are already below the double-precision floor. Kept
+    dependency-free on purpose: this is the one place the branch touches a tail rather
+    than a count, and it should not need a numerics package to check.
+    """
+    from math import lgamma
+
+    if k0 > n:
+        return float("-inf")
+    top = lgamma(n + 1) - lgamma(k0 + 1) - lgamma(n - k0 + 1) - n * log(2.0)
+    total = 0.0
+    for i in range(min(terms, n - k0 + 1)):
+        k = k0 + i
+        total += exp(
+            lgamma(n + 1) - lgamma(k + 1) - lgamma(n - k + 1) - n * log(2.0) - top
+        )
+    return top + log(total)
+
+
+def ladder_value(n: int) -> float:
+    """`A_n = P(S_n >= 0) / theta^n`, the sequence the Spitzer identity exponentiates."""
+    return exp(_binomial_tail_log(n, ceil_beta(n)) - n * log(THETA))
+
+
+def g_one_via_ladder(head: int = 20000, tail: int = 2_000_000) -> float:
+    """`G(1) = exp(sum_n A_n / n)`, the Spitzer route -- no survivor counts at all.
+
+    An exact head of binomial tails, then the closed-form ladder profile for the rest.
+    This never touches `N_d`, so agreement with `g_one` is a genuine cross-check of the
+    whole picture rather than a restatement of it.
+    """
+    total = sum(ladder_value(n) / n for n in range(1, head + 1))
+    for n in range(head + 1, tail + 1):
+        total += ladder_profile(float((_BETA_EXACT * n) % 1)) * n ** -1.5
+    total += KAPPA * 2.0 / sqrt(tail)
+    return exp(total)
+
+
 def probe_payload(max_depth: int = MAX_DEPTH) -> dict[str, Any]:
     counts = survivor_counts(max_depth)
     zeros = sturmian_zero_ratios(counts, min(max_depth, 500))

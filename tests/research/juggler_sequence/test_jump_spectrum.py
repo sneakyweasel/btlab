@@ -19,9 +19,13 @@ from research.juggler_sequence.jump_spectrum import (
     THETA,
     amplitude_ratio,
     barrier_index_consistency,
+    class_coordinate_cost,
     fourier_coefficient,
+    g_one_via_ladder,
+    increment,
     ladder_fourier,
     ladder_profile,
+    ladder_value,
     mean_value,
     orbit_series,
     orbit_series_truncation,
@@ -306,3 +310,59 @@ def test_the_jump_of_psi_is_the_jump_of_the_ladder() -> None:
         assert k * abs(ladder_fourier(k)) == pytest.approx(LADDER_JUMP / (2 * 3.141592653589793),
                                                            rel=2e-3), k
     assert ladder_fourier(0).real == pytest.approx(KAPPA, rel=1e-12)
+
+
+def test_the_increment_is_the_shape_with_no_free_parameter(counts) -> None:
+    """`r_d = 1 - theta t_d/t_(d-1)` exactly, so within a fixed coordinate
+    `r_d = a + b/d` with `b = (3/2)(1 - a)` and nothing fitted."""
+    for d in (50, 137, 300):
+        assert increment(counts, d) == pytest.approx(
+            1.0 - counts[d] / (2.0 * counts[d - 1]), rel=1e-12)
+        assert 0.0 < increment(counts, d) < 0.5
+
+
+def test_a_residue_class_loses_a_square_root_on_a_jump_function() -> None:
+    """Why the certificate-increment tension was the method and not the shape.
+
+    A class modulo `q` fixes the rotation coordinate to `|frac(q beta)|`, and the method
+    assumes the target then moves by that much. `psi` moves by about `17 sqrt` of it,
+    because its jumps are dense. At the period the branch used, `485`, that is `4.8%` of
+    `psi` against a `1/d` signal of a few percent -- so `b` was never measurable there.
+    """
+    coarse = class_coordinate_cost(485)
+    fine = class_coordinate_cost(50508)
+    assert coarse["coordinate_drift"] == pytest.approx(9.3e-4, rel=0.02)
+    assert coarse["as_share_of_psi"] > 0.04, "485 cannot resolve a percent-level signal"
+    assert fine["coordinate_drift"] < coarse["coordinate_drift"] / 100
+    # the square root is the point: 140x finer coordinate buys only 12x less variation
+    ratio_drift = coarse["coordinate_drift"] / fine["coordinate_drift"]
+    ratio_var = coarse["psi_variation"] / fine["psi_variation"]
+    assert ratio_var == pytest.approx(ratio_drift ** 0.5, rel=1e-6)
+    assert ratio_drift > 100 and ratio_var < 15
+
+
+def test_the_ladder_value_tends_to_the_closed_form_profile() -> None:
+    """`A_n sqrt(n)` against `Phi(frac(n beta))`, with the gap a `1/n` offset."""
+    from decimal import Decimal, getcontext
+    getcontext().prec = 60
+    beta = Decimal(2).ln() / Decimal(3).ln()
+    errs = {}
+    for n in (2000, 8000, 20000):
+        x = float((beta * n) % 1)
+        errs[n] = ladder_value(n) * n ** 0.5 / ladder_profile(x) - 1
+    assert all(e < 0 for e in errs.values()), "the profile is approached from below"
+    assert abs(errs[20000]) < abs(errs[2000]) / 5, "the gap must fall like 1/n"
+    assert abs(errs[20000]) < 2e-3
+
+
+def test_g_one_agrees_from_two_routes_that_share_nothing(counts) -> None:
+    """`G(1)` from the survivor counts and from Spitzer must agree.
+
+    `g_one` sums `N_d/(2 theta)^d`. `g_one_via_ladder` exponentiates `sum_n A_n/n` with
+    `A_n` an exact binomial tail and the closed-form profile for the tail, and never
+    touches `N_d`. Agreement is a cross-check of the whole picture -- Spitzer, the
+    profile, the counts -- rather than a restatement of any of it.
+    """
+    cheap = g_one_via_ladder(head=6000, tail=200_000)
+    assert cheap == pytest.approx(7.0649, rel=3e-4)
+    assert cheap == pytest.approx(7.064862, rel=1e-3)
