@@ -23,10 +23,35 @@ with `a_1` the single measured constant, and `a_0 = 2 theta a_1` the jump at
 
 ## Current literature
 
-`independent`. A laboratory question about a laboratory quantity. The function
-it is about is `J-paper-b-meander-prefactor-is-almost-periodic`; the shape it
-sits inside is the `MeanderShape` hypothesis of `PaperBSurvivorAsymptotic`,
-which no module proves.
+**Not independent, and an earlier reading here said it was.** The counting
+sequence is **OEIS A076227**, exactly: our `N_d` agrees with the b-file of
+Hikawa and Nakanishi on all `3509` terms, `n = 0 .. 3508`, the last of which has
+999 digits. It has been in OEIS since Labos Elemer, October 2002, under a
+Collatz reading -- the number of residue classes modulo `2^n` in which the
+stopping time `A074473` is not constant -- and a comment of Kazunobu Hikawa,
+July 2026, gives our definition outright: binary words `v(1)..v(n)` with
+`2^m < 3^(v(1)+...+v(m))` for every `m`. The entry also carries a dynamic
+program for it.
+
+So Paper B's survivors are a known Collatz quantity, and this cluster's
+asymptotic is a statement about one: the share of residue classes modulo `2^n`
+with undetermined stopping time is `psi(frac(n beta)) theta^n n^(-3/2)`, where
+the entry itself records only that the share "tends to 0", bounded by `3.23%` at
+`n = 16`.
+
+**What is not settled is priority on the asymptotic.** OEIS records no growth
+constant, no `d^(-3/2)` and no oscillation, but that is an absence in one
+database, not a literature search. The exponential rate is a large-deviation
+statement and is very likely classical -- the laboratory already carries
+`terras-1976-stopping-time` as `KNOWN` for the stopping-time density. The
+entry points at three 2026 preprints on parity vectors (Hikawa; Hikawa and
+Nakanishi; Nakanishi) and at Winkler 2017-2026, none of which have been read
+here. Until they are, nothing in this cluster should be called new.
+
+The function this branch is about is
+`J-paper-b-meander-prefactor-is-almost-periodic`; the shape it sits inside is
+the `MeanderShape` hypothesis of `PaperBSurvivorAsymptotic`, which no module
+proves.
 
 ## Branch budget
 

@@ -22,7 +22,11 @@ the recursion rather than needing a local limit theorem.
 
 ## Current literature
 
-`independent`. This is a laboratory question about a laboratory quantity. The
+**Corrected 18 September 2026.** An earlier reading here said `independent`.
+The counting sequence underneath this branch is **OEIS A076227**, a Collatz
+quantity known since 2002 -- see `J-paper-b-survivors-are-oeis-a076227`. The
+*question* asked here, whether the increment is a function of the rotation
+coordinate, remains a laboratory question about it. The
 measured prefactor it bears on is
 `J-paper-b-meander-prefactor-is-almost-periodic`; the shape it is tested against
 is the `MeanderShape` hypothesis of `PaperBSurvivorAsymptotic`, which no module

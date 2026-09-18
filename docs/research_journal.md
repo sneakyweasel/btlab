@@ -1,5 +1,38 @@
 # Research journal
 
+## 2026-09-18 -- the survivors were a known Collatz sequence all along
+
+- **Prompted by Philippe:** the survivors look close to OEIS A076227. They are
+  not close to it, they **are** it.
+- **Checked properly rather than on the head.** Nine terms agreeing means little.
+  The entry carries a b-file of 3509 terms by Hikawa and Nakanishi, `n = 0` to
+  `3508`; our height program matches **all** of them, the last a 999-digit
+  integer. That is a far stronger check on the counts than anything in this
+  laboratory had.
+- **It is a Collatz object.** In OEIS since Labos Elemer, October 2002: the
+  number of residue classes modulo `2^n` in which the stopping time `A074473` is
+  not constant. A comment of Kazunobu Hikawa from July 2026 states our own
+  definition outright -- binary words with `2^m < 3^(v(1)+...+v(m))` for every
+  `m` -- and the entry even carries a dynamic program for it.
+- **So the dossier's `independent` was wrong**, in this cluster and in the
+  certificate-increment branch. Both corrected. What is a laboratory question is
+  the asymptotic, not the sequence.
+- **And the asymptotic now says something about Collatz.** The share of residue
+  classes modulo `2^n` with undetermined stopping time is
+  `psi(frac(n beta)) theta^n n^(-3/2)`. The entry records only that the share
+  "tends to 0", bounded by `3.23%` at `n = 16`.
+- **Priority is not settled and I am not claiming it.** OEIS shows no growth
+  constant, no `d^(-3/2)`, no oscillation -- but that is an absence in one
+  database, not a search. The exponential rate is a large-deviation statement and
+  is very likely classical; we already carry `terras-1976-stopping-time` as
+  `KNOWN`. Three 2026 parity-vector preprints and Winkler 2017-2026 are linked
+  from the entry and none has been read here.
+- **The lesson, again and in a new direction.** Today I twice re-derived work
+  this laboratory already had, and fixed that by grepping its tests. This is the
+  same failure pointed outward: the sequence was searchable, and nobody searched.
+  A dossier's `Current literature` line should be answered by looking, not by
+  noting that the question feels local.
+
 ## 2026-09-18 -- the increment tension was the method, and it loses a square root
 
 - **Objective:** the certificate-increment dossier records that the `1/d`
