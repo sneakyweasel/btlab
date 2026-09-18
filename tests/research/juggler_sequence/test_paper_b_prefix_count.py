@@ -5395,3 +5395,55 @@ def test_psi_jump_amplitudes_follow_the_sturmian_word() -> None:
         assert rises == (step(n) == 0), (
             f"n={n}: amplitude {'rose' if rises else 'fell'} but s_n={step(n)}"
         )
+
+
+def test_psi_jump_amplitudes_multiply_by_one_over_rho_at_sturmian_zeros() -> None:
+    """At a Sturmian zero the prefactor's jump grows by exactly `1/rho`.
+
+    `J-r-jumps-halve-at-the-sturmian-zeros` proves the boundary fraction's jumps
+    halve there. The prefactor's do not halve: they multiply by `1/rho`. So the
+    two jump measures are not affinely related, and diverge by `2/rho` per zero.
+    """
+    import math
+
+    import numpy as np
+
+    from research.juggler_sequence.paper_b_prefix_count import (
+        BETA,
+        _rho,
+        surviving_prefactor_profile,
+    )
+
+    rho = _rho()
+    depth = 150000
+    psi = surviving_prefactor_profile(depth, window=1024)
+    lo = depth // 2
+    ds = np.arange(lo, depth + 1)
+    fr = (BETA * ds) % 1.0
+    order = np.argsort(fr)
+    f_s = fr[order]
+    p_s = np.array([psi[d] for d in ds])[order]
+
+    # The window is sized by the nearest of `sizing` orbit points. Too few and the
+    # window widens until it swallows a neighbouring jump: at `sizing = 25` the
+    # ratio at n = 19 comes out -1.9 rather than 1/rho. 40 is enough here.
+    sizing, nmax = 40, 25
+    orbit = np.array([(n * BETA) % 1.0 for n in range(sizing + 1)])
+
+    def amplitude(n: int) -> float:
+        x0 = orbit[n]
+        others = np.delete(orbit, n)
+        gap = np.min(np.minimum(np.abs(others - x0), 1 - np.abs(others - x0)))
+        half = 0.35 * gap
+        left = (f_s > x0 - half) & (f_s < x0)
+        right = (f_s > x0) & (f_s < x0 + half)
+        return p_s[left].mean() - p_s[right].mean()
+
+    a = {n: amplitude(n) for n in range(1, nmax + 1)}
+    zeros = [n for n in range(2, nmax + 1)
+             if math.ceil(n * BETA) - math.ceil((n - 1) * BETA) == 0]
+    assert len(zeros) >= 5
+    for n in zeros:
+        assert a[n] / a[n - 1] == pytest.approx(1.0 / rho, rel=2e-3), (
+            f"n={n}: ratio {a[n] / a[n - 1]} is not 1/rho = {1.0 / rho}"
+        )

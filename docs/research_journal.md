@@ -1,5 +1,41 @@
 # Research journal
 
+## 2026-09-18 -- the two jump measures diverge by exactly 2/rho per Sturmian zero
+
+- **Objective:** the recorded question -- is the prefactor's jump measure the
+  boundary fraction's up to an affine map? The seam proved earlier today,
+  `r_(d+1) = b_d R_d / 2`, makes `R_d` free from the fast DP: it is `c[0]` over
+  the total, so a million depths of it cost nothing extra. The published barrier
+  measurement stopped near `d = 2e4`; this is at `1e6`.
+- **Answer: no, and the deviation is exact.** At every Sturmian zero `s_n = 0`,
+  over 500001 depths in `[5e5, 1e6]` and the nine zeros with `n <= 40`:
+
+      a^R_n / a^R_(n-1)   = 0.5000000   (sd 1.4e-6)   = 1/2
+      a^psi_n / a^psi_(n-1) = 1.0352990 (sd 7.7e-6)   = 1/rho = 1.0352968
+      quotient              = 2.070594                = 2/rho = 2.070594
+
+  The halving is `J-r-jumps-halve-at-the-sturmian-zeros`, already proved. The
+  `1/rho` is new. So the two measures are not affinely related, and they diverge
+  by a factor `2/rho` at each zero, compounding along the orbit.
+- **Why `rho` is on one side only.** `R` is a ratio and carries no
+  `rho^d d^(-3/2)` normalisation; `psi` carries it. That is the same reason the
+  `boundary_fraction_profile` docstring gives for `R` resolving an order of
+  magnitude better, read from the other end.
+- **A measurement trap, pinned in the test.** The window is sized by the nearest
+  of `sizing` orbit points. At `sizing = 25` the window at `n = 19` widens until
+  it swallows a neighbouring jump and the ratio comes out `-1.9` instead of
+  `1/rho`; at 40 all nine ratios agree to `1.15e-4`. The first version of the
+  test failed for exactly that reason and I fixed the sizing rather than the
+  tolerance.
+- **Decision:** prefactor row refined; no new branch, no claim on `MeanderShape`,
+  no bound moves.
+- **Best next question:** `1/rho` per zero is a multiplicative law along the
+  orbit, so `log a^psi_n` is `-(number of Sturmian zeros up to n) * log rho` plus
+  whatever the `s_n = 1` steps do -- and those steps showed no clean law
+  (ratios 0.50, 0.76, 0.66, 0.82, 0.72). Is there one, in the Ostrowski
+  coordinate rather than in `n`? That would give the whole jump spectrum a closed
+  form, and with it the total variation.
+
 ## 2026-09-18 -- I had already proved this once, under another name, and the useful part is the seam
 
 - **What I set out to do:** remeasure the barrier `psi` so the two jump lists
