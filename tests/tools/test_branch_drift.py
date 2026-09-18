@@ -30,8 +30,18 @@ import branch_drift as BD  # noqa: E402
 #: same entry. Remove an entry when the branch is merged or deleted; do not add
 #: one without looking at what the branch holds.
 #:
-#: Assessed 14 September 2026.
-ACKNOWLEDGED: dict[str, str] = {}
+#: Assessed 14 September 2026; the entry below added 18 September 2026.
+ACKNOWLEDGED: dict[str, str] = {
+    "claude/competent-blackwell-53a324": (
+        "Pending merge, read 18 September 2026. Paper B's consolidated validator "
+        "hashed raw bytes, so its recorded source digest named the checkout and had "
+        "stood still for eleven manuscript revisions; the Zenodo kit is regenerated "
+        "from it as the 2026-09-18 edition. The one test file is "
+        "test_paper_b_consolidated_validation.py, which pins line-ending invariance "
+        "and keeps the recorded digest tied to the manuscript beside it. No ledger "
+        "row, Lean module or probe. Remove this entry when the branch merges."
+    ),
+}
 
 
 def _key(ref: str) -> str:
