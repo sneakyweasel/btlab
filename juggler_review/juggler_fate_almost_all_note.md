@@ -3016,7 +3016,7 @@ use the roots of the displayed defining equations.
 
 - `src/research/juggler_sequence/tao_reduction.py`
 
-  SHA-256: `8725a2660a6ab279b2b1c23a831053fed07064aae53a6c0eb2f306f2ab01cdcb`
+  SHA-256: `6c3b6db26c2c0d130a52a04d2b38a54b88f10c054542ed83c21710ec495653f5`
 
 - `docs/theory/figures/render_paper_c_figures.py`
 
