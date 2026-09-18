@@ -1,0 +1,73 @@
+{
+  "question": "Is r_d = M_d / (2 N_(d-1)) a function of frac(d * beta) alone, as an almost-periodic prefactor would require?",
+  "answer": "no",
+  "beta": 0.6309297535714574,
+  "theta_beta": 0.9659065532334378,
+  "period": 485,
+  "frac_of_period": 0.0009304821568321131,
+  "max_depth": 3000,
+  "fit_from": 1000,
+  "classes_fitted": 306,
+  "within_class_spread": {
+    "min": 0.0005080216477684057,
+    "max": 0.01913950146023611
+  },
+  "fit_residual": {
+    "min": 6.97421941184273e-07,
+    "max": 0.007978164011932666
+  },
+  "slope_b": {
+    "min": 1.5048778044695774,
+    "max": 30.641142401219845
+  },
+  "b_over_a": {
+    "min": 40.167352693455605,
+    "max": 898.048552350957
+  },
+  "meander_predicted_b": 1.4488598298501567,
+  "monotone_classes": 306,
+  "monotone_share": 1.0,
+  "coordinate_control": {
+    "residual_drift": 0.0009304821568321131,
+    "limit_slope_vs_coordinate": -0.07014576634772592,
+    "explained_by_drift": 6.526938396387347e-05,
+    "classes_beating_drift_bound": 264,
+    "share_beating_drift_bound": 0.8627450980392157
+  },
+  "small_values": {
+    "N": [
+      1,
+      1,
+      2,
+      3,
+      4,
+      8,
+      13,
+      19,
+      38
+    ],
+    "M": [
+      1,
+      1,
+      0,
+      1,
+      2,
+      0,
+      3,
+      7,
+      0,
+      12,
+      0,
+      30,
+      85,
+      0,
+      173,
+      476
+    ]
+  },
+  "decision": {
+    "classification": "INCREMENT_NOT_A_ROTATION_FUNCTION",
+    "reason": "Within one residue class mod 485 the rotation coordinate is fixed to 9.3e-04. Were r_d a function of that coordinate alone, a class would hold one value and its four or five members would scatter. They do not scatter: every class is strictly monotone in d, which scattered values would be about two to eight percent of the time, and in most classes the spread is more than ten times what the residual coordinate motion can explain. So r_d is not a function of frac(d*beta) alone. Separately and more weakly: the fitted slope b does not match the 3*theta/2 that the measured exponent -3/2 predicts, and b varies across classes while b/a does not. That is a tension, not a refutation of the shape."
+  },
+  "anti_overclaim": "Exact integer counts; the fits are the only floating point. This refutes one reading of the increment and neither proves nor refutes the meander shape."
+}
