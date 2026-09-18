@@ -29,7 +29,7 @@ Hikawa and Nakanishi on all `3509` terms, `n = 0 .. 3508`, the last of which has
 999 digits. It has been in OEIS since Labos Elemer, October 2002, under a
 Collatz reading -- the number of residue classes modulo `2^n` in which the
 stopping time `A074473` is not constant -- and a comment of Kazunobu Hikawa,
-July 2026, gives our definition outright: binary words `v(1)..v(n)` with
+21 July 2026, gives our definition outright: binary words `v(1)..v(n)` with
 `2^m < 3^(v(1)+...+v(m))` for every `m`. The entry also carries a dynamic
 program for it.
 
@@ -39,14 +39,143 @@ with undetermined stopping time is `psi(frac(n beta)) theta^n n^(-3/2)`, where
 the entry itself records only that the share "tends to 0", bounded by `3.23%` at
 `n = 16`.
 
-**What is not settled is priority on the asymptotic.** OEIS records no growth
-constant, no `d^(-3/2)` and no oscillation, but that is an absence in one
-database, not a literature search. The exponential rate is a large-deviation
-statement and is very likely classical -- the laboratory already carries
-`terras-1976-stopping-time` as `KNOWN` for the stopping-time density. The
-entry points at three 2026 preprints on parity vectors (Hikawa; Hikawa and
-Nakanishi; Nakanishi) and at Winkler 2017-2026, none of which have been read
-here. Until they are, nothing in this cluster should be called new.
+**Priority on the asymptotic, settled by reading the sources (19 September
+2026).** The earlier reading said OEIS's silence was "an absence in one
+database, not a literature search", and it was right to say so. The sources it
+pointed at have now been read, and two of the four pieces of this cluster's
+asymptotic turn out to be prior work.
+
+| Piece | Status | First |
+|-------|--------|-------|
+| exponential rate `theta^d` | `KNOWN` | Lagarias 1985, Theorem D |
+| `d^(-3/2)` | `KNOWN` as a conjecture | Hikawa, July 2026, Conjecture 7.1 |
+| oscillation in `frac(d beta)` | not found in any source read | -- |
+| `a_1` and the jump structure | not found in any source read | -- |
+
+**The rate is forty years old, and it is our `theta` to thirty digits.**
+`lagarias-1985-3x+1-problem`, Theorem D: for all `k >= 1`,
+
+    1 - F(k) = lim_x (1/x) #{n <= x : sigma(n) > k} <= 2^(-eta k),   (2.17)
+    eta = 1 - H(theta_L) ~ .05004,                                   (2.18)
+
+with `H(x) = -x log_2 x - (1-x) log_2 (1-x)` the binary entropy function and
+`theta_L = (log_2 3)^(-1)`, which is our `beta`. The proof puts
+`C_2 = {v : v inflating, length(v) = k}`, observes `2^(-k) |C_2| = 1 - F(k)` --
+so `|C_2|` **is** our `N_k`, and that is checked rather than read off the prose:
+enumerating all `2^k` words and keeping those with `2^j < 3^(v(1)+...+v(j))` at
+every prefix reproduces A076227 term by term, `1, 1, 1, 2, 3, 4, 8, ..., 2114`,
+through `k = 16` -- and bounds `|C_2|` by the binomial tail
+`sum_{j > k theta_L} C(k,j)` via Ash's Lemma 4.7.2. The remark immediately after
+supplies the matching lower bound: for every `eta' > 0`,
+`|C_2| >= 2^((H(theta_L) - eta')k)`, hence `1 - F(k) >= 2^(-(eta+eta')k)`, for
+all large `k`.
+
+Numerically `eta = 0.050044472811669365186` and
+
+    2^(-eta) = 0.9659065532334377236055 = beta^(-beta) (1-beta)^(beta-1) / 2,
+
+the two agreeing to every one of the thirty digits computed. So `theta^d` is
+(2.17)-(2.18) written multiplicatively, and the Lean bound
+`neverNegCount_div_pow_le_theta` of `PaperBSurvivorDecay` is Theorem D's upper
+half. The cross-check is independent:
+`kontorovich-lagarias-2009-stochastic-models` quotes the same estimate as "all
+but an exponentially small set of patterns, of size `O(2^(0.94995k))` out of
+`2^k`", and `H(beta) = 0.94995552718833063481`, which is `log_2(2 theta)`.
+
+Attribution inside the classical line. Theorem D carries no name in the survey,
+unlike its Theorems A and C, both labelled "(Terras)"; it is proved there from
+Terras's structure theorem by a binomial tail. Lagarias's own annotated
+bibliography credits `terras-1976-stopping-time` with the residue-class
+structure, the coefficient stopping time, and natural density one, and does not
+mention a rate; `everett-1977-iteration` is annotated with density one alone.
+Nakanishi 2026 reads Terras the same way. The original Terras paper could not be
+read here -- the matwbn scan is behind an anti-bot gate -- so the attribution
+above rests on Lagarias, not on Terras's own text.
+
+**The `d^(-3/2)` was conjectured two months before we measured it.**
+`hikawa-2026-parity-vector-structures`, Section 7, Conjecture 7.1:
+`W(d) = Theta(d^(-3/2) 2^(gamma d))`, motivated by the residual
+`log_2 W(d) - gamma d` agreeing with "the ballot-type correction
+`-(3/2) log_2 d` to within `0.3` bits" over `100 <= d <= 10000`. The same paper
+**proves**, in Section 6, `log_2 W(d) = gamma d + O(log d)` with
+`gamma = lambda H(1/lambda) ~ 1.5056`, `lambda = log_2 3`, and an explicit decay
+rate `c = lambda(1 - H(1/lambda)) ~ 0.0793` bits per unit weight, by a cycle
+lemma plus entropy estimates, "a length-basis analogue" also given. This is the
+weight basis rather than ours: `gamma = H(beta)/beta = 1.5056438879463007943` and
+`c = eta/beta = 0.079318612774855387135`, so Hikawa's constants are Lagarias's
+`eta` rescaled by `1/beta`, and Section 6 is an independent proof of the rate
+rather than a new rate. The `O(log d)` in Section 6 does not see the `-3/2`,
+which is why the `-3/2` is a separate conjecture there.
+
+What Conjecture 7.1 does **not** say is as important as what it does. It is a
+`Theta`, not an `~`; it is not proved; and its `0.3`-bit tolerance is wide enough
+to swallow a bounded oscillating prefactor without noticing one. Our
+`psi(frac(d beta))` ranges over roughly `10.37 .. 11.21`, a ratio of `1.08` or
+`0.11` bits, so it fits inside Hikawa's band. That is the honest boundary: the
+exponent `-3/2` is his, and the function multiplying it is not in his paper.
+
+**The oscillation and `a_1` were not found anywhere.** No source read here
+states an oscillating or almost-periodic prefactor, an amplitude, or anything
+equivalent to the jump spectrum. That covers Lagarias 1985 and his annotated
+bibliography, Kontorovich and Lagarias 2009, all of Winkler 2017-2026 including
+his September 2026 Beatty-Ferrers preprint, Hikawa July and September 2026,
+Hikawa and Nakanishi January 2026, Nakanishi February 2026, and the two
+follow-on references those turn up (Rozier-Terracol, `rozier-terracol-2026`, and
+Niu). Absence of a statement in ten documents is still not a proof of novelty,
+but it is no longer an absence in one database.
+
+**Source by source, including what could not be read.**
+
+- `winkler-2017-2026-deterministic-structures` (arXiv:1709.03385). Read in full
+  at v8, 28 pages. Exact finite structure only: Proposition 8 is the Pascal-type
+  recursion, Proposition 9 proves the row sums count the residue classes modulo
+  `2^k` not yet at their coefficient stopping time -- our `N_k` -- Remark 10
+  identifies them as A076227, and Proposition 26 gives an exact coverage density
+  to `N = 18`. **No asymptotic of any kind.** Page 2 sends the asymptotic
+  question elsewhere: Hikawa's study "derives logarithmic asymptotics for the
+  associated counting sequences A100982 and A076227". The OEIS pointer "See
+  pp. 2, 4, 13" is to the ResearchGate copy, whose pagination differs from
+  arXiv v8.
+- `hikawa-2026-parity-vector-structures` (doi 10.13140/RG.2.2.29894.84804/1).
+  **Full text not read**: ResearchGate answers 403 to fetching, and its PDF link
+  opens a save dialog rather than rendering. What is quoted above is the
+  author-written version note on the ResearchGate record itself, read in the
+  browser pane, which states Section 6 and Conjecture 7.1 explicitly. The body
+  of Section 6 and Section 7 has not been checked.
+- `hikawa-nakanishi-2026-parity-vector-analysis`
+  (doi 10.13140/RG.2.2.12065.06240). **Abstract only**, same gate. These are the
+  authors of the b-file. The abstract counts parity vectors by length and by
+  number of ones and lists hypotheses; it states no asymptotic. Whether the body
+  does was not determined.
+- `nakanishi-2026-parity-vector-structure` (doi 10.51094/jxiv.3096). Read in
+  full, 9 pages, Jxiv version 2. Structural: Theorem 6 says that for each finite
+  `d` the constructed sequences contain no unconverged sub-vector of length
+  `G_d` with exactly `d` ones. **No asymptotic anywhere.** Its only size
+  statement is Remark 8, that Terras used the central limit theorem to show the
+  unconverged ratio vanishes.
+- The classical line. Lagarias 1985 as above; `terras-1976-stopping-time` not
+  read directly; `everett-1977-iteration` not read directly, annotated as
+  density one. Neither of the two 1970s papers is credited with a rate by
+  Lagarias, and none of the three states a polynomial correction or an
+  oscillating prefactor.
+- Follow-ons found along the way, both negative. `rozier-terracol-2026`
+  (arXiv:2502.00948v5, 26 pages, read in full) is about paradoxical sequences and
+  the coefficient-stopping-time conjecture, with no survivor-count asymptotic.
+  `niu-2026-parity-vectors-paradoxical` (arXiv:2605.13886), cited by Hikawa for
+  "a sharp finitary form of Terras's density in the length basis", was
+  **withdrawn** on 20 May 2026; its v1 was read and that theorem is the mod-`2^k`
+  equidistribution with deviation at most `1`, not an asymptotic for `N_d`.
+
+**What this cluster may still call its own.** The oscillation
+`J-paper-b-meander-prefactor-is-almost-periodic`, the jump spectrum
+`J-paper-b-jump-spectrum-is-the-survivor-sequence`, the closed forms
+`J-paper-b-ladder-profile-is-closed-form` and
+`J-paper-b-jump-amplitude-is-closed-form`, and the Fourier identity
+`J-paper-b-psi-fourier-is-the-orbit-series`. What it may not call its own is the
+rate or the exponent. In particular the asymptotic should be written as a
+**refinement of Theorem D**, not as a discovery: Theorem D pins the exponential
+scale two-sidedly, Hikawa conjectures the power, and what is added here is the
+prefactor -- that it exists, that it oscillates, and that it is computable.
 
 The function this branch is about is
 `J-paper-b-meander-prefactor-is-almost-periodic`; the shape it sits inside is
@@ -366,3 +495,11 @@ self-referential route to `a_1`
 Status: `EXPLORATORY`. A closed form for a laboratory quantity, resting on a
 Lean-verified finite identity and on measured asymptotics that are not proved.
 No theorem about the Juggler map, no density, no bound.
+
+And the frame has to be a refinement, not a discovery. The quantity is a known
+Collatz one, the exponential rate is Lagarias 1985 Theorem D, and the `-3/2` is
+Hikawa's Conjecture 7.1 of July 2026. Anything written up from this cluster must
+open with those two and add the prefactor to them. Two of the four sources are
+behind a ResearchGate gate and were read only at abstract level, so the
+statement that the oscillation is unrecorded is a statement about what was
+readable, not about what exists.

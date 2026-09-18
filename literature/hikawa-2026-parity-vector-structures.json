@@ -1,0 +1,24 @@
+{
+  "id": "hikawa-2026-parity-vector-structures",
+  "title": "Finite-Dimensional Combinatorial and Arithmetic Structures of Parity Vectors for the Accelerated Collatz Map",
+  "authors": ["Kazunobu Hikawa"],
+  "year": 2026,
+  "identifiers": {
+    "doi": "10.13140/RG.2.2.29894.84804/1"
+  },
+  "url": {
+    "doi": "https://doi.org/10.13140/RG.2.2.29894.84804/1"
+  },
+  "problem_area": "collatz",
+  "relevant_concepts": [
+    "parity vectors",
+    "weight basis",
+    "logarithmic asymptotics",
+    "ballot correction",
+    "A076227",
+    "A100982"
+  ],
+  "project_relationship": "known",
+  "status": "preprint",
+  "notes": "docs/problems/juggler_jump_spectrum.md. FULL TEXT NOT READ -- ResearchGate returns 403 to fetching and its PDF link opens a save dialog rather than rendering. What is recorded here is the author-written version note on the ResearchGate record itself, v2 of July 2026 and v2.1 of 2 August 2026, read in the browser pane. PROVED, Section 6: log_2 W(d) = gamma d + O(log d) with gamma = lambda H(1/lambda) about 1.5056, lambda = log_2 3 and H the binary entropy function, so the normalized relative density decays at the explicit rate c = lambda(1 - H(1/lambda)) about 0.0793 bits per unit weight, in the information-theoretic form c = lambda D(1/lambda, 1/2); by a cycle-lemma argument plus standard entropy estimates, with a length-basis analogue also given. That rate is the length-basis eta of lagarias-1985-3x+1-problem divided by beta: eta/beta = 0.0793185. CONJECTURED, Section 7, Conjecture 7.1: W(d) = Theta(d^(-3/2) 2^(gamma d)), because over 100 <= d <= 10000 the residual log_2 W(d) - gamma d agrees with the ballot-type correction -(3/2) log_2 d to within 0.3 bits. THIS IS THE PRIOR STATEMENT OF THE d^(-3/2). It is a Theta, in the weight basis, numerically motivated and not proved, and its 0.3-bit tolerance is wide enough to absorb a bounded oscillating prefactor without seeing one. No oscillation, no almost-periodicity, no amplitude constant. The September 2026 revision, Finite Parity-Vector Structures in the Accelerated Collatz Map, doi 10.13140/RG.2.2.24486.28480, carries the same Section 6 result and states outright that the sequence values are not claimed as new."
+}

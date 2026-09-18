@@ -26,7 +26,16 @@ the recursion rather than needing a local limit theorem.
 The counting sequence underneath this branch is **OEIS A076227**, a Collatz
 quantity known since 2002 -- see `J-paper-b-survivors-are-oeis-a076227`. The
 *question* asked here, whether the increment is a function of the rotation
-coordinate, remains a laboratory question about it. The
+coordinate, remains a laboratory question about it.
+
+**Priority added 19 September 2026.** The sources were read. The exponential
+rate `theta^d` is Lagarias 1985, Theorem D, two-sidedly, with
+`theta = 2^(-eta)` and `eta = 1 - H(beta)` agreeing to thirty digits; the
+`d^(-3/2)` is Hikawa's Conjecture 7.1 of July 2026. Both are `KNOWN`. The
+rotation-coordinate dependence this branch measures is not in any readable
+source. Full source-by-source reading: `juggler_jump_spectrum.md`.
+
+The
 measured prefactor it bears on is
 `J-paper-b-meander-prefactor-is-almost-periodic`; the shape it is tested against
 is the `MeanderShape` hypothesis of `PaperBSurvivorAsymptotic`, which no module

@@ -1,0 +1,21 @@
+{
+  "id": "nakanishi-2026-parity-vector-structure",
+  "title": "A Structural Study of Parity Vectors in the Collatz Conjecture",
+  "authors": ["Kazuo Nakanishi"],
+  "year": 2026,
+  "identifiers": {
+    "doi": "10.51094/jxiv.3096"
+  },
+  "url": {
+    "doi": "https://doi.org/10.51094/jxiv.3096"
+  },
+  "problem_area": "collatz",
+  "relevant_concepts": [
+    "parity vectors",
+    "Hamming weight classification",
+    "glide"
+  ],
+  "project_relationship": "known",
+  "status": "preprint",
+  "notes": "docs/problems/juggler_jump_spectrum.md. READ IN FULL, Jxiv version 2 of 7 September 2026, 9 pages. Classifies parity vectors by the number of 1s rather than by the length and proves, for each finite d, that the constructed sequences contain no unconverged sub-parity vector of length G_d with exactly d ones (Theorem 6), explicitly not establishing the conjecture. NO ASYMPTOTIC ANYWHERE: no growth constant, no power of the length, no oscillation, no constant. Its only statement about the size of the surviving family is Remark 8, that Terras used the central limit theorem to show the ratio of unconverged parity vectors to all parity vectors vanishes as the length grows."
+}

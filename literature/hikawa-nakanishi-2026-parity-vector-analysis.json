@@ -1,0 +1,21 @@
+{
+  "id": "hikawa-nakanishi-2026-parity-vector-analysis",
+  "title": "Parity Vector Analysis in the Study of the Collatz Conjecture",
+  "authors": ["Kazunobu Hikawa", "Kazuo Nakanishi"],
+  "year": 2026,
+  "identifiers": {
+    "doi": "10.13140/RG.2.2.12065.06240"
+  },
+  "url": {
+    "doi": "https://doi.org/10.13140/RG.2.2.12065.06240"
+  },
+  "problem_area": "collatz",
+  "relevant_concepts": [
+    "parity vectors",
+    "stopping time",
+    "A076227 b-file"
+  ],
+  "project_relationship": "known",
+  "status": "preprint",
+  "notes": "docs/problems/juggler_jump_spectrum.md. ABSTRACT ONLY -- ResearchGate serves the record but not the full text to this session. These are the authors of the A076227 b-file that this laboratory checked N_d against on all 3509 terms. The abstract describes classification of finite-length parity vectors by Terras's convergence condition, counting them by length and by number of 1s, a bird's-eye visualization, and a list of hypotheses supporting the affirmative conjecture. It states no asymptotic, no growth constant, no power of the length and no oscillation. Whether the body contains one was not determined here."
+}

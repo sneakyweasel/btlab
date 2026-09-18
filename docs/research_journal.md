@@ -1,5 +1,59 @@
 # Research journal
 
+## 2026-09-19 -- the rate was Lagarias's and the exponent was Hikawa's
+
+- **Objective:** yesterday's entry said priority on the asymptotic was not
+  settled and that I was not claiming it, then listed four papers nobody had
+  read. Read them.
+- **The exponential rate is forty years old and it is our `theta` to thirty
+  digits.** Lagarias 1985, Theorem D: `1 - F(k) <= 2^(-eta k)` with
+  `eta = 1 - H(theta_L)` about `.05004`, `H` the binary entropy function and
+  `theta_L = (log_2 3)^(-1)`, which is our `beta`. In the proof `C_2` is the set
+  of inflating words of length `k`, `2^(-k)|C_2| = 1 - F(k)`, so `|C_2|` **is**
+  our `N_k`; the bound is the binomial tail through Ash's Lemma 4.7.2, and the
+  remark after it gives the matching lower bound `2^(-(eta+epsilon)k)`. So the
+  estimate is two-sided on the exponential scale, not one-sided.
+- **Checked rather than asserted.** `2^(-eta) = 0.9659065532334377236055` and
+  `beta^(-beta)(1-beta)^(beta-1)/2` agrees on every one of thirty digits. Our
+  Lean `neverNegCount_div_pow_le_theta` is Theorem D's upper half. Independent
+  corroboration: Kontorovich-Lagarias 2009 quote `O(2^(0.94995k))` out of `2^k`,
+  and `H(beta) = 0.94995552718833063481 = log_2(2 theta)`.
+- **The `d^(-3/2)` was conjectured two months before we measured it.** Hikawa,
+  July 2026, Conjecture 7.1: `W(d) = Theta(d^(-3/2) 2^(gamma d))`, because the
+  residual `log_2 W(d) - gamma d` tracks `-(3/2) log_2 d` "to within 0.3 bits"
+  over `100 <= d <= 10000`. His Section 6 **proves** the rate again, by a cycle
+  lemma, in the weight basis -- and `gamma = H(beta)/beta = 1.50564...`,
+  `c = eta/beta = 0.07931...`, so his constants are Lagarias's `eta` over `beta`.
+- **What is still ours.** The oscillation in `frac(d beta)`, the jump spectrum,
+  `a_1`, the ladder profile, the Fourier identity. Nothing in ten documents
+  states an oscillating prefactor. Hikawa's `0.3`-bit tolerance is `0.11` bits
+  wider than our `psi`'s whole range, which is precisely why a `Theta` did not
+  have to see it.
+- **Two sources could not be read and I am saying so rather than guessing.**
+  Hikawa July 2026 and Hikawa-Nakanishi January 2026 are ResearchGate-gated:
+  `403` to fetching, and the PDF link opens a save dialog. What is quoted is the
+  author-written version note on the record itself, read in the browser pane,
+  which states Section 6 and Conjecture 7.1 explicitly. Terras 1976 is behind an
+  anti-bot gate at matwbn, so the attribution inside the classical line rests on
+  Lagarias's annotated bibliography, which credits Terras with density one and
+  not with a rate. Winkler v8 and Nakanishi were read in full and contain no
+  asymptotic at all; Winkler's page 2 sends the question to Hikawa outright.
+- **Two dead ends worth recording.** Niu (arXiv:2605.13886), cited by Hikawa for
+  "a sharp finitary form of Terras's density in the length basis", is
+  **withdrawn**, and its v1 theorem is the mod-`2^k` equidistribution with
+  deviation at most `1` -- not an asymptotic. Rozier-Terracol, which Niu
+  withdrew in favour of, is about paradoxical sequences and has none either.
+- **The correction.** `J-paper-b-survivors-are-oeis-a076227` now carries the
+  priority reading; the rate and the exponent are `KNOWN` with literature ids;
+  the dossier's `Current literature` is rewritten source by source; the branch
+  ledger's `a_1 = 0.42629 +/- 0.0015` is replaced by the closed form it was
+  superseded by yesterday. Anything written up from this cluster opens as a
+  refinement of Theorem D and Conjecture 7.1, not as a discovery.
+- **The lesson, sharper than yesterday's.** Yesterday I wrote that a dossier's
+  `Current literature` should be answered by looking. Looking took one session
+  and killed two of four claims. The useful part is that it did not kill the
+  other two, and now the survivors are defensible instead of merely unchallenged.
+
 ## 2026-09-18 -- the survivors were a known Collatz sequence all along
 
 - **Prompted by Philippe:** the survivors look close to OEIS A076227. They are
