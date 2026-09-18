@@ -6,6 +6,7 @@
       "route": "every irrational has mu >= 2",
       "mu": 2.0,
       "effective": true,
+      "constant_computed": true,
       "constant": "1",
       "verified_against_primary": true,
       "used_by": "the hard floor on the closure threshold",
@@ -18,6 +19,7 @@
       "route": "same shape, sharpened exponent",
       "mu": 5.116201,
       "effective": false,
+      "constant_computed": false,
       "constant": "implied",
       "verified_against_primary": true,
       "used_by": "recorded only; in the noise at 1e-4",
@@ -27,11 +29,13 @@
     },
     {
       "source": "wu-wang-2014-irrationality-measure-log3",
-      "route": "linear form at a=0, H=max(L,o)=L",
+      "route": "Theorem 1, three-term linear form at p=0, H=max(L,o)=L",
       "mu": 5.1163051,
-      "effective": false,
-      "constant": "C_eps implied, eps-asymptotic",
+      "effective": true,
+      "constant_computed": false,
+      "constant": "none: H_0(eps) asserted effectively computable, never computed",
       "verified_against_primary": true,
+      "uncomputed_threshold": "J-wuwang-effectivity-is-a-saddle-point-cost: H_0 = exp(Theta(n_0)), about 1e3500 at eps = 0.05, so it supplies nothing at a reachable L",
       "used_by": "J-cyclemin-gap-power-transfer (cycle_wuwang_reduction)",
       "linear_form_exponent_p": 4.1163051,
       "closure_exponent": 5.1163051,
@@ -39,24 +43,27 @@
     },
     {
       "source": "rhin-1987-pade-irrationality",
-      "route": "Proposition p.160 eq.(8), reported as the ratio measure",
+      "route": "Proposition p.160 eq.(8), three-term, conditional on H >= H_0",
       "mu": 8.616,
       "effective": true,
-      "constant": "not extracted here",
-      "verified_against_primary": false,
-      "disputed_by": "zudilin-essay-irrationality-measures section 3.4 Theorem 3 gives 8.616 for any nonzero theta in Q log2 + Q log3, which contains log 3 but not the ratio log3/log2",
+      "constant_computed": false,
+      "constant": "none: conditional on H >= H_0, and H_0 is never computed",
+      "verified_against_primary": true,
+      "uncomputed_threshold": "J-rhin-eight-has-no-computed-threshold: H_0 is declared effectivement calculable and never computed, and H_0 = exp(Theta(n_0)) puts it far above the L ~ 1e6 a cycle search reaches",
       "reported_by": "spiegelhofer-2022-collisions-digit-sums introduction",
-      "used_by": "nothing -- never recorded in the laboratory",
+      "reading_resolved_by": "J-rhin-eight-readings-are-one-theorem",
+      "used_by": "nothing, and now permanently -- L^8.616 needs H_0",
       "linear_form_exponent_p": 7.616,
       "closure_exponent": 8.616,
       "period_exponent_in_n": 0.11606313834726091
     },
     {
       "source": "rhin-1987-pade-irrationality",
-      "route": "Proposition p.160 eq.(7) via simons-de-weger Lemma 12",
+      "route": "Proposition p.160 eq.(7), three-term, via simons-de-weger Lemma 12",
       "mu": 14.3,
       "effective": true,
-      "constant": "915 (printed in Paper A)",
+      "constant_computed": true,
+      "constant": "915, from Simons-de Weger Lemma 12; Rhin prints no constant",
       "verified_against_primary": true,
       "used_by": "Paper A Corollary 4.11 (deposited text)",
       "linear_form_exponent_p": 13.3,
@@ -76,14 +83,22 @@
       "value": 5.116201
     },
     {
-      "check": "IF eq.(8) is the ratio measure, Paper A's printed text is weaker",
+      "check": "eq.(8) is sharper than Paper A's printed eq.(7) and still unusable",
       "ok": true,
       "value": 1.6597028783658312
     },
     {
-      "check": "the disputed row records the source that contradicts it",
+      "check": "every chain member is read at the primary source",
       "ok": true,
-      "value": "zudilin-essay-irrationality-measures section 3.4 Theorem 3 gives 8.616 for any nonzero theta in Q log2 + Q log3, which contains log 3 but not the ratio log3/log2"
+      "value": 5
+    },
+    {
+      "check": "a row that is effective but uncomputed says what is missing",
+      "ok": true,
+      "value": [
+        "rhin-1987-pade-irrationality",
+        "wu-wang-2014-irrationality-measure-log3"
+      ]
     },
     {
       "check": "exactly one chain member is unrecorded in the laboratory",
@@ -91,9 +106,14 @@
       "value": 1
     },
     {
-      "check": "the unrecorded member is not yet verified against the primary source",
+      "check": "the unrecorded member is read at source and has no computed threshold",
       "ok": true,
       "value": "rhin-1987-pade-irrationality"
+    },
+    {
+      "check": "the effective statement is Paper A's 14.3, the asymptotic one Wu-Wang's",
+      "ok": true,
+      "value": 2.794985779874621
     },
     {
       "check": "Dirichlet floors the closure exponent at 2",
@@ -154,8 +174,10 @@
     }
   ],
   "all_transcendence_checks_ok": true,
+  "chain_is_read_at_source": true,
   "sharpest_verified_mu": 5.116201,
-  "unverified_candidate_mu": 8.616,
+  "sharpest_computed_mu": 14.3,
+  "asymptotic_mu_in_use": 5.1163051,
   "concentration_constants_move": false,
   "first_passage_excess_shrinks": true,
   "is_halt_theorem": false,
