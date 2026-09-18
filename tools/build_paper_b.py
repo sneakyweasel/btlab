@@ -72,6 +72,21 @@ def sync(root: Path) -> None:
     (root / ZENODO_FIELDS).write_text(fields, encoding='utf-8')
 
 
+def digest(path: Path, mode: str = 'binary') -> str:
+    """Hash a build input the way Paper A and Paper C hash theirs.
+
+    The manifest pins files git stores with LF and checks out with the platform's
+    line ending, so hashing raw bytes made this gate's verdict depend on core.autocrlf:
+    one and the same commit passed on a checkout that happened to hold LF and failed on
+    a checkout that held CRLF.  Text inputs are hashed line-ending normalised; the PDF
+    stays binary, where every byte is meant to count.
+    """
+    data = path.read_bytes()
+    if mode == 'text':
+        data = data.replace(b'\r\n', b'\n').replace(b'\r', b'\n')
+    return hashlib.sha256(data).hexdigest()
+
+
 def check(root: Path) -> None:
     check_exports(root)
     check_manifest(root)
@@ -91,7 +106,7 @@ def check_manifest(root: Path) -> None:
         built = next((d/record['name'] for d in places if (d/record['name']).is_file()), None)
         if built is None:
             raise ValueError(f'Missing Paper B build input: {record["name"]}; rebuild')
-        if hashlib.sha256(built.read_bytes()).hexdigest() != record['sha256']:
+        if digest(built, record['mode']) != record['sha256']:
             raise ValueError(
                 f'Stale Paper B build: {record["name"]} differs from the digest in '
                 f'{BUILD_MANIFEST}; rebuild with `python tools/build_paper_b.py`')
@@ -184,7 +199,8 @@ def main() -> None:
         shutil.copyfile(work/f'{STEM}{suffix}',output/f'{STEM}{suffix}')
     files=[source,assets/'article.tex',assets/'layout.lua',Path(__file__).resolve(),
            output/f'{STEM}.tex',output/f'{STEM}.pdf']
-    records=[{'name':p.name,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in files]
+    modes=['text','text','text','text','text','binary']
+    records=[{'name':p.name,'mode':m,'sha256':digest(p,m)} for p,m in zip(files,modes)]
     record={'status':'built; visual review required for any changed build',
             'pandoc':run([pandoc,'--version'],work).decode(errors='replace').splitlines()[0],
             'xelatex':run([xelatex,'--version'],work).decode(errors='replace').splitlines()[0],
