@@ -1,0 +1,59 @@
+{
+  "answer": "the jump spectrum is the survivor sequence",
+  "beta": 0.6309297535714574,
+  "theta": 0.9659065532334378,
+  "max_depth": 4000,
+  "identity": "a_n = a_1 * N_n / (2*theta)^(n-1)",
+  "a_one": {
+    "estimate": 0.42629,
+    "band": [
+      0.42479,
+      0.42779
+    ],
+    "note": "the only measured constant in the closed form; the ratios a_n/a_1 are exact integers over a power and carry no fitted quantity at all"
+  },
+  "survivors_1_to_9": [
+    1,
+    1,
+    2,
+    3,
+    4,
+    8,
+    13,
+    19,
+    38
+  ],
+  "amplitude_ratios": {
+    "2": 0.5176484188105113,
+    "5": 0.28721000094230964,
+    "10": 0.17080241223158077,
+    "50": 0.036300636591229014,
+    "200": 0.0060914985611568925
+  },
+  "sturmian_zeros": {
+    "count": 184,
+    "predicted_ratio": 1.0352968376210225,
+    "worst_relative_deviation": 0.0,
+    "why_trivial": "rho and theta are the same number and a Sturmian zero is an even barrier letter, which kills nothing and doubles the count; the law is the empty-window theorem and nothing more"
+  },
+  "barrier_index": {
+    "worst_class_disagreement": 0.0,
+    "classes_checked": 200,
+    "C_1": 0.42629,
+    "C_25": 0.012876995379576584,
+    "j_max": 2523,
+    "C_j_max": 2.131153635782567e-27,
+    "note": "closed form at every j; the previous branch reached about j = 25 by local differencing and no fit reaches further, because the data cannot constrain a high-n jump at all -- its column averages into the ramp"
+  },
+  "g_one": {
+    "truncated": 6.721648770202471,
+    "tail_estimate": 0.34468826495835336,
+    "ledger_value": 7.07
+  },
+  "total_variation": 4.711849907422307,
+  "decision": {
+    "classification": "JUMP_SPECTRUM_IS_THE_SURVIVOR_SEQUENCE",
+    "reason": "the identity is verified two independent ways -- a transfer-operator propagation agreeing with the exact counts to machine precision, and a one-parameter fit of psi whose single amplitude is stable across d-subranges, across the number of modelled jumps, and to between 0.03 and 0.35 percent against a freely fitted head amplitude for splits of the spectrum at n >= 5"
+  },
+  "anti_overclaim": "This determines the jumps of psi, not psi. A model of psi as its jumps plus the linear rise periodicity demands leaves a residual of 1.35e-02 against a noise floor of 4.4e-03, and 89 percent of that residual variance is a reproducible function of the coordinate. So psi has structure beyond its jump spectrum, and this branch does not say what it is. Nor is any of this a proof: the asymptotic psi itself remains measured, and the Lean module proves only the finite exchange cost that the spectrum rests on."
+}

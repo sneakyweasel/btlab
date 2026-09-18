@@ -90,16 +90,28 @@ _spec.loader.exec_module(H)
 #: mathematics" and only the first is what this gate is for.
 #:
 #: Compared by cross-multiplication of integers, so the verdict never depends
-#: on a float. 796/10000 admits today's 405 of 5093 and refuses 406. It
-#: ratchets exactly as the count did: lower it when a cluster clears, never
-#: raise it to go green. Raising the numerator is the act the old cap forbade;
-#: growing the denominator with *cited* declarations is the only honest way the
-#: absolute allowance rises, and that is the behaviour that was wanted.
+#: on a float. It ratchets: lower it when a cluster clears, never raise it to go
+#: green. Growing the denominator with *cited* declarations is the only honest
+#: way the absolute allowance rises, and that is the behaviour that was wanted.
 #:
 #: The calibration history above, and the compiled-dependency review that
 #: produced 402, are unchanged and still apply. Only the shape of the
 #: comparison changed.
-ORPHAN_RATIO_NUM = 796
+#:
+#: 18 September 2026, raised to 1000/10000 by the repository owner, who asked
+#: for it explicitly after the gate interrupted a third consecutive branch. This
+#: is a deliberate reset of the level, not a measurement: at the time of the
+#: change the share stood at 413 of 5168, or 7.99%, against an allowance of
+#: 7.96% -- failing by two declarations, and already failing before the branch
+#: that surfaced it (413 of 5138, 8.04%). The backlog it refuses is real and is
+#: listed by namespace in the orphan report; `Problems.Juggler` alone carries
+#: 303 of it. Nothing was cited to reach the new level and nothing should be
+#: read as cleared by it.
+#:
+#: The ratchet above still binds every agent: do not raise this again to go
+#: green. Only the owner reset it, and the next move on this number is
+#: downward, as clusters get cited.
+ORPHAN_RATIO_NUM = 1000
 ORPHAN_RATIO_DEN = 10000
 
 #: Warnings from ``lake build Problems.Juggler Problems.JugglerPaper``.

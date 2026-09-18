@@ -194,20 +194,20 @@
       "candidates": [
         {
           "decl": "density_succ",
-          "line": 203,
-          "score": 0.231,
+          "line": 282,
+          "score": 0.132,
           "trust": "kernel"
         },
         {
           "decl": "neverNegCount_add_minimalCertCount",
           "line": 171,
-          "score": 0.192,
+          "score": 0.11,
           "trust": "kernel"
         },
         {
-          "decl": "minimalCertCount_eq_zero_of_window_empty",
-          "line": 220,
-          "score": 0.128,
+          "decl": "minimalCertCount_succ",
+          "line": 256,
+          "score": 0.079,
           "trust": "kernel"
         }
       ],
@@ -215,18 +215,18 @@
       "confidence": "low",
       "definitions": [
         {
-          "decl": "minimalCertWords",
-          "line": 56,
-          "score": 0.064
+          "decl": "onBarrierWords",
+          "line": 223,
+          "score": 0.086
         },
         {
           "decl": "minimalCertCount",
           "line": 60,
-          "score": 0.063
+          "score": 0.044
         }
       ],
       "id": "J-paper-b-survivor-certificate-recursion",
-      "in_file": 14,
+      "in_file": 18,
       "lean": "Problems/Juggler/PaperBCertificateRecursion.lean",
       "names_own": [
         "neverNegCount_add_minimalCertCount",
@@ -239,7 +239,10 @@
         "density_flat_of_window_empty",
         "density_flat_five_to_six",
         "density_flat_eight_to_nine",
-        "density_flat_ten_to_eleven"
+        "density_flat_ten_to_eleven",
+        "minimalCertCount_succ",
+        "minimalCertWords_succ",
+        "not_exponentGap_concat_odd"
       ],
       "statement": "The survivor count and the minimal-certificate count of Paper B are one recursion. Let N_d = neverNegCount d count the length-d parity words no prefix of which contracts and M_d = minimalCertCount d the minimal certificates of length d. (i) neverNegCount_add_minimalCertCount: N_(d+1) + M_(d+1) = 2 N_d, by one extension step -- extending a survivor by a letter either contracts for the first time, w"
     },
@@ -4272,8 +4275,19 @@
       "lean": "formal/Problems/Juggler/PaperBDensity.lean",
       "names_own": [],
       "statement": "The FD step is formalised as an inference, and Theorem 6.1 stays conditional -- which is what the manuscript already says and what the formalisation must not quietly improve on. WHAT FD IS. A HYPOTHESIS, not a result: 'Hypothesis FD. For every fixed d >= 1 and every odd-rooted word w of length d, #{n <= N : word_d(n) = w} = 2^(-d) N + o_w(N). No common error rate in d is assumed.' Theorem 6.1 is h"
+    },
+    {
+      "candidates": [],
+      "composite": false,
+      "confidence": "low",
+      "definitions": [],
+      "id": "J-paper-b-transposition-costs-the-barrier-mass",
+      "in_file": 0,
+      "lean": "formal/Problems/Juggler/PaperBJumpTransposition.lean",
+      "names_own": [],
+      "statement": "Transposing two adjacent barrier letters costs exactly the mass on the barrier. Grade the surviving parity words of a given length by their surplus h above the barrier. A barrier letter that does not rise acts by stepFlat v h = v h + v (h-1) and kills nothing; one that rises acts by stepRise v h = v (h+1) + v h and loses exactly v 0, the survivors sitting on the barrier. Then stepRise (stepFlat v)"
     }
   ],
-  "unresolved": 118,
+  "unresolved": 119,
   "worth_reviewing": 19
 }
