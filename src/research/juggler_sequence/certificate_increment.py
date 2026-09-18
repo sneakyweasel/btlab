@@ -30,7 +30,7 @@ no floating point enters them. Only the fits are floating point.
 from __future__ import annotations
 
 import json
-from math import log
+from math import exp, log
 from typing import Any
 
 from research.juggler_sequence.lean_paths import DOCS_RESEARCH
@@ -232,6 +232,52 @@ def class_fits(survivors: dict[int, int], minimal: dict[int, int],
     return out
 
 
+ZETA_THREE_HALVES = 2.612375348685488343348567567924
+
+
+def g_one(survivors: dict[int, int], max_depth: int, window: int = 500
+          ) -> dict[str, Any]:
+    """`G(1) = sum_d N_d/(2 theta)^d`, the last numerical factor of the meander constant.
+
+    `J-paper-b-meander-constant-derived` gives closed forms for `kappa`,
+    `sigma^2 = log(3/2) log 2` and `theta*`, and leaves `G(1)` as "a convergent
+    series evaluated numerically", recording `~7.07`.
+
+    The head is exact. The tail is not: terms behave like
+    `psi(frac(d beta)) d^(-3/2)`, so it is `psi` times the exact
+    `sum_(d>D) d^(-3/2) = zeta(3/2) - H_D`, and `psi` still oscillates at every
+    reachable depth. The band below is that oscillation, not a rounding error --
+    it is the honest width of the answer, and it is why no closed form should be
+    read off these digits.
+    """
+    lsum = log(2) + log(theta(BETA))
+    def term(d: int) -> float:
+        return exp(log(survivors[d]) - d * lsum) if survivors[d] else 0.0
+    head = sum(term(d) for d in range(0, max_depth + 1))
+    tail_weight = ZETA_THREE_HALVES - sum(d ** -1.5 for d in range(1, max_depth + 1))
+    psis = [term(d) * d ** 1.5 for d in range(max_depth - window, max_depth + 1)]
+    lo, hi = min(psis), max(psis)
+    mean = sum(psis) / len(psis)
+    return {
+        "head_depth": max_depth,
+        "head": head,
+        "tail_weight": tail_weight,
+        "psi_window": {"min": lo, "max": hi, "mean": mean},
+        "estimate": head + mean * tail_weight,
+        "band": [head + lo * tail_weight, head + hi * tail_weight],
+        "relative_band": (hi - lo) * tail_weight / (head + mean * tail_weight),
+        "kappa_times_estimate": 1.541814521 * (head + mean * tail_weight),
+        "note": (
+            "G(1) is downstream of psi, not independently open: a closed form for the "
+            "tail is sum_n c_n Li_(3/2)(e(n beta)) over psi's Fourier coefficients, and "
+            "psi is exactly what MeanderShape asserts and nobody has. Projecting those "
+            "coefficients from counts to depth 3000 resolves only the mean; the higher "
+            "modes sit at a noise floor, so these counts cannot say whether psi is "
+            "smooth or has jumps."
+        ),
+    }
+
+
 def probe_payload(max_depth: int = MAX_DEPTH, fit_from: int = FIT_FROM,
                   period: int = PERIOD) -> dict[str, Any]:
     survivors, minimal = survivor_counts(max_depth)
@@ -306,6 +352,7 @@ def probe_payload(max_depth: int = MAX_DEPTH, fit_from: int = FIT_FROM,
         "b_over_a": {"min": min(ratios), "max": max(ratios)},
         "meander_predicted_b": predicted_b,
         "slope_stability": slope_stability(survivors, minimal, fits),
+        "g_one": g_one(survivors, max_depth),
         "monotone_classes": monotone,
         "monotone_share": monotone_share,
         "coordinate_control": {

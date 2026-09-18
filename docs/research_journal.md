@@ -1,5 +1,44 @@
 # Research journal
 
+## 2026-09-18 -- G(1) is not an independent open problem
+
+- **Objective:** the meander constant is `kappa G(1)`.
+  `J-paper-b-meander-constant-derived` gives closed forms for `kappa`, for
+  `sigma^2 = log(3/2) log 2` and for `theta*`, and leaves `G(1) ~ 7.07` as "a
+  convergent series evaluated numerically, not in closed form". Does it evaluate?
+- **Sharper value, with a band that is part of the answer.** `G(1) = 7.0606`,
+  band `[7.0422, 7.0725]`, `0.43%` wide: an exact head to `d = 3000` plus a
+  `zeta(3/2) - H_D` tail weight. `kappa G(1) = 10.8861`, inside the `10.89-10.90`
+  already recorded. The band is `psi` still oscillating at the cutoff, not
+  rounding -- the tail is `5.5%` of the value -- and it is exactly why no closed
+  form should be read off these digits.
+- **Why it stays numerical, which is the actual finding.** The tail is
+  `sum_n c_n Li_(3/2)(e(n beta))` over the Fourier coefficients of `psi`. A
+  closed form for `G(1)` therefore requires `psi`, and `psi` is precisely what
+  `MeanderShape` asserts and nobody has. **`G(1)` is not a separate open problem;
+  it is downstream of `psi`.** That reclassifies the last numerical factor of the
+  meander constant from "someone should evaluate this" to "this is the same
+  problem wearing different clothes".
+- **A checked negative on the route I tried.** I projected `psi`'s Fourier
+  coefficients from the counts. It resolves the mean, `c_0 = 10.66`, and nothing
+  else: modes `n = 30..40` average `0.012`, comparable to individual values, so
+  there is a noise floor. A decay fit gave `p = 0.716` off erratic coefficients
+  (`|c_8| > |c_4|`), and I nearly wrote that `psi` has jumps with `1/n` decay --
+  which would have been the same error as the `40.8`, in the same session, an
+  hour later. Recorded as: these counts cannot decide whether `psi` is smooth or
+  jumps, and no decay law is claimed.
+- **Decision:** the meander-constant row is refined rather than a new branch
+  opened; nothing here is a new claim about the Juggler map, and `g_one` lives in
+  the existing probe with a test asserting the band and the obstruction travel
+  with the number.
+- **Best next question:** `psi` itself, and specifically whether it is a jump
+  function. Deciding that needs depths well beyond 3000, which the current DP
+  cannot reach because it carries exact integers of `3^o` with `o` near `d`; a
+  float-log DP with controlled error would go much further and is the cheapest
+  next instrument. If `psi` does jump, the three-distance structure of
+  `J-least-peak-staircase-is-beta-ostrowski` is the place to look for the jump
+  set, and this cluster has already met that structure twice today.
+
 ## 2026-09-18 -- the 40.8 was mine, and it was not there
 
 - **Correction to the entry below.** I closed the increment branch calling `b/a`

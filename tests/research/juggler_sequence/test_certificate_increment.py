@@ -130,3 +130,20 @@ def test_b_over_a_is_not_reported_as_a_constant() -> None:
         "the value must be reported as fit-dependent"
     )
     assert "not a constant" in stability["note"]
+
+
+def test_g_one_is_reported_with_its_band_and_its_obstruction() -> None:
+    """`G(1)` must never be published as a bare number.
+
+    Its tail is 5.5% of the value and is `psi` still oscillating, so the band is
+    part of the answer. And the reason it stays numerical -- that a closed form
+    needs `psi`'s Fourier data -- must travel with it, or someone will read the
+    digits as a constant to identify.
+    """
+    g = json.loads(JSON_PATH.read_text(encoding="utf-8"))["g_one"]
+    lo, hi = g["band"]
+    assert lo < g["estimate"] < hi
+    assert g["relative_band"] > 1e-3, "a band this narrow would be overclaiming"
+    assert 10.85 < g["kappa_times_estimate"] < 10.95, "must agree with the ledger"
+    assert "downstream of psi, not independently open" in g["note"]
+    assert "cannot say whether psi is smooth or has jumps" in g["note"]
