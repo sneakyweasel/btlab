@@ -3310,7 +3310,9 @@
         "J-paper-b-jump-sum-is-the-meander-series",
         "J-paper-b-sturmian-zero-law-is-the-empty-window",
         "J-paper-b-psi-fourier-is-the-orbit-series",
-        "J-paper-b-jump-amplitude-is-not-a-fixed-point"
+        "J-paper-b-jump-amplitude-is-not-a-fixed-point",
+        "J-paper-b-ladder-profile-is-closed-form",
+        "J-paper-b-jump-amplitude-is-closed-form"
       ],
       "aliases": [],
       "nk_cluster": null

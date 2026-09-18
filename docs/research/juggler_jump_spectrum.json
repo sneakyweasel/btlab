@@ -5,12 +5,20 @@
   "max_depth": 4000,
   "identity": "a_n = a_1 * N_n / (2*theta)^(n-1)",
   "a_one": {
-    "estimate": 0.42623,
-    "band": [
-      0.42603,
-      0.42643
+    "value": 0.42795680441133055,
+    "closed_form": "1 / (2 theta sqrt(2 pi beta (1-beta))) = kappa theta* log3 / (2 theta)",
+    "measured": false,
+    "withdrawn": [
+      0.42623,
+      0.426289
     ],
-    "note": "the only measured constant in the closed form; the ratios a_n/a_1 are exact integers over a power and carry no fitted quantity at all"
+    "note": "closed form, not measured. psihat_k = Phihat_k G(e(-k beta)) for every k, so psi's jump at the origin is the ladder profile's, and a_1 is that over 2 theta. The two values withdrawn here were recorded the same day and were both biased low: a window of half-width delta around a jump contains its neighbours, which sum to about 17 sqrt(delta), so every local reading is low by O(1/sqrt(N)); and a complex least squares absorbed a phase discrepancy of 0.085/k as a magnitude deficit"
+  },
+  "ladder_profile": {
+    "form": "Phi(x) = r^(1-x) / ((1-r) sqrt(2 pi beta (1-beta))), r = (1-beta)/beta",
+    "mean_is_kappa": 1.5418145206659029,
+    "jump": 0.8267325637634896,
+    "note": "A_n sqrt(n) is not the constant the non-lattice local limit theorem suggests but a function of frac(n beta), to 100 percent of its variance, oscillating by 15 percent. kappa is its mean, identically"
   },
   "survivors_1_to_9": [
     1,
@@ -39,10 +47,10 @@
   "barrier_index": {
     "worst_class_disagreement": 0.0,
     "classes_checked": 200,
-    "C_1": 0.42623,
-    "C_25": 0.012875182952067672,
+    "C_1": 0.42795680441133055,
+    "C_25": 0.012927344749027807,
     "j_max": 2523,
-    "C_j_max": 2.1308536774956096e-27,
+    "C_j_max": 2.139486499047822e-27,
     "note": "closed form at every j; the previous branch reached about j = 25 by local differencing and no fit reaches further, because the data cannot constrain a high-n jump at all -- its column averages into the ramp"
   },
   "g_one": {
@@ -50,7 +58,7 @@
     "tail_estimate": 0.34468826495835336,
     "ledger_value": 7.07
   },
-  "total_variation": 4.711186718057215,
+  "total_variation": 4.730273356743706,
   "decision": {
     "classification": "JUMP_SPECTRUM_IS_THE_SURVIVOR_SEQUENCE",
     "reason": "the identity is verified two independent ways -- a transfer-operator propagation agreeing with the exact counts to machine precision, and a one-parameter fit of psi whose single amplitude is stable across d-subranges, across the number of modelled jumps, and to between 0.03 and 0.35 percent against a freely fitted head amplitude for splits of the spectrum at n >= 5"

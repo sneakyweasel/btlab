@@ -1,5 +1,46 @@
 # Research journal
 
+## 2026-09-18 -- the LLT constant is a mean, and that gives a_1 in closed form
+
+- **Objective:** run the ladder question properly -- is `Phi`'s jump
+  `1/sqrt(2 pi beta (1-beta))`, and where does the `0.3%` against `a_1` live?
+- **`Phi` is closed form, and it is an exponential.** `ceil(n beta) - n beta` is
+  exactly `1 - frac(n beta)`, consecutive binomial terms at the large-deviation
+  point have ratio `r = (1-beta)/beta`, so the tail is geometric to `O(1/n)`:
+  `Phi(x) = r^(1-x)/((1-r) sqrt(2 pi beta (1-beta)))`. Pointwise, with no
+  binning, the error is a pure `1/n` offset. I had called it a sawtooth from the
+  constancy of `k|Phihat_k|`; that constant is the jump and says nothing about
+  the shape between jumps. `Phi(0.5)` sits below the chord.
+- **`kappa` is its mean, identically.** `1/(log(beta/(1-beta)) sqrt(2 pi beta
+  (1-beta)))` is `1/(sqrt(2 pi) theta* sigma)` -- same number, `2.2e-10`. So the
+  non-lattice local limit theorem `A_n ~ kappa/sqrt(n)` is a statement about the
+  mean of a function that oscillates by `15%` and never converges to anything.
+- **And its jump gives the amplitude.** `psihat_k = Phihat_k G(e(-k beta))` for
+  every `k`, the mean included, so the `1/k` tails match and
+
+      a_1 = 1/(2 theta sqrt(2 pi beta (1-beta))) = 0.427956804
+
+  `|psihat_k|/|Phihat_k G_k|` is `1.0015 +/- 0.0020` over `k <= 256`.
+- **That withdraws two values I committed this morning**, `0.426227` and
+  `0.426289`, both `0.4%` low, for two different reasons.
+  - The level fit is low because a window of half-width `delta` around a jump
+    contains its neighbours, which sum to `~17 sqrt(delta)` -- so a local reading
+    is low by `O(1/sqrt(N))`. The sequence was visibly still climbing,
+    `0.425355` to `0.428359` at `N = 2500..40000`, extrapolating to `0.428027`.
+    I took a term of a convergent sequence for its limit, which is the same
+    mistake as the `11.03` meander constant this laboratory already records.
+  - The Fourier reading is low because my complex least squares was fitted
+    through a phase discrepancy of `0.085/k`, and `cos(0.085) = 0.9964`. The
+    magnitudes always agreed; that the magnitudes agreed and the complex fit did
+    not was the signature, and I read the complex fit.
+- **What is now true:** no fitted constant remains anywhere in `psi`.
+  `psihat_k = Phihat_k G(e(-k beta))` with `Phihat` closed form and `G` the
+  Spitzer series in the exact counts. `G(1)` is still a convergent series, so the
+  meander constant `kappa G(1)` stays numerical -- but numerical in one series
+  rather than in a measured function.
+- **Decision:** `PROMOTE`, on the existing branch.
+  [Jump spectrum](problems/juggler_jump_spectrum.md).
+
 ## 2026-09-18 -- the fixed point was not one, and psi's Fourier data is the orbit series
 
 - **Objective:** go at the fixed-point equation for `a_1` that I proposed in the

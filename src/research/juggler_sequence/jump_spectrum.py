@@ -53,7 +53,7 @@ import json
 from decimal import Decimal, getcontext
 from functools import lru_cache
 import math
-from math import exp, log
+from math import exp, log, pi, sqrt
 from typing import Any
 
 from research.juggler_sequence.lean_paths import DOCS_RESEARCH
@@ -75,25 +75,42 @@ THETA = BETA ** (-BETA) * (1.0 - BETA) ** (BETA - 1.0) / 2.0
 #: Depth of the exact integer program behind the committed artifact.
 MAX_DEPTH = 4000
 
-#: Amplitude of the jump at `frac(beta)`, the one measured constant in the closed form.
-#: Two independent routes agree. From the jumps: a one-parameter model of `psi` on `d` in
-#: `[2e5, 1e6]`, stable to `5e-4` across `d`-subranges and across the number of modelled
-#: jumps, giving `0.426289`. From the Fourier side (`fourier_coefficient`): a complex
-#: least squares of `psihat_k` against `G` on the rotation orbit over `k <= 60`, which
-#: does not resolve a single jump and is insensitive to the level count entirely, giving
-#: `0.426227` with a spread of `0.426096` to `0.426358` over `d`-subranges.
-A_ONE = 0.42623
+#: Ratio of consecutive binomial terms at the large-deviation point `n * beta`, which
+#: is what makes the ladder profile below an exponential rather than anything softer.
+LADDER_RATIO = (1.0 - BETA) / BETA
 
-#: Half-width of the band on `A_ONE`: the spread across both routes and every reading
-#: taken, not a standard error. An earlier band of `0.0015` was ten times too wide --
-#: it predated the Fourier route, which is far better conditioned because it never has
-#: to separate one jump from its neighbours.
-A_ONE_BAND = 0.0002
+#: The jump of the ladder profile `Phi` at the origin, in closed form. It is one
+#: binomial term at the large-deviation point, rescaled: `ceil(n*beta)` steps up by one
+#: as `frac(n*beta)` crosses zero, the tail loses exactly the term at `n*beta`, and
+#: Stirling turns that term into `1/sqrt(2*pi*beta*(1-beta))`.
+LADDER_JUMP = 1.0 / sqrt(2.0 * pi * BETA * (1.0 - BETA))
 
-#: `kappa` of `J-paper-b-meander-constant-derived`, in closed form there. The mean of
-#: `psi` is `kappa * G(1)`, and it is the one Fourier coefficient that carries no
-#: `A_ONE` -- which is exactly why `psi` cannot be bootstrapped to its own amplitude.
-KAPPA = 1.541814521
+#: `kappa` of `J-paper-b-meander-constant-derived`, computed here rather than quoted,
+#: because it is the **mean** of the ladder profile. The two spellings agree identically:
+#: `beta/(1-beta) = log2/log(3/2)`, so `log(beta/(1-beta)) = theta* log 3` and
+#: `sqrt(2*pi*beta*(1-beta)) = sqrt(2*pi)*sigma/log 3`.
+KAPPA = 1.0 / (log(BETA / (1.0 - BETA)) * sqrt(2.0 * pi * BETA * (1.0 - BETA)))
+
+#: Amplitude of the jump of `psi` at `frac(beta)`. **Closed form, not measured.**
+#: `psihat_k = Phihat_k * G(e(-k*beta))` for every `k`, so `psi`'s jump at the origin is
+#: the ladder profile's, and `a_1 = a_0 / (2*theta)`.
+#:
+#: Three readings agree: the Fourier magnitude ratio `|psihat_k| / |Phihat_k G_k|` is
+#: `1.0015 +/- 0.0020` over `k <= 256`; the free-amplitude level fit extrapolates in
+#: `1/sqrt(N)` to `0.428027`; and the closed form is `0.427957`.
+#:
+#: Values of `0.42623` and `0.426289` were recorded earlier and are **withdrawn**. Both
+#: were biased low by the same mechanism: a window of half-width `delta` around a jump
+#: contains every neighbouring jump, whose amplitudes sum to about `17*sqrt(delta)`, so
+#: any local reading is low by `O(1/sqrt(N))` -- which is why the level fit had to be
+#: extrapolated rather than read. The Fourier reading was low for a different reason: a
+#: complex least squares absorbed a phase discrepancy of `0.085/k` as a magnitude
+#: deficit, `cos(0.085) = 0.9964`, almost exactly the `0.4%` involved.
+A_ONE = LADDER_JUMP / (2.0 * THETA)
+
+#: `a_0`, the jump of `psi` at `x = 0`, which is the wrap of the circle. Equal to the
+#: ladder profile's jump outright.
+A_ZERO = LADDER_JUMP
 
 
 getcontext().prec = 60
@@ -256,6 +273,41 @@ def total_variation(counts: list[int], a_one: float = A_ONE) -> float:
     return 2.0 * THETA * a_one * (g_one(counts) - 1.0)
 
 
+def ladder_profile(x: float) -> float:
+    """`Phi(x)`, the ladder profile, in closed form.
+
+    `A_n = P(S_n >= 0) / theta^n` is what the Spitzer identity behind
+    `J-paper-b-meander-constant-derived` exponentiates, and the non-lattice local limit
+    theorem says `A_n ~ kappa / sqrt(n)`. It says that about the **mean**: measured,
+    `A_n * sqrt(n)` is not a constant at all but a function of `frac(n*beta)`, to 100%
+    of its variance, oscillating by `+/-15%`.
+
+    The function is an exponential. `ceil(n*beta) - n*beta` is exactly `1 - frac(n*beta)`,
+    consecutive binomial terms at the large-deviation point have ratio
+    `r = (1-beta)/beta`, so the tail is geometric to `O(1/n)` and
+
+        Phi(x) = r^(1-x) / ((1 - r) * sqrt(2*pi*beta*(1-beta))).
+
+    Its mean is `KAPPA` identically and its jump at the origin is `LADDER_JUMP`.
+    """
+    return LADDER_RATIO ** (1.0 - x) / (
+        (1.0 - LADDER_RATIO) * sqrt(2.0 * pi * BETA * (1.0 - BETA))
+    )
+
+
+def ladder_fourier(k: int) -> complex:
+    """`Phihat_k`. For `k = 0` this is `KAPPA`; otherwise the exponential's coefficient.
+
+    The `1/k` tail is the jump and nothing else, which is why `k * |Phihat_k|` settles
+    at `LADDER_JUMP / (2*pi)`.
+    """
+    if k == 0:
+        return complex(KAPPA, 0.0)
+    a = log(1.0 / LADDER_RATIO)
+    scale = 1.0 / ((1.0 - LADDER_RATIO) * sqrt(2.0 * pi * BETA * (1.0 - BETA)))
+    return scale * LADDER_RATIO * (exp(a) - 1.0) / complex(a, -2.0 * pi * k)
+
+
 def orbit_series(counts: list[int], k: int) -> complex:
     """`G(e(-k*beta)) = sum_d N_d/(2*theta)^d * e(-k*d*beta)`, the Wiener-Hopf series of
     `J-paper-b-meander-constant-derived` evaluated on the rotation orbit.
@@ -311,7 +363,7 @@ def fourier_coefficient(counts: list[int], k: int, a_one: float = A_ONE) -> comp
     `mean_value`.
     """
     if k == 0:
-        raise ValueError("k = 0 is mean_value, and it carries no a_1")
+        return complex(mean_value(counts), 0.0)
     return -(2.0 * THETA * a_one) / (2j * math.pi * k) * orbit_series(counts, k)
 
 
@@ -337,11 +389,28 @@ def probe_payload(max_depth: int = MAX_DEPTH) -> dict[str, Any]:
         "max_depth": max_depth,
         "identity": "a_n = a_1 * N_n / (2*theta)^(n-1)",
         "a_one": {
-            "estimate": A_ONE,
-            "band": [A_ONE - A_ONE_BAND, A_ONE + A_ONE_BAND],
+            "value": A_ONE,
+            "closed_form": "1 / (2 theta sqrt(2 pi beta (1-beta))) = kappa theta* log3 / (2 theta)",
+            "measured": False,
+            "withdrawn": [0.42623, 0.426289],
             "note": (
-                "the only measured constant in the closed form; the ratios a_n/a_1 are"
-                " exact integers over a power and carry no fitted quantity at all"
+                "closed form, not measured. psihat_k = Phihat_k G(e(-k beta)) for every"
+                " k, so psi's jump at the origin is the ladder profile's, and a_1 is that"
+                " over 2 theta. The two values withdrawn here were recorded the same day"
+                " and were both biased low: a window of half-width delta around a jump"
+                " contains its neighbours, which sum to about 17 sqrt(delta), so every"
+                " local reading is low by O(1/sqrt(N)); and a complex least squares"
+                " absorbed a phase discrepancy of 0.085/k as a magnitude deficit"
+            ),
+        },
+        "ladder_profile": {
+            "form": "Phi(x) = r^(1-x) / ((1-r) sqrt(2 pi beta (1-beta))), r = (1-beta)/beta",
+            "mean_is_kappa": KAPPA,
+            "jump": LADDER_JUMP,
+            "note": (
+                "A_n sqrt(n) is not the constant the non-lattice local limit theorem"
+                " suggests but a function of frac(n beta), to 100 percent of its"
+                " variance, oscillating by 15 percent. kappa is its mean, identically"
             ),
         },
         "survivors_1_to_9": counts[1:10],
@@ -411,8 +480,11 @@ def render_markdown(data: dict[str, Any]) -> str:
         f" = {data['theta']:.10f}`.",
         "",
         f"- exact survivor counts `N_1..9 = {data['survivors_1_to_9']}`",
-        f"- one measured constant, `a_1 = {data['a_one']['estimate']:.5f}`"
-        f" +/- `{(data['a_one']['band'][1] - data['a_one']['estimate']):.4f}`",
+        f"- no measured constant: `a_1 = {data['a_one']['value']:.9f}`, closed form"
+        f" `{data['a_one']['closed_form']}`",
+        f"- the ladder profile `{data['ladder_profile']['form']}`, whose mean is"
+        f" `kappa = {data['ladder_profile']['mean_is_kappa']:.9f}` and whose jump is"
+        f" `{data['ladder_profile']['jump']:.9f}`",
         f"- Sturmian zeros: `{zeros['count']}` of them, ratio"
         f" `{zeros['predicted_ratio']:.10f}` to"
         f" `{zeros['worst_relative_deviation']:.1e}`",
