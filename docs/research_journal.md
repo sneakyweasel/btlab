@@ -1,5 +1,41 @@
 # Research journal
 
+## 2026-09-18 -- the increment tension was the method, and it loses a square root
+
+- **Objective:** the certificate-increment dossier records that the `1/d`
+  correction "does not have the size the measured exponent `-3/2` predicts" and
+  keeps it as a tension. With `psi` now closed form, settle it.
+- **The shape's prediction has no free parameter.** `r_d = 1 - theta
+  t_d/t_(d-1)` exactly, so within a fixed coordinate `r_d = a + b/d` with
+  `b = (3/2)(1 - a)`. The testable statement is `b/(1-a) = 3/2`, not a fitted
+  `b` compared against `1.45`.
+- **And the class cannot see it.** A class modulo `q` fixes the coordinate to
+  `delta = |frac(q beta)|`, and the method assumes the target then moves by
+  `O(delta)`. `psi` does not: its jumps are dense and the amplitudes beyond
+  `1/delta` sum to about `17 sqrt(delta)`, so it moves by a **square root**
+  more. At the branch's `485` that is `4.8%` of `psi`, against a `1/d` signal of
+  a few percent. `b` was never measurable there, and `40.98` was measuring the
+  contamination.
+- **Across convergent denominators the contamination is visible directly.** At
+  `65, 84, 485, 1054, 24727, 50508` the drift falls `1.0e-2` to `6.6e-6`,
+  `psi`'s variation across a class falls `1.74` to `0.044`, and the
+  interquartile spread of `b/(1-a)` collapses `51, 295, 1249, 44.5, 1.29, 1.06`
+  while the median goes from chaos to `2.22` and then `1.99`. The two finest
+  extrapolate linearly in `psi`'s variation to `1.59` against `1.50`.
+- **What that does and does not settle.** The tension is withdrawn as evidence
+  about the shape. It is not confirmation of the shape: `b` is still unmeasured,
+  and cannot be measured at any depth reachable here, because a class fine
+  enough would hold under one sample point per class. The useful residue is the
+  method note -- check continuity in the coordinate before using a class, and if
+  the target jumps the honest resolution is `17 sqrt(|frac(q beta)|)`.
+- **`G(1)` cross-checked from a route sharing nothing.** `G(1) = exp(sum_n
+  A_n/n)` by Spitzer, with `A_n` exact binomial tails and the closed-form ladder
+  profile for the tail, never touching `N_d`: `7.0649004` against `7.0648619`
+  from the counts, agreeing to `5.5e-6`. So `kappa G(1) = 10.89277`, against the
+  `10.8861` and `0.43%`-wide band recorded before today.
+- **Decision:** `CLOSE` stands for the increment branch; the tension it carried
+  is resolved. [Certificate increment](problems/juggler_certificate_increment.md).
+
 ## 2026-09-18 -- the LLT constant is a mean, and that gives a_1 in closed form
 
 - **Objective:** run the ladder question properly -- is `Phi`'s jump

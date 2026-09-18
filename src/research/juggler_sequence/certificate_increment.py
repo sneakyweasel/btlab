@@ -377,11 +377,19 @@ def probe_payload(max_depth: int = MAX_DEPTH, fit_from: int = FIT_FROM,
                 "the spread is more than ten times what the residual coordinate motion "
                 "can explain. So r_d is not a function of frac(d*beta) alone. Separately "
                 "and more weakly: the fitted slope b does not match the 3*theta/2 that "
-                "the measured exponent -3/2 predicts. b/a is class-independent, which is "
-                "a real fact about the increment, but its VALUE is not determined -- "
+                "the measured exponent -3/2 predicts. Its VALUE is not determined -- "
                 "adding a 1/d^2 term moves it several percent while leaving the limit a "
                 "alone, so it is not a constant to read anything into. That is a tension "
-                "in the shape, not a refutation of it, and no closed form is claimed."
+                "in the shape, not a refutation of it, and no closed form is claimed. "
+                "RESOLVED 18 September 2026, and against this method rather than for "
+                "it: a class fixes the coordinate to delta but psi is a jump function "
+                "on a dense orbit and varies across the class by about 17 sqrt(delta), "
+                "which at period 485 is 4.8 percent of psi -- larger than the signal. "
+                "Across finer convergents the spread of b/(1-a) collapses and its "
+                "median converges toward the parameter-free 3/2 the shape predicts. "
+                "So b was never measured here and b/a class-independence was the "
+                "contamination, not a fact about the increment. See "
+                "J-paper-b-increment-tension-is-the-class-method."
             ),
         },
         "anti_overclaim": ANTI_OVERCLAIM,
