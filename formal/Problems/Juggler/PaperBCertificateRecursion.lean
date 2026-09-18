@@ -186,6 +186,85 @@ theorem neverNegCount_add_minimalCertCount (d : ℕ) :
   rw [← hbi, extensions_eq_survivors_union_certs d,
     card_union_of_disjoint (survivors_disjoint_certs d), neverNegCount, minimalCertCount]
 
+/-! ## 3b. The same recursion in the barrier's own words
+
+`J-count-recursion-is-the-boundary-mass` states `N_(d+1) = 2 N_d - b_d M_d`, with `M_d`
+the survivors sitting exactly ON the barrier and `b_d` the Sturmian rise, and proves its
+three branch cases in `PaperBBarrierStep` on real-valued `⌈t * beta⌉`. That row records
+the cardinality bookkeeping joining those branches as *not* formalised.
+
+This is that bookkeeping, and it needs no real number. The bridge is that a survivor's
+**odd** extension can never contract: surviving gives `2 ^ d ≤ 3 ^ o`, so
+`3 ^ (o+1) ≥ 3 * 2 ^ d > 2 ^ (d+1)`. Hence every minimal certificate of length `d + 1`
+is an `E`-extension, and the ones that contract are exactly the survivors whose
+`E`-extension does -- which is `b_d M_d` counted without mentioning `b_d`.
+-/
+
+/-- **A survivor's odd extension never contracts.**  One more odd letter multiplies the
+odd side by three while the even side only doubles. -/
+theorem not_exponentGap_concat_odd {w : List Branch} (hw : prefixNoncontracting w) :
+    ¬ exponentGap (w ++ [Branch.odd]) := by
+  have hsurv : ¬ exponentGap w := by
+    have := hw w.length le_rfl
+    rwa [List.take_length] at this
+  rw [exponentGap, Nat.not_lt] at hsurv
+  rw [exponentGap, oddCount_append, List.length_append]
+  have hoc : oddCount [Branch.odd] = 1 := rfl
+  have hln : ([Branch.odd] : List Branch).length = 1 := rfl
+  rw [hoc, hln, Nat.not_lt]
+  have h3 : (3 : ℕ) ^ (oddCount w + 1) = 3 * 3 ^ oddCount w := by ring
+  have h2 : (2 : ℕ) ^ (w.length + 1) = 2 * 2 ^ w.length := by ring
+  have hmul : 3 * 2 ^ w.length ≤ 3 * 3 ^ oddCount w := Nat.mul_le_mul_left 3 hsurv
+  have hpos : 0 < 2 ^ w.length := Nat.two_pow_pos _
+  omega
+
+/-- The survivors of length `d` whose `E`-extension contracts: those sitting on the
+barrier at a step where it rises.  This is `b_d M_d` of the boundary-mass row. -/
+def onBarrierWords (d : ℕ) : Finset (List Branch) :=
+  (neverNegWords d).filter (fun w => exponentGap (w ++ [Branch.even]))
+
+def onBarrierCount (d : ℕ) : ℕ := (onBarrierWords d).card
+
+/-- **The minimal certificates of length `d+1` are exactly the `E`-extensions of the
+on-barrier survivors of length `d`.** -/
+theorem minimalCertWords_succ (d : ℕ) :
+    minimalCertWords (d + 1) = (onBarrierWords d).image (fun w => w ++ [Branch.even]) := by
+  classical
+  ext v
+  simp only [minimalCertWords, onBarrierWords, neverNegWords, mem_filter, mem_image]
+  constructor
+  · rintro ⟨hv, hcert⟩
+    have hvlen : v.length = d + 1 := mem_allWords.mp hv
+    obtain ⟨w, b, rfl⟩ : ∃ w b, v = w ++ [b] := by
+      rcases List.eq_nil_or_concat v with rfl | ⟨u, b, rfl⟩
+      · simp at hvlen
+      · exact ⟨u, b, by simp⟩
+    obtain ⟨hsurv, hgap⟩ := isMinimalCertificate_concat.mp hcert
+    have hb : b = Branch.even := by
+      cases b with
+      | even => rfl
+      | odd => exact absurd hgap (not_exponentGap_concat_odd hsurv)
+    subst hb
+    have hwlen : w.length = d := by simpa using hvlen
+    exact ⟨w, ⟨⟨mem_allWords.mpr hwlen, hsurv⟩, hgap⟩, rfl⟩
+  · rintro ⟨w, ⟨⟨hwmem, hsurv⟩, hgap⟩, rfl⟩
+    have hwlen : w.length = d := mem_allWords.mp hwmem
+    exact ⟨mem_allWords.mpr (by simp [hwlen]), isMinimalCertificate_concat.mpr ⟨hsurv, hgap⟩⟩
+
+/-- Hence the counts agree, which is the cardinality step the boundary-mass row leaves
+unformalised. -/
+theorem minimalCertCount_succ (d : ℕ) :
+    minimalCertCount (d + 1) = onBarrierCount d := by
+  classical
+  rw [minimalCertCount, minimalCertWords_succ d, onBarrierCount,
+    card_image_of_injective _ (fun x y h => by simpa using (append_singleton_inj h).1)]
+
+/-- **`N_(d+1) = 2 N_d - b_d M_d`, in the shape the boundary-mass row states it.** -/
+theorem neverNegCount_succ_sub_onBarrier (d : ℕ) :
+    neverNegCount (d + 1) + onBarrierCount d = 2 * neverNegCount d := by
+  rw [← minimalCertCount_succ d]
+  exact neverNegCount_add_minimalCertCount d
+
 /-! ## 4. What it says about the density -/
 
 /-- **The certified count doubles and gains the new minimal certificates.** -/

@@ -1,5 +1,46 @@
 # Research journal
 
+## 2026-09-18 -- I had already proved this once, under another name, and the useful part is the seam
+
+- **What I set out to do:** remeasure the barrier `psi` so the two jump lists
+  come from one instrument. Reading `boundary_fraction_profile` for that, its
+  docstring quotes the count recursion as `P_(d+1) = P_d (1 - b_d R_d / 2)`,
+  attributed to `J-count-recursion-is-the-boundary-mass`.
+- **That is this morning's recursion.** `N_(d+1) = 2 N_d - b_d M_d` with `M_d`
+  the survivors ON the barrier is the same identity as
+  `N_(d+1) + minimalCertCount(d+1) = 2 N_d`, and it was already EXACT with its
+  three branch cases kernel-checked in `PaperBBarrierStep`. I wrote
+  `PaperBCertificateRecursion` without finding it. That is a search failure, and
+  the second one today after rebuilding `surviving_log_mass`.
+- **The useful part is what that row says about itself.** It records the
+  cardinality bookkeeping joining the three branches as "the sentence above and
+  is not formalised". `neverNegCount_add_minimalCertCount` is exactly that
+  sentence, proved, in `Nat` arithmetic with no real number anywhere -- while
+  their branch lemmas live on real-valued `ceil(t * beta)`. So the two halves had
+  been sitting on opposite sides of a gap neither could see across.
+- **The seam, and it needs no reals.** A survivor's ODD extension can never
+  contract: surviving gives `2^d <= 3^o`, so `3^(o+1) >= 3 * 2^d > 2^(d+1)`
+  (`not_exponentGap_concat_odd`). Hence every minimal certificate ends in `E`,
+  and `minimalCertWords_succ` shows the minimal certificates of length `d+1` are
+  exactly the `E`-extensions of the on-barrier survivors of length `d`. So
+  `minimalCertCount (d+1) = onBarrierCount d`, which is their `b_d M_d` counted
+  without naming `b_d`, and `neverNegCount_succ_sub_onBarrier` states their
+  identity in their own shape. Verified against the counts at every `d = 0..299`
+  before a line of Lean was written.
+- **Decision:** both rows updated -- mine records the duplication plainly, theirs
+  records that its unformalised step is now formalised. No new branch, no bound
+  moves.
+- **What I would do differently, concretely:** `formalpedia search` and a ledger
+  grep for the *statement*, not the name, before writing a recursion. I searched
+  for declaration-name collisions twice today and both times that check passed
+  while the mathematics was already there under different words. Name collision
+  is not the search that matters.
+- **Best next question, unchanged and now better equipped:** remeasure the
+  barrier `psi` amplitudes at `surviving_prefactor_profile` resolution. The seam
+  proved here means the prefactor's jumps and the barrier's boundary mass are two
+  readings of one recursion, so a matched-resolution comparison is now a question
+  about one object rather than two.
+
 ## 2026-09-18 -- the jump amplitudes carry the same Sturmian word as the jump locations
 
 - **Objective:** the previous entry's best-next question -- is the prefactor's

@@ -9,6 +9,11 @@ alwaysApply: true
   `Select-Object -First N`, `Select-String`, or write a temp script.
   `rg dir/*.lean` fails; use `rg -g "*.lean" dir`. Escape parentheses in
   `rg` patterns.
+- **Commits accumulate; pushing is not a step in the loop.** Commit each piece
+  as it lands and keep working. Push when Philippe asks, or when a line of work
+  is genuinely finished and being handed over -- not at the end of every turn,
+  and never as a standing offer. An unpushed commit is a normal resting state
+  here, not a loose end, and reporting one as though it were is noise.
 - The host may auto-commit the working tree between turns. Run
   `git log -1 --stat` before assuming files are uncommitted; never
   `git add` regenerated `docs/research/*.json` (test churn).
