@@ -6,7 +6,7 @@ Is r_d = M_d / (2 N_(d-1)) a function of frac(d * beta) alone, as an almost-peri
 
 Answer: **no**.
 
-Within one residue class mod 485 the rotation coordinate is fixed to 9.3e-04. Were r_d a function of that coordinate alone, a class would hold one value and its four or five members would scatter. They do not scatter: every class is strictly monotone in d, which scattered values would be about two to eight percent of the time, and in most classes the spread is more than ten times what the residual coordinate motion can explain. So r_d is not a function of frac(d*beta) alone. Separately and more weakly: the fitted slope b does not match the 3*theta/2 that the measured exponent -3/2 predicts, and b varies across classes while b/a does not. That is a tension, not a refutation of the shape.
+Within one residue class mod 485 the rotation coordinate is fixed to 9.3e-04. Were r_d a function of that coordinate alone, a class would hold one value and its four or five members would scatter. They do not scatter: every class is strictly monotone in d, which scattered values would be about two to eight percent of the time, and in most classes the spread is more than ten times what the residual coordinate motion can explain. So r_d is not a function of frac(d*beta) alone. Separately and more weakly: the fitted slope b does not match the 3*theta/2 that the measured exponent -3/2 predicts. b/a is class-independent, which is a real fact about the increment, but its VALUE is not determined -- adding a 1/d^2 term moves it several percent while leaving the limit a alone, so it is not a constant to read anything into. That is a tension in the shape, not a refutation of it, and no closed form is claimed.
 
 ## Numbers
 

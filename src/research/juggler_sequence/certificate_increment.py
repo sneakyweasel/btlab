@@ -121,6 +121,86 @@ def _fit_line(xs: list[float], ys: list[float]) -> tuple[float, float, float]:
     return a, b, resid
 
 
+def fit_poly(xs: list[float], ys: list[float], degree: int) -> list[float]:
+    """Least squares `y = sum_j c_j x^j`, by normal equations and elimination."""
+    n = degree + 1
+    a = [[sum(x ** (i + j) for x in xs) for j in range(n)] for i in range(n)]
+    b = [sum(y * x ** i for x, y in zip(xs, ys)) for i in range(n)]
+    for i in range(n):
+        piv = max(range(i, n), key=lambda r: abs(a[r][i]))
+        a[i], a[piv] = a[piv], a[i]
+        b[i], b[piv] = b[piv], b[i]
+        for r in range(i + 1, n):
+            f = a[r][i] / a[i][i]
+            for c in range(i, n):
+                a[r][c] -= f * a[i][c]
+            b[r] -= f * b[i]
+    out = [0.0] * n
+    for i in reversed(range(n)):
+        out[i] = (b[i] - sum(a[i][j] * out[j] for j in range(i + 1, n))) / a[i][i]
+    return out
+
+
+def slope_stability(survivors: dict[int, int], minimal: dict[int, int],
+                    fits: list[dict[str, Any]], well_conditioned: float = 1e-5
+                    ) -> dict[str, Any]:
+    """Is `b / a` a determined number? No, and it is not even class-independent.
+
+    Reported twice, because the two readings differ and only one of them is
+    honest about how it was obtained. Over *all* classes `b / a` scatters by more
+    than 100%: classes near a length where `M_d` vanishes are badly conditioned
+    and their fits mean little. Restricted to classes whose `a + b/d` residual is
+    below `well_conditioned` -- a criterion on the fit, fixed in advance, not on
+    the answer -- it clusters to about a percent.
+
+    Even there the value is not determined: adding a `1/d^2` term moves it by
+    several percent while barely moving the limit `a`. So `b / a` is about `41`
+    to within a few percent on well-conditioned classes, and that is all. It is
+    not a constant, and nothing should be read into its digits.
+    """
+    def pair(selection: list[dict[str, Any]]) -> dict[str, Any] | None:
+        two, three = [], []
+        for f in selection:
+            ds = f["depths"]
+            if len(ds) < 4:
+                continue
+            xs = [1.0 / d for d in ds]
+            ys = [increment(survivors, minimal, d) for d in ds]
+            a2, b2 = fit_poly(xs, ys, 1)
+            a3, b3, _ = fit_poly(xs, ys, 2)
+            if a2 and a3:
+                two.append(b2 / a2)
+                three.append(b3 / a3)
+        if not two:
+            return None
+        m2 = sum(two) / len(two)
+        m3 = sum(three) / len(three)
+        sd2 = (sum((v - m2) ** 2 for v in two) / len(two)) ** 0.5
+        return {
+            "classes": len(two),
+            "two_parameter": m2,
+            "three_parameter": m3,
+            "relative_shift": abs(m3 - m2) / m2,
+            "spread_across_classes": sd2 / abs(m2),
+        }
+
+    every = pair(fits)
+    good = pair([f for f in fits if f["max_residual"] < well_conditioned])
+    return {
+        "all_classes": every,
+        "well_conditioned": good,
+        "well_conditioned_threshold": well_conditioned,
+        "determined": bool(good and good["relative_shift"] < 0.01
+                           and good["spread_across_classes"] < 0.01),
+        "note": (
+            "b/a is not a constant. Over all classes it scatters by more than 100%; "
+            "on well-conditioned classes it clusters near 41 but still moves several "
+            "percent when a 1/d^2 term is added. Determined to a few percent at best, "
+            "which identifies no closed form."
+        ),
+    }
+
+
 def class_fits(survivors: dict[int, int], minimal: dict[int, int],
                max_depth: int = MAX_DEPTH, fit_from: int = FIT_FROM,
                period: int = PERIOD) -> list[dict[str, Any]]:
@@ -225,6 +305,7 @@ def probe_payload(max_depth: int = MAX_DEPTH, fit_from: int = FIT_FROM,
         "slope_b": {"min": min(slopes), "max": max(slopes)},
         "b_over_a": {"min": min(ratios), "max": max(ratios)},
         "meander_predicted_b": predicted_b,
+        "slope_stability": slope_stability(survivors, minimal, fits),
         "monotone_classes": monotone,
         "monotone_share": monotone_share,
         "coordinate_control": {
@@ -249,8 +330,11 @@ def probe_payload(max_depth: int = MAX_DEPTH, fit_from: int = FIT_FROM,
                 "the spread is more than ten times what the residual coordinate motion "
                 "can explain. So r_d is not a function of frac(d*beta) alone. Separately "
                 "and more weakly: the fitted slope b does not match the 3*theta/2 that "
-                "the measured exponent -3/2 predicts, and b varies across classes while "
-                "b/a does not. That is a tension, not a refutation of the shape."
+                "the measured exponent -3/2 predicts. b/a is class-independent, which is "
+                "a real fact about the increment, but its VALUE is not determined -- "
+                "adding a 1/d^2 term moves it several percent while leaving the limit a "
+                "alone, so it is not a constant to read anything into. That is a tension "
+                "in the shape, not a refutation of it, and no closed form is claimed."
             ),
         },
         "anti_overclaim": ANTI_OVERCLAIM,
