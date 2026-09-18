@@ -1,5 +1,46 @@
 # Research journal
 
+## 2026-09-18 -- Juggler is Collatz one exponential level up
+
+- **Objective:** after finding the survivors are a known Collatz sequence, ask
+  why -- coincidence, identity, or equivalence.
+- **Identity, and it is one line.** Accelerated Collatz moves `log x` by
+  `-log 2` or `+log(3/2)`. Juggler multiplies `log n` by `1/2` or `3/2`, so it
+  moves `log log n` by the same two steps. Same additive walk, different
+  variable. From the seed `10^20 + 1` the measured Juggler increments are
+  `+0.405465108108` and `-0.693147180560`, agreeing to `2e-16`; at `n = 7` they
+  are wrong by a percent, which is the floor and worth keeping visible.
+- **So one count, checked against Collatz rather than against OEIS.** For
+  `d = 4..10` the parity map is bijective on `Z/2^d` and the residue classes
+  with non-constant stopping time number `3, 4, 8, 13, 19, 38, 64` -- exactly
+  `N_d`, by running Collatz on eight representatives per class.
+- **They part at equidistribution, and that is all of Paper B.** Collatz's
+  parity word is a function of `x mod 2^d`, every word at density exactly
+  `2^(-d)`: Terras, arithmetic, free. Juggler's is a function of
+  `frac(n^(3/2))` and relatives, and equal densities are Hypothesis FD. Same
+  combinatorics, incompatible arithmetic. Not an equivalence; not a conjugacy.
+- **Two consequences I like.** Today's asymptotic is **unconditional for
+  Collatz** and conditional for Juggler -- which raises the stakes on the
+  priority question already out to a separate session. And Collatz is a free
+  validator for any FD-conditional derivation resting only on word densities:
+  there such a statement is a theorem, so a failure would indict the derivation,
+  not FD. We do not use it that way.
+- **One consequence I do not.** A result depending only on word densities is not
+  Juggler-specific. By that test the survivor recursion, the empty-window
+  theorem, the transposition cost, the jump spectrum, `a_1` and the ladder
+  profile are Collatz results too. That is a correction to scope, not to the
+  mathematics, and it is the same failure as the A076227 one a level up: there a
+  sequence was searchable and nobody searched; here the theorems are about an
+  object under another name. Recorded rather than quietly absorbed.
+- **And the deflating part, worth saying plainly.** Juggler is not an easier
+  Collatz. It is Collatz's word problem plus a Weyl-sum problem, and both stall
+  at the same wall. Its value is as a separator: it keeps the combinatorics and
+  drops the 2-adic rigidity, so it shows which half of Collatz needs which. On
+  that reading Paper B's real contribution is machinery for proving analytically
+  what Terras gets arithmetically -- the part that could not have come from
+  Collatz.
+- **Decision:** `PROMOTE`. [Collatz bridge](problems/juggler_collatz_bridge.md).
+
 ## 2026-09-18 -- the survivors were a known Collatz sequence all along
 
 - **Prompted by Philippe:** the survivors look close to OEIS A076227. They are
