@@ -359,7 +359,9 @@
       "decision": "PROMOTE",
       "ledger_ids": [
         "J-juggler-is-collatz-one-exponential-up",
-        "J-word-density-results-are-not-juggler-specific"
+        "J-word-density-results-are-not-juggler-specific",
+        "J-proposition-j-on-collatz-is-terras",
+        "J-proposition-j-loss-is-the-union-bound"
       ],
       "aliases": [],
       "nk_cluster": null

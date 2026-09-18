@@ -1,5 +1,49 @@
 # Research journal
 
+## 2026-09-19 -- what FD is actually worth, and where Proposition J loses
+
+- **Objective:** Philippe asked whether the two formulations, being different,
+  could help each other prove termination. Answer the question rather than
+  enthuse about it.
+- **They cannot, and the reason is structural.** The obstruction -- a single
+  orbit need not equidistribute -- lives in the shared skeleton. The differences
+  live upstream, in how words attach to integers, and Collatz has that half free
+  and has been stuck fifty years. So the upstream half is demonstrably not the
+  obstruction.
+- **Proposition J applied to Collatz is Terras 1976.** The bound
+  `(N_d/2^d) N + N_d E_d(N)` with the parity bijection gives `E_d(N) = O(1)`,
+  usable depth `log2 N`, and `N^(1 - 0.050044)` non-descenders. So if FD were
+  proved outright, Juggler would arrive exactly where Collatz has been since
+  1976, and no further. FD is a hard analytic theorem in a setting with no
+  arithmetic and worth wanting on those terms; it is not a step toward
+  termination.
+- **And the conversion is linear.** With `E_d(N) = O(N^(1-delta))` the error
+  overtakes the main term once `2^d` passes `N^delta`, so the depth is
+  `delta log2 N` and the density exponent is `0.050044 delta` -- exactly `delta`
+  times Collatz's. Parity needs `delta = 1`, bounded error per class, which a
+  bijection gives and a Weyl bound will not.
+- **The useful part: the loss is the union bound, not the exponent.**
+  `N_d E_d(N)` sums a per-word error over `N_d` about `1.9318^d` words, and that
+  multiplier is what caps the depth. At fixed `delta` the exponent is
+  `0.050044 delta` by union bound, `0.095319 delta` under square-root
+  cancellation across words, and `delta` itself for one direct estimate of the
+  good set -- `1.00x`, `1.90x`, `19.98x`. Improving `delta` from `1/96` to
+  `1/72` is worth `1.33x`. **A direct estimate at the printed exponent already
+  beats a union bound at `delta = 1/5`.**
+- **Stated as what it is.** An observation about the shape of the bound,
+  arithmetic only. It does not claim a direct estimate is achievable -- the
+  union bound is used because one word class is a simple condition on fractional
+  parts and the good set is not. What stops it being idle is that the good set
+  is the survivor set, carrying the transfer-operator structure of
+  `PaperBJumpTransposition` and the closed-form spectrum found this week.
+- **What would change the picture**, and nothing in the current machinery does
+  it: an archimedean estimate strictly stronger than word equidistribution --
+  joint with an orbit-dependent statistic, or along the orbit rather than over
+  `n`. That would be a tool with no 2-adic counterpart and would break the
+  "cannot exceed Collatz's starting line" argument.
+- **Decision:** `PROMOTE`, on the existing branch.
+  [Collatz bridge](problems/juggler_collatz_bridge.md).
+
 ## 2026-09-18 -- Juggler is Collatz one exponential level up
 
 - **Objective:** after finding the survivors are a known Collatz sequence, ask

@@ -9,6 +9,8 @@ import pytest
 
 from research.juggler_sequence.collatz_bridge import (
     CLASS_BRIDGE,
+    collatz_is_proposition_j_at_delta_one,
+    density_exponent,
     JSON_PATH,
     STEP_EVEN,
     STEP_ODD,
@@ -109,3 +111,43 @@ def test_a_cheap_run_reaches_the_same_answer() -> None:
     payload = probe_payload(max_depth=7)
     assert payload["decision"]["classification"] == CLASS_BRIDGE
     assert payload["shared_count"]["agree"] is True
+
+
+def test_proposition_j_on_collatz_is_terras() -> None:
+    """The calibration. `E_d(N) = O(1)` is the `delta = 1` case, and it gives Terras.
+
+    If this ever stops holding, the claim that FD buys Juggler exactly Collatz-parity
+    stops holding with it, and the roadmap it implies goes too.
+    """
+    terras = collatz_is_proposition_j_at_delta_one()
+    assert terras["delta"] == 1.0
+    assert terras["density_exponent"] == pytest.approx(0.050044, abs=1e-6)
+    assert terras["non_descenders"] == pytest.approx(0.949956, abs=1e-6)
+
+
+def test_fd_buys_a_delta_fraction_of_that() -> None:
+    """The density exponent is linear in `delta`, so FD is a fraction of Terras."""
+    full = density_exponent(1.0)
+    for delta in (1.0, 0.5, 1 / 24, 1 / 96):
+        assert density_exponent(delta) == pytest.approx(delta * full, rel=1e-12)
+    # reaching even N^0.99 needs delta near 1/5, far past what is proved at depth four
+    assert density_exponent(1 / 96) < 0.01 < density_exponent(0.2)
+
+
+def test_the_union_bound_costs_twenty_times_the_exponent_work() -> None:
+    """Where Proposition J's loss sits.
+
+    Combining the `N_d` word classes better is worth about `20x`; improving the
+    exponent from `1/96` to `1/72` is worth `1.33x`. A direct estimate at the printed
+    exponent beats a union bound at `delta = 1/5`.
+    """
+    union = density_exponent(1.0, "union")
+    sqrt_ = density_exponent(1.0, "sqrt")
+    direct = density_exponent(1.0, "direct")
+    assert union < sqrt_ < direct
+    assert sqrt_ / union == pytest.approx(1.90, abs=0.02)
+    assert direct / union == pytest.approx(19.98, abs=0.05)
+    assert direct / union > 96 / 72 * 10, "the combination step must dominate"
+    assert density_exponent(1 / 96, "direct") > density_exponent(0.2, "union")
+    with pytest.raises(ValueError):
+        density_exponent(0.5, "wishful")

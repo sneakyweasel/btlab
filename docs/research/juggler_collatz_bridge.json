@@ -46,6 +46,19 @@
     }
   },
   "where_they_part": "For Collatz the parity word is a function of x mod 2^d and the map to {0,1}^d is a bijection, so every word has density exactly 2^(-d): Terras, arithmetic and free. For Juggler the word is a function of frac(n^(3/2)) and its relatives, and equal densities are Hypothesis FD, which is open. Same combinatorics, incompatible arithmetic.",
+  "calibration": {
+    "collatz_exponent": 0.050044472811669294,
+    "juggler_is_delta_times_collatz": true,
+    "printed_delta": 0.010416666666666666,
+    "at_printed_delta": {
+      "union": 0.9994787034082118,
+      "sqrt": 0.9990070961653799,
+      "direct": 0.9895833333333334
+    },
+    "combination_is_worth": 19.98222668391906,
+    "exponent_step_is_worth": 1.3333333333333333,
+    "note": "Proposition J on Collatz is Terras 1976. For Juggler the same proposition gives a density exponent of delta times Collatz's, so FD with any power saving short of a bijection cannot reach it. The loss is the union bound over N_d words, not the exponent: combining the words better is worth about twenty times, improving delta from 1/96 to 1/72 about one and a third"
+  },
   "decision": {
     "classification": "JUGGLER_IS_COLLATZ_ONE_EXPONENTIAL_UP",
     "reason": "the walk identification is exact to 2e-16 from a twenty-one digit seed, and the count identification is checked by running Collatz rather than by quoting OEIS"
