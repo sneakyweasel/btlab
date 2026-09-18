@@ -2989,6 +2989,50 @@ entry originally said, and the lattice is not the obstruction. I narrowed on the
 strength of a fixed-boundary result and should not have.
 
 
+**And the laboratory's own structure does not produce \(R\) either,
+16 September 2026**
+(`J-tail-does-not-determine-the-boundary-fraction`). Killed claim: that
+the settled tail determines the boundary fraction. With the profile
+fixed as \(\Pi_\phi(m)=A(\phi)(m+\gamma-\phi)r_*^m\) for \(m\ge1\)
+(`J-profile-is-linear-times-geometric-in-the-line-coordinate`) and \(A\)
+following an explicit cocycle whose only input is \(R\)
+(`J-tail-amplitude-is-a-cocycle-over-the-boundary-fraction`), the
+normalisation \(R+\sum_{m\ge1}\Pi_\phi(m)=1\) is exact and that tail sum
+is closed-form, so extrapolating the tail down to \(m=1\) would
+*compute* \(R\): the phase-indexed apparatus would collapse to a single
+scalar recursion over the rotation and the clean coordinate would stop
+being measured. **It fails, and the failure is converged.** At
+\(306/485\) the residual \(R-R_{\mathrm{pred}}\) reads
+\(+2.33\cdot10^{-2}\), \(+7.12\cdot10^{-3}\), \(+3.52\cdot10^{-3}\),
+\(+3.52\cdot10^{-3}\) at caps \(400,800,1600,3200\) for phase \(0\) ---
+identical at the last two to three figures --- and likewise
+\(-7.38\cdot10^{-4}\), \(-2.76\cdot10^{-4}\) and \(+3.90\cdot10^{-3}\)
+at phases \(23\), \(46\) and \(69\).
+**What the residual is: exactly minus the boundary-layer mass.** The
+normalisation being exact, the residual equals the extrapolated tail sum
+less the true sum over \(m\ge1\), which is the mass the pure tail misses
+at the barrier --- the complex boundary modes
+`J-tail-spectral-gap-closes-like-one-over-root-q` locates numerically at
+\(0.44893\pm0.11047i\) for this barrier. Over 200 phases it runs
+\(-2.941\cdot10^{-3}\) to \(+7.318\cdot10^{-3}\) with mean
+\(+1.076\cdot10^{-3}\), that is \(-3.3\%\) to \(+9.8\%\) of \(R\), and on
+this evidence it has no simple rule: not the rise letter (means
+\(8.7\cdot10^{-4}\) against \(1.19\cdot10^{-3}\), with standard
+deviations \(8.9\cdot10^{-4}\) and \(2.25\cdot10^{-3}\) swamping the
+gap), and correlating only weakly with the phase (\(0.19\)) or with
+\(R\) itself (\(-0.16\)).
+Kind: `REFUTED`.
+Consequence: the description of the profile costs one constant, one
+cocycle and \(R\), and this measures how close the first two come to
+determining the third --- within about five percent typically, and never
+exactly. Do not reopen the closed-form tail sum as a route to \(R\), and
+do not expect a finer extrapolation or a deeper cap to close the gap:
+the residual is already converged by cap \(1600\), so what is missing is
+the boundary layer itself and not precision. \(R\) stays the fundamental
+unknown, and the open obligation of
+`J-boundary-fraction-is-the-clean-coordinate` is not reduced by
+structure work of this kind. Machinery: `tail_predicts_boundary`.
+
 **Externals that are already imported; do not propose them as new.** The
 ANTEDB of Tao--Trudgian--Yang (arXiv:2501.16779) is already consulted at
 its August 2026 vertices and moves neither \(95/112\) nor \(275/388\)
@@ -3032,5 +3076,6 @@ to supply the prefactor; search again for a driven-critical renewal theorem;
 re-run the \(q\)-uniformity measurement --- it is done, and its answer is
 that the driving is benign; or reopen Rhin (8), whose constant does not
 exist in print and would not close anything if it did.
-Members: none --- this records the state of the external literature, not
-a laboratory claim.
+Members: `J-tail-does-not-determine-the-boundary-fraction`; everything
+else here records the state of the external literature rather than a
+laboratory claim.
