@@ -54487,6 +54487,500 @@
       "trust": "kernel"
     },
     {
+      "doc": "The length-`d` words carrying a descent certificate: those with a contracting prefix. The complement of `RateFreeDensity.neverNegWords d` inside `allWords d`.",
+      "file": "formal/Problems/Juggler/PaperBFiveStepDensity.lean",
+      "kind": "def",
+      "ledger": [
+        "J-paper-b-five-step-count-assembly",
+        "J-paper-b-certificates-extend-to-length-seven"
+      ],
+      "line": 63,
+      "module": "Problems.Juggler.PaperBFiveStepDensity",
+      "name": "certifiedWords",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`#C_d` as a count of words.",
+      "file": "formal/Problems/Juggler/PaperBFiveStepDensity.lean",
+      "kind": "def",
+      "ledger": [
+        "J-paper-b-five-step-count-assembly",
+        "J-paper-b-certificates-extend-to-length-seven"
+      ],
+      "line": 67,
+      "module": "Problems.Juggler.PaperBFiveStepDensity",
+      "name": "certifiedWordCount",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBFiveStepDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-five-step-count-assembly",
+        "J-paper-b-certificates-extend-to-length-seven"
+      ],
+      "line": 69,
+      "module": "Problems.Juggler.PaperBFiveStepDensity",
+      "name": "certifiedWords_subset",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Certified and never-negative words partition `allWords d`.",
+      "file": "formal/Problems/Juggler/PaperBFiveStepDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-five-step-count-assembly",
+        "J-paper-b-certificates-extend-to-length-seven"
+      ],
+      "line": 73,
+      "module": "Problems.Juggler.PaperBFiveStepDensity",
+      "name": "certifiedWords_compl",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`allWords d` has `2 ^ d` elements, in `\u2115`. `FateEnergyAtoms.card_allWords` states this over `\u211d`, but that module sits in the fate layer; Paper B should not import it for a counting fact.",
+      "file": "formal/Problems/Juggler/PaperBFiveStepDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-five-step-count-assembly",
+        "J-paper-b-certificates-extend-to-length-seven"
+      ],
+      "line": 89,
+      "module": "Problems.Juggler.PaperBFiveStepDensity",
+      "name": "card_allWords_nat",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`#C_d + N_d = 2^d`: every word is certified or never-negative, never both.",
+      "file": "formal/Problems/Juggler/PaperBFiveStepDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-five-step-count-assembly",
+        "J-paper-b-certificates-extend-to-length-seven"
+      ],
+      "line": 105,
+      "module": "Problems.Juggler.PaperBFiveStepDensity",
+      "name": "certifiedWordCount_add_neverNegCount",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBFiveStepDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-five-step-count-assembly",
+        "J-paper-b-certificates-extend-to-length-seven"
+      ],
+      "line": 117,
+      "module": "Problems.Juggler.PaperBFiveStepDensity",
+      "name": "certifiedWordCount_four",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBFiveStepDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-five-step-count-assembly",
+        "J-paper-b-certificates-extend-to-length-seven"
+      ],
+      "line": 119,
+      "module": "Problems.Juggler.PaperBFiveStepDensity",
+      "name": "certifiedWordCount_five",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBFiveStepDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-five-step-count-assembly",
+        "J-paper-b-certificates-extend-to-length-seven"
+      ],
+      "line": 121,
+      "module": "Problems.Juggler.PaperBFiveStepDensity",
+      "name": "certifiedWordCount_six",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Theorem 5.2's density, as a count.**",
+      "file": "formal/Problems/Juggler/PaperBFiveStepDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-five-step-count-assembly",
+        "J-paper-b-certificates-extend-to-length-seven"
+      ],
+      "line": 124,
+      "module": "Problems.Juggler.PaperBFiveStepDensity",
+      "name": "four_step_density",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Theorem 5.4's density, as a count.** This is what `PaperBCertificates.certificate_measures_sum` and `DepthFourFive.cor64_density` assert as an identity between five rational literals: here the `7/8` is the number of certified words over the number of words.",
+      "file": "formal/Problems/Juggler/PaperBFiveStepDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-five-step-count-assembly",
+        "J-paper-b-certificates-extend-to-length-seven"
+      ],
+      "line": 131,
+      "module": "Problems.Juggler.PaperBFiveStepDensity",
+      "name": "five_step_density",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Depth six adds nothing.** The density is still `7/8`, so Section 5 stopping at five costs no certificate.",
+      "file": "formal/Problems/Juggler/PaperBFiveStepDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-five-step-count-assembly",
+        "J-paper-b-certificates-extend-to-length-seven"
+      ],
+      "line": 136,
+      "module": "Problems.Juggler.PaperBFiveStepDensity",
+      "name": "six_step_density",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The length-`d` words extending `c`: the cylinder of `c` cut to depth `d`. A set of **words**, unlike `FateChernoff.cylinder`, which is the set of odd starts in `(y, 2y]` realizing a given word.",
+      "file": "formal/Problems/Juggler/PaperBFiveStepDensity.lean",
+      "kind": "def",
+      "ledger": [
+        "J-paper-b-five-step-count-assembly",
+        "J-paper-b-certificates-extend-to-length-seven"
+      ],
+      "line": 144,
+      "module": "Problems.Juggler.PaperBFiveStepDensity",
+      "name": "wordCylinder",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBFiveStepDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-five-step-count-assembly",
+        "J-paper-b-certificates-extend-to-length-seven"
+      ],
+      "line": 147,
+      "module": "Problems.Juggler.PaperBFiveStepDensity",
+      "name": "wordCylinder_card_E",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBFiveStepDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-five-step-count-assembly",
+        "J-paper-b-certificates-extend-to-length-seven"
+      ],
+      "line": 148,
+      "module": "Problems.Juggler.PaperBFiveStepDensity",
+      "name": "wordCylinder_card_OE",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBFiveStepDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-five-step-count-assembly",
+        "J-paper-b-certificates-extend-to-length-seven"
+      ],
+      "line": 149,
+      "module": "Problems.Juggler.PaperBFiveStepDensity",
+      "name": "wordCylinder_card_OOEE",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBFiveStepDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-five-step-count-assembly",
+        "J-paper-b-certificates-extend-to-length-seven"
+      ],
+      "line": 150,
+      "module": "Problems.Juggler.PaperBFiveStepDensity",
+      "name": "wordCylinder_card_OOOEE",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBFiveStepDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-five-step-count-assembly",
+        "J-paper-b-certificates-extend-to-length-seven"
+      ],
+      "line": 151,
+      "module": "Problems.Juggler.PaperBFiveStepDensity",
+      "name": "wordCylinder_card_OOEOE",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The five cylinders cover the certified words at depth five.**",
+      "file": "formal/Problems/Juggler/PaperBFiveStepDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-five-step-count-assembly",
+        "J-paper-b-certificates-extend-to-length-seven"
+      ],
+      "line": 154,
+      "module": "Problems.Juggler.PaperBFiveStepDensity",
+      "name": "five_cylinders_cover",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**And they are disjoint**, because their sizes add to the size of the union. `16 + 8 + 2 + 1 + 1 = 28`, which is the main-term arithmetic Theorem 5.4 prints as `1/2 + 1/4 + 1/16 + 1/32 + 1/32`.",
+      "file": "formal/Problems/Juggler/PaperBFiveStepDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-five-step-count-assembly",
+        "J-paper-b-certificates-extend-to-length-seven"
+      ],
+      "line": 163,
+      "module": "Problems.Juggler.PaperBFiveStepDensity",
+      "name": "five_cylinders_card_sum",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The printed measures are the cylinder counts.",
+      "file": "formal/Problems/Juggler/PaperBFiveStepDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-five-step-count-assembly",
+        "J-paper-b-certificates-extend-to-length-seven"
+      ],
+      "line": 170,
+      "module": "Problems.Juggler.PaperBFiveStepDensity",
+      "name": "printed_measures_are_counts",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Starts in `{1,\u2026,N}` carrying a descent certificate by depth `d`.",
+      "file": "formal/Problems/Juggler/PaperBFiveStepDensity.lean",
+      "kind": "def",
+      "ledger": [
+        "J-paper-b-five-step-count-assembly",
+        "J-paper-b-certificates-extend-to-length-seven"
+      ],
+      "line": 190,
+      "module": "Problems.Juggler.PaperBFiveStepDensity",
+      "name": "certifiedCount",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBFiveStepDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-five-step-count-assembly",
+        "J-paper-b-certificates-extend-to-length-seven"
+      ],
+      "line": 193,
+      "module": "Problems.Juggler.PaperBFiveStepDensity",
+      "name": "certifiedCount_add_uncertifiedCount",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBFiveStepDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-five-step-count-assembly",
+        "J-paper-b-certificates-extend-to-length-seven"
+      ],
+      "line": 203,
+      "module": "Problems.Juggler.PaperBFiveStepDensity",
+      "name": "mem_wordCylinder_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A start's depth-`d` itinerary extends `c` exactly when its depth-`|c|` itinerary is `c`.",
+      "file": "formal/Problems/Juggler/PaperBFiveStepDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-five-step-count-assembly",
+        "J-paper-b-certificates-extend-to-length-seven"
+      ],
+      "line": 209,
+      "module": "Problems.Juggler.PaperBFiveStepDensity",
+      "name": "prefix_itinerary_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Summing depth-`d` class counts over a cylinder gives the prefix class count.** This is the step that lets Theorem 5.4's five summands be the quantities Theorem 3.1 and Corollaries 4.6, 4.10 and 4.12 estimate.",
+      "file": "formal/Problems/Juggler/PaperBFiveStepDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-five-step-count-assembly",
+        "J-paper-b-certificates-extend-to-length-seven"
+      ],
+      "line": 217,
+      "module": "Problems.Juggler.PaperBFiveStepDensity",
+      "name": "sum_classCount_cylinder",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Theorem 5.4's assembly over real starts.** The certified count at depth five is the sum of the five printed prefix-class counts. Combined with Theorem 3.1 and Corollaries 4.6, 4.10 and 4.12 -- none of them proved anywhere in this repository -- this is the equality the paper's `7N/8 + O_\u03b5(N^(127/128+\u03b5))` rests on.",
+      "file": "formal/Problems/Juggler/PaperBFiveStepDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-five-step-count-assembly",
+        "J-paper-b-certificates-extend-to-length-seven"
+      ],
+      "line": 251,
+      "module": "Problems.Juggler.PaperBFiveStepDensity",
+      "name": "certifiedCount_five_eq",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBFiveStepDensity.lean",
+      "kind": "def",
+      "ledger": [
+        "J-paper-b-five-step-count-assembly",
+        "J-paper-b-certificates-extend-to-length-seven"
+      ],
+      "line": 297,
+      "module": "Problems.Juggler.PaperBFiveStepDensity",
+      "name": "certOOEOOEE",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBFiveStepDensity.lean",
+      "kind": "def",
+      "ledger": [
+        "J-paper-b-five-step-count-assembly",
+        "J-paper-b-certificates-extend-to-length-seven"
+      ],
+      "line": 298,
+      "module": "Problems.Juggler.PaperBFiveStepDensity",
+      "name": "certOOOEOEE",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBFiveStepDensity.lean",
+      "kind": "def",
+      "ledger": [
+        "J-paper-b-five-step-count-assembly",
+        "J-paper-b-certificates-extend-to-length-seven"
+      ],
+      "line": 299,
+      "module": "Problems.Juggler.PaperBFiveStepDensity",
+      "name": "certOOOOEEE",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Depth six contributes nothing.**",
+      "file": "formal/Problems/Juggler/PaperBFiveStepDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-five-step-count-assembly",
+        "J-paper-b-certificates-extend-to-length-seven"
+      ],
+      "line": 302,
+      "module": "Problems.Juggler.PaperBFiveStepDensity",
+      "name": "no_minimal_certificate_six",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Depth seven contributes exactly three.**",
+      "file": "formal/Problems/Juggler/PaperBFiveStepDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-five-step-count-assembly",
+        "J-paper-b-certificates-extend-to-length-seven"
+      ],
+      "line": 306,
+      "module": "Problems.Juggler.PaperBFiveStepDensity",
+      "name": "minimal_certificates_seven",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBFiveStepDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-five-step-count-assembly",
+        "J-paper-b-certificates-extend-to-length-seven"
+      ],
+      "line": 310,
+      "module": "Problems.Juggler.PaperBFiveStepDensity",
+      "name": "certifiedWordCount_seven",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The next rung of the table: `115/128`, not `7/8`.",
+      "file": "formal/Problems/Juggler/PaperBFiveStepDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-five-step-count-assembly",
+        "J-paper-b-certificates-extend-to-length-seven"
+      ],
+      "line": 313,
+      "module": "Problems.Juggler.PaperBFiveStepDensity",
+      "name": "seven_step_density",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The gain over Theorem 5.4 is exactly the three new cylinders.",
+      "file": "formal/Problems/Juggler/PaperBFiveStepDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-five-step-count-assembly",
+        "J-paper-b-certificates-extend-to-length-seven"
+      ],
+      "line": 317,
+      "module": "Problems.Juggler.PaperBFiveStepDensity",
+      "name": "seven_step_gain",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The printed error exponents of Theorems 3.1, 5.2, 5.3 and 5.4, in increasing order. This is what licenses \"absorbing the smaller four-step error\".",
+      "file": "formal/Problems/Juggler/PaperBFiveStepDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-five-step-count-assembly",
+        "J-paper-b-certificates-extend-to-length-seven"
+      ],
+      "line": 323,
+      "module": "Problems.Juggler.PaperBFiveStepDensity",
+      "name": "error_exponents_ordered",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Absorption.** At `N \u2265 1` the smaller exponent is dominated.",
+      "file": "formal/Problems/Juggler/PaperBFiveStepDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-five-step-count-assembly",
+        "J-paper-b-certificates-extend-to-length-seven"
+      ],
+      "line": 329,
+      "module": "Problems.Juggler.PaperBFiveStepDensity",
+      "name": "error_absorb",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The count assembly, with the analysis as hypotheses.** Five class counts, each within its own error of its printed main term, add to `7N/8` within the sum of the errors. Every hypothesis here is an analytic estimate this repository does not prove.",
+      "file": "formal/Problems/Juggler/PaperBFiveStepDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-five-step-count-assembly",
+        "J-paper-b-certificates-extend-to-length-seven"
+      ],
+      "line": 335,
+      "module": "Problems.Juggler.PaperBFiveStepDensity",
+      "name": "five_step_error_assembly",
+      "trust": "kernel"
+    },
+    {
       "doc": "The binomial generating function.",
       "file": "formal/Problems/Juggler/PaperBMarkov.lean",
       "kind": "theorem",
@@ -54754,6 +55248,116 @@
       "line": 77,
       "module": "Problems.Juggler.PaperBSturmianBarrier",
       "name": "rise_mem_zero_one",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The survivor density `N_d / 2^d` as a real sequence.",
+      "file": "formal/Problems/Juggler/PaperBSurvivorAsymptotic.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 55,
+      "module": "Problems.Juggler.PaperBSurvivorAsymptotic",
+      "name": "survivorDensity",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The rate base: `PaperBChernoff.theta` at `PaperBThreshold.beta`.",
+      "file": "formal/Problems/Juggler/PaperBSurvivorAsymptotic.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 58,
+      "module": "Problems.Juggler.PaperBSurvivorAsymptotic",
+      "name": "rateBase",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBSurvivorAsymptotic.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 60,
+      "module": "Problems.Juggler.PaperBSurvivorAsymptotic",
+      "name": "rateBase_pos",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBSurvivorAsymptotic.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 65,
+      "module": "Problems.Juggler.PaperBSurvivorAsymptotic",
+      "name": "rateBase_lt_one",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The rate is an identity, not a measurement.** The ledger's `\u03c1 = \u03b8(\u03b2)`, recorded as a `1.1e-16` numerical agreement in `J-theorem-six-one-threshold-is-slack`, is `rfl` between the two definitions.",
+      "file": "formal/Problems/Juggler/PaperBSurvivorAsymptotic.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 75,
+      "module": "Problems.Juggler.PaperBSurvivorAsymptotic",
+      "name": "theta_beta_eq_rho",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The measured model sequence: `\u03b8(\u03b2)^d \u00b7 d^(-3/2)`.",
+      "file": "formal/Problems/Juggler/PaperBSurvivorAsymptotic.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 79,
+      "module": "Problems.Juggler.PaperBSurvivorAsymptotic",
+      "name": "model",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBSurvivorAsymptotic.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 81,
+      "module": "Problems.Juggler.PaperBSurvivorAsymptotic",
+      "name": "model_pos",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The measured asymptotic shape, as a predicate on the prefactor: the ratio of the truth to `\u03c8(frac(d\u00b7\u03b2)) \u00b7 \u03b8(\u03b2)^d \u00b7 d^(-3/2)` tends to `1`. Stated, not proved: the proof obligation is a local limit theorem for a lattice walk against a Sturmian barrier, open in the laboratory.",
+      "file": "formal/Problems/Juggler/PaperBSurvivorAsymptotic.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 89,
+      "module": "Problems.Juggler.PaperBSurvivorAsymptotic",
+      "name": "MeanderShape",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The prefactor hypotheses the comparisons need: `\u03c8` bounded above, and bounded below away from zero, on `(0,1)`. The measured band satisfies this with `(10.4, 11)`; the constants stay hypotheses, because no theorem here fixes which `\u03c8` the truth carries.",
+      "file": "formal/Problems/Juggler/PaperBSurvivorAsymptotic.lean",
+      "kind": "structure",
+      "ledger": [],
+      "line": 100,
+      "module": "Problems.Juggler.PaperBSurvivorAsymptotic",
+      "name": "PrefactorBounds",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Once the shape holds, the truth is a big-Theta of the model.** With `\u03c8` bounded on both sides of `0`, `survivorDensity = \u0398(model)` along `atTop`: the ratio tends to `1`, hence sits in `(1/2, 3/2)` eventually, and the bounded prefactor turns that into the two linear comparisons of a Theta. This is the formal content of \"the proved upper bound `\u03b8(\u03b2)^d` is sharp up to the polynomial `d^(3/2)`\": the model IS `\u03b8(\u03b2)^d \u00b7 d^(-3/2)`, and bound and truth differ from it by the bounded prefactor alone.",
+      "file": "formal/Problems/Juggler/PaperBSurvivorAsymptotic.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 115,
+      "module": "Problems.Juggler.PaperBSurvivorAsymptotic",
+      "name": "isBigO_truth_of_shape",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The proved upper bound is sharp up to the polynomial.** The laboratory's `neverNegCount_div_pow_le_theta` says `survivorDensity \u2264 rateBase^d` for every `d`; the model is `rateBase^d \u00b7 d^(-3/2)`. Under the meander shape the truth is Theta of the model, so the proved bound overshoots by exactly `d^(3/2)` times a bounded prefactor \u2014 packaged here next to the bound itself, one symbol for the ledger.",
+      "file": "formal/Problems/Juggler/PaperBSurvivorAsymptotic.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 204,
+      "module": "Problems.Juggler.PaperBSurvivorAsymptotic",
+      "name": "theta_bound_is_sharp_up_to_poly",
       "trust": "kernel"
     },
     {
@@ -88340,10 +88944,12 @@
         "Problems.Juggler.PaperBChainRule",
         "Problems.Juggler.PaperBChernoff",
         "Problems.Juggler.PaperBDensity",
+        "Problems.Juggler.PaperBFiveStepDensity",
         "Problems.Juggler.PaperBMarkov",
         "Problems.Juggler.PaperBPaperCBridge",
         "Problems.Juggler.PaperBSlopeRate",
         "Problems.Juggler.PaperBSturmianBarrier",
+        "Problems.Juggler.PaperBSurvivorAsymptotic",
         "Problems.Juggler.PaperBSurvivorDecay",
         "Problems.Juggler.PaperBTailSpectrum",
         "Problems.Juggler.PaperBThreshold",
@@ -90449,6 +91055,26 @@
       "imports": [],
       "ledger": []
     },
+    "Problems.Juggler.PaperBFiveStepDensity": {
+      "declarations": 38,
+      "file": "formal/Problems/Juggler/PaperBFiveStepDensity.lean",
+      "imports": [
+        "Problems.Juggler.PaperBCertificates",
+        "Problems.Juggler.RateFreeDensity"
+      ],
+      "ledger": [
+        {
+          "id": "J-paper-b-five-step-count-assembly",
+          "statement": "Paper B Theorems 5.2-5.4, assembly half. Let certifiedWords d be the length-d parity words with a contracting prefix. (i) Their counts are 13, 28, 56, 115 at d = 4, 5, 6, 7, so the certificate densities are 13/16, 7/8, 7/8, 115/128; depth six adds nothing. (ii) At depth five the cylinders of E, OE, OOEE, OOOEE, OOEOE have sizes 16, 8, 2, 1, 1, are pairwise disjoint, and their union is exactly certifiedWords 5 (five_cylinders_cover, five_cylinders_card_sum) \u2014 so the printed 1/2+1/4+1/16+1/32+1/32 = 7/8 is the cylinder arithmetic and not a free-standing rational identity (printed_measures_are_counts). (iii) For every N the starts in {1,...,N} certified by depth five number classCount E N + classCount OE N + classCount OOEE N + classCount OOOEE N + classCount OOEOE N (certifiedCount_five_eq), via sum_classCount_cylinder and itinerary_take. (iv) 5/6 < 23/24 < 47/48 < 127/128 < 1 with N^e <= N^f for e <= f and N >= 1, which is the absorption the proofs assume. (v) five_step_error_assembly: five class counts within errors of their main terms add to 7N/8 within the sum of the errors. Every analytic count is a hypothesis: Theorem 3.1 and Corollaries 4.6, 4.10, 4.12 are not proved here or anywhere in the repository, so this bounds no exponential sum and is not a density theorem or a termination statement.",
+          "tag": "EXACT \u2014 LEAN VERIFIED"
+        },
+        {
+          "id": "J-paper-b-certificates-extend-to-length-seven",
+          "statement": "Paper B Lemma 5.1 extends past its printed length five, decidably. No word of length six is a minimal certificate (no_minimal_certificate_six), which is why the certificate density is still 7/8 at depth six. Exactly three words of length seven are: OOEOOEE, OOOEOEE, OOOOEEE (minimal_certificates_seven). The depth-seven certificate density is therefore 115/128 = 7/8 + 3/128 (certifiedWordCount_seven, seven_step_density, seven_step_gain). The manuscript states nothing about lengths six or seven. This is combinatorics only: each of the three new words would need its own mixed-mode exponential-sum estimate before 115/128 became a density for the Juggler map rather than a count of words.",
+          "tag": "EXACT \u2014 LEAN VERIFIED"
+        }
+      ]
+    },
     "Problems.Juggler.PaperBMarkov": {
       "declarations": 4,
       "file": "formal/Problems/Juggler/PaperBMarkov.lean",
@@ -90478,6 +91104,15 @@
       "declarations": 7,
       "file": "formal/Problems/Juggler/PaperBSturmianBarrier.lean",
       "imports": [],
+      "ledger": []
+    },
+    "Problems.Juggler.PaperBSurvivorAsymptotic": {
+      "declarations": 11,
+      "file": "formal/Problems/Juggler/PaperBSurvivorAsymptotic.lean",
+      "imports": [
+        "Problems.Juggler.PaperBSurvivorDecay",
+        "Problems.Juggler.PaperBTilt"
+      ],
       "ledger": []
     },
     "Problems.Juggler.PaperBSurvivorDecay": {
@@ -91599,13 +92234,13 @@
     }
   },
   "totals": {
-    "declarations": 6778,
-    "declarations_with_a_ledger_row": 4618,
-    "ledger_rows_naming_a_file": 436,
-    "modules": 301,
+    "declarations": 6827,
+    "declarations_with_a_ledger_row": 4656,
+    "ledger_rows_naming_a_file": 438,
+    "modules": 303,
     "trust": {
       "compiler": 56,
-      "kernel": 6722
+      "kernel": 6771
     }
   }
 }

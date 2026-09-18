@@ -5863,6 +5863,23 @@
       "nk_cluster": "Paper B: individual wave size does not imply combined dominance"
     },
     {
+      "id": "paper_b_five_step_density",
+      "kind": "dossier_only",
+      "probe": null,
+      "test": null,
+      "dossier": "docs/problems/juggler_paper_b_five_step_density.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-paper-b-five-step-count-assembly",
+        "J-paper-b-certificates-extend-to-length-seven"
+      ],
+      "aliases": [],
+      "nk_cluster": null
+    },
+    {
       "id": "paper_b_kernel_assembly",
       "kind": "dossier_only",
       "probe": null,

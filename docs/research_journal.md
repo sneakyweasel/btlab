@@ -1,5 +1,66 @@
 # Research journal
 
+## 2026-09-18 — The `7/8` was an identity between five literals; now it is a partition
+
+- **Objective:** Answer the question the 17 September entry and the
+  certificates dossier both left as best-next: is there formal-chain
+  algebra of Theorems 5.2--5.4 that needs no Fourier estimate?
+- **Triage:** target = is the printed `7/8` the actual main-term
+  arithmetic, and does the error-exponent chain close; novelty = first
+  Lean coverage of the Section 5 count assembly, plus Lemma 5.1 past its
+  printed length five; falsifier = cylinder counts not summing to the
+  certified count, a length-5 word in two cylinders, or `115/128` wrong
+  (none fired); already killed by? = none — `negative_knowledge` kills
+  the Paper A x B merge, local attacks, Baker/SdW and harvest counting,
+  and the three tests concern cycle, termination and local attacks, not
+  a finite word partition; machinery = `RateFreeDensity` (`allWords`,
+  `classCount`, `classCount_fiber_disjoint`, `itinerary_take`),
+  `PaperBCertificates`, `ItineraryStats`; Phase-0 = one auxiliary
+  module, dossier, ledger rows; promote if the partition and the
+  real-start assembly are kernel-checked with every analytic count left
+  a hypothesis; stop if the assembly needs a Fourier bound to state
+  (did not fire).
+- **Major results:** `PaperBFiveStepDensity.lean`, 38 declarations.
+  `five_cylinders_cover` and `five_cylinders_card_sum`: at depth five
+  the cylinders of `E, OE, OOEE, OOOEE, OOEOE` have sizes
+  `16, 8, 2, 1, 1`, are disjoint, and their union is exactly the
+  certified words — so `printed_measures_are_counts` derives the
+  printed `1/2+1/4+1/16+1/32+1/32` from cylinder sizes rather than
+  asserting it between rational literals, which is what
+  `PaperBCertificates.certificate_measures_sum` and
+  `DepthFourFive.cor64_density` each do separately.
+  `certifiedCount_five_eq` carries this to starts: for every `N` the
+  depth-five certified count of `{1,…,N}` is a sum of five
+  `classCount`s, via `sum_classCount_cylinder` and `itinerary_take`.
+  Those five summands are exactly what Theorem 3.1 and Corollaries 4.6,
+  4.10 and 4.12 estimate, and none of them is proved anywhere here.
+  `five_step_error_assembly` is the triangle inequality behind "add
+  Theorem 5.3 and Corollary 4.12"; `error_exponents_ordered` and
+  `error_absorb` are the absorption it uses.
+- **An extension, small and decidable:** Lemma 5.1 stops at length five
+  in the manuscript. Length six contributes no minimal certificate at
+  all (`no_minimal_certificate_six`) — which is why the density does not
+  move there — and length seven contributes exactly three, `OOEOOEE`,
+  `OOOEOEE`, `OOOOEEE` (`minimal_certificates_seven`), taking the
+  certificate density to `115/128`. Section 5 stops at five because the
+  analysis stops there, not the combinatorics.
+- **Two repairs to my own process:** the module compiled standalone and
+  then broke `Problems.Juggler`, because `cylinder` already belongs to
+  `FateChernoff` — a name collision `lake env lean` on one file cannot
+  see. Renamed `wordCylinder`, which is the better name anyway: mine is
+  a set of words, the fate layer's is a set of starts. And I had
+  searched `formalpedia` for `cylinderCount` and `cylinderMultiplicity`
+  but not for the name I actually used.
+- **Decision:** PROMOTE. Ledger rows
+  `J-paper-b-five-step-count-assembly` and
+  `J-paper-b-certificates-extend-to-length-seven`. The manuscript's
+  status is unchanged: nothing analytic was proved, and Theorems
+  5.2--5.4 remain written proofs resting on estimates with no Lean.
+- **Best next question:** does the same partition argument close at
+  depth seven — is `certifiedCount 7 N` a sum of eight prefix-class
+  counts, so that the only missing input at the next rung is the three
+  new mixed-mode estimates?
+
 ## 2026-09-17 — The Theorem 6.1 count decays, in Lean
 
 - **Objective:** Close the last unformalised link of the rate-free
