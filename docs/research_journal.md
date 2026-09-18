@@ -1,5 +1,52 @@
 # Research journal
 
+## 2026-09-18 -- the xdist error is a write at startup, and I had read it backwards too
+
+- **Objective:** Philippe asked why xdist keeps crashing, and to find out without
+  launching it. Static reading of the installed packages only.
+- **The 16 September diagnosis is wrong, and this note supersedes it.** That entry
+  concluded an end-of-session teardown race, with the `Errno 22` traceback being
+  "the orphaned worker reading a pipe the master had already closed". It is a
+  write, and it happens at startup.
+- **What the traceback actually says.** The whole worker runs inside one `exec`
+  frame, so every death displays the outer `-c` source line
+  `import sys;exec(eval(sys.stdin.readline()))` regardless of where it happened.
+  That line is what made this look like a stdin read for two days. The raising
+  line is `File "<string>", line 5`, and the second stage is
+  `execnet.gateway_bootstrap.bootstrap_import`: eight lines joined by `sendexec`
+  with no prefix, so the numbering is literal and line 5 is
+  `sys.stdout.write('1')` -- the worker's one-byte liveness handshake, sent
+  before `init_popen_io` has redirected any descriptor.
+  `gateway_io.popen_args` appends `-u`, so that write reaches the OS directly,
+  which is why line 5 raises and not the flush on line 6.
+- **Why the old measurement did not catch it.** "All 322 ran and passed, THEN gw0
+  failed" was an inference from where the `F` sat in the output. A worker that
+  dies at startup produces the same observable: its files go to the other
+  workers, every test still runs, and one spurious `F` is reported at the end.
+  The measurement was sound; the ordering was assumed.
+- **One hypothesis raised and killed in the same hour.** `Popen(stdout=PIPE,
+  stdin=PIPE)` leaves stderr inherited, which looked like the culprit under a
+  harness. Reproducing execnet's exact spawn shape in isolation gives
+  `fd0=ok fd1=ok fd2=ok handshake_write=ok`. Ruled out, cheaply, which is the
+  only reason it was worth raising.
+- **Still not diagnosed:** why the handshake write returns `EINVAL`
+  intermittently. Candidates: twelve near-simultaneous spawns; the
+  `main_thread_only` execmodel; and the pairing -- xdist 3.8.0 declares only
+  `pytest>=7.0.0` against pytest 9.0.2, a major version of untested headroom.
+  Recording this as open rather than guessing again.
+- **The change that actually reduces the pain.** `addopts` forced
+  `-n auto --dist loadfile` on *every* invocation, so a fifteen-test targeted run
+  spawned twelve workers and rolled the dice. That is why it felt constant rather
+  than occasional. Removed from `addopts`; parallelise the full suite explicitly
+  with `pytest -n auto --dist loadfile`. Worker count is not capped.
+- **Consequence for the old advice.** `environment.mdc` said "do not cap
+  `-n auto` on its account", reasoned from the teardown diagnosis. That reasoning
+  is void. Worker count is now a live candidate rather than an excluded one, and
+  the note says so.
+- **Decision:** PROMOTE. Best next question: does the handshake ever fail at
+  `-n 4`? That is one cheap run away from either implicating spawn concurrency or
+  clearing it, and it is the experiment the corrected diagnosis makes worth doing.
+
 ## 2026-09-18 -- the orphan gate was counting, and counting was the wrong verb
 
 - **Objective:** the gate had been red at 433 against a cap of 402. Find out
@@ -53037,6 +53084,11 @@ distinct native errors, so sharing it was never much evidence, and I should have
 treated the coincidence as a question rather than a lead.
 
 ### What the xdist failure actually is
+
+> **Superseded 18 September 2026.** This section is wrong: the failure is a
+> worker *startup* handshake write, not a teardown stdin read. The reasoning
+> below is kept because the measurement in it is sound and only its
+> interpretation is not. See the 18 September entry at the head of this file.
 
 Reproduced it with a verbose run and counted the progress characters:
 
