@@ -61,7 +61,13 @@ research_engine = ["memory/seed/*.json"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-addopts = "-q --import-mode=importlib -n auto --dist loadfile"
+# `-n auto --dist loadfile` is deliberately NOT here. Forcing it on every
+# invocation spawned twelve execnet workers for a fifteen-test targeted run and
+# rolled the worker-startup dice each time (see environment.mdc on
+# `[gw0] node down`). Parallelise the full suite explicitly:
+#     pytest -n auto --dist loadfile
+# and leave targeted runs serial, where they are faster anyway.
+addopts = "-q --import-mode=importlib"
 markers = [
     "slow: exhaustive census, million-range identity, or Streamlit AppTest",
 ]
