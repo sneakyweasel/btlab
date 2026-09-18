@@ -1,5 +1,40 @@
 # Research journal
 
+## 2026-09-18 -- the spectrum factorises, and the sequence it leaves resists me
+
+- **Objective:** the `1/rho` law at Sturmian zeros makes `log a_n` linear in the
+  zero count, so all the content should sit in the one-steps. Is there a law
+  there, in the Ostrowski coordinate rather than in `n`?
+- **The factorisation is exact and is the result.** Renormalise by
+  `rho^(n - ceil(n beta))` and the amplitude cannot move at a zero -- that is
+  what the `1/rho` law says -- and it does not: `c_n = a_n rho^(n - ceil(n beta))`
+  is constant across every zero-step to a median `2.7e-6`, worst `2.6e-5`. So
+
+      a_n = C_(ceil(n beta)) * rho^(-(n - ceil(n beta)))
+
+  one sequence indexed by the barrier height times an explicit exponential,
+  rather than a free function of `n`. The two-parameter-looking spectrum is
+  one-parameter.
+- **And `C_j` resists.** I split the one-steps by whether a zero precedes them.
+  Over the first 26 amplitudes the two groups looked separated and I had the
+  paragraph half written. Extending the range dissolves it: at `n <= 30` the
+  groups are `0.661..0.820` and `0.759..0.908`, overlapping, and at every wider
+  range too. No law for `C_j` is claimed.
+- **The instrument's own limit, now measured.** Past `n` about 40 the amplitudes
+  go negative -- the window shrinks like `1/n` and admits neighbouring jumps --
+  so nothing is claimed beyond it. That is the third distinct way this
+  measurement can lie (fixed window, denormal tail, window contamination), and
+  all three are now pinned by tests rather than by my memory.
+- **Decision:** prefactor row refined with the factorisation and with the
+  withdrawn reading recorded beside it. No new branch, no claim on
+  `MeanderShape`, no bound moves.
+- **Best next question, and it is an instrument question rather than a
+  mathematical one:** measuring `C_j` past `j` about 25 needs amplitudes at `n`
+  well past 40, which this differencing method cannot deliver -- the windows
+  collapse. A method that fits `psi` as a jump function globally, solving for all
+  amplitudes at once instead of differencing locally, would not have that limit.
+  Until then `C_j` is out of reach, and saying so is more useful than another fit.
+
 ## 2026-09-18 -- the two jump measures diverge by exactly 2/rho per Sturmian zero
 
 - **Objective:** the recorded question -- is the prefactor's jump measure the
