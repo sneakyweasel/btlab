@@ -2,9 +2,9 @@
 
 Parity Statistics of Nested Floor Powers.
 
-Version: 2026-09-10-zenodo-preprint. Author: Philippe Cochin.
+Version: 2026-09-18-preprint. Author: Philippe Cochin.
 
-The 37-page manuscript proves full five-step power-envelope certificate
+The 39-page manuscript proves full five-step power-envelope certificate
 density 7/8, with count error O_epsilon(N^(127/128+epsilon)).
 Theorem 4.11 and Appendices A-C contain the complete OOOEE proof;
 Theorem 5.4 gives the count. The four-step density 13/16 and OOEOE
@@ -47,16 +47,22 @@ the rebuild check compares generated LaTeX exactly.
 ~~~text
 python tools/build_paper_b.py
 python tools/validate_paper_b_consolidated.py --output docs/theory/paper_b_consolidated_validation.json
+python tools/build_paper_b_kit.py
 python tools/build_paper_b.py --check
+python tools/build_paper_b_kit.py --check
 python tools/render_theorem_ledger.py --check
 python -m research.juggler_sequence.branch_index --check
 ~~~
 
 The builder reads docs/theory/ and tools/paper_b/. A repository build
 synchronizes the review mirrors, companion PDF, and Zenodo PDF alias.
---sync repairs those mirrors without compiling. The source archive and
-checksums must be regenerated after source changes; --sync alone does
-not rebuild archives. Review the rendered PDF after every changed build.
+--sync repairs those mirrors without compiling, but it does not rebuild
+the Zenodo archives: build_paper_b_kit.py does, and its --check verifies
+every archive member, both in-archive SHA256SUMS.txt files, and the kit
+checksums against the files beside them. Because the release check records
+the source archive's digest and the delivery bundle carries the release
+check, a new edition goes --archive, then write the release check, then a
+full kit build. Review the rendered PDF after every changed build.
 
 ## Optional symbolic review
 

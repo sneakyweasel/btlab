@@ -18,7 +18,7 @@ import subprocess
 # without this a no-op rebuild changes the bytes and therefore the sha256 in the manifest.
 # The epoch is fixed to the version this guide records rather than taken from git, because a
 # git-derived date lags one build behind an edit and merely relocates the churn.
-_SOURCE_DATE_EPOCH = "1788998400"  # Paper B version 2026-09-10-zenodo-preprint
+_SOURCE_DATE_EPOCH = "1789689600"  # Paper B version 2026-09-18-preprint
 
 
 def _pin_build_date() -> None:
@@ -176,7 +176,9 @@ def main() -> None:
         return
     source, assets = args.source.resolve(), args.assets.resolve()
     output = (args.output_dir or source.parent).resolve()
-    work = (args.build_dir or root/'.build/paper_b').resolve()
+    # `root` is None in an extracted source package, which is the one place
+    # PAPER_B_BUILD.md tells a reviewer to run this; fall back to the output tree.
+    work = (args.build_dir or (root or output)/'.build/paper_b').resolve()
     output.mkdir(parents=True, exist_ok=True)
     work.mkdir(parents=True, exist_ok=True)
     text = source.read_text(encoding='utf-8')
