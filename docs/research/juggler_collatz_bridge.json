@@ -1,0 +1,54 @@
+{
+  "answer": "Juggler is Collatz one exponential level up",
+  "shared_walk": {
+    "steps": [
+      0.4054651081081644,
+      -0.6931471805599453
+    ],
+    "collatz_variable": "log x",
+    "juggler_variable": "log log n",
+    "worst_increment_error": 1.1017712298055926e-09,
+    "note": "the same additive walk on different variables; the maps are not conjugate, the multiplier semigroup is one"
+  },
+  "shared_count": {
+    "depths": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "undecided_collatz_classes": {
+      "4": 3,
+      "5": 4,
+      "6": 8,
+      "7": 13,
+      "8": 19,
+      "9": 38,
+      "10": 64
+    },
+    "survivor_counts": {
+      "4": 3,
+      "5": 4,
+      "6": 8,
+      "7": 13,
+      "8": 19,
+      "9": 38,
+      "10": 64
+    },
+    "agree": true,
+    "parity_map_bijective": {
+      "4": true,
+      "6": true,
+      "8": true
+    }
+  },
+  "where_they_part": "For Collatz the parity word is a function of x mod 2^d and the map to {0,1}^d is a bijection, so every word has density exactly 2^(-d): Terras, arithmetic and free. For Juggler the word is a function of frac(n^(3/2)) and its relatives, and equal densities are Hypothesis FD, which is open. Same combinatorics, incompatible arithmetic.",
+  "decision": {
+    "classification": "JUGGLER_IS_COLLATZ_ONE_EXPONENTIAL_UP",
+    "reason": "the walk identification is exact to 2e-16 from a twenty-one digit seed, and the count identification is checked by running Collatz rather than by quoting OEIS"
+  },
+  "anti_overclaim": "This is not an equivalence and not a conjugacy. It moves no bound in either problem, proves nothing new about Collatz beyond restating Terras, and proves nothing about Juggler at all. Its content is a partition: results that use only word densities belong to both problems, results that use how orbits realise words belong to Juggler and rest on Hypothesis FD. Juggler is not an easier Collatz -- it is Collatz's word problem plus a Weyl-sum problem, and both stall at the same wall."
+}

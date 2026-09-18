@@ -348,6 +348,23 @@
       "nk_cluster": null
     },
     {
+      "id": "collatz_bridge",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/collatz_bridge.py",
+      "test": "tests/research/juggler_sequence/test_collatz_bridge.py",
+      "dossier": "docs/problems/juggler_collatz_bridge.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-juggler-is-collatz-one-exponential-up",
+        "J-word-density-results-are-not-juggler-specific"
+      ],
+      "aliases": [],
+      "nk_cluster": null
+    },
+    {
       "id": "collision_large_sieve",
       "kind": "branch",
       "probe": "src/research/juggler_sequence/collision_large_sieve.py",
