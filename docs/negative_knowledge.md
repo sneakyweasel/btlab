@@ -3025,6 +3025,41 @@ boundary-layer mass in the rise letter or the phase.
 Machinery: `tail_predicts_boundary`. No bound moves.
 
 
+**The certificate increment is not a function of the rotation coordinate, so
+the almost-periodic prefactor does not follow from the recursion**
+(`J-paper-b-increment-is-not-a-rotation-function`, 18 September 2026).
+Killed claim: that `r_d = M_d / (2 N_(d-1))`, the fraction of Paper B's survivors
+dying at step `d`, is a function of `frac(d * beta)` alone, `beta = log2/log3`.
+It is an attractive claim because `J-paper-b-survivor-certificate-recursion`
+writes `N_d = 2^d * prod (1 - r_k)` exactly, so an `r_k` depending only on the
+rotation would make the survivor count almost-periodic outright and hand over
+the prefactor of `J-paper-b-meander-prefactor-is-almost-periodic` without a
+local limit theorem.
+Kill: residue classes modulo `485`, the denominator of the convergent `306/485`,
+fix the coordinate to `9.3e-4`. Over depths to `3000`, fitting `d >= 1000`, all
+306 such classes are **strictly monotone in `d`** -- scattered values would be
+monotone by chance two to eight percent of the time. The median within-class
+spread is `9.9e-4` against a median `a + b/d` residual of `3.2e-6`, and 264 of
+306 classes exceed tenfold the `6.5e-5` that the residual coordinate motion can
+explain. One witness: at `d = 300, 785, 1270` the increment reads `0.05279228`,
+`0.04912429`, `0.04821094`.
+Kind: `REFUTED`.
+Consequence: the prefactor still needs the local limit theorem for a walk
+against a Sturmian barrier; the recursion gives `r_d` an exact finite meaning at
+every depth but does not make it a rotation function. `MeanderShape` in
+`PaperBSurvivorAsymptotic` remains a hypothesis.
+Do not: re-derive the prefactor from the product formula as though `r_k` were
+almost-periodic; read the recursion as supplying the shape; or test this on a
+coarse period -- `84` fixes the coordinate only to `1.9e-3` and sees 85%
+monotonicity, which looks like noise and is resolution.
+Left open, and not killed: the fitted `1/d` coefficient `b` runs `1.93` to
+`3.01` by class against the `3 theta / 2 = 1.45` that the exponent `-3/2`
+predicts, while `b/a` is nearly constant at `40.8`. That is a tension in the
+measured shape, not a refutation of it.
+Machinery: `certificate_increment`; dossier
+[juggler_certificate_increment](problems/juggler_certificate_increment.md).
+No bound moves.
+
 **Externals that are already imported; do not propose them as new.** The
 ANTEDB of Tao--Trudgian--Yang (arXiv:2501.16779) is already consulted at
 its August 2026 vertices and moves neither \(95/112\) nor \(275/388\)

@@ -1,5 +1,49 @@
 # Research journal
 
+## 2026-09-18 -- the increment is not a rotation function, and that shuts a route
+
+- **Objective:** the previous entry's best-next question. The recursion writes
+  `N_d = 2^d prod (1 - r_k)` with `r_k = M_k / (2 N_(k-1))`. Is `r_k` a function
+  of `frac(k beta)` alone? If so the survivor count is almost-periodic outright
+  and the measured prefactor falls out of the recursion, with no local limit
+  theorem needed.
+- **Triage:** target = that question; novelty = none mathematically, the value is
+  that it is decidable from counts already in hand; falsifier = residue classes
+  mod a convergent denominator holding one value; already killed by? = none, the
+  question is new with the recursion; machinery = a `(length, oddCount)` dynamic
+  program, exact in integers; Phase-0 = one probe plus ceremony; promote on a
+  decisive answer either way; stop if the classes cannot separate `d`-motion from
+  coordinate motion (did not fire).
+- **Answer: no, decisively.** Classes mod `485` fix the coordinate to `9.3e-4`.
+  Over depths to 3000, fitting `d >= 1000`, **all 306 classes are strictly
+  monotone in `d`**. Scattered values would be monotone by chance two to eight
+  percent of the time. Median spread `9.9e-4` against a median `a + b/d`
+  residual of `3.2e-6`; 264 of 306 exceed tenfold the `6.5e-5` that residual
+  coordinate motion explains. Witness: `d = 300, 785, 1270` give `0.05279228`,
+  `0.04912429`, `0.04821094`.
+- **Two things I got wrong on the way, both caught by the data.** First I used
+  `max(residual)` over all classes as the decisive test, which let one bad class
+  veto 305 good ones and returned INCONCLUSIVE; monotonicity is the right
+  statistic and is not threshold-tuned. Second I reached for a coarser period to
+  get more points per class, and `84` fixes the coordinate only to `1.9e-3`, so
+  85% monotonicity -- that is resolution falling off, not the effect weakening,
+  and the test file now says so rather than loosening a threshold to pass.
+- **The tension worth carrying.** Under `N_d/2^d ~ psi * theta^d * d^(-3/2)` the
+  increment expands as `a + b/d` with `b = (3/2) theta psi_d/psi_(d-1)`, near
+  `1.45`. Fits give `b` from `1.93` to `3.01`, varying by class, while `b/a` is
+  nearly constant at `40.8` across classes whose `a` varies by 60%. Either `psi`
+  carries compensating `1/d` structure, or the expansion is too crude, or the
+  exponent is not `-3/2`. Stated as a tension. It is the first quantitative check
+  the shape has had beyond the direct measurement.
+- **Decision:** CLOSE. The route it tested -- derive the prefactor from the
+  recursion alone -- is shut, and that is recorded in `negative_knowledge.md`.
+  Ledger row `J-paper-b-increment-is-not-a-rotation-function` (REFUTED), dossier
+  `juggler_certificate_increment.md`.
+- **Best next question:** the `b/a` constancy. Why should the *relative* `1/d`
+  correction be universal at `40.8` when the limit itself varies by 60% across
+  classes? The `d^(-3/2)` expansion does not predict it, and it is the sharpest
+  unexplained number this cluster has produced.
+
 ## 2026-09-18 -- the survivors and the certificates were the same recursion
 
 - **Objective:** the previous entry's best-next question -- is the

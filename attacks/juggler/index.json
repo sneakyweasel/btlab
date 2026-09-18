@@ -301,6 +301,22 @@
       "nk_cluster": null
     },
     {
+      "id": "certificate_increment",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/certificate_increment.py",
+      "test": "tests/research/juggler_sequence/test_certificate_increment.py",
+      "dossier": "docs/problems/juggler_certificate_increment.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": [
+        "J-paper-b-increment-is-not-a-rotation-function"
+      ],
+      "aliases": [],
+      "nk_cluster": null
+    },
+    {
       "id": "certificate_transitions",
       "kind": "branch",
       "probe": "src/research/juggler_sequence/certificate_transitions.py",
