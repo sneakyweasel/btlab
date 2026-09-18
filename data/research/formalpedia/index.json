@@ -53659,6 +53659,258 @@
       "trust": "kernel"
     },
     {
+      "doc": "The odd-count window of a length: `2 ^ (L - 1) \u2264 3 ^ o < 2 ^ L`. A minimal certificate of length `L` must have `o` odd letters for an `o` in this window, and the window holds at most one such `o`.",
+      "file": "formal/Problems/Juggler/PaperBCertificateLengths.lean",
+      "kind": "def",
+      "ledger": [
+        "J-paper-b-certificate-length-window"
+      ],
+      "line": 58,
+      "module": "Problems.Juggler.PaperBCertificateLengths",
+      "name": "CertWindow",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The window holds at most one power of three.** Consecutive powers of two differ by a factor of two and `3 > 2`, so two distinct powers of three cannot both land in `[2 ^ (L - 1), 2 ^ L)`.",
+      "file": "formal/Problems/Juggler/PaperBCertificateLengths.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-certificate-length-window"
+      ],
+      "line": 65,
+      "module": "Problems.Juggler.PaperBCertificateLengths",
+      "name": "certWindow_unique",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The window bounds the odd count by the length: `3 ^ o < 2 ^ L` forces `o \u2264 L` because `2 ^ o \u2264 3 ^ o`.",
+      "file": "formal/Problems/Juggler/PaperBCertificateLengths.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-certificate-length-window"
+      ],
+      "line": 102,
+      "module": "Problems.Juggler.PaperBCertificateLengths",
+      "name": "certWindow_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The length-`(L-1)` prefix of a minimal certificate does not contract. For `L = 1` this is vacuous and the bound `2 ^ 0 \u2264 3 ^ 0` holds outright.",
+      "file": "formal/Problems/Juggler/PaperBCertificateLengths.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-certificate-length-window"
+      ],
+      "line": 112,
+      "module": "Problems.Juggler.PaperBCertificateLengths",
+      "name": "minimalCert_prefix_not_gap",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**A minimal certificate ends in `E`.** An odd last letter would need `3 * 3 ^ o < 2 ^ L` while the prefix gives `3 ^ o \u2265 2 ^ (L - 1)`, i.e. `3 < 2`.",
+      "file": "formal/Problems/Juggler/PaperBCertificateLengths.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-certificate-length-window"
+      ],
+      "line": 118,
+      "module": "Problems.Juggler.PaperBCertificateLengths",
+      "name": "minimalCert_concat_even",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The odd count of a minimal certificate is inside the window of its length.**",
+      "file": "formal/Problems/Juggler/PaperBCertificateLengths.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-certificate-length-window"
+      ],
+      "line": 146,
+      "module": "Problems.Juggler.PaperBCertificateLengths",
+      "name": "minimalCert_window",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`O^o E^(L-o)`: all the odd letters first.",
+      "file": "formal/Problems/Juggler/PaperBCertificateLengths.lean",
+      "kind": "def",
+      "ledger": [
+        "J-paper-b-certificate-length-window"
+      ],
+      "line": 172,
+      "module": "Problems.Juggler.PaperBCertificateLengths",
+      "name": "blockWord",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The window is attained.** When some power of three lies in `[2 ^ (L-1), 2 ^ L)`, the word `O^o E^(L-o)` is a minimal certificate: every proper prefix either is all odd (where `3 ^ k > 2 ^ k`) or is `O^o E^j` with `j < L - o`, where the window's lower bound `2 ^ (L-1) \u2264 3 ^ o` is exactly what stops it contracting early.",
+      "file": "formal/Problems/Juggler/PaperBCertificateLengths.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-certificate-length-window"
+      ],
+      "line": 185,
+      "module": "Problems.Juggler.PaperBCertificateLengths",
+      "name": "blockWord_isMinimalCertificate",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Lemma 5.1 for every length.** A minimal certificate of length `L \u2265 1` exists exactly when some power of three lies in `[2 ^ (L - 1), 2 ^ L)`. The manuscript's list is the case `L \u2264 5`.",
+      "file": "formal/Problems/Juggler/PaperBCertificateLengths.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-certificate-length-window"
+      ],
+      "line": 228,
+      "module": "Problems.Juggler.PaperBCertificateLengths",
+      "name": "minimalCert_exists_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The contrapositive, which is the form the plateaus use: no power of three in the window means no minimal certificate of that length at all.",
+      "file": "formal/Problems/Juggler/PaperBCertificateLengths.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-certificate-length-window"
+      ],
+      "line": 240,
+      "module": "Problems.Juggler.PaperBCertificateLengths",
+      "name": "no_minimalCert_of_window_empty",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`3, 6, 9, 11, 14` carry no minimal certificate: no power of three lies in their windows. These are exactly the lengths where the certificate density does not move.",
+      "file": "formal/Problems/Juggler/PaperBCertificateLengths.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-certificate-length-window"
+      ],
+      "line": 249,
+      "module": "Problems.Juggler.PaperBCertificateLengths",
+      "name": "window_empty_three",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBCertificateLengths.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-certificate-length-window"
+      ],
+      "line": 255,
+      "module": "Problems.Juggler.PaperBCertificateLengths",
+      "name": "window_empty_six",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBCertificateLengths.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-certificate-length-window"
+      ],
+      "line": 261,
+      "module": "Problems.Juggler.PaperBCertificateLengths",
+      "name": "window_empty_nine",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBCertificateLengths.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-certificate-length-window"
+      ],
+      "line": 267,
+      "module": "Problems.Juggler.PaperBCertificateLengths",
+      "name": "window_empty_eleven",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBCertificateLengths.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-certificate-length-window"
+      ],
+      "line": 273,
+      "module": "Problems.Juggler.PaperBCertificateLengths",
+      "name": "window_empty_fourteen",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The first five carrying lengths give the manuscript's list back: `L = 1, 2, 4, 5` have windows, `L = 3` does not.",
+      "file": "formal/Problems/Juggler/PaperBCertificateLengths.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-certificate-length-window"
+      ],
+      "line": 281,
+      "module": "Problems.Juggler.PaperBCertificateLengths",
+      "name": "window_one",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBCertificateLengths.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-certificate-length-window"
+      ],
+      "line": 282,
+      "module": "Problems.Juggler.PaperBCertificateLengths",
+      "name": "window_two",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBCertificateLengths.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-certificate-length-window"
+      ],
+      "line": 283,
+      "module": "Problems.Juggler.PaperBCertificateLengths",
+      "name": "window_four",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBCertificateLengths.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-certificate-length-window"
+      ],
+      "line": 284,
+      "module": "Problems.Juggler.PaperBCertificateLengths",
+      "name": "window_five",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBCertificateLengths.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-certificate-length-window"
+      ],
+      "line": 285,
+      "module": "Problems.Juggler.PaperBCertificateLengths",
+      "name": "window_seven",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The odd counts the manuscript's five certificates carry are the windows' values: `E` has none, `OE` one, `OOEE` two, and both `OOOEE` and `OOEOE` three.",
+      "file": "formal/Problems/Juggler/PaperBCertificateLengths.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-certificate-length-window"
+      ],
+      "line": 289,
+      "module": "Problems.Juggler.PaperBCertificateLengths",
+      "name": "lemma51_odd_counts_are_the_windows",
+      "trust": "kernel"
+    },
+    {
       "doc": "A nonempty word that contracts, with no proper nonempty contracting prefix. This is the exact reading of Paper B Lemma 5.1's \"contracting words ... with no proper contracting prefix\".",
       "file": "formal/Problems/Juggler/PaperBCertificates.lean",
       "kind": "def",
@@ -88940,6 +89192,7 @@
         "Problems.Juggler.PaperBAssembly",
         "Problems.Juggler.PaperBBackwardWord",
         "Problems.Juggler.PaperBBarrierStep",
+        "Problems.Juggler.PaperBCertificateLengths",
         "Problems.Juggler.PaperBCertificates",
         "Problems.Juggler.PaperBChainRule",
         "Problems.Juggler.PaperBChernoff",
@@ -90997,6 +91250,20 @@
       "imports": [],
       "ledger": []
     },
+    "Problems.Juggler.PaperBCertificateLengths": {
+      "declarations": 21,
+      "file": "formal/Problems/Juggler/PaperBCertificateLengths.lean",
+      "imports": [
+        "Problems.Juggler.PaperBCertificates"
+      ],
+      "ledger": [
+        {
+          "id": "J-paper-b-certificate-length-window",
+          "statement": "Paper B Lemma 5.1 holds for every length, not only the printed five. Write CertWindow L o for 2^(L-1) <= 3^o < 2^L. (i) certWindow_unique: at most one o satisfies it, since consecutive powers of two differ by a factor 2 and 3 > 2. (ii) minimalCert_concat_even: a minimal certificate's last letter is E, because an odd one would need 3 * 3^o < 2^L while the length-(L-1) prefix gives 3^o >= 2^(L-1), that is 3 < 2. (iii) minimalCert_window: a minimal certificate of length L satisfies CertWindow L (oddCount w), so its odd count is forced by its length rather than chosen. (iv) blockWord_isMinimalCertificate: when the window holds, O^o E^(L-o) realises it, every proper prefix being all-odd (3^k > 2^k) or O^o E^j with j < L-o, which the window's lower bound blocks. (v) minimalCert_exists_iff: a minimal certificate of length L >= 1 exists exactly when some power of three lies in [2^(L-1), 2^L). With beta = log2/log3 that says the interval [(L-1)beta, L beta) holds an integer, so the carrying lengths are the jump points of floor(L beta) and the empty ones are the complement of a Beatty sequence; no real number appears in any statement or proof. The empty lengths through 16 are 3, 6, 9, 11, 14 -- not the multiples of three -- and window_empty_three, _six, _nine, _eleven and _fourteen close each. This explains the certificate-density plateaus: the density is flat from d-1 to d exactly at those lengths, which is why 7/8 holds at d = 5 and 6 and 237/256 at d = 8 and 9. Combinatorics only: no exponential sum, no density for the Juggler map, and no count of how many minimal certificates a carrying length has.",
+          "tag": "EXACT \u2014 LEAN VERIFIED"
+        }
+      ]
+    },
     "Problems.Juggler.PaperBCertificates": {
       "declarations": 23,
       "file": "formal/Problems/Juggler/PaperBCertificates.lean",
@@ -92234,13 +92501,13 @@
     }
   },
   "totals": {
-    "declarations": 6827,
-    "declarations_with_a_ledger_row": 4656,
-    "ledger_rows_naming_a_file": 438,
-    "modules": 303,
+    "declarations": 6848,
+    "declarations_with_a_ledger_row": 4677,
+    "ledger_rows_naming_a_file": 439,
+    "modules": 304,
     "trust": {
       "compiler": 56,
-      "kernel": 6771
+      "kernel": 6792
     }
   }
 }

@@ -1,5 +1,5 @@
 {
-  "composite": 30,
+  "composite": 31,
   "note": "Proposals for human review. Calibration: 86% precision (42 of 49 fires) against all resolved rows. Nothing here has been written into the ledger.",
   "rows": [
     {
@@ -141,6 +141,54 @@
         "seven_step_gain"
       ],
       "statement": "Paper B Lemma 5.1 extends past its printed length five, decidably. No word of length six is a minimal certificate (no_minimal_certificate_six), which is why the certificate density is still 7/8 at depth six. Exactly three words of length seven are: OOEOOEE, OOOEOEE, OOOOEEE (minimal_certificates_seven). The depth-seven certificate density is therefore 115/128 = 7/8 + 3/128 (certifiedWordCount_seve"
+    },
+    {
+      "candidates": [
+        {
+          "decl": "blockWord_isMinimalCertificate",
+          "line": 185,
+          "score": 0.168,
+          "trust": "kernel"
+        },
+        {
+          "decl": "minimalCert_concat_even",
+          "line": 118,
+          "score": 0.135,
+          "trust": "kernel"
+        },
+        {
+          "decl": "minimalCert_exists_iff",
+          "line": 228,
+          "score": 0.132,
+          "trust": "kernel"
+        }
+      ],
+      "composite": true,
+      "confidence": "low",
+      "definitions": [
+        {
+          "decl": "CertWindow",
+          "line": 58,
+          "score": 0.1
+        },
+        {
+          "decl": "blockWord",
+          "line": 172,
+          "score": 0.033
+        }
+      ],
+      "id": "J-paper-b-certificate-length-window",
+      "in_file": 19,
+      "lean": "Problems/Juggler/PaperBCertificateLengths.lean",
+      "names_own": [
+        "certWindow_unique",
+        "minimalCert_concat_even",
+        "minimalCert_window",
+        "blockWord_isMinimalCertificate",
+        "minimalCert_exists_iff",
+        "window_empty_three"
+      ],
+      "statement": "Paper B Lemma 5.1 holds for every length, not only the printed five. Write CertWindow L o for 2^(L-1) <= 3^o < 2^L. (i) certWindow_unique: at most one o satisfies it, since consecutive powers of two differ by a factor 2 and 3 > 2. (ii) minimalCert_concat_even: a minimal certificate's last letter is E, because an odd one would need 3 * 3^o < 2^L while the length-(L-1) prefix gives 3^o >= 2^(L-1), t"
     },
     {
       "candidates": [
@@ -4173,6 +4221,6 @@
       "statement": "The FD step is formalised as an inference, and Theorem 6.1 stays conditional -- which is what the manuscript already says and what the formalisation must not quietly improve on. WHAT FD IS. A HYPOTHESIS, not a result: 'Hypothesis FD. For every fixed d >= 1 and every odd-rooted word w of length d, #{n <= N : word_d(n) = w} = 2^(-d) N + o_w(N). No common error rate in d is assumed.' Theorem 6.1 is h"
     }
   ],
-  "unresolved": 116,
+  "unresolved": 117,
   "worth_reviewing": 19
 }

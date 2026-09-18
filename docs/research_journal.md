@@ -1,5 +1,51 @@
 # Research journal
 
+## 2026-09-18 -- Lemma 5.1 is a statement about one irrational, at every length
+
+- **Objective:** `PaperBFiveStepDensity`'s enumeration showed the certificate
+  density is flat across `d = 5, 6` and across `d = 8, 9`. Find out why, and
+  whether Lemma 5.1's list of five words is the whole of a pattern.
+- **Triage:** target = for which `L` a minimal certificate exists and what it
+  must look like; novelty = Lemma 5.1 generalised from a finite list to a
+  structure theorem; falsifier = an odd count outside the window, two counts at
+  one length, or a certificate not ending in `E` (none fired to `L = 16`);
+  already killed by? = none, the three tests concern cycle, termination and
+  local attacks and this is a finite-word structure theorem; machinery =
+  `ItineraryStats`, `PaperBCertificates`; Phase-0 = one module plus ceremony;
+  promote if proved for general `L` rather than per-length `decide`; stop if the
+  converse needs a nonconstructive witness (did not fire -- the witness is
+  `O^o E^(L-o)`).
+- **The whole theorem is one window.** A minimal certificate of length `L`
+  contracts, so `3^o < 2^L`; and its length-`(L-1)` prefix does not, so
+  `2^(L-1) <= 3^o`. That window holds at most one power of three, because
+  consecutive powers of two differ by a factor 2 and `3 > 2`. Everything follows:
+  the odd count is *forced* by the length (`minimalCert_window`,
+  `certWindow_unique`), the last letter is always `E`
+  (`minimalCert_concat_even` -- an odd one would need `3 < 2`), and when the
+  window holds a power of three the block word `O^o E^(L-o)` realises it
+  (`blockWord_isMinimalCertificate`). Hence `minimalCert_exists_iff`.
+- **The plateaus are the empty windows.** Through `L = 16` the empty lengths are
+  `3, 6, 9, 11, 14`. My first guess was the multiples of three and the
+  enumeration killed it at `11`. With `beta = log2/log3` the condition is that
+  `[(L-1)beta, L beta)` contains an integer, so the carrying lengths are the jump
+  points of `floor(L beta)` and the empty ones are the complement of a Beatty
+  sequence. That is the reading, not the proof: **no real number occurs in any
+  statement or proof in the module.** It is `Nat` arithmetic throughout, which is
+  exactly why this was reachable when Sections 2 to 4 are not.
+- **Third appearance of one irrational.** `beta` is already
+  `PaperBSurvivorDecay`'s endpoint tilt and `PaperBSturmianBarrier`'s slope. Here
+  it governs the *lengths* rather than the counts.
+- **Decision:** PROMOTE. Ledger row `J-paper-b-certificate-length-window`,
+  dossier `juggler_paper_b_certificate_lengths.md`. Nothing analytic proved; the
+  manuscript's status is unchanged.
+- **Best next question, and the reason this branch may be worth more than its own
+  statement:** the number of minimal certificates at a carrying length is the
+  number of words staying non-contracting until a final `E` -- a walk held below
+  a line of irrational slope, which is the survivor count `N_d` of
+  `PaperBSurvivorDecay` read from the other side. `PaperBSurvivorAsymptotic` has
+  to *assume* the meander local limit theorem with no route to it. Is there a
+  bijection between the two readings, and does it supply the shape?
+
 ## 2026-09-18 -- the xdist error is a write at startup, and I had read it backwards too
 
 - **Objective:** Philippe asked why xdist keeps crashing, and to find out without

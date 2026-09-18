@@ -83,6 +83,7 @@ import Problems.Juggler.PaperBSurvivorAsymptotic
 import Problems.Juggler.PaperBDensity
 import Problems.Juggler.PaperBCertificates
 import Problems.Juggler.PaperBFiveStepDensity
+import Problems.Juggler.PaperBCertificateLengths
 import Problems.Juggler.PaperBPaperCBridge
 import Problems.Juggler.PaperBWeightGap
 import Problems.Juggler.PaperBBarrierStep

@@ -294,6 +294,7 @@ AUXILIARY_MODULES: dict[str, str] = {
     "PaperBAssembly": "Paper B review target",
     "PaperBCertificates": "Paper B Lemma 5.1: minimal certificates through length five",
     "PaperBFiveStepDensity": "Paper B Theorems 5.2-5.4: the certificate count assembly",
+    "PaperBCertificateLengths": "Paper B Lemma 5.1 for every length: the odd-count window",
     "PaperBChainRule": "Paper B review target",
     "PaperBAmplitudeCocycle": "Paper B profile: the amplitude cocycle",
     "PaperBDensity": "Paper B: Hypothesis FD to density one, conditionally",

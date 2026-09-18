@@ -5819,6 +5819,22 @@
       "nk_cluster": null
     },
     {
+      "id": "paper_b_certificate_lengths",
+      "kind": "dossier_only",
+      "probe": null,
+      "test": null,
+      "dossier": "docs/problems/juggler_paper_b_certificate_lengths.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-paper-b-certificate-length-window"
+      ],
+      "aliases": [],
+      "nk_cluster": null
+    },
+    {
       "id": "paper_b_certificates",
       "kind": "dossier_only",
       "probe": null,
