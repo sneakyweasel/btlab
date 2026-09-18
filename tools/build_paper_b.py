@@ -42,6 +42,23 @@ EXPORTS = [
 ]
 
 
+def digest(path: Path, mode: str = 'binary') -> str:
+    r"""SHA-256 of a build input, with newlines normalised for text inputs.
+
+    Hashing raw bytes made the recorded digest a property of the checkout rather than
+    of the content. Nothing pins these files in a `.gitattributes`, so at one identical
+    HEAD the main clone passes `check` while a worktree that checked out CRLF reports a
+    stale build -- and sends the reader to a rebuild that would merely invert the
+    failure for everyone else. Paper A and Paper C already hash their text inputs this
+    way. The PDF is excluded by suffix because git leaves binary files alone, so a
+    `\r\n` inside one is data rather than a line ending.
+    """
+    data = path.read_bytes()
+    if mode == 'text' and path.suffix.lower() not in {'.png', '.pdf'}:
+        data = data.replace(b'\r\n', b'\n').replace(b'\r', b'\n')
+    return hashlib.sha256(data).hexdigest()
+
+
 def repo_root() -> Path | None:
     root = HERE.parent
     if (root / METADATA).is_file():
@@ -91,7 +108,7 @@ def check_manifest(root: Path) -> None:
         built = next((d/record['name'] for d in places if (d/record['name']).is_file()), None)
         if built is None:
             raise ValueError(f'Missing Paper B build input: {record["name"]}; rebuild')
-        if hashlib.sha256(built.read_bytes()).hexdigest() != record['sha256']:
+        if digest(built, 'text') != record['sha256']:
             raise ValueError(
                 f'Stale Paper B build: {record["name"]} differs from the digest in '
                 f'{BUILD_MANIFEST}; rebuild with `python tools/build_paper_b.py`')
@@ -184,7 +201,7 @@ def main() -> None:
         shutil.copyfile(work/f'{STEM}{suffix}',output/f'{STEM}{suffix}')
     files=[source,assets/'article.tex',assets/'layout.lua',Path(__file__).resolve(),
            output/f'{STEM}.tex',output/f'{STEM}.pdf']
-    records=[{'name':p.name,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in files]
+    records=[{'name':p.name,'sha256':digest(p,'text')} for p in files]
     record={'status':'built; visual review required for any changed build',
             'pandoc':run([pandoc,'--version'],work).decode(errors='replace').splitlines()[0],
             'xelatex':run([xelatex,'--version'],work).decode(errors='replace').splitlines()[0],
