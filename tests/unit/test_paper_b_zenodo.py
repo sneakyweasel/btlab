@@ -49,7 +49,6 @@ def test_an_edited_source_is_rejected_even_when_the_mirror_is_updated_too():
     This pins the scenario the mirror check cannot see: source and mirror both moved,
     PDF untouched.
     """
-    import hashlib
     import shutil
 
     source = ROOT / "docs/theory/juggler_parity_discrepancy_note.md"
@@ -58,8 +57,9 @@ def test_an_edited_source_is_rejected_even_when_the_mirror_is_updated_too():
 
     original = source.read_bytes()
     original_mirror = mirror.read_bytes()
-    recorded = {r["name"]: r["sha256"] for r in json.loads(manifest.read_text(encoding="utf-8"))["files"]}
-    assert recorded["juggler_parity_discrepancy_note.md"] == hashlib.sha256(original).hexdigest()
+    recorded = {r["name"]: r for r in json.loads(manifest.read_text(encoding="utf-8"))["files"]}
+    row = recorded["juggler_parity_discrepancy_note.md"]
+    assert row["sha256"] == B.digest(source, row["mode"])
 
     try:
         source.write_bytes(original + b"\n")
@@ -79,10 +79,27 @@ def test_the_build_script_is_itself_a_pinned_input():
     build logic requires a rebuild rather than silently producing a PDF nobody can
     reproduce.  This caught the very patch that added the check above.
     """
-    import hashlib
-
-    recorded = {r["name"]: r["sha256"]
+    recorded = {r["name"]: r
                 for r in json.loads((ROOT / "docs/theory/paper_b_build.json").read_text(encoding="utf-8"))["files"]}
     assert "build_paper_b.py" in recorded
-    actual = hashlib.sha256((ROOT / "tools/build_paper_b.py").read_bytes()).hexdigest()
-    assert actual == recorded["build_paper_b.py"]
+    row = recorded["build_paper_b.py"]
+    assert B.digest(ROOT / "tools/build_paper_b.py", row["mode"]) == row["sha256"]
+
+
+def test_a_text_input_hashes_the_same_through_either_line_ending(tmp_path):
+    """The gate must not read a checkout's line endings as an edited manuscript.
+
+    git stores these inputs with LF and hands them to the working tree with whatever
+    core.autocrlf says, so a raw-byte digest made the verdict a property of the clone
+    rather than of the commit: the Paper B gate passed in the main checkout and failed
+    in a worktree of the same revision, naming the manuscript as stale when not one
+    character of it had changed.  The PDF stays binary, where a byte really is a byte.
+    """
+    body = b'line one\nline two\n'
+    lf, crlf = tmp_path / "lf.md", tmp_path / "crlf.md"
+    lf.write_bytes(body)
+    crlf.write_bytes(body.replace(b'\n', b'\r\n'))
+
+    assert lf.read_bytes() != crlf.read_bytes()
+    assert B.digest(lf, "text") == B.digest(crlf, "text")
+    assert B.digest(lf, "binary") != B.digest(crlf, "binary")
