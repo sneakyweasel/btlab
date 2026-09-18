@@ -16,6 +16,13 @@ ROOT = Path(__file__).resolve().parents[2]
 JSON_PATH = ROOT / "docs" / "theory" / "theorem_ledger.json"
 LEAN_VERIFIED = "EXACT — LEAN VERIFIED"
 
+#: The one reason a row may name no test. A reading of a primary source is evidence no
+#: Python test reaches; every other kind leaves something in the repository to hold.
+EVIDENCE_WITHOUT_TESTS = frozenset({"literature"})
+
+#: Tags that assert an artifact in the repository, so a row carrying one has a test to name.
+TESTABLE_TAGS = frozenset({LEAN_VERIFIED, "COMPUTATIONALLY VERIFIED"})
+
 
 def _entries() -> list[dict]:
     return json.loads(JSON_PATH.read_text(encoding="utf-8"))
@@ -45,9 +52,43 @@ def test_ledger_required_fields():
 
 
 def test_ledger_test_paths_exist():
+    """A row names the tests that exercise it, or says in the data why none does.
+
+    ``"tests": []`` carried two meanings and the assertion could not tell them apart: a row
+    nobody had wired to the test that already held it, and a row whose evidence is a reading
+    of a primary source, which no Python test reaches. Eleven rows sat in that gap. Six were
+    the first kind -- Paper B Lean modules whose siblings on the same files already cite
+    ``test_layer_architecture`` and ``test_paper_b_prefix_count`` -- and they are wired now.
+    Five were the second: the external-input audit, whose evidence is Rhin p. 160 and
+    Wu-Wang p. 266 read at source. Nothing in the repository holds those, and the audit
+    module that looks like their test records the state BEFORE the reading.
+
+    So the distinction is carried as data, the way ``lean_trust`` carries the kernel
+    boundary. The waiver must be declared, and a row may not claim it while naming a Lean
+    module or asserting a computation -- both leave something a test can reach.
+    """
     for row in _entries():
         tests = row.get("tests") or []
-        assert tests, f"{row['id']}: tests must be a non-empty list"
+        evidence = row.get("evidence")
+        if evidence is not None:
+            assert evidence in EVIDENCE_WITHOUT_TESTS, (
+                f"{row['id']}: unknown evidence {evidence!r}, "
+                f"expected one of {sorted(EVIDENCE_WITHOUT_TESTS)}"
+            )
+            assert not tests, f"{row['id']}: declares {evidence} evidence and also names tests"
+        if not tests:
+            assert evidence in EVIDENCE_WITHOUT_TESTS, (
+                f"{row['id']}: names no test and gives no reason; either cite the test that "
+                f"exercises it or declare evidence from {sorted(EVIDENCE_WITHOUT_TESTS)}"
+            )
+            assert not str(row.get("lean") or "").strip(), (
+                f"{row['id']}: claims {evidence} evidence but names a Lean module, which "
+                "test_layer_architecture holds"
+            )
+            assert row["tag"] not in TESTABLE_TAGS, (
+                f"{row['id']}: claims {evidence} evidence under {row['tag']}, which asserts "
+                "something a test can reach"
+            )
         for rel in tests:
             path = ROOT / rel
             assert path.is_file(), f"{row['id']}: missing test {rel}"
