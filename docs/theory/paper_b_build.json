@@ -5,26 +5,32 @@
   "files": [
     {
       "name": "juggler_parity_discrepancy_note.md",
+      "mode": "text",
       "sha256": "d349ef0a8e6108b1ae4150ab481139424b718976d1b5d4bb3826418c9e24f9f1"
     },
     {
       "name": "article.tex",
+      "mode": "text",
       "sha256": "7347f8c7227cdcdaf9f68a3238ee9762385cc33c7418fbae6aca57f6c29795ae"
     },
     {
       "name": "layout.lua",
+      "mode": "text",
       "sha256": "30670bf884fbf02b4dfc0aadccbc5504fa70b2e67770fb63c96990837cc93fba"
     },
     {
       "name": "build_paper_b.py",
-      "sha256": "902607ec3f5533bc1f39c2e9af74995cd484645c3489f92bdc3a294354b7adaf"
+      "mode": "text",
+      "sha256": "b1421dd4edac96482823ba7742f82fd5af6fe077a867b1d43c7a5f6d34b36192"
     },
     {
       "name": "juggler_parity_discrepancy_note.tex",
-      "sha256": "edfd4a3d4b4e838039a13ea95e9bdee2f16e5171a113e27733212b522667e466"
+      "mode": "text",
+      "sha256": "e221dc4762224e19fbc794418ddd4965adc5a4362068d3c05a745969c5ef2351"
     },
     {
       "name": "juggler_parity_discrepancy_note.pdf",
+      "mode": "binary",
       "sha256": "0de3c6010920fbc28ddfdfadf1b03b1090a79822fb5063c0a30858d49a3e502a"
     }
   ]
