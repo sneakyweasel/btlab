@@ -2265,6 +2265,22 @@
         "kernel": 27
       }
     },
+    "Problems.Juggler.PaperBFiveStepDensity": {
+      "declarations": 38,
+      "depends_on": [
+        "Problems.Juggler.PaperBCertificates",
+        "Problems.Juggler.RateFreeDensity"
+      ],
+      "file": "formal/Problems/Juggler/PaperBFiveStepDensity.lean",
+      "ledger": [
+        "J-paper-b-certificates-extend-to-length-seven",
+        "J-paper-b-five-step-count-assembly"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 38
+      }
+    },
     "Problems.Juggler.PaperBSurvivorDecay": {
       "declarations": 23,
       "depends_on": [
@@ -2996,9 +3012,9 @@
     }
   },
   "totals": {
-    "edges": 231,
-    "edges_before_reduction": 1750,
-    "ledger_rows_placed": 403,
-    "nodes": 182
+    "edges": 233,
+    "edges_before_reduction": 1759,
+    "ledger_rows_placed": 405,
+    "nodes": 183
   }
 }
