@@ -155,13 +155,7 @@ theorem isBigO_truth_of_shape {psi : ℝ → ℝ} (hshape : MeanderShape psi)
       _ ≤ (3 / 2) * (model d * hb.upper) := by
           apply mul_le_mul_of_nonneg_left _ (by norm_num)
           exact mul_le_mul_of_nonneg_left hupp hmodel_pos.le
-      _ = (3 * hb.upper) * model d := by
-          -- `ring` normalises `3/2` to `2⁻¹ * 3` on one side and not the other; use a
-          -- field_simp on the goal to clear the denominator first.
-          have h : (3 / 2 : ℝ) * (model d * hb.upper) = (3 * hb.upper) * model d := by
-            field_simp
-            ring
-          exact h
+      _ = (3 / 2 * hb.upper) * model d := by ring
   · -- model = O(survivorDensity), with constant 2 / lower.
     refine isBigO_iff.mpr ⟨2 / hb.lower, ?_⟩
     filter_upwards [eventually_ge_atTop (max D 1), hfrac] with d hd hfd
