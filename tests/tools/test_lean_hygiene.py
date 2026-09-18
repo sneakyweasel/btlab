@@ -109,8 +109,28 @@ _spec.loader.exec_module(H)
 #: read as cleared by it.
 #:
 #: The ratchet above still binds every agent: do not raise this again to go
-#: green. Only the owner reset it, and the next move on this number is
-#: downward, as clusters get cited.
+#: green. Only the owner reset it.
+#:
+#: Citation then followed, and the paragraph above is left standing because it
+#: was true of the reset: nothing was cited *to reach* the new level. Six whole
+#: clusters were cited afterwards, 126 declarations, none deleted and no Lean
+#: source touched -- IdealCycleMin 48, IdealLollipop 43, RankedReturn 11,
+#: DepthFourFive 10, RealizedGridBounds 7, FullUpperCellChargeBounds 7 --
+#: taking the share to 287 of 5168, or 5.55%. The two largest had sat at the
+#: top of the list since 09-08 with no dossier and no ledger row; they are
+#: documented at docs/architecture/juggler_ideal_cycle_model.md, the rest in
+#: the Lean interfaces note. The headroom that remains is the owner's
+#: deliberate setting, not slack nobody noticed.
+#:
+#: One measured correction to the partition above, worth not re-deriving. The
+#: "live but reached only by an ambiguous token" part is recorded there as 8
+#: laboratory-wide. Among those 126 alone it was 16: the seven display
+#: projections shared by SureLetterSite and JoinFigure, three on RankedReturn,
+#: and six on the charge and grid records. 15 more remain among the 287. Such a
+#: declaration cannot be cited by its basename -- the token lands in
+#: ``ambiguous_tokens`` and credits nothing, by design, because two
+#: declarations really do answer to that name. Spell enough of the namespace:
+#: ``RealizedGridBounds.gap_pos``, not ``gap_pos``.
 ORPHAN_RATIO_NUM = 1000
 ORPHAN_RATIO_DEN = 10000
 

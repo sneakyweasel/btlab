@@ -65,6 +65,16 @@ with the ρ_w test, not a halt-theorem demo.
 `n_max` is looked up from the shipped Theorem 4.6 snapshot. It is never
 recomputed with floating logarithms.
 
+The lollipop figure is a second kind of fork. `src/juggler/lollipop.ts` and
+`src/content/idealDecisions.ts` mirror a display contract that is defined and
+proved in Lean, in `formal/Problems/Juggler/IdealCycleMin.lean` and
+`IdealLollipop.lean`: which marks are forced, which depend on the fill, which
+rotations are forbidden at each join site, and that the only compiled cycle in
+the figure is the sink. Renaming a projection on either side silently breaks
+the figure, so read
+[the ideal-cycle model](../../docs/architecture/juggler_ideal_cycle_model.md)
+before changing what a mark claims.
+
 ## Publish
 
 GitHub Actions workflow `.github/workflows/juggler-companion.yml` builds this

@@ -41,6 +41,77 @@
 - **Decision:** `PROMOTE`, on the existing branch.
   [Jump spectrum](problems/juggler_jump_spectrum.md).
 
+## 2026-09-18 -- the backlog was not unreviewed mathematics, it was unwritten pages
+
+- **Objective:** the orphan gate was red at 413 of 5168, two over what
+  796/10000 allowed. Find whose two they were.
+- **They were nobody's, and that is the answer.** Removing the jump-spectrum
+  module and re-running the report gives 413 of 5138: the same 413, a share of
+  8.04 percent rather than 7.99. The new module cites all thirty of its own
+  declarations and *lowers* the share. The red was repo-wide and predated the
+  branch that surfaced it, which is exactly the distinction a share can make
+  and a count could not.
+- **Philippe reset the level while I was working, and that does not change the
+  work.** 631e647c raises the numerator to 1000 with the reasoning written at
+  the constant: a deliberate reset after the gate interrupted a third
+  consecutive branch, not a measurement, with nothing cited to reach it and
+  nothing to be read as cleared by it. The headroom is the point of the reset,
+  so it is not slack to be quietly taken back; the backlog it refuses is
+  untouched by it, and that is the part worth clearing.
+- **So I cleared clusters instead of the two.** Six of them, 126 declarations,
+  none deleted and no Lean source touched: `IdealCycleMin` (48) and
+  `IdealLollipop` (43), the two the gate dossier has named as largest since
+  09-08 and which had no dossier, no ledger row and no account anywhere but
+  their own module docstrings; `RankedReturn` (11); `RealizedGridBounds` (7)
+  and `FullUpperCellChargeBounds` (7); `DepthFourFive` (10). 287 of 5168 now,
+  5.55 percent. Worst per-module ratio 50 percent to 45.
+- **The finding I did not expect.** The documented ambiguity limitation was
+  recorded as 8 declarations laboratory-wide. Among the 126 just cleared it
+  was 16 -- the seven display-contract projections shared by `SureLetterSite`
+  and `JoinFigure`, three on `RankedReturn`, and six on the charge and grid
+  records. For every one of those the scanner had *seen* a use and refused to
+  attribute it, which is right, and they were nonetheless sitting in the part
+  of the partition labelled no consumer and no citation. 15 more remain.
+- **And the part that reframes the gate.** 396 were reviewed as having neither
+  consumer nor citation, against a compiled dependency graph, and that
+  measurement was accurate. The inference from it was not: the first 126 read
+  closely were not abandoned intermediates but undocumented public interfaces
+  and the supporting halves of results whose headline was already cited. The
+  partition had no column for that, because nobody had tried to write the
+  documentation and failed -- nobody had tried.
+- **The trap from this morning's entry, and whether I fell into it.** I warned
+  myself in writing against `DepthFourFive` prose composed to move a counter.
+  I have now written `DepthFourFive` prose. The test I applied is whether the
+  page would be worth having with the gate already green, and for the
+  ideal-cycle model it plainly is -- 245 declarations behind a published
+  figure, documented nowhere. For Section 6's constants it is the closest
+  call in the set, and the reason I kept it is that the evidence boundary
+  says Paper B's Section 6 rests on human proofs without saying that its
+  printed constants are machine-checked arithmetic, and the release record
+  separately marks Section 6 as postdating the proof audit. That gap was real
+  before I needed it to be. Worth someone else's eye.
+- **And the Paper A pin reaches prose, which I learned by tripping it.**
+  I wrote that paragraph into the formalization map, where it belongs, and
+  `test_paper_release_gates` went red: three markdown files carry a SHA-256 in
+  `paper_a_release.json`, and that is one of them, so a sentence costs a
+  manuscript rebuild. It moved to the interfaces note. Same coupling as the
+  two tactic cleanups the warning budget is holding, and nobody had written
+  down the documentation half of it.
+- **Not touched:** the numerator. The instruction for this pass was to leave
+  `ORPHAN_RATIO_NUM` and `ORPHAN_RATIO_DEN` alone and I have, so the gate
+  admits 516 against a measured 287. Recording the arithmetic and nothing
+  more: the smallest numerator that still admits 287 of 5168 is 556. That is
+  a fact about today's inventory, not a proposal -- the 1000 is deliberate and
+  the room it leaves is what was asked for.
+- **Decision:** PROMOTE. 287 of 5168 with six clusters cleared, no declaration
+  deleted, no allowance raised by me.
+- **Best next question:** a share of the whole corpus says how much backlog
+  there is and nothing about where. Every one of the 287 sits in a module
+  whose other results are cited, so the question is no longer which
+  declarations are dead but which modules have a documented interface. Is
+  per-module documentation coverage the gate that would actually have caught
+  this?
+
 ## 2026-09-18 -- the fixed point was not one, and psi's Fourier data is the orbit series
 
 - **Objective:** go at the fixed-point equation for `a_1` that I proposed in the
@@ -110,6 +181,7 @@
 - **Decision:** `PROMOTE`, on the existing branch.
   [Jump spectrum](problems/juggler_jump_spectrum.md).
 
+
 ## 2026-09-18 -- the jumps are the survivor sequence, and the law I found was the empty window
 
 - **Objective:** build the global jump fit, to reach `C_j` past the `j` about 25
@@ -167,6 +239,7 @@
 - **Decision:** `PROMOTE`.
   [Jump spectrum](problems/juggler_jump_spectrum.md);
   `formal/Problems/Juggler/PaperBJumpTransposition.lean`.
+
 
 ## 2026-09-18 -- the spectrum factorises, and the sequence it leaves resists me
 
