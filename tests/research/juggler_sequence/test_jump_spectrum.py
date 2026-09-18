@@ -9,6 +9,8 @@ import pytest
 
 from research.juggler_sequence.jump_spectrum import (
     A_ONE,
+    OEIS_CHECKPOINTS,
+    OEIS_ID,
     A_ZERO,
     BETA,
     KAPPA,
@@ -366,3 +368,39 @@ def test_g_one_agrees_from_two_routes_that_share_nothing(counts) -> None:
     cheap = g_one_via_ladder(head=6000, tail=200_000)
     assert cheap == pytest.approx(7.0649, rel=3e-4)
     assert cheap == pytest.approx(7.064862, rel=1e-3)
+
+
+def test_the_survivors_are_oeis_a076227() -> None:
+    """The counts are a known sequence, checked against its b-file rather than its head.
+
+    Agreeing on nine terms would mean little; these checkpoints reach `n = 3508`, where
+    the value has 999 digits, and they come from Hikawa and Nakanishi's table rather
+    than from anything computed here. A drift anywhere in the height program would show.
+    """
+    assert OEIS_ID == "A076227"
+    deep = survivor_counts(max(OEIS_CHECKPOINTS))
+    for n, (lead, digits) in OEIS_CHECKPOINTS.items():
+        value = str(deep[n])
+        assert len(value) == digits, n
+        assert value.startswith(lead), n
+
+
+def test_the_literature_reading_is_not_independent() -> None:
+    """Guard on the correction: the sequence is not a laboratory invention.
+
+    The dossier first recorded this cluster's literature status as `independent`. It is
+    not, for the counting sequence: A076227 has been in OEIS since 2002 as a Collatz
+    stopping-time quantity. The asymptotic is a separate question and is flagged as
+    unchecked rather than claimed.
+    """
+    doc = (JSON_PATH.parent.parent / "problems" / "juggler_jump_spectrum.md")
+    body = doc.read_text(encoding="utf-8").split("## Current literature")[1]
+    # prose is line-wrapped, so a phrase can straddle a newline; flatten before matching
+    section = " ".join(body.split(chr(10) + "## ")[0].split())
+    assert "A076227" in section
+    assert "Not independent" in section
+    assert "`independent`. A laboratory question" not in section, "the old reading is back"
+    # and the priority question must travel with it, not be quietly dropped
+    assert "priority" in section
+    assert "none of which have been read here" in section
+    assert "should be called new" in section

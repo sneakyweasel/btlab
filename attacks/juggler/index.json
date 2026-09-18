@@ -3316,7 +3316,8 @@
         "J-paper-b-ladder-profile-is-closed-form",
         "J-paper-b-jump-amplitude-is-closed-form",
         "J-paper-b-increment-tension-is-the-class-method",
-        "J-residue-classes-lose-a-square-root-on-jump-functions"
+        "J-residue-classes-lose-a-square-root-on-jump-functions",
+        "J-paper-b-survivors-are-oeis-a076227"
       ],
       "aliases": [],
       "nk_cluster": null

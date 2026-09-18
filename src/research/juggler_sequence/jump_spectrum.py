@@ -75,6 +75,30 @@ THETA = BETA ** (-BETA) * (1.0 - BETA) ** (BETA - 1.0) / 2.0
 #: Depth of the exact integer program behind the committed artifact.
 MAX_DEPTH = 4000
 
+#: The survivor counts are **OEIS A076227**, and not approximately: our `N_d` agrees
+#: with the b-file of Hikawa and Nakanishi on all 3509 terms, `n = 0 .. 3508`, the last
+#: of which has 999 digits. The sequence has been in OEIS since Labos Elemer, October
+#: 2002, under a Collatz reading -- the number of residue classes modulo `2 ^ n` in
+#: which the stopping time `A074473` is not constant -- and a comment of Kazunobu
+#: Hikawa, July 2026, states our definition outright: the binary words `v(1)..v(n)`
+#: with `2 ^ m < 3 ^ (v(1)+...+v(m))` for every `m`.
+#:
+#: So Paper B's survivors are a known Collatz quantity, and the dossier's earlier
+#: reading of the literature as `independent` was wrong about the *sequence*. What OEIS
+#: records no trace of is the asymptotic: no growth constant, no `d ^ (-3/2)`, no
+#: oscillation. That is not the same as the asymptotic being new, and the entry points
+#: at three 2026 preprints on parity vectors that have not been read here.
+OEIS_ID = "A076227"
+
+#: Checkpoints from that b-file, as (index, leading digits, digit count). Enough to
+#: catch a drift in the program without carrying two megabytes of integers.
+OEIS_CHECKPOINTS = {
+    100: ("3025606695005432575461721", 27),
+    500: ("8702127824989793751536037", 140),
+    1000: ("3109438474607968478298162", 283),
+    3508: ("7471009390359801478891248", 999),
+}
+
 #: Ratio of consecutive binomial terms at the large-deviation point `n * beta`, which
 #: is what makes the ladder profile below an exponential rather than anything softer.
 LADDER_RATIO = (1.0 - BETA) / BETA
