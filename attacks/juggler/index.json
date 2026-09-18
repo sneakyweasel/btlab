@@ -311,10 +311,11 @@
       "conjecture": [],
       "decision": "CLOSE",
       "ledger_ids": [
-        "J-paper-b-increment-is-not-a-rotation-function"
+        "J-paper-b-increment-is-not-a-rotation-function",
+        "J-paper-b-meander-constant-derived"
       ],
       "aliases": [],
-      "nk_cluster": null
+      "nk_cluster": "The quasi-stationary link has no off-the-shelf theorem, and the meander literature gives the order not the prefactor"
     },
     {
       "id": "certificate_transitions",
@@ -3292,6 +3293,25 @@
       "ledger_ids": [],
       "aliases": [],
       "nk_cluster": "Juggler language, residual, and geometry"
+    },
+    {
+      "id": "jump_spectrum",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/jump_spectrum.py",
+      "test": "tests/research/juggler_sequence/test_jump_spectrum.py",
+      "dossier": "docs/problems/juggler_jump_spectrum.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-paper-b-jump-spectrum-is-the-survivor-sequence",
+        "J-paper-b-transposition-costs-the-barrier-mass",
+        "J-paper-b-jump-sum-is-the-meander-series",
+        "J-paper-b-sturmian-zero-law-is-the-empty-window"
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "k3_rate_free",

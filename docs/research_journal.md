@@ -1,5 +1,63 @@
 # Research journal
 
+## 2026-09-18 -- the jumps are the survivor sequence, and the law I found was the empty window
+
+- **Objective:** build the global jump fit, to reach `C_j` past the `j` about 25
+  where local differencing dies.
+- **The fit was built, and it showed its own ceiling.** Two forms agree: a
+  normal-equations solve and a per-interval level fit converge on
+  `a_1 = 0.427`, and the local differencing that produced every earlier number
+  was low by `3.5%` at `n = 1`, rising to `31%` by `n = 12`. But the fit does
+  not extend the reach. Its errors are one-signed and grow with `j` in the
+  number of modelled jumps *and* in `d` -- at `j = 60` the readings at `N = 5000`
+  and `N = 20000` differ by `17%`, and the gap **doubles** with each doubling of
+  `N`. Diagnosing that as an `x`-dependent `1/d` correction and modelling it per
+  interval halved the drift, which confirmed the diagnosis and did not fix the
+  problem. More data cannot repair a bias.
+- **So I stopped fitting.** `psi(x)` depends on `x` only through the barrier word
+  read backwards from `x`, and the boundary where the letter `n` steps back
+  flips is exactly `frac(n beta)`. So the jump is the cost of one letter change,
+  computable with no data at all.
+- **The first attempt had the sign backwards, and the bug was the physics.** I
+  had the words differing at one position. They differ at two: at `i = n` the
+  letter flips `1 -> 0` and at `i = n+1` it flips `0 -> 1`. Crossing an orbit
+  point **transposes** adjacent letters, which is why the odd-count and hence
+  the barrier are unchanged. With the transposition the sign is right, and the
+  two profiles differ by exactly `v[0] * delta_0` -- the mass standing *on* the
+  barrier, to `9e-308`.
+- **And an odd letter fixes that point mass**, so the difference is the survivor
+  problem run again from one walker:
+
+      a_n = a_1 * N_n / (2 theta)^(n-1)
+
+  verified against the exact counts to `2.3e-14` over `n <= 3000`. `N_1..9` is
+  `1, 1, 2, 3, 4, 8, 13, 19, 38`. The whole spectrum is a sequence Paper B has
+  owned since the beginning.
+- **The `1/rho` law is the empty-window theorem.** It reads `1.0352968376` to
+  `2.1e-12`, and it is trivial: `rho` and `theta` are the same number under two
+  names, a Sturmian zero is an even letter, an even letter kills nothing and
+  doubles the count, and `2/(2 theta)` is `1/theta`. Two names for one constant
+  are what made it look like a finding. I recorded it twice as a result before
+  seeing it. What survives is where it pointed -- all content is in the odd
+  letters.
+- **What it buys.** `psi` is of bounded variation. The sum of its jumps is
+  `2 theta a_1 (G(1) - 1)`, so the jump spectrum and the one numerical factor of
+  the meander constant are the same object. `a_n ~ 2 theta a_1 psi(frac(n beta))
+  n^(-3/2)` -- the jump of `psi` at a point is `psi` at that point. And `C_j` is
+  closed at every `j`, which was the question.
+- **The one constant, and the honest residual.** Rewriting the model as jumps
+  plus the linear rise periodicity demands leaves one free amplitude:
+  `a_1 = 0.42629`, stable to `5e-4` across `d`-subranges and to `0.03-0.35%`
+  against a free head amplitude for splits at `n >= 5` (`1.4%` at the
+  tightest). That model leaves a residual of
+  `1.35e-02` against a level-fit floor of `4.4e-03`, `89%` of it a reproducible
+  function of the coordinate, and it does not shrink with `d`. So `psi` has
+  structure beyond its jumps and I do not know what it is. The jumps are not the
+  function.
+- **Decision:** `PROMOTE`.
+  [Jump spectrum](problems/juggler_jump_spectrum.md);
+  `formal/Problems/Juggler/PaperBJumpTransposition.lean`.
+
 ## 2026-09-18 -- the spectrum factorises, and the sequence it leaves resists me
 
 - **Objective:** the `1/rho` law at Sturmian zeros makes `log a_n` linear in the

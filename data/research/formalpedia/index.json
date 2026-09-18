@@ -54007,13 +54007,85 @@
       "trust": "kernel"
     },
     {
+      "doc": "**A survivor's odd extension never contracts.** One more odd letter multiplies the odd side by three while the even side only doubles.",
+      "file": "formal/Problems/Juggler/PaperBCertificateRecursion.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-survivor-certificate-recursion"
+      ],
+      "line": 205,
+      "module": "Problems.Juggler.PaperBCertificateRecursion",
+      "name": "not_exponentGap_concat_odd",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The survivors of length `d` whose `E`-extension contracts: those sitting on the barrier at a step where it rises. This is `b_d M_d` of the boundary-mass row.",
+      "file": "formal/Problems/Juggler/PaperBCertificateRecursion.lean",
+      "kind": "def",
+      "ledger": [
+        "J-paper-b-survivor-certificate-recursion"
+      ],
+      "line": 223,
+      "module": "Problems.Juggler.PaperBCertificateRecursion",
+      "name": "onBarrierWords",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBCertificateRecursion.lean",
+      "kind": "def",
+      "ledger": [
+        "J-paper-b-survivor-certificate-recursion"
+      ],
+      "line": 226,
+      "module": "Problems.Juggler.PaperBCertificateRecursion",
+      "name": "onBarrierCount",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The minimal certificates of length `d+1` are exactly the `E`-extensions of the on-barrier survivors of length `d`.**",
+      "file": "formal/Problems/Juggler/PaperBCertificateRecursion.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-survivor-certificate-recursion"
+      ],
+      "line": 230,
+      "module": "Problems.Juggler.PaperBCertificateRecursion",
+      "name": "minimalCertWords_succ",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Hence the counts agree, which is the cardinality step the boundary-mass row leaves unformalised.",
+      "file": "formal/Problems/Juggler/PaperBCertificateRecursion.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-survivor-certificate-recursion"
+      ],
+      "line": 256,
+      "module": "Problems.Juggler.PaperBCertificateRecursion",
+      "name": "minimalCertCount_succ",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**`N_(d+1) = 2 N_d - b_d M_d`, in the shape the boundary-mass row states it.**",
+      "file": "formal/Problems/Juggler/PaperBCertificateRecursion.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-survivor-certificate-recursion"
+      ],
+      "line": 263,
+      "module": "Problems.Juggler.PaperBCertificateRecursion",
+      "name": "neverNegCount_succ_sub_onBarrier",
+      "trust": "kernel"
+    },
+    {
       "doc": "**The certified count doubles and gains the new minimal certificates.**",
       "file": "formal/Problems/Juggler/PaperBCertificateRecursion.lean",
       "kind": "theorem",
       "ledger": [
         "J-paper-b-survivor-certificate-recursion"
       ],
-      "line": 192,
+      "line": 271,
       "module": "Problems.Juggler.PaperBCertificateRecursion",
       "name": "certifiedWordCount_succ",
       "trust": "kernel"
@@ -54025,7 +54097,7 @@
       "ledger": [
         "J-paper-b-survivor-certificate-recursion"
       ],
-      "line": 203,
+      "line": 282,
       "module": "Problems.Juggler.PaperBCertificateRecursion",
       "name": "density_succ",
       "trust": "kernel"
@@ -54037,7 +54109,7 @@
       "ledger": [
         "J-paper-b-survivor-certificate-recursion"
       ],
-      "line": 212,
+      "line": 291,
       "module": "Problems.Juggler.PaperBCertificateRecursion",
       "name": "density_succ_of_no_new_cert",
       "trust": "kernel"
@@ -54049,7 +54121,7 @@
       "ledger": [
         "J-paper-b-survivor-certificate-recursion"
       ],
-      "line": 220,
+      "line": 299,
       "module": "Problems.Juggler.PaperBCertificateRecursion",
       "name": "minimalCertCount_eq_zero_of_window_empty",
       "trust": "kernel"
@@ -54061,7 +54133,7 @@
       "ledger": [
         "J-paper-b-survivor-certificate-recursion"
       ],
-      "line": 232,
+      "line": 311,
       "module": "Problems.Juggler.PaperBCertificateRecursion",
       "name": "density_flat_of_window_empty",
       "trust": "kernel"
@@ -54073,7 +54145,7 @@
       "ledger": [
         "J-paper-b-survivor-certificate-recursion"
       ],
-      "line": 239,
+      "line": 318,
       "module": "Problems.Juggler.PaperBCertificateRecursion",
       "name": "density_flat_five_to_six",
       "trust": "kernel"
@@ -54085,7 +54157,7 @@
       "ledger": [
         "J-paper-b-survivor-certificate-recursion"
       ],
-      "line": 243,
+      "line": 322,
       "module": "Problems.Juggler.PaperBCertificateRecursion",
       "name": "density_flat_eight_to_nine",
       "trust": "kernel"
@@ -54097,7 +54169,7 @@
       "ledger": [
         "J-paper-b-survivor-certificate-recursion"
       ],
-      "line": 247,
+      "line": 326,
       "module": "Problems.Juggler.PaperBCertificateRecursion",
       "name": "density_flat_ten_to_eleven",
       "trust": "kernel"
@@ -55422,6 +55494,226 @@
       "line": 335,
       "module": "Problems.Juggler.PaperBFiveStepDensity",
       "name": "five_step_error_assembly",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Survivors graded by their surplus `h` above the barrier. Counts, so `Nat`.",
+      "file": "formal/Problems/Juggler/PaperBJumpTransposition.lean",
+      "kind": "abbrev",
+      "ledger": [],
+      "line": 56,
+      "module": "Problems.Juggler.PaperBJumpTransposition",
+      "name": "Profile",
+      "trust": "kernel"
+    },
+    {
+      "doc": "One step against a barrier letter that does **not** rise, so a walker at height `h` arrives from `h` by staying or from `h - 1` by climbing, and nobody is killed.",
+      "file": "formal/Problems/Juggler/PaperBJumpTransposition.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 60,
+      "module": "Problems.Juggler.PaperBJumpTransposition",
+      "name": "stepFlat",
+      "trust": "kernel"
+    },
+    {
+      "doc": "One step against a barrier letter that **rises** by one, so a walker at height `h` arrives from `h + 1` by staying or from `h` by climbing. The walkers at height `0` that do not climb fall through the barrier and are lost.",
+      "file": "formal/Problems/Juggler/PaperBJumpTransposition.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 67,
+      "module": "Problems.Juggler.PaperBJumpTransposition",
+      "name": "stepRise",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The survivors sitting exactly **on** the barrier, as a profile: a point mass at `0`.",
+      "file": "formal/Problems/Juggler/PaperBJumpTransposition.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 70,
+      "module": "Problems.Juggler.PaperBJumpTransposition",
+      "name": "barrierMass",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBJumpTransposition.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 78,
+      "module": "Problems.Juggler.PaperBJumpTransposition",
+      "name": "barrierMass_eq_ite",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The exchange cost.** Climbing before killing and killing before climbing agree at every height above the barrier, and differ at the barrier by exactly the mass standing on it. Everything is `Nat`; the two orders are genuinely comparable, one dominating the other.",
+      "file": "formal/Problems/Juggler/PaperBJumpTransposition.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 93,
+      "module": "Problems.Juggler.PaperBJumpTransposition",
+      "name": "stepRise_stepFlat_eq_add_barrierMass",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Killing before climbing never counts more than climbing before killing.",
+      "file": "formal/Problems/Juggler/PaperBJumpTransposition.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 98,
+      "module": "Problems.Juggler.PaperBJumpTransposition",
+      "name": "stepFlat_stepRise_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A barrier word, read in the order its letters are applied; `true` is a rise.",
+      "file": "formal/Problems/Juggler/PaperBJumpTransposition.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 103,
+      "module": "Problems.Juggler.PaperBJumpTransposition",
+      "name": "run",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBJumpTransposition.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 115,
+      "module": "Problems.Juggler.PaperBJumpTransposition",
+      "name": "stepFlat_add",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBJumpTransposition.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 121,
+      "module": "Problems.Juggler.PaperBJumpTransposition",
+      "name": "stepRise_add",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Every letter acts linearly, so a whole history does.",
+      "file": "formal/Problems/Juggler/PaperBJumpTransposition.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 125,
+      "module": "Problems.Juggler.PaperBJumpTransposition",
+      "name": "run_add",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**What a discontinuity costs.** Transposing one adjacent rise-then-flat pair of barrier letters changes the whole later history by exactly the history of a single point mass on the barrier at the moment of the swap.",
+      "file": "formal/Problems/Juggler/PaperBJumpTransposition.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 137,
+      "module": "Problems.Juggler.PaperBJumpTransposition",
+      "name": "run_stepRise_stepFlat",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The transposed history is never the larger one.",
+      "file": "formal/Problems/Juggler/PaperBJumpTransposition.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 145,
+      "module": "Problems.Juggler.PaperBJumpTransposition",
+      "name": "run_stepFlat_stepRise_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A point mass on the barrier is unmoved by a rising letter: the walker must climb, and climbing from the barrier lands back on the barrier. This is why the history opened by a transposition is the survivor problem itself, started from one walker, rather than some other problem.",
+      "file": "formal/Problems/Juggler/PaperBJumpTransposition.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 153,
+      "module": "Problems.Juggler.PaperBJumpTransposition",
+      "name": "stepRise_barrierMass",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Totals over a height window, the quantity the counts are read through.",
+      "file": "formal/Problems/Juggler/PaperBJumpTransposition.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 160,
+      "module": "Problems.Juggler.PaperBJumpTransposition",
+      "name": "total",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBJumpTransposition.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 162,
+      "module": "Problems.Juggler.PaperBJumpTransposition",
+      "name": "total_add",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The exchange cost at the level of totals.",
+      "file": "formal/Problems/Juggler/PaperBJumpTransposition.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 167,
+      "module": "Problems.Juggler.PaperBJumpTransposition",
+      "name": "total_run_stepRise_stepFlat",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBJumpTransposition.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 172,
+      "module": "Problems.Juggler.PaperBJumpTransposition",
+      "name": "total_succ",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A flat letter counts each window once and the window below it once more: nothing is killed, and the only asymmetry is that the top height has nowhere to have come from.",
+      "file": "formal/Problems/Juggler/PaperBJumpTransposition.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 177,
+      "module": "Problems.Juggler.PaperBJumpTransposition",
+      "name": "total_stepFlat",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A rising letter loses exactly the barrier mass `v 0`, and nothing else.",
+      "file": "formal/Problems/Juggler/PaperBJumpTransposition.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 189,
+      "module": "Problems.Juggler.PaperBJumpTransposition",
+      "name": "total_stepRise",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**A Sturmian zero kills nothing.** Below a window the profile has not reached, a flat letter exactly doubles the total. This is the whole content of the observed law that jump amplitudes are multiplied by a clean factor across such a step.",
+      "file": "formal/Problems/Juggler/PaperBJumpTransposition.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 202,
+      "module": "Problems.Juggler.PaperBJumpTransposition",
+      "name": "total_stepFlat_eq_two_mul",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Against a rising letter the total doubles less the barrier mass, exactly.",
+      "file": "formal/Problems/Juggler/PaperBJumpTransposition.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 207,
+      "module": "Problems.Juggler.PaperBJumpTransposition",
+      "name": "total_stepRise_add_barrierMass",
       "trust": "kernel"
     },
     {
@@ -89391,6 +89683,7 @@
         "Problems.Juggler.PaperBChernoff",
         "Problems.Juggler.PaperBDensity",
         "Problems.Juggler.PaperBFiveStepDensity",
+        "Problems.Juggler.PaperBJumpTransposition",
         "Problems.Juggler.PaperBMarkov",
         "Problems.Juggler.PaperBPaperCBridge",
         "Problems.Juggler.PaperBSlopeRate",
@@ -91458,7 +91751,7 @@
       ]
     },
     "Problems.Juggler.PaperBCertificateRecursion": {
-      "declarations": 16,
+      "declarations": 22,
       "file": "formal/Problems/Juggler/PaperBCertificateRecursion.lean",
       "imports": [
         "Problems.Juggler.PaperBCertificateLengths",
@@ -91467,7 +91760,7 @@
       "ledger": [
         {
           "id": "J-paper-b-survivor-certificate-recursion",
-          "statement": "The survivor count and the minimal-certificate count of Paper B are one recursion. Let N_d = neverNegCount d count the length-d parity words no prefix of which contracts and M_d = minimalCertCount d the minimal certificates of length d. (i) neverNegCount_add_minimalCertCount: N_(d+1) + M_(d+1) = 2 N_d, by one extension step -- extending a survivor by a letter either contracts for the first time, which is what a minimal certificate of the new length is, or survives, and the two outcomes are disjoint and exhaustive (prefixNoncontracting_concat, isMinimalCertificate_concat, extensions_eq_survivors_union_certs). (ii) certifiedWordCount_succ: the certified count satisfies #C_(d+1) = 2 #C_d + M_(d+1). (iii) density_succ: so the certificate density gains exactly M_(d+1)/2^(d+1), the cylinder measure of the new minimal certificates -- PaperBFiveStepDensity.five_cylinders_card_sum is this at depth five, read across the five words at once. (iv) minimalCertCount_eq_zero_of_window_empty and density_flat_of_window_empty: an empty odd-count window (J-paper-b-certificate-length-window) leaves no minimal certificate, so the density does not move; density_flat_five_to_six, density_flat_eight_to_nine and density_flat_ten_to_eleven are corollaries, giving 7/8 at d = 5 and 6, 237/256 at d = 8 and 9, and 15/16 at d = 10 and 11. The plateaus are therefore proved rather than enumerated. Combinatorics only: no exponential sum, no density for the Juggler map, and no evaluation of M_d when it is nonzero.",
+          "statement": "The survivor count and the minimal-certificate count of Paper B are one recursion. Let N_d = neverNegCount d count the length-d parity words no prefix of which contracts and M_d = minimalCertCount d the minimal certificates of length d. (i) neverNegCount_add_minimalCertCount: N_(d+1) + M_(d+1) = 2 N_d, by one extension step -- extending a survivor by a letter either contracts for the first time, which is what a minimal certificate of the new length is, or survives, and the two outcomes are disjoint and exhaustive (prefixNoncontracting_concat, isMinimalCertificate_concat, extensions_eq_survivors_union_certs). (ii) certifiedWordCount_succ: the certified count satisfies #C_(d+1) = 2 #C_d + M_(d+1). (iii) density_succ: so the certificate density gains exactly M_(d+1)/2^(d+1), the cylinder measure of the new minimal certificates -- PaperBFiveStepDensity.five_cylinders_card_sum is this at depth five, read across the five words at once. (iv) minimalCertCount_eq_zero_of_window_empty and density_flat_of_window_empty: an empty odd-count window (J-paper-b-certificate-length-window) leaves no minimal certificate, so the density does not move; density_flat_five_to_six, density_flat_eight_to_nine and density_flat_ten_to_eleven are corollaries, giving 7/8 at d = 5 and 6, 237/256 at d = 8 and 9, and 15/16 at d = 10 and 11. The plateaus are therefore proved rather than enumerated. Combinatorics only: no exponential sum, no density for the Juggler map, and no evaluation of M_d when it is nonzero. DUPLICATION, RECORDED 18 September 2026. This identity was already known as J-count-recursion-is-the-boundary-mass in the equivalent shape N_(d+1) = 2 N_d - b_d M_d, with M_d the survivors sitting ON the barrier and b_d the Sturmian rise, whose three branch cases are kernel-checked in PaperBBarrierStep. It was written here without knowing that, which is a search failure and not a second result. What this row adds is the piece that row names as missing: it says the cardinality bookkeeping joining the branches 'is the sentence above and is not formalised', and neverNegCount_add_minimalCertCount is exactly that bookkeeping, in Nat arithmetic with no real number. The two shapes are joined by minimalCertCount_succ: minimalCertCount (d+1) = onBarrierCount d, proved through minimalCertWords_succ, which shows the minimal certificates of length d+1 are exactly the E-extensions of the on-barrier survivors of length d. The bridge is not_exponentGap_concat_odd -- a survivor's ODD extension can never contract, since surviving gives 2^d <= 3^o and so 3^(o+1) >= 3*2^d > 2^(d+1) -- so no minimal certificate ends in O and onBarrierCount counts b_d M_d without naming b_d. Checked against the counts at every d = 0..299.",
           "tag": "EXACT \u2014 LEAN VERIFIED"
         }
       ]
@@ -91549,6 +91842,12 @@
           "tag": "EXACT \u2014 LEAN VERIFIED"
         }
       ]
+    },
+    "Problems.Juggler.PaperBJumpTransposition": {
+      "declarations": 22,
+      "file": "formal/Problems/Juggler/PaperBJumpTransposition.lean",
+      "imports": [],
+      "ledger": []
     },
     "Problems.Juggler.PaperBMarkov": {
       "declarations": 4,
@@ -92709,13 +93008,13 @@
     }
   },
   "totals": {
-    "declarations": 6864,
-    "declarations_with_a_ledger_row": 4693,
-    "ledger_rows_naming_a_file": 440,
-    "modules": 305,
+    "declarations": 6892,
+    "declarations_with_a_ledger_row": 4699,
+    "ledger_rows_naming_a_file": 443,
+    "modules": 306,
     "trust": {
       "compiler": 56,
-      "kernel": 6808
+      "kernel": 6836
     }
   }
 }
