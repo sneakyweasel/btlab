@@ -1,7 +1,7 @@
 # Juggler: are the imported classical results the strongest available?
 
-Status: **PROMOTE** (one chain assembled, one candidate found and left
-unverified, one direction closed with numbers).
+Status: **PROMOTE** (one chain assembled, one candidate found, read at
+source and closed, one direction closed with numbers).
 
 Not a halt theorem, not new mathematics, not a Juggler construction, not
 a floor raise, and not a reopen of any Diophantine-wall member. An audit
@@ -53,7 +53,8 @@ target below \(L^2\).
 | \(8.616\) | Rhin p.160 eq. (8) --- **DISPUTE RESOLVED 16 Sep 2026**, `J-rhin-eight-readings-are-one-theorem`: the readings are corollaries of ONE linear independence measure (Zudilin records Rhin approximating \(\log(2/3),\log(4/3)\), an integral basis change from \(\log2,\log3\)), so Spiegelhofer's ratio bound and the \(\mu(\log3)\) reading are both correct | **NO --- READ AT SOURCE 16 Sep 2026**, `J-rhin-eight-has-no-computed-threshold`: (8) holds only for \(H\ge H_0\) with \(H_0\) declared *effectivement calculable* and never computed, exactly the Wu-Wang failure mode | **nothing, and now permanently** --- \(L^{8.616}\) is unreachable without \(H_0\), and \(H_0=\exp(\Theta(n_0))\) puts it far above any \(L\) a cycle search reaches |
 | \(14.3\) | Rhin p.160 eq. (7) via Simons-de Weger Lemma 12 | yes (constant \(915\)) | Paper A Corollary 4.11, deposited |
 
-**The finding (OBSERVATION; UNVERIFIED, and now DISPUTED).**
+**The finding (OBSERVATION when opened; READ AT SOURCE 16 September 2026
+and now closed).**
 Paper A cites Rhin's Proposition on p. 160 and takes equation (7).
 Equation (8) of that same Proposition is reported as
 \(\mu(\log3/\log2)\le 8.616\)
@@ -71,7 +72,7 @@ slip on his part. Two corrections to the laboratory's own record fall out
 of reading it: the paper is by **Lukas Spiegelhofer alone**, not
 Spiegelhofer–Wallner, and it is accepted in *Israel J. Math*.
 
-**But an independent source attributes the same constant to a different
+**A second source attributes the same constant to a different
 quantity.** Zudilin, [*An essay on irrationality measures of \(\pi\) and
 other logarithms*, arXiv:math/0404523](https://arxiv.org/abs/math/0404523),
 §3.4, Theorem 3, citing the same Rhin 1987 paper, states: *the
@@ -81,10 +82,21 @@ irrationality exponent of any nonzero \(\theta\in\mathbb{Q}\log2
 \(\log3/\log2\) is not, and the log-3 literature (Salikhov 2007,
 Wu-Wang 2014) uniformly reports Rhin's 8.616 as \(\mu(\log3)\).
 
-The two readings are incompatible; only one can be equation (8). Under
-Zudilin's, the row says nothing about the closure threshold and there is
-no sharper statement hiding in Paper A's citation at all. **Rhin p. 160 was read at source on 16
-September 2026** from the Seminaire scan. The Proposition reads: for
+**The two readings are one theorem**
+(`J-rhin-eight-readings-are-one-theorem`). Rhin constructs simultaneous
+approximations to \(\log(2/3)\) and \(\log(4/3)\), and that change of
+basis is integral in both directions --- \(\log2=v-u\),
+\(\log3=v-2u\) --- so \(\mathbb{Z}+\mathbb{Z}u+\mathbb{Z}v\) and
+\(\mathbb{Z}+\mathbb{Z}\log2+\mathbb{Z}\log3\) are the same lattice. So
+there is one measure \(\lvert a+b\log2+c\log3\rvert\ge c'H^{-7.616}\):
+setting \(a=0\) gives Spiegelhofer's ratio bound, setting \(b=0\) gives
+the \(\mu(\log3)\) reading the log-3 literature uses, and
+\(\gamma\in\mathbb{Q}\log2+\mathbb{Q}\log3\) gives Zudilin's Theorem 3.
+Three corollaries, one theorem; the dichotomy was false and nobody is in
+error.
+
+**Rhin p. 160 was read at source on 16 September 2026** from the
+Seminaire scan. The Proposition reads: for
 \(H=\max(\lvert u_1\rvert,\lvert u_2\rvert)\ge2\) and
 \(\Lambda=u_0+u_1\log2+u_2\log3\), (7) \(\lvert\Lambda\rvert\ge H^{-13.3}\),
 and *de plus pour* \(H\ge H_0\) (\(H_0\) *effectivement calculable*), (8)
@@ -95,15 +107,21 @@ carries NO constant --- it is \(H^{-13.3}\) outright for \(H\ge2\) --- so the
 unaffected but the attribution was loose. And (8) is not usable: \(H_0\) is
 declared computable and never computed.
 
-**What reading p. 160 would settle.** Which quantity equation (8) bounds;
-whether its constant is explicit; and, if it is the ratio after all,
-whether \(8.616\) or \(14.3\) is the right effective companion to quote.
+**What reading p. 160 settled.** All three questions it was opened on.
+Equation (8) bounds the same three-term form as (7), so the reading
+dispute had no fact behind it; its constant is not explicit, since the
+threshold \(H_0\) is declared *effectivement calculable* and never
+computed; and the effective companion to quote is therefore \(14.3\),
+not \(8.616\).
 
 It changes no current result: Wu-Wang's \(5.1163051\) is sharper than
-\(8.616\) and is what the laboratory uses. Its interest is that Paper A's
-own citation was not read to the end, and that the effective companion —
-the row you quote when you need an explicit constant, since Wu-Wang's is
-implied — is \(8.616\) and not \(14.3\).
+\(8.616\) and is what the laboratory uses for the asymptotic threshold.
+Its interest is that Paper A's own citation was not read to the end --- and
+the reading reverses what this branch expected to find there. Both
+\(8.616\) and \(5.1163051\) wait on an uncomputed \(H_0\), so the row you
+quote when you need an explicit constant is Paper A's own \(14.3\).
+"Effective" and "computed" are two questions, and only the second one
+buys anything at an \(L\) a cycle search reaches.
 
 **Paper C concentration: two closed directions (COMPUTATIONALLY
 VERIFIED).** Both were the audit's primary target and both came up empty.
@@ -134,16 +152,17 @@ VERIFIED).** Both were the audit's primary target and both came up empty.
   by [cycle_wuwang_reduction](juggler_cycle_wuwang_reduction.md).
 - Rhin 1987 — **KNOWN** (`rhin-1987-pade-irrationality`). Equation (7)
   is what the laboratory records; equation (8) is the gap this branch
-  names and does not close.
+  named and closed on 16 September 2026, by reading p. 160.
 - Spiegelhofer, *Collisions of digit sums in bases 2 and 3* —
   **KNOWN**, `independent`; used here only as a secondary report of
   Rhin equation (8), not as mathematics. Not yet a `literature/` id.
   (Recorded as Spiegelhofer–Wallner until 14 September 2026; the paper
   is single-authored.)
 - Zudilin, *An essay on irrationality measures of \(\pi\) and other
-  logarithms* (arXiv:math/0404523) — **KNOWN**, `independent`; the
-  source that disputes the reading of Rhin equation (8). Not yet a
-  `literature/` id.
+  logarithms* (arXiv:math/0404523) — **KNOWN**, `independent`; read as
+  disputing the reading of Rhin equation (8) until 16 September 2026,
+  when its §3.4 turned out to record the construction that reconciles
+  both readings. Not yet a `literature/` id.
 - BLS 2018 — **KNOWN**
   (`bondareva-luchin-salikhov-2018-log3-irrationality`); sharper than
   Wu-Wang by \(1.04\cdot10^{-4}\), deliberately unimported per
@@ -204,8 +223,17 @@ It is not.
   \(\log2/\log3\) — **EXACT — HUMAN PROOF**
 - Chain assembled, Dirichlet-floored at \(\mu=2\) —
   **COMPUTATIONALLY VERIFIED** as arithmetic
-- Rhin eq. (8) gives \(\mu\le8.616\) — **OBSERVATION**, third-party
-  report, **UNVERIFIED** against the primary source
+- Rhin eq. (8) gives \(\mu\le8.616\) only for \(H\ge H_0\), and \(H_0\)
+  is never computed — **EXACT — HUMAN PROOF**, read at source
+  (`J-rhin-eight-has-no-computed-threshold`); opened as an
+  **OBSERVATION** from a third-party report
+- Spiegelhofer's ratio reading and Zudilin's \(\mathbb{Q}\log2
+  +\mathbb{Q}\log3\) reading are corollaries of one measure —
+  **EXACT — HUMAN PROOF** (`J-rhin-eight-readings-are-one-theorem`)
+- Effective and computed are two questions: Wu-Wang and Rhin eq. (8)
+  both assert a computable threshold and neither computes it —
+  **EXACT — HUMAN PROOF** (`J-wuwang-import-verified-at-source`,
+  `J-wuwang-effectivity-is-a-saddle-point-cost`)
 - Azuma is strictly weaker than Chernoff-KL for two-valued increments —
   **EXACT — HUMAN PROOF** (textbook), instance
   **COMPUTATIONALLY VERIFIED**
@@ -251,9 +279,17 @@ Classification **EXTERNAL_INPUT_AUDIT_MIXED**.
 - The transcendence chain reduces to one identity: closure exponent
   \(=\mu(\log2/\log3)\). The laboratory did not have this statement; it
   makes every future Diophantine import a one-line comparison.
-- Rhin equation (8) is a candidate \(\mu\le8.616\), sharper than the
+- Rhin equation (8) was a candidate \(\mu\le8.616\), sharper than the
   printed \(14.3\) and weaker than the Wu-Wang \(5.1163051\) now in use.
-  Left UNVERIFIED and load-bearing on nothing.
+  Read at source on 16 September 2026 and closed permanently: it is
+  conditional on an \(H_0\) declared computable and never computed, so
+  it is load-bearing on nothing and can become load-bearing on nothing.
+  The reading dispute that stood over it was a false dichotomy.
+- "Effective" and "computed" are separate questions, and the audit
+  conflated them. Wu-Wang is effective but **uncomputed**, not
+  ineffective; Rhin eq. (8) is the same shape; and
+  \(H_0=\exp(\Theta(n_0))\) is astronomical, so \(L^{14.3}\) is the
+  effective statement and \(L^{5.1163051}\) the asymptotic one.
 - Paper C's concentration constants are not improvable by a sharper
   inequality: Azuma's lossiness moves no consumed integer, and Chernoff
   already carries the true first-passage rate. **The direction this
@@ -282,8 +318,9 @@ an identity the laboratory did not have, and a direction closed with
 numbers rather than intuition. The concentration half is the honest
 outcome — I opened this branch on the hypothesis that a sharper
 large-deviation bound would move Paper C's constants, and it does not.
-Best next question: none here. The unverified Rhin row is a library
-errand, recorded above.
+Best next question: none here. The Rhin library errand recorded above was
+run on 16 September 2026 and came back no: p. 160 gives equation (8) no
+computed threshold, so the row is closed rather than pending.
 
 ## Publication assessment
 

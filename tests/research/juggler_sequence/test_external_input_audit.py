@@ -43,6 +43,26 @@ def test_the_committed_wuwang_exponent_sits_in_the_chain() -> None:
     )
 
 
+def test_wuwang_is_effective_but_uncomputed_not_ineffective() -> None:
+    """`J-wuwang-import-verified-at-source`, the one refinement it asks for.
+
+    Theorem 1, p. 266, asserts that `H_0(eps)` is effectively computable, so
+    the bound IS effective in the technical sense; what the paper never does is
+    compute `H_0(eps)`. The audit first recorded this row as `effective: no`,
+    which is a different claim and a wrong one. The accurate entry is
+    "effective but uncomputed", and it needs two fields to say it.
+    """
+    ww = next(
+        r
+        for r in TRANSCENDENCE_CHAIN
+        if r["source"] == "wu-wang-2014-irrationality-measure-log3"
+    )
+    assert ww["verified_against_primary"] is True
+    assert ww["effective"] is True, "Theorem 1 asserts H_0(eps) is effectively computable"
+    assert ww["constant_computed"] is False, "and never computes it"
+    assert "H_0" in ww["uncomputed_threshold"]
+
+
 def test_all_transcendence_checks_pass() -> None:
     for row in transcendence_checks():
         assert row["ok"], row["check"]
@@ -56,29 +76,96 @@ def test_chain_is_ordered_and_dirichlet_is_the_floor() -> None:
     assert all(r["mu"] >= 2.0 for r in chain)
 
 
-def test_paper_a_printed_exponent_is_beaten_by_its_own_citation() -> None:
-    """The audit's finding: a sharper statement one equation further down.
+def test_rhin_equation_eight_is_read_at_source_and_has_no_threshold() -> None:
+    """The finding this branch opened with, closed by reading p. 160.
 
-    Paper A cites Rhin p.160 eq.(7) through Simons-de Weger and prints 14.3.
-    Eq.(8) of the same Proposition is reported as mu <= 8.616.
+    `J-rhin-eight-has-no-computed-threshold`: the Proposition gives (7)
+    `|Lambda| >= H^(-13.3)` for `H >= 2`, then (8) `|Lambda| >= H^(-7.616)`
+    only *pour H >= H_0 (H_0 effectivement calculable)* -- and `H_0` is never
+    computed. So Paper A's printed 14.3 is not in fact beaten by its own
+    citation: 8.616 is sharper and unreachable. The row is verified and dead
+    rather than unverified and hopeful.
     """
     rows = [r for r in TRANSCENDENCE_CHAIN if r["source"].startswith("rhin")]
     assert len(rows) == 2
     printed = max(rows, key=lambda r: r["mu"])
-    ratio = min(rows, key=lambda r: r["mu"])
-    assert printed["mu"] == 14.3 and ratio["mu"] == 8.616
+    sharper = min(rows, key=lambda r: r["mu"])
+    assert printed["mu"] == 14.3 and sharper["mu"] == 8.616
     assert printed["verified_against_primary"] is True
-    assert ratio["verified_against_primary"] is False, (
-        "8.616 is a third-party report; it must not be used before someone "
-        "reads Rhin p.160 eq.(8)"
-    )
+    assert sharper["verified_against_primary"] is True, "p.160 read at source 16 Sep 2026"
+    assert printed["constant_computed"] is True
+    assert sharper["effective"] is True, "Rhin declares H_0 effectivement calculable"
+    assert sharper["constant_computed"] is False, "and never computes it"
+    assert "H_0" in sharper["uncomputed_threshold"]
+    assert sharper["used_by"].startswith("nothing")
 
 
-def test_unverified_rows_are_never_the_one_in_use() -> None:
-    """An audit must not let an unchecked citation become load-bearing."""
+def test_the_915_is_simons_de_weger_lemma_12_not_rhin() -> None:
+    """The attribution correction in `J-rhin-eight-has-no-computed-threshold`.
+
+    Rhin's (7) is `H^(-13.3)` outright for `H >= 2` and carries no constant at
+    all. The chain is unaffected; the table's attribution was loose.
+    """
+    printed = next(r for r in TRANSCENDENCE_CHAIN if r["mu"] == 14.3)
+    assert "915" in printed["constant"]
+    assert "Simons-de Weger" in printed["constant"]
+    assert "Rhin prints no constant" in printed["constant"]
+
+
+def test_the_two_readings_of_equation_eight_are_recorded_as_one_theorem() -> None:
+    """`J-rhin-eight-readings-are-one-theorem`: the dichotomy was false.
+
+    Spiegelhofer's ratio bound and Zudilin's `Q log2 + Q log3` bound are two
+    corollaries of one linear independence measure -- Rhin approximates
+    `log(2/3)` and `log(4/3)`, an integral basis change from `log2, log3`, so
+    the same lattice and the same exponent. p. 160 confirms it at source: both
+    (7) and (8) are the three-term form. The chain must not still carry the
+    dispute.
+    """
+    eight = next(r for r in TRANSCENDENCE_CHAIN if r["mu"] == 8.616)
+    assert "disputed_by" not in eight, "the dispute was resolved on 16 September 2026"
+    assert eight["reading_resolved_by"] == "J-rhin-eight-readings-are-one-theorem"
+    assert eight["reported_by"].startswith("spiegelhofer")
+    for row in (eight, next(r for r in TRANSCENDENCE_CHAIN if r["mu"] == 14.3)):
+        assert "three-term" in row["route"], row["route"]
+
+
+def test_effective_and_computed_are_kept_apart() -> None:
+    """The distinction the 16 September readings forced into the data.
+
+    Wu-Wang Theorem 1 and Rhin eq.(8) both assert an effectively computable
+    threshold and neither computes it, so a bare `effective: True` would read
+    as a printed constant. Those two rows and no others are effective but
+    uncomputed, each says what is missing, and neither is the deposited
+    effective statement.
+    """
     for row in TRANSCENDENCE_CHAIN:
-        if not row["verified_against_primary"]:
-            assert row["used_by"].startswith("nothing"), row["source"]
+        assert row["verified_against_primary"] is True, row["source"]
+        if row["effective"] and not row["constant_computed"]:
+            assert row.get("uncomputed_threshold"), row["source"]
+            assert not row["used_by"].startswith("Paper A"), (
+                f"{row['source']}: an uncomputed threshold cannot be the "
+                "deposited effective statement"
+            )
+    assert {
+        r["source"] for r in TRANSCENDENCE_CHAIN if r["effective"] and not r["constant_computed"]
+    } == {"rhin-1987-pade-irrationality", "wu-wang-2014-irrationality-measure-log3"}
+
+
+def test_the_effective_statement_and_the_asymptotic_one_are_different_rows() -> None:
+    """`J-wuwang-effectivity-is-a-saddle-point-cost`, as a property of the chain.
+
+    `H_0 = exp(Theta(n_0))` -- about `1e3500` at `eps = 0.05` -- so Wu-Wang
+    supplies nothing at any `L` a cycle search reaches, and Rhin eq.(7) with
+    the Simons-de Weger constant is what actually applies. `L^14.3` is the
+    effective statement and `L^5.1163051` the asymptotic one; the audit must
+    not let the sharper number pass for the usable one.
+    """
+    data = report()
+    assert data["sharpest_computed_mu"] == 14.3
+    assert data["asymptotic_mu_in_use"] == 5.1163051
+    assert data["sharpest_computed_mu"] > data["asymptotic_mu_in_use"]
+    assert data["sharpest_computed_mu"] > data["sharpest_verified_mu"]
 
 
 def test_kl_reproduces_chernoff_at_the_unbiased_point() -> None:
@@ -128,7 +215,7 @@ def test_report_is_self_consistent() -> None:
     assert data["all_transcendence_checks_ok"]
     assert data["concentration_constants_move"] is False
     assert data["first_passage_excess_shrinks"] is True
-    assert data["unverified_candidate_mu"] == 8.616
+    assert data["chain_is_read_at_source"] is True
     assert data["is_halt_theorem"] is False
     assert data["new_mathematics"] is False
     assert math.isclose(data["alpha"], ALPHA)
