@@ -266,9 +266,12 @@ here suggests one exists.
 ## Decision
 
 `PROMOTE` -- an exact identity, verified two independent ways, that reduces a
-measured spectrum to a sequence Paper B already owns and ties it to `G(1)`. The
-retraction it carries is recorded in
-[negative_knowledge.md](../negative_knowledge.md).
+measured spectrum to a sequence Paper B already owns and ties it to `G(1)`. Both
+things it carries that are negative are recorded in
+[negative_knowledge.md](../negative_knowledge.md): the retraction of the `1/rho`
+law together with why a global fit cannot reach `C_j`, and the refutation of the
+self-referential route to `a_1`
+(`J-paper-b-jump-amplitude-is-not-a-fixed-point`).
 
 ## Publication assessment
 
