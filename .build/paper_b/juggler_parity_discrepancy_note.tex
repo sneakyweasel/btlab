@@ -85,11 +85,38 @@ included.
 
 The single-floor estimate and the conditional all-depth counting
 argument use standard methods. The latter is in the spirit of
-stopping-time arguments for the Collatz map, such as Terras {[}4{]}; no
-theorem about Collatz is transferred to the Juggler map. The general
-\(95/96\) kernel target and arbitrary short-interval extensions from
-earlier drafts remain unproved. The weaker \(127/128\) exponent proved
-here suffices for the five-step count.
+stopping-time arguments for the Collatz map, such as Terras {[}4{]}. The
+general \(95/96\) kernel target and arbitrary short-interval extensions
+from earlier drafts remain unproved. The weaker \(127/128\) exponent
+proved here suffices for the five-step count.
+
+That kinship is an identity rather than an analogy, and stating it
+precisely is what fixes the contribution of this paper. The shortcut
+Collatz map sends \(x\) to \(x/2\) or \((3x+1)/2\), so \(\log x\) moves
+by \(-\log2\) or \(+\log(3/2)\); the Juggler map multiplies \(\log n\)
+by \(1/2\) or \(3/2\), so \(\log\log n\) moves by the same two steps. A
+word therefore contracts in one problem exactly when it contracts in the
+other, and the word counts used here are Collatz word counts. The number
+of words of length \(d\) with no contracting prefix is A076227 {[}5{]},
+in the OEIS since 2002 as the number of residue classes modulo \(2^d\)
+on which the Collatz stopping time is not constant. The minimal
+certificates, counted by length, are the admissible sequences of A100982
+{[}6{]}, supported on the binary lengths of the powers of three, A020914
+{[}7{]}. The list of Lemma 5.1 and the surviving words of Theorem 6.1
+are those objects; no priority is claimed for them, and the counting
+identities are recorded and machine-checked separately in the laboratory
+repository rather than proved here.
+
+The two problems part at the arithmetic, and that is the whole of the
+present work. For Collatz the word of length \(d\) is a function of
+\(x\bmod2^d\), and the induced map to words is a bijection {[}4{]}, so
+every word has density exactly \(2^{-d}\) and the fair-share counts are
+free. For the Juggler map the word is a function of \(\{n^{3/2}\}\) and
+of the nested fractional parts that follow it, and the corresponding
+statement is Hypothesis \(\mathrm{FD}\) of Section 6, which is open.
+Theorems 3.1, 5.2, 5.3 and 5.4 are statements of that second kind and
+have no Collatz counterpart. No theorem about Collatz is transferred to
+the Juggler map.
 
 This preprint supersedes the earlier conditional and \(27/32\) versions.
 The proofs have been developed and checked with AI assistance and
@@ -886,6 +913,12 @@ at most three odd letters because \(3^3<2^5<3^4\). The first two
 prefixes must therefore end with \(E\), and the third cannot contract.
 This proves (5.1). \(\square\)
 
+These five words are the minimal certificates of length at most five
+counted by A100982 {[}6{]}. That sequence is supported on the binary
+lengths of the powers of three {[}7{]}, which is why length three
+carries no certificate; the enumeration above verifies its first terms
+rather than establishing them.
+
 \needspace{5\baselineskip}
 
 \textbf{Theorem 5.2 (unconditional four-step density).} One has \[
@@ -1070,7 +1103,12 @@ contracting prefix only if \(o\log3\ge d\log2\) at the endpoint, so the
 event is a large deviation of the same walk whose step is \(\log(3/2)\)
 or \(-\log2\) with equal probability; its Cram\'{e}r rate
 \(\varrho=\min_t\mathbb E[e^{tX}]=0.9659065532\) and \(\vartheta(p)\)
-are the same number, and the inequality above reaches it.
+are the same number, and the inequality above reaches it. The words this
+bound counts are those of A076227 {[}5{]}, so its decay is a statement
+about Collatz residue classes as well. There the fair-share densities
+that Hypothesis \(\mathrm{FD}\) assumes are a theorem of Terras {[}4{]};
+that asymmetry, and not the combinatorics, is what the analytic sections
+of this paper are for.
 
 At \(q_d\) the bound has a closed form. Writing
 \(\mathrm{KL}(q)=-\log\vartheta(q)\), so
@@ -1476,6 +1514,9 @@ Warrant in this version
 \endlastfoot
 Envelope, branch identity, minimal words, floor defects & Exact proofs
 in Sections 2, 5, and 7 \\
+Word counts, certificate lengths, and the survivor decay & Shared with
+the Collatz literature: A076227, A100982, A020914; no priority
+claimed \\
 Certificate density \(3/4\) & Classical analytic proof in Theorem 3.1 \\
 Correlation-to-count and Fourier-to-parity implications & Proofs in
 Propositions 4.1 and 4.2 \\
@@ -2808,5 +2849,23 @@ are not authors.
   R. Terras, ``A stopping time problem on the positive integers,''
   \emph{Acta Arithmetica} 30 (1976), 241--252.
   \href{https://doi.org/10.4064/aa-30-3-241-252}{doi:10.4064/aa-30-3-241-252}.
+\item
+  OEIS Foundation Inc., ``Number of surviving Collatz residues mod
+  \(2^n\) ,'' \emph{The On-Line Encyclopedia of Integer Sequences},
+  A076227, contributed by Labos Elemer, 2002.
+  \href{https://oeis.org/A076227}{Sequence record}, accessed 19
+  September 2026.
+\item
+  OEIS Foundation Inc., ``Number of admissible sequences of order n;
+  related to 3x+1 problem and Wagon's constant,'' \emph{The On-Line
+  Encyclopedia of Integer Sequences}, A100982, contributed by S. R.
+  Finch. \href{https://oeis.org/A100982}{Sequence record}, accessed 19
+  September 2026.
+\item
+  OEIS Foundation Inc., ``Number of digits in the base-2 representation
+  of 3\^{}n,'' \emph{The On-Line Encyclopedia of Integer Sequences},
+  A020914, contributed by C. Kimberling.
+  \href{https://oeis.org/A020914}{Sequence record}, accessed 19
+  September 2026.
 \end{enumerate}
 \end{document}

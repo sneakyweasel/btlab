@@ -1,7 +1,7 @@
 # Five-Step Descent Certificates for the Juggler Map
 
 **Parity Statistics of Nested Floor Powers**  
-Philippe Cochin | Preprint | Version 2026-09-18-preprint
+Philippe Cochin | Preprint | Version 2026-09-19-preprint
 
 ## Files for the Zenodo record
 
@@ -25,7 +25,7 @@ Five-Step Descent Certificates for the Juggler Map: Parity Statistics of Nested 
 
 - Resource type: Publication / Preprint.
 - Creator: Cochin, Philippe. No affiliation or ORCID is supplied.
-- Version: 2026-09-18-preprint.
+- Version: 2026-09-19-preprint.
 - Language: English.
 - Access: Open.
 - Manuscript and documentation license: Creative Commons Attribution 4.0

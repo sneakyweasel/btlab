@@ -21,7 +21,7 @@
     {
       "path": "docs/theory/juggler_finite_dynamics_note.md",
       "mode": "text",
-      "sha256": "75bcdc81acd703498ea7b5b76c534eb417db4e6488b9038fa58ce9902a413afb"
+      "sha256": "6197c425c21cef4a8dc651d23835a7083e3e14b87777489e2d2bc4075b8cb054"
     },
     {
       "path": "docs/theory/juggler_finite_dynamics_reviewer_packet.md",
@@ -608,12 +608,12 @@
     {
       "path": "docs/theory/juggler_finite_dynamics_note.pdf",
       "mode": "binary",
-      "sha256": "d213b4b841edaafabc2418dddb1e920b6d64fe0993dc3bb47b489ec724cd07d0"
+      "sha256": "d1db06a2cfee45e958e27ac211a873b48bafa26fccded5f4c813979eebcb9adb"
     },
     {
       "path": "docs/theory/cochin-juggler.tex",
       "mode": "text",
-      "sha256": "6a0bcfba3728e9d0573a2dbb0dc88735c6e0b809738d1f589a7575b703fec296"
+      "sha256": "3f3e14a25772b7532dc37581f8c5efe02df7921ff40cc0a53a9ecb02bb24acf6"
     },
     {
       "path": "docs/theory/paper_a_zenodo.json",

@@ -4187,10 +4187,10 @@ repository probe collatz\_finance\_mirror. Nothing here improves a
 Juggler period bound, and nothing is claimed about Collatz cycles beyond
 the published bounds reproduced.
 
-**Notation.** For \(x\in\mathbb Z\) and \(d\ge 0\), the word
-\(w=\mathtt{parityWord}(x,d)\) (`parityWord`; `parityWordZ` over
+**Notation.** For \(x\in\mathbb Z\) and \(K\ge 0\), the word
+\(w=\mathtt{parityWord}(x,K)\) (`parityWord`; `parityWordZ` over
 \(\mathbb Z\)) lists the
-parities of \(x,C(x),\dots,C^{d-1}(x)\) in the alphabet \(\{O,E\}\) of
+parities of \(x,C(x),\dots,C^{K-1}(x)\) in the alphabet \(\{O,E\}\) of
 §1.3; \(o\) is its number of odd letters and \(a_i\) the number of odd
 letters before position \(i\). Two integer-valued functions of the word
 alone are
@@ -4199,22 +4199,22 @@ alone are
 \mathrm{evenCharge}(w)=\sum_{i:\,w_i=E}3^{\,o-a_i}\,2^{\,i}
 \]
 (`wordConst`, `evenCharge`), and they differ by the multiplier gap,
-\(\mathrm{wordConst}(w)+2^d=3^o+\mathrm{evenCharge}(w)\)
+\(\mathrm{wordConst}(w)+2^K=3^o+\mathrm{evenCharge}(w)\)
 (`wordConst_add_two_pow`).
 
 **Theorem 5.15 (word-affine identities; Lean).**
-For every \(x\in\mathbb Z\) and \(d\ge0\),
+For every \(x\in\mathbb Z\) and \(K\ge0\),
 \[
-2^d\,C^d(x)=3^{o}x+\mathrm{wordConst}(w),\qquad
-2^d\bigl(C^d(x)+1\bigr)=3^{o}(x+1)+\mathrm{evenCharge}(w)
+2^K\,C^K(x)=3^{o}x+\mathrm{wordConst}(w),\qquad
+2^K\bigl(C^K(x)+1\bigr)=3^{o}(x+1)+\mathrm{evenCharge}(w)
 \]
 (`word_affine`, `two_pow_mul_iter_add_one` over \(\mathbb N\);
 `word_affine_int`, `two_pow_mul_iter_add_one_int` over \(\mathbb Z\)).
-Consequently \(3^o(x+1)\le 2^d\bigl(C^d(x)+1\bigr)\) for \(x\ge 0\)
+Consequently \(3^o(x+1)\le 2^K\bigl(C^K(x)+1\bigr)\) for \(x\ge 0\)
 (`three_pow_mul_add_one_le`): the Collatz orbit lies *above* its pure
 multiplier, while by Theorem 2.2 the Juggler orbit lies below it,
 \((\mathrm{image}\,n\,w)^{2^{|w|}}\le n^{3^{o}}\) for a realised word
-(`juggler_word_power`). The same multiplier \(3^o/2^d\) acts on \(x\) in
+(`juggler_word_power`). The same multiplier \(3^o/2^K\) acts on \(x\) in
 one problem and on \(\log n\) in the other, with corrections of opposite
 sign.
 
@@ -4226,15 +4226,15 @@ the even step \(z\mapsto z/2+1/2\), so that every correction comes from
 an even step. \(\square\)
 
 **Corollary 5.16 (cycle equation and the sign of a cycle; Lean).**
-On a cycle \(C^d(x)=x\) of the integer map,
+On a cycle \(C^K(x)=x\) of the integer map,
 \[
-(x+1)\,(2^d-3^o)=\mathrm{evenCharge}(w)
+(x+1)\,(2^K-3^o)=\mathrm{evenCharge}(w)
 \]
 (`cycle_equation_int`). A positive cycle of positive length has
-\(3^o<2^d\) (`cycle_contracting`) and \(2^d-3^o\) divides
+\(3^o<2^K\) (`cycle_contracting`) and \(2^K-3^o\) divides
 \(\mathrm{evenCharge}(w)\) (`cycle_dvd`); conversely a start whose word
-satisfies the equation with \(3^o\le2^d\) returns after \(d\) steps
-(`cycle_of_equation`). A cycle at \(x\le-2\) has \(2^d<3^o\)
+satisfies the equation with \(3^o\le2^K\) returns after \(K\) steps
+(`cycle_of_equation`). A cycle at \(x\le-2\) has \(2^K<3^o\)
 (`neg_cycle_expanding`), the sign of Theorem 3.2. If the orbit of
 \(x\ge0\) has not dropped below \(x\) by step \(j\), then
 \((x+1)(2^j-3^{a_j})\le\mathrm{evenCharge}(w_{<j})\)
@@ -4245,17 +4245,17 @@ lengths \(1,3,11\) (`neg_one_cycle`, `neg_five_cycle`,
 `neg_seventeen_cycle`, by kernel evaluation). \(\square\)
 
 **Theorem 5.17 (Terras's bijection and the survivor count; Lean).**
-Two starts have the same word of depth \(d\),
-\(\mathtt{parityWord}(x,d)=\mathtt{parityWord}(y,d)\), if and only if
-\(x\equiv y\pmod{2^d}\) (`parityWord_eq_iff`), and the residues modulo
-\(2^d\) map onto all \(2^d\) words of length \(d\) (`image_parityWord`,
+Two starts have the same word of depth \(K\),
+\(\mathtt{parityWord}(x,K)=\mathtt{parityWord}(y,K)\), if and only if
+\(x\equiv y\pmod{2^K}\) (`parityWord_eq_iff`), and the residues modulo
+\(2^K\) map onto all \(2^K\) words of length \(K\) (`image_parityWord`,
 `exists_residue_of_word`) --- Terras's theorem [22]. The number of
 residue classes whose word has no contracting prefix is the survivor
-count \(N_d\) of the companion Paper B [16] (`undecidedResidues_card`),
-and the number whose word first contracts at \(d\) is its
-minimal-certificate count \(M_d\) (checked in the laboratory module
+count \(N_K\) of the companion Paper B [16] (`undecidedResidues_card`),
+and the number whose word first contracts at \(K\) is its
+minimal-certificate count \(M_K\) (checked in the laboratory module
 CollatzBridgeLab, outside the paper barrel). No member
-of an undecided class drops within \(d\) steps, and every member \(y\) of
+of an undecided class drops within \(K\) steps, and every member \(y\) of
 a decided class with \(y>\mathrm{wordConst}\) of the contracting prefix
 drops at the prefix's length (`iter_lt_of_exponentGap_class`). For
 \(d=4,\dots,10\) the counts are \(3,4,8,13,19,38,64\), evaluated by
@@ -4285,8 +4285,8 @@ lattice. At \(695\cdot2^{60}\) and at \(2^{68}\) the least survivor is
 are \(114208327604\) and \(217976794617\).
 
 (ii) *Walk charge.* Let \(\alpha=\log_2(3/2)\), let
-\(h_j=a_j\alpha-e_j\) be the height before step \(j\) (\(a_j\) odd and
-\(e_j\) even steps so far), and let
+\(h_j=a_j\alpha-b_j\) be the height before step \(j\) (\(a_j\) odd and
+\(b_j\) even steps so far), and let
 \(\delta=\log_2\bigl(1+K/(x_0+1-K)\bigr)\). By Theorem 5.15,
 \(x_j+1\ge2^{h_j}(x_0+1)\) for every \(j\); minimality gives
 \(h_j\ge-\delta\), so \(h_j\ge\{a_j\alpha\}\) except at the
@@ -4895,7 +4895,7 @@ None of these distinctions is removed by compiling the barrel.
 | Corollary 5.11 | third floor and kill table; verified computation, not Lean |
 | Theorem 5.15 | `word_affine`, `two_pow_mul_iter_add_one`, `three_pow_mul_add_one_le`, `wordConst_add_two_pow`, `juggler_word_power`; over \(\mathbb Z\) `word_affine_int`, `two_pow_mul_iter_add_one_int`; the word `parityWord`, `parityWordZ` and its functions `wordConst`, `evenCharge` (`CollatzBridge.lean`) |
 | Corollary 5.16 | `cycle_equation_int`, `cycle_contracting`, `cycle_dvd`, `cycle_of_equation`, `neg_cycle_expanding`, `prefix_bound_of_min`; the three negative cycles `neg_one_cycle`, `neg_five_cycle`, `neg_seventeen_cycle` |
-| Theorem 5.17 | `parityWord_eq_iff`, `image_parityWord`, `exists_residue_of_word`, `undecidedResidues_card`, `iter_lt_of_exponentGap_class`; depth tables `undecidedResidues_card_ten` and its companions, by `decide +kernel` |
+| Theorem 5.17 | `parityWord_eq_iff`, `image_parityWord`, `exists_residue_of_word`, `undecidedResidues_card`, `iter_lt_of_exponentGap_class`; depth tables `undecidedResidues_card_ten` and its companions, by kernel evaluation |
 | Theorem 5.18 | enumeration and constants on the Lean identity of Theorem 5.15: verified computation; the height argument is written |
 | Theorem 5.19 | `neg_prefix_noncontracting`, `two_mul_evenCharge_le`, `neg_cycle_finance`, `neg_seventeen_finance` with `neg_seventeen_is_least` |
 | Remarks 5.20--5.21 | verified computation and written; the fan endpoint is `fanLambda_56_neg` |

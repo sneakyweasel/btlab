@@ -1,6 +1,6 @@
 # Five-Step Descent Certificates for the Juggler Map
 
-Parity Statistics of Nested Floor Powers. Version 2026-09-18-preprint.
+Parity Statistics of Nested Floor Powers. Version 2026-09-19-preprint.
 
 This folder is generated from the canonical editorial inputs in
 `docs/theory/`. The deposit filename
