@@ -389,6 +389,46 @@ def cycle_census(kmax: int = 20, lmax: int = 18) -> dict[str, Any]:
     }
 
 
+# ---------------------------------------------------------------------------------------------
+# The negative cycles: Juggler's finance, read on Collatz's negative integers
+# ---------------------------------------------------------------------------------------------
+
+#: `1/(6 alpha log 2)`: the average of `2^(-h)` over even steps of the hug word, whose heights
+#: before an even step are uniform on `[1, 1 + alpha)`.
+EVEN_HUG_INTEGRAL = 0.4110505770627386
+
+
+def even_hug_sum(m: int) -> float:
+    """`H_E(m) = sum_{e < m} 2^(-h_e)` with `h_e = ceil((e+1)/alpha) alpha - e`, the least height
+    an admissible word can have before its `e`-th even step (the height after it must stay
+    non-negative); the hug word attains every term."""
+    with mp.workdps(30):
+        alpha = float(log(3) / log(2) - 1)
+    e = np.arange(m, dtype=np.float64)
+    return float(np.sum(2.0 ** (-(np.ceil((e + 1) / alpha) * alpha - e))))
+
+
+def negative_cycle_survivors(Y0: mpf, kmax: int, *, charge: float = 0.5) -> list[dict[str, Any]]:
+    """Lengths `K <= kmax` that a negative Collatz cycle with least `|x| >= Y0` could have.
+
+    On a negative cycle read at its least `|x|` (`neg_prefix_noncontracting`), the cycle equation
+    gives `(|x| - 1)(3^o - 2^K) = evenCharge w = 3^o sum over even steps of 2^(-h_i)` with every
+    `h_i >= 1`, so `|x| - 1 <= charge * (K - o) / theta_J(K)`, `theta_J = 1 - 2^K/3^o`, with
+    `charge = 1/2` uniformly and `EVEN_HUG_INTEGRAL` on the hug word. The survivors are the
+    Juggler-side dangerous lengths: this is Paper A's finance table on the other side.
+    """
+    with mp.workdps(_DPS):
+        eps = min(mpf(kmax) * charge / (log(3) * (Y0 - 1)) * mpf("1.01"), mpf("0.5"))
+        out = []
+        for K in three_gap_walk(eps, -1, kmax):
+            o, lam = lambda_juggler(K)
+            theta = 1 - exp(-lam)
+            bound = 1 + mpf(charge) * (K - o) / theta
+            if bound >= Y0:
+                out.append({"K": K, "o": o, "abs_x_le": float(bound)})
+        return out
+
+
 def walk_charge_bound(K: int, *, exact_below: int = 3 * 10**8) -> mpf:
     """The transposed walk charge on the cycle minimum: `x_min <= H(p) / (3 Lambda_C) (1 + o(1))`.
 
@@ -595,8 +635,35 @@ def probe_payload(*, kmax_40: int = 4 * 10**8, brute_kmax: int = 3 * 10**7) -> d
             for word, states in [shortcut_orbit(x0, d)]
         )
     census = cycle_census(26, 24)
+    with mp.workdps(_DPS):
+        neg_table = {}
+        for name, Y0, kmax in (("2^40", mpf(2) ** 40, 3 * 10**8), ("2^60", mpf(2) ** 60, 2 * 10**10),
+                               ("2^68", mpf(2) ** 68, 4 * 10**11), ("2^71", mpf(2) ** 71, 10**12)):
+            su = negative_cycle_survivors(Y0, kmax, charge=0.5)
+            sh = negative_cycle_survivors(Y0, kmax, charge=EVEN_HUG_INTEGRAL)
+            neg_table[name] = {"uniform_smallest": su[0]["K"], "uniform_count": len(su),
+                               "hug_smallest": sh[0]["K"], "hug_count": len(sh), "kmax": kmax}
+        known = {}
+        for K, o, y in ((1, 1, 1), (3, 2, 5), (11, 7, 17)):
+            lam = o * log(3) - K * log(2)
+            theta = 1 - exp(-lam)
+            known[str(y)] = {"K": K, "o": o, "uniform_bound": float(1 + mpf(K - o) / (2 * theta)),
+                             "hug_bound": float(1 + mpf(even_hug_sum(K - o)) / theta)}
     return {
         "cycle_census": census,
+        "negative_cycles": {
+            "statement": (
+                "a negative Collatz cycle read at its least |x| has an expanding word with no"
+                " contracting prefix (neg_cycle_word_is_juggler_shape), and (|x|-1)(3^o - 2^K) ="
+                " evenCharge w = 3^o sum over even steps of 2^(-h_i) with h_i >= 1, so"
+                " |x| - 1 <= charge (K - o)/theta_J(K): Paper A's finance on the other side"
+            ),
+            "even_hug_average_at": {str(m): even_hug_sum(m) / m for m in (10**3, 10**5, 10**7)},
+            "even_hug_constant": EVEN_HUG_INTEGRAL,
+            "survivors": neg_table,
+            "known_cycles_against_the_bound": known,
+            "verification_floor": "no published verification floor for the 3x-1 map was found; the table is conditional on the floor",
+        },
         "walk_charge": {
             "statement": (
                 "on a cycle at its minimum x_0 the height before the a-th odd step is at least"

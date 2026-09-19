@@ -10,12 +10,13 @@ from __future__ import annotations
 import json
 
 import pytest
-from mpmath import mp, mpf, log
+from mpmath import exp, mp, mpf, log
 
 from research.juggler_sequence.collatz_finance_mirror import (
     BARINA_LENGTH,
     CLASS_MIRROR,
     ELIAHOU_GENERATORS,
+    EVEN_HUG_INTEGRAL,
     HERCHER_LENGTH,
     HERCHER_ODD,
     HERCHER_THEOREM_27,
@@ -26,7 +27,9 @@ from research.juggler_sequence.collatz_finance_mirror import (
     collatz_survivors,
     convergent_sides,
     cycle_census,
+    even_hug_sum,
     follows_rational,
+    negative_cycle_survivors,
     rational_cycle,
     eliahou_decomposition,
     even_charge,
@@ -224,6 +227,30 @@ def test_rational_cycles_follow_their_words_and_only_three_are_integers() -> Non
     w = [1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0]
     assert rational_cycle(w) == -17 and follows_rational(rational_cycle(w), w)
     assert 2**11 < 3**7 and w.count(0) == 4
+
+
+def test_negative_cycle_finance_is_the_juggler_mirror() -> None:
+    """Paper A's finance, read on Collatz's negative integers, with the even-step charge.
+
+    Before every even step of an admissible word the height is at least `1`, so
+    `|x| - 1 <= (K - o)/(2 theta_J)` uniformly and `<= H_E(K - o)/theta_J` on the hug word with
+    `H_E(m)/m -> 1/(6 alpha log 2) = 0.4110`. The `-5` cycle, whose word `OOE` is a hug word,
+    attains the hug bound exactly; `-17` sits well inside it. The survivors at a floor are the
+    Juggler-side dangerous lengths; at `2^68` the smallest is `72448885240` under both constants.
+    """
+    assert abs(even_hug_sum(10**6) / 10**6 - EVEN_HUG_INTEGRAL) < 1e-5
+    with mp.workdps(60):
+        lam5 = 2 * log(3) - 3 * log(2)
+        assert abs(float(1 + even_hug_sum(1) / (1 - exp(-lam5))) - 5.0) < 1e-9
+        lam17 = 7 * log(3) - 11 * log(2)
+        assert 17 < float(1 + even_hug_sum(4) / (1 - exp(-lam17))) < 28
+        s = negative_cycle_survivors(mpf(2) ** 68, 4 * 10**11)
+        assert s[0]["K"] == 72448885240
+        h = negative_cycle_survivors(mpf(2) ** 68, 4 * 10**11, charge=EVEN_HUG_INTEGRAL)
+        assert h[0]["K"] == 72448885240 and len(h) < len(s)
+        # every survivor is Juggler-side, 3^o > 2^K: decided on the linear form at 60 digits
+        # (the integers have 10^11 bits; forming them is hours of bigint arithmetic)
+        assert all(lambda_juggler(r["K"])[1] > 0 for r in s[:5])
 
 
 def test_committed_artifact_records_the_mirror_and_its_limits() -> None:

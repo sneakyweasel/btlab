@@ -9473,7 +9473,8 @@
         "J-collatz-even-step-charge-identity",
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
-        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
       ],
       "line": 67,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9490,7 +9491,8 @@
         "J-collatz-even-step-charge-identity",
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
-        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
       ],
       "line": 77,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9507,7 +9509,8 @@
         "J-collatz-even-step-charge-identity",
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
-        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
       ],
       "line": 89,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9524,7 +9527,8 @@
         "J-collatz-even-step-charge-identity",
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
-        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
       ],
       "line": 104,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9541,7 +9545,8 @@
         "J-collatz-even-step-charge-identity",
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
-        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
       ],
       "line": 123,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9558,7 +9563,8 @@
         "J-collatz-even-step-charge-identity",
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
-        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
       ],
       "line": 136,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9575,7 +9581,8 @@
         "J-collatz-even-step-charge-identity",
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
-        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
       ],
       "line": 150,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9592,7 +9599,8 @@
         "J-collatz-even-step-charge-identity",
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
-        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
       ],
       "line": 185,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9609,7 +9617,8 @@
         "J-collatz-even-step-charge-identity",
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
-        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
       ],
       "line": 191,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9626,7 +9635,8 @@
         "J-collatz-even-step-charge-identity",
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
-        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
       ],
       "line": 228,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9643,7 +9653,8 @@
         "J-collatz-even-step-charge-identity",
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
-        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
       ],
       "line": 235,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9660,7 +9671,8 @@
         "J-collatz-even-step-charge-identity",
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
-        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
       ],
       "line": 239,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9677,7 +9689,8 @@
         "J-collatz-even-step-charge-identity",
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
-        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
       ],
       "line": 266,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9694,7 +9707,8 @@
         "J-collatz-even-step-charge-identity",
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
-        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
       ],
       "line": 283,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9711,7 +9725,8 @@
         "J-collatz-even-step-charge-identity",
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
-        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
       ],
       "line": 294,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9728,7 +9743,8 @@
         "J-collatz-even-step-charge-identity",
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
-        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
       ],
       "line": 298,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9745,7 +9761,8 @@
         "J-collatz-even-step-charge-identity",
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
-        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
       ],
       "line": 307,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9762,7 +9779,8 @@
         "J-collatz-even-step-charge-identity",
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
-        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
       ],
       "line": 315,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9779,7 +9797,8 @@
         "J-collatz-even-step-charge-identity",
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
-        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
       ],
       "line": 320,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9796,7 +9815,8 @@
         "J-collatz-even-step-charge-identity",
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
-        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
       ],
       "line": 325,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9813,7 +9833,8 @@
         "J-collatz-even-step-charge-identity",
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
-        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
       ],
       "line": 332,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9830,7 +9851,8 @@
         "J-collatz-even-step-charge-identity",
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
-        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
       ],
       "line": 342,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9847,7 +9869,8 @@
         "J-collatz-even-step-charge-identity",
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
-        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
       ],
       "line": 354,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9864,7 +9887,8 @@
         "J-collatz-even-step-charge-identity",
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
-        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
       ],
       "line": 375,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9881,7 +9905,8 @@
         "J-collatz-even-step-charge-identity",
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
-        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
       ],
       "line": 387,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9898,7 +9923,8 @@
         "J-collatz-even-step-charge-identity",
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
-        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
       ],
       "line": 398,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9915,7 +9941,8 @@
         "J-collatz-even-step-charge-identity",
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
-        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
       ],
       "line": 419,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9932,7 +9959,8 @@
         "J-collatz-even-step-charge-identity",
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
-        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
       ],
       "line": 425,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9949,7 +9977,8 @@
         "J-collatz-even-step-charge-identity",
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
-        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
       ],
       "line": 434,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9966,7 +9995,8 @@
         "J-collatz-even-step-charge-identity",
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
-        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
       ],
       "line": 437,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9983,7 +10013,8 @@
         "J-collatz-even-step-charge-identity",
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
-        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
       ],
       "line": 438,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10000,7 +10031,8 @@
         "J-collatz-even-step-charge-identity",
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
-        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
       ],
       "line": 439,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10017,7 +10049,8 @@
         "J-collatz-even-step-charge-identity",
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
-        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
       ],
       "line": 440,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10034,7 +10067,8 @@
         "J-collatz-even-step-charge-identity",
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
-        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
       ],
       "line": 441,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10051,7 +10085,8 @@
         "J-collatz-even-step-charge-identity",
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
-        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
       ],
       "line": 442,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10068,7 +10103,8 @@
         "J-collatz-even-step-charge-identity",
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
-        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
       ],
       "line": 443,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10085,7 +10121,8 @@
         "J-collatz-even-step-charge-identity",
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
-        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
       ],
       "line": 465,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10102,7 +10139,8 @@
         "J-collatz-even-step-charge-identity",
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
-        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
       ],
       "line": 479,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10119,7 +10157,8 @@
         "J-collatz-even-step-charge-identity",
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
-        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
       ],
       "line": 493,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10136,7 +10175,8 @@
         "J-collatz-even-step-charge-identity",
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
-        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
       ],
       "line": 503,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10153,7 +10193,8 @@
         "J-collatz-even-step-charge-identity",
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
-        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
       ],
       "line": 511,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10170,7 +10211,8 @@
         "J-collatz-even-step-charge-identity",
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
-        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
       ],
       "line": 518,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10187,7 +10229,8 @@
         "J-collatz-even-step-charge-identity",
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
-        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
       ],
       "line": 535,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10204,7 +10247,8 @@
         "J-collatz-even-step-charge-identity",
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
-        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
       ],
       "line": 538,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10221,7 +10265,8 @@
         "J-collatz-even-step-charge-identity",
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
-        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
       ],
       "line": 543,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10238,7 +10283,8 @@
         "J-collatz-even-step-charge-identity",
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
-        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
       ],
       "line": 559,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10255,7 +10301,8 @@
         "J-collatz-even-step-charge-identity",
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
-        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
       ],
       "line": 566,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10272,7 +10319,8 @@
         "J-collatz-even-step-charge-identity",
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
-        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
       ],
       "line": 596,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10289,7 +10337,8 @@
         "J-collatz-even-step-charge-identity",
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
-        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
       ],
       "line": 602,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10306,7 +10355,8 @@
         "J-collatz-even-step-charge-identity",
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
-        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
       ],
       "line": 614,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10323,7 +10373,8 @@
         "J-collatz-even-step-charge-identity",
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
-        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
       ],
       "line": 624,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10340,7 +10391,8 @@
         "J-collatz-even-step-charge-identity",
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
-        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
       ],
       "line": 645,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10357,7 +10409,8 @@
         "J-collatz-even-step-charge-identity",
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
-        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
       ],
       "line": 655,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10374,7 +10427,8 @@
         "J-collatz-even-step-charge-identity",
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
-        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
       ],
       "line": 662,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10391,7 +10445,8 @@
         "J-collatz-even-step-charge-identity",
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
-        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
       ],
       "line": 678,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10408,7 +10463,8 @@
         "J-collatz-even-step-charge-identity",
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
-        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
       ],
       "line": 694,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10425,7 +10481,8 @@
         "J-collatz-even-step-charge-identity",
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
-        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
       ],
       "line": 696,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10442,7 +10499,8 @@
         "J-collatz-even-step-charge-identity",
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
-        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
       ],
       "line": 699,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10459,7 +10517,8 @@
         "J-collatz-even-step-charge-identity",
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
-        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
       ],
       "line": 707,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10476,11 +10535,102 @@
         "J-collatz-even-step-charge-identity",
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
-        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
       ],
       "line": 714,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "neg_seventeen_inhabits_cycleMinShape",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A prefix of the `\u2124` word is the word of the prefix.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 730,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "parityWordZ_take",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**A negative cycle word, read at its least `|x|`, has no contracting prefix.** If `x \u2264 -2` and no iterate up to `K` lies closer to zero than `x`, then `2 ^ j \u2264 3 ^ a_j` for every `j \u2264 K`. Exact: the even steps only subtract, so an expanding multiplier is the only way to stay away from zero.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 748,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "neg_prefix_noncontracting",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The word-level twin, exactly.** A negative cycle of the `\u2124` map of positive length, read at its least `|x|`, has a word that is prefix-noncontracting and expanding -- the Juggler cycle-word shape of Paper A, with no `delta` exception on this side.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 773,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "neg_cycle_word_is_juggler_shape",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`-17` is the element of least `|x|` on its cycle, so the twin applies to it.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 779,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "neg_seventeen_is_least",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 781,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "neg_seventeen_word_is_juggler_shape",
       "trust": "kernel"
     },
     {
@@ -90822,7 +90972,7 @@
       "ledger": []
     },
     "Problems.Juggler.CollatzBridge": {
-      "declarations": 60,
+      "declarations": 65,
       "file": "formal/Problems/Juggler/CollatzBridge.lean",
       "imports": [
         "Problems.Collatz.Shortcut",
@@ -90860,8 +91010,13 @@
         },
         {
           "id": "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-          "statement": "The sign flip on cycles is the sign of x, and Juggler's cycle words are the words of Collatz's negative cycles. On the negative integers the odd step is |x| -> (3|x| - 1)/2, so the correction pushes |x| below the pure multiplier -- Juggler's sign -- and the cycle equation (x + 1)(2^d - 3^o) = evenCharge w >= 0 with x + 1 < 0 forces 2^d < 3^o: neg_cycle_expanding, a cycle of the \u2124 shortcut map at x <= -2 of positive length has an expanding word, beside cycle_contracting for positive cycles and cycle_itinerary_formally_expanding for Juggler. At the element of least |x| the prefixes are non-contracting up to the same delta exceptions, so a negative Collatz cycle word is an expanding survivor: precisely Paper A's CycleMin word shape (prefixNoncontracting and exponentExpanding), and the finance survivors of the negative-cycle problem at a floor are the Juggler-side dangerous lengths (J-cycle-gaps-are-mirror-images). THE THREE KNOWN NEGATIVE CYCLES, in Lean by decide: -1 with word O (neg_one_cycle), -5 with word OOE (neg_five_cycle), -17 with word OOOOEOOOEEE (neg_seventeen_cycle), whose lengths 1, 3, 11 are Juggler-side lengths (the convergent numerators 1 and 3, and the semiconvergent 11 = 7 + 4 of Paper A's Remark 3.32 table). THE -17 WORD INHABITS PAPER A'S CycleMinShape (neg_seventeen_inhabits_cycleMinShape): seven odd and four even letters, 2^11 < 3^7, starts OO, ends E with an empty last odd run, length 11 -- so Paper A's floor-free Theorem 3.22, every Juggler cycle has at least four even letters and period at least eleven, is met with equality by a word that Collatz realises as an integer cycle at -17. The Juggler-specific parts of CycleMin (the floor-power realisation, the next-square inventory that lifts e >= 4 to e >= 8 at minima >= 300) are not claimed for Collatz; this is the word-level shape only. CENSUS (COMPUTATIONALLY VERIFIED): every expanding survivor of length <= 24 (654279 words) has a negative rational cycle following its word, and the integral ones are exactly the three families O^k, (OOE)^k, (OOOOEOOOEEE)^k -- the -1, -5, -17 cycles known since the 1970s (Lagarias 1985 Section 2) and no other, to that length. CONSEQUENCE FOR THE BRIDGE: the Juggler no-cycle problem is the word-level twin of the Collatz negative-cycle conjecture (only -1, -5, -17), not of the positive one; both need expanding survivor words whose corrections point down, and Collatz has three integer solutions where Juggler has none known. Not a kill, not a period bound, not a halt theorem.",
+          "statement": "The sign flip on cycles is the sign of x, and Juggler's cycle words are the words of Collatz's negative cycles. On the negative integers the odd step is |x| -> (3|x| - 1)/2, so the correction pushes |x| below the pure multiplier -- Juggler's sign -- and the cycle equation (x + 1)(2^d - 3^o) = evenCharge w >= 0 with x + 1 < 0 forces 2^d < 3^o: neg_cycle_expanding, a cycle of the \u2124 shortcut map at x <= -2 of positive length has an expanding word, beside cycle_contracting for positive cycles and cycle_itinerary_formally_expanding for Juggler. At the element of least |x| the prefixes are non-contracting EXACTLY, with none of the delta exceptions of the positive side (neg_prefix_noncontracting: the even steps only subtract, so an expanding multiplier is the only way to stay away from zero), so a negative Collatz cycle word is an expanding survivor: precisely Paper A's CycleMin word shape, prefixNoncontracting and exponentExpanding, as one Lean statement (neg_cycle_word_is_juggler_shape, instantiated at -17 by neg_seventeen_word_is_juggler_shape with neg_seventeen_is_least by decide); and the finance survivors of the negative-cycle problem at a floor are the Juggler-side dangerous lengths (J-cycle-gaps-are-mirror-images, J-negative-cycle-finance-is-the-juggler-mirror). THE THREE KNOWN NEGATIVE CYCLES, in Lean by decide: -1 with word O (neg_one_cycle), -5 with word OOE (neg_five_cycle), -17 with word OOOOEOOOEEE (neg_seventeen_cycle), whose lengths 1, 3, 11 are Juggler-side lengths (the convergent numerators 1 and 3, and the semiconvergent 11 = 7 + 4 of Paper A's Remark 3.32 table). THE -17 WORD INHABITS PAPER A'S CycleMinShape (neg_seventeen_inhabits_cycleMinShape): seven odd and four even letters, 2^11 < 3^7, starts OO, ends E with an empty last odd run, length 11 -- so Paper A's floor-free Theorem 3.22, every Juggler cycle has at least four even letters and period at least eleven, is met with equality by a word that Collatz realises as an integer cycle at -17. The Juggler-specific parts of CycleMin (the floor-power realisation, the next-square inventory that lifts e >= 4 to e >= 8 at minima >= 300) are not claimed for Collatz; this is the word-level shape only. CENSUS (COMPUTATIONALLY VERIFIED): every expanding survivor of length <= 24 (654279 words) has a negative rational cycle following its word, and the integral ones are exactly the three families O^k, (OOE)^k, (OOOOEOOOEEE)^k -- the -1, -5, -17 cycles known since the 1970s (Lagarias 1985 Section 2) and no other, to that length. CONSEQUENCE FOR THE BRIDGE: the Juggler no-cycle problem is the word-level twin of the Collatz negative-cycle conjecture (only -1, -5, -17), not of the positive one; both need expanding survivor words whose corrections point down, and Collatz has three integer solutions where Juggler has none known. Not a kill, not a period bound, not a halt theorem.",
           "tag": "EXACT \u2014 LEAN VERIFIED"
+        },
+        {
+          "id": "J-negative-cycle-finance-is-the-juggler-mirror",
+          "statement": "Paper A's finance, read on Collatz's negative integers, with its walk charge on the even steps. A negative cycle of the shortcut map with least |x| = y >= 2, length K and o odd letters has, by the cycle equation (cycle_equation_int) and the exactness of its word shape (neg_prefix_noncontracting), (y - 1)(3^o - 2^K) = evenCharge w = 3^o * sum over even steps i of 2^(-h_i), h_i = a_i log2 3 - i the height before the step; since the height after an even step is still non-negative, every h_i >= 1, and for the e-th even step h >= ceil((e+1)/alpha) alpha - e in [1, 1 + alpha), alpha = log2(3/2), attained by the hug word. Hence, with theta_J(K) = 1 - 2^K/3^o and m = K - o even letters: y - 1 <= m/(2 theta_J) uniformly, and y - 1 <= H_E(m)/theta_J with H_E(m) = sum_{e<m} 2^(-(ceil((e+1)/alpha) alpha - e)), H_E(m)/m -> 1/(6 alpha log 2) = 0.41105 (0.411053 at m = 10^5). This is Theorem 4.4 of Paper A on the other side of the linear form -- |x| - 1 in place of n log n, the even letters charged at 2^(-h) in place of the floor losses -- and the survivors at a verification floor Y_0 (all |x| <= Y_0 known to enter a known cycle) are the Juggler-side dangerous lengths. COMPUTATIONALLY VERIFIED, by the three-gap walk: at Y_0 = 2^40 the smallest survivor is 9538065 (uniform) or 10444047 (hug); at 2^60, 5398749415 or 6028888312; at 2^68, 72448885240 under both; at 2^71, 103768467013 under both -- each a Juggler-side length, the mirror of Eliahou's and Hercher's numbers. SANITY: the -5 cycle, whose word OOE is a hug word, attains the hug bound exactly (bound 5.000 at |x| = 5); -17 sits inside it (27.1 against 17); -1 is the all-odd word with no even step. WHAT IS MISSING: no published verification floor for the 3x-1 map was found (OEIS text records, Roosendaal's index; the loops page it links was unreachable), so the table is conditional on the floor and no period bound is claimed; if the 3x-1 map is verified to 2^68 the smallest possible fourth negative cycle has length 72448885240. Not a kill, not a halt theorem, and not a claim about Juggler orbits: the Juggler side of the same inequality is cycleMin_finance, already recorded.",
+          "tag": "EXACT \u2014 HUMAN PROOF"
         }
       ]
     },
@@ -94073,13 +94228,13 @@
     }
   },
   "totals": {
-    "declarations": 6952,
-    "declarations_with_a_ledger_row": 4759,
-    "ledger_rows_naming_a_file": 449,
+    "declarations": 6957,
+    "declarations_with_a_ledger_row": 4764,
+    "ledger_rows_naming_a_file": 450,
     "modules": 307,
     "trust": {
       "compiler": 56,
-      "kernel": 6896
+      "kernel": 6901
     }
   }
 }

@@ -338,6 +338,43 @@ integral ones are `OE` (`x = 1`) and the families `O^k`, `(OOE)^k`,
 `(OOOOEOOOEEE)^k` (`-1, -5, -17`). The DFS counts equal the laboratory's DP
 `2 N_{K-1} - N_K` at every length.
 
+**The negative side is exact, and its finance is Paper A's**
+(`J-negative-cycle-finance-is-the-juggler-mirror`, **EXACT — HUMAN PROOF**
+for the inequality, **COMPUTATIONALLY VERIFIED** for the table; the word
+shape is **EXACT — LEAN VERIFIED**, `neg_prefix_noncontracting`,
+`neg_cycle_word_is_juggler_shape`). A negative cycle read at its least `|x|`
+has every prefix non-contracting with no `delta` exception -- the even steps
+only subtract -- so its word is exactly Paper A's `CycleMin` shape, and the
+cycle equation reads `(|x| - 1)(3^o - 2^K) = 3^o sum over even steps of
+2^(-h_i)` with every `h_i >= 1` (the height after an even step is still
+non-negative). Hence
+
+```text
+|x| - 1  <=  (K - o) / (2 theta_J(K))            uniformly,
+|x| - 1  <=  H_E(K - o) / theta_J(K)             on the hug word,   H_E(m)/m -> 1/(6 alpha log 2) = 0.4110,
+```
+
+Theorem 4.4 on the other side of the linear form, `|x| - 1` in place of
+`n log n` and the even letters charged at `2^(-h)` in place of the floor
+losses. The `-5` cycle, whose word `OOE` is a hug word, attains the hug
+bound exactly; `-17` sits at `17` against `27.1`. The survivors at a floor
+are the Juggler-side lengths:
+
+| floor on the least `|x|` | smallest length, uniform `1/2` | hug `0.411` |
+|---|---|---|
+| `2^40` | `9538065` | `10444047` |
+| `2^60` | `5398749415` | `6028888312` |
+| `2^68` | `72448885240` | `72448885240` |
+| `2^71` | `103768467013` | `103768467013` |
+
+No published verification floor for the `3x - 1` map was found (OEIS text
+records; Roosendaal's tables, which are positive-only; Lagarias's annotated
+bibliography and Chamberland's survey, section 6.1, which refer the `3x - 1`
+cycle problem to Seifert 1988 and state no floor), so the table
+is conditional and no period bound is claimed: *if* the `3x - 1` map is
+verified to `2^68`, a fourth negative cycle has length at least
+`72448885240`.
+
 ## Open questions
 
 What the residue-class tracking of Hercher's Corollary 29 and Barina's
@@ -346,10 +383,9 @@ evenCharge w` is now the exact cycle condition on the word, and the
 laboratory's survivor machinery counts words by height, not by residue.
 Not attempted beyond the census.
 
-What the verification floor and the published period bound are for
-Collatz's negative-cycle problem, and whether the mirror reproduces them
-from the Juggler-side survivor list as it did Eliahou's and Hercher's on the
-positive side.
+The verification floor of the `3x - 1` map, from the literature or by
+running a verifier; with it the negative-cycle table above becomes a period
+bound.
 
 Whether the odd-run bound `run(n) <= C log n` for `n -> floor(n^(3/2))` is
 provable; it would give the Juggler 1-cycle theorem through Baker.
@@ -367,9 +403,12 @@ height-only bound is sharp on the hug word, so Hercher's averaging and the
 rotation average read the same slack. The divisibility question is answered as far as words go:
 `2^K - 3^p | evenCharge w` is the exact cycle condition on the word, Juggler's
 cycle words are Collatz's negative-cycle words, and `-17` meets Paper A's
-Theorem 3.22 with equality. Best next question: what are the verification
-floor and the period bound of Collatz's negative-cycle problem today, and
-does the mirror reproduce them from the Juggler-side survivors?
+Theorem 3.22 with equality. The negative side is exact: its finance is
+Theorem 4.4 with the even steps charged, the `-5` cycle attains the hug
+bound, and the survivors at any floor are the Juggler-side lengths. Best
+next question: the `3x - 1` verification floor, from the literature or by
+running a verifier, so that `72448885240` at `2^68` becomes a period bound
+rather than a table entry.
 
 ## Publication assessment
 

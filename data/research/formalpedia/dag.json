@@ -923,7 +923,7 @@
       }
     },
     "Problems.Juggler.CollatzBridge": {
-      "declarations": 60,
+      "declarations": 65,
       "depends_on": [
         "Problems.Collatz.Shortcut",
         "Problems.Juggler.CycleMinFudge",
@@ -937,11 +937,12 @@
         "J-collatz-even-step-charge-identity",
         "J-collatz-walk-charge-is-sharp",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror",
         "J-survivor-count-is-a-collatz-residue-count"
       ],
       "papers": [],
       "trust": {
-        "kernel": 60
+        "kernel": 65
       }
     },
     "Problems.Juggler.CriticalCostKernel": {
@@ -3065,7 +3066,7 @@
   "totals": {
     "edges": 240,
     "edges_before_reduction": 1799,
-    "ledger_rows_placed": 413,
+    "ledger_rows_placed": 414,
     "nodes": 186
   }
 }
