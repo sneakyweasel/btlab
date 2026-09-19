@@ -291,4 +291,57 @@ theorem lemma51_odd_counts_are_the_windows :
       oddCount certOOOEE = 3 ∧ oddCount certOOEOE = 3 := by
   refine ⟨?_, ?_, ?_, ?_, ?_⟩ <;> decide
 
+/-! ## The carrying lengths, named
+
+`minimalCert_exists_iff` decides which lengths carry a minimal certificate, but it decides it
+by exhibiting a window, which is a statement about this file's own vocabulary. The same
+condition has a name outside the laboratory: a window at `L` holds a power of three exactly
+when `3 ^ o` has `L` binary digits, so the carrying lengths are the binary lengths of the
+powers of three -- OEIS A020914, and Winkler's `m_r + 1` with `m_r = ⌊r log₂ 3⌋`.
+
+Stating it through `Nat.log 2` keeps the characterisation free of real numbers while making
+the identification exact: `Nat.log 2 (3 ^ o)` **is** `⌊o log₂ 3⌋`, with no approximation and
+no floating point anywhere. That matters because the sequence is the hinge between this
+laboratory's empty-window theorem and the Collatz-side literature on the same object, where
+the admissible orders and their extremal subfamilies are studied through the continued
+fraction of `log₂ 3`. -/
+
+/-- A window at `L` holds `3 ^ o` exactly when `3 ^ o` has `L` binary digits. -/
+theorem certWindow_iff_natLog {L o : ℕ} (hL : 0 < L) :
+    CertWindow L o ↔ Nat.log 2 (3 ^ o) = L - 1 := by
+  constructor
+  · rintro ⟨h1, h2⟩
+    refine Nat.log_eq_of_pow_le_of_lt_pow h1 ?_
+    rwa [show L - 1 + 1 = L by omega]
+  · intro h
+    refine ⟨?_, ?_⟩
+    · have hself := Nat.pow_log_le_self 2 (x := 3 ^ o) (by positivity)
+      rwa [h] at hself
+    · have hlt := Nat.lt_pow_succ_log_self (b := 2) (by norm_num) (3 ^ o)
+      rw [h] at hlt
+      rwa [show (L - 1).succ = L by omega] at hlt
+
+/-- **The carrying lengths are A020914.** A minimal certificate of length `L` exists exactly
+when `L = ⌊o log₂ 3⌋ + 1` for some `o`, written here as `Nat.log 2 (3 ^ o) + 1` so that no
+real number enters. -/
+theorem minimalCert_exists_iff_natLog {L : ℕ} (hL : 0 < L) :
+    (∃ w : List Branch, IsMinimalCertificate w ∧ w.length = L)
+      ↔ ∃ o, L = Nat.log 2 (3 ^ o) + 1 := by
+  rw [minimalCert_exists_iff hL]
+  constructor
+  · rintro ⟨o, ho⟩
+    have := (certWindow_iff_natLog hL).mp ho
+    exact ⟨o, by omega⟩
+  · rintro ⟨o, ho⟩
+    exact ⟨o, (certWindow_iff_natLog hL).mpr (by omega)⟩
+
+/-- The first carrying lengths, read off the characterisation rather than listed:
+`3 ^ 0 … 3 ^ 4` have `1, 2, 4, 5, 7` binary digits, so those are the lengths, and
+`3, 6` are absent because no power of three has that many digits. -/
+theorem carrying_lengths_head :
+    (fun o => Nat.log 2 (3 ^ o) + 1) 0 = 1 ∧ (fun o => Nat.log 2 (3 ^ o) + 1) 1 = 2 ∧
+      (fun o => Nat.log 2 (3 ^ o) + 1) 2 = 4 ∧ (fun o => Nat.log 2 (3 ^ o) + 1) 3 = 5 ∧
+      (fun o => Nat.log 2 (3 ^ o) + 1) 4 = 7 := by
+  refine ⟨?_, ?_, ?_, ?_, ?_⟩ <;> simp <;> decide
+
 end Problems.Juggler

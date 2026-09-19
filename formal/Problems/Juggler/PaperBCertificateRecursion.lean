@@ -379,4 +379,83 @@ theorem minimalCert_tail_eq {d K : ℕ} (h : d ≤ K) :
   rw [neverNegCount_telescope h]
   omega
 
+/-! ## 7. A free length is a full cylinder extension, and what that buys
+
+`density_flat_of_window_empty` reads the empty window through the *counts*. The counts are
+not where the content is. When no power of three lies in the window, nothing contracts, so
+every survivor keeps both of its extensions and the survivor set at the next length is the
+previous one times the full alphabet:
+
+  `neverNegWords (d+1) = neverNegWords d · {E, O}`
+
+That is `neverNegWords_succ_of_window_empty`, and it is `extensions_eq_survivors_union_certs`
+with the certificate side removed.
+
+The reason to state it at the level of sets rather than counts is
+`sum_neverNegWords_succ_of_window_empty`: at a free length **every** additive functional of
+the survivor set factorises over the two extensions. Taking the summand to be `1` recovers
+the doubling of the counts; taking it to be a character recovers the statement that a Fourier
+transform of the survivor indicator gains a vanishing coordinate; taking it to be a weight
+recovers the amplitude law. Those were recorded separately, and the ledger calls the last two
+`REPARAMETERIZATION` for that reason. They are one statement about a cylinder, read through
+three different summands.
+
+**Its relation to `PaperBJumpTransposition.total_stepFlat_eq_two_mul`, which is not
+duplication.** That file proves a doubling too, and the two look alike enough that this file
+claimed they were one theorem before anyone checked. They are incomparable. This one is
+general in the *functional* -- any additive commutative monoid, any `f` -- and specific to the
+survivor word set, with freeness as an explicit hypothesis. That one is the counting
+functional alone, but carried on an abstract graded `Profile` with no word set in sight, and
+its hypothesis `v H = 0` is a truncation width rather than freeness: freeness is not a
+hypothesis there at all, it is carried by which operator is applied, `stepFlat` against
+`stepRise`. Neither implies the other. They coincide at `f = 1` against the survivor height
+profile, where both read `N_{d+1} = 2 N_d`, and the transposition results need the abstract
+carrier because a transposition rearranges the barrier word and there is no single `d` whose
+word set one could sum over.
+-/
+
+/-- **A free length is a full cylinder extension.** When no power of three lies in the window
+at `d + 1`, the survivors of length `d + 1` are exactly the survivors of length `d` with
+either letter appended. -/
+theorem neverNegWords_succ_of_window_empty {d : ℕ} (h : minimalCertWords (d + 1) = ∅) :
+    (neverNegWords d).biUnion (fun w => {w ++ [Branch.even], w ++ [Branch.odd]})
+      = neverNegWords (d + 1) := by
+  rw [extensions_eq_survivors_union_certs, h, union_empty]
+
+/-- The hypothesis in the form the window theorem supplies it. -/
+theorem minimalCertWords_eq_empty_of_window_empty {d : ℕ}
+    (h : ∀ o, ¬ CertWindow (d + 1) o) : minimalCertWords (d + 1) = ∅ :=
+  card_eq_zero.mp (minimalCertCount_eq_zero_of_window_empty h)
+
+/-- **At a free length every additive functional of the survivor set factorises.** For any
+`f` into an additive commutative monoid,
+`∑_{v ∈ S_{d+1}} f v = ∑_{w ∈ S_d} (f (w ++ [E]) + f (w ++ [O]))`.
+
+This is the single statement behind the separately recorded plateaus: the summand `1` gives
+`N_{d+1} = 2 N_d`, a character gives the vanishing Fourier coordinate, a weight gives the
+amplitude law. -/
+theorem sum_neverNegWords_succ_of_window_empty {M : Type*} [AddCommMonoid M] {d : ℕ}
+    (h : minimalCertWords (d + 1) = ∅) (f : List Branch → M) :
+    ∑ v ∈ neverNegWords (d + 1), f v
+      = ∑ w ∈ neverNegWords d, (f (w ++ [Branch.even]) + f (w ++ [Branch.odd])) := by
+  classical
+  have hne : ∀ w : List Branch, w ++ [Branch.even] ≠ w ++ [Branch.odd] := by
+    intro w hw
+    exact Branch.noConfusion (append_singleton_inj hw).2
+  have hdisj : Set.PairwiseDisjoint (↑(neverNegWords d) : Set (List Branch))
+      (fun w => ({w ++ [Branch.even], w ++ [Branch.odd]} : Finset (List Branch))) := by
+    intro a _ b _ hab
+    simp only [Function.onFun, disjoint_left, mem_insert, mem_singleton]
+    rintro x (rfl | rfl) (hx | hx) <;>
+      exact hab (append_singleton_inj hx).1
+  rw [← neverNegWords_succ_of_window_empty h, sum_biUnion hdisj]
+  exact sum_congr rfl fun w _ => sum_pair (hne w)
+
+/-- The counting corollary, to show the factorisation really does contain the doubling. -/
+theorem neverNegCount_succ_of_window_empty {d : ℕ} (h : minimalCertWords (d + 1) = ∅) :
+    neverNegCount (d + 1) = 2 * neverNegCount d := by
+  have h0 : minimalCertCount (d + 1) = 0 := by rw [minimalCertCount, h, card_empty]
+  have hrec := neverNegCount_add_minimalCertCount d
+  omega
+
 end Problems.Juggler
