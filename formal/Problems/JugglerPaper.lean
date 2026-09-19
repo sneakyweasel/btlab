@@ -78,6 +78,7 @@ import Problems.Juggler.ReturnTransferHeight
 import Problems.Juggler.ReturnTerminal
 import Problems.Juggler.ReturnOrbitStrips
 import Problems.Juggler.UpperSquareGap
+import Problems.Juggler.CollatzBridge
 
 /-!
 # Juggler paper barrel (Paper A)

@@ -354,7 +354,9 @@
       "test": "tests/research/juggler_sequence/test_collatz_bridge.py",
       "dossier": "docs/problems/juggler_collatz_bridge.md",
       "data_dir": null,
-      "lean": [],
+      "lean": [
+        "formal/Problems/Juggler/CollatzBridge.lean"
+      ],
       "conjecture": [],
       "decision": "PROMOTE",
       "ledger_ids": [
@@ -6515,7 +6517,8 @@
         "formal/Problems/Juggler/FateEnergyAtoms.lean",
         "formal/Problems/Juggler/FateCollapse.lean",
         "formal/Problems/Juggler/FateCertified.lean",
-        "formal/Problems/Juggler/GapTransferWW.lean"
+        "formal/Problems/Juggler/GapTransferWW.lean",
+        "formal/Problems/Juggler/CollatzBridge.lean"
       ],
       "conjecture": [],
       "decision": null,

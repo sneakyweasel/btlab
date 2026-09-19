@@ -1286,3 +1286,98 @@ uses them as an exact integer reduction. Its joint smooth-phase
 equidistribution, infinitude, and arbitrarily small normalized losses
 remain written mathematics; they are not asserted as Lean theorems.
 The manuscript and its PDF have not been rebuilt for this research gate.
+
+## 16. The Collatz mirror (Paper A Section 5.9)
+
+Source: `formal/Problems/Juggler/CollatzBridge.lean`, in the namespace
+`Problems.Juggler.CollatzBridge`, a layer module of the paper barrel. It
+defines the shortcut map `shortcutC` locally (the formula of
+`Problems.Collatz.shortcutC`, restated so that the barrel imports no module
+with compiler-trusted proofs) and imports `RateFreeDensity`, `Envelope` and
+`CycleCore`. Two laboratory statements live in the auxiliary module
+`CollatzBridgeLab`, outside the barrel: `decidedAtResidues_card` and
+`neg_seventeen_inhabits_cycleMinShape`.
+
+The word of a start is `parityWord x d` (`parityWordZ` over the
+integers), the first `d` parities of the shortcut orbit, in the same
+`List Branch` alphabet as the Juggler itineraries. Two functions of the
+word alone, `wordConst` and `evenCharge`, are defined by the recursions
+`wordConst (odd :: w) = 3 ^ oddCount w + 2 * wordConst w`,
+`wordConst (even :: w) = 2 * wordConst w`, `evenCharge (even :: w) =
+3 ^ oddCount w + 2 * evenCharge w`, `evenCharge (odd :: w) = 2 *
+evenCharge w`, and `wordConst_add_two_pow` is
+`wordConst w + 2 ^ w.length = 3 ^ oddCount w + evenCharge w`.
+
+The affine identities (Theorem 5.15) are
+
+```text
+word_affine (x d : ℕ) :
+  2 ^ d * shortcutCIter d x
+    = 3 ^ oddCount (parityWord x d) * x + wordConst (parityWord x d)
+two_pow_mul_iter_add_one (x d : ℕ) :
+  2 ^ d * (shortcutCIter d x + 1)
+    = 3 ^ oddCount (parityWord x d) * (x + 1) + evenCharge (parityWord x d)
+```
+
+with `word_affine_int` and `two_pow_mul_iter_add_one_int` the same
+statements for `shortcutZIter` over `ℤ`, and `three_pow_mul_add_one_le`
+the resulting lower envelope. `juggler_word_power` restates
+`power_bound_word` as `(image n w) ^ (2 ^ w.length) ≤ n ^ (3 ^ oddCount w)`
+for a realised word, the Juggler side of the same multiplier.
+
+The cycle equation (Corollary 5.16) is
+
+```text
+cycle_equation_int (hcyc : shortcutZIter d x = x) :
+  (x + 1) * (2 ^ d - 3 ^ oddCount (parityWordZ x d))
+    = evenCharge (parityWordZ x d)
+```
+
+from which `cycle_contracting` (`3 ^ o < 2 ^ d` on a positive cycle of
+positive length), `cycle_dvd`, the converse `cycle_of_equation`,
+`neg_cycle_expanding` (`2 ^ d < 3 ^ o` on a cycle at `x ≤ -2`) and
+`prefix_bound_of_min` follow by integer arithmetic. The three negative
+cycles are `neg_one_cycle`, `neg_five_cycle` and `neg_seventeen_cycle`,
+each with its word, by `decide`.
+
+Terras's bijection (Theorem 5.17) is `parityWord_eq_iff` (equal words of
+depth `d` iff equal residues modulo `2 ^ d`) with `image_parityWord`
+and `exists_residue_of_word` (every word of length `d` is the word of
+some residue below `2 ^ d`); `undecidedResidues_card` identifies the
+number of residue classes whose word has no contracting prefix with
+`neverNegCount d`, and `decidedAtResidues_card` (in `CollatzBridgeLab`) the
+number whose word is a minimal certificate with `minimalCertCount d`, both
+by pushing the filter through the image (`card_filter_parityWord`). `iter_lt_of_exponentGap_class` is the drop at
+the contracting length for every member above the prefix's `wordConst`.
+The depth tables `undecidedResidues_card_four` to
+`undecidedResidues_card_ten` (values `3, 4, 8, 13, 19, 38, 64`) are
+`decide +kernel`; the depth-ten instance runs `1024` residues through
+ten shortcut steps inside the kernel.
+
+The negative side (Theorem 5.19) is
+
+```text
+neg_prefix_noncontracting (hx : x ≤ -2)
+    (hmin : ∀ j, j ≤ K → shortcutZIter j x ≤ x) :
+  prefixNoncontracting (parityWordZ x K)
+two_mul_evenCharge_le (h : prefixNoncontracting w) :
+  2 * evenCharge w ≤ (w.length - oddCount w) * 3 ^ oddCount w
+neg_cycle_finance (hx : x ≤ -2) (hcyc : shortcutZIter K x = x)
+    (hmin : ∀ j, j ≤ K → shortcutZIter j x ≤ x) :
+  2 * (-x - 1) * (3 ^ oddCount (parityWordZ x K) - 2 ^ K)
+    ≤ ((K - oddCount (parityWordZ x K) : ℕ) : ℤ) * 3 ^ oddCount (parityWordZ x K)
+```
+
+`two_mul_evenCharge_le` is an induction on the word carrying the prefix
+condition with an offset; `neg_cycle_finance` combines it with the cycle
+equation and `neg_prefix_noncontracting`. `neg_seventeen_is_least` and
+`neg_seventeen_finance` instantiate the theorem at `-17`.
+
+Evidence boundary. Everything above is checked by Lean's kernel, with no
+`native_decide`. The survivor enumerations of Theorem 5.18 and Remark
+5.20, the constants `1/(2 log 2)` and `1/(6 alpha log 2)`, the sharpness
+ratios and the negative-cycle table are verified computation in the
+repository probe `collatz_finance_mirror`; the height argument of
+Theorem 5.18(ii) is a written proof. No Juggler statement of the paper
+depends on this section, and no Collatz bound beyond the published ones
+is claimed.

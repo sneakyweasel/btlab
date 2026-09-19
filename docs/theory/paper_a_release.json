@@ -16,12 +16,12 @@
     {
       "path": "docs/theory/juggler_finite_dynamics_formalization.md",
       "mode": "text",
-      "sha256": "66769acd88baa8233bebf877c1b69fa5af297e398bd1159ca0636df24c4567bf"
+      "sha256": "6a699d37e2b8b8e84ddf240dfdc8942a236c73ea28dbacf05a5c4ed2a1258b15"
     },
     {
       "path": "docs/theory/juggler_finite_dynamics_note.md",
       "mode": "text",
-      "sha256": "80e375adbafde29ede032b531bb8e7902a495f5770651b4a99596d1f3489706c"
+      "sha256": "aafac9eb4ba28928f59989acede70358a9091101c0d0a3fa49708427174da2a5"
     },
     {
       "path": "docs/theory/juggler_finite_dynamics_reviewer_packet.md",
@@ -31,12 +31,12 @@
     {
       "path": "formal/AxiomCheckPaperA.expected",
       "mode": "text",
-      "sha256": "ca2bd39c8bd48d96573f20d05114860ff0e567bc628ea3e4bdd91c026423d313"
+      "sha256": "038d717677b1ad6fbe986c8afae663590cc589e731b2c07e802c3ff5a4ed8fc5"
     },
     {
       "path": "formal/AxiomCheckPaperA.lean",
       "mode": "text",
-      "sha256": "0df0a609d86a5131f74eaf5d8d5b4a75bc93c02ba8dafa9c33b80565df11c693"
+      "sha256": "0f241daa8e9e0c38142de3684062934f4d4ffc7dc0be22d65ae7790d51392b23"
     },
     {
       "path": "formal/Problems/Juggler/BunchedTight.lean",
@@ -52,6 +52,11 @@
       "path": "formal/Problems/Juggler/Collapse.lean",
       "mode": "text",
       "sha256": "239f16482d73238ce90222cfe6e4b760baf1dbab1a84c05319704afe0f715ee4"
+    },
+    {
+      "path": "formal/Problems/Juggler/CollatzBridge.lean",
+      "mode": "text",
+      "sha256": "5d188faa63ab5fd616ff99b9eac1e72281255361edf028c367167faf1dc65435"
     },
     {
       "path": "formal/Problems/Juggler/Corridor.lean",
@@ -399,6 +404,11 @@
       "sha256": "e1b5375e8fde7c0f54ac610b84469887a25392e338e44f2ac4cad3f5c8d545eb"
     },
     {
+      "path": "formal/Problems/Juggler/RateFreeDensity.lean",
+      "mode": "text",
+      "sha256": "9a711586243582e4d2ecd6ef9dde3fd342c6db8e8c297a0fd19fd760d25520ce"
+    },
+    {
       "path": "formal/Problems/Juggler/RemainderCarry.lean",
       "mode": "text",
       "sha256": "bba132a6ebaf82308f1b821fb85a2b95a1b486e159328e1f902fd4f90ef7a80a"
@@ -546,7 +556,7 @@
     {
       "path": "formal/Problems/JugglerPaper.lean",
       "mode": "text",
-      "sha256": "27c57458079f02f5a03a7305865f2851b013dbb89954870a70f33dbe4d0afe94"
+      "sha256": "f3f0e8c9c12d842a7f8fdd9b234539c4985710d02b5b9ca205f539ba54eb72a7"
     },
     {
       "path": "formal/lake-manifest.json",
@@ -598,12 +608,12 @@
     {
       "path": "docs/theory/juggler_finite_dynamics_note.pdf",
       "mode": "binary",
-      "sha256": "789f326245b191baa357bb50de680bf5b1d1ad065777fd89b0629676896761a4"
+      "sha256": "d4d2661667b47b6c58f14276f2bb43d1a08591cb15eb2571cc1372e600985a2d"
     },
     {
       "path": "docs/theory/cochin-juggler.tex",
       "mode": "text",
-      "sha256": "8783a5b4b837919acf7a3fe26853c5c29016bc6d7b943c48eaa5e3c96e72ba16"
+      "sha256": "b688b7941dcd63269ee39901018877d909d8a63a6155708864cb661f28741ff9"
     },
     {
       "path": "docs/theory/paper_a_zenodo.json",

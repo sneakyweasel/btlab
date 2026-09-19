@@ -1,5 +1,5 @@
 {
-  "composite": 37,
+  "composite": 38,
   "note": "Proposals for human review. Calibration: 86% precision (42 of 49 fires) against all resolved rows. Nothing here has been written into the ledger.",
   "rows": [
     {
@@ -4291,20 +4291,20 @@
       "candidates": [
         {
           "decl": "neg_cycle_expanding",
-          "line": 624,
-          "score": 0.081,
+          "line": 623,
+          "score": 0.08,
           "trust": "kernel"
         },
         {
           "decl": "word_affine",
-          "line": 150,
-          "score": 0.078,
+          "line": 159,
+          "score": 0.071,
           "trust": "kernel"
         },
         {
           "decl": "image_parityWord",
-          "line": 266,
-          "score": 0.077,
+          "line": 275,
+          "score": 0.071,
           "trust": "kernel"
         }
       ],
@@ -4313,17 +4313,17 @@
       "definitions": [
         {
           "decl": "parityWord",
-          "line": 89,
-          "score": 0.078
+          "line": 98,
+          "score": 0.071
         },
         {
-          "decl": "shortcutZ",
-          "line": 535,
-          "score": 0.049
+          "decl": "shortcutC",
+          "line": 62,
+          "score": 0.063
         }
       ],
       "id": "J-collatz-bridge-is-exact-at-the-word-level",
-      "in_file": 57,
+      "in_file": 59,
       "lean": "Problems/Juggler/CollatzBridge.lean",
       "names_own": [
         "word_affine",
@@ -4339,21 +4339,21 @@
     {
       "candidates": [
         {
-          "decl": "decidedAtResidues_card",
-          "line": 325,
-          "score": 0.136,
+          "decl": "undecidedResidues_card",
+          "line": 324,
+          "score": 0.095,
           "trust": "kernel"
         },
         {
-          "decl": "undecidedResidues_card",
-          "line": 315,
-          "score": 0.107,
+          "decl": "neg_cycle_word_is_juggler_shape",
+          "line": 762,
+          "score": 0.066,
           "trust": "kernel"
         },
         {
           "decl": "exists_residue_of_word",
-          "line": 283,
-          "score": 0.07,
+          "line": 292,
+          "score": 0.063,
           "trust": "kernel"
         }
       ],
@@ -4362,21 +4362,20 @@
       "definitions": [
         {
           "decl": "undecidedResidues",
-          "line": 294,
-          "score": 0.085
+          "line": 303,
+          "score": 0.075
         },
         {
           "decl": "parityWord",
-          "line": 89,
-          "score": 0.062
+          "line": 98,
+          "score": 0.056
         }
       ],
       "id": "J-survivor-count-is-a-collatz-residue-count",
-      "in_file": 57,
+      "in_file": 59,
       "lean": "Problems/Juggler/CollatzBridge.lean",
       "names_own": [
         "undecidedResidues_card",
-        "decidedAtResidues_card",
         "image_parityWord",
         "le_iter_of_prefixNoncontracting",
         "iter_lt_of_exponentGap_class"
@@ -4387,19 +4386,19 @@
       "candidates": [
         {
           "decl": "cycle_even_charge",
-          "line": 511,
+          "line": 510,
           "score": 0.184,
           "trust": "kernel"
         },
         {
           "decl": "three_pow_mul_add_one_le",
-          "line": 503,
+          "line": 502,
           "score": 0.161,
           "trust": "kernel"
         },
         {
           "decl": "wordConst_add_two_pow",
-          "line": 479,
+          "line": 478,
           "score": 0.138,
           "trust": "kernel"
         }
@@ -4409,17 +4408,17 @@
       "definitions": [
         {
           "decl": "evenCharge",
-          "line": 465,
+          "line": 464,
           "score": 0.14
         },
         {
           "decl": "wordConst",
-          "line": 123,
+          "line": 132,
           "score": 0.118
         }
       ],
       "id": "J-collatz-even-step-charge-identity",
-      "in_file": 57,
+      "in_file": 59,
       "lean": "Problems/Juggler/CollatzBridge.lean",
       "names_own": [
         "wordConst_add_two_pow",
@@ -4434,19 +4433,19 @@
       "candidates": [
         {
           "decl": "cycle_of_equation",
-          "line": 662,
+          "line": 661,
           "score": 0.156,
           "trust": "kernel"
         },
         {
           "decl": "prefix_bound_of_min",
-          "line": 678,
+          "line": 677,
           "score": 0.151,
           "trust": "kernel"
         },
         {
           "decl": "neg_cycle_word_is_juggler_shape",
-          "line": 773,
+          "line": 762,
           "score": 0.096,
           "trust": "kernel"
         }
@@ -4456,17 +4455,17 @@
       "definitions": [
         {
           "decl": "evenCharge",
-          "line": 465,
+          "line": 464,
           "score": 0.069
         },
         {
           "decl": "shortcutZ",
-          "line": 535,
+          "line": 534,
           "score": 0.064
         }
       ],
       "id": "J-collatz-cycle-equation-is-a-word-divisibility",
-      "in_file": 57,
+      "in_file": 59,
       "lean": "Problems/Juggler/CollatzBridge.lean",
       "names_own": [
         "word_affine_int",
@@ -4482,21 +4481,21 @@
     {
       "candidates": [
         {
-          "decl": "neg_seventeen_inhabits_cycleMinShape",
-          "line": 714,
-          "score": 0.163,
-          "trust": "kernel"
-        },
-        {
           "decl": "neg_cycle_word_is_juggler_shape",
-          "line": 773,
-          "score": 0.138,
+          "line": 762,
+          "score": 0.124,
           "trust": "kernel"
         },
         {
           "decl": "neg_prefix_noncontracting",
-          "line": 748,
-          "score": 0.128,
+          "line": 737,
+          "score": 0.115,
+          "trust": "kernel"
+        },
+        {
+          "decl": "neg_cycle_expanding",
+          "line": 623,
+          "score": 0.093,
           "trust": "kernel"
         }
       ],
@@ -4504,18 +4503,18 @@
       "confidence": "low",
       "definitions": [
         {
-          "decl": "evenCharge",
-          "line": 465,
-          "score": 0.05
+          "decl": "undecidedResidues",
+          "line": 303,
+          "score": 0.047
         },
         {
-          "decl": "parityWord",
-          "line": 89,
-          "score": 0.037
+          "decl": "evenCharge",
+          "line": 464,
+          "score": 0.045
         }
       ],
       "id": "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-      "in_file": 57,
+      "in_file": 59,
       "lean": "Problems/Juggler/CollatzBridge.lean",
       "names_own": [
         "neg_cycle_expanding",
@@ -4526,12 +4525,58 @@
         "neg_seventeen_is_least",
         "neg_one_cycle",
         "neg_five_cycle",
-        "neg_seventeen_cycle",
-        "neg_seventeen_inhabits_cycleMinShape"
+        "neg_seventeen_cycle"
       ],
       "statement": "The sign flip on cycles is the sign of x, and Juggler's cycle words are the words of Collatz's negative cycles. On the negative integers the odd step is |x| -> (3|x| - 1)/2, so the correction pushes |x| below the pure multiplier -- Juggler's sign -- and the cycle equation (x + 1)(2^d - 3^o) = evenCharge w >= 0 with x + 1 < 0 forces 2^d < 3^o: neg_cycle_expanding, a cycle of the \u2124 shortcut map at x"
+    },
+    {
+      "candidates": [
+        {
+          "decl": "neg_cycle_finance",
+          "line": 836,
+          "score": 0.132,
+          "trust": "kernel"
+        },
+        {
+          "decl": "neg_cycle_word_is_juggler_shape",
+          "line": 762,
+          "score": 0.111,
+          "trust": "kernel"
+        },
+        {
+          "decl": "cycle_even_charge",
+          "line": 510,
+          "score": 0.097,
+          "trust": "kernel"
+        }
+      ],
+      "composite": true,
+      "confidence": "low",
+      "definitions": [
+        {
+          "decl": "evenCharge",
+          "line": 464,
+          "score": 0.086
+        },
+        {
+          "decl": "parityWord",
+          "line": 98,
+          "score": 0.047
+        }
+      ],
+      "id": "J-negative-cycle-finance-is-the-juggler-mirror",
+      "in_file": 59,
+      "lean": "Problems/Juggler/CollatzBridge.lean",
+      "names_own": [
+        "two_mul_evenCharge_le",
+        "neg_cycle_finance",
+        "neg_seventeen_finance",
+        "cycle_equation_int",
+        "neg_prefix_noncontracting"
+      ],
+      "statement": "IN LEAN for the uniform constant (CollatzBridge.lean, kernel-checked): two_mul_evenCharge_le, on any word with no contracting prefix 2 evenCharge w <= (|w| - o) 3^o, an induction on the word carrying the prefix condition with an offset; neg_cycle_finance, at the least element of a negative cycle 2 (|x| - 1)(3^o - 2^K) <= (K - o) 3^o, from the cycle equation; neg_seventeen_finance instantiates it ("
     }
   ],
-  "unresolved": 124,
+  "unresolved": 125,
   "worth_reviewing": 19
 }

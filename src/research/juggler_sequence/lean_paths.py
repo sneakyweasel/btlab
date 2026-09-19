@@ -110,6 +110,7 @@ PAPER_MODULES: tuple[str, ...] = (
     "ReturnTerminal",
     "ReturnOrbitStrips",
     "UpperSquareGap",
+    "CollatzBridge",
 )
 
 LAYERS: dict[str, Path] = {
@@ -281,6 +282,7 @@ LAYERS: dict[str, Path] = {
     "FateCollapse": JUGGLER_DIR / "FateCollapse.lean",
     "FateCertified": JUGGLER_DIR / "FateCertified.lean",
     "GapTransferWW": JUGGLER_DIR / "GapTransferWW.lean",
+    "CollatzBridge": JUGGLER_DIR / "CollatzBridge.lean",
 }
 
 # Sources belonging to other targets or historical model interfaces. Keeping
@@ -297,7 +299,7 @@ AUXILIARY_MODULES: dict[str, str] = {
     "PaperBCertificateLengths": "Paper B Lemma 5.1 for every length: the odd-count window",
     "PaperBCertificateRecursion": "Paper B: survivors and minimal certificates, one recursion",
     "PaperBJumpTransposition": "Paper B: one barrier transposition costs the barrier mass",
-    "CollatzBridge": "Juggler-Collatz bridge: the shared word, Terras's bijection, and the survivor count as a Collatz residue count",
+    "CollatzBridgeLab": "Laboratory extensions of the Collatz bridge: the minimal-certificate count as a residue count (Paper B recursion) and the -17 cycle word inside CycleMinShape (IdealCycleMin)",
     "PaperBChainRule": "Paper B review target",
     "PaperBAmplitudeCocycle": "Paper B profile: the amplitude cocycle",
     "PaperBDensity": "Paper B: Hypothesis FD to density one, conditionally",

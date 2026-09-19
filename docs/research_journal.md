@@ -1,5 +1,48 @@
 # Research journal
 
+## 2026-09-19 -- Paper A carries the Collatz mirror, and the negative finance is kernel-checked
+
+- **Objective:** Philippe asked for Paper A to be extended with the bridge,
+  which is where the previous iteration's assessment put it.
+- **The negative finance is now Lean.** `two_mul_evenCharge_le`: on a word
+  with no contracting prefix, `2 evenCharge w <= (|w| - o) 3^o`, an
+  induction carrying the prefix condition with an offset (each even step
+  at position `i` is worth `3^o 2^(-h_i)` with `h_i >= 1`);
+  `neg_cycle_finance`: `2 (|x| - 1)(3^o - 2^K) <= (K - o) 3^o` at the least
+  element of a negative cycle, from the cycle equation;
+  `neg_seventeen_finance` instantiates it, `4448 <= 8748`. Row
+  `J-negative-cycle-finance-is-the-juggler-mirror` upgraded in place to
+  Lean for the uniform constant; the hug constant and the table stay
+  computational.
+- **Paper A, Section 5.9 "The Collatz mirror".** Theorem 5.15 (the
+  word-affine identities on both sides), Corollary 5.16 (the cycle
+  equation and the sign of a cycle), Theorem 5.17 (Terras and the
+  survivor count), Theorem 5.18 (the finance transposed: Eliahou's lattice
+  at `2^40`, Hercher's number at `2^68`, the walk-charge constant
+  `1/(2 log 2)` against Hercher's `3/4`, sharp on the hug word), Theorem
+  5.19 (the negative side, Lean), Remarks 5.20 and 5.21 (the conditional
+  negative-cycle table; what the mirror does not transfer). Contribution
+  9, a related-work sentence, a verification paragraph, six Appendix A
+  rows, references 19 to 24 (Hercher 2018 and 2023, A076227, Terras 1976,
+  Barina 2025, Seifert 1988), formalization-map section 16. The paper
+  barrel imports `CollatzBridge`; 32 declarations join the axiom check.
+  The trust-boundary tests pass: every citation resolves, none is
+  ambiguous, the axiom check covers exactly the cited declarations.
+- **The barrel stays kernel-only.** The gates refused the first cut: the
+  Collatz shortcut module carries `native_decide` proofs, and the paper
+  barrel may import only layer modules. So `CollatzBridge` defines the
+  shortcut map locally, joins the layers, and the two statements that need
+  Paper B's certificate recursion or the ideal-cycle model
+  (`decidedAtResidues_card`, `neg_seventeen_inhabits_cycleMinShape`) move
+  to the auxiliary `CollatzBridgeLab`, same namespace, outside the barrel.
+- **What it is not.** No Juggler bound changes. The section is
+  calibration: the same finance returns the published Collatz bounds, so
+  the object is the right one. The negative-cycle table stays conditional
+  on a `3x - 1` verification floor that no reachable source states.
+- **Decision:** the bridge lives in Paper A; no separate paper. Next: the
+  `3x - 1` floor by computation, a sieved verifier on the 5090, so that
+  Remark 5.20's table becomes a bound.
+
 ## 2026-09-19 -- the negative side is exact, and its finance is the Juggler mirror
 
 - **Objective:** the finance-mirror question -- what floor and period bound

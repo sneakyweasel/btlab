@@ -31,8 +31,9 @@ inequalities have opposite senses, which is the whole of the sign flip on cycles
 induced map from residues to words is a bijection (`parityWord_eq_iff`, `image_parityWord`).
 Hence the survivor count `neverNegCount d` of `RateFreeDensity` -- Paper B's `N_d` -- is the
 number of residue classes modulo `2 ^ d` whose word has no contracting prefix
-(`undecidedResidues_card`), and the minimal-certificate count of `PaperBCertificateRecursion` is
-the number of classes whose word first contracts at `d` (`decidedAtResidues_card`). Those are
+(`undecidedResidues_card`), and, in the laboratory extension `CollatzBridgeLab` outside Paper A's barrel, the
+minimal-certificate count of `PaperBCertificateRecursion` is the number of classes whose word
+first contracts at `d` (`decidedAtResidues_card`). Those are
 the definitions of OEIS A076227 and A100982; the kernel checks at the end reproduce the entry's
 own example, the eight surviving residues modulo `64`, and the terms `3, 4, 8, 13, 19, 38, 64`.
 
@@ -47,18 +48,26 @@ bridge and nothing more: the shared word, the two opposite corrections, and the 
 reading of the laboratory's kernel-checked word counts.
 -/
 import Mathlib.Tactic
-import Problems.Collatz.Shortcut
 import Problems.Juggler.RateFreeDensity
-import Problems.Juggler.PaperBCertificateRecursion
 import Problems.Juggler.Envelope
 import Problems.Juggler.CycleCore
-import Problems.Juggler.IdealCycleMin
 
 namespace Problems.Juggler
 
 namespace CollatzBridge
 
-open Problems.Collatz
+/-- The shortcut Collatz map, `x / 2` on evens and `(3x + 1) / 2` on odds: the formula of
+`Problems.Collatz.shortcutC`, restated here so that Paper A's barrel imports no module with
+compiler-trusted proofs. -/
+def shortcutC (n : ℕ) : ℕ :=
+  if n % 2 = 0 then n / 2 else (3 * n + 1) / 2
+
+/-- `C` composed `k` times, as `C(C^{k-1}(n))`. -/
+def shortcutCIter : ℕ → ℕ → ℕ
+  | 0, n => n
+  | k + 1, n => shortcutC (shortcutCIter k n)
+
+
 
 /-! ## 1. The shortcut map without its division -/
 
@@ -304,7 +313,7 @@ private theorem parityWord_injOn (d : ℕ) :
   rwa [Nat.mod_eq_of_lt hx', Nat.mod_eq_of_lt hy'] at h
 
 /-- Counting a filtered set of words through the residue bijection. -/
-private theorem card_filter_parityWord (d : ℕ) (p : List Branch → Prop) [DecidablePred p] :
+theorem card_filter_parityWord (d : ℕ) (p : List Branch → Prop) [DecidablePred p] :
     ((Finset.range (2 ^ d)).filter fun r ↦ p (parityWord r d)).card
       = ((allWords d).filter p).card := by
   rw [← image_parityWord, Finset.filter_image,
@@ -315,16 +324,6 @@ modulo `2 ^ d` with no contracting prefix -- the definition of OEIS A076227. -/
 theorem undecidedResidues_card (d : ℕ) : (undecidedResidues d).card = neverNegCount d := by
   unfold undecidedResidues neverNegCount neverNegWords
   exact card_filter_parityWord d prefixNoncontracting
-
-/-- The residues modulo `2 ^ d` whose word first contracts at length `d`. -/
-def decidedAtResidues (d : ℕ) : Finset ℕ :=
-  (Finset.range (2 ^ d)).filter fun r ↦ PaperBCertificates.IsMinimalCertificate (parityWord r d)
-
-/-- **The minimal-certificate count is a Collatz count.** `M_d` is the number of residue classes
-modulo `2 ^ d` whose stopping time is decided at exactly `d` -- OEIS A100982 read by length. -/
-theorem decidedAtResidues_card (d : ℕ) : (decidedAtResidues d).card = minimalCertCount d := by
-  unfold decidedAtResidues minimalCertCount minimalCertWords
-  exact card_filter_parityWord d PaperBCertificates.IsMinimalCertificate
 
 /-! ## 6. What the classes mean for the orbit -/
 
@@ -527,7 +526,7 @@ and a cycle at `x ≤ -2` an expanding one, while `x = -1` is the all-odd word. 
 integers the odd step is `|x| ↦ (3|x| - 1)/2`, so the correction points down -- Juggler's sign --
 and the expanding words with no contracting prefix are exactly the words Paper A's `CycleMin`
 theory studies. The three known negative cycles, at `-1`, `-5` and `-17`, have words `O`, `OOE`
-and `OOOOEOOOEEE` of lengths `1`, `3`, `11`; the last inhabits `CycleMinShape` at Paper A's
+and `OOOOEOOOEEE` of lengths `1`, `3`, `11`; the last inhabits `CycleMinShape` (in `CollatzBridgeLab`) at Paper A's
 floor-free length bound `11` with four even letters, which is Theorem 3.22 met with equality. -/
 
 /-- The shortcut map on `ℤ`: `x / 2` on evens, `(3x + 1) / 2` on odds. Agrees with `shortcutC`
@@ -708,16 +707,6 @@ theorem neg_seventeen_word_expanding :
     2 ^ 11 < 3 ^ oddCount (parityWordZ (-17) 11) ∧ evenCount (parityWordZ (-17) 11) = 4 := by
   decide
 
-/-- **Collatz's `-17` cycle inhabits Paper A's `CycleMinShape`**, with the length bound `11` and
-the even-count bound `4` both met with equality. The Juggler-specific parts of `CycleMin` (the
-floor-power realisation) are not claimed; this is the word-level shape only. -/
-theorem neg_seventeen_inhabits_cycleMinShape : CycleMinShape (parityWordZ (-17) 11) := by
-  rw [neg_seventeen_cycle.2]
-  refine ⟨by decide, by decide, ?_, ?_, rfl, by decide, by decide⟩
-  · exact ⟨[.odd, .odd, .odd, .odd, .even, .odd, .odd, .odd, .even, .even], 0, rfl, Nat.zero_le 1,
-      Or.inr rfl⟩
-  · exact ⟨[.odd, .odd, .even, .odd, .odd, .odd, .even, .even, .even], rfl⟩
-
 /-! ### Negative cycles are exactly Juggler's cycle words
 
 On the negative integers the correction points down, so nothing can compensate a contracting
@@ -782,6 +771,88 @@ theorem neg_seventeen_word_is_juggler_shape :
     prefixNoncontracting (parityWordZ (-17) 11) ∧ 2 ^ 11 < 3 ^ oddCount (parityWordZ (-17) 11) :=
   neg_cycle_word_is_juggler_shape (by norm_num) (by norm_num) neg_seventeen_cycle.1
     neg_seventeen_is_least
+
+/-! ### Section 11: the negative-cycle finance, kernel-checked
+
+The even-step charge of a word with no contracting prefix is at most half the multiplier per even
+letter, so on a negative cycle read at its least `|x|` the cycle equation becomes Paper A's finance
+inequality on the other side of the linear form: `2 (|x| - 1)(3 ^ o - 2 ^ K) ≤ (K - o) 3 ^ o`.
+Natural-number and integer arithmetic only; the analytic refinement on the hug word, with the
+constant `1 / (6 α log 2)`, stays in the mirror dossier. -/
+
+/-- Each prefix of `w`, extended in front by `m` letters carrying `a` odd ones, non-contracting,
+gives `2 ^ (m + 1) · evenCharge w ≤ (|w| - o) · 3 ^ (a + o)`. -/
+private theorem evenCharge_le_aux : ∀ (w : List Branch) (a m : ℕ),
+    (∀ j, j ≤ w.length → 2 ^ (m + j) ≤ 3 ^ (a + oddCount (w.take j))) →
+    2 ^ (m + 1) * evenCharge w ≤ (w.length - oddCount w) * 3 ^ (a + oddCount w)
+  | [], _, _, _ => by simp
+  | .odd :: w, a, m, h => by
+    have ih := evenCharge_le_aux w (a + 1) (m + 1) (fun j hj => by
+      have hh := h (j + 1) (by rw [List.length_cons]; omega)
+      simp only [List.take_succ_cons, oddCount_odd_cons] at hh
+      convert hh using 2 <;> omega)
+    simp only [evenCharge_odd, oddCount_odd_cons, List.length_cons]
+    have hlen : w.length + 1 - (oddCount w + 1) = w.length - oddCount w := by omega
+    rw [hlen]
+    calc 2 ^ (m + 1) * (2 * evenCharge w) = 2 ^ (m + 1 + 1) * evenCharge w := by ring
+      _ ≤ (w.length - oddCount w) * 3 ^ (a + 1 + oddCount w) := ih
+      _ = (w.length - oddCount w) * 3 ^ (a + (oddCount w + 1)) := by ring_nf
+  | .even :: w, a, m, h => by
+    have ih := evenCharge_le_aux w a (m + 1) (fun j hj => by
+      have hh := h (j + 1) (by rw [List.length_cons]; omega)
+      simp only [List.take_succ_cons, oddCount_even_cons] at hh
+      convert hh using 2; omega)
+    have h1 := h 1 (by rw [List.length_cons]; omega)
+    simp only [List.take_succ_cons, List.take_zero, oddCount_even_cons, oddCount_nil,
+      Nat.add_zero] at h1
+    simp only [evenCharge_even, oddCount_even_cons, List.length_cons]
+    have hle := oddCount_le_length w
+    have hlen : w.length + 1 - oddCount w = (w.length - oddCount w) + 1 := by omega
+    rw [hlen]
+    have h3 : 2 ^ (m + 1) * 3 ^ oddCount w ≤ 3 ^ (a + oddCount w) := by
+      rw [pow_add 3 a]; exact Nat.mul_le_mul_right _ h1
+    have h4 : 2 ^ (m + 1) * (2 * evenCharge w) ≤ (w.length - oddCount w) * 3 ^ (a + oddCount w) := by
+      calc 2 ^ (m + 1) * (2 * evenCharge w) = 2 ^ (m + 1 + 1) * evenCharge w := by ring
+        _ ≤ _ := ih
+    nlinarith [h3, h4]
+
+/-- **Half the multiplier per even letter.** On a word with no contracting prefix,
+`2 · evenCharge w ≤ (|w| - o) · 3 ^ o`: the even step at position `i` contributes
+`3 ^ (o - a_i) · 2 ^ i = 3 ^ o · 2 ^ (-h_i)` with height `h_i = a_i log2 3 - i ≥ 1`, because the
+prefix of length `i + 1` is non-contracting. -/
+theorem two_mul_evenCharge_le {w : List Branch} (h : prefixNoncontracting w) :
+    2 * evenCharge w ≤ (w.length - oddCount w) * 3 ^ oddCount w := by
+  have := evenCharge_le_aux w 0 0 (fun j hj => by
+    have hg := h j hj
+    unfold exponentGap at hg
+    rw [List.length_take, Nat.min_eq_left hj] at hg
+    simpa using Nat.le_of_not_lt hg)
+  simpa using this
+
+/-- **The negative-cycle finance, uniformly.** On a cycle of the `ℤ` map at `x ≤ -2`, read at its
+least `|x|`: `2 (|x| - 1)(3 ^ o - 2 ^ K) ≤ (K - o) 3 ^ o`. Paper A's finance inequality on the
+other side of the linear form, with the even steps charged at `1/2` each; equivalently
+`|x| - 1 ≤ (K - o) / (2 θ_J)` with `θ_J = 1 - 2 ^ K / 3 ^ o`. -/
+theorem neg_cycle_finance {x : ℤ} {K : ℕ} (hx : x ≤ -2)
+    (hcyc : shortcutZIter K x = x) (hmin : ∀ j, j ≤ K → shortcutZIter j x ≤ x) :
+    2 * (-x - 1) * ((3 : ℤ) ^ oddCount (parityWordZ x K) - 2 ^ K) ≤
+      ((K - oddCount (parityWordZ x K) : ℕ) : ℤ) * 3 ^ oddCount (parityWordZ x K) := by
+  have hc := cycle_equation_int hcyc
+  have hb := two_mul_evenCharge_le (neg_prefix_noncontracting hx hmin)
+  rw [parityWordZ_length] at hb
+  have hb' : (2 : ℤ) * (evenCharge (parityWordZ x K) : ℤ) ≤
+      ((K - oddCount (parityWordZ x K) : ℕ) : ℤ) * 3 ^ oddCount (parityWordZ x K) := by
+    exact_mod_cast hb
+  have heq : 2 * (-x - 1) * ((3 : ℤ) ^ oddCount (parityWordZ x K) - 2 ^ K) =
+      2 * (evenCharge (parityWordZ x K) : ℤ) := by linear_combination 2 * hc
+  rw [heq]
+  exact hb'
+
+/-- The finance at `-17`: `2 · 16 · (3 ^ 7 - 2 ^ 11) = 4448 ≤ 4 · 3 ^ 7 = 8748`. -/
+theorem neg_seventeen_finance :
+    2 * (-(-17 : ℤ) - 1) * ((3 : ℤ) ^ oddCount (parityWordZ (-17) 11) - 2 ^ 11) ≤
+      ((11 - oddCount (parityWordZ (-17) 11) : ℕ) : ℤ) * 3 ^ oddCount (parityWordZ (-17) 11) :=
+  neg_cycle_finance (by norm_num) neg_seventeen_cycle.1 neg_seventeen_is_least
 
 end CollatzBridge
 
