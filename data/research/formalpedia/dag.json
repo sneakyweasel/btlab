@@ -933,6 +933,7 @@
       "ledger": [
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
         "J-survivor-count-is-a-collatz-residue-count"
       ],
       "papers": [],
@@ -3061,7 +3062,7 @@
   "totals": {
     "edges": 239,
     "edges_before_reduction": 1790,
-    "ledger_rows_placed": 410,
+    "ledger_rows_placed": 411,
     "nodes": 186
   }
 }

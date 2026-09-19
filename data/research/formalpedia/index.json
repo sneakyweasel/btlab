@@ -9470,7 +9470,8 @@
       "ledger": [
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
-        "J-collatz-even-step-charge-identity"
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp"
       ],
       "line": 66,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9484,7 +9485,8 @@
       "ledger": [
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
-        "J-collatz-even-step-charge-identity"
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp"
       ],
       "line": 76,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9498,7 +9500,8 @@
       "ledger": [
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
-        "J-collatz-even-step-charge-identity"
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp"
       ],
       "line": 88,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9512,7 +9515,8 @@
       "ledger": [
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
-        "J-collatz-even-step-charge-identity"
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp"
       ],
       "line": 103,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9526,7 +9530,8 @@
       "ledger": [
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
-        "J-collatz-even-step-charge-identity"
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp"
       ],
       "line": 122,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9540,7 +9545,8 @@
       "ledger": [
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
-        "J-collatz-even-step-charge-identity"
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp"
       ],
       "line": 135,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9554,7 +9560,8 @@
       "ledger": [
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
-        "J-collatz-even-step-charge-identity"
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp"
       ],
       "line": 149,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9568,7 +9575,8 @@
       "ledger": [
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
-        "J-collatz-even-step-charge-identity"
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp"
       ],
       "line": 184,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9582,7 +9590,8 @@
       "ledger": [
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
-        "J-collatz-even-step-charge-identity"
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp"
       ],
       "line": 190,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9596,7 +9605,8 @@
       "ledger": [
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
-        "J-collatz-even-step-charge-identity"
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp"
       ],
       "line": 227,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9610,7 +9620,8 @@
       "ledger": [
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
-        "J-collatz-even-step-charge-identity"
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp"
       ],
       "line": 234,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9624,7 +9635,8 @@
       "ledger": [
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
-        "J-collatz-even-step-charge-identity"
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp"
       ],
       "line": 238,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9638,7 +9650,8 @@
       "ledger": [
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
-        "J-collatz-even-step-charge-identity"
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp"
       ],
       "line": 265,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9652,7 +9665,8 @@
       "ledger": [
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
-        "J-collatz-even-step-charge-identity"
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp"
       ],
       "line": 282,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9666,7 +9680,8 @@
       "ledger": [
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
-        "J-collatz-even-step-charge-identity"
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp"
       ],
       "line": 293,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9680,7 +9695,8 @@
       "ledger": [
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
-        "J-collatz-even-step-charge-identity"
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp"
       ],
       "line": 297,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9694,7 +9710,8 @@
       "ledger": [
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
-        "J-collatz-even-step-charge-identity"
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp"
       ],
       "line": 306,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9708,7 +9725,8 @@
       "ledger": [
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
-        "J-collatz-even-step-charge-identity"
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp"
       ],
       "line": 314,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9722,7 +9740,8 @@
       "ledger": [
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
-        "J-collatz-even-step-charge-identity"
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp"
       ],
       "line": 319,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9736,7 +9755,8 @@
       "ledger": [
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
-        "J-collatz-even-step-charge-identity"
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp"
       ],
       "line": 324,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9750,7 +9770,8 @@
       "ledger": [
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
-        "J-collatz-even-step-charge-identity"
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp"
       ],
       "line": 331,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9764,7 +9785,8 @@
       "ledger": [
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
-        "J-collatz-even-step-charge-identity"
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp"
       ],
       "line": 341,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9778,7 +9800,8 @@
       "ledger": [
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
-        "J-collatz-even-step-charge-identity"
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp"
       ],
       "line": 353,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9792,7 +9815,8 @@
       "ledger": [
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
-        "J-collatz-even-step-charge-identity"
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp"
       ],
       "line": 374,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9806,7 +9830,8 @@
       "ledger": [
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
-        "J-collatz-even-step-charge-identity"
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp"
       ],
       "line": 386,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9820,7 +9845,8 @@
       "ledger": [
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
-        "J-collatz-even-step-charge-identity"
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp"
       ],
       "line": 397,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9834,7 +9860,8 @@
       "ledger": [
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
-        "J-collatz-even-step-charge-identity"
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp"
       ],
       "line": 418,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9848,7 +9875,8 @@
       "ledger": [
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
-        "J-collatz-even-step-charge-identity"
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp"
       ],
       "line": 424,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9862,7 +9890,8 @@
       "ledger": [
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
-        "J-collatz-even-step-charge-identity"
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp"
       ],
       "line": 433,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9876,7 +9905,8 @@
       "ledger": [
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
-        "J-collatz-even-step-charge-identity"
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp"
       ],
       "line": 436,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9890,7 +9920,8 @@
       "ledger": [
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
-        "J-collatz-even-step-charge-identity"
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp"
       ],
       "line": 437,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9904,7 +9935,8 @@
       "ledger": [
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
-        "J-collatz-even-step-charge-identity"
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp"
       ],
       "line": 438,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9918,7 +9950,8 @@
       "ledger": [
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
-        "J-collatz-even-step-charge-identity"
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp"
       ],
       "line": 439,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9932,7 +9965,8 @@
       "ledger": [
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
-        "J-collatz-even-step-charge-identity"
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp"
       ],
       "line": 440,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9946,7 +9980,8 @@
       "ledger": [
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
-        "J-collatz-even-step-charge-identity"
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp"
       ],
       "line": 441,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9960,7 +9995,8 @@
       "ledger": [
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
-        "J-collatz-even-step-charge-identity"
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp"
       ],
       "line": 442,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9974,7 +10010,8 @@
       "ledger": [
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
-        "J-collatz-even-step-charge-identity"
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp"
       ],
       "line": 464,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9988,7 +10025,8 @@
       "ledger": [
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
-        "J-collatz-even-step-charge-identity"
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp"
       ],
       "line": 478,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10002,7 +10040,8 @@
       "ledger": [
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
-        "J-collatz-even-step-charge-identity"
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp"
       ],
       "line": 492,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10016,7 +10055,8 @@
       "ledger": [
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
-        "J-collatz-even-step-charge-identity"
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp"
       ],
       "line": 502,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10030,7 +10070,8 @@
       "ledger": [
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
-        "J-collatz-even-step-charge-identity"
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp"
       ],
       "line": 510,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10044,7 +10085,8 @@
       "ledger": [
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
-        "J-collatz-even-step-charge-identity"
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp"
       ],
       "line": 517,
       "module": "Problems.Juggler.CollatzBridge",
@@ -90414,6 +90456,11 @@
           "id": "J-collatz-even-step-charge-identity",
           "statement": "The Collatz walk charge, in natural numbers. Define evenCharge on words by evenCharge [] = 0, evenCharge (even :: w) = 3^(oddCount w) + 2 evenCharge w, evenCharge (odd :: w) = 2 evenCharge w -- in closed form the sum over even positions i of 3^(o - a_i) 2^i with a_i the odd letters before i. Then (wordConst_add_two_pow) wordConst w + 2^|w| = 3^(oddCount w) + evenCharge w, so the odd-step constant and the even-step charge differ exactly by the multiplier gap; (two_pow_mul_iter_add_one) for every start x and depth d, 2^d (C^d(x) + 1) = 3^o (x + 1) + evenCharge (parityWord x d): conjugating the odd step by z = x + 1 makes every correction come from an even step; (three_pow_mul_add_one_le) hence 3^o (x + 1) <= 2^d (C^d(x) + 1), the Collatz lower envelope, the mirror of power_bound_word with the inequality reversed because the +1s only push up; (cycle_even_charge) on a cycle, (x + 1) 2^d = (x + 1) 3^o + evenCharge w, i.e. the surplus (x_0 + 1)(2^K - 3^p) IS the even-step charge of the word -- the Collatz counterpart of Paper A's finance inequality n log n (3^o - 2^L) <= L 3^o, as an identity rather than a bound; (trivial_cycle_charge) the trivial cycle 1 -> 2 -> 1 has word OE, charge 2 and (1+1)(4 - 3) = 2, by decide +kernel. Read with 2^(-h_i) = 2^i/3^(a_i) 2^(-d)... precisely evenCharge w / (2^d) = 3^o sum over even steps of 2^(-h_i) up to the factor 3^o/2^d, this is the exact form of the statement whose analytic version is J-collatz-walk-charge-constant. Compiles with no sorry; standard axioms. Priority: the z = x + 1 conjugation of the odd step is classical (Simons-de Weger's up-run formula); the even-step reading of the affine constant is likely in Halbeisen-Hungerbuehler 1997's parity-word functional; not checked beyond Hercher 2023, which does not use it. Not a bound, not a halt theorem.",
           "tag": "EXACT \u2014 LEAN VERIFIED"
+        },
+        {
+          "id": "J-collatz-walk-charge-is-sharp",
+          "statement": "The height-only bound of J-collatz-walk-charge-constant is sharp, so composing the rotation-orbit average with Hercher's per-run averaging (Lemma 26 of Hercher 2023) gains nothing: the two read the same slack and the rotation average is its sharp reading. ARGUMENT (EXACT \u2014 HUMAN PROOF). The hug word with p odd letters -- the lowest non-negative walk, odd exactly when the height is below 1 -- has its odd steps at the heights frac(a alpha), a = 0..p-1, alpha = log2(3/2), so its odd-step sum of 2^(-h) is H(p) = sum_{a<p} 2^(-frac(a alpha)) by construction. Terras's bijection realises it: exists_residue_of_word (CollatzBridge.lean, the surjective half of image_parityWord) gives r < 2^K with parityWord r K equal to the hug word, and every x_0 = r mod 2^K follows it. Along a member x_0 far above 2^K the orbit stays above x_0 and x_j + 1 = 2^(h_j)(x_0 + 1 + S_j) with S_j <= K, so x_0 sum_{odd} 1/x_j = H(p)(1 + O(K/x_0)). Hence any bound on the odd reciprocal sum that uses only x_j + 1 >= 2^(h_j)(x_0 + 1) and x_j >= x_0 is at least H(p)/(x_0 + 1) up to O(K/x_0^2), and Hercher's (3/4) K/X_0 is a weaker evaluation of that same information, not a different source of it. NUMBERS. x_0 * sum_{odd} 1/x_j / H(p) = 1.000000000000 at p = 12, 53, 300, 665 (K = 19, 84, 475, 1054) with x_0 = r + 2^(K + 300), exact rational arithmetic; the realised residues are below 2^K and the orbits follow the hug word letter for letter. CONSEQUENCE. Further improvement of the Collatz finance constant needs information the heights do not carry: the residue classes modulo powers of two of Hercher's Corollary 29, or the exact closure (x_0 + 1)(2^K - 3^p) = evenCharge w (J-collatz-even-step-charge-identity), which requires 2^K - 3^p to divide the even-step charge of the word. Not a kill, not a period bound, not a halt theorem.",
+          "tag": "COMPUTATIONALLY VERIFIED"
         }
       ]
     },
@@ -93627,7 +93674,7 @@
   "totals": {
     "declarations": 6934,
     "declarations_with_a_ledger_row": 4741,
-    "ledger_rows_naming_a_file": 446,
+    "ledger_rows_naming_a_file": 447,
     "modules": 307,
     "trust": {
       "compiler": 56,
