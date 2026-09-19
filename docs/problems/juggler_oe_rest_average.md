@@ -172,9 +172,20 @@ block, as link 2 requires.
    marginal, and marginal suffices -- but the *combination* has not been
    written with one set of constants.
 3. Nothing here is Lean beyond links 1 and 2's easy half.
-4. The bootstrap this feeds also needs the contagion exponent it improves, and
-   that circularity is benign (`J-oe-low-share-weight-decays-polynomially`
-   records why) but has not been re-checked since the chain changed shape.
+4. The bootstrap this feeds also needs the contagion exponent it improves.
+   That circularity is benign in the strong sense -- the input is a polylog
+   lower bound on \(A\)'s weight and the output a polynomial separation, so
+   any positive \(\lambda_0\) serves, there is no fixed point and no
+   iteration. **But the crossover is at \(y\sim 3.5\times10^{10}\):** at
+   \(y=2^{14},2^{16},2^{18}\) the capacity \(12y^{-1/6}\) is 2.38, 1.89,
+   1.50 against \(A\)'s weight 0.175, 0.202, 0.206, so the comparison runs
+   the wrong way by 7 to 14 times at every reachable scale.
+5. **Every link has that character.** The assembly's crossovers sit between
+   \(10^{10}\) and \(10^{20}\), so none of the chain can be corroborated
+   numerically. What the measurements confirm throughout is a sharper,
+   constant-free phenomenon that the proofs do not reach. That is the
+   honest summary of its status, and the reason the PARK is defensible even
+   with both halves standing.
 
 **What it would buy, unchanged since the pricing.** Two productions at the mean
 share reach \(\lambda^{**}\), taking Proposition 4.4's two exponential-sum
