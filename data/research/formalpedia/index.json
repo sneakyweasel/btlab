@@ -29758,7 +29758,7 @@
       "ledger": [
         "J-fate-certified-thirty"
       ],
-      "line": 59,
+      "line": 60,
       "module": "Problems.Juggler.FateCertified",
       "name": "e_ge",
       "trust": "kernel"
@@ -29770,7 +29770,7 @@
       "ledger": [
         "J-fate-certified-thirty"
       ],
-      "line": 62,
+      "line": 63,
       "module": "Problems.Juggler.FateCertified",
       "name": "e_le",
       "trust": "kernel"
@@ -29782,7 +29782,7 @@
       "ledger": [
         "J-fate-certified-thirty"
       ],
-      "line": 67,
+      "line": 68,
       "module": "Problems.Juggler.FateCertified",
       "name": "log_le_of_pow_le",
       "trust": "kernel"
@@ -29794,7 +29794,7 @@
       "ledger": [
         "J-fate-certified-thirty"
       ],
-      "line": 78,
+      "line": 79,
       "module": "Problems.Juggler.FateCertified",
       "name": "le_log_of_pow_le",
       "trust": "kernel"
@@ -29806,7 +29806,7 @@
       "ledger": [
         "J-fate-certified-thirty"
       ],
-      "line": 89,
+      "line": 90,
       "module": "Problems.Juggler.FateCertified",
       "name": "logb_two_le",
       "trust": "kernel"
@@ -29818,7 +29818,7 @@
       "ledger": [
         "J-fate-certified-thirty"
       ],
-      "line": 99,
+      "line": 100,
       "module": "Problems.Juggler.FateCertified",
       "name": "le_logb_two",
       "trust": "kernel"
@@ -29830,7 +29830,7 @@
       "ledger": [
         "J-fate-certified-thirty"
       ],
-      "line": 111,
+      "line": 112,
       "module": "Problems.Juggler.FateCertified",
       "name": "log_two_le",
       "trust": "kernel"
@@ -29842,7 +29842,7 @@
       "ledger": [
         "J-fate-certified-thirty"
       ],
-      "line": 118,
+      "line": 119,
       "module": "Problems.Juggler.FateCertified",
       "name": "le_log_two",
       "trust": "kernel"
@@ -29854,7 +29854,7 @@
       "ledger": [
         "J-fate-certified-thirty"
       ],
-      "line": 125,
+      "line": 126,
       "module": "Problems.Juggler.FateCertified",
       "name": "le_logb_three",
       "trust": "kernel"
@@ -29866,7 +29866,7 @@
       "ledger": [
         "J-fate-certified-thirty"
       ],
-      "line": 131,
+      "line": 132,
       "module": "Problems.Juggler.FateCertified",
       "name": "logb_three_le",
       "trust": "kernel"
@@ -29878,7 +29878,7 @@
       "ledger": [
         "J-fate-certified-thirty"
       ],
-      "line": 137,
+      "line": 138,
       "module": "Problems.Juggler.FateCertified",
       "name": "le_log_lo",
       "trust": "kernel"
@@ -29890,7 +29890,7 @@
       "ledger": [
         "J-fate-certified-thirty"
       ],
-      "line": 144,
+      "line": 145,
       "module": "Problems.Juggler.FateCertified",
       "name": "le_log_hi",
       "trust": "kernel"
@@ -29902,7 +29902,7 @@
       "ledger": [
         "J-fate-certified-thirty"
       ],
-      "line": 155,
+      "line": 156,
       "module": "Problems.Juggler.FateCertified",
       "name": "log_lo_le",
       "trust": "kernel"
@@ -29914,7 +29914,7 @@
       "ledger": [
         "J-fate-certified-thirty"
       ],
-      "line": 162,
+      "line": 163,
       "module": "Problems.Juggler.FateCertified",
       "name": "log_hi_le",
       "trust": "kernel"
@@ -29926,7 +29926,7 @@
       "ledger": [
         "J-fate-certified-thirty"
       ],
-      "line": 174,
+      "line": 175,
       "module": "Problems.Juggler.FateCertified",
       "name": "logb_three_pos",
       "trust": "kernel"
@@ -29938,7 +29938,7 @@
       "ledger": [
         "J-fate-certified-thirty"
       ],
-      "line": 179,
+      "line": 180,
       "module": "Problems.Juggler.FateCertified",
       "name": "pC_thirty_ge",
       "trust": "kernel"
@@ -29950,7 +29950,7 @@
       "ledger": [
         "J-fate-certified-thirty"
       ],
-      "line": 186,
+      "line": 187,
       "module": "Problems.Juggler.FateCertified",
       "name": "pC_thirty_le",
       "trust": "kernel"
@@ -29962,7 +29962,7 @@
       "ledger": [
         "J-fate-certified-thirty"
       ],
-      "line": 193,
+      "line": 194,
       "module": "Problems.Juggler.FateCertified",
       "name": "klHalf_ge_of",
       "trust": "kernel"
@@ -29974,7 +29974,7 @@
       "ledger": [
         "J-fate-certified-thirty"
       ],
-      "line": 214,
+      "line": 215,
       "module": "Problems.Juggler.FateCertified",
       "name": "klHalf_le_of",
       "trust": "kernel"
@@ -29986,7 +29986,7 @@
       "ledger": [
         "J-fate-certified-thirty"
       ],
-      "line": 238,
+      "line": 239,
       "module": "Problems.Juggler.FateCertified",
       "name": "klHalf_thirty_ge",
       "trust": "kernel"
@@ -29998,19 +29998,19 @@
       "ledger": [
         "J-fate-certified-thirty"
       ],
-      "line": 248,
+      "line": 249,
       "module": "Problems.Juggler.FateCertified",
       "name": "klHalf_thirty_le",
       "trust": "kernel"
     },
     {
-      "doc": "**The certified instance.** `e(30) > 39/50`, with no audit script in the chain; in particular `e(30) > 7/10`, the side condition of every unconditional criterion.",
+      "doc": "**The certified instance.** `e(30) > 39/50`, with no audit script in the chain; in particular `e(30) > 39/50`, comfortably past the `27/40` side condition of every unconditional criterion.",
       "file": "formal/Problems/Juggler/FateCertified.lean",
       "kind": "theorem",
       "ledger": [
         "J-fate-certified-thirty"
       ],
-      "line": 259,
+      "line": 261,
       "module": "Problems.Juggler.FateCertified",
       "name": "chernoffExponent_thirty_gt",
       "trust": "kernel"
@@ -30022,7 +30022,7 @@
       "ledger": [
         "J-fate-certified-thirty"
       ],
-      "line": 268,
+      "line": 270,
       "module": "Problems.Juggler.FateCertified",
       "name": "chernoffExponent_thirty_lt",
       "trust": "kernel"
@@ -30034,7 +30034,7 @@
       "ledger": [
         "J-fate-certified-thirty"
       ],
-      "line": 281,
+      "line": 283,
       "module": "Problems.Juggler.FateCertified",
       "name": "cylinder_bound_thirty",
       "trust": "kernel"
@@ -30046,7 +30046,7 @@
       "ledger": [
         "J-fate-certified-thirty"
       ],
-      "line": 291,
+      "line": 293,
       "module": "Problems.Juggler.FateCertified",
       "name": "pressure_thirty",
       "trust": "kernel"
@@ -30058,7 +30058,7 @@
       "ledger": [
         "J-fate-certified-thirty"
       ],
-      "line": 301,
+      "line": 303,
       "module": "Problems.Juggler.FateCertified",
       "name": "klDiv_half",
       "trust": "kernel"
@@ -30070,7 +30070,7 @@
       "ledger": [
         "J-fate-certified-thirty"
       ],
-      "line": 308,
+      "line": 310,
       "module": "Problems.Juggler.FateCertified",
       "name": "oneSidedExponent_half",
       "trust": "kernel"
@@ -30082,7 +30082,7 @@
       "ledger": [
         "J-fate-certified-thirty"
       ],
-      "line": 315,
+      "line": 317,
       "module": "Problems.Juggler.FateCertified",
       "name": "logb_tilt_thirty_le",
       "trust": "kernel"
@@ -30094,7 +30094,7 @@
       "ledger": [
         "J-fate-certified-thirty"
       ],
-      "line": 342,
+      "line": 344,
       "module": "Problems.Juggler.FateCertified",
       "name": "one_sided_thirty",
       "trust": "kernel"
@@ -31939,7 +31939,7 @@
       "trust": "kernel"
     },
     {
-      "doc": "**The conjecture from the energy bound, with nothing else assumed.** If at all large scales above a certified floor the bias energy of the `L(y)`-bad words at every depth `1 \u2264 t < \u2308C L(y)\u2309` is at most `(q - 1/2)\u00b2 y\u00b2 (log y)^{-2B} / 2^t`, with `C \u2265 5`, `1/2 < q < p_C`, `B > C log\u2082 x + 1 + e` and `7/10 < e < e_{C,q}`, then every positive integer reaches `1`.",
+      "doc": "**The conjecture from the energy bound, with nothing else assumed.** If at all large scales above a certified floor the bias energy of the `L(y)`-bad words at every depth `1 \u2264 t < \u2308C L(y)\u2309` is at most `(q - 1/2)\u00b2 y\u00b2 (log y)^{-2B} / 2^t`, with `C \u2265 5`, `1/2 < q < p_C`, `B > C log\u2082 x + 1 + e` and `27/40 < e < e_{C,q}`, then every positive integer reaches `1`.",
       "file": "formal/Problems/Juggler/FateEnergyAtoms.lean",
       "kind": "theorem",
       "ledger": [
@@ -33262,7 +33262,7 @@
       "trust": "kernel"
     },
     {
-      "doc": "**Section 10(d)'s corollary with nothing else assumed.** The one-sided hypothesis with exceptional atoms of mass `y (log y)^{-B}` at all large scales above a certified floor, with `C \u2265 5`, `0 < q < p_C`, `A > C(1 + log\u2082 x) + 1 + e`, `B > C log\u2082 x + 1 + e` and `7/10 < e < e_{C,q}`, gives that every positive integer reaches `1`.",
+      "doc": "**Section 10(d)'s corollary with nothing else assumed.** The one-sided hypothesis with exceptional atoms of mass `y (log y)^{-B}` at all large scales above a certified floor, with `C \u2265 5`, `0 < q < p_C`, `A > C(1 + log\u2082 x) + 1 + e`, `B > C log\u2082 x + 1 + e` and `27/40 < e < e_{C,q}`, gives that every positive integer reaches `1`.",
       "file": "formal/Problems/Juggler/FateOneSidedAtoms.lean",
       "kind": "theorem",
       "ledger": [
@@ -33394,7 +33394,7 @@
       "trust": "kernel"
     },
     {
-      "doc": "**Theorem 9.1's corollary with nothing else assumed.** If `H_q(C, A)` holds at all large scales above a certified floor, with `C \u2265 5`, `0 < q < p_C`, `A > C(1 + log\u2082 x) + 1 + e` and `7/10 < e < e_{C,q}`, then every positive integer reaches `1`; the contagion side is the unconditional Theorem 5.3 at exponent `3/10`.",
+      "doc": "**Theorem 9.1's corollary with nothing else assumed.** If `H_q(C, A)` holds at all large scales above a certified floor, with `C \u2265 5`, `0 < q < p_C`, `A > C(1 + log\u2082 x) + 1 + e` and `27/40 < e < e_{C,q}`, then every positive integer reaches `1`; the contagion side is the unconditional Theorem 5.3 at exponent `13/40`.",
       "file": "formal/Problems/Juggler/FateOneSidedCorollary.lean",
       "kind": "theorem",
       "ledger": [
@@ -33406,7 +33406,7 @@
       "trust": "kernel"
     },
     {
-      "doc": "**The paper's remark after Theorem 9.1, with nothing else assumed.** If no `L(y)`-bad cylinder of depth below `\u2308C L(y)\u2309` sends more than the share `q` of its members to an odd next letter, at all large scales above a certified floor, with `C \u2265 5`, `0 < q < p_C` and `e_{C,q} > 7/10`, then every positive integer reaches `1`.",
+      "doc": "**The paper's remark after Theorem 9.1, with nothing else assumed.** If no `L(y)`-bad cylinder of depth below `\u2308C L(y)\u2309` sends more than the share `q` of its members to an odd next letter, at all large scales above a certified floor, with `C \u2265 5`, `0 < q < p_C` and `e_{C,q} > 27/40`, then every positive integer reaches `1`.",
       "file": "formal/Problems/Juggler/FateOneSidedCorollary.lean",
       "kind": "theorem",
       "ledger": [
@@ -33574,7 +33574,7 @@
       "trust": "kernel"
     },
     {
-      "doc": "**Theorem 9.2's corollary with nothing else assumed.** The pressure hypothesis `P_\u03b8(C)` at all large scales above a certified floor, with `C \u2265 5` and a loss `\u03b5` such that `7/10 < e < e(C) - \u03b5` for some `e` (a negative `\u03b5` is a stronger hypothesis), gives that every positive integer reaches `1`.",
+      "doc": "**Theorem 9.2's corollary with nothing else assumed.** The pressure hypothesis `P_\u03b8(C)` at all large scales above a certified floor, with `C \u2265 5` and a loss `\u03b5` such that `27/40 < e < e(C) - \u03b5` for some `e` (a negative `\u03b5` is a stronger hypothesis), gives that every positive integer reaches `1`.",
       "file": "formal/Problems/Juggler/FatePressureCorollary.lean",
       "kind": "theorem",
       "ledger": [
@@ -33610,7 +33610,7 @@
       "trust": "kernel"
     },
     {
-      "doc": "**Proposition 9.3's corollary with nothing else assumed.** The no-momentum hypothesis `M_{\u03b8,q}(C)` at all large scales above a certified floor, at the re-centring tilt, with `C \u2265 5`, `0 < q < p_C` and a momentum `\u03b4` such that `7/10 < e < C (D(p_C \u2016 q) - c_x \u03b4) / log 2` for some `e`, gives that every positive integer reaches `1`.",
+      "doc": "**Proposition 9.3's corollary with nothing else assumed.** The no-momentum hypothesis `M_{\u03b8,q}(C)` at all large scales above a certified floor, at the re-centring tilt, with `C \u2265 5`, `0 < q < p_C` and a momentum `\u03b4` such that `27/40 < e < C (D(p_C \u2016 q) - c_x \u03b4) / log 2` for some `e`, gives that every positive integer reaches `1`.",
       "file": "formal/Problems/Juggler/FatePressureCorollary.lean",
       "kind": "theorem",
       "ledger": [
@@ -33982,25 +33982,25 @@
       "trust": "kernel"
     },
     {
-      "doc": "**Theorem 7.2 with its contagion hypothesis discharged.** If the odd failures in `(y, 2y]` number at most `y (log y)^{-e}` for all large `y`, for some `e > 7/10`, then every positive integer reaches `1`. The contagion bound at exponent `13/40` is `failures_logMass_ge`, so nothing is assumed beyond the rate; the paper's conditional form needs `e > 0.51` and the production inequality (5.2).",
+      "doc": "**Theorem 7.2 with its contagion hypothesis discharged.** If the odd failures in `(y, 2y]` number at most `y (log y)^{-e}` for all large `y`, for some `e > 27/40`, then every positive integer reaches `1`. The contagion bound at exponent `13/40` is `failures_logMass_ge`, so nothing is assumed beyond the rate; the paper's conditional form needs `e > 0.51` and the production inequality (5.2). The threshold is `1 - \u03bb` for the `\u03bb` the contagion bound reaches, so lifting that exponent to `13/40` lowered it from `7/10` to `27/40`.",
       "file": "formal/Problems/Juggler/FateProduction.lean",
       "kind": "theorem",
       "ledger": [
         "J-fate-contagion-elementary"
       ],
-      "line": 661,
+      "line": 662,
       "module": "Problems.Juggler.FateProduction",
       "name": "conjecture_of_tao_rate",
       "trust": "kernel"
     },
     {
-      "doc": "**Corollary 8.4 with its contagion hypothesis discharged.** A cylinder bound `H(C, A)` at all large scales with `A > C + e(C)` and `e(C) > 7/10`, above a certified floor `N\u2080`, gives the conjecture; nothing else is assumed.",
+      "doc": "**Corollary 8.4 with its contagion hypothesis discharged.** A cylinder bound `H(C, A)` at all large scales with `A > C + e(C)` and `e(C) > 27/40`, above a certified floor `N\u2080`, gives the conjecture; nothing else is assumed.",
       "file": "formal/Problems/Juggler/FateProduction.lean",
       "kind": "theorem",
       "ledger": [
         "J-fate-contagion-elementary"
       ],
-      "line": 670,
+      "line": 671,
       "module": "Problems.Juggler.FateProduction",
       "name": "conjecture_of_cylinder_bound",
       "trust": "kernel"
@@ -92306,7 +92306,7 @@
       "ledger": [
         {
           "id": "J-fate-contagion-elementary",
-          "statement": "The production inequality of Paper C Section 5.1 without its exponential sums, and the unconditional theorem it yields. Of the three families of members of A on (sqrt x, x], the E-images of the members at scale t/2 (Lemma 3.1; Production.family_E) and the OE-fibers of the members at scale 3t/4 (Lemma 4.2 on good fibers, Lemma 4.3 for the bad; Production.family_OE, on the per-fiber bound (2/9)(1 - (25/2) m^{-1/3})/m) need no analysis. With the paper's sqrt x read as floor(e^{t/2}) (sqrt_floor_exp) they give, for t >= 40, g_A(t) >= (1 - 4e^{-t/4}) g_A(t/2) + (2/9 - (50/9)e^{-t/8}) g_A(3t/4) - eta_0(t) with eta_0(t) = 2e^{-t/2} + (4/9)e^{-3t/4} + 136 e^{-t/8}, every error explicit (production_two). Lemma 5.1 (recursion_lemma) on these two productions, with 2^{-13/40} + (2/9)(3/4)^{13/40} > 1 certified by 0.798^40 <= 2^{-13} and 0.91^40 <= (3/4)^13 (zeta2_pos) and the seed of Lemma 5.2, gives: for every nonempty backward-closed A and every 0 < lambda <= 13/40 there are K > 0 and x_0 with sum_{n in A, n <= x} 1/n >= K (log x)^lambda for all x >= x_0 (contagion_elementary, logMass_contagion_elementary), WITH NO HYPOTHESIS; and if some positive integer does not reach 1 the failures have that log-mass (failures_logMass_ge, Corollary 5.5(2) at exponent 13/40). Composed with Theorem 7.2 and Corollary 8.4, whose contagion hypothesis has exactly this shape: a Tao-type rate, odd failures in (y, 2y] at most y (log y)^{-e} for all large y with e > 7/10, implies that every positive integer reaches 1 (conjecture_of_tao_rate), and so does a cylinder bound H(C, A) at all large scales with A > C + e(C) and e(C) > 7/10 above a certified floor (conjecture_of_cylinder_bound), with no other hypothesis; the paper's conditional forms need e > 1 - lambda** ~ 0.51 and (5.2). This is Theorem 5.3 with 3/10 in place of lambda** ~ 0.4926: the root of 2^{-lambda} + (2/9)(3/4)^lambda = 1 is about 0.325. NOT formalized: the block-average family (Section 5.1 item 2), which needs the two exponential-sum bounds of Proposition 4.4 (hypotheses in FateBlockAverage) and is what lifts the exponent to 0.49, and the ladder (5.10), whose Appendix D estimates are human; (5.2) itself remains a human row. Nothing here is a density theorem in the paper's sense and nothing here is a halt theorem. EXPONENT LIFTED 2026-09-19, from 3/10 to 13/40. The exponent is not intrinsic to the argument: it enters only through zeta2_pos, and zeta2_antitone carries it to the theorems, so raising the certificate raises the theorem. The root of 2^{-lambda} + (2/9)(3/4)^lambda = 1 is 0.3261209621146946, so the old certificate 3/10 = 0.300 used 92 percent of what the TWO-production inequality can give and 13/40 = 0.325 uses 99.6 percent; the remaining 0.4 percent is the gap to an irrational root and is not worth a larger denominator. The new certificate is 399/500 <= (1/2)^{13/40}, since (399/500)^40 <= 2^{-13}, with the previous 91/100 <= (3/4)^{13/40} unchanged, and 399/500 + (2/9)(91/100) = 1.000222 > 1; the 40th powers are exact rational arithmetic in norm_num and the module compiles in 174 s. WHAT THIS DOES NOT DO: it does not approach Paper C's lambda** = 0.4926, which needs the block-average family and its two exponential-sum bounds, and those remain hypotheses in FateBlockAverage with no Lean proof. 13/40 is the ceiling of the unconditional route, not a step toward the conditional one. Paper C's manuscript still states the unconditional Lean exponent as 3/10, which stays true and is now understated; updating it is a deposited-paper edit and has not been made.",
+          "statement": "The production inequality of Paper C Section 5.1 without its exponential sums, and the unconditional theorem it yields. Of the three families of members of A on (sqrt x, x], the E-images of the members at scale t/2 (Lemma 3.1; Production.family_E) and the OE-fibers of the members at scale 3t/4 (Lemma 4.2 on good fibers, Lemma 4.3 for the bad; Production.family_OE, on the per-fiber bound (2/9)(1 - (25/2) m^{-1/3})/m) need no analysis. With the paper's sqrt x read as floor(e^{t/2}) (sqrt_floor_exp) they give, for t >= 40, g_A(t) >= (1 - 4e^{-t/4}) g_A(t/2) + (2/9 - (50/9)e^{-t/8}) g_A(3t/4) - eta_0(t) with eta_0(t) = 2e^{-t/2} + (4/9)e^{-3t/4} + 136 e^{-t/8}, every error explicit (production_two). Lemma 5.1 (recursion_lemma) on these two productions, with 2^{-13/40} + (2/9)(3/4)^{13/40} > 1 certified by 0.798^40 <= 2^{-13} and 0.91^40 <= (3/4)^13 (zeta2_pos) and the seed of Lemma 5.2, gives: for every nonempty backward-closed A and every 0 < lambda <= 13/40 there are K > 0 and x_0 with sum_{n in A, n <= x} 1/n >= K (log x)^lambda for all x >= x_0 (contagion_elementary, logMass_contagion_elementary), WITH NO HYPOTHESIS; and if some positive integer does not reach 1 the failures have that log-mass (failures_logMass_ge, Corollary 5.5(2) at exponent 13/40). Composed with Theorem 7.2 and Corollary 8.4, whose contagion hypothesis has exactly this shape: a Tao-type rate, odd failures in (y, 2y] at most y (log y)^{-e} for all large y with e > 7/10, implies that every positive integer reaches 1 (conjecture_of_tao_rate), and so does a cylinder bound H(C, A) at all large scales with A > C + e(C) and e(C) > 7/10 above a certified floor (conjecture_of_cylinder_bound), with no other hypothesis; the paper's conditional forms need e > 1 - lambda** ~ 0.51 and (5.2). This is Theorem 5.3 with 3/10 in place of lambda** ~ 0.4926: the root of 2^{-lambda} + (2/9)(3/4)^lambda = 1 is about 0.325. NOT formalized: the block-average family (Section 5.1 item 2), which needs the two exponential-sum bounds of Proposition 4.4 (hypotheses in FateBlockAverage) and is what lifts the exponent to 0.49, and the ladder (5.10), whose Appendix D estimates are human; (5.2) itself remains a human row. Nothing here is a density theorem in the paper's sense and nothing here is a halt theorem. EXPONENT LIFTED 2026-09-19, from 3/10 to 13/40. The exponent is not intrinsic to the argument: it enters only through zeta2_pos, and zeta2_antitone carries it to the theorems, so raising the certificate raises the theorem. The root of 2^{-lambda} + (2/9)(3/4)^lambda = 1 is 0.3261209621146946, so the old certificate 3/10 = 0.300 used 92 percent of what the TWO-production inequality can give and 13/40 = 0.325 uses 99.6 percent; the remaining 0.4 percent is the gap to an irrational root and is not worth a larger denominator. The new certificate is 399/500 <= (1/2)^{13/40}, since (399/500)^40 <= 2^{-13}, with the previous 91/100 <= (3/4)^{13/40} unchanged, and 399/500 + (2/9)(91/100) = 1.000222 > 1; the 40th powers are exact rational arithmetic in norm_num and the module compiles in 174 s. WHAT THIS DOES NOT DO: it does not approach Paper C's lambda** = 0.4926, which needs the block-average family and its two exponential-sum bounds, and those remain hypotheses in FateBlockAverage with no Lean proof. 13/40 is the ceiling of the unconditional route, not a step toward the conditional one. THRESHOLD WEAKENED THE SAME DAY. The Tao-rate wrapper needs only e > 1 - lambda, so lifting lambda to 13/40 lowered the requirement from 7/10 = 0.700 to 27/40 = 0.675; both public statements had kept 7/10, a gap invisible because linarith discharges it silently whenever the stated hypothesis is stronger than the proof needs. Five statements now ask for 27/40 across six modules -- conjecture_of_tao_rate and conjecture_of_cylinder_bound (FateProduction), one_sided_implies_conjecture and its no-momentum form (FateOneSidedCorollary, including a midpoint construction that had 7/10 in the value it picks), the pressure and no-momentum corollaries (FatePressureCorollary), and the atom forms (FateOneSidedAtoms, FateEnergyAtoms) -- each a strictly weaker hypothesis for the same conclusion. The literal 7/10 that remains in FateCertified is the bound log 2 <= 7/10, a different fact. THE LEAST ADMISSIBLE CONSTANT DOES NOT MOVE: e(22) = 0.668392 misses 27/40 and e(23) = 0.716046 clears it, so the least integer C is 23 at both thresholds; the computation reproduces the paper's own e(21) = 0.6210, e(25) = 0.8119 and e(30) = 1.0541. Paper C's manuscript was brought into agreement in the same pass: it had been quoting the retired certificates by name and attributing them to zeta2_pos, so it described a proof that no longer existed. Nine thresholds and two exponents rewritten, and the least-C result recorded in the passage that names it.",
           "tag": "EXACT \u2014 LEAN VERIFIED"
         }
       ]

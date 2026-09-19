@@ -29,8 +29,8 @@ turns `(2x)^{d-1}` into `Λ^{C(1 + log₂ x)}` (`pow_le_rpow_scale`), and
 Two corollaries. `implies_conjecture_of_contagion` keeps the contagion bound of
 Theorem 5.3 as a hypothesis with an exponent `λ` satisfying `1 - λ < e`, as Corollary 8.4
 does; `one_sided_implies_conjecture` discharges it through the unconditional
-`Production.failures_logMass_ge` at exponent `3/10`, so that the one-sided hypothesis at all
-large scales with `e_{C,q} > 7/10` gives the conjecture with nothing else assumed; and
+`Production.failures_logMass_ge` at exponent `13/40`, so that the one-sided hypothesis at all
+large scales with `e_{C,q} > 27/40` gives the conjecture with nothing else assumed; and
 `exact_share_implies_conjecture` is the paper's remark after Theorem 9.1, a share bound
 with no error term at all, where `A` disappears.
 
@@ -351,13 +351,13 @@ theorem implies_conjecture_of_contagion {N₀ : ℕ} (hN : 2 ≤ N₀)
 
 /-- **Theorem 9.1's corollary with nothing else assumed.** If `H_q(C, A)` holds at all large
 scales above a certified floor, with `C ≥ 5`, `0 < q < p_C`, `A > C(1 + log₂ x) + 1 + e`
-and `7/10 < e < e_{C,q}`, then every positive integer reaches `1`; the contagion side is
-the unconditional Theorem 5.3 at exponent `3/10`. -/
+and `27/40 < e < e_{C,q}`, then every positive integer reaches `1`; the contagion side is
+the unconditional Theorem 5.3 at exponent `13/40`. -/
 theorem one_sided_implies_conjecture {N₀ : ℕ} (hN : 2 ≤ N₀)
     (hfloor : ∀ m, 1 ≤ m → m ≤ N₀ → ReachesOne m) (C q A e : ℝ) (hC : 5 ≤ C)
     (hq0 : 0 < q) (hqp : q < pC C)
     (hA : C * (1 + Real.logb 2 (tilt (pC C) q)) + 1 + e < A) (he : e < oneSidedExponent C q)
-    (he7 : 7 / 10 < e) (hH : ∃ y₁ : ℕ, ∀ y, y₁ ≤ y → OneSidedBound N₀ C q A y) :
+    (he7 : 27 / 40 < e) (hH : ∃ y₁ : ℕ, ∀ y, y₁ ≤ y → OneSidedBound N₀ C q A y) :
     ∀ n, 1 ≤ n → ReachesOne n :=
   Production.conjecture_of_tao_rate he7
     (oddFailures_le_of_one_sided hN hfloor C q A e hC hq0 hqp hA he hH)
@@ -365,14 +365,14 @@ theorem one_sided_implies_conjecture {N₀ : ℕ} (hN : 2 ≤ N₀)
 /-- **The paper's remark after Theorem 9.1, with nothing else assumed.** If no `L(y)`-bad
 cylinder of depth below `⌈C L(y)⌉` sends more than the share `q` of its members to an odd
 next letter, at all large scales above a certified floor, with `C ≥ 5`, `0 < q < p_C` and
-`e_{C,q} > 7/10`, then every positive integer reaches `1`. -/
+`e_{C,q} > 27/40`, then every positive integer reaches `1`. -/
 theorem exact_share_implies_conjecture {N₀ : ℕ} (hN : 2 ≤ N₀)
     (hfloor : ∀ m, 1 ≤ m → m ≤ N₀ → ReachesOne m) (C q : ℝ) (hC : 5 ≤ C)
-    (hq0 : 0 < q) (hqp : q < pC C) (heOS : 7 / 10 < oneSidedExponent C q)
+    (hq0 : 0 < q) (hqp : q < pC C) (heOS : 27 / 40 < oneSidedExponent C q)
     (hH : ∃ y₁ : ℕ, ∀ y, y₁ ≤ y → OneSidedExact N₀ C q y) :
     ∀ n, 1 ≤ n → ReachesOne n := by
   obtain ⟨y₁, hy₁⟩ := hH
-  set e := (7 / 10 + oneSidedExponent C q) / 2 with he
+  set e := (27 / 40 + oneSidedExponent C q) / 2 with he
   set A := C * (1 + Real.logb 2 (tilt (pC C) q)) + 1 + e + 1 with hA
   refine one_sided_implies_conjecture hN hfloor C q A e hC hq0 hqp (by rw [hA]; linarith)
     (by rw [he]; linarith) (by rw [he]; linarith) ⟨y₁, fun y hy => ?_⟩

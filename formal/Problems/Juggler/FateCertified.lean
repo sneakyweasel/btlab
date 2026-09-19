@@ -10,7 +10,7 @@ open scoped Classical
 # A certified instance of the unconditional criteria at `C = 30`
 
 The unconditional corollaries of Paper C (`docs/theory/juggler_fate_almost_all_note.md`) all
-carry the side condition `e(C) > 7/10` on the Chernoff exponent
+carry the side condition `e(C) > 27/40` on the Chernoff exponent
 `e(C) = C D(p_C ‖ 1/2)/log 2`, and the paper's numerical tables for it are an audit script.
 This file removes the script from the chain for one concrete constant: every bound here is a
 rational inequality between integers, closed by `norm_num`, so the resulting statements rest
@@ -34,7 +34,8 @@ everything:
 From the third and fourth, `p = p_30` lies in `[0.6098, 0.61]` (`Certified.pC_thirty_ge`,
 `Certified.pC_thirty_le`); with the last two and the sandwich `Certified.klHalf_ge_of`,
 `D(p ‖ 1/2) ≥ 0.018312`, and with `log 2 ≤ 7/10` that gives
-`e(30) > 7/10` (`Certified.chernoffExponent_thirty_gt`), the whole point. Two more bounds in
+`e(30) > 39/50` (`Certified.chernoffExponent_thirty_gt`), comfortably past the `27/40`
+the criteria now ask for. Two more bounds in
 the other direction give `e(30) < 13/10` (`Certified.chernoffExponent_thirty_lt`), which makes
 the side condition `A > C + e(C)` explicit as `A ≥ 32`.
 
@@ -45,7 +46,7 @@ numeral. At `q = 1/2` the one-sided exponent is the Chernoff one
 (`Certified.logb_tilt_thirty_le`), which makes that criterion's condition on `A` explicit as
 `A ≥ 52`.
 
-What this is not. `C = 30` is an instance, not the least: the audit finds `e(C) > 7/10` first
+What this is not. `C = 30` is an instance, not the least: the audit finds `e(C) > 27/40` first
 at `C = 23`, and the paper's own threshold `e(C) > 1 - λ**` first at `C = 19`; both remain
 audit statements about `λ**` and are not formalized. The bounds here are deliberately loose
 (the true value is `e(30) ≈ 1.05`) because loose bounds have small certificates. Nothing here
@@ -255,7 +256,8 @@ theorem klHalf_thirty_le : klHalf (pC 30) ≤ (71 : ℝ) / 2500 := by
   linarith
 
 /-- **The certified instance.** `e(30) > 39/50`, with no audit script in the chain; in
-particular `e(30) > 7/10`, the side condition of every unconditional criterion. -/
+particular `e(30) > 39/50`, comfortably past the `27/40` side condition of every
+unconditional criterion. -/
 theorem chernoffExponent_thirty_gt : 39 / 50 < chernoffExponent 30 := by
   have hlog2 : 0 < Real.log 2 := Real.log_pos (by norm_num)
   unfold chernoffExponent

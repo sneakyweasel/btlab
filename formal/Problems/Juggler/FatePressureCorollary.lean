@@ -29,7 +29,7 @@ The paper's `E = e^{o(d)}` is quantified here as `(log y)^ε` with `ε ≥ 0` a 
 `NoMomentum` predicate of `TiltedShare` on the live weight); the exponents are
 `e(C) - ε` and `C (D(p_C ‖ q) - c_x δ) / log 2`. Each hypothesis composes with Theorem 7.2
 twice: with the contagion bound as a hypothesis, and with nothing else assumed through the
-unconditional Theorem 5.3 at exponent `3/10`. Not a halt theorem: nothing here bounds a
+unconditional Theorem 5.3 at exponent `13/40`. Not a halt theorem: nothing here bounds a
 pressure or a share.
 -/
 
@@ -214,11 +214,11 @@ theorem pressure_conj_of_contagion {N₀ : ℕ} (hN : 2 ≤ N₀)
 
 /-- **Theorem 9.2's corollary with nothing else assumed.** The pressure hypothesis `P_θ(C)`
 at all large scales above a certified floor, with `C ≥ 5` and a loss `ε` such that
-`7/10 < e < e(C) - ε` for some `e` (a negative `ε` is a stronger hypothesis), gives that
+`27/40 < e < e(C) - ε` for some `e` (a negative `ε` is a stronger hypothesis), gives that
 every positive integer reaches `1`. -/
 theorem pressure_implies_conjecture {N₀ : ℕ} (hN : 2 ≤ N₀)
     (hfloor : ∀ m, 1 ≤ m → m ≤ N₀ → ReachesOne m) (C ε e : ℝ) (hC : 5 ≤ C)
-    (he : e < chernoffExponent C - ε) (he7 : 7 / 10 < e)
+    (he : e < chernoffExponent C - ε) (he7 : 27 / 40 < e)
     (hP : ∃ y₁ : ℕ, ∀ y, y₁ ≤ y → PressureBound N₀ C ε y) :
     ∀ n, 1 ≤ n → ReachesOne n :=
   Production.conjecture_of_tao_rate he7 (oddFailures_le_of_pressure hN hfloor C ε e hC he hP)
@@ -319,12 +319,12 @@ theorem noMomentum_conj_of_contagion {N₀ : ℕ} (hN : 2 ≤ N₀)
 /-- **Proposition 9.3's corollary with nothing else assumed.** The no-momentum hypothesis
 `M_{θ,q}(C)` at all large scales above a certified floor, at the re-centring tilt, with
 `C ≥ 5`, `0 < q < p_C` and a momentum `δ` such that
-`7/10 < e < C (D(p_C ‖ q) - c_x δ) / log 2` for some `e`, gives that every positive integer
+`27/40 < e < C (D(p_C ‖ q) - c_x δ) / log 2` for some `e`, gives that every positive integer
 reaches `1`. -/
 theorem noMomentum_implies_conjecture {N₀ : ℕ} (hN : 2 ≤ N₀)
     (hfloor : ∀ m, 1 ≤ m → m ≤ N₀ → ReachesOne m) (C q δ e : ℝ) (hC : 5 ≤ C)
     (hq0 : 0 < q) (hqp : q < pC C) (he : e < momentumExponent C q δ)
-    (he7 : 7 / 10 < e) (hM : ∃ y₁ : ℕ, ∀ y, y₁ ≤ y → NoMomentumBound N₀ C q δ y) :
+    (he7 : 27 / 40 < e) (hM : ∃ y₁ : ℕ, ∀ y, y₁ ≤ y → NoMomentumBound N₀ C q δ y) :
     ∀ n, 1 ≤ n → ReachesOne n :=
   Production.conjecture_of_tao_rate he7
     (oddFailures_le_of_noMomentum hN hfloor C q δ e hC hq0 hqp (by linarith) he hM)
