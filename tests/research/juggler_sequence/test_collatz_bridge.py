@@ -212,3 +212,22 @@ def test_the_free_step_lemma_holds_in_the_direction_it_is_proved() -> None:
         elif same:
             unexplained.append(d)
     assert unexplained == [5], f"the only non-free plateau should be d=5, got {unexplained}"
+
+
+def test_winklers_sandwich_holds_on_the_laboratory_counts() -> None:
+    """A Collatz-side import: Winkler's 2026 rational-Catalan bounds on A100982 hold on `M_d`.
+
+    `(1/n) C(m_n - 1, n - 1) <= M_{A020914(n)} <= (1/n) C(m_n, n - 1)` for every order checked,
+    with equality exactly at his record minima and maxima of `{n log2 3}` -- the one-sided
+    convergents. It confirms, from the Collatz literature, the Sturmian structure this laboratory
+    reads on the same words, and it pins `M` only to a factor `2.7`: nothing about the
+    `d^(-3/2)` or the prefactor follows from it.
+    """
+    from research.juggler_sequence.collatz_bridge import winkler_sandwich
+
+    w = winkler_sandwich(2213)
+    assert w["holds"] and w["lengths_are_a020914"] and w["nonzero_lengths"] == 2214
+    assert w["a100982_head"] == [1, 1, 2, 3, 7, 12, 30, 85, 173, 476, 961, 2652]
+    assert w["lower_equality"] == [1, 2, 7, 12, 53, 359, 665]
+    assert w["upper_equality"] == [1, 3, 5, 17, 29, 41, 94, 147, 200, 253, 306, 971, 1636]
+    assert w["lower_matches_record_minima"] and w["upper_matches_record_maxima"]

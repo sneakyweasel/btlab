@@ -923,7 +923,7 @@
       }
     },
     "Problems.Juggler.CollatzBridge": {
-      "declarations": 41,
+      "declarations": 42,
       "depends_on": [
         "Problems.Collatz.Shortcut",
         "Problems.Juggler.CycleCore",
@@ -932,11 +932,12 @@
       "file": "formal/Problems/Juggler/CollatzBridge.lean",
       "ledger": [
         "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-collatz-even-step-charge-identity",
         "J-survivor-count-is-a-collatz-residue-count"
       ],
       "papers": [],
       "trust": {
-        "kernel": 41
+        "kernel": 42
       }
     },
     "Problems.Juggler.CriticalCostKernel": {
@@ -3060,7 +3061,7 @@
   "totals": {
     "edges": 239,
     "edges_before_reduction": 1790,
-    "ledger_rows_placed": 409,
+    "ledger_rows_placed": 410,
     "nodes": 186
   }
 }

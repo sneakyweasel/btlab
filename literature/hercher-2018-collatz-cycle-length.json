@@ -1,0 +1,18 @@
+{
+  "id": "hercher-2018-collatz-cycle-length",
+  "title": "Über die Länge nicht-trivialer Collatz-Zyklen (I) and (II)",
+  "authors": ["Christian Hercher"],
+  "year": 2018,
+  "identifiers": {},
+  "url": {},
+  "problem_area": "collatz-cycles",
+  "relevant_concepts": [
+    "cycle length lower bound",
+    "continued fraction of log_2 3",
+    "verification floor",
+    "odd-step count K > 7.2e10"
+  ],
+  "project_relationship": "reproduced",
+  "status": "classical-source",
+  "notes": "Die Wurzel 6 (2018), 118-128 and Die Wurzel 7 (2018), 146-154, with S. Puchert, 'Anmerkung zum Artikel Über die Länge nicht-trivialer Collatz-Zyklen', Die Wurzel 11 (2018), 243-250. Not read here; cited through hercher-2023-collatz-m-cycles, whose introduction states that Eliahou's K > 10^7 odd steps 'was subsequently improved by Hercher and Puchert [4, 5, 9] to the current K > 7.2 * 10^10'. This is the period bound that docs/problems/juggler_collatz_finance_mirror.md reproduces from Paper A's finance inequality with x_min in place of n log n: smallest surviving shortcut length 114208327604 with 72057431991 odd steps at floors from 695 * 2^60 through 2^68. Distinct from the 2023 JIS paper, which carries Lemma 8 (the 2-adic run congruence), Theorem 27 (the 3/4 constant), Corollary 29 and the m <= 91 theorem; the laboratory writes 'Hercher 2018' for the period bound and 'Hercher 2023' for those."
+}

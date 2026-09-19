@@ -62,12 +62,17 @@ side at the historical floors coincide with the published period bounds?
 - Halbeisen–Hungerbühler 1997 — the next bound `102225496` would need
   verification to `2.1e14` — **KNOWN**
   (`halbeisen-hungerbuehler-1997-collatz-cycles`).
-- Hercher 2018 (with Puchert; "more than `7.2e10` odd numbers" at the floor
-  `695 * 2^60` of Hercher 2023 Definition 4) and Barina 2025 (`217976794617`
-  at `2^71`, from a sharper averaging) — **KNOWN**; no `literature/` entry yet
-  for either, both quoted through `hercher-2023-collatz-m-cycles` and the
-  Wikipedia Collatz article's cycle-length section. Project relationship:
-  **reproduced** for Hercher, **one fraction short** for Barina.
+- Two Hercher papers, and the cluster names them by year. **Hercher 2018**
+  (`hercher-2018-collatz-cycle-length`: Die Wurzel 6 and 7, with Puchert's
+  note in Die Wurzel 11) is the period bound, "more than `7.2e10` odd
+  numbers", as quoted in the 2023 paper's introduction — **KNOWN**, project
+  relationship **reproduced**. **Hercher 2023** (`hercher-2023-collatz-m-cycles`:
+  JIS 26, Article 23.3.5, read from the PDF) is the `m <= 91` theorem, Lemma 8
+  (the 2-adic run congruence), Theorem 27 (the `3/4` constant), Corollary 29,
+  and the floor `X_0 = 695 * 2^60` of its Definition 4 — **KNOWN**. Barina 2025
+  (`217976794617` at `2^71`, from a sharper averaging) — **KNOWN**; no
+  `literature/` entry yet, quoted through the Wikipedia Collatz article's
+  cycle-length section; project relationship **one fraction short**.
 - Simons–de Weger 2005 financing-versus-gap — **KNOWN**
   (`simons-de-weger-2005-collatz-m-cycles`); the laboratory's finance branch
   is its floor-power adaptation ([juggler_cycle_finance.md](juggler_cycle_finance.md)).
@@ -273,11 +278,29 @@ because they use the 2-adic information this bound ignores. Priority checked
 against Hercher 2023 only, which averages locally and does not take the
 rotation-orbit average; earlier works were not read for it.
 
+**The height-only bound is sharp, so composition with Hercher's averaging
+gains nothing** (`J-collatz-walk-charge-is-sharp`, **EXACT — HUMAN PROOF**
+for the argument, **COMPUTATIONALLY VERIFIED** for the ratios). The hug word
+with `p` odd letters has its odd steps exactly at the heights `frac(a alpha)`,
+so its odd-step sum of `2^(-h)` is `H(p)` by construction; Terras's bijection
+(`exists_residue_of_word` in `CollatzBridge.lean`) realises it in a residue
+class modulo `2^K`, and along a member `x_0` with `300` more bits than `K`
+the orbit stays above `x_0` and `x_0 * sum_{odd} 1/x_j / H(p) = 1` to twelve
+digits at `p = 12, 53, 300, 665`. Any bound that uses only
+`x_j + 1 >= 2^(h_j)(x_0 + 1)` and `x_j >= x_0` -- Hercher's Lemma 26 included
+-- is therefore capped at `H(p)`; the `3/4` of Theorem 27 is a weaker
+evaluation of the same slack, not a different source of it, and the
+rotation-orbit average is its sharp reading. Further gains need information
+the heights do not carry: the 2-adic residue tracking of Corollary 29, or the
+exact closure `(x_0 + 1)(2^K - 3^p) = evenCharge w`, which requires
+`2^K - 3^p` to divide the even-step charge of the word.
+
 ## Open questions
 
-Whether the rotation-orbit average composes with Hercher's Lemma 26 (per-run
-averaging) or with the residue tracking of Corollary 29; the three use
-different information and nothing here combines them.
+What the residue-class tracking of Hercher's Corollary 29 and Barina's
+averaging read as on the word side: the divisibility `2^K - 3^p |
+evenCharge w` is a condition on the word alone, and the laboratory's
+survivor machinery counts words by height, not by residue. Not attempted.
 
 Whether the odd-run bound `run(n) <= C log n` for `n -> floor(n^(3/2))` is
 provable; it would give the Juggler 1-cycle theorem through Baker.
@@ -290,9 +313,12 @@ exactly, the Juggler side agrees with Paper A's table, and Paper A's walk
 charge transfers as an effective bound that improves Hercher's Theorem 27
 constant by four percent without moving the period. Nothing is excluded, and
 the branch records what Collatz has that Juggler lacks in the form of a
-concrete unexcluded object. Best next question: does the rotation-orbit
-average compose with Hercher's per-run averaging (Lemma 26), or are the two
-reading the same slack?
+concrete unexcluded object. The composition question is answered: the
+height-only bound is sharp on the hug word, so Hercher's averaging and the
+rotation average read the same slack. Best next question: what does the
+divisibility `2^K - 3^p | evenCharge w` -- the exact cycle condition as a
+word problem -- look like on the survivor words, and is any of it visible
+to the transfer operator of `PaperBJumpTransposition`?
 
 ## Publication assessment
 

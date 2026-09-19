@@ -365,7 +365,8 @@
         "J-good-set-walsh-route-is-refuted",
         "J-good-set-wiener-norm-carries-the-rotation",
         "J-collatz-bridge-is-exact-at-the-word-level",
-        "J-survivor-count-is-a-collatz-residue-count"
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-winkler-sandwich-holds-on-the-laboratory-counts"
       ],
       "aliases": [],
       "nk_cluster": null
@@ -386,7 +387,8 @@
         "J-paper-a-finance-transposed-reproduces-eliahou-and-hercher",
         "J-cycle-gaps-are-mirror-images",
         "J-collatz-even-step-charge-identity",
-        "J-collatz-walk-charge-constant"
+        "J-collatz-walk-charge-constant",
+        "J-collatz-walk-charge-is-sharp"
       ],
       "aliases": [],
       "nk_cluster": "A realization law of FD type cannot give Juggler a Steiner theorem"

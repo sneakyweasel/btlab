@@ -275,6 +275,17 @@ theorem image_parityWord (d : ℕ) :
     have hmod := (parityWord_eq_iff x y d).mp hxy
     rwa [Nat.mod_eq_of_lt hx, Nat.mod_eq_of_lt hy] at hmod
 
+/-- **Every word is realised**, by some residue below `2 ^ d`: the surjective half of Terras's
+bijection, read off `image_parityWord`. This is what lets the hug word -- every odd step at
+height `frac(a * log2(3/2))` -- be placed at any large minimum, so that no bound using only
+`x_j + 1 >= 2 ^ h_j (x + 1)` can improve on `H(p)`. -/
+theorem exists_residue_of_word {w : List Branch} (hw : w.length = d) :
+    ∃ r, r < 2 ^ d ∧ parityWord r d = w := by
+  have hmem : w ∈ allWords d := mem_allWords.mpr hw
+  rw [← image_parityWord] at hmem
+  obtain ⟨r, hr, hrw⟩ := Finset.mem_image.mp hmem
+  exact ⟨r, Finset.mem_range.mp hr, hrw⟩
+
 /-! ## 5. The laboratory's word counts are Collatz residue counts -/
 
 /-- The residues modulo `2 ^ d` whose word has no contracting prefix: the classes in which the
