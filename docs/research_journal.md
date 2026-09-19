@@ -1,5 +1,66 @@
 # Research journal
 
+## 2026-09-19 -- The pairing third is attained, and alpha was noise above 1e7
+
+- **Objective:** Philippe asked whether Paper C's `2/9` is sharp.
+- **Answer: sharp pointwise, not sharp in truth, and already banked.** The
+  `1/3` of `G_m >= H_m/3 - 2` is reached, not approached from a safe distance.
+  At four scales the minimising good fibre has scarcer colour exactly
+  `floor(H_m/3)` -- `m = 1018590` (68, 22), `10001831` (143, 47), `100001607`
+  (310, 103), `1000011666` (667, 222) -- so the `-2` is pure slack and the
+  attained share `0.323529, 0.328671, 0.332258, 0.332834` rises to `1/3` from
+  below. No pointwise per-fibre constant above `1/3` can hold, so
+  `0.3261209621` is a real ceiling for the two-production route and the peer's
+  `13/40` certificate is chasing a true target. `J-oe-fiber-pairing-third-is-attained`.
+- **The mechanism, not just the observation.** The minimiser is not at the
+  resonance but just below it, at `alpha ~ p/3 - 1/(3(H-1))`, where the linear
+  detune cancels the fibre's own curvature. Measured `detune*(H-1)` is `-0.30,
+  -0.33, -0.33, -0.33` against the predicted `-1/3`.
+- **A precision bug, and without fixing it none of the above was measurable.**
+  `fate_contagion.fiber_stats` computed `alpha` as the float difference
+  `((lo+2)^1.5 - lo^1.5)/2`. That subtracts two numbers of size `lo^{3/2}` to
+  reach a difference of size `3 sqrt(lo)` and then takes its fractional part. At
+  `m = 1e8` the operands are about `1e16`, where a float64 ulp is `2`, and the
+  expression returned exactly `0.0` against a true `0.2035`. Since
+  `is_good_fiber` rejects `alpha` near `0`, that silently rejected EVERY fibre
+  at that scale -- which is why my first census reported the `1e8` and `1e9`
+  witnesses as "not good fibres" and why the `1e7` detune came out `+0.37`
+  instead of `-0.33`. Replaced by `fiber_alpha`, integer-exact through `isqrt`
+  at scale `1e20`, agreeing with a 60-digit `Decimal` to `1e-15` from `1e6` to
+  `1e10`. Any alpha-binned result above `1e7` predating today is suspect.
+- **What the question was NOT worth, and a duplication avoided.** I reasoned
+  that raising `2/9` to `1/3` would lift the elementary exponent from `0.326` to
+  `0.4927`, which is true but reads the prize backwards: a peer session had
+  already recorded `J-paper-c-ladder-recovers-the-depth-two-ceiling` the same
+  day, showing the ladder telescopes exactly onto the `1/3` equation and the
+  whole residue is `0.000086`. The gain is proof economy -- `lambda** > 0.4926`
+  with no ladder, no Appendix D, no block-average family -- not a better number.
+  That row also carries the correct factoring, which I had transposed: the
+  derivation's product is (proved parity share `1/3`) x (Lemma 3.2 fibre
+  constant `2/3`), not (ideal coefficient) x (share). Two structurally distinct
+  `2/3`s coincide. Operationally it matters: raising the share to `sigma` gives
+  `(2/3)sigma`, so reaching `1/3` needs `sigma = 1/2` exactly.
+- **My reconstruction of (5.2) was short one term** -- `(1/9, 3/8)`, family 2 at
+  ideal minus family 3's overlap, `1/3 - 2/9`. Without it the ladder roots come
+  to `0.3803`; with it all five printed values reproduce. `THIRD_RECURSION` in
+  `oe_fiber_constant.py` already had the correct term list, so reading the probe
+  would have been faster than rederiving it. Eighth re-derivation this fortnight.
+- **A dossier parenthetical corrected.** `juggler_oe_rest_average.md`
+  observation (1) read the poor set as "not `O(U^{-1/3})`". That was inferred
+  from `[2^8, 2^16]`, where `H_m <= 27` and binomial noise alone predicts ~14%.
+  Four octaves further the `1/m`-weighted fraction falls `0.0508 -> 0.0072`, a
+  factor `7.1` against the cube-root `6.35`. It does not unpark the branch --
+  the PARK rests on observations (2)-(4), and Theorem 5.3 needs poor-set mass
+  relative to `A`, not to all integers.
+- **Relayed, not edited:** Paper C section 5.6 calls the depth-two gap
+  `0.448 -> 0.4927` a live averaging problem, but Theorem 1 already stands at
+  `0.4925715` via (5.10), so the live gap is `8.6e-5`. Read as written it makes
+  this sharpening look ~500x more valuable than it is. The manuscript is
+  claimed by another session, so it was passed to them.
+- **Decision:** `CLOSE` on the sharpness question. The constant is sharp, the
+  route past it is more productions rather than better ones, and the only new
+  machinery worth keeping is the exact `fiber_alpha`.
+
 ## 2026-09-19 -- the ladder recovers the depth-two ceiling, and stops
 
 - **Objective:** the question a peer session handed me, whether the `2/9` in

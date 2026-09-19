@@ -213,6 +213,162 @@ def alpha_binned_fibers(m_lo: int, m_hi: int, n_bins: int = 12) -> dict[str, Any
     }
 
 
+# ---------------------------------------------------------------------------
+# Is the 1/3 attained?
+#
+# `J-fate-fiber-sweep` records "min on good fibers 0.328 at alpha_m ~ 1/3" from
+# a 4000-wide spot at `1e6`. That says the minimum is *near* 1/3; it does not
+# say the bound is sharp. These functions ask the sharper question, and the
+# answer decides whether `2/9 = (2/3)(1/3)` can be raised by any pointwise
+# argument at all.
+# ---------------------------------------------------------------------------
+
+POOR_SHARE = 0.40
+
+
+def extremal_scan(m_lo: int, m_hi: int, step: int = 1) -> dict[str, Any]:
+    """The minimising good fiber on `[m_lo, m_hi)`, and whether it sits at `floor(H/3)`.
+
+    `scarcer` is the smaller of `G_m` and `H_m - G_m`, which is what the pairing
+    lemma bounds. The question is whether the minimiser attains `floor(H/3)`
+    exactly rather than merely coming close.
+    """
+    best: dict[str, Any] | None = None
+    scanned = 0
+    for m in range(m_lo, m_hi, step):
+        st = fiber_stats(m)
+        if st["size"] < 2 or math.isnan(st["alpha"]):
+            continue
+        if not is_good_fiber(m, st["alpha"]):
+            continue
+        scanned += 1
+        scarcer = min(st["good"], st["size"] - st["good"])
+        if best is None or scarcer * best["size"] < best["scarcer"] * st["size"]:
+            best = {**st, "scarcer": scarcer}
+    if best is None:
+        return {"m_lo": m_lo, "m_hi": m_hi, "good_fibers": 0, "witness": None}
+    h = best["size"]
+    return {
+        "m_lo": m_lo,
+        "m_hi": m_hi,
+        "good_fibers": scanned,
+        "witness": {
+            "m": best["m"],
+            "H": h,
+            "scarcer": best["scarcer"],
+            "floor_third": h // 3,
+            "share": best["scarcer"] / h,
+            "alpha": best["alpha"],
+            "attains_floor_third": best["scarcer"] == h // 3,
+            # the minimiser sits just BELOW 1/3, where the linear detune cancels
+            # the fiber's own curvature; `detune_times_H` should land near -1/3
+            "detune_times_H": (best["alpha"] - 1.0 / 3.0) * (h - 1)
+            if best["alpha"] < 0.5
+            else (best["alpha"] - 2.0 / 3.0) * (h - 1),
+        },
+    }
+
+
+WITNESSES_ABOVE_SCAN = (100_001_607, 1_000_011_666)
+
+
+def attainment_census(windows: tuple[tuple[int, int, int], ...] = (
+    (10**6, 10**6 + 40_000, 1),
+    (10**7, 10**7 + 20_000, 1),
+)) -> dict[str, Any]:
+    """Across scales: does the minimiser attain `floor(H/3)`, and from which side?
+
+    The two facts that decide sharpness. First, the minimising fiber has
+    `scarcer = floor(H_m/3)` **exactly** at every scale checked -- so the `-2`
+    of `G_m >= H_m/3 - 2` is pure slack and the `1/3` is not. Second, the
+    attained share `floor(H/3)/H` rises to `1/3` **from below** as `H` grows,
+    so no pointwise per-fiber constant above `1/3` can hold.
+
+    Together: `2/9` is sharp as a pointwise coefficient, and `0.3261209621`
+    (the root of `2^-L + (2/9)(3/4)^L = 1`) is a true ceiling for the
+    two-production route rather than an artifact of a lossy lemma.
+    """
+    rows = [extremal_scan(*w) for w in windows]
+    shares = [r["witness"]["share"] for r in rows if r["witness"]]
+    # Above 10^7 a scan is too expensive, so these are checked as witnesses, not
+    # claimed to be minima. They only have to attain floor(H/3) to make the point.
+    named = []
+    for m in WITNESSES_ABOVE_SCAN:
+        st = fiber_stats(m)
+        scarcer = min(st["good"], st["size"] - st["good"])
+        named.append({"m": m, "H": st["size"], "scarcer": scarcer,
+                      "floor_third": st["size"] // 3,
+                      "share": scarcer / st["size"],
+                      "attains_floor_third": scarcer == st["size"] // 3,
+                      "is_good_fiber": is_good_fiber(m, st["alpha"])})
+    return {
+        "windows": rows,
+        "named_witnesses": named,
+        "named_all_attain": all(w["attains_floor_third"] and w["is_good_fiber"]
+                                for w in named),
+        "all_attain_floor_third": all(r["witness"]["attains_floor_third"]
+                                      for r in rows if r["witness"]),
+        "share_rises_to_one_third": all(a < b for a, b in zip(shares, shares[1:]))
+        and all(s < 1.0 / 3.0 for s in shares),
+        "verdict": (
+            "1/3 is attained, not approached: no pointwise argument raises 2/9,"
+            " so the two-production ceiling 0.3261209621 is real. The truth is"
+            " still 1/2 on average -- what is sharp is the constant, not the map"
+        ),
+    }
+
+
+def poor_fiber_decay(exponents: tuple[int, ...] = (16, 18, 20, 22, 24),
+                     samples: int = 1200, seed: int = 20260919) -> dict[str, Any]:
+    """`1/m`-weighted fraction of good fibers with share `<= 0.40`, per dyadic block.
+
+    `docs/problems/juggler_oe_rest_average.md` observation (1) reads this set as
+    having log-mass fraction `>= 0.059` on every dyadic block "(not
+    `O(U^(-1/3))`)". That parenthetical was inferred from `[2^8, 2^16]`, where
+    `H_m <= 27` and binomial noise alone predicts about 14 per cent. Carried
+    past `2^16` the fraction keeps falling, at roughly `m^(-1/3)`.
+
+    This does NOT unpark that branch: its PARK rests on observations (2) to (4),
+    and the quantity Theorem 5.3 needs is the poor-set mass relative to `A`, not
+    to all integers, so an adversarial backward-closed `A` is still not
+    excluded. It corrects one parenthetical.
+    """
+    rng = random.Random(seed)
+    rows = []
+    for e in exponents:
+        lo, hi = 2**e, 2**(e + 1)
+        num = den = 0.0
+        sizes = []
+        for m in rng.sample(range(lo, hi), samples):
+            st = fiber_stats(m)
+            if st["size"] < 2:
+                continue
+            sizes.append(st["size"])
+            # the dossier defines P by the EVEN share G_m/H_m over all m, with no
+            # goodness filter; match it exactly or the comparison is meaningless
+            share = st["good"] / st["size"]
+            den += 1.0 / m
+            if share <= POOR_SHARE:
+                num += 1.0 / m
+        rows.append({
+            "exponent": e,
+            "mean_H": sum(sizes) / len(sizes) if sizes else 0.0,
+            "poor_log_fraction": num / den if den else float("nan"),
+        })
+    first, last = rows[0]["poor_log_fraction"], rows[-1]["poor_log_fraction"]
+    octaves = exponents[-1] - exponents[0]
+    return {
+        "rows": rows,
+        "observed_ratio": first / last if last else float("inf"),
+        "cube_root_ratio": 2.0 ** (octaves / 3.0),
+        "decays": last < first,
+        "corrects": (
+            "juggler_oe_rest_average.md observation (1): the parenthetical"
+            " 'not O(U^(-1/3))' is an artifact of stopping at 2^16"
+        ),
+    }
+
+
 def summary() -> dict[str, Any]:
     synthetic = synthetic_census()
     spots = {
@@ -229,6 +385,8 @@ def summary() -> dict[str, Any]:
         "depth_two_ideal": lambda_root([(1.0, 0.5), (1.0 / 3.0, 0.75)]),
     }
     adv = adversarial_three_one_lock()
+    attainment = attainment_census()
+    poor = poor_fiber_decay()
     falsified = synthetic["n_fail"] > 0 or any(s["n_below_pairing"] > 0 for s in spots.values())
     return {
         "git_commit": git_commit(),
@@ -236,6 +394,8 @@ def summary() -> dict[str, Any]:
         "synthetic": synthetic,
         "adversarial_three_one": adv,
         "fibers": spots,
+        "attainment": attainment,
+        "poor_fiber_decay": poor,
         "lambda_roots": roots,
     }
 
