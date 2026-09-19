@@ -1,0 +1,398 @@
+{
+  "answer": "Paper A's finance transposed by x_min <-> n log n reproduces Eliahou and Hercher",
+  "identities": {
+    "lambda_collatz": "K log 2 - floor(K x) log 3 = log 3 * frac(K x)",
+    "lambda_juggler": "ceil(L x) log 3 - L log 2 = log 3 * (1 - frac(L x))",
+    "mirror": "Lambda_J(L) = log 3 - Lambda_C(L)",
+    "mirror_residual": 0.0,
+    "cycle_dictionary": "x_min <-> n log n (not the walk-level log x <-> log log n)"
+  },
+  "convergent_sides": [
+    {
+      "p": 0,
+      "q": 1,
+      "frac_q_x": 0.6309297535714574,
+      "margin": 0.3690702464285426,
+      "method": "integers",
+      "side": "collatz"
+    },
+    {
+      "p": 1,
+      "q": 1,
+      "frac_q_x": 0.6309297535714574,
+      "margin": 0.3690702464285426,
+      "method": "integers",
+      "side": "juggler"
+    },
+    {
+      "p": 1,
+      "q": 2,
+      "frac_q_x": 0.2618595071429149,
+      "margin": 0.2618595071429149,
+      "method": "integers",
+      "side": "collatz"
+    },
+    {
+      "p": 2,
+      "q": 3,
+      "frac_q_x": 0.8927892607143723,
+      "margin": 0.10721073928562769,
+      "method": "integers",
+      "side": "juggler"
+    },
+    {
+      "p": 5,
+      "q": 8,
+      "frac_q_x": 0.0474380285716595,
+      "margin": 0.0474380285716595,
+      "method": "integers",
+      "side": "collatz"
+    },
+    {
+      "p": 12,
+      "q": 19,
+      "frac_q_x": 0.9876653178576913,
+      "margin": 0.012334682142308696,
+      "method": "integers",
+      "side": "juggler"
+    },
+    {
+      "p": 41,
+      "q": 65,
+      "frac_q_x": 0.01043398214473341,
+      "margin": 0.01043398214473341,
+      "method": "integers",
+      "side": "collatz"
+    },
+    {
+      "p": 53,
+      "q": 84,
+      "frac_q_x": 0.9980993000024247,
+      "margin": 0.0019006999975752837,
+      "method": "integers",
+      "side": "juggler"
+    },
+    {
+      "p": 306,
+      "q": 485,
+      "frac_q_x": 0.0009304821568569933,
+      "margin": 0.0009304821568569933,
+      "method": "integers",
+      "side": "collatz"
+    },
+    {
+      "p": 665,
+      "q": 1054,
+      "frac_q_x": 0.9999602643161387,
+      "margin": 3.97356838612971e-05,
+      "method": "integers",
+      "side": "juggler"
+    },
+    {
+      "p": 15601,
+      "q": 24727,
+      "frac_q_x": 1.6561428047160006e-05,
+      "margin": 1.6561428047160006e-05,
+      "method": "integers",
+      "side": "collatz"
+    },
+    {
+      "p": 31867,
+      "q": 50508,
+      "frac_q_x": 0.9999933871722331,
+      "margin": 6.6128277669770844e-06,
+      "method": "integers",
+      "side": "juggler"
+    },
+    {
+      "p": 79335,
+      "q": 125743,
+      "frac_q_x": 3.335772513205838e-06,
+      "margin": 3.335772513205838e-06,
+      "method": "integers",
+      "side": "collatz"
+    },
+    {
+      "p": 111202,
+      "q": 176251,
+      "frac_q_x": 0.9999967229447462,
+      "margin": 3.2770552537712465e-06,
+      "method": "integers",
+      "side": "juggler"
+    },
+    {
+      "p": 190537,
+      "q": 301994,
+      "frac_q_x": 5.871725943459137e-08,
+      "margin": 5.871725943459137e-08,
+      "method": "integers",
+      "side": "collatz"
+    },
+    {
+      "p": 10590737,
+      "q": 16785921,
+      "frac_q_x": 0.9999999523940152,
+      "margin": 4.760598486872128e-08,
+      "method": "integers",
+      "side": "juggler"
+    },
+    {
+      "p": 10781274,
+      "q": 17087915,
+      "frac_q_x": 1.1111274565870084e-08,
+      "margin": 1.1111274565870084e-08,
+      "method": "integers",
+      "side": "collatz"
+    },
+    {
+      "p": 53715833,
+      "q": 85137581,
+      "frac_q_x": 0.9999999968391134,
+      "margin": 3.160886605240947e-09,
+      "method": "frac at 80 digits",
+      "side": "juggler"
+    },
+    {
+      "p": 171928773,
+      "q": 272500658,
+      "frac_q_x": 1.6286147501472436e-09,
+      "margin": 1.6286147501472436e-09,
+      "method": "frac at 80 digits",
+      "side": "collatz"
+    },
+    {
+      "p": 225644606,
+      "q": 357638239,
+      "frac_q_x": 0.9999999984677281,
+      "margin": 1.5322718550937034e-09,
+      "method": "frac at 80 digits",
+      "side": "juggler"
+    },
+    {
+      "p": 397573379,
+      "q": 630138897,
+      "frac_q_x": 9.63428950535402e-11,
+      "margin": 9.63428950535402e-11,
+      "method": "frac at 80 digits",
+      "side": "collatz"
+    },
+    {
+      "p": 6189245291,
+      "q": 9809721694,
+      "frac_q_x": 0.9999999999128716,
+      "margin": 8.712842929060029e-11,
+      "method": "frac at 80 digits",
+      "side": "juggler"
+    }
+  ],
+  "collatz": {
+    "floor_2_40": {
+      "smallest": 17087915,
+      "count_below": 400000000,
+      "n_survivors": 13869,
+      "first": [
+        {
+          "K": 17087915,
+          "p": 10781274,
+          "frac": 1.1111274565870084e-08,
+          "x_min_le": 294401824310229.8
+        },
+        {
+          "K": 17389909,
+          "p": 10971811,
+          "frac": 6.982853400046145e-08,
+          "x_min_le": 47673790770927.68
+        },
+        {
+          "K": 17691903,
+          "p": 11162348,
+          "frac": 1.2854579343505283e-07,
+          "x_min_le": 26347049144508.76
+        },
+        {
+          "K": 17993897,
+          "p": 11352885,
+          "frac": 1.8726305286964418e-07,
+          "x_min_le": 18394518840433.73
+        },
+        {
+          "K": 18295891,
+          "p": 11543422,
+          "frac": 2.4598031230423555e-07,
+          "x_min_le": 14238640233005.746
+        },
+        {
+          "K": 18597885,
+          "p": 11733959,
+          "frac": 3.046975717388269e-07,
+          "x_min_le": 11684492817450.744
+        },
+        {
+          "K": 18899879,
+          "p": 11924496,
+          "frac": 3.634148311734183e-07,
+          "x_min_le": 9955697168355.535
+        },
+        {
+          "K": 19201873,
+          "p": 12115033,
+          "frac": 4.2213209060800967e-07,
+          "x_min_le": 8707841703130.772
+        }
+      ],
+      "all_in_eliahou_lattice": true,
+      "pure_301994_multiples_excluded": true,
+      "brute_force_agrees_below": 30000000,
+      "brute_force_agrees": true
+    },
+    "floor_695_2_60": {
+      "smallest": 114208327604,
+      "odd": 72057431991,
+      "first": [
+        {
+          "K": 114208327604,
+          "p": 72057431991,
+          "frac": 5.016228338798793e-12,
+          "x_min_le": 4.358487209795431e+21
+        },
+        {
+          "K": 124648188195,
+          "p": 78644250661,
+          "frac": 1.4230694101738702e-11,
+          "x_min_le": 1.6767765364204204e+21
+        },
+        {
+          "K": 135088048786,
+          "p": 85231069331,
+          "frac": 2.344515986467861e-11,
+          "x_min_le": 1.1030089377396714e+21
+        },
+        {
+          "K": 145527909377,
+          "p": 91817888001,
+          "frac": 3.265962562761852e-11,
+          "x_min_le": 8.530026677532172e+20
+        }
+      ]
+    },
+    "floor_2_68": {
+      "smallest": 114208327604,
+      "odd": 72057431991,
+      "first": [
+        {
+          "K": 114208327604,
+          "p": 72057431991,
+          "frac": 5.016228338798793e-12,
+          "x_min_le": 4.358487209795431e+21
+        },
+        {
+          "K": 124648188195,
+          "p": 78644250661,
+          "frac": 1.4230694101738702e-11,
+          "x_min_le": 1.6767765364204204e+21
+        },
+        {
+          "K": 135088048786,
+          "p": 85231069331,
+          "frac": 2.344515986467861e-11,
+          "x_min_le": 1.1030089377396714e+21
+        },
+        {
+          "K": 145527909377,
+          "p": 91817888001,
+          "frac": 3.265962562761852e-11,
+          "x_min_le": 8.530026677532172e+20
+        }
+      ]
+    },
+    "floor_2_71": {
+      "first_two": [
+        114208327604,
+        217976794617
+      ],
+      "first": [
+        {
+          "K": 114208327604,
+          "p": 72057431991,
+          "frac": 5.016228338798793e-12,
+          "x_min_le": 4.358487209795431e+21
+        },
+        {
+          "K": 217976794617,
+          "p": 137528045312,
+          "frac": 8.179909146576784e-13,
+          "x_min_le": 5.101255582880715e+22
+        },
+        {
+          "K": 228416655208,
+          "p": 144114863982,
+          "frac": 1.0032456677597587e-11,
+          "x_min_le": 4.358487209795431e+21
+        },
+        {
+          "K": 238856515799,
+          "p": 150701682652,
+          "frac": 1.9246922440537497e-11,
+          "x_min_le": 2.375697266100841e+21
+        }
+      ]
+    },
+    "eliahou_generators": [
+      301994,
+      17087915,
+      85137581
+    ],
+    "hercher": [
+      114208327604,
+      72057431991
+    ],
+    "barina": 217976794617
+  },
+  "juggler": {
+    "floor_1e6": {
+      "smallest": 1054,
+      "first": [
+        1054,
+        2108,
+        3162,
+        4216,
+        5270,
+        6324,
+        7378,
+        8432,
+        9486,
+        10540,
+        11594,
+        12648
+      ],
+      "paper_a_certified_smallest": 25781
+    },
+    "floor_3_5e8": {
+      "smallest": 50508,
+      "first": [
+        50508,
+        101016,
+        151524,
+        176251,
+        202032,
+        226759,
+        252540,
+        277267,
+        303048,
+        327775,
+        352502,
+        353556
+      ],
+      "paper_a_certified_smallest": 176251
+    },
+    "one_cycle_length": 9809721694,
+    "one_cycle_odd": 6189245291,
+    "one_cycle_nlogn_bound": 1.0248312245842051e+20,
+    "floor_nlogn_3_5e8": 6885705299.356707
+  },
+  "decision": {
+    "classification": "FINANCE_MIRROR_REPRODUCES_ELIAHOU_HERCHER",
+    "reason": "the Collatz transposition of Theorem 4.4 reproduces Eliahou's period bound and lattice at 2^40 and Hercher's bound at 2^68 from the same inequality, walk and brute force agreeing; the Juggler side reproduces the laboratory's own survivors"
+  },
+  "anti_overclaim": "No cycle of any length is excluded or claimed in either problem. The Collatz numbers are re-derived from a classical inequality, not new; Barina's 2025 bound needs a sharper averaging than this inequality. The Juggler 1-cycle length 9809721694 survives finance at N_0 = 3.5e8, which records that no Juggler analogue of Steiner's theorem exists, not that a cycle does."
+}

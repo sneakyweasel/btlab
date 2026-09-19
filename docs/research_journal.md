@@ -1,5 +1,102 @@
 # Research journal
 
+## 2026-09-19 -- the bridge is exact in Lean, and Paper A's finance is Eliahou's
+
+- **Objective:** Philippe asked for a review of the three bridge commits and
+  the Lean, for what the bridge does to no-cycle, and whether it deserves a
+  paper; then, by `/loop`, for as much Lean and computation as it takes to
+  make the bridge well defined and to say what each problem gives the other.
+- **The bridge is now a Lean file, not a slogan.**
+  `formal/Problems/Juggler/CollatzBridge.lean` (436 lines, no `sorry`,
+  standard axioms): Collatz is word-affine with the correction pointing up,
+  `2^d C^d(x) = 3^o x + wordConst w`; Juggler is exponent-affine with the
+  correction pointing down; the sign flip on cycles is proved on both sides;
+  Terras's bijection is a `Finset` identity; and `undecidedResidues_card`
+  makes Paper B's `N_d` the number of residue classes modulo `2^d` with no
+  contracting prefix, kernel-checked against OEIS A076227's own residues
+  modulo 64 and its terms `3 .. 64`. That upgrades the count half of
+  `J-juggler-is-collatz-one-exponential-up` and
+  `J-paper-b-survivors-are-oeis-a076227` from eight sampled lifts per class
+  to a theorem. Rows `J-collatz-bridge-is-exact-at-the-word-level`,
+  `J-survivor-count-is-a-collatz-residue-count`. The dossier's Formalization
+  paragraph, which said nothing needed formalising, is replaced.
+- **Paper A's finance, transposed, is Eliahou's.** With `x_min` in place of
+  `n log n` -- the cycle-level dictionary, not the walk-level one -- the same
+  inequality reproduces Eliahou 1993 exactly at `2^40` (`17087915`, the
+  lattice `301994a + 17087915b + 85137581c` with `b >= 1`, and why `301994`
+  alone dies: its bound is `9.85e11`, just under `2^40`) and Hercher 2018
+  exactly at `2^68` (`114208327604`, `72057431991` odd). Barina's 2025
+  `217976794617` is the *second* survivor at `2^71`; his sharper averaging is
+  not in this inequality. Enumerated exactly by the three-gap walk, cross-
+  checked by brute force. The inequality that does this is the weaker of the
+  two Juggler forms: Paper A's certified comparison gives `25781` and
+  `176251` where constant 1 gives `1054` and `50508`. New branch
+  [collatz_finance_mirror](problems/juggler_collatz_finance_mirror.md), rows
+  `J-paper-a-finance-transposed-reproduces-eliahou-and-hercher`,
+  `J-cycle-gaps-are-mirror-images` (`Lambda_J(L) = log 3 - Lambda_C(L)`; the
+  convergents alternate sides; Paper D's fans and Eliahou's lattice are the
+  two sides of one rotation, and each Juggler fan closes at the next Collatz
+  bound, `176251 + 56 * 301994 = 17087915`).
+- **What the bridge does to no-cycle: it names the missing piece.** The two
+  finance layers are at parity under the dictionary. What Collatz has beyond
+  finance is not a sharper inequality but the 2-adic run congruence -- `k`
+  odd steps force `x = -1 mod 2^k`, so `x >= 2^k - 1` (Hercher's Lemma 8) --
+  which bounds cycle minima below in terms of run lengths and, with Baker,
+  excludes `m`-cycles for bounded `m` (Steiner 1977; Hercher 2023, `m <= 91`).
+  That is exactly the missing hypothesis of `J-cyclemin-closure-threshold`.
+  Its Juggler twin is a *pointwise* bound on odd-run lengths,
+  `run(n) <= C log n`: the odd-tower fragment, an open digit problem. It is
+  not an equidistribution problem -- termination wants an average along the
+  orbit, no-cycle wants an extreme value -- and that separates the two
+  walls the 18 September entry had put together. Numerically: the 1-cycle
+  length `9809721694` survives Juggler finance at `N_0 = 3.5e8` by ten orders
+  of magnitude. Juggler has no Steiner theorem; the `m`-cycle problem is open
+  for every `m`, including `m = 1`, and Theorem 3.31 (`e >= 8`) is a census
+  of even letters, not an `m`-cycle result. Recorded as negative knowledge:
+  a realization law of FD type cannot reach Collatz's cycle starting line.
+- **Nothing flows to Collatz cycles from finance.** One candidate remains
+  and was not computed: Paper A's walk charge transfers with zero transport
+  deficit (the `+1` only pushes up), and a reader's estimate puts the hug-word
+  constant at `0.160 K/x_0` against Hercher's Theorem 27 `0.25 K/X_0`. That is
+  the best next question of the new branch, not a result.
+- **Priority, read rather than assumed.** The walk identity itself has a
+  precedent: Prasad-Prasad, January 2025, Section 2, state the log-scale
+  counterpart of Terras's approximation and the same Terras-versus-conjecture
+  partition; added to the bridge dossier. The word-level combinatorics is
+  KNOWN as formulas: the recursion is Zarubin 2019 on A076227, the empty
+  window is Noe 2006 on A100982 (Garner 1981 for the coefficient stopping
+  time), the profile is Winkler's 2017 triangle. The rate is Lagarias 1985
+  Theorem D and the `d^(-3/2)` is Hikawa's Conjecture 7.1 (peer session,
+  same day). Not found anywhere: the oscillating prefactor, the jump spectrum,
+  `a_1`. The framework in which they would be proved exists: Bevan-Conde,
+  "Introducing irrational enumeration" (arXiv:2412.14682), where a bounded
+  prefactor with dense discontinuities at `l beta mod 1` is the generic shape.
+- **Two record corrections noted, not yet applied:** the bridge rows anchor
+  the FD calibration to `delta = 1/96`, which is the withdrawn 4 September
+  target; the current Paper B proves `1/24` at four steps and `1/128` at five,
+  and 'FD with power saving delta' is Conjecture K, not FD as recorded (per
+  class, no rate). And `juggler_cycle_finance.md`'s 'O(1/x) versus O(1)'
+  sentence compares a relative with an absolute size. Both are in text other
+  sessions own today; recorded in `J-cycle-gaps-are-mirror-images`.
+- **Does the bridge deserve a paper? No.** It moves no bound in either
+  problem; the dossier's own verdict stands. What could be written is a
+  Collatz-facing note on the prefactor of A076227 -- opening as a refinement
+  of Lagarias's Theorem D and Hikawa's conjecture, with the kernel-checked
+  recursion, empty window, transposition and residue-count theorems as its
+  spine -- and only once `MeanderShape` is proved rather than measured. The
+  bridge itself is a section of the Paper B revision and a paragraph in Paper
+  A's Section 6 (the finance mirror). No fourth review object.
+- **Process.** The review workflow's adversarial and judge phases were cut by
+  a session limit after the six readers finished; only one skeptic vote ran
+  (it refuted 'the dictionary is new' -- the transposition is recorded in
+  five places, the explicit name `x_min <-> n log n` was not). The Lean
+  module was swept into a peer's commit `4c078205` by `git add -A` before its
+  record existed; the peer built it and recorded the sweep. This entry and
+  the rows are that record.
+- **Decision:** `PROMOTE` the finance mirror; the bridge branch keeps
+  `PROMOTE`. Best next question: does the walk charge transfer to Collatz,
+  and what constant does it give against Hercher's Theorem 27?
+
 ## 2026-09-19 -- I committed a peer's Lean module without reading or building it
 
 - **What happened.** `git add -A` in commit `4c078205` swept up three files I
