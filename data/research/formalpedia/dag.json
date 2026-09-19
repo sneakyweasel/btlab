@@ -1568,7 +1568,7 @@
       }
     },
     "Problems.Juggler.FateContagionBound": {
-      "declarations": 21,
+      "declarations": 24,
       "depends_on": [
         "Problems.Juggler.FateCylinderCorollary",
         "Problems.Juggler.FateRecursion",
@@ -1577,13 +1577,14 @@
       "file": "formal/Problems/Juggler/FateContagionBound.lean",
       "ledger": [
         "J-fate-contagion-conditional",
-        "J-fate-tao-equivalence"
+        "J-fate-tao-equivalence",
+        "J-paper-c-ladder-recovers-the-depth-two-ceiling"
       ],
       "papers": [
         "Paper C"
       ],
       "trust": {
-        "kernel": 21
+        "kernel": 24
       }
     },
     "Problems.Juggler.FateCylinderCorollary": {
@@ -3081,7 +3082,7 @@
   "totals": {
     "edges": 239,
     "edges_before_reduction": 1788,
-    "ledger_rows_placed": 415,
+    "ledger_rows_placed": 416,
     "nodes": 187
   }
 }

@@ -89,6 +89,43 @@ theorem productionCoeff_ge (i : Fin 8) : 1 / 2187 ≤ productionCoeff i := by
 theorem productionCoeff_nonneg (i : Fin 8) : 0 ≤ productionCoeff i :=
   le_trans (by norm_num) (productionCoeff_ge i)
 
+/-! ### The ladder constants are the paper's, not eight arbitrary numerals
+
+The five ladder entries are indexed by `k = 2, …, 6`, the word `V_k = (OE)^(k-1) OEE` of
+`FateProductionWords`, at `Fin 8` position `k + 1`. Paper C fixes them by two formulas rather
+than by listing: the contraction factor is `ρ_k = (1/2)(3/4)^k`, and the coefficient is the
+*increment* `c_k - (2/9) c_{k-1}` with `c_k = 3^{-k}` the word's own logarithmic coefficient --
+inclusion-exclusion removing the `V_k`-starts the depth-two `OE` family has already counted.
+That increment collapses to `3^{-(k+1)}`, which is (5.9).
+
+These two theorems tie the enumerated definitions above to those formulas, so a numeral cannot
+drift from the derivation without the build noticing. -/
+
+/-- **The ladder rates are `ρ_k = (1/2)(3/4)^k`**, `k = 2, …, 6`. -/
+theorem productionRate_ladder :
+    productionRate 3 = 1 / 2 * (3 / 4) ^ 2 ∧ productionRate 4 = 1 / 2 * (3 / 4) ^ 3 ∧
+      productionRate 5 = 1 / 2 * (3 / 4) ^ 4 ∧ productionRate 6 = 1 / 2 * (3 / 4) ^ 5 ∧
+      productionRate 7 = 1 / 2 * (3 / 4) ^ 6 := by
+  norm_num [productionRate]
+
+/-- **The ladder coefficients are the increments of (5.9)**: `c_k - (2/9) c_{k-1} = 3^{-(k+1)}`
+with `c_k = 3^{-k}`. The `2/9` is the depth-two `OE` coefficient, so each ladder term is what
+the word contributes *beyond* what that family already counts. -/
+theorem productionCoeff_ladder :
+    productionCoeff 3 = (3 : ℝ) ^ (-2 : ℤ) - 2 / 9 * (3 : ℝ) ^ (-1 : ℤ) ∧
+      productionCoeff 4 = (3 : ℝ) ^ (-3 : ℤ) - 2 / 9 * (3 : ℝ) ^ (-2 : ℤ) ∧
+      productionCoeff 5 = (3 : ℝ) ^ (-4 : ℤ) - 2 / 9 * (3 : ℝ) ^ (-3 : ℤ) ∧
+      productionCoeff 6 = (3 : ℝ) ^ (-5 : ℤ) - 2 / 9 * (3 : ℝ) ^ (-4 : ℤ) ∧
+      productionCoeff 7 = (3 : ℝ) ^ (-6 : ℤ) - 2 / 9 * (3 : ℝ) ^ (-5 : ℤ) := by
+  norm_num [productionCoeff]
+
+/-- The same coefficients in closed form, `3^{-(k+1)}`: the increment collapses. -/
+theorem productionCoeff_ladder_closed :
+    productionCoeff 3 = (3 : ℝ) ^ (-3 : ℤ) ∧ productionCoeff 4 = (3 : ℝ) ^ (-4 : ℤ) ∧
+      productionCoeff 5 = (3 : ℝ) ^ (-5 : ℤ) ∧ productionCoeff 6 = (3 : ℝ) ^ (-6 : ℤ) ∧
+      productionCoeff 7 = (3 : ℝ) ^ (-7 : ℤ) := by
+  norm_num [productionCoeff]
+
 /-- The paper's `ζ(λ) = Σ_i c_i e_i^λ - 1`; Theorem 5.3 holds for every `λ` with `ζ(λ) > 0`. -/
 noncomputable def zeta (lam : ℝ) : ℝ :=
   ∑ i, productionCoeff i * productionRate i ^ lam - 1
