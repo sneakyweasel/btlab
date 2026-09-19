@@ -1,5 +1,127 @@
 # Research journal
 
+## 2026-09-19 -- the averaging question is answered, and not by averaging
+
+- **Objective:** Philippe said unpark `juggler_oe_rest_average` and prove the
+  polynomial decay. Done, and the proof turned out not to need the theorem the
+  branch had been asking for.
+- **The branch was asking for the wrong thing.** The PARK recorded the
+  obstruction as a dynamical averaging statement: show that the `E+OE` orbit of
+  the low-share set `P` has even-share `1/2 - o(1)`, so that a planted `A`
+  drowns. Nobody needs that. `P` has **finite total logarithmic mass**, so
+  there is nothing to plant. The quantity the PARK said could not be
+  controlled -- poor-set mass *relative to `A`* -- becomes irrelevant rather
+  than estimated, and the conclusion holds for every set of integers whatever,
+  with no backward closure and no structure of any kind.
+- **The whole proof is one inequality.** For every convergent denominator `q`
+  of `alpha_m = {(3/2) m^(2/3)}`,
+  `|G_m/H_m - 1/2| <= 4||q alpha_m|| + 5/(2q) + 3.77 q/H_m`.
+  Cut the fiber into blocks of `q` consecutive members. By Lemma 4.2's step
+  interval `[A_m, B_m]` each block is a translate of the `1/q` grid perturbed
+  by at most `||q alpha_m|| + q eta_m`; a `1/q` grid splits a half-circle
+  within `1/2` of evenly, and at most `2 eps q + 1` of its points sit within
+  `eps` of a given point. `J-oe-fiber-block-lock`.
+- **It needs less than Lemma 4.2 does.** No monotone steps, no
+  `alpha_m <= 1/2`, no case split, no goodness hypothesis. It holds on every
+  fiber, and it is one fiber at a time with no averaging over `m`. The
+  constant `3.77` is `1 + 4 sup(eta_m H_m)`, the supremum being `0.6903` at
+  `m = 10^6` from Lemmas 3.2 and 4.2.
+- **Then the counting is already in the paper.** Taking the contrapositive at
+  the largest convergent denominator below `eta_0 H_m/16` gives
+  `q <= 3.77/eta_0` with `||q alpha_m|| <= 32/(eta_0 H_m)`, and Lemma 4.3 is
+  exactly the count of such `m` -- for `q <= 2`. Replacing its two goodness
+  arcs by the `Q(Q+1)/2` arcs of total length `2 Q delta` is the same proof
+  with a union bound, and `FiberParity.arc_count_le` is already the per-window
+  step in Lean. Result: `#(P_eta0 cap (u,2u]) <= 420 u^(2/3)/eta_0^2` and the
+  tail `sum 1/m <= 2040 U^(-1/3)/eta_0^2`. `J-oe-poor-fiber-tail`.
+- **No exponential sum appears anywhere**, which was the reopening budget's
+  stop criterion -- if the lock lemma had needed Erdos-Turan the whole thing
+  would have been a wash, since Proposition 4.4 would be back on the critical
+  path. It is continued fractions and counting.
+- **What it buys, and it is not the number.** Taking the `OE` family over all
+  of `A cap (x^(3/8), x^(3/4)]` rather than over the rest -- legitimate
+  because the `E`-images are even and the `OE`-images odd, which is the only
+  disjointness the section ever uses -- the recursion becomes a
+  **two-production** one with coefficient `(2/3)(1/2 - eta_0)`, reaching every
+  `lambda` below `0.4926580`. That is above the published
+  `lambda** = 0.4925715` by `8.6e-5`, which is nothing. What leaves the
+  critical path is the point: **Proposition 4.4 and its two exponential-sum
+  bounds** -- Vaaler, the second-derivative test, Kusmin-Landau, Paper C's
+  largest unformalized gap -- **the six-word ladder and Appendix D**, and
+  **the statements of Lemmas 4.1, 4.1' and 4.2** as well, since a fiber
+  that would have been called bad is now just a member of `P_eta0`. One
+  step of Lemma 4.2's *proof* stays: the step interval `[A_m, B_m]`, which
+  is where `alpha_m` and `eta_m` come from. The sweep lemmas themselves are
+  not used anywhere in the new chain.
+  `J-oe-averaged-two-productions-reach-the-depth-two-ceiling`.
+- **Priced against this morning's two rows, which were right and are
+  unaffected.** `J-oe-fiber-pairing-third-is-attained` says the pointwise
+  `2/9` cannot be raised; still true, and this does not raise it -- it stops
+  using it. `J-paper-c-ladder-recovers-the-depth-two-ceiling` says the ladder
+  already banked all but `8.6e-5`; still true, and that is exactly the margin
+  recovered here. Both said the prize was proof economy rather than a better
+  number. It was.
+- **Falsifiers, run rather than asserted.** The master inequality at every
+  convergent denominator `q <= H_m` over four windows at `10^6` to `10^9`:
+  least slack `0.233`, and the measured `eta_m H_m` peaks at `0.6834` against
+  the `0.6903` the constant rests on. Every fiber with share `<= 0.40` locks,
+  at `q in {1,3,5}` at `10^6`, `{1,3}` at `10^7`, `{1}` at `10^8`, with
+  resonance `||q alpha_m|| H_m <= 1.99` -- `q = 1` the extreme family of
+  Corollary 4.6, `q = 3` this morning's attaining witnesses. The arc count at
+  nine `(u,Q,delta)` combinations, ratio at most `0.882`, tight at `Q = 1`
+  where the leading term says it should be.
+- **A third float-seed trap, found and deliberately not fixed.**
+  `fate_contagion.icbrt` seeds with `round(x ** (1.0/3.0))`, whose absolute
+  error is `1e-16 x^(1/3)`: harmless for `m^4` at every `m` this laboratory
+  reaches, and fatal for the `m^2 S^3` an exact `alpha_star` needs, where the
+  correction loop would run `1e12` times. I hardened it with integer Newton,
+  then reverted that. **Paper C's release manifest pins the sha256 of
+  `fate_contagion.py`, and the manuscript's own text publishes the digest**,
+  so a one-line robustness fix demands a Pandoc/XeLaTeX rebuild of a paper
+  another session holds -- and this container has neither binary. The exact
+  cube root lives in the probe instead, with the trap documented at both ends.
+  Recorded as a finding: a pinned input is not a place to keep a latent
+  numerical trap, and the fix belongs to the next Paper C rebuild. Third entry
+  today in the same family, after the two derivative cancellations.
+- **The gate caught it, and I checked the baseline before believing it.**
+  `tests/integration/test_paper_release_gates.py` went red on Paper C the
+  moment I touched that file. Reverting only that file turned it green, which
+  is how I know the failure was mine. The same run shows
+  `juggler_review/zenodo_paper_b/SHA256SUMS.txt` stale **on clean `HEAD`**,
+  before any edit of mine. Diagnosed rather than just reported: exactly one
+  line differs, `ZENODO_FIELDS.txt`, recorded
+  `ae27149e...b85281` against an actual `172dd915...ce0f48`; every other kit
+  digest matches. It dates from this morning's Paper B rebuild (`dad3918`),
+  where the kit was regenerated after the manuscript edit. Left alone --
+  repairing it means rewriting that session's Zenodo archives -- and
+  `tools/build_paper_b_kit.py --archive` is the one command that does it.
+- **`alpha_star` is not `fiber_alpha`, and the difference is the window.**
+  `fiber_alpha(lo)` is the fiber's own first step; `alpha_star(m)` is the
+  lower endpoint `(3/2) m^(2/3)` of the interval containing every step. They
+  differ by up to `eta_m <= 1.02 m^(-1/3)`, the same order as the resonance
+  window the lock lemma measures, so they are not interchangeable. Lemmas 4.2,
+  4.3 and 4.5 are all stated in `alpha_star`. Noted rather than chased:
+  `is_good_fiber` is currently called with `fiber_alpha`, whose margin against
+  the `2 m^(-1/3)` half-integer condition is only a factor of two.
+- **Not formalized, and the order is named**: arc count first (a union over
+  `q <= Q` in an existing Lean proof), then the block lock, which is the only
+  new Lean work, then the tail as arithmetic. Nothing needs `native_decide`.
+  This is the item that would let Theorem 5.3 be Lean end to end above
+  `0.4926`, which it has never been.
+- **What does not move.** The supremum `0.4926580` is approached and not
+  attained, `eta_0` being fixed before `x` -- the same shape the published
+  statement has. `u_0(eta_0) = (1950/eta_0^2)^3` is astronomical at the
+  `eta_0` that beats `lambda**`, so `t_1` is about `221` and the implied
+  constant is tiny; the constants are crude by a large factor and the exponent
+  is not. Theorem 7.2 stays conditional, no floor moves, no cycle is excluded
+  and no orbit is shown to reach `1`. Depth two is now reached from both ends
+  and the binding constraint is the depth, as this morning's row already said.
+- **Paper C is not edited.** That manuscript is claimed by another session;
+  this branch carries the theorem and the consequence, and the rewrite of
+  §5.1-5.2 is theirs to take or leave.
+- **Decision:** `PROMOTE`.
+
+
 ## 2026-09-19 -- Step 5b's interval counts were counting noise
 
 - **Objective:** Philippe asked how much of `lambda_interp` rested on the two

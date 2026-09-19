@@ -1,8 +1,222 @@
 {
-  "git_commit": "5c13e4d75aa9447e2d1cfa72351dafc80ccdc129",
+  "git_commit": "00e19af9698ce37d520fc3bf9f0f1c6fab6f24bc",
   "limit": 80000,
   "poor_cutoff": 0.4,
-  "classification": "OE_REST_AVERAGE_MIXED",
+  "classification": "OE_REST_AVERAGE_PROVED",
+  "closure_classification": "OE_REST_AVERAGE_MIXED",
+  "lock_census": {
+    "window": [
+      1000000,
+      1001200,
+      1
+    ],
+    "n_fibers": 1200,
+    "n_poor": 25,
+    "poor_density": 0.020833333333333332,
+    "eta_H_max": 0.6834000000000001,
+    "eta_H_bound": 0.6903,
+    "eta_H_ok": true,
+    "min_slack": 0.7326783620586054,
+    "tightest": {
+      "m": 1000480,
+      "q": 5,
+      "rho": 0.0019195905146513126,
+      "rhs": 0.7932844226646659,
+      "slack": 0.7326783620586054
+    },
+    "master_holds": true,
+    "q_probe": 8,
+    "poor_lock_q_values": [
+      1,
+      3
+    ],
+    "poor_max_resonance": 1.9810349453829557,
+    "poor_sample": [
+      {
+        "m": 1000097,
+        "H": 66,
+        "share": 0.3787878787878788,
+        "lock_q": 1,
+        "resonance": 1.9810349453829557
+      },
+      {
+        "m": 1000133,
+        "H": 67,
+        "share": 0.3880597014925373,
+        "lock_q": 3,
+        "resonance": 0.6759254647456647
+      },
+      {
+        "m": 1000166,
+        "H": 67,
+        "share": 0.3880597014925373,
+        "lock_q": 3,
+        "resonance": 1.3492305790040933
+      },
+      {
+        "m": 1000266,
+        "H": 67,
+        "share": 0.373134328358209,
+        "lock_q": 3,
+        "resonance": 1.363700458182668
+      },
+      {
+        "m": 1000299,
+        "H": 67,
+        "share": 0.0,
+        "lock_q": 1,
+        "resonance": 0.6799817852533924
+      },
+      {
+        "m": 1000300,
+        "H": 67,
+        "share": 0.0,
+        "lock_q": 1,
+        "resonance": 0.01004866023445311
+      },
+      {
+        "m": 1000333,
+        "H": 67,
+        "share": 0.3582089552238806,
+        "lock_q": 3,
+        "resonance": 0.7071423181911055
+      },
+      {
+        "m": 1000433,
+        "H": 66,
+        "share": 0.3484848484848485,
+        "lock_q": 3,
+        "resonance": 0.7218594662051651
+      }
+    ]
+  },
+  "arc_counts": [
+    {
+      "u": 10000,
+      "q_max": 1,
+      "delta": 0.046415888336127795,
+      "count": 937,
+      "bound": 1448.0212773657254,
+      "ratio": 0.6470899389714857,
+      "holds": true
+    },
+    {
+      "u": 10000,
+      "q_max": 1,
+      "delta": 0.232079441680639,
+      "count": 4641,
+      "bound": 5594.553846330039,
+      "ratio": 0.8295567667195555,
+      "holds": true
+    },
+    {
+      "u": 10000,
+      "q_max": 1,
+      "delta": 0.928317766722556,
+      "count": 10000,
+      "bound": 21144.050979946212,
+      "ratio": 0.47294626793533384,
+      "holds": true
+    },
+    {
+      "u": 10000,
+      "q_max": 3,
+      "delta": 0.046415888336127795,
+      "count": 2028,
+      "bound": 5578.228237471117,
+      "ratio": 0.3635562966708927,
+      "holds": true
+    },
+    {
+      "u": 10000,
+      "q_max": 3,
+      "delta": 0.232079441680639,
+      "count": 9525,
+      "bound": 18017.82594436406,
+      "ratio": 0.5286431353822352,
+      "holds": true
+    },
+    {
+      "u": 10000,
+      "q_max": 3,
+      "delta": 0.928317766722556,
+      "count": 10000,
+      "bound": 64666.31734521259,
+      "ratio": 0.15464001060422725,
+      "holds": true
+    },
+    {
+      "u": 10000,
+      "q_max": 8,
+      "delta": 0.046415888336127795,
+      "count": 4821,
+      "bound": 23103.03800241592,
+      "ratio": 0.2086738549058293,
+      "holds": true
+    },
+    {
+      "u": 10000,
+      "q_max": 8,
+      "delta": 0.232079441680639,
+      "count": 10000,
+      "bound": 56275.29855413042,
+      "ratio": 0.1776978577977892,
+      "holds": true
+    },
+    {
+      "u": 10000,
+      "q_max": 8,
+      "delta": 0.928317766722556,
+      "count": 10000,
+      "bound": 180671.27562305983,
+      "ratio": 0.05534914150306502,
+      "holds": true
+    }
+  ],
+  "poor_block_scaling": {
+    "rows": [
+      {
+        "u": 100000,
+        "n": 1500,
+        "n_poor": 73,
+        "density": 0.048666666666666664,
+        "density_times_cube_root": 2.258906565691552
+      },
+      {
+        "u": 1000000,
+        "n": 1500,
+        "n_poor": 31,
+        "density": 0.020666666666666667,
+        "density_times_cube_root": 2.066666666666666
+      }
+    ],
+    "spread": 1.0930193059797835,
+    "exponent_is_one_third": true,
+    "reading": "density * u^(1/3) settles rather than drifts: the poor set decays at exactly the cube root, which is the exponent the theorem proves as an upper bound"
+  },
+  "averaging_theorem": {
+    "eta_0": 4.3014701724117255e-05,
+    "break_even_eta_0": 8.602940344823451e-05,
+    "effective_share": 0.49995698529827587,
+    "coefficient": 0.33330465686551725,
+    "two_production_root": 0.49261476236509505,
+    "lambda_star_star_published": 0.49257154472535636,
+    "ideal_root": 0.4926579801153874,
+    "beats_published": true,
+    "u_0": 1.1705833423399182e+36,
+    "x_0": 1.5219705159597635e+96,
+    "tail_constant": 1102545030172.6099,
+    "families_needed": [
+      "E (Lemma 3.1)",
+      "OE of the whole range (Lemma 3.2 + this theorem)"
+    ],
+    "families_removed": [
+      "OE of the E-blocks (Proposition 4.4, the two exponential-sum bounds)",
+      "the six-word ladder and Appendix D"
+    ],
+    "caveat": "eta_0 is fixed before x, so the supremum 0.4926580 is approached and not attained, exactly as the published statement is; and u_0 is astronomical at the eta_0 that beats lambda**, so the implied constant K is tiny. Neither affects the exponent"
+  },
+  "note": "docs/theory/juggler_oe_poor_fiber_tail_note.md",
   "poor_dyadic": [
     {
       "ell_all": 0.6941246967324427,
@@ -194,7 +408,7 @@
       "hi": 511,
       "n_odd": 50,
       "ell": 0.1298292904001584,
-      "weighted_even_share": 0.25373107392648736,
+      "weighted_even_share": 0.2537310739264874,
       "mean_even_share": 0.25766666666666665,
       "low_even_fraction": 1.0,
       "sample": 50
@@ -204,7 +418,7 @@
       "hi": 1023,
       "n_odd": 82,
       "ell": 0.11440666744062698,
-      "weighted_even_share": 0.2860982570165339,
+      "weighted_even_share": 0.28609825701653396,
       "mean_even_share": 0.2840882694541231,
       "low_even_fraction": 0.926829268292683,
       "sample": 82
@@ -214,7 +428,7 @@
       "hi": 2047,
       "n_odd": 138,
       "ell": 0.08885203944866789,
-      "weighted_even_share": 0.30912930090660995,
+      "weighted_even_share": 0.3091293009066098,
       "mean_even_share": 0.3198326432022084,
       "low_even_fraction": 0.8115942028985508,
       "sample": 138
@@ -224,7 +438,7 @@
       "hi": 4095,
       "n_odd": 312,
       "ell": 0.10454661374787932,
-      "weighted_even_share": 0.3442274372410113,
+      "weighted_even_share": 0.3442274372410111,
       "mean_even_share": 0.34703198653198647,
       "low_even_fraction": 0.7666666666666667,
       "sample": 150
@@ -234,7 +448,7 @@
       "hi": 8191,
       "n_odd": 457,
       "ell": 0.0782537025982726,
-      "weighted_even_share": 0.35512435479763793,
+      "weighted_even_share": 0.355124354797638,
       "mean_even_share": 0.35555322455322447,
       "low_even_fraction": 0.6866666666666666,
       "sample": 150
@@ -244,7 +458,7 @@
       "hi": 16383,
       "n_odd": 626,
       "ell": 0.05378392724290233,
-      "weighted_even_share": 0.3493625273822732,
+      "weighted_even_share": 0.34936252738227325,
       "mean_even_share": 0.35082909574086046,
       "low_even_fraction": 0.6866666666666666,
       "sample": 150
@@ -254,7 +468,7 @@
       "hi": 32767,
       "n_odd": 1270,
       "ell": 0.05403007250114995,
-      "weighted_even_share": 0.41069433048520915,
+      "weighted_even_share": 0.4106943304852095,
       "mean_even_share": 0.413260569724966,
       "low_even_fraction": 0.48,
       "sample": 150
@@ -264,7 +478,7 @@
       "hi": 65535,
       "n_odd": 2347,
       "ell": 0.048967779692523514,
-      "weighted_even_share": 0.40700353745690193,
+      "weighted_even_share": 0.4070035374569017,
       "mean_even_share": 0.4085377600928325,
       "low_even_fraction": 0.37333333333333335,
       "sample": 150
@@ -276,7 +490,7 @@
     "hi": 80000,
     "n_odd": 1822,
     "ell": 0.07371783934237286,
-    "weighted_even_share": 0.5152207623479841,
+    "weighted_even_share": 0.5152207623479838,
     "mean_even_share": 0.5132282443832349,
     "low_even_fraction": 0.06,
     "sample": 150
@@ -285,19 +499,19 @@
     {
       "m": 1003635,
       "exact": 0.3283582089552239,
-      "alpha": 0.32818603515625,
+      "alpha": 0.3281588292026121,
       "low_even": true
     },
     {
       "m": 3375,
       "exact": 0.45454545454545453,
-      "alpha": 0.5033333115279675,
+      "alpha": 0.5033333113857846,
       "low_even": false
     },
     {
       "m": 10000,
       "exact": 0.5714285714285714,
-      "alpha": 0.2424146831035614,
+      "alpha": 0.24241467977926712,
       "low_even": false
     }
   ],
