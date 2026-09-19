@@ -7,7 +7,7 @@ Philippe Cochin | Preprint | Version 2026-09-19-preprint
 
 Upload these two files from this package:
 
-- `Five_Step_Descent_Certificates_for_the_Juggler_Map.pdf`: the 39-page manuscript.
+- `Five_Step_Descent_Certificates_for_the_Juggler_Map.pdf`: the 40-page manuscript.
 - `paper_b_source_package.zip`: Markdown and LaTeX sources, build assets,
   exact-control scripts, symbolic review, metadata, and licensing information.
 

@@ -2,7 +2,7 @@
 title: "Five-Step Descent Certificates for the Juggler Map"
 subtitle: "Parity Statistics of Nested Floor Powers"
 author: Philippe Cochin
-date: 18 September 2026
+date: 19 September 2026
 lang: en
 ---
 
@@ -1187,6 +1187,15 @@ lattice of spacing  \(\log3\)  whose offset  \(-d\log2\bmod\log3\)
 equidistributes, so the barrier at  \(0\)  is approached from a
 different distance at every depth, namely  \(1-\{d\beta\}\).
 
+Neither the exponential rate nor the  \(d^{-3/2}\)  is claimed here. The
+rate is the large-deviation constant of the same walk and is classical.
+The  \(d^{-3/2}\)  power is conjectured in the 2026 parity-vector
+preprints the A076227 entry links [9, 10, 11], which have not been
+consulted for this revision; no priority over them is asserted. What
+this section offers is the oscillating prefactor  \(\psi\) : that the
+ratio depends on  \(d\)  only through  \(\{d\beta\}\), that it is
+non-constant, and the barrier-step mechanism below that explains why.
+
 Consequently  \(\bigl(N_d/2^d\bigr)\big/\bigl(p\varrho^{d}\bigr)\cdot
 d^{3/2}\)  does not converge. Its values  \(16.4\),  \(17.0\),
 \(16.6\)  at  \(d=640,1280,2560\)  are samples of  \(\psi/p\)  and not
@@ -1213,6 +1222,18 @@ with  \(P_d=N_d/2^d\)  and  \(R_d=M_d/2^d\big/P_d\)  the share of
 survivors on the barrier.  This is exact and elementary; it is checked
 against the integer counts and machine-checked in
 `formal/Problems/Juggler/PaperBBarrierStep.lean`.
+
+This recursion is not new. On A076227 [5] it is Zarubin's formula of
+11 August 2019, which reads  \(a(L_k)=2a(L_k-1)-A_{100982}(k)\)  at the
+lengths  \(L_k\)  where the barrier rises and  \(a(L)=2a(L-1)\)  where it
+does not --- the display above, in the entry's indexing --- and Winkler's
+formula of 12 September 2017 gives the same counts as a Pascal-type sum
+[8]. The entry also carries, from 21 July 2026, Kazunobu Hikawa's
+statement of the surviving-word object itself: the binary words
+\(v(1)\dots v(n)\)  with  \(2^m<3^{v(1)+\dots+v(m)}\)  for every  \(m\)
+[9]. Nothing in this subsection is claimed as new. It is restated
+because the argument needs it in this form, and it is machine-checked
+so that the form is certified rather than assumed.
 
 *The right coordinate is  \(R\).*  Conditioned on survival, the law of
 \(m_d=o_d-\lceil d\beta\rceil\)  depends on the depth only through
@@ -3112,7 +3133,10 @@ formalizations. The September 2026 review with OpenAI Codex identified
 unresolved analytic steps and assisted with the conditional revision,
 the four-step and fifth-letter repairs, the D2 reduction, the signed
 mixed-mode proofs, their consolidation into this version, and the
-release materials. AI assistance and automated
+release materials. The September 2026 attribution revision, which
+identifies the word counts of Sections 5 and 6 with the Collatz
+sequences A076227, A100982 and A020914 and credits the formulas on
+those entries, was drafted with Anthropic's Claude. AI assistance and automated
 checks are not independent mathematical validation. The author is
 responsible for the statements, proofs, code, and final approval of
 the preprint. The models are not authors.
@@ -3146,3 +3170,19 @@ S. R. Finch.
 of 3^n," *The On-Line Encyclopedia of Integer Sequences*, A020914,
 contributed by C. Kimberling.
 [Sequence record](https://oeis.org/A020914), accessed 19 September 2026.
+8. M. Winkler, "Deterministic Structures in the Stopping Time Dynamics
+of the 3x + 1 Problem," arXiv:1709.03385 [math.GM], 2017--2026.
+[arXiv record](https://arxiv.org/abs/1709.03385).
+9. K. Hikawa, "Finite-Dimensional Combinatorial and Arithmetic
+Structures of Parity Vectors for the Accelerated Collatz Map,"
+ResearchGate preprint, July 2026.
+[doi:10.13140/RG.2.2.29894.84804/1](https://doi.org/10.13140/RG.2.2.29894.84804/1).
+Not consulted for this revision.
+10. K. Hikawa and K. Nakanishi, "Parity Vector Analysis in the Study of
+the Collatz Conjecture," ResearchGate preprint, January 2026.
+[doi:10.13140/RG.2.2.12065.06240](https://doi.org/10.13140/RG.2.2.12065.06240).
+Not consulted for this revision.
+11. K. Nakanishi, "A Structural Study of Parity Vectors in the Collatz
+Conjecture," Jxiv preprint, February 2026.
+[doi:10.51094/jxiv.3096](https://doi.org/10.51094/jxiv.3096).
+Not consulted for this revision.

@@ -4119,12 +4119,13 @@ the residues modulo \(2^K\) map onto all \(2^K\) words of length \(K\)
 {[}22{]}. The number of residue classes whose word has no contracting
 prefix is the survivor count \(N_K\) of the companion Paper B {[}16{]}
 (\texttt{\nolinkurl{undecidedResidues_card}}), and the number whose word
-first contracts at \(K\) is its minimal-certificate count \(M_K\)
-(checked in the laboratory module CollatzBridgeLab, outside the paper
-barrel). No member of an undecided class drops within \(K\) steps, and
-every member \(y\) of a decided class with \(y>\mathrm{wordConst}\) of
-the contracting prefix drops at the prefix's length
-(\texttt{\nolinkurl{iter_lt_of_exponentGap_class}}). For
+first contracts at \(K\) is the count of minimal certificates, OEIS
+A100982 (checked in the laboratory module CollatzBridgeLab, outside the
+paper barrel; Paper B writes \(M_d\) for a different quantity, the
+survivors that sit on the barrier). No member of an undecided class
+drops within \(K\) steps, and every member \(y\) of a decided class with
+\(y>\mathrm{wordConst}\) of the contracting prefix drops at the prefix's
+length (\texttt{\nolinkurl{iter_lt_of_exponentGap_class}}). For
 \(d=4,\dots,10\) the counts are \(3,4,8,13,19,38,64\), evaluated by
 \texttt{decide\ +kernel}
 (\texttt{\nolinkurl{undecidedResidues_card_ten}} and its companions):
@@ -6890,7 +6891,7 @@ this preprint.
 \item
   P. Cochin, ``Five-Step Descent Certificates for the Juggler Map:
   Parity Statistics of Nested Floor Powers,'' companion manuscript
-  (Paper B), revision of 10 September 2026.
+  (Paper B), revision of 19 September 2026.
   \href{https://github.com/sneakyweasel/btlab/blob/main/docs/theory/juggler_parity_discrepancy_note.md}{Source
   manuscript}.
 \item

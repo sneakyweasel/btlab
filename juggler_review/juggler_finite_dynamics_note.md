@@ -4252,9 +4252,10 @@ Two starts have the same word of depth \(K\),
 `exists_residue_of_word`) --- Terras's theorem [22]. The number of
 residue classes whose word has no contracting prefix is the survivor
 count \(N_K\) of the companion Paper B [16] (`undecidedResidues_card`),
-and the number whose word first contracts at \(K\) is its
-minimal-certificate count \(M_K\) (checked in the laboratory module
-CollatzBridgeLab, outside the paper barrel). No member
+and the number whose word first contracts at \(K\) is the count of
+minimal certificates, OEIS A100982 (checked in the laboratory module
+CollatzBridgeLab, outside the paper barrel; Paper B writes \(M_d\)
+for a different quantity, the survivors that sit on the barrier). No member
 of an undecided class drops within \(K\) steps, and every member \(y\) of
 a decided class with \(y>\mathrm{wordConst}\) of the contracting prefix
 drops at the prefix's length (`iter_lt_of_exponentGap_class`). For
@@ -6923,7 +6924,7 @@ proofs, code, and final verification of this preprint.
     [doi:10.1007/978-1-4757-4267-1_11](https://doi.org/10.1007/978-1-4757-4267-1_11).
 16. P. Cochin, “Five-Step Descent Certificates for the Juggler Map:
     Parity Statistics of Nested Floor Powers,” companion manuscript
-    (Paper B), revision of 10 September 2026.
+    (Paper B), revision of 19 September 2026.
     [Source manuscript](https://github.com/sneakyweasel/btlab/blob/main/docs/theory/juggler_parity_discrepancy_note.md).
 17. P. Cochin, “Fate Contagion and Termination Criteria for the Juggler
     Map,” companion manuscript (Paper C), revision of 9 September 2026.
