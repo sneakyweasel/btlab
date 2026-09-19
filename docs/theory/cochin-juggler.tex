@@ -21,7 +21,7 @@ Map},pdfauthor={Philippe Cochin},pdfsubject={Mathematics preprint}}
 \setcounter{secnumdepth}{-1}
 \title{Lower Bounds for Cycle Lengths in the Juggler Map}
 \author{Philippe Cochin \\ \texttt{philippe@cochin.fr}}
-\date{11 September 2026}
+\date{19 September 2026}
 \begin{document}
 \maketitle
 \begin{abstract}
@@ -52,13 +52,19 @@ contractions sharpen this to \(M<m^3-(1/2)m^{253/128}\) for
 with a slightly stronger exponent in the latter case. A terminal word
 factorization identifies the expansion still uncontrolled by these
 contractions. Exact short-return cells identify the rounding information
-discarded by several relaxed no-cycle criteria. The core inequalities
-and selected classifications are formalized in Lean 4. The descent
-computations, per-length numerical comparisons, and remaining analytic
-identifications are distinguished from those formal proofs. A limitation
-result applies to charges retaining a positive contribution at a fixed
-floor. Neither the exclusion of all nontrivial cycles nor universal
-termination is established.
+discarded by several relaxed no-cycle criteria. Transposed to the
+shortcut Collatz map through the shared parity word, the financing
+inequality and the walk charge reproduce the published Collatz
+cycle-length bounds of Eliahou and Hercher exactly and replace the
+constant \(3/4\) of Hercher's height bound by \(1/(2\log 2)\); on the
+negative integers they give the financing inequality in the Juggler
+direction, with a Lean proof. The core inequalities and selected
+classifications are formalized in Lean 4. The descent computations,
+per-length numerical comparisons, and remaining analytic identifications
+are distinguished from those formal proofs. A limitation result applies
+to charges retaining a positive contribution at a fixed floor. Neither
+the exclusion of all nontrivial cycles nor universal termination is
+established.
 
 \end{abstract}
 
@@ -4148,8 +4154,7 @@ be a verification floor (every \(x\le X_0\) reaches \(1\)), and let
   least survivor is \(114208327604\), with \(72057431991\) odd steps ---
   Hercher's bound {[}19,20{]}. At \(2^{71}\), the limit of Barina
   {[}23{]}, the first two survivors are \(114208327604\) and
-  \(217976794617\); the bound quoted at that limit is the second, which
-  the finance alone does not reach.
+  \(217976794617\).
 \item
   \emph{Walk charge.} Let \(\alpha=\log_2(3/2)\), let
   \(h_j=a_j\alpha-e_j\) be the height before step \(j\) (\(a_j\) odd and
@@ -6802,11 +6807,13 @@ and implementing computations. The September 2026 review with OpenAI
 Codex checked the mathematical claims and references, corrected the
 finite-window estimate, revised the rotation-cell argument and several
 hypotheses, distinguished formal proofs from numerical evidence, and
-prepared the document build and independent numerical audit. AI
-assistance is not independent mathematical validation. The explicit
-evidence boundaries in Section 1.2 and Appendix A apply to these
-contributions. The author is responsible for the statements, proofs,
-code, and final verification of this preprint.
+prepared the document build and independent numerical audit. Section 5.9
+and its Lean module were drafted with Anthropic's Claude in September
+2026, under the same evidence boundaries. AI assistance is not
+independent mathematical validation. The explicit evidence boundaries in
+Section 1.2 and Appendix A apply to these contributions. The author is
+responsible for the statements, proofs, code, and final verification of
+this preprint.
 
 \section{References}\label{references}
 

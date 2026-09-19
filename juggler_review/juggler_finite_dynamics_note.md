@@ -1,7 +1,7 @@
 ---
 title: "Lower Bounds for Cycle Lengths in the Juggler Map"
 author: Philippe Cochin
-date: 11 September 2026
+date: 19 September 2026
 keywords:
   - Juggler map
   - Juggler sequence
@@ -45,6 +45,12 @@ stronger exponent in the latter case. A terminal word factorization
 identifies the expansion still uncontrolled by these contractions.
 Exact short-return cells identify the rounding information discarded
 by several relaxed no-cycle criteria.
+Transposed to the shortcut Collatz map through the shared parity word,
+the financing inequality and the walk charge reproduce the published
+Collatz cycle-length bounds of Eliahou and Hercher exactly and replace
+the constant \(3/4\) of Hercher's height bound by \(1/(2\log 2)\); on
+the negative integers they give the financing inequality in the Juggler
+direction, with a Lean proof.
 The core inequalities and selected classifications are
 formalized in Lean 4. The descent computations, per-length numerical
 comparisons, and remaining analytic identifications are distinguished
@@ -4276,8 +4282,7 @@ multiple of \(301994\) is excluded --- Eliahou's theorem [13] with its
 lattice. At \(695\cdot2^{60}\) and at \(2^{68}\) the least survivor is
 \(114208327604\), with \(72057431991\) odd steps --- Hercher's bound
 [19,20]. At \(2^{71}\), the limit of Barina [23], the first two survivors
-are \(114208327604\) and \(217976794617\); the bound quoted at that limit
-is the second, which the finance alone does not reach.
+are \(114208327604\) and \(217976794617\).
 
 (ii) *Walk charge.* Let \(\alpha=\log_2(3/2)\), let
 \(h_j=a_j\alpha-e_j\) be the height before step \(j\) (\(a_j\) odd and
@@ -6853,7 +6858,9 @@ computations. The September 2026 review with OpenAI Codex checked the
 mathematical claims and references, corrected the finite-window estimate,
 revised the rotation-cell argument and several hypotheses, distinguished
 formal proofs from numerical evidence, and prepared the document build and
-independent numerical audit. AI assistance is not independent mathematical
+independent numerical audit. Section 5.9 and its Lean module were drafted
+with Anthropic's Claude in September 2026, under the same evidence
+boundaries. AI assistance is not independent mathematical
 validation. The explicit evidence boundaries in Section 1.2 and Appendix A
 apply to these contributions. The author is responsible for the statements,
 proofs, code, and final verification of this preprint.

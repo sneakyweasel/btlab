@@ -1,5 +1,26 @@
 # Research journal
 
+## 2026-09-19 -- Paper A revision prepared for the Zenodo new version
+
+- **Objective:** Philippe asked whether the new Paper A is ready for Zenodo;
+  the answer was not yet, for four reasons, and he said proceed.
+- **Done.** The `2^71` sentence of Theorem 5.18(i) now states only the two
+  survivors our enumeration finds; the attribution of `217976794617` as
+  "the bound quoted at that limit" rested on a secondary source and no
+  primary one was found, so it is gone. The revision date is 19 September
+  2026, which the build carries into the version field and the paste-ready
+  Zenodo fields. The abstract gains two clauses on Section 5.9. Section 7
+  discloses that Section 5.9 and its Lean module were drafted with Claude.
+  References 22 (Terras 1976) and 24 (Seifert 1988) were verified against
+  the journals; Barina 2025 is confirmed; Hercher 2018 stays cited through
+  Hercher 2023's bibliography, unread.
+- **Not done, by design.** The upload is the author's: the record's
+  new-version operation on `10.5281/zenodo.22676453`, then
+  `docs/theory/paper_deposits.md` and `AFTER_ZENODO.md` take the new version
+  DOI. The kit's rule stands: review the record before publishing, and do
+  not auto-submit anywhere. A human read of Section 5.9 before the upload
+  is the remaining recommendation.
+
 ## 2026-09-19 -- Paper A carries the Collatz mirror, and the negative finance is kernel-checked
 
 - **Objective:** Philippe asked for Paper A to be extended with the bridge,
