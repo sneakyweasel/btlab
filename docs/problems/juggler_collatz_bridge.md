@@ -28,6 +28,17 @@ OEIS A076227, in the database since 2002. Nothing in this dossier is a new
 Collatz theorem; what is new here is the laboratory's own understanding of
 which of its results were about Collatz all along.
 
+**The walk identity itself has a precedent** (read 19 September 2026):
+Prasad and Prasad, January 2025 (`prasad-prasad-2025-juggler-like`),
+Section 2, eqs. (4)-(6) and Conjecture 1, state that after `k` steps
+`log J^k(n)` is approximately `3^(sum b) 2^(-k) log n`, the counterpart of
+`T^k(n)` being approximately `3^(sum b) 2^(-k) n`, and draw the same partition
+-- Terras gives uniform parity vectors for `3x+1`, for Juggler it is a
+conjecture. Their stopping constant `28.828 = 1/(-log theta)` also encodes
+the survivor rate. What is the laboratory's own is the exact word count
+`N_d = A076227(d)`, verified against Collatz and now kernel-checked
+(Formalization), not the walk heuristic.
+
 ## Branch budget
 
 - **Target:** the precise relation between the two problems -- identity,
@@ -91,12 +102,40 @@ supports.
 
 ## Formalization
 
-None here. The shared combinatorics is already Lean-verified on the Juggler
-side -- `PaperBCertificateRecursion`, `PaperBCertificateLengths`,
-`PaperBJumpTransposition` -- and by this identification those theorems are
-statements about the Collatz parity semigroup as well. Nothing about the
-relation itself needs formalising: it is two definitions and one line of
-arithmetic.
+`formal/Problems/Juggler/CollatzBridge.lean` (19 September 2026; no `sorry`,
+standard axioms only, 436 lines) states the bridge over the one shared object,
+the `List Branch` word, with no real number in any statement:
+
+- `word_affine`: for the shortcut map `C`, `2^d * C^d(x) = 3^o * x + wordConst w`
+  with `w = parityWord x d`, `o` its odd count, and `wordConst w >= 0` a
+  function of the word alone -- Collatz is word-affine, with the correction
+  pointing **up**; `juggler_word_power` restates `power_bound_word` beside it,
+  `(J_w n)^(2^d) <= n^(3^o)`: Juggler is exponent-affine, with the correction
+  pointing **down**.
+- `parityWord_eq_iff`, `image_parityWord`: the word of length `d` is a function
+  of `x mod 2^d`, and residues modulo `2^d` biject onto the words of length `d`
+  -- Terras's structure theorem as a `Finset` identity.
+- `undecidedResidues_card`: the number of residue classes modulo `2^d` whose
+  word has no contracting prefix equals `neverNegCount d`, Paper B's `N_d`;
+  `decidedAtResidues_card` does the same for the minimal certificates `M_d`.
+  These upgrade the count half of `J-juggler-is-collatz-one-exponential-up`
+  and `J-paper-b-survivors-are-oeis-a076227` from `COMPUTATIONALLY VERIFIED`
+  (eight sampled lifts per class, `d = 4..10`) to kernel-checked for every `d`.
+  The Collatz meaning is made exact by `le_iter_of_prefixNoncontracting` (no
+  member of an undecided class drops within `d` steps) and
+  `iter_lt_of_exponentGap_class` (every member of a decided class beyond the
+  word's own constant drops at the contracting length) -- the two halves of
+  Terras's theorem, with the "sufficiently large" threshold explicit.
+- `cycle_contracting` (a positive Collatz cycle word has `3^o < 2^d`) beside
+  `juggler_cycle_expanding` (`cycle_itinerary_formally_expanding`,
+  `2^d < 3^o`): the sign flip on cycles, on both sides.
+- `decide +kernel`: `undecidedResidues 6 = {7, 15, 27, 31, 39, 47, 59, 63}`,
+  OEIS A076227's own example, and the terms `3, 4, 8, 13, 19, 38, 64` at
+  `d = 4..10`.
+
+The word-only modules `PaperBCertificateRecursion`, `PaperBCertificateLengths`,
+`PaperBJumpTransposition`, `PaperBSurvivorDecay` are, through this file,
+theorems about Collatz residue classes as well.
 
 ## Results
 
@@ -108,6 +147,27 @@ words and `N_d` is the same integer, verified against Collatz directly.
 `J-word-density-results-are-not-juggler-specific` -- `REPARAMETERIZATION`. Any
 laboratory result that depends only on word densities is a statement about the
 shared semigroup and is true of Collatz too.
+
+`J-collatz-bridge-is-exact-at-the-word-level` -- `EXACT — LEAN VERIFIED`. The
+Collatz shortcut map is word-affine with a nonnegative correction and Juggler
+is exponent-affine with a nonpositive one, over the same `List Branch`; the
+sign flip on cycles is proved on both sides (Formalization above).
+
+`J-survivor-count-is-a-collatz-residue-count` -- `EXACT — LEAN VERIFIED`.
+`neverNegCount d` is the number of residue classes modulo `2^d` with no
+contracting prefix, and `minimalCertCount d` the number decided at exactly `d`,
+by Terras's bijection in Lean; kernel-checked against OEIS A076227's example
+and terms. This is the count half of `J-juggler-is-collatz-one-exponential-up`
+and of `J-paper-b-survivors-are-oeis-a076227`, no longer sampled.
+
+**The cycle claim has numbers.** The same finance inequality, with `x_min` in
+place of `n log n`, reproduces Eliahou 1993 exactly at `2^40` and Hercher 2018
+exactly at `2^68`:
+[juggler_collatz_finance_mirror.md](juggler_collatz_finance_mirror.md),
+`J-paper-a-finance-transposed-reproduces-eliahou-and-hercher`. The cycle-level
+dictionary is `x_min <-> n log n`, a different map from the walk-level
+`log x <-> log log n` above, and the two gaps are mirror images,
+`Lambda_J(L) = log 3 - Lambda_C(L)` (`J-cycle-gaps-are-mirror-images`).
 
 **Where the two part, and it is the whole of Paper B.** For Collatz the parity
 word is a function of `x mod 2^d` and every word has density exactly `2^(-d)`:

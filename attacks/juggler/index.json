@@ -363,10 +363,29 @@
         "J-proposition-j-on-collatz-is-terras",
         "J-proposition-j-loss-is-the-union-bound",
         "J-good-set-walsh-route-is-refuted",
-        "J-good-set-wiener-norm-carries-the-rotation"
+        "J-good-set-wiener-norm-carries-the-rotation",
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count"
       ],
       "aliases": [],
       "nk_cluster": null
+    },
+    {
+      "id": "collatz_finance_mirror",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/collatz_finance_mirror.py",
+      "test": "tests/research/juggler_sequence/test_collatz_finance_mirror.py",
+      "dossier": "docs/problems/juggler_collatz_finance_mirror.md",
+      "data_dir": "data/research/juggler/collatz_finance_mirror",
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-paper-a-finance-transposed-reproduces-eliahou-and-hercher",
+        "J-cycle-gaps-are-mirror-images"
+      ],
+      "aliases": [],
+      "nk_cluster": "A realization law of FD type cannot give Juggler a Steiner theorem"
     },
     {
       "id": "collision_large_sieve",

@@ -9467,7 +9467,10 @@
       "doc": "One step of the shortcut map, cleared of its division: `2 \u00b7 C(x)` is `x` on an even `x` and `3x + 1` on an odd `x`.",
       "file": "formal/Problems/Juggler/CollatzBridge.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count"
+      ],
       "line": 66,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "two_mul_shortcutC",
@@ -9477,7 +9480,10 @@
       "doc": "Peeling the first step: `C^{k+1}(x) = C^k(C(x))`.",
       "file": "formal/Problems/Juggler/CollatzBridge.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count"
+      ],
       "line": 76,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "shortcutCIter_succ'",
@@ -9487,7 +9493,10 @@
       "doc": "The first `d` parities of the shortcut orbit of `x`, read as a Juggler word: the same alphabet, the same `oddCount`, the same `exponentGap`.",
       "file": "formal/Problems/Juggler/CollatzBridge.lean",
       "kind": "def",
-      "ledger": [],
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count"
+      ],
       "line": 88,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "parityWord",
@@ -9497,7 +9506,10 @@
       "doc": "A prefix of the word is the word of the prefix.",
       "file": "formal/Problems/Juggler/CollatzBridge.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count"
+      ],
       "line": 103,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "parityWord_take",
@@ -9507,7 +9519,10 @@
       "doc": "The additive constant of the word-affine formula: reading the word from the front, an even letter doubles the constant and an odd letter adds `3` to the power of the odd letters still to come.",
       "file": "formal/Problems/Juggler/CollatzBridge.lean",
       "kind": "def",
-      "ledger": [],
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count"
+      ],
       "line": 122,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "wordConst",
@@ -9517,7 +9532,10 @@
       "doc": "The constant vanishes exactly on the all-even words.",
       "file": "formal/Problems/Juggler/CollatzBridge.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count"
+      ],
       "line": 135,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "wordConst_eq_zero_iff",
@@ -9527,7 +9545,10 @@
       "doc": "**Collatz is word-affine.** `2 ^ d \u00b7 C^d(x) = 3 ^ o \u00b7 x + wordConst w` with `w` the parity word of `x` and `o` its odd count. The multiplier `3 ^ o / 2 ^ d` is the one Juggler carries on the exponent; the correction is nonnegative.",
       "file": "formal/Problems/Juggler/CollatzBridge.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count"
+      ],
       "line": 149,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "word_affine",
@@ -9537,7 +9558,10 @@
       "doc": "Two integers carry the same first letter exactly when they have the same parity.",
       "file": "formal/Problems/Juggler/CollatzBridge.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count"
+      ],
       "line": 184,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "bit_eq_iff",
@@ -9547,7 +9571,10 @@
       "doc": "One step of Terras's argument: agreement modulo `2 ^ (d + 1)` is agreement of the first parity together with agreement of the shortcut images modulo `2 ^ d`.",
       "file": "formal/Problems/Juggler/CollatzBridge.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count"
+      ],
       "line": 190,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "mod_pow_succ_iff",
@@ -9557,7 +9584,10 @@
       "doc": "The word of length `d` is determined by `x mod 2 ^ d`, and determines it.",
       "file": "formal/Problems/Juggler/CollatzBridge.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count"
+      ],
       "line": 227,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "parityWord_eq_iff",
@@ -9567,7 +9597,10 @@
       "doc": "",
       "file": "formal/Problems/Juggler/CollatzBridge.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count"
+      ],
       "line": 234,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "parityWord_mod",
@@ -9577,7 +9610,10 @@
       "doc": "There are `2 ^ d` words of length `d`.",
       "file": "formal/Problems/Juggler/CollatzBridge.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count"
+      ],
       "line": 238,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "allWords_card",
@@ -9587,7 +9623,10 @@
       "doc": "The parity map is a bijection from the residues modulo `2 ^ d` onto the words of length `d`: Terras's structure theorem, as a `Finset` identity.",
       "file": "formal/Problems/Juggler/CollatzBridge.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count"
+      ],
       "line": 265,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "image_parityWord",
@@ -9597,7 +9636,10 @@
       "doc": "The residues modulo `2 ^ d` whose word has no contracting prefix: the classes in which the stopping time is not yet decided after `d` steps.",
       "file": "formal/Problems/Juggler/CollatzBridge.lean",
       "kind": "def",
-      "ledger": [],
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count"
+      ],
       "line": 282,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "undecidedResidues",
@@ -9607,7 +9649,10 @@
       "doc": "The parity map is injective on the residues below `2 ^ d`.",
       "file": "formal/Problems/Juggler/CollatzBridge.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count"
+      ],
       "line": 286,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "parityWord_injOn",
@@ -9617,7 +9662,10 @@
       "doc": "Counting a filtered set of words through the residue bijection.",
       "file": "formal/Problems/Juggler/CollatzBridge.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count"
+      ],
       "line": 295,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "card_filter_parityWord",
@@ -9627,7 +9675,10 @@
       "doc": "**The survivor count is a Collatz count.** Paper B's `N_d` is the number of residue classes modulo `2 ^ d` with no contracting prefix -- the definition of OEIS A076227.",
       "file": "formal/Problems/Juggler/CollatzBridge.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count"
+      ],
       "line": 303,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "undecidedResidues_card",
@@ -9637,7 +9688,10 @@
       "doc": "The residues modulo `2 ^ d` whose word first contracts at length `d`.",
       "file": "formal/Problems/Juggler/CollatzBridge.lean",
       "kind": "def",
-      "ledger": [],
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count"
+      ],
       "line": 308,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "decidedAtResidues",
@@ -9647,7 +9701,10 @@
       "doc": "**The minimal-certificate count is a Collatz count.** `M_d` is the number of residue classes modulo `2 ^ d` whose stopping time is decided at exactly `d` -- OEIS A100982 read by length.",
       "file": "formal/Problems/Juggler/CollatzBridge.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count"
+      ],
       "line": 313,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "decidedAtResidues_card",
@@ -9657,7 +9714,10 @@
       "doc": "On a prefix-noncontracting word, every prefix length `t \u2264 d` has `2 ^ t \u2264 3 ^ o_t`.",
       "file": "formal/Problems/Juggler/CollatzBridge.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count"
+      ],
       "line": 320,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "two_pow_le_three_pow_of_prefixNoncontracting",
@@ -9667,7 +9727,10 @@
       "doc": "No member of an undecided class drops within `d` steps.",
       "file": "formal/Problems/Juggler/CollatzBridge.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count"
+      ],
       "line": 330,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "le_iter_of_prefixNoncontracting",
@@ -9677,7 +9740,10 @@
       "doc": "Strictly: a positive start in an undecided class sits strictly below every later state.",
       "file": "formal/Problems/Juggler/CollatzBridge.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count"
+      ],
       "line": 342,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "lt_iter_of_prefixNoncontracting",
@@ -9687,7 +9753,10 @@
       "doc": "A contracting word drops every start beyond its own constant.",
       "file": "formal/Problems/Juggler/CollatzBridge.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count"
+      ],
       "line": 363,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "iter_lt_of_exponentGap",
@@ -9697,7 +9766,10 @@
       "doc": "The drop is a property of the residue class: one constant serves every member.",
       "file": "formal/Problems/Juggler/CollatzBridge.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count"
+      ],
       "line": 375,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "iter_lt_of_exponentGap_class",
@@ -9707,7 +9779,10 @@
       "doc": "**Collatz cycles contract.** A positive shortcut cycle of length `d \u2265 1` has `3 ^ o < 2 ^ d`, because `2 ^ d \u00b7 x = 3 ^ o \u00b7 x + wordConst w` with a positive constant.",
       "file": "formal/Problems/Juggler/CollatzBridge.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count"
+      ],
       "line": 386,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "cycle_contracting",
@@ -9717,7 +9792,10 @@
       "doc": "**Juggler realises the same multiplier on the exponent, with the correction pointing down.** Restated from `power_bound_word` in the vocabulary of this file.",
       "file": "formal/Problems/Juggler/CollatzBridge.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count"
+      ],
       "line": 407,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "juggler_word_power",
@@ -9727,7 +9805,10 @@
       "doc": "**Juggler cycles expand.** `CycleCore`'s theorem, placed beside its Collatz mirror.",
       "file": "formal/Problems/Juggler/CollatzBridge.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count"
+      ],
       "line": 413,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "juggler_cycle_expanding",
@@ -9737,7 +9818,10 @@
       "doc": "",
       "file": "formal/Problems/Juggler/CollatzBridge.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count"
+      ],
       "line": 422,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "undecidedResidues_six",
@@ -9747,7 +9831,10 @@
       "doc": "",
       "file": "formal/Problems/Juggler/CollatzBridge.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count"
+      ],
       "line": 425,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "undecidedResidues_card_four",
@@ -9757,7 +9844,10 @@
       "doc": "",
       "file": "formal/Problems/Juggler/CollatzBridge.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count"
+      ],
       "line": 426,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "undecidedResidues_card_five",
@@ -9767,7 +9857,10 @@
       "doc": "",
       "file": "formal/Problems/Juggler/CollatzBridge.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count"
+      ],
       "line": 427,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "undecidedResidues_card_six",
@@ -9777,7 +9870,10 @@
       "doc": "",
       "file": "formal/Problems/Juggler/CollatzBridge.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count"
+      ],
       "line": 428,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "undecidedResidues_card_seven",
@@ -9787,7 +9883,10 @@
       "doc": "",
       "file": "formal/Problems/Juggler/CollatzBridge.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count"
+      ],
       "line": 429,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "undecidedResidues_card_eight",
@@ -9797,7 +9896,10 @@
       "doc": "",
       "file": "formal/Problems/Juggler/CollatzBridge.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count"
+      ],
       "line": 430,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "undecidedResidues_card_nine",
@@ -9807,7 +9909,10 @@
       "doc": "",
       "file": "formal/Problems/Juggler/CollatzBridge.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count"
+      ],
       "line": 431,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "undecidedResidues_card_ten",
@@ -90161,7 +90266,18 @@
         "Problems.Juggler.PaperBCertificateRecursion",
         "Problems.Juggler.RateFreeDensity"
       ],
-      "ledger": []
+      "ledger": [
+        {
+          "id": "J-collatz-bridge-is-exact-at-the-word-level",
+          "statement": "The Juggler-Collatz bridge, stated as theorems over the one shared object, the List Branch word, with no real number and nothing measured in any statement. COLLATZ IS WORD-AFFINE WITH THE CORRECTION POINTING UP: for the shortcut map C (x/2 on evens, (3x+1)/2 on odds) and w = parityWord x d the first d parities of the orbit of x, 2^d * C^d(x) = 3^(oddCount w) * x + wordConst w with wordConst w >= 0 a function of the word alone (word_affine; wordConst (odd :: w) = 3^(oddCount w) + 2 wordConst w, wordConst (even :: w) = 2 wordConst w, and wordConst w = 0 iff w has no odd letter). JUGGLER IS EXPONENT-AFFINE WITH THE CORRECTION POINTING DOWN: juggler_word_power restates power_bound_word as (image n w)^(2^|w|) <= n^(3^(oddCount w)) for a realised word. The same multiplier 3^o/2^d acts on x in one problem and on log n in the other, with corrections of opposite sign, and that is the whole of the sign flip on cycles: cycle_contracting (a positive shortcut cycle of length d >= 1 has 3^o < 2^d, because 2^d x = 3^o x + c with c >= 1 whenever the word has an odd letter and 2^d x = x is impossible otherwise) sits beside juggler_cycle_expanding = cycle_itinerary_formally_expanding (2^d < 3^o). TERRAS IN THIS VOCABULARY: parityWord_eq_iff, parityWord x d = parityWord y d iff x = y mod 2^d, and image_parityWord, the residues modulo 2^d map bijectively onto allWords d (allWords_card gives 2^d). Compiles with no sorry; #print axioms on word_affine gives propext and Quot.sound only, on the counting theorems propext, Classical.choice, Quot.sound. Registered as an auxiliary Juggler module (not a paper review object); it imports Problems.Collatz.Shortcut, RateFreeDensity, PaperBCertificateRecursion, Envelope and CycleCore. WHAT IT IS NOT: no density, no asymptotic, no bound in either problem, and nothing about how the Juggler word attaches to n, which is Hypothesis FD. It records that the bridge of J-juggler-is-collatz-one-exponential-up is well defined at the word level, and it closes the gap that the Collatz half of the sign flip was previously only an algebraic lemma with the orbit identity assumed (Problems/Collatz/Cycles.lean expanding_excludes_positive_candidate): the identity is now derived by iterating shortcutC. Process note: the module was swept into commit 4c078205 by a concurrent session's git add -A before its own record existed; the build was then verified by that session (lake build Problems.Juggler, 8909 jobs) and here.",
+          "tag": "EXACT \u2014 LEAN VERIFIED"
+        },
+        {
+          "id": "J-survivor-count-is-a-collatz-residue-count",
+          "statement": "Paper B's survivor count is a Collatz residue count, in Lean. undecidedResidues_card: the number of residues r modulo 2^d whose parity word parityWord r d has no contracting prefix equals neverNegCount d, the N_d of RateFreeDensity; decidedAtResidues_card: the number whose word is a minimal certificate (first contracts at exactly d) equals minimalCertCount d, the M_d of PaperBCertificateRecursion. Both follow from Terras's bijection (image_parityWord) by pushing the filter through the image. THE COLLATZ MEANING IS MADE EXACT, with Terras's 'all sufficiently large' threshold explicit: le_iter_of_prefixNoncontracting, no member of an undecided class drops within d steps (x <= C^t(x) for t <= d, strictly for x >= 1 and t >= 1); iter_lt_of_exponentGap_class, every member y of a decided class with y > wordConst (parityWord r t) drops at the contracting length t (C^t(y) < y) -- so a class is undecided iff no member drops, and decided iff all but finitely many members drop at the same step, which is OEIS A076227's definition ('residue classes in which the stopping time is not constant') read at large members; at x = 1 the literal reading differs (sigma(1) is infinite in the class of 1 mod 4, whose word OE contracts), and the Lean statement is the word criterion with the threshold, not the literal one. KERNEL CHECKS: undecidedResidues 6 = {7, 15, 27, 31, 39, 47, 59, 63}, the entry's own example (Labos Elemer, 2002), and (undecidedResidues d).card = 3, 4, 8, 13, 19, 38, 64 for d = 4..10, all by decide +kernel (the depth-10 check runs 1024 residues through ten shortcut steps in the kernel). UPGRADE: the count half of J-juggler-is-collatz-one-exponential-up and of J-paper-b-survivors-are-oeis-a076227 was COMPUTATIONALLY VERIFIED by running Collatz on eight sampled lifts per class for d = 4..10 (a check that is exact at those depths by exhaustive comparison but not sound by construction); it is now a theorem for every d. Through this row the word-only modules PaperBCertificateRecursion, PaperBCertificateLengths, PaperBJumpTransposition and PaperBSurvivorDecay are theorems about Collatz residue classes as well: the recursion N_(d+1) + M_(d+1) = 2 N_d is OEIS A076227's Zarubin 2019 formula, the empty-window theorem is Noe's 2006 comment on A100982 (lengths are A020914(k), the binary length of 3^k), and the stepFlat/stepRise profile is Winkler's 2017 Pascal-type triangle -- all KNOWN as formulas, kernel-verified here for the first time as far as the laboratory has read. Not a density, not a bound, not a halt theorem.",
+          "tag": "EXACT \u2014 LEAN VERIFIED"
+        }
+      ]
     },
     "Problems.Juggler.Corridor": {
       "declarations": 19,
@@ -93372,8 +93488,8 @@
   },
   "totals": {
     "declarations": 6927,
-    "declarations_with_a_ledger_row": 4699,
-    "ledger_rows_naming_a_file": 443,
+    "declarations_with_a_ledger_row": 4734,
+    "ledger_rows_naming_a_file": 445,
     "modules": 307,
     "trust": {
       "compiler": 56,
