@@ -5,7 +5,7 @@ statement beside the candidate's docstring; the question is only whether they sa
 same thing.  Measured against all 208 single-declaration rows the scorer gets
 64 of the 79 it fires on right, 81% precise, so roughly one in
 5 below is wrong.
-20 rows below, of 126 unresolved.
+19 rows below, of 126 unresolved.
 
 
 Two failure modes are not scored at all, and both record a part as the whole.
@@ -389,22 +389,4 @@ theorem band_successor_unique {u v w : ℝ} (_h0 : 0 ≤ u) (_h1 : u < 1 + alpha
 *Runners-up: `band_step_forced_odd` (0.263), `band_step_forced_even` (0.263)*
 
 *If this row describes a definition rather than a theorem: `WalkStep`, `alphaClock`*
-
-## 20. `J-paper-c-production-words-are-prefix-free`
-
-**Row.** Paper C's finite production words are prefix-free, in Lean, for the whole family rather than for the six the manuscript fixes. Paper C (docs/theory/juggler_fate_almost_all_note.md) builds Theorem 1 from six productions V_k = (OE)^(k-1) OEE with rho_k = (1/2)(3/4)^k, 1 <= k <= 6, and uses their prefix-freeness three times: 'Production word
-
-**Candidate.** `Vword_prefix_iff` &mdash; kernel-checked, `Problems/Juggler/FateProductionWords.lean:66`
-
-> **The production words are prefix-free.** `V_i` is a prefix of `V_j` only when `i = j`; in particular the six words Paper C fixes, `Vword 0` through `Vword 5`, are pairwise prefix-free. The reason is that `V_i` closes with a second `E` exactly where `V_j`, for `j > i`, opens another `OE`.
-
-```lean
-theorem Vword_prefix_iff {i j : ℕ} (h : Vword i <+: Vword j) : i = j
-```
-
-*Statement names: `Vword_length`, `Vword_oddCount`, `Vword_eq_odd_cons`, `Vword_prefix_iff`, `Vword_six_prefixFree`, `Vword_five`*
-
-*Runners-up: `Vword_five` (0.059), `Vword_six_prefixFree` (0.058)*
-
-*If this row describes a definition rather than a theorem: `Vword`*
 

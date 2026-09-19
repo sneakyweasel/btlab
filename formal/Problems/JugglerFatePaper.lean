@@ -77,7 +77,7 @@ laboratory target, not a claim: building it does **not** corroborate the paper's
   (`Production.family_OE`) need no analysis; together they give
   `g_A(t) ≥ (1 - 4e^{-t/4}) g_A(t/2) + (2/9 - (50/9)e^{-t/8}) g_A(3t/4) - errAdd t` for
   `t ≥ 40` (`Production.production_two`), with every error explicit. The recursion lemma on
-  these two productions, with `ζ(3/10) > 0` certified by two rational bounds
+  these two productions, with `ζ(13/40) > 0` certified by two rational bounds
   (`Production.zeta2_pos`), gives **an unconditional theorem**: every nonempty backward-closed
   set has log-mass at least `K (log x)^λ` up to `x` for every `0 < λ ≤ 13/40`
   (`Production.logMass_contagion_elementary`), and so do the failures if any exist

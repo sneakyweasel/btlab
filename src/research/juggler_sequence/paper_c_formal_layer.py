@@ -120,7 +120,14 @@ TABLE_LEAN_ROWS = {
 
 _IMPORT = re.compile(r"^import\s+([A-Za-z0-9_.]+)\s*$", re.M)
 _PRINT = re.compile(r"^#print axioms ([A-Za-z0-9_'.]+)$", re.M)
-_RESULT = re.compile(r"^'([A-Za-z0-9_'.]+)' depends on axioms: \[(.*)\]$")
+#: Lean prints one of two shapes.  A declaration that rests on nothing at all reports
+#: "does not depend on any axioms" rather than an empty bracket, so the artifact is not
+#: uniformly bracketed; ``tools/trust_boundary.py`` already accepts both and this must too.
+#: Before FateProductionWords every cited Paper C name happened to use some axiom, which is
+#: why the narrower pattern survived: an unmatched line reads as "asked, but no recorded
+#: result", so the failure is loud rather than silent, but it is still a false alarm.
+_RESULT = re.compile(
+    r"^'([A-Za-z0-9_'.]+)' (?:depends on axioms: \[(.*)\]|does not depend on any axioms)$")
 _TICK = re.compile(r"`([A-Za-z_][A-Za-z0-9_'.]*)`")
 
 
@@ -142,7 +149,7 @@ def axiom_check_results() -> dict[str, list[str]]:
         name = m.group(1)
         if name.startswith("Problems.Juggler."):
             name = name[len("Problems.Juggler."):]
-        axioms = [a.strip() for a in m.group(2).split(",") if a.strip()]
+        axioms = [a.strip() for a in (m.group(2) or "").split(",") if a.strip()]
         out[name] = axioms
     return out
 

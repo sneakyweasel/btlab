@@ -68,7 +68,15 @@ def test_unregistered_modules_are_visible() -> None:
     # Lemma 5.1 to every length and imports PaperBCertificates for its five words.
     # 33 -> 34 on 18 September 2026: PaperBCertificateRecursion, the one-step
     # decomposition tying neverNegCount to minimalCertCount; imports both neighbours.
-    assert len(outside) <= 34, outside
+    # 34 -> 36 on 19 September 2026, recorded by the Paper C Corollary 5.4/5.5 pass,
+    # which did not cause it. CollatzBridgeLab and PaperBJumpTransposition landed in
+    # AUXILIARY_MODULES without this budget moving with them, so the gate was already
+    # red at 397023de, a8ee7033 and c7946f6e, each with 37 outside against a 34 budget.
+    # That pass moved one module the other way: FateProductionWords left
+    # AUXILIARY_MODULES for LAYERS, because wiring it into Paper C's barrel made it a
+    # publication-layer module like every other Fate* module. That is the -1 that takes
+    # 37 to 36, and it is the only part of this delta the pass is responsible for.
+    assert len(outside) <= 36, outside
 
 
 def foreign_public_declarations(source: str, prefix: str) -> list[tuple[str, int]]:

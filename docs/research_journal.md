@@ -1,5 +1,73 @@
 # Research journal
 
+## 2026-09-19 -- Paper C's two corollaries, and a module that was imported and never named
+
+- **Objective.** Close two adjacent verification gaps a parallel audit surfaced
+  and deliberately did not widen. Corollaries 5.4 and 5.5 are stated inside
+  Theorem 1's own sentence but carried no verification-table row and no
+  Appendix A entry; and Appendix A claimed the barrel imports "exactly the
+  thirty modules named here" while naming 29, `TerminationFloor257` being
+  imported and never mentioned. The audit asked that wiring any new module in
+  happen in the same pass, so `FateProductionWords` came in too.
+- **The answer to Gap 1 is a split, not an either/or.** The formalpedia index
+  says `Production.failures_logMass_ge` **is** Corollary 5.5(2)'s log-mass
+  clause, kernel-checked and unconditional for every \(0<\lambda\le13/40\).
+  Corollary 5.4 is not formalized: its proof spreads \(g_A(\log X)\) over the
+  \(\tfrac12\log_2X+2\) dyadic blocks of \((\sqrt X,X]\) and takes the best one,
+  and that pigeonhole exists nowhere under `formal/`. So the natural-density
+  clause of 5.5(2), which is 5.4 read at the failure set, is not there either.
+  5.5(1) and 5.5(3) are one instantiation away -- Lemma 2.1 gives the reach-one
+  class, a cycle basin and the divergent starts all backward-closed, and
+  `logMass_contagion_elementary` asks for nothing more -- but no instantiation is
+  written as a named theorem, so the paper's Lean column does not claim them.
+  Three verification-table rows and two Appendix A rows now record exactly that.
+- **The barrel contradicted itself, and had since `failures_logMass_ge` landed.**
+  Its "What is not here" paragraph said Corollaries 5.4--5.5 "have no machine
+  check of any kind", while its own `FateProduction` bullet two screens above
+  cited `failures_logMass_ge`. Fixed, with the precise half named.
+- **Gap 2 was an arithmetic gap, not a naming one.** The barrel imported 30 and
+  Appendix A named 29. Wiring `FateProductionWords` makes it 31/31, and the Lean
+  floor row now names `TerminationFloor257`. The module moved from
+  `AUXILIARY_MODULES` to `LAYERS`, where every other Paper C barrel module sits.
+- **What makes this a closed gap rather than a fixed sentence.** Two keys added
+  to `TABLE_LEAN_ROWS` in `paper_c_formal_layer.py`, so the probe now goes red if
+  the Corollary 5.5(2) row or the prefix-free row is deleted. `CITED_MODULES` is
+  31 and the barrel must equal it exactly.
+- **A latent bug in the probe, surfaced by the new module.** Lean prints
+  "does not depend on any axioms" for a declaration resting on nothing, and
+  `_RESULT` only matched the bracketed form. `Vword_eq_odd_cons` and `Vword_five`
+  are the first cited Paper C names that use no axiom at all, so the artifact
+  stopped being uniformly bracketed. `tools/trust_boundary.py` already accepted
+  both shapes; the probe now does too. The failure was loud, not silent -- an
+  unmatched line reads as "asked, but no recorded result" -- but it was a false
+  alarm waiting to happen.
+- **An adversarial pass over my own edits caught four things I had wrong.**
+  Paper C states the barrel count in *two* places; I fixed Appendix A and the
+  barrel docstring and missed Section 1.4, turning a true sentence false. The new
+  Appendix A row carried no exponent qualifier, which in the formal-to-paper map
+  reads as certifying 5.5(2) for the paper's full \(\lambda<\lambda^{**}\); it now
+  says 13/40, and the leftover band \(13/40<\lambda<\lambda^{**}\) is explicitly on
+  the human side. A row titled "for one fate" was wrong -- 5.5(2) is about the
+  failures \(F=\mathbb N\setminus R\), which the paper never counts among its
+  three fate classes -- and it contradicted the row directly below it. And the
+  barrel still credited `zeta2_pos` with \(\zeta(3/10)>0\) inside the sentence
+  whose conclusion had just moved to 13/40; since \(\zeta\) is antitone the
+  premise no longer reached the conclusion.
+- **Housekeeping that was red before this pass.** Appendix B's hash list had
+  seven stale digests from the 13/40 and 27/40 commits; nine entries moved in
+  all, with `FateProductionWords.lean` added. The `test_layer_completeness`
+  budget was already red at `397023de` with 37 modules outside `LAYERS` against a
+  34 budget, from `CollatzBridgeLab` and `PaperBJumpTransposition` landing
+  without it moving; this pass takes it to 36 and records the delta.
+- **Verified.** `lake build Problems.JugglerFatePaper` green, 3451 jobs;
+  `AxiomCheckPaperC.expected` regenerated, 415 declarations, every list a subset
+  of Mathlib's three and two resting on none; the Paper C probe reports
+  `PAPER_C_LEAN_SURFACE_CONSISTENT` with zero problems; all four formalpedia
+  artifacts rebuilt; Paper C rebuilt and its three mirrors synchronized.
+- **Not done, deliberately.** Corollary 5.4 is still unformalized. The dyadic
+  pigeonhole is an easy-looking finite argument, but nothing in this pass proves
+  it, and the rows say so rather than implying otherwise.
+
 ## 2026-09-19 -- the ladder recovers the depth-two ceiling, and stops
 
 - **Objective:** the question a peer session handed me, whether the `2/9` in

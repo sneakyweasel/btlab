@@ -1794,7 +1794,9 @@
       "ledger": [
         "J-paper-c-production-words-are-prefix-free"
       ],
-      "papers": [],
+      "papers": [
+        "Paper C"
+      ],
       "trust": {
         "kernel": 7
       }
@@ -2965,6 +2967,7 @@
         "Problems.Juggler.FateCollapse",
         "Problems.Juggler.FateEnergyAtoms",
         "Problems.Juggler.FateFirstLetter",
+        "Problems.Juggler.FateProductionWords",
         "Problems.Juggler.FateShareLaw",
         "Problems.Juggler.TerminationFloor257"
       ],
@@ -3080,8 +3083,8 @@
     }
   },
   "totals": {
-    "edges": 239,
-    "edges_before_reduction": 1788,
+    "edges": 240,
+    "edges_before_reduction": 1789,
     "ledger_rows_placed": 416,
     "nodes": 187
   }

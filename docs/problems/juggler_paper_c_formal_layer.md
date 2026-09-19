@@ -108,9 +108,9 @@ The production inequality itself and the root \(\lambda^{**}\) stay
 human.
 
 **The build root (COMPUTATIONALLY VERIFIED).**
-`formal/Problems/JugglerFatePaper.lean` imports exactly the thirty
+`formal/Problems/JugglerFatePaper.lean` imports exactly the thirty-one
 modules Paper C cites; `formal/AxiomCheckPaperC.lean` prints the axioms
-of the 409 cited declarations and `AxiomCheckPaperC.expected` records
+of the 415 cited declarations and `AxiomCheckPaperC.expected` records
 them, every list a subset of `propext`, `Classical.choice`,
 `Quot.sound`, no `sorryAx`, no `native_decide`.
 
@@ -709,10 +709,12 @@ windows (D.1) and (D.2) of Appendix D.1 (`FateLandingWindow.lean`), and
 the counting half of the Section 10(d) display
 (`FateCylinderEnergy.lean`), together with two consolidations,
 `FateNumerics.lean` and `FateWindowCount.lean`. The verification table
-is thirty-two Lean rows and four human, and the four are analysis: the
+is thirty-four Lean rows and five human, and the five are analysis: the
 block average 4.4, the share law 4.5--4.6, the production inequality
-(5.2), and the asymptotic bookkeeping of Sections 8--10, whose exact
-forms (Lemma 8.2, Theorems 8.3, 9.1, 9.2, Proposition 9.3) are Lean. No small attack remains on this paper; what is left
+(5.2), the asymptotic bookkeeping of Sections 8--10, whose exact
+forms (Lemma 8.2, Theorems 8.3, 9.1, 9.2, Proposition 9.3) are Lean,
+and the clauses of Corollaries 5.4--5.5 outside the log-mass bound on
+the failures, whose dyadic pigeonhole is not formalized. No small attack remains on this paper; what is left
 needs either a genuine analytic argument or the hypothesis-as-input
 treatment the large attacks use. The consolidation still open
 (`FateSweepMonotone`'s six span inductions, its two window counts, the

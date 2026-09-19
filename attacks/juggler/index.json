@@ -6513,6 +6513,7 @@
         "formal/Problems/Juggler/FateShareLaw.lean",
         "formal/Problems/Juggler/FateContagionBound.lean",
         "formal/Problems/Juggler/FateProduction.lean",
+        "formal/Problems/Juggler/FateProductionWords.lean",
         "formal/Problems/Juggler/FateOneSided.lean",
         "formal/Problems/Juggler/FateOneSidedCorollary.lean",
         "formal/Problems/Juggler/FatePressureCorollary.lean",

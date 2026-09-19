@@ -318,7 +318,7 @@ type Paper B proves enters Appendix C as an explicit hypothesis.
 
 Statements carry one of four roles. *Lean*: the exact combinatorial
 layer is formalized in Lean 4; the root `formal/Problems/JugglerFatePaper.lean`
-imports exactly the thirty modules this paper cites and builds with
+imports exactly the thirty-one modules this paper cites and builds with
 `lake build Problems.JugglerFatePaper`, without `sorry` and without
 `native_decide`; `formal/AxiomCheckPaperC.lean` prints the axiom
 dependencies of every cited name and `AxiomCheckPaperC.expected`
@@ -345,6 +345,9 @@ constants; they prove nothing and are labelled wherever they appear.
 | Share law and its three corollaries (Lemma 4.5, Corollary 4.6) | human proof; the phase expansion with its cubic remainder, the range of the quadratic phase with its threshold \([-\tfrac56,\tfrac16]\), and the integral \(\tfrac{25}{108}\) are Lean, the equidistribution and the measure identifications are not |
 | Production inequality (5.2) with the \(V\)-ladder terms of Section 5.7 | human proof; the \(E\)-family and the \(OE\)-fiber family are Lean with explicit errors, the block-average family needs the two exponential-sum bounds and the ladder needs Appendix D |
 | Theorem 5.3 at exponent \(13/40\), unconditional: two productions, no hypothesis | Lean |
+| Fate contagion at the failure set, log-mass form (Corollary 5.5(2), first clause) | Lean, unconditionally at exponent \(13/40\): the failure set is backward-closed by Lemma 2.1 and nonempty by assumption, so Theorem 5.3 applies to it |
+| Fate contagion, the remaining clauses (Corollary 5.4; the natural-density clause of Corollary 5.5(2); Corollaries 5.5(1), 5.5(3)) | human proof; the dyadic pigeonhole of Corollary 5.4 and the instantiations of Theorem 5.3 at the reach-one class, at a cycle basin and at the divergent starts are not formalized, and neither is the log-mass clause in the remaining range \(13/40<\lambda<\lambda^{**}\) |
+| Production words \(V_k=(OE)^{k-1}OEE\) are prefix-free (Section 5.7, Appendix D) | Lean, for the whole family and not only the six; the disjointness of source sets it feeds needs Appendix D's analytic layer, which is human |
 | The side condition \(e(C)>\tfrac{27}{40}\) of the unconditional criteria, at \(C=30\), by rational bounds on \(e\), \(\log 2\) and \(\log_2 3\) | Lean; the least such \(C\) (\(23\)) and the paper's own threshold through \(\lambda^{**}\) stay with the audit |
 | Cube fibers full or alternating (Lemma 4.7) | Lean |
 | Recursion lemma (Lemma 5.1) | Lean |
@@ -2796,8 +2799,9 @@ No nontrivial cycle or unbounded orbit is excluded by this paper.
 ## Appendix A. Lean names
 
 All in `formal/Problems/Juggler/FateContagion.lean` unless noted. The
-root `formal/Problems/JugglerFatePaper.lean` imports exactly the thirty
-modules named here and builds with `lake build Problems.JugglerFatePaper`
+root `formal/Problems/JugglerFatePaper.lean` imports exactly the
+thirty-one modules named here and builds with
+`lake build Problems.JugglerFatePaper`
 without `sorry` and without `native_decide`;
 `formal/AxiomCheckPaperC.expected` records the axioms of every name
 below. Lean certifies the exact combinatorial identities and the two
@@ -2813,11 +2817,13 @@ abstract lemmas listed here, not the analytic density estimates.
 | Lemma 3.2 (\(OE\) fiber) | `sqrt_sqrt_eq_iff`, `floorPower_oe_fiber`, `oe_fiber_mem`, `oe_fiber_disjoint` |
 | Theorem 6.1 (odd generation) | `ForwardClosed`, `reachesOne_forwardClosed`, `not_reachesOne_forwardClosed`, `escapes_forwardClosed`, `mem_iff_floorPower_mem`, `exists_odd_ancestor`, `exists_odd_ancestor_ge_three`, `nonempty_iff_odd_image_mem`, `odd_mem_iff` |
 | Lemma 8.1 (envelope descent) | `iterate_le_of_envelope`, `mem_of_envelope_floor`, `reachesOne_of_itinerary_envelope`; power envelope `power_bound_word` (Paper A layer) |
-| Lean floor \(N_0=260\) | `reachesOne_of_lt_two_hundred_sixty_one` |
+| Lean floor \(N_0=260\), in `Problems/Juggler/TerminationFloor257.lean` | `reachesOne_of_lt_two_hundred_sixty_one` |
 | Lemma 4.7 (cube fibers), in `Problems/Juggler/CubeFiber.lean` | `cube_fiber_range`, `cube_fiber_sqrt_even`, `cube_fiber_even_image`, `even_cube_fiber_full`, `cube_fiber_sqrt_odd`, `cube_fiber_alternating`, `odd_cube_fiber_alternating` |
 | Shared counting of Lemmas 4.1, 4.1' and 4.3 (separated sequences in a window), in `Problems/Juggler/FateWindowCount.lean` | `WindowCount.StepGe`, `WindowCount.StepLe`, `WindowCount.span_ge`, `WindowCount.span_le`, `WindowCount.mono_of_stepGe`, `WindowCount.window_card_le`, `WindowCount.window_card_le_nat` |
 | Proposition 4.4, the exact layer and the deduction from the exponential-sum bounds (the bounds are hypotheses), in `Problems/Juggler/FateBlockAverage.lean` | `BlockAverage.blockE`, `BlockAverage.oddBlock`, `BlockAverage.mem_oddBlock`, `BlockAverage.mem_oeFiber_iff_cell34`, `BlockAverage.U`, `BlockAverage.oddBlock_card_eq`, `BlockAverage.U_card_eq`, `BlockAverage.psi`, `BlockAverage.slowSum`, `BlockAverage.fastSum`, `BlockAverage.productSum`, `BlockAverage.four_card_U`, `BlockAverage.block_average_of_bounds`, `BlockAverage.block_average_bound`, `BlockAverage.psi_succ`, `BlockAverage.abs_psi`, `BlockAverage.oddBlock_filter_eq`, `BlockAverage.slowSum_eq_fibers`, `BlockAverage.oeFiber_card_succ_diff`, `BlockAverage.abs_alt_sum_le`, `BlockAverage.slowSum_abs_le`, `BlockAverage.card_Ico_block`, `BlockAverage.oddBlock_card_le`, `BlockAverage.oddBlock_card_ge`, `BlockAverage.oddBlock_quarter_close`, `BlockAverage.block_average_two_bounds`, `BlockAverage.block_average_asymptotic`, `BlockAverage.block_average_bound_two` |
 | Section 5.1 without its exponential sums, and Theorem 5.3 at exponent 13/40 unconditionally, in `Problems/Juggler/FateProduction.lean` | `Production.sqrt_floor_exp`, `Production.floor_exp_ge_half`, `Production.family_E`, `Production.good_fiber_logMass_ge`, `Production.family_OE`, `Production.errE`, `Production.errOE`, `Production.errAdd`, `Production.two_le_exp`, `Production.one_div_floor_exp_le`, `Production.sum_Ioc_le_sum_Ioc_pred`, `Production.halfLogMass_split`, `Production.production_two`, `Production.rate2`, `Production.coef2`, `Production.err2`, `Production.rate2_ge`, `Production.rate2_le`, `Production.rate2_pos`, `Production.coef2_ge`, `Production.err2_nonneg`, `Production.err2_le`, `Production.production_two_sum`, `Production.zeta2_pos`, `Production.zeta2_antitone`, `Production.errors_le`, `Production.errors_vanish`, `Production.contagion_elementary`, `Production.logMass_contagion_elementary`, `Production.failures_logMass_ge`, `Production.conjecture_of_tao_rate`, `Production.conjecture_of_cylinder_bound` |
+| Corollary 5.5(2), the log-mass clause at exponent 13/40, in `Problems/Juggler/FateProduction.lean` | `Production.failures_logMass_ge` |
+| Section 5.7 and Appendix D, the production words and their prefix-freeness, in `Problems/Juggler/FateProductionWords.lean` | `FateProductionWords.Vword`, `FateProductionWords.Vword_length`, `FateProductionWords.Vword_oddCount`, `FateProductionWords.Vword_eq_odd_cons`, `FateProductionWords.Vword_prefix_iff`, `FateProductionWords.Vword_six_prefixFree`, `FateProductionWords.Vword_five` |
 | Section 4.3, the exact layer of the share law (the expansion, the range, the integral), in `Problems/Juggler/FateShareLaw.lean` | `ShareLaw.taylor_three_halves`, `ShareLaw.xval_expansion`, `ShareLaw.xval_expansion_fiber`, `ShareLaw.phi`, `ShareLaw.phiRange`, `ShareLaw.phi_ge_min`, `ShareLaw.phi_le_chord`, `ShareLaw.phi_sub_le`, `ShareLaw.exists_phi_sub_eq`, `ShareLaw.phiRange_le_half_iff`, `ShareLaw.extremeMeasure`, `ShareLaw.extremeMeasure_eq_zero`, `ShareLaw.extremeMeasure_piece1`, `ShareLaw.extremeMeasure_piece2`, `ShareLaw.extremeMeasure_piece3`, `ShareLaw.extremeMeasure_piece4`, `ShareLaw.integral_extremeMeasure` |
 | Section 10(d), the cylinder-splitting identity, in `Problems/Juggler/FateCylinderEnergy.lean` | `CylinderEnergy.itinerary_succ_append`, `CylinderEnergy.wordCount`, `CylinderEnergy.wordCount_split`, `CylinderEnergy.energy`, `CylinderEnergy.bias`, `CylinderEnergy.energy_succ`, `CylinderEnergy.sum_bias_sq` |
 | Appendix D.1, the exact landing windows (D.1) and (D.2), in `Problems/Juggler/FateLandingWindow.lean` | `LandingWindow.cell34`, `LandingWindow.cell34_eq_floorPower_two`, `LandingWindow.le_cell34_iff`, `LandingWindow.cell34_lt_iff`, `LandingWindow.windowStart`, `LandingWindow.windowStart_exists`, `LandingWindow.windowStart_le_iff`, `LandingWindow.lt_windowStart_iff`, `LandingWindow.exact_endpoints`, `LandingWindow.setOf_cell34_mem_Ico`, `LandingWindow.exact_endpoints_iterate`, `LandingWindow.setOf_iterate_mem_Ico` |
@@ -2836,7 +2842,7 @@ abstract lemmas listed here, not the analytic density estimates.
 | Lemma 4.2 (fiber parity), in `Problems/Juggler/FateFiberParity.lean` | `FiberParity.xval`, `FiberParity.two_xval`, `FiberParity.floor_two_xval`, `FiberParity.cell_xval_even_iff`, `FiberParity.xval_step`, `FiberParity.xval_step_ge`, `FiberParity.xval_step_le`, `FiberParity.xval_step_mono`, `FiberParity.oeFiber`, `FiberParity.mem_oeFiber`, `FiberParity.oeFiber_eq_image`, `FiberParity.oeFiber_card`, `FiberParity.evenImageCount`, `FiberParity.fiber_ge_rpow`, `FiberParity.fiber_lt_rpow`, `FiberParity.rpow_four_thirds_succ_ge`, `FiberParity.rpow_four_thirds_succ_le`, `FiberParity.rpow_two_thirds_succ_le`, `FiberParity.oeFiber_card_ge`, `FiberParity.oeFiber_card_le`, `FiberParity.Am`, `FiberParity.alpha`, `FiberParity.eps`, `FiberParity.Good`, `FiberParity.eps_le`, `FiberParity.step_ge`, `FiberParity.step_le`, `FiberParity.fiber_parity_good` |
 | Lemma 4.3 (thin fibers), in `Problems/Juggler/FateThinFibers.lean` | `FiberParity.span_ge_of_step`, `FiberParity.arc_count_le`, `FiberParity.Am_step_le`, `FiberParity.Am_step_ge`, `FiberParity.eps_antitone`, `FiberParity.bad_mem_arc`, `FiberParity.two_rpow_third_le`, `FiberParity.two_rpow_two_thirds_le`, `FiberParity.rpow_two_thirds_ge`, `FiberParity.eps_div_eps_double`, `FiberParity.Am_double_sub_le`, `FiberParity.bad_count_le`, `FiberParity.bad_block_logMass_le`, `FiberParity.bad_sum_dyadic_le`, `FiberParity.eps_pow_two_mul`, `FiberParity.two_rpow_neg_third_le`, `FiberParity.bad_logMass_le` |
 | Theorem 5.3 given (5.2), Theorem 7.3, Corollary 8.4 through (5.2), in `Problems/Juggler/FateContagionBound.lean` | `productionRate`, `productionCoeff`, `productionRate_pos`, `productionRate_ge`, `productionRate_le`, `productionRate_le_one`, `productionCoeff_ge`, `productionCoeff_nonneg`, `zeta`, `zeta_antitone`, `le_rpow_div_of_pow_le`, `zeta_pos_49`, `seedConst`, `gA`, `gA_seed`, `logMass_ge_gA`, `contagion_of_production_inequality`, `logMass_contagion_of_production`, `oddFailures_eq_empty`, `tao_rate_iff_conjecture`, `conjecture_of_cylinder_bound_of_production` |
-| Proposition 4.4 (its two exponential-sum bounds, the fast sum and the product sum; the exact layer, the slow sum, the block count and the deduction of (4.1) and of the asymptotic form from those two bounds are Lean), the share law 4.5 and Corollary 4.6 (the phase expansion, the range of the quadratic phase and the integral 25/108 are Lean, the equidistribution and the measure identifications are not), the production inequality (5.2) (its `E`-family and `OE`-fiber family are Lean with explicit errors and give Theorem 5.3 at exponent 13/40 unconditionally; the block-average family and the ladder are not), Sections 8--10 except Lemma 8.2, the explicit form of Theorem 8.3, Corollary 8.4, the exact form of Theorem 9.2 and Proposition 9.3, Appendix C; Theorems 5.3, 7.2, 7.3 and Corollary 8.4 only with (5.2) or the contagion bound as a hypothesis | human proofs |
+| Proposition 4.4 (its two exponential-sum bounds, the fast sum and the product sum; the exact layer, the slow sum, the block count and the deduction of (4.1) and of the asymptotic form from those two bounds are Lean), the share law 4.5 and Corollary 4.6 (the phase expansion, the range of the quadratic phase and the integral 25/108 are Lean, the equidistribution and the measure identifications are not), the production inequality (5.2) (its `E`-family and `OE`-fiber family are Lean with explicit errors and give Theorem 5.3 at exponent 13/40 unconditionally; the block-average family and the ladder are not), Corollary 5.4 and every clause of Corollary 5.5 except 5.5(2)'s log-mass bound at exponent 13/40 (the dyadic pigeonhole is not formalized, nor is that bound in the remaining range \(13/40<\lambda<\lambda^{**}\), and neither are the instantiations of Theorem 5.3 at the reach-one class, at a cycle basin or at the divergent starts), Sections 8--10 except Lemma 8.2, the explicit form of Theorem 8.3, Corollary 8.4, the exact form of Theorem 9.2 and Proposition 9.3, Appendix C; Theorems 5.3, 7.2, 7.3 and Corollary 8.4 only with (5.2) or the contagion bound as a hypothesis | human proofs |
 | Theorem 9.1 (one-sided form, exact, by exponential moments), in `Problems/Juggler/FateOneSided.lean` | `OneSided.cylinder_split`, `OneSided.LBad_of_LBad_append`, `OneSided.sum_allWords_succ`, `OneSided.sum_pow_oddCount_le`, `OneSided.badWeight`, `OneSided.badWeight_nonneg`, `OneSided.badWeight_le_card`, `OneSided.badMass`, `OneSided.OneSidedShare`, `OneSided.badMass_succ_le`, `OneSided.card_cylinder_zero_le`, `OneSided.badMass_one_le`, `OneSided.badMass_le`, `OneSided.oddFailures_card_le_badMass`, `OneSided.one_sided_bound`, `OneSided.klDiv`, `OneSided.tilt`, `OneSided.tilt_ge_one`, `OneSided.tilt_pow_ratio`, `OneSided.one_sided_bound_kl` |
 | Theorem 9.1's consequence (the conjecture from the one-sided hypothesis), in `Problems/Juggler/FateOneSidedCorollary.lean` | `OneSided.OneSidedBound`, `OneSided.OneSidedExact`, `OneSided.oneSidedExponent`, `OneSided.OneSidedShare.mono`, `OneSided.oneSidedBound_of_exact`, `OneSided.klDiv_nonneg`, `OneSided.exp_le_rpow_scale`, `OneSided.pow_le_rpow_scale`, `OneSided.oddFailures_le_of_one_sided`, `OneSided.implies_conjecture_of_contagion`, `OneSided.one_sided_implies_conjecture`, `OneSided.exact_share_implies_conjecture` |
 | Section 9.2's consequences (the conjecture from the pressure and no-momentum hypotheses), in `Problems/Juggler/FatePressureCorollary.lean` | `Pressure.oddFailures_subset_live`, `Pressure.PressureBound`, `Pressure.NoMomentumBound`, `Pressure.momentumExponent`, `Pressure.absorb`, `Pressure.oddFailures_le_of_pressure`, `Pressure.pressure_conj_of_contagion`, `Pressure.pressure_implies_conjecture`, `Pressure.oddFailures_le_of_noMomentum`, `Pressure.noMomentum_conj_of_contagion`, `Pressure.noMomentum_implies_conjecture` |
@@ -2927,7 +2933,11 @@ use the roots of the displayed defining equations.
 
 - `formal/Problems/Juggler/FateProduction.lean`
 
-  SHA-256: `7f933224ef6fac3accdcff64fcb6027d3fb1b19a142e6f9d8ce4511e858b06cc`
+  SHA-256: `7cc24ff9f95692ead6b594aa703677910daf4936f24becce7b13da2c4105df2e`
+
+- `formal/Problems/Juggler/FateProductionWords.lean`
+
+  SHA-256: `a712db485e4c48029ce9a9afcad1cfea1240f4bb4dda1cb7537661ae1f3fdb3e`
 
 - `formal/Problems/Juggler/FateOneSided.lean`
 
@@ -2935,19 +2945,19 @@ use the roots of the displayed defining equations.
 
 - `formal/Problems/Juggler/FateOneSidedCorollary.lean`
 
-  SHA-256: `b3387d9f3feb9969ee900c6810cfa229e52c8db0f2152d23414c84666c9a01bd`
+  SHA-256: `481b4cecbebd7291d551b814f733b9cfd78dec50a936a31fd9ab6544408c714e`
 
 - `formal/Problems/Juggler/FatePressureCorollary.lean`
 
-  SHA-256: `39bdba3c4b5505b52844243766d708e6a09a4bcbb5ec122c768b0c51ae94f03f`
+  SHA-256: `cdd1ca9cbb59c4bb0a5fb24702f12bb8e27c21365f9b28e515819f874e9b437e`
 
 - `formal/Problems/Juggler/FateOneSidedAtoms.lean`
 
-  SHA-256: `9401b63621cf3af1b1aeb04c46845573760508c1e761fe3fe6a03fde9786a99f`
+  SHA-256: `db2601560b54b95a5ac5b2f5f16c0d83e3b4cf4182f1d20795c47db26c0a9ce3`
 
 - `formal/Problems/Juggler/FateEnergyAtoms.lean`
 
-  SHA-256: `422f8bede16e0953c91d55b230e291ca37e6882c8210c02cb22af2837a60b8fb`
+  SHA-256: `e98ccccbb25140d41ede236466f7e0f522c433a4c80fcaa330abfb1388653b1a`
 
 - `formal/Problems/Juggler/FateCollapse.lean`
 
@@ -2955,7 +2965,7 @@ use the roots of the displayed defining equations.
 
 - `formal/Problems/Juggler/FateCertified.lean`
 
-  SHA-256: `57492ff859c6f3f88a6190cd5aeafd9d44a837046877be2b9576ffb048d89351`
+  SHA-256: `ff47a23462fb591264125859b9d511bb2cec046da7a71fbad5d17b35a5581c90`
 
 - `formal/Problems/Juggler/FateShareLaw.lean`
 
@@ -3003,15 +3013,15 @@ use the roots of the displayed defining equations.
 
 - `formal/Problems/Juggler/FateContagionBound.lean`
 
-  SHA-256: `238cf115eca99ca070b5c29b983cbcebacf9701c5303a96a2ea96030f008d33d`
+  SHA-256: `d8991fd05c076875a0e8fd75692a10bb31930c289a3812de07212b620645acca`
 
 - `formal/Problems/JugglerFatePaper.lean`
 
-  SHA-256: `9b1d9ae60f0c07ddb80839eba76fa3ba04b414715a307986f3d3e31f4b6ac740`
+  SHA-256: `b6a9aba0a8e5c85ba06bbd049d0f7a42f4fb27762831b1e2fc587b7428a9fe66`
 
 - `formal/AxiomCheckPaperC.expected`
 
-  SHA-256: `0d0c39ab51bceaad5cb402176dcd1fff40165c010fe5aec6a744668d3adf0b4d`
+  SHA-256: `a9e7db1534190fe3263d4f0633878f329d9b6b4288896db7ddd91202e6fc671b`
 
 - `src/research/juggler_sequence/fate_contagion.py`
 
