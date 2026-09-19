@@ -226,7 +226,7 @@
         }
       ],
       "id": "J-paper-b-survivor-certificate-recursion",
-      "in_file": 18,
+      "in_file": 20,
       "lean": "Problems/Juggler/PaperBCertificateRecursion.lean",
       "names_own": [
         "neverNegCount_add_minimalCertCount",
@@ -4618,8 +4618,19 @@
         "Vword_five"
       ],
       "statement": "Paper C's finite production words are prefix-free, in Lean, for the whole family rather than for the six the manuscript fixes. Paper C (docs/theory/juggler_fate_almost_all_note.md) builds Theorem 1 from six productions V_k = (OE)^(k-1) OEE with rho_k = (1/2)(3/4)^k, 1 <= k <= 6, and uses their prefix-freeness three times: 'Production words must be prefix-free' when the candidate list is drawn up, "
+    },
+    {
+      "candidates": [],
+      "composite": false,
+      "confidence": "low",
+      "definitions": [],
+      "id": "J-survivor-count-is-the-certificate-tail",
+      "in_file": 0,
+      "lean": "formal/Problems/Juggler/PaperBCertificateRecursion.lean",
+      "names_own": [],
+      "statement": "PROVED IN LEAN, for every pair d <= K, over the naturals: 2^(K-d) * N_d = sum_{j=d+1}^{K} 2^(K-j) * M_j + N_K, where N_d = neverNegCount d counts the length-d words with no contracting prefix and M_j = minimalCertCount j counts those contracting for the first time at j. Divided by 2^K it reads N_d/2^d = sum_{j=d+1}^{K} M_j/2^j + N_K/2^K, so the survivor density at depth d is the mass of the certif"
     }
   ],
-  "unresolved": 126,
+  "unresolved": 127,
   "worth_reviewing": 20
 }

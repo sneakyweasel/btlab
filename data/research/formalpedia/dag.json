@@ -2288,7 +2288,7 @@
       }
     },
     "Problems.Juggler.PaperBCertificateRecursion": {
-      "declarations": 22,
+      "declarations": 24,
       "depends_on": [
         "Problems.Juggler.PaperBCertificateLengths",
         "Problems.Juggler.PaperBFiveStepDensity"
@@ -2299,7 +2299,7 @@
       ],
       "papers": [],
       "trust": {
-        "kernel": 22
+        "kernel": 24
       }
     },
     "Problems.Juggler.PaperBCertificates": {

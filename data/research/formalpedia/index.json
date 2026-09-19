@@ -55576,6 +55576,30 @@
       "trust": "kernel"
     },
     {
+      "doc": "**The telescoping identity.** For `d \u2264 K`, `2 ^ (K - d) \u00b7 N_d = \u03a3_{j = d+1}^{K} 2 ^ (K - j) \u00b7 M_j + N_K`. It is `neverNegCount_add_minimalCertCount` summed and nothing else.",
+      "file": "formal/Problems/Juggler/PaperBCertificateRecursion.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-survivor-certificate-recursion"
+      ],
+      "line": 350,
+      "module": "Problems.Juggler.PaperBCertificateRecursion",
+      "name": "neverNegCount_telescope",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The same identity with the certificate tail on the left, which is how Section 6 of the manuscript uses it: the mass of certificates appearing strictly after depth `d` and no later than `K` is exactly what separates the two survivor counts.",
+      "file": "formal/Problems/Juggler/PaperBCertificateRecursion.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-survivor-certificate-recursion"
+      ],
+      "line": 376,
+      "module": "Problems.Juggler.PaperBCertificateRecursion",
+      "name": "minimalCert_tail_eq",
+      "trust": "kernel"
+    },
+    {
       "doc": "A nonempty word that contracts, with no proper nonempty contracting prefix. This is the exact reading of Paper B Lemma 5.1's \"contracting words ... with no proper contracting prefix\".",
       "file": "formal/Problems/Juggler/PaperBCertificates.lean",
       "kind": "def",
@@ -93230,7 +93254,7 @@
       ]
     },
     "Problems.Juggler.PaperBCertificateRecursion": {
-      "declarations": 22,
+      "declarations": 24,
       "file": "formal/Problems/Juggler/PaperBCertificateRecursion.lean",
       "imports": [
         "Problems.Juggler.PaperBCertificateLengths",
@@ -94488,13 +94512,13 @@
     }
   },
   "totals": {
-    "declarations": 6973,
-    "declarations_with_a_ledger_row": 4777,
-    "ledger_rows_naming_a_file": 452,
+    "declarations": 6975,
+    "declarations_with_a_ledger_row": 4779,
+    "ledger_rows_naming_a_file": 453,
     "modules": 309,
     "trust": {
       "compiler": 56,
-      "kernel": 6917
+      "kernel": 6919
     }
   }
 }

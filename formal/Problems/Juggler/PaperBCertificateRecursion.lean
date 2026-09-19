@@ -327,4 +327,56 @@ theorem density_flat_ten_to_eleven :
     (certifiedWordCount 11 : ℚ) / 2 ^ 11 = (certifiedWordCount 10 : ℚ) / 2 ^ 10 :=
   density_flat_of_window_empty (d := 10) window_empty_eleven
 
+/-! ## 6. The telescoped form: a survivor count is a weighted tail of certificate counts
+
+The one-step identity above says where each survivor's two extensions go. Summing it from
+depth `d` up to depth `K` says what a survivor count *is*: the certificates still to come,
+plus whatever has not decided yet.
+
+This is the identity behind the statement that Paper B's prefactor is the two-adic tail of
+A100982. Divided through by `2 ^ K` the theorem reads
+
+  `N_d / 2 ^ d = Σ_{j = d+1}^{K} M_j / 2 ^ j + N_K / 2 ^ K`,
+
+and letting `K` run off leaves the survivor density as the tail mass of the minimal
+certificates. Everything here stays in `ℕ`, so no division, no limit and no real number
+enters; the analytic reading is a remark about the statement, not part of it.
+-/
+
+/-- **The telescoping identity.** For `d ≤ K`,
+`2 ^ (K - d) · N_d = Σ_{j = d+1}^{K} 2 ^ (K - j) · M_j + N_K`.
+
+It is `neverNegCount_add_minimalCertCount` summed and nothing else. -/
+theorem neverNegCount_telescope {d K : ℕ} (h : d ≤ K) :
+    2 ^ (K - d) * neverNegCount d
+      = (∑ j ∈ Finset.Ico (d + 1) (K + 1), 2 ^ (K - j) * minimalCertCount j)
+        + neverNegCount K := by
+  induction K, h using Nat.le_induction with
+  | base => simp
+  | succ K hK ih =>
+      have hdouble : ∀ j ∈ Finset.Ico (d + 1) (K + 1),
+          2 ^ (K + 1 - j) * minimalCertCount j = 2 * (2 ^ (K - j) * minimalCertCount j) := by
+        intro j hj
+        have hjK : j ≤ K := by
+          have := (Finset.mem_Ico.mp hj).2
+          omega
+        rw [show K + 1 - j = (K - j) + 1 by omega, pow_succ]
+        ring
+      have hpow : 2 ^ (K + 1 - d) = 2 * 2 ^ (K - d) := by
+        rw [show K + 1 - d = (K - d) + 1 by omega, pow_succ]
+        ring
+      have hrec := neverNegCount_add_minimalCertCount K
+      rw [Finset.sum_Ico_succ_top (by omega : d + 1 ≤ K + 1), Finset.sum_congr rfl hdouble,
+        ← Finset.mul_sum, Nat.sub_self, pow_zero, one_mul, hpow, mul_assoc, ih]
+      omega
+
+/-- The same identity with the certificate tail on the left, which is how Section 6 of the
+manuscript uses it: the mass of certificates appearing strictly after depth `d` and no later
+than `K` is exactly what separates the two survivor counts. -/
+theorem minimalCert_tail_eq {d K : ℕ} (h : d ≤ K) :
+    (∑ j ∈ Finset.Ico (d + 1) (K + 1), 2 ^ (K - j) * minimalCertCount j)
+      = 2 ^ (K - d) * neverNegCount d - neverNegCount K := by
+  rw [neverNegCount_telescope h]
+  omega
+
 end Problems.Juggler

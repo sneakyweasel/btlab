@@ -459,3 +459,45 @@ def test_the_sandwich_equality_sets_are_exactly_the_record_indices() -> None:
     assert set(w["lower_equality"]) < bigger
     assert {4, 9, 14, 19, 24, 65, 106, 412} <= bigger
     assert not ({4, 9, 14} & set(w["lower_equality"]))
+
+
+def test_the_telescoped_tail_is_now_a_lean_theorem_over_the_naturals() -> None:
+    """`2^(K-d) N_d = sum_{j=d+1}^{K} 2^(K-j) M_j + N_K`, proved in Lean for all `d <= K`.
+
+    The test above checks the tail identity in rational arithmetic at five depths against a
+    cap of 200. That is a spot check of an identity that holds for every pair, and the gap
+    mattered once the identity became load-bearing: Paper B's Section 6 now rests on it when
+    it argues that Winkler's envelope pins `psi` only within a factor 2.71.
+
+    `Problems.Juggler.neverNegCount_telescope` closes the gap. Cleared of division it is a
+    statement about natural numbers, so no rational, no limit and no real number appears in
+    it, and the proof is `neverNegCount_add_minimalCertCount` under `Nat.le_induction` and
+    nothing else. The analytic reading -- divide by `2^K`, let `K` run off, and the survivor
+    density is the tail mass of the minimal certificates -- is a remark about the statement
+    rather than part of it.
+
+    Checked here in exact integer arithmetic, in the same form the Lean theorem states, so a
+    drift in either would show up as a disagreement rather than as two independent truths.
+    """
+    from research.juggler_sequence import paper_b_prefix_count as B
+
+    depth = 120
+    n = [B.non_contracting(d) for d in range(depth + 1)]
+    m = [0] + [2 * n[d - 1] - n[d] for d in range(1, depth + 1)]
+
+    for d in range(0, 60):
+        for k in (d, d + 1, d + 7, 60, depth):
+            if k < d:
+                continue
+            lhs = 2 ** (k - d) * n[d]
+            rhs = sum(2 ** (k - j) * m[j] for j in range(d + 1, k + 1)) + n[k]
+            assert lhs == rhs, (d, k, lhs, rhs)
+
+    # the Lean statement is present and says what this checks
+    src = (REPO_ROOT / "formal" / "Problems" / "Juggler"
+           / "PaperBCertificateRecursion.lean").read_text(encoding="utf-8")
+    assert "theorem neverNegCount_telescope" in src
+    assert "2 ^ (K - d) * neverNegCount d" in src
+    assert "theorem minimalCert_tail_eq" in src
+    for banned in ("sorry", "admit"):
+        assert banned not in src, banned
