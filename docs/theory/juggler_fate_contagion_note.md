@@ -43,9 +43,15 @@ equivalent to a Tao-type almost-all statement with a mild rate**: if
 the starts whose orbit never drops into the certified interval
 \([1,3.5\cdot 10^8]\) have logarithmic count \(o((\log x)^{0.40})\),
 then every start reaches \(1\). For the Collatz map the analogous
-implication is unavailable, because Collatz backward trees are thin
-(\(x^{0.84}\), Krasikov--Lagarias); for the Juggler map the even
-preimage interval makes them fat.
+implication is not merely unavailable, it is false: \(\{3\cdot 2^k\}\)
+is backward-closed under the accelerated map, because a multiple of
+three has no odd preimage, and its reciprocal sum is \(2/3\). The
+Krasikov--Lagarias exponent \(x^{0.84}\) is a *lower* bound on preimage
+counts and so establishes no thinness; what it gives is compatibility
+with a bounded reciprocal sum. For the Juggler map the even preimage
+interval carries harmonic mass exactly \(1/m\) for every \(m\), with no
+exceptional residues, and that uniformity is what makes fates
+contagious.
 
 This note excludes no fate. It does not prove termination, it does
 not exclude cycles, and it does not exclude divergent orbits. Its
@@ -697,10 +703,13 @@ below \(3.5\cdot 10^8\) — a Tao-type "almost all orbits attain a
 bounded value" statement with a mild logarithmic rate. For the
 Collatz map, Tao's theorem gives almost-bounded values in
 logarithmic density without a usable rate, and even a strong rate
-would not imply the Collatz conjecture, because the preimage tree of
-a hypothetical failure is thin (Krasikov--Lagarias: at least
-\(x^{0.84}\), and nothing forces more). For the Juggler map the
-implication is a theorem.
+would not imply the Collatz conjecture. The obstruction is not that
+the preimage tree of a hypothetical failure is thin: Krasikov--Lagarias
+give \(x^{0.84}\) as a *lower* bound, and nothing forces the tree to be
+small. It is that a counting bound \(x^{\kappa}\) with \(\kappa<1\)
+carries total logarithmic mass \(\sum_j 2^{-(1-\kappa)j}=O(1)\), so no
+improvement of the exponent short of \(1\) can force divergence. For
+the Juggler map the implication is a theorem.
 
 ## 5. Remarks, limits, and what is not claimed
 

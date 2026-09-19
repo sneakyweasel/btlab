@@ -4,11 +4,20 @@ from __future__ import annotations
 
 import json
 import math
+from fractions import Fraction
 
 import pytest
 
 from research.juggler_sequence.collatz_bridge import (
     CLASS_BRIDGE,
+    barren_chain_is_backward_closed,
+    collatz_backward_log_mass,
+    collatz_preimages,
+    collatz_theorem_one_counterexample,
+    contagion_mgf_shift,
+    even_block_log_mass,
+    ideal_coefficient,
+    log_mass_census,
     collatz_is_proposition_j_at_delta_one,
     density_exponent,
     good_set_wiener_norm,
@@ -27,6 +36,7 @@ from research.juggler_sequence.collatz_bridge import (
     undecided_classes,
 )
 from research.juggler_sequence.jump_spectrum import survivor_counts
+from research.juggler_sequence.lean_paths import REPO_ROOT
 
 
 def test_the_two_walks_have_the_same_steps() -> None:
@@ -231,3 +241,136 @@ def test_winklers_sandwich_holds_on_the_laboratory_counts() -> None:
     assert w["lower_equality"] == [1, 2, 7, 12, 53, 359, 665]
     assert w["upper_equality"] == [1, 3, 5, 17, 29, 41, 94, 147, 200, 253, 306, 971, 1636]
     assert w["lower_matches_record_minima"] and w["upper_matches_record_maxima"]
+
+def test_the_collatz_analogue_of_theorem_one_is_false_by_exhibit() -> None:
+    """`{3 * 2^k}`, and the reason the working notes gave was the wrong one.
+
+    Paper C's Theorem 1 says every nonempty backward-closed set has divergent
+    logarithmic count. For accelerated Collatz that is false, and not by a
+    delicate estimate: multiples of three have no odd preimage, because
+    `2(3 * 2^k) - 1` is `2 mod 3`. So `{3 * 2^k}` is backward-closed, infinite,
+    counted by `log_2 x`, and has reciprocal sum exactly `2/3`.
+
+    Three working artifacts instead said the analogue fails "because Collatz
+    backward trees are thin (x^0.84, Krasikov--Lagarias)". `x^0.84` is a LOWER
+    bound on preimage counts; it cannot establish thinness of anything, and
+    conjecturally the tree is everything. The published manuscript never said
+    it -- `juggler_fate_almost_all_note.md` says only that an `x^0.84` lower
+    bound is compatible with a bounded reciprocal sum, which is right.
+    """
+    c = collatz_theorem_one_counterexample(60)
+    assert c["backward_closed"]
+    assert c["reciprocal_sum"] == pytest.approx(2 / 3, abs=1e-12)
+    assert barren_chain_is_backward_closed(200)
+    # the chain is exactly the multiples of three with no odd parent
+    for k in range(20):
+        assert collatz_preimages(3 * 2**k) == [3 * 2 ** (k + 1)]
+
+
+def test_the_dichotomy_is_log_mass_not_fibre_thickness() -> None:
+    """Juggler is critical uniformly; Collatz is critical on average only.
+
+    The fibre *counts* differ hugely -- `|J^-1(m)|` grows like `m`, `|C^-1(m)|`
+    is at most two -- but that is not what the contagion recursion consumes. It
+    consumes harmonic mass, and there the two are much closer than the counts
+    suggest: both are critical in the mean, at exactly `1/m`.
+
+    What separates them is the worst case. Juggler's even block gives exactly
+    `1/m` for *every* `m` with no exceptions; accelerated Collatz gives `1/(2m)`
+    on two residues in three, and Theorem 1 quantifies over every backward-closed
+    set, so the worst case governs and the mean is irrelevant. The previous
+    session's reason for the failure -- "Collatz has no fat fibres" -- was the
+    wrong invariant, and this test is what replaces it.
+    """
+    census = log_mass_census(20_000)
+    assert census["collatz_mean"] == pytest.approx(1.0, abs=1e-3)
+    assert census["collatz_min"] == pytest.approx(0.5, abs=1e-15)
+    assert census["collatz_min_is_on_multiples_of_three"]
+    # the worst case is exactly a half, and it is attained on every multiple of 3
+    for m in (3, 6, 9, 300, 3000):
+        assert collatz_backward_log_mass(m) == Fraction(1, 2)
+    # Juggler's block is exactly 1/m in the limit and never below it
+    for m in (10, 100, 1000, 5000):
+        mass = even_block_log_mass(m)
+        assert mass >= 1
+        assert float(mass) == pytest.approx(1.0, abs=4.0 / m)
+
+
+def test_the_ideal_coefficient_is_three_to_the_minus_odd_count() -> None:
+    """`c_w = 2^(-|w|)/rho_w = 3^(-b(w))`, and it reproduces Paper C's table.
+
+    Exact algebra: `2^(-(a+b)) * 2^a * (2/3)^b = 3^(-b)`. The coefficient is
+    blind to everything about the word except how many odd letters it has, and
+    `3^(-b)` is the probability that the Collatz backward step along `w` exists
+    -- the `b`-fold divisibility by three. Juggler is handed as fibre geometry
+    what Collatz must pay for arithmetically.
+    """
+    assert ideal_coefficient("E") == 1
+    assert ideal_coefficient("OE") == Fraction(1, 3)
+    assert ideal_coefficient("OEE") == Fraction(1, 3)
+    assert ideal_coefficient("OOEE") == Fraction(1, 9)
+    assert ideal_coefficient("OOEEE") == Fraction(1, 9)
+
+    # The V_k ladder is printed AT ideal, not below it. Paper C gives
+    # c_k = 3^(-k) for V_k = (OE)^(k-1) OEE (note line 1470), and b(V_k) = k, so
+    # every coefficient the paper prints equals the Collatz-side ideal exactly.
+    for k in range(1, 7):
+        word = "OE" * (k - 1) + "OEE"
+        assert word.count("O") == k, word
+        assert ideal_coefficient(word) == Fraction(1, 3) ** k, word
+
+    # The 3^(-(k+1)) that reaches the lambda** equation is the INCREMENT, not
+    # the coefficient: c_k - (2/9) c_{k-1}, removing the V_k-starts already
+    # counted in family 3 (note line 1478). A first draft of this test read that
+    # factor of three as a parity shortfall, which had the paper losing ground it
+    # never lost; the peer session caught the index. The subtraction is
+    # inclusion-exclusion, so the ladder's distance from the ceiling is overlap
+    # and truncation, not weak coefficients.
+    for k in range(2, 7):
+        c_k = Fraction(1, 3) ** k
+        c_prev = Fraction(1, 3) ** (k - 1)
+        assert c_k - Fraction(2, 9) * c_prev == Fraction(1, 3) ** (k + 1), k
+
+    with pytest.raises(ValueError):
+        ideal_coefficient("OEX")
+
+
+def test_paper_c_ceiling_is_the_collatz_walk_mgf_shifted_by_one() -> None:
+    """`F_J(lambda) = F_C(lambda - 1)`, exactly.
+
+    `F_C(s) = sum_w 2^(-|w|) rho_w^s` is the Collatz walk's moment generating
+    function. Its two classical roots are `F_C(0) = 1` (Kraft) and `F_C(1) = 1`
+    (`E[rho] = 1`, the martingale identity). Under the shift they sit at
+    `lambda = 1` and `lambda = 2`.
+
+    So Paper C's ceiling `lambda = 1` (Proposition 5.12) is a Collatz identity
+    read one exponential level up, and the whole shortfall from `1` down to
+    `lambda** = 0.4926` is the Juggler-side realized parity share `eta_0 = 0`.
+    This is a reparameterization, not a bound: it moves no constant in either
+    problem, and it is recorded because it says *which half* of Paper C the
+    bridge reaches.
+    """
+    for depth in (1, 3, 5, 8):
+        shift = contagion_mgf_shift(depth)
+        assert shift["worst_gap"] < 1e-12, depth
+        assert shift["kraft"] == pytest.approx(1.0, abs=1e-12), depth
+        assert shift["coefficient_sum"] == pytest.approx(
+            shift["four_thirds_power"], rel=1e-12), depth
+
+
+def test_the_published_manuscript_is_correct_and_the_working_notes_were_not() -> None:
+    """The errata, guarded so it cannot silently come back.
+
+    `x^0.84` is Krasikov--Lagarias's lower bound on preimage counts. The three
+    working artifacts that called the trees "thin" on the strength of it had the
+    direction backwards; the Zenodo manuscript did not and needs no revision.
+    """
+    published = (REPO_ROOT / "docs" / "theory"
+                 / "juggler_fate_almost_all_note.md").read_text(encoding="utf-8")
+    assert "lower bound is compatible with a bounded reciprocal" in published
+    assert "lower bound for Collatz preimage counts" in published
+
+    for name in ("juggler_fate_contagion_note.md", "juggler_tao_reduction_note.md"):
+        text = (REPO_ROOT / "docs" / "theory" / name).read_text(encoding="utf-8")
+        assert "trees are thin" not in text, name
+        assert "thin Collatz preimage trees" not in text, name

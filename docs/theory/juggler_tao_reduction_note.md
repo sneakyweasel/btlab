@@ -42,9 +42,11 @@ far inside the range where cylinders are large (\(y/2^{d}\gg 1\)).
 For the Collatz map the descent is by constant factors, the walk
 needs \(\Theta(\log y)\) steps, cylinders of that depth have single
 elements, and Tao's renewal machinery with a *growing* target
-\(f(N)\to\infty\) is forced; moreover, thin Collatz preimage trees
-(Krasikov–Lagarias, \(x^{0.84}\)) mean that even a bounded-target
-almost-all theorem would not imply the Collatz conjecture. For the
+\(f(N)\to\infty\) is forced; moreover, the Collatz preimage bound
+\(x^{0.84}\) (Krasikov–Lagarias, a *lower* bound, not a thinness
+statement) carries only \(O(1)\) logarithmic mass, so even a
+bounded-target almost-all theorem would not imply the Collatz
+conjecture. For the
 Juggler map both obstacles disappear: one-shot Terras counting at
 depth \(O(\log\log y)\) reaches the bounded target, and contagion
 converts the almost-all statement into the full conjecture.
