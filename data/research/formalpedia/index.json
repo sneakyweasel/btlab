@@ -31347,7 +31347,8 @@
       "kind": "def",
       "ledger": [
         "J-fate-contagion-conditional",
-        "J-fate-tao-equivalence"
+        "J-fate-tao-equivalence",
+        "J-paper-c-ladder-recovers-the-depth-two-ceiling"
       ],
       "line": 53,
       "module": "Problems.Juggler.FateContagionBound",
@@ -31360,7 +31361,8 @@
       "kind": "def",
       "ledger": [
         "J-fate-contagion-conditional",
-        "J-fate-tao-equivalence"
+        "J-fate-tao-equivalence",
+        "J-paper-c-ladder-recovers-the-depth-two-ceiling"
       ],
       "line": 64,
       "module": "Problems.Juggler.FateContagionBound",
@@ -31373,7 +31375,8 @@
       "kind": "theorem",
       "ledger": [
         "J-fate-contagion-conditional",
-        "J-fate-tao-equivalence"
+        "J-fate-tao-equivalence",
+        "J-paper-c-ladder-recovers-the-depth-two-ceiling"
       ],
       "line": 74,
       "module": "Problems.Juggler.FateContagionBound",
@@ -31386,7 +31389,8 @@
       "kind": "theorem",
       "ledger": [
         "J-fate-contagion-conditional",
-        "J-fate-tao-equivalence"
+        "J-fate-tao-equivalence",
+        "J-paper-c-ladder-recovers-the-depth-two-ceiling"
       ],
       "line": 77,
       "module": "Problems.Juggler.FateContagionBound",
@@ -31399,7 +31403,8 @@
       "kind": "theorem",
       "ledger": [
         "J-fate-contagion-conditional",
-        "J-fate-tao-equivalence"
+        "J-fate-tao-equivalence",
+        "J-paper-c-ladder-recovers-the-depth-two-ceiling"
       ],
       "line": 80,
       "module": "Problems.Juggler.FateContagionBound",
@@ -31412,7 +31417,8 @@
       "kind": "theorem",
       "ledger": [
         "J-fate-contagion-conditional",
-        "J-fate-tao-equivalence"
+        "J-fate-tao-equivalence",
+        "J-paper-c-ladder-recovers-the-depth-two-ceiling"
       ],
       "line": 83,
       "module": "Problems.Juggler.FateContagionBound",
@@ -31425,7 +31431,8 @@
       "kind": "theorem",
       "ledger": [
         "J-fate-contagion-conditional",
-        "J-fate-tao-equivalence"
+        "J-fate-tao-equivalence",
+        "J-paper-c-ladder-recovers-the-depth-two-ceiling"
       ],
       "line": 86,
       "module": "Problems.Juggler.FateContagionBound",
@@ -31438,11 +31445,54 @@
       "kind": "theorem",
       "ledger": [
         "J-fate-contagion-conditional",
-        "J-fate-tao-equivalence"
+        "J-fate-tao-equivalence",
+        "J-paper-c-ladder-recovers-the-depth-two-ceiling"
       ],
       "line": 89,
       "module": "Problems.Juggler.FateContagionBound",
       "name": "productionCoeff_nonneg",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The ladder rates are `\u03c1_k = (1/2)(3/4)^k`**, `k = 2, \u2026, 6`.",
+      "file": "formal/Problems/Juggler/FateContagionBound.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-contagion-conditional",
+        "J-fate-tao-equivalence",
+        "J-paper-c-ladder-recovers-the-depth-two-ceiling"
+      ],
+      "line": 105,
+      "module": "Problems.Juggler.FateContagionBound",
+      "name": "productionRate_ladder",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The ladder coefficients are the increments of (5.9)**: `c_k - (2/9) c_{k-1} = 3^{-(k+1)}` with `c_k = 3^{-k}`. The `2/9` is the depth-two `OE` coefficient, so each ladder term is what the word contributes *beyond* what that family already counts.",
+      "file": "formal/Problems/Juggler/FateContagionBound.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-contagion-conditional",
+        "J-fate-tao-equivalence",
+        "J-paper-c-ladder-recovers-the-depth-two-ceiling"
+      ],
+      "line": 114,
+      "module": "Problems.Juggler.FateContagionBound",
+      "name": "productionCoeff_ladder",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The same coefficients in closed form, `3^{-(k+1)}`: the increment collapses.",
+      "file": "formal/Problems/Juggler/FateContagionBound.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-contagion-conditional",
+        "J-fate-tao-equivalence",
+        "J-paper-c-ladder-recovers-the-depth-two-ceiling"
+      ],
+      "line": 123,
+      "module": "Problems.Juggler.FateContagionBound",
+      "name": "productionCoeff_ladder_closed",
       "trust": "kernel"
     },
     {
@@ -31451,9 +31501,10 @@
       "kind": "def",
       "ledger": [
         "J-fate-contagion-conditional",
-        "J-fate-tao-equivalence"
+        "J-fate-tao-equivalence",
+        "J-paper-c-ladder-recovers-the-depth-two-ceiling"
       ],
-      "line": 93,
+      "line": 130,
       "module": "Problems.Juggler.FateContagionBound",
       "name": "zeta",
       "trust": "kernel"
@@ -31464,9 +31515,10 @@
       "kind": "theorem",
       "ledger": [
         "J-fate-contagion-conditional",
-        "J-fate-tao-equivalence"
+        "J-fate-tao-equivalence",
+        "J-paper-c-ladder-recovers-the-depth-two-ceiling"
       ],
-      "line": 97,
+      "line": 134,
       "module": "Problems.Juggler.FateContagionBound",
       "name": "zeta_antitone",
       "trust": "kernel"
@@ -31477,9 +31529,10 @@
       "kind": "theorem",
       "ledger": [
         "J-fate-contagion-conditional",
-        "J-fate-tao-equivalence"
+        "J-fate-tao-equivalence",
+        "J-paper-c-ladder-recovers-the-depth-two-ceiling"
       ],
-      "line": 106,
+      "line": 143,
       "module": "Problems.Juggler.FateContagionBound",
       "name": "le_rpow_div_of_pow_le",
       "trust": "kernel"
@@ -31490,9 +31543,10 @@
       "kind": "theorem",
       "ledger": [
         "J-fate-contagion-conditional",
-        "J-fate-tao-equivalence"
+        "J-fate-tao-equivalence",
+        "J-paper-c-ladder-recovers-the-depth-two-ceiling"
       ],
-      "line": 116,
+      "line": 153,
       "module": "Problems.Juggler.FateContagionBound",
       "name": "zeta_pos_49",
       "trust": "kernel"
@@ -31503,9 +31557,10 @@
       "kind": "def",
       "ledger": [
         "J-fate-contagion-conditional",
-        "J-fate-tao-equivalence"
+        "J-fate-tao-equivalence",
+        "J-paper-c-ladder-recovers-the-depth-two-ceiling"
       ],
-      "line": 172,
+      "line": 209,
       "module": "Problems.Juggler.FateContagionBound",
       "name": "seedConst",
       "trust": "kernel"
@@ -31516,9 +31571,10 @@
       "kind": "def",
       "ledger": [
         "J-fate-contagion-conditional",
-        "J-fate-tao-equivalence"
+        "J-fate-tao-equivalence",
+        "J-paper-c-ladder-recovers-the-depth-two-ceiling"
       ],
-      "line": 177,
+      "line": 214,
       "module": "Problems.Juggler.FateContagionBound",
       "name": "gA",
       "trust": "kernel"
@@ -31529,9 +31585,10 @@
       "kind": "theorem",
       "ledger": [
         "J-fate-contagion-conditional",
-        "J-fate-tao-equivalence"
+        "J-fate-tao-equivalence",
+        "J-paper-c-ladder-recovers-the-depth-two-ceiling"
       ],
-      "line": 181,
+      "line": 218,
       "module": "Problems.Juggler.FateContagionBound",
       "name": "gA_seed",
       "trust": "kernel"
@@ -31542,9 +31599,10 @@
       "kind": "theorem",
       "ledger": [
         "J-fate-contagion-conditional",
-        "J-fate-tao-equivalence"
+        "J-fate-tao-equivalence",
+        "J-paper-c-ladder-recovers-the-depth-two-ceiling"
       ],
-      "line": 195,
+      "line": 232,
       "module": "Problems.Juggler.FateContagionBound",
       "name": "logMass_ge_gA",
       "trust": "kernel"
@@ -31555,9 +31613,10 @@
       "kind": "theorem",
       "ledger": [
         "J-fate-contagion-conditional",
-        "J-fate-tao-equivalence"
+        "J-fate-tao-equivalence",
+        "J-paper-c-ladder-recovers-the-depth-two-ceiling"
       ],
-      "line": 216,
+      "line": 253,
       "module": "Problems.Juggler.FateContagionBound",
       "name": "contagion_of_production_inequality",
       "trust": "kernel"
@@ -31568,9 +31627,10 @@
       "kind": "theorem",
       "ledger": [
         "J-fate-contagion-conditional",
-        "J-fate-tao-equivalence"
+        "J-fate-tao-equivalence",
+        "J-paper-c-ladder-recovers-the-depth-two-ceiling"
       ],
-      "line": 279,
+      "line": 316,
       "module": "Problems.Juggler.FateContagionBound",
       "name": "logMass_contagion_of_production",
       "trust": "kernel"
@@ -31581,9 +31641,10 @@
       "kind": "theorem",
       "ledger": [
         "J-fate-contagion-conditional",
-        "J-fate-tao-equivalence"
+        "J-fate-tao-equivalence",
+        "J-paper-c-ladder-recovers-the-depth-two-ceiling"
       ],
-      "line": 303,
+      "line": 340,
       "module": "Problems.Juggler.FateContagionBound",
       "name": "oddFailures_eq_empty",
       "trust": "kernel"
@@ -31594,9 +31655,10 @@
       "kind": "theorem",
       "ledger": [
         "J-fate-contagion-conditional",
-        "J-fate-tao-equivalence"
+        "J-fate-tao-equivalence",
+        "J-paper-c-ladder-recovers-the-depth-two-ceiling"
       ],
-      "line": 312,
+      "line": 349,
       "module": "Problems.Juggler.FateContagionBound",
       "name": "tao_rate_iff_conjecture",
       "trust": "kernel"
@@ -31607,9 +31669,10 @@
       "kind": "theorem",
       "ledger": [
         "J-fate-contagion-conditional",
-        "J-fate-tao-equivalence"
+        "J-fate-tao-equivalence",
+        "J-paper-c-ladder-recovers-the-depth-two-ceiling"
       ],
-      "line": 333,
+      "line": 370,
       "module": "Problems.Juggler.FateContagionBound",
       "name": "conjecture_of_cylinder_bound_of_production",
       "trust": "kernel"
@@ -92101,7 +92164,7 @@
       ]
     },
     "Problems.Juggler.FateContagionBound": {
-      "declarations": 21,
+      "declarations": 24,
       "file": "formal/Problems/Juggler/FateContagionBound.lean",
       "imports": [
         "Problems.Juggler.FateCylinderCorollary",
@@ -92118,6 +92181,11 @@
           "id": "J-fate-tao-equivalence",
           "statement": "Paper C Theorem 7.3 (the almost-all equivalence), with the contagion bound of Theorem 5.3 as a hypothesis, as for Theorem 7.2 (row J-tao-rate-implies-conjecture). tao_rate_iff_conjecture: for 0 < \u03bb < 1 and the contagion bound K (log x)^\u03bb \u2264 logMass (\u00acReachesOne) x for x \u2265 x\u2080 whenever the failure set is nonempty, every positive integer reaches 1 iff there is e > 1 \u2212 \u03bb and y\u2080 with #{odd n in (y, 2y] : n does not reach 1} \u2264 y (log y)^{\u2212e} for all y \u2265 y\u2080. Forward: an empty failure set has no odd failures on any block (oddFailures_eq_empty), so any e (e = 2 \u2212 \u03bb) works; backward: tao_rate_implies_conjecture. Kernel-checked, axioms propext, Classical.choice, Quot.sound only. With row J-fate-contagion-conditional the contagion hypothesis can be replaced by the production inequality (5.2). Not a halt theorem: the rate is not proved.",
           "tag": "EXACT \u2014 LEAN VERIFIED"
+        },
+        {
+          "id": "J-paper-c-ladder-recovers-the-depth-two-ceiling",
+          "statement": "Paper C's production ladder recovers the depth-two ceiling and stops there, so the 2/9 coefficient is not what costs the exponent. THE NUMBERS, all reproduced from the Lean constants rather than from the manuscript: productionCoeff and productionRate in FateContagionBound.lean are the eight pairs of Theorem 1's equation (1.1), and the root of sum c_i e_i^L = 1 over the first n of them reproduces every decimal the manuscript prints -- 0.4480 pairing-only, 0.4801 at OEOEE, 0.4891 at V_3, 0.4916 at V_4, 0.4924 at V_5 and 0.492572 for the full eight, which the paper prints as lambda** = 0.4926. Section 5's two comparison values also come out: the sweep alone at 2/21 gives 0.138, and perfect fiber equidistribution at depth two, coefficient 1/3, gives lambda_ideal = 0.492658, which the manuscript names 'the ceiling of the depth-two method'. THE STRUCTURAL POINT: 2/9 = (2/3)(1/3) is the fiber size times the GUARANTEED parity share of Lemma 4.2, while 1/3 = (2/3)(1/2) is the same fiber at the AVERAGE share of Corollary 4.6(1); that single factor 3/2 is the entire distance from the unconditional exponent to the ceiling. The unconditional two-production route sits at the worst-case share and its root is 0.3261209621, which is why the certified 13/40 of J-fate-contagion-elementary is its ceiling. The block-average family and the six-word ladder together lift 0.326121 to 0.492572, which is 99.98 percent of the way to 0.492658 and does not pass it: lambda** < lambda_ideal by 0.000086. CONSEQUENCE, and it answers an open question a peer session raised the same day: improving the 2/9, or sharpening the inclusion-exclusion overlap, can buy at most 0.000086, because the depth-two ceiling binds first. Going past 0.4926 needs depth three or more, not better depth-two constants. IN LEAN: productionRate_ladder pins the five ladder rates to rho_k = (1/2)(3/4)^k, productionCoeff_ladder pins the coefficients to the increments c_k - (2/9) c_{k-1} with c_k = 3^{-k} -- the inclusion-exclusion against the depth-two OE family, which is (5.9) -- and productionCoeff_ladder_closed gives the collapsed form 3^{-(k+1)}. Before this the eight constants were bare numerals with nothing tying them to the derivation. NOT a bound on any Juggler orbit, not a cycle exclusion, not a termination result; the ceiling statement is about what this method can give, not about the map.",
+          "tag": "COMPUTATIONALLY VERIFIED"
         }
       ]
     },
@@ -94420,13 +94488,13 @@
     }
   },
   "totals": {
-    "declarations": 6970,
-    "declarations_with_a_ledger_row": 4774,
-    "ledger_rows_naming_a_file": 451,
+    "declarations": 6973,
+    "declarations_with_a_ledger_row": 4777,
+    "ledger_rows_naming_a_file": 452,
     "modules": 309,
     "trust": {
       "compiler": 56,
-      "kernel": 6914
+      "kernel": 6917
     }
   }
 }

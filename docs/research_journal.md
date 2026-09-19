@@ -1,5 +1,39 @@
 # Research journal
 
+## 2026-09-19 -- the ladder recovers the depth-two ceiling, and stops
+
+- **Objective:** the question a peer session handed me, whether the `2/9` in
+  Paper C's production inequality is sharp or an artifact of how the third
+  family is cut.
+- **Answered, and the answer is neither.** `2/9 = (2/3)(1/3)` is the fiber
+  size times the *guaranteed* parity share; `1/3 = (2/3)(1/2)` is the same
+  fiber at the *average* share. That factor `3/2` is the whole distance from
+  the unconditional exponent to the depth-two ceiling. The two-production
+  route at the worst-case share has root `0.326121`, which is why the
+  certified `13/40` is its ceiling; perfect equidistribution would give
+  `0.492658`. Paper C's full apparatus reaches `0.492572`, which is `99.98%`
+  of the way and does not pass it. So improving the `2/9`, or sharpening the
+  overlap, is worth at most `0.000086`. **Depth two is the binding
+  constraint, not the constants.** Going further needs depth three.
+- **The paper already named the ceiling** and calls it `lambda_ideal`; what
+  was missing was the comparison, and the fact that `lambda**` sits `0.000086`
+  below it.
+- **Every printed root now comes out of the Lean constants.** The eight
+  `productionCoeff` / `productionRate` pairs were bare numerals with nothing
+  tying them to Theorem 1's equation or to the six decimals the manuscript
+  prints. A new test reads them out of the Lean source, builds the equation,
+  and reproduces `0.4480`, `0.4801`, `0.4891`, `0.4916`, `0.4924` and
+  `0.4926`, plus the two comparison values `0.138` and `0.4927`. Drift in
+  either direction now fails.
+- **And they are pinned in Lean.** `productionRate_ladder` gives the rates as
+  `rho_k = (1/2)(3/4)^k`; `productionCoeff_ladder` gives the coefficients as
+  the increments `c_k - (2/9) c_{k-1}`, which is (5.9) and the
+  inclusion-exclusion the second session corrected this morning;
+  `productionCoeff_ladder_closed` gives `3^{-(k+1)}`.
+- **No movement on the standing questions.** A ceiling on a method is not a
+  statement about the map. Nothing excludes a cycle and nothing proves an
+  orbit reaches `1`.
+
 ## 2026-09-19 -- Paper C under the bridge, and a citation read backwards
 
 - **Objective:** Philippe asked what the Juggler/Collatz bridge does to Paper
