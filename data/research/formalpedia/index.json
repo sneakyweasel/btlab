@@ -57230,7 +57230,7 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "def",
       "ledger": [],
-      "line": 76,
+      "line": 87,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "exponentGapAt",
       "trust": "kernel"
@@ -57240,7 +57240,7 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "def",
       "ledger": [],
-      "line": 81,
+      "line": 92,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "IsMinimalCertificateAt",
       "trust": "kernel"
@@ -57250,7 +57250,7 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "def",
       "ledger": [],
-      "line": 86,
+      "line": 97,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "CertWindowAt",
       "trust": "kernel"
@@ -57260,7 +57260,7 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 91,
+      "line": 102,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "exponentGapAt_one_iff",
       "trust": "kernel"
@@ -57270,7 +57270,7 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 105,
+      "line": 116,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "certWindowAt_one_iff",
       "trust": "kernel"
@@ -57280,7 +57280,7 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "instance",
       "ledger": [],
-      "line": 128,
+      "line": 139,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "at",
       "trust": "kernel"
@@ -57290,7 +57290,7 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 129,
+      "line": 140,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "certWindowAt_two_iff",
       "trust": "kernel"
@@ -57300,7 +57300,7 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 158,
+      "line": 169,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "two_pow_le_two_mul",
       "trust": "kernel"
@@ -57310,7 +57310,7 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 167,
+      "line": 178,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "certWindowAt_unique",
       "trust": "kernel"
@@ -57320,7 +57320,7 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 189,
+      "line": 200,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "minimalCertAt_concat_even",
       "trust": "kernel"
@@ -57330,7 +57330,7 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 220,
+      "line": 231,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "minimalCertAt_window",
       "trust": "kernel"
@@ -57340,7 +57340,7 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 253,
+      "line": 264,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "no_minimalCertAt_of_window_empty",
       "trust": "kernel"
@@ -57350,7 +57350,7 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 261,
+      "line": 272,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "certWindowAt_of_minimalCertAt",
       "trust": "kernel"
@@ -57360,7 +57360,7 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 270,
+      "line": 281,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "isMinimalCertificateAt_one_iff",
       "trust": "kernel"
@@ -57370,7 +57370,7 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 277,
+      "line": 288,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "no_minimalCert_of_window_empty_of_level",
       "trust": "kernel"
@@ -57380,7 +57380,7 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "instance",
       "ledger": [],
-      "line": 288,
+      "line": 299,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "at",
       "trust": "kernel"
@@ -57390,7 +57390,7 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 292,
+      "line": 303,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "certWindowAt_le",
       "trust": "kernel"
@@ -57400,7 +57400,7 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 310,
+      "line": 321,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "certWindowAt_twelve_empty_at_paperC_level",
       "trust": "kernel"
@@ -57410,7 +57410,7 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 319,
+      "line": 330,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "no_minimalCertAt_twelve_at_paperC_level",
       "trust": "kernel"
@@ -57420,7 +57420,7 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "def",
       "ledger": [],
-      "line": 343,
+      "line": 354,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "prefixNoncontractingAt",
       "trust": "kernel"
@@ -57430,7 +57430,7 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 348,
+      "line": 359,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "not_exponentGapAt_nil",
       "trust": "kernel"
@@ -57440,7 +57440,7 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 353,
+      "line": 364,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "takeAt_concat_of_le",
       "trust": "kernel"
@@ -57450,7 +57450,7 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 357,
+      "line": 368,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "prefixNoncontractingAt_concat",
       "trust": "kernel"
@@ -57460,7 +57460,7 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 380,
+      "line": 391,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "isMinimalCertificateAt_concat",
       "trust": "kernel"
@@ -57470,7 +57470,7 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "def",
       "ledger": [],
-      "line": 400,
+      "line": 411,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "aliveWordsAt",
       "trust": "kernel"
@@ -57480,7 +57480,7 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "def",
       "ledger": [],
-      "line": 405,
+      "line": 416,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "minimalCertWordsAt",
       "trust": "kernel"
@@ -57490,7 +57490,7 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 409,
+      "line": 420,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "extensionsAt_eq_alive_union_certs",
       "trust": "kernel"
@@ -57500,7 +57500,7 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 447,
+      "line": 458,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "minimalCertWordsAt_eq_empty_of_window_empty",
       "trust": "kernel"
@@ -57510,7 +57510,7 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 455,
+      "line": 466,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "aliveWordsAt_succ_of_window_empty",
       "trust": "kernel"
@@ -57520,9 +57520,49 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 466,
+      "line": 477,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "sum_aliveWordsAt_succ_of_window_empty",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The shifted window is attained.** When a power of three lies in the shifted window, `O^o E^(L-o)` first passes the barrier at level `c` exactly at its end. The two prefix branches are Paper B's, and each keeps working for its own reason: an all-odd prefix has `3 ^ k c \u2265 3 ^ k \u2265 2 ^ k`, which is where `1 \u2264 c` is used, and a prefix `O^o E^j` with `j < L - o` is blocked by the window's lower bound, which already carries the `c`.",
+      "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 508,
+      "module": "Problems.Juggler.PaperBLevelWindow",
+      "name": "blockWordAt_isMinimalCertificateAt",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The level-`c` empty-window theorem, as a biconditional.** A word of length `L \u2265 1` first passes the barrier at level `c` exactly when a power of three lies in the shifted window. This is Paper B's `minimalCert_exists_iff` at every level.",
+      "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 552,
+      "module": "Problems.Juggler.PaperBLevelWindow",
+      "name": "minimalCertAt_exists_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Alive and first-passing are exclusive: a first passage passes at its own length.",
+      "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 562,
+      "module": "Problems.Juggler.PaperBLevelWindow",
+      "name": "aliveAt_disjoint_certsAt",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**A length is free exactly when it is a full cylinder extension**, at every level. The forward direction is Section 8; the converse is the realisation half, and together they make a frozen statistic an exact diagnostic rather than a one-way hint.",
+      "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 574,
+      "module": "Problems.Juggler.PaperBLevelWindow",
+      "name": "aliveWordsAt_succ_iff_window_empty",
       "trust": "kernel"
     },
     {
@@ -57530,7 +57570,7 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 484,
+      "line": 601,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "card_aliveWordsAt_succ_of_window_empty",
       "trust": "kernel"
@@ -93748,7 +93788,7 @@
       "ledger": []
     },
     "Problems.Juggler.PaperBLevelWindow": {
-      "declarations": 31,
+      "declarations": 35,
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "imports": [
         "Problems.Juggler.PaperBCertificateLengths",
@@ -94916,13 +94956,13 @@
     }
   },
   "totals": {
-    "declarations": 7013,
+    "declarations": 7017,
     "declarations_with_a_ledger_row": 4786,
     "ledger_rows_naming_a_file": 455,
     "modules": 310,
     "trust": {
       "compiler": 56,
-      "kernel": 6957
+      "kernel": 6961
     }
   }
 }

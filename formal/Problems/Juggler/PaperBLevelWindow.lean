@@ -49,10 +49,21 @@ statement the downstream observations actually use -- a frozen statistic at a gi
 that theorem at `f` equal to the statistic -- and until it was proved, reading a frozen
 Wiener norm as a free length rested on enumeration alone.
 
-**What is still not here.** Only the **necessary** direction of the length statement. Paper B
-has the biconditional (`minimalCert_exists_iff`, via `blockWord_isMinimalCertificate`); the
-realisation half at level `c` is not formalised, so this file can say a length carries nothing
-but cannot say a length carries something.
+**The realisation half is here too**, in Section 9, so the length statement is a
+biconditional at every level (`minimalCertAt_exists_iff`) exactly as Paper B's is, and a free
+length is characterised rather than merely recognised: `aliveWordsAt_succ_iff_window_empty`
+says the cylinder identity holds *if and only if* the shifted window is empty. A frozen
+statistic is therefore an exact diagnostic of a free length and not a one-way hint.
+
+**What is still not here.** Three things, none of them the mathematics. There are no
+`decide`-backed concrete instances, because the predicate is real-valued and a real comparison
+does not reduce; the level-zero file keeps those and this one substitutes the interval
+argument of `certWindowAt_twelve_empty_at_paperC_level`. There is no bridge to Paper C's own
+`LBad`, which would have to carry the strict/non-strict difference explicitly. And the
+carrying lengths are not identified in closed form: at level `Λ` they are the inhomogeneous
+Beatty sequence `⌊o log₂ 3 + Λ⌋ + 1`, the level-zero case of which *is* recorded in closed form
+as `minimalCert_exists_iff_natLog`, and the shifted case would need `Real.logb` rather than
+`Nat.log`.
 
 The enumeration behind the claim is in
 `tests/research/juggler_sequence/test_empty_window_levels.py`, brute force over all `2 ^ d`
@@ -479,6 +490,112 @@ theorem sum_aliveWordsAt_succ_of_window_empty {M : Type*} [AddCommMonoid M] {c :
       exact hab (append_singleton_inj hx).1
   rw [← aliveWordsAt_succ_of_window_empty hc h, Finset.sum_biUnion hdisj]
   exact Finset.sum_congr rfl fun w _ => Finset.sum_pair (hne w)
+
+/-! ## 9. The realisation half, and the biconditional
+
+Everything above says a length carries nothing. Paper B says more: its window condition is
+an *iff*, because when the window does hold a power of three the word `O^o E^(L-o)` realises
+it. That argument survives the level shift too, and with it the whole statement becomes a
+biconditional and the cylinder identity becomes an exact characterisation of a free length
+rather than a sufficient condition for one. -/
+
+/-- **The shifted window is attained.** When a power of three lies in the shifted window,
+`O^o E^(L-o)` first passes the barrier at level `c` exactly at its end.
+
+The two prefix branches are Paper B's, and each keeps working for its own reason: an all-odd
+prefix has `3 ^ k c ≥ 3 ^ k ≥ 2 ^ k`, which is where `1 ≤ c` is used, and a prefix `O^o E^j`
+with `j < L - o` is blocked by the window's lower bound, which already carries the `c`. -/
+theorem blockWordAt_isMinimalCertificateAt {c : ℝ} (hc : 1 ≤ c) {L o : ℕ} (hL : 0 < L)
+    (ho : o ≤ L) (hwin : CertWindowAt c L o) : IsMinimalCertificateAt c (blockWord L o) := by
+  have hlen : (blockWord L o).length = L := blockWord_length ho
+  refine ⟨?_, ?_, ?_⟩
+  · intro hnil
+    have hz := congrArg List.length hnil
+    rw [hlen] at hz
+    simp at hz
+    omega
+  · unfold exponentGapAt
+    rw [hlen, blockWord_oddCount]
+    exact hwin.2
+  · intro k hk0 hkl
+    rw [hlen] at hkl
+    unfold exponentGapAt
+    rcases Nat.lt_or_ge k o with hko | hko
+    · have htake : (blockWord L o).take k = List.replicate k Branch.odd := by
+        rw [blockWord, List.take_append, List.take_replicate, List.length_replicate]
+        rw [show min k o = k from Nat.min_eq_left (le_of_lt hko),
+          show k - o = 0 from by omega]
+        simp
+      rw [htake]
+      simp only [oddCount_replicate_odd, List.length_replicate]
+      have h3pos : (0 : ℝ) < 3 ^ k := by positivity
+      have h23 : (2 : ℝ) ^ k ≤ 3 ^ k := pow_le_pow_left₀ (by norm_num) (by norm_num) k
+      have hge : (3 : ℝ) ^ k * 1 ≤ 3 ^ k * c := by nlinarith
+      rw [mul_one] at hge
+      exact not_lt.mpr (by linarith)
+    · have htake : (blockWord L o).take k
+          = List.replicate o Branch.odd ++ List.replicate (k - o) Branch.even := by
+        rw [blockWord, List.take_append, List.take_replicate, List.take_replicate,
+          List.length_replicate]
+        rw [show min k o = o from Nat.min_eq_right hko,
+          show min (k - o) (L - o) = k - o from Nat.min_eq_left (by omega)]
+      rw [htake]
+      simp only [oddCount_append, oddCount_replicate_odd, oddCount_replicate_even,
+        List.length_append, List.length_replicate, Nat.add_zero]
+      rw [show o + (k - o) = k by omega]
+      have h1 : (2 : ℝ) ^ k ≤ 2 ^ (L - 1) := pow_le_pow_right₀ (by norm_num) (by omega)
+      exact not_lt.mpr (le_trans h1 hwin.1)
+
+/-- **The level-`c` empty-window theorem, as a biconditional.** A word of length `L ≥ 1` first
+passes the barrier at level `c` exactly when a power of three lies in the shifted window. This
+is Paper B's `minimalCert_exists_iff` at every level. -/
+theorem minimalCertAt_exists_iff {c : ℝ} (hc : 1 ≤ c) {L : ℕ} (hL : 0 < L) :
+    (∃ w : List Branch, IsMinimalCertificateAt c w ∧ w.length = L) ↔ ∃ o, CertWindowAt c L o := by
+  constructor
+  · rintro ⟨w, hw, rfl⟩
+    exact ⟨oddCount w, minimalCertAt_window hc hw⟩
+  · rintro ⟨o, hwin⟩
+    have ho : o ≤ L := certWindowAt_le hc hwin
+    exact ⟨blockWord L o, blockWordAt_isMinimalCertificateAt hc hL ho hwin, blockWord_length ho⟩
+
+/-- Alive and first-passing are exclusive: a first passage passes at its own length. -/
+theorem aliveAt_disjoint_certsAt {c : ℝ} (d : ℕ) :
+    Disjoint (aliveWordsAt c (d + 1)) (minimalCertWordsAt c (d + 1)) := by
+  classical
+  rw [Finset.disjoint_left]
+  intro v hv hcert
+  have h1 : prefixNoncontractingAt c v := (Finset.mem_filter.mp hv).2
+  have h2 : IsMinimalCertificateAt c v := (Finset.mem_filter.mp hcert).2
+  exact (h1 v.length le_rfl) (by simpa using h2.2.1)
+
+/-- **A length is free exactly when it is a full cylinder extension**, at every level. The
+forward direction is Section 8; the converse is the realisation half, and together they make a
+frozen statistic an exact diagnostic rather than a one-way hint. -/
+theorem aliveWordsAt_succ_iff_window_empty {c : ℝ} (hc : 1 ≤ c) {d : ℕ} :
+    ((aliveWordsAt c d).biUnion (fun w => {w ++ [Branch.even], w ++ [Branch.odd]})
+        = aliveWordsAt c (d + 1))
+      ↔ ∀ o, ¬ CertWindowAt c (d + 1) o := by
+  classical
+  constructor
+  · intro hcyl o hwin
+    have hne : minimalCertWordsAt c (d + 1) ≠ ∅ := by
+      obtain ⟨w, hw, hlen⟩ :=
+        (minimalCertAt_exists_iff hc (L := d + 1) (Nat.succ_pos d)).mpr ⟨o, hwin⟩
+      intro hempty
+      have : w ∈ minimalCertWordsAt c (d + 1) :=
+        Finset.mem_filter.mpr ⟨mem_allWords.mpr hlen, hw⟩
+      rw [hempty] at this
+      exact absurd this (Finset.notMem_empty w)
+    apply hne
+    have hsub : minimalCertWordsAt c (d + 1) ⊆ aliveWordsAt c (d + 1) := by
+      intro v hv
+      have : v ∈ aliveWordsAt c (d + 1) ∪ minimalCertWordsAt c (d + 1) :=
+        Finset.mem_union_right _ hv
+      rw [← extensionsAt_eq_alive_union_certs hc, hcyl] at this
+      exact this
+    exact Finset.eq_empty_of_forall_notMem fun v hv =>
+      (Finset.disjoint_left.mp (aliveAt_disjoint_certsAt (c := c) d) (hsub hv)) hv
+  · exact aliveWordsAt_succ_of_window_empty hc
 
 /-- The counting corollary: a free length doubles the alive count at every level. -/
 theorem card_aliveWordsAt_succ_of_window_empty {c : ℝ} (hc : 1 ≤ c) {d : ℕ}
