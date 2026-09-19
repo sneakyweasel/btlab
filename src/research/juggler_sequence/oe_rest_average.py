@@ -615,8 +615,14 @@ def resonance_density(exponents: tuple[int, ...] = (14, 16, 18, 20, 22, 24),
     - `alpha_m = frac((3/2) m^(2/3)) + O(m^(-2/3))` equidistributes by Fejer
       with star discrepancy about `N^(-1/2)` by van der Corput (`fd_placement`).
 
-    So the count of resonant `m <= N` is `c N^(2/3) + O(N^(1/2))`: the main term
-    dominates comfortably, and the density is `Theta(m^(-1/3))`. Measured, the
+    So the count of resonant `m <= N` is `O_K(N^(2/3))` -- and only the upper
+    bound is proved. An earlier version of this docstring said
+    `c N^(2/3) + O(N^(1/2))` with density `Theta(m^(-1/3))`, resting on the
+    measured discrepancy `~N^(-1/2)`. The PROVABLE second-derivative bound on
+    `k (3/2) m^(2/3)` gives `D*_N << N^(-1/3)`, the same order as the main
+    term, so the error does not separate and the two-sided claim is not
+    delivered. The `Theta` is true and stays COMPUTATIONALLY VERIFIED; it is
+    the proof that gives only `O`, which is all the bootstrap consumes. Measured, the
     density times `m^(1/3)` is flat across ten octaves -- 8.96, 8.78, 8.87,
     9.51, 9.09, 9.23 -- with no trend.
 

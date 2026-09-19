@@ -209,8 +209,9 @@ def test_the_capacity_exponent_is_the_resonance_window_and_the_share_law_cannot_
     hypothesis. The resonant window has width `C/H_m`, and `H_m = (2/3)m^(1/3)
     + O(1)` is Lemma 3.2 two-sided. And `alpha_m` equidistributes by Fejer with
     star discrepancy about `N^(-1/2)` (`fd_placement`). So the resonant count
-    below `N` is `c N^(2/3) + O(N^(1/2))`, main term dominating, and the
-    density is `Theta(m^(-1/3))` -- measured flat to within 8 per cent across
+    below `N` is `O_K(N^(2/3))` -- upper bound only, since the provable
+    second-derivative bound gives `D*_N << N^(-1/3)`, the same order as the
+    main term. The `Theta(m^(-1/3))` is measured, not proved -- measured flat to within 8 per cent across
     ten octaves. That is exactly the exponent
     `J-oe-low-share-weight-decays-polynomially` reports for the LOW-SHARE set.
 
