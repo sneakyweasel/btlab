@@ -25359,7 +25359,9 @@
       "doc": "Even branch: `T(n)^2 = n` iff `n` is a perfect square.",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 14,
       "module": "Problems.Juggler.Equality",
       "name": "floorPower_even_sq_eq_iff_square",
@@ -25369,7 +25371,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "lemma",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 18,
       "module": "Problems.Juggler.Equality",
       "name": "sqrt_sq_iff_isSquare",
@@ -25379,7 +25383,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "lemma",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 26,
       "module": "Problems.Juggler.Equality",
       "name": "isSquare_pow_three_iff",
@@ -25389,7 +25395,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "lemma",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 69,
       "module": "Problems.Juggler.Equality",
       "name": "cube_sqrt_sq_iff",
@@ -25399,7 +25407,9 @@
       "doc": "Odd branch: `T(n)^2 = n^3` iff `n` is a perfect square.",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 74,
       "module": "Problems.Juggler.Equality",
       "name": "floorPower_odd_sq_eq_cube_iff_square",
@@ -25409,7 +25419,9 @@
       "doc": "Equality form of the one-sided envelope. Independent of `PowerBound`.",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "def",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 80,
       "module": "Problems.Juggler.Equality",
       "name": "PowerBoundEq",
@@ -25419,7 +25431,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 82,
       "module": "Problems.Juggler.Equality",
       "name": "pow_eq_of_pow_sq_eq",
@@ -25429,7 +25443,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 86,
       "module": "Problems.Juggler.Equality",
       "name": "pow_ne_zero_two_pow",
@@ -25439,7 +25455,9 @@
       "doc": "Even append: composite equality forces the previous equality and local tightness.",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 90,
       "module": "Problems.Juggler.Equality",
       "name": "power_bound_eq_of_append_even",
@@ -25449,7 +25467,9 @@
       "doc": "Odd append: composite equality forces the previous equality and local tightness.",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 113,
       "module": "Problems.Juggler.Equality",
       "name": "power_bound_eq_of_append_odd",
@@ -25459,7 +25479,9 @@
       "doc": "Local tightness of one realized letter.",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "def",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 150,
       "module": "Problems.Juggler.Equality",
       "name": "localTight",
@@ -25469,7 +25491,9 @@
       "doc": "Every local branch inequality along a realized itinerary is tight.",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "def",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 155,
       "module": "Problems.Juggler.Equality",
       "name": "localsTight",
@@ -25479,7 +25503,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 159,
       "module": "Problems.Juggler.Equality",
       "name": "localTight_even_iff_square",
@@ -25489,7 +25515,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 163,
       "module": "Problems.Juggler.Equality",
       "name": "localTight_odd_iff_square",
@@ -25499,7 +25527,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 167,
       "module": "Problems.Juggler.Equality",
       "name": "power_bound_eq_from",
@@ -25509,7 +25539,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 207,
       "module": "Problems.Juggler.Equality",
       "name": "localsTight_get",
@@ -25519,7 +25551,9 @@
       "doc": "Global envelope equality forces every local branch inequality to be tight.",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 230,
       "module": "Problems.Juggler.Equality",
       "name": "power_bound_eq_implies_local_eq",
@@ -25529,7 +25563,9 @@
       "doc": "Global envelope equality forces every relevant itinerary state to be a square.",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 241,
       "module": "Problems.Juggler.Equality",
       "name": "power_bound_eq_implies_square",
@@ -25539,7 +25575,9 @@
       "doc": "Even square: the even branch is exact as an image, not only as a power.",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 258,
       "module": "Problems.Juggler.Equality",
       "name": "floorPower_of_even_sq",
@@ -25549,7 +25587,9 @@
       "doc": "Odd square: the odd branch maps `s^2` to `s^3`.",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 264,
       "module": "Problems.Juggler.Equality",
       "name": "floorPower_of_odd_sq",
@@ -25559,7 +25599,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 272,
       "module": "Problems.Juggler.Equality",
       "name": "floorPower_even_sq_image_even",
@@ -25569,7 +25611,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 279,
       "module": "Problems.Juggler.Equality",
       "name": "floorPower_odd_sq_image_odd",
@@ -25579,7 +25623,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "def",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 293,
       "module": "Problems.Juggler.Equality",
       "name": "HasPowTwoDepth",
@@ -25589,7 +25635,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 295,
       "module": "Problems.Juggler.Equality",
       "name": "hasPowTwoDepth_zero",
@@ -25599,7 +25647,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 298,
       "module": "Problems.Juggler.Equality",
       "name": "two_pow_pred",
@@ -25609,7 +25659,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 303,
       "module": "Problems.Juggler.Equality",
       "name": "pow_two_succ_sq",
@@ -25619,7 +25671,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 307,
       "module": "Problems.Juggler.Equality",
       "name": "pow_two_pred_sq",
@@ -25629,7 +25683,9 @@
       "doc": "Exact even branch on a `2^r`-th power, `r \u2265 1`.",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 312,
       "module": "Problems.Juggler.Equality",
       "name": "floorPower_of_pow_two_depth_even",
@@ -25639,7 +25695,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 319,
       "module": "Problems.Juggler.Equality",
       "name": "pow_mod_two_of_odd",
@@ -25649,7 +25707,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 323,
       "module": "Problems.Juggler.Equality",
       "name": "odd_of_pow_odd",
@@ -25659,7 +25719,9 @@
       "doc": "Exact odd branch on a `2^r`-th power, `r \u2265 1`.",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 334,
       "module": "Problems.Juggler.Equality",
       "name": "floorPower_of_pow_two_depth_odd",
@@ -25669,7 +25731,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 344,
       "module": "Problems.Juggler.Equality",
       "name": "hasPowTwoDepth_sq",
@@ -25679,7 +25743,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 350,
       "module": "Problems.Juggler.Equality",
       "name": "hasPowTwoDepth_one_iff",
@@ -25689,7 +25755,9 @@
       "doc": "A cube that is a `2^m`-th power is the cube of a `2^m`-th power's base.",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 360,
       "module": "Problems.Juggler.Equality",
       "name": "hasPowTwoDepth_of_cube",
@@ -25699,7 +25767,9 @@
       "doc": "Even exact step drops 2-adic depth by one.",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 386,
       "module": "Problems.Juggler.Equality",
       "name": "hasPowTwoDepth_even_exact",
@@ -25709,7 +25779,9 @@
       "doc": "Odd exact step drops 2-adic depth by one (`a^{3\u00b72^{r-1}} = (a^3)^{2^{r-1}}`).",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 394,
       "module": "Problems.Juggler.Equality",
       "name": "hasPowTwoDepth_odd_exact",
@@ -25719,7 +25791,9 @@
       "doc": "Depth at least 2 forces the exact image to remain a square.",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 405,
       "module": "Problems.Juggler.Equality",
       "name": "hasPowTwoDepth_ge_two_image_square",
@@ -25729,7 +25803,9 @@
       "doc": "Depth exactly one: the exact image need not be a square.",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 424,
       "module": "Problems.Juggler.Equality",
       "name": "hasPowTwoDepth_one_image_sq_iff",
@@ -25739,7 +25815,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 429,
       "module": "Problems.Juggler.Equality",
       "name": "hasPowTwoDepth_one_odd_image_sq_iff",
@@ -25749,7 +25827,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 434,
       "module": "Problems.Juggler.Equality",
       "name": "localsTight_implies_power_bound_eq",
@@ -25759,7 +25839,9 @@
       "doc": "Envelope equality of length `k` forces the start to be a `2^k`-th power.",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 493,
       "module": "Problems.Juggler.Equality",
       "name": "power_bound_eq_implies_pow_two_depth",
@@ -25769,7 +25851,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 538,
       "module": "Problems.Juggler.Equality",
       "name": "hasPowTwoDepth_two_le",
@@ -25779,7 +25863,9 @@
       "doc": "A contracting equality itinerary of length `k` at `n \u2265 2` is at least `2^{2^k}`.",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 553,
       "module": "Problems.Juggler.Equality",
       "name": "power_bound_eq_contracts_pow_two_lb",
@@ -25789,7 +25875,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 567,
       "module": "Problems.Juggler.Equality",
       "name": "even_iff_pow_even",
@@ -25799,7 +25887,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 581,
       "module": "Problems.Juggler.Equality",
       "name": "odd_iff_pow_odd",
@@ -25809,7 +25899,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 587,
       "module": "Problems.Juggler.Equality",
       "name": "even_iff_pow_two_depth_even",
@@ -25819,7 +25911,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 591,
       "module": "Problems.Juggler.Equality",
       "name": "odd_iff_pow_two_depth_odd",
@@ -25829,7 +25923,9 @@
       "doc": "An exact step on a square keeps the parity of the state.",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 596,
       "module": "Problems.Juggler.Equality",
       "name": "floorPower_sq_preserves_parity",
@@ -25839,7 +25935,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 616,
       "module": "Problems.Juggler.Equality",
       "name": "floorPower_of_pow_two_depth_even_base",
@@ -25849,7 +25947,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 624,
       "module": "Problems.Juggler.Equality",
       "name": "floorPower_of_pow_two_depth_odd_base",
@@ -25859,7 +25959,9 @@
       "doc": "Exact even or odd branch on `a^{2^r}` keeps the parity of `a`.",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 631,
       "module": "Problems.Juggler.Equality",
       "name": "floorPower_pow_two_depth_preserves_parity",
@@ -25869,7 +25971,9 @@
       "doc": "Envelope equality forces a monochrome word.",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 640,
       "module": "Problems.Juggler.Equality",
       "name": "power_bound_eq_implies_monochrome",
@@ -25879,7 +25983,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 705,
       "module": "Problems.Juggler.Equality",
       "name": "floorPower_iterate_even_pow_two",
@@ -25889,7 +25995,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 725,
       "module": "Problems.Juggler.Equality",
       "name": "floorPower_iterate_odd_pow_two",
@@ -25899,7 +26007,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 750,
       "module": "Problems.Juggler.Equality",
       "name": "floorPower_iterate_even_pow_two_eq",
@@ -25909,7 +26019,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 754,
       "module": "Problems.Juggler.Equality",
       "name": "floorPower_iterate_odd_pow_two_eq",
@@ -25919,7 +26031,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 758,
       "module": "Problems.Juggler.Equality",
       "name": "follows_replicate_even_pow_two",
@@ -25929,7 +26043,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 772,
       "module": "Problems.Juggler.Equality",
       "name": "follows_replicate_odd_pow_two",
@@ -25939,7 +26055,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 786,
       "module": "Problems.Juggler.Equality",
       "name": "power_bound_eq_replicate_even",
@@ -25949,7 +26067,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 791,
       "module": "Problems.Juggler.Equality",
       "name": "power_bound_eq_replicate_odd",
@@ -25959,7 +26079,9 @@
       "doc": "Equality saturates iff the itinerary is an exact even or odd tower.",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 797,
       "module": "Problems.Juggler.Equality",
       "name": "power_bound_eq_iff_extremal",
@@ -25969,7 +26091,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 852,
       "module": "Problems.Juggler.Equality",
       "name": "two_pow_two_pow_extremal_even",
@@ -25979,7 +26103,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 858,
       "module": "Problems.Juggler.Equality",
       "name": "three_pow_two_pow_extremal_odd",
@@ -25989,7 +26115,9 @@
       "doc": "Among \\(n\\ge 3\\), an all-odd equality of length `k` is at least `3^{2^k}`.",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 865,
       "module": "Problems.Juggler.Equality",
       "name": "odd_equality_three_pow_le",
@@ -91880,7 +92008,13 @@
       "imports": [
         "Problems.Juggler.Envelope"
       ],
-      "ledger": []
+      "ledger": [
+        {
+          "id": "J-lemma-eight-is-the-exponent-valuation",
+          "statement": "Hercher's Lemma 8 survives the exponential conjugacy, on the exponent, and the laboratory had already proved it under another name. Conjugating the Collatz odd step by u = x + 1 turns (3x+1)/2 into exactly u -> 3u/2; the Juggler's exact odd step on n = a^e turns, on the exponent, into exactly e -> 3e/2. Same map, same prime, same reason -- 3 is a 2-adic unit, so one step costs exactly one unit of v_2 and nothing else -- and the exact even step e -> e/2 costs the same unit, so the valuation drops by one per step whatever the letter and an exact run is monochrome, the letter being the parity of the base. COLLATZ CARRIES THE 2-ADIC INTEGER IN THE VALUE, THE JUGGLER IN THE EXPONENT. Hence one law at the two ends of x = 2^y: run(x) = v_2(x+1) (Hercher 2023, Lemma 8: k consecutive odd steps force x = -1 mod 2^k) and exactRun(n) = v_2(e(n)), where e(n) = max{e : n = a^e} and exactRun counts consecutive states at which the floor is not charged, that is consecutive squares. The Juggler half is kernel-checked as HasPowTwoDepth with hasPowTwoDepth_even_exact, hasPowTwoDepth_odd_exact and power_bound_eq_implies_pow_two_depth (j-saturation-budget, filed as a local arithmetic question in August); the converse half is isSquare_pow_three_iff. Exhaustive agreement to N = 10^6: 999 square states, 19859 non-square states, 100000 odd Collatz starts, no failure. THE FLOOR IS THE EXPONENTIAL OF THE FLOOR. Both pointwise bounds follow by the same product-formula step -- a nonzero integer with v_2 >= k has absolute value at least 2^k -- and both are attained: run(x) >= k forces x >= 2^k - 1, attained at 2^k - 1; exactRun(n) >= k forces n >= 2^(2^k), and on odd starts n >= 3^(2^k), attained at 3^(2^k) with word O^k. log(3^(2^k)) = 2^k log 3, so J-juggler-is-collatz-one-exponential-up holds pointwise and not only on the walk. WHAT IT DOES NOT DO, WHICH IS THE POINT. Hercher's hypothesis is k consecutive odd LETTERS, a condition on the word that any cycle with a long run supplies free; the mirror's hypothesis is k consecutive EXACT steps, a condition on the integer that no word implies. The exponential moves the hypothesis from the word to the arithmetic, so the mirror is inert for cycles and for termination: no floor is raised, no m-cycle is excluded, and no Collatz bound is improved. Lemma 8 is quoted from hercher-2023-collatz-m-cycles, not reproved.",
+          "tag": "EXACT \u2014 HUMAN PROOF"
+        }
+      ]
     },
     "Problems.Juggler.Escape": {
       "declarations": 70,
@@ -94489,8 +94623,8 @@
   },
   "totals": {
     "declarations": 6973,
-    "declarations_with_a_ledger_row": 4777,
-    "ledger_rows_naming_a_file": 452,
+    "declarations_with_a_ledger_row": 4841,
+    "ledger_rows_naming_a_file": 453,
     "modules": 309,
     "trust": {
       "compiler": 56,

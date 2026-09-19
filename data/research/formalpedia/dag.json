@@ -1356,6 +1356,23 @@
         "kernel": 48
       }
     },
+    "Problems.Juggler.Equality": {
+      "declarations": 64,
+      "depends_on": [
+        "Problems.Juggler.Envelope"
+      ],
+      "file": "formal/Problems/Juggler/Equality.lean",
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
+      "papers": [
+        "Paper A",
+        "Paper C"
+      ],
+      "trust": {
+        "kernel": 64
+      }
+    },
     "Problems.Juggler.Escape": {
       "declarations": 70,
       "depends_on": [
@@ -1972,7 +1989,7 @@
     "Problems.Juggler.GlobalDefect": {
       "declarations": 36,
       "depends_on": [
-        "Problems.Juggler.Envelope"
+        "Problems.Juggler.Equality"
       ],
       "file": "formal/Problems/Juggler/GlobalDefect.lean",
       "ledger": [
@@ -2427,7 +2444,7 @@
     "Problems.Juggler.Preimages": {
       "declarations": 124,
       "depends_on": [
-        "Problems.Juggler.Envelope"
+        "Problems.Juggler.Equality"
       ],
       "file": "formal/Problems/Juggler/Preimages.lean",
       "ledger": [
@@ -3080,9 +3097,9 @@
     }
   },
   "totals": {
-    "edges": 239,
-    "edges_before_reduction": 1788,
-    "ledger_rows_placed": 416,
-    "nodes": 187
+    "edges": 240,
+    "edges_before_reduction": 1877,
+    "ledger_rows_placed": 417,
+    "nodes": 188
   }
 }
