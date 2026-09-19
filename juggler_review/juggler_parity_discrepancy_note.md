@@ -1203,7 +1203,12 @@ either is quoted to. The  \(d^{-3/2}\)  power is Hikawa's Conjecture 7.1
 \(-\tfrac32\log_2d\)  to within  \(0.3\)  bits over
 \(100\le d\le10^4\). No priority over either is asserted. The companion
 parity-vector preprints [10, 11] were read for this revision and neither
-bears on the asymptotic; [12] appeared too recently to consult. What
+bears on the asymptotic, and neither does [12], which refines the same
+count by a local cut statistic and represents the words as partitions
+inside a Beatty--Ferrers shape: exact finite structure, with no growth
+constant and no oscillation. That Beatty structure is a predecessor for
+any reading of the admissible lengths A020914 through their Beatty
+complement A054414. What
 this section offers is the oscillating prefactor  \(\psi\) : that the
 ratio depends on  \(d\)  only through  \(\{d\beta\}\), that it is
 non-constant, and the barrier-step mechanism below that explains why.
@@ -3201,5 +3206,10 @@ Conjecture," Jxiv preprint, February 2026.
 Read for this revision; it classifies parity vectors by weight and
 states no asymptotic.
 12. M. Winkler, "Coefficient First-Passage Words for the 3x+1 Map: A
-Beatty--Ferrers Model and a Power-of-Two Law," preprint, September 2026.
-Not consulted; it appeared after this revision was prepared.
+Beatty--Ferrers Model and a Power-of-Two Law," ResearchGate preprint,
+September 2026. Refines A100982 by the cut pattern  \(011\) ; the words
+biject with the partitions inside one Beatty--Ferrers shape and the cut
+sets are the independent sets of a nested matroid, giving the
+power-of-two law  \(2^{\lfloor(n-1)\log_2(3/2)\rfloor}\) . Exact and
+finite throughout.
+[doi:10.13140/RG.2.2.31257.79200](https://doi.org/10.13140/RG.2.2.31257.79200).
