@@ -368,7 +368,10 @@
         "J-good-set-wiener-norm-carries-the-rotation",
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
-        "J-winkler-sandwich-holds-on-the-laboratory-counts"
+        "J-winkler-sandwich-holds-on-the-laboratory-counts",
+        "J-paper-c-collatz-analogue-is-false-by-exhibit",
+        "J-paper-c-contagion-dichotomy-is-log-mass",
+        "J-paper-c-ceiling-is-the-collatz-walk-mgf"
       ],
       "aliases": [],
       "nk_cluster": null

@@ -382,6 +382,77 @@ the two problems part at the arithmetic, Terras's bijection against
 Hypothesis FD. The forced audit this branch recorded is therefore discharged
 for Paper B.
 
+## Paper C under the bridge
+
+Asked on 2026-09-19: does the bridge change Paper C, does contagion transfer to
+Collatz, and can Collatz strengthen it. Short answers: it reaches the ceiling
+and not the engine; no, and the analogue is false rather than merely
+unavailable; no, but it corrects three of the laboratory's own artifacts.
+
+**The engine is not shared, and the standing audit cannot see why.** Lemmas 2.1
+and 2.2, Lemma 4.1 and Theorem 4.2 rest on the way the Juggler map deforms
+scale, not on word statistics. `J-word-density-results-are-not-juggler-specific`
+sorts results into word combinatorics (shared with Collatz) and how orbits
+realise words (FD, Weyl, the kernel -- Juggler only). Paper C's engine is in
+neither class: it is exact, elementary, Lean-checked, needs no equidistribution,
+and is still Juggler-only. The audit needs a third class for metric facts about
+how the map deforms scale, or a future pass over the ledger will misfile every
+fate-contagion row.
+
+**The ceiling is shared exactly** -- `J-paper-c-ceiling-is-the-collatz-walk-mgf`.
+The ideal coefficient collapses to `c_w = 2^(-|w|)/rho_w = 3^(-b(w))`, the
+Collatz backward-step probability, so `F_J(lambda) = F_C(lambda - 1)` where
+`F_C` is the Collatz walk's moment generating function. `F_C`'s two classical
+roots -- Kraft equality and the martingale identity `E[rho] = 1` -- land on
+`lambda = 1` and `lambda = 2`, so Paper C's method ceiling is a Collatz identity
+read one exponential level up, and the whole shortfall to `lambda** = 0.4926` is
+the Juggler-side `eta_0 = 0`.
+
+**Contagion does not transfer, and the recorded reason was wrong** --
+`J-paper-c-collatz-analogue-is-false-by-exhibit`. `{3 * 2^k}` is backward-closed
+under the accelerated map, infinite, counted by `log_2 x`, and has reciprocal
+sum `2/3`. So the analogue of Theorem 1 is false outright. Three working
+artifacts had said it fails because Collatz backward trees are thin, citing
+Krasikov--Lagarias `x^{0.84}` -- but that is a *lower* bound on preimage counts
+and establishes no thinness; conjecturally the tree is everything. The published
+manuscript never made that error and needs no revision. Corrected here:
+`juggler_fate_contagion_note.md` (twice), `juggler_tao_reduction_note.md`, and
+the row `J-fate-contagion-equivalence`.
+
+**The right invariant is worst-case log-mass** --
+`J-paper-c-contagion-dichotomy-is-log-mass`. The first answer drafted in this
+session, that Collatz has no fat fibres, named the wrong quantity: in Syracuse
+form the Collatz fibres are infinite, and in accelerated form the mean backward
+mass is critical at exactly `1/m`, the same as Juggler's even block. What
+separates them is the worst case. Juggler gives `1/m` for every `m` with no
+exceptional residues; Collatz gives `1/(2m)` on every multiple of three, and
+Theorem 1 quantifies over *every* backward-closed set. `{3 * 2^k}` is that worst
+case realized forever.
+
+**Nothing imports.** A counting bound `x^kappa` with `kappa < 1` carries total
+logarithmic mass `sum_j 2^(-(1-kappa) j) = O(1)`, so Krasikov--Lagarias cannot
+enter the contagion recursion as a term at any exponent below one. It is in the
+wrong metric, not merely too weak -- which also means no improvement of it short
+of `kappa = 1` could ever give the Collatz analogue of Corollary 4.5.
+
+**What this does to the assessment below.** The closing paragraph says Juggler is
+not an easier Collatz but Collatz's word problem plus a Weyl-sum problem. That
+survives and is not contradicted, but it is incomplete: it reads as though
+Juggler were strictly harder, and Paper C is where the exponential level-up
+cashes out as a resource rather than a cost. The two **trade**. Juggler has a
+supercritical backward tree and is stuck at `eta_0 = 0`; Collatz has
+equidistribution free by Terras and gains nothing from it, because its tree is
+exactly critical. Each problem holds the other's missing input. The deficit a
+proof must close is `1 - lambda` in each map's own variable, which is
+`(log x)^(-0.4608)` for Juggler against `x^(-0.16)` for Collatz -- and that,
+not preimage thickness, is why Corollary 4.5 is usable on one side and vacuous
+on the other.
+
+Disposition: `CLOSE`. The headline -- contagion does not transfer -- is already
+published in the manuscript's Sections 1.3 and 7.1 and carried by two ledger
+rows. What was not recorded is the counterexample, the log-mass dichotomy, the
+coefficient identity, and the errata. No Lean, no branch.
+
 ## Publication assessment
 
 Status: `EXPLORATORY`, and probably not publishable at all. It moves no bound in

@@ -44,6 +44,8 @@ from __future__ import annotations
 
 import json
 import math
+from fractions import Fraction
+from itertools import product
 from typing import Any
 
 from research.juggler_sequence.lean_paths import DOCS_RESEARCH
@@ -340,6 +342,257 @@ def winkler_sandwich(orders: int = 2213) -> dict[str, Any]:
     }
 
 
+# ---------------------------------------------------------------------------
+# Paper C under the bridge.
+#
+# Paper C's engine is not the shared walk. It is the way the Juggler map
+# deforms scale: the even preimage of `m` is the whole interval
+# `[m^2, (m+1)^2)`, whose harmonic mass is exactly `1/m`. The question this
+# section settles is what the bridge does to that, and the answer has three
+# exact parts and one measured one.
+# ---------------------------------------------------------------------------
+
+BARREN_RESIDUE = 3
+
+
+def even_block_log_mass(m: int) -> Fraction:
+    """`m * sum 1/n` over the even preimages of `m`, exactly.
+
+    Lemma 2.1 of Paper C: `J(n) = floor(sqrt n) = m` for every `n` in
+    `[m^2, (m+1)^2)`, so the even members of that interval all map to `m`.
+    The returned value tends to `1` from above and is the fibre's log-mass in
+    units of `1/m` -- the quantity the contagion recursion actually consumes.
+    """
+    if m < 1:
+        raise ValueError("m must be positive")
+    return m * sum(Fraction(1, n)
+                   for n in range(m * m, (m + 1) * (m + 1)) if n % 2 == 0)
+
+
+def collatz_preimages(m: int) -> list[int]:
+    """The integer preimages of `m` under the accelerated Collatz map.
+
+    Always `2m`; additionally `(2m-1)/3` when that is an odd integer, which
+    needs `m = 2 mod 3`. So the fibre has one or two elements and never more.
+
+    Note this is a statement about integers, not about `Z_2`: on the 2-adics
+    `3` is a unit, `(2m-1)/3` always exists and is always odd, so the map is
+    exactly 2-to-1 there. The accelerated map is *not* a bijection on `Z_2`;
+    the bijection of Terras is the parity-vector map `Z/2^d -> {0,1}^d`, which
+    `parity_map_is_bijective` checks.
+    """
+    out = [2 * m]
+    if (2 * m - 1) % 3 == 0:
+        x = (2 * m - 1) // 3
+        if x > 0 and x % 2 == 1:
+            out.append(x)
+    return sorted(out)
+
+
+def collatz_backward_log_mass(m: int) -> Fraction:
+    """`m * sum 1/y` over the accelerated-Collatz preimages of `m`, exactly.
+
+    The counterpart of `even_block_log_mass`. `2m` alone contributes exactly
+    `1/2`; the odd preimage, when it exists, contributes `3/2`. So the value
+    is `1/2` on two residues out of three and `2` on the third, with mean
+    exactly `1`.
+    """
+    if m < 1:
+        raise ValueError("m must be positive")
+    return m * sum(Fraction(1, y) for y in collatz_preimages(m))
+
+
+def log_mass_census(limit: int = 200_000) -> dict[str, Any]:
+    """Mean and worst case of the backward log-mass, for both maps.
+
+    The dichotomy Paper C actually runs on. Juggler is critical *uniformly*;
+    accelerated Collatz is critical *on average* and subcritical in the worst
+    case, and the worst case is not a rare event -- it is every multiple of
+    three, forever. Theorem 1 quantifies over every nonempty backward-closed
+    set, so the worst case is what governs and the mean is irrelevant.
+    """
+    masses = [float(collatz_backward_log_mass(m)) for m in range(2, limit + 1)]
+    worst = min(range(len(masses)), key=masses.__getitem__)
+    return {
+        "collatz_mean": sum(masses) / len(masses),
+        "collatz_min": masses[worst],
+        "collatz_argmin": worst + 2,
+        "collatz_min_is_on_multiples_of_three": (worst + 2) % BARREN_RESIDUE == 0,
+        "juggler_block_mass": {str(m): float(even_block_log_mass(m))
+                               for m in (10, 100, 1000)},
+        "verdict": (
+            "Juggler critical uniformly (exactly 1/m for every m, Lemma 2.1) and"
+            " supercritical once OE production is added; accelerated Collatz"
+            " critical in the mean and exactly 1/2 in the worst case, attained on"
+            " every multiple of three"
+        ),
+    }
+
+
+def barren_chain(terms: int = 40) -> list[int]:
+    """`{3 * 2^k}`: the counterexample to the Collatz analogue of Theorem 1."""
+    return [3 * 2 ** k for k in range(terms)]
+
+
+def barren_chain_is_backward_closed(terms: int = 40) -> bool:
+    """Every preimage of a member is a member.
+
+    `3 * 2^k` has no odd preimage, because `2(3 * 2^k) - 1` is `2 mod 3`. So the
+    fibre is the single even point `3 * 2^(k+1)`, which is the next member. The
+    set is therefore closed under taking preimages, infinite, and has counting
+    function `log_2 x` with `sum 1/n = 2/3`.
+    """
+    members = set(barren_chain(terms))
+    ceiling = max(members)
+    return all(y in members for m in members if 2 * m <= ceiling
+               for y in collatz_preimages(m))
+
+
+def collatz_theorem_one_counterexample(terms: int = 40) -> dict[str, Any]:
+    """Paper C's Theorem 1 is false for Collatz, by exhibit rather than by tree size.
+
+    This replaces the reason the laboratory's working notes gave. Those notes
+    said the Collatz analogue fails "because Collatz backward trees are thin
+    (x^0.84, Krasikov--Lagarias)". That exponent is a *lower* bound on preimage
+    counts and so cannot establish thinness of anything; conjecturally the tree
+    is everything. The published manuscript never makes that error -- it says
+    only that an `x^0.84` lower bound is compatible with a bounded reciprocal
+    sum, which is correct and is a statement about what is proved rather than
+    about the trees.
+
+    The exhibit is stronger than either wording: the analogue is not merely
+    unavailable, it is false.
+    """
+    members = barren_chain(terms)
+    return {
+        "set": "{3 * 2^k}",
+        "backward_closed": barren_chain_is_backward_closed(terms),
+        "infinite": True,
+        "reciprocal_sum": float(sum(Fraction(1, n) for n in members)),
+        "reciprocal_sum_exact": "2/3",
+        "counting_function": "log_2 x - log_2 3",
+        "reason": (
+            "multiples of three have no odd preimage, so the backward orbit is a"
+            " bare doubling chain and loses exactly half its log-mass at every step"
+        ),
+        "kills": (
+            "the Collatz analogue of Paper C Theorem 1, which asserts a divergent"
+            " logarithmic count for EVERY nonempty backward-closed set"
+        ),
+    }
+
+
+def _word_multiplier(word: str) -> Fraction:
+    """`rho_w = 2^(-a) (3/2)^b` for a word in the letters `E` and `O`."""
+    a = word.count("E")
+    b = word.count("O")
+    if a + b != len(word):
+        raise ValueError(f"word must use only E and O: {word!r}")
+    return Fraction(3, 2) ** b * Fraction(1, 2) ** a
+
+
+def ideal_coefficient(word: str) -> Fraction:
+    """Paper C's ideal production coefficient, `2^(-|w|) / rho_w`, simplified.
+
+    The simplification is exact and immediate:
+
+        2^(-(a+b)) * 2^a * (2/3)^b = 3^(-b)
+
+    so the coefficient does not depend on the word at all beyond its number of
+    odd letters.
+
+    Against the published table the identity is exact on **every** term:
+    `c_E = 1`, `c_OE = c_OEE = 1/3`, the conditional `c_OOEEE = 1/9` of
+    Appendix C, and the whole ladder `c_k = 3^(-k)` for `V_k = (OE)^(k-1) OEE`,
+    whose odd count is exactly `k`. Paper C's entire production inventory
+    therefore sits at the Collatz-side ideal, with no parity shortfall in any
+    coefficient.
+
+    The `3^(-(k+1))` that appears in the `lambda**` equation is not the
+    coefficient but the *increment* `c_k - (2/9) c_(k-1) = 3^(-(k+1))`, an
+    inclusion-exclusion subtraction removing the `V_k`-starts already counted
+    in family 3. So the ladder's factor of three below ideal is double
+    counting, not a parity loss, and the shortfall from the ceiling is overlap
+    and truncation rather than weak coefficients. An earlier version of this
+    docstring read that factor as a parity share; the peer session caught it.
+
+    `3^(-b)` is the probability that the Collatz backward step along `w` exists,
+    the `b`-fold divisibility by three. Juggler is handed as a fibre-measure
+    fact the quantity Collatz has to pay for arithmetically.
+    """
+    return Fraction(1, 2) ** len(word) / _word_multiplier(word)
+
+
+def _all_words(depth: int) -> list[str]:
+    return ["".join(w) for w in product("EO", repeat=depth)]
+
+
+def contagion_mgf_shift(depth: int = 5,
+                        lambdas: tuple[float, ...] = (0.5, 1.0, 2.0, 0.4926)
+                        ) -> dict[str, Any]:
+    """`F_J(lambda) = F_C(lambda - 1)`, where `F_C` is the Collatz walk's mgf.
+
+    With `c_w = 3^(-b) = 2^(-|w|) / rho_w`, Paper C's ideal contagion sum is
+
+        F_J(lambda) = sum_w c_w rho_w^lambda
+                    = sum_w 2^(-|w|) rho_w^(lambda - 1) = F_C(lambda - 1),
+
+    an identity, not an approximation. `F_C(0) = 1` is Kraft equality and
+    `F_C(1) = 1` is the martingale identity `E[rho] = 1`, the two classical
+    Collatz facts; they sit at `lambda = 1` and `lambda = 2`. So the ceiling of
+    Paper C's method, `lambda = 1` (Proposition 5.12), is a Collatz identity
+    read one exponential level up, and the entire shortfall from `1` to
+    `lambda** = 0.4926` is the Juggler-side realized parity share, `eta_0 = 0`.
+    """
+    words = _all_words(depth)
+    rows = {}
+    for lam in lambdas:
+        f_j = sum(float(ideal_coefficient(w)) * float(_word_multiplier(w)) ** lam
+                  for w in words)
+        f_c = sum(float(Fraction(1, 2) ** len(w))
+                  * float(_word_multiplier(w)) ** (lam - 1.0) for w in words)
+        rows[f"{lam:g}"] = {"F_J": f_j, "F_C_shifted": f_c, "gap": abs(f_j - f_c)}
+    return {
+        "depth": depth,
+        "rows": rows,
+        "worst_gap": max(r["gap"] for r in rows.values()),
+        "coefficient_sum": sum(float(ideal_coefficient(w)) for w in words),
+        "four_thirds_power": (4.0 / 3.0) ** depth,
+        "kraft": sum(float(Fraction(1, 2) ** len(w) * _word_multiplier(w))
+                     for w in words),
+    }
+
+
+def paper_c_payload() -> dict[str, Any]:
+    """What the bridge does to Paper C, and what it does not do."""
+    return {
+        "engine_is_not_shared": (
+            "Lemmas 2.1 and 2.2, Lemma 4.1 and Theorem 4.2 rest on how the map"
+            " deforms scale, not on word statistics. The standing audit"
+            " J-word-density-results-are-not-juggler-specific sorts results into"
+            " word combinatorics (shared) and how orbits realise words (Juggler"
+            " only); Paper C's engine is in neither class, being exact,"
+            " elementary and free of equidistribution, and still Juggler only."
+        ),
+        "ceiling_is_shared": contagion_mgf_shift(),
+        "log_mass": log_mass_census(20_000),
+        "counterexample": collatz_theorem_one_counterexample(),
+        "no_import": (
+            "A counting bound x^kappa with kappa < 1 contributes total log-mass"
+            " sum_j 2^(-(1-kappa) j) = O(1), so Krasikov--Lagarias cannot enter"
+            " the contagion recursion as a term at any exponent below one. It is"
+            " in the wrong metric, not merely too weak."
+        ),
+        "errata": (
+            "Three working artifacts said Collatz backward trees are thin,"
+            " citing the Krasikov--Lagarias exponent 0.84. That exponent is a"
+            " LOWER bound on preimage counts and cannot establish thinness. The"
+            " published manuscript juggler_fate_almost_all_note.md is correct in"
+            " both places it makes the comparison and needs no revision."
+        ),
+    }
+
+
 def probe_payload(max_depth: int = 10) -> dict[str, Any]:
     from research.juggler_sequence.jump_spectrum import survivor_counts
 
@@ -367,6 +620,7 @@ def probe_payload(max_depth: int = 10) -> dict[str, Any]:
             "parity_map_bijective": {str(d): parity_map_is_bijective(d)
                                      for d in (4, 6, 8)},
         },
+        "paper_c": paper_c_payload(),
         "where_they_part": (
             "For Collatz the parity word is a function of x mod 2^d and the map to"
             " {0,1}^d is a bijection, so every word has density exactly 2^(-d): Terras,"
@@ -423,6 +677,7 @@ def probe_payload(max_depth: int = 10) -> dict[str, Any]:
 def render_markdown(data: dict[str, Any]) -> str:
     walk = data["shared_walk"]
     shared = data["shared_count"]
+    paper_c = data["paper_c"]
     lines = [
         "# Juggler is Collatz one exponential level up",
         "",
@@ -443,6 +698,22 @@ def render_markdown(data: dict[str, Any]) -> str:
         f" {shared['depths'][0]} to {shared['depths'][-1]}: agree ="
         f" `{shared['agree']}`",
         f"- parity map bijective on `Z/2^d`: `{shared['parity_map_bijective']}`",
+        "",
+        "## Paper C under the bridge",
+        "",
+        f"- Paper C's ideal coefficient is `c_w = 2^(-|w|)/rho_w ="
+        f" 3^(-b(w))`, the Collatz backward-step probability, so"
+        f" `F_J(lambda) = F_C(lambda - 1)` exactly (worst gap"
+        f" `{paper_c['ceiling_is_shared']['worst_gap']:.1e}`) and the"
+        f" method ceiling `lambda = 1` is Kraft equality",
+        f"- backward log-mass: Juggler exactly `1/m` for every `m`;"
+        f" accelerated Collatz `{paper_c['log_mass']['collatz_mean']:.4f}/m` in"
+        f" the mean but `{paper_c['log_mass']['collatz_min']:.1f}/m` on every"
+        f" multiple of three",
+        f"- so the Collatz analogue of Theorem 1 is false:"
+        f" `{paper_c['counterexample']['set']}` is backward-closed with"
+        f" reciprocal sum `{paper_c['counterexample']['reciprocal_sum_exact']}`",
+        "- " + paper_c["errata"],
         "",
         "## Where they part",
         "",

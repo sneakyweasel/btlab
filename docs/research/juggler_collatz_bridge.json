@@ -45,6 +45,62 @@
       "8": true
     }
   },
+  "paper_c": {
+    "engine_is_not_shared": "Lemmas 2.1 and 2.2, Lemma 4.1 and Theorem 4.2 rest on how the map deforms scale, not on word statistics. The standing audit J-word-density-results-are-not-juggler-specific sorts results into word combinatorics (shared) and how orbits realise words (Juggler only); Paper C's engine is in neither class, being exact, elementary and free of equidistribution, and still Juggler only.",
+    "ceiling_is_shared": {
+      "depth": 5,
+      "rows": {
+        "0.5": {
+          "F_J": 1.726099123540602,
+          "F_C_shifted": 1.7260991235406022,
+          "gap": 2.220446049250313e-16
+        },
+        "1": {
+          "F_J": 1.0,
+          "F_C_shifted": 1.0,
+          "gap": 0.0
+        },
+        "2": {
+          "F_J": 1.0,
+          "F_C_shifted": 1.0,
+          "gap": 0.0
+        },
+        "0.4926": {
+          "F_J": 1.7448530502472646,
+          "F_C_shifted": 1.7448530502472648,
+          "gap": 2.220446049250313e-16
+        }
+      },
+      "worst_gap": 2.220446049250313e-16,
+      "coefficient_sum": 4.213991769547325,
+      "four_thirds_power": 4.213991769547324,
+      "kraft": 1.0
+    },
+    "log_mass": {
+      "collatz_mean": 1.0001846146718534,
+      "collatz_min": 0.5,
+      "collatz_argmin": 3,
+      "collatz_min_is_on_multiples_of_three": true,
+      "juggler_block_mass": {
+        "10": 1.003325373111564,
+        "100": 1.000033332065169,
+        "1000": 1.0000003333332006
+      },
+      "verdict": "Juggler critical uniformly (exactly 1/m for every m, Lemma 2.1) and supercritical once OE production is added; accelerated Collatz critical in the mean and exactly 1/2 in the worst case, attained on every multiple of three"
+    },
+    "counterexample": {
+      "set": "{3 * 2^k}",
+      "backward_closed": true,
+      "infinite": true,
+      "reciprocal_sum": 0.6666666666660603,
+      "reciprocal_sum_exact": "2/3",
+      "counting_function": "log_2 x - log_2 3",
+      "reason": "multiples of three have no odd preimage, so the backward orbit is a bare doubling chain and loses exactly half its log-mass at every step",
+      "kills": "the Collatz analogue of Paper C Theorem 1, which asserts a divergent logarithmic count for EVERY nonempty backward-closed set"
+    },
+    "no_import": "A counting bound x^kappa with kappa < 1 contributes total log-mass sum_j 2^(-(1-kappa) j) = O(1), so Krasikov--Lagarias cannot enter the contagion recursion as a term at any exponent below one. It is in the wrong metric, not merely too weak.",
+    "errata": "Three working artifacts said Collatz backward trees are thin, citing the Krasikov--Lagarias exponent 0.84. That exponent is a LOWER bound on preimage counts and cannot establish thinness. The published manuscript juggler_fate_almost_all_note.md is correct in both places it makes the comparison and needs no revision."
+  },
   "where_they_part": "For Collatz the parity word is a function of x mod 2^d and the map to {0,1}^d is a bijection, so every word has density exactly 2^(-d): Terras, arithmetic and free. For Juggler the word is a function of frac(n^(3/2)) and its relatives, and equal densities are Hypothesis FD, which is open. Same combinatorics, incompatible arithmetic.",
   "calibration": {
     "collatz_exponent": 0.050044472811669294,
