@@ -363,3 +363,55 @@ def test_every_production_fibre_equidistributes_alpha() -> None:
               - 1.5 * (m ** (4 / 3)) ** (2 / 3))
         assert abs(oe - (4 / 3) * m ** (-1 / 9)) < 1e-4, m
         assert oe < 1.0, "the OE fibre must not complete a turn"
+
+def test_the_marginal_oe_rate_is_harmless() -> None:
+    """The binding rate, and why being marginal does not obstruct the bootstrap.
+
+    The OE clusters sit at `frac((3/2) m^(8/9))`, and the van der Corput
+    second-derivative bound `D* << N^(-4/9)` is SHARP for that sequence:
+    `D* * N^(4/9)` measures 0.404, 0.270, 0.256, 0.291 at `N = 1e5..3e7`, flat.
+    Since the OE fibres at scale `x` have parents `m ~ x^(3/4)`, the route's
+    error is `x^(-1/3)` -- the same order as the resonant density itself.
+
+    That is marginal, and marginal is harmless. The bootstrap needs `A`'s
+    weight fraction on the low-share set to VANISH, not to equal ambient
+    asymptotically. The bound is
+
+        A resonant fraction <= ambient + K * D* = (9 + 0.27 K) x^(-1/3),
+
+    which tends to zero for every fixed `K`. An upper bound of the right order
+    is all that is wanted, and the PROVABLE bound supplies it. The earlier
+    worry that the measured slope was drifting toward the provable one was
+    misdirected -- it is, and it does not matter.
+    """
+    def cluster_position(m: int) -> float:
+        return (1.5 * m ** (8 / 9)) % 1.0
+
+    # flat from 1e5 onward. Below that it is still pre-asymptotic: the scaled
+    # value is 0.639 at 1e4 against 0.404 at 1e5, so a test starting at 1e4
+    # measures the approach and not the plateau. The full run reads 0.404,
+    # 0.270, 0.256, 0.291 at 1e5, 1e6, 1e7, 3e7.
+    scaled = []
+    for limit in (10**5, 3 * 10**5, 10**6):
+        values = sorted(cluster_position(m) for m in range(1, limit + 1))
+        n = len(values)
+        star = max(max(i / n - x, x - (i - 1) / n)
+                   for i, x in enumerate(values, start=1))
+        scaled.append(star * limit ** (4 / 9))
+
+    # flat: the second-derivative bound is sharp, not merely an upper bound
+    assert max(scaled) / min(scaled) < 1.7, scaled
+    assert all(0.2 < v < 0.5 for v in scaled), scaled
+
+    # and marginality still gives a vanishing fraction, which is the
+    # requirement. The constant is not small -- 9 + 0.27 K is 12.24 at K = 12 --
+    # so the bound is still 0.12 at x = 1e6 and only becomes tight further out.
+    # What matters is that it decreases without limit, not that it is small
+    # anywhere reachable.
+    def bound(exponent: int, intervals: int = 12) -> float:
+        return (9 + 0.27 * intervals) * (10.0**exponent) ** (-1 / 3)
+
+    bounds = [bound(e) for e in (6, 9, 12, 15)]
+    assert bounds == sorted(bounds, reverse=True), bounds
+    assert bounds[0] > 0.1 and bounds[-1] < 1e-3
+    assert bound(9) < 0.02
