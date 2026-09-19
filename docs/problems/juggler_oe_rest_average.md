@@ -129,6 +129,58 @@ the \(E{+}OE\) orbit). Not opened. Another pointwise fiber bound is
 the wrong door. Two-way closed fate classes are a different question
 and are not opened.
 
+## The averaging chain, assembled
+
+Written 2026-09-19. Both halves of the bootstrap now stand at once for the
+first time, so the chain is set out here in one place with each link's status
+rather than spread across eight commit messages. **This does not unpark the
+branch** -- see the soft spots below, and the PARK is a judgement for Philippe.
+
+**The claim.** For every nonempty backward-closed \(A\) and every fixed
+\(\delta>0\), the fraction of \(A\)'s \(1/m\)-weight at scale \(x\) carried by
+fibres with \(\lvert\sigma_m-\tfrac12\rvert\ge\delta\) is
+\(O_\delta(x^{-1/3})\).
+
+| # | link | status |
+|---|---|---|
+| 1 | \(A\) backward-closed \(\Rightarrow\) \(A\) is a union of COMPLETE fibres over its own elements | Paper C Lemma 2.1, **Lean** |
+| 2 | low share \(\Rightarrow\) resonant at order \(\le K(\delta)\) | \(\delta\ge 1/6\): Paper C Lemma 4.2, **Lean**. \(\delta<1/6\): `J-low-share-forces-a-small-order-resonance`, **proved but vacuous below \(m\sim 10^{15}\)** |
+| 3 | the resonant set at order \(\le K\) has measure \(O_\delta(m^{-1/3})\) | proved; the interval count is \(\Theta(K^2)\) not \(O(K)\), which the exponent survives |
+| 4 | every production fibre equidistributes \(\alpha\) | proved: \(\theta_w=2^{a+b+1}/3^{b+1}\) is never an integer, because \(3\nmid 2^k\) |
+| 5 | the two routes' rates combine | E route error \(\ll\) density (measured \(\sim m^{-0.6}\) relative); OE route marginal at \(x^{-1/3}\), which suffices |
+
+**End to end, on the hardest \(A\) available** -- the closure of the
+*non-resonant* seeds, built specifically to avoid resonance. Low-share weight
+fraction at \(\delta=0.10\), times \(x^{1/3}\):
+
+| block | \(\lvert A\cap\text{blk}\rvert\) | low-share wt frac | \(\times x^{1/3}\) |
+|---|---|---|---|
+| \(2^{13}\) | 287 | 0.17587 | 4.058 |
+| \(2^{14}\) | 560 | 0.13811 | 4.015 |
+| \(2^{17}\) | 646 | 0.06304 | 3.665 |
+| \(2^{18}\) | 352 | 0.05997 | 3.929 |
+
+Flat. The low-share fraction is bounded by the resonant fraction at every
+block, as link 2 requires.
+
+**The soft spots, which are why this is not a closed branch.**
+
+1. Link 2 is *vacuous* at every reachable \(m\). Its numerical support
+   confirms a sharper constant-free phenomenon that the theorem does not
+   reach. A Selberg--Vaaler majorant would buy about \(60\times\); not done.
+2. Link 5's E-route rate is measured, not proved. The OE route is proved and
+   marginal, and marginal suffices -- but the *combination* has not been
+   written with one set of constants.
+3. Nothing here is Lean beyond links 1 and 2's easy half.
+4. The bootstrap this feeds also needs the contagion exponent it improves, and
+   that circularity is benign (`J-oe-low-share-weight-decays-polynomially`
+   records why) but has not been re-checked since the chain changed shape.
+
+**What it would buy, unchanged since the pricing.** Two productions at the mean
+share reach \(\lambda^{**}\), taking Proposition 4.4's two exponential-sum
+bounds off Paper C's critical path -- the largest unformalized gap in the
+paper. Not a better exponent; the same one with the analytic core removed.
+
 ## Decision
 
 **PARK.** A fixed seed set mixes to \(1/2\); planting low-even

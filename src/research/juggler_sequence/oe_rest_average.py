@@ -582,6 +582,27 @@ def is_resonant(m: int, constant: float = RESONANCE_CONSTANT) -> bool:
                alpha, 1.0 - alpha) < width
 
 
+def is_resonant_to_order(m: int, order: int,
+                         constant: float = RESONANCE_CONSTANT) -> bool:
+    """`||k alpha_m|| < constant/H_m` for some `1 <= k <= order`.
+
+    `is_resonant` is the `order = 3` special case restricted to the three
+    points `0, 1/3, 2/3`, which is what the density census uses. The THEOREM
+    (`J-low-share-forces-a-small-order-resonance`) gives resonance at some
+    order up to `K = O(1/delta)`, a strictly larger set, so any containment
+    check against `is_resonant` alone will fail -- as it does at
+    `delta = 0.10`, where low-share fibres resonate at `k` up to 5 and the
+    narrow probe misses them.
+    """
+    alpha = (1.5 * m ** (2.0 / 3.0)) % 1.0
+    width = constant / ((2.0 / 3.0) * m ** (1.0 / 3.0))
+    for k in range(1, order + 1):
+        x = (k * alpha) % 1.0
+        if min(x, 1.0 - x) < width:
+            return True
+    return False
+
+
 def resonance_density(exponents: tuple[int, ...] = (14, 16, 18, 20, 22, 24),
                       samples: int = 4000, seed: int = 20260919) -> dict[str, Any]:
     """The resonant set has density exactly `Theta(m^(-1/3))`, and that is the

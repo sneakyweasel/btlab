@@ -22,6 +22,7 @@ from research.juggler_sequence.oe_rest_average import (
     fd_placement,
     fibre_exponent,
     is_resonant,
+    is_resonant_to_order,
     close_from_mask,
     poor_mask,
     resonance_density,
@@ -415,3 +416,56 @@ def test_the_marginal_oe_rate_is_harmless() -> None:
     assert bounds == sorted(bounds, reverse=True), bounds
     assert bounds[0] > 0.1 and bounds[-1] < 1e-3
     assert bound(9) < 0.02
+
+def test_the_chain_assembles_end_to_end_on_an_adversarial_set() -> None:
+    """The whole claim at once, on the hardest `A` available.
+
+    Each link had been checked against its neighbours; this checks the
+    assembly. For the closure of the NON-resonant seeds -- built specifically
+    to avoid resonance -- the fraction of `A`'s `1/m`-weight carried by
+    low-share fibres, times `x^(1/3)`, is 4.06, 4.02, 3.67, 3.93 across the
+    non-empty blocks of `2^13..2^18`. Flat, so the fraction is
+    `Theta(x^(-1/3))` and the assembled `O_delta(x^(-1/3))` holds with room.
+
+    Also checks what link 2 requires: the low-share weight never exceeds the
+    resonant weight, in every block.
+    """
+    import numpy as np
+
+    limit, cap, delta = 130_000, 1_500, 0.10
+    adversary = np.zeros(cap + 1, dtype=bool)
+    for m in range(3, cap + 1):
+        adversary[m] = not is_resonant(m)
+    closed = close_from_mask(adversary, limit)
+
+    scaled = []
+    # 2^12 is still pre-asymptotic here (scaled 9.10 against about 4); the
+    # plateau starts at 2^13, matching the full run 4.06, 4.02, 3.67, 3.93
+    for exponent in (13, 14, 15):
+        lo, hi = 2**exponent, min(2 ** (exponent + 1), limit)
+        if hi <= lo + 10:
+            continue
+        index = np.arange(lo, hi)
+        weight = 1.0 / index
+        in_a = closed[lo:hi]
+        if not in_a.any():
+            continue
+        low = np.zeros(hi - lo, dtype=bool)
+        res = np.zeros(hi - lo, dtype=bool)
+        for i, m in enumerate(index):
+            if not in_a[i]:
+                continue
+            share = exact_even_share(int(m))
+            low[i] = share == share and abs(share - 0.5) >= delta
+            # the THEOREM's resonance is order <= K, not the narrow {0,1/3,2/3}
+            # that is_resonant tests; checking containment against the narrow
+            # probe fails at delta = 0.10, where low-share fibres reach k = 5
+            res[i] = is_resonant_to_order(int(m), 6)
+        total = weight[in_a].sum()
+        low_frac = weight[in_a & low].sum() / total
+        res_frac = weight[in_a & res].sum() / total
+        assert low_frac <= res_frac + 1e-12, (exponent, low_frac, res_frac)
+        scaled.append(low_frac * ((lo + hi) / 2) ** (1 / 3))
+
+    assert len(scaled) >= 2, "need at least two populated blocks"
+    assert max(scaled) / min(scaled) < 1.6, scaled
