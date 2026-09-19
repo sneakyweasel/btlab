@@ -188,20 +188,38 @@ inequality (1.1) behind them can. See §6.
 \]
 
 *Proof.* This is Lemma 4.3 with its two goodness arcs replaced by a
-general finite union, and the proof is the same. The condition says
-\(\alpha_m\) lies in
-\(\mathcal A=\bigcup_{q\le Q}\bigcup_{0\le p<q}
-[\tfrac pq-\tfrac\delta q,\tfrac pq+\tfrac\delta q]\),
-a union of at most \(\sum_{q\le Q}q=\tfrac{Q(Q+1)}2\) arcs of total
-length at most \(\sum_{q\le Q}q\cdot\tfrac{2\delta}q=2Q\delta\). The map
-\(\varphi(m)=\tfrac32m^{2/3}\) increases with
+general finite union, and the proof is the same.
+
+Take one \(q\) at a time, and apply the arc count to \(\varphi_q(m)=q\cdot
+\tfrac32m^{2/3}\) rather than to \(\tfrac32m^{2/3}\). Then
+\(\|q\alpha_m\|\le\delta\) is membership in the **single** arc
+\([0,2\delta)\) after the shift \(\varphi_q+\delta\), which is exactly the
+shift `bad_mem_arc` uses to turn a wrap-around arc into one arc. The price is
+the step bound: \(\varphi_q(m+1)-\varphi_q(m)\ge q\,(m+1)^{-1/3}\), so
+\(d_q=q\,d\); and the gain is the window count, which rises to
+\(q\cdot0.882u^{2/3}+2\). The \(q\) cancels between them:
+\[
+\bigl(0.882\,q\,u^{2/3}+2\bigr)\Bigl(\frac{2\delta}{qd}+1\Bigr)
+= 0.882\,u^{2/3}\cdot\frac{2\delta}{d}\;+\;0.882\,q\,u^{2/3}\;+\;O(\delta/(qd)).
+\]
+Summing over \(q\le Q\) gives \(2Q\delta/d\) in the first term and
+\(\sum_{q\le Q}q=\tfrac{Q(Q+1)}2\) in the second, which is the stated
+bound. The underlying facts about \(\varphi\) are Lemma 4.3's:
 \(\varphi(m+1)-\varphi(m)=\int_m^{m+1}t^{-1/3}\,dt\in
-[(m+1)^{-1/3},m^{-1/3}]\), so on \((u,2u]\) its steps are at least
-\(d=(2u+1)^{-1/3}\), and it increases in total by
-\(\tfrac32u^{2/3}(2^{2/3}-1)<0.882\,u^{2/3}\), meeting at most
-\(0.882u^{2/3}+2\) integer windows. Within one window an arc of width
-\(w\) holds at most \(w/d+1\) values of \(m\). Summing the widths gives
-the claim. \(\square\)
+[(m+1)^{-1/3},m^{-1/3}]\), total increase
+\(\tfrac32u^{2/3}(2^{2/3}-1)<0.882\,u^{2/3}\) over \((u,2u]\), and at most
+\(w/d+1\) points of an arc of width \(w\) per integer window. \(\square\)
+
+*Revision, on formalizing.* The first version of this proof covered
+\(\|q\alpha_m\|\le\delta\) by the \(q\) arcs of half-width \(\delta/q\)
+around the points \(p/q\), \(0\le p<q\), giving
+\(\tfrac{Q(Q+1)}2\) arcs of total length \(2Q\delta\). That is correct and
+gives the same bound, but it drags in which \(p\) are coprime to \(q\) and
+makes the Lean an induction over a double union. Scaling the sequence instead of
+subdividing the circle removes all of it: one arc per \(q\), no coprimality,
+one application of the existing `arc_count_le` per \(q\). Lean:
+`FiberParity.resonance_count_one` and `resonance_count_le` in
+`Problems/Juggler/FateResonanceCount.lean`.
 
 Lean: `FiberParity.arc_count_le` in `Problems/Juggler/FateThinFibers.lean`
 is the per-window count \(w/d+1\), and `FiberParity.bad_count_le` is this
