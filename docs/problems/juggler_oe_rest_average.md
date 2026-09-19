@@ -21,7 +21,18 @@ backward-closed \(A\)?
 \(m\) with exact even-share \(G_m/H_m\le 0.40\). Then:
 
 1. \(P\) has log-mass fraction \(\ge 0.059\) on every dyadic block
-   checked in \([2^8,2^{16}]\) (not \(O(U^{-1/3})\)).
+   checked in \([2^8,2^{16}]\). **Corrected 2026-09-19:** the original
+   parenthetical here read "(not \(O(U^{-1/3})\))", and that is an
+   artifact of stopping at \(2^{16}\), where \(H_m\le 27\) and
+   binomial noise alone predicts about \(14\%\). Carried four more
+   octaves the \(1/m\)-weighted fraction falls \(0.0508\to 0.0072\)
+   from \(2^{16}\) to \(2^{24}\), a factor \(7.1\) against the
+   cube-root prediction \(6.35\)
+   (`oe_fiber_constant.poor_fiber_decay`). The decay is consistent with
+   \(O(U^{-1/3})\). This does **not** unpark the branch: the PARK rests
+   on observations (2)-(4), and the quantity Theorem 5.3 needs is
+   poor-set mass relative to \(A\), not to all integers, so an
+   adversarial backward-closed \(A\) is untouched.
 2. The \(E{+}OE\) closure of a *capped* \(P\cap[1,3000]\) has odd
    members above the cap with weighted even-share \(0.515\) (low-even
    fraction \(0.06\)): a fixed seed set mixes.

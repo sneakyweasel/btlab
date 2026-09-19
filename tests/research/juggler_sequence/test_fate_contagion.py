@@ -2,6 +2,9 @@
 
 from __future__ import annotations
 
+import math
+from decimal import Decimal, getcontext
+
 from math import isqrt
 
 import numpy as np
@@ -13,8 +16,10 @@ from research.juggler_sequence.fate_contagion import (
     certified_closure,
     even_block,
     fiber,
+    fiber_alpha,
     fiber_bounds,
     fiber_census,
+    is_good_fiber,
     juggler,
     lambda_root,
 )
@@ -117,3 +122,41 @@ def test_certified_closure_reaches_one_and_matches_definition() -> None:
             assert bool(closed[n]) == expect
             assert not closed_e[n]
     assert closed.sum() > closed_e.sum()
+
+def test_the_fibre_step_needs_exact_arithmetic_above_ten_million() -> None:
+    """`fiber_alpha` is integer-exact, and the float expression it replaced was not.
+
+    `alpha` is the fractional part of `((lo+2)^(3/2) - lo^(3/2))/2`. Computed in
+    float64 that subtracts two numbers of size `lo^(3/2)` to reach a difference
+    of size `3 sqrt(lo)`, and it is the fractional part of the difference that
+    is wanted. At `m = 10^8` the operands are about `10^16`, where an ulp is
+    already `2`, so the answer was pure noise -- the old expression returned
+    exactly `0.0` against a true `0.2035`. Since `is_good_fiber` rejects any
+    fibre whose alpha is near `0`, that silently rejected EVERY fibre at that
+    scale, and the resonance census could not see past `10^7`.
+
+    The error was `3e-5` at `10^6` and `4e-3` at `10^7`; the second is already
+    comparable to the `1/H = 1/143` window the census looks in, which is why the
+    measured detune at `10^7` moved from `+0.37` to `-0.33` once this was fixed.
+    """
+    getcontext().prec = 60
+
+    def by_decimal(lo: int) -> float:
+        d = (Decimal(lo + 2).sqrt() * (lo + 2) - Decimal(lo).sqrt() * lo) / 2
+        return float(d - int(d))
+
+    def by_float(lo: int) -> float:
+        d = ((lo + 2) ** 1.5 - lo**1.5) / 2.0
+        return d - math.floor(d)
+
+    for exponent in (6, 7, 8, 9, 10):
+        lo, _ = fiber_bounds(10**exponent)
+        assert abs(fiber_alpha(lo) - by_decimal(lo)) < 1e-15, exponent
+
+    # and the expression it replaced really does fail, so this is a guard and
+    # not a decoration
+    lo, _ = fiber_bounds(10**8)
+    assert by_float(lo) == 0.0
+    assert abs(by_float(lo) - by_decimal(lo)) > 0.2
+    assert is_good_fiber(10**8, fiber_alpha(lo))
+    assert not is_good_fiber(10**8, by_float(lo))

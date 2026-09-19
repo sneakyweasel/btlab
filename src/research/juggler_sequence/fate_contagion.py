@@ -103,6 +103,30 @@ def circle_distance(x: float, c: float) -> float:
     return abs(((x - c) + 0.5) % 1.0 - 0.5)
 
 
+_ALPHA_SCALE = 10**20
+
+
+def fiber_alpha(lo: int) -> float:
+    """The fiber step `frac(((lo+2)^(3/2) - lo^(3/2)) / 2)`, computed exactly.
+
+    The obvious float expression subtracts two numbers of size `lo^(3/2)` to get
+    a difference of size `3 sqrt(lo)`, and the fractional part of that
+    difference is the quantity wanted. At `m = 10^8` the operands are about
+    `10^16`, where a float64 ulp is already `2`, so the fractional part is pure
+    noise: the old expression returned exactly `0.0` against a true `0.2035`,
+    which made `is_good_fiber` reject every fiber at that scale. The error is
+    `3e-5` at `m = 10^6` and `4e-3` at `10^7` -- the latter already comparable
+    to the `1/H` resonance window the census is looking for.
+
+    Scaling by `10^20` and using integer square roots makes the error `1e-20`
+    at every scale, at a cost of one `isqrt` on a few-hundred-bit integer.
+    """
+    s = _ALPHA_SCALE
+    hi_root = isqrt((lo + 2) ** 3 * s * s)
+    lo_root = isqrt(lo**3 * s * s)
+    return ((hi_root - lo_root) % (2 * s)) / (2 * s)
+
+
 def fiber_stats(m: int) -> dict[str, Any]:
     """Size ``H``, good count ``G`` (even ``isqrt(n^3)``), and the step ``alpha`` mod 1."""
 
@@ -114,8 +138,7 @@ def fiber_stats(m: int) -> dict[str, Any]:
         if isqrt(n**3) % 2 == 0:
             good += 1
     if size >= 2:
-        d = ((lo + 2) ** 1.5 - lo**1.5) / 2.0
-        alpha = d - math.floor(d)
+        alpha = fiber_alpha(lo)
     else:
         alpha = float("nan")
     return {"m": m, "size": size, "good": good, "alpha": alpha}
