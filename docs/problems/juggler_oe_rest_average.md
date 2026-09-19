@@ -192,6 +192,35 @@ share reach \(\lambda^{**}\), taking Proposition 4.4's two exponential-sum
 bounds off Paper C's critical path -- the largest unformalized gap in the
 paper. Not a better exponent; the same one with the analytic core removed.
 
+**The assembled constant, written once.** All at the element scale \(x\),
+with \(K=\lceil 2C_{ET}/\delta\rceil\) and \(\gamma H^2\to 1/3\),
+\(H=\tfrac23 x^{1/3}\):
+
+\[
+\text{low-share fraction}\;\le\;
+\Bigl(\underbrace{\pi C_{ET}K^2\log(eK)/\delta}_{\text{resonant measure}}
+\;+\;\underbrace{0.27\cdot(3/\pi^2)K^2}_{\text{OE discrepancy}}\Bigr)x^{-1/3}.
+\]
+
+| \(C_{ET}\) | \(\delta\) | \(K\) | constant | bound \(<1\) from |
+|---|---|---|---|---|
+| 1 | 0.100 | 20 | \(5.0\times10^{4}\) | \(x=1.3\times10^{14}\) |
+| 1 | 1/6 | 12 | \(9.5\times10^{3}\) | \(x=8.5\times10^{11}\) |
+| 4 | 0.100 | 80 | \(4.3\times10^{6}\) | \(x=8.1\times10^{19}\) |
+| 4 | 1/6 | 48 | \(8.5\times10^{5}\) | \(x=6.1\times10^{17}\) |
+
+Measured constant on the adversarial \(A\) at \(\delta=0.10\): about \(3.9\).
+So the bound is loose by \(10^{6}\), and the crossover range \(10^{12}\) to
+\(10^{20}\) is exactly the span quoted above.
+
+**One thing this settles.** The Erdős--Turán term is \(99.988\%\) of the
+constant and the OE discrepancy term is \(0.012\%\) -- a ratio of \(8241\) to
+\(1\) at \(C_{ET}=4,\ \delta=0.10\). So the marginality of the OE route, which
+looked like the binding difficulty, contributes one part in eight thousand.
+Sharpening the discrepancy buys nothing; only the Erdős--Turán constant is
+worth attacking, and Selberg--Vaaler is the way (it removes \(C_{ET}\) from
+\(K\), so it enters the constant cubed).
+
 ## Decision
 
 **PARK.** A fixed seed set mixes to \(1/2\); planting low-even

@@ -469,3 +469,45 @@ def test_the_chain_assembles_end_to_end_on_an_adversarial_set() -> None:
 
     assert len(scaled) >= 2, "need at least two populated blocks"
     assert max(scaled) / min(scaled) < 1.6, scaled
+
+def test_the_assembled_constant_is_dominated_by_erdos_turan() -> None:
+    """The chain written with one set of constants, and what is worth attacking.
+
+    At the element scale, with `K = ceil(2 C_ET / delta)` and `gamma H^2 -> 1/3`,
+    `H = (2/3) x^(1/3)`:
+
+        low-share fraction <= (pi C_ET K^2 log(eK)/delta
+                               + 0.27 (3/pi^2) K^2) x^(-1/3)
+
+    the first term the resonant measure, the second the OE discrepancy. At
+    `C_ET = 4, delta = 0.10` that is `4.3e6`, against a measured constant of
+    about `3.9` on the adversarial `A` -- loose by `1e6`, with the bound
+    dropping below 1 only from `x = 8.1e19`.
+
+    The point of writing it once: the Erdos-Turan term is 99.988 per cent of
+    the constant and the OE discrepancy is 0.012 per cent, a ratio of 8241 to
+    1. So the marginality of the OE route, which looked like the binding
+    difficulty and cost a tick of worry, contributes one part in eight
+    thousand. Sharpening the discrepancy buys nothing. Only `C_ET` is worth
+    attacking, and it enters cubed through `K^2/delta`, which is why
+    Selberg-Vaaler -- which removes it from `K` -- is the lever.
+    """
+    def terms(c_et: float, delta: float) -> tuple[float, float]:
+        k = math.ceil(2 * c_et / delta)
+        measure = math.pi * c_et * k * k * math.log(math.e * k) / delta
+        discrepancy = 0.27 * (3 / math.pi**2) * k * k
+        return measure, discrepancy
+
+    measure, discrepancy = terms(4.0, 0.10)
+    assert measure / discrepancy > 5000
+    assert abs(measure + discrepancy - 4.33e6) < 0.02e6
+
+    # the crossover span quoted in the dossier
+    for c_et, delta, lo, hi in ((1.0, 1 / 6, 5e11, 2e12), (4.0, 0.10, 5e19, 2e20)):
+        total = sum(terms(c_et, delta))
+        assert lo < total**3 < hi, (c_et, delta, total**3)
+
+    # C_ET enters cubed: halving it should buy about eight times
+    big = sum(terms(4.0, 0.10))
+    small = sum(terms(2.0, 0.10))
+    assert 6.0 < big / small < 10.0, big / small
