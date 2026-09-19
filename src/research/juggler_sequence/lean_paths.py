@@ -219,6 +219,7 @@ LAYERS: dict[str, Path] = {
     "CubeFiber": JUGGLER_DIR / "CubeFiber.lean",
     "FateRecursion": JUGGLER_DIR / "FateRecursion.lean",
     "FateFirstLetter": JUGGLER_DIR / "FateFirstLetter.lean",
+    "FateBlockLock": JUGGLER_DIR / "FateBlockLock.lean",
     "FateSweep": JUGGLER_DIR / "FateSweep.lean",
     "FateSweepMonotone": JUGGLER_DIR / "FateSweepMonotone.lean",
     "FateChernoff": JUGGLER_DIR / "FateChernoff.lean",
