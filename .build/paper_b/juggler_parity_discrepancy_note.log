@@ -433,7 +433,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 [1
 
 ] [2] [3]
-Underfull \hbox (badness 2384) in paragraph at lines 290--293
+Underfull \hbox (badness 2384) in paragraph at lines 295--298
 []\T1/lmr/m/n/10.95 On a dyadic block ap-ply the two-dimensional Erd®s--Turán--
 Koksma in-equal-ity to
  []
@@ -443,7 +443,7 @@ Koksma in-equal-ity to
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1694.
+(amsmath)                 on input line 1699.
 
 [23] [24] [25] [26] [27] [28] [29] [30] [31] [32] [33] [34] [35] [36] [37]
 [38] [39] [40] [41] (juggler_parity_discrepancy_note.aux)

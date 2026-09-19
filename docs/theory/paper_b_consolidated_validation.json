@@ -1,7 +1,7 @@
 {
   "status": "PASS",
   "version": "2026-09-19-preprint",
-  "source_sha256": "2d2cda1af3a4cb273c1d15a75b9d40f3b7d81e43e08ab25bd389564f6a480a52",
+  "source_sha256": "5a5468dbae19472b7763be1a667fc9f770de8b78f9fb7c35fc854fd2664702f8",
   "exact_control_modules": {
     "validate_paper_b": {
       "status": "PASS",

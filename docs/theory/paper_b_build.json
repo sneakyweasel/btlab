@@ -6,7 +6,7 @@
     {
       "name": "juggler_parity_discrepancy_note.md",
       "mode": "text",
-      "sha256": "2d2cda1af3a4cb273c1d15a75b9d40f3b7d81e43e08ab25bd389564f6a480a52"
+      "sha256": "5a5468dbae19472b7763be1a667fc9f770de8b78f9fb7c35fc854fd2664702f8"
     },
     {
       "name": "article.tex",
@@ -26,12 +26,12 @@
     {
       "name": "juggler_parity_discrepancy_note.tex",
       "mode": "text",
-      "sha256": "727366f0fcd3be8445438aaf8e34efd8749abb0b6583fc704e7525109867acbe"
+      "sha256": "31573f7bbc5cfee1f7e2e8a9fb7d57fc1f5d64115fbc08ebefd90022ec9d10e9"
     },
     {
       "name": "juggler_parity_discrepancy_note.pdf",
       "mode": "binary",
-      "sha256": "c38b72cf15328f3a317bee36ad5056978ca2f91ab88abfd441c7f34278a6ce5e"
+      "sha256": "1b3cc04df048633578b1f24e1f0db3a03ecfe13d35e3309218f91f4f02af1297"
     }
   ]
 }
