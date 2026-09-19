@@ -2735,6 +2735,23 @@
       "nk_cluster": null
     },
     {
+      "id": "exponent_valuation_mirror",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/exponent_valuation_mirror.py",
+      "test": "tests/research/juggler_sequence/test_exponent_valuation_mirror.py",
+      "dossier": "docs/problems/juggler_exponent_valuation_mirror.md",
+      "data_dir": "data/research/juggler/exponent_valuation_mirror",
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": [
+        "J-lemma-eight-is-the-exponent-valuation",
+        "J-exponential-sends-density-to-log-density"
+      ],
+      "aliases": [],
+      "nk_cluster": "Lemma 8 does transfer, and it lands on a density-zero locus"
+    },
+    {
       "id": "external_input_audit",
       "kind": "branch",
       "probe": "src/research/juggler_sequence/external_input_audit.py",

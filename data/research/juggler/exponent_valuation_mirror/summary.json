@@ -1,0 +1,296 @@
+{
+  "dictionary": {
+    "collatz_state": "u = x + 1 in Z_2",
+    "juggler_state": "e = e(n), the exponent of the perfect power, in Z",
+    "shared_map": "u -> 3u/2 (Collatz odd step); e -> 3e/2 (Juggler exact odd step)",
+    "shared_reason": "3 is a 2-adic unit, so one step costs exactly one unit of v_2",
+    "juggler_even_step": "e -> e/2, the same unit",
+    "collatz_lemma": "Hercher 2023 Lemma 8: k consecutive odd steps force x = -1 mod 2^k",
+    "juggler_lemma": "HasPowTwoDepth: k consecutive exact steps force n = a^(2^k)",
+    "lean": [
+      "hasPowTwoDepth_even_exact",
+      "hasPowTwoDepth_odd_exact",
+      "power_bound_eq_implies_pow_two_depth"
+    ]
+  },
+  "run_law": {
+    "limit": 1000000,
+    "square_states_checked": 999,
+    "nonsquare_states_checked": 19859,
+    "juggler_law": "exactRun(n) = v_2(e(n))",
+    "juggler_failures": [],
+    "juggler_holds": true,
+    "collatz_law": "run(x) = v_2(x+1)  [Hercher 2023, Lemma 8]",
+    "collatz_odds_checked": 100000,
+    "collatz_failures": [],
+    "collatz_holds": true
+  },
+  "monochrome": {
+    "limit": 1000000,
+    "mixed_exact_words": [],
+    "all_monochrome": true,
+    "words_by_length": {
+      "1": [
+        "E",
+        "O"
+      ],
+      "2": [
+        "EE",
+        "OO"
+      ],
+      "3": [
+        "EEE",
+        "OOO"
+      ],
+      "4": [
+        "EEEE"
+      ]
+    }
+  },
+  "fibre_entropy": {
+    "note": "Collatz: x mod 2^d -> word is a bijection onto {O,E}^d (Terras 1976). Juggler: depth-d perfect powers carry the two monochrome words only.",
+    "rows": [
+      {
+        "length": 1,
+        "collatz_words_on_one_residue_system": 2,
+        "collatz_is_bijective": true,
+        "juggler_words_on_the_depth_d_locus": 2,
+        "juggler_words": [
+          "O^1",
+          "E^1"
+        ]
+      },
+      {
+        "length": 2,
+        "collatz_words_on_one_residue_system": 4,
+        "collatz_is_bijective": true,
+        "juggler_words_on_the_depth_d_locus": 2,
+        "juggler_words": [
+          "O^2",
+          "E^2"
+        ]
+      },
+      {
+        "length": 3,
+        "collatz_words_on_one_residue_system": 8,
+        "collatz_is_bijective": true,
+        "juggler_words_on_the_depth_d_locus": 2,
+        "juggler_words": [
+          "O^3",
+          "E^3"
+        ]
+      },
+      {
+        "length": 4,
+        "collatz_words_on_one_residue_system": 16,
+        "collatz_is_bijective": true,
+        "juggler_words_on_the_depth_d_locus": 2,
+        "juggler_words": [
+          "O^4",
+          "E^4"
+        ]
+      },
+      {
+        "length": 5,
+        "collatz_words_on_one_residue_system": 32,
+        "collatz_is_bijective": true,
+        "juggler_words_on_the_depth_d_locus": 2,
+        "juggler_words": [
+          "O^5",
+          "E^5"
+        ]
+      },
+      {
+        "length": 6,
+        "collatz_words_on_one_residue_system": 64,
+        "collatz_is_bijective": true,
+        "juggler_words_on_the_depth_d_locus": 2,
+        "juggler_words": [
+          "O^6",
+          "E^6"
+        ]
+      },
+      {
+        "length": 7,
+        "collatz_words_on_one_residue_system": 128,
+        "collatz_is_bijective": true,
+        "juggler_words_on_the_depth_d_locus": 2,
+        "juggler_words": [
+          "O^7",
+          "E^7"
+        ]
+      },
+      {
+        "length": 8,
+        "collatz_words_on_one_residue_system": 256,
+        "collatz_is_bijective": true,
+        "juggler_words_on_the_depth_d_locus": 2,
+        "juggler_words": [
+          "O^8",
+          "E^8"
+        ]
+      }
+    ]
+  },
+  "counting": {
+    "limit": 1000000,
+    "juggler_law": "#{2<=n<=N : exactRun(n)>=k} = floor(N^(2^-k)) - 1",
+    "collatz_law": "#{x<=N : run(x)>=k} = floor((N+1)/2^k) for k >= 1",
+    "rows": [
+      {
+        "k": 0,
+        "juggler_measured": 999999,
+        "juggler_predicted_floor_Nth_root": 999999,
+        "juggler_agrees": true,
+        "collatz_measured": 1000000,
+        "collatz_predicted": 1000000,
+        "collatz_agrees": true
+      },
+      {
+        "k": 1,
+        "juggler_measured": 999,
+        "juggler_predicted_floor_Nth_root": 999,
+        "juggler_agrees": true,
+        "collatz_measured": 500000,
+        "collatz_predicted": 500000,
+        "collatz_agrees": true
+      },
+      {
+        "k": 2,
+        "juggler_measured": 30,
+        "juggler_predicted_floor_Nth_root": 30,
+        "juggler_agrees": true,
+        "collatz_measured": 250000,
+        "collatz_predicted": 250000,
+        "collatz_agrees": true
+      },
+      {
+        "k": 3,
+        "juggler_measured": 4,
+        "juggler_predicted_floor_Nth_root": 4,
+        "juggler_agrees": true,
+        "collatz_measured": 125000,
+        "collatz_predicted": 125000,
+        "collatz_agrees": true
+      },
+      {
+        "k": 4,
+        "juggler_measured": 1,
+        "juggler_predicted_floor_Nth_root": 1,
+        "juggler_agrees": true,
+        "collatz_measured": 62500,
+        "collatz_predicted": 62500,
+        "collatz_agrees": true
+      },
+      {
+        "k": 5,
+        "juggler_measured": 0,
+        "juggler_predicted_floor_Nth_root": 0,
+        "juggler_agrees": true,
+        "collatz_measured": 31250,
+        "collatz_predicted": 31250,
+        "collatz_agrees": true
+      }
+    ],
+    "all_agree": true
+  },
+  "minimal_realizers": {
+    "collatz": "run(x) >= k  =>  x >= 2^k - 1  (attained)",
+    "juggler": "exactRun(n) >= k  =>  n >= 2^(2^k); odd n >= 3^(2^k)  (both attained)",
+    "identity": "log(3^(2^k)) = (2^k) log 3, so the Juggler floor is the exponential of the Collatz floor -- the walk dictionary, pointwise",
+    "rows": [
+      {
+        "k": 0,
+        "collatz_min": 0,
+        "collatz_min_attains": true,
+        "juggler_min_log2": 1,
+        "juggler_min_attains": true,
+        "juggler_odd_min_log3": 1,
+        "juggler_odd_min_attains": true,
+        "juggler_odd_word": ""
+      },
+      {
+        "k": 1,
+        "collatz_min": 1,
+        "collatz_min_attains": true,
+        "juggler_min_log2": 2,
+        "juggler_min_attains": true,
+        "juggler_odd_min_log3": 2,
+        "juggler_odd_min_attains": true,
+        "juggler_odd_word": "O"
+      },
+      {
+        "k": 2,
+        "collatz_min": 3,
+        "collatz_min_attains": true,
+        "juggler_min_log2": 4,
+        "juggler_min_attains": true,
+        "juggler_odd_min_log3": 4,
+        "juggler_odd_min_attains": true,
+        "juggler_odd_word": "OO"
+      },
+      {
+        "k": 3,
+        "collatz_min": 7,
+        "collatz_min_attains": true,
+        "juggler_min_log2": 8,
+        "juggler_min_attains": true,
+        "juggler_odd_min_log3": 8,
+        "juggler_odd_min_attains": true,
+        "juggler_odd_word": "OOO"
+      },
+      {
+        "k": 4,
+        "collatz_min": 15,
+        "collatz_min_attains": true,
+        "juggler_min_log2": 16,
+        "juggler_min_attains": true,
+        "juggler_odd_min_log3": 16,
+        "juggler_odd_min_attains": true,
+        "juggler_odd_word": "OOOO"
+      },
+      {
+        "k": 5,
+        "collatz_min": 31,
+        "collatz_min_attains": true,
+        "juggler_min_log2": 32,
+        "juggler_min_attains": true,
+        "juggler_odd_min_log3": 32,
+        "juggler_odd_min_attains": true,
+        "juggler_odd_word": "OOOOO"
+      }
+    ],
+    "all_attained": true
+  },
+  "exit_digit": {
+    "identity": "e odd: floorPower(2^e) = floor(2^((e-1)/2) sqrt 2), parity = bit_{(e-1)/2}(sqrt 2)",
+    "odd_exponents_checked": 201,
+    "max_exponent": 401,
+    "failures": [],
+    "holds": true,
+    "first_32_bits_of_sqrt_two": "10110101000001001111001100110011",
+    "general_base": "n = m^e with e odd: the first inexact image is floor(m^((3e-1)/2) sqrt m) on an odd base and floor(m^((e-1)/2) sqrt m) on an even one"
+  },
+  "valuation_fibre": {
+    "juggler": "n = p^e has v_p(n) = e; the Juggler sends v_p to 3 v_p / 2 on an odd prime and to v_p / 2 at p = 2",
+    "collatz": "the even step sends v_2(x) to v_2(x) - 1; the odd step sends u = x + 1 to 3u/2",
+    "reading": "the Juggler does to valuations what Collatz does to values",
+    "primes": [
+      2,
+      3,
+      5,
+      7,
+      11
+    ],
+    "max_exponent": 40,
+    "juggler_failures": [],
+    "collatz_failures": [],
+    "holds": true
+  },
+  "decision": {
+    "classification": "LEMMA_EIGHT_MIRROR_IS_THE_EXPONENT_VALUATION",
+    "branch": "CLOSE",
+    "green": true
+  },
+  "anti_overclaim": "No floor is raised, no cycle of any length is excluded in either problem, and no Collatz bound is improved; Lemma 8 is quoted from hercher-2023-collatz-m-cycles, not reproved. The mirror's hypothesis is k consecutive EXACT steps, a condition on the integer, where Hercher's is k consecutive odd LETTERS, a condition on the word; no word implies the former, so the mirror is inert for cycles and does not weaken the 19 September negative-knowledge entry. The pointwise odd-run bound for inexact runs -- the odd-tower fragment -- stays open and stays Archimedean."
+}

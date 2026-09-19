@@ -1,5 +1,71 @@
 # Research journal
 
+## 2026-09-19 -- Hercher's Lemma 8 did survive the exponential, on the exponent
+
+- **Objective:** `J-juggler-is-collatz-one-exponential-up` says the conjugacy keeps
+  the word combinatorics and *removes the 2-adic rigidity*. This morning's
+  negative-knowledge entry then named the Juggler twin of Hercher's Lemma 8 as the
+  door. Both cannot be quite right: if the rigidity were gone there would be nothing
+  to twin. So where does the 2-adic place actually go?
+- **It is not removed, it is relocated, and the laboratory already proved it.**
+  Conjugate the Collatz odd step by `u = x + 1`: `(3x+1)/2` becomes exactly
+  `u -> 3u/2`. The Juggler's exact odd step on `n = a^e` is `a^e -> a^(3e/2)`, which
+  on the exponent is exactly `e -> 3e/2`. Same map, same prime, same reason -- `3` is
+  a 2-adic unit, so one step costs one unit of `v_2` and nothing else -- and the even
+  branch `e -> e/2` costs the same unit, so the valuation drops by one per step
+  whatever the letter. Collatz carries the 2-adic integer in the **value**, the
+  Juggler in the **exponent**. That is `HasPowTwoDepth`, proved in
+  `Equality.lean` in August under the heading "2-adic perfect-power depth of
+  equality-saturating states" and filed as a local arithmetic question. It is Lemma 8.
+- **The two run laws are one law.** `run(x) = v_2(x+1)` and
+  `exactRun(n) = v_2(e(n))`, with `e(n) = max{e : n = a^e}` and `exactRun` counting
+  the consecutive states at which the floor is not charged. Exhaustive to `10^6` on
+  both sides: 999 square states, 19859 non-square states, 100000 odd Collatz starts,
+  no failure. The converse half is the laboratory's own `isSquare_pow_three_iff`.
+- **The floor is the exponential of the floor.** Both pointwise bounds are attained:
+  `run(x) >= k` forces `x >= 2^k - 1`, attained at `2^k - 1`; `exactRun(n) >= k`
+  forces `n >= 2^(2^k)`, and on odd starts `n >= 3^(2^k)`, attained at `3^(2^k)` with
+  word `O^k`. `log(3^(2^k)) = 2^k log 3`. The dictionary that was verified on the walk
+  holds pointwise, and Hercher's floor is the logarithm of the Juggler's.
+- **The price is one logarithm, and it is fatal.** Collatz pays `2^(-k)` in the
+  density, the Juggler pays `2^(-k)` in the *exponent* of the density:
+  `#{2<=n<=N : exactRun >= k} = floor(N^(2^-k)) - 1` against
+  `#{x<=N : run >= k} = floor((N+1)/2^k)`, exact at every row to `10^6` -- the
+  Juggler counts are 999, 30, 4, 1, 0 where Collatz counts 500000, 250000, 125000,
+  62500, 31250.
+- **And the surviving fibre carries no information.** An exact run is monochrome, the
+  letter being the parity of the base, so the depth-`k` locus carries the two words
+  `O^k` and `E^k` where Terras's bijection carries all `2^k`. The honest form of
+  "the exponential removes the 2-adic rigidity" is: it turns a bijection onto `2^k`
+  words into a constant map onto two. `J-lemma-eight-is-the-exponent-valuation`,
+  `J-exponential-sends-density-to-log-density`.
+- **The hand-over has a name.** The valuation runs out at the first odd exponent and
+  the first inexact image is `floor(m^N sqrt m)`; on the powers of two, `n = 2^e` with
+  `e` odd, that is `floor(2^((e-1)/2) sqrt 2)`, whose parity is the `(e-1)/2`-th
+  binary digit of `sqrt 2`. Checked on 201 odd exponents to 401. The 2-adic fibre
+  hands the itinerary to an Archimedean digit of a quadratic irrational, with no
+  congruence available at the seam. This is a placement, not a transfer: the Mahler
+  cluster's refusal stands, and nothing here says anything about `{(3/2)^n}`.
+- **Why the mirror is inert, which is the point.** Hercher's hypothesis is `k`
+  consecutive odd **letters**, a condition on the word that any cycle with a long run
+  supplies for free. The mirror's hypothesis is `k` consecutive **exact** steps, a
+  condition on the integer that no word implies. The exponential moves the hypothesis
+  from the word to the arithmetic. That is the mechanism behind this morning's entry
+  rather than a repair of it.
+- **The fibre says it without any exponential talk.** On a prime power the exponent
+  *is* a valuation: `n = p^e` has `v_p(n) = e`, and the Juggler sends `v_p` to
+  `3 v_p / 2` on an odd prime and to `v_p / 2` at `p = 2`, where Collatz sends the
+  value `u = x + 1` to `3u/2` and `v_2(x)` to `v_2(x) - 1`. The Juggler does to
+  valuations what Collatz does to values. Off the perfect powers there is no exponent
+  at all, and the conjugacy that produced one does not extend --
+  `|2^y - 2^z|_2 = 2^(-min(y,z))` depends on the Archimedean size of the exponents and
+  not on `y - z` in the 2-adic metric -- so the door stays Archimedean.
+- **What did not happen.** No floor raised, no cycle excluded at any `m` in either
+  problem, no Collatz bound improved, no new Lean module, and Lemma 8 quoted from
+  `hercher-2023-collatz-m-cycles` rather than reproved. Branch **CLOSE**; dossier
+  `docs/problems/juggler_exponent_valuation_mirror.md`; probe
+  `exponent_valuation_mirror`, eleven tests.
+
 ## 2026-09-19 -- Step 5b's interval counts were counting noise
 
 - **Objective:** Philippe asked how much of `lambda_interp` rested on the two
