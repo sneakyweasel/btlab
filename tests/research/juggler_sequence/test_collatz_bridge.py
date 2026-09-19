@@ -409,3 +409,53 @@ def test_psi_is_the_two_adic_tail_of_winklers_sequence() -> None:
 
     # and the closure, which pins the normalisation
     assert sum(Fraction(lost[j], 2**j) for j in range(1, k + 1))         == counts[0] - Fraction(counts[k], 2**k)
+
+def test_the_sandwich_equality_sets_are_exactly_the_record_indices() -> None:
+    """And Winkler's fifth preprint lives on a strictly larger family than ours.
+
+    The equality sets this laboratory measured are precisely the one-sided
+    record indices of `{n log2 3}` and nothing more. That much was already in
+    `test_winklers_sandwich_holds_on_the_laboratory_counts`; this test pins it
+    against the records computed here rather than against stored lists, so the
+    comparison below rests on something recomputed.
+
+    The comparison: "Marked Rotations and Factorization Heights for Dual Beatty
+    Passage Counts" (Winkler, 13 Sep 2026, doi 10.13140/RG.2.2.22015.57761)
+    classifies a DIFFERENT identity -- the midpoint `f_r + c_r = (2/r)
+    C(m_r - 1, r - 1)` between two passage families -- and it holds on the
+    record indices TOGETHER WITH their doubles `2 q_k` and the consecutive sums
+    `q_k + q_(k+1)`. That larger family has no counterpart here, and `f_r`,
+    `c_r` are not defined for us: ResearchGate embeds only page 1 and the prefix
+    conditions are on page 2. Nothing here checks his theorem.
+
+    It also does not reach `psi`: `psi` needs an asymptotic for `a_3(r)` with
+    error uniform in `r` and summable against `2^(-j)`, and exact identities on
+    a sparse index set are not that.
+    """
+    from research.juggler_sequence.collatz_bridge import winkler_sandwich
+
+    alpha = math.log(3.0) / math.log(2.0)
+    limit = 2000
+    rec_min, rec_max = [], []
+    lo, hi = 2.0, -1.0
+    for n in range(1, limit + 1):
+        f = (n * alpha) % 1.0
+        if f < lo:
+            lo = f
+            rec_min.append(n)
+        if f > hi:
+            hi = f
+            rec_max.append(n)
+
+    w = winkler_sandwich(2213)
+    assert w["lower_equality"] == rec_min[:len(w["lower_equality"])]
+    assert w["upper_equality"] == rec_max[:len(w["upper_equality"])]
+
+    # the larger family is strictly larger, which is the whole point
+    def family(q: list[int]) -> set[int]:
+        return set(q) | {2 * x for x in q} | {a + b for a, b in zip(q, q[1:])}
+
+    bigger = family(rec_min)
+    assert set(w["lower_equality"]) < bigger
+    assert {4, 9, 14, 19, 24, 65, 106, 412} <= bigger
+    assert not ({4, 9, 14} & set(w["lower_equality"]))
