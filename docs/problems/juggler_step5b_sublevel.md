@@ -154,9 +154,30 @@ in prose is machinery gravity.
 - **Interval counts are \(O_E(1)\)
   (COMPUTATIONALLY VERIFIED).** At
   \(P\in\{10^6,10^8,10^{10}\}\) and the six middle-band
-  families, \(\#\Omega_V\le 3\) and \(\#T\le 1\). Counts
+  families, \(\#\Omega_V\le 1\) and \(\#T\le 1\). Counts
   do not track the cell inventory
   \(N\le 3.5P^{13/24}\) (\(\#\Omega_V/N\sim 10^{-6}\)).
+
+  **Corrected 2026-09-19: this read \(\#\Omega_V\le 3\),
+  and the \(3\) was floating-point noise.** `_delta`
+  computed its two derivatives as direct differences of
+  \(1.5\)-powers of nearby large numbers, carrying
+  \(3.4\times10^{-7}\) relative error at \(P=10^{10}\).
+  That made \(\Lambda\) a staircase: inside a single
+  \(200\,000\)-point grid cell the predicate
+  \(\lvert\Lambda\rvert\le V\) flipped **1845 times**
+  before the fix and **once** after, the step height
+  falling from \(1.8\times10^{-4}V\) to
+  \(4.2\times10^{-9}V\). Two rows at \(P=10^{10}\)
+  reported \(3\) and \(2\) intervals where the truth is
+  \(1\), and one of them recorded
+  `count_ok = False` against `interval_cap = 2` -- a
+  published cap violation that never happened. The
+  bound \(\le 3\) stayed true, but it was presented as
+  the measurement. Fixed in `ad94d39c`; the payload was
+  regenerated and `verdict.max_omega_intervals` is now
+  \(1\). The conclusion of this bullet is unchanged and
+  slightly strengthened.
   The Phase-25 “one inverse-power term per cell” error
   is not hiding as one new interval per cell.
 - **Cancellation fills the block (COMPUTATIONALLY
