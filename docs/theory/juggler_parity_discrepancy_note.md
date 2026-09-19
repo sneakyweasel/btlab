@@ -1212,6 +1212,13 @@ complement A054414. What
 this section offers is the oscillating prefactor  \(\psi\) : that the
 ratio depends on  \(d\)  only through  \(\{d\beta\}\), that it is
 non-constant, and the barrier-step mechanism below that explains why.
+Novelty is not claimed for that either. Winkler [13] derives growth
+constants and exact normalized oscillations for A100982 and its
+siblings A174795 and A174796; A100982 is the minimal-certificate count
+\(M_d\)  of this paper, tied to the survivor count by
+\(M_d=2N_{d-1}-N_d\), so whether his oscillations determine  \(\psi\)
+is a question about that identity rather than an open one. It has not
+been checked here.
 
 Consequently  \(\bigl(N_d/2^d\bigr)\big/\bigl(p\varrho^{d}\bigr)\cdot
 d^{3/2}\)  does not converge. Its values  \(16.4\),  \(17.0\),
@@ -3213,3 +3220,8 @@ sets are the independent sets of a nested matroid, giving the
 power-of-two law  \(2^{\lfloor(n-1)\log_2(3/2)\rfloor}\) . Exact and
 finite throughout.
 [doi:10.13140/RG.2.2.31257.79200](https://doi.org/10.13140/RG.2.2.31257.79200).
+13. M. Winkler, "Admissible qx + 1 Sequences, Semiconvergents, and
+Rational Catalan Numbers," ResearchGate preprint, September 2026. The
+source of the two-sided bound on  \(M_d\)  used in the repository, and
+of growth constants and exact normalized oscillations for A100982.
+[doi:10.13140/RG.2.2.35856.78086](https://doi.org/10.13140/RG.2.2.35856.78086).
