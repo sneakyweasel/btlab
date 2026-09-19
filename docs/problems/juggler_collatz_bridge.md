@@ -132,6 +132,12 @@ the `List Branch` word, with no real number in any statement:
 - `decide +kernel`: `undecidedResidues 6 = {7, 15, 27, 31, 39, 47, 59, 63}`,
   OEIS A076227's own example, and the terms `3, 4, 8, 13, 19, 38, 64` at
   `d = 4..10`.
+- `exists_residue_of_word`: every word of length `d` is the parity word of
+  some residue below `2^d`, the surjective half of the bijection; and
+  section 9, the even-step charge: `2^d (C^d x + 1) = 3^o (x + 1) + evenCharge w`,
+  the lower envelope `3^o (x + 1) <= 2^d (C^d x + 1)`, and the exact cycle
+  identity `(x + 1)(2^d - 3^o) = evenCharge w` -- the Collatz walk charge in
+  natural numbers (`J-collatz-even-step-charge-identity`).
 
 The word-only modules `PaperBCertificateRecursion`, `PaperBCertificateLengths`,
 `PaperBJumpTransposition`, `PaperBSurvivorDecay` are, through this file,
@@ -168,6 +174,37 @@ exactly at `2^68`:
 dictionary is `x_min <-> n log n`, a different map from the walk-level
 `log x <-> log log n` above, and the two gaps are mirror images,
 `Lambda_J(L) = log 3 - Lambda_C(L)` (`J-cycle-gaps-are-mirror-images`).
+
+A third confirmation followed: Paper A's walk charge transposes too, giving an
+effective `sum 1/x` bound over odd cycle elements whose constant is
+`sup_(p >= 1e4) H(p)/p = 0.7216` against the `3/4` of the published Theorem 27,
+uniform because every nontrivial cycle has `p > 7.2e10`
+(`J-collatz-walk-charge-constant`). I checked the constant independently:
+`H(p)/p -> int_0^1 2^(-t) dt = 1/(2 ln 2) = 0.721348` by equidistribution of
+`frac(a log2(3/2))`, and the finite sups agree once the `a = 0` term of the
+`a < p` convention is accounted for. So the claim that cycle results transfer
+both ways, recorded here on reasoning alone, now has three numerical
+confirmations and no counterexample.
+
+And the third is sharp: the hug word, realised in a Terras class at a large
+minimum (`exists_residue_of_word`), attains `H(p)/x_0` to twelve digits, so
+every bound that uses only the walk heights -- Hercher's per-run averaging
+included -- is capped there, and further gains on the Collatz constant need
+the 2-adic information of his Corollary 29 or the exact closure
+`2^K - 3^p | evenCharge w` (`J-collatz-walk-charge-is-sharp`,
+`J-collatz-even-step-charge-identity`).
+
+**A Collatz-to-Juggler import, checked.** Winkler's September 2026
+rational-Catalan sandwich on A100982 --
+`(1/n) C(m_n - 1, n - 1) <= a(n) <= (1/n) C(m_n, n - 1)`, `m_n = floor(n log2 3)`,
+equality exactly at the record minima and maxima of `{n log2 3}` -- holds on
+the laboratory's own `M_d = 2 N_{d-1} - N_d` for every order `n <= 2213`, with
+the equality orders `2, 7, 12, 53, 359, 665` and `3, 5, 17, 29, 41, 94, 147, 200,
+253, 306, 971, 1636` as he characterises them, and the nonzero lengths exactly
+`A020914(k)`, `k >= 0` (`J-winkler-sandwich-holds-on-the-laboratory-counts`).
+An independent confirmation of the Sturmian structure the jump-spectrum
+cluster reads on the same words, and only that: the sandwich is a factor
+`2.7` wide and says nothing about the `d^(-3/2)` or the prefactor.
 
 **Where the two part, and it is the whole of Paper B.** For Collatz the parity
 word is a function of `x mod 2^d` and every word has density exactly `2^(-d)`:
