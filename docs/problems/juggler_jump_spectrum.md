@@ -124,6 +124,29 @@ follow-on references those turn up (Rozier-Terracol, `rozier-terracol-2026`, and
 Niu). Absence of a statement in ten documents is still not a proof of novelty,
 but it is no longer an absence in one database.
 
+**Qualified 19 September 2026, and this is the nearest miss.** Reading A076227
+alone misses it: the orbit structure *is* in the literature, on the companion
+sequence. `oeis-A100982` carries a comment of Winkler dated 15 September 2026 --
+four days before this reading, and verified here directly against the entry --
+giving, with `alpha = log_2 3` and `m_n = floor(n alpha)`,
+
+    (1/n) C(m_n - 1, n - 1) <= a(n) <= (1/n) C(m_n, n - 1),
+
+with equality in the lower bound exactly when `{n alpha}` is a strict record
+minimum and in the upper bound exactly when it is a strict record maximum, the
+equality orders being the denominators of the one-sided convergents and
+semiconvergents of `log_2 3`, and `a(n)` a rational Catalan number there. A100982
+is our `M_d`, so those are our words, and the coordinate is our coordinate. The
+Sturmian half of this cluster therefore has published company, and the claim
+above must be read narrowly: what is unrecorded is an *asymptotic* prefactor, not
+the fact that these counts are organised by the rotation orbit.
+
+What Winkler's bounds do not do is pin the size: they are a factor
+`m_n/(m_n - n + 1)`, about `2.7`, apart, so they carry no polynomial correction
+and no prefactor, and they neither give nor contradict the `d^(-3/2)` or `psi`.
+A peer session checked them against the laboratory's own counts at every order
+`n <= 2213` (`J-winkler-sandwich-holds-on-the-laboratory-counts`).
+
 **Source by source, including what could not be read.**
 
 - `winkler-2017-2026-deterministic-structures` (arXiv:1709.03385). Read in full
