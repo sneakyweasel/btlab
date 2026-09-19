@@ -147,7 +147,7 @@ fibres with \(\lvert\sigma_m-\tfrac12\rvert\ge\delta\) is
 | 2 | low share \(\Rightarrow\) resonant at order \(\le K(\delta)\) | \(\delta\ge 1/6\): Paper C Lemma 4.2, **Lean**. \(\delta<1/6\): `J-low-share-forces-a-small-order-resonance`, **proved but vacuous below \(m\sim 10^{15}\)** |
 | 3 | the resonant set at order \(\le K\) has measure \(O_\delta(m^{-1/3})\) | proved; the interval count is \(\Theta(K^2)\) not \(O(K)\), which the exponent survives |
 | 4 | every production fibre equidistributes \(\alpha\) | proved: \(\theta_w=2^{a+b+1}/3^{b+1}\) is never an integer, because \(3\nmid 2^k\) |
-| 5 | the two routes' rates combine | E route error \(\ll\) density (measured \(\sim m^{-0.6}\) relative); OE route marginal at \(x^{-1/3}\), which suffices |
+| 5 | the two routes' rates combine | **both provably marginal** at \(x^{-1/3}\), which suffices. E route by an elementary crossing count, OE route by van der Corput |
 
 **End to end, on the hardest \(A\) available** -- the closure of the
 *non-resonant* seeds, built specifically to avoid resonance. Low-share weight
@@ -245,6 +245,31 @@ with a page number before the constant is quoted anywhere else. And
 \(\delta\ge 1/6\) is Paper C Lemma 4.2 already, in Lean and \(37\times\)
 sharper, so the only range where any of this is the best available is
 \(\delta<1/6\), where the crossover is \(\ge 1.4\times10^{14}\).
+
+**Link 5 no longer needs a measurement.** It was recorded as "E route error
+\(\ll\) density (measured), OE route marginal (proved)". Both are provably
+marginal by arguments of the same shape, and marginal suffices.
+
+Within the E-block of \(m\) the phase \(\alpha(n)=\{\tfrac32 n^{2/3}\}\) is
+monotone with increment \(\sim m^{-2/3}\), sweeping \(T=2m^{1/3}\) turns over
+\(N\approx m\) even points. For a target that is a union of \(K\) intervals,
+each of the \(2K\) boundaries is crossed \(T\) times and each crossing
+miscounts at most one point, so
+
+\[
+\bigl|\,\#\{n:\alpha(n)\in S\}-N|S|\,\bigr|\;\le\;2KT,
+\qquad\text{relative error}\;\le\;\frac{2KT}{N}=4Km^{-2/3}.
+\]
+
+Against a resonant density of about \(9m^{-2/3}\) that is a ratio of
+\(4K/9=1.33\) at \(K=3\): marginal, exactly like the OE route, and by the same
+reasoning harmless. Checked at \(m=300,10^3,3\cdot10^3,10^4\), where the bound
+\(0.268, 0.120, 0.058, 0.026\) holds against measured errors
+\(9.5\times10^{-4}, 3.2\times10^{-4}, 4.9\times10^{-5}, 4.3\times10^{-5}\).
+
+The measured \(m^{-0.6}\) relative error on the E side is real and much better
+than the bound, but it is now a bonus rather than a load-bearing input. Link 5
+rests on two elementary arguments and nothing measured.
 
 ## Decision
 

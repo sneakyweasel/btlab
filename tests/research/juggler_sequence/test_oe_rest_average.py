@@ -559,3 +559,47 @@ def test_selberg_vaaler_buys_the_constant_not_the_sharpness() -> None:
     # and ET is cubic in C_ET, which is why it is the only lever worth pulling
     growth = erdos_turan(4.0, 0.10) / erdos_turan(1.0, 0.10)
     assert 50 < growth < 110, growth
+
+def test_the_e_route_rate_is_provable_not_merely_measured() -> None:
+    """Link 5's last measured input, replaced by an elementary count.
+
+    Within the E-block of `m` the phase `alpha(n) = frac((3/2) n^(2/3))` is
+    MONOTONE with increment about `m^(-2/3)`, sweeping `T = 2 m^(1/3)` turns
+    over `N ~ m` even points. For a target that is a union of `K` intervals,
+    each of the `2K` boundaries is crossed `T` times and each crossing
+    miscounts at most one point, so
+
+        |#{n : alpha(n) in S} - N |S||  <=  2 K T,
+        relative error <= 2KT/N = 4K m^(-2/3).
+
+    Against a resonant density of about `9 m^(-2/3)` that is `4K/9 = 1.33` at
+    `K = 3` -- marginal, exactly like the OE route, and harmless for the same
+    reason: an error of the same order as a vanishing quantity still vanishes.
+
+    So link 5 rests on two elementary arguments and nothing measured. The
+    `m^(-0.6)` relative error measured on the E side is real and far better
+    than this bound, but it is now a bonus rather than an input.
+    """
+    import random
+
+    rng = random.Random(23)
+    for scale in (300, 1000, 3000):
+        errors = []
+        for m in rng.sample(range(scale, 2 * scale), 8):
+            lo, hi = m * m, (m + 1) ** 2
+            width = hi - lo
+            here = sum(1 for x in range(lo, hi) if is_resonant(x)) / width
+            away = sum(1 for y in range(lo + 5 * width, lo + 6 * width)
+                       if is_resonant(y)) / width
+            errors.append(abs(here - away))
+        mean_error = sum(errors) / len(errors)
+        bound = 4 * 3 * scale ** (-2 / 3)
+        assert mean_error <= bound, (scale, mean_error, bound)
+
+    # the bound is MARGINAL against the density, not below it -- that is the
+    # honest shape, and it is what the OE route also gives
+    for scale in (10**3, 10**6, 10**9):
+        bound = 4 * 3 * scale ** (-2 / 3)
+        density = 9 * scale ** (-2 / 3)
+        assert 1.2 < bound / density < 1.5, scale
+        assert bound < 1.0 or scale < 10**3
