@@ -29,6 +29,7 @@ from research.juggler_sequence.fate_contagion import (
     _kpar_even_of_odd,
     _m_of_odd,
     certified_closure,
+    fiber_alpha,
     fiber_bounds,
     fiber_stats,
     lambda_root,
@@ -46,11 +47,17 @@ PAIRING = [(1.0, 0.5), (1.0 / 9.0, 3.0 / 8.0), (2.0 / 9.0, 0.75)]
 
 
 def alpha_of(m: int) -> float:
+    """The fiber step, delegated to the exact implementation.
+
+    This used to carry its own copy of the float expression
+    `((lo+2)**1.5 - lo**1.5) / 2.0`, which subtracts two numbers of size
+    `lo^(3/2)` and then takes the fractional part of the difference. That is
+    noise above `m ~ 1e7` and returns exactly `0.0` at `1e8`; see `fiber_alpha`.
+    """
     lo, hi = fiber_bounds(m)
     if hi - lo < 4:
         return float("nan")
-    d = ((lo + 2) ** 1.5 - lo ** 1.5) / 2.0
-    return d - math.floor(d)
+    return fiber_alpha(lo)
 
 
 def exact_even_share(m: int) -> float:
@@ -337,3 +344,79 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
+def averaging_payoff() -> dict[str, Any]:
+    """What reopening this branch would be worth, priced on the two-production route.
+
+    The park decision was weighed against "a better exponent", and on that
+    measure it was right. But the two-production inequality
+    `2^-L + c (3/4)^L = 1` is the whole unconditional chain, and its root moves
+    steeply in `c`:
+
+        c = 2/9    = 0.222222   share 1/3      root 0.326121   pointwise-sharp
+        c = 0.300               share 0.450    root 0.442499
+        c = 0.320               share 0.480    root 0.472576
+        c = 1/3    = 0.333333   share 1/2      root 0.492658   the mean share
+
+    The coefficient that matches `lambda** = 0.492572` on two productions alone
+    is `0.3332760`, a parity share of `0.4999140` -- essentially the mean. So if
+    an averaged argument delivered the effective share as the MEAN rather than
+    the pointwise worst case, two productions would reach the headline exponent
+    and the block-average family and the six-word ladder would both be
+    unnecessary for it. That would take Proposition 4.4's two exponential-sum
+    bounds off the critical path: the analytic core of Paper C, absent from
+    `formal/`, and its largest unformalized gap.
+
+    So the prize is not a better number. It is the same number with the
+    analytic core removed, which is a different kind of prize from the one the
+    park decision was weighed against.
+
+    The target is narrow, and this is the half that vindicates the park. An
+    intermediate coefficient is not automatically progress: the break-even
+    against the three-production base `0.448017`, which the block average
+    already gives, is `c = 0.3036722`, a share of `0.4555`. Anything an
+    averaged argument delivers below that share is a REGRESSION, and it must
+    reach `0.4999` to match `lambda**`. Recovering "not the worst case" is
+    worthless here; only "essentially the mean" pays.
+
+    Quantification contributed by a peer session and reproduced here.
+    """
+    two = lambda c: lambda_root([(1.0, 0.5), (c, 0.75)])
+    base = lambda_root(PAIRING)
+    ladder = PAIRING + [(3.0 ** -(k + 1), 0.5 * 0.75**k) for k in range(2, 7)]
+    lam_star = lambda_root(ladder)
+
+    def invert(target: float) -> float:
+        lo_c, hi_c = 0.01, 1.0
+        for _ in range(200):
+            mid = (lo_c + hi_c) / 2.0
+            if two(mid) < target:
+                lo_c = mid
+            else:
+                hi_c = mid
+        return (lo_c + hi_c) / 2.0
+
+    break_even = invert(base)
+    matches = invert(lam_star)
+    return {
+        "two_production_curve": [
+            {"coefficient": c, "share": 1.5 * c, "root": two(c)}
+            for c in (2.0 / 9.0, 0.30, 0.32, 1.0 / 3.0)
+        ],
+        "three_production_base": base,
+        "lambda_star_star": lam_star,
+        "break_even_coefficient": break_even,
+        "break_even_share": 1.5 * break_even,
+        "matching_coefficient": matches,
+        "matching_share": 1.5 * matches,
+        "prize": (
+            "not a better exponent -- the same exponent with Proposition 4.4's"
+            " two exponential-sum bounds off the critical path, which is Paper"
+            " C's largest unformalized gap"
+        ),
+        "why_the_park_still_stands": (
+            "the target is narrow: an averaged argument must clear share"
+            " 0.4555 merely to beat what the block average already gives, and"
+            " reach 0.4999 to match lambda**. Only 'essentially the mean' pays"
+        ),
+    }
