@@ -223,7 +223,17 @@ is what caps the depth. At the same `delta`:
 | square-root cancellation across words | `0.095319 delta` | 1.90x |
 | one direct estimate of the good set | `delta` | 19.98x |
 
-against which improving `delta` from `1/96` to `1/72` is worth `1.33x`.
+against which improving `delta` was said to be worth `1.33x`.
+
+**Two corrections to that sentence, from a review by `balanced-ternary-e3`.**
+The `delta = 1/96` it was measured against is the **4 September target that
+Paper B withdrew** -- the ledger retains `95/96` only as "a historical research
+target". What the current paper proves is `delta = 1/24` at four steps (the
+note's `0 < delta < 1/24`) and `1/128` at five. And the power-saving hypothesis
+is **Conjecture K**, not Hypothesis FD: FD is stated with no common error rate
+in `d` assumed, so it carries no `delta` at all. At the proved exponents the
+union-bound reading gives `N^0.997915` at `delta = 1/24` and `N^0.999609` at
+`1/128`.
 
 **That table was tried and it is withdrawn.** Both readings below the union bound
 are unavailable, for two independent reasons.
