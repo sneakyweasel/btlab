@@ -7,6 +7,19 @@ Child of [juggler_oe_fiber_constant.md](juggler_oe_fiber_constant.md)
 and [juggler_fate_contagion.md](juggler_fate_contagion.md). Not a new
 production, not a halt theorem, and it does not touch \(\psi_F\).
 
+
+> **Superseded in approach, 2026-09-20.** The branch
+> `claude/latest-progress-summary-s011un` answers this question by a route
+> needing almost none of the machinery below. Its observation: \(P\) has
+> **finite total logarithmic mass** (verified here — density \(\sim m^{-1/3}\),
+> sum \(\approx 1.3\)), so there is nothing to plant, the fraction vanishes for
+> *every* set of integers, and no backward closure is required. Its decay proof
+> is one inequality at every convergent denominator,
+> \(|G_m/H_m-\tfrac12|\le 4\|q\alpha_m\|+\tfrac5{2q}+3.77q/H_m\), with no
+> exponential sum. The measurements below stand; the framing and the assembled
+> chain answer a question that dissolves. Merging is Philippe's call and takes
+> the whole branch or none.
+
 ## Problem
 
 Pairing gives a uniform per-fiber even-share \(\ge 1/3-O(1/H)\), hence

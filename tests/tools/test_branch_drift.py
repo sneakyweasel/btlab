@@ -32,6 +32,28 @@ import branch_drift as BD  # noqa: E402
 #:
 #: Assessed 14 September 2026.
 ACKNOWLEDGED: dict[str, str] = {
+    "claude/exponent-floor-3n1-2adic-mvwa96": (
+        "PENDING EXTRACTION, and it sharpens the bridge row main already has. "
+        "Read 2026-09-20. Two rows main lacks, "
+        "J-exponential-sends-density-to-log-density and "
+        "J-lemma-eight-is-the-exponent-valuation, with a probe, a test and a "
+        "dossier on the exponent-valuation mirror. It answers whether the "
+        "bridge removes the 2-adic rigidity: it does not, it RELOCATES it. "
+        "Conjugating Collatz's odd step by u = x + 1 gives u -> 3u/2, and the "
+        "Juggler's exact odd step on n = a^e gives e -> 3e/2 on the exponent -- "
+        "same map, same prime. Collatz carries the 2-adic integer in the VALUE, "
+        "the Juggler in the EXPONENT, and that object is HasPowTwoDepth, "
+        "already kernel-checked in Equality.lean since August and filed there "
+        "as a local arithmetic question. The price is one logarithm and it is "
+        "fatal: Collatz pays 2^(-k) in the density, the Juggler pays 2^(-k) in "
+        "the EXPONENT of the density, 999, 30, 4, 1, 0 against 500000, 250000, "
+        "125000, 62500, 31250 to 10^6. So the honest form of 'the exponential "
+        "removes the 2-adic rigidity', which is how "
+        "J-juggler-is-collatz-one-exponential-up puts it, is that it turns "
+        "Terras's bijection onto 2^k words into a constant map onto two. That "
+        "is a sharpening of a row on main rather than a contradiction of it, "
+        "and the bridge row should carry it whenever this is merged."
+    ),
     "claude/latest-progress-summary-s011un": (
         "PENDING EXTRACTION, and it supersedes a day of work on main. Read "
         "2026-09-19. Three rows main lacks -- J-oe-fiber-block-lock, "
