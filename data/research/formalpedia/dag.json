@@ -923,12 +923,10 @@
       }
     },
     "Problems.Juggler.CollatzBridge": {
-      "declarations": 65,
+      "declarations": 68,
       "depends_on": [
-        "Problems.Collatz.Shortcut",
-        "Problems.Juggler.CycleMinFudge",
-        "Problems.Juggler.PaperBCertificateRecursion",
-        "Problems.Juggler.WalkChargeItineraries"
+        "Problems.Juggler.CycleCore",
+        "Problems.Juggler.RateFreeDensity"
       ],
       "file": "formal/Problems/Juggler/CollatzBridge.lean",
       "ledger": [
@@ -940,9 +938,11 @@
         "J-negative-cycle-finance-is-the-juggler-mirror",
         "J-survivor-count-is-a-collatz-residue-count"
       ],
-      "papers": [],
+      "papers": [
+        "Paper A"
+      ],
       "trust": {
-        "kernel": 65
+        "kernel": 68
       }
     },
     "Problems.Juggler.CriticalCostKernel": {
@@ -2546,6 +2546,7 @@
         "J-rate-free-prop-j-finite"
       ],
       "papers": [
+        "Paper A",
         "Paper C"
       ],
       "trust": {
@@ -3064,8 +3065,8 @@
     }
   },
   "totals": {
-    "edges": 240,
-    "edges_before_reduction": 1799,
+    "edges": 238,
+    "edges_before_reduction": 1785,
     "ledger_rows_placed": 414,
     "nodes": 186
   }

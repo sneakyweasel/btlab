@@ -158,6 +158,16 @@ The word-only modules `PaperBCertificateRecursion`, `PaperBCertificateLengths`,
 `PaperBJumpTransposition`, `PaperBSurvivorDecay` are, through this file,
 theorems about Collatz residue classes as well.
 
+- section 11, the negative finance, kernel-checked: `two_mul_evenCharge_le`
+  (`2 evenCharge w <= (|w| - o) 3^o` on any word with no contracting prefix)
+  and `neg_cycle_finance` (`2 (|x| - 1)(3^o - 2^K) <= (K - o) 3^o` at the
+  least element of a negative cycle), instantiated at `-17` by
+  `neg_seventeen_finance`; Paper A's Theorem 5.19.
+- the split of 2026-09-19: `CollatzBridge` is a layer module of Paper A's
+  barrel with the shortcut map defined locally; `decidedAtResidues_card` and
+  `neg_seventeen_inhabits_cycleMinShape` live in the auxiliary
+  `CollatzBridgeLab.lean`, same namespace, outside the barrel.
+
 ## Results
 
 `J-juggler-is-collatz-one-exponential-up` -- `COMPUTATIONALLY VERIFIED`. Both
@@ -359,6 +369,12 @@ would settle it, and is not attempted here.
 `PROMOTE` -- both identifications verified by computation, and the partition
 they force is worth carrying. The methodological half is recorded in
 [negative_knowledge.md](../negative_knowledge.md).
+
+Paper A carries the bridge since 2026-09-19: Section 5.9 "The Collatz
+mirror", Theorems 5.15 to 5.19 and Remarks 5.20 to 5.21, Contribution 9,
+Appendix A rows, references 19 to 24, formalization-map section 16; the
+paper barrel imports `CollatzBridge` and the axiom check covers its 32
+cited declarations. No separate bridge paper.
 
 ## Publication assessment
 

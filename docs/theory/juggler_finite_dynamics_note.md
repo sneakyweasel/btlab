@@ -386,6 +386,19 @@ is a run-type refinement of the same defect sum. The leftover
 lengths through \(10^5\) are supporting material, not a second
 main theorem.
 
+**Contribution 9 — the Collatz mirror.**
+The finance of Theorem 4.4 and the walk charge of Theorem 5.4 are not
+specific to floor powers. Read on the shortcut Collatz map through the
+shared parity word, where the dictionary is exact and Lean-checked
+(Theorems 5.15--5.17), the same one-sided enumeration reproduces
+Eliahou's lattice and period bound at \(2^{40}\) and Hercher's bound at
+\(2^{68}\), and the height argument replaces the constant \(3/4\) of
+Hercher's Theorem 27 by \(1/(2\log2)\), attained on the hug word
+(Theorem 5.18). On the negative integers a cycle word is exactly the
+minimum-based shape of Theorem 3.2 and satisfies the finance inequality
+in the direction Juggler has it (Theorem 5.19, Lean). No Juggler bound
+changes; §5.9 is an external calibration of the method.
+
 ### 1.1 Related work
 
 Pickover's later exposition is Chapter 45 of [2], already cited
@@ -405,7 +418,11 @@ a standard first layer for Collatz-like maps, surveyed by
 Lagarias [8,9]. Those results do not transfer: the branches of
 \(J\) are floor powers rather than affine maps (Crandall [10],
 Matthews--Watts [11]). In particular there is no identity of the
-form \(n(2^K-3^p)=C\). A check of Pickover [1,2], Weisstein [5],
+form \(n(2^K-3^p)=C\). Section 5.9 uses that identity on the Collatz
+side: the finance and walk-charge layers of this paper, transposed
+through the shared parity word, return the bounds of Eliahou [13] and
+Hercher [19,20] exactly, which locates those layers within the Collatz
+cycle literature [12,13,19,20,23]. A check of Pickover [1,2], Weisstein [5],
 the OEIS records [3,4,6], the Prasad--Prasad estimates [7], and
 the standard Collatz cycle-bound sources [8--13] found no
 published explicit lower bound on the period of a nontrivial
@@ -539,6 +556,18 @@ theorem is asserted.
 The real projection description and the higher-difference consequence
 are explanatory deductions from the listed results. The grid endpoints
 use the namespace `Problems.Juggler.CubicGrid`.
+
+Section 5.9's word-level and integer statements --- the affine
+identities, the cycle equation, Terras's bijection with the residue
+counts, and the negative-side word shape and finance inequality --- are
+theorems of `CollatzBridge.lean` in the namespace
+`Problems.Juggler.CollatzBridge`, kernel-checked, with its depth-\(4\) to
+depth-\(10\) residue tables evaluated by `decide +kernel`; the module
+adds no native scan. The survivor enumerations, the constants
+\(1/(2\log2)\) and \(1/(6\alpha\log2)\), the sharpness checks and the
+negative-cycle table of Theorem 5.18 and Remark 5.20 are verified
+computation of the probe collatz\_finance\_mirror, and the height
+argument of Theorem 5.18(ii) is written.
 
 Reproducibility has three layers. The repository command
 `research.juggler_sequence.paper_a_audit` recomputes selected parity
@@ -4127,6 +4156,213 @@ next-period claim in Corollary 5.14 uses direct comparisons instead.
 The limitation proved in Proposition 6.2a concerns fixed-floor charges
 with a positive length-uniform anchor contribution.
 
+### 5.9 The Collatz mirror
+
+Section 1.1 records that the branches of \(J\) are floor powers rather
+than affine maps, so that the Collatz identity \(x(2^K-3^p)=C\) has no
+Juggler counterpart. What the two problems share is the word. This
+section states the dictionary at the word level, where it is exact and
+checked by Lean, transposes the finance of Theorem 4.4 and the walk
+charge of Theorem 5.4 to the shortcut Collatz map
+\[
+C(x)=\begin{cases} x/2 & x\ \text{even},\\ (3x+1)/2 & x\ \text{odd},\end{cases}
+\]
+and records what the transposition returns: the published Collatz
+period bounds of Eliahou [13] and Hercher [19,20], reproduced exactly by
+the same one-sided enumeration that produces the kill tables of §5.7; a
+constant below the \(3/4\) of Hercher's Theorem 27 [20], attained on the
+hug word; and, on the negative integers, the cycle-word shape of Theorem
+3.2 together with the finance inequality in the direction Juggler has
+it. The word-level and integer statements are theorems of the module
+`CollatzBridge.lean`, imported by the paper barrel and checked by the
+kernel, with its residue tables evaluated by `decide +kernel`; the
+enumerations and constants are verified computation, recorded in the
+repository probe collatz\_finance\_mirror. Nothing here improves a
+Juggler period bound, and nothing is claimed about Collatz cycles beyond
+the published bounds reproduced.
+
+**Notation.** For \(x\in\mathbb Z\) and \(d\ge 0\), the word
+\(w=\mathtt{parityWord}(x,d)\) (`parityWord`; `parityWordZ` over
+\(\mathbb Z\)) lists the
+parities of \(x,C(x),\dots,C^{d-1}(x)\) in the alphabet \(\{O,E\}\) of
+§1.3; \(o\) is its number of odd letters and \(a_i\) the number of odd
+letters before position \(i\). Two integer-valued functions of the word
+alone are
+\[
+\mathrm{wordConst}(w)=\sum_{i:\,w_i=O}3^{\,o-a_i-1}\,2^{\,i},\qquad
+\mathrm{evenCharge}(w)=\sum_{i:\,w_i=E}3^{\,o-a_i}\,2^{\,i}
+\]
+(`wordConst`, `evenCharge`), and they differ by the multiplier gap,
+\(\mathrm{wordConst}(w)+2^d=3^o+\mathrm{evenCharge}(w)\)
+(`wordConst_add_two_pow`).
+
+**Theorem 5.15 (word-affine identities; Lean).**
+For every \(x\in\mathbb Z\) and \(d\ge0\),
+\[
+2^d\,C^d(x)=3^{o}x+\mathrm{wordConst}(w),\qquad
+2^d\bigl(C^d(x)+1\bigr)=3^{o}(x+1)+\mathrm{evenCharge}(w)
+\]
+(`word_affine`, `two_pow_mul_iter_add_one` over \(\mathbb N\);
+`word_affine_int`, `two_pow_mul_iter_add_one_int` over \(\mathbb Z\)).
+Consequently \(3^o(x+1)\le 2^d\bigl(C^d(x)+1\bigr)\) for \(x\ge 0\)
+(`three_pow_mul_add_one_le`): the Collatz orbit lies *above* its pure
+multiplier, while by Theorem 2.2 the Juggler orbit lies below it,
+\((\mathrm{image}\,n\,w)^{2^{|w|}}\le n^{3^{o}}\) for a realised word
+(`juggler_word_power`). The same multiplier \(3^o/2^d\) acts on \(x\) in
+one problem and on \(\log n\) in the other, with corrections of opposite
+sign.
+
+*Proof.* Induction on the word, from the recursions
+\(\mathrm{wordConst}(O\,w)=3^{o(w)}+2\,\mathrm{wordConst}(w)\),
+\(\mathrm{wordConst}(E\,w)=2\,\mathrm{wordConst}(w)\), and the
+conjugation \(z=x+1\), under which the odd step is \(z\mapsto 3z/2\) and
+the even step \(z\mapsto z/2+1/2\), so that every correction comes from
+an even step. \(\square\)
+
+**Corollary 5.16 (cycle equation and the sign of a cycle; Lean).**
+On a cycle \(C^d(x)=x\) of the integer map,
+\[
+(x+1)\,(2^d-3^o)=\mathrm{evenCharge}(w)
+\]
+(`cycle_equation_int`). A positive cycle of positive length has
+\(3^o<2^d\) (`cycle_contracting`) and \(2^d-3^o\) divides
+\(\mathrm{evenCharge}(w)\) (`cycle_dvd`); conversely a start whose word
+satisfies the equation with \(3^o\le2^d\) returns after \(d\) steps
+(`cycle_of_equation`). A cycle at \(x\le-2\) has \(2^d<3^o\)
+(`neg_cycle_expanding`), the sign of Theorem 3.2. If the orbit of
+\(x\ge0\) has not dropped below \(x\) by step \(j\), then
+\((x+1)(2^j-3^{a_j})\le\mathrm{evenCharge}(w_{<j})\)
+(`prefix_bound_of_min`), so at a cycle minimum every contracting prefix
+caps \(x+1\) by the prefix's own rational cycle value. The known negative
+cycles \(-1,-5,-17\) have words \(O\), \(OOE\), \(OOOOEOOOEEE\), of
+lengths \(1,3,11\) (`neg_one_cycle`, `neg_five_cycle`,
+`neg_seventeen_cycle`, by kernel evaluation). \(\square\)
+
+**Theorem 5.17 (Terras's bijection and the survivor count; Lean).**
+Two starts have the same word of depth \(d\),
+\(\mathtt{parityWord}(x,d)=\mathtt{parityWord}(y,d)\), if and only if
+\(x\equiv y\pmod{2^d}\) (`parityWord_eq_iff`), and the residues modulo
+\(2^d\) map onto all \(2^d\) words of length \(d\) (`image_parityWord`,
+`exists_residue_of_word`) --- Terras's theorem [22]. The number of
+residue classes whose word has no contracting prefix is the survivor
+count \(N_d\) of the companion Paper B [16] (`undecidedResidues_card`),
+and the number whose word first contracts at \(d\) is its
+minimal-certificate count \(M_d\) (checked in the laboratory module
+CollatzBridgeLab, outside the paper barrel). No member
+of an undecided class drops within \(d\) steps, and every member \(y\) of
+a decided class with \(y>\mathrm{wordConst}\) of the contracting prefix
+drops at the prefix's length (`iter_lt_of_exponentGap_class`). For
+\(d=4,\dots,10\) the counts are \(3,4,8,13,19,38,64\), evaluated by
+`decide +kernel` (`undecidedResidues_card_ten` and its companions): the
+values of OEIS A076227 [21]. \(\square\)
+
+**Theorem 5.18 (the finance transposed).**
+*Identity: Eliahou [13], Hercher [20]. Enumeration and constants:
+verified computation. Height argument: written.*
+Let \(x_0\) be the minimum of a shortcut Collatz cycle of length \(K\)
+with \(p\) odd steps, let \(X_0\) be a verification floor (every
+\(x\le X_0\) reaches \(1\)), and let
+\(\Lambda_C(K)=K\log2-p\log3=\log3\cdot\{Kx\}\) with \(x=\log2/\log3\).
+
+(i) *Finance.* \(K\log2-p\log3=\sum_{\text{odd }j}\log\bigl(1+1/(3x_j)\bigr)
+\le p/(3x_0)\), so \(x_0\le p/(3\Lambda_C(K))\): Theorem 4.4 with
+\(x_0\) in place of \(n\log n\). Its survivors at \(X_0\), the lengths
+\(K\) with \(p/(3\Lambda_C(K))\ge X_0\), form the one-sided Bohr set
+\(\{K:\{Kx\}<\varepsilon\}\) of the rotation by \(x\) and are enumerated
+exactly by its two return times. At \(X_0=2^{40}\) the least survivor is
+\(17087915\), every survivor below \(4\cdot10^8\) lies in
+\(301994a+17087915b+85137581c\) with \(b\ge1\) and \(ac=0\), and every
+multiple of \(301994\) is excluded --- Eliahou's theorem [13] with its
+lattice. At \(695\cdot2^{60}\) and at \(2^{68}\) the least survivor is
+\(114208327604\), with \(72057431991\) odd steps --- Hercher's bound
+[19,20]. At \(2^{71}\), the limit of Barina [23], the first two survivors
+are \(114208327604\) and \(217976794617\); the bound quoted at that limit
+is the second, which the finance alone does not reach.
+
+(ii) *Walk charge.* Let \(\alpha=\log_2(3/2)\), let
+\(h_j=a_j\alpha-e_j\) be the height before step \(j\) (\(a_j\) odd and
+\(e_j\) even steps so far), and let
+\(\delta=\log_2\bigl(1+K/(x_0+1-K)\bigr)\). By Theorem 5.15,
+\(x_j+1\ge2^{h_j}(x_0+1)\) for every \(j\); minimality gives
+\(h_j\ge-\delta\), so \(h_j\ge\{a_j\alpha\}\) except at the
+\(N_\delta(p)=\#\{a<p:\{a\alpha\}\ge1-\delta\}\) odd steps where
+\(h_j\ge\{a_j\alpha\}-1\). Hence
+\[
+\sum_{\text{odd }j}\frac1{x_j}\le\frac{H(p)+N_\delta(p)}{x_0+1-2^{\delta}},
+\qquad H(p)=\sum_{a<p}2^{-\{a\alpha\}},\qquad
+\frac{H(p)}{p}\to\frac1{2\log2}=0.72135,
+\]
+which is Theorem 5.4 on the Collatz side: the odd steps of the hug word
+sit exactly at the heights \(\{a\alpha\}\), and the transport deficit of
+Theorem 5.3 vanishes because the \(+1\) only pushes up. The constant
+replaces the \(3/4\) of Hercher's Theorem 27 [20]
+(\(\sup_{p\ge100}H(p)/p=0.72839\), \(\sup_{p\ge10^4}H(p)/p=0.72156\),
+and \(H(p)/p=0.72134755\) at Hercher's \(p=72057431991\), within
+\(10^{-9}\) by Koksma's inequality), moves the threshold of his Remark
+28 from \(2836\cdot2^{60}\) to \(2728\cdot2^{60}\), and leaves the
+survivors of (i) unchanged. It is sharp: orbits following the hug word,
+which Theorem 5.17 realises, attain \(x_0\sum_{\text{odd}}1/x_j=H(p)\)
+to twelve digits at \(K=19,84,475,1054\), so no bound that uses only the
+heights can do better. \(\square\)
+
+**Theorem 5.19 (the negative side; Lean).**
+Let \(x\le-2\) lie on a cycle of length \(K\) of the integer map with
+\(C^j(x)\le x\) for \(j\le K\), that is, no iterate closer to zero. Then
+every prefix of \(w\) is non-contracting, exactly and with none of the
+\(\delta\)-exceptions of Theorem 5.18(ii) (`neg_prefix_noncontracting`:
+the even steps only subtract, so an expanding multiplier is the only way
+to stay away from zero), and \(2^K<3^o\) (`neg_cycle_expanding`): the
+word has the minimum-based cycle shape of Theorem 3.2. On any word with
+no contracting prefix,
+\[
+2\cdot\mathrm{evenCharge}(w)\le(|w|-o)\,3^{o}
+\]
+(`two_mul_evenCharge_le`), since the even step at position \(i\)
+contributes \(3^{o}2^{-h_i}\) with height \(h_i=a_i\log_23-i\ge1\), the
+prefix of length \(i+1\) being non-contracting. With Corollary 5.16 this
+gives, for \(y=|x|\),
+\[
+2\,(y-1)\,(3^o-2^K)\le(K-o)\,3^o
+\]
+(`neg_cycle_finance`), that is \(y-1\le(K-o)/(2\theta_J)\) with
+\(\theta_J=1-2^K/3^o\): Theorem 4.4 on the other side of the linear
+form, \(y-1\) in place of \(n\log n\) and the even letters charged at
+\(2^{-h}\) in place of the floor losses. At \(-17\), which is the least
+element of its cycle (`neg_seventeen_is_least`):
+\(2\cdot16\cdot(3^7-2^{11})=4448\le4\cdot3^7=8748\)
+(`neg_seventeen_finance`). \(\square\)
+
+**Remark 5.20 (the negative-cycle table; verified computation).**
+On the hug word the \(e\)-th even step has height
+\(\lceil(e+1)/\alpha\rceil\alpha-e\in[1,1+\alpha)\), so the charge
+sharpens to \(y-1\le H_E(K-o)/\theta_J\) with
+\(H_E(m)=\sum_{e<m}2^{-(\lceil(e+1)/\alpha\rceil\alpha-e)}\) and
+\(H_E(m)/m\to1/(6\alpha\log2)=0.41105\); the \(-5\) cycle, whose word
+\(OOE\) is a hug word, attains this bound exactly. The survivors of either
+bound at a verification floor \(Y_0\) of the \(3x-1\) map (every
+\(1\le y\le Y_0\) reaching \(1\), \(5\) or \(17\)) are Juggler-side
+lengths, the mirror of the Collatz-side survivors of Theorem 5.18: the
+least is \(9538065\) at \(Y_0=2^{40}\), \(72448885240\) at \(2^{68}\), and
+\(103768467013\) at \(2^{71}\). No verification floor for the \(3x-1\)
+map is published to our knowledge (Chamberland's survey refers its
+cycle problem to Seifert [24]); the table is conditional, and no
+negative-cycle period bound is claimed.
+
+**Remark 5.21 (what the mirror does not transfer).**
+The cycle-level dictionary is \(x_0\leftrightarrow n\log n\), not a
+change of variables between orbits, and the two admissible sets are the
+two one-sided Bohr sets of the rotation by \(x\): with
+\(\Lambda_J(L)=\lceil Lx\rceil\log3-L\log2=\log3\cdot(1-\{Lx\})\) one has
+\(\Lambda_J(L)=\log3-\Lambda_C(L)\), so a length is dangerous for at most
+one problem, and a kill on one side never kills a length on the other.
+The Collatz-side generators are Eliahou's \(301994\) and \(17087915\);
+the Juggler-side fan of Proposition 5.12, \(176251+k\cdot301994\), closes
+at \(k=56\) on the next Collatz bound,
+\(176251+56\cdot301994=17087915\) (`fanLambda_56_neg`). What Collatz has
+beyond the finance --- the residue congruences of Hercher's Lemma 8 [20]
+and the exact closure \(2^K-3^p\mid\mathrm{evenCharge}(w)\) --- has no
+floor-power counterpart in this paper.
+
 ## 6. Limitations and future directions
 
 Section 3.10 isolates a second unresolved question: whether absolute
@@ -4652,6 +4888,12 @@ None of these distinctions is removed by compiling the barrel.
 | Observation 5.13, Corollary 5.14 | finite fitted exponents and the separately evaluated conditional bound; computation, not Lean |
 | Corollary 5.10 | second floor and kill table; verified computation, not Lean |
 | Corollary 5.11 | third floor and kill table; verified computation, not Lean |
+| Theorem 5.15 | `word_affine`, `two_pow_mul_iter_add_one`, `three_pow_mul_add_one_le`, `wordConst_add_two_pow`, `juggler_word_power`; over \(\mathbb Z\) `word_affine_int`, `two_pow_mul_iter_add_one_int`; the word `parityWord`, `parityWordZ` and its functions `wordConst`, `evenCharge` (`CollatzBridge.lean`) |
+| Corollary 5.16 | `cycle_equation_int`, `cycle_contracting`, `cycle_dvd`, `cycle_of_equation`, `neg_cycle_expanding`, `prefix_bound_of_min`; the three negative cycles `neg_one_cycle`, `neg_five_cycle`, `neg_seventeen_cycle` |
+| Theorem 5.17 | `parityWord_eq_iff`, `image_parityWord`, `exists_residue_of_word`, `undecidedResidues_card`, `iter_lt_of_exponentGap_class`; depth tables `undecidedResidues_card_ten` and its companions, by `decide +kernel` |
+| Theorem 5.18 | enumeration and constants on the Lean identity of Theorem 5.15: verified computation; the height argument is written |
+| Theorem 5.19 | `neg_prefix_noncontracting`, `two_mul_evenCharge_le`, `neg_cycle_finance`, `neg_seventeen_finance` with `neg_seventeen_is_least` |
+| Remarks 5.20--5.21 | verified computation and written; the fan endpoint is `fanLambda_56_neg` |
 | Lemma 6.3a | `cube_add_one_ne_odd_succ_sq`, `floorPower_odd_image_upper_gap` (`UpperSquareGap.lean`); the integer upper-square gap only |
 | Proposition 6.3b | Exact finite and closed charges: `power_cells_grid_charge`; scaled consequence: `power_cells_scaled_charge`; actual and threshold interfaces: `cubicBand_cycle_upper_charge`, `threshold_cycle_upper_charge`. Ordinary-orbit and minimum-based itinerary extraction at the true least period: `periodicOrbit_upper_charge`, `cycleMin_upper_charge`. The abstract statements retain both cell faces, rank translation, and transitivity; the interfaces derive these from actual connected cycles. The asymptotic consequence (UC3) remains written |
 | Corollary 6.3c | Fixed-count monotonicity and symbolic exclusion: `CubicGrid.closedGeometricChargeBound_strictAntiOn_minimum`, `CubicGrid.FullUpperCellChargeBounds.closedGeometric_cutoff_excludes`. The outward numerical interval comparison at the stated counts remains outside Lean |
@@ -6684,3 +6926,19 @@ proofs, code, and final verification of this preprint.
     du cercle à des rotations," *Publ. Math. IHÉS* 49 (1979), 5--233,
     Theorem 3.1, p. 73.
     [doi:10.1007/BF02684798](https://doi.org/10.1007/BF02684798).
+19. C. Hercher, “Über die Länge nicht-trivialer Collatz-Zyklen (I) and
+    (II),” *Die Wurzel* 6 (2018), 118--128 and 7 (2018), 146--154; with
+    S. Puchert, “Anmerkung zum Artikel ‘Über die Länge nicht-trivialer
+    Collatz-Zyklen’,” *Die Wurzel* 11 (2018), 243--250.
+20. C. Hercher, “There are no Collatz \(m\)-cycles with \(m\le 91\),”
+    *J. Integer Seq.* 26 (2023), Article 23.3.5.
+    https://cs.uwaterloo.ca/journals/JIS/VOL26/Hercher/hercher5.html.
+21. OEIS Foundation Inc., “Number of surviving Collatz residues mod
+    \(2^n\),” Sequence A076227 in *The On-Line Encyclopedia of Integer
+    Sequences*, https://oeis.org/A076227 (accessed 19 September 2026).
+22. R. Terras, “A stopping time problem on the positive integers,” *Acta
+    Arith.* 30 (1976), 241--252.
+23. D. Barina, “Improved verification limit for the convergence of the
+    Collatz conjecture,” *J. Supercomput.* 81 (2025), Article 810.
+24. B. G. Seifert, “On the arithmetic of cycles for the Collatz--Hasse
+    (‘Syracuse’) conjectures,” *Discrete Math.* 68 (1988), 293--298.

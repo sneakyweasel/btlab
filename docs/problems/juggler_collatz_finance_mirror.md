@@ -171,6 +171,11 @@ None new here. The Collatz sign theorem `cycle_contracting` and the Juggler
 inequalities are `cycleMin_finance` (Juggler) and, on the Collatz side,
 classical and not formalised.
 
+The uniform negative-cycle finance is Lean since 2026-09-19:
+`two_mul_evenCharge_le` and `neg_cycle_finance` in `CollatzBridge.lean`,
+instantiated at `-17` by `neg_seventeen_finance`; the hug constant
+`1/(6 alpha log 2)` and the survivor table remain computational.
+
 ## Results
 
 Classification **FINANCE_MIRROR_REPRODUCES_ELIAHOU_HERCHER**.
@@ -409,6 +414,9 @@ bound, and the survivors at any floor are the Juggler-side lengths. Best
 next question: the `3x - 1` verification floor, from the literature or by
 running a verifier, so that `72448885240` at `2^68` becomes a period bound
 rather than a table entry.
+
+Carried by Paper A Section 5.9 since 2026-09-19 (Theorem 5.18 for the
+positive side, Theorem 5.19 and Remark 5.20 for the negative side).
 
 ## Publication assessment
 
