@@ -31,7 +31,30 @@ import branch_drift as BD  # noqa: E402
 #: one without looking at what the branch holds.
 #:
 #: Assessed 14 September 2026.
-ACKNOWLEDGED: dict[str, str] = {}
+ACKNOWLEDGED: dict[str, str] = {
+    "claude/latest-progress-summary-s011un": (
+        "PENDING EXTRACTION, and it supersedes a day of work on main. Read "
+        "2026-09-19. Three rows main lacks -- J-oe-fiber-block-lock, "
+        "J-oe-poor-fiber-tail and "
+        "J-oe-averaged-two-productions-reach-the-depth-two-ceiling -- plus "
+        "formal/Problems/Juggler/FateResonanceCount.lean, which its own commit "
+        "says is NOT YET COMPILED and is deliberately not imported into the "
+        "barrel. It answers the averaging question by one inequality, "
+        "|G_m/H_m - 1/2| <= 4||q alpha_m|| + 5/(2q) + 3.77 q/H_m at every "
+        "convergent denominator q, with no exponential sum anywhere. Crucially "
+        "it observes that P has FINITE total logarithmic mass, so there is "
+        "nothing to plant: the adversarial-concentration problem that main "
+        "spent 19 September building a backward-closure argument for does not "
+        "need solving, and the conclusion holds for every set of integers with "
+        "no structure at all. Verified here independently: the 1/m-weighted "
+        "poor density decays like m^(-1/3) and sum over P of 1/m converges to "
+        "about 1.3. What main has that survives is "
+        "J-oe-fiber-pairing-third-is-attained and the ladder's 8.6e-5, both of "
+        "which that branch explicitly leaves standing. Merging is Philippe's "
+        "call and takes the whole branch or none of it, since the rows and the "
+        "Lean are one result."
+    ),
+}
 
 
 def _key(ref: str) -> str:

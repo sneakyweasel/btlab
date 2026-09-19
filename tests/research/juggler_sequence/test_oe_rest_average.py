@@ -646,3 +646,58 @@ def test_the_resonant_density_constant_is_exact_not_measured() -> None:
     n = 2**14
     density = sum(1 for m in range(n, 2 * n) if resonant(m, 1.0)) / n
     assert abs(density / (mean_factor * n ** (-1 / 3)) - 9.0) < 0.01
+
+def test_the_crossover_is_delta_to_the_minus_nine() -> None:
+    """What the route buys, priced against how far out it buys it.
+
+    The chain proves `O_delta(x^(-1/3))` for FIXED `delta`, with constant
+    `~ pi K^2 log(eK)/delta` and `K ~ 2/delta`, so the constant goes like
+    `delta^(-3)` and the crossover like `delta^(-9)`. The bootstrap needs
+    `delta -> 0` to push the effective share to `1/2`, so the two pull against
+    each other:
+
+        root 0.326121 (today)   delta 1.7e-1   x 1.0e12
+        root 0.400              delta 9.3e-2   x 3.3e14
+        root 0.450              delta 4.3e-2   x 5.4e17
+        root 0.4926 = lambda**  delta 5.8e-5   x 2.0e44
+        root 0.492658 = ideal   delta 0        unreachable
+
+    So "two productions at the mean share reach lambda**" is true about
+    coefficients and false about anything achievable, and the `1.4e14`
+    crossover quoted repeatedly corresponds to a root near `0.40`. The ideal
+    is not approached slowly; it needs `delta = 0` and is not attained at any
+    finite `x`.
+    """
+    def root_of(coefficient: float) -> float:
+        lo, hi = 0.01, 3.0
+        for _ in range(200):
+            mid = (lo + hi) / 2
+            f = lambda L: 2 ** (-L) + coefficient * 0.75**L - 1
+            if f(lo) * f(mid) <= 0:
+                hi = mid
+            else:
+                lo = mid
+        return (lo + hi) / 2
+
+    def crossover(delta: float) -> float:
+        k = max(1, math.ceil(2 / delta) - 1)
+        capped = min(k, 50_000)
+        coef = sum(1.0 / (k + 1) + min(0.5, 1.0 / (math.pi * h))
+                   for h in range(1, capped + 1))
+        total = ((3 / delta) * 2 * coef
+                 * sum(1 + 2 * math.pi * h / 3 for h in range(1, capped + 1)))
+        if k > capped:
+            total *= (k / capped) ** 2
+        return total**3
+
+    # the ideal coefficient is exactly 1/3, i.e. share exactly 1/2, i.e. delta 0
+    assert abs(root_of(1 / 3) - 0.492658) < 1e-5
+    assert abs(1.5 * (1 / 3) - 0.5) < 1e-15
+
+    # crossover grows like delta^(-9)
+    scaled = [crossover(d) * d**9 for d in (1.67e-1, 9.25e-2, 4.25e-2)]
+    assert max(scaled) / min(scaled) < 4.0, scaled
+
+    # and the span from today's root to lambda** is enormous
+    assert crossover(1.67e-1) < 1e13
+    assert crossover(5.77e-5) > 1e40

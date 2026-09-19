@@ -271,6 +271,37 @@ The measured \(m^{-0.6}\) relative error on the E side is real and much better
 than the bound, but it is now a bonus rather than a load-bearing input. Link 5
 rests on two elementary arguments and nothing measured.
 
+**The crossover is not one number — it is \(\delta^{-9}\), and that changes
+what the route is worth.** The chain proves \(O_\delta(x^{-1/3})\) for FIXED
+\(\delta\), with constant \(\sim\pi K^2\log(eK)/\delta\) and \(K\sim 2/\delta\),
+so the constant goes like \(\delta^{-3}\) and the crossover like
+\(\delta^{-9}\). But the bootstrap needs \(\delta\to 0\) to push the effective
+share to \(1/2\). Pricing the two together:
+
+| target two-production root | needed share | \(\delta\) | crossover \(x\) |
+|---|---|---|---|
+| \(0.326121\) (today, unconditional) | \(0.3333\) | \(1.7\times10^{-1}\) | \(1.0\times10^{12}\) |
+| \(0.400\) | \(0.4075\) | \(9.3\times10^{-2}\) | \(3.3\times10^{14}\) |
+| \(0.450\) | \(0.4575\) | \(4.3\times10^{-2}\) | \(5.4\times10^{17}\) |
+| \(0.4926=\lambda^{**}\) | \(0.499942\) | \(5.8\times10^{-5}\) | \(2.0\times10^{44}\) |
+| \(0.492658=\lambda_{\text{ideal}}\) | \(1/2\) | \(0\) | **unreachable at any \(x\)** |
+
+Fitted, \(x\approx 10^{5}\delta^{-9}\).
+
+**This deflates the headline claim, including as this dossier has repeatedly
+stated it.** "Two productions at the mean share reach \(\lambda^{**}\), taking
+Proposition 4.4's exponential sums off the critical path" is true as a
+statement about coefficients and false as a statement about anything
+achievable: it needs \(x\sim10^{44}\). The crossover of \(1.4\times10^{14}\)
+quoted earlier corresponds to buying a root of about \(0.40\) — real, and well
+short of \(\lambda^{**}\). And the ideal root is not approached slowly, it is
+not attained at all, because it requires \(\delta=0\) exactly.
+
+What the route honestly buys is an asymptotic: for every \(\theta<1/2\) the
+effective share exceeds \(\theta\) eventually, with "eventually" growing like
+\((1/2-\theta)^{-9}\). That is a genuine theorem and it is not a route to
+\(\lambda^{**}\) at any scale a person or a computer will meet.
+
 ## Decision
 
 **PARK.** A fixed seed set mixes to \(1/2\); planting low-even
