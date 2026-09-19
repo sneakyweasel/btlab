@@ -51,7 +51,7 @@
     {
       "path": "docs/theory/juggler_fate_almost_all_note.md",
       "mode": "text",
-      "sha256": "c91eefc68240607357d14de50a83abc2bb86c47c33bdf75aeb18b0d2869a53c1"
+      "sha256": "a58956247598ea2db8a186771047d24eac1730a843d93fa45a729ec5a3907253"
     },
     {
       "path": "formal/AxiomCheckPaperC.expected",
@@ -433,12 +433,12 @@
     {
       "path": "docs/theory/juggler_fate_almost_all_note.pdf",
       "mode": "binary",
-      "sha256": "d4e106d323784c106d7e1042b951e1dfe8820acdbd42519bc6135daea7dd125c"
+      "sha256": "6058082735d630c6296710499e5864cfb825ed38a4780508af2214e89e14a72e"
     },
     {
       "path": "docs/theory/cochin-juggler-fates.tex",
       "mode": "text",
-      "sha256": "b1a8d20b35e2ac6cb4e495e5be40a996307830a99fe452c68222d7c04779a923"
+      "sha256": "b303b5ea5cb9f98eb9dce8dab150e14e942293d8df3533cbfe7e344af8c85609"
     },
     {
       "path": "docs/theory/paper_c_zenodo.json",

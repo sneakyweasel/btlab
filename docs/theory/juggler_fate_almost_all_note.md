@@ -3025,7 +3025,7 @@ use the roots of the displayed defining equations.
 
 - `src/research/juggler_sequence/fate_contagion.py`
 
-  SHA-256: `6442eb4af160876678b734e261575c7a4ce2181b21c400697b66cf39e4a90c74`
+  SHA-256: `27b94f873d4cc9fc4f424443db058c8b3f7c6217e9bdbde7cc17c984829e9c46`
 
 - `src/research/juggler_sequence/tao_reduction.py`
 
