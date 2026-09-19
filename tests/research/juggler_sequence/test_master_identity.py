@@ -14,8 +14,33 @@ import math
 import random
 
 import mpmath as mp
+import pytest
 
 mp.mp.dps = 60
+
+
+@pytest.fixture(autouse=True)
+def _sixty_digits() -> "object":
+    """Hold 60 digits for every test here, whatever the import order did.
+
+    The module-level `mp.mp.dps = 60` above runs once, at collection. Another
+    module doing the same thing with a different value then wins by being
+    imported later: `test_paper_c_production_roots.py` does
+    `from mpmath import mp` and `mp.dps = 30`, which reaches the same global
+    context and collects after this file alphabetically. `conftest.py`'s
+    restore fixture faithfully preserves whatever is current at the start of
+    each test, so it keeps the 30 rather than rescuing the 60.
+
+    Thirty is not enough and the reason is a real cancellation, not slack in
+    the assertion. `rhs` forms `m^(9/4) - v^(3/2)` with `v = floor(m^(3/2))`,
+    two quantities of size `1e20.6` whose difference is `1e6` -- 14.6 digits
+    gone. Measured at `n = 1234567`: relative error `1.9e-2` at 15 digits,
+    `2.1e-18` at 30, `3.1e-47` at 60, against an assertion of `1e-30`.
+
+    So the precision belongs to the test, not to the import.
+    """
+    with mp.workdps(60):
+        yield
 
 _LEAN = "formal/Problems/Juggler/MasterIdentity.lean"
 
