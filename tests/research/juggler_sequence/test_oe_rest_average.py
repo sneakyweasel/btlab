@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import pytest
+
 from pathlib import Path
 
 from research.juggler_sequence.fate_contagion import lambda_root
@@ -10,6 +12,7 @@ from research.juggler_sequence.oe_rest_average import (
     PAIRING,
     POOR_SHARE,
     alpha_of,
+    averaging_payoff,
     classify,
     dyadic_logmass,
     exact_even_share,
@@ -100,3 +103,43 @@ def test_dossier_headings() -> None:
         assert heading in dossier
     decision = dossier.split("## Decision", 1)[1].split("## ", 1)[0]
     assert any(word in decision for word in ("PROMOTE", "PARK", "CLOSE"))
+
+def test_reopening_pays_only_at_essentially_the_mean() -> None:
+    """The park stands, but the prize it was weighed against was the wrong one.
+
+    The two-production inequality is the whole unconditional chain, and its
+    root moves steeply in the OE coefficient: `2/9` gives `0.326121`, the mean
+    share `1/3` gives `0.492658`. The coefficient matching `lambda**` on two
+    productions alone is `0.3332760`, a share of `0.4999140` -- essentially the
+    mean. So an averaged argument delivering the mean would reach the headline
+    exponent with two productions, making the block-average family and the
+    six-word ladder unnecessary for it, and taking Proposition 4.4's two
+    exponential-sum bounds -- Paper C's largest unformalized gap -- off the
+    critical path.
+
+    The prize is therefore not a better exponent but the same exponent with the
+    analytic core removed. That is a different prize from the one the PARK was
+    weighed against, which is why the branch's "best next question: none on
+    this line" is now recorded as arguable rather than settled.
+
+    What still vindicates the park: the target is narrow. Break-even against
+    the three-production base `0.448017`, which the block average ALREADY
+    gives, is share `0.4555`. An averaged argument landing below that is a
+    regression, not progress. Recovering "better than the worst case" is worth
+    nothing here; only "essentially the mean" pays.
+    """
+    p = averaging_payoff()
+    curve = {round(r["coefficient"], 6): r["root"] for r in p["two_production_curve"]}
+    assert curve[round(2 / 9, 6)] == pytest.approx(0.326121, abs=1e-6)
+    assert curve[0.3] == pytest.approx(0.442499, abs=1e-6)
+    assert curve[round(1 / 3, 6)] == pytest.approx(0.492658, abs=1e-6)
+
+    # the two anchors that decide whether reopening is worth anything
+    assert p["matching_share"] == pytest.approx(0.499914, abs=1e-5)
+    assert p["break_even_share"] == pytest.approx(0.455508, abs=1e-5)
+
+    # and the shape of the answer: an intermediate coefficient can LOSE
+    assert curve[0.3] < p["three_production_base"], (
+        "share 0.45 is below what the block average already gives"
+    )
+    assert p["break_even_share"] < p["matching_share"] < 0.5

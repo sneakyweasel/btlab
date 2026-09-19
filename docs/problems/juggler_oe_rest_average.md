@@ -134,8 +134,46 @@ and are not opened.
 **PARK.** A fixed seed set mixes to \(1/2\); planting low-even
 \(m\) at every scale leaves an intermediate coefficient with no lemma.
 The gap \(0.448\to 0.4927\) is now read as a dynamical averaging
-problem for \(P\), not as a missing pointwise fiber bound. Best next
-question: none on this line.
+problem for \(P\), not as a missing pointwise fiber bound.
+
+**Re-priced 2026-09-19; the PARK stands but "none on this line" is now
+arguable.** The park was weighed against the prize "a better exponent",
+and on that measure it was right --
+`J-paper-c-ladder-recovers-the-depth-two-ceiling` shows the ladder has
+already banked all but \(8.6\times10^{-5}\) of it, and
+`J-oe-fiber-pairing-third-is-attained` shows the pointwise \(1/3\) cannot
+be improved. But the two-production inequality is the whole
+unconditional chain and its root moves steeply in the OE coefficient
+(`oe_rest_average.averaging_payoff`):
+
+| \(c\) | share | two-production root |
+|---|---|---|
+| \(2/9=0.222222\) | \(1/3\) | \(0.326121\) (pointwise-sharp) |
+| \(0.300000\) | \(0.450\) | \(0.442499\) |
+| \(0.320000\) | \(0.480\) | \(0.472576\) |
+| \(1/3=0.333333\) | \(1/2\) | \(0.492658\) |
+
+The coefficient matching \(\lambda^{**}=0.492572\) on two productions
+alone is \(0.3332760\), a share of \(0.4999140\) -- essentially the mean.
+So an averaged argument delivering the mean would reach the headline
+exponent with two productions, making the block-average family and the
+six-word ladder unnecessary for it, and taking **Proposition 4.4's two
+exponential-sum bounds off the critical path**. Those are Paper C's
+analytic core, absent from `formal/`, and its largest unformalized gap.
+The prize is therefore not a better number but the same number with the
+analytic core removed -- a different kind of prize from the one weighed
+here.
+
+**What still vindicates the PARK: the target is narrow.** Break-even
+against the three-production base \(0.448017\), which the block average
+already gives, is \(c=0.3036722\), a share of \(0.4555\). An averaged
+argument landing below that share is a *regression*, not progress, and it
+must reach \(0.4999\) to match \(\lambda^{**}\). Recovering "better than
+the worst case" is worth nothing here; only "essentially the mean" pays,
+and that is exactly what observation (3)'s slow drowning fails to give.
+
+Quantification contributed by a peer session; reproduced and guarded in
+`test_oe_rest_average.py`.
 
 ## Publication assessment
 
