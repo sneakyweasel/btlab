@@ -630,6 +630,16 @@ def resonance_density(exponents: tuple[int, ...] = (14, 16, 18, 20, 22, 24),
     measures for the low-share set, which is strong evidence that the low-share
     fibres ARE the resonant ones.
 
+    **The constant is exact, not measured.** `is_resonant` tests distance to
+    three points of the circle -- `0`, `1/3`, `2/3` -- each against a window of
+    half-width `C/H_m` with `H_m = (2/3) m^(1/3)`. So the measure is
+    `3 * 2C/H_m = 9 C m^(-1/3)` by arithmetic, with no fitting. Scaled by the
+    block mean of `m^(-1/3)` rather than by the midpoint, the full
+    deterministic count returns `9.0000` at `C = 1` and `4.4987` at `C = 0.5`,
+    at both `2^18` and `2^20`. Every earlier figure here sat 0.86 per cent high
+    for one reason: the midpoint scaling `(1.5N)^(-1/3)` against the correct
+    mean `(3/2)(2^(2/3)-1) N^(-1/3)`, a ratio of `1.008610`.
+
     THE GAP, stated so it is not mistaken for a proof. This settles the density
     of the RESONANT set. The lemma needs it for the LOW-SHARE set, and the two
     coincide only if low share implies resonance. That inclusion is not proved
@@ -646,8 +656,15 @@ def resonance_density(exponents: tuple[int, ...] = (14, 16, 18, 20, 22, 24),
         hits = sum(1 for m in rng.sample(range(lo, hi), samples) if is_resonant(m))
         density = hits / samples
         mid = (lo + hi) / 2.0
+        # scale by the block MEAN of m^(-1/3), not the midpoint. The mean over
+        # [N, 2N) is (3/2)(2^(2/3) - 1) N^(-1/3) = 0.881102 N^(-1/3) against the
+        # midpoint's (1.5 N)^(-1/3) = 0.873580 N^(-1/3), a ratio of 1.008610 --
+        # which is exactly the 0.86 per cent by which every earlier figure in
+        # this probe sat above the predicted constant.
+        mean_factor = 1.5 * (2.0 ** (2.0 / 3.0) - 1.0) * lo ** (-1.0 / 3.0)
         rows.append({"exponent": e, "density": density,
-                     "density_times_cube_root": density * mid ** (1.0 / 3.0)})
+                     "density_times_cube_root": density * mid ** (1.0 / 3.0),
+                     "density_over_block_mean": density / mean_factor})
     scaled = [r["density_times_cube_root"] for r in rows]
     return {
         "rows": rows,

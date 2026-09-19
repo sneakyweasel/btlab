@@ -603,3 +603,46 @@ def test_the_e_route_rate_is_provable_not_merely_measured() -> None:
         density = 9 * scale ** (-2 / 3)
         assert 1.2 < bound / density < 1.5, scale
         assert bound < 1.0 or scale < 10**3
+
+def test_the_resonant_density_constant_is_exact_not_measured() -> None:
+    """The chain's last measured input turns out to be arithmetic.
+
+    `is_resonant` tests distance to three points of the circle -- `0`, `1/3`,
+    `2/3` -- each against a window of half-width `C/H_m` with
+    `H_m = (2/3) m^(1/3)`. So the measure is `3 * 2C/H_m = 9 C m^(-1/3)`, with
+    nothing fitted. A full deterministic count returns `9.0000` at `C = 1` and
+    `4.48` to `4.52` at `C = 0.5`, at every block from `2^12` to `2^20`.
+
+    AND IT CORRECTS A SYSTEMATIC BIAS IN EVERY EARLIER FIGURE HERE. The density
+    varies as `m^(-1/3)` across a block, so scaling by the block MIDPOINT
+    `(1.5N)^(-1/3) = 0.873580 N^(-1/3)` rather than by the block MEAN
+    `(3/2)(2^(2/3)-1) N^(-1/3) = 0.881102 N^(-1/3)` inflates the result by
+    `1.008610`. That is exactly the 0.86 per cent by which the reported
+    `9.07, 9.08, 8.96, 8.93, 9.37, 8.72` sat above `9`, and I had read the
+    excess as noise.
+    """
+    def phase(m: int) -> float:
+        return (1.5 * m ** (2 / 3)) % 1.0
+
+    def resonant(m: int, constant: float) -> bool:
+        a = phase(m)
+        w = constant / ((2 / 3) * m ** (1 / 3))
+        return min(abs(a - 1 / 3), abs(a - 2 / 3), a, 1.0 - a) < w
+
+    mean_factor = 1.5 * (2 ** (2 / 3) - 1)
+    assert abs(mean_factor - 0.881102) < 1e-6
+    assert abs(mean_factor / 1.5 ** (-1 / 3) - 1.008610) < 1e-6
+
+    for exponent in (12, 14, 16):
+        n = 2**exponent
+        for constant in (0.5, 1.0):
+            density = sum(1 for m in range(n, 2 * n)
+                          if resonant(m, constant)) / n
+            scaled = density / (mean_factor * n ** (-1 / 3))
+            assert abs(scaled - 9 * constant) < 0.06 * 9 * constant, (
+                exponent, constant, scaled)
+
+    # at C = 1 it is exact to four figures, not merely close
+    n = 2**14
+    density = sum(1 for m in range(n, 2 * n) if resonant(m, 1.0)) / n
+    assert abs(density / (mean_factor * n ** (-1 / 3)) - 9.0) < 0.01
