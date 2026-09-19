@@ -420,3 +420,109 @@ def averaging_payoff() -> dict[str, Any]:
             " reach 0.4999 to match lambda**. Only 'essentially the mean' pays"
         ),
     }
+
+# ---------------------------------------------------------------------------
+# Where the missing lemma sits relative to Hypothesis FD.
+#
+# The capacity-decay observation needs an equidistribution statement about the
+# fibre step alpha_m across m. The question that decides whether the route is
+# worth anything is whether that statement is Hypothesis FD in disguise -- in
+# which case the bootstrap trades two exponential-sum bounds for an open
+# hypothesis and buys nothing -- or strictly weaker.
+#
+# It is strictly weaker, and the reason is that m ranges over the integers
+# rather than along an orbit.
+# ---------------------------------------------------------------------------
+
+WEYL_EXPONENT = 2.0 / 3.0
+WEYL_COEFFICIENT = 1.5
+
+
+def weyl_step(m: int) -> float:
+    """`frac((3/2) m^(2/3))`, the classical sequence `alpha_m` tracks."""
+    return (WEYL_COEFFICIENT * m ** WEYL_EXPONENT) % 1.0
+
+
+def step_is_weyl(scales: tuple[int, ...] = (10**5, 10**6, 10**7, 10**8, 10**9)
+                 ) -> dict[str, Any]:
+    """`alpha_m = frac((3/2) m^(2/3)) + O(m^(-2/3))`, measured.
+
+    The fibre step is defined as a difference of `3/2` powers at the fibre's
+    endpoints, but asymptotically it is just the derivative, and the derivative
+    of `n^(3/2)/2` at `n = m^(4/3)` is `(3/2) m^(2/3)`. The residual is the
+    curvature across one fibre step and falls like `m^(-2/3)`.
+    """
+    rows = []
+    for m in scales:
+        lo, _ = fiber_bounds(m)
+        got, want = fiber_alpha(lo), weyl_step(m)
+        gap = abs(got - want)
+        rows.append({"m": m, "alpha": got, "weyl": want,
+                     "circle_gap": min(gap, 1.0 - gap)})
+    return {
+        "rows": rows,
+        "gap_falls": all(a["circle_gap"] > b["circle_gap"]
+                         for a, b in zip(rows, rows[1:])),
+    }
+
+
+def weyl_discrepancy(limit: int, bins: int = 200) -> float:
+    """Star discrepancy of `frac((3/2) m^(2/3))` on `1 <= m <= limit`."""
+    counts = [0] * bins
+    for m in range(1, limit + 1):
+        counts[int(weyl_step(m) * bins) % bins] += 1
+    running = 0
+    worst = 0.0
+    for i, c in enumerate(counts):
+        running += c
+        worst = max(worst, abs(running / limit - (i + 1) / bins))
+    return worst
+
+
+def fd_placement(exponents: tuple[int, ...] = (4, 5, 6, 7)) -> dict[str, Any]:
+    """The placement, which is the answer to whether the averaging route is real.
+
+    **It is not Hypothesis FD.** FD asks for joint equidistribution of the
+    parity words along a Juggler ORBIT -- the fractional parts of `n^(3/2)`,
+    `n^(3/4)` and their relatives evaluated at orbit points -- and it is open
+    precisely because an orbit is not an arithmetic sequence. The capacity-decay
+    lemma asks about `alpha_m` as `m` runs over ALL integers in a dyadic block.
+    That is a Weyl problem about an explicit algebraic function of `m`:
+
+    - `f(m) = (3/2) m^(2/3)` has `f -> infinity`, `f'(m) = m^(-1/3) -> 0`
+      monotonically, and `m f'(m) = m^(2/3) -> infinity`. Those are exactly
+      Fejer's conditions, so `frac(f(m))` is equidistributed UNCONDITIONALLY.
+    - the rate is polynomial by van der Corput; measured here the star
+      discrepancy falls about like `N^(-1/2)`.
+
+    So the first ingredient of the missing lemma is a theorem, not a hypothesis,
+    and the bootstrap is not trading one open problem for another.
+
+    WHAT IS STILL OPEN, and it is not small. The share is not a function of
+    `alpha_m` alone: `J-oe-fiber-share-law` gives
+    `G_m/H_m = S(beta_m, theta_m) + O(H^(-1/2) + (1+|beta|)/H)` with
+    `beta_m = alpha_m (H_m - 1)` and `theta_m` a second phase. So what the
+    lemma actually needs is the JOINT distribution of `(beta_m, theta_m)`.
+    Both coordinates are Weyl-type sequences in `m` rather than orbit
+    quantities, which is the point: the open part is a Weyl-sums question about
+    explicit functions, of the kind the laboratory's own Lemma 4.1' and
+    Corollary 4.6 already handle in pieces, and not the orbit-equidistribution
+    question that FD is.
+    """
+    rows = [{"limit": 10**e, "discrepancy": weyl_discrepancy(10**e)}
+            for e in exponents]
+    slopes = [math.log10(b["discrepancy"] / a["discrepancy"])
+              for a, b in zip(rows, rows[1:])]
+    return {
+        "step_is_weyl": step_is_weyl(),
+        "discrepancy": rows,
+        "slopes_per_decade": slopes,
+        "decays_polynomially": all(s < -0.25 for s in slopes),
+        "verdict": (
+            "below Hypothesis FD: equidistribution of alpha_m is Fejer,"
+            " unconditional, with polynomial discrepancy by van der Corput."
+            " The open part is the JOINT law of (beta_m, theta_m), still a"
+            " Weyl-sums question about explicit functions of m and not an"
+            " orbit-equidistribution question"
+        ),
+    }

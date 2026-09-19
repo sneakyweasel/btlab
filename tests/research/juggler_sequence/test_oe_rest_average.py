@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import math
+
 import pytest
 
 from pathlib import Path
@@ -13,6 +15,9 @@ from research.juggler_sequence.oe_rest_average import (
     POOR_SHARE,
     alpha_of,
     averaging_payoff,
+    fd_placement,
+    step_is_weyl,
+    weyl_discrepancy,
     classify,
     dyadic_logmass,
     exact_even_share,
@@ -143,3 +148,44 @@ def test_reopening_pays_only_at_essentially_the_mean() -> None:
         "share 0.45 is below what the block average already gives"
     )
     assert p["break_even_share"] < p["matching_share"] < 0.5
+
+def test_the_missing_lemma_sits_below_hypothesis_fd() -> None:
+    """The question that decides whether the averaging route is worth anything.
+
+    `J-oe-low-share-weight-decays-polynomially` needs an equidistribution
+    statement about the fibre step `alpha_m` across `m`. If that is Hypothesis
+    FD in disguise, the bootstrap trades Proposition 4.4's two exponential-sum
+    bounds for an open hypothesis and buys nothing. It is not.
+
+    FD asks for joint equidistribution of parity words along a Juggler ORBIT,
+    and is open because an orbit is not an arithmetic sequence. This asks about
+    `alpha_m` as `m` runs over every integer in a dyadic block, and `alpha_m` is
+    `frac((3/2) m^(2/3))` up to `O(m^(-2/3))` -- measured here, the gap falling
+    `4.1e-04` to `1.5e-06` from `1e5` to `1e9`.
+
+    For `f(m) = (3/2) m^(2/3)`: `f -> infinity`, `f'(m) = m^(-1/3) -> 0`
+    monotonically, `m f'(m) = m^(2/3) -> infinity`. Those are Fejer's
+    conditions, so equidistribution is unconditional, and van der Corput gives
+    a polynomial rate -- measured star discrepancy falls about like `N^(-1/2)`.
+
+    So the first ingredient is a theorem. What remains open is the JOINT law of
+    `(beta_m, theta_m)`, since `J-oe-fiber-share-law` makes the share a function
+    of both and not of `alpha_m` alone. That is still a Weyl-sums question about
+    explicit functions of `m`, which is the class the sweep machinery already
+    works in -- not the orbit question FD is.
+    """
+    placement = fd_placement(exponents=(4, 5, 6))
+    weyl = placement["step_is_weyl"]
+    assert weyl["gap_falls"], "alpha_m must converge to the Weyl sequence"
+    assert weyl["rows"][0]["circle_gap"] < 1e-3
+    assert weyl["rows"][-1]["circle_gap"] < 1e-5
+
+    # the residual is the fibre's curvature, so it should track m^(-2/3)
+    first, last = weyl["rows"][0], weyl["rows"][-1]
+    decades = math.log10(last["m"] / first["m"])
+    slope = math.log10(last["circle_gap"] / first["circle_gap"]) / decades
+    assert -0.85 < slope < -0.5, f"expected about -2/3, got {slope:.3f}"
+
+    assert placement["decays_polynomially"]
+    assert all(s < -0.25 for s in placement["slopes_per_decade"])
+    assert weyl_discrepancy(10**4) > weyl_discrepancy(10**6)

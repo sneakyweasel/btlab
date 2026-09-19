@@ -371,7 +371,8 @@
         "J-winkler-sandwich-holds-on-the-laboratory-counts",
         "J-paper-c-collatz-analogue-is-false-by-exhibit",
         "J-paper-c-contagion-dichotomy-is-log-mass",
-        "J-paper-c-ceiling-is-the-collatz-walk-mgf"
+        "J-paper-c-ceiling-is-the-collatz-walk-mgf",
+        "J-survivor-count-is-the-certificate-tail"
       ],
       "aliases": [],
       "nk_cluster": null
