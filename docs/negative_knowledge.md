@@ -1,5 +1,103 @@
 # Negative knowledge
 
+## A realization law of FD type cannot give Juggler a Steiner theorem
+
+Killed claim, raised and refuted the same day (19 September 2026): "a perfect
+Juggler realization law -- an exact archimedean analogue of the 2-adic cycle
+equation -- would deliver at most Collatz's cycle starting line, the bounded-`m`
+exclusions and the Eliahou-type period lattice, by the same reasoning that FD
+proved outright would deliver Terras 1976 and no further."
+
+Kind: **REFUTED** as a category error. Collatz's bounded-`m` exclusions
+(Steiner 1977 for `m = 1`, Simons-de Weger 2005, Hercher 2023 for `m <= 91`)
+do not rest on how words are distributed over integers; they rest on a
+*pointwise* 2-adic fact, Hercher's Lemma 8: `k` consecutive odd steps force
+`x = -1 mod 2^k`, hence `x >= 2^k - 1`, which bounds cycle minima below in
+terms of run lengths and lets Baker close each fixed `m`. A density statement
+of FD type gives nothing pointwise. Termination is an average problem along
+the orbit; no-cycle is an extreme-value problem, a lower bound on the minimum
+realizer of a returning word.
+
+Witness: the 1-cycle length `9809721694`, a Juggler-side convergent numerator
+of `log 2 / log 3`, survives Paper A's finance at `N_0 = 3.5e8` with a bound of
+`1.0e20` on `n log n` against a floor of `6.9e9`
+(`J-paper-a-finance-transposed-reproduces-eliahou-and-hercher`). Collatz has
+excluded every 1-cycle since 1977; Juggler has no floor-free exclusion of any
+`m`-cycle for any `m`, and Theorem 3.31 (`e >= 8`) bounds even letters by a
+census, not local minima by a Diophantine argument.
+
+Do not reopen: FD, equidistribution along the orbit, or any averaging
+statement as a route to bounded-`m` cycle exclusion. The Juggler twin of
+Lemma 8 is the pointwise odd-run bound `run(n) <= C log n` -- the odd-tower
+fragment -- and that is the door, if there is one. Dossier:
+[collatz_finance_mirror](problems/juggler_collatz_finance_mirror.md).
+
+## The Walsh estimate of the good set is in the wrong basis
+
+Proposition J's error term `N_d E_d(N)` sums a per-word equidistribution error
+over all `N_d` good words. Expanding the good-set indicator in Walsh characters
+instead gives `S(N,d) = sum_S ghat(S) W_S(N)`, which looks like it replaces `N_d`
+by the Wiener norm `||ghat||_1`. It does not, for two independent reasons.
+
+**The gain is capped and the cap is attained.** Parseval gives
+`||ghat||_1 <= sqrt(N_d)` unconditionally, so `gamma <= sqrt(2 theta)` is a
+theorem. Measured to `d = 386` by four independent methods, `gamma` saturates it.
+The structure is real but polynomial -- `||ghat_d||_1 ~ Phi(frac(d beta))
+sqrt(N_d) d^(-0.83)` -- and a polynomial factor does not move an exponential rate.
+
+**And the basis is wrong.** `E_d <= max_(S != 0)|W_S| <= 2^d E_d`, both ends
+attained. A Walsh estimate needs the upper bound on `max|W_S|` and Proposition J
+supplies only the lower, so the conversion costs `2^d`: measured `114x` worse at
+`d = 12`, `8199x` at `d = 24`. Paper B's identity (2.1) is itself a Walsh
+expansion in the `(w,A)` formal-chain basis with Wiener norm exactly
+`N_d(1 - 2^(-(d-1)))`, so the union bound already IS the L1 bound in the basis
+the hypothesis controls, and it is termwise sharp there.
+
+Kind: `REFUTED` route. `J-good-set-walsh-route-is-refuted`. It also withdraws
+`J-proposition-j-loss-is-the-union-bound`, recorded the previous day, which read
+the union bound as a loss worth `20x`.
+
+Do not re-open as: a direct estimate of the good set, a Wiener-norm or Hoelder
+bound on the count, a low-degree or spectral-concentration argument, or "combine
+the word classes better". The one thing that would revive it is a version of
+Hypothesis FD stated as a uniform character bound `max_(S != 0)|W_S(N)| <= B`
+rather than per-word -- a different hypothesis, not a better bound, and the
+laboratory's machinery controls formal-chain correlations `R_(w,A)` per word, not
+global characters.
+
+The general lesson, which is not about this route: before preferring one basis to
+another, check which basis the available hypothesis is stated in. An L1 bound is
+cheap in whichever basis you like and useless in the one whose inputs you cannot
+estimate.
+
+## A Juggler result about words alone is a Collatz result
+
+Both maps realise the same additive walk: accelerated Collatz moves `log x` by
+`-log 2` or `+log(3/2)`, and Juggler moves `log log n` by the same two steps,
+because `n -> floor(n^(3/2))` multiplies `log n` by `3/2`
+(`J-juggler-is-collatz-one-exponential-up`, verified to `2e-16`). So the two
+problems share the multiplier semigroup, the non-contracting condition
+`3^o >= 2^m`, and therefore every statement whose content is the combinatorics
+of those words.
+
+Kind: `REPARAMETERIZATION` of scope, not of any result.
+`J-word-density-results-are-not-juggler-specific`. By this test the survivor
+recursion, the empty-window theorem, the transposition cost, the jump spectrum,
+`a_1` and the ladder profile all belong to Collatz as well.
+
+What remains Juggler-specific is everything using how orbits *realise* words:
+Hypothesis FD, the Weyl differencing, the kernel bounds, and the densities
+resting on them. For Collatz that half is free -- Terras makes the parity word a
+function of `x mod 2^d`, bijectively -- which is precisely why Juggler is not an
+easier Collatz but Collatz's word problem plus a Weyl-sum problem.
+
+Before recording a row as a Juggler result, ask whether its statement mentions
+how words are realised. If it does not, the Collatz literature is where priority
+lives, and the row should say so. This is the same failure as
+`J-paper-b-survivors-are-oeis-a076227` one level up: there a sequence was
+searchable and nobody searched; here the theorems are about an object under
+another name.
+
 ## A residue class loses a square root on a function that jumps
 
 The laboratory fixes the rotation coordinate `frac(d beta)` by taking `d` in a

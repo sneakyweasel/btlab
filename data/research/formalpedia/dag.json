@@ -922,6 +922,29 @@
         "kernel": 2
       }
     },
+    "Problems.Juggler.CollatzBridge": {
+      "declarations": 65,
+      "depends_on": [
+        "Problems.Collatz.Shortcut",
+        "Problems.Juggler.CycleMinFudge",
+        "Problems.Juggler.PaperBCertificateRecursion",
+        "Problems.Juggler.WalkChargeItineraries"
+      ],
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-survivor-count-is-a-collatz-residue-count"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 65
+      }
+    },
     "Problems.Juggler.CriticalCostKernel": {
       "declarations": 9,
       "depends_on": [
@@ -3041,9 +3064,9 @@
     }
   },
   "totals": {
-    "edges": 236,
-    "edges_before_reduction": 1774,
-    "ledger_rows_placed": 407,
-    "nodes": 185
+    "edges": 240,
+    "edges_before_reduction": 1799,
+    "ledger_rows_placed": 414,
+    "nodes": 186
   }
 }

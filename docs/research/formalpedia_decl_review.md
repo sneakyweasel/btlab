@@ -5,7 +5,7 @@ statement beside the candidate's docstring; the question is only whether they sa
 same thing.  Measured against all 208 single-declaration rows the scorer gets
 64 of the 79 it fires on right, 81% precise, so roughly one in
 5 below is wrong.
-19 rows below, of 119 unresolved.
+19 rows below, of 124 unresolved.
 
 
 Two failure modes are not scored at all, and both record a part as the whole.

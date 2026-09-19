@@ -348,6 +348,55 @@
       "nk_cluster": null
     },
     {
+      "id": "collatz_bridge",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/collatz_bridge.py",
+      "test": "tests/research/juggler_sequence/test_collatz_bridge.py",
+      "dossier": "docs/problems/juggler_collatz_bridge.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-juggler-is-collatz-one-exponential-up",
+        "J-word-density-results-are-not-juggler-specific",
+        "J-proposition-j-on-collatz-is-terras",
+        "J-proposition-j-loss-is-the-union-bound",
+        "J-good-set-walsh-route-is-refuted",
+        "J-good-set-wiener-norm-carries-the-rotation",
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-winkler-sandwich-holds-on-the-laboratory-counts"
+      ],
+      "aliases": [],
+      "nk_cluster": null
+    },
+    {
+      "id": "collatz_finance_mirror",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/collatz_finance_mirror.py",
+      "test": "tests/research/juggler_sequence/test_collatz_finance_mirror.py",
+      "dossier": "docs/problems/juggler_collatz_finance_mirror.md",
+      "data_dir": "data/research/juggler/collatz_finance_mirror",
+      "lean": [
+        "formal/Problems/Juggler/CollatzBridge.lean"
+      ],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-paper-a-finance-transposed-reproduces-eliahou-and-hercher",
+        "J-cycle-gaps-are-mirror-images",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-constant",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "aliases": [],
+      "nk_cluster": "A realization law of FD type cannot give Juggler a Steiner theorem"
+    },
+    {
       "id": "collision_large_sieve",
       "kind": "branch",
       "probe": "src/research/juggler_sequence/collision_large_sieve.py",
