@@ -1,5 +1,50 @@
 # Research journal
 
+## 2026-09-19 -- the cycle equation is a word divisibility, and Juggler's cycle words are Collatz's negative cycles
+
+- **Objective:** the finance-mirror question -- what does `2^K - 3^p | evenCharge w`
+  look like on the survivor words?
+- **Over `ℤ` the identity says which sign a cycle word has.** `word_affine_int`
+  and `two_pow_mul_iter_add_one_int` hold for every integer start, so on every
+  integer cycle `(x + 1)(2^d - 3^o) = evenCharge w`. Positive cycles have
+  contracting words (`cycle_contracting`); cycles at `x <= -2` have expanding
+  words (`neg_cycle_expanding`); `x = -1` is the all-odd word. The converse
+  `cycle_of_equation` makes the cycle condition a word statement, with
+  Lagarias 1990's rational-cycle theorem (every word is the parity vector of
+  exactly one rational with odd denominator) as the one step not in Lean --
+  checked instead on 190069 minimal certificates and 654279 expanding
+  survivors, all of which follow their own word and return. Rows
+  `J-collatz-cycle-equation-is-a-word-divisibility`,
+  `J-juggler-cycle-words-are-collatz-negative-cycle-words`.
+- **So Juggler's cycle problem is the twin of Collatz's negative cycles.**
+  A negative Collatz cycle word, read at the element of least `|x|`, is an
+  expanding survivor -- Paper A's `CycleMin` shape -- because on the negative
+  integers the odd step is `|x| -> (3|x| - 1)/2` and the correction points
+  down, as Juggler's floors do. The three known negative cycles have words
+  `O`, `OOE`, `OOOOEOOOEEE` of lengths `1, 3, 11`, all Juggler-side lengths,
+  and the `-17` word inhabits `CycleMinShape` with four even letters at
+  length `11`: Paper A's floor-free Theorem 3.22 met with equality by a word
+  Collatz realises as an integer cycle. In Lean by `decide`
+  (`neg_seventeen_cycle`, `neg_seventeen_inhabits_cycleMinShape`).
+- **And positive Collatz cycles are Paper B's minimal certificates.** At the
+  minimum a cycle word contracts only at the end (`prefix_bound_of_min`: every
+  contracting prefix caps `x + 1` by the prefix's own rational cycle value), so
+  its length is `A020914(p)` and `M_K` counts the candidate words; the open
+  problem is which of them have `2^K - 3^p | evenCharge w` with quotient at
+  least two. The census finds only `OE` (quotient two, `x = 1`) through
+  length `26`. The empty-window theorem now controls a fifth thing: the
+  lengths a positive Collatz cycle can have.
+- **Census hygiene.** The DFS minimal-certificate counts equal the
+  laboratory's DP `2 N_(K-1) - N_K` at every length, `8045, 17637, 51033,
+  108950` at `K = 21, 23, 24, 26`; my recollection of A100982 beyond `p = 14`
+  had been wrong and the counts, not the memory, are what the record carries.
+  Literature entry `lagarias-1990-rational-cycles` added.
+- **Decision:** `PROMOTE` stands. Best next question: the finance survivors
+  of Collatz's negative-cycle problem at its verification floor are the
+  Juggler-side lengths -- what is that floor today, and does the published
+  negative-cycle record (only `-1, -5, -17`) come with a period bound that
+  the mirror reproduces, as Eliahou's and Hercher's did on the positive side?
+
 ## 2026-09-19 -- the height-only bound is sharp, and Winkler's sandwich holds on our counts
 
 - **Objective:** the finance-mirror branch's question -- does the

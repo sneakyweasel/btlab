@@ -9471,9 +9471,11 @@
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
         "J-collatz-even-step-charge-identity",
-        "J-collatz-walk-charge-is-sharp"
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
       ],
-      "line": 66,
+      "line": 67,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "two_mul_shortcutC",
       "trust": "kernel"
@@ -9486,9 +9488,11 @@
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
         "J-collatz-even-step-charge-identity",
-        "J-collatz-walk-charge-is-sharp"
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
       ],
-      "line": 76,
+      "line": 77,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "shortcutCIter_succ'",
       "trust": "kernel"
@@ -9501,9 +9505,11 @@
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
         "J-collatz-even-step-charge-identity",
-        "J-collatz-walk-charge-is-sharp"
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
       ],
-      "line": 88,
+      "line": 89,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "parityWord",
       "trust": "kernel"
@@ -9516,9 +9522,11 @@
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
         "J-collatz-even-step-charge-identity",
-        "J-collatz-walk-charge-is-sharp"
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
       ],
-      "line": 103,
+      "line": 104,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "parityWord_take",
       "trust": "kernel"
@@ -9531,9 +9539,11 @@
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
         "J-collatz-even-step-charge-identity",
-        "J-collatz-walk-charge-is-sharp"
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
       ],
-      "line": 122,
+      "line": 123,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "wordConst",
       "trust": "kernel"
@@ -9546,9 +9556,11 @@
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
         "J-collatz-even-step-charge-identity",
-        "J-collatz-walk-charge-is-sharp"
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
       ],
-      "line": 135,
+      "line": 136,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "wordConst_eq_zero_iff",
       "trust": "kernel"
@@ -9561,9 +9573,11 @@
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
         "J-collatz-even-step-charge-identity",
-        "J-collatz-walk-charge-is-sharp"
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
       ],
-      "line": 149,
+      "line": 150,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "word_affine",
       "trust": "kernel"
@@ -9576,9 +9590,11 @@
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
         "J-collatz-even-step-charge-identity",
-        "J-collatz-walk-charge-is-sharp"
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
       ],
-      "line": 184,
+      "line": 185,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "bit_eq_iff",
       "trust": "kernel"
@@ -9591,9 +9607,11 @@
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
         "J-collatz-even-step-charge-identity",
-        "J-collatz-walk-charge-is-sharp"
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
       ],
-      "line": 190,
+      "line": 191,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "mod_pow_succ_iff",
       "trust": "kernel"
@@ -9606,9 +9624,11 @@
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
         "J-collatz-even-step-charge-identity",
-        "J-collatz-walk-charge-is-sharp"
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
       ],
-      "line": 227,
+      "line": 228,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "parityWord_eq_iff",
       "trust": "kernel"
@@ -9621,9 +9641,11 @@
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
         "J-collatz-even-step-charge-identity",
-        "J-collatz-walk-charge-is-sharp"
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
       ],
-      "line": 234,
+      "line": 235,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "parityWord_mod",
       "trust": "kernel"
@@ -9636,9 +9658,11 @@
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
         "J-collatz-even-step-charge-identity",
-        "J-collatz-walk-charge-is-sharp"
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
       ],
-      "line": 238,
+      "line": 239,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "allWords_card",
       "trust": "kernel"
@@ -9651,9 +9675,11 @@
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
         "J-collatz-even-step-charge-identity",
-        "J-collatz-walk-charge-is-sharp"
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
       ],
-      "line": 265,
+      "line": 266,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "image_parityWord",
       "trust": "kernel"
@@ -9666,9 +9692,11 @@
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
         "J-collatz-even-step-charge-identity",
-        "J-collatz-walk-charge-is-sharp"
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
       ],
-      "line": 282,
+      "line": 283,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "exists_residue_of_word",
       "trust": "kernel"
@@ -9681,9 +9709,11 @@
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
         "J-collatz-even-step-charge-identity",
-        "J-collatz-walk-charge-is-sharp"
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
       ],
-      "line": 293,
+      "line": 294,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "undecidedResidues",
       "trust": "kernel"
@@ -9696,9 +9726,11 @@
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
         "J-collatz-even-step-charge-identity",
-        "J-collatz-walk-charge-is-sharp"
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
       ],
-      "line": 297,
+      "line": 298,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "parityWord_injOn",
       "trust": "kernel"
@@ -9711,9 +9743,11 @@
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
         "J-collatz-even-step-charge-identity",
-        "J-collatz-walk-charge-is-sharp"
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
       ],
-      "line": 306,
+      "line": 307,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "card_filter_parityWord",
       "trust": "kernel"
@@ -9726,9 +9760,11 @@
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
         "J-collatz-even-step-charge-identity",
-        "J-collatz-walk-charge-is-sharp"
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
       ],
-      "line": 314,
+      "line": 315,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "undecidedResidues_card",
       "trust": "kernel"
@@ -9741,9 +9777,11 @@
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
         "J-collatz-even-step-charge-identity",
-        "J-collatz-walk-charge-is-sharp"
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
       ],
-      "line": 319,
+      "line": 320,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "decidedAtResidues",
       "trust": "kernel"
@@ -9756,9 +9794,11 @@
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
         "J-collatz-even-step-charge-identity",
-        "J-collatz-walk-charge-is-sharp"
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
       ],
-      "line": 324,
+      "line": 325,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "decidedAtResidues_card",
       "trust": "kernel"
@@ -9771,9 +9811,11 @@
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
         "J-collatz-even-step-charge-identity",
-        "J-collatz-walk-charge-is-sharp"
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
       ],
-      "line": 331,
+      "line": 332,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "two_pow_le_three_pow_of_prefixNoncontracting",
       "trust": "kernel"
@@ -9786,9 +9828,11 @@
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
         "J-collatz-even-step-charge-identity",
-        "J-collatz-walk-charge-is-sharp"
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
       ],
-      "line": 341,
+      "line": 342,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "le_iter_of_prefixNoncontracting",
       "trust": "kernel"
@@ -9801,9 +9845,11 @@
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
         "J-collatz-even-step-charge-identity",
-        "J-collatz-walk-charge-is-sharp"
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
       ],
-      "line": 353,
+      "line": 354,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "lt_iter_of_prefixNoncontracting",
       "trust": "kernel"
@@ -9816,9 +9862,11 @@
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
         "J-collatz-even-step-charge-identity",
-        "J-collatz-walk-charge-is-sharp"
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
       ],
-      "line": 374,
+      "line": 375,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "iter_lt_of_exponentGap",
       "trust": "kernel"
@@ -9831,9 +9879,11 @@
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
         "J-collatz-even-step-charge-identity",
-        "J-collatz-walk-charge-is-sharp"
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
       ],
-      "line": 386,
+      "line": 387,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "iter_lt_of_exponentGap_class",
       "trust": "kernel"
@@ -9846,9 +9896,11 @@
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
         "J-collatz-even-step-charge-identity",
-        "J-collatz-walk-charge-is-sharp"
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
       ],
-      "line": 397,
+      "line": 398,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "cycle_contracting",
       "trust": "kernel"
@@ -9861,9 +9913,11 @@
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
         "J-collatz-even-step-charge-identity",
-        "J-collatz-walk-charge-is-sharp"
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
       ],
-      "line": 418,
+      "line": 419,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "juggler_word_power",
       "trust": "kernel"
@@ -9876,9 +9930,11 @@
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
         "J-collatz-even-step-charge-identity",
-        "J-collatz-walk-charge-is-sharp"
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
       ],
-      "line": 424,
+      "line": 425,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "juggler_cycle_expanding",
       "trust": "kernel"
@@ -9891,9 +9947,11 @@
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
         "J-collatz-even-step-charge-identity",
-        "J-collatz-walk-charge-is-sharp"
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
       ],
-      "line": 433,
+      "line": 434,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "undecidedResidues_six",
       "trust": "kernel"
@@ -9906,9 +9964,11 @@
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
         "J-collatz-even-step-charge-identity",
-        "J-collatz-walk-charge-is-sharp"
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
       ],
-      "line": 436,
+      "line": 437,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "undecidedResidues_card_four",
       "trust": "kernel"
@@ -9921,9 +9981,11 @@
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
         "J-collatz-even-step-charge-identity",
-        "J-collatz-walk-charge-is-sharp"
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
       ],
-      "line": 437,
+      "line": 438,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "undecidedResidues_card_five",
       "trust": "kernel"
@@ -9936,9 +9998,11 @@
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
         "J-collatz-even-step-charge-identity",
-        "J-collatz-walk-charge-is-sharp"
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
       ],
-      "line": 438,
+      "line": 439,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "undecidedResidues_card_six",
       "trust": "kernel"
@@ -9951,9 +10015,11 @@
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
         "J-collatz-even-step-charge-identity",
-        "J-collatz-walk-charge-is-sharp"
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
       ],
-      "line": 439,
+      "line": 440,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "undecidedResidues_card_seven",
       "trust": "kernel"
@@ -9966,9 +10032,11 @@
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
         "J-collatz-even-step-charge-identity",
-        "J-collatz-walk-charge-is-sharp"
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
       ],
-      "line": 440,
+      "line": 441,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "undecidedResidues_card_eight",
       "trust": "kernel"
@@ -9981,9 +10049,11 @@
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
         "J-collatz-even-step-charge-identity",
-        "J-collatz-walk-charge-is-sharp"
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
       ],
-      "line": 441,
+      "line": 442,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "undecidedResidues_card_nine",
       "trust": "kernel"
@@ -9996,9 +10066,11 @@
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
         "J-collatz-even-step-charge-identity",
-        "J-collatz-walk-charge-is-sharp"
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
       ],
-      "line": 442,
+      "line": 443,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "undecidedResidues_card_ten",
       "trust": "kernel"
@@ -10011,9 +10083,11 @@
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
         "J-collatz-even-step-charge-identity",
-        "J-collatz-walk-charge-is-sharp"
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
       ],
-      "line": 464,
+      "line": 465,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "evenCharge",
       "trust": "kernel"
@@ -10026,9 +10100,11 @@
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
         "J-collatz-even-step-charge-identity",
-        "J-collatz-walk-charge-is-sharp"
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
       ],
-      "line": 478,
+      "line": 479,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "wordConst_add_two_pow",
       "trust": "kernel"
@@ -10041,9 +10117,11 @@
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
         "J-collatz-even-step-charge-identity",
-        "J-collatz-walk-charge-is-sharp"
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
       ],
-      "line": 492,
+      "line": 493,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "two_pow_mul_iter_add_one",
       "trust": "kernel"
@@ -10056,9 +10134,11 @@
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
         "J-collatz-even-step-charge-identity",
-        "J-collatz-walk-charge-is-sharp"
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
       ],
-      "line": 502,
+      "line": 503,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "three_pow_mul_add_one_le",
       "trust": "kernel"
@@ -10071,9 +10151,11 @@
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
         "J-collatz-even-step-charge-identity",
-        "J-collatz-walk-charge-is-sharp"
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
       ],
-      "line": 510,
+      "line": 511,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "cycle_even_charge",
       "trust": "kernel"
@@ -10086,11 +10168,319 @@
         "J-collatz-bridge-is-exact-at-the-word-level",
         "J-survivor-count-is-a-collatz-residue-count",
         "J-collatz-even-step-charge-identity",
-        "J-collatz-walk-charge-is-sharp"
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
       ],
-      "line": 517,
+      "line": 518,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "trivial_cycle_charge",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The shortcut map on `\u2124`: `x / 2` on evens, `(3x + 1) / 2` on odds. Agrees with `shortcutC` on `\u2115`, and `3x + 1` is even whenever `x` is odd, so the division is exact on both branches.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "def",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+      ],
+      "line": 535,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "shortcutZ",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`shortcutZ` iterated, in the peeled form `C^{k+1}(x) = C^k(C x)`.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "def",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+      ],
+      "line": 538,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "shortcutZIter",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The parity word of a `\u2124` orbit.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "def",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+      ],
+      "line": 543,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "parityWordZ",
+      "trust": "kernel"
+    },
+    {
+      "doc": "One step of the `\u2124` map, cleared of its division.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+      ],
+      "line": 559,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "two_mul_shortcutZ",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The affine formula over `\u2124`**, for every integer start: `2 ^ d C^d(x) = 3 ^ o x + wordConst w`.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+      ],
+      "line": 566,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "word_affine_int",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The `\u2124` parity word of depth `d` has length `d`.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+      ],
+      "line": 596,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "parityWordZ_length",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The `x + 1` form over `\u2124`: `2 ^ d (C^d x + 1) = 3 ^ o (x + 1) + evenCharge w`.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+      ],
+      "line": 602,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "two_pow_mul_iter_add_one_int",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The cycle equation over `\u2124`**: `(x + 1)(2 ^ d - 3 ^ o) = evenCharge w` on every integer cycle.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+      ],
+      "line": 614,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "cycle_equation_int",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Negative cycles expand.** A cycle of the `\u2124` map at `x \u2264 -2` of positive length has `2 ^ d < 3 ^ o` -- Juggler's sign -- because the right-hand side of the cycle equation is positive (the word has an even letter, else the cycle would sit at `-1`) and `x + 1 < 0`.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+      ],
+      "line": 624,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "neg_cycle_expanding",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The cycle equation in `\u2115`**, for positive cycles: `(x + 1)(2 ^ d - 3 ^ o) = evenCharge w`, hence `2 ^ d - 3 ^ o` divides the even-step charge of the word.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+      ],
+      "line": 645,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "cycle_equation",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+      ],
+      "line": 655,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "cycle_dvd",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The converse**: a start whose parity word satisfies the cycle equation returns. Together with `cycle_equation` this is the exact cycle condition as a statement about the word alone, once the word is realised: `2 ^ d - 3 ^ o` divides `evenCharge w` with the quotient `x + 1`.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+      ],
+      "line": 662,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "cycle_of_equation",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**A contracting prefix bounds the minimum by its own rational cycle value.** If the orbit has not dropped below `x` by step `j`, then `(x + 1)(2 ^ j - 3 ^ a_j) \u2264 evenCharge (prefix)`; so at a cycle minimum every contracting prefix caps `x + 1` by `evenCharge / (2 ^ j - 3 ^ a_j)`.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+      ],
+      "line": 678,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "prefix_bound_of_min",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+      ],
+      "line": 694,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "neg_one_cycle",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+      ],
+      "line": 696,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "neg_five_cycle",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+      ],
+      "line": 699,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "neg_seventeen_cycle",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The `-17` word has seven odd and four even letters, and `2 ^ 11 < 3 ^ 7`: an expanding word of length `11` with four evens, the least length Paper A's Theorem 3.22 allows a Juggler cycle.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+      ],
+      "line": 707,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "neg_seventeen_word_expanding",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Collatz's `-17` cycle inhabits Paper A's `CycleMinShape`**, with the length bound `11` and the even-count bound `4` both met with equality. The Juggler-specific parts of `CycleMin` (the floor-power realisation) are not claimed; this is the word-level shape only.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
+      ],
+      "line": 714,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "neg_seventeen_inhabits_cycleMinShape",
       "trust": "kernel"
     },
     {
@@ -90432,12 +90822,13 @@
       "ledger": []
     },
     "Problems.Juggler.CollatzBridge": {
-      "declarations": 42,
+      "declarations": 60,
       "file": "formal/Problems/Juggler/CollatzBridge.lean",
       "imports": [
         "Problems.Collatz.Shortcut",
         "Problems.Juggler.CycleCore",
         "Problems.Juggler.Envelope",
+        "Problems.Juggler.IdealCycleMin",
         "Problems.Juggler.PaperBCertificateRecursion",
         "Problems.Juggler.RateFreeDensity"
       ],
@@ -90461,6 +90852,16 @@
           "id": "J-collatz-walk-charge-is-sharp",
           "statement": "The height-only bound of J-collatz-walk-charge-constant is sharp, so composing the rotation-orbit average with Hercher's per-run averaging (Lemma 26 of Hercher 2023) gains nothing: the two read the same slack and the rotation average is its sharp reading. ARGUMENT (EXACT \u2014 HUMAN PROOF). The hug word with p odd letters -- the lowest non-negative walk, odd exactly when the height is below 1 -- has its odd steps at the heights frac(a alpha), a = 0..p-1, alpha = log2(3/2), so its odd-step sum of 2^(-h) is H(p) = sum_{a<p} 2^(-frac(a alpha)) by construction. Terras's bijection realises it: exists_residue_of_word (CollatzBridge.lean, the surjective half of image_parityWord) gives r < 2^K with parityWord r K equal to the hug word, and every x_0 = r mod 2^K follows it. Along a member x_0 far above 2^K the orbit stays above x_0 and x_j + 1 = 2^(h_j)(x_0 + 1 + S_j) with S_j <= K, so x_0 sum_{odd} 1/x_j = H(p)(1 + O(K/x_0)). Hence any bound on the odd reciprocal sum that uses only x_j + 1 >= 2^(h_j)(x_0 + 1) and x_j >= x_0 is at least H(p)/(x_0 + 1) up to O(K/x_0^2), and Hercher's (3/4) K/X_0 is a weaker evaluation of that same information, not a different source of it. NUMBERS. x_0 * sum_{odd} 1/x_j / H(p) = 1.000000000000 at p = 12, 53, 300, 665 (K = 19, 84, 475, 1054) with x_0 = r + 2^(K + 300), exact rational arithmetic; the realised residues are below 2^K and the orbits follow the hug word letter for letter. CONSEQUENCE. Further improvement of the Collatz finance constant needs information the heights do not carry: the residue classes modulo powers of two of Hercher's Corollary 29, or the exact closure (x_0 + 1)(2^K - 3^p) = evenCharge w (J-collatz-even-step-charge-identity), which requires 2^K - 3^p to divide the even-step charge of the word. Not a kill, not a period bound, not a halt theorem.",
           "tag": "COMPUTATIONALLY VERIFIED"
+        },
+        {
+          "id": "J-collatz-cycle-equation-is-a-word-divisibility",
+          "statement": "The exact Collatz cycle condition, as a statement about the word. Over \u2124 the affine identity of CollatzBridge.lean holds for every integer start (word_affine_int, two_pow_mul_iter_add_one_int: 2^d (C^d x + 1) = 3^o (x + 1) + evenCharge w, with shortcutZ x = x/2 on evens and (3x+1)/2 on odds and parityWordZ its word), so on every integer cycle (x + 1)(2^d - 3^o) = evenCharge w (cycle_equation_int); in \u2115, for a positive cycle of length d >= 1, (x + 1)(2^d - 3^o) = evenCharge w and hence 2^d - 3^o divides the even-step charge of the word (cycle_equation, cycle_dvd). CONVERSELY (cycle_of_equation): a start whose parity word w satisfies (x + 1)(2^d - 3^o) = evenCharge w with 3^o <= 2^d returns after d steps. So an integer cycle with word w exists exactly when the rational x_0 = wordConst w / (2^d - 3^o) is an integer whose parity word is w -- and the second condition is automatic, by Lagarias 1990 (lagarias-1990-rational-cycles): every word is the parity vector of exactly one rational with odd denominator, periodic under the map. That last step is not in Lean; it is checked computationally on 190069 minimal certificates (lengths <= 26) and 654279 expanding survivors (lengths <= 24), every one of whose rational cycles follows its own word and returns. PREFIX BOUND (prefix_bound_of_min): if the orbit has not dropped below x by step j then (x + 1)(2^j - 3^(a_j)) <= evenCharge (prefix), so at a cycle minimum every contracting prefix caps x + 1 by the prefix's own rational cycle value evenCharge/(2^j - 3^(a_j)) -- the exact form of Terras's 'all sufficiently large members drop' and the reason a cycle word at its minimum is a minimal certificate up to the delta exceptions of J-collatz-walk-charge-constant: it contracts only at the end, so its length is A020914(p) = the binary length of 3^p, a classical constraint (the lengths where M_d != 0, the empty-window theorem, once more). WHAT THIS IS: the cycle side of the bridge made exact -- Collatz positive cycles are minimal certificates of Paper B carrying an integer rational cycle, and the open problem is which minimal certificates have 2^K - 3^p | evenCharge w with quotient at least 2 (the trivial cycle is OE with quotient 2). Not a kill, not a bound, not a halt theorem.",
+          "tag": "EXACT \u2014 LEAN VERIFIED"
+        },
+        {
+          "id": "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+          "statement": "The sign flip on cycles is the sign of x, and Juggler's cycle words are the words of Collatz's negative cycles. On the negative integers the odd step is |x| -> (3|x| - 1)/2, so the correction pushes |x| below the pure multiplier -- Juggler's sign -- and the cycle equation (x + 1)(2^d - 3^o) = evenCharge w >= 0 with x + 1 < 0 forces 2^d < 3^o: neg_cycle_expanding, a cycle of the \u2124 shortcut map at x <= -2 of positive length has an expanding word, beside cycle_contracting for positive cycles and cycle_itinerary_formally_expanding for Juggler. At the element of least |x| the prefixes are non-contracting up to the same delta exceptions, so a negative Collatz cycle word is an expanding survivor: precisely Paper A's CycleMin word shape (prefixNoncontracting and exponentExpanding), and the finance survivors of the negative-cycle problem at a floor are the Juggler-side dangerous lengths (J-cycle-gaps-are-mirror-images). THE THREE KNOWN NEGATIVE CYCLES, in Lean by decide: -1 with word O (neg_one_cycle), -5 with word OOE (neg_five_cycle), -17 with word OOOOEOOOEEE (neg_seventeen_cycle), whose lengths 1, 3, 11 are Juggler-side lengths (the convergent numerators 1 and 3, and the semiconvergent 11 = 7 + 4 of Paper A's Remark 3.32 table). THE -17 WORD INHABITS PAPER A'S CycleMinShape (neg_seventeen_inhabits_cycleMinShape): seven odd and four even letters, 2^11 < 3^7, starts OO, ends E with an empty last odd run, length 11 -- so Paper A's floor-free Theorem 3.22, every Juggler cycle has at least four even letters and period at least eleven, is met with equality by a word that Collatz realises as an integer cycle at -17. The Juggler-specific parts of CycleMin (the floor-power realisation, the next-square inventory that lifts e >= 4 to e >= 8 at minima >= 300) are not claimed for Collatz; this is the word-level shape only. CENSUS (COMPUTATIONALLY VERIFIED): every expanding survivor of length <= 24 (654279 words) has a negative rational cycle following its word, and the integral ones are exactly the three families O^k, (OOE)^k, (OOOOEOOOEEE)^k -- the -1, -5, -17 cycles known since the 1970s (Lagarias 1985 Section 2) and no other, to that length. CONSEQUENCE FOR THE BRIDGE: the Juggler no-cycle problem is the word-level twin of the Collatz negative-cycle conjecture (only -1, -5, -17), not of the positive one; both need expanding survivor words whose corrections point down, and Collatz has three integer solutions where Juggler has none known. Not a kill, not a period bound, not a halt theorem.",
+          "tag": "EXACT \u2014 LEAN VERIFIED"
         }
       ]
     },
@@ -93672,13 +94073,13 @@
     }
   },
   "totals": {
-    "declarations": 6934,
-    "declarations_with_a_ledger_row": 4741,
-    "ledger_rows_naming_a_file": 447,
+    "declarations": 6952,
+    "declarations_with_a_ledger_row": 4759,
+    "ledger_rows_naming_a_file": 449,
     "modules": 307,
     "trust": {
       "compiler": 56,
-      "kernel": 6878
+      "kernel": 6896
     }
   }
 }

@@ -138,6 +138,17 @@ the `List Branch` word, with no real number in any statement:
   the lower envelope `3^o (x + 1) <= 2^d (C^d x + 1)`, and the exact cycle
   identity `(x + 1)(2^d - 3^o) = evenCharge w` -- the Collatz walk charge in
   natural numbers (`J-collatz-even-step-charge-identity`).
+- section 10, the cycle equation and the negative integers: the affine
+  identity over `ℤ` (`word_affine_int`, `two_pow_mul_iter_add_one_int`), the
+  cycle equation `(x + 1)(2^d - 3^o) = evenCharge w` on every integer cycle
+  (`cycle_equation_int`, `cycle_equation`, `cycle_dvd`) with its converse
+  `cycle_of_equation`, the prefix bound `prefix_bound_of_min`, and the sign
+  of `x` as the sign of the word: `neg_cycle_expanding` for cycles at
+  `x <= -2`, beside `cycle_contracting`. The three negative cycles `-1, -5,
+  -17` by `decide`, and `neg_seventeen_inhabits_cycleMinShape`: the `-17`
+  word is in Paper A's `CycleMinShape` with four even letters at length `11`
+  (`J-collatz-cycle-equation-is-a-word-divisibility`,
+  `J-juggler-cycle-words-are-collatz-negative-cycle-words`).
 
 The word-only modules `PaperBCertificateRecursion`, `PaperBCertificateLengths`,
 `PaperBJumpTransposition`, `PaperBSurvivorDecay` are, through this file,
