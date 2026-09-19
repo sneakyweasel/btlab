@@ -155,11 +155,12 @@ satisfy \(H_m\ge 1280/\eta_0^2\). If
 
 *Proof.* Put \(\theta=\eta_0/16\) and \(H_0=\lfloor\theta H_m\rfloor\).
 Since \(H_m\ge1280/\eta_0^2\ge 32/\eta_0\) we have \(\theta H_m\ge2\) and
-so \(H_0\ge\theta H_m/2\). Let \(q\) be the largest convergent denominator
-of \(\alpha_m\) with \(q\le H_0\); it exists, since \(q=1\) is one. By the
-convergent property \(\|q\alpha_m\|<1/q'\) for the next denominator
-\(q'\), and \(q'>H_0\) by maximality, so \(\|q\alpha_m\|<1/H_0\).
-Apply (1.1) to this \(q\):
+so \(H_0\ge\theta H_m/2\). By **Dirichlet's approximation theorem** there is
+\(q\) with \(1\le q\le H_0\) and \(\|q\alpha_m\|\le 1/(H_0+1)<1/H_0\).
+Replacing \(p/q\) by its lowest terms \(p'/q'\) only decreases both \(q\)
+and \(\|q\alpha_m\|\), since \(q'\alpha_m-p'=(q\alpha_m-p)/d\) with
+\(d=\gcd(p,q)\), so we may assume \(\gcd(p,q)=1\), which is what (1.1)
+requires. Apply (1.1) to this \(q\):
 \[
 \eta_0\ \le\ \frac{4}{H_0}+\frac{5}{2q}+\frac{3.77H_0}{H_m}
 \ \le\ \frac{8}{\theta H_m}+\frac5{2q}+3.77\,\theta .
@@ -169,6 +170,14 @@ Now \(3.77\theta=0.2356\,\eta_0\), and
 \(H_m\ge1280/\eta_0^2\). Hence \(5/(2q)\ge 0.6644\,\eta_0\), i.e.
 \(q\le 3.763/\eta_0\). Finally
 \(\|q\alpha_m\|<1/H_0\le 2/(\theta H_m)=32/(\eta_0H_m)\). \(\square\)
+
+An earlier version of this proof took \(q\) to be the largest continued-fraction
+convergent denominator below \(H_0\), using \(\|q_k\alpha\|<1/q_{k+1}\).
+That works, but it is more than the argument needs and it would drag continued
+fractions into the formalization: the proof uses only \(q\le H_0\) and
+\(\|q\alpha_m\|<1/H_0\), which is precisely Dirichlet's conclusion.
+Mathlib has it as `Real.exists_nat_abs_mul_sub_round_le`, in the `round` form
+that matches the resonance predicate exactly.
 
 The hypothesis \(H_m\ge1280/\eta_0^2\) is the price of stating the lemma
 for all \(\eta_0\) at once, and it is severe: at the \(\eta_0\) that
@@ -413,10 +422,26 @@ small-\(q\) resonance. None exists, and Lemma 1 says why none can.
 
 ## Formalization
 
-None yet. The natural order is Lemma 3 first, which is
-`FiberParity.bad_count_le` with the two arcs replaced by a union over
-\(q\le Q\) and needs no new idea; then Lemma 1, which needs the two
-counts for a translated \(1/q\)-grid and the convergent property, and is
-the only genuinely new Lean work; then Theorem 4 as arithmetic. Lemma 2's
-optimization of \(\theta\) is a real-number inequality of the kind
-`FateProduction` already carries. Nothing here needs `native_decide`.
+**Lemma 1 is done and kernel-checked.**
+`Problems/Juggler/FateBlockLock.lean`, `BlockLock.block_lock`, in the
+un-divided form
+\(|G-\tfrac H2|\le 4\varepsilon H+\tfrac{5H}{2q}+q\) with
+\(\varepsilon=\rho+q\eta\); `lake env lean` exits clean and
+`#print axioms` gives `[propext, Classical.choice, Quot.sound]`, the three
+standard ones. The two grid counts of §1 are `grid_half_count` and
+`grid_near_count`; `gridRes_mul_inj` and `grid_reindex` are where
+\(\gcd(p,q)=1\) earns its place, by making the \(q\) points a full
+\(1/q\)-grid; `span_bounds` is the telescoping; `block_count`,
+`block_chain` and `block_lock` assemble them. It is a statement about an
+arbitrary real sequence and imports nothing from the Juggler stack.
+
+Remaining, in order. **Lemma 3** is `FateResonanceCount.lean`, written and
+awaiting its dependency chain; it is `bad_count_le` with the two arcs
+replaced by a union, and carries no new idea. **Lemma 2** is now a short
+bridge rather than a project: Dirichlet
+(`Real.exists_nat_abs_mul_sub_round_le`) supplies the \(q\), the
+lowest-terms reduction supplies the coprimality `block_lock` wants, and the
+rest is the \(\theta=\eta_0/16\) arithmetic, a real-number inequality of
+the kind `FateProduction` already carries. **Theorem 4** is then the
+composition, and (4.2) the dyadic sum that `bad_logMass_le` already does.
+Nothing here needs `native_decide`.

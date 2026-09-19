@@ -104,7 +104,7 @@ theorem resonant_mem_arc {q : ℕ} (hq : 1 ≤ q) {δ : ℝ} (hδ : 0 ≤ δ) (h
     have hqz : (0 : ℤ) < (q : ℤ) := by exact_mod_cast hq
     have hmod0 : (0 : ℤ) ≤ P % (q : ℤ) := Int.emod_nonneg P (by omega)
     have hmodlt : P % (q : ℤ) < (q : ℤ) := Int.emod_lt_of_pos P hqz
-    have hdiv : (q : ℤ) * (P / (q : ℤ)) + P % (q : ℤ) = P := Int.ediv_add_emod P (q : ℤ)
+    have hdiv : (q : ℤ) * (P / (q : ℤ)) + P % (q : ℤ) = P := Int.mul_ediv_add_emod P (q : ℤ)
     refine ⟨P / (q : ℤ), (P % (q : ℤ)).toNat, by omega, ?_⟩
     have htn : (((P % (q : ℤ)).toNat : ℕ) : ℤ) = P % (q : ℤ) := Int.toNat_of_nonneg hmod0
     have hz : (q : ℤ) * (P / (q : ℤ)) + (((P % (q : ℤ)).toNat : ℕ) : ℤ) = P := by
