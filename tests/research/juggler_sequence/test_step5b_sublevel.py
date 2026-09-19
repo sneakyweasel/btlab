@@ -4,6 +4,8 @@ from __future__ import annotations
 
 from research.juggler_sequence.step5b_sublevel import (
     ANTI,
+    P_LIST,
+    _delta,
     C7,
     C7_ROW,
     FAMILY_NAMES,
@@ -66,3 +68,50 @@ def test_p1e6_interval_count_at_most_cap() -> None:
         assert row["count_ok"]
         seen += 1
     assert seen == len(FAMILY_NAMES)
+
+def test_delta_has_no_cancellation_at_any_scale_this_module_reaches() -> None:
+    """`_delta` is rationalised, and the direct form it replaced fails in range.
+
+    All three returns are differences of powers of two nearby large numbers,
+    with an answer of size `O(h sqrt(nu))` against operands of size `nu^1.5`.
+    Written directly the second derivative is already seven digits down at
+    `nu = 1e10`, which `P_LIST` reaches today, and the value itself returns
+    exactly `0.0` from about `1e20`. `first_v_half_p0` in the same module loops
+    to `1e28`, so the scales sit side by side even though that path does not
+    call this function.
+
+    Rationalising removes the cancellation rather than bounding it, so this
+    test asserts accuracy at every scale instead of guarding a threshold.
+    """
+    from mpmath import mp, mpf
+
+    mp.dps = 50
+
+    def reference(nu: float, h: float) -> tuple[float, float, float]:
+        n = mpf(nu)
+        x = n + 2 * h
+        return (x ** mpf("1.5") - n ** mpf("1.5"),
+                mpf("1.5") * (x ** mpf("0.5") - n ** mpf("0.5")),
+                mpf("0.75") * (x ** mpf("-0.5") - n ** mpf("-0.5")))
+
+    def direct(nu: float, h: float) -> tuple[float, float, float]:
+        x = nu + 2.0 * h
+        return (x**1.5 - nu**1.5, 1.5 * (x**0.5 - nu**0.5),
+                0.75 * (x ** (-0.5) - nu ** (-0.5)))
+
+    for exponent in (6, 10, 14, 20, 28):
+        nu = 10.0**exponent
+        got, want = _delta(nu, 1.0), reference(nu, 1.0)
+        for value, truth in zip(got, want):
+            assert abs((value - truth) / truth) < 1e-13, exponent
+
+    # the top of the current P_LIST is already past the direct form's second
+    # derivative, so this was live breakage and not only a latent trap
+    assert float(P_LIST[-1]) == 1e10
+    nu = 1e10
+    assert abs((direct(nu, 1.0)[2] - reference(nu, 1.0)[2])
+               / reference(nu, 1.0)[2]) > 1e-8
+
+    # and from 1e20 the direct form silently returns zero rather than erroring
+    assert direct(1e20, 1.0)[0] == 0.0
+    assert _delta(1e20, 1.0)[0] > 2.9e10
