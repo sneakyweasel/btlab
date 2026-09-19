@@ -30,6 +30,9 @@ from research.juggler_sequence.collatz_finance_mirror import (
     height_bound_holds,
     hug_sum,
     hug_sup,
+    hug_word,
+    realize_word,
+    sharpness_ratio,
     juggler_bound,
     juggler_survivors,
     lambda_collatz,
@@ -168,6 +171,21 @@ def test_the_hug_word_constant_is_effective_and_below_hercher() -> None:
     for x0 in (27, 97, 871, 6171, 77031, 2**31 + 1):
         r = height_bound_holds(x0)
         assert r["violations"] == 0 and r["odd_sum_le_H_plus_N"], x0
+
+
+def test_the_height_only_bound_is_sharp_on_the_hug_word() -> None:
+    """The hug word, realised in a Terras class at a large minimum, attains `H(p)/x_0`.
+
+    So Hercher's `3/4` and the rotation average read the same slack, the rotation average is
+    its sharp reading, and no bound built on `x_j + 1 >= 2^(h_j) (x_0 + 1)` alone can do better;
+    further gains need the 2-adic information of Corollary 29 and Barina.
+    """
+    w = hug_word(12)
+    assert len(w) == 19 and sum(w) == 12
+    r = realize_word(w)
+    assert r < 2**19 and shortcut_orbit(r, 19)[0] == w
+    for p in (12, 53, 300):
+        assert abs(sharpness_ratio(p) - 1.0) < 1e-9, p
 
 
 def test_the_walk_charge_does_not_move_the_published_survivors() -> None:

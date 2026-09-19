@@ -269,6 +269,77 @@ def collatz_is_proposition_j_at_delta_one() -> dict[str, float]:
     }
 
 
+def winkler_sandwich(orders: int = 2213) -> dict[str, Any]:
+    """Winkler's rational-Catalan sandwich on A100982, checked on the laboratory's `M_d`.
+
+    A Collatz-side import. Winkler (OEIS A100982 comment, 15 September 2026) states, with
+    `alpha = log2 3` and `m_n = floor(n alpha)`, that
+    `(1/n) C(m_n - 1, n - 1) <= a(n) <= (1/n) C(m_n, n - 1)`, with equality below exactly at the
+    strict record minima of `{n alpha}` over `1 <= j <= n` and above exactly at the strict record
+    maxima -- the one-sided convergents and semiconvergents of `log2 3`. The laboratory's
+    minimal-certificate count `M_d = 2 N_{d-1} - N_d` equals `a(n)` at `d = A020914(n)`, the
+    binary length of `3^n`, and vanishes at every other length (the empty-window theorem). Both
+    are checked here on the counts the laboratory computes itself.
+    """
+    from math import comb
+
+    from mpmath import mp
+    from mpmath import floor as mfloor
+    from mpmath import log as mlog
+
+    from research.juggler_sequence.jump_spectrum import survivor_counts
+
+    max_len = (3**orders).bit_length()
+    counts = survivor_counts(max_len)
+
+    def minimal(d: int) -> int:
+        return 2 * counts[d - 1] - counts[d]
+
+    with mp.workdps(60):
+        alpha = mlog(3) / mlog(2)
+        holds = True
+        lower_eq: list[int] = []
+        upper_eq: list[int] = []
+        rec_min: list[int] = []
+        rec_max: list[int] = []
+        best_min = best_max = None
+        for n in range(1, orders + 1):
+            d = (3**n).bit_length()
+            a = minimal(d)
+            m = int(mfloor(n * alpha))
+            lo, hi = comb(m - 1, n - 1), comb(m, n - 1)
+            if not (lo <= n * a <= hi):
+                holds = False
+            if n * a == lo:
+                lower_eq.append(n)
+            if n * a == hi:
+                upper_eq.append(n)
+            f = n * alpha - mfloor(n * alpha)
+            if best_min is None or f < best_min:
+                best_min = f
+                if n >= 2:
+                    rec_min.append(n)
+            if best_max is None or f > best_max:
+                best_max = f
+                if n >= 2:
+                    rec_max.append(n)
+    nonzero = [d for d in range(1, max_len + 1) if minimal(d) != 0]
+    a020914 = [(3**k).bit_length() for k in range(0, orders + 1)]
+    return {
+        "orders_checked": orders,
+        "holds": holds,
+        "a100982_head": [minimal((3**k).bit_length()) for k in range(1, 13)],
+        "lower_equality": lower_eq,
+        "upper_equality": upper_eq,
+        "record_minima": rec_min,
+        "record_maxima": rec_max,
+        "lower_matches_record_minima": [n for n in lower_eq if n >= 2] == rec_min,
+        "upper_matches_record_maxima": [n for n in upper_eq if n >= 2] == rec_max,
+        "lengths_are_a020914": nonzero == a020914,
+        "nonzero_lengths": len(nonzero),
+    }
+
+
 def probe_payload(max_depth: int = 10) -> dict[str, Any]:
     from research.juggler_sequence.jump_spectrum import survivor_counts
 

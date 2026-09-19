@@ -1,5 +1,40 @@
 # Research journal
 
+## 2026-09-19 -- the height-only bound is sharp, and Winkler's sandwich holds on our counts
+
+- **Objective:** the finance-mirror branch's question -- does the
+  rotation-orbit average compose with Hercher's per-run averaging, or do
+  they read the same slack? -- and one Collatz-to-Juggler import worth
+  checking while the OEIS entry was open.
+- **Same slack, and the rotation average is its sharp reading.** The hug
+  word puts every odd step at height `frac(a alpha)`, so its odd-step sum of
+  `2^(-h)` is `H(p)` by construction; Terras's bijection realises it
+  (`exists_residue_of_word`, added to `CollatzBridge.lean` as the surjective
+  half of `image_parityWord`), and along a member `x_0` with `300` more bits
+  than `K` the orbit attains `x_0 sum 1/x_j = H(p)` to twelve digits at
+  `p = 12, 53, 300, 665`. Any bound built on `x_j + 1 >= 2^(h_j)(x_0 + 1)`
+  and `x_j >= x_0` alone is capped at `H(p)`; Hercher's `3/4` is a weaker
+  evaluation of the same information. Row `J-collatz-walk-charge-is-sharp`.
+  What is left for the Collatz constant is the 2-adic side: Corollary 29's
+  residue tracking, or the exact closure `2^K - 3^p | evenCharge w`.
+- **Winkler's rational-Catalan sandwich on A100982 holds on the
+  laboratory's `M_d`.** For every order `n <= 2213`,
+  `(1/n) C(m_n - 1, n - 1) <= M_{A020914(n)} <= (1/n) C(m_n, n - 1)`, with
+  equality exactly at his record minima `2, 7, 12, 53, 359, 665` and record
+  maxima `3, 5, 17, 29, 41, 94, 147, 200, 253, 306, 971, 1636` of
+  `{n log2 3}`; the nonzero lengths are exactly `A020914(k)`, `k >= 0`, all
+  `2214` of them below `3508`. An independent 2026 confirmation of the
+  Sturmian structure the jump-spectrum cluster reads on the same words --
+  the extremal orders are the one-sided convergents -- and no more: the
+  sandwich is a factor `2.7` wide and says nothing about the `d^(-3/2)` or
+  the prefactor. Row `J-winkler-sandwich-holds-on-the-laboratory-counts`.
+- **Bookkeeping.** The bridge dossier's cycle-transfer sentence now points
+  at the three confirmations (Eliahou, Hercher, the walk charge) as the peer
+  session asked, and its Formalization list carries `exists_residue_of_word`.
+- **Decision:** `PROMOTE` stands on the finance mirror. Best next question:
+  what does `2^K - 3^p | evenCharge w` look like on survivor words, and is
+  any of it visible to the transfer operator of `PaperBJumpTransposition`?
+
 ## 2026-09-19 -- the walk charge transfers to Collatz, and it is worth four percent
 
 - **Objective:** the finance-mirror branch's best next question -- does Paper

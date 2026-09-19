@@ -68,7 +68,8 @@ CLASS_MIRROR = "FINANCE_MIRROR_REPRODUCES_ELIAHOU_HERCHER"
 
 #: Eliahou 1993: the admissible Collatz periods at floor 2^40.
 ELIAHOU_GENERATORS = (301994, 17087915, 85137581)
-#: Hercher 2018 at Barina's floor: the smallest surviving length, and its odd count.
+#: Hercher 2018 (Die Wurzel, with Puchert), the period bound as quoted by Hercher 2023 at the
+#: floor 695 * 2^60: the smallest surviving shortcut length, and its odd count.
 HERCHER_LENGTH, HERCHER_ODD = 114208327604, 72057431991
 #: Barina 2025 at floor 2^71.
 BARINA_LENGTH = 217976794617
@@ -219,6 +220,61 @@ def height_bound_holds(x0: int, dmax: int = 200) -> dict[str, Any]:
     H = hug_sum(a) if a else 0.0
     return {"prefix_length": j, "odd_steps": a, "violations": bad, "exceptional": exceptional,
             "odd_sum_le_H_plus_N": odd_sum <= H + exceptional + 1e-9}
+
+
+def hug_word(p: int) -> list[int]:
+    """The hug word with ``p`` odd letters: the lowest non-negative walk, odd exactly when the
+    height is below ``1``, closed with the evens that bring the height back below ``1``. Its odd
+    steps sit at the heights ``frac(a alpha)``, ``a = 0 .. p-1``."""
+    with mp.workdps(60):
+        alpha = log(3) / log(2) - 1
+        w, h, a = [], mpf(0), 0
+        while a < p:
+            if h < 1:
+                w.append(1)
+                h += alpha
+                a += 1
+            else:
+                w.append(0)
+                h -= 1
+        while h >= 1:
+            w.append(0)
+            h -= 1
+        return w
+
+
+def realize_word(word: list[int]) -> int:
+    """A residue ``r < 2^K`` whose shortcut parity word is ``word``: Terras's bijection, built one
+    letter at a time (``exists_residue_of_word`` in CollatzBridge.lean, made effective)."""
+    r = 0
+    for d in range(len(word)):
+        for cand in (r, r + (1 << d)):
+            x = cand
+            for _ in range(d):
+                x = x // 2 if x % 2 == 0 else (3 * x + 1) // 2
+            if x % 2 == word[d]:
+                r = cand
+                break
+        else:  # pragma: no cover - Terras forbids it
+            raise RuntimeError("no lift realises the next letter")
+    return r
+
+
+def sharpness_ratio(p: int, extra_bits: int = 300) -> float:
+    """``x_0 * sum_{odd} 1/x_j / H(p)`` along the hug word realised at a start with ``extra_bits``
+    more bits than its length: ``1`` to the precision of the ``O(K/x_0)`` correction, which is
+    the statement that no bound using only ``x_j + 1 >= 2^(h_j) (x_0 + 1)`` can beat ``H(p)``."""
+    from fractions import Fraction
+    word = hug_word(p)
+    r = realize_word(word)
+    x0 = r + (1 << (len(word) + extra_bits))
+    x, s = x0, Fraction(0)
+    for b in word:
+        assert x % 2 == b and x >= x0
+        if b:
+            s += Fraction(1, x)
+        x = x // 2 if x % 2 == 0 else (3 * x + 1) // 2
+    return float(s * x0) / hug_sum(p)
 
 
 def walk_charge_bound(K: int, *, exact_below: int = 3 * 10**8) -> mpf:

@@ -1,5 +1,5 @@
 {
-  "composite": 34,
+  "composite": 35,
   "note": "Proposals for human review. Calibration: 86% precision (42 of 49 fires) against all resolved rows. Nothing here has been written into the ledger.",
   "rows": [
     {
@@ -4303,7 +4303,7 @@
         },
         {
           "decl": "cycle_contracting",
-          "line": 386,
+          "line": 397,
           "score": 0.071,
           "trust": "kernel"
         }
@@ -4323,7 +4323,7 @@
         }
       ],
       "id": "J-collatz-bridge-is-exact-at-the-word-level",
-      "in_file": 36,
+      "in_file": 37,
       "lean": "Problems/Juggler/CollatzBridge.lean",
       "names_own": [
         "word_affine",
@@ -4340,20 +4340,20 @@
       "candidates": [
         {
           "decl": "decidedAtResidues_card",
-          "line": 313,
+          "line": 324,
           "score": 0.136,
           "trust": "kernel"
         },
         {
           "decl": "undecidedResidues_card",
-          "line": 303,
+          "line": 314,
           "score": 0.107,
           "trust": "kernel"
         },
         {
-          "decl": "le_iter_of_prefixNoncontracting",
-          "line": 330,
-          "score": 0.064,
+          "decl": "exists_residue_of_word",
+          "line": 282,
+          "score": 0.07,
           "trust": "kernel"
         }
       ],
@@ -4362,7 +4362,7 @@
       "definitions": [
         {
           "decl": "undecidedResidues",
-          "line": 282,
+          "line": 293,
           "score": 0.085
         },
         {
@@ -4372,7 +4372,7 @@
         }
       ],
       "id": "J-survivor-count-is-a-collatz-residue-count",
-      "in_file": 36,
+      "in_file": 37,
       "lean": "Problems/Juggler/CollatzBridge.lean",
       "names_own": [
         "undecidedResidues_card",
@@ -4382,8 +4382,55 @@
         "iter_lt_of_exponentGap_class"
       ],
       "statement": "Paper B's survivor count is a Collatz residue count, in Lean. undecidedResidues_card: the number of residues r modulo 2^d whose parity word parityWord r d has no contracting prefix equals neverNegCount d, the N_d of RateFreeDensity; decidedAtResidues_card: the number whose word is a minimal certificate (first contracts at exactly d) equals minimalCertCount d, the M_d of PaperBCertificateRecursion."
+    },
+    {
+      "candidates": [
+        {
+          "decl": "cycle_even_charge",
+          "line": 510,
+          "score": 0.184,
+          "trust": "kernel"
+        },
+        {
+          "decl": "three_pow_mul_add_one_le",
+          "line": 502,
+          "score": 0.161,
+          "trust": "kernel"
+        },
+        {
+          "decl": "wordConst_add_two_pow",
+          "line": 478,
+          "score": 0.138,
+          "trust": "kernel"
+        }
+      ],
+      "composite": true,
+      "confidence": "low",
+      "definitions": [
+        {
+          "decl": "evenCharge",
+          "line": 464,
+          "score": 0.14
+        },
+        {
+          "decl": "wordConst",
+          "line": 122,
+          "score": 0.118
+        }
+      ],
+      "id": "J-collatz-even-step-charge-identity",
+      "in_file": 37,
+      "lean": "Problems/Juggler/CollatzBridge.lean",
+      "names_own": [
+        "wordConst_add_two_pow",
+        "two_pow_mul_iter_add_one",
+        "three_pow_mul_add_one_le",
+        "cycle_even_charge",
+        "trivial_cycle_charge"
+      ],
+      "statement": "The Collatz walk charge, in natural numbers. Define evenCharge on words by evenCharge [] = 0, evenCharge (even :: w) = 3^(oddCount w) + 2 evenCharge w, evenCharge (odd :: w) = 2 evenCharge w -- in closed form the sum over even positions i of 3^(o - a_i) 2^i with a_i the odd letters before i. Then (wordConst_add_two_pow) wordConst w + 2^|w| = 3^(oddCount w) + evenCharge w, so the odd-step constant "
     }
   ],
-  "unresolved": 121,
+  "unresolved": 122,
   "worth_reviewing": 19
 }
