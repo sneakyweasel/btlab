@@ -22,7 +22,7 @@ CC BY 4.0. Use the actual date this version first becomes public as the
 publication date. No DOI has been reserved, and no external record has
 been created.
 
-The PDF is a 40-page preprint proving full five-step power-envelope
+The PDF is a 41-page preprint proving full five-step power-envelope
 certificate density 7/8, with count error O_epsilon(N^(127/128+epsilon)).
 The OOOEE proof is complete within Theorem 4.11 and Appendices A-C.
 The 10 September proof audit adds the bounded signed-residual Fourier
