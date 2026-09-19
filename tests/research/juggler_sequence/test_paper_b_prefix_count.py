@@ -3185,6 +3185,16 @@ def test_the_meander_prefactor_is_not_a_constant_but_a_function_of_the_offset() 
     Consequences.  The previously recorded constant 10.90 is one sample of psi, and the
     recorded band 10.566..11.063 is psi's range -- explained rather than noted.  The
     d^(-3/2) exponent is unaffected.
+
+    THE TWO BANDS ARE NOT INTERCHANGEABLE, and quoting the wrong one has already cost a
+    peer session a recheck.  10.37..11.00 is the BINNED shape: bin means against
+    frac(d*BETA), which is psi itself, a factor 1.0608.  10.566..11.063 is a RAW per-depth
+    range over a window, which also carries the within-bin scatter of 0.065 and the level
+    drift of +0.287, +0.124, +0.054 as the window doubles, and is a factor 1.047.  Anything
+    comparing psi's oscillation against an external bound wants the first: Paper B's
+    Section 6 and J-survivor-count-is-the-certificate-tail quote 1.06 and the resulting
+    factor 28 against Winkler's envelope of 2.7095, where the raw band would give 36.  Both
+    verdicts are the same, but the numbers are not the same number.
     """
     import statistics
 
