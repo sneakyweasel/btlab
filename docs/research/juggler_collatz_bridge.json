@@ -49,15 +49,20 @@
   "calibration": {
     "collatz_exponent": 0.050044472811669294,
     "juggler_is_delta_times_collatz": true,
-    "printed_delta": 0.010416666666666666,
-    "at_printed_delta": {
-      "union": 0.9994787034082118,
-      "sqrt": 0.9990070961653799,
-      "direct": 0.9895833333333334
+    "proved_delta": {
+      "depth_four": 0.041666666666666664,
+      "depth_five": 0.0078125
+    },
+    "withdrawn_delta": 0.010416666666666666,
+    "at_proved_delta": {
+      "depth_four:union": 0.9979148136328471,
+      "depth_four:sqrt": 0.9960283846615192,
+      "depth_five:union": 0.9996090275561589,
+      "depth_five:sqrt": 0.9992553221240349
     },
     "combination_is_worth": 19.98222668391906,
     "exponent_step_is_worth": 1.3333333333333333,
-    "note": "Proposition J on Collatz is Terras 1976. For Juggler the same proposition gives a density exponent of delta times Collatz's, so FD with any power saving short of a bijection cannot reach it. The loss is the union bound over N_d words, not the exponent: combining the words better is worth about twenty times, improving delta from 1/96 to 1/72 about one and a third"
+    "note": "Proposition J on Collatz is Terras 1976. For Juggler the same proposition gives a density exponent of delta times Collatz's, so FD with any power saving short of a bijection cannot reach it. The loss is the union bound over N_d words, not the exponent: combining the words better is worth about twenty times. BOTH HALVES OF THAT ARE WITHDRAWN: the twenty times is refuted outright (J-good-set-walsh-route-is-refuted), and the delta it was measured against, 1/96, is the 4 September target that Paper B withdrew -- what the current paper proves is 1/24 at four steps and 1/128 at five, and the power-saving hypothesis is Conjecture K, not FD"
   },
   "decision": {
     "classification": "JUGGLER_IS_COLLATZ_ONE_EXPONENTIAL_UP",

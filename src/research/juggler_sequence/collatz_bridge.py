@@ -180,7 +180,12 @@ COLLATZ_EXPONENT = -math.log(
 
 
 def density_exponent(delta: float, combination: str = "union") -> float:
-    """What Hypothesis FD with power saving `delta` buys, as a density exponent.
+    """What a power saving `delta` buys, as a density exponent.
+
+    The power-saving hypothesis is **Conjecture K**, not Hypothesis FD. FD is stated
+    with no common error rate in `d` assumed at all, so it carries no `delta`; an
+    earlier version of this docstring said "Hypothesis FD with power saving `delta`"
+    and conflated the two.
 
     Proposition J bounds the starts with no contracting prefix of length `<= d` by
     `(N_d / 2^d) N + N_d E_d(N)`. The main term is about `theta^d N` and wants `d`
@@ -301,10 +306,12 @@ def probe_payload(max_depth: int = 10) -> dict[str, Any]:
         "calibration": {
             "collatz_exponent": density_exponent(1.0),
             "juggler_is_delta_times_collatz": True,
-            "printed_delta": 1.0 / 96,
-            "at_printed_delta": {
-                c: 1.0 - density_exponent(1.0 / 96, c)
-                for c in ("union", "sqrt", "direct")
+            "proved_delta": {"depth_four": 1.0 / 24, "depth_five": 1.0 / 128},
+            "withdrawn_delta": 1.0 / 96,
+            "at_proved_delta": {
+                f"{name}:{c}": 1.0 - density_exponent(v, c)
+                for name, v in (("depth_four", 1.0 / 24), ("depth_five", 1.0 / 128))
+                for c in ("union", "sqrt")
             },
             "combination_is_worth": density_exponent(1.0, "direct")
             / density_exponent(1.0, "union"),
@@ -314,8 +321,12 @@ def probe_payload(max_depth: int = 10) -> dict[str, Any]:
                 " proposition gives a density exponent of delta times Collatz's, so FD"
                 " with any power saving short of a bijection cannot reach it. The loss"
                 " is the union bound over N_d words, not the exponent: combining the"
-                " words better is worth about twenty times, improving delta from 1/96"
-                " to 1/72 about one and a third"
+                " words better is worth about twenty times. BOTH HALVES OF THAT ARE"
+                " WITHDRAWN: the twenty times is refuted outright"
+                " (J-good-set-walsh-route-is-refuted), and the delta it was measured"
+                " against, 1/96, is the 4 September target that Paper B withdrew --"
+                " what the current paper proves is 1/24 at four steps and 1/128 at"
+                " five, and the power-saving hypothesis is Conjecture K, not FD"
             ),
         },
         "decision": {

@@ -1,5 +1,5 @@
 {
-  "composite": 32,
+  "composite": 34,
   "note": "Proposals for human review. Calibration: 86% precision (42 of 49 fires) against all resolved rows. Nothing here has been written into the ledger.",
   "rows": [
     {
@@ -4286,8 +4286,104 @@
       "lean": "formal/Problems/Juggler/PaperBJumpTransposition.lean",
       "names_own": [],
       "statement": "Transposing two adjacent barrier letters costs exactly the mass on the barrier. Grade the surviving parity words of a given length by their surplus h above the barrier. A barrier letter that does not rise acts by stepFlat v h = v h + v (h-1) and kills nothing; one that rises acts by stepRise v h = v (h+1) + v h and loses exactly v 0, the survivors sitting on the barrier. Then stepRise (stepFlat v)"
+    },
+    {
+      "candidates": [
+        {
+          "decl": "word_affine",
+          "line": 149,
+          "score": 0.078,
+          "trust": "kernel"
+        },
+        {
+          "decl": "image_parityWord",
+          "line": 265,
+          "score": 0.077,
+          "trust": "kernel"
+        },
+        {
+          "decl": "cycle_contracting",
+          "line": 386,
+          "score": 0.071,
+          "trust": "kernel"
+        }
+      ],
+      "composite": true,
+      "confidence": "low",
+      "definitions": [
+        {
+          "decl": "parityWord",
+          "line": 88,
+          "score": 0.078
+        },
+        {
+          "decl": "wordConst",
+          "line": 122,
+          "score": 0.047
+        }
+      ],
+      "id": "J-collatz-bridge-is-exact-at-the-word-level",
+      "in_file": 31,
+      "lean": "Problems/Juggler/CollatzBridge.lean",
+      "names_own": [
+        "word_affine",
+        "juggler_word_power",
+        "cycle_contracting",
+        "juggler_cycle_expanding",
+        "parityWord_eq_iff",
+        "image_parityWord",
+        "allWords_card"
+      ],
+      "statement": "The Juggler-Collatz bridge, stated as theorems over the one shared object, the List Branch word, with no real number and nothing measured in any statement. COLLATZ IS WORD-AFFINE WITH THE CORRECTION POINTING UP: for the shortcut map C (x/2 on evens, (3x+1)/2 on odds) and w = parityWord x d the first d parities of the orbit of x, 2^d * C^d(x) = 3^(oddCount w) * x + wordConst w with wordConst w >= 0"
+    },
+    {
+      "candidates": [
+        {
+          "decl": "decidedAtResidues_card",
+          "line": 313,
+          "score": 0.136,
+          "trust": "kernel"
+        },
+        {
+          "decl": "undecidedResidues_card",
+          "line": 303,
+          "score": 0.107,
+          "trust": "kernel"
+        },
+        {
+          "decl": "le_iter_of_prefixNoncontracting",
+          "line": 330,
+          "score": 0.064,
+          "trust": "kernel"
+        }
+      ],
+      "composite": true,
+      "confidence": "low",
+      "definitions": [
+        {
+          "decl": "undecidedResidues",
+          "line": 282,
+          "score": 0.085
+        },
+        {
+          "decl": "parityWord",
+          "line": 88,
+          "score": 0.062
+        }
+      ],
+      "id": "J-survivor-count-is-a-collatz-residue-count",
+      "in_file": 31,
+      "lean": "Problems/Juggler/CollatzBridge.lean",
+      "names_own": [
+        "undecidedResidues_card",
+        "decidedAtResidues_card",
+        "image_parityWord",
+        "le_iter_of_prefixNoncontracting",
+        "iter_lt_of_exponentGap_class"
+      ],
+      "statement": "Paper B's survivor count is a Collatz residue count, in Lean. undecidedResidues_card: the number of residues r modulo 2^d whose parity word parityWord r d has no contracting prefix equals neverNegCount d, the N_d of RateFreeDensity; decidedAtResidues_card: the number whose word is a minimal certificate (first contracts at exactly d) equals minimalCertCount d, the M_d of PaperBCertificateRecursion."
     }
   ],
-  "unresolved": 119,
+  "unresolved": 121,
   "worth_reviewing": 19
 }
