@@ -9919,6 +9919,84 @@
       "trust": "kernel"
     },
     {
+      "doc": "The even-step charge of a word: an even letter contributes `3` to the power of the odd letters still to come, and every letter doubles what follows. Closed form: the sum over even positions `i` of `3 ^ (o - a_i) * 2 ^ i`, with `a_i` the odd letters before `i`.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "def",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count"
+      ],
+      "line": 453,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "evenCharge",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The odd-step constant and the even-step charge differ by the multiplier gap: `wordConst w + 2 ^ |w| = 3 ^ o + evenCharge w`.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count"
+      ],
+      "line": 467,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "wordConst_add_two_pow",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The affine formula in the `x + 1` coordinate.** Every correction comes from an even step.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count"
+      ],
+      "line": 481,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "two_pow_mul_iter_add_one",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The Collatz lower envelope**, the mirror of `power_bound_word`: the `+1`s only push up, so `3 ^ o \u00b7 (x + 1) \u2264 2 ^ d \u00b7 (C^d(x) + 1)` for every start and every depth.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count"
+      ],
+      "line": 491,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "three_pow_mul_add_one_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The Collatz walk charge, exactly.** On a cycle the surplus `(x + 1)(2 ^ d - 3 ^ o)` is the even-step charge of the word. This is the counterpart of Paper A's finance inequality `n log n (3 ^ o - 2 ^ L) \u2264 L 3 ^ o`, as an identity rather than a bound.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count"
+      ],
+      "line": 499,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "cycle_even_charge",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The trivial cycle `1 \u2192 2 \u2192 1` has word `OE`, charge `2`, and `(1+1)(4 - 3) = 2`.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count"
+      ],
+      "line": 506,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "trivial_cycle_charge",
+      "trust": "kernel"
+    },
+    {
       "doc": "Integer two-sided cell `n^lower \u2264 x < n^upper`.",
       "file": "formal/Problems/Juggler/Corridor.lean",
       "kind": "def",
@@ -90257,7 +90335,7 @@
       "ledger": []
     },
     "Problems.Juggler.CollatzBridge": {
-      "declarations": 35,
+      "declarations": 41,
       "file": "formal/Problems/Juggler/CollatzBridge.lean",
       "imports": [
         "Problems.Collatz.Shortcut",
@@ -93487,13 +93565,13 @@
     }
   },
   "totals": {
-    "declarations": 6927,
-    "declarations_with_a_ledger_row": 4734,
+    "declarations": 6933,
+    "declarations_with_a_ledger_row": 4740,
     "ledger_rows_naming_a_file": 445,
     "modules": 307,
     "trust": {
       "compiler": 56,
-      "kernel": 6871
+      "kernel": 6877
     }
   }
 }

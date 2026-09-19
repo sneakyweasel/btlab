@@ -220,24 +220,79 @@ of the period". Its Juggler twin is a pointwise bound on odd-run lengths,
 `run(n) <= C log n`, the odd-tower fragment — an open digit problem, not an
 equidistribution problem.
 
+**The walk charge transfers, and it is worth four percent on Hercher's
+constant** (`J-collatz-walk-charge-constant`, **EXACT — HUMAN PROOF** for the
+inequality, **COMPUTATIONALLY VERIFIED** for the constants; the integer
+identities behind it are **EXACT — LEAN VERIFIED**,
+`J-collatz-even-step-charge-identity`). Conjugating the odd step by
+`z = x + 1` gives, for every start and depth,
+
+```text
+2^d (C^d(x) + 1) = 3^o (x + 1) + evenCharge w,      evenCharge w >= 0,
+```
+
+(`two_pow_mul_iter_add_one` in `CollatzBridge.lean`), so on a cycle
+`(x_0 + 1)(2^K - 3^p) = evenCharge w` exactly (`cycle_even_charge`) and
+`x_j + 1 >= 2^(h_j) (x_0 + 1)` with `h_j = a_j alpha - e_j` the walk height,
+`alpha = log2(3/2)`. At the cycle minimum `x_j >= x_0` forces
+`h_j >= -delta`, `delta = log2(1 + K/(x_0 + 1 - K))`, hence the height before
+the `a`-th odd step is at least `frac(a alpha)` unless `frac(a alpha) >= 1 -
+delta`. Therefore, effectively and independently of `m`,
+
+```text
+sum over odd cycle elements of 1/x  <=  (H(p) + N_delta(p)) / (x_0 + 1 - 2^delta),
+H(p) = sum_{a<p} 2^(-frac(a alpha)),   N_delta(p) = #{a < p : frac(a alpha) >= 1 - delta},
+```
+
+and `Lambda_C <= (H(p) + N_delta(p)) / (3 (x_0 + 1 - 2^delta))`. This is Paper
+A's Theorem 5.4 on the Collatz side: the hug word, whose odd steps sit at
+the heights `frac(a alpha)`, is extremal, and the transport deficit of
+Theorem 5.3 is zero because the `+1` only pushes up. Hercher 2023, Theorem
+27, bounds the same sum by `(3/4) K / X_0` (`K` his odd count, `X_0` his
+floor) through Lemma 26's averaging over at most three consecutive runs.
+
+| constant on `sum 1/x <= c p / x_0` | value |
+|---|---|
+| trivial (Eliahou, Simons–de Weger) | `1` |
+| Hercher 2023, Theorem 27 | `3/4 = 0.75` |
+| walk charge, `H(p)/p` | `0.7284` at `p = 121` (sup for `p >= 100`), `0.72157` (sup for `p >= 10^4`), `0.72135` in the limit `1/(2 log 2)` |
+
+`H(p)/p = 0.72134755` at Eliahou's `p = 10781274`; by Koksma the deviation
+from `1/(2 log 2)` is below `10^-9` at Hercher's `p = 72057431991` (the
+partial quotients of `alpha` sum to `150` through `q = 5.4e12`). The
+exceptional count is `N_delta(p) <= p delta + 151`, and at Hercher's floor
+`delta = 2.06e-10`, so `p delta < 15`. On the non-dropping prefixes of
+sampled orbits the height inequality has no violation and the odd-step sum
+stays below `H + N_delta`. What it changes: Hercher's Remark 28 threshold
+for the next period record, `2836 * 2^60`, becomes `2728 * 2^60`. What it
+does not change: the smallest survivor at `2^68` and at `2^71` is still
+`114208327604` (margin `1.33` at `2^71`), so the period bound is untouched;
+Hercher's Corollary 29 (`1536 * 2^60`, five weeks of computation tracking
+residue classes modulo powers of two) and Barina 2025 remain far stronger,
+because they use the 2-adic information this bound ignores. Priority checked
+against Hercher 2023 only, which averages locally and does not take the
+rotation-orbit average; earlier works were not read for it.
+
 ## Open questions
 
-Whether Paper A's Section 5 walk charge transfers to Collatz: with the `+1`
-pushing up, the transport deficit of Theorem 5.3 is zero, so the hug-word
-extremality and Denjoy–Koksma should apply verbatim and give a constant better
-than the per-odd-step `1/(3 x_j)`. Not computed here.
+Whether the rotation-orbit average composes with Hercher's Lemma 26 (per-run
+averaging) or with the residue tracking of Corollary 29; the three use
+different information and nothing here combines them.
 
 Whether the odd-run bound `run(n) <= C log n` for `n -> floor(n^(3/2))` is
 provable; it would give the Juggler 1-cycle theorem through Baker.
 
 ## Decision
 
-**PROMOTE.** The bridge's cycle claim now has numbers behind it: the same
-inequality reproduces Eliahou 1993 exactly and Hercher 2018 exactly, and the
-Juggler side agrees with Paper A's table. Nothing is excluded, and the branch
-records what Collatz has that Juggler lacks in the form of a concrete
-unexcluded object. Best next question: does the walk charge transfer to
-Collatz, and what constant does it give against Hercher's Theorem 27?
+**PROMOTE.** The bridge's cycle claim now has numbers behind it three times
+over: the same inequality reproduces Eliahou 1993 exactly and Hercher 2018
+exactly, the Juggler side agrees with Paper A's table, and Paper A's walk
+charge transfers as an effective bound that improves Hercher's Theorem 27
+constant by four percent without moving the period. Nothing is excluded, and
+the branch records what Collatz has that Juggler lacks in the form of a
+concrete unexcluded object. Best next question: does the rotation-orbit
+average compose with Hercher's per-run averaging (Lemma 26), or are the two
+reading the same slack?
 
 ## Publication assessment
 

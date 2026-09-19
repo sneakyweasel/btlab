@@ -120,6 +120,120 @@ def nlogn(N0: int) -> mpf:
 
 
 # ---------------------------------------------------------------------------------------------
+# The walk charge, transposed: odd-step heights are at least frac(a * alpha)
+# ---------------------------------------------------------------------------------------------
+
+#: `1/(2 log 2)`: the average of `2^(-t)` over `[0, 1)`, the hug-word constant.
+HUG_INTEGRAL = 0.7213475204444817
+#: Hercher 2023, Theorem 27: `sum over odd steps of 1/x_j <= (3/4) K / X_0`, `K` the odd count.
+HERCHER_THEOREM_27 = 0.75
+
+
+def word_const(word: list[int]) -> int:
+    """`wordConst` of CollatzBridge.lean: `2^d C^d(x) = 3^o x + wordConst w`."""
+    c, o = 0, 0
+    for b in reversed(word):
+        c = 3**o + 2 * c if b else 2 * c
+        o += b
+    return c
+
+
+def even_charge(word: list[int]) -> int:
+    """`evenCharge` of CollatzBridge.lean: `2^d (C^d(x) + 1) = 3^o (x + 1) + evenCharge w`."""
+    e, o = 0, 0
+    for b in reversed(word):
+        e = 2 * e if b else 3**o + 2 * e
+        o += b
+    return e
+
+
+def shortcut_orbit(x: int, d: int) -> tuple[list[int], list[int]]:
+    """The parity word and the states `x_0 .. x_d` of the shortcut orbit."""
+    word, states = [], [x]
+    for _ in range(d):
+        word.append(x % 2)
+        x = x // 2 if x % 2 == 0 else (3 * x + 1) // 2
+        states.append(x)
+    return word, states
+
+
+def hug_sum(p: int) -> float:
+    """`H(p) = sum_{a < p} 2^(-frac(a alpha))`, `alpha = log2(3/2)`: the largest possible sum of
+    `2^(-h)` over the first `p` odd steps of any orbit that never falls below its start, attained
+    by the hug word. float64; the fractional parts carry error below `p * 2.2e-16`."""
+    with mp.workdps(30):
+        alpha = float(log(3) / log(2) - 1)
+    total = 0.0
+    for start in range(0, p, 50_000_000):
+        a = np.arange(start, min(start + 50_000_000, p), dtype=np.float64)
+        total += float(np.sum(2.0 ** (-np.mod(a * alpha, 1.0))))
+    return total
+
+
+def hug_sup(lo: int, P: int = 2 * 10**7) -> tuple[float, int]:
+    """``sup_{lo <= p <= P} H(p)/p`` and where it is attained: the effective constant beyond ``lo``."""
+    with mp.workdps(30):
+        alpha = float(log(3) / log(2) - 1)
+    a = np.arange(P, dtype=np.float64)
+    ratio = np.cumsum(2.0 ** (-np.mod(a * alpha, 1.0))) / np.arange(1, P + 1)
+    seg = ratio[lo - 1:]
+    i = int(np.argmax(seg))
+    return float(seg[i]), i + lo
+
+
+def height_bound_holds(x0: int, dmax: int = 200) -> dict[str, Any]:
+    """Check the height inequality on the non-dropping prefix of the orbit of ``x0``.
+
+    Along the prefix on which ``x_j >= x0``, the height ``h_j = a_j alpha - e_j`` before the
+    ``a_j``-th odd step must satisfy ``h_j >= frac(a_j alpha)`` unless
+    ``frac(a_j alpha) >= 1 - delta_j``, ``delta_j = log2((x0 + 1 + S_j)/(x0 + 1))`` with ``S_j``
+    the even-step sum ``sum 2^(-h_i)`` so far; and ``sum over odd steps of 2^(-h_j)`` must be at
+    most ``H(a) + N_delta``. Exact rationals for the heights' integer parts, floats for the rest.
+    """
+    from fractions import Fraction
+    with mp.workdps(30):
+        alpha = float(log(3) / log(2) - 1)
+    word, states = shortcut_orbit(x0, dmax)
+    a = e = 0
+    S = 0.0
+    odd_sum = 0.0
+    exceptional = 0
+    bad = 0
+    for j, b in enumerate(word):
+        if states[j] < x0:
+            break
+        h = a * alpha - e
+        if b == 1:
+            fr = a * alpha - math.floor(a * alpha)
+            delta = math.log2((x0 + 1 + S) / (x0 + 1))
+            if h < fr - 1e-12:
+                if fr >= 1 - delta - 1e-12:
+                    exceptional += 1
+                else:
+                    bad += 1
+            odd_sum += 2.0 ** (-h)
+            a += 1
+        else:
+            S += 2.0 ** (-h)
+            e += 1
+    H = hug_sum(a) if a else 0.0
+    return {"prefix_length": j, "odd_steps": a, "violations": bad, "exceptional": exceptional,
+            "odd_sum_le_H_plus_N": odd_sum <= H + exceptional + 1e-9}
+
+
+def walk_charge_bound(K: int, *, exact_below: int = 3 * 10**8) -> mpf:
+    """The transposed walk charge on the cycle minimum: `x_min <= H(p) / (3 Lambda_C) (1 + o(1))`.
+
+    Above `exact_below` odd steps `H(p)` is replaced by `p / (2 log 2)`; by Koksma the relative
+    error is below `1e-9` at `p ~ 7e10` (variation `1/2` times the discrepancy of `{a alpha}`).
+    """
+    p, lam = lambda_collatz(K)
+    H = hug_sum(p) if p <= exact_below else p * HUG_INTEGRAL
+    with mp.workdps(_DPS):
+        return mpf(H) / (3 * lam)
+
+
+# ---------------------------------------------------------------------------------------------
 # Sides of the convergents
 # ---------------------------------------------------------------------------------------------
 
@@ -222,14 +336,18 @@ def three_gap_walk(eps: mpf, side: int, kmax: int) -> list[int]:
         return out
 
 
-def collatz_survivors(X0: mpf, kmax: int) -> list[dict[str, Any]]:
-    """Collatz lengths ``K <= kmax`` whose finance majorant does not fall below the floor."""
+def collatz_survivors(X0: mpf, kmax: int, *, charge: float = 1.0) -> list[dict[str, Any]]:
+    """Collatz lengths ``K <= kmax`` whose finance majorant does not fall below the floor.
+
+    ``charge`` scales the majorant: ``1`` is the trivial per-odd-step bound ``p/(3 Lambda)``,
+    ``HERCHER_THEOREM_27`` is Hercher's ``3/4`` and ``HUG_INTEGRAL`` the transposed walk charge.
+    """
     with mp.workdps(_DPS):
         eps = mpf(kmax) * _x() / (3 * log(3) * X0) * mpf("1.001")
         out = []
         for K in three_gap_walk(eps, +1, kmax):
             p, lam = lambda_collatz(K)
-            bound = mpf(p) / (3 * lam)
+            bound = mpf(charge) * mpf(p) / (3 * lam)
             if bound >= X0:
                 out.append({"K": K, "p": p, "frac": float(lam / log(3)), "x_min_le": float(bound)})
         return out
@@ -298,7 +416,44 @@ def probe_payload(*, kmax_40: int = 4 * 10**8, brute_kmax: int = 3 * 10**7) -> d
         o1, lam1 = lambda_juggler(one_cycle)
         mirror = max(abs(lambda_collatz(K)[1] + lambda_juggler(K)[1] - log(3))
                      for K in (1, 19, 84, 1054, 301994, 17087915, 85137581))
+        hug = {p: hug_sum(p) / p for p in (12, 53, 665, 31867, 111202, 190537, 10781274)}
+        wc68 = collatz_survivors(two68, 4 * 10**11, charge=HUG_INTEGRAL)
+        wc71 = collatz_survivors(two71, 10**12, charge=HUG_INTEGRAL)
+        identities_hold = all(
+            2**d * (states[d] + 1) == 3**sum(word) * (x0 + 1) + even_charge(word)
+            and word_const(word) + 2**d == 3**sum(word) + even_charge(word)
+            for x0 in (1, 7, 27, 97, 871, 6171, 77031, 2**20 + 1)
+            for d in (1, 2, 5, 17, 40)
+            for word, states in [shortcut_orbit(x0, d)]
+        )
     return {
+        "walk_charge": {
+            "statement": (
+                "on a cycle at its minimum x_0 the height before the a-th odd step is at least"
+                " frac(a alpha), alpha = log2(3/2), up to a correction of order K/x_0, so"
+                " Lambda_C <= H(p)/(3 x_0) (1 + o(1)) with H(p) = sum_{a<p} 2^(-frac(a alpha))"
+            ),
+            "hug_average": {str(p): v for p, v in hug.items()},
+            "constant": HUG_INTEGRAL,
+            "hercher_theorem_27": HERCHER_THEOREM_27,
+            "trivial": 1.0,
+            "remark_28_threshold_units_2_60": {
+                "eliahou_methods": 3781, "theorem_27": 2836,
+                "walk_charge": round(2836 * HUG_INTEGRAL / HERCHER_THEOREM_27),
+                "corollary_29_computational": 1536,
+            },
+            "smallest_survivor_with_walk_charge": {"2^68": wc68[0]["K"], "2^71": wc71[0]["K"]},
+            "margin_at_2_71": float(walk_charge_bound(HERCHER_LENGTH) / two71),
+            "integer_identities_hold": identities_hold,
+            "effective": {
+                "sup_hug_average_p_ge_100": hug_sup(100)[0],
+                "sup_hug_average_p_ge_1e5": hug_sup(100_000)[0],
+                "partial_quotient_sum_to_5e12": 150,
+                "exceptional_bound": "N_delta(p) <= p delta + 151 for p <= 5e12",
+                "delta_at_hercher_floor": float(log(1 + mpf(HERCHER_LENGTH) / (695 * mpf(2) ** 60 + 1 - HERCHER_LENGTH)) / log(2)),
+                "orbit_prefix_checks": {str(x): height_bound_holds(x) for x in (27, 97, 871, 6171, 77031, 2**31 + 1)},
+            },
+        },
         "answer": "Paper A's finance transposed by x_min <-> n log n reproduces Eliahou and Hercher",
         "identities": {
             "lambda_collatz": "K log 2 - floor(K x) log 3 = log 3 * frac(K x)",
@@ -383,6 +538,16 @@ def render_markdown(data: dict[str, Any]) -> str:
         f"- floor `3.5e8`: smallest `{j['floor_3_5e8']['smallest']}`, first `{j['floor_3_5e8']['first']}`",
         f"- the 1-cycle length `{j['one_cycle_length']}` has bound `{j['one_cycle_nlogn_bound']:.3e}`"
         f" against the floor `{j['floor_nlogn_3_5e8']:.3e}`: not excluded by finance",
+        "",
+        "## The walk charge, transposed",
+        "",
+        f"- `H(p)/p` at `p = 10781274`: `{data['walk_charge']['hug_average']['10781274']:.8f}`;"
+        f" limit `1/(2 log 2) = {data['walk_charge']['constant']:.8f}`; Hercher's Theorem 27 constant"
+        f" `{data['walk_charge']['hercher_theorem_27']}`; trivial `1`",
+        f"- Remark 28 threshold in units of `2^60`: `{data['walk_charge']['remark_28_threshold_units_2_60']}`",
+        f"- smallest survivor with the walk charge: `{data['walk_charge']['smallest_survivor_with_walk_charge']}`"
+        f" (margin at `2^71`: `{data['walk_charge']['margin_at_2_71']:.3f}`)",
+        f"- integer identities of `CollatzBridge.lean` re-checked on orbits: `{data['walk_charge']['integer_identities_hold']}`",
         "",
         "## What this does not say",
         "",

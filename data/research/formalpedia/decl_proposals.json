@@ -4323,7 +4323,7 @@
         }
       ],
       "id": "J-collatz-bridge-is-exact-at-the-word-level",
-      "in_file": 31,
+      "in_file": 36,
       "lean": "Problems/Juggler/CollatzBridge.lean",
       "names_own": [
         "word_affine",
@@ -4372,7 +4372,7 @@
         }
       ],
       "id": "J-survivor-count-is-a-collatz-residue-count",
-      "in_file": 31,
+      "in_file": 36,
       "lean": "Problems/Juggler/CollatzBridge.lean",
       "names_own": [
         "undecidedResidues_card",

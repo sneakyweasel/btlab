@@ -1,5 +1,52 @@
 # Research journal
 
+## 2026-09-19 -- the walk charge transfers to Collatz, and it is worth four percent
+
+- **Objective:** the finance-mirror branch's best next question -- does Paper
+  A's Section 5 walk charge transfer to Collatz cycles, and what constant
+  does it give against Hercher's Theorem 27?
+- **It transfers exactly, because the `+1` only pushes up.** Conjugating the
+  odd step by `z = x + 1` gives `2^d (C^d x + 1) = 3^o (x + 1) + evenCharge w`
+  for every start and depth, so on a cycle `(x_0 + 1)(2^K - 3^p) = evenCharge
+  w`: the surplus is the even-step charge of the word, an identity where
+  Paper A has an inequality. In Lean now (`CollatzBridge.lean` section 9:
+  `evenCharge`, `wordConst_add_two_pow`, `two_pow_mul_iter_add_one`,
+  `three_pow_mul_add_one_le`, `cycle_even_charge`; compiles, no `sorry`).
+  Row `J-collatz-even-step-charge-identity`.
+- **The bound.** `x_j + 1 >= 2^(h_j)(x_0 + 1)` with `h_j` the walk height,
+  and at the minimum the height before the `a`-th odd step is at least
+  `frac(a alpha)`, `alpha = log2(3/2)`, up to an exceptional set of size
+  `N_delta(p) <= p delta + 151`, `delta = log2(1 + K/(x_0+1-K))`. So the sum
+  of `1/x` over the odd cycle elements is at most `(H(p) + N_delta(p))/(x_0 +
+  1 - 2^delta)` with `H(p) = sum_{a<p} 2^(-frac(a alpha))`: Paper A's Theorem
+  5.4, the hug word extremal, with zero transport deficit. Effective and
+  independent of `m`. Row `J-collatz-walk-charge-constant`.
+- **Against Hercher.** Theorem 27 of Hercher 2023 (read from the JIS PDF,
+  Lemma 26's three-run averaging) bounds the same sum by `(3/4) K/X_0`.
+  `H(p)/p` is `0.7284` as a supremum over `p >= 100`, `0.72157` over
+  `p >= 10^4`, and `1/(2 log 2) = 0.72135` in the limit (deviation below
+  `1e-9` at Hercher's `p = 7.2e10` by Koksma; the partial quotients of
+  `alpha` sum to `150` through `5.4e12`). The peer session's caution --
+  that an asymptotic constant compared with an effective one is a units
+  mismatch -- was right to raise and is answered: both are effective, and
+  every nontrivial cycle has `p > 7.2e10`. Remark 28's threshold `2836 *
+  2^60` becomes `2728 * 2^60`.
+- **What it does not do.** The smallest survivor at `2^68` and at `2^71` is
+  still `114208327604`, margin `1.33` at `2^71`; the published period bounds
+  do not move. Corollary 29 (`1536 * 2^60`, five weeks tracking residue
+  classes modulo powers of two) and Barina 2025 use the 2-adic information
+  this bound ignores. So: Juggler contributes to Collatz a cleaner analytic
+  constant, and Collatz still wins on the 2-adics -- the same partition as
+  everywhere else on the bridge.
+- **Record hygiene.** The peer rebuilt the three formalpedia artifacts I
+  had left stale (`dag`, `propose`, `review`); all four are regenerated in
+  this commit and the lesson is in memory. Archaeology: the laboratory's
+  literature notes carry Eliahou-Verger-Gaugry, not Eliahou 1993, and no
+  record of Hercher's constant.
+- **Decision:** `PROMOTE` stands. Best next question: does the rotation-orbit
+  average compose with Hercher's per-run averaging, or are they reading the
+  same slack?
+
 ## 2026-09-19 -- the bridge is exact in Lean, and Paper A's finance is Eliahou's
 
 - **Objective:** Philippe asked for a review of the three bridge commits and

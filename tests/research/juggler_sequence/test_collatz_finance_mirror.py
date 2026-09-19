@@ -18,17 +18,26 @@ from research.juggler_sequence.collatz_finance_mirror import (
     ELIAHOU_GENERATORS,
     HERCHER_LENGTH,
     HERCHER_ODD,
+    HERCHER_THEOREM_27,
+    HUG_INTEGRAL,
     JSON_PATH,
     brute_force_collatz_survivors,
     collatz_bound,
     collatz_survivors,
     convergent_sides,
     eliahou_decomposition,
+    even_charge,
+    height_bound_holds,
+    hug_sum,
+    hug_sup,
     juggler_bound,
     juggler_survivors,
     lambda_collatz,
     lambda_juggler,
     nlogn,
+    shortcut_orbit,
+    walk_charge_bound,
+    word_const,
 )
 from research.juggler_sequence.lean_paths import BRANCHES_ROOT
 from research.juggler_sequence.paper_a_audit import survivors as paper_a_survivors
@@ -131,6 +140,47 @@ def test_juggler_has_no_steiner_theorem_in_finance() -> None:
         assert juggler_bound(9809721694) > 10**19 > nlogn(350_000_000)
 
 
+def test_the_even_step_charge_identities_hold_on_orbits() -> None:
+    """`2^d (C^d x + 1) = 3^o (x + 1) + evenCharge w` and `wordConst w + 2^d = 3^o + evenCharge w`,
+    the natural-number identities of `CollatzBridge.lean`, re-checked in Python on orbits."""
+    for x0 in (1, 3, 7, 27, 97, 871, 6171, 77031, 2**20 + 1, 2**40 + 3):
+        for d in (1, 2, 3, 5, 17, 40, 90):
+            word, states = shortcut_orbit(x0, d)
+            o = sum(word)
+            assert 2**d * (states[d] + 1) == 3**o * (x0 + 1) + even_charge(word)
+            assert word_const(word) + 2**d == 3**o + even_charge(word)
+            assert 3**o * (x0 + 1) <= 2**d * (states[d] + 1)
+    assert even_charge([1, 0]) == 2 and 2 * 2**2 == 2 * 3 + even_charge([1, 0])
+
+
+def test_the_hug_word_constant_is_effective_and_below_hercher() -> None:
+    """`H(p)/p -> 1/(2 log 2) = 0.72135`, and it is below Hercher's `3/4` for every `p >= 100`.
+
+    Hercher 2023 Theorem 27 bounds the same sum, over the odd cycle elements of `1/x`, by
+    `(3/4) K/X_0`; the transposed walk charge gives `(H(p) + N_delta(p))/(x_0 + 1 - 2^delta)`,
+    effective and independent of `m`, with `N_delta(p) <= p delta + 151` and `delta` of order
+    `K/x_0`. Any nontrivial cycle has `p > 7.2e10`, so the comparison is between uniform bounds.
+    """
+    assert abs(hug_sum(111202) / 111202 - HUG_INTEGRAL) < 5e-6
+    assert abs(hug_sum(10781274) / 10781274 - HUG_INTEGRAL) < 1e-7
+    sup100, _ = hug_sup(100, 2_000_000)
+    assert HUG_INTEGRAL < sup100 < 0.73 < HERCHER_THEOREM_27
+    for x0 in (27, 97, 871, 6171, 77031, 2**31 + 1):
+        r = height_bound_holds(x0)
+        assert r["violations"] == 0 and r["odd_sum_le_H_plus_N"], x0
+
+
+def test_the_walk_charge_does_not_move_the_published_survivors() -> None:
+    """Scaling the majorant by `0.7213` leaves `114208327604` the smallest survivor at both
+    `2^68` and `2^71`: the constant is worth `4%` on Theorem 27 and nothing on the period."""
+    with mp.workdps(80):
+        s68 = collatz_survivors(mpf(2) ** 68, 4 * 10**11, charge=HUG_INTEGRAL)
+        s71 = collatz_survivors(mpf(2) ** 71, 10**12, charge=HUG_INTEGRAL)
+        margin = walk_charge_bound(HERCHER_LENGTH) / mpf(2) ** 71
+    assert s68[0]["K"] == HERCHER_LENGTH and s71[0]["K"] == HERCHER_LENGTH
+    assert 1.3 < float(margin) < 1.4
+
+
 def test_committed_artifact_records_the_mirror_and_its_limits() -> None:
     data = json.loads(JSON_PATH.read_text(encoding="utf-8"))
     assert data["decision"]["classification"] == CLASS_MIRROR
@@ -143,3 +193,10 @@ def test_committed_artifact_records_the_mirror_and_its_limits() -> None:
     assert data["juggler"]["floor_3_5e8"]["smallest"] == 50508
     assert "No cycle of any length" in data["anti_overclaim"]
     assert data["identities"]["mirror_residual"] < 1e-40
+    w = data["walk_charge"]
+    assert w["constant"] < w["hercher_theorem_27"] < w["trivial"]
+    assert w["remark_28_threshold_units_2_60"]["walk_charge"] == 2728
+    assert w["smallest_survivor_with_walk_charge"] == {"2^68": HERCHER_LENGTH, "2^71": HERCHER_LENGTH}
+    assert w["integer_identities_hold"] is True
+    assert w["effective"]["sup_hug_average_p_ge_100"] < HERCHER_THEOREM_27
+    assert all(r["violations"] == 0 for r in w["effective"]["orbit_prefix_checks"].values())
