@@ -73,6 +73,7 @@ statement.
 -/
 
 import Mathlib.Tactic
+import Mathlib.Analysis.SpecialFunctions.Log.Base
 import Problems.Juggler.PaperBCertificateLengths
 import Problems.Juggler.RateFreeDensity
 
@@ -617,5 +618,63 @@ theorem card_aliveWordsAt_succ_of_window_empty {c : ℝ} (hc : 1 ≤ c) {d : ℕ
     rw [Finset.card_insert_of_notMem (by simp [hne w]), Finset.card_singleton]
   rw [← aliveWordsAt_succ_of_window_empty hc h, Finset.card_biUnion hdisj,
     Finset.sum_congr rfl hpair, Finset.sum_const, smul_eq_mul, mul_comm]
+
+/-! ## 10. The carrying lengths at level `Λ`, in closed form
+
+At level zero `minimalCert_exists_iff_natLog` names the carrying lengths as
+`Nat.log 2 (3 ^ o) + 1`, which is A020914 and needs no real number. At level `Λ` that closed
+form has to move into the reals, and what it becomes is an **inhomogeneous** Beatty sequence:
+the same slope `log₂ 3`, with intercept `Λ`.
+
+So the level moves the intercept and nothing else. In particular it moves *which* lengths are
+free without moving how many: the free density is `1 - 1/log₂ 3` at every level, because that
+depends on the slope alone. -/
+
+/-- `3 ^ o` is `2` to the power `o log₂ 3`. -/
+theorem three_pow_eq_rpow (o : ℕ) :
+    (3 : ℝ) ^ o = (2 : ℝ) ^ ((o : ℝ) * Real.logb 2 3) := by
+  rw [mul_comm, Real.rpow_mul (by norm_num),
+    Real.rpow_logb (by norm_num) (by norm_num) (by norm_num), Real.rpow_natCast]
+
+/-- `3 ^ o · 2 ^ Λ` is `2` to the power `o log₂ 3 + Λ`. -/
+theorem three_pow_mul_rpow (Λ : ℝ) (o : ℕ) :
+    (3 : ℝ) ^ o * (2 : ℝ) ^ Λ = (2 : ℝ) ^ ((o : ℝ) * Real.logb 2 3 + Λ) := by
+  rw [Real.rpow_add (by norm_num), ← three_pow_eq_rpow]
+
+/-- **The shifted window is an inhomogeneous Beatty condition.** At level `Λ ≥ 0` the length
+`L ≥ 1` carries the odd count `o` exactly when `⌊o log₂ 3 + Λ⌋ = L - 1`.
+
+At `Λ = 0` this is `certWindow_iff_natLog`, since `Nat.log 2 (3 ^ o) = ⌊o log₂ 3⌋`. -/
+theorem certWindowAt_iff_floor {Λ : ℝ} {L o : ℕ} (hL : 1 ≤ L) :
+    CertWindowAt ((2 : ℝ) ^ Λ) L o ↔ ⌊(o : ℝ) * Real.logb 2 3 + Λ⌋ = (L : ℤ) - 1 := by
+  have hkey := three_pow_mul_rpow Λ o
+  have hLcast : ((L - 1 : ℕ) : ℝ) = (L : ℝ) - 1 := by
+    have : (1 : ℕ) ≤ L := hL
+    push_cast [Nat.cast_sub this]
+    ring
+  constructor
+  · rintro ⟨h1, h2⟩
+    rw [hkey] at h1 h2
+    rw [← Real.rpow_natCast (2 : ℝ) (L - 1)] at h1
+    rw [← Real.rpow_natCast (2 : ℝ) L] at h2
+    rw [Real.rpow_le_rpow_left_iff (by norm_num)] at h1
+    rw [Real.rpow_lt_rpow_left_iff (by norm_num)] at h2
+    rw [hLcast] at h1
+    rw [Int.floor_eq_iff]
+    constructor
+    · push_cast
+      linarith
+    · push_cast
+      linarith
+  · intro h
+    rw [Int.floor_eq_iff] at h
+    obtain ⟨h1, h2⟩ := h
+    push_cast at h1 h2
+    refine ⟨?_, ?_⟩
+    · rw [hkey, ← Real.rpow_natCast (2 : ℝ) (L - 1),
+        Real.rpow_le_rpow_left_iff (by norm_num), hLcast]
+      linarith
+    · rw [hkey, ← Real.rpow_natCast (2 : ℝ) L, Real.rpow_lt_rpow_left_iff (by norm_num)]
+      linarith
 
 end Problems.Juggler
