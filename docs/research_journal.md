@@ -1,5 +1,41 @@
 # Research journal
 
+## 2026-09-19 -- the averaging question's missing lemma has a name and an exponent
+
+- **Objective:** push on the averaging question after the peer handed me the
+  line, having priced it at the full gap from `0.326` to `0.4927`.
+- **The obstruction was recorded as "an intermediate coefficient with no
+  lemma".** It now has one. The quantity that decides whether an adversary can
+  plant low-share fibres is the `1/m`-weighted fraction of fibres below a
+  share threshold, as a function of scale. I measured it: it decays like a
+  power of the scale at every threshold tested, `m^(-0.32)` to `m^(-0.40)`,
+  including thresholds within `0.01` of the mean. The mean share itself is
+  `1/2` to three digits at every scale from `2^18` to `2^32`.
+- **Why that is the whole question.** Contagion already forces `A` to carry
+  weight `K (log y)^(13/40)` in the range `family_OE` sums over. A weight that
+  grows polylogarithmically cannot sit inside a capacity that decays
+  polynomially. So for large `y` the low-share fibres hold a vanishing
+  fraction of `A`'s weight, `A`'s weighted mean share is at least any fixed
+  `theta < 1/2`, and the coefficient moves from `(2/3)(1/3)` toward
+  `(2/3)(1/2) = 1/3`. That is a bootstrap, not a circle: it uses the certified
+  exponent to improve the coefficient that produced it.
+- **The prize, priced earlier today:** a coefficient of `0.3332763` on two
+  productions matches `lambda** = 0.492572`. So this route would reach the
+  headline exponent with no block-average family and no six-word ladder,
+  taking Proposition 4.4's two exponential-sum bounds off the critical path.
+  Those are the largest unformalized gap in Paper C.
+- **What is not done, and it is the whole of it.** The decay is measured on
+  1200 samples per block to `2^32`, not proved. It is an equidistribution
+  statement about the fibre step across `m`, which is the same object the
+  sweep lemmas already control, so the laboratory's own machinery is the
+  natural route. Nothing here is Lean and no exponent has improved.
+- **The concentration is tighter than a fair coin**, which is itself a hint at
+  the proof: at `2^32` a fair coin on `H = 1083` flips would put `25.5%` of
+  mass below `0.49` and the measurement finds `1.6%`. The tightness comes from
+  the rotation, not from independence.
+- **Decision:** the `PARK` on `juggler_oe_rest_average` should be reconsidered.
+  Best next question: prove the polynomial decay from the sweep lemmas.
+
 ## 2026-09-19 -- The pairing third is attained, and alpha was noise above 1e7
 
 - **Objective:** Philippe asked whether Paper C's `2/9` is sharp.

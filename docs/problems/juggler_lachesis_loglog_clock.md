@@ -479,10 +479,15 @@ and
 \[
 O(y)\ \le\ q^*\,P\,u(y)/\theta_{\min}\ =\ O(\log\log y).
 \]
-The gate needs \(O(y)\ge O^*(y)\), and \(O^*(y)\ge\ln y\) with no
-computation: \(O\) points cut the circle into \(O\) gaps summing to
-\(1\), so \(\mathrm{gap}(O)\ge 1/O\), and \(\mathrm{gap}(O^*)\le
-1/\ln y\) forces \(O^*\ge\ln y\). Since \(\log\log y=o(\log y)\), **the
+The gate needs \(O(y)\ge O^*(y)\), and \(O^*(y)\ge\ln y-1\) with no
+computation: the rotation set is \(\{j\alpha:0\le j\le O\}\), which is
+\(O+1\) points cutting the circle into \(O+1\) gaps summing to \(1\), so
+\(\mathrm{gap}(O)\ge 1/(O+1)\), and \(\mathrm{gap}(O^*)\le 1/\ln y\)
+forces \(O^*\ge\ln y-1\). (The bound \(\mathrm{gap}(O)\ge1/O\) printed
+here until 19 September 2026 counted \(O\) points rather than \(O+1\)
+and is false at \(O=1,2,4\), where the gaps are \(0.584963\),
+\(0.415037\) and \(0.245112\); only the order is used below, so the
+conclusion is unchanged.) Since \(\log\log y=o(\log y)\), **the
 gate provably fails for all large \(y\)**: bounded record gaps make that
 Clotho basin lacunary above an explicit scale. With the observed
 constants the crossover lies between \(10^{10000}\) and \(10^{20000}\).
