@@ -1,5 +1,5 @@
 {
-  "composite": 32,
+  "composite": 37,
   "note": "Proposals for human review. Calibration: 86% precision (42 of 49 fires) against all resolved rows. Nothing here has been written into the ledger.",
   "rows": [
     {
@@ -4286,8 +4286,252 @@
       "lean": "formal/Problems/Juggler/PaperBJumpTransposition.lean",
       "names_own": [],
       "statement": "Transposing two adjacent barrier letters costs exactly the mass on the barrier. Grade the surviving parity words of a given length by their surplus h above the barrier. A barrier letter that does not rise acts by stepFlat v h = v h + v (h-1) and kills nothing; one that rises acts by stepRise v h = v (h+1) + v h and loses exactly v 0, the survivors sitting on the barrier. Then stepRise (stepFlat v)"
+    },
+    {
+      "candidates": [
+        {
+          "decl": "neg_cycle_expanding",
+          "line": 624,
+          "score": 0.081,
+          "trust": "kernel"
+        },
+        {
+          "decl": "word_affine",
+          "line": 150,
+          "score": 0.078,
+          "trust": "kernel"
+        },
+        {
+          "decl": "image_parityWord",
+          "line": 266,
+          "score": 0.077,
+          "trust": "kernel"
+        }
+      ],
+      "composite": true,
+      "confidence": "low",
+      "definitions": [
+        {
+          "decl": "parityWord",
+          "line": 89,
+          "score": 0.078
+        },
+        {
+          "decl": "shortcutZ",
+          "line": 535,
+          "score": 0.049
+        }
+      ],
+      "id": "J-collatz-bridge-is-exact-at-the-word-level",
+      "in_file": 57,
+      "lean": "Problems/Juggler/CollatzBridge.lean",
+      "names_own": [
+        "word_affine",
+        "juggler_word_power",
+        "cycle_contracting",
+        "juggler_cycle_expanding",
+        "parityWord_eq_iff",
+        "image_parityWord",
+        "allWords_card"
+      ],
+      "statement": "The Juggler-Collatz bridge, stated as theorems over the one shared object, the List Branch word, with no real number and nothing measured in any statement. COLLATZ IS WORD-AFFINE WITH THE CORRECTION POINTING UP: for the shortcut map C (x/2 on evens, (3x+1)/2 on odds) and w = parityWord x d the first d parities of the orbit of x, 2^d * C^d(x) = 3^(oddCount w) * x + wordConst w with wordConst w >= 0"
+    },
+    {
+      "candidates": [
+        {
+          "decl": "decidedAtResidues_card",
+          "line": 325,
+          "score": 0.136,
+          "trust": "kernel"
+        },
+        {
+          "decl": "undecidedResidues_card",
+          "line": 315,
+          "score": 0.107,
+          "trust": "kernel"
+        },
+        {
+          "decl": "exists_residue_of_word",
+          "line": 283,
+          "score": 0.07,
+          "trust": "kernel"
+        }
+      ],
+      "composite": true,
+      "confidence": "low",
+      "definitions": [
+        {
+          "decl": "undecidedResidues",
+          "line": 294,
+          "score": 0.085
+        },
+        {
+          "decl": "parityWord",
+          "line": 89,
+          "score": 0.062
+        }
+      ],
+      "id": "J-survivor-count-is-a-collatz-residue-count",
+      "in_file": 57,
+      "lean": "Problems/Juggler/CollatzBridge.lean",
+      "names_own": [
+        "undecidedResidues_card",
+        "decidedAtResidues_card",
+        "image_parityWord",
+        "le_iter_of_prefixNoncontracting",
+        "iter_lt_of_exponentGap_class"
+      ],
+      "statement": "Paper B's survivor count is a Collatz residue count, in Lean. undecidedResidues_card: the number of residues r modulo 2^d whose parity word parityWord r d has no contracting prefix equals neverNegCount d, the N_d of RateFreeDensity; decidedAtResidues_card: the number whose word is a minimal certificate (first contracts at exactly d) equals minimalCertCount d, the M_d of PaperBCertificateRecursion."
+    },
+    {
+      "candidates": [
+        {
+          "decl": "cycle_even_charge",
+          "line": 511,
+          "score": 0.184,
+          "trust": "kernel"
+        },
+        {
+          "decl": "three_pow_mul_add_one_le",
+          "line": 503,
+          "score": 0.161,
+          "trust": "kernel"
+        },
+        {
+          "decl": "wordConst_add_two_pow",
+          "line": 479,
+          "score": 0.138,
+          "trust": "kernel"
+        }
+      ],
+      "composite": true,
+      "confidence": "low",
+      "definitions": [
+        {
+          "decl": "evenCharge",
+          "line": 465,
+          "score": 0.14
+        },
+        {
+          "decl": "wordConst",
+          "line": 123,
+          "score": 0.118
+        }
+      ],
+      "id": "J-collatz-even-step-charge-identity",
+      "in_file": 57,
+      "lean": "Problems/Juggler/CollatzBridge.lean",
+      "names_own": [
+        "wordConst_add_two_pow",
+        "two_pow_mul_iter_add_one",
+        "three_pow_mul_add_one_le",
+        "cycle_even_charge",
+        "trivial_cycle_charge"
+      ],
+      "statement": "The Collatz walk charge, in natural numbers. Define evenCharge on words by evenCharge [] = 0, evenCharge (even :: w) = 3^(oddCount w) + 2 evenCharge w, evenCharge (odd :: w) = 2 evenCharge w -- in closed form the sum over even positions i of 3^(o - a_i) 2^i with a_i the odd letters before i. Then (wordConst_add_two_pow) wordConst w + 2^|w| = 3^(oddCount w) + evenCharge w, so the odd-step constant "
+    },
+    {
+      "candidates": [
+        {
+          "decl": "cycle_of_equation",
+          "line": 662,
+          "score": 0.156,
+          "trust": "kernel"
+        },
+        {
+          "decl": "prefix_bound_of_min",
+          "line": 678,
+          "score": 0.151,
+          "trust": "kernel"
+        },
+        {
+          "decl": "neg_cycle_word_is_juggler_shape",
+          "line": 773,
+          "score": 0.096,
+          "trust": "kernel"
+        }
+      ],
+      "composite": true,
+      "confidence": "low",
+      "definitions": [
+        {
+          "decl": "evenCharge",
+          "line": 465,
+          "score": 0.069
+        },
+        {
+          "decl": "shortcutZ",
+          "line": 535,
+          "score": 0.064
+        }
+      ],
+      "id": "J-collatz-cycle-equation-is-a-word-divisibility",
+      "in_file": 57,
+      "lean": "Problems/Juggler/CollatzBridge.lean",
+      "names_own": [
+        "word_affine_int",
+        "two_pow_mul_iter_add_one_int",
+        "cycle_equation_int",
+        "cycle_equation",
+        "cycle_dvd",
+        "cycle_of_equation",
+        "prefix_bound_of_min"
+      ],
+      "statement": "The exact Collatz cycle condition, as a statement about the word. Over \u2124 the affine identity of CollatzBridge.lean holds for every integer start (word_affine_int, two_pow_mul_iter_add_one_int: 2^d (C^d x + 1) = 3^o (x + 1) + evenCharge w, with shortcutZ x = x/2 on evens and (3x+1)/2 on odds and parityWordZ its word), so on every integer cycle (x + 1)(2^d - 3^o) = evenCharge w (cycle_equation_int);"
+    },
+    {
+      "candidates": [
+        {
+          "decl": "neg_seventeen_inhabits_cycleMinShape",
+          "line": 714,
+          "score": 0.163,
+          "trust": "kernel"
+        },
+        {
+          "decl": "neg_cycle_word_is_juggler_shape",
+          "line": 773,
+          "score": 0.138,
+          "trust": "kernel"
+        },
+        {
+          "decl": "neg_prefix_noncontracting",
+          "line": 748,
+          "score": 0.128,
+          "trust": "kernel"
+        }
+      ],
+      "composite": true,
+      "confidence": "low",
+      "definitions": [
+        {
+          "decl": "evenCharge",
+          "line": 465,
+          "score": 0.05
+        },
+        {
+          "decl": "parityWord",
+          "line": 89,
+          "score": 0.037
+        }
+      ],
+      "id": "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+      "in_file": 57,
+      "lean": "Problems/Juggler/CollatzBridge.lean",
+      "names_own": [
+        "neg_cycle_expanding",
+        "cycle_contracting",
+        "neg_prefix_noncontracting",
+        "neg_cycle_word_is_juggler_shape",
+        "neg_seventeen_word_is_juggler_shape",
+        "neg_seventeen_is_least",
+        "neg_one_cycle",
+        "neg_five_cycle",
+        "neg_seventeen_cycle",
+        "neg_seventeen_inhabits_cycleMinShape"
+      ],
+      "statement": "The sign flip on cycles is the sign of x, and Juggler's cycle words are the words of Collatz's negative cycles. On the negative integers the odd step is |x| -> (3|x| - 1)/2, so the correction pushes |x| below the pure multiplier -- Juggler's sign -- and the cycle equation (x + 1)(2^d - 3^o) = evenCharge w >= 0 with x + 1 < 0 forces 2^d < 3^o: neg_cycle_expanding, a cycle of the \u2124 shortcut map at x"
     }
   ],
-  "unresolved": 119,
+  "unresolved": 124,
   "worth_reviewing": 19
 }

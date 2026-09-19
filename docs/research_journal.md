@@ -53,6 +53,425 @@
   `Current literature` should be answered by looking. Looking took one session
   and killed two of four claims. The useful part is that it did not kill the
   other two, and now the survivors are defensible instead of merely unchallenged.
+## 2026-09-19 -- the negative side is exact, and its finance is the Juggler mirror
+
+- **Objective:** the finance-mirror question -- what floor and period bound
+  does Collatz's negative-cycle problem have, and does the mirror reproduce
+  them?
+- **The word-level twin is exact on the negative side.** For `x <= -2` with
+  no iterate closer to zero, every prefix is non-contracting with no `delta`
+  exception (`neg_prefix_noncontracting`): the even steps only subtract, so
+  an expanding multiplier is the only way to stay away from zero. With
+  `neg_cycle_expanding` this is one Lean statement,
+  `neg_cycle_word_is_juggler_shape`, and `-17` instantiates it by `decide`.
+  The row `J-juggler-cycle-words-are-collatz-negative-cycle-words` is
+  corrected in place from "up to the delta exceptions" to exact.
+- **And the finance transfers with its walk charge on the even steps.**
+  `(|x| - 1)(3^o - 2^K) = 3^o sum over even steps of 2^(-h_i)` with every
+  `h_i >= 1`, so `|x| - 1 <= (K - o)/(2 theta_J)` uniformly and
+  `<= H_E(K - o)/theta_J` on the hug word, `H_E(m)/m -> 1/(6 alpha log 2) =
+  0.4110`. Paper A's Theorem 4.4 on the other side of the linear form. The
+  `-5` cycle attains the hug bound exactly, which is the right kind of
+  sanity check: its word is a hug word. Survivors at a floor are the
+  Juggler-side lengths -- `72448885240` at `2^68`, `103768467013` at `2^71`
+  -- the mirror of Eliahou's and Hercher's numbers. Row
+  `J-negative-cycle-finance-is-the-juggler-mirror`.
+- **What the literature did not give.** No published verification floor
+  for the `3x - 1` map turned up in OEIS's text records or on Roosendaal's
+  index, and the loops page it links was unreachable. The table is therefore
+  conditional, and the honest sentence is: if the `3x - 1` map is verified
+  to `2^68`, a fourth negative cycle has length at least `72448885240`. That
+  sentence is not a claim until someone finds the floor.
+- **Decision:** `PROMOTE` stands. Best next question: the `3x - 1`
+  verification floor, from the literature or by running it -- the lab has a
+  5090 and a GPU Collatz verifier is a known object -- and then the mirror's
+  period bound becomes a statement rather than a table.
+
+## 2026-09-19 -- the cycle equation is a word divisibility, and Juggler's cycle words are Collatz's negative cycles
+
+- **Objective:** the finance-mirror question -- what does `2^K - 3^p | evenCharge w`
+  look like on the survivor words?
+- **Over `ℤ` the identity says which sign a cycle word has.** `word_affine_int`
+  and `two_pow_mul_iter_add_one_int` hold for every integer start, so on every
+  integer cycle `(x + 1)(2^d - 3^o) = evenCharge w`. Positive cycles have
+  contracting words (`cycle_contracting`); cycles at `x <= -2` have expanding
+  words (`neg_cycle_expanding`); `x = -1` is the all-odd word. The converse
+  `cycle_of_equation` makes the cycle condition a word statement, with
+  Lagarias 1990's rational-cycle theorem (every word is the parity vector of
+  exactly one rational with odd denominator) as the one step not in Lean --
+  checked instead on 190069 minimal certificates and 654279 expanding
+  survivors, all of which follow their own word and return. Rows
+  `J-collatz-cycle-equation-is-a-word-divisibility`,
+  `J-juggler-cycle-words-are-collatz-negative-cycle-words`.
+- **So Juggler's cycle problem is the twin of Collatz's negative cycles.**
+  A negative Collatz cycle word, read at the element of least `|x|`, is an
+  expanding survivor -- Paper A's `CycleMin` shape -- because on the negative
+  integers the odd step is `|x| -> (3|x| - 1)/2` and the correction points
+  down, as Juggler's floors do. The three known negative cycles have words
+  `O`, `OOE`, `OOOOEOOOEEE` of lengths `1, 3, 11`, all Juggler-side lengths,
+  and the `-17` word inhabits `CycleMinShape` with four even letters at
+  length `11`: Paper A's floor-free Theorem 3.22 met with equality by a word
+  Collatz realises as an integer cycle. In Lean by `decide`
+  (`neg_seventeen_cycle`, `neg_seventeen_inhabits_cycleMinShape`).
+- **And positive Collatz cycles are Paper B's minimal certificates.** At the
+  minimum a cycle word contracts only at the end (`prefix_bound_of_min`: every
+  contracting prefix caps `x + 1` by the prefix's own rational cycle value), so
+  its length is `A020914(p)` and `M_K` counts the candidate words; the open
+  problem is which of them have `2^K - 3^p | evenCharge w` with quotient at
+  least two. The census finds only `OE` (quotient two, `x = 1`) through
+  length `26`. The empty-window theorem now controls a fifth thing: the
+  lengths a positive Collatz cycle can have.
+- **Census hygiene.** The DFS minimal-certificate counts equal the
+  laboratory's DP `2 N_(K-1) - N_K` at every length, `8045, 17637, 51033,
+  108950` at `K = 21, 23, 24, 26`; my recollection of A100982 beyond `p = 14`
+  had been wrong and the counts, not the memory, are what the record carries.
+  Literature entry `lagarias-1990-rational-cycles` added.
+- **Decision:** `PROMOTE` stands. Best next question: the finance survivors
+  of Collatz's negative-cycle problem at its verification floor are the
+  Juggler-side lengths -- what is that floor today, and does the published
+  negative-cycle record (only `-1, -5, -17`) come with a period bound that
+  the mirror reproduces, as Eliahou's and Hercher's did on the positive side?
+
+## 2026-09-19 -- the height-only bound is sharp, and Winkler's sandwich holds on our counts
+
+- **Objective:** the finance-mirror branch's question -- does the
+  rotation-orbit average compose with Hercher's per-run averaging, or do
+  they read the same slack? -- and one Collatz-to-Juggler import worth
+  checking while the OEIS entry was open.
+- **Same slack, and the rotation average is its sharp reading.** The hug
+  word puts every odd step at height `frac(a alpha)`, so its odd-step sum of
+  `2^(-h)` is `H(p)` by construction; Terras's bijection realises it
+  (`exists_residue_of_word`, added to `CollatzBridge.lean` as the surjective
+  half of `image_parityWord`), and along a member `x_0` with `300` more bits
+  than `K` the orbit attains `x_0 sum 1/x_j = H(p)` to twelve digits at
+  `p = 12, 53, 300, 665`. Any bound built on `x_j + 1 >= 2^(h_j)(x_0 + 1)`
+  and `x_j >= x_0` alone is capped at `H(p)`; Hercher's `3/4` is a weaker
+  evaluation of the same information. Row `J-collatz-walk-charge-is-sharp`.
+  What is left for the Collatz constant is the 2-adic side: Corollary 29's
+  residue tracking, or the exact closure `2^K - 3^p | evenCharge w`.
+- **Winkler's rational-Catalan sandwich on A100982 holds on the
+  laboratory's `M_d`.** For every order `n <= 2213`,
+  `(1/n) C(m_n - 1, n - 1) <= M_{A020914(n)} <= (1/n) C(m_n, n - 1)`, with
+  equality exactly at his record minima `2, 7, 12, 53, 359, 665` and record
+  maxima `3, 5, 17, 29, 41, 94, 147, 200, 253, 306, 971, 1636` of
+  `{n log2 3}`; the nonzero lengths are exactly `A020914(k)`, `k >= 0`, all
+  `2214` of them below `3508`. An independent 2026 confirmation of the
+  Sturmian structure the jump-spectrum cluster reads on the same words --
+  the extremal orders are the one-sided convergents -- and no more: the
+  sandwich is a factor `2.7` wide and says nothing about the `d^(-3/2)` or
+  the prefactor. Row `J-winkler-sandwich-holds-on-the-laboratory-counts`.
+- **Bookkeeping.** The bridge dossier's cycle-transfer sentence now points
+  at the three confirmations (Eliahou, Hercher, the walk charge) as the peer
+  session asked, and its Formalization list carries `exists_residue_of_word`.
+- **Decision:** `PROMOTE` stands on the finance mirror. Best next question:
+  what does `2^K - 3^p | evenCharge w` look like on survivor words, and is
+  any of it visible to the transfer operator of `PaperBJumpTransposition`?
+
+## 2026-09-19 -- the walk charge transfers to Collatz, and it is worth four percent
+
+- **Objective:** the finance-mirror branch's best next question -- does Paper
+  A's Section 5 walk charge transfer to Collatz cycles, and what constant
+  does it give against Hercher's Theorem 27?
+- **It transfers exactly, because the `+1` only pushes up.** Conjugating the
+  odd step by `z = x + 1` gives `2^d (C^d x + 1) = 3^o (x + 1) + evenCharge w`
+  for every start and depth, so on a cycle `(x_0 + 1)(2^K - 3^p) = evenCharge
+  w`: the surplus is the even-step charge of the word, an identity where
+  Paper A has an inequality. In Lean now (`CollatzBridge.lean` section 9:
+  `evenCharge`, `wordConst_add_two_pow`, `two_pow_mul_iter_add_one`,
+  `three_pow_mul_add_one_le`, `cycle_even_charge`; compiles, no `sorry`).
+  Row `J-collatz-even-step-charge-identity`.
+- **The bound.** `x_j + 1 >= 2^(h_j)(x_0 + 1)` with `h_j` the walk height,
+  and at the minimum the height before the `a`-th odd step is at least
+  `frac(a alpha)`, `alpha = log2(3/2)`, up to an exceptional set of size
+  `N_delta(p) <= p delta + 151`, `delta = log2(1 + K/(x_0+1-K))`. So the sum
+  of `1/x` over the odd cycle elements is at most `(H(p) + N_delta(p))/(x_0 +
+  1 - 2^delta)` with `H(p) = sum_{a<p} 2^(-frac(a alpha))`: Paper A's Theorem
+  5.4, the hug word extremal, with zero transport deficit. Effective and
+  independent of `m`. Row `J-collatz-walk-charge-constant`.
+- **Against Hercher.** Theorem 27 of Hercher 2023 (read from the JIS PDF,
+  Lemma 26's three-run averaging) bounds the same sum by `(3/4) K/X_0`.
+  `H(p)/p` is `0.7284` as a supremum over `p >= 100`, `0.72157` over
+  `p >= 10^4`, and `1/(2 log 2) = 0.72135` in the limit (deviation below
+  `1e-9` at Hercher's `p = 7.2e10` by Koksma; the partial quotients of
+  `alpha` sum to `150` through `5.4e12`). The peer session's caution --
+  that an asymptotic constant compared with an effective one is a units
+  mismatch -- was right to raise and is answered: both are effective, and
+  every nontrivial cycle has `p > 7.2e10`. Remark 28's threshold `2836 *
+  2^60` becomes `2728 * 2^60`.
+- **What it does not do.** The smallest survivor at `2^68` and at `2^71` is
+  still `114208327604`, margin `1.33` at `2^71`; the published period bounds
+  do not move. Corollary 29 (`1536 * 2^60`, five weeks tracking residue
+  classes modulo powers of two) and Barina 2025 use the 2-adic information
+  this bound ignores. So: Juggler contributes to Collatz a cleaner analytic
+  constant, and Collatz still wins on the 2-adics -- the same partition as
+  everywhere else on the bridge.
+- **Record hygiene.** The peer rebuilt the three formalpedia artifacts I
+  had left stale (`dag`, `propose`, `review`); all four are regenerated in
+  this commit and the lesson is in memory. Archaeology: the laboratory's
+  literature notes carry Eliahou-Verger-Gaugry, not Eliahou 1993, and no
+  record of Hercher's constant.
+- **Decision:** `PROMOTE` stands. Best next question: does the rotation-orbit
+  average compose with Hercher's per-run averaging, or are they reading the
+  same slack?
+
+## 2026-09-19 -- the bridge is exact in Lean, and Paper A's finance is Eliahou's
+
+- **Objective:** Philippe asked for a review of the three bridge commits and
+  the Lean, for what the bridge does to no-cycle, and whether it deserves a
+  paper; then, by `/loop`, for as much Lean and computation as it takes to
+  make the bridge well defined and to say what each problem gives the other.
+- **The bridge is now a Lean file, not a slogan.**
+  `formal/Problems/Juggler/CollatzBridge.lean` (436 lines, no `sorry`,
+  standard axioms): Collatz is word-affine with the correction pointing up,
+  `2^d C^d(x) = 3^o x + wordConst w`; Juggler is exponent-affine with the
+  correction pointing down; the sign flip on cycles is proved on both sides;
+  Terras's bijection is a `Finset` identity; and `undecidedResidues_card`
+  makes Paper B's `N_d` the number of residue classes modulo `2^d` with no
+  contracting prefix, kernel-checked against OEIS A076227's own residues
+  modulo 64 and its terms `3 .. 64`. That upgrades the count half of
+  `J-juggler-is-collatz-one-exponential-up` and
+  `J-paper-b-survivors-are-oeis-a076227` from eight sampled lifts per class
+  to a theorem. Rows `J-collatz-bridge-is-exact-at-the-word-level`,
+  `J-survivor-count-is-a-collatz-residue-count`. The dossier's Formalization
+  paragraph, which said nothing needed formalising, is replaced.
+- **Paper A's finance, transposed, is Eliahou's.** With `x_min` in place of
+  `n log n` -- the cycle-level dictionary, not the walk-level one -- the same
+  inequality reproduces Eliahou 1993 exactly at `2^40` (`17087915`, the
+  lattice `301994a + 17087915b + 85137581c` with `b >= 1`, and why `301994`
+  alone dies: its bound is `9.85e11`, just under `2^40`) and Hercher 2018
+  exactly at `2^68` (`114208327604`, `72057431991` odd). Barina's 2025
+  `217976794617` is the *second* survivor at `2^71`; his sharper averaging is
+  not in this inequality. Enumerated exactly by the three-gap walk, cross-
+  checked by brute force. The inequality that does this is the weaker of the
+  two Juggler forms: Paper A's certified comparison gives `25781` and
+  `176251` where constant 1 gives `1054` and `50508`. New branch
+  [collatz_finance_mirror](problems/juggler_collatz_finance_mirror.md), rows
+  `J-paper-a-finance-transposed-reproduces-eliahou-and-hercher`,
+  `J-cycle-gaps-are-mirror-images` (`Lambda_J(L) = log 3 - Lambda_C(L)`; the
+  convergents alternate sides; Paper D's fans and Eliahou's lattice are the
+  two sides of one rotation, and each Juggler fan closes at the next Collatz
+  bound, `176251 + 56 * 301994 = 17087915`).
+- **What the bridge does to no-cycle: it names the missing piece.** The two
+  finance layers are at parity under the dictionary. What Collatz has beyond
+  finance is not a sharper inequality but the 2-adic run congruence -- `k`
+  odd steps force `x = -1 mod 2^k`, so `x >= 2^k - 1` (Hercher's Lemma 8) --
+  which bounds cycle minima below in terms of run lengths and, with Baker,
+  excludes `m`-cycles for bounded `m` (Steiner 1977; Hercher 2023, `m <= 91`).
+  That is exactly the missing hypothesis of `J-cyclemin-closure-threshold`.
+  Its Juggler twin is a *pointwise* bound on odd-run lengths,
+  `run(n) <= C log n`: the odd-tower fragment, an open digit problem. It is
+  not an equidistribution problem -- termination wants an average along the
+  orbit, no-cycle wants an extreme value -- and that separates the two
+  walls the 18 September entry had put together. Numerically: the 1-cycle
+  length `9809721694` survives Juggler finance at `N_0 = 3.5e8` by ten orders
+  of magnitude. Juggler has no Steiner theorem; the `m`-cycle problem is open
+  for every `m`, including `m = 1`, and Theorem 3.31 (`e >= 8`) is a census
+  of even letters, not an `m`-cycle result. Recorded as negative knowledge:
+  a realization law of FD type cannot reach Collatz's cycle starting line.
+- **Nothing flows to Collatz cycles from finance.** One candidate remains
+  and was not computed: Paper A's walk charge transfers with zero transport
+  deficit (the `+1` only pushes up), and a reader's estimate puts the hug-word
+  constant at `0.160 K/x_0` against Hercher's Theorem 27 `0.25 K/X_0`. That is
+  the best next question of the new branch, not a result.
+- **Priority, read rather than assumed.** The walk identity itself has a
+  precedent: Prasad-Prasad, January 2025, Section 2, state the log-scale
+  counterpart of Terras's approximation and the same Terras-versus-conjecture
+  partition; added to the bridge dossier. The word-level combinatorics is
+  KNOWN as formulas: the recursion is Zarubin 2019 on A076227, the empty
+  window is Noe 2006 on A100982 (Garner 1981 for the coefficient stopping
+  time), the profile is Winkler's 2017 triangle. The rate is Lagarias 1985
+  Theorem D and the `d^(-3/2)` is Hikawa's Conjecture 7.1 (peer session,
+  same day). Not found anywhere: the oscillating prefactor, the jump spectrum,
+  `a_1`. The framework in which they would be proved exists: Bevan-Conde,
+  "Introducing irrational enumeration" (arXiv:2412.14682), where a bounded
+  prefactor with dense discontinuities at `l beta mod 1` is the generic shape.
+- **Two record corrections noted, not yet applied:** the bridge rows anchor
+  the FD calibration to `delta = 1/96`, which is the withdrawn 4 September
+  target; the current Paper B proves `1/24` at four steps and `1/128` at five,
+  and 'FD with power saving delta' is Conjecture K, not FD as recorded (per
+  class, no rate). And `juggler_cycle_finance.md`'s 'O(1/x) versus O(1)'
+  sentence compares a relative with an absolute size. Both are in text other
+  sessions own today; recorded in `J-cycle-gaps-are-mirror-images`.
+- **Does the bridge deserve a paper? No.** It moves no bound in either
+  problem; the dossier's own verdict stands. What could be written is a
+  Collatz-facing note on the prefactor of A076227 -- opening as a refinement
+  of Lagarias's Theorem D and Hikawa's conjecture, with the kernel-checked
+  recursion, empty window, transposition and residue-count theorems as its
+  spine -- and only once `MeanderShape` is proved rather than measured. The
+  bridge itself is a section of the Paper B revision and a paragraph in Paper
+  A's Section 6 (the finance mirror). No fourth review object.
+- **Process.** The review workflow's adversarial and judge phases were cut by
+  a session limit after the six readers finished; only one skeptic vote ran
+  (it refuted 'the dictionary is new' -- the transposition is recorded in
+  five places, the explicit name `x_min <-> n log n` was not). The Lean
+  module was swept into a peer's commit `4c078205` by `git add -A` before its
+  record existed; the peer built it and recorded the sweep. This entry and
+  the rows are that record.
+- **Decision:** `PROMOTE` the finance mirror; the bridge branch keeps
+  `PROMOTE`. Best next question: does the walk charge transfer to Collatz,
+  and what constant does it give against Hercher's Theorem 27?
+
+## 2026-09-19 -- I committed a peer's Lean module without reading or building it
+
+- **What happened.** `git add -A` in commit `4c078205` swept up three files I
+  did not write, from session `balanced-ternary-e3` working in the same
+  checkout: `formal/Problems/Juggler/CollatzBridge.lean` (436 lines), its import
+  line in `Juggler.lean`, and its `AUXILIARY_MODULES` entry in `lean_paths.py`.
+  Their formalpedia index rebuild is mixed into mine as well. It is pushed. My
+  commit message is about the Walsh refutation and mentions none of it.
+- **And I did not build it.** I ran `tests/integration` and `tests/tools` before
+  pushing, neither of which compiles Lean. A 436-line module I had not read went
+  to `origin/main` unverified.
+- **It happens to be fine.** `lake build Problems.Juggler` passes, 8909 jobs; the
+  forbidden-word scan is clean; `test_layer_architecture` and `tests/tools` pass.
+  That is luck. Had it failed, main would have been red with no one knowing why,
+  and the failure would have looked like it came from my branch.
+- **The memory already covers the mirror image of this** -- peers committing MY
+  uncommitted files -- and I read it as something done to me. It is symmetric,
+  and `git add -A` in a shared checkout is the mechanism in both directions.
+- **Rule for this checkout, adopted now:** stage by explicit path when any peer
+  session is live, and run `lake build` before pushing anything that touches
+  `formal/`, not just the Python gates. `git status` showing clean after a commit
+  is not evidence the commit was mine.
+- **Attribution.** Not rewriting a pushed commit others may have pulled. Recorded
+  here instead, and the peer has been told twice -- once to stop them committing
+  the same work again, once with the build result.
+- **Their two results, for the record**, both to be written up on their side:
+  `undecidedResidues_card` gives in Lean what `J-juggler-is-collatz-one-exponential-up`
+  and `J-paper-b-survivors-are-oeis-a076227` currently hold only as a d = 4..10
+  computation; and Paper A's finance transposed to Collatz reproduces Eliahou
+  1993 at floor `2^40` and Hercher at `2^68`, which is the numerical confirmation
+  of the bridge dossier's claim that cycle results transfer both ways -- a claim
+  I recorded yesterday with reasoning and no numbers.
+
+## 2026-09-19 -- the direct estimate, tried and refuted, and it takes yesterday's row with it
+
+- **Objective:** Philippe asked me to try the direct estimate of the good set --
+  the `20x` I had claimed was available by combining the word classes better.
+- **Tried it. It fails twice over, and the second failure is the interesting one.**
+- **First: the gain is capped and the cap is attained.** Expanding the indicator
+  in Walsh characters, the gain would be `N_d/||ghat||_1`. Parseval gives
+  `||ghat||_1 <= sqrt(N_d)` unconditionally, so `gamma <= sqrt(2 theta)` is a
+  theorem and the `direct` column of my table -- `gamma = 1`, the whole `20x` --
+  never existed. Measured, `gamma` saturates the ceiling: four independent
+  methods, a numpy FWHT to `d = 29`, a factored transform to `d = 40`, exact
+  `Fractions`, and Monte Carlo to `d = 386`. My own fit of `1.28-1.30` was the
+  drifting-exponent trap for the fourth time this week; the naive estimator is
+  biased low by two percent even on `sqrt(N_d)`, whose rate is known exactly.
+- **Second, and decisively: the basis is wrong.** `E_d <= max_(S != 0)|W_S| <=
+  2^d E_d`, both ends attained. A Walsh estimate needs the second bound and
+  Proposition J supplies the first, so the conversion costs `2^d` and the route
+  is `114x` worse at `d = 12`, `8199x` at `d = 24`. Paper B's identity (2.1) is
+  *itself* a Walsh expansion, in the `(w,A)` formal-chain basis, Wiener norm
+  exactly `N_d(1 - 2^(-(d-1)))`. **The union bound is the L1 bound in the only
+  basis the hypothesis controls, and it is termwise sharp there.** Calling it a
+  loss compared two bases and preferred the one whose inputs nobody can bound.
+- **So `J-proposition-j-loss-is-the-union-bound` is retagged REFUTED**, one day
+  after I wrote it. The arithmetic in it is right; the conclusion is not.
+- **And the exponent is not consumed anyway.** Theorem 6.1 fixes `d` before
+  `N -> infinity`, so `N_d` is constant and `N_d E_d(N) = o(N)` comes free; the
+  manuscript says its conclusion follows from any `theta < 1`. I was optimising
+  a quantity no stated conclusion reads.
+- **What survives, and it is not nothing.** `||ghat_d||_1 ~ Phi(frac(d beta))
+  sqrt(N_d) d^(-0.83)`, the structural analogue of the meander shape, with `Phi`
+  a function of the rotation coordinate (4.7% collapse scatter, `d = 10..38`)
+  and discontinuous at `frac = beta` -- the same jump location as `psi`. And at
+  a free step the Wiener norm is *exactly* unchanged, by the empty-window
+  theorem acting on the spectrum. The converse fails at `d = 5`.
+- **Fifth duplication of the week, and the worst kind.** `bad_set_spectrum(d, L)`
+  in `collision_large_sieve.py` has computed this since the Paper C branch;
+  `L = 0` is the good set and nobody had called it there. It reproduces every
+  value I measured to the last digit. I wrote a fresh transform for a function
+  already in the repository. The name check passed because the function is named
+  for the wrong set.
+- **Decision:** `REFUTED` route, recorded in
+  [negative_knowledge.md](negative_knowledge.md).
+  [Collatz bridge](problems/juggler_collatz_bridge.md).
+
+## 2026-09-19 -- what FD is actually worth, and where Proposition J loses
+
+- **Objective:** Philippe asked whether the two formulations, being different,
+  could help each other prove termination. Answer the question rather than
+  enthuse about it.
+- **They cannot, and the reason is structural.** The obstruction -- a single
+  orbit need not equidistribute -- lives in the shared skeleton. The differences
+  live upstream, in how words attach to integers, and Collatz has that half free
+  and has been stuck fifty years. So the upstream half is demonstrably not the
+  obstruction.
+- **Proposition J applied to Collatz is Terras 1976.** The bound
+  `(N_d/2^d) N + N_d E_d(N)` with the parity bijection gives `E_d(N) = O(1)`,
+  usable depth `log2 N`, and `N^(1 - 0.050044)` non-descenders. So if FD were
+  proved outright, Juggler would arrive exactly where Collatz has been since
+  1976, and no further. FD is a hard analytic theorem in a setting with no
+  arithmetic and worth wanting on those terms; it is not a step toward
+  termination.
+- **And the conversion is linear.** With `E_d(N) = O(N^(1-delta))` the error
+  overtakes the main term once `2^d` passes `N^delta`, so the depth is
+  `delta log2 N` and the density exponent is `0.050044 delta` -- exactly `delta`
+  times Collatz's. Parity needs `delta = 1`, bounded error per class, which a
+  bijection gives and a Weyl bound will not.
+- **The useful part: the loss is the union bound, not the exponent.**
+  `N_d E_d(N)` sums a per-word error over `N_d` about `1.9318^d` words, and that
+  multiplier is what caps the depth. At fixed `delta` the exponent is
+  `0.050044 delta` by union bound, `0.095319 delta` under square-root
+  cancellation across words, and `delta` itself for one direct estimate of the
+  good set -- `1.00x`, `1.90x`, `19.98x`. Improving `delta` from `1/96` to
+  `1/72` is worth `1.33x`. **A direct estimate at the printed exponent already
+  beats a union bound at `delta = 1/5`.**
+- **Stated as what it is.** An observation about the shape of the bound,
+  arithmetic only. It does not claim a direct estimate is achievable -- the
+  union bound is used because one word class is a simple condition on fractional
+  parts and the good set is not. What stops it being idle is that the good set
+  is the survivor set, carrying the transfer-operator structure of
+  `PaperBJumpTransposition` and the closed-form spectrum found this week.
+- **What would change the picture**, and nothing in the current machinery does
+  it: an archimedean estimate strictly stronger than word equidistribution --
+  joint with an orbit-dependent statistic, or along the orbit rather than over
+  `n`. That would be a tool with no 2-adic counterpart and would break the
+  "cannot exceed Collatz's starting line" argument.
+- **Decision:** `PROMOTE`, on the existing branch.
+  [Collatz bridge](problems/juggler_collatz_bridge.md).
+
+## 2026-09-18 -- Juggler is Collatz one exponential level up
+
+- **Objective:** after finding the survivors are a known Collatz sequence, ask
+  why -- coincidence, identity, or equivalence.
+- **Identity, and it is one line.** Accelerated Collatz moves `log x` by
+  `-log 2` or `+log(3/2)`. Juggler multiplies `log n` by `1/2` or `3/2`, so it
+  moves `log log n` by the same two steps. Same additive walk, different
+  variable. From the seed `10^20 + 1` the measured Juggler increments are
+  `+0.405465108108` and `-0.693147180560`, agreeing to `2e-16`; at `n = 7` they
+  are wrong by a percent, which is the floor and worth keeping visible.
+- **So one count, checked against Collatz rather than against OEIS.** For
+  `d = 4..10` the parity map is bijective on `Z/2^d` and the residue classes
+  with non-constant stopping time number `3, 4, 8, 13, 19, 38, 64` -- exactly
+  `N_d`, by running Collatz on eight representatives per class.
+- **They part at equidistribution, and that is all of Paper B.** Collatz's
+  parity word is a function of `x mod 2^d`, every word at density exactly
+  `2^(-d)`: Terras, arithmetic, free. Juggler's is a function of
+  `frac(n^(3/2))` and relatives, and equal densities are Hypothesis FD. Same
+  combinatorics, incompatible arithmetic. Not an equivalence; not a conjugacy.
+- **Two consequences I like.** Today's asymptotic is **unconditional for
+  Collatz** and conditional for Juggler -- which raises the stakes on the
+  priority question already out to a separate session. And Collatz is a free
+  validator for any FD-conditional derivation resting only on word densities:
+  there such a statement is a theorem, so a failure would indict the derivation,
+  not FD. We do not use it that way.
+- **One consequence I do not.** A result depending only on word densities is not
+  Juggler-specific. By that test the survivor recursion, the empty-window
+  theorem, the transposition cost, the jump spectrum, `a_1` and the ladder
+  profile are Collatz results too. That is a correction to scope, not to the
+  mathematics, and it is the same failure as the A076227 one a level up: there a
+  sequence was searchable and nobody searched; here the theorems are about an
+  object under another name. Recorded rather than quietly absorbed.
+- **And the deflating part, worth saying plainly.** Juggler is not an easier
+  Collatz. It is Collatz's word problem plus a Weyl-sum problem, and both stall
+  at the same wall. Its value is as a separator: it keeps the combinatorics and
+  drops the 2-adic rigidity, so it shows which half of Collatz needs which. On
+  that reading Paper B's real contribution is machinery for proving analytically
+  what Terras gets arithmetically -- the part that could not have come from
+  Collatz.
+- **Decision:** `PROMOTE`. [Collatz bridge](problems/juggler_collatz_bridge.md).
 
 ## 2026-09-18 -- the survivors were a known Collatz sequence all along
 

@@ -9464,6 +9464,1176 @@
       "trust": "kernel"
     },
     {
+      "doc": "One step of the shortcut map, cleared of its division: `2 \u00b7 C(x)` is `x` on an even `x` and `3x + 1` on an odd `x`.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 67,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "two_mul_shortcutC",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Peeling the first step: `C^{k+1}(x) = C^k(C(x))`.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 77,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "shortcutCIter_succ'",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The first `d` parities of the shortcut orbit of `x`, read as a Juggler word: the same alphabet, the same `oddCount`, the same `exponentGap`.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "def",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 89,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "parityWord",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A prefix of the word is the word of the prefix.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 104,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "parityWord_take",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The additive constant of the word-affine formula: reading the word from the front, an even letter doubles the constant and an odd letter adds `3` to the power of the odd letters still to come.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "def",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 123,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "wordConst",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The constant vanishes exactly on the all-even words.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 136,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "wordConst_eq_zero_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Collatz is word-affine.** `2 ^ d \u00b7 C^d(x) = 3 ^ o \u00b7 x + wordConst w` with `w` the parity word of `x` and `o` its odd count. The multiplier `3 ^ o / 2 ^ d` is the one Juggler carries on the exponent; the correction is nonnegative.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 150,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "word_affine",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Two integers carry the same first letter exactly when they have the same parity.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 185,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "bit_eq_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "One step of Terras's argument: agreement modulo `2 ^ (d + 1)` is agreement of the first parity together with agreement of the shortcut images modulo `2 ^ d`.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 191,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "mod_pow_succ_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The word of length `d` is determined by `x mod 2 ^ d`, and determines it.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 228,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "parityWord_eq_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 235,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "parityWord_mod",
+      "trust": "kernel"
+    },
+    {
+      "doc": "There are `2 ^ d` words of length `d`.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 239,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "allWords_card",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The parity map is a bijection from the residues modulo `2 ^ d` onto the words of length `d`: Terras's structure theorem, as a `Finset` identity.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 266,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "image_parityWord",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Every word is realised**, by some residue below `2 ^ d`: the surjective half of Terras's bijection, read off `image_parityWord`. This is what lets the hug word -- every odd step at height `frac(a * log2(3/2))` -- be placed at any large minimum, so that no bound using only `x_j + 1 >= 2 ^ h_j (x + 1)` can improve on `H(p)`.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 283,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "exists_residue_of_word",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The residues modulo `2 ^ d` whose word has no contracting prefix: the classes in which the stopping time is not yet decided after `d` steps.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "def",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 294,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "undecidedResidues",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The parity map is injective on the residues below `2 ^ d`.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 298,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "parityWord_injOn",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Counting a filtered set of words through the residue bijection.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 307,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "card_filter_parityWord",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The survivor count is a Collatz count.** Paper B's `N_d` is the number of residue classes modulo `2 ^ d` with no contracting prefix -- the definition of OEIS A076227.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 315,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "undecidedResidues_card",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The residues modulo `2 ^ d` whose word first contracts at length `d`.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "def",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 320,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "decidedAtResidues",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The minimal-certificate count is a Collatz count.** `M_d` is the number of residue classes modulo `2 ^ d` whose stopping time is decided at exactly `d` -- OEIS A100982 read by length.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 325,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "decidedAtResidues_card",
+      "trust": "kernel"
+    },
+    {
+      "doc": "On a prefix-noncontracting word, every prefix length `t \u2264 d` has `2 ^ t \u2264 3 ^ o_t`.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 332,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "two_pow_le_three_pow_of_prefixNoncontracting",
+      "trust": "kernel"
+    },
+    {
+      "doc": "No member of an undecided class drops within `d` steps.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 342,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "le_iter_of_prefixNoncontracting",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Strictly: a positive start in an undecided class sits strictly below every later state.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 354,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "lt_iter_of_prefixNoncontracting",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A contracting word drops every start beyond its own constant.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 375,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "iter_lt_of_exponentGap",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The drop is a property of the residue class: one constant serves every member.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 387,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "iter_lt_of_exponentGap_class",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Collatz cycles contract.** A positive shortcut cycle of length `d \u2265 1` has `3 ^ o < 2 ^ d`, because `2 ^ d \u00b7 x = 3 ^ o \u00b7 x + wordConst w` with a positive constant.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 398,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "cycle_contracting",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Juggler realises the same multiplier on the exponent, with the correction pointing down.** Restated from `power_bound_word` in the vocabulary of this file.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 419,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "juggler_word_power",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Juggler cycles expand.** `CycleCore`'s theorem, placed beside its Collatz mirror.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 425,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "juggler_cycle_expanding",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 434,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "undecidedResidues_six",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 437,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "undecidedResidues_card_four",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 438,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "undecidedResidues_card_five",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 439,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "undecidedResidues_card_six",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 440,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "undecidedResidues_card_seven",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 441,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "undecidedResidues_card_eight",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 442,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "undecidedResidues_card_nine",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 443,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "undecidedResidues_card_ten",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The even-step charge of a word: an even letter contributes `3` to the power of the odd letters still to come, and every letter doubles what follows. Closed form: the sum over even positions `i` of `3 ^ (o - a_i) * 2 ^ i`, with `a_i` the odd letters before `i`.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "def",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 465,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "evenCharge",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The odd-step constant and the even-step charge differ by the multiplier gap: `wordConst w + 2 ^ |w| = 3 ^ o + evenCharge w`.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 479,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "wordConst_add_two_pow",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The affine formula in the `x + 1` coordinate.** Every correction comes from an even step.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 493,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "two_pow_mul_iter_add_one",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The Collatz lower envelope**, the mirror of `power_bound_word`: the `+1`s only push up, so `3 ^ o \u00b7 (x + 1) \u2264 2 ^ d \u00b7 (C^d(x) + 1)` for every start and every depth.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 503,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "three_pow_mul_add_one_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The Collatz walk charge, exactly.** On a cycle the surplus `(x + 1)(2 ^ d - 3 ^ o)` is the even-step charge of the word. This is the counterpart of Paper A's finance inequality `n log n (3 ^ o - 2 ^ L) \u2264 L 3 ^ o`, as an identity rather than a bound.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 511,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "cycle_even_charge",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The trivial cycle `1 \u2192 2 \u2192 1` has word `OE`, charge `2`, and `(1+1)(4 - 3) = 2`.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 518,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "trivial_cycle_charge",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The shortcut map on `\u2124`: `x / 2` on evens, `(3x + 1) / 2` on odds. Agrees with `shortcutC` on `\u2115`, and `3x + 1` is even whenever `x` is odd, so the division is exact on both branches.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "def",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 535,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "shortcutZ",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`shortcutZ` iterated, in the peeled form `C^{k+1}(x) = C^k(C x)`.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "def",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 538,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "shortcutZIter",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The parity word of a `\u2124` orbit.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "def",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 543,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "parityWordZ",
+      "trust": "kernel"
+    },
+    {
+      "doc": "One step of the `\u2124` map, cleared of its division.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 559,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "two_mul_shortcutZ",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The affine formula over `\u2124`**, for every integer start: `2 ^ d C^d(x) = 3 ^ o x + wordConst w`.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 566,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "word_affine_int",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The `\u2124` parity word of depth `d` has length `d`.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 596,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "parityWordZ_length",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The `x + 1` form over `\u2124`: `2 ^ d (C^d x + 1) = 3 ^ o (x + 1) + evenCharge w`.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 602,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "two_pow_mul_iter_add_one_int",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The cycle equation over `\u2124`**: `(x + 1)(2 ^ d - 3 ^ o) = evenCharge w` on every integer cycle.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 614,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "cycle_equation_int",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Negative cycles expand.** A cycle of the `\u2124` map at `x \u2264 -2` of positive length has `2 ^ d < 3 ^ o` -- Juggler's sign -- because the right-hand side of the cycle equation is positive (the word has an even letter, else the cycle would sit at `-1`) and `x + 1 < 0`.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 624,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "neg_cycle_expanding",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The cycle equation in `\u2115`**, for positive cycles: `(x + 1)(2 ^ d - 3 ^ o) = evenCharge w`, hence `2 ^ d - 3 ^ o` divides the even-step charge of the word.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 645,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "cycle_equation",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 655,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "cycle_dvd",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The converse**: a start whose parity word satisfies the cycle equation returns. Together with `cycle_equation` this is the exact cycle condition as a statement about the word alone, once the word is realised: `2 ^ d - 3 ^ o` divides `evenCharge w` with the quotient `x + 1`.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 662,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "cycle_of_equation",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**A contracting prefix bounds the minimum by its own rational cycle value.** If the orbit has not dropped below `x` by step `j`, then `(x + 1)(2 ^ j - 3 ^ a_j) \u2264 evenCharge (prefix)`; so at a cycle minimum every contracting prefix caps `x + 1` by `evenCharge / (2 ^ j - 3 ^ a_j)`.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 678,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "prefix_bound_of_min",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 694,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "neg_one_cycle",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 696,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "neg_five_cycle",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 699,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "neg_seventeen_cycle",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The `-17` word has seven odd and four even letters, and `2 ^ 11 < 3 ^ 7`: an expanding word of length `11` with four evens, the least length Paper A's Theorem 3.22 allows a Juggler cycle.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 707,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "neg_seventeen_word_expanding",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Collatz's `-17` cycle inhabits Paper A's `CycleMinShape`**, with the length bound `11` and the even-count bound `4` both met with equality. The Juggler-specific parts of `CycleMin` (the floor-power realisation) are not claimed; this is the word-level shape only.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 714,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "neg_seventeen_inhabits_cycleMinShape",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A prefix of the `\u2124` word is the word of the prefix.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 730,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "parityWordZ_take",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**A negative cycle word, read at its least `|x|`, has no contracting prefix.** If `x \u2264 -2` and no iterate up to `K` lies closer to zero than `x`, then `2 ^ j \u2264 3 ^ a_j` for every `j \u2264 K`. Exact: the even steps only subtract, so an expanding multiplier is the only way to stay away from zero.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 748,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "neg_prefix_noncontracting",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The word-level twin, exactly.** A negative cycle of the `\u2124` map of positive length, read at its least `|x|`, has a word that is prefix-noncontracting and expanding -- the Juggler cycle-word shape of Paper A, with no `delta` exception on this side.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 773,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "neg_cycle_word_is_juggler_shape",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`-17` is the element of least `|x|` on its cycle, so the twin applies to it.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 779,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "neg_seventeen_is_least",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror"
+      ],
+      "line": 781,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "neg_seventeen_word_is_juggler_shape",
+      "trust": "kernel"
+    },
+    {
       "doc": "Integer two-sided cell `n^lower \u2264 x < n^upper`.",
       "file": "formal/Problems/Juggler/Corridor.lean",
       "kind": "def",
@@ -89553,6 +90723,7 @@
         "Problems.Juggler.BunchedTight",
         "Problems.Juggler.Certificates",
         "Problems.Juggler.Collapse",
+        "Problems.Juggler.CollatzBridge",
         "Problems.Juggler.Corridor",
         "Problems.Juggler.CriticalCostKernel",
         "Problems.Juggler.CubeCorridor",
@@ -89799,6 +90970,55 @@
         "Problems.Juggler.Preimages"
       ],
       "ledger": []
+    },
+    "Problems.Juggler.CollatzBridge": {
+      "declarations": 65,
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "imports": [
+        "Problems.Collatz.Shortcut",
+        "Problems.Juggler.CycleCore",
+        "Problems.Juggler.Envelope",
+        "Problems.Juggler.IdealCycleMin",
+        "Problems.Juggler.PaperBCertificateRecursion",
+        "Problems.Juggler.RateFreeDensity"
+      ],
+      "ledger": [
+        {
+          "id": "J-collatz-bridge-is-exact-at-the-word-level",
+          "statement": "The Juggler-Collatz bridge, stated as theorems over the one shared object, the List Branch word, with no real number and nothing measured in any statement. COLLATZ IS WORD-AFFINE WITH THE CORRECTION POINTING UP: for the shortcut map C (x/2 on evens, (3x+1)/2 on odds) and w = parityWord x d the first d parities of the orbit of x, 2^d * C^d(x) = 3^(oddCount w) * x + wordConst w with wordConst w >= 0 a function of the word alone (word_affine; wordConst (odd :: w) = 3^(oddCount w) + 2 wordConst w, wordConst (even :: w) = 2 wordConst w, and wordConst w = 0 iff w has no odd letter). JUGGLER IS EXPONENT-AFFINE WITH THE CORRECTION POINTING DOWN: juggler_word_power restates power_bound_word as (image n w)^(2^|w|) <= n^(3^(oddCount w)) for a realised word. The same multiplier 3^o/2^d acts on x in one problem and on log n in the other, with corrections of opposite sign, and that is the whole of the sign flip on cycles: cycle_contracting (a positive shortcut cycle of length d >= 1 has 3^o < 2^d, because 2^d x = 3^o x + c with c >= 1 whenever the word has an odd letter and 2^d x = x is impossible otherwise) sits beside juggler_cycle_expanding = cycle_itinerary_formally_expanding (2^d < 3^o). TERRAS IN THIS VOCABULARY: parityWord_eq_iff, parityWord x d = parityWord y d iff x = y mod 2^d, and image_parityWord, the residues modulo 2^d map bijectively onto allWords d (allWords_card gives 2^d). Compiles with no sorry; #print axioms on word_affine gives propext and Quot.sound only, on the counting theorems propext, Classical.choice, Quot.sound. Registered as an auxiliary Juggler module (not a paper review object); it imports Problems.Collatz.Shortcut, RateFreeDensity, PaperBCertificateRecursion, Envelope and CycleCore. WHAT IT IS NOT: no density, no asymptotic, no bound in either problem, and nothing about how the Juggler word attaches to n, which is Hypothesis FD. It records that the bridge of J-juggler-is-collatz-one-exponential-up is well defined at the word level, and it closes the gap that the Collatz half of the sign flip was previously only an algebraic lemma with the orbit identity assumed (Problems/Collatz/Cycles.lean expanding_excludes_positive_candidate): the identity is now derived by iterating shortcutC. Process note: the module was swept into commit 4c078205 by a concurrent session's git add -A before its own record existed; the build was then verified by that session (lake build Problems.Juggler, 8909 jobs) and here.",
+          "tag": "EXACT \u2014 LEAN VERIFIED"
+        },
+        {
+          "id": "J-survivor-count-is-a-collatz-residue-count",
+          "statement": "Paper B's survivor count is a Collatz residue count, in Lean. undecidedResidues_card: the number of residues r modulo 2^d whose parity word parityWord r d has no contracting prefix equals neverNegCount d, the N_d of RateFreeDensity; decidedAtResidues_card: the number whose word is a minimal certificate (first contracts at exactly d) equals minimalCertCount d, the M_d of PaperBCertificateRecursion. Both follow from Terras's bijection (image_parityWord) by pushing the filter through the image. THE COLLATZ MEANING IS MADE EXACT, with Terras's 'all sufficiently large' threshold explicit: le_iter_of_prefixNoncontracting, no member of an undecided class drops within d steps (x <= C^t(x) for t <= d, strictly for x >= 1 and t >= 1); iter_lt_of_exponentGap_class, every member y of a decided class with y > wordConst (parityWord r t) drops at the contracting length t (C^t(y) < y) -- so a class is undecided iff no member drops, and decided iff all but finitely many members drop at the same step, which is OEIS A076227's definition ('residue classes in which the stopping time is not constant') read at large members; at x = 1 the literal reading differs (sigma(1) is infinite in the class of 1 mod 4, whose word OE contracts), and the Lean statement is the word criterion with the threshold, not the literal one. KERNEL CHECKS: undecidedResidues 6 = {7, 15, 27, 31, 39, 47, 59, 63}, the entry's own example (Labos Elemer, 2002), and (undecidedResidues d).card = 3, 4, 8, 13, 19, 38, 64 for d = 4..10, all by decide +kernel (the depth-10 check runs 1024 residues through ten shortcut steps in the kernel). UPGRADE: the count half of J-juggler-is-collatz-one-exponential-up and of J-paper-b-survivors-are-oeis-a076227 was COMPUTATIONALLY VERIFIED by running Collatz on eight sampled lifts per class for d = 4..10 (a check that is exact at those depths by exhaustive comparison but not sound by construction); it is now a theorem for every d. Through this row the word-only modules PaperBCertificateRecursion, PaperBCertificateLengths, PaperBJumpTransposition and PaperBSurvivorDecay are theorems about Collatz residue classes as well: the recursion N_(d+1) + M_(d+1) = 2 N_d is OEIS A076227's Zarubin 2019 formula, the empty-window theorem is Noe's 2006 comment on A100982 (lengths are A020914(k), the binary length of 3^k), and the stepFlat/stepRise profile is Winkler's 2017 Pascal-type triangle -- all KNOWN as formulas, kernel-verified here for the first time as far as the laboratory has read. Not a density, not a bound, not a halt theorem.",
+          "tag": "EXACT \u2014 LEAN VERIFIED"
+        },
+        {
+          "id": "J-collatz-even-step-charge-identity",
+          "statement": "The Collatz walk charge, in natural numbers. Define evenCharge on words by evenCharge [] = 0, evenCharge (even :: w) = 3^(oddCount w) + 2 evenCharge w, evenCharge (odd :: w) = 2 evenCharge w -- in closed form the sum over even positions i of 3^(o - a_i) 2^i with a_i the odd letters before i. Then (wordConst_add_two_pow) wordConst w + 2^|w| = 3^(oddCount w) + evenCharge w, so the odd-step constant and the even-step charge differ exactly by the multiplier gap; (two_pow_mul_iter_add_one) for every start x and depth d, 2^d (C^d(x) + 1) = 3^o (x + 1) + evenCharge (parityWord x d): conjugating the odd step by z = x + 1 makes every correction come from an even step; (three_pow_mul_add_one_le) hence 3^o (x + 1) <= 2^d (C^d(x) + 1), the Collatz lower envelope, the mirror of power_bound_word with the inequality reversed because the +1s only push up; (cycle_even_charge) on a cycle, (x + 1) 2^d = (x + 1) 3^o + evenCharge w, i.e. the surplus (x_0 + 1)(2^K - 3^p) IS the even-step charge of the word -- the Collatz counterpart of Paper A's finance inequality n log n (3^o - 2^L) <= L 3^o, as an identity rather than a bound; (trivial_cycle_charge) the trivial cycle 1 -> 2 -> 1 has word OE, charge 2 and (1+1)(4 - 3) = 2, by decide +kernel. Read with 2^(-h_i) = 2^i/3^(a_i) 2^(-d)... precisely evenCharge w / (2^d) = 3^o sum over even steps of 2^(-h_i) up to the factor 3^o/2^d, this is the exact form of the statement whose analytic version is J-collatz-walk-charge-constant. Compiles with no sorry; standard axioms. Priority: the z = x + 1 conjugation of the odd step is classical (Simons-de Weger's up-run formula); the even-step reading of the affine constant is likely in Halbeisen-Hungerbuehler 1997's parity-word functional; not checked beyond Hercher 2023, which does not use it. Not a bound, not a halt theorem.",
+          "tag": "EXACT \u2014 LEAN VERIFIED"
+        },
+        {
+          "id": "J-collatz-walk-charge-is-sharp",
+          "statement": "The height-only bound of J-collatz-walk-charge-constant is sharp, so composing the rotation-orbit average with Hercher's per-run averaging (Lemma 26 of Hercher 2023) gains nothing: the two read the same slack and the rotation average is its sharp reading. ARGUMENT (EXACT \u2014 HUMAN PROOF). The hug word with p odd letters -- the lowest non-negative walk, odd exactly when the height is below 1 -- has its odd steps at the heights frac(a alpha), a = 0..p-1, alpha = log2(3/2), so its odd-step sum of 2^(-h) is H(p) = sum_{a<p} 2^(-frac(a alpha)) by construction. Terras's bijection realises it: exists_residue_of_word (CollatzBridge.lean, the surjective half of image_parityWord) gives r < 2^K with parityWord r K equal to the hug word, and every x_0 = r mod 2^K follows it. Along a member x_0 far above 2^K the orbit stays above x_0 and x_j + 1 = 2^(h_j)(x_0 + 1 + S_j) with S_j <= K, so x_0 sum_{odd} 1/x_j = H(p)(1 + O(K/x_0)). Hence any bound on the odd reciprocal sum that uses only x_j + 1 >= 2^(h_j)(x_0 + 1) and x_j >= x_0 is at least H(p)/(x_0 + 1) up to O(K/x_0^2), and Hercher's (3/4) K/X_0 is a weaker evaluation of that same information, not a different source of it. NUMBERS. x_0 * sum_{odd} 1/x_j / H(p) = 1.000000000000 at p = 12, 53, 300, 665 (K = 19, 84, 475, 1054) with x_0 = r + 2^(K + 300), exact rational arithmetic; the realised residues are below 2^K and the orbits follow the hug word letter for letter. CONSEQUENCE. Further improvement of the Collatz finance constant needs information the heights do not carry: the residue classes modulo powers of two of Hercher's Corollary 29, or the exact closure (x_0 + 1)(2^K - 3^p) = evenCharge w (J-collatz-even-step-charge-identity), which requires 2^K - 3^p to divide the even-step charge of the word. Not a kill, not a period bound, not a halt theorem.",
+          "tag": "COMPUTATIONALLY VERIFIED"
+        },
+        {
+          "id": "J-collatz-cycle-equation-is-a-word-divisibility",
+          "statement": "The exact Collatz cycle condition, as a statement about the word. Over \u2124 the affine identity of CollatzBridge.lean holds for every integer start (word_affine_int, two_pow_mul_iter_add_one_int: 2^d (C^d x + 1) = 3^o (x + 1) + evenCharge w, with shortcutZ x = x/2 on evens and (3x+1)/2 on odds and parityWordZ its word), so on every integer cycle (x + 1)(2^d - 3^o) = evenCharge w (cycle_equation_int); in \u2115, for a positive cycle of length d >= 1, (x + 1)(2^d - 3^o) = evenCharge w and hence 2^d - 3^o divides the even-step charge of the word (cycle_equation, cycle_dvd). CONVERSELY (cycle_of_equation): a start whose parity word w satisfies (x + 1)(2^d - 3^o) = evenCharge w with 3^o <= 2^d returns after d steps. So an integer cycle with word w exists exactly when the rational x_0 = wordConst w / (2^d - 3^o) is an integer whose parity word is w -- and the second condition is automatic, by Lagarias 1990 (lagarias-1990-rational-cycles): every word is the parity vector of exactly one rational with odd denominator, periodic under the map. That last step is not in Lean; it is checked computationally on 190069 minimal certificates (lengths <= 26) and 654279 expanding survivors (lengths <= 24), every one of whose rational cycles follows its own word and returns. PREFIX BOUND (prefix_bound_of_min): if the orbit has not dropped below x by step j then (x + 1)(2^j - 3^(a_j)) <= evenCharge (prefix), so at a cycle minimum every contracting prefix caps x + 1 by the prefix's own rational cycle value evenCharge/(2^j - 3^(a_j)) -- the exact form of Terras's 'all sufficiently large members drop' and the reason a cycle word at its minimum is a minimal certificate up to the delta exceptions of J-collatz-walk-charge-constant: it contracts only at the end, so its length is A020914(p) = the binary length of 3^p, a classical constraint (the lengths where M_d != 0, the empty-window theorem, once more). WHAT THIS IS: the cycle side of the bridge made exact -- Collatz positive cycles are minimal certificates of Paper B carrying an integer rational cycle, and the open problem is which minimal certificates have 2^K - 3^p | evenCharge w with quotient at least 2 (the trivial cycle is OE with quotient 2). Not a kill, not a bound, not a halt theorem.",
+          "tag": "EXACT \u2014 LEAN VERIFIED"
+        },
+        {
+          "id": "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+          "statement": "The sign flip on cycles is the sign of x, and Juggler's cycle words are the words of Collatz's negative cycles. On the negative integers the odd step is |x| -> (3|x| - 1)/2, so the correction pushes |x| below the pure multiplier -- Juggler's sign -- and the cycle equation (x + 1)(2^d - 3^o) = evenCharge w >= 0 with x + 1 < 0 forces 2^d < 3^o: neg_cycle_expanding, a cycle of the \u2124 shortcut map at x <= -2 of positive length has an expanding word, beside cycle_contracting for positive cycles and cycle_itinerary_formally_expanding for Juggler. At the element of least |x| the prefixes are non-contracting EXACTLY, with none of the delta exceptions of the positive side (neg_prefix_noncontracting: the even steps only subtract, so an expanding multiplier is the only way to stay away from zero), so a negative Collatz cycle word is an expanding survivor: precisely Paper A's CycleMin word shape, prefixNoncontracting and exponentExpanding, as one Lean statement (neg_cycle_word_is_juggler_shape, instantiated at -17 by neg_seventeen_word_is_juggler_shape with neg_seventeen_is_least by decide); and the finance survivors of the negative-cycle problem at a floor are the Juggler-side dangerous lengths (J-cycle-gaps-are-mirror-images, J-negative-cycle-finance-is-the-juggler-mirror). THE THREE KNOWN NEGATIVE CYCLES, in Lean by decide: -1 with word O (neg_one_cycle), -5 with word OOE (neg_five_cycle), -17 with word OOOOEOOOEEE (neg_seventeen_cycle), whose lengths 1, 3, 11 are Juggler-side lengths (the convergent numerators 1 and 3, and the semiconvergent 11 = 7 + 4 of Paper A's Remark 3.32 table). THE -17 WORD INHABITS PAPER A'S CycleMinShape (neg_seventeen_inhabits_cycleMinShape): seven odd and four even letters, 2^11 < 3^7, starts OO, ends E with an empty last odd run, length 11 -- so Paper A's floor-free Theorem 3.22, every Juggler cycle has at least four even letters and period at least eleven, is met with equality by a word that Collatz realises as an integer cycle at -17. The Juggler-specific parts of CycleMin (the floor-power realisation, the next-square inventory that lifts e >= 4 to e >= 8 at minima >= 300) are not claimed for Collatz; this is the word-level shape only. CENSUS (COMPUTATIONALLY VERIFIED): every expanding survivor of length <= 24 (654279 words) has a negative rational cycle following its word, and the integral ones are exactly the three families O^k, (OOE)^k, (OOOOEOOOEEE)^k -- the -1, -5, -17 cycles known since the 1970s (Lagarias 1985 Section 2) and no other, to that length. CONSEQUENCE FOR THE BRIDGE: the Juggler no-cycle problem is the word-level twin of the Collatz negative-cycle conjecture (only -1, -5, -17), not of the positive one; both need expanding survivor words whose corrections point down, and Collatz has three integer solutions where Juggler has none known. Not a kill, not a period bound, not a halt theorem.",
+          "tag": "EXACT \u2014 LEAN VERIFIED"
+        },
+        {
+          "id": "J-negative-cycle-finance-is-the-juggler-mirror",
+          "statement": "Paper A's finance, read on Collatz's negative integers, with its walk charge on the even steps. A negative cycle of the shortcut map with least |x| = y >= 2, length K and o odd letters has, by the cycle equation (cycle_equation_int) and the exactness of its word shape (neg_prefix_noncontracting), (y - 1)(3^o - 2^K) = evenCharge w = 3^o * sum over even steps i of 2^(-h_i), h_i = a_i log2 3 - i the height before the step; since the height after an even step is still non-negative, every h_i >= 1, and for the e-th even step h >= ceil((e+1)/alpha) alpha - e in [1, 1 + alpha), alpha = log2(3/2), attained by the hug word. Hence, with theta_J(K) = 1 - 2^K/3^o and m = K - o even letters: y - 1 <= m/(2 theta_J) uniformly, and y - 1 <= H_E(m)/theta_J with H_E(m) = sum_{e<m} 2^(-(ceil((e+1)/alpha) alpha - e)), H_E(m)/m -> 1/(6 alpha log 2) = 0.41105 (0.411053 at m = 10^5). This is Theorem 4.4 of Paper A on the other side of the linear form -- |x| - 1 in place of n log n, the even letters charged at 2^(-h) in place of the floor losses -- and the survivors at a verification floor Y_0 (all |x| <= Y_0 known to enter a known cycle) are the Juggler-side dangerous lengths. COMPUTATIONALLY VERIFIED, by the three-gap walk: at Y_0 = 2^40 the smallest survivor is 9538065 (uniform) or 10444047 (hug); at 2^60, 5398749415 or 6028888312; at 2^68, 72448885240 under both; at 2^71, 103768467013 under both -- each a Juggler-side length, the mirror of Eliahou's and Hercher's numbers. SANITY: the -5 cycle, whose word OOE is a hug word, attains the hug bound exactly (bound 5.000 at |x| = 5); -17 sits inside it (27.1 against 17); -1 is the all-odd word with no even step. WHAT IS MISSING: no published verification floor for the 3x-1 map was found (OEIS text records, Roosendaal's index; the loops page it links was unreachable), so the table is conditional on the floor and no period bound is claimed; if the 3x-1 map is verified to 2^68 the smallest possible fourth negative cycle has length 72448885240. Not a kill, not a halt theorem, and not a claim about Juggler orbits: the Juggler side of the same inequality is cycleMin_finance, already recorded.",
+          "tag": "EXACT \u2014 HUMAN PROOF"
+        }
+      ]
     },
     "Problems.Juggler.Corridor": {
       "declarations": 19,
@@ -93008,13 +94228,13 @@
     }
   },
   "totals": {
-    "declarations": 6892,
-    "declarations_with_a_ledger_row": 4699,
-    "ledger_rows_naming_a_file": 443,
-    "modules": 306,
+    "declarations": 6957,
+    "declarations_with_a_ledger_row": 4764,
+    "ledger_rows_naming_a_file": 450,
+    "modules": 307,
     "trust": {
       "compiler": 56,
-      "kernel": 6836
+      "kernel": 6901
     }
   }
 }

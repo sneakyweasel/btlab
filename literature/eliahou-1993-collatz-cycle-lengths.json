@@ -1,0 +1,22 @@
+{
+  "id": "eliahou-1993-collatz-cycle-lengths",
+  "title": "The 3x+1 problem: new lower bounds on nontrivial cycle lengths",
+  "authors": ["Shalom Eliahou"],
+  "year": 1993,
+  "identifiers": {
+    "doi": "10.1016/0012-365X(93)90052-U"
+  },
+  "url": {
+    "doi": "https://doi.org/10.1016/0012-365X(93)90052-U"
+  },
+  "problem_area": "collatz-cycles",
+  "relevant_concepts": [
+    "continued fraction of log_2 3",
+    "admissible cycle periods",
+    "verification floor 2^40",
+    "cycle financing"
+  ],
+  "project_relationship": "reproduced",
+  "status": "classical-source",
+  "notes": "Discrete Mathematics 118 (1993) 45-56. Wording from Lagarias's annotated bibliography (arXiv math/0309224, entry 53): any nontrivial cycle of T has period p = 301994 A + 17087915 B + 85137581 C with A, B, C nonnegative, B >= 1, and A C = 0, hence p >= 17087915; the method uses the continued fraction of log_2 3 and the truth of the conjecture for n < 2^40. The original was not read here. Reproduced by docs/problems/juggler_collatz_finance_mirror.md: Paper A's finance inequality with x_min in place of n log n gives the same minimum and the same lattice at 2^40, and 301994 alone is excluded because its bound 9.85e11 is just below 2^40. Paper A cites Eliahou as [13] for leftover packaging; the Lean EliahouLeftover of CycleFinanceLeftovers.lean is the Juggler-side form."
+}
