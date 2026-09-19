@@ -113,3 +113,31 @@ that matters, and commit the result alongside Lean changes that add or remove de
 
 If a search returns nothing surprising and you suspect the index rather than the corpus, run
 `build` first and search again before concluding anything.
+
+### Check `git status` before you commit a rebuild
+
+`formalpedia` reads the **working tree**, not `HEAD`. That is what makes `impact` useful
+before an edit, and it is what makes committing a rebuild from a shared checkout unsafe:
+several sessions work this repository at once, and a rebuild will quietly bake their
+*uncommitted* declarations into an index you then commit.
+
+```bash
+git status --porcelain formal/     # only your own .lean should be dirty
+```
+
+If someone else's Lean is modified, do not commit the artifacts. Either wait for them to
+land, or make your source change and say plainly that the rebuild is owed — your docstring
+can wait a commit; their unfinished work appearing in a committed index cannot be undone
+quietly, and they may not find out.
+
+This happened on 19 September 2026: a one-line docstring change triggered a rebuild that
+committed seven of a peer's unlanded window-empty declarations (`4a6240e9`, backed out in
+`00466925`), hours after the same session had warned a third session about it. Twice is a
+pattern, which is why it is written here rather than left to memory.
+
+Note the incentive, because it points the wrong way.
+`test_every_committed_artifact_matches_a_fresh_build` also compares against the working
+tree, so committing the contaminated artifacts turns it **green** and backing them out
+turns it **red** until the peer lands. Red is the correct state. A green gate bought by
+describing someone else's unfinished work is a false statement about the repository, and
+false in a way no one can see. Leave it red and say why in the commit message.
