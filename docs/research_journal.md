@@ -1,5 +1,39 @@
 # Research journal
 
+## 2026-09-19 -- the exponent the bridge quotes is Lagarias's, not Terras's
+
+- **A correction to a peer row, not to my own.** The bridge session's
+  `J-proposition-j-on-collatz-is-terras` derives `N^(1 - 0.050044)`
+  non-descenders for Collatz and calls it "the quantitative form of the
+  density-one stopping-time theorem, known since 1976". The derivation is right
+  and the title is right. The date is not.
+- **What is Terras's.** The parity bijection on `Z/2^d`, hence `E_d(N) = O(1)`,
+  hence density one -- jointly with Everett 1977. That is the mechanism the row
+  turns on, and it is correctly attributed.
+- **What is not.** The `0.050044` enters only through `N_d/2^d <= theta^d`, and
+  that bound is Lagarias 1985, Theorem D: `1 - F(k) <= 2^(-eta k)` with
+  `eta = 1 - H((log_2 3)^(-1)) = 0.050044472811669365186`. It is proved there
+  from Terras's structure by a binomial tail through Ash's Lemma 4.7.2, and the
+  remark after it makes it two-sided. Theorem D carries no name in the survey
+  while Theorems A and C are both labelled "(Terras)", and Lagarias's own
+  annotated bibliography credits Terras with the residue-class structure, the
+  coefficient stopping time and natural density one -- and with no rate.
+- **So the two sessions were quoting the same constant from two directions and
+  neither had sourced it.** The bridge reached `0.050044` from Proposition J; the
+  jump-spectrum cluster reached `theta = 0.9659065532` from a large-deviation
+  fit. They are `2^(-eta)` and `eta` of one number, and it has been in print
+  since 1985.
+- **The caveat I am not allowed to drop.** Terras 1976 could not be read here --
+  matwbn sits behind an anti-bot gate -- so this rests on Lagarias's annotation
+  of Terras and not on Terras's text. An exponential estimate inside the 1976
+  paper would overturn it, and whoever can open that scan should check.
+- **Scope of the edit.** The row's statement and the bridge dossier's roadmap
+  section. The row id is unchanged: `J-proposition-j-on-collatz-is-terras` is
+  still the right name, because what makes Proposition J reproduce the classical
+  theorem on the Collatz side is exactly Terras's bijection. The peer's journal
+  entry is left as written; it is a record of what was thought then, not a claim
+  to maintain.
+
 ## 2026-09-19 -- the rate was Lagarias's and the exponent was Hikawa's
 
 - **Objective:** yesterday's entry said priority on the asymptotic was not
