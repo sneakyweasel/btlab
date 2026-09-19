@@ -68,9 +68,16 @@ def test_the_shifted_window_predicts_the_cylinder_at_every_level(level: float) -
     identity against the shifted-window prediction. No mismatch at any depth at any of the
     three levels.
 
-    Level zero is excluded from the parametrisation only because of an endpoint convention:
-    the laboratory's ``CertWindow`` takes the left endpoint non-strict, ``2^(L-1) <= 3^o``,
-    and the strict form used here disagrees with it at ``d = 1`` and nowhere else.
+    CONVENTION, corrected 2026-09-19 after an adversarial pass on the Lean side. This file
+    reaches the barrier NON-STRICTLY, ``walk <= -level``, which is what Paper C's code does.
+    The Lean module ``PaperBLevelWindow`` reaches it STRICTLY, which is what Paper B does.
+    The two coincide exactly when ``3^o * 2^level`` is never a power of two.
+
+    That holds at every NON-INTEGER level, so these two parametrisations, 0.5 and 1.2486,
+    corroborate the Lean module. It fails at every INTEGER level at ``o = 0``, where the two
+    conventions disagree at exactly the lengths ``floor(level)`` and ``floor(level) + 1``. So
+    the 3.0 case below is checking the mirror statement, not the Lean module's, and an earlier
+    version of this note wrongly said the difference was confined to level zero.
     """
     mismatches = []
     for d in range(1, 16):
@@ -86,7 +93,8 @@ def test_every_walsh_statistic_freezes_at_a_free_length() -> None:
 
     The recorded level-zero finding is about the Wiener norm. It is not a fact about that
     norm: it is the cylinder identity, so every functional of the set freezes at once. At
-    ``L = 1.2486`` the free lengths below 21 are 4, 6, 9, 12, 15, 17, 20, and at each of them
+    ``L = 1.2486`` the free lengths below 21 are 1, 4, 6, 9, 12, 15, 17, 20 -- depth one is
+    free there too and an earlier version of this line omitted it -- and at each of them
     the bad-set density, the Wiener norm and the order-tail fractions are all bit-identical to
     the previous depth.
     """
@@ -147,3 +155,39 @@ def test_the_tilted_count_is_the_weight_summand() -> None:
             if prev == 0:
                 continue
             assert abs(cur / prev - (1 + a)) < 1e-12, (level, a, d, cur / prev)
+
+
+def test_the_free_lengths_cost_a_constant_not_an_exponent() -> None:
+    """A third of all lengths carry no first-passage word, and it buys Paper C nothing.
+
+    The free lengths have density ``1 - 1/log2(3) = 0.369`` at every level, so roughly a third
+    of all depths contribute exactly zero first-passage mass. That looks like sparsity a
+    counting bound could exploit, and the honest answer is that it cannot: the mass does not
+    thin, it piles onto the admissible lengths.
+
+    Measured over ``d = 10..18`` on the exact enumeration, the tail mass decays at 0.73 per
+    length and 0.60 per ADMISSIBLE length at level zero, 0.71 and 0.58 at level 1.2486. The
+    per-length figure is what any exponential bound in ``d`` uses, and it is unchanged by
+    knowing which lengths are free. Skipping the free lengths concentrates the same total
+    decay into fewer steps rather than producing extra decay.
+
+    So the level-``L`` empty-window theorem does not improve Paper C's counting exponent. It
+    is worth a constant. Recorded because the loop's standing question is whether anything
+    moves termination, and this is a place where the answer looked like yes and is no.
+    """
+    for level, lo_expect, hi_expect in ((0.0, 0.72, 0.74), (1.2486, 0.70, 0.72)):
+        mass = {}
+        for d in range(1, 19):
+            mass[d] = sum(
+                1 for w in map("".join, product("EO", repeat=d)) if _first_hit(w, level) == d
+            ) / 2 ** d
+        tail = {d: sum(v for k, v in mass.items() if k >= d) for d in mass}
+        lo, hi = 10, 18
+        steps = hi - lo
+        rises = sum(1 for d in range(lo + 1, hi + 1) if mass[d] > 0)
+        per_len = (tail[hi] / tail[lo]) ** (1 / steps)
+        per_adm = (tail[hi] / tail[lo]) ** (1 / rises)
+        assert lo_expect < per_len < hi_expect, (level, per_len)
+        # decay per admissible length is FASTER, which is what "the mass redistributes" means
+        assert per_adm < per_len, (level, per_adm, per_len)
+        assert rises < steps, (level, rises, steps)

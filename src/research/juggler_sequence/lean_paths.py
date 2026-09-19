@@ -298,6 +298,7 @@ AUXILIARY_MODULES: dict[str, str] = {
     "PaperBFiveStepDensity": "Paper B Theorems 5.2-5.4: the certificate count assembly",
     "PaperBCertificateLengths": "Paper B Lemma 5.1 for every length: the odd-count window",
     "PaperBCertificateRecursion": "Paper B: survivors and minimal certificates, one recursion",
+    "PaperBLevelWindow": "The empty-window theorem at every level, not only Paper B's",
     "PaperBJumpTransposition": "Paper B: one barrier transposition costs the barrier mass",
     "CollatzBridgeLab": "Laboratory extensions of the Collatz bridge: the minimal-certificate count as a residue count (Paper B recursion) and the -17 cycle word inside CycleMinShape (IdealCycleMin)",
     "FateProductionWords": "Paper C's six finite production words V_k = (OE)^(k-1) OEE and their prefix-freeness, proved for the whole family; the combinatorial step the manuscript asserts three times and Appendix D leans on for disjoint source sets",

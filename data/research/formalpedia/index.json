@@ -57226,6 +57226,196 @@
       "trust": "kernel"
     },
     {
+      "doc": "**The walk has fallen past the barrier**, where the level `\u039b` enters as `c = 2 ^ \u039b`. At `c = 1` this is `exponentGap`.",
+      "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 71,
+      "module": "Problems.Juggler.PaperBLevelWindow",
+      "name": "exponentGapAt",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**A minimal certificate at level `c`**: the walk passes the barrier at the last step and at no earlier one.",
+      "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 76,
+      "module": "Problems.Juggler.PaperBLevelWindow",
+      "name": "IsMinimalCertificateAt",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The shifted window.** At level `c` the odd count of a length-`L` minimal certificate is pinned to an `o` with `2 ^ (L - 1) \u2264 3 ^ o c < 2 ^ L`.",
+      "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 81,
+      "module": "Problems.Juggler.PaperBLevelWindow",
+      "name": "CertWindowAt",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 86,
+      "module": "Problems.Juggler.PaperBLevelWindow",
+      "name": "exponentGapAt_one_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 100,
+      "module": "Problems.Juggler.PaperBLevelWindow",
+      "name": "certWindowAt_one_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
+      "kind": "instance",
+      "ledger": [],
+      "line": 123,
+      "module": "Problems.Juggler.PaperBLevelWindow",
+      "name": "at",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**A whole-number level is only a shift of the length.** At `c = 2`, that is `\u039b = 1`, the window at length `L` is Paper B's window at length `L - 1`. This is worth stating because it says where the new content is and where it is not. It is proved here at `c = 2` only; the same re-indexing holds at `c = 2 ^ k` by the same argument. So a whole-number level proves nothing Paper B did not already have, and the content of this file is at the *fractional* levels -- which is also the only place its strict barrier agrees with Paper C's non-strict one. `certWindowAt_twelve_empty_at_paperC_level` is the worked instance at such a level.",
+      "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 124,
+      "module": "Problems.Juggler.PaperBLevelWindow",
+      "name": "certWindowAt_two_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 153,
+      "module": "Problems.Juggler.PaperBLevelWindow",
+      "name": "two_pow_le_two_mul",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**At most one power of three lands in the shifted window**, for the same reason as at level zero: consecutive powers of two differ by `2` and `3 > 2`, and scaling both sides by `c` does not change that.",
+      "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 162,
+      "module": "Problems.Juggler.PaperBLevelWindow",
+      "name": "certWindowAt_unique",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The last letter is `E` at every level.** The proof is Paper B's with the barrier moved: an odd last letter forces `3 < 2`.",
+      "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 184,
+      "module": "Problems.Juggler.PaperBLevelWindow",
+      "name": "minimalCertAt_concat_even",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The odd count of a level-`c` minimal certificate lies in the shifted window.**",
+      "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 215,
+      "module": "Problems.Juggler.PaperBLevelWindow",
+      "name": "minimalCertAt_window",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The empty-window theorem, at every level.** When no power of three lies in the shifted window at `L`, no word of length `L` is a minimal certificate at level `c`. At `c = 1` this is `no_minimalCert_of_window_empty`, now derived rather than asserted (`no_minimalCert_of_window_empty_of_level`). For `c > 1` it is the word-level input to the level-`\u039b` cylinder identity, and it is the statement Paper C's bad sets satisfy **at every non-integer level**; at integer levels the two conventions part, as the module docstring records.",
+      "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 248,
+      "module": "Problems.Juggler.PaperBLevelWindow",
+      "name": "no_minimalCertAt_of_window_empty",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The contrapositive: a length that carries a level-`c` certificate has a power of three in its shifted window.",
+      "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 256,
+      "module": "Problems.Juggler.PaperBLevelWindow",
+      "name": "certWindowAt_of_minimalCertAt",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The certificate predicates agree at level zero, not merely the gap predicates.",
+      "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 265,
+      "module": "Problems.Juggler.PaperBLevelWindow",
+      "name": "isMinimalCertificateAt_one_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Paper B's empty-window theorem, obtained from the level-carrying one at `c = 1`.** The module docstring claims Paper B's statements are the `c = 1` case of these; this is that claim discharged rather than asserted.",
+      "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 272,
+      "module": "Problems.Juggler.PaperBLevelWindow",
+      "name": "no_minimalCert_of_window_empty_of_level",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
+      "kind": "instance",
+      "ledger": [],
+      "line": 283,
+      "module": "Problems.Juggler.PaperBLevelWindow",
+      "name": "at",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The odd count of a window is bounded by the length, at any level at or below the start.",
+      "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 287,
+      "module": "Problems.Juggler.PaperBLevelWindow",
+      "name": "certWindowAt_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Length twelve is free at Paper C's level.** For every scale `c` between `2.37` and `2.38` -- that is, every level `\u039b` between `log\u2082 2.37 = 1.2450` and `log\u2082 2.38 = 1.2511`, a range containing the `1.2486` the spectrum work runs at -- no power of three lies in the window at `L = 12`, so no word of length twelve first passes the barrier there. The two neighbouring powers of three miss from opposite sides: `3 ^ 6 c \u2264 1735` is below `2 ^ 11 = 2048`, and `3 ^ 7 c \u2265 5183` is above `2 ^ 12 = 4096`.",
+      "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 305,
+      "module": "Problems.Juggler.PaperBLevelWindow",
+      "name": "certWindowAt_twelve_empty_at_paperC_level",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The consequence, at that level: no word of length twelve is a minimal certificate.",
+      "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 314,
+      "module": "Problems.Juggler.PaperBLevelWindow",
+      "name": "no_minimalCertAt_twelve_at_paperC_level",
+      "trust": "kernel"
+    },
+    {
       "doc": "The binomial generating function.",
       "file": "formal/Problems/Juggler/PaperBMarkov.lean",
       "kind": "theorem",
@@ -91196,6 +91386,7 @@
         "Problems.Juggler.PaperBDensity",
         "Problems.Juggler.PaperBFiveStepDensity",
         "Problems.Juggler.PaperBJumpTransposition",
+        "Problems.Juggler.PaperBLevelWindow",
         "Problems.Juggler.PaperBMarkov",
         "Problems.Juggler.PaperBPaperCBridge",
         "Problems.Juggler.PaperBSlopeRate",
@@ -93436,6 +93627,14 @@
       "imports": [],
       "ledger": []
     },
+    "Problems.Juggler.PaperBLevelWindow": {
+      "declarations": 19,
+      "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
+      "imports": [
+        "Problems.Juggler.PaperBCertificateLengths"
+      ],
+      "ledger": []
+    },
     "Problems.Juggler.PaperBMarkov": {
       "declarations": 4,
       "file": "formal/Problems/Juggler/PaperBMarkov.lean",
@@ -94596,13 +94795,13 @@
     }
   },
   "totals": {
-    "declarations": 6982,
+    "declarations": 7001,
     "declarations_with_a_ledger_row": 4786,
-    "ledger_rows_naming_a_file": 454,
-    "modules": 309,
+    "ledger_rows_naming_a_file": 455,
+    "modules": 310,
     "trust": {
       "compiler": 56,
-      "kernel": 6926
+      "kernel": 6945
     }
   }
 }
