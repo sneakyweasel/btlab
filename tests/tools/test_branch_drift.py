@@ -30,8 +30,20 @@ import branch_drift as BD  # noqa: E402
 #: same entry. Remove an entry when the branch is merged or deleted; do not add
 #: one without looking at what the branch holds.
 #:
-#: Assessed 14 September 2026.
-ACKNOWLEDGED: dict[str, str] = {}
+#: Assessed 14 September 2026; reassessed 19 September 2026.
+ACKNOWLEDGED: dict[str, str] = {
+    "claude/latest-progress-summary-s011un": (
+        "Pending extraction. Holds the poor-fiber tail: J-oe-fiber-block-lock, "
+        "J-oe-poor-fiber-tail and "
+        "J-oe-averaged-two-productions-reach-the-depth-two-ceiling, with the proof "
+        "in docs/theory/juggler_oe_poor_fiber_tail_note.md and the unpark of "
+        "juggler_oe_rest_average to PROMOTE. Nothing here is superseded and "
+        "nothing is abandoned: the three rows are the same result at three "
+        "granularities, the branch is the one Philippe asked for, and the Lean "
+        "for it is being written on the same branch. Merge takes the whole thing "
+        "or none of it."
+    ),
+}
 
 
 def _key(ref: str) -> str:
