@@ -188,18 +188,25 @@ def _delta(nu: float, h: float) -> tuple[float, float, float]:
     `nu^1.5`. Measured against a 50-digit reference at `h = 1`, the direct
     form loses everything well inside the range this module is meant to reach:
 
-        nu     direct d      direct dpp
-        1e6    3.7e-12       2.0e-11
-        1e10   5.0e-11       3.2e-07     <- top of the current P_LIST
-        1e14   5.2e-04       7.4e-03
-        1e20   1.0e+00       1.0e+00     <- returns exactly 0.0
-        1e28   1.0e+00       1.0e+00
+        nu     direct d     direct dp    direct dpp
+        1e6    3.7e-12      1.9e-11      2.0e-11
+        1e10   5.0e-11      3.4e-07      3.2e-07    <- top of the current P_LIST
+        1e14   5.2e-04      5.8e-03      7.4e-03
+        1e20   1.0e+00      1.0e+00      1.0e+00    <- all three return 0.0
+        1e28   1.0e+00      1.0e+00      1.0e+00
 
-    The second derivative is already seven digits down at `1e10`, which
-    `P_LIST` reaches today; the value itself only becomes untrustworthy past
-    `1e12`, and silently returns zero from about `1e20`. `first_v_half_p0` in
-    this same module loops to `1e28` and would hit that, though it does not
-    call this function today.
+    BOTH derivatives are already seven digits down at `1e10`, which `P_LIST`
+    reaches today, and they degrade on the same schedule -- `dp` is the plain
+    conjugate case and is hit as hard as `dpp`. Only the value itself is
+    comparatively protected, staying usable to about `1e12` before silently
+    returning zero from around `1e20`. `first_v_half_p0` in this same module
+    loops to `1e28` and would hit that, though it does not call this function
+    today.
+
+    Measuring one component of a three-component return and generalising to
+    the function is how this was first mis-scoped, twice: once as "latent" when
+    only `d` was checked, and once as "the second derivative" when `d` and
+    `dpp` were checked but `dp` was not.
 
     Rationalising removes the cancellation entirely rather than bounding it,
     so no scale threshold is needed:

@@ -74,9 +74,10 @@ def test_delta_has_no_cancellation_at_any_scale_this_module_reaches() -> None:
 
     All three returns are differences of powers of two nearby large numbers,
     with an answer of size `O(h sqrt(nu))` against operands of size `nu^1.5`.
-    Written directly the second derivative is already seven digits down at
-    `nu = 1e10`, which `P_LIST` reaches today, and the value itself returns
-    exactly `0.0` from about `1e20`. `first_v_half_p0` in the same module loops
+    Written directly, BOTH derivatives are already seven digits down at
+    `nu = 1e10`, which `P_LIST` reaches today -- `dp` at `3.4e-07` and `dpp` at
+    `3.2e-07`, the same schedule -- and the value itself returns exactly `0.0`
+    from about `1e20`. `first_v_half_p0` in the same module loops
     to `1e28`, so the scales sit side by side even though that path does not
     call this function.
 
@@ -105,12 +106,15 @@ def test_delta_has_no_cancellation_at_any_scale_this_module_reaches() -> None:
         for value, truth in zip(got, want):
             assert abs((value - truth) / truth) < 1e-13, exponent
 
-    # the top of the current P_LIST is already past the direct form's second
-    # derivative, so this was live breakage and not only a latent trap
+    # the top of the current P_LIST is already past BOTH of the direct form's
+    # derivatives, so this was live breakage and not only a latent trap. Assert
+    # both: checking dpp alone is the same mis-scoping that called this latent.
     assert float(P_LIST[-1]) == 1e10
     nu = 1e10
-    assert abs((direct(nu, 1.0)[2] - reference(nu, 1.0)[2])
-               / reference(nu, 1.0)[2]) > 1e-8
+    for index in (1, 2):
+        rel = abs((direct(nu, 1.0)[index] - reference(nu, 1.0)[index])
+                  / reference(nu, 1.0)[index])
+        assert rel > 1e-8, index
 
     # and from 1e20 the direct form silently returns zero rather than erroring
     assert direct(1e20, 1.0)[0] == 0.0
