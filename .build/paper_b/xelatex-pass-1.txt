@@ -78,22 +78,14 @@ Koksma in-equal-ity to
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1660.
+(amsmath)                 on input line 1672.
 
 [22] [23] [24] [25] [26] [27] [28] [29] [30] [31] [32] [33] [34] [35] [36]
-[37] [38] [39]
-Underfull \hbox (badness 1325) in paragraph at lines 2899--2905
-[]\T1/lmr/m/n/10.95 K. Hikawa, ``Finite-Dimensional Com-bi-na-to-rial and Arith
--metic Struc-tures of Par-
-
-Underfull \hbox (badness 1107) in paragraph at lines 2899--2905
-\T1/lmr/m/n/10.95 ity Vec-tors for the Ac-cel-er-ated Col-latz Map,'' Re-search
--Gate preprint, July 2026.
-[40] (juggler_parity_discrepancy_note.aux)
+[37] [38] [39] [40] [41] (juggler_parity_discrepancy_note.aux)
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on juggler_parity_discrepancy_note.pdf (40 pages).
+Output written on juggler_parity_discrepancy_note.pdf (41 pages).
 Transcript written on juggler_parity_discrepancy_note.log.

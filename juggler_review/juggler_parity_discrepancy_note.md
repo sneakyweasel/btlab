@@ -1187,11 +1187,23 @@ lattice of spacing  \(\log3\)  whose offset  \(-d\log2\bmod\log3\)
 equidistributes, so the barrier at  \(0\)  is approached from a
 different distance at every depth, namely  \(1-\{d\beta\}\).
 
-Neither the exponential rate nor the  \(d^{-3/2}\)  is claimed here. The
-rate is the large-deviation constant of the same walk and is classical.
-The  \(d^{-3/2}\)  power is conjectured in the 2026 parity-vector
-preprints the A076227 entry links [9, 10, 11], which have not been
-consulted for this revision; no priority over them is asserted. What
+Neither the exponential rate nor the  \(d^{-3/2}\)  is claimed here, and
+the rate is not folklore: Hikawa [9, Section 6] proves
+\(\log_2W(d)=\gamma d+O(\log d)\)  for the weight-based count, with
+\(\gamma=\lambda H(1/\lambda)\),  \(\lambda=\log_23\)  and  \(H\)  the
+binary entropy, so the normalised density decays at the explicit rate
+\(c=\lambda\bigl(1-H(1/\lambda)\bigr)=\lambda D(1/\lambda\,\|\,\tfrac12)\)
+bits per unit weight, and remarks that this appears to be new for these
+sequences. It is the constant of this section in the other basis:
+lengths are  \(\lambda\)  times weights, and  \(c/\lambda=0.0500444728\)
+against  \(-\log_2\vartheta(p)=0.0500444728\), agreeing to every digit
+either is quoted to. The  \(d^{-3/2}\)  power is Hikawa's Conjecture 7.1
+[9, Section 7], motivated there by the residual
+\(\log_2W(d)-\gamma d\)  tracking a ballot-type correction
+\(-\tfrac32\log_2d\)  to within  \(0.3\)  bits over
+\(100\le d\le10^4\). No priority over either is asserted. The companion
+parity-vector preprints [10, 11] were read for this revision and neither
+bears on the asymptotic; [12] appeared too recently to consult. What
 this section offers is the oscillating prefactor  \(\psi\) : that the
 ratio depends on  \(d\)  only through  \(\{d\beta\}\), that it is
 non-constant, and the barrier-step mechanism below that explains why.
@@ -3175,14 +3187,19 @@ of the 3x + 1 Problem," arXiv:1709.03385 [math.GM], 2017--2026.
 [arXiv record](https://arxiv.org/abs/1709.03385).
 9. K. Hikawa, "Finite-Dimensional Combinatorial and Arithmetic
 Structures of Parity Vectors for the Accelerated Collatz Map,"
-ResearchGate preprint, July 2026.
+ResearchGate preprint, July 2026, version 2.1 of 2 August 2026.
 [doi:10.13140/RG.2.2.29894.84804/1](https://doi.org/10.13140/RG.2.2.29894.84804/1).
-Not consulted for this revision.
+Section 6 proves the exponential rate; Conjecture 7.1 is the
+\(d^{-3/2}\)  power.
 10. K. Hikawa and K. Nakanishi, "Parity Vector Analysis in the Study of
 the Collatz Conjecture," ResearchGate preprint, January 2026.
 [doi:10.13140/RG.2.2.12065.06240](https://doi.org/10.13140/RG.2.2.12065.06240).
-Not consulted for this revision.
+Read for this revision; it does not bear on the asymptotic.
 11. K. Nakanishi, "A Structural Study of Parity Vectors in the Collatz
 Conjecture," Jxiv preprint, February 2026.
 [doi:10.51094/jxiv.3096](https://doi.org/10.51094/jxiv.3096).
-Not consulted for this revision.
+Read for this revision; it classifies parity vectors by weight and
+states no asymptotic.
+12. M. Winkler, "Coefficient First-Passage Words for the 3x+1 Map: A
+Beatty--Ferrers Model and a Power-of-Two Law," preprint, September 2026.
+Not consulted; it appeared after this revision was prepared.
