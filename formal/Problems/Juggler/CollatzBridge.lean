@@ -718,6 +718,71 @@ theorem neg_seventeen_inhabits_cycleMinShape : CycleMinShape (parityWordZ (-17) 
       Or.inr rfl⟩
   · exact ⟨[.odd, .odd, .even, .odd, .odd, .odd, .even, .even, .even], rfl⟩
 
+/-! ### Negative cycles are exactly Juggler's cycle words
+
+On the negative integers the correction points down, so nothing can compensate a contracting
+prefix: a cycle read at its least `|x|` has every prefix non-contracting, exactly, with none of
+the `delta` exceptions of the positive side. Together with `neg_cycle_expanding` this is Paper
+A's cycle-word shape (`cycleMin_prefix_pow_le`, `cycle_itinerary_formally_expanding`) on the
+Collatz side, word for word. -/
+
+/-- A prefix of the `ℤ` word is the word of the prefix. -/
+theorem parityWordZ_take {x : ℤ} {d t : ℕ} (ht : t ≤ d) :
+    (parityWordZ x d).take t = parityWordZ x t := by
+  induction d generalizing x t with
+  | zero =>
+    have : t = 0 := Nat.le_zero.mp ht
+    subst this
+    rfl
+  | succ d ih =>
+    cases t with
+    | zero => rfl
+    | succ t =>
+      simp only [parityWordZ_succ, List.take_succ_cons]
+      rw [ih (Nat.le_of_succ_le_succ ht)]
+
+/-- **A negative cycle word, read at its least `|x|`, has no contracting prefix.** If `x ≤ -2`
+and no iterate up to `K` lies closer to zero than `x`, then `2 ^ j ≤ 3 ^ a_j` for every
+`j ≤ K`. Exact: the even steps only subtract, so an expanding multiplier is the only way to
+stay away from zero. -/
+theorem neg_prefix_noncontracting {x : ℤ} {K : ℕ} (hx : x ≤ -2)
+    (hmin : ∀ j, j ≤ K → shortcutZIter j x ≤ x) :
+    prefixNoncontracting (parityWordZ x K) := by
+  intro k hk
+  rw [parityWordZ_length] at hk
+  rw [parityWordZ_take hk]
+  intro hgap
+  have hlen : (parityWordZ x k).length = k := parityWordZ_length x k
+  have hlt : (3 : ℤ) ^ oddCount (parityWordZ x k) < 2 ^ k := by
+    have := hgap
+    unfold exponentGap at this
+    rw [hlen] at this
+    exact_mod_cast this
+  have h := two_pow_mul_iter_add_one_int x k
+  have hj := hmin k hk
+  have hE : (0 : ℤ) ≤ (evenCharge (parityWordZ x k) : ℤ) := Nat.cast_nonneg _
+  have h2 : (2 : ℤ) ^ k * (shortcutZIter k x + 1) ≤ 2 ^ k * (x + 1) :=
+    mul_le_mul_of_nonneg_left (by linarith) (by positivity)
+  have hprod : ((2 : ℤ) ^ k - 3 ^ oddCount (parityWordZ x k)) * (x + 1) < 0 :=
+    mul_neg_of_pos_of_neg (by linarith) (by linarith)
+  nlinarith [h, h2, hE, hprod]
+
+/-- **The word-level twin, exactly.** A negative cycle of the `ℤ` map of positive length, read
+at its least `|x|`, has a word that is prefix-noncontracting and expanding -- the Juggler
+cycle-word shape of Paper A, with no `delta` exception on this side. -/
+theorem neg_cycle_word_is_juggler_shape {x : ℤ} {K : ℕ} (hK : 0 < K) (hx : x ≤ -2)
+    (hcyc : shortcutZIter K x = x) (hmin : ∀ j, j ≤ K → shortcutZIter j x ≤ x) :
+    prefixNoncontracting (parityWordZ x K) ∧ 2 ^ K < 3 ^ oddCount (parityWordZ x K) :=
+  ⟨neg_prefix_noncontracting hx hmin, neg_cycle_expanding hK hx hcyc⟩
+
+/-- `-17` is the element of least `|x|` on its cycle, so the twin applies to it. -/
+theorem neg_seventeen_is_least : ∀ j, j ≤ 11 → shortcutZIter j (-17) ≤ -17 := by decide
+
+theorem neg_seventeen_word_is_juggler_shape :
+    prefixNoncontracting (parityWordZ (-17) 11) ∧ 2 ^ 11 < 3 ^ oddCount (parityWordZ (-17) 11) :=
+  neg_cycle_word_is_juggler_shape (by norm_num) (by norm_num) neg_seventeen_cycle.1
+    neg_seventeen_is_least
+
 end CollatzBridge
 
 end Problems.Juggler

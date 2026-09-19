@@ -146,9 +146,13 @@ the `List Branch` word, with no real number in any statement:
   of `x` as the sign of the word: `neg_cycle_expanding` for cycles at
   `x <= -2`, beside `cycle_contracting`. The three negative cycles `-1, -5,
   -17` by `decide`, and `neg_seventeen_inhabits_cycleMinShape`: the `-17`
-  word is in Paper A's `CycleMinShape` with four even letters at length `11`
+  word is in Paper A's `CycleMinShape` with four even letters at length `11`.
+  `neg_prefix_noncontracting` and `neg_cycle_word_is_juggler_shape`: a
+  negative cycle read at its least `|x|` has, exactly, a prefix-noncontracting
+  expanding word -- the Juggler cycle-word shape with no `delta` exception
   (`J-collatz-cycle-equation-is-a-word-divisibility`,
-  `J-juggler-cycle-words-are-collatz-negative-cycle-words`).
+  `J-juggler-cycle-words-are-collatz-negative-cycle-words`,
+  `J-negative-cycle-finance-is-the-juggler-mirror`).
 
 The word-only modules `PaperBCertificateRecursion`, `PaperBCertificateLengths`,
 `PaperBJumpTransposition`, `PaperBSurvivorDecay` are, through this file,

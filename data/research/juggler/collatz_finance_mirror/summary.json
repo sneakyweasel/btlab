@@ -56,6 +56,66 @@
       ]
     ]
   },
+  "negative_cycles": {
+    "statement": "a negative Collatz cycle read at its least |x| has an expanding word with no contracting prefix (neg_cycle_word_is_juggler_shape), and (|x|-1)(3^o - 2^K) = evenCharge w = 3^o sum over even steps of 2^(-h_i) with h_i >= 1, so |x| - 1 <= charge (K - o)/theta_J(K): Paper A's finance on the other side",
+    "even_hug_average_at": {
+      "1000": 0.41128002818134746,
+      "100000": 0.4110527595014474,
+      "10000000": 0.41105051350551575
+    },
+    "even_hug_constant": 0.4110505770627386,
+    "survivors": {
+      "2^40": {
+        "uniform_smallest": 9538065,
+        "uniform_count": 6885,
+        "hug_smallest": 10444047,
+        "hug_count": 5644,
+        "kmax": 300000000
+      },
+      "2^60": {
+        "uniform_smallest": 5398749415,
+        "uniform_count": 30,
+        "hug_smallest": 6028888312,
+        "hug_count": 24,
+        "kmax": 20000000000
+      },
+      "2^68": {
+        "uniform_smallest": 72448885240,
+        "uniform_count": 44,
+        "hug_smallest": 72448885240,
+        "hug_count": 37,
+        "kmax": 400000000000
+      },
+      "2^71": {
+        "uniform_smallest": 103768467013,
+        "uniform_count": 34,
+        "hug_smallest": 103768467013,
+        "hug_count": 29,
+        "kmax": 1000000000000
+      }
+    },
+    "known_cycles_against_the_bound": {
+      "1": {
+        "K": 1,
+        "o": 1,
+        "uniform_bound": 1.0,
+        "hug_bound": 1.0
+      },
+      "5": {
+        "K": 3,
+        "o": 2,
+        "uniform_bound": 5.5,
+        "hug_bound": 5.0
+      },
+      "17": {
+        "K": 11,
+        "o": 7,
+        "uniform_bound": 32.46762589928058,
+        "hug_bound": 27.10071942446043
+      }
+    },
+    "verification_floor": "no published verification floor for the 3x-1 map was found; the table is conditional on the floor"
+  },
   "walk_charge": {
     "statement": "on a cycle at its minimum x_0 the height before the a-th odd step is at least frac(a alpha), alpha = log2(3/2), up to a correction of order K/x_0, so Lambda_C <= H(p)/(3 x_0) (1 + o(1)) with H(p) = sum_{a<p} 2^(-frac(a alpha))",
     "hug_average": {

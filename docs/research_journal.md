@@ -1,5 +1,39 @@
 # Research journal
 
+## 2026-09-19 -- the negative side is exact, and its finance is the Juggler mirror
+
+- **Objective:** the finance-mirror question -- what floor and period bound
+  does Collatz's negative-cycle problem have, and does the mirror reproduce
+  them?
+- **The word-level twin is exact on the negative side.** For `x <= -2` with
+  no iterate closer to zero, every prefix is non-contracting with no `delta`
+  exception (`neg_prefix_noncontracting`): the even steps only subtract, so
+  an expanding multiplier is the only way to stay away from zero. With
+  `neg_cycle_expanding` this is one Lean statement,
+  `neg_cycle_word_is_juggler_shape`, and `-17` instantiates it by `decide`.
+  The row `J-juggler-cycle-words-are-collatz-negative-cycle-words` is
+  corrected in place from "up to the delta exceptions" to exact.
+- **And the finance transfers with its walk charge on the even steps.**
+  `(|x| - 1)(3^o - 2^K) = 3^o sum over even steps of 2^(-h_i)` with every
+  `h_i >= 1`, so `|x| - 1 <= (K - o)/(2 theta_J)` uniformly and
+  `<= H_E(K - o)/theta_J` on the hug word, `H_E(m)/m -> 1/(6 alpha log 2) =
+  0.4110`. Paper A's Theorem 4.4 on the other side of the linear form. The
+  `-5` cycle attains the hug bound exactly, which is the right kind of
+  sanity check: its word is a hug word. Survivors at a floor are the
+  Juggler-side lengths -- `72448885240` at `2^68`, `103768467013` at `2^71`
+  -- the mirror of Eliahou's and Hercher's numbers. Row
+  `J-negative-cycle-finance-is-the-juggler-mirror`.
+- **What the literature did not give.** No published verification floor
+  for the `3x - 1` map turned up in OEIS's text records or on Roosendaal's
+  index, and the loops page it links was unreachable. The table is therefore
+  conditional, and the honest sentence is: if the `3x - 1` map is verified
+  to `2^68`, a fourth negative cycle has length at least `72448885240`. That
+  sentence is not a claim until someone finds the floor.
+- **Decision:** `PROMOTE` stands. Best next question: the `3x - 1`
+  verification floor, from the literature or by running it -- the lab has a
+  5090 and a GPU Collatz verifier is a known object -- and then the mirror's
+  period bound becomes a statement rather than a table.
+
 ## 2026-09-19 -- the cycle equation is a word divisibility, and Juggler's cycle words are Collatz's negative cycles
 
 - **Objective:** the finance-mirror question -- what does `2^K - 3^p | evenCharge w`

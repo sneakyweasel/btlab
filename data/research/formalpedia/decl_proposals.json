@@ -4323,7 +4323,7 @@
         }
       ],
       "id": "J-collatz-bridge-is-exact-at-the-word-level",
-      "in_file": 52,
+      "in_file": 57,
       "lean": "Problems/Juggler/CollatzBridge.lean",
       "names_own": [
         "word_affine",
@@ -4372,7 +4372,7 @@
         }
       ],
       "id": "J-survivor-count-is-a-collatz-residue-count",
-      "in_file": 52,
+      "in_file": 57,
       "lean": "Problems/Juggler/CollatzBridge.lean",
       "names_own": [
         "undecidedResidues_card",
@@ -4419,7 +4419,7 @@
         }
       ],
       "id": "J-collatz-even-step-charge-identity",
-      "in_file": 52,
+      "in_file": 57,
       "lean": "Problems/Juggler/CollatzBridge.lean",
       "names_own": [
         "wordConst_add_two_pow",
@@ -4445,9 +4445,9 @@
           "trust": "kernel"
         },
         {
-          "decl": "cycle_equation",
-          "line": 645,
-          "score": 0.095,
+          "decl": "neg_cycle_word_is_juggler_shape",
+          "line": 773,
+          "score": 0.096,
           "trust": "kernel"
         }
       ],
@@ -4466,7 +4466,7 @@
         }
       ],
       "id": "J-collatz-cycle-equation-is-a-word-divisibility",
-      "in_file": 52,
+      "in_file": 57,
       "lean": "Problems/Juggler/CollatzBridge.lean",
       "names_own": [
         "word_affine_int",
@@ -4484,42 +4484,46 @@
         {
           "decl": "neg_seventeen_inhabits_cycleMinShape",
           "line": 714,
-          "score": 0.174,
+          "score": 0.163,
           "trust": "kernel"
         },
         {
-          "decl": "neg_cycle_expanding",
-          "line": 624,
-          "score": 0.109,
+          "decl": "neg_cycle_word_is_juggler_shape",
+          "line": 773,
+          "score": 0.138,
           "trust": "kernel"
         },
         {
-          "decl": "neg_seventeen_word_expanding",
-          "line": 707,
-          "score": 0.107,
+          "decl": "neg_prefix_noncontracting",
+          "line": 748,
+          "score": 0.128,
           "trust": "kernel"
         }
       ],
       "composite": true,
-      "confidence": "review",
+      "confidence": "low",
       "definitions": [
         {
           "decl": "evenCharge",
           "line": 465,
-          "score": 0.053
+          "score": 0.05
         },
         {
           "decl": "parityWord",
           "line": 89,
-          "score": 0.039
+          "score": 0.037
         }
       ],
       "id": "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-      "in_file": 52,
+      "in_file": 57,
       "lean": "Problems/Juggler/CollatzBridge.lean",
       "names_own": [
         "neg_cycle_expanding",
         "cycle_contracting",
+        "neg_prefix_noncontracting",
+        "neg_cycle_word_is_juggler_shape",
+        "neg_seventeen_word_is_juggler_shape",
+        "neg_seventeen_is_least",
         "neg_one_cycle",
         "neg_five_cycle",
         "neg_seventeen_cycle",
@@ -4529,5 +4533,5 @@
     }
   ],
   "unresolved": 124,
-  "worth_reviewing": 20
+  "worth_reviewing": 19
 }
