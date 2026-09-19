@@ -376,6 +376,12 @@ Appendix A rows, references 19 to 24, formalization-map section 16; the
 paper barrel imports `CollatzBridge` and the axiom check covers its 32
 cited declarations. No separate bridge paper.
 
+Paper B carries the attribution since 2026-09-19: Section 1 names A076227,
+A100982 and A020914, disclaims priority for the word counts, and states that
+the two problems part at the arithmetic, Terras's bijection against
+Hypothesis FD. The forced audit this branch recorded is therefore discharged
+for Paper B.
+
 ## Publication assessment
 
 Status: `EXPLORATORY`, and probably not publishable at all. It moves no bound in

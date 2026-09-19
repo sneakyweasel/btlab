@@ -1,5 +1,36 @@
 # Research journal
 
+## 2026-09-19 -- Paper B now says its word counts are Collatz word counts
+
+- **Objective:** Philippe asked whether Paper B had been updated since the
+  bridge and then asked for the A076227 attribution to be added.
+- **It had not been.** Paper B's last content commit was 16 September and its
+  last commit of any kind 18 September, both before the word-level bridge
+  results. Its only Collatz sentence was the one clause "in the spirit of
+  stopping-time arguments for the Collatz map, such as Terras [4]; no theorem
+  about Collatz is transferred to the Juggler map."
+- **Independently re-verified before editing.** The survivor counts for
+  `d = 0..10` are `1, 1, 1, 2, 3, 4, 8, 13, 19, 38, 64`, the head of A076227;
+  the minimal certificates of length at most five are `E, OE, OOEE, OOOEE,
+  OOEOE`, which is Lemma 5.1 verbatim; the nonzero certificate lengths are
+  `1, 2, 4, 5, 7, 8, 10, 12, 13`, the binary lengths of the powers of three
+  (A020914), with counts `1, 1, 2, 3, 7, 12, 30, 85` matching A100982.
+- **What the manuscript now says.** Section 1 states the identity and names
+  all three sequences, disclaims priority, and locates the contribution where
+  the two problems part: Collatz gets fair-share densities free from Terras's
+  bijection, Juggler must assume them as Hypothesis FD. Lemma 5.1 verifies
+  rather than establishes A100982's first terms. Remark 6.2 notes that the
+  survivor decay is a Collatz statement too. The evidence table carries a row
+  for the shared word counts. References 5 to 7 are the OEIS entries, with
+  the exact titles checked against the entries today.
+- **What did not change.** Theorems 3.1, 5.2, 5.3 and 5.4, the unconditional
+  analytic core, are untouched and unaffected; they count starting values by
+  nested floor powers and have no Collatz counterpart. The attribution makes
+  the paper's claim narrower and more defensible, not weaker.
+- **Open, for the author.** Paper B has no Zenodo deposit, so nothing external
+  is behind. Its metadata version string still reads `2026-09-18-preprint`;
+  bumping it is a release decision and was left alone.
+
 ## 2026-09-19 -- Paper A revision prepared for the Zenodo new version
 
 - **Objective:** Philippe asked whether the new Paper A is ready for Zenodo;
