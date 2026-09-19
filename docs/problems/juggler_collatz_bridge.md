@@ -251,6 +251,22 @@ side the parity bijection makes `E_d(N) = O(1)`, the usable depth `log2 N`, and
 the bound `N^(1 - 0.050044)` -- the quantitative density-one stopping-time
 theorem.
 
+**But the exponent is Lagarias's, not Terras's** (corrected 19 September 2026 by
+`J-paper-b-survivors-are-oeis-a076227`). The mechanism above is Terras: the
+parity bijection, hence `E_d(N) = O(1)`, hence density one, jointly with
+Everett 1977. The `0.050044` is not. It enters through `N_d/2^d <= theta^d`, and
+that is `lagarias-1985-3x+1-problem`, Theorem D: `1 - F(k) <= 2^(-eta k)` with
+`eta = 1 - H((log_2 3)^(-1)) = 0.050044472811669365186`, `H` the binary entropy
+function -- proved there from Terras's structure by a binomial tail, and made
+two-sided by the remark after it. Theorem D carries no attribution label in the
+survey although its Theorems A and C are both labelled "(Terras)", and Lagarias's
+own annotated bibliography credits Terras 1976 with the residue-class structure,
+the coefficient stopping time and natural density one, and with no rate. So
+"known since 1976" holds for the density and not for the exponent, which is known
+since 1985. The caveat this rests on: Terras 1976 could not be read here, the
+matwbn scan being behind an anti-bot gate, so the correction stands on Lagarias's
+annotation rather than on Terras's text.
+
 **So FD buys a delta-fraction of that.** Minimising the two terms over `d`
 converts an equidistribution exponent into a density exponent. With
 `E_d(N) = O(N^(1-delta))` the error overtakes the main term once `2^d` passes
@@ -263,7 +279,8 @@ The consequence is worth stating plainly: **if FD were proved outright, Juggler
 would arrive exactly where Collatz has been since 1976, and no further.** FD is
 a hard analytic theorem in a setting with no arithmetic and is worth wanting on
 those terms. It is not a step toward termination, because Collatz has had the
-density-one theorem for fifty years and termination is still open.
+density-one theorem for fifty years -- and its quantitative form for forty --
+and termination is still open.
 
 **And the loss is the union bound, not the exponent.** `N_d E_d(N)` sums a
 per-word error over all `N_d` about `1.9318^d` good words, and that multiplier
