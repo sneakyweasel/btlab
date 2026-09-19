@@ -182,6 +182,7 @@ import Problems.Juggler.FateCylinderCorollary
 import Problems.Juggler.FateBlockAverage
 import Problems.Juggler.FateShareLaw
 import Problems.Juggler.FateProduction
+import Problems.Juggler.FateProductionWords
 import Problems.Juggler.FateOneSided
 import Problems.Juggler.FateOneSidedCorollary
 import Problems.Juggler.FatePressureCorollary

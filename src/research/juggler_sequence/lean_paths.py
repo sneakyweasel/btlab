@@ -300,6 +300,7 @@ AUXILIARY_MODULES: dict[str, str] = {
     "PaperBCertificateRecursion": "Paper B: survivors and minimal certificates, one recursion",
     "PaperBJumpTransposition": "Paper B: one barrier transposition costs the barrier mass",
     "CollatzBridgeLab": "Laboratory extensions of the Collatz bridge: the minimal-certificate count as a residue count (Paper B recursion) and the -17 cycle word inside CycleMinShape (IdealCycleMin)",
+    "FateProductionWords": "Paper C's six finite production words V_k = (OE)^(k-1) OEE and their prefix-freeness, proved for the whole family; the combinatorial step the manuscript asserts three times and Appendix D leans on for disjoint source sets",
     "PaperBChainRule": "Paper B review target",
     "PaperBAmplitudeCocycle": "Paper B profile: the amplitude cocycle",
     "PaperBDensity": "Paper B: Hypothesis FD to density one, conditionally",
