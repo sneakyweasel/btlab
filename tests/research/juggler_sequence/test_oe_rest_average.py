@@ -4,6 +4,8 @@ from __future__ import annotations
 
 import math
 
+from research.juggler_sequence.fate_contagion import fiber_stats
+
 import pytest
 
 from pathlib import Path
@@ -16,6 +18,9 @@ from research.juggler_sequence.oe_rest_average import (
     alpha_of,
     averaging_payoff,
     fd_placement,
+    is_resonant,
+    resonance_density,
+    share_law_error,
     step_is_weyl,
     weyl_discrepancy,
     classify,
@@ -189,3 +194,47 @@ def test_the_missing_lemma_sits_below_hypothesis_fd() -> None:
     assert placement["decays_polynomially"]
     assert all(s < -0.25 for s in placement["slopes_per_decade"])
     assert weyl_discrepancy(10**4) > weyl_discrepancy(10**6)
+
+def test_the_capacity_exponent_is_the_resonance_window_and_the_share_law_cannot_see_it() -> None:
+    """Where the measured `m^(-1/3)` comes from, and what is still missing.
+
+    Two ingredients, both already settled, give the exponent without any new
+    hypothesis. The resonant window has width `C/H_m`, and `H_m = (2/3)m^(1/3)
+    + O(1)` is Lemma 3.2 two-sided. And `alpha_m` equidistributes by Fejer with
+    star discrepancy about `N^(-1/2)` (`fd_placement`). So the resonant count
+    below `N` is `c N^(2/3) + O(N^(1/2))`, main term dominating, and the
+    density is `Theta(m^(-1/3))` -- measured flat to within 8 per cent across
+    ten octaves. That is exactly the exponent
+    `J-oe-low-share-weight-decays-polynomially` reports for the LOW-SHARE set.
+
+    And the tool that looked like it should close the remaining step does not.
+    `J-oe-fiber-share-law` carries error `H^(-1/2) + (1+|beta|)/H` with
+    `beta = alpha (H-1)`, and the second piece tends to `alpha` -- it never
+    decays. At the four fibres that attain the pairing floor the bound is
+    between 2.4 and 4.3 times the deviation from `1/2` it would have to
+    explain, at every scale. The law is vacuous for `alpha` of order one, which
+    is precisely where the low shares live.
+
+    STATUS. The exponent is explained and is not a coincidence. The open step
+    is the inclusion `low share implies resonant`, and it cannot come from the
+    share law.
+    """
+    density = resonance_density(exponents=(14, 18, 22), samples=1500)
+    assert density["is_cube_root"], density["scaled_spread"]
+    assert density["rows"][0]["density"] > 4 * density["rows"][-1]["density"]
+
+    # the attaining fibres are resonant, which is the evidence for the inclusion
+    for m in (1018590, 10001831, 100001607, 1000011666):
+        assert is_resonant(m), m
+
+    # and the share law cannot explain any of them
+    for m in (1018590, 10001831, 100001607, 1000011666):
+        st = fiber_stats(m)
+        size = st["size"]
+        deviation = abs(min(st["good"], size - st["good"]) / size - 0.5)
+        assert share_law_error(st["alpha"], size) > 2.0 * deviation, m
+
+    # the error tends to alpha rather than to zero: that is the structural point
+    for alpha in (1 / 3, 2 / 3):
+        tail = [share_law_error(alpha, h) - h**-0.5 for h in (10**3, 10**4, 10**5)]
+        assert all(abs(t - alpha) < 2e-3 for t in tail), alpha

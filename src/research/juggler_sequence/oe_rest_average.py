@@ -18,6 +18,7 @@ from research.juggler_sequence.lean_paths import (
 
 import json
 import math
+import random
 from pathlib import Path
 from typing import Any
 
@@ -524,5 +525,99 @@ def fd_placement(exponents: tuple[int, ...] = (4, 5, 6, 7)) -> dict[str, Any]:
             " The open part is the JOINT law of (beta_m, theta_m), still a"
             " Weyl-sums question about explicit functions of m and not an"
             " orbit-equidistribution question"
+        ),
+    }
+
+# ---------------------------------------------------------------------------
+# Where the capacity-decay exponent comes from, and what is still missing.
+#
+# The measured decay is m^(-0.32) to m^(-0.40). That is m^(-1/3), and the
+# reason is not subtle once the two pieces are put together: the resonant
+# window has width C/H_m ~ m^(-1/3), and alpha_m equidistributes. What is NOT
+# established is that the low-share fibres are exactly the resonant ones.
+# ---------------------------------------------------------------------------
+
+RESONANCE_CONSTANT = 1.0
+
+
+def share_law_error(alpha: float, size: int) -> float:
+    """The error term of `J-oe-fiber-share-law`, `H^(-1/2) + (1+|beta|)/H`.
+
+    With `beta = alpha (H - 1)` the second piece is `(1 + alpha(H-1))/H`, which
+    tends to **alpha** and never decays. So the law is only informative where
+    `alpha` is already small, and it is vacuous for `alpha` of order one --
+    including at every resonance, which is exactly where the fibres attaining
+    the pairing floor sit. Measured at the four attaining witnesses the bound
+    runs 0.42 to 0.72 against a deviation from `1/2` of 0.167 to 0.177: between
+    two and four times too large, at every scale.
+
+    This is the reason `J-oe-low-share-weight-decays-polynomially` cannot be
+    proved by "share law plus equidistribution". The existing law is
+    structurally blind to the regime that carries the low shares.
+    """
+    beta = alpha * (size - 1)
+    return size ** -0.5 + (1.0 + abs(beta)) / size
+
+
+def is_resonant(m: int, constant: float = RESONANCE_CONSTANT) -> bool:
+    """`alpha_m` within `constant / H_m` of `0`, `1/3` or `2/3`.
+
+    The three-cycle lock and the degenerate lock. The window scales like
+    `1/H_m ~ m^(-1/3)` because that is the resolution at which `H_m` sample
+    points can tell a rational apart from its neighbourhood.
+    """
+    alpha = (1.5 * m ** (2.0 / 3.0)) % 1.0
+    width = constant / ((2.0 / 3.0) * m ** (1.0 / 3.0))
+    return min(abs(alpha - 1.0 / 3.0), abs(alpha - 2.0 / 3.0),
+               alpha, 1.0 - alpha) < width
+
+
+def resonance_density(exponents: tuple[int, ...] = (14, 16, 18, 20, 22, 24),
+                      samples: int = 4000, seed: int = 20260919) -> dict[str, Any]:
+    """The resonant set has density exactly `Theta(m^(-1/3))`, and that is the
+    capacity-decay exponent.
+
+    Two ingredients, both already settled:
+
+    - the window has width `C / H_m`, and `H_m = (2/3) m^(1/3) + O(1)` is
+      Lemma 3.2, two-sided;
+    - `alpha_m = frac((3/2) m^(2/3)) + O(m^(-2/3))` equidistributes by Fejer
+      with star discrepancy about `N^(-1/2)` by van der Corput (`fd_placement`).
+
+    So the count of resonant `m <= N` is `c N^(2/3) + O(N^(1/2))`: the main term
+    dominates comfortably, and the density is `Theta(m^(-1/3))`. Measured, the
+    density times `m^(1/3)` is flat across ten octaves -- 8.96, 8.78, 8.87,
+    9.51, 9.09, 9.23 -- with no trend.
+
+    That is the same exponent `J-oe-low-share-weight-decays-polynomially`
+    measures for the low-share set, which is strong evidence that the low-share
+    fibres ARE the resonant ones.
+
+    THE GAP, stated so it is not mistaken for a proof. This settles the density
+    of the RESONANT set. The lemma needs it for the LOW-SHARE set, and the two
+    coincide only if low share implies resonance. That inclusion is not proved
+    here and cannot be got from the share law, which is vacuous for `alpha` of
+    order one in either direction -- see `share_law_error`. So the honest status
+    is: the exponent is explained and is not accidental, one of the two
+    inclusions is open, and the tool that looked like it should supply it does
+    not.
+    """
+    rng = random.Random(seed)
+    rows = []
+    for e in exponents:
+        lo, hi = 2**e, 2**(e + 1)
+        hits = sum(1 for m in rng.sample(range(lo, hi), samples) if is_resonant(m))
+        density = hits / samples
+        mid = (lo + hi) / 2.0
+        rows.append({"exponent": e, "density": density,
+                     "density_times_cube_root": density * mid ** (1.0 / 3.0)})
+    scaled = [r["density_times_cube_root"] for r in rows]
+    return {
+        "rows": rows,
+        "scaled_spread": max(scaled) / min(scaled),
+        "is_cube_root": max(scaled) / min(scaled) < 1.3,
+        "gap": (
+            "this is the density of the RESONANT set; the lemma needs it for the"
+            " LOW-SHARE set, and low-share implies resonant is unproved"
         ),
     }
