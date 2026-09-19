@@ -33628,7 +33628,7 @@
       "ledger": [
         "J-fate-contagion-elementary"
       ],
-      "line": 40,
+      "line": 41,
       "module": "Problems.Juggler.FateProduction",
       "name": "sqrt_floor_exp",
       "trust": "kernel"
@@ -33640,7 +33640,7 @@
       "ledger": [
         "J-fate-contagion-elementary"
       ],
-      "line": 65,
+      "line": 66,
       "module": "Problems.Juggler.FateProduction",
       "name": "floor_exp_ge_half",
       "trust": "kernel"
@@ -33652,7 +33652,7 @@
       "ledger": [
         "J-fate-contagion-elementary"
       ],
-      "line": 75,
+      "line": 76,
       "module": "Problems.Juggler.FateProduction",
       "name": "family_E",
       "trust": "kernel"
@@ -33664,7 +33664,7 @@
       "ledger": [
         "J-fate-contagion-elementary"
       ],
-      "line": 128,
+      "line": 129,
       "module": "Problems.Juggler.FateProduction",
       "name": "good_fiber_logMass_ge",
       "trust": "kernel"
@@ -33676,7 +33676,7 @@
       "ledger": [
         "J-fate-contagion-elementary"
       ],
-      "line": 191,
+      "line": 192,
       "module": "Problems.Juggler.FateProduction",
       "name": "family_OE",
       "trust": "kernel"
@@ -33688,7 +33688,7 @@
       "ledger": [
         "J-fate-contagion-elementary"
       ],
-      "line": 267,
+      "line": 268,
       "module": "Problems.Juggler.FateProduction",
       "name": "errE",
       "trust": "kernel"
@@ -33700,7 +33700,7 @@
       "ledger": [
         "J-fate-contagion-elementary"
       ],
-      "line": 270,
+      "line": 271,
       "module": "Problems.Juggler.FateProduction",
       "name": "errOE",
       "trust": "kernel"
@@ -33712,7 +33712,7 @@
       "ledger": [
         "J-fate-contagion-elementary"
       ],
-      "line": 273,
+      "line": 274,
       "module": "Problems.Juggler.FateProduction",
       "name": "errAdd",
       "trust": "kernel"
@@ -33724,7 +33724,7 @@
       "ledger": [
         "J-fate-contagion-elementary"
       ],
-      "line": 276,
+      "line": 277,
       "module": "Problems.Juggler.FateProduction",
       "name": "two_le_exp",
       "trust": "kernel"
@@ -33736,7 +33736,7 @@
       "ledger": [
         "J-fate-contagion-elementary"
       ],
-      "line": 280,
+      "line": 281,
       "module": "Problems.Juggler.FateProduction",
       "name": "one_div_floor_exp_le",
       "trust": "kernel"
@@ -33748,7 +33748,7 @@
       "ledger": [
         "J-fate-contagion-elementary"
       ],
-      "line": 288,
+      "line": 289,
       "module": "Problems.Juggler.FateProduction",
       "name": "sum_Ioc_le_sum_Ioc_pred",
       "trust": "kernel"
@@ -33760,7 +33760,7 @@
       "ledger": [
         "J-fate-contagion-elementary"
       ],
-      "line": 310,
+      "line": 311,
       "module": "Problems.Juggler.FateProduction",
       "name": "halfLogMass_split",
       "trust": "kernel"
@@ -33772,7 +33772,7 @@
       "ledger": [
         "J-fate-contagion-elementary"
       ],
-      "line": 327,
+      "line": 328,
       "module": "Problems.Juggler.FateProduction",
       "name": "production_two",
       "trust": "kernel"
@@ -33784,7 +33784,7 @@
       "ledger": [
         "J-fate-contagion-elementary"
       ],
-      "line": 476,
+      "line": 477,
       "module": "Problems.Juggler.FateProduction",
       "name": "rate2",
       "trust": "kernel"
@@ -33796,7 +33796,7 @@
       "ledger": [
         "J-fate-contagion-elementary"
       ],
-      "line": 479,
+      "line": 480,
       "module": "Problems.Juggler.FateProduction",
       "name": "coef2",
       "trust": "kernel"
@@ -33808,7 +33808,7 @@
       "ledger": [
         "J-fate-contagion-elementary"
       ],
-      "line": 482,
+      "line": 483,
       "module": "Problems.Juggler.FateProduction",
       "name": "err2",
       "trust": "kernel"
@@ -33820,7 +33820,7 @@
       "ledger": [
         "J-fate-contagion-elementary"
       ],
-      "line": 484,
+      "line": 485,
       "module": "Problems.Juggler.FateProduction",
       "name": "rate2_ge",
       "trust": "kernel"
@@ -33832,7 +33832,7 @@
       "ledger": [
         "J-fate-contagion-elementary"
       ],
-      "line": 487,
+      "line": 488,
       "module": "Problems.Juggler.FateProduction",
       "name": "rate2_le",
       "trust": "kernel"
@@ -33844,7 +33844,7 @@
       "ledger": [
         "J-fate-contagion-elementary"
       ],
-      "line": 490,
+      "line": 491,
       "module": "Problems.Juggler.FateProduction",
       "name": "rate2_pos",
       "trust": "kernel"
@@ -33856,7 +33856,7 @@
       "ledger": [
         "J-fate-contagion-elementary"
       ],
-      "line": 492,
+      "line": 493,
       "module": "Problems.Juggler.FateProduction",
       "name": "coef2_ge",
       "trust": "kernel"
@@ -33868,7 +33868,7 @@
       "ledger": [
         "J-fate-contagion-elementary"
       ],
-      "line": 495,
+      "line": 496,
       "module": "Problems.Juggler.FateProduction",
       "name": "err2_nonneg",
       "trust": "kernel"
@@ -33880,7 +33880,7 @@
       "ledger": [
         "J-fate-contagion-elementary"
       ],
-      "line": 502,
+      "line": 503,
       "module": "Problems.Juggler.FateProduction",
       "name": "err2_le",
       "trust": "kernel"
@@ -33892,19 +33892,19 @@
       "ledger": [
         "J-fate-contagion-elementary"
       ],
-      "line": 509,
+      "line": 510,
       "module": "Problems.Juggler.FateProduction",
       "name": "production_two_sum",
       "trust": "kernel"
     },
     {
-      "doc": "`\u03b6(3/10) = 2^{-3/10} + (2/9)(3/4)^{3/10} - 1 > 0`, by two rational bounds: `0.81 \u2264 (1/2)^{3/10}` since `0.81^{10} \u2264 1/8`, and `0.91 \u2264 (3/4)^{3/10}` since `0.91^{10} \u2264 27/64`; then `0.81 + (2/9)(0.91) > 1`.",
+      "doc": "`\u03b6(13/40) = 2^{-13/40} + (2/9)(3/4)^{13/40} - 1 > 0`, by two rational bounds: `0.798 \u2264 (1/2)^{13/40}` since `0.798^{40} \u2264 2^{-13}`, and `0.91 \u2264 (3/4)^{13/40}` since `0.91^{40} \u2264 (3/4)^{13}`; then `0.798 + (2/9)(0.91) = 1.000222 > 1`. `13/40 = 0.325` against the true root `0.3261209621\u2026` of `2^{-\u03bb} + (2/9)(3/4)^\u03bb = 1`, so this certificate reaches `99.6%` of what the two-production inequality can give. The earlier certificate was `\u03bb = 3/10`, which reached `92%`.",
       "file": "formal/Problems/Juggler/FateProduction.lean",
       "kind": "theorem",
       "ledger": [
         "J-fate-contagion-elementary"
       ],
-      "line": 520,
+      "line": 525,
       "module": "Problems.Juggler.FateProduction",
       "name": "zeta2_pos",
       "trust": "kernel"
@@ -33916,7 +33916,7 @@
       "ledger": [
         "J-fate-contagion-elementary"
       ],
-      "line": 532,
+      "line": 537,
       "module": "Problems.Juggler.FateProduction",
       "name": "zeta2_antitone",
       "trust": "kernel"
@@ -33928,7 +33928,7 @@
       "ledger": [
         "J-fate-contagion-elementary"
       ],
-      "line": 543,
+      "line": 548,
       "module": "Problems.Juggler.FateProduction",
       "name": "errors_le",
       "trust": "kernel"
@@ -33940,55 +33940,55 @@
       "ledger": [
         "J-fate-contagion-elementary"
       ],
-      "line": 554,
+      "line": 559,
       "module": "Problems.Juggler.FateProduction",
       "name": "errors_vanish",
       "trust": "kernel"
     },
     {
-      "doc": "**Elementary contagion.** For every nonempty backward-closed `A` and `0 < \u03bb \u2264 3/10` there are `K > 0` and `t\u2081` with `g_A(t) \u2265 K t^\u03bb` for all `t \u2265 t\u2081`. No hypothesis: the seed is Lemma 5.2, the recursion is Lemma 5.1 on the two productions `E` and `OE`, and the production inequality is `production_two`, whose inputs are Lemmas 3.1, 4.2 and 4.3.",
+      "doc": "**Elementary contagion.** For every nonempty backward-closed `A` and `0 < \u03bb \u2264 13/40` there are `K > 0` and `t\u2081` with `g_A(t) \u2265 K t^\u03bb` for all `t \u2265 t\u2081`. No hypothesis: the seed is Lemma 5.2, the recursion is Lemma 5.1 on the two productions `E` and `OE`, and the production inequality is `production_two`, whose inputs are Lemmas 3.1, 4.2 and 4.3.",
       "file": "formal/Problems/Juggler/FateProduction.lean",
       "kind": "theorem",
       "ledger": [
         "J-fate-contagion-elementary"
       ],
-      "line": 572,
+      "line": 577,
       "module": "Problems.Juggler.FateProduction",
       "name": "contagion_elementary",
       "trust": "kernel"
     },
     {
-      "doc": "**Elementary contagion, as a log-mass bound.** For every nonempty backward-closed `A` and `0 < \u03bb \u2264 3/10` there are `K > 0` and `x\u2080` with `\u03a3_{n \u2208 A, n \u2264 x} 1/n \u2265 K (log x)^\u03bb` for all `x \u2265 x\u2080`. This is Theorem 5.3 of the paper with `3/10` in place of `\u03bb** \u2248 0.4926`, and with no hypothesis: the block-average family and the ladder, which need the exponential sums, are what lift the exponent.",
+      "doc": "**Elementary contagion, as a log-mass bound.** For every nonempty backward-closed `A` and `0 < \u03bb \u2264 13/40` there are `K > 0` and `x\u2080` with `\u03a3_{n \u2208 A, n \u2264 x} 1/n \u2265 K (log x)^\u03bb` for all `x \u2265 x\u2080`. This is Theorem 5.3 of the paper with `13/40` in place of `\u03bb** \u2248 0.4926`, and with no hypothesis: the block-average family and the ladder, which need the exponential sums, are what lift the exponent.",
       "file": "formal/Problems/Juggler/FateProduction.lean",
       "kind": "theorem",
       "ledger": [
         "J-fate-contagion-elementary"
       ],
-      "line": 625,
+      "line": 630,
       "module": "Problems.Juggler.FateProduction",
       "name": "logMass_contagion_elementary",
       "trust": "kernel"
     },
     {
-      "doc": "**Corollary 5.5(2) at exponent `3/10`, unconditional.** If some positive integer does not reach `1`, the failures have log-mass at least `K (log x)^{3/10}` up to `x` for all large `x`: the failure set is backward-closed (Lemma 2.1) and nonempty.",
+      "doc": "**Corollary 5.5(2) at exponent `13/40`, unconditional.** If some positive integer does not reach `1`, the failures have log-mass at least `K (log x)^{13/40}` up to `x` for all large `x`: the failure set is backward-closed (Lemma 2.1) and nonempty.",
       "file": "formal/Problems/Juggler/FateProduction.lean",
       "kind": "theorem",
       "ledger": [
         "J-fate-contagion-elementary"
       ],
-      "line": 643,
+      "line": 648,
       "module": "Problems.Juggler.FateProduction",
       "name": "failures_logMass_ge",
       "trust": "kernel"
     },
     {
-      "doc": "**Theorem 7.2 with its contagion hypothesis discharged.** If the odd failures in `(y, 2y]` number at most `y (log y)^{-e}` for all large `y`, for some `e > 7/10`, then every positive integer reaches `1`. The contagion bound at exponent `3/10` is `failures_logMass_ge`, so nothing is assumed beyond the rate; the paper's conditional form needs `e > 0.51` and the production inequality (5.2).",
+      "doc": "**Theorem 7.2 with its contagion hypothesis discharged.** If the odd failures in `(y, 2y]` number at most `y (log y)^{-e}` for all large `y`, for some `e > 7/10`, then every positive integer reaches `1`. The contagion bound at exponent `13/40` is `failures_logMass_ge`, so nothing is assumed beyond the rate; the paper's conditional form needs `e > 0.51` and the production inequality (5.2).",
       "file": "formal/Problems/Juggler/FateProduction.lean",
       "kind": "theorem",
       "ledger": [
         "J-fate-contagion-elementary"
       ],
-      "line": 656,
+      "line": 661,
       "module": "Problems.Juggler.FateProduction",
       "name": "conjecture_of_tao_rate",
       "trust": "kernel"
@@ -34000,9 +34000,93 @@
       "ledger": [
         "J-fate-contagion-elementary"
       ],
-      "line": 665,
+      "line": 670,
       "module": "Problems.Juggler.FateProduction",
       "name": "conjecture_of_cylinder_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Paper C's production words `V_k = (OE)^(k-1) OEE`, indexed from zero: `Vword i` is the paper's `V_(i+1)`, so the six it uses are `Vword 0` through `Vword 5`.",
+      "file": "formal/Problems/Juggler/FateProductionWords.lean",
+      "kind": "def",
+      "ledger": [
+        "J-paper-c-production-words-are-prefix-free"
+      ],
+      "line": 36,
+      "module": "Problems.Juggler.FateProductionWords",
+      "name": "Vword",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`V_(k+1)` has length `2k + 3`: the `k` copies of `OE` and the closing `OEE`.",
+      "file": "formal/Problems/Juggler/FateProductionWords.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-c-production-words-are-prefix-free"
+      ],
+      "line": 45,
+      "module": "Problems.Juggler.FateProductionWords",
+      "name": "Vword_length",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`V_(k+1)` carries `k + 1` odd letters.",
+      "file": "formal/Problems/Juggler/FateProductionWords.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-c-production-words-are-prefix-free"
+      ],
+      "line": 51,
+      "module": "Problems.Juggler.FateProductionWords",
+      "name": "Vword_oddCount",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Every production word starts with an odd letter.",
+      "file": "formal/Problems/Juggler/FateProductionWords.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-c-production-words-are-prefix-free"
+      ],
+      "line": 57,
+      "module": "Problems.Juggler.FateProductionWords",
+      "name": "Vword_eq_odd_cons",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The production words are prefix-free.** `V_i` is a prefix of `V_j` only when `i = j`; in particular the six words Paper C fixes, `Vword 0` through `Vword 5`, are pairwise prefix-free. The reason is that `V_i` closes with a second `E` exactly where `V_j`, for `j > i`, opens another `OE`.",
+      "file": "formal/Problems/Juggler/FateProductionWords.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-c-production-words-are-prefix-free"
+      ],
+      "line": 66,
+      "module": "Problems.Juggler.FateProductionWords",
+      "name": "Vword_prefix_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The six words Paper C uses, pairwise: none is a prefix of another. Kernel evaluation.",
+      "file": "formal/Problems/Juggler/FateProductionWords.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-c-production-words-are-prefix-free"
+      ],
+      "line": 95,
+      "module": "Problems.Juggler.FateProductionWords",
+      "name": "Vword_six_prefixFree",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The six words, written out. `Vword 0 = OEE` and each step prepends `OE`.",
+      "file": "formal/Problems/Juggler/FateProductionWords.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-c-production-words-are-prefix-free"
+      ],
+      "line": 100,
+      "module": "Problems.Juggler.FateProductionWords",
+      "name": "Vword_five",
       "trust": "kernel"
     },
     {
@@ -90879,6 +90963,7 @@
         "Problems.Juggler.FatePressure",
         "Problems.Juggler.FatePressureCorollary",
         "Problems.Juggler.FateProduction",
+        "Problems.Juggler.FateProductionWords",
         "Problems.Juggler.FateRecursion",
         "Problems.Juggler.FateSeed",
         "Problems.Juggler.FateShareLaw",
@@ -92221,7 +92306,21 @@
       "ledger": [
         {
           "id": "J-fate-contagion-elementary",
-          "statement": "The production inequality of Paper C Section 5.1 without its exponential sums, and the unconditional theorem it yields. Of the three families of members of A on (sqrt x, x], the E-images of the members at scale t/2 (Lemma 3.1; Production.family_E) and the OE-fibers of the members at scale 3t/4 (Lemma 4.2 on good fibers, Lemma 4.3 for the bad; Production.family_OE, on the per-fiber bound (2/9)(1 - (25/2) m^{-1/3})/m) need no analysis. With the paper's sqrt x read as floor(e^{t/2}) (sqrt_floor_exp) they give, for t >= 40, g_A(t) >= (1 - 4e^{-t/4}) g_A(t/2) + (2/9 - (50/9)e^{-t/8}) g_A(3t/4) - eta_0(t) with eta_0(t) = 2e^{-t/2} + (4/9)e^{-3t/4} + 136 e^{-t/8}, every error explicit (production_two). Lemma 5.1 (recursion_lemma) on these two productions, with 2^{-3/10} + (2/9)(3/4)^{3/10} > 1 certified by 0.81^10 <= 1/8 and 0.91^10 <= 27/64 (zeta2_pos) and the seed of Lemma 5.2, gives: for every nonempty backward-closed A and every 0 < lambda <= 3/10 there are K > 0 and x_0 with sum_{n in A, n <= x} 1/n >= K (log x)^lambda for all x >= x_0 (contagion_elementary, logMass_contagion_elementary), WITH NO HYPOTHESIS; and if some positive integer does not reach 1 the failures have that log-mass (failures_logMass_ge, Corollary 5.5(2) at exponent 3/10). Composed with Theorem 7.2 and Corollary 8.4, whose contagion hypothesis has exactly this shape: a Tao-type rate, odd failures in (y, 2y] at most y (log y)^{-e} for all large y with e > 7/10, implies that every positive integer reaches 1 (conjecture_of_tao_rate), and so does a cylinder bound H(C, A) at all large scales with A > C + e(C) and e(C) > 7/10 above a certified floor (conjecture_of_cylinder_bound), with no other hypothesis; the paper's conditional forms need e > 1 - lambda** ~ 0.51 and (5.2). This is Theorem 5.3 with 3/10 in place of lambda** ~ 0.4926: the root of 2^{-lambda} + (2/9)(3/4)^lambda = 1 is about 0.325. NOT formalized: the block-average family (Section 5.1 item 2), which needs the two exponential-sum bounds of Proposition 4.4 (hypotheses in FateBlockAverage) and is what lifts the exponent to 0.49, and the ladder (5.10), whose Appendix D estimates are human; (5.2) itself remains a human row. Nothing here is a density theorem in the paper's sense and nothing here is a halt theorem.",
+          "statement": "The production inequality of Paper C Section 5.1 without its exponential sums, and the unconditional theorem it yields. Of the three families of members of A on (sqrt x, x], the E-images of the members at scale t/2 (Lemma 3.1; Production.family_E) and the OE-fibers of the members at scale 3t/4 (Lemma 4.2 on good fibers, Lemma 4.3 for the bad; Production.family_OE, on the per-fiber bound (2/9)(1 - (25/2) m^{-1/3})/m) need no analysis. With the paper's sqrt x read as floor(e^{t/2}) (sqrt_floor_exp) they give, for t >= 40, g_A(t) >= (1 - 4e^{-t/4}) g_A(t/2) + (2/9 - (50/9)e^{-t/8}) g_A(3t/4) - eta_0(t) with eta_0(t) = 2e^{-t/2} + (4/9)e^{-3t/4} + 136 e^{-t/8}, every error explicit (production_two). Lemma 5.1 (recursion_lemma) on these two productions, with 2^{-13/40} + (2/9)(3/4)^{13/40} > 1 certified by 0.798^40 <= 2^{-13} and 0.91^40 <= (3/4)^13 (zeta2_pos) and the seed of Lemma 5.2, gives: for every nonempty backward-closed A and every 0 < lambda <= 13/40 there are K > 0 and x_0 with sum_{n in A, n <= x} 1/n >= K (log x)^lambda for all x >= x_0 (contagion_elementary, logMass_contagion_elementary), WITH NO HYPOTHESIS; and if some positive integer does not reach 1 the failures have that log-mass (failures_logMass_ge, Corollary 5.5(2) at exponent 13/40). Composed with Theorem 7.2 and Corollary 8.4, whose contagion hypothesis has exactly this shape: a Tao-type rate, odd failures in (y, 2y] at most y (log y)^{-e} for all large y with e > 7/10, implies that every positive integer reaches 1 (conjecture_of_tao_rate), and so does a cylinder bound H(C, A) at all large scales with A > C + e(C) and e(C) > 7/10 above a certified floor (conjecture_of_cylinder_bound), with no other hypothesis; the paper's conditional forms need e > 1 - lambda** ~ 0.51 and (5.2). This is Theorem 5.3 with 3/10 in place of lambda** ~ 0.4926: the root of 2^{-lambda} + (2/9)(3/4)^lambda = 1 is about 0.325. NOT formalized: the block-average family (Section 5.1 item 2), which needs the two exponential-sum bounds of Proposition 4.4 (hypotheses in FateBlockAverage) and is what lifts the exponent to 0.49, and the ladder (5.10), whose Appendix D estimates are human; (5.2) itself remains a human row. Nothing here is a density theorem in the paper's sense and nothing here is a halt theorem. EXPONENT LIFTED 2026-09-19, from 3/10 to 13/40. The exponent is not intrinsic to the argument: it enters only through zeta2_pos, and zeta2_antitone carries it to the theorems, so raising the certificate raises the theorem. The root of 2^{-lambda} + (2/9)(3/4)^lambda = 1 is 0.3261209621146946, so the old certificate 3/10 = 0.300 used 92 percent of what the TWO-production inequality can give and 13/40 = 0.325 uses 99.6 percent; the remaining 0.4 percent is the gap to an irrational root and is not worth a larger denominator. The new certificate is 399/500 <= (1/2)^{13/40}, since (399/500)^40 <= 2^{-13}, with the previous 91/100 <= (3/4)^{13/40} unchanged, and 399/500 + (2/9)(91/100) = 1.000222 > 1; the 40th powers are exact rational arithmetic in norm_num and the module compiles in 174 s. WHAT THIS DOES NOT DO: it does not approach Paper C's lambda** = 0.4926, which needs the block-average family and its two exponential-sum bounds, and those remain hypotheses in FateBlockAverage with no Lean proof. 13/40 is the ceiling of the unconditional route, not a step toward the conditional one. Paper C's manuscript still states the unconditional Lean exponent as 3/10, which stays true and is now understated; updating it is a deposited-paper edit and has not been made.",
+          "tag": "EXACT \u2014 LEAN VERIFIED"
+        }
+      ]
+    },
+    "Problems.Juggler.FateProductionWords": {
+      "declarations": 7,
+      "file": "formal/Problems/Juggler/FateProductionWords.lean",
+      "imports": [
+        "Problems.Juggler.ItineraryStats"
+      ],
+      "ledger": [
+        {
+          "id": "J-paper-c-production-words-are-prefix-free",
+          "statement": "Paper C's finite production words are prefix-free, in Lean, for the whole family rather than for the six the manuscript fixes. Paper C (docs/theory/juggler_fate_almost_all_note.md) builds Theorem 1 from six productions V_k = (OE)^(k-1) OEE with rho_k = (1/2)(3/4)^k, 1 <= k <= 6, and uses their prefix-freeness three times: 'Production words must be prefix-free' when the candidate list is drawn up, 'These six words are prefix-free' when the six are fixed, and, load-bearing, at the close of Appendix D, 'Finally the prefix-free words give disjoint source sets, and the subtraction in (5.9) proves (5.10). This completes the analytic input to Theorem 5.3.' Until 2026-09-19 the assertion was written only and the words were not defined anywhere under formal/. Problems/Juggler/FateProductionWords.lean now defines Vword : \u2115 \u2192 List Branch by Vword 0 = [odd, even, even] and Vword (k+1) = odd :: even :: Vword k, so Vword i is the paper's V_(i+1) and the six are Vword 0 .. Vword 5, and proves: Vword_length, (Vword k).length = 2k + 3; Vword_oddCount, oddCount (Vword k) = k + 1; Vword_eq_odd_cons, every production word starts odd; and Vword_prefix_iff, Vword i <+: Vword j implies i = j -- prefix-freeness for every pair of indices, by induction, the point being that V_i closes with its second E exactly where V_j for j > i opens another OE. Vword_six_prefixFree is the six-word instance and Vword_five the written-out word, both by decide +kernel. Compiles with no sorry, admit or axiom; standard axioms. Registered as an auxiliary Juggler module (AUXILIARY_MODULES in lean_paths.py, imported by the umbrella Problems.Juggler), NOT by Paper C's barrel: wiring it into JugglerFatePaper.lean and Appendix A should happen in the same pass that fixes Appendix A's claim to import 'exactly the thirty modules named here' while naming 29, TerminationFloor257 being imported and never mentioned. WHAT THIS IS NOT: the combinatorial step only. Appendix D's analytic content -- the two-sided asymptotic for each fixed word, the coefficient c_k = 3^(-k), the landing windows with iterated ceiling endpoints -- is written proof and untouched, and disjointness of the SOURCE SETS follows from prefix-freeness only together with that layer. Not a bound on any Juggler orbit, not a cycle exclusion, not a termination result.",
           "tag": "EXACT \u2014 LEAN VERIFIED"
         }
       ]
@@ -94321,13 +94420,13 @@
     }
   },
   "totals": {
-    "declarations": 6963,
-    "declarations_with_a_ledger_row": 4767,
-    "ledger_rows_naming_a_file": 450,
-    "modules": 308,
+    "declarations": 6970,
+    "declarations_with_a_ledger_row": 4774,
+    "ledger_rows_naming_a_file": 451,
+    "modules": 309,
     "trust": {
       "compiler": 56,
-      "kernel": 6907
+      "kernel": 6914
     }
   }
 }

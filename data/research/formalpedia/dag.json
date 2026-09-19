@@ -1784,6 +1784,20 @@
         "kernel": 32
       }
     },
+    "Problems.Juggler.FateProductionWords": {
+      "declarations": 7,
+      "depends_on": [
+        "Problems.Juggler.ItineraryStats"
+      ],
+      "file": "formal/Problems/Juggler/FateProductionWords.lean",
+      "ledger": [
+        "J-paper-c-production-words-are-prefix-free"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 7
+      }
+    },
     "Problems.Juggler.FateRecursion": {
       "declarations": 1,
       "depends_on": [],
@@ -3065,9 +3079,9 @@
     }
   },
   "totals": {
-    "edges": 238,
-    "edges_before_reduction": 1785,
-    "ledger_rows_placed": 414,
-    "nodes": 186
+    "edges": 239,
+    "edges_before_reduction": 1788,
+    "ledger_rows_placed": 415,
+    "nodes": 187
   }
 }
