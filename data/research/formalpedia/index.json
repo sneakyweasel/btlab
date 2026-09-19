@@ -57230,7 +57230,7 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "def",
       "ledger": [],
-      "line": 88,
+      "line": 110,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "exponentGapAt",
       "trust": "kernel"
@@ -57240,7 +57240,7 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "def",
       "ledger": [],
-      "line": 93,
+      "line": 115,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "IsMinimalCertificateAt",
       "trust": "kernel"
@@ -57250,7 +57250,7 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "def",
       "ledger": [],
-      "line": 98,
+      "line": 120,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "CertWindowAt",
       "trust": "kernel"
@@ -57260,7 +57260,7 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 103,
+      "line": 125,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "exponentGapAt_one_iff",
       "trust": "kernel"
@@ -57270,7 +57270,7 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 117,
+      "line": 139,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "certWindowAt_one_iff",
       "trust": "kernel"
@@ -57280,7 +57280,7 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "instance",
       "ledger": [],
-      "line": 140,
+      "line": 162,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "at",
       "trust": "kernel"
@@ -57290,7 +57290,7 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 141,
+      "line": 163,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "certWindowAt_two_iff",
       "trust": "kernel"
@@ -57300,7 +57300,7 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 170,
+      "line": 192,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "two_pow_le_two_mul",
       "trust": "kernel"
@@ -57310,7 +57310,7 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 179,
+      "line": 201,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "certWindowAt_unique",
       "trust": "kernel"
@@ -57320,7 +57320,7 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 201,
+      "line": 223,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "minimalCertAt_concat_even",
       "trust": "kernel"
@@ -57330,7 +57330,7 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 232,
+      "line": 254,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "minimalCertAt_window",
       "trust": "kernel"
@@ -57340,7 +57340,7 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 265,
+      "line": 287,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "no_minimalCertAt_of_window_empty",
       "trust": "kernel"
@@ -57350,7 +57350,7 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 273,
+      "line": 295,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "certWindowAt_of_minimalCertAt",
       "trust": "kernel"
@@ -57360,7 +57360,7 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 282,
+      "line": 304,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "isMinimalCertificateAt_one_iff",
       "trust": "kernel"
@@ -57370,7 +57370,7 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 289,
+      "line": 311,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "no_minimalCert_of_window_empty_of_level",
       "trust": "kernel"
@@ -57380,7 +57380,7 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "instance",
       "ledger": [],
-      "line": 300,
+      "line": 322,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "at",
       "trust": "kernel"
@@ -57390,17 +57390,27 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 304,
+      "line": 326,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "certWindowAt_le",
       "trust": "kernel"
     },
     {
-      "doc": "**Length twelve is free at Paper C's level.** For every scale `c` between `2.37` and `2.38` -- that is, every level `\u039b` between `log\u2082 2.37 = 1.2450` and `log\u2082 2.38 = 1.2511`, a range containing the `1.2486` the spectrum work runs at -- no power of three lies in the window at `L = 12`, so no word of length twelve first passes the barrier there. The two neighbouring powers of three miss from opposite sides: `3 ^ 6 c \u2264 1735` is below `2 ^ 11 = 2048`, and `3 ^ 7 c \u2265 5183` is above `2 ^ 12 = 4096`.",
+      "doc": "",
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 322,
+      "line": 347,
+      "module": "Problems.Juggler.PaperBLevelWindow",
+      "name": "nothing",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Length twelve is free at Paper C's level.** For every scale `c` between `2.37` and `2.38` -- that is, every level `\u039b` between `log\u2082 2.37 = 1.2450` and `log\u2082 2.38 = 1.2511`, a range containing the `1.2486` the spectrum work runs at -- no power of three lies in the window at `L = 12`, so no word of length twelve first passes the barrier there. The two neighbouring powers of three miss from opposite sides: `3 ^ 6 c \u2264 1735` is below `2 ^ 11 = 2048`, and `3 ^ 7 c \u2265 5183` is above `2 ^ 12 = 4096`. The bracket is about the window, not about the convention. It contains the lattice point `c = 64/27 = 2.3704`, where `3 ^ 3 c = 2 ^ 6` and the two barriers part. That costs this theorem nothing, since it is stated in the strict convention throughout, but the bracket should not be read as a range on which the conventions agree.",
+      "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 349,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "certWindowAt_twelve_empty_at_paperC_level",
       "trust": "kernel"
@@ -57410,7 +57420,7 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 331,
+      "line": 358,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "no_minimalCertAt_twelve_at_paperC_level",
       "trust": "kernel"
@@ -57420,7 +57430,7 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "def",
       "ledger": [],
-      "line": 355,
+      "line": 382,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "prefixNoncontractingAt",
       "trust": "kernel"
@@ -57430,7 +57440,7 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 360,
+      "line": 387,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "not_exponentGapAt_nil",
       "trust": "kernel"
@@ -57440,7 +57450,7 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 365,
+      "line": 392,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "takeAt_concat_of_le",
       "trust": "kernel"
@@ -57450,7 +57460,7 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 369,
+      "line": 396,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "prefixNoncontractingAt_concat",
       "trust": "kernel"
@@ -57460,7 +57470,7 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 392,
+      "line": 419,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "isMinimalCertificateAt_concat",
       "trust": "kernel"
@@ -57470,7 +57480,7 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "def",
       "ledger": [],
-      "line": 412,
+      "line": 439,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "aliveWordsAt",
       "trust": "kernel"
@@ -57480,7 +57490,7 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "def",
       "ledger": [],
-      "line": 417,
+      "line": 444,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "minimalCertWordsAt",
       "trust": "kernel"
@@ -57490,7 +57500,7 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 421,
+      "line": 448,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "extensionsAt_eq_alive_union_certs",
       "trust": "kernel"
@@ -57500,7 +57510,7 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 459,
+      "line": 486,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "minimalCertWordsAt_eq_empty_of_window_empty",
       "trust": "kernel"
@@ -57510,7 +57520,7 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 467,
+      "line": 494,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "aliveWordsAt_succ_of_window_empty",
       "trust": "kernel"
@@ -57520,7 +57530,7 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 478,
+      "line": 505,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "sum_aliveWordsAt_succ_of_window_empty",
       "trust": "kernel"
@@ -57530,7 +57540,7 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 509,
+      "line": 536,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "blockWordAt_isMinimalCertificateAt",
       "trust": "kernel"
@@ -57540,7 +57550,7 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 553,
+      "line": 580,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "minimalCertAt_exists_iff",
       "trust": "kernel"
@@ -57550,7 +57560,7 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 563,
+      "line": 590,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "aliveAt_disjoint_certsAt",
       "trust": "kernel"
@@ -57560,7 +57570,7 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 575,
+      "line": 602,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "aliveWordsAt_succ_iff_window_empty",
       "trust": "kernel"
@@ -57570,7 +57580,7 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 602,
+      "line": 629,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "card_aliveWordsAt_succ_of_window_empty",
       "trust": "kernel"
@@ -57580,7 +57590,7 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 634,
+      "line": 661,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "three_pow_eq_rpow",
       "trust": "kernel"
@@ -57590,7 +57600,7 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 640,
+      "line": 667,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "three_pow_mul_rpow",
       "trust": "kernel"
@@ -57600,9 +57610,59 @@
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 648,
+      "line": 675,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "certWindowAt_iff_floor",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Paper C's convention: the barrier is reached, not passed.",
+      "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 714,
+      "module": "Problems.Juggler.PaperBLevelWindow",
+      "name": "exponentGapAtLE",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Off the lattice, the two conventions are the same predicate.",
+      "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 718,
+      "module": "Problems.Juggler.PaperBLevelWindow",
+      "name": "exponentGapAt_iff_le_of_offLattice",
+      "trust": "kernel"
+    },
+    {
+      "doc": "On the lattice they are not: the block word of the witnessing pair separates them.",
+      "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 729,
+      "module": "Problems.Juggler.PaperBLevelWindow",
+      "name": "exists_disagreement_of_onLattice",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The two conventions agree on every word exactly off the lattice.**",
+      "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 750,
+      "module": "Problems.Juggler.PaperBLevelWindow",
+      "name": "exponentGapAt_agrees_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Every whole-number level is on the lattice**, at `o = 0`. This is the half the earlier prose had right, and it is the only half it had right.",
+      "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 762,
+      "module": "Problems.Juggler.PaperBLevelWindow",
+      "name": "integer_level_onLattice",
       "trust": "kernel"
     },
     {
@@ -93818,7 +93878,7 @@
       "ledger": []
     },
     "Problems.Juggler.PaperBLevelWindow": {
-      "declarations": 38,
+      "declarations": 44,
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "imports": [
         "Problems.Juggler.PaperBCertificateLengths",
@@ -94986,13 +95046,13 @@
     }
   },
   "totals": {
-    "declarations": 7020,
+    "declarations": 7026,
     "declarations_with_a_ledger_row": 4786,
     "ledger_rows_naming_a_file": 455,
     "modules": 310,
     "trust": {
       "compiler": 56,
-      "kernel": 6964
+      "kernel": 6970
     }
   }
 }

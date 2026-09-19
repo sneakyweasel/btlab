@@ -34,13 +34,35 @@ weakens the hypothesis to `2 / 3` breaks the file.
 **The barrier here is strict, and Paper C's is not.** This file lifts Paper B's pair of
 inequalities unchanged, so `exponentGapAt` passes the barrier strictly. The laboratory's Paper
 C code reaches it non-strictly (`FateChernoff.lean`'s `LBad`, and the walk in
-`collision_large_sieve`). The two coincide exactly when `3 ^ o * c` is never a power of two,
-which holds at **every non-integer level**, 1.2486 included, and fails at every integer level
-at `o = 0`. There they disagree at exactly two lengths, `⌊Λ⌋` and `⌊Λ⌋ + 1`: at `Λ = 3` this
-file makes `EEEE` the length-four certificate and has none at length three, while Paper C's
-convention has `EEE` at length three and none at length four. Level zero is the case Paper B
-was entitled to ignore, because `3 ^ o = 2 ^ t` forces `o = t = 0`; that entitlement does not
-survive the move to `Λ > 0` and is not inherited here.
+`collision_large_sieve`). Section 11 settles exactly when that matters:
+`exponentGapAt_agrees_iff` says the two agree on every word precisely when `c` avoids the
+lattice of values `2 ^ t / 3 ^ o`, equivalently when `Λ` is not of the form `t - o log₂ 3`.
+
+**An earlier version of this paragraph got that set wrong**, and the error is left on the
+record because it is the kind prose invites and a theorem forbids. It said the two agree at
+*every non-integer level*. They do not. Taking `o = 0` gives the integer levels, which is what
+I had noticed; taking `o ≥ 1` gives irrational ones, and those are non-integer too. At
+`Λ = 2 - log₂ 3 = 0.415`, so `c = 4/3`, the two certificate sets differ at seven of the first
+ten lengths.
+
+What is true, and is the real reason `0.5` and `1.2486` are safe, is that a **rational**
+non-integer level always avoids the lattice: `3 ^ a = 2 ^ b` forces `a = b = 0`, so
+`3 ^ o · 2 ^ (p/q) = 2 ^ t` raised to the `q`-th power gives `3 ^ (oq) = 2 ^ (tq - p)` and
+hence `o = 0`, making `Λ` an integer. The safety of Paper C's level comes from its being
+rational, not from its being non-integer, and those are different reasons that happen to
+coincide there.
+
+**Which lengths move, stated in the right variable.** On the lattice point `3 ^ o c = 2 ^ t`
+the *certificate sets* differ at many lengths, but the *free* lengths -- the ones this file's
+theorems are about -- differ at exactly two, `t` and `t + 1`. An earlier version said
+`⌊Λ⌋` and `⌊Λ⌋ + 1`, which is the `o = 0` case generalised to the wrong variable. Measured:
+`c = 8`, which is `o = 0, t = 3`, moves the free lengths 3 and 4; `c = 4/3`, which is
+`o = 1, t = 2`, moves 2 and 3. At `Λ = 3` concretely, this file makes `EEEE` the length-four
+certificate and has none at length three, while Paper C's convention has `EEE` at length three
+and none at length four.
+
+Level zero is the case Paper B was entitled to ignore, because `3 ^ o = 2 ^ t` forces
+`o = t = 0`; that entitlement does not survive the move to `Λ > 0` and is not inherited here.
 
 **The cylinder identity is here**, in Section 8: at a free length the alive set at level `c`
 is the previous one times the full alphabet (`aliveWordsAt_succ_of_window_empty`), so every
@@ -318,7 +340,12 @@ range containing the `1.2486` the spectrum work runs at -- no power of three lie
 at `L = 12`, so no word of length twelve first passes the barrier there.
 
 The two neighbouring powers of three miss from opposite sides: `3 ^ 6 c ≤ 1735` is below
-`2 ^ 11 = 2048`, and `3 ^ 7 c ≥ 5183` is above `2 ^ 12 = 4096`. -/
+`2 ^ 11 = 2048`, and `3 ^ 7 c ≥ 5183` is above `2 ^ 12 = 4096`.
+
+The bracket is about the window, not about the convention. It contains the lattice point
+`c = 64/27 = 2.3704`, where `3 ^ 3 c = 2 ^ 6` and the two barriers part. That costs this
+theorem nothing, since it is stated in the strict convention throughout, but the bracket
+should not be read as a range on which the conventions agree. -/
 theorem certWindowAt_twelve_empty_at_paperC_level {c : ℝ}
     (hlo : 2.37 ≤ c) (hhi : c ≤ 2.38) (o : ℕ) : ¬ CertWindowAt c 12 o := by
   intro h
@@ -676,5 +703,66 @@ theorem certWindowAt_iff_floor {Λ : ℝ} {L o : ℕ} (hL : 1 ≤ L) :
       linarith
     · rw [hkey, ← Real.rpow_natCast (2 : ℝ) L, Real.rpow_lt_rpow_left_iff (by norm_num)]
       linarith
+
+/-! ## 11. Exactly when the two barrier conventions agree
+
+This file passes the barrier strictly, following Paper B. Paper C's code reaches it
+non-strictly. The difference is invisible except where `3 ^ o c` lands exactly on a power of
+two, and this section says that and nothing more, because a prose version of it was wrong. -/
+
+/-- Paper C's convention: the barrier is reached, not passed. -/
+def exponentGapAtLE (c : ℝ) (w : List Branch) : Prop :=
+  (3 : ℝ) ^ oddCount w * c ≤ 2 ^ w.length
+
+/-- Off the lattice, the two conventions are the same predicate. -/
+theorem exponentGapAt_iff_le_of_offLattice {c : ℝ}
+    (h : ∀ o t : ℕ, (3 : ℝ) ^ o * c ≠ 2 ^ t) (w : List Branch) :
+    exponentGapAt c w ↔ exponentGapAtLE c w := by
+  constructor
+  · exact le_of_lt
+  · intro hle
+    rcases lt_or_eq_of_le hle with hlt | heq
+    · exact hlt
+    · exact absurd heq (h (oddCount w) w.length)
+
+/-- On the lattice they are not: the block word of the witnessing pair separates them. -/
+theorem exists_disagreement_of_onLattice {c : ℝ} (hc : 1 ≤ c) {o t : ℕ}
+    (h : (3 : ℝ) ^ o * c = 2 ^ t) :
+    ∃ w : List Branch, exponentGapAtLE c w ∧ ¬ exponentGapAt c w := by
+  have h3pos : (0 : ℝ) < 3 ^ o := by positivity
+  have h23 : (2 : ℝ) ^ o ≤ 3 ^ o := pow_le_pow_left₀ (by norm_num) (by norm_num) o
+  have hge : (3 : ℝ) ^ o * 1 ≤ 3 ^ o * c := by nlinarith
+  rw [mul_one] at hge
+  have hle : (2 : ℝ) ^ o ≤ 2 ^ t := by rw [← h]; linarith
+  have hot : o ≤ t := by
+    by_contra hcon
+    have hlt : t < o := Nat.lt_of_not_le hcon
+    have : (2 : ℝ) ^ t < 2 ^ o := pow_lt_pow_right₀ (by norm_num) hlt
+    linarith
+  refine ⟨blockWord t o, ?_, ?_⟩
+  · unfold exponentGapAtLE
+    rw [blockWord_length hot, blockWord_oddCount, h]
+  · unfold exponentGapAt
+    rw [blockWord_length hot, blockWord_oddCount, h]
+    exact lt_irrefl _
+
+/-- **The two conventions agree on every word exactly off the lattice.** -/
+theorem exponentGapAt_agrees_iff {c : ℝ} (hc : 1 ≤ c) :
+    (∀ w : List Branch, exponentGapAt c w ↔ exponentGapAtLE c w)
+      ↔ ∀ o t : ℕ, (3 : ℝ) ^ o * c ≠ 2 ^ t := by
+  constructor
+  · intro hall o t heq
+    obtain ⟨w, hle, hnot⟩ := exists_disagreement_of_onLattice hc heq
+    exact hnot ((hall w).mpr hle)
+  · intro h
+    exact exponentGapAt_iff_le_of_offLattice h
+
+/-- **Every whole-number level is on the lattice**, at `o = 0`. This is the half the earlier
+prose had right, and it is the only half it had right. -/
+theorem integer_level_onLattice (k : ℕ) :
+    ¬ ∀ w : List Branch, exponentGapAt ((2 : ℝ) ^ k) w ↔ exponentGapAtLE ((2 : ℝ) ^ k) w := by
+  intro hall
+  have hc : (1 : ℝ) ≤ (2 : ℝ) ^ k := one_le_pow₀ (by norm_num)
+  exact (exponentGapAt_agrees_iff hc).mp hall 0 k (by norm_num)
 
 end Problems.Juggler

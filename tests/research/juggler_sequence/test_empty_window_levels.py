@@ -73,11 +73,20 @@ def test_the_shifted_window_predicts_the_cylinder_at_every_level(level: float) -
     The Lean module ``PaperBLevelWindow`` reaches it STRICTLY, which is what Paper B does.
     The two coincide exactly when ``3^o * 2^level`` is never a power of two.
 
-    That holds at every NON-INTEGER level, so these two parametrisations, 0.5 and 1.2486,
-    corroborate the Lean module. It fails at every INTEGER level at ``o = 0``, where the two
-    conventions disagree at exactly the lengths ``floor(level)`` and ``floor(level) + 1``. So
-    the 3.0 case below is checking the mirror statement, not the Lean module's, and an earlier
-    version of this note wrongly said the difference was confined to level zero.
+    Equivalently they agree exactly when ``level`` avoids the lattice ``{t - o*log2(3)}``.
+    ``o = 0`` gives the integers; that is why the 3.0 case below checks the mirror statement
+    rather than the Lean module's. On a lattice point ``3^o * c = 2^t`` the FREE lengths differ
+    at exactly ``t`` and ``t+1`` -- not at ``floor(level)`` and ``floor(level)+1``, which is the
+    ``o = 0`` case written in the wrong variable.
+
+    TWO EARLIER VERSIONS OF THIS NOTE WERE WRONG, in opposite directions. The first said the
+    difference was confined to level zero. The second said it was confined to the integer
+    levels, which is also false: ``o >= 1`` puts irrational levels on the lattice too, and at
+    ``level = 2 - log2(3) = 0.415`` the conventions differ at seven of the first ten lengths,
+    worse than at any integer level. What makes 0.5 and 1.2486 safe is that they are RATIONAL
+    and non-integer, since ``3^a = 2^b`` forces ``a = b = 0``. Rationality, not
+    non-integrality. See ``test_the_conventions_part_on_a_lattice`` below and
+    ``Problems.Juggler.exponentGapAt_agrees_iff``.
     """
     mismatches = []
     for d in range(1, 16):
@@ -191,3 +200,54 @@ def test_the_free_lengths_cost_a_constant_not_an_exponent() -> None:
         # decay per admissible length is FASTER, which is what "the mass redistributes" means
         assert per_adm < per_len, (level, per_adm, per_len)
         assert rises < steps, (level, rises, steps)
+
+
+def test_the_conventions_part_on_a_lattice() -> None:
+    """The strict and non-strict barriers agree exactly off ``c = 2^t / 3^o``.
+
+    Guards the corrected claim. ``level = 2 - log2(3) = 0.415`` is NON-INTEGER and on the
+    lattice, and there the two certificate SETS differ at lengths 2, 3, 4, 6, 7, 9 and 10 --
+    seven of the first ten. The FREE lengths are the coarser and more relevant comparison and
+    they differ at exactly two, ``t`` and ``t+1``: at ``c = 4/3`` (``o=1, t=2``) that is 2 and
+    3, at ``c = 8`` (``o=0, t=3``) it is 3 and 4. The rational non-integer levels this file
+    parametrises over are off the lattice and agree on both comparisons.
+
+    Exact rational arithmetic throughout: on the lattice ``c = 2^t/3^o`` is rational, so the
+    comparison that decides the question is exact and no float tie can fake or hide it.
+    """
+    from fractions import Fraction
+
+    def mincerts(d: int, c: Fraction, strict: bool) -> set[str]:
+        def gap(w: str) -> bool:
+            v = Fraction(3) ** w.count("O") * c
+            lim = Fraction(2) ** len(w)
+            return v < lim if strict else v <= lim
+
+        out = set()
+        for w in map("".join, product("EO", repeat=d)):
+            if gap(w) and not any(gap(w[:k]) for k in range(1, d)):
+                out.add(w)
+        return out
+
+    # on the lattice, and not an integer level: 4/3 = 2^2/3^1, level 2 - log2 3 = 0.415
+    c = Fraction(4, 3)
+    differ = [d for d in range(1, 11) if mincerts(d, c, True) != mincerts(d, c, False)]
+    assert differ == [2, 3, 4, 6, 7, 9, 10], differ
+    assert mincerts(2, c, True) == set()
+    assert mincerts(2, c, False) == {"OE"}
+
+    def free(c: Fraction, strict: bool) -> set[int]:
+        return {d for d in range(1, 11) if not mincerts(d, c, strict)}
+
+    # the FREE lengths move at exactly t and t+1, in both the o=0 and o>=1 cases
+    assert sorted(free(c, True) ^ free(c, False)) == [2, 3]          # c = 4/3: o=1, t=2
+    c8 = Fraction(8)                                                  # c = 8:   o=0, t=3
+    assert sorted(free(c8, True) ^ free(c8, False)) == [3, 4]
+    differ8 = [d for d in range(1, 11) if mincerts(d, c8, True) != mincerts(d, c8, False)]
+    assert differ8 == [3, 4, 5, 7, 8, 10], differ8
+
+    # off the lattice: a rational non-integer level agrees everywhere
+    for num, den in ((3, 2), (7, 4)):
+        cc = Fraction(num, den)
+        assert all(mincerts(d, cc, True) == mincerts(d, cc, False) for d in range(1, 11)), cc
+        assert free(cc, True) == free(cc, False), cc
