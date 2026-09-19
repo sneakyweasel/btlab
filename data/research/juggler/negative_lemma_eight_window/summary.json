@@ -1,0 +1,268 @@
+{
+  "known_cycles": {
+    "law": "a consecutive odd states force x = -1 mod 2^a; x >= 2^a - 1 on the positive side and x <= -(2^a + 1) on the negative, the same fact two units apart",
+    "rows": [
+      {
+        "x": 1,
+        "u": 2,
+        "word": "OE",
+        "length": 2,
+        "odds": 1,
+        "leading_odd_run": 1,
+        "v2_of_u": 1,
+        "floor": 1,
+        "attains_floor": true,
+        "u_is_minus_a_power_of_two": null,
+        "even_charge": 2,
+        "odd_part_of_charge": 1,
+        "gap": -1,
+        "odd_part_equals_abs_gap": true
+      },
+      {
+        "x": -1,
+        "u": 0,
+        "word": "O",
+        "length": 1,
+        "odds": 1,
+        "leading_odd_run": 1,
+        "v2_of_u": null,
+        "floor": 3,
+        "attains_floor": false,
+        "u_is_minus_a_power_of_two": false,
+        "even_charge": 0,
+        "odd_part_of_charge": 0,
+        "gap": 1,
+        "odd_part_equals_abs_gap": false
+      },
+      {
+        "x": -5,
+        "u": -4,
+        "word": "OOE",
+        "length": 3,
+        "odds": 2,
+        "leading_odd_run": 2,
+        "v2_of_u": 2,
+        "floor": 5,
+        "attains_floor": true,
+        "u_is_minus_a_power_of_two": true,
+        "even_charge": 4,
+        "odd_part_of_charge": 1,
+        "gap": 1,
+        "odd_part_equals_abs_gap": true
+      },
+      {
+        "x": -17,
+        "u": -16,
+        "word": "OOOOEOOOEEE",
+        "length": 11,
+        "odds": 7,
+        "leading_odd_run": 4,
+        "v2_of_u": 4,
+        "floor": 17,
+        "attains_floor": true,
+        "u_is_minus_a_power_of_two": true,
+        "even_charge": 2224,
+        "odd_part_of_charge": 139,
+        "gap": 139,
+        "odd_part_equals_abs_gap": true
+      }
+    ],
+    "all_attain": true,
+    "all_odd_parts_are_the_gap": true,
+    "minus_one_is_the_degenerate_case": "u = 0, excluded by the hypothesis x <= -2"
+  },
+  "sieve": {
+    "max_len": 22,
+    "shape_words": 198891,
+    "excluded": 168460,
+    "excluded_share": 0.846996596125516,
+    "empty_lengths": [
+      1,
+      2,
+      4,
+      5,
+      7,
+      8,
+      10,
+      13,
+      16
+    ],
+    "by_length": {
+      "1": {
+        "excluded": 1,
+        "kept": 0
+      },
+      "2": {
+        "excluded": 1,
+        "kept": 0
+      },
+      "3": {
+        "excluded": 1,
+        "kept": 1
+      },
+      "4": {
+        "excluded": 3,
+        "kept": 0
+      },
+      "5": {
+        "excluded": 4,
+        "kept": 0
+      },
+      "6": {
+        "excluded": 7,
+        "kept": 1
+      },
+      "7": {
+        "excluded": 13,
+        "kept": 0
+      },
+      "8": {
+        "excluded": 19,
+        "kept": 0
+      },
+      "9": {
+        "excluded": 35,
+        "kept": 3
+      },
+      "10": {
+        "excluded": 64,
+        "kept": 0
+      },
+      "11": {
+        "excluded": 107,
+        "kept": 21
+      },
+      "12": {
+        "excluded": 207,
+        "kept": 19
+      },
+      "13": {
+        "excluded": 367,
+        "kept": 0
+      },
+      "14": {
+        "excluded": 660,
+        "kept": 74
+      },
+      "15": {
+        "excluded": 1196,
+        "kept": 99
+      },
+      "16": {
+        "excluded": 2114,
+        "kept": 0
+      },
+      "17": {
+        "excluded": 3840,
+        "kept": 388
+      },
+      "18": {
+        "excluded": 6970,
+        "kept": 525
+      },
+      "19": {
+        "excluded": 11370,
+        "kept": 3620
+      },
+      "20": {
+        "excluded": 24188,
+        "kept": 3140
+      },
+      "21": {
+        "excluded": 43224,
+        "kept": 3387
+      },
+      "22": {
+        "excluded": 74069,
+        "kept": 19153
+      }
+    },
+    "longest_surviving_leading_run": {
+      "3": 2,
+      "6": 2,
+      "9": 2,
+      "11": 4,
+      "12": 2,
+      "14": 3,
+      "15": 2,
+      "17": 3,
+      "18": 2,
+      "19": 8,
+      "20": 3,
+      "21": 2,
+      "22": 5
+    },
+    "paper_a_even_floor": 8,
+    "paper_a_excludes": 181254,
+    "window_only": 4787,
+    "paper_a_only": 17581,
+    "both": 163673,
+    "survive_both": 12850,
+    "not_subsumed": true
+  },
+  "leftover_slack": {
+    "law": "an empty window is 2^(a+1) theta_J > e, so a negative cycle word has a <= log2(e / theta_J) - 1",
+    "rows": [
+      {
+        "length": 3,
+        "odds": 2,
+        "evens": 1,
+        "theta_J": 0.1111111111111111,
+        "run_bound": 2.169925001442312
+      },
+      {
+        "length": 11,
+        "odds": 7,
+        "evens": 4,
+        "theta_J": 0.06355738454503887,
+        "run_bound": 4.975796432324586
+      },
+      {
+        "length": 19,
+        "odds": 12,
+        "evens": 7,
+        "theta_J": 0.01345963145485576,
+        "run_bound": 8.022572204523863
+      },
+      {
+        "length": 84,
+        "odds": 53,
+        "evens": 31,
+        "theta_J": 0.002085953742688774,
+        "run_bound": 12.8592734294892
+      },
+      {
+        "length": 569,
+        "odds": 359,
+        "evens": 210,
+        "theta_J": 0.001065325380074111,
+        "run_bound": 16.588735665281412
+      },
+      {
+        "length": 1054,
+        "odds": 665,
+        "evens": 389,
+        "theta_J": 4.365315776183142e-05,
+        "run_bound": 22.087180800790353
+      }
+    ],
+    "reading": "theta_J is the record near-convergent defect at a leftover length, so the bound goes slack exactly at the lengths the cycle frontier lives on"
+  },
+  "first_admissible_length": {
+    "length": 22,
+    "paper_a_forces_length_at_least": 22,
+    "shape_words_at_length": 93222,
+    "paper_a_admissible": 17637,
+    "window_kills": 4787,
+    "window_kills_share_of_admissible": 0.2714180416170551,
+    "least_run_killed": 6,
+    "greatest_run_surviving": 5,
+    "reading": "at the first length the census bound admits, the pointwise floor caps the leading odd run and removes just over a quarter of what is left"
+  },
+  "decision": {
+    "classification": "NEGATIVE_FLOOR_IS_SLACK_AT_THE_LEFTOVERS",
+    "branch": "CLOSE",
+    "green": true
+  },
+  "anti_overclaim": "No Juggler cycle is excluded, no floor is raised, and no negative Collatz cycle is newly excluded: the laboratory's own rational-cycle census already settled every length to 24 by exhibiting the cycles. The sieve is a criterion rather than a census, which is why it is worth stating, and its value is the measurement -- what the missing Juggler floor would buy, and where it would stop. The ceiling is neg_cycle_finance, kernel-checked; the floor is two lines of integer arithmetic; neither is a Baker argument and neither touches the leftovers."
+}

@@ -1,5 +1,56 @@
 # Research journal
 
+## 2026-09-19 -- the floor is tight at every cycle it is supposed to exclude
+
+- **Objective:** this morning's entry names the Juggler's missing pointwise odd-run
+  bound as the door. The bridge says the Juggler's cycle words *are* the negative
+  Collatz cycle words, letter for letter, and on that side the pointwise 2-adic fact
+  is available in full. So price it: what is Lemma 8 worth where it exists?
+- **The floor is sign-symmetric, and the sign costs exactly two.** The congruence
+  holds over `Z`, so `a` consecutive odd states force `x = -1 mod 2^a` on either
+  side. Positive: `x + 1 >= 2^a`, Hercher's `x >= 2^a - 1`. Negative, `x <= -2`:
+  `x + 1 <= -1` and `2^a | x + 1`, so `x + 1 <= -2^a` and `|x| >= 2^a + 1`. The
+  negative floor is the LARGER of the two, and the negative side is the one that has
+  cycles. The valuation does not separate the signs; the linear form does --
+  `2^K - 3^o > 0` small forces `K` enormous, while `3^o - 2^K` is `1` at `K = 3` and
+  `139` at `K = 11`.
+- **And it is tight at all three.** `{1,2}` has `a = 1`, `x = 1 = 2^1 - 1`; `-5` has
+  `a = 2`, `|x| = 5 = 2^2 + 1`; `-17` has `a = 4`, `|x| = 17 = 2^4 + 1`. Equivalently
+  `x + 1 = -2^a` exactly on both negative cycles, equivalently the odd part of the
+  word's even-charge is `|2^K - 3^o|` -- `1` for `OOE`, `139` for the `-17` word. A
+  bound tight at every object it is meant to exclude is not the exclusion, which is
+  why Steiner needs Baker on top of Lemma 8 and not Lemma 8 alone.
+  `J-lemma-eight-floor-is-tight-at-every-known-cycle`.
+- **Floor and ceiling meet, and at `OOE` they pin the cycle.** With the
+  kernel-checked `neg_cycle_finance` the pair is a per-word window
+  `2^a + 1 <= |x| <= 1 + e 3^o / (2 (3^o - 2^K))`. At `OOE` that is `[5, 5.5]`, so
+  `-5` is the unique realization of the word, with no search. At the `-17` word it is
+  `[17, 32.47]` and the cycle sits on the floor.
+- **The measurement, and my first number flattered it.** The window kills 84.7 per
+  cent of the 198891 shape words of length at most 22 and empties nine lengths --
+  but Paper A Theorem 3.31's `e >= 8` already excludes every shape word shorter than
+  22, since `e >= 8` with `3^o > 2^K` forces `o >= 14`. The comparison only begins at
+  `K = 22`. There: 93222 shape words, 17637 admissible to `e >= 8`, of which the
+  window kills 4787 -- **27.1 per cent**, and precisely those with leading run at
+  least 6, every survivor having run at most 5. That is the honest price of the door
+  at the first length Paper A allows a cycle word at all: a cap of 5 on the leading
+  odd run, and a quarter of the candidates.
+- **Where it stops is the point.** Emptiness is `2^(a+1) theta_J > e`, so the bound
+  is `a <= log2(e / theta_J) - 1` and `theta_J` is the record near-convergent defect.
+  Along the leftovers it reads 8.02 at `L = 19`, 12.86 at 84, 16.59 at 569, 22.09 at
+  1054, against 2.17 at `L = 3` and 5 at `L = 22`. The leftovers are by definition
+  where `theta_J` is a record minimum, hence exactly where this sieve permits the
+  longest runs -- and a word there needs only a short leading run to pass. The door,
+  priced where it is open, delivers the cycle starting line and stops before the
+  first leftover. `J-the-missing-juggler-floor-is-worth-a-quarter-at-length-22`.
+- **What did not happen.** No Juggler cycle excluded, no floor raised, no negative
+  Collatz cycle newly excluded -- the laboratory's own rational-cycle census already
+  settled every length to 24 by exhibiting the cycles. What is new is that the
+  exclusion is a criterion rather than a census, valid at every length, and that the
+  door now has a number on it. Branch **CLOSE**; dossier
+  `docs/problems/juggler_negative_lemma_eight_window.md`; probe
+  `negative_lemma_eight_window`, eleven tests.
+
 ## 2026-09-19 -- Hercher's Lemma 8 did survive the exponential, on the exponent
 
 - **Objective:** `J-juggler-is-collatz-one-exponential-up` says the conjugacy keeps

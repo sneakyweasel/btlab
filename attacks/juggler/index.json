@@ -3837,6 +3837,23 @@
       "nk_cluster": null
     },
     {
+      "id": "negative_lemma_eight_window",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/negative_lemma_eight_window.py",
+      "test": "tests/research/juggler_sequence/test_negative_lemma_eight_window.py",
+      "dossier": "docs/problems/juggler_negative_lemma_eight_window.md",
+      "data_dir": "data/research/juggler/negative_lemma_eight_window",
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": [
+        "J-lemma-eight-floor-is-tight-at-every-known-cycle",
+        "J-the-missing-juggler-floor-is-worth-a-quarter-at-length-22"
+      ],
+      "aliases": [],
+      "nk_cluster": "The pointwise floor is tight at every cycle, and slack at every leftover"
+    },
+    {
       "id": "nil_horizontal_weyl",
       "kind": "branch",
       "probe": "src/research/juggler_sequence/nil_horizontal_weyl.py",
