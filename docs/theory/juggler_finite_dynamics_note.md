@@ -4259,7 +4259,7 @@ for a different quantity, the survivors that sit on the barrier). No member
 of an undecided class drops within \(K\) steps, and every member \(y\) of
 a decided class with \(y>\mathrm{wordConst}\) of the contracting prefix
 drops at the prefix's length (`iter_lt_of_exponentGap_class`). For
-\(d=4,\dots,10\) the counts are \(3,4,8,13,19,38,64\), evaluated by
+\(K=4,\dots,10\) the counts are \(3,4,8,13,19,38,64\), evaluated by
 `decide +kernel` (`undecidedResidues_card_ten` and its companions): the
 values of OEIS A076227 [21]. \(\square\)
 
@@ -4339,10 +4339,10 @@ element of its cycle (`neg_seventeen_is_least`):
 (`neg_seventeen_finance`). \(\square\)
 
 **Remark 5.20 (the negative-cycle table; verified computation).**
-On the hug word the \(e\)-th even step has height
-\(\lceil(e+1)/\alpha\rceil\alpha-e\in[1,1+\alpha)\), so the charge
+On the hug word the \(b\)-th even step has height
+\(\lceil(b+1)/\alpha\rceil\alpha-b\in[1,1+\alpha)\), so the charge
 sharpens to \(y-1\le H_E(K-o)/\theta_J\) with
-\(H_E(m)=\sum_{e<m}2^{-(\lceil(e+1)/\alpha\rceil\alpha-e)}\) and
+\(H_E(m)=\sum_{b<m}2^{-(\lceil(b+1)/\alpha\rceil\alpha-b)}\) and
 \(H_E(m)/m\to1/(6\alpha\log2)=0.41105\); the \(-5\) cycle, whose word
 \(OOE\) is a hug word, attains this bound exactly. The survivors of either
 bound at a verification floor \(Y_0\) of the \(3x-1\) map (every
