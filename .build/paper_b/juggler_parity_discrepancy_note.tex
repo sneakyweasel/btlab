@@ -49,7 +49,7 @@ decorated estimates, and short-interval localization remain open. No
 result asserts universal arrival at \(1\).
 
 \textbf{Keywords:} Juggler map; nested floor powers; parity
-correlations; discrepancy; stopping time; finite-step descent.
+correlations; discrepancy; dropping time; finite-step descent.
 
 \section{1. Scope and relation to earlier
 work}\label{scope-and-relation-to-earlier-work}
@@ -99,15 +99,22 @@ word therefore contracts in one problem exactly when it contracts in the
 other, and the word counts used here are Collatz word counts. The number
 of words of length \(d\) with no contracting prefix is A076227 {[}5{]},
 in the OEIS since 2002 as the number of residue classes modulo \(2^d\)
-on which the Collatz stopping time is not constant. The minimal
-certificates, counted by length, are the admissible sequences of A100982
-{[}6{]}, supported on the binary lengths of the powers of three, A020914
-{[}7{]}. That support has a name in the Collatz literature which this
-paper had not used: A020914 is the set of allowable \textbf{dropping
-times} of the shortcut map, recorded as such in its OEIS entry since
-2009, with the dropping time of an individual start tabulated as
-A126241. The length of a minimal certificate is a dropping time, and the
-two descriptions are the same set. The list of Lemma 5.1 and the
+on which the Collatz \emph{dropping time} is not constant; that entry's
+own comment names A074473, which the OEIS titles the dropping time. The
+minimal certificates, counted by length, are the admissible sequences of
+A100982 {[}6{]}, supported on the binary lengths of the powers of three,
+A020914 {[}7{]} -- which that entry has recorded since 2009 as the set
+of allowable dropping times of the shortcut map, the value for an
+individual start being A126241. The length of a minimal certificate is a
+dropping time.
+
+A word on the term, since two conventions collide here and this paper
+had declared neither. Terras {[}4{]}, whom it follows elsewhere, calls
+the first time an orbit falls below its start the \emph{stopping time};
+the OEIS calls that the \emph{dropping time} and reserves \emph{stopping
+time} for the number of steps needed to reach \(1\), a different
+quantity that plays no role below. The object is the same under either
+name, and it is the one used throughout. The list of Lemma 5.1 and the
 surviving words of Theorem 6.1 are those objects; no priority is claimed
 for them, and the counting identities are recorded and machine-checked
 separately in the laboratory repository rather than proved here.
