@@ -221,6 +221,31 @@ Sharpening the discrepancy buys nothing; only the Erdős--Turán constant is
 worth attacking, and Selberg--Vaaler is the way (it removes \(C_{ET}\) from
 \(K\), so it enters the constant cubed).
 
+**Selberg--Vaaler, computed rather than left as a note.** Since \(C_{ET}\)
+enters cubed it is the only lever worth pulling, and the Vaaler majorant for a
+single fixed interval carries an explicit coefficient \(1\) on \(1/(K+1)\), so
+\(K=\lceil 2/\delta\rceil-1\) with no \(C_{ET}\) in it:
+
+| \(\delta\) | route | \(K\) | constant | crossover |
+|---|---|---|---|---|
+| 0.100 | Erdős--Turán, \(C_{ET}=4\) | 80 | \(4.4\times10^{6}\) | \(8.7\times10^{19}\) |
+| 0.100 | **Selberg--Vaaler** | 19 | \(5.2\times10^{4}\) | \(1.4\times10^{14}\) |
+| 1/6 | Erdős--Turán, \(C_{ET}=4\) | 48 | \(8.8\times10^{5}\) | \(6.8\times10^{17}\) |
+| 1/6 | **Selberg--Vaaler** | 11 | \(1.0\times10^{4}\) | \(1.0\times10^{12}\) |
+
+**\(85\times\) on the constant, \(6\times10^{5}\) on the crossover** at the
+standard \(C_{ET}=4\). But at \(C_{ET}=1\) the Erdős--Turán route is already
+within \(1.1\times\), so what Selberg--Vaaler actually buys is *not having to
+know \(C_{ET}\)* -- it is not intrinsically sharper. Anyone who pins a citation
+giving \(C_{ET}=1\) gets the same thing without changing the argument.
+
+Two caveats kept with it. The Vaaler form used here is the one the adversarial
+pass reported and is **not verified against a source**; it needs a citation
+with a page number before the constant is quoted anywhere else. And
+\(\delta\ge 1/6\) is Paper C Lemma 4.2 already, in Lean and \(37\times\)
+sharper, so the only range where any of this is the best available is
+\(\delta<1/6\), where the crossover is \(\ge 1.4\times10^{14}\).
+
 ## Decision
 
 **PARK.** A fixed seed set mixes to \(1/2\); planting low-even
