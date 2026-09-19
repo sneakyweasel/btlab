@@ -361,7 +361,9 @@
         "J-juggler-is-collatz-one-exponential-up",
         "J-word-density-results-are-not-juggler-specific",
         "J-proposition-j-on-collatz-is-terras",
-        "J-proposition-j-loss-is-the-union-bound"
+        "J-proposition-j-loss-is-the-union-bound",
+        "J-good-set-walsh-route-is-refuted",
+        "J-good-set-wiener-norm-carries-the-rotation"
       ],
       "aliases": [],
       "nk_cluster": null

@@ -11,6 +11,8 @@ from research.juggler_sequence.collatz_bridge import (
     CLASS_BRIDGE,
     collatz_is_proposition_j_at_delta_one,
     density_exponent,
+    good_set_wiener_norm,
+    walsh_conversion_penalty,
     JSON_PATH,
     STEP_EVEN,
     STEP_ODD,
@@ -151,3 +153,62 @@ def test_the_union_bound_costs_twenty_times_the_exponent_work() -> None:
     assert density_exponent(1 / 96, "direct") > density_exponent(0.2, "union")
     with pytest.raises(ValueError):
         density_exponent(0.5, "wishful")
+
+
+def test_the_wiener_norm_comes_from_the_library_not_from_new_code() -> None:
+    """`bad_set_spectrum(d, 0.0)` has computed this since the Paper C collision branch.
+
+    A fresh transform was written for it anyway -- the fifth duplication in a week. The
+    guard is that the library path keeps reproducing the values, so nobody writes a
+    sixth.
+    """
+    for depth, expected in ((8, 2.906250), (12, 6.316406),
+                            (16, 17.114990), (20, 44.315536)):
+        assert good_set_wiener_norm(depth) == pytest.approx(expected, abs=1e-5), depth
+
+
+def test_the_walsh_route_is_worse_under_the_hypothesis_we_actually_have() -> None:
+    """The decisive fact, and the reason `J-proposition-j-loss-is-the-union-bound` fell.
+
+    `E_d <= max_(S != 0)|W_S| <= 2^d E_d`, both ends attained. A Walsh estimate needs the
+    second bound; Proposition J supplies the first. The conversion costs `2^d`, so the
+    route loses by a factor growing like `1.44^d` instead of winning by 20.
+    """
+    counts = survivor_counts(20)
+    penalties = {d: walsh_conversion_penalty(counts, d) for d in (12, 16, 20)}
+    assert penalties[12] == pytest.approx(114.5, rel=0.02)
+    assert penalties[20] == pytest.approx(1700.4, rel=0.02)
+    for d in (12, 16, 20):
+        assert penalties[d] > 1.0, "the route must be recorded as losing, not winning"
+    growth = (penalties[20] / penalties[12]) ** (1 / 8)
+    assert growth == pytest.approx(1.40, abs=0.03), "penalty grows like (gamma/theta)^d"
+
+
+def test_parseval_caps_the_gain_so_the_direct_reading_was_never_available() -> None:
+    """`||ghat||_1 <= sqrt(N_d)` is a theorem, so `gamma <= sqrt(2 theta)` and the
+    `direct` column of the old table was unreachable from the start."""
+    counts = survivor_counts(20)
+    for d in (8, 12, 16, 20):
+        assert good_set_wiener_norm(d) <= counts[d] ** 0.5 + 1e-9, d
+    assert density_exponent(1.0, "sqrt") < density_exponent(1.0, "direct")
+
+
+def test_the_free_step_lemma_holds_in_the_direction_it_is_proved() -> None:
+    """At a free step the Wiener norm does not move, and the proof is one line:
+    `Good_d = Good_(d-1) x {0,1}`, so `ghat_d(S,1) = 0` and the L1 norm is unchanged.
+
+    The converse is FALSE and the test says so: `d = 5` is not free -- `N_5 = 4` against
+    `2 N_4 = 6` -- yet the norm still does not move. So a repeated value is evidence of
+    a free step and not proof of one, and an earlier wording here claiming the lemma
+    accounts for "every repeated value" was too strong.
+    """
+    counts = survivor_counts(22)
+    unexplained = []
+    for d in range(3, 23):
+        free = counts[d] == 2 * counts[d - 1]
+        same = abs(good_set_wiener_norm(d) - good_set_wiener_norm(d - 1)) < 1e-12
+        if free:
+            assert same, f"d={d}: free step must leave the Wiener norm exactly unchanged"
+        elif same:
+            unexplained.append(d)
+    assert unexplained == [5], f"the only non-free plateau should be d=5, got {unexplained}"

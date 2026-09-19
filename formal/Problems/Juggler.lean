@@ -99,6 +99,7 @@ import Problems.Juggler.CycleFinance
 import Problems.Juggler.CycleFinanceLeftovers
 import Problems.Juggler.GapTransfer
 import Problems.Juggler.GapTransferWW
+import Problems.Juggler.CollatzBridge
 import Problems.Juggler.RunSurvivorLattice
 import Problems.Juggler.CycleHeightFinance
 import Problems.Juggler.WalkChargeItineraries

@@ -194,8 +194,14 @@ def density_exponent(delta: float, combination: str = "union") -> float:
       The error is then free of `d`, so the depth is capped only by the main term and
       the exponent is `delta` itself.
 
-    The gap between the first and the last is a factor of about twenty, which is the
-    point: the combination step costs far more than the exponent does.
+    **The `direct` reading is unreachable and the `sqrt` reading is conditional.** The
+    combination factor is `N_d / ||ghat||_1`, and `||ghat||_1` saturates the Parseval
+    ceiling: `gamma = sqrt(2*theta)` exactly, measured to `d = 386`, so `sqrt` is the
+    best there is and `direct` is not on the table. Worse, even `sqrt` needs the
+    analytic input given as a character bound on `W_S`; under Proposition J's per-word
+    hypothesis the conversion costs `2^d` and the route LOSES -- see
+    `walsh_conversion_penalty` and `J-good-set-walsh-route-is-refuted`. This function is
+    kept as the arithmetic of the comparison, not as a menu of available options.
     """
     from math import log
 
@@ -208,6 +214,37 @@ def density_exponent(delta: float, combination: str = "union") -> float:
     if combination == "direct":
         return delta
     raise ValueError(f"unknown combination {combination!r}")
+
+
+def good_set_wiener_norm(depth: int) -> float:
+    """`||ghat||_1` for the good set, from the library function that already had it.
+
+    `collision_large_sieve.bad_set_spectrum(d, L)` has computed this since the Paper C
+    collision branch; `L = 0` is the good set and nobody had called it there. Its
+    `wiener_norm` field reproduces a hand-rolled transform to the last digit at every
+    depth checked. Two of its other fields do NOT carry over: `p_bad` at `L = 0` is
+    `N_d / 2^(d-1)`, twice the good-set density, because the first letter is forced, and
+    `wiener_over_density` inherits that factor.
+    """
+    from research.juggler_sequence.collision_large_sieve import bad_set_spectrum
+
+    return float(bad_set_spectrum(depth, 0.0)["wiener_norm"])
+
+
+def walsh_conversion_penalty(counts: list[int], depth: int) -> float:
+    """What the Walsh route costs under Proposition J's hypothesis as it is stated.
+
+    The two bases are related by an exact identity in each direction:
+
+        W_S(N) = sum_w (-1)^(w.S) (#w(N) - 2^-d N)        =>  max_S |W_S| <= 2^d E_d
+        #w(N) - 2^-d N = 2^-d sum_(S != 0) (-1)^(w.S) W_S  =>  E_d <= max_(S != 0) |W_S|
+
+    so `E_d <= max|W_S| <= 2^d E_d` and the gap is attained at both ends. A Walsh
+    estimate needs the SECOND bound and Proposition J supplies only the first, so
+    converting costs `2^d`: the route is worse by this factor, not better by
+    `N_d / ||ghat||_1`.
+    """
+    return (2.0**depth) * good_set_wiener_norm(depth) / counts[depth]
 
 
 def collatz_is_proposition_j_at_delta_one() -> dict[str, float]:

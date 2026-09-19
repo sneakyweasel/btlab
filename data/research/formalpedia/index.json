@@ -9464,6 +9464,356 @@
       "trust": "kernel"
     },
     {
+      "doc": "One step of the shortcut map, cleared of its division: `2 \u00b7 C(x)` is `x` on an even `x` and `3x + 1` on an odd `x`.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 66,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "two_mul_shortcutC",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Peeling the first step: `C^{k+1}(x) = C^k(C(x))`.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 76,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "shortcutCIter_succ'",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The first `d` parities of the shortcut orbit of `x`, read as a Juggler word: the same alphabet, the same `oddCount`, the same `exponentGap`.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 88,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "parityWord",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A prefix of the word is the word of the prefix.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 103,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "parityWord_take",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The additive constant of the word-affine formula: reading the word from the front, an even letter doubles the constant and an odd letter adds `3` to the power of the odd letters still to come.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 122,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "wordConst",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The constant vanishes exactly on the all-even words.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 135,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "wordConst_eq_zero_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Collatz is word-affine.** `2 ^ d \u00b7 C^d(x) = 3 ^ o \u00b7 x + wordConst w` with `w` the parity word of `x` and `o` its odd count. The multiplier `3 ^ o / 2 ^ d` is the one Juggler carries on the exponent; the correction is nonnegative.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 149,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "word_affine",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Two integers carry the same first letter exactly when they have the same parity.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 184,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "bit_eq_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "One step of Terras's argument: agreement modulo `2 ^ (d + 1)` is agreement of the first parity together with agreement of the shortcut images modulo `2 ^ d`.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 190,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "mod_pow_succ_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The word of length `d` is determined by `x mod 2 ^ d`, and determines it.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 227,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "parityWord_eq_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 234,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "parityWord_mod",
+      "trust": "kernel"
+    },
+    {
+      "doc": "There are `2 ^ d` words of length `d`.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 238,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "allWords_card",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The parity map is a bijection from the residues modulo `2 ^ d` onto the words of length `d`: Terras's structure theorem, as a `Finset` identity.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 265,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "image_parityWord",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The residues modulo `2 ^ d` whose word has no contracting prefix: the classes in which the stopping time is not yet decided after `d` steps.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 282,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "undecidedResidues",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The parity map is injective on the residues below `2 ^ d`.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 286,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "parityWord_injOn",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Counting a filtered set of words through the residue bijection.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 295,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "card_filter_parityWord",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The survivor count is a Collatz count.** Paper B's `N_d` is the number of residue classes modulo `2 ^ d` with no contracting prefix -- the definition of OEIS A076227.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 303,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "undecidedResidues_card",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The residues modulo `2 ^ d` whose word first contracts at length `d`.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 308,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "decidedAtResidues",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The minimal-certificate count is a Collatz count.** `M_d` is the number of residue classes modulo `2 ^ d` whose stopping time is decided at exactly `d` -- OEIS A100982 read by length.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 313,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "decidedAtResidues_card",
+      "trust": "kernel"
+    },
+    {
+      "doc": "On a prefix-noncontracting word, every prefix length `t \u2264 d` has `2 ^ t \u2264 3 ^ o_t`.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 320,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "two_pow_le_three_pow_of_prefixNoncontracting",
+      "trust": "kernel"
+    },
+    {
+      "doc": "No member of an undecided class drops within `d` steps.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 330,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "le_iter_of_prefixNoncontracting",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Strictly: a positive start in an undecided class sits strictly below every later state.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 342,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "lt_iter_of_prefixNoncontracting",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A contracting word drops every start beyond its own constant.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 363,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "iter_lt_of_exponentGap",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The drop is a property of the residue class: one constant serves every member.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 375,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "iter_lt_of_exponentGap_class",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Collatz cycles contract.** A positive shortcut cycle of length `d \u2265 1` has `3 ^ o < 2 ^ d`, because `2 ^ d \u00b7 x = 3 ^ o \u00b7 x + wordConst w` with a positive constant.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 386,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "cycle_contracting",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Juggler realises the same multiplier on the exponent, with the correction pointing down.** Restated from `power_bound_word` in the vocabulary of this file.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 407,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "juggler_word_power",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Juggler cycles expand.** `CycleCore`'s theorem, placed beside its Collatz mirror.",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 413,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "juggler_cycle_expanding",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 422,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "undecidedResidues_six",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 425,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "undecidedResidues_card_four",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 426,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "undecidedResidues_card_five",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 427,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "undecidedResidues_card_six",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 428,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "undecidedResidues_card_seven",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 429,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "undecidedResidues_card_eight",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 430,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "undecidedResidues_card_nine",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 431,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "undecidedResidues_card_ten",
+      "trust": "kernel"
+    },
+    {
       "doc": "Integer two-sided cell `n^lower \u2264 x < n^upper`.",
       "file": "formal/Problems/Juggler/Corridor.lean",
       "kind": "def",
@@ -89553,6 +89903,7 @@
         "Problems.Juggler.BunchedTight",
         "Problems.Juggler.Certificates",
         "Problems.Juggler.Collapse",
+        "Problems.Juggler.CollatzBridge",
         "Problems.Juggler.Corridor",
         "Problems.Juggler.CriticalCostKernel",
         "Problems.Juggler.CubeCorridor",
@@ -89797,6 +90148,18 @@
       "file": "formal/Problems/Juggler/Collapse.lean",
       "imports": [
         "Problems.Juggler.Preimages"
+      ],
+      "ledger": []
+    },
+    "Problems.Juggler.CollatzBridge": {
+      "declarations": 35,
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "imports": [
+        "Problems.Collatz.Shortcut",
+        "Problems.Juggler.CycleCore",
+        "Problems.Juggler.Envelope",
+        "Problems.Juggler.PaperBCertificateRecursion",
+        "Problems.Juggler.RateFreeDensity"
       ],
       "ledger": []
     },
@@ -93008,13 +93371,13 @@
     }
   },
   "totals": {
-    "declarations": 6892,
+    "declarations": 6927,
     "declarations_with_a_ledger_row": 4699,
     "ledger_rows_naming_a_file": 443,
-    "modules": 306,
+    "modules": 307,
     "trust": {
       "compiler": 56,
-      "kernel": 6836
+      "kernel": 6871
     }
   }
 }
