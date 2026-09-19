@@ -30,8 +30,21 @@ import branch_drift as BD  # noqa: E402
 #: same entry. Remove an entry when the branch is merged or deleted; do not add
 #: one without looking at what the branch holds.
 #:
-#: Assessed 14 September 2026.
-ACKNOWLEDGED: dict[str, str] = {}
+#: Assessed 14 September 2026; extended 19 September 2026.
+ACKNOWLEDGED: dict[str, str] = {
+    "claude/exponent-floor-3n1-2adic-mvwa96": (
+        "Pending extraction. Two closed bridge branches from the 19 September "
+        "exponent-floor session: J-lemma-eight-is-the-exponent-valuation and "
+        "J-exponential-sends-density-to-log-density locate Hercher's Lemma 8 on the "
+        "Juggler's exponent and price its confinement; "
+        "J-lemma-eight-floor-is-tight-at-every-known-cycle and "
+        "J-the-missing-juggler-floor-is-worth-a-quarter-at-length-22 price the same "
+        "floor on the negative Collatz side. Both are CLOSE placements with probes, "
+        "dossiers and negative-knowledge clusters; neither raises a floor, excludes a "
+        "cycle or touches a manuscript. Nothing here is superseded and nothing is "
+        "abandoned -- the branch is waiting to be read and merged."
+    ),
+}
 
 
 def _key(ref: str) -> str:
