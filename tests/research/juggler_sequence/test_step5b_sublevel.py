@@ -2,8 +2,14 @@
 
 from __future__ import annotations
 
+import json
+
+import research.juggler_sequence.step5b_sublevel as step5b
 from research.juggler_sequence.step5b_sublevel import (
     ANTI,
+    JSON_PATH,
+    family_params,
+    lambda_interp,
     P_LIST,
     _delta,
     C7,
@@ -119,3 +125,78 @@ def test_delta_has_no_cancellation_at_any_scale_this_module_reaches() -> None:
     # and from 1e20 the direct form silently returns zero rather than erroring
     assert direct(1e20, 1.0)[0] == 0.0
     assert _delta(1e20, 1.0)[0] > 2.9e10
+
+
+def test_the_published_payload_carries_the_corrected_interval_counts() -> None:
+    """`#Omega_V <= 3` was floating-point noise; the measured maximum is 1.
+
+    The committed payload went stale for a day between the `_delta` fix and its
+    regeneration, and the stale value had already reached two documents. This
+    reads the artifact rather than recomputing it -- the census takes minutes --
+    so the failure mode it guards is exactly the one that happened: a corrected
+    module with an uncorrected payload beside it.
+    """
+    payload = json.loads(JSON_PATH.read_text(encoding="utf-8"))
+    verdict = payload["verdict"]
+    assert verdict["max_omega_intervals"] == 1, (
+        "3 here means the payload predates the _delta fix in ad94d39c"
+    )
+    assert verdict["max_t_intervals"] == 1
+    assert verdict["decision"] == "PROMOTE"
+
+    failures = [
+        i for i, row in enumerate(payload["rows"])
+        if row.get("lambda", {}).get("count_ok") is False
+    ]
+    assert not failures, (
+        f"rows {failures} report a cap violation; pre-fix row 25 did, and it "
+        "never happened"
+    )
+
+
+def test_the_pre_fix_lambda_was_a_staircase_at_grid_scale() -> None:
+    """The mechanism, and the reason an integer moved rather than a last digit.
+
+    `_delta`'s two derivatives carried `3.4e-07` relative error at `P = 1e10`,
+    and they reach `lambda_interp` through the anchor term. That error does not
+    average out along the grid: it is a fresh rounding at every point, so
+    `Lambda` acquired a step far larger than its own drift between neighbouring
+    grid points, and the membership predicate `|Lambda| <= V` chattered instead
+    of crossing once.
+
+    This test states the comparison that makes the integer move inevitable: the
+    pre-fix perturbation against the genuine per-step drift. Above one, any
+    interval count read off the grid is counting noise.
+    """
+    p = 10**10
+    params = family_params(p, "centre_cancel_w0", 2)
+    assert params is not None
+
+    def direct(nu: float, h: float) -> tuple[float, float, float]:
+        x = nu + 2.0 * h
+        return (x**1.5 - nu**1.5, 1.5 * (x**0.5 - nu**0.5),
+                0.75 * (x ** (-0.5) - nu ** (-0.5)))
+
+    def lam(nu: float) -> float:
+        return lambda_interp(nu, params["u"], params["u_prime"], params["w"],
+                             float(params["k"]), params["h1"], params["h2"])
+
+    step = float(p) / 200_000.0          # the census grid
+    base = 1.5 * float(p)
+    fixed = [lam(base + i * step) for i in range(400)]
+    drift = max(abs(b - a) for a, b in zip(fixed, fixed[1:]))
+
+    saved = step5b._delta
+    try:
+        step5b._delta = direct
+        perturbed = [lam(base + i * step) for i in range(400)]
+    finally:
+        step5b._delta = saved
+
+    error = max(abs(a - b) for a, b in zip(perturbed, fixed))
+    assert error > 10.0 * drift, (
+        f"pre-fix error {error:.3e} must dominate the per-step drift "
+        f"{drift:.3e}; that domination is why an interval count moved"
+    )
+    # and the fix really is the thing that removed it
+    assert drift > 0.0 and error / drift > 10.0

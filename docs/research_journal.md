@@ -1,5 +1,63 @@
 # Research journal
 
+## 2026-09-19 -- Step 5b's interval counts were counting noise
+
+- **Objective:** Philippe asked how much of `lambda_interp` rested on the two
+  derivatives that were wrong until this morning. The honest answer turned out
+  to be larger than the hedge I had attached to it.
+- **The path.** `lambda_interp = wave + anchor + w*xpp`. `wave` uses only the
+  values `d1, d2`, which cancellation left comparatively intact (`5e-11` at
+  `1e10`). `anchor = 2 cp fp + c fpp + 0.5 cpp` runs entirely through
+  `f_sm_derivs`, which consumes all four broken derivatives, and inside
+  `f_sm_derivs` the derivative-carrying terms are the same order in `nu` as the
+  rest -- `d ~ sqrt(nu)`, `dp ~ 1/sqrt(nu)`, `dpp ~ nu^(-3/2)` against
+  `p = nu^(-3/4)`, `pp ~ nu^(-7/4)`, `ppp ~ nu^(-11/4)`, so every term of `fp`
+  is `~nu^(-3/4)`. Nothing washes out.
+- **My "32 per cent" was wrong, and wrong in a way worth recording.** I measured
+  `|anchor|/|Lambda|` at one arbitrary argument, got `0.322` at all three `P`,
+  and read the constancy as robustness. It is vacuous: `anchor`, `wave`,
+  `w*xpp` and `Lambda` all carry the same power of `k` and of `P` at fixed
+  `nu/P`, so `P` and `k` are precisely the two axes along which that ratio
+  *cannot* move. Varying the live axes, the ratio runs from `0.0055` on
+  `edge_hi` to `25198` on the cancellation families, with median `0.616` over
+  the sweep and `|anchor| > |Lambda|` at a third of grid points. Constancy
+  along the axes you happened to vary is not evidence.
+- **The mechanism: `Lambda` was a staircase.** The `3.4e-7` derivative error is
+  a fresh rounding at every grid point, so it does not average along the grid.
+  At `P = 1e10` near the `Omega_V` boundary the step height was `1.8e-4` of `V`
+  against a genuine per-step drift of `1.7e-5` of `V` -- fourteen grid steps of
+  signal. Inside a single `200000`-point cell the predicate
+  `|Lambda| <= V` flipped **1845 times** before the fix and **once** after.
+  `_intervals_from_flags` was then bisecting a non-monotone predicate.
+- **So an integer and a boolean moved in the published payload**, not a last
+  digit. `verdict.max_omega_intervals` `3 -> 1`; `omega_intervals` `3 -> 1` and
+  `2 -> 1` on two `P = 1e10` rows; and `count_ok` `False -> True`, meaning the
+  committed payload had recorded a **cap violation that never happened** --
+  three intervals against `interval_cap = 2`. `max_lambda_phi_resid` was up to
+  `3.45x` too large, because it was measuring derivative noise rather than
+  interpolation error. `J-step5b-interval-counts-were-float-noise`.
+- **Is the corrected `1` robust, or just a different arbitrary answer?**
+  Robust. The smallest `_delta`-carrying margin in the module is `0.0707`
+  perturbation units pre-fix; post-fix the perturbation is `~1e-16` relative,
+  about eight orders inside that margin. A third row sat at margin `0.100` and
+  did not flip, which is luck rather than safety.
+- **`#Omega_V <= 3` was quoted in two documents** and both are corrected:
+  `docs/problems/juggler_step5b_sublevel.md` and
+  `docs/juggler_branch_ledger.md:104`. The bound stayed true the whole time; it
+  was being presented as the measurement. The branch conclusion -- interval
+  counts are `O_E(1)` and do not track `N` -- is unchanged and slightly
+  strengthened.
+- **Blast radius, checked rather than assumed: nothing else.** No other ledger
+  row, no Lean declaration and none of the three manuscripts carries a constant
+  from this module. `step5b_p0` imports only `C7`, which is `_delta`-free, and
+  the whole `phi` branch never calls `_delta`. Those two documents were the
+  entire published surface.
+- **A test now reads the artifact** rather than recomputing it, because the
+  failure that actually happened was a corrected module sitting next to an
+  uncorrected payload for a day. A second test pins the mechanism: the pre-fix
+  error must exceed the per-step drift by more than tenfold.
+- **Decision:** `CLOSE`. The fix was the correction; this is its accounting.
+
 ## 2026-09-19 -- the averaging question's missing lemma has a name and an exponent
 
 - **Objective:** push on the averaging question after the peer handed me the

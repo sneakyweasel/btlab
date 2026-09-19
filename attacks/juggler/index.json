@@ -4280,7 +4280,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PARK",
-      "ledger_ids": [],
+      "ledger_ids": [
+        "J-oe-low-share-weight-decays-polynomially"
+      ],
       "aliases": [],
       "nk_cluster": null
     },
@@ -5073,7 +5075,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PROMOTE",
-      "ledger_ids": [],
+      "ledger_ids": [
+        "J-step5b-interval-counts-were-float-noise"
+      ],
       "aliases": [],
       "nk_cluster": null
     },
