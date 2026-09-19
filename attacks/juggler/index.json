@@ -372,7 +372,8 @@
         "J-paper-c-collatz-analogue-is-false-by-exhibit",
         "J-paper-c-contagion-dichotomy-is-log-mass",
         "J-paper-c-ceiling-is-the-collatz-walk-mgf",
-        "J-survivor-count-is-the-certificate-tail"
+        "J-survivor-count-is-the-certificate-tail",
+        "J-empty-window-is-two-theorems-not-one"
       ],
       "aliases": [],
       "nk_cluster": null

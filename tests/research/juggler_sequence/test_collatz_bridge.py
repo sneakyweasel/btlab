@@ -460,6 +460,16 @@ def test_the_sandwich_equality_sets_are_exactly_the_record_indices() -> None:
     assert {4, 9, 14, 19, 24, 65, 106, 412} <= bigger
     assert not ({4, 9, 14} & set(w["lower_equality"]))
 
+    # These records index ORDERS, not LENGTHS, and an earlier version of this
+    # cluster conflated them with the empty-window structure. Carrying the
+    # record orders through A020914 does NOT land on the free lengths -- the
+    # two index sets are unrelated, and both being statements about the Beatty
+    # boundary of log2 3 is all they share.
+    record_lengths = [(3**r).bit_length() for r in rec_min[:6]]
+    assert record_lengths == [2, 4, 12, 20, 85, 570]
+    free_lengths_at_level_zero = {3, 5, 6, 9, 11, 14, 17, 19, 22}
+    assert not (set(record_lengths) & free_lengths_at_level_zero)
+
 
 def test_the_telescoped_tail_is_now_a_lean_theorem_over_the_naturals() -> None:
     """`2^(K-d) N_d = sum_{j=d+1}^{K} 2^(K-j) M_j + N_K`, proved in Lean for all `d <= K`.
