@@ -55312,6 +55312,42 @@
       "trust": "kernel"
     },
     {
+      "doc": "A window at `L` holds `3 ^ o` exactly when `3 ^ o` has `L` binary digits.",
+      "file": "formal/Problems/Juggler/PaperBCertificateLengths.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-certificate-length-window"
+      ],
+      "line": 310,
+      "module": "Problems.Juggler.PaperBCertificateLengths",
+      "name": "certWindow_iff_natLog",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The carrying lengths are A020914.** A minimal certificate of length `L` exists exactly when `L = \u230ao log\u2082 3\u230b + 1` for some `o`, written here as `Nat.log 2 (3 ^ o) + 1` so that no real number enters.",
+      "file": "formal/Problems/Juggler/PaperBCertificateLengths.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-certificate-length-window"
+      ],
+      "line": 327,
+      "module": "Problems.Juggler.PaperBCertificateLengths",
+      "name": "minimalCert_exists_iff_natLog",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The first carrying lengths, read off the characterisation rather than listed: `3 ^ 0 \u2026 3 ^ 4` have `1, 2, 4, 5, 7` binary digits, so those are the lengths, and `3, 6` are absent because no power of three has that many digits.",
+      "file": "formal/Problems/Juggler/PaperBCertificateLengths.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-certificate-length-window"
+      ],
+      "line": 341,
+      "module": "Problems.Juggler.PaperBCertificateLengths",
+      "name": "carrying_lengths_head",
+      "trust": "kernel"
+    },
+    {
       "doc": "The minimal certificates of length `d`.",
       "file": "formal/Problems/Juggler/PaperBCertificateRecursion.lean",
       "kind": "def",
@@ -55597,6 +55633,54 @@
       "line": 376,
       "module": "Problems.Juggler.PaperBCertificateRecursion",
       "name": "minimalCert_tail_eq",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**A free length is a full cylinder extension.** When no power of three lies in the window at `d + 1`, the survivors of length `d + 1` are exactly the survivors of length `d` with either letter appended.",
+      "file": "formal/Problems/Juggler/PaperBCertificateRecursion.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-survivor-certificate-recursion"
+      ],
+      "line": 407,
+      "module": "Problems.Juggler.PaperBCertificateRecursion",
+      "name": "neverNegWords_succ_of_window_empty",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The hypothesis in the form the window theorem supplies it.",
+      "file": "formal/Problems/Juggler/PaperBCertificateRecursion.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-survivor-certificate-recursion"
+      ],
+      "line": 413,
+      "module": "Problems.Juggler.PaperBCertificateRecursion",
+      "name": "minimalCertWords_eq_empty_of_window_empty",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**At a free length every additive functional of the survivor set factorises.** For any `f` into an additive commutative monoid, `\u2211_{v \u2208 S_{d+1}} f v = \u2211_{w \u2208 S_d} (f (w ++ [E]) + f (w ++ [O]))`. This is the single statement behind the separately recorded plateaus: the summand `1` gives `N_{d+1} = 2 N_d`, a character gives the vanishing Fourier coordinate, a weight gives the amplitude law.",
+      "file": "formal/Problems/Juggler/PaperBCertificateRecursion.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-survivor-certificate-recursion"
+      ],
+      "line": 424,
+      "module": "Problems.Juggler.PaperBCertificateRecursion",
+      "name": "sum_neverNegWords_succ_of_window_empty",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The counting corollary, to show the factorisation really does contain the doubling.",
+      "file": "formal/Problems/Juggler/PaperBCertificateRecursion.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-survivor-certificate-recursion"
+      ],
+      "line": 442,
+      "module": "Problems.Juggler.PaperBCertificateRecursion",
+      "name": "neverNegCount_succ_of_window_empty",
       "trust": "kernel"
     },
     {
@@ -57122,11 +57206,11 @@
       "trust": "kernel"
     },
     {
-      "doc": "**A Sturmian zero kills nothing.** Below a window the profile has not reached, a flat letter exactly doubles the total. This is the whole content of the observed law that jump amplitudes are multiplied by a clean factor across such a step.",
+      "doc": "**A Sturmian zero kills nothing.** Below a window the profile has not reached, a flat letter exactly doubles the total. This is the whole content of the observed law that jump amplitudes are multiplied by a clean factor across such a step. Not a duplicate of `sum_neverNegWords_succ_of_window_empty` in `PaperBCertificateRecursion`, though the two were mistaken for one another on 2026-09-19 and neither file said otherwise. They are incomparable, and meet at exactly one point. That one prints `\u2211_{v \u2208 S_{d+1}} f v = \u2211_{w \u2208 S_d} (f (w ++ [E]) + f (w ++ [O]))` for every additive commutative monoid and every `f`: general in the FUNCTIONAL, specific to the survivor word set, and hypothesised on the certificate window being empty. This one is the counting functional alone, but on an abstract graded `Profile` with no word set in sight, and its hypothesis `v H = 0` is a truncation width \u2014 it says the window `total (H+1)` is wide enough to hold the shifted mass, not that the step is free. Freeness is not a hypothesis here at all; it is carried by which operator is applied, `stepFlat` rather than `stepRise`. So neither implies the other. The word-set theorem cannot reach an abstract profile, and one functional cannot reach all of them. They coincide when that one is taken at `f \u2261 1` and this one at the survivor height profile, where both read `N_{d+1} = 2 N_d`. The transposition results below need the abstract carrier, because a transposition rearranges the barrier word and there is no single `d` whose word set to sum over.",
       "file": "formal/Problems/Juggler/PaperBJumpTransposition.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 202,
+      "line": 222,
       "module": "Problems.Juggler.PaperBJumpTransposition",
       "name": "total_stepFlat_eq_two_mul",
       "trust": "kernel"
@@ -57136,7 +57220,7 @@
       "file": "formal/Problems/Juggler/PaperBJumpTransposition.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 207,
+      "line": 227,
       "module": "Problems.Juggler.PaperBJumpTransposition",
       "name": "total_stepRise_add_barrierMass",
       "trust": "kernel"
@@ -93240,7 +93324,7 @@
       "ledger": []
     },
     "Problems.Juggler.PaperBCertificateLengths": {
-      "declarations": 21,
+      "declarations": 24,
       "file": "formal/Problems/Juggler/PaperBCertificateLengths.lean",
       "imports": [
         "Problems.Juggler.PaperBCertificates"
@@ -93254,7 +93338,7 @@
       ]
     },
     "Problems.Juggler.PaperBCertificateRecursion": {
-      "declarations": 24,
+      "declarations": 28,
       "file": "formal/Problems/Juggler/PaperBCertificateRecursion.lean",
       "imports": [
         "Problems.Juggler.PaperBCertificateLengths",
@@ -94512,13 +94596,13 @@
     }
   },
   "totals": {
-    "declarations": 6975,
-    "declarations_with_a_ledger_row": 4779,
+    "declarations": 6982,
+    "declarations_with_a_ledger_row": 4786,
     "ledger_rows_naming_a_file": 453,
     "modules": 309,
     "trust": {
       "compiler": 56,
-      "kernel": 6919
+      "kernel": 6926
     }
   }
 }

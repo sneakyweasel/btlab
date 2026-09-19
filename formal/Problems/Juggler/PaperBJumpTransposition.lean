@@ -198,7 +198,27 @@ theorem total_stepRise (H : ℕ) (v : Profile) :
 
 /-- **A Sturmian zero kills nothing.** Below a window the profile has not reached, a
 flat letter exactly doubles the total. This is the whole content of the observed law that
-jump amplitudes are multiplied by a clean factor across such a step. -/
+jump amplitudes are multiplied by a clean factor across such a step.
+
+Not a duplicate of `sum_neverNegWords_succ_of_window_empty` in
+`PaperBCertificateRecursion`, though the two were mistaken for one another on
+2026-09-19 and neither file said otherwise. They are incomparable, and meet at
+exactly one point.
+
+That one prints `∑_{v ∈ S_{d+1}} f v = ∑_{w ∈ S_d} (f (w ++ [E]) + f (w ++ [O]))`
+for every additive commutative monoid and every `f`: general in the FUNCTIONAL,
+specific to the survivor word set, and hypothesised on the certificate window being
+empty. This one is the counting functional alone, but on an abstract graded
+`Profile` with no word set in sight, and its hypothesis `v H = 0` is a truncation
+width — it says the window `total (H+1)` is wide enough to hold the shifted mass,
+not that the step is free. Freeness is not a hypothesis here at all; it is carried
+by which operator is applied, `stepFlat` rather than `stepRise`.
+
+So neither implies the other. The word-set theorem cannot reach an abstract profile,
+and one functional cannot reach all of them. They coincide when that one is taken at
+`f ≡ 1` and this one at the survivor height profile, where both read `N_{d+1} = 2 N_d`.
+The transposition results below need the abstract carrier, because a transposition
+rearranges the barrier word and there is no single `d` whose word set to sum over. -/
 theorem total_stepFlat_eq_two_mul (H : ℕ) (v : Profile) (hv : v H = 0) :
     total (H + 1) (stepFlat v) = 2 * total (H + 1) v := by
   rw [total_stepFlat, total_succ, hv]; omega

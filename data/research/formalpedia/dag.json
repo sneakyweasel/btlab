@@ -2274,7 +2274,7 @@
       }
     },
     "Problems.Juggler.PaperBCertificateLengths": {
-      "declarations": 21,
+      "declarations": 24,
       "depends_on": [
         "Problems.Juggler.PaperBCertificates"
       ],
@@ -2284,11 +2284,11 @@
       ],
       "papers": [],
       "trust": {
-        "kernel": 21
+        "kernel": 24
       }
     },
     "Problems.Juggler.PaperBCertificateRecursion": {
-      "declarations": 24,
+      "declarations": 28,
       "depends_on": [
         "Problems.Juggler.PaperBCertificateLengths",
         "Problems.Juggler.PaperBFiveStepDensity"
@@ -2299,7 +2299,7 @@
       ],
       "papers": [],
       "trust": {
-        "kernel": 24
+        "kernel": 28
       }
     },
     "Problems.Juggler.PaperBCertificates": {
