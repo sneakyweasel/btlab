@@ -4283,7 +4283,8 @@
       "conjecture": [],
       "decision": "PARK",
       "ledger_ids": [
-        "J-oe-low-share-weight-decays-polynomially"
+        "J-oe-low-share-weight-decays-polynomially",
+        "J-low-share-forces-a-small-order-resonance"
       ],
       "aliases": [],
       "nk_cluster": null

@@ -467,16 +467,25 @@ def step_is_weyl(scales: tuple[int, ...] = (10**5, 10**6, 10**7, 10**8, 10**9)
     }
 
 
-def weyl_discrepancy(limit: int, bins: int = 200) -> float:
-    """Star discrepancy of `frac((3/2) m^(2/3))` on `1 <= m <= limit`."""
-    counts = [0] * bins
-    for m in range(1, limit + 1):
-        counts[int(weyl_step(m) * bins) % bins] += 1
-    running = 0
+def weyl_discrepancy(limit: int, lo: int = 1) -> float:
+    """True star discrepancy of `frac((3/2) m^(2/3))` on `lo <= m <= limit`.
+
+    Computed by sorting, `max_i max(i/N - x_(i), x_(i) - (i-1)/N)`, not by
+    binning. An earlier version here tested only 200 grid endpoints, which is a
+    LOWER bound whose gap to the true value can be `1/bins = 5e-3` -- larger
+    than every number it reported. The exponent survived but the values were
+    understated by up to 40 per cent, and the quantity should not have been
+    called a star discrepancy.
+
+    `lo` allows the block-restricted version. Measured, the block `[N, 2N)` and
+    the initial segment `1..N` are the same order, the block slightly smaller:
+    about `0.28 N^(-1/2)` against `0.48 N^(-1/2)`.
+    """
+    xs = sorted(weyl_step(m) for m in range(lo, limit + 1))
+    n = len(xs)
     worst = 0.0
-    for i, c in enumerate(counts):
-        running += c
-        worst = max(worst, abs(running / limit - (i + 1) / bins))
+    for i, x in enumerate(xs, start=1):
+        worst = max(worst, i / n - x, x - (i - 1) / n)
     return worst
 
 

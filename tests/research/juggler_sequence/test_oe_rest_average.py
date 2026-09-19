@@ -19,7 +19,10 @@ from research.juggler_sequence.oe_rest_average import (
     averaging_payoff,
     fd_placement,
     is_resonant,
+    close_from_mask,
+    poor_mask,
     resonance_density,
+    weyl_step,
     share_law_error,
     step_is_weyl,
     weyl_discrepancy,
@@ -238,3 +241,70 @@ def test_the_capacity_exponent_is_the_resonance_window_and_the_share_law_cannot_
     for alpha in (1 / 3, 2 / 3):
         tail = [share_law_error(alpha, h) - h**-0.5 for h in (10**3, 10**4, 10**5)]
         assert all(abs(t - alpha) < 2e-3 for t in tail), alpha
+
+def test_backward_closedness_forces_A_onto_the_resonances() -> None:
+    """The second ingredient, and the one that decides the bootstrap.
+
+    A density statement about all `m` says nothing about the weight an
+    adversarially chosen backward-closed `A` puts on the resonant set. It does
+    not need to. Backward-closedness is Paper C Lemma 2.1: owning `m` obliges
+    you to own the whole even block `[m^2, (m+1)^2)`, and across one block
+    `alpha` sweeps `2 m^(1/3)` full turns. So an adversary cannot plant `A` off
+    the resonances.
+
+    Measured on the hardest case available -- the closure of the NON-resonant
+    seeds, built specifically to avoid resonance -- `A`'s `1/m`-weight on the
+    resonant set tracks the ambient resonant density.
+
+    Measurement plus a mechanism, NOT a proof: `A` is a union of even blocks
+    plus OE fibres and other productions, and the weight accounting over that
+    union is not done.
+    """
+    import numpy as np
+
+    limit, cap = 120_000, 2_000
+    resonant = np.zeros(limit + 1, dtype=bool)
+    for m in range(3, limit + 1):
+        resonant[m] = is_resonant(m)
+
+    adversary = np.zeros(cap + 1, dtype=bool)
+    for m in range(3, cap + 1):
+        adversary[m] = not is_resonant(m)
+    closed = close_from_mask(adversary, limit)
+
+    ratios = []
+    for exponent in (13, 14, 15):
+        lo, hi = 2**exponent, min(2 ** (exponent + 1), limit)
+        index = np.arange(lo, hi)
+        weight = 1.0 / index
+        in_a, in_r = closed[lo:hi], resonant[lo:hi]
+        if weight[in_a].sum() == 0:
+            continue
+        on_resonance = weight[in_a & in_r].sum() / weight[in_a].sum()
+        ambient = weight[in_r].sum() / weight.sum()
+        ratios.append(on_resonance / ambient)
+
+    assert ratios, "the adversarial closure must be non-empty somewhere"
+    for r in ratios:
+        assert 0.6 < r < 1.5, f"A departs from ambient: {ratios}"
+
+
+def test_one_even_step_equidistributes_the_fibre_step() -> None:
+    """The mechanism behind the tracking, stated as the sweep it is.
+
+    One `E`-step from `m` lands on the block `[m^2, (m+1)^2)`, and across it
+    `alpha` sweeps `2 m^(1/3)` turns: `2m` integers times the derivative
+    `m'^(-1/3)` at `m' = m^2`. Predicted against measured, 9.28/9.25 at
+    `m = 100` through 92.83/92.83 at `m = 10^5`, with the block's own star
+    discrepancy falling to 0.0013.
+    """
+    for m, predicted in ((1000, 20.0), (10_000, 43.09)):
+        lo, hi = m * m, (m + 1) ** 2
+        swept = 1.5 * (hi - 1) ** (2 / 3) - 1.5 * lo ** (2 / 3)
+        assert abs(swept - predicted) < 0.05 * predicted, (m, swept)
+
+        values = sorted(weyl_step(x) for x in range(lo, hi))
+        n = len(values)
+        star = max(max(i / n - x, x - (i - 1) / n)
+                   for i, x in enumerate(values, start=1))
+        assert star < 0.02, (m, star)
