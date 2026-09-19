@@ -42,13 +42,17 @@ convention has `EEE` at length three and none at length four. Level zero is the 
 was entitled to ignore, because `3 ^ o = 2 ^ t` forces `o = t = 0`; that entitlement does not
 survive the move to `Λ > 0` and is not inherited here.
 
-**What is not here.** Two things. The cylinder identity at level `c` -- that the alive set is a
-full cylinder extension when the shifted window is empty -- follows from these the same way
-`neverNegWords_succ_of_window_empty` (`PaperBCertificateRecursion`) follows from Paper B's, but
-needs the `Finset` machinery of `RateFreeDensity` re-indexed by `c`, and is not attempted. And
-only the **necessary** direction is proved: Paper B has the biconditional
-(`minimalCert_exists_iff`, via `blockWord_isMinimalCertificate`), and the realisation half at
-level `c` is not here.
+**The cylinder identity is here**, in Section 8: at a free length the alive set at level `c`
+is the previous one times the full alphabet (`aliveWordsAt_succ_of_window_empty`), so every
+additive functional of it factorises (`sum_aliveWordsAt_succ_of_window_empty`). That is the
+statement the downstream observations actually use -- a frozen statistic at a given depth is
+that theorem at `f` equal to the statistic -- and until it was proved, reading a frozen
+Wiener norm as a free length rested on enumeration alone.
+
+**What is still not here.** Only the **necessary** direction of the length statement. Paper B
+has the biconditional (`minimalCert_exists_iff`, via `blockWord_isMinimalCertificate`); the
+realisation half at level `c` is not formalised, so this file can say a length carries nothing
+but cannot say a length carries something.
 
 The enumeration behind the claim is in
 `tests/research/juggler_sequence/test_empty_window_levels.py`, brute force over all `2 ^ d`
@@ -59,6 +63,7 @@ statement.
 
 import Mathlib.Tactic
 import Problems.Juggler.PaperBCertificateLengths
+import Problems.Juggler.RateFreeDensity
 
 namespace Problems.Juggler
 
@@ -315,5 +320,185 @@ theorem no_minimalCertAt_twelve_at_paperC_level {c : ℝ}
     (hlo : 2.37 ≤ c) (hhi : c ≤ 2.38) :
     ∀ w : List Branch, w.length = 12 → ¬ IsMinimalCertificateAt c w :=
   no_minimalCertAt_of_window_empty (by linarith) (certWindowAt_twelve_empty_at_paperC_level hlo hhi)
+
+/-! ## 8. The cylinder identity at level `c`
+
+The sections above are about *lengths*: which of them can carry a word that first passes the
+barrier. What every consumer downstream actually uses is the statement about *sets* -- that at
+a free length nothing is lost, so the alive set is the previous one times the full alphabet and
+every additive functional of it factorises. At level zero that is
+`neverNegWords_succ_of_window_empty` and `sum_neverNegWords_succ_of_window_empty`
+(`PaperBCertificateRecursion`). This section is the same at level `c`.
+
+It is what licenses reading a frozen statistic as a free length. The laboratory's caution on
+`J-bad-set-spectrum-cannot-win` -- that two of its four quoted Wiener points are exact copies
+of the depth below -- rested on enumeration alone until now; the mechanism is here.
+
+The predicates are real-valued, so the `Finset`s are classical rather than decidable. Paper C's
+own `LBad` already lives under `open scoped Classical`, so this costs nothing that layer was
+not already paying; what it does cost is the `decide`-backed concrete instances, which is why
+the level-zero file keeps them and this one has none. -/
+
+/-- The word has not passed the barrier at any prefix: alive at level `c`. -/
+def prefixNoncontractingAt (c : ℝ) (w : List Branch) : Prop :=
+  ∀ k, k ≤ w.length → ¬ exponentGapAt c (w.take k)
+
+/-- The empty word never passes a barrier at or below the start. This is the one place the
+structural argument needs `1 ≤ c`, and it is why the level-`c` recursion has the hypothesis. -/
+theorem not_exponentGapAt_nil {c : ℝ} (hc : 1 ≤ c) : ¬ exponentGapAt c [] := by
+  unfold exponentGapAt
+  simp only [oddCount, List.length_nil, pow_zero, one_mul]
+  exact not_lt.mpr hc
+
+theorem takeAt_concat_of_le {w : List Branch} {b : Branch} {k : ℕ} (hk : k ≤ w.length) :
+    (w ++ [b]).take k = w.take k := List.take_append_of_le_length hk
+
+/-- A one-letter extension is alive exactly when its base is alive and it does not pass. -/
+theorem prefixNoncontractingAt_concat {c : ℝ} {w : List Branch} {b : Branch} :
+    prefixNoncontractingAt c (w ++ [b]) ↔
+      prefixNoncontractingAt c w ∧ ¬ exponentGapAt c (w ++ [b]) := by
+  constructor
+  · intro h
+    refine ⟨fun k hk => ?_, ?_⟩
+    · have := h k (by simp; omega)
+      rwa [takeAt_concat_of_le hk] at this
+    · have := h (w ++ [b]).length le_rfl
+      rwa [List.take_length] at this
+  · rintro ⟨hw, hgap⟩ k hk
+    simp only [List.length_append, List.length_singleton] at hk
+    rcases Nat.lt_or_ge k (w.length + 1) with hlt | hge
+    · have hkw : k ≤ w.length := by omega
+      rw [takeAt_concat_of_le hkw]
+      exact hw k hkw
+    · have hkeq : k = w.length + 1 := by omega
+      subst hkeq
+      have hlen : (w ++ [b]).length = w.length + 1 := by simp
+      rw [show (w ++ [b]).take (w.length + 1) = w ++ [b] by rw [← hlen, List.take_length]]
+      exact hgap
+
+/-- A one-letter extension first passes exactly when its base is alive and it does pass. -/
+theorem isMinimalCertificateAt_concat {c : ℝ} (hc : 1 ≤ c) {w : List Branch} {b : Branch} :
+    IsMinimalCertificateAt c (w ++ [b]) ↔
+      prefixNoncontractingAt c w ∧ exponentGapAt c (w ++ [b]) := by
+  constructor
+  · rintro ⟨-, hgap, hmin⟩
+    refine ⟨fun k hk => ?_, hgap⟩
+    rcases Nat.eq_zero_or_pos k with rfl | hk0
+    · simpa using not_exponentGapAt_nil (c := c) hc
+    · have hklt : k < (w ++ [b]).length := by simp; omega
+      have := hmin k hk0 hklt
+      rwa [takeAt_concat_of_le hk] at this
+  · rintro ⟨hw, hgap⟩
+    refine ⟨by simp, hgap, fun k hk0 hklt => ?_⟩
+    simp only [List.length_append, List.length_singleton] at hklt
+    have hkw : k ≤ w.length := by omega
+    rw [takeAt_concat_of_le hkw]
+    exact hw k hkw
+
+open scoped Classical in
+/-- The words of length `d` still alive at level `c`. -/
+noncomputable def aliveWordsAt (c : ℝ) (d : ℕ) : Finset (List Branch) :=
+  (allWords d).filter (prefixNoncontractingAt c)
+
+open scoped Classical in
+/-- The words of length `d` that first pass the barrier at level `c` exactly at their end. -/
+noncomputable def minimalCertWordsAt (c : ℝ) (d : ℕ) : Finset (List Branch) :=
+  (allWords d).filter (IsMinimalCertificateAt c)
+
+/-- **The extensions of the alive words are the alive words and the new first-passages.** -/
+theorem extensionsAt_eq_alive_union_certs {c : ℝ} (hc : 1 ≤ c) (d : ℕ) :
+    (aliveWordsAt c d).biUnion (fun w => {w ++ [Branch.even], w ++ [Branch.odd]})
+      = aliveWordsAt c (d + 1) ∪ minimalCertWordsAt c (d + 1) := by
+  classical
+  ext v
+  simp only [Finset.mem_biUnion, Finset.mem_union, Finset.mem_insert, Finset.mem_singleton,
+    aliveWordsAt, minimalCertWordsAt, Finset.mem_filter]
+  constructor
+  · rintro ⟨w, hw, hv⟩
+    have hwlen : w.length = d := mem_allWords.mp hw.1
+    have hvmem : v ∈ allWords (d + 1) := by
+      rcases hv with rfl | rfl <;> exact mem_allWords.mpr (by simp [hwlen])
+    by_cases hgap : exponentGapAt c v
+    · refine Or.inr ⟨hvmem, ?_⟩
+      rcases hv with rfl | rfl <;>
+        exact (isMinimalCertificateAt_concat hc).mpr ⟨hw.2, hgap⟩
+    · refine Or.inl ⟨hvmem, ?_⟩
+      rcases hv with rfl | rfl <;>
+        exact prefixNoncontractingAt_concat.mpr ⟨hw.2, hgap⟩
+  · intro h
+    have hvmem : v ∈ allWords (d + 1) := by
+      rcases h with ⟨hm, -⟩ | ⟨hm, -⟩ <;> exact hm
+    have hvlen : v.length = d + 1 := mem_allWords.mp hvmem
+    obtain ⟨w, b, rfl⟩ : ∃ w b, v = w ++ [b] := by
+      rcases List.eq_nil_or_concat v with rfl | ⟨u, b, rfl⟩
+      · simp at hvlen
+      · exact ⟨u, b, by simp⟩
+    have hwlen : w.length = d := by simpa using hvlen
+    have hwalive : prefixNoncontractingAt c w := by
+      rcases h with ⟨-, hs⟩ | ⟨-, hcert⟩
+      · exact (prefixNoncontractingAt_concat.mp hs).1
+      · exact ((isMinimalCertificateAt_concat hc).mp hcert).1
+    refine ⟨w, ⟨mem_allWords.mpr hwlen, hwalive⟩, ?_⟩
+    cases b
+    · exact Or.inl rfl
+    · exact Or.inr rfl
+
+/-- An empty shifted window empties the first-passage set at that length. -/
+theorem minimalCertWordsAt_eq_empty_of_window_empty {c : ℝ} (hc : 1 ≤ c) {d : ℕ}
+    (h : ∀ o, ¬ CertWindowAt c (d + 1) o) : minimalCertWordsAt c (d + 1) = ∅ := by
+  classical
+  rw [minimalCertWordsAt, Finset.filter_eq_empty_iff]
+  intro w hw
+  exact no_minimalCertAt_of_window_empty hc h w (mem_allWords.mp hw)
+
+/-- **A free length is a full cylinder extension, at level `c`.** -/
+theorem aliveWordsAt_succ_of_window_empty {c : ℝ} (hc : 1 ≤ c) {d : ℕ}
+    (h : ∀ o, ¬ CertWindowAt c (d + 1) o) :
+    (aliveWordsAt c d).biUnion (fun w => {w ++ [Branch.even], w ++ [Branch.odd]})
+      = aliveWordsAt c (d + 1) := by
+  rw [extensionsAt_eq_alive_union_certs hc,
+    minimalCertWordsAt_eq_empty_of_window_empty hc h, Finset.union_empty]
+
+/-- **At a free length every additive functional of the alive set factorises, at level `c`.**
+This is the statement the frozen-statistic observations rest on: the summand `1` gives the
+doubling of the counts, a character gives the vanishing Fourier coordinate, and the weight
+`a ^ oddCount` gives the tilted count multiplying by `1 + a`. -/
+theorem sum_aliveWordsAt_succ_of_window_empty {M : Type*} [AddCommMonoid M] {c : ℝ}
+    (hc : 1 ≤ c) {d : ℕ} (h : ∀ o, ¬ CertWindowAt c (d + 1) o) (f : List Branch → M) :
+    ∑ v ∈ aliveWordsAt c (d + 1), f v
+      = ∑ w ∈ aliveWordsAt c d, (f (w ++ [Branch.even]) + f (w ++ [Branch.odd])) := by
+  classical
+  have hne : ∀ w : List Branch, w ++ [Branch.even] ≠ w ++ [Branch.odd] := by
+    intro w hw
+    exact Branch.noConfusion (append_singleton_inj hw).2
+  have hdisj : Set.PairwiseDisjoint (↑(aliveWordsAt c d) : Set (List Branch))
+      (fun w => ({w ++ [Branch.even], w ++ [Branch.odd]} : Finset (List Branch))) := by
+    intro a _ b _ hab
+    simp only [Function.onFun, Finset.disjoint_left, Finset.mem_insert, Finset.mem_singleton]
+    rintro x (rfl | rfl) (hx | hx) <;>
+      exact hab (append_singleton_inj hx).1
+  rw [← aliveWordsAt_succ_of_window_empty hc h, Finset.sum_biUnion hdisj]
+  exact Finset.sum_congr rfl fun w _ => Finset.sum_pair (hne w)
+
+/-- The counting corollary: a free length doubles the alive count at every level. -/
+theorem card_aliveWordsAt_succ_of_window_empty {c : ℝ} (hc : 1 ≤ c) {d : ℕ}
+    (h : ∀ o, ¬ CertWindowAt c (d + 1) o) :
+    (aliveWordsAt c (d + 1)).card = 2 * (aliveWordsAt c d).card := by
+  classical
+  have hne : ∀ w : List Branch, w ++ [Branch.even] ≠ w ++ [Branch.odd] := by
+    intro w hw
+    exact Branch.noConfusion (append_singleton_inj hw).2
+  have hdisj : ∀ a ∈ aliveWordsAt c d, ∀ b ∈ aliveWordsAt c d, a ≠ b →
+      Disjoint ({a ++ [Branch.even], a ++ [Branch.odd]} : Finset (List Branch))
+        ({b ++ [Branch.even], b ++ [Branch.odd]} : Finset (List Branch)) := by
+    intro a _ b _ hab
+    simp only [Finset.disjoint_left, Finset.mem_insert, Finset.mem_singleton]
+    rintro x (rfl | rfl) (hx | hx) <;> exact hab (append_singleton_inj hx).1
+  have hpair : ∀ w ∈ aliveWordsAt c d,
+      ({w ++ [Branch.even], w ++ [Branch.odd]} : Finset (List Branch)).card = 2 := by
+    intro w _
+    rw [Finset.card_insert_of_notMem (by simp [hne w]), Finset.card_singleton]
+  rw [← aliveWordsAt_succ_of_window_empty hc h, Finset.card_biUnion hdisj,
+    Finset.sum_congr rfl hpair, Finset.sum_const, smul_eq_mul, mul_comm]
 
 end Problems.Juggler
