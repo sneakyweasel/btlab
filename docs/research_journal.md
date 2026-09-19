@@ -1,5 +1,38 @@
 # Research journal
 
+## 2026-09-19 -- I committed a peer's Lean module without reading or building it
+
+- **What happened.** `git add -A` in commit `4c078205` swept up three files I
+  did not write, from session `balanced-ternary-e3` working in the same
+  checkout: `formal/Problems/Juggler/CollatzBridge.lean` (436 lines), its import
+  line in `Juggler.lean`, and its `AUXILIARY_MODULES` entry in `lean_paths.py`.
+  Their formalpedia index rebuild is mixed into mine as well. It is pushed. My
+  commit message is about the Walsh refutation and mentions none of it.
+- **And I did not build it.** I ran `tests/integration` and `tests/tools` before
+  pushing, neither of which compiles Lean. A 436-line module I had not read went
+  to `origin/main` unverified.
+- **It happens to be fine.** `lake build Problems.Juggler` passes, 8909 jobs; the
+  forbidden-word scan is clean; `test_layer_architecture` and `tests/tools` pass.
+  That is luck. Had it failed, main would have been red with no one knowing why,
+  and the failure would have looked like it came from my branch.
+- **The memory already covers the mirror image of this** -- peers committing MY
+  uncommitted files -- and I read it as something done to me. It is symmetric,
+  and `git add -A` in a shared checkout is the mechanism in both directions.
+- **Rule for this checkout, adopted now:** stage by explicit path when any peer
+  session is live, and run `lake build` before pushing anything that touches
+  `formal/`, not just the Python gates. `git status` showing clean after a commit
+  is not evidence the commit was mine.
+- **Attribution.** Not rewriting a pushed commit others may have pulled. Recorded
+  here instead, and the peer has been told twice -- once to stop them committing
+  the same work again, once with the build result.
+- **Their two results, for the record**, both to be written up on their side:
+  `undecidedResidues_card` gives in Lean what `J-juggler-is-collatz-one-exponential-up`
+  and `J-paper-b-survivors-are-oeis-a076227` currently hold only as a d = 4..10
+  computation; and Paper A's finance transposed to Collatz reproduces Eliahou
+  1993 at floor `2^40` and Hercher at `2^68`, which is the numerical confirmation
+  of the bridge dossier's claim that cycle results transfer both ways -- a claim
+  I recorded yesterday with reasoning and no numbers.
+
 ## 2026-09-19 -- the direct estimate, tried and refuted, and it takes yesterday's row with it
 
 - **Objective:** Philippe asked me to try the direct estimate of the good set --
