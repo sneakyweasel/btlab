@@ -765,4 +765,110 @@ theorem integer_level_onLattice (k : ℕ) :
   have hc : (1 : ℝ) ≤ (2 : ℝ) ^ k := one_le_pow₀ (by norm_num)
   exact (exponentGapAt_agrees_iff hc).mp hall 0 k (by norm_num)
 
+/-! ## 12. Free lengths are never adjacent
+
+The carrying lengths at level `Λ` are `⌊o log₂ 3 + Λ⌋ + 1`. Since `1 < log₂ 3 < 2`,
+consecutive values of that floor differ by `1` or `2`, so the carrying lengths never skip two
+integers in a row and **no two adjacent lengths are both free**.
+
+The consequence for the cylinder identity is the reason to state it: the alive set is never a
+full cylinder extension at two consecutive lengths, so the alive count never doubles twice
+running. A frozen statistic is always followed by a moving one.
+
+**The bottom edge is a genuine exception**, and the first version of this claim did not carry
+it. At `Λ = 3` the lengths `1, 2, 3` are all free, because the sequence of carrying lengths
+starts at `4`. That is an artefact of where the sequence begins and not a statement about the
+slope, and the hypothesis `⌊Λ⌋ + 1 ≤ L` excludes exactly it. The first carrying length is
+`⌊Λ⌋ + 1` on the nose, so the hypothesis says precisely that the sequence has started. -/
+
+theorem one_lt_logb_two_three : 1 < Real.logb 2 3 := by
+  have hlog2 : 0 < Real.log 2 := Real.log_pos (by norm_num)
+  have h23 : Real.log 2 < Real.log 3 := Real.log_lt_log (by norm_num) (by norm_num)
+  rw [Real.logb, lt_div_iff₀ hlog2]
+  linarith
+
+theorem logb_two_three_lt_two : Real.logb 2 3 < 2 := by
+  have hlog2 : 0 < Real.log 2 := Real.log_pos (by norm_num)
+  have h34 : Real.log 3 < Real.log 4 := Real.log_lt_log (by norm_num) (by norm_num)
+  have h4 : Real.log 4 = 2 * Real.log 2 := by
+    rw [show (4 : ℝ) = 2 ^ 2 by norm_num, Real.log_pow]
+    push_cast
+    ring
+  rw [Real.logb, div_lt_iff₀ hlog2]
+  linarith [h4 ▸ h34]
+
+/-- One step of the Beatty boundary moves the floor by `1` or `2`. -/
+theorem floor_step_bounds (x : ℝ) :
+    ⌊x⌋ + 1 ≤ ⌊x + Real.logb 2 3⌋ ∧ ⌊x + Real.logb 2 3⌋ ≤ ⌊x⌋ + 2 := by
+  have h1 := one_lt_logb_two_three
+  have h2 := logb_two_three_lt_two
+  constructor
+  · refine Int.le_floor.mpr ?_
+    push_cast
+    linarith [Int.floor_le x]
+  · rw [← Int.lt_add_one_iff]
+    refine Int.floor_lt.mpr ?_
+    push_cast
+    linarith [Int.lt_floor_add_one x]
+
+/-- **No two adjacent lengths are both free.** Above the bottom edge `⌊Λ⌋ + 1`, at least one of
+`L` and `L + 1` carries a window.
+
+The proof takes the least `o` whose boundary value reaches `L - 1`. If it is `0` the bottom-edge
+hypothesis pins it at `L - 1` exactly; otherwise its predecessor fell short, and one step moves
+the floor by at most `2`, so the value lands on `L - 1` or `L`. -/
+theorem carrying_in_adjacent_pair {Λ : ℝ} (hΛ : 0 ≤ Λ) {L : ℕ} (hL : ⌊Λ⌋ + 1 ≤ (L : ℤ)) :
+    (∃ o, CertWindowAt ((2 : ℝ) ^ Λ) L o) ∨ (∃ o, CertWindowAt ((2 : ℝ) ^ Λ) (L + 1) o) := by
+  classical
+  have h1 : 1 < Real.logb 2 3 := one_lt_logb_two_three
+  have h2 : Real.logb 2 3 < 2 := logb_two_three_lt_two
+  have hstep : ∀ o : ℕ,
+      ⌊(o : ℝ) * Real.logb 2 3 + Λ⌋ + 1 ≤ ⌊((o + 1 : ℕ) : ℝ) * Real.logb 2 3 + Λ⌋ ∧
+        ⌊((o + 1 : ℕ) : ℝ) * Real.logb 2 3 + Λ⌋ ≤ ⌊(o : ℝ) * Real.logb 2 3 + Λ⌋ + 2 := by
+    intro o
+    have hx : ((o + 1 : ℕ) : ℝ) * Real.logb 2 3 + Λ
+        = ((o : ℝ) * Real.logb 2 3 + Λ) + Real.logb 2 3 := by push_cast; ring
+    rw [hx]
+    exact floor_step_bounds _
+  have hfl : (0 : ℤ) ≤ ⌊Λ⌋ := Int.le_floor.mpr (by simpa using hΛ)
+  have hLpos : 1 ≤ L := by omega
+  have hex : ∃ o : ℕ, (L : ℤ) - 1 ≤ ⌊(o : ℝ) * Real.logb 2 3 + Λ⌋ := by
+    refine ⟨L, ?_⟩
+    have hnn : (0 : ℝ) ≤ (L : ℝ) := Nat.cast_nonneg L
+    have hcast : ((L : ℤ) : ℝ) ≤ (L : ℝ) * Real.logb 2 3 + Λ := by
+      push_cast
+      nlinarith
+    have := Int.le_floor.mpr hcast
+    omega
+  have hspec : (L : ℤ) - 1 ≤ ⌊((Nat.find hex : ℕ) : ℝ) * Real.logb 2 3 + Λ⌋ :=
+    Nat.find_spec hex
+  rcases Nat.eq_zero_or_pos (Nat.find hex) with hz | hpos
+  · left
+    refine ⟨Nat.find hex, (certWindowAt_iff_floor hLpos).mpr ?_⟩
+    rw [hz] at hspec ⊢
+    simp only [Nat.cast_zero, zero_mul, zero_add] at hspec ⊢
+    omega
+  · obtain ⟨k, hk⟩ : ∃ k, Nat.find hex = k + 1 := ⟨Nat.find hex - 1, by omega⟩
+    have hmin : ¬ ((L : ℤ) - 1 ≤ ⌊(k : ℝ) * Real.logb 2 3 + Λ⌋) :=
+      Nat.find_min hex (by omega)
+    have hkk := hstep k
+    rw [← hk] at hkk
+    rcases eq_or_lt_of_le hspec with heq | hlt
+    · left
+      exact ⟨Nat.find hex, (certWindowAt_iff_floor hLpos).mpr heq.symm⟩
+    · right
+      refine ⟨Nat.find hex, (certWindowAt_iff_floor (by omega : 1 ≤ L + 1)).mpr ?_⟩
+      push_cast
+      omega
+
+/-- The same fact read on the cylinder identity: it never applies at two consecutive lengths,
+so the alive count never doubles twice running. -/
+theorem not_cylinder_twice {Λ : ℝ} (hΛ : 0 ≤ Λ) {d : ℕ} (hd : ⌊Λ⌋ + 1 ≤ ((d + 1 : ℕ) : ℤ)) :
+    ¬ ((∀ o, ¬ CertWindowAt ((2 : ℝ) ^ Λ) (d + 1) o)
+        ∧ ∀ o, ¬ CertWindowAt ((2 : ℝ) ^ Λ) (d + 2) o) := by
+  rintro ⟨hA, hB⟩
+  rcases carrying_in_adjacent_pair (L := d + 1) hΛ hd with ⟨o, ho⟩ | ⟨o, ho⟩
+  · exact hA o ho
+  · exact hB o (by simpa using ho)
+
 end Problems.Juggler

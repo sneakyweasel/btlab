@@ -11159,5 +11159,16 @@
   "related_conjectures": [],
   "evidence": "literature",
   "tests": []
+ },
+ {
+  "id": "J-free-lengths-are-never-adjacent",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "PROVED IN LEAN, at every level: above the bottom edge, no two adjacent lengths are both free. carrying_in_adjacent_pair says that for floor(Lambda) + 1 <= L, at least one of L and L+1 carries a window at level 2^Lambda. MECHANISM. The carrying lengths are floor(o log2 3 + Lambda) + 1 (certWindowAt_iff_floor). Since 1 < log2 3 < 2, one step moves that floor by 1 or 2 (floor_step_bounds), so the carrying lengths never skip two integers in a row. The proof takes the least o whose boundary value reaches L-1: if it is 0 the bottom-edge hypothesis pins it at L-1 exactly, and otherwise its predecessor fell short, so one step of size at most 2 lands on L-1 or L. WHAT IT SAYS ABOUT THE CYLINDER IDENTITY, which is the point: not_cylinder_twice. The alive set is never a full cylinder extension at two consecutive lengths, so the alive count never doubles twice running and a frozen statistic is always followed by a moving one. That bounds how much the free lengths can cluster, which nothing in the laboratory had said. THE BOTTOM EDGE IS A GENUINE EXCEPTION and the first form of the claim did not carry it: at Lambda = 3 the lengths 1, 2 and 3 are all free because the carrying sequence starts at 4. That is an artefact of where the sequence begins rather than a statement about the slope, and the hypothesis excludes exactly it -- the first carrying length is floor(Lambda) + 1 on the nose, so the hypothesis says the sequence has started. A computational sweep found the exception before it was written anywhere. All kernel, on propext, Classical.choice and Quot.sound. It bears on neither no-cycle nor termination: it constrains the shape of the free set and says nothing about any orbit.",
+  "source": "docs/research_journal.md",
+  "lean": "formal/Problems/Juggler/PaperBLevelWindow.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_empty_window_levels.py"
+  ],
+  "related_conjectures": []
  }
 ]

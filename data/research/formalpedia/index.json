@@ -57666,6 +57666,56 @@
       "trust": "kernel"
     },
     {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 784,
+      "module": "Problems.Juggler.PaperBLevelWindow",
+      "name": "one_lt_logb_two_three",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 790,
+      "module": "Problems.Juggler.PaperBLevelWindow",
+      "name": "logb_two_three_lt_two",
+      "trust": "kernel"
+    },
+    {
+      "doc": "One step of the Beatty boundary moves the floor by `1` or `2`.",
+      "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 801,
+      "module": "Problems.Juggler.PaperBLevelWindow",
+      "name": "floor_step_bounds",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**No two adjacent lengths are both free.** Above the bottom edge `\u230a\u039b\u230b + 1`, at least one of `L` and `L + 1` carries a window. The proof takes the least `o` whose boundary value reaches `L - 1`. If it is `0` the bottom-edge hypothesis pins it at `L - 1` exactly; otherwise its predecessor fell short, and one step moves the floor by at most `2`, so the value lands on `L - 1` or `L`.",
+      "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 820,
+      "module": "Problems.Juggler.PaperBLevelWindow",
+      "name": "carrying_in_adjacent_pair",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The same fact read on the cylinder identity: it never applies at two consecutive lengths, so the alive count never doubles twice running.",
+      "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 866,
+      "module": "Problems.Juggler.PaperBLevelWindow",
+      "name": "not_cylinder_twice",
+      "trust": "kernel"
+    },
+    {
       "doc": "The binomial generating function.",
       "file": "formal/Problems/Juggler/PaperBMarkov.lean",
       "kind": "theorem",
@@ -93878,7 +93928,7 @@
       "ledger": []
     },
     "Problems.Juggler.PaperBLevelWindow": {
-      "declarations": 44,
+      "declarations": 49,
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "imports": [
         "Problems.Juggler.PaperBCertificateLengths",
@@ -95046,13 +95096,13 @@
     }
   },
   "totals": {
-    "declarations": 7026,
+    "declarations": 7031,
     "declarations_with_a_ledger_row": 4786,
-    "ledger_rows_naming_a_file": 455,
+    "ledger_rows_naming_a_file": 456,
     "modules": 310,
     "trust": {
       "compiler": 56,
-      "kernel": 6970
+      "kernel": 6975
     }
   }
 }

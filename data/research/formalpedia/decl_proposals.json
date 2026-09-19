@@ -4629,8 +4629,19 @@
       "lean": "formal/Problems/Juggler/PaperBCertificateRecursion.lean",
       "names_own": [],
       "statement": "PROVED IN LEAN, for every pair d <= K, over the naturals: 2^(K-d) * N_d = sum_{j=d+1}^{K} 2^(K-j) * M_j + N_K, where N_d = neverNegCount d counts the length-d words with no contracting prefix and M_j = minimalCertCount j counts those contracting for the first time at j. Divided by 2^K it reads N_d/2^d = sum_{j=d+1}^{K} M_j/2^j + N_K/2^K, so the survivor density at depth d is the mass of the certif"
+    },
+    {
+      "candidates": [],
+      "composite": false,
+      "confidence": "low",
+      "definitions": [],
+      "id": "J-free-lengths-are-never-adjacent",
+      "in_file": 0,
+      "lean": "formal/Problems/Juggler/PaperBLevelWindow.lean",
+      "names_own": [],
+      "statement": "PROVED IN LEAN, at every level: above the bottom edge, no two adjacent lengths are both free. carrying_in_adjacent_pair says that for floor(Lambda) + 1 <= L, at least one of L and L+1 carries a window at level 2^Lambda. MECHANISM. The carrying lengths are floor(o log2 3 + Lambda) + 1 (certWindowAt_iff_floor). Since 1 < log2 3 < 2, one step moves that floor by 1 or 2 (floor_step_bounds), so the car"
     }
   ],
-  "unresolved": 127,
+  "unresolved": 128,
   "worth_reviewing": 20
 }

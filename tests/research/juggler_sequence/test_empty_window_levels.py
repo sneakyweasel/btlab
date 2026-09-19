@@ -251,3 +251,49 @@ def test_the_conventions_part_on_a_lattice() -> None:
         cc = Fraction(num, den)
         assert all(mincerts(d, cc, True) == mincerts(d, cc, False) for d in range(1, 11)), cc
         assert free(cc, True) == free(cc, False), cc
+
+
+def test_free_lengths_are_never_adjacent_above_the_bottom_edge() -> None:
+    """No two adjacent lengths are both free, once the carrying sequence has started.
+
+    The carrying lengths at level ``lam`` are ``floor(o*log2(3) + lam) + 1``. Since
+    ``1 < log2(3) < 2``, consecutive values of that floor differ by 1 or 2, so the carrying
+    lengths never skip two integers in a row.
+
+    Consequence, which is why it is worth stating: the cylinder identity never applies at two
+    consecutive lengths, so the alive count never doubles twice running. A frozen statistic is
+    always followed by a moving one.
+
+    THE BOTTOM EDGE IS A REAL EXCEPTION and the first version of this claim did not have it.
+    At ``lam = 3`` the lengths 1, 2 and 3 are all free, because the sequence starts at 4. That
+    is an artefact of where the sequence begins, not a statement about the slope. The witness
+    is pinned below. An earlier draft of this docstring quoted a count of how many sampled
+    levels fail without the hypothesis; that number depends on which levels were drawn and is
+    not a fact about the map, so it is gone.
+
+    Lean: ``Problems.Juggler.carrying_in_adjacent_pair`` and ``not_cylinder_twice``.
+    """
+    import random
+
+    rng = random.Random(20260919)
+    levels = [0.0, 0.5, 1.0, 1.2486, 2 - LOG3, 3.0, 6 - 3 * LOG3, 0.9999]
+    levels += [rng.uniform(0.0, 8.0) for _ in range(20)]
+
+    def carrying(lam: float, n: int = 4000) -> set[int]:
+        return {math.floor(o * LOG3 + lam) + 1 for o in range(n)}
+
+    for lam in levels:
+        c = carrying(lam)
+        lo = math.floor(lam) + 1
+        # above the bottom edge: never two adjacent free lengths
+        assert all(L in c or (L + 1) in c for L in range(lo, 2000)), lam
+        # the first carrying length is exactly the bottom edge
+        assert min(c) == lo, (lam, min(c), lo)
+
+    # the exception below the edge is real, and this is the witness rather than a count
+    c3 = carrying(3.0)
+    assert min(c3) == 4
+    assert {1, 2, 3}.isdisjoint(c3)
+    assert all(L not in c3 and (L + 1) not in c3 for L in (1, 2))
+    # and it is only the edge: above 4 the adjacency claim holds at that level too
+    assert all(L in c3 or (L + 1) in c3 for L in range(4, 2000))
