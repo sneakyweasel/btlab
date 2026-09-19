@@ -393,12 +393,24 @@ with the certificate side removed.
 
 The reason to state it at the level of sets rather than counts is
 `sum_neverNegWords_succ_of_window_empty`: at a free length **every** additive functional of
-the survivor set factorises over the two extensions. Taking the summand to be `1` recovers
-the doubling of the counts; taking it to be a character recovers the statement that a Fourier
-transform of the survivor indicator gains a vanishing coordinate; taking it to be a weight
-recovers the amplitude law. Those were recorded separately, and the ledger calls the last two
-`REPARAMETERIZATION` for that reason. They are one statement about a cylinder, read through
-three different summands.
+the survivor set factorises over the two extensions. Three summands were recorded separately
+as three findings:
+
+* `f = 1` gives the doubling of the counts, hence the density plateaus;
+* a character gives the vanishing Fourier coordinate under the good-set Wiener-norm plateau;
+* `f w = a ^ oddCount w` gives the tilted count, which multiplies by exactly `1 + a`.
+
+**Two corrections to an earlier version of this paragraph, which had the third one wrong.**
+The amplitude law of the jump spectrum is *not* the weight summand. Its weight
+`(2 θ) ^ (n - 1)` depends on the length and not on the word, so as a functional on the
+survivor set it is `f = 1` up to a constant, and the amplitude law is the density plateau
+counted a second time -- which is why the ledger already tags that row `REPARAMETERIZATION`.
+The genuine weight summand is the tilted count, the object Paper C's Chernoff and ladder
+arguments run on.
+
+And the factorisation is *sufficient, not necessary*, for a plateau. At `d = 5` the length is
+not free (`N₅ = 4` against `2 N₄ = 6`) yet the good-set Wiener norm is unchanged. A measured
+plateau is evidence of a free length, not proof of one.
 
 **Its relation to `PaperBJumpTransposition.total_stepFlat_eq_two_mul`, which is not
 duplication.** That file proves a doubling too, and the two look alike enough that this file

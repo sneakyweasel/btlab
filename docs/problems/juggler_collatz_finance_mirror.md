@@ -329,10 +329,21 @@ is met with equality by a word Collatz realises as an integer cycle. **The
 Juggler no-cycle problem is the word-level twin of the Collatz negative-cycle
 conjecture** (only `-1, -5, -17`), not of the positive one.
 
-On the positive side, `prefix_bound_of_min` shows a cycle word at its minimum
-contracts only at the end (every contracting prefix caps `x + 1` by the
-prefix's rational cycle value), so it is a minimal certificate of Paper B,
-its length is `A020914(p)` and `M_K` counts the candidates; `cycle_dvd` and
+On the positive side, `prefix_bound_of_min` caps `x + 1` by each contracting
+prefix's own rational cycle value. An earlier revision read that as showing
+the word contracts only at the end, hence is a minimal certificate of Paper B
+with length `A020914(p)`. **It does not.** A cap on `x + 1` is not an
+exclusion of contracting prefixes; ruling those out needs `x + 1` to exceed
+`evenCharge / (2^K - 3^p)` at every contracting prefix, an arithmetic lower
+bound on the cycle minimum that is not in the Lean, and
+`J-collatz-cycle-equation-is-a-word-divisibility` hedges it in the same
+direction with its `delta` exceptions -- which are precisely the case of a
+contracting prefix, where the word is not a minimal certificate and the
+empty-window theorem says nothing about its length. The length statement
+`K = A020914(p)` is separately true by the classical route, from the size of
+the minimum giving `3^p < 2^K < 2*3^p`, but that is a different proof and is
+not the one this paragraph claimed. With that caveat `M_K` still counts the
+candidates that are minimal certificates; `cycle_dvd` and
 `cycle_of_equation` make the existence of a cycle with word `w` exactly the
 divisibility `2^K - 3^p | evenCharge w` with quotient `x + 1 >= 2`, given
 Lagarias's theorem that the rational `wordConst w / (2^K - 3^p)` always has

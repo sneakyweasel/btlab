@@ -206,7 +206,7 @@
         },
         {
           "decl": "neverNegWords_succ_of_window_empty",
-          "line": 420,
+          "line": 432,
           "score": 0.106,
           "trust": "kernel"
         }
