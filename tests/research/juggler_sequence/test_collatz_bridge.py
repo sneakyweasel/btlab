@@ -27,6 +27,11 @@ from research.juggler_sequence.collatz_bridge import (
     STEP_ODD,
     big_log,
     collatz,
+    CLASS_ANALYTIC,
+    CLASS_METRIC,
+    CLASS_SHARED,
+    CLASS_UNCLASSIFIED,
+    audit_class,
     collatz_reachable,
     juggler,
     loglog_increments,
@@ -511,3 +516,45 @@ def test_the_telescoped_tail_is_now_a_lean_theorem_over_the_naturals() -> None:
     assert "theorem minimalCert_tail_eq" in src
     for banned in ("sorry", "admit"):
         assert banned not in src, banned
+
+def test_the_audit_has_a_third_class_and_a_loud_miss() -> None:
+    """`J-word-density-results-are-not-juggler-specific` was one class short.
+
+    The audit was recorded as a binary: word combinatorics is shared with
+    Collatz, how orbits realise words is Juggler-only. Paper C's engine is in
+    neither. Lemma 2.1's even block, Lemma 2.2's OE fibre, Lemma 4.1's seed and
+    contagion itself are METRIC -- about how the map deforms scale, the
+    reciprocal Jacobian of its action on the log line. Exact, elementary,
+    Lean-checked, needing no equidistribution, and still Juggler-only, because
+    accelerated Collatz has no fat preimages.
+
+    The binary also overloaded `False`, which meant both "Juggler-specific" and
+    "not recognised". A metric claim came back `False` for the second reason
+    while reading like the first, which is exactly the confusion an audit is
+    supposed to prevent. `UNCLASSIFIED` now says so.
+    """
+    assert audit_class("the survivor count recursion") == CLASS_SHARED
+    assert audit_class("the jump spectrum amplitude a_1") == CLASS_SHARED
+
+    assert audit_class("Hypothesis FD gives equidistribution") == CLASS_ANALYTIC
+    assert audit_class("the Weyl differencing kernel bound") == CLASS_ANALYTIC
+
+    # the class the binary had nowhere to put
+    for metric in ("the even block of m has harmonic mass exactly 1/m",
+                   "every nonempty backward-closed set has divergent count",
+                   "the OE fibre carries at least one third of each parity",
+                   "fat preimages have no Collatz analogue"):
+        assert audit_class(metric) == CLASS_METRIC, metric
+
+    # and a miss is now loud rather than silently Juggler-specific
+    assert audit_class("the certified floor is 3.5e8") == CLASS_UNCLASSIFIED
+
+    # precedence: analytic beats metric beats shared, since a claim resting on
+    # FD rests on FD however many fibres it also names
+    assert audit_class("the fibre share under Hypothesis FD") == CLASS_ANALYTIC
+    assert audit_class("the even block's survivor count") == CLASS_METRIC
+
+    # collatz_reachable keeps its old meaning exactly
+    assert collatz_reachable("the certificate word count at each barrier")
+    assert not collatz_reachable("the Weyl differencing kernel bound")
+    assert not collatz_reachable("the even block has harmonic mass 1/m")

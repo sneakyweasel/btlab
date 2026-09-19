@@ -151,6 +151,58 @@ def undecided_classes(depth: int, representatives: int = 8) -> int:
     return count
 
 
+#: The audit's four outcomes. `collatz_reachable` is `audit_class(...) == CLASS_SHARED`.
+CLASS_SHARED = "SHARED"                    # word densities: a Collatz result too
+CLASS_ANALYTIC = "JUGGLER_ANALYTIC"        # how orbits realise words: FD, Weyl, the kernel
+CLASS_METRIC = "JUGGLER_METRIC"            # how the map deforms scale: fibres, log-mass
+CLASS_UNCLASSIFIED = "UNCLASSIFIED"        # the audit does not recognise it -- say so
+
+_SHARED_WORDS = ("word", "certificate", "barrier", "survivor", "jump", "amplitude",
+                 "recursion", "count", "spectrum", "ladder")
+_ANALYTIC_WORDS = ("equidistribution", "hypothesis fd", "weyl", "kernel",
+                   "frac(n^", "floor power", "orbit of n", "discrepancy",
+                   "conjecture k")
+_METRIC_WORDS = ("preimage", "fibre", "fiber", "even block", "harmonic mass",
+                 "log-mass", "backward-closed", "contagion", "jacobian",
+                 "deforms scale", "fat")
+
+
+def audit_class(statement: str) -> str:
+    """Which of the three classes a claim sits in, or that it sits in none.
+
+    `J-word-density-results-are-not-juggler-specific` was recorded as a binary:
+    word combinatorics is shared with Collatz, how orbits realise words is
+    Juggler-only. That is one class short, and the missing one is the
+    load-bearing one for Paper C.
+
+    **The third class is metric.** Paper C's engine -- Lemma 2.1's even block,
+    Lemma 2.2's OE fibre, Lemma 4.1's seed, contagion itself -- is about how
+    the map deforms SCALE, the reciprocal Jacobian of its action on the log
+    line. It is exact, elementary, Lean-checked and needs no equidistribution,
+    and it is still Juggler-only, because the accelerated Collatz map has no
+    fat preimages. It is neither word combinatorics nor orbit realisation, so
+    the binary audit had nowhere to put it.
+
+    The binary also overloaded `False`, which meant both "Juggler-specific" and
+    "not recognised". A metric claim returned `False` for the second reason
+    while looking like the first. `CLASS_UNCLASSIFIED` now says so out loud,
+    which is the point of an audit that exists to make a question unavoidable.
+
+    Precedence is analytic, then metric, then shared: a claim naming both a
+    fibre and Hypothesis FD rests on FD, and one naming both a fibre and a word
+    count rests on the fibre. Still a vocabulary check and not a theorem
+    prover.
+    """
+    lowered = statement.lower()
+    if any(term in lowered for term in _ANALYTIC_WORDS):
+        return CLASS_ANALYTIC
+    if any(term in lowered for term in _METRIC_WORDS):
+        return CLASS_METRIC
+    if any(term in lowered for term in _SHARED_WORDS):
+        return CLASS_SHARED
+    return CLASS_UNCLASSIFIED
+
+
 def collatz_reachable(statement: str) -> bool:
     """Does a claim depend only on word densities, and so belong to Collatz too?
 
@@ -163,14 +215,13 @@ def collatz_reachable(statement: str) -> bool:
 
     Deliberately a vocabulary check rather than a theorem prover: it exists to make the
     question unavoidable when a row is written, not to answer it.
+
+    Now a thin wrapper over `audit_class`, which has a third class the binary was
+    missing -- metric facts about how the map deforms scale, which is where Paper C's
+    engine lives -- and which reports `UNCLASSIFIED` rather than returning `False` for
+    a claim it does not recognise.
     """
-    words_only = ("word", "certificate", "barrier", "survivor", "jump", "amplitude",
-                  "recursion", "count", "spectrum", "ladder")
-    juggler_only = ("equidistribution", "hypothesis fd", "weyl", "kernel",
-                    "frac(n^", "floor power", "orbit of n")
-    lowered = statement.lower()
-    return (any(w in lowered for w in words_only)
-            and not any(j in lowered for j in juggler_only))
+    return audit_class(statement) == CLASS_SHARED
 
 
 #: `-log2(theta)`. Collatz's unconditional density exponent, and the unit the
