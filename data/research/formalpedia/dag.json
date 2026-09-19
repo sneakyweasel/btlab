@@ -923,7 +923,7 @@
       }
     },
     "Problems.Juggler.CollatzBridge": {
-      "declarations": 35,
+      "declarations": 41,
       "depends_on": [
         "Problems.Collatz.Shortcut",
         "Problems.Juggler.CycleCore",
@@ -936,7 +936,7 @@
       ],
       "papers": [],
       "trust": {
-        "kernel": 35
+        "kernel": 41
       }
     },
     "Problems.Juggler.CriticalCostKernel": {

@@ -377,12 +377,16 @@
       "test": "tests/research/juggler_sequence/test_collatz_finance_mirror.py",
       "dossier": "docs/problems/juggler_collatz_finance_mirror.md",
       "data_dir": "data/research/juggler/collatz_finance_mirror",
-      "lean": [],
+      "lean": [
+        "formal/Problems/Juggler/CollatzBridge.lean"
+      ],
       "conjecture": [],
       "decision": "PROMOTE",
       "ledger_ids": [
         "J-paper-a-finance-transposed-reproduces-eliahou-and-hercher",
-        "J-cycle-gaps-are-mirror-images"
+        "J-cycle-gaps-are-mirror-images",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-constant"
       ],
       "aliases": [],
       "nk_cluster": "A realization law of FD type cannot give Juggler a Steiner theorem"

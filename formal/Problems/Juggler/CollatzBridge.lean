@@ -431,6 +431,82 @@ theorem undecidedResidues_card_nine : (undecidedResidues 9).card = 38 := by deci
 theorem undecidedResidues_card_ten : (undecidedResidues 10).card = 64 := by decide +kernel
 
 
+/-! ## 9. The even-step charge: the Collatz walk charge, in integers
+
+Paper A's walk charge reads the floor losses of a Juggler cycle against the height of the
+exponent walk. On the Collatz side the same reading is an identity. Conjugating the odd step by
+`z = x + 1` (`(3x+1)/2 + 1 = (3/2)(x+1)`) shows that every even step, and only an even step,
+injects a correction, and that correction is `3` to the power of the odd letters still to come:
+
+  `2 ^ d · (C^d(x) + 1) = 3 ^ o · (x + 1) + evenCharge w`,
+
+so on a cycle `(x + 1)(2 ^ d - 3 ^ o) = evenCharge w` exactly. Reading `evenCharge` as
+`sum over even positions i of 3 ^ (o - a_i) · 2 ^ i`, the surplus is the sum over even steps of
+`2 ^ (-h_i)` scaled by `2 ^ d`, with `h_i = a_i · log2 3 - i` the walk height; this is the
+statement whose analytic form, `Lambda ≤ H(p) / (3 x_min)` with `H(p)/p → 1/(2 log 2)`, is
+recorded in `docs/problems/juggler_collatz_finance_mirror.md`. Nothing analytic is proved here:
+these are natural-number identities. -/
+
+/-- The even-step charge of a word: an even letter contributes `3` to the power of the odd
+letters still to come, and every letter doubles what follows. Closed form: the sum over even
+positions `i` of `3 ^ (o - a_i) * 2 ^ i`, with `a_i` the odd letters before `i`. -/
+def evenCharge : List Branch → ℕ
+  | [] => 0
+  | .even :: w => 3 ^ oddCount w + 2 * evenCharge w
+  | .odd :: w => 2 * evenCharge w
+
+@[simp] theorem evenCharge_nil : evenCharge [] = 0 := rfl
+
+@[simp] theorem evenCharge_even (w : List Branch) :
+    evenCharge (.even :: w) = 3 ^ oddCount w + 2 * evenCharge w := rfl
+
+@[simp] theorem evenCharge_odd (w : List Branch) : evenCharge (.odd :: w) = 2 * evenCharge w := rfl
+
+/-- The odd-step constant and the even-step charge differ by the multiplier gap:
+`wordConst w + 2 ^ |w| = 3 ^ o + evenCharge w`. -/
+theorem wordConst_add_two_pow (w : List Branch) :
+    wordConst w + 2 ^ w.length = 3 ^ oddCount w + evenCharge w := by
+  induction w with
+  | nil => simp
+  | cons b w ih =>
+    cases b with
+    | even =>
+      simp only [wordConst_even, evenCharge_even, oddCount_even_cons, List.length_cons, pow_succ]
+      linarith
+    | odd =>
+      simp only [wordConst_odd, evenCharge_odd, oddCount_odd_cons, List.length_cons, pow_succ]
+      linarith
+
+/-- **The affine formula in the `x + 1` coordinate.** Every correction comes from an even step. -/
+theorem two_pow_mul_iter_add_one (x d : ℕ) :
+    2 ^ d * (shortcutCIter d x + 1) =
+      3 ^ oddCount (parityWord x d) * (x + 1) + evenCharge (parityWord x d) := by
+  have h := word_affine x d
+  have h2 := wordConst_add_two_pow (parityWord x d)
+  rw [parityWord_length] at h2
+  linarith
+
+/-- **The Collatz lower envelope**, the mirror of `power_bound_word`: the `+1`s only push up,
+so `3 ^ o · (x + 1) ≤ 2 ^ d · (C^d(x) + 1)` for every start and every depth. -/
+theorem three_pow_mul_add_one_le (x d : ℕ) :
+    3 ^ oddCount (parityWord x d) * (x + 1) ≤ 2 ^ d * (shortcutCIter d x + 1) := by
+  rw [two_pow_mul_iter_add_one]
+  exact Nat.le_add_right _ _
+
+/-- **The Collatz walk charge, exactly.** On a cycle the surplus `(x + 1)(2 ^ d - 3 ^ o)` is the
+even-step charge of the word. This is the counterpart of Paper A's finance inequality
+`n log n (3 ^ o - 2 ^ L) ≤ L 3 ^ o`, as an identity rather than a bound. -/
+theorem cycle_even_charge {x d : ℕ} (hcyc : shortcutCIter d x = x) :
+    (x + 1) * 2 ^ d = (x + 1) * 3 ^ oddCount (parityWord x d) + evenCharge (parityWord x d) := by
+  have h := two_pow_mul_iter_add_one x d
+  rw [hcyc] at h
+  linarith
+
+/-- The trivial cycle `1 → 2 → 1` has word `OE`, charge `2`, and `(1+1)(4 - 3) = 2`. -/
+theorem trivial_cycle_charge :
+    (1 + 1) * 2 ^ 2 = (1 + 1) * 3 ^ oddCount (parityWord 1 2) + evenCharge (parityWord 1 2) := by
+  decide +kernel
+
 end CollatzBridge
 
 end Problems.Juggler

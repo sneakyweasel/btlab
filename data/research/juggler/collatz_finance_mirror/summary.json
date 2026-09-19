@@ -1,4 +1,82 @@
 {
+  "walk_charge": {
+    "statement": "on a cycle at its minimum x_0 the height before the a-th odd step is at least frac(a alpha), alpha = log2(3/2), up to a correction of order K/x_0, so Lambda_C <= H(p)/(3 x_0) (1 + o(1)) with H(p) = sum_{a<p} 2^(-frac(a alpha))",
+    "hug_average": {
+      "12": 0.7379431583186092,
+      "53": 0.7253398954705766,
+      "665": 0.7217078195785619,
+      "31867": 0.7213527456478335,
+      "111202": 0.721348470155205,
+      "190537": 0.7213488557918143,
+      "10781274": 0.7213475480214936
+    },
+    "constant": 0.7213475204444817,
+    "hercher_theorem_27": 0.75,
+    "trivial": 1.0,
+    "remark_28_threshold_units_2_60": {
+      "eliahou_methods": 3781,
+      "theorem_27": 2836,
+      "walk_charge": 2728,
+      "corollary_29_computational": 1536
+    },
+    "smallest_survivor_with_walk_charge": {
+      "2^68": 114208327604,
+      "2^71": 114208327604
+    },
+    "margin_at_2_71": 1.3315289921185505,
+    "integer_identities_hold": true,
+    "effective": {
+      "sup_hug_average_p_ge_100": 0.7283876287836395,
+      "sup_hug_average_p_ge_1e5": 0.7213686972736093,
+      "partial_quotient_sum_to_5e12": 150,
+      "exceptional_bound": "N_delta(p) <= p delta + 151 for p <= 5e12",
+      "delta_at_hercher_floor": 2.05630611302329e-10,
+      "orbit_prefix_checks": {
+        "27": {
+          "prefix_length": 59,
+          "odd_steps": 37,
+          "violations": 0,
+          "exceptional": 0,
+          "odd_sum_le_H_plus_N": true
+        },
+        "97": {
+          "prefix_length": 2,
+          "odd_steps": 1,
+          "violations": 0,
+          "exceptional": 0,
+          "odd_sum_le_H_plus_N": true
+        },
+        "871": {
+          "prefix_length": 35,
+          "odd_steps": 22,
+          "violations": 0,
+          "exceptional": 0,
+          "odd_sum_le_H_plus_N": true
+        },
+        "6171": {
+          "prefix_length": 58,
+          "odd_steps": 36,
+          "violations": 0,
+          "exceptional": 0,
+          "odd_sum_le_H_plus_N": true
+        },
+        "77031": {
+          "prefix_length": 89,
+          "odd_steps": 56,
+          "violations": 0,
+          "exceptional": 0,
+          "odd_sum_le_H_plus_N": true
+        },
+        "2147483649": {
+          "prefix_length": 2,
+          "odd_steps": 1,
+          "violations": 0,
+          "exceptional": 0,
+          "odd_sum_le_H_plus_N": true
+        }
+      }
+    }
+  },
   "answer": "Paper A's finance transposed by x_min <-> n log n reproduces Eliahou and Hercher",
   "identities": {
     "lambda_collatz": "K log 2 - floor(K x) log 3 = log 3 * frac(K x)",
