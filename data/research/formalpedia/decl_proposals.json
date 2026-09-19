@@ -1,5 +1,5 @@
 {
-  "composite": 35,
+  "composite": 37,
   "note": "Proposals for human review. Calibration: 86% precision (42 of 49 fires) against all resolved rows. Nothing here has been written into the ledger.",
   "rows": [
     {
@@ -4290,21 +4290,21 @@
     {
       "candidates": [
         {
+          "decl": "neg_cycle_expanding",
+          "line": 624,
+          "score": 0.081,
+          "trust": "kernel"
+        },
+        {
           "decl": "word_affine",
-          "line": 149,
+          "line": 150,
           "score": 0.078,
           "trust": "kernel"
         },
         {
           "decl": "image_parityWord",
-          "line": 265,
+          "line": 266,
           "score": 0.077,
-          "trust": "kernel"
-        },
-        {
-          "decl": "cycle_contracting",
-          "line": 397,
-          "score": 0.071,
           "trust": "kernel"
         }
       ],
@@ -4313,17 +4313,17 @@
       "definitions": [
         {
           "decl": "parityWord",
-          "line": 88,
+          "line": 89,
           "score": 0.078
         },
         {
-          "decl": "wordConst",
-          "line": 122,
-          "score": 0.047
+          "decl": "shortcutZ",
+          "line": 535,
+          "score": 0.049
         }
       ],
       "id": "J-collatz-bridge-is-exact-at-the-word-level",
-      "in_file": 37,
+      "in_file": 52,
       "lean": "Problems/Juggler/CollatzBridge.lean",
       "names_own": [
         "word_affine",
@@ -4340,19 +4340,19 @@
       "candidates": [
         {
           "decl": "decidedAtResidues_card",
-          "line": 324,
+          "line": 325,
           "score": 0.136,
           "trust": "kernel"
         },
         {
           "decl": "undecidedResidues_card",
-          "line": 314,
+          "line": 315,
           "score": 0.107,
           "trust": "kernel"
         },
         {
           "decl": "exists_residue_of_word",
-          "line": 282,
+          "line": 283,
           "score": 0.07,
           "trust": "kernel"
         }
@@ -4362,17 +4362,17 @@
       "definitions": [
         {
           "decl": "undecidedResidues",
-          "line": 293,
+          "line": 294,
           "score": 0.085
         },
         {
           "decl": "parityWord",
-          "line": 88,
+          "line": 89,
           "score": 0.062
         }
       ],
       "id": "J-survivor-count-is-a-collatz-residue-count",
-      "in_file": 37,
+      "in_file": 52,
       "lean": "Problems/Juggler/CollatzBridge.lean",
       "names_own": [
         "undecidedResidues_card",
@@ -4387,19 +4387,19 @@
       "candidates": [
         {
           "decl": "cycle_even_charge",
-          "line": 510,
+          "line": 511,
           "score": 0.184,
           "trust": "kernel"
         },
         {
           "decl": "three_pow_mul_add_one_le",
-          "line": 502,
+          "line": 503,
           "score": 0.161,
           "trust": "kernel"
         },
         {
           "decl": "wordConst_add_two_pow",
-          "line": 478,
+          "line": 479,
           "score": 0.138,
           "trust": "kernel"
         }
@@ -4409,17 +4409,17 @@
       "definitions": [
         {
           "decl": "evenCharge",
-          "line": 464,
+          "line": 465,
           "score": 0.14
         },
         {
           "decl": "wordConst",
-          "line": 122,
+          "line": 123,
           "score": 0.118
         }
       ],
       "id": "J-collatz-even-step-charge-identity",
-      "in_file": 37,
+      "in_file": 52,
       "lean": "Problems/Juggler/CollatzBridge.lean",
       "names_own": [
         "wordConst_add_two_pow",
@@ -4429,8 +4429,105 @@
         "trivial_cycle_charge"
       ],
       "statement": "The Collatz walk charge, in natural numbers. Define evenCharge on words by evenCharge [] = 0, evenCharge (even :: w) = 3^(oddCount w) + 2 evenCharge w, evenCharge (odd :: w) = 2 evenCharge w -- in closed form the sum over even positions i of 3^(o - a_i) 2^i with a_i the odd letters before i. Then (wordConst_add_two_pow) wordConst w + 2^|w| = 3^(oddCount w) + evenCharge w, so the odd-step constant "
+    },
+    {
+      "candidates": [
+        {
+          "decl": "cycle_of_equation",
+          "line": 662,
+          "score": 0.156,
+          "trust": "kernel"
+        },
+        {
+          "decl": "prefix_bound_of_min",
+          "line": 678,
+          "score": 0.151,
+          "trust": "kernel"
+        },
+        {
+          "decl": "cycle_equation",
+          "line": 645,
+          "score": 0.095,
+          "trust": "kernel"
+        }
+      ],
+      "composite": true,
+      "confidence": "low",
+      "definitions": [
+        {
+          "decl": "evenCharge",
+          "line": 465,
+          "score": 0.069
+        },
+        {
+          "decl": "shortcutZ",
+          "line": 535,
+          "score": 0.064
+        }
+      ],
+      "id": "J-collatz-cycle-equation-is-a-word-divisibility",
+      "in_file": 52,
+      "lean": "Problems/Juggler/CollatzBridge.lean",
+      "names_own": [
+        "word_affine_int",
+        "two_pow_mul_iter_add_one_int",
+        "cycle_equation_int",
+        "cycle_equation",
+        "cycle_dvd",
+        "cycle_of_equation",
+        "prefix_bound_of_min"
+      ],
+      "statement": "The exact Collatz cycle condition, as a statement about the word. Over \u2124 the affine identity of CollatzBridge.lean holds for every integer start (word_affine_int, two_pow_mul_iter_add_one_int: 2^d (C^d x + 1) = 3^o (x + 1) + evenCharge w, with shortcutZ x = x/2 on evens and (3x+1)/2 on odds and parityWordZ its word), so on every integer cycle (x + 1)(2^d - 3^o) = evenCharge w (cycle_equation_int);"
+    },
+    {
+      "candidates": [
+        {
+          "decl": "neg_seventeen_inhabits_cycleMinShape",
+          "line": 714,
+          "score": 0.174,
+          "trust": "kernel"
+        },
+        {
+          "decl": "neg_cycle_expanding",
+          "line": 624,
+          "score": 0.109,
+          "trust": "kernel"
+        },
+        {
+          "decl": "neg_seventeen_word_expanding",
+          "line": 707,
+          "score": 0.107,
+          "trust": "kernel"
+        }
+      ],
+      "composite": true,
+      "confidence": "review",
+      "definitions": [
+        {
+          "decl": "evenCharge",
+          "line": 465,
+          "score": 0.053
+        },
+        {
+          "decl": "parityWord",
+          "line": 89,
+          "score": 0.039
+        }
+      ],
+      "id": "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+      "in_file": 52,
+      "lean": "Problems/Juggler/CollatzBridge.lean",
+      "names_own": [
+        "neg_cycle_expanding",
+        "cycle_contracting",
+        "neg_one_cycle",
+        "neg_five_cycle",
+        "neg_seventeen_cycle",
+        "neg_seventeen_inhabits_cycleMinShape"
+      ],
+      "statement": "The sign flip on cycles is the sign of x, and Juggler's cycle words are the words of Collatz's negative cycles. On the negative integers the odd step is |x| -> (3|x| - 1)/2, so the correction pushes |x| below the pure multiplier -- Juggler's sign -- and the cycle equation (x + 1)(2^d - 3^o) = evenCharge w >= 0 with x + 1 < 0 forces 2^d < 3^o: neg_cycle_expanding, a cycle of the \u2124 shortcut map at x"
     }
   ],
-  "unresolved": 122,
-  "worth_reviewing": 19
+  "unresolved": 124,
+  "worth_reviewing": 20
 }

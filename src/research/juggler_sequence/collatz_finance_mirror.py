@@ -277,6 +277,118 @@ def sharpness_ratio(p: int, extra_bits: int = 300) -> float:
     return float(s * x0) / hug_sum(p)
 
 
+# ---------------------------------------------------------------------------------------------
+# The cycle equation as a word problem: rational cycles of minimal certificates and of survivors
+# ---------------------------------------------------------------------------------------------
+
+def rational_cycle(word: list[int]):
+    """The rational fixed point of the word's affine map, `x_0 = wordConst w / (2^K - 3^o)`.
+
+    Positive for contracting words, negative for expanding ones; Lagarias 1990: it is the unique
+    rational with odd denominator whose parity vector is `w` repeated. An integer cycle with word
+    `w` exists exactly when it is an integer (the `2^K - 3^o | evenCharge w` of
+    `cycle_dvd` / `cycle_of_equation` in CollatzBridge.lean).
+    """
+    from fractions import Fraction
+    K, o = len(word), sum(word)
+    return Fraction(word_const(word), 2**K - 3**o)
+
+
+def follows_rational(x0, word: list[int]) -> bool:
+    """Whether the shortcut map, extended to rationals with odd denominator (parity = parity of
+    the numerator), follows `word` from `x0` and returns to it."""
+    x = x0
+    for b in word:
+        assert x.denominator % 2 == 1
+        if x.numerator % 2 != b:
+            return False
+        x = x / 2 if b == 0 else (3 * x + 1) / 2
+    return x == x0
+
+
+def minimal_certificates(K: int) -> list[tuple[int, ...]]:
+    """The minimal certificates of length `K`: proper prefixes non-contracting, the word contracting.
+    These are the Collatz positive-cycle words (at the cycle minimum, up to the `delta`
+    exceptions of `J-collatz-walk-charge-constant`), and `M_K` counts them."""
+    out: list[tuple[int, ...]] = []
+
+    def rec(prefix: list[int], a: int, j: int) -> None:
+        if j == K:
+            if 3**a < 2**K:
+                out.append(tuple(prefix))
+            return
+        for b in (1, 0):
+            a2, j2 = a + b, j + 1
+            if j2 < K and 3**a2 < 2**j2:
+                continue
+            prefix.append(b)
+            rec(prefix, a2, j2)
+            prefix.pop()
+
+    rec([], 0, 0)
+    return out
+
+
+def expanding_survivors(L: int) -> list[tuple[int, ...]]:
+    """The words of length `L` with every prefix non-contracting and `3^o > 2^L`: Paper A's
+    cycle-word shape for Juggler, and the Collatz negative-cycle words."""
+    out: list[tuple[int, ...]] = []
+
+    def rec(prefix: list[int], a: int, j: int) -> None:
+        if j == L:
+            if 3**a > 2**L:
+                out.append(tuple(prefix))
+            return
+        for b in (1, 0):
+            a2, j2 = a + b, j + 1
+            if 3**a2 < 2**j2:
+                continue
+            prefix.append(b)
+            rec(prefix, a2, j2)
+            prefix.pop()
+
+    rec([], 0, 0)
+    return out
+
+
+def cycle_census(kmax: int = 20, lmax: int = 18) -> dict[str, Any]:
+    """Rational cycles of every minimal certificate up to length `kmax` and every expanding
+    survivor up to length `lmax`: each must follow its word and return (Lagarias's rational-cycle
+    theorem, checked), and the integral ones are the integer cycles."""
+    pos_total = neg_total = 0
+    pos_fail = neg_fail = 0
+    pos_integral: list[tuple[int, str, int]] = []
+    neg_integral: list[tuple[int, str, int]] = []
+    counts: dict[int, int] = {}
+    for K in range(1, kmax + 1):
+        certs = minimal_certificates(K)
+        counts[K] = len(certs)
+        for w in certs:
+            x0 = rational_cycle(list(w))
+            pos_total += 1
+            if not follows_rational(x0, list(w)):
+                pos_fail += 1
+            if x0.denominator == 1 and x0 > 0:
+                pos_integral.append((K, "".join("O" if b else "E" for b in w), int(x0)))
+    for L in range(1, lmax + 1):
+        for w in expanding_survivors(L):
+            x0 = rational_cycle(list(w))
+            neg_total += 1
+            if not follows_rational(x0, list(w)):
+                neg_fail += 1
+            if x0.denominator == 1:
+                neg_integral.append((L, "".join("O" if b else "E" for b in w), int(x0)))
+    primitive_neg = sorted({(x, wd) for (_, wd, x) in neg_integral
+                            if all(wd != wd[:k] * (len(wd) // k) for k in range(1, len(wd)) if len(wd) % k == 0)})
+    return {
+        "kmax": kmax, "lmax": lmax,
+        "minimal_certificate_counts": counts,
+        "positive_words": pos_total, "positive_failures": pos_fail, "positive_integral": pos_integral,
+        "negative_words": neg_total, "negative_failures": neg_fail,
+        "negative_integral_primitive": primitive_neg,
+    }
+
+
 def walk_charge_bound(K: int, *, exact_below: int = 3 * 10**8) -> mpf:
     """The transposed walk charge on the cycle minimum: `x_min <= H(p) / (3 Lambda_C) (1 + o(1))`.
 
@@ -482,7 +594,9 @@ def probe_payload(*, kmax_40: int = 4 * 10**8, brute_kmax: int = 3 * 10**7) -> d
             for d in (1, 2, 5, 17, 40)
             for word, states in [shortcut_orbit(x0, d)]
         )
+    census = cycle_census(26, 24)
     return {
+        "cycle_census": census,
         "walk_charge": {
             "statement": (
                 "on a cycle at its minimum x_0 the height before the a-th odd step is at least"

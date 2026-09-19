@@ -5,7 +5,7 @@ statement beside the candidate's docstring; the question is only whether they sa
 same thing.  Measured against all 208 single-declaration rows the scorer gets
 64 of the 79 it fires on right, 81% precise, so roughly one in
 5 below is wrong.
-19 rows below, of 122 unresolved.
+20 rows below, of 124 unresolved.
 
 
 Two failure modes are not scored at all, and both record a part as the whole.
@@ -389,4 +389,22 @@ theorem band_successor_unique {u v w : ℝ} (_h0 : 0 ≤ u) (_h1 : u < 1 + alpha
 *Runners-up: `band_step_forced_odd` (0.263), `band_step_forced_even` (0.263)*
 
 *If this row describes a definition rather than a theorem: `WalkStep`, `alphaClock`*
+
+## 20. `J-juggler-cycle-words-are-collatz-negative-cycle-words`
+
+**Row.** The sign flip on cycles is the sign of x, and Juggler's cycle words are the words of Collatz's negative cycles. On the negative integers the odd step is |x| -> (3|x| - 1)/2, so the correction pushes |x| below the pure multiplier -- Juggler's sign -- and the cycle equation (x + 1)(2^d - 3^o) = evenCharge w >= 0 with x + 1 < 0 forces 2^d < 
+
+**Candidate.** `neg_seventeen_inhabits_cycleMinShape` &mdash; kernel-checked, `Problems/Juggler/CollatzBridge.lean:714`
+
+> **Collatz's `-17` cycle inhabits Paper A's `CycleMinShape`**, with the length bound `11` and the even-count bound `4` both met with equality. The Juggler-specific parts of `CycleMin` (the floor-power realisation) are not claimed; this is the word-level shape only.
+
+```lean
+theorem neg_seventeen_inhabits_cycleMinShape : CycleMinShape (parityWordZ (-17) 11)
+```
+
+*Statement names: `neg_cycle_expanding`, `cycle_contracting`, `neg_one_cycle`, `neg_five_cycle`, `neg_seventeen_cycle`, `neg_seventeen_inhabits_cycleMinShape`*
+
+*Runners-up: `neg_cycle_expanding` (0.109), `neg_seventeen_word_expanding` (0.107)*
+
+*If this row describes a definition rather than a theorem: `evenCharge`, `parityWord`*
 

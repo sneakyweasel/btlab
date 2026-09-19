@@ -388,7 +388,9 @@
         "J-cycle-gaps-are-mirror-images",
         "J-collatz-even-step-charge-identity",
         "J-collatz-walk-charge-constant",
-        "J-collatz-walk-charge-is-sharp"
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words"
       ],
       "aliases": [],
       "nk_cluster": "A realization law of FD type cannot give Juggler a Steiner theorem"

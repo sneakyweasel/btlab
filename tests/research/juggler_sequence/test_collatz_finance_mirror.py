@@ -25,6 +25,9 @@ from research.juggler_sequence.collatz_finance_mirror import (
     collatz_bound,
     collatz_survivors,
     convergent_sides,
+    cycle_census,
+    follows_rational,
+    rational_cycle,
     eliahou_decomposition,
     even_charge,
     height_bound_holds,
@@ -42,6 +45,7 @@ from research.juggler_sequence.collatz_finance_mirror import (
     walk_charge_bound,
     word_const,
 )
+from research.juggler_sequence.jump_spectrum import survivor_counts
 from research.juggler_sequence.lean_paths import BRANCHES_ROOT
 from research.juggler_sequence.paper_a_audit import survivors as paper_a_survivors
 
@@ -197,6 +201,29 @@ def test_the_walk_charge_does_not_move_the_published_survivors() -> None:
         margin = walk_charge_bound(HERCHER_LENGTH) / mpf(2) ** 71
     assert s68[0]["K"] == HERCHER_LENGTH and s71[0]["K"] == HERCHER_LENGTH
     assert 1.3 < float(margin) < 1.4
+
+
+def test_rational_cycles_follow_their_words_and_only_three_are_integers() -> None:
+    """The cycle equation as a word problem, on both sides of the linear form.
+
+    Every minimal certificate (Collatz positive-cycle word) and every expanding survivor
+    (Juggler cycle word, Collatz negative-cycle word) has a rational fixed point that follows
+    its own word and returns -- Lagarias's rational-cycle theorem on the laboratory's words --
+    and the integral ones are `1` on the contracting side and `-1, -5, -17` on the expanding
+    side, whose words `O`, `OOE`, `OOOOEOOOEEE` are the negative Collatz cycles known since the
+    1970s. The `-17` word has four even letters and length `11`: Paper A's Theorem 3.22 met
+    with equality.
+    """
+    c = cycle_census(16, 14)
+    assert c["positive_failures"] == 0 and c["negative_failures"] == 0
+    assert c["positive_integral"] == [(2, "OE", 1)]
+    assert c["negative_integral_primitive"] == [(-17, "OOOOEOOOEEE"), (-5, "OOE"), (-1, "O")]
+    # M_K from the DFS agrees with the laboratory's DP at every length checked
+    counts = survivor_counts(16)
+    assert all(c["minimal_certificate_counts"][K] == 2 * counts[K - 1] - counts[K] for K in range(1, 17))
+    w = [1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0]
+    assert rational_cycle(w) == -17 and follows_rational(rational_cycle(w), w)
+    assert 2**11 < 3**7 and w.count(0) == 4
 
 
 def test_committed_artifact_records_the_mirror_and_its_limits() -> None:

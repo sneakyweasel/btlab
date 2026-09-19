@@ -1,0 +1,22 @@
+{
+  "id": "lagarias-1990-rational-cycles",
+  "title": "The set of rational cycles for the 3x+1 problem",
+  "authors": ["Jeffrey C. Lagarias"],
+  "year": 1990,
+  "identifiers": {
+    "doi": "10.4064/aa-56-1-33-53"
+  },
+  "url": {
+    "doi": "https://doi.org/10.4064/aa-56-1-33-53"
+  },
+  "problem_area": "collatz-cycles",
+  "relevant_concepts": [
+    "rational cycles with odd denominator",
+    "parity vector of a periodic point",
+    "2-adic realizer of a periodic word",
+    "negative integer cycles -1, -5, -17"
+  ],
+  "project_relationship": "reproduced",
+  "status": "classical-source",
+  "notes": "Acta Arithmetica 56 (1990) 33-53. Not read here; cited for the classical fact, checked computationally in docs/problems/juggler_collatz_finance_mirror.md, that every finite parity word w of length K with o odd letters is the parity vector of exactly one rational x_0 = wordConst(w)/(2^K - 3^o) with odd denominator, periodic under the shortcut map, positive when the word contracts and negative when it expands; an integer cycle with word w exists exactly when that rational is an integer, i.e. when 2^K - 3^o divides the even-step charge of the word (CollatzBridge.lean, cycle_dvd and cycle_of_equation). The laboratory checked the periodicity on every minimal certificate up to length 26 and every expanding survivor up to length 24, and found the integral ones to be x_0 = 1 (word OE) and the three negative cycles -1, -5, -17 (words O, OOE, OOOOEOOOEEE) with their repetitions. Lagarias 1985 Section 2 already lists the three negative cycles."
+}

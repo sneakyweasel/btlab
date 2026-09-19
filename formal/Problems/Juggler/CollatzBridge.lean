@@ -52,6 +52,7 @@ import Problems.Juggler.RateFreeDensity
 import Problems.Juggler.PaperBCertificateRecursion
 import Problems.Juggler.Envelope
 import Problems.Juggler.CycleCore
+import Problems.Juggler.IdealCycleMin
 
 namespace Problems.Juggler
 
@@ -517,6 +518,205 @@ theorem cycle_even_charge {x d : ℕ} (hcyc : shortcutCIter d x = x) :
 theorem trivial_cycle_charge :
     (1 + 1) * 2 ^ 2 = (1 + 1) * 3 ^ oddCount (parityWord 1 2) + evenCharge (parityWord 1 2) := by
   decide +kernel
+
+/-! ## 10. The cycle equation, and the negative integers
+
+The identity of section 9 holds over `ℤ` as well, and there it says which sign a cycle word has.
+For a cycle `(x + 1)(2 ^ d - 3 ^ o) = evenCharge w ≥ 0`: a positive cycle has a contracting word
+and a cycle at `x ≤ -2` an expanding one, while `x = -1` is the all-odd word. On the negative
+integers the odd step is `|x| ↦ (3|x| - 1)/2`, so the correction points down -- Juggler's sign --
+and the expanding words with no contracting prefix are exactly the words Paper A's `CycleMin`
+theory studies. The three known negative cycles, at `-1`, `-5` and `-17`, have words `O`, `OOE`
+and `OOOOEOOOEEE` of lengths `1`, `3`, `11`; the last inhabits `CycleMinShape` at Paper A's
+floor-free length bound `11` with four even letters, which is Theorem 3.22 met with equality. -/
+
+/-- The shortcut map on `ℤ`: `x / 2` on evens, `(3x + 1) / 2` on odds. Agrees with `shortcutC`
+on `ℕ`, and `3x + 1` is even whenever `x` is odd, so the division is exact on both branches. -/
+def shortcutZ (x : ℤ) : ℤ := if x % 2 = 0 then x / 2 else (3 * x + 1) / 2
+
+/-- `shortcutZ` iterated, in the peeled form `C^{k+1}(x) = C^k(C x)`. -/
+def shortcutZIter : ℕ → ℤ → ℤ
+  | 0, x => x
+  | k + 1, x => shortcutZIter k (shortcutZ x)
+
+/-- The parity word of a `ℤ` orbit. -/
+def parityWordZ : ℤ → ℕ → List Branch
+  | _, 0 => []
+  | x, d + 1 => (if x % 2 = 0 then Branch.even else Branch.odd) :: parityWordZ (shortcutZ x) d
+
+@[simp] theorem parityWordZ_zero (x : ℤ) : parityWordZ x 0 = [] := rfl
+
+@[simp] theorem parityWordZ_succ (x : ℤ) (d : ℕ) :
+    parityWordZ x (d + 1) =
+      (if x % 2 = 0 then Branch.even else Branch.odd) :: parityWordZ (shortcutZ x) d := rfl
+
+@[simp] theorem shortcutZIter_zero (x : ℤ) : shortcutZIter 0 x = x := rfl
+
+@[simp] theorem shortcutZIter_succ (k : ℕ) (x : ℤ) :
+    shortcutZIter (k + 1) x = shortcutZIter k (shortcutZ x) := rfl
+
+/-- One step of the `ℤ` map, cleared of its division. -/
+theorem two_mul_shortcutZ (x : ℤ) : 2 * shortcutZ x = if x % 2 = 0 then x else 3 * x + 1 := by
+  unfold shortcutZ
+  split_ifs with h
+  · omega
+  · omega
+
+/-- **The affine formula over `ℤ`**, for every integer start: `2 ^ d C^d(x) = 3 ^ o x + wordConst w`. -/
+theorem word_affine_int (x : ℤ) (d : ℕ) :
+    (2 : ℤ) ^ d * shortcutZIter d x =
+      (3 : ℤ) ^ oddCount (parityWordZ x d) * x + (wordConst (parityWordZ x d) : ℤ) := by
+  induction d generalizing x with
+  | zero => simp
+  | succ d ih =>
+    rw [shortcutZIter_succ, parityWordZ_succ]
+    have h := ih (shortcutZ x)
+    have h2 := two_mul_shortcutZ x
+    rcases Int.emod_two_eq_zero_or_one x with hx | hx
+    · rw [if_pos hx] at h2 ⊢
+      rw [oddCount_even_cons, wordConst_even]
+      push_cast
+      generalize oddCount (parityWordZ (shortcutZ x) d) = o at h ⊢
+      generalize (wordConst (parityWordZ (shortcutZ x) d) : ℤ) = c at h ⊢
+      generalize shortcutZIter d (shortcutZ x) = z at h ⊢
+      generalize shortcutZ x = y at h h2
+      rw [pow_succ]
+      linear_combination 2 * h + (3 : ℤ) ^ o * h2
+    · rw [if_neg (by omega)] at h2 ⊢
+      rw [oddCount_odd_cons, wordConst_odd]
+      push_cast
+      generalize oddCount (parityWordZ (shortcutZ x) d) = o at h ⊢
+      generalize (wordConst (parityWordZ (shortcutZ x) d) : ℤ) = c at h ⊢
+      generalize shortcutZIter d (shortcutZ x) = z at h ⊢
+      generalize shortcutZ x = y at h h2
+      rw [pow_succ, pow_succ]
+      linear_combination 2 * h + (3 : ℤ) ^ o * h2
+
+/-- The `ℤ` parity word of depth `d` has length `d`. -/
+private theorem parityWordZ_length (x : ℤ) (d : ℕ) : (parityWordZ x d).length = d := by
+  induction d generalizing x with
+  | zero => rfl
+  | succ d ih => simp [parityWordZ_succ, ih]
+
+/-- The `x + 1` form over `ℤ`: `2 ^ d (C^d x + 1) = 3 ^ o (x + 1) + evenCharge w`. -/
+theorem two_pow_mul_iter_add_one_int (x : ℤ) (d : ℕ) :
+    (2 : ℤ) ^ d * (shortcutZIter d x + 1) =
+      (3 : ℤ) ^ oddCount (parityWordZ x d) * (x + 1) + (evenCharge (parityWordZ x d) : ℤ) := by
+  have h := word_affine_int x d
+  have h2 := wordConst_add_two_pow (parityWordZ x d)
+  rw [parityWordZ_length] at h2
+  have h3 : (wordConst (parityWordZ x d) : ℤ) + (2 : ℤ) ^ d =
+      (3 : ℤ) ^ oddCount (parityWordZ x d) + (evenCharge (parityWordZ x d) : ℤ) := by
+    exact_mod_cast h2
+  linarith
+
+/-- **The cycle equation over `ℤ`**: `(x + 1)(2 ^ d - 3 ^ o) = evenCharge w` on every integer cycle. -/
+theorem cycle_equation_int {x : ℤ} {d : ℕ} (hcyc : shortcutZIter d x = x) :
+    (x + 1) * ((2 : ℤ) ^ d - (3 : ℤ) ^ oddCount (parityWordZ x d)) =
+      (evenCharge (parityWordZ x d) : ℤ) := by
+  have h := two_pow_mul_iter_add_one_int x d
+  rw [hcyc] at h
+  linear_combination h
+
+/-- **Negative cycles expand.** A cycle of the `ℤ` map at `x ≤ -2` of positive length has
+`2 ^ d < 3 ^ o` -- Juggler's sign -- because the right-hand side of the cycle equation is positive
+(the word has an even letter, else the cycle would sit at `-1`) and `x + 1 < 0`. -/
+theorem neg_cycle_expanding {x : ℤ} {d : ℕ} (hd : 0 < d) (hx : x ≤ -2) (hcyc : shortcutZIter d x = x) :
+    2 ^ d < 3 ^ oddCount (parityWordZ x d) := by
+  have h := cycle_equation_int hcyc
+  have hE : (0 : ℤ) ≤ (evenCharge (parityWordZ x d) : ℤ) := Int.natCast_nonneg _
+  have hle : (2 : ℤ) ^ d - 3 ^ oddCount (parityWordZ x d) ≤ 0 := by
+    rw [← not_lt]
+    intro hcon
+    have : (x + 1) * ((2 : ℤ) ^ d - 3 ^ oddCount (parityWordZ x d)) < 0 :=
+      mul_neg_of_neg_of_pos (by linarith) hcon
+    linarith
+  have hne : (2 : ℤ) ^ d ≠ 3 ^ oddCount (parityWordZ x d) := by
+    intro heq
+    have h2 : Even ((2 : ℤ) ^ d) := (Int.even_pow' (Nat.pos_iff_ne_zero.mp hd)).mpr even_two
+    have h3 : Odd ((3 : ℤ) ^ oddCount (parityWordZ x d)) := Odd.pow ⟨1, by norm_num⟩
+    rw [heq] at h2
+    exact (Int.not_even_iff_odd.mpr h3) h2
+  have hlt : (2 : ℤ) ^ d < 3 ^ oddCount (parityWordZ x d) := lt_of_le_of_ne (by linarith) hne
+  exact_mod_cast hlt
+
+/-- **The cycle equation in `ℕ`**, for positive cycles: `(x + 1)(2 ^ d - 3 ^ o) = evenCharge w`,
+hence `2 ^ d - 3 ^ o` divides the even-step charge of the word. -/
+theorem cycle_equation {x d : ℕ} (hd : 0 < d) (hx : 0 < x) (hcyc : shortcutCIter d x = x) :
+    (x + 1) * (2 ^ d - 3 ^ oddCount (parityWord x d)) = evenCharge (parityWord x d) := by
+  have h := cycle_even_charge hcyc
+  have hlt := cycle_contracting hd hx hcyc
+  have h2 : (x + 1) * 2 ^ d =
+      (x + 1) * (2 ^ d - 3 ^ oddCount (parityWord x d)) +
+        (x + 1) * 3 ^ oddCount (parityWord x d) := by
+    rw [← Nat.mul_add, Nat.sub_add_cancel hlt.le]
+  linarith
+
+theorem cycle_dvd {x d : ℕ} (hd : 0 < d) (hx : 0 < x) (hcyc : shortcutCIter d x = x) :
+    2 ^ d - 3 ^ oddCount (parityWord x d) ∣ evenCharge (parityWord x d) := by
+  exact Dvd.intro_left (x + 1) (cycle_equation hd hx hcyc)
+
+/-- **The converse**: a start whose parity word satisfies the cycle equation returns. Together
+with `cycle_equation` this is the exact cycle condition as a statement about the word alone,
+once the word is realised: `2 ^ d - 3 ^ o` divides `evenCharge w` with the quotient `x + 1`. -/
+theorem cycle_of_equation {x d : ℕ}
+    (hle : 3 ^ oddCount (parityWord x d) ≤ 2 ^ d)
+    (h : (x + 1) * (2 ^ d - 3 ^ oddCount (parityWord x d)) = evenCharge (parityWord x d)) :
+    shortcutCIter d x = x := by
+  have h1 := two_pow_mul_iter_add_one x d
+  have h2 : (x + 1) * 2 ^ d =
+      (x + 1) * (2 ^ d - 3 ^ oddCount (parityWord x d)) +
+        (x + 1) * 3 ^ oddCount (parityWord x d) := by
+    rw [← Nat.mul_add, Nat.sub_add_cancel hle]
+  have h3 : 2 ^ d * (shortcutCIter d x + 1) = 2 ^ d * (x + 1) := by linarith
+  have h4 := Nat.eq_of_mul_eq_mul_left (Nat.two_pow_pos d) h3
+  omega
+
+/-- **A contracting prefix bounds the minimum by its own rational cycle value.** If the orbit has
+not dropped below `x` by step `j`, then `(x + 1)(2 ^ j - 3 ^ a_j) ≤ evenCharge (prefix)`; so at a
+cycle minimum every contracting prefix caps `x + 1` by `evenCharge / (2 ^ j - 3 ^ a_j)`. -/
+theorem prefix_bound_of_min {x j : ℕ} (hmin : x ≤ shortcutCIter j x) :
+    (x + 1) * (2 ^ j - 3 ^ oddCount (parityWord x j)) ≤ evenCharge (parityWord x j) := by
+  have h := two_pow_mul_iter_add_one x j
+  rcases Nat.lt_or_ge (3 ^ oddCount (parityWord x j)) (2 ^ j) with hlt | hge
+  · have h2 : (x + 1) * 2 ^ j =
+        (x + 1) * (2 ^ j - 3 ^ oddCount (parityWord x j)) +
+          (x + 1) * 3 ^ oddCount (parityWord x j) := by
+      rw [← Nat.mul_add, Nat.sub_add_cancel hlt.le]
+    have hm : 2 ^ j * (x + 1) ≤ 2 ^ j * (shortcutCIter j x + 1) :=
+      Nat.mul_le_mul_left _ (by omega)
+    linarith
+  · rw [Nat.sub_eq_zero_of_le hge]
+    simp
+
+/-! ### The three known negative cycles, and the `-17` word in Paper A's shape -/
+
+theorem neg_one_cycle : shortcutZIter 1 (-1) = -1 := by decide
+
+theorem neg_five_cycle : shortcutZIter 3 (-5) = -5 ∧ parityWordZ (-5) 3 = [.odd, .odd, .even] := by
+  decide
+
+theorem neg_seventeen_cycle :
+    shortcutZIter 11 (-17) = -17 ∧
+      parityWordZ (-17) 11 =
+        [.odd, .odd, .odd, .odd, .even, .odd, .odd, .odd, .even, .even, .even] := by
+  decide
+
+/-- The `-17` word has seven odd and four even letters, and `2 ^ 11 < 3 ^ 7`: an expanding word
+of length `11` with four evens, the least length Paper A's Theorem 3.22 allows a Juggler cycle. -/
+theorem neg_seventeen_word_expanding :
+    2 ^ 11 < 3 ^ oddCount (parityWordZ (-17) 11) ∧ evenCount (parityWordZ (-17) 11) = 4 := by
+  decide
+
+/-- **Collatz's `-17` cycle inhabits Paper A's `CycleMinShape`**, with the length bound `11` and
+the even-count bound `4` both met with equality. The Juggler-specific parts of `CycleMin` (the
+floor-power realisation) are not claimed; this is the word-level shape only. -/
+theorem neg_seventeen_inhabits_cycleMinShape : CycleMinShape (parityWordZ (-17) 11) := by
+  rw [neg_seventeen_cycle.2]
+  refine ⟨by decide, by decide, ?_, ?_, rfl, by decide, by decide⟩
+  · exact ⟨[.odd, .odd, .odd, .odd, .even, .odd, .odd, .odd, .even, .even], 0, rfl, Nat.zero_le 1,
+      Or.inr rfl⟩
+  · exact ⟨[.odd, .odd, .even, .odd, .odd, .odd, .even, .even, .even], rfl⟩
 
 end CollatzBridge
 

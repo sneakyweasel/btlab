@@ -295,12 +295,61 @@ the heights do not carry: the 2-adic residue tracking of Corollary 29, or the
 exact closure `(x_0 + 1)(2^K - 3^p) = evenCharge w`, which requires
 `2^K - 3^p` to divide the even-step charge of the word.
 
+**The cycle equation is a word divisibility, on both sides of the linear
+form** (`J-collatz-cycle-equation-is-a-word-divisibility`,
+`J-juggler-cycle-words-are-collatz-negative-cycle-words`, **EXACT — LEAN
+VERIFIED** for the identities and the three witnesses, **COMPUTATIONALLY
+VERIFIED** for the census; the rational-cycle step is **KNOWN**, Lagarias
+1990, `lagarias-1990-rational-cycles`). Over `ℤ` the affine identity holds
+for every integer start (`word_affine_int`), so on every integer cycle
+`(x + 1)(2^d - 3^o) = evenCharge w`. Its sign is the sign of `x`:
+
+| cycle at | word | witnesses |
+|---|---|---|
+| `x >= 1` | contracting, `3^o < 2^d` (`cycle_contracting`) | `x = 1`, word `OE` |
+| `x = -1` | all odd | `O` |
+| `x <= -2` | expanding, `2^d < 3^o` (`neg_cycle_expanding`) | `-5`: `OOE`; `-17`: `OOOOEOOOEEE` |
+| Juggler `n >= 2` | expanding (`cycle_itinerary_formally_expanding`) | none known |
+
+On the negative integers the odd step is `|x| -> (3|x| - 1)/2`, so the
+correction pushes `|x|` *down*, as Juggler's floors do; a negative cycle word
+read at its least `|x|` is an expanding survivor, which is exactly Paper A's
+`CycleMin` word shape, and the finance survivors of the negative-cycle
+problem at a floor are the Juggler-side dangerous lengths. The three known
+negative cycles have lengths `1, 3, 11`, all Juggler-side, and the `-17`
+word inhabits `CycleMinShape` (`neg_seventeen_inhabits_cycleMinShape`) with
+four even letters at length `11`: Paper A's floor-free Theorem 3.22 -- every
+Juggler cycle has at least four even letters and period at least eleven --
+is met with equality by a word Collatz realises as an integer cycle. **The
+Juggler no-cycle problem is the word-level twin of the Collatz negative-cycle
+conjecture** (only `-1, -5, -17`), not of the positive one.
+
+On the positive side, `prefix_bound_of_min` shows a cycle word at its minimum
+contracts only at the end (every contracting prefix caps `x + 1` by the
+prefix's rational cycle value), so it is a minimal certificate of Paper B,
+its length is `A020914(p)` and `M_K` counts the candidates; `cycle_dvd` and
+`cycle_of_equation` make the existence of a cycle with word `w` exactly the
+divisibility `2^K - 3^p | evenCharge w` with quotient `x + 1 >= 2`, given
+Lagarias's theorem that the rational `wordConst w / (2^K - 3^p)` always has
+parity word `w`. Census (`cycle_census`): every minimal certificate through
+length `26` (`190069` words) and every expanding survivor through length
+`24` (`654279` words) has a rational cycle following its own word; the
+integral ones are `OE` (`x = 1`) and the families `O^k`, `(OOE)^k`,
+`(OOOOEOOOEEE)^k` (`-1, -5, -17`). The DFS counts equal the laboratory's DP
+`2 N_{K-1} - N_K` at every length.
+
 ## Open questions
 
 What the residue-class tracking of Hercher's Corollary 29 and Barina's
 averaging read as on the word side: the divisibility `2^K - 3^p |
-evenCharge w` is a condition on the word alone, and the laboratory's
-survivor machinery counts words by height, not by residue. Not attempted.
+evenCharge w` is now the exact cycle condition on the word, and the
+laboratory's survivor machinery counts words by height, not by residue.
+Not attempted beyond the census.
+
+What the verification floor and the published period bound are for
+Collatz's negative-cycle problem, and whether the mirror reproduces them
+from the Juggler-side survivor list as it did Eliahou's and Hercher's on the
+positive side.
 
 Whether the odd-run bound `run(n) <= C log n` for `n -> floor(n^(3/2))` is
 provable; it would give the Juggler 1-cycle theorem through Baker.
@@ -315,10 +364,12 @@ constant by four percent without moving the period. Nothing is excluded, and
 the branch records what Collatz has that Juggler lacks in the form of a
 concrete unexcluded object. The composition question is answered: the
 height-only bound is sharp on the hug word, so Hercher's averaging and the
-rotation average read the same slack. Best next question: what does the
-divisibility `2^K - 3^p | evenCharge w` -- the exact cycle condition as a
-word problem -- look like on the survivor words, and is any of it visible
-to the transfer operator of `PaperBJumpTransposition`?
+rotation average read the same slack. The divisibility question is answered as far as words go:
+`2^K - 3^p | evenCharge w` is the exact cycle condition on the word, Juggler's
+cycle words are Collatz's negative-cycle words, and `-17` meets Paper A's
+Theorem 3.22 with equality. Best next question: what are the verification
+floor and the period bound of Collatz's negative-cycle problem today, and
+does the mirror reproduce them from the Juggler-side survivors?
 
 ## Publication assessment
 
