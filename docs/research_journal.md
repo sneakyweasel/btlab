@@ -1,5 +1,49 @@
 # Research journal
 
+## 2026-09-19 -- the direct estimate, tried and refuted, and it takes yesterday's row with it
+
+- **Objective:** Philippe asked me to try the direct estimate of the good set --
+  the `20x` I had claimed was available by combining the word classes better.
+- **Tried it. It fails twice over, and the second failure is the interesting one.**
+- **First: the gain is capped and the cap is attained.** Expanding the indicator
+  in Walsh characters, the gain would be `N_d/||ghat||_1`. Parseval gives
+  `||ghat||_1 <= sqrt(N_d)` unconditionally, so `gamma <= sqrt(2 theta)` is a
+  theorem and the `direct` column of my table -- `gamma = 1`, the whole `20x` --
+  never existed. Measured, `gamma` saturates the ceiling: four independent
+  methods, a numpy FWHT to `d = 29`, a factored transform to `d = 40`, exact
+  `Fractions`, and Monte Carlo to `d = 386`. My own fit of `1.28-1.30` was the
+  drifting-exponent trap for the fourth time this week; the naive estimator is
+  biased low by two percent even on `sqrt(N_d)`, whose rate is known exactly.
+- **Second, and decisively: the basis is wrong.** `E_d <= max_(S != 0)|W_S| <=
+  2^d E_d`, both ends attained. A Walsh estimate needs the second bound and
+  Proposition J supplies the first, so the conversion costs `2^d` and the route
+  is `114x` worse at `d = 12`, `8199x` at `d = 24`. Paper B's identity (2.1) is
+  *itself* a Walsh expansion, in the `(w,A)` formal-chain basis, Wiener norm
+  exactly `N_d(1 - 2^(-(d-1)))`. **The union bound is the L1 bound in the only
+  basis the hypothesis controls, and it is termwise sharp there.** Calling it a
+  loss compared two bases and preferred the one whose inputs nobody can bound.
+- **So `J-proposition-j-loss-is-the-union-bound` is retagged REFUTED**, one day
+  after I wrote it. The arithmetic in it is right; the conclusion is not.
+- **And the exponent is not consumed anyway.** Theorem 6.1 fixes `d` before
+  `N -> infinity`, so `N_d` is constant and `N_d E_d(N) = o(N)` comes free; the
+  manuscript says its conclusion follows from any `theta < 1`. I was optimising
+  a quantity no stated conclusion reads.
+- **What survives, and it is not nothing.** `||ghat_d||_1 ~ Phi(frac(d beta))
+  sqrt(N_d) d^(-0.83)`, the structural analogue of the meander shape, with `Phi`
+  a function of the rotation coordinate (4.7% collapse scatter, `d = 10..38`)
+  and discontinuous at `frac = beta` -- the same jump location as `psi`. And at
+  a free step the Wiener norm is *exactly* unchanged, by the empty-window
+  theorem acting on the spectrum. The converse fails at `d = 5`.
+- **Fifth duplication of the week, and the worst kind.** `bad_set_spectrum(d, L)`
+  in `collision_large_sieve.py` has computed this since the Paper C branch;
+  `L = 0` is the good set and nobody had called it there. It reproduces every
+  value I measured to the last digit. I wrote a fresh transform for a function
+  already in the repository. The name check passed because the function is named
+  for the wrong set.
+- **Decision:** `REFUTED` route, recorded in
+  [negative_knowledge.md](negative_knowledge.md).
+  [Collatz bridge](problems/juggler_collatz_bridge.md).
+
 ## 2026-09-19 -- what FD is actually worth, and where Proposition J loses
 
 - **Objective:** Philippe asked whether the two formulations, being different,

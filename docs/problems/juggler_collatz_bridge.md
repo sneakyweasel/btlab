@@ -163,19 +163,63 @@ is what caps the depth. At the same `delta`:
 | square-root cancellation across words | `0.095319 delta` | 1.90x |
 | one direct estimate of the good set | `delta` | 19.98x |
 
-against which improving `delta` from `1/96` to `1/72` is worth `1.33x`. At the
-printed `1/96` the three readings are `N^0.999479`, `N^0.999007` and
-`N^0.989583`: **a direct estimate at the printed exponent already beats a union
-bound at `delta = 1/5`.**
+against which improving `delta` from `1/96` to `1/72` is worth `1.33x`.
 
-That is an observation about the shape of the bound and not a claim that a
-direct estimate is achievable -- the union bound is used because one word class
-is a simple condition on fractional parts and the good set is not. What makes it
-worth asking rather than dismissing is that the good set is not arbitrary
-either: it is the survivor set, carrying the transfer-operator structure of
-`PaperBJumpTransposition` and the closed-form spectrum of
-`J-paper-b-jump-spectrum-is-the-survivor-sequence`. Square-root cancellation is
-the more modest ask of the two and is worth `1.90` on its own.
+**That table was tried and it is withdrawn.** Both readings below the union bound
+are unavailable, for two independent reasons.
+
+*The `direct` column never existed.* Parseval gives
+`sum_S ghat(S)^2 = N_d/2^d`, hence `||ghat||_1 <= sqrt(N_d)` unconditionally, so
+`gamma <= sqrt(2 theta)` is a theorem and `gamma = 1` was out of reach from the
+start. Measured, `gamma` **saturates** that ceiling: four independent
+computations -- a numpy FWHT to `d = 29`, a factored transform to `d = 40`, exact
+`Fractions`, and a Monte-Carlo extension to `d = 386` -- all land on
+`sqrt(2 theta) = 1.389897`. The fitted exponent drifts *upward* with the window
+(`1.28344` at `d = 14..22`, `1.31824` at `26..34`, `1.335` at `30..38`), and the
+same naive estimator applied to `sqrt(N_d)`, whose rate is known exactly, is
+itself biased low by two percent. Reading `1.28-1.30` as a limit below Parseval
+was the drifting-exponent trap for the fourth time in a week.
+
+*And the `sqrt` column needs a hypothesis nobody has.* The two bases are related
+by exact identities in both directions:
+
+    W_S(N) = sum_w (-1)^(w.S) (#w(N) - 2^-d N)         =>  max_S |W_S| <= 2^d E_d
+    #w(N) - 2^-d N = 2^-d sum_(S != 0) (-1)^(w.S) W_S  =>  E_d <= max_(S != 0) |W_S|
+
+with both ends attained. A Walsh estimate needs the second bound and Proposition J
+supplies only the first, so the conversion costs `2^d` and the route is **worse**
+by `2^d ||ghat||_1 / N_d`: `114x` at `d = 12`, `531x` at `16`, `1700x` at `20`,
+`8199x` at `24`, growing like `1.44^d`.
+
+Seen properly the whole idea was a category error. Paper B's identity (2.1) is
+*itself* a Walsh expansion, in the `(w,A)` formal-chain basis, with every
+coefficient `+/- 2^(-(d-1))` and Wiener norm exactly `N_d(1 - 2^(-(d-1)))`. **The
+union bound is the L1 bound in the only basis the hypothesis controls, and it is
+termwise sharp there.** Calling it a loss compared two different bases and
+preferred the one whose inputs nobody can bound. The `1.90x` returns only if
+Hypothesis FD is restated as a uniform character bound
+`max_(S != 0)|W_S(N)| <= B` -- but the machinery controls formal-chain
+correlations `R_(w,A)` for a fixed word, and `(-1)^(x_k(n))` agrees with the
+formal sign only on the cell where the orbit follows `w`.
+
+**And the exponent is not consumed anyway.** Theorem 6.1 fixes `d`, sends
+`N -> infinity`, and only then lets `d` grow, so `N_d` is constant during the
+limit that matters and `N_d E_d(N) = o(N)` comes free. The manuscript says its
+conclusion follows from any `theta < 1`; `J-rate-free-density-one` records that
+it survives rate-free. So the table above calibrates what FD would be worth, and
+optimising it was never going to move a stated conclusion.
+
+**What the attempt did leave.** `||ghat_d||_1 ~ Phi(frac(d beta)) sqrt(N_d)
+d^(-0.83)` -- the structural analogue of the meander shape, with `Phi` a function
+of the rotation coordinate alone (4.7% collapse scatter over `d = 10..38`) and
+discontinuous at `frac = beta`, the same jump location as `psi`. And the
+plateaus are exact: at a free step `Good_d = Good_(d-1) x {0,1}`, so
+`ghat_d(S,1) = 0` and `||ghat_d||_1` is unchanged while `N_d` doubles -- the
+empty-window theorem acting on the spectrum, the third place this week it has
+turned up controlling something new. The converse fails: `d = 5` is not free and
+its norm does not move either, so a plateau is evidence of a free step, not
+proof of one. Details in
+`J-good-set-wiener-norm-carries-the-rotation`.
 
 ## Open questions
 

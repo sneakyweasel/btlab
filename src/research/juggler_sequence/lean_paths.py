@@ -297,6 +297,7 @@ AUXILIARY_MODULES: dict[str, str] = {
     "PaperBCertificateLengths": "Paper B Lemma 5.1 for every length: the odd-count window",
     "PaperBCertificateRecursion": "Paper B: survivors and minimal certificates, one recursion",
     "PaperBJumpTransposition": "Paper B: one barrier transposition costs the barrier mass",
+    "CollatzBridge": "Juggler-Collatz bridge: the shared word, Terras's bijection, and the survivor count as a Collatz residue count",
     "PaperBChainRule": "Paper B review target",
     "PaperBAmplitudeCocycle": "Paper B profile: the amplitude cocycle",
     "PaperBDensity": "Paper B: Hypothesis FD to density one, conditionally",
