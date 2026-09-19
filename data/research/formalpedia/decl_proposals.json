@@ -1,5 +1,5 @@
 {
-  "composite": 38,
+  "composite": 39,
   "note": "Proposals for human review. Calibration: 86% precision (42 of 49 fires) against all resolved rows. Nothing here has been written into the ledger.",
   "rows": [
     {
@@ -4575,8 +4575,51 @@
         "neg_prefix_noncontracting"
       ],
       "statement": "IN LEAN for the uniform constant (CollatzBridge.lean, kernel-checked): two_mul_evenCharge_le, on any word with no contracting prefix 2 evenCharge w <= (|w| - o) 3^o, an induction on the word carrying the prefix condition with an offset; neg_cycle_finance, at the least element of a negative cycle 2 (|x| - 1)(3^o - 2^K) <= (K - o) 3^o, from the cycle equation; neg_seventeen_finance instantiates it ("
+    },
+    {
+      "candidates": [
+        {
+          "decl": "Vword_prefix_iff",
+          "line": 66,
+          "score": 0.109,
+          "trust": "kernel"
+        },
+        {
+          "decl": "Vword_five",
+          "line": 100,
+          "score": 0.059,
+          "trust": "kernel"
+        },
+        {
+          "decl": "Vword_six_prefixFree",
+          "line": 95,
+          "score": 0.058,
+          "trust": "kernel"
+        }
+      ],
+      "composite": true,
+      "confidence": "review",
+      "definitions": [
+        {
+          "decl": "Vword",
+          "line": 36,
+          "score": 0.044
+        }
+      ],
+      "id": "J-paper-c-production-words-are-prefix-free",
+      "in_file": 6,
+      "lean": "Problems/Juggler/FateProductionWords.lean",
+      "names_own": [
+        "Vword_length",
+        "Vword_oddCount",
+        "Vword_eq_odd_cons",
+        "Vword_prefix_iff",
+        "Vword_six_prefixFree",
+        "Vword_five"
+      ],
+      "statement": "Paper C's finite production words are prefix-free, in Lean, for the whole family rather than for the six the manuscript fixes. Paper C (docs/theory/juggler_fate_almost_all_note.md) builds Theorem 1 from six productions V_k = (OE)^(k-1) OEE with rho_k = (1/2)(3/4)^k, 1 <= k <= 6, and uses their prefix-freeness three times: 'Production words must be prefix-free' when the candidate list is drawn up, "
     }
   ],
-  "unresolved": 125,
-  "worth_reviewing": 19
+  "unresolved": 126,
+  "worth_reviewing": 20
 }

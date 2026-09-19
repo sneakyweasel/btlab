@@ -23,9 +23,10 @@ no hypothesis:
 `g_A(t) ≥ (1 - 4e^{-t/4}) g_A(t/2) + (2/9 - (50/9)e^{-t/8}) g_A(3t/4) - η₀(t)`
 
 for `t ≥ 40` (`production_two`), and runs the recursion lemma on it: **every nonempty
-backward-closed set has log-mass at least `K (log x)^{3/10}` up to `x`, for all large `x`**
+backward-closed set has log-mass at least `K (log x)^{13/40}` up to `x`, for all large `x`**
 (`logMass_contagion_elementary`). The exponent is the root of
-`2^{-λ} + (2/9)(3/4)^λ = 1`, about `0.325`, certified at `λ = 3/10` by two rational bounds;
+`2^{-λ} + (2/9)(3/4)^λ = 1`, `0.3261209621…`, certified at `λ = 13/40 = 0.325` by two
+rational bounds;
 the paper's `λ ≤ 0.49` needs in addition the block-average family, whose two exponential-sum
 bounds are hypotheses in `FateBlockAverage`, and the five ladder productions of Section 5.7,
 whose Appendix D estimates are human. Nothing here is a density theorem in the paper's sense,
@@ -514,17 +515,21 @@ theorem production_two_sum {A : ℕ → Prop} (hA : BackwardClosed A) {t : ℝ} 
   rw [show (1 / 2 : ℝ) * t = t / 2 by ring, show (3 / 4 : ℝ) * t = 3 * t / 4 by ring]
   exact h
 
-/-- `ζ(3/10) = 2^{-3/10} + (2/9)(3/4)^{3/10} - 1 > 0`, by two rational bounds:
-`0.81 ≤ (1/2)^{3/10}` since `0.81^{10} ≤ 1/8`, and `0.91 ≤ (3/4)^{3/10}` since
-`0.91^{10} ≤ 27/64`; then `0.81 + (2/9)(0.91) > 1`. -/
-theorem zeta2_pos : 0 < ∑ i, coef2 i * rate2 i ^ ((3 : ℝ) / 10) - 1 := by
+/-- `ζ(13/40) = 2^{-13/40} + (2/9)(3/4)^{13/40} - 1 > 0`, by two rational bounds:
+`0.798 ≤ (1/2)^{13/40}` since `0.798^{40} ≤ 2^{-13}`, and `0.91 ≤ (3/4)^{13/40}` since
+`0.91^{40} ≤ (3/4)^{13}`; then `0.798 + (2/9)(0.91) = 1.000222 > 1`.
+
+`13/40 = 0.325` against the true root `0.3261209621…` of `2^{-λ} + (2/9)(3/4)^λ = 1`, so this
+certificate reaches `99.6%` of what the two-production inequality can give. The earlier
+certificate was `λ = 3/10`, which reached `92%`. -/
+theorem zeta2_pos : 0 < ∑ i, coef2 i * rate2 i ^ ((13 : ℝ) / 40) - 1 := by
   rw [Fin.sum_univ_two]
   simp only [rate2, coef2, Matrix.cons_val_zero, Matrix.cons_val_one]
-  have h1 : (81 / 100 : ℝ) ≤ (1 / 2 : ℝ) ^ ((3 : ℝ) / 10) := by
-    rw [Numerics.le_rpow_iff_pow (n := 10) (by norm_num) (by norm_num) (by norm_num)]
+  have h1 : (399 / 500 : ℝ) ≤ (1 / 2 : ℝ) ^ ((13 : ℝ) / 40) := by
+    rw [Numerics.le_rpow_iff_pow (n := 40) (by norm_num) (by norm_num) (by norm_num)]
     norm_num
-  have h2 : (91 / 100 : ℝ) ≤ (3 / 4 : ℝ) ^ ((3 : ℝ) / 10) := by
-    rw [Numerics.le_rpow_iff_pow (n := 10) (by norm_num) (by norm_num) (by norm_num)]
+  have h2 : (91 / 100 : ℝ) ≤ (3 / 4 : ℝ) ^ ((13 : ℝ) / 40) := by
+    rw [Numerics.le_rpow_iff_pow (n := 40) (by norm_num) (by norm_num) (by norm_num)]
     norm_num
   linarith
 
@@ -565,12 +570,12 @@ theorem errors_vanish {ε : ℝ} (hε : 0 < ε) :
   obtain ⟨h1, h2, h3⟩ := errors_le ht0
   exact ⟨by linarith, by linarith, by linarith⟩
 
-/-- **Elementary contagion.** For every nonempty backward-closed `A` and `0 < λ ≤ 3/10` there
+/-- **Elementary contagion.** For every nonempty backward-closed `A` and `0 < λ ≤ 13/40` there
 are `K > 0` and `t₁` with `g_A(t) ≥ K t^λ` for all `t ≥ t₁`. No hypothesis: the seed is
 Lemma 5.2, the recursion is Lemma 5.1 on the two productions `E` and `OE`, and the production
 inequality is `production_two`, whose inputs are Lemmas 3.1, 4.2 and 4.3. -/
 theorem contagion_elementary {A : ℕ → Prop} (hA : BackwardClosed A) {a : ℕ} (ha : 1 ≤ a)
-    (hAa : A a) {lam : ℝ} (hlam0 : 0 < lam) (hlam : lam ≤ 3 / 10) :
+    (hAa : A a) {lam : ℝ} (hlam0 : 0 < lam) (hlam : lam ≤ 13 / 40) :
     ∃ K : ℝ, 0 < K ∧ ∃ t₁ : ℝ, 0 < t₁ ∧ ∀ t, t₁ ≤ t → K * t ^ lam ≤ gA A t := by
   obtain ⟨m, hm, hmA⟩ := exists_ge_three_of_backwardClosed hA ha hAa
   have hc₀ : 0 < seedConst m := seed_constant_pos hm
@@ -618,12 +623,12 @@ theorem contagion_elementary {A : ℕ → Prop} (hA : BackwardClosed A) {a : ℕ
   exact hmain t (by linarith)
 
 /-- **Elementary contagion, as a log-mass bound.** For every nonempty backward-closed `A` and
-`0 < λ ≤ 3/10` there are `K > 0` and `x₀` with `Σ_{n ∈ A, n ≤ x} 1/n ≥ K (log x)^λ` for all
-`x ≥ x₀`. This is Theorem 5.3 of the paper with `3/10` in place of `λ** ≈ 0.4926`, and with
+`0 < λ ≤ 13/40` there are `K > 0` and `x₀` with `Σ_{n ∈ A, n ≤ x} 1/n ≥ K (log x)^λ` for all
+`x ≥ x₀`. This is Theorem 5.3 of the paper with `13/40` in place of `λ** ≈ 0.4926`, and with
 no hypothesis: the block-average family and the ladder, which need the exponential sums, are
 what lift the exponent. -/
 theorem logMass_contagion_elementary {A : ℕ → Prop} (hA : BackwardClosed A) {a : ℕ}
-    (ha : 1 ≤ a) (hAa : A a) {lam : ℝ} (hlam0 : 0 < lam) (hlam : lam ≤ 3 / 10) :
+    (ha : 1 ≤ a) (hAa : A a) {lam : ℝ} (hlam0 : 0 < lam) (hlam : lam ≤ 13 / 40) :
     ∃ K : ℝ, 0 < K ∧ ∃ x₀ : ℕ, ∀ x : ℕ, x₀ ≤ x → K * Real.log x ^ lam ≤ logMass A x := by
   obtain ⟨K, hK, t₁, ht₁, h⟩ := contagion_elementary hA ha hAa hlam0 hlam
   refine ⟨K, hK, ⌈Real.exp t₁⌉₊ + 1, ?_⟩
@@ -637,11 +642,11 @@ theorem logMass_contagion_elementary {A : ℕ → Prop} (hA : BackwardClosed A) 
   have hlog : t₁ ≤ Real.log x := (Real.le_log_iff_exp_le (by positivity)).mpr hxR
   exact le_trans (h _ hlog) (logMass_ge_gA A hx1)
 
-/-- **Corollary 5.5(2) at exponent `3/10`, unconditional.** If some positive integer does not
-reach `1`, the failures have log-mass at least `K (log x)^{3/10}` up to `x` for all large `x`:
+/-- **Corollary 5.5(2) at exponent `13/40`, unconditional.** If some positive integer does not
+reach `1`, the failures have log-mass at least `K (log x)^{13/40}` up to `x` for all large `x`:
 the failure set is backward-closed (Lemma 2.1) and nonempty. -/
 theorem failures_logMass_ge {a : ℕ} (ha : 1 ≤ a) (hfail : ¬ReachesOne a) {lam : ℝ}
-    (hlam0 : 0 < lam) (hlam : lam ≤ 3 / 10) :
+    (hlam0 : 0 < lam) (hlam : lam ≤ 13 / 40) :
     ∃ K : ℝ, 0 < K ∧ ∃ x₀ : ℕ, ∀ x : ℕ, x₀ ≤ x →
       K * Real.log x ^ lam ≤ logMass (fun n => ¬ReachesOne n) x :=
   logMass_contagion_elementary not_reachesOne_backwardClosed ha hfail hlam0 hlam
@@ -650,13 +655,13 @@ theorem failures_logMass_ge {a : ℕ} (ha : 1 ≤ a) (hfail : ¬ReachesOne a) {l
 
 /-- **Theorem 7.2 with its contagion hypothesis discharged.** If the odd failures in `(y, 2y]`
 number at most `y (log y)^{-e}` for all large `y`, for some `e > 7/10`, then every positive
-integer reaches `1`. The contagion bound at exponent `3/10` is `failures_logMass_ge`, so
+integer reaches `1`. The contagion bound at exponent `13/40` is `failures_logMass_ge`, so
 nothing is assumed beyond the rate; the paper's conditional form needs `e > 0.51` and the
 production inequality (5.2). -/
 theorem conjecture_of_tao_rate {e : ℝ} (he : 7 / 10 < e)
     (htao : ∃ y₀ : ℕ, ∀ y : ℕ, y₀ ≤ y → ((oddFailures y).card : ℝ) ≤ y * Real.log y ^ (-e)) :
     ∀ n, 1 ≤ n → ReachesOne n :=
-  tao_rate_implies_conjecture (lam := 3 / 10) (by norm_num) (by norm_num) (by linarith)
+  tao_rate_implies_conjecture (lam := 13 / 40) (by norm_num) (by norm_num) (by linarith)
     (fun ⟨a, ha, hfail⟩ => failures_logMass_ge ha hfail (by norm_num) le_rfl) htao
 
 /-- **Corollary 8.4 with its contagion hypothesis discharged.** A cylinder bound `H(C, A)` at
@@ -668,7 +673,7 @@ theorem conjecture_of_cylinder_bound {N₀ : ℕ} (hN : 2 ≤ N₀)
     (hcyl : ∃ y₁ : ℕ, ∀ y, y₁ ≤ y → CylinderBound N₀ C A y)
     (he : 7 / 10 < chernoffExponent C) :
     ∀ n, 1 ≤ n → ReachesOne n :=
-  cylinder_bound_implies_conjecture hN hfloor C A hC hA hcyl (lam := 3 / 10) (by norm_num)
+  cylinder_bound_implies_conjecture hN hfloor C A hC hA hcyl (lam := 13 / 40) (by norm_num)
     (by norm_num) (by linarith)
     (fun ⟨a, ha, hfail⟩ => failures_logMass_ge ha hfail (by norm_num) le_rfl)
 

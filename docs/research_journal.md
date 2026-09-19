@@ -1,5 +1,111 @@
 # Research journal
 
+## 2026-09-19 -- Paper C under the bridge, and a citation read backwards
+
+- **Objective:** Philippe asked what the Juggler/Collatz bridge does to Paper
+  C, whether the contagion argument transfers to Collatz, and whether Collatz
+  can strengthen it.
+- **First answer was wrong in its reason.** I measured `|J^-1(m)|` growing like
+  `m` against `|C^-1(m)| <= 2` and concluded contagion cannot transfer because
+  Collatz has no fat fibres. Two things were wrong with that. The sample points
+  were all powers of ten, hence all `1 mod 3`, which silently suppressed the
+  odd branch; the honest fibre size is one or two with mean `4/3`. And the
+  invariant is wrong: in Syracuse form the Collatz fibres are *infinite*, and
+  in accelerated form the mean backward log-mass is critical at exactly `1/m`,
+  the same as Juggler's even block. I also wrote that accelerated Collatz is a
+  bijection on the 2-adics, which is false -- it is exactly 2-to-1 there, and
+  the bijection of Terras is the parity-vector map.
+- **The right invariant is worst-case log-mass.** Juggler's even block carries
+  exactly `1/m` for every `m` with no exceptional residues; accelerated Collatz
+  carries `1/m` in the mean but exactly `1/(2m)` on every multiple of three.
+  Theorem 1 quantifies over every nonempty backward-closed set, so the worst
+  case governs and the mean is irrelevant --
+  `J-paper-c-contagion-dichotomy-is-log-mass`.
+- **And the worst case is realized, which settles the transfer question by
+  exhibit.** `{3 * 2^k}` is backward-closed under the accelerated map, because
+  a multiple of three has no odd preimage; it is infinite, counted by
+  `log_2 x`, and has reciprocal sum exactly `2/3`. So the Collatz analogue of
+  Theorem 1 is false outright, not merely unavailable --
+  `J-paper-c-collatz-analogue-is-false-by-exhibit`.
+- **A citation read backwards in three of our own artifacts.** They said the
+  analogue fails "because Collatz backward trees are thin (`x^{0.84}`,
+  Krasikov--Lagarias)". That exponent is a *lower* bound on preimage counts and
+  establishes no thinness whatever; conjecturally the tree is everything. The
+  published manuscript never made the error -- Sections 1.3 and 7.1 say only
+  that an `x^{0.84}` lower bound is compatible with a bounded reciprocal sum,
+  which is correct -- so the Zenodo deposit needs no revision. Corrected:
+  `juggler_fate_contagion_note.md` twice, `juggler_tao_reduction_note.md`, and
+  the row `J-fate-contagion-equivalence`. A test now guards against the wording
+  returning.
+- **What the bridge does reach.** Not the engine, the ceiling. Paper C's ideal
+  coefficient collapses to `c_w = 2^(-|w|)/rho_w = 3^(-b(w))`, the Collatz
+  backward-step probability, so `F_J(lambda) = F_C(lambda - 1)` with `F_C` the
+  Collatz walk's moment generating function. Kraft equality and the martingale
+  identity `E[rho] = 1` are `F_C`'s two roots and land on `lambda = 1` and
+  `lambda = 2`, so the method ceiling is a Collatz identity one exponential
+  level up, and the whole shortfall to `lambda** = 0.4926` is `eta_0 = 0`. The
+  identity is exact on every term the paper prints, the whole `V_k` ladder
+  included: `c_k = 3^(-k)` with `b(V_k) = k`. I first read the `3^(-(k+1))` in
+  the `lambda**` equation as the ladder's coefficient and concluded it sat a
+  parity share below ideal; the peer session flagged the index, and it is the
+  *increment* `c_k - (2/9) c_(k-1)`, inclusion-exclusion against family 3. So
+  the inventory is at ideal throughout and the shortfall from the ceiling is
+  overlap and truncation. `J-paper-c-ceiling-is-the-collatz-walk-mgf`.
+- **Nothing imports.** A counting bound `x^kappa` with `kappa < 1` carries total
+  logarithmic mass `O(1)`, so Krasikov--Lagarias cannot enter the contagion
+  recursion at any exponent below one. Wrong metric, not merely too weak.
+- **The audit has a blind spot.** `J-word-density-results-are-not-juggler-specific`
+  offers two classes, word combinatorics and how orbits realise words. Paper C's
+  engine is in neither: exact, elementary, Lean-checked, no equidistribution,
+  and still Juggler-only. It needs a third class for metric facts about how the
+  map deforms scale, or a future ledger pass will misfile every fate row.
+- **Correction to this branch's own framing.** The dossier's "Juggler is
+  Collatz's word problem plus a Weyl-sum problem" reads as though Juggler were
+  strictly harder. Paper C is where the exponential level-up cashes out as a
+  resource. The two trade: Juggler has a supercritical backward tree and is
+  stuck at `eta_0 = 0`, Collatz has equidistribution free by Terras and gains
+  nothing from it because its tree is exactly critical. Each holds the other's
+  missing input.
+- **Decision:** `CLOSE`. The headline is already published in the manuscript
+  and carried by two rows; what was missing was the counterexample, the
+  dichotomy, the identity and the errata. No Lean, no branch.
+
+## 2026-09-19 -- Paper C's production words are prefix-free, in Lean
+
+- **Objective:** first iteration of the 30-minute loop, and the Paper C Lean
+  pass Philippe asked for.
+- **What the audit found.** Paper C's Lean layer is large and clean: the
+  barrel reaches 62 modules and 1816 declarations, every one kernel-checked,
+  no `sorry` and no `native_decide`, and all 440 backticked Appendix A names
+  are declared and reachable. But it is arranged so that the headline
+  exponent is not among what it proves. Lean proves the contagion theorem
+  unconditionally only at `lambda <= 3/10`; `lambda** = 0.4926` arrives with
+  the production inequality (5.2) as an explicit hypothesis, and (5.2) rests
+  on two exponential-sum bounds that exist nowhere under `formal/`. The
+  paper's own verification table says so.
+- **Four defects worth recording.** Corollaries 5.4 and 5.5 are asserted
+  inside Theorem 1's own sentence and carry no verification-table row and no
+  Appendix A entry. Appendix A says the barrel imports "exactly the thirty
+  modules named here" and names 29; `TerminationFloor257` is imported and
+  never mentioned. There is no Paper C trust-boundary test, and
+  `tools/trust_boundary.py` cannot audit Paper C at all -- its `--paper`
+  argument accepts only `a` and `b`. The 59-character name-width hazard has
+  zero headroom.
+- **Lean written.** The cheapest real target was the one nobody had taken:
+  Paper C asserts three times that its six production words are prefix-free
+  and leans on it twice, and the words were not defined anywhere under
+  `formal/`. `Problems/Juggler/FateProductionWords.lean` now defines them and
+  proves prefix-freeness for the whole family, not just the six, with the
+  length and odd-count formulas. Row
+  `J-paper-c-production-words-are-prefix-free`.
+- **The three standing questions, answered no.** Nothing moves Juggler
+  no-cycle, nothing moves Juggler termination, nothing moves Collatz. The
+  bridge reaches Paper C in exactly one place: Hypothesis H(C,A) is
+  word-density-based, so its Collatz mirror is free by Terras, which caps
+  what proving it would buy.
+- **Decision:** keep the module auxiliary. Wiring it into Paper C's barrel
+  and Appendix A belongs with the pass that fixes the thirty-versus-29 count.
+
 ## 2026-09-19 -- Paper B now says its word counts are Collatz word counts
 
 - **Objective:** Philippe asked whether Paper B had been updated since the
