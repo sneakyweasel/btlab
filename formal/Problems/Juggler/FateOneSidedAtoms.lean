@@ -615,13 +615,13 @@ theorem exc_conj_of_contagion {N₀ : ℕ} (hN : 2 ≤ N₀)
 /-- **Section 10(d)'s corollary with nothing else assumed.** The one-sided hypothesis with
 exceptional atoms of mass `y (log y)^{-B}` at all large scales above a certified floor, with
 `C ≥ 5`, `0 < q < p_C`, `A > C(1 + log₂ x) + 1 + e`, `B > C log₂ x + 1 + e` and
-`7/10 < e < e_{C,q}`, gives that every positive integer reaches `1`. -/
+`27/40 < e < e_{C,q}`, gives that every positive integer reaches `1`. -/
 theorem exc_implies_conjecture {N₀ : ℕ} (hN : 2 ≤ N₀)
     (hfloor : ∀ m, 1 ≤ m → m ≤ N₀ → ReachesOne m) (C q A B e : ℝ) (hC : 5 ≤ C)
     (hq0 : 0 < q) (hqp : q < pC C)
     (hA : C * (1 + Real.logb 2 (tilt (pC C) q)) + 1 + e < A)
     (hB : C * Real.logb 2 (tilt (pC C) q) + 1 + e < B) (he : e < oneSidedExponent C q)
-    (he7 : 7 / 10 < e)
+    (he7 : 27 / 40 < e)
     (hH : ∃ y₁ : ℕ, ∀ y, y₁ ≤ y → OneSidedBoundExc N₀ C q A B y) :
     ∀ n, 1 ≤ n → ReachesOne n :=
   Production.conjecture_of_tao_rate he7

@@ -29,7 +29,7 @@ hypothesis with exceptional atoms of mass `exc` and no error term
 (`Energy.oneSidedShareExc_of_energy`), which `FateOneSidedAtoms` runs to the conjecture:
 `Energy.energy_implies_conjecture` needs the bad energy bound with `exc = y (log y)^{-B}` at
 the depths below `⌈C L(y)⌉` at all large scales (`Energy.EnergyBound`), `1/2 < q < p_C`,
-`B > C log₂ x + 1 + e` and `7/10 < e < e_{C,q}`, and nothing else.
+`B > C log₂ x + 1 + e` and `27/40 < e < e_{C,q}`, and nothing else.
 
 Why the restriction to bad words is not optional. An orbit that has reached `1` has an
 all-`O` tail (`J(1) = 1` is odd), so its cylinder is fully biased at every later depth; the
@@ -229,13 +229,13 @@ theorem energy_conj_of_contagion {N₀ : ℕ} (hN : 2 ≤ N₀)
 /-- **The conjecture from the energy bound, with nothing else assumed.** If at all large
 scales above a certified floor the bias energy of the `L(y)`-bad words at every depth
 `1 ≤ t < ⌈C L(y)⌉` is at most `(q - 1/2)² y² (log y)^{-2B} / 2^t`, with `C ≥ 5`,
-`1/2 < q < p_C`, `B > C log₂ x + 1 + e` and `7/10 < e < e_{C,q}`, then every positive integer
+`1/2 < q < p_C`, `B > C log₂ x + 1 + e` and `27/40 < e < e_{C,q}`, then every positive integer
 reaches `1`. -/
 theorem energy_implies_conjecture {N₀ : ℕ} (hN : 2 ≤ N₀)
     (hfloor : ∀ m, 1 ≤ m → m ≤ N₀ → ReachesOne m) (C q B e : ℝ) (hC : 5 ≤ C)
     (hq : 1 / 2 < q) (hqp : q < pC C)
     (hB : C * Real.logb 2 (OneSided.tilt (pC C) q) + 1 + e < B)
-    (he : e < OneSided.oneSidedExponent C q) (he7 : 7 / 10 < e)
+    (he : e < OneSided.oneSidedExponent C q) (he7 : 27 / 40 < e)
     (hH : ∃ y₁ : ℕ, ∀ y, y₁ ≤ y → EnergyBound N₀ C q B y) :
     ∀ n, 1 ≤ n → ReachesOne n := by
   obtain ⟨y₁, hy₁⟩ := hH

@@ -654,24 +654,25 @@ theorem failures_logMass_ge {a : ℕ} (ha : 1 ≤ a) (hfail : ¬ReachesOne a) {l
 /-! ### The conjecture from a rate, with no other hypothesis -/
 
 /-- **Theorem 7.2 with its contagion hypothesis discharged.** If the odd failures in `(y, 2y]`
-number at most `y (log y)^{-e}` for all large `y`, for some `e > 7/10`, then every positive
+number at most `y (log y)^{-e}` for all large `y`, for some `e > 27/40`, then every positive
 integer reaches `1`. The contagion bound at exponent `13/40` is `failures_logMass_ge`, so
 nothing is assumed beyond the rate; the paper's conditional form needs `e > 0.51` and the
-production inequality (5.2). -/
-theorem conjecture_of_tao_rate {e : ℝ} (he : 7 / 10 < e)
+production inequality (5.2). The threshold is `1 - λ` for the `λ` the contagion bound
+reaches, so lifting that exponent to `13/40` lowered it from `7/10` to `27/40`. -/
+theorem conjecture_of_tao_rate {e : ℝ} (he : 27 / 40 < e)
     (htao : ∃ y₀ : ℕ, ∀ y : ℕ, y₀ ≤ y → ((oddFailures y).card : ℝ) ≤ y * Real.log y ^ (-e)) :
     ∀ n, 1 ≤ n → ReachesOne n :=
   tao_rate_implies_conjecture (lam := 13 / 40) (by norm_num) (by norm_num) (by linarith)
     (fun ⟨a, ha, hfail⟩ => failures_logMass_ge ha hfail (by norm_num) le_rfl) htao
 
 /-- **Corollary 8.4 with its contagion hypothesis discharged.** A cylinder bound `H(C, A)` at
-all large scales with `A > C + e(C)` and `e(C) > 7/10`, above a certified floor `N₀`, gives
+all large scales with `A > C + e(C)` and `e(C) > 27/40`, above a certified floor `N₀`, gives
 the conjecture; nothing else is assumed. -/
 theorem conjecture_of_cylinder_bound {N₀ : ℕ} (hN : 2 ≤ N₀)
     (hfloor : ∀ m, 1 ≤ m → m ≤ N₀ → ReachesOne m) (C A : ℝ) (hC : 5 ≤ C)
     (hA : C + chernoffExponent C < A)
     (hcyl : ∃ y₁ : ℕ, ∀ y, y₁ ≤ y → CylinderBound N₀ C A y)
-    (he : 7 / 10 < chernoffExponent C) :
+    (he : 27 / 40 < chernoffExponent C) :
     ∀ n, 1 ≤ n → ReachesOne n :=
   cylinder_bound_implies_conjecture hN hfloor C A hC hA hcyl (lam := 13 / 40) (by norm_num)
     (by norm_num) (by linarith)

@@ -344,8 +344,8 @@ constants; they prove nothing and are labelled wherever they appear.
 | Block average (Proposition 4.4), asymptotic | human proof; the exact layer, the slow sum \(O(m')\), the two-sided count of the block and the deduction of (4.1) and of the asymptotic form from the two remaining exponential-sum bounds are Lean, those two bounds are not |
 | Share law and its three corollaries (Lemma 4.5, Corollary 4.6) | human proof; the phase expansion with its cubic remainder, the range of the quadratic phase with its threshold \([-\tfrac56,\tfrac16]\), and the integral \(\tfrac{25}{108}\) are Lean, the equidistribution and the measure identifications are not |
 | Production inequality (5.2) with the \(V\)-ladder terms of Section 5.7 | human proof; the \(E\)-family and the \(OE\)-fiber family are Lean with explicit errors, the block-average family needs the two exponential-sum bounds and the ladder needs Appendix D |
-| Theorem 5.3 at exponent \(3/10\), unconditional: two productions, no hypothesis | Lean |
-| The side condition \(e(C)>\tfrac7{10}\) of the unconditional criteria, at \(C=30\), by rational bounds on \(e\), \(\log 2\) and \(\log_2 3\) | Lean; the least such \(C\) (\(23\)) and the paper's own threshold through \(\lambda^{**}\) stay with the audit |
+| Theorem 5.3 at exponent \(13/40\), unconditional: two productions, no hypothesis | Lean |
+| The side condition \(e(C)>\tfrac{27}{40}\) of the unconditional criteria, at \(C=30\), by rational bounds on \(e\), \(\log 2\) and \(\log_2 3\) | Lean; the least such \(C\) (\(23\)) and the paper's own threshold through \(\lambda^{**}\) stay with the audit |
 | Cube fibers full or alternating (Lemma 4.7) | Lean |
 | Recursion lemma (Lemma 5.1) | Lean |
 | Seed (Lemma 5.2) | Lean |
@@ -360,9 +360,9 @@ constants; they prove nothing and are labelled wherever they appear.
 | Pressure form (Theorem 9.2, exact: a pressure bound \(Na_\theta^dE\) gives at most \(Ne^{-dD(p_C\Vert 1/2)}E\) live starts) | Lean, on the live weight |
 | Pressure telescoping (Proposition 9.3) | Lean, on the word-weight framework |
 | One-sided form (Theorem 9.1, exact: at every \(y\) the odd failures of \((y,2y]\) number at most \((xa_q^{d-1}N+(x-1)\,\mathrm{err}\,(d-1)(2x)^{d-1})/x^{p_Cd}\) for every tilt \(x\ge1\), by exponential moments) | Lean, without the martingale; the absorption of the error into the rate and the displayed asymptotic form are human |
-| The conjecture from the one-sided hypothesis \(\mathrm H_q(C,A)\) (Theorem 9.1's consequence), with the contagion bound as a hypothesis, or with nothing else assumed when \(e^{\rm Ch}_q(C)>\tfrac7{10}\) | Lean; the exponent is the Chernoff one of Proposition 9.3 with \(A>C(1+\log_2x)+1+e\), the paper's numerical forms are human. The hypothesis \(\mathrm H_q(C,A)\) itself is doubtful: see the barrier word in Section 9.1 |
-| The conjecture from the pressure hypothesis \(\mathrm P_\theta(C)\) and from the no-momentum hypothesis \(\mathrm M_{\theta,q}(C)\) (Section 9.2's consequences), with the contagion bound as a hypothesis, or with nothing else assumed when the exponent exceeds \(\tfrac7{10}\) | Lean; the paper's \(e^{o(d)}\) is quantified as \((\log y)^\varepsilon\) and its \(o(d)\) as \(\delta d\), the numerical forms are human |
-| Theorem 9.1 with exceptional atoms (Section 10(d), first paragraph): the share bound may fail on bad atoms of total mass \(y(\log y)^{-B}\) at each depth, and the conjecture still follows, with nothing else assumed when the exponent exceeds \(\tfrac7{10}\) | Lean; the condition is \(B>C\log_2x+1+e\) in place of the paper's \(B>e_q(C)\), sufficient and not sharp |
+| The conjecture from the one-sided hypothesis \(\mathrm H_q(C,A)\) (Theorem 9.1's consequence), with the contagion bound as a hypothesis, or with nothing else assumed when \(e^{\rm Ch}_q(C)>\tfrac{27}{40}\) | Lean; the exponent is the Chernoff one of Proposition 9.3 with \(A>C(1+\log_2x)+1+e\), the paper's numerical forms are human. The hypothesis \(\mathrm H_q(C,A)\) itself is doubtful: see the barrier word in Section 9.1 |
+| The conjecture from the pressure hypothesis \(\mathrm P_\theta(C)\) and from the no-momentum hypothesis \(\mathrm M_{\theta,q}(C)\) (Section 9.2's consequences), with the contagion bound as a hypothesis, or with nothing else assumed when the exponent exceeds \(\tfrac{27}{40}\) | Lean; the paper's \(e^{o(d)}\) is quantified as \((\log y)^\varepsilon\) and its \(o(d)\) as \(\delta d\), the numerical forms are human |
+| Theorem 9.1 with exceptional atoms (Section 10(d), first paragraph): the share bound may fail on bad atoms of total mass \(y(\log y)^{-B}\) at each depth, and the conjecture still follows, with nothing else assumed when the exponent exceeds \(\tfrac{27}{40}\) | Lean; the condition is \(B>C\log_2x+1+e\) in place of the paper's \(B>e_q(C)\), sufficient and not sharp |
 | The bias energy of the \(L(y)\)-bad words supplies the exceptional atoms (Section 10(d)): \(\sum_{w\ \text{bad}}D(w)^2\le(q-\tfrac12)^2y^2(\log y)^{-2B}/2^t\) at the depths below \(\lceil CL(y)\rceil\), at all large scales, gives the conjecture with nothing else assumed | Lean, by Cauchy--Schwarz on the bad atoms that violate the share bound; the exact enumeration of Section 11 finds that energy at its worst-case value from depth \(16\)--\(20\) at every computable scale, so the hypothesis has no numerical support |
 | Collapsed-component bias (Section 10(d), after the measurement): the next-letter bias of the starts whose iterate lands in a window of values is an alternating sum of fiber sizes, bounded by the variation of the fiber profile, the even branch smooths it, \((v+1)(M_v-m_v)+2M_v\) per value, and a sandwich on the profile propagates through even steps without amplification | Lean; the variation bound on a fiber profile and the parity of the odd-preimage mass are human |
 | Azuma and exponential-moment arguments (Sections 8--10, except Lemma 8.2, Theorem 8.3, Theorem 9.1, Theorem 9.2 and Proposition 9.3 in their exact forms) | human proof |
@@ -1275,24 +1275,25 @@ exponential sum are proved with explicit errors,
 for \(t\ge40\) with \(\eta_0(t)=2e^{-t/2}+\tfrac49e^{-3t/4}+136e^{-t/8}\)
 (`Production.production_two`, from `Production.family_E` on Lemma 3.1 and
 `Production.family_OE` on Lemmas 4.2 and 4.3), and Lemma 5.1 on these
-two productions, with \(2^{-3/10}+\tfrac29(\tfrac34)^{3/10}>1\) certified
-by \(0.81^{10}\le\tfrac18\) and \(0.91^{10}\le\tfrac{27}{64}\)
+two productions, with \(2^{-13/40}+\tfrac29(\tfrac34)^{13/40}>1\) certified
+by \(0.798^{40}\le2^{-13}\) and \(0.91^{40}\le(\tfrac34)^{13}\)
 (`Production.zeta2_pos`), gives Theorem 5.3 for every
-\(0<\lambda\le\tfrac3{10}\) with no hypothesis
+\(0<\lambda\le\tfrac{13}{40}\) with no hypothesis
 (`Production.contagion_elementary`,
 `Production.logMass_contagion_elementary`), and Corollary 5.5(2) at that
 exponent (`Production.failures_logMass_ge`), in
 `formal/Problems/Juggler/FateProduction.lean`. The root of
-\(2^{-\lambda}+\tfrac29(\tfrac34)^\lambda=1\) is about \(0.325\); what
+\(2^{-\lambda}+\tfrac29(\tfrac34)^\lambda=1\) is \(0.32612\ldots\), which
+\(\tfrac{13}{40}\) reaches to within \(0.4\%\); what
 lifts it to \(\lambda^{**}\) is the block-average family, which needs
 the two exponential-sum bounds of Proposition 4.4, and the ladder (5.10),
 which needs Appendix D. Composed with Theorem 7.2 and Corollary 8.4,
 whose contagion hypothesis it discharges, this gives two statements
 with no hypothesis on the contagion side: a Tao-type rate
 \(\#\{\text{odd failures in }(y,2y]\}\le y(\log y)^{-e}\) with
-\(e>\tfrac7{10}\) implies the conjecture
+\(e>\tfrac{27}{40}\) implies the conjecture
 (`Production.conjecture_of_tao_rate`), and so does a cylinder
-bound \(\mathrm H(C,A)\) with \(e(C)>\tfrac7{10}\)
+bound \(\mathrm H(C,A)\) with \(e(C)>\tfrac{27}{40}\)
 (`Production.conjecture_of_cylinder_bound`). The paper's
 conditional forms need \(e>1-\lambda^{**}\approx0.51\) and the
 production inequality (5.2); the price of dropping the exponential sums
@@ -1985,7 +1986,9 @@ same for Theorem 9.2's and Theorem 9.1's criteria (the latter at the
 fair share \(q=\tfrac12\), where the one-sided exponent is the Chernoff
 one, `Certified.oneSidedExponent_half`, and \(A\ge52\) suffices by
 `Certified.logb_tilt_thirty_le`). The least \(C\) with
-\(e(C)>\tfrac7{10}\) is \(23\), and the paper's own threshold
+\(e(C)>\tfrac{27}{40}\) is \(23\), unchanged by the drop from
+\(\tfrac7{10}\): \(e(22)=0.668392\) misses the lower threshold too, and
+\(e(23)=0.716046\) clears both. The paper's own threshold
 \(e(C)>1-\lambda^{**}\) at \(C=19\) is a statement about
 \(\lambda^{**}\); both stay with the audit.
 
@@ -2146,9 +2149,9 @@ tilt \(x\), on Gibbs' inequality \(D(p_C\|q)\ge0\)
 Theorem 7.2: `OneSided.implies_conjecture_of_contagion` keeps the
 contagion bound as a hypothesis at an exponent \(\lambda\) with
 \(1-\lambda<e\), `OneSided.one_sided_implies_conjecture` discharges it
-through the unconditional Theorem 5.3 at exponent \(\tfrac3{10}\), so
+through the unconditional Theorem 5.3 at exponent \(\tfrac{13}{40}\), so
 that \(\mathrm H_q(C,A)\) at all large scales with
-\(e^{\rm Ch}_q(C)>\tfrac7{10}\) gives the conjecture with nothing else
+\(e^{\rm Ch}_q(C)>\tfrac{27}{40}\) gives the conjecture with nothing else
 assumed, and `OneSided.exact_share_implies_conjecture` is the remark
 above with no error term, where \(A\) disappears. The condition on
 \(A\) is sufficient, not the paper's \(A>C+e_q(C)\): the exact form
@@ -2278,10 +2281,10 @@ form (`Pressure.momentumExponent`); the shared absorption
 `Pressure.oddFailures_le_of_noMomentum`). Then Theorem 7.2, with the
 contagion bound as a hypothesis (`Pressure.pressure_conj_of_contagion`,
 `Pressure.noMomentum_conj_of_contagion`) or discharged through the
-unconditional Theorem 5.3 at exponent \(\tfrac3{10}\)
+unconditional Theorem 5.3 at exponent \(\tfrac{13}{40}\)
 (`Pressure.pressure_implies_conjecture`,
 `Pressure.noMomentum_implies_conjecture`): either hypothesis at all
-large scales, with its exponent above \(\tfrac7{10}\), gives the
+large scales, with its exponent above \(\tfrac{27}{40}\), gives the
 conjecture with nothing else assumed. The numerical forms are not
 formalized.
 
@@ -2347,7 +2350,7 @@ tilted mass, so the recursion of Theorem 9.1's Lean proof reads
 \(A>C(1+\log_2x)+1+e\) for the error: the exceptional atoms are not
 doubled at each depth. `OneSided.exc_implies_conjecture` runs this
 weakest one-sided form to the conjecture with nothing else assumed
-when \(e^{\rm Ch}_q(C)>\tfrac7{10}\), and
+when \(e^{\rm Ch}_q(C)>\tfrac{27}{40}\), and
 `OneSided.exc_conj_of_contagion` with the contagion bound as a
 hypothesis. The condition on \(B\) is sufficient and not the
 \(B>e_q(C)\) of the Markov absorption above, which is not restated.
@@ -2397,7 +2400,7 @@ of mass \(\mathrm{exc}\) and no error term
 `Energy.energy_implies_conjecture` runs it to the conjecture: the bad
 energy bound with \(\mathrm{exc}=y(\log y)^{-B}\) at the depths below
 \(\lceil CL(y)\rceil\) at all large scales (`Energy.EnergyBound`),
-\(\tfrac12<q<p_C\), \(B>C\log_2x+1+e\) and \(\tfrac7{10}<e<e^{\rm Ch}_q(C)\),
+\(\tfrac12<q<p_C\), \(B>C\log_2x+1+e\) and \(\tfrac{27}{40}<e<e^{\rm Ch}_q(C)\),
 and nothing else. The restriction to bad words is forced: the
 unrestricted energy (`Energy.badEnergy_le_biasEnergy`) is dominated by
 absorbed orbits, whose cylinders are fully biased. The exact
@@ -2814,7 +2817,7 @@ abstract lemmas listed here, not the analytic density estimates.
 | Lemma 4.7 (cube fibers), in `Problems/Juggler/CubeFiber.lean` | `cube_fiber_range`, `cube_fiber_sqrt_even`, `cube_fiber_even_image`, `even_cube_fiber_full`, `cube_fiber_sqrt_odd`, `cube_fiber_alternating`, `odd_cube_fiber_alternating` |
 | Shared counting of Lemmas 4.1, 4.1' and 4.3 (separated sequences in a window), in `Problems/Juggler/FateWindowCount.lean` | `WindowCount.StepGe`, `WindowCount.StepLe`, `WindowCount.span_ge`, `WindowCount.span_le`, `WindowCount.mono_of_stepGe`, `WindowCount.window_card_le`, `WindowCount.window_card_le_nat` |
 | Proposition 4.4, the exact layer and the deduction from the exponential-sum bounds (the bounds are hypotheses), in `Problems/Juggler/FateBlockAverage.lean` | `BlockAverage.blockE`, `BlockAverage.oddBlock`, `BlockAverage.mem_oddBlock`, `BlockAverage.mem_oeFiber_iff_cell34`, `BlockAverage.U`, `BlockAverage.oddBlock_card_eq`, `BlockAverage.U_card_eq`, `BlockAverage.psi`, `BlockAverage.slowSum`, `BlockAverage.fastSum`, `BlockAverage.productSum`, `BlockAverage.four_card_U`, `BlockAverage.block_average_of_bounds`, `BlockAverage.block_average_bound`, `BlockAverage.psi_succ`, `BlockAverage.abs_psi`, `BlockAverage.oddBlock_filter_eq`, `BlockAverage.slowSum_eq_fibers`, `BlockAverage.oeFiber_card_succ_diff`, `BlockAverage.abs_alt_sum_le`, `BlockAverage.slowSum_abs_le`, `BlockAverage.card_Ico_block`, `BlockAverage.oddBlock_card_le`, `BlockAverage.oddBlock_card_ge`, `BlockAverage.oddBlock_quarter_close`, `BlockAverage.block_average_two_bounds`, `BlockAverage.block_average_asymptotic`, `BlockAverage.block_average_bound_two` |
-| Section 5.1 without its exponential sums, and Theorem 5.3 at exponent 3/10 unconditionally, in `Problems/Juggler/FateProduction.lean` | `Production.sqrt_floor_exp`, `Production.floor_exp_ge_half`, `Production.family_E`, `Production.good_fiber_logMass_ge`, `Production.family_OE`, `Production.errE`, `Production.errOE`, `Production.errAdd`, `Production.two_le_exp`, `Production.one_div_floor_exp_le`, `Production.sum_Ioc_le_sum_Ioc_pred`, `Production.halfLogMass_split`, `Production.production_two`, `Production.rate2`, `Production.coef2`, `Production.err2`, `Production.rate2_ge`, `Production.rate2_le`, `Production.rate2_pos`, `Production.coef2_ge`, `Production.err2_nonneg`, `Production.err2_le`, `Production.production_two_sum`, `Production.zeta2_pos`, `Production.zeta2_antitone`, `Production.errors_le`, `Production.errors_vanish`, `Production.contagion_elementary`, `Production.logMass_contagion_elementary`, `Production.failures_logMass_ge`, `Production.conjecture_of_tao_rate`, `Production.conjecture_of_cylinder_bound` |
+| Section 5.1 without its exponential sums, and Theorem 5.3 at exponent 13/40 unconditionally, in `Problems/Juggler/FateProduction.lean` | `Production.sqrt_floor_exp`, `Production.floor_exp_ge_half`, `Production.family_E`, `Production.good_fiber_logMass_ge`, `Production.family_OE`, `Production.errE`, `Production.errOE`, `Production.errAdd`, `Production.two_le_exp`, `Production.one_div_floor_exp_le`, `Production.sum_Ioc_le_sum_Ioc_pred`, `Production.halfLogMass_split`, `Production.production_two`, `Production.rate2`, `Production.coef2`, `Production.err2`, `Production.rate2_ge`, `Production.rate2_le`, `Production.rate2_pos`, `Production.coef2_ge`, `Production.err2_nonneg`, `Production.err2_le`, `Production.production_two_sum`, `Production.zeta2_pos`, `Production.zeta2_antitone`, `Production.errors_le`, `Production.errors_vanish`, `Production.contagion_elementary`, `Production.logMass_contagion_elementary`, `Production.failures_logMass_ge`, `Production.conjecture_of_tao_rate`, `Production.conjecture_of_cylinder_bound` |
 | Section 4.3, the exact layer of the share law (the expansion, the range, the integral), in `Problems/Juggler/FateShareLaw.lean` | `ShareLaw.taylor_three_halves`, `ShareLaw.xval_expansion`, `ShareLaw.xval_expansion_fiber`, `ShareLaw.phi`, `ShareLaw.phiRange`, `ShareLaw.phi_ge_min`, `ShareLaw.phi_le_chord`, `ShareLaw.phi_sub_le`, `ShareLaw.exists_phi_sub_eq`, `ShareLaw.phiRange_le_half_iff`, `ShareLaw.extremeMeasure`, `ShareLaw.extremeMeasure_eq_zero`, `ShareLaw.extremeMeasure_piece1`, `ShareLaw.extremeMeasure_piece2`, `ShareLaw.extremeMeasure_piece3`, `ShareLaw.extremeMeasure_piece4`, `ShareLaw.integral_extremeMeasure` |
 | Section 10(d), the cylinder-splitting identity, in `Problems/Juggler/FateCylinderEnergy.lean` | `CylinderEnergy.itinerary_succ_append`, `CylinderEnergy.wordCount`, `CylinderEnergy.wordCount_split`, `CylinderEnergy.energy`, `CylinderEnergy.bias`, `CylinderEnergy.energy_succ`, `CylinderEnergy.sum_bias_sq` |
 | Appendix D.1, the exact landing windows (D.1) and (D.2), in `Problems/Juggler/FateLandingWindow.lean` | `LandingWindow.cell34`, `LandingWindow.cell34_eq_floorPower_two`, `LandingWindow.le_cell34_iff`, `LandingWindow.cell34_lt_iff`, `LandingWindow.windowStart`, `LandingWindow.windowStart_exists`, `LandingWindow.windowStart_le_iff`, `LandingWindow.lt_windowStart_iff`, `LandingWindow.exact_endpoints`, `LandingWindow.setOf_cell34_mem_Ico`, `LandingWindow.exact_endpoints_iterate`, `LandingWindow.setOf_iterate_mem_Ico` |
@@ -2833,7 +2836,7 @@ abstract lemmas listed here, not the analytic density estimates.
 | Lemma 4.2 (fiber parity), in `Problems/Juggler/FateFiberParity.lean` | `FiberParity.xval`, `FiberParity.two_xval`, `FiberParity.floor_two_xval`, `FiberParity.cell_xval_even_iff`, `FiberParity.xval_step`, `FiberParity.xval_step_ge`, `FiberParity.xval_step_le`, `FiberParity.xval_step_mono`, `FiberParity.oeFiber`, `FiberParity.mem_oeFiber`, `FiberParity.oeFiber_eq_image`, `FiberParity.oeFiber_card`, `FiberParity.evenImageCount`, `FiberParity.fiber_ge_rpow`, `FiberParity.fiber_lt_rpow`, `FiberParity.rpow_four_thirds_succ_ge`, `FiberParity.rpow_four_thirds_succ_le`, `FiberParity.rpow_two_thirds_succ_le`, `FiberParity.oeFiber_card_ge`, `FiberParity.oeFiber_card_le`, `FiberParity.Am`, `FiberParity.alpha`, `FiberParity.eps`, `FiberParity.Good`, `FiberParity.eps_le`, `FiberParity.step_ge`, `FiberParity.step_le`, `FiberParity.fiber_parity_good` |
 | Lemma 4.3 (thin fibers), in `Problems/Juggler/FateThinFibers.lean` | `FiberParity.span_ge_of_step`, `FiberParity.arc_count_le`, `FiberParity.Am_step_le`, `FiberParity.Am_step_ge`, `FiberParity.eps_antitone`, `FiberParity.bad_mem_arc`, `FiberParity.two_rpow_third_le`, `FiberParity.two_rpow_two_thirds_le`, `FiberParity.rpow_two_thirds_ge`, `FiberParity.eps_div_eps_double`, `FiberParity.Am_double_sub_le`, `FiberParity.bad_count_le`, `FiberParity.bad_block_logMass_le`, `FiberParity.bad_sum_dyadic_le`, `FiberParity.eps_pow_two_mul`, `FiberParity.two_rpow_neg_third_le`, `FiberParity.bad_logMass_le` |
 | Theorem 5.3 given (5.2), Theorem 7.3, Corollary 8.4 through (5.2), in `Problems/Juggler/FateContagionBound.lean` | `productionRate`, `productionCoeff`, `productionRate_pos`, `productionRate_ge`, `productionRate_le`, `productionRate_le_one`, `productionCoeff_ge`, `productionCoeff_nonneg`, `zeta`, `zeta_antitone`, `le_rpow_div_of_pow_le`, `zeta_pos_49`, `seedConst`, `gA`, `gA_seed`, `logMass_ge_gA`, `contagion_of_production_inequality`, `logMass_contagion_of_production`, `oddFailures_eq_empty`, `tao_rate_iff_conjecture`, `conjecture_of_cylinder_bound_of_production` |
-| Proposition 4.4 (its two exponential-sum bounds, the fast sum and the product sum; the exact layer, the slow sum, the block count and the deduction of (4.1) and of the asymptotic form from those two bounds are Lean), the share law 4.5 and Corollary 4.6 (the phase expansion, the range of the quadratic phase and the integral 25/108 are Lean, the equidistribution and the measure identifications are not), the production inequality (5.2) (its `E`-family and `OE`-fiber family are Lean with explicit errors and give Theorem 5.3 at exponent 3/10 unconditionally; the block-average family and the ladder are not), Sections 8--10 except Lemma 8.2, the explicit form of Theorem 8.3, Corollary 8.4, the exact form of Theorem 9.2 and Proposition 9.3, Appendix C; Theorems 5.3, 7.2, 7.3 and Corollary 8.4 only with (5.2) or the contagion bound as a hypothesis | human proofs |
+| Proposition 4.4 (its two exponential-sum bounds, the fast sum and the product sum; the exact layer, the slow sum, the block count and the deduction of (4.1) and of the asymptotic form from those two bounds are Lean), the share law 4.5 and Corollary 4.6 (the phase expansion, the range of the quadratic phase and the integral 25/108 are Lean, the equidistribution and the measure identifications are not), the production inequality (5.2) (its `E`-family and `OE`-fiber family are Lean with explicit errors and give Theorem 5.3 at exponent 13/40 unconditionally; the block-average family and the ladder are not), Sections 8--10 except Lemma 8.2, the explicit form of Theorem 8.3, Corollary 8.4, the exact form of Theorem 9.2 and Proposition 9.3, Appendix C; Theorems 5.3, 7.2, 7.3 and Corollary 8.4 only with (5.2) or the contagion bound as a hypothesis | human proofs |
 | Theorem 9.1 (one-sided form, exact, by exponential moments), in `Problems/Juggler/FateOneSided.lean` | `OneSided.cylinder_split`, `OneSided.LBad_of_LBad_append`, `OneSided.sum_allWords_succ`, `OneSided.sum_pow_oddCount_le`, `OneSided.badWeight`, `OneSided.badWeight_nonneg`, `OneSided.badWeight_le_card`, `OneSided.badMass`, `OneSided.OneSidedShare`, `OneSided.badMass_succ_le`, `OneSided.card_cylinder_zero_le`, `OneSided.badMass_one_le`, `OneSided.badMass_le`, `OneSided.oddFailures_card_le_badMass`, `OneSided.one_sided_bound`, `OneSided.klDiv`, `OneSided.tilt`, `OneSided.tilt_ge_one`, `OneSided.tilt_pow_ratio`, `OneSided.one_sided_bound_kl` |
 | Theorem 9.1's consequence (the conjecture from the one-sided hypothesis), in `Problems/Juggler/FateOneSidedCorollary.lean` | `OneSided.OneSidedBound`, `OneSided.OneSidedExact`, `OneSided.oneSidedExponent`, `OneSided.OneSidedShare.mono`, `OneSided.oneSidedBound_of_exact`, `OneSided.klDiv_nonneg`, `OneSided.exp_le_rpow_scale`, `OneSided.pow_le_rpow_scale`, `OneSided.oddFailures_le_of_one_sided`, `OneSided.implies_conjecture_of_contagion`, `OneSided.one_sided_implies_conjecture`, `OneSided.exact_share_implies_conjecture` |
 | Section 9.2's consequences (the conjecture from the pressure and no-momentum hypotheses), in `Problems/Juggler/FatePressureCorollary.lean` | `Pressure.oddFailures_subset_live`, `Pressure.PressureBound`, `Pressure.NoMomentumBound`, `Pressure.momentumExponent`, `Pressure.absorb`, `Pressure.oddFailures_le_of_pressure`, `Pressure.pressure_conj_of_contagion`, `Pressure.pressure_implies_conjecture`, `Pressure.oddFailures_le_of_noMomentum`, `Pressure.noMomentum_conj_of_contagion`, `Pressure.noMomentum_implies_conjecture` |
