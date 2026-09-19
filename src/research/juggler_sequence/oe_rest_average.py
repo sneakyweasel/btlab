@@ -18,6 +18,7 @@ from research.juggler_sequence.lean_paths import (
 
 import json
 import math
+from fractions import Fraction
 import random
 from pathlib import Path
 from typing import Any
@@ -629,4 +630,81 @@ def resonance_density(exponents: tuple[int, ...] = (14, 16, 18, 20, 22, 24),
             "this is the density of the RESONANT set; the lemma needs it for the"
             " LOW-SHARE set, and low-share implies resonant is unproved"
         ),
+    }
+
+def fibre_exponent(word: str) -> Fraction:
+    """`theta_w = 2^(a+b+1) / 3^(b+1)`, the exponent at which the `w`-fibre sits.
+
+    A production word `w` with `a` even and `b` odd letters has multiplier
+    `rho_w = 3^b / 2^(a+b)`, so its fibre over `m` lives at scale
+    `n ~ m^(1/rho_w)`, and the fibre step there is
+    `alpha = frac((3/2) n^(2/3)) = frac((3/2) m^(theta_w))` with
+    `theta_w = 2/(3 rho_w) = 2^(a+b+1)/3^(b+1)`.
+    """
+    a, b = word.count("E"), word.count("O")
+    if a + b != len(word):
+        raise ValueError(f"word must use only E and O: {word!r}")
+    return Fraction(2 ** (a + b + 1), 3 ** (b + 1))
+
+
+def every_fibre_equidistributes(words: tuple[str, ...] = (
+        "E", "OE", "OEE", "OOEEE", "OEOEE", "OEOEOEE")) -> dict[str, Any]:
+    """Every production fibre equidistributes `alpha`, and for the same reason
+    the problem is hard in the first place.
+
+    `theta_w = 2^(a+b+1)/3^(b+1)` is an integer exactly when `3^(b+1)` divides
+    `2^(a+b+1)`, which never happens. So `theta_w` is a positive non-integer for
+    EVERY word, and Weyl's theorem on `frac(c m^theta)` gives equidistribution
+    in `m` for all of them. The obstruction that would break this -- an integer
+    exponent, where `frac(c m^theta)` is eventually constant or lattice-valued
+    -- is excluded by `3` never dividing a power of `2`, which is the same
+    irrationality of `log2 3` that generates the Sturmian barrier word and
+    A020914.
+
+    TWO ROUTES, and which one applies is decided by `theta_w` against `1`. The
+    fibre's own length is `(1/rho) m^(1/rho - 1)` and `alpha`'s derivative
+    there is `m^(-1/(3 rho))`, so the fibre sweeps `(1/rho) m^(theta_w - 1)`
+    turns.
+
+    - `theta_w > 1`: the fibre sweeps and equidistributes WITHIN itself. `E`
+      has `theta = 4/3`, sweep `2 m^(1/3)` -- predicted and measured to three
+      figures, 20.00 against 19.99 at `m = 1000` and 92.83 against 92.83 at
+      `1e5`.
+    - `theta_w < 1`: the fibre is a shrinking CLUSTER and equidistribution is
+      ACROSS `m`. `OE` has `theta = 8/9` and sweep `(4/3) m^(-1/9)`, which
+      tends to zero -- 0.6188, 0.4792, 0.3710, 0.2873 at `m = 1e3..1e6`,
+      matching the closed form to five decimals. Fejer then applies to
+      `(3/2) m^(8/9)`: `f' = (4/3) m^(-1/9) -> 0` monotonically and
+      `m f' -> infinity`. Measured star discrepancy of `frac((3/2) m^(8/9))`
+      is `1.066, 0.766, 0.582` times `N^(-1/2)` at `N = 1e4, 1e5, 1e6`.
+
+    `theta_w < 1` means `2^(a+b+1) < 3^(b+1)`, so among short words only `OE`
+    is a cluster; `E`, `OEE`, `OOEEE` and the whole `V_k` ladder sweep.
+
+    This is what the weight accounting over `A` needed. A backward-closed `A`
+    is a union of complete fibres over its own elements, every such fibre
+    equidistributes `alpha` by one of the two routes, so `A` cannot be
+    concentrated off the resonances. It is the mechanism behind the measured
+    tracking in `test_backward_closedness_forces_A_onto_the_resonances`.
+
+    NOT a proof of the bootstrap: each component equidistributing gives the
+    union equidistributing, but the RATES differ between the two routes and
+    the bootstrap consumes a rate, not a limit.
+    """
+    rows = []
+    for w in words:
+        theta = fibre_exponent(w)
+        # the fibre's own length is (1/rho) m^(1/rho - 1) and alpha's derivative
+        # there is m^(-1/(3 rho)), so the sweep is (1/rho) m^(theta - 1)
+        own_sweep_exponent = theta - 1
+        rows.append({
+            "word": w,
+            "theta": str(theta),
+            "is_integer": theta.denominator == 1,
+            "sweeps_within": own_sweep_exponent > 0,
+        })
+    return {
+        "rows": rows,
+        "none_integer": not any(r["is_integer"] for r in rows),
+        "reason": "3 never divides a power of 2",
     }

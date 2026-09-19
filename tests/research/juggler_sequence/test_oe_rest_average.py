@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import math
+from fractions import Fraction
 
 from research.juggler_sequence.fate_contagion import fiber_stats
 
@@ -17,7 +18,9 @@ from research.juggler_sequence.oe_rest_average import (
     POOR_SHARE,
     alpha_of,
     averaging_payoff,
+    every_fibre_equidistributes,
     fd_placement,
+    fibre_exponent,
     is_resonant,
     close_from_mask,
     poor_mask,
@@ -308,3 +311,55 @@ def test_one_even_step_equidistributes_the_fibre_step() -> None:
         star = max(max(i / n - x, x - (i - 1) / n)
                    for i, x in enumerate(values, start=1))
         assert star < 0.02, (m, star)
+
+def test_every_production_fibre_equidistributes_alpha() -> None:
+    """The weight accounting `A` needed, and it turns on 3 not dividing 2^k.
+
+    A backward-closed `A` is a union of complete fibres over its own elements,
+    so "does `A` equidistribute `alpha`" reduces to "does each fibre". The
+    `w`-fibre over `m` sits at `alpha = frac((3/2) m^(theta_w))` with
+    `theta_w = 2^(a+b+1)/3^(b+1)`, and that is an integer exactly when
+    `3^(b+1)` divides `2^(a+b+1)` -- never. So every production word has a
+    positive non-integer exponent and Weyl's theorem applies to all of them.
+    The failure mode this excludes, an integer exponent making
+    `frac(c m^theta)` lattice-valued, is ruled out by the same irrationality of
+    `log2 3` that generates the Sturmian barrier word.
+
+    Two routes, decided by `theta_w` against 1, since the fibre sweeps
+    `(1/rho) m^(theta_w - 1)` turns of its own. `E` has `theta = 4/3` and
+    sweeps `2 m^(1/3)`, equidistributing WITHIN each fibre. `OE` has
+    `theta = 8/9` and sweeps `(4/3) m^(-1/9) -> 0`, so each fibre is a
+    shrinking cluster and equidistribution is ACROSS `m` by Fejer. Both give
+    the conclusion; only the rate differs.
+
+    Not a proof of the bootstrap: the union of equidistributed components is
+    equidistributed, but the bootstrap consumes a RATE and the two routes give
+    different ones.
+    """
+    assert fibre_exponent("E") == Fraction(4, 3)
+    assert fibre_exponent("OE") == Fraction(8, 9)
+    assert fibre_exponent("OOEEE") == Fraction(64, 27)
+    with pytest.raises(ValueError):
+        fibre_exponent("OEX")
+
+    # never an integer, for any word at all
+    for length in range(1, 11):
+        for bits in range(2**length):
+            word = "".join("O" if (bits >> i) & 1 else "E" for i in range(length))
+            assert fibre_exponent(word).denominator != 1, word
+
+    summary = every_fibre_equidistributes()
+    assert summary["none_integer"]
+    routes = {r["word"]: r["sweeps_within"] for r in summary["rows"]}
+    assert routes["E"] and not routes["OE"]
+    assert routes["OEE"] and routes["OOEEE"]
+
+    # the sweep exponents are theta - 1, cross-checked against the closed forms
+    # measured directly: E sweeps 2 m^(1/3), OE sweeps (4/3) m^(-1/9)
+    for m in (1000, 10**5):
+        e_block = 1.5 * ((m + 1) ** 2) ** (2 / 3) - 1.5 * (m * m) ** (2 / 3)
+        assert abs(e_block - 2 * m ** (1 / 3)) < 0.01 * e_block, m
+        oe = (1.5 * ((m + 1) ** (4 / 3)) ** (2 / 3)
+              - 1.5 * (m ** (4 / 3)) ** (2 / 3))
+        assert abs(oe - (4 / 3) * m ** (-1 / 9)) < 1e-4, m
+        assert oe < 1.0, "the OE fibre must not complete a turn"
