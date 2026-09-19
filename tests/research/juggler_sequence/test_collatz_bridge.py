@@ -374,3 +374,38 @@ def test_the_published_manuscript_is_correct_and_the_working_notes_were_not() ->
         text = (REPO_ROOT / "docs" / "theory" / name).read_text(encoding="utf-8")
         assert "trees are thin" not in text, name
         assert "thin Collatz preimage trees" not in text, name
+
+def test_psi_is_the_two_adic_tail_of_winklers_sequence() -> None:
+    """`N_d / 2^d = sum_{j>d} 2^-j m_j`, and the nonzero `m_j` are A100982.
+
+    This is a telescoping of `J-count-recursion-is-the-boundary-mass`, not a new
+    identity: that row gives `P_(d+1) = P_d - b_d Q_d / 2`, and summing it is the
+    whole proof. What the telescoped form says is worth a test anyway, because it
+    is the bridge between a Collatz-side preprint and Paper B's prefactor.
+
+    `N_d / 2^d` is the quantity whose asymptotic IS `psi(frac(d BETA)) theta^d
+    d^(-3/2)`. So `psi` is the 2-adic tail of Winkler's `a_3(r)`, and his
+    oscillation theorem for A100982 transmits to `psi` exactly when its error
+    term is uniform in `r` and summable against `2^(-j)`. Since `theta = 0.9659`
+    the tail runs to about `1/(1-theta) = 29` times its leading term, so a
+    per-term relative accuracy `eps` buys `psi` only to about `29 eps`.
+    """
+    cap = 120
+    counts = survivor_counts(cap)
+    lost = {d: 2 * counts[d - 1] - counts[d] for d in range(1, cap)}
+
+    # exact, in rationals: the residual after truncating at K is N_K / 2^K
+    k = cap - 1
+    for d in (4, 12, 24, 40, 60):
+        residual = Fraction(counts[d], 2**d) - sum(
+            Fraction(lost[j], 2**j) for j in range(d + 1, k + 1))
+        assert residual == Fraction(counts[k], 2**k), d
+
+    # the lost extensions vanish exactly at the free steps, and what is left is
+    # the sequence the sandwich above is stated on
+    nonzero = [lost[d] for d in range(1, cap) if lost[d]]
+    assert nonzero[:12] == [1, 1, 1, 2, 3, 7, 12, 30, 85, 173, 476, 961]
+    assert nonzero[1:12] == [1, 1, 2, 3, 7, 12, 30, 85, 173, 476, 961]
+
+    # and the closure, which pins the normalisation
+    assert sum(Fraction(lost[j], 2**j) for j in range(1, k + 1))         == counts[0] - Fraction(counts[k], 2**k)
