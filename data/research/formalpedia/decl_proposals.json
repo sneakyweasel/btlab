@@ -151,15 +151,15 @@
           "trust": "kernel"
         },
         {
-          "decl": "minimalCert_exists_iff_natLog",
-          "line": 327,
-          "score": 0.151,
-          "trust": "kernel"
-        },
-        {
           "decl": "minimalCert_concat_even",
           "line": 118,
           "score": 0.135,
+          "trust": "kernel"
+        },
+        {
+          "decl": "minimalCert_exists_iff",
+          "line": 228,
+          "score": 0.132,
           "trust": "kernel"
         }
       ],
@@ -178,7 +178,7 @@
         }
       ],
       "id": "J-paper-b-certificate-length-window",
-      "in_file": 22,
+      "in_file": 19,
       "lean": "Problems/Juggler/PaperBCertificateLengths.lean",
       "names_own": [
         "certWindow_unique",
@@ -205,9 +205,9 @@
           "trust": "kernel"
         },
         {
-          "decl": "neverNegWords_succ_of_window_empty",
-          "line": 407,
-          "score": 0.106,
+          "decl": "minimalCertCount_succ",
+          "line": 256,
+          "score": 0.079,
           "trust": "kernel"
         }
       ],
@@ -226,7 +226,7 @@
         }
       ],
       "id": "J-paper-b-survivor-certificate-recursion",
-      "in_file": 24,
+      "in_file": 20,
       "lean": "Problems/Juggler/PaperBCertificateRecursion.lean",
       "names_own": [
         "neverNegCount_add_minimalCertCount",
