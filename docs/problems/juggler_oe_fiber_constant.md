@@ -103,12 +103,52 @@ fiber bound. The average-on-rest attack is PARK
 ([juggler_oe_rest_average.md](juggler_oe_rest_average.md)). The
 free term \(\psi_F\) is untouched.
 
+## Depth two is closed, from both ends
+
+Added 2026-09-19, after two sessions arrived at the halves separately.
+Neither half alone licenses "stop looking at depth two"; the pair does.
+
+**The coefficient cannot be raised.** `J-oe-fiber-pairing-third-is-attained`:
+the pairing lemma's \(1/3\) is attained, not approached. At four scales the
+minimising good fibre has scarcer colour exactly \(\lfloor H_m/3\rfloor\)
+(\(m=1018590, 10001831, 100001607, 1000011666\)), and the attained share
+rises to \(1/3\) *from below*. So the \(-2\) in \(G_m\ge H_m/3-2\) is pure
+slack, no pointwise per-fibre argument improves \(2/9=(2/3)(1/3)\), and
+\(0.3261209621\) is a real ceiling for the two-production route rather than
+an artifact of a lossy lemma.
+
+**Raising it would buy almost nothing anyway.**
+`J-paper-c-ladder-recovers-the-depth-two-ceiling`: the six-word ladder
+telescopes exactly onto the ideal depth-two equation, so substituting
+\(1/3\) for \(2/9\) zeroes the \((1/9,3/8)\) term *and* all five ladder
+increments, moving \(\lambda^{**}\) by \(8.64\times10^{-5}\)
+(\(0.4925715\to 0.4926580\)).
+
+So the coefficient is sharp **and** the exponent is saturated. What a
+successful \(2/9\to 1/3\) would buy is proof economy -- \(\lambda^{**}\)
+above \(0.4926\) with no ladder, no Appendix D, no block-average family and
+no exponential sums -- not a better number. The route past \(0.4926\) is
+more productions, not better ones.
+
+One caveat kept in view: sharp is a statement about the *constant*, not the
+*map*. The mean share is \(1/2\) and the attaining fibres are log-thin
+(\(1/m\)-weighted fraction below share \(0.40\) falls \(0.0508\to0.0072\)
+from \(2^{16}\) to \(2^{24}\)). An adversarial backward-closed \(A\)
+concentrating on them is still not excluded, and that is the parked question
+in [juggler_oe_rest_average.md](juggler_oe_rest_average.md).
+
 ## Decision
 
 **PROMOTE.** Monotone pairing is a human proof, the characteristic
 root moves, and the census floor at \(\alpha_m\approx\tfrac13\) is the
 named obstruction. Best next question: none on this line; the
 \(1/3\) versus \(1/2\) gap is not opened here.
+
+**Closed 2026-09-19.** The census floor is now known to be attained
+rather than merely observed, so the named obstruction is a theorem-shaped
+fact and not a measurement artifact. With the ladder result the depth-two
+route is closed from both ends (see the section above). Nothing further
+on this line.
 
 ## Publication assessment
 

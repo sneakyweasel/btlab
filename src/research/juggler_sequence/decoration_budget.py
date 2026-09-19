@@ -330,6 +330,13 @@ def decorated_margin_scan(p: float, k: int = 1, j: int = 1) -> dict[str, Any]:
     beta1 = isqrt((n0 + d1) ** 3) - m0
     beta2 = isqrt((n0 + d2) ** 3) - m0
 
+    # DEAD, kept as documentation of why the rationalised form below exists.
+    # This raw four-term second difference of 1.5-powers cancels about fifteen
+    # digits at P = 1e10; it is never called. A 2026-09-19 sweep for that shape
+    # across the repository flagged it as live-looking, so it is labelled here
+    # rather than removed. Two real instances of the same shape were fixed that
+    # day, in fate_contagion.fiber_stats and oe_rest_average.alpha_of, and one
+    # in step5b_sublevel._delta.
     def f_branch(m: float) -> float:
         return (
             (m + beta1 + beta2 + j) ** 1.5

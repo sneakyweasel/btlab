@@ -2811,7 +2811,8 @@
         "J-fate-odd-generation",
         "J-fate-ooeee-production",
         "J-parity-triple-discrepancy-localized",
-        "J-tao-free-term-is-live-mass"
+        "J-tao-free-term-is-live-mass",
+        "J-oe-fiber-pairing-third-is-attained"
       ],
       "aliases": [],
       "nk_cluster": null
@@ -4227,7 +4228,8 @@
       "conjecture": [],
       "decision": "PROMOTE",
       "ledger_ids": [
-        "J-fate-fiber-sweep"
+        "J-fate-fiber-sweep",
+        "J-oe-fiber-pairing-third-is-attained"
       ],
       "aliases": [],
       "nk_cluster": null
@@ -4278,7 +4280,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PARK",
-      "ledger_ids": [],
+      "ledger_ids": [
+        "J-oe-low-share-weight-decays-polynomially"
+      ],
       "aliases": [],
       "nk_cluster": null
     },
@@ -5071,7 +5075,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PROMOTE",
-      "ledger_ids": [],
+      "ledger_ids": [
+        "J-step5b-interval-counts-were-float-noise"
+      ],
       "aliases": [],
       "nk_cluster": null
     },

@@ -67,6 +67,160 @@
 - **Not done, deliberately.** Corollary 5.4 is still unformalized. The dyadic
   pigeonhole is an easy-looking finite argument, but nothing in this pass proves
   it, and the rows say so rather than implying otherwise.
+## 2026-09-19 -- Step 5b's interval counts were counting noise
+
+- **Objective:** Philippe asked how much of `lambda_interp` rested on the two
+  derivatives that were wrong until this morning. The honest answer turned out
+  to be larger than the hedge I had attached to it.
+- **The path.** `lambda_interp = wave + anchor + w*xpp`. `wave` uses only the
+  values `d1, d2`, which cancellation left comparatively intact (`5e-11` at
+  `1e10`). `anchor = 2 cp fp + c fpp + 0.5 cpp` runs entirely through
+  `f_sm_derivs`, which consumes all four broken derivatives, and inside
+  `f_sm_derivs` the derivative-carrying terms are the same order in `nu` as the
+  rest -- `d ~ sqrt(nu)`, `dp ~ 1/sqrt(nu)`, `dpp ~ nu^(-3/2)` against
+  `p = nu^(-3/4)`, `pp ~ nu^(-7/4)`, `ppp ~ nu^(-11/4)`, so every term of `fp`
+  is `~nu^(-3/4)`. Nothing washes out.
+- **My "32 per cent" was wrong, and wrong in a way worth recording.** I measured
+  `|anchor|/|Lambda|` at one arbitrary argument, got `0.322` at all three `P`,
+  and read the constancy as robustness. It is vacuous: `anchor`, `wave`,
+  `w*xpp` and `Lambda` all carry the same power of `k` and of `P` at fixed
+  `nu/P`, so `P` and `k` are precisely the two axes along which that ratio
+  *cannot* move. Varying the live axes, the ratio runs from `0.0055` on
+  `edge_hi` to `25198` on the cancellation families, with median `0.616` over
+  the sweep and `|anchor| > |Lambda|` at a third of grid points. Constancy
+  along the axes you happened to vary is not evidence.
+- **The mechanism: `Lambda` was a staircase.** The `3.4e-7` derivative error is
+  a fresh rounding at every grid point, so it does not average along the grid.
+  At `P = 1e10` near the `Omega_V` boundary the step height was `1.8e-4` of `V`
+  against a genuine per-step drift of `1.7e-5` of `V` -- fourteen grid steps of
+  signal. Inside a single `200000`-point cell the predicate
+  `|Lambda| <= V` flipped **1845 times** before the fix and **once** after.
+  `_intervals_from_flags` was then bisecting a non-monotone predicate.
+- **So an integer and a boolean moved in the published payload**, not a last
+  digit. `verdict.max_omega_intervals` `3 -> 1`; `omega_intervals` `3 -> 1` and
+  `2 -> 1` on two `P = 1e10` rows; and `count_ok` `False -> True`, meaning the
+  committed payload had recorded a **cap violation that never happened** --
+  three intervals against `interval_cap = 2`. `max_lambda_phi_resid` was up to
+  `3.45x` too large, because it was measuring derivative noise rather than
+  interpolation error. `J-step5b-interval-counts-were-float-noise`.
+- **Is the corrected `1` robust, or just a different arbitrary answer?**
+  Robust. The smallest `_delta`-carrying margin in the module is `0.0707`
+  perturbation units pre-fix; post-fix the perturbation is `~1e-16` relative,
+  about eight orders inside that margin. A third row sat at margin `0.100` and
+  did not flip, which is luck rather than safety.
+- **`#Omega_V <= 3` was quoted in two documents** and both are corrected:
+  `docs/problems/juggler_step5b_sublevel.md` and
+  `docs/juggler_branch_ledger.md:104`. The bound stayed true the whole time; it
+  was being presented as the measurement. The branch conclusion -- interval
+  counts are `O_E(1)` and do not track `N` -- is unchanged and slightly
+  strengthened.
+- **Blast radius, checked rather than assumed: nothing else.** No other ledger
+  row, no Lean declaration and none of the three manuscripts carries a constant
+  from this module. `step5b_p0` imports only `C7`, which is `_delta`-free, and
+  the whole `phi` branch never calls `_delta`. Those two documents were the
+  entire published surface.
+- **A test now reads the artifact** rather than recomputing it, because the
+  failure that actually happened was a corrected module sitting next to an
+  uncorrected payload for a day. A second test pins the mechanism: the pre-fix
+  error must exceed the per-step drift by more than tenfold.
+- **Decision:** `CLOSE`. The fix was the correction; this is its accounting.
+
+## 2026-09-19 -- the averaging question's missing lemma has a name and an exponent
+
+- **Objective:** push on the averaging question after the peer handed me the
+  line, having priced it at the full gap from `0.326` to `0.4927`.
+- **The obstruction was recorded as "an intermediate coefficient with no
+  lemma".** It now has one. The quantity that decides whether an adversary can
+  plant low-share fibres is the `1/m`-weighted fraction of fibres below a
+  share threshold, as a function of scale. I measured it: it decays like a
+  power of the scale at every threshold tested, `m^(-0.32)` to `m^(-0.40)`,
+  including thresholds within `0.01` of the mean. The mean share itself is
+  `1/2` to three digits at every scale from `2^18` to `2^32`.
+- **Why that is the whole question.** Contagion already forces `A` to carry
+  weight `K (log y)^(13/40)` in the range `family_OE` sums over. A weight that
+  grows polylogarithmically cannot sit inside a capacity that decays
+  polynomially. So for large `y` the low-share fibres hold a vanishing
+  fraction of `A`'s weight, `A`'s weighted mean share is at least any fixed
+  `theta < 1/2`, and the coefficient moves from `(2/3)(1/3)` toward
+  `(2/3)(1/2) = 1/3`. That is a bootstrap, not a circle: it uses the certified
+  exponent to improve the coefficient that produced it.
+- **The prize, priced earlier today:** a coefficient of `0.3332763` on two
+  productions matches `lambda** = 0.492572`. So this route would reach the
+  headline exponent with no block-average family and no six-word ladder,
+  taking Proposition 4.4's two exponential-sum bounds off the critical path.
+  Those are the largest unformalized gap in Paper C.
+- **What is not done, and it is the whole of it.** The decay is measured on
+  1200 samples per block to `2^32`, not proved. It is an equidistribution
+  statement about the fibre step across `m`, which is the same object the
+  sweep lemmas already control, so the laboratory's own machinery is the
+  natural route. Nothing here is Lean and no exponent has improved.
+- **The concentration is tighter than a fair coin**, which is itself a hint at
+  the proof: at `2^32` a fair coin on `H = 1083` flips would put `25.5%` of
+  mass below `0.49` and the measurement finds `1.6%`. The tightness comes from
+  the rotation, not from independence.
+- **Decision:** the `PARK` on `juggler_oe_rest_average` should be reconsidered.
+  Best next question: prove the polynomial decay from the sweep lemmas.
+
+## 2026-09-19 -- The pairing third is attained, and alpha was noise above 1e7
+
+- **Objective:** Philippe asked whether Paper C's `2/9` is sharp.
+- **Answer: sharp pointwise, not sharp in truth, and already banked.** The
+  `1/3` of `G_m >= H_m/3 - 2` is reached, not approached from a safe distance.
+  At four scales the minimising good fibre has scarcer colour exactly
+  `floor(H_m/3)` -- `m = 1018590` (68, 22), `10001831` (143, 47), `100001607`
+  (310, 103), `1000011666` (667, 222) -- so the `-2` is pure slack and the
+  attained share `0.323529, 0.328671, 0.332258, 0.332834` rises to `1/3` from
+  below. No pointwise per-fibre constant above `1/3` can hold, so
+  `0.3261209621` is a real ceiling for the two-production route and the peer's
+  `13/40` certificate is chasing a true target. `J-oe-fiber-pairing-third-is-attained`.
+- **The mechanism, not just the observation.** The minimiser is not at the
+  resonance but just below it, at `alpha ~ p/3 - 1/(3(H-1))`, where the linear
+  detune cancels the fibre's own curvature. Measured `detune*(H-1)` is `-0.30,
+  -0.33, -0.33, -0.33` against the predicted `-1/3`.
+- **A precision bug, and without fixing it none of the above was measurable.**
+  `fate_contagion.fiber_stats` computed `alpha` as the float difference
+  `((lo+2)^1.5 - lo^1.5)/2`. That subtracts two numbers of size `lo^{3/2}` to
+  reach a difference of size `3 sqrt(lo)` and then takes its fractional part. At
+  `m = 1e8` the operands are about `1e16`, where a float64 ulp is `2`, and the
+  expression returned exactly `0.0` against a true `0.2035`. Since
+  `is_good_fiber` rejects `alpha` near `0`, that silently rejected EVERY fibre
+  at that scale -- which is why my first census reported the `1e8` and `1e9`
+  witnesses as "not good fibres" and why the `1e7` detune came out `+0.37`
+  instead of `-0.33`. Replaced by `fiber_alpha`, integer-exact through `isqrt`
+  at scale `1e20`, agreeing with a 60-digit `Decimal` to `1e-15` from `1e6` to
+  `1e10`. Any alpha-binned result above `1e7` predating today is suspect.
+- **What the question was NOT worth, and a duplication avoided.** I reasoned
+  that raising `2/9` to `1/3` would lift the elementary exponent from `0.326` to
+  `0.4927`, which is true but reads the prize backwards: a peer session had
+  already recorded `J-paper-c-ladder-recovers-the-depth-two-ceiling` the same
+  day, showing the ladder telescopes exactly onto the `1/3` equation and the
+  whole residue is `0.000086`. The gain is proof economy -- `lambda** > 0.4926`
+  with no ladder, no Appendix D, no block-average family -- not a better number.
+  That row also carries the correct factoring, which I had transposed: the
+  derivation's product is (proved parity share `1/3`) x (Lemma 3.2 fibre
+  constant `2/3`), not (ideal coefficient) x (share). Two structurally distinct
+  `2/3`s coincide. Operationally it matters: raising the share to `sigma` gives
+  `(2/3)sigma`, so reaching `1/3` needs `sigma = 1/2` exactly.
+- **My reconstruction of (5.2) was short one term** -- `(1/9, 3/8)`, family 2 at
+  ideal minus family 3's overlap, `1/3 - 2/9`. Without it the ladder roots come
+  to `0.3803`; with it all five printed values reproduce. `THIRD_RECURSION` in
+  `oe_fiber_constant.py` already had the correct term list, so reading the probe
+  would have been faster than rederiving it. Eighth re-derivation this fortnight.
+- **A dossier parenthetical corrected.** `juggler_oe_rest_average.md`
+  observation (1) read the poor set as "not `O(U^{-1/3})`". That was inferred
+  from `[2^8, 2^16]`, where `H_m <= 27` and binomial noise alone predicts ~14%.
+  Four octaves further the `1/m`-weighted fraction falls `0.0508 -> 0.0072`, a
+  factor `7.1` against the cube-root `6.35`. It does not unpark the branch --
+  the PARK rests on observations (2)-(4), and Theorem 5.3 needs poor-set mass
+  relative to `A`, not to all integers.
+- **Relayed, not edited:** Paper C section 5.6 calls the depth-two gap
+  `0.448 -> 0.4927` a live averaging problem, but Theorem 1 already stands at
+  `0.4925715` via (5.10), so the live gap is `8.6e-5`. Read as written it makes
+  this sharpening look ~500x more valuable than it is. The manuscript is
+  claimed by another session, so it was passed to them.
+- **Decision:** `CLOSE` on the sharpness question. The constant is sharp, the
+  route past it is more productions rather than better ones, and the only new
+  machinery worth keeping is the exact `fiber_alpha`.
 
 ## 2026-09-19 -- the ladder recovers the depth-two ceiling, and stops
 

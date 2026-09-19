@@ -391,7 +391,7 @@
     {
       "path": "src/research/juggler_sequence/fate_contagion.py",
       "mode": "text",
-      "sha256": "6442eb4af160876678b734e261575c7a4ce2181b21c400697b66cf39e4a90c74"
+      "sha256": "27b94f873d4cc9fc4f424443db058c8b3f7c6217e9bdbde7cc17c984829e9c46"
     },
     {
       "path": "src/research/juggler_sequence/paper_c_audit.py",
