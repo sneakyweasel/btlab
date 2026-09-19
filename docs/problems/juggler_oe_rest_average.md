@@ -1,7 +1,10 @@
 # Juggler OE rest average: \(1/3\) versus \(1/2\) on \(A^{\mathrm{rest}}\)
 
-Status: **PARK** (drowning is real for a fixed seed; infinite planting
-has no clean coefficient)
+Status: **PROMOTE** (unparked 19 September 2026: the missing lemma is
+proved, and the averaging question is answered for every \(A\) at once)
+
+Proof:
+[juggler_oe_poor_fiber_tail_note.md](../theory/juggler_oe_poor_fiber_tail_note.md).
 
 Child of [juggler_oe_fiber_constant.md](juggler_oe_fiber_constant.md)
 and [juggler_fate_contagion.md](juggler_fate_contagion.md). Not a new
@@ -53,6 +56,52 @@ by a dynamical averaging theorem for the low-even set \(P\): the
 \(E{+}OE\) orbit of \(P\) has even-share \(1/2-o(1)\). That is not
 opened here.
 
+**Superseded 19 September 2026.** The dynamical theorem is not needed,
+because \(P\) is too small to require one. See the next section.
+
+## The theorem that unparks this
+
+**Theorem (poor-fiber tail; EXACT — HUMAN PROOF).** For
+\(\eta_0\in(0,\tfrac12]\) put
+\(P_{\eta_0}=\{m:|G_m/H_m-\tfrac12|\ge\eta_0\}\). There is
+\(u_0(\eta_0)=\max(10^6,(1950/\eta_0^2)^3)\) with
+\[
+\#\bigl(P_{\eta_0}\cap(u,2u]\bigr)\le\frac{420}{\eta_0^2}u^{2/3}
+\quad(u\ge u_0),
+\qquad
+\sum_{m\in P_{\eta_0},\,m>U}\frac1m\le\frac{2040}{\eta_0^2}U^{-1/3}
+\quad(U\ge u_0).
+\]
+
+Three steps, all elementary, none using an exponential sum:
+
+1. **Block lock.** For every convergent denominator \(q\) of
+   \(\alpha_m=\{\tfrac32m^{2/3}\}\),
+   \(|G_m/H_m-\tfrac12|\le 4\|q\alpha_m\|+\tfrac5{2q}+3.77q/H_m\).
+   Cut the fiber into blocks of \(q\) consecutive members; each is a
+   translate of the \(1/q\)-grid perturbed by
+   \(\|q\alpha_m\|+q\eta_m\), and a \(1/q\)-grid splits a
+   half-circle within \(\tfrac12\) of evenly.
+2. **Lock.** Contrapositive at the largest convergent denominator below
+   \(\eta_0H_m/16\): a deviation \(\ge\eta_0\) forces
+   \(q\le3.77/\eta_0\) with \(\|q\alpha_m\|\le32/(\eta_0H_m)\).
+3. **Arc count.** Lemma 4.3 with its two goodness arcs replaced by the
+   \(\tfrac{Q(Q+1)}2\) arcs of total length \(2Q\delta\); the count
+   over \((u,2u]\) is \((0.882u^{2/3}+2)(2Q\delta(2u)^{1/3}+\tfrac{Q(Q+1)}2)\).
+
+**Corollary.** For every set \(S\subseteq(V,\infty)\) whatever --- no
+backward closure, no structure ---
+\(\sum_{m\in S}\tfrac1m\tfrac{G_m}{H_m}\ge(\tfrac12-\eta_0)\sum_{m\in S}\tfrac1m-1020\eta_0^{-2}V^{-1/3}\).
+
+**Why this kills the obstruction rather than dodging it.** The PARK
+rested on the poor set's mass *relative to \(A\)*, which observations
+(2)--(4) could not control. The theorem makes that quantity irrelevant:
+\(P_{\eta_0}\) has finite total logarithmic mass, so there is nothing
+for an adversary to concentrate on, whatever \(A\) is. Observations
+(2)--(4) stand as measurements and were never wrong; they were taken at
+\(2^{16}\), where the density of \(P\) is still \(\approx0.37\)
+because \(420\eta_0^{-2}u^{-1/3}\) has not begun to bite.
+
 ## Current literature
 
 - Pairing \(H/3-2\) (`extended` as the uniform floor; this branch is
@@ -78,6 +127,36 @@ Promotion criterion     Human-proof 1/2−o(1) uniformly in A; root moves.
 Stop criterion          Intermediate coefficient, or a constant hunt.
 ```
 
+Reopened 19 September 2026, against the corrected pricing:
+
+```text
+Mathematical target     For every fixed eta>0, is #{m in (u,2u] :
+                        |G_m/H_m - 1/2| >= eta} << u^{2/3}?
+Novelty hypothesis      Low share forces a small-denominator resonance in
+                        alpha_m at width O(1/H_m); Lemma 4.3 already counts
+                        exactly that, for q <= 2 only.
+Falsifier               A low-share fibre with no resonance q <= Q(eta)
+                        inside C(eta)/H_m; or the block-lock inequality
+                        failing at any convergent denominator.
+Already killed by?      No. negative_knowledge.md kills averaging as a route
+                        to bounded-m CYCLE exclusion, an extreme-value
+                        problem; this is the contagion recursion's fibre
+                        share, an average problem. Different target.
+Existing machinery      Lemma 4.1', 4.2, 4.3 and FiberParity.arc_count_le;
+                        Lemma 4.5 share law; alpha_star; fiber_stats.
+Maximum Phase-0 scope   Prove the three lemmas, verify each as a falsifier,
+                        derive the tail and the two-production root. No
+                        Paper C rewrite -- that manuscript is claimed.
+Promotion criterion     The tail bound, uniform in A, with a two-production
+                        root above 0.492572.
+Stop criterion          The lock lemma needing Erdos-Turan or any
+                        exponential sum: then it is a wash, because
+                        Proposition 4.4 is back on the critical path.
+```
+
+The stop criterion did not bind. The lock lemma is continued fractions
+and counting; no exponential sum appears anywhere in the note.
+
 ## Balanced-ternary formulation
 
 None. The objects are odd members of a backward-closed set and the
@@ -89,10 +168,20 @@ Not relevant here; recorded for the template.
 
 ## Candidate operations / invariants
 
+- Block lock (1.1), the inequality carrying the whole proof —
+  **EXACT — HUMAN PROOF**.
+- Poor-fiber tail \(O(U^{-1/3})\), uniform in \(A\) —
+  **EXACT — HUMAN PROOF**.
+- Arc count past \(q=2\) — **EXACT — HUMAN PROOF** (Lemma 4.3 generalized).
+- Poor-set density \(\asymp u^{-1/3}\) from below —
+  **COMPUTATIONALLY VERIFIED** (\(1.4\) to \(2.1\) times \(u^{-1/3}\)
+  over \([10^5,10^8]\)).
 - One-sided low-even set \(P\) — **COMPUTATIONALLY VERIFIED**.
 - Capped-seed mixing to \(1/2\) — **COMPUTATIONALLY VERIFIED**.
-- Infinite-planting even-share \(0.25\to 0.41\) — **OBSERVATION**.
-- Ideal root \(0.4927\) — **KNOWN** (not reached).
+- Infinite-planting even-share \(0.25\to 0.41\) — **OBSERVATION**
+  (pre-asymptotic, now explained).
+- Ideal root \(0.4927\) — **KNOWN**, and now the supremum of what two
+  productions reach.
 
 ## Experiments
 
@@ -113,69 +202,102 @@ drowning; it kills a pairing-style uniform rewrite of (4.2).
 
 ## Formalization
 
-None. `FateContagion.lean` stays the exact layer. No `sorry`.
+None yet, and the note names the order: the arc count first
+(`FiberParity.bad_count_le` with a union over \(q\le Q\) in place of the
+two goodness arcs, no new idea), then the block lock, which is the only
+genuinely new Lean work, then the tail as arithmetic. Nothing needs
+`native_decide`. `FateContagion.lean` stays the exact layer. No `sorry`.
 
 ## Results
 
-- Classification `OE_REST_AVERAGE_MIXED`.
+- Classification `OE_REST_AVERAGE_PROVED` (the closure census keeps its
+  own `OE_REST_AVERAGE_MIXED` under `closure_classification`; both are
+  true and they answer different questions).
+- Block lock verified at every convergent denominator \(q\le H_m\) over
+  four windows at \(10^6,10^7,10^8,10^9\); least slack \(0.233\), and
+  \(\eta_mH_m\le0.6834\) against the \(0.6903\) the constant
+  \(3.77\) is built on.
+- Every fiber with share \(\le0.40\) locks: \(q\in\{1,3,5\}\) at
+  \(10^6\), \(\{1,3\}\) at \(10^7\), \(\{1\}\) at \(10^8\),
+  with resonance \(\|q\alpha_m\|H_m\le1.99\) throughout. \(q=1\) is
+  the extreme family of Corollary 4.6, \(q=3\) the attaining witnesses
+  of the pairing third.
+- Arc count holds at nine \((u,Q,\delta)\) combinations, ratio at most
+  \(0.882\) --- tight at \(Q=1\), as the leading term predicts.
+- Two productions reach every \(\lambda<0.4926580\); the break-even
+  against the published \(\lambda^{**}=0.4925715\) is
+  \(\eta_0=8.60\times10^{-5}\).
 - Child-phase \(\{(3/2)m^{8/9}\}\) on low-even parents is uniform
   (total variation \(0.046\) on \([3000,8000]\)).
-- \(\lambda^{**}\) stays \(0.4480\). Not a halt theorem.
+- Not a halt theorem. No floor moves, no cycle is excluded.
 
 ## Open questions
 
-A dynamical averaging theorem for \(P\) (even-share \(1/2-o(1)\) along
-the \(E{+}OE\) orbit). Not opened. Another pointwise fiber bound is
-the wrong door. Two-way closed fate classes are a different question
-and are not opened.
+A dynamical averaging theorem for \(P\) is **no longer wanted**: the
+theorem makes \(P\) too small for the dynamics to matter. What is open,
+in descending order of value:
+
+1. **Lean.** The three lemmas, in the order the note gives. The arc count
+   is a generalization of an existing Lean proof; the block lock is new.
+   This is the item that would let Theorem 5.3 be Lean end to end at an
+   exponent above \(0.4926\), which it has never been.
+2. **Constants.** \(420\) and \(2040\) are crude by a large factor, and
+   \(u_0(\eta_0)=(1950/\eta_0^2)^3\) is what makes \(t_1\approx221\)
+   at the \(\eta_0\) that matters. Sharpening \(\theta\) in Lemma 2
+   and the grid-boundary count in Lemma 1 is routine and would bring
+   \(u_0\) down by many orders.
+3. **Depth three.** The two-production ceiling is now reached, so the
+   ceiling on the *method* is what binds, exactly as
+   `J-paper-c-ladder-recovers-the-depth-two-ceiling` says. Going past
+   \(0.4927\) needs a third production, not a better constant.
+
+Another pointwise fiber bound is still the wrong door. Two-way closed
+fate classes are a different question and are not opened.
 
 ## Decision
 
-**PARK.** A fixed seed set mixes to \(1/2\); planting low-even
-\(m\) at every scale leaves an intermediate coefficient with no lemma.
-The gap \(0.448\to 0.4927\) is now read as a dynamical averaging
-problem for \(P\), not as a missing pointwise fiber bound.
+**PROMOTE.** The averaging question is answered, and not by averaging.
+The obstruction the PARK recorded --- "an intermediate coefficient with
+no lemma" --- turned out to be an artifact of asking for the wrong
+theorem: nobody needs to show that \(A\)'s orbit mixes, because the set
+it would have to mix away has finite total logarithmic mass. Three
+elementary lemmas, no exponential sum, and the conclusion holds for every
+set of integers whatever.
 
-**Re-priced 2026-09-19; the PARK stands but "none on this line" is now
-arguable.** The park was weighed against the prize "a better exponent",
-and on that measure it was right --
-`J-paper-c-ladder-recovers-the-depth-two-ceiling` shows the ladder has
-already banked all but \(8.6\times10^{-5}\) of it, and
-`J-oe-fiber-pairing-third-is-attained` shows the pointwise \(1/3\) cannot
-be improved. But the two-production inequality is the whole
-unconditional chain and its root moves steeply in the OE coefficient
-(`oe_rest_average.averaging_payoff`):
+What this is worth, priced as the reopening budget required: the
+two-production inequality now reaches every \(\lambda<0.4926580\),
+above the published \(\lambda^{**}=0.4925715\). The gain in the number
+is \(8.6\times10^{-5}\) and is not the point. The point is which
+machinery the number stops needing:
 
-| \(c\) | share | two-production root |
-|---|---|---|
-| \(2/9=0.222222\) | \(1/3\) | \(0.326121\) (pointwise-sharp) |
-| \(0.300000\) | \(0.450\) | \(0.442499\) |
-| \(0.320000\) | \(0.480\) | \(0.472576\) |
-| \(1/3=0.333333\) | \(1/2\) | \(0.492658\) |
+- **Proposition 4.4 leaves the critical path**, with its two
+  exponential-sum bounds --- Vaaler, the second-derivative test,
+  Kusmin--Landau --- which are Paper C's largest unformalized gap.
+- **The six-word ladder and Appendix D leave it**, since two productions
+  now pass where six stopped.
+- **Lemmas 4.1, 4.1' and 4.2 leave it too**, as statements: the new
+  argument needs no goodness hypothesis and no pointwise floor, because a
+  fiber that would have been called bad is just a member of
+  \(P_{\eta_0}\). One step of Lemma 4.2's proof is retained --- the step
+  interval \([A_m,B_m]\), which is where \(\alpha_m\) and \(\eta_m\)
+  come from --- but the sweep lemmas themselves are not used.
 
-The coefficient matching \(\lambda^{**}=0.492572\) on two productions
-alone is \(0.3332760\), a share of \(0.4999140\) -- essentially the mean.
-So an averaged argument delivering the mean would reach the headline
-exponent with two productions, making the block-average family and the
-six-word ladder unnecessary for it, and taking **Proposition 4.4's two
-exponential-sum bounds off the critical path**. Those are Paper C's
-analytic core, absent from `formal/`, and its largest unformalized gap.
-The prize is therefore not a better number but the same number with the
-analytic core removed -- a different kind of prize from the one weighed
-here.
+Three things this is not. It is not a better exponent in any sense that
+matters (\(8.6\times10^{-5}\)). It is not a halt theorem, and Theorem
+7.2 stays conditional. And it does not attain \(0.4926580\): \(\eta_0\)
+is fixed before \(x\), so the supremum is approached, which is the shape
+the published statement already has.
 
-**What still vindicates the PARK: the target is narrow.** Break-even
-against the three-production base \(0.448017\), which the block average
-already gives, is \(c=0.3036722\), a share of \(0.4555\). An averaged
-argument landing below that share is a *regression*, not progress, and it
-must reach \(0.4999\) to match \(\lambda^{**}\). Recovering "better than
-the worst case" is worth nothing here; only "essentially the mean" pays,
-and that is exactly what observation (3)'s slow drowning fails to give.
+The earlier re-pricing on this line stands as written and was the reason
+to reopen: the prize was never a better number, it was the same number
+with the analytic core removed. That is what was collected.
 
-Quantification contributed by a peer session; reproduced and guarded in
-`test_oe_rest_average.py`.
+**Paper C is not edited here.** The manuscript is claimed by another
+session; this branch records the theorem and the consequence, and the
+rewrite of §5.1--5.2 is theirs to take or leave.
 
 ## Publication assessment
 
-Status: `EXPLORATORY`. The census belongs in a remark of the fate
-note, not as a new theorem. Not a halt theorem.
+Status: `PUBLISHABLE` as a section of the fate note, replacing §5.1
+item 2 and simplifying §5.2, at the holding session's discretion. The
+census remains a remark. Not a halt theorem.

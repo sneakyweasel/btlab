@@ -4279,9 +4279,12 @@
       "data_dir": "data/research/juggler/oe_rest_average",
       "lean": [],
       "conjecture": [],
-      "decision": "PARK",
+      "decision": "PROMOTE",
       "ledger_ids": [
-        "J-oe-low-share-weight-decays-polynomially"
+        "J-oe-low-share-weight-decays-polynomially",
+        "J-oe-fiber-block-lock",
+        "J-oe-poor-fiber-tail",
+        "J-oe-averaged-two-productions-reach-the-depth-two-ceiling"
       ],
       "aliases": [],
       "nk_cluster": null
