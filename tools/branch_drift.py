@@ -74,6 +74,12 @@ def refs_are_visible(repo: Path) -> bool:
     return bool(_git(repo, "for-each-ref", "--format=%(refname:short)", "refs/remotes").strip())
 
 
+def head_sha(repo: Path, ref: str, length: int = 8) -> str:
+    """Short sha at ``ref``, for pinning an acknowledgement to what was read."""
+
+    return _git(repo, "rev-parse", f"--short={length}", ref).strip()
+
+
 def _ledger_rows(repo: Path, ref: str) -> dict[str, str]:
     """Map row id to statement at ``ref``; empty if the ledger is unreadable."""
 

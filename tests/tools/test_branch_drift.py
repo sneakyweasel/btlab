@@ -31,6 +31,18 @@ import branch_drift as BD  # noqa: E402
 #: one without looking at what the branch holds.
 #:
 #: Assessed 14 September 2026.
+#: The commit each acknowledgement was read AT. An acknowledgement is about a
+#: branch's CONTENTS, so it expires when the contents change; without this the
+#: gate stays green while an acknowledged branch grows, which is how
+#: latest-progress-summary reached +8 unread on 2026-09-20 after being
+#: acknowledged at +5. Update the sha in the same commit as the reason.
+READ_AT: dict[str, str] = {
+    "claude/exponent-floor-3n1-2adic-mvwa96": "521f5b32",
+    "claude/latest-progress-summary-s011un": "99e846db",
+    "claude/goofy-kare-1a92fd": "8aad2aae",
+    "claude/elated-hopper-e20999": "86247b5d",
+}
+
 ACKNOWLEDGED: dict[str, str] = {
     "claude/goofy-kare-1a92fd": (
         "PENDING EXTRACTION, and it answers a question main spent a whole "
@@ -96,26 +108,30 @@ ACKNOWLEDGED: dict[str, str] = {
         "and the bridge row should carry it whenever this is merged."
     ),
     "claude/latest-progress-summary-s011un": (
-        "PENDING EXTRACTION, and it supersedes a day of work on main. Read "
-        "2026-09-19. Three rows main lacks -- J-oe-fiber-block-lock, "
-        "J-oe-poor-fiber-tail and "
-        "J-oe-averaged-two-productions-reach-the-depth-two-ceiling -- plus "
-        "formal/Problems/Juggler/FateResonanceCount.lean, which its own commit "
-        "says is NOT YET COMPILED and is deliberately not imported into the "
-        "barrel. It answers the averaging question by one inequality, "
-        "|G_m/H_m - 1/2| <= 4||q alpha_m|| + 5/(2q) + 3.77 q/H_m at every "
-        "convergent denominator q, with no exponential sum anywhere. Crucially "
-        "it observes that P has FINITE total logarithmic mass, so there is "
-        "nothing to plant: the adversarial-concentration problem that main "
-        "spent 19 September building a backward-closure argument for does not "
-        "need solving, and the conclusion holds for every set of integers with "
-        "no structure at all. Verified here independently: the 1/m-weighted "
-        "poor density decays like m^(-1/3) and sum over P of 1/m converges to "
-        "about 1.3. What main has that survives is "
-        "J-oe-fiber-pairing-third-is-attained and the ladder's 8.6e-5, both of "
-        "which that branch explicitly leaves standing. Merging is Philippe's "
-        "call and takes the whole branch or none of it, since the rows and the "
-        "Lean are one result."
+        "PENDING EXTRACTION, and it has GROWN since it was first acknowledged "
+        "at +5; this entry now covers +8, read 2026-09-20 at 99e846db. The "
+        "original reading stands: it proves the low-share decay by one "
+        "inequality at every convergent denominator with no exponential sum, "
+        "because P has FINITE TOTAL LOGARITHMIC MASS -- so nothing needs "
+        "planting, no backward closure is required, and it holds for every set "
+        "of integers. That superseded main's whole Erdos-Turan averaging "
+        "route, now in negative_knowledge.md. Three rows main lacks "
+        "(J-oe-fiber-block-lock, J-oe-poor-fiber-tail, "
+        "J-oe-averaged-two-productions-reach-the-depth-two-ceiling) and a "
+        "correction to J-oe-low-share-weight-decays-polynomially. "
+        "WHAT IS NEW SINCE +5, and it is the Lean: a Mathlib-from-source build "
+        "finished and the written Lean now has a verdict. Lemma 3 is verified "
+        "-- FateResonanceCount compiles and resonance_count_le, "
+        "resonance_count_one and resonant_mem_arc each print the standard "
+        "three axioms. The fiber instantiation is verified -- FateFiberLock "
+        "compiles, evenImageCount_eq_fract is the parity bridge and "
+        "fiber_block_lock puts BlockLock.block_lock on the fiber. And "
+        "exists_coprime_approx gives Dirichlet in lowest terms, which "
+        "block_lock needs because coprimality is what makes the q points a "
+        "full 1/q-grid. Both modules are now in the barrel. Left in the note: "
+        "Lemma 2's arithmetic and Theorem 4, which the branch says carry no "
+        "new mathematical content. The newest commit was read in full here; "
+        "the five before it were read by subject line and by this summary."
     ),
 }
 
@@ -235,4 +251,35 @@ def test_artifacts_are_counted_and_not_only_ledger_rows() -> None:
 
     assert {"lean", "probe", "test", "dossier"} <= set(BD.ARTIFACTS), (
         "the artifact classes a branch can strand must all be scanned"
+    )
+
+def test_acknowledgements_name_the_commit_they_read(drifts: list[BD.Drift]) -> None:
+    """An acknowledgement expires when the branch moves past what was read.
+
+    ACKNOWLEDGED describes a branch's CONTENTS, so a branch that grows after
+    being acknowledged is unread again while the gate stays green. That is not
+    hypothetical: `latest-progress-summary` was acknowledged at +5 and reached
+    +8 with three more kernel-checked results before anyone looked, because
+    nothing tied the entry to a commit.
+    """
+    heads = {_key(d.ref): BD.head_sha(REPO, d.ref) for d in drifts}
+
+    missing = sorted(set(ACKNOWLEDGED) - set(READ_AT))
+    assert not missing, (
+        f"{missing} are acknowledged without naming the commit read. Add a "
+        "short sha to READ_AT."
+    )
+
+    moved = [
+        (key, READ_AT[key], heads[key])
+        for key in sorted(set(ACKNOWLEDGED) & set(heads))
+        if not heads[key].startswith(READ_AT[key])
+    ]
+    assert not moved, (
+        "branch(es) have new commits since the acknowledgement was written, "
+        "so what is recorded no longer describes them:\n"
+        + "\n".join(
+            f"    {k}: read at {r}, now at {h}" for k, r, h in moved
+        )
+        + "\n\nRead the new commits, update the reason, move the sha."
     )
