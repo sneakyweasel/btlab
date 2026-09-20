@@ -78,3 +78,6 @@ data/research/juggler/certificate_harvest/harvest-100000001-1000000000.tsv
 data/research/juggler/certificate_harvest/harvest-100000001-1000000000.tsv.overflow
 data/research/juggler/certificate_harvest/harvest-100000001-1000000000.tsv.uncapped
 .venv-seed/
+
+# Local OEIS bulk download (regenerate with curl from oeis.org, ~41 MB)
+data/external/
