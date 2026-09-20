@@ -316,7 +316,7 @@
     {
       "path": "formal/Problems/Juggler/LogCells.lean",
       "mode": "text",
-      "sha256": "5b25451fa4568535238eacc093722cd768bd821c81ccd211c14108bf849e337d"
+      "sha256": "bbd09a10c8da6904f3012f7e80c79d31d9680ba9983d80fdb7669d16ba2dfed7"
     },
     {
       "path": "formal/Problems/Juggler/Minimal.lean",
@@ -406,7 +406,7 @@
     {
       "path": "src/research/juggler_sequence/tao_reduction.py",
       "mode": "text",
-      "sha256": "6c3b6db26c2c0d130a52a04d2b38a54b88f10c054542ed83c21710ec495653f5"
+      "sha256": "ba4f9a6bbb23992901ed9681965444a646ed6969f9403c14828ffba33636bc8a"
     },
     {
       "path": "tools/build_paper_c.py",
