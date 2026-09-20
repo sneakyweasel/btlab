@@ -3697,7 +3697,8 @@ claim.
 ## The Erdős--Turán route to the averaging lemma closes, and is thirty orders from useful
 
 Built 19 September 2026 over most of a day, then superseded the same night
-by a branch main does not have. Recorded because it is re-derivable, it looks
+by a branch, `claude/latest-progress-summary-s011un`, merged into main on
+20 September 2026. Recorded because it is re-derivable, it looks
 like progress at every step, and nothing in the chain announces the problem.
 
 **What it proves.** For every nonempty backward-closed \(A\) and fixed
@@ -3729,8 +3730,10 @@ coefficients and false about anything achievable. Selberg--Vaaler removes
 \(C_{ET}=4\) --- but only \(1.1\times\) at \(C_{ET}=1\), so what it buys is
 not having to know the constant, not sharpness.
 
-**And the question dissolves, which is the part worth carrying.** The branch
-`claude/latest-progress-summary-s011un` proves the decay by one inequality at
+**And the question dissolves, which is the part worth carrying.** The route
+that replaced this one --- merged into main from
+`claude/latest-progress-summary-s011un` on 20 September 2026, and recorded as
+`J-oe-poor-fiber-tail` --- proves the decay by one inequality at
 every convergent denominator,
 \(\lvert G_m/H_m-\tfrac12\rvert\le4\lVert q\alpha_m\rVert+\tfrac5{2q}+3.77q/H_m\),
 with no exponential sum. Its observation is that \(P\) has **finite total
