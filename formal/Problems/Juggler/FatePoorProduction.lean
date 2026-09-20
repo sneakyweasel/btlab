@@ -147,7 +147,11 @@ noncomputable def errAddAvg (η₀ t : ℝ) : ℝ :=
 Family 1 is Paper C's Lemma 3.1 unchanged; family 3 is `family_OE_averaged`, so the `2/9` of
 `production_two` is replaced by `(2/3)(1/2 - η₀)`, which exceeds `1/3 - 10^{-4}`. The shell
 geometry -- the three scales `t/2`, `3t/4`, `t`, the fibres landing in the shell, the two
-boundary drops -- is `production_two`'s, step for step.
+boundary drops -- is `production_two`'s, step for step. It is inlined rather than shared, because
+factoring it out would add a declaration to `FateProduction.lean`, one of the 83 inputs pinned
+by Paper C's release manifest. The copy is therefore deliberate, and
+`test_oe_rest_average.test_the_two_production_proofs_share_the_same_shell_geometry`
+re-extracts both blocks and fails if they ever drift apart.
 
 `hT` is the one new hypothesis, and it is exactly Lemma 2's two block conditions rewritten at
 `U = ⌊e^{3t/8}⌋`: `3(1280/η₀² + 1) ≤ e^{t/8}` gives `1280/η₀² ≤ (2/3)U^{1/3} - 1`, and that in
