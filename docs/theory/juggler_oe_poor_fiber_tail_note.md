@@ -480,13 +480,41 @@ The formalization changed one thing and confirmed the rest: the constant
 in (4.1) is \(430\), not the \(420\) first printed here, for the
 reason recorded in §4.
 
-**What is still not Lean.** Running the recursion. Turning the family
-bound into an exponent needs `production_two`, `zeta`, `recursion_lemma`
-and the seed, all stated in `FateProduction` and `FateContagionBound`
-against the literal \(2/9\) and \(13/40\). Restating them at
-\(c=(2/3)(\tfrac12-\eta_0)\) is arithmetic over what is now proved,
-not mathematics — but it is not done, and until it is, the sentence
-"Theorem 5.3 is Lean above \(0.4926\)" is not yet earned.
+**What is still not Lean, and why it stopped exactly here.** Running the
+recursion. `recursion_lemma` is already generic — it takes the
+coefficients \(e,c:\mathrm{Fin}\,r\to\mathbb R\) as parameters, so
+it needs nothing — but `production_two` is stated against the literal
+\(2/9\), and it is the one remaining link.
+
+Its 148-line proof splits cleanly in two. The first half is shell
+geometry: that \(\Phi(m)\) for \(m\in(U,y''-1]\) lands in
+\((\sqrt x,x]\), that the scales are large, that
+\(U=\lfloor\sqrt{y''}\rfloor\ge10^6\). None of it mentions a
+coefficient. The second half applies the two families and converts to
+\(g_A\). Only the second half would change.
+
+So the clean move is to factor the geometry out of `production_two` into
+a lemma and call it from both — which is also what the laboratory's own
+guidance says to prefer over restating. **That is blocked here.**
+`FateProduction.lean` is one of the 83 inputs pinned by Paper C's
+release manifest, so *adding* a lemma to it, not merely changing one,
+alters a digest the manuscript publishes and demands a Pandoc/XeLaTeX
+rebuild of a paper another session holds. This container has neither
+binary.
+
+The alternative is to copy the 70 lines of geometry into a second file.
+That is declined on purpose: it gives the same geometric facts two names
+inside one layer, which is the duplication the formalpedia habit exists
+to prevent, and the next reader could not tell which copy the manuscript
+cites. A forced duplicate is worse than a recorded gap.
+
+So the boundary is environmental, not mathematical. For a session that
+can rebuild Paper C the remaining work is: add the geometry lemma to
+`FateProduction`, state `production_two_averaged` from it with
+`family_OE_averaged`, discharge \(\zeta>0\) at the new coefficient as
+a numeric fact, and feed `recursion_lemma`. Until that is done the
+sentence "Theorem 5.3 is Lean above \(0.4926\)" is **not** earned, and
+nothing here should be read as claiming it.
 
 **Lemma 1 is done and kernel-checked.**
 `Problems/Juggler/FateBlockLock.lean`, `BlockLock.block_lock`, in the

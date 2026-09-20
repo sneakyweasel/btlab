@@ -202,6 +202,25 @@ drowning; it kills a pairing-style uniform rewrite of (4.2).
 
 ## Formalization
 
+**Done and kernel-checked, standard axioms throughout**: Lemma 1
+(`BlockLock.block_lock`), Lemma 2 (`FiberParity.fiber_lock`), Lemma 3
+(`FiberParity.resonance_count_le'`), Theorem 4 both halves
+(`poor_count_le'`, `poor_logMass_le`), and §5's family bound
+(`family_OE_averaged`). Five modules: `FateBlockLock`, `FateFiberLock`,
+`FateResonanceCount`, `FatePoorTail`, `FatePoorProduction`.
+
+**Not done**: the recursion. `recursion_lemma` is generic and needs
+nothing; `production_two` is stated against the literal `2/9`. Its
+geometry half is coefficient-free and should be factored out and shared,
+but `FateProduction.lean` is pinned by Paper C's release manifest, so
+adding even a lemma to it needs a manuscript rebuild this container
+cannot do. Copying the geometry instead was declined: it would give the
+same facts two names in one layer. The gap is environmental, and the
+note's Formalization section says what a session with a Paper C build
+should do.
+
+Superseded planning text follows.
+
 None yet, and the note names the order: the arc count first
 (`FiberParity.bad_count_le` with a union over \(q\le Q\) in place of the
 two goodness arcs, no new idea), then the block lock, which is the only
