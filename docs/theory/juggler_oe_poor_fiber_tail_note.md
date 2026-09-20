@@ -247,12 +247,12 @@ u_0(\eta_0)=\max\Bigl(10^6,\ \bigl(1950/\eta_0^2\bigr)^3\Bigr).
 \]
 Then for every \(u\ge u_0(\eta_0)\),
 \[
-\#\bigl(P_{\eta_0}\cap(u,2u]\bigr)\ \le\ \frac{420}{\eta_0^{2}}\,u^{2/3},
+\#\bigl(P_{\eta_0}\cap(u,2u]\bigr)\ \le\ \frac{430}{\eta_0^{2}}\,u^{2/3},
 \tag{4.1}
 \]
 and for every \(U\ge u_0(\eta_0)\),
 \[
-\sum_{m\in P_{\eta_0},\ m>U}\frac1m\ \le\ \frac{2040}{\eta_0^{2}}\,U^{-1/3}.
+\sum_{m\in P_{\eta_0},\ m>U}\frac1m\ \le\ \frac{2100}{\eta_0^{2}}\,U^{-1/3}.
 \tag{4.2}
 \]
 
@@ -269,18 +269,30 @@ Lemma 3:
 \qquad
 \frac{Q(Q+1)}2\le\frac{8.99}{\eta_0^2},
 \]
-the second using \(\eta_0\le1\). Their sum is at most
-\(472.1/\eta_0^2\), and \(0.882u^{2/3}+2\le0.8825\,u^{2/3}\) for
-\(u\ge10^6\); the product is below \(420\,u^{2/3}/\eta_0^2\), which is
-(4.1). Summing (4.1) over the dyadic blocks above \(U\),
+the second using \(\eta_0\le1\).
+
+**Corrected on formalizing.** The second term is \(Q(Q+1)\), not
+\(\tfrac{Q(Q+1)}2\). `arc_count_le` counts a half-open arc while
+\(\|q\alpha_m\|\le\delta\) is closed, so each of the \(Q\) arcs is
+widened by one point and the Gauss sum loses its halving; that is
+\(18/\eta_0^2\) here against the \(8.99/\eta_0^2\) this proof first
+claimed. With the width term at \(463.71/\eta_0^2\) the sum is
+\(481.71/\eta_0^2\), and \(0.882u^{2/3}+2\le0.8825\,u^{2/3}\) for
+\(u\ge10^6\) gives \(425.11\). So the constant is \(430\), not the
+\(420\) first printed here, and the tail constant is \(2100\), not
+\(2040\). Lean: `FiberParity.poor_count_le'`. Nothing downstream moves,
+for the reason the next paragraph gives: only the positivity of the
+exponent is ever used.
+
+Summing (4.1) over the dyadic blocks above \(U\),
 \[
 \sum_{m\in P_{\eta_0},\,m>U}\frac1m
-\le\sum_{i\ge0}\frac{420}{\eta_0^2}\frac{(2^iU)^{2/3}}{2^iU}
-=\frac{420}{\eta_0^2}U^{-1/3}\sum_{i\ge0}2^{-i/3}
-\le\frac{2040}{\eta_0^2}U^{-1/3}. \qquad\square
+\le\sum_{i\ge0}\frac{430}{\eta_0^2}\frac{(2^iU)^{2/3}}{2^iU}
+=\frac{430}{\eta_0^2}U^{-1/3}\sum_{i\ge0}2^{-i/3}
+\le\frac{2100}{\eta_0^2}U^{-1/3}. \qquad\square
 \]
 
-The constants are crude and the exponent is not. \(420\) and \(2040\)
+The constants are crude and the exponent is not. \(430\) and \(2100\)
 carry the whole slack of Lemmas 1 to 3; the census finds the true density
 of the fibers with \(\sigma_m\le0.40\) between \(1.4\,u^{-1/3}\) and
 \(2.1\,u^{-1/3}\) over \(u\in[10^5,10^8]\), drifting slightly downward
@@ -304,14 +316,14 @@ of any kind —
 \[
 \sum_{m\in S}\frac{\sigma_m}{m}\ \ge\
 \Bigl(\frac12-\eta_0\Bigr)\sum_{m\in S}\frac1m\ -\
-\frac{1020}{\eta_0^2}\,V^{-1/3}.
+\frac{1050}{\eta_0^2}\,V^{-1/3}.
 \]
 
 *Proof.* On \(S\setminus P_{\eta_0}\) the integrand obeys
 \(\sigma_m\ge\tfrac12-\eta_0\) pointwise. On \(S\cap P_{\eta_0}\) use
 \(\sigma_m\ge0\) and discard at most \((\tfrac12-\eta_0)/m\le 1/(2m)\)
 per term; (4.2) bounds that sum by
-\(\tfrac12\cdot 2040\,V^{-1/3}/\eta_0^2\). \(\square\)
+\(\tfrac12\cdot 2100\,V^{-1/3}/\eta_0^2\). \(\square\)
 
 ## 5. What it does to the recursion
 
@@ -337,7 +349,7 @@ whose error \(V^{-1/3}=x^{-1/8}\) is the same shape as the error Lemma
 4.3 already contributes, gives item 3 a log-mass at least
 \[
 \frac23\Bigl(\frac12-\eta_0\Bigr)\bigl(1-O(x^{-1/8})\bigr)\,g_A(3t/4)
-\ -\ \frac{680}{\eta_0^2}\,x^{-1/8},
+\ -\ \frac{700}{\eta_0^2}\,x^{-1/8},
 \]
 and with item 1 unchanged the functional inequality becomes a
 **two-production** one:
