@@ -98,6 +98,7 @@ import Mathlib.Tactic
 import Mathlib.Analysis.SpecialFunctions.Log.Base
 import Problems.Juggler.PaperBCertificateLengths
 import Problems.Juggler.RateFreeDensity
+import Problems.Juggler.LogCells
 
 namespace Problems.Juggler
 
@@ -780,22 +781,6 @@ it. At `Λ = 3` the lengths `1, 2, 3` are all free, because the sequence of carr
 starts at `4`. That is an artefact of where the sequence begins and not a statement about the
 slope, and the hypothesis `⌊Λ⌋ + 1 ≤ L` excludes exactly it. The first carrying length is
 `⌊Λ⌋ + 1` on the nose, so the hypothesis says precisely that the sequence has started. -/
-
-theorem one_lt_logb_two_three : 1 < Real.logb 2 3 := by
-  have hlog2 : 0 < Real.log 2 := Real.log_pos (by norm_num)
-  have h23 : Real.log 2 < Real.log 3 := Real.log_lt_log (by norm_num) (by norm_num)
-  rw [Real.logb, lt_div_iff₀ hlog2]
-  linarith
-
-theorem logb_two_three_lt_two : Real.logb 2 3 < 2 := by
-  have hlog2 : 0 < Real.log 2 := Real.log_pos (by norm_num)
-  have h34 : Real.log 3 < Real.log 4 := Real.log_lt_log (by norm_num) (by norm_num)
-  have h4 : Real.log 4 = 2 * Real.log 2 := by
-    rw [show (4 : ℝ) = 2 ^ 2 by norm_num, Real.log_pow]
-    push_cast
-    ring
-  rw [Real.logb, div_lt_iff₀ hlog2]
-  linarith [h4 ▸ h34]
 
 /-- One step of the Beatty boundary moves the floor by `1` or `2`. -/
 theorem floor_step_bounds (x : ℝ) :

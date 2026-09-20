@@ -68,7 +68,19 @@ def test_unregistered_modules_are_visible() -> None:
     # Lemma 5.1 to every length and imports PaperBCertificates for its five words.
     # 33 -> 34 on 18 September 2026: PaperBCertificateRecursion, the one-step
     # decomposition tying neverNegCount to minimalCertCount; imports both neighbours.
-    assert len(outside) <= 34, outside
+    # 34 -> 38 on 20 September 2026, four at once, which is itself the drift this gate
+    # exists to surface: two days of multi-session output outran a budget nobody re-set.
+    # All four carry roles in AUXILIARY_MODULES and all four are outside the Paper B
+    # barrel for the usual reason, that they import the itinerary stack or RateFreeDensity.
+    #   PaperBJumpTransposition  (18 Sep) the barrier-transposition cost, on an abstract
+    #     graded Profile rather than a word set;
+    #   CollatzBridgeLab         (19 Sep) the bridge lab extensions, kept out of Paper A's
+    #     barrel so that barrel stays kernel-only;
+    #   FateProductionWords      (19 Sep) Paper C's six production words and their
+    #     prefix-freeness;
+    #   PaperBLevelWindow        (19 Sep) the empty-window theorem at every level, which
+    #     imports PaperBCertificateLengths, RateFreeDensity and LogCells.
+    assert len(outside) <= 38, outside
 
 
 def foreign_public_declarations(source: str, prefix: str) -> list[tuple[str, int]]:

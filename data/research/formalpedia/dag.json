@@ -2135,7 +2135,7 @@
       }
     },
     "Problems.Juggler.LogLogClock": {
-      "declarations": 23,
+      "declarations": 22,
       "depends_on": [
         "Problems.Juggler.FateContagion",
         "Problems.Juggler.TerminationFloor257"
@@ -2156,7 +2156,7 @@
       ],
       "papers": [],
       "trust": {
-        "kernel": 23
+        "kernel": 22
       }
     },
     "Problems.Juggler.MinimumRelative": {

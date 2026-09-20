@@ -63,4 +63,10 @@ theorem one_lt_logb_two_three : 1 < Real.logb 2 3 := by
   rw [Real.lt_logb_iff_rpow_lt (by norm_num) (by norm_num)]
   norm_num
 
+/-- Shared scalar bound, moved here from `LogLogClock` on 2026-09-20 so that a module needing
+only the two bounds on `log₂ 3` need not import the clock and its Paper C dependencies. -/
+theorem logb_two_three_lt_two : Real.logb 2 3 < 2 := by
+  rw [Real.logb_lt_iff_lt_rpow (by norm_num) (by norm_num)]
+  norm_num
+
 end Problems.Juggler

@@ -3823,7 +3823,7 @@
         }
       ],
       "id": "J-loglog-clock-walk-rotation-lean",
-      "in_file": 20,
+      "in_file": 19,
       "lean": "Problems/Juggler/LogLogClock.lean",
       "names_own": [
         "fract_mul_sub_nat_eq_fract_mul_sub_one",
@@ -3836,19 +3836,19 @@
       "candidates": [
         {
           "decl": "even_chain_mem_burst",
-          "line": 176,
+          "line": 171,
           "score": 0.242,
           "trust": "kernel"
         },
         {
           "decl": "even_chain_log_offset",
-          "line": 214,
+          "line": 209,
           "score": 0.226,
           "trust": "kernel"
         },
         {
           "decl": "not_reachesOne_even_chain_ge",
-          "line": 246,
+          "line": 241,
           "score": 0.139,
           "trust": "kernel"
         }
@@ -3868,7 +3868,7 @@
         }
       ],
       "id": "J-loglog-clock-even-chain-burst-lean",
-      "in_file": 20,
+      "in_file": 19,
       "lean": "Problems/Juggler/LogLogClock.lean",
       "names_own": [
         "even_chain_mem_burst",
@@ -3881,19 +3881,19 @@
       "candidates": [
         {
           "decl": "hug_band_step_exists",
-          "line": 105,
+          "line": 100,
           "score": 0.195,
           "trust": "kernel"
         },
         {
           "decl": "narrow_band_dead",
-          "line": 114,
+          "line": 109,
           "score": 0.195,
           "trust": "kernel"
         },
         {
           "decl": "odd_steps_below_one_le_one",
-          "line": 161,
+          "line": 156,
           "score": 0.195,
           "trust": "kernel"
         }
@@ -3913,7 +3913,7 @@
         }
       ],
       "id": "J-loglog-clock-hug-band-lean",
-      "in_file": 20,
+      "in_file": 19,
       "lean": "Problems/Juggler/LogLogClock.lean",
       "names_own": [
         "hug_band_step_exists",
@@ -3921,8 +3921,7 @@
         "dead_zone_nonempty",
         "no_even_step_below_one",
         "odd_steps_below_one_le_one",
-        "half_lt_alphaClock",
-        "logb_two_three_lt_two"
+        "half_lt_alphaClock"
       ],
       "statement": "WalkStep u v := v = u + alphaClock or v = u - 1. hug_band_step_exists: from any u in [0, 1 + alphaClock) some step stays in the band. narrow_band_dead: if w - alphaClock <= u < 1 then no step from u stays in [0, w); dead_zone_nonempty: for 0 < w < 1 + alphaClock such a u exists in [0, w) - so the hug band [0, log2 3) is the minimal invariant band of the exponent walk. no_even_step_below_one and od"
     },
@@ -3930,19 +3929,19 @@
       "candidates": [
         {
           "decl": "band_successor_unique",
-          "line": 148,
+          "line": 143,
           "score": 0.475,
           "trust": "kernel"
         },
         {
           "decl": "band_step_forced_odd",
-          "line": 130,
+          "line": 125,
           "score": 0.263,
           "trust": "kernel"
         },
         {
           "decl": "band_step_forced_even",
-          "line": 138,
+          "line": 133,
           "score": 0.263,
           "trust": "kernel"
         }
@@ -3962,7 +3961,7 @@
         }
       ],
       "id": "J-loglog-clock-band-word-forced-lean",
-      "in_file": 20,
+      "in_file": 19,
       "lean": "Problems/Juggler/LogLogClock.lean",
       "names_own": [
         "band_step_forced_odd",
@@ -3975,19 +3974,19 @@
       "candidates": [
         {
           "decl": "not_reachesOne_even_chain_ge",
-          "line": 246,
+          "line": 241,
           "score": 0.214,
           "trust": "kernel"
         },
         {
           "decl": "even_chain_mem_burst",
-          "line": 176,
+          "line": 171,
           "score": 0.159,
           "trust": "kernel"
         },
         {
           "decl": "not_reachesOne_ge",
-          "line": 239,
+          "line": 234,
           "score": 0.071,
           "trust": "kernel"
         }
@@ -4007,7 +4006,7 @@
         }
       ],
       "id": "J-floor-stratifies-even-cylinders-lean",
-      "in_file": 20,
+      "in_file": 19,
       "lean": "Problems/Juggler/LogLogClock.lean",
       "names_own": [
         "not_reachesOne_even_chain_ge",

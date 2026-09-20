@@ -74,11 +74,6 @@ anchor, and the Lachesis bursts only begin at its square. -/
 /-- One walk step: an odd letter adds `alphaClock`, an even letter subtracts `1`. -/
 def WalkStep (u v : ℝ) : Prop := v = u + alphaClock ∨ v = u - 1
 
-/-- `log_2 3 < 2`. -/
-theorem logb_two_three_lt_two : Real.logb 2 3 < 2 := by
-  rw [Real.logb_lt_iff_lt_rpow (by norm_num) (by norm_num)]
-  norm_num
-
 /-- The clock step `alphaClock = log_2 3 - 1` is positive. -/
 theorem alphaClock_pos : 0 < alphaClock := by
   unfold alphaClock
