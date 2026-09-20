@@ -1,0 +1,26 @@
+{
+  "id": "eliahou-fromentin-simonetto-2021-falling-time",
+  "title": "Is the Syracuse falling time bounded by 12?",
+  "authors": [
+    "Shalom Eliahou",
+    "Jean Fromentin",
+    "Renald Simonetto"
+  ],
+  "year": 2021,
+  "identifiers": {
+    "hal": "hal-03294829"
+  },
+  "url": {
+    "hal": "https://hal.science/hal-03294829"
+  },
+  "problem_area": "collatz-falling-time",
+  "relevant_concepts": [
+    "falling time",
+    "jump function",
+    "dropping time",
+    "Syracuse map"
+  ],
+  "project_relationship": "unassessed",
+  "status": "NOT CONSULTED",
+  "notes": "NOT READ -- hal.science is refused by this environment's egress policy. Found 20 September 2026 in the link fields of OEIS A368877 and A368878, reached while tracing the provenance of a circulating cycle-length bound. WHY IT MATTERS HERE. FALLING TIME IS THIS LABORATORY'S DROPPING TIME. A368878 is defined as the least k with jp^k(n) < n, described on the entry as the paper's falling time function ft, and A368877 as its jump function jp, the Collatz map A014682 iterated as many times as n has binary digits. Paper B's whole apparatus counts the words whose dropping time exceeds the word length, and the Juggler analogue is A094778, registered the same day. A paper asking whether the falling time is bounded by 12 is asking, in the laboratory's vocabulary, whether the non-contracting prefix length is bounded -- the sharpest possible form of the question the survivor census measures. Whether the answer is known, conditional or open is not established here. The author is the same Eliahou as eliahou-1993-collatz-cycle-lengths and eliahou-verger-gaugry-2025, so the laboratory already cites him twice without carrying this. PROVENANCE: title, authors, year and HAL id read from the %H lines of A368877/A368878 in a local clone of github.com/oeis/oeisdata, export 2026-09-20 -- attested from the mirror, not observed at the publisher. Both entries carry b-files to n = 10000 by Paolo Xausa. Do not cite for anything until read."
+}
