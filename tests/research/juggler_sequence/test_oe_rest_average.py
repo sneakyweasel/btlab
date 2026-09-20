@@ -8,6 +8,7 @@ from pathlib import Path
 
 from research.juggler_sequence.fate_contagion import lambda_root
 from research.juggler_sequence.oe_rest_average import (
+    exponent_certificate,
     ETA_H_BOUND,
     alpha_star,
     circle_norm,
@@ -263,12 +264,46 @@ def test_two_productions_now_pass_lambda_star_star() -> None:
     assert t["u_0"] > 1e30
 
 
+def test_lean_exponent_certificate_is_exact_and_beats_the_published_lambda() -> None:
+    """`Production.zeta2avg_pos` asserts five numbers; re-derive all of them."""
+
+    c = exponent_certificate()
+    # the two integer inequalities Lean checks at the 203rd power
+    assert c["cert_two_pow"]
+    assert c["cert_three_quarter_pow"]
+    # and the rational sum they feed
+    assert c["zeta_positive"]
+    assert c["zeta_lower_bound"] > 2.0e-5
+    # the window: strictly above the published lambda**, strictly below the root
+    assert c["beats_published"]
+    assert c["below_ideal"]
+    assert c["lambda_star_star_published"] < 100 / 203 < c["ideal_root"]
+    # 100/203 is NOT minimal -- 67/136 is, and is rejected for margin
+    assert c["smaller_denominator_in_window"] == ["67/136"]
+    assert c["chosen_for_margin_not_minimality"]
+    assert c["smaller_denominator_margins"]["67/136"] < c["zeta_lower_bound"] / 3
+
+
+def test_the_lean_certificate_is_quoted_consistently() -> None:
+    root = Path(__file__).resolve().parents[3]
+    lean = (
+        root / "formal" / "Problems" / "Juggler" / "FatePoorProduction.lean"
+    ).read_text(encoding="utf-8")
+    # the five numbers, exactly as `exponent_certificate` re-derives them
+    for token in ("100 : ℝ) / 203", "coef2avg (1 / 100000)", "710737 / 1000000",
+                  "216967 / 250000", "n := 203"):
+        assert token in lean, token
+    # and the corrected claim: chosen for margin, not minimality
+    assert "smallest-denominator" not in lean
+    assert "chosen for margin, not minimality" in lean
+
+
 def test_note_records_what_leaves_the_critical_path() -> None:
     root = Path(__file__).resolve().parents[3]
     note = (root / "docs" / "theory" / "juggler_oe_poor_fiber_tail_note.md").read_text(
         encoding="utf-8"
     )
-    assert "EXACT — HUMAN PROOF" in note
+    assert "EXACT — LEAN VERIFIED" in note
     # the note is hard-wrapped prose, so match on collapsed whitespace
     flat = " ".join(note.lower().split())
     for claim in (

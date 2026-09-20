@@ -219,10 +219,12 @@ whole cost of averaging and shows up only as \(t_1\approx250\).
 Lemma 5.1 is not restated; it is parametric in \(\lambda\) and
 \(\eta_0\) with \(\zeta>0\) as a hypothesis, which is the shape the
 mathematics has. `zeta2avg_pos` is a separate arithmetic certificate at
-\(\lambda=100/203=0.4926108\), \(\eta_0=10^{-5}\) --- the
-smallest-denominator rational strictly between \(\lambda^{**}\) and
-\(\lambda_{\rm ideal}\). So `logMass_contagion_averaged` is Theorem 5.3
-above \(\lambda^{**}\), unconditionally, and
+\(\lambda=100/203=0.4926108\), \(\eta_0=10^{-5}\), chosen for margin
+rather than minimality: \(67/136\) also lies in
+\((\lambda^{**},\lambda_{\rm ideal})\) with the smaller denominator but a
+fifth of the \(\zeta\)-slack, which `exponent_certificate` re-derives in
+exact arithmetic. So `logMass_contagion_averaged` is Theorem 5.3 above
+\(\lambda^{**}\), unconditionally, and
 `conjecture_of_tao_rate_averaged` puts the unconditional Tao threshold at
 \(e>103/203=0.50739\), below Paper C's *conditional* \(0.51\).
 
