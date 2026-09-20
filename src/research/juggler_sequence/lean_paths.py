@@ -270,6 +270,7 @@ LAYERS: dict[str, Path] = {
     "CubicRemainderAssembly": JUGGLER_DIR / "CubicRemainderAssembly.lean",
     "FateCylinderCorollary": JUGGLER_DIR / "FateCylinderCorollary.lean",
     "FateFiberParity": JUGGLER_DIR / "FateFiberParity.lean",
+    "FateFiberLock": JUGGLER_DIR / "FateFiberLock.lean",
     "FateThinFibers": JUGGLER_DIR / "FateThinFibers.lean",
     "FateResonanceCount": JUGGLER_DIR / "FateResonanceCount.lean",
     "FateBlockAverage": JUGGLER_DIR / "FateBlockAverage.lean",
