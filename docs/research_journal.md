@@ -101,11 +101,21 @@ third time this laboratory has paid for the same thing.
   `A093685`, which is "In binary representation: numbers not occurring in
   their factorial". The intended target is plainly `A094685`, the modified
   juggler sequence. Not corrected upstream from here.
-- **Balanced ternary, the other half of the laboratory.** 130 sequences carry
-  "balanced ternary" in their name; we cite 12. The gap includes the rest of
-  the `A134021`-`A134028` family we already half-use -- `A134022` negative
-  trits and `A134024` positive trits are uncited while `A134023` and `A134028`
-  are cited -- and `A323783`, which is defined in terms of our `A134028`.
+- **Balanced ternary, the other half of the laboratory, and the one the
+  branch dossier does not cover.** 130 sequences carry "balanced ternary" in
+  their name and this laboratory cites 16, so 114 are unread. Counted twice:
+  the first count said 12, taken before the four merges landed, and three of
+  the sequences it called uncited -- `A134022`, `A134024`, `A323783` -- arrived
+  cited in the merge itself. The number to trust is the one measured after the
+  tree stopped moving. Genuinely uncited and on our own objects:
+  `A174657`-`A174659`, the three trit-sign comparisons; `A233010`, `A233571`,
+  `A233572` and `A233580` on palindromes and sign-reversed palindromes, where
+  `bt.metrics` already has the reversal; and `A257869`, equal occurrence of all
+  three trits.
+- **Verified against the corpus, both clean.** `A065363_PREFIX` in
+  `src/bt/sequences.py`, 109 hand-stored terms, matches the bulk file exactly,
+  and `bt_weight` reproduces `A005812` on all 106 stored terms. The
+  problem-independent core agrees with the database it cites.
 - **Decision:** file `oeis-A094778` as a literature record; leave the other
   twenty-four unfiled until something needs them. Do not open a branch on the
   exponent variants: the dossier is parked and this does not unpark it.
