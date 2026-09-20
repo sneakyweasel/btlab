@@ -173,6 +173,40 @@ corollary of two existing theorems and is not the branch's content.
   runs, while the words that would have to be excluded need only a short
   leading run to pass.
 
+## Addendum, 20 September: Knight is sign-free and Catalan bounds the escapes
+
+`knight-2026-collatz-high-cycles` (Discrete Mathematics 349 (2026) 114812;
+preprint hal-04261183, 2023), read from the full text, excludes integer high
+cycles with no Baker input. Its contradiction uses three things only: the
+reverse of an aperiodic upper Christoffel word is a rotation of it (Cohn
+1972); the split \(v_h=1u0\), \(v_h^R=0u1\) (Berstel et al); and the gap
+\(2^k-3^x\) being odd with \(\lvert\text{gap}\rvert>1\), whence
+\(3f(v_h)-f(v_h^R)+1=2^{k-1}/(2^k-3^x)\) is not an integer.
+
+**None of the three uses the sign of the gap**, so the argument mirrors onto
+the expanding side \(2^k<3^x\) — the Juggler's sign and the negative
+cycles'. Verified for every aperiodic \((k,x)\) with \(x\le 60\) on both
+signs; the apparent failures are exactly the periodic words
+\(\gcd(k,x)>1\), which Knight excludes. On the expanding side the escapes
+\(\lvert\text{gap}\rvert=1\) are, by Catalan, exactly \((k,x)=(1,1)\)
+and \((3,2)\), whose Christoffel words give \(-1\) and \(-5\) — both
+real cycles. So the mirror is consistent and tight, and this branch's
+Mihailescu observation is promoted from an extreme case closed cheaply to the
+completeness of Knight's exception list.
+
+Knight's \(v_h\) is **literally** the ceiling mechanical word of
+`J-cycle-cubic-band-order`: identical strings for every coprime
+\((L,o)\) with \(L\le 18\). So the word a height-bounded Juggler cycle
+must carry is exactly the word Knight's argument addresses. What is excluded
+is the *negative Collatz realization* of that word, not any Juggler cycle —
+the bridge is word-level and does not transport a realization. This does not
+contradict `J-christoffel-one-parameter`, which refuted concentration of
+leftover cells on the necklace and left cycle-only near-Christoffel rigidity
+open. Consistency: \(-17\) sits at \((11,7)\) but is not the high cycle
+there, the Christoffel word giving \(-3767/139\).
+
+Row `J-knight-is-sign-free-and-catalan-bounds-the-escapes`.
+
 ## Open questions
 
 Whether any criterion built from the pointwise floor can survive

@@ -1,5 +1,70 @@
 # Research journal
 
+## 2026-09-20 -- Knight is sign-free, so it crosses the mirror, and Catalan closes it
+
+Philippe supplied Knight's full text. It is the best thing to arrive in three days, and
+unlike Williams it does not supersede us -- it composes with us.
+
+### What Knight does
+
+No integer HIGH cycle exists. Among the \((k,x)\) rational cycles, `S` is the set of
+least members; the circuit holds the least element of `S`, the high cycle the greatest.
+Steiner excludes circuits using Baker-derived lower bounds on `2^k - 3^x`. Knight excludes
+high cycles using none. The high-cycle word is the upper Christoffel word `v_h`; by Cohn
+its reverse is a rotation of it, so `f(v_h)` and `f(v_h^R)` lie in one cycle; by Berstel,
+`v_h = 1u0` and `v_h^R = 0u1`; so if both were integers so would be
+
+    3 f(v_h) - f(v_h^R) + 1 = 2^(k-1) / (2^k - 3^x)
+
+which is impossible because the gap is odd. Three lines, no transcendence theory.
+
+### It is our equation and our word
+
+Verified, not assumed. His Bohm-Sontacchi numerator satisfies
+`g(v) = evenCharge(w) - (2^k - 3^x)` on every word of length `<= 12`: the same cycle
+equation, his `f` giving the member where ours gives `x + 1`. And his `v_h` is **literally**
+the ceiling mechanical word of `J-cycle-cubic-band-order` -- identical strings for every
+coprime `(L,o)` with `L <= 18`. So the word a height-bounded Juggler cycle must carry
+(`M < m^3` forces `gcd(L,o) = 1` and the ceiling mechanical word) is exactly Knight's
+high-cycle word. His Theorem 4.6, `f(v_h)` maximal at `k = ceil(x log2 3)`, is our leftover
+structure.
+
+### The new observation: it is sign-free
+
+Knight's contradiction needs only Cohn's rotation, the `1u0 / 0u1` split, and the gap being
+odd with `|gap| > 1`. **Not one of the three uses the gap's sign.** So it mirrors onto the
+expanding side `2^k < 3^x` -- the Juggler's sign and the negative cycles'. Checked for every
+aperiodic `(k,x)` with `x <= 60` on both signs; the apparent failures are exactly the
+periodic words `gcd(k,x) > 1`, which Knight excludes and whose aperiodic cores he reduces to.
+
+And then Catalan closes it. On the expanding side the escapes `|gap| = 1` are exactly
+`(k,x) = (1,1)` and `(3,2)`, whose Christoffel words give `-1` and `-5`. **Both are real
+cycles.** So the mirror kills every expanding Christoffel high cycle except the two that
+exist -- consistent and tight. That promotes this morning's Mihailescu gap observation from
+"closes an extreme case cheaply" to "supplies the completeness of Knight's exception list",
+which is a considerably better job than the one I gave it.
+
+Consistency check that had to pass: `-17` sits at `(11,7)` but is **not** the high cycle
+there -- the Christoffel word at `(11,7)` gives `-3767/139` -- so the mirror kills the high
+cycle at that length while `-17` survives as a different rotation class. It does.
+
+### What it does not say, and the distinction is the whole point
+
+It excludes the *negative Collatz realization* of that word. It excludes **no Juggler
+cycle**: the bridge is word-level, and a shared word shape does not transport a
+realization, which is exactly the content of
+`J-the-missing-juggler-floor-is-worth-a-quarter-at-length-22`. Nor does it contradict
+`J-christoffel-one-parameter`, which refuted *concentration* of leftover cells on the
+necklace and explicitly left cycle-only near-Christoffel rigidity open -- that open
+question is now the interesting one, and it is also Williams's open problem (5).
+
+One thing to check before anyone repeats it: Halbeisen-Hungerbuehler Theorem 4.9 bounds
+`f(v_h)(2^k - 3^x)` between `3^x x/20` and `3^x 7x/10`, improvable to `(x/6, x/2)`, which
+has the same shape as `neg_cycle_finance` on the other sign. Whether the constants are
+comparable I have **not** checked and do not claim.
+
+Row `J-knight-is-sign-free-and-catalan-bounds-the-escapes`, seven tests.
+
 ## 2026-09-20 -- Williams 2026 has the coordinate, and I should have read it first
 
 Philippe supplied the full text of arXiv:2607.01718, Jennifer Williams, *A Coordinate

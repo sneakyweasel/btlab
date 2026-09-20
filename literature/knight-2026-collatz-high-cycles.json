@@ -1,24 +1,29 @@
 {
   "id": "knight-2026-collatz-high-cycles",
-  "title": "Collatz high cycles do not exist",
+  "title": "Collatz High Cycles Do Not Exist",
   "authors": [
-    "K. Knight"
+    "Kevin Knight"
   ],
   "year": 2026,
   "identifiers": {
-    "doi": "10.1016/j.disc.2026.114812"
+    "doi": "10.1016/j.disc.2026.114812",
+    "hal": "hal-04261183"
   },
   "url": {
-    "doi": "https://doi.org/10.1016/j.disc.2026.114812"
+    "doi": "https://doi.org/10.1016/j.disc.2026.114812",
+    "hal": "https://hal.science/hal-04261183v1"
   },
   "problem_area": "collatz-cycles",
   "relevant_concepts": [
     "Christoffel words",
+    "high cycle",
+    "circuit",
+    "Bohm-Sontacchi formula",
     "parity vector",
-    "cycle existence criterion",
-    "Sturmian words"
+    "rational cycles",
+    "gap parity"
   ],
-  "project_relationship": "unassessed",
-  "status": "NOT CONSULTED",
-  "notes": "Discrete Mathematics 349 (2026) 114812. NOT READ -- found in the reference list of williams-2026-collatz-coordinates, supplied 20 September 2026; the publisher and arxiv are blocked by this environment's egress policy and nothing about its content is claimed. FLAGGED AS THE MOST URGENT UNREAD ITEM FOR THE CYCLE PROGRAMME. Williams describes it as using Christoffel words to characterise the parity vector of a high cycle, giving a combinatorial-geometric criterion for cycle existence, and its title asserts a cycle non-existence result. That is the laboratory's own machinery and its own subject: Paper A is a cycle-word paper, the near-convergent leftovers 19, 84, 569, 1054 are a Sturmian/Christoffel structure (J-winkler-sandwich-holds-on-the-laboratory-counts records the same rotation orbit), and J-juggler-cycle-words-are-collatz-negative-cycle-words identifies Juggler cycle words with Collatz negative-cycle words. A 2026 Discrete Mathematics paper claiming high cycles do not exist may bear directly on, subsume, or be comparable with Paper A's cycle-word programme and with the 3x-1 period bound of J-negative-floor-makes-the-mirror-unconditional. Read before any further cycle branch. Do not cite for anything until read."
+  "project_relationship": "reproduced",
+  "status": "read",
+  "notes": "Discrete Mathematics 349 (2026) 114812; preprint hal-04261183, dated 23 September 2023, submitted 26 October 2023. READ 20 September 2026 from the full text supplied by Philippe; the publisher is blocked by this environment's egress policy. RESULT. Among the (k,x) rational cycles, let S be the set of least members; the CIRCUIT holds the least element of S and the HIGH CYCLE the greatest. Steiner 1977 excludes integer circuits, whose word is 1^x 0^(k-x) with f = (3^x - 2^x)/(2^k - 3^x), using Baker-derived lower bounds on 2^k - 3^x (Ellison). Knight excludes integer HIGH cycles with NO deep bounds. The high-cycle word is the upper Christoffel word v_h with 1s at d_i = floor(k i / x). By Cohn 1972 its reverse is a rotation of it, so f(v_h) and f(v_h^R) lie in one cycle; by Berstel et al, for aperiodic v_h, v_h = 1 u 0 and v_h^R = 0 u 1, whence f(v_h) = (2g(u) + 3^(x-1))/(2^k - 3^x) and f(v_h^R) = (6g(u) + 2^(k-1))/(2^k - 3^x). If both were integers so would be 3 f(v_h) - f(v_h^R) + 1 = 2^(k-1)/(2^k - 3^x), impossible since the gap is odd. IDENTIFICATIONS WITH THIS LABORATORY, verified numerically. (a) Bohm-Sontacchi (2.1) is the laboratory's cycle equation: Knight's g(v) = evenCharge(w) - (2^k - 3^x) on every word of length <= 14, his f(v) being the cycle member where the lab's identity gives x + 1. (b) His v_h is LITERALLY the ceiling mechanical word of J-cycle-cubic-band-order -- identical strings for every coprime (L,o) with L <= 18 -- so the word that a height-bounded Juggler cycle must have (M < m^3, gcd(L,o) = 1) is exactly Knight's high-cycle word. (c) His Theorem 4.6, f(v_h) maximal at k = ceil(x log2 3), is the laboratory's leftover / near-convergent structure. (d) His Remark 4.8, f(v_h) < 1e13 for x < 1e7 forcing more than ten million odd terms, is the same species as the finance mirror's reproduction of Eliahou and Hercher, and halbeisen-hungerbuehler-1997-collatz-cycles Theorem 4.9's two-sided bound 3^x(x/20) < f(v_h)(2^k - 3^x) < 3^x(7x/10), improvable to (x/6, x/2), has the same shape as neg_cycle_finance on the other sign; whether the constants are comparable is NOT claimed and should be checked before anyone says so. THE NEW OBSERVATION IS RECORDED SEPARATELY as J-knight-is-sign-free-and-catalan-bounds-the-escapes: his contradiction uses only that v_h^R is a rotation of v_h, the 1u0 / 0u1 split, and the gap being odd with |gap| > 1 -- never the gap's SIGN -- so it mirrors to the expanding side."
 }
