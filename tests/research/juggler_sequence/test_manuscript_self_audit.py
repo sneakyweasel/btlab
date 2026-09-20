@@ -763,6 +763,55 @@ def test_the_axiom_check_actually_runs() -> None:
     assert out.stdout.strip() == expected.strip()
 
 
+PUBLISHED_PAPER = ROOT / "docs" / "theory" / "juggler_parity_discrepancy_note.md"
+PUBLISHED_AXIOM_NAMES = (
+    "theta_lt_one", "klDiv_pos", "chernoff_density", "tilt_gives_theta",
+    "sum_choose_mul_pow", "density_of_finite_union", "exceptional_density_zero",
+    "klDiv_nonneg",
+)
+"""The eight declarations the shipping manuscript calls machine-checked.
+
+AxiomCheckPaperB.lean audits the 2026-09-04 snapshot, not this edition -- its own header
+says so -- and test_the_artifact_asks_about_exactly_the_cited_names pins it to those 49
+names. So the published edition is gated by its own artifact instead.
+"""
+
+
+def test_the_published_edition_axiom_check_actually_runs() -> None:
+    """Regenerated, not trusted -- the same standard AxiomCheckPaperB is held to."""
+    import shutil
+    import subprocess
+    if shutil.which("lake") is None:
+        import pytest
+        pytest.skip("no lake on PATH")
+    out = subprocess.run(["lake", "env", "lean", "AxiomCheckPaperBPublished.lean"],
+                         cwd=ROOT / "formal", capture_output=True, text=True, timeout=600)
+    assert out.returncode == 0, out.stderr[-2000:]
+    expected = (ROOT / "formal" / "AxiomCheckPaperBPublished.expected").read_text(encoding="utf-8")
+    assert out.stdout.strip() == expected.strip()
+    lines = [ln for ln in expected.strip().splitlines() if ln.strip()]
+    assert len(lines) == len(PUBLISHED_AXIOM_NAMES)
+    for line in lines:
+        assert line.endswith("[propext, Classical.choice, Quot.sound]"), line
+
+
+def test_every_published_machine_checked_name_is_audited() -> None:
+    """A name the shipping paper calls machine-checked must appear in the artifact.
+
+    This binds the artifact to the manuscript in one direction: a citation cannot be
+    dropped from the audit while the paper still makes the claim. It does NOT catch a
+    NINTH name being added to the manuscript -- that would need the citation extractor
+    trust_boundary.py runs against the snapshot, re-pointed at this edition.
+    """
+    paper = PUBLISHED_PAPER.read_text(encoding="utf-8")
+    artifact = (ROOT / "formal" / "AxiomCheckPaperBPublished.expected").read_text(encoding="utf-8")
+    source = (ROOT / "formal" / "AxiomCheckPaperBPublished.lean").read_text(encoding="utf-8")
+    for name in PUBLISHED_AXIOM_NAMES:
+        assert name in paper, f"{name} is audited but the published paper no longer cites it"
+        assert name in artifact, f"{name} is cited by the published paper but not audited"
+        assert name in source, f"{name} missing from AxiomCheckPaperBPublished.lean"
+
+
 def test_the_paper_states_the_third_convention() -> None:
     text = M.paper_text()
     assert "Declared and reachable is still not proved" in text

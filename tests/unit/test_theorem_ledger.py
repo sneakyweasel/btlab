@@ -94,6 +94,73 @@ def test_ledger_test_paths_exist():
             assert path.is_file(), f"{row['id']}: missing test {rel}"
 
 
+#: Rows whose `lean` value the invariant below cannot yet hold to.
+#: Each needs a human verdict, not a parser change, and the set must not grow.
+LEAN_PATH_EXCEPTIONS = {
+    "C-affine-formula": (
+        "names the directory Problems/Collatz/ rather than a module, while tagged "
+        "EXACT - LEAN VERIFIED. No single declaration states its conclusion "
+        "T^m(n)=(3^m n+C)/2^K: the affine endpoint threePow * n + C = twoPow * x appears "
+        "in Cycles.lean and FixedInteger.lean only as a HYPOTHESIS. Either a declaration "
+        "proves it and should be named, or the tag is wrong. Both are mathematical calls."
+    ),
+}
+
+
+def test_every_lean_row_is_attributed_to_its_module_in_the_index():
+    """A row's `lean` must resolve to a module that formalpedia credits the row to.
+
+    The invariant whose absence cost 346 declarations: tools/formalpedia.py prepended
+    "formal/" unconditionally, so the 43 rows whose value already began with "formal/"
+    keyed to "formal/formal/..." and matched nothing. Those rows were attached to no
+    module and every gate stayed green, because the gates above accept either spelling
+    and never ask whether the index agrees.
+
+    Attribution is the thing to assert, not presence. A first draft of this test checked
+    that the row's file appears in the index at all and passed against the broken index
+    too: `modules` always held all 315 entries, because the bug corrupted which rows a
+    module was credited with, not whether the module existed. Checked against the
+    pre-fix index at a9f8efce, this formulation fails on exactly those 43 rows and the
+    current index passes.
+    """
+    index = json.loads((ROOT / "data" / "research" / "formalpedia" / "index.json")
+                       .read_text(encoding="utf-8"))
+    # Keyed by resolved path, so the check never re-implements the prefix convention it guards.
+    by_path = {(ROOT / m["file"]).resolve(): (name, m)
+               for name, m in index["modules"].items() if m.get("file")}
+
+    orphaned = []
+    for row in _entries():
+        lean = str(row.get("lean") or "").strip()
+        if not lean or row["id"] in LEAN_PATH_EXCEPTIONS:
+            continue
+        if not lean.endswith(".lean"):
+            orphaned.append(f"{row['id']}: lean {lean!r} is not a .lean file")
+            continue
+        hit = next((c for c in ((ROOT / "formal" / lean).resolve(), (ROOT / lean).resolve())
+                    if c.is_file()), None)
+        if hit is None:
+            orphaned.append(f"{row['id']}: lean {lean!r} resolves to no file")
+            continue
+        if hit not in by_path:
+            orphaned.append(f"{row['id']}: {lean!r} exists but formalpedia indexes no module for it")
+            continue
+        name, module = by_path[hit]
+        listed = {entry if isinstance(entry, str) else entry.get("id")
+                  for entry in (module.get("ledger") or [])}
+        if row["id"] not in listed:
+            orphaned.append(
+                f"{row['id']}: {name} does not credit it - the row names a module and the "
+                f"module has never heard of the row. Rebuild data/research/formalpedia/, and "
+                f"if it persists the attribution is broken again")
+    assert orphaned == [], chr(10).join(orphaned)
+
+
+def test_the_lean_path_exception_list_does_not_grow():
+    """New rows fix the invariant; they do not join the exception list."""
+    assert set(LEAN_PATH_EXCEPTIONS) == {"C-affine-formula"}
+
+
 def test_ledger_lean_paths_exist_when_required():
     for row in _entries():
         lean = str(row.get("lean") or "").strip()
