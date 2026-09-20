@@ -100,6 +100,16 @@ reading, and this is the first confirmation that the title and the DOI belong
 together. The toolkit is a declared supplement to the January and July papers
 (Zenodo `relatedIdentifiers`), not to the September one.
 
+**The one route that worked has closed.** On 19 September the in-app browser
+pane could load a ResearchGate publication page and return the abstract and
+the author's version note, and that is how several of the secondhand claims
+about Theorem 7.3 and Conjecture 9.1 entered the record. On 20 September the
+same request returns a network security check instead. No attempt was made to
+pass it and none should be: completing a bot check is off-limits whatever the
+PDF is worth. **This is now a thing to hand to a human.** Anyone with an
+ordinary browser can open these three pages in seconds, and doing so would
+settle the open question below outright.
+
 Everything below the toolkit line is therefore provisional. In particular this
 page does **not** assert that the limit theory is absent from his work. What
 can be said is only that it is absent from the toolkit: the quasi-stationary
