@@ -37,7 +37,7 @@ import branch_drift as BD  # noqa: E402
 #: latest-progress-summary reached +8 unread on 2026-09-20 after being
 #: acknowledged at +5. Update the sha in the same commit as the reason.
 READ_AT: dict[str, str] = {
-    "claude/exponent-floor-3n1-2adic-mvwa96": "25b13d2f",
+    "claude/exponent-floor-3n1-2adic-mvwa96": "54fbfca6",
     "claude/latest-progress-summary-s011un": "e8f765ff",
     "claude/goofy-kare-1a92fd": "8aad2aae",
     "claude/elated-hopper-e20999": "86247b5d",
@@ -157,7 +157,16 @@ ACKNOWLEDGED: dict[str, str] = {
         "R <= floor((log2 3 - 1) a), putting the dual below Lemma 8 by "
         "2^(0.41504 a), the only exception being the excluded circuit "
         "O^a E^r. A dual that exists and is weaker, which is worth knowing "
-        "so nobody builds on it."
+        "so nobody builds on it. "
+        "DELTA TO 54fbfca6: a DOI hygiene episode worth copying. The branch "
+        "had CONSTRUCTED a DOI for Knight, withdrew it on finding what was "
+        "actually read was his 2023 preprint, then restored "
+        "10.1016/j.disc.2025.114812 only once it had attestation the first "
+        "one never had -- two exact abstract fragments each returning both "
+        "the ScienceDirect PII and hal-04261183 in the top two hits, plus "
+        "the author own publication page linking that PII. Note the year "
+        "token is 2025 although the article is cited as 2026. His second "
+        "2026 paper is registered too."
     ),
     "claude/latest-progress-summary-s011un": (
         "PENDING EXTRACTION, and it has GROWN since it was first acknowledged "
