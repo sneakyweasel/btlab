@@ -51,15 +51,42 @@ def repo_root() -> Path | None:
 
 
 def zenodo_fields(meta: dict) -> str:
+    """Render the upload form fields from the prepared metadata.
+
+    Two of these lines used to be unconditional assertions: that no external
+    record existed, and that the uploader should supply a publication date. Both
+    became false the day Paper B was deposited, and they became false *inside the
+    kit that was deposited*, which is the worst place for a stale claim to sit.
+
+    They follow the metadata now. A row that names its own `doi` is describing a
+    record that exists, and one that names a `publication_date` knows when that
+    happened. Asserting the opposite -- that a record exists, always -- would have
+    been equally wrong the next time a kit is prepared before any upload, which is
+    the state this file is normally in.
+
+    Paper A and Paper C deliberately carry neither field: Paper A's metadata
+    describes a revision newer than its deposit, so its date really is still
+    unknown, and their generators are left alone.
+    """
     row = meta.get('metadata', meta)
+    doi, published = row.get('doi'), row.get('publication_date')
+    standing = (
+        f'Describes the deposit at doi:{doi}; this build does not upload a new version.\n\n'
+        if doi else
+        'Prepared metadata only; no external record has been created.\n\n'
+    )
+    date_field = (
+        f'PUBLICATION DATE\n{published}\n\n' if published else
+        'PUBLICATION DATE\nUse the actual date this version is first made public.\n\n'
+    )
     return (
         'GENERATED FROM docs/theory/; do not edit this export.\n'
-        'Prepared metadata only; no external record has been created.\n\n'
-        f"TITLE\n{row['title']}\n\nCREATOR\n{row['creators'][0]['name']}\n"
+        + standing
+        + f"TITLE\n{row['title']}\n\nCREATOR\n{row['creators'][0]['name']}\n"
         'Affiliation: none\n\nRESOURCE TYPE\nPublication / Preprint\n\n'
         f"VERSION\n{row['version']}\n\nLICENSE\n{row['license']}\n\n"
-        'PUBLICATION DATE\nUse the actual date this version is first made public.\n\n'
-        'KEYWORDS\n' + '\n'.join(row['keywords']) + '\n\nDESCRIPTION (HTML)\n'
+        + date_field
+        + 'KEYWORDS\n' + '\n'.join(row['keywords']) + '\n\nDESCRIPTION (HTML)\n'
         + row['description'] + '\n\nRELATED SOFTWARE\nhttps://github.com/sneakyweasel/btlab\n'
     )
 

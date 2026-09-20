@@ -1,5 +1,5 @@
 GENERATED FROM docs/theory/; do not edit this export.
-Prepared metadata only; no external record has been created.
+Describes the deposit at doi:10.5281/zenodo.22864934; this build does not upload a new version.
 
 TITLE
 Five-Step Descent Certificates for the Juggler Map: Parity Statistics of Nested Floor Powers
@@ -18,7 +18,7 @@ LICENSE
 cc-by-4.0
 
 PUBLICATION DATE
-Use the actual date this version is first made public.
+2026-09-21
 
 KEYWORDS
 Juggler map
