@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import difflib
 import pytest
 
 from pathlib import Path
@@ -262,6 +263,49 @@ def test_two_productions_now_pass_lambda_star_star() -> None:
     assert t["two_production_root"] < t["ideal_root"] <= 0.4926580
     # and the honest cost of the crude constants
     assert t["u_0"] > 1e30
+
+
+# `production_two_averaged` inlines `production_two`'s shell geometry verbatim --- the
+# three scales, the fibres landing in the shell, the two boundary drops --- because
+# factoring it into a shared lemma would add a declaration to `FateProduction.lean`,
+# one of the 83 inputs pinned by Paper C's release manifest. The copy is deliberate and
+# recorded in both docstrings; what is NOT acceptable is the two drifting apart in
+# silence, so this gate re-extracts both blocks and compares them.
+_GEOMETRY_START = "obtain ⟨y, hy⟩ : ∃ y : ℕ, ⌊Real.exp t⌋₊ = y := ⟨_, rfl⟩"
+_GEOMETRY_END = "errors in exponential form"
+
+
+def _shell_geometry(text: str, header: str) -> list[str]:
+    """The coefficient-free opening of a production proof, as a list of stripped lines."""
+
+    assert text.count(header) == 1, f"{header!r} occurs {text.count(header)} times"
+    body = text.split(header, 1)[1].splitlines()
+    start = next(k for k, line in enumerate(body) if line.strip() == _GEOMETRY_START)
+    end = next(k for k in range(start, len(body)) if _GEOMETRY_END in body[k])
+    return [line.rstrip() for line in body[start:end]]
+
+
+def test_the_two_production_proofs_share_the_same_shell_geometry() -> None:
+    juggler = Path(__file__).resolve().parents[3] / "formal" / "Problems" / "Juggler"
+    original = _shell_geometry(
+        (juggler / "FateProduction.lean").read_text(encoding="utf-8"),
+        "theorem production_two {",
+    )
+    copy = _shell_geometry(
+        (juggler / "FatePoorProduction.lean").read_text(encoding="utf-8"),
+        "theorem production_two_averaged {",
+    )
+    assert len(original) == 73, len(original)
+    assert copy == original, (
+        "production_two_averaged's inlined shell geometry has drifted from "
+        "production_two's. Whichever moved, the other must move with it, or the "
+        "averaged production inequality is no longer the geometry Paper C cites.\n"
+        + "\n".join(
+            difflib.unified_diff(
+                original, copy, "production_two", "production_two_averaged", lineterm=""
+            )
+        )
+    )
 
 
 def test_lean_exponent_certificate_is_exact_and_beats_the_published_lambda() -> None:

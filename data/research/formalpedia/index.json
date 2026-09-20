@@ -33771,11 +33771,11 @@
       "trust": "kernel"
     },
     {
-      "doc": "**The production inequality with two productions, at the averaged coefficient.** For `0 < \u03b7\u2080 \u2264 1/4`, `t \u2265 40` and `t` past the scale where Lemma 2's block hypotheses bite, `(1 - errE t) g_A(t/2) + ((2/3)(1/2 - \u03b7\u2080) - errOEavg t) g_A(3t/4) - errAddAvg \u03b7\u2080 t \u2264 g_A(t)`. Family 1 is Paper C's Lemma 3.1 unchanged; family 3 is `family_OE_averaged`, so the `2/9` of `production_two` is replaced by `(2/3)(1/2 - \u03b7\u2080)`, which exceeds `1/3 - 10^{-4}`. The shell geometry -- the three scales `t/2`, `3t/4`, `t`, the fibres landing in the shell, the two boundary drops -- is `production_two`'s, step for step. `hT` is the one new hypothesis, and it is exactly Lemma 2's two block conditions rewritten at `U = \u230ae^{3t/8}\u230b`: `3(1280/\u03b7\u2080\u00b2 + 1) \u2264 e^{t/8}` gives `1280/\u03b7\u2080\u00b2 \u2264 (2/3)U^{1/3} - 1`, and that in turn gives `32/(\u03b7\u2080((2/3)U^{1/3} - 1)) \u2264 32/5120 < 1/2`. It is the whole cost of the averaging: it forces `t \u2273 16 log(1/\u03b7\u2080)`, and nothing else in the statement depends on `\u03b7\u2080`.",
+      "doc": "**The production inequality with two productions, at the averaged coefficient.** For `0 < \u03b7\u2080 \u2264 1/4`, `t \u2265 40` and `t` past the scale where Lemma 2's block hypotheses bite, `(1 - errE t) g_A(t/2) + ((2/3)(1/2 - \u03b7\u2080) - errOEavg t) g_A(3t/4) - errAddAvg \u03b7\u2080 t \u2264 g_A(t)`. Family 1 is Paper C's Lemma 3.1 unchanged; family 3 is `family_OE_averaged`, so the `2/9` of `production_two` is replaced by `(2/3)(1/2 - \u03b7\u2080)`, which exceeds `1/3 - 10^{-4}`. The shell geometry -- the three scales `t/2`, `3t/4`, `t`, the fibres landing in the shell, the two boundary drops -- is `production_two`'s, step for step. It is inlined rather than shared, because factoring it out would add a declaration to `FateProduction.lean`, one of the 83 inputs pinned by Paper C's release manifest. The copy is therefore deliberate, and `test_oe_rest_average.test_the_two_production_proofs_share_the_same_shell_geometry` re-extracts both blocks and fails if they ever drift apart. `hT` is the one new hypothesis, and it is exactly Lemma 2's two block conditions rewritten at `U = \u230ae^{3t/8}\u230b`: `3(1280/\u03b7\u2080\u00b2 + 1) \u2264 e^{t/8}` gives `1280/\u03b7\u2080\u00b2 \u2264 (2/3)U^{1/3} - 1`, and that in turn gives `32/(\u03b7\u2080((2/3)U^{1/3} - 1)) \u2264 32/5120 < 1/2`. It is the whole cost of the averaging: it forces `t \u2273 16 log(1/\u03b7\u2080)`, and nothing else in the statement depends on `\u03b7\u2080`.",
       "file": "formal/Problems/Juggler/FatePoorProduction.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 156,
+      "line": 160,
       "module": "Problems.Juggler.FatePoorProduction",
       "name": "production_two_averaged",
       "trust": "kernel"
@@ -33785,7 +33785,7 @@
       "file": "formal/Problems/Juggler/FatePoorProduction.lean",
       "kind": "def",
       "ledger": [],
-      "line": 350,
+      "line": 354,
       "module": "Problems.Juggler.FatePoorProduction",
       "name": "coef2avg",
       "trust": "kernel"
@@ -33795,7 +33795,7 @@
       "file": "formal/Problems/Juggler/FatePoorProduction.lean",
       "kind": "def",
       "ledger": [],
-      "line": 353,
+      "line": 357,
       "module": "Problems.Juggler.FatePoorProduction",
       "name": "err2avg",
       "trust": "kernel"
@@ -33805,7 +33805,7 @@
       "file": "formal/Problems/Juggler/FatePoorProduction.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 355,
+      "line": 359,
       "module": "Problems.Juggler.FatePoorProduction",
       "name": "coef2avg_ge",
       "trust": "kernel"
@@ -33815,7 +33815,7 @@
       "file": "formal/Problems/Juggler/FatePoorProduction.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 362,
+      "line": 366,
       "module": "Problems.Juggler.FatePoorProduction",
       "name": "coef2avg_nonneg",
       "trust": "kernel"
@@ -33825,7 +33825,7 @@
       "file": "formal/Problems/Juggler/FatePoorProduction.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 365,
+      "line": 369,
       "module": "Problems.Juggler.FatePoorProduction",
       "name": "err2avg_nonneg",
       "trust": "kernel"
@@ -33835,7 +33835,7 @@
       "file": "formal/Problems/Juggler/FatePoorProduction.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 372,
+      "line": 376,
       "module": "Problems.Juggler.FatePoorProduction",
       "name": "err2avg_le",
       "trust": "kernel"
@@ -33845,7 +33845,7 @@
       "file": "formal/Problems/Juggler/FatePoorProduction.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 379,
+      "line": 383,
       "module": "Problems.Juggler.FatePoorProduction",
       "name": "production_two_averaged_sum",
       "trust": "kernel"
@@ -33855,7 +33855,7 @@
       "file": "formal/Problems/Juggler/FatePoorProduction.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 391,
+      "line": 395,
       "module": "Problems.Juggler.FatePoorProduction",
       "name": "errorsAvg_le",
       "trust": "kernel"
@@ -33865,7 +33865,7 @@
       "file": "formal/Problems/Juggler/FatePoorProduction.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 407,
+      "line": 411,
       "module": "Problems.Juggler.FatePoorProduction",
       "name": "errorsAvg_vanish",
       "trust": "kernel"
@@ -33875,7 +33875,7 @@
       "file": "formal/Problems/Juggler/FatePoorProduction.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 427,
+      "line": 431,
       "module": "Problems.Juggler.FatePoorProduction",
       "name": "zeta2avg_antitone",
       "trust": "kernel"
@@ -33885,7 +33885,7 @@
       "file": "formal/Problems/Juggler/FatePoorProduction.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 449,
+      "line": 453,
       "module": "Problems.Juggler.FatePoorProduction",
       "name": "contagion_averaged",
       "trust": "kernel"
@@ -33895,7 +33895,7 @@
       "file": "formal/Problems/Juggler/FatePoorProduction.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 522,
+      "line": 526,
       "module": "Problems.Juggler.FatePoorProduction",
       "name": "zeta2avg_pos",
       "trust": "kernel"
@@ -33905,7 +33905,7 @@
       "file": "formal/Problems/Juggler/FatePoorProduction.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 544,
+      "line": 548,
       "module": "Problems.Juggler.FatePoorProduction",
       "name": "logMass_contagion_averaged",
       "trust": "kernel"
@@ -33915,7 +33915,7 @@
       "file": "formal/Problems/Juggler/FatePoorProduction.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 561,
+      "line": 565,
       "module": "Problems.Juggler.FatePoorProduction",
       "name": "failures_logMass_averaged",
       "trust": "kernel"
@@ -33925,7 +33925,7 @@
       "file": "formal/Problems/Juggler/FatePoorProduction.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 574,
+      "line": 578,
       "module": "Problems.Juggler.FatePoorProduction",
       "name": "conjecture_of_tao_rate_averaged",
       "trust": "kernel"
@@ -33935,7 +33935,7 @@
       "file": "formal/Problems/Juggler/FatePoorProduction.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 582,
+      "line": 586,
       "module": "Problems.Juggler.FatePoorProduction",
       "name": "conjecture_of_cylinder_bound_averaged",
       "trust": "kernel"
