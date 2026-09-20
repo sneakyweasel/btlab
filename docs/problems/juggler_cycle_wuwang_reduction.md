@@ -196,7 +196,8 @@ is effective), `checks`, `survivor_band`, `quotient_cap`,
 
 ## Conjectures
 
-None new. `juggler_walk_fan_minimum_law` stays **ACTIVE** and is
+None new. `juggler_walk_fan_minimum_law` is **PROVED** (20 September
+2026, exact form) and is
 untouched: Wu-Wang caps the fan width, not the quotients themselves.
 
 ## Counterexamples

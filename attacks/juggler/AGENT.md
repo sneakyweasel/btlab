@@ -37,7 +37,11 @@ Method: [docs/methodology.md](../../docs/methodology.md).
   The floor-free Lean bound is still \(e\ge 4\), \(L\ge 11\)
   (Theorem 3.22); the printed computational strengthening is
   Theorem 3.31 (\(e\ge 8\), \(L\ge 22\) at minima \(\ge 300\)).
-  Walk program is terminal (`juggler_walk_fan_minimum_law`, CONJECTURE).
+  Walk program is terminal (`juggler_walk_fan_minimum_law`, **PROVED**
+  20 September 2026: `R_min = ((A+B+1)/(A+B-1))^2` exactly, hence
+  `((a+3)/(a+1))^2 < R_k` -- the leftover is the classical question
+  whether the dangerous-position quotients of \(\log2/\log3\) are
+  unbounded, and nothing else).
   Laboratory-kill of remaining near-convergents is **CLOSE**
   (`juggler_cycle_diophantine_survivors`). Baker/SdW **REFUTED**
   (`juggler_cycle_gap_baker`). Paper A × Paper B merge CLOSE.

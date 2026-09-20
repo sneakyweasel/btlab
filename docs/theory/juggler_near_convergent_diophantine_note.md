@@ -1,8 +1,8 @@
 ---
 title: "Near-convergents of log 2 / log 3 after the Juggler walk-charge blocker"
 author: Philippe Cochin
-date: 4 September 2026
-subtitle: Working draft. Not a review object.
+date: 20 September 2026
+subtitle: Laboratory manuscript. Exported leftover, not a review object. Conditional on nothing; proves no cycle bound.
 keywords:
   - Juggler map
   - continued fractions
@@ -24,315 +24,489 @@ J(n)=
 \lfloor n^{3/2}\rfloor,&n\ \text{odd}.
 \end{cases}
 \]
-A companion manuscript (Paper A) proves that any nontrivial cycle
-has period at least \(780239\) at the certified descent floor
+A companion manuscript (Paper A) proves that any nontrivial cycle has
+period at least \(780239\) at the certified descent floor
 \(N_0=350000000\). The sole finance-survivor at that floor is the
 semiconvergent fan member \(780239=176251+2\cdot 301994\) of
-\(\log 2/\log 3\). This paper does not exclude that length, and it
-does not exclude the later fan members. It writes the family law
-that Paper A left as a Diophantine question: along a dangerous fan
-\(L_k=q+kQ\), the walk-finance required improvement has first-order
-minimum \(\ln R_{\min}=4/(A+B)\), with \(A\) within one of the
-partial quotient at the dangerous position. The identity is
-verified on both certified fans. Further family progress is
-therefore equivalent to unboundedness of those partial quotients
-of \(\log 2/\log 3\), a classical open problem. Baker-type gap
-bounds and further descent floors do not reach this leftover. The
-statements constrain cycle states. They do not bound the free term
-of the fate decomposition, and they are not a halt theorem.
+\(\log 2/\log 3\). This paper does not exclude that length and does not
+exclude the later fan members. It writes the family law that Paper A left
+as a Diophantine question, and writes it exactly.
+
+Along a dangerous fan \(L_k=q+kQ\), let \(\varepsilon_k=o_k-L_kx\) be the
+linear form at the \(k\)-th member, \(x=\log2/\log3\), and let
+\(R_k=(\varepsilon_k/\varepsilon_{k+1})(L_{k+1}/L_k)\) be the ratio of
+walk-finance required improvements between consecutive members at a common
+floor. Put \(A=\varepsilon_0/\eta\) with \(\eta\) the per-step decrement,
+and \(B=q/Q\in(0,1)\). Then
+\[
+R_k=\frac{A-k}{A-k-1}\cdot\frac{B+k+1}{B+k}
+\]
+**identically**, with no error term; its minimum over real \(k\) is
+attained at \(k^\ast=(A-B-1)/2\) and equals
+\[
+R_{\min}=\Bigl(\frac{A+B+1}{A+B-1}\Bigr)^{2}.
+\]
+Since \(A=a+\varepsilon_a/\eta\) with \(a\) the partial quotient closing
+the fan, \(A\in(a,a+1)\) and hence
+\(((a+3)/(a+1))^{2}<R_k\) for every member. Family progress is therefore
+equivalent to unboundedness of the dangerous-position partial quotients of
+\(\log 2/\log 3\), a classical open problem. The law is verified to eight
+significant digits against the schedule-measured minima on both certified
+fans. Baker-type gap bounds and further descent floors do not reach this
+leftover. The statements constrain cycle states. They do not bound the free
+term of the fate decomposition, and they are not a halt theorem.
 
 **2020 Mathematics Subject Classification.** 11J70, 11B83, 37P99.
+
+## 0. What is proved, what is measured, what is open
+
+The paper is short and its claims separate cleanly. This table is the
+contract; every later section is labelled against it.
+
+| | statement | status |
+|---|---|---|
+| L1 | \(\varepsilon_k=\varepsilon_0-k\eta\) along a fan | **identity** (§3) |
+| L2 | \(A=a+\varepsilon_a/\eta\), hence \(A\in(a,a+1)\) | **identity** (§3) |
+| T3 | \(R_k=\frac{A-k}{A-k-1}\cdot\frac{B+k+1}{B+k}\) | **identity** (§4) |
+| T4 | \(\min_{k\in\mathbb R}R_k=\bigl(\frac{A+B+1}{A+B-1}\bigr)^2\) at \(k^\ast=\frac{A-B-1}{2}\) | **proved** (§4) |
+| C5 | \(\bigl(\frac{a+3}{a+1}\bigr)^2<R_k\) for every \(k\) in the fan | **proved** (§5) |
+| C6 | \(\inf_{\text{fans}}\min_kR_k=1\iff\) dangerous quotients unbounded | **proved from T4** (§5) |
+| D7 | the dangerous-position quotients of \(\log2/\log3\) are unbounded | **classical OPEN** (§5, §7) |
+| P8 | \((1-\tfrac12\varepsilon_0\log3)R_k<R^\theta_k<R_k\) | **proved** (§4) |
+| M9 | \(R_k\) as measured by the break-even schedule agrees with T3 to \(8\) digits | **computationally verified** (§4) |
+
+There is no modelling step. The Denjoy–Koksma factor of the walk envelope
+is a function of the floor alone, so at a common floor it is the same on
+\(L_k\) and \(L_{k+1}\) and cancels exactly in the ratio; and the passage
+from the gap \(\theta\) to the linear form \(\varepsilon\) is bounded
+two-sidedly by P8, to a relative \(1.8\cdot10^{-6}\) on the main fan
+against a realised \(3.5\cdot10^{-8}\). Nothing in §3–§5 is asymptotic and
+nothing carries an unquantified error.
 
 ## 1. Introduction
 
 Paper A
 ([juggler_finite_dynamics_note.md](juggler_finite_dynamics_note.md))
 develops a cycle-financing inequality for the Juggler map and a
-walk-charge refinement of it. Combined with a certified descent
-floor \(N_0=350000000\), the walk charge excludes every length
-below
+walk-charge refinement of it. Combined with a certified descent floor
+\(N_0=350000000\), the walk charge excludes every length below
 \[
 780239=176251+2\cdot 301994
 \]
-(Corollary 5.11). The leftover lengths that finance keeps at a
-given floor cluster at the continued-fraction approximants of
-\(\log 2/\log 3\): they are *finance-survivors*, not candidate
-cycles. The first survivor past the walk-charge blocker is the
-\(k=2\) member of the semiconvergent fan generated by the
-convergent denominator \(176251\) with step \(301994\). Later
-survivors are later members of that fan, then later fans.
+(Corollary 5.11). The leftover lengths that finance keeps at a given floor
+cluster at the continued-fraction approximants of \(\log2/\log3\): they are
+*finance-survivors*, not candidate cycles. The first survivor past the
+walk-charge blocker is the \(k=2\) member of the semiconvergent fan
+generated by the convergent denominator \(176251\) with step \(301994\).
+Later survivors are later members of that fan, then later fans.
 
-Paper A stops there: killing the remaining near-convergent
-survivors “is a Diophantine question about \(\lvert 3^o-2^L\rvert\);
-neither is attempted here.” The present draft is that question,
-restricted to the *family*. It does not attempt to exclude the
-single length \(780239\) at the frozen floor. It does not reopen
-the long-cycle leftover of Paper A §6 (a per-orbit parity statement
-at depth \(L\), recorded as open and not as a program).
+Paper A stops there: killing the remaining near-convergent survivors "is a
+Diophantine question about \(\lvert 3^o-2^L\rvert\); neither is attempted
+here." The present paper is that question, restricted to the *family*. It
+does not attempt to exclude the single length \(780239\) at the frozen
+floor. It does not reopen the long-cycle leftover of Paper A §6 (a
+per-orbit parity statement at depth \(L\), recorded as open and not as a
+program).
 
-What it does is this. At a common floor the Denjoy–Koksma envelope
-cancels in the *ratio* of required improvements between consecutive
-fan members. That ratio has a one-line first-order law in the
-continued fraction of \(\log 2/\log 3\). The mid-fan minimum tends
-to \(1\) along a subsequence if and only if the partial quotients
-at the dangerous positions are unbounded. Boundedness of those
-quotients is a classical open problem. This paper records the
-reduction and stops.
+What it does is this. At a common floor the Denjoy–Koksma envelope cancels
+in the *ratio* of required improvements between consecutive fan members.
+That ratio is a rational function of two fan parameters, exactly, and its
+minimum is a rational function of their sum. The mid-fan minimum tends to
+\(1\) along a subsequence if and only if the partial quotients at the
+dangerous positions are unbounded. Boundedness of those quotients is a
+classical open problem. This paper records the reduction and stops.
 
-Not claimed: a new period bound; a halt theorem; no cycle of any
-length; a proof that the partial quotients of \(\log 2/\log 3\) are
-bounded or unbounded; any bound on the free term \(\psi_F\) of the
-companion fate paper
+An earlier draft of this note (4 September 2026) gave the law in its
+first-order form \(\ln R_{\min}=4/(A+B)+O((A+B)^{-2})\) and attributed the
+residual on the second certified fan to the neglected second order. That
+reading was wrong in an instructive way. There is no second order: the
+expansion was unnecessary, the underlying identity is exact, and the entire
+residual is the integrality of \(k\). Section 4 records both the correction
+and the margin it buys, which matters precisely where the family question
+lives — at small partial quotients.
+
+**Not claimed:** a new period bound; a halt theorem; no cycle of any
+length; a proof that the partial quotients of \(\log2/\log3\) are bounded
+or unbounded; any bound on the free term \(\psi_F\) of the companion fate
+paper
 ([juggler_fate_almost_all_note.md](juggler_fate_almost_all_note.md)).
 
 ## 2. Import
 
-A finance/walk exclusion at a verified floor \(n_0\) is determined
-by three quantities. For a length \(L\) with minimal odd count
+A finance/walk exclusion at a verified floor \(n_0\) is determined by three
+quantities. For a length \(L\) with minimal odd count
 \(o=o_{\min}(L)=\min\{o:3^o>2^L\}\), write
 \[
 \theta(L)=\frac{3^o-2^L}{3^o}.
 \]
-Paper A Theorem 4.4 (coefficient \(1\)) and the length-only
-majorant of Theorem 4.6 give the comparison
-\(\theta(L)\le\tfrac65 L/(n\log n)\) on a CycleMin cycle of
-minimum \(n\). The walk-charge envelope of Theorem 5.3 replaces
-the length-only right-hand side by a reduced-base walk budget
-\(B\) at \(n'=ne^{-D}\). A length dies at floor \(n_0\) when
-\(\theta(L)>\tfrac65 B(n_0)\).
+Paper A Theorem 4.4 (coefficient \(1\)) and the length-only majorant of
+Theorem 4.6 give the comparison \(\theta(L)\le\tfrac65L/(n\log n)\) on a
+CycleMin cycle of minimum \(n\). The walk-charge envelope of Theorem 5.3
+replaces the length-only right-hand side by a reduced-base walk budget
+\(B(n_0)\) at \(n'=ne^{-D}\). A length dies at floor \(n_0\) when
+\(\theta(L)>\tfrac65B(n_0)\).
 
-At \(N_0=350000000\), \(L=780239\), \(o=492276\), the stored
-comparison
+At \(N_0=350000000\), \(L=780239\), \(o=492276\), the stored comparison
 ([L780239.json](../../data/research/juggler/cycle_walk_charge/N350000000_kills/L780239.json))
-has \(\theta=3.471\cdot 10^{-6}\), walk margin \(0.6049\), required
-improvement over parity \(14.46\), and `certified_excludes: false`.
-The exact gap is known. This paper takes that non-kill as a black
-box and does not re-prove Corollary 5.11.
+has \(\theta=3.471\cdot10^{-6}\), walk margin \(0.6049\), required
+improvement over parity \(14.46\), and `certified_excludes: false`. The
+exact gap is known. This paper takes that non-kill as a black box and does
+not re-prove Corollary 5.11.
 
-The *family* question is not this one comparison. It is the law of
-the ratios \(\theta(L_k)/\theta(L_{k+1})\) along the infinite fan
-that contains \(780239\), and along later fans.
+The *family* question is not this one comparison. It is the law of the
+ratios \(\theta(L_k)/\theta(L_{k+1})\) along the infinite fan that contains
+\(780239\), and along later fans.
 
 ## 3. Dangerous fans
 
-Write \(x=\log 2/\log 3\) and
-\(\theta_{\mathrm{rot}}=\log(3/2)/\log 3=1-x\). A length \(L\) is
-dangerous when \(Lx\) lies just below an integer, so that
-\(3^{o_{\min}}\) barely exceeds \(2^L\) and \(\theta(L)\) is tiny.
+Write \(x=\log2/\log3\) and \(\theta_{\mathrm{rot}}=\log(3/2)/\log3=1-x\).
+A length \(L\) is *dangerous* when \(Lx\) lies just below an integer, so
+that \(3^{o_{\min}}\) barely exceeds \(2^L\) and \(\theta(L)\) is tiny.
 Those lengths are the negative-side convergent denominators of
 \(\theta_{\mathrm{rot}}\) and the semiconvergent fans they generate.
 
-A deep sandwich
-\(171928773/272500658<x<53715833/85137581\) (width
-\(4.31\cdot 10^{-17}\), two pure integer comparisons) certifies
-the partial quotients
+**The certified range.** The sandwich
+\[
+\frac{171928773}{272500658}<x<\frac{53715833}{85137581}
+\]
+holds, of width \(4.310\cdot10^{-17}\), and each side is a single integer
+comparison:
+\[
+3^{171928773}<2^{272500658},\qquad
+3^{53715833}>2^{85137581}.
+\]
+It certifies
 \[
 \theta_{\mathrm{rot}}=[0;2,1,2,2,3,1,5,2,23,2,2,1,1,55,1,4]
 \]
-and the denominators through \(85137581\). The dangerous seeds
-through that range are \(50508\), \(176251\), \(16785921\),
-\(85137581\). The two certified fans are
+and the denominators
+\(1,2,3,8,19,65,84,485,1054,24727,50508,125743,176251,301994,16785921,17087915,85137581\)
+through \(85137581\). The dangerous seeds in that range are \(50508\),
+\(176251\), \(16785921\), \(85137581\). The two certified fans are
 \[
-L_k=176251+k\cdot 301994\qquad(k=0,\ldots,54),
+L_k=176251+k\cdot301994\quad(k=0,\ldots,54),
 \]
 closed by the quotient \(a_{14}=55\), and
 \[
-L_k=16785921+k\cdot 17087915\qquad(k=0,\ldots,3),
+L_k=16785921+k\cdot17087915\quad(k=0,\ldots,3),
 \]
-closed by \(a_{16}=4\). The walk-charge blocker is the first
-fan’s member \(k=2\). The next member is \(1082233\); the
-mid-fan minimum sits at \(8632083=176251+28\cdot 301994\).
+closed by \(a_{16}=4\). The walk-charge blocker is the first fan's member
+\(k=2\). The next member is \(1082233\); the mid-fan minimum sits at
+\(8632083=176251+28\cdot301994\).
 
-A continuation observed at ninety-digit precision, not certified
-by a big-integer sandwich, begins
-\([3,1,1,15,1,9,2,5]\). Dangerous-position quotients in that
-continuation are \(a_{18}=1\), \(a_{20}=15\), \(a_{22}=9\),
-\(a_{24}=5\).
+A continuation observed at ninety-digit precision, not certified by a
+big-integer sandwich, begins \([3,1,1,15,1,9,2,5]\). Dangerous-position
+quotients in that continuation are \(a_{18}=1\), \(a_{20}=15\),
+\(a_{22}=9\), \(a_{24}=5\).
+
+**Lemma 1 (the linear form is linear).** *Let \(L_k=q+kQ\) be a dangerous
+fan with \(o_k=o_{\min}(L_k)\), and set \(\varepsilon_k=o_k-L_kx\). Then
+for every member of the fan*
+\[
+\varepsilon_k=\varepsilon_0-k\eta,\qquad \eta=Qx-P,
+\]
+*where \(P\) is the numerator step of the fan. The relation is an identity,
+not an approximation.*
+
+*Proof.* From \(3^{o}(1-\theta)=2^{L}\) we get
+\(o\log3+\log(1-\theta)=L\log2\), hence
+\[
+\varepsilon=-\frac{\log(1-\theta)}{\log3}=o-Lx,
+\]
+so \(\varepsilon\) is the linear form at \((L,o)\) and the conversion
+\(\theta=1-3^{-\varepsilon}\) is exact. Along the fan \(L_k=q+kQ\) and
+\(o_k=o_0+kP\), so \(\varepsilon_k=(o_0-qx)+k(P-Qx)=\varepsilon_0-k\eta\).
+The only thing to check is that \(o_0+kP\) really is \(o_{\min}(L_k)\),
+i.e. that \(0<\varepsilon_k<1\); the left inequality is
+\(k<\varepsilon_0/\eta\), which holds throughout the fan by Lemma 2, and
+the right is immediate from \(\varepsilon_k\le\varepsilon_0<1\). \(\square\)
+
+Verified: on both certified fans, \(o_0+kP=\lceil L_kx\rceil\) for every
+member, and \(\lvert\varepsilon_k-(\varepsilon_0-k\eta)\rvert<10^{-53}\) at
+fifty-digit working precision.
+
+**Lemma 2 (where \(A\) comes from).** *Set \(A=\varepsilon_0/\eta\) and let
+\(a\) be the partial quotient closing the fan. Then*
+\[
+A=a+\frac{\varepsilon_a}{\eta},\qquad A\in(a,a+1),
+\]
+*where \(\varepsilon_a\) is the linear form at the next dangerous seed.*
+
+*Proof.* By Lemma 1, \(\varepsilon_a=\varepsilon_0-a\eta=\eta(A-a)\), and
+\(L_a=q+aQ\) is the next seed. The seed is a better approximation than the
+step it was reached by, so \(0<\varepsilon_a<\eta\); dividing by \(\eta\)
+gives \(A-a\in(0,1)\). \(\square\)
+
+Verified: \(A-a=0.810766\) on the first fan and \(0.284476\) on the second,
+and in both cases \(\varepsilon_a/\eta\) reproduces the next fan's
+\(\varepsilon_0/\eta\) to twelve digits. The conclusion used below is only
+\(a<A+B<a+2\), which follows from Lemma 2 together with
+\(B=q/Q\in(0,1)\).
 
 ## 4. The balance law
 
-Fix a dangerous fan \(L_k=q+kQ\) with positive step \(Q\) and
-closing quotient \(a\). Write \(\theta_k=\theta(L_k)\) and
-\[
-\varepsilon_k=-\frac{\ln(1-\theta_k)}{\ln 3},
-\]
-so that \(\theta_k=1-3^{-\varepsilon_k}\). This conversion is
-exact. Along the fan the linear form drops by a constant
-increment \(\eta=\varepsilon_0-\varepsilon_1=\lVert Qx\rVert\) to
-first order, and
-\[
-\varepsilon_k=\varepsilon_0-k\eta.
-\]
-Set \(A=\varepsilon_0/\eta\) and \(B=q/Q\in(0,1)\). The quantity
-\(A\) lies within one of the partial quotient at the dangerous
-position (\(A=55.811\) on the \(55\)-fan; \(A=4.284\) on the
-\(4\)-fan).
+Fix a dangerous fan \(L_k=q+kQ\) with positive step \(Q\) and closing
+quotient \(a\). Put \(A=\varepsilon_0/\eta\) and \(B=q/Q\in(0,1)\).
 
-At a common floor the Denjoy–Koksma factor of the walk envelope
-is the same on \(L_k\) and \(L_{k+1}\) to first order, and
-cancels in the ratio of required improvements. The remaining
-ratio is
+At a common floor the Denjoy–Koksma factor of the walk envelope is the same
+on \(L_k\) and \(L_{k+1}\) and cancels in the ratio of required
+improvements, leaving
 \[
 R_k=\frac{\theta_k}{\theta_{k+1}}\cdot\frac{L_{k+1}}{L_k}.
 \]
-For the small \(\theta\) of a dangerous fan one may replace
-\(\theta\) by \(\varepsilon\) (relative error \(O(\theta)\)). Then
+The passage from \(\theta\) to \(\varepsilon\) is quantified in
+Proposition 5 and is not an approximation left dangling.
+
+**Theorem 3 (the fan identity).** *For every \(0\le k\le a-2\),*
 \[
-\frac{\varepsilon_k}{\varepsilon_{k+1}}=\frac{A-k}{A-k-1},\qquad
-\frac{L_{k+1}}{L_k}=\frac{B+k+1}{B+k},
+R_k=\frac{\varepsilon_k}{\varepsilon_{k+1}}\cdot\frac{L_{k+1}}{L_k}
+=\frac{A-k}{A-k-1}\cdot\frac{B+k+1}{B+k}.
 \]
-and
+*There is no error term.*
+
+*Proof.* By Lemma 1, \(\varepsilon_k=\eta(A-k)\), so
+\(\varepsilon_k/\varepsilon_{k+1}=(A-k)/(A-k-1)\). Also \(L_k=Q(B+k)\), so
+\(L_{k+1}/L_k=(B+k+1)/(B+k)\). \(\square\)
+
+**Theorem 4 (the balance point).** *On \(0\le k\le A-1\) the function
+\(k\mapsto R_k\) of Theorem 3 has a unique minimum, at*
 \[
-\ln R_k=\ln\Bigl(1+\frac{1}{A-k-1}\Bigr)+\ln\Bigl(1+\frac{1}{B+k}\Bigr)
-=\frac{1}{A-k}+\frac{1}{B+k}+O\bigl((A+B)^{-2}\bigr).
+k^\ast=\frac{A-B-1}{2},
+\]
+*where the two factors are equal, and*
+\[
+R_{\min}=\Bigl(\frac{A+B+1}{A+B-1}\Bigr)^{2}.
 \]
 
-**Theorem 1 (balance law; first-order human derivation).**
-The first-order model \(\ln R_k=1/(A-k)+1/(B+k)\) is minimized at
-the balance point \(k^*=(A-B)/2\), where both terms equal
-\(2/(A+B)\), and
+*Proof.* Write \(u=A-k-1\) and \(v=B+k\), both positive on the range, and
 \[
-\ln R_{\min}=\frac{4}{A+B}.
+\ln R_k=\ln\Bigl(1+\frac1u\Bigr)+\ln\Bigl(1+\frac1v\Bigr).
 \]
-*Proof.* Differentiate in the continuous variable \(k\):
+Differentiating in the continuous variable \(k\),
 \[
-\frac{\partial}{\partial k}\Bigl(\frac{1}{A-k}+\frac{1}{B+k}\Bigr)
-=\frac{1}{(A-k)^2}-\frac{1}{(B+k)^2}.
+\frac{d}{dk}\ln R_k=\frac{1}{u(u+1)}-\frac{1}{v(v+1)} .
 \]
-The unique critical point in the fan is \(A-k=B+k\), i.e.
-\(k^*=(A-B)/2\). The second derivative is positive. Substituting
-gives two copies of \(2/(A+B)\). \(\square\)
+As \(k\) increases, \(u\) decreases and \(v\) increases, so the first term
+is strictly increasing and the second strictly decreasing; the derivative
+is therefore strictly increasing, and vanishes exactly once. It vanishes
+when \(u(u+1)=v(v+1)\), and \(t\mapsto t(t+1)\) is strictly increasing on
+\(t>0\), so the critical point is \(u=v\), i.e. \(A-k-1=B+k\),
+\(k^\ast=(A-B-1)/2\). There \(u=v=(A+B-1)/2=:M/2\) and
+\[
+R_{\min}=\Bigl(\frac{u+1}{u}\Bigr)^{2}
+=\Bigl(\frac{M+2}{M}\Bigr)^{2}
+=\Bigl(\frac{A+B+1}{A+B-1}\Bigr)^{2}. \qquad\square
+\]
 
-**Instance (COMPUTATIONALLY VERIFIED).** On the certified
-competition artifact the exact ratios
-\(R_k=(\varepsilon_k/\varepsilon_{k+1})(L_{k+1}/L_k)\) and the
-schedule-measured required improvements match the formula on both
-fans.
+Because \(R_k\) is minimised at a real \(k^\ast\) and the fan is indexed by
+integers, the realised minimum is at \(k\in\{\lfloor k^\ast\rfloor,
+\lceil k^\ast\rceil\}\) and is strictly larger than \(R_{\min}\). This gap
+is not an error term: it is the whole of the discrepancy the earlier draft
+attributed to a neglected second order.
 
-- Fan A: \(q=176251\), \(Q=301994\), \(a_{14}=55\). Then
-  \(A=55.811\), \(B=0.5836\), \(k^*=27.61\). Predicted
-  \(R_{\min}=1.0735\); exact \(1.07351\); schedule-measured
-  \(1.07353\). Predicted and measured minimizer both
-  \(L=8632083=176251+28\cdot 301994\).
+**Instances (computationally verified).**
+
+- Fan A: \(q=176251\), \(Q=301994\), \(a_{14}=55\). Then \(A=55.810766\),
+  \(B=0.583624\), \(M=55.394391\), \(k^\ast=27.113571\). Theorem 4 gives
+  \(R_{\min}=1.073513030\); at the integer \(k=27\) the identity gives
+  \(1.073514266\); the schedule measures \(1.073514266\) at the survivor
+  \(L_{28}=8632083\). Agreement to ten significant digits, and the
+  minimiser matches.
 - Fan B: \(q=16785921\), \(Q=17087915\), \(a_{16}=4\). Then
-  \(A=4.284\), \(B=0.9823\). Predicted \(R_{\min}=2.137\); exact
-  and measured \(2.163\), inside the second-order band
-  \((4/(A+B))^2\). Minimizer \(50961751\) matched.
+  \(A=4.284476\), \(B=0.982327\), \(M=4.266803\), \(k^\ast=1.151074\).
+  Theorem 4 gives \(R_{\min}=2.157182679\); at the integer \(k=1\) the
+  identity gives \(2.163014728\); the schedule measures \(2.163015\) at
+  the survivor \(L_2=50961751\). Agreement to eight significant digits,
+  and the minimiser matches.
 
-The competition’s measured constant \(1.0735\) is
-\(e^{4/(A+B)}\) with \(A+B=56.39\): nothing but the certified
-quotient \(55\).
+The first-order law \(\ln R_{\min}=4/(A+B)\) of the earlier draft is the
+expansion \(\ln(1+1/u)\approx1/u\) applied twice. It costs a relative
+\(8.6\cdot10^{-6}\) on Fan A and \(1.2\cdot10^{-2}\) on Fan B; Theorem 4
+costs \(1.2\cdot10^{-6}\) and \(2.7\cdot10^{-3}\), the remainder being the
+integrality of \(k\). The expansion is harmless at \(a=55\) and is not
+harmless at \(a=4\) — and small \(a\) is exactly the regime the family
+question lives in.
+
+**Proposition 5 (the \(\theta\)-form, rigorously).** *Write
+\(R^\theta_k=(\theta_k/\theta_{k+1})(L_{k+1}/L_k)\) for the ratio in the
+gaps themselves. Then for every member of the fan*
+\[
+\Bigl(1-\tfrac12\varepsilon_0\log3\Bigr)R_k<R^\theta_k<R_k ,
+\]
+*with \(R_k\) the quantity of Theorem 3.*
+
+*Proof.* Put \(c=\log3\) and \(g(\varepsilon)=\theta/\varepsilon
+=(1-e^{-c\varepsilon})/\varepsilon\), so that
+\(R^\theta_k/R_k=g(\varepsilon_k)/g(\varepsilon_{k+1})\). The function
+\(g\) is strictly decreasing on \(\varepsilon>0\) and
+\(\varepsilon_k>\varepsilon_{k+1}\), which gives the upper bound. For the
+lower, \(1-e^{-u}\ge u-u^2/2\) gives
+\(g(\varepsilon)\ge c(1-c\varepsilon/2)\), while \(g\le c\) always, so
+\(g(\varepsilon_k)/g(\varepsilon_{k+1})\ge1-c\varepsilon_k/2
+\ge1-c\varepsilon_0/2\). \(\square\)
+
+On the first certified fan \(\varepsilon_0=3.277\cdot10^{-6}\), so the
+window has relative width \(1.80\cdot10^{-6}\); the realised discrepancy
+is \(3.2\cdot10^{-8}\). On the second the window has width
+\(2.62\cdot10^{-8}\) and the realised discrepancy is \(6.1\cdot10^{-9}\).
+Every statement of this paper is
+therefore rigorous with explicit constants, the Denjoy–Koksma cancellation
+of the opening paragraph excepted — and that cancellation is exact, not
+approximate, because the factor is a function of the floor alone.
+
+The competition's measured constant \(1.0735\) is
+\(\bigl((A+B+1)/(A+B-1)\bigr)^2\) with \(A+B=56.394\): nothing but the
+certified quotient \(55\).
 
 ## 5. The reduction
 
-**Corollary 2.** For the fan closed by quotient \(a\),
+**Corollary 5 (rational two-sided bound).** *Let the fan be closed by the
+quotient \(a\ge2\). Then for every member \(k\),*
 \[
-e^{4/(a+2)}\le R_{\min}\lesssim e^{4/a}.
+\Bigl(\frac{a+3}{a+1}\Bigr)^{2}<R_k,
+\qquad\text{and}\qquad
+R_{\min}<\Bigl(\frac{a+1}{a-1}\Bigr)^{2}.
 \]
-*Proof.* \(A\) lies within one of \(a\), and \(B\in(0,1)\), so
-\(a\le A+B\le a+2\) up to the declared first-order error. Apply
-Theorem 1. \(\square\)
 
-**Corollary 3 (family sharpness; CONJECTURE as an equivalence,
-classical OPEN as a Diophantine statement).** The schedule’s
-required-improvement infimum over all dangerous fans is \(1\) if
-and only if the partial quotients of \(\log 2/\log 3\) at the
-dangerous positions are unbounded.
+*Proof.* By Lemma 2 and \(B\in(0,1)\) we have \(a<A+B<a+2\), i.e.
+\(a-1<M<a+1\) for \(M=A+B-1\). The function \(M\mapsto((M+2)/M)^2\) is
+strictly decreasing on \(M>0\), so \(M<a+1\) gives
+\(R_{\min}>((a+3)/(a+1))^2\), and \(M>a-1\) gives
+\(R_{\min}<((a+1)/(a-1))^2\). The first inequality passes to every \(R_k\)
+because \(R_{\min}\) is the minimum over real \(k\). \(\square\)
 
-The first-order law and the two certified instances make the
-equivalence the natural reading of Theorem 1; that reading is the
-conjecture `juggler_walk_fan_minimum_law`. Boundedness of the
-continued-fraction quotients of \(\log 2/\log 3\) is a classical
-open problem. Gauss–Kuzmin genericity expects unbounded quotients,
-and the values \(23\) and \(55\) already occur, but no proof is
-known either way.
+At \(a=1\) the upper bound is vacuous and the lower bound reads
+\(R_k>4\): a single-member fan costs at least a fourfold improvement to
+step past, which is why \(a=1\) positions are harmless. The bound is
+rational throughout; no exponential and no asymptotic is involved. For the
+certified quotients it gives
+\[
+a=55:\ R_{\min}\in(1.07270,\,1.07545),\qquad
+a=4:\ R_{\min}\in(1.96000,\,2.77778),
+\]
+containing the values \(1.073513\) and \(2.157183\) of §4. The earlier
+draft's \(e^{4/(a+2)}\le R_{\min}\lesssim e^{4/a}\) gives
+\((1.9477,2.7183)\) at \(a=4\) — an upper bound below the true worst case
+\(2.7778\), which is what the \(\lesssim\) was carrying.
 
-Wu–Wang’s measure
-\(\lvert a+b\log 2+c\log 3\rvert\ge H^{-4.1163051-\varepsilon}\)
-transfers to a width cap
-\(a_{j+1}=O_\varepsilon(q_j^{3.1163051+\varepsilon})\). That bound
-does not give \(a=O(1)\). Combined with Corollary 2 it already
-allows \(R_{\min}\le 1.001\) at \(q\gtrsim 14\), so it cannot
-prevent \(e^{4/(a+2)}\to 1\) and cannot kill a leftover.
+**Corollary 6 (the family reduction).** *Over all dangerous fans,*
+\[
+\inf_{\text{fans}}\ \min_k R_k=1
+\quad\Longleftrightarrow\quad
+\text{the dangerous-position partial quotients of }\log2/\log3\text{ are unbounded.}
+\]
 
-A prediction table from Corollary 2: the certified quotients
-\(a_{14}=55\) and \(a_{16}=4\) give
-\(R_{\min}\in[1.073,1.075]\) and \([1.95,2.72]\), matching §4.
-The observed (uncertified) quotients give
-\(a_{18}=1\) (a single-step jump, \([3.79,54.6]\)),
-\(a_{20}=15\) (\([1.27,1.31]\)),
-\(a_{22}=9\) (\([1.44,1.56]\)),
-\(a_{24}=5\) (\([1.77,2.23]\)).
+*Proof.* By Corollary 5, a fan closed by \(a\) has
+\(\min_kR_k>((a+3)/(a+1))^2\), which tends to \(1\) as \(a\to\infty\) and
+is bounded away from \(1\) for \(a\) in any bounded set; and by Theorem 4
+the minimum is at most \(((M+2)/M)^2\) with \(M<a+1\), which does tend to
+\(1\) along any sequence \(a\to\infty\). \(\square\)
 
-This is the leftover the closed Diophantine methods failed to
-kill: an infinite family of near-convergents whose mid-fan
-sharpness is a function of the continued fraction of
-\(\log 2/\log 3\).
+So the equivalence is a theorem, not a conjecture. What is conjectural is
+nothing; what is *open* is the Diophantine input.
+
+**Open problem 7 (classical).** *Are the partial quotients of
+\(\log2/\log3\) at the dangerous positions unbounded?*
+
+Boundedness of the continued-fraction quotients of \(\log2/\log3\) is a
+classical open problem. Gauss–Kuzmin genericity expects unbounded
+quotients, and the values \(23\) and \(55\) already occur, but no proof is
+known either way for this or for any other explicit logarithm ratio.
+
+Wu–Wang's irrationality measure
+\(\lvert a+b\log2+c\log3\rvert\ge H^{-4.1163051-\varepsilon}\) transfers to
+a width cap \(a_{j+1}=O_\varepsilon(q_j^{3.1163051+\varepsilon})\). That
+bound does not give \(a=O(1)\). Combined with Corollary 5 it already
+allows \(R_{\min}<1.001\) at \(a\gtrsim14\), so it cannot prevent
+\(((a+3)/(a+1))^2\to1\) and cannot kill a leftover.
+
+A prediction table from Corollary 5. The certified quotients
+\(a_{14}=55\) and \(a_{16}=4\) give \(R_{\min}\in(1.0727,1.0754)\) and
+\((1.9600,2.7778)\), matching §4. The observed (uncertified) quotients
+give
+\[
+a_{18}=1:\ R_k>4;\quad
+a_{20}=15:\ (1.2656,1.3061);\quad
+a_{22}=9:\ (1.4400,1.5625);\quad
+a_{24}=5:\ (1.7778,2.2500).
+\]
+
+This is the leftover the closed Diophantine methods failed to kill: an
+infinite family of near-convergents whose mid-fan sharpness is a rational
+function of the continued fraction of \(\log2/\log3\).
 
 ## 6. What does not reach the family
 
-Three quantities determine a kill at a *fixed* floor: the exact
-gap \(\theta(L)\), the walk envelope \(B\), and the floor \(N_0\).
-None of them answers Corollary 3.
+Three quantities determine a kill at a *fixed* floor: the exact gap
+\(\theta(L)\), the walk envelope \(B\), and the floor \(N_0\). None of them
+answers Open problem 7.
 
-**Gap lower bounds.** Any correct \(\delta\le 3^o-2^L\) produces a
-finance \(n_{\max}\) at least as large as the exact-gap
-\(n_{\max}\). The exact gap along the fan is already known.
-Rhin / Simons–de Weger Lemma 12 is weaker than that exact gap on
-every tested length. A Baker-type transfer cannot exclude a
-length that exact finance keeps, and it cannot make \(R_{\min}\)
-bounded away from \(1\).
+**Gap lower bounds.** Any correct \(\delta\le3^o-2^L\) produces a finance
+\(n_{\max}\) at least as large as the exact-gap \(n_{\max}\). The exact gap
+along the fan is already known — Lemma 1 gives it in closed form. Rhin and
+Simons–de Weger Lemma 12 are weaker than that exact gap on every tested
+length. A Baker-type transfer cannot exclude a length that exact finance
+keeps, and by Theorem 3 it cannot change \(R_k\) at all: \(R_k\) does not
+mention \(\delta\).
 
-**The envelope.** The hug dynamic program *is* the walk charge
-\(C_L\). Any valid tightening of the Denjoy–Koksma cap \(2s(L)\)
-remains an upper bound on that same \(C_L\). An arch bound
-supplies the wrong sign on the previous blocker and does not
-change the ratios \(R_k\).
+**The envelope.** The hug dynamic program *is* the walk charge \(C_L\). Any
+valid tightening of the Denjoy–Koksma cap \(2s(L)\) remains an upper bound
+on that same \(C_L\). An arch bound supplies the wrong sign on the previous
+blocker and does not change the ratios \(R_k\), which by Theorem 3 are
+determined by \(A\) and \(B\) alone.
 
 **Further floors.** The break-even of \(L=780239\) is
-\(n^*=5.54\cdot 10^8\) and buys the single member \(k=2\). The
-next *seed* \(16785921\) waits at \(4.54\cdot 10^{11}\). Raising
-the floor walks the fan one \(k\) at a time. It does not bound
-\(R_{\min}\) uniformly.
+\(n^\ast=5.54\cdot10^8\) and buys the single member \(k=2\). The next
+*seed* \(16785921\) waits at \(4.54\cdot10^{11}\). Raising the floor walks
+the fan one \(k\) at a time; each step costs the factor \(R_k\) of
+Theorem 3, and Corollary 5 bounds that cost below by a function of the
+partial quotient alone. Floors do not bound \(R_{\min}\) uniformly.
 
-The rest of the laboratory wall — Paper A combined with Paper B,
-affine \(n\)-gap, inhomogeneous Wu–Wang, \(p\)-adic coupling, fan
-multipoint, fan-successor rigidity, Christoffel, near-tight
-monochrome — is recorded in
-[negative_knowledge.md](../negative_knowledge.md). Those attacks
-targeted a kill. This paper is the family leftover they did not
-reach.
+That is the structural content of the three paragraphs: each of the three
+free quantities either does not appear in \(R_k\), or appears only through
+\(A\) and \(B\).
 
-The frozen-floor instance “exclude \(L=780239\) at
-\(N_0=3.5\cdot 10^8\)” is not this paper. The long-cycle
-reduction of Paper A Corollary 4.11 (every cycle with
-\(L^{14.3}\le n\log n/915\) is excluded, floor-free) reparameterizes
-the no-cycle problem as “no long cycle” and is not a program here.
+The rest of the laboratory wall — Paper A combined with Paper B, affine
+\(n\)-gap, inhomogeneous Wu–Wang, \(p\)-adic coupling, fan multipoint,
+fan-successor rigidity, Christoffel, near-tight monochrome — is recorded in
+[negative_knowledge.md](../negative_knowledge.md). Those attacks targeted a
+kill. This paper is the family leftover they did not reach.
+
+The frozen-floor instance "exclude \(L=780239\) at
+\(N_0=3.5\cdot10^8\)" is not this paper. The long-cycle reduction of
+Paper A Corollary 4.11 (every cycle with \(L^{14.3}\le n\log n/915\) is
+excluded, floor-free) reparameterises the no-cycle problem as "no long
+cycle" and is not a program here.
 
 ## 7. Firewall
 
-Paper A constrains the fate Lachesis from the inside: finance and
-the walk charge bound the *states* of a hypothetical cycle
-(minimum above \(3.5\cdot 10^8\), period at least \(780239\)).
-The present draft constrains the same states one step further: it
-names the family of later near-convergents and reduces their
-walk-finance sharpness to the continued fraction of
-\(\log 2/\log 3\). Paper C Theorem 1 constrains the *basin*: if
-the cycle exists, its basin is a two-way closed class with
-log-count \(\gg(\log x)^{0.448}\). The two constraints do not
-meet. Neither touches the free term \(\psi_F\) of the exact
-first-letter decomposition: the ascending branch \(OO\) sends
-mass to \(x^{3/2}\), and its return is the nested-floor parity at
-all depths.
+Paper A constrains the fate Lachesis from the inside: finance and the walk
+charge bound the *states* of a hypothetical cycle (minimum above
+\(3.5\cdot10^8\), period at least \(780239\)). The present paper constrains
+the same states one step further: it names the family of later
+near-convergents and reduces their walk-finance sharpness to the continued
+fraction of \(\log2/\log3\), exactly. Paper C Theorem 1 constrains the
+*basin*: if the cycle exists, its basin is a two-way closed class with
+log-count \(\gg(\log x)^{0.448}\). The two constraints do not meet. Neither
+touches the free term \(\psi_F\) of the exact first-letter decomposition:
+the ascending branch \(OO\) sends mass to \(x^{3/2}\), and its return is
+the nested-floor parity at all depths.
 
 The boxed question is classical Diophantine approximation.
-
 \[
-\text{Are the dangerous-position partial quotients of }\log 2/\log 3\text{ unbounded?}
+\text{Are the dangerous-position partial quotients of }\log2/\log3\text{ unbounded?}
 \]
+It is not a Juggler construction, and it should not be rewritten as one. No
+successor laboratory branch is opened.
 
-It is not a Juggler construction, and it should not be rewritten
-as one. No successor laboratory branch is opened.
+## Reproduction
+
+Every number in §3–§5 is re-derived by
+`research.juggler_sequence.cycle_walk_fan_minimum`, whose
+`balance_law_exact` implements Theorems 3 and 4 and Corollary 5 and
+compares them with the schedule-measured minima stored in
+`data/research/juggler/cycle_walk_competition/summary.json`. The gates are
+in `tests/research/juggler_sequence/test_cycle_walk_fan_minimum.py`.
 
 ## References
 
@@ -344,6 +518,8 @@ Fan-minimum laboratory record:
 [juggler_cycle_walk_fan_minimum.md](../problems/juggler_cycle_walk_fan_minimum.md).
 Wu–Wang width:
 [juggler_cycle_walk_fan_growth.md](../problems/juggler_cycle_walk_fan_growth.md).
+Survivors dossier and the CLOSE that exports this leftover:
+[juggler_cycle_diophantine_survivors.md](../problems/juggler_cycle_diophantine_survivors.md).
 Closed routes:
 [negative_knowledge.md](../negative_knowledge.md).
 Literature identifiers: `rhin-1987-pade-irrationality`,

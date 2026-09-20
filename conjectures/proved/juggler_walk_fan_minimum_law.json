@@ -1,0 +1,21 @@
+{
+  "id": "juggler_walk_fan_minimum_law",
+  "title": "Fan-minimum balance law: R_min = ((A+B+1)/(A+B-1))^2 and the CF reduction of the walk-finance frontier",
+  "statement": "PROVED 20 September 2026, in exact form. Along a dangerous fan L_k = q + kQ (dangerous convergent q of theta_rot = log(3/2)/log 3, positive convergent step Q, a members closed by the partial quotient a), write eps_k = o_k - L_k x for the linear form, A = eps_0/eta with eta = Qx - P the per-step decrement, and B = q/Q in (0,1). Then R_k = (eps_k/eps_{k+1})(L_{k+1}/L_k) = ((A-k)/(A-k-1))((B+k+1)/(B+k)) IDENTICALLY, with no error term, because eps_k = eps_0 - k eta is the linear form and is linear along the fan by construction. Minimising the identity in the continuous variable gives a unique minimum at k* = (A-B-1)/2 with R_min = ((A+B+1)/(A+B-1))^2. Since A = a + eps_a/eta lies in (a, a+1) and B in (0,1), a < A+B < a+2, hence the rational two-sided bound ((a+3)/(a+1))^2 < R_k for every member and R_min < ((a+1)/(a-1))^2 for a >= 2. Therefore the schedule's required-improvement infimum over all fans is 1 IF AND ONLY IF the partial quotients of log 2/log 3 at the dangerous positions are unbounded -- now an equivalence proved from the identity, not a conjectural reading. The gap form R^theta_k = (theta_k/theta_{k+1})(L_{k+1}/L_k) satisfies (1 - eps_0 log3/2) R_k < R^theta_k < R_k, rigorous with explicit constants. WHAT REMAINS OPEN is only the Diophantine input, unboundedness of those quotients, a classical problem. WHAT WAS WRONG in the ACTIVE form of this record: the first-order reading ln R_min = 4/(A+B) + O((A+B)^{-2}) and the balance point k* = (A-B)/2. The expansion ln(1+1/u) ~ 1/u was unnecessary and its residual is not a second order -- it is the integrality of k. The expansion costs 8.6e-6 relative at a = 55 and 1.2e-2 at a = 4, and its upper bound e^(4/a) = 2.7183 at a = 4 sits BELOW the true worst case ((a+1)/(a-1))^2 = 2.7778, which is why the record carried a '<~'. Small quotients are where the family question lives. The walk-finance competition program terminates at this reduction.",
+  "mathematical_domain": "Juggler cycle finance / continued fraction of log 2 / log 3",
+  "origin": "docs/problems/juggler_cycle_walk_fan_minimum.md",
+  "status": "EXACT — HUMAN PROOF",
+  "first_seen": "2026-09-01",
+  "tested_range": "both certified fans of the competition artifact, closed form against the stored thetas. Fan A (q = 176251, Q = 301994, a14 = 55): A = 55.810766, B = 0.583624, k* = 27.113571; continuous R_min = 1.073513030, the identity at the integer minimiser k = 27 gives 1.073514266, the schedule measures 1.073514266 at survivor 8632083 -- ten significant digits. Fan B (q = 16785921, Q = 17087915, a16 = 4): A = 4.284476, B = 0.982327, k* = 1.151074; continuous R_min = 2.157182679, the identity at k = 1 gives 2.163014728, the schedule measures 2.163015 at survivor 50961751 -- eight significant digits. Rational brackets (1.072704, 1.075446) and (1.960000, 2.777778) both hold. eps_k = eps_0 - k eta verified to 1e-53 at fifty-digit precision and o_k = ceil(L_k x) for every member of both fans.",
+  "counterexamples": [],
+  "proof_reference": "docs/theory/juggler_near_convergent_diophantine_note.md",
+  "lean_reference": "",
+  "literature": [
+    "fernandez-ibanez-2026",
+    "kuipers-niederreiter-1974"
+  ],
+  "notes": "The proof is the manuscript's Lemmas 1-2, Theorems 3-4, Proposition 5 and Corollaries 5-6; no floor verification, no new period bound, not a halt theorem, and no cycle is excluded. The competition's measured mystery constant 1.0735 is ((A+B+1)/(A+B-1))^2 with A+B = 56.394 -- nothing but the certified quotient 55. Boundedness of the CF quotients of log 2/log 3 is OPEN; Gauss-Kuzmin genericity expects unbounded (23 and 55 already occur). Not a Baker revival (effective gap routes stay REFUTED). Wu-Wang's measure caps the quotient width at O(q_j^{3.1163051+e}) and so cannot force a = O(1).",
+  "not_a_halt_theorem": true,
+  "no_cycle_all_lengths": false,
+  "proved_on": "2026-09-20"
+}
