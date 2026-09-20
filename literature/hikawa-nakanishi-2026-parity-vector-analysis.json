@@ -1,0 +1,20 @@
+{
+  "authors": ["Kazunobu Hikawa", "Kazuo Nakanishi"],
+  "id": "hikawa-nakanishi-2026-parity-vector-analysis",
+  "identifiers": {
+    "doi": "10.13140/RG.2.2.12065.06240"
+  },
+  "notes": "docs/theory/paper_b_prior_art_and_names.md. UNREAD HERE: ResearchGate 403s this environment and there is no PDF anywhere OpenAlex or DataCite can see. Metadata verified first-hand from DataCite and OpenAlex on 2026-09-20, which corrected three things the laboratory had wrong. THIS IS THE EARLIEST PAPER OF THE LINE, January 2026 -- not July, as was assumed when only the toolkit's README was in hand -- so the prior-art clock for parity-vector analysis starts six months earlier than the toolkit. It is also the only one with a CO-AUTHOR, Kazuo Nakanishi, who appears nowhere else in our records and must not be dropped from a citation. The toolkit is a declared supplement to this paper (Zenodo relatedIdentifiers, isSupplementTo).",
+  "problem_area": "collatz",
+  "project_relationship": "known",
+  "relevant_concepts": [
+    "parity vectors",
+    "Collatz conjecture"
+  ],
+  "status": "unread, ResearchGate 403; metadata verified via DataCite and OpenAlex",
+  "title": "Parity Vector Analysis in the Study of the Collatz Conjecture",
+  "url": {
+    "landing": "https://doi.org/10.13140/RG.2.2.12065.06240"
+  },
+  "year": 2026
+}

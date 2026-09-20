@@ -1,0 +1,20 @@
+{
+  "authors": ["Kazunobu Hikawa"],
+  "id": "hikawa-2026-finite-parity-vector-structures",
+  "identifiers": {
+    "doi": "10.13140/RG.2.2.24486.28480"
+  },
+  "notes": "docs/theory/paper_b_prior_art_and_names.md, and the ledger row J-hikawa-september-preprint-located. UNREAD HERE: ResearchGate 403s this environment. Metadata verified first-hand from DataCite and OpenAlex on 2026-09-20, which is the first confirmation that this title and this DOI belong together -- the title had been recorded secondhand from one agent's reading. Dated 2026-09-12, and it is a THIRD paper: the toolkit's README names only the January and July ones, so this was not visible from the toolkit at all. Everything the laboratory believes about its contents -- Theorem 7.3, Equation 48, Conjecture 9.1, Table 4 -- is secondhand and must be read before any of it is cited. Neither DataCite nor OpenAlex carries an abstract, and no PDF is visible to either.",
+  "problem_area": "collatz",
+  "project_relationship": "known",
+  "relevant_concepts": [
+    "parity vectors",
+    "accelerated Collatz map"
+  ],
+  "status": "unread, ResearchGate 403; metadata verified via DataCite and OpenAlex",
+  "title": "Finite Parity-Vector Structures in the Accelerated Collatz Map",
+  "url": {
+    "landing": "https://doi.org/10.13140/RG.2.2.24486.28480"
+  },
+  "year": 2026
+}

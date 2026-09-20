@@ -1,0 +1,21 @@
+{
+  "authors": ["Kazunobu Hikawa"],
+  "id": "hikawa-2026-finite-dimensional-parity-vectors",
+  "identifiers": {
+    "doi": "10.13140/RG.2.2.29894.84804"
+  },
+  "notes": "docs/theory/paper_b_prior_art_and_names.md. UNREAD HERE: ResearchGate 403s this environment. Metadata verified first-hand from OpenAlex on 2026-09-20; DataCite returns 404 for this DOI while OpenAlex resolves it, which is how the title-to-DOI pairing was finally pinned. Dated 2026-07-04, the same day as the Collatz Parity Vector Toolkit, and the toolkit is a declared supplement to it (Zenodo relatedIdentifiers). THIS IS THE PAPER THE VERIFIED PRIOR ART ATTACHES TO: the toolkit computes the survivor recursion, N_d, M_d with its zeros at the free lengths, and the odd-count refinement, all checked here by running its code. Whether this paper PROVES anything about those objects is not known and cannot be known without the PDF.",
+  "problem_area": "collatz",
+  "project_relationship": "known",
+  "relevant_concepts": [
+    "parity vectors",
+    "accelerated Collatz map",
+    "finite-dimensional combinatorial structures"
+  ],
+  "status": "unread, ResearchGate 403; metadata verified via OpenAlex",
+  "title": "Finite-Dimensional Combinatorial and Arithmetic Structures of Parity Vectors for the Accelerated Collatz Map",
+  "url": {
+    "landing": "https://doi.org/10.13140/RG.2.2.29894.84804"
+  },
+  "year": 2026
+}

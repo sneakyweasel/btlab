@@ -11,7 +11,9 @@ Every row was checked first-hand. The toolkit column refers to Kazunobu
 Hikawa, *Collatz Parity Vector Toolkit* v1.0, 4 July 2026,
 [github.com/hikawa94/Collatz-Parity-Vector-Toolkit](https://github.com/hikawa94/Collatz-Parity-Vector-Toolkit),
 deposited at [doi:10.5281/zenodo.21186540](https://doi.org/10.5281/zenodo.21186540);
-its code was run and its published sample output compared against ours.
+its code was run and its published sample output compared against ours. It is
+a declared supplement to his January and July papers, which are unread here;
+see the open risk below.
 
 | this laboratory | the literature | Hikawa's toolkit |
 |---|---|---|
@@ -73,12 +75,30 @@ strength of this page.
 
 ## The open risk, stated plainly
 
-Hikawa's two papers — *Parity Vector Analysis in the Study of the Collatz
-Conjecture* and *Finite-Dimensional Combinatorial and Arithmetic Structures of
-Parity Vectors for the Accelerated Collatz Map* — are **unread here**. They are
-on ResearchGate, which returns 403 to this environment; the Zenodo deposit is
-the software only. Nobody in this laboratory has seen Theorem 7.3, Equation 48,
-Conjecture 9.1 or Table 4.
+There are **three** papers, not two, and all three are **unread here**. They
+are on ResearchGate, which returns 403 to this environment; the Zenodo deposit
+is the software only; and neither DataCite nor OpenAlex holds an abstract or
+sees a PDF. Nobody in this laboratory has read a sentence of any of them, so
+Theorem 7.3, Equation 48, Conjecture 9.1 and Table 4 remain secondhand.
+
+The metadata, though, is now first-hand — DataCite and OpenAlex both answer
+where ResearchGate does not, checked 20 September 2026:
+
+| DOI | title | date | authors |
+|---|---|---|---|
+| [10.13140/RG.2.2.12065.06240](https://doi.org/10.13140/RG.2.2.12065.06240) | Parity Vector Analysis in the Study of the Collatz Conjecture | **2026-01** | Hikawa and **Kazuo Nakanishi** |
+| [10.13140/RG.2.2.29894.84804](https://doi.org/10.13140/RG.2.2.29894.84804) | Finite-Dimensional Combinatorial and Arithmetic Structures of Parity Vectors for the Accelerated Collatz Map | 2026-07-04 | Hikawa |
+| [10.13140/RG.2.2.24486.28480](https://doi.org/10.13140/RG.2.2.24486.28480) | Finite Parity-Vector Structures in the Accelerated Collatz Map | 2026-09-12 | Hikawa |
+
+Three corrections follow. **The line starts in January 2026, not July** — the
+toolkit's README names only the first two papers, so reading the README alone
+put the clock six months late. **The January paper has a co-author, Kazuo
+Nakanishi**, who appeared nowhere in our records and must not be dropped from a
+citation. And **the September paper is a third work**, invisible from the
+toolkit entirely; the title we had recorded for it was one agent's secondhand
+reading, and this is the first confirmation that the title and the DOI belong
+together. The toolkit is a declared supplement to the January and July papers
+(Zenodo `relatedIdentifiers`), not to the September one.
 
 Everything below the toolkit line is therefore provisional. In particular this
 page does **not** assert that the limit theory is absent from his work. What
