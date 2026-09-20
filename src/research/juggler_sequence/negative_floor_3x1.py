@@ -5,7 +5,8 @@ is verified to `2^68`, a fourth negative cycle has length at least `72448885240`
 searched OEIS's text records, Roosendaal's index, Lagarias's bibliography and Chamberland's survey
 section 6.1 and found no published verification floor for that map at all, so the table stayed
 conditional and the journal named the missing floor as the branch's best next question
-(`docs/research_journal.md`, 19 September 2026). This probe supplies the first rung of it.
+(`docs/research_journal.md`, 19 September 2026). This probe supplies it: `2^38` on 19 September,
+`2^40` on the morning of 20 September, `2^44` that evening on the laboratory's own machine.
 
 **WHY THE FLOOR IS THE JUGGLER'S BUSINESS.** The map is `g(y) = y/2` on even `y` and
 `(3y - 1)/2` on odd `y`: the shortcut `3x + 1` map read on the negatives, whose cycle words are
@@ -16,37 +17,57 @@ verification floor on `3x - 1` converts, with no further analysis, into an uncon
 bound on the period of a fourth negative cycle -- and the negative cycles are the ones whose words
 the Juggler shares.
 
-**WHAT WAS VERIFIED.** Every `1 <= y < 2^40 = 1099511627776` reaches `1`, `5` or `17`. The
-certificate is 16 disjoint chunks, 549755813864 odd starts in total, 0 failures, 0 new
-cycles, greatest step count 544, greatest excursion 2.6e23 (so the `unsigned __int128` state never
-came near overflow; the source is `verify_3x1.c` beside the summary). Method: verify odd `y`
-ascending and stop as soon as an iterate drops below `y`, which closes by induction because the
-chunks tile `[3, 2^40)` and all of them passed; `v == y` is checked against the three known cycles,
-and a step cap catches any cycle whose least element exceeds `y` -- the cap is 4000 and the
-observed maximum is 544, so nothing came close to it. The record excursion
-261160802435320822179964 is attained in EVERY one of the eight chunks above `2^38` and equals the
-record from `[3, 2^38)`: one extreme trajectory, reached from throughout the range, and nothing in
-the new territory exceeds it. Narrow subranges return small, distinct peaks, which is how that
-coincidence was checked rather than assumed. A pure-Python reference agrees on
-`y < 300000` by full iteration to a cycle rather than by descent.
+**WHAT WAS VERIFIED.** Every `1 <= y < 2^44 = 17592186044416` reaches `1`, `5` or `17`. The
+certificate is 112 chunks: sixteen with the plain descent walker `verify_3x1.c` to `2^40`
+(greatest step count 544 against a cap of 4000), then 96 chunks of `5 * 2^35` numbers with the
+sieve-plus-jump-table walker `verify_3x1_jump.c` -- 8246337208320 odd starts counted exactly, since
+every odd start is either walked or sieved -- 0 failures, 0 new cycles, greatest step count
+704 against a cap of 40000 (that walker counts sixteen steps per table jump and checks
+the drop only at a landing, so its counts overshoot by up to fifteen). Method: verify odd `y`
+ascending and stop as soon as an iterate drops below `y`, which closes by induction once the chunks
+cover the interval and all of them passed; `v == y` is checked against the three known cycles, and
+the step cap catches any cycle whose least element exceeds `y` -- with the jump table a jump can
+carry past the return, so such a cycle surfaces as a `STEPCAP`, reported and never a silent pass.
+The sieve is unconditional on this side (`neg_prefix_noncontracting`: a contracting prefix drops
+every member of its residue class), and its class count at `K = 24` is `A076227(24) = 286581`.
+The greatest landing value seen above `2^40`, `121443575752945981388885320`, exceeds the record
+`261160802435320822179964` from below `2^40`; the `unsigned __int128` state never came near
+overflow. A pure-Python reference agrees on `y < 300000` by full iteration to a cycle rather than
+by descent. Sources, raw reports, driver and a run record with the source digest, compiler,
+host and timings are archived beside the summary; `compile_verifier` builds either walker with
+`gcc`, or inside WSL on a Windows checkout without one, and `run_verifier` re-runs it on any window.
+
+**THE HOLE IN THE FIRST CERTIFICATE, FOUND FROM ITS OWN PRINTOUT.** The plain walker prints
+`odd_starts = floor((limit - lo)/2)` with `lo` odd, which undercounts each chunk by one; the
+committed total to `2^40` was short by 23, and the only launch value that reproduces the recorded
+counts of chunks 1 to 7 is `k * 2^35 + 3`. So the seven odd starts `k * 2^35 + 1`, `k = 1..7`, lay
+between the chunks of the `2^38` certificate and were walked by nothing. Each reaches a known cycle
+by full iteration (118 to 232 steps to the first drop), as does every odd start within 64 of every
+legacy boundary. `first_odd_start` recovers every chunk's launch value, `certificate` lists every
+gap between chunks and verifies each, and the certificate is not clean otherwise. The floor
+statements at `2^38` and `2^40` were true; the word "tiling" was not.
 
 **THE RESULTING BOUND, UNCONDITIONAL.** A fourth cycle of the `3x - 1` shortcut map -- equivalently
-a fourth negative cycle of shortcut `3x + 1` -- has period at least `9538065`, with `6017849` odd
-steps. The number comes from the laboratory's own `negative_cycle_survivors` at `Y0 = 2^40`, the
-same function that produces the conditional table, so the only new input is the floor.
+a fourth negative cycle of shortcut `3x + 1` -- has period at least `16483927`, with `10400200` odd
+steps; the uniform and hug-word constants give the same length at this floor. The number comes from
+the laboratory's own `negative_cycle_survivors` at `Y0 = 2^44`, the same function that produces the
+conditional table, so the only new input is the floor. At `2^40` it was `9538065` with `6017849`
+odd steps; at `2^38`, `4404167`.
 
 **WHAT THIS IS NOT.** It is not `N_0` and does not touch it: `N_0 = 350000000` is the Juggler's own
 cycle floor and is unchanged, as AGENTS.md requires. No Juggler cycle is excluded, no Juggler bound
-moves, Paper A is untouched, and nothing here is a halt theorem for either map. The floor is a
-computation, not a theorem, and it is this laboratory's computation rather than a literature import:
-no published `3x - 1` floor was found by the recorded search, which is not the same as none
-existing. Pushing to `2^40` (period `9538065`) is about 45 further core-minutes at the measured
-rate; `2^60` and `2^68` need Barina-class sieving and are a separate project.
+moves, Paper A is untouched (its Remark 5.20 quotes the `2^40` numbers; the `2^44` ones belong to
+its next revision), and nothing here is a halt theorem for either map. The floor is a computation,
+not a theorem, and it is this laboratory's computation rather than a literature import: no published
+`3x - 1` floor was found by the recorded search, which is not the same as none existing.
+`[2^40, 2^44)` took 27 minutes on 24 threads at about 393 million odd starts per second per
+core; `2^48` is an overnight run here, and `2^60`, `2^68` need Barina-class sieving on a GPU.
 """
 
 from __future__ import annotations
 
 import json
+import shutil
 import subprocess
 import tempfile
 from pathlib import Path
@@ -61,17 +82,26 @@ DATA_DIR = DATA_ROOT / "negative_floor_3x1"
 JSON_PATH = DATA_DIR / "summary.json"
 CHUNKS_PATH = DATA_DIR / "chunks.json"
 VERIFIER_PATH = DATA_DIR / "verify_3x1.c"
+JUMP_VERIFIER_PATH = DATA_DIR / "verify_3x1_jump.c"
+RUNS_PATH = DATA_DIR / "runs.json"
 DOC_PATH = DOCS_RESEARCH / "juggler_negative_floor_3x1.md"
 
 CLASS_FLOOR = "NEGATIVE_FLOOR_MAKES_THE_MIRROR_A_STATEMENT"
 
 #: the verified floor, as a power of two
-FLOOR_LOG2 = 40
+FLOOR_LOG2 = 44
+#: step caps of the two archived verifiers; a start exceeding its cap is a reported failure,
+#: never a silent pass. The jump verifier counts J = 16 steps per table jump and only checks
+#: the drop at a landing, so its step counts overshoot the plain verifier's by up to 15.
+STEP_CAP_PLAIN = 4000
+STEP_CAP_JUMP = 40000
 #: the three cycles of the `3x - 1` shortcut map on the positive integers
 CYCLES: tuple[tuple[int, ...], ...] = ((1,), (5, 7, 10), (17, 25, 37, 55, 82, 41, 61, 91, 136, 68, 34))
 CYCLE_ELEMENTS = frozenset(y for c in CYCLES for y in c)
 #: floors to price, and the period each one buys
-PRICED_FLOORS = ((2**38, "2^38"), (10**11, "10^11"), (2**40, "2^40"), (2**68, "2^68"))
+PRICED_FLOORS = (
+    (2**38, "2^38"), (10**11, "10^11"), (2**40, "2^40"), (2**44, "2^44"), (2**68, "2^68"),
+)
 #: search cap for the finance walk; the smallest survivor is far below it
 KMAX = 20_000_000
 
@@ -140,56 +170,138 @@ def reference_agrees(limit: int = 300_000) -> dict[str, Any]:
     }
 
 
-def compile_verifier(dest: Path | None = None) -> Path | None:
-    """Compile the archived C verifier; `None` if no compiler is available."""
-    target = (dest or Path(tempfile.mkdtemp())) / "verify_3x1"
-    try:
-        subprocess.run(
-            ["gcc", "-O3", "-o", str(target), str(VERIFIER_PATH)],
-            check=True, capture_output=True, timeout=120,
-        )
-    except (OSError, subprocess.SubprocessError):
-        return None
-    return target
+def _wsl_path(path: Path) -> str:
+    """`C:\\x\\y` as WSL sees it, `/mnt/c/x/y`; other paths unchanged."""
+    text = str(path.resolve()).replace("\\", "/")
+    if len(text) > 1 and text[1] == ":":
+        return f"/mnt/{text[0].lower()}{text[2:]}"
+    return text
 
 
-def run_verifier(lo: int, hi: int, binary: Path | None = None) -> dict[str, Any] | None:
-    """Run the C verifier on `[lo, hi)` and parse its one-line report."""
-    exe = binary or compile_verifier()
-    if exe is None:
-        return None
-    out = subprocess.run([str(exe), str(lo), str(hi)], capture_output=True, text=True, timeout=1800)
+def compile_verifier(
+    dest: Path | None = None, source: Path = VERIFIER_PATH,
+) -> list[str] | None:
+    """Compile an archived C verifier; the command that runs it, or `None` without a compiler.
+
+    Native `gcc` first. The sources need `unsigned __int128`, which MSVC lacks, so on a Windows
+    checkout without gcc -- this laboratory's own machine -- the fallback builds and runs the
+    verifier inside the default WSL distribution, which is where the `2^44` certificate was made.
+    """
+    target = (dest or Path(tempfile.mkdtemp())) / source.stem
+    if shutil.which("gcc"):
+        try:
+            subprocess.run(
+                ["gcc", "-O3", "-o", str(target), str(source)],
+                check=True, capture_output=True, timeout=120,
+            )
+        except (OSError, subprocess.SubprocessError):
+            return None
+        return [str(target)]
+    if shutil.which("wsl.exe"):
+        wsl_target = f"/tmp/{source.stem}_{target.parent.name}"
+        try:
+            subprocess.run(
+                ["wsl.exe", "gcc", "-O3", "-o", wsl_target, _wsl_path(source)],
+                check=True, capture_output=True, timeout=300,
+            )
+        except (OSError, subprocess.SubprocessError):
+            return None
+        return ["wsl.exe", wsl_target]
+    return None
+
+
+def parse_report(text: str) -> dict[str, Any]:
+    """A verifier's `key=value` report, with the 128-bit peak reassembled and the alerts kept."""
     fields: dict[str, Any] = {}
-    for token in out.stdout.split():
+    for token in text.split():
         if "=" in token:
             key, _, value = token.partition("=")
             fields[key] = int(value)
-    fields["alerts"] = [ln for ln in out.stdout.splitlines() if "NEW CYCLE" in ln or "STEPCAP" in ln]
+    if "peak_hi" in fields and "peak_lo" in fields:
+        fields["peak"] = (fields["peak_hi"] << 64) | fields["peak_lo"]
+    fields["alerts"] = [ln for ln in text.splitlines() if "NEW CYCLE" in ln or "STEPCAP" in ln]
     return fields
 
 
+def run_verifier(lo: int, hi: int, command: list[str] | None = None) -> dict[str, Any] | None:
+    """Run a compiled verifier on `[lo, hi)` and parse its report; `None` without a compiler."""
+    cmd = command or compile_verifier()
+    if cmd is None:
+        return None
+    out = subprocess.run([*cmd, str(lo), str(hi)], capture_output=True, text=True, timeout=1800)
+    return parse_report(out.stdout)
+
+
 def certificate() -> dict[str, Any]:
-    """The committed chunk certificate for `[3, 2^FLOOR_LOG2)`."""
-    chunks = json.loads(CHUNKS_PATH.read_text(encoding="utf-8"))
-    total = sum(c["odd_starts"] for c in chunks)
-    covered = max(c["limit"] for c in chunks)
-    lows = sorted(c["limit"] for c in chunks)
-    tiles = all(lows[i] < lows[i + 1] for i in range(len(lows) - 1))
+    """The committed chunk certificate for `[3, 2^FLOOR_LOG2)`.
+
+    Chunks are ordered by `limit`. A chunk that records its `lo` must start exactly where the
+    previous chunk stopped, so the tiling is checked, not read off increasing limits; the first
+    sixteen chunks, made before `lo` was recorded, are pinned by their limits alone. Each chunk
+    names its verifier: the plain descent walker below `2^40`, the sieve-plus-jump-table walker
+    above it, whose peak is a maximum over walked starts and jump landings only.
+    """
+    chunks = sorted(json.loads(CHUNKS_PATH.read_text(encoding="utf-8")), key=lambda c: c["limit"])
+    plain = VERIFIER_PATH.name
+    by_verifier: dict[str, int] = {}
+    for c in chunks:
+        name = c.get("verifier", plain)
+        by_verifier[name] = by_verifier.get(name, 0) + 1
+    steps_by_verifier = {
+        name: max(c["max_steps"] for c in chunks if c.get("verifier", plain) == name)
+        for name in by_verifier
+    }
+    covered = chunks[-1]["limit"]
+    fails = sum(c["fails"] for c in chunks)
+    new_cycles = sum(c["new_cycles"] for c in chunks)
+    peak = max(c["peak"] for c in chunks)
+    gaps = [
+        y
+        for a, b in zip(chunks, chunks[1:])
+        for y in range(a["limit"] | 1, first_odd_start(b), 2)
+    ]
+    gap_checks = {y: reaches_known_cycle(y, cap=1_000_000) for y in gaps}
     return {
         "chunks": len(chunks),
-        "odd_starts": total,
-        "fails": sum(c["fails"] for c in chunks),
-        "new_cycles": sum(c["new_cycles"] for c in chunks),
+        "chunks_by_verifier": by_verifier,
+        "odd_starts": sum(c["odd_starts"] for c in chunks),
+        "fails": fails,
+        "new_cycles": new_cycles,
         "max_steps": max(c["max_steps"] for c in chunks),
-        "max_excursion": max(c["peak"] for c in chunks),
+        "max_steps_by_verifier": steps_by_verifier,
+        "step_caps": {plain: STEP_CAP_PLAIN, JUMP_VERIFIER_PATH.name: STEP_CAP_JUMP},
+        "max_excursion": peak,
         "covered_to": covered,
         "covered_to_is_two_pow": covered == 2**FLOOR_LOG2,
-        "chunk_limits_increase": tiles,
+        "chunk_limits_increase": all(a["limit"] < b["limit"] for a, b in zip(chunks, chunks[1:])),
+        "chunks_are_contiguous": not gaps,
+        "gap_starts": gaps,
+        "gap_starts_verified": all(gap_checks.values()),
         "state_type": "unsigned __int128",
-        "overflow_headroom": f"peak {max(c['peak'] for c in chunks):.3e} against 2^127",
+        "overflow_headroom": f"peak {peak:.3e} against 2^127",
         "verifier": str(VERIFIER_PATH.relative_to(DATA_ROOT.parents[2])),
-        "clean": sum(c["fails"] for c in chunks) == 0 and sum(c["new_cycles"] for c in chunks) == 0,
+        "verifiers": sorted(
+            str(p.relative_to(DATA_ROOT.parents[2])) for p in (VERIFIER_PATH, JUMP_VERIFIER_PATH)
+        ),
+        "runs": json.loads(RUNS_PATH.read_text(encoding="utf-8")) if RUNS_PATH.exists() else [],
+        "clean": fails == 0 and new_cycles == 0 and all(gap_checks.values()),
     }
+
+
+def first_odd_start(chunk: dict[str, Any]) -> int:
+    """The first odd start a chunk walked.
+
+    Its recorded `lo`, rounded up to odd as the verifiers do; for the sixteen plain-verifier
+    chunks made before `lo` was recorded, the launch value recovered exactly from the printout,
+    since the plain verifier prints `odd_starts = floor((limit - lo)/2)` with `lo` odd and
+    `limit` even, hence `lo = limit - 2 odd_starts - 1`. That recovery is what showed chunks
+    1 to 7 of the original `2^38` certificate were launched at `k 2^35 + 3`, leaving the seven
+    odd starts `k 2^35 + 1` between chunks; `certificate` lists such gaps and verifies each by
+    full iteration to a known cycle.
+    """
+    if "lo" in chunk:
+        return chunk["lo"] | 1
+    return chunk["limit"] - 2 * chunk["odd_starts"] - 1
 
 
 def period_bounds(floors: tuple[tuple[int, str], ...] = PRICED_FLOORS) -> list[dict[str, Any]]:
@@ -268,12 +380,18 @@ def render_markdown(data: dict[str, Any]) -> str:
         "",
         "## Certificate",
         "",
-        f"- chunks: `{cert['chunks']}`, tiling `[3, {cert['covered_to']})` "
-        f"(`= 2^{FLOOR_LOG2}`: `{cert['covered_to_is_two_pow']}`)",
+        f"- chunks: `{cert['chunks']}`, covering `[3, {cert['covered_to']})` "
+        f"(`= 2^{FLOOR_LOG2}`: `{cert['covered_to_is_two_pow']}`; "
+        f"contiguous: `{cert['chunks_are_contiguous']}`)",
+        f"- odd starts between chunks, each verified by full iteration: `{cert['gap_starts']}` "
+        f"(all reach a known cycle: `{cert['gap_starts_verified']}`)",
+        f"- chunks by verifier: `{cert['chunks_by_verifier']}`",
         f"- odd starts: `{cert['odd_starts']}`",
         f"- failures: `{cert['fails']}`; new cycles: `{cert['new_cycles']}`",
-        f"- greatest step count: `{cert['max_steps']}` against a cap of 4000",
-        f"- greatest excursion: `{cert['max_excursion']}`, state `{cert['state_type']}`",
+        f"- greatest step count by verifier: `{cert['max_steps_by_verifier']}` "
+        f"against caps `{cert['step_caps']}`",
+        f"- greatest excursion: `{cert['max_excursion']}`, state `{cert['state_type']}` "
+        "(above `2^40` a maximum over walked starts and jump landings only)",
         f"- reference agreement (descent against full iteration): "
         f"`{data['reference_check']['agree']}` to `{data['reference_check']['limit']}`",
         "",

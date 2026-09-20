@@ -1,0 +1,39 @@
+[
+  {
+    "range": [
+      1099511627776,
+      17592186044416
+    ],
+    "range_log2": [
+      40,
+      44
+    ],
+    "chunks": [
+      16,
+      111
+    ],
+    "chunk_span": 171798691840,
+    "verifier": "verify_3x1_jump.c",
+    "verifier_source_sha256": "f7a150b6904ba43bc8410adce0f4c4d1f2ad2cca64740642a0efbb28ad46cc95",
+    "compiler": "gcc 13.3.0, -O3 -march=native, Ubuntu 24.04 under WSL2 on Windows 11",
+    "host": "AMD Ryzen 9 3900X (12 cores, 24 threads), 24 processes via xargs -P 24 at nice 10",
+    "started_utc": "2026-09-20T17:23:53Z",
+    "ended_utc": "2026-09-20T17:51:01Z",
+    "wall_seconds": 1628,
+    "sum_chunk_seconds": 35666,
+    "odd_starts": 8246337208320,
+    "fails": 0,
+    "new_cycles": 0,
+    "max_steps": 704,
+    "step_cap": 40000,
+    "max_landing_peak": 121443575752945981388885320,
+    "peak_note": "maximum over walked starts and jump landings; a value inside a jump is below (3/2)^16 times its landing's predecessor, and skipped starts stay below (3/2)^24 * 2^44 < 2^58",
+    "validation_on_this_machine": [
+      "sieve builder returns 286581 classes at K = 24, which is A076227(24)",
+      "with the 17-cycle removed from known(), the jump verifier reports NEW CYCLE at 17 on [3, 2000)",
+      "plain and jump verifiers agree (0 failures, 0 new cycles) on three 2^27-wide already-verified windows at 2^38, near 2^39 and just below 2^40"
+    ],
+    "driver": "drive_p44.sh",
+    "reports": "p44_reports.log"
+  }
+]

@@ -24,18 +24,84 @@
     ]
   ],
   "certificate": {
-    "chunks": 16,
-    "odd_starts": 549755813864,
+    "chunks": 112,
+    "chunks_by_verifier": {
+      "verify_3x1.c": 16,
+      "verify_3x1_jump.c": 96
+    },
+    "odd_starts": 8796093022184,
     "fails": 0,
     "new_cycles": 0,
-    "max_steps": 544,
-    "max_excursion": 261160802435320822179964,
-    "covered_to": 1099511627776,
+    "max_steps": 704,
+    "max_steps_by_verifier": {
+      "verify_3x1.c": 544,
+      "verify_3x1_jump.c": 704
+    },
+    "step_caps": {
+      "verify_3x1.c": 4000,
+      "verify_3x1_jump.c": 40000
+    },
+    "max_excursion": 121443575752945981388885320,
+    "covered_to": 17592186044416,
     "covered_to_is_two_pow": true,
     "chunk_limits_increase": true,
+    "chunks_are_contiguous": false,
+    "gap_starts": [
+      34359738369,
+      68719476737,
+      103079215105,
+      137438953473,
+      171798691841,
+      206158430209,
+      240518168577
+    ],
+    "gap_starts_verified": true,
     "state_type": "unsigned __int128",
-    "overflow_headroom": "peak 2.612e+23 against 2^127",
-    "verifier": "data/research/juggler/negative_floor_3x1/verify_3x1.c",
+    "overflow_headroom": "peak 1.214e+26 against 2^127",
+    "verifier": "data\\research\\juggler\\negative_floor_3x1\\verify_3x1.c",
+    "verifiers": [
+      "data\\research\\juggler\\negative_floor_3x1\\verify_3x1.c",
+      "data\\research\\juggler\\negative_floor_3x1\\verify_3x1_jump.c"
+    ],
+    "runs": [
+      {
+        "range": [
+          1099511627776,
+          17592186044416
+        ],
+        "range_log2": [
+          40,
+          44
+        ],
+        "chunks": [
+          16,
+          111
+        ],
+        "chunk_span": 171798691840,
+        "verifier": "verify_3x1_jump.c",
+        "verifier_source_sha256": "f7a150b6904ba43bc8410adce0f4c4d1f2ad2cca64740642a0efbb28ad46cc95",
+        "compiler": "gcc 13.3.0, -O3 -march=native, Ubuntu 24.04 under WSL2 on Windows 11",
+        "host": "AMD Ryzen 9 3900X (12 cores, 24 threads), 24 processes via xargs -P 24 at nice 10",
+        "started_utc": "2026-09-20T17:23:53Z",
+        "ended_utc": "2026-09-20T17:51:01Z",
+        "wall_seconds": 1628,
+        "sum_chunk_seconds": 35666,
+        "odd_starts": 8246337208320,
+        "fails": 0,
+        "new_cycles": 0,
+        "max_steps": 704,
+        "step_cap": 40000,
+        "max_landing_peak": 121443575752945981388885320,
+        "peak_note": "maximum over walked starts and jump landings; a value inside a jump is below (3/2)^16 times its landing's predecessor, and skipped starts stay below (3/2)^24 * 2^44 < 2^58",
+        "validation_on_this_machine": [
+          "sieve builder returns 286581 classes at K = 24, which is A076227(24)",
+          "with the 17-cycle removed from known(), the jump verifier reports NEW CYCLE at 17 on [3, 2000)",
+          "plain and jump verifiers agree (0 failures, 0 new cycles) on three 2^27-wide already-verified windows at 2^38, near 2^39 and just below 2^40"
+        ],
+        "driver": "drive_p44.sh",
+        "reports": "p44_reports.log"
+      }
+    ],
     "clean": true
   },
   "reference_check": {
@@ -53,6 +119,7 @@
     "wide": 0,
     "peak_hi": 0,
     "peak_lo": 3293075932912,
+    "peak": 3293075932912,
     "alerts": []
   },
   "period_bounds": [
@@ -81,6 +148,14 @@
       "note": ""
     },
     {
+      "floor": "2^44",
+      "floor_value": 17592186044416.0,
+      "least_period": 16483927,
+      "odd_steps": 10400200,
+      "verified": true,
+      "note": ""
+    },
+    {
       "floor": "2^68",
       "floor_value": 2.9514790517935283e+20,
       "least_period": null,
@@ -89,7 +164,7 @@
       "note": "no survivor below the walk cap KMAX = 20000000; the laboratory's conditional table records 72448885240 at this floor"
     }
   ],
-  "statement": "Every 1 <= y < 2^40 reaches 1, 5 or 17. Hence, by neg_cycle_finance (kernel-checked), a fourth cycle of the 3x-1 shortcut map -- equivalently a fourth negative cycle of shortcut 3x+1, whose word is a Paper A CycleMin shape -- has period at least 9538065, with 6017849 odd steps.",
+  "statement": "Every 1 <= y < 2^44 reaches 1, 5 or 17. Hence, by neg_cycle_finance (kernel-checked), a fourth cycle of the 3x-1 shortcut map -- equivalently a fourth negative cycle of shortcut 3x+1, whose word is a Paper A CycleMin shape -- has period at least 16483927, with 10400200 odd steps.",
   "decision": {
     "classification": "NEGATIVE_FLOOR_MAKES_THE_MIRROR_A_STATEMENT",
     "branch": "PROMOTE",

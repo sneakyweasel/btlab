@@ -1,5 +1,61 @@
 # Research journal
 
+## 2026-09-20 -- The 3x-1 floor reaches 2^44 on the laboratory machine, and the first certificate had seven holes
+
+- **Objective:** Philippe said run the `2^44` push here. The container's
+  attempt had died before a chunk completed; this machine has 24 threads
+  and no C compiler, so the run went through WSL.
+- **The floor is `2^44`.** Every `1 <= y < 2^44 = 17592186044416` reaches
+  `1`, `5` or `17` under the `3x-1` shortcut map. Ninety-six chunks of
+  `5 * 2^35` numbers, 8246337208320 odd starts counted exactly, 0 failures,
+  0 new cycles, greatest step count 704 against the jump
+  walker's cap of 40000. Through the kernel-checked `neg_cycle_finance` a
+  fourth negative cycle of shortcut `3x+1` -- a fourth cycle of `3x-1` --
+  has **period at least 16483927, with 10400200 odd steps**, up from
+  9538065 at `2^40`. The uniform and hug-word constants give the same
+  length at this floor.
+- **Validated before it ran, on this machine.** The archived
+  sieve-plus-jump walker, gcc 13.3 `-O3 -march=native` under WSL2: the
+  sieve builder returns 286581 classes at `K = 24`, which is A076227(24);
+  with the 17-cycle deleted from its known list it reports `NEW CYCLE at
+  17`; and it agrees with the plain walker on three `2^27`-wide
+  already-verified windows. One core does about 393 million odd
+  starts a second above `2^40`, 1.8 times the container's rate. The range
+  took 27 minutes wall on 24 processes, 9.9
+  core-hours, chunks slowing from 243 to 618 s
+  as SMT contention set in. The greatest landing value seen above 2^40, 121443575752945981388885320 (1.21e+26), exceeds the record 261160802435320822179964 from below 2^40, so the whole certificate's greatest known excursion is now 121443575752945981388885320.
+- **The first certificate had seven holes, and its own printout said so.**
+  Writing the ingestion I checked the committed counts against the number
+  of odd starts below `2^40` and found them short by 23. The plain walker
+  prints `floor((limit - lo)/2)` with `lo` odd, which explains sixteen;
+  the only launch value that reproduces the recorded counts of chunks 1 to
+  7 is `k * 2^35 + 3`, so the starts `k * 2^35 + 1`, `k = 1..7`, were
+  walked by no chunk. All seven reach a known cycle by full iteration, in
+  118 to 232 steps to the first drop, and so does every odd start within
+  64 of every legacy boundary. The floor claims at `2^38` and `2^40` were
+  true; the word "tiling" in the row and the dossier was not, and it is
+  corrected. The probe now recovers each legacy chunk's launch value from
+  its printout, records it, lists every gap between chunks, verifies each
+  by full iteration, and reports the certificate unclean otherwise; the
+  jump chunks count every odd start they walk or sieve, so their coverage
+  is checked exactly. Check the value, not the printout -- and here the
+  printout is what gave the value away.
+- **Record hygiene.** `runs.json` carries the source digest, compiler,
+  host, timings and validation of the run; `p44_reports.log` the 96 raw
+  reports; `drive_p44.sh` the driver. The probe compiles the verifiers
+  with `gcc` or, on this compiler-less Windows checkout, inside WSL, so it
+  can re-run either walker on any window here. Two ledger rows, the
+  branch ledger and the dossier updated; the formalpedia index picks the
+  statements up at its next rebuild, which a peer session owns tonight.
+  Paper A's Remark 5.20 still quotes the `2^40` numbers; that is the
+  manuscript's next revision, not an edit here.
+- **What did not move.** `N_0 = 350000000`; no Juggler cycle excluded; no
+  Juggler bound; nothing is a halt theorem. `2^48` is about
+  7.2 hours here, an overnight run; the number that matters,
+  `2^68`, is a GPU project.
+- **Decision:** `PROMOTE` stands. Best next question: none new from this
+  branch; the next floor is a scheduling decision, not a mathematical one.
+
 ## 2026-09-20 -- The OEIS is local now, and it names twenty-five juggler sequences we never cited
 
 **CORRECTION, written the same day and before this entry was a day old: the

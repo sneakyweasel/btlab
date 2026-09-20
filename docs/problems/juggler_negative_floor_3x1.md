@@ -1,7 +1,7 @@
 # The 3x-1 verification floor
 
-Status: **PROMOTE** (the floor is supplied; the mirror's period bound
-becomes a statement)
+Status: **PROMOTE** (the floor is supplied and pushed to \(2^{44}\); the
+mirror's period bound is a statement)
 
 Standalone computational phase on the Collatz bridge. Not a halt theorem
 for either map, not a Juggler cycle exclusion, and not a change to
@@ -12,17 +12,19 @@ for either map, not a Juggler cycle exclusion, and not a change to
 `J-negative-cycle-finance-is-the-juggler-mirror` gave a conditional
 table. Its missing input was a verification floor for the \(3x-1\) map,
 which the laboratory searched for and did not find in the literature, and
-which the journal named as the branch's best next question. Supply it.
+which the journal named as the branch's best next question. Supply it,
+then push it as far as the laboratory's own machine allows.
 
 ## Exact statement
 
 Let \(g(y)=y/2\) for even \(y\) and \((3y-1)/2\) for odd \(y\) on
 \(\mathbb Z_{>0}\); its cycles are \(1\), the triple \(5,7,10\), and the
-eleven-element cycle at \(17\). Verify that every \(1\le y<2^{38}\)
+eleven-element cycle at \(17\). Verify that every \(1\le y<2^{44}\)
 reaches one of those three. Then read the kernel-checked
 `neg_cycle_finance`, \(2(|x|-1)(3^o-2^K)\le (K-o)3^o\) at a negative
 cycle's least \(|x|\), at that floor, and report the least period a
-fourth cycle could have.
+fourth cycle could have. The floor was \(2^{38}\) on 19 September 2026,
+\(2^{40}\) on the morning of 20 September and \(2^{44}\) that evening.
 
 ## Current literature
 
@@ -39,6 +41,10 @@ fourth cycle could have.
   `Problems/Juggler/CollatzBridge.lean`. **EXACT — LEAN VERIFIED**; the
   implication from floor to period is theirs, and only the floor is
   empirical.
+- The sieve's class count at \(K=24\) is `A076227(24) = 286581`
+  ([the OEIS neighbourhood](juggler_oeis_neighbourhood.md)); the jump
+  table is the block map of Terras and Everett used as an accelerator.
+  **known**.
 
 Project relationship: **independent**.
 
@@ -47,7 +53,7 @@ Project relationship: **independent**.
 ```text
 Mathematical target     Supply a verification floor for 3x-1 and convert the
                         conditional mirror table into an unconditional period
-                        bound for a fourth negative cycle.
+                        bound for a fourth negative cycle; then push the floor.
 Novelty hypothesis      The floor is reachable by an ordinary descent verifier
                         and no published one exists to import.
 Falsifier               A fourth cycle inside the range, or a start that does
@@ -58,11 +64,12 @@ Already killed by?      No. The finance mirror is PROMOTE and explicitly asks
                         and not a local attack.
 Existing machinery      negative_cycle_survivors, lambda_juggler,
                         three_gap_walk, neg_cycle_finance.
-Maximum Phase-0 scope   One C verifier, chunked, archived beside the summary;
-                        a Python reference on a small window; the bound read off
-                        the laboratory's own finance walk.
-Promotion criterion     A clean certificate tiling an interval to a stated floor,
-                        agreeing with an independent reference rule.
+Maximum Phase-0 scope   C verifiers, chunked, archived beside the summary with
+                        the raw reports and a run record; a Python reference on
+                        a small window; the bound read off the laboratory's own
+                        finance walk.
+Promotion criterion     A clean certificate covering an interval to a stated
+                        floor, agreeing with an independent reference rule.
 Stop criterion          Any failure or any new cycle in range.
 ```
 
@@ -77,9 +84,12 @@ It is not.
 ## Candidate operations / invariants
 
 - ascending-induction descent verification of \(g\) —
-  **COMPUTATIONALLY VERIFIED** to \(2^{40}\)
+  **COMPUTATIONALLY VERIFIED** to \(2^{44}\)
 - the descent rule agrees with full iteration to a cycle element —
   **COMPUTATIONALLY VERIFIED** on \(y<300000\)
+- the mod-\(2^{24}\) prefix sieve is unconditional on this side
+  (`neg_prefix_noncontracting`) and keeps exactly \(286581\) classes —
+  **COMPUTATIONALLY VERIFIED**
 - floor \(\Rightarrow\) period bound through `neg_cycle_finance` —
   **EXACT — LEAN VERIFIED**
 
@@ -89,9 +99,15 @@ It is not.
 `data/research/juggler/negative_floor_3x1/summary.json`,
 `chunks.json`, and
 [juggler_negative_floor_3x1.md](../research/juggler_negative_floor_3x1.md).
-The verifier source is archived as `verify_3x1.c` beside them and the
-probe can recompile and re-run it on any window. The committed
-certificate is 8 chunks of \(2^{35}\) tiling \([3,2^{38})\).
+Three verifier sources are archived beside them: `verify_3x1.c`, the plain
+descent walker (chunks 0 to 15, \([3,2^{40})\)); `verify_3x1_sieved.c`,
+the mod-\(2^{24}\) sieve on its own, kept for the measurement below; and
+`verify_3x1_jump.c`, sieve plus \(2^{16}\) jump table (chunks 16 to 111,
+\([2^{40},2^{44})\)). `runs.json` records each run — source digest,
+compiler, host, timings, validation — `p44_reports.log` holds the 96 raw
+reports, and `drive_p44.sh` is the driver that produced them. The probe
+compiles either walker with `gcc`, or inside WSL when the checkout has no
+native compiler, and can re-run it on any window.
 
 ## Conjectures
 
@@ -99,10 +115,13 @@ None.
 
 ## Counterexamples
 
-None. Zero failures, zero new cycles, greatest step count 544 against a
-cap of 4000 — so no orbit in range came within an order of magnitude of
-the cap, which is what would flag a cycle whose least element exceeds the
-start being tested.
+None. Zero failures, zero new cycles. Greatest step count 544 against a
+cap of 4000 with the plain walker below \(2^{40}\), and 704
+against a cap of 40000 with the jump walker above it — that walker counts
+sixteen steps per table jump and checks the drop only at a landing, so
+its counts overshoot by up to fifteen. No orbit in range came within an
+order of magnitude of either cap, which is what would flag a cycle whose
+least element exceeds the start being tested.
 
 ## Formalization
 
@@ -111,25 +130,44 @@ verification floor is not a Lean object.
 
 ## Results
 
-- **Every \(1\le y<2^{38}=274877906944\) reaches \(1\), \(5\) or
-  \(17\).** 549755813864 odd starts, 16 disjoint chunks, 0 failures, 0 new
-  cycles, greatest step count 544, greatest excursion
-  \(2.61\cdot10^{23}\) in an `unsigned __int128` state, so the width
-  mattered — the excursion leaves 64 bits — and overflow was never near.
+- **Every \(1\le y<2^{44}=17592186044416\) reaches \(1\), \(5\) or
+  \(17\).** 112 chunks: sixteen with the plain walker to \(2^{40}\),
+  then 96 chunks of \(5\cdot2^{35}\) numbers each with the sieve-plus-jump
+  walker, 8246337208320 odd starts counted exactly (every odd start is
+  either walked or sieved, and the two counts sum to the width), 0
+  failures, 0 new cycles. The plain walker's printed counts fall one short
+  per chunk by their own formula, which is how the hole below was found.
 - **A fourth cycle of the \(3x-1\) shortcut map has period at least
-  \(9538065\)**, with \(6017849\) odd steps. Equivalently a fourth
+  \(16483927\)**, with \(10400200\) odd steps. Equivalently a fourth
   negative cycle of shortcut \(3x+1\), whose word is a Paper A CycleMin
-  shape letter for letter. At \(10^{11}\) the number is \(1988215\); at
-  \(2^{40}\), which is about 45 further core-minutes, it would be
-  \(9538065\).
+  shape letter for letter. The uniform and the hug-word constants give the
+  same length at this floor. The history: \(4404167\) at \(2^{38}\),
+  \(9538065\) with \(6017849\) odd steps at \(2^{40}\), \(16483927\) now.
+- **The first certificate had seven holes, and the record now says so.**
+  The plain walker prints `floor((limit - lo)/2)` with `lo` odd; that
+  explains one missing start per chunk, sixteen in all, and the committed
+  total to \(2^{40}\) was short by 23. The only launch value that
+  reproduces the counts of chunks 1 to 7 is \(k2^{35}+3\), so the seven
+  odd starts \(k2^{35}+1\), \(k=1,\dots,7\), lay between the chunks of
+  the \(2^{38}\) certificate and were walked by nothing. Each reaches a
+  known cycle by full iteration, in 118 to 232 steps to the first drop,
+  and so does every odd start within 64 of every legacy boundary. The
+  probe now recovers each chunk's launch value, records it, lists every
+  gap between chunks, verifies each, and reports the certificate unclean
+  otherwise. The floor statements at \(2^{38}\) and \(2^{40}\) were
+  true; the word "tiling" was not.
+- **Excursions.** The greatest landing value above \(2^{40}\), \(1.21\cdot10^{26}\), exceeds the record from below it, so the certificate's greatest known excursion moves to \(121443575752945981388885320\). The `unsigned __int128` state never
+  came near overflow; skipped starts stay below \((3/2)^{24}2^{44}<2^{58}\).
 - The two verification rules agree: descent and full iteration give the
   same verdict on every odd \(y<300000\).
 
 ## Open questions
 
-Pushing the floor. \(2^{40}\) is minutes; \(2^{60}\) and \(2^{68}\) —
-the latter giving the \(72448885240\) of the conditional table — need
-sieved GPU verification and are a separate project.
+Pushing the floor further is scheduling, not mathematics: at the measured
+rate \([2^{44},2^{48})\) is about 7.2 hours on this machine, an
+overnight run. \(2^{60}\) and \(2^{68}\) — the latter giving the
+\(72448885240\) of the conditional table — need GPU-class sieving and are
+a separate project.
 
 ## Accelerating the verifier, measured — and a speedup claim withdrawn
 
@@ -181,25 +219,42 @@ pass — which is why the step cap is raised to 40000 in that variant.
 
 **An attempt that produced nothing.** A chunked run over
 \([2^{40}, 2^{44})\) was launched in the session container on 20 September
-and its workers died before a single chunk completed, so **no range beyond
-\(2^{40}\) is verified here** and the floor and period bound in this dossier
-are unchanged. The three archived artifacts —
-`verify_3x1_sieved.c`, `verify_3x1_jump.c` and `drive_chunked.sh` — are what
-that run used; on a 24-thread machine the same range is roughly fifty
-minutes.
+and its workers died before a single chunk completed. The three archived
+artifacts — `verify_3x1_sieved.c`, `verify_3x1_jump.c` and `drive_chunked.sh`
+— are what that run used.
+
+**Run on the laboratory machine, 20 September 2026.** The same
+`verify_3x1_jump.c`, compiled with gcc 13.3 `-O3 -march=native` under WSL2
+Ubuntu 24.04 on the Ryzen 9 3900X — the Windows side has no C compiler and
+the source needs `unsigned __int128`. Validated first on this machine: the
+sieve builder returns 286581 classes at \(k = 24\); with the 17-cycle
+removed from `known()` the walker reports `NEW CYCLE at 17` on
+\([3, 2000)\); plain and jump walkers agree (0 and 0) on three
+\(2^{27}\)-wide already-verified windows at \(2^{38}\), near \(2^{39}\)
+and just below \(2^{40}\). One core walks \(2^{30}\) odd starts above
+\(2^{40}\) in 2.73 s, about 393 million per second, 1.8 times the
+container's rate. The range ran as 96 chunks, 24 at a time at nice 10, in
+**27 minutes** wall (9.9 core-hours; chunks took
+243 to 618 s as SMT contention set in). Every chunk exited
+0; no `NEW CYCLE`, no `STEPCAP`. Run record in `runs.json`, raw reports in
+`p44_reports.log`.
 
 ## Decision
 
-**PROMOTE**. The branch does exactly what the journal asked: the table
-entry becomes a statement. The floor is a computation and is labelled as
-one; the implication it feeds is kernel-checked. Nothing about the
-Juggler moves — this is a Collatz-side input that the Juggler's own
-finance inequality converts.
+**PROMOTE**. The branch does what the journal asked and then the push it
+named: the table entry is a statement, and the statement now stands at
+\(2^{44}\). The floor is a computation and is labelled as one; the
+implication it feeds is kernel-checked; the seven-start hole in the first
+certificate is verified shut and written down. Nothing about the Juggler
+moves — this is a Collatz-side input that the Juggler's own finance
+inequality converts.
 
-Best next question: the \(2^{40}\) floor, then a sieved verifier.
+Best next question: none from the mathematics. The next floor is a
+scheduling decision — \(2^{48}\) overnight here, \(2^{68}\) on a GPU.
 
 ## Publication assessment
 
 Status: `STRUCTURAL`. A computational certificate plus a one-line
 implication; it belongs with the finance mirror, not in a manuscript of
-its own.
+its own. Paper A's Remark 5.20 quotes the \(2^{40}\) floor and
+\(9538065\); the \(2^{44}\) numbers belong to its next revision.
