@@ -37,8 +37,8 @@ import branch_drift as BD  # noqa: E402
 #: latest-progress-summary reached +8 unread on 2026-09-20 after being
 #: acknowledged at +5. Update the sha in the same commit as the reason.
 READ_AT: dict[str, str] = {
-    "claude/exponent-floor-3n1-2adic-mvwa96": "e21a1091",
-    "claude/latest-progress-summary-s011un": "99e846db",
+    "claude/exponent-floor-3n1-2adic-mvwa96": "abf3f502",
+    "claude/latest-progress-summary-s011un": "2198fdab",
     "claude/goofy-kare-1a92fd": "8aad2aae",
     "claude/elated-hopper-e20999": "86247b5d",
 }
@@ -120,7 +120,23 @@ ACKNOWLEDGED: dict[str, str] = {
         "it untouched. CHECKED ON MAIN at 3711d032: "
         "`python tools/build_paper_b_kit.py --check` passes -- archives, "
         "checksums and release check all agree with the repository. So the red "
-        "is the branch's or was fixed since; do not go looking for it on main."
+        "is the branch's or was fixed since; do not go looking for it on main. "
+        "DELTA TO abf3f502, read 2026-09-20, a priority finding: Philippe "
+        "supplied arXiv:2607.01718, Jennifer Williams, A Coordinate System "
+        "for Collatz Dynamics, 2 July 2026, and it SUPERSEDES the "
+        "Collatz-side framing of the branch bridge work. Every odd n is "
+        "uniquely lambda*2^a*3^b - 1 with gcd(lambda,6) = 1; row k = a + b "
+        "is preserved and the flow is (a,b) -> (a-1,b+1). The branch reports "
+        "its own headline as her result, kills the six-free-invariant "
+        "direction into negative_knowledge.md, and says her open problem (2) "
+        "settles the general-exponent-family direction, p - 1 having to be a "
+        "power of two and p = 3 the unique weight-preserving case. THE PAPER "
+        "WAS READ HERE TOO, not just the summary, and one label in that "
+        "summary is wrong: the u = x+1 conjugation is Proposition 3.11, "
+        "Growth rate, proving (n+1) ratio exactly 3/2, NOT Theorem 3.6, "
+        "which is the interior/boundary statement. Main is not exposed: no "
+        "row here states the first integral or the 3-smooth coordinate. "
+        "Williams now has a main registry record."
     ),
     "claude/latest-progress-summary-s011un": (
         "PENDING EXTRACTION, and it has GROWN since it was first acknowledged "
@@ -146,7 +162,16 @@ ACKNOWLEDGED: dict[str, str] = {
         "full 1/q-grid. Both modules are now in the barrel. Left in the note: "
         "Lemma 2's arithmetic and Theorem 4, which the branch says carry no "
         "new mathematical content. The newest commit was read in full here; "
-        "the five before it were read by subject line and by this summary."
+        "the five before it were read by subject line and by this summary. "
+        "DELTA TO 2198fdab, read 2026-09-20: the tail is now fully Lean. "
+        "Lemma 2 is kernel-checked and FatePoorTail.poor_count_le is the "
+        "note Theorem 4 on one dyadic block, left symbolic in Q and delta so "
+        "the note 420 u^(2/3)/eta_0^2 stays the reader to check rather than "
+        "Lean to assert. Lemmas 2 and 3 meet only at poor_resonant plus "
+        "resonant_mono, the widening from the fiber width to the block being "
+        "the one real step, legalised by oeFiber_card_ge. Two gaps filled "
+        "that the repository did not have: oeFiber_nonempty, and Poor phrased "
+        "on the fiber cardinality so it is a predicate on m alone."
     ),
 }
 
