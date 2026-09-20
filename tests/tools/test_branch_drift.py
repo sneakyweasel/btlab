@@ -37,7 +37,7 @@ import branch_drift as BD  # noqa: E402
 #: latest-progress-summary reached +8 unread on 2026-09-20 after being
 #: acknowledged at +5. Update the sha in the same commit as the reason.
 READ_AT: dict[str, str] = {
-    "claude/exponent-floor-3n1-2adic-mvwa96": "fa27313b",
+    "claude/exponent-floor-3n1-2adic-mvwa96": "37e8766c",
     "claude/latest-progress-summary-s011un": "49493758",
     "claude/goofy-kare-1a92fd": "8aad2aae",
     "claude/elated-hopper-e20999": "86247b5d",
@@ -175,7 +175,16 @@ ACKNOWLEDGED: dict[str, str] = {
         "anomaly rather than writing it down: all eight new chunks report "
         "the same record excursion as [3,2^38), which across disjoint "
         "ranges is improbable enough to be under check. And the block "
-        "expansion turns out to be Brox."
+        "expansion turns out to be Brox. "
+        "DELTA TO 37e8766c: the Knight fan-out closes with no survivors, "
+        "and the closing check sharpens it. At (k,x) = (11,7), gap "
+        "2^11 - 3^7 = -139, across all 330 words and 30 rotation classes, "
+        "ten classes are reverse-closed, exactly ONE admits the Knight "
+        "split (the Christoffel class, whose f-values all carry denominator "
+        "139, which is what Knight proves) and exactly ONE carries an "
+        "integer f (-136). They are DIFFERENT classes, the integer one "
+        "being the -17 cycle -- so Knight reach and the realizing class are "
+        "disjoint here, which is why the direction closes."
     ),
     "claude/latest-progress-summary-s011un": (
         "PENDING EXTRACTION, and it has GROWN since it was first acknowledged "
