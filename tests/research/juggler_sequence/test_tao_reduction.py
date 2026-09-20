@@ -7,6 +7,8 @@ import math
 from research.juggler_sequence.pressure_direct import tilted_share_power
 
 from research.juggler_sequence.tao_reduction import (
+    LAMBDA_AVERAGED,
+    LAMBDA_STARSTAR,
     LOG2_3,
     REQUIRED_RATE,
     bad_word_probability,
@@ -15,6 +17,7 @@ from research.juggler_sequence.tao_reduction import (
     least_C,
     required_depth,
     scale_L,
+    unconditional_depth_drop,
 )
 
 
@@ -275,3 +278,37 @@ def test_the_signed_excess_is_the_statistic_with_power() -> None:
           for s in (101, 102, 103)]
     assert all(abs(z) < 3.5 for z in zs), zs                # no momentum at any seed
     assert min(zs) < 0.0 < max(zs) or abs(sum(zs) / 3) < 2.0, zs   # not a consistent offset
+
+
+def test_the_averaged_exponent_makes_C_nineteen_unconditional() -> None:
+    """What the poor-fibre tail buys the reduction: status, not constants.
+
+    Against ``lambda**`` nothing numerical moves -- the required rate falls by
+    3.93e-5, which is nowhere near enough to shift an integer depth. What moves
+    is that those depths stop resting on Paper C's Proposition 4.4. The
+    arithmetic gain is against ``13/40``, the best exponent an unconditional
+    statement could use before.
+    """
+
+    d = unconditional_depth_drop()
+    # the exponent is genuinely above the published one, and above 13/40
+    assert d["lambda_averaged_unconditional"] > LAMBDA_STARSTAR
+    assert d["lambda_averaged_unconditional"] == LAMBDA_AVERAGED == 100 / 203
+    assert LAMBDA_STARSTAR - d["lambda_elementary"] > 0.16
+    # against lambda**: same depths, and the improvement in the rate is tiny
+    assert d["thresholds_unchanged_against_starstar"]
+    assert d["least_C_averaged"] == d["least_C_starstar"] == 19
+    assert 0 < d["required_rate_starstar"] - d["required_rate_averaged"] < 1e-4
+    # against 13/40: the unconditional cylinder depth drops from 23 to 19
+    assert d["least_C_elementary"] == 23
+    for q, row in d["by_q"].items():
+        assert row["biased_averaged"] <= row["biased_elementary"], q
+        assert row["pressure_averaged"] <= row["pressure_elementary"], q
+    assert d["by_q"]["0.55"]["pressure_elementary"] == 50
+    assert d["by_q"]["0.55"]["pressure_averaged"] == 41
+    assert d["by_q"]["0.6"]["pressure_elementary"] == 273
+    assert d["by_q"]["0.6"]["pressure_averaged"] == 214
+    # and the Chernoff exponent straddles the two rates exactly where it should
+    assert chernoff_exponent(18) < d["required_rate_averaged"]
+    assert d["required_rate_averaged"] < chernoff_exponent(19)
+    assert chernoff_exponent(22) < d["required_rate_elementary"] < chernoff_exponent(23)
