@@ -419,10 +419,18 @@ page: re-derived every quoted term from the definition.
 
 - **Six of seven reproduce exactly** -- A000225, A114475, A046051, A085724, A049479,
   A005420 -- computed with Miller-Rabin and Pollard rho, since trial division on `M_83`
-  does not terminate. The seventh, A034887, looked like a mismatch and was **my** offset
-  error: the sequence is indexed from `n = 1`, and with that offset it matches all sixteen
-  quoted terms. Worth recording as a caution about checking my own indexing before
-  doubting a source.
+  does not terminate. The seventh, A034887, looked like a mismatch and was recorded here
+  as **my** offset error, the sequence supposedly being indexed from `n = 1`.
+  **That correction was itself wrong, and is retracted (20 September, from a local OEIS
+  mirror).** `A034887` carries `%O A034887 0,5` -- offset **0** -- and its 73 stored terms
+  match the decimal digit counts of `2^n` indexed from `n = 0` exactly, while indexing from
+  `n = 1` does not match at all. Indexing from 0, which is what I did originally, was right.
+  What produced the original apparent mismatch is not reconstructible from here and is
+  deliberately **not** replaced with a fresh guess; nothing in the row depended on it.
+  The caution I drew was the wrong one. The right one is that I wrote down a plausible
+  explanation instead of checking the source's offset line, at a moment when the source was
+  unreachable -- the same failure as the constructed DOI and the Brox expansion, three times
+  in one day.
 - **MathWorld's formula (2) verified**: `D(M_n) = floor(n log10 2) + 1` for `1 <= n < 400`,
   and `len(M_n) = len(2^n)` over the same range, since `2^n` is never a power of ten. And
   A114475 is that formula at `n = 10^k`, which is why its terms spell out `log10 2`.
