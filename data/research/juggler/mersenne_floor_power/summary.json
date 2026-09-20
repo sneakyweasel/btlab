@@ -1,4 +1,63 @@
 {
+  "run_closed_form": {
+    "identity": "T^j(2^n - 1) = 3^j * 2^(n-j) - 1 for 0 <= j <= n",
+    "binary": "bits of 3^j - 1 followed by exactly n - j ones",
+    "countdown": "the trailing-one block is the number of steps remaining, so Lemma 8's countdown is visible in base two at every step of the run, not only at its ends",
+    "max_exponent": 199,
+    "value_failures": [],
+    "bit_failures": [],
+    "run_failures": [],
+    "holds": true,
+    "example_n_4": [
+      "1111",
+      "10111",
+      "100011",
+      "110101",
+      "1010000"
+    ]
+  },
+  "squarefree_versus_catalan": {
+    "open_conjecture": "all known M_p with p prime are squarefree; Guy (1994) believes some are not -- so squarefreeness of Mersenne numbers is OPEN",
+    "what_we_need": "not a perfect power, which Catalan (mihailescu-2004-catalan) gives unconditionally for every a >= 2",
+    "implication_direction": "squarefree => not a perfect power; the converse is false",
+    "squarefreeness_already_fails_at": [
+      6,
+      12,
+      18,
+      20,
+      21,
+      24,
+      30,
+      36,
+      40,
+      42,
+      48,
+      54
+    ],
+    "witness": {
+      "a": 6,
+      "M_a": 63,
+      "factorisation": "3^2 * 7",
+      "squarefree": false,
+      "perfect_power": false
+    },
+    "conclusion": "the squarefree route would fail at a = 6 and is open where it does not; Catalan covers every index, so the weaker property is the right tool"
+  },
+  "numerology": {
+    "fermat_polynomial_coefficients": {
+      "observation": "the Mersenne numbers are a Fermat polynomial at x = 1 and satisfy F_n = 3 F_(n-1) - 2 F_(n-2), whose coefficients are 3 and 2 -- the same 3 and 2 as the Collatz odd step",
+      "recurrence_reproduces_mersenne": true,
+      "verdict": "NUMEROLOGY. The characteristic polynomial is (t-1)(t-2) = t^2 - 3t + 2 because 2^n - 1 is a combination of 1^n and 2^n, so the 3 is the trace 1 + 2 and the 2 is the determinant 1 * 2. Neither is the 3 of 3x + 1."
+    },
+    "a020914_length": {
+      "observation": "the run ends at 3^n - 1, whose binary length is floor(n log2 3) + 1 = A020914(n), the laboratory's distinguished word length",
+      "verdict": "RESTATEMENT. A020914(n) is by definition the binary length of 3^n, so this says only that the endpoint is 3^n - 1. The Mersenne word length n + v_2(3^n - 1) is unrelated to A020914(n): at n = 3 it is 4 against 5, at n = 5 it is 6 against 8."
+    },
+    "cunningham": {
+      "observation": "M_n is the Cunningham number C^-(2,n), a one-base object",
+      "consequence": "the cycle gap 3^o - 2^K is NOT a Cunningham number -- two bases and two independently moving exponents -- which is the precise reason classical primitive-divisor theory (Zsigmondy, Bang, Carmichael) does not reach it. A citable reason rather than a guess."
+    }
+  },
   "even_closed_form": {
     "identity": "floor((2^a - 1)^(3/2)) = 2^(3a/2) - 3*2^(a/2 - 1), even a",
     "bits": "1^(a-1) 0 1 0^(a/2 - 1)",

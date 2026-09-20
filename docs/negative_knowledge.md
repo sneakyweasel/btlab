@@ -126,10 +126,28 @@ What DID survive is not about primes: for even `a`,
 never a perfect power (Catalan, `mihailescu-2004-catalan`), so they are exact
 values OFF the perfect-power locus.
 
+Two further coincidences from the MathWorld entry, read 20 September, are killed
+with them. The Mersenne numbers are a Fermat polynomial at `x = 1` and satisfy
+`F_n = 3F_(n-1) - 2F_(n-2)`, whose coefficients are the `3` and `2` of the odd
+step: NUMEROLOGY, because the characteristic polynomial is `(t-1)(t-2)`, so the
+`3` is the trace `1 + 2` and the `2` is the determinant. And the run ends at
+`3^n - 1`, of binary length `floor(n log2 3) + 1 = A020914(n)`, the laboratory's
+distinguished word length: RESTATEMENT, since `A020914(n)` is by definition the
+binary length of `3^n`, and the Mersenne word length `n + v_2(3^n - 1)` is
+unrelated to it (4 against 5 at `n = 3`).
+
 Do not reopen as: Mersenne or Fermat primality in either map, a search for prime
 bases in the exact locus (the minimal realizers `2^(2^r)` and `3^(2^r)` have
 prime bases because 2 and 3 are the smallest bases, which is not prime content),
-or a Fermat-number pattern in the negative cycles.
+a Fermat-number pattern in the negative cycles, the Fermat-polynomial
+coefficients, or an A020914 coincidence in the Mersenne word.
+
+One framing from the same page IS worth keeping, and it is not about Mersenne
+primes: `M_n` is the Cunningham number `C^-(2,n)`, a one-base object, while the
+cycle gap `3^o - 2^K` has two bases and two independently moving exponents. That
+is the precise, citable reason classical primitive-divisor theory -- Zsigmondy,
+Bang, Carmichael -- does not reach the gap, where the laboratory previously had
+only the observation that it does not.
 
 Dossier: [mersenne_floor_power](problems/juggler_mersenne_floor_power.md).
 
