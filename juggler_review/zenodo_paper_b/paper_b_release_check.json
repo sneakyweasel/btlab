@@ -11,7 +11,7 @@
   "digest_convention": "Text digests are taken over content, with CRLF and CR normalised to LF, as tools/artifact_digest.py does. pdf_sha256 and source_zip_sha256 are raw bytes, which is what a downloaded file holds. The 2026-09-10 record hashed text raw, so its source_sha256 described the packager's checkout rather than the manuscript, and it named an edition eleven revisions old.",
   "source_sha256": "07f041a3836107d4bf8816484672a6ecb52fbdb38b4407248c63af4b03d701c3",
   "tex_sha256": "4ab922d97912b80d3f1c05d9e082f400ef18639d01bf683b24f11f827f24d44d",
-  "source_zip_sha256": "9c2befa3d0f2ac8ab0824b5e6a77e3198f2fb445c7214ebf783df41ffdf56a0f",
+  "source_zip_sha256": "bf839955f09c73f3d3d1fe885f301970c8cbd3c5c4fdb2c0aa761377db8c71a7",
   "prior_source_sha256": "06821ad6b217e5a8bee7edd1d259e3a3bf7a1784f658226d75feb1c31cc9722a",
   "mathematical_body_sha256": "40639620c8c7e5d3d8d7547797a63c4c12f7b1039b1cbd1b081b0dfbd4c4cd6a",
   "mathematical_body_definition": "SHA-256 of the manuscript after its closing YAML fence, leading newlines removed, line endings normalised to LF; the digested text begins '## Abstract'. The 2026-09-10 record printed a body digest that no line-aligned slice of its own deposited files reproduces.",

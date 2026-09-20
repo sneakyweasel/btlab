@@ -69,7 +69,10 @@ def sync(root: Path) -> None:
         dest.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(root / source, dest)
     fields = zenodo_fields(json.loads((root / METADATA).read_text(encoding='utf-8')))
-    (root / ZENODO_FIELDS).write_text(fields, encoding='utf-8')
+    # newline='' writes the LF this string already holds. Without it Python's text
+    # mode emits CRLF on Windows, and build_paper_b_kit.py checksums this file's RAW
+    # bytes, so the kit's SHA256SUMS became a property of the packager's platform.
+    (root / ZENODO_FIELDS).write_text(fields, encoding='utf-8', newline='')
 
 
 def digest(path: Path, mode: str = 'binary') -> str:
