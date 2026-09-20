@@ -183,6 +183,7 @@ import Problems.Juggler.FateCylinderCorollary
 import Problems.Juggler.FateBlockAverage
 import Problems.Juggler.FateShareLaw
 import Problems.Juggler.FateProduction
+import Problems.Juggler.FatePoorProduction
 import Problems.Juggler.FateProductionWords
 import Problems.Juggler.FateOneSided
 import Problems.Juggler.FateOneSidedCorollary
@@ -199,7 +200,6 @@ import Problems.Juggler.FateFiberLock
 import Problems.Juggler.FateThinFibers
 import Problems.Juggler.FateResonanceCount
 import Problems.Juggler.FatePoorTail
-import Problems.Juggler.FatePoorProduction
 import Problems.Juggler.FateContagionBound
 
 /-!
