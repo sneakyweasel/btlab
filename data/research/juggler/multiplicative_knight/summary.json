@@ -1,0 +1,90 @@
+{
+  "knight_parts": {
+    "i": "two members of one cycle, by Cohn's rotation of the reversed Christoffel word",
+    "ii": "an ADDITIVE cocycle whose charge g(u) is word-determined, so it cancels",
+    "iii": "the leftover 2^(k-1)/(2^k - 3^x) is not an integer, the gap being odd"
+  },
+  "concatenation_law": {
+    "law": "1+q_uv = (1+q_u)^(3^#O(v)) (1+q_v)^(2^|u|)",
+    "splits_checked": 5970,
+    "failures": [],
+    "holds": true
+  },
+  "residual": {
+    "identity": "(1+q_w)^3 / (1+q_w') = [endpoint terms] * ((1+q_u @ J(n)) / (1+q_u @ J(n')))^6",
+    "length": 6,
+    "index_bound": 300000,
+    "distinct_words": 59,
+    "pairs_tested": 15,
+    "failures": [],
+    "holds": true,
+    "pairs_with_equal_middle_slack": 0,
+    "knight_case_is_residual_one": "for Collatz the residual is identically 1 because g(u) is word-determined; here it is 1 in none of the pairs",
+    "rows": [
+      {
+        "word": "OEEEEE",
+        "mirror": "EEEEEO",
+        "start": 1627,
+        "mirror_start": 65536,
+        "middle_slack": "32813/32768",
+        "mirror_middle_slack": "256"
+      },
+      {
+        "word": "OEEEOE",
+        "mirror": "EEEEOO",
+        "start": 33933,
+        "mirror_start": 256,
+        "middle_slack": "59626620131751217/29648323021629456",
+        "mirror_middle_slack": "4096"
+      },
+      {
+        "word": "OEEOOE",
+        "mirror": "EEEOOO",
+        "start": 79,
+        "mirror_start": 16,
+        "middle_slack": "10604499373/2038431744",
+        "mirror_middle_slack": "262144"
+      },
+      {
+        "word": "OEOEEE",
+        "mirror": "EEOEEO",
+        "start": 15,
+        "mirror_start": 280900,
+        "middle_slack": "24389/8192",
+        "mirror_middle_slack": "148877000/43046721"
+      },
+      {
+        "word": "OEOEOE",
+        "mirror": "EEOEOO",
+        "start": 83,
+        "mirror_start": 131044,
+        "middle_slack": "40353607/3981312",
+        "mirror_middle_slack": "106752273953819451402752/79766443076872509863361"
+      },
+      {
+        "word": "OEOOEE",
+        "mirror": "EEOOEO",
+        "start": 107,
+        "mirror_start": 6724,
+        "middle_slack": "4836444202605358475926633/2980232238769531250000000",
+        "mirror_middle_slack": "167619550409708032/45949729863572161"
+      }
+    ]
+  },
+  "per_start_residual": {
+    "method": "every realizing start below the limit, paired with the least start of the mirror",
+    "limit": 6000,
+    "instances_tested": 1354,
+    "failures": 0,
+    "holds": true,
+    "instances_with_equal_middle_slack": 0
+  },
+  "diagnosis": "Part (i) transports for free and part (ii) transports formally: the multiplicative cocycle gives cube-and-divide as the analogue of 3f - f^R, cancelling the shared middle exponent exactly. It fails on the numbers, not the algebra: 1 + q is a function of the word AND the state, and the middle word is read at J(n) along one rotation and J(n') along the other, so the residual is the sixth power of their ratio instead of 1. That is the wall J-juggler-is-collatz-one-exponential-up names -- Collatz's word data is arithmetic and free by Terras, the Juggler's is state-dependent and open by FD.",
+  "what_it_leaves": "On a return 1 + q = n^(3^o - 2^L), so the left side is (n^3/n')^G with G the gap: a perfect G-th power. A Juggler cycle with the Christoffel word AND equal middle slacks at its two reverse-conjugate readings would force an explicit product of endpoint slacks to be a perfect G-th power, which is what Knight's parity step becomes under the exponential. Without that equality there is no exclusion.",
+  "decision": {
+    "classification": "MULTIPLICATIVE_KNIGHT_RESIDUAL_IS_THE_STATE_DEPENDENCE",
+    "branch": "CLOSE",
+    "green": true
+  },
+  "anti_overclaim": "No Juggler cycle is excluded, no floor is raised, N_0 is unchanged and Paper A is untouched. The transported identity is exact but its residual is not 1, so the method yields a conditional statement and not an exclusion. The condition -- equal middle slacks at the two readings -- is a strong Diophantine coincidence with no reason to hold and is not conjectured here either way."
+}
