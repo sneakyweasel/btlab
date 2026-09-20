@@ -64,6 +64,67 @@ def eps_of_theta(theta: float) -> float:
     return -math.log1p(-theta) / LN3
 
 
+
+
+#: the partial quotient that closes each certified fan (a14, a16)
+CLOSING_QUOTIENT = {"fanA": 55, "fanB": 4}
+
+
+def _closing_quotient(tag: str) -> int | None:
+    return CLOSING_QUOTIENT.get(tag)
+
+
+def balance_law_exact(a_cap: float, b_ratio: float, closing: int | None = None) -> dict[str, Any]:
+    """Theorems 3-4 and Corollary 5 of the near-convergent manuscript.
+
+    The fan identity ``R_k = (A-k)/(A-k-1) * (B+k+1)/(B+k)`` carries no error
+    term: ``eps_k = eps_0 - k*eta`` is the linear form ``o_k - L_k x`` and is
+    linear along the fan by construction, not to first order. Minimising the
+    identity in the continuous variable gives ``k* = (A-B-1)/2`` and
+
+        R_min = ((A+B+1)/(A+B-1))^2,
+
+    of which the earlier ``exp(4/(A+B))`` is the expansion ``ln(1+1/u) ~ 1/u``
+    applied twice. It costs 8.6e-6 relative on fan A and 1.2e-2 on fan B; the
+    exact form costs 1.2e-6 and 2.7e-3, the remainder being the integrality of
+    ``k``. Small quotients are where the difference matters, and small
+    quotients are where the family question lives.
+
+    With ``a`` the closing partial quotient, Lemma 2 gives ``a < A+B < a+2``,
+    hence the rational two-sided bound ``((a+3)/(a+1))^2 < R_min <
+    ((a+1)/(a-1))^2`` -- no exponential, no asymptotic.
+    """
+
+    m = a_cap + b_ratio - 1.0
+    k_star = 0.5 * (a_cap - b_ratio - 1.0)
+    r_min = ((m + 2.0) / m) ** 2
+
+    def r_of(k: float) -> float:
+        return ((a_cap - k) / (a_cap - k - 1.0)) * ((b_ratio + k + 1.0) / (b_ratio + k))
+
+    candidates = [k for k in (math.floor(k_star), math.ceil(k_star)) if 0 <= k < a_cap - 1]
+    k_int = min(candidates, key=r_of) if candidates else None
+    out: dict[str, Any] = {
+        "A": a_cap,
+        "B": b_ratio,
+        "M": m,
+        "k_star": k_star,
+        "R_min_continuous": r_min,
+        "k_star_integer": k_int,
+        "R_min_integer": r_of(k_int) if k_int is not None else None,
+        "first_order_R_min": math.exp(4.0 / (a_cap + b_ratio)),
+    }
+    if closing is not None and closing >= 1:
+        out["lower_rational"] = ((closing + 3.0) / (closing + 1.0)) ** 2
+        out["upper_rational"] = (
+            ((closing + 1.0) / (closing - 1.0)) ** 2 if closing >= 2 else None
+        )
+        out["bracket_holds"] = out["lower_rational"] < r_min and (
+            out["upper_rational"] is None or r_min < out["upper_rational"]
+        )
+    return out
+
+
 def fan_analysis(
     rows: dict[int, dict[str, Any]],
     levels: list[dict[str, Any]],
@@ -159,6 +220,7 @@ def fan_analysis(
             or argmin["survivor"] == measured_argmin
         ),
         "transitions": transitions,
+        "exact_law": balance_law_exact(a_cap, b_ratio, _closing_quotient(tag)),
     }
 
 
