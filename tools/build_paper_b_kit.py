@@ -176,6 +176,21 @@ def check(root: Path) -> None:
     for name, rel in KIT_GENERATED.items():
         if (root / KIT / name).read_bytes() != (root / rel).read_bytes():
             raise ValueError(f'Stale generated copy: {KIT}/{name}; rebuild')
+    # The digests below are over RAW bytes, unlike the zip members, which go through
+    # payload() and are LF-normalised. So a text member holding CRLF makes SHA256SUMS.txt
+    # a property of the packager's platform: it passes on the Windows checkout that wrote
+    # it and fails on every LF checkout, which is how main went red on 2026-09-20 with
+    # ZENODO_FIELDS.txt. Assert the condition that keeps a raw digest meaningful rather
+    # than assert the digests and hope the condition holds.
+    carriage = sorted(
+        name for name in listed_kit_files()
+        if Path(name).suffix.lower() not in BINARY_SUFFIXES
+        and b'\r' in (root / KIT / name).read_bytes()
+    )
+    if carriage:
+        raise ValueError(
+            f'Kit text member(s) carry CR, so their digests are platform-specific: '
+            f'{", ".join(carriage)}. Rewrite them LF and rebuild; see .gitattributes.')
     digests = {name: sha256((root / KIT / name).read_bytes()) for name in listed_kit_files()}
     if (root / KIT / 'SHA256SUMS.txt').read_bytes() != checksums(digests):
         raise ValueError(f'Stale {KIT}/SHA256SUMS.txt; rebuild')
