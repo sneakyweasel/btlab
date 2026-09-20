@@ -1,23 +1,29 @@
 {
+  "id": "hikawa-2026-parity-vector-structures",
+  "title": "Finite-Dimensional Combinatorial and Arithmetic Structures of Parity Vectors for the Accelerated Collatz Map",
   "authors": [
     "Kazunobu Hikawa"
   ],
-  "id": "hikawa-2026-parity-vector-structures",
+  "year": 2026,
   "identifiers": {
     "doi": "10.13140/RG.2.2.29894.84804"
   },
-  "notes": "docs/theory/paper_b_prior_art_and_names.md. UNREAD HERE: ResearchGate 403s this environment. Metadata verified first-hand from OpenAlex on 2026-09-20; DataCite returns 404 for this DOI while OpenAlex resolves it, which is how the title-to-DOI pairing was finally pinned. Dated 2026-07-04, the same day as the Collatz Parity Vector Toolkit, and the toolkit is a declared supplement to it (Zenodo relatedIdentifiers). THIS IS THE PAPER THE VERIFIED PRIOR ART ATTACHES TO: the toolkit computes the survivor recursion, N_d, M_d with its zeros at the free lengths, and the odd-count refinement, all checked here by running its code. Whether this paper PROVES anything about those objects is not known and cannot be known without the PDF. ID CHOSEN TO COLLIDE ON PURPOSE: claude/goofy-kare-1a92fd carries a record for this same work under exactly this id, with DOI written .../29894.84804/1 and richer contents -- it has the author's version note, whose Section 6 proves log_2 W(d) = gamma d + O(log d) and whose Conjecture 7.1 states W(d) = Theta(d^(-3/2) 2^(gamma d)). Taking the branch's id makes the merge a same-path content conflict, which someone resolves, instead of two records for one work, which nothing notices. Resolve by keeping the branch's note and adding this record's DataCite and OpenAlex metadata: 2026-07-04, Hikawa alone, same day as the toolkit. The September paper is a DIFFERENT work with its own DOI and its own record, hikawa-2026-finite-parity-vector-structures -- the two ids differ by one word and name different papers.",
+  "url": {
+    "landing": "https://doi.org/10.13140/RG.2.2.29894.84804",
+    "researchgate_version": "https://doi.org/10.13140/RG.2.2.29894.84804/1"
+  },
   "problem_area": "collatz",
-  "project_relationship": "known",
   "relevant_concepts": [
     "parity vectors",
+    "weight basis",
+    "logarithmic asymptotics",
+    "ballot correction",
+    "A076227",
+    "A100982",
     "accelerated Collatz map",
     "finite-dimensional combinatorial structures"
   ],
+  "project_relationship": "known",
   "status": "unread, ResearchGate 403; metadata verified via OpenAlex",
-  "title": "Finite-Dimensional Combinatorial and Arithmetic Structures of Parity Vectors for the Accelerated Collatz Map",
-  "url": {
-    "landing": "https://doi.org/10.13140/RG.2.2.29894.84804"
-  },
-  "year": 2026
+  "notes": "docs/problems/juggler_jump_spectrum.md. FULL TEXT NOT READ -- ResearchGate returns 403 to fetching and its PDF link opens a save dialog rather than rendering. What is recorded here is the author-written version note on the ResearchGate record itself, v2 of July 2026 and v2.1 of 2 August 2026, read in the browser pane. PROVED, Section 6: log_2 W(d) = gamma d + O(log d) with gamma = lambda H(1/lambda) about 1.5056, lambda = log_2 3 and H the binary entropy function, so the normalized relative density decays at the explicit rate c = lambda(1 - H(1/lambda)) about 0.0793 bits per unit weight, in the information-theoretic form c = lambda D(1/lambda, 1/2); by a cycle-lemma argument plus standard entropy estimates, with a length-basis analogue also given. That rate is the length-basis eta of lagarias-1985-3x+1-problem divided by beta: eta/beta = 0.0793185. CONJECTURED, Section 7, Conjecture 7.1: W(d) = Theta(d^(-3/2) 2^(gamma d)), because over 100 <= d <= 10000 the residual log_2 W(d) - gamma d agrees with the ballot-type correction -(3/2) log_2 d to within 0.3 bits. THIS IS THE PRIOR STATEMENT OF THE d^(-3/2). It is a Theta, in the weight basis, numerically motivated and not proved, and its 0.3-bit tolerance is wide enough to absorb a bounded oscillating prefactor without seeing one. No oscillation, no almost-periodicity, no amplitude constant. The September 2026 revision, Finite Parity-Vector Structures in the Accelerated Collatz Map, doi 10.13140/RG.2.2.24486.28480, carries the same Section 6 result and states outright that the sequence values are not claimed as new. METADATA, verified first-hand from OpenAlex on 2026-09-20 and merged from main: docs/theory/paper_b_prior_art_and_names.md. UNREAD HERE: ResearchGate 403s this environment. Metadata verified first-hand from OpenAlex on 2026-09-20; DataCite returns 404 for this DOI while OpenAlex resolves it, which is how the title-to-DOI pairing was finally pinned. Dated 2026-07-04, the same day as the Collatz Parity Vector Toolkit, and the toolkit is a declared supplement to it (Zenodo relatedIdentifiers). THIS IS THE PAPER THE VERIFIED PRIOR ART ATTACHES TO: the toolkit computes the survivor recursion, N_d, M_d with its zeros at the free lengths, and the odd-count refinement, all checked here by running its code. Whether this paper PROVES anything about those objects is not known and cannot be known without the PDF. The DOI recorded here is the unversioned one OpenAlex resolves; the ResearchGate /1 link the branch carried is kept under url.researchgate_version. The September paper is a DIFFERENT work with its own DOI and its own record, hikawa-2026-finite-parity-vector-structures -- the two ids differ by one word and name different papers."
 }

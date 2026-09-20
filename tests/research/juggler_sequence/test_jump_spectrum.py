@@ -390,8 +390,22 @@ def test_the_literature_reading_is_not_independent() -> None:
 
     The dossier first recorded this cluster's literature status as `independent`. It is
     not, for the counting sequence: A076227 has been in OEIS since 2002 as a Collatz
-    stopping-time quantity. The asymptotic is a separate question and is flagged as
-    unchecked rather than claimed.
+    stopping-time quantity.
+
+    The second half of this guard used to assert that the priority question was still
+    open and the sources unread. It was answered on 19 September 2026 by reading them,
+    and two of the four pieces of the asymptotic are prior work, so the guard now holds
+    the answer instead of the question. THE EXPONENTIAL RATE IS LAGARIAS 1985 THEOREM D:
+    `1 - F(k) <= 2^(-eta k)` with `eta = 1 - H(beta) = 0.050044472811669365186`, two
+    sided via the matching lower bound in the remark after it, and
+    `2^(-eta) = 0.9659065532334377236055` is this cluster's `theta` on all thirty digits
+    computed -- the set Theorem D bounds is `N_k` itself. THE `d^(-3/2)` IS HIKAWA'S
+    CONJECTURE 7.1 of July 2026, `W(d) = Theta(d^(-3/2) 2^(gamma d))`, from a residual
+    tracking `-(3/2) log_2 d` to within `0.3` bits; his proved Section 6 is
+    `log_2 W(d) = gamma d + O(log d)`, the same rate in the weight basis. The
+    OSCILLATION in `frac(d beta)` and `a_1` were not found in any readable source, and
+    two of the four named sources are ResearchGate-gated, so that is a statement about
+    what was readable. Novelty language on the rate and on the exponent is withdrawn.
     """
     doc = (JSON_PATH.parent.parent / "problems" / "juggler_jump_spectrum.md")
     body = doc.read_text(encoding="utf-8").split("## Current literature")[1]
@@ -400,10 +414,17 @@ def test_the_literature_reading_is_not_independent() -> None:
     assert "A076227" in section
     assert "Not independent" in section
     assert "`independent`. A laboratory question" not in section, "the old reading is back"
-    # and the priority question must travel with it, not be quietly dropped
-    assert "priority" in section
-    assert "none of which have been read here" in section
-    assert "should be called new" in section
+    # the priority question must travel with it, and now carry its answer
+    assert "Priority on the asymptotic, settled" in section
+    assert "none of which have been read here" not in section, "the unread reading is back"
+    # the two pieces that turned out to be prior work, named and attributed
+    assert "Lagarias 1985, Theorem D" in section
+    assert "Hikawa, July 2026, Conjecture 7.1" in section
+    assert "lagarias-1985-3x+1-problem" in section
+    assert "hikawa-2026-parity-vector-structures" in section
+    # and the two that survived the search, still not claimed further than they reach
+    assert "not found in any source read" in section
+    assert "not a proof of novelty" in section
 
 
 def test_the_survivor_rate_is_lagarias_1985_theorem_d() -> None:

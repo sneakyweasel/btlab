@@ -1,0 +1,23 @@
+{
+  "id": "oeis-A100982",
+  "title": "Number of admissible sequences of order n (3x+1 problem)",
+  "authors": ["OEIS contributors"],
+  "year": 2004,
+  "identifiers": {
+    "oeis": "A100982"
+  },
+  "url": {
+    "oeis": "https://oeis.org/A100982"
+  },
+  "problem_area": "collatz",
+  "relevant_concepts": [
+    "admissible sequences",
+    "minimal certificate count",
+    "rational Catalan numbers",
+    "semiconvergents of log2 3",
+    "rotation orbit"
+  ],
+  "project_relationship": "known",
+  "status": "classical-source",
+  "notes": "docs/problems/juggler_jump_spectrum.md. The companion of oeis-A076227: this laboratory's minimal-certificate count M_d = 2 N_(d-1) - N_d equals A100982(n) at d = A020914(n) and vanishes elsewhere by the empty-window theorem. CARRIES THE NEAREST PRIOR STATEMENT OF ORBIT STRUCTURE ON THESE WORDS, which a reading of A076227 alone misses. A comment of Mike Winkler, 15 September 2026, verified directly against the entry, gives with alpha = log_2 3 and m_n = floor(n alpha) the sandwich (1/n) binomial(m_n - 1, n - 1) <= a(n) <= (1/n) binomial(m_n, n - 1), with equality in the lower bound exactly when {n alpha} is a strict record minimum and in the upper bound exactly when it is a strict record maximum, the equality orders being the denominators of the one-sided convergents and semiconvergents of log_2 3, where a(n) is a rational Catalan number. So the literature does index these counts by the rotation coordinate {n log_2 3}. WHAT IT IS NOT: the bounds are a factor m_n/(m_n - n + 1), about 2.7, apart, so they are not an asymptotic, carry no polynomial correction and state no prefactor. They neither give nor contradict the d^(-3/2) of hikawa-2026-parity-vector-structures or this laboratory's oscillating psi. Checked against the laboratory's own counts for every order n <= 2213 by a peer session (J-winkler-sandwich-holds-on-the-laboratory-counts)."
+}

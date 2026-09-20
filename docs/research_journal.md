@@ -710,6 +710,94 @@
   `3x - 1` floor by computation, a sieved verifier on the 5090, so that
   Remark 5.20's table becomes a bound.
 
+## 2026-09-19 -- the exponent the bridge quotes is Lagarias's, not Terras's
+
+- **A correction to a peer row, not to my own.** The bridge session's
+  `J-proposition-j-on-collatz-is-terras` derives `N^(1 - 0.050044)`
+  non-descenders for Collatz and calls it "the quantitative form of the
+  density-one stopping-time theorem, known since 1976". The derivation is right
+  and the title is right. The date is not.
+- **What is Terras's.** The parity bijection on `Z/2^d`, hence `E_d(N) = O(1)`,
+  hence density one -- jointly with Everett 1977. That is the mechanism the row
+  turns on, and it is correctly attributed.
+- **What is not.** The `0.050044` enters only through `N_d/2^d <= theta^d`, and
+  that bound is Lagarias 1985, Theorem D: `1 - F(k) <= 2^(-eta k)` with
+  `eta = 1 - H((log_2 3)^(-1)) = 0.050044472811669365186`. It is proved there
+  from Terras's structure by a binomial tail through Ash's Lemma 4.7.2, and the
+  remark after it makes it two-sided. Theorem D carries no name in the survey
+  while Theorems A and C are both labelled "(Terras)", and Lagarias's own
+  annotated bibliography credits Terras with the residue-class structure, the
+  coefficient stopping time and natural density one -- and with no rate.
+- **So the two sessions were quoting the same constant from two directions and
+  neither had sourced it.** The bridge reached `0.050044` from Proposition J; the
+  jump-spectrum cluster reached `theta = 0.9659065532` from a large-deviation
+  fit. They are `2^(-eta)` and `eta` of one number, and it has been in print
+  since 1985.
+- **The caveat I am not allowed to drop.** Terras 1976 could not be read here --
+  matwbn sits behind an anti-bot gate -- so this rests on Lagarias's annotation
+  of Terras and not on Terras's text. An exponential estimate inside the 1976
+  paper would overturn it, and whoever can open that scan should check.
+- **Scope of the edit.** The row's statement and the bridge dossier's roadmap
+  section. The row id is unchanged: `J-proposition-j-on-collatz-is-terras` is
+  still the right name, because what makes Proposition J reproduce the classical
+  theorem on the Collatz side is exactly Terras's bijection. The peer's journal
+  entry is left as written; it is a record of what was thought then, not a claim
+  to maintain.
+
+## 2026-09-19 -- the rate was Lagarias's and the exponent was Hikawa's
+
+- **Objective:** yesterday's entry said priority on the asymptotic was not
+  settled and that I was not claiming it, then listed four papers nobody had
+  read. Read them.
+- **The exponential rate is forty years old and it is our `theta` to thirty
+  digits.** Lagarias 1985, Theorem D: `1 - F(k) <= 2^(-eta k)` with
+  `eta = 1 - H(theta_L)` about `.05004`, `H` the binary entropy function and
+  `theta_L = (log_2 3)^(-1)`, which is our `beta`. In the proof `C_2` is the set
+  of inflating words of length `k`, `2^(-k)|C_2| = 1 - F(k)`, so `|C_2|` **is**
+  our `N_k`; the bound is the binomial tail through Ash's Lemma 4.7.2, and the
+  remark after it gives the matching lower bound `2^(-(eta+epsilon)k)`. So the
+  estimate is two-sided on the exponential scale, not one-sided.
+- **Checked rather than asserted.** `2^(-eta) = 0.9659065532334377236055` and
+  `beta^(-beta)(1-beta)^(beta-1)/2` agrees on every one of thirty digits. Our
+  Lean `neverNegCount_div_pow_le_theta` is Theorem D's upper half. Independent
+  corroboration: Kontorovich-Lagarias 2009 quote `O(2^(0.94995k))` out of `2^k`,
+  and `H(beta) = 0.94995552718833063481 = log_2(2 theta)`.
+- **The `d^(-3/2)` was conjectured two months before we measured it.** Hikawa,
+  July 2026, Conjecture 7.1: `W(d) = Theta(d^(-3/2) 2^(gamma d))`, because the
+  residual `log_2 W(d) - gamma d` tracks `-(3/2) log_2 d` "to within 0.3 bits"
+  over `100 <= d <= 10000`. His Section 6 **proves** the rate again, by a cycle
+  lemma, in the weight basis -- and `gamma = H(beta)/beta = 1.50564...`,
+  `c = eta/beta = 0.07931...`, so his constants are Lagarias's `eta` over `beta`.
+- **What is still ours.** The oscillation in `frac(d beta)`, the jump spectrum,
+  `a_1`, the ladder profile, the Fourier identity. Nothing in ten documents
+  states an oscillating prefactor. Hikawa's `0.3`-bit tolerance is `0.11` bits
+  wider than our `psi`'s whole range, which is precisely why a `Theta` did not
+  have to see it.
+- **Two sources could not be read and I am saying so rather than guessing.**
+  Hikawa July 2026 and Hikawa-Nakanishi January 2026 are ResearchGate-gated:
+  `403` to fetching, and the PDF link opens a save dialog. What is quoted is the
+  author-written version note on the record itself, read in the browser pane,
+  which states Section 6 and Conjecture 7.1 explicitly. Terras 1976 is behind an
+  anti-bot gate at matwbn, so the attribution inside the classical line rests on
+  Lagarias's annotated bibliography, which credits Terras with density one and
+  not with a rate. Winkler v8 and Nakanishi were read in full and contain no
+  asymptotic at all; Winkler's page 2 sends the question to Hikawa outright.
+- **Two dead ends worth recording.** Niu (arXiv:2605.13886), cited by Hikawa for
+  "a sharp finitary form of Terras's density in the length basis", is
+  **withdrawn**, and its v1 theorem is the mod-`2^k` equidistribution with
+  deviation at most `1` -- not an asymptotic. Rozier-Terracol, which Niu
+  withdrew in favour of, is about paradoxical sequences and has none either.
+- **The correction.** `J-paper-b-survivors-are-oeis-a076227` now carries the
+  priority reading; the rate and the exponent are `KNOWN` with literature ids;
+  the dossier's `Current literature` is rewritten source by source; the branch
+  ledger's `a_1 = 0.42629 +/- 0.0015` is replaced by the closed form it was
+  superseded by yesterday. Anything written up from this cluster opens as a
+  refinement of Theorem D and Conjecture 7.1, not as a discovery.
+- **The lesson, sharper than yesterday's.** Yesterday I wrote that a dossier's
+  `Current literature` should be answered by looking. Looking took one session
+  and killed two of four claims. The useful part is that it did not kill the
+  other two, and now the survivors are defensible instead of merely unchallenged.
+
 ## 2026-09-19 -- the negative side is exact, and its finance is the Juggler mirror
 
 - **Objective:** the finance-mirror question -- what floor and period bound
