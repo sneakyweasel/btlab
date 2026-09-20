@@ -14,14 +14,34 @@
       "sha256": "817386d65902d1efa8f27ff245a18eb76cc7fa1ab73d6338a669054eb53a5101"
     },
     {
+      "path": "data/research/juggler/negative_floor_3x1/chunks.json",
+      "mode": "text",
+      "sha256": "1db97c7c2569779d09fb9a6aab8ee0ded9f4010c5a102988eb6808b055da6493"
+    },
+    {
+      "path": "data/research/juggler/negative_floor_3x1/runs.json",
+      "mode": "text",
+      "sha256": "5d677fa2ca85c6b4d12ce23b3fdd79ef8c219e51b703917a11627e0520d82a79"
+    },
+    {
+      "path": "data/research/juggler/negative_floor_3x1/verify_3x1.c",
+      "mode": "text",
+      "sha256": "a54061cd6aab073adf0a4ab410c48e1715401902a3a321d283f998e44ca1afd8"
+    },
+    {
+      "path": "data/research/juggler/negative_floor_3x1/verify_3x1_jump.c",
+      "mode": "text",
+      "sha256": "f7a150b6904ba43bc8410adce0f4c4d1f2ad2cca64740642a0efbb28ad46cc95"
+    },
+    {
       "path": "docs/theory/juggler_finite_dynamics_formalization.md",
       "mode": "text",
-      "sha256": "6a699d37e2b8b8e84ddf240dfdc8942a236c73ea28dbacf05a5c4ed2a1258b15"
+      "sha256": "f0d5c2dbec324d43664be44fbbe75f9e38c771bbfbecdeb1d6efce1d5b148f41"
     },
     {
       "path": "docs/theory/juggler_finite_dynamics_note.md",
       "mode": "text",
-      "sha256": "4a75b62e5a8ceef375c3e174075deda9412ac9629958ea88f2200202c5efd313"
+      "sha256": "4ce95b8c3939249d006ec8aa8108878619d97845723a91645c07fae52c7101e5"
     },
     {
       "path": "docs/theory/juggler_finite_dynamics_reviewer_packet.md",
@@ -581,7 +601,7 @@
     {
       "path": "tools/build_paper_a.py",
       "mode": "text",
-      "sha256": "27b4c838c274507d533b669bc5ef764a331722efe896f758880ea4ab9287e36f"
+      "sha256": "6cad038af6eec44036f77462661f4828f2859b9d3f79b69812da2d56335a639a"
     },
     {
       "path": "tools/check_paper_a_numeric.py",
@@ -608,17 +628,17 @@
     {
       "path": "docs/theory/juggler_finite_dynamics_note.pdf",
       "mode": "binary",
-      "sha256": "45ce00e301858b6fc6672a9a99ff49d863cabe0bb55bbc386035f58bd246f450"
+      "sha256": "3f44c5904bec3239226b22d11cd29c7d253133da2201cf1ba769b23d834b9a71"
     },
     {
       "path": "docs/theory/cochin-juggler.tex",
       "mode": "text",
-      "sha256": "d76dc0f4c9fec43106fe957b94c1f0a415556ec27952a16bdaa45a1aac9e9c4b"
+      "sha256": "b3d738a16b561fb0038004400173fdc717152d076299cf7d3aaa20cc9b3a865b"
     },
     {
       "path": "docs/theory/paper_a_zenodo.json",
       "mode": "text",
-      "sha256": "63ad628ffb6d46908c5ae3b360a2842b4e8bc928ca261ad29d60d2ce426e2fc1"
+      "sha256": "ac50e54fd9423e981db830b8c45d9d32487e4d931b15651fc6e8634065582ac4"
     }
   ]
 }

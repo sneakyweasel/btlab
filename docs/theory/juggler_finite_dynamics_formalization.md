@@ -1377,7 +1377,11 @@ Evidence boundary. Everything above is checked by Lean's kernel, with no
 `native_decide`. The survivor enumerations of Theorem 5.18 and Remark
 5.20, the constants `1/(2 log 2)` and `1/(6 alpha log 2)`, the sharpness
 ratios and the negative-cycle table are verified computation in the
-repository probe `collatz_finance_mirror`; the height argument of
-Theorem 5.18(ii) is a written proof. No Juggler statement of the paper
-depends on this section, and no Collatz bound beyond the published ones
-is claimed.
+repository probe `collatz_finance_mirror`; the `3x-1` floor of Remark
+5.20, every `1 <= y < 2^44` reaching `1`, `5` or `17`, is the author's own
+descent verification, with its chunk certificate, run record and walker
+sources in the probe `negative_floor_3x1` and its checksums in Appendix B;
+the height argument of Theorem 5.18(ii) is a written proof. No Juggler
+statement of the paper depends on this section. The one Collatz claim
+beyond the published bounds is the negative-cycle period bound of Remark
+5.20, `16483927`, which rests on that floor.

@@ -46,7 +46,11 @@ BUILD_INPUTS = ["tools/build_paper_a.py", "tools/paper_a/article.tex",
                 "tools/trust_boundary.py",
                 "src/research/juggler_sequence/paper_a_audit.py",
                 "src/research/juggler_sequence/cycle_rank_curvature.py",
-                "data/research/juggler/cycle_rank_curvature/controls.json"]
+                "data/research/juggler/cycle_rank_curvature/controls.json",
+                "data/research/juggler/negative_floor_3x1/chunks.json",
+                "data/research/juggler/negative_floor_3x1/runs.json",
+                "data/research/juggler/negative_floor_3x1/verify_3x1.c",
+                "data/research/juggler/negative_floor_3x1/verify_3x1_jump.c"]
 PDF_EXPORTS = [f"juggler_review/{STEM}.pdf",
                f"web/juggler-companion/public/papers/{STEM}.pdf",
                "juggler_review/zenodo_paper_a/Lower_bounds_for_nontrivial_cycles_of_the_Juggler_map.pdf"]

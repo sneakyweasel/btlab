@@ -1,7 +1,7 @@
 ---
 title: "Lower Bounds for Cycle Lengths in the Juggler Map"
 author: Philippe Cochin
-date: 19 September 2026
+date: 20 September 2026
 keywords:
   - Juggler map
   - Juggler sequence
@@ -50,7 +50,9 @@ the financing inequality and the walk charge reproduce the published
 Collatz cycle-length bounds of Eliahou and Hercher exactly and replace
 the constant \(3/4\) of Hercher's height bound by \(1/(2\log 2)\); on
 the negative integers they give the financing inequality in the Juggler
-direction, with a Lean proof.
+direction, with a Lean proof; with the \(3x-1\) map verified through
+\(2^{44}\) by the author, that inequality gives period at least
+\(16483927\) for any further negative cycle of the shortcut Collatz map.
 The core inequalities and selected classifications are
 formalized in Lean 4. The descent computations, per-length numerical
 comparisons, and remaining analytic identifications are distinguished
@@ -402,8 +404,13 @@ Eliahou's lattice and period bound at \(2^{40}\) and Hercher's bound at
 Hercher's Theorem 27 by \(1/(2\log2)\), attained on the hug word
 (Theorem 5.18). On the negative integers a cycle word is exactly the
 minimum-based shape of Theorem 3.2 and satisfies the finance inequality
-in the direction Juggler has it (Theorem 5.19, Lean). No Juggler bound
-changes; §5.9 is an external calibration of the method.
+in the direction Juggler has it (Theorem 5.19, Lean). With the
+\(3x-1\) map verified through \(2^{44}\) by the author, a fourth negative
+cycle of the shortcut map has period at least \(16483927\) (Remark 5.20);
+the survivor table behind that bound is Sinisalo's [25] in a weaker form,
+and Simons [26] proves, without a floor, that such a cycle has at least
+three local minima. No Juggler bound changes; §5.9 is an external
+calibration of the method.
 
 ### 1.1 Related work
 
@@ -428,7 +435,13 @@ form \(n(2^K-3^p)=C\). Section 5.9 uses that identity on the Collatz
 side: the finance and walk-charge layers of this paper, transposed
 through the shared parity word, return the bounds of Eliahou [13] and
 Hercher [19,20] exactly, which locates those layers within the Collatz
-cycle literature [12,13,19,20,23]. A check of Pickover [1,2], Weisstein [5],
+cycle literature [12,13,19,20,23]. Two 2026 papers bear on the same
+section. Knight [29] proves that the \(3x+1\) map has no high cycle, the
+cycle whose parity word is the upper Christoffel word --- the ceiling
+mechanical itinerary of Section 3, read on the other map --- by a parity
+argument on the cycle equation. Williams [28] gives Collatz the
+coordinate \(n+1=\lambda2^a3^b\); her Theorem 3.6 is the conjugation
+used in Theorem 5.15. A check of Pickover [1,2], Weisstein [5],
 the OEIS records [3,4,6], the Prasad--Prasad estimates [7], and
 the standard Collatz cycle-bound sources [8--13] found no
 published explicit lower bound on the period of a nontrivial
@@ -465,7 +478,9 @@ The layers of the argument are as follows.
    approximation of \(\log 2/\log 3\), including Rhin's effective
    measure for \(o\log 3-L\log 2\) [15], used only in
    Corollary 4.11; cycle-itinerary restrictions
-   and leftover packaging (Eliahou [13]; Lagarias [8,9]); the
+   and leftover packaging (Eliahou [13]; Lagarias [8,9]; de Weger's
+   table of exceptional lengths [27]; Sinisalo's negative-cycle
+   survivor table [25]); the
    Denjoy--Koksma inequality and Ostrowski numeration, used as
    known tools in Section 5.
 2. *New object:* the exact one-step floor-power preimages of \(J\).
@@ -572,8 +587,10 @@ depth-\(10\) residue tables evaluated by `decide +kernel`; the module
 adds no native scan. The survivor enumerations, the constants
 \(1/(2\log2)\) and \(1/(6\alpha\log2)\), the sharpness checks and the
 negative-cycle table of Theorem 5.18 and Remark 5.20 are verified
-computation of the probe collatz\_finance\_mirror, and the height
-argument of Theorem 5.18(ii) is written.
+computation of the probe collatz\_finance\_mirror, the \(3x-1\) floor of
+Remark 5.20 is the author's own descent verification with its certificate
+in the probe negative\_floor\_3x1 and Appendix B, and the height argument
+of Theorem 5.18(ii) is written.
 
 Reproducibility has three layers. The repository command
 `research.juggler_sequence.paper_a_audit` recomputes selected parity
@@ -622,7 +639,8 @@ reaches \(1\) (this proposition), every
 laboratory instance), every \(2\le n\le 162849448\) reaches
 \(1\) (Corollary 5.10, the second laboratory instance), and
 every \(2\le n\le 350000000\) reaches \(1\) (Corollary 5.11,
-the third laboratory instance).
+the third laboratory instance); for Remark 5.20 alone, every
+\(1\le y<2^{44}\) reaches \(1\), \(5\) or \(17\) under the \(3x-1\) map.
 Independently recomputed: the exact
 first-passage runs of Appendix B. Not proved: global
 termination.
@@ -2956,7 +2974,11 @@ paper proves, not exhibited as cycles.
 
 The leftover lengths cluster around the continued-fraction
 approximants of \(\log 2/\log 3\). That organizes the table; it
-does not constrain a hypothetical cycle.
+does not constrain a hypothetical cycle. The same lengths have a
+Collatz-side name: Simons [26], applying de Weger's method [27] to the
+\(3x-1\) map, lists the pairs with \(0<3^K-2^{K+L}<3^{0.89K}\), which as
+word lengths are \(11\), \(19\), \(30\), \(38\), and \(84\) at
+exponent \(0.9\) --- the head of this list (Remark 5.20).
 
 **Proposition 4.9 (finance-survivor lattice).**
 Write \(v_*=(25781,16266)\) and \(v_{1054}=(1054,665)\). Then
@@ -4185,7 +4207,9 @@ kernel, with its residue tables evaluated by `decide +kernel`; the
 enumerations and constants are verified computation, recorded in the
 repository probe collatz\_finance\_mirror. Nothing here improves a
 Juggler period bound, and nothing is claimed about Collatz cycles beyond
-the published bounds reproduced.
+the published bounds reproduced and the negative-cycle period bound of
+Remark 5.20, which rests on the author's own verification of the
+\(3x-1\) map.
 
 **Notation.** For \(x\in\mathbb Z\) and \(K\ge 0\), the word
 \(w=\mathtt{parityWord}(x,K)\) (`parityWord`; `parityWordZ` over
@@ -4221,8 +4245,9 @@ sign.
 *Proof.* Induction on the word, from the recursions
 \(\mathrm{wordConst}(O\,w)=3^{o(w)}+2\,\mathrm{wordConst}(w)\),
 \(\mathrm{wordConst}(E\,w)=2\,\mathrm{wordConst}(w)\), and the
-conjugation \(z=x+1\), under which the odd step is \(z\mapsto 3z/2\) and
-the even step \(z\mapsto z/2+1/2\), so that every correction comes from
+conjugation \(z=x+1\), under which the odd step is \(z\mapsto 3z/2\)
+(Williams [28], Theorem 3.6) and the even step \(z\mapsto z/2+1/2\), so
+that every correction comes from
 an even step. \(\square\)
 
 **Corollary 5.16 (cycle equation and the sign of a cycle; Lean).**
@@ -4338,7 +4363,8 @@ element of its cycle (`neg_seventeen_is_least`):
 \(2\cdot16\cdot(3^7-2^{11})=4448\le4\cdot3^7=8748\)
 (`neg_seventeen_finance`). \(\square\)
 
-**Remark 5.20 (the negative-cycle table; verified computation).**
+**Remark 5.20 (the negative-cycle table and the \(3x-1\) floor;
+verified computation).**
 On the hug word the \(b\)-th even step has height
 \(\lceil(b+1)/\alpha\rceil\alpha-b\in[1,1+\alpha)\), so the charge
 sharpens to \(y-1\le H_E(K-o)/\theta_J\) with
@@ -4348,11 +4374,40 @@ sharpens to \(y-1\le H_E(K-o)/\theta_J\) with
 bound at a verification floor \(Y_0\) of the \(3x-1\) map (every
 \(1\le y\le Y_0\) reaching \(1\), \(5\) or \(17\)) are Juggler-side
 lengths, the mirror of the Collatz-side survivors of Theorem 5.18: the
-least is \(9538065\) at \(Y_0=2^{40}\), \(72448885240\) at \(2^{68}\), and
-\(103768467013\) at \(2^{71}\). No verification floor for the \(3x-1\)
-map is published to our knowledge (Chamberland's survey refers its
-cycle problem to Seifert [24]); the table is conditional, and no
-negative-cycle period bound is claimed.
+least is \(9538065\) at \(Y_0=2^{40}\), \(16483927\) at \(2^{44}\),
+\(72448885240\) at \(2^{68}\), and \(103768467013\) at \(2^{71}\). The
+table is Sinisalo's [25], Table 2, with the weaker Crandall-type bound
+\(R=1/(3-2^{K/o})\) in place of the even-charge finance, which is sharper
+by one or two rows at each floor; his bounds for these rows are
+reproduced here to five digits.
+
+No published verification floor for the \(3x-1\) map was found: OEIS
+A037084 [30] carries an unattributed check through \(10^8\), and
+Chamberland's survey refers the cycle problem to Seifert [24]. The floor
+used here is the author's own: every \(1\le y<2^{44}=17592186044416\)
+reaches \(1\), \(5\) or \(17\). The verification is descent by strong
+induction on odd starts, in \(112\) chunks: \(16\) with a plain walker
+through \(2^{40}\) (greatest step count \(544\) against a cap of
+\(4000\)), then \(96\) with a residue sieve modulo \(2^{24}\) --- exact on
+this side, since a contracting prefix drops every member of its class ---
+and a \(2^{16}\)-step block map used as an accelerator (greatest step
+count \(704\) against a cap of \(40000\), counted in blocks of sixteen).
+The seven odd starts that the first sixteen chunks had skipped, found
+from their own printed counts, are verified by full iteration. No start
+failed and no new cycle appeared. Hence, by Theorem 5.19, **a fourth
+cycle of the \(3x-1\) map --- equivalently a fourth negative cycle of the
+shortcut Collatz map --- has period at least \(16483927\), with
+\(10400200\) odd steps**; the uniform and hug-word constants give the
+same length at this floor. Simons [26] proves, without any floor, that
+the \(3x-1\) map has exactly one nontrivial \(2\)-cycle, the cycle at
+\(17\), so such a cycle also has at least three local minima; his list
+of exceptional pairs under de Weger's bound [27] --- as word lengths
+\(11\), \(19\), \(30\), \(38\), and \(84\) at exponent \(0.9\) --- is the
+head of the near-convergent list that organizes the survivors of
+Section 4. The floor is a computation, not a theorem; only its
+consequence is Lean. Sources, the chunk certificate and the run record
+are the repository probe negative\_floor\_3x1, with checksums in
+Appendix B.
 
 **Remark 5.21 (what the mirror does not transfer).**
 The cycle-level dictionary is \(x_0\leftrightarrow n\log n\), not a
@@ -5066,6 +5121,18 @@ records use `cycle_walk_charge_gpu.gpu_certified_report` with floor
 Do not use its `--write` option to regenerate a different floor: that
 option selects a fixed output directory. The precise software version,
 dependency environment, and archived data must accompany a release.
+
+The \(3x-1\) floor of Remark 5.20 is the certificate
+`data/research/juggler/negative_floor_3x1/chunks.json` (\(112\) chunks,
+each with its first start, limit, counts and greatest step count), the
+run record `runs.json` beside it, and the two walkers `verify_3x1.c` and
+`verify_3x1_jump.c`; the probe `research.juggler_sequence.negative_floor_3x1`
+re-verifies any window and lists and checks the starts between chunks.
+SHA-256 of the committed files, line endings normalized to LF:
+`chunks.json` `1db97c7c2569779d09fb9a6aab8ee0ded9f4010c5a102988eb6808b055da6493`,
+`runs.json` `5d677fa2ca85c6b4d12ce23b3fdd79ef8c219e51b703917a11627e0520d82a79`,
+`verify_3x1.c` `a54061cd6aab073adf0a4ab410c48e1715401902a3a321d283f998e44ca1afd8`,
+`verify_3x1_jump.c` `f7a150b6904ba43bc8410adce0f4c4d1f2ad2cca64740642a0efbb28ad46cc95`.
 
 ## Appendix C. Exact floor defect
 
@@ -6927,7 +6994,9 @@ proofs, code, and final verification of this preprint.
     (Paper B), revision of 19 September 2026.
     [Source manuscript](https://github.com/sneakyweasel/btlab/blob/main/docs/theory/juggler_parity_discrepancy_note.md).
 17. P. Cochin, “Fate Contagion and Termination Criteria for the Juggler
-    Map,” companion manuscript (Paper C), revision of 9 September 2026.
+    Map,” companion manuscript (Paper C), revision of 9 September 2026;
+    Zenodo version 1.0.0,
+    [doi:10.5281/zenodo.22678165](https://doi.org/10.5281/zenodo.22678165).
     [Source manuscript](https://github.com/sneakyweasel/btlab/blob/main/docs/theory/juggler_fate_almost_all_note.md).
 
 18. M. R. Herman, "Sur la conjugaison différentiable des difféomorphismes
@@ -6950,3 +7019,26 @@ proofs, code, and final verification of this preprint.
     Collatz conjecture,” *J. Supercomput.* 81 (2025), Article 810.
 24. B. G. Seifert, “On the arithmetic of cycles for the Collatz--Hasse
     (‘Syracuse’) conjectures,” *Discrete Math.* 68 (1988), 293--298.
+25. M. K. Sinisalo, “On the minimal cycle lengths of the Collatz
+    sequences,” preprint, University of Oulu, c. 2003; entry 105 of
+    J. C. Lagarias, “The \(3x+1\) problem: an annotated bibliography, II
+    (2000--2009),” arXiv:math/0608208.
+    [probleme-syracuse.fr/cargo/Sinisalo_collatz.pdf](https://www.probleme-syracuse.fr/cargo/Sinisalo_collatz.pdf).
+26. J. L. Simons, “A simple (inductive) proof for the non-existence of
+    2-cycles of the \(3x+1\) problem,” *J. Number Theory* 123 (2007),
+    10--17.
+    [doi:10.1016/j.jnt.2006.05.011](https://doi.org/10.1016/j.jnt.2006.05.011).
+27. B. M. M. de Weger, *Algorithms for Diophantine Equations*, CWI Tract
+    65, Centrum voor Wiskunde en Informatica, Amsterdam, 1990, Theorem 5.2
+    and Table I.
+28. J. Williams, “A coordinate system for Collatz dynamics,” preprint
+    (2026), arXiv:2607.01718.
+    [doi:10.48550/arXiv.2607.01718](https://doi.org/10.48550/arXiv.2607.01718).
+29. K. Knight, “Collatz high cycles do not exist,” *Discrete Math.* 349
+    (2026), 114812.
+    [doi:10.1016/j.disc.2025.114812](https://doi.org/10.1016/j.disc.2025.114812).
+30. OEIS Foundation Inc., “Positive integers not going to 1 under
+    iterations of the map \(n\mapsto 3n-1\) (\(n\) odd), \(n\mapsto n/2\)
+    (\(n\) even),” Sequence A037084 in *The On-Line Encyclopedia of
+    Integer Sequences*, https://oeis.org/A037084 (accessed 20 September
+    2026).

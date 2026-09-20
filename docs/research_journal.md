@@ -1,5 +1,52 @@
 # Research journal
 
+## 2026-09-20 -- Paper A revised on the five points, and the kit rebuilt
+
+- **Objective:** Philippe asked for Paper A to be brought up to date on
+  the five points the review named, and for the kit to be rebuilt.
+- **What changed in the manuscript.** Date to 20 September. Abstract and
+  Contribution 9 now state the negative-side bound: with the `3x-1` map
+  verified through `2^44`, a fourth negative cycle of the shortcut map
+  has period at least 16483927. Remark 5.20 rewritten: the table is
+  Sinisalo's Table 2 with a weaker Crandall-type bound, the floor is the
+  author's own, the certificate is described (112 chunks, the plain
+  walker to `2^40`, the sieve-plus-block-map walker above it, the seven
+  skipped starts verified by full iteration), the bound is stated in
+  bold, Simons 2007 gives `m >= 3` for any further cycle, and his
+  exceptional pairs are named as the head of the near-convergent list.
+  Section 1.1 cites Knight for the high-cycle theorem and Williams for
+  the coordinate; Theorem 5.15's proof credits the `z = x + 1`
+  conjugation to her Theorem 3.6; the layer of classical ideas adds de
+  Weger's table and Sinisalo's; Section 1.2's evidence paragraph, the
+  Roles paragraph and the §5.9 opening now name the one Collatz claim
+  made beyond the published bounds; Section 4's survivor passage gives
+  the leftover lengths their Collatz-side name; Appendix B carries the
+  certificate's SHA-256 checksums, computed on the committed LF bytes;
+  references 25 to 30 added (Sinisalo, Simons 2007, de Weger 1990,
+  Williams, Knight, OEIS A037084) and Paper C's DOI added to [17]. The
+  formalization map's §16 says the same. The build tool now pins
+  `chunks.json`, `runs.json` and the two walker sources as inputs.
+- **The build.** Pandoc 3.6.3 and MiKTeX XeTeX 4.18, the versions the
+  manifest already recorded; three passes, 111 pages, no overflow,
+  no missing glyph, no unresolved reference. Two render defects caught by
+  reading the pages: reference 28's continuation line began with
+  "2026.", which Markdown took for a list marker and split the entry,
+  and reference 25's raw URL broke mid-word; both fixed and rebuilt.
+  `build_paper_a.py --check` passes; the numeric checker reports its
+  four expected survivors; the release gates, the Paper A audit and
+  trust-boundary tests, the manuscript-citation gate and the constants
+  gate pass, 76 tests.
+- **Records that said "next revision".** Both ledger rows, the Sinisalo
+  registry note and the floor dossier's publication assessment now say
+  the revision carries it.
+- **Not done, and the author's.** The Zenodo new-version upload. The
+  kit's `ZENODO_FIELDS.txt` reads version 2026-09-20 and the description
+  is regenerated from the abstract; `paper_deposits.md` still records
+  version 1.0.0 until the upload exists.
+- **Decision:** revision built and checked. Best next question: none
+  from the manuscript; the negative-side m-cycle transposition remains
+  the open branch, now with the floor it needs cited in print.
+
 ## 2026-09-20 -- Simons 2007, read: the 3x-1 two-cycle theorem uses no floor, and its exception list is our leftover ladder
 
 - **Objective:** Philippe fetched the JNT PDF that the open archive hides

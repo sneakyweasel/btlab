@@ -282,5 +282,6 @@ scheduling decision — \(2^{48}\) overnight here, \(2^{68}\) on a GPU.
 
 Status: `STRUCTURAL`. A computational certificate plus a one-line
 implication; it belongs with the finance mirror, not in a manuscript of
-its own. Paper A's Remark 5.20 quotes the \(2^{40}\) floor and
-\(9538065\); the \(2^{44}\) numbers belong to its next revision.
+its own. Paper A's Remark 5.20 carries the \(2^{44}\) floor, the bound
+\(16483927\), the certificate's checksums, Sinisalo and Simons since the
+revision of 20 September 2026; the Zenodo new version is pending.
