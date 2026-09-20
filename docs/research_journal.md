@@ -1,5 +1,46 @@
 # Research journal
 
+## 2026-09-20 -- The suite's cost is one file, and 37 of its tests only grepped a manuscript
+
+- **Objective:** Philippe said the tests take too long and suspected a batch of
+  them needed the `slow` marker. Two questions hide inside that, and conflating
+  them cost most of the session: which tests are *slow*, and which are *stale*.
+  The answers share almost no tests, and only one of the two is about time.
+- **Where the time actually is.** 649 test files, about 6650 cases, roughly two
+  hours serial. `--durations` did not show a spread cost to trim:
+  `tests/research/juggler_sequence/test_paper_b_prefix_count.py` ran 744 s on an
+  otherwise idle machine and the next file ran 57 s. One file in 649 was
+  thirteen times the runner-up, and the rest of the suite is not slow. That file
+  now carries `pytestmark = pytest.mark.slow` with the measurement written beside
+  it. This helps a local run and nothing else: CI passes `--runslow`, so no gate
+  became faster or weaker.
+- **What CI got instead.** The python job now runs
+  `pytest --runslow -n auto --dist loadfile`. `addopts` deliberately does not
+  carry those flags, because they would spawn workers for a fifteen-test targeted
+  run too; the CI job *is* the full suite, which is the case the addopts comment
+  already described. `loadfile` keeps one file on one worker, which matters where
+  a module builds shared state at import.
+- **What was stale, which is a different list.**
+  `juggler_review/juggler_parity_discrepancy_note_2026_09_04.md`, 7642 lines, was
+  a byte-identical copy of a superseded Paper B snapshot that nothing referenced.
+  Then 37 tests across two files, 323 lines -- 297 from the prefix-count file, 26
+  from the audit file -- that did nothing but assert that particular strings
+  appear in a manuscript. They passed because those sentences were present, and
+  they would have passed just as green if the mathematics under the sentences
+  were wrong. They also cost microseconds each: deleting them bought no time, and
+  was never meant to. The two files go 332 -> 298 and 220 -> 217 cases.
+- **Verification.** `7af88219` shipped with an admission in its own message that
+  the full 744 s file had not been run to completion for that change. It has now
+  been: 298 collected, 298 run, no failure, exit 0, 1447 s wall. That 1447 s is
+  not comparable with the 744 s and should not be read as a regression -- this
+  run shared the machine with the Paper B revision working in the same checkout,
+  while the 744 s was measured serially on an idle box. The deletions were greps;
+  the file's cost is the exhaustive prefix censuses, which are all still there.
+- **The lesson worth keeping.** A test that greps prose is not a cheap version of
+  a test that checks mathematics. It is a gate that cannot fail for the reason
+  you care about, and 37 of them had accumulated in front of a manuscript nobody
+  edits by hand.
+
 ## 2026-09-20 -- Both Hikawa preprints read; Paper B's priority paragraph corrected
 
 - **Objective:** Philippe asked whether Paper B is ready for Zenodo. The one
