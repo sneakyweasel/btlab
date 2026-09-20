@@ -1,5 +1,48 @@
 # Research journal
 
+## 2026-09-20 -- the sieve measured, a speedup claim withdrawn, and a run that produced nothing
+
+An attempt to push the `3x-1` floor from `2^40` to `2^44`. It produced no verified range, and
+the useful output is the measurement and a correction.
+
+**THE SIEVE IS UNCONDITIONAL ON THIS SIDE, AND THE CLASS COUNT PROVES THE BUILDER.** For a start
+`y` whose first `k` steps have word `w` with `a` odd letters, `2^k y_k = 3^a y - C(w)` with
+`C >= 0`, because the odd step `(3y-1)/2` SUBTRACTS. So `y_k < y` iff `y(3^a - 2^k) < C`, and a
+contracting prefix makes the left side negative against `C >= 0` -- the drop holds for EVERY
+member of the class with no threshold. That is `neg_prefix_noncontracting`, and it is why the
+sieve is clean here and needs a threshold argument on the Collatz side. Only
+prefix-noncontracting classes need walking, and at `k = 24` the builder finds **286581** of
+them -- exactly **A076227(24)**, an independent check against the sequence identified this
+morning.
+
+**THE SPEEDUP IS 2.7x, NOT 58x, AND I WITHDRAW THE EARLIER FIGURE.** The entry above ends by
+saying the sieve density for pushing the floor is this laboratory's own shape-word census. That
+is true and it is not a speedup. I inferred one from the density -- 1.7 per cent of classes
+survive, so 58x -- and that inference is wrong, because it equates class density with WORK
+density. The skipped classes are exactly the ones that drop within a few iterations, so skipping
+them saves almost nothing; essentially all the time sits in the 3.4 per cent that survive.
+Measured: the sieve alone gives 2.7x.
+
+**THE JUMP TABLE IS WHAT PAYS.** For `r mod 2^J`, `J` steps send `y = q 2^J + r` to
+`q 3^(a(r)) + t(r)` -- one multiply-add for `J` iterations, the jump function of A368877 used as
+an accelerator rather than an object of study. At `J = 16` over the `k = 24` sieve the total is
+**7.1x**: 30.5 M starts/sec/core plain, and `[2^40, 2^44)` down from 18.8 hours to 4.9 on four
+cores.
+
+**VALIDATION, WITH TWO CAVEATS KEPT RATHER THAN SMOOTHED.** Against the plain verifier on four
+disjoint already-verified windows, `fails` and `new_cycles` agree everywhere. The reported peak
+is a maximum over WALKED starts only and is not comparable with the plain verifier's; the
+skipped starts are bounded analytically instead, since within 24 steps a start below `2^44`
+cannot exceed `(3/2)^24 2^44 < 2^58`. And a jump can carry past a `v = y` return, so a missed
+cycle surfaces as a STEPCAP -- reported, never a silent pass.
+
+**THE RUN PRODUCED NOTHING.** Thirty-two chunks, four at a time, batch-ordered so a partial run
+would still certify a contiguous prefix. The workers died before a single chunk completed. No
+range beyond `2^40` is verified, the floor and the period bound 9538065 are unchanged, and I had
+reported the run as progressing when it was not. The three artifacts are archived --
+`verify_3x1_sieved.c`, `verify_3x1_jump.c`, `drive_chunked.sh` -- and on a 24-thread machine the
+same range is roughly fifty minutes.
+
 ## 2026-09-20 -- the plateau lengths are a Beatty complement, and seven prior-art misses
 
 With oeis.org blocked, the OEIS git export at `github.com/oeis/oeisdata` turns out to be
