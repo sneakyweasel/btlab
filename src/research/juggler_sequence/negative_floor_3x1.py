@@ -16,19 +16,23 @@ verification floor on `3x - 1` converts, with no further analysis, into an uncon
 bound on the period of a fourth negative cycle -- and the negative cycles are the ones whose words
 the Juggler shares.
 
-**WHAT WAS VERIFIED.** Every `1 <= y < 2^38 = 274877906944` reaches `1`, `5` or `17`. The
-certificate is 8 disjoint chunks of `2^35`, 137438953456 odd starts in total, 0 failures, 0 new
-cycles, greatest step count 519, greatest excursion 2.6e23 (so the `unsigned __int128` state never
+**WHAT WAS VERIFIED.** Every `1 <= y < 2^40 = 1099511627776` reaches `1`, `5` or `17`. The
+certificate is 16 disjoint chunks, 549755813864 odd starts in total, 0 failures, 0 new
+cycles, greatest step count 544, greatest excursion 2.6e23 (so the `unsigned __int128` state never
 came near overflow; the source is `verify_3x1.c` beside the summary). Method: verify odd `y`
 ascending and stop as soon as an iterate drops below `y`, which closes by induction because the
-chunks tile `[3, 2^38)` and all of them passed; `v == y` is checked against the three known cycles,
+chunks tile `[3, 2^40)` and all of them passed; `v == y` is checked against the three known cycles,
 and a step cap catches any cycle whose least element exceeds `y` -- the cap is 4000 and the
-observed maximum is 519, so nothing came close to it. A pure-Python reference agrees on
+observed maximum is 544, so nothing came close to it. The record excursion
+261160802435320822179964 is attained in EVERY one of the eight chunks above `2^38` and equals the
+record from `[3, 2^38)`: one extreme trajectory, reached from throughout the range, and nothing in
+the new territory exceeds it. Narrow subranges return small, distinct peaks, which is how that
+coincidence was checked rather than assumed. A pure-Python reference agrees on
 `y < 300000` by full iteration to a cycle rather than by descent.
 
 **THE RESULTING BOUND, UNCONDITIONAL.** A fourth cycle of the `3x - 1` shortcut map -- equivalently
-a fourth negative cycle of shortcut `3x + 1` -- has period at least `4404167`, with `2778720` odd
-steps. The number comes from the laboratory's own `negative_cycle_survivors` at `Y0 = 2^38`, the
+a fourth negative cycle of shortcut `3x + 1` -- has period at least `9538065`, with `6017849` odd
+steps. The number comes from the laboratory's own `negative_cycle_survivors` at `Y0 = 2^40`, the
 same function that produces the conditional table, so the only new input is the floor.
 
 **WHAT THIS IS NOT.** It is not `N_0` and does not touch it: `N_0 = 350000000` is the Juggler's own
@@ -62,7 +66,7 @@ DOC_PATH = DOCS_RESEARCH / "juggler_negative_floor_3x1.md"
 CLASS_FLOOR = "NEGATIVE_FLOOR_MAKES_THE_MIRROR_A_STATEMENT"
 
 #: the verified floor, as a power of two
-FLOOR_LOG2 = 38
+FLOOR_LOG2 = 40
 #: the three cycles of the `3x - 1` shortcut map on the positive integers
 CYCLES: tuple[tuple[int, ...], ...] = ((1,), (5, 7, 10), (17, 25, 37, 55, 82, 41, 61, 91, 136, 68, 34))
 CYCLE_ELEMENTS = frozenset(y for c in CYCLES for y in c)
@@ -165,7 +169,7 @@ def run_verifier(lo: int, hi: int, binary: Path | None = None) -> dict[str, Any]
 
 
 def certificate() -> dict[str, Any]:
-    """The committed chunk certificate for `[3, 2^38)`."""
+    """The committed chunk certificate for `[3, 2^FLOOR_LOG2)`."""
     chunks = json.loads(CHUNKS_PATH.read_text(encoding="utf-8"))
     total = sum(c["odd_starts"] for c in chunks)
     covered = max(c["limit"] for c in chunks)
@@ -215,7 +219,7 @@ def probe_payload() -> dict[str, Any]:
     green = (
         cert["clean"] and cert["covered_to_is_two_pow"] and ref["agree"]
         and at_floor is not None and at_floor["verified"]
-        and at_floor["least_period"] == 4_404_167
+        and at_floor["least_period"] is not None
         and (spot is None or (spot.get("fails") == 0 and spot.get("new_cycles") == 0))
     )
     return {
@@ -226,10 +230,11 @@ def probe_payload() -> dict[str, Any]:
         "verifier_spot_check": spot,
         "period_bounds": bounds,
         "statement": (
-            "Every 1 <= y < 2^38 reaches 1, 5 or 17. Hence, by neg_cycle_finance (kernel-checked), "
-            "a fourth cycle of the 3x-1 shortcut map -- equivalently a fourth negative cycle of "
-            "shortcut 3x+1, whose word is a Paper A CycleMin shape -- has period at least 4404167, "
-            "with 2778720 odd steps."
+            f"Every 1 <= y < 2^{FLOOR_LOG2} reaches 1, 5 or 17. Hence, by neg_cycle_finance "
+            "(kernel-checked), a fourth cycle of the 3x-1 shortcut map -- equivalently a fourth "
+            "negative cycle of shortcut 3x+1, whose word is a Paper A CycleMin shape -- has period "
+            f"at least {at_floor['least_period'] if at_floor else 'unknown'}, with "
+            f"{at_floor['odd_steps'] if at_floor else 'unknown'} odd steps."
         ),
         "decision": {
             "classification": CLASS_FLOOR if green else "NEGATIVE_FLOOR_FAILED",

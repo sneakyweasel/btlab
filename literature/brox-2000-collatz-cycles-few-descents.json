@@ -1,0 +1,20 @@
+{
+  "id": "brox-2000-collatz-cycles-few-descents",
+  "title": "Collatz cycles with few descents",
+  "authors": [
+    "Tobias Brox"
+  ],
+  "year": 2000,
+  "identifiers": {},
+  "url": {},
+  "problem_area": "collatz-cycles",
+  "relevant_concepts": [
+    "Mersenne-factored cycle constant",
+    "u = x+1 conjugation",
+    "descent count",
+    "Baker-Feldman"
+  ],
+  "project_relationship": "reproduced",
+  "status": "read (from a public GitHub mirror, not at the publisher)",
+  "notes": "Acta Arithmetica 92 (2000), 181-188. Registered 20 September 2026 after a prior-art sweep on juggler_even_run_mersenne_floor found the laboratory had been presenting one of his equations as its own. IT CARRIES THE BLOCK EXPANSION. With T_1 dividing out all powers of 2, 2^(k_i) x_i = 3 x_(i-1) + 1, M = 2^k - 3^n and x_i = F_i/M, his (3.2) is F~_i = 2^(k_(i+1)) F_(i+1) - 2 F_i = F_i + M = M (x_i + 1) -- the u = x+1 conjugation applied to the cycle constant -- and his (3.1) is phi~_n = 2 sum_(l=0)^(n-1) 3^(n-1-l) 2^(k_1+...+k_l) (2^(k_(l+1)-1) - 1), every term carrying the Mersenne factor 2^(k-1) - 1 on the EXTRA-halving exponent. That is term for term the laboratory's evenCharge(w) = sum_j 3^j 2^(A_j) (2^(r_j) - 1) under (x+1)(2^d - 3^o) = evenCharge(w). VERIFIED INDEPENDENTLY HERE: Brox's form against the laboratory's evenCharge on all 16382 words of length <= 14 beginning with O, 0 differences. WHAT HE DOES NOT DO. He never takes a gcd of the extra-halving counts, never names a Mersenne number, and derives no congruence: the brackets are used only as a SIZE bound, replaced by 2^(h_(j+l)), feeding a Baker-Feldman argument for his Theorem 1.1, that there are finitely many cycles with fewer than 2 log n descents. So the identity is his and the gcd step -- R = gcd of the nonzero extra-halving counts, coprimality with 2^o - 3^o, hence x = -1 mod (2^R - 1) -- is not taken by him, and was not found taken anywhere reachable. INDEPENDENT OF THAT BRANCH, THIS IS A CITATION GAP THE LABORATORY SHOULD HAVE CLOSED EARLIER: Theorem 1.1 is a descent / valley-count theorem that predates Simons-de Weger and is an ancestor of Hercher's m-cycle line, and neither literature/ nor docs/ mentioned Brox at all. PROVENANCE: the full text was read from a public GitHub mirror of converted PDFs, not from Acta Arithmetica -- matwbn.icm.edu.pl and every other publisher route are egress-blocked here. The equations are corroborated by the numerical check above, which does not depend on the mirror being faithful; the page numbers and Theorem 1.1's statement are ATTESTED, NOT OBSERVED at the publisher. Volume/page confirmation should be redone when egress allows."
+}

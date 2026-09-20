@@ -40,8 +40,9 @@ around the cycle gives \(u_1(2^o-3^o)\equiv 0\), and the coprimality
 forces \(m\mid u_1\); the starting label is arbitrary. \(C\) has an even
 step so \(C\neq\{-1\}\), hence \(u_i\neq 0\). \(\square\)
 
-Equivalently, through the block expansion of the charge — for **every**
-word, with \(r_j\) the E-run lengths from the right and
+Equivalently, through the block expansion of the charge — **which is
+Brox's, not ours** (`brox-2000-collatz-cycles-few-descents`, Acta Arith. 92
+(2000) 181–188, equations (3.1) and (3.2)) — for **every** word, with \(r_j\) the E-run lengths from the right and
 \(A_j=(o-j)+\sum_{l>j}r_l\),
 
 \[
@@ -52,6 +53,24 @@ so every term carries a Mersenne factor and \((2^R-1)\mid
 \operatorname{evenCharge}(w)\); the cycle equation
 \((x+1)(2^d-3^o)=\operatorname{evenCharge}(w)\) then reduces to the same
 congruence.
+
+**Priority, corrected 20 September 2026.** That expansion is in print.
+Brox's (3.2) is \(\tilde F_i = M(x_i+1)\), the same \(u=x+1\)
+conjugation applied to the cycle constant, and his (3.1) is
+\(2\sum_{l}3^{\,n-1-l}2^{\,k_1+\cdots+k_l}(2^{\,k_{l+1}-1}-1)\) —
+term for term the display above, with the Mersenne factor on the
+*extra*-halving exponent, verified here against
+\(\operatorname{evenCharge}\) on all 16382 words of length \(\le 14\)
+beginning with \(O\), zero differences. What Brox does **not** do is take
+a gcd: he uses the brackets only as a size bound, replacing them by
+\(2^{h}\) to feed a Baker–Feldman argument for his Theorem 1.1. So the
+identity is his; the gcd step and the congruence are what this branch
+adds, and a sweep found no one taking that step. The bookkeeping matters
+and is not interchangeable: the same statement with the **full** halving
+counts \(k_i\) in place of the extra halvings \(r_i=k_i-1\) is
+**false** — \(OE\) has \(k=(2)\), \(\gcd=2\), \(u=2\) and
+\(3\nmid 2\); 79 failures against 0 holds over words to length 12. It is
+Brox's exponent, not Simons–de Weger's matrix equation, that carries it.
 
 Lemma 8 reads \(v_2\) off the odd runs and gives \(|x|\ge 2^a-1\); this
 reads \(\operatorname{ord}(2)\) off the even runs and gives \(|x|\ge
@@ -130,8 +149,22 @@ of Lemma 8, which all three attain with equality
 - `hercher-2023-collatz-m-cycles`, Lemma 8. **known**; the dual uses the
   same \(u=x+1\) conjugation, read through the order instead of the
   valuation.
-- `eliahou-1993-collatz-cycle-lengths`, `simons-de-weger-2005-collatz-m-cycles`.
-  The even-run structure is the subject of both. **not read at source**.
+- `brox-2000-collatz-cycles-few-descents`, Acta Arith. 92 (2000) 181–188,
+  equations (3.1), (3.2), (3.7). **known**, and it owns the block
+  expansion; read this session from a public GitHub mirror, not at the
+  publisher. He takes no gcd and derives no congruence.
+- `simons-de-weger-2005-collatz-m-cycles`, §2.1–2.2. A Mersenne-factored
+  expansion of the cycle constant with the **full** halving counts, and
+  \(x_i\equiv -1 \pmod{2^{k_i}}\) on the same page; no gcd is taken, and
+  the naive full-count reading is false (above). **known**.
+- `halbeisen-hungerbuehler-1997-collatz-cycles`, §5 Lemma 9: a gcd over
+  cyclic shifts of the numerator, a different object — and they state
+  explicitly that size estimates cannot settle the cycle question and that
+  number-theoretic arguments would be needed. **known**.
+- `eliahou-1993-collatz-cycle-lengths`. **not read at source**; inferred
+  from Lagarias's annotated bibliography entry 53 and from
+  Halbeisen–Hungerbühler §4.2, which reproduce his criterion as a pure
+  size / continued-fraction criterion.
 - Laboratory: `cycle_divisibility.py` handles the complementary case
   \(q\mid D=2^K-3^p\) by the finite-field walk; the dual lives in the case
   \(q\nmid D\) and is not implied by it. **extended**.
@@ -139,11 +172,28 @@ of Lemma 8, which all three attain with equality
 
 Project relationship: **extended**.
 
-**Novelty is not claimed.** `arxiv.org`, `cs.uwaterloo.ca` and `oeis.org`
-are refused by this container's network egress policy, so Hercher 2023,
-Eliahou 1993 and Simons–de Weger 2005 could not be read at source for the
-dual congruence. Whether it is in print is recorded here as *unknown*,
-not guessed. What is claimed is the subordination, which is proved.
+**Novelty, settled 20 September 2026 — and the earlier caveat here was
+wrong.** It read that the primary sources were unreachable and the
+question therefore unknown. They were reached: Hercher 2023,
+Simons–de Weger 2005, Halbeisen–Hungerbühler 1997, Brox 2000 and
+Lagarias's two annotated bibliographies were read in full through a public
+GitHub mirror. The result splits three ways.
+
+- The **block expansion is KNOWN** and is Brox's (3.1)/(3.2). It was
+  presented here as ours; it is not. Corrected above.
+- **Hercher's Lemma 8 uses no multiplicative order and no Mersenne
+  number**, now verified at source rather than inferred — grep over the
+  full text returns zero hits for either, and every \(\equiv -1\) in the
+  corpus has a power of two as modulus.
+- The **gcd step and the congruence were searched hard and not found** —
+  but they are one line from a printed identity, and saying so is part of
+  the claim. A reader who knows Brox sees the corollary immediately.
+
+What stands as this branch's own content is not the congruence but the
+**subordination**: \(R\le\lfloor(\log_2 3-1)a\rfloor\) on the CycleMin
+shape, zero dual-only kills over 2.26 million words. Nothing resembling it
+was found. Post-2009 coverage rests on search snippets, so absence is a
+failure to find, not a proof.
 
 ## Branch budget
 

@@ -24,13 +24,13 @@
     ]
   ],
   "certificate": {
-    "chunks": 8,
-    "odd_starts": 137438953456,
+    "chunks": 16,
+    "odd_starts": 549755813864,
     "fails": 0,
     "new_cycles": 0,
-    "max_steps": 519,
+    "max_steps": 544,
     "max_excursion": 261160802435320822179964,
-    "covered_to": 274877906944,
+    "covered_to": 1099511627776,
     "covered_to_is_two_pow": true,
     "chunk_limits_increase": true,
     "state_type": "unsigned __int128",
@@ -77,7 +77,7 @@
       "floor_value": 1099511627776.0,
       "least_period": 9538065,
       "odd_steps": 6017849,
-      "verified": false,
+      "verified": true,
       "note": ""
     },
     {
@@ -89,7 +89,7 @@
       "note": "no survivor below the walk cap KMAX = 20000000; the laboratory's conditional table records 72448885240 at this floor"
     }
   ],
-  "statement": "Every 1 <= y < 2^38 reaches 1, 5 or 17. Hence, by neg_cycle_finance (kernel-checked), a fourth cycle of the 3x-1 shortcut map -- equivalently a fourth negative cycle of shortcut 3x+1, whose word is a Paper A CycleMin shape -- has period at least 4404167, with 2778720 odd steps.",
+  "statement": "Every 1 <= y < 2^40 reaches 1, 5 or 17. Hence, by neg_cycle_finance (kernel-checked), a fourth cycle of the 3x-1 shortcut map -- equivalently a fourth negative cycle of shortcut 3x+1, whose word is a Paper A CycleMin shape -- has period at least 9538065, with 6017849 odd steps.",
   "decision": {
     "classification": "NEGATIVE_FLOOR_MAKES_THE_MIRROR_A_STATEMENT",
     "branch": "PROMOTE",
