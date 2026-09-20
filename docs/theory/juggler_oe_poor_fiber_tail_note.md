@@ -1,8 +1,11 @@
 # The poor-fiber tail, and the OE share on an arbitrary set
 
-**Laboratory extract.** Status: **EXACT — HUMAN PROOF**, with Lemma 1
-**EXACT — LEAN VERIFIED** (`BlockLock.block_lock`, standard axioms only;
-see Formalization). Not a
+**Laboratory extract.** Status: **EXACT — LEAN VERIFIED** end to end ---
+Lemmas 1–3, Theorem 4, and the §5 consequence down to
+`Production.logMass_contagion_averaged` at \(\lambda=100/203\), all on
+standard axioms only (see Formalization). The **EXACT — HUMAN PROOF** this
+note carried while the Lean was in progress is superseded, not withdrawn:
+the prose below is what was proved by hand and then checked. Not a
 halt theorem, not a cycle exclusion, and not a strengthening of any
 statement about the Juggler map itself: everything here is about the
 parity of \(\lfloor n^{3/2}\rfloor\) on \(OE\) fibers, and its only
@@ -535,13 +538,17 @@ Three things the formalization forced, none of them mathematics:
 \(\eta_0=10^{-5}\), by two rational bounds at the 203rd power,
 \(0.710737\le2^{-100/203}\) and \(0.867868\le(3/4)^{100/203}\), giving
 \(0.710737+\tfrac{49999}{150000}(0.867868)=1.0000205>1\). \(100/203\) is
-the smallest-denominator rational in
-\((\lambda^{**},\lambda_{\mathrm{ideal}})\) — \(33/67\) falls short of
-\(\lambda^{**}\) and \(67/136\) leaves only \(6.3\cdot10^{-6}\) of
-slack — so it is the cheapest certificate that beats the manuscript's number.
-The margin \(2.05\cdot10^{-5}\) is what \(\eta_0=10^{-5}\) leaves of the
-\(2.71\cdot10^{-5}\) available at \(\eta_0=0\); break-even is
-\(\eta_0=4.69\cdot10^{-5}\).
+chosen for margin, not minimality: \(67/136\) also lies in
+\((\lambda^{**},\lambda_{\mathrm{ideal}})\) and has the smaller
+denominator, but leaves only \(6.3\cdot10^{-6}\) of \(\zeta\) at
+\(\eta_0=0\) against \(2.71\cdot10^{-5}\) here, so it would force a
+tenfold smaller \(\eta_0\) and sharper rationals for no gain in the
+theorem. (\(33/67\), the previous convergent, falls just short of
+\(\lambda^{**}\) outright.) The margin \(2.05\cdot10^{-5}\) is what
+\(\eta_0=10^{-5}\) leaves of the \(2.71\cdot10^{-5}\) available at
+\(\eta_0=0\); break-even is \(\eta_0=4.69\cdot10^{-5}\).
+`oe_rest_average.exponent_certificate` re-derives all of it in exact
+arithmetic, including the enumeration of smaller denominators.
 
 The Tao threshold follows the exponent down, \(1-\lambda\) being what
 Theorem 7.2 asks for: `conjecture_of_tao_rate_averaged` needs

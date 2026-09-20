@@ -607,6 +607,75 @@ def averaging_theorem(eta_0: float | None = None) -> dict[str, Any]:
     }
 
 
+# The Lean certificate of `Production.zeta2avg_pos`: lambda = LEAN_LAMBDA,
+# eta_0 = LEAN_ETA_0, with the two rational lower bounds verified at the
+# LEAN_LAMBDA denominator. Changing any of these five numbers changes a
+# kernel-checked statement, so `exponent_certificate` re-derives them.
+LEAN_LAMBDA = Fraction(100, 203)
+LEAN_ETA_0 = Fraction(1, 100000)
+LEAN_TWO_POW = Fraction(710737, 1000000)
+LEAN_THREE_QUARTER_POW = Fraction(216967, 250000)
+
+
+def _zeta_at(lam: Fraction | float, eta_0: float = 0.0) -> float:
+    """``2^-lam + (2/3)(1/2 - eta_0)(3/4)^lam - 1``, the two-production slack."""
+
+    lam = float(lam)
+    return 0.5**lam + (2.0 / 3.0) * (0.5 - eta_0) * 0.75**lam - 1.0
+
+
+def exponent_certificate() -> dict[str, Any]:
+    """Re-derive, in exact arithmetic, the certificate `zeta2avg_pos` proves.
+
+    Lean checks two integer inequalities and one rational sum. This reproduces
+    all three in exact arithmetic, and enumerates every rational of smaller
+    denominator strictly between the published ``lambda** = 0.4925715447`` and
+    the ideal root ``0.4926579801``.
+
+    ``LEAN_LAMBDA`` is NOT the minimal denominator in that window -- ``67/136``
+    is, and this function returns it. It is the minimal denominator with
+    workable margin: ``zeta(67/136, 0) = 6.29e-6`` against
+    ``zeta(100/203, 0) = 2.71e-5``, so ``67/136`` would force both a tenfold
+    smaller ``eta_0`` and sharper rational bounds, for no gain in the theorem.
+    """
+
+    p_, q_ = LEAN_LAMBDA.numerator, LEAN_LAMBDA.denominator
+    # x^q <= 2^-p  and  y^q <= (3/4)^p, cross-multiplied into integers
+    x, y = LEAN_TWO_POW, LEAN_THREE_QUARTER_POW
+    cert_two = x.numerator**q_ * 2**p_ <= x.denominator**q_
+    cert_three = y.numerator**q_ * 4**p_ <= y.denominator**q_ * 3**p_
+    coeff = Fraction(2, 3) * (Fraction(1, 2) - LEAN_ETA_0)
+    zeta_lower = x + coeff * y - 1
+    lam_star = lambda_root(
+        PAIRING + [(3.0 ** -(k + 1), 0.5 * 0.75**k) for k in range(2, 7)]
+    )
+    ideal = lambda_root(IDEAL)
+    smaller = [
+        Fraction(a, b)
+        for b in range(2, LEAN_LAMBDA.denominator)
+        for a in (int(lam_star * b) + 1, int(lam_star * b) + 2)
+        if lam_star < a / b < ideal
+    ]
+    return {
+        "lambda": str(LEAN_LAMBDA),
+        "lambda_float": float(LEAN_LAMBDA),
+        "eta_0": float(LEAN_ETA_0),
+        "cert_two_pow": cert_two,
+        "cert_three_quarter_pow": cert_three,
+        "coefficient": str(coeff),
+        "zeta_lower_bound": float(zeta_lower),
+        "zeta_positive": zeta_lower > 0,
+        "lambda_star_star_published": lam_star,
+        "ideal_root": ideal,
+        "beats_published": float(LEAN_LAMBDA) > lam_star,
+        "below_ideal": float(LEAN_LAMBDA) < ideal,
+        "smaller_denominator_in_window": [str(f) for f in smaller],
+        "smaller_denominator_margins": {str(f): _zeta_at(f) for f in smaller},
+        "chosen_for_margin_not_minimality": bool(smaller),
+        "lean": "Production.zeta2avg_pos, Problems/Juggler/FatePoorProduction.lean",
+    }
+
+
 def classify(
     poor_fractions: list[float],
     rest_poor: dict[str, Any],

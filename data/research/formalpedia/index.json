@@ -33891,11 +33891,11 @@
       "trust": "kernel"
     },
     {
-      "doc": "`\u03b6(100/203) > 0` at `\u03b7\u2080 = 10^{-5}`, by two rational bounds at the 203rd power: `0.710737 \u2264 2^{-100/203}` since `0.710737^{203} \u2264 2^{-100}`, and `0.867868 \u2264 (3/4)^{100/203}` since `0.867868^{203} \u2264 (3/4)^{100}`; then `0.710737 + (49999/150000)(0.867868) = 1.0000205 > 1`. `100/203 = 0.4926108\u2026`, against the true root `\u03bb_ideal = 0.4926579801\u2026` of `2^{-\u03bb} + (1/3)(3/4)^\u03bb = 1`, and above Paper C's published `\u03bb** = 0.4925715447\u2026`, which is what this certificate exists to clear. `100/203` is the smallest-denominator rational in the window `(\u03bb**, \u03bb_ideal)`: `33/67` falls just short of `\u03bb**` and `67/136` leaves only `6.3\u00b710^{-6}` of slack, so this is the cheapest certificate that beats the manuscript's number. The margin `2.05\u00b710^{-5}` is what `\u03b7\u2080 = 10^{-5}` leaves of the `2.71\u00b710^{-5}` available at `\u03b7\u2080 = 0`; break-even is `\u03b7\u2080 = 4.69\u00b710^{-5}`.",
+      "doc": "`\u03b6(100/203) > 0` at `\u03b7\u2080 = 10^{-5}`, by two rational bounds at the 203rd power: `0.710737 \u2264 2^{-100/203}` since `0.710737^{203} \u2264 2^{-100}`, and `0.867868 \u2264 (3/4)^{100/203}` since `0.867868^{203} \u2264 (3/4)^{100}`; then `0.710737 + (49999/150000)(0.867868) = 1.0000205 > 1`. `100/203 = 0.4926108\u2026`, against the true root `\u03bb_ideal = 0.4926579801\u2026` of `2^{-\u03bb} + (1/3)(3/4)^\u03bb = 1`, and above Paper C's published `\u03bb** = 0.4925715447\u2026`, which is what this certificate exists to clear. It is chosen for margin, not minimality: `67/136` also lies in `(\u03bb**, \u03bb_ideal)` and has the smaller denominator, but leaves only `6.3\u00b710^{-6}` of `\u03b6` at `\u03b7\u2080 = 0` against this one's `2.71\u00b710^{-5}`, so it would force both a tenfold smaller `\u03b7\u2080` and sharper rational bounds for no gain in the theorem. (`33/67`, the previous convergent, falls just short of `\u03bb**` outright.) The margin here, `2.05\u00b710^{-5}`, is what `\u03b7\u2080 = 10^{-5}` leaves of that `2.71\u00b710^{-5}`; break-even is `\u03b7\u2080 = 4.69\u00b710^{-5}`. `oe_rest_average.exponent_certificate` re-derives all of it in exact arithmetic.",
       "file": "formal/Problems/Juggler/FatePoorProduction.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 520,
+      "line": 522,
       "module": "Problems.Juggler.FatePoorProduction",
       "name": "zeta2avg_pos",
       "trust": "kernel"
@@ -33905,7 +33905,7 @@
       "file": "formal/Problems/Juggler/FatePoorProduction.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 542,
+      "line": 544,
       "module": "Problems.Juggler.FatePoorProduction",
       "name": "logMass_contagion_averaged",
       "trust": "kernel"
@@ -33915,7 +33915,7 @@
       "file": "formal/Problems/Juggler/FatePoorProduction.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 559,
+      "line": 561,
       "module": "Problems.Juggler.FatePoorProduction",
       "name": "failures_logMass_averaged",
       "trust": "kernel"
@@ -33925,7 +33925,7 @@
       "file": "formal/Problems/Juggler/FatePoorProduction.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 572,
+      "line": 574,
       "module": "Problems.Juggler.FatePoorProduction",
       "name": "conjecture_of_tao_rate_averaged",
       "trust": "kernel"
@@ -33935,7 +33935,7 @@
       "file": "formal/Problems/Juggler/FatePoorProduction.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 580,
+      "line": 582,
       "module": "Problems.Juggler.FatePoorProduction",
       "name": "conjecture_of_cylinder_bound_averaged",
       "trust": "kernel"
@@ -93207,7 +93207,7 @@
       "ledger": [
         {
           "id": "J-tao-rate-implies-conjecture",
-          "statement": "Theorem A of the Tao-reduction note. If for some e > 1 \u2212 \u03bb** = 0.5074\u2026 and all sufficiently large y, #{n odd in (y, 2y] : n does not reach 1} \u2264 y (log y)^{\u2212e}, then every positive integer reaches 1. Proof: every failure lies in the E-tree of an odd failure (forward closure), each E-tree level has log-mass \u2264 2/n\u2080 and at most 1 + log\u2082 log x levels meet [1, x], so the log-count of the failure set is \u226a (log x)^{1\u2212e} log log x, contradicting fate contagion (J-fate-log-density) for any \u03bb \u2208 (1 \u2212 e, \u03bb**). The E-tree bound, the dyadic sum and the contradiction given a contagion lower bound K (log x)^\u03bb are Lean (tao_rate_implies_conjecture in FateTaoReduction.lean); the contagion bound itself (Theorem 5.3) stays a human proof, so this row is not Lean-verified. The same holds for the hypothesis stated over all n in (y, 2y], and in logarithmic form it is Corollary 4.5 of the fate note. A Tao-type almost-all theorem with the bounded target [1, N\u2080] and rate (log y)^{\u22120.53} would therefore prove the Juggler conjecture; for the Collatz map the analogous implication fails (thin preimage trees). Not a halt theorem: the hypothesis is not proved.",
+          "statement": "Theorem A of the Tao-reduction note. If for some e > 1 \u2212 \u03bb** = 0.5074\u2026 and all sufficiently large y, #{n odd in (y, 2y] : n does not reach 1} \u2264 y (log y)^{\u2212e}, then every positive integer reaches 1. Proof: every failure lies in the E-tree of an odd failure (forward closure), each E-tree level has log-mass \u2264 2/n\u2080 and at most 1 + log\u2082 log x levels meet [1, x], so the log-count of the failure set is \u226a (log x)^{1\u2212e} log log x, contradicting fate contagion (J-fate-log-density) for any \u03bb \u2208 (1 \u2212 e, \u03bb**). The E-tree bound, the dyadic sum and the contradiction given a contagion lower bound K (log x)^\u03bb are Lean (tao_rate_implies_conjecture in FateTaoReduction.lean); the contagion bound itself (Theorem 5.3) stays a human proof, so this row is not Lean-verified. The same holds for the hypothesis stated over all n in (y, 2y], and in logarithmic form it is Corollary 4.5 of the fate note. A Tao-type almost-all theorem with the bounded target [1, N\u2080] and rate (log y)^{\u22120.53} would therefore prove the Juggler conjecture; for the Collatz map the analogous implication fails (thin preimage trees). Not a halt theorem: the hypothesis is not proved. The contagion hypothesis is discharged unconditionally at e > 103/203 = 0.50739 by Production.conjecture_of_tao_rate_averaged (J-oe-averaged-two-productions-reach-the-depth-two-ceiling), which is below Paper C's conditional 0.51.",
           "tag": "EXACT \u2014 HUMAN PROOF"
         }
       ]

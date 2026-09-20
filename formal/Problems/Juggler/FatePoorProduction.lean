@@ -512,11 +512,13 @@ theorem contagion_averaged {A : ℕ → Prop} (hA : BackwardClosed A) {a : ℕ} 
 
 `100/203 = 0.4926108…`, against the true root `λ_ideal = 0.4926579801…` of
 `2^{-λ} + (1/3)(3/4)^λ = 1`, and above Paper C's published `λ** = 0.4925715447…`, which is what
-this certificate exists to clear. `100/203` is the smallest-denominator rational in the window
-`(λ**, λ_ideal)`: `33/67` falls just short of `λ**` and `67/136` leaves only `6.3·10^{-6}` of
-slack, so this is the cheapest certificate that beats the manuscript's number. The margin
-`2.05·10^{-5}` is what `η₀ = 10^{-5}` leaves of the `2.71·10^{-5}` available at `η₀ = 0`;
-break-even is `η₀ = 4.69·10^{-5}`. -/
+this certificate exists to clear. It is chosen for margin, not minimality: `67/136` also lies
+in `(λ**, λ_ideal)` and has the smaller denominator, but leaves only `6.3·10^{-6}` of `ζ` at
+`η₀ = 0` against this one's `2.71·10^{-5}`, so it would force both a tenfold smaller `η₀` and
+sharper rational bounds for no gain in the theorem. (`33/67`, the previous convergent, falls
+just short of `λ**` outright.) The margin here, `2.05·10^{-5}`, is what `η₀ = 10^{-5}` leaves
+of that `2.71·10^{-5}`; break-even is `η₀ = 4.69·10^{-5}`.
+`oe_rest_average.exponent_certificate` re-derives all of it in exact arithmetic. -/
 theorem zeta2avg_pos :
     0 < ∑ i, coef2avg (1 / 100000) i * rate2 i ^ ((100 : ℝ) / 203) - 1 := by
   rw [Fin.sum_univ_two]
