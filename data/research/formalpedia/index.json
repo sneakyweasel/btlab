@@ -32234,11 +32234,21 @@
       "trust": "kernel"
     },
     {
+      "doc": "**(F3) of the note.** `\u03b5_m H_m \u2264 0.6769` for `m \u2265 10^6`: the total drift of the fiber's step, `\u03b7_m H_m`, is bounded by an absolute constant well under one. Paper C's own form of this carries `1.02 m^{-1/3}` for the step gap and lands at `0.6903`; Lean's `upper_step_le` gives the sharper `\u03b5_m = m^{-1/3}`, so the constant here is smaller and the note's `3.77` keeps room. It is the reason the block lock's `q/H` term has a bounded coefficient at all: without it, `q \u03b7_m H_m` could grow with `m`.",
+      "file": "formal/Problems/Juggler/FateFiberLock.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 64,
+      "module": "Problems.Juggler.FateFiberLock",
+      "name": "eps_mul_Hlen_le",
+      "trust": "kernel"
+    },
+    {
       "doc": "**Dirichlet's approximation theorem, reduced.** For every real `\u03be` and `n \u2265 1` there is a fraction `p/q` in lowest terms with `1 \u2264 q \u2264 n` and `|q \u03be - p| \u2264 1/(n+1)`. Mathlib's `Real.exists_nat_abs_mul_sub_round_le` supplies `q` and `p = round (q \u03be)` without the coprimality, and `block_lock` needs it, since `gcd(p,q) = 1` is what makes the `q` points `y + i p/q` a full `1/q`-grid rather than a coarser one. Dividing through by `g = gcd(p,q)` costs nothing: `q/g \u2264 q` and `|(q/g) \u03be - p/g| = |q \u03be - p| / g \u2264 |q \u03be - p|`, so both sides of the conclusion only improve. The division is done multiplicatively, through the witnesses of `g \u2223 q` and `g \u2223 p`, to keep integer-division casts out of it.",
       "file": "formal/Problems/Juggler/FateFiberLock.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 65,
+      "line": 107,
       "module": "Problems.Juggler.FateFiberLock",
       "name": "exists_coprime_approx",
       "trust": "kernel"
@@ -32248,9 +32258,19 @@
       "file": "formal/Problems/Juggler/FateFiberLock.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 114,
+      "line": 156,
       "module": "Problems.Juggler.FateFiberLock",
       "name": "fiber_block_lock",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Lemma 2 (lock).** A fiber whose parity share misses `1/2` by `\u03b7\u2080` or more has `A_m` within `32/(\u03b7\u2080 H_m)` of a rational with denominator at most `3.77/\u03b7\u2080`. The note's proof, with Dirichlet in place of the continued fractions it first used: take `\u03b8 = \u03b7\u2080/16` and `H\u2080 = \u230a\u03b8 H_m\u230b`, get `q \u2264 H\u2080` and `\u2016q A_m\u2016 \u2264 1/(H\u2080+1)` from `exists_coprime_approx` (which also supplies the coprimality `block_lock` wants), and feed them to `fiber_block_lock`. Of the three terms there, `4\u03c1H \u2264 128/\u03b7\u2080` is at most `\u03b7\u2080H/10` exactly when `H_m \u2265 1280/\u03b7\u2080\u00b2`, and `4q\u03b5_mH + q \u2264 3.71q` by (F3), which is at most `0.232 \u03b7\u2080 H` because `q \u2264 \u03b8H`. What is left is `0.668 \u03b7\u2080 \u2264 5/(2q)`.",
+      "file": "formal/Problems/Juggler/FateFiberLock.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 184,
+      "module": "Problems.Juggler.FateFiberLock",
+      "name": "fiber_lock",
       "trust": "kernel"
     },
     {
@@ -92572,7 +92592,7 @@
       ]
     },
     "Problems.Juggler.FateFiberLock": {
-      "declarations": 3,
+      "declarations": 5,
       "file": "formal/Problems/Juggler/FateFiberLock.lean",
       "imports": [
         "Problems.Juggler.FateBlockLock",
@@ -94844,13 +94864,13 @@
     }
   },
   "totals": {
-    "declarations": 7006,
+    "declarations": 7008,
     "declarations_with_a_ledger_row": 4777,
     "ledger_rows_naming_a_file": 452,
     "modules": 312,
     "trust": {
       "compiler": 56,
-      "kernel": 6950
+      "kernel": 6952
     }
   }
 }
