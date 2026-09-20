@@ -19,6 +19,23 @@ from pathlib import Path
 
 import pytest
 
+#: Measured 2026-09-20: 744 s for this file alone, on an otherwise idle machine, against
+#: 57 s for the next compute-bound file in the suite. It is one file of 648 and it cost
+#: more than the following nine put together. Under `pytest -n auto --dist loadfile` it is
+#: the file every other worker waits on: eleven finished while this one ran by itself.
+#:
+#: It earns the marker on the marker's own terms -- "exhaustive census, million-range
+#: identity". The seven heaviest scan real ranges: 200002 at
+#: test_stalling_depths_have_density_beta_star, 20000, 8030, 4001 beside them.
+#:
+#: The marker is at FILE scope because the cost is spread, not concentrated. Deselecting
+#: those seven still left the file running past 600 s, so there is no small set to trim
+#: and no narrower marker that would buy anything.
+#:
+#: This does NOT speed up CI, which passes --runslow and so runs the file anyway. What it
+#: buys is the default local `pytest`, where 744 s of a developer's wait becomes opt-in.
+pytestmark = pytest.mark.slow
+
 BETA_ = math.log(2.0) / math.log(3.0)
 
 from research.juggler_sequence import paper_b_prefix_count as B
