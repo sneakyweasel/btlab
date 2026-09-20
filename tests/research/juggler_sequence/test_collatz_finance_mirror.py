@@ -13,6 +13,9 @@ import pytest
 from mpmath import exp, mp, mpf, log
 
 from research.juggler_sequence.collatz_finance_mirror import (
+    A355512_HEAD,
+    a355512,
+    convergent_cycle_lengths,
     BARINA_LENGTH,
     CLASS_MIRROR,
     ELIAHOU_GENERATORS,
@@ -272,3 +275,46 @@ def test_committed_artifact_records_the_mirror_and_its_limits() -> None:
     assert w["integer_identities_hold"] is True
     assert w["effective"]["sup_hug_average_p_ge_100"] < HERCHER_THEOREM_27
     assert all(r["violations"] == 0 for r in w["effective"]["orbit_prefix_checks"].values())
+
+
+def test_convergent_cycle_lengths_keep_the_two_conventions_apart() -> None:
+    """The laboratory's period is the denominator q; A355512 is p + q. They differ by p.
+
+    This is the trap the test exists for: a period quoted from the literature has to be read
+    in its own convention. 17026679261 circulates as a cycle-length bound and is a p + q, so
+    it is NOT commensurable with the q periods used here.
+    """
+    rows = convergent_cycle_lengths(30)
+    qs = {r["shortcut_period"] for r in rows}
+    sums = {r["unaccelerated_length"] for r in rows}
+
+    # the two conventions agree only on the degenerate head, and separate everywhere after
+    assert sorted(qs & sums) == [1, 2, 3]
+
+    # every laboratory anchor above that head is a DENOMINATOR, never a sum
+    for period in (19, 84, 1054, 301994, 17087915, 103768467013):
+        assert period in qs, period
+        assert period not in sums, period
+
+    # 11 and 569 are leftovers but not convergent denominators -- they are semiconvergent,
+    # which is why the leftover list is not A005664 (see juggler_oeis_neighbourhood)
+    for semi in (11, 569):
+        assert semi not in qs and semi not in sums, semi
+
+    # the circulating figure is the other way round
+    assert 17026679261 in sums
+    assert 17026679261 not in qs
+
+    # and the two conventions differ by exactly the odd-step count
+    for r in rows:
+        assert r["unaccelerated_length"] - r["shortcut_period"] == r["odd_steps"]
+
+
+def test_a355512_matches_the_stored_sequence() -> None:
+    """Our convergent sums are OEIS A355512 once the degenerate convergent is dropped."""
+    seq = a355512(30)
+    assert seq[: len(A355512_HEAD)] == list(A355512_HEAD)
+    # the shift is exactly one: the degenerate 0/1 has no OEIS counterpart
+    full = [r["unaccelerated_length"] for r in convergent_cycle_lengths(30)]
+    assert full[0] == 1
+    assert full[1:][: len(A355512_HEAD)] == list(A355512_HEAD)

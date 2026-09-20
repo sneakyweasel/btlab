@@ -286,22 +286,40 @@ at floor \(2^{40}\) (least period 17087915, on the lattice
 \(17{,}026{,}679{,}261\) is checkable here once the source is in hand.
 
 
-### The circulating bound, located
+### The circulating bound, located — and it is in the other convention
 
 The figure \(17{,}026{,}679{,}261\) is not attributable from here, but it is
-now **structurally identified**, which is better than an attribution:
+**structurally identified**, and the identification carries a correction to
+the first version of this section.
 
 \[
 17{,}026{,}679{,}261 \;=\; 6{,}586{,}818{,}670 + 10{,}439{,}860{,}591,
 \]
 
-the numerator plus denominator of a convergent of \(\log 2/\log 3\). A
-cycle's length is its odd-step count plus its even-step count, so \(p+q\)
-over the convergents *is* the sequence of convergent-derived candidate
-cycle lengths — which is exactly how Eliahou 1993 produces 17087915, itself
-the denominator of the convergent \(10781274/17087915\) in the same table.
-The number is therefore a genuine object of that machinery and was never a
-search artefact. Which paper first stated it remains unsettled.
+the numerator plus denominator of a convergent of \(\log 2/\log 3\). The
+first version read that as "the cycle length", and that was wrong, because
+**there are two conventions and the laboratory uses the other one.**
+
+In the *shortcut* map every step halves, so a cycle with \(o\) odd steps and
+length \(K\) has \(3^o\approx 2^K\), i.e. \(o/K\approx\log 2/\log 3\): the
+period is the **denominator** \(q\). Every anchor here is such a \(q\) —
+Eliahou 1993's 17087915, the leftovers 19, 84, 1054, 301994, and the floor
+table's 103768467013. In the *unaccelerated* map an odd step does not halve,
+so a cycle there has length \(o+h = p+q\); that sum is A355512. The two
+differ by exactly \(p\), the odd-step count, and they coincide only on the
+degenerate head \(\{1,2,3\}\).
+
+So \(17{,}026{,}679{,}261\) is a \(p+q\) and is **not commensurable** with
+this laboratory's \(q\) periods without conversion. It is a genuine object
+of the convergent machinery and was never a search artefact; which paper
+first stated it, and in which convention it was meant, both remain
+unsettled.
+
+`convergent_cycle_lengths` in `collatz_finance_mirror` now returns both
+readings side by side for each convergent, and a test asserts the two sets
+meet only at \(\{1,2,3\}\) — so a period imported from the literature has to
+be placed in its convention before it is compared with anything here.
+
 
 That sequence is catalogued: **A355512**, *sum of numerator and denominator
 in the convergents of the approximation of \(\log(2)/\log(3)\)*. The

@@ -489,6 +489,51 @@ def convergent_sides(terms: int = 22, exact_below: int = 2 * 10**7) -> list[dict
     return rows
 
 
+#: OEIS A355512, offset 1: the sum of numerator and denominator over the convergents of
+#: ``log 2 / log 3``. Its first term is the sum at the convergent ``1/1``; the degenerate
+#: ``0/1`` that ``convergent_cycle_lengths`` emits first has no OEIS counterpart, which is
+#: the whole of the index shift between the two.
+A355512_HEAD = (2, 3, 5, 13, 31, 106, 137, 791, 1719, 40328, 82375, 205078, 287453, 492531)
+
+
+def convergent_cycle_lengths(terms: int = 30) -> list[dict[str, Any]]:
+    """Both cycle-length conventions on each convergent ``p/q`` of ``log 2 / log 3``.
+
+    **This laboratory works in the shortcut map**, where every step halves: a cycle with ``o``
+    odd steps and length ``K`` satisfies ``3^o ~ 2^K``, so ``o/K ~ log 2 / log 3`` and the period
+    is the **denominator** ``q``. Eliahou 1993's ``17087915`` is such a ``q``, as are the
+    leftovers ``3, 19, 84, 1054, 301994`` and the ``103768467013`` of the floor table.
+
+    **The unaccelerated map does not halve on an odd step**, so a cycle there has length
+    ``o + h = p + q``. That sum over the convergents is OEIS **A355512**, and it is a different
+    quantity from the period above: the two differ by exactly ``p``, the odd-step count. A period
+    quoted from the literature has to be read in the convention it was written in before it is
+    compared with anything here -- ``17026679261``, which circulates as a cycle-length bound, is a
+    ``p + q`` and so is **not** commensurable with this laboratory's ``q`` periods.
+    """
+    a = continued_fraction(terms)
+    p0, q0, p1, q1 = 0, 1, 1, 0
+    rows: list[dict[str, Any]] = []
+    for ai in a:
+        p0, p1 = p1, ai * p1 + p0
+        q0, q1 = q1, ai * q1 + q0
+        if q1 == 0:
+            continue
+        rows.append({
+            "p": p1,
+            "q": q1,
+            "odd_steps": p1,
+            "shortcut_period": q1,
+            "unaccelerated_length": p1 + q1,
+        })
+    return rows
+
+
+def a355512(terms: int = 30) -> list[int]:
+    """OEIS A355512 as this laboratory computes it, with the degenerate convergent dropped."""
+    return [r["unaccelerated_length"] for r in convergent_cycle_lengths(terms)][1:]
+
+
 # ---------------------------------------------------------------------------------------------
 # The three-gap walk
 # ---------------------------------------------------------------------------------------------
