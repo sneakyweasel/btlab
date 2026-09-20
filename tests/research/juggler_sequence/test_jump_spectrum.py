@@ -404,3 +404,51 @@ def test_the_literature_reading_is_not_independent() -> None:
     assert "priority" in section
     assert "none of which have been read here" in section
     assert "should be called new" in section
+
+
+def test_the_survivor_rate_is_lagarias_1985_theorem_d() -> None:
+    """This cluster's theta IS Lagarias's eta, and the link is one line.
+
+    Lagarias 1985, Theorem D, states 1 - F(k) <= 2^(-eta k) with
+    eta = 1 - H(theta_L), H the binary entropy and theta_L = (log_2 3)^(-1),
+    which is our beta. Our survivor rate is theta = beta^(-beta)
+    (1-beta)^(beta-1) / 2. These are the same number, not numerically but
+    algebraically:
+
+        2^(-eta) = 2^(H(beta) - 1)
+                 = beta^(-beta) (1-beta)^(-(1-beta)) / 2
+                 = beta^(-beta) (1-beta)^(beta-1) / 2
+                 = theta.
+
+    Checked here at 50 digits, where the difference is exactly zero. So the
+    laboratory's headline constant 0.9659065532 has been in print since 1985,
+    and `neverNegCount_div_pow_le_theta` is Theorem D's upper half.
+
+    The same rescaling explains Hikawa's weight-basis constants: gamma =
+    H(beta)/beta and c = eta/beta, so his 1.5056 and 0.0793 are Lagarias's eta
+    divided by beta and his Section 6 is an independent proof of the same
+    rate. Kontorovich-Lagarias 2009 quote it as O(2^(0.94995 k)), and
+    0.94995 is H(beta) = log_2(2 theta).
+
+    WHAT THIS DOES NOT TOUCH: the prefactor. No source read states an
+    oscillating or almost-periodic prefactor in frac(d beta), an amplitude, or
+    anything equivalent to the jump spectrum. The rate is Lagarias's, the
+    d^(-3/2) is Hikawa's Conjecture 7.1, and what is this laboratory's is that
+    the prefactor exists, oscillates on the rotation orbit, and is computable.
+    """
+    from mpmath import mp, mpf, log, power
+
+    with mp.workdps(50):
+        beta = log(2) / log(3)
+        entropy = -(beta * log(beta, 2) + (1 - beta) * log(1 - beta, 2))
+        eta = 1 - entropy
+
+        theta = power(beta, -beta) * power(1 - beta, beta - 1) / 2
+        assert abs(theta - power(2, -eta)) < mpf(10) ** -45
+
+        # the published decimals, each to the digits the source prints
+        assert abs(eta - mpf("0.050044472811669365186")) < mpf(10) ** -20
+        assert abs(theta - mpf("0.9659065532334377236055")) < mpf(10) ** -20
+        assert abs(entropy / beta - mpf("1.5056438879463007943")) < mpf(10) ** -18
+        assert abs(eta / beta - mpf("0.079318612774855387135")) < mpf(10) ** -20
+        assert abs(log(2 * theta, 2) - mpf("0.9499555271883306348")) < mpf(10) ** -18
