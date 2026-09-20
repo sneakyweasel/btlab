@@ -1,5 +1,43 @@
 # Research journal
 
+## 2026-09-20 -- the OEIS factorisation sequences, and the witness has a name
+
+Philippe asked me to read the OEIS pages the MathWorld entry cites. I cannot: `oeis.org`
+is blocked by this environment's egress policy, the proxy returning 403 on the CONNECT
+tunnel, exactly as `mathworld.wolfram.com` was. The laboratory has 17 cached OEIS registry
+entries and none of these nine is among them. So I did the part that does not need the
+page: re-derived every quoted term from the definition.
+
+- **Six of seven reproduce exactly** -- A000225, A114475, A046051, A085724, A049479,
+  A005420 -- computed with Miller-Rabin and Pollard rho, since trial division on `M_83`
+  does not terminate. The seventh, A034887, looked like a mismatch and was **my** offset
+  error: the sequence is indexed from `n = 1`, and with that offset it matches all sixteen
+  quoted terms. Worth recording as a caution about checking my own indexing before
+  doubting a source.
+- **MathWorld's formula (2) verified**: `D(M_n) = floor(n log10 2) + 1` for `1 <= n < 400`,
+  and `len(M_n) = len(2^n)` over the same range, since `2^n` is never a power of ten. And
+  A114475 is that formula at `n = 10^k`, which is why its terms spell out `log10 2`.
+- **The finding: my squarefreeness witness is a named exceptional index.** The cyclotomic
+  factorisation is `2^n - 1 = prod_{d | n} Phi_d(2)`, verified to `n = 12`. Now
+  `Phi_2(2) = 3` and `Phi_6(2) = 2^2 - 2 + 1 = 3` are **the same prime** -- the unique
+  collision in the range -- so `M_6 = 1 * 3 * 7 * 3 = 63 = 3^2 * 7`. That one coincidence
+  does two things at once: it kills the primitive prime divisor at `n = 6`, which is
+  **Bang's only composite exception** (Bang 1886, the base-2 case of Zsigmondy: `2^n - 1`
+  has a primitive prime divisor for every `n` except `1` and `6` -- exhibited here through
+  `n = 14`, and the empty-primitive indices come out exactly `[1, 6]`), and it creates the
+  square. So yesterday's `a = 6` witness for "squarefreeness already fails" is not an
+  arbitrary composite; it is the named exception, for the same reason.
+- **And the negative use is the one that matters for cycles.** Bang and Zsigmondy govern
+  `a^n - b^n` with ONE moving exponent. The cycle gap `3^o - 2^K` moves two independently
+  and is not a Cunningham number. That is the precise, citable reason classical
+  primitive-divisor theory does not reach the gap -- where this laboratory had only the
+  observation that it does not, and no name for why. Registry entry
+  `zsigmondy-1892-primitive-divisors`. Neither Bang, nor Zsigmondy, nor Cunningham appeared
+  anywhere in the repository before today; the running prime fan-out has a direction on
+  exactly this question and was searching without the vocabulary.
+- `J-repunit-floor-power-is-closed-form` extended again; one new literature entry; one new
+  test. No bound moves.
+
 ## 2026-09-20 -- the Mersenne page, read properly, and what it changed
 
 Philippe sent the full MathWorld Mersenne entry after the egress proxy blocked it. Four
