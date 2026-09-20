@@ -58,6 +58,25 @@
       "consequence": "the cycle gap 3^o - 2^K is NOT a Cunningham number -- two bases and two independently moving exponents -- which is the precise reason classical primitive-divisor theory (Zsigmondy, Bang, Carmichael) does not reach it. A citable reason rather than a guess."
     }
   },
+  "bang": {
+    "cyclotomic_identity": "2^n - 1 = prod over d | n of Phi_d(2)",
+    "cyclotomic_holds": true,
+    "bang": "2^n - 1 has a primitive prime divisor for every n except n = 1 and n = 6",
+    "indices_without_a_primitive_divisor": [
+      1,
+      6
+    ],
+    "bang_matches": true,
+    "the_collision": {
+      "Phi_2(2)": 3,
+      "Phi_6(2)": 3,
+      "M_6": 63,
+      "factorisation": "1 * 3 * 7 * 3 = 3^2 * 7"
+    },
+    "why_it_matters": "the same collision kills the primitive divisor at n = 6 and creates the square, so the squarefreeness witness a = 6 is Bang's named exception",
+    "negative_use": "Bang and Zsigmondy move ONE exponent; the cycle gap 3^o - 2^K moves two and is not a Cunningham number, which is why primitive-divisor theory does not reach it",
+    "citation": "zsigmondy-1892-primitive-divisors"
+  },
   "even_closed_form": {
     "identity": "floor((2^a - 1)^(3/2)) = 2^(3a/2) - 3*2^(a/2 - 1), even a",
     "bits": "1^(a-1) 0 1 0^(a/2 - 1)",

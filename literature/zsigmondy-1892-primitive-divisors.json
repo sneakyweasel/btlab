@@ -1,0 +1,23 @@
+{
+  "id": "zsigmondy-1892-primitive-divisors",
+  "title": "Zur Theorie der Potenzreste",
+  "authors": ["Karl Zsigmondy"],
+  "year": 1892,
+  "identifiers": {
+    "doi": "10.1007/BF01692444"
+  },
+  "url": {
+    "doi": "https://doi.org/10.1007/BF01692444"
+  },
+  "problem_area": "diophantine",
+  "relevant_concepts": [
+    "primitive prime divisors",
+    "cyclotomic factorisation",
+    "Bang's theorem",
+    "a^n - b^n",
+    "Mersenne factorisations"
+  ],
+  "project_relationship": "known",
+  "status": "classical-source",
+  "notes": "Monatshefte fur Mathematik und Physik 3 (1892) 265-284. For coprime a > b >= 1, a^n - b^n has a prime divisor dividing no earlier term, with the finitely many stated exceptions. The base-2 case is earlier and is Bang 1886 (Tidsskrift for Mathematik): 2^n - 1 has a primitive prime divisor for every n except n = 1 and n = 6. Neither original was read here; both statements are standard. USED HERE FOR TWO THINGS, both recorded at docs/problems/juggler_mersenne_floor_power.md. (a) The cyclotomic factorisation 2^n - 1 = prod over d | n of Phi_d(2) has Phi_2(2) = Phi_6(2) = 3, the unique collision in the range, and that single coincidence simultaneously kills the primitive divisor at n = 6 -- Bang's only composite exception -- and creates the square in M_6 = 1 * 3 * 7 * 3 = 63 = 3^2 * 7. So the laboratory's squarefreeness witness at a = 6 is the named exceptional index rather than an arbitrary composite. (b) THE NEGATIVE USE, which is the one that matters for the cycle problem: Bang and Zsigmondy govern a^n - b^n with ONE moving exponent, while the cycle gap 3^o - 2^K has two independently moving exponents and is not a Cunningham number. That is the precise reason classical primitive-divisor theory does not reach the gap, where the laboratory previously recorded only the observation that it does not. Results on a^m - b^n with both exponents free (Bugeaud, Luca and others) are a different and much weaker body of work and no gap constraint is claimed from them here."
+}

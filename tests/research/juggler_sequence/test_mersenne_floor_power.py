@@ -17,6 +17,7 @@ from research.juggler_sequence.mersenne_floor_power import (
     CLASS_MERSENNE,
     JSON_PATH,
     base_two_run_law,
+    bang_and_cyclotomic,
     bit_pattern,
     even_closed_form,
     floor_power,
@@ -25,6 +26,7 @@ from research.juggler_sequence.mersenne_floor_power import (
     primality_is_decorative,
     repunit_beatty_multiplier,
     numerology_kills,
+    phi_at_two,
     repunit_closed_form,
     run_closed_form,
     squarefree_is_stronger_than_needed,
@@ -128,6 +130,18 @@ def is_squarefree_ref(m: int) -> bool:
             m //= d
         d += 1
     return True
+
+
+def test_bang_and_the_cyclotomic_collision() -> None:
+    """2^n - 1 = prod Phi_d(2); Phi_2(2) = Phi_6(2) = 3 is why n = 6 is Bang's exception."""
+    data = bang_and_cyclotomic(limit=15)
+    assert data["cyclotomic_holds"]
+    assert data["bang_matches"]
+    assert data["indices_without_a_primitive_divisor"] == [1, 6]
+    assert phi_at_two(2) == 3 and phi_at_two(6) == 3
+    assert phi_at_two(1) * phi_at_two(2) * phi_at_two(3) * phi_at_two(6) == mersenne(6) == 63
+    # the collision is unique in the range: no other pair of divisors of a common n collides
+    assert [d for d in range(1, 20) if phi_at_two(d) == 3] == [2, 6]
 
 
 def test_the_two_coincidences_are_killed() -> None:

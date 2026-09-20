@@ -315,6 +315,69 @@ def numerology_kills() -> dict[str, Any]:
     }
 
 
+def phi_at_two(d: int) -> int:
+    """`Phi_d(2)`, by dividing the cyclotomic product out of `2^d - 1`."""
+    value = 2**d - 1
+    for e in range(1, d):
+        if d % e == 0:
+            value //= phi_at_two(e)
+    return value
+
+
+def bang_and_cyclotomic(limit: int = 15) -> dict[str, Any]:
+    """Bang's theorem, and why the squarefreeness witness at a = 6 is the named exception.
+
+    `2^n - 1 = prod_{d | n} Phi_d(2)`, and Bang 1886 -- the base-2 case of Zsigmondy -- says
+    `2^n - 1` has a prime divisor dividing no earlier term for every `n` except `n = 1` and
+    `n = 6`. The reason for the exception is a single cyclotomic collision:
+    `Phi_2(2) = 3` and `Phi_6(2) = 2^2 - 2 + 1 = 3` are the same prime, so
+    `M_6 = 1 * 3 * 7 * 3 = 63 = 3^2 * 7`. That one coincidence simultaneously kills the primitive
+    divisor AND creates the square, so `a = 6` is the named exceptional index and not an arbitrary
+    composite. The negative use matters more: Bang and Zsigmondy move ONE exponent, while the cycle
+    gap `3^o - 2^K` moves two, which is the precise reason primitive-divisor theory does not reach
+    it.
+    """
+    def factor(m: int) -> dict[int, int]:
+        out: dict[int, int] = {}
+        d = 2
+        while d * d <= m:
+            while m % d == 0:
+                out[d] = out.get(d, 0) + 1
+                m //= d
+            d += 1
+        if m > 1:
+            out[m] = out.get(m, 0) + 1
+        return out
+
+    seen: set[int] = set()
+    no_primitive = []
+    product_ok = True
+    for n in range(1, limit):
+        primes = set(factor(mersenne(n))) if n > 1 else set()
+        if not primes - seen:
+            no_primitive.append(n)
+        seen |= primes
+        product = 1
+        for d in range(1, n + 1):
+            if n % d == 0:
+                product *= phi_at_two(d)
+        product_ok = product_ok and product == mersenne(n)
+    return {
+        "cyclotomic_identity": "2^n - 1 = prod over d | n of Phi_d(2)",
+        "cyclotomic_holds": product_ok,
+        "bang": "2^n - 1 has a primitive prime divisor for every n except n = 1 and n = 6",
+        "indices_without_a_primitive_divisor": no_primitive,
+        "bang_matches": no_primitive == [1, 6],
+        "the_collision": {"Phi_2(2)": phi_at_two(2), "Phi_6(2)": phi_at_two(6),
+                          "M_6": mersenne(6), "factorisation": "1 * 3 * 7 * 3 = 3^2 * 7"},
+        "why_it_matters": "the same collision kills the primitive divisor at n = 6 and creates the "
+        "square, so the squarefreeness witness a = 6 is Bang's named exception",
+        "negative_use": "Bang and Zsigmondy move ONE exponent; the cycle gap 3^o - 2^K moves two "
+        "and is not a Cunningham number, which is why primitive-divisor theory does not reach it",
+        "citation": "zsigmondy-1892-primitive-divisors",
+    }
+
+
 def probe_payload() -> dict[str, Any]:
     even = even_closed_form()
     odd = odd_beatty_form()
@@ -323,16 +386,19 @@ def probe_payload() -> dict[str, Any]:
     run = run_closed_form(exponents=tuple(range(1, 200)))
     squarefree = squarefree_is_stronger_than_needed()
     kills = numerology_kills()
+    bang = bang_and_cyclotomic()
     green = (
         even["holds"] and odd["holds"] and base2["run_is_trailing_ones"]
         and base2["landing_holds"] and base2["continuation_holds"]
         and prime["attained_at_composite_a"] and prime["mersenne_is_never_a_perfect_power"]
         and run["holds"] and kills["fermat_polynomial_coefficients"]["recurrence_reproduces_mersenne"]
+        and bang["bang_matches"] and bang["cyclotomic_holds"]
     )
     return {
         "run_closed_form": run,
         "squarefree_versus_catalan": squarefree,
         "numerology": kills,
+        "bang": bang,
         "even_closed_form": even,
         "odd_beatty_form": odd,
         "base_two_run_law": base2,
@@ -386,6 +452,18 @@ def render_markdown(data: dict[str, Any]) -> str:
         f"- squarefreeness already fails at "
         f"`{data['squarefree_versus_catalan']['squarefreeness_already_fails_at']}`",
         f"- {data['squarefree_versus_catalan']['conclusion']}",
+        "",
+        "## Bang's theorem, and why a = 6 is the named exception",
+        "",
+        f"- `{data['bang']['cyclotomic_identity']}`: `{data['bang']['cyclotomic_holds']}`",
+        f"- Bang: {data['bang']['bang']} -- indices with no primitive divisor here: "
+        f"`{data['bang']['indices_without_a_primitive_divisor']}`, as stated: "
+        f"`{data['bang']['bang_matches']}`",
+        f"- the collision: `Phi_2(2) = {data['bang']['the_collision']['Phi_2(2)']}` and "
+        f"`Phi_6(2) = {data['bang']['the_collision']['Phi_6(2)']}`, so "
+        f"`M_6 = {data['bang']['the_collision']['factorisation']}`",
+        f"- {data['bang']['why_it_matters']}",
+        f"- {data['bang']['negative_use']}",
         "",
         "## Two coincidences that are not content",
         "",
