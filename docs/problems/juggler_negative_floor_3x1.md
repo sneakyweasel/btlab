@@ -131,6 +131,63 @@ Pushing the floor. \(2^{40}\) is minutes; \(2^{60}\) and \(2^{68}\) —
 the latter giving the \(72448885240\) of the conditional table — need
 sieved GPU verification and are a separate project.
 
+## Accelerating the verifier, measured — and a speedup claim withdrawn
+
+Pushing the floor further is a compute problem, and this section records what
+the compute actually costs, because an earlier estimate in this laboratory
+was wrong by a factor of thirty.
+
+**Measured on four cores at 2.8 GHz.** The plain verifier runs 30.5 M odd
+starts per second per process. The range \([2^{40}, 2^{44})\) is
+\(8.25\cdot 10^{12}\) odd starts, so brute force is **18.8 hours** on four
+processes.
+
+**The sieve is unconditional on this side.** For a start \(y\) whose first
+\(k\) steps have word \(w\) with \(a\) odd letters,
+\(2^k y_k = 3^a y - C(w)\) with \(C \ge 0\), because the odd step
+\((3y-1)/2\) *subtracts*. Hence \(y_k < y \iff y(3^a - 2^k) < C\), and when
+the prefix contracts (\(3^a < 2^k\)) the left side is negative while
+\(C \ge 0\) — so the drop holds for **every** member of the class, with no
+threshold at all. That is `neg_prefix_noncontracting`, and it is why the
+sieve is clean here and needs a threshold argument on the Collatz side.
+Only prefix-noncontracting classes need walking. At \(k = 24\) the builder
+finds **286581** of them, which is exactly **A076227(24)** — an independent
+check of the builder against the sequence identified in
+[the OEIS neighbourhood](juggler_oeis_neighbourhood.md).
+
+**The speedup is 2.7×, not 58×, and the earlier claim is withdrawn.** The
+class density is \(286581/2^{24} = 1.7\%\), and a note elsewhere in this
+laboratory inferred a ~58× speedup from that ratio. That inference is
+wrong: it equates class density with *work* density. The skipped classes
+are precisely the ones that drop within a few iterations, so skipping them
+saves almost nothing; essentially all the time sits in the 3.4 % that
+survive. Measured, the sieve alone gives **2.7×**.
+
+**The jump table is what pays.** For \(r \bmod 2^J\), \(J\) steps send
+\(y = q2^J + r\) to \(q\,3^{a(r)} + t(r)\), one multiply-add for \(J\)
+iterations — the jump function of A368877 used as an accelerator. At
+\(J = 16\) on top of the \(k = 24\) sieve the total is **7.1×**, putting
+\([2^{40}, 2^{44})\) at **4.9 hours** on four cores.
+
+**Validation.** Against the plain verifier on four disjoint already-verified
+windows: `fails` and `new_cycles` agree everywhere (0 and 0). Two caveats,
+both recorded rather than smoothed over. The reported peak is a maximum over
+*walked* starts only, so it is not comparable with the plain verifier's;
+the skipped starts are bounded analytically instead, since within 24 steps a
+start below \(2^{44}\) cannot exceed \((3/2)^{24}2^{44} < 2^{58}\), far under
+the `unsigned __int128` ceiling. And a jump can carry past a \(v = y\)
+return, so a missed cycle surfaces as a `STEPCAP` — reported, never a silent
+pass — which is why the step cap is raised to 40000 in that variant.
+
+**An attempt that produced nothing.** A chunked run over
+\([2^{40}, 2^{44})\) was launched in the session container on 20 September
+and its workers died before a single chunk completed, so **no range beyond
+\(2^{40}\) is verified here** and the floor and period bound in this dossier
+are unchanged. The three archived artifacts —
+`verify_3x1_sieved.c`, `verify_3x1_jump.c` and `drive_chunked.sh` — are what
+that run used; on a 24-thread machine the same range is roughly fifty
+minutes.
+
 ## Decision
 
 **PROMOTE**. The branch does exactly what the journal asked: the table
