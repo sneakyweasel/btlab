@@ -38,7 +38,7 @@ import branch_drift as BD  # noqa: E402
 #: acknowledged at +5. Update the sha in the same commit as the reason.
 READ_AT: dict[str, str] = {
     "claude/exponent-floor-3n1-2adic-mvwa96": "dfc45dd3",
-    "claude/latest-progress-summary-s011un": "0ebacb4a",
+    "claude/latest-progress-summary-s011un": "d73565f9",
     "claude/goofy-kare-1a92fd": "8aad2aae",
     "claude/elated-hopper-e20999": "86247b5d",
 }
@@ -261,7 +261,19 @@ ACKNOWLEDGED: dict[str, str] = {
         "1496. What changes is their STATUS -- they rested on Paper C "
         "Proposition 4.4 and its two exponential-sum bounds, and now rest "
         "on nothing. A geometry copy is gated against silent drift in the "
-        "same push."
+        "same push. "
+        "DELTA TO d73565f9: a REFUTATION with a reusable precondition. "
+        "Does the poor-fibre-tail move -- prove an average by discarding "
+        "an exceptional set of finite total 1/m-mass -- transfer to the "
+        "pressure form? No, and negative_knowledge had already said so on "
+        "9 September. What is new is the checkable reason: the technique "
+        "needs the trivial cap on the discarded object to be commensurable "
+        "with the weight the conclusion is stated in. A poor fibre "
+        "contributes at most its own 1/m, so discarding mass epsilon costs "
+        "epsilon; an exceptional scale has trivial cap k^4.8934 against a "
+        "cumulative budget K^1.0195, a gap of 3.8739, and one spike at "
+        "K = k overshoots by k^3.87. Worth carrying because it can be "
+        "checked before the work rather than after."
     ),
 }
 
