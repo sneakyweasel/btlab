@@ -1,5 +1,74 @@
 # Research journal
 
+## 2026-09-20 -- Williams 2026 has the coordinate, and I should have read it first
+
+Philippe supplied the full text of arXiv:2607.01718, Jennifer Williams, *A Coordinate
+System for Collatz Dynamics*, compiled 3 July 2026. I registered it yesterday as NOT
+CONSULTED and flagged it as the highest-value input available. It was. It supersedes the
+Collatz-side framing of this session's bridge work, and the correspondence is exact.
+
+### The dictionary, verified
+
+Every odd `n` has a unique `n + 1 = lambda 2^a 3^b` with `gcd(lambda,6) = 1`, `a >= 1`.
+Checked on odd `n < 2e5` and on the Mersenne rows to `a = 120`:
+
+```text
+her lambda        = my 6-free part of x + 1        (the "conserved quantity")
+her a             = my v_2(x + 1)                  (Hercher Lemma 8's run length)
+her b             = my v_3(x + 1)                  (my "3-adic twin" counter)
+her k = a + b     = my "v_2 + v_3 is a first integral"
+her Theorem 3.6   = "u = x+1 conjugates the odd step to u -> 3u/2"   <- tick-1 core
+her Prop 3.11     = the flow multiplies n+1 by exactly 3/2
+her Cor 3.9       = a - 1 steps to the boundary, i.e. the run length
+her Cor 3.7       = v_2(3n+1) = 1 in the interior
+her Prop 3.10     = the boundary LTE, v_2(3n+1) = 1 + v_2(lambda 3^(b+1) - 1)
+her L_1 row k     = T^j(2^a - 1) = 3^j 2^(a-j) - 1, identical term by term
+her Section 5.1   = column b=0 is Mersenne, b=1 is Thabit
+```
+
+So the thing I called this session's headline -- the `u = x+1` conjugation making the odd
+step exactly `u -> 3u/2` -- is her Theorem 3.6, published two and a half months before I
+derived it. Her Section 1.3.3 even records the `3/2` flow's Flatto and Mahler links as *a
+structural feature rather than a technical tool*, with whether it gives leverage an open
+question: the laboratory's exact position on the Mahler cluster, reached independently.
+
+### What this kills, by citation
+
+The `six-free-invariant` direction of today's prime fan-out **is this paper** -- recorded
+in negative_knowledge.md so it is not proposed again. And her open problem (2) answers the
+`general-exponent-family` direction outright: for `pn + 1` one needs
+`pn + 1 = lambda 2^a p^(b+1) - (p-1)` with `p - 1` a power of two, and `p = 3` is the
+unique case preserving the weight `a + b`. Two of my eight prime directions are settled by
+a paper I had registered and not read.
+
+### What stands
+
+Her paper is pure Collatz. There is no Juggler, no floor-power map, nothing on the
+exponent-floor transport. So the half these rows exist for is untouched:
+`exactRun(n) = v_2(e(n))` and its identification with the kernel-checked `HasPowTwoDepth`;
+the attained floors `2^(2^k)` and `3^(2^k)`; the monochrome fibre; the density contrast
+`floor(N^(2^-k)) - 1` against `floor((N+1)/2^k)`; the Juggler floor-power closed forms
+`floor((2^a-1)^(3/2)) = 2^(3a/2) - 3*2^(a/2-1)` and the odd-`a` Beatty form; the `3x-1`
+verification floor to `2^38` and its period bound `4404167`; and the negative-side window.
+Both ledger rows now carry the priority correction rather than a quiet edit.
+
+### The item that matters more than any of this
+
+Her reference list contains **K. Knight, "Collatz high cycles do not exist", Discrete
+Mathematics 349 (2026) 114812**, described as using Christoffel words to characterise the
+parity vector of a high cycle. That is the laboratory's own machinery on the laboratory's
+own subject -- Paper A is a cycle-word paper, the leftovers 19, 84, 569, 1054 are a
+Christoffel/Sturmian structure, and `J-winkler-sandwich-holds-on-the-laboratory-counts`
+already records the same rotation orbit. A 2026 Discrete Mathematics paper asserting that
+high cycles do not exist may subsume or bound part of Paper A's programme and the `3x-1`
+period bound pushed this morning. Registered as `knight-2026-collatz-high-cycles`, status
+NOT CONSULTED, do not cite until read. **Read it before another cycle branch opens.**
+
+Williams also poses, as her open problem (5), the relationship between Knight's parity
+vectors and her skeleton geometry, and states it has not been investigated. Papers A and B
+are parity-vector papers. That is a question the laboratory is positioned to answer, and it
+is the first thing in three days pointing outward rather than at a re-derivation.
+
 ## 2026-09-20 -- repunit to repunit, which is the right form of the landing statement
 
 One more thing from the A000225 entry text, and it improves a statement I had already
