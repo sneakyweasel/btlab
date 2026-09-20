@@ -37,8 +37,8 @@ import branch_drift as BD  # noqa: E402
 #: latest-progress-summary reached +8 unread on 2026-09-20 after being
 #: acknowledged at +5. Update the sha in the same commit as the reason.
 READ_AT: dict[str, str] = {
-    "claude/exponent-floor-3n1-2adic-mvwa96": "9f0f164b",
-    "claude/latest-progress-summary-s011un": "d73565f9",
+    "claude/exponent-floor-3n1-2adic-mvwa96": "f6fcad27",
+    "claude/latest-progress-summary-s011un": "d471e3ce",
     "claude/goofy-kare-1a92fd": "8aad2aae",
     "claude/elated-hopper-e20999": "86247b5d",
 }
@@ -205,7 +205,17 @@ ACKNOWLEDGED: dict[str, str] = {
         "Beatty complement, so the name is not new to main -- the closed "
         "form tied to the kernel-checked recursion is theirs. Main's side "
         "of the same sweep found what they did not: A186008 and A186009, "
-        "where the boundary mass M_d/2^d is tabulated from 2011."
+        "where the boundary mass M_d/2^d is tabulated from 2011. "
+        "DELTA TO f6fcad27: A355512 wired into the leftover machinery, a "
+        "circulating bound located and a falling-time paper the registry "
+        "had missed. THE CORRECTION MATTERS MORE: an addendum had read "
+        "17026679261 = 6586818670 + 10439860591 as the cycle length of a "
+        "convergent, and that is the wrong convention. In the SHORTCUT "
+        "map every step halves, so a cycle with o odd steps and length K "
+        "has 3^o ~ 2^K and the period is the DENOMINATOR q -- every "
+        "anchor this laboratory uses is such a q, including Eliahou "
+        "1993's 17087915. Same shape as the glide check: a number is "
+        "meaningless until you say which map it counts steps of."
     ),
     "claude/latest-progress-summary-s011un": (
         "PENDING EXTRACTION, and it has GROWN since it was first acknowledged "
@@ -284,7 +294,13 @@ ACKNOWLEDGED: dict[str, str] = {
         "epsilon; an exceptional scale has trivial cap k^4.8934 against a "
         "cumulative budget K^1.0195, a gap of 3.8739, and one spike at "
         "K = k overshoots by k^3.87. Worth carrying because it can be "
-        "checked before the work rather than after."
+        "checked before the work rather than after. "
+        "DELTA TO d471e3ce: there is now a PAPER D on that branch, the "
+        "near-convergent family law written up exactly, with its "
+        "statements renumbered after a Proposition 5 / Corollary 5 "
+        "collision into Lemma 1, Lemma 2, Theorem 3, Theorem 4, "
+        "Proposition 5, Corollary 6, Corollary 7, Open problem 8. Main "
+        "has no Paper D and no row for it."
     ),
 }
 

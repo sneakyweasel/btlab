@@ -90,6 +90,12 @@ def _agrees(literal: str, true: "object") -> bool:
     return abs(value - true) < mpf(10) ** (-places)
 
 
+#: `theorem_ledger.md` is rendered FROM the json, so scanning both would
+#: report every finding twice and make the exception lists look twice as long
+#: as the problem.
+RENDERED = {"theorem_ledger.md"}
+
+
 def _ledger_decimals() -> list[tuple[str, str]]:
     rows = json.loads(LEDGER.read_text(encoding="utf-8"))
     out = []
@@ -99,10 +105,31 @@ def _ledger_decimals() -> list[tuple[str, str]]:
     return out
 
 
+def _manuscript_decimals() -> list[tuple[str, str]]:
+    """The same scan over the prose manuscripts, which face a referee.
+
+    Clean when this was written, on 20 September 2026 -- the only hits in
+    `docs/theory` were the rendered ledger's copies of the four cases already
+    classified below. The gate exists to keep it that way, since a constant
+    mistyped in a manuscript is read by someone who will check it.
+    """
+    out = []
+    for path in sorted((REPO / "docs" / "theory").glob("*.md")):
+        if path.name in RENDERED:
+            continue
+        text = path.read_text(encoding="utf-8")
+        for match in re.finditer(r"(?<![\d.])(\d\.\d{6,}|0\.\d{6,})", text):
+            out.append((match.group(1), path.name))
+    return out
+
+
 def test_ledger_decimals_match_the_constants_they_name() -> None:
-    """A decimal near a named constant must be that constant's digits."""
+    """A decimal near a named constant must be that constant's digits.
+
+    Covers the ledger json and every prose manuscript under `docs/theory`.
+    """
     wrong = []
-    for literal, row_id in _ledger_decimals():
+    for literal, row_id in _ledger_decimals() + _manuscript_decimals():
         if literal in NEAR_MISSES or literal in QUOTED_AS_WRONG:
             continue
         value = mpf(literal)
