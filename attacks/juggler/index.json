@@ -4279,11 +4279,20 @@
       "test": "tests/research/juggler_sequence/test_oe_rest_average.py",
       "dossier": "docs/problems/juggler_oe_rest_average.md",
       "data_dir": "data/research/juggler/oe_rest_average",
-      "lean": [],
+      "lean": [
+        "formal/Problems/Juggler/FateBlockLock.lean",
+        "formal/Problems/Juggler/FateFiberLock.lean",
+        "formal/Problems/Juggler/FateResonanceCount.lean",
+        "formal/Problems/Juggler/FatePoorTail.lean",
+        "formal/Problems/Juggler/FatePoorProduction.lean"
+      ],
       "conjecture": [],
-      "decision": "PARK",
+      "decision": "PROMOTE",
       "ledger_ids": [
         "J-oe-low-share-weight-decays-polynomially",
+        "J-oe-fiber-block-lock",
+        "J-oe-poor-fiber-tail",
+        "J-oe-averaged-two-productions-reach-the-depth-two-ceiling",
         "J-low-share-forces-a-small-order-resonance"
       ],
       "aliases": [],
@@ -5163,7 +5172,9 @@
       "test": "tests/research/juggler_sequence/test_tao_reduction.py",
       "dossier": "docs/problems/juggler_tao_almost_bounded.md",
       "data_dir": "data/research/juggler/tao_reduction",
-      "lean": [],
+      "lean": [
+        "formal/Problems/Juggler/FatePoorProduction.lean"
+      ],
       "conjecture": [],
       "decision": "PROMOTE",
       "ledger_ids": [
@@ -6467,6 +6478,7 @@
         "formal/Problems/Juggler/CubeFiber.lean",
         "formal/Problems/Juggler/FateRecursion.lean",
         "formal/Problems/Juggler/FateFirstLetter.lean",
+        "formal/Problems/Juggler/FateBlockLock.lean",
         "formal/Problems/Juggler/FateSweep.lean",
         "formal/Problems/Juggler/FateSweepMonotone.lean",
         "formal/Problems/Juggler/FateChernoff.lean",
@@ -6517,12 +6529,16 @@
         "formal/Problems/Juggler/CubicRemainderAssembly.lean",
         "formal/Problems/Juggler/FateCylinderCorollary.lean",
         "formal/Problems/Juggler/FateFiberParity.lean",
+        "formal/Problems/Juggler/FateFiberLock.lean",
         "formal/Problems/Juggler/FateThinFibers.lean",
+        "formal/Problems/Juggler/FateResonanceCount.lean",
+        "formal/Problems/Juggler/FatePoorTail.lean",
         "formal/Problems/Juggler/FateBlockAverage.lean",
         "formal/Problems/Juggler/FateShareLaw.lean",
         "formal/Problems/Juggler/FateContagionBound.lean",
         "formal/Problems/Juggler/FateProduction.lean",
         "formal/Problems/Juggler/FateProductionWords.lean",
+        "formal/Problems/Juggler/FatePoorProduction.lean",
         "formal/Problems/Juggler/FateOneSided.lean",
         "formal/Problems/Juggler/FateOneSidedCorollary.lean",
         "formal/Problems/Juggler/FatePressureCorollary.lean",

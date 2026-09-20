@@ -29752,6 +29752,216 @@
       "trust": "kernel"
     },
     {
+      "doc": "A finite set of natural indices confined to `[A, B]` has at most `B - A + 1` elements. The hypothesis `0 \u2264 B - A + 1` covers the empty set, where `B < A` is allowed.",
+      "file": "formal/Problems/Juggler/FateBlockLock.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 69,
+      "module": "Problems.Juggler.FateBlockLock",
+      "name": "card_le_of_bounds",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A finite set of natural indices all `< B` has fewer than `B + 1` elements. The bound is strict, which is what makes the half-count of `gridPoint_half_count` land at `1/2` rather than at `1`.",
+      "file": "formal/Problems/Juggler/FateBlockLock.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 93,
+      "module": "Problems.Juggler.FateBlockLock",
+      "name": "card_lt_of_upper",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A set of natural indices `< q` all bounded below by `A \u2264 q` has at most `q - A` elements.",
+      "file": "formal/Problems/Juggler/FateBlockLock.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 113,
+      "module": "Problems.Juggler.FateBlockLock",
+      "name": "card_le_of_lower",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Monotonicity of a filtered count in its predicate.",
+      "file": "formal/Problems/Juggler/FateBlockLock.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 135,
+      "module": "Problems.Juggler.FateBlockLock",
+      "name": "card_filter_le_card_filter",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Two filtered counts differ by at most the number of indices where the two predicates disagree. This is what converts the grid count into the displaced count in `block_count`.",
+      "file": "formal/Problems/Juggler/FateBlockLock.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 144,
+      "module": "Problems.Juggler.FateBlockLock",
+      "name": "card_filter_abs_sub_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Reindexing a filtered count along a bijection `g : s \u2192 t`.",
+      "file": "formal/Problems/Juggler/FateBlockLock.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 171,
+      "module": "Problems.Juggler.FateBlockLock",
+      "name": "card_filter_reindex",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The residue index of the grid point `c + k/q`: the unique `l < q` with `{c + k/q} = (l + {q c})/q` (`fract_grid`).",
+      "file": "formal/Problems/Juggler/FateBlockLock.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 190,
+      "module": "Problems.Juggler.FateBlockLock",
+      "name": "gridRes",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The residue index is an index of `Finset.range q`.",
+      "file": "formal/Problems/Juggler/FateBlockLock.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 194,
+      "module": "Problems.Juggler.FateBlockLock",
+      "name": "gridRes_lt",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The grid normal form.** `{c + k/q} = (gridRes q c k + {q c})/q`: the fractional parts of the points `c + k/q`, `k \u2208 \u2124`, are exactly the `q` points of the `1/q`-grid translated by `{q c}/q`. This is (1.2) of the note, in the form the two counts below use.",
+      "file": "formal/Problems/Juggler/FateBlockLock.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 204,
+      "module": "Problems.Juggler.FateBlockLock",
+      "name": "fract_grid",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Multiplication by a `p` coprime to `q` permutes the residue indices of the grid: the algebraic half of the note's \"the points `y + i p/q` are a translate of the `1/q`-grid\". The same algebra as `OstrowskiSandwich.residue_mul_bijective`, in a different type: that one permutes `ZMod q`, this one indexes `Finset.range q` through `gridRes`. Read the refutation recorded after it there -- \"the grid-cell reading of the block permutation is false\" -- before reusing either. It does NOT apply here, and the reason is this file's architecture. There the points are `k \u03b8` for an IRRATIONAL `\u03b8 \u2248 p/q`: each sits within `1/q` of a grid point and may fall just below it, so the cells are not permuted. Here the points are the EXACT rational grid `c + i p/q` and `gridRes` is their exact residue index, so the permutation is the honest one. `block_lock` never puts the displacement inside the indexing: the exact grid carries `grid_reindex`, and `e_i` is handled apart by `grid_near_count` and `fract_lt_half_congr`. That separation is what the Ostrowski refutation says is mandatory, so the two records agree rather than conflict.",
+      "file": "formal/Problems/Juggler/FateBlockLock.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 263,
+      "module": "Problems.Juggler.FateBlockLock",
+      "name": "gridRes_mul_inj",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The grid reindexing.** For `gcd(p, q) = 1` the map `i \u21a6 gridRes q c (i p)` is a bijection of `Finset.range q`, so a count over the grid points `c + i p / q` is a count over the plain `1/q`-grid.",
+      "file": "formal/Problems/Juggler/FateBlockLock.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 298,
+      "module": "Problems.Juggler.FateBlockLock",
+      "name": "grid_reindex",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The half count, normal form.** An arc of length `1/2` holds `\u230aq/2\u230b` or `\u2308q/2\u2309` of the `q` points `(l + s)/q`, `l < q`: the count is within `1/2` of `q/2`. This is the first of the note's two elementary counts.",
+      "file": "formal/Problems/Juggler/FateBlockLock.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 314,
+      "module": "Problems.Juggler.FateBlockLock",
+      "name": "gridPoint_half_count",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The points of the circle at which a displacement of size at most `\u03b5` can move the indicator `1[{\u00b7} < 1/2]`: within `\u03b5` of `0` (from either side) or within `\u03b5` of `1/2`.",
+      "file": "formal/Problems/Juggler/FateBlockLock.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 359,
+      "module": "Problems.Juggler.FateBlockLock",
+      "name": "Unstable",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The near count, normal form.** At most `2\u03b5q + 1` of the `q` grid points `(l + s)/q` lie within `\u03b5` of a fixed point of the circle, hence at most `4\u03b5q + 2` lie within `\u03b5` of `0` or of `1/2`. This is the second of the note's two elementary counts.",
+      "file": "formal/Problems/Juggler/FateBlockLock.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 365,
+      "module": "Problems.Juggler.FateBlockLock",
+      "name": "gridPoint_near_count",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The half count.** For any `c` and any `q \u2265 1`, the number of `l < q` with `{c + l/q} < 1/2` is within `1/2` of `q/2`: an arc of length `1/2` holds `\u230aq/2\u230b` or `\u2308q/2\u2309` points of a translate of the `1/q`-grid. Lemma 1 of the note, first elementary count.",
+      "file": "formal/Problems/Juggler/FateBlockLock.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 424,
+      "module": "Problems.Juggler.FateBlockLock",
+      "name": "grid_half_count",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The near count.** At most `4\u03b5q + 2` of the points `{c + l/q}`, `l < q`, lie within `\u03b5` of `0` or of `1/2` on the circle. Lemma 1 of the note, second elementary count.",
+      "file": "formal/Problems/Juggler/FateBlockLock.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 442,
+      "module": "Problems.Juggler.FateBlockLock",
+      "name": "grid_near_count",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A displacement of size at most `\u03b5` does not move the indicator `1[{\u00b7} < 1/2]` at a point that is not `Unstable`. This is the note's \"a perturbation of size at most `\u03b5` changes the indicator only at points within `\u03b5` of `0` or of `1/2`\".",
+      "file": "formal/Problems/Juggler/FateBlockLock.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 462,
+      "module": "Problems.Juggler.FateBlockLock",
+      "name": "fract_lt_half_congr",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The block displacement, (1.2) of the note.** `i` steps in `[a, a + \u03b7]` move `x` by `i a + r` with `0 \u2264 r \u2264 i \u03b7`.",
+      "file": "formal/Problems/Juggler/FateBlockLock.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 488,
+      "module": "Problems.Juggler.FateBlockLock",
+      "name": "span_bounds",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Lemma 1, one block.** On `q` consecutive indices the good count is within `4 (\u03c1 + q\u03b7) q + 5/2` of `q/2`. This is the heart of the note's Lemma 1: the block's points are a translate of the `1/q`-grid displaced by at most `\u03b5 = \u03c1 + q\u03b7`, the grid is split evenly by the arc `[0, 1/2)` up to `1/2` (`gridPoint_half_count`), and at most `4\u03b5q + 2` of the indicators move (`gridPoint_near_count`, `fract_lt_half_congr`).",
+      "file": "formal/Problems/Juggler/FateBlockLock.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 512,
+      "module": "Problems.Juggler.FateBlockLock",
+      "name": "block_count",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The first `b` full blocks: the good count over `[0, bq)` is within `b (4 (\u03c1 + q\u03b7) q + 5/2)` of `bq/2`.",
+      "file": "formal/Problems/Juggler/FateBlockLock.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 607,
+      "module": "Problems.Juggler.FateBlockLock",
+      "name": "block_chain",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Lemma 1 (block lock).** `docs/theory/juggler_oe_poor_fiber_tail_note.md`, (1.1), in the cleared form. If the first `H` steps of `x` lie in `[a, a + \u03b7]` and `a` is within `\u03c1/q` of the rational `p/q` with `gcd(p, q) = 1`, then the number of `j < H` with `{x j} < 1/2` differs from `H/2` by at most `4 (\u03c1 + q\u03b7) H + 5H/(2q) + q`. Dividing by `H` and substituting `\u03c1 = \u2016qa\u2016` gives the note's `|\u03c3 - 1/2| \u2264 4\u2016qa\u2016 + 5/(2q) + q(1 + 4\u03b7H)/H`; that division is left to the caller so that this statement carries no nonzero-denominator side condition and stays true at `H = 0`.",
+      "file": "formal/Problems/Juggler/FateBlockLock.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 655,
+      "module": "Problems.Juggler.FateBlockLock",
+      "name": "block_lock",
+      "trust": "kernel"
+    },
+    {
       "doc": "",
       "file": "formal/Problems/Juggler/FateCertified.lean",
       "kind": "theorem",
@@ -32014,6 +32224,56 @@
       "trust": "kernel"
     },
     {
+      "doc": "The fiber's even-image count, as a count of half-cells. `evenImageCount` is defined by `Nat.sqrt (n^3) % 2 = 0`; `block_lock` counts `Int.fract (x j) < 1/2`. The two agree termwise, by the cell identity.",
+      "file": "formal/Problems/Juggler/FateFiberLock.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 42,
+      "module": "Problems.Juggler.FateFiberLock",
+      "name": "evenImageCount_eq_fract",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**(F3) of the note.** `\u03b5_m H_m \u2264 0.6769` for `m \u2265 10^6`: the total drift of the fiber's step, `\u03b7_m H_m`, is bounded by an absolute constant well under one. Paper C's own form of this carries `1.02 m^{-1/3}` for the step gap and lands at `0.6903`; Lean's `upper_step_le` gives the sharper `\u03b5_m = m^{-1/3}`, so the constant here is smaller and the note's `3.77` keeps room. It is the reason the block lock's `q/H` term has a bounded coefficient at all: without it, `q \u03b7_m H_m` could grow with `m`.",
+      "file": "formal/Problems/Juggler/FateFiberLock.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 64,
+      "module": "Problems.Juggler.FateFiberLock",
+      "name": "eps_mul_Hlen_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Dirichlet's approximation theorem, reduced.** For every real `\u03be` and `n \u2265 1` there is a fraction `p/q` in lowest terms with `1 \u2264 q \u2264 n` and `|q \u03be - p| \u2264 1/(n+1)`. Mathlib's `Real.exists_nat_abs_mul_sub_round_le` supplies `q` and `p = round (q \u03be)` without the coprimality, and `block_lock` needs it, since `gcd(p,q) = 1` is what makes the `q` points `y + i p/q` a full `1/q`-grid rather than a coarser one. Dividing through by `g = gcd(p,q)` costs nothing: `q/g \u2264 q` and `|(q/g) \u03be - p/g| = |q \u03be - p| / g \u2264 |q \u03be - p|`, so both sides of the conclusion only improve. The division is done multiplicatively, through the witnesses of `g \u2223 q` and `g \u2223 p`, to keep integer-division casts out of it.",
+      "file": "formal/Problems/Juggler/FateFiberLock.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 107,
+      "module": "Problems.Juggler.FateFiberLock",
+      "name": "exists_coprime_approx",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The block lock on a fiber.** For `m \u2265 1` and any rational approximation `p/q` to the fiber's lower step `A_m`, with `|q A_m - p| \u2264 \u03c1` and `gcd(p, q) = 1`, \\[ \\Bigl| G_m - \\frac{H_m}{2} \\Bigr| \\le 4(\\rho + q\\,\\varepsilon_m) H_m + \\frac{5 H_m}{2q} + q . \\] This is `BlockLock.block_lock` with `x = xval \u2218 nseq`, `a = A_m` and `\u03b7 = \u03b5_m`; the step interval is `step_ge` and `step_le`, and the count is matched by `evenImageCount_eq_fract`. Dividing by `H_m` gives the note's (1.1).",
+      "file": "formal/Problems/Juggler/FateFiberLock.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 156,
+      "module": "Problems.Juggler.FateFiberLock",
+      "name": "fiber_block_lock",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Lemma 2 (lock).** A fiber whose parity share misses `1/2` by `\u03b7\u2080` or more has `A_m` within `32/(\u03b7\u2080 H_m)` of a rational with denominator at most `3.77/\u03b7\u2080`. The note's proof, with Dirichlet in place of the continued fractions it first used: take `\u03b8 = \u03b7\u2080/16` and `H\u2080 = \u230a\u03b8 H_m\u230b`, get `q \u2264 H\u2080` and `\u2016q A_m\u2016 \u2264 1/(H\u2080+1)` from `exists_coprime_approx` (which also supplies the coprimality `block_lock` wants), and feed them to `fiber_block_lock`. Of the three terms there, `4\u03c1H \u2264 128/\u03b7\u2080` is at most `\u03b7\u2080H/10` exactly when `H_m \u2265 1280/\u03b7\u2080\u00b2`, and `4q\u03b5_mH + q \u2264 3.71q` by (F3), which is at most `0.232 \u03b7\u2080 H` because `q \u2264 \u03b8H`. What is left is `0.668 \u03b7\u2080 \u2264 5/(2q)`.",
+      "file": "formal/Problems/Juggler/FateFiberLock.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 184,
+      "module": "Problems.Juggler.FateFiberLock",
+      "name": "fiber_lock",
+      "trust": "kernel"
+    },
+    {
       "doc": "`x(n) = n \u221an / 2 = n^{3/2}/2`.",
       "file": "formal/Problems/Juggler/FateFiberParity.lean",
       "kind": "def",
@@ -33481,6 +33741,346 @@
       "trust": "kernel"
     },
     {
+      "doc": "**Family 3 at the averaged coefficient.** For `U = \u230a\u221ay''\u230b \u2265 10^6` satisfying Lemma 2's block hypotheses, and any shell `(s, y]` containing every fiber `\u03a6(m)` with `U < m \u2264 y'' - 1`, the even-image parts of the non-poor fibers of the members of `A` in `(U, y'' - 1]` are disjoint odd members of `A` in the shell, of total log-mass at least `(c - \u03b5_U)(\u03a3_{m \u2208 A \u2229 (U, y''-1]} 1/m - 2100 \u03b5_U/\u03b7\u2080\u00b2)` with `c = (2/3)(1/2 - \u03b7\u2080)`.",
+      "file": "formal/Problems/Juggler/FatePoorProduction.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 49,
+      "module": "Problems.Juggler.FatePoorProduction",
+      "name": "family_OE_averaged",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The `OE` coefficient's error at the averaged constant. The coefficient `(2/3)(1/2 - \u03b7\u2080)` is exact, so the only loss is the fibre's own `\u03b5_U \u2264 2e^{-t/8}` on the `3t/4` scale. Compare `errOE`, which carries `25/2` times the same `\u03b5_U` because Paper C's pointwise Lemma 4.2 has to pay for goodness at every `m`.",
+      "file": "formal/Problems/Juggler/FatePoorProduction.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 132,
+      "module": "Problems.Juggler.FatePoorProduction",
+      "name": "errOEavg",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The additive error at the averaged coefficient. The first two terms are the boundary terms of the two drops, as in `errAdd`. The third is the poor-fibre tail `2100 \u03b5_U/\u03b7\u2080\u00b2` carried through a coefficient of at most `1/3`; it is the only place `\u03b7\u2080` enters an error, and it is why the recursion's starting scale grows like `16 log(1/\u03b7\u2080)`.",
+      "file": "formal/Problems/Juggler/FatePoorProduction.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 138,
+      "module": "Problems.Juggler.FatePoorProduction",
+      "name": "errAddAvg",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The production inequality with two productions, at the averaged coefficient.** For `0 < \u03b7\u2080 \u2264 1/4`, `t \u2265 40` and `t` past the scale where Lemma 2's block hypotheses bite, `(1 - errE t) g_A(t/2) + ((2/3)(1/2 - \u03b7\u2080) - errOEavg t) g_A(3t/4) - errAddAvg \u03b7\u2080 t \u2264 g_A(t)`. Family 1 is Paper C's Lemma 3.1 unchanged; family 3 is `family_OE_averaged`, so the `2/9` of `production_two` is replaced by `(2/3)(1/2 - \u03b7\u2080)`, which exceeds `1/3 - 10^{-4}`. The shell geometry -- the three scales `t/2`, `3t/4`, `t`, the fibres landing in the shell, the two boundary drops -- is `production_two`'s, step for step. It is inlined rather than shared, because factoring it out would add a declaration to `FateProduction.lean`, one of the 83 inputs pinned by Paper C's release manifest. The copy is therefore deliberate, and `test_oe_rest_average.test_the_two_production_proofs_share_the_same_shell_geometry` re-extracts both blocks and fails if they ever drift apart. `hT` is the one new hypothesis, and it is exactly Lemma 2's two block conditions rewritten at `U = \u230ae^{3t/8}\u230b`: `3(1280/\u03b7\u2080\u00b2 + 1) \u2264 e^{t/8}` gives `1280/\u03b7\u2080\u00b2 \u2264 (2/3)U^{1/3} - 1`, and that in turn gives `32/(\u03b7\u2080((2/3)U^{1/3} - 1)) \u2264 32/5120 < 1/2`. It is the whole cost of the averaging: it forces `t \u2273 16 log(1/\u03b7\u2080)`, and nothing else in the statement depends on `\u03b7\u2080`.",
+      "file": "formal/Problems/Juggler/FatePoorProduction.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 160,
+      "module": "Problems.Juggler.FatePoorProduction",
+      "name": "production_two_averaged",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The two coefficients at the averaged constant: `1` for `E`, `(2/3)(1/2 - \u03b7\u2080)` for `OE`.",
+      "file": "formal/Problems/Juggler/FatePoorProduction.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 354,
+      "module": "Problems.Juggler.FatePoorProduction",
+      "name": "coef2avg",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Their errors, `errE` and `errOEavg`.",
+      "file": "formal/Problems/Juggler/FatePoorProduction.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 357,
+      "module": "Problems.Juggler.FatePoorProduction",
+      "name": "err2avg",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FatePoorProduction.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 359,
+      "module": "Problems.Juggler.FatePoorProduction",
+      "name": "coef2avg_ge",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FatePoorProduction.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 366,
+      "module": "Problems.Juggler.FatePoorProduction",
+      "name": "coef2avg_nonneg",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FatePoorProduction.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 369,
+      "module": "Problems.Juggler.FatePoorProduction",
+      "name": "err2avg_nonneg",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FatePoorProduction.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 376,
+      "module": "Problems.Juggler.FatePoorProduction",
+      "name": "err2avg_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The production inequality in the form the recursion lemma consumes.",
+      "file": "formal/Problems/Juggler/FatePoorProduction.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 383,
+      "module": "Problems.Juggler.FatePoorProduction",
+      "name": "production_two_averaged_sum",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Every error at the averaged coefficient is at most `(4 + 1400/\u03b7\u2080\u00b2) e^{-t/8}` for `t \u2265 0`. The `1/\u03b7\u2080\u00b2` is the poor-fibre tail and nothing else; `errE` and `errOEavg` do not see `\u03b7\u2080`.",
+      "file": "formal/Problems/Juggler/FatePoorProduction.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 395,
+      "module": "Problems.Juggler.FatePoorProduction",
+      "name": "errorsAvg_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The errors vanish: past `T = max 0 (8 log((4 + 1400/\u03b7\u2080\u00b2)/\u03b5))` all three are at most `\u03b5`.",
+      "file": "formal/Problems/Juggler/FatePoorProduction.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 411,
+      "module": "Problems.Juggler.FatePoorProduction",
+      "name": "errorsAvg_vanish",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`\u03b6` is antitone in `\u03bb` at the averaged coefficient too: both rates lie below `1`.",
+      "file": "formal/Problems/Juggler/FatePoorProduction.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 431,
+      "module": "Problems.Juggler.FatePoorProduction",
+      "name": "zeta2avg_antitone",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Contagion at the averaged coefficient.** For every nonempty backward-closed `A`, every `0 < \u03b7\u2080 \u2264 1/4` and every `\u03bb > 0` with `\u03b6(\u03bb, \u03b7\u2080) = 2^{-\u03bb} + (2/3)(1/2 - \u03b7\u2080)(3/4)^\u03bb - 1 > 0`, there are `K > 0` and `t\u2081` with `g_A(t) \u2265 K t^\u03bb` for all `t \u2265 t\u2081`. This is the statement the note actually proves, and it is the one worth reading: the exponent is not a constant of the argument but whatever `\u03b6` allows, so the supremum over `\u03b7\u2080 \u2192 0` is the root of `2^{-\u03bb} + (1/3)(3/4)^\u03bb = 1`, `\u03bb_ideal = 0.49265798\u2026`. The supremum is approached and not attained, `\u03b7\u2080` being fixed before `x` -- exactly as Paper C's published statement is. The cost of a small `\u03b7\u2080` is entirely in `t\u2081`, which absorbs `8 log(3(1280/\u03b7\u2080\u00b2 + 1))`: at the `\u03b7\u2080` that beats Paper C's `\u03bb** = 0.4925715\u2026` the starting scale is around `250`, so the implied `K` is tiny. Nothing else degrades.",
+      "file": "formal/Problems/Juggler/FatePoorProduction.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 453,
+      "module": "Problems.Juggler.FatePoorProduction",
+      "name": "contagion_averaged",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`\u03b6(100/203) > 0` at `\u03b7\u2080 = 10^{-5}`, by two rational bounds at the 203rd power: `0.710737 \u2264 2^{-100/203}` since `0.710737^{203} \u2264 2^{-100}`, and `0.867868 \u2264 (3/4)^{100/203}` since `0.867868^{203} \u2264 (3/4)^{100}`; then `0.710737 + (49999/150000)(0.867868) = 1.0000205 > 1`. `100/203 = 0.4926108\u2026`, against the true root `\u03bb_ideal = 0.4926579801\u2026` of `2^{-\u03bb} + (1/3)(3/4)^\u03bb = 1`, and above Paper C's published `\u03bb** = 0.4925715447\u2026`, which is what this certificate exists to clear. It is chosen for margin, not minimality: `67/136` also lies in `(\u03bb**, \u03bb_ideal)` and has the smaller denominator, but leaves only `6.3\u00b710^{-6}` of `\u03b6` at `\u03b7\u2080 = 0` against this one's `2.71\u00b710^{-5}`, so it would force both a tenfold smaller `\u03b7\u2080` and sharper rational bounds for no gain in the theorem. (`33/67`, the previous convergent, falls just short of `\u03bb**` outright.) The margin here, `2.05\u00b710^{-5}`, is what `\u03b7\u2080 = 10^{-5}` leaves of that `2.71\u00b710^{-5}`; break-even is `\u03b7\u2080 = 4.69\u00b710^{-5}`. `oe_rest_average.exponent_certificate` re-derives all of it in exact arithmetic.",
+      "file": "formal/Problems/Juggler/FatePoorProduction.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 526,
+      "module": "Problems.Juggler.FatePoorProduction",
+      "name": "zeta2avg_pos",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Contagion above Paper C's published exponent, as a log-mass bound, unconditionally.** For every nonempty backward-closed `A` and `0 < \u03bb \u2264 100/203 = 0.4926108\u2026` there are `K > 0` and `x\u2080` with `\u03a3_{n \u2208 A, n \u2264 x} 1/n \u2265 K (log x)^\u03bb` for all `x \u2265 x\u2080`. This is Theorem 5.3 of Paper C at an exponent above its `\u03bb** \u2248 0.4925715`, and with the hypothesis removed. What leaves the critical path is Proposition 4.4 and its two exponential-sum bounds -- the manuscript's largest unformalized gap -- together with the six-word ladder and Appendix D. Compare `logMass_contagion_elementary`, which is unconditional at `13/40 = 0.325` because it pays Lemma 4.2's pointwise `2/9`; the whole gain is that the poor fibres have finite total logarithmic mass, so the coefficient may be averaged instead.",
+      "file": "formal/Problems/Juggler/FatePoorProduction.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 548,
+      "module": "Problems.Juggler.FatePoorProduction",
+      "name": "logMass_contagion_averaged",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Corollary 5.5(2) at exponent `100/203`, unconditional.**",
+      "file": "formal/Problems/Juggler/FatePoorProduction.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 565,
+      "module": "Problems.Juggler.FatePoorProduction",
+      "name": "failures_logMass_averaged",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Theorem 7.2 with its contagion hypothesis discharged at the averaged exponent.** If the odd failures in `(y, 2y]` number at most `y (log y)^{-e}` for all large `y`, for some `e > 103/203 = 0.50739\u2026`, then every positive integer reaches `1`. The threshold is `1 - \u03bb`, so this is what the exponent buys: `conjecture_of_tao_rate` needs `e > 27/40 = 0.675` and Paper C's *conditional* form needs `e > 0.51`. The averaged coefficient puts the unconditional threshold below the manuscript's conditional one.",
+      "file": "formal/Problems/Juggler/FatePoorProduction.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 578,
+      "module": "Problems.Juggler.FatePoorProduction",
+      "name": "conjecture_of_tao_rate_averaged",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Corollary 8.4 at the averaged exponent.** A cylinder bound `H(C, A)` at all large scales with `A > C + e(C)` and `e(C) > 103/203`, above a certified floor `N\u2080`, gives the conjecture.",
+      "file": "formal/Problems/Juggler/FatePoorProduction.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 586,
+      "module": "Problems.Juggler.FatePoorProduction",
+      "name": "conjecture_of_cylinder_bound_averaged",
+      "trust": "kernel"
+    },
+    {
+      "doc": "For `m \u2265 10^6` the `OE` fiber is nonempty: `oeFiber_card_ge` gives at least `(2/3) m^{1/3} - 1 \u2265 65` members.",
+      "file": "formal/Problems/Juggler/FatePoorTail.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 38,
+      "module": "Problems.Juggler.FatePoorTail",
+      "name": "oeFiber_nonempty",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A fiber is `\u03b7\u2080`-poor when its parity share misses `1/2` by at least `\u03b7\u2080`. Written un-divided, so that no positivity side condition on `H_m` is needed.",
+      "file": "formal/Problems/Juggler/FatePoorTail.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 53,
+      "module": "Problems.Juggler.FatePoorTail",
+      "name": "Poor",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Resonance only widens.",
+      "file": "formal/Problems/Juggler/FatePoorTail.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 58,
+      "module": "Problems.Juggler.FatePoorTail",
+      "name": "resonant_mono",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**A poor fiber is resonant.** `fiber_lock` in the shape the count consumes: the denominator bound becomes `q \u2264 \u230a3.77/\u03b7\u2080\u230b\u208a` and the width is the one at this fiber.",
+      "file": "formal/Problems/Juggler/FatePoorTail.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 67,
+      "module": "Problems.Juggler.FatePoorTail",
+      "name": "poor_resonant",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Theorem 4 (poor-fiber tail), one dyadic block.** For `u \u2265 10^6` and `\u03b7\u2080 \u2208 (0, 1/2]`, if the block's smallest fiber already satisfies Lemma 2's hypothesis (`1280/\u03b7\u2080\u00b2 \u2264 (2/3)u^{1/3} - 1`) and the resulting width is below `1/2`, then the `\u03b7\u2080`-poor `m \u2208 (u, 2u]` are counted by Lemma 3 at the uniform width. The two lemmas meet here and nowhere else: `poor_resonant` turns poorness into resonance at this fiber's width, `resonant_mono` widens it to the block's, and `resonance_count_le'` counts. The note's `420 u^{2/3}/\u03b7\u2080\u00b2` is this bound with the arithmetic done; it is left symbolic so that the constant is the reader's to check against the note rather than Lean's to assert.",
+      "file": "formal/Problems/Juggler/FatePoorTail.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 94,
+      "module": "Problems.Juggler.FatePoorTail",
+      "name": "poor_count_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`B_u = (2/3) u^{1/3} - 1 \u2265 0.6566 u^{1/3}` for `u \u2265 10^6`: the `-1` costs at most a hundredth of the main term once `u^{1/3} \u2265 100`.",
+      "file": "formal/Problems/Juggler/FatePoorTail.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 140,
+      "module": "Problems.Juggler.FatePoorTail",
+      "name": "B_ge",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`(2u)^{1/3} \u2264 1.26 u^{1/3}`.",
+      "file": "formal/Problems/Juggler/FatePoorTail.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 150,
+      "module": "Problems.Juggler.FatePoorTail",
+      "name": "two_mul_cbrt_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Theorem 4, the block count with an explicit constant.** `430 u^{2/3}/\u03b7\u2080\u00b2`. The note claims `420`. That figure assumed the second term of Lemma 3 was `Q(Q+1)/2`, the Gauss sum; `resonance_count_le'` delivers `Q(Q+1)`, because `arc_count_le` counts a half-open arc while `\u2016q A_m\u2016 \u2264 \u03b4` is closed, so each of the `Q` arcs is widened by one point. Carried through, `2\u00b73.77\u00b761.5 + 18 = 481.71` against `0.8825 u^{2/3}` gives `425.11`, so `420` is false and `430` is the honest constant. Nothing downstream moves: the note already records that only the positivity of the exponent matters, never the size of the constant.",
+      "file": "formal/Problems/Juggler/FatePoorTail.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 168,
+      "module": "Problems.Juggler.FatePoorTail",
+      "name": "poor_count_le'",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The block hypothesis only gets easier as `u` grows: `B_u` is increasing.",
+      "file": "formal/Problems/Juggler/FatePoorTail.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 233,
+      "module": "Problems.Juggler.FatePoorTail",
+      "name": "hB_mono",
+      "trust": "kernel"
+    },
+    {
+      "doc": "And so does the width hypothesis: the width is decreasing in `u`.",
+      "file": "formal/Problems/Juggler/FatePoorTail.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 241,
+      "module": "Problems.Juggler.FatePoorTail",
+      "name": "h",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The log-mass on one dyadic block.** `430 \u03b5_u / \u03b7\u2080\u00b2`, from the count and `1/m \u2264 1/u`.",
+      "file": "formal/Problems/Juggler/FatePoorTail.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 258,
+      "module": "Problems.Juggler.FatePoorTail",
+      "name": "poor_block_logMass_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The dyadic decomposition: the poor log-mass on `(U, 2^K U]`.",
+      "file": "formal/Problems/Juggler/FatePoorTail.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 284,
+      "module": "Problems.Juggler.FatePoorTail",
+      "name": "poor_sum_dyadic_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**(4.2) of the note.** For `U \u2265 10^6` satisfying the block hypotheses, and every `N`, the `\u03b7\u2080`-poor `m \u2208 (U, N]` carry `1/m`-weighted mass at most `2100 U^{-1/3}/\u03b7\u2080\u00b2`. This is the summability that makes the poor set logarithmically finite, which is the whole content of the branch: there is nothing for an adversary to concentrate on. The argument is `bad_logMass_le`'s with a different summand.",
+      "file": "formal/Problems/Juggler/FatePoorTail.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 312,
+      "module": "Problems.Juggler.FatePoorTail",
+      "name": "poor_logMass_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The non-poor fiber bound.** A fiber that is not `\u03b7\u2080`-poor carries even-image log-mass at least `(c - \u03b5_m)/m`, where `c = (2/3)(1/2 - \u03b7\u2080)` is the note's \u00a75 coefficient. This is `good_fiber_logMass_ge` with its input replaced: there the even count is `H_m/3 - 2` from Lemma 4.2, here it is `(1/2 - \u03b7\u2080)H_m` from not being poor, and `H_m` is `oeFiber_card_ge` in both. The error is written absolutely, `c - \u03b5_m`, rather than relatively as the `2/9(1 - (25/2)\u03b5_m)` of the original: a relative form carries a constant of size `1/c`, which blows up as `\u03b7\u2080` approaches `1/2`, while the absolute form has no constant at all.",
+      "file": "formal/Problems/Juggler/FatePoorTail.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 367,
+      "module": "Problems.Juggler.FatePoorTail",
+      "name": "nonpoor_fiber_logMass_ge",
+      "trust": "kernel"
+    },
+    {
       "doc": "The live pressure `\u03a3_{n \u2208 {1,\u2026,N} live to depth d} x^{o_d(n)}`, as the generating function of the live weight.",
       "file": "formal/Problems/Juggler/FatePressure.lean",
       "kind": "def",
@@ -34162,6 +34762,96 @@
       "line": 37,
       "module": "Problems.Juggler.FateRecursion",
       "name": "recursion_lemma",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`m` is `(Q, \u03b4)`-resonant: some `q` with `1 \u2264 q \u2264 Q` has `\u2016q A_m\u2016 \u2264 \u03b4`, the distance from `q A_m` to the nearest integer. Written as `\u2203 P : \u2124, |q A_m - P| \u2264 \u03b4`, the house spelling of `\u2016\u00b7\u2016` (compare `Good`, which unpacks the same notion into `Int.fract` inequalities).",
+      "file": "formal/Problems/Juggler/FateResonanceCount.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 64,
+      "module": "Problems.Juggler.FateResonanceCount",
+      "name": "Resonant",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`1 / \u03b5_n = n^{1/3}`; the form in which the note writes the step floor of a dyadic block.",
+      "file": "formal/Problems/Juggler/FateResonanceCount.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 71,
+      "module": "Problems.Juggler.FateResonanceCount",
+      "name": "one_div_eps",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The Gauss sum behind Lemma 3, already multiplied through by the per-arc bound: `\u03a3_{q < Q} W (2\u03b4/E + 2(q+1)) = W (2Q\u03b4/E + Q(Q+1))`.",
+      "file": "formal/Problems/Juggler/FateResonanceCount.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 78,
+      "module": "Problems.Juggler.FateResonanceCount",
+      "name": "sum_range_arc_terms",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Lemma 3, the reduction.** If `|q A_m - P| \u2264 \u03b4` for some integer `P`, with `1 \u2264 q` and `0 \u2264 \u03b4 < 1/2`, then `A_m` lies within `\u03b4/q` of the grid point `p/q` for some `p < q`, modulo one; after the shift by `\u03b4/q` that two-sided arc is the single non-wrapping arc `[0, 2\u03b4/q]`. This is the `q`-fold form of `bad_mem_arc`, and the shift is the same trick.",
+      "file": "formal/Problems/Juggler/FateResonanceCount.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 94,
+      "module": "Problems.Juggler.FateResonanceCount",
+      "name": "resonant_mem_arc",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The window count.** On `(u, 2u]` the shifted sequence `A_m + c` meets at most `0.882 u^{2/3} + 2` integer windows, for every real shift `c`: the shift cancels in `A_{2u} - A_{u+1}`, so this is `Am_double_sub_le` with two floors. It is the disjunction-free form of the `hwin` block inside `bad_count_le`.",
+      "file": "formal/Problems/Juggler/FateResonanceCount.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 147,
+      "module": "Problems.Juggler.FateResonanceCount",
+      "name": "Am_window_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The shifted arc count.** For `u \u2265 10^6`, a real shift `c` and a width `w \u2265 0`, the `m \u2208 (u, 2u]` with `{A_m + c} < w` number at most `(0.882 u^{2/3} + 2)(w/\u03b5_{2u} + 1)`: the step floor on the block is `\u03b5_{2u}` (`Am_step_ge`, `eps_antitone`), so this is `arc_count_le` composed with `Am_window_le`.",
+      "file": "formal/Problems/Juggler/FateResonanceCount.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 167,
+      "module": "Problems.Juggler.FateResonanceCount",
+      "name": "shifted_arc_count_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Lemma 3, one denominator.** For `u \u2265 10^6`, `1 \u2264 q` and `0 \u2264 \u03b4 < 1/2`, the `m \u2208 (u, 2u]` with `\u2016q A_m\u2016 \u2264 \u03b4` number at most `(0.882 u^{2/3} + 2)(2\u03b4/\u03b5_{2u} + 2q)`. The set is covered by the `q` arcs `{A_m - p/q + \u03b4/q} < 2\u03b4/q + \u03b5_{2u}`, `p < q` (`resonant_mem_arc`), and each of them is counted by `shifted_arc_count_le`.",
+      "file": "formal/Problems/Juggler/FateResonanceCount.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 193,
+      "module": "Problems.Juggler.FateResonanceCount",
+      "name": "resonance_count_one",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Lemma 3 (arc count).** For `u \u2265 10^6`, every `Q` and every `\u03b4` with `0 \u2264 \u03b4 < 1/2`, the `(Q, \u03b4)`-resonant `m \u2208 (u, 2u]` number at most `(0.882 u^{2/3} + 2)(2 Q \u03b4 / \u03b5_{2u} + Q(Q+1))`. The denominators are indexed as `q + 1` over `Finset.range Q`, and each contributes `resonance_count_one`; the Gauss sum `\u03a3_{q < Q} 2(q+1) = Q(Q+1)` is `sum_range_arc_terms`.",
+      "file": "formal/Problems/Juggler/FateResonanceCount.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 258,
+      "module": "Problems.Juggler.FateResonanceCount",
+      "name": "resonance_count_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Lemma 3, the note's form.** The same count with `1/\u03b5_{2u}` written as `(2u)^{1/3}`: `#{m \u2208 (u, 2u] : \u2203 q \u2264 Q, \u2016q A_m\u2016 \u2264 \u03b4} \u2264 (0.882 u^{2/3} + 2)(2 Q \u03b4 (2u)^{1/3} + Q(Q+1))`.",
+      "file": "formal/Problems/Juggler/FateResonanceCount.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 291,
+      "module": "Problems.Juggler.FateResonanceCount",
+      "name": "resonance_count_le'",
       "trust": "kernel"
     },
     {
@@ -91574,6 +92264,7 @@
         "Problems.Juggler.FamilyChains",
         "Problems.Juggler.FanLaw",
         "Problems.Juggler.FateBlockAverage",
+        "Problems.Juggler.FateBlockLock",
         "Problems.Juggler.FateCertified",
         "Problems.Juggler.FateChernoff",
         "Problems.Juggler.FateCollapse",
@@ -91582,6 +92273,7 @@
         "Problems.Juggler.FateCylinderCorollary",
         "Problems.Juggler.FateCylinderEnergy",
         "Problems.Juggler.FateEnergyAtoms",
+        "Problems.Juggler.FateFiberLock",
         "Problems.Juggler.FateFiberParity",
         "Problems.Juggler.FateFirstLetter",
         "Problems.Juggler.FateLandingWindow",
@@ -91589,11 +92281,14 @@
         "Problems.Juggler.FateOneSided",
         "Problems.Juggler.FateOneSidedAtoms",
         "Problems.Juggler.FateOneSidedCorollary",
+        "Problems.Juggler.FatePoorProduction",
+        "Problems.Juggler.FatePoorTail",
         "Problems.Juggler.FatePressure",
         "Problems.Juggler.FatePressureCorollary",
         "Problems.Juggler.FateProduction",
         "Problems.Juggler.FateProductionWords",
         "Problems.Juggler.FateRecursion",
+        "Problems.Juggler.FateResonanceCount",
         "Problems.Juggler.FateSeed",
         "Problems.Juggler.FateShareLaw",
         "Problems.Juggler.FateSweep",
@@ -92649,6 +93344,12 @@
         }
       ]
     },
+    "Problems.Juggler.FateBlockLock": {
+      "declarations": 21,
+      "file": "formal/Problems/Juggler/FateBlockLock.lean",
+      "imports": [],
+      "ledger": []
+    },
     "Problems.Juggler.FateCertified": {
       "declarations": 29,
       "file": "formal/Problems/Juggler/FateCertified.lean",
@@ -92741,7 +93442,7 @@
       "ledger": [
         {
           "id": "J-fate-contagion-conditional",
-          "statement": "Paper C Theorem 5.3 (contagion) given the production inequality (5.2), for every 0 < \u03bb \u2264 0.49. Data: productionRate/productionCoeff are the eight productions (e_i, c_i) = (1/2, 1), (3/8, 1/9), (3/4, 2/9), (9/32, 1/27), (27/128, 1/81), (81/512, 1/243), (243/2048, 1/729), (729/8192, 1/2187); zeta \u03bb = \u03a3 c_i e_i^\u03bb \u2212 1 is antitone in \u03bb (zeta_antitone) and zeta (49/100) > 0 (zeta_pos_49): each e_i^{49/100} is bounded below by a five-digit rational r_i through r_i^100 \u2264 e_i^49 in exact integer arithmetic (le_rpow_div_of_pow_le), and \u03a3 c_i r_i \u2212 1 = 0.00168 > 0 (the exact value of \u03b6(0.49) is 0.001683; the paper's root is \u03bb** = 0.4926). gA A t = halfLogMass A \u230ae^t\u230b\u208a is the paper's g_A(t) (the integers in (\u221ax, x] are those in (\u230a\u221a\u230ax\u230b\u230b, \u230ax\u230b]); gA_seed is Lemma 5.2 in the form g_A(t) \u2265 c_A for t \u2265 4 log(m+1); logMass_ge_gA compares with the full log-mass. Theorem (contagion_of_production_inequality): A backward-closed with a positive member, 0 < \u03bb \u2264 49/100, errors \u03b7_i(t) \u2265 0 and \u03b7\u2080(t) with (\u2200 \u03b5 > 0, \u2203 T, \u2200 t \u2265 T, \u03b7_i(t) \u2264 \u03b5 and \u03b7\u2080(t) \u2264 \u03b5), and g_A(t) \u2265 \u03a3_i (c_i \u2212 \u03b7_i(t)) g_A(e_i t) \u2212 \u03b7\u2080(t) for all t \u2265 t\u2080: then \u2203 K > 0, \u2203 t\u2081 > 0, \u2200 t \u2265 t\u2081, K t^\u03bb \u2264 g_A(t). Proof as in the paper: m \u2265 3 in A (exists_ge_three_of_backwardClosed), \u03b5 = min(\u03b6/24, 2\u03b6c_A/3, 1/2187), t\u2081 \u2265 max(T, t\u2080, 1, 4 log(m+1)\u00b78192/729), then recursion_lemma with e_min = 729/8192, e_max = 3/4 and the seed on [e_min t\u2081, t\u2081]; the hypothesis \u03b7\u2080 \u2265 0 is never used. logMass_contagion_of_production is the same in the form \u03a3_{n \u2264 x, n \u2208 A} 1/n \u2265 K (log x)^\u03bb for x \u2265 x\u2080, which Theorem 7.2 consumes. conjecture_of_cylinder_bound_of_production: Corollary 8.4 with Theorem 5.3 discharged through (5.2) \u2014 H(C, A) at all large scales with C \u2265 5 and A > C + e(C), some 0 < \u03bb \u2264 0.49 with 1 \u2212 \u03bb < e(C), and (5.2) for the failure set give that every positive integer reaches 1 (C \u2265 19 still suffices since e(19) = 0.527 > 0.51, a numerical fact the audit checks, not Lean). Kernel-checked, axioms propext, Classical.choice, Quot.sound only. The production inequality (5.2) itself (Proposition 4.4, Lemmas 4.2\u20134.3 and the audited productions of Section 5.7) and the root \u03bb** stay human; the range 0.49 < \u03bb < \u03bb** is not formalized. Conditional; not a density theorem on its own, not a halt theorem.",
+          "statement": "Paper C Theorem 5.3 (contagion) given the production inequality (5.2), for every 0 < \u03bb \u2264 0.49. Data: productionRate/productionCoeff are the eight productions (e_i, c_i) = (1/2, 1), (3/8, 1/9), (3/4, 2/9), (9/32, 1/27), (27/128, 1/81), (81/512, 1/243), (243/2048, 1/729), (729/8192, 1/2187); zeta \u03bb = \u03a3 c_i e_i^\u03bb \u2212 1 is antitone in \u03bb (zeta_antitone) and zeta (49/100) > 0 (zeta_pos_49): each e_i^{49/100} is bounded below by a five-digit rational r_i through r_i^100 \u2264 e_i^49 in exact integer arithmetic (le_rpow_div_of_pow_le), and \u03a3 c_i r_i \u2212 1 = 0.00168 > 0 (the exact value of \u03b6(0.49) is 0.001683; the paper's root is \u03bb** = 0.4926). gA A t = halfLogMass A \u230ae^t\u230b\u208a is the paper's g_A(t) (the integers in (\u221ax, x] are those in (\u230a\u221a\u230ax\u230b\u230b, \u230ax\u230b]); gA_seed is Lemma 5.2 in the form g_A(t) \u2265 c_A for t \u2265 4 log(m+1); logMass_ge_gA compares with the full log-mass. Theorem (contagion_of_production_inequality): A backward-closed with a positive member, 0 < \u03bb \u2264 49/100, errors \u03b7_i(t) \u2265 0 and \u03b7\u2080(t) with (\u2200 \u03b5 > 0, \u2203 T, \u2200 t \u2265 T, \u03b7_i(t) \u2264 \u03b5 and \u03b7\u2080(t) \u2264 \u03b5), and g_A(t) \u2265 \u03a3_i (c_i \u2212 \u03b7_i(t)) g_A(e_i t) \u2212 \u03b7\u2080(t) for all t \u2265 t\u2080: then \u2203 K > 0, \u2203 t\u2081 > 0, \u2200 t \u2265 t\u2081, K t^\u03bb \u2264 g_A(t). Proof as in the paper: m \u2265 3 in A (exists_ge_three_of_backwardClosed), \u03b5 = min(\u03b6/24, 2\u03b6c_A/3, 1/2187), t\u2081 \u2265 max(T, t\u2080, 1, 4 log(m+1)\u00b78192/729), then recursion_lemma with e_min = 729/8192, e_max = 3/4 and the seed on [e_min t\u2081, t\u2081]; the hypothesis \u03b7\u2080 \u2265 0 is never used. logMass_contagion_of_production is the same in the form \u03a3_{n \u2264 x, n \u2208 A} 1/n \u2265 K (log x)^\u03bb for x \u2265 x\u2080, which Theorem 7.2 consumes. conjecture_of_cylinder_bound_of_production: Corollary 8.4 with Theorem 5.3 discharged through (5.2) \u2014 H(C, A) at all large scales with C \u2265 5 and A > C + e(C), some 0 < \u03bb \u2264 0.49 with 1 \u2212 \u03bb < e(C), and (5.2) for the failure set give that every positive integer reaches 1 (C \u2265 19 still suffices since e(19) = 0.527 > 0.51, a numerical fact the audit checks, not Lean). Kernel-checked, axioms propext, Classical.choice, Quot.sound only. The production inequality (5.2) itself (Proposition 4.4, Lemmas 4.2\u20134.3 and the audited productions of Section 5.7) and the root \u03bb** stay human; the range 0.49 < \u03bb < \u03bb** is not formalized. Conditional; not a density theorem on its own, not a halt theorem. SUPERSEDED IN SCOPE, 20 September 2026, not in content: this row is Theorem 5.3 GIVEN the production inequality (5.2), at lambda <= 0.49. Production.contagion_averaged now reaches lambda <= 100/203 = 0.4926108 with NO hypothesis at all (J-oe-averaged-two-productions-reach-the-depth-two-ceiling), which is above both this row's 0.49 and the ladder root lambda** = 0.4925715447. The eight-production data here is still what Paper C prints and what the ladder analysis needs, so the row stands; what no longer holds is that reaching past 0.49 requires (5.2).",
           "tag": "EXACT \u2014 LEAN VERIFIED"
         },
         {
@@ -92798,6 +93499,15 @@
           "tag": "EXACT \u2014 LEAN VERIFIED"
         }
       ]
+    },
+    "Problems.Juggler.FateFiberLock": {
+      "declarations": 5,
+      "file": "formal/Problems/Juggler/FateFiberLock.lean",
+      "imports": [
+        "Problems.Juggler.FateBlockLock",
+        "Problems.Juggler.FateFiberParity"
+      ],
+      "ledger": []
     },
     "Problems.Juggler.FateFiberParity": {
       "declarations": 43,
@@ -92899,6 +93609,25 @@
         }
       ]
     },
+    "Problems.Juggler.FatePoorProduction": {
+      "declarations": 20,
+      "file": "formal/Problems/Juggler/FatePoorProduction.lean",
+      "imports": [
+        "Problems.Juggler.FateContagion",
+        "Problems.Juggler.FatePoorTail",
+        "Problems.Juggler.FateProduction"
+      ],
+      "ledger": []
+    },
+    "Problems.Juggler.FatePoorTail": {
+      "declarations": 14,
+      "file": "formal/Problems/Juggler/FatePoorTail.lean",
+      "imports": [
+        "Problems.Juggler.FateFiberLock",
+        "Problems.Juggler.FateResonanceCount"
+      ],
+      "ledger": []
+    },
     "Problems.Juggler.FatePressure": {
       "declarations": 6,
       "file": "formal/Problems/Juggler/FatePressure.lean",
@@ -92941,7 +93670,7 @@
       "ledger": [
         {
           "id": "J-fate-contagion-elementary",
-          "statement": "The production inequality of Paper C Section 5.1 without its exponential sums, and the unconditional theorem it yields. Of the three families of members of A on (sqrt x, x], the E-images of the members at scale t/2 (Lemma 3.1; Production.family_E) and the OE-fibers of the members at scale 3t/4 (Lemma 4.2 on good fibers, Lemma 4.3 for the bad; Production.family_OE, on the per-fiber bound (2/9)(1 - (25/2) m^{-1/3})/m) need no analysis. With the paper's sqrt x read as floor(e^{t/2}) (sqrt_floor_exp) they give, for t >= 40, g_A(t) >= (1 - 4e^{-t/4}) g_A(t/2) + (2/9 - (50/9)e^{-t/8}) g_A(3t/4) - eta_0(t) with eta_0(t) = 2e^{-t/2} + (4/9)e^{-3t/4} + 136 e^{-t/8}, every error explicit (production_two). Lemma 5.1 (recursion_lemma) on these two productions, with 2^{-13/40} + (2/9)(3/4)^{13/40} > 1 certified by 0.798^40 <= 2^{-13} and 0.91^40 <= (3/4)^13 (zeta2_pos) and the seed of Lemma 5.2, gives: for every nonempty backward-closed A and every 0 < lambda <= 13/40 there are K > 0 and x_0 with sum_{n in A, n <= x} 1/n >= K (log x)^lambda for all x >= x_0 (contagion_elementary, logMass_contagion_elementary), WITH NO HYPOTHESIS; and if some positive integer does not reach 1 the failures have that log-mass (failures_logMass_ge, Corollary 5.5(2) at exponent 13/40). Composed with Theorem 7.2 and Corollary 8.4, whose contagion hypothesis has exactly this shape: a Tao-type rate, odd failures in (y, 2y] at most y (log y)^{-e} for all large y with e > 7/10, implies that every positive integer reaches 1 (conjecture_of_tao_rate), and so does a cylinder bound H(C, A) at all large scales with A > C + e(C) and e(C) > 7/10 above a certified floor (conjecture_of_cylinder_bound), with no other hypothesis; the paper's conditional forms need e > 1 - lambda** ~ 0.51 and (5.2). This is Theorem 5.3 with 3/10 in place of lambda** ~ 0.4926: the root of 2^{-lambda} + (2/9)(3/4)^lambda = 1 is about 0.325. NOT formalized: the block-average family (Section 5.1 item 2), which needs the two exponential-sum bounds of Proposition 4.4 (hypotheses in FateBlockAverage) and is what lifts the exponent to 0.49, and the ladder (5.10), whose Appendix D estimates are human; (5.2) itself remains a human row. Nothing here is a density theorem in the paper's sense and nothing here is a halt theorem. EXPONENT LIFTED 2026-09-19, from 3/10 to 13/40. The exponent is not intrinsic to the argument: it enters only through zeta2_pos, and zeta2_antitone carries it to the theorems, so raising the certificate raises the theorem. The root of 2^{-lambda} + (2/9)(3/4)^lambda = 1 is 0.3261209621146946, so the old certificate 3/10 = 0.300 used 92 percent of what the TWO-production inequality can give and 13/40 = 0.325 uses 99.6 percent; the remaining 0.4 percent is the gap to an irrational root and is not worth a larger denominator. The new certificate is 399/500 <= (1/2)^{13/40}, since (399/500)^40 <= 2^{-13}, with the previous 91/100 <= (3/4)^{13/40} unchanged, and 399/500 + (2/9)(91/100) = 1.000222 > 1; the 40th powers are exact rational arithmetic in norm_num and the module compiles in 174 s. WHAT THIS DOES NOT DO: it does not approach Paper C's lambda** = 0.4926, which needs the block-average family and its two exponential-sum bounds, and those remain hypotheses in FateBlockAverage with no Lean proof. 13/40 is the ceiling of the unconditional route, not a step toward the conditional one. THRESHOLD WEAKENED THE SAME DAY. The Tao-rate wrapper needs only e > 1 - lambda, so lifting lambda to 13/40 lowered the requirement from 7/10 = 0.700 to 27/40 = 0.675; both public statements had kept 7/10, a gap invisible because linarith discharges it silently whenever the stated hypothesis is stronger than the proof needs. Five statements now ask for 27/40 across six modules -- conjecture_of_tao_rate and conjecture_of_cylinder_bound (FateProduction), one_sided_implies_conjecture and its no-momentum form (FateOneSidedCorollary, including a midpoint construction that had 7/10 in the value it picks), the pressure and no-momentum corollaries (FatePressureCorollary), and the atom forms (FateOneSidedAtoms, FateEnergyAtoms) -- each a strictly weaker hypothesis for the same conclusion. The literal 7/10 that remains in FateCertified is the bound log 2 <= 7/10, a different fact. THE LEAST ADMISSIBLE CONSTANT DOES NOT MOVE: e(22) = 0.668392 misses 27/40 and e(23) = 0.716046 clears it, so the least integer C is 23 at both thresholds; the computation reproduces the paper's own e(21) = 0.6210, e(25) = 0.8119 and e(30) = 1.0541. Paper C's manuscript was brought into agreement in the same pass: it had been quoting the retired certificates by name and attributing them to zeta2_pos, so it described a proof that no longer existed. Nine thresholds and two exponents rewritten, and the least-C result recorded in the passage that names it.",
+          "statement": "The production inequality of Paper C Section 5.1 without its exponential sums, and the unconditional theorem it yields. Of the three families of members of A on (sqrt x, x], the E-images of the members at scale t/2 (Lemma 3.1; Production.family_E) and the OE-fibers of the members at scale 3t/4 (Lemma 4.2 on good fibers, Lemma 4.3 for the bad; Production.family_OE, on the per-fiber bound (2/9)(1 - (25/2) m^{-1/3})/m) need no analysis. With the paper's sqrt x read as floor(e^{t/2}) (sqrt_floor_exp) they give, for t >= 40, g_A(t) >= (1 - 4e^{-t/4}) g_A(t/2) + (2/9 - (50/9)e^{-t/8}) g_A(3t/4) - eta_0(t) with eta_0(t) = 2e^{-t/2} + (4/9)e^{-3t/4} + 136 e^{-t/8}, every error explicit (production_two). Lemma 5.1 (recursion_lemma) on these two productions, with 2^{-13/40} + (2/9)(3/4)^{13/40} > 1 certified by 0.798^40 <= 2^{-13} and 0.91^40 <= (3/4)^13 (zeta2_pos) and the seed of Lemma 5.2, gives: for every nonempty backward-closed A and every 0 < lambda <= 13/40 there are K > 0 and x_0 with sum_{n in A, n <= x} 1/n >= K (log x)^lambda for all x >= x_0 (contagion_elementary, logMass_contagion_elementary), WITH NO HYPOTHESIS; and if some positive integer does not reach 1 the failures have that log-mass (failures_logMass_ge, Corollary 5.5(2) at exponent 13/40). Composed with Theorem 7.2 and Corollary 8.4, whose contagion hypothesis has exactly this shape: a Tao-type rate, odd failures in (y, 2y] at most y (log y)^{-e} for all large y with e > 7/10, implies that every positive integer reaches 1 (conjecture_of_tao_rate), and so does a cylinder bound H(C, A) at all large scales with A > C + e(C) and e(C) > 7/10 above a certified floor (conjecture_of_cylinder_bound), with no other hypothesis; the paper's conditional forms need e > 1 - lambda** ~ 0.51 and (5.2). This is Theorem 5.3 with 3/10 in place of lambda** ~ 0.4926: the root of 2^{-lambda} + (2/9)(3/4)^lambda = 1 is about 0.325. NOT formalized: the block-average family (Section 5.1 item 2), which needs the two exponential-sum bounds of Proposition 4.4 (hypotheses in FateBlockAverage) and is what lifts the exponent to 0.49, and the ladder (5.10), whose Appendix D estimates are human; (5.2) itself remains a human row. Nothing here is a density theorem in the paper's sense and nothing here is a halt theorem. EXPONENT LIFTED 2026-09-19, from 3/10 to 13/40. The exponent is not intrinsic to the argument: it enters only through zeta2_pos, and zeta2_antitone carries it to the theorems, so raising the certificate raises the theorem. The root of 2^{-lambda} + (2/9)(3/4)^lambda = 1 is 0.3261209621146946, so the old certificate 3/10 = 0.300 used 92 percent of what the TWO-production inequality can give and 13/40 = 0.325 uses 99.6 percent; the remaining 0.4 percent is the gap to an irrational root and is not worth a larger denominator. The new certificate is 399/500 <= (1/2)^{13/40}, since (399/500)^40 <= 2^{-13}, with the previous 91/100 <= (3/4)^{13/40} unchanged, and 399/500 + (2/9)(91/100) = 1.000222 > 1; the 40th powers are exact rational arithmetic in norm_num and the module compiles in 174 s. WHAT THIS DOES NOT DO: it does not approach Paper C's lambda** = 0.4926, which needs the block-average family and its two exponential-sum bounds, and those remain hypotheses in FateBlockAverage with no Lean proof. 13/40 is the ceiling of the unconditional route, not a step toward the conditional one. THRESHOLD WEAKENED THE SAME DAY. The Tao-rate wrapper needs only e > 1 - lambda, so lifting lambda to 13/40 lowered the requirement from 7/10 = 0.700 to 27/40 = 0.675; both public statements had kept 7/10, a gap invisible because linarith discharges it silently whenever the stated hypothesis is stronger than the proof needs. Five statements now ask for 27/40 across six modules -- conjecture_of_tao_rate and conjecture_of_cylinder_bound (FateProduction), one_sided_implies_conjecture and its no-momentum form (FateOneSidedCorollary, including a midpoint construction that had 7/10 in the value it picks), the pressure and no-momentum corollaries (FatePressureCorollary), and the atom forms (FateOneSidedAtoms, FateEnergyAtoms) -- each a strictly weaker hypothesis for the same conclusion. The literal 7/10 that remains in FateCertified is the bound log 2 <= 7/10, a different fact. THE LEAST ADMISSIBLE CONSTANT DOES NOT MOVE: e(22) = 0.668392 misses 27/40 and e(23) = 0.716046 clears it, so the least integer C is 23 at both thresholds; the computation reproduces the paper's own e(21) = 0.6210, e(25) = 0.8119 and e(30) = 1.0541. Paper C's manuscript was brought into agreement in the same pass: it had been quoting the retired certificates by name and attributing them to zeta2_pos, so it described a proof that no longer existed. Nine thresholds and two exponents rewritten, and the least-C result recorded in the passage that names it. SUPERSEDED, 20 September 2026: Production.logMass_contagion_averaged is unconditional at lambda <= 100/203 = 0.4926108, where this row is unconditional at 13/40 = 0.325. The difference is that this row pays Lemma 4.2's pointwise 2/9 on every fibre while the averaged route pays (2/3)(1/2 - eta_0), the poor fibres having finite total 1/m-mass. Concretely, in the Tao reduction the least cylinder depth drops from C = 23 to C = 19 (tao_reduction.unconditional_depth_drop). This row is still the cheapest unconditional contagion bound -- its proof needs no block lock, no Dirichlet, no arc count -- so it stays.",
           "tag": "EXACT \u2014 LEAN VERIFIED"
         }
       ]
@@ -92971,6 +93700,14 @@
           "tag": "EXACT \u2014 LEAN VERIFIED"
         }
       ]
+    },
+    "Problems.Juggler.FateResonanceCount": {
+      "declarations": 9,
+      "file": "formal/Problems/Juggler/FateResonanceCount.lean",
+      "imports": [
+        "Problems.Juggler.FateThinFibers"
+      ],
+      "ledger": []
     },
     "Problems.Juggler.FateSeed": {
       "declarations": 18,
@@ -93037,7 +93774,7 @@
       "ledger": [
         {
           "id": "J-tao-rate-implies-conjecture",
-          "statement": "Theorem A of the Tao-reduction note. If for some e > 1 \u2212 \u03bb** = 0.5074\u2026 and all sufficiently large y, #{n odd in (y, 2y] : n does not reach 1} \u2264 y (log y)^{\u2212e}, then every positive integer reaches 1. Proof: every failure lies in the E-tree of an odd failure (forward closure), each E-tree level has log-mass \u2264 2/n\u2080 and at most 1 + log\u2082 log x levels meet [1, x], so the log-count of the failure set is \u226a (log x)^{1\u2212e} log log x, contradicting fate contagion (J-fate-log-density) for any \u03bb \u2208 (1 \u2212 e, \u03bb**). The E-tree bound, the dyadic sum and the contradiction given a contagion lower bound K (log x)^\u03bb are Lean (tao_rate_implies_conjecture in FateTaoReduction.lean); the contagion bound itself (Theorem 5.3) stays a human proof, so this row is not Lean-verified. The same holds for the hypothesis stated over all n in (y, 2y], and in logarithmic form it is Corollary 4.5 of the fate note. A Tao-type almost-all theorem with the bounded target [1, N\u2080] and rate (log y)^{\u22120.53} would therefore prove the Juggler conjecture; for the Collatz map the analogous implication fails (thin preimage trees). Not a halt theorem: the hypothesis is not proved.",
+          "statement": "Theorem A of the Tao-reduction note. If for some e > 1 \u2212 \u03bb** = 0.5074\u2026 and all sufficiently large y, #{n odd in (y, 2y] : n does not reach 1} \u2264 y (log y)^{\u2212e}, then every positive integer reaches 1. Proof: every failure lies in the E-tree of an odd failure (forward closure), each E-tree level has log-mass \u2264 2/n\u2080 and at most 1 + log\u2082 log x levels meet [1, x], so the log-count of the failure set is \u226a (log x)^{1\u2212e} log log x, contradicting fate contagion (J-fate-log-density) for any \u03bb \u2208 (1 \u2212 e, \u03bb**). The E-tree bound, the dyadic sum and the contradiction given a contagion lower bound K (log x)^\u03bb are Lean (tao_rate_implies_conjecture in FateTaoReduction.lean); the contagion bound itself (Theorem 5.3) stays a human proof, so this row is not Lean-verified. The same holds for the hypothesis stated over all n in (y, 2y], and in logarithmic form it is Corollary 4.5 of the fate note. A Tao-type almost-all theorem with the bounded target [1, N\u2080] and rate (log y)^{\u22120.53} would therefore prove the Juggler conjecture; for the Collatz map the analogous implication fails (thin preimage trees). Not a halt theorem: the hypothesis is not proved. The contagion hypothesis is discharged unconditionally at e > 103/203 = 0.50739 by Production.conjecture_of_tao_rate_averaged (J-oe-averaged-two-productions-reach-the-depth-two-ceiling), which is below Paper C's conditional 0.51. MEASURED (tao_reduction.unconditional_depth_drop): that moves the least unconditional cylinder depth from C = 23 to C = 19, and the pressure-form thresholds from 23, 50, 273, 1953 to 19, 41, 214, 1496 at q = 0.5, 0.55, 0.6, 0.62. Against lambda** itself nothing numerical moves -- those are the same 19, 41, 214, 1496 -- so what this buys is status, not constants.",
           "tag": "EXACT \u2014 HUMAN PROOF"
         }
       ]
@@ -95066,13 +95803,13 @@
     }
   },
   "totals": {
-    "declarations": 7029,
+    "declarations": 7098,
     "declarations_with_a_ledger_row": 4785,
-    "ledger_rows_naming_a_file": 456,
-    "modules": 310,
+    "ledger_rows_naming_a_file": 459,
+    "modules": 315,
     "trust": {
       "compiler": 56,
-      "kernel": 6973
+      "kernel": 7042
     }
   }
 }

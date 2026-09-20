@@ -131,6 +131,7 @@ import Problems.Juggler.CubeFiber
 import Problems.Juggler.FateRecursion
 import Problems.Juggler.FateFirstLetter
 import Problems.Juggler.FateWindowCount
+import Problems.Juggler.FateBlockLock
 import Problems.Juggler.FateSweep
 import Problems.Juggler.FateSweepMonotone
 import Problems.Juggler.FateChernoff
@@ -183,6 +184,7 @@ import Problems.Juggler.FateCylinderCorollary
 import Problems.Juggler.FateBlockAverage
 import Problems.Juggler.FateShareLaw
 import Problems.Juggler.FateProduction
+import Problems.Juggler.FatePoorProduction
 import Problems.Juggler.FateProductionWords
 import Problems.Juggler.FateOneSided
 import Problems.Juggler.FateOneSidedCorollary
@@ -195,7 +197,10 @@ import Problems.Juggler.FateCylinderEnergy
 import Problems.Juggler.FateLandingWindow
 import Problems.Juggler.FateNumerics
 import Problems.Juggler.FateFiberParity
+import Problems.Juggler.FateFiberLock
 import Problems.Juggler.FateThinFibers
+import Problems.Juggler.FateResonanceCount
+import Problems.Juggler.FatePoorTail
 import Problems.Juggler.FateContagionBound
 
 /-!

@@ -7,6 +7,18 @@ Not a new hypothesis, not a census, not a third formulation. The
 objects are Paper C Theorem 9.2, Proposition 9.3 and
 `J-tao-rate-implies-conjecture`, combined in their contrapositive.
 
+**Status note, 20 September 2026.** The \(e_*\) this dossier runs on came
+from a contagion bound conditional on Paper C's Proposition 4.4. It is now
+unconditional: `Production.logMass_contagion_averaged` reaches
+\(\lambda\le100/203=0.4926108\), above \(\lambda^{**}\), with no
+hypothesis (`J-oe-averaged-two-productions-reach-the-depth-two-ceiling`). Every
+number printed here is unchanged --- the rate improves by only
+\(3.93\cdot10^{-5}\), too little to shift an integer \(C\), so the least
+\(C\) is still \(19\) and the pressure thresholds still \(19,41,214\) at
+\(q=0.5,0.55,0.6\). They are now theorems rather than consequences of a
+conjecture. Against \(13/40\), the previous best unconditional exponent,
+those thresholds were \(23,50,273\) (`tao_reduction.unconditional_depth_drop`).
+
 ## Problem
 
 If the conjecture is false, by how much must the tilted odd share of
@@ -18,7 +30,9 @@ amount within reach of the pressure census?
 **Proposition (EXACT — HUMAN PROOF, elementary).** Let
 \(p_C=(1-1/C)\log2/\log3\), \(\theta=\log\bigl(p_C(1-q)/(q(1-p_C))\bigr)\),
 \(a_{\theta,q}=1+(e^\theta-1)q\), \(c_\theta=(e^\theta-1)/a_{\theta,q}\),
-\(d=\lceil CL\rceil\), and \(e_*=1-\lambda^{**}=0.5074\). If the
+\(d=\lceil CL\rceil\), and \(e_*=1-100/203=0.5073892\) (see the
+Status note below; the older \(1-\lambda^{**}=0.5074\) gives the same
+integers). If the
 conjecture is false then for every \(\varepsilon>0\) there are
 infinitely many \(y\) with
 \[

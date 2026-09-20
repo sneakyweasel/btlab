@@ -144,7 +144,8 @@ No CLI, no Lean, no new big-int certification, no floor work.
 
 ## Conjectures
 
-`juggler_walk_fan_minimum_law` — **CONJECTURE** (asymptotic form):
+`juggler_walk_fan_minimum_law` — **PROVED** 20 September 2026 (exact
+form; what follows is the asymptotic reading it replaced):
 along every dangerous fan, \(\ln R_{\min}=4/(A+B)+O((A+B)^{-2})\),
 hence the schedule's required-improvement infimum over all fans is
 \(1\) iff the dangerous-position partial quotients of

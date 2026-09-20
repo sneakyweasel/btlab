@@ -7,6 +7,24 @@ subtitle: Laboratory note. Conditional theorems; the hypothesis is a conjecture.
 
 ## 0. The question and the answer
 
+**Update, 20 September 2026 --- \(e_*\) is no longer conditional.** Every
+threshold below is driven by \(e_*=1-\lambda^{**}=0.5074\), and that
+\(\lambda^{**}\) rested on Paper C's Proposition 4.4 and its two
+exponential-sum bounds. It no longer has to:
+`Production.logMass_contagion_averaged` reaches
+\(\lambda\le100/203=0.4926108>\lambda^{**}\) with no hypothesis
+(`J-oe-averaged-two-productions-reach-the-depth-two-ceiling`), so read
+\(e_*=1-100/203=0.5073892\) throughout.
+
+Nothing numerical in this note changes. The rate improves by
+\(3.93\cdot10^{-5}\), which is nowhere near enough to move an integer
+depth: \(C=19\) is still the least, and the biased thresholds are still
+\(19,41,214,1496\) at \(q=0.5,0.55,0.6,0.62\). What changes is that they
+are now theorems. The comparison worth quoting is against \(13/40\), which
+was the best exponent an *unconditional* statement could use before: there the
+least depth was \(C=23\) and the pressure thresholds \(23,50,273,1953\).
+`tao_reduction.unconditional_depth_drop` re-derives all of it.
+
 Fate contagion ([juggler_fate_contagion_note.md](juggler_fate_contagion_note.md),
 Corollary 4.5) turned the Juggler conjecture into an almost-all
 statement: every start reaches \(1\) **iff** the starts whose orbit

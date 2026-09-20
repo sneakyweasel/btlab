@@ -37,7 +37,11 @@ Method: [docs/methodology.md](../../docs/methodology.md).
   The floor-free Lean bound is still \(e\ge 4\), \(L\ge 11\)
   (Theorem 3.22); the printed computational strengthening is
   Theorem 3.31 (\(e\ge 8\), \(L\ge 22\) at minima \(\ge 300\)).
-  Walk program is terminal (`juggler_walk_fan_minimum_law`, CONJECTURE).
+  Walk program is terminal (`juggler_walk_fan_minimum_law`, **PROVED**
+  20 September 2026: `R_min = ((A+B+1)/(A+B-1))^2` exactly, hence
+  `((a+3)/(a+1))^2 < R_k` -- the leftover is the classical question
+  whether the dangerous-position quotients of \(\log2/\log3\) are
+  unbounded, and nothing else).
   Laboratory-kill of remaining near-convergents is **CLOSE**
   (`juggler_cycle_diophantine_survivors`). Baker/SdW **REFUTED**
   (`juggler_cycle_gap_baker`). Paper A × Paper B merge CLOSE.
@@ -88,10 +92,17 @@ Method: [docs/methodology.md](../../docs/methodology.md).
   \(8<9\)).
 - **Fates.** Every realized fate class has
   \(\sum_{n\le x}1/n\gg(\log x)^{\lambda}\) for
-  \(\lambda<\lambda^{**}=0.4926\) (`J-fate-log-density`).
-  Rest-average PARK. Log-log clock PARK. Contagion method ceiling
-  \(\lambda=0.4927\). Tao-type bound with \(e>0.5074\) implies the
-  conjecture (`J-tao-rate-implies-conjecture`). Pressure form is
+  \(\lambda<\lambda^{**}=0.4926\) (`J-fate-log-density`), and
+  **unconditionally** for \(\lambda\le100/203=0.4926108\)
+  (`J-oe-averaged-two-productions-reach-the-depth-two-ceiling`,
+  `Production.logMass_contagion_averaged`): the poor-fibre tail takes
+  Proposition 4.4's exponential sums off the critical path. Rest-average
+  is no longer PARK --- it is proved, Lean, and PROMOTE. Log-log clock
+  PARK. Contagion method ceiling \(\lambda=0.4927\), now approached to
+  within \(5\times10^{-5}\). Tao-type bound with \(e>0.5074\) implies
+  the conjecture (`J-tao-rate-implies-conjecture`), and now with no
+  contagion hypothesis at all
+  (`Production.conjecture_of_tao_rate_averaged`, \(e>103/203\)). Pressure form is
   the weakest displayed per-scale hypothesis. The existing scale average
   also suffices: [corrected implication](../../docs/problems/juggler_pressure_external_average.md),
   `J-pressure-scale-average-suffices`; its arithmetic bound is open.

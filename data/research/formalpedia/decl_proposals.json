@@ -4623,6 +4623,39 @@
       "composite": false,
       "confidence": "low",
       "definitions": [],
+      "id": "J-oe-fiber-block-lock",
+      "in_file": 0,
+      "lean": "formal/Problems/Juggler/FateBlockLock.lean",
+      "names_own": [],
+      "statement": "An OE fiber can be unbalanced only by locking onto a rational step of small denominator, and the quantitative form is elementary. For m >= 10^6 and every convergent denominator q of alpha_m = {(3/2) m^(2/3)}, |G_m/H_m - 1/2| <= 4||q alpha_m|| + 5/(2q) + 3.77 q/H_m. PROOF: cut the fiber into blocks of q consecutive members; by Lemma 4.2's step interval [A_m, B_m] each block is a translate of the 1/"
+    },
+    {
+      "candidates": [],
+      "composite": false,
+      "confidence": "low",
+      "definitions": [],
+      "id": "J-oe-poor-fiber-tail",
+      "in_file": 0,
+      "lean": "formal/Problems/Juggler/FatePoorTail.lean",
+      "names_own": [],
+      "statement": "The OE fibers whose parity share is bounded away from 1/2 have finite total logarithmic mass, so no set can concentrate on them. For eta_0 in (0,1/2], with P_eta0 = {m : |G_m/H_m - 1/2| >= eta_0} and u_0(eta_0) = max(10^6, (1950/eta_0^2)^3): #(P_eta0 cap (u,2u]) <= 430 u^(2/3)/eta_0^2 for u >= u_0, and sum over m in P_eta0, m > U of 1/m <= 2100 U^(-1/3)/eta_0^2 for U >= u_0. PROOF: the block lock "
+    },
+    {
+      "candidates": [],
+      "composite": false,
+      "confidence": "low",
+      "definitions": [],
+      "id": "J-oe-averaged-two-productions-reach-the-depth-two-ceiling",
+      "in_file": 0,
+      "lean": "formal/Problems/Juggler/FatePoorProduction.lean",
+      "names_own": [],
+      "statement": "With the poor-fiber tail, Paper C's contagion recursion needs only two productions, and they reach the depth-two ceiling. Taking the OE family over all of A cap (x^(3/8), x^(3/4)] rather than over the rest -- legitimate because the E-images are even and the OE-images odd, which is the only disjointness ever used -- Corollary of J-oe-poor-fiber-tail at V = x^(3/8), whose error x^(-1/8) is the shape"
+    },
+    {
+      "candidates": [],
+      "composite": false,
+      "confidence": "low",
+      "definitions": [],
       "id": "J-survivor-count-is-the-certificate-tail",
       "in_file": 0,
       "lean": "formal/Problems/Juggler/PaperBCertificateRecursion.lean",
@@ -4641,6 +4674,6 @@
       "statement": "PROVED IN LEAN, at every level: above the bottom edge, no two adjacent lengths are both free. carrying_in_adjacent_pair says that for floor(Lambda) + 1 <= L, at least one of L and L+1 carries a window at level 2^Lambda. MECHANISM. The carrying lengths are floor(o log2 3 + Lambda) + 1 (certWindowAt_iff_floor). Since 1 < log2 3 < 2, one step moves that floor by 1 or 2 (floor_step_bounds), so the car"
     }
   ],
-  "unresolved": 128,
+  "unresolved": 131,
   "worth_reviewing": 19
 }

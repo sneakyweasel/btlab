@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import difflib
 import math
 from fractions import Fraction
 
@@ -13,11 +14,20 @@ from pathlib import Path
 
 from research.juggler_sequence.fate_contagion import lambda_root
 from research.juggler_sequence.oe_rest_average import (
+    exponent_certificate,
+    ETA_H_BOUND,
+    alpha_star,
+    circle_norm,
+    convergent_denominators,
+    icbrt_exact,
     IDEAL,
+    MASTER_C,
     PAIRING,
     POOR_SHARE,
     alpha_of,
+    arc_count,
     averaging_payoff,
+    averaging_theorem,
     every_fibre_equidistributes,
     fd_placement,
     fibre_exponent,
@@ -30,6 +40,9 @@ from research.juggler_sequence.oe_rest_average import (
     step_is_weyl,
     weyl_discrepancy,
     classify,
+    lock_census,
+    master_inequality,
+    poor_block_scaling,
     dyadic_logmass,
     exact_even_share,
     is_low_even,
@@ -87,6 +100,12 @@ def test_small_summary_runs() -> None:
     rec = summary(limit=12_000)
     assert rec["n_poor"] > 0
     assert rec["classification"] in {
+        "OE_REST_AVERAGE_SHARP",
+        "OE_REST_AVERAGE_DROWNED",
+        "OE_REST_AVERAGE_MIXED",
+        "OE_REST_AVERAGE_PROVED",
+    }
+    assert rec["closure_classification"] in {
         "OE_REST_AVERAGE_SHARP",
         "OE_REST_AVERAGE_DROWNED",
         "OE_REST_AVERAGE_MIXED",
@@ -700,3 +719,200 @@ def test_the_crossover_is_delta_to_the_minus_nine() -> None:
     # and the span from today's root to lambda** is enormous
     assert crossover(1.67e-1) < 1e13
     assert crossover(5.77e-5) > 1e40
+
+# --- the poor-fiber tail ---------------------------------------------------
+
+
+def test_icbrt_exact_where_the_float_seed_is_not() -> None:
+    """The seed `round(x ** (1/3))` is off by ~1e-16 x^(1/3), so it is useless
+    exactly where `alpha_star` needs it: `m^2 S^3` with `S = 10^25`.
+
+    `fate_contagion.icbrt` keeps that seed and stays correct for its own uses;
+    it is a pinned Paper C input and is not edited from this branch.
+    """
+    for x in (0, 1, 7, 8, 26, 27, 10**30, 10**87 + 12345, (10**6) ** 2 * (10**25) ** 3):
+        r = icbrt_exact(x)
+        assert r**3 <= x < (r + 1) ** 3
+
+
+def test_alpha_star_is_the_papers_alpha_not_the_fiber_step() -> None:
+    """`alpha_star(m) = {(3/2) m^(2/3)}` exactly; perfect cubes are the check."""
+    # m = t^3 gives (3/2) t^2, which is 0 mod 1 for even t and 1/2 for odd t
+    assert alpha_star(100**3) == 0
+    assert alpha_star(101**3) == pytest.approx(0.5)
+    assert alpha_star(27) == pytest.approx(0.5)
+    # and it is NOT alpha_of, which is the fiber's own first step
+    m = 10**7 + 1
+    assert abs(float(alpha_star(m)) - alpha_of(m)) < 1.1 * m ** (-1.0 / 3.0)
+
+
+def test_convergents_have_the_defining_property() -> None:
+    a = alpha_star(10**7 + 1)
+    qs = convergent_denominators(a, 500)
+    assert qs[0] == 1 and qs == sorted(qs)
+    # ||q alpha|| < 1/q' for the next denominator: the fact Lemma 2 rests on
+    for q, q_next in zip(qs, qs[1:]):
+        assert float(circle_norm(q * a)) < 1.0 / q_next
+
+
+def test_block_lock_master_inequality() -> None:
+    """Lemma 1 is the whole proof of the poor-fiber tail. One negative slack
+    refutes docs/theory/juggler_oe_poor_fiber_tail_note.md.
+
+    Checked at every convergent denominator q <= H_m. The constant MASTER_C is
+    1 + 4 sup(eta_m H_m), so the measured eta_m H_m is checked against the
+    bound it is built on at the same time.
+    """
+    for lo, hi in ((10**6, 10**6 + 400), (10**7, 10**7 + 120), (10**8, 10**8 + 30)):
+        rec = lock_census(lo, hi)
+        assert rec["master_holds"], rec["tightest"]
+        assert rec["min_slack"] > 0.0
+        assert rec["eta_H_max"] <= ETA_H_BOUND
+    assert MASTER_C >= 1.0 + 4.0 * ETA_H_BOUND
+
+
+def test_every_poor_fiber_locks_at_a_small_denominator() -> None:
+    """The mechanism, and the reason the tail is thin: a fiber with share at or
+    below 0.40 has alpha_m within O(1/H_m) of a rational of small denominator.
+
+    q = 1 is the extreme family of Corollary 4.6 (whole fibers with no even
+    image); q = 3 is the attaining witness family of the pairing third.
+    """
+    rec = lock_census(10**6, 10**6 + 1500)
+    assert rec["n_poor"] > 0
+    assert set(rec["poor_lock_q_values"]) <= {1, 3, 5}
+    assert rec["poor_max_resonance"] < 4.0
+
+
+def test_arc_count_bounds_the_resonant_m() -> None:
+    """Lemma 3, which is Lemma 4.3 with its two goodness arcs generalized."""
+    for q_max in (1, 3, 8):
+        for c in (1.0, 5.0, 20.0):
+            rec = arc_count(10**4, q_max, c * 10**4 ** (-1.0 / 3.0))
+            assert rec["holds"], rec
+            assert rec["ratio"] <= 1.0
+
+
+def test_poor_density_decays_at_the_cube_root() -> None:
+    """The theorem is an upper bound; if the true exponent were smaller the
+    corollary would be false, so the density times u^(1/3) must not drift up."""
+    rec = poor_block_scaling(anchors=(10**5, 10**6), window=800)
+    vals = [r["density_times_cube_root"] for r in rec["rows"]]
+    assert all(0.5 < v < 5.0 for v in vals), vals
+    assert vals[-1] <= vals[0] * 1.5
+
+
+def test_two_productions_now_pass_lambda_star_star() -> None:
+    """What the theorem buys: the same exponent with the analytic core removed.
+
+    The gain in the number is 8.6e-5. The gain that matters is that (5.1) uses
+    only Lemma 3.1, Lemma 3.2 and the tail theorem, so Proposition 4.4's two
+    exponential-sum bounds -- Paper C's largest unformalized gap -- the
+    six-word ladder, Appendix D, and Lemmas 4.1/4.1'/4.2 all leave the critical
+    path. The supremum 0.4926580 is approached, not attained: eta_0 is fixed
+    before x, which is the shape the published statement already has.
+    """
+    t = averaging_theorem()
+    assert t["break_even_eta_0"] == pytest.approx(8.60e-5, rel=2e-2)
+    assert t["beats_published"]
+    assert t["two_production_root"] > t["lambda_star_star_published"]
+    assert t["two_production_root"] < t["ideal_root"] <= 0.4926580
+    # and the honest cost of the crude constants
+    assert t["u_0"] > 1e30
+
+
+# `production_two_averaged` inlines `production_two`'s shell geometry verbatim --- the
+# three scales, the fibres landing in the shell, the two boundary drops --- because
+# factoring it into a shared lemma would add a declaration to `FateProduction.lean`,
+# one of the 83 inputs pinned by Paper C's release manifest. The copy is deliberate and
+# recorded in both docstrings; what is NOT acceptable is the two drifting apart in
+# silence, so this gate re-extracts both blocks and compares them.
+_GEOMETRY_START = "obtain ⟨y, hy⟩ : ∃ y : ℕ, ⌊Real.exp t⌋₊ = y := ⟨_, rfl⟩"
+_GEOMETRY_END = "errors in exponential form"
+
+
+def _shell_geometry(text: str, header: str) -> list[str]:
+    """The coefficient-free opening of a production proof, as a list of stripped lines."""
+
+    assert text.count(header) == 1, f"{header!r} occurs {text.count(header)} times"
+    body = text.split(header, 1)[1].splitlines()
+    start = next(k for k, line in enumerate(body) if line.strip() == _GEOMETRY_START)
+    end = next(k for k in range(start, len(body)) if _GEOMETRY_END in body[k])
+    return [line.rstrip() for line in body[start:end]]
+
+
+def test_the_two_production_proofs_share_the_same_shell_geometry() -> None:
+    juggler = Path(__file__).resolve().parents[3] / "formal" / "Problems" / "Juggler"
+    original = _shell_geometry(
+        (juggler / "FateProduction.lean").read_text(encoding="utf-8"),
+        "theorem production_two {",
+    )
+    copy = _shell_geometry(
+        (juggler / "FatePoorProduction.lean").read_text(encoding="utf-8"),
+        "theorem production_two_averaged {",
+    )
+    assert len(original) == 73, len(original)
+    assert copy == original, (
+        "production_two_averaged's inlined shell geometry has drifted from "
+        "production_two's. Whichever moved, the other must move with it, or the "
+        "averaged production inequality is no longer the geometry Paper C cites.\n"
+        + "\n".join(
+            difflib.unified_diff(
+                original, copy, "production_two", "production_two_averaged", lineterm=""
+            )
+        )
+    )
+
+
+def test_lean_exponent_certificate_is_exact_and_beats_the_published_lambda() -> None:
+    """`Production.zeta2avg_pos` asserts five numbers; re-derive all of them."""
+
+    c = exponent_certificate()
+    # the two integer inequalities Lean checks at the 203rd power
+    assert c["cert_two_pow"]
+    assert c["cert_three_quarter_pow"]
+    # and the rational sum they feed
+    assert c["zeta_positive"]
+    assert c["zeta_lower_bound"] > 2.0e-5
+    # the window: strictly above the published lambda**, strictly below the root
+    assert c["beats_published"]
+    assert c["below_ideal"]
+    assert c["lambda_star_star_published"] < 100 / 203 < c["ideal_root"]
+    # 100/203 is NOT minimal -- 67/136 is, and is rejected for margin
+    assert c["smaller_denominator_in_window"] == ["67/136"]
+    assert c["chosen_for_margin_not_minimality"]
+    assert c["smaller_denominator_margins"]["67/136"] < c["zeta_lower_bound"] / 3
+
+
+def test_the_lean_certificate_is_quoted_consistently() -> None:
+    root = Path(__file__).resolve().parents[3]
+    lean = (
+        root / "formal" / "Problems" / "Juggler" / "FatePoorProduction.lean"
+    ).read_text(encoding="utf-8")
+    # the five numbers, exactly as `exponent_certificate` re-derives them
+    for token in ("100 : ℝ) / 203", "coef2avg (1 / 100000)", "710737 / 1000000",
+                  "216967 / 250000", "n := 203"):
+        assert token in lean, token
+    # and the corrected claim: chosen for margin, not minimality
+    assert "smallest-denominator" not in lean
+    assert "chosen for margin, not minimality" in lean
+
+
+def test_note_records_what_leaves_the_critical_path() -> None:
+    root = Path(__file__).resolve().parents[3]
+    note = (root / "docs" / "theory" / "juggler_oe_poor_fiber_tail_note.md").read_text(
+        encoding="utf-8"
+    )
+    assert "EXACT — LEAN VERIFIED" in note
+    # the note is hard-wrapped prose, so match on collapsed whitespace
+    flat = " ".join(note.lower().split())
+    for claim in (
+        "proposition 4.4 leaves the critical path",
+        "not a halt theorem",
+        "no cycle is excluded",
+    ):
+        assert claim in flat, claim
+    dossier = (root / "docs" / "problems" / "juggler_oe_rest_average.md").read_text(
+        encoding="utf-8"
+    )
+    assert "**PROMOTE.**" in dossier.split("## Decision", 1)[1]
