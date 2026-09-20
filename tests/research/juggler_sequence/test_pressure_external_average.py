@@ -270,6 +270,37 @@ def test_crude_complement_bound_still_exceeds_the_averaging_allowance() -> None:
     assert math.isclose(kappa - (1.0 + surplus), 3.8739287365174, abs_tol=1e-10)
 
 
+def test_the_poor_fibre_technique_cannot_discard_exceptional_scales() -> None:
+    """Why `J-oe-poor-fiber-tail`'s move does not transfer to the scale average.
+
+    That proof discards fibres of finite total ``1/m``-mass, which works because
+    a poor fibre's trivial cap is commensurable with the weight: it contributes
+    at most its own ``1/m``. Here the trivial cap on a scale is ``k^kappa`` while
+    the whole cumulative budget through ``K`` is ``K^(1+eta)``, so one
+    exceptional scale evaluated at its own ``K = k`` already overshoots by
+    ``k^(kappa - 1 - eta)``. Counting is unavailable at any sparsity.
+    """
+
+    p = p_of_C(19)
+    theta = math.log(p / (1.0 - p))
+    log_base = math.log((1.0 + math.exp(theta)) / 2.0)
+    kappa = 19.0 * (theta - log_base) / math.log(2.0)
+    rate = 19.0 * (theta * p - log_base) / math.log(2.0)
+    # the unconditional exponent of 20 September 2026 in place of lambda**
+    surplus_uncond = rate - (1.0 - 100.0 / 203.0)
+    surplus_starstar = rate + LAMBDA_V6 - 1.0
+    assert surplus_uncond > surplus_starstar          # a better rate permits more
+    assert math.isclose(surplus_uncond, 0.0195373865, abs_tol=1e-10)
+    gap = kappa - (1.0 + surplus_uncond)
+    assert math.isclose(gap, 3.8738894438, abs_tol=1e-10)
+    # the kill is unmoved: the gap changes in the fifth decimal
+    assert abs(gap - (kappa - 1.0 - surplus_starstar)) < 1e-4
+    # a single exceptional scale, tested at K = k, exhausts the budget outright
+    for k in (2, 10, 10**6):
+        assert k**kappa > k ** (1.0 + surplus_uncond)
+    assert math.log10(10**6) * gap > 23.0
+
+
 def test_fair_cap_gap_persists_under_depth_and_tilt_retuning() -> None:
     """Finite parameter fixtures check the proof, not actual pressure sizes."""
 
