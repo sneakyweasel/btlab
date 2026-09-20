@@ -150,6 +150,21 @@ def imports(path: Path, known: set[str]) -> list[str]:
     return sorted({m.group(1) for m in IMPORT.finditer(text) if m.group(1) in known})
 
 
+
+def lean_key(ref: object) -> str:
+    """Repo-relative key for a ledger row's `lean` field, however it is spelled.
+
+    The ledger spells it both ways: 421 rows give a path relative to `formal/`
+    ("Problems/Juggler/X.lean") and 43 give it from the repository root
+    ("formal/Problems/Juggler/X.lean"). Prepending "formal/" unconditionally turned the
+    second spelling into "formal/formal/...", which matches no file, so those 43 rows
+    resolved to zero declarations while every gate stayed green -- the index simply
+    reported a smaller surface than the repository has.
+    """
+    text = str(ref or "").lstrip("/")
+    return text if text.startswith("formal/") else "formal/" + text
+
+
 def ledger_by_file() -> dict[str, list[dict[str, str]]]:
     """Ledger rows keyed by the file their ``lean`` field names, normalised to repo paths."""
     if not LEDGER.is_file():
@@ -160,7 +175,7 @@ def ledger_by_file() -> dict[str, list[dict[str, str]]]:
         ref = row.get("lean")
         if not isinstance(ref, str) or not ref.endswith(".lean"):
             continue
-        key = "formal/" + ref.lstrip("/")
+        key = lean_key(ref)
         out[key].append(
             {"id": row["id"], "tag": row["tag"], "statement": row.get("statement", "")}
         )
@@ -345,7 +360,7 @@ def dag(index: dict[str, Any], ledger: list[dict[str, Any]]) -> dict[str, Any]:
     for row in ledger:
         ref = row.get("lean")
         if isinstance(ref, str) and ref.endswith(".lean"):
-            mod = file_to_mod.get("formal/" + ref)
+            mod = file_to_mod.get(lean_key(ref))
             if mod:
                 rows[mod].append(row["id"])
 
@@ -446,7 +461,7 @@ def calibrate(index: dict[str, Any], ledger: list[dict[str, Any]]) -> dict[str, 
     resolved = [r for r in ledger if len(row_decls(r)) == 1]
     fires = correct = 0
     for row in resolved:
-        cands = by_file.get("formal/" + str(row.get("lean")), [])
+        cands = by_file.get(lean_key(row.get("lean")), [])
         if len(cands) < 2:
             continue
         sw = words(row["statement"])
@@ -472,7 +487,7 @@ def propose(index: dict[str, Any], ledger: list[dict[str, Any]]) -> dict[str, An
     # A declaration already claimed by a resolved row cannot be the answer to another: one
     # theorem backs one claim, which the ledger's own collision test enforces.  Offering a
     # taken declaration wastes a reviewer's judgement on an answer that would be rejected.
-    taken = {(r["lean"], name) for r in ledger for name in row_decls(r)}
+    taken = {(lean_key(r.get("lean")), name) for r in ledger for name in row_decls(r)}
 
     by_file: dict[str, list[dict[str, Any]]] = defaultdict(list)
     defs_by_file: dict[str, list[dict[str, Any]]] = defaultdict(list)
@@ -499,8 +514,8 @@ def propose(index: dict[str, Any], ledger: list[dict[str, Any]]) -> dict[str, An
             out.append({"id": row["id"], "lean": ref, "why": "lean field is not a file",
                         "confidence": "low", "candidates": []})
             continue
-        cands = [d for d in by_file.get("formal/" + ref, [])
-                 if (ref, d["name"]) not in taken]
+        cands = [d for d in by_file.get(lean_key(ref), [])
+                 if (lean_key(ref), d["name"]) not in taken]
         sw = words(row["statement"])
         ranked = sorted(cands, key=lambda d: similarity(sw, d), reverse=True)[:3]
         scores = [round(similarity(sw, d), 3) for d in ranked]
@@ -509,7 +524,7 @@ def propose(index: dict[str, Any], ledger: list[dict[str, Any]]) -> dict[str, An
         # Definitions are ranked separately, never merged into the theorem list: admitting
         # them to one ranking displaces the true answer on 3 of the rows already resolved.
         # A row like BTA-x3-Q-def describes a `def`, and until now had no candidate at all.
-        dcands = sorted(defs_by_file.get("formal/" + ref, []),
+        dcands = sorted(defs_by_file.get(lean_key(ref), []),
                         key=lambda d: similarity(sw, d), reverse=True)[:2]
         named = [t for t in dict.fromkeys(IDENT.findall(row["statement"]))
                  if any(d["name"] == t for d in cands)]
@@ -597,7 +612,7 @@ def review_digest(index: dict[str, Any], ledger: list[dict[str, Any]]) -> str:
         if row["confidence"] != "review" or not row["candidates"]:
             continue
         top = row["candidates"][0]
-        decl = docs.get(("formal/" + row["lean"], top["decl"]))
+        decl = docs.get((lean_key(row["lean"]), top["decl"]))
         shown += 1
         out.append(f"## {shown}. `{row['id']}`")
         out.append("")

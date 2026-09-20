@@ -151,7 +151,7 @@ def test_every_proposed_candidate_lives_in_the_row_s_own_file() -> None:
         lean = r.get("lean")
         if not (isinstance(lean, str) and lean.endswith(".lean")):
             continue
-        names = by_file.get("formal/" + lean, set())
+        names = by_file.get(fp.lean_key(lean), set())
         for c in r["candidates"]:
             assert c["decl"] in names, f"{r['id']}: {c['decl']} not in {lean}"
 

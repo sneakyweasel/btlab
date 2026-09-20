@@ -5,7 +5,7 @@ statement beside the candidate's docstring; the question is only whether they sa
 same thing.  Measured against all 208 single-declaration rows the scorer gets
 64 of the 79 it fires on right, 81% precise, so roughly one in
 5 below is wrong.
-19 rows below, of 131 unresolved.
+24 rows below, of 131 unresolved.
 
 
 Two failure modes are not scored at all, and both record a part as the whole.
@@ -389,4 +389,102 @@ theorem band_successor_unique {u v w : ℝ} (_h0 : 0 ≤ u) (_h1 : u < 1 + alpha
 *Runners-up: `band_step_forced_odd` (0.263), `band_step_forced_even` (0.263)*
 
 *If this row describes a definition rather than a theorem: `WalkStep`, `alphaClock`*
+
+## 20. `J-mean-share-exceptional-depths`
+
+**Row.** What the mean-share hypothesis does not need, machine-checked. Paper C section 9.3(a) and 9.3(b) were prose; these are the statements. (a) MeanShareOff mu x q d E := sum over t in [0,d) minus E of s_t <= q |[0,d) minus E|, with nothing whatever assumed on the exceptional set E. Then weightGen_le_of_meanShareOff gives Z_d <= Z_0 x^|[0,d) c
+
+**Candidate.** `initial_depths_are_free` &mdash; kernel-checked, `formal/Problems/Juggler/TiltedShare.lean:494`
+
+> **Every bounded prefix of depths is free.** Taking the exceptional set to be the first `k` depths, no assumption whatever on those depths costs more than the constant factor `x^k`. This is Paper C section 9.3(a): the depth-five split, and every split to any fixed depth, cannot bear on the reduction.
+
+```lean
+theorem initial_depths_are_free (μ : List Branch → ℝ) (x q : ℝ)
+    (hμ : ∀ w, 0 ≤ μ w) (hsplit : WeightSplit μ) (hx : 1 ≤ x) (hq : 0 ≤ q)
+    (d k : ℕ) (hk : k ≤ d) (hM : MeanShareOff μ x q d (Finset.range k)) :
+    weightGen μ x d ≤ weightGen μ x 0 * (x ^ k * (1 + (x - 1) * q) ^ (d - k))
+```
+
+*Statement names: `weightGen_le_of_meanShareOff`, `tiltedShare_le_one`, `count_le_of_meanShareOff`, `meanShareOff_empty`, `initial_depths_are_free`, `tower_ratio_lt_one`, `tower_tolerance_half`*
+
+*Runners-up: `weightGen_le_of_meanShareOff` (0.141), `count_le_of_meanShareOff` (0.1)*
+
+*If this row describes a definition rather than a theorem: `MeanShareOff`, `NoMomentum`*
+
+## 21. `J-localized-kernel-arithmetic`
+
+**Row.** Rational bookkeeping only, not an exponential-sum estimate. LocalizedKernel.lean proves absTail_eq: three nested half-averages give (7y+a)/8; threshold_iff and threshold_value: retaining saving 1/96 requires y>=29/48. Legacy companionY=23/32 is explicitly a reference scale, not a production scale; absTail_companion=533/768, target_compani
+
+**Candidate.** `production_formal_effective_saving` &mdash; kernel-checked, `formal/Problems/Juggler/LocalizedKernel.lean:98`
+
+> Pure bookkeeping: the formal tail remains below the trivial interval length by `11/1536`. This arithmetic statement does not assert the shorter-interval estimate or its production application.
+
+```lean
+theorem production_formal_effective_saving :
+    productionY - absTail productionY A₁ = 11 / 1536
+```
+
+*Statement names: `absTail_eq`, `threshold_iff`, `threshold_value`, `absTail_companion`, `target_companion`, `margin_companion`, `productionY_eq_one_sub`, `absTail_production`, `target_production`, `production_lt_threshold`, `production_misses_same_saving`, `production_same_saving_deficit`, `production_formal_effective_saving`, `proportional_chain`, `claimC_balance`, `claimC_output`, `claimC_others_dominated`, `twist_negligible`, `twist_uniform_exponent`*
+
+*Runners-up: `absTail_lt_target` (0.08), `production_misses_same_saving` (0.08)*
+
+*If this row describes a definition rather than a theorem: `absTail`, `absStep`*
+
+## 22. `J-cube-fiber-exact`
+
+**Row.** The OE fiber of a perfect cube is full or exactly alternating. For every a >= 1 and every n with (2a)^4 <= n and n^3 < ((2a)^3+1)^4, floor(n^(3/2)) = Nat.sqrt (n^3) is even (even_cube_fiber_full); for every odd n with (2a+1)^4 <= n and n^3 < ((2a+1)^3+1)^4, Nat.sqrt (n^3) + (n - (2a+1)^4)/2 is odd (odd_cube_fiber_alternating), so consecut
+
+**Candidate.** `odd_cube_fiber_alternating` &mdash; kernel-checked, `formal/Problems/Juggler/CubeFiber.lean:100`
+
+> The fiber-level statement for odd cubes: an odd `n` with `(2a+1)^4 ≤ n` and `n^3 < ((2a+1)^3 + 1)^4` sits at an even offset `2s`, and its image has the parity of `1 + s`. Consecutive fiber elements therefore have opposite image parity.
+
+```lean
+theorem odd_cube_fiber_alternating (a n : ℕ) (hodd : n % 2 = 1) (hlo : (2 * a + 1) ^ 4 ≤ n)
+    (hhi : n ^ 3 < ((2 * a + 1) ^ 3 + 1) ^ 4) :
+    (Nat.sqrt (n ^ 3) + (n - (2 * a + 1) ^ 4) / 2) % 2 = 1
+```
+
+*Statement names: `even_cube_fiber_full`, `odd_cube_fiber_alternating`, `cube_fiber_sqrt_even`, `cube_fiber_sqrt_odd`, `cube_fiber_range`*
+
+*Runners-up: `even_cube_fiber_full` (0.076), `cube_fiber_sqrt_odd` (0.067)*
+
+## 23. `J-oe-poor-fiber-tail`
+
+**Row.** The OE fibers whose parity share is bounded away from 1/2 have finite total logarithmic mass, so no set can concentrate on them. For eta_0 in (0,1/2], with P_eta0 = {m : |G_m/H_m - 1/2| >= eta_0} and u_0(eta_0) = max(10^6, (1950/eta_0^2)^3): #(P_eta0 cap (u,2u]) <= 430 u^(2/3)/eta_0^2 for u >= u_0, and sum over m in P_eta0, m > U of 1/m <
+
+**Candidate.** `poor_count_le'` &mdash; kernel-checked, `formal/Problems/Juggler/FatePoorTail.lean:168`
+
+> **Theorem 4, the block count with an explicit constant.** `430 u^{2/3}/η₀²`. The note claims `420`. That figure assumed the second term of Lemma 3 was `Q(Q+1)/2`, the Gauss sum; `resonance_count_le'` delivers `Q(Q+1)`, because `arc_count_le` counts a half-open arc while `‖q A_m‖ ≤ δ` is closed, so each of the `Q` arcs is widened by one point. Carried through, `2·3.77·61.5 + 18 = 481.71` against `0.8825 u^{2/3}` gives `425.11`, so `420` is false and `430` is the honest constant. Nothing downstream moves: the note already records that only the positivity of the exponent matters, never the size of the constant.
+
+```lean
+theorem poor_count_le' {u : ℕ} (hu : 10 ^ 6 ≤ u) {η₀ : ℝ} (hη0 : 0 < η₀) (hη1 : η₀ ≤ 1 / 2)
+    (hB : 1280 / η₀ ^ 2 ≤ 2 / 3 * (u : ℝ) ^ ((1 : ℝ) / 3) - 1)
+    (hδ2 : 32 / (η₀ * (2 / 3 * (u : ℝ) ^ ((1 : ℝ) / 3) - 1)) < 1 / 2) :
+    (#{m ∈ Finset.Ioc u (2 * u) | Poor η₀ m} : ℝ) ≤ 430 * (u : ℝ) ^ ((2 : ℝ) / 3) / η₀ ^ 2
+```
+
+*Statement names: `poor_count_le'`, `poor_logMass_le`*
+
+*Runners-up: `nonpoor_fiber_logMass_ge` (0.073), `poor_logMass_le` (0.071)*
+
+*If this row describes a definition rather than a theorem: `Poor`*
+
+## 24. `J-free-lengths-are-never-adjacent`
+
+**Row.** PROVED IN LEAN, at every level: above the bottom edge, no two adjacent lengths are both free. carrying_in_adjacent_pair says that for floor(Lambda) + 1 <= L, at least one of L and L+1 carries a window at level 2^Lambda. MECHANISM. The carrying lengths are floor(o log2 3 + Lambda) + 1 (certWindowAt_iff_floor). Since 1 < log2 3 < 2, one ste
+
+**Candidate.** `carrying_in_adjacent_pair` &mdash; kernel-checked, `formal/Problems/Juggler/PaperBLevelWindow.lean:805`
+
+> **No two adjacent lengths are both free.** Above the bottom edge `⌊Λ⌋ + 1`, at least one of `L` and `L + 1` carries a window. The proof takes the least `o` whose boundary value reaches `L - 1`. If it is `0` the bottom-edge hypothesis pins it at `L - 1` exactly; otherwise its predecessor fell short, and one step moves the floor by at most `2`, so the value lands on `L - 1` or `L`.
+
+```lean
+theorem carrying_in_adjacent_pair {Λ : ℝ} (hΛ : 0 ≤ Λ) {L : ℕ} (hL : ⌊Λ⌋ + 1 ≤ (L : ℤ)) :
+    (∃ o, CertWindowAt ((2 : ℝ) ^ Λ) L o) ∨ (∃ o, CertWindowAt ((2 : ℝ) ^ Λ) (L + 1) o)
+```
+
+*Statement names: `carrying_in_adjacent_pair`, `certWindowAt_iff_floor`, `floor_step_bounds`, `not_cylinder_twice`*
+
+*Runners-up: `certWindowAt_iff_floor` (0.088), `aliveWordsAt_succ_iff_window_empty` (0.082)*
+
+*If this row describes a definition rather than a theorem: `CertWindowAt`, `minimalCertWordsAt`*
 

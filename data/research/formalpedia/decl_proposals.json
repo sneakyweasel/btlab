@@ -1,5 +1,5 @@
 {
-  "composite": 39,
+  "composite": 61,
   "note": "Proposals for human review. Calibration: 86% precision (42 of 49 fires) against all resolved rows. Nothing here has been written into the ledger.",
   "rows": [
     {
@@ -4051,14 +4051,59 @@
       "statement": "Even steps never deepen the Juggler floor tower. For every j, Nat.sqrt^[j] x = s iff s^(2^j) <= x < (s+1)^(2^j) (sqrt_iter_eq_iff); on an even run floorPower is iterated Nat.sqrt (floorPower_iter_of_even); an odd step followed by j even steps equals Nat.sqrt^[j+1] (n^3), i.e. floor(n^(3/2^(j+1))) with one floor and no nesting (floorPower_odd_even_run, floorPower_odd_even_run_eq_iff); the OE fiber "
     },
     {
-      "candidates": [],
-      "composite": false,
+      "candidates": [
+        {
+          "decl": "completeCubicSum_eq_nine",
+          "line": 178,
+          "score": 0.137,
+          "trust": "kernel"
+        },
+        {
+          "decl": "dual_phase",
+          "line": 90,
+          "score": 0.096,
+          "trust": "kernel"
+        },
+        {
+          "decl": "depthOneConstant_eq_sqrt_six_div_nine",
+          "line": 209,
+          "score": 0.095,
+          "trust": "kernel"
+        }
+      ],
+      "composite": true,
       "confidence": "low",
-      "definitions": [],
+      "definitions": [
+        {
+          "decl": "depthOneConstant",
+          "line": 191,
+          "score": 0.061
+        },
+        {
+          "decl": "zeta27",
+          "line": 123,
+          "score": 0.052
+        }
+      ],
       "id": "J-depth-one-arithmetic-layer",
-      "in_file": 0,
+      "in_file": 19,
       "lean": "formal/Problems/Juggler/DepthOneMainTerm.lean",
-      "names_own": [],
+      "names_own": [
+        "dual_phase",
+        "stationary_point",
+        "dual_phase_half",
+        "dual_phase_rpow",
+        "rpow_three_halves_of_sq",
+        "completeCubicSum_eq_nine",
+        "dual_term",
+        "zeta27_pow_mod",
+        "zeta27_nine_sum",
+        "depthOneConstant_eq_sqrt_six_div_nine",
+        "depthOneConstant_eq_printed",
+        "rpow_three_halves",
+        "sum_affine_reindex",
+        "two_isUnit"
+      ],
       "statement": "The arithmetic tier beneath J-depth-one-main-term, machine-checked. (a) dual_phase: for the phase F(M) = alpha M^(3/2), at the stationary point M_nu = s^2 with s = 2 nu / (3 alpha) (stationary_point) the Legendre value alpha s^3 - nu s^2 equals -4 nu^3 / (27 alpha^2), a cubic whose coefficient is rational whenever alpha is; at alpha = 1/2 it is -16 nu^3 / 27 (dual_phase_half), so the dual modulus "
     },
     {
@@ -4111,179 +4156,733 @@
       "statement": "Paper C Proposition 9.3 on the word-weight framework of RateFreeDensity. For a nonnegative word weight mu with WeightSplit (each word's two children carry at most the parent's weight) and x >= 1: the tilted generating function Z_d = weightGen mu x d satisfies Z_{d+1} <= Z_d + (x-1) oddMass_d (weightGen_succ_le) and Z_{d+1} <= Z_d (1 + (x-1) s_d) with s_d = tiltedShare mu x d = oddMass_d / Z_d (wei"
     },
     {
-      "candidates": [],
-      "composite": false,
+      "candidates": [
+        {
+          "decl": "juggler_count_le_of_noMomentum",
+          "line": 146,
+          "score": 0.185,
+          "trust": "kernel"
+        },
+        {
+          "decl": "liveCount_sum_oddCount",
+          "line": 108,
+          "score": 0.152,
+          "trust": "kernel"
+        },
+        {
+          "decl": "juggler_count_le_of_meanShare",
+          "line": 180,
+          "score": 0.123,
+          "trust": "kernel"
+        }
+      ],
+      "composite": true,
       "confidence": "low",
-      "definitions": [],
+      "definitions": [
+        {
+          "decl": "liveCount",
+          "line": 39,
+          "score": 0.087
+        },
+        {
+          "decl": "liveWeight",
+          "line": 44,
+          "score": 0.067
+        }
+      ],
       "id": "J-live-count-weight",
-      "in_file": 0,
+      "in_file": 11,
       "lean": "formal/Problems/Juggler/LiveCountWeight.lean",
-      "names_own": [],
+      "names_own": [
+        "liveWeight_weightSplit",
+        "juggler_count_le_of_noMomentum",
+        "liveCount_sum_oddCount"
+      ],
       "statement": "The live count liveCount N0 N w = #{n in [1,N] : itinerary n |w| = w and n, J n, ..., J^|w| n all exceed N0} is a WeightSplit weight (liveWeight_weightSplit: the two one-letter extensions have disjoint live classes inside the parent's), and juggler_count_le_of_noMomentum instantiates the chain on it: if NoMomentum (liveWeight N0 N) x q delta d holds, then #{n in [1,N] : live for d steps, oddCount("
     },
     {
-      "candidates": [],
-      "composite": false,
+      "candidates": [
+        {
+          "decl": "weightGen_le_of_meanShare",
+          "line": 303,
+          "score": 0.208,
+          "trust": "kernel"
+        },
+        {
+          "decl": "prod_le_mean_pow",
+          "line": 234,
+          "score": 0.161,
+          "trust": "kernel"
+        },
+        {
+          "decl": "weightGen_le_of_meanShareOff",
+          "line": 410,
+          "score": 0.119,
+          "trust": "kernel"
+        }
+      ],
+      "composite": true,
       "confidence": "low",
-      "definitions": [],
+      "definitions": [
+        {
+          "decl": "MeanShare",
+          "line": 285,
+          "score": 0.208
+        },
+        {
+          "decl": "NoMomentum",
+          "line": 175,
+          "score": 0.145
+        }
+      ],
       "id": "J-mean-share-form",
-      "in_file": 0,
+      "in_file": 23,
       "lean": "formal/Problems/Juggler/TiltedShare.lean",
-      "names_own": [],
+      "names_own": [
+        "weightGen_le_of_meanShare",
+        "weightGen_le_prod",
+        "prod_le_mean_pow",
+        "count_le_of_meanShare",
+        "meanShare_of_noMomentum"
+      ],
       "statement": "Mean-share form of the no-momentum hypothesis. MeanShare mu x q d := sum_{t<d} s_t <= q d, with s_t the tilted odd share of the WeightSplit weight mu at tilt x. Then (weightGen_le_of_meanShare) Z_d <= Z_0 a_q^d with a_q = 1 + (x-1) q and no exponential slack, by the product form Z_d <= Z_0 prod_{t<d} (1 + (x-1) s_t) (weightGen_le_prod) and AM-GM (prod_le_mean_pow, Jensen for log); hence (count_le_"
     },
     {
-      "candidates": [],
-      "composite": false,
-      "confidence": "low",
-      "definitions": [],
+      "candidates": [
+        {
+          "decl": "initial_depths_are_free",
+          "line": 494,
+          "score": 0.242,
+          "trust": "kernel"
+        },
+        {
+          "decl": "weightGen_le_of_meanShareOff",
+          "line": 410,
+          "score": 0.141,
+          "trust": "kernel"
+        },
+        {
+          "decl": "count_le_of_meanShareOff",
+          "line": 477,
+          "score": 0.1,
+          "trust": "kernel"
+        }
+      ],
+      "composite": true,
+      "confidence": "review",
+      "definitions": [
+        {
+          "decl": "MeanShareOff",
+          "line": 399,
+          "score": 0.099
+        },
+        {
+          "decl": "NoMomentum",
+          "line": 175,
+          "score": 0.074
+        }
+      ],
       "id": "J-mean-share-exceptional-depths",
-      "in_file": 0,
+      "in_file": 23,
       "lean": "formal/Problems/Juggler/TiltedShare.lean",
-      "names_own": [],
+      "names_own": [
+        "weightGen_le_of_meanShareOff",
+        "tiltedShare_le_one",
+        "count_le_of_meanShareOff",
+        "meanShareOff_empty",
+        "initial_depths_are_free",
+        "tower_ratio_lt_one",
+        "tower_tolerance_half"
+      ],
       "statement": "What the mean-share hypothesis does not need, machine-checked. Paper C section 9.3(a) and 9.3(b) were prose; these are the statements. (a) MeanShareOff mu x q d E := sum over t in [0,d) minus E of s_t <= q |[0,d) minus E|, with nothing whatever assumed on the exceptional set E. Then weightGen_le_of_meanShareOff gives Z_d <= Z_0 x^|[0,d) cap E| a_q^|[0,d) minus E|: each excluded depth costs exactly"
     },
     {
-      "candidates": [],
-      "composite": false,
+      "candidates": [
+        {
+          "decl": "odd_run_upper",
+          "line": 77,
+          "score": 0.13,
+          "trust": "kernel"
+        },
+        {
+          "decl": "oddCount_le_of_noAdjOdd",
+          "line": 114,
+          "score": 0.113,
+          "trust": "kernel"
+        },
+        {
+          "decl": "oo_step_lower",
+          "line": 50,
+          "score": 0.11,
+          "trust": "kernel"
+        }
+      ],
+      "composite": true,
       "confidence": "low",
-      "definitions": [],
+      "definitions": [
+        {
+          "decl": "NoAdjOdd",
+          "line": 109,
+          "score": 0.062
+        },
+        {
+          "decl": "oeBlock",
+          "line": 185,
+          "score": 0.03
+        }
+      ],
       "id": "J-cycle-run-alphabet",
-      "in_file": 0,
+      "in_file": 14,
       "lean": "formal/Problems/Juggler/CycleRunAlphabet.lean",
-      "names_own": [],
+      "names_own": [
+        "odd_run_upper",
+        "even_run_contracts",
+        "oo_step_lower",
+        "oddCount_le_of_noAdjOdd",
+        "ee_forces_fourth_power"
+      ],
       "statement": "Exact run inequalities, with no height-to-alphabet conclusion. odd_run_upper: if the first r iterates from v are odd, y = T^[r] v satisfies y^(2^r) <= v^(3^r), an UPPER growth bound, not (3/2)^r <= log M/log m. even_run_contracts: under the stated even-iterate condition, z^(2^g) <= w. oo_step_lower: if x and T(x) are odd and T(x) >= 8, then x^9 < 2(T^2(x)+1)^4; retain the factor two and shift. odd"
     },
     {
-      "candidates": [],
-      "composite": false,
+      "candidates": [
+        {
+          "decl": "band_min_no_second_fall",
+          "line": 256,
+          "score": 0.165,
+          "trust": "kernel"
+        },
+        {
+          "decl": "band_min_needs_three_climbs",
+          "line": 221,
+          "score": 0.138,
+          "trust": "kernel"
+        },
+        {
+          "decl": "climbRun_three_two_falls_exponentGap",
+          "line": 247,
+          "score": 0.067,
+          "trust": "kernel"
+        }
+      ],
+      "composite": true,
       "confidence": "low",
-      "definitions": [],
+      "definitions": [
+        {
+          "decl": "ooeBlock",
+          "line": 188,
+          "score": 0.029
+        },
+        {
+          "decl": "oeBlock",
+          "line": 185,
+          "score": 0.014
+        }
+      ],
       "id": "J-cycle-band-discrepancy",
-      "in_file": 0,
+      "in_file": 14,
       "lean": "formal/Problems/Juggler/CycleRunAlphabet.lean",
-      "names_own": [],
+      "names_own": [
+        "walk_eq_discrepancy",
+        "band_min_needs_three_climbs",
+        "band_min_no_second_fall"
+      ],
       "statement": "Conditional abstract word identities, not actual cycle geometry. walk_eq_discrepancy assumes L>0 and o alpha = (L-o) beta and proves o_t alpha - (t-o_t) beta = (alpha+beta)(o_t - t o/L). Without that supplied closure the drift term (t/L)(o alpha-(L-o) beta) must be retained; no log R = log 3 Delta identity for actual Juggler cycles is claimed. band_min_needs_three_climbs: if prefixNoncontracting ("
     },
     {
-      "candidates": [],
-      "composite": false,
+      "candidates": [
+        {
+          "decl": "oddCubeParity_eq_floorPower",
+          "line": 22,
+          "score": 0.14,
+          "trust": "kernel"
+        },
+        {
+          "decl": "factorCount_six_saturates",
+          "line": 54,
+          "score": 0.14,
+          "trust": "kernel"
+        },
+        {
+          "decl": "factorCount_six_not_before",
+          "line": 58,
+          "score": 0.136,
+          "trust": "kernel"
+        }
+      ],
+      "composite": true,
       "confidence": "low",
-      "definitions": [],
+      "definitions": [
+        {
+          "decl": "oddCubeParity",
+          "line": 19,
+          "score": 0.125
+        },
+        {
+          "decl": "windows",
+          "line": 32,
+          "score": 0.071
+        }
+      ],
       "id": "J-parity-factor-exhaustion",
-      "in_file": 0,
+      "in_file": 7,
       "lean": "formal/Problems/Juggler/ParityComplexity.lean",
-      "names_own": [],
+      "names_own": [
+        "oddCubeParity_eq_floorPower",
+        "factorCount_six_saturates",
+        "factorCount_six_not_before"
+      ],
       "statement": "The depth-one parity sequence a(k) = floor((2k+1)^(3/2)) mod 2, the letter after the odd step from 2k+1 (oddCubeParity_eq_floorPower: it is floorPower (2k+1) % 2), contains every binary word of length at most six, and the words of length 3, 4, 5, 6 are exhausted at exactly 18, 48, 169, 574 terms: factorCount (parityPrefix 574) 6 = 64 and factorCount (parityPrefix 573) 6 = 63 (factorCount_six_satur"
     },
     {
-      "candidates": [],
-      "composite": false,
-      "confidence": "low",
-      "definitions": [],
+      "candidates": [
+        {
+          "decl": "production_formal_effective_saving",
+          "line": 98,
+          "score": 0.138,
+          "trust": "kernel"
+        },
+        {
+          "decl": "absTail_lt_target",
+          "line": 68,
+          "score": 0.08,
+          "trust": "kernel"
+        },
+        {
+          "decl": "production_misses_same_saving",
+          "line": 87,
+          "score": 0.08,
+          "trust": "kernel"
+        }
+      ],
+      "composite": true,
+      "confidence": "review",
+      "definitions": [
+        {
+          "decl": "absTail",
+          "line": 30,
+          "score": 0.066
+        },
+        {
+          "decl": "absStep",
+          "line": 26,
+          "score": 0.062
+        }
+      ],
       "id": "J-localized-kernel-arithmetic",
-      "in_file": 0,
+      "in_file": 24,
       "lean": "formal/Problems/Juggler/LocalizedKernel.lean",
-      "names_own": [],
+      "names_own": [
+        "absTail_eq",
+        "threshold_iff",
+        "threshold_value",
+        "absTail_companion",
+        "target_companion",
+        "margin_companion",
+        "productionY_eq_one_sub",
+        "absTail_production",
+        "target_production",
+        "production_lt_threshold",
+        "production_misses_same_saving",
+        "production_same_saving_deficit",
+        "production_formal_effective_saving",
+        "proportional_chain",
+        "claimC_balance",
+        "claimC_output",
+        "claimC_others_dominated",
+        "twist_negligible",
+        "twist_uniform_exponent"
+      ],
       "statement": "Rational bookkeeping only, not an exponential-sum estimate. LocalizedKernel.lean proves absTail_eq: three nested half-averages give (7y+a)/8; threshold_iff and threshold_value: retaining saving 1/96 requires y>=29/48. Legacy companionY=23/32 is explicitly a reference scale, not a production scale; absTail_companion=533/768, target_companion=17/24, margin_companion=11/768 remain true. The repaired "
     },
     {
-      "candidates": [],
-      "composite": false,
-      "confidence": "low",
+      "candidates": [
+        {
+          "decl": "odd_cube_fiber_alternating",
+          "line": 100,
+          "score": 0.117,
+          "trust": "kernel"
+        },
+        {
+          "decl": "even_cube_fiber_full",
+          "line": 63,
+          "score": 0.076,
+          "trust": "kernel"
+        },
+        {
+          "decl": "cube_fiber_sqrt_odd",
+          "line": 73,
+          "score": 0.067,
+          "trust": "kernel"
+        }
+      ],
+      "composite": true,
+      "confidence": "review",
       "definitions": [],
       "id": "J-cube-fiber-exact",
-      "in_file": 0,
+      "in_file": 7,
       "lean": "formal/Problems/Juggler/CubeFiber.lean",
-      "names_own": [],
+      "names_own": [
+        "even_cube_fiber_full",
+        "odd_cube_fiber_alternating",
+        "cube_fiber_sqrt_even",
+        "cube_fiber_sqrt_odd",
+        "cube_fiber_range"
+      ],
       "statement": "The OE fiber of a perfect cube is full or exactly alternating. For every a >= 1 and every n with (2a)^4 <= n and n^3 < ((2a)^3+1)^4, floor(n^(3/2)) = Nat.sqrt (n^3) is even (even_cube_fiber_full); for every odd n with (2a+1)^4 <= n and n^3 < ((2a+1)^3+1)^4, Nat.sqrt (n^3) + (n - (2a+1)^4)/2 is odd (odd_cube_fiber_alternating), so consecutive fiber elements have opposite image parity. Both rest on "
     },
     {
-      "candidates": [],
-      "composite": false,
+      "candidates": [
+        {
+          "decl": "first_usable_depth",
+          "line": 136,
+          "score": 0.084,
+          "trust": "kernel"
+        },
+        {
+          "decl": "breakEven_gt_half_four",
+          "line": 100,
+          "score": 0.049,
+          "trust": "kernel"
+        },
+        {
+          "decl": "breakEven_saturates",
+          "line": 46,
+          "score": 0.048,
+          "trust": "kernel"
+        }
+      ],
+      "composite": true,
       "confidence": "low",
-      "definitions": [],
+      "definitions": [
+        {
+          "decl": "Admissible",
+          "line": 74,
+          "score": 0.036
+        },
+        {
+          "decl": "breakEven",
+          "line": 42,
+          "score": 0.025
+        }
+      ],
       "id": "J-theorem-six-one-threshold-is-slack",
-      "in_file": 0,
+      "in_file": 13,
       "lean": "formal/Problems/Juggler/PaperBThreshold.lean",
-      "names_own": [],
+      "names_own": [
+        "breakEven_saturates",
+        "breakEven_admissible",
+        "le_breakEven_of_admissible",
+        "self_not_admissible",
+        "beta_self_not_admissible",
+        "beta_lt_one",
+        "breakEven_four",
+        "breakEven_three",
+        "beta_gt_five_eighths",
+        "beta_le_two_thirds",
+        "breakEven_gt_half_four",
+        "breakEven_le_half_three",
+        "first_usable_depth"
+      ],
       "statement": "Paper B's Theorem 6.1 discards three quarters of its own exponent, and the discard is avoidable at no cost. THE STEP. The proof needs a Chernoff threshold q with 1/2 < q < p, p = log2/log3, satisfying p*d - 1 >= q*(d-1); the -1 is the leading O, spent before the binomial starts. The published proof takes q = (p+1/2)/2. THE SHARP CHOICE. The break-even threshold is q_d = p - (1-p)/(d-1), at which t"
     },
     {
-      "candidates": [],
-      "composite": false,
+      "candidates": [
+        {
+          "decl": "sturmian_step",
+          "line": 102,
+          "score": 0.094,
+          "trust": "kernel"
+        },
+        {
+          "decl": "lamStar_mean_zero",
+          "line": 53,
+          "score": 0.08,
+          "trust": "kernel"
+        },
+        {
+          "decl": "tailRoot_mul_odds",
+          "line": 142,
+          "score": 0.071,
+          "trust": "kernel"
+        }
+      ],
+      "composite": true,
       "confidence": "low",
-      "definitions": [],
+      "definitions": [
+        {
+          "decl": "lamStar",
+          "line": 43,
+          "score": 0.025
+        },
+        {
+          "decl": "gap",
+          "line": 80,
+          "score": 0.025
+        }
+      ],
       "id": "J-paper-b-tilt-reduction-and-the-phase-factor",
-      "in_file": 0,
+      "in_file": 13,
       "lean": "formal/Problems/Juggler/PaperBTilt.lean",
-      "names_own": [],
+      "names_own": [
+        "lamStar_mean_zero",
+        "beta_mean_zero",
+        "rho_closed_form",
+        "beta_rho_closed",
+        "ceil_sub_eq_one_sub_fract",
+        "sturmian_step",
+        "one_add_tailRoot"
+      ],
       "statement": "The exact reduction behind the almost-periodic prefactor of J-paper-b-meander-prefactor-is-almost-periodic, together with the one step of it that is NOT proved. Steps Y = X - BETA with X ~ Bernoulli(1/2), so Lam(l) = -l BETA + log((e^l+1)/2). THE TILT. Lam'(l) = -BETA + e^l/(e^l+1) vanishes exactly at lamStar = log(BETA/(1-BETA)) = 0.536207535136, where the tilted coin is Bernoulli(BETA) and the w"
     },
     {
-      "candidates": [],
-      "composite": false,
+      "candidates": [
+        {
+          "decl": "cocycle_average_eq",
+          "line": 77,
+          "score": 0.061,
+          "trust": "kernel"
+        },
+        {
+          "decl": "update_false_tail",
+          "line": 41,
+          "score": 0.054,
+          "trust": "kernel"
+        },
+        {
+          "decl": "one_div_one_add_tailRoot",
+          "line": 55,
+          "score": 0.05,
+          "trust": "kernel"
+        }
+      ],
+      "composite": true,
       "confidence": "low",
       "definitions": [],
       "id": "J-tail-amplitude-is-a-cocycle-over-the-boundary-fraction",
-      "in_file": 0,
+      "in_file": 7,
       "lean": "formal/Problems/Juggler/PaperBAmplitudeCocycle.lean",
-      "names_own": [],
+      "names_own": [
+        "update_true_tail",
+        "update_false_tail",
+        "rising_multiplier_base",
+        "nonrising_multiplier",
+        "one_div_one_add_tailRoot",
+        "tailRoot_div_one_add"
+      ],
       "statement": "A(phi) is not an independent unknown: the update determines the tail amplitude from the boundary fraction through an explicit multiplicative cocycle over the rotation. THE DERIVATION, which is algebra and is exact. J-phase-shift-is-one-update-and-R-halves makes a phase shift by the slope exactly one application of the update, Pi_(phi+s) = T_b Pi_phi / (1 - b Pi_phi(0)/2). Pushing the tail form A ("
     },
     {
-      "candidates": [],
-      "composite": false,
+      "candidates": [
+        {
+          "decl": "h_at_tailRoot",
+          "line": 98,
+          "score": 0.042,
+          "trust": "kernel"
+        },
+        {
+          "decl": "h_deriv_eq_zero_at_tailRoot",
+          "line": 72,
+          "score": 0.033,
+          "trust": "kernel"
+        },
+        {
+          "decl": "h_secondDeriv_at_tailRoot",
+          "line": 82,
+          "score": 0.028,
+          "trust": "kernel"
+        }
+      ],
+      "composite": true,
       "confidence": "low",
-      "definitions": [],
+      "definitions": [
+        {
+          "decl": "tailRoot",
+          "line": 48,
+          "score": 0.023
+        },
+        {
+          "decl": "h",
+          "line": 44,
+          "score": 0.014
+        }
+      ],
       "id": "J-tail-double-root-in-lean-and-paper-b-updated",
-      "in_file": 0,
+      "in_file": 7,
       "lean": "formal/Problems/Juggler/PaperBTailSpectrum.lean",
-      "names_own": [],
+      "names_own": [
+        "h_hasDerivAt",
+        "h_deriv_eq_zero_at_tailRoot",
+        "h_secondDeriv_at_tailRoot",
+        "h_secondDeriv_pos",
+        "h_at_tailRoot",
+        "tailRoot_pos"
+      ],
       "statement": "The tail variable's minimum is Lean-verified and Paper B's open-questions section is brought up to it. THE LEAN. PaperBTailSpectrum proves what J-tail-spectral-gap-closes-like-one-over-root-q reads its numerics against, for h s z = log(1+z) - log 2 - (1-s) log z: the derivative is 1/(1+z) - (1-s)/z (h_hasDerivAt); it vanishes at the tail root (1-s)/s (h_deriv_eq_zero_at_tailRoot), which is why r* "
     },
     {
-      "candidates": [],
-      "composite": false,
+      "candidates": [
+        {
+          "decl": "theta_eq_exp_neg_klDiv",
+          "line": 96,
+          "score": 0.047,
+          "trust": "kernel"
+        },
+        {
+          "decl": "theta_pow_lt",
+          "line": 121,
+          "score": 0.047,
+          "trust": "kernel"
+        },
+        {
+          "decl": "one_sub_inv_lt_log",
+          "line": 50,
+          "score": 0.039,
+          "trust": "kernel"
+        }
+      ],
+      "composite": true,
       "confidence": "low",
-      "definitions": [],
+      "definitions": [
+        {
+          "decl": "klDiv",
+          "line": 46,
+          "score": 0.045
+        },
+        {
+          "decl": "theta",
+          "line": 93,
+          "score": 0.023
+        }
+      ],
       "id": "J-paper-b-formal-layer-has-an-estimate",
-      "in_file": 0,
+      "in_file": 7,
       "lean": "formal/Problems/Juggler/PaperBChernoff.lean",
-      "names_own": [],
+      "names_own": [
+        "one_sub_inv_lt_log",
+        "klDiv_pos",
+        "theta_eq_exp_neg_klDiv",
+        "theta_lt_one",
+        "theta_pos",
+        "theta_pow_lt"
+      ],
       "statement": "Paper B's formal layer now contains an estimate, where before it contained none. THE STANDING POSITION, stated in the paper's own barrel JugglerParityPaper.lean: 'Building it does not corroborate the paper's analysis. Every declaration reachable from here is an identity, a constant, or a threshold; not one of them is an estimate.' That was accurate and is the reason 49 axiom-checked declarations d"
     },
     {
-      "candidates": [],
-      "composite": false,
+      "candidates": [
+        {
+          "decl": "sum_choose_mul_pow",
+          "line": 43,
+          "score": 0.051,
+          "trust": "kernel"
+        },
+        {
+          "decl": "chernoff_tail",
+          "line": 54,
+          "score": 0.051,
+          "trust": "kernel"
+        },
+        {
+          "decl": "tilt_gives_theta",
+          "line": 108,
+          "score": 0.051,
+          "trust": "kernel"
+        }
+      ],
+      "composite": true,
       "confidence": "low",
       "definitions": [],
       "id": "J-paper-b-chernoff-chain-is-formal",
-      "in_file": 0,
+      "in_file": 4,
       "lean": "formal/Problems/Juggler/PaperBMarkov.lean",
-      "names_own": [],
+      "names_own": [
+        "sum_choose_mul_pow",
+        "chernoff_tail",
+        "chernoff_density",
+        "tilt_gives_theta"
+      ],
       "statement": "Theorem 6.1's Chernoff chain is now formal end to end, from the word count to a bound that decays. PaperBMarkov, four theorems, axioms [propext, Classical.choice, Quot.sound], joining PaperBChernoff from earlier the same day. STATED COMBINATORIALLY, which is both closer to the manuscript and far cheaper: Paper B counts words of length d by their number of odd letters and divides by 2^d, so the sta"
     },
     {
-      "candidates": [],
-      "composite": false,
+      "candidates": [
+        {
+          "decl": "density_of_finite_union",
+          "line": 47,
+          "score": 0.065,
+          "trust": "kernel"
+        },
+        {
+          "decl": "exceptional_density_zero",
+          "line": 76,
+          "score": 0.065,
+          "trust": "kernel"
+        },
+        {
+          "decl": "tendsto_zero_of_eventually_le",
+          "line": 58,
+          "score": 0.047,
+          "trust": "kernel"
+        }
+      ],
+      "composite": true,
       "confidence": "low",
       "definitions": [],
       "id": "J-fd-step-is-formal-and-theorem-six-one-stays-conditional",
-      "in_file": 0,
+      "in_file": 3,
       "lean": "formal/Problems/Juggler/PaperBDensity.lean",
-      "names_own": [],
+      "names_own": [
+        "density_of_finite_union",
+        "tendsto_zero_of_eventually_le",
+        "exceptional_density_zero"
+      ],
       "statement": "The FD step is formalised as an inference, and Theorem 6.1 stays conditional -- which is what the manuscript already says and what the formalisation must not quietly improve on. WHAT FD IS. A HYPOTHESIS, not a result: 'Hypothesis FD. For every fixed d >= 1 and every odd-rooted word w of length d, #{n <= N : word_d(n) = w} = 2^(-d) N + o_w(N). No common error rate in d is assumed.' Theorem 6.1 is h"
     },
     {
-      "candidates": [],
-      "composite": false,
+      "candidates": [
+        {
+          "decl": "run_stepRise_stepFlat",
+          "line": 137,
+          "score": 0.183,
+          "trust": "kernel"
+        },
+        {
+          "decl": "stepRise_stepFlat_eq_add_barrierMass",
+          "line": 93,
+          "score": 0.167,
+          "trust": "kernel"
+        },
+        {
+          "decl": "total_stepFlat_eq_two_mul",
+          "line": 222,
+          "score": 0.154,
+          "trust": "kernel"
+        }
+      ],
+      "composite": true,
       "confidence": "low",
-      "definitions": [],
+      "definitions": [
+        {
+          "decl": "barrierMass",
+          "line": 70,
+          "score": 0.08
+        },
+        {
+          "decl": "stepFlat",
+          "line": 60,
+          "score": 0.074
+        }
+      ],
       "id": "J-paper-b-transposition-costs-the-barrier-mass",
-      "in_file": 0,
+      "in_file": 16,
       "lean": "formal/Problems/Juggler/PaperBJumpTransposition.lean",
-      "names_own": [],
+      "names_own": [
+        "stepRise_stepFlat_eq_add_barrierMass",
+        "run_add",
+        "run_stepRise_stepFlat",
+        "stepRise_barrierMass",
+        "total_stepFlat_eq_two_mul",
+        "total_stepRise_add_barrierMass",
+        "run_stepFlat_stepRise_le"
+      ],
       "statement": "Transposing two adjacent barrier letters costs exactly the mass on the barrier. Grade the surviving parity words of a given length by their surplus h above the barrier. A barrier letter that does not rise acts by stepFlat v h = v h + v (h-1) and kills nothing; one that rises acts by stepRise v h = v (h+1) + v h and loses exactly v 0, the survivors sitting on the barrier. Then stepRise (stepFlat v)"
     },
     {
@@ -4619,61 +5218,232 @@
       "statement": "Paper C's finite production words are prefix-free, in Lean, for the whole family rather than for the six the manuscript fixes. Paper C (docs/theory/juggler_fate_almost_all_note.md) builds Theorem 1 from six productions V_k = (OE)^(k-1) OEE with rho_k = (1/2)(3/4)^k, 1 <= k <= 6, and uses their prefix-freeness three times: 'Production words must be prefix-free' when the candidate list is drawn up, "
     },
     {
-      "candidates": [],
-      "composite": false,
+      "candidates": [
+        {
+          "decl": "block_count",
+          "line": 512,
+          "score": 0.143,
+          "trust": "kernel"
+        },
+        {
+          "decl": "gridPoint_near_count",
+          "line": 365,
+          "score": 0.126,
+          "trust": "kernel"
+        },
+        {
+          "decl": "gridPoint_half_count",
+          "line": 314,
+          "score": 0.116,
+          "trust": "kernel"
+        }
+      ],
+      "composite": true,
       "confidence": "low",
-      "definitions": [],
+      "definitions": [
+        {
+          "decl": "Unstable",
+          "line": 359,
+          "score": 0.045
+        },
+        {
+          "decl": "gridRes",
+          "line": 190,
+          "score": 0.035
+        }
+      ],
       "id": "J-oe-fiber-block-lock",
-      "in_file": 0,
+      "in_file": 19,
       "lean": "formal/Problems/Juggler/FateBlockLock.lean",
-      "names_own": [],
+      "names_own": [
+        "block_lock",
+        "grid_half_count",
+        "grid_near_count",
+        "gridRes_mul_inj",
+        "grid_reindex"
+      ],
       "statement": "An OE fiber can be unbalanced only by locking onto a rational step of small denominator, and the quantitative form is elementary. For m >= 10^6 and every convergent denominator q of alpha_m = {(3/2) m^(2/3)}, |G_m/H_m - 1/2| <= 4||q alpha_m|| + 5/(2q) + 3.77 q/H_m. PROOF: cut the fiber into blocks of q consecutive members; by Lemma 4.2's step interval [A_m, B_m] each block is a translate of the 1/"
     },
     {
-      "candidates": [],
-      "composite": false,
-      "confidence": "low",
-      "definitions": [],
+      "candidates": [
+        {
+          "decl": "poor_count_le'",
+          "line": 168,
+          "score": 0.203,
+          "trust": "kernel"
+        },
+        {
+          "decl": "nonpoor_fiber_logMass_ge",
+          "line": 367,
+          "score": 0.073,
+          "trust": "kernel"
+        },
+        {
+          "decl": "poor_logMass_le",
+          "line": 312,
+          "score": 0.071,
+          "trust": "kernel"
+        }
+      ],
+      "composite": true,
+      "confidence": "review",
+      "definitions": [
+        {
+          "decl": "Poor",
+          "line": 53,
+          "score": 0.037
+        }
+      ],
       "id": "J-oe-poor-fiber-tail",
-      "in_file": 0,
+      "in_file": 13,
       "lean": "formal/Problems/Juggler/FatePoorTail.lean",
-      "names_own": [],
+      "names_own": [
+        "poor_count_le'",
+        "poor_logMass_le"
+      ],
       "statement": "The OE fibers whose parity share is bounded away from 1/2 have finite total logarithmic mass, so no set can concentrate on them. For eta_0 in (0,1/2], with P_eta0 = {m : |G_m/H_m - 1/2| >= eta_0} and u_0(eta_0) = max(10^6, (1950/eta_0^2)^3): #(P_eta0 cap (u,2u]) <= 430 u^(2/3)/eta_0^2 for u >= u_0, and sum over m in P_eta0, m > U of 1/m <= 2100 U^(-1/3)/eta_0^2 for U >= u_0. PROOF: the block lock "
     },
     {
-      "candidates": [],
-      "composite": false,
+      "candidates": [
+        {
+          "decl": "zeta2avg_pos",
+          "line": 526,
+          "score": 0.171,
+          "trust": "kernel"
+        },
+        {
+          "decl": "logMass_contagion_averaged",
+          "line": 548,
+          "score": 0.139,
+          "trust": "kernel"
+        },
+        {
+          "decl": "production_two_averaged",
+          "line": 160,
+          "score": 0.135,
+          "trust": "kernel"
+        }
+      ],
+      "composite": true,
       "confidence": "low",
-      "definitions": [],
+      "definitions": [
+        {
+          "decl": "errAddAvg",
+          "line": 138,
+          "score": 0.042
+        },
+        {
+          "decl": "errOEavg",
+          "line": 132,
+          "score": 0.039
+        }
+      ],
       "id": "J-oe-averaged-two-productions-reach-the-depth-two-ceiling",
-      "in_file": 0,
+      "in_file": 16,
       "lean": "formal/Problems/Juggler/FatePoorProduction.lean",
-      "names_own": [],
+      "names_own": [
+        "family_OE_averaged",
+        "production_two_averaged",
+        "contagion_averaged",
+        "zeta2avg_pos",
+        "logMass_contagion_averaged",
+        "conjecture_of_tao_rate_averaged",
+        "conjecture_of_cylinder_bound_averaged"
+      ],
       "statement": "With the poor-fiber tail, Paper C's contagion recursion needs only two productions, and they reach the depth-two ceiling. Taking the OE family over all of A cap (x^(3/8), x^(3/4)] rather than over the rest -- legitimate because the E-images are even and the OE-images odd, which is the only disjointness ever used -- Corollary of J-oe-poor-fiber-tail at V = x^(3/8), whose error x^(-1/8) is the shape"
     },
     {
-      "candidates": [],
-      "composite": false,
+      "candidates": [
+        {
+          "decl": "neverNegCount_telescope",
+          "line": 362,
+          "score": 0.102,
+          "trust": "kernel"
+        },
+        {
+          "decl": "neverNegCount_add_minimalCertCount",
+          "line": 171,
+          "score": 0.099,
+          "trust": "kernel"
+        },
+        {
+          "decl": "minimalCert_tail_eq",
+          "line": 388,
+          "score": 0.094,
+          "trust": "kernel"
+        }
+      ],
+      "composite": true,
       "confidence": "low",
-      "definitions": [],
+      "definitions": [
+        {
+          "decl": "minimalCertCount",
+          "line": 60,
+          "score": 0.056
+        },
+        {
+          "decl": "minimalCertWords",
+          "line": 56,
+          "score": 0.047
+        }
+      ],
       "id": "J-survivor-count-is-the-certificate-tail",
-      "in_file": 0,
+      "in_file": 24,
       "lean": "formal/Problems/Juggler/PaperBCertificateRecursion.lean",
-      "names_own": [],
+      "names_own": [
+        "neverNegCount_add_minimalCertCount",
+        "neverNegCount_telescope",
+        "minimalCert_tail_eq"
+      ],
       "statement": "PROVED IN LEAN, for every pair d <= K, over the naturals: 2^(K-d) * N_d = sum_{j=d+1}^{K} 2^(K-j) * M_j + N_K, where N_d = neverNegCount d counts the length-d words with no contracting prefix and M_j = minimalCertCount j counts those contracting for the first time at j. Divided by 2^K it reads N_d/2^d = sum_{j=d+1}^{K} M_j/2^j + N_K/2^K, so the survivor density at depth d is the mass of the certif"
     },
     {
-      "candidates": [],
-      "composite": false,
-      "confidence": "low",
-      "definitions": [],
+      "candidates": [
+        {
+          "decl": "carrying_in_adjacent_pair",
+          "line": 805,
+          "score": 0.196,
+          "trust": "kernel"
+        },
+        {
+          "decl": "certWindowAt_iff_floor",
+          "line": 676,
+          "score": 0.088,
+          "trust": "kernel"
+        },
+        {
+          "decl": "aliveWordsAt_succ_iff_window_empty",
+          "line": 603,
+          "score": 0.082,
+          "trust": "kernel"
+        }
+      ],
+      "composite": true,
+      "confidence": "review",
+      "definitions": [
+        {
+          "decl": "CertWindowAt",
+          "line": 121,
+          "score": 0.041
+        },
+        {
+          "decl": "minimalCertWordsAt",
+          "line": 445,
+          "score": 0.034
+        }
+      ],
       "id": "J-free-lengths-are-never-adjacent",
-      "in_file": 0,
+      "in_file": 38,
       "lean": "formal/Problems/Juggler/PaperBLevelWindow.lean",
-      "names_own": [],
+      "names_own": [
+        "carrying_in_adjacent_pair",
+        "certWindowAt_iff_floor",
+        "floor_step_bounds",
+        "not_cylinder_twice"
+      ],
       "statement": "PROVED IN LEAN, at every level: above the bottom edge, no two adjacent lengths are both free. carrying_in_adjacent_pair says that for floor(Lambda) + 1 <= L, at least one of L and L+1 carries a window at level 2^Lambda. MECHANISM. The carrying lengths are floor(o log2 3 + Lambda) + 1 (certWindowAt_iff_floor). Since 1 < log2 3 < 2, one step moves that floor by 1 or 2 (floor_step_bounds), so the car"
     }
   ],
   "unresolved": 131,
-  "worth_reviewing": 19
+  "worth_reviewing": 24
 }
