@@ -48,8 +48,10 @@ ACKNOWLEDGED: dict[str, str] = {
         "period at least 9538065 -- the floor was pushed from 2^38 to 2^40 on 20 September, "
         "16 chunks tiling [3, 2^40), 549755813864 odd starts, 0 failures, 0 new cycles. "
         "No row raises N_0, excludes a Juggler cycle or touches a "
-        "manuscript. Nothing here is superseded and nothing is abandoned -- the branch is "
-        "waiting to be read and merged. Extended 20 September: two further CLOSE rows, "
+        "manuscript. Nothing here is superseded and nothing is abandoned. OPEN AS A PULL "
+        "REQUEST: https://github.com/sneakyweasel/btlab/pull/24, 23 commits into main, "
+        "so the drift here is tracked rather than stranded. Extended 20 September: two "
+        "further CLOSE rows, "
         "J-multiplicative-knight-residual-is-the-state-dependence (Knight's cancellation "
         "transports as cube-and-divide and its residual is exactly the state dependence "
         "of the slack) and J-even-run-dual-of-lemma-eight-is-capped-by-the-shape (the "
@@ -65,7 +67,11 @@ ACKNOWLEDGED: dict[str, str] = {
         "it had three verified instances. A054414 is the only one of the four sequences "
         "around that recursion the repository had never met. No Lean proof changed: the "
         "container has no toolchain, so the identifications went into docstrings only and "
-        "lake build has NOT been run against them."
+        "lake build has NOT been run against them -- the single item on that PR most "
+        "worth a reviewer's attention, since the corpus's standing claim is that it is "
+        "kernel-checked. A 2^44 attempt produced nothing and the floor stands at 2^40; "
+        "the sieved and jump verifiers behind it are archived under "
+        "data/research/juggler/negative_floor_3x1/."
     ),
 }
 
