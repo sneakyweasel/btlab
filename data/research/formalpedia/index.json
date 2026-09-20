@@ -33791,6 +33791,36 @@
       "trust": "kernel"
     },
     {
+      "doc": "`B_u = (2/3) u^{1/3} - 1 \u2265 0.6566 u^{1/3}` for `u \u2265 10^6`: the `-1` costs at most a hundredth of the main term once `u^{1/3} \u2265 100`.",
+      "file": "formal/Problems/Juggler/FatePoorTail.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 140,
+      "module": "Problems.Juggler.FatePoorTail",
+      "name": "B_ge",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`(2u)^{1/3} \u2264 1.26 u^{1/3}`.",
+      "file": "formal/Problems/Juggler/FatePoorTail.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 150,
+      "module": "Problems.Juggler.FatePoorTail",
+      "name": "two_mul_cbrt_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Theorem 4, the block count with an explicit constant.** `430 u^{2/3}/\u03b7\u2080\u00b2`. The note claims `420`. That figure assumed the second term of Lemma 3 was `Q(Q+1)/2`, the Gauss sum; `resonance_count_le'` delivers `Q(Q+1)`, because `arc_count_le` counts a half-open arc while `\u2016q A_m\u2016 \u2264 \u03b4` is closed, so each of the `Q` arcs is widened by one point. Carried through, `2\u00b73.77\u00b761.5 + 18 = 481.71` against `0.8825 u^{2/3}` gives `425.11`, so `420` is false and `430` is the honest constant. Nothing downstream moves: the note already records that only the positivity of the exponent matters, never the size of the constant.",
+      "file": "formal/Problems/Juggler/FatePoorTail.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 168,
+      "module": "Problems.Juggler.FatePoorTail",
+      "name": "poor_count_le'",
+      "trust": "kernel"
+    },
+    {
       "doc": "The live pressure `\u03a3_{n \u2208 {1,\u2026,N} live to depth d} x^{o_d(n)}`, as the generating function of the live weight.",
       "file": "formal/Problems/Juggler/FatePressure.lean",
       "kind": "def",
@@ -92752,7 +92782,7 @@
       ]
     },
     "Problems.Juggler.FatePoorTail": {
-      "declarations": 5,
+      "declarations": 8,
       "file": "formal/Problems/Juggler/FatePoorTail.lean",
       "imports": [
         "Problems.Juggler.FateFiberLock",
@@ -94924,13 +94954,13 @@
     }
   },
   "totals": {
-    "declarations": 7013,
+    "declarations": 7016,
     "declarations_with_a_ledger_row": 4777,
-    "ledger_rows_naming_a_file": 452,
+    "ledger_rows_naming_a_file": 453,
     "modules": 313,
     "trust": {
       "compiler": 56,
-      "kernel": 6957
+      "kernel": 6960
     }
   }
 }

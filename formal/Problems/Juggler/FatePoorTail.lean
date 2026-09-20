@@ -132,6 +132,100 @@ theorem poor_count_le {u : ℕ} (hu : 10 ^ 6 ≤ u) {η₀ : ℝ} (hη0 : 0 < η
     exact_mod_cast Finset.card_le_card hsub
   exact le_trans hcards hcount
 
+
+/-! ### The block count with the note's constant -/
+
+/-- `B_u = (2/3) u^{1/3} - 1 ≥ 0.6566 u^{1/3}` for `u ≥ 10^6`: the `-1` costs at most a
+hundredth of the main term once `u^{1/3} ≥ 100`. -/
+theorem B_ge {u : ℕ} (hu : 10 ^ 6 ≤ u) :
+    0.6566 * (u : ℝ) ^ ((1 : ℝ) / 3) ≤ 2 / 3 * (u : ℝ) ^ ((1 : ℝ) / 3) - 1 := by
+  have hu1 : 1 ≤ u := by omega
+  have he := eps_le hu
+  have hep := eps_pos hu1
+  have hmul := eps_mul_cbrt hu1
+  have h100 : (100 : ℝ) ≤ (u : ℝ) ^ ((1 : ℝ) / 3) := by nlinarith [hmul, he, hep]
+  linarith
+
+/-- `(2u)^{1/3} ≤ 1.26 u^{1/3}`. -/
+theorem two_mul_cbrt_le {u : ℕ} (hu : 1 ≤ u) :
+    ((2 * u : ℕ) : ℝ) ^ ((1 : ℝ) / 3) ≤ 1.26 * (u : ℝ) ^ ((1 : ℝ) / 3) := by
+  have hu0 : (0 : ℝ) ≤ (u : ℝ) := by positivity
+  have hcast : ((2 * u : ℕ) : ℝ) = 2 * (u : ℝ) := by push_cast; ring
+  rw [hcast, Real.mul_rpow (by norm_num) hu0]
+  have h := two_rpow_third_le
+  have hp : (0 : ℝ) ≤ (u : ℝ) ^ ((1 : ℝ) / 3) := Real.rpow_nonneg hu0 _
+  nlinarith
+
+/-- **Theorem 4, the block count with an explicit constant.** `430 u^{2/3}/η₀²`.
+
+The note claims `420`. That figure assumed the second term of Lemma 3 was `Q(Q+1)/2`,
+the Gauss sum; `resonance_count_le'` delivers `Q(Q+1)`, because `arc_count_le` counts a
+half-open arc while `‖q A_m‖ ≤ δ` is closed, so each of the `Q` arcs is widened by one
+point. Carried through, `2·3.77·61.5 + 18 = 481.71` against `0.8825 u^{2/3}` gives
+`425.11`, so `420` is false and `430` is the honest constant. Nothing downstream moves:
+the note already records that only the positivity of the exponent matters, never the
+size of the constant. -/
+theorem poor_count_le' {u : ℕ} (hu : 10 ^ 6 ≤ u) {η₀ : ℝ} (hη0 : 0 < η₀) (hη1 : η₀ ≤ 1 / 2)
+    (hB : 1280 / η₀ ^ 2 ≤ 2 / 3 * (u : ℝ) ^ ((1 : ℝ) / 3) - 1)
+    (hδ2 : 32 / (η₀ * (2 / 3 * (u : ℝ) ^ ((1 : ℝ) / 3) - 1)) < 1 / 2) :
+    (#{m ∈ Finset.Ioc u (2 * u) | Poor η₀ m} : ℝ) ≤ 430 * (u : ℝ) ^ ((2 : ℝ) / 3) / η₀ ^ 2 := by
+  have hu1 : 1 ≤ u := by omega
+  have hmain := poor_count_le hu hη0 hη1 hB hδ2
+  set c : ℝ := (u : ℝ) ^ ((1 : ℝ) / 3) with hcdef
+  have hc0 : 0 < c := Real.rpow_pos_of_pos (by exact_mod_cast (by omega : 0 < u)) _
+  set B : ℝ := 2 / 3 * c - 1 with hBdef
+  have hBge : 0.6566 * c ≤ B := B_ge hu
+  have hBpos : 0 < B := by nlinarith [hc0, hBge]
+  set Q : ℝ := (⌊3.77 / η₀⌋₊ : ℝ) with hQdef
+  have hQle : Q ≤ 3.77 / η₀ := Nat.floor_le (by positivity)
+  have hQ0 : 0 ≤ Q := by positivity
+  have hinv : 0 < 1 / η₀ := by positivity
+  -- the width of one arc, uniformly on the block
+  have hstep : (32 : ℝ) / (η₀ * B) * ((2 * u : ℕ) : ℝ) ^ ((1 : ℝ) / 3) ≤ 61.5 / η₀ := by
+    have h2u := two_mul_cbrt_le hu1
+    have hcbrt0 : (0 : ℝ) ≤ ((2 * u : ℕ) : ℝ) ^ ((1 : ℝ) / 3) := Real.rpow_nonneg (by positivity) _
+    rw [div_mul_eq_mul_div, div_le_div_iff₀ (by positivity) hη0]
+    nlinarith [h2u, hBge, hc0, hη0, hBpos, hcbrt0,
+      mul_le_mul_of_nonneg_left h2u (le_of_lt hη0),
+      mul_le_mul_of_nonneg_left hBge (le_of_lt hη0)]
+  -- the two terms
+  have hwidth : 2 * Q * (32 / (η₀ * B)) * ((2 * u : ℕ) : ℝ) ^ ((1 : ℝ) / 3)
+      ≤ 463.71 * (1 / η₀) ^ 2 := by
+    have hcnn : (0 : ℝ) ≤ (32 : ℝ) / (η₀ * B) * ((2 * u : ℕ) : ℝ) ^ ((1 : ℝ) / 3) :=
+      mul_nonneg (div_nonneg (by norm_num) (le_of_lt (mul_pos hη0 hBpos)))
+        (Real.rpow_nonneg (by positivity) _)
+    have h1 : Q * ((32 : ℝ) / (η₀ * B) * ((2 * u : ℕ) : ℝ) ^ ((1 : ℝ) / 3))
+        ≤ (3.77 / η₀) * (61.5 / η₀) :=
+      mul_le_mul hQle hstep hcnn (by positivity)
+    have h2 : (3.77 : ℝ) / η₀ * (61.5 / η₀) = 231.855 * (1 / η₀) ^ 2 := by
+      field_simp
+      ring
+    rw [h2] at h1
+    nlinarith [h1]
+  have harc : Q * (Q + 1) ≤ 18 * (1 / η₀) ^ 2 := by
+    have h1 : Q ≤ 3.77 * (1 / η₀) := by
+      rw [show (3.77 : ℝ) * (1 / η₀) = 3.77 / η₀ by ring]; exact hQle
+    have h2 : (1 : ℝ) ≤ 1 / η₀ := by rw [le_div_iff₀ hη0]; linarith
+    nlinarith [h1, h2, hQ0]
+  -- the window factor
+  have hu23 : (0 : ℝ) ≤ (u : ℝ) ^ ((2 : ℝ) / 3) := Real.rpow_nonneg (by positivity) _
+  have hwin : 0.882 * (u : ℝ) ^ ((2 : ℝ) / 3) + 2 ≤ 0.8825 * (u : ℝ) ^ ((2 : ℝ) / 3) := by
+    linarith [rpow_two_thirds_ge hu]
+  have hsum0 : (0 : ℝ) ≤ 2 * Q * (32 / (η₀ * B)) * ((2 * u : ℕ) : ℝ) ^ ((1 : ℝ) / 3)
+      + Q * (Q + 1) := by positivity
+  have hinv2 : (1 / η₀) ^ 2 = 1 / η₀ ^ 2 := by rw [div_pow]; norm_num
+  calc (#{m ∈ Finset.Ioc u (2 * u) | Poor η₀ m} : ℝ)
+      ≤ (0.882 * (u : ℝ) ^ ((2 : ℝ) / 3) + 2) *
+          (2 * Q * (32 / (η₀ * B)) * ((2 * u : ℕ) : ℝ) ^ ((1 : ℝ) / 3) + Q * (Q + 1)) := hmain
+    _ ≤ (0.8825 * (u : ℝ) ^ ((2 : ℝ) / 3)) * (481.71 * (1 / η₀) ^ 2) := by
+        apply mul_le_mul hwin (by linarith [hwidth, harc]) hsum0 (by positivity)
+    _ ≤ 430 * (u : ℝ) ^ ((2 : ℝ) / 3) / η₀ ^ 2 := by
+        have hrw : (0.8825 * (u : ℝ) ^ ((2 : ℝ) / 3)) * (481.71 * (1 / η₀) ^ 2)
+            = (0.8825 * 481.71 * (u : ℝ) ^ ((2 : ℝ) / 3)) / η₀ ^ 2 := by
+          field_simp
+        rw [hrw, div_le_div_iff₀ (by positivity) (by positivity)]
+        nlinarith [hu23, sq_nonneg η₀]
+
 end FiberParity
 
 end Problems.Juggler

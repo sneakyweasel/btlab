@@ -66,10 +66,10 @@ because \(P\) is too small to require one. See the next section.
 \(P_{\eta_0}=\{m:|G_m/H_m-\tfrac12|\ge\eta_0\}\). There is
 \(u_0(\eta_0)=\max(10^6,(1950/\eta_0^2)^3)\) with
 \[
-\#\bigl(P_{\eta_0}\cap(u,2u]\bigr)\le\frac{420}{\eta_0^2}u^{2/3}
+\#\bigl(P_{\eta_0}\cap(u,2u]\bigr)\le\frac{430}{\eta_0^2}u^{2/3}
 \quad(u\ge u_0),
 \qquad
-\sum_{m\in P_{\eta_0},\,m>U}\frac1m\le\frac{2040}{\eta_0^2}U^{-1/3}
+\sum_{m\in P_{\eta_0},\,m>U}\frac1m\le\frac{2100}{\eta_0^2}U^{-1/3}
 \quad(U\ge u_0).
 \]
 
@@ -91,7 +91,7 @@ Three steps, all elementary, none using an exponential sum:
 
 **Corollary.** For every set \(S\subseteq(V,\infty)\) whatever --- no
 backward closure, no structure ---
-\(\sum_{m\in S}\tfrac1m\tfrac{G_m}{H_m}\ge(\tfrac12-\eta_0)\sum_{m\in S}\tfrac1m-1020\eta_0^{-2}V^{-1/3}\).
+\(\sum_{m\in S}\tfrac1m\tfrac{G_m}{H_m}\ge(\tfrac12-\eta_0)\sum_{m\in S}\tfrac1m-1050\eta_0^{-2}V^{-1/3}\).
 
 **Why this kills the obstruction rather than dodging it.** The PARK
 rested on the poor set's mass *relative to \(A\)*, which observations
@@ -241,7 +241,7 @@ in descending order of value:
    is a generalization of an existing Lean proof; the block lock is new.
    This is the item that would let Theorem 5.3 be Lean end to end at an
    exponent above \(0.4926\), which it has never been.
-2. **Constants.** \(420\) and \(2040\) are crude by a large factor, and
+2. **Constants.** \(430\) and \(2100\) are crude by a large factor, and
    \(u_0(\eta_0)=(1950/\eta_0^2)^3\) is what makes \(t_1\approx221\)
    at the \(\eta_0\) that matters. Sharpening \(\theta\) in Lemma 2
    and the grid-boundary count in Lemma 1 is routine and would bring
