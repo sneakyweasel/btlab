@@ -1,7 +1,8 @@
 # Juggler companion
 
-A static reviewer site for Papers A–C, led by
-[Lower Bounds for Cycle Lengths in the Juggler Map](https://doi.org/10.5281/zenodo.22676453)
+A static reviewer site for Papers A–C:
+[Lower Bounds for Cycle Lengths in the Juggler Map](https://doi.org/10.5281/zenodo.22676453),
+[Five-Step Descent Certificates for the Juggler Map](https://doi.org/10.5281/zenodo.22864934)
 and [Fate Contagion and Termination Criteria for the Juggler Map](https://doi.org/10.5281/zenodo.22678165).
 It teaches the basic vocabulary with pictures and a small playground. It is
 not the laboratory Streamlit app and not a halt-theorem demo.

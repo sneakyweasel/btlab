@@ -17,10 +17,11 @@ archives. See
 [build instructions](../../docs/theory/PAPER_B_BUILD.md).
 
 `ZENODO_FIELDS.txt` is generated from `docs/theory/paper_b_zenodo.json`.
-Creator: Philippe Cochin, with no affiliation. The prepared license is
-CC BY 4.0. Use the actual date this version first becomes public as the
-publication date. No DOI has been reserved, and no external record has
-been created.
+Creator: Philippe Cochin, with no affiliation. License CC BY 4.0.
+Published 21 September 2026 as Zenodo record
+[22864934](https://zenodo.org/records/22864934), version DOI
+[10.5281/zenodo.22864934](https://doi.org/10.5281/zenodo.22864934), concept DOI
+[10.5281/zenodo.22864933](https://doi.org/10.5281/zenodo.22864933) for all versions.
 
 The PDF is a 44-page preprint proving full five-step power-envelope
 certificate density 7/8, with count error O_epsilon(N^(127/128+epsilon)).
@@ -37,7 +38,7 @@ review and complete Lean verification remain outstanding.
 The delivery bundle `paper_b_zenodo_package.zip` contains the PDF, source
 archive, metadata, instructions, and release checks. See the
 [submission instructions](../../docs/theory/ZENODO_README.md).
-Start a deposit at <https://zenodo.org/uploads/new>. Upload the current
-Paper B PDF and `paper_b_source_package.zip`. Review the record before
-publishing. After publication, record the version DOI in
-[paper_deposits.md](../../docs/theory/paper_deposits.md).
+The record exists; a later revision uses its new-version operation
+rather than a new deposit. The DOIs are recorded in
+[paper_deposits.md](../../docs/theory/paper_deposits.md) and in
+[AFTER_ZENODO.md](AFTER_ZENODO.md).

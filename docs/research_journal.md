@@ -1,5 +1,29 @@
 # Research journal
 
+## 2026-09-21 -- Paper B published on Zenodo; the record written into the catalog, READMEs and kit
+
+- **Objective:** Philippe published Paper B, record 22864934, and asked
+  for the UI to be updated.
+- **The identifiers.** Version DOI `10.5281/zenodo.22864934` (the record), concept DOI
+  `10.5281/zenodo.22864933` for all versions, both resolving through doi.org; the
+  concept DOI is the one Philippe quoted. The record page and the Zenodo
+  API refuse this environment (403 and a denied navigation), so the
+  deposited files' checksums could not be compared with the kit here;
+  `paper_deposits.md` says so and names the kit's PDF digest.
+- **Where it is recorded.** The companion catalog `papers.ts` gives
+  Paper B its DOI and record like Papers A and C, and its test now pins
+  them; `paper_deposits.md` gains the row and the concept DOI; the root
+  README, `docs/README.md`, the juggler review README, the companion
+  README and the agent reading path link the DOI; the kit's
+  `AFTER_ZENODO.md` and `README.md` state the record and that later
+  revisions use the new-version operation, and `SHA256SUMS.txt` is
+  regenerated for those two files with the archives untouched. Files
+  inside the deposited archives (`PAPER_B_BUILD.md`, the release record,
+  `paper_b_zenodo.json`) were left as deposited.
+- **The site.** The companion workflow deploys on a push that touches
+  `web/juggler-companion/`, so the live page updates when this commit is
+  pushed.
+
 ## 2026-09-21 -- Every duplicated file in the tree, and the two copy sets nothing watched
 
 - **Objective:** having deleted a reviewer mirror on the false ground that

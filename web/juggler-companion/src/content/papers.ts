@@ -25,6 +25,8 @@ export const PAPERS: readonly PaperRecord[] = [
     title: "Five-Step Descent Certificates for the Juggler Map",
     hint: "Five-step power-envelope certificate density 7/8; complete OOOEE proof included. AI-assisted preprint; independent review outstanding.",
     pdf: "juggler_parity_discrepancy_note.pdf",
+    doi: "10.5281/zenodo.22864934",
+    zenodo: "https://zenodo.org/records/22864934",
   },
   {
     letter: "C",

@@ -14,7 +14,8 @@ The stopped live-pressure hypothesis is unchanged and unproved.
 
 Status: Paper A is the regenerated Zenodo preprint of 9 September 2026; Paper B is the repaired
 preprint (four-step certificate density 13/16, full five-step certificate density
-7/8 with its complete written proof); Paper C
+7/8 with its complete written proof), published on Zenodo on 21 September 2026
+as record 22864934; Paper C
 (fate contagion and the almost-all reformulation, 4 September 2026)
 is a complete draft whose main theorem is unconditional and whose
 Appendix C alone depends on Paper B.
@@ -134,8 +135,9 @@ lake build Problems.JugglerPaper
 Paper A Zenodo record
 [doi:10.5281/zenodo.22676453](https://doi.org/10.5281/zenodo.22676453)
 and deposit kit: [zenodo_paper_a/](zenodo_paper_a/).
-Paper B prepared deposit kit (no record yet):
-[zenodo_paper_b/](zenodo_paper_b/).
+Paper B Zenodo record
+[doi:10.5281/zenodo.22864934](https://doi.org/10.5281/zenodo.22864934)
+and deposit kit: [zenodo_paper_b/](zenodo_paper_b/).
 Paper C Zenodo record
 [doi:10.5281/zenodo.22678165](https://doi.org/10.5281/zenodo.22678165)
 and deposit kit: [zenodo_paper_c/](zenodo_paper_c/).

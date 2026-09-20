@@ -15,9 +15,10 @@ describe("published preprint records", () => {
     );
   });
 
-  it("keeps Paper B as a local PDF until it has a deposit", () => {
-    expect(paperByLetter("B").doi).toBeUndefined();
-    expect(paperByLetter("B").zenodo).toBeUndefined();
+  it("pins Paper B to its Zenodo version DOI and keeps it off the guides", () => {
+    expect(paperByLetter("B").doi).toBe("10.5281/zenodo.22864934");
+    expect(paperByLetter("B").zenodo).toBe("https://zenodo.org/records/22864934");
+    expect(paperDoiHref(paperByLetter("B").doi!)).toBe("https://doi.org/10.5281/zenodo.22864934");
     expect(paperByLetter("B").guide).toBeUndefined();
     expect(paperByLetter("B").hint).toContain("Five-step power-envelope certificate density 7/8");
   });
