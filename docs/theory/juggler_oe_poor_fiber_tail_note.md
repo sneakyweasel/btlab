@@ -1,6 +1,8 @@
 # The poor-fiber tail, and the OE share on an arbitrary set
 
-**Laboratory extract.** Status: **EXACT — HUMAN PROOF**. Not Lean. Not a
+**Laboratory extract.** Status: **EXACT — HUMAN PROOF**, with Lemma 1
+**EXACT — LEAN VERIFIED** (`BlockLock.block_lock`, standard axioms only;
+see Formalization). Not a
 halt theorem, not a cycle exclusion, and not a strengthening of any
 statement about the Juggler map itself: everything here is about the
 parity of \(\lfloor n^{3/2}\rfloor\) on \(OE\) fibers, and its only
