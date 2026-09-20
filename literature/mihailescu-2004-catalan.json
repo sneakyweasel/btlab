@@ -1,0 +1,22 @@
+{
+  "id": "mihailescu-2004-catalan",
+  "title": "Primary cyclotomic units and a proof of Catalan's conjecture",
+  "authors": ["Preda Mihăilescu"],
+  "year": 2004,
+  "identifiers": {
+    "doi": "10.1515/crll.2004.048"
+  },
+  "url": {
+    "doi": "https://doi.org/10.1515/crll.2004.048"
+  },
+  "problem_area": "diophantine",
+  "relevant_concepts": [
+    "Catalan's conjecture",
+    "consecutive perfect powers",
+    "cyclotomic units",
+    "x^p - y^q = 1"
+  ],
+  "project_relationship": "known",
+  "status": "classical-source",
+  "notes": "Journal fur die reine und angewandte Mathematik 572 (2004) 167-195. Catalan's conjecture, so the only solution of x^p - y^q = 1 in integers x, y, p, q > 1 is 3^2 - 2^3 = 1. The original was not read here; the statement is standard. The laboratory already used it in prose without a registry entry: docs/problems/juggler_odd_sharp_suffix.md applies it to n^3 - b^4 and records that it gives only >= 2, far short of the 2b^2 window needed there (DIOPHANTINE_ESCALATION_REQUIRED). Two further uses are registered with this entry. (a) docs/problems/juggler_mersenne_floor_power.md: 2^a - c^k = 1 has no solution with c, k >= 2, so a Mersenne number 2^a - 1 is never a perfect power for a >= 2 and exactRun(2^a - 1) = 0 -- the repunits are maximally inexact Juggler starts. (b) The cycle gap: 3^o - 2^K = +-1 has only the solutions (o,K) = (0,1), (1,1), (1,2), (2,3), which are x = 0, -1, 1, -5, so the cycles of the shortcut Z map with unit gap are exactly the degenerate point and the three known cycles, and |3^o - 2^K| = 3 forces 3 | 2^K hence o = 0; a fourth cycle therefore has |2^K - 3^o| >= 5. That is the weakest regime of the finance ceiling and closing it changes no leftover length, since the near-convergent gaps are astronomically large while their theta is small."
+}

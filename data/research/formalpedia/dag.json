@@ -936,6 +936,7 @@
         "J-collatz-walk-charge-is-sharp",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
         "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional",
         "J-survivor-count-is-a-collatz-residue-count"
       ],
       "papers": [
@@ -3099,7 +3100,7 @@
   "totals": {
     "edges": 240,
     "edges_before_reduction": 1877,
-    "ledger_rows_placed": 417,
+    "ledger_rows_placed": 418,
     "nodes": 188
   }
 }

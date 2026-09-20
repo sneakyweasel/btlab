@@ -3663,6 +3663,22 @@
       "nk_cluster": null
     },
     {
+      "id": "mersenne_floor_power",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/mersenne_floor_power.py",
+      "test": "tests/research/juggler_sequence/test_mersenne_floor_power.py",
+      "dossier": "docs/problems/juggler_mersenne_floor_power.md",
+      "data_dir": "data/research/juggler/mersenne_floor_power",
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": [
+        "J-repunit-floor-power-is-closed-form"
+      ],
+      "aliases": [],
+      "nk_cluster": "The Mersenne numbers in the Lemma 8 floor carry no prime content"
+    },
+    {
       "id": "minimal_anchor_closure",
       "kind": "branch",
       "probe": "src/research/juggler_sequence/minimal_anchor_closure.py",
@@ -3832,6 +3848,22 @@
         "J-near-tight-scale-bounds",
         "J-ooe-scale-decay",
         "J-approx-equality-rigidity"
+      ],
+      "aliases": [],
+      "nk_cluster": null
+    },
+    {
+      "id": "negative_floor_3x1",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/negative_floor_3x1.py",
+      "test": "tests/research/juggler_sequence/test_negative_floor_3x1.py",
+      "dossier": "docs/problems/juggler_negative_floor_3x1.md",
+      "data_dir": "data/research/juggler/negative_floor_3x1",
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "aliases": [],
       "nk_cluster": null
