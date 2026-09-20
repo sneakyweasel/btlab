@@ -116,7 +116,11 @@ ACKNOWLEDGED: dict[str, str] = {
         "2^a, and under the bridge the extremal transports to e = 2^r, one bit "
         "rather than a repunit, so the all-ones pattern does not survive. Same "
         "verdict on the Fermat reading of -5 and -17. "
-        "The branch reports the Paper B kit gate failing at HEAD too, untouched."
+        "The branch reports the Paper B kit gate failing at HEAD too and leaves "
+        "it untouched. CHECKED ON MAIN at 3711d032: "
+        "`python tools/build_paper_b_kit.py --check` passes -- archives, "
+        "checksums and release check all agree with the repository. So the red "
+        "is the branch's or was fixed since; do not go looking for it on main."
     ),
     "claude/latest-progress-summary-s011un": (
         "PENDING EXTRACTION, and it has GROWN since it was first acknowledged "
