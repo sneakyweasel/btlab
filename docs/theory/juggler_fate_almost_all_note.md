@@ -3029,7 +3029,7 @@ use the roots of the displayed defining equations.
 
 - `src/research/juggler_sequence/tao_reduction.py`
 
-  SHA-256: `6c3b6db26c2c0d130a52a04d2b38a54b88f10c054542ed83c21710ec495653f5`
+  SHA-256: `ba4f9a6bbb23992901ed9681965444a646ed6969f9403c14828ffba33636bc8a`
 
 - `docs/theory/figures/render_paper_c_figures.py`
 
