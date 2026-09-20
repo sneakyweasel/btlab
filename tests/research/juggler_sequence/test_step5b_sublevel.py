@@ -8,7 +8,6 @@ import research.juggler_sequence.step5b_sublevel as step5b
 from research.juggler_sequence.step5b_sublevel import (
     ANTI,
     JSON_PATH,
-    family_params,
     lambda_interp,
     P_LIST,
     _delta,

@@ -24,7 +24,6 @@ from research.juggler_sequence.oe_rest_average import (
     is_resonant,
     is_resonant_to_order,
     close_from_mask,
-    poor_mask,
     resonance_density,
     weyl_step,
     share_law_error,

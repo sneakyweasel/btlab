@@ -457,11 +457,11 @@ def test_the_survivor_rate_is_lagarias_1985_theorem_d() -> None:
     d^(-3/2) is Hikawa's Conjecture 7.1, and what is this laboratory's is that
     the prefactor exists, oscillates on the rotation orbit, and is computable.
     """
-    from mpmath import mp, mpf, log, power
+    from mpmath import mp, mpf, log as mp_log, power
 
     with mp.workdps(50):
-        beta = log(2) / log(3)
-        entropy = -(beta * log(beta, 2) + (1 - beta) * log(1 - beta, 2))
+        beta = mp_log(2) / mp_log(3)
+        entropy = -(beta * mp_log(beta, 2) + (1 - beta) * mp_log(1 - beta, 2))
         eta = 1 - entropy
 
         theta = power(beta, -beta) * power(1 - beta, beta - 1) / 2
@@ -472,7 +472,7 @@ def test_the_survivor_rate_is_lagarias_1985_theorem_d() -> None:
         assert abs(theta - mpf("0.9659065532334377236055")) < mpf(10) ** -20
         assert abs(entropy / beta - mpf("1.5056438879463007943")) < mpf(10) ** -18
         assert abs(eta / beta - mpf("0.079318612774855387135")) < mpf(10) ** -20
-        assert abs(log(2 * theta, 2) - mpf("0.9499555271883306348")) < mpf(10) ** -18
+        assert abs(mp_log(2 * theta, 2) - mpf("0.9499555271883306348")) < mpf(10) ** -18
 
 
 def test_the_boundary_mass_is_tabulated_in_oeis_since_2011() -> None:
