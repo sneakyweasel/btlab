@@ -247,6 +247,45 @@ author of `eliahou-1993-collatz-cycle-lengths`, which the registry does not
 carry.
 
 
+### The two adjacent items, searched
+
+**Sloane's ternary-zero conjecture, resolved as a citation.** A054414's
+comment paraphrases it as "for any integer \(n \ge 15\), \(2^n\) always
+has a 0 in its ternary expansion". That paraphrase is wrong at its
+endpoint: \(2^{15} = 1122221122_3\) has no zero. The canonical entry
+**A104320** (number of zeros in the ternary representation of \(2^n\))
+states it correctly as \(a(n) > 0\) for \(n > 15\), and **A102483** is the
+exception set. Computed here: the only \(n\) for which \(2^n\) has no
+ternary zero are \(1, 2, 3, 4, 15\), checked to \(n = 3000\); b-files by
+Robert Israel on A104320 and Rémy Sigrist on A117970 carry it to
+\(n = 10^4\), so the published check is stronger than ours.
+
+The conjecture is genuinely adjacent — it is a statement about the ternary
+digits of powers of two, which is the laboratory's \(2^L\) against
+\(3^o\) comparison — and none of A102483, A104320, A117970 or A020915
+appeared anywhere in the repository. It is recorded, not opened: an open
+problem about digits of \(2^n\) is not a cycle bound, and the laboratory's
+own base-three reading of the plateau law is the part that pays.
+
+**The Eliahou 2011 exposition, found but unread.** The article exists —
+*Le problème 3n+1 : y a-t-il des cycles non triviaux ? (III)*, Images des
+Mathématiques, CNRS, 2011 — and is registered as
+`eliahou-2011-cycles-non-triviaux-iii`. Every CNRS host, its page-freeze
+mirror and the author's institutional page are refused by this
+environment's egress policy, so it was not read.
+
+A figure \(17{,}026{,}679{,}261\) circulates as a lower bound on nontrivial
+cycle length and appears independently in several sources, so the number is
+real; but the attribution of it to *this* article is **not** established —
+one of those sources is T. Ian Martiny's *New Lower Bound on Cycle Length
+for the 3n+1 Problem*, whose title suggests the bound may be his. The
+number is recorded as circulating and unattributed and is **not** entered
+into any laboratory table. The laboratory reproduces Eliahou 1993 exactly
+at floor \(2^{40}\) (least period 17087915, on the lattice
+\(301994a + 17087915b + 85137581c\)), so whichever floor yields
+\(17{,}026{,}679{,}261\) is checkable here once the source is in hand.
+
+
 ## What this does not say
 
 No bound moves, no cycle is excluded, no floor is raised,
