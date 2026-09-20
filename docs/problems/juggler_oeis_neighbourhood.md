@@ -151,12 +151,46 @@ using \(\lfloor n^{2/3}\rfloor\) on evens, and `round` in place of
 log ratio, hence a free test of whether this laboratory's machinery is
 about the Juggler or about the exponent pair. Not attempted here.
 
-Three of the laboratory's own sequences are **not** in OEIS, probed on
-eight-term runs: the leftover lengths \(1, 3, 11, 19, 84, 569, 1054,
-25781,\dots\), their odd counts, and the repunit floor powers
-\(\lfloor(2^a-1)^{3/2}\rfloor = 1, 5, 18, 58, 172, 500, 1431, 4072,
-\dots\) whose closed forms `J-repunit-floor-power-is-closed-form`
-established the same day.
+### The three "unlisted" sequences, re-examined
+
+An exact-run probe first reported the leftover lengths, their odd counts
+and the repunit floor powers as absent from OEIS. That was an artefact of
+searching for contiguous runs; two of the three are **selections** from
+catalogued families, which no run search can find. Pointwise transforms
+were tested and none matches: \(a\pm1\), \(a\pm2\), \(2a\), \(2a\pm1\),
+\(a/2\), \(a\pm n\), first differences and partial sums, on all three.
+
+**The odd counts are catalogued.** Every one of the ten values inside
+A206788's stored range — 1, 2, 7, 12, 53, 359, 665, 16266, 31867, 111202 —
+is a term of **A206788**, *denominators of semiconvergents to*
+\(\log_2 3\). The remaining three (190538, 301739, 492276) lie beyond what
+that entry stores, which is a storage limit and not a divergence.
+
+**The lengths straddle two families and match neither.** Nine of the
+thirteen are terms of **A254351**, *numerators of increasingly better
+rational approximations to* \(\log 3/\log 2\): 3, 11, 19, 84, 569, 1054,
+50508, 176251, 301994. Four are not: 1, 25781, 478245, 780239. A scan of
+the whole database finds **no sequence containing all thirteen**. The
+reason is structural: A254351 keeps only record approximations, while the
+laboratory's list keeps every semiconvergent the finance bound still
+admits, so it sits strictly between the convergents (A005663) and the full
+semiconvergent numerators.
+
+**One apparent off-by-one, resolved.** The laboratory pairs length 301994
+with odd count 190538, while that convergent's denominator is 190537. The
+difference is exactly 1 and it is not an error:
+\(190538 = \lceil 301994\log_3 2\rceil\), the laboratory's own pinning
+\(o(K)\), which exceeds the convergent denominator by one when the
+approximation falls on the other side. Recorded because it reads as a
+transcription slip and is not one.
+
+**The repunit floor powers are genuinely absent, in both halves.**
+\(\lfloor(2^a-1)^{3/2}\rfloor\) has different closed forms for even and
+odd \(a\), so the bisections were searched separately. The even-\(a\) half
+is \(8^m - 3\cdot 2^{m-1} = 5, 58, 500, 4072, 32720,\dots\) — verified
+against `J-repunit-floor-power-is-closed-form` — and the odd-\(a\) half is
+the Beatty form \(\lfloor\sqrt2\,K\rfloor\). Neither half, nor the
+interleaving, returns a hit.
 
 ## What this does not say
 
