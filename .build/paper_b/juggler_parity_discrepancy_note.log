@@ -443,7 +443,7 @@ Koksma in-equal-ity to
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1864.
+(amsmath)                 on input line 1885.
 
 [25] [26] [27] [28] [29] [30] [31] [32] [33] [34] [35] [36] [37] [38] [39]
 [40] [41] [42] [43] [44] (juggler_parity_discrepancy_note.aux)
@@ -458,7 +458,7 @@ Package rerunfilecheck Info: File `juggler_parity_discrepancy_note.out' has not
 Here is how much of TeX's memory you used:
  10152 strings out of 402560
  152804 string characters out of 5437925
- 595373 words of memory out of 5000000
+ 596373 words of memory out of 5000000
  39180 multiletter control sequences out of 15000+600000
  671522 words of font info for 88 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191

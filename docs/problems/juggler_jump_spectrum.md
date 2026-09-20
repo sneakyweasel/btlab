@@ -114,6 +114,17 @@ to swallow a bounded oscillating prefactor without noticing one. Our
 `0.11` bits, so it fits inside Hikawa's band. That is the honest boundary: the
 exponent `-3/2` is his, and the function multiplying it is not in his paper.
 
+**Read against the text, 20 September 2026.** The `0.11` bits above is the
+length-basis range and not the comparable quantity. In his own basis the
+residual `log_2 W(d) - gamma d + (3/2) log_2 d` swings `0.518` bits over every
+`d` in `100 <= d <= 10000` on the exact counts (`-0.046` to `0.472`), while the
+four rows he tabulates are `0.236` bits apart; so the band of "width less than
+`0.3` bits" his Section 7.3 states is his four samples, and the oscillation is
+not inside his band but twice its width
+(`tests/research/juggler_sequence/test_hikawa_tables.py`). The same Section 7.3
+attributes the fluctuation, in one sentence, to `frac(lambda d)`: the suspicion
+is his, and the function, the measurement and the mechanism remain ours.
+
 **The oscillation and `a_1` were not found anywhere.** No source read here
 states an oscillating or almost-periodic prefactor, an amplitude, or anything
 equivalent to the jump spectrum. That covers Lagarias 1985 and his annotated
@@ -160,11 +171,18 @@ A peer session checked them against the laboratory's own counts at every order
   pp. 2, 4, 13" is to the ResearchGate copy, whose pagination differs from
   arXiv v8.
 - `hikawa-2026-parity-vector-structures` (doi 10.13140/RG.2.2.29894.84804/1).
-  **Full text not read**: ResearchGate answers 403 to fetching, and its PDF link
-  opens a save dialog rather than rendering. What is quoted above is the
-  author-written version note on the ResearchGate record itself, read in the
-  browser pane, which states Section 6 and Conjecture 7.1 explicitly. The body
-  of Section 6 and Section 7 has not been checked.
+  **Read in full on 20 September 2026** from the author's PDF (v2.1, 47 pages).
+  Theorem 6.3 is the rate, Remark 6.5 its length-basis form, Remark 6.6 the
+  claim that no asymptotic formula existed (Theorem D is one), Conjecture 7.1
+  the `d^(-3/2)`. Section 7.3 says in one sentence that the remaining bounded
+  fluctuation is plausibly governed by `frac(lambda d)`, the terminal distance
+  to the boundary: the suspicion is his; the function, the measurement and the
+  mechanism are not there. His four Table 3 rows recompute exactly from our
+  counts, and his stated band of under 0.3 bits is 0.518 bits over all
+  `100 <= d <= 10000` (`tests/research/juggler_sequence/test_hikawa_tables.py`).
+  The September revision (`hikawa-2026-finite-parity-vector-structures`,
+  57 pages, also read) drops the sentence and keeps the terminal distance as
+  its Open Problem 1.
 - `hikawa-nakanishi-2026-parity-vector-analysis`
   (doi 10.13140/RG.2.2.12065.06240). **Abstract only**, same gate. These are the
   authors of the b-file. The abstract counts parity vectors by length and by

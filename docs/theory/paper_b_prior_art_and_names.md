@@ -191,7 +191,9 @@ conjugation (Williams, Proposition 3.11); and the two-sided bound on `M_d`
   prefactor is an almost-periodic function of `frac(d BETA)` and does not
   converge (`J-paper-b-meander-prefactor-is-almost-periodic`). No source read
   in this audit states an oscillating prefactor, an amplitude, or anything
-  equivalent — and a `Theta` cannot distinguish one from a constant.
+  equivalent — and a `Theta` cannot distinguish one from a constant. The July
+  Hikawa text names the phase as a plausibility in one sentence (Section 7.3)
+  and nothing more; see the bound below.
 - Its structure: discontinuous exactly on the rotation orbit
   (`J-psi-jumps-are-the-rotation-orbit-of-zero`), reconstructible from its
   jump measure to 91 per cent of its `L2` variation with no fitted parameter
@@ -217,10 +219,23 @@ affinely conjugate, `frac(L BETA) = BETA (1 - frac(d lam))` exactly. Cited
 side by side they would be double counting
 (`J-weight-basis-prefactor-is-the-same-rotation`).
 
-**The bound on all of this.** "No source states a prefactor" is a claim about
-what was readable. Three ResearchGate bodies are unread here, and Terras 1976
-and Everett 1977 were not read directly. The list above should be re-checked
-against those before it goes into a manuscript as a novelty claim.
+**The bound on all of this, re-checked 20 September 2026.** Two of the three
+ResearchGate bodies have now been read from the author's PDFs, supplied by
+Philippe: the July and September Hikawa texts
+(`hikawa-2026-parity-vector-structures`,
+`hikawa-2026-finite-parity-vector-structures`). Neither states an oscillating
+prefactor, an amplitude, a non-convergence or a mechanism. The July text does
+contain, in Section 7.3 after its Table 3, one sentence saying the remaining
+bounded fluctuation of the residual is plausibly governed by the fractional
+part of `lambda d`, the terminal distance to the critical boundary; the
+September text keeps only the terminal distance, as its Open Problem 1. So the
+*suspicion* that the phase matters is his, in one sentence, and Paper B's
+Section 6 says so since the 20 September evening edition; the function, its
+measurement and the barrier-step mechanism are in neither text. His tolerance
+is also now checked against the exact counts: the band he states as under
+0.3 bits over `100 <= d <= 10000` is 0.518 bits wide, his four tabulated rows
+spanning 0.236 (`tests/research/juggler_sequence/test_hikawa_tables.py`). The
+January body, Terras 1976 and Everett 1977 remain unread directly.
 
 ## How the two naming errors happened
 

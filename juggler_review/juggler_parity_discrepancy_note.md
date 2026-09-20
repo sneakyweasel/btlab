@@ -1231,25 +1231,37 @@ the estimate is two-sided on the exponential scale. That is exactly
 \(\vartheta(p)\)  of this section, and not by numerical coincidence but
 by an identity: \(2^{-\eta}=2^{H(p)-1}=p^{-p}(1-p)^{p-1}/2
 =\vartheta(p)\), the two agreeing to every digit computed. Hikawa
-[9, Section 6] proves the same rate independently in the weight basis,
+[9, Theorem 6.3], and again [17, Theorem 7.3], proves the same rate
+independently in the weight basis,
 \(\log_2W(d)=\gamma d+O(\log d)\)  with
 \(\gamma=\lambda H(1/\lambda)\)  and
 \(c=\lambda\bigl(1-H(1/\lambda)\bigr)=\lambda D(1/\lambda\,\|\,\tfrac12)\)
 bits per unit weight; since lengths are  \(\lambda\)  times weights his
 constants are Lagarias's  \(\eta\)  rescaled, \(\gamma=H(p)/p\)  and
-\(c=\eta/p\), and  \(c/\lambda=0.0500444728\)  recovers  \(\eta\). He
-remarks that the rate appears to be new for these sequences; that remark
-is incorrect, and it is repeated here only to say so. What is his is the
+\(c=\eta/p\), and  \(c/\lambda=0.0500444728\)  recovers  \(\eta\);
+Remark 6.5 of [9] states the length-basis form outright, with
+\(1-H(1/\lambda)=0.050044\). Remark 6.6 of [9] says that to the best of
+the author's knowledge no asymptotic formula for either sequence had
+appeared in the literature; that is incorrect, and it is repeated here
+only to say so. The September text [17] no longer says it, lists the
+growth result among its contributions, and cites the 1985 survey for
+the residue-class correspondence, not for Theorem D. What is his is the
 weight-basis form and Conjecture 7.1. The  \(d^{-3/2}\)  power is Hikawa's Conjecture 7.1
-[9, Section 7], motivated there by the residual
+[9, Section 7], Conjecture 9.1 of [17], motivated there by the residual
 \(\log_2W(d)-\gamma d\)  tracking a ballot-type correction
-\(-\tfrac32\log_2d\)  to within  \(0.3\)  bits over
-\(100\le d\le10^4\). No priority over either is asserted. Of the
-parity-vector line, [11] was read in full and states no asymptotic; of
-[10] only the abstract was available to this revision, and of [9] the
-author's version note on the record, from which Sections 6 and 7 are
-cited; the September preprint [17], a third paper of the line, is
-listed because it exists, nothing of its text having been available.
+\(-\tfrac32\log_2d\)  to within  \(0.3\)  bits at the four depths
+\(d=100,1000,5000,10^4\)  of his Table 3 (Table 4 of [17]), a
+conjecture its author states is used in no proof. The four rows
+recompute exactly from the counts of this paper; over every  \(d\)  in
+\(100\le d\le10^4\)  the same difference spans  \(0.52\)  bits, from
+\(-0.05\)  to  \(0.47\), which is the oscillation of this section in
+his basis, wider than the band his sentence allows it. No priority over
+either is asserted.
+Of the parity-vector line, [9] and [17] were read in full for this
+revision; [11] was read in full and states no asymptotic; of [10] only
+the abstract was available, and [9] describes it as introducing the
+weight classification and reporting  \(X(d+1)=W(d)\)  as an empirical
+identity from computation.
 Nor does [12] bear on the asymptotic: it refines the same
 count by a local cut statistic and represents the words as partitions
 inside a Beatty--Ferrers shape: exact finite structure, with no growth
@@ -1259,7 +1271,16 @@ complement A054414. What
 this section offers is the oscillating prefactor  \(\psi\) : that the
 ratio depends on  \(d\)  only through  \(\{d\beta\}\), that it is
 non-constant, and the barrier-step mechanism below that explains why.
-Novelty is claimed for that, and it survives the nearest prior result.
+Novelty is claimed for the function, its measurement and the mechanism,
+and not for the suspicion, which is in print: after its Table 3,
+Section 7.3 of [9] says in one sentence that the remaining bounded
+fluctuation is "plausibly governed by the fractional part"
+\(\{\lambda d\}\), the terminal distance to the critical boundary, and
+offers no function, no measurement of the dependence and no mechanism;
+the September text [17] keeps only the terminal distance, as a thing a
+sharper analysis must account for, in its Open Problem 1. That the
+dependence is a function of the phase alone, that it does not converge,
+and why, are this section's, and they survive the nearest prior result.
 Winkler [13, Section 7] derives growth constants and exact normalized
 oscillations for A100982 and its siblings A174795 and A174796. A100982
 is the minimal-certificate count of this paper,  \(2N_{d-1}-N_d\)  ---
@@ -1313,7 +1334,9 @@ This recursion is not new. On A076227 [5] it is Zarubin's formula of
 lengths  \(L_k\)  where the barrier rises and  \(a(L)=2a(L-1)\)  where it
 does not --- the display above, in the entry's indexing --- and Winkler's
 formula of 12 September 2017 gives the same counts as a Pascal-type sum
-[8]. The entry also carries, from 21 July 2026, Kazunobu Hikawa's
+[8]; it is also equation (48) of [17],
+\(X(d)=2N(k_d-1)-N(k_d)\)  with  \(k_d=\lceil\lambda d\rceil\), the
+same identity in the weight indexing. The entry also carries, from 21 July 2026, Kazunobu Hikawa's
 statement of the surviving-word object itself: the binary words
 \(v(1)\dots v(n)\)  with  \(2^m<3^{v(1)+\dots+v(m)}\)  for every  \(m\)
 [9]. Nothing in this subsection is claimed as new. It is restated
@@ -3369,15 +3392,22 @@ of the 3x + 1 Problem," arXiv:1709.03385 [math.GM], 2017--2026.
 Structures of Parity Vectors for the Accelerated Collatz Map,"
 ResearchGate preprint, July 2026, version 2.1 of 2 August 2026.
 [doi:10.13140/RG.2.2.29894.84804/1](https://doi.org/10.13140/RG.2.2.29894.84804/1).
-Section 6 proves the exponential rate; Conjecture 7.1 is the
-\(d^{-3/2}\)  power. Both are cited from the author's version note on
-the record; the full text was not available to this revision.
+Read in full for this revision, 47 pages, from the author's PDF.
+Theorem 3.3 is the bijection between surviving words of weight  \(d\)
+and first-crossing words of weight  \(d+1\), Theorem 5.2 the 2-adic
+rigidity within a fixed length and weight, Theorem 6.3 the logarithmic
+rate, Remark 6.5 its length-basis form, Remark 6.6 the claim that no
+asymptotic formula for either sequence was in the literature; Section
+7.3 gives Table 3, Conjecture 7.1 and the sentence on the fractional
+part of  \(\lambda d\)  quoted in Section 6.
 10. K. Hikawa and K. Nakanishi, "Parity Vector Analysis in the Study of
 the Collatz Conjecture," ResearchGate preprint, January 2026.
 [doi:10.13140/RG.2.2.12065.06240](https://doi.org/10.13140/RG.2.2.12065.06240).
 Abstract only read for this revision; the full text was not available.
-Its authors contributed the A076227 b-file against which the counts
-behind Section 6 were checked on all 3509 terms.
+[9] describes it as introducing the weight classification and
+reporting  \(X(d+1)=W(d)\)  as an empirical identity from large-scale
+computation. Its authors contributed the A076227 b-file against which
+the counts behind Section 6 were checked on all 3509 terms.
 11. K. Nakanishi, "A Structural Study of Parity Vectors in the Collatz
 Conjecture," Jxiv preprint, February 2026.
 [doi:10.51094/jxiv.3096](https://doi.org/10.51094/jxiv.3096).
@@ -3426,5 +3456,12 @@ accessed 20 September 2026.
 17. K. Hikawa, "Finite Parity-Vector Structures in the Accelerated
 Collatz Map," ResearchGate preprint, 12 September 2026.
 [doi:10.13140/RG.2.2.24486.28480](https://doi.org/10.13140/RG.2.2.24486.28480).
-Title, date and DOI verified from DataCite and OpenAlex; neither the
-text nor an abstract was available to this revision.
+Read in full for this revision, 57 pages, from the author's PDF.
+Theorem 4.5 is the bijection of [9, Theorem 3.3], Theorem 6.1 the
+2-adic valuation formula, Theorem 7.3 the logarithmic rate, Conjecture
+9.1 the  \(d^{-3/2}\)  with Table 4, equation (48) the count identity
+of Section 6. It describes itself as a substantial revision of [10]
+and [9] with their conjectural hypotheses removed, states no
+oscillation and no prefactor beyond the conjecture, keeps the terminal
+distance to the boundary only as Open Problem 1, and cites [14] for
+the residue-class correspondence only.

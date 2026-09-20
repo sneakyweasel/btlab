@@ -1,0 +1,24 @@
+{
+  "id": "barina-2025-collatz-verification-limit",
+  "title": "Improved verification limit for the convergence of the Collatz conjecture",
+  "authors": [
+    "David Bařina"
+  ],
+  "year": 2025,
+  "identifiers": {
+    "doi": "10.1007/s11227-025-07337-0"
+  },
+  "url": {
+    "doi": "https://doi.org/10.1007/s11227-025-07337-0"
+  },
+  "problem_area": "collatz-verification",
+  "relevant_concepts": [
+    "verification floor",
+    "3x+1 map",
+    "2^71",
+    "convergence check"
+  ],
+  "project_relationship": "known",
+  "status": "located 2026-09-20 in the reference lists of both Hikawa preprints; unread; the DOI is copied from those lists and resolves to link.springer.com",
+  "notes": "The Journal of Supercomputing 81 (2025), Article 810. Both Hikawa preprints cite it for the statement that computational verification of the Collatz conjecture has been extended to 2^71, in agreement with Roosendaal's computations. WHAT IT IS FOR THIS LABORATORY: the current published verification floor on the POSITIVE side (3x+1). The negative-floor dossier docs/problems/juggler_negative_floor_3x1.md and Paper A's Remark 5.20 concern the 3x-1 side, where the floor is this laboratory's 2^44 and the only published check is the unattributed 10^8 on A037084; where those texts quote Oliveira e Silva's 2.70e16 through Sinisalo for the positive side, this paper is the value that supersedes it, and Paper A's next revision should say so. Not read; nothing about its method is recorded here."
+}

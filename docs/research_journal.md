@@ -1,5 +1,50 @@
 # Research journal
 
+## 2026-09-20 -- Both Hikawa preprints read; Paper B's priority paragraph corrected
+
+- **Objective:** Philippe asked whether Paper B is ready for Zenodo. The one
+  substantive check named in reply was that references 9 and 17, Hikawa's July
+  and September preprints, had never been read here; he fetched both PDFs.
+- **What the July text (v2.1, 2 August 2026, 47 pages) contains.** Theorem 3.3
+  the bijection `U(d) -> J(d+1)`; Theorem 5.2 the 2-adic rigidity; Theorem 6.3
+  the logarithmic rate; Remark 6.5 the length-basis form, i.e. Lagarias's eta
+  proved independently; Remark 6.6 the claim that no asymptotic formula for
+  either sequence was in the literature (Theorem D is one); Table 3 and
+  Conjecture 7.1. And one sentence in Section 7.3, after the table: the
+  remaining bounded fluctuation is plausibly governed by the fractional part
+  of `lambda d`, the terminal distance to the critical boundary. That is the
+  phase Paper B's prefactor depends on, named as a plausibility, with no
+  function, no measurement, no non-convergence statement and no mechanism.
+- **What the September text (57 pages) contains.** The same theorems
+  renumbered (4.5, 6.1, 7.3), Conjecture 9.1 with Table 4, equation (48) which
+  is Paper B's count identity in the weight indexing, the OEIS bookkeeping. It
+  drops Remark 6.6, Remark 6.5 and the fractional-part sentence, keeping the
+  terminal distance as Open Problem 1.
+- **His band is wrong as printed.** Section 7.3 says the residual against
+  `-(3/2) log_2 d` stays in a band under 0.3 bits over `100 <= d <= 10000`.
+  From the laboratory's exact counts the four rows he prints recompute to the
+  last digit, and over every `d` in his range the same difference runs from
+  -0.046 to 0.472, a 0.518-bit band: the swing this laboratory recorded in
+  `J-paper-b-meander-prefactor-is-almost-periodic` and could not settle against
+  his text until today. New test `test_hikawa_tables.py`: the four rows, the
+  A100982 shift, and the band, the deep rows under the slow marker.
+- **Paper B, 44 pages.** Section 6 cites the rate as Theorem 6.3 and 7.3, the
+  length-basis Remark 6.5, Remark 6.6 by number, the table by number with the
+  0.52-bit band beside his 0.3, equation (48), and the fractional-part sentence
+  in the priority paragraph; novelty is claimed for the function, its
+  measurement and the mechanism, not for the suspicion. References 9, 10 and
+  17 say what each text contains. Sections 2-4, 7 and the appendices
+  untouched. Built, kit rebuilt, release record extended, gates green.
+- **Records.** Registry: both Hikawa records read-in-full with contents, the
+  January record with the July text's description of it, Barina 2025
+  (verification to 2^71) registered from their reference lists as a Paper A
+  follow-up. Ledger rows `J-hikawa-september-preprint-located` and
+  `J-paper-b-meander-prefactor-is-almost-periodic` resolved; formalpedia
+  rebuilt. The prior-art document and the jump-spectrum dossier say the
+  suspicion is his and the band is 0.518.
+- **Zenodo.** The substantive blocker is closed: the priority paragraph now
+  rests on the texts. What remains is the author's own page-by-page read.
+
 ## 2026-09-20 -- Paper B reviewed against the week's findings, revised, kit rebuilt
 
 - **Objective:** Philippe asked for Paper B to be reviewed and updated
