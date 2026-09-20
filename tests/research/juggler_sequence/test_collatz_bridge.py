@@ -625,3 +625,60 @@ def test_hikawas_sample_output_columns_are_our_counts() -> None:
 
     # and the nonzero values are A100982
     assert [certificates[d] for d in range(1, 21) if certificates[d]] ==         [1, 1, 1, 2, 3, 7, 12, 30, 85, 173, 476, 961, 2652]
+
+def test_hikawas_weight_recursion_has_our_survivor_counts_as_its_margin() -> None:
+    """His second recursion is our survivor set, indexed by weight instead of length.
+
+    `Counting_by_Hamming_Weight.py` runs `W[d][u] = W[d-1][u] + W[d][u-1]` on
+    the Hamming weight `d` and the zero count `u`, with `k = d + u` and the
+    guard `k <= floor(d log2 3)`, i.e. `2^k < 3^d`. Cells failing the guard are
+    zeroed, so a word is counted only when every prefix survives -- which makes
+    this our survivor set, refined by weight. Its length marginal is `N_k`.
+
+    The structure is not new to us and is already in Lean: that the weight is
+    pinned by the length is `minimalCert_window`
+    (`J-paper-b-certificate-length-window`), the 1-or-2 gaps of the image are
+    `J-free-lengths-are-never-adjacent`, and the zeros of `M` are the
+    empty-window theorem. Changing the index from length to weight is what
+    removes the zeros, and nothing more. What we do not have is the OBJECT: no
+    weight-refined survivor count exists in `src/research/juggler_sequence`,
+    and `d` is exactly the `b` of the fibre exponent
+    `theta_w = 2^(a+b+1)/3^(b+1)`.
+    """
+    lam = math.log(3) / math.log(2)
+    top = 28
+    weights: dict[int, dict[int, int]] = {d: {} for d in range(top + 1)}
+    totals = {d: 0 for d in range(top + 1)}
+    weights[1][0] = 1
+    totals[0], totals[1] = 1, 1
+    for d in range(2, top + 1):
+        u_max = int(math.floor(d * lam)) + 1
+        for u in range(u_max + 1):
+            alive = d + u < u_max
+            weights[d][u] = (
+                weights[d - 1].get(u, 0) + weights[d].get(u - 1, 0) if alive else 0
+            )
+            totals[d] += weights[d][u]
+
+    # his published row for weight 7, from Sample_Output/2.1NumPVofOnes-1-20.txt
+    assert [weights[7].get(u, 0) for u in range(5)] == [1, 6, 18, 30, 30]
+    assert [totals[d] for d in range(2, 8)] == [2, 3, 7, 12, 30, 85]
+
+    # the length marginal is our survivor count
+    depth = 26
+    counts = survivor_counts(depth + 1)
+    assert [
+        sum(weights[d].get(k - d, 0) for d in range(1, k + 1))
+        for k in range(1, depth + 1)
+    ] == [counts[k] for k in range(1, depth + 1)]
+
+    # and the weight marginal is our minimal-certificate count, re-indexed by
+    # the Beatty map d -> ceil(d log2 3) that minimalCert_window already forces
+    certificates = {L: 2 * counts[L - 1] - counts[L] for L in range(1, depth + 1)}
+    image = {math.ceil(lam * d) for d in range(1, top + 1)} | {1}
+    for d in range(1, top + 1):
+        length = math.ceil(lam * d)
+        if length <= depth:
+            assert certificates[length] == totals[d - 1]
+    for length in range(1, depth + 1):
+        assert (certificates[length] == 0) == (length not in image)
