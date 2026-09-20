@@ -53,11 +53,28 @@ def _git(repo: Path, *args: str) -> str:
 
 
 def branch_refs(repo: Path, base: str = "main") -> list[str]:
-    """Every local and remote branch except the base and symbolic HEADs."""
+    """Every local and remote branch except the base and symbolic HEADs.
 
-    raw = _git(repo, "for-each-ref", "--format=%(refname:short)", "refs/heads", "refs/remotes")
-    skip = {base, f"origin/{base}", "origin/HEAD"}
-    return sorted(r for r in raw.splitlines() if r.strip() and r not in skip and "->" not in r)
+    The skip set used to name the symbolic HEAD as "origin/HEAD", which never matched:
+    git shortens refs/remotes/origin/HEAD to plain "origin". So once every feature branch
+    was merged and deleted, this returned ["origin"] -- one ref, resolving to whatever
+    origin/HEAD points at -- and the gate compared the base against an alias of itself
+    while printing the same all-clear it prints when it has really checked branches.
+    Symbolic refs are filtered on the FULL name here, which is the one that carries /HEAD.
+    """
+
+    raw = _git(repo, "for-each-ref", "--format=%(refname)" + chr(9) + "%(refname:short)",
+               "refs/heads", "refs/remotes")
+    skip = {base, f"origin/{base}"}
+    refs = []
+    for line in raw.splitlines():
+        if chr(9) not in line:
+            continue
+        full, short = line.split(chr(9), 1)
+        if full.endswith("/HEAD") or short in skip or "->" in short:
+            continue
+        refs.append(short)
+    return sorted(refs)
 
 
 def refs_are_visible(repo: Path) -> bool:
@@ -181,9 +198,22 @@ def report(repo: Path, base: str = "main") -> list[Drift]:
     ]
 
 
-def render(drifts: list[Drift]) -> str:
+def render(drifts: list[Drift], scanned: list[str] | None = None) -> str:
+    """The report. Pass ``scanned`` so silence says which of its two meanings it has.
+
+    "No branch carries a ledger row or artifact that main lacks" is the right sentence
+    when branches were compared and none drifted. It is the wrong one when there was
+    nothing to compare, and the two were indistinguishable: on 2026-09-20 the last
+    feature branch was merged and deleted, and this kept printing the reassuring version
+    over a scan of nothing.
+    """
+
+    if scanned is not None and not scanned:
+        return ("No branches to scan: main is the only ref here, so this gate measured "
+                "nothing. That is not the same as finding nothing.")
     if not drifts:
-        return "No branch carries a ledger row or artifact that main lacks."
+        seen = f"  (scanned {len(scanned)}: {', '.join(scanned)})" if scanned else ""
+        return "No branch carries a ledger row or artifact that main lacks." + seen
     lines = []
     for d in drifts:
         lines.append(
@@ -206,7 +236,7 @@ def render(drifts: list[Drift]) -> str:
 
 def main() -> None:
     repo = Path(__file__).resolve().parents[1]
-    print(render(report(repo)))
+    print(render(report(repo), branch_refs(repo)))
 
 
 if __name__ == "__main__":

@@ -57,6 +57,40 @@ def drifts() -> list[BD.Drift]:
     return BD.report(REPO)
 
 
+def test_the_symbolic_head_alias_is_never_scanned_as_a_branch() -> None:
+    """refs/remotes/origin/HEAD shortens to "origin", which the old skip set missed.
+
+    It spelled the exclusion "origin/HEAD", a string git never produces for that ref, so
+    the alias was scanned as though it were a branch. Once the last feature branch was
+    merged and deleted this left exactly one ref in the scan -- an alias of the base --
+    and the gate compared main against itself.
+    """
+    refs = BD.branch_refs(REPO)
+    assert "origin" not in refs, (
+        "the remote's symbolic HEAD is being scanned as a branch; it resolves to whatever "
+        "origin/HEAD points at, so the gate is comparing the base with an alias of itself")
+    assert all(not r.endswith("/HEAD") for r in refs), refs
+
+
+def test_a_scan_of_nothing_does_not_report_as_a_clean_scan() -> None:
+    """Zero branches and zero drift are different facts and must not read alike.
+
+    This is the gate's own failure mode, not a hypothetical: on 2026-09-20 every feature
+    branch was merged and deleted, and `python tools/branch_drift.py` went on printing
+    "No branch carries a ledger row or artifact that main lacks" over a scan of nothing.
+    That sentence was quoted as evidence at the time.
+    """
+    scanned = BD.branch_refs(REPO)
+    message = BD.render(BD.report(REPO), scanned)
+    if scanned:
+        assert "measured nothing" not in message
+        assert "scanned" in message or "(+" in message
+    else:
+        assert "measured nothing" in message
+        assert "No branch carries" not in message, (
+            "an empty scan is being reported in the words of a clean one")
+
+
 def test_every_drifting_branch_has_been_read(drifts: list[BD.Drift]) -> None:
     """A branch holding a row or artifact main lacks must be acknowledged."""
 
