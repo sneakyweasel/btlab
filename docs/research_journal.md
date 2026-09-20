@@ -1,5 +1,53 @@
 # Research journal
 
+## 2026-09-21 -- Every duplicated file in the tree, and the two copy sets nothing watched
+
+- **Objective:** having deleted a reviewer mirror on the false ground that
+  nothing referenced it, Philippe asked what other mirrors exist. Identical
+  content means an identical git blob, so `git ls-files -s` answers it exactly
+  and cheaply: 6738 tracked files, 61 duplicate-content groups, 136 files living
+  in one.
+- **Where the copies are.** 22 files exist in both `docs/theory/` and
+  `juggler_review/`; seven were held by
+  `tests/integration/test_review_bundle_mirrors.py` and fifteen were not. The
+  Zenodo kits are held by the `SHA256SUMS` digests in each kit builder's
+  `check()`, and `.build/` is output rather than a source.
+- **A stale exclusion, which is worse than a missing one.**
+  `juggler_finite_dynamics_formalization.md` was excluded from the bundle gate
+  by name, with a header saying the two files are not copies: the bundle version
+  trimmed for an external reader, the laboratory version carrying table rows the
+  bundle drops, copying either way losing text. That was true once -- the two
+  blobs differ across dozens of commits in the history -- but they converged, and
+  every commit that has touched them since has written both sides identically,
+  1387 lines each. An exclusion describing a distinction the files no longer have
+  is worse than no exclusion, because real drift then reads as the intended
+  state. It is mirrored like the rest now. Re-trimming the bundle copy remains an
+  editorial decision about the packet, and would mean taking the name back off
+  the list deliberately rather than leaving the gate blind to it.
+- **The deployed site was serving copies nothing checked.**
+  `web/juggler-companion/public/papers/` carries its own copies of the three
+  built PDFs. `test_manuscript_consistency.py` reads the companion's TypeScript
+  -- constants, claims, glossary, two pages -- and never those files, so a
+  manuscript could be rebuilt in `docs/theory` and the deployed site would go on
+  serving the previous PDF with nothing to say so. Gated now, and a missing file
+  fails rather than skipping: the bundle may drop a mirror and keep only the
+  built PDF, but a paper the site cannot serve is a broken link, not a tidier
+  end state.
+- **Two suspicious pairs that are not bugs.** `aa_words_k.bin` equals
+  `formal_words_k.bin` at every length through 16, which looks like one file
+  written twice; `write_data_artifacts` writes one from `formal[k]` and the other
+  from `realized[k]`, different variables, so the identity is the measurement --
+  every formal word is realized in that range, the gap the module exists to find
+  being empty -- and not a copy. And `classified.csv` equals `infeasible.csv`
+  because all 69 classified rows carry `status=INFEASIBLE`.
+- **Left unguarded on purpose, for now.** Eleven `paper_b_*_report.md` pairs
+  across the two trees, and the bundle's figure copies. Same drift risk, no gate,
+  not in this change.
+- **Both new gates were run against known-bad inputs rather than trusted.**
+  Drifting the formalization copy, drifting a served PDF, and removing a served
+  PDF each turn the file red naming the offending file; the worktree restores
+  clean and the gate returns green.
+
 ## 2026-09-21 -- Paper A: Hercher's final section and Barina's 2^71 placed together
 
 - **Objective:** Philippe asked for Paper A to be updated on Barina and
