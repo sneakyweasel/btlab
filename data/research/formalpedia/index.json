@@ -29752,6 +29752,216 @@
       "trust": "kernel"
     },
     {
+      "doc": "A finite set of natural indices confined to `[A, B]` has at most `B - A + 1` elements. The hypothesis `0 \u2264 B - A + 1` covers the empty set, where `B < A` is allowed.",
+      "file": "formal/Problems/Juggler/FateBlockLock.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 69,
+      "module": "Problems.Juggler.FateBlockLock",
+      "name": "card_le_of_bounds",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A finite set of natural indices all `< B` has fewer than `B + 1` elements. The bound is strict, which is what makes the half-count of `gridPoint_half_count` land at `1/2` rather than at `1`.",
+      "file": "formal/Problems/Juggler/FateBlockLock.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 93,
+      "module": "Problems.Juggler.FateBlockLock",
+      "name": "card_lt_of_upper",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A set of natural indices `< q` all bounded below by `A \u2264 q` has at most `q - A` elements.",
+      "file": "formal/Problems/Juggler/FateBlockLock.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 113,
+      "module": "Problems.Juggler.FateBlockLock",
+      "name": "card_le_of_lower",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Monotonicity of a filtered count in its predicate.",
+      "file": "formal/Problems/Juggler/FateBlockLock.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 135,
+      "module": "Problems.Juggler.FateBlockLock",
+      "name": "card_filter_le_card_filter",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Two filtered counts differ by at most the number of indices where the two predicates disagree. This is what converts the grid count into the displaced count in `block_count`.",
+      "file": "formal/Problems/Juggler/FateBlockLock.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 144,
+      "module": "Problems.Juggler.FateBlockLock",
+      "name": "card_filter_abs_sub_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Reindexing a filtered count along a bijection `g : s \u2192 t`.",
+      "file": "formal/Problems/Juggler/FateBlockLock.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 171,
+      "module": "Problems.Juggler.FateBlockLock",
+      "name": "card_filter_reindex",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The residue index of the grid point `c + k/q`: the unique `l < q` with `{c + k/q} = (l + {q c})/q` (`fract_grid`).",
+      "file": "formal/Problems/Juggler/FateBlockLock.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 190,
+      "module": "Problems.Juggler.FateBlockLock",
+      "name": "gridRes",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The residue index is an index of `Finset.range q`.",
+      "file": "formal/Problems/Juggler/FateBlockLock.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 194,
+      "module": "Problems.Juggler.FateBlockLock",
+      "name": "gridRes_lt",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The grid normal form.** `{c + k/q} = (gridRes q c k + {q c})/q`: the fractional parts of the points `c + k/q`, `k \u2208 \u2124`, are exactly the `q` points of the `1/q`-grid translated by `{q c}/q`. This is (1.2) of the note, in the form the two counts below use.",
+      "file": "formal/Problems/Juggler/FateBlockLock.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 204,
+      "module": "Problems.Juggler.FateBlockLock",
+      "name": "fract_grid",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Multiplication by a `p` coprime to `q` permutes the residue indices of the grid: the algebraic half of the note's \"the points `y + i p/q` are a translate of the `1/q`-grid\".",
+      "file": "formal/Problems/Juggler/FateBlockLock.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 251,
+      "module": "Problems.Juggler.FateBlockLock",
+      "name": "gridRes_mul_inj",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The grid reindexing.** For `gcd(p, q) = 1` the map `i \u21a6 gridRes q c (i p)` is a bijection of `Finset.range q`, so a count over the grid points `c + i p / q` is a count over the plain `1/q`-grid.",
+      "file": "formal/Problems/Juggler/FateBlockLock.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 286,
+      "module": "Problems.Juggler.FateBlockLock",
+      "name": "grid_reindex",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The half count, normal form.** An arc of length `1/2` holds `\u230aq/2\u230b` or `\u2308q/2\u2309` of the `q` points `(l + s)/q`, `l < q`: the count is within `1/2` of `q/2`. This is the first of the note's two elementary counts.",
+      "file": "formal/Problems/Juggler/FateBlockLock.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 302,
+      "module": "Problems.Juggler.FateBlockLock",
+      "name": "gridPoint_half_count",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The points of the circle at which a displacement of size at most `\u03b5` can move the indicator `1[{\u00b7} < 1/2]`: within `\u03b5` of `0` (from either side) or within `\u03b5` of `1/2`.",
+      "file": "formal/Problems/Juggler/FateBlockLock.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 347,
+      "module": "Problems.Juggler.FateBlockLock",
+      "name": "Unstable",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The near count, normal form.** At most `2\u03b5q + 1` of the `q` grid points `(l + s)/q` lie within `\u03b5` of a fixed point of the circle, hence at most `4\u03b5q + 2` lie within `\u03b5` of `0` or of `1/2`. This is the second of the note's two elementary counts.",
+      "file": "formal/Problems/Juggler/FateBlockLock.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 353,
+      "module": "Problems.Juggler.FateBlockLock",
+      "name": "gridPoint_near_count",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The half count.** For any `c` and any `q \u2265 1`, the number of `l < q` with `{c + l/q} < 1/2` is within `1/2` of `q/2`: an arc of length `1/2` holds `\u230aq/2\u230b` or `\u2308q/2\u2309` points of a translate of the `1/q`-grid. Lemma 1 of the note, first elementary count.",
+      "file": "formal/Problems/Juggler/FateBlockLock.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 412,
+      "module": "Problems.Juggler.FateBlockLock",
+      "name": "grid_half_count",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The near count.** At most `4\u03b5q + 2` of the points `{c + l/q}`, `l < q`, lie within `\u03b5` of `0` or of `1/2` on the circle. Lemma 1 of the note, second elementary count.",
+      "file": "formal/Problems/Juggler/FateBlockLock.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 430,
+      "module": "Problems.Juggler.FateBlockLock",
+      "name": "grid_near_count",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A displacement of size at most `\u03b5` does not move the indicator `1[{\u00b7} < 1/2]` at a point that is not `Unstable`. This is the note's \"a perturbation of size at most `\u03b5` changes the indicator only at points within `\u03b5` of `0` or of `1/2`\".",
+      "file": "formal/Problems/Juggler/FateBlockLock.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 450,
+      "module": "Problems.Juggler.FateBlockLock",
+      "name": "fract_lt_half_congr",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The block displacement, (1.2) of the note.** `i` steps in `[a, a + \u03b7]` move `x` by `i a + r` with `0 \u2264 r \u2264 i \u03b7`.",
+      "file": "formal/Problems/Juggler/FateBlockLock.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 476,
+      "module": "Problems.Juggler.FateBlockLock",
+      "name": "span_bounds",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Lemma 1, one block.** On `q` consecutive indices the good count is within `4 (\u03c1 + q\u03b7) q + 5/2` of `q/2`. This is the heart of the note's Lemma 1: the block's points are a translate of the `1/q`-grid displaced by at most `\u03b5 = \u03c1 + q\u03b7`, the grid is split evenly by the arc `[0, 1/2)` up to `1/2` (`gridPoint_half_count`), and at most `4\u03b5q + 2` of the indicators move (`gridPoint_near_count`, `fract_lt_half_congr`).",
+      "file": "formal/Problems/Juggler/FateBlockLock.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 500,
+      "module": "Problems.Juggler.FateBlockLock",
+      "name": "block_count",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The first `b` full blocks: the good count over `[0, bq)` is within `b (4 (\u03c1 + q\u03b7) q + 5/2)` of `bq/2`.",
+      "file": "formal/Problems/Juggler/FateBlockLock.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 595,
+      "module": "Problems.Juggler.FateBlockLock",
+      "name": "block_chain",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Lemma 1 (block lock).** `docs/theory/juggler_oe_poor_fiber_tail_note.md`, (1.1), in the cleared form. If the first `H` steps of `x` lie in `[a, a + \u03b7]` and `a` is within `\u03c1/q` of the rational `p/q` with `gcd(p, q) = 1`, then the number of `j < H` with `{x j} < 1/2` differs from `H/2` by at most `4 (\u03c1 + q\u03b7) H + 5H/(2q) + q`. Dividing by `H` and substituting `\u03c1 = \u2016qa\u2016` gives the note's `|\u03c3 - 1/2| \u2264 4\u2016qa\u2016 + 5/(2q) + q(1 + 4\u03b7H)/H`; that division is left to the caller so that this statement carries no nonzero-denominator side condition and stays true at `H = 0`.",
+      "file": "formal/Problems/Juggler/FateBlockLock.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 643,
+      "module": "Problems.Juggler.FateBlockLock",
+      "name": "block_lock",
+      "trust": "kernel"
+    },
+    {
       "doc": "",
       "file": "formal/Problems/Juggler/FateCertified.lean",
       "kind": "theorem",
@@ -34162,6 +34372,96 @@
       "line": 37,
       "module": "Problems.Juggler.FateRecursion",
       "name": "recursion_lemma",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`m` is `(Q, \u03b4)`-resonant: some `q` with `1 \u2264 q \u2264 Q` has `\u2016q A_m\u2016 \u2264 \u03b4`, the distance from `q A_m` to the nearest integer. Written as `\u2203 P : \u2124, |q A_m - P| \u2264 \u03b4`, the house spelling of `\u2016\u00b7\u2016` (compare `Good`, which unpacks the same notion into `Int.fract` inequalities).",
+      "file": "formal/Problems/Juggler/FateResonanceCount.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 64,
+      "module": "Problems.Juggler.FateResonanceCount",
+      "name": "Resonant",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`1 / \u03b5_n = n^{1/3}`; the form in which the note writes the step floor of a dyadic block.",
+      "file": "formal/Problems/Juggler/FateResonanceCount.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 71,
+      "module": "Problems.Juggler.FateResonanceCount",
+      "name": "one_div_eps",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The Gauss sum behind Lemma 3, already multiplied through by the per-arc bound: `\u03a3_{q < Q} W (2\u03b4/E + 2(q+1)) = W (2Q\u03b4/E + Q(Q+1))`.",
+      "file": "formal/Problems/Juggler/FateResonanceCount.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 78,
+      "module": "Problems.Juggler.FateResonanceCount",
+      "name": "sum_range_arc_terms",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Lemma 3, the reduction.** If `|q A_m - P| \u2264 \u03b4` for some integer `P`, with `1 \u2264 q` and `0 \u2264 \u03b4 < 1/2`, then `A_m` lies within `\u03b4/q` of the grid point `p/q` for some `p < q`, modulo one; after the shift by `\u03b4/q` that two-sided arc is the single non-wrapping arc `[0, 2\u03b4/q]`. This is the `q`-fold form of `bad_mem_arc`, and the shift is the same trick.",
+      "file": "formal/Problems/Juggler/FateResonanceCount.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 94,
+      "module": "Problems.Juggler.FateResonanceCount",
+      "name": "resonant_mem_arc",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The window count.** On `(u, 2u]` the shifted sequence `A_m + c` meets at most `0.882 u^{2/3} + 2` integer windows, for every real shift `c`: the shift cancels in `A_{2u} - A_{u+1}`, so this is `Am_double_sub_le` with two floors. It is the disjunction-free form of the `hwin` block inside `bad_count_le`.",
+      "file": "formal/Problems/Juggler/FateResonanceCount.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 147,
+      "module": "Problems.Juggler.FateResonanceCount",
+      "name": "Am_window_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The shifted arc count.** For `u \u2265 10^6`, a real shift `c` and a width `w \u2265 0`, the `m \u2208 (u, 2u]` with `{A_m + c} < w` number at most `(0.882 u^{2/3} + 2)(w/\u03b5_{2u} + 1)`: the step floor on the block is `\u03b5_{2u}` (`Am_step_ge`, `eps_antitone`), so this is `arc_count_le` composed with `Am_window_le`.",
+      "file": "formal/Problems/Juggler/FateResonanceCount.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 167,
+      "module": "Problems.Juggler.FateResonanceCount",
+      "name": "shifted_arc_count_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Lemma 3, one denominator.** For `u \u2265 10^6`, `1 \u2264 q` and `0 \u2264 \u03b4 < 1/2`, the `m \u2208 (u, 2u]` with `\u2016q A_m\u2016 \u2264 \u03b4` number at most `(0.882 u^{2/3} + 2)(2\u03b4/\u03b5_{2u} + 2q)`. The set is covered by the `q` arcs `{A_m - p/q + \u03b4/q} < 2\u03b4/q + \u03b5_{2u}`, `p < q` (`resonant_mem_arc`), and each of them is counted by `shifted_arc_count_le`.",
+      "file": "formal/Problems/Juggler/FateResonanceCount.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 193,
+      "module": "Problems.Juggler.FateResonanceCount",
+      "name": "resonance_count_one",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Lemma 3 (arc count).** For `u \u2265 10^6`, every `Q` and every `\u03b4` with `0 \u2264 \u03b4 < 1/2`, the `(Q, \u03b4)`-resonant `m \u2208 (u, 2u]` number at most `(0.882 u^{2/3} + 2)(2 Q \u03b4 / \u03b5_{2u} + Q(Q+1))`. The denominators are indexed as `q + 1` over `Finset.range Q`, and each contributes `resonance_count_one`; the Gauss sum `\u03a3_{q < Q} 2(q+1) = Q(Q+1)` is `sum_range_arc_terms`.",
+      "file": "formal/Problems/Juggler/FateResonanceCount.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 258,
+      "module": "Problems.Juggler.FateResonanceCount",
+      "name": "resonance_count_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Lemma 3, the note's form.** The same count with `1/\u03b5_{2u}` written as `(2u)^{1/3}`: `#{m \u2208 (u, 2u] : \u2203 q \u2264 Q, \u2016q A_m\u2016 \u2264 \u03b4} \u2264 (0.882 u^{2/3} + 2)(2 Q \u03b4 (2u)^{1/3} + Q(Q+1))`.",
+      "file": "formal/Problems/Juggler/FateResonanceCount.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 291,
+      "module": "Problems.Juggler.FateResonanceCount",
+      "name": "resonance_count_le'",
       "trust": "kernel"
     },
     {
@@ -91008,6 +91308,7 @@
         "Problems.Juggler.FamilyChains",
         "Problems.Juggler.FanLaw",
         "Problems.Juggler.FateBlockAverage",
+        "Problems.Juggler.FateBlockLock",
         "Problems.Juggler.FateCertified",
         "Problems.Juggler.FateChernoff",
         "Problems.Juggler.FateCollapse",
@@ -92082,6 +92383,12 @@
         }
       ]
     },
+    "Problems.Juggler.FateBlockLock": {
+      "declarations": 21,
+      "file": "formal/Problems/Juggler/FateBlockLock.lean",
+      "imports": [],
+      "ledger": []
+    },
     "Problems.Juggler.FateCertified": {
       "declarations": 29,
       "file": "formal/Problems/Juggler/FateCertified.lean",
@@ -92404,6 +92711,14 @@
           "tag": "EXACT \u2014 LEAN VERIFIED"
         }
       ]
+    },
+    "Problems.Juggler.FateResonanceCount": {
+      "declarations": 9,
+      "file": "formal/Problems/Juggler/FateResonanceCount.lean",
+      "imports": [
+        "Problems.Juggler.FateThinFibers"
+      ],
+      "ledger": []
     },
     "Problems.Juggler.FateSeed": {
       "declarations": 18,
@@ -94488,13 +94803,13 @@
     }
   },
   "totals": {
-    "declarations": 6973,
+    "declarations": 7003,
     "declarations_with_a_ledger_row": 4777,
     "ledger_rows_naming_a_file": 452,
-    "modules": 309,
+    "modules": 311,
     "trust": {
       "compiler": 56,
-      "kernel": 6917
+      "kernel": 6947
     }
   }
 }

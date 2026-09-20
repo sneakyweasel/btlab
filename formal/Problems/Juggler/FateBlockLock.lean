@@ -247,7 +247,19 @@ theorem fract_grid {q : ℕ} (hq : 0 < q) (c : ℝ) (k : ℤ) :
   ring
 
 /-- Multiplication by a `p` coprime to `q` permutes the residue indices of the grid: the
-algebraic half of the note's "the points `y + i p/q` are a translate of the `1/q`-grid". -/
+algebraic half of the note's "the points `y + i p/q` are a translate of the `1/q`-grid".
+
+The same algebra as `OstrowskiSandwich.residue_mul_bijective`, in a different type: that one
+permutes `ZMod q`, this one indexes `Finset.range q` through `gridRes`. Read the refutation
+recorded after it there -- "the grid-cell reading of the block permutation is false" --
+before reusing either. It does NOT apply here, and the reason is this file's architecture.
+There the points are `k θ` for an IRRATIONAL `θ ≈ p/q`: each sits within `1/q` of a grid
+point and may fall just below it, so the cells are not permuted. Here the points are the
+EXACT rational grid `c + i p/q` and `gridRes` is their exact residue index, so the
+permutation is the honest one. `block_lock` never puts the displacement inside the indexing:
+the exact grid carries `grid_reindex`, and `e_i` is handled apart by `grid_near_count` and
+`fract_lt_half_congr`. That separation is what the Ostrowski refutation says is mandatory, so
+the two records agree rather than conflict. -/
 theorem gridRes_mul_inj {q : ℕ} (hq : 0 < q) {p : ℤ} (hcop : Nat.Coprime p.natAbs q) (c : ℝ)
     {i j : ℕ} (hi : i < q) (hj : j < q)
     (hij : gridRes q c ((i : ℤ) * p) = gridRes q c ((j : ℤ) * p)) : i = j := by
