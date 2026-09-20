@@ -452,3 +452,47 @@ def test_the_survivor_rate_is_lagarias_1985_theorem_d() -> None:
         assert abs(entropy / beta - mpf("1.5056438879463007943")) < mpf(10) ** -18
         assert abs(eta / beta - mpf("0.079318612774855387135")) < mpf(10) ** -20
         assert abs(log(2 * theta, 2) - mpf("0.9499555271883306348")) < mpf(10) ** -18
+
+
+def test_the_boundary_mass_is_tabulated_in_oeis_since_2011() -> None:
+    """A186008's frequency comment is our `M_d / 2^d`, and it predates us by 15 years.
+
+    T. D. Noe contributed A186008 on 9 February 2011. Two of its comments are
+    results this cluster states independently.
+
+    "Only zero and the numbers in A020914 can be dropping times" is the
+    carrying-length statement -- the level-zero shadow of the empty-window
+    theorem.
+
+    "The frequency of the r-th dropping time s = A020914(r) can be computed as
+    A186009(r)/2^s", with the first nine given as 1/2, 1/4, 1/16, 1/16, 3/128,
+    7/256, 3/256, 15/2048, 85/8192, is the normalised minimal-certificate mass
+    that this cluster calls the boundary mass and the jump amplitude. All nine
+    are checked below as exact Fractions against our own `M_d`.
+
+    A186009 itself -- "A100982 with 1 prepended", per its own comment -- is the
+    nonzero `M_d` in order, skipping the free lengths. The laboratory had cited
+    A100982 and not this.
+
+    WHAT IS NOT THERE: any asymptotic, prefactor or oscillation. The entry is a
+    finite table and a frequency formula. Found by a systematic OEIS sweep of
+    the integer sequences in `tests/` on 20 September 2026, after four earlier
+    identifications of this kind had each been made by accident.
+    """
+    from fractions import Fraction
+
+    counts = survivor_counts(20)
+    certificates = {d: 2 * counts[d - 1] - counts[d] for d in range(1, 20)}
+    carrying = [d for d in range(1, 20) if certificates[d]]
+    assert carrying[:9] == [1, 2, 4, 5, 7, 8, 10, 12, 13]
+
+    assert [Fraction(certificates[d], 2**d) for d in carrying[:9]] == [
+        Fraction(1, 2), Fraction(1, 4), Fraction(1, 16), Fraction(1, 16),
+        Fraction(3, 128), Fraction(7, 256), Fraction(3, 256),
+        Fraction(15, 2048), Fraction(85, 8192),
+    ]
+
+    # A186009 is the nonzero M_d in order
+    assert [certificates[d] for d in carrying] == [
+        1, 1, 1, 2, 3, 7, 12, 30, 85, 173, 476, 961,
+    ]

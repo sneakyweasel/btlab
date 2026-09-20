@@ -26,6 +26,9 @@ see the open risk below.
 | `word_counts(d)[o]`, survivors by odd count | — | Counting by Hamming Weight, `W[d][u]` |
 | free length / empty window | the gaps of the Beatty sequence `ceil(d log2 3)` | his zero rows |
 | free lengths never adjacent | the defining property of **A022921** | — |
+| free lengths | **A054414** (the Beatty complement) | his zero rows |
+| nonzero `M_d` in order | **A186009** ("A100982 with 1 prepended") | `W(d)` totals |
+| boundary mass `M_d / 2^d` | the frequency comment on **A186008**, T. D. Noe, Feb 2011 | — |
 | survivor recursion `stepFlat` | — | `W[k][d] = W[k-1][d] + W[k-1][d-1]` |
 
 One row carries three outside names and a fourth that only we use: the

@@ -1,0 +1,21 @@
+{
+  "authors": ["T. D. Noe"],
+  "id": "oeis-A186009",
+  "identifiers": {
+    "oeis": "A186009"
+  },
+  "notes": "docs/theory/paper_b_prior_art_and_names.md. Length of the Collatz dropping time patterns in A186008, contributed 9 February 2011. Its own comment says 'This is A100982 with 1 prepended', and that prepended form is precisely what this laboratory computes: the NONZERO minimal-certificate counts M_d taken in order, skipping the free lengths. Verified here term by term against our counts: 1, 1, 1, 2, 3, 7, 12, 30, 85, 173, 476, 961. So the sequence this cluster produces by dropping the zeros from M_d already has a name, distinct from A100982, and the laboratory had cited A100982 alone. Found by the 2026-09-20 OEIS sweep.",
+  "problem_area": "collatz",
+  "project_relationship": "known",
+  "relevant_concepts": [
+    "minimal certificate count",
+    "dropping time",
+    "A100982"
+  ],
+  "status": "OEIS entry, verified against our counts",
+  "title": "Length of Collatz dropping time patterns in A186008",
+  "url": {
+    "entry": "https://oeis.org/A186009"
+  },
+  "year": 2011
+}

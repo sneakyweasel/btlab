@@ -1,0 +1,22 @@
+{
+  "authors": ["T. D. Noe"],
+  "id": "oeis-A186008",
+  "identifiers": {
+    "oeis": "A186008"
+  },
+  "notes": "docs/theory/paper_b_prior_art_and_names.md. Irregular triangle of the pattern of conjectured dropping times in the Collatz iteration, contributed 9 February 2011. FOUND 2026-09-20 BY A SYSTEMATIC OEIS SWEEP of the integer sequences in tests/, not by accident, after the same class of identification had been made by accident four times. Two of its comments are results this laboratory states independently. FIRST: 'Only zero and the numbers in A020914 can be dropping times' -- that is the carrying-length statement, the level-zero shadow of the empty-window theorem, in print since 2011. SECOND, and sharper: 'The frequency of the r-th dropping time s = A020914(r) can be computed as A186009(r)/2^s', with the first nine given as 1/2, 1/4, 1/16, 1/16, 3/128, 7/256, 3/256, 15/2048, 85/8192. Those are exactly this laboratory's M_d/2^d at the carrying lengths 1, 2, 4, 5, 7, 8, 10, 12, 13 -- verified here as exact Fractions, all nine equal. So the normalised minimal-certificate mass, which this cluster calls the boundary mass and the jump amplitude, is tabulated in OEIS and has been for fifteen years. What is NOT there is any asymptotic, prefactor or oscillation; the entry is a finite table and a frequency formula.",
+  "problem_area": "collatz",
+  "project_relationship": "known",
+  "relevant_concepts": [
+    "dropping time",
+    "A020914 carrying lengths",
+    "minimal certificate frequency",
+    "boundary mass"
+  ],
+  "status": "OEIS entry, verified against our counts",
+  "title": "Irregular triangle of the pattern of conjectured dropping times in the Collatz iteration",
+  "url": {
+    "entry": "https://oeis.org/A186008"
+  },
+  "year": 2011
+}
