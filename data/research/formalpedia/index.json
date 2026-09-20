@@ -29842,11 +29842,11 @@
       "trust": "kernel"
     },
     {
-      "doc": "Multiplication by a `p` coprime to `q` permutes the residue indices of the grid: the algebraic half of the note's \"the points `y + i p/q` are a translate of the `1/q`-grid\".",
+      "doc": "Multiplication by a `p` coprime to `q` permutes the residue indices of the grid: the algebraic half of the note's \"the points `y + i p/q` are a translate of the `1/q`-grid\". The same algebra as `OstrowskiSandwich.residue_mul_bijective`, in a different type: that one permutes `ZMod q`, this one indexes `Finset.range q` through `gridRes`. Read the refutation recorded after it there -- \"the grid-cell reading of the block permutation is false\" -- before reusing either. It does NOT apply here, and the reason is this file's architecture. There the points are `k \u03b8` for an IRRATIONAL `\u03b8 \u2248 p/q`: each sits within `1/q` of a grid point and may fall just below it, so the cells are not permuted. Here the points are the EXACT rational grid `c + i p/q` and `gridRes` is their exact residue index, so the permutation is the honest one. `block_lock` never puts the displacement inside the indexing: the exact grid carries `grid_reindex`, and `e_i` is handled apart by `grid_near_count` and `fract_lt_half_congr`. That separation is what the Ostrowski refutation says is mandatory, so the two records agree rather than conflict.",
       "file": "formal/Problems/Juggler/FateBlockLock.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 251,
+      "line": 263,
       "module": "Problems.Juggler.FateBlockLock",
       "name": "gridRes_mul_inj",
       "trust": "kernel"
@@ -29856,7 +29856,7 @@
       "file": "formal/Problems/Juggler/FateBlockLock.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 286,
+      "line": 298,
       "module": "Problems.Juggler.FateBlockLock",
       "name": "grid_reindex",
       "trust": "kernel"
@@ -29866,7 +29866,7 @@
       "file": "formal/Problems/Juggler/FateBlockLock.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 302,
+      "line": 314,
       "module": "Problems.Juggler.FateBlockLock",
       "name": "gridPoint_half_count",
       "trust": "kernel"
@@ -29876,7 +29876,7 @@
       "file": "formal/Problems/Juggler/FateBlockLock.lean",
       "kind": "def",
       "ledger": [],
-      "line": 347,
+      "line": 359,
       "module": "Problems.Juggler.FateBlockLock",
       "name": "Unstable",
       "trust": "kernel"
@@ -29886,7 +29886,7 @@
       "file": "formal/Problems/Juggler/FateBlockLock.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 353,
+      "line": 365,
       "module": "Problems.Juggler.FateBlockLock",
       "name": "gridPoint_near_count",
       "trust": "kernel"
@@ -29896,7 +29896,7 @@
       "file": "formal/Problems/Juggler/FateBlockLock.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 412,
+      "line": 424,
       "module": "Problems.Juggler.FateBlockLock",
       "name": "grid_half_count",
       "trust": "kernel"
@@ -29906,7 +29906,7 @@
       "file": "formal/Problems/Juggler/FateBlockLock.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 430,
+      "line": 442,
       "module": "Problems.Juggler.FateBlockLock",
       "name": "grid_near_count",
       "trust": "kernel"
@@ -29916,7 +29916,7 @@
       "file": "formal/Problems/Juggler/FateBlockLock.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 450,
+      "line": 462,
       "module": "Problems.Juggler.FateBlockLock",
       "name": "fract_lt_half_congr",
       "trust": "kernel"
@@ -29926,7 +29926,7 @@
       "file": "formal/Problems/Juggler/FateBlockLock.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 476,
+      "line": 488,
       "module": "Problems.Juggler.FateBlockLock",
       "name": "span_bounds",
       "trust": "kernel"
@@ -29936,7 +29936,7 @@
       "file": "formal/Problems/Juggler/FateBlockLock.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 500,
+      "line": 512,
       "module": "Problems.Juggler.FateBlockLock",
       "name": "block_count",
       "trust": "kernel"
@@ -29946,7 +29946,7 @@
       "file": "formal/Problems/Juggler/FateBlockLock.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 595,
+      "line": 607,
       "module": "Problems.Juggler.FateBlockLock",
       "name": "block_chain",
       "trust": "kernel"
@@ -29956,7 +29956,7 @@
       "file": "formal/Problems/Juggler/FateBlockLock.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 643,
+      "line": 655,
       "module": "Problems.Juggler.FateBlockLock",
       "name": "block_lock",
       "trust": "kernel"
@@ -32221,6 +32221,36 @@
       "line": 234,
       "module": "Problems.Juggler.FateEnergyAtoms",
       "name": "energy_implies_conjecture",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The fiber's even-image count, as a count of half-cells. `evenImageCount` is defined by `Nat.sqrt (n^3) % 2 = 0`; `block_lock` counts `Int.fract (x j) < 1/2`. The two agree termwise, by the cell identity.",
+      "file": "formal/Problems/Juggler/FateFiberLock.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 42,
+      "module": "Problems.Juggler.FateFiberLock",
+      "name": "evenImageCount_eq_fract",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Dirichlet's approximation theorem, reduced.** For every real `\u03be` and `n \u2265 1` there is a fraction `p/q` in lowest terms with `1 \u2264 q \u2264 n` and `|q \u03be - p| \u2264 1/(n+1)`. Mathlib's `Real.exists_nat_abs_mul_sub_round_le` supplies `q` and `p = round (q \u03be)` without the coprimality, and `block_lock` needs it, since `gcd(p,q) = 1` is what makes the `q` points `y + i p/q` a full `1/q`-grid rather than a coarser one. Dividing through by `g = gcd(p,q)` costs nothing: `q/g \u2264 q` and `|(q/g) \u03be - p/g| = |q \u03be - p| / g \u2264 |q \u03be - p|`, so both sides of the conclusion only improve. The division is done multiplicatively, through the witnesses of `g \u2223 q` and `g \u2223 p`, to keep integer-division casts out of it.",
+      "file": "formal/Problems/Juggler/FateFiberLock.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 65,
+      "module": "Problems.Juggler.FateFiberLock",
+      "name": "exists_coprime_approx",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The block lock on a fiber.** For `m \u2265 1` and any rational approximation `p/q` to the fiber's lower step `A_m`, with `|q A_m - p| \u2264 \u03c1` and `gcd(p, q) = 1`, \\[ \\Bigl| G_m - \\frac{H_m}{2} \\Bigr| \\le 4(\\rho + q\\,\\varepsilon_m) H_m + \\frac{5 H_m}{2q} + q . \\] This is `BlockLock.block_lock` with `x = xval \u2218 nseq`, `a = A_m` and `\u03b7 = \u03b5_m`; the step interval is `step_ge` and `step_le`, and the count is matched by `evenImageCount_eq_fract`. Dividing by `H_m` gives the note's (1.1).",
+      "file": "formal/Problems/Juggler/FateFiberLock.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 114,
+      "module": "Problems.Juggler.FateFiberLock",
+      "name": "fiber_block_lock",
       "trust": "kernel"
     },
     {
@@ -91317,6 +91347,7 @@
         "Problems.Juggler.FateCylinderCorollary",
         "Problems.Juggler.FateCylinderEnergy",
         "Problems.Juggler.FateEnergyAtoms",
+        "Problems.Juggler.FateFiberLock",
         "Problems.Juggler.FateFiberParity",
         "Problems.Juggler.FateFirstLetter",
         "Problems.Juggler.FateLandingWindow",
@@ -91329,6 +91360,7 @@
         "Problems.Juggler.FateProduction",
         "Problems.Juggler.FateProductionWords",
         "Problems.Juggler.FateRecursion",
+        "Problems.Juggler.FateResonanceCount",
         "Problems.Juggler.FateSeed",
         "Problems.Juggler.FateShareLaw",
         "Problems.Juggler.FateSweep",
@@ -92538,6 +92570,15 @@
           "tag": "EXACT \u2014 LEAN VERIFIED"
         }
       ]
+    },
+    "Problems.Juggler.FateFiberLock": {
+      "declarations": 3,
+      "file": "formal/Problems/Juggler/FateFiberLock.lean",
+      "imports": [
+        "Problems.Juggler.FateBlockLock",
+        "Problems.Juggler.FateFiberParity"
+      ],
+      "ledger": []
     },
     "Problems.Juggler.FateFiberParity": {
       "declarations": 43,
@@ -94803,13 +94844,13 @@
     }
   },
   "totals": {
-    "declarations": 7003,
+    "declarations": 7006,
     "declarations_with_a_ledger_row": 4777,
     "ledger_rows_naming_a_file": 452,
-    "modules": 311,
+    "modules": 312,
     "trust": {
       "compiler": 56,
-      "kernel": 6947
+      "kernel": 6950
     }
   }
 }
