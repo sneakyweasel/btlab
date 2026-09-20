@@ -75,9 +75,23 @@ python -m research.juggler_sequence.branch_index search <query>
 python -m research.juggler_sequence.branch_index new <id>
 python tools/render_theorem_ledger.py --check
 python tools/branch_drift.py                        # results stranded on branches
+zgrep -m1 "^A094683 " data/external/oeis/names.gz    # local OEIS, no network
 $env:PATH = "$env:USERPROFILE\.elan\bin;$env:PATH"
 cd formal; lake build                               # no sorry / admit
 ```
+
+## OEIS, locally
+
+`data/external/oeis/` holds `stripped.gz` (all terms) and `names.gz` (all
+names), gitignored, refetched with `curl -o <name> https://oeis.org/<name>`.
+The full internal-format records -- comments, links, formulas, programs --
+are a shallow clone of `oeis/oeisdata` outside the repository; its `files/`
+tree is Git LFS pointers, so b-files are not local. Some sessions have
+`oeis.org` refused by egress policy and this is the way in for them.
+
+Before sweeping it, read
+[juggler_oeis_neighbourhood](docs/problems/juggler_oeis_neighbourhood.md): the
+Juggler corner is already swept, and a second session repeated the whole of it.
 
 ## Adding a Lean module or a probe (checklist)
 
