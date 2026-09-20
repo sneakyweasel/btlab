@@ -4,45 +4,47 @@
 three manuscripts and says not to hand-edit both copies.  Nothing enforced
 that, and the two trees have been edited in lockstep by hand.
 
-`juggler_finite_dynamics_formalization.md` was excluded here, on the grounds
-that it shares a filename across the two trees without being a copy: the bundle
-version trimmed for an external reader, the laboratory version carrying table
-rows the bundle dropped.  That was true once -- the two blobs differ across
-dozens of commits in the history -- but they converged, and every commit that
-has touched them since has written both sides identically, 1387 lines each.
+This gate used to hold a hand-written list of mirrored filenames, and that list
+fell behind in three separate ways at once.  It named seven of the twenty-two
+files the two trees then shared.  It carried an exclusion for
+`juggler_finite_dynamics_formalization.md` on the ground that the bundle copy
+was trimmed and the laboratory copy carried extra table rows -- true when it was
+written, and false for a long while before anyone looked, the two having
+converged to the same 1387 lines.  And `figures/juggler_lean_layers.png` sat
+drifted for a week after `b5654437` re-rendered the `docs/theory` copy alone,
+because a figure was never on the list to begin with.
 
-An exclusion describing a distinction the files no longer have is worse than no
-exclusion at all, because real drift would then read as the intended state.  So
-it is mirrored like the rest.  Re-trimming the bundle copy is an editorial
-decision about the packet, and it would mean taking this name back off the list
-deliberately rather than leaving the gate blind to it.
+A list that has to be extended by hand every time someone copies a file will
+keep falling behind, and each of those three failures is silent: the gate stays
+green while the thing it names goes wrong.  So the pairing is computed rather
+than written down.  Every tracked path present under both roots must agree byte
+for byte, and a path only one tree carries is not a pair at all.
 
-The test also passes if the mirrors are removed and only the built PDFs
-remain, which is the tidier end state.
+That last point preserves the old behaviour worth keeping: a bundle that drops
+a mirror and keeps only the built PDF still passes, because the dropped file
+stops being a shared path.  That remains the tidier end state.
+
+A copy that is genuinely meant to differ goes in `DELIBERATELY_DIFFERENT` by
+relative path, where the reason is written down and stays visible, instead of
+being excluded by silent omission from a list.  It is empty today.
 """
 
 from __future__ import annotations
 
+import subprocess
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 SOURCE = ROOT / "docs" / "theory"
 BUNDLE = ROOT / "juggler_review"
 
-MIRRORED = (
-    "juggler_finite_dynamics_note.md",
-    "juggler_parity_discrepancy_note.md",
-    "juggler_fate_almost_all_note.md",
-    "paper_b_audit_ledger.md",
-    "juggler_finite_dynamics_reviewer_packet.md",
-    # Build guides.  `PAPER_A_BUILD.md` was missing from the bundle entirely
-    # while the reviewer packet told reviewers it was there; `PAPER_C_BUILD.md`
-    # was already a verbatim copy that nothing enforced.
-    "PAPER_A_BUILD.md",
-    "PAPER_C_BUILD.md",
-    # Converged with its laboratory copy; see the header.
-    "juggler_finite_dynamics_formalization.md",
-)
+#: Relative paths the two trees carry on purpose in different form.  Each entry
+#: needs a reason here, and a reason that stops being true should remove it.
+DELIBERATELY_DIFFERENT: frozenset[str] = frozenset()
+
+#: A path that must always be shared, so a broken prefix computation cannot make
+#: this file pass by comparing nothing at all.
+CANARY = "juggler_parity_discrepancy_note.md"
 
 #: The companion site serves its own copies of the three built PDFs, and nothing
 #: checked them.  `test_manuscript_consistency.py` reads the app's TypeScript --
@@ -58,16 +60,36 @@ SERVED = (
 )
 
 
-def test_bundle_manuscript_mirrors_match_docs_theory():
-    drifted: list[str] = []
-    for name in MIRRORED:
-        source = SOURCE / name
-        copy = BUNDLE / name
-        if not copy.exists():
-            continue
-        assert source.exists(), f"{name} in the bundle with no docs/theory source"
-        if source.read_bytes() != copy.read_bytes():
-            drifted.append(name)
+def tracked_under(prefix: str) -> set[str]:
+    """Paths git tracks under `prefix`, relative to it.
+
+    Tracked rather than walked: an untracked scratch file that happens to exist
+    under both roots is not a mirror anyone promised to keep.
+    """
+    out = subprocess.run(
+        ["git", "ls-files", "-z", "--", prefix],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        check=True,
+    ).stdout
+    return {path[len(prefix):] for path in out.split("\0") if path}
+
+
+def shared_paths() -> list[str]:
+    both = tracked_under("docs/theory/") & tracked_under("juggler_review/")
+    return sorted(both - DELIBERATELY_DIFFERENT)
+
+
+def test_bundle_carries_no_drifting_copy_of_docs_theory():
+    pairs = shared_paths()
+    assert CANARY in pairs, (
+        f"{CANARY} is not being compared, so this test is not comparing the trees"
+    )
+    drifted = [
+        rel for rel in pairs
+        if (SOURCE / rel).read_bytes() != (BUNDLE / rel).read_bytes()
+    ]
     assert drifted == []
 
 

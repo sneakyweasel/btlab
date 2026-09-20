@@ -40,13 +40,35 @@
   every formal word is realized in that range, the gap the module exists to find
   being empty -- and not a copy. And `classified.csv` equals `infeasible.csv`
   because all 69 classified rows carry `status=INFEASIBLE`.
-- **Left unguarded on purpose, for now.** Eleven `paper_b_*_report.md` pairs
-  across the two trees, and the bundle's figure copies. Same drift risk, no gate,
-  not in this change.
-- **Both new gates were run against known-bad inputs rather than trusted.**
-  Drifting the formalization copy, drifting a served PDF, and removing a served
-  PDF each turn the file red naming the offending file; the worktree restores
-  clean and the gate returns green.
+- **Then the rest, which turned up drift that had already happened.** Philippe
+  asked for the remaining pairs too. Enumerating every tracked path under both
+  roots -- rather than only the ones that happen to be identical, which is all a
+  duplicate census can see -- gives 29 shared paths, and one of them was already
+  broken: `figures/juggler_lean_layers.png`, 154382 bytes under `docs/theory` and
+  150996 in the bundle, with identical `.mmd` sources. `b5654437` re-rendered the
+  laboratory copy on 14 September, under the subject line "a figure with two
+  sources", and the bundle copy had not moved since 28 August. A census of
+  duplicates cannot find this by construction: it lists the files that match, and
+  this pair had stopped matching. Resolved from `docs/theory`, which
+  `juggler_review/README.md` names the source of truth in as many words.
+- **The hand-written list was the bug, so the list is gone.** One file failed
+  three ways at once, each failure silent in the sense that the gate stayed green
+  while what it named went wrong: seven names covering twenty-two shared files, an
+  exclusion describing a distinction that had lapsed, and a figure that was never
+  listed at all. The pairing is computed now -- every tracked path present under
+  both roots must agree, a path only one tree carries is not a pair, so dropping a
+  mirror and keeping the built PDF still passes, and a copy meant to differ goes
+  in `DELIBERATELY_DIFFERENT` with its reason written down instead of being
+  excluded by omission. 29 pairs compared where 7 were named.
+- **A computed set fails by comparing nothing, so that is guarded too.** A
+  `CANARY` path must be among the pairs, or the test says it is not comparing the
+  trees. Excluding every shared path fires it rather than passing green.
+- **Every gate here was run against a known-bad input rather than trusted
+  green.** Drifting the formalization copy, drifting a served PDF and removing a
+  served PDF each turn the file red naming the offending file, and the worktree
+  restores clean. The computed gate needed no synthetic input for its first run:
+  it was written while `juggler_lean_layers.png` was still drifted, and caught it
+  before the fix went in.
 
 ## 2026-09-21 -- Paper A: Hercher's final section and Barina's 2^71 placed together
 
