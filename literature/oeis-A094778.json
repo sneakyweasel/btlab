@@ -1,0 +1,24 @@
+{
+  "id": "oeis-A094778",
+  "title": "\"Dropping time\" in juggler sequence problem starting at 2n+1",
+  "authors": [
+    "OEIS contributors"
+  ],
+  "year": 2004,
+  "identifiers": {
+    "oeis": "A094778"
+  },
+  "url": {
+    "oeis": "https://oeis.org/A094778"
+  },
+  "problem_area": "nonlinear-integer-dynamics",
+  "relevant_concepts": [
+    "dropping time",
+    "stopping prefix",
+    "minimal certificate length",
+    "juggler map"
+  ],
+  "project_relationship": "known",
+  "status": "classical-source",
+  "notes": "docs/problems/juggler_stopping_prefix.md. THE JUGGLER DROPPING TIME IS TABULATED AND THE LABORATORY HAD NEVER CITED IT. a(n) is the number of steps for the juggler map of A094683 started at 2n+1 to reach a value below 2n+1; even starts are excluded because the first step already descends. VERIFIED HERE against the laboratory's own map in exact integer arithmetic -- math.isqrt, never float sqrt -- on all 40 terms comparable in the stripped.gz snapshot of 2026-09-20, with no disagreement. The one uncomparable term is n = 0, start 1, where nothing descends below 1 and the entry sets a(0) = 0 by convention. WHY IT MATTERS HERE: J-certificate-length-is-the-dropping-time already identifies the laboratory's minimal-certificate length with the standard dropping time on the COLLATZ side, through A020914 and A126241, and reached that identification by reading an OEIS comment. This is the same object on the JUGGLER side, indexed directly, and it is the sequence the stopping-prefix work has been recomputing. WHAT IT IS NOT: the entry carries no asymptotic, no constant and no rate -- only terms. It states nothing about the distribution of dropping times, so it neither supports nor threatens anything in Paper B. Found by a full-corpus search of the OEIS bulk files on 2026-09-20; 30 sequences carry 'juggler' in their name and the laboratory referenced 5 of them."
+}
