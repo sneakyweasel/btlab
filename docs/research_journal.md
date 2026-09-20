@@ -1,5 +1,71 @@
 # Research journal
 
+## 2026-09-20 -- the floor reaches 2^40, and the block expansion turns out to be Brox's
+
+Two things landed together, one a number and one a correction, and the correction is the more
+useful of the pair.
+
+**THE FLOOR IS 2^40.** Every `1 <= y < 2^40 = 1099511627776` reaches `1`, `5` or `17` under the
+`3x-1` shortcut map. Sixteen disjoint chunks now tile `[3, 2^40)`, 549755813864 odd starts, 0
+failures, 0 new cycles, greatest step count 544 against a cap of 4000. Through the kernel-checked
+`neg_cycle_finance`, a fourth negative cycle of shortcut `3x+1` -- equivalently a fourth cycle of
+the `3x-1` map, whose word is a Paper A CycleMin shape -- has **period at least 9538065, with
+6017849 odd steps**, up from 4404167 and 2778720 at `2^38`. Only the floor is empirical; the
+implication is Lean.
+
+One detail was worth not glossing. All eight new chunks report an *identical* record excursion,
+261160802435320822179964, and it equals the record from `[3, 2^38)`. Across disjoint ranges that
+is improbable enough to check rather than write down, so I ran narrow subranges inside the new
+territory: they return small, distinct peaks, well under `2^64`. So the binary is sound and the
+coincidence is real -- a single extreme trajectory, reached from throughout the range, with
+nothing in the new territory exceeding it. `wide = 0` everywhere, as before, and the `peak_hi`
+field is what shows the `unsigned __int128` width was genuinely needed.
+
+**THE BLOCK EXPANSION IS BROX'S.** The even-run dual committed this morning offered, as an
+"equivalently", the identity
+
+```text
+evenCharge(w) = sum_j 3^j 2^(A_j) (2^(r_j) - 1),   A_j = (o - j) + sum_(l>j) r_l.
+```
+
+That is in print. `brox-2000-collatz-cycles-few-descents`, Acta Arithmetica 92 (2000) 181-188:
+his (3.2) is `F~_i = M(x_i + 1)`, the same `u = x+1` conjugation applied to the cycle constant,
+and his (3.1) is `2 sum_l 3^(n-1-l) 2^(k_1+...+k_l) (2^(k_(l+1)-1) - 1)` -- term for term the
+display above, with the Mersenne factor on the *extra*-halving exponent. Verified here against
+`evenCharge` on all 16382 words of length `<= 14` beginning with `O`, 0 differences. Brox was
+absent from `literature/` and from `docs/` entirely, which is a citation gap wider than this
+branch: his Theorem 1.1, finitely many cycles with fewer than `2 log n` descents, predates
+Simons-de Weger and is an ancestor of Hercher's `m`-cycle line.
+
+What Brox does *not* do is take a gcd. He uses the brackets only as a size bound, replacing them
+by `2^h` to feed Baker-Feldman. So the identity is his; the gcd step and the congruence are what
+the branch adds, and a sweep of Hercher 2023, Simons-de Weger 2005, Halbeisen-Hungerbuehler 1997
+and Lagarias's two annotated bibliographies -- all read in full -- found nobody taking it. The
+honest framing is "searched hard, not found, **and** one line from a printed identity": a reader
+who knows Brox sees the corollary immediately, and not saying so would be the expensive error.
+
+The bookkeeping is not interchangeable, which is the part that surprised me. The same statement
+with the **full** halving counts `k_i` in place of the extra halvings `r_i = k_i - 1` is **false**:
+`OE` has `k = (2)`, gcd `2`, `u = 2`, and `3` does not divide `2`; 79 failures against 0 holds
+over words to length 12. Simons-de Weger's matrix equation carries Mersenne factors on the *full*
+counts, so the congruence is *not* readable off it. It is Brox's exponent that carries it.
+
+**And the earlier caveat here was wrong.** The dossier said the primary sources were unreachable
+and the question therefore unknown. They were reachable, through a public GitHub mirror of
+converted PDFs, and Hercher's Lemma 8 is now verified at source to use no multiplicative order and
+no Mersenne number rather than inferred to. That is the fourth priority correction of the day --
+after Williams on the `(lambda, a, b)` coordinate, the mod-3 law, and a DOI I constructed and
+recorded as if observed. The pattern is consistent and worth naming: every one of them was a
+search that failed on TERMS while the idea was in print under different words.
+
+What survives as this branch's own content is not the congruence but the **subordination** --
+`R <= floor((log2 3 - 1) a)` on the CycleMin shape, 0 dual-only kills over 2264815 words -- and
+nothing resembling it was found. Post-2009 coverage rests on search snippets, so that absence is a
+failure to find, not a proof.
+
+Best next question: unchanged. The `3x-1` floor is the only number moving, and the sieve density
+for pushing it further is this laboratory's own shape-word census.
+
 ## 2026-09-20 -- Lemma 8 has a dual on the even runs, and the shape is what kills it
 
 `2` acts on the odd part of `Z` in two ways, by its valuation and by its multiplicative order.

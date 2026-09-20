@@ -77,7 +77,7 @@ It is not.
 ## Candidate operations / invariants
 
 - ascending-induction descent verification of \(g\) —
-  **COMPUTATIONALLY VERIFIED** to \(2^{38}\)
+  **COMPUTATIONALLY VERIFIED** to \(2^{40}\)
 - the descent rule agrees with full iteration to a cycle element —
   **COMPUTATIONALLY VERIFIED** on \(y<300000\)
 - floor \(\Rightarrow\) period bound through `neg_cycle_finance` —
@@ -99,7 +99,7 @@ None.
 
 ## Counterexamples
 
-None. Zero failures, zero new cycles, greatest step count 519 against a
+None. Zero failures, zero new cycles, greatest step count 544 against a
 cap of 4000 — so no orbit in range came within an order of magnitude of
 the cap, which is what would flag a cycle whose least element exceeds the
 start being tested.
@@ -112,12 +112,12 @@ verification floor is not a Lean object.
 ## Results
 
 - **Every \(1\le y<2^{38}=274877906944\) reaches \(1\), \(5\) or
-  \(17\).** 137438953456 odd starts, 8 disjoint chunks, 0 failures, 0 new
-  cycles, greatest step count 519, greatest excursion
+  \(17\).** 549755813864 odd starts, 16 disjoint chunks, 0 failures, 0 new
+  cycles, greatest step count 544, greatest excursion
   \(2.61\cdot10^{23}\) in an `unsigned __int128` state, so the width
   mattered — the excursion leaves 64 bits — and overflow was never near.
 - **A fourth cycle of the \(3x-1\) shortcut map has period at least
-  \(4404167\)**, with \(2778720\) odd steps. Equivalently a fourth
+  \(9538065\)**, with \(6017849\) odd steps. Equivalently a fourth
   negative cycle of shortcut \(3x+1\), whose word is a Paper A CycleMin
   shape letter for letter. At \(10^{11}\) the number is \(1988215\); at
   \(2^{40}\), which is about 45 further core-minutes, it would be

@@ -57,27 +57,31 @@ def test_descent_verify_reports_a_planted_cycle() -> None:
     assert data["new_cycles"] == []
 
 
-def test_committed_certificate_covers_two_to_the_thirty_eight() -> None:
+def test_committed_certificate_covers_two_to_the_fortieth() -> None:
     cert = certificate()
     assert cert["clean"]
     assert cert["fails"] == 0 and cert["new_cycles"] == 0
     assert cert["covered_to"] == 2**FLOOR_LOG2
     assert cert["covered_to_is_two_pow"]
-    assert cert["chunks"] == 8
-    assert cert["odd_starts"] == 137_438_953_456
-    assert cert["max_steps"] == 519
+    assert cert["chunks"] == 16
+    assert cert["odd_starts"] == 549_755_813_864
+    assert cert["max_steps"] == 544
     assert cert["max_excursion"] < 2**127        # the __int128 state never came near overflow
     assert cert["max_excursion"] > 2**64         # but it did leave 64 bits, so the width mattered
 
 
 def test_the_floor_buys_the_period_bound() -> None:
-    rows = {r["floor"]: r for r in period_bounds(floors=((2**38, "2^38"), (10**11, "10^11")))}
+    rows = {r["floor"]: r for r in period_bounds(
+        floors=((2**38, "2^38"), (10**11, "10^11"), (2**40, "2^40")))}
+    assert rows["2^40"]["least_period"] == 9_538_065
+    assert rows["2^40"]["odd_steps"] == 6_017_849
+    assert rows["2^40"]["verified"]
     assert rows["2^38"]["least_period"] == 4_404_167
     assert rows["2^38"]["odd_steps"] == 2_778_720
-    assert rows["2^38"]["verified"]
     assert rows["10^11"]["least_period"] == 1_988_215
     # the bound is monotone in the floor: a higher floor forbids more lengths
-    assert rows["2^38"]["least_period"] > rows["10^11"]["least_period"]
+    assert (rows["2^40"]["least_period"] > rows["2^38"]["least_period"]
+            > rows["10^11"]["least_period"])
 
 
 @pytest.mark.skipif(not JSON_PATH.exists(), reason="probe artifact not built")
@@ -86,4 +90,4 @@ def test_committed_artifact_is_green() -> None:
     assert data["decision"]["classification"] == CLASS_FLOOR
     assert data["decision"]["branch"] == "PROMOTE"
     assert data["certificate"]["clean"]
-    assert "4404167" in data["statement"]
+    assert "9538065" in data["statement"]

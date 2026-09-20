@@ -142,10 +142,26 @@ Mersenne modulus is exactly the reduction under which Collatz becomes the Juggle
 exponent dynamics, and the price is exactly that `3^o != 2^o` degrades from a
 contradiction into `m | u`: an impossibility becomes a floor.
 
-Novelty was not established and is not claimed: `arxiv.org`, `cs.uwaterloo.ca` and
-`oeis.org` are refused by the container's network egress policy, so Hercher 2023,
-Eliahou 1993 and Simons-de Weger 2005 could not be read at source for the dual
-congruence.
+Novelty, settled the same day, and the first version of this paragraph was wrong --
+it said the primary sources were unreachable. They were reached, through a public
+GitHub mirror of converted PDFs: Hercher 2023, Simons-de Weger 2005,
+Halbeisen-Hungerbuehler 1997, Brox 2000 and Lagarias's two annotated bibliographies,
+in full. The answer splits three ways. The BLOCK EXPANSION IS KNOWN and is Brox's:
+`brox-2000-collatz-cycles-few-descents` (Acta Arith. 92 (2000) 181-188) has it at
+(3.1)/(3.2), his `F~_i = M(x_i+1)` being the same `u = x+1` conjugation and his
+`2 sum_l 3^(n-1-l) 2^(k_1+...+k_l) (2^(k_(l+1)-1) - 1)` term for term the laboratory's
+`evenCharge` expansion -- checked here on all 16382 words of length <= 14 beginning
+with `O`, 0 differences -- and this laboratory had been presenting it as its own.
+Brox takes no gcd; he uses the brackets only as a size bound for a Baker-Feldman
+argument. Hercher's Lemma 8 uses no multiplicative order and no Mersenne number, now
+verified at source rather than inferred. The gcd step and the congruence were searched
+hard and NOT FOUND -- but they are one line from Brox's printed identity, and that has
+to be said rather than left for a reader who knows Brox to notice. The bookkeeping is
+not interchangeable: the same statement with the FULL halving counts in place of the
+extra halvings is FALSE (`OE`: `k = (2)`, gcd 2, `u = 2`, `3` does not divide `2`; 79
+failures against 0 holds to length 12), so it is Brox's exponent that carries it and
+not Simons-de Weger's matrix equation. What stands as this branch's own content is the
+SUBORDINATION, and nothing resembling that was found.
 
 Do not reopen as: a floor from the even-run structure on any prefix-noncontracting
 family; a Baker-free Steiner theorem from the gcd of the halving runs; a claim that

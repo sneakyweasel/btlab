@@ -45,7 +45,9 @@ ACKNOWLEDGED: dict[str, str] = {
         "J-negative-floor-makes-the-mirror-unconditional supplies the 3x-1 verification "
         "floor this journal had named as its best next question, so the finance mirror's "
         "period bound is a statement rather than a table -- a fourth negative cycle has "
-        "period at least 4404167. No row raises N_0, excludes a Juggler cycle or touches a "
+        "period at least 9538065 -- the floor was pushed from 2^38 to 2^40 on 20 September, "
+        "16 chunks tiling [3, 2^40), 549755813864 odd starts, 0 failures, 0 new cycles. "
+        "No row raises N_0, excludes a Juggler cycle or touches a "
         "manuscript. Nothing here is superseded and nothing is abandoned -- the branch is "
         "waiting to be read and merged. Extended 20 September: two further CLOSE rows, "
         "J-multiplicative-knight-residual-is-the-state-dependence (Knight's cancellation "
@@ -54,7 +56,8 @@ ACKNOWLEDGED: dict[str, str] = {
         "multiplicative order of 2, read off the even runs, is a second floor dual to "
         "Lemma 8, and the CycleMin shape caps it at R <= floor((log2 3 - 1) a), below "
         "Lemma 8 by 2^(0.41504 a), with zero dual-only kills in a census of 2.26 million "
-        "shape words)."
+        "shape words; its block expansion is Brox 2000 (3.1)/(3.2), corrected on the day, "
+        "and what the branch adds is the gcd step and the subordination cap)."
     ),
 }
 
