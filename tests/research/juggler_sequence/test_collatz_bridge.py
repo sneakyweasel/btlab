@@ -42,6 +42,7 @@ from research.juggler_sequence.collatz_bridge import (
 )
 from research.juggler_sequence.jump_spectrum import survivor_counts
 from research.juggler_sequence.lean_paths import REPO_ROOT
+from research.juggler_sequence.paper_b_prefix_count import word_counts
 
 
 def test_the_two_walks_have_the_same_steps() -> None:
@@ -635,15 +636,19 @@ def test_hikawas_weight_recursion_has_our_survivor_counts_as_its_margin() -> Non
     zeroed, so a word is counted only when every prefix survives -- which makes
     this our survivor set, refined by weight. Its length marginal is `N_k`.
 
-    The structure is not new to us and is already in Lean: that the weight is
-    pinned by the length is `minimalCert_window`
-    (`J-paper-b-certificate-length-window`), the 1-or-2 gaps of the image are
-    `J-free-lengths-are-never-adjacent`, and the zeros of `M` are the
-    empty-window theorem. Changing the index from length to weight is what
-    removes the zeros, and nothing more. What we do not have is the OBJECT: no
-    weight-refined survivor count exists in `src/research/juggler_sequence`,
-    and `d` is exactly the `b` of the fibre exponent
-    `theta_w = 2^(a+b+1)/3^(b+1)`.
+    Nothing here is new to us. That the weight is pinned by the length is
+    `minimalCert_window` (`J-paper-b-certificate-length-window`), the 1-or-2
+    gaps of the image are `J-free-lengths-are-never-adjacent`, and the zeros of
+    `M` are the empty-window theorem -- all in Lean already.
+
+    Nor is the object new, though a first pass here claimed it was and said so
+    in commit `6200751e`. `paper_b_prefix_count.word_counts` IS this array:
+    `word_counts(d)[o]` equals his `W[o][d-o]` identically, asserted below. The
+    grep behind the false claim searched for "hamming", "by_weight" and
+    "popcount" -- his vocabulary, not ours; this laboratory says the odd count.
+    What we have on top of it and he does not is the limit theory:
+    `word_counts` is the base of `R_d`, the quasi-stationary profile, and the
+    rational barriers.
     """
     lam = math.log(3) / math.log(2)
     top = 28
@@ -671,6 +676,14 @@ def test_hikawas_weight_recursion_has_our_survivor_counts_as_its_margin() -> Non
         sum(weights[d].get(k - d, 0) for d in range(1, k + 1))
         for k in range(1, depth + 1)
     ] == [counts[k] for k in range(1, depth + 1)]
+
+    # it is our own array: word_counts(d)[o] = his W[o][d-o]
+    for d in range(1, 23):
+        ours = word_counts(d)
+        assert list(ours) == [
+            weights.get(o, {}).get(d - o, 0) for o in range(len(ours))
+        ]
+        assert sum(ours) == counts[d]
 
     # and the weight marginal is our minimal-certificate count, re-indexed by
     # the Beatty map d -> ceil(d log2 3) that minimalCert_window already forces
