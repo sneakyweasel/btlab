@@ -37,8 +37,8 @@ import branch_drift as BD  # noqa: E402
 #: latest-progress-summary reached +8 unread on 2026-09-20 after being
 #: acknowledged at +5. Update the sha in the same commit as the reason.
 READ_AT: dict[str, str] = {
-    "claude/exponent-floor-3n1-2adic-mvwa96": "37e8766c",
-    "claude/latest-progress-summary-s011un": "49493758",
+    "claude/exponent-floor-3n1-2adic-mvwa96": "dfc45dd3",
+    "claude/latest-progress-summary-s011un": "0ebacb4a",
     "claude/goofy-kare-1a92fd": "8aad2aae",
     "claude/elated-hopper-e20999": "86247b5d",
 }
@@ -184,7 +184,17 @@ ACKNOWLEDGED: dict[str, str] = {
         "139, which is what Knight proves) and exactly ONE carries an "
         "integer f (-136). They are DIFFERENT classes, the integer one "
         "being the -17 cycle -- so Knight reach and the realizing class are "
-        "disjoint here, which is why the direction closes."
+        "disjoint here, which is why the direction closes. "
+        "DELTA TO dfc45dd3: it reports oeis.org blocked by egress policy "
+        "and reaches the OEIS instead through github.com/oeis/oeisdata, a "
+        "3.1 GB depth-1 clone of 399397 sequences. CHECKED FROM THIS "
+        "SESSION AND THE BLOCK IS NOT ENVIRONMENTAL: oeis.org serves both "
+        "the A076227 b-file (1.77 MB) and the search JSON here, so that is "
+        "their session and not the environment; the mirror is reachable "
+        "too. Do not read that line as OEIS being unavailable. What the "
+        "mirror settled is worth keeping either way: A034887 carries "
+        "offset 0, so the branch RETRACTS its own earlier offset "
+        "correction, which was itself wrong."
     ),
     "claude/latest-progress-summary-s011un": (
         "PENDING EXTRACTION, and it has GROWN since it was first acknowledged "
@@ -242,7 +252,16 @@ ACKNOWLEDGED: dict[str, str] = {
         "smallest-denominator rational there. It is not. The real reason "
         "to prefer 100/203 is margin: zeta is 6.29e-6 at 67/136 against "
         "2.71e-5. A minimality claim asserted in four places and pinned by "
-        "none until a probe was written for it."
+        "none until a probe was written for it. "
+        "DELTA TO 0ebacb4a: the exponent goes UNCONDITIONAL. "
+        "tao_reduction.unconditional_depth_drop re-derives the thresholds "
+        "and the two halves say different things. Numerically nothing "
+        "moves against lambda**: the required rate improves by 3.93e-5, "
+        "least C stays 19 and the pressure thresholds stay 19, 41, 214, "
+        "1496. What changes is their STATUS -- they rested on Paper C "
+        "Proposition 4.4 and its two exponential-sum bounds, and now rest "
+        "on nothing. A geometry copy is gated against silent drift in the "
+        "same push."
     ),
 }
 
