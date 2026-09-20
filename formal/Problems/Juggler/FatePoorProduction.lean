@@ -340,6 +340,253 @@ theorem production_two_averaged {A : ℕ → Prop} (hA : BackwardClosed A) {η�
   unfold errAddAvg
   linarith only [hEside, hOside]
 
+/-! ### The recursion at the averaged coefficient
+
+Everything below is `FateProduction`'s recursion section with `2/9` replaced by
+`(2/3)(1/2 - η₀)`. `recursion_lemma` itself is already generic in the coefficients, the rates
+and the errors, so nothing about Lemma 5.1 is restated -- only its inputs change. -/
+
+/-- The two coefficients at the averaged constant: `1` for `E`, `(2/3)(1/2 - η₀)` for `OE`. -/
+noncomputable def coef2avg (η₀ : ℝ) : Fin 2 → ℝ := ![1, 2 / 3 * (1 / 2 - η₀)]
+
+/-- Their errors, `errE` and `errOEavg`. -/
+noncomputable def err2avg : Fin 2 → ℝ → ℝ := ![errE, errOEavg]
+
+theorem coef2avg_ge {η₀ : ℝ} (hη1 : η₀ ≤ 1 / 4) (i : Fin 2) : 1 / 6 ≤ coef2avg η₀ i := by
+  fin_cases i
+  · show (1 : ℝ) / 6 ≤ 1
+    norm_num
+  · show (1 : ℝ) / 6 ≤ 2 / 3 * (1 / 2 - η₀)
+    linarith
+
+theorem coef2avg_nonneg {η₀ : ℝ} (hη1 : η₀ ≤ 1 / 4) (i : Fin 2) : 0 ≤ coef2avg η₀ i :=
+  le_trans (by norm_num) (coef2avg_ge hη1 i)
+
+theorem err2avg_nonneg (i : Fin 2) (t : ℝ) : 0 ≤ err2avg i t := by
+  fin_cases i
+  · show 0 ≤ errE t
+    unfold errE; positivity
+  · show 0 ≤ errOEavg t
+    unfold errOEavg; positivity
+
+theorem err2avg_le {η₀ t ε : ℝ}
+    (h : errE t ≤ ε ∧ errOEavg t ≤ ε ∧ errAddAvg η₀ t ≤ ε) (i : Fin 2) : err2avg i t ≤ ε := by
+  fin_cases i
+  · simpa [err2avg] using h.1
+  · simpa [err2avg] using h.2.1
+
+/-- The production inequality in the form the recursion lemma consumes. -/
+theorem production_two_averaged_sum {A : ℕ → Prop} (hA : BackwardClosed A) {η₀ t : ℝ}
+    (hη0 : 0 < η₀) (hη1 : η₀ ≤ 1 / 4) (ht : 40 ≤ t)
+    (hT : 3 * (1280 / η₀ ^ 2 + 1) ≤ Real.exp (t / 8)) :
+    ∑ i, (coef2avg η₀ i - err2avg i t) * gA A (rate2 i * t) - errAddAvg η₀ t ≤ gA A t := by
+  have h := production_two_averaged hA hη0 hη1 ht hT
+  rw [Fin.sum_univ_two]
+  simp only [rate2, coef2avg, err2avg, Matrix.cons_val_zero, Matrix.cons_val_one]
+  rw [show (1 / 2 : ℝ) * t = t / 2 by ring, show (3 / 4 : ℝ) * t = 3 * t / 4 by ring]
+  exact h
+
+/-- Every error at the averaged coefficient is at most `(4 + 1400/η₀²) e^{-t/8}` for `t ≥ 0`.
+The `1/η₀²` is the poor-fibre tail and nothing else; `errE` and `errOEavg` do not see `η₀`. -/
+theorem errorsAvg_le {η₀ t : ℝ} (hη0 : 0 < η₀) (ht : 0 ≤ t) :
+    errE t ≤ (4 + 1400 / η₀ ^ 2) * Real.exp (-(t / 8)) ∧
+      errOEavg t ≤ (4 + 1400 / η₀ ^ 2) * Real.exp (-(t / 8)) ∧
+      errAddAvg η₀ t ≤ (4 + 1400 / η₀ ^ 2) * Real.exp (-(t / 8)) := by
+  have h8 : 0 < Real.exp (-(t / 8)) := Real.exp_pos _
+  have h4 : Real.exp (-(t / 4)) ≤ Real.exp (-(t / 8)) := Real.exp_le_exp.mpr (by linarith)
+  have h2 : Real.exp (-(t / 2)) ≤ Real.exp (-(t / 8)) := Real.exp_le_exp.mpr (by linarith)
+  have h34 : Real.exp (-(3 * t / 4)) ≤ Real.exp (-(t / 8)) := Real.exp_le_exp.mpr (by linarith)
+  have hqe : 0 ≤ 1400 / η₀ ^ 2 * Real.exp (-(t / 8)) := by positivity
+  have hid : 1400 * Real.exp (-(t / 8)) / η₀ ^ 2 = 1400 / η₀ ^ 2 * Real.exp (-(t / 8)) := by
+    ring
+  unfold errE errOEavg errAddAvg
+  rw [hid]
+  exact ⟨by linarith, by linarith, by linarith⟩
+
+/-- The errors vanish: past `T = max 0 (8 log((4 + 1400/η₀²)/ε))` all three are at most `ε`. -/
+theorem errorsAvg_vanish {η₀ ε : ℝ} (hη0 : 0 < η₀) (hε : 0 < ε) :
+    ∃ T : ℝ, 0 ≤ T ∧ ∀ t, T ≤ t →
+      errE t ≤ ε ∧ errOEavg t ≤ ε ∧ errAddAvg η₀ t ≤ ε := by
+  have hC : (0 : ℝ) < 4 + 1400 / η₀ ^ 2 := by positivity
+  refine ⟨max 0 (8 * Real.log ((4 + 1400 / η₀ ^ 2) / ε)), le_max_left _ _, ?_⟩
+  intro t ht
+  have ht0 : 0 ≤ t := le_trans (le_max_left _ _) ht
+  have hlog : 8 * Real.log ((4 + 1400 / η₀ ^ 2) / ε) ≤ t := le_trans (le_max_right _ _) ht
+  have hexp : (4 + 1400 / η₀ ^ 2) * Real.exp (-(t / 8)) ≤ ε := by
+    have h : Real.exp (-(t / 8)) ≤ Real.exp (-Real.log ((4 + 1400 / η₀ ^ 2) / ε)) :=
+      Real.exp_le_exp.mpr (by linarith)
+    rw [Real.exp_neg (Real.log ((4 + 1400 / η₀ ^ 2) / ε)), Real.exp_log (by positivity),
+      inv_div] at h
+    calc (4 + 1400 / η₀ ^ 2) * Real.exp (-(t / 8))
+        ≤ (4 + 1400 / η₀ ^ 2) * (ε / (4 + 1400 / η₀ ^ 2)) := mul_le_mul_of_nonneg_left h hC.le
+      _ = ε := by field_simp
+  obtain ⟨h1, h2, h3⟩ := errorsAvg_le hη0 ht0
+  exact ⟨by linarith, by linarith, by linarith⟩
+
+/-- `ζ` is antitone in `λ` at the averaged coefficient too: both rates lie below `1`. -/
+theorem zeta2avg_antitone {η₀ : ℝ} (hη1 : η₀ ≤ 1 / 4) {lam lam' : ℝ} (h : lam ≤ lam') :
+    ∑ i, coef2avg η₀ i * rate2 i ^ lam' - 1 ≤ ∑ i, coef2avg η₀ i * rate2 i ^ lam - 1 := by
+  have hi : ∀ i, coef2avg η₀ i * rate2 i ^ lam' ≤ coef2avg η₀ i * rate2 i ^ lam := by
+    intro i
+    apply mul_le_mul_of_nonneg_left _ (coef2avg_nonneg hη1 i)
+    exact Real.rpow_le_rpow_of_exponent_ge (rate2_pos i) (by linarith [rate2_le i]) h
+  have hsum : ∑ i, coef2avg η₀ i * rate2 i ^ lam' ≤ ∑ i, coef2avg η₀ i * rate2 i ^ lam :=
+    sum_le_sum (fun i _ => hi i)
+  linarith
+
+/-- **Contagion at the averaged coefficient.** For every nonempty backward-closed `A`, every
+`0 < η₀ ≤ 1/4` and every `λ > 0` with `ζ(λ, η₀) = 2^{-λ} + (2/3)(1/2 - η₀)(3/4)^λ - 1 > 0`,
+there are `K > 0` and `t₁` with `g_A(t) ≥ K t^λ` for all `t ≥ t₁`.
+
+This is the statement the note actually proves, and it is the one worth reading: the exponent
+is not a constant of the argument but whatever `ζ` allows, so the supremum over `η₀ → 0` is the
+root of `2^{-λ} + (1/3)(3/4)^λ = 1`, `λ_ideal = 0.49265798…`. The supremum is approached and not
+attained, `η₀` being fixed before `x` -- exactly as Paper C's published statement is.
+
+The cost of a small `η₀` is entirely in `t₁`, which absorbs `8 log(3(1280/η₀² + 1))`: at the
+`η₀` that beats Paper C's `λ** = 0.4925715…` the starting scale is around `250`, so the implied
+`K` is tiny. Nothing else degrades. -/
+theorem contagion_averaged {A : ℕ → Prop} (hA : BackwardClosed A) {a : ℕ} (ha : 1 ≤ a)
+    (hAa : A a) {η₀ lam : ℝ} (hη0 : 0 < η₀) (hη1 : η₀ ≤ 1 / 4) (hlam0 : 0 < lam)
+    (hζ : 0 < ∑ i, coef2avg η₀ i * rate2 i ^ lam - 1) :
+    ∃ K : ℝ, 0 < K ∧ ∃ t₁ : ℝ, 0 < t₁ ∧ ∀ t, t₁ ≤ t → K * t ^ lam ≤ gA A t := by
+  obtain ⟨m, hm, hmA⟩ := exists_ge_three_of_backwardClosed hA ha hAa
+  have hc₀ : 0 < seedConst m := seed_constant_pos hm
+  obtain ⟨ε, hε, hε1, hε2, hε3⟩ : ∃ ε : ℝ, 0 < ε ∧
+      ε ≤ (∑ i, coef2avg η₀ i * rate2 i ^ lam - 1) / 6 ∧
+      ε ≤ 2 * (∑ i, coef2avg η₀ i * rate2 i ^ lam - 1) / 3 * seedConst m ∧ ε ≤ 1 / 6 :=
+    ⟨min ((∑ i, coef2avg η₀ i * rate2 i ^ lam - 1) / 6)
+      (min (2 * (∑ i, coef2avg η₀ i * rate2 i ^ lam - 1) / 3 * seedConst m) (1 / 6)),
+      lt_min (by positivity) (lt_min (by positivity) (by norm_num)), min_le_left _ _,
+      le_trans (min_le_right _ _) (min_le_left _ _),
+      le_trans (min_le_right _ _) (min_le_right _ _)⟩
+  obtain ⟨T, _, hTerr⟩ := errorsAvg_vanish hη0 hε
+  obtain ⟨t₁, ht₁T, ht₁40, ht₁seed, ht₁blk⟩ :
+      ∃ t₁ : ℝ, T ≤ t₁ ∧ 40 ≤ t₁ ∧ 8 * Real.log ((m : ℝ) + 1) ≤ t₁ ∧
+        8 * Real.log (3 * (1280 / η₀ ^ 2 + 1)) ≤ t₁ :=
+    ⟨max (max T 40) (max (8 * Real.log ((m : ℝ) + 1))
+        (8 * Real.log (3 * (1280 / η₀ ^ 2 + 1)))),
+      le_trans (le_max_left _ _) (le_max_left _ _),
+      le_trans (le_max_right _ _) (le_max_left _ _),
+      le_trans (le_max_left _ _) (le_max_right _ _),
+      le_trans (le_max_right _ _) (le_max_right _ _)⟩
+  have ht₁pos : 0 < t₁ := by linarith
+  have hrate_le_one : ∀ i, rate2 i ^ lam ≤ 1 := fun i =>
+    Real.rpow_le_one (rate2_pos i).le (by linarith [rate2_le i]) hlam0.le
+  -- Lemma 2's block hypothesis, uniform above `t₁`
+  have hblk : ∀ t, t₁ ≤ t → 3 * (1280 / η₀ ^ 2 + 1) ≤ Real.exp (t / 8) := by
+    intro t ht
+    have hpos : (0 : ℝ) < 3 * (1280 / η₀ ^ 2 + 1) := by positivity
+    calc 3 * (1280 / η₀ ^ 2 + 1) = Real.exp (Real.log (3 * (1280 / η₀ ^ 2 + 1))) :=
+          (Real.exp_log hpos).symm
+      _ ≤ Real.exp (t / 8) := Real.exp_le_exp.mpr (by linarith)
+  have hmain := recursion_lemma rate2 (coef2avg η₀) err2avg (errAddAvg η₀) (gA A) lam t₁
+    (seedConst m) (1 / 2) (3 / 4) hlam0 ht₁pos hc₀ (by norm_num) (by norm_num)
+    rate2_ge rate2_le hζ
+    (fun t _ i => err2avg_nonneg i t)
+    (fun t ht i => le_trans (err2avg_le (hTerr t (le_trans ht₁T ht)) i)
+      (le_trans hε3 (coef2avg_ge hη1 i)))
+    (fun t ht => le_trans (hTerr t (le_trans ht₁T ht)).2.2 hε2)
+    (fun t ht => by
+      have hi : ∀ i, err2avg i t * rate2 i ^ lam ≤ ε := by
+        intro i
+        calc err2avg i t * rate2 i ^ lam ≤ ε * 1 :=
+              mul_le_mul (err2avg_le (hTerr t (le_trans ht₁T ht)) i) (hrate_le_one i)
+                (Real.rpow_nonneg (rate2_pos i).le _) hε.le
+          _ = ε := mul_one ε
+      calc ∑ i, err2avg i t * rate2 i ^ lam ≤ ∑ _i : Fin 2, ε := sum_le_sum (fun i _ => hi i)
+        _ = 2 * ε := by simp
+        _ ≤ (∑ i, coef2avg η₀ i * rate2 i ^ lam - 1) / 3 := by linarith)
+    (fun t ht _ => gA_seed hA hm hmA (by linarith))
+    (fun t ht => production_two_averaged_sum hA hη0 hη1 (by linarith) (hblk t ht))
+  refine ⟨seedConst m * t₁ ^ (-lam), by positivity, t₁, ht₁pos, ?_⟩
+  intro t ht
+  exact hmain t (by linarith)
+
+/-! ### A certificate above Paper C's published exponent -/
+
+/-- `ζ(100/203) > 0` at `η₀ = 10^{-5}`, by two rational bounds at the 203rd power:
+`0.710737 ≤ 2^{-100/203}` since `0.710737^{203} ≤ 2^{-100}`, and
+`0.867868 ≤ (3/4)^{100/203}` since `0.867868^{203} ≤ (3/4)^{100}`; then
+`0.710737 + (49999/150000)(0.867868) = 1.0000205 > 1`.
+
+`100/203 = 0.4926108…`, against the true root `λ_ideal = 0.4926579801…` of
+`2^{-λ} + (1/3)(3/4)^λ = 1`, and above Paper C's published `λ** = 0.4925715447…`, which is what
+this certificate exists to clear. `100/203` is the smallest-denominator rational in the window
+`(λ**, λ_ideal)`: `33/67` falls just short of `λ**` and `67/136` leaves only `6.3·10^{-6}` of
+slack, so this is the cheapest certificate that beats the manuscript's number. The margin
+`2.05·10^{-5}` is what `η₀ = 10^{-5}` leaves of the `2.71·10^{-5}` available at `η₀ = 0`;
+break-even is `η₀ = 4.69·10^{-5}`. -/
+theorem zeta2avg_pos :
+    0 < ∑ i, coef2avg (1 / 100000) i * rate2 i ^ ((100 : ℝ) / 203) - 1 := by
+  rw [Fin.sum_univ_two]
+  simp only [rate2, coef2avg, Matrix.cons_val_zero, Matrix.cons_val_one]
+  have h1 : (710737 / 1000000 : ℝ) ≤ (1 / 2 : ℝ) ^ ((100 : ℝ) / 203) := by
+    rw [Numerics.le_rpow_iff_pow (n := 203) (by norm_num) (by norm_num) (by norm_num)]
+    norm_num
+  have h2 : (216967 / 250000 : ℝ) ≤ (3 / 4 : ℝ) ^ ((100 : ℝ) / 203) := by
+    rw [Numerics.le_rpow_iff_pow (n := 203) (by norm_num) (by norm_num) (by norm_num)]
+    norm_num
+  linarith
+
+/-- **Contagion above Paper C's published exponent, as a log-mass bound, unconditionally.**
+For every nonempty backward-closed `A` and `0 < λ ≤ 100/203 = 0.4926108…` there are `K > 0` and
+`x₀` with `Σ_{n ∈ A, n ≤ x} 1/n ≥ K (log x)^λ` for all `x ≥ x₀`.
+
+This is Theorem 5.3 of Paper C at an exponent above its `λ** ≈ 0.4925715`, and with the
+hypothesis removed. What leaves the critical path is Proposition 4.4 and its two exponential-sum
+bounds -- the manuscript's largest unformalized gap -- together with the six-word ladder and
+Appendix D. Compare `logMass_contagion_elementary`, which is unconditional at `13/40 = 0.325`
+because it pays Lemma 4.2's pointwise `2/9`; the whole gain is that the poor fibres have finite
+total logarithmic mass, so the coefficient may be averaged instead. -/
+theorem logMass_contagion_averaged {A : ℕ → Prop} (hA : BackwardClosed A) {a : ℕ}
+    (ha : 1 ≤ a) (hAa : A a) {lam : ℝ} (hlam0 : 0 < lam) (hlam : lam ≤ 100 / 203) :
+    ∃ K : ℝ, 0 < K ∧ ∃ x₀ : ℕ, ∀ x : ℕ, x₀ ≤ x → K * Real.log x ^ lam ≤ logMass A x := by
+  obtain ⟨K, hK, t₁, ht₁, h⟩ := contagion_averaged hA ha hAa (η₀ := 1 / 100000) (by norm_num)
+    (by norm_num) hlam0 (lt_of_lt_of_le zeta2avg_pos (zeta2avg_antitone (by norm_num) hlam))
+  refine ⟨K, hK, ⌈Real.exp t₁⌉₊ + 1, ?_⟩
+  intro x hx
+  have hx1 : 1 ≤ x := by omega
+  have hxR : Real.exp t₁ ≤ x := by
+    have h1 := Nat.le_ceil (Real.exp t₁)
+    have h2 : ((⌈Real.exp t₁⌉₊ + 1 : ℕ) : ℝ) ≤ x := by exact_mod_cast hx
+    push_cast at h2
+    linarith
+  have hlog : t₁ ≤ Real.log x := (Real.le_log_iff_exp_le (by positivity)).mpr hxR
+  exact le_trans (h _ hlog) (logMass_ge_gA A hx1)
+
+/-- **Corollary 5.5(2) at exponent `100/203`, unconditional.** -/
+theorem failures_logMass_averaged {a : ℕ} (ha : 1 ≤ a) (hfail : ¬ReachesOne a) {lam : ℝ}
+    (hlam0 : 0 < lam) (hlam : lam ≤ 100 / 203) :
+    ∃ K : ℝ, 0 < K ∧ ∃ x₀ : ℕ, ∀ x : ℕ, x₀ ≤ x →
+      K * Real.log x ^ lam ≤ logMass (fun n => ¬ReachesOne n) x :=
+  logMass_contagion_averaged not_reachesOne_backwardClosed ha hfail hlam0 hlam
+
+/-- **Theorem 7.2 with its contagion hypothesis discharged at the averaged exponent.** If the
+odd failures in `(y, 2y]` number at most `y (log y)^{-e}` for all large `y`, for some
+`e > 103/203 = 0.50739…`, then every positive integer reaches `1`.
+
+The threshold is `1 - λ`, so this is what the exponent buys: `conjecture_of_tao_rate` needs
+`e > 27/40 = 0.675` and Paper C's *conditional* form needs `e > 0.51`. The averaged coefficient
+puts the unconditional threshold below the manuscript's conditional one. -/
+theorem conjecture_of_tao_rate_averaged {e : ℝ} (he : 103 / 203 < e)
+    (htao : ∃ y₀ : ℕ, ∀ y : ℕ, y₀ ≤ y → ((oddFailures y).card : ℝ) ≤ y * Real.log y ^ (-e)) :
+    ∀ n, 1 ≤ n → ReachesOne n :=
+  tao_rate_implies_conjecture (lam := 100 / 203) (by norm_num) (by norm_num) (by linarith)
+    (fun ⟨a, ha, hfail⟩ => failures_logMass_averaged ha hfail (by norm_num) le_rfl) htao
+
+/-- **Corollary 8.4 at the averaged exponent.** A cylinder bound `H(C, A)` at all large scales
+with `A > C + e(C)` and `e(C) > 103/203`, above a certified floor `N₀`, gives the conjecture. -/
+theorem conjecture_of_cylinder_bound_averaged {N₀ : ℕ} (hN : 2 ≤ N₀)
+    (hfloor : ∀ m, 1 ≤ m → m ≤ N₀ → ReachesOne m) (C A : ℝ) (hC : 5 ≤ C)
+    (hA : C + chernoffExponent C < A)
+    (hcyl : ∃ y₁ : ℕ, ∀ y, y₁ ≤ y → CylinderBound N₀ C A y)
+    (he : 103 / 203 < chernoffExponent C) :
+    ∀ n, 1 ≤ n → ReachesOne n :=
+  cylinder_bound_implies_conjecture hN hfloor C A hC hA hcyl (lam := 100 / 203) (by norm_num)
+    (by norm_num) (by linarith)
+    (fun ⟨a, ha, hfail⟩ => failures_logMass_averaged ha hfail (by norm_num) le_rfl)
+
 end Production
 
 end Problems.Juggler
