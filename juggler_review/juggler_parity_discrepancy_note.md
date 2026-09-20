@@ -1200,16 +1200,24 @@ equidistributes, so the barrier at  \(0\)  is approached from a
 different distance at every depth, namely  \(1-\{d\beta\}\).
 
 Neither the exponential rate nor the  \(d^{-3/2}\)  is claimed here, and
-the rate is not folklore: Hikawa [9, Section 6] proves
-\(\log_2W(d)=\gamma d+O(\log d)\)  for the weight-based count, with
-\(\gamma=\lambda H(1/\lambda)\),  \(\lambda=\log_23\)  and  \(H\)  the
-binary entropy, so the normalised density decays at the explicit rate
+the rate is forty years old. It is Theorem D of Lagarias [14]:
+\(1-F(k)\le2^{-\eta k}\)  with
+\(\eta=1-H\bigl(\lambda^{-1}\bigr)=0.0500444728\),  \(H\)  the binary
+entropy, the remark after it supplying the matching lower bound so that
+the estimate is two-sided on the exponential scale. That is exactly
+\(\vartheta(p)\)  of this section, and not by numerical coincidence but
+by an identity: \(2^{-\eta}=2^{H(p)-1}=p^{-p}(1-p)^{p-1}/2
+=\vartheta(p)\), the two agreeing to every digit computed. Hikawa
+[9, Section 6] proves the same rate independently in the weight basis,
+\(\log_2W(d)=\gamma d+O(\log d)\)  with
+\(\gamma=\lambda H(1/\lambda)\)  and
 \(c=\lambda\bigl(1-H(1/\lambda)\bigr)=\lambda D(1/\lambda\,\|\,\tfrac12)\)
-bits per unit weight, and remarks that this appears to be new for these
-sequences. It is the constant of this section in the other basis:
-lengths are  \(\lambda\)  times weights, and  \(c/\lambda=0.0500444728\)
-against  \(-\log_2\vartheta(p)=0.0500444728\), agreeing to every digit
-either is quoted to. The  \(d^{-3/2}\)  power is Hikawa's Conjecture 7.1
+bits per unit weight; since lengths are  \(\lambda\)  times weights his
+constants are Lagarias's  \(\eta\)  rescaled, \(\gamma=H(p)/p\)  and
+\(c=\eta/p\), and  \(c/\lambda=0.0500444728\)  recovers  \(\eta\). He
+remarks that the rate appears to be new for these sequences; that remark
+is incorrect, and it is repeated here only to say so. What is his is the
+weight-basis form and Conjecture 7.1. The  \(d^{-3/2}\)  power is Hikawa's Conjecture 7.1
 [9, Section 7], motivated there by the residual
 \(\log_2W(d)-\gamma d\)  tracking a ballot-type correction
 \(-\tfrac32\log_2d\)  to within  \(0.3\)  bits over
@@ -3251,3 +3259,14 @@ used in the repository; Corollary 11 gives the growth constant
 an envelope between  \(1\)  and  \(2.7095112914\)  attained on the
 record minima and maxima of  \(\{r\log_23\}\) .
 [doi:10.13140/RG.2.2.35856.78086](https://doi.org/10.13140/RG.2.2.35856.78086).
+14. J. C. Lagarias, "The 3x+1 problem and its generalizations,"
+*American Mathematical Monthly* 92 (1985).
+[doi:10.1080/00029890.1985.11971528](https://doi.org/10.1080/00029890.1985.11971528).
+Theorem D is the exponential rate used in Section 6 of this paper:
+\(1-F(k)\le2^{-\eta k}\)  with  \(\eta=1-H(\lambda^{-1})\) , proved there
+from Terras's residue structure by a binomial tail, with the matching
+lower bound in the remark that follows it. Theorem D carries no
+attribution label in the survey although its Theorems A and C are both
+labelled (Terras), and Lagarias's annotated bibliography credits Terras
+with the residue-class structure, the coefficient stopping time and
+natural density one, and with no rate.
