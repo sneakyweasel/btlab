@@ -1192,6 +1192,30 @@ allows a scalar capped-spike sequence exceeding that budget. This is
 not a realized Juggler counterexample or a refutation of the scale
 average. Do not promote sparsity of scales without bounding their
 weighted amplitudes. Dossier: the external-average link above.
+
+**The OE poor-fibre technique does not transfer here (20 September 2026).**
+`J-oe-poor-fiber-tail` proves an average by discarding an exceptional set of
+fibres of finite total \(1/m\)-mass, and the natural thought on arriving from
+that side is to discard exceptional *scales* the same way. It fails for the
+reason just given, and the reason is worth stating as a precondition, because
+it is checkable before any work: the technique needs the **trivial cap on a
+discarded object to be commensurable with the weight the conclusion is stated
+in**. In the \(OE\) case it is --- a poor fibre contributes at most its own
+\(1/m\), so discarding a set of total mass \(\varepsilon\) costs
+\(\varepsilon\). In the scale average it is not, by a wide margin: the
+trivial cap is \(\rho_k\ll k^{\kappa}\),
+\(\kappa=4.8934268304\ldots\), while the entire cumulative budget through
+\(K\) is \(K^{1+\eta}\), \(1+\eta=1.0195\ldots\), a gap of
+\(\kappa-(1+\eta)=3.8739\ldots\). One exceptional scale \(k\), evaluated
+at \(K=k\) where it is the whole sum, already overshoots by \(k^{3.87}\);
+at \(k=10^6\) that is a factor \(10^{23}\). So counting is not merely
+insufficient, it is unavailable at any sparsity: *any* infinite exceptional set
+at the trivial cap breaks the bound, however superlacunary, because the budget
+is asymptotic in \(K\) and each spike is tested at its own scale. Only
+amplitude control helps. The unconditional exponent of 20 September 2026 does
+not change this --- it moves \(\eta\) from \(0.0194980938\) to
+\(0.0195373865\) and the gap from \(3.8739287\) to \(3.8738894\). The
+arithmetic is `test_pressure_external_average`.
 The next finite-prefix/suffix-cap test is also closed: any fixed
 prefix information leaves the cap exponent unchanged. With fair
 normalization, \(r-\eta>0.5074\), \(\eta\ge0\), and arbitrary
