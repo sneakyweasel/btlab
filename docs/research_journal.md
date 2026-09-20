@@ -1,5 +1,49 @@
 # Research journal
 
+## 2026-09-20 -- A000225 had my base-two statement in a 2012 comment
+
+Philippe supplied the full A000225 entry text, oeis.org being blocked here. Four things
+in it bear on yesterday's repunit row, and the first is prior art on me.
+
+- **The base-two reading of Lemma 8 tightness is a 2012 OEIS comment.** Michel Lagneau,
+  18 January 2012, on A000225: *"a(n) is the number k such that the number of iterations
+  of the map k -> (3k+1)/2 == 1 (mod 2) until reaching (3k+1)/2 == 0 (mod 2) equals n (see
+  the Collatz problem)."* That is exactly `run(2^n - 1) = n` -- the Lemma 8 floor attained
+  at the repunits. Verified for `n <= 12` under both readings of the count. I had labelled
+  my version "an elementary restatement of the congruence", which was the right label but
+  the wrong response: the right response was a citation, and it existed fourteen years
+  before the row. `oeis-A000225` registered. The closed forms for the Juggler image stay
+  the row's own content.
+- **The Fermat-polynomial kill is confirmed and now has the standard name.** The entry
+  records that A000225 is the **Lucas U(P=3,Q=2)** sequence, with `a(n) = 3a(n-1) -
+  2a(n-2)`. So `P = 3` and `Q = 2` are the trace and norm of the roots `{1,2}`, exactly as
+  I argued when killing the "same 3 and 2 as the odd step" coincidence. A kill that
+  survives contact with the standard vocabulary is worth more than one that does not.
+- **And the naming distinction is the sharpest form of the primality verdict.** A000225 is
+  `2^n - 1` for *every* `n`; A001348 restricts to `n` prime, and the entry's own header
+  notes that the name "Mersenne number" is usually reserved for the latter. The Lemma 8
+  floor is attained on A000225, composite indices included -- 4, 6, 8, 9, 10, 12, 14, 15,
+  16 all attain `run = n`. So the OEIS split between the two sequences *is* the statement
+  that the primality is decorative. I had argued that from the coordinate; the library had
+  it in its indexing.
+- **Zsigmondy 1892 is a link on A000225.** Which is where I should have found the
+  primitive-divisor framing from yesterday, instead of arriving at it by reasoning about
+  Cunningham numbers. Two sessions running, the missing thing was vocabulary rather than
+  computation.
+
+### One thing to read before the next bridge branch
+
+The entry links **Jennifer Williams, "A Coordinate System for Collatz Dynamics",
+arXiv:2607.01718 (2026)**. Not read -- arxiv is blocked here too -- and nothing about its
+content is claimed. But every result of the last two days is a coordinate change on the
+Collatz map: `u = x + 1` turning the odd step into `u -> 3u/2`, the exponent coordinate on
+the perfect-power locus, and the non-existence of an affine conjugacy between the two
+branch systems. A 2026 paper proposing a coordinate system for Collatz dynamics may
+contain, subsume or contradict part of that, and this session's recorded failure mode is
+re-deriving what is already written down. Registered as `williams-2026-collatz-coordinates`
+with status NOT CONSULTED and a do-not-cite-until-read note. It should be read before
+another bridge branch opens.
+
 ## 2026-09-20 -- the OEIS factorisation sequences, and the witness has a name
 
 Philippe asked me to read the OEIS pages the MathWorld entry cites. I cannot: `oeis.org`

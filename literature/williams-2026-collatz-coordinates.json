@@ -1,0 +1,21 @@
+{
+  "id": "williams-2026-collatz-coordinates",
+  "title": "A Coordinate System for Collatz Dynamics",
+  "authors": ["Jennifer Williams"],
+  "year": 2026,
+  "identifiers": {
+    "arxiv": "2607.01718"
+  },
+  "url": {
+    "arxiv": "https://arxiv.org/abs/2607.01718"
+  },
+  "problem_area": "collatz",
+  "relevant_concepts": [
+    "coordinate change",
+    "Collatz dynamics",
+    "conjugacy"
+  ],
+  "project_relationship": "unassessed",
+  "status": "NOT CONSULTED",
+  "notes": "NOT READ. Found as a link on OEIS A000225 in the entry text supplied on 20 September 2026; oeis.org and arxiv.org fetches are blocked by this environment's egress policy, so neither the abstract nor the paper has been seen and nothing about its content is claimed here. FLAGGED AS A PRIORITY TARGET because the title is squarely on this session's subject: every result of 19-20 September is a coordinate change on the Collatz map -- u = x + 1 turning the odd step into u -> 3u/2 (J-lemma-eight-is-the-exponent-valuation), the exponent coordinate on the perfect-power locus, and the explicit non-existence of an affine conjugacy between the Juggler's exponent dynamics and the shortcut map. A 2026 paper proposing a coordinate system for Collatz dynamics may contain, subsume or contradict some of that, and the laboratory's recorded failure mode this session was re-deriving things already written down. Read it before the next bridge branch is opened. Do not cite it for anything until it has been read."
+}
