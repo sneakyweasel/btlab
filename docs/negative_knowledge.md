@@ -3747,3 +3747,65 @@ measurements that answer it were in hand from the first hour: a density
 falling like \(m^{-1/3}\) is a convergent sum, and a convergent sum cannot be
 concentrated on. Before building machinery to bound a set's weight somewhere,
 integrate the density and see whether the somewhere has any room in it.
+
+## The Juggler corner of OEIS is swept, and three of its four sequences were already ours
+
+OEIS names 30 sequences after the Juggler. This laboratory cited five ---
+A094683, A007320, A094670, A094679, A094716 --- and had never mentioned the
+other 25. The sweep that established this is in the dossier; what belongs here
+is what it closed.
+
+**A094778 is Paper B's object and it agrees.** The Juggler's dropping time at
+\(2n+1\) is the non-contracting-prefix census read pointwise, and an
+independent walker reproduces it on every defined term. The only difference is
+the endpoint convention at \(n=0\), where \(1\) is the fixed point and nothing
+drops. This was checked twice on 20 September, by two sessions that did not
+know of each other: once against 100 terms from the branch, once against the
+40 terms of the bulk snapshot in exact integer arithmetic. Neither found a
+disagreement, and the second was redundant.
+
+**The sequence identifications are not novelty.** The mathematics was
+kernel-checked before the sweep; the sweep adds a closed form for the plateau
+locations and one name. Do not open a branch to "identify" these sequences
+again, and do not write a manuscript sentence claiming any of them.
+
+**What the sweep does not close.** The variant family A095396--A095401 and the
+2025--26 additions A380891, A381246, A389383, A396851 are uncited and
+untouched. The variant family is a real test --- it moves the exponent pair
+while keeping the shape --- and it is open, not killed.
+
+**The lesson, and it cost a second sweep to learn.** The whole of this was
+sitting in `juggler_oeis_neighbourhood.md` on an unmerged branch while a second
+session ran the same search from scratch against the same mirror. Reading the
+branch's dossier takes a minute; the sweep took an afternoon. Before searching
+a database for what the laboratory already knows, read what the unmerged
+branches already say --- `python tools/branch_drift.py` names them.
+
+Kind: `CLOSE`. Dossier:
+[oeis_neighbourhood](problems/juggler_oeis_neighbourhood.md).
+
+## Lambda-recurrence is not an easier Collatz target, and the reason is density
+
+The question was whether the first return to `lambda = 1` is a softer thing to
+prove than convergence. It is not, and the obstruction is arithmetic rather
+than dynamical.
+
+**The event happens at the bottom.** Over odd starts to `1e6`, counting
+Syracuse steps, the mean `log2` of the first `lambda = 1` value is flat at
+about 4.39 across four decades --- the typical landing value is about 21
+however large the start --- and the mean gap `collatz_time - lambda_time` is
+flat at about 14.7 while the times themselves grow from 30.7 to 48.1. Five
+values (11, 7, 23, 47, 31) take 71 per cent of all nontrivial landings below
+`1e6`.
+
+**Why, and it is not about Collatz.** The event needs `n + 1` to be 3-smooth,
+and there are 142 such numbers below `1e6` and 306 below `1e9`, densities
+`1.4e-4` and `3.1e-7`. An orbit of fifty Syracuse steps near `1e6` expects
+0.007 hits and near `1e9` essentially none. The orbit must first descend into
+the range where 3-smooth neighbours are common, so a proof of lambda-recurrence
+would have to contain essentially a proof of descent.
+
+Kind: `CLOSE` on the placement question. Lagarias's open problem (3) is
+untouched and stays open; what is closed is the hope that it is the easier
+target. Dossier:
+[collatz_lambda_recurrence](problems/collatz_lambda_recurrence.md).

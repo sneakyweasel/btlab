@@ -259,3 +259,14 @@ theorem about cycles of the \(\mathbb Z\) shortcut map; its laboratory
 content is that the CycleMin shape caps it below the floor this
 laboratory already has, so it closes a direction rather than opening one.
 Neither map is claimed to halt.
+
+## Publication assessment
+
+Status: `EXPLORATORY`.
+
+Not a paper candidate and not a Juggler bound. The dual floor is correct and
+subordinate: the CycleMin shape caps the even-run exponent, so wherever this
+laboratory works the dual sits below Lemma 8, with zero dual-only kills in a
+census of 2.26 million shape words. Its value is that the subordination is
+structural rather than a census accident, which is worth recording and is not
+worth a manuscript.

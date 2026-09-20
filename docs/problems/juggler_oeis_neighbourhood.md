@@ -354,3 +354,16 @@ No bound moves, no cycle is excluded, no floor is raised,
 \(N_0 = 3.5\cdot 10^8\) is untouched, and neither map is claimed to halt.
 The dynamic program reproduces the laboratory's own kernel-checked
 recursion as an arithmetic check, not as a proof of it.
+
+## Publication assessment
+
+Status: `EXPLORATORY`, and deliberately not a novelty claim.
+
+Nothing here is a new theorem. The mathematics was kernel-checked before the
+sweep; what the sweep adds is a closed form for the plateau locations, one
+sequence name, and an audit of what the laboratory had already been citing --
+three of the four sequences turned out to be its own. That count is the
+result, and it belongs in a dossier rather than a manuscript. The one item
+with any reach is the variant family A095396-A095401, which would test whether
+this laboratory's machinery is about the Juggler or about the exponent pair;
+that is a branch someone could open, not a paper.

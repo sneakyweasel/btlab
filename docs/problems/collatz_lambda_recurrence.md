@@ -73,10 +73,18 @@ Maximum scope: measurement and its density heuristic. No proof attempt.
 Promotion criterion: a bound on the gap that is uniform rather than averaged.
 Stop criterion: reached -- the placement question is answered; the open problem is not.
 
-## Status
+## Decision
 
 `CLOSE` on the placement question. The answer to "is lambda-recurrence an
 easier target" is: not for the reason one would hope. It is reached only after
 the orbit has already collapsed, so a proof of it would have to contain
 essentially a proof of descent. That is a reason to spend effort elsewhere,
 not a theorem.
+
+## Publication assessment
+
+Status: `EXPLORATORY`.
+
+Not a paper candidate. The placement measurement is new and the coordinate is
+not; the result is a reason to spend effort elsewhere rather than a theorem,
+and Lagarias's open problem (3) is untouched by it.
