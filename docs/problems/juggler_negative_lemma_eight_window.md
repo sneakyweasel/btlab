@@ -207,6 +207,40 @@ there, the Christoffel word giving \(-3767/139\).
 
 Row `J-knight-is-sign-free-and-catalan-bounds-the-escapes`.
 
+## Addendum 2: the multiplicative Knight, and where it dies
+
+Knight's cancellation transports to the Juggler exactly. His part (i), two
+members of one cycle, is free: Cohn is a fact about words. His part (ii)
+transports through the kernel-checked multiplicative cocycle
+`J-normalized-relative-slack` — expanding \(w=OuE\) from \(n\) and
+\(w'=EuO\) from \(n'\), the analogue of \(3f-f^R\) is cube-and-divide,
+and it cancels the shared middle exponent exactly, \(3\cdot 2-6=0\). What
+is left is
+
+\[
+(1+q_w)^3/(1+q_{w'}) = [\text{endpoint terms}]\cdot
+\Big(\tfrac{1+q_u\,@\,J(n)}{1+q_u\,@\,J(n')}\Big)^{6}.
+\]
+
+For Collatz that residual is identically \(1\), the charge \(g(u)\) being
+word-determined. For the Juggler \(1+q\) depends on the word **and** the
+state, the middle word being read at \(J(n)\) along one rotation and
+\(J(n')\) along the other, so the residual is a sixth power of their ratio.
+Verified with exact rationals on all 15 word-pairs at length 6 and on all
+1354 instances from every realizing start below 6000; the two middle slacks
+coincide in none of them.
+
+So the method dies at exactly the dichotomy
+`J-juggler-is-collatz-one-exponential-up` names — Terras free, FD open —
+which is the point: the obstruction is not incidental to this method. On a
+return \(1+q=n^{3^o-2^L}\), so the left side is \((n^3/n')^G\), a perfect
+\(G\)-th power, and Knight's parity step becomes Catalan-flavoured. A
+Juggler cycle with the Christoffel word **and** equal middle slacks at its
+two reverse-conjugate readings would meet it; that equality is a strong
+coincidence, is not conjectured either way, and without it there is no
+exclusion. Row
+`J-multiplicative-knight-residual-is-the-state-dependence`.
+
 ## Open questions
 
 Whether any criterion built from the pointwise floor can survive

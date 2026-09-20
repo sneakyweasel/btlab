@@ -2221,6 +2221,7 @@
       ],
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "ledger": [
+        "J-multiplicative-knight-residual-is-the-state-dependence",
         "J-normalized-relative-slack"
       ],
       "papers": [
@@ -3100,7 +3101,7 @@
   "totals": {
     "edges": 240,
     "edges_before_reduction": 1877,
-    "ledger_rows_placed": 418,
+    "ledger_rows_placed": 419,
     "nodes": 188
   }
 }

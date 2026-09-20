@@ -52766,7 +52766,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "def",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 20,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -52778,7 +52779,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "def",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 24,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -52790,7 +52792,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "def",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 28,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -52802,7 +52805,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "def",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 32,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -52814,7 +52818,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "def",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 37,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -52826,7 +52831,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "def",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 41,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -52838,7 +52844,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "def",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 45,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -52850,7 +52857,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "def",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 49,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -52862,7 +52870,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "theorem",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 53,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -52874,7 +52883,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "theorem",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 57,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -52886,7 +52896,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "theorem",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 61,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -52898,7 +52909,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "theorem",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 65,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -52910,7 +52922,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "theorem",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 70,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -52922,7 +52935,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "theorem",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 77,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -52934,7 +52948,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "theorem",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 86,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -52946,7 +52961,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "theorem",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 91,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -52958,7 +52974,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "theorem",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 96,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -52970,7 +52987,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "theorem",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 100,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -52982,7 +53000,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "theorem",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 104,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -52994,7 +53013,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "theorem",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 108,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -53006,7 +53026,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "theorem",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 112,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -53018,7 +53039,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "theorem",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 116,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -53030,7 +53052,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "theorem",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 122,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -53042,7 +53065,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "theorem",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 128,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -53054,7 +53078,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "theorem",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 133,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -53066,7 +53091,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "theorem",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 139,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -53078,7 +53104,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "theorem",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 149,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -53090,7 +53117,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "theorem",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 160,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -53102,7 +53130,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "theorem",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 207,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -53114,7 +53143,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "theorem",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 223,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -53126,7 +53156,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "theorem",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 254,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -53138,7 +53169,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "theorem",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 264,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -53150,7 +53182,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "theorem",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 277,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -53162,7 +53195,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "theorem",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 294,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -53174,7 +53208,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "theorem",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 306,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -53186,7 +53221,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "theorem",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 325,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -53198,7 +53234,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "theorem",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 334,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -53210,7 +53247,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "theorem",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 341,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -93311,6 +93349,11 @@
           "id": "J-normalized-relative-slack",
           "statement": "For a realized Juggler itinerary, the relative slack 1+q = n^{3^{#O(w)}} / T_w(n)^{2^{|w|}} multiplies under concatenation: 1+q_{uv} = (1+q_u)^{3^{#O(v)}} (1+q_v)^{2^{|u|}}. An even letter multiplies by (1+\u03b7)^{2^k}; an odd letter multiplies by (1+q)^3 (1+\u03b7)^{2^k}. Running 1+q does not decrease under a realized extension. The surplus ratio R=\u0394/S satisfies R\u22641 iff T_w(n)\u2265n whenever S>0, so R is the endpoint comparison in other coordinates. A realized return T_w(n)=n uses the whole formal surplus.",
           "tag": "EXACT \u2014 LEAN VERIFIED"
+        },
+        {
+          "id": "J-multiplicative-knight-residual-is-the-state-dependence",
+          "statement": "Knight's cancellation transports to the Juggler exactly, and its residual is precisely the state dependence of the slack -- so the method dies at the Terras/FD wall and nowhere else. KNIGHT'S THREE PARTS. (i) Two members of one cycle, since Cohn makes the reverse of an aperiodic upper Christoffel word a rotation of it. (ii) An ADDITIVE cocycle: the Bohm-Sontacchi charge g is a function of the WORD alone, so the split v_h = 1u0, v_h^R = 0u1 gives g(v_h) = 2g(u) + 3^(x-1) and g(v_h^R) = 6g(u) + 2^(k-1), and 3f(v_h) - f(v_h^R) + 1 cancels the shared g(u). (iii) The leftover 2^(k-1)/(2^k - 3^x) is not an integer because the gap is odd. THE TRANSPORT. Part (i) is free, Cohn being a fact about words, so v_h and v_h^R are one Juggler cycle read at two points. Part (ii) transports formally through the kernel-checked multiplicative cocycle J-normalized-relative-slack, 1 + q_(uv) = (1+q_u)^(3^(#O(v))) (1+q_v)^(2^|u|): expanding w = O u E from n and w' = E u O from n' gives 1+q_w = (1+q_O @ n)^(3^p) (1+q_u @ J(n))^2 (1+q_E @ t)^(2^(m+1)) and 1+q_w' = (1+q_E @ n')^(3^(p+1)) (1+q_u @ J(n'))^6 (1+q_O @ t')^(2^(m+1)), so the multiplicative analogue of 3f - f^R is cube-and-divide, which cancels the shared middle exponent exactly, 3*2 - 6 = 0. THE RESIDUAL IS THE WHOLE STORY: (1+q_w)^3/(1+q_w') = [endpoint terms] * ((1+q_u @ J(n))/(1+q_u @ J(n')))^6. For Collatz the corresponding residual is identically 1, g(u) being literally the same integer in both expressions; for the Juggler 1 + q is a function of the word AND the state, the middle word being read at J(n) along one rotation and J(n') along the other, so the residual is a sixth power of their ratio. VERIFIED with exact rationals: the residual identity holds on all 15 word-pairs at length 6 taken at least starts, and on all 1354 instances obtained by pairing every realizing start below 6000 with the mirror's least start; the two middle slacks coincide in NONE of them. So Knight's method transports and fails at exactly the dichotomy J-juggler-is-collatz-one-exponential-up names: Collatz's word data is arithmetic and free (Terras), the Juggler's is state-dependent and open (Hypothesis FD). The same wall, met in a new place, which is the value of the row -- it says the obstruction is not incidental to this method. WHAT IT LEAVES, SCOPED. On a return 1 + q = n^(3^o - 2^L), so the left side is (n^3/n')^G with G the gap: a perfect G-th power, and Knight's parity step becomes a Catalan-flavoured condition. Hence a Juggler cycle carrying the Christoffel word AND having equal middle slacks at its two reverse-conjugate readings would force an explicit product of endpoint slacks to be a perfect G-th power. That equality is a strong Diophantine coincidence, is not conjectured here either way, and without it there is no exclusion. NO JUGGLER CYCLE IS EXCLUDED, no floor is raised, N_0 is unchanged and Paper A is untouched. This does not reopen J-cycle-near-tight-monochrome or J-affine-n-gap-escapes-dominance, both REFUTED in this neighbourhood; it is a different combination and it claims less.",
+          "tag": "EXACT \u2014 HUMAN PROOF"
         }
       ]
     },
@@ -94697,7 +94740,7 @@
   "totals": {
     "declarations": 6973,
     "declarations_with_a_ledger_row": 4841,
-    "ledger_rows_naming_a_file": 454,
+    "ledger_rows_naming_a_file": 455,
     "modules": 309,
     "trust": {
       "compiler": 56,

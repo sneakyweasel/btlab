@@ -1,5 +1,66 @@
 # Research journal
 
+## 2026-09-20 -- the multiplicative Knight transports, and its residual is the state dependence
+
+The next best question after the sign-free mirror was whether Knight reaches the Juggler's own
+realizations, not just the words. It transports exactly, and it dies in one identifiable place.
+
+**Knight has three parts.** (i) Two members of one cycle, because Cohn makes the reverse of an
+aperiodic upper Christoffel word a rotation of it. (ii) An **additive** cocycle: the
+Bohm-Sontacchi charge `g` is a function of the word alone, so `v_h = 1u0`, `v_h^R = 0u1` give
+`g(v_h) = 2g(u) + 3^(x-1)` and `g(v_h^R) = 6g(u) + 2^(k-1)`, and `3f(v_h) - f(v_h^R) + 1` cancels
+the shared `g(u)`. (iii) The leftover `2^(k-1)/(2^k - 3^x)` is not an integer, the gap being odd.
+
+**Part (i) is free and part (ii) transports.** The Juggler has a cocycle too, multiplicative, and
+kernel-checked as `J-normalized-relative-slack`. Expanding `w = O u E` from `n` and `w' = E u O`
+from `n'`:
+
+```text
+1+q_w  = (1+q_O @ n )^(3^p)     (1+q_u @ J(n) )^2 (1+q_E @ t )^(2^(m+1))
+1+q_w' = (1+q_E @ n')^(3^(p+1)) (1+q_u @ J(n'))^6 (1+q_O @ t')^(2^(m+1))
+```
+
+so the analogue of `3f - f^R` is cube-and-divide, and it cancels the shared middle exponent
+exactly, `3*2 - 6 = 0`. What is left is
+
+```text
+(1+q_w)^3 / (1+q_w') = [endpoint terms] * ( (1+q_u @ J(n)) / (1+q_u @ J(n')) )^6
+```
+
+**and that residual is the whole story.** For Collatz it is identically `1`, because `g(u)` is
+literally the same integer in both expressions. For the Juggler `1 + q` is a function of the word
+**and the state**, and the middle word is read at `J(n)` along one rotation and at `J(n')` along
+the other, so the residual is a sixth power of their ratio. Verified with exact rationals: the
+identity holds on all 15 word-pairs at length 6 taken at least starts, and on all **1354**
+instances obtained by pairing every realizing start below 6000 with the mirror's least start. The
+two middle slacks coincide in **none** of them.
+
+So Knight's method transports and fails at exactly the dichotomy
+`J-juggler-is-collatz-one-exponential-up` names: Collatz's word data is arithmetic and free by
+Terras, the Juggler's is state-dependent and open by FD. That is the value of the finding -- the
+obstruction is not incidental to this method, it is the same wall met in a new place, and that is
+worth more than another method-specific failure.
+
+**What it leaves, scoped.** On a return `1 + q = n^(3^o - 2^L)`, so the left side is `(n^3/n')^G`
+with `G` the gap: a perfect `G`-th power, and Knight's parity step becomes Catalan-flavoured under
+the exponential. A Juggler cycle carrying the Christoffel word **and** having equal middle slacks
+at its two reverse-conjugate readings would meet the contradiction. That equality is a strong
+Diophantine coincidence, I am not conjecturing it either way, and without it there is no
+exclusion. No Juggler cycle is excluded, no floor moves, `N_0` is unchanged.
+
+This does not reopen `J-cycle-near-tight-monochrome` or `J-affine-n-gap-escapes-dominance`, both
+REFUTED nearby; it is a different combination and it claims less.
+Row `J-multiplicative-knight-residual-is-the-state-dependence`, seven tests.
+
+### Process note
+
+The fan-out I launched for this question died on the first call with
+`parallel() expects an array of functions, not promises` -- I had passed the direction objects
+straight to `parallel` instead of mapping them to thunks. Zero agents ran, so nothing was spent;
+the script is patched and resumed. Worth recording because the failure was instant and total: a
+workflow that cannot start is cheaper than one that runs eight agents on a bad premise, but only
+if the error surfaces, and this one did.
+
 ## 2026-09-20 -- Knight is sign-free, so it crosses the mirror, and Catalan closes it
 
 Philippe supplied Knight's full text. It is the best thing to arrive in three days, and

@@ -3881,7 +3881,8 @@
       "ledger_ids": [
         "J-lemma-eight-floor-is-tight-at-every-known-cycle",
         "J-the-missing-juggler-floor-is-worth-a-quarter-at-length-22",
-        "J-knight-is-sign-free-and-catalan-bounds-the-escapes"
+        "J-knight-is-sign-free-and-catalan-bounds-the-escapes",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "aliases": [],
       "nk_cluster": "The pointwise floor is tight at every cycle, and slack at every leftover"
@@ -6964,6 +6965,22 @@
       "conjecture": [],
       "decision": null,
       "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
+    },
+    {
+      "id": "multiplicative_knight",
+      "kind": "support",
+      "probe": "src/research/juggler_sequence/multiplicative_knight.py",
+      "test": "tests/research/juggler_sequence/test_multiplicative_knight.py",
+      "dossier": null,
+      "data_dir": "data/research/juggler/multiplicative_knight",
+      "lean": [],
+      "conjecture": [],
+      "decision": null,
+      "ledger_ids": [
+        "J-multiplicative-knight-residual-is-the-state-dependence"
+      ],
       "aliases": [],
       "nk_cluster": null
     },
