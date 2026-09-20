@@ -1,5 +1,66 @@
 # Research journal
 
+## 2026-09-20 -- Paper B reviewed against the week's findings, revised, kit rebuilt
+
+- **Objective:** Philippe asked for Paper B to be reviewed and updated
+  with the latest information, and whether it is publication ready.
+- **Survey.** The morning edition (4b98aa2b) had the Lagarias attribution
+  but not the rest of the week: Section 6 used `M_d` for two different
+  counts (the survivors on the barrier in the recursion, the
+  minimal-certificate count in the Winkler paragraph); the jump-spectrum
+  sentence still printed the differenced sum 4.58 and a steepening
+  exponent that `J-paper-b-jump-spectrum-is-the-survivor-sequence`
+  had retracted; references 9 and 10 claimed a reading the registry does
+  not support; Noe's A186008/A186009 tabulation, Hikawa's toolkit and
+  his September preprint were absent; nine kernel-checked Lean modules
+  went unmentioned while Section 8 spoke only of "earlier repository
+  audits"; PAPER_B_BUILD.md still said 39 pages and 2026-09-18.
+- **Manuscript, 20 September evening edition, 44 pages.** Section 1: the
+  glide as the third name, toolkit [15] run and agreeing. Section 5:
+  Lemma 5.1 and its every-length extension, the five-cylinder partition
+  and the count assembly named as machine-checked; lengths six and
+  seven stated. Section 6: the `M_d` clash repaired as
+  `2N_(d-1) - N_d = b_(d-1) M_(d-1)`; Noe's increments [16]; the
+  reading status of [9], [10], [11], [17] as the registry records it;
+  the jump paragraph rewritten to the closed forms
+  (`a_n = a_1 N_n/(2 rho)^(n-1)`, `a_1 = 0.427956804`, the ladder
+  profile, `psihat = Phihat G`, `kappa G(1) = 10.8927`), each number
+  checked against `docs/problems/juggler_jump_spectrum.md` before it
+  went in. Section 8: two evidence rows, the twelve modules with their
+  audited declarations in a verbatim block, the analytic estimates
+  still unformalised. References 15-17. Sections 2-4, 7 and the
+  appendices are byte-identical to the 10 September edition (checked
+  section by section against b4959ea7).
+- **Artifact.** `formal/AxiomCheckPaperBPublished.lean` grew from 8 to
+  29 declarations, one to four per module named in Section 8; eight of
+  the modules sit outside the Paper B root's closure and are imported
+  by the artifact with a header saying so. Every record shows a subset
+  of Mathlib's three axioms; `stepRise_stepFlat_eq_add_barrierMass`
+  needs only `propext`, so the self-audit now checks the subset rather
+  than the exact triple, and its `PUBLISHED_AXIOM_NAMES` lists 29.
+- **Build.** Three failed builds before the green one: six overfull
+  lines from runs of long Lean names (the preamble's tolerance gives
+  little stretch, so the names moved into a verbatim block and the code
+  spans off line-critical positions); one XeTeX stop on a vertical tab,
+  because a third patch went through a Bash heredoc and
+  `\vartheta`, `\varrho`, `\to0` lost a backslash level -- the
+  standing memory note, ignored once more, and now annotated again.
+  Gates: build --check, kit --check, ledger, branch index, drift,
+  consolidated validation, integration (138 passed, 11 skipped), the
+  citation and self-audit gates including both Lean artifact runs
+  (132 passed), formalpedia freshness. Changed pages 2, 14, 16-18,
+  23-24, 43-44 read from renders.
+- **Records.** Release check regenerated (prior source 07f041a3, all 44
+  pages differ from the morning render since Section 1 grew); zenodo
+  JSON and ZENODO_FIELDS version 2026-09-20-preprint; ledger row
+  `J-tail-double-root-in-lean-and-paper-b-updated` annotated as
+  superseded in the manuscript; formalpedia rebuilt. No Zenodo upload.
+- **Verdict given to Philippe:** not publication ready as a journal
+  submission and honest as a preprint: the analytic core (Sections 2-4,
+  Appendices A-C) has had one AI audit and no human page-by-page
+  review of any September edition; Theorem 6.1 stays conditional on
+  FD; the prefactor is verified computation with the limit unproved.
+
 ## 2026-09-20 -- Paper A revised on the five points, and the kit rebuilt
 
 - **Objective:** Philippe asked for Paper A to be brought up to date on

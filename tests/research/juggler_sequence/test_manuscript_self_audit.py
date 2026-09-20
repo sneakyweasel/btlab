@@ -768,8 +768,22 @@ PUBLISHED_AXIOM_NAMES = (
     "theta_lt_one", "klDiv_pos", "chernoff_density", "tilt_gives_theta",
     "sum_choose_mul_pow", "density_of_finite_union", "exceptional_density_zero",
     "klDiv_nonneg",
+    # Section 8 of the 20 September 2026 edition, in the order of its list
+    "lemma51", "lemma51_complete",
+    "minimalCert_exists_iff", "certWindow_unique", "minimalCert_concat_even",
+    "five_cylinders_cover", "certifiedCount_five_eq", "no_minimal_certificate_six",
+    "minimal_certificates_seven",
+    "neverNegCount_add_minimalCertCount", "minimalCert_tail_eq",
+    "neverNegCount_succ_of_window_empty",
+    "neverNegCount_div_pow_le_theta", "neverNegCount_div_pow_tendsto_zero",
+    "breakEven_saturates", "first_usable_depth",
+    "lamStar_mean_zero", "rho_closed_form",
+    "survives_succ_of_no_rise", "dies_iff_on_barrier",
+    "stepRise_stepFlat_eq_add_barrierMass",
 )
-"""The eight declarations the shipping manuscript calls machine-checked.
+"""The twenty-nine declarations the shipping manuscript calls machine-checked: the eight
+cited in the proof of Theorem 6.1 since 19 September 2026, and the twenty-one that the
+Section 8 module list of the 20 September edition names.
 
 AxiomCheckPaperB.lean audits the 2026-09-04 snapshot, not this edition -- its own header
 says so -- and test_the_artifact_asks_about_exactly_the_cited_names pins it to those 49
@@ -789,10 +803,18 @@ def test_the_published_edition_axiom_check_actually_runs() -> None:
     assert out.returncode == 0, out.stderr[-2000:]
     expected = (ROOT / "formal" / "AxiomCheckPaperBPublished.expected").read_text(encoding="utf-8")
     assert out.stdout.strip() == expected.strip()
-    lines = [ln for ln in expected.strip().splitlines() if ln.strip()]
-    assert len(lines) == len(PUBLISHED_AXIOM_NAMES)
-    for line in lines:
-        assert line.endswith("[propext, Classical.choice, Quot.sound]"), line
+    # One record per declaration; Lean wraps a long axiom list over several lines, so parse
+    # records rather than lines. Mathlib's three and nothing else: a kernel-reduced `decide`
+    # may use fewer, never more.
+    import re as _re
+    records = _re.findall(
+        r"^'([^']+)' (depends on axioms: \[([^\]]*)\]|does not depend on any axioms)",
+        expected, _re.M)
+    assert len(records) == len(PUBLISHED_AXIOM_NAMES), len(records)
+    mathlib_three = {"propext", "Classical.choice", "Quot.sound"}
+    for name, _kind, axioms in records:
+        used = {a.strip() for a in axioms.split(",") if a.strip()}
+        assert used <= mathlib_three, name
 
 
 def test_every_published_machine_checked_name_is_audited() -> None:

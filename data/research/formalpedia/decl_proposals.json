@@ -4676,19 +4676,19 @@
         {
           "decl": "h_at_tailRoot",
           "line": 98,
-          "score": 0.042,
+          "score": 0.04,
           "trust": "kernel"
         },
         {
           "decl": "h_deriv_eq_zero_at_tailRoot",
           "line": 72,
-          "score": 0.033,
+          "score": 0.031,
           "trust": "kernel"
         },
         {
           "decl": "h_secondDeriv_at_tailRoot",
           "line": 82,
-          "score": 0.028,
+          "score": 0.027,
           "trust": "kernel"
         }
       ],
@@ -4698,12 +4698,12 @@
         {
           "decl": "tailRoot",
           "line": 48,
-          "score": 0.023
+          "score": 0.022
         },
         {
           "decl": "h",
           "line": 44,
-          "score": 0.014
+          "score": 0.013
         }
       ],
       "id": "J-tail-double-root-in-lean-and-paper-b-updated",

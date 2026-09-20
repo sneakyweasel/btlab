@@ -2,9 +2,9 @@
 
 Parity Statistics of Nested Floor Powers.
 
-Version: 2026-09-18-preprint. Author: Philippe Cochin.
+Version: 2026-09-20-preprint. Author: Philippe Cochin.
 
-The 39-page manuscript proves full five-step power-envelope certificate
+The 44-page manuscript proves full five-step power-envelope certificate
 density 7/8, with count error O_epsilon(N^(127/128+epsilon)).
 Theorem 4.11 and Appendices A-C contain the complete OOOEE proof;
 Theorem 5.4 gives the count. The four-step density 13/16 and OOEOE
@@ -81,8 +81,17 @@ are documented in paper_b_proof_review.md.
 
 ## Evidence and licensing
 
-The current title leads with the finite-step result; the mathematical text is
-byte-identical to the 10 September proof-audit edition. That audit supplies
+The current title leads with the finite-step result. The analytic text,
+Sections 2-4 and 7 and Appendices A-C, is byte-identical to the 10 September
+proof-audit edition; the revisions of 19 and 20 September changed the
+abstract, Sections 1, 5, 6 and 8, the acknowledgments and the references
+only: the identification of the word counts with the Collatz sequences
+A076227, A100982 and A020914, the dropping-time convention, the attribution
+of the exponential rate to Lagarias and of the d^(-3/2) power to Hikawa,
+Noe's tabulation of the certificate-density increments, the closed forms of
+the prefactor's jump spectrum, the list of machine-checked statements with
+the declarations AxiomCheckPaperBPublished.lean audits, and the reading
+status of the ResearchGate preprints. That audit supplies
 the bounded signed-residual Fourier
 extension and its variation proof, defines the parity sign before use,
 clarifies shifts, and repairs subscripts and the reference link.

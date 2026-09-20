@@ -6,7 +6,7 @@
     {
       "name": "juggler_parity_discrepancy_note.md",
       "mode": "text",
-      "sha256": "07f041a3836107d4bf8816484672a6ecb52fbdb38b4407248c63af4b03d701c3"
+      "sha256": "cb0ed119e14aacf75d36d97944ac0839bf7292620b41696cd90320dbeb0e3c53"
     },
     {
       "name": "article.tex",
@@ -21,17 +21,17 @@
     {
       "name": "build_paper_b.py",
       "mode": "text",
-      "sha256": "5ec0cd77e117cc55b598dba912d7f0446fd13f11fd5ce403c7039c7274fcd87a"
+      "sha256": "3033f9b6146a0a6f953e14df534383f515ee469c6e21432a7414f5758c23b078"
     },
     {
       "name": "juggler_parity_discrepancy_note.tex",
       "mode": "text",
-      "sha256": "4ab922d97912b80d3f1c05d9e082f400ef18639d01bf683b24f11f827f24d44d"
+      "sha256": "d05bb2fca5c01c80446a2e98e1dc1173876f636060336c39c95a5a0b6dee8f21"
     },
     {
       "name": "juggler_parity_discrepancy_note.pdf",
       "mode": "binary",
-      "sha256": "71017573770df5e9c672b78c8ed80d2e45a6f2559cad6297cedc95fb99fd4690"
+      "sha256": "fe4a0a0fc6a60fffccc1542900f7810b4bb77f2cb05c55da40664211e106606a"
     }
   ]
 }

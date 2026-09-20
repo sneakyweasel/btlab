@@ -6,3 +6,28 @@
 'Problems.Juggler.PaperBDensity.density_of_finite_union' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.PaperBDensity.exceptional_density_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.OneSided.klDiv_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.PaperBCertificates.lemma51' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.PaperBCertificates.lemma51_complete' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.minimalCert_exists_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.certWindow_unique' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.minimalCert_concat_even' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.five_cylinders_cover' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.certifiedCount_five_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.no_minimal_certificate_six' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.minimal_certificates_seven' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.neverNegCount_add_minimalCertCount' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.minimalCert_tail_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.neverNegCount_succ_of_window_empty' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.PaperBSurvivorDecay.neverNegCount_div_pow_le_theta' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problems.Juggler.PaperBSurvivorDecay.neverNegCount_div_pow_tendsto_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problems.Juggler.PaperBThreshold.breakEven_saturates' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.PaperBThreshold.first_usable_depth' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.PaperBTilt.lamStar_mean_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.PaperBTilt.rho_closed_form' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.PaperBBarrierStep.survives_succ_of_no_rise' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.PaperBBarrierStep.dies_iff_on_barrier' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.JumpTransposition.stepRise_stepFlat_eq_add_barrierMass' depends on axioms: [propext]

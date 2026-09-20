@@ -24,7 +24,7 @@ Cochin},pdfsubject={Parity statistics and five-step descent certificates for the
 \title{Five-Step Descent Certificates for the Juggler
 Map\\[0.4em]{\large Parity Statistics of Nested Floor Powers}}
 \author{Philippe Cochin\\\small\texttt{philippe@cochin.fr}}
-\date{19 September 2026}
+\date{20 September 2026}
 \begin{document}
 \maketitle
 \begin{center}\small Preprint\end{center}
@@ -106,7 +106,11 @@ A100982 {[}6{]}, supported on the binary lengths of the powers of three,
 A020914 {[}7{]} -- which that entry has recorded since 2009 as the set
 of allowable dropping times of the shortcut map, the value for an
 individual start being A126241. The length of a minimal certificate is a
-dropping time.
+dropping time; computational work calls the same quantity the
+\emph{glide}, and Hikawa's toolkit {[}15{]}, which prints it under that
+name, computes the survivor counts, the minimal-certificate counts and
+their refinement by odd count, all three agreeing with the counts used
+here.
 
 A word on the term, since two conventions collide here and this paper
 had declared neither. Terras {[}4{]}, whom it follows elsewhere, calls
@@ -931,6 +935,17 @@ lengths of the powers of three {[}7{]}, which is why length three
 carries no certificate; the enumeration above verifies its first terms
 rather than establishing them.
 
+The list, and the statement for every length --- a minimal certificate
+of length \(L\) exists exactly when a power of three lies in
+\([2^{L-1},2^{L})\), its odd count is then forced by \(L\), and its last
+letter is \(E\) --- are machine-checked in
+\texttt{formal/Problems/Juggler/PaperBCertificates.lean} and
+\texttt{PaperBCertificateLengths.lean}. Length six adds no minimal
+certificate and length seven adds exactly three, \(OOEOOEE\),
+\(OOOEOEE\) and \(OOOOEEE\); that is a count of words, not a density
+statement, since each would need its own mixed-mode estimate. Both facts
+are checked in \texttt{PaperBFiveStepDensity.lean}.
+
 \needspace{5\baselineskip}
 
 \textbf{Theorem 5.2 (unconditional four-step density).} One has \[
@@ -975,6 +990,14 @@ happen to descend within five operations.
 \(\mathcal D_5\) and the \(OOOEE\) class. Add Theorem 5.3 and Corollary
 4.12. Their main terms are \(27N/32+N/32=7N/8\); the former error
 \(O(N^{47/48})\) is smaller. \(\square\)
+
+The partition behind Theorem 5.4 --- at depth five the cylinders of the
+five words of Lemma 5.1 have sizes \(16,8,2,1,1\), are pairwise disjoint
+and exhaust the certified words, so that \(1/2+1/4+1/16+1/32+1/32=7/8\)
+is cylinder arithmetic rather than an identity between rational literals
+--- and the assembly of the count as a sum of five class counts are
+machine-checked in \texttt{PaperBFiveStepDensity.lean}; the analytic
+estimates for those counts are not.
 
 The exact fractions and their analytic requirements can be read
 together:
@@ -1170,10 +1193,14 @@ weight-basis form and Conjecture 7.1. The \(d^{-3/2}\) power is Hikawa's
 Conjecture 7.1 {[}9, Section 7{]}, motivated there by the residual
 \(\log_2W(d)-\gamma d\) tracking a ballot-type correction
 \(-\tfrac32\log_2d\) to within \(0.3\) bits over \(100\le d\le10^4\). No
-priority over either is asserted. The companion parity-vector preprints
-{[}10, 11{]} were read for this revision and neither bears on the
-asymptotic, and neither does {[}12{]}, which refines the same count by a
-local cut statistic and represents the words as partitions inside a
+priority over either is asserted. Of the parity-vector line, {[}11{]}
+was read in full and states no asymptotic; of {[}10{]} only the abstract
+was available to this revision, and of {[}9{]} the author's version note
+on the record, from which Sections 6 and 7 are cited; the September
+preprint {[}17{]}, a third paper of the line, is listed because it
+exists, nothing of its text having been available. Nor does {[}12{]}
+bear on the asymptotic: it refines the same count by a local cut
+statistic and represents the words as partitions inside a
 Beatty--Ferrers shape: exact finite structure, with no growth constant
 and no oscillation. That Beatty structure is a predecessor for any
 reading of the admissible lengths A020914 through their Beatty
@@ -1183,17 +1210,18 @@ prefactor \(\psi\) : that the ratio depends on \(d\) only through
 below that explains why. Novelty is claimed for that, and it survives
 the nearest prior result. Winkler {[}13, Section 7{]} derives growth
 constants and exact normalized oscillations for A100982 and its siblings
-A174795 and A174796. A100982 is the minimal-certificate count \(M_d\) of
-this paper, tied to the survivor count by \(M_d=2N_{d-1}-N_d\) , and
-summing that identity writes \(N_d/2^d\) as a tail of his sequence, so
-his results do bear on \(\psi\) . They do not determine it. His
-Corollary 12 normalises \(a_3(r)\) by its lower cycle bound and proves
-that the ratio has \(\liminf\) equal to \(1\) and \(\limsup\) equal to
-\(\alpha/(\alpha-1)\) with \(\alpha=\log_23\) , the lower value attained
-exactly on the record minima of \(\{r\alpha\}\) and the upper approached
-along the record maxima. That is an exact statement about the extremes
-of two sparse sets of orders, not an asymptotic for a general \(r\) ,
-and it carries no error term at all. The envelope has width
+A174795 and A174796. A100982 is the minimal-certificate count of this
+paper, \(2N_{d-1}-N_d\) --- in the notation of the recursion below,
+\(b_{d-1}M_{d-1}\), the survivors on the barrier that lose their even
+extension --- and summing that identity writes \(N_d/2^d\) as a tail of
+his sequence, so his results do bear on \(\psi\) . They do not determine
+it. His Corollary 12 normalises \(a_3(r)\) by its lower cycle bound and
+proves that the ratio has \(\liminf\) equal to \(1\) and \(\limsup\)
+equal to \(\alpha/(\alpha-1)\) with \(\alpha=\log_23\) , the lower value
+attained exactly on the record minima of \(\{r\alpha\}\) and the upper
+approached along the record maxima. That is an exact statement about the
+extremes of two sparse sets of orders, not an asymptotic for a general
+\(r\) , and it carries no error term at all. The envelope has width
 \(2.7095112914\) and transfers termwise to the tail, while the entire
 oscillation of \(\psi\) spans a factor \(1.06\) : too coarse by a factor
 near thirty to resolve the shape. Both corollaries were verified against
@@ -1223,7 +1251,8 @@ N_{d+1}=2N_d-b_dM_d,\qquad P_{d+1}=P_d\Bigl(1-\tfrac12 b_dR_d\Bigr),
 \] with \(P_d=N_d/2^d\) and \(R_d=M_d/2^d\big/P_d\) the share of
 survivors on the barrier. This is exact and elementary; it is checked
 against the integer counts and machine-checked in
-\texttt{formal/Problems/Juggler/PaperBBarrierStep.lean}.
+\texttt{formal/Problems/Juggler/PaperBBarrierStep.lean} and, as an
+identity of integer counts, in \texttt{PaperBCertificateRecursion.lean}.
 
 This recursion is not new. On A076227 {[}5{]} it is Zarubin's formula of
 11 August 2019, which reads \(a(L_k)=2a(L_k-1)-A_{100982}(k)\) at the
@@ -1236,6 +1265,20 @@ binary words \(v(1)\dots v(n)\) with \(2^m<3^{v(1)+\dots+v(m)}\) for
 every \(m\) {[}9{]}. Nothing in this subsection is claimed as new. It is
 restated because the argument needs it in this form, and it is
 machine-checked so that the form is certified rather than assumed.
+
+The increments are tabulated too: T. D. Noe's frequency comment on
+A186008 {[}16{]}, February 2011, lists
+\(1/2,1/4,1/16,1/16,3/128,7/256,3/256,\dots\), which are
+\(b_{d-1}M_{d-1}/2^{d}\) here, the certificate density gained at each
+carrying length, and A186009 {[}16{]} is the sequence of nonzero
+minimal-certificate counts. The telescoped form of the recursion,
+writing \(N_d/2^d\) as the mass of the minimal certificates beyond depth
+\(d\) plus the survivors at the cutoff, and the doubling
+\(N_{d+1}=2N_d\) exactly at the lengths of A054414 are machine-checked
+in \texttt{PaperBCertificateRecursion.lean}; that exchanging two
+adjacent barrier letters costs exactly the mass on the barrier, the
+elementary fact under the discontinuities of \(\psi\), is
+machine-checked in \texttt{PaperBJumpTransposition.lean}.
 
 \emph{The right coordinate is \(R\).} Conditioned on survival, the law
 of \(m_d=o_d-\lceil d\beta\rceil\) depends on the depth only through
@@ -1281,15 +1324,40 @@ an accident of the barrier arithmetic but the shape of a coboundary. The
 Ostrowski structure in \(\hat\psi\) is inherited from \(\hat f\), not
 manufactured by the divisor --- \(\hat f\) is five times smaller at the
 resonances than away from them, which is what keeps \(\psi\) bounded. It
-is in fact of bounded variation. The jump amplitudes \(a_k\) at
-\(\{k\beta\}\) are summable: computed exactly from two depths straddling
-\(k\beta\), \(\sum_k\lvert a_k\rvert=4.58\) over \(k\le3000\) at two
-independent anchors agreeing to \(0.13\%\), with every amplitude
-negative and the partial sums settling. A single-exponent fit is
-misleading here because the exponent steepens with the window ---
-\(-1.13\) over \(k\le69\) against \(-1.77\) over \(100\le k\le3000\) ---
-so a short window reads it as nearly \(1/k\), which is exactly the
-summability boundary.
+is in fact of bounded variation, and its jumps are the survivor sequence
+itself. The jump of \(\psi\) at \(\{n\beta\}\) is \[
+a_n=\frac{a_1\,N_n}{(2\varrho)^{\,n-1}}\qquad(n\ge1),
+\] reproduced to \(2.3\cdot10^{-14}\) over \(n\le3000\) by a
+transfer-operator propagation that uses no measured data; with the
+normalisation of \(\psi\) above,
+\(a_n=2\varrho a_1\,\psi(\{n\beta\})\,n^{-3/2}(1+o(1))\), so the
+amplitudes decay with the same power as the counts they come from, and
+the steepening power law that local differencing had suggested was the
+bias of the differencing. The one constant is closed form, \[
+a_1=\frac{1}{2\varrho\sqrt{2\pi\beta(1-\beta)}}=0.427956804.
+\] The reason is a Fourier identity. Let \(A_n\) be the probability that
+the walk of Remark 6.2 is nonnegative at step \(n\), divided by
+\(\varrho^{n}\). Then
+\(\sqrt n\,A_n=\Phi(\{n\beta\})\bigl(1+O(1/n)\bigr)\) with the ladder
+profile
+\(\Phi(x)=r^{1-x}\big/\bigl((1-r)\sqrt{2\pi\beta(1-\beta)}\bigr)\),
+\(r=(1-\beta)/\beta\), whose mean \(\kappa=1.541814521\) is the
+non-lattice local-limit constant, and
+\(\hat\psi(k)=\hat\Phi(k)\,G\bigl(e^{-2\pi ik\beta}\bigr)\) for every
+\(k\), where \(G(w)=\sum_dN_dw^d/(2\varrho)^d\). So the jump of \(\psi\)
+at the origin, \(2\varrho a_1=1/\sqrt{2\pi\beta(1-\beta)}\), is the jump
+of \(\Phi\) there; mode by mode, with \(\psi\) measured at depth
+\(10^6\), the ratio
+\(\lvert\hat\psi(k)\rvert/\lvert\hat\Phi(k)G(e^{-2\pi ik\beta})\rvert\)
+is \(1.0015\pm0.0020\) over \(k\le256\) with no trend in \(k\), and
+explicitly
+\(\hat\psi(k)=-\bigl(2\varrho a_1/2\pi ik\bigr)\,G(e^{-2\pi ik\beta})\)
+for \(k\ne0\). Summing the jumps gives \(2\varrho a_1\,(G(1)-1)\), and
+the mean of \(\psi\) is \(\kappa G(1)=10.8927\) with \(G(1)=7.0649\) a
+convergent series, so the summability of the jump spectrum and the
+convergence of \(G(1)\) are one statement. These are verified
+computations, recorded with their tests in the repository; the existence
+of \(\psi\) as a limit is not among them.
 
 \emph{What is open, and what is excluded.} One link is unproved: that
 the iteration converges, \(R_d\to R(\{d\beta\})\). Everything above is
@@ -1603,6 +1671,11 @@ Full five-step certificate density \(7/8\) & Unconditional: Corollary
 4.12, Theorem 5.4, and Appendices A--C \\
 Density-one finite certificates & Conditional on \(\mathrm{FD}\); no
 depth uniformity assumed \\
+Oscillating prefactor \(\psi\), its jump spectrum and Fourier identity &
+Verified computation in Section 6; the existence of the limit is not
+proved \\
+Finite combinatorics of Sections 5--6 and the chain of Theorem 6.1 &
+Machine-checked; modules listed below \\
 Restricted mixed sums & Theorems 4.5, 4.9, and 4.11 \\
 General decorated kernel and short-interval extension & Unproved; no
 numerical threshold certified \\
@@ -1627,12 +1700,89 @@ exponent budgets. The source package includes these scripts and their
 results. Those checks support reproducibility; they are not proofs of
 asymptotic cancellation.
 
-Earlier repository audits and Lean modules concern identities,
-inequalities, and arithmetic from the previous draft. This version
-claims no Lean formalization of its analytic hypotheses or of the
-complete manuscript. Earlier theorem numbers are superseded and should
-not be used as citations to unconditional nested estimates. Companion
-texts that rely on those estimates require their own review.
+The Lean modules that check statements of this manuscript, module by
+module, all of them under \texttt{formal/Problems/Juggler/}:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{PaperBCertificates}: Lemma 5.1, the minimal certificates
+  through length five.
+\item
+  \texttt{PaperBCertificateLengths}: a minimal certificate of length
+  \(L\) exists exactly when a power of three lies in
+  \([2^{L-1},2^{L})\), its odd count is then forced and its last letter
+  is \(E\).
+\item
+  \texttt{PaperBFiveStepDensity}: the five cylinders partition the
+  certified words at depth five and the count is the sum of the five
+  class counts behind Theorems 5.2--5.4; depth six adds no minimal
+  certificate and depth seven adds three.
+\item
+  \texttt{PaperBCertificateRecursion}: the survivors of length \(d+1\)
+  and the words contracting first at \(d+1\) together number \(2N_d\),
+  the telescoped tail form of that identity, and the doubling at the
+  free lengths.
+\item
+  \texttt{PaperBSurvivorDecay}: \(N_d/2^d\le\vartheta(p)^d\), the upper
+  bound of Theorem D with its exact exponent, and \(N_d/2^d\to0\).
+\item
+  \texttt{PaperBChernoff}, \texttt{PaperBMarkov},
+  \texttt{PaperBDensity}: the chain of Theorem 6.1 with Hypothesis
+  \(\mathrm{FD}\) carried as a hypothesis.
+\item
+  \texttt{PaperBThreshold}: the threshold algebra of Remark 6.2, that
+  \(q_d\) saturates the step and \(d\ge4\) is the first usable depth.
+\item
+  \texttt{PaperBTilt}: the mean-zero tilt and the closed form of
+  \(\varrho\).
+\item
+  \texttt{PaperBBarrierStep}: when the barrier does not rise every
+  survivor keeps both extensions, and when it rises an extension dies
+  exactly for a word on the barrier taking the even letter.
+\item
+  \texttt{PaperBJumpTransposition}: exchanging two adjacent barrier
+  letters costs exactly the mass on the barrier, the elementary fact
+  under the discontinuities of \(\psi\).
+\end{itemize}
+
+The declarations audited for each, in the same order, are those whose
+axioms are printed by the published artifact,
+\texttt{formal/AxiomCheckPaperBPublished.lean}:
+
+\begin{verbatim}
+PaperBCertificates          lemma51  lemma51_complete
+PaperBCertificateLengths    minimalCert_exists_iff  certWindow_unique
+                            minimalCert_concat_even
+PaperBFiveStepDensity       five_cylinders_cover  certifiedCount_five_eq
+                            no_minimal_certificate_six
+                            minimal_certificates_seven
+PaperBCertificateRecursion  neverNegCount_add_minimalCertCount
+                            minimalCert_tail_eq
+                            neverNegCount_succ_of_window_empty
+PaperBSurvivorDecay         neverNegCount_div_pow_le_theta
+                            neverNegCount_div_pow_tendsto_zero
+PaperBChernoff              theta_lt_one  klDiv_pos
+PaperBMarkov                sum_choose_mul_pow  chernoff_density
+                            tilt_gives_theta
+PaperBDensity               density_of_finite_union
+                            exceptional_density_zero
+PaperBThreshold             breakEven_saturates  first_usable_depth
+PaperBTilt                  lamStar_mean_zero  rho_closed_form
+PaperBBarrierStep           survives_succ_of_no_rise  dies_iff_on_barrier
+PaperBJumpTransposition     stepRise_stepFlat_eq_add_barrierMass
+\end{verbatim}
+
+Its recorded output shows no axiom beyond Mathlib's three,
+\texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}, on
+any line; \texttt{klDiv\_nonneg}, cited in the proof of Theorem 6.1 for
+contrast, is audited there too. All are checked by Lean's kernel, with
+no \texttt{native\_decide}. This version claims no Lean formalization of
+its analytic estimates --- the exponential sums of Sections 3, 4 and 7
+and Appendices A--C --- nor of the complete manuscript. Earlier theorem
+numbers are superseded and should not be used as citations to
+unconditional nested estimates. Companion texts that rely on those
+estimates require their own review.
 
 The full five-step certificate class proved here has density \(7/8\).
 The argument does not extend its error estimates proportionally to an
@@ -2892,13 +3042,16 @@ formalizations. The September 2026 review with OpenAI Codex identified
 unresolved analytic steps and assisted with the conditional revision,
 the four-step and fifth-letter repairs, the D2 reduction, the signed
 mixed-mode proofs, their consolidation into this version, and the
-release materials. The September 2026 attribution revision, which
-identifies the word counts of Sections 5 and 6 with the Collatz
-sequences A076227, A100982 and A020914 and credits the formulas on those
-entries, was drafted with Anthropic's Claude. AI assistance and
-automated checks are not independent mathematical validation. The author
-is responsible for the statements, proofs, code, and final approval of
-the preprint. The models are not authors.
+release materials. The September 2026 attribution revisions, which
+identify the word counts of Sections 5 and 6 with the Collatz sequences
+A076227, A100982 and A020914, credit the formulas on those entries and
+the tabulations of Noe and Hikawa, list the machine-checked statements
+of Section 8 and record the closed forms of the jump spectrum in Section
+6, were drafted with Anthropic's Claude, which also carried out the
+computations behind those closed forms. AI assistance and automated
+checks are not independent mathematical validation. The author is
+responsible for the statements, proofs, code, and final approval of the
+preprint. The models are not authors.
 
 \section{References}\label{references}
 
@@ -2955,12 +3108,15 @@ the preprint. The models are not authors.
   ResearchGate preprint, July 2026, version 2.1 of 2 August 2026.
   \href{https://doi.org/10.13140/RG.2.2.29894.84804/1}{doi:10.13140/RG.2.2.29894.84804/1}.
   Section 6 proves the exponential rate; Conjecture 7.1 is the
-  \(d^{-3/2}\) power.
+  \(d^{-3/2}\) power. Both are cited from the author's version note on
+  the record; the full text was not available to this revision.
 \item
   K. Hikawa and K. Nakanishi, ``Parity Vector Analysis in the Study of
   the Collatz Conjecture,'' ResearchGate preprint, January 2026.
   \href{https://doi.org/10.13140/RG.2.2.12065.06240}{doi:10.13140/RG.2.2.12065.06240}.
-  Read for this revision; it does not bear on the asymptotic.
+  Abstract only read for this revision; the full text was not available.
+  Its authors contributed the A076227 b-file against which the counts
+  behind Section 6 were checked on all 3509 terms.
 \item
   K. Nakanishi, ``A Structural Study of Parity Vectors in the Collatz
   Conjecture,'' Jxiv preprint, February 2026.
@@ -2997,5 +3153,26 @@ the preprint. The models are not authors.
   both labelled (Terras), and Lagarias's annotated bibliography credits
   Terras with the residue-class structure, the coefficient stopping time
   and natural density one, and with no rate.
+\item
+  K. Hikawa, \emph{Collatz Parity Vector Toolkit}, version 1.0,
+  software, 4 July 2026, MIT license.
+  \href{https://github.com/hikawa94/Collatz-Parity-Vector-Toolkit}{Repository};
+  \href{https://doi.org/10.5281/zenodo.21186540}{doi:10.5281/zenodo.21186540}.
+  Run for this revision: its survivor counts, minimal-certificate counts
+  and odd-count refinement agree with those used here, and it prints the
+  minimal certificate length as the glide.
+\item
+  T. D. Noe, ``Irregular triangle of the pattern of conjectured dropping
+  times in the Collatz iteration,'' A186008, and ``Length of Collatz
+  dropping time patterns in A186008,'' A186009, \emph{The On-Line
+  Encyclopedia of Integer Sequences}, contributed 9 February 2011.
+  \href{https://oeis.org/A186008}{A186008},
+  \href{https://oeis.org/A186009}{A186009}, accessed 20 September 2026.
+\item
+  K. Hikawa, ``Finite Parity-Vector Structures in the Accelerated
+  Collatz Map,'' ResearchGate preprint, 12 September 2026.
+  \href{https://doi.org/10.13140/RG.2.2.24486.28480}{doi:10.13140/RG.2.2.24486.28480}.
+  Title, date and DOI verified from DataCite and OpenAlex; neither the
+  text nor an abstract was available to this revision.
 \end{enumerate}
 \end{document}
