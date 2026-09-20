@@ -20,10 +20,7 @@
   run too; the CI job *is* the full suite, which is the case the addopts comment
   already described. `loadfile` keeps one file on one worker, which matters where
   a module builds shared state at import.
-- **What was stale, which is a different list.**
-  `juggler_review/juggler_parity_discrepancy_note_2026_09_04.md`, 7642 lines, was
-  a byte-identical copy of a superseded Paper B snapshot that nothing referenced.
-  Then 37 tests across two files, 323 lines -- 297 from the prefix-count file, 26
+- **What was stale, which is a different list.** 37 tests across two files, 323 lines -- 297 from the prefix-count file, 26
   from the audit file -- that did nothing but assert that particular strings
   appear in a manuscript. They passed because those sentences were present, and
   they would have passed just as green if the mathematics under the sentences
@@ -36,10 +33,26 @@
   run shared the machine with the Paper B revision working in the same checkout,
   while the 744 s was measured serially on an idle box. The deletions were greps;
   the file's cost is the exhaustive prefix censuses, which are all still there.
-- **The lesson worth keeping.** A test that greps prose is not a cheap version of
-  a test that checks mathematics. It is a gate that cannot fail for the reason
-  you care about, and 37 of them had accumulated in front of a manuscript nobody
-  edits by hand.
+- **And one deletion was simply wrong, which turned CI red for three pushes.**
+  `0eb94ed8` deleted `juggler_review/juggler_parity_discrepancy_note_2026_09_04.md`,
+  7642 lines, on the stated grounds that it was a byte-identical copy that nothing
+  referenced. The second half was false. There are two copies of the 4 September
+  snapshot on purpose: the canonical one under `docs/theory/`, which a dozen
+  `src/research/juggler_sequence/` modules read, and that one under
+  `juggler_review/`, which is its reviewer-packet mirror. Five tests in four files
+  name the mirror, and `test_review_mirror_matches_the_manuscript` exists to assert
+  the two are byte-identical. So the byte-identity I cited as evidence the file was
+  redundant was in fact the evidence that the gate keeping it in sync was working.
+  Restored from `0eb94ed8^`; it compares equal to the canonical snapshot, and the
+  five tests pass. The failure was a plain `FileNotFoundError` in the CI log from
+  the first red run onward -- I did not look until three pushes later.
+- **The lesson worth keeping.** Two of them, pulling opposite ways. A test that
+  greps prose is not a cheap version of a test that checks mathematics: it is a
+  gate that cannot fail for the reason you care about, and 37 had accumulated in
+  front of a manuscript nobody edits by hand. But *duplication is not evidence of
+  redundancy* -- in a repository that mirrors manuscripts into a reviewer packet
+  on purpose, two identical files are the normal state, and the thing to check
+  before deleting one is who reads the path, not whether the bytes repeat.
 
 ## 2026-09-20 -- Both Hikawa preprints read; Paper B's priority paragraph corrected
 
