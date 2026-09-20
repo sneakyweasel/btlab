@@ -116,9 +116,8 @@ theorem resonant_mem_arc {q : ℕ} (hq : 1 ≤ q) {δ : ℝ} (hδ : 0 ≤ δ) (h
   have hqt : (q : ℝ) * (Am m + (δ / (q : ℝ) - (p : ℝ) / (q : ℝ)) - (k : ℝ)) =
       ((q : ℝ) * Am m - (P : ℝ)) + δ := by
     rw [hPeq]
-    first
-      | (field_simp; ring)
-      | field_simp
+    field_simp
+    ring
   obtain ⟨t, htdef⟩ : ∃ t : ℝ, t = Am m + (δ / (q : ℝ) - (p : ℝ) / (q : ℝ)) - (k : ℝ) :=
     ⟨_, rfl⟩
   rw [← htdef] at hqt
@@ -229,9 +228,8 @@ theorem resonance_count_one {u : ℕ} (hu : 10 ^ 6 ≤ u) (q : ℕ) (hq : 1 ≤ 
   -- `q` copies of `2δ/(q ε) + 2` make `2δ/ε + 2q`
   have hscalar : (q : ℝ) * ((2 * δ / (q : ℝ) + eps (2 * u)) / eps (2 * u) + 1) =
       2 * δ / eps (2 * u) + 2 * (q : ℝ) := by
-    first
-      | (field_simp; ring)
-      | field_simp
+    field_simp
+    ring
   calc (#{m ∈ Finset.Ioc u (2 * u) | ∃ P : ℤ, |(q : ℝ) * Am m - (P : ℝ)| ≤ δ} : ℝ)
       ≤ ∑ p ∈ Finset.range q, ((#{m ∈ Finset.Ioc u (2 * u) |
           (0 : ℝ) ≤ Int.fract (Am m + (δ / (q : ℝ) - (p : ℝ) / (q : ℝ))) ∧

@@ -41,7 +41,7 @@ theorem orbitCell_inj {p q : ℕ} (_hq : 0 < q) (hcop : Nat.Coprime p q) {neg : 
     cases neg with
     | false => simpa using h
     | true =>
-      simp only [if_pos rfl] at h
+      simp only at h
       have := (Nat.ModEq.add_right_cancel' (q - 1) (h : Nat.ModEq q _ _))
       simpa [Nat.ModEq] using this
   have : j ≡ k [MOD q] := Nat.ModEq.cancel_right_of_coprime (by simpa [Nat.Coprime] using hcop.symm) hmul
