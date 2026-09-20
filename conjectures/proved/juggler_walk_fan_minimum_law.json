@@ -14,7 +14,7 @@
     "fernandez-ibanez-2026",
     "kuipers-niederreiter-1974"
   ],
-  "notes": "The proof is the manuscript's Lemmas 1-2, Theorems 3-4, Proposition 5 and Corollaries 5-6; no floor verification, no new period bound, not a halt theorem, and no cycle is excluded. The competition's measured mystery constant 1.0735 is ((A+B+1)/(A+B-1))^2 with A+B = 56.394 -- nothing but the certified quotient 55. Boundedness of the CF quotients of log 2/log 3 is OPEN; Gauss-Kuzmin genericity expects unbounded (23 and 55 already occur). Not a Baker revival (effective gap routes stay REFUTED). Wu-Wang's measure caps the quotient width at O(q_j^{3.1163051+e}) and so cannot force a = O(1).",
+  "notes": "The proof is the manuscript's Lemmas 1-2, Theorems 3-4, Proposition 5 and Corollaries 6-7; no floor verification, no new period bound, not a halt theorem, and no cycle is excluded. The competition's measured mystery constant 1.0735 is ((A+B+1)/(A+B-1))^2 with A+B = 56.394 -- nothing but the certified quotient 55. Boundedness of the CF quotients of log 2/log 3 is OPEN; Gauss-Kuzmin genericity expects unbounded (23 and 55 already occur). Not a Baker revival (effective gap routes stay REFUTED). Wu-Wang's measure caps the quotient width at O(q_j^{3.1163051+e}) and so cannot force a = O(1).",
   "not_a_halt_theorem": true,
   "no_cycle_all_lengths": false,
   "proved_on": "2026-09-20"
