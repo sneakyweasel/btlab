@@ -347,7 +347,7 @@ Paper B proves enters Appendix C as an explicit hypothesis.
 Statements carry one of four roles. \emph{Lean}: the exact combinatorial
 layer is formalized in Lean 4; the root
 \texttt{\nolinkurl{formal/Problems/JugglerFatePaper.lean}} imports
-exactly the thirty modules this paper cites and builds with
+exactly the thirty-one modules this paper cites and builds with
 \texttt{lake\ build\ Problems.JugglerFatePaper}, without
 \texttt{\nolinkurl{sorry}} and without
 \texttt{\nolinkurl{native_decide}};
@@ -407,6 +407,20 @@ explicit errors, the block-average family needs the two exponential-sum
 bounds and the ladder needs Appendix D \\
 Theorem 5.3 at exponent \(13/40\), unconditional: two productions, no
 hypothesis & Lean \\
+Fate contagion at the failure set, log-mass form (Corollary 5.5(2),
+first clause) & Lean, unconditionally at exponent \(13/40\): the failure
+set is backward-closed by Lemma 2.1 and nonempty by assumption, so
+Theorem 5.3 applies to it \\
+Fate contagion, the remaining clauses (Corollary 5.4; the
+natural-density clause of Corollary 5.5(2); Corollaries 5.5(1), 5.5(3))
+& human proof; the dyadic pigeonhole of Corollary 5.4 and the
+instantiations of Theorem 5.3 at the reach-one class, at a cycle basin
+and at the divergent starts are not formalized, and neither is the
+log-mass clause in the remaining range \(13/40<\lambda<\lambda^{**}\) \\
+Production words \(V_k=(OE)^{k-1}OEE\) are prefix-free (Section 5.7,
+Appendix D) & Lean, for the whole family and not only the six; the
+disjointness of source sets it feeds needs Appendix D's analytic layer,
+which is human \\
 The side condition \(e(C)>\tfrac{27}{40}\) of the unconditional
 criteria, at \(C=30\), by rational bounds on \(e\), \(\log 2\) and
 \(\log_2 3\) & Lean; the least such \(C\) (\(23\)) and the paper's own
@@ -3055,7 +3069,7 @@ excluded by this paper.
 All in \texttt{\nolinkurl{formal/Problems/Juggler/FateContagion.lean}}
 unless noted. The root
 \texttt{\nolinkurl{formal/Problems/JugglerFatePaper.lean}} imports
-exactly the thirty modules named here and builds with
+exactly the thirty-one modules named here and builds with
 \texttt{lake\ build\ Problems.JugglerFatePaper} without
 \texttt{\nolinkurl{sorry}} and without
 \texttt{\nolinkurl{native_decide}};
@@ -3121,7 +3135,8 @@ Lemma 8.1 (envelope descent) &
 \texttt{\nolinkurl{mem_of_envelope_floor}},
 \texttt{\nolinkurl{reachesOne_of_itinerary_envelope}}; power envelope
 \texttt{\nolinkurl{power_bound_word}} (Paper A layer) \\
-Lean floor \(N_0=260\) &
+Lean floor \(N_0=260\), in
+\texttt{\nolinkurl{Problems/Juggler/TerminationFloor257.lean}} &
 \texttt{\nolinkurl{reachesOne_of_lt_two_hundred_sixty_one}} \\
 Lemma 4.7 (cube fibers), in
 \texttt{\nolinkurl{Problems/Juggler/CubeFiber.lean}} &
@@ -3207,6 +3222,19 @@ Section 5.1 without its exponential sums, and Theorem 5.3 at exponent
 \texttt{\nolinkurl{Production.failures_logMass_ge}},
 \texttt{\nolinkurl{Production.conjecture_of_tao_rate}},
 \texttt{\nolinkurl{Production.conjecture_of_cylinder_bound}} \\
+Corollary 5.5(2), the log-mass clause at exponent 13/40, in
+\texttt{\nolinkurl{Problems/Juggler/FateProduction.lean}} &
+\texttt{\nolinkurl{Production.failures_logMass_ge}} \\
+Section 5.7 and Appendix D, the production words and their
+prefix-freeness, in
+\texttt{\nolinkurl{Problems/Juggler/FateProductionWords.lean}} &
+\texttt{\nolinkurl{FateProductionWords.Vword}},
+\texttt{\nolinkurl{FateProductionWords.Vword_length}},
+\texttt{\nolinkurl{FateProductionWords.Vword_oddCount}},
+\texttt{\nolinkurl{FateProductionWords.Vword_eq_odd_cons}},
+\texttt{\nolinkurl{FateProductionWords.Vword_prefix_iff}},
+\texttt{\nolinkurl{FateProductionWords.Vword_six_prefixFree}},
+\texttt{\nolinkurl{FateProductionWords.Vword_five}} \\
 Section 4.3, the exact layer of the share law (the expansion, the range,
 the integral), in
 \texttt{\nolinkurl{Problems/Juggler/FateShareLaw.lean}} &
@@ -3434,11 +3462,15 @@ equidistribution and the measure identifications are not), the
 production inequality (5.2) (its \texttt{\nolinkurl{E}}-family and
 \texttt{\nolinkurl{OE}}-fiber family are Lean with explicit errors and
 give Theorem 5.3 at exponent 13/40 unconditionally; the block-average
-family and the ladder are not), Sections 8--10 except Lemma 8.2, the
-explicit form of Theorem 8.3, Corollary 8.4, the exact form of Theorem
-9.2 and Proposition 9.3, Appendix C; Theorems 5.3, 7.2, 7.3 and
-Corollary 8.4 only with (5.2) or the contagion bound as a hypothesis &
-human proofs \\
+family and the ladder are not), Corollary 5.4 and every clause of
+Corollary 5.5 except 5.5(2)'s log-mass bound at exponent 13/40 (the
+dyadic pigeonhole is not formalized, nor is that bound in the remaining
+range \(13/40<\lambda<\lambda^{**}\), and neither are the instantiations
+of Theorem 5.3 at the reach-one class, at a cycle basin or at the
+divergent starts), Sections 8--10 except Lemma 8.2, the explicit form of
+Theorem 8.3, Corollary 8.4, the exact form of Theorem 9.2 and
+Proposition 9.3, Appendix C; Theorems 5.3, 7.2, 7.3 and Corollary 8.4
+only with (5.2) or the contagion bound as a hypothesis & human proofs \\
 Theorem 9.1 (one-sided form, exact, by exponential moments), in
 \texttt{\nolinkurl{Problems/Juggler/FateOneSided.lean}} &
 \texttt{\nolinkurl{OneSided.cylinder_split}},
@@ -3744,7 +3776,12 @@ SHA-256):
   \texttt{\nolinkurl{formal/Problems/Juggler/FateProduction.lean}}
 
   SHA-256:
-  \texttt{\nolinkurl{7f933224ef6fac3accdcff64fcb6027d3fb1b19a142e6f9d8ce4511e858b06cc}}
+  \texttt{\nolinkurl{7cc24ff9f95692ead6b594aa703677910daf4936f24becce7b13da2c4105df2e}}
+\item
+  \texttt{\nolinkurl{formal/Problems/Juggler/FateProductionWords.lean}}
+
+  SHA-256:
+  \texttt{\nolinkurl{a712db485e4c48029ce9a9afcad1cfea1240f4bb4dda1cb7537661ae1f3fdb3e}}
 \item
   \texttt{\nolinkurl{formal/Problems/Juggler/FateOneSided.lean}}
 
@@ -3754,22 +3791,22 @@ SHA-256):
   \texttt{\nolinkurl{formal/Problems/Juggler/FateOneSidedCorollary.lean}}
 
   SHA-256:
-  \texttt{\nolinkurl{b3387d9f3feb9969ee900c6810cfa229e52c8db0f2152d23414c84666c9a01bd}}
+  \texttt{\nolinkurl{481b4cecbebd7291d551b814f733b9cfd78dec50a936a31fd9ab6544408c714e}}
 \item
   \texttt{\nolinkurl{formal/Problems/Juggler/FatePressureCorollary.lean}}
 
   SHA-256:
-  \texttt{\nolinkurl{39bdba3c4b5505b52844243766d708e6a09a4bcbb5ec122c768b0c51ae94f03f}}
+  \texttt{\nolinkurl{cdd1ca9cbb59c4bb0a5fb24702f12bb8e27c21365f9b28e515819f874e9b437e}}
 \item
   \texttt{\nolinkurl{formal/Problems/Juggler/FateOneSidedAtoms.lean}}
 
   SHA-256:
-  \texttt{\nolinkurl{9401b63621cf3af1b1aeb04c46845573760508c1e761fe3fe6a03fde9786a99f}}
+  \texttt{\nolinkurl{db2601560b54b95a5ac5b2f5f16c0d83e3b4cf4182f1d20795c47db26c0a9ce3}}
 \item
   \texttt{\nolinkurl{formal/Problems/Juggler/FateEnergyAtoms.lean}}
 
   SHA-256:
-  \texttt{\nolinkurl{422f8bede16e0953c91d55b230e291ca37e6882c8210c02cb22af2837a60b8fb}}
+  \texttt{\nolinkurl{e98ccccbb25140d41ede236466f7e0f522c433a4c80fcaa330abfb1388653b1a}}
 \item
   \texttt{\nolinkurl{formal/Problems/Juggler/FateCollapse.lean}}
 
@@ -3779,7 +3816,7 @@ SHA-256):
   \texttt{\nolinkurl{formal/Problems/Juggler/FateCertified.lean}}
 
   SHA-256:
-  \texttt{\nolinkurl{57492ff859c6f3f88a6190cd5aeafd9d44a837046877be2b9576ffb048d89351}}
+  \texttt{\nolinkurl{ff47a23462fb591264125859b9d511bb2cec046da7a71fbad5d17b35a5581c90}}
 \item
   \texttt{\nolinkurl{formal/Problems/Juggler/FateShareLaw.lean}}
 
@@ -3839,22 +3876,22 @@ SHA-256):
   \texttt{\nolinkurl{formal/Problems/Juggler/FateContagionBound.lean}}
 
   SHA-256:
-  \texttt{\nolinkurl{238cf115eca99ca070b5c29b983cbcebacf9701c5303a96a2ea96030f008d33d}}
+  \texttt{\nolinkurl{d8991fd05c076875a0e8fd75692a10bb31930c289a3812de07212b620645acca}}
 \item
   \texttt{\nolinkurl{formal/Problems/JugglerFatePaper.lean}}
 
   SHA-256:
-  \texttt{\nolinkurl{9b1d9ae60f0c07ddb80839eba76fa3ba04b414715a307986f3d3e31f4b6ac740}}
+  \texttt{\nolinkurl{b6a9aba0a8e5c85ba06bbd049d0f7a42f4fb27762831b1e2fc587b7428a9fe66}}
 \item
   \texttt{\nolinkurl{formal/AxiomCheckPaperC.expected}}
 
   SHA-256:
-  \texttt{\nolinkurl{0d0c39ab51bceaad5cb402176dcd1fff40165c010fe5aec6a744668d3adf0b4d}}
+  \texttt{\nolinkurl{a9e7db1534190fe3263d4f0633878f329d9b6b4288896db7ddd91202e6fc671b}}
 \item
   \texttt{\nolinkurl{src/research/juggler_sequence/fate_contagion.py}}
 
   SHA-256:
-  \texttt{\nolinkurl{6442eb4af160876678b734e261575c7a4ce2181b21c400697b66cf39e4a90c74}}
+  \texttt{\nolinkurl{27b94f873d4cc9fc4f424443db058c8b3f7c6217e9bdbde7cc17c984829e9c46}}
 \item
   \texttt{\nolinkurl{src/research/juggler_sequence/tao_reduction.py}}
 

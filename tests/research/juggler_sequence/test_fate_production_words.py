@@ -26,6 +26,7 @@ ROOT = Path(__file__).resolve().parents[3]
 PAPER_C = ROOT / "docs" / "theory" / "juggler_fate_almost_all_note.md"
 MODULE = ROOT / "formal" / "Problems" / "Juggler" / "FateProductionWords.lean"
 UMBRELLA = ROOT / "formal" / "Problems" / "Juggler.lean"
+BARREL = ROOT / "formal" / "Problems" / "JugglerFatePaper.lean"
 
 #: ``V_k = (OE)^(k-1) OEE`` for ``1 <= k <= 6``, as the paper writes them.
 WORDS = {k: "OE" * (k - 1) + "OEE" for k in range(1, 7)}
@@ -114,9 +115,14 @@ def test_the_lean_module_exists_states_the_theorem_and_is_registered() -> None:
 
     from research.juggler_sequence.lean_paths import AUXILIARY_MODULES, LAYERS
 
-    assert "FateProductionWords" in AUXILIARY_MODULES
-    assert "FateProductionWords" not in LAYERS
-    assert AUXILIARY_MODULES["FateProductionWords"]
+    # Wired into Paper C on 19 September 2026.  The module was deliberately parked in
+    # AUXILIARY_MODULES when it landed, because wiring a new module into the barrel and into
+    # Appendix A belonged with the pass that fixed Appendix A's "thirty modules named here"
+    # while naming 29.  That pass has now run: the module is a Paper C barrel module like
+    # every other Fate* module, so it sits in LAYERS and the barrel imports it.
+    assert "FateProductionWords" in LAYERS
+    assert "FateProductionWords" not in AUXILIARY_MODULES
+    assert "import Problems.Juggler.FateProductionWords" in read(BARREL)
 
 
 def test_it_does_not_claim_the_analytic_layer() -> None:

@@ -97,6 +97,12 @@ open Problems.Juggler
 #print axioms Energy.oneSidedBoundExc_of_energy
 #print axioms Energy.oneSidedShareExc_of_energy
 #print axioms Energy.wordCount_cylinder
+#print axioms FateProductionWords.Vword_eq_odd_cons
+#print axioms FateProductionWords.Vword_five
+#print axioms FateProductionWords.Vword_length
+#print axioms FateProductionWords.Vword_oddCount
+#print axioms FateProductionWords.Vword_prefix_iff
+#print axioms FateProductionWords.Vword_six_prefixFree
 #print axioms FiberParity.Am_double_sub_le
 #print axioms FiberParity.Am_step_ge
 #print axioms FiberParity.Am_step_le

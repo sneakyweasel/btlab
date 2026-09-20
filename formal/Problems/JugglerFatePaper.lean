@@ -7,6 +7,7 @@ import Problems.Juggler.FateFirstLetter
 import Problems.Juggler.FateBlockAverage
 import Problems.Juggler.FateShareLaw
 import Problems.Juggler.FateProduction
+import Problems.Juggler.FateProductionWords
 import Problems.Juggler.FateOneSided
 import Problems.Juggler.FateOneSidedCorollary
 import Problems.Juggler.FatePressureCorollary
@@ -32,7 +33,7 @@ import Problems.Juggler.FateContagionBound
 /-!
 # Paper C barrel — everything the repository checks for the fate-contagion note
 
-`docs/theory/juggler_fate_almost_all_note.md`. This file imports exactly the thirty modules
+`docs/theory/juggler_fate_almost_all_note.md`. This file imports exactly the thirty-one modules
 that paper cites and nothing else, so that a reader can build the formal side of Paper C on
 its own rather than selecting modules by hand out of the umbrella `Problems.Juggler`. It is a
 laboratory target, not a claim: building it does **not** corroborate the paper's counting.
@@ -76,13 +77,24 @@ laboratory target, not a claim: building it does **not** corroborate the paper's
   (`Production.family_OE`) need no analysis; together they give
   `g_A(t) ≥ (1 - 4e^{-t/4}) g_A(t/2) + (2/9 - (50/9)e^{-t/8}) g_A(3t/4) - errAdd t` for
   `t ≥ 40` (`Production.production_two`), with every error explicit. The recursion lemma on
-  these two productions, with `ζ(3/10) > 0` certified by two rational bounds
+  these two productions, with `ζ(13/40) > 0` certified by two rational bounds
   (`Production.zeta2_pos`), gives **an unconditional theorem**: every nonempty backward-closed
-  set has log-mass at least `K (log x)^λ` up to `x` for every `0 < λ ≤ 3/10`
+  set has log-mass at least `K (log x)^λ` up to `x` for every `0 < λ ≤ 13/40`
   (`Production.logMass_contagion_elementary`), and so do the failures if any exist
-  (`Production.failures_logMass_ge`). The block-average family, whose two exponential-sum
-  bounds are hypotheses in `FateBlockAverage`, and the five ladder productions of Section 5.7,
-  whose Appendix D estimates are human, are what lift `3/10` to the paper's `0.49`.
+  (`Production.failures_logMass_ge`, which is Corollary 5.5(2)'s log-mass half). The
+  block-average family, whose two exponential-sum bounds are hypotheses in `FateBlockAverage`,
+  and the five ladder productions of Section 5.7, whose Appendix D estimates are human, are
+  what lift `13/40` to the paper's `0.49`.
+* `FateProductionWords` — the combinatorial step Section 5.7 and Appendix D assert three times
+  and never prove: Paper C's six finite productions `V_k = (OE)^(k-1) OEE` are prefix-free.
+  `FateProductionWords.Vword i` is the paper's `V_(i+1)`, with length `2i + 3`
+  (`Vword_length`) and `i + 1` odd letters (`Vword_oddCount`); `Vword_prefix_iff` proves the
+  property for the whole family — `V_i` is a prefix of `V_j` only when `i = j` — and
+  `Vword_six_prefixFree` is the pairwise statement for the six the paper fixes, by kernel
+  evaluation. What this does not carry is Appendix D's analytic layer: prefix-freeness gives
+  **disjoint source sets**, which is what (5.10) needs, only together with the two-sided
+  asymptotics and the landing windows, and those are written proof. Nothing here lifts the
+  exponent.
 * `FateOneSided` — Theorem 9.1 in exact form, by exponential moments and without the
   martingale, carrying out the paper's remark after Proposition 9.3. The tilted mass of the
   `L`-bad cylinders, `badMass t = Σ_{|w|=t, w bad} #[w] x^{o(w)}`, obeys the affine recursion
@@ -104,7 +116,7 @@ laboratory target, not a claim: building it does **not** corroborate the paper's
   `OneSided.klDiv_nonneg` and the two scale comparisons `OneSided.exp_le_rpow_scale`,
   `OneSided.pow_le_rpow_scale`), then Theorem 7.2: with the contagion bound as a hypothesis
   at an exponent `λ` with `1 - λ < e` (`OneSided.implies_conjecture_of_contagion`), or with
-  nothing else assumed when `e > 7/10` (`OneSided.one_sided_implies_conjecture`), and the
+  nothing else assumed when `e > 27/40` (`OneSided.one_sided_implies_conjecture`), and the
   paper's remark after Theorem 9.1, a share bound with no error term
   (`OneSided.exact_share_implies_conjecture`). The paper's condition `A > C + e_q(C)` and
   its numerical forms are not here.
@@ -166,7 +178,7 @@ laboratory target, not a claim: building it does **not** corroborate the paper's
   are self-smoothing, and the analytic content sits in the first even step after an odd run,
   the share law. The variation bound on a fiber profile and the parity of the odd-preimage
   mass are not here.
-* `FateCertified` — the side condition `e(C) > 7/10` of the unconditional criteria, at
+* `FateCertified` — the side condition `e(C) > 27/40` of the unconditional criteria, at
   `C = 30`, with no audit script in the chain. A logarithm is certified by an integer power
   comparison (`Certified.log_le_of_pow_le`, `Certified.le_log_of_pow_le`, and the base-two
   pair, on Mathlib's `2.718 < e < 2.719`), and six such comparisons give `log 2 ≤ 7/10`,
@@ -260,13 +272,30 @@ laboratory target, not a claim: building it does **not** corroborate the paper's
 Proposition 4.4 (the block average), the
 share law 4.5–4.6, the production inequality (5.2) itself (Theorem 5.3 is here given (5.2),
 for every `λ ≤ 0.49`; the root `λ** = 0.4926…` and the range `0.49 < λ < λ**` are not),
-Corollaries 5.4–5.5, the asymptotic forms of Theorems 8.3, 9.1 and 9.2, Section 10 except
+Corollary 5.4 and all of Corollary 5.5 but the log-mass half of 5.5(2),
+the asymptotic forms of Theorems 8.3, 9.1 and 9.2, Section 10 except
 the counting identity of 10(d), its exceptional-atom form of Theorem 9.1 and the energy
-bound's supply of those atoms, and Appendix C have no machine check of any kind. Theorems 7.2, 7.3, Corollary 8.4 and the corollaries of
+bound's supply of those atoms, and Appendix C have no machine check of any kind.
+
+The two corollaries Theorem 1 states in its own sentence are here in exactly one half, and it
+is worth being precise about which. `Production.failures_logMass_ge` **is** Corollary 5.5(2)'s
+log-mass bound — if some start does not reach `1`, the failures carry log-mass at least
+`K (log x)^λ` — unconditionally, for every `0 < λ ≤ 13/40`. Corollary 5.4 is not here: its
+proof spreads `g_A(log X)` over the `(1/2)log₂ X + 2` dyadic blocks of `(√X, X]` and takes the
+best one, and that pigeonhole is not formalised anywhere in this repository. So the
+natural-density clause of 5.5(2), which is Corollary 5.4 read at the failure set, is not here
+either. Corollary 5.5(1) and 5.5(3) — the same bounds at the reach-one class, at the basin of
+a nontrivial cycle, and at the divergent starts — are one instantiation away, since Lemma 2.1
+gives each of those classes backward-closed (`reachesOne_backwardClosed`,
+`ancestor_backwardClosed`, `escapes_backwardClosed`) and `logMass_contagion_elementary` asks
+for nothing more, but no such instantiation is written as a named theorem, so the paper's Lean
+column does not claim them.
+
+Theorems 7.2, 7.3, Corollary 8.4 and the corollaries of
 Theorem 9.1 (with and without exceptional atoms), Theorem 9.2 and Proposition 9.3 are here
 with the contagion bound as a hypothesis, Corollary 8.4 also with (5.2) in its place, and
 Theorem 7.2, Corollary 8.4 and the four Section 9 corollaries also with the contagion bound
-discharged at exponent `3/10`. Nothing here is a
+discharged at exponent `13/40`. Nothing here is a
 density estimate, and nothing here is a halt theorem.
 
 This barrel is not imported by `Problems.lean`; build it with

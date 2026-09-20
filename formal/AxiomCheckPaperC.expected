@@ -80,6 +80,12 @@
 'Problems.Juggler.Energy.oneSidedBoundExc_of_energy' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.Energy.oneSidedShareExc_of_energy' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.Energy.wordCount_cylinder' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.FateProductionWords.Vword_eq_odd_cons' does not depend on any axioms
+'Problems.Juggler.FateProductionWords.Vword_five' does not depend on any axioms
+'Problems.Juggler.FateProductionWords.Vword_length' depends on axioms: [propext, Quot.sound]
+'Problems.Juggler.FateProductionWords.Vword_oddCount' depends on axioms: [propext]
+'Problems.Juggler.FateProductionWords.Vword_prefix_iff' depends on axioms: [propext]
+'Problems.Juggler.FateProductionWords.Vword_six_prefixFree' depends on axioms: [propext, Quot.sound]
 'Problems.Juggler.FiberParity.Am_double_sub_le' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.FiberParity.Am_step_ge' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.FiberParity.Am_step_le' depends on axioms: [propext, Classical.choice, Quot.sound]

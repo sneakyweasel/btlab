@@ -80,7 +80,18 @@ def test_unregistered_modules_are_visible() -> None:
     #     prefix-freeness;
     #   PaperBLevelWindow        (19 Sep) the empty-window theorem at every level, which
     #     imports PaperBCertificateLengths, RateFreeDensity and LogCells.
-    assert len(outside) <= 38, outside
+    # 38 -> 37 on merging claude/elated-hopper-e20999, and the two sides of that merge
+    # each knew half of it. Main had counted FateProductionWords among the four above,
+    # in AUXILIARY_MODULES. The branch moved it the other way, into LAYERS, because
+    # wiring it into Paper C's barrel made it a publication-layer module like every
+    # other Fate* module -- so on the branch the count went 37 -> 36, and the branch's
+    # note says that -1 is the only part of the delta its pass was responsible for.
+    # The branch did not know about PaperBLevelWindow, which main added on 19 September
+    # and which is still outside. Neither side's number survives the merge: 38 counts
+    # FateProductionWords as outside when it no longer is, and 36 omits PaperBLevelWindow
+    # entirely. Measured on the merged tree: 207 modules on disk, 170 in LAYERS, 37
+    # outside. The budget is the measurement, not either side's arithmetic.
+    assert len(outside) <= 37, outside
 
 
 def foreign_public_declarations(source: str, prefix: str) -> list[tuple[str, int]]:

@@ -4580,29 +4580,29 @@
         {
           "decl": "Vword_prefix_iff",
           "line": 66,
-          "score": 0.109,
+          "score": 0.096,
           "trust": "kernel"
         },
         {
           "decl": "Vword_five",
           "line": 100,
-          "score": 0.059,
+          "score": 0.052,
           "trust": "kernel"
         },
         {
           "decl": "Vword_six_prefixFree",
           "line": 95,
-          "score": 0.058,
+          "score": 0.052,
           "trust": "kernel"
         }
       ],
       "composite": true,
-      "confidence": "review",
+      "confidence": "low",
       "definitions": [
         {
           "decl": "Vword",
           "line": 36,
-          "score": 0.044
+          "score": 0.039
         }
       ],
       "id": "J-paper-c-production-words-are-prefix-free",
@@ -4642,5 +4642,5 @@
     }
   ],
   "unresolved": 128,
-  "worth_reviewing": 20
+  "worth_reviewing": 19
 }
