@@ -77,6 +77,42 @@
     "negative_use": "Bang and Zsigmondy move ONE exponent; the cycle gap 3^o - 2^K moves two and is not a Cunningham number, which is why primitive-divisor theory does not reach it",
     "citation": "zsigmondy-1892-primitive-divisors"
   },
+  "repunit_to_repunit": {
+    "identity": "T^(a+1)(2^a - 1) = (3^a - 1)/2 = A003462(a)",
+    "reading": "a ones in base 2 reach a ones in base 3, in exactly a + 1 steps",
+    "max_exponent": 119,
+    "failures": [],
+    "holds": true,
+    "ends_the_run_iff_a_is_odd": "v_2(3^a - 1) = 1 for odd a, 2 + v_2(a) for even a",
+    "table": {
+      "1": {
+        "base2": "1",
+        "base3": "1",
+        "word": "OE"
+      },
+      "3": {
+        "base2": "111",
+        "base3": "111",
+        "word": "OOOE"
+      },
+      "5": {
+        "base2": "11111",
+        "base3": "11111",
+        "word": "OOOOOE"
+      },
+      "7": {
+        "base2": "1111111",
+        "base3": "1111111",
+        "word": "OOOOOOOE"
+      },
+      "9": {
+        "base2": "111111111",
+        "base3": "111111111",
+        "word": "OOOOOOOOOE"
+      }
+    },
+    "citation": "oeis-A000225 generalisation comment; A003462 is the base-3 repunit"
+  },
   "even_closed_form": {
     "identity": "floor((2^a - 1)^(3/2)) = 2^(3a/2) - 3*2^(a/2 - 1), even a",
     "bits": "1^(a-1) 0 1 0^(a/2 - 1)",

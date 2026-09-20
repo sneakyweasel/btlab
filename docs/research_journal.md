@@ -1,5 +1,41 @@
 # Research journal
 
+## 2026-09-20 -- repunit to repunit, which is the right form of the landing statement
+
+One more thing from the A000225 entry text, and it improves a statement I had already
+recorded twice.
+
+The entry's generalisation comment reads *"Sequence generalized: a(n) = (A^n - 1)/(A-1),
+n >= 1, A integer >= 2. This sequence has A=2; A003462 has A=3; ..."*. So `(3^a - 1)/2` is
+A003462, the **base-3 repunit** -- and the landing point `3^a - 1` of the Mersenne run is
+exactly twice it. One further halving therefore lands on the repunit itself:
+
+    T^(a+1)(2^a - 1) = (3^a - 1)/2 = A003462(a)
+
+checked to `a = 200`. Stated that way the run takes **`a` ones in base 2 to `a` ones in
+base 3, in exactly `a + 1` steps** -- `A000225(a)` to `A003462(a)`:
+
+```text
+ a | base 2      | base 3      | word
+ 1 | 1           | 1           | OE
+ 3 | 111         | 111         | OOOE
+ 5 | 11111       | 11111       | OOOOOE
+ 7 | 1111111     | 1111111     | OOOOOOOE
+ 9 | 111111111   | 111111111   | OOOOOOOOOE
+```
+
+That is better than what I wrote yesterday ("all ones in base two to all twos in base
+three") for a reason worth naming: the all-twos form made the two ends look like different
+kinds of object, when they are the same object in two bases. The `2` was an artefact of
+stopping one step early. And the `a + 1` steps land exactly at the end of the initial run
+precisely when `a` is odd, since `v_2(3^a - 1) = 1` there and `2 + v_2(a)` when `a` is even
+-- so for odd `a` the word is exactly `O^a E` and nothing is left over.
+
+`J-repunit-floor-power-is-closed-form` extended a fourth time; one new test. Still one
+family of density zero, still no bound moved. The row has now been corrected or sharpened
+by every piece of source material Philippe has supplied, which is the argument for reading
+the sources before writing the row rather than after.
+
 ## 2026-09-20 -- A000225 had my base-two statement in a 2012 comment
 
 Philippe supplied the full A000225 entry text, oeis.org being blocked here. Four things

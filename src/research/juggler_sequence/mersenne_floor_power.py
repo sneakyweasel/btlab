@@ -315,6 +315,50 @@ def numerology_kills() -> dict[str, Any]:
     }
 
 
+def base_three_repunit(a: int) -> int:
+    """`A003462(a) = (3^a - 1)/2`, the base-3 repunit of length `a`."""
+    return (3**a - 1) // 2
+
+
+def repunit_to_repunit(exponents: tuple[int, ...] = RUN_RANGE) -> dict[str, Any]:
+    """Base-2 repunit of length `a` reaches the base-3 repunit of length `a` in `a + 1` steps.
+
+    The A000225 comment "Sequence generalized: a(n) = (A^n - 1)/(A-1) ... A003462 has A=3" names
+    `(3^a - 1)/2` as the base-3 repunit, and the landing point `3^a - 1` of the Mersenne run is
+    exactly TWICE it. So one further halving lands on the base-3 repunit itself:
+    `T^(a+1)(2^a - 1) = (3^a - 1)/2 = A003462(a)`. That is a cleaner statement than "all ones in
+    base two to all twos in base three": it is `a` ones in base 2 to `a` ones in base 3, in `a + 1`
+    steps. It is the end of the initial run exactly when `a` is odd, since `v_2(3^a - 1) = 1` there
+    and `2 + v_2(a)` when `a` is even.
+    """
+    fails = []
+    for a in exponents:
+        x = mersenne(a)
+        for _ in range(a + 1):
+            x = shortcut(x)
+        if x != base_three_repunit(a):
+            fails.append(a)
+    def digits(n: int, b: int) -> str:
+        out = []
+        while n:
+            out.append(n % b)
+            n //= b
+        return "".join(str(d) for d in reversed(out)) or "0"
+    return {
+        "identity": "T^(a+1)(2^a - 1) = (3^a - 1)/2 = A003462(a)",
+        "reading": "a ones in base 2 reach a ones in base 3, in exactly a + 1 steps",
+        "max_exponent": exponents[-1],
+        "failures": fails,
+        "holds": not fails,
+        "ends_the_run_iff_a_is_odd": "v_2(3^a - 1) = 1 for odd a, 2 + v_2(a) for even a",
+        "table": {str(a): {"base2": digits(mersenne(a), 2),
+                           "base3": digits(base_three_repunit(a), 3),
+                           "word": "O" * a + "E" * v2(3**a - 1)}
+                  for a in (1, 3, 5, 7, 9)},
+        "citation": "oeis-A000225 generalisation comment; A003462 is the base-3 repunit",
+    }
+
+
 def phi_at_two(d: int) -> int:
     """`Phi_d(2)`, by dividing the cyclotomic product out of `2^d - 1`."""
     value = 2**d - 1
@@ -387,18 +431,20 @@ def probe_payload() -> dict[str, Any]:
     squarefree = squarefree_is_stronger_than_needed()
     kills = numerology_kills()
     bang = bang_and_cyclotomic()
+    r2r = repunit_to_repunit(exponents=tuple(range(1, 120)))
     green = (
         even["holds"] and odd["holds"] and base2["run_is_trailing_ones"]
         and base2["landing_holds"] and base2["continuation_holds"]
         and prime["attained_at_composite_a"] and prime["mersenne_is_never_a_perfect_power"]
         and run["holds"] and kills["fermat_polynomial_coefficients"]["recurrence_reproduces_mersenne"]
-        and bang["bang_matches"] and bang["cyclotomic_holds"]
+        and bang["bang_matches"] and bang["cyclotomic_holds"] and r2r["holds"]
     )
     return {
         "run_closed_form": run,
         "squarefree_versus_catalan": squarefree,
         "numerology": kills,
         "bang": bang,
+        "repunit_to_repunit": r2r,
         "even_closed_form": even,
         "odd_beatty_form": odd,
         "base_two_run_law": base2,
@@ -452,6 +498,21 @@ def render_markdown(data: dict[str, Any]) -> str:
         f"- squarefreeness already fails at "
         f"`{data['squarefree_versus_catalan']['squarefreeness_already_fails_at']}`",
         f"- {data['squarefree_versus_catalan']['conclusion']}",
+        "",
+        "## Repunit to repunit, across bases",
+        "",
+        f"- `{data['repunit_to_repunit']['identity']}` -- checked to "
+        f"`a = {data['repunit_to_repunit']['max_exponent']}`: `{data['repunit_to_repunit']['holds']}`",
+        f"- {data['repunit_to_repunit']['reading']}",
+        f"- ends the initial run iff `a` is odd: "
+        f"{data['repunit_to_repunit']['ends_the_run_iff_a_is_odd']}",
+        "",
+        "| a | base 2 | base 3 | word |",
+        "| --- | --- | --- | --- |",
+    ] + [
+        f"| {a} | `{row['base2']}` | `{row['base3']}` | `{row['word']}` |"
+        for a, row in sorted(data["repunit_to_repunit"]["table"].items(), key=lambda kv: int(kv[0]))
+    ] + [
         "",
         "## Bang's theorem, and why a = 6 is the named exception",
         "",

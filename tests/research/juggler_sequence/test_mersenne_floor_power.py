@@ -18,6 +18,7 @@ from research.juggler_sequence.mersenne_floor_power import (
     JSON_PATH,
     base_two_run_law,
     bang_and_cyclotomic,
+    base_three_repunit,
     bit_pattern,
     even_closed_form,
     floor_power,
@@ -28,6 +29,7 @@ from research.juggler_sequence.mersenne_floor_power import (
     numerology_kills,
     phi_at_two,
     repunit_closed_form,
+    repunit_to_repunit,
     run_closed_form,
     squarefree_is_stronger_than_needed,
     shortcut,
@@ -130,6 +132,22 @@ def is_squarefree_ref(m: int) -> bool:
             m //= d
         d += 1
     return True
+
+
+def test_repunit_reaches_repunit_across_bases() -> None:
+    """a ones in base 2 reach a ones in base 3 in exactly a + 1 shortcut steps."""
+    data = repunit_to_repunit(exponents=tuple(range(1, 60)))
+    assert data["holds"]
+    assert data["failures"] == []
+    assert base_three_repunit(3) == 13 and base_three_repunit(5) == 121
+    for a in (1, 2, 5, 8, 13):
+        x = mersenne(a)
+        for _ in range(a + 1):
+            x = shortcut(x)
+        assert x == base_three_repunit(a) == (3**a - 1) // 2
+    # it ends the initial run exactly when a is odd
+    assert v2(3**5 - 1) == 1
+    assert v2(3**6 - 1) == 2 + v2(6) == 3
 
 
 def test_bang_and_the_cyclotomic_collision() -> None:
