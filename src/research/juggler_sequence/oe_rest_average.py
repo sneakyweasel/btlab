@@ -5,8 +5,22 @@ ideal-fiber equation (even-share 1/2 on the rest). This module tests
 whether a backward-closed A can keep a definite log-mass of rest on
 poor fibers, or whether the E+OE closure of those fibers drowns them.
 
-No new production, no Lean, no Paper A, no N_0 raise.
+The answer is that it cannot, and not for a dynamical reason: the poor
+fibres have finite total 1/m-weighted mass, so there is nothing for an
+adversary to concentrate on. That is now proved and Lean, in five modules:
+FateBlockLock.lean (Lemma 1, the block lock), FateFiberLock.lean (Lemma 2),
+FateResonanceCount.lean (Lemma 3, the arc count), FatePoorTail.lean
+(Theorem 4, the count and the tail), and FatePoorProduction.lean (the family
+bound, the production inequality at the averaged coefficient, the recursion,
+and the certificate at lambda = 100/203 > lambda**).
 
+The functions here are the numerical side of that note: they check the
+master inequality, the lock census, the arc count, the dyadic tail scaling
+and the averaged recursion against the constants the proofs use.
+
+No new production, no Paper A, no N_0 raise.
+
+Note: docs/theory/juggler_oe_poor_fiber_tail_note.md.
 Dossier: docs/problems/juggler_oe_rest_average.md.
 """
 

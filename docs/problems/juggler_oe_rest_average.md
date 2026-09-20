@@ -209,23 +209,31 @@ drowning; it kills a pairing-style uniform rewrite of (4.2).
 (`family_OE_averaged`). Five modules: `FateBlockLock`, `FateFiberLock`,
 `FateResonanceCount`, `FatePoorTail`, `FatePoorProduction`.
 
-**Not done**: the recursion. `recursion_lemma` is generic and needs
-nothing; `production_two` is stated against the literal `2/9`. Its
-geometry half is coefficient-free and should be factored out and shared,
-but `FateProduction.lean` is pinned by Paper C's release manifest, so
-adding even a lemma to it needs a manuscript rebuild this container
-cannot do. Copying the geometry instead was declined: it would give the
-same facts two names in one layer. The gap is environmental, and the
-note's Formalization section says what a session with a Paper C build
-should do.
+**And the recursion, at an exponent above the published one.**
+`production_two_averaged` is the production inequality at
+\((2/3)(1/2-\eta_0)\), with `production_two`'s shell geometry inlined and
+one new hypothesis \(hT:3(1280/\eta_0^2+1)\le e^{t/8}\) --- Lemma 2's two
+block conditions rewritten at \(U=\lfloor e^{3t/8}\rfloor\), which is the
+whole cost of averaging and shows up only as \(t_1\approx250\).
+`contagion_averaged` runs `recursion_lemma`, which was already generic, so
+Lemma 5.1 is not restated; it is parametric in \(\lambda\) and
+\(\eta_0\) with \(\zeta>0\) as a hypothesis, which is the shape the
+mathematics has. `zeta2avg_pos` is a separate arithmetic certificate at
+\(\lambda=100/203=0.4926108\), \(\eta_0=10^{-5}\) --- the
+smallest-denominator rational strictly between \(\lambda^{**}\) and
+\(\lambda_{\rm ideal}\). So `logMass_contagion_averaged` is Theorem 5.3
+above \(\lambda^{**}\), unconditionally, and
+`conjecture_of_tao_rate_averaged` puts the unconditional Tao threshold at
+\(e>103/203=0.50739\), below Paper C's *conditional* \(0.51\).
 
-Superseded planning text follows.
-
-None yet, and the note names the order: the arc count first
-(`FiberParity.bad_count_le` with a union over \(q\le Q\) in place of the
-two goodness arcs, no new idea), then the block lock, which is the only
-genuinely new Lean work, then the tail as arithmetic. Nothing needs
-`native_decide`. `FateContagion.lean` stays the exact layer. No `sorry`.
+`FateProduction.lean` is not edited: it is pinned by Paper C's release
+manifest, and its \(2/9\) chain is what the manuscript cites. An earlier
+pass stopped here, declining to inline `production_two`'s geometry on
+anti-duplication grounds. **That was overstated**, and the correction is
+worth keeping: formalpedia's habit exists to stop two *named declarations*
+stating one fact, because that splits a citation; inlined proof steps inside
+one proof cost maintenance and create no ambiguous citation target. The two
+are different defects and only the first justifies a recorded gap.
 
 ## Results
 
@@ -256,11 +264,10 @@ A dynamical averaging theorem for \(P\) is **no longer wanted**: the
 theorem makes \(P\) too small for the dynamics to matter. What is open,
 in descending order of value:
 
-1. **Lean.** The three lemmas, in the order the note gives. The arc count
-   is a generalization of an existing Lean proof; the block lock is new.
-   This is the item that would let Theorem 5.3 be Lean end to end at an
-   exponent above \(0.4926\), which it has never been.
-2. **Constants.** \(430\) and \(2100\) are crude by a large factor, and
+1. **Constants, and what they cost.** Done: Theorem 5.3 is Lean end to end
+   at \(\lambda=100/203>\lambda^{**}\), which it had never been. What is
+   left is that \(430\) and \(2100\) are crude, so see (2).
+2. **Sharpening.** \(430\) and \(2100\) are crude by a large factor, and
    \(u_0(\eta_0)=(1950/\eta_0^2)^3\) is what makes \(t_1\approx221\)
    at the \(\eta_0\) that matters. Sharpening \(\theta\) in Lemma 2
    and the grid-boundary count in Lemma 1 is routine and would bring
