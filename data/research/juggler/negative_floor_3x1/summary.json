@@ -1,0 +1,99 @@
+{
+  "map": "g(y) = y/2 (y even), (3y-1)/2 (y odd): shortcut 3x+1 on the negatives",
+  "known_cycles": [
+    [
+      1
+    ],
+    [
+      5,
+      7,
+      10
+    ],
+    [
+      17,
+      25,
+      37,
+      55,
+      82,
+      41,
+      61,
+      91,
+      136,
+      68,
+      34
+    ]
+  ],
+  "certificate": {
+    "chunks": 8,
+    "odd_starts": 137438953456,
+    "fails": 0,
+    "new_cycles": 0,
+    "max_steps": 519,
+    "max_excursion": 261160802435320822179964,
+    "covered_to": 274877906944,
+    "covered_to_is_two_pow": true,
+    "chunk_limits_increase": true,
+    "state_type": "unsigned __int128",
+    "overflow_headroom": "peak 2.612e+23 against 2^127",
+    "verifier": "data/research/juggler/negative_floor_3x1/verify_3x1.c",
+    "clean": true
+  },
+  "reference_check": {
+    "limit": 60000,
+    "disagreements": [],
+    "agree": true,
+    "note": "descent (stop below y) against full iteration to a cycle element"
+  },
+  "verifier_spot_check": {
+    "limit": 2000000,
+    "odd_starts": 999998,
+    "fails": 0,
+    "new_cycles": 0,
+    "max_steps": 238,
+    "wide": 0,
+    "peak_hi": 0,
+    "peak_lo": 3293075932912,
+    "alerts": []
+  },
+  "period_bounds": [
+    {
+      "floor": "2^38",
+      "floor_value": 274877906944.0,
+      "least_period": 4404167,
+      "odd_steps": 2778720,
+      "verified": true,
+      "note": ""
+    },
+    {
+      "floor": "10^11",
+      "floor_value": 100000000000.0,
+      "least_period": 1988215,
+      "odd_steps": 1254424,
+      "verified": true,
+      "note": ""
+    },
+    {
+      "floor": "2^40",
+      "floor_value": 1099511627776.0,
+      "least_period": 9538065,
+      "odd_steps": 6017849,
+      "verified": false,
+      "note": ""
+    },
+    {
+      "floor": "2^68",
+      "floor_value": 2.9514790517935283e+20,
+      "least_period": null,
+      "odd_steps": null,
+      "verified": false,
+      "note": "no survivor below the walk cap KMAX = 20000000; the laboratory's conditional table records 72448885240 at this floor"
+    }
+  ],
+  "statement": "Every 1 <= y < 2^38 reaches 1, 5 or 17. Hence, by neg_cycle_finance (kernel-checked), a fourth cycle of the 3x-1 shortcut map -- equivalently a fourth negative cycle of shortcut 3x+1, whose word is a Paper A CycleMin shape -- has period at least 4404167, with 2778720 odd steps.",
+  "decision": {
+    "classification": "NEGATIVE_FLOOR_MAKES_THE_MIRROR_A_STATEMENT",
+    "branch": "PROMOTE",
+    "green": true
+  },
+  "anti_overclaim": "The floor is a computation, not a theorem, and it is this laboratory's computation rather than a literature import: the recorded search found no published 3x-1 floor, which is not the same as none existing. N_0 = 350000000 is the Juggler's own cycle floor and is untouched; this is a different object for a different map. No Juggler cycle is excluded, no Juggler bound moves, Paper A is unchanged, and neither map is claimed to halt. The implication from floor to period is kernel-checked (neg_cycle_finance); only the floor is empirical."
+}

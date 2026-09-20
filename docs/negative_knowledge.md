@@ -101,6 +101,38 @@ starting line and stops before the first leftover.
 
 Dossier: [negative_lemma_eight_window](problems/juggler_negative_lemma_eight_window.md).
 
+## The Mersenne numbers in the Lemma 8 floor carry no prime content
+
+Killed claim (20 September 2026): "the Lemma 8 floor being attained exactly at
+the Mersenne numbers `2^a - 1` is prime structure worth pursuing".
+
+Kind: `REFUTED` as decoration. The floor is attained at `2^a - 1` for EVERY `a`,
+prime or composite -- `15 = 3*5`, `63 = 7*9`, `255`, `511 = 7*73` all have
+`run = a`. What is structural is `u = x + 1 = 2^a`, the least value with
+`v_2(u) >= a`; "Mersenne" is `u - 1`, an artifact of that coordinate. Under the
+exponential bridge of `J-lemma-eight-is-the-exponent-valuation` the extremal
+transports to the exponent `e = 2^r` -- one one-bit, not a repunit -- so the
+all-ones pattern does not survive the transport at all. The same verdict covers
+the Fermat reading of the negative cycle minima: `x + 1 = -2^a` is forced, so the
+form `2^a + 1` is structural, while `a in {2,4}` both being powers of two (giving
+`-5 = -F_1` and `-17 = -F_2`) is a coincidence on two data points with no
+mechanism -- wallpaper by this laboratory's own standard.
+
+What DID survive is not about primes: for even `a`,
+`floor((2^a - 1)^(3/2)) = 2^(3a/2) - 3*2^(a/2 - 1)` with bits
+`1^(a-1) 0 1 0^(a/2-1)`, and for odd `a` the Beatty form
+`floor(sqrt 2 * (2^((3a-1)/2) - 3*2^((a-3)/2)))`. Those are recorded as
+`J-repunit-floor-power-is-closed-form`, and their interest is that `2^a - 1` is
+never a perfect power (Catalan, `mihailescu-2004-catalan`), so they are exact
+values OFF the perfect-power locus.
+
+Do not reopen as: Mersenne or Fermat primality in either map, a search for prime
+bases in the exact locus (the minimal realizers `2^(2^r)` and `3^(2^r)` have
+prime bases because 2 and 3 are the smallest bases, which is not prime content),
+or a Fermat-number pattern in the negative cycles.
+
+Dossier: [mersenne_floor_power](problems/juggler_mersenne_floor_power.md).
+
 ## The Walsh estimate of the good set is in the wrong basis
 
 Proposition J's error term `N_d E_d(N)` sums a per-word equidistribution error

@@ -1,5 +1,72 @@
 # Research journal
 
+## 2026-09-20 -- the 3x-1 floor, and the floor power of a repunit
+
+- **The floor the journal asked for, supplied.** On 19 September this journal closed
+  the finance-mirror entry with "best next question: the `3x - 1` verification floor,
+  from the literature or by running it -- and then the mirror's period bound becomes
+  a statement rather than a table." Ran it. Every `1 <= y < 2^38 = 274877906944`
+  reaches `1`, `5` or `17` under `g(y) = y/2` (even), `(3y-1)/2` (odd). Certificate:
+  8 disjoint chunks of `2^35` tiling `[3, 2^38)`, **137438953456 odd starts, 0
+  failures, 0 new cycles**, greatest step count 519 against a cap of 4000.
+- **The width mattered and I nearly did not check.** The greatest excursion is
+  `2.61e23`, which leaves 64 bits. The state is `unsigned __int128` so nothing came
+  near overflow, but my first pass carried a `wide` counter that tested the wrong
+  variable and reported 0 everywhere; the `peak_hi` fields are what actually show
+  the excursions. A 64-bit verifier would have been silently wrong on those starts.
+  Verifier source archived beside the summary so the certificate is re-runnable.
+- **So the table entry is a statement.** Reading the kernel-checked
+  `neg_cycle_finance` at that floor: **a fourth cycle of the `3x-1` shortcut map --
+  equivalently a fourth negative cycle of shortcut `3x+1`, whose word is a Paper A
+  CycleMin shape letter for letter -- has period at least `4404167`**, with `2778720`
+  odd steps. `10^11` gives `1988215`; `2^40` would give `9538065` for about 45 more
+  core-minutes. Only the floor is empirical; the implication is Lean.
+  `J-negative-floor-makes-the-mirror-unconditional`.
+- **Not `N_0`.** `N_0 = 350000000` is the Juggler's own cycle floor and is untouched.
+  This is a different object for a different map, and no Juggler bound moves.
+- **The Mersenne question, asked and answered both ways.** Philippe pointed at the
+  Mersenne numbers appearing as the Lemma 8 floor's attainers and asked for the floor
+  part and the base-2 part. Base two first: `x = -1 mod 2^a` says the low `a` bits are
+  all one, so `run(x)` is the **trailing-one count** and the floor is attained iff
+  every bit is one -- exactly the repunits. The landing point is the base-3 repdigit:
+  `(1^a)_2` maps in `a` steps to `3^a - 1 = (2^a)_3`, then takes exactly `v_2(3^a-1)`
+  halvings, `1` for odd `a` and `2 + v_2(a)` for even. All three are restatements of
+  the congruence and are labelled as such.
+- **The primality is decorative, and it does not cross the bridge.** The floor is
+  attained at `2^a - 1` for every `a`: `15 = 3*5`, `63 = 7*9`, `255`, `511 = 7*73`
+  all have `run = a`. What is structural is `u = x+1 = 2^a`; "Mersenne" is `u - 1`, an
+  artifact of the coordinate. Under the exponential bridge the extremal transports to
+  the exponent `e = 2^r` -- one one-bit, not a repunit -- so the all-ones pattern is
+  coordinate-dependent and carries no prime content in either problem. That kills the
+  Mersenne half of the numerology question I had queued.
+- **But the floor part gave a real theorem.** For even `a >= 2`,
+  `floor((2^a - 1)^(3/2)) = 2^(3a/2) - 3*2^(a/2 - 1)`, binary
+  `1^(a-1) 0 1 0^(a/2-1)`, so the floor charge against the top of the cell is exactly
+  `3*2^(a/2-1)`. One binomial tail: `(1-x)^(3/2) = 1 - (3/2)x + (3/8)x^2 + ...` at
+  `x = 2^(-a)` leaves a remainder in `(0,1)` once both leading terms are integers.
+  Verified to `a = 400`, bits to `a = 40`, and the measured remainder halves per step
+  of 2 in `a` exactly as predicted. For **odd** `a` the leading term is irrational and
+  the value becomes a Beatty value `floor(sqrt 2 * K)`,
+  `K = 2^((3a-1)/2) - 3*2^((a-3)/2)`, verified to `a = 200` -- digits of `sqrt 2`, the
+  same seam the exponent bridge found at the end of an exact even tower.
+  `J-repunit-floor-power-is-closed-form`.
+- **Why that family is the right one.** By Catalan, proved by Mihailescu, `2^a - c^k = 1`
+  has no solution with `c,k >= 2`, so `M_a` is never a perfect power for `a >= 2` and
+  `exactRun(M_a) = 0`. The repunits are **maximally inexact** starts -- the opposite of
+  the locus every exact floor-power theorem here lives on -- and the charge is still
+  exact. So the floor charge is not intrinsically unknowable away from perfect powers,
+  only unknowable generically. Mihailescu now has a registry entry; the laboratory had
+  been citing it in prose for the `n^3 - b^4` window without one.
+- **Three rounds of searching say where the mathematics is not.** A 37-agent adversarial
+  run over eight algebraic bridges returned seven restatements and one sharpness lemma;
+  the mod-3 law I thought was new is at `docs/collatz_mathematics.md:144`, proved; the
+  entry problem I seeded is `juggler_odd_sharp_suffix.md`, already
+  DIOPHANTINE_ESCALATION_REQUIRED with Mihailescu, Hall, Liouville, Roth, Danilov and
+  Bennett all tested. The two things that did land today were a computation this journal
+  had already named and a closed form on a family nobody had looked at. Marginal return
+  on "new algebra near the valuation identities" is about zero; the standing "best next
+  question" entries are where the value is.
+
 ## 2026-09-19 -- the floor is tight at every cycle it is supposed to exclude
 
 - **Objective:** this morning's entry names the Juggler's missing pointwise odd-run
