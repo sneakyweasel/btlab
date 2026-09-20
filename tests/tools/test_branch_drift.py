@@ -32,6 +32,47 @@ import branch_drift as BD  # noqa: E402
 #:
 #: Assessed 14 September 2026.
 ACKNOWLEDGED: dict[str, str] = {
+    "claude/goofy-kare-1a92fd": (
+        "PENDING EXTRACTION, and it answers a question main spent a whole "
+        "session treating as open. Read 2026-09-20. It CORRECTS two rows. "
+        "J-proposition-j-on-collatz-is-terras: the mechanism is Terras 1976 "
+        "(the parity bijection on Z/2^d, hence density one, with Everett 1977) "
+        "but the exponent 0.050044 is LAGARIAS 1985, Theorem D -- 'known since "
+        "1976' holds for the density and not for the rate. It also corrects "
+        "J-paper-b-survivors-are-oeis-a076227. Seven literature records, of "
+        "which two matter most: nakanishi-2026-parity-vector-structure is on "
+        "Jxiv (not blocked) and was READ IN FULL -- it classifies parity "
+        "vectors by number of 1s rather than length and contains NO ASYMPTOTIC "
+        "ANYWHERE; and hikawa-2026-parity-vector-structures records the "
+        "author's version note, whose Section 6 PROVES "
+        "log_2 W(d) = gamma d + O(log d) with gamma = lambda H(1/lambda), and "
+        "whose Conjecture 7.1 states W(d) = Theta(d^(-3/2) 2^(gamma d)) -- THE "
+        "PRIOR STATEMENT OF THE d^(-3/2), in the weight basis, numerical and "
+        "unproved, with no oscillation, no almost-periodicity and no "
+        "amplitude. REGISTRY COLLISION AT MERGE: its "
+        "hikawa-2026-parity-vector-structures carries DOI .../29894.84804/1, "
+        "the same work as main's hikawa-2026-finite-dimensional-parity-vectors, "
+        "and hikawa-nakanishi-2026-parity-vector-analysis exists on both sides "
+        "under one id. Reconcile into single records; "
+        "test_literature_records_are_unique_by_id_and_by_doi will fail until "
+        "someone does."
+    ),
+    "claude/elated-hopper-e20999": (
+        "PENDING MERGE, and it clears main's last red Paper C gate. Read "
+        "2026-09-20. 86247b5d closes two verification gaps. First, Corollaries "
+        "5.4 and 5.5 sat inside Theorem 1's sentence with no verification-table "
+        "row: the answer is a split, not an either/or -- "
+        "Production.failures_logMass_ge IS 5.5(2)'s log-mass clause, "
+        "kernel-checked for 0 < lambda <= 13/40, while 5.4 is formalized "
+        "nowhere because its dyadic-block pigeonhole does not exist in Lean, "
+        "and 5.5(1) and (3) are one unwritten instantiation away. The barrel "
+        "had contradicted itself on this since failures_logMass_ge landed. "
+        "Second, Appendix A claimed thirty imports while naming 29; wiring in "
+        "FateProductionWords makes it thirty-one named and thirty-one "
+        "imported. Also corrects J-paper-c-production-words-are-prefix-free "
+        "and J-paper-c-trust-surface. Merging is a decision for Philippe, not "
+        "a gate."
+    ),
     "claude/exponent-floor-3n1-2adic-mvwa96": (
         "PENDING EXTRACTION, and it sharpens the bridge row main already has. "
         "Read 2026-09-20. Two rows main lacks, "

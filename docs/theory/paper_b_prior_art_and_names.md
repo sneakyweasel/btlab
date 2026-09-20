@@ -40,11 +40,18 @@ identification.
 
 ## What is priority-destroying
 
-- **Terras (1976).** Proposition J applied to Collatz *is* Terras: the parity
-  map is a bijection on `Z/2^d`, so `E_d(N) = O(1)` and the non-descending
-  starts are `N^(1 - 0.050044)`. This is the quantitative density-one stopping
-  time theorem and it is fifty years old. Recorded at
-  `J-proposition-j-on-collatz-is-terras`.
+- **Terras (1976), for the mechanism; Lagarias (1985), for the exponent.**
+  Proposition J applied to Collatz reproduces the classical theorem because of
+  Terras's parity bijection on `Z/2^d`, which gives `E_d(N) = O(1)` and hence
+  density one, jointly with Everett 1977. But the `0.050044` in
+  `N^(1 - 0.050044)` is **not** Terras's: it enters only through
+  `N_d/2^d <= theta^d`, and that bound is Lagarias 1985, Theorem D, with
+  `eta = 1 - H((log_2 3)^(-1)) = 0.0500444728...`. "Known since 1976" holds for
+  the density and not for the rate, which is known since 1985. Recorded at
+  `J-proposition-j-on-collatz-is-terras`, corrected on branch
+  `claude/goofy-kare-1a92fd`. The caveat travels with it: Terras 1976 itself
+  could not be read here (matwbn is behind an anti-bot gate), so this rests on
+  Lagarias's annotation of Terras rather than on Terras's text.
 - **The OEIS sequences.** `N_d` is A076227 and `M_d` is A100982; neither is
   ours. That the gaps of A020914 are 1 or 2 is the *defining property* of
   A022921, elementary and in OEIS since 2009 — so the level-zero shadow of
@@ -75,11 +82,14 @@ strength of this page.
 
 ## The open risk, stated plainly
 
-There are **three** papers, not two, and all three are **unread here**. They
-are on ResearchGate, which returns 403 to this environment; the Zenodo deposit
-is the software only; and neither DataCite nor OpenAlex holds an abstract or
-sees a PDF. Nobody in this laboratory has read a sentence of any of them, so
-Theorem 7.3, Equation 48, Conjecture 9.1 and Table 4 remain secondhand.
+There are **three** ResearchGate papers, not two, and no full text of any of
+them has been read here. But "unread" was too strong when first written on
+this page, and the correction matters more than the overstatement: a peer
+session on branch `claude/goofy-kare-1a92fd` read the **author-written version
+notes** on the ResearchGate records in the browser pane on 19 September, while
+that route was still open, and read **Nakanishi's Jxiv paper in full**. What
+follows below is largely settled because of that, not because of anything on
+main.
 
 The metadata, though, is now first-hand — DataCite and OpenAlex both answer
 where ResearchGate does not, checked 20 September 2026:
@@ -110,13 +120,49 @@ PDF is worth. **This is now a thing to hand to a human.** Anyone with an
 ordinary browser can open these three pages in seconds, and doing so would
 settle the open question below outright.
 
-Everything below the toolkit line is therefore provisional. In particular this
-page does **not** assert that the limit theory is absent from his work. What
-can be said is only that it is absent from the toolkit: the quasi-stationary
-theory built on `word_counts` — the boundary fraction `R_d`, the phase-indexed
-profile, its linear-times-geometric closed form, `chernoff_rate_at`, the
-rational barriers, `psi` and the meander prefactor — has no counterpart in any
-file of HIS repository or in either of his manuals. Resolving this needs the PDFs.
+## The limit theory: how much of it is prior
+
+This page first said the question was open. It is largely not, and the answer
+sits on `claude/goofy-kare-1a92fd` rather than on main. From the July paper's
+author-written version note, read while the browser route was open:
+
+- **Section 6, PROVED:** `log_2 W(d) = gamma d + O(log d)` with
+  `gamma = lambda H(1/lambda) ~ 1.5056`, `lambda = log_2 3`, `H` the binary
+  entropy — a cycle-lemma argument plus standard entropy estimates, stated in
+  the **weight basis** with a length-basis analogue. The decay rate
+  `c = lambda(1 - H(1/lambda)) ~ 0.0793` is the length-basis `eta` of Lagarias
+  1985 divided by `beta`.
+- **Section 7, Conjecture 7.1:** `W(d) = Theta(d^(-3/2) 2^(gamma d))`,
+  motivated numerically over `100 <= d <= 10000` by the residual agreeing with
+  the ballot correction `-(3/2) log_2 d` to within 0.3 bits. **This is a prior
+  statement of the `d^(-3/2)`.**
+
+So the exponent is not ours to claim. What has **no** counterpart there is
+everything that makes the laboratory's version a limit theorem rather than a
+shape: it is a `Theta` and not an asymptotic, it is conjectural and numerical
+rather than proved, and it carries **no oscillation, no almost-periodicity and
+no amplitude constant** — the 0.3-bit tolerance is wide enough to hide a
+bounded oscillating prefactor without seeing one. `psi`, the meander
+prefactor, the phase-indexed quasi-stationary profile, `R_d`,
+`chernoff_rate_at` and the rational barriers have no counterpart in any of it.
+The September paper carries the same Section 6 result and says outright that
+the sequence values are not claimed as new.
+
+Nakanishi's separate Jxiv paper — *A Structural Study of Parity Vectors in the
+Collatz Conjecture*, [doi:10.51094/jxiv.3096](https://doi.org/10.51094/jxiv.3096),
+v2 of 7 September 2026 — **was read in full** (Jxiv is not blocked). It also
+classifies by number of 1s rather than by length, proves for each finite `d`
+that the constructed sequences contain no unconverged sub-parity vector of
+length `G_d` with exactly `d` ones (Theorem 6), explicitly does not establish
+the conjecture, and contains **no asymptotic anywhere**.
+
+One more attribution worth carrying: Hikawa and Nakanishi are the authors of
+the **A076227 b-file** against which this laboratory checked `N_d` on all 3509
+terms.
+
+**What is still genuinely unread:** the bodies of all three ResearchGate
+papers. Theorem 7.3, Equation 48 and Table 4 remain secondhand, and the
+version notes are not the papers.
 
 ## How the two naming errors happened
 

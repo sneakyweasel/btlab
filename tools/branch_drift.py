@@ -41,6 +41,7 @@ ARTIFACTS = {
     "probe": ("src/", ".py"),
     "test": ("tests/", ".py"),
     "dossier": ("docs/problems/", ".md"),
+    "literature": ("literature/", ".json"),
 }
 
 
@@ -73,15 +74,25 @@ def refs_are_visible(repo: Path) -> bool:
     return bool(_git(repo, "for-each-ref", "--format=%(refname:short)", "refs/remotes").strip())
 
 
-def _ledger_ids(repo: Path, ref: str) -> set[str]:
+def _ledger_rows(repo: Path, ref: str) -> dict[str, str]:
+    """Map row id to statement at ``ref``; empty if the ledger is unreadable."""
+
     raw = _git(repo, "show", f"{ref}:{LEDGER}")
     if not raw.strip():
-        return set()
+        return {}
     try:
         rows = json.loads(raw)
     except json.JSONDecodeError:
-        return set()
-    return {r["id"] for r in rows if isinstance(r, dict) and r.get("id")}
+        return {}
+    return {
+        r["id"]: r.get("statement") or ""
+        for r in rows
+        if isinstance(r, dict) and r.get("id")
+    }
+
+
+def _ledger_ids(repo: Path, ref: str) -> set[str]:
+    return set(_ledger_rows(repo, ref))
 
 
 @dataclass
@@ -91,11 +102,16 @@ class Drift:
     behind: int
     last_commit: str
     ledger_ids: list[str] = field(default_factory=list)
+    ledger_edits: list[str] = field(default_factory=list)
     files: dict[str, list[str]] = field(default_factory=dict)
 
     @property
     def carries_work(self) -> bool:
-        return bool(self.ledger_ids) or any(self.files.values())
+        return (
+            bool(self.ledger_ids)
+            or bool(self.ledger_edits)
+            or any(self.files.values())
+        )
 
     def as_dict(self) -> dict[str, Any]:
         return {
@@ -104,6 +120,7 @@ class Drift:
             "behind": self.behind,
             "last_commit": self.last_commit,
             "ledger_ids": self.ledger_ids,
+            "ledger_edits": self.ledger_edits,
             "files": {k: v for k, v in self.files.items() if v},
         }
 
@@ -116,9 +133,22 @@ def drift_for(repo: Path, ref: str, base: str = "main") -> Drift:
     if d.ahead == 0:
         return d
 
-    d.ledger_ids = sorted(_ledger_ids(repo, ref) - _ledger_ids(repo, base))
-
     merge_base = _git(repo, "merge-base", base, ref).strip()
+
+    here = _ledger_rows(repo, ref)
+    on_main = _ledger_rows(repo, base)
+    at_fork = _ledger_rows(repo, merge_base)
+    d.ledger_ids = sorted(set(here) - set(on_main))
+    # A row the BRANCH changed since the fork, and that main has not already
+    # changed the same way. Comparing against main instead of the fork would
+    # report every row main has edited since -- the same calibration error
+    # test_files_are_counted_against_the_merge_base_not_main was written for,
+    # and it was made here first.
+    d.ledger_edits = sorted(
+        i
+        for i in set(here) & set(at_fork) & set(on_main)
+        if here[i] != at_fork[i] and here[i] != on_main[i]
+    )
     added = {
         line
         for line in _git(
@@ -156,6 +186,11 @@ def render(drifts: list[Drift]) -> str:
         if d.ledger_ids:
             lines.append(f"    {len(d.ledger_ids)} ledger row(s) main lacks:")
             lines.extend(f"        {i}" for i in d.ledger_ids)
+        if d.ledger_edits:
+            lines.append(
+                f"    {len(d.ledger_edits)} ledger row(s) the branch CORRECTS:"
+            )
+            lines.extend(f"        {i}" for i in d.ledger_edits)
         for kind, fs in d.files.items():
             if fs:
                 lines.append(f"    {len(fs)} {kind} file(s) added on the branch:")
