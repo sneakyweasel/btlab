@@ -192,6 +192,61 @@ against `J-repunit-floor-power-is-closed-form` — and the odd-\(a\) half is
 the Beatty form \(\lfloor\sqrt2\,K\rfloor\). Neither half, nor the
 interleaving, returns a hit.
 
+### What the entries' own notes say
+
+Reading the comment and link fields, rather than only the terms, turned up
+four things.
+
+**The plateau law has a base-three restatement, and it is striking.** A
+comment of Mohammed Bouayoun (April 2006) characterises A054414 as the
+exponents \(n\) for which \(2^n\) begins with digit **2** in base three.
+Verified here on \(1..399\), and against the recursion: Paper B's
+survivor count doubles at length \(d\) **exactly when \(2^d\) starts with
+a ternary 2**, the one exception being \(d = 1\) as above. That is the
+same fact as "no power of three lies in \([2^{d-1}, 2^d)\)" — if the
+leading ternary digit is 2 there is no room for a power of three in the
+cell — but it is a reading of the plateau law in digits rather than in
+inequalities, and the laboratory did not have it.
+
+**The Beatty complementarity is not ours.** A comment of Robert G. Wilson v
+(May 2014) on A054414 states that, except for 1, it is the complement of
+A020914 and the two form a Beatty pair — the same statement derived
+independently here today, exception included. The identification of that
+pair with the plateaus of `density_flat_of_window_empty` is the
+laboratory's; the complementarity itself was in print eleven years ago,
+and A054414 has carried "these numbers appear in connection with the 3x+1
+problem" since 2006.
+
+**The odd counts are equal temperaments.** A206788 and A060528 describe
+their terms as equal divisions of the octave giving good approximations to
+the perfect fifth and fourth — so the laboratory's leftover odd counts 12,
+53, 665 are 12-tone equal temperament, the 53-tone Pythagorean temperament
+and its successors. The cycle-length obstruction and musical temperament
+are the same Diophantine problem about \(\log_2 3\), approached from the
+two sides. The chain is \(\mathrm{A005664}\subset\mathrm{A060528}\subset
+\mathrm{A206788}\), and the laboratory's counts sit across all three: 16266
+is in A206788 alone, which is the same irregularity A060528's own note
+records as its "self-accumulating nature" failing at particular terms.
+
+**The even-run cap constant has a name.** `J-even-run-dual-of-lemma-eight-is-capped-by-the-shape`
+caps the even-run gcd at \(\lfloor(\log_2 3 - 1)a\rfloor\). A comment on
+A020857 records \(\log_2 3 - 1 = 0.5849625\ldots\) as the exponent
+governing the count of odd coefficients in \((1+x)^n \bmod 2\), and as the
+Hausdorff dimension of the Sierpiński triangle. The cap's slope and the
+separation exponent \(2 - \log_2 3 = 0.4150375\) are that constant and its
+complement; nothing follows from the coincidence, but the constant should
+be called by its name.
+
+**Two adjacent items, neither pursued.** A054414's comment records a
+conjecture of N. J. A. Sloane that for every \(n \ge 15\), \(2^n\) has a 0
+in its ternary expansion — an open question about ternary digits of powers
+of two, which is the laboratory's \(2^L\) against \(3^o\) comparison in
+another costume. And A020857 links an expository piece by Eliahou on
+non-trivial \(3n+1\) cycles (CNRS, *Images des Mathématiques*, 2011) by the
+author of `eliahou-1993-collatz-cycle-lengths`, which the registry does not
+carry.
+
+
 ## What this does not say
 
 No bound moves, no cycle is excluded, no floor is raised,
