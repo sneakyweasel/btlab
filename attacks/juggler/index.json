@@ -3676,7 +3676,7 @@
         "J-repunit-floor-power-is-closed-form"
       ],
       "aliases": [],
-      "nk_cluster": "The Mersenne numbers in the Lemma 8 floor carry no prime content"
+      "nk_cluster": "The (lambda, a, b) coordinate on x+1 is Williams 2026, not ours"
     },
     {
       "id": "minimal_anchor_closure",
@@ -3880,7 +3880,8 @@
       "decision": "CLOSE",
       "ledger_ids": [
         "J-lemma-eight-floor-is-tight-at-every-known-cycle",
-        "J-the-missing-juggler-floor-is-worth-a-quarter-at-length-22"
+        "J-the-missing-juggler-floor-is-worth-a-quarter-at-length-22",
+        "J-knight-is-sign-free-and-catalan-bounds-the-escapes"
       ],
       "aliases": [],
       "nk_cluster": "The pointwise floor is tight at every cycle, and slack at every leftover"
