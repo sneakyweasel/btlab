@@ -1,0 +1,24 @@
+{
+  "id": "knight-2026-collatz-high-cycles",
+  "title": "Collatz high cycles do not exist",
+  "authors": [
+    "K. Knight"
+  ],
+  "year": 2026,
+  "identifiers": {
+    "doi": "10.1016/j.disc.2026.114812"
+  },
+  "url": {
+    "doi": "https://doi.org/10.1016/j.disc.2026.114812"
+  },
+  "problem_area": "collatz-cycles",
+  "relevant_concepts": [
+    "Christoffel words",
+    "parity vector",
+    "cycle existence criterion",
+    "Sturmian words"
+  ],
+  "project_relationship": "unassessed",
+  "status": "NOT CONSULTED",
+  "notes": "Discrete Mathematics 349 (2026) 114812. NOT READ -- found in the reference list of williams-2026-collatz-coordinates, supplied 20 September 2026; the publisher and arxiv are blocked by this environment's egress policy and nothing about its content is claimed. FLAGGED AS THE MOST URGENT UNREAD ITEM FOR THE CYCLE PROGRAMME. Williams describes it as using Christoffel words to characterise the parity vector of a high cycle, giving a combinatorial-geometric criterion for cycle existence, and its title asserts a cycle non-existence result. That is the laboratory's own machinery and its own subject: Paper A is a cycle-word paper, the near-convergent leftovers 19, 84, 569, 1054 are a Sturmian/Christoffel structure (J-winkler-sandwich-holds-on-the-laboratory-counts records the same rotation orbit), and J-juggler-cycle-words-are-collatz-negative-cycle-words identifies Juggler cycle words with Collatz negative-cycle words. A 2026 Discrete Mathematics paper claiming high cycles do not exist may bear directly on, subsume, or be comparable with Paper A's cycle-word programme and with the 3x-1 period bound of J-negative-floor-makes-the-mirror-unconditional. Read before any further cycle branch. Do not cite for anything until read."
+}
