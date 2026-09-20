@@ -37,8 +37,8 @@ import branch_drift as BD  # noqa: E402
 #: latest-progress-summary reached +8 unread on 2026-09-20 after being
 #: acknowledged at +5. Update the sha in the same commit as the reason.
 READ_AT: dict[str, str] = {
-    "claude/exponent-floor-3n1-2adic-mvwa96": "54fbfca6",
-    "claude/latest-progress-summary-s011un": "e8f765ff",
+    "claude/exponent-floor-3n1-2adic-mvwa96": "fa27313b",
+    "claude/latest-progress-summary-s011un": "49493758",
     "claude/goofy-kare-1a92fd": "8aad2aae",
     "claude/elated-hopper-e20999": "86247b5d",
 }
@@ -166,7 +166,16 @@ ACKNOWLEDGED: dict[str, str] = {
         "the ScienceDirect PII and hal-04261183 in the top two hits, plus "
         "the author own publication page linking that PII. Note the year "
         "token is 2025 although the article is cited as 2026. His second "
-        "2026 paper is registered too."
+        "2026 paper is registered too. "
+        "DELTA TO fa27313b: the 3x-1 floor reaches 2^40 -- sixteen disjoint "
+        "chunks, 549755813864 odd starts, 0 failures, 0 new cycles -- so "
+        "through neg_cycle_finance a fourth negative cycle of shortcut 3x+1 "
+        "needs period 9538065 with 6017849 odd steps, up from 4404167. Only "
+        "the floor is empirical; the implication is Lean. It also flags an "
+        "anomaly rather than writing it down: all eight new chunks report "
+        "the same record excursion as [3,2^38), which across disjoint "
+        "ranges is improbable enough to be under check. And the block "
+        "expansion turns out to be Brox."
     ),
     "claude/latest-progress-summary-s011un": (
         "PENDING EXTRACTION, and it has GROWN since it was first acknowledged "
@@ -212,7 +221,19 @@ ACKNOWLEDGED: dict[str, str] = {
         "applies the families; factoring the geometry is blocked because "
         "FateProduction.lean is one of the 83 inputs pinned by Paper C, so "
         "the branch stops at the release pin and says so rather than "
-        "duplicating."
+        "duplicating. "
+        "DELTA TO 49493758, headline an EXPONENT ABOVE PAPER C LAMBDA**: "
+        "the averaged recursion and the production inequality at the "
+        "averaged coefficient are now Lean, with note, ledger row and "
+        "dossier. It carries its own correction, which is the instructive "
+        "part: exponent_certificate enumerates every rational of smaller "
+        "denominator in the window and returns 67/136, contradicting what "
+        "the commit before it had written into the Lean docstring, the "
+        "note, the ledger row and the dossier -- that 100/203 is the "
+        "smallest-denominator rational there. It is not. The real reason "
+        "to prefer 100/203 is margin: zeta is 6.29e-6 at 67/136 against "
+        "2.71e-5. A minimality claim asserted in four places and pinned by "
+        "none until a probe was written for it."
     ),
 }
 
