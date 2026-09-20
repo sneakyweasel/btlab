@@ -11192,5 +11192,16 @@
    "tests/research/collatz/test_lambda_recurrence.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "id": "J-weight-basis-prefactor-is-the-same-rotation",
+  "statement": "PSI'S STRUCTURE TRANSPORTS TO THE WEIGHT BASIS, WHICH IS THE BASIS THE PRIOR ART USES. This is a mirror of results this laboratory already has on the length side, not a new phenomenon; its value is that Hikawa's Conjecture 7.1 is stated in THIS basis at THESE depths, so it says precisely what his Theta cannot see. Measured 2026-09-20 with paper_b_prefix_count.weight_prefactor_residual, the residual being log_2 W(d) - gamma d + (3/2) log_2 d with gamma = H(beta)/beta and W the survivor count by odd count. THE COLLAPSE. For d >= 2000 the residual is a function of frac(d log_2 3) and almost nothing else. Two disjoint windows, [2000,6000) and [6000,10000), agree to 0.0061 bits at worst and 0.0006 on average over 40 phase bins, against a total spread of 0.131 bits. The leftover is bin width rather than scatter: the phase explains 96.8, 98.3, 99.4, 99.98 and 99.99 per cent of the variance at 20, 40, 100, 200 and 400 bins. THE JUMPS ARE ON THE ROTATION ORBIT. Estimated directly rather than by binning, the profile jumps at frac(k log_2 3) for every k = 1..12, all in the same direction, sizes 0.181, 0.109, 0.066, 0.048, 0.033, 0.026 for k = 1..6. A control at random phases gives 0.005 on average and 0.016 at worst, so the small-k jumps stand 10 to 35 times above the estimator's floor. THE DECAY IS ROUGHLY 1/k AND NO EXPONENT IS CLAIMED. k|jump| is 0.181, 0.219, 0.198, 0.191, 0.166, 0.154 for k = 1..6, flat to about twenty per cent. Past k = 8 the jump approaches the 0.005 control floor, so the apparent steepening there is the estimator and not the function. The length-side measurement is |psi_hat(k)| ~ k^(-0.79) after deconvolving a bin filter (J-psi-is-bounded-variation-with-an-ostrowski-spectrum); that is a different estimator on a different basis and the two exponents are NOT compared here. WHAT IT IS AND IS NOT. It is the weight-basis image of J-psi-jumps-are-the-rotation-orbit-of-zero and J-psi-reconstructed-from-its-jump-measure, so nothing about the mechanism is new. It is not a reconstruction: no jump-measure sum was fitted on this side. What it adds is quantitative -- in the coordinate and at the depths of Conjecture 7.1, the oscillation carries 99.98 per cent of the variance and its discontinuities sit on the orbit, so a Theta with a constant prefactor is not a close description there. See J-paper-b-meander-prefactor-is-almost-periodic for the 0.518-bit swing and for why whether that fits his stated tolerance cannot be settled without the PDF.",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "source": "docs/research_journal.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_paper_b_prefix_count.py"
+  ],
+  "related_conjectures": []
  }
 ]

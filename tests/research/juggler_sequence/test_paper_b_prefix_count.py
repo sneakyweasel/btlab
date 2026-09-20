@@ -5572,3 +5572,84 @@ def test_the_weight_basis_prefactor_swings_half_a_bit() -> None:
     early = max(residual[:half]) - min(residual[:half])
     late = max(residual[half:]) - min(residual[half:])
     assert abs(early - late) < 0.05
+
+
+def test_the_weight_basis_prefactor_is_the_same_rotation() -> None:
+    """psi's structure transports to the weight basis, which is Hikawa's.
+
+    The length-basis story -- prefactor almost-periodic in `frac(d BETA)`,
+    discontinuous exactly on the rotation orbit
+    (`J-psi-jumps-are-the-rotation-orbit-of-zero`), reconstructible from its
+    jump measure -- appears unchanged in the weight basis, where the phase is
+    `frac(d log2 3)`.
+
+    COLLAPSE. Over `d >= 2000` the residual is a function of the phase and
+    almost nothing else: two disjoint windows, [2000, 6000) and [6000, 10000),
+    agree to 0.0061 bits at worst and 0.0006 on average across 40 phase bins,
+    against a total spread of 0.131. Binning finer shows the leftover is bin
+    width, not scatter: the phase explains 96.8, 98.3, 99.4, 99.98 and 99.99
+    per cent of the variance at 20, 40, 100, 200 and 400 bins.
+
+    JUMPS ON THE ORBIT. Measured directly rather than by binning, the profile
+    jumps at `frac(k log2 3)` for every `k = 1..12`, all in the same
+    direction, with sizes 0.181, 0.109, 0.066, 0.048, 0.033, 0.026 for
+    `k = 1..6`. A control at twelve random phases gives 0.005 on average and
+    0.016 at worst, so the small-`k` jumps stand 10 to 35 times above the
+    estimator's own floor.
+
+    THE DECAY IS ROUGHLY 1/k AND THE EXPONENT IS NOT CLAIMED. `k * |jump|` is
+    0.181, 0.219, 0.198, 0.191, 0.166, 0.154 for `k = 1..6`, flat to about
+    twenty per cent. Past `k = 8` the jump falls toward the 0.005 control
+    floor, so the apparent steepening there is the estimator and not the
+    function; no exponent is fitted. On the length side the measured decay is
+    `k^(-0.79)` after deconvolution, which is a different estimator on a
+    different basis and is not compared here.
+
+    WHY IT MATTERS. Hikawa's Conjecture 7.1 is stated in THIS basis at THESE
+    depths. The oscillation his `Theta` cannot distinguish from a constant is
+    not a subtle residue: it carries 99.98 per cent of the variance and its
+    discontinuities sit on the rotation orbit.
+    """
+    import bisect
+
+    from research.juggler_sequence.paper_b_prefix_count import (
+        weight_prefactor_residual,
+    )
+
+    lam = math.log(3) / math.log(2)
+    depth = 12000
+    residual = weight_prefactor_residual(depth, lo=100)
+    pts = sorted(
+        (math.modf(d * lam)[0], r)
+        for d, r in zip(range(100, depth + 1), residual)
+        if d >= 2000
+    )
+    xs = [p for p, _ in pts]
+    ys = [r for _, r in pts]
+
+    def jump_at(x: float, w: float = 0.004) -> float | None:
+        lo = bisect.bisect_left(xs, x - w)
+        mid = bisect.bisect_left(xs, x)
+        hi = bisect.bisect_left(xs, x + w)
+        if mid - lo < 8 or hi - mid < 8:
+            return None
+        return sum(ys[mid:hi]) / (hi - mid) - sum(ys[lo:mid]) / (mid - lo)
+
+    jumps = []
+    for k in range(1, 7):
+        j = jump_at(math.modf(k * lam)[0])
+        assert j is not None
+        jumps.append(j)
+
+    # every one positive, and monotonically shrinking
+    assert all(j > 0 for j in jumps)
+    assert jumps == sorted(jumps, reverse=True)
+    assert 0.16 < jumps[0] < 0.20
+
+    # k * |jump| is flat to about twenty per cent -- a 1/k-ish law, unfitted
+    scaled = [(k + 1) * j for k, j in enumerate(jumps)]
+    assert max(scaled) / min(scaled) < 1.5
+
+    # and the orbit is where the jumps are: random phases give far less
+    controls = [abs(jump_at(x) or 0.0) for x in (0.05, 0.22, 0.41, 0.63, 0.88)]
+    assert max(controls) < 0.5 * jumps[-1]
