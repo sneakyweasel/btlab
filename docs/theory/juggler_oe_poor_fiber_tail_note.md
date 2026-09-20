@@ -447,10 +447,46 @@ and `eps_mul_Hlen_le` ((F3)); `FiberParity.resonance_count_le'`
 (Lemma 3); and `FiberParity.poor_count_le'` (4.1) with
 `poor_logMass_le` (4.2).
 
+**§5's family bound is done too.** `family_OE_averaged` in
+`FatePoorProduction.lean` is Paper C's `FateProduction.family_OE` with two
+inputs swapped and nothing else changed: the per-fiber bound is
+`nonpoor_fiber_logMass_ge` in place of `good_fiber_logMass_ge`, so a fiber's
+hypothesis is \(\neg\,\mathrm{Poor}\) rather than `Good`; and the
+exceptional set is `poor_logMass_le` in place of `bad_logMass_le`, so the
+subtracted mass is \(2100\,\varepsilon_U/\eta_0^2\) rather than
+\(306\,\varepsilon_U\). Everything structural — disjointness of the
+even-image parts, their membership in \(A\) by backward closure, the
+shell containment — is the original's, unmodified.
+
+`FateProduction` itself is untouched, deliberately. It is a Paper C input
+and the \(2/9\) chain it carries is what the manuscript cites; this is a
+parallel statement at a different coefficient on a different range of
+\(m\). Both are true and they are not the same theorem: the \(2/9\)
+chain holds for every \(m\ge10^6\), while this one needs Lemma 2's
+block hypotheses, which bite only past \(u_0(\eta_0)\).
+
+The per-fiber bound is written with an **absolute** error,
+\((c-\varepsilon_m)/m\), where the original has the relative
+\(\tfrac29(1-\tfrac{25}2\varepsilon_m)\). A relative form carries a
+constant of size \(1/c\), which blows up as \(\eta_0\to\tfrac12\);
+the absolute form carries none. The coefficient's nonnegativity,
+\(\varepsilon_U\le c\), is not assumed: it follows from the block
+hypothesis, which forces \(U^{1/3}\ge1920/\eta_0^2\) and hence
+\(\varepsilon_U\le\eta_0^2/1920\). That needs
+\(\eta_0\le\tfrac14\), which costs nothing, since the whole point is
+\(\eta_0\to0\).
+
 The formalization changed one thing and confirmed the rest: the constant
 in (4.1) is \(430\), not the \(420\) first printed here, for the
-reason recorded in §4. What remains unformalized is §5 — the splice into
-the production layer — and the block lock's own corollary shape for it.
+reason recorded in §4.
+
+**What is still not Lean.** Running the recursion. Turning the family
+bound into an exponent needs `production_two`, `zeta`, `recursion_lemma`
+and the seed, all stated in `FateProduction` and `FateContagionBound`
+against the literal \(2/9\) and \(13/40\). Restating them at
+\(c=(2/3)(\tfrac12-\eta_0)\) is arithmetic over what is now proved,
+not mathematics — but it is not done, and until it is, the sentence
+"Theorem 5.3 is Lean above \(0.4926\)" is not yet earned.
 
 **Lemma 1 is done and kernel-checked.**
 `Problems/Juggler/FateBlockLock.lean`, `BlockLock.block_lock`, in the

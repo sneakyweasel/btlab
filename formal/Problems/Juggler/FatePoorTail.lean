@@ -353,6 +353,88 @@ theorem poor_logMass_le {U N : ℕ} (hU : 10 ^ 6 ≤ U) {η₀ : ℝ} (hη0 : 0 
     _ ≤ (eps U / η₀ ^ 2) * 2100 := mul_le_mul_of_nonneg_left hfrac hc2
     _ = 2100 * eps U / η₀ ^ 2 := by ring
 
+/-! ### The per-fiber log-mass of a fiber that is not poor -/
+
+/-- **The non-poor fiber bound.** A fiber that is not `η₀`-poor carries even-image log-mass
+at least `(c - ε_m)/m`, where `c = (2/3)(1/2 - η₀)` is the note's §5 coefficient.
+
+This is `good_fiber_logMass_ge` with its input replaced: there the even count is
+`H_m/3 - 2` from Lemma 4.2, here it is `(1/2 - η₀)H_m` from not being poor, and `H_m` is
+`oeFiber_card_ge` in both. The error is written absolutely, `c - ε_m`, rather than
+relatively as the `2/9(1 - (25/2)ε_m)` of the original: a relative form carries a
+constant of size `1/c`, which blows up as `η₀` approaches `1/2`, while the absolute form
+has no constant at all. -/
+theorem nonpoor_fiber_logMass_ge {m : ℕ} (hm : 10 ^ 6 ≤ m) {η₀ : ℝ} (hη0 : 0 < η₀)
+    (hη1 : η₀ ≤ 1 / 2) (hnp : ¬ Poor η₀ m) :
+    (2 / 3 * (1 / 2 - η₀) - eps m) / m
+      ≤ ∑ n ∈ {n ∈ oeFiber m | (n ^ 3).sqrt % 2 = 0}, (1 : ℝ) / n := by
+  have hm1 : 1 ≤ m := by omega
+  have hm0 : (0 : ℝ) < m := by exact_mod_cast hm1
+  set u := (m : ℝ) ^ ((1 : ℝ) / 3) with hu
+  have hu0 : 0 < u := Real.rpow_pos_of_pos hm0 _
+  have hu3 : u ^ 3 = m := by
+    rw [hu, ← Real.rpow_natCast, ← Real.rpow_mul hm0.le]; norm_num
+  have hu100 : (100 : ℝ) ≤ u := by
+    rw [hu, Numerics.le_rpow_iff_pow (n := 3) hm0.le (by norm_num) (by norm_num)]
+    have : ((10 ^ 6 : ℕ) : ℝ) ≤ m := by exact_mod_cast hm
+    norm_num at this ⊢
+    linarith
+  have heps : eps m * u = 1 := eps_mul_cbrt hm1
+  have he : eps m = 1 / u := by field_simp; linarith
+  set c : ℝ := 2 / 3 * (1 / 2 - η₀) with hc
+  have hc0 : 0 ≤ c := by rw [hc]; linarith
+  have hc3 : c ≤ 1 / 3 := by rw [hc]; linarith
+  -- not poor gives the even count
+  have hH := oeFiber_card_ge hm1
+  rw [← hu] at hH
+  have hHpos : (0 : ℝ) < ((oeFiber m).card : ℝ) := by linarith
+  have hnp' : |(evenImageCount m : ℝ) - ((oeFiber m).card : ℝ) / 2|
+      < η₀ * ((oeFiber m).card : ℝ) := by
+    rw [Poor] at hnp; linarith [not_le.mp hnp]
+  have hG : c * u - 1 / 2 ≤ (evenImageCount m : ℝ) := by
+    have h1 : (1 / 2 - η₀) * ((oeFiber m).card : ℝ) ≤ (evenImageCount m : ℝ) := by
+      have := abs_lt.mp hnp'
+      linarith [this.1]
+    have h2 : (1 / 2 - η₀) * (2 / 3 * u - 1) ≤ (1 / 2 - η₀) * ((oeFiber m).card : ℝ) :=
+      mul_le_mul_of_nonneg_left hH (by linarith)
+    have h3 : (1 / 2 - η₀) * (2 / 3 * u - 1) = c * u - (1 / 2 - η₀) := by rw [hc]; ring
+    linarith
+  -- every member lies below `u^4 + 2u`
+  have hbound : ∀ n ∈ oeFiber m, (n : ℝ) < u ^ 4 + 2 * u := by
+    intro n hn
+    have h1 := fiber_lt_rpow hn
+    have h2 := rpow_four_thirds_succ_le m
+    have h3 : (m : ℝ) ^ ((4 : ℝ) / 3) = u ^ 4 := by
+      rw [hu, ← Real.rpow_natCast, ← Real.rpow_mul hm0.le]; norm_num
+    have h4 : ((m : ℝ) + 1) ^ ((1 : ℝ) / 3) ≤ u + 1 := by
+      rw [Numerics.rpow_le_iff_pow (n := 3) (by positivity) (by positivity) (by norm_num)]
+      norm_num
+      nlinarith [hu3, hu0]
+    rw [h3] at h2
+    linarith
+  set P := {n ∈ oeFiber m | (n ^ 3).sqrt % 2 = 0} with hP
+  have hPcard : (P.card : ℝ) = evenImageCount m := by rw [evenImageCount]
+  have hden : 0 < u ^ 4 + 2 * u := by positivity
+  have hsum : (P.card : ℝ) * (1 / (u ^ 4 + 2 * u)) ≤ ∑ n ∈ P, (1 : ℝ) / n := by
+    rw [← nsmul_eq_mul, ← Finset.sum_const]
+    apply Finset.sum_le_sum
+    intro n hn
+    have hnf : n ∈ oeFiber m := (Finset.mem_filter.mp hn).1
+    have hn1 : 1 ≤ n := by have := (mem_oeFiber.mp hnf).1; omega
+    have hn0 : (0 : ℝ) < n := by exact_mod_cast hn1
+    exact one_div_le_one_div_of_le hn0 (hbound n hnf).le
+  have hkey : (c - eps m) / m ≤ (c * u - 1 / 2) / (u ^ 4 + 2 * u) := by
+    rw [he, ← hu3, div_le_div_iff₀ (by positivity) hden]
+    have hu' : u ≠ 0 := hu0.ne'
+    field_simp
+    nlinarith [hu100, hc0, hc3, hu0, sq_nonneg u, mul_nonneg hc0 hu0.le]
+  calc (c - eps m) / m ≤ (c * u - 1 / 2) / (u ^ 4 + 2 * u) := hkey
+    _ ≤ (P.card : ℝ) * (1 / (u ^ 4 + 2 * u)) := by
+        rw [div_eq_mul_one_div]
+        apply mul_le_mul_of_nonneg_right _ (by positivity)
+        rw [hPcard]; linarith
+    _ ≤ ∑ n ∈ P, (1 : ℝ) / n := hsum
+
 end FiberParity
 
 end Problems.Juggler

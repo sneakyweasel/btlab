@@ -199,6 +199,7 @@ import Problems.Juggler.FateFiberLock
 import Problems.Juggler.FateThinFibers
 import Problems.Juggler.FateResonanceCount
 import Problems.Juggler.FatePoorTail
+import Problems.Juggler.FatePoorProduction
 import Problems.Juggler.FateContagionBound
 
 /-!

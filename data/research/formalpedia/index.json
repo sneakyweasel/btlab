@@ -33741,6 +33741,16 @@
       "trust": "kernel"
     },
     {
+      "doc": "**Family 3 at the averaged coefficient.** For `U = \u230a\u221ay''\u230b \u2265 10^6` satisfying Lemma 2's block hypotheses, and any shell `(s, y]` containing every fiber `\u03a6(m)` with `U < m \u2264 y'' - 1`, the even-image parts of the non-poor fibers of the members of `A` in `(U, y'' - 1]` are disjoint odd members of `A` in the shell, of total log-mass at least `(c - \u03b5_U)(\u03a3_{m \u2208 A \u2229 (U, y''-1]} 1/m - 2100 \u03b5_U/\u03b7\u2080\u00b2)` with `c = (2/3)(1/2 - \u03b7\u2080)`.",
+      "file": "formal/Problems/Juggler/FatePoorProduction.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 46,
+      "module": "Problems.Juggler.FatePoorProduction",
+      "name": "family_OE_averaged",
+      "trust": "kernel"
+    },
+    {
       "doc": "For `m \u2265 10^6` the `OE` fiber is nonempty: `oeFiber_card_ge` gives at least `(2/3) m^{1/3} - 1 \u2265 65` members.",
       "file": "formal/Problems/Juggler/FatePoorTail.lean",
       "kind": "theorem",
@@ -33868,6 +33878,16 @@
       "line": 312,
       "module": "Problems.Juggler.FatePoorTail",
       "name": "poor_logMass_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The non-poor fiber bound.** A fiber that is not `\u03b7\u2080`-poor carries even-image log-mass at least `(c - \u03b5_m)/m`, where `c = (2/3)(1/2 - \u03b7\u2080)` is the note's \u00a75 coefficient. This is `good_fiber_logMass_ge` with its input replaced: there the even count is `H_m/3 - 2` from Lemma 4.2, here it is `(1/2 - \u03b7\u2080)H_m` from not being poor, and `H_m` is `oeFiber_card_ge` in both. The error is written absolutely, `c - \u03b5_m`, rather than relatively as the `2/9(1 - (25/2)\u03b5_m)` of the original: a relative form carries a constant of size `1/c`, which blows up as `\u03b7\u2080` approaches `1/2`, while the absolute form has no constant at all.",
+      "file": "formal/Problems/Juggler/FatePoorTail.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 367,
+      "module": "Problems.Juggler.FatePoorTail",
+      "name": "nonpoor_fiber_logMass_ge",
       "trust": "kernel"
     },
     {
@@ -91505,6 +91525,7 @@
         "Problems.Juggler.FateOneSided",
         "Problems.Juggler.FateOneSidedAtoms",
         "Problems.Juggler.FateOneSidedCorollary",
+        "Problems.Juggler.FatePoorProduction",
         "Problems.Juggler.FatePoorTail",
         "Problems.Juggler.FatePressure",
         "Problems.Juggler.FatePressureCorollary",
@@ -92831,8 +92852,17 @@
         }
       ]
     },
+    "Problems.Juggler.FatePoorProduction": {
+      "declarations": 1,
+      "file": "formal/Problems/Juggler/FatePoorProduction.lean",
+      "imports": [
+        "Problems.Juggler.FateContagion",
+        "Problems.Juggler.FatePoorTail"
+      ],
+      "ledger": []
+    },
     "Problems.Juggler.FatePoorTail": {
-      "declarations": 13,
+      "declarations": 14,
       "file": "formal/Problems/Juggler/FatePoorTail.lean",
       "imports": [
         "Problems.Juggler.FateFiberLock",
@@ -95004,13 +95034,13 @@
     }
   },
   "totals": {
-    "declarations": 7021,
+    "declarations": 7023,
     "declarations_with_a_ledger_row": 4777,
-    "ledger_rows_naming_a_file": 454,
-    "modules": 313,
+    "ledger_rows_naming_a_file": 455,
+    "modules": 314,
     "trust": {
       "compiler": 56,
-      "kernel": 6965
+      "kernel": 6967
     }
   }
 }
