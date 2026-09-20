@@ -5,17 +5,22 @@
     "John L. Simons"
   ],
   "year": 2007,
-  "identifiers": {},
-  "url": {},
+  "identifiers": {
+    "doi": "10.1016/j.jnt.2006.05.011"
+  },
+  "url": {
+    "publisher": "https://www.sciencedirect.com/science/article/pii/S0022314X06001223"
+  },
   "problem_area": "collatz-cycles",
   "relevant_concepts": [
     "2-cycles",
     "m-cycles",
     "3x-1 problem",
     "negative Collatz cycles",
-    "3x+q problem"
+    "de Weger's bound on 2^(K+L) - 3^K",
+    "Steiner's theorem"
   ],
   "project_relationship": "known",
-  "status": "NOT CONSULTED; the 3x-1 statement below is quoted from Lagarias's annotated bibliography II, entry 95, attested and not observed",
-  "notes": "J. Number Theory 123 (2007), 10-17, per Lagarias. Registered 20 September 2026 during the search for a published 3x-1 verification floor. Per Lagarias's entry 95, the paper gives a second proof that the 3x+1 function has no nontrivial 2-cycles on the positive integers, and its last section sketches a proof that the 3x-1 function on the positive integers has a single 2-cycle, with minimal element 17 -- equivalently, the 3x+1 function on the negative integers has a single 2-cycle, at -17. The method applies to 3x +- q with gcd(6, q) = 1 to give a finite list of 2-cycles, and does not extend to m >= 3; for that see Simons and de Weger (2005) and simons-2008-m-cycles-generalized-syracuse. WHY IT MATTERS HERE. It is the only theorem-type m-cycle statement on the negative side that the search found: a result of the Steiner / Simons-de Weger kind for 3x-1, which is what no verification floor supplies (docs/problems/juggler_negative_floor_3x1.md). Read it before the next cycle branch claims anything about negative m-cycles; a DOI is deliberately not recorded until the paper is seen."
+  "status": "read in full, 20 September 2026, from the PDF Philippe fetched (the open-archive page shows this session a CAPTCHA); DOI confirmed through CrossRef and printed in the paper",
+  "notes": "J. Number Theory 123 (2007), 10-17. THE MAIN RESULT, 3x+1. A 2-cycle has two odd local minima x_i = a_i 2^(k_i) - 1; it exists iff the 2x2 diophantine system (1) in the a_i has an integer solution. Section 2: de Weger's Theorem 5.2 and Table I (CWI Tract 65, 1990, from Waldschmidt) give that 0 < 2^(K+L) - 3^K < 3^(0.9K) has no solution for K >= 32, and the small solutions (K,L) are (2,2), (3,2), (4,3), (5,3), (6,4), (8,5), (10,6), (15,9), (17,10), (29,17), none of which gives integer a_i except the trivial cycle; so a nontrivial 2-cycle needs K >= 7 and 3^(0.9K) < 2^(K+L) - 3^K < 3^K. Section 3: Steiner's 1-cycle theorem gives a_0 a_1 >= 5 (a_0 != a_1, a_0 a_1 != 3). Section 4, Lemma 2: a_0 a_1 <= 3^K (2^L - 1)^2 / (2^(K+L) - 3^K)^2, by a two-variable extremal argument. Section 5: the two combine to a_0 a_1 < 2^(-0.08K + 2) < 4. Contradiction. THE POINT HE STRESSES: 'The proof does not use exterior lower bounds for numbers in a cycle and for the cycle length' -- it is floor-free, resting on Steiner (for 1-cycles) and de Weger's linear-forms bound; it is 'inductive' in that sense. THE 3x-1 SECTION (6(2)), SKETCHED, NOT PROVED IN FULL. Two 1-cycles, (1) and (5, 7, 10), so a nontrivial 2-cycle has x_i >= 11. With x_0 = a_0 2^(k_0) + 1 the system is (33) with determinant 2^(K+L) - 3^K < 0, and the restriction is 0 < K log 3 - (K+L) log 2 < sum 1/x_i < 0.2, i.e. 0 < 3^K - 2^(K+L) < 3^K / 4. De Weger's method with exponent 0.89: the only (K, L) with 0 < 3^K - 2^(K+L) < 3^(0.89K) and K >= 2 are (2,1), (4,2), (6,3), (7,4), (9,5), (12,7), (14,8), (19,11), (24,14); the 0.9 exponent would admit (53,31) too, which he discards by taking 0.89. (2,1) is the trivial 1-cycle, (4,2) and (6,3) its repeats, (7,4) IS the 2-cycle at 17 (k_0 = 4, l_0 = 1, k_1 = 3, l_1 = 3, a_0 = 1, a_1 = 5), (14,8) its double; (9,5), (12,7), (19,11), (24,14) give no integer solution. Then a_0 a_1 >= 5 as before and (26) applies since -a_0, -a_1 satisfy (1): the 3x-1 function has exactly one nontrivial 2-cycle, at 17, with NO FLOOR USED. SO FOR THIS LABORATORY. (i) No published 3x-1 verification floor here either, and none needed by him; the search of 20 September 2026 stands at OEIS A037084's unattributed 10^8. (ii) His exceptional (K, L) list is, read as word lengths K + L, exactly the laboratory's leftover ladder: 11 is the -17 cycle word, 19 is (12,7), 84 is the discarded (53,31), and the next convergent pairs (359,210) and (665,389) are 569 and 1054 -- de Weger's Table I is prior art for the shape of that list, which the laboratory reached through its own near-convergent analysis; the Baker/SdW cluster (juggler_cycle_gap_baker) should say so if it does not. (iii) Section 6(1): his floor-free route does not extend to m >= 3, because the conjectured product bound (31) has a positive exponent in K once m >= 3; so for negative m-cycles with m >= 3 the route is the floor-based Simons-de Weger template (simons-2008-m-cycles-generalized-syracuse), which needs exactly the floor the laboratory now has at 2^44. (iv) Also useful: Simons-de Weger 2005 is quoted as m <= 68 with x_i > 10^17; the 2008 paper's m <= 75 is the later floor. DOI 10.1016/j.jnt.2006.05.011 as printed in the PDF."
 }

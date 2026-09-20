@@ -85,10 +85,13 @@ side at the historical floors coincide with the published period bounds?
   verified floor is reported — **KNOWN**
   (`sinisalo-2003-collatz-minimal-cycle-lengths`; found 20 September 2026).
   Project relationship for the table: **reproduced**, and sharpened.
-- Simons 2007 — the `3x-1` function has a single 2-cycle, at `17`
-  (`simons-2007-inductive-two-cycles-3x1`, via Lagarias's entry 95, unread):
-  the negative side's one Steiner-type result, which no floor gives.
-  **KNOWN**. Simons 2008 (`simons-2008-m-cycles-generalized-syracuse`, read
+- Simons 2007 — the `3x-1` function has exactly one nontrivial 2-cycle,
+  at `17`, proved with no verification floor
+  (`simons-2007-inductive-two-cycles-3x1`, read in full): the negative
+  side's one Steiner-type result. Its exceptional `(K, L)` list under
+  de Weger's `3^(0.89K)` bound — `(7,4)`, `(12,7)`, `(19,11)`, `(24,14)`,
+  and `(53,31)` at exponent `0.9` — is this laboratory's leftover ladder
+  `11, 19, 30, 38, 84` read as word lengths. **KNOWN**. Simons 2008 (`simons-2008-m-cycles-generalized-syracuse`, read
   in full) has no `3x-1` content — its "inverse Collatz problem" is Guy's
   permutation — but its generalized Crandall lemma is the step that turns a
   floor into an m-cycle exclusion, and the negative side now has a floor.

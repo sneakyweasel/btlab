@@ -46,9 +46,14 @@ fourth cycle could have. The floor was \(2^{38}\) on 19 September 2026,
   Crandall-type bound one or two rows weaker than the even-charge finance
   at each floor, and no verified floor. **known**; see
   [collatz_finance_mirror](juggler_collatz_finance_mirror.md).
-- `simons-2007-inductive-two-cycles-3x1` — the \(3x-1\) function has a
-  single 2-cycle, at 17 (per Lagarias's bibliography; unread). The
-  theorem-type statement a floor never gives, for \(m=2\). **known**.
+- `simons-2007-inductive-two-cycles-3x1`, read in full — the \(3x-1\)
+  function has exactly one nontrivial 2-cycle, at 17, and the proof uses
+  no verification floor: de Weger's bound leaves nine \((K,L)\) pairs with
+  \(0<3^K-2^{K+L}<3^{0.89K}\), one is the 17-cycle, the rest have no integer
+  solution, and Steiner plus an extremal bound finish it. So no floor is
+  published there either, and none was needed. His method stops at
+  \(m\ge3\), where the floor-based template of Simons 2008 is the route.
+  **known**.
 - `simons-2008-m-cycles-generalized-syracuse`, read in full on 20
   September — contains nothing on \(3x-1\): its "inverse Collatz problem"
   is Guy's permutation \(x\mapsto 3x/2,\ (3x\mp1)/4\), and its

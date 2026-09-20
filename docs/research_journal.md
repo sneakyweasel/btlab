@@ -1,5 +1,51 @@
 # Research journal
 
+## 2026-09-20 -- Simons 2007, read: the 3x-1 two-cycle theorem uses no floor, and its exception list is our leftover ladder
+
+- **Objective:** Philippe fetched the JNT PDF that the open archive hides
+  behind a CAPTCHA here, and asked for it to be read. Eight pages.
+- **The 3x+1 result, floor-free.** A 2-cycle has two odd local minima
+  `x_i = a_i 2^(k_i) - 1` and exists iff a 2x2 diophantine system in the
+  `a_i` has an integer solution. De Weger's Theorem 5.2 says
+  `0 < 2^(K+L) - 3^K < 3^(0.9K)` has no solution with `K >= 32`, and the
+  ten small ones give no integer `a_i` except the trivial cycle; Steiner's
+  1-cycle theorem gives `a_0 a_1 >= 5`; an extremal argument gives
+  `a_0 a_1 <= 3^K (2^L - 1)^2 / (2^(K+L) - 3^K)^2 < 4`. Contradiction. He
+  stresses that no exterior lower bound on the numbers or the length is
+  used, which is what makes the proof inductive rather than computational.
+- **The 3x-1 section, sketched.** With `x_0 = a_0 2^(k_0) + 1` the
+  determinant is `2^(K+L) - 3^K < 0` and the restriction reads
+  `0 < 3^K - 2^(K+L) < 3^K / 4`. De Weger's method at exponent `0.89`
+  leaves nine pairs: `(2,1)`, `(4,2)`, `(6,3)`, `(7,4)`, `(9,5)`, `(12,7)`,
+  `(14,8)`, `(19,11)`, `(24,14)`; exponent `0.9` would admit `(53,31)`,
+  which he discards by the choice of `0.89`. `(7,4)` is the 17-cycle,
+  `k_0 = 4, l_0 = 1, k_1 = 3, l_1 = 3, a_0 = 1, a_1 = 5`; `(2,1)`, `(4,2)`,
+  `(6,3)`, `(14,8)` are repeats of the 1-cycles and of it; the other four
+  have no integer solution. So the `3x-1` function has exactly one
+  nontrivial 2-cycle, at 17, and again no floor is used. The record now
+  says read; the sentence in `J-negative-cycle-finance-is-the-juggler-
+  mirror` that called it unread is corrected.
+- **The list is ours.** Read as word lengths `K + L`, his pairs are
+  `11` (the `-17` word), `19`, `30`, `38`, and the discarded `84`; the next
+  convergent pairs `(359, 210)` and `(665, 389)` are `569` and `1054`. That
+  is Paper A's leftover ladder, reached there through the laboratory's own
+  near-convergent analysis. De Weger's 1990 Table I is prior art for the
+  shape of the list, not for anything proved on it here; the Baker/SdW
+  cluster should name it if it does not.
+- **What stops at `m = 2`.** Section 6(1): the floor-free route needs a
+  product bound whose exponent in `K` turns positive once `m >= 3`, so it
+  does not extend. For negative m-cycles with `m >= 3` the route is the
+  floor-based Simons-de Weger template of the 2008 paper, whose only
+  missing input on the negative side was a floor, and the tables with our
+  `2^44` reach `m <= 39` before any lattice work. Also noted: Simons-de
+  Weger 2005 is quoted here as `m <= 68` with `x_i > 10^17`; the `m <= 75`
+  of 2008 is the later floor.
+- **Decision:** `CLOSE` on the reading; the two Simons papers are now
+  both read and both say the same thing about a `3x-1` floor: none
+  published, none used. Best next question: unchanged, the negative-side
+  m-cycle transposition, now with Simons-de Weger 2005 the one paper left
+  to read before writing it.
+
 ## 2026-09-20 -- Simons 2008, read: its inverse Collatz problem is not 3x-1, and the record I wrote from the abstract was wrong
 
 - **Objective:** Philippe said read Simons 2008. The publisher PDF that
