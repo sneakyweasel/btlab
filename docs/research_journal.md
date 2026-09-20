@@ -1,5 +1,73 @@
 # Research journal
 
+## 2026-09-20 -- Lemma 8 has a dual on the even runs, and the shape is what kills it
+
+`2` acts on the odd part of `Z` in two ways, by its valuation and by its multiplicative order.
+Hercher's Lemma 8 -- the floor this branch has been pricing all session -- uses only the
+valuation, and reads it off the **odd** runs. The even runs were unused. They give a second
+floor, it is correct, and the laboratory's own word shape caps it below Lemma 8 by a proved
+exponential factor.
+
+**The dual.** On a cycle of the `Z` shortcut map with an even step, odd elements `x_1..x_o` in
+cyclic order and `r_i` halvings between consecutive odd steps, let `R = gcd` of the nonzero `r_i`
+and `m | 2^R - 1` with `gcd(m, 2^o - 3^o) = 1`. Then `x = -1 (mod m)` at every odd element, so
+`|x| >= m - 1`. The proof is Hercher's own conjugation read the other way: in `u = x + 1` the
+passage is `2^(r_i+1) u_(i+1) = 3 u_i - 2 + 2^(r_i+1)`, and `ord_m(2) | R | r_i` makes the
+correction `2^(r_i+1) - 2` vanish, leaving `2 u_(i+1) = 3 u_i`. Once around,
+`u (2^o - 3^o) = 0`. Same congruence `x = -1` as Lemma 8; modulus `2^R - 1` instead of `2^a`.
+
+**What the modulus does is the bridge.** Mod `2^R - 1` the even steps are invisible and the orbit
+is the free recursion `u -> 3u/2`. That is not a new object here: it is the Juggler's exponent
+transport, where on `n = a^e` the exact step is `e -> 3e/2` on an odd base and `e -> e/2` on an
+even one, with no floor loss at all -- and where no-cycle is the pure count `3^o != 2^o`, no
+Catalan, no Baker. **The Mersenne modulus is precisely the reduction under which Collatz becomes
+the Juggler's exponent dynamics.** The price is exactly measurable: pulled back through the
+congruence, `3^o != 2^o` degrades from a contradiction into `m | u`. An impossibility becomes a
+floor. That is the cycle-side answer to why the Juggler's free argument does not come back across
+the bridge.
+
+**And the shape forecloses it.** On a word whose proper prefixes are all non-contracting -- Paper
+A's CycleMin shape, hence a negative Collatz cycle word at its minimum, a Juggler cycle word, and
+a positive one at its minimum -- the leading run of `a` odd letters is followed by an E-run of
+length `r_1 >= 1`, non-contraction at its end is `3^a >= 2^(a + r_1)`, and `R | r_1` gives
+
+```text
+R <= floor((log2 3 - 1) a) = floor(0.58496 a),
+```
+
+so the dual floor `2^R` sits below Lemma 8's `2^a` by `2^(0.41504 a)`. The only exception is the
+circuit `O^a E^r`, which Steiner 1977 excludes, and there the dual still does not win. The two
+floors are anti-correlated by the condition that defines the family: prefix non-contraction forces
+the word to bunch its odd letters, which lengthens odd runs and shortens even runs.
+
+**Measured.** Block expansion on every word to length 12 and `(2^R - 1) | evenCharge` on every
+word to length 14 with `R >= 2`: 0 violations. The congruence at every odd element of the rational
+cycle of every word to length 13: 0 violations -- and read at an **even** element it genuinely
+fails (`EOE`, `m = 3`, `u = 7/5`), which is the statement's own hypothesis doing work. The
+coprimality is needed: `OOEEEE` has `R = 4`, `15` does not divide `u = 12/11`, `M(4,2) = 3` does.
+The cap has 0 exceptions on the expanding family and 12 on the contracting one, **all circuits**,
+and it is attained, so it is sharp. Sieved against the kernel-checked `neg_cycle_finance` ceiling:
+**0 dual-only kills** at length 22, and 0 again at length 26 across 2264815 shape words -- every
+word the dual kills, Lemma 8 had already killed. All three known cycles of the `Z` map have an
+E-run of length 1, so `R = 1` and the dual is vacuous at every one of them, the exact opposite of
+Lemma 8, which all three attain with equality.
+
+**Novelty is not claimed.** `arxiv.org`, `cs.uwaterloo.ca` and `oeis.org` are refused by this
+container's egress policy, so Hercher 2023, Eliahou 1993 and Simons-de Weger 2005 could not be
+read at source for the dual congruence. Three times this session a claim of novelty survived my
+searches and died on prior art; the subordination is what is proved, and that stands either way.
+
+**CLOSE.** Two adjacent directions closed with it, both from fan-outs and both recorded in
+negative knowledge. Knight's split reaches exactly one rotation class per coprime `(k, x)` -- the
+upper Christoffel word, by **Pirillo 1999** -- so no hug word, bunched word or CycleMin shape word
+falls to his contradiction, and reverse-closure is necessary but wildly insufficient (84
+reverse-closed classes at `(19,12)` against 2652 total, of which the split reaches 1). And prime
+divisors of the cycle gap are dead by a density theorem: every prime outside `{2,3}` divides the
+pinned gap `3^o - 2^K` at density exactly `1/m_p` by Weyl, so no prime and no length is excluded.
+
+Best next question: none from this branch. The `2^40` push on the `3x-1` floor is still running;
+it is the only thing outstanding that would move a number.
+
 ## 2026-09-20 -- the multiplicative Knight transports, and its residual is the state dependence
 
 The next best question after the sign-free mirror was whether Knight reaches the Juggler's own

@@ -47,7 +47,14 @@ ACKNOWLEDGED: dict[str, str] = {
         "period bound is a statement rather than a table -- a fourth negative cycle has "
         "period at least 4404167. No row raises N_0, excludes a Juggler cycle or touches a "
         "manuscript. Nothing here is superseded and nothing is abandoned -- the branch is "
-        "waiting to be read and merged."
+        "waiting to be read and merged. Extended 20 September: two further CLOSE rows, "
+        "J-multiplicative-knight-residual-is-the-state-dependence (Knight's cancellation "
+        "transports as cube-and-divide and its residual is exactly the state dependence "
+        "of the slack) and J-even-run-dual-of-lemma-eight-is-capped-by-the-shape (the "
+        "multiplicative order of 2, read off the even runs, is a second floor dual to "
+        "Lemma 8, and the CycleMin shape caps it at R <= floor((log2 3 - 1) a), below "
+        "Lemma 8 by 2^(0.41504 a), with zero dual-only kills in a census of 2.26 million "
+        "shape words)."
     ),
 }
 
