@@ -1,0 +1,24 @@
+{
+  "id": "hikawa-nakanishi-2026-parity-vector-analysis",
+  "title": "Parity Vector Analysis in the Study of the Collatz Conjecture",
+  "authors": [
+    "Kazunobu Hikawa",
+    "Kazuo Nakanishi"
+  ],
+  "year": 2026,
+  "identifiers": {
+    "doi": "10.13140/RG.2.2.12065.06240"
+  },
+  "url": {
+    "doi": "https://doi.org/10.13140/RG.2.2.12065.06240"
+  },
+  "problem_area": "collatz-parity-vectors",
+  "relevant_concepts": [
+    "parity vectors",
+    "survivor counts",
+    "A076227 b-file"
+  ],
+  "project_relationship": "unassessed",
+  "status": "NOT CONSULTED",
+  "notes": "ResearchGate preprint, January 2026. NOT READ -- researchgate.net and every publisher route are refused by this environment's egress policy. REGISTERED 20 September 2026 to close a registry gap: J-paper-b-survivors-are-oeis-a076227 already checks the laboratory's survivor count against the Hikawa-Nakanishi b-file of OEIS A076227 on all 3509 terms, and a comment of Hikawa dated July 2026 on that entry states the laboratory's own survivor definition outright -- so these authors are load-bearing for a committed row while having no entry here. The same entry links two further items by the same authors, also unread: Hikawa, 'Finite-Dimensional Combinatorial and Arithmetic Structures of Parity Vectors for the Accelerated Collatz Map' (doi 10.13140/RG.2.2.29894.84804/1, July 2026), and Nakanishi, 'A Structural Study of Parity Vectors in the Collatz Conjecture' (doi 10.51094/jxiv.3096, February 2026). Parity-vector structure for the accelerated Collatz map is precisely this laboratory's object, and these are current work on it. PROVENANCE: titles, dates and DOIs read from the %H lines of the A076227 entry in a local clone of github.com/oeis/oeisdata, export 2026-09-20 -- attested from the mirror, not observed at the publisher. Do not cite for anything until read."
+}

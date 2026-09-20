@@ -1,5 +1,61 @@
 # Research journal
 
+## 2026-09-20 -- the plateau lengths are a Beatty complement, and seven prior-art misses
+
+With oeis.org blocked, the OEIS git export at `github.com/oeis/oeisdata` turns out to be
+served by this container's git proxy: 3.1 GB, 399397 sequences, stamped three hours old. This
+entry is what a day's worth of the laboratory's own numbers looked like when put to it.
+
+**THE ONE RESULT.** `neverNegCount_succ_sub_onBarrier` is kernel-checked as
+`N_(d+1) + M_(d+1) = 2 N_d`, so Paper B's recursion doubles exactly when `M_d = 0`, which by
+`minimalCertCount_eq_zero_of_window_empty` is exactly when no power of three lies in
+`[2^(d-1), 2^d)`. Those lengths have a closed form and it is a Beatty complement:
+
+```text
+M_d != 0  <=>  d in A020914 = floor(n log2 3) + 1          (the laboratory's own length)
+M_d  = 0  <=>  d in A054414 \ {1},  1 + floor(n/(1 - log2/log3))
+```
+
+and the two partition the positive integers. Checked to `d = 200`. The plateau law previously
+carried three verified instances -- `density_flat_five_to_six`, `_eight_to_nine`,
+`_ten_to_eleven` at `d = 6, 9, 11` -- and now has a description of all of them; the next are
+14, 17, 19, 22, 25, 28, 30. The `d = 1` exception is real and is stated: A054414 contains 1,
+but `E` contracts at once.
+
+**A054414 IS THE ONLY NEW SEQUENCE, AND I CHECKED BEFORE SAYING SO.** A076227 is already
+`J-paper-b-survivors-are-oeis-a076227`. A020914 is used throughout Papers A and B. A100982 is
+already in Lean at `CollatzBridgeLab.lean`, "read by length" -- reading `M_d` along the
+stalling lengths only gives A100982 with one extra leading term, which is that same content
+re-indexed and not a second find. Only A054414 returns no hit anywhere in the repository.
+
+**THE COUNT THAT BELONGS IN THE RECORD.** This session made seven prior-art misses, and the
+last of them was caught only by the mirror: the Williams `(lambda,a,b)` coordinate, the mod-3
+law, a DOI constructed from a bibliography and filed as observed, Brox's block expansion
+presented as ours, an A034887 offset "correction" that was itself wrong, A076227 nearly
+reported as a discovery, and A100982 the same. Six were searches that failed on TERMS while
+the idea sat in print under other words. The seventh was different and worse: twenty of the
+thirty-two A100982 terms I typed into the probe were invented -- correct for the twelve that
+had appeared in a terminal, fabricated for the twenty that had not. The constant is now
+emitted programmatically from the mirror, and a test guards its tail.
+
+**THE JUGGLER CORNER.** OEIS carries 30 Juggler sequences; the laboratory cites five. The
+uncited one that matters is A094778, the dropping time at `2n+1` -- Paper B's object exactly,
+since the non-contracting-prefix census counts the words whose dropping time exceeds their
+length. Verified against an independent walker on all 100 defined terms; the sole difference
+is `n = 0`, the fixed point, where the entry records 0 by convention. There is also a whole
+"modified juggler" family (floor(n^(2/3)) on evens) the laboratory has never considered,
+which in exponent coordinates is a different log ratio and so a free test of whether the
+machinery is about the Juggler or about the exponent pair.
+
+**NO LEAN PROOF CHANGED, AND THAT WAS A CONSTRAINT RATHER THAN A CHOICE.** This container has
+no Lean toolchain: `elan` installs, the toolchain download is refused by the egress policy,
+and mathlib's cache hosts are blocked, so `lake build` cannot run. The identifications went
+into docstrings only -- comment text, which cannot affect a proof -- and the rebuilt index
+reports the same 6917 kernel and 56 compiler declarations as before. `lake build` has not been
+run against those edits and must be, on a machine that has the toolchain.
+
+Best next question: unchanged. The `3x-1` floor is the only number moving.
+
 ## 2026-09-20 -- the floor reaches 2^40, and the block expansion turns out to be Brox's
 
 Two things landed together, one a number and one a correction, and the correction is the more

@@ -57,7 +57,15 @@ ACKNOWLEDGED: dict[str, str] = {
         "Lemma 8, and the CycleMin shape caps it at R <= floor((log2 3 - 1) a), below "
         "Lemma 8 by 2^(0.41504 a), with zero dual-only kills in a census of 2.26 million "
         "shape words; its block expansion is Brox 2000 (3.1)/(3.2), corrected on the day, "
-        "and what the branch adds is the gcd step and the subordination cap)."
+        "and what the branch adds is the gcd step and the subordination cap). A ninth row, "
+        "J-plateau-lengths-are-a-beatty-complement, closes an OEIS sweep run from a local "
+        "clone of the database after oeis.org proved unreachable: Paper B's survivor "
+        "recursion doubles exactly on A054414 minus {1} and stalls exactly on A020914, a "
+        "Beatty complement checked to d = 200, giving the plateau law a closed form where "
+        "it had three verified instances. A054414 is the only one of the four sequences "
+        "around that recursion the repository had never met. No Lean proof changed: the "
+        "container has no toolchain, so the identifications went into docstrings only and "
+        "lake build has NOT been run against them."
     ),
 }
 
