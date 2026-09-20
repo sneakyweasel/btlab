@@ -682,3 +682,42 @@ def test_hikawas_weight_recursion_has_our_survivor_counts_as_its_margin() -> Non
             assert certificates[length] == totals[d - 1]
     for length in range(1, depth + 1):
         assert (certificates[length] == 0) == (length not in image)
+
+def test_hikawas_glide_is_our_certificate_length_on_his_own_output() -> None:
+    """Glide is the third name for the object, and his convention is ours.
+
+    `Sample_Output/3.1Collatz-27.csv` prints `Glide(27) = 59` and the parity
+    vector up to the glide. Glide is Roosendaal's term for the steps a start
+    takes to first fall below itself; the Collatz literature says dropping
+    time; we say minimal certificate length, which is the only one of the
+    three nobody else uses.
+
+    The convention is not automatic -- 27 falls below itself after 59 steps of
+    the accelerated map and 96 of the standard `3x+1` -- so this checks his
+    number against both, then checks the word itself rather than the name.
+    """
+    glide, word = 59, (
+        "11011111010110111011110100111011011111100111100010101000100"
+    )
+
+    def first_below(n: int, accelerated: bool) -> int:
+        x, t = n, 0
+        while True:
+            x = x // 2 if x % 2 == 0 else (3 * x + 1) // 2 if accelerated else 3 * x + 1
+            t += 1
+            if x < n:
+                return t
+
+    assert first_below(27, accelerated=True) == glide
+    assert first_below(27, accelerated=False) == 96
+
+    x, ours = 27, ""
+    for _ in range(glide):
+        ours += "1" if x % 2 else "0"
+        x = x // 2 if x % 2 == 0 else (3 * x + 1) // 2
+    assert ours == word
+
+    # and (L, o) sits in certWindow -- minimalCert_window instantiated at 27
+    odd = word.count("1")
+    assert odd == 37
+    assert 2 ** (glide - 1) <= 3**odd < 2**glide
