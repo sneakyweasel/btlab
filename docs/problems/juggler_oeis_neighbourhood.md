@@ -286,6 +286,50 @@ at floor \(2^{40}\) (least period 17087915, on the lattice
 \(17{,}026{,}679{,}261\) is checkable here once the source is in hand.
 
 
+### The circulating bound, located
+
+The figure \(17{,}026{,}679{,}261\) is not attributable from here, but it is
+now **structurally identified**, which is better than an attribution:
+
+\[
+17{,}026{,}679{,}261 \;=\; 6{,}586{,}818{,}670 + 10{,}439{,}860{,}591,
+\]
+
+the numerator plus denominator of a convergent of \(\log 2/\log 3\). A
+cycle's length is its odd-step count plus its even-step count, so \(p+q\)
+over the convergents *is* the sequence of convergent-derived candidate
+cycle lengths — which is exactly how Eliahou 1993 produces 17087915, itself
+the denominator of the convergent \(10781274/17087915\) in the same table.
+The number is therefore a genuine object of that machinery and was never a
+search artefact. Which paper first stated it remains unsettled.
+
+That sequence is catalogued: **A355512**, *sum of numerator and denominator
+in the convergents of the approximation of \(\log(2)/\log(3)\)*. The
+laboratory's leftover apparatus lives on precisely these quantities — of
+its own `LEFTOVERS`, the values 3, 19, 84 and 1054 are convergent
+denominators — and A355512 had **zero mentions** in the repository.
+
+### A falling-time paper the registry was missing
+
+Tracing that bound through the Eliahou citations in OEIS turned up
+`eliahou-fromentin-simonetto-2021-falling-time`, *Is the Syracuse falling
+time bounded by 12?* (hal-03294829, 2021), surfaced from the link fields of
+**A368877** (the paper's jump function \(jp\)) and **A368878** (its falling
+time \(ft\), the least \(k\) with \(jp^k(n) < n\)), both carrying b-files to
+\(n = 10^4\).
+
+Falling time is this laboratory's **dropping time**. Paper B's census counts
+the words whose dropping time exceeds the word length, and A094778 is the
+Juggler analogue registered the same day. A paper asking whether the falling
+time is bounded by 12 asks, in the laboratory's vocabulary, whether the
+non-contracting prefix length is bounded — the sharpest form of what the
+survivor census measures. It is registered NOT CONSULTED; `hal.science` is
+blocked here, and whether its answer is a theorem, a conditional or an open
+question is not established. The laboratory already cites this author twice,
+in `eliahou-1993-collatz-cycle-lengths` and `eliahou-verger-gaugry-2025`,
+without carrying it.
+
+
 ## What this does not say
 
 No bound moves, no cycle is excluded, no floor is raised,
