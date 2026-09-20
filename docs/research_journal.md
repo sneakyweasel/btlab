@@ -1,5 +1,67 @@
 # Research journal
 
+## 2026-09-20 -- The averaging chain closed, and a branch had already closed it better
+
+- **Objective:** a 30-minute loop on "continue digging and consolidation", from
+  the point where the averaging route had both halves standing.
+- **The chain was finished and then superseded.** Link 5's E route turned out
+  provable by an elementary crossing count -- inside an E-block the phase is
+  monotone with `T = 2m^(1/3)` turns over `N ~ m` points, so a union of `K`
+  intervals is counted to `2KT`, relative error `4K m^(-2/3)`: marginal against
+  the density, and marginal suffices. Then the last measured input turned out
+  not to be measured: the resonant density constant is exactly `9C`, three
+  circle points times a half-width `C/H_m` with `H_m = (2/3)m^(1/3)`. So the
+  chain was proved end to end with no fitted quantity.
+- **And the 0.86 per cent I had called scatter was my own scaling.** I reported
+  `density x m^(1/3)` as `9.07, 9.08, 8.96, 8.93, 9.37, 8.72` across ten
+  octaves, said "flat, no trend", and used it as a constant for three ticks.
+  The excess is `1.008610` at every octave and both values of `C`, because I
+  scaled by the block midpoint `(1.5N)^(-1/3)` where the block mean of
+  `m^(-1/3)` is `(3/2)(2^(2/3)-1)N^(-1/3)`. Checking a column is flat is not
+  checking it is flat at the right value.
+- **Then the price.** Everything had been priced at fixed `delta`, and the
+  bootstrap needs `delta -> 0`. The constant goes like `delta^(-3)`, so the
+  crossover goes like `delta^(-9)`: `x ~ 1e12` for today's root, `3.3e14` for
+  `0.400`, **`2.0e44` for `lambda**`**, and `lambda_ideal` needs `delta = 0`
+  and is unattainable. The `1.4e14` I had quoted repeatedly buys a root near
+  `0.40`, not `lambda**`.
+- **And the drift gate found the real answer, twice.**
+  `claude/latest-progress-summary-s011un` proves the decay by one inequality at
+  every convergent denominator with no exponential sum, because `P` has FINITE
+  total logarithmic mass -- so there is nothing to plant, no backward closure
+  is needed, and it holds for every set of integers. My own density
+  measurements said `sum_P 1/m` converges from the first hour and I read them
+  as an input to a machine rather than as the answer. The second branch,
+  `claude/exponent-floor-3n1-2adic-mvwa96`, sharpens the bridge: the
+  exponential does not remove the 2-adic rigidity, it relocates it to the
+  exponent, turning Terras's bijection onto `2^k` words into a constant map
+  onto two. Both acknowledged as pending extraction. The whole Erdos-Turan
+  route is now in `negative_knowledge.md` with why it looked right.
+- **Repo health, which nobody had.** A full suite run found four reds, all from
+  48 hours of multi-session Lean and none mathematical. Two were mine to fix
+  and were one bug: `test_master_identity` passes alone and fails whenever
+  `test_paper_c_production_roots` is collected, because that file's
+  `from mpmath import mp; mp.dps = 30` reaches the global context and collects
+  later, and 30 digits is not enough against a 14.6-digit cancellation in
+  `m^(9/4) - v^(3/2)`. Fixed with a per-test `workdps(60)`. A peer fixed the
+  other three, including two lemmas their new module re-proved that
+  `LogLogClock` and `LogCells` already had.
+- **The operational finding, and the one that matters today.** `origin/main` is
+  still at `00e19af9`, which is my own push of 19 September. **Fifty-five
+  commits are unpushed** -- 47 on main, five on `claude/elated-hopper-e20999`
+  and three on `claude/peaceful-darwin-b5a701`, the last two branches existing
+  as `refs/heads` only. The single worktree is nested inside the repository, so
+  there is no redundancy anywhere: one directory holds every copy. Neither
+  session has pushed, because publishing is outward-facing, nobody asked, and
+  part of the payload is another session's unfinished checkpoint. A verified
+  4.2 MB bundle sits in the session scratchpad as a partial hedge.
+  `claude/peaceful-darwin-b5a701` also carries a solution to the
+  SHA256SUMS-versus-content problem I had handed over as open -- I would have
+  gone on saying it was open.
+- **Decision:** `CLOSE` on the averaging line. Three things wait on Philippe:
+  the backup, the `elated-hopper` merge that clears main's last red, and the
+  two ResearchGate items that need a PDF.
+
 ## 2026-09-19 -- Step 5b's interval counts were counting noise
 
 - **Objective:** Philippe asked how much of `lambda_interp` rested on the two
