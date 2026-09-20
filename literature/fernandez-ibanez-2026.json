@@ -1,13 +1,13 @@
 {
   "authors": [
-    "Fern\u00e1ndez",
-    "Ib\u00e1\u00f1ez"
+    "Fernández",
+    "Ibáñez"
   ],
   "id": "fernandez-ibanez-2026",
   "identifiers": {
     "arxiv": "2607.24844"
   },
-  "notes": "docs/cycle_literature_comparison.md",
+  "notes": "TITLE/AUTHOR DISCREPANCY REPORTED 20 September 2026, NOT ACTED ON. The adversarial route of wf_5358d082-c21 reports this paper's title as 'Christoffel words as extremal structures in Collatz dynamics' and its authors as Carlos Fernandez and Santiago Ibanez, against the 'Christoffel Words and Collatz cycles' / ['Fernandez','Ibanez'] recorded here. That report is itself third-party and arxiv.org is egress-blocked, so neither form has been read at source and the record is NOT being rewritten on it. The arXiv id 2607.24844 is the stable handle; resolve the title from the abstract page when egress allows. docs/cycle_literature_comparison.md",
   "problem_area": "collatz cycles",
   "project_relationship": "known",
   "relevant_concepts": [

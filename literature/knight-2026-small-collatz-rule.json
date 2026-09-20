@@ -1,0 +1,25 @@
+{
+  "id": "knight-2026-small-collatz-rule",
+  "title": "A Small Collatz Rule without the Plus One",
+  "authors": [
+    "Kevin Knight"
+  ],
+  "year": 2026,
+  "identifiers": {
+    "hal": "hal-04080486"
+  },
+  "url": {
+    "hal": "https://hal.science/hal-04080486",
+    "pdf": "https://content.wolfram.com/sites/13/2026/04/35-1-1.pdf"
+  },
+  "problem_area": "collatz-rewriting",
+  "relevant_concepts": [
+    "term rewriting",
+    "mixed binary-ternary representation",
+    "termination equivalence",
+    "Collatz as a rewrite system"
+  ],
+  "project_relationship": "unassessed",
+  "status": "NOT CONSULTED",
+  "notes": "Complex Systems 35(1):1-9, 2026; preprint hal-04080486. NOT READ. Surfaced 20 September 2026 by the adversarial route of the wf_5358d082-c21 identification, which was checking whether the ScienceDirect PII Philippe supplied could belong to a DIFFERENT Knight paper. It does not -- but this second paper is real and is a standing citation hazard: 'Knight 2026' is ambiguous between this and knight-2026-collatz-high-cycles, which is Discrete Mathematics 349(3) 114812. Always disambiguate. WHY IT MATTERS HERE, AND IT MAY MATTER A LOT. Per its description it gives a rewriting system on MIXED BINARY-TERNARY representations whose termination is equivalent to the Collatz conjecture. That is this laboratory's own rewrite-calculus territory: docs/theory/ carries a balanced-ternary rewrite-calculus note that AGENTS.md records as ready to send for external review, and a published termination-equivalent rewrite system on binary-ternary words is either prior art for part of it, a comparison point, or a route. It should be read BEFORE that note goes out. PROVENANCE: bibliographic data is third-party (the ccchallenge.org description and the author's own publication page); nothing here was read at source, and complexsystems.com, hal.science and the publisher are egress-blocked in this container. The Complex Systems volume/page and the HAL id are ATTESTED, NOT OBSERVED. Do not cite for anything until read."
+}
