@@ -12,7 +12,12 @@ The *bad* words of length ``d`` are those whose walk never drops to ``-L``.
   ``p_C = (1 - 1/C)/log2(3)``.  The contagion exponent ``lambda** = 0.4926``
   (pairing plus OEOEE plus V_3 plus V_4 plus V_5 plus V_6, ``block_third_plus_oeoee_v6``)
   requires ``e > 1 - lambda** = 0.5074``; ``C = 19`` is still the least
-  such integer.  The V_5 truncation (``block_third_plus_oeoee_v5``,
+  such integer -- and that ``C = 19`` is now UNCONDITIONAL, because
+  ``LAMBDA_AVERAGED = 100/203 = 0.4926108 > lambda**`` is reached with no
+  hypothesis (``Production.logMass_contagion_averaged``,
+  ``J-oe-averaged-two-productions-reach-the-depth-two-ceiling``). Before that
+  the best unconditional exponent was ``13/40``, needing ``e > 0.675`` and
+  ``C = 23``; see ``unconditional_depth_drop``.  The V_5 truncation (``block_third_plus_oeoee_v5``,
   root 0.4924) needed ``e > 0.5076``; the V_4 truncation needed
   ``e > 0.5084``; the V_3 truncation needed
   ``e > 0.5109``; the OEOEE truncation needed ``e > 0.5199``; pairing
@@ -59,6 +64,16 @@ REQUIRED_RATE_PAIRING = 1.0 - LAMBDA_PAIRING
 #: rest coefficient uses the monotone pairing (2/9), not the old sweep (2/21)
 LAMBDA_STAR3 = lambda_root(RECURSIONS["block_third_plus_ooeee"])
 REQUIRED_RATE_STAR3 = 1.0 - LAMBDA_STAR3
+#: the unconditional exponent: the two-production recursion at the averaged
+#: coefficient (2/3)(1/2 - eta_0), certified in Lean at lambda = 100/203 and
+#: eta_0 = 10^-5 (``Production.zeta2avg_pos``). This is NOT a ladder root --
+#: ``lambda_root`` is not what fixes it -- so it is written as the rational it
+#: is, and it is above LAMBDA_STARSTAR, which the ladder only approaches.
+LAMBDA_AVERAGED = 100.0 / 203.0
+REQUIRED_RATE_AVERAGED = 1.0 - LAMBDA_AVERAGED
+#: the best unconditional exponent before it: J-fate-contagion-elementary
+LAMBDA_ELEMENTARY = 13.0 / 40.0
+REQUIRED_RATE_ELEMENTARY = 1.0 - LAMBDA_ELEMENTARY
 N0_CERTIFIED = 350_000_000
 N0_LEAN = 260
 
@@ -474,6 +489,60 @@ def required_depth(log_y: float, N0: int, e: float, d_max: int = 4000) -> int | 
         if bad_word_probability(L, d) <= target:
             return d
     return None
+
+
+
+def unconditional_depth_drop(
+    qs: tuple[float, ...] = (0.5, 0.55, 0.6, 0.62),
+) -> dict[str, Any]:
+    """What the averaged exponent does to the cylinder depth, unconditionally.
+
+    Two comparisons, and they say different things.
+
+    Against ``lambda**`` the thresholds do not move at all: ``1 - 100/203`` is
+    smaller than ``1 - lambda**`` by only ``3.93e-5``, far too little to change
+    an integer least-``C``. What changes there is the status -- those numbers
+    rested on Paper C's Proposition 4.4 and now rest on nothing.
+
+    Against the previous unconditional exponent ``13/40`` they move a lot:
+    ``C = 23`` becomes ``C = 19``, and the biased thresholds fall by a fifth to
+    a quarter. That is the arithmetic gain, and it is the honest one to quote,
+    because ``13/40`` is what an unconditional statement could use before.
+    """
+
+    rows: dict[str, Any] = {}
+    for q in qs:
+        rows[str(q)] = {
+            "biased_elementary": least_C_biased(q, REQUIRED_RATE_ELEMENTARY),
+            "biased_averaged": least_C_biased(q, REQUIRED_RATE_AVERAGED),
+            "biased_starstar": least_C_biased(q, REQUIRED_RATE),
+            "pressure_elementary": least_C_pressure(q, REQUIRED_RATE_ELEMENTARY),
+            "pressure_averaged": least_C_pressure(q, REQUIRED_RATE_AVERAGED),
+            "pressure_starstar": least_C_pressure(q, REQUIRED_RATE),
+        }
+    return {
+        "lambda_elementary": LAMBDA_ELEMENTARY,
+        "lambda_starstar_conditional": LAMBDA_STARSTAR,
+        "lambda_averaged_unconditional": LAMBDA_AVERAGED,
+        "required_rate_elementary": REQUIRED_RATE_ELEMENTARY,
+        "required_rate_starstar": REQUIRED_RATE,
+        "required_rate_averaged": REQUIRED_RATE_AVERAGED,
+        "least_C_elementary": least_C(REQUIRED_RATE_ELEMENTARY),
+        "least_C_averaged": least_C(REQUIRED_RATE_AVERAGED),
+        "least_C_starstar": least_C(REQUIRED_RATE),
+        "averaged_beats_starstar": LAMBDA_AVERAGED > LAMBDA_STARSTAR,
+        "thresholds_unchanged_against_starstar": all(
+            r["biased_averaged"] == r["biased_starstar"]
+            and r["pressure_averaged"] == r["pressure_starstar"]
+            for r in rows.values()
+        ),
+        "by_q": rows,
+        "lean": (
+            "Production.logMass_contagion_averaged and"
+            " conjecture_of_cylinder_bound_averaged,"
+            " Problems/Juggler/FatePoorProduction.lean"
+        ),
+    }
 
 
 def summary() -> dict[str, Any]:

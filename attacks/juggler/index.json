@@ -5169,7 +5169,9 @@
       "test": "tests/research/juggler_sequence/test_tao_reduction.py",
       "dossier": "docs/problems/juggler_tao_almost_bounded.md",
       "data_dir": "data/research/juggler/tao_reduction",
-      "lean": [],
+      "lean": [
+        "formal/Problems/Juggler/FatePoorProduction.lean"
+      ],
       "conjecture": [],
       "decision": "PROMOTE",
       "ledger_ids": [
