@@ -37,7 +37,7 @@ import branch_drift as BD  # noqa: E402
 #: latest-progress-summary reached +8 unread on 2026-09-20 after being
 #: acknowledged at +5. Update the sha in the same commit as the reason.
 READ_AT: dict[str, str] = {
-    "claude/exponent-floor-3n1-2adic-mvwa96": "521f5b32",
+    "claude/exponent-floor-3n1-2adic-mvwa96": "e21a1091",
     "claude/latest-progress-summary-s011un": "99e846db",
     "claude/goofy-kare-1a92fd": "8aad2aae",
     "claude/elated-hopper-e20999": "86247b5d",
@@ -63,7 +63,8 @@ ACKNOWLEDGED: dict[str, str] = {
         "unproved, with no oscillation, no almost-periodicity and no "
         "amplitude. REGISTRY COLLISION AT MERGE: its "
         "hikawa-2026-parity-vector-structures carries DOI .../29894.84804/1, "
-        "the same work as main's hikawa-2026-finite-dimensional-parity-vectors, "
+        "the same work as main's hikawa-2026-parity-vector-structures -- main has "
+        "taken that id deliberately so the merge conflicts visibly -- "
         "and hikawa-nakanishi-2026-parity-vector-analysis exists on both sides "
         "under one id. Reconcile into single records; "
         "test_literature_records_are_unique_by_id_and_by_doi will fail until "
@@ -86,26 +87,36 @@ ACKNOWLEDGED: dict[str, str] = {
         "a gate."
     ),
     "claude/exponent-floor-3n1-2adic-mvwa96": (
-        "PENDING EXTRACTION, and it sharpens the bridge row main already has. "
-        "Read 2026-09-20. Two rows main lacks, "
-        "J-exponential-sends-density-to-log-density and "
-        "J-lemma-eight-is-the-exponent-valuation, with a probe, a test and a "
-        "dossier on the exponent-valuation mirror. It answers whether the "
-        "bridge removes the 2-adic rigidity: it does not, it RELOCATES it. "
-        "Conjugating Collatz's odd step by u = x + 1 gives u -> 3u/2, and the "
-        "Juggler's exact odd step on n = a^e gives e -> 3e/2 on the exponent -- "
-        "same map, same prime. Collatz carries the 2-adic integer in the VALUE, "
-        "the Juggler in the EXPONENT, and that object is HasPowTwoDepth, "
-        "already kernel-checked in Equality.lean since August and filed there "
-        "as a local arithmetic question. The price is one logarithm and it is "
-        "fatal: Collatz pays 2^(-k) in the density, the Juggler pays 2^(-k) in "
-        "the EXPONENT of the density, 999, 30, 4, 1, 0 against 500000, 250000, "
-        "125000, 62500, 31250 to 10^6. So the honest form of 'the exponential "
-        "removes the 2-adic rigidity', which is how "
-        "J-juggler-is-collatz-one-exponential-up puts it, is that it turns "
-        "Terras's bijection onto 2^k words into a constant map onto two. That "
-        "is a sharpening of a row on main rather than a contradiction of it, "
-        "and the bridge row should carry it whenever this is merged."
+        "PENDING EXTRACTION. Re-read 2026-09-20 at e21a1091, having grown by a "
+        "commit since the previous reading. SIX rows main lacks and twelve "
+        "probe, test and dossier files. The original content stands: it answers "
+        "whether the exponential bridge removes the 2-adic rigidity -- it does "
+        "not, it RELOCATES it, since conjugating Collatz's odd step by u = x+1 "
+        "gives u -> 3u/2 and the Juggler's exact odd step on n = a^e gives "
+        "e -> 3e/2 on the exponent, the same map on the same prime, with "
+        "Collatz carrying the 2-adic integer in the VALUE and Juggler in the "
+        "EXPONENT. "
+        "NEW AT e21a1091, three results. (1) The 3x-1 verification floor was "
+        "RUN: every 1 <= y < 2^38 reaches 1, 5 or 17 under y/2 and (3y-1)/2, "
+        "certified by 8 disjoint chunks of 2^35 with 0 failures and 0 new "
+        "cycles, verifier archived and re-runnable. That turns the finance "
+        "mirror's period table into a statement -- a fourth cycle of the 3x-1 "
+        "shortcut, equivalently a fourth negative cycle of shortcut 3x+1, has "
+        "period at least 4404167 with 2778720 odd steps, by kernel-checked "
+        "neg_cycle_finance at that floor. Only the floor is empirical. (2) A "
+        "THEOREM: for even a >= 2, floor((2^a - 1)^(3/2)) = 2^(3a/2) - "
+        "3*2^(a/2-1), so the floor charge against the top of the cell is "
+        "exactly 3*2^(a/2-1); one binomial tail, verified to a = 400. For odd "
+        "a the value is a Beatty value in sqrt 2. By Catalan-Mihailescu 2^a - 1 "
+        "is never a perfect power, so the repunits are maximally INEXACT starts "
+        "and the charge is exact anyway -- the floor charge is not intrinsically "
+        "unknowable off the perfect powers, only generically. (3) NEGATIVE: the "
+        "Mersenne primality is decorative, the floor is attained at every "
+        "2^a - 1 including 15, 63, 255, 511; what is structural is u = x+1 = "
+        "2^a, and under the bridge the extremal transports to e = 2^r, one bit "
+        "rather than a repunit, so the all-ones pattern does not survive. Same "
+        "verdict on the Fermat reading of -5 and -17. "
+        "The branch reports the Paper B kit gate failing at HEAD too, untouched."
     ),
     "claude/latest-progress-summary-s011un": (
         "PENDING EXTRACTION, and it has GROWN since it was first acknowledged "
