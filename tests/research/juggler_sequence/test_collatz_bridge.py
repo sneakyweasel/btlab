@@ -596,3 +596,32 @@ def test_hikawas_toolkit_recursion_is_the_laboratory_profile_step() -> None:
 
     # and the head is the sequence the bridge row identifies as A076227
     assert [sum(profile[k].values()) for k in range(1, 12)] ==         [1, 1, 2, 3, 4, 8, 13, 19, 38, 64, 128]
+
+def test_hikawas_sample_output_columns_are_our_counts() -> None:
+    """His published table's zero rows are the laboratory's free lengths.
+
+    `Sample_Output/1.1PV_Length_1_20.txt` in the toolkit repository tabulates
+    `B_Converged` and `D_Unconverged` per length. `D_Unconverged` is `N_k`.
+    `B_Converged` is the minimal-certificate count `M_k = 2 N_(k-1) - N_k`: his
+    table shows it zero at `k = 3, 6, 9, 11, 14, 17, 19`, and ours is zero at
+    exactly those and no others below 21 -- which is also exactly the set where
+    `N_k = 2 N_(k-1)`. So his zero rows are the free lengths, the support of
+    the empty-window theorem, and his nonzero values are A100982.
+
+    What this does NOT show: the toolkit COMPUTES these, and the papers may not
+    PROVE anything about them. The empty-window theorem says a free length
+    forces a full cylinder and hence that every additive functional
+    factorises; a column of zeros exhibits the zeros and asserts nothing. The
+    objects have prior art; the theorems are not settled by this.
+    """
+    counts = survivor_counts(21)
+    certificates = {d: 2 * counts[d - 1] - counts[d] for d in range(1, 21)}
+
+    hikawa_zero_rows = [3, 6, 9, 11, 14, 17, 19]
+    assert [d for d in range(1, 21) if certificates[d] == 0] == hikawa_zero_rows
+
+    # the same set is where the count doubles, which is what "free" means
+    assert [k for k in range(2, 21) if counts[k] == 2 * counts[k - 1]]         == hikawa_zero_rows
+
+    # and the nonzero values are A100982
+    assert [certificates[d] for d in range(1, 21) if certificates[d]] ==         [1, 1, 1, 2, 3, 7, 12, 30, 85, 173, 476, 961, 2652]
