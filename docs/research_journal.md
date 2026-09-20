@@ -30,6 +30,9 @@
   generated from `paper_b_zenodo.json`, now reads 1.0.0 as well, so a
   future new-version upload starts from the version the record uses;
   the archives that carry that JSON and the release record were rebuilt.
+  The concept DOIs of Papers A and C, 10.5281/zenodo.22676452 and
+  10.5281/zenodo.22678164, read from the API by a second session, join
+  the deposit list, which had carried only version DOIs for them.
 - **Where it is recorded.** The companion catalog `papers.ts` gives
   Paper B its DOI and record like Papers A and C, and its test now pins
   them; `paper_deposits.md` gains the row and the concept DOI; the root

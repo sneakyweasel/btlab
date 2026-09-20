@@ -11,7 +11,10 @@ operation.
 | B | Five-Step Descent Certificates for the Juggler Map: Parity Statistics of Nested Floor Powers | [10.5281/zenodo.22864934](https://doi.org/10.5281/zenodo.22864934) | [zenodo.org/records/22864934](https://zenodo.org/records/22864934) |
 | C | Fate Contagion and Termination Criteria for the Juggler Map | [10.5281/zenodo.22678165](https://doi.org/10.5281/zenodo.22678165) | [zenodo.org/records/22678165](https://zenodo.org/records/22678165) |
 
-Papers A and C are version 1.0.0 of 9 September 2026. Paper B is version
+Papers A and C are version 1.0.0 of 9 September 2026, with concept DOIs
+[10.5281/zenodo.22676452](https://doi.org/10.5281/zenodo.22676452) and
+[10.5281/zenodo.22678164](https://doi.org/10.5281/zenodo.22678164) for all
+versions. Paper B is version
 1.0.0 as well, published 21 September 2026 from the 2026-09-20-preprint
 edition, with concept DOI
 [10.5281/zenodo.22864933](https://doi.org/10.5281/zenodo.22864933) for all
