@@ -1,0 +1,23 @@
+{
+  "id": "simons-2008-m-cycles-generalized-syracuse",
+  "title": "On the (non-)existence of m-cycles for generalized Syracuse sequences",
+  "authors": [
+    "John L. Simons"
+  ],
+  "year": 2008,
+  "identifiers": {},
+  "url": {
+    "eudml": "https://eudml.org/doc/278414"
+  },
+  "problem_area": "collatz-cycles",
+  "relevant_concepts": [
+    "m-cycles",
+    "inverse Collatz problem",
+    "3x-1 problem",
+    "px+q problem",
+    "linear forms in logarithms"
+  ],
+  "project_relationship": "unassessed",
+  "status": "NOT CONSULTED: the publisher PDF at impan.pl loops on redirects, EuDML lists no alternate file, ResearchGate is blocked by policy; only the abstract, via EuDML and search snippets, was seen",
+  "notes": "Acta Arithmetica 131 (2008), no. 3, 217-254. Registered 20 September 2026 during the search for a published 3x-1 verification floor. Per Lagarias's annotated bibliography II, entry 96, and the abstract: it generalizes the Simons-de Weger m-cycle non-existence proof to the 3x+q, px+1 and px+q problems, 'the inverse Collatz problem' -- which is 3x-1 -- generalized Collatz problems and the Roelants problem; a lower bound for the cycle length comes from a generalized lemma of Crandall, an upper bound for fixed m from Laurent-Rhin linear forms in logarithms. WHAT A READER SHOULD EXTRACT. Whether it states an m-cycle exclusion for 3x-1 over a range of m, and what verification floor for 3x-1 it assumes or cites to do so. If it does, that floor is the published number this laboratory searched for and did not find, and the m-cycle exclusion is the theorem-type statement the floor never gives. Unread here."
+}

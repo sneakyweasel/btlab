@@ -1,0 +1,24 @@
+{
+  "id": "oeis-A037084",
+  "title": "Positive integers not going to 1 under iterations of the map in A001281: n->3n-1 if n odd, n->n/2 if n even",
+  "authors": [
+    "OEIS contributors"
+  ],
+  "year": 1999,
+  "identifiers": {
+    "oeis": "A037084"
+  },
+  "url": {
+    "oeis": "https://oeis.org/A037084"
+  },
+  "problem_area": "collatz-cycles",
+  "relevant_concepts": [
+    "3x-1 problem",
+    "negative Collatz cycles",
+    "verification floor",
+    "cycles 1, 5, 17"
+  ],
+  "project_relationship": "known",
+  "status": "classical-source (read in the local oeisdata clone and at oeis.org, 20 September 2026)",
+  "notes": "docs/problems/juggler_negative_floor_3x1.md. THE ONLY PUBLISHED VERIFICATION STATEMENT FOR THE 3x-1 MAP THAT A SEARCH FROM THE LABORATORY MACHINE COULD FIND. The entry's first comment reads, verbatim, 'Up to at least 100000000, every number reaches 1, 5 or 17.' It is unattributed and undated; the next comment, Benoit Cloitre's of 14 May 2002, states the conjecture that the three cycles (1, 2), (5, 14, 7, 20, 10) and the eighteen-element cycle at 17 are all, and Dmitry Kamenetsky's of 12 January 2017 notes the equivalence with the Collatz problem on the negative integers. No paper, no author and no method stand behind the 10^8. The whole 3x-1 family in OEIS (A001281, A003079, A003124, A008894-A008903, A039500-A039505) carries no other verification statement, checked over the full local corpus on 20 September 2026 with a grep for the map together with any verification word. WHAT IT MEANS HERE. The laboratory's own floor, 2^44 as of 20 September 2026 (J-negative-floor-makes-the-mirror-unconditional), exceeds this by five orders of magnitude and is the only floor it can cite; the search that found this comment also found the conditional table's prior art, sinisalo-2003-collatz-minimal-cycle-lengths."
+}

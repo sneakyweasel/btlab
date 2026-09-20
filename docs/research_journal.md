@@ -1,5 +1,59 @@
 # Research journal
 
+## 2026-09-20 -- No published 3x-1 floor exists, and the conditional table has been in print since 2003
+
+- **Objective:** Philippe asked for a published `3x-1` verification floor,
+  which would have made every local run moot. The search ran from the
+  laboratory machine with web access, which the container sessions lacked.
+- **The floor: none, anywhere reachable.** OEIS A037084 carries the only
+  statement found -- an unattributed comment, 2002-era, "up to at least
+  100000000, every number reaches 1, 5 or 17" -- and the whole local OEIS
+  corpus has no other record pairing the `3x-1` map with a verification
+  word. Lagarias's two annotated bibliographies, 1963-1999 and 2000-2009,
+  read in full text, name the `3x-1` function in five entries and quote no
+  floor for it. Wikipedia's negative-integer section, Roosendaal's index,
+  Ghosh's `px+q` bounds (positive `q` only), Tremblay's generalized-mapping
+  cycle searches and Cox's `3n+c` paper carry none either, and Cox's site,
+  which Roosendaal links as researching `3x-1` loops, is a dead placeholder.
+  Not checked: Guy's UPINT E16, a book, and Chamberland's survey PDF, whose
+  host reset the connection twice; a peer had read its section 6.1 and found
+  no floor. So the `2^44` certificate is the only floor this laboratory can
+  cite, and it is its own.
+- **What the search found instead: the conditional table is Sinisalo's
+  Table 2.** Matti Sinisalo, *On the minimal cycle lengths of the Collatz
+  sequences*, Oulu preprint, 2003+, entry 105 of Lagarias's bibliography II,
+  PDF on the probleme-syracuse.fr mirror, proves a Crandall-type Lemma 6 for
+  `3x-1` and tabulates the best lower rational approximations of `log2 3`
+  with the cycle length and "the bound to be reached by computer
+  calculations to eliminate this cycle length". That is the negative-cycle
+  survivor table of `J-negative-cycle-finance-is-the-juggler-mirror` and
+  Paper A's Remark 5.20, twenty-three years early: same lengths, our `K` his
+  `n`, our `o` his `k`, and his `R = 1/(3 - 2^(n/k))` reproduced here to
+  five digits on our rows. Ours is sharper by one or two rows at each
+  floor, because the even-charge finance beats the multiplier bound by
+  about the factor `1.5 (K/o - 1) = 0.88`: at `2^38` his smallest surviving
+  length is 3800179 against our 4404167, at `2^40` 9236071 against 9538065,
+  at `2^44` 16181933 against 16483927. He states no verified floor. What
+  remains ours is the constant, the kernel-checked implication, and the
+  floors.
+- **And the theorem-type result the floor never gives exists for `m = 2`.**
+  Simons 2007, J. Number Theory 123, sketches -- per Lagarias's entry 95 --
+  that the `3x-1` function has a single 2-cycle, at 17; Simons 2008, Acta
+  Arithmetica 131, generalizes the m-cycle criteria to "the inverse Collatz
+  problem". Neither could be read: the publisher PDF loops on redirects and
+  ResearchGate is policy-blocked. Both are registered NOT CONSULTED with
+  what a reader should extract written into the record. The next cycle
+  branch reads them first.
+- **Recorded.** Four registry records (Sinisalo, Simons 2007, Simons 2008,
+  OEIS A037084), the two dossiers' literature sections, both ledger rows,
+  and the formalpedia artifacts rebuilt for them. Paper A's Remark 5.20 now
+  needs two things in its next revision: the floor, which is verified, and
+  Sinisalo's name on the table.
+- **Decision:** `CLOSE` on the search for a published floor. Best next
+  question: read Simons 2008 -- if it assumes a `3x-1` floor, that is the
+  published number; if it excludes negative m-cycles for a range of `m`,
+  that is worth more than any floor.
+
 ## 2026-09-20 -- The 3x-1 floor reaches 2^44 on the laboratory machine, and the first certificate had seven holes
 
 - **Objective:** Philippe said run the `2^44` push here. The container's

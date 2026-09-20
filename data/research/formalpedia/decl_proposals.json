@@ -5132,19 +5132,19 @@
         {
           "decl": "neg_cycle_finance",
           "line": 836,
-          "score": 0.121,
+          "score": 0.092,
           "trust": "kernel"
         },
         {
           "decl": "neg_cycle_word_is_juggler_shape",
           "line": 762,
-          "score": 0.102,
+          "score": 0.079,
           "trust": "kernel"
         },
         {
           "decl": "cycle_even_charge",
           "line": 510,
-          "score": 0.089,
+          "score": 0.068,
           "trust": "kernel"
         }
       ],
@@ -5154,12 +5154,12 @@
         {
           "decl": "evenCharge",
           "line": 464,
-          "score": 0.079
+          "score": 0.061
         },
         {
           "decl": "parityWord",
           "line": 98,
-          "score": 0.043
+          "score": 0.034
         }
       ],
       "id": "J-negative-cycle-finance-is-the-juggler-mirror",

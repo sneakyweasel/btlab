@@ -32,11 +32,26 @@ fourth cycle could have. The floor was \(2^{38}\) on 19 September 2026,
   positive-side period bounds. **known**; the positive side is
   reproduced, not extended, by
   [collatz_finance_mirror](juggler_collatz_finance_mirror.md).
-- No published verification floor for \(3x-1\) was found by the
-  recorded search — OEIS text records, Roosendaal's index, Lagarias's
-  bibliography, Chamberland section 6.1 — which is not the same as none
-  existing. **independent**: the floor here is the laboratory's own
-  computation.
+- No published verification floor for \(3x-1\) exists in anything
+  reachable, searched twice: from a container on 19 September (OEIS text
+  records, Roosendaal's index, Lagarias's bibliography, Chamberland section
+  6.1) and from the laboratory machine with web access on 20 September (the
+  full local OEIS corpus, both Lagarias bibliographies in full text,
+  Wikipedia, Roosendaal, Ghosh, Tremblay, Cox). The only statement found is
+  OEIS A037084's unattributed comment "up to at least 100000000, every
+  number reaches 1, 5 or 17" (`oeis-A037084`). **independent**: the floor
+  here is the laboratory's own computation, and the only one it can cite.
+- `sinisalo-2003-collatz-minimal-cycle-lengths`, Table 2 — the conditional
+  survivor table of the finance mirror, twenty-three years early, with a
+  Crandall-type bound one or two rows weaker than the even-charge finance
+  at each floor, and no verified floor. **known**; see
+  [collatz_finance_mirror](juggler_collatz_finance_mirror.md).
+- `simons-2007-inductive-two-cycles-3x1` — the \(3x-1\) function has a
+  single 2-cycle, at 17 (per Lagarias's bibliography; unread), and
+  `simons-2008-m-cycles-generalized-syracuse` extends the m-cycle criteria
+  to the inverse Collatz problem (unread; the publisher PDF is unreachable).
+  These are the theorem-type statements a floor never gives; read them
+  before the next cycle branch. **known**.
 - `neg_cycle_finance`, `neg_cycle_word_is_juggler_shape` in
   `Problems/Juggler/CollatzBridge.lean`. **EXACT — LEAN VERIFIED**; the
   implication from floor to period is theirs, and only the floor is

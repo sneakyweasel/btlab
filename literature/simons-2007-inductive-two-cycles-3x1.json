@@ -1,0 +1,21 @@
+{
+  "id": "simons-2007-inductive-two-cycles-3x1",
+  "title": "A simple (inductive) proof for the non-existence of 2-cycles of the 3x+1 problem",
+  "authors": [
+    "John L. Simons"
+  ],
+  "year": 2007,
+  "identifiers": {},
+  "url": {},
+  "problem_area": "collatz-cycles",
+  "relevant_concepts": [
+    "2-cycles",
+    "m-cycles",
+    "3x-1 problem",
+    "negative Collatz cycles",
+    "3x+q problem"
+  ],
+  "project_relationship": "known",
+  "status": "NOT CONSULTED; the 3x-1 statement below is quoted from Lagarias's annotated bibliography II, entry 95, attested and not observed",
+  "notes": "J. Number Theory 123 (2007), 10-17, per Lagarias. Registered 20 September 2026 during the search for a published 3x-1 verification floor. Per Lagarias's entry 95, the paper gives a second proof that the 3x+1 function has no nontrivial 2-cycles on the positive integers, and its last section sketches a proof that the 3x-1 function on the positive integers has a single 2-cycle, with minimal element 17 -- equivalently, the 3x+1 function on the negative integers has a single 2-cycle, at -17. The method applies to 3x +- q with gcd(6, q) = 1 to give a finite list of 2-cycles, and does not extend to m >= 3; for that see Simons and de Weger (2005) and simons-2008-m-cycles-generalized-syracuse. WHY IT MATTERS HERE. It is the only theorem-type m-cycle statement on the negative side that the search found: a result of the Steiner / Simons-de Weger kind for 3x-1, which is what no verification floor supplies (docs/problems/juggler_negative_floor_3x1.md). Read it before the next cycle branch claims anything about negative m-cycles; a DOI is deliberately not recorded until the paper is seen."
+}

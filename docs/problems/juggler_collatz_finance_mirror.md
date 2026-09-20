@@ -76,6 +76,20 @@ side at the historical floors coincide with the published period bounds?
 - Simons–de Weger 2005 financing-versus-gap — **KNOWN**
   (`simons-de-weger-2005-collatz-m-cycles`); the laboratory's finance branch
   is its floor-power adaptation ([juggler_cycle_finance.md](juggler_cycle_finance.md)).
+- Sinisalo 2003+ — Table 2 of his Oulu preprint is the negative-cycle
+  survivor table of this branch, twenty-three years early: the same lengths,
+  with the Crandall-type bound `R = 1/(3 - 2^(K/o))` in place of the
+  even-charge finance, which is sharper by one or two rows at each floor
+  (his smallest surviving length `9236071` at `2^40` against ours
+  `9538065`; his `R` reproduced here to five digits on our rows). No
+  verified floor is reported — **KNOWN**
+  (`sinisalo-2003-collatz-minimal-cycle-lengths`; found 20 September 2026).
+  Project relationship for the table: **reproduced**, and sharpened.
+- Simons 2007 — the `3x-1` function has a single 2-cycle, at `17`
+  (`simons-2007-inductive-two-cycles-3x1`, via Lagarias's entry 95, unread);
+  Simons 2008 — m-cycle criteria for the inverse Collatz problem
+  (`simons-2008-m-cycles-generalized-syracuse`, unread). **KNOWN**: the
+  negative side's Steiner-type results, which no verification floor gives.
 - Steiner 1977, no Collatz 1-cycles — **KNOWN** (through Simons–de Weger and
   Hercher). The Juggler counterpart does not exist; see Results.
 - Paper A Theorem 4.4 / Corollary 4.11 / Corollary 5.11 —
