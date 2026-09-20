@@ -436,6 +436,22 @@ small-\(q\) resonance. None exists, and Lemma 1 says why none can.
 
 ## Formalization
 
+**Theorem 4 is done, and so is everything under it.** The whole chain
+\(1\to2\to3\to4\) is kernel-checked on standard axioms, in
+`Problems/Juggler/FateBlockLock.lean`, `FateFiberLock.lean`,
+`FateResonanceCount.lean` and `FatePoorTail.lean`:
+`BlockLock.block_lock` (1.1); `FiberParity.fiber_lock` (Lemma 2), via
+`exists_coprime_approx` (Dirichlet in lowest terms), `fiber_block_lock`
+(the fiber instantiation), `evenImageCount_eq_fract` (the parity bridge)
+and `eps_mul_Hlen_le` ((F3)); `FiberParity.resonance_count_le'`
+(Lemma 3); and `FiberParity.poor_count_le'` (4.1) with
+`poor_logMass_le` (4.2).
+
+The formalization changed one thing and confirmed the rest: the constant
+in (4.1) is \(430\), not the \(420\) first printed here, for the
+reason recorded in §4. What remains unformalized is §5 — the splice into
+the production layer — and the block lock's own corollary shape for it.
+
 **Lemma 1 is done and kernel-checked.**
 `Problems/Juggler/FateBlockLock.lean`, `BlockLock.block_lock`, in the
 un-divided form

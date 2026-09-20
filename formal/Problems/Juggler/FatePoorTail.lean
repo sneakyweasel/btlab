@@ -226,6 +226,133 @@ theorem poor_count_le' {u : ℕ} (hu : 10 ^ 6 ≤ u) {η₀ : ℝ} (hη0 : 0 < �
         rw [hrw, div_le_div_iff₀ (by positivity) (by positivity)]
         nlinarith [hu23, sq_nonneg η₀]
 
+
+/-! ### (4.2): the dyadic log-mass -/
+
+/-- The block hypothesis only gets easier as `u` grows: `B_u` is increasing. -/
+theorem hB_mono {U u : ℕ} (hUu : U ≤ u) {η₀ : ℝ}
+    (hB : 1280 / η₀ ^ 2 ≤ 2 / 3 * (U : ℝ) ^ ((1 : ℝ) / 3) - 1) :
+    1280 / η₀ ^ 2 ≤ 2 / 3 * (u : ℝ) ^ ((1 : ℝ) / 3) - 1 := by
+  have h : (U : ℝ) ^ ((1 : ℝ) / 3) ≤ (u : ℝ) ^ ((1 : ℝ) / 3) :=
+    Real.rpow_le_rpow (by positivity) (by exact_mod_cast hUu) (by norm_num)
+  linarith
+
+/-- And so does the width hypothesis: the width is decreasing in `u`. -/
+theorem hδ_mono {U u : ℕ} (hUu : U ≤ u) {η₀ : ℝ} (hη0 : 0 < η₀)
+    (hB : 1280 / η₀ ^ 2 ≤ 2 / 3 * (U : ℝ) ^ ((1 : ℝ) / 3) - 1)
+    (hδ2 : 32 / (η₀ * (2 / 3 * (U : ℝ) ^ ((1 : ℝ) / 3) - 1)) < 1 / 2) :
+    32 / (η₀ * (2 / 3 * (u : ℝ) ^ ((1 : ℝ) / 3) - 1)) < 1 / 2 := by
+  have h : (U : ℝ) ^ ((1 : ℝ) / 3) ≤ (u : ℝ) ^ ((1 : ℝ) / 3) :=
+    Real.rpow_le_rpow (by positivity) (by exact_mod_cast hUu) (by norm_num)
+  have hBU : (0 : ℝ) < 2 / 3 * (U : ℝ) ^ ((1 : ℝ) / 3) - 1 := by
+    have : (0 : ℝ) < 1280 / η₀ ^ 2 := by positivity
+    linarith
+  have hBu : (0 : ℝ) < 2 / 3 * (u : ℝ) ^ ((1 : ℝ) / 3) - 1 := by linarith
+  have hmono : 32 / (η₀ * (2 / 3 * (u : ℝ) ^ ((1 : ℝ) / 3) - 1))
+      ≤ 32 / (η₀ * (2 / 3 * (U : ℝ) ^ ((1 : ℝ) / 3) - 1)) := by
+    rw [div_le_div_iff₀ (by positivity) (by positivity)]
+    nlinarith [h, hη0, hBU, hBu]
+  linarith
+
+/-- **The log-mass on one dyadic block.** `430 ε_u / η₀²`, from the count and `1/m ≤ 1/u`. -/
+theorem poor_block_logMass_le {u : ℕ} (hu : 10 ^ 6 ≤ u) {η₀ : ℝ} (hη0 : 0 < η₀)
+    (hη1 : η₀ ≤ 1 / 2)
+    (hB : 1280 / η₀ ^ 2 ≤ 2 / 3 * (u : ℝ) ^ ((1 : ℝ) / 3) - 1)
+    (hδ2 : 32 / (η₀ * (2 / 3 * (u : ℝ) ^ ((1 : ℝ) / 3) - 1)) < 1 / 2) :
+    (∑ m ∈ {m ∈ Finset.Ioc u (2 * u) | Poor η₀ m}, (1 : ℝ) / m) ≤ 430 * eps u / η₀ ^ 2 := by
+  have hu0 : (0 : ℝ) < u := by exact_mod_cast (by omega : 0 < u)
+  have hcount := poor_count_le' hu hη0 hη1 hB hδ2
+  have hterm : ∀ m ∈ {m ∈ Finset.Ioc u (2 * u) | Poor η₀ m}, (1 : ℝ) / m ≤ 1 / u := by
+    intro m hm
+    rw [Finset.mem_filter, Finset.mem_Ioc] at hm
+    exact one_div_le_one_div_of_le hu0 (by exact_mod_cast hm.1.1.le)
+  have hsum := Finset.sum_le_card_nsmul _ _ _ hterm
+  rw [nsmul_eq_mul] at hsum
+  have heq : (u : ℝ) ^ ((2 : ℝ) / 3) * (1 / u) = eps u := by
+    unfold eps
+    rw [show (1 : ℝ) / u = (u : ℝ) ^ (-(1 : ℝ)) by rw [Real.rpow_neg_one, one_div],
+      ← Real.rpow_add hu0]
+    norm_num
+  calc (∑ m ∈ {m ∈ Finset.Ioc u (2 * u) | Poor η₀ m}, (1 : ℝ) / m)
+      ≤ (#{m ∈ Finset.Ioc u (2 * u) | Poor η₀ m} : ℝ) * (1 / u) := hsum
+    _ ≤ (430 * (u : ℝ) ^ ((2 : ℝ) / 3) / η₀ ^ 2) * (1 / u) :=
+        mul_le_mul_of_nonneg_right hcount (by positivity)
+    _ = 430 * ((u : ℝ) ^ ((2 : ℝ) / 3) * (1 / u)) / η₀ ^ 2 := by ring
+    _ = 430 * eps u / η₀ ^ 2 := by rw [heq]
+
+/-- The dyadic decomposition: the poor log-mass on `(U, 2^K U]`. -/
+theorem poor_sum_dyadic_le {U : ℕ} (hU : 10 ^ 6 ≤ U) {η₀ : ℝ} (hη0 : 0 < η₀) (hη1 : η₀ ≤ 1 / 2)
+    (hB : 1280 / η₀ ^ 2 ≤ 2 / 3 * (U : ℝ) ^ ((1 : ℝ) / 3) - 1)
+    (hδ2 : 32 / (η₀ * (2 / 3 * (U : ℝ) ^ ((1 : ℝ) / 3) - 1)) < 1 / 2) : ∀ K : ℕ,
+    (∑ m ∈ {m ∈ Finset.Ioc U (2 ^ K * U) | Poor η₀ m}, (1 : ℝ) / m) ≤
+      ∑ i ∈ Finset.range K, 430 * eps (2 ^ i * U) / η₀ ^ 2 := by
+  intro K
+  induction K with
+  | zero => simp
+  | succ K ih =>
+      have hle1 : U ≤ 2 ^ K * U := Nat.le_mul_of_pos_left U (by positivity)
+      have hle2 : 2 ^ K * U ≤ 2 ^ (K + 1) * U := by
+        apply Nat.mul_le_mul_right
+        exact Nat.pow_le_pow_right (by norm_num) (by omega)
+      rw [← Finset.Ioc_union_Ioc_eq_Ioc hle1 hle2, Finset.filter_union,
+        Finset.sum_union (Finset.disjoint_filter_filter (Ioc_disjoint_next _ _ _)),
+        Finset.sum_range_succ]
+      have hu6 : 10 ^ 6 ≤ 2 ^ K * U := le_trans hU hle1
+      have hblock := poor_block_logMass_le (u := 2 ^ K * U) hu6 hη0 hη1
+        (hB_mono hle1 hB) (hδ_mono hle1 hη0 hB hδ2)
+      rw [show 2 * (2 ^ K * U) = 2 ^ (K + 1) * U by ring] at hblock
+      linarith
+
+/-- **(4.2) of the note.** For `U ≥ 10^6` satisfying the block hypotheses, and every `N`,
+the `η₀`-poor `m ∈ (U, N]` carry `1/m`-weighted mass at most `2100 U^{-1/3}/η₀²`.
+
+This is the summability that makes the poor set logarithmically finite, which is the whole
+content of the branch: there is nothing for an adversary to concentrate on. The argument is
+`bad_logMass_le`'s with a different summand. -/
+theorem poor_logMass_le {U N : ℕ} (hU : 10 ^ 6 ≤ U) {η₀ : ℝ} (hη0 : 0 < η₀) (hη1 : η₀ ≤ 1 / 2)
+    (hB : 1280 / η₀ ^ 2 ≤ 2 / 3 * (U : ℝ) ^ ((1 : ℝ) / 3) - 1)
+    (hδ2 : 32 / (η₀ * (2 / 3 * (U : ℝ) ^ ((1 : ℝ) / 3) - 1)) < 1 / 2) :
+    (∑ m ∈ {m ∈ Finset.Ioc U N | Poor η₀ m}, (1 : ℝ) / m) ≤ 2100 * eps U / η₀ ^ 2 := by
+  have hU1 : 1 ≤ U := by omega
+  have hcov : {m ∈ Finset.Ioc U N | Poor η₀ m} ⊆
+      {m ∈ Finset.Ioc U (2 ^ N * U) | Poor η₀ m} := by
+    apply Finset.filter_subset_filter
+    apply Finset.Ioc_subset_Ioc_right
+    calc N ≤ 2 ^ N := Nat.lt_two_pow_self.le
+      _ ≤ 2 ^ N * U := Nat.le_mul_of_pos_right _ (by omega)
+  have h1 := Finset.sum_le_sum_of_subset_of_nonneg hcov (fun m _ _ => by positivity :
+    ∀ m ∈ {m ∈ Finset.Ioc U (2 ^ N * U) | Poor η₀ m},
+      m ∉ {m ∈ Finset.Ioc U N | Poor η₀ m} → (0 : ℝ) ≤ 1 / m)
+  have h2 := poor_sum_dyadic_le hU hη0 hη1 hB hδ2 N
+  set r : ℝ := (2 : ℝ) ^ (-((1 : ℝ) / 3)) with hr
+  have hr0 : 0 ≤ r := Real.rpow_nonneg (by norm_num) _
+  have hr1 : r < 1 := by linarith [two_rpow_neg_third_le]
+  have hε0 : 0 ≤ eps U := (eps_pos hU1).le
+  have h3 : ∑ i ∈ Finset.range N, 430 * eps (2 ^ i * U) / η₀ ^ 2
+      = (430 * eps U / η₀ ^ 2) * ∑ i ∈ Finset.range N, r ^ i := by
+    rw [Finset.mul_sum]
+    apply Finset.sum_congr rfl
+    intro i _
+    rw [eps_pow_two_mul hU1 i]
+    ring
+  have hgeom : ∑ i ∈ Finset.range N, r ^ i ≤ r ^ 0 / (1 - r) := by
+    rw [Finset.range_eq_Ico]
+    exact geom_sum_Ico_le_of_lt_one hr0 hr1
+  have hc : (0 : ℝ) ≤ 430 * eps U / η₀ ^ 2 := div_nonneg (by linarith) (by positivity)
+  have hc2 : (0 : ℝ) ≤ eps U / η₀ ^ 2 := div_nonneg hε0 (by positivity)
+  have hr' := two_rpow_neg_third_le
+  have hfrac : 430 / (1 - r) ≤ 2100 := by
+    rw [div_le_iff₀ (by linarith)]
+    linarith
+  calc (∑ m ∈ {m ∈ Finset.Ioc U N | Poor η₀ m}, (1 : ℝ) / m)
+      ≤ ∑ m ∈ {m ∈ Finset.Ioc U (2 ^ N * U) | Poor η₀ m}, (1 : ℝ) / m := h1
+    _ ≤ ∑ i ∈ Finset.range N, 430 * eps (2 ^ i * U) / η₀ ^ 2 := h2
+    _ = (430 * eps U / η₀ ^ 2) * ∑ i ∈ Finset.range N, r ^ i := h3
+    _ ≤ (430 * eps U / η₀ ^ 2) * (r ^ 0 / (1 - r)) := mul_le_mul_of_nonneg_left hgeom hc
+    _ = (eps U / η₀ ^ 2) * (430 / (1 - r)) := by rw [pow_zero]; ring
+    _ ≤ (eps U / η₀ ^ 2) * 2100 := mul_le_mul_of_nonneg_left hfrac hc2
+    _ = 2100 * eps U / η₀ ^ 2 := by ring
+
 end FiberParity
 
 end Problems.Juggler
