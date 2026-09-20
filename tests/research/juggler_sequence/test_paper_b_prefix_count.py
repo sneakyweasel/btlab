@@ -5720,3 +5720,54 @@ def test_the_two_bases_are_one_collapse_under_an_affine_phase_map() -> None:
     assert all(
         0 <= beta * (1 - math.modf(d * lam)[0]) < beta for d in range(1, 5000)
     )
+
+
+def test_a214494_is_a_near_miss_for_the_weight_triangle() -> None:
+    """The triangle is not in OEIS, and the search that says otherwise is wrong.
+
+    Searching the weight-refined survivor triangle flattened by rows returns
+    nothing. Searching it with rows REVERSED returns A214494,
+    `T(n,k) = C(n,k) - 2 C(n,k-1)`, and the first 24 flattened terms agree --
+    enough for OEIS to report a match. They are different triangles.
+
+    A214494 is the ballot count against slope 1/2: paths with `o >= t/2`. Ours
+    is the survivor count against slope `1/lam = 0.6309`: every prefix with
+    `3^o >= 2^t`. The barriers already differ at `t = 2`, so the agreement is
+    not structural -- it is that the counts coincide until `L = 11`, where our
+    row gains a fifth entry the ballot row does not have, and from `L = 12`
+    the values differ too (85 against 55).
+
+    Recorded because the next sweep will hit it again. Twenty-four terms of
+    agreement is not an identification, and a run search cannot distinguish a
+    coincidence from a selection -- the lesson a peer session reached the same
+    day from the other direction, having reported three sequences absent when
+    two were selections from catalogued families.
+    """
+    from math import comb
+
+    from research.juggler_sequence.paper_b_prefix_count import word_counts
+
+    def ballot(length: int) -> list[int]:
+        def binom(n: int, k: int) -> int:
+            return comb(n, k) if 0 <= k <= n else 0
+
+        return [
+            v
+            for v in (binom(length, k) - 2 * binom(length, k - 1)
+                      for k in range(length + 1))
+            if v > 0
+        ]
+
+    def ours(length: int) -> list[int]:
+        return [v for v in word_counts(length) if v][::-1]
+
+    for length in range(1, 11):
+        assert ballot(length) == ours(length), length
+
+    assert ours(11) == [1, 9, 33, 55, 30]
+    assert ballot(11) == [1, 9, 33, 55]
+    assert ours(12)[-1] == 85 and ballot(12)[-1] == 55
+
+    # and the barriers were never the same, which is why the agreement is luck
+    lam = math.log(3) / math.log(2)
+    assert math.ceil(2 / lam) != math.ceil(2 / 2)

@@ -29,7 +29,7 @@ see the open risk below.
 | free lengths | **A054414** (the Beatty complement) | his zero rows |
 | nonzero `M_d` in order | **A186009** ("A100982 with 1 prepended") | `W(d)` totals |
 | boundary mass `M_d / 2^d` | the frequency comment on **A186008**, T. D. Noe, Feb 2011 | — |
-| the joint (length, weight) table | **not in OEIS** -- every marginal is, the table is not | Counting by Hamming Weight |
+| the joint (length, weight) table | **not in OEIS**, checked four readings -- every marginal is, the table is not. A214494 agrees for 24 terms and is the slope-1/2 ballot triangle, not ours | Counting by Hamming Weight |
 | survivor recursion `stepFlat` | — | `W[k][d] = W[k-1][d] + W[k-1][d-1]` |
 
 One row carries three outside names and a fourth that only we use: the
