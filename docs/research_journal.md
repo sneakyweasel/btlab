@@ -1,5 +1,65 @@
 # Research journal
 
+## 2026-09-20 -- Simons 2008, read: its inverse Collatz problem is not 3x-1, and the record I wrote from the abstract was wrong
+
+- **Objective:** Philippe said read Simons 2008. The publisher PDF that
+  looped on redirects an hour earlier came through the open-access link
+  Semantic Scholar lists; the DOI `10.4064/aa131-3-2` is confirmed through
+  CrossRef, not constructed.
+- **The correction first.** Section 5's "inverse Collatz problem" is Guy's
+  permutation `x -> 3x/2` (even), `(3x -+ 1)/4` (odd), the original Collatz
+  permutation with positive cycles `(1)`, `(2, 3)`, `(4, 6, 9, 7, 5)` and
+  the twelve-element cycle at 44 -- not the `3x-1` map. Its `3x+q` section
+  takes `q = 1` or `q >= 5` prime; `px+q` takes `p >= 5`. The paper says
+  nothing about `3x-1` at all. The registry record I wrote from the
+  abstract, the two dossier bullets built on it, and the previous journal
+  entry's "extends the m-cycle criteria to the inverse Collatz problem,
+  i.e. `3x-1`" were wrong on exactly the point that mattered. Record and
+  dossiers corrected; the earlier entry stands as what was thought. Lemma
+  23, for the permutation: no m-cycles with `m <= 9` beyond the four, and
+  the trajectory of 8 stays open.
+- **What the paper is: a five-step template.** (1) A brute-force floor
+  `X0` below which all cycles are known. (2) From the chain equations, an
+  upper bound on `Lambda = (K+L) log 2 - K log 3` in terms of the local
+  minima, `Lambda < sum 1/x_i < m/X0` for an m-cycle, then in `K` and `m`
+  through the chaining `x_(i+1) < 2^(delta-1) x_i^delta`. (3) The
+  generalized Crandall lemma: if `q_n + q_(n+1) <= (log 2) X0 / m` then
+  `K >= q_(n+1)`, so the floor sets a lower bound `K0(m)` that steps down
+  as `m` grows. (4) Rhin's `Lambda > exp(-13.3 (0.46057 + log K))` against
+  the upper bound gives `K < K3(m)`, reduced to `K < K2(m)` by the
+  convergent argument with the partial-quotient champion. (5) Where
+  `K0(m) < K2(m)`, lattice basis reduction and residue conditions, then
+  brute force below `X0`. That is how Simons-de Weger exclude `m <= 75`
+  for `3x+1` with `X0 > 2.5 * 2^60`.
+- **Why this bears on the negative side, and it is the finding of the
+  reading.** The laboratory's `neg_cycle_finance` -- Sinisalo's Table 2
+  sharpened -- is step (2) summed over EVERY even step, the m-free worst
+  case. The m-cycle version divides the same `Lambda` by the number of
+  local minima, which for small `m` is stronger by orders of magnitude.
+  Nobody has run steps (3)-(5) on `3x-1`, because nobody had a floor
+  there: Simons-de Weger 2005 and Hercher 2023 are `3x+1` only, Simons
+  2007 does `m = 2` for `3x-1` and says the method stops at `m >= 3`, and
+  this paper skips `3x-1`. The laboratory now has `X0 = 2^44`. Feeding it
+  to Lemma 1 as written, and taking `K2(m)` from the paper's equation (13)
+  with its constant 57, the tables alone -- no lattice work -- give
+  `K0(m) >= K2(m)` for every `m <= 39`: no negative m-cycle beyond
+  `-1`, `-5`, `-17` with that many local minima and least element above
+  `2^44`, if the negative-side chaining inequality carries the same
+  constant, which is the one step still to be written down. Lattice
+  reduction would push the range higher. That is the theorem-type
+  statement the morning's entry said would be worth more than any floor,
+  and it is a branch, not a reading; novelty is not claimed, only that
+  these three papers do not contain it.
+- **Simons 2007 stays unread.** The JNT open-archive page answers with a
+  CAPTCHA, which is not mine to pass; it is a normal-browser download for
+  Philippe. Its last section is the `m = 2` case of the above, done
+  without a floor.
+- **Decision:** `CLOSE` on the reading. Best next question: the
+  Simons-de Weger transposition to `3x-1` with `X0 = 2^44` -- first the
+  negative-side chaining constant, then the `K0`/`K2` tables, then lattice
+  reduction for the `m` the tables leave -- after Simons 2007 and
+  Simons-de Weger 2005 are read in full.
+
 ## 2026-09-20 -- No published 3x-1 floor exists, and the conditional table has been in print since 2003
 
 - **Objective:** Philippe asked for a published `3x-1` verification floor,

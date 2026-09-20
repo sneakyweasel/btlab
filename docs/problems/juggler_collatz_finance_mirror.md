@@ -86,10 +86,13 @@ side at the historical floors coincide with the published period bounds?
   (`sinisalo-2003-collatz-minimal-cycle-lengths`; found 20 September 2026).
   Project relationship for the table: **reproduced**, and sharpened.
 - Simons 2007 — the `3x-1` function has a single 2-cycle, at `17`
-  (`simons-2007-inductive-two-cycles-3x1`, via Lagarias's entry 95, unread);
-  Simons 2008 — m-cycle criteria for the inverse Collatz problem
-  (`simons-2008-m-cycles-generalized-syracuse`, unread). **KNOWN**: the
-  negative side's Steiner-type results, which no verification floor gives.
+  (`simons-2007-inductive-two-cycles-3x1`, via Lagarias's entry 95, unread):
+  the negative side's one Steiner-type result, which no floor gives.
+  **KNOWN**. Simons 2008 (`simons-2008-m-cycles-generalized-syracuse`, read
+  in full) has no `3x-1` content — its "inverse Collatz problem" is Guy's
+  permutation — but its generalized Crandall lemma is the step that turns a
+  floor into an m-cycle exclusion, and the negative side now has a floor.
+  **KNOWN**; the transposition is open.
 - Steiner 1977, no Collatz 1-cycles — **KNOWN** (through Simons–de Weger and
   Hercher). The Juggler counterpart does not exist; see Results.
 - Paper A Theorem 4.4 / Corollary 4.11 / Corollary 5.11 —

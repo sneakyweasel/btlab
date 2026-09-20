@@ -47,11 +47,17 @@ fourth cycle could have. The floor was \(2^{38}\) on 19 September 2026,
   at each floor, and no verified floor. **known**; see
   [collatz_finance_mirror](juggler_collatz_finance_mirror.md).
 - `simons-2007-inductive-two-cycles-3x1` — the \(3x-1\) function has a
-  single 2-cycle, at 17 (per Lagarias's bibliography; unread), and
-  `simons-2008-m-cycles-generalized-syracuse` extends the m-cycle criteria
-  to the inverse Collatz problem (unread; the publisher PDF is unreachable).
-  These are the theorem-type statements a floor never gives; read them
-  before the next cycle branch. **known**.
+  single 2-cycle, at 17 (per Lagarias's bibliography; unread). The
+  theorem-type statement a floor never gives, for \(m=2\). **known**.
+- `simons-2008-m-cycles-generalized-syracuse`, read in full on 20
+  September — contains nothing on \(3x-1\): its "inverse Collatz problem"
+  is Guy's permutation \(x\mapsto 3x/2,\ (3x\mp1)/4\), and its
+  \(3x+q\) section takes \(q=1\) or \(q\ge5\) prime. What it gives is
+  the five-step Simons–de Weger template, whose step (3), the generalized
+  Crandall lemma, turns a floor \(X_0\) into \(K\ge q_{n+1}\) for
+  \(q_n+q_{n+1}\le(\log 2)X_0/m\). Nobody has run it on the \(3x-1\)
+  side because nobody had a floor there; this branch now supplies
+  \(X_0=2^{44}\). **known**; the transposition is a branch, not a reading.
 - `neg_cycle_finance`, `neg_cycle_word_is_juggler_shape` in
   `Problems/Juggler/CollatzBridge.lean`. **EXACT — LEAN VERIFIED**; the
   implication from floor to period is theirs, and only the floor is

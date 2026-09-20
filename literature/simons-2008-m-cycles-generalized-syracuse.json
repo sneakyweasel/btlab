@@ -5,19 +5,23 @@
     "John L. Simons"
   ],
   "year": 2008,
-  "identifiers": {},
+  "identifiers": {
+    "doi": "10.4064/aa131-3-2"
+  },
   "url": {
-    "eudml": "https://eudml.org/doc/278414"
+    "eudml": "https://eudml.org/doc/278414",
+    "publisher_pdf": "https://www.impan.pl/shop/publication/transaction/download/product/82891?download.pdf"
   },
   "problem_area": "collatz-cycles",
   "relevant_concepts": [
     "m-cycles",
-    "inverse Collatz problem",
-    "3x-1 problem",
-    "px+q problem",
-    "linear forms in logarithms"
+    "generalized Crandall lemma",
+    "Rhin and Laurent-Mignotte-Nesterenko bounds",
+    "convergent reduction",
+    "3x+q and px+q problems",
+    "Collatz permutation (inverse Collatz problem)"
   ],
-  "project_relationship": "unassessed",
-  "status": "NOT CONSULTED: the publisher PDF at impan.pl loops on redirects, EuDML lists no alternate file, ResearchGate is blocked by policy; only the abstract, via EuDML and search snippets, was seen",
-  "notes": "Acta Arithmetica 131 (2008), no. 3, 217-254. Registered 20 September 2026 during the search for a published 3x-1 verification floor. Per Lagarias's annotated bibliography II, entry 96, and the abstract: it generalizes the Simons-de Weger m-cycle non-existence proof to the 3x+q, px+1 and px+q problems, 'the inverse Collatz problem' -- which is 3x-1 -- generalized Collatz problems and the Roelants problem; a lower bound for the cycle length comes from a generalized lemma of Crandall, an upper bound for fixed m from Laurent-Rhin linear forms in logarithms. WHAT A READER SHOULD EXTRACT. Whether it states an m-cycle exclusion for 3x-1 over a range of m, and what verification floor for 3x-1 it assumes or cites to do so. If it does, that floor is the published number this laboratory searched for and did not find, and the m-cycle exclusion is the theorem-type statement the floor never gives. Unread here."
+  "project_relationship": "known",
+  "status": "read in full (publisher PDF via the open-access link Semantic Scholar lists; DOI confirmed through CrossRef), 20 September 2026",
+  "notes": "Acta Arithmetica 131 (2008), no. 3, 217-254. CORRECTION OF THE RECORD WRITTEN FROM THE ABSTRACT EARLIER THE SAME DAY: 'the inverse Collatz problem' of Section 5 is NOT the 3x-1 map. It is Guy's permutation sequence x -> 3x/2 (x even), (3x-1)/4 (x = -1 mod 4), (3x+1)/4 (x = 1 mod 4), the original Collatz permutation with the known positive cycles (1), (2, 3), (4, 6, 9, 7, 5) and (44, 66, 99, 74, 111, 83, 62, 93, 70, 105, 79, 59); Lemma 23 says it has no m-cycles with m <= 9 beyond those four, and the trajectory of 8 stays open. The paper contains no statement about 3x-1 at all: Section 3 treats 3x+q for q = 1 or q >= 5 prime, Section 4 px+q for p >= 5, Section 6 Matthews-type generalized maps, Section 7 the Roelants problem. The 3x-1 2-cycle result Lagarias attributes to Simons is in the 2007 J. Number Theory paper (simons-2007-inductive-two-cycles-3x1), not here. WHAT THE PAPER IS. A template, stated as a five-step method (Section 2, Section 8.1): (1) a brute-force floor X0 below which all cycles are known; (2) from the chain equations an upper bound for the linear form Lambda = (K+L) log 2 - K log 3 in terms of the local minima, Lambda < sum 1/x_i < m/X0 for an m-cycle (m local minima), then in terms of K and m through the chaining x_(i+1) < 2^(delta-1) x_i^delta; (3) a generalized Crandall lemma (his Lemma 1): if q_n + q_(n+1) <= (log 2) X0 / m then K >= q_(n+1), so the floor sets a lower bound K0(m) that steps down as m grows; (4) Rhin's bound Lambda > exp(-13.3 (0.46057 + log K)) against the upper bound gives K < K3(m) ~ 5.58 m 2^(delta m), reduced to K < K2(m) by the convergent argument with the partial-quotient champion (55 for n <= 229); (5) for m with K0(m) < K2(m), elimination by lattice basis reduction and residue conditions, then brute force below X0. For 3x+1 with X0 > 2.5 * 2^60 this is how Simons-de Weger exclude m <= 75. HOW IT BEARS ON THIS LABORATORY. The laboratory's negative-cycle finance (neg_cycle_finance, Sinisalo's Table 2 sharpened) is step (2) summed over EVERY even step, which is the m-free worst case; the m-cycle version divides the same Lambda by the number of local minima instead, so for small m it is stronger by orders of magnitude. Nobody has run steps (3)-(5) on the 3x-1 side because nobody had a floor there: Simons-de Weger 2005 and Hercher 2023 are 3x+1 only, Simons 2007 does m = 2 for 3x-1 and says its method stops at m >= 3, and this paper skips 3x-1 entirely. With the laboratory's 2^44 floor as X0, Lemma 1 alone gives K0(m) = q_(n+1) with q_n + q_(n+1) <= (log 2) 2^44 / m, which is far above K2(m) for small m, so 'no negative m-cycle beyond -1, -5, -17 for m up to some M' follows from the tables with no lattice work; computed from his Lemma 1 and his equation (13) with our floor, the tables alone give K0(m) >= K2(m) for every m <= 39 (m <= 35 at 2^40, m <= 44 at 2^48), and the same computation gives m <= 62 for 3x+1 at his X0 = 2.5 * 2^60, consistent with Simons-de Weger needing lattice reduction only above that; lattice reduction would push the negative-side range higher. That is the theorem-type statement the 20 September journal said would be worth more than any floor, and it is a branch, not a reading. NOT CLAIMED HERE: that the negative-side transposition is new; only that these three papers do not contain it. Read Simons 2007 and Simons-de Weger 2005 in full before writing it."
 }
