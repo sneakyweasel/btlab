@@ -1,5 +1,58 @@
 # Research journal
 
+## 2026-09-20 -- Four of our objects were published in July, and I found the fourth by claiming it was missing
+
+- **Objective:** continue the loop on digging and consolidation, from the
+  point where Hikawa's survivor recursion had just been verified against ours.
+- **Zenodo and GitHub are open where ResearchGate is not, and the toolkit
+  gave up four objects.** His `B_Converged` column is our minimal certificate
+  count `M_d`, and its zero rows -- k = 3, 6, 9, 11, 14, 17, 19 -- are exactly
+  our free lengths. His `Counting_by_Hamming_Weight.py` runs a second and
+  different recursion, `W[d][u] = W[d-1][u] + W[d][u-1]` guarded by
+  `2^k < 3^d` with failing cells zeroed, so a word counts only when every
+  prefix survives. All of it checked by running his code, none by reading.
+- **His calculator prints Glide, and we had never written the word.** The
+  minimal certificate length is the dropping time in the Collatz literature
+  and the glide among people who compute them; a grep for "glide" over the
+  whole repository returned nothing. The convention is ours and that was not
+  automatic: 27 falls below itself after 59 accelerated steps and 96 standard
+  ones, and he reports 59. His parity vector for 27 is our accelerated parity
+  word bit for bit, weight 37, and (59, 37) sits in `certWindow`.
+- **Then the mistake, which is the useful part of the day.** I committed that
+  no odd-count-refined survivor count existed here. It does:
+  `paper_b_prefix_count.word_counts(d)` returns `counts[o]` and equals his
+  `W[o][d-o]` identically for d = 1..22. The grep behind the claim searched
+  for `hamming`, `by_weight`, `num_ones`, `popcount` -- every one of them HIS
+  vocabulary, imported from the source I was comparing against. This
+  laboratory says the odd count. **Searching a repository in someone else's
+  words is not searching it**, and I did this in the same tick where a grep
+  caught a re-derivation on the length side and I wrote that the habit had
+  worked. One grep succeeding is not the habit working.
+- **What replaces the false claim is stronger than it was.** `word_counts` is
+  the base of the entire boundary-fraction cluster -- `R_d`, the phase-indexed
+  quasi-stationary profile, the linear-times-geometric closed form,
+  `chernoff_rate_at`, the rational barriers. His toolkit computes the very
+  array our sharpest analytic results stand on. It computes it and stops.
+- **The consolidation: a translation table, because I have now made the
+  naming error in both directions.** `docs/theory/paper_b_prior_art_and_names.md`
+  maps every shared object to what the literature and the toolkit call it, and
+  states the line that matters -- the toolkit COMPUTES and the papers may not
+  PROVE; a column of zeros exhibits zeros and asserts nothing. Four registry
+  records added (two Hikawa, two Winkler), because the registry whose stated
+  purpose is "so the project does not rediscover known results" was missing
+  both September sources. Paper B's consolidation dossier said "the classical
+  references are unchanged"; that is now qualified rather than assumed.
+- **The manuals close the no-ResearchGate route for the theorems.** Both were
+  fetched and read: seven pages each, pure installation instructions, their
+  only two occurrences of "Conjecture" being the name of the problem. So the
+  objects have prior art from 4 July 2026 and the theorems do not, and the
+  registry record for his papers carries "unread, ResearchGate 403" in its
+  status field so the gap stays visible.
+- **Decision:** `CLOSE` on the Hikawa toolkit; it has no more to give without
+  the PDFs. The open question it leaves is sharp and worth carrying: whether
+  the limit theory on `word_counts` has any counterpart in his two papers.
+  Nothing in the toolkit or either manual bears on it.
+
 ## 2026-09-20 -- The averaging chain closed, and a branch had already closed it better
 
 - **Objective:** a 30-minute loop on "continue digging and consolidation", from

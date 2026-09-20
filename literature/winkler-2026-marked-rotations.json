@@ -1,0 +1,19 @@
+{
+  "authors": ["Mike Winkler"],
+  "id": "winkler-2026-marked-rotations",
+  "identifiers": {
+    "doi": "10.13140/RG.2.2.22015.57761"
+  },
+  "notes": "docs/theory/paper_b_prior_art_and_names.md, and the ledger row J-winkler-sandwich-holds-on-the-laboratory-counts. Dated 13 September 2026; reference [14] of the qx+1 paper and the general marked-rotation theory that paper deliberately avoids. Read 2026-09-19 only to the extent it is public. Two endpoint-normalized passage families f_r(alpha) and c_r(alpha) of positive compositions against the Beatty boundary m_r = floor(alpha r), the upper family ending at m_r and the lower at the crossing level m_r + 1. His midpoint identity lives on a strictly larger family, adding 2 q_k and q_k + q_(k+1), which has no counterpart here.",
+  "problem_area": "collatz",
+  "project_relationship": "known",
+  "relevant_concepts": [
+    "marked rotations",
+    "Beatty passage counts",
+    "factorization heights"
+  ],
+  "status": "preprint, partially read",
+  "title": "Marked Rotations and Factorization Heights for Dual Beatty Passage Counts",
+  "url": {},
+  "year": 2026
+}

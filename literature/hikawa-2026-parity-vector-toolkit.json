@@ -1,0 +1,23 @@
+{
+  "authors": ["Kazunobu Hikawa"],
+  "id": "hikawa-2026-parity-vector-toolkit",
+  "identifiers": {
+    "doi": "10.5281/zenodo.21186540"
+  },
+  "notes": "docs/theory/paper_b_prior_art_and_names.md. Software, v1.0, 4 July 2026, MIT. Run first-hand and compared against the laboratory's counts; not read about. Computes four of the Paper B cluster's objects: the survivor recursion W[k][d] = W[k-1][d] + W[k-1][d-1] under LAMBDA = log2 3, the survivor count N_d (his D_Unconverged), the minimal certificate count M_d (his B_Converged, zero exactly at our free lengths), and the odd-count refinement word_counts(d)[o] (his Counting by Hamming Weight, W[d][u], identical to ours for d = 1..22). Also prints the minimal certificate length as Glide, on the accelerated-map convention (Glide(27) = 59, not the standard map's 96). Guarded by tests/research/juggler_sequence/test_collatz_bridge.py. IT COMPUTES AND DOES NOT PROVE: both manuals are seven-page installation guides with no mathematics. The two accompanying papers are a separate record and are unread.",
+  "problem_area": "collatz",
+  "project_relationship": "reproduced",
+  "relevant_concepts": [
+    "parity vectors",
+    "survivor counts",
+    "dropping time",
+    "minimal certificates",
+    "odd-count refinement"
+  ],
+  "status": "software, verified first-hand",
+  "title": "Collatz Parity Vector Toolkit, version 1.0",
+  "url": {
+    "repository": "https://github.com/hikawa94/Collatz-Parity-Vector-Toolkit"
+  },
+  "year": 2026
+}

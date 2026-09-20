@@ -17,6 +17,20 @@ The classical references are unchanged. The work consolidates existing
 local written results; it makes no new literature-wide priority claim.
 Zenodo's official record-description guidance was consulted.
 
+**Qualified 20 September 2026.** "No priority claim" remains the right
+posture, but it is now a checked statement rather than an assumption, and
+what it is checked against has grown. Four of this cluster's objects -- the
+survivor recursion, `N_d`, `M_d` with its zeros at the free lengths, and the
+odd-count refinement -- appear in a toolkit published 4 July 2026, verified
+here by running its code rather than by reading about it; `M_d` is A100982
+and carries Winkler's sandwich; the minimal certificate length is the
+literature's dropping time and the computational community's glide. See
+[Paper B prior art and external names](../theory/paper_b_prior_art_and_names.md)
+for the full translation table, for the line between objects that have prior
+art and theorems that do not, and for the open risk: Hikawa's two papers are
+unread here because ResearchGate 403s this environment, so nothing is settled
+about whether his texts contain the limit theory.
+
 ## Branch budget
 
 Target: one audited manuscript and reproducible local package.

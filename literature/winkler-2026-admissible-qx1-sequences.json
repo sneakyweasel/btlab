@@ -1,0 +1,20 @@
+{
+  "authors": ["Mike Winkler"],
+  "id": "winkler-2026-admissible-qx1-sequences",
+  "identifiers": {
+    "oeis_comment": "A100982, 15 September 2026"
+  },
+  "notes": "docs/theory/paper_b_prior_art_and_names.md, and the ledger row J-winkler-sandwich-holds-on-the-laboratory-counts. With alpha = log2 3 and m_n = floor(n alpha), the sandwich (1/n) C(m_n - 1, n - 1) <= a(n) <= (1/n) C(m_n, n - 1), equality below exactly when frac(n alpha) is a strict record minimum and above exactly when it is a strict record maximum -- the equality orders being the one-sided convergent and semiconvergent denominators of log2 3, and a(n) a rational Catalan number. His a(n) is A100982, which is the laboratory's minimal certificate count M_d = 2 N_(d-1) - N_d. Checked against our own counts: the head matches, lower equality at n = 2, 7, 12, 53, 359, 665 and upper at n = 3, 5, 17, 29, 41, 94, 147, 200, 253, 306, 971, 1636. THE RESULT IS HIS AND THE CHECK IS OURS. Do not conflate his records with the empty-window theorem: his are a statement about ORDERS r, ours an existence statement about LENGTHS d.",
+  "problem_area": "collatz",
+  "project_relationship": "reproduced",
+  "relevant_concepts": [
+    "minimal certificate count",
+    "rational Catalan numbers",
+    "semiconvergents of log2 3",
+    "A100982"
+  ],
+  "status": "preprint, bounds reproduced on our counts",
+  "title": "Admissible qx+1 Sequences, Semiconvergents, and Rational Catalan Numbers",
+  "url": {},
+  "year": 2026
+}
