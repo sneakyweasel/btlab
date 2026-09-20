@@ -1559,7 +1559,7 @@
       "decision": "CLOSE",
       "ledger_ids": [],
       "aliases": [],
-      "nk_cluster": "Diophantine walls"
+      "nk_cluster": "Prime divisors of the cycle gap are a dead direction, by a density theorem"
     },
     {
       "id": "cycle_peak_count",
@@ -2603,6 +2603,22 @@
       ],
       "aliases": [],
       "nk_cluster": null
+    },
+    {
+      "id": "even_run_mersenne_floor",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/even_run_mersenne_floor.py",
+      "test": "tests/research/juggler_sequence/test_even_run_mersenne_floor.py",
+      "dossier": "docs/problems/juggler_even_run_mersenne_floor.md",
+      "data_dir": "data/research/juggler/even_run_mersenne_floor",
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": [
+        "J-even-run-dual-of-lemma-eight-is-capped-by-the-shape"
+      ],
+      "aliases": [],
+      "nk_cluster": "The even-run dual of Lemma 8 exists, and the CycleMin shape caps it"
     },
     {
       "id": "even_scale_barrier",

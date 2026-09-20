@@ -101,6 +101,120 @@ starting line and stops before the first leftover.
 
 Dossier: [negative_lemma_eight_window](problems/juggler_negative_lemma_eight_window.md).
 
+## The even-run dual of Lemma 8 exists, and the CycleMin shape caps it
+
+Killed claim (20 September 2026): "Lemma 8 uses only the 2-adic valuation, read
+off the odd runs; the multiplicative order of 2, read off the even runs, is a
+second and independent floor that could reach where Lemma 8 goes slack".
+
+Kind: `METHOD_OBSTRUCTION`, with two `EXACT` statements attached
+(`J-even-run-dual-of-lemma-eight-is-capped-by-the-shape`). The dual is real: with
+`R` the gcd of the nonzero halving runs of a cycle and `m | 2^R - 1` coprime to
+`2^o - 3^o`, every odd element satisfies `x = -1 (mod m)`, because in `u = x + 1`
+the correction `2^(r_i+1) - 2` vanishes mod `m` and the passage collapses to
+`2 u_(i+1) = 3 u_i`. It is also subordinate wherever this laboratory works. On a
+word whose proper prefixes are all non-contracting -- Paper A's CycleMin shape,
+hence a negative Collatz cycle word at its minimum, a Juggler cycle word, and a
+positive cycle word at its minimum -- the leading run of `a` odd letters is
+followed by an E-run of length `r_1 >= 1`, non-contraction at its end forces
+`3^a >= 2^(a + r_1)`, and `R | r_1` gives
+
+    R <= floor((log2 3 - 1) a) = floor(0.58496 a),
+
+so the dual floor `2^R` is below Lemma 8's `2^a` by `2^(0.41504 a)` and never
+binds. The only exception is the circuit `O^a E^r`, which Steiner 1977 excludes
+and where the dual still does not win. Measured: 0 dual-only kills against the
+`neg_cycle_finance` ceiling over 2264815 shape words to length 26, and the cap is
+attained, so it is sharp rather than a census artifact. All three known cycles of
+the `Z` map have an E-run of length 1, so `R = 1` and the dual is vacuous at every
+one of them -- the exact opposite of Lemma 8, which all three attain with equality.
+
+The reason is structural and is this laboratory's own constraint: prefix
+non-contraction forces the word to bunch its odd letters, which lengthens odd runs
+and shortens even runs, so the two floors are anti-correlated by the very condition
+that defines the family.
+
+What survives as content rather than obstruction is the reduction. Modulo `2^R - 1`
+the even steps are invisible and the orbit is the free recursion `u -> 3u/2`, which
+is the Juggler's exponent transport on the perfect-power locus -- where no-cycle is
+the pure exponent count `3^o != 2^o`, needing neither Catalan nor Baker. The
+Mersenne modulus is exactly the reduction under which Collatz becomes the Juggler's
+exponent dynamics, and the price is exactly that `3^o != 2^o` degrades from a
+contradiction into `m | u`: an impossibility becomes a floor.
+
+Novelty was not established and is not claimed: `arxiv.org`, `cs.uwaterloo.ca` and
+`oeis.org` are refused by the container's network egress policy, so Hercher 2023,
+Eliahou 1993 and Simons-de Weger 2005 could not be read at source for the dual
+congruence.
+
+Do not reopen as: a floor from the even-run structure on any prefix-noncontracting
+family; a Baker-free Steiner theorem from the gcd of the halving runs; a claim that
+the Mersenne reduction transports the Juggler's no-cycle count as anything stronger
+than a congruence.
+
+Dossier: [even_run_mersenne_floor](problems/juggler_even_run_mersenne_floor.md).
+
+## Knight's split reaches exactly one rotation class, and Pirillo 1999 names it
+
+Killed claim (20 September 2026): "some other named extremal word of this
+laboratory -- the hug word, the bunched word, a CycleMin shape word -- is
+reverse-closed and so falls to Knight's contradiction directly".
+
+Kind: `KNOWN`. Knight's split consumes a word `w = 1u0` of length `k` with `x`
+ones whose endpoint swap `0u1` is a rotation of `w`. That hypothesis forces
+`gcd(k, x) = 1`, and for each coprime `(k, x)` there is EXACTLY ONE such word:
+the upper Christoffel word of slope `x/k`, with the splitting representative
+unique inside its class as well. That is Pirillo's theorem (1999). So the
+mechanism reaches one rotation class per aperiodic `(k, x)` -- the high cycle --
+on either sign of `2^k - 3^x`, and no non-Christoffel class whatever.
+
+Reverse-closure is necessary and wildly insufficient. The reverse-closed classes
+are the symmetric words (products of two palindromes, the achiral necklaces),
+counted by `C((k-1)/2, floor(x/2))` for odd `k` and `C(k/2 - 1, (x-1)/2)` for
+even `k`; at `(19, 12)` that is 84 classes against 2652 in total, of which
+Knight's split reaches 1. Cohn permits the other 83; Pirillo forbids them.
+
+This closes the follow-up left open by `J-multiplicative-knight-residual-is-the-state-dependence`
+and by the REFUTED concentration half of `J-christoffel-one-parameter`. Do not
+reopen as: a Knight-style cancellation on the hug word, on a bunched word, on a
+CycleMin shape word, or on any reverse-closed non-Christoffel class.
+
+## Prime divisors of the cycle gap are a dead direction, by a density theorem
+
+Killed claim (20 September 2026): "a prime that never divides the pinned gap
+`3^o - 2^K` would constrain the cycle problem".
+
+Kind: `METHOD_OBSTRUCTION`. There is no such prime. Writing `m_p` for
+`|<2><3>|` in `(Z/p)^*`, the pairs `(K, o)` with `p | 3^o - 2^K` form a sublattice
+of index exactly `m_p`, and along the pinned diagonal `o(K) = floor(K log_2 3) + 1`
+the density of hits is exactly `1 / m_p`, by Weyl on `{K theta / m}` -- positive
+for every prime `p` outside `{2, 3}`. So every prime divides the pinned gap at a
+positive density of lengths and no prime and no length is excluded. Verified
+independently: 44 primes `5 <= p < 200` against all `(K, o)` in `[0,60]^2`, 163724
+triples, 0 disagreements; observed densities for all 60 primes `5 <= p < 300` at
+`K <= 20000` match `1 / m_p` digit for digit, with no prime never hit.
+
+The quadratic-residue refinements are real and equally inert: `K` even with `o` odd
+forces `p = +-1 mod 12`, `K` odd with `o` even forces `p = +-1 mod 8`, both odd
+forces `p` in `{1, 5, 19, 23} mod 24`; in particular `5` never divides the gap when
+`K` is odd and `o` even, checked to `K <= 20000` and consistent with the divisor
+lists at the leftover lengths 19, 25781, 176251 and 780239. None of this changes a
+bound, a floor, a threshold or a word count.
+
+`p = 2` and `p = 3` are the complete excluded set, already owned as EXACT by the
+REFUTED `juggler_cycle_padic_coupling`. The reason classical primitive-divisor
+theory does not reach the gap is already recorded at
+`J-repunit-floor-power-is-closed-form`: `2^n - 1` is a one-base Cunningham number
+and `3^o - 2^K` has two bases with two independently moving exponents, so Bang,
+Zsigmondy and Carmichael do not apply. The unit case is settled elementarily --
+`|3^o - 2^K| = 1` has only `(o,K) = (0,1), (1,1), (1,2), (2,3)`, which are the
+degenerate point and the three known cycles, and `|gap| = 3` forces `3 | 2^K`, so a
+fourth cycle has `|2^K - 3^o| >= 5` (recorded in `literature/mihailescu-2004-catalan.json`).
+
+Do not reopen as: a search for a prime avoiding the gap, a congruence obstruction
+on cycle lengths from a fixed prime, a Zsigmondy or Bang argument on `3^o - 2^K`,
+or a Mersenne/Fermat primality reading of the leftover lengths.
+
 ## The (lambda, a, b) coordinate on x+1 is Williams 2026, not ours
 
 Killed claim (20 September 2026): "the conserved 6-free part of `x + 1` along an odd
