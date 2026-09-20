@@ -37,7 +37,7 @@ import branch_drift as BD  # noqa: E402
 #: latest-progress-summary reached +8 unread on 2026-09-20 after being
 #: acknowledged at +5. Update the sha in the same commit as the reason.
 READ_AT: dict[str, str] = {
-    "claude/exponent-floor-3n1-2adic-mvwa96": "05115936",
+    "claude/exponent-floor-3n1-2adic-mvwa96": "25b13d2f",
     "claude/latest-progress-summary-s011un": "e8f765ff",
     "claude/goofy-kare-1a92fd": "8aad2aae",
     "claude/elated-hopper-e20999": "86247b5d",
@@ -144,7 +144,20 @@ ACKNOWLEDGED: dict[str, str] = {
         "kernel-checked as J-normalized-relative-slack; the leftover "
         "2^(k-1)/(2^k - 3^x) is not an integer because the gap is odd, and "
         "Catalan closes it. It dies in one identifiable place, the residual "
-        "being the state dependence."
+        "being the state dependence. "
+        "DELTA TO 25b13d2f: Lemma 8 has a dual on the EVEN runs, and the "
+        "shape kills it. With R the gcd of the nonzero halving runs and "
+        "m | 2^R - 1 coprime to 2^o - 3^o, every odd element is -1 mod m, "
+        "because the correction vanishes and the passage collapses to "
+        "2u_(i+1) = 3u_i -- same congruence as Lemma 8 with modulus "
+        "2^R - 1 instead of 2^a. Mod 2^R - 1 the even steps are invisible "
+        "and the orbit is the free recursion u -> 3u/2, the Juggler exponent "
+        "transport on the perfect-power locus. But the CycleMin shape "
+        "forecloses it: R | r_1 with 3^a >= 2^(a+r_1) gives "
+        "R <= floor((log2 3 - 1) a), putting the dual below Lemma 8 by "
+        "2^(0.41504 a), the only exception being the excluded circuit "
+        "O^a E^r. A dual that exists and is weaker, which is worth knowing "
+        "so nobody builds on it."
     ),
     "claude/latest-progress-summary-s011un": (
         "PENDING EXTRACTION, and it has GROWN since it was first acknowledged "

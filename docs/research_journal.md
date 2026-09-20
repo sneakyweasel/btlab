@@ -1,5 +1,81 @@
 # Research journal
 
+## 2026-09-20 -- The prior art was reachable all along, and the gate that should have said so was blind
+
+- **Objective:** the loop on digging and consolidation, continuing from the
+  Hikawa recursion match. What it became was a prior-art audit, three
+  corrections to my own published claims, and two repairs to the machinery
+  that was supposed to prevent exactly those.
+- **Four of this cluster's objects were published on 4 July 2026.** Hikawa's
+  toolkit computes the survivor recursion, `N_d`, `M_d` with its zeros at the
+  free lengths, and the odd-count refinement -- all verified by running his
+  code, none by reading. His calculator prints the minimal certificate length
+  as **Glide**, Roosendaal's word, which this laboratory had never written; on
+  27 it reports 59, the accelerated-map value and not the standard map's 96,
+  and his parity vector for 27 is our accelerated parity word bit for bit.
+- **Then two naming errors, in opposite directions, on the same day.** The
+  first is old: we searched outward for "has anyone proved this" and never for
+  "what is this called", so one object now has three outside names and a
+  fourth that only we use. The second I made fresh: grepping this repository
+  in HIS vocabulary -- `hamming`, `by_weight`, `popcount` -- found nothing, and
+  I committed that no odd-count-refined survivor count existed here. It does.
+  `paper_b_prefix_count.word_counts(d)` is that array and is the base of the
+  whole boundary-fraction cluster. **Searching a repository in someone else's
+  words is not searching it**, and I did it in the tick where I said the habit
+  had worked.
+- **The consolidation those forced.** A translation table,
+  `docs/theory/paper_b_prior_art_and_names.md`, holding the line that matters:
+  the toolkit COMPUTES and the papers may not PROVE, a column of zeros
+  exhibits zeros and asserts nothing. Six registry records for sources the
+  registry was missing, whose own stated purpose is "so the project does not
+  rediscover known results".
+- **Metadata moved first-hand while the texts moved further away.** DataCite
+  and OpenAlex both resolve ResearchGate DOIs and neither had been tried: three
+  papers not two, the line starting in **January 2026** rather than July, and a
+  co-author, Kazuo Nakanishi, who was nowhere in our records. The same day the
+  browser-pane route that had been serving abstracts since 19 September started
+  returning a network security check. Not attempted, not to be attempted, and
+  now recorded so nobody tries.
+- **The `d^(-3/2)` is not ours.** Hikawa's Conjecture 7.1 states
+  `W(d) = Theta(d^(-3/2) 2^(gamma d))` in the weight basis with Section 6
+  proving the exponential part. What survives is what makes ours a limit
+  theorem: his is a `Theta`, conjectural, numerical, with no oscillation, no
+  almost-periodicity and no amplitude, and a 0.3-bit tolerance wide enough to
+  hold a bounded oscillating prefactor without detecting one. So the exponent
+  is his and the failure of the constant is ours. One row qualified, not
+  thirty-one.
+- **And the gate that exists to prevent rediscovery could not see the branch I
+  rediscovered.** `branch_drift` counted new ledger rows and files in four
+  categories; `claude/goofy-kare-1a92fd` adds neither, it CORRECTS rows and
+  adds `literature/` records. Both are drift now. Widening it, I made the
+  calibration error the same file warns about one function above -- comparing
+  statements branch-versus-main flagged 31 rows, mostly main's own edits since
+  the fork; against the merge base it is 4. Then a second hole: an
+  acknowledgement named a branch, not a commit, so a branch could grow while
+  the gate stayed green. `READ_AT` pins each one to a sha, and it has fired on
+  every tick since, four times, always correctly.
+- **Two registry collisions caught by inventing the invariant that catches
+  them.** Records are now unique by id and by DOI, with arXiv ids and
+  `10.48550/arXiv` DOIs folded into one namespace -- because the peer recorded
+  Williams with an `arxiv` key and I recorded her with a `doi` key, which the
+  first version of the check compared literally and passed. Main now takes the
+  branch's ids deliberately, so the merge conflicts where someone will see it.
+- **The one piece of new mathematics.** Williams's open problem (3) asks
+  whether lambda-recurrence -- every trajectory reaching `n + 1` 3-smooth --
+  is an easier target than convergence. Measured: it is not, because it
+  happens at the bottom. The mean `log2` of the first `lambda = 1` value is
+  4.365, 4.382, 4.395, 4.395 across starts spanning three orders of magnitude,
+  so the typical landing value is about 21 whatever the start; 83 per cent
+  land at 63 or below; and the mean gap to convergence is 14.7 throughout
+  while the times themselves grow from 30.7 to 48.1. The mechanism is pure
+  density -- 142 3-smooth numbers below `1e6`, 306 below `1e9` -- so an orbit
+  must collapse before the event is even available. Recorded as OBSERVATION
+  with its three non-claims attached.
+- **Decision:** `CLOSE` on the Hikawa toolkit, which has nothing left without
+  the PDFs, and `CLOSE` on the lambda-recurrence placement question. The three
+  ResearchGate bodies stay unread and are now a thing only a human can fetch.
+  Unchanged and still Philippe's: the backup, and the `elated-hopper` merge.
+
 ## 2026-09-20 -- Four of our objects were published in July, and I found the fourth by claiming it was missing
 
 - **Objective:** continue the loop on digging and consolidation, from the
