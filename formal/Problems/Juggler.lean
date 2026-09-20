@@ -195,7 +195,9 @@ import Problems.Juggler.FateCylinderEnergy
 import Problems.Juggler.FateLandingWindow
 import Problems.Juggler.FateNumerics
 import Problems.Juggler.FateFiberParity
+import Problems.Juggler.FateFiberLock
 import Problems.Juggler.FateThinFibers
+import Problems.Juggler.FateResonanceCount
 import Problems.Juggler.FateContagionBound
 
 /-!
