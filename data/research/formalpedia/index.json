@@ -9474,7 +9474,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 62,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9492,7 +9493,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 66,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9510,7 +9512,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 76,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9528,7 +9531,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 86,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9546,7 +9550,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 98,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9564,7 +9569,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 113,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9582,7 +9588,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 132,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9600,7 +9607,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 145,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9618,7 +9626,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 159,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9636,7 +9645,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 194,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9654,7 +9664,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 200,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9672,7 +9683,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 237,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9690,7 +9702,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 244,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9708,7 +9721,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 248,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9726,7 +9740,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 275,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9744,7 +9759,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 292,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9762,7 +9778,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 303,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9780,7 +9797,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 307,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9798,7 +9816,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 316,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9816,7 +9835,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 324,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9834,7 +9854,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 331,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9852,7 +9873,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 341,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9870,7 +9892,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 353,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9888,7 +9911,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 374,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9906,7 +9930,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 386,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9924,7 +9949,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 397,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9942,7 +9968,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 418,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9960,7 +9987,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 424,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9978,7 +10006,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 433,
       "module": "Problems.Juggler.CollatzBridge",
@@ -9996,7 +10025,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 436,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10014,7 +10044,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 437,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10032,7 +10063,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 438,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10050,7 +10082,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 439,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10068,7 +10101,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 440,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10086,7 +10120,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 441,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10104,7 +10139,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 442,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10122,7 +10158,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 464,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10140,7 +10177,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 478,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10158,7 +10196,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 492,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10176,7 +10215,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 502,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10194,7 +10234,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 510,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10212,7 +10253,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 517,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10230,7 +10272,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 534,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10248,7 +10291,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 537,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10266,7 +10310,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 542,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10284,7 +10329,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 558,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10302,7 +10348,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 565,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10320,7 +10367,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 595,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10338,7 +10386,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 601,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10356,7 +10405,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 613,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10374,7 +10424,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 623,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10392,7 +10443,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 644,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10410,7 +10462,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 654,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10428,7 +10481,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 661,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10446,7 +10500,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 677,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10464,7 +10519,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 693,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10482,7 +10538,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 695,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10500,7 +10557,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 698,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10518,7 +10576,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 706,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10536,7 +10595,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 719,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10554,7 +10614,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 737,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10572,7 +10633,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 762,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10590,7 +10652,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 768,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10608,7 +10671,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 770,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10626,7 +10690,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 785,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10644,7 +10709,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 823,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10662,7 +10728,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 836,
       "module": "Problems.Juggler.CollatzBridge",
@@ -10680,7 +10747,8 @@
         "J-collatz-walk-charge-is-sharp",
         "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "line": 852,
       "module": "Problems.Juggler.CollatzBridge",
@@ -25359,7 +25427,9 @@
       "doc": "Even branch: `T(n)^2 = n` iff `n` is a perfect square.",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 14,
       "module": "Problems.Juggler.Equality",
       "name": "floorPower_even_sq_eq_iff_square",
@@ -25369,7 +25439,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "lemma",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 18,
       "module": "Problems.Juggler.Equality",
       "name": "sqrt_sq_iff_isSquare",
@@ -25379,7 +25451,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "lemma",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 26,
       "module": "Problems.Juggler.Equality",
       "name": "isSquare_pow_three_iff",
@@ -25389,7 +25463,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "lemma",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 69,
       "module": "Problems.Juggler.Equality",
       "name": "cube_sqrt_sq_iff",
@@ -25399,7 +25475,9 @@
       "doc": "Odd branch: `T(n)^2 = n^3` iff `n` is a perfect square.",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 74,
       "module": "Problems.Juggler.Equality",
       "name": "floorPower_odd_sq_eq_cube_iff_square",
@@ -25409,7 +25487,9 @@
       "doc": "Equality form of the one-sided envelope. Independent of `PowerBound`.",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "def",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 80,
       "module": "Problems.Juggler.Equality",
       "name": "PowerBoundEq",
@@ -25419,7 +25499,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 82,
       "module": "Problems.Juggler.Equality",
       "name": "pow_eq_of_pow_sq_eq",
@@ -25429,7 +25511,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 86,
       "module": "Problems.Juggler.Equality",
       "name": "pow_ne_zero_two_pow",
@@ -25439,7 +25523,9 @@
       "doc": "Even append: composite equality forces the previous equality and local tightness.",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 90,
       "module": "Problems.Juggler.Equality",
       "name": "power_bound_eq_of_append_even",
@@ -25449,7 +25535,9 @@
       "doc": "Odd append: composite equality forces the previous equality and local tightness.",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 113,
       "module": "Problems.Juggler.Equality",
       "name": "power_bound_eq_of_append_odd",
@@ -25459,7 +25547,9 @@
       "doc": "Local tightness of one realized letter.",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "def",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 150,
       "module": "Problems.Juggler.Equality",
       "name": "localTight",
@@ -25469,7 +25559,9 @@
       "doc": "Every local branch inequality along a realized itinerary is tight.",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "def",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 155,
       "module": "Problems.Juggler.Equality",
       "name": "localsTight",
@@ -25479,7 +25571,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 159,
       "module": "Problems.Juggler.Equality",
       "name": "localTight_even_iff_square",
@@ -25489,7 +25583,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 163,
       "module": "Problems.Juggler.Equality",
       "name": "localTight_odd_iff_square",
@@ -25499,7 +25595,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 167,
       "module": "Problems.Juggler.Equality",
       "name": "power_bound_eq_from",
@@ -25509,7 +25607,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 207,
       "module": "Problems.Juggler.Equality",
       "name": "localsTight_get",
@@ -25519,7 +25619,9 @@
       "doc": "Global envelope equality forces every local branch inequality to be tight.",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 230,
       "module": "Problems.Juggler.Equality",
       "name": "power_bound_eq_implies_local_eq",
@@ -25529,7 +25631,9 @@
       "doc": "Global envelope equality forces every relevant itinerary state to be a square.",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 241,
       "module": "Problems.Juggler.Equality",
       "name": "power_bound_eq_implies_square",
@@ -25539,7 +25643,9 @@
       "doc": "Even square: the even branch is exact as an image, not only as a power.",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 258,
       "module": "Problems.Juggler.Equality",
       "name": "floorPower_of_even_sq",
@@ -25549,7 +25655,9 @@
       "doc": "Odd square: the odd branch maps `s^2` to `s^3`.",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 264,
       "module": "Problems.Juggler.Equality",
       "name": "floorPower_of_odd_sq",
@@ -25559,7 +25667,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 272,
       "module": "Problems.Juggler.Equality",
       "name": "floorPower_even_sq_image_even",
@@ -25569,7 +25679,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 279,
       "module": "Problems.Juggler.Equality",
       "name": "floorPower_odd_sq_image_odd",
@@ -25579,7 +25691,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "def",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 293,
       "module": "Problems.Juggler.Equality",
       "name": "HasPowTwoDepth",
@@ -25589,7 +25703,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 295,
       "module": "Problems.Juggler.Equality",
       "name": "hasPowTwoDepth_zero",
@@ -25599,7 +25715,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 298,
       "module": "Problems.Juggler.Equality",
       "name": "two_pow_pred",
@@ -25609,7 +25727,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 303,
       "module": "Problems.Juggler.Equality",
       "name": "pow_two_succ_sq",
@@ -25619,7 +25739,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 307,
       "module": "Problems.Juggler.Equality",
       "name": "pow_two_pred_sq",
@@ -25629,7 +25751,9 @@
       "doc": "Exact even branch on a `2^r`-th power, `r \u2265 1`.",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 312,
       "module": "Problems.Juggler.Equality",
       "name": "floorPower_of_pow_two_depth_even",
@@ -25639,7 +25763,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 319,
       "module": "Problems.Juggler.Equality",
       "name": "pow_mod_two_of_odd",
@@ -25649,7 +25775,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 323,
       "module": "Problems.Juggler.Equality",
       "name": "odd_of_pow_odd",
@@ -25659,7 +25787,9 @@
       "doc": "Exact odd branch on a `2^r`-th power, `r \u2265 1`.",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 334,
       "module": "Problems.Juggler.Equality",
       "name": "floorPower_of_pow_two_depth_odd",
@@ -25669,7 +25799,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 344,
       "module": "Problems.Juggler.Equality",
       "name": "hasPowTwoDepth_sq",
@@ -25679,7 +25811,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 350,
       "module": "Problems.Juggler.Equality",
       "name": "hasPowTwoDepth_one_iff",
@@ -25689,7 +25823,9 @@
       "doc": "A cube that is a `2^m`-th power is the cube of a `2^m`-th power's base.",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 360,
       "module": "Problems.Juggler.Equality",
       "name": "hasPowTwoDepth_of_cube",
@@ -25699,7 +25835,9 @@
       "doc": "Even exact step drops 2-adic depth by one.",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 386,
       "module": "Problems.Juggler.Equality",
       "name": "hasPowTwoDepth_even_exact",
@@ -25709,7 +25847,9 @@
       "doc": "Odd exact step drops 2-adic depth by one (`a^{3\u00b72^{r-1}} = (a^3)^{2^{r-1}}`).",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 394,
       "module": "Problems.Juggler.Equality",
       "name": "hasPowTwoDepth_odd_exact",
@@ -25719,7 +25859,9 @@
       "doc": "Depth at least 2 forces the exact image to remain a square.",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 405,
       "module": "Problems.Juggler.Equality",
       "name": "hasPowTwoDepth_ge_two_image_square",
@@ -25729,7 +25871,9 @@
       "doc": "Depth exactly one: the exact image need not be a square.",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 424,
       "module": "Problems.Juggler.Equality",
       "name": "hasPowTwoDepth_one_image_sq_iff",
@@ -25739,7 +25883,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 429,
       "module": "Problems.Juggler.Equality",
       "name": "hasPowTwoDepth_one_odd_image_sq_iff",
@@ -25749,7 +25895,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 434,
       "module": "Problems.Juggler.Equality",
       "name": "localsTight_implies_power_bound_eq",
@@ -25759,7 +25907,9 @@
       "doc": "Envelope equality of length `k` forces the start to be a `2^k`-th power.",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 493,
       "module": "Problems.Juggler.Equality",
       "name": "power_bound_eq_implies_pow_two_depth",
@@ -25769,7 +25919,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 538,
       "module": "Problems.Juggler.Equality",
       "name": "hasPowTwoDepth_two_le",
@@ -25779,7 +25931,9 @@
       "doc": "A contracting equality itinerary of length `k` at `n \u2265 2` is at least `2^{2^k}`.",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 553,
       "module": "Problems.Juggler.Equality",
       "name": "power_bound_eq_contracts_pow_two_lb",
@@ -25789,7 +25943,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 567,
       "module": "Problems.Juggler.Equality",
       "name": "even_iff_pow_even",
@@ -25799,7 +25955,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 581,
       "module": "Problems.Juggler.Equality",
       "name": "odd_iff_pow_odd",
@@ -25809,7 +25967,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 587,
       "module": "Problems.Juggler.Equality",
       "name": "even_iff_pow_two_depth_even",
@@ -25819,7 +25979,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 591,
       "module": "Problems.Juggler.Equality",
       "name": "odd_iff_pow_two_depth_odd",
@@ -25829,7 +25991,9 @@
       "doc": "An exact step on a square keeps the parity of the state.",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 596,
       "module": "Problems.Juggler.Equality",
       "name": "floorPower_sq_preserves_parity",
@@ -25839,7 +26003,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 616,
       "module": "Problems.Juggler.Equality",
       "name": "floorPower_of_pow_two_depth_even_base",
@@ -25849,7 +26015,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 624,
       "module": "Problems.Juggler.Equality",
       "name": "floorPower_of_pow_two_depth_odd_base",
@@ -25859,7 +26027,9 @@
       "doc": "Exact even or odd branch on `a^{2^r}` keeps the parity of `a`.",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 631,
       "module": "Problems.Juggler.Equality",
       "name": "floorPower_pow_two_depth_preserves_parity",
@@ -25869,7 +26039,9 @@
       "doc": "Envelope equality forces a monochrome word.",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 640,
       "module": "Problems.Juggler.Equality",
       "name": "power_bound_eq_implies_monochrome",
@@ -25879,7 +26051,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 705,
       "module": "Problems.Juggler.Equality",
       "name": "floorPower_iterate_even_pow_two",
@@ -25889,7 +26063,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 725,
       "module": "Problems.Juggler.Equality",
       "name": "floorPower_iterate_odd_pow_two",
@@ -25899,7 +26075,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 750,
       "module": "Problems.Juggler.Equality",
       "name": "floorPower_iterate_even_pow_two_eq",
@@ -25909,7 +26087,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 754,
       "module": "Problems.Juggler.Equality",
       "name": "floorPower_iterate_odd_pow_two_eq",
@@ -25919,7 +26099,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 758,
       "module": "Problems.Juggler.Equality",
       "name": "follows_replicate_even_pow_two",
@@ -25929,7 +26111,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 772,
       "module": "Problems.Juggler.Equality",
       "name": "follows_replicate_odd_pow_two",
@@ -25939,7 +26123,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 786,
       "module": "Problems.Juggler.Equality",
       "name": "power_bound_eq_replicate_even",
@@ -25949,7 +26135,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 791,
       "module": "Problems.Juggler.Equality",
       "name": "power_bound_eq_replicate_odd",
@@ -25959,7 +26147,9 @@
       "doc": "Equality saturates iff the itinerary is an exact even or odd tower.",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 797,
       "module": "Problems.Juggler.Equality",
       "name": "power_bound_eq_iff_extremal",
@@ -25969,7 +26159,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 852,
       "module": "Problems.Juggler.Equality",
       "name": "two_pow_two_pow_extremal_even",
@@ -25979,7 +26171,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 858,
       "module": "Problems.Juggler.Equality",
       "name": "three_pow_two_pow_extremal_odd",
@@ -25989,7 +26183,9 @@
       "doc": "Among \\(n\\ge 3\\), an all-odd equality of length `k` is at least `3^{2^k}`.",
       "file": "formal/Problems/Juggler/Equality.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
       "line": 865,
       "module": "Problems.Juggler.Equality",
       "name": "odd_equality_three_pow_le",
@@ -34809,7 +35005,7 @@
       "file": "formal/Problems/Juggler/FateResonanceCount.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 147,
+      "line": 146,
       "module": "Problems.Juggler.FateResonanceCount",
       "name": "Am_window_le",
       "trust": "kernel"
@@ -34819,7 +35015,7 @@
       "file": "formal/Problems/Juggler/FateResonanceCount.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 167,
+      "line": 166,
       "module": "Problems.Juggler.FateResonanceCount",
       "name": "shifted_arc_count_le",
       "trust": "kernel"
@@ -34829,7 +35025,7 @@
       "file": "formal/Problems/Juggler/FateResonanceCount.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 193,
+      "line": 192,
       "module": "Problems.Juggler.FateResonanceCount",
       "name": "resonance_count_one",
       "trust": "kernel"
@@ -34839,7 +35035,7 @@
       "file": "formal/Problems/Juggler/FateResonanceCount.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 258,
+      "line": 256,
       "module": "Problems.Juggler.FateResonanceCount",
       "name": "resonance_count_le",
       "trust": "kernel"
@@ -34849,7 +35045,7 @@
       "file": "formal/Problems/Juggler/FateResonanceCount.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 291,
+      "line": 289,
       "module": "Problems.Juggler.FateResonanceCount",
       "name": "resonance_count_le'",
       "trust": "kernel"
@@ -53248,7 +53444,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "def",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 20,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -53260,7 +53457,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "def",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 24,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -53272,7 +53470,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "def",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 28,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -53284,7 +53483,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "def",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 32,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -53296,7 +53496,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "def",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 37,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -53308,7 +53509,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "def",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 41,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -53320,7 +53522,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "def",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 45,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -53332,7 +53535,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "def",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 49,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -53344,7 +53548,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "theorem",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 53,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -53356,7 +53561,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "theorem",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 57,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -53368,7 +53574,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "theorem",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 61,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -53380,7 +53587,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "theorem",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 65,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -53392,7 +53600,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "theorem",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 70,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -53404,7 +53613,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "theorem",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 77,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -53416,7 +53626,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "theorem",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 86,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -53428,7 +53639,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "theorem",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 91,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -53440,7 +53652,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "theorem",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 96,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -53452,7 +53665,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "theorem",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 100,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -53464,7 +53678,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "theorem",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 104,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -53476,7 +53691,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "theorem",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 108,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -53488,7 +53704,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "theorem",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 112,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -53500,7 +53717,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "theorem",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 116,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -53512,7 +53730,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "theorem",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 122,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -53524,7 +53743,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "theorem",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 128,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -53536,7 +53756,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "theorem",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 133,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -53548,7 +53769,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "theorem",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 139,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -53560,7 +53782,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "theorem",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 149,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -53572,7 +53795,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "theorem",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 160,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -53584,7 +53808,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "theorem",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 207,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -53596,7 +53821,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "theorem",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 223,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -53608,7 +53834,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "theorem",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 254,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -53620,7 +53847,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "theorem",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 264,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -53632,7 +53860,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "theorem",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 277,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -53644,7 +53873,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "theorem",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 294,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -53656,7 +53886,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "theorem",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 306,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -53668,7 +53899,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "theorem",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 325,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -53680,7 +53912,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "theorem",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 334,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -53692,7 +53925,8 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "kind": "theorem",
       "ledger": [
-        "J-normalized-relative-slack"
+        "J-normalized-relative-slack",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
       ],
       "line": 341,
       "module": "Problems.Juggler.NormalizedDefect",
@@ -56182,13 +56416,13 @@
       "trust": "kernel"
     },
     {
-      "doc": "**`N_(d+1) = 2 N_d - b_d M_d`, in the shape the boundary-mass row states it.**",
+      "doc": "**`N_(d+1) = 2 N_d - b_d M_d`, in the shape the boundary-mass row states it.** The recursion doubles exactly when `onBarrierCount d = 0`, and those lengths have a closed form: `M_d = 0` iff `d` lies in OEIS A054414, `1 + floor (n / (1 - log 2 / log 3))`, apart from `d = 1`, where `E` contracts at once; `M_d /= 0` iff `d` lies in A020914, `floor (n * log 2 3) + 1`, the laboratory's own distinguished length. The two partition the positive integers, so the plateaus of `density_flat_of_window_empty` below are a Beatty complement rather than a list. Checked to `d = 200` in `research.juggler_sequence.oeis_neighbourhood`; A054414 is the only one of the four sequences around this recursion that the laboratory had not already named.",
       "file": "formal/Problems/Juggler/PaperBCertificateRecursion.lean",
       "kind": "theorem",
       "ledger": [
         "J-paper-b-survivor-certificate-recursion"
       ],
-      "line": 263,
+      "line": 272,
       "module": "Problems.Juggler.PaperBCertificateRecursion",
       "name": "neverNegCount_succ_sub_onBarrier",
       "trust": "kernel"
@@ -56200,7 +56434,7 @@
       "ledger": [
         "J-paper-b-survivor-certificate-recursion"
       ],
-      "line": 271,
+      "line": 280,
       "module": "Problems.Juggler.PaperBCertificateRecursion",
       "name": "certifiedWordCount_succ",
       "trust": "kernel"
@@ -56212,7 +56446,7 @@
       "ledger": [
         "J-paper-b-survivor-certificate-recursion"
       ],
-      "line": 282,
+      "line": 291,
       "module": "Problems.Juggler.PaperBCertificateRecursion",
       "name": "density_succ",
       "trust": "kernel"
@@ -56224,7 +56458,7 @@
       "ledger": [
         "J-paper-b-survivor-certificate-recursion"
       ],
-      "line": 291,
+      "line": 300,
       "module": "Problems.Juggler.PaperBCertificateRecursion",
       "name": "density_succ_of_no_new_cert",
       "trust": "kernel"
@@ -56236,7 +56470,7 @@
       "ledger": [
         "J-paper-b-survivor-certificate-recursion"
       ],
-      "line": 299,
+      "line": 308,
       "module": "Problems.Juggler.PaperBCertificateRecursion",
       "name": "minimalCertCount_eq_zero_of_window_empty",
       "trust": "kernel"
@@ -56248,19 +56482,19 @@
       "ledger": [
         "J-paper-b-survivor-certificate-recursion"
       ],
-      "line": 311,
+      "line": 320,
       "module": "Problems.Juggler.PaperBCertificateRecursion",
       "name": "density_flat_of_window_empty",
       "trust": "kernel"
     },
     {
-      "doc": "The plateaus the enumeration found, now as consequences rather than observations: `7/8` at both `d = 5` and `d = 6`, `237/256` at both `d = 8` and `d = 9`.",
+      "doc": "The plateaus the enumeration found, now as consequences rather than observations: `7/8` at both `d = 5` and `d = 6`, `237/256` at both `d = 8` and `d = 9`. These three are the first plateau lengths after `d = 3`: the full list is OEIS A054414 without its initial `1`, so the next are `14, 17, 19, 22, 25, 28, 30`.",
       "file": "formal/Problems/Juggler/PaperBCertificateRecursion.lean",
       "kind": "theorem",
       "ledger": [
         "J-paper-b-survivor-certificate-recursion"
       ],
-      "line": 318,
+      "line": 330,
       "module": "Problems.Juggler.PaperBCertificateRecursion",
       "name": "density_flat_five_to_six",
       "trust": "kernel"
@@ -56272,7 +56506,7 @@
       "ledger": [
         "J-paper-b-survivor-certificate-recursion"
       ],
-      "line": 322,
+      "line": 334,
       "module": "Problems.Juggler.PaperBCertificateRecursion",
       "name": "density_flat_eight_to_nine",
       "trust": "kernel"
@@ -56284,7 +56518,7 @@
       "ledger": [
         "J-paper-b-survivor-certificate-recursion"
       ],
-      "line": 326,
+      "line": 338,
       "module": "Problems.Juggler.PaperBCertificateRecursion",
       "name": "density_flat_ten_to_eleven",
       "trust": "kernel"
@@ -56296,7 +56530,7 @@
       "ledger": [
         "J-paper-b-survivor-certificate-recursion"
       ],
-      "line": 350,
+      "line": 362,
       "module": "Problems.Juggler.PaperBCertificateRecursion",
       "name": "neverNegCount_telescope",
       "trust": "kernel"
@@ -56308,7 +56542,7 @@
       "ledger": [
         "J-paper-b-survivor-certificate-recursion"
       ],
-      "line": 376,
+      "line": 388,
       "module": "Problems.Juggler.PaperBCertificateRecursion",
       "name": "minimalCert_tail_eq",
       "trust": "kernel"
@@ -56320,7 +56554,7 @@
       "ledger": [
         "J-paper-b-survivor-certificate-recursion"
       ],
-      "line": 432,
+      "line": 444,
       "module": "Problems.Juggler.PaperBCertificateRecursion",
       "name": "neverNegWords_succ_of_window_empty",
       "trust": "kernel"
@@ -56332,7 +56566,7 @@
       "ledger": [
         "J-paper-b-survivor-certificate-recursion"
       ],
-      "line": 438,
+      "line": 450,
       "module": "Problems.Juggler.PaperBCertificateRecursion",
       "name": "minimalCertWords_eq_empty_of_window_empty",
       "trust": "kernel"
@@ -56344,7 +56578,7 @@
       "ledger": [
         "J-paper-b-survivor-certificate-recursion"
       ],
-      "line": 449,
+      "line": 461,
       "module": "Problems.Juggler.PaperBCertificateRecursion",
       "name": "sum_neverNegWords_succ_of_window_empty",
       "trust": "kernel"
@@ -56356,7 +56590,7 @@
       "ledger": [
         "J-paper-b-survivor-certificate-recursion"
       ],
-      "line": 467,
+      "line": 479,
       "module": "Problems.Juggler.PaperBCertificateRecursion",
       "name": "neverNegCount_succ_of_window_empty",
       "trust": "kernel"
@@ -92509,6 +92743,11 @@
           "id": "J-negative-cycle-finance-is-the-juggler-mirror",
           "statement": "IN LEAN for the uniform constant (CollatzBridge.lean, kernel-checked): two_mul_evenCharge_le, on any word with no contracting prefix 2 evenCharge w <= (|w| - o) 3^o, an induction on the word carrying the prefix condition with an offset; neg_cycle_finance, at the least element of a negative cycle 2 (|x| - 1)(3^o - 2^K) <= (K - o) 3^o, from the cycle equation; neg_seventeen_finance instantiates it (4448 <= 8748). The hug-word constant and the survivor table remain computational. Carried by Paper A Section 5.9 (Theorem 5.19 and Remark 5.20). Paper A's finance, read on Collatz's negative integers, with its walk charge on the even steps. A negative cycle of the shortcut map with least |x| = y >= 2, length K and o odd letters has, by the cycle equation (cycle_equation_int) and the exactness of its word shape (neg_prefix_noncontracting), (y - 1)(3^o - 2^K) = evenCharge w = 3^o * sum over even steps i of 2^(-h_i), h_i = a_i log2 3 - i the height before the step; since the height after an even step is still non-negative, every h_i >= 1, and for the e-th even step h >= ceil((e+1)/alpha) alpha - e in [1, 1 + alpha), alpha = log2(3/2), attained by the hug word. Hence, with theta_J(K) = 1 - 2^K/3^o and m = K - o even letters: y - 1 <= m/(2 theta_J) uniformly, and y - 1 <= H_E(m)/theta_J with H_E(m) = sum_{e<m} 2^(-(ceil((e+1)/alpha) alpha - e)), H_E(m)/m -> 1/(6 alpha log 2) = 0.41105 (0.411053 at m = 10^5). This is Theorem 4.4 of Paper A on the other side of the linear form -- |x| - 1 in place of n log n, the even letters charged at 2^(-h) in place of the floor losses -- and the survivors at a verification floor Y_0 (all |x| <= Y_0 known to enter a known cycle) are the Juggler-side dangerous lengths. COMPUTATIONALLY VERIFIED, by the three-gap walk: at Y_0 = 2^40 the smallest survivor is 9538065 (uniform) or 10444047 (hug); at 2^60, 5398749415 or 6028888312; at 2^68, 72448885240 under both; at 2^71, 103768467013 under both -- each a Juggler-side length, the mirror of Eliahou's and Hercher's numbers. SANITY: the -5 cycle, whose word OOE is a hug word, attains the hug bound exactly (bound 5.000 at |x| = 5); -17 sits inside it (27.1 against 17); -1 is the all-odd word with no even step. WHAT IS MISSING: no published verification floor for the 3x-1 map was found (OEIS text records, Roosendaal's index; the loops page it links was unreachable), so the table is conditional on the floor and no period bound is claimed; if the 3x-1 map is verified to 2^68 the smallest possible fourth negative cycle has length 72448885240. Not a kill, not a halt theorem, and not a claim about Juggler orbits: the Juggler side of the same inequality is cycleMin_finance, already recorded.",
           "tag": "EXACT \u2014 LEAN VERIFIED"
+        },
+        {
+          "id": "J-negative-floor-makes-the-mirror-unconditional",
+          "statement": "The 3x-1 verification floor, supplied, so J-negative-cycle-finance-is-the-juggler-mirror stops being a conditional table. THE FLOOR. Every 1 <= y < 2^40 = 274877906944 reaches 1, 5 or 17 under g(y) = y/2 (y even), (3y-1)/2 (y odd) -- the shortcut 3x+1 map read on the negatives. Certificate: 8 disjoint chunks of 2^35 tiling [3, 2^40), 549755813864 odd starts, 0 failures, 0 new cycles, greatest step count 544 against a cap of 4000, greatest excursion 2.61e23 in an unsigned __int128 state, so the width mattered (the excursion leaves 64 bits) and overflow was never near. Method: verify odd y ascending and stop when an iterate drops below y, which closes by induction because the chunks tile the interval and all passed; a return to y is checked against the three known cycles and the step cap would catch a cycle whose least element exceeds the start. A pure-Python reference iterating to a cycle element rather than descending agrees on every odd y < 300000. Verifier source archived as data/research/juggler/negative_floor_3x1/verify_3x1.c; the probe can recompile and re-run it on any window. THE BOUND. Reading the kernel-checked neg_cycle_finance, 2(|x|-1)(3^o - 2^K) <= (K-o)3^o at a negative cycle's least |x|, at that floor: a fourth cycle of the 3x-1 shortcut map -- equivalently a fourth negative cycle of shortcut 3x+1, whose word is a Paper A CycleMin shape letter for letter by neg_cycle_word_is_juggler_shape -- has period at least 9538065, with 6017849 odd steps. At 10^11 the number is 1988215; at 2^40, about 45 further core-minutes, it would be 9538065; the 72448885240 of the conditional table needs 2^68 and sieved GPU verification. WHY IT IS THE JUGGLER'S BUSINESS. The negative cycles are the ones whose words the Juggler shares, and the inequality that consumes the floor is Juggler machinery. WHAT IT IS NOT. Not N_0, which stays 350000000 for the Juggler's own cycle floor; not a halt theorem for either map; not a Juggler cycle exclusion; no Juggler bound moves and Paper A is unchanged. The floor is empirical and is this laboratory's own computation -- the recorded search of OEIS, Roosendaal, Lagarias's bibliography and Chamberland section 6.1 found no published 3x-1 floor, which is not the same as none existing. Only the implication is kernel-checked. EXTENDED 20 September 2026 from 2^38 to 2^40: eight further chunks tiling [2^38, 2^40), 412316860408 additional odd starts, 0 failures, 0 new cycles, greatest step count 544 against the cap of 4000. The record excursion 261160802435320822179964 is attained in every one of the eight new chunks and equals the record from [3, 2^38) -- one extreme trajectory reached from throughout the range, with nothing in the new territory exceeding it; checked rather than assumed, since narrow subranges return small and distinct peaks. The period bound moves from 4404167 to 9538065, with 6017849 odd steps.",
+          "tag": "COMPUTATIONALLY VERIFIED"
         }
       ]
     },
@@ -93142,7 +93381,13 @@
       "imports": [
         "Problems.Juggler.Envelope"
       ],
-      "ledger": []
+      "ledger": [
+        {
+          "id": "J-lemma-eight-is-the-exponent-valuation",
+          "statement": "Hercher's Lemma 8 survives the exponential conjugacy, on the exponent, and the laboratory had already proved it under another name. Conjugating the Collatz odd step by u = x + 1 turns (3x+1)/2 into exactly u -> 3u/2; the Juggler's exact odd step on n = a^e turns, on the exponent, into exactly e -> 3e/2. Same map, same prime, same reason -- 3 is a 2-adic unit, so one step costs exactly one unit of v_2 and nothing else -- and the exact even step e -> e/2 costs the same unit, so the valuation drops by one per step whatever the letter and an exact run is monochrome, the letter being the parity of the base. COLLATZ CARRIES THE 2-ADIC INTEGER IN THE VALUE, THE JUGGLER IN THE EXPONENT. Hence one law at the two ends of x = 2^y: run(x) = v_2(x+1) (Hercher 2023, Lemma 8: k consecutive odd steps force x = -1 mod 2^k) and exactRun(n) = v_2(e(n)), where e(n) = max{e : n = a^e} and exactRun counts consecutive states at which the floor is not charged, that is consecutive squares. The Juggler half is kernel-checked as HasPowTwoDepth with hasPowTwoDepth_even_exact, hasPowTwoDepth_odd_exact and power_bound_eq_implies_pow_two_depth (j-saturation-budget, filed as a local arithmetic question in August); the converse half is isSquare_pow_three_iff. Exhaustive agreement to N = 10^6: 999 square states, 19859 non-square states, 100000 odd Collatz starts, no failure. THE FLOOR IS THE EXPONENTIAL OF THE FLOOR. Both pointwise bounds follow by the same product-formula step -- a nonzero integer with v_2 >= k has absolute value at least 2^k -- and both are attained: run(x) >= k forces x >= 2^k - 1, attained at 2^k - 1; exactRun(n) >= k forces n >= 2^(2^k), and on odd starts n >= 3^(2^k), attained at 3^(2^k) with word O^k. log(3^(2^k)) = 2^k log 3, so J-juggler-is-collatz-one-exponential-up holds pointwise and not only on the walk. WHAT IT DOES NOT DO, WHICH IS THE POINT. Hercher's hypothesis is k consecutive odd LETTERS, a condition on the word that any cycle with a long run supplies free; the mirror's hypothesis is k consecutive EXACT steps, a condition on the integer that no word implies. The exponential moves the hypothesis from the word to the arithmetic, so the mirror is inert for cycles and for termination: no floor is raised, no m-cycle is excluded, and no Collatz bound is improved. Lemma 8 is quoted from hercher-2023-collatz-m-cycles, not reproved. PRIORITY CORRECTION, 20 SEPTEMBER: THE COLLATZ HALF IS WILLIAMS 2026. williams-2026-collatz-coordinates (arXiv:2607.01718, compiled 3 July 2026) builds Collatz dynamics on exactly the coordinate this row opens with. Every odd n has a unique n + 1 = lambda 2^a 3^b with gcd(lambda,6) = 1 and a >= 1, and her (lambda, a, b) is precisely (the 6-free part of x+1, v_2(x+1), v_3(x+1)); her Theorem 3.6 and Proposition 3.11 are the diagonal flow (a,b) -> (a-1,b+1) multiplying n+1 by exactly 3/2, which IS the statement that u = x + 1 conjugates the odd shortcut step to u -> 3u/2. Her Corollary 3.9 is the run length a - 1 to the boundary, Lemma 8 in coordinates; her Corollary 3.7 is v_2(3n+1) = 1 in the interior; her preserved row index k = a + b is the first integral v_2 + v_3; and her preserved lambda is the conserved 6-free part. Verified here against her definitions on odd n < 2e5. So the Collatz side of this row is NOT NEW and is hers, and the laboratory reached it independently two and a half months later. WHAT STANDS is the half this row exists for: her paper is pure Collatz, with no Juggler and no floor-power map, so exactRun(n) = v_2(e(n)), the identification with the kernel-checked HasPowTwoDepth, the attained floors n >= 2^(2^k) and 3^(2^k), the monochrome fibre and the density contrast floor(N^(2^-k)) - 1 against floor((N+1)/2^k) are the laboratory's. Her Section 1.3.3 also records the 3/2 flow's Flatto and Mahler links as structural rather than a tool, with leverage an open question -- the laboratory's own position, reached independently.",
+          "tag": "EXACT \u2014 HUMAN PROOF"
+        }
+      ]
     },
     "Problems.Juggler.Escape": {
       "declarations": 70,
@@ -94408,6 +94653,11 @@
           "id": "J-normalized-relative-slack",
           "statement": "For a realized Juggler itinerary, the relative slack 1+q = n^{3^{#O(w)}} / T_w(n)^{2^{|w|}} multiplies under concatenation: 1+q_{uv} = (1+q_u)^{3^{#O(v)}} (1+q_v)^{2^{|u|}}. An even letter multiplies by (1+\u03b7)^{2^k}; an odd letter multiplies by (1+q)^3 (1+\u03b7)^{2^k}. Running 1+q does not decrease under a realized extension. The surplus ratio R=\u0394/S satisfies R\u22641 iff T_w(n)\u2265n whenever S>0, so R is the endpoint comparison in other coordinates. A realized return T_w(n)=n uses the whole formal surplus.",
           "tag": "EXACT \u2014 LEAN VERIFIED"
+        },
+        {
+          "id": "J-multiplicative-knight-residual-is-the-state-dependence",
+          "statement": "Knight's cancellation transports to the Juggler exactly, and its residual is precisely the state dependence of the slack -- so the method dies at the Terras/FD wall and nowhere else. KNIGHT'S THREE PARTS. (i) Two members of one cycle, since Cohn makes the reverse of an aperiodic upper Christoffel word a rotation of it. (ii) An ADDITIVE cocycle: the Bohm-Sontacchi charge g is a function of the WORD alone, so the split v_h = 1u0, v_h^R = 0u1 gives g(v_h) = 2g(u) + 3^(x-1) and g(v_h^R) = 6g(u) + 2^(k-1), and 3f(v_h) - f(v_h^R) + 1 cancels the shared g(u). (iii) The leftover 2^(k-1)/(2^k - 3^x) is not an integer because the gap is odd. THE TRANSPORT. Part (i) is free, Cohn being a fact about words, so v_h and v_h^R are one Juggler cycle read at two points. Part (ii) transports formally through the kernel-checked multiplicative cocycle J-normalized-relative-slack, 1 + q_(uv) = (1+q_u)^(3^(#O(v))) (1+q_v)^(2^|u|): expanding w = O u E from n and w' = E u O from n' gives 1+q_w = (1+q_O @ n)^(3^p) (1+q_u @ J(n))^2 (1+q_E @ t)^(2^(m+1)) and 1+q_w' = (1+q_E @ n')^(3^(p+1)) (1+q_u @ J(n'))^6 (1+q_O @ t')^(2^(m+1)), so the multiplicative analogue of 3f - f^R is cube-and-divide, which cancels the shared middle exponent exactly, 3*2 - 6 = 0. THE RESIDUAL IS THE WHOLE STORY: (1+q_w)^3/(1+q_w') = [endpoint terms] * ((1+q_u @ J(n))/(1+q_u @ J(n')))^6. For Collatz the corresponding residual is identically 1, g(u) being literally the same integer in both expressions; for the Juggler 1 + q is a function of the word AND the state, the middle word being read at J(n) along one rotation and J(n') along the other, so the residual is a sixth power of their ratio. VERIFIED with exact rationals: the residual identity holds on all 15 word-pairs at length 6 taken at least starts, and on all 1354 instances obtained by pairing every realizing start below 6000 with the mirror's least start; the two middle slacks coincide in NONE of them. So Knight's method transports and fails at exactly the dichotomy J-juggler-is-collatz-one-exponential-up names: Collatz's word data is arithmetic and free (Terras), the Juggler's is state-dependent and open (Hypothesis FD). The same wall, met in a new place, which is the value of the row -- it says the obstruction is not incidental to this method. WHAT IT LEAVES, SCOPED. On a return 1 + q = n^(3^o - 2^L), so the left side is (n^3/n')^G with G the gap: a perfect G-th power, and Knight's parity step becomes a Catalan-flavoured condition. Hence a Juggler cycle carrying the Christoffel word AND having equal middle slacks at its two reverse-conjugate readings would force an explicit product of endpoint slacks to be a perfect G-th power. That equality is a strong Diophantine coincidence, is not conjectured here either way, and without it there is no exclusion. NO JUGGLER CYCLE IS EXCLUDED, no floor is raised, N_0 is unchanged and Paper A is untouched. This does not reopen J-cycle-near-tight-monochrome or J-affine-n-gap-escapes-dominance, both REFUTED in this neighbourhood; it is a different combination and it claims less.",
+          "tag": "EXACT \u2014 HUMAN PROOF"
         }
       ]
     },
@@ -95804,8 +96054,8 @@
   },
   "totals": {
     "declarations": 7098,
-    "declarations_with_a_ledger_row": 4785,
-    "ledger_rows_naming_a_file": 459,
+    "declarations_with_a_ledger_row": 4849,
+    "ledger_rows_naming_a_file": 462,
     "modules": 315,
     "trust": {
       "compiler": 56,

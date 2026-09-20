@@ -32,6 +32,308 @@ Lemma 8 is the pointwise odd-run bound `run(n) <= C log n` -- the odd-tower
 fragment -- and that is the door, if there is one. Dossier:
 [collatz_finance_mirror](problems/juggler_collatz_finance_mirror.md).
 
+## Lemma 8 does transfer, and it lands on a density-zero locus
+
+Killed claim, same day (19 September 2026): "the Juggler has no twin of Hercher's
+Lemma 8, so the 2-adic place does nothing for it". It has one, it is exact, and
+the laboratory proved it in August without noticing: conjugating the Collatz odd
+step by `u = x + 1` gives `u -> 3u/2`, the Juggler's exact odd step on `n = a^e`
+gives `e -> 3e/2` on the exponent, and both cost one unit of `v_2` per step
+because 3 is a 2-adic unit. So `run(x) = v_2(x+1)` and `exactRun(n) = v_2(e(n))`
+are one law -- the second being `HasPowTwoDepth` with the two depth-drop lemmas
+and `power_bound_eq_implies_pow_two_depth` -- and both pointwise floors are
+attained, `2^k - 1` against `3^(2^k)`.
+
+Kind: `KNOWN` relocation with a `METHOD_OBSTRUCTION` attached. The obstruction is
+the price, not the absence: Collatz pays `2^(-k)` in the density where the
+Juggler pays `2^(-k)` in the *exponent* of the density,
+`floor(N^(2^-k)) - 1` against `floor((N+1)/2^k)`, and an exact run is monochrome,
+so the surviving fibre carries two words where Terras carries `2^k`. Worse for
+any route through it, Hercher's hypothesis is `k` consecutive odd LETTERS, which
+a cycle word supplies free, while the mirror's is `k` consecutive EXACT steps,
+which no word implies.
+
+Do not reopen as: a cycle exclusion, an `m`-cycle bound, a floor raise, a Lean
+restatement of the depth lemmas in `v_2 e(n)` notation, or a route to the
+odd-tower door. The entry above keeps its conclusion and gains a reason. On a
+prime power the exponent IS a valuation -- `n = p^e` has `v_p(n) = e`, and the
+Juggler sends `v_p` to `3 v_p / 2` on an odd prime and to `v_p / 2` at `p = 2`,
+where Collatz sends the value `u = x + 1` to `3u/2`: the Juggler does to
+valuations what Collatz does to values. Off the perfect powers there is no
+exponent at all, and the conjugacy that produced one does not extend, since
+`|2^y - 2^z|_2 = 2^(-min(y,z))` depends on the Archimedean size of the exponents
+and not on `y - z` in the 2-adic metric. So the inexact odd-run bound is
+Archimedean by structure, not by a gap in the machinery. The
+hand-over is explicit: on the powers of two the first inexact parity is a binary
+digit of `sqrt 2`. That is a placement and not a Mahler transfer; the
+`{(3/2)^n}` cluster below is untouched.
+
+Dossier: [exponent_valuation_mirror](problems/juggler_exponent_valuation_mirror.md).
+
+## The pointwise floor is tight at every cycle, and slack at every leftover
+
+Killed claim, same day (19 September 2026): "a pointwise Juggler odd-run bound
+would move the cycle frontier". Priced on the mirror side, where the bound
+exists in full, it does not.
+
+Kind: `METHOD_OBSTRUCTION`, with two `EXACT` restatements attached. The floor is
+sign-symmetric -- the Lemma 8 congruence holds over `Z`, giving `x >= 2^a - 1`
+for `x >= 1` and `|x| >= 2^a + 1` for `x <= -2` -- and the LARGER floor sits on
+the side that has cycles. Worse for any exclusion built on it, the floor is
+attained with equality by every nontrivial cycle of the `Z` map: `1`, `-5`, `-17`
+at `a = 1, 2, 4`, equivalently `x + 1 = -2^a`, equivalently the odd part of the
+word's even-charge is `|2^K - 3^o|`. Paired with the kernel-checked
+`neg_cycle_finance` the floor is a per-word window, empty exactly when
+`2^(a+1) theta_J > e`, so a cycle word obeys `a <= log2(e / theta_J) - 1`. At
+`K = 22` -- the first length Paper A Theorem 3.31's `e >= 8` admits, since that
+bound forces `o >= 14` -- it removes 4787 of 17637 admissible words, 27.1 per
+cent, exactly those with leading run at least 6. Along the leftovers the same cap
+reads 8.02 at `L = 19`, 12.86 at 84, 16.59 at 569 and 22.09 at 1054, because
+`theta_J` is a record near-convergent defect there and the ceiling carries
+`1 / theta_J` while the floor does not.
+
+Do not reopen as: a cycle exclusion at any `m` or any length, a Baker-free
+Steiner theorem on either side, a route to the near-convergent leftovers, or a
+claim that the negative Collatz cycles are newly constrained -- the laboratory's
+rational-cycle census already settled every length to 24 by exhibiting them. The
+entry above keeps its conclusion and gains a number: the door delivers the cycle
+starting line and stops before the first leftover.
+
+Dossier: [negative_lemma_eight_window](problems/juggler_negative_lemma_eight_window.md).
+
+## The even-run dual of Lemma 8 exists, and the CycleMin shape caps it
+
+Killed claim (20 September 2026): "Lemma 8 uses only the 2-adic valuation, read
+off the odd runs; the multiplicative order of 2, read off the even runs, is a
+second and independent floor that could reach where Lemma 8 goes slack".
+
+Kind: `METHOD_OBSTRUCTION`, with two `EXACT` statements attached
+(`J-even-run-dual-of-lemma-eight-is-capped-by-the-shape`). The dual is real: with
+`R` the gcd of the nonzero halving runs of a cycle and `m | 2^R - 1` coprime to
+`2^o - 3^o`, every odd element satisfies `x = -1 (mod m)`, because in `u = x + 1`
+the correction `2^(r_i+1) - 2` vanishes mod `m` and the passage collapses to
+`2 u_(i+1) = 3 u_i`. It is also subordinate wherever this laboratory works. On a
+word whose proper prefixes are all non-contracting -- Paper A's CycleMin shape,
+hence a negative Collatz cycle word at its minimum, a Juggler cycle word, and a
+positive cycle word at its minimum -- the leading run of `a` odd letters is
+followed by an E-run of length `r_1 >= 1`, non-contraction at its end forces
+`3^a >= 2^(a + r_1)`, and `R | r_1` gives
+
+    R <= floor((log2 3 - 1) a) = floor(0.58496 a),
+
+so the dual floor `2^R` is below Lemma 8's `2^a` by `2^(0.41504 a)` and never
+binds. The only exception is the circuit `O^a E^r`, which Steiner 1977 excludes
+and where the dual still does not win. Measured: 0 dual-only kills against the
+`neg_cycle_finance` ceiling over 2264815 shape words to length 26, and the cap is
+attained, so it is sharp rather than a census artifact. All three known cycles of
+the `Z` map have an E-run of length 1, so `R = 1` and the dual is vacuous at every
+one of them -- the exact opposite of Lemma 8, which all three attain with equality.
+
+The reason is structural and is this laboratory's own constraint: prefix
+non-contraction forces the word to bunch its odd letters, which lengthens odd runs
+and shortens even runs, so the two floors are anti-correlated by the very condition
+that defines the family.
+
+What survives as content rather than obstruction is the reduction. Modulo `2^R - 1`
+the even steps are invisible and the orbit is the free recursion `u -> 3u/2`, which
+is the Juggler's exponent transport on the perfect-power locus -- where no-cycle is
+the pure exponent count `3^o != 2^o`, needing neither Catalan nor Baker. The
+Mersenne modulus is exactly the reduction under which Collatz becomes the Juggler's
+exponent dynamics, and the price is exactly that `3^o != 2^o` degrades from a
+contradiction into `m | u`: an impossibility becomes a floor.
+
+Novelty, settled the same day, and the first version of this paragraph was wrong --
+it said the primary sources were unreachable. They were reached, through a public
+GitHub mirror of converted PDFs: Hercher 2023, Simons-de Weger 2005,
+Halbeisen-Hungerbuehler 1997, Brox 2000 and Lagarias's two annotated bibliographies,
+in full. The answer splits three ways. The BLOCK EXPANSION IS KNOWN and is Brox's:
+`brox-2000-collatz-cycles-few-descents` (Acta Arith. 92 (2000) 181-188) has it at
+(3.1)/(3.2), his `F~_i = M(x_i+1)` being the same `u = x+1` conjugation and his
+`2 sum_l 3^(n-1-l) 2^(k_1+...+k_l) (2^(k_(l+1)-1) - 1)` term for term the laboratory's
+`evenCharge` expansion -- checked here on all 16382 words of length <= 14 beginning
+with `O`, 0 differences -- and this laboratory had been presenting it as its own.
+Brox takes no gcd; he uses the brackets only as a size bound for a Baker-Feldman
+argument. Hercher's Lemma 8 uses no multiplicative order and no Mersenne number, now
+verified at source rather than inferred. The gcd step and the congruence were searched
+hard and NOT FOUND -- but they are one line from Brox's printed identity, and that has
+to be said rather than left for a reader who knows Brox to notice. The bookkeeping is
+not interchangeable: the same statement with the FULL halving counts in place of the
+extra halvings is FALSE (`OE`: `k = (2)`, gcd 2, `u = 2`, `3` does not divide `2`; 79
+failures against 0 holds to length 12), so it is Brox's exponent that carries it and
+not Simons-de Weger's matrix equation. What stands as this branch's own content is the
+SUBORDINATION, and nothing resembling that was found.
+
+Do not reopen as: a floor from the even-run structure on any prefix-noncontracting
+family; a Baker-free Steiner theorem from the gcd of the halving runs; a claim that
+the Mersenne reduction transports the Juggler's no-cycle count as anything stronger
+than a congruence.
+
+Dossier: [even_run_mersenne_floor](problems/juggler_even_run_mersenne_floor.md).
+
+## Knight's split reaches exactly one rotation class, and Pirillo 1999 names it
+
+Killed claim (20 September 2026): "some other named extremal word of this
+laboratory -- the hug word, the bunched word, a CycleMin shape word -- is
+reverse-closed and so falls to Knight's contradiction directly".
+
+Kind: `KNOWN`. Knight's split consumes a word `w = 1u0` of length `k` with `x`
+ones whose endpoint swap `0u1` is a rotation of `w`. That hypothesis forces
+`gcd(k, x) = 1`, and for each coprime `(k, x)` there is EXACTLY ONE such word:
+the upper Christoffel word of slope `x/k`, with the splitting representative
+unique inside its class as well. That is Pirillo's theorem (1999). So the
+mechanism reaches one rotation class per aperiodic `(k, x)` -- the high cycle --
+on either sign of `2^k - 3^x`, and no non-Christoffel class whatever.
+
+Reverse-closure is necessary and wildly insufficient. The reverse-closed classes
+are the symmetric words (products of two palindromes, the achiral necklaces),
+counted by `C((k-1)/2, floor(x/2))` for odd `k` and `C(k/2 - 1, (x-1)/2)` for
+even `k`; at `(19, 12)` that is 84 classes against 2652 in total, of which
+Knight's split reaches 1. Cohn permits the other 83; Pirillo forbids them.
+
+AND AT THE LABORATORY'S OWN SIGNATURE LENGTH THE TWO CLASSES ARE DISJOINT. Verified
+here at `(k,x) = (11,7)`, gap `2^11 - 3^7 = -139`, over all 330 words and 30 rotation
+classes: 10 classes are reverse-closed, exactly ONE admits the Knight split (the
+Christoffel class, canonical `01011011011`, whose `f`-values all carry denominator 139
+-- precisely what Knight proves), and exactly ONE carries an integer `f` (canonical
+`00011110111`, `f = -136`). They are NOT the same class. The integer class is the
+`-17` cycle: its orbit `-17, -25, -37, -55, -82, -41, -61, -91, -136, -68, -34` has
+parity word `11110111000`, whose reversal is not among its eleven rotations -- so it is
+not reverse-closed, and Knight's mechanism cannot touch it even in principle.
+
+That is the cleanest statement of the method's reach. Knight's contradiction is aimed
+by construction at the HIGH cycle, the word-extremal class; the class that actually
+realizes an integer sits elsewhere. At `k = 11` -- the length this laboratory carries in
+Lean as `neg_seventeen_inhabits_cycleMinShape`, and the third convergent length of the
+cycle problem -- the method kills the extremal class correctly and misses the only real
+object at that length by construction, not by weakness. It is a further instance of the
+cluster's own diagnosis: word-extremal data does not reach realizations.
+
+This closes the follow-up left open by `J-multiplicative-knight-residual-is-the-state-dependence`
+and by the REFUTED concentration half of `J-christoffel-one-parameter`. Do not
+reopen as: a Knight-style cancellation on the hug word, on a bunched word, on a
+CycleMin shape word, or on any reverse-closed non-Christoffel class.
+
+## Prime divisors of the cycle gap are a dead direction, by a density theorem
+
+Killed claim (20 September 2026): "a prime that never divides the pinned gap
+`3^o - 2^K` would constrain the cycle problem".
+
+Kind: `METHOD_OBSTRUCTION`. There is no such prime. Writing `m_p` for
+`|<2><3>|` in `(Z/p)^*`, the pairs `(K, o)` with `p | 3^o - 2^K` form a sublattice
+of index exactly `m_p`, and along the pinned diagonal `o(K) = floor(K log_2 3) + 1`
+the density of hits is exactly `1 / m_p`, by Weyl on `{K theta / m}` -- positive
+for every prime `p` outside `{2, 3}`. So every prime divides the pinned gap at a
+positive density of lengths and no prime and no length is excluded. Verified
+independently: 44 primes `5 <= p < 200` against all `(K, o)` in `[0,60]^2`, 163724
+triples, 0 disagreements; observed densities for all 60 primes `5 <= p < 300` at
+`K <= 20000` match `1 / m_p` digit for digit, with no prime never hit.
+
+The quadratic-residue refinements are real and equally inert: `K` even with `o` odd
+forces `p = +-1 mod 12`, `K` odd with `o` even forces `p = +-1 mod 8`, both odd
+forces `p` in `{1, 5, 19, 23} mod 24`; in particular `5` never divides the gap when
+`K` is odd and `o` even, checked to `K <= 20000` and consistent with the divisor
+lists at the leftover lengths 19, 25781, 176251 and 780239. None of this changes a
+bound, a floor, a threshold or a word count.
+
+`p = 2` and `p = 3` are the complete excluded set, already owned as EXACT by the
+REFUTED `juggler_cycle_padic_coupling`. The reason classical primitive-divisor
+theory does not reach the gap is already recorded at
+`J-repunit-floor-power-is-closed-form`: `2^n - 1` is a one-base Cunningham number
+and `3^o - 2^K` has two bases with two independently moving exponents, so Bang,
+Zsigmondy and Carmichael do not apply. The unit case is settled elementarily --
+`|3^o - 2^K| = 1` has only `(o,K) = (0,1), (1,1), (1,2), (2,3)`, which are the
+degenerate point and the three known cycles, and `|gap| = 3` forces `3 | 2^K`, so a
+fourth cycle has `|2^K - 3^o| >= 5` (recorded in `literature/mihailescu-2004-catalan.json`).
+
+Do not reopen as: a search for a prime avoiding the gap, a congruence obstruction
+on cycle lengths from a fixed prime, a Zsigmondy or Bang argument on `3^o - 2^K`,
+or a Mersenne/Fermat primality reading of the leftover lengths.
+
+## The (lambda, a, b) coordinate on x+1 is Williams 2026, not ours
+
+Killed claim (20 September 2026): "the conserved 6-free part of `x + 1` along an odd
+run, with `(v_2, v_3)` as a two-valuation clock, is a new organising principle for
+the Collatz map".
+
+Kind: `KNOWN`. It is the skeleton coordinate system of
+`williams-2026-collatz-coordinates` (arXiv:2607.01718, compiled 3 July 2026), and the
+correspondence is exact, verified on odd `n < 2e5`. Every odd `n` has a unique
+`n + 1 = lambda 2^a 3^b` with `gcd(lambda,6) = 1`, `a >= 1`; her `(lambda, a, b)` is
+`(6-free part of x+1, v_2(x+1), v_3(x+1))`. Her Theorem 3.6 and Proposition 3.11 are
+the diagonal flow `(a,b) -> (a-1,b+1)` multiplying `n+1` by exactly `3/2`, i.e. the
+`u -> 3u/2` conjugation; her Corollary 3.9 is Lemma 8's run length; her preserved row
+index `k = a + b` is the first integral; her preserved `lambda` is the conserved
+6-free part; her Proposition 3.10 is the boundary LTE statement; and her row `k` of
+the principal skeleton traversed from `(a,0)` is the closed form
+`T^j(2^a - 1) = 3^j 2^(a-j) - 1`.
+
+Do not reopen as: a two-valuation clock, a conserved `6`-free or unit part, a
+`(v_2, v_3)` first integral, a lattice-translation reading of the odd run, or a
+Mersenne/Thabit column observation. All of it is in that paper, with priority. The
+20 September prime fan-out's `six-free-invariant` direction is this entry; its
+`general-exponent-family` direction is answered by her open problem (2), where
+`pn + 1 = lambda 2^a p^(b+1) - (p-1)` needs `p - 1` to be a power of two and `p = 3`
+is the unique case preserving the weight `a + b`.
+
+What is NOT hers, and stands: the paper is pure Collatz, with no Juggler and no
+floor-power map. The exponent transport (`exactRun(n) = v_2(e(n))`, `HasPowTwoDepth`,
+the attained floors, the monochrome fibre, the `N^(2^-k)` against `2^(-k) N` density
+contrast), the Juggler floor-power closed forms, the `3x-1` verification floor and its
+period bound, and the negative-side window are the laboratory's.
+
+Dossiers: [exponent_valuation_mirror](problems/juggler_exponent_valuation_mirror.md),
+[mersenne_floor_power](problems/juggler_mersenne_floor_power.md).
+
+## The Mersenne numbers in the Lemma 8 floor carry no prime content
+
+Killed claim (20 September 2026): "the Lemma 8 floor being attained exactly at
+the Mersenne numbers `2^a - 1` is prime structure worth pursuing".
+
+Kind: `REFUTED` as decoration. The floor is attained at `2^a - 1` for EVERY `a`,
+prime or composite -- `15 = 3*5`, `63 = 7*9`, `255`, `511 = 7*73` all have
+`run = a`. What is structural is `u = x + 1 = 2^a`, the least value with
+`v_2(u) >= a`; "Mersenne" is `u - 1`, an artifact of that coordinate. Under the
+exponential bridge of `J-lemma-eight-is-the-exponent-valuation` the extremal
+transports to the exponent `e = 2^r` -- one one-bit, not a repunit -- so the
+all-ones pattern does not survive the transport at all. The same verdict covers
+the Fermat reading of the negative cycle minima: `x + 1 = -2^a` is forced, so the
+form `2^a + 1` is structural, while `a in {2,4}` both being powers of two (giving
+`-5 = -F_1` and `-17 = -F_2`) is a coincidence on two data points with no
+mechanism -- wallpaper by this laboratory's own standard.
+
+What DID survive is not about primes: for even `a`,
+`floor((2^a - 1)^(3/2)) = 2^(3a/2) - 3*2^(a/2 - 1)` with bits
+`1^(a-1) 0 1 0^(a/2-1)`, and for odd `a` the Beatty form
+`floor(sqrt 2 * (2^((3a-1)/2) - 3*2^((a-3)/2)))`. Those are recorded as
+`J-repunit-floor-power-is-closed-form`, and their interest is that `2^a - 1` is
+never a perfect power (Catalan, `mihailescu-2004-catalan`), so they are exact
+values OFF the perfect-power locus.
+
+Two further coincidences from the MathWorld entry, read 20 September, are killed
+with them. The Mersenne numbers are a Fermat polynomial at `x = 1` and satisfy
+`F_n = 3F_(n-1) - 2F_(n-2)`, whose coefficients are the `3` and `2` of the odd
+step: NUMEROLOGY, because the characteristic polynomial is `(t-1)(t-2)`, so the
+`3` is the trace `1 + 2` and the `2` is the determinant. And the run ends at
+`3^n - 1`, of binary length `floor(n log2 3) + 1 = A020914(n)`, the laboratory's
+distinguished word length: RESTATEMENT, since `A020914(n)` is by definition the
+binary length of `3^n`, and the Mersenne word length `n + v_2(3^n - 1)` is
+unrelated to it (4 against 5 at `n = 3`).
+
+Do not reopen as: Mersenne or Fermat primality in either map, a search for prime
+bases in the exact locus (the minimal realizers `2^(2^r)` and `3^(2^r)` have
+prime bases because 2 and 3 are the smallest bases, which is not prime content),
+a Fermat-number pattern in the negative cycles, the Fermat-polynomial
+coefficients, or an A020914 coincidence in the Mersenne word.
+
+One framing from the same page IS worth keeping, and it is not about Mersenne
+primes: `M_n` is the Cunningham number `C^-(2,n)`, a one-base object, while the
+cycle gap `3^o - 2^K` has two bases and two independently moving exponents. That
+is the precise, citable reason classical primitive-divisor theory -- Zsigmondy,
+Bang, Carmichael -- does not reach the gap, where the laboratory previously had
+only the observation that it does not.
+
+Dossier: [mersenne_floor_power](problems/juggler_mersenne_floor_power.md).
+
 ## The Walsh estimate of the good set is in the wrong basis
 
 Proposition J's error term `N_d E_d(N)` sums a per-word equidistribution error

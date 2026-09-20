@@ -1,0 +1,23 @@
+{
+  "id": "knight-2026-small-collatz-rule",
+  "title": "A Small Collatz Rule without the Plus One",
+  "authors": [
+    "Kevin Knight"
+  ],
+  "year": 2026,
+  "identifiers": {},
+  "url": {
+    "pdf": "https://content.wolfram.com/sites/13/2026/04/35-1-1.pdf",
+    "researchgate": "https://www.researchgate.net/publication/404014739_A_Small_Collatz_Rule_without_the_Plus_One"
+  },
+  "problem_area": "collatz-reformulations",
+  "relevant_concepts": [
+    "addition-free simulation",
+    "multiplication-only rule",
+    "FRACTRAN",
+    "state-space enlargement"
+  ],
+  "project_relationship": "unassessed",
+  "status": "NOT CONSULTED",
+  "notes": "Complex Systems 35(1):1-9, 2026. NOT READ -- content.wolfram.com, complexsystems.com, researchgate.net, ccchallenge.org, hal.science and archive.org are ALL egress-blocked here; Philippe supplied the PDF URL on 20 September 2026 and it could not be fetched. DESCRIPTION CORRECTED, SAME DAY, AND THE ERROR IS WORTH RECORDING. This entry was created hours earlier describing the paper as 'a rewriting system on mixed binary-ternary representations whose termination is equivalent to the Collatz conjecture'. THAT IS WRONG. It is the description of yolcu-aaronson-heule-2023-automated-collatz (arXiv:2105.14697, J. Automated Reasoning 67:15), which this laboratory ALREADY HOLDS, tied to docs/problems/bb5_map.md. The error entered through a search summary that merged the two papers, and it was repeated in commit 54fbfca's message, which cannot now be amended. Provenance discipline: the wrong description was third-hand and was written down as if it were the paper's. WHAT THE PAPER ACTUALLY IS, ATTESTED BUT NOT OBSERVED. The premise is that the difficulty of the Collatz rule comes from the interplay of multiplication (3n) with addition (+1). Monks 2002 (monks-2002-3x1-minus-the-plus) removed the +1 with a MULTIPLICATION-ONLY rule of 1021020 conditions; Knight reportedly achieves the same with a THIRTY-condition rule. The 30 and the 1021020 both come from search summaries, not from the text, and the Complex Systems volume and pages likewise. The HAL id hal-04080486 recorded earlier came from the same contaminated source and is NOT confirmed; it has been removed from identifiers rather than carried as if checked. WHY IT MATTERS HERE. The Juggler is already addition-free, so a small multiplication-only Collatz rule is a COMPETING addition-free model of the same dynamics: Monks and Knight pay for dropping the +1 with state space, the Juggler pays with a floor. A thirty-condition rule is small enough to compare directly against this laboratory's word and shape machinery, which a million-condition one was not. OPEN AND NOT CLAIMED: this session's multiplicative_knight branch converted Knight's ADDITIVE cocycle (the Bohm-Sontacchi charge, a function of the word) into the Juggler's MULTIPLICATIVE one, and Knight's other 2026 paper removes addition from Collatz. Whether that is the same instinct twice or a coincidence of the word 'multiplicative' cannot be decided without reading this paper, and is asserted as a question only. NAME CLASH: 'Knight 2026' is ambiguous between this and knight-2026-collatz-high-cycles (Discrete Mathematics 349(3) 114812). Always disambiguate. Do not cite for anything until read."
+}

@@ -193,8 +193,14 @@
     {
       "candidates": [
         {
+          "decl": "neverNegCount_succ_sub_onBarrier",
+          "line": 272,
+          "score": 0.141,
+          "trust": "kernel"
+        },
+        {
           "decl": "density_succ",
-          "line": 282,
+          "line": 291,
           "score": 0.132,
           "trust": "kernel"
         },
@@ -202,12 +208,6 @@
           "decl": "neverNegCount_add_minimalCertCount",
           "line": 171,
           "score": 0.11,
-          "trust": "kernel"
-        },
-        {
-          "decl": "neverNegWords_succ_of_window_empty",
-          "line": 432,
-          "score": 0.106,
           "trust": "kernel"
         }
       ],

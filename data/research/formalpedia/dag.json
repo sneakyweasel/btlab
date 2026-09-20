@@ -936,6 +936,7 @@
         "J-collatz-walk-charge-is-sharp",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
         "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional",
         "J-survivor-count-is-a-collatz-residue-count"
       ],
       "papers": [
@@ -1354,6 +1355,23 @@
       ],
       "trust": {
         "kernel": 48
+      }
+    },
+    "Problems.Juggler.Equality": {
+      "declarations": 64,
+      "depends_on": [
+        "Problems.Juggler.Envelope"
+      ],
+      "file": "formal/Problems/Juggler/Equality.lean",
+      "ledger": [
+        "J-lemma-eight-is-the-exponent-valuation"
+      ],
+      "papers": [
+        "Paper A",
+        "Paper C"
+      ],
+      "trust": {
+        "kernel": 64
       }
     },
     "Problems.Juggler.Escape": {
@@ -1974,7 +1992,7 @@
     "Problems.Juggler.GlobalDefect": {
       "declarations": 36,
       "depends_on": [
-        "Problems.Juggler.Envelope"
+        "Problems.Juggler.Equality"
       ],
       "file": "formal/Problems/Juggler/GlobalDefect.lean",
       "ledger": [
@@ -2205,6 +2223,7 @@
       ],
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "ledger": [
+        "J-multiplicative-knight-residual-is-the-state-dependence",
         "J-normalized-relative-slack"
       ],
       "papers": [
@@ -2429,7 +2448,7 @@
     "Problems.Juggler.Preimages": {
       "declarations": 124,
       "depends_on": [
-        "Problems.Juggler.Envelope"
+        "Problems.Juggler.Equality"
       ],
       "file": "formal/Problems/Juggler/Preimages.lean",
       "ledger": [
@@ -3083,9 +3102,9 @@
     }
   },
   "totals": {
-    "edges": 240,
-    "edges_before_reduction": 1789,
-    "ledger_rows_placed": 416,
-    "nodes": 187
+    "edges": 241,
+    "edges_before_reduction": 1878,
+    "ledger_rows_placed": 419,
+    "nodes": 188
   }
 }

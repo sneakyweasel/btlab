@@ -1,0 +1,26 @@
+{
+  "id": "monks-2002-3x1-minus-the-plus",
+  "title": "3x+1 Minus the +",
+  "authors": [
+    "Kenneth G. Monks"
+  ],
+  "year": 2002,
+  "identifiers": {
+    "doi": "10.46298/dmtcs.297"
+  },
+  "url": {
+    "doi": "https://doi.org/10.46298/dmtcs.297",
+    "journal": "https://dmtcs.episciences.org/297",
+    "pdf": "https://dmtcs.episciences.org/297/pdf"
+  },
+  "problem_area": "collatz-reformulations",
+  "relevant_concepts": [
+    "FRACTRAN",
+    "addition-free simulation",
+    "multiplication-only rule",
+    "state-space enlargement"
+  ],
+  "project_relationship": "unassessed",
+  "status": "NOT CONSULTED",
+  "notes": "Discrete Mathematics and Theoretical Computer Science 5 (2002), 47-54. NOT READ -- dmtcs.episciences.org is egress-blocked in this container, as is every other route tried. Registered 20 September 2026 as the prior art of knight-2026-small-collatz-rule. ATTESTED, NOT OBSERVED: via Conway's FRACTRAN it constructs a rule that simulates the Collatz map using MULTIPLICATION ONLY, eliminating the +1, at the cost of 1021020 conditions. Note 1021020 = 2^2 * 3 * 5 * 7 * 11 * 13 * 17, a primorial-shaped modulus, which is consistent with a residue construction but is this laboratory's arithmetic observation and not the paper's. WHY IT IS HERE. The Juggler map is ALREADY addition-free -- J(n) = floor(sqrt n) on evens and floor(n^(3/2)) on odds, with no +1 anywhere -- and J-juggler-is-collatz-one-exponential-up is the claim that it is Collatz one exponential up. So Monks and Knight are COMPETING addition-free models of the same dynamics, and the comparison is sharp: they buy the removal of the +1 by ENLARGING THE STATE SPACE (FRACTRAN residues, a million conditions, then thirty); the Juggler buys it by MOVING TO THE EXPONENT and paying a FLOOR. Both trade the +1 for something. Which trade is cheaper, and whether the two constructions meet, is an open comparison this laboratory has never made. Do not cite for anything until read."
+}

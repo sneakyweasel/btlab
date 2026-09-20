@@ -1,0 +1,23 @@
+{
+  "id": "oeis-A000225",
+  "title": "a(n) = 2^n - 1 (the base-2 repunits; 'Mersenne numbers' in the loose sense, the name usually being reserved for A001348)",
+  "authors": ["OEIS contributors", "N. J. A. Sloane"],
+  "year": 1973,
+  "identifiers": {
+    "oeis": "A000225"
+  },
+  "url": {
+    "oeis": "https://oeis.org/A000225"
+  },
+  "problem_area": "collatz",
+  "relevant_concepts": [
+    "base-2 repunits",
+    "Lemma 8 tightness",
+    "odd-run length",
+    "Lucas U(3,2)",
+    "primitive divisors"
+  ],
+  "project_relationship": "known",
+  "status": "classical-source",
+  "notes": "Read from the entry text supplied by Philippe on 20 September 2026; oeis.org is blocked by this environment's egress policy, so the page was not fetched. FOUR THINGS BEAR ON docs/problems/juggler_mersenne_floor_power.md. (a) PRIOR ART for the base-2 reading of Hercher's Lemma 8 tightness. A comment by Michel Lagneau, 18 January 2012, states: 'a(n) is the number k such that the number of iterations of the map k -> (3k+1)/2 == 1 (mod 2) until reaching (3k+1)/2 == 0 (mod 2) equals n (see the Collatz problem)'. That is exactly run(2^n - 1) = n, i.e. the Lemma 8 floor attained at the repunits, and it has been in OEIS since 2012. Verified here for n <= 12 under both readings of the count. The laboratory row cites it now instead of merely labelling the statement a restatement. (b) CONFIRMS THE FERMAT-POLYNOMIAL KILL, with the standard name: the entry records 'This is the Lucas U(P=3,Q=2) sequence' (R. J. Mathar) and a(n) = 3a(n-1) - 2a(n-2), so the 3 and 2 are the trace and norm of the roots {1,2}, not the 3 and 2 of the odd step. (c) THE NAMING DISTINCTION IS THE POINT. A000225 is 2^n - 1 for every n; A001348 restricts to n prime. The Lemma 8 floor is attained on A000225, composite indices included (4, 6, 8, 9, 10, 12, 14, 15, 16 all attain run = n), so the OEIS split between the two sequences is itself the cleanest statement that the primality is decorative. (d) Zsigmondy 1892 is a LINK on this entry, which is where zsigmondy-1892-primitive-divisors should have been found from. Also noted and not used: 3 | 2^n - 1 iff n is even (the ord_3(2) = 2 fact behind the Phi_2(2) = Phi_6(2) = 3 collision), and k & (k+1) = 0 characterising the repunits, which is the trailing-ones statement in bitwise form."
+}

@@ -259,7 +259,16 @@ theorem minimalCertCount_succ (d : ℕ) :
   rw [minimalCertCount, minimalCertWords_succ d, onBarrierCount,
     card_image_of_injective _ (fun x y h => by simpa using (append_singleton_inj h).1)]
 
-/-- **`N_(d+1) = 2 N_d - b_d M_d`, in the shape the boundary-mass row states it.** -/
+/-- **`N_(d+1) = 2 N_d - b_d M_d`, in the shape the boundary-mass row states it.**
+
+The recursion doubles exactly when `onBarrierCount d = 0`, and those lengths have a closed
+form: `M_d = 0` iff `d` lies in OEIS A054414, `1 + floor (n / (1 - log 2 / log 3))`, apart
+from `d = 1`, where `E` contracts at once; `M_d /= 0` iff `d` lies in A020914,
+`floor (n * log 2 3) + 1`, the laboratory's own distinguished length. The two partition the
+positive integers, so the plateaus of `density_flat_of_window_empty` below are a Beatty
+complement rather than a list. Checked to `d = 200` in
+`research.juggler_sequence.oeis_neighbourhood`; A054414 is the only one of the four
+sequences around this recursion that the laboratory had not already named. -/
 theorem neverNegCount_succ_sub_onBarrier (d : ℕ) :
     neverNegCount (d + 1) + onBarrierCount d = 2 * neverNegCount d := by
   rw [← minimalCertCount_succ d]
@@ -314,7 +323,10 @@ theorem density_flat_of_window_empty {d : ℕ}
   density_succ_of_no_new_cert (minimalCertCount_eq_zero_of_window_empty h)
 
 /-- The plateaus the enumeration found, now as consequences rather than observations:
-`7/8` at both `d = 5` and `d = 6`, `237/256` at both `d = 8` and `d = 9`. -/
+`7/8` at both `d = 5` and `d = 6`, `237/256` at both `d = 8` and `d = 9`.
+
+These three are the first plateau lengths after `d = 3`: the full list is OEIS A054414
+without its initial `1`, so the next are `14, 17, 19, 22, 25, 28, 30`. -/
 theorem density_flat_five_to_six :
     (certifiedWordCount 6 : ℚ) / 2 ^ 6 = (certifiedWordCount 5 : ℚ) / 2 ^ 5 :=
   density_flat_of_window_empty (d := 5) window_empty_six

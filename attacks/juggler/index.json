@@ -1561,7 +1561,7 @@
       "decision": "CLOSE",
       "ledger_ids": [],
       "aliases": [],
-      "nk_cluster": "Diophantine walls"
+      "nk_cluster": "Prime divisors of the cycle gap are a dead direction, by a density theorem"
     },
     {
       "id": "cycle_peak_count",
@@ -2607,6 +2607,22 @@
       "nk_cluster": null
     },
     {
+      "id": "even_run_mersenne_floor",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/even_run_mersenne_floor.py",
+      "test": "tests/research/juggler_sequence/test_even_run_mersenne_floor.py",
+      "dossier": "docs/problems/juggler_even_run_mersenne_floor.md",
+      "data_dir": "data/research/juggler/even_run_mersenne_floor",
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": [
+        "J-even-run-dual-of-lemma-eight-is-capped-by-the-shape"
+      ],
+      "aliases": [],
+      "nk_cluster": "The even-run dual of Lemma 8 exists, and the CycleMin shape caps it"
+    },
+    {
       "id": "even_scale_barrier",
       "kind": "branch",
       "probe": "src/research/juggler_sequence/even_scale_barrier.py",
@@ -2735,6 +2751,23 @@
       ],
       "aliases": [],
       "nk_cluster": null
+    },
+    {
+      "id": "exponent_valuation_mirror",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/exponent_valuation_mirror.py",
+      "test": "tests/research/juggler_sequence/test_exponent_valuation_mirror.py",
+      "dossier": "docs/problems/juggler_exponent_valuation_mirror.md",
+      "data_dir": "data/research/juggler/exponent_valuation_mirror",
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": [
+        "J-lemma-eight-is-the-exponent-valuation",
+        "J-exponential-sends-density-to-log-density"
+      ],
+      "aliases": [],
+      "nk_cluster": "Lemma 8 does transfer, and it lands on a density-zero locus"
     },
     {
       "id": "external_input_audit",
@@ -3648,6 +3681,22 @@
       "nk_cluster": null
     },
     {
+      "id": "mersenne_floor_power",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/mersenne_floor_power.py",
+      "test": "tests/research/juggler_sequence/test_mersenne_floor_power.py",
+      "dossier": "docs/problems/juggler_mersenne_floor_power.md",
+      "data_dir": "data/research/juggler/mersenne_floor_power",
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": [
+        "J-repunit-floor-power-is-closed-form"
+      ],
+      "aliases": [],
+      "nk_cluster": "The (lambda, a, b) coordinate on x+1 is Williams 2026, not ours"
+    },
+    {
       "id": "minimal_anchor_closure",
       "kind": "branch",
       "probe": "src/research/juggler_sequence/minimal_anchor_closure.py",
@@ -3820,6 +3869,41 @@
       ],
       "aliases": [],
       "nk_cluster": null
+    },
+    {
+      "id": "negative_floor_3x1",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/negative_floor_3x1.py",
+      "test": "tests/research/juggler_sequence/test_negative_floor_3x1.py",
+      "dossier": "docs/problems/juggler_negative_floor_3x1.md",
+      "data_dir": "data/research/juggler/negative_floor_3x1",
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-negative-floor-makes-the-mirror-unconditional"
+      ],
+      "aliases": [],
+      "nk_cluster": null
+    },
+    {
+      "id": "negative_lemma_eight_window",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/negative_lemma_eight_window.py",
+      "test": "tests/research/juggler_sequence/test_negative_lemma_eight_window.py",
+      "dossier": "docs/problems/juggler_negative_lemma_eight_window.md",
+      "data_dir": "data/research/juggler/negative_lemma_eight_window",
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": [
+        "J-lemma-eight-floor-is-tight-at-every-known-cycle",
+        "J-the-missing-juggler-floor-is-worth-a-quarter-at-length-22",
+        "J-knight-is-sign-free-and-catalan-bounds-the-escapes",
+        "J-multiplicative-knight-residual-is-the-state-dependence"
+      ],
+      "aliases": [],
+      "nk_cluster": "The pointwise floor is tight at every cycle, and slack at every leftover"
     },
     {
       "id": "nil_horizontal_weyl",
@@ -4294,6 +4378,24 @@
         "J-oe-poor-fiber-tail",
         "J-oe-averaged-two-productions-reach-the-depth-two-ceiling",
         "J-low-share-forces-a-small-order-resonance"
+      ],
+      "aliases": [],
+      "nk_cluster": null
+    },
+    {
+      "id": "oeis_neighbourhood",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/oeis_neighbourhood.py",
+      "test": "tests/research/juggler_sequence/test_oeis_neighbourhood.py",
+      "dossier": "docs/problems/juggler_oeis_neighbourhood.md",
+      "data_dir": "data/research/juggler/oeis_neighbourhood",
+      "lean": [
+        "formal/Problems/Juggler/CollatzBridgeLab.lean"
+      ],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": [
+        "J-plateau-lengths-are-a-beatty-complement"
       ],
       "aliases": [],
       "nk_cluster": null
@@ -6918,6 +7020,22 @@
       "conjecture": [],
       "decision": null,
       "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
+    },
+    {
+      "id": "multiplicative_knight",
+      "kind": "support",
+      "probe": "src/research/juggler_sequence/multiplicative_knight.py",
+      "test": "tests/research/juggler_sequence/test_multiplicative_knight.py",
+      "dossier": null,
+      "data_dir": "data/research/juggler/multiplicative_knight",
+      "lean": [],
+      "conjecture": [],
+      "decision": null,
+      "ledger_ids": [
+        "J-multiplicative-knight-residual-is-the-state-dependence"
+      ],
       "aliases": [],
       "nk_cluster": null
     },
