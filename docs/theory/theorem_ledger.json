@@ -11181,5 +11181,16 @@
    "tests/research/juggler_sequence/test_empty_window_levels.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "id": "J-lambda-recurrence-happens-at-the-bottom",
+  "statement": "WILLIAMS'S LAMBDA-RECURRENCE IS NOT AN EARLY MILESTONE, so the hope that it is a strictly easier target than convergence is not supported by the dynamics. MEASURED, not proved. Williams (arXiv:2607.01718, williams-2026-collatz-coordinates) writes every odd n uniquely as lambda 2^a 3^b - 1 with gcd(lambda,6) = 1, so lambda(n) is n+1 stripped of twos and threes and lambda = 1 means n+1 is 3-smooth. Her open problem (3) records that every trajectory tested reaches lambda = 1, notes it is implied by the Collatz conjecture, and asks whether proving it 'might be easier than proving full convergence' and whether the step count can be bounded. TWO MEASUREMENTS ON SYRACUSE STEPS OVER ODD STARTS. (i) THE LANDING VALUE DOES NOT GROW WITH THE START. Excluding starts that already have lambda = 1, the mean log2 of the first value with lambda = 1 is 4.365, 4.382, 4.395, 4.395 over starts in [3,1e4), [1e4,1e5), [1e5,4e5) and [4e5,1e6) -- flat to one per cent while the starts move three orders of magnitude, so the typical landing value is about 21 whatever the start. About 83 per cent land at 63 or below, stable across every range, and five values (11, 7, 23, 47, 31) take 71 per cent of all nontrivial landings below 1e6. (ii) THE GAP TO CONVERGENCE DOES NOT GROW EITHER. The mean of collatz_time - lambda_time is 14.78, 14.63, 14.77, 14.75 on those same ranges, stable to one per cent while the mean times themselves grow from 30.7 to 48.1 and the ratio lambda/collatz rises 0.518, 0.623, 0.668, 0.693 toward one. WHY, and it is a density statement rather than anything about Collatz. There are 142 3-smooth numbers below 1e6 and 306 below 1e9, densities 1.4e-4 and 3.1e-7, so an orbit of about fifty Syracuse steps wandering near 1e6 expects 0.007 hits and near 1e9 essentially none. The orbit has to descend into the range where n+1 is commonly 3-smooth before the event can occur. WHAT THIS IS NOT. It is not a proof that lambda-recurrence and convergence are equivalent. The set of lambda = 1 values is infinite and from a large member such as 2^19*3 - 1 an orbit still has far to go; what is shown is that orbits do not land on those. Nor is the gap bounded per trajectory -- individual gaps run 0 to 80 below 1e6, and 27 is the instructive case, reaching lambda = 1 after two steps at the value 31 and then taking 39 more to reach 1. The constancy is in the mean. Also note lambda_time <= collatz_time is trivial and is not evidence: lam(1) = 1 because 1+1 = 2, so arriving at 1 is itself an occurrence.",
+  "tag": "OBSERVATION",
+  "source": "docs/problems/collatz_lambda_recurrence.md",
+  "lean": "",
+  "tests": [
+   "tests/research/collatz/test_lambda_recurrence.py"
+  ],
+  "related_conjectures": []
  }
 ]
