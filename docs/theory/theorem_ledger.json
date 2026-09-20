@@ -11208,7 +11208,7 @@
   "id": "J-plateau-lengths-are-a-beatty-complement",
   "tag": "COMPUTATIONALLY VERIFIED",
   "source": "docs/problems/juggler_oeis_neighbourhood.md",
-  "lean": "Problems/Juggler/PaperBCertificateRecursion",
+  "lean": "Problems/Juggler/PaperBCertificateRecursion.lean",
   "tests": [
    "tests/research/juggler_sequence/test_oeis_neighbourhood.py"
   ],
