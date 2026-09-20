@@ -1,7 +1,7 @@
 ---
 title: "Lower Bounds for Cycle Lengths in the Juggler Map"
 author: Philippe Cochin
-date: 20 September 2026
+date: 21 September 2026
 keywords:
   - Juggler map
   - Juggler sequence
@@ -399,8 +399,10 @@ The finance of Theorem 4.4 and the walk charge of Theorem 5.4 are not
 specific to floor powers. Read on the shortcut Collatz map through the
 shared parity word, where the dictionary is exact and Lean-checked
 (Theorems 5.15--5.17), the same one-sided enumeration reproduces
-Eliahou's lattice and period bound at \(2^{40}\) and Hercher's bound at
-\(2^{68}\), and the height argument replaces the constant \(3/4\) of
+Eliahou's lattice and period bound at \(2^{40}\), Hercher's bound at
+\(2^{68}\), and the survivor that Hercher's final section [20] and
+Barina's \(2^{71}\) [23] together leave as the current bound, and the
+height argument replaces the constant \(3/4\) of
 Hercher's Theorem 27 by \(1/(2\log2)\), attained on the hug word
 (Theorem 5.18). On the negative integers a cycle word is exactly the
 minimum-based shape of Theorem 3.2 and satisfies the finance inequality
@@ -4308,7 +4310,14 @@ multiple of \(301994\) is excluded --- Eliahou's theorem [13] with its
 lattice. At \(695\cdot2^{60}\) and at \(2^{68}\) the least survivor is
 \(114208327604\), with \(72057431991\) odd steps --- Hercher's bound
 [19,20]. At \(2^{71}\), the limit of Barina [23], the first two survivors
-are \(114208327604\) and \(217976794617\).
+are \(114208327604\) and \(217976794617\). The finance alone keeps the
+first until \(2^{71.88}\); Corollary 29 of [20] removes it from
+\(1536\cdot2^{60}=3\cdot2^{69}\) on, by tracking residue classes modulo
+powers of two --- the congruences that Remark 5.21 names as what the
+finance lacks --- and [23] records the consequence at its floor: the
+length of a nontrivial cycle rises to \(355504839929\) in the standard
+count, which is the second survivor, \(217976794617\) shortcut steps
+with \(137528045312\) odd ones --- the \(1.375\cdot10^{11}\) of [20].
 
 (ii) *Walk charge.* Let \(\alpha=\log_2(3/2)\), let
 \(h_j=a_j\alpha-b_j\) be the height before step \(j\) (\(a_j\) odd and
@@ -6991,7 +7000,7 @@ proofs, code, and final verification of this preprint.
     [doi:10.1007/978-1-4757-4267-1_11](https://doi.org/10.1007/978-1-4757-4267-1_11).
 16. P. Cochin, “Five-Step Descent Certificates for the Juggler Map:
     Parity Statistics of Nested Floor Powers,” companion manuscript
-    (Paper B), revision of 19 September 2026.
+    (Paper B), revision of 20 September 2026.
     [Source manuscript](https://github.com/sneakyweasel/btlab/blob/main/docs/theory/juggler_parity_discrepancy_note.md).
 17. P. Cochin, “Fate Contagion and Termination Criteria for the Juggler
     Map,” companion manuscript (Paper C), revision of 9 September 2026;
@@ -7008,7 +7017,7 @@ proofs, code, and final verification of this preprint.
     S. Puchert, “Anmerkung zum Artikel ‘Über die Länge nicht-trivialer
     Collatz-Zyklen’,” *Die Wurzel* 11 (2018), 243--250.
 20. C. Hercher, “There are no Collatz \(m\)-cycles with \(m\le 91\),”
-    *J. Integer Seq.* 26 (2023), Article 23.3.5.
+    *J. Integer Seq.* 26 (2023), Article 23.3.5; arXiv:2201.00406.
     https://cs.uwaterloo.ca/journals/JIS/VOL26/Hercher/hercher5.html.
 21. OEIS Foundation Inc., “Number of surviving Collatz residues mod
     \(2^n\),” Sequence A076227 in *The On-Line Encyclopedia of Integer
@@ -7017,6 +7026,9 @@ proofs, code, and final verification of this preprint.
     Arith.* 30 (1976), 241--252.
 23. D. Barina, “Improved verification limit for the convergence of the
     Collatz conjecture,” *J. Supercomput.* 81 (2025), Article 810.
+    [doi:10.1007/s11227-025-07337-0](https://doi.org/10.1007/s11227-025-07337-0).
+    Open access; its page 2 states the cycle length at \(2^{71}\), citing
+    [20].
 24. B. G. Seifert, “On the arithmetic of cycles for the Collatz--Hasse
     (‘Syracuse’) conjectures,” *Discrete Math.* 68 (1988), 293--298.
 25. M. K. Sinisalo, “On the minimal cycle lengths of the Collatz

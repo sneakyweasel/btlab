@@ -70,9 +70,15 @@ side at the historical floors coincide with the published period bounds?
   JIS 26, Article 23.3.5, read from the PDF) is the `m <= 91` theorem, Lemma 8
   (the 2-adic run congruence), Theorem 27 (the `3/4` constant), Corollary 29,
   and the floor `X_0 = 695 * 2^60` of its Definition 4 — **KNOWN**. Barina 2025
-  (`217976794617` at `2^71`, from a sharper averaging) — **KNOWN**; no
-  `literature/` entry yet, quoted through the Wikipedia Collatz article's
-  cycle-length section; project relationship **one fraction short**.
+  (`barina-2025-collatz-verification-limit`, read from the open-access PDF on
+  20 September 2026): the `2^71` floor, and at that floor the statement, quoting
+  Hercher 2023, that the length of a nontrivial cycle rises to `355504839929`
+  in the standard count — `217976794617` shortcut steps, `137528045312` odd,
+  the second survivor of the table below. The removal of the first survivor is
+  the final section of Hercher 2023 (verification through `3 * 2^69` suffices,
+  by tracking residue classes modulo powers of two, his Corollary 29), not a sharper averaging of the finance,
+  which alone would need `2^71.88` — **KNOWN**; project relationship
+  **reproduced** for the survivors, the residue-class tracking not reproduced.
 - Simons–de Weger 2005 financing-versus-gap — **KNOWN**
   (`simons-de-weger-2005-collatz-m-cycles`); the laboratory's finance branch
   is its floor-power adaptation ([juggler_cycle_finance.md](juggler_cycle_finance.md)).
@@ -208,7 +214,7 @@ Classification **FINANCE_MIRROR_REPRODUCES_ELIAHOU_HERCHER**.
 | `2^40` | `17087915` (`10781274` odd) | Eliahou 1993: `17087915` |
 | `695 * 2^60` | `114208327604` (`72057431991` odd) | Hercher 2018: "more than `7.2e10` odd" |
 | `2^68` | `114208327604` | same |
-| `2^71` | `114208327604`, then `217976794617` | Barina 2025: `217976794617` |
+| `2^71` | `114208327604`, then `217976794617` | Hercher 2023, final section, with Barina 2025: `355504839929` standard steps, i.e. `217976794617` shortcut |
 
 At `2^40` all `13869` survivors below `4e8` lie in Eliahou's lattice with
 `B >= 1` and `A C = 0`, and every pure multiple of `301994` is excluded — the
