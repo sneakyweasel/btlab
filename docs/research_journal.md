@@ -1,5 +1,40 @@
 # Research journal
 
+## 2026-09-21 -- Paper A: Hercher's final section and Barina's 2^71 placed together
+
+- **Objective:** Philippe asked for Paper A to be updated on Barina and
+  Hercher and the kit rebuilt, after both names came up in Hikawa's
+  reference lists.
+- **What was already there.** Paper A cited both: Hercher 2018 and 2023
+  as references 19 and 20 throughout Section 5.9, Barina 2025 as reference
+  23 for the `2^71` floor in Theorem 5.18. The registry note written on
+  the 20th that said the next revision should cite Barina was wrong on
+  that point and is corrected.
+- **What the texts add.** Barina's open-access PDF (14 pages, accepted
+  21 April 2025) was read in full. Its page 2 says that at `2^71` the
+  length of a nontrivial cycle rises to 355504839929, citing Hercher 2023.
+  That is the standard-count length of the second survivor of Theorem
+  5.18 at `2^71`: 217976794617 shortcut steps with 137528045312 odd ones,
+  Hercher's `K >= 1.375e11`. The removal of the first survivor,
+  114208327604, which the finance alone keeps until `2^71.88`, is
+  Corollary 29 of Hercher 2023, residue classes tracked modulo powers of
+  two down to a floor of `1536 * 2^60 = 3 * 2^69`; Barina's `2^71` exceeds
+  it by a third. Neither Paper A nor the finance-mirror dossier had said
+  this; the dossier had called it a sharper averaging by Barina.
+- **Paper A, 112 pages, dated 21 September.** Theorem 5.18(i) states the
+  chain with both attributions; Contribution 9 names the survivor the two
+  results together leave; reference 20 gains its arXiv number, reference
+  23 its DOI and the page that states the consequence. Reference 16 dates the
+  companion Paper B at its 20 September revision. Nothing else in the
+  manuscript changed. Built with three passes, `--check` green, numeric
+  checker at its expected survivors, release, audit, trust-boundary,
+  citation, constants, control-character and formalpedia gates green.
+- **Records.** Barina record read in full and cited; Hercher 2023 record
+  carries the final section; the finance-mirror dossier's bullet and
+  table row corrected; ledger row
+  `J-paper-a-finance-transposed-reproduces-eliahou-and-hercher`
+  annotated; formalpedia rebuilt. No Zenodo upload.
+
 ## 2026-09-20 -- The suite's cost is one file, and 37 of its tests only grepped a manuscript
 
 - **Objective:** Philippe said the tests take too long and suspected a batch of
@@ -46,6 +81,20 @@
   Restored from `0eb94ed8^`; it compares equal to the canonical snapshot, and the
   five tests pass. The failure was a plain `FileNotFoundError` in the CI log from
   the first red run onward -- I did not look until three pushes later.
+- **Then removed again, properly, on Philippe's call.** He wanted the packet copy
+  gone regardless, and the way to do that is to remove what points at the path,
+  not only the path. `MIRROR_B` in the manuscript registry and in
+  `test_notation.py`, `MIRROR` in `test_architecture_table.py` and
+  `test_trust_boundary.py`, and the three mirror-equality tests they fed, are
+  gone; Paper B's registry entry now carries `mirror=None` and the parametrised
+  mirror test skips it by name rather than passing vacuously.
+  `tests/integration/test_review_bundle_mirrors.py` already recorded that the
+  bundle is tidier once the mirrors go, and it tolerates a missing copy, so this
+  is the end state that file describes. The canonical snapshot under
+  `docs/theory/` is untouched -- a dozen `src/research/juggler_sequence` modules
+  read it. The surviving gate was checked against a known-bad input rather than
+  trusted: drifting Paper C's mirror on purpose turns it red, restoring turns it
+  green.
 - **The lesson worth keeping.** Two of them, pulling opposite ways. A test that
   greps prose is not a cheap version of a test that checks mathematics: it is a
   gate that cannot fail for the reason you care about, and 37 had accumulated in

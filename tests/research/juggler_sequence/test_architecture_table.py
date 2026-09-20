@@ -19,7 +19,6 @@ from research.juggler_sequence import p0_certificate as P0
 
 ROOT = Path(__file__).resolve().parents[3]
 PAPER = ROOT / "docs" / "theory" / "juggler_parity_discrepancy_note_2026_09_04.md"
-MIRROR = ROOT / "juggler_review" / "juggler_parity_discrepancy_note_2026_09_04.md"
 
 
 def text() -> str:
@@ -120,9 +119,6 @@ def test_c5_dependency_is_stated_in_the_table() -> None:
     assert "does *not* follow from (C3) and (C4)" in t
     assert r"\mu\le60\lambda_0" in t
 
-
-def test_mirror_carries_the_table() -> None:
-    assert text() == io.open(MIRROR, encoding="utf-8").read()
 
 
 def test_lemma_52_iii_is_stated_and_proved_and_cited() -> None:

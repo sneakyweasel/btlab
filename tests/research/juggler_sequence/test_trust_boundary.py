@@ -18,7 +18,6 @@ import pytest
 
 ROOT = Path(__file__).resolve().parents[3]
 PAPER = ROOT / "docs" / "theory" / "juggler_parity_discrepancy_note_2026_09_04.md"
-MIRROR = ROOT / "juggler_review" / "juggler_parity_discrepancy_note_2026_09_04.md"
 
 _spec = importlib.util.spec_from_file_location("trust_boundary", ROOT / "tools" / "trust_boundary.py")
 TB = importlib.util.module_from_spec(_spec)
@@ -150,6 +149,3 @@ def test_classical_inputs_are_the_ones_the_paper_cites(external: str, source: st
     assert external in t, external
     assert source in t, source
 
-
-def test_mirror_carries_the_table() -> None:
-    assert text() == io.open(MIRROR, encoding="utf-8").read()

@@ -167,7 +167,6 @@ def test_mirror_carries_the_renames() -> None:
 
 
 PAPER_B = ROOT / "docs" / "theory" / "juggler_parity_discrepancy_note_2026_09_04.md"
-MIRROR_B = ROOT / "juggler_review" / "juggler_parity_discrepancy_note_2026_09_04.md"
 
 
 def section_7() -> str:
@@ -242,6 +241,3 @@ def test_markov_threshold_is_not_the_truncation_T() -> None:
     assert r"\tau=(L/\eta)" in sec
     assert r"\{|\mathcal S_\lambda|^2>\tau\}" in sec
 
-
-def test_paper_b_mirror_carries_the_section_7_renames() -> None:
-    assert io.open(PAPER_B, encoding="utf-8").read() == io.open(MIRROR_B, encoding="utf-8").read()

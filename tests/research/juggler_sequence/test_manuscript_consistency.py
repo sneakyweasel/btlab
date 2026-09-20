@@ -46,7 +46,6 @@ APP_CLAIMS = ROOT / "web" / "juggler-companion" / "src" / "content" / "claims.ts
 APP_GLOSSARY = ROOT / "web" / "juggler-companion" / "src" / "content" / "glossary.ts"
 
 PAPER_B = ROOT / "docs" / "theory" / "juggler_parity_discrepancy_note_2026_09_04.md"
-MIRROR_B = ROOT / "juggler_review" / "juggler_parity_discrepancy_note_2026_09_04.md"
 LEDGER_B = ROOT / "docs" / "theory" / "paper_b_audit_ledger.md"
 LEDGER_B_MIRROR = ROOT / "juggler_review" / "paper_b_audit_ledger.md"
 
@@ -64,7 +63,15 @@ class Manuscript:
 
     name: str
     path: Path
-    mirror: Path
+
+    mirror: Path | None
+    """The juggler_review copy, or None where the bundle deliberately carries none.
+
+    Paper B is None: its entry here is the historical 4 September snapshot, whose
+    bundle copy was removed.  `tests/integration/test_review_bundle_mirrors.py`
+    states the bundle is tidier without mirrors, and the live Paper B mirror is
+    covered there, not here.
+    """
     ordered_sections: tuple[str, ...]
     """Sections whose items must appear in numeric order.
 
@@ -78,7 +85,7 @@ class Manuscript:
 
 MANUSCRIPTS = (
     Manuscript("A", PAPER, MIRROR, ("5",), (PACKET, README, FORMALIZATION)),
-    Manuscript("B", PAPER_B, MIRROR_B, ("3", "4", "5", "6", "7"), (LEDGER_B,)),
+    Manuscript("B", PAPER_B, None, ("3", "4", "5", "6", "7"), (LEDGER_B,)),
     Manuscript("C", PAPER_C, MIRROR_C, tuple(str(k) for k in range(2, 11))),
 )
 IDS = [m.name for m in MANUSCRIPTS]
@@ -143,6 +150,8 @@ def test_no_number_is_used_for_two_different_items(ms: Manuscript) -> None:
 
 @pytest.mark.parametrize("ms", MANUSCRIPTS, ids=IDS)
 def test_review_mirror_matches_the_manuscript(ms: Manuscript) -> None:
+    if ms.mirror is None:
+        pytest.skip(f"{ms.name} has no juggler_review mirror by design")
     assert read(ms.path) == read(ms.mirror), f"{ms.name}: juggler_review mirror is stale"
 
 
@@ -155,7 +164,7 @@ def test_no_mangled_latex_escapes(ms: Manuscript) -> None:
     tab plus the rest of the macro name.  No legitimate tab exists in these documents, so the
     check is exact rather than heuristic.
     """
-    for doc in (ms.path, ms.mirror, *ms.satellites):
+    for doc in (ms.path, *([ms.mirror] if ms.mirror is not None else []), *ms.satellites):
         bad = [i for i, line in enumerate(read(doc).splitlines(), 1)
                if any(c in line for c in MANGLED_ESCAPES)]
         assert not bad, (ms.name, doc.name, bad[:5])
