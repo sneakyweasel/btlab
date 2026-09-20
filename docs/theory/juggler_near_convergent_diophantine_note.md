@@ -69,17 +69,17 @@ contract; every later section is labelled against it.
 | L2 | \(A=a+\varepsilon_a/\eta\), hence \(A\in(a,a+1)\) | **identity** (§3) |
 | T3 | \(R_k=\frac{A-k}{A-k-1}\cdot\frac{B+k+1}{B+k}\) | **identity** (§4) |
 | T4 | \(\min_{k\in\mathbb R}R_k=\bigl(\frac{A+B+1}{A+B-1}\bigr)^2\) at \(k^\ast=\frac{A-B-1}{2}\) | **proved** (§4) |
-| C5 | \(\bigl(\frac{a+3}{a+1}\bigr)^2<R_k\) for every \(k\) in the fan | **proved** (§5) |
-| C6 | \(\inf_{\text{fans}}\min_kR_k=1\iff\) dangerous quotients unbounded | **proved from T4** (§5) |
-| D7 | the dangerous-position quotients of \(\log2/\log3\) are unbounded | **classical OPEN** (§5, §7) |
-| P8 | \((1-\tfrac12\varepsilon_0\log3)R_k<R^\theta_k<R_k\) | **proved** (§4) |
+| P5 | \((1-\tfrac12\varepsilon_0\log3)R_k<R^\theta_k<R_k\) | **proved** (§4) |
+| C6 | \(\bigl(\frac{a+3}{a+1}\bigr)^2<R_k\) for every \(k\) in the fan | **proved** (§5) |
+| C7 | \(\inf_{\text{fans}}\min_kR_k=1\iff\) dangerous quotients unbounded | **proved from T4** (§5) |
+| D8 | the dangerous-position quotients of \(\log2/\log3\) are unbounded | **classical OPEN** (§5, §7) |
 | M9 | \(R_k\) as measured by the break-even schedule agrees with T3 to \(8\) digits | **computationally verified** (§4) |
 
 There is no modelling step. The Denjoy–Koksma factor of the walk envelope
 is a function of the floor alone, so at a common floor it is the same on
 \(L_k\) and \(L_{k+1}\) and cancels exactly in the ratio; and the passage
 from the gap \(\theta\) to the linear form \(\varepsilon\) is bounded
-two-sidedly by P8, to a relative \(1.8\cdot10^{-6}\) on the main fan
+two-sidedly by P5, to a relative \(1.8\cdot10^{-6}\) on the main fan
 against a realised \(3.5\cdot10^{-8}\). Nothing in §3–§5 is asymptotic and
 nothing carries an unquantified error.
 
@@ -93,7 +93,7 @@ walk-charge refinement of it. Combined with a certified descent floor
 \[
 780239=176251+2\cdot 301994
 \]
-(Corollary 5.11). The leftover lengths that finance keeps at a given floor
+(Corollary 6.11). The leftover lengths that finance keeps at a given floor
 cluster at the continued-fraction approximants of \(\log2/\log3\): they are
 *finance-survivors*, not candidate cycles. The first survivor past the
 walk-charge blocker is the \(k=2\) member of the semiconvergent fan
@@ -151,7 +151,7 @@ At \(N_0=350000000\), \(L=780239\), \(o=492276\), the stored comparison
 has \(\theta=3.471\cdot10^{-6}\), walk margin \(0.6049\), required
 improvement over parity \(14.46\), and `certified_excludes: false`. The
 exact gap is known. This paper takes that non-kill as a black box and does
-not re-prove Corollary 5.11.
+not re-prove Corollary 6.11.
 
 The *family* question is not this one comparison. It is the law of the
 ratios \(\theta(L_k)/\theta(L_{k+1})\) along the infinite fan that contains
@@ -360,7 +360,7 @@ certified quotient \(55\).
 
 ## 5. The reduction
 
-**Corollary 5 (rational two-sided bound).** *Let the fan be closed by the
+**Corollary 6 (rational two-sided bound).** *Let the fan be closed by the
 quotient \(a\ge2\). Then for every member \(k\),*
 \[
 \Bigl(\frac{a+3}{a+1}\Bigr)^{2}<R_k,
@@ -389,14 +389,14 @@ draft's \(e^{4/(a+2)}\le R_{\min}\lesssim e^{4/a}\) gives
 \((1.9477,2.7183)\) at \(a=4\) — an upper bound below the true worst case
 \(2.7778\), which is what the \(\lesssim\) was carrying.
 
-**Corollary 6 (the family reduction).** *Over all dangerous fans,*
+**Corollary 7 (the family reduction).** *Over all dangerous fans,*
 \[
 \inf_{\text{fans}}\ \min_k R_k=1
 \quad\Longleftrightarrow\quad
 \text{the dangerous-position partial quotients of }\log2/\log3\text{ are unbounded.}
 \]
 
-*Proof.* By Corollary 5, a fan closed by \(a\) has
+*Proof.* By Corollary 6, a fan closed by \(a\) has
 \(\min_kR_k>((a+3)/(a+1))^2\), which tends to \(1\) as \(a\to\infty\) and
 is bounded away from \(1\) for \(a\) in any bounded set; and by Theorem 4
 the minimum is at most \(((M+2)/M)^2\) with \(M<a+1\), which does tend to
@@ -405,7 +405,7 @@ the minimum is at most \(((M+2)/M)^2\) with \(M<a+1\), which does tend to
 So the equivalence is a theorem, not a conjecture. What is conjectural is
 nothing; what is *open* is the Diophantine input.
 
-**Open problem 7 (classical).** *Are the partial quotients of
+**Open problem 8 (classical).** *Are the partial quotients of
 \(\log2/\log3\) at the dangerous positions unbounded?*
 
 Boundedness of the continued-fraction quotients of \(\log2/\log3\) is a
@@ -416,11 +416,11 @@ known either way for this or for any other explicit logarithm ratio.
 Wu–Wang's irrationality measure
 \(\lvert a+b\log2+c\log3\rvert\ge H^{-4.1163051-\varepsilon}\) transfers to
 a width cap \(a_{j+1}=O_\varepsilon(q_j^{3.1163051+\varepsilon})\). That
-bound does not give \(a=O(1)\). Combined with Corollary 5 it already
+bound does not give \(a=O(1)\). Combined with Corollary 6 it already
 allows \(R_{\min}<1.001\) at \(a\gtrsim14\), so it cannot prevent
 \(((a+3)/(a+1))^2\to1\) and cannot kill a leftover.
 
-A prediction table from Corollary 5. The certified quotients
+A prediction table from Corollary 6. The certified quotients
 \(a_{14}=55\) and \(a_{16}=4\) give \(R_{\min}\in(1.0727,1.0754)\) and
 \((1.9600,2.7778)\), matching §4. The observed (uncertified) quotients
 give
@@ -439,7 +439,7 @@ function of the continued fraction of \(\log2/\log3\).
 
 Three quantities determine a kill at a *fixed* floor: the exact gap
 \(\theta(L)\), the walk envelope \(B\), and the floor \(N_0\). None of them
-answers Open problem 7.
+answers Open problem 8.
 
 **Gap lower bounds.** Any correct \(\delta\le3^o-2^L\) produces a finance
 \(n_{\max}\) at least as large as the exact-gap \(n_{\max}\). The exact gap
@@ -459,7 +459,7 @@ determined by \(A\) and \(B\) alone.
 \(n^\ast=5.54\cdot10^8\) and buys the single member \(k=2\). The next
 *seed* \(16785921\) waits at \(4.54\cdot10^{11}\). Raising the floor walks
 the fan one \(k\) at a time; each step costs the factor \(R_k\) of
-Theorem 3, and Corollary 5 bounds that cost below by a function of the
+Theorem 3, and Corollary 6 bounds that cost below by a function of the
 partial quotient alone. Floors do not bound \(R_{\min}\) uniformly.
 
 That is the structural content of the three paragraphs: each of the three
@@ -503,7 +503,7 @@ successor laboratory branch is opened.
 
 Every number in §3–§5 is re-derived by
 `research.juggler_sequence.cycle_walk_fan_minimum`, whose
-`balance_law_exact` implements Theorems 3 and 4 and Corollary 5 and
+`balance_law_exact` implements Theorems 3 and 4 and Corollary 6 and
 compares them with the schedule-measured minima stored in
 `data/research/juggler/cycle_walk_competition/summary.json`. The gates are
 in `tests/research/juggler_sequence/test_cycle_walk_fan_minimum.py`.
