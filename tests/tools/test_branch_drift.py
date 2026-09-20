@@ -37,7 +37,7 @@ import branch_drift as BD  # noqa: E402
 #: latest-progress-summary reached +8 unread on 2026-09-20 after being
 #: acknowledged at +5. Update the sha in the same commit as the reason.
 READ_AT: dict[str, str] = {
-    "claude/exponent-floor-3n1-2adic-mvwa96": "dfc45dd3",
+    "claude/exponent-floor-3n1-2adic-mvwa96": "9f0f164b",
     "claude/latest-progress-summary-s011un": "d73565f9",
     "claude/goofy-kare-1a92fd": "8aad2aae",
     "claude/elated-hopper-e20999": "86247b5d",
@@ -194,7 +194,18 @@ ACKNOWLEDGED: dict[str, str] = {
         "too. Do not read that line as OEIS being unavailable. What the "
         "mirror settled is worth keeping either way: A034887 carries "
         "offset 0, so the branch RETRACTS its own earlier offset "
-        "correction, which was itself wrong."
+        "correction, which was itself wrong. "
+        "DELTA TO 9f0f164b, and it CONVERGES WITH MAIN: their sweep of the "
+        "laboratory numbers against the OEIS export gives the free lengths "
+        "a closed form as a Beatty complement -- M_d nonzero iff d is in "
+        "A020914 = floor(n log2 3) + 1, M_d zero iff d is in A054414 minus "
+        "{1}, the two partitioning the positive integers, verified to "
+        "d = 200. Main reached A054414 the same day by its own sweep of "
+        "the sequences in tests/, and Paper B already cited it as the "
+        "Beatty complement, so the name is not new to main -- the closed "
+        "form tied to the kernel-checked recursion is theirs. Main's side "
+        "of the same sweep found what they did not: A186008 and A186009, "
+        "where the boundary mass M_d/2^d is tabulated from 2011."
     ),
     "claude/latest-progress-summary-s011un": (
         "PENDING EXTRACTION, and it has GROWN since it was first acknowledged "
