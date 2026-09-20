@@ -5523,3 +5523,52 @@ def test_psi_jump_spectrum_factorises_through_the_barrier_index() -> None:
         assert c[n] / c[n - 1] == pytest.approx(1.0, abs=1e-3), (
             f"n={n}: renormalised amplitude moved at a zero-step"
         )
+
+
+def test_the_weight_basis_prefactor_swings_half_a_bit() -> None:
+    """How much room Hikawa's 0.3 bits actually leaves, measured not waved at.
+
+    Conjecture 7.1 says `W(d) = Theta(d^(-3/2) 2^(gamma d))`, motivated by the
+    residual `log2 W(d) - gamma d` agreeing with the ballot correction
+    `-(3/2) log2 d` to within 0.3 bits over `100 <= d <= 10000`. A constant
+    prefactor makes that residual flat. It is not flat.
+
+    MEASURED in the weight basis, which this laboratory had never used -- all
+    its prefactor work is on `N_d / 2^d`, the length basis. Over
+    `100 <= d <= 10000` the residual runs from -0.046 to +0.472, a swing of
+    0.518 bits, and the swing is stable on sub-ranges: 0.5155 on [100, 1000),
+    0.5104 on [1000, 5000), 0.5100 on [5000, 10000). So it is a persistent
+    oscillation and not a transient. The float recursion agrees with the exact
+    integer one to 5.7e-14 bits at d = 200, so this is not numerical.
+
+    WHAT THIS CORRECTS, and it is a claim made earlier the same day in this
+    repository: that his 0.3-bit tolerance is "wide enough to hold a bounded
+    oscillating prefactor without detecting one". That now depends on a
+    reading of his sentence NOBODY HERE HAS CHECKED, because the paper body is
+    ResearchGate-gated. If "within 0.3 bits" means a band of half-width 0.3,
+    total width 0.6, then a 0.518-bit swing fits -- but it occupies 86 per
+    cent of the band, which is not "wide enough" in any comfortable sense. If
+    it means the swing itself is at most 0.3, then this measurement disagrees
+    with his reported numerics and one of the two is wrong. The honest
+    position is that the margin is thin and the question needs the PDF.
+    """
+    from research.juggler_sequence.paper_b_prefix_count import (
+        weight_log_mass,
+        weight_prefactor_residual,
+    )
+
+    # the marginal is the sequence it should be
+    mass = weight_log_mass(10)
+    assert [round(2**v) for v in mass[1:9]] == [2, 3, 7, 12, 30, 85, 173, 476]
+
+    residual = weight_prefactor_residual(2000)
+    swing = max(residual) - min(residual)
+    assert 0.51 < swing < 0.53
+    assert -0.06 < min(residual) < -0.03
+    assert 0.46 < max(residual) < 0.49
+
+    # and it is not shrinking: the second half swings as much as the first
+    half = len(residual) // 2
+    early = max(residual[:half]) - min(residual[:half])
+    late = max(residual[half:]) - min(residual[half:])
+    assert abs(early - late) < 0.05

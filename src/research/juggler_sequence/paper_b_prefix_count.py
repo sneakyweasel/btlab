@@ -132,6 +132,62 @@ def surviving_log_mass(depth: int) -> list[float]:
     return out
 
 
+def weight_log_mass(depth: int) -> list[float]:
+    """``log2 W(d)`` for ``d = 1..depth``, ``W`` the survivor count by ODD COUNT.
+
+    The rest of this module works in the LENGTH basis: ``N_d`` counts survivors of
+    length ``d``. Hikawa's Conjecture 7.1 is stated in the WEIGHT basis instead,
+    on ``W(d) = sum_L word_counts(L)[d]``, the survivors with exactly ``d`` odd
+    letters over all lengths, so comparing against it needs that marginal.
+
+    Computed by his own recursion, ``W[d][u] = W[d-1][u] + W[d][u-1]`` on the
+    zero count ``u`` under the guard ``d + u <= floor(d log2 3)``. Within a row
+    that recursion is a prefix sum of the row before it, truncated to the
+    allowed ``u``, which is what makes it a cumulative sum rather than a loop.
+    Rescaled per row to stay in float range; checked against the exact integer
+    recursion to ``5.7e-14`` bits at ``d = 200``.
+    """
+    lam = math.log(3) / math.log(2)
+    row = [1.0]
+    out = [0.0]
+    offset = 0.0
+    for d in range(2, depth + 1):
+        width = int(math.floor(d * lam)) + 1 - d
+        total = 0.0
+        acc = 0.0
+        new = []
+        for j in range(width):
+            acc += row[j] if j < len(row) else 0.0
+            new.append(acc)
+            total += acc
+        row = new
+        if total > 0.0:
+            shift = math.floor(math.log2(total))
+            scale = 2.0**shift
+            row = [v / scale for v in row]
+            offset += shift
+            total /= scale
+        out.append(offset + math.log2(total))
+    return out
+
+
+def weight_prefactor_residual(depth: int, lo: int = 100) -> list[float]:
+    """``log2 W(d) - gamma d + (3/2) log2 d`` for ``lo <= d <= depth``.
+
+    This is the quantity Hikawa's Conjecture 7.1 asserts is nearly constant:
+    ``gamma = H(beta)/beta``, and ``-(3/2) log2 d`` is the ballot correction. A
+    constant prefactor would make it flat.
+    """
+    gamma = _binary_entropy(BETA) / BETA
+    mass = weight_log_mass(depth)
+    return [mass[d - 1] - gamma * d + 1.5 * math.log2(d)
+            for d in range(lo, depth + 1)]
+
+
+def _binary_entropy(p: float) -> float:
+    return -(p * math.log2(p) + (1 - p) * math.log2(1 - p))
+
+
 def surviving_prefactor_profile(depth: int, window: int = 4096,
                                 flush: float = 1e-250) -> list[float]:
     """`psi_d = (N_d / 2^d) / (rho^d d^(-3/2))` for every `d <= depth`, deep.
