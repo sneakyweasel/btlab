@@ -21,7 +21,12 @@ jobs:
       - name: Pyright (bt core)
         run: python -m pyright src/bt
       - name: Pytest
-        run: pytest --runslow
+        # `-n auto --dist loadfile` is what pyproject.toml's addopts comment says to use for
+        # the full suite; it is deliberately not in addopts because it spawns workers for
+        # targeted runs too. This job IS the full suite, so it is the case that comment
+        # describes. loadfile keeps one file on one worker, which matters where a module
+        # builds shared state at import.
+        run: pytest --runslow -n auto --dist loadfile
 
   lean:
     runs-on: ubuntu-latest
