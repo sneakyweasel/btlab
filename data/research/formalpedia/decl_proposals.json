@@ -4640,8 +4640,19 @@
       "lean": "formal/Problems/Juggler/FatePoorTail.lean",
       "names_own": [],
       "statement": "The OE fibers whose parity share is bounded away from 1/2 have finite total logarithmic mass, so no set can concentrate on them. For eta_0 in (0,1/2], with P_eta0 = {m : |G_m/H_m - 1/2| >= eta_0} and u_0(eta_0) = max(10^6, (1950/eta_0^2)^3): #(P_eta0 cap (u,2u]) <= 430 u^(2/3)/eta_0^2 for u >= u_0, and sum over m in P_eta0, m > U of 1/m <= 2100 U^(-1/3)/eta_0^2 for U >= u_0. PROOF: the block lock "
+    },
+    {
+      "candidates": [],
+      "composite": false,
+      "confidence": "low",
+      "definitions": [],
+      "id": "J-oe-averaged-two-productions-reach-the-depth-two-ceiling",
+      "in_file": 0,
+      "lean": "formal/Problems/Juggler/FatePoorProduction.lean",
+      "names_own": [],
+      "statement": "With the poor-fiber tail, Paper C's contagion recursion needs only two productions, and they reach the depth-two ceiling. Taking the OE family over all of A cap (x^(3/8), x^(3/4)] rather than over the rest -- legitimate because the E-images are even and the OE-images odd, which is the only disjointness ever used -- Corollary of J-oe-poor-fiber-tail at V = x^(3/8), whose error x^(-1/8) is the shape"
     }
   ],
-  "unresolved": 128,
+  "unresolved": 129,
   "worth_reviewing": 20
 }

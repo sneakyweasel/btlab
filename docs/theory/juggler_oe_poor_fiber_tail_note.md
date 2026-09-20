@@ -379,10 +379,12 @@ Lemma 3.1, Lemma 3.2 and Theorem 4, and therefore:
 
 * **Proposition 4.4 leaves the critical path.** Its two exponential-sum
   bounds — Vaaler's approximation, the second-derivative test,
-  Kusmin–Landau — are Paper C's largest unformalized gap and the reason
-  Theorem 5.3 is not Lean end to end. Nothing in §1–4 above uses an
-  exponential sum, an approximation to the parity wave, or any tool
-  beyond continued fractions and counting.
+  Kusmin–Landau — are Paper C's largest unformalized gap, and they were the
+  reason Theorem 5.3 was not Lean end to end. By this route it now is:
+  `logMass_contagion_averaged` reaches \(\lambda=100/203>\lambda^{**}\)
+  with no exponential sum anywhere in its dependency graph. Nothing in §1–4
+  above uses an exponential sum, an approximation to the parity wave, or any
+  tool beyond continued fractions and counting.
 * **The six-word ladder and Appendix D leave it too**, since two
   productions now reach past where six took the exponent.
 * **Lemmas 4.1, 4.1' and 4.2 leave it as well** --- their *statements* do.
@@ -470,51 +472,90 @@ The per-fiber bound is written with an **absolute** error,
 \(\tfrac29(1-\tfrac{25}2\varepsilon_m)\). A relative form carries a
 constant of size \(1/c\), which blows up as \(\eta_0\to\tfrac12\);
 the absolute form carries none. The coefficient's nonnegativity,
-\(\varepsilon_U\le c\), is not assumed: it follows from the block
-hypothesis, which forces \(U^{1/3}\ge1920/\eta_0^2\) and hence
-\(\varepsilon_U\le\eta_0^2/1920\). That needs
-\(\eta_0\le\tfrac14\), which costs nothing, since the whole point is
-\(\eta_0\to0\).
+\(\varepsilon_U\le c\), is not assumed: \(\eta_0\le\tfrac14\) puts
+\(c\ge\tfrac16\) and \(U\ge10^6\) puts
+\(\varepsilon_U\le\tfrac1{100}\). (The block hypothesis gives it too, by
+forcing \(U^{1/3}\ge1920/\eta_0^2\); that route was written first and then
+cut, being three lines where one does.) The \(\eta_0\le\tfrac14\) costs
+nothing, since the whole point is \(\eta_0\to0\).
 
 The formalization changed one thing and confirmed the rest: the constant
 in (4.1) is \(430\), not the \(420\) first printed here, for the
 reason recorded in §4.
 
-**What is still not Lean, and why it stopped exactly here.** Running the
-recursion. `recursion_lemma` is already generic — it takes the
-coefficients \(e,c:\mathrm{Fin}\,r\to\mathbb R\) as parameters, so
-it needs nothing — but `production_two` is stated against the literal
-\(2/9\), and it is the one remaining link.
+**The recursion is Lean too, and the exponent with it.**
+`production_two_averaged` in `FatePoorProduction.lean` is the production
+inequality at the averaged coefficient; `contagion_averaged` runs
+`recursion_lemma` on it; `logMass_contagion_averaged` is Theorem 5.3 at
+\(\lambda=100/203=0.4926108\ldots\), above the published
+\(\lambda^{**}=0.4925715447\ldots\), with no hypothesis. All of it is
+kernel-checked on `[propext, Classical.choice, Quot.sound]`.
 
-Its 148-line proof splits cleanly in two. The first half is shell
-geometry: that \(\Phi(m)\) for \(m\in(U,y''-1]\) lands in
-\((\sqrt x,x]\), that the scales are large, that
-\(U=\lfloor\sqrt{y''}\rfloor\ge10^6\). None of it mentions a
-coefficient. The second half applies the two families and converts to
-\(g_A\). Only the second half would change.
+`recursion_lemma` needed nothing: it already takes the coefficients
+\(e,c:\mathrm{Fin}\,r\to\mathbb R\) and the errors as parameters, so
+Lemma 5.1 is not restated. What had to be restated is `production_two`,
+whose 148-line proof splits in two: shell geometry (that \(\Phi(m)\) for
+\(m\in(U,y''-1]\) lands in \((\sqrt x,x]\), that the scales are large,
+that \(U=\lfloor\sqrt{y''}\rfloor\ge10^6\)), and the application of the
+two families. Only the second half mentions a coefficient.
 
-So the clean move is to factor the geometry out of `production_two` into
-a lemma and call it from both — which is also what the laboratory's own
-guidance says to prefer over restating. **That is blocked here.**
-`FateProduction.lean` is one of the 83 inputs pinned by Paper C's
-release manifest, so *adding* a lemma to it, not merely changing one,
-alters a digest the manuscript publishes and demands a Pandoc/XeLaTeX
-rebuild of a paper another session holds. This container has neither
-binary.
+Factoring the geometry into a shared lemma is what the laboratory's guidance
+prefers, and it is blocked: `FateProduction.lean` is one of the 83 inputs
+pinned by Paper C's release manifest, so adding a lemma to it alters a digest
+the manuscript publishes and demands a Pandoc/XeLaTeX rebuild of a paper
+another session holds — and this container has neither binary. This note
+earlier declined the alternative, copying the geometry, on anti-duplication
+grounds. **That objection was overstated.** What formalpedia's habit exists
+to prevent is two *named declarations* stating one fact, because that gives a
+citation two targets and the reader cannot tell which the manuscript means.
+Seventy lines of inlined `have`s inside one proof create maintenance burden
+and no citation ambiguity at all. The two are not the same defect, and only
+the first is worth a recorded gap. So the geometry is inlined, with the
+docstring saying where it came from.
 
-The alternative is to copy the 70 lines of geometry into a second file.
-That is declined on purpose: it gives the same geometric facts two names
-inside one layer, which is the duplication the formalpedia habit exists
-to prevent, and the next reader could not tell which copy the manuscript
-cites. A forced duplicate is worse than a recorded gap.
+Three things the formalization forced, none of them mathematics:
 
-So the boundary is environmental, not mathematical. For a session that
-can rebuild Paper C the remaining work is: add the geometry lemma to
-`FateProduction`, state `production_two_averaged` from it with
-`family_OE_averaged`, discharge \(\zeta>0\) at the new coefficient as
-a numeric fact, and feed `recursion_lemma`. Until that is done the
-sentence "Theorem 5.3 is Lean above \(0.4926\)" is **not** earned, and
-nothing here should be read as claiming it.
+* `hT`, \(3(1280/\eta_0^2+1)\le e^{t/8}\), is the one new hypothesis of
+  `production_two_averaged`: it is Lemma 2's two block conditions rewritten
+  at \(U=\lfloor e^{3t/8}\rfloor\), and it is the whole cost of averaging.
+  It forces \(t\gtrsim16\log(1/\eta_0)\), absorbed in `contagion_averaged`
+  by putting \(8\log(3(1280/\eta_0^2+1))\) into the starting scale \(t_1\).
+  At the \(\eta_0\) used below that is \(t_1\approx250\), so the implied
+  \(K\) is tiny — which is the only thing that degrades.
+* `linarith` reads \(c\,e^{-t/8}/\eta_0^2\) as one opaque atom, division by
+  a variable being outside its linear fragment. A bound on the poor-fibre
+  tail therefore has to be stated already carrying the constant the goal
+  carries: \(4200/3\) does not meet \(1400\).
+* The exponent is a separate arithmetic certificate, not part of the theorem.
+  `contagion_averaged` is parametric in \(\lambda\) and \(\eta_0\) with
+  \(\zeta(\lambda,\eta_0)>0\) as a hypothesis — which is exactly the shape
+  §5 argues for, the supremum approached and not attained.
+
+`zeta2avg_pos` is the certificate: \(\lambda=100/203\),
+\(\eta_0=10^{-5}\), by two rational bounds at the 203rd power,
+\(0.710737\le2^{-100/203}\) and \(0.867868\le(3/4)^{100/203}\), giving
+\(0.710737+\tfrac{49999}{150000}(0.867868)=1.0000205>1\). \(100/203\) is
+the smallest-denominator rational in
+\((\lambda^{**},\lambda_{\mathrm{ideal}})\) — \(33/67\) falls short of
+\(\lambda^{**}\) and \(67/136\) leaves only \(6.3\cdot10^{-6}\) of
+slack — so it is the cheapest certificate that beats the manuscript's number.
+The margin \(2.05\cdot10^{-5}\) is what \(\eta_0=10^{-5}\) leaves of the
+\(2.71\cdot10^{-5}\) available at \(\eta_0=0\); break-even is
+\(\eta_0=4.69\cdot10^{-5}\).
+
+The Tao threshold follows the exponent down, \(1-\lambda\) being what
+Theorem 7.2 asks for: `conjecture_of_tao_rate_averaged` needs
+\(e>103/203=0.50739\ldots\), where the unconditional
+`conjecture_of_tao_rate` needs \(e>27/40=0.675\) and Paper C's
+*conditional* form needs \(e>0.51\). The unconditional threshold is now
+below the manuscript's conditional one. `conjecture_of_cylinder_bound_averaged`
+is Corollary 8.4 at the same exponent.
+
+What does **not** move: Theorem 7.2 stays conditional on a rate nobody has;
+no cycle is excluded and no orbit is shown to reach \(1\); Paper C is not
+edited here, that manuscript being claimed by another session; and
+`FateProduction` is untouched, so the \(2/9\) chain the paper cites is
+exactly as the paper cites it.
 
 **Lemma 1 is done and kernel-checked.**
 `Problems/Juggler/FateBlockLock.lean`, `BlockLock.block_lock`, in the
@@ -529,13 +570,12 @@ standard ones. The two grid counts of §1 are `grid_half_count` and
 `block_chain` and `block_lock` assemble them. It is a statement about an
 arbitrary real sequence and imports nothing from the Juggler stack.
 
-Remaining, in order. **Lemma 3** is `FateResonanceCount.lean`, written and
-awaiting its dependency chain; it is `bad_count_le` with the two arcs
-replaced by a union, and carries no new idea. **Lemma 2** is now a short
-bridge rather than a project: Dirichlet
-(`Real.exists_nat_abs_mul_sub_round_le`) supplies the \(q\), the
-lowest-terms reduction supplies the coprimality `block_lock` wants, and the
-rest is the \(\theta=\eta_0/16\) arithmetic, a real-number inequality of
-the kind `FateProduction` already carries. **Theorem 4** is then the
-composition, and (4.2) the dyadic sum that `bad_logMass_le` already does.
-Nothing here needs `native_decide`.
+Lemmas 2, 3 and Theorem 4 followed, in that order, and none needed
+`native_decide`: **Lemma 3** is `FateResonanceCount.lean`, `bad_count_le`
+with the two arcs replaced by a union; **Lemma 2** is a short bridge, with
+Dirichlet (`Real.exists_nat_abs_mul_sub_round_le`) supplying the \(q\), a
+lowest-terms reduction supplying the coprimality `block_lock` wants, and the
+\(\theta=\eta_0/16\) arithmetic the rest; **Theorem 4** is the composition,
+with (4.2) the dyadic sum `bad_logMass_le` already did. The Juggler layer
+still keeps exactly one proof off the kernel, `window_digit_scan`, and this
+work added none.
