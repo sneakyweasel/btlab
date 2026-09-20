@@ -41,7 +41,7 @@
     {
       "path": "docs/theory/juggler_finite_dynamics_note.md",
       "mode": "text",
-      "sha256": "5a65b9dd094fb312abf93ad7faf4bbd3df5415dcb798a5e3c5450172c37ed24e"
+      "sha256": "bf6aef92666936e74c956ad842db1236d0873de6d62802f9990fa2a8b1863e9f"
     },
     {
       "path": "docs/theory/juggler_finite_dynamics_reviewer_packet.md",
@@ -601,7 +601,7 @@
     {
       "path": "tools/build_paper_a.py",
       "mode": "text",
-      "sha256": "6cad038af6eec44036f77462661f4828f2859b9d3f79b69812da2d56335a639a"
+      "sha256": "dd5e18a8b25843f7d0c5ef1e26a0b69772e790d847a739c4c317e8e182c2127d"
     },
     {
       "path": "tools/check_paper_a_numeric.py",
@@ -626,14 +626,14 @@
   ],
   "outputs": [
     {
-      "path": "docs/theory/juggler_finite_dynamics_note.pdf",
+      "path": "juggler_review/juggler_finite_dynamics_note.pdf",
       "mode": "binary",
-      "sha256": "9f954072191e9a88421404a715ddac0328ff9c087611a11eeefbd323d2fa9dbb"
+      "sha256": "afd450aad8c7da3be9014c6520355ee52631d5ef821eee88edd76e28e3f01e86"
     },
     {
       "path": "docs/theory/cochin-juggler.tex",
       "mode": "text",
-      "sha256": "6905224a1cd59dd3ee0914199b47183655742dec9060d79c2f4e9257b5eab102"
+      "sha256": "7ab831da0fc7f0f37be9d3366b6ed8c09e58ae89e30f073f7532fb20ca119abf"
     },
     {
       "path": "docs/theory/paper_a_zenodo.json",

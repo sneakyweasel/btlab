@@ -19,7 +19,8 @@ archives. See
 `ZENODO_FIELDS.txt` is generated from `docs/theory/paper_b_zenodo.json`.
 Creator: Philippe Cochin, with no affiliation. License CC BY 4.0.
 Published 21 September 2026 as Zenodo record
-[22864934](https://zenodo.org/records/22864934), version DOI
+[22864934](https://zenodo.org/records/22864934), version 1.0.0, one file,
+the PDF; version DOI
 [10.5281/zenodo.22864934](https://doi.org/10.5281/zenodo.22864934), concept DOI
 [10.5281/zenodo.22864933](https://doi.org/10.5281/zenodo.22864933) for all versions.
 

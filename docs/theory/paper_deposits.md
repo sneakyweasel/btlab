@@ -12,15 +12,18 @@ operation.
 | C | Fate Contagion and Termination Criteria for the Juggler Map | [10.5281/zenodo.22678165](https://doi.org/10.5281/zenodo.22678165) | [zenodo.org/records/22678165](https://zenodo.org/records/22678165) |
 
 Papers A and C are version 1.0.0 of 9 September 2026. Paper B is version
-2026-09-20-preprint, published 21 September 2026 as recorded here, with
-concept DOI [10.5281/zenodo.22864933](https://doi.org/10.5281/zenodo.22864933) for all
+1.0.0 as well, published 21 September 2026 from the 2026-09-20-preprint
+edition, with concept DOI
+[10.5281/zenodo.22864933](https://doi.org/10.5281/zenodo.22864933) for all
 versions. All three are resource type Publication / Preprint, license
-CC BY 4.0. The Paper B kit that was deposited is
+CC BY 4.0. The Paper B record carries one file, the PDF alias of the kit
 [juggler_review/zenodo_paper_b/](../../juggler_review/zenodo_paper_b/),
-whose `SHA256SUMS.txt` lists the prepared files (PDF sha256
-`4e61fcb717d5...`); the record's own file list was not readable from the
-laboratory environment when this line was written, so the match of the
-deposited bytes to that kit rests on the author's upload.
+sha256 `4e61fcb717d5...` in that kit's `SHA256SUMS.txt`. The record
+refused the session that prepared this list; a second laboratory session
+with access to it read the title, version, file name and size and the
+concept DOI on 21 September 2026, and the kit PDF has hashed the same
+across every rebuild since the deposit, but no byte comparison against
+the downloaded file has been made here.
 
 The companion site links these DOIs from the home and claims pages. It shipped
 its own copies under `web/juggler-companion/public/papers/` while Paper B had no

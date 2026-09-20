@@ -1,5 +1,20 @@
 # Research journal
 
+## 2026-09-21 -- Paper A cites Paper B by its Zenodo DOI
+
+- **Objective:** Philippe asked for Paper A to be updated after Paper B's
+  deposit.
+- **The change.** Reference 16 now reads like reference 17 for Paper C:
+  the companion manuscript, its revision date, the Zenodo version
+  1.0.0 and the version DOI 10.5281/zenodo.22864934, with
+  the source link kept. No other line of the manuscript changed; the
+  date stays 21 September 2026, the second edition of the day.
+- **The build.** 112 pages; three passes; `--check` green; numeric
+  checker at its four expected survivors; release, audit, trust-boundary,
+  citation, constants and control-character gates green; the references
+  page read from its render. Kit synchronized. No Zenodo new version for
+  Paper A.
+
 ## 2026-09-21 -- Paper B published on Zenodo; the record written into the catalog, READMEs and kit
 
 - **Objective:** Philippe published Paper B, record 22864934, and asked
@@ -9,7 +24,12 @@
   concept DOI is the one Philippe quoted. The record page and the Zenodo
   API refuse this environment (403 and a denied navigation), so the
   deposited files' checksums could not be compared with the kit here;
-  `paper_deposits.md` says so and names the kit's PDF digest.
+  a second session with access to the record read its metadata the same
+  night (version 1.0.0, one file, the PDF, the concept DOI), and
+  `paper_deposits.md` records both. The kit's prepared VERSION field,
+  generated from `paper_b_zenodo.json`, now reads 1.0.0 as well, so a
+  future new-version upload starts from the version the record uses;
+  the archives that carry that JSON and the release record were rebuilt.
 - **Where it is recorded.** The companion catalog `papers.ts` gives
   Paper B its DOI and record like Papers A and C, and its test now pins
   them; `paper_deposits.md` gains the row and the concept DOI; the root

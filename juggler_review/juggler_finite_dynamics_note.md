@@ -7000,7 +7000,8 @@ proofs, code, and final verification of this preprint.
     [doi:10.1007/978-1-4757-4267-1_11](https://doi.org/10.1007/978-1-4757-4267-1_11).
 16. P. Cochin, “Five-Step Descent Certificates for the Juggler Map:
     Parity Statistics of Nested Floor Powers,” companion manuscript
-    (Paper B), revision of 20 September 2026.
+    (Paper B), revision of 20 September 2026; Zenodo version 1.0.0,
+    [doi:10.5281/zenodo.22864934](https://doi.org/10.5281/zenodo.22864934).
     [Source manuscript](https://github.com/sneakyweasel/btlab/blob/main/docs/theory/juggler_parity_discrepancy_note.md).
 17. P. Cochin, “Fate Contagion and Termination Criteria for the Juggler
     Map,” companion manuscript (Paper C), revision of 9 September 2026;

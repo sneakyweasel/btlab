@@ -1,7 +1,8 @@
 # Paper B Zenodo record
 
-Published 21 September 2026 as version 2026-09-20-preprint, the edition of
-this kit at repository commit 8b5e596d.
+Published 21 September 2026 as version 1.0.0, from the 2026-09-20-preprint
+edition of this kit at repository commit 8b5e596d; the record carries the
+PDF alone.
 
 - Version DOI: [10.5281/zenodo.22864934](https://doi.org/10.5281/zenodo.22864934)
 - Record: [zenodo.org/records/22864934](https://zenodo.org/records/22864934)
