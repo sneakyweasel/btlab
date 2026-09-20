@@ -5653,3 +5653,70 @@ def test_the_weight_basis_prefactor_is_the_same_rotation() -> None:
     # and the orbit is where the jumps are: random phases give far less
     controls = [abs(jump_at(x) or 0.0) for x in (0.05, 0.22, 0.41, 0.63, 0.88)]
     assert max(controls) < 0.5 * jumps[-1]
+
+
+def test_the_two_bases_are_one_collapse_under_an_affine_phase_map() -> None:
+    """Weight basis and length basis hold the same numbers at conjugate phases.
+
+    The weight-basis profile collapsing on `frac(d log2 3)` and the
+    length-basis one collapsing on `frac(L BETA)` are not two facts. The two
+    bases carry the SAME integers -- `W(d) = M[ceil((d+1) log2 3)]`, checked
+    below for `d = 1..25` -- and their phases are affinely related.
+
+    ONE LINE. With `lam = log2 3`, `BETA = 1/lam` and `L = ceil(d lam)`, which
+    is `d lam + (1 - frac(d lam))` because `lam` is irrational, multiply by
+    `BETA`:
+
+        L BETA = d + (1 - frac(d lam)) BETA.
+
+    The offset lies in `[0, BETA) subset [0, 1)`, so no wrap occurs and
+
+        frac(L BETA) = BETA * (1 - frac(d lam))
+
+    EXACTLY, not merely mod 1. Verified to 3.6e-12 over `d < 20000`, which is
+    floating point and not the mathematics.
+
+    Two consequences worth naming. The map is orientation-REVERSING, so the
+    weight profile is the length profile read backwards and rescaled. And its
+    image is `[0, BETA)`, so carrying lengths never visit the rest of the
+    length-phase circle -- which is why `1 - frac(L BETA)` is the natural
+    coordinate there, as `collatz_finance_mirror` already uses for the cycle
+    gap `Lambda_J`.
+
+    This is elementary -- a Beatty computation, one line -- and is recorded
+    for what it pins rather than for difficulty: the weight-basis measurement
+    is not an independent confirmation of the length-basis one. It is the
+    same measurement in another coordinate, and should never be cited as
+    corroboration.
+    """
+    from research.juggler_sequence.jump_spectrum import survivor_counts
+    from research.juggler_sequence.paper_b_prefix_count import word_counts
+
+    lam = math.log(3) / math.log(2)
+    beta = 1 / lam
+
+    counts = survivor_counts(45)
+    certificates = {L: 2 * counts[L - 1] - counts[L] for L in range(1, 45)}
+    for d in range(1, 26):
+        length = math.ceil((d + 1) * lam)
+        if length < 45:
+            weight_total = sum(
+                word_counts(L)[d]
+                for L in range(d, math.floor(d * lam) + 2)
+                if d < len(word_counts(L))
+            )
+            assert weight_total == certificates[length]
+
+    worst = 0.0
+    for d in range(1, 20000):
+        length = math.ceil(d * lam)
+        worst = max(
+            worst,
+            abs(math.modf(length * beta)[0] - beta * (1 - math.modf(d * lam)[0])),
+        )
+    assert worst < 1e-9
+
+    # the offset never wraps, which is what makes it affine rather than mod 1
+    assert all(
+        0 <= beta * (1 - math.modf(d * lam)[0]) < beta for d in range(1, 5000)
+    )
