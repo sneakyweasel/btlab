@@ -1,0 +1,166 @@
+# Paper B's recursion in its OEIS neighbourhood
+
+Status: **CLOSE** (one new sequence, a closed form for the plateau
+lengths, and three names the laboratory already had)
+
+Bookkeeping phase on Paper B's survivor recursion. Not a bound, not a
+cycle exclusion, not a floor raise, and not a new theorem in either
+Lean or prose.
+
+## Problem
+
+`J-paper-b-survivors-are-oeis-a076227` identifies the survivor count
+\(N_d\) with OEIS A076227 and checks it to 3508 terms. That entry's
+formula section carries a recurrence in terms of further sequences, and
+the laboratory's kernel-checked `neverNegCount_succ_sub_onBarrier` —
+\(N_{d+1} + M_{d+1} = 2N_d\) — is exactly that recurrence's shape. Which
+sequences are they, in the laboratory's own terms, and is any of them
+new here?
+
+## Exact statement
+
+\(M_d\) counts the minimal certificates of length \(d\); the recursion
+doubles exactly when \(M_d = 0\), which by
+`minimalCertCount_eq_zero_of_window_empty` is exactly when no power of
+three lies in \([2^{d-1}, 2^d)\). Those lengths and their complement are
+
+\[
+M_d \neq 0 \iff d \in \mathrm{A020914} = \{\lfloor n\log_2 3\rfloor + 1\},
+\qquad
+M_d = 0 \iff d \in \mathrm{A054414}\setminus\{1\},
+\]
+
+with \(\mathrm{A054414}(n) = 1 + \lfloor n/(1 - \log 2/\log 3)\rfloor\),
+and the two partition the positive integers. Verified to \(d = 200\)
+against both closed forms by an independent dynamic program, which also
+reproduces the Lean recursion at every depth.
+
+The exception is \(d = 1\): A054414 contains 1, but the one-letter word
+\(E\) contracts at once, so \(M_1 = 1\) and 1 is a stalling length. The
+exclusion is stated rather than absorbed.
+
+## What is new, and what is not
+
+| sequence | status |
+| --- | --- |
+| A076227 | already `J-paper-b-survivors-are-oeis-a076227` |
+| A020914 | already used throughout Papers A and B |
+| A100982 | already named in `CollatzBridgeLab.lean`, "read by length" |
+| **A054414** | **new; absent from the repository before this** |
+
+Reading \(M_d\) along the stalling lengths only, rather than by length
+with its zeros, gives A100982 with one extra leading term. That is the
+same content re-indexed, not a second identification, and the shift is
+recorded because an unstated offset produced this branch's A034887 error
+earlier the same day.
+
+So the single mathematical gain is the closed form: the plateau law
+previously carried three verified instances, at \(d = 6, 9, 11\), and now
+has a description of where all of its plateaus are — the next being
+\(14, 17, 19, 22, 25, 28, 30\).
+
+## Current literature
+
+- OEIS A076227, A020914, A054414, A100982, read from a local clone of
+  `github.com/oeis/oeisdata`, export stamped 2026-09-20. **known** for
+  the first, second and fourth; A054414 **extended** into the repository
+  here. OEIS content is CC BY-SA 4.0, copyright the OEIS Foundation;
+  nothing from it is vendored, only A-numbers and the arithmetic they
+  name.
+- Laboratory: `neverNegCount_succ_sub_onBarrier`,
+  `minimalCertCount_eq_zero_of_window_empty`, `density_flat_of_window_empty`
+  and its three instances, all kernel-checked and unchanged.
+
+Project relationship: **extended**.
+
+## Branch budget
+
+```text
+Mathematical target     The OEIS entry for Paper B's survivor count carries a
+                        recurrence; the laboratory's Lean recursion is its
+                        shape. Which sequences index its plateaus, and is any
+                        of them new here?
+Novelty hypothesis      The plateau lengths have a closed form the laboratory
+                        does not use, and it is the Beatty complement of the
+                        length it uses everywhere.
+Falsifier               The plateau set is not a Beatty sequence, or it is one
+                        the repository already names.
+Already killed by?      Partly, and checked first: A076227, A020914 and A100982
+                        are all already the laboratory's, the last of them in
+                        Lean. A054414 returns no hit anywhere in docs/, src/,
+                        literature/ or formal/.
+Existing machinery      the Lean recursion and window-empty law; a dynamic
+                        program on (length, odd count) to reach depth 200.
+Maximum Phase-0 scope   reproduce the recursion, compare the two closed forms,
+                        state the d = 1 exception, record the names.
+Promotion criterion     a plateau statement the Lean layer does not have.
+Stop criterion          the closed form is bookkeeping and changes no bound.
+```
+
+The stop criterion fired. **CLOSE.**
+
+## Decision
+
+**CLOSE.** The branch answers its target and the answer is bookkeeping.
+The mathematics was already kernel-checked; what is added is a closed
+form for the location of the plateaus and one sequence name. Three of
+the four sequences were the laboratory's already, which is recorded here
+rather than quietly omitted — the session that produced this probe made
+seven prior-art misses in a day, and the count is part of the result.
+
+No Lean proof changed. The identifications went into docstrings, because
+the container that ran this probe has no Lean toolchain — `elan` installs
+but the toolchain download is refused by the egress policy — and
+unverifiable Lean has no business in a corpus whose claim is that it is
+kernel-checked. `lake build` has **not** been run against these edits;
+they are comment text only, and the rebuilt index reports the same 6917
+kernel and 56 compiler declarations as before.
+
+Best next question: none from this branch.
+
+## Addendum: the Juggler corner of OEIS, swept
+
+The same mirror answers a second question the laboratory had never put:
+what else is catalogued about its own map. OEIS carries **30 sequences**
+naming the Juggler; the repository cites **five** (A094683, A007320,
+A094670, A094679, A094716) and had never mentioned the other 25.
+
+The one that matters is **A094778**, the Juggler's *dropping time* at
+\(2n+1\) — the number of steps before the orbit first falls below its
+start. That is Paper B's object exactly: the non-contracting-prefix
+census counts precisely the words whose dropping time exceeds the word
+length. Checked against an independent walker here: **agreement on all
+100 defined terms**. The only difference is at \(n = 0\), where
+\(2n+1 = 1\) is the Juggler's fixed point and the orbit never drops;
+the entry records 0 by convention. Stated because it is an endpoint
+convention, not a disagreement.
+
+Four more bear on live frontiers and are uncited: A094819 (steps from
+\(10^n\), the verification frontier), A094698 (record step counts),
+A094804 (primes along a trajectory — the direction the 20 September
+prime fan-out killed is catalogued), and four sequences added in 2025–26
+(A380891, A381246, A389383, A396851) that postdate the laboratory's
+reading.
+
+There is also a **variant family** the laboratory has never considered:
+A095396–A095401, A094685, A094725, A007321, the "modified juggler" maps
+using \(\lfloor n^{2/3}\rfloor\) on evens, and `round` in place of
+`floor`. In the exponent coordinates of
+`J-lemma-eight-is-the-exponent-valuation` that changes the transport from
+\(e\mapsto e/2,\,3e/2\) to \(e\mapsto 2e/3,\,3e/2\) — a different
+log ratio, hence a free test of whether this laboratory's machinery is
+about the Juggler or about the exponent pair. Not attempted here.
+
+Three of the laboratory's own sequences are **not** in OEIS, probed on
+eight-term runs: the leftover lengths \(1, 3, 11, 19, 84, 569, 1054,
+25781,\dots\), their odd counts, and the repunit floor powers
+\(\lfloor(2^a-1)^{3/2}\rfloor = 1, 5, 18, 58, 172, 500, 1431, 4072,
+\dots\) whose closed forms `J-repunit-floor-power-is-closed-form`
+established the same day.
+
+## What this does not say
+
+No bound moves, no cycle is excluded, no floor is raised,
+\(N_0 = 3.5\cdot 10^8\) is untouched, and neither map is claimed to halt.
+The dynamic program reproduces the laboratory's own kernel-checked
+recursion as an arithmetic check, not as a proof of it.

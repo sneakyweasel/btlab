@@ -4371,6 +4371,24 @@
       "nk_cluster": null
     },
     {
+      "id": "oeis_neighbourhood",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/oeis_neighbourhood.py",
+      "test": "tests/research/juggler_sequence/test_oeis_neighbourhood.py",
+      "dossier": "docs/problems/juggler_oeis_neighbourhood.md",
+      "data_dir": "data/research/juggler/oeis_neighbourhood",
+      "lean": [
+        "formal/Problems/Juggler/CollatzBridgeLab.lean"
+      ],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": [
+        "J-plateau-lengths-are-a-beatty-complement"
+      ],
+      "aliases": [],
+      "nk_cluster": null
+    },
+    {
       "id": "oeoee_audit",
       "kind": "branch",
       "probe": "src/research/juggler_sequence/oeoee_audit.py",
