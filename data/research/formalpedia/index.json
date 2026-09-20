@@ -33821,6 +33821,56 @@
       "trust": "kernel"
     },
     {
+      "doc": "The block hypothesis only gets easier as `u` grows: `B_u` is increasing.",
+      "file": "formal/Problems/Juggler/FatePoorTail.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 233,
+      "module": "Problems.Juggler.FatePoorTail",
+      "name": "hB_mono",
+      "trust": "kernel"
+    },
+    {
+      "doc": "And so does the width hypothesis: the width is decreasing in `u`.",
+      "file": "formal/Problems/Juggler/FatePoorTail.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 241,
+      "module": "Problems.Juggler.FatePoorTail",
+      "name": "h",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The log-mass on one dyadic block.** `430 \u03b5_u / \u03b7\u2080\u00b2`, from the count and `1/m \u2264 1/u`.",
+      "file": "formal/Problems/Juggler/FatePoorTail.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 258,
+      "module": "Problems.Juggler.FatePoorTail",
+      "name": "poor_block_logMass_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The dyadic decomposition: the poor log-mass on `(U, 2^K U]`.",
+      "file": "formal/Problems/Juggler/FatePoorTail.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 284,
+      "module": "Problems.Juggler.FatePoorTail",
+      "name": "poor_sum_dyadic_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**(4.2) of the note.** For `U \u2265 10^6` satisfying the block hypotheses, and every `N`, the `\u03b7\u2080`-poor `m \u2208 (U, N]` carry `1/m`-weighted mass at most `2100 U^{-1/3}/\u03b7\u2080\u00b2`. This is the summability that makes the poor set logarithmically finite, which is the whole content of the branch: there is nothing for an adversary to concentrate on. The argument is `bad_logMass_le`'s with a different summand.",
+      "file": "formal/Problems/Juggler/FatePoorTail.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 312,
+      "module": "Problems.Juggler.FatePoorTail",
+      "name": "poor_logMass_le",
+      "trust": "kernel"
+    },
+    {
       "doc": "The live pressure `\u03a3_{n \u2208 {1,\u2026,N} live to depth d} x^{o_d(n)}`, as the generating function of the live weight.",
       "file": "formal/Problems/Juggler/FatePressure.lean",
       "kind": "def",
@@ -92782,7 +92832,7 @@
       ]
     },
     "Problems.Juggler.FatePoorTail": {
-      "declarations": 8,
+      "declarations": 13,
       "file": "formal/Problems/Juggler/FatePoorTail.lean",
       "imports": [
         "Problems.Juggler.FateFiberLock",
@@ -94954,13 +95004,13 @@
     }
   },
   "totals": {
-    "declarations": 7016,
+    "declarations": 7021,
     "declarations_with_a_ledger_row": 4777,
-    "ledger_rows_naming_a_file": 453,
+    "ledger_rows_naming_a_file": 454,
     "modules": 313,
     "trust": {
       "compiler": 56,
-      "kernel": 6960
+      "kernel": 6965
     }
   }
 }
