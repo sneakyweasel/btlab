@@ -1,5 +1,101 @@
 # Research journal
 
+## 2026-09-20 -- The OEIS is local now, and it names twenty-five juggler sequences we never cited
+
+- **Four branches merged, and main is the union.** peaceful-darwin,
+  goofy-kare, latest-progress-summary and exponent-floor, in that order, with
+  thirty conflicts between them. `python tools/branch_drift.py` now says no
+  branch carries a ledger row or artifact main lacks, so the acknowledgement
+  list is empty for the first time.
+- **The registries wanted rebuilding, not merging.** `theorem_ledger.json` is
+  a list of rows and git aligns it by line: one region put four of main's new
+  rows against one of the branch's on a shared tail, which drops a row and
+  says nothing. Redone twice as a three-way merge keyed by row id against the
+  merge base -- 911 rows then 921, no id lost, and on the second pass every
+  row resolved mechanically. `attacks/juggler/index.json` and the four
+  formalpedia artifacts are regenerated; the branch index says in its own help
+  text not to hand-edit it.
+- **Two reds on main that predated all of this.** `ruff check .` had been
+  failing on three F811s, one of which was load-bearing: an mpmath `log`
+  shadowing `math.log` inside the test that checks Lagarias's constants to
+  twenty digits at 50 dps, where deleting either name silently drops
+  precision. And the companion build had been red since edb7784e because Paper
+  A's release manifest was one Lean digest behind; rebuilt rather than
+  re-hashed, and the reproducible build moved exactly one line with the PDF
+  byte-identical.
+- **Five of six Lean warnings were tactics that never ran.**
+  `first | (field_simp; ring) | field_simp` twice in FateResonanceCount, whose
+  second branch is unreachable, and an unused simp argument in
+  DenjoyKoksmaOrbit. The sixth stays: the linter wants `(simp [ih]; omega)`
+  where `simp [ih] <;> omega` stands, but simp closes some branches outright
+  and the sequenced form then runs omega with no goals. `lake build` is 9020
+  jobs green at one warning against a budget of two.
+- **Objective:** consolidate main, then read the OEIS neighbourhood from the
+  whole corpus rather than one entry at a time.
+- **What is on disk.** `stripped.gz` and `names.gz` (41 MB, 399396 sequences
+  with terms, 399796 with names, snapshot 2026-09-20 05:00 UTC) under
+  `data/external/`, gitignored; and the full internal-format records --
+  comments, links, formulas, programs -- as a shallow clone of `oeis/oeisdata`
+  outside the repository. The `files/` tree of that clone is Git LFS pointers,
+  so b-files are NOT local; `seq/` is.
+- **Thirty juggler sequences, and we cite five.** `A007320`, `A094670`,
+  `A094679`, `A094683`, `A094716`. The other twenty-five appear nowhere in
+  this tree. The names search is exhaustive -- one file, read end to end --
+  unlike the full-text sweeps, which the tooling truncates.
+- **A094778 is our stopping prefix, and it checks.** "Dropping time in
+  juggler sequence problem starting at 2n+1". Recomputed here from the
+  laboratory's own map in exact integer arithmetic on all 40 comparable terms,
+  no disagreement; term n = 0 is the convention at start 1. We already
+  identified the certificate length with the dropping time on the COLLATZ side
+  (`J-certificate-length-is-the-dropping-time`, via A020914 and A126241) and
+  reached it by reading an OEIS comment. The juggler side was indexed the
+  whole time.
+- **A218335 checks too.** "Even n whose trajectory maximum exceeds n": our
+  computation agrees on all 53 stored terms. It looked at first like we had
+  found 229 against their 53, which would have been a discrepancy worth
+  chasing; the stored list simply stops at 1110. Truncation, not disagreement
+  -- check what a list ends at before believing a superset.
+- **The exponent variants are already indexed.** `A095396`-`A095401` carry
+  the {2/3, 3/2} and {3/4, 4/3} maps, and `A380891`/`A381246` the {1/3, 4/3}
+  map with its trajectory maximum. `juggler_cube_crossing` has company.
+- **No new literature, which is the useful half.** Across all thirty entries
+  the external references are Pickover 1991, Harry J. Smith's archived pages,
+  MathWorld, Wikipedia, and Prasad-Prasad 2025 -- every one of which we
+  already index. Our own Paper A is linked from `A007320` and `A094683`.
+- **And none of our constants are in the corpus.** A literal search for
+  `0.9659065` (theta), `0.050044` (eta) and `1.5056438` (gamma) over every
+  record returns nothing but a coincidental ratio in an unrelated entry. That
+  is consistent with what the priority reading already concluded from the
+  papers, and it bounds the OEIS side of the question.
+- **Three of our own identifications re-derived from the corpus, not from the
+  b-file we used the first time.** (1) `N_d`, the Paper B survivor count,
+  recomputed straight from its definition -- binary words with `2^m < 3^(s_m)`
+  at every prefix -- reproduces `A076227` on all 39 comparable stored terms,
+  at offset one, the extra leading term being the empty word. (2) The lengths
+  carrying a nonzero minimal-certificate count `M_d = 2N_(d-1) - N_d` are
+  exactly `A020914` over the range checked, which is the empty-window theorem
+  seen from outside. (3) `M_d` with its first term dropped is `A100982` on all
+  32 stored terms -- the one-term shift `claude/exponent-floor-3n1-2adic-mvwa96`
+  documents, confirmed before merging it. Its hand-stored 32-term table also
+  matches the authoritative file exactly, so nothing there was mistranscribed.
+- **The cross-reference closure adds what the name search cannot.** `A000093`
+  is `floor(n^(3/2))` and `A000196` is `floor(sqrt(n))`: the two branches of
+  our own map, neither cited here. Also uncited: `A094684` and `A094693`
+  (records of the two juggler maps), `A129011` and `A048766` (the branches of
+  the {1/3, 4/3} variant), and `A383135` (its step count).
+- **One defect in the entries themselves.** `A007320`'s Cf. line points at
+  `A093685`, which is "In binary representation: numbers not occurring in
+  their factorial". The intended target is plainly `A094685`, the modified
+  juggler sequence. Not corrected upstream from here.
+- **Balanced ternary, the other half of the laboratory.** 130 sequences carry
+  "balanced ternary" in their name; we cite 12. The gap includes the rest of
+  the `A134021`-`A134028` family we already half-use -- `A134022` negative
+  trits and `A134024` positive trits are uncited while `A134023` and `A134028`
+  are cited -- and `A323783`, which is defined in terms of our `A134028`.
+- **Decision:** file `oeis-A094778` as a literature record; leave the other
+  twenty-four unfiled until something needs them. Do not open a branch on the
+  exponent variants: the dossier is parked and this does not unpark it.
+
 ## 2026-09-20 -- The rate was Lagarias's, the exponent Hikawa's, the mass Noe's, and what is left is the prefactor
 
 - **Objective:** continue the loop. The prior-art thread from the day's second
