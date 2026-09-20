@@ -558,3 +558,41 @@ def test_the_audit_has_a_third_class_and_a_loud_miss() -> None:
     assert collatz_reachable("the certificate word count at each barrier")
     assert not collatz_reachable("the Weyl differencing kernel bound")
     assert not collatz_reachable("the even block has harmonic mass 1/m")
+
+def test_hikawas_toolkit_recursion_is_the_laboratory_profile_step() -> None:
+    """Prior art for the survivor recursion, settled from the author's own code.
+
+    Hikawa's Collatz Parity Vector Toolkit (Zenodo 10.5281/zenodo.21186540,
+    4 July 2026; github.com/hikawa94/Collatz-Parity-Vector-Toolkit) computes
+    unconverged parity-vector counts in `Python/Counting_by_Length.py` as
+
+        W[k][d] = W[k-1][d] + W[k-1][d-1]
+
+    under `LAMBDA = 1.5849625007211563`, which is `log2 3`. That is exactly the
+    laboratory's height-profile step -- `Problems.Juggler.stepFlat` in
+    `PaperBJumpTransposition.lean` is `v h + v (h-1)` -- and summing over `d`
+    reproduces `survivor_counts` term for term.
+
+    So the survivor count and the recursion producing it are both in published
+    code, verified by running it rather than by reading a secondhand account of
+    the paper. The route matters as much as the result: the preprint is behind
+    a host that is blocking, and Zenodo and GitHub were not.
+    """
+    lam = 1.5849625007211563
+    assert abs(lam - math.log2(3)) < 1e-15
+
+    profile = {0: {0: 1}}
+    for k in range(1, 26):
+        row = {}
+        for d in range(k + 1):
+            value = profile[k - 1].get(d, 0) + profile[k - 1].get(d - 1, 0)
+            if value and d * lam >= k:          # still unconverged
+                row[d] = value
+        profile[k] = row
+
+    counts = survivor_counts(25)
+    for k in range(1, 26):
+        assert sum(profile[k].values()) == counts[k], k
+
+    # and the head is the sequence the bridge row identifies as A076227
+    assert [sum(profile[k].values()) for k in range(1, 12)] ==         [1, 1, 2, 3, 4, 8, 13, 19, 38, 64, 128]
