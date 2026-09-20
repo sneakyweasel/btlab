@@ -350,7 +350,7 @@ def render_markdown(data: dict[str, Any]) -> str:
         "",
         "## Every known cycle of the Z map sits on its floor",
         "",
-        "| x | u = x+1 | word | a | floor | attained | odd part of charge = \|gap\| |",
+        r"| x | u = x+1 | word | a | floor | attained | odd part of charge = \|gap\| |",
         "| --- | --- | --- | --- | --- | --- | --- |",
     ]
     for row in data["known_cycles"]["rows"]:
