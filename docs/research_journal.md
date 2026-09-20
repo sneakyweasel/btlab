@@ -2,6 +2,20 @@
 
 ## 2026-09-20 -- The OEIS is local now, and it names twenty-five juggler sequences we never cited
 
+**CORRECTION, written the same day and before this entry was a day old: the
+sweep below was already done.** `juggler_oeis_neighbourhood.md`, on
+claude/exponent-floor-3n1-2adic-mvwa96 and merged a few hours after this was
+written, carries an addendum "The Juggler corner of OEIS, swept" reaching the
+same count -- 30 sequences named after the Juggler, five cited, 25 never
+mentioned -- and the same conclusion about A094778, checked there against 100
+terms where this session checked 40. It also goes further, matching the odd
+counts to A206788 and the lengths against A254351. Nothing below is withdrawn,
+because two independent sweeps agreeing is worth more than one, but the
+novelty is. What follows is a corroboration, and it cost an afternoon that
+`python tools/branch_drift.py` and one dossier would have saved. The lesson is
+recorded in docs/negative_knowledge.md rather than here, because it is the
+third time this laboratory has paid for the same thing.
+
 - **Four branches merged, and main is the union.** peaceful-darwin,
   goofy-kare, latest-progress-summary and exponent-floor, in that order, with
   thirty conflicts between them. `python tools/branch_drift.py` now says no
