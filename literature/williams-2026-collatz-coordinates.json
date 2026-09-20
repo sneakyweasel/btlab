@@ -1,0 +1,26 @@
+{
+  "authors": [
+    "Jennifer Williams"
+  ],
+  "id": "williams-2026-collatz-coordinates",
+  "identifiers": {
+    "arxiv": "2607.01718",
+    "doi": "10.48550/arXiv.2607.01718"
+  },
+  "notes": "docs/theory/paper_b_prior_art_and_names.md. READ FIRST-HAND 2026-09-20, 21 pages, fetched from arXiv (which is not blocked; ResearchGate is). School of Electronics and Computer Science, University of Southampton; OpenAlex dates it 2026-07-02. Every odd n has a unique n = lambda*2^a*3^b - 1 with gcd(lambda,6) = 1 and a >= 1, giving a coordinate (a,b) on skeletons L_lambda, with row k = a + b preserved and the flow (a,b) -> (a-1,b+1). WHAT IT ANTICIPATES, and why this record exists: Proposition 3.11 (Growth rate) proves (n'+1)/(n+1) = 3/2 exactly along the diagonal -- that IS the statement that u = x+1 conjugates the Collatz odd step to u -> 3u/2, and its proof text explicitly links the 3/2 map to Flatto's beta-transformation literature, which is this laboratory's own position on the Mahler cluster reached independently. Corollary 3.9 gives the interior step count, a - 1 steps from (a,b) to the boundary, which is Lemma 8's run length in her coordinates. Theorem 3.6 says the interior needs no number-theoretic input and v_2(3n+1) = 1 always there, concentrating the difficulty at the boundary a = 1, where Proposition 3.10 gives v_2(3n+1) = 1 + v_2(lambda*3^(b+1) - 1). A LABEL CORRECTION, made here against the source: claude/exponent-floor-3n1-2adic-mvwa96 attributes the conjugation to 'Theorem 3.6 / Prop 3.11'; read in the paper, the conjugation is Proposition 3.11 and Theorem 3.6 is the interior/boundary statement. MAIN DOES NOT OVERCLAIM ANY OF THIS -- checked: no row on main states the v_2 + v_3 first integral or the 3-smooth coordinate, and the 3/2 in J-juggler-is-collatz-one-exponential-up is the log-log walk's step, a different statement. The exposure is on that branch, which records it. ID TAKEN FROM claude/exponent-floor-3n1-2adic-mvwa96, which records the same paper under williams-2026-collatz-coordinates with only an arxiv identifier and no doi. Same id means the merge is one visible conflict; different ids meant two records for one paper that nothing would have caught, because the DOI check cannot compare a doi-only record against an arxiv-only one. That hole is now closed in test_registries as well.",
+  "problem_area": "collatz",
+  "project_relationship": "known",
+  "relevant_concepts": [
+    "3-smooth factorization",
+    "coordinate system",
+    "u = x+1 conjugation",
+    "2-adic valuation",
+    "beta-transformation"
+  ],
+  "status": "preprint, read first-hand",
+  "title": "A Coordinate System for Collatz Dynamics",
+  "url": {
+    "abs": "https://arxiv.org/abs/2607.01718"
+  },
+  "year": 2026
+}

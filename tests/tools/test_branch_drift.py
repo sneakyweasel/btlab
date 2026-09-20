@@ -37,8 +37,8 @@ import branch_drift as BD  # noqa: E402
 #: latest-progress-summary reached +8 unread on 2026-09-20 after being
 #: acknowledged at +5. Update the sha in the same commit as the reason.
 READ_AT: dict[str, str] = {
-    "claude/exponent-floor-3n1-2adic-mvwa96": "abf3f502",
-    "claude/latest-progress-summary-s011un": "2198fdab",
+    "claude/exponent-floor-3n1-2adic-mvwa96": "05115936",
+    "claude/latest-progress-summary-s011un": "e8f765ff",
     "claude/goofy-kare-1a92fd": "8aad2aae",
     "claude/elated-hopper-e20999": "86247b5d",
 }
@@ -136,7 +136,15 @@ ACKNOWLEDGED: dict[str, str] = {
         "Growth rate, proving (n+1) ratio exactly 3/2, NOT Theorem 3.6, "
         "which is the interior/boundary statement. Main is not exposed: no "
         "row here states the first integral or the 3-smooth coordinate. "
-        "Williams now has a main registry record."
+        "Williams now has a main registry record. "
+        "DELTA TO 05115936: the Knight transposition crosses the mirror. "
+        "Three parts -- Cohn gives two members of one cycle free; the "
+        "Bohm-Sontacchi charge is an additive cocycle in the word alone, and "
+        "the Juggler analogue is the multiplicative cocycle already "
+        "kernel-checked as J-normalized-relative-slack; the leftover "
+        "2^(k-1)/(2^k - 3^x) is not an integer because the gap is odd, and "
+        "Catalan closes it. It dies in one identifiable place, the residual "
+        "being the state dependence."
     ),
     "claude/latest-progress-summary-s011un": (
         "PENDING EXTRACTION, and it has GROWN since it was first acknowledged "
@@ -171,7 +179,18 @@ ACKNOWLEDGED: dict[str, str] = {
         "resonant_mono, the widening from the fiber width to the block being "
         "the one real step, legalised by oeFiber_card_ge. Two gaps filled "
         "that the repository did not have: oeFiber_nonempty, and Poor phrased "
-        "on the fiber cardinality so it is a predicate on m alone."
+        "on the fiber cardinality so it is a predicate on m alone. "
+        "DELTA TO e8f765ff, and it carries a NUMBER CHANGE: the note constant "
+        "is not 420 but 430 -- the formalization found it, so the 420 quoted "
+        "a paragraph above is the superseded value. Theorem 4 is now Lean and "
+        "with it the whole poor-fibre tail; Family 3 is spliced at the "
+        "averaged coefficient. The remaining link to an exponent is "
+        "production_two, stated against the literal 2/9, whose 148 lines "
+        "split into coefficient-free shell geometry and a second half that "
+        "applies the families; factoring the geometry is blocked because "
+        "FateProduction.lean is one of the 83 inputs pinned by Paper C, so "
+        "the branch stops at the release pin and says so rather than "
+        "duplicating."
     ),
 }
 

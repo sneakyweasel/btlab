@@ -50,7 +50,7 @@ def test_literature_records_have_required_fields():
     assert get_reference("kramer-2026")["project_relationship"] == "reproduced"
 
 def _normalised_doi(rec: dict) -> str | None:
-    """Lowercased DOI, with a ResearchGate version segment removed.
+    """One key per WORK: arXiv ids and DOIs folded into a single namespace.
 
     ResearchGate hands out `.../RG.2.2.29894.84804` and `.../RG.2.2.29894.84804/1`
     for the same work, so a literal comparison misses the pair. The stripping is
@@ -59,10 +59,20 @@ def _normalised_doi(rec: dict) -> str | None:
     arXiv DOIs are `10.2307/2371062` and `10.48550/arXiv.math/0501241` -- their
     whole suffix is digits and they are different works.
     """
-    doi = (rec.get("identifiers") or {}).get("doi")
+    ident = rec.get("identifiers") or {}
+    doi = (ident.get("doi") or "").strip().lower()
+    arxiv = (ident.get("arxiv") or "").strip().lower()
+    # An arXiv paper reaches the registry as either `arxiv: 2607.01718` or
+    # `doi: 10.48550/arXiv.2607.01718`. Compared literally those never match,
+    # so two sessions recording one paper each way produce two records and
+    # nothing notices -- which is exactly what happened with Williams 2026.
+    if doi.startswith("10.48550/arxiv."):
+        arxiv = arxiv or doi[len("10.48550/arxiv."):]
+        doi = ""
+    if arxiv:
+        return "arxiv:" + re.sub(r"v\d+$", "", arxiv)
     if not doi:
         return None
-    doi = doi.strip().lower()
     if doi.startswith("10.13140/"):
         doi = re.sub(r"/\d+$", "", doi)
     return doi
