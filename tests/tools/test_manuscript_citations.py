@@ -125,3 +125,35 @@ def test_paper_b_cites_lagarias_for_the_rate() -> None:
     assert "the rate is not folklore" not in paper
     # Hikawa keeps the weight-basis form and the conjecture
     assert "Conjecture 7.1" in paper
+
+
+def test_prose_ledger_references_resolve() -> None:
+    """A row id named in prose must exist, or the prose is pointing at nothing.
+
+    `paper_b_prior_art_and_names.md` argues almost entirely by reference: what
+    is prior, what survives, and which row backs each. A renamed or deleted
+    row would leave the argument reading as if it were still supported. This
+    resolves every backticked `J-...` id in `docs/theory/*.md` against the
+    ledger.
+    """
+    import json
+
+    ledger = json.loads(
+        (REPO / "docs" / "theory" / "theorem_ledger.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    known = {row["id"] for row in ledger}
+
+    dangling: dict[str, list[str]] = {}
+    for path in sorted(THEORY.glob("*.md")):
+        if path.name in FROZEN:
+            continue
+        cited = set(re.findall(r"`(J-[a-z0-9-]+)`", path.read_text(encoding="utf-8")))
+        missing = sorted(c for c in cited if c not in known)
+        if missing:
+            dangling[path.name] = missing
+    assert not dangling, (
+        "prose names ledger rows that do not exist:\n"
+        + "\n".join(f"    {k}: {v}" for k, v in dangling.items())
+    )

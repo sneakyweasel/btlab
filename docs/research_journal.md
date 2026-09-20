@@ -1,5 +1,67 @@
 # Research journal
 
+## 2026-09-20 -- The rate was Lagarias's, the exponent Hikawa's, the mass Noe's, and what is left is the prefactor
+
+- **Objective:** continue the loop. The prior-art thread from the day's second
+  half kept paying, so it was followed to the end rather than parked.
+- **The headline constant has been in print since 1985.** `theta =
+  0.9659065532` is Lagarias, Theorem D, and not by numerical agreement but by
+  an identity: `2^(-eta) = 2^(H(p)-1) = p^(-p)(1-p)^(p-1)/2 = theta`, zero
+  difference at fifty digits. The same rescaling explains Hikawa's weight-basis
+  constants, `gamma = H(p)/p` and `c = eta/p`, so his Section 6 is an
+  independent proof of the same rate; Kontorovich-Lagarias's `0.94995` is
+  `H(p) = log2(2 theta)`.
+- **And Paper B credited the 2026 preprint for it.** The manuscript said the
+  rate "is not folklore", attributed it to Hikawa, repeated his remark that it
+  appears to be new, and cited Lagarias in none of its 3200 lines. One
+  paragraph and one reference fixed it, rebuilt through the documented kit
+  workflow, all four checks green, PDF still 41 pages. **The version stamp and
+  the rendered PDF are Philippe's, not mine, and the release check says so in
+  its own summary field.**
+- **A systematic OEIS sweep, because four identifications had each been
+  accidents.** Every integer-list literal in `tests/` -- 43 sequences, one
+  lane -- then the computed objects the literals miss. Five hits the
+  repository had never mentioned. The one that matters is T. D. Noe's A186008,
+  **9 February 2011**, whose comments carry two of this cluster's statements:
+  "only zero and the numbers in A020914 can be dropping times", and a
+  frequency formula whose first nine values are `1/2, 1/4, 1/16, 1/16, 3/128,
+  7/256, 3/256, 15/2048, 85/8192` -- exactly our `M_d / 2^d`, checked as exact
+  Fractions. The boundary mass is a tabulated OEIS quantity and has been for
+  fifteen years. A186009 is a third id for the cluster, the nonzero `M_d` in
+  order.
+- **A negative worth the same as the hits.** The weight-refined survivor
+  triangle is NOT in OEIS, flat or from the middle, while every one of its
+  marginals is. The projections are catalogued and the object is not, which
+  is exactly where the prior art stops.
+- **The lambda-recurrence landing set is A190812 exactly** -- all 101 values
+  in it, and every member below the largest landing value landed on. Two
+  comparisons failed first and both were the DOMAIN: even `n`, which `a >= 1`
+  excludes, and then membership against 60 stored terms that stop two orders
+  of magnitude below the values being tested.
+- **The weight-basis measurement is not corroboration, and I had implied it
+  was.** The two bases hold the same integers, `W(d) = M[ceil((d+1) lam)]`,
+  and their phases are affinely conjugate: `frac(L BETA) = BETA (1 - frac(d
+  lam))` exactly, orientation-reversing, image `[0, BETA)`. One Beatty line.
+  So the weight-basis collapse and the length-basis collapse are one fact,
+  and citing them side by side would be double counting. The measurement is
+  still worth having for the reason it was made -- Conjecture 7.1 lives in
+  that basis.
+- **Two gates built from two mistakes.** Listed-but-uncited references, after
+  the Paper B miss; and backticked row ids that resolve, after the prior-art
+  doc came to argue almost entirely by reference. The first audit was wrong in
+  both directions before it was right, sweeping up `[0, 1]` as a citation and
+  missing `[9, Section 6]` because locators have letters.
+- **What is left, written down at last.** The prefactor: that it is not a
+  constant, that it depends on `d` only through `frac(d BETA)`, its
+  discontinuity set, its reconstruction from the jump measure, the
+  quasi-stationary cluster beneath it, the empty-window theorem at every
+  level, the Lean layer, and the whole Juggler side. Bounded by what was
+  readable -- three ResearchGate bodies unread, Terras and Everett not read
+  directly.
+- **Decision:** `CLOSE` on the prior-art audit. It has taken the day and it
+  has cost the cluster the rate, the exponent, the mass and four names, which
+  is the point of doing it before a referee does.
+
 ## 2026-09-20 -- The prior art was reachable all along, and the gate that should have said so was blind
 
 - **Objective:** the loop on digging and consolidation, continuing from the

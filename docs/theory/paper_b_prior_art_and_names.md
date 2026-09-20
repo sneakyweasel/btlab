@@ -168,6 +168,60 @@ terms.
 papers. Theorem 7.3, Equation 48 and Table 4 remain secondhand, and the
 version notes are not the papers.
 
+## What remains this laboratory's
+
+Written after the withdrawals, not before them, and deliberately short. Every
+line below is backed by a ledger row and a test; anything that was not has
+been moved into the section above.
+
+**Withdrawn during this audit**, so that the list is readable against it: the
+exponential rate (Lagarias 1985, Theorem D — and `theta = 2^(-eta)` is an
+identity, not a numerical agreement); the `d^(-3/2)` power (Hikawa,
+Conjecture 7.1, in the weight basis, conjectural); `N_d` (A076227), `M_d`
+(A100982), the nonzero `M_d` in order (A186009) and the boundary mass
+`M_d / 2^d` (the frequency comment on A186008, 2011); the carrying and free
+lengths (A020914, A054414) and the 1-or-2 gap (A022921); the names *dropping
+time* and *glide*; the `(lambda, a, b)` coordinate and the `u -> 3u/2`
+conjugation (Williams, Proposition 3.11); and the two-sided bound on `M_d`
+(Winkler).
+
+**What is left is the prefactor, and the theory built on it.**
+
+- That `N_d / 2^d ~ C rho^d d^(-3/2)` with a CONSTANT `C` is **false**: the
+  prefactor is an almost-periodic function of `frac(d BETA)` and does not
+  converge (`J-paper-b-meander-prefactor-is-almost-periodic`). No source read
+  in this audit states an oscillating prefactor, an amplitude, or anything
+  equivalent — and a `Theta` cannot distinguish one from a constant.
+- Its structure: discontinuous exactly on the rotation orbit
+  (`J-psi-jumps-are-the-rotation-orbit-of-zero`), reconstructible from its
+  jump measure to 91 per cent of its `L2` variation with no fitted parameter
+  (`J-psi-reconstructed-from-its-jump-measure`), with a measured spectrum
+  (`J-psi-is-bounded-variation-with-an-ostrowski-spectrum`).
+- The quasi-stationary cluster underneath it: the boundary fraction `R_d` as
+  the clean coordinate, the phase-indexed limit profile and its
+  linear-times-geometric closed form, `chernoff_rate_at`, the rational
+  barriers and the jump function of the slope.
+- The **empty-window theorem at every level**. Its level-zero shadow is
+  elementary and old; that the argument never uses the level, and what that
+  controls, is not (`J-empty-window-holds-at-every-level`,
+  `J-empty-window-is-two-theorems-not-one`).
+- The Lean layer. None of the prior art carries machine-checked statements.
+- Everything on the Juggler side: the bridge itself, the floor-power closed
+  forms, cycle finance, the verification floors. Williams's paper is pure
+  Collatz with no Juggler and no floor-power map.
+
+**One thing the audit cost that is worth naming.** The weight-basis
+measurement of the oscillation is *not* independent corroboration of the
+length-basis one: the two bases hold the same integers and their phases are
+affinely conjugate, `frac(L BETA) = BETA (1 - frac(d lam))` exactly. Cited
+side by side they would be double counting
+(`J-weight-basis-prefactor-is-the-same-rotation`).
+
+**The bound on all of this.** "No source states a prefactor" is a claim about
+what was readable. Three ResearchGate bodies are unread here, and Terras 1976
+and Everett 1977 were not read directly. The list above should be re-checked
+against those before it goes into a manuscript as a novelty claim.
+
 ## How the two naming errors happened
 
 Recorded because the shapes are opposite and both are cheap to repeat.
