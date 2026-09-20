@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from research.juggler_sequence.branch_index import check_index
+from research.juggler_sequence.branch_index import _decision, check_index
 from research.juggler_sequence.lean_paths import (
     BRANCHES_ROOT,
     CAPSULE_ROOT,
@@ -123,3 +123,55 @@ def test_search_is_case_insensitive():
 
     assert search_rows("BAKER")
     assert search_rows("baker")[0]["id"] == search_rows("BAKER")[0]["id"]
+
+
+def test_decision_is_the_word_stated_first_not_the_first_in_the_tuple():
+    """The bug this guards mislabelled 17 dossiers, 13 of them livelier than the text.
+
+    `_decision` used to return the first match in _DECISIONS order ('PROMOTE', 'PARK',
+    'CLOSE'), so a section opening **CLOSE** and mentioning a PARK floor further down
+    indexed as PARK, and one mentioning PROMOTE anywhere indexed as PROMOTE. The first
+    three cases below return the tuple-order answer under the old code and the stated
+    verdict under the new one.
+    """
+    closed_then_parks = """## Decision
+
+**CLOSE**. The falsifier fired. It rests on a PARK floor.
+"""
+    assert _decision(closed_then_parks) == "CLOSE"
+
+    closed_then_promotes = """## Decision
+
+**CLOSE** the attack. Do not PROMOTE it again.
+"""
+    assert _decision(closed_then_promotes) == "CLOSE"
+
+    parked_then_promoted = """## Decision
+
+**PARK** (branch) / **PROMOTE** (depth-one lemma).
+"""
+    assert _decision(parked_then_promoted) == "PARK"
+
+    single = """## Decision
+
+**PROMOTE**. Worth the branch.
+"""
+    assert _decision(single) == "PROMOTE"
+
+    none_stated = """## Decision
+
+No verdict yet.
+"""
+    assert _decision(none_stated) is None
+    assert _decision("## Problem" + chr(10) + chr(10) + "No decision section at all." + chr(10)) is None
+
+    # the section ends at the next heading: a later one cannot supply the verdict
+    bounded = """## Decision
+
+**CLOSE**.
+
+## Next steps
+
+PROMOTE something else entirely.
+"""
+    assert _decision(bounded) == "CLOSE"

@@ -150,14 +150,28 @@ def _rel(path: Path | None) -> str | None:
 
 
 def _decision(text: str) -> str | None:
+    """The dossier's verdict: the decision word it states FIRST.
+
+    This used to return `found[0]` over `_DECISIONS`, i.e. the first match in TUPLE order,
+    so any later incidental mention of a higher-priority word won. It mislabelled 17
+    dossiers, and 13 of those read livelier than the dossier says -- PARK or PROMOTE where
+    the text opens `**CLOSE**` and mentions a PARK floor further down. The index
+    consequently overstated how much work was open, which is the wrong direction for a
+    laboratory that ranks by what is still live.
+
+    Three sections genuinely state two decisions, and leading position is the convention
+    that resolves them: juggler_hug_cylinder_construction labels its own as
+    `**PARK** (branch) / **PROMOTE** (depth-1 lemma)`, so the branch-level verdict comes
+    first. ostrowski_order_m_adder and residuals follow the same shape.
+    """
     parts = re.split(r"^## Decision$", text, flags=re.M)
     if len(parts) < 2:
         return None
     section = re.split(r"^## ", parts[1], flags=re.M)[0]
-    found = [word for word in _DECISIONS if word in section]
+    found = sorted((section.index(word), word) for word in _DECISIONS if word in section)
     if not found:
         return None
-    return found[0]
+    return found[0][1]
 
 
 def _snake_to_camel(stem: str) -> str:

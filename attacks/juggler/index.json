@@ -683,7 +683,7 @@
       "conjecture": [
         "juggler_cycle_cluster_amplify"
       ],
-      "decision": "PARK",
+      "decision": "CLOSE",
       "ledger_ids": [],
       "aliases": [],
       "nk_cluster": "Finance leftover-killers are identities, not movers"
@@ -855,7 +855,7 @@
       "conjecture": [
         "juggler_cycle_descent_next_run"
       ],
-      "decision": "PARK",
+      "decision": "CLOSE",
       "ledger_ids": [],
       "aliases": [],
       "nk_cluster": "Finance leftover-killers are identities, not movers"
@@ -1574,7 +1574,7 @@
       "conjecture": [
         "juggler_cycle_peak_count"
       ],
-      "decision": "PARK",
+      "decision": "CLOSE",
       "ledger_ids": [],
       "aliases": [],
       "nk_cluster": "Finance leftover-killers are identities, not movers"
@@ -1932,7 +1932,7 @@
       "conjecture": [
         "juggler_cycle_trajectory_budget"
       ],
-      "decision": "PARK",
+      "decision": "CLOSE",
       "ledger_ids": [],
       "aliases": [],
       "nk_cluster": "Finance leftover-killers are identities, not movers"
@@ -3039,7 +3039,7 @@
       "data_dir": "data/research/juggler/flight_fan_concat",
       "lean": [],
       "conjecture": [],
-      "decision": "PROMOTE",
+      "decision": "PARK",
       "ledger_ids": [],
       "aliases": [],
       "nk_cluster": null
@@ -3273,7 +3273,7 @@
       "data_dir": "data/research/juggler/hug_cylinder_construction",
       "lean": [],
       "conjecture": [],
-      "decision": "PROMOTE",
+      "decision": "PARK",
       "ledger_ids": [
         "J-hug-flow-window-depth-one"
       ],
@@ -3289,7 +3289,7 @@
       "data_dir": "data/research/juggler/hug_flow_depth_two",
       "lean": [],
       "conjecture": [],
-      "decision": "PARK",
+      "decision": "CLOSE",
       "ledger_ids": [
         "J-hug-flow-image-gap"
       ],
@@ -3363,7 +3363,7 @@
       "data_dir": null,
       "lean": [],
       "conjecture": [],
-      "decision": "PARK",
+      "decision": "CLOSE",
       "ledger_ids": [
         "J-cyclemin-iso-odd-return"
       ],
@@ -3381,7 +3381,7 @@
         "formal/Problems/Juggler/ItineraryLanguage.lean"
       ],
       "conjecture": [],
-      "decision": "PROMOTE",
+      "decision": "CLOSE",
       "ledger_ids": [],
       "aliases": [],
       "nk_cluster": "Juggler language, residual, and geometry"
@@ -3546,7 +3546,7 @@
       "data_dir": "data/research/juggler/lambda0_nil_transfer",
       "lean": [],
       "conjecture": [],
-      "decision": "PARK",
+      "decision": "CLOSE",
       "ledger_ids": [
         "J-nil-lift-does-not-derandomize"
       ],
@@ -5638,7 +5638,7 @@
       "data_dir": null,
       "lean": [],
       "conjecture": [],
-      "decision": "PROMOTE",
+      "decision": "CLOSE",
       "ledger_ids": [],
       "aliases": [],
       "nk_cluster": "Diophantine walls"
@@ -5806,7 +5806,7 @@
       "data_dir": null,
       "lean": [],
       "conjecture": [],
-      "decision": "PARK",
+      "decision": "CLOSE",
       "ledger_ids": [],
       "aliases": [],
       "nk_cluster": "Flights"
@@ -5836,7 +5836,7 @@
       "data_dir": null,
       "lean": [],
       "conjecture": [],
-      "decision": "PARK",
+      "decision": "CLOSE",
       "ledger_ids": [],
       "aliases": [],
       "nk_cluster": "Flights"
