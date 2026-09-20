@@ -1,4 +1,4 @@
-"""The reviewer bundle and the companion site must not carry drifting copies of docs/theory.
+"""The reviewer bundle must not carry drifting copies of docs/theory.
 
 `juggler_review/README.md` names `docs/theory/` the source of truth for the
 three manuscripts and says not to hand-edit both copies.  Nothing enforced
@@ -27,6 +27,11 @@ stops being a shared path.  That remains the tidier end state.
 A copy that is genuinely meant to differ goes in `DELIBERATELY_DIFFERENT` by
 relative path, where the reason is written down and stays visible, instead of
 being excluded by silent omission from a list.  It is empty today.
+
+This file briefly also held the companion site's `public/papers/` PDFs against
+`docs/theory`.  That check is gone because the copies are: the site links the
+published Zenodo DOIs, and each paper's PDF now exists once, in
+`juggler_review/`.  A pair that no longer exists needs no gate.
 """
 
 from __future__ import annotations
@@ -45,19 +50,6 @@ DELIBERATELY_DIFFERENT: frozenset[str] = frozenset()
 #: A path that must always be shared, so a broken prefix computation cannot make
 #: this file pass by comparing nothing at all.
 CANARY = "juggler_parity_discrepancy_note.md"
-
-#: The companion site serves its own copies of the three built PDFs, and nothing
-#: checked them.  `test_manuscript_consistency.py` reads the app's TypeScript --
-#: constants, claims, glossary and two pages -- and never the files the site
-#: actually serves, so a manuscript could be rebuilt in docs/theory and the
-#: deployed site would go on serving the previous PDF with nothing to say so.
-COMPANION = ROOT / "web" / "juggler-companion" / "public" / "papers"
-
-SERVED = (
-    "juggler_finite_dynamics_note.pdf",
-    "juggler_parity_discrepancy_note.pdf",
-    "juggler_fate_almost_all_note.pdf",
-)
 
 
 def tracked_under(prefix: str) -> set[str]:
@@ -90,25 +82,4 @@ def test_bundle_carries_no_drifting_copy_of_docs_theory():
         rel for rel in pairs
         if (SOURCE / rel).read_bytes() != (BUNDLE / rel).read_bytes()
     ]
-    assert drifted == []
-
-
-def test_companion_served_papers_match_docs_theory():
-    """The PDFs the site serves are the PDFs in docs/theory.
-
-    Unlike the bundle above, a missing file is a failure rather than a tidier
-    end state: the bundle may drop a mirror and keep only the built PDF, but a
-    companion paper that is absent is a link the deployed site cannot serve.
-
-    If the site should instead pin to a released Zenodo kit rather than to the
-    working manuscripts, this is the place to say so.  Today every copy agrees.
-    """
-    drifted: list[str] = []
-    for name in SERVED:
-        source = SOURCE / name
-        served = COMPANION / name
-        assert source.exists(), f"{name} is not in docs/theory"
-        assert served.exists(), f"{name} is not in the companion public/papers"
-        if source.read_bytes() != served.read_bytes():
-            drifted.append(name)
     assert drifted == []

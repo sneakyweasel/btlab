@@ -34,7 +34,7 @@ def _pin_build_date() -> None:
 ROOT = Path(__file__).resolve().parents[1]
 STEM = "juggler_finite_dynamics_note"
 SOURCE = f"docs/theory/{STEM}.md"
-PDF = f"docs/theory/{STEM}.pdf"
+PDF = f"juggler_review/{STEM}.pdf"
 TEX = "docs/theory/cochin-juggler.tex"
 MANIFEST = "docs/theory/paper_a_release.json"
 METADATA = "docs/theory/paper_a_zenodo.json"
@@ -51,10 +51,11 @@ BUILD_INPUTS = ["tools/build_paper_a.py", "tools/paper_a/article.tex",
                 "data/research/juggler/negative_floor_3x1/runs.json",
                 "data/research/juggler/negative_floor_3x1/verify_3x1.c",
                 "data/research/juggler/negative_floor_3x1/verify_3x1_jump.c"]
-PDF_EXPORTS = [f"juggler_review/{STEM}.pdf",
-               f"web/juggler-companion/public/papers/{STEM}.pdf",
-               "juggler_review/zenodo_paper_a/Lower_bounds_for_nontrivial_cycles_of_the_Juggler_map.pdf"]
-DIST = f"web/juggler-companion/dist/papers/{STEM}.pdf"
+# The PDF lives in `juggler_review/` now, and is exported only under the
+# historical name the Zenodo deposit carries. The companion site links the
+# published DOIs instead of serving its own copy, so `public/papers/` and
+# `dist/papers/` are gone.
+PDF_EXPORTS = ["juggler_review/zenodo_paper_a/Lower_bounds_for_nontrivial_cycles_of_the_Juggler_map.pdf"]
 
 
 def digest(path: Path, mode: str = "binary") -> str:
@@ -103,8 +104,6 @@ def read_release(root: Path) -> dict:
 def export_pairs(root: Path):
     pairs = [(name, "juggler_review/" + Path(name).name) for name in EDITORIAL]
     pairs.extend((PDF, name) for name in PDF_EXPORTS)
-    if (root / "web/juggler-companion/dist").is_dir():
-        pairs.append((PDF, DIST))
     return pairs
 
 

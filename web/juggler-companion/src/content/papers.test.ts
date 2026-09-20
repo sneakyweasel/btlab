@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { PAPERS, paperByLetter, paperDoiHref, paperPdfHref } from "./papers";
+import { PAPERS, paperByLetter, paperDoiHref } from "./papers";
 
 describe("published preprint records", () => {
   it("pins Paper A and Paper C to the Zenodo version DOIs", () => {
@@ -31,10 +31,15 @@ describe("published preprint records", () => {
     });
   });
 
-  it("serves each manuscript from public/papers", () => {
+  it("carries all three papers and ships no local PDF copy", () => {
+    // The site linked its own public/papers/ copies until every paper had a
+    // deposit. It links the records now, so a paper with no Zenodo link would
+    // be unreachable rather than merely un-cited.
     expect(PAPERS.map((paper) => paper.letter)).toEqual(["A", "B", "C"]);
-    expect(paperPdfHref(paperByLetter("A"))).toContain(
-      "papers/juggler_finite_dynamics_note.pdf",
-    );
+    for (const paper of PAPERS) {
+      expect(paper.doi).toBeTruthy();
+      expect(paper.zenodo).toMatch(/^https:\/\/zenodo\.org\/records\/\d+$/);
+      expect(paper).not.toHaveProperty("pdf");
+    }
   });
 });

@@ -25,12 +25,13 @@ Lean imports, and cited-declaration axiom audit. Text hashes normalize line
 endings so that Windows and Linux checkouts agree. It is a provenance check,
 not a substitute for the mathematical verification described in the paper.
 
-The build synchronizes Paper A into `juggler_review/`, the historical-named
-PDF alias in `juggler_review/zenodo_paper_a/`, the website's `public/papers/`,
-and its `dist/papers/` if a local distribution exists. The website's prebuild
-checks the release and copies the canonical PDF before Vite runs. On Vercel
-the laboratory tree is excluded, so prebuild uses that already-synchronized
-public PDF. A source or proof change therefore requires a fresh paper build. Use `--sync` to
+The build writes Paper A's PDF into `juggler_review/`, which is now its only
+copy, and exports the historical-named alias in `juggler_review/zenodo_paper_a/`.
+The website carries no PDFs: all three papers are deposited on Zenodo and the
+site links the records, so `public/papers/` and `dist/papers/` are gone. The
+website's prebuild still verifies the release manifest before Vite runs. On
+Vercel the laboratory tree is excluded, so that verification runs on local
+builds and in CI instead. A source or proof change therefore requires a fresh paper build. Use `--sync` to
 repair an export only when the canonical release still matches its inputs.
 
 Mathematical checks:

@@ -5,7 +5,7 @@ import {
   PAPER_C_CLAIM_ROWS,
   PAPER_C_NOT_CLAIMED,
 } from "../content/claims";
-import { paperByLetter, paperDoiHref, paperPdfHref } from "../content/papers";
+import { paperByLetter, paperDoiHref } from "../content/papers";
 import { financeSnapshot } from "../juggler/finance";
 
 function PaperCite({ letter }: { letter: "A" | "C" }) {
@@ -19,10 +19,6 @@ function PaperCite({ letter }: { letter: "A" | "C" }) {
       {" · "}
       <a href={paper.zenodo} target="_blank" rel="noreferrer">
         Zenodo
-      </a>
-      {" · "}
-      <a href={paperPdfHref(paper)} target="_blank" rel="noreferrer">
-        PDF
       </a>
     </p>
   );

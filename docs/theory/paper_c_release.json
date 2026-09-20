@@ -411,7 +411,7 @@
     {
       "path": "tools/build_paper_c.py",
       "mode": "text",
-      "sha256": "2abae5342a17dbfc2c85cd75f6abf4e9ecbb296db6caa9b0ef89eb7f73d0614a"
+      "sha256": "b87be506b67b42094b7bbb855135895c2790433f4dea304218bd8da5d30966b4"
     },
     {
       "path": "tools/check_paper_c_numeric.py",
@@ -431,7 +431,7 @@
   ],
   "outputs": [
     {
-      "path": "docs/theory/juggler_fate_almost_all_note.pdf",
+      "path": "juggler_review/juggler_fate_almost_all_note.pdf",
       "mode": "binary",
       "sha256": "e07eb963660f6e4808295e096372b18df94cae4e7714521fd43d98009cf2627e"
     },

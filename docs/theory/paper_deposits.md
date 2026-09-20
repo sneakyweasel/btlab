@@ -22,5 +22,7 @@ whose `SHA256SUMS.txt` lists the prepared files (PDF sha256
 laboratory environment when this line was written, so the match of the
 deposited bytes to that kit rests on the author's upload.
 
-The companion site ships local PDFs under `web/juggler-companion/public/papers/`
-and links these DOIs from the home and claims pages.
+The companion site links these DOIs from the home and claims pages. It shipped
+its own copies under `web/juggler-companion/public/papers/` while Paper B had no
+deposit; with all three papers on Zenodo the record is the download, and the
+repository keeps one PDF per paper, in `juggler_review/`.

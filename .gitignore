@@ -81,3 +81,6 @@ data/research/juggler/certificate_harvest/harvest-100000001-1000000000.tsv.uncap
 
 # Local OEIS bulk download (regenerate with curl from oeis.org, ~41 MB)
 data/external/
+
+# Built PDFs are not tracked: each paper has one copy, in juggler_review/.
+.build/**/*.pdf

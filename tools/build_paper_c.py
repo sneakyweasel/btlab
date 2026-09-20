@@ -33,7 +33,7 @@ def _pin_build_date() -> None:
 ROOT = Path(__file__).resolve().parents[1]
 STEM = "juggler_fate_almost_all_note"
 SOURCE = f"docs/theory/{STEM}.md"
-PDF = f"docs/theory/{STEM}.pdf"
+PDF = f"juggler_review/{STEM}.pdf"
 TEX = "docs/theory/cochin-juggler-fates.tex"
 MANIFEST = "docs/theory/paper_c_release.json"
 METADATA = "docs/theory/paper_c_zenodo.json"
@@ -46,10 +46,11 @@ BUILD_INPUTS = ["tools/build_paper_c.py", "tools/paper_c/article.tex",
                 "docs/theory/figures/render_paper_c_figures.py",
                 "data/research/juggler/paper_c_publication_review/validation.json"]
 FIGURES = ["paper_c_productions.png", "paper_c_decomposition.png", "paper_c_dependencies.png"]
-PDF_EXPORTS = [f"juggler_review/{STEM}.pdf",
-               f"web/juggler-companion/public/papers/{STEM}.pdf",
-               "juggler_review/zenodo_paper_c/Fate_Contagion_Juggler_Map.pdf"]
-DIST = f"web/juggler-companion/dist/papers/{STEM}.pdf"
+# The PDF lives in `juggler_review/` now, and is exported only under the
+# historical name the Zenodo deposit carries. The companion site links the
+# published DOIs instead of serving its own copy, so `public/papers/` and
+# `dist/papers/` are gone.
+PDF_EXPORTS = ["juggler_review/zenodo_paper_c/Fate_Contagion_Juggler_Map.pdf"]
 
 
 def digest(path: Path, mode: str = "binary") -> str:
@@ -108,8 +109,6 @@ def export_pairs(root: Path):
     pairs = [(name, "juggler_review/" + Path(name).name) for name in EDITORIAL]
     pairs.extend((PDF, name) for name in PDF_EXPORTS)
     pairs.extend(("docs/theory/figures/" + name, "juggler_review/figures/" + name) for name in FIGURES)
-    if (root / "web/juggler-companion/dist").is_dir():
-        pairs.append((PDF, DIST))
     return pairs
 
 

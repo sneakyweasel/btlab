@@ -1,7 +1,7 @@
 import { useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { Tex } from "../components/Tex";
-import { PAPERS, paperDoiHref, paperPdfHref } from "../content/papers";
+import { PAPERS, paperDoiHref } from "../content/papers";
 import {
   LAB_WALK_PERIOD,
   MAIN_FLOOR,
@@ -158,14 +158,6 @@ export function HomePage() {
               <div className="mt-2 font-serif text-2xl text-ink">{paper.title}</div>
               <p className="mt-1 text-sm text-muted">{paper.hint}</p>
               <div className="mt-3 flex flex-wrap items-center gap-2">
-                <a
-                  href={paperPdfHref(paper)}
-                  target="_blank"
-                  rel="noreferrer"
-                  className={PAPER_ACTION}
-                >
-                  PDF
-                </a>
                 {paper.guide ? (
                   <Link to={paper.guide.to} className={PAPER_ACTION}>
                     {paper.guide.label}

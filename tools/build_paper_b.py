@@ -30,14 +30,15 @@ HERE = Path(__file__).resolve().parent
 STEM = 'juggler_parity_discrepancy_note'
 METADATA = 'docs/theory/paper_b_zenodo.json'
 BUILD_MANIFEST = 'docs/theory/paper_b_build.json'
-PDF = f'docs/theory/{STEM}.pdf'
+PDF = f'juggler_review/{STEM}.pdf'
 ZENODO_DIR = 'juggler_review/zenodo_paper_b'
 ZENODO_PDF = f'{ZENODO_DIR}/Five_Step_Descent_Certificates_for_the_Juggler_Map.pdf'
 ZENODO_FIELDS = f'{ZENODO_DIR}/ZENODO_FIELDS.txt'
+# The PDF is written straight into juggler_review/ now, so the only export
+# left is the historical name the Zenodo deposit carries. The companion site
+# links the published DOI instead of serving a copy.
 EXPORTS = [
     (f'docs/theory/{STEM}.md', f'juggler_review/{STEM}.md'),
-    (PDF, f'juggler_review/{STEM}.pdf'),
-    (PDF, f'web/juggler-companion/public/papers/{STEM}.pdf'),
     (PDF, ZENODO_PDF),
 ]
 
@@ -104,7 +105,11 @@ def check_manifest(root: Path) -> None:
     recorded inputs; this brings Paper B into line.
     """
     manifest = json.loads((root / BUILD_MANIFEST).read_text(encoding='utf-8'))
-    places = (root/'docs/theory', root/'tools/paper_b', root/'tools/build', root/'tools')
+    # `juggler_review` joins the search because the PDF lives there now; the .tex
+    # and the manifest stay in docs/theory. Names carry their extension, so the
+    # two trees cannot shadow each other.
+    places = (root/'docs/theory', root/'juggler_review', root/'tools/paper_b',
+              root/'tools/build', root/'tools')
     for record in manifest.get('files', ()):
         built = next((d/record['name'] for d in places if (d/record['name']).is_file()), None)
         if built is None:
@@ -200,10 +205,15 @@ def main() -> None:
     for warning in ('Overfull', 'Missing character', 'undefined references'):
         if warning in log:
             raise RuntimeError(f'Layout check failed: {warning}; inspect {work}')
-    for suffix in ('.pdf','.tex'):
-        shutil.copyfile(work/f'{STEM}{suffix}',output/f'{STEM}{suffix}')
+    # The .tex stays beside the manuscript it was generated from; the PDF has
+    # exactly one home now, juggler_review/, so it is written there instead of
+    # into docs/theory and copied out afterwards.
+    shutil.copyfile(work/f'{STEM}.tex',output/f'{STEM}.tex')
+    pdf_out=(root/PDF) if root is not None else output/f'{STEM}.pdf'
+    pdf_out.parent.mkdir(parents=True,exist_ok=True)
+    shutil.copyfile(work/f'{STEM}.pdf',pdf_out)
     files=[source,assets/'article.tex',assets/'layout.lua',Path(__file__).resolve(),
-           output/f'{STEM}.tex',output/f'{STEM}.pdf']
+           output/f'{STEM}.tex',pdf_out]
     modes=['text','text','text','text','text','binary']
     records=[{'name':p.name,'mode':m,'sha256':digest(p,m)} for p,m in zip(files,modes)]
     record={'status':'built; visual review required for any changed build',
@@ -213,7 +223,7 @@ def main() -> None:
     (output/'paper_b_build.json').write_text(json.dumps(record,indent=2)+'\n',encoding='utf-8')
     if root is not None and output == (root / 'docs/theory'):
         sync(root)
-    print(output/f'{STEM}.pdf')
+    print(pdf_out)
 
 
 if __name__ == '__main__':

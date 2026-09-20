@@ -1,25 +1,27 @@
-// Validate the canonical release before Vite copies public/ into dist/.
-import { readFileSync, existsSync, mkdirSync, copyFileSync } from 'node:fs';
+// Validate the canonical Paper A release before Vite builds.
+//
+// This script used to also copy the built PDF into public/papers/ so the site
+// could serve its own copy. Every paper is deposited on Zenodo now and the site
+// links the records, so the repository keeps exactly one PDF, in juggler_review/,
+// and there is nothing left to copy. What remains is the part worth keeping: the
+// release manifest is checked against the files it names, so a stale or
+// hand-edited release cannot reach a deploy unnoticed.
+import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { dirname, resolve, relative, isAbsolute } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../../..');
 const source = 'docs/theory/juggler_finite_dynamics_note.md';
-const canonical = 'docs/theory/juggler_finite_dynamics_note.pdf';
+const canonical = 'juggler_review/juggler_finite_dynamics_note.pdf';
 const manifest = resolve(root, 'docs/theory/paper_a_release.json');
-const target = resolve(root, 'web/juggler-companion/public/papers/juggler_finite_dynamics_note.pdf');
 const hash = (data) => createHash('sha256').update(data).digest('hex');
 
-// Vercel uploads a website-only tree (.vercelignore drops /docs, /formal, /src).
-// The committed public PDF is the deploy artifact; full provenance stays on local/CI.
+// Vercel uploads a website-only tree: .vercelignore drops /docs, /formal, /src
+// and /juggler_review, so neither the manifest nor the files it names are there
+// to check. Provenance is enforced on local builds and in CI instead.
 if (process.env.VERCEL) {
-  if (!existsSync(target)) {
-    console.error('Paper A: website PDF missing from public/papers/. Run python tools/build_paper_a.py from the repository root.');
-    process.exitCode = 1;
-  } else {
-    console.log('Paper A: Vercel deploy using shipped website PDF (laboratory tree excluded).');
-  }
+  console.log('Paper A: Vercel deploy; laboratory tree excluded, release check runs locally and in CI.');
 } else try {
   const release = JSON.parse(readFileSync(manifest, 'utf8'));
   if (release.schema !== 1 || release.canonical_source !== source ||
@@ -35,13 +37,7 @@ if (process.env.VERCEL) {
     if (row.mode === 'text') data = Buffer.from(data.toString('utf8').replace(/\r\n?/g, '\n'));
     if (hash(data) !== row.sha256) throw new Error(`Stale release input/output: ${row.path}`);
   }
-  if (!process.argv.includes('--check')) {
-    mkdirSync(dirname(target), { recursive: true });
-    copyFileSync(resolve(root, canonical), target);
-  } else if (!existsSync(target) || hash(readFileSync(target)) !== hash(readFileSync(resolve(root, canonical)))) {
-    throw new Error('Stale public Paper A PDF');
-  }
-  console.log('Paper A: canonical release verified; website PDF synchronized.');
+  console.log('Paper A: canonical release verified.');
 } catch (error) {
   console.error(`Paper A: ${error.message}. Run python tools/build_paper_a.py from the repository root.`);
   process.exitCode = 1;

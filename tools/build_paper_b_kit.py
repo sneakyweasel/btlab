@@ -62,7 +62,7 @@ SOURCE_MEMBERS.update({f'validate_paper_b{s}.py': f'tools/validate_paper_b{s}.py
     '_oooee_transfer', '_repairs', '_signed_waves', '_wave_bearing')})
 
 BUNDLE_MEMBERS = {
-    PDF_NAME: f'docs/theory/{STEM}.pdf',
+    PDF_NAME: f'juggler_review/{STEM}.pdf',
     'PAPER_B_BUILD.md': 'docs/theory/PAPER_B_BUILD.md',
     'ZENODO_README.md': 'docs/theory/ZENODO_README.md',
     'paper_b_proof_review.md': 'docs/theory/paper_b_proof_review.md',
@@ -75,7 +75,7 @@ BUNDLE_MEMBERS = {
 # Kit files this tool regenerates from the repository; the rest are hand-written
 # and only listed in the checksums.
 KIT_GENERATED = {
-    PDF_NAME: f'docs/theory/{STEM}.pdf',
+    PDF_NAME: f'juggler_review/{STEM}.pdf',
     'paper_b_release_check.json': RELEASE_CHECK,
 }
 KIT_KEPT = ('AFTER_ZENODO.md', 'README.md', 'ZENODO_FIELDS.txt')
@@ -147,7 +147,7 @@ def agree(root: Path) -> None:
     which is how it came to carry a source digest eleven manuscript revisions old.
     """
     record = json.loads((root / RELEASE_CHECK).read_text(encoding='utf-8'))
-    pdf = root / f'docs/theory/{STEM}.pdf'
+    pdf = root / f'juggler_review/{STEM}.pdf'
     expected = {
         'pdf_sha256': sha256(pdf.read_bytes()),
         'pdf_bytes': pdf.stat().st_size,
