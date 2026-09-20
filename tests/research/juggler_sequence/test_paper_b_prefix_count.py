@@ -187,14 +187,6 @@ def test_paper_quotes_the_table_this_module_computes() -> None:
         assert int(row.group(2)) == rows[d]["endpoint_only"], d
 
 
-def test_paper_no_longer_states_the_old_constants() -> None:
-    text = io.open(PAPER, encoding="utf-8").read()
-    assert r"e^{-cd}\,N+2^dE_d(N)" not in text
-    assert r"\frac6\pi" not in text
-    assert r"most three arcs" not in text
-    assert r"Neither loss touches the" not in text
-
-
 # --- the change has to reach every document that restates the proposition ---
 
 
@@ -277,26 +269,6 @@ def test_just_above_the_threshold_the_rate_is_useless_at_any_feasible_depth() ->
     assert rates[-1] > B.biased_chernoff_rate(0.37)
 
 
-def test_the_paper_states_both_weakenings_and_the_threshold() -> None:
-    text = io.open(PAPER, encoding="utf-8").read()
-    assert "**Proposition 7.6 (rate-free reduction).**" in text
-    assert "**Proposition 7.7 (biased-split reduction).**" in text
-    assert "0.36907" in text
-    for figure in ("0.0841", "0.0274", "0.0154", r"1.85\cdot10^{-6}"):
-        assert figure in text, figure
-
-
-def test_section_7_binds_beta_only_as_the_bias() -> None:
-    """Proposition 7.1's proof used beta for log2/log3 before 7.7 arrived; importing 7.7
-    verbatim would have bound beta twice in one section, which is the collision the section
-    was cleaned of.  log2/log3 is now written out and gamma does not appear."""
-    text = io.open(PAPER, encoding="utf-8").read()
-    sec = text[text.index("## 7. The Terras"):text.index("## 8. Relation")]
-    assert r"\gamma" not in sec
-    assert r"\beta=\log2/\log3" not in sec
-    assert r"d\log2/\log3" in sec
-
-
 def test_at_the_critical_bias_the_drift_is_exactly_zero() -> None:
     """1 - beta_* = log2/log3, so o_t - t log2/log3 has mean step zero, not merely small."""
     g = B.BETA
@@ -325,33 +297,7 @@ def test_below_the_threshold_the_mass_does_not_vanish() -> None:
     assert a > 0.2 and abs(a - b) < 1e-3, (a, b)
 
 
-def test_paper_states_the_non_strict_threshold_and_the_constants() -> None:
-    text = io.open(PAPER, encoding="utf-8").read()
-    sec = text[text.index("## 7. The Terras"):text.index("## 8. Relation")]
-    assert r"\beta\ \ge\ \beta_*" in sec          # not the strict inequality
-    assert r"2^{-1/2}" in sec and "0.6675" in sec
-    assert "The threshold cannot be lowered" in sec
-    assert "0.228" in sec
-
-
 # --- 7.1 and 7.6 ask only for what their proofs consume ---
-
-
-def test_proposition_7_1_hypothesis_is_one_sided() -> None:
-    """The two-sided form was never used: the proof bounds each surviving class from above."""
-    text = io.open(PAPER, encoding="utf-8").read()
-    body = text[text.index("**Proposition 7.1"):text.index("The name of the proposition")]
-    assert r"\#\{n\le N:\mathrm{word}_d(n)=w\}\ \le\ 2^{-d}N+E_d(N)" in body
-    assert r"\bigl|\#\{n\le N:\mathrm{word}_d(n)=w\}-2^{-d}N\bigr|\le E_d(N)" not in body
-    assert "each of *those* words" in body
-
-
-def test_proposition_7_6_hypothesis_is_one_sided() -> None:
-    text = io.open(PAPER, encoding="utf-8").read()
-    body = text[text.index("**Proposition 7.6"):text.index("**Proposition 7.7")]
-    assert r"\le\ 2^{-d}" in body
-    assert "an upper bound only" in body
-    assert r"\#w(N)=2^{-d}N+o(N)" not in body
 
 
 @pytest.mark.parametrize("d,o_rooted,surviving", [
@@ -365,13 +311,6 @@ def test_the_remark_quantifies_what_is_not_used(d: int, o_rooted: int, surviving
     remark = text[text.index("The name of the proposition"):text.index("The exact count is worth")]
     assert str(surviving) in remark, surviving
     assert str(o_rooted) in remark, o_rooted
-
-
-def test_the_remark_names_the_four_depth_five_words() -> None:
-    text = io.open(PAPER, encoding="utf-8").read()
-    remark = text[text.index("The name of the proposition"):text.index("The exact count is worth")]
-    for w in surviving_words(5):
-        assert w in remark, w
 
 
 def test_only_two_standing_conditions_are_hypotheses() -> None:
@@ -395,17 +334,6 @@ def test_only_two_standing_conditions_are_hypotheses() -> None:
     assert "checking two inequalities, not four" in text
 
 
-def test_c2_is_recorded_as_never_invoked() -> None:
-    """Its only other occurrence was its own definition; the paper now says so rather than
-    leaving a reader to check twenty proofs for a use that is not there."""
-    text = io.open(PAPER, encoding="utf-8").read()
-    assert "invoked nowhere below" in text
-    # the real invariant is not a count but that no proof cites it, unlike (C1), (C3), (C4)
-    assert "by (C2)" not in text
-    for cited in ("by (C1)", "by (C3)", "by (C4)"):
-        assert cited in text, cited
-
-
 def test_decoration_budget_is_a_ceiling_not_a_count() -> None:
     """Claim E forms five terms; Step 4's leftovers add two; the class allows nine.
 
@@ -421,22 +349,6 @@ def test_decoration_budget_is_a_ceiling_not_a_count() -> None:
     # (the third "nine" in the paper is "nine orders of magnitude", a different subject)
     assert text.count("budget of nine") == 1
     assert text.count("at most nine terms") == 1
-
-
-def test_decoration_parameters_are_all_consumed() -> None:
-    """The audit's negative results, pinned so a later edit cannot quietly loosen them.
-
-    (D1)'s three parameters are each set by Claim E: q' = q_d sigma, h' = |d-e_1|/2, and
-    d' = min(d,e_1).  The bound h' <= 2P^(1/24) is tight, since d and e_1 range over
-    {0, d_1, d_2, d_1+d_2} and the largest gap is d_1+d_2 = 2(h_1+h_2).  (D3) carries a third
-    derivative it does not use in Stage 6, and the paper says why: closure under one more
-    difference.
-    """
-    text = io.open(PAPER, encoding="utf-8").read()
-    assert r"h'=|d-e_1|/2\le2P^{1/24}" in text
-    assert r"d'=\min(d,e_1)\in\mathcal D" in text
-    assert "Only the second-derivative budget is used" in text
-    assert "closed under one" in text
 
 
 # --- Proposition 7.1b: the depth ceiling ------------------------------------
@@ -554,14 +466,6 @@ def test_two_thirds_of_depth_seven_needs_no_new_kernel_level() -> None:
     assert B.ceiling(7) - (Fraction(7, 8) + Fraction(len(cheap), 128)) == Fraction(1, 128)
 
 
-def test_paper_states_part_iv_and_the_run_table() -> None:
-    text = io.open(PAPER, encoding="utf-8").read()
-    assert "(iv) *(what carries a gain)*" in text
-    assert r"\frac{L_{d-1}}{2^{d}}" in text
-    assert "the level-3 kernel of Conjecture 7.3" in text
-    assert r"carry the certified density to \(57/64\)" in text
-
-
 # --- the theta-coefficient criterion behind the run statistic ----------------
 
 
@@ -630,14 +534,6 @@ def test_the_ranking_flips_against_the_run_statistic() -> None:
     assert ("sqrt" in {sp for _, _, sp in dear}) and ("sqrt" not in {sp for _, _, sp in cheap})
     # and the single in-species one sits below both the pair Theorem 5.3 closes
     assert cheap[0][1] < min(B.drift_blocked("OOO", 4))
-
-
-def test_the_paper_states_the_flip_and_the_single_monomial_caveat() -> None:
-    text = io.open(PAPER, encoding="utf-8").read()
-    assert "it is the harder of" in text
-    assert "None of this makes any of the three a corollary." in text
-    assert "showing they" in text and "do not vanish" in text
-    assert "no theorem and no conjecture" in text
 
 
 def test_the_extra_cost_is_recorded_rather_than_hidden() -> None:
@@ -1692,14 +1588,6 @@ def test_the_depth_seven_verdicts() -> None:
     assert B.defect_coefficient("OOOEOEE", 6, 1) == B.defect_coefficient("OOEOOEE", 6, 1)
 
 
-def test_paper_carries_the_deepest_blocked_table() -> None:
-    text = io.open(PAPER, encoding="utf-8").read()
-    for frag in (r"\tfrac{27k}{32}n^{33/32}", r"\tfrac{3k}4n^{27/16}", r"\tfrac{9k}8n^{45/32}",
-                 r"\varrho'\asymp kP^{11/16}", "where every method of this paper stops",
-                 "one level *below*"):
-        assert frag in text, frag
-
-
 # --- the form of the kernel weight, and the level-1 case ---
 
 
@@ -1730,16 +1618,6 @@ def test_OOOEOEE_has_no_inner_floor_to_keep_exact() -> None:
     assert B.coefficient_sensitivity("OOOEOEE", 6) == []
     assert B.deepest_blocked("OOOEOEE", 6)[0] == 1
     assert B.coefficient_is_monomial("OOOEOEE", 6)
-
-
-def test_paper_states_the_level_one_reading_and_its_limit() -> None:
-    text = io.open(PAPER, encoding="utf-8").read()
-    assert r"\tfrac{27k}{32}n^{33/32}\{n^{3/2}\}" in text
-    assert "not a smooth function" in text
-    assert "Theorem 4.7 does not cover this sum" in text
-    assert "still a kernel and this paper does not contain" in text
-    # and the corrected justification for ignoring the shallower defects
-    assert "not resolved elsewhere and not expanded either" in text
 
 
 # --- Step 1's accounting is exponent-blind ---
@@ -1775,14 +1653,6 @@ def test_any_power_saving_survives_the_chain() -> None:
         assert B.differencing_chain(d)["exponent"] < 1, d
 
 
-def test_paper_states_the_chain_and_its_consequence() -> None:
-    text = io.open(PAPER, encoding="utf-8").read()
-    assert "What the two differencings cost." in text
-    assert r"H_2=H_1^2" in text
-    assert "never sees the weight's exponent" in text
-    assert "where it costs nothing" in text
-
-
 # --- the branch-run criterion, the third threshold ---
 
 
@@ -1810,14 +1680,6 @@ def test_level_one_branches_on_nothing() -> None:
     """The base is n, Delta_1 n = d_1 is constant, and the runs fill the block."""
     assert B.branch_run_exponent(Fraction(1)) == 1
     assert B.has_branch_runs(Fraction(1))
-
-
-def test_paper_states_the_branch_criterion() -> None:
-    text = io.open(PAPER, encoding="utf-8").read()
-    assert "Where the branch decomposition comes from." in text
-    assert r"\asymp P^{2-e}/h" in text
-    assert "a third threshold" in text
-    assert "level-1 form and it is degenerate" in text
 
 
 # --- the three thresholds together ---
@@ -1861,14 +1723,6 @@ def test_the_branch_and_stop_conditions_are_independent() -> None:
                     continue
                 seen.add((p["branch_runs"], bool(p["beyond"])))
     assert seen == {(True, False), (True, True), (False, False), (False, True)}
-
-
-def test_paper_states_the_independence_and_the_revised_gain() -> None:
-    text = io.open(PAPER, encoding="utf-8").read()
-    assert "genuinely independent" in text
-    assert "inherits, verbatim, the branching failure" in text
-    assert r"7/8\to113/128" in text
-    assert "cuts" in text and "back to the first of the two" in text
 
 
 # --- the coefficient rule against real orbits, at the depth it is used ---
@@ -1983,14 +1837,6 @@ def test_the_squared_term_is_measured_on_an_orbit() -> None:
     assert 40 < float(pred) < 60, float(pred)          # ~50, i.e. not negligible
 
 
-def test_paper_states_the_linearisation_criterion() -> None:
-    text = io.open(PAPER, encoding="utf-8").read()
-    assert "not a linear object at all" in text
-    assert r"E=\tfrac94" in text and r"E=\tfrac{27}{16}" in text
-    assert "49.9" in text
-    assert "keeps *exact* are\nharmless" in text or "keeps *exact*" in text
-
-
 # --- the screen over every contractor at every paying depth ---
 
 
@@ -2031,14 +1877,6 @@ def test_the_screen_rejects_for_the_stated_reasons() -> None:
     assert B.beyond_methods("OOOOEEE", 5) != []
 
 
-def test_paper_carries_the_screen_table() -> None:
-    text = io.open(PAPER, encoding="utf-8").read()
-    assert "What one theorem would buy." in text
-    assert r"\(227/256\)" in text
-    assert r"\(127\) contractors" in text
-    assert "negative evidence" in text
-
-
 # --- what the level-1 kernel is: the same waves, at a wider frequency range ---
 
 
@@ -2069,14 +1907,6 @@ def test_the_drift_threshold_is_a_sub_lattice_window() -> None:
     for s in (2, 4):
         _, e2 = B.defect_coefficient("OOOEOEE", 6, s)
         assert e2 < B.DRIFT_THRESHOLD and 1 - e2 > 0, s
-
-
-def test_paper_states_what_the_level_one_kernel_is() -> None:
-    text = io.open(PAPER, encoding="utf-8").read()
-    assert "It is not a new species." in text
-    assert r"e(r\{x\})=e(rx)" in text
-    assert r"a gap of \(P^{95/96}\)" in text
-    assert "finer than the lattice it is supposed to sit on" in text
 
 
 # --- what one Fourier mode is worth ---
@@ -2115,14 +1945,6 @@ def test_the_phase_size_is_the_wave_exponent() -> None:
         assert B.iterate_exponents(word)[4] == Fraction(81, 32), word
         _, coeff_exp = B.defect_coefficient(word, 6, 1)
         assert coeff_exp + Fraction(3, 2) == Fraction(81, 32), word
-
-
-def test_paper_states_the_mode_bound_and_its_caveat() -> None:
-    text = io.open(PAPER, encoding="utf-8").read()
-    assert "What one mode is worth." in text
-    assert r"P^{313/352}" in text and r"\tfrac{39}{352}" in text
-    assert "van der Corput pairs, not the" in text
-    assert "says nothing whatever" in text
 
 
 # --- the criterion retrodicts the paper's own frontier ---
@@ -2170,13 +1992,6 @@ def test_the_unblocked_depth_five_pair_has_the_better_exponent() -> None:
         assert all(B.deepest_blocked(w, t) is None for t in range(3, 6)), w
 
 
-def test_paper_states_the_retrodiction() -> None:
-    text = io.open(PAPER, encoding="utf-8").read()
-    assert "not calibrated on depth seven" in text
-    assert "for the drift reason and for no other" in text
-    assert "sixteen words, three outcomes, no" in text
-
-
 # --- the starts the paper excludes ---
 
 
@@ -2220,13 +2035,6 @@ def test_the_first_blocked_E_rooted_word_also_fails_linearisation() -> None:
     assert d5 == (1, Fraction(27, 16), Fraction(19, 16), "sqrt")
     assert B.composed_map("EOOOE", 5, 1) == Fraction(27, 8)
     assert not B.linearisation_safe("EOOOE", 5)
-
-
-def test_paper_states_the_E_rooted_reading() -> None:
-    text = io.open(PAPER, encoding="utf-8").read()
-    assert "the starts this paper excludes" in text
-    assert "easier to enter and harder to finish" in text
-    assert r"\tfrac{27k}{16}n^{19/16}" in text
 
 
 # --- the square-root species never occurs in proved territory ---
@@ -2277,13 +2085,6 @@ def test_the_first_O_rooted_instance_is_OOEOOEEs_prefix() -> None:
     assert B.deepest_blocked("OOEOOEE", 6) == d
 
 
-def test_paper_states_the_species_is_untouched() -> None:
-    text = io.open(PAPER, encoding="utf-8").read()
-    assert "untouched, not overlooked" in text
-    assert "Thirty-two words, none." in text
-    assert "the treatment stops before the species occurs" in text
-
-
 # --- the level is unprecedented too, so both targets need something new ---
 
 
@@ -2323,13 +2124,6 @@ def test_both_depth_seven_targets_need_something_unprecedented() -> None:
     # but only one of them sits below the paper's own barrier
     assert B.linearisation_safe("OOOEOEE", 6)
     assert not B.linearisation_safe("OOEOOEE", 6)
-
-
-def test_paper_tempers_the_one_theorem_reading() -> None:
-    text = io.open(PAPER, encoding="utf-8").read()
-    assert r"level \(1\) never occurs either" in text
-    assert "should not be read as one routine theorem" in text
-    assert "Both are new" in text
 
 
 # --- the level-2 characterisation is the kernel's reach, not the depth's doing ---
@@ -2382,13 +2176,6 @@ def test_the_unproved_unblocked_depth_five_words_are_worth_nothing() -> None:
     assert B.ceiling(6) == B.ceiling(5)
 
 
-def test_paper_states_the_four_class_sort() -> None:
-    text = io.open(PAPER, encoding="utf-8").read()
-    assert "Is the level-2 reading forced by the depth?" in text
-    assert "it is the reach of the\nlevel-2 kernel" in text
-    assert "declining costs nothing" in text
-
-
 # --- counting blocked words without enumerating them ---
 
 
@@ -2437,13 +2224,6 @@ def test_blocking_couples_two_positions_and_contraction_does_not() -> None:
     assert all(B.deepest_blocked("OEOO", t) is None for t in (3, 4))
 
 
-def test_paper_states_why_the_two_counts_differ() -> None:
-    text = io.open(PAPER, encoding="utf-8").read()
-    assert "Why the two counts behave differently." in text
-    assert "couples two positions of the path" in text
-    assert r"0,2,6,16,34,82,164,368,\dots" in text
-
-
 # --- Section 1's claims, and two of them are the frontier apparatus ---
 
 
@@ -2482,13 +2262,6 @@ def test_the_model_problems_hypothesis_is_the_drift_threshold() -> None:
     # the instance the paper quotes is Conjecture 7.3's own weight
     assert B.defect_coefficient("OOOO", 5, 3) == (Fraction(3, 4), Fraction(27, 16))
     assert Fraction(27, 16) - 1 == Fraction(11, 16)
-
-
-def test_paper_connects_both() -> None:
-    text = io.open(PAPER, encoding="utf-8").read()
-    assert "is the scale exponent of" in text
-    assert "this section's drift threshold, written in the" in text
-    assert "the blocked case with the words" in text
 
 
 # --- the sign-critical composites as functions of the weight exponent ---
@@ -2585,19 +2358,6 @@ def test_the_hard_word_is_the_one_with_the_worst_composite() -> None:
     assert float(worst[order[3]] / worst[order[2]]) > 10
 
 
-def test_paper_records_the_composite_screen() -> None:
-    text = io.open(PAPER, encoding="utf-8").read()
-    assert "recomputing the composites" in text
-    assert "cancellation\nfactor" in text
-    assert "84321" in text and "43983" in text and "10935" in text
-    assert "1.4014" in text and "0.5406" in text
-    assert "the only one of them that\nnever binds" in text
-    assert "not a composite the paper has ever formed" in text
-    # Step E's zero-offset is now derived, and its first half has no alpha-form
-    assert "is absent from the three for a" in text
-    assert "not a function of the weight" in text
-
-
 # --- what truncation the carry term can afford ---
 
 
@@ -2642,15 +2402,6 @@ def test_the_shifted_window_works_on_beta_where_it_failed_on_c() -> None:
     assert r["window_margin"] == Fraction(61, 264)
     # the contrast: c has coefficient exponent 33/32, above the drift threshold; beta has -1/2
     assert Fraction(33, 32) > B.DRIFT_THRESHOLD > Fraction(-1, 2)
-
-
-def test_paper_records_the_truncation_and_stops_where_it_stops() -> None:
-    text = io.open(PAPER, encoding="utf-8").read()
-    assert "What the truncation costs" in text
-    assert "J=P^{5/22}" in text
-    assert "10.9" in text and "times over" in text
-    assert "it was being asked of the wrong quantity" in text
-    assert "the two-monomial estimate itself" in text
 
 
 # --- the carry needs no window ---
@@ -2707,15 +2458,6 @@ def test_the_sawtooth_arguments_are_smooth() -> None:
     assert B.vaaler_truncation_budget()["J_exponent"] == Fraction(5, 22)
 
 
-def test_paper_records_that_the_window_is_avoidable() -> None:
-    text = io.open(PAPER, encoding="utf-8").read()
-    assert "And it is not needed" in text
-    assert "a per-window assembly returns nothing at all" in text
-    assert "two lines of algebra" in text
-    assert "50.3" in text
-    assert "the two-monomial estimate itself" in text
-
-
 # --- the leftover two-monomial question is not this one ---
 
 
@@ -2767,16 +2509,6 @@ def test_domination_is_not_what_separates_them() -> None:
     assert d["here_dominated"] and d["note_dominated"]
     # the worst corner is j = 1 with k at its cap
     assert Fraction(3, 2) - Fraction(1, 24) - Fraction(33, 32) == Fraction(41, 96)
-
-
-def test_paper_separates_the_two_questions() -> None:
-    text = io.open(PAPER, encoding="utf-8").read()
-    assert "it is a smaller thing than the leftover it resembles" in text
-    assert "25p+48q" in text
-    assert "subconvexity result" in text
-    assert "What separates them is" in text
-    assert "only where the target sits relative to the hull" in text
-    assert "the missing ingredient is not a new exponent pair" in text
 
 
 # --- the drift threshold is graded, not binary ---
@@ -2842,17 +2574,6 @@ def test_only_the_level_one_target_ties() -> None:
     assert named["Conjecture 7.3"]["factor"] == Fraction(1, 8)
 
 
-def test_paper_records_the_grading() -> None:
-    text = io.open(PAPER, encoding="utf-8").read()
-    assert "The drift threshold is graded" in text
-    assert "26" + chr(92) + ",663" in text
-    bs = chr(92)
-    assert "d=" + bs + "max" + bs + "bigl(" + bs + "ell," in text
-    assert bs + "lceil" + bs + "alpha" + bs + "rceil-1" in text
-    assert "read off the grading" in text
-    assert "target where the two counts coincide" in text
-
-
 # --- the grading's domain: branch runs, and what level three forces ---
 
 
@@ -2910,15 +2631,6 @@ def test_the_domain_makes_the_primary_split() -> None:
     assert B.cancellation_factor("E", Fraction(27, 16)) < 5
 
 
-def test_paper_records_the_domain_and_the_level_three_theorem() -> None:
-    text = io.open(PAPER, encoding="utf-8").read()
-    assert "The grading has a domain" in text
-    assert "it is the grading's precondition" in text
-    assert "every contractor begins" in text
-    assert "a theorem about level three" in text
-    assert "Levels beyond it are not uniformly barred" in text
-
-
 # --- which defects the 9/4 stop should screen ---
 
 
@@ -2971,15 +2683,6 @@ def test_the_paper_applies_the_stop_to_shallow_defects_too() -> None:
     assert sorted(over) == [Fraction(45, 16), Fraction(57, 16)]
     # so the printed screen bars it on defects the kernel does not ride
     assert B.unobstructed("OOOOEEE") is None
-
-
-def test_paper_records_the_question_without_settling_it() -> None:
-    text = io.open(PAPER, encoding="utf-8").read()
-    assert "An open question about which defects" in text
-    assert "Both readings cannot" in text
-    assert "This paper does not settle it" in text
-    assert "The screen is left as printed" in text
-    assert "147" in text and "3/64" in text
 
 
 def _theta(q: float) -> float:

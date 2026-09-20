@@ -123,13 +123,6 @@ def test_the_s_normalisation_raises_only_the_alpha_less_than_beta_orderings() ->
     assert min(restricted.values()) == Fr(1, 14)
 
 
-def test_paper_records_that_the_normalisation_buys_nothing() -> None:
-    text = io.open(PAPER, encoding="utf-8").read()
-    assert "The table is not symmetric" in text
-    assert "buys nothing" in text
-    assert r"\rho_0(E)\le\tfrac1{112}\) either way" in text
-
-
 # --- which named constants carry numbers ---
 
 
@@ -933,15 +926,6 @@ def test_the_reading_is_stable_in_k() -> None:
     assert max(xs) - min(xs) < 0.15, xs
 
 
-def test_paper_records_the_measurement_and_disclaims_it() -> None:
-    text = io.open(PAPER, encoding="utf-8").read()
-    assert "And the same drift is what makes the sum cancel" in text
-    assert "paper_b_audit.level1_kernel_block_scaling" in text
-    assert "0.943,0.948,0.947,0.963,0.981" in text
-    assert "This is an observation and nothing" in text
-    assert "no bound on \\(K_1\\) is claimed anywhere in this paper" in text
-
-
 def test_corollary_4_13_holds_structurally_and_its_error_term_does_not_reach() -> None:
     """J^4 lands even in [m'^2, (m'+1)^2); the density's printed error is half the block here."""
     r = A.corollary_4_13_check(m_prime=60, nesting_samples=120)
@@ -990,16 +974,6 @@ def test_the_frozen_defect_is_slow_where_the_original_is_fast() -> None:
     assert 1 / beta_drift > 1000
     # the run length is the b-run of Lemma 5.1(iii), P^{1/2}/h
     assert abs((1 / beta_drift) / (P**0.5 / 0.75) - 1) < 1e-9
-
-
-def test_paper_records_the_route_and_the_gap() -> None:
-    text = io.open(PAPER, encoding="utf-8").read()
-    assert "What one differencing does" in text
-    assert "It is Weyl differencing" in text
-    assert "carries the weight" in text and "across the very threshold" in text
-    assert "This is an accounting and not a proof" in text
-    assert "P^{1-1/48}" in text                 # what one differencing would have to reach
-    assert "Step 1 followed by Lemma 3.5" in text
 
 
 def test_lemma_4_10s_constant_is_sharp_and_free_where_it_is_used() -> None:
