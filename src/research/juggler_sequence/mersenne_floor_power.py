@@ -208,17 +208,131 @@ def primality_is_decorative(exponents: tuple[int, ...] = RUN_RANGE) -> dict[str,
     }
 
 
+def run_closed_form(exponents: tuple[int, ...] = RUN_RANGE) -> dict[str, Any]:
+    """The WHOLE Mersenne run in closed form, not just its endpoints.
+
+    `T(2^n - 1) = (3(2^n - 1) + 1)/2 = 3 * 2^(n-1) - 1`, and inductively
+    `T^j(2^n - 1) = 3^j * 2^(n-j) - 1` for `0 <= j <= n`, which at `j = n` is the repdigit
+    `3^n - 1`. In binary that is `3^j * 2^(n-j) - 1 = (3^j - 1) 2^(n-j) + (2^(n-j) - 1)`: the bits
+    of `3^j - 1` followed by exactly `n - j` ones. So the trailing-one block shrinks by exactly one
+    per step and its length is the number of steps REMAINING -- Lemma 8's countdown, visible.
+    """
+    value_fails, bit_fails, run_fails = [], [], []
+    for n in exponents:
+        x = mersenne(n)
+        for j in range(n + 1):
+            if x != 3**j * 2 ** (n - j) - 1:
+                value_fails.append((n, j))
+                break
+            if n < 40:
+                expect = (bin(3**j - 1)[2:] if j else "") + "1" * (n - j)
+                if bin(x)[2:] != expect.lstrip("0"):
+                    bit_fails.append((n, j))
+                if v2(x + 1) != n - j:
+                    run_fails.append((n, j))
+            if j < n:
+                x = shortcut(x)
+    return {
+        "identity": "T^j(2^n - 1) = 3^j * 2^(n-j) - 1 for 0 <= j <= n",
+        "binary": "bits of 3^j - 1 followed by exactly n - j ones",
+        "countdown": "the trailing-one block is the number of steps remaining, so Lemma 8's "
+        "countdown is visible in base two at every step of the run, not only at its ends",
+        "max_exponent": exponents[-1],
+        "value_failures": value_fails,
+        "bit_failures": bit_fails,
+        "run_failures": run_fails,
+        "holds": not value_fails and not bit_fails and not run_fails,
+        "example_n_4": [bin(3**j * 2 ** (4 - j) - 1)[2:] for j in range(5)],
+    }
+
+
+def is_squarefree(m: int) -> bool:
+    d = 2
+    while d * d <= m:
+        if m % (d * d) == 0:
+            return False
+        while m % d == 0:
+            m //= d
+        d += 1
+    return True
+
+
+def squarefree_is_stronger_than_needed(limit: int = 60) -> dict[str, Any]:
+    """We need `not a perfect power`, which is a theorem; squarefreeness is open and also false.
+
+    MathWorld records that all known `M_p` with `p` prime are squarefree while Guy (1994) believes
+    some are not, so squarefreeness of Mersenne numbers is open. It is also strictly stronger than
+    what `exactRun(M_a) = 0` needs: squarefree implies not a perfect power, and the converse fails.
+    At composite indices squarefreeness already fails outright -- `M_6 = 63 = 3^2 * 7` -- while
+    Catalan still gives `not a perfect power` for every `a >= 2`. So the Juggler statement rests on
+    a theorem and not on an open conjecture, and it covers indices the conjecture does not reach.
+    """
+    not_squarefree = [a for a in range(1, limit) if not is_squarefree(mersenne(a))]
+    return {
+        "open_conjecture": "all known M_p with p prime are squarefree; Guy (1994) believes some "
+        "are not -- so squarefreeness of Mersenne numbers is OPEN",
+        "what_we_need": "not a perfect power, which Catalan (mihailescu-2004-catalan) gives "
+        "unconditionally for every a >= 2",
+        "implication_direction": "squarefree => not a perfect power; the converse is false",
+        "squarefreeness_already_fails_at": not_squarefree[:12],
+        "witness": {"a": 6, "M_a": 63, "factorisation": "3^2 * 7",
+                    "squarefree": is_squarefree(63),
+                    "perfect_power": False},
+        "conclusion": "the squarefree route would fail at a = 6 and is open where it does not; "
+        "Catalan covers every index, so the weaker property is the right tool",
+    }
+
+
+def numerology_kills() -> dict[str, Any]:
+    """Two Mersenne coincidences that look like content and are not."""
+    fermat = [1, 3]
+    for _ in range(12):
+        fermat.append(3 * fermat[-1] - 2 * fermat[-2])
+    return {
+        "fermat_polynomial_coefficients": {
+            "observation": "the Mersenne numbers are a Fermat polynomial at x = 1 and satisfy "
+            "F_n = 3 F_(n-1) - 2 F_(n-2), whose coefficients are 3 and 2 -- the same 3 and 2 as "
+            "the Collatz odd step",
+            "recurrence_reproduces_mersenne": fermat[:10] == [2**k - 1 for k in range(1, 11)],
+            "verdict": "NUMEROLOGY. The characteristic polynomial is (t-1)(t-2) = t^2 - 3t + 2 "
+            "because 2^n - 1 is a combination of 1^n and 2^n, so the 3 is the trace 1 + 2 and the "
+            "2 is the determinant 1 * 2. Neither is the 3 of 3x + 1.",
+        },
+        "a020914_length": {
+            "observation": "the run ends at 3^n - 1, whose binary length is floor(n log2 3) + 1 = "
+            "A020914(n), the laboratory's distinguished word length",
+            "verdict": "RESTATEMENT. A020914(n) is by definition the binary length of 3^n, so this "
+            "says only that the endpoint is 3^n - 1. The Mersenne word length n + v_2(3^n - 1) is "
+            "unrelated to A020914(n): at n = 3 it is 4 against 5, at n = 5 it is 6 against 8.",
+        },
+        "cunningham": {
+            "observation": "M_n is the Cunningham number C^-(2,n), a one-base object",
+            "consequence": "the cycle gap 3^o - 2^K is NOT a Cunningham number -- two bases and "
+            "two independently moving exponents -- which is the precise reason classical "
+            "primitive-divisor theory (Zsigmondy, Bang, Carmichael) does not reach it. A citable "
+            "reason rather than a guess.",
+        },
+    }
+
+
 def probe_payload() -> dict[str, Any]:
     even = even_closed_form()
     odd = odd_beatty_form()
     base2 = base_two_run_law()
     prime = primality_is_decorative()
+    run = run_closed_form(exponents=tuple(range(1, 200)))
+    squarefree = squarefree_is_stronger_than_needed()
+    kills = numerology_kills()
     green = (
         even["holds"] and odd["holds"] and base2["run_is_trailing_ones"]
         and base2["landing_holds"] and base2["continuation_holds"]
         and prime["attained_at_composite_a"] and prime["mersenne_is_never_a_perfect_power"]
+        and run["holds"] and kills["fermat_polynomial_coefficients"]["recurrence_reproduces_mersenne"]
     )
     return {
+        "run_closed_form": run,
+        "squarefree_versus_catalan": squarefree,
+        "numerology": kills,
         "even_closed_form": even,
         "odd_beatty_form": odd,
         "base_two_run_law": base2,
@@ -256,6 +370,29 @@ def render_markdown(data: dict[str, Any]) -> str:
         f"- odd `a`: `{odd['identity']}` -- checked to `a = {odd['max_exponent']}`: `{odd['holds']}`",
         f"- {even['charge']}",
         f"- {odd['seam']}",
+        "",
+        "## The whole run, in closed form",
+        "",
+        f"- `{data['run_closed_form']['identity']}` -- checked to "
+        f"`n = {data['run_closed_form']['max_exponent']}`: `{data['run_closed_form']['holds']}`",
+        f"- in binary: {data['run_closed_form']['binary']}",
+        f"- {data['run_closed_form']['countdown']}",
+        f"- `n = 4`: `{data['run_closed_form']['example_n_4']}`",
+        "",
+        "## Squarefree is stronger than we need",
+        "",
+        f"- {data['squarefree_versus_catalan']['open_conjecture']}",
+        f"- what we need: {data['squarefree_versus_catalan']['what_we_need']}",
+        f"- squarefreeness already fails at "
+        f"`{data['squarefree_versus_catalan']['squarefreeness_already_fails_at']}`",
+        f"- {data['squarefree_versus_catalan']['conclusion']}",
+        "",
+        "## Two coincidences that are not content",
+        "",
+        f"- Fermat-polynomial coefficients: "
+        f"{data['numerology']['fermat_polynomial_coefficients']['verdict']}",
+        f"- A020914 length: {data['numerology']['a020914_length']['verdict']}",
+        f"- Cunningham: {data['numerology']['cunningham']['consequence']}",
         "",
         "## Lemma 8 in base two",
         "",

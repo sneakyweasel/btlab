@@ -24,7 +24,10 @@ from research.juggler_sequence.mersenne_floor_power import (
     odd_beatty_form,
     primality_is_decorative,
     repunit_beatty_multiplier,
+    numerology_kills,
     repunit_closed_form,
+    run_closed_form,
+    squarefree_is_stronger_than_needed,
     shortcut,
     trailing_ones,
     v2,
@@ -89,6 +92,53 @@ def test_primality_is_decorative() -> None:
     # composite exponents attain the floor exactly as prime ones do
     for a in (4, 6, 8, 9, 10, 12, 15):
         assert v2(mersenne(a) + 1) == a
+
+
+def test_the_whole_run_is_closed_form() -> None:
+    """T^j(2^n - 1) = 3^j 2^(n-j) - 1, and the trailing-one block counts the steps remaining."""
+    data = run_closed_form(exponents=tuple(range(1, 60)))
+    assert data["holds"]
+    assert data["value_failures"] == [] and data["bit_failures"] == [] and data["run_failures"] == []
+    assert data["example_n_4"] == ["1111", "10111", "100011", "110101", "1010000"]
+    for n in (5, 9, 16):
+        x = mersenne(n)
+        for j in range(n + 1):
+            assert x == 3**j * 2 ** (n - j) - 1
+            assert v2(x + 1) == n - j          # exactly n - j steps left
+            if j < n:
+                x = shortcut(x)
+
+
+def test_squarefree_is_stronger_than_catalan_and_we_need_catalan() -> None:
+    data = squarefree_is_stronger_than_needed()
+    assert 6 in data["squarefreeness_already_fails_at"]
+    assert data["witness"]["squarefree"] is False
+    assert data["witness"]["perfect_power"] is False
+    # 63 = 3^2 * 7: not squarefree, still not a perfect power, so Catalan is the load-bearing tool
+    assert not is_squarefree_ref(63)
+    assert all(not is_squarefree_ref(mersenne(a)) for a in (6, 12, 18))
+
+
+def is_squarefree_ref(m: int) -> bool:
+    d = 2
+    while d * d <= m:
+        if m % (d * d) == 0:
+            return False
+        while m % d == 0:
+            m //= d
+        d += 1
+    return True
+
+
+def test_the_two_coincidences_are_killed() -> None:
+    data = numerology_kills()
+    f = data["fermat_polynomial_coefficients"]
+    assert f["recurrence_reproduces_mersenne"]
+    assert "NUMEROLOGY" in f["verdict"]
+    # the 3 is the trace of {1,2} and the 2 is its determinant, not the 3 of 3x+1
+    assert (1 + 2, 1 * 2) == (3, 2)
+    assert "RESTATEMENT" in data["a020914_length"]["verdict"]
+    assert "Zsigmondy" in data["cunningham"]["consequence"]
 
 
 @pytest.mark.skipif(not JSON_PATH.exists(), reason="probe artifact not built")

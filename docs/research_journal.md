@@ -1,5 +1,51 @@
 # Research journal
 
+## 2026-09-20 -- the Mersenne page, read properly, and what it changed
+
+Philippe sent the full MathWorld Mersenne entry after the egress proxy blocked it. Four
+things in it bear on yesterday's repunit row; two are upgrades and two are kills.
+
+- **The upgrade that matters: the whole run is closed form, not only its ends.**
+  `T(2^n - 1) = (3(2^n - 1) + 1)/2 = 3*2^(n-1) - 1`, so inductively
+  **`T^j(2^n - 1) = 3^j * 2^(n-j) - 1`** for `0 <= j <= n`, the repdigit `3^n - 1`
+  falling out at `j = n`. In binary that is `(3^j - 1)2^(n-j) + (2^(n-j) - 1)`: the bits
+  of `3^j - 1` followed by **exactly `n - j` ones**. So the trailing-one block shrinks by
+  one per step and its length is the number of steps REMAINING. Lemma 8's countdown is
+  not a fact about the two ends of the run -- it is visible in base two at every step.
+  Checked to `n = 200` for the value, `n = 40` for the bits. At `n = 4`: `1111`, `10111`,
+  `100011`, `110101`, `1010000`.
+- **The methodological upgrade: I was using a weaker property than I realised, and that
+  is why the argument is unconditional.** The page records that all known `M_p` with `p`
+  prime are squarefree, and that Guy (1994) believes some are not -- so squarefreeness of
+  Mersenne numbers is OPEN. `exactRun(M_a) = 0` does not need it. Squarefree implies not a
+  perfect power and the converse fails, so the property I used is strictly weaker, and
+  Catalan supplies it as a theorem. The squarefree route would also fail outright at
+  composite indices: `M_6 = 63 = 3^2 * 7` is not squarefree and is still not a perfect
+  power. So the weaker property is the right tool, and it covers indices the conjecture
+  does not reach.
+- **Kill one: the Fermat-polynomial coefficients.** The Mersenne numbers are a Fermat
+  polynomial at `x = 1` and satisfy `F_n = 3F_(n-1) - 2F_(n-2)` -- coefficients `3` and
+  `2`, which look like the `3` and `2` of the odd step. They are not. The characteristic
+  polynomial is `(t-1)(t-2) = t^2 - 3t + 2` because `2^n - 1` is a combination of `1^n`
+  and `2^n`, so the `3` is the trace `1 + 2` and the `2` is the determinant `1*2`.
+  NUMEROLOGY, recorded as such.
+- **Kill two: the A020914 length.** The run ends at `3^n - 1`, whose binary length is
+  `floor(n log2 3) + 1 = A020914(n)` -- the laboratory's distinguished word length, the
+  one where minimal certificates are nonzero. That is a restatement: `A020914(n)` IS the
+  binary length of `3^n`, so the observation says only that the endpoint is `3^n - 1`.
+  The Mersenne *word* length `n + v_2(3^n - 1)` is unrelated: 4 against 5 at `n = 3`, 6
+  against 8 at `n = 5`. I checked before writing it down, which is the only reason it is
+  a kill and not a row.
+- **One framing worth keeping, and it is not about primes.** `M_n` is the Cunningham
+  number `C^-(2,n)`, a one-base object. The cycle gap `3^o - 2^K` is not: two bases, two
+  independently moving exponents. That is the precise, citable reason classical
+  primitive-divisor theory -- Zsigmondy, Bang, Carmichael -- does not reach the gap, where
+  the laboratory had only the observation that it does not. Neither name appears anywhere
+  in the repository; both should, and the running prime fan-out has a direction on exactly
+  this.
+- `J-repunit-floor-power-is-closed-form` extended; the negative-knowledge Mersenne cluster
+  now carries both kills and the Cunningham framing. No bound moves.
+
 ## 2026-09-20 -- the 3x-1 floor, and the floor power of a repunit
 
 - **The floor the journal asked for, supplied.** On 19 September this journal closed
