@@ -682,3 +682,10 @@ fails because no new restriction on integer realization appears.
 word bound the reduced denominator
 \((3^o-2^K)/\gcd(A(w),3^o-2^K)\) beyond the restrictions supplied by its
 word alone? This is a question, not a conjectured bound or an opened branch.
+
+The authorized continuation on 22 September 2026 is recorded in
+[exact floor and denominator coupling](juggler_cycle_denominator_coupling.md).
+It proves that arbitrary finite modular-return precision does not force
+code integrality, using genuine Juggler prefixes. The question for exact
+cycles inside the finance window remains open; the automatic modular
+cancellation route is CLOSE.

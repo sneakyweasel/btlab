@@ -1,5 +1,16 @@
 [
  {
+  "id": "J-cycle-denominator-modular-return-obstruction",
+  "tag": "EXACT — HUMAN PROOF",
+  "source": "docs/problems/juggler_cycle_denominator_coupling.md",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_denominator_coupling.py"
+  ],
+  "related_conjectures": [],
+  "lean": "",
+  "statement": "Fix a,b>=1 with 3^a>2^(a+b), an integer modulus M>=1, and B. Infinitely many actual Juggler starts n>B follow O^a E^b, stay at least n throughout that prefix, and have J^(a+b)(n)>n with both endpoints congruent to 1 modulo 2M. Construction: s=1+2Mt, n=s^(2^(a-1)); the first a-1 odd steps are exact powers and subsequent roots are floor(s^(3^a/2^(j+1))). Joint equidistribution of the b+1 distinct nonintegral powers, by Weyl and Boshernitzan's classical Hardy-field criterion, gives a successful parameter set of asymptotic density 1/(2^(b+1)M). The periodic code of O^a E^b has denominator q=(3^a-2^(a+b))/gcd(3^a-2^a,2^b-1), unbounded as a grows at fixed b, and M may be any fixed power of q. Hence arbitrary prescribed congruence-return precision does not force ordinary integrality of the rational cycle code. This does not concern true endpoint equality or establish witnesses within a cycle's finance window. AI-assisted written proof with a named classical analytic input; independent human review and Lean verification remain outstanding."
+ },
+ {
   "id": "J-ooe-escape-sparse-pair-obstruction",
   "tag": "EXACT \u2014 HUMAN PROOF",
   "source": "docs/problems/juggler_ooe_escape_families.md",

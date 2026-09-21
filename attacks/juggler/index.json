@@ -5685,6 +5685,22 @@
       "nk_cluster": "Collision Factorization and local leftover-killers"
     },
     {
+      "id": "cycle_denominator_coupling",
+      "kind": "dossier_only",
+      "probe": null,
+      "test": null,
+      "dossier": "docs/problems/juggler_cycle_denominator_coupling.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": [
+        "J-cycle-denominator-modular-return-obstruction"
+      ],
+      "aliases": [],
+      "nk_cluster": "Arbitrary denominator precision admits genuine Juggler prefixes, not necessarily cycles"
+    },
+    {
       "id": "cycle_diophantine_survivors",
       "kind": "dossier_only",
       "probe": null,

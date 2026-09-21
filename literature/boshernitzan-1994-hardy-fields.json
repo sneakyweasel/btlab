@@ -11,11 +11,11 @@
   },
   "problem_area": "ergodic-equidistribution",
   "relevant_concepts": [
-    "Hardy-field unique ergodicity on the circle",
-    "polynomial-growth sequences log-away from Z[t]",
+    "Hardy-field equidistribution on the circle",
+    "polynomial-growth sequences log-away from Q[t]",
     "{f(n)} equidistribution"
   ],
   "project_relationship": "known",
   "status": "classical-source",
-  "notes": "J. Anal. Math. 62 (1994), 225-240. Circle unique ergodicity for {f(n)} when f is Hardy of polynomial growth and stays logarithmically away from integer polynomials. Applies to {n^{27/8}}; does not apply to {floor(n^{3/2})^{9/4}}, which is not a Hardy function of n. The circle case that Frantzikinakis 2009 generalizes to nilmanifolds. Cited by docs/problems/juggler_v94_rate_free.md and docs/problems/juggler_rate_free_floor_hardy.md."
+  "notes": "J. Anal. Math. 62 (1994), 225-240. Theorem 1.3: a Hardy-field function of polynomial growth gives a uniformly distributed sequence f(n) modulo 1 iff |f(x)-p(x)|/log(x) tends to infinity for every rational polynomial p. The criterion and a new proof were read on 22 September 2026 in Michael Reilly, arXiv:2606.08040v1, Theorem 1.1 and Theorem A (https://arxiv.org/html/2606.08040v1); the original publisher DOI was not accessible through the web tool in that review. Corrected the earlier notes' 'integer polynomials' to rational polynomials: that distinction matters. Applies to {n^{27/8}}; does not apply directly to {floor(n^{3/2})^{9/4}}, which is not a Hardy function. For docs/problems/juggler_cycle_denominator_coupling.md, every nonzero integer combination of the distinct powers (1+2Mt)^(3^a/2^j), j=1,...,b+1, has a nonintegral leading exponent, so Weyl's criterion supplies their joint equidistribution at fixed a,b,M. No uniform estimate in growing parameters or nested-floor theorem is imported. Also cited by docs/problems/juggler_v94_rate_free.md and docs/problems/juggler_rate_free_floor_hardy.md; this is the circle case generalized to nilmanifolds by Frantzikinakis 2009."
 }

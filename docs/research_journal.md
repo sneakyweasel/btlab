@@ -1,5 +1,42 @@
 # Research journal
 
+## 2026-09-22 -- Exact modular returns do not cancel the cycle-code denominator
+
+- **Objective:** Pursue the bridge review's next question: whether exact Juggler
+  floor closure adds a restriction on the rational Collatz cycle denominator.
+- **What was learned:** The denominator is the torsion order of the parity
+  vector in a cyclic integer cokernel. Exact floor equations give zero class
+  to a different forcing vector, with explicit nonlinear terms. A genuine
+  eleven-step prefix above the existing floor returns modulo 278 while its
+  periodic code remains 3187/139.
+- **Strongest theorem:** For every fixed expanding O^a E^b, every integer
+  modulus M and every lower bound, infinitely many actual Juggler prefixes
+  stay above their start and have distinct endpoints congruent to 1 modulo
+  2M. Their code denominators are unbounded at fixed b; M can be any fixed
+  power of that denominator. Exact perfect-power steps reduce the proof to
+  classical joint equidistribution of distinct nonintegral powers.
+- **Strongest refutation:** Congruence closure at arbitrary prescribed
+  denominator precision does not imply an integral rational cycle code.
+  This does not refute a statement requiring actual endpoint equality.
+- **Reusable machinery:** The
+  [dossier and proof](problems/juggler_cycle_denominator_coupling.md) and
+  [ten exact regression tests](../tests/research/juggler_sequence/test_cycle_denominator_coupling.py);
+  no production probe or new Lean module.
+- **Branch status:** **CLOSE** for the automatic denominator-cancellation
+  route. The promotion criterion, a restriction on actual cycle words,
+  was not met. The quantified counterfamily is retained in the ledger.
+- **Why:** The algebra keeps the nonlinear correction, and the true
+  modular-return witnesses grow with the required precision. Nothing
+  controls them inside the finance window or turns congruence into equality.
+- **Best next question:** Whether actual endpoint equality and the finance
+  size window jointly constrain the code denominator. No further branch opened.
+- **Validation:** 378 independent rational linear-system checks, 256
+  eight-step floor identities, two direct modular-return witnesses and
+  five perfect-power witnesses; ten focused tests pass. Integration,
+  theorem-ledger and branch-index tests pass, as do both generated-file
+  checks and the scoped whitespace check. The analytic infinitude proof
+  is written, AI-assisted and not Lean verified.
+
 ## 2026-09-22 -- The bridge has an exact 2-adic orbit map, and integer realization still does not transfer
 
 - **Objective:** Review the latest commits and papers for a deeper connection
