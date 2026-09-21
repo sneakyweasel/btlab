@@ -14,10 +14,41 @@ python tools/formalpedia.py build            # rebuild the index (~1s)
 python tools/formalpedia.py search <text>    # match a name or docstring
 python tools/formalpedia.py show <name>      # one declaration, in full
 python tools/formalpedia.py impact <target>  # what a change here would rebuild
+python tools/formalpedia.py jev-propose      # ask Jev which theorem each unresolved row means
+python tools/formalpedia.py jev-calibrate    # score Jev on rows whose theorem is recorded
 ```
 
 `<target>` accepts a module (`Problems.Juggler.CycleFinance`), a repo path, or a path
 fragment (`Problems/Juggler/CycleFinance.lean`).
+
+## Jev beside the scorer
+
+The proposal queue (`propose`, `review`) joins ledger rows that name no declaration to the
+theorems of their file by word overlap, and hands the confident ones to a person. Jev,
+TypeSafe's typed-judgment model, answers the same question from the statements themselves:
+`jev-propose` offers it every unresolved row's own theorems, docstring and header each, plus
+"none of these", and caches its pick and confidence in
+`data/research/formalpedia/jev_verdicts.json`. `propose` merges a cached verdict onto its row
+as a `jev` field beside the scorer's candidates, and a pick at or above `JEV_REVIEW` (0.7)
+lists the row in the digest whatever the scorer thought. Candidates are never replaced, and
+nothing is written into the ledger: Jev is a second opinion for the reviewer.
+
+```bash
+pip install -e ".[jev]"                       # typesafe-sdk; needs TYPESAFE_API_KEY
+python tools/formalpedia.py jev-calibrate --sample 40   # measure before trusting
+python tools/formalpedia.py jev-propose                # ~130 rows, a few cents
+```
+
+Both commands rewrite the verdict record and the two artifacts that merge it,
+`decl_proposals.json` and `formalpedia_decl_review.md`; commit the three together. A
+verdict is keyed on the row's statement, its file and the names offered, so a row that
+changes is asked again on the next run and shows as stale until then; `--refresh` re-asks
+everything, `--limit N` asks N rows now and keeps the rest. Calibration is stored with its
+date, model and sample in the record, and the digest quotes those figures, not a constant:
+on 21 September 2026, thirty resolved rows, Jev put the recorded declaration first 19 times
+and in its top three 26, against 16 for the scorer, and 16 of its 21 answers at or above 0.7
+were right. Most of what it got "wrong" were composite rows, where "none of these" is a fair
+reading, or a better join than the recorded one; read a disagreement before ruling on it.
 
 ## Before editing a Lean file, run `impact`
 

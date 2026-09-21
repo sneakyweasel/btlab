@@ -21,19 +21,25 @@ Usage::
     python tools/formalpedia.py search <text>  # statements and names matching text
     python tools/formalpedia.py show <name>    # one declaration
     python tools/formalpedia.py impact <path>  # modules that would be rebuilt by a change
+    python tools/formalpedia.py jev-propose    # ask Jev which theorem each unresolved row means
+    python tools/formalpedia.py jev-calibrate  # score Jev on rows whose theorem is recorded
 """
 
 from __future__ import annotations
 
 import argparse
 import collections
+import datetime
+import hashlib
 import io
 import json
+import random
 import re
 import sys
 from collections import defaultdict
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
-from typing import Any
+from typing import Any, Callable
 
 ROOT = Path(__file__).resolve().parents[1]
 FORMAL = ROOT / "formal"
@@ -42,6 +48,7 @@ INDEX = ROOT / "data" / "research" / "formalpedia" / "index.json"
 DAG = ROOT / "data" / "research" / "formalpedia" / "dag.json"
 PROPOSALS = ROOT / "data" / "research" / "formalpedia" / "decl_proposals.json"
 REVIEW = ROOT / "docs" / "research" / "formalpedia_decl_review.md"
+JEV = ROOT / "data" / "research" / "formalpedia" / "jev_verdicts.json"
 
 DECL = re.compile(
     r"^(?:private\s+|protected\s+|noncomputable\s+)*"
@@ -473,20 +480,17 @@ def calibrate(index: dict[str, Any], ledger: list[dict[str, Any]]) -> dict[str, 
     return {"resolved": len(resolved), "fires": fires, "correct": correct}
 
 
-def propose(index: dict[str, Any], ledger: list[dict[str, Any]]) -> dict[str, Any]:
-    """Rank the declarations a still-unresolved row might mean.  Proposals, never answers.
+def _queue(
+    index: dict[str, Any], ledger: list[dict[str, Any]]
+) -> list[tuple[dict[str, Any], list[dict[str, Any]] | None, list[dict[str, Any]]]]:
+    """The rows the queue is about, each with the theorems and definitions its file offers.
 
-    Measured against every resolved row: it fires on 49 and gets 42 right, so **86%**, about
-    one wrong in seven.  An earlier figure of 96% came from a calibration set of 70 rows that
-    was dominated by the easiest cases -- rows naming their theorem outright -- and overstated
-    what the scorer does on the rows that are actually left.  The misses are sibling
-    confusions: ``lsdZ_mul`` for ``D_mul``, ``q_eq_of_cube_mod`` for both ``qCubic_def`` and
-    ``q_visible_mod``, ``cycleMin_length_of_gap`` for ``cycleMin_gap_transfer``.  One in seven
-    is a queue a person reads, never a ledger write, which is why nothing here is applied.
+    A declaration already claimed by a resolved row cannot be the answer to another: one
+    theorem backs one claim, which the ledger's own collision test enforces.  Offering a
+    taken declaration wastes a reviewer's judgement on an answer that would be rejected, so
+    those are removed here, once, for the scorer and for Jev alike.  A row whose ``lean``
+    field is not a file gets ``None`` in place of its theorems.
     """
-    # A declaration already claimed by a resolved row cannot be the answer to another: one
-    # theorem backs one claim, which the ledger's own collision test enforces.  Offering a
-    # taken declaration wastes a reviewer's judgement on an answer that would be rejected.
     taken = {(lean_key(r.get("lean")), name) for r in ledger for name in row_decls(r)}
 
     by_file: dict[str, list[dict[str, Any]]] = defaultdict(list)
@@ -497,6 +501,44 @@ def propose(index: dict[str, Any], ledger: list[dict[str, Any]]) -> dict[str, An
         elif d["kind"] in ("def", "abbrev"):
             defs_by_file[d["file"]].append(d)
 
+    out: list[tuple[dict[str, Any], list[dict[str, Any]] | None, list[dict[str, Any]]]] = []
+    for row in ledger:
+        if row["tag"] != "EXACT — LEAN VERIFIED" or row.get("decl"):
+            continue
+        ref = row.get("lean")
+        if not (isinstance(ref, str) and ref.endswith(".lean")):
+            out.append((row, None, []))
+            continue
+        key = lean_key(ref)
+        cands = [d for d in by_file.get(key, []) if (key, d["name"]) not in taken]
+        out.append((row, cands, defs_by_file.get(key, [])))
+    return out
+
+
+def propose(
+    index: dict[str, Any], ledger: list[dict[str, Any]], jev: dict[str, Any] | None = None
+) -> dict[str, Any]:
+    """Rank the declarations a still-unresolved row might mean.  Proposals, never answers.
+
+    Measured against every resolved row: it fires on 49 and gets 42 right, so **86%**, about
+    one wrong in seven.  An earlier figure of 96% came from a calibration set of 70 rows that
+    was dominated by the easiest cases -- rows naming their theorem outright -- and overstated
+    what the scorer does on the rows that are actually left.  The misses are sibling
+    confusions: ``lsdZ_mul`` for ``D_mul``, ``q_eq_of_cube_mod`` for both ``qCubic_def`` and
+    ``q_visible_mod``, ``cycleMin_length_of_gap`` for ``cycleMin_gap_transfer``.  One in seven
+    is a queue a person reads, never a ledger write, which is why nothing here is applied.
+
+    ``jev`` is the verdict record ``jev_propose`` writes.  ``None`` reads the committed one,
+    so the CLI and the staleness gate see the same file; ``{}`` is the scorer alone.  A
+    cached verdict is merged onto its row only while the row's statement and its file's
+    offer are what Jev was asked about; otherwise it is marked stale and routes nothing.  A
+    pick at or above ``JEV_REVIEW`` lists the row in the review digest whatever the scorer
+    thought.  The candidates themselves stay the scorer's, untouched: Jev's answer is a
+    field beside them, never a substitute for them.
+    """
+    verdicts = load_jev() if jev is None else jev
+    prior = (verdicts or {}).get("rows", {})
+
     # ``composite`` counts only rows that *name* two or more of their own declarations, so it
     # is a lower bound and not the count.  Rows composite by content name nothing: "cmp3
     # translation, negation, and antisymmetry" is three theorems and no identifiers.  Two
@@ -506,48 +548,393 @@ def propose(index: dict[str, Any], ledger: list[dict[str, Any]]) -> dict[str, An
     # inventory of Lean names, a claim beside its instance) and share no surface form, so the
     # true count is not obtainable without reading. Do not infer one from this field.
     out: list[dict[str, Any]] = []
-    for row in ledger:
-        if row["tag"] != "EXACT — LEAN VERIFIED" or row.get("decl"):
-            continue
+    for row, cands, defs in _queue(index, ledger):
         ref = row.get("lean")
-        if not (isinstance(ref, str) and ref.endswith(".lean")):
+        if cands is None:
             out.append({"id": row["id"], "lean": ref, "why": "lean field is not a file",
                         "confidence": "low", "candidates": []})
             continue
-        cands = [d for d in by_file.get(lean_key(ref), [])
-                 if (lean_key(ref), d["name"]) not in taken]
         sw = words(row["statement"])
-        ranked = sorted(cands, key=lambda d: similarity(sw, d), reverse=True)[:3]
+        ranked_all = sorted(cands, key=lambda d: similarity(sw, d), reverse=True)
+        ranked = ranked_all[:3]
         scores = [round(similarity(sw, d), 3) for d in ranked]
         top = scores[0] if scores else 0.0
         second = scores[1] if len(scores) > 1 else 0.0
         # Definitions are ranked separately, never merged into the theorem list: admitting
         # them to one ranking displaces the true answer on 3 of the rows already resolved.
         # A row like BTA-x3-Q-def describes a `def`, and until now had no candidate at all.
-        dcands = sorted(defs_by_file.get(lean_key(ref), []),
-                        key=lambda d: similarity(sw, d), reverse=True)[:2]
+        dcands = sorted(defs, key=lambda d: similarity(sw, d), reverse=True)[:2]
         named = [t for t in dict.fromkeys(IDENT.findall(row["statement"]))
                  if any(d["name"] == t for d in cands)]
-        out.append({
+        scorer = "review" if (top >= 0.10 and top >= 1.5 * max(second, 1e-9)) else "low"
+        entry: dict[str, Any] = {
             "id": row["id"],
             "lean": ref,
             "statement": row["statement"][:400],
             "in_file": len(cands),
             "names_own": named,
             "composite": len(named) >= 2,
-            "confidence": "review" if (top >= 0.10 and top >= 1.5 * max(second, 1e-9)) else "low",
+            "confidence": scorer,
             "candidates": [{"decl": d["name"], "score": s, "trust": d["trust"], "line": d["line"]}
                            for d, s in zip(ranked, scores)],
             "definitions": [{"decl": d["name"], "score": round(similarity(sw, d), 3),
                              "line": d["line"]} for d in dcands],
-        })
+        }
+        verdict = prior.get(row["id"])
+        if verdict is not None:
+            offer = ranked_all[:JEV_SHORTLIST]
+            field = _jev_field(verdict, offer, jev_key(row, offer))
+            confident = field["verdict"] == "pick" and field["confidence"] >= JEV_REVIEW
+            field["routed"] = confident and scorer == "low"
+            if confident:
+                entry["confidence"] = "review"
+            entry["jev"] = field
+        out.append(entry)
     return {
         "note": "Proposals for human review. Calibration: 86% precision (42 of 49 fires) "
                 "against all resolved rows. Nothing here has been written into the ledger.",
         "unresolved": len(out),
         "worth_reviewing": sum(1 for o in out if o["confidence"] == "review"),
         "composite": sum(1 for o in out if o.get("composite")),
+        "jev": _jev_summary(out),
         "rows": out,
+    }
+
+
+JEV_REVIEW = 0.7
+"""Jev's confidence at or above which a pick lists its row in the review digest.
+
+A threshold is a policy, so it lives here and not in what the model returns.  Set from the
+21 September 2026 sample of thirty resolved rows: sixteen of the twenty-one answers at or
+above 0.7 named the recorded declaration, three of the nine below did.  ``jev-calibrate``
+re-measures it, and the digest quotes the stored measurement rather than this sentence.
+"""
+
+JEV_SHORTLIST = 60
+"""How many of a file's theorems Jev is offered, in the scorer's order.
+
+Two files carry more than a hundred; capping keeps a request well inside the model's
+budget for the state plus one question, and ``shortlist`` on each verdict records how many
+were offered, so a miss can be told from a truncation.
+"""
+
+JEV_PROMPT = 1
+"""Bumped whenever the instructions or the offer format change, so verdicts cached under an
+older wording are asked again rather than reused."""
+
+JEV_NONE = "none_of_these"
+
+JEV_INSTRUCTIONS = (
+    "The `claim` is an English statement from a theorem ledger. Each option is a Lean 4 "
+    "declaration from the file the ledger names, given as its docstring (if any) followed by "
+    "its statement header. Select the declaration whose formal statement is the same result "
+    "as the claim: same objects, same hypotheses, same conclusion. A sibling lemma about a "
+    "related but different object, a special case, or a helper used in the proof is not the "
+    "answer."
+)
+
+JEV_NONE_TEXT = ("No listed declaration states this claim; the claim is broader, narrower, "
+                 "or about something else.")
+
+Ask = Callable[[dict[str, Any], str, dict[str, str | None]], dict[str, Any]]
+"""What ``jev_propose`` and ``jev_calibrate`` call: ``ask(state, instructions, criteria)``
+returning ``choice``, ``confidence``, ``probabilities``, ``model`` and ``input_tokens``.
+``jev_ask`` builds the real one over the TypeSafe SDK; the tests pass a function."""
+
+
+def _clip(text: str, limit: int) -> str:
+    text = " ".join((text or "").split())
+    return text if len(text) <= limit else text[: limit - 3] + "..."
+
+
+def jev_shortlist(
+    row: dict[str, Any], cands: list[dict[str, Any]], limit: int = JEV_SHORTLIST
+) -> list[dict[str, Any]]:
+    """The theorems Jev is offered for a row: the scorer's order, capped."""
+    sw = words(row["statement"])
+    return sorted(cands, key=lambda d: similarity(sw, d), reverse=True)[:limit]
+
+
+def jev_question(
+    row: dict[str, Any], offer: list[dict[str, Any]]
+) -> tuple[dict[str, Any], dict[str, str | None]]:
+    """The state and the criteria for one row: the claim, and each theorem as its docstring
+    followed by its statement header, plus the option that none of them is the claim.
+
+    The header is shown even when a docstring exists, for the reason the digest gives: a
+    docstring can be true and still narrower than the row, and only the binders say so.
+    """
+    criteria: dict[str, str | None] = {}
+    for d in offer:
+        text = _clip(signature(d), 420)
+        if d.get("doc"):
+            text = _clip(d["doc"], 260) + " || " + text
+        criteria[d["name"]] = text or None
+    criteria[JEV_NONE] = JEV_NONE_TEXT
+    state = {"claim": row["statement"], "lean_file": row.get("lean") or "",
+             "ledger_id": row["id"]}
+    return state, criteria
+
+
+def jev_key(row: dict[str, Any], offer: list[dict[str, Any]]) -> str:
+    """What a cached verdict is good for: this statement, this file, this offer, this wording.
+
+    Names rather than docstrings, so a docstring edit in the file does not re-ask sixty
+    rows; ``--refresh`` exists for that.  A changed statement, a theorem added to or claimed
+    out of the file, or a bumped ``JEV_PROMPT`` all change the key, and the row is asked
+    again.
+    """
+    payload = [JEV_PROMPT, row["statement"], row.get("lean") or "", [d["name"] for d in offer]]
+    blob = json.dumps(payload, ensure_ascii=False).encode("utf-8")
+    return hashlib.sha256(blob).hexdigest()[:16]
+
+
+def jev_ask(model: str = "jev-latest", timeout: float = 60.0) -> Ask:
+    """The real asker: one Choice question per call over the TypeSafe SDK.
+
+    The SDK reads ``TYPESAFE_API_KEY`` from the environment.  Imported here rather than at
+    the top so that the index, the scorer and the tests need neither the package nor a key.
+    """
+    try:
+        from typesafe_sdk import Choice, TypeSafeClient
+    except ImportError as exc:  # pragma: no cover - depends on the environment
+        raise SystemExit(
+            "typesafe-sdk is not installed: pip install typesafe-sdk, then set TYPESAFE_API_KEY"
+        ) from exc
+    client = TypeSafeClient(timeout=timeout)
+
+    def ask(state: dict[str, Any], instructions: str,
+            criteria: dict[str, str | None]) -> dict[str, Any]:
+        response = client.system_one(
+            state=state,
+            questions={"pick": Choice(instructions=instructions, criteria=criteria)},
+            model=model,
+        )
+        answer = response.choices["pick"]
+        return {
+            "choice": answer.choice,
+            "confidence": float(answer.confidence),
+            "probabilities": {k: float(v) for k, v in answer.probabilities.items()},
+            "model": response.model,
+            "input_tokens": int(response.usage.input_tokens),
+        }
+
+    return ask
+
+
+def load_jev() -> dict[str, Any] | None:
+    """The committed verdict record, or ``None`` when Jev has never been asked."""
+    if not JEV.is_file():
+        return None
+    return json.load(io.open(JEV, encoding="utf-8"))
+
+
+def _run(items: list[Any], fn: Callable[[Any], Any], workers: int) -> list[Any]:
+    if workers > 1 and len(items) > 1:
+        with ThreadPoolExecutor(workers) as pool:
+            return list(pool.map(fn, items))
+    return [fn(item) for item in items]
+
+
+def _jev_record(rows: dict[str, Any], calibration: dict[str, Any] | None,
+                totals: dict[str, int]) -> dict[str, Any]:
+    models = {v["model"] for v in rows.values() if v.get("model")}
+    if calibration and calibration.get("model"):
+        models.add(calibration["model"])
+    return {
+        "note": "Jev's answers to the proposal queue, cached by row: which of the file's "
+                "theorems states the row, or none of them. Advisory, like the scorer: "
+                "propose() merges these onto its rows, and nothing here is written into "
+                "the ledger.",
+        "asked": datetime.date.today().isoformat(),
+        "models": sorted(models),
+        "calibration": calibration,
+        "totals": totals,
+        "rows": dict(sorted(rows.items())),
+    }
+
+
+def jev_propose(
+    index: dict[str, Any], ledger: list[dict[str, Any]], ask: Ask,
+    cached: dict[str, Any] | None = None, refresh: bool = False,
+    limit: int | None = None, workers: int = 4,
+) -> dict[str, Any]:
+    """Ask Jev, once per unresolved row, which of its file's theorems states the row.
+
+    Every row the scorer queues is asked, not only the ones the scorer is confident about:
+    on the 21 September 2026 sample the scorer fired on ten of thirty rows and Jev put the
+    recorded declaration first on nineteen, so the rows the scorer rates low are where Jev
+    earns its keep.  Verdicts are cached under ``jev_key``: a row whose key still matches is
+    reused unless ``refresh``, a row resolved since is dropped, and ``limit`` caps how many
+    are asked in one run, the rest keeping whatever verdict they had.  Cost is input tokens
+    only, reported in ``totals``.
+    """
+    prior = (cached or {}).get("rows", {})
+    rows: dict[str, Any] = {}
+    pending: list[tuple[dict[str, Any], list[dict[str, Any]], str, int, Any]] = []
+    for row, cands, _defs in _queue(index, ledger):
+        if not cands:
+            continue
+        offer = jev_shortlist(row, cands)
+        key = jev_key(row, offer)
+        old = prior.get(row["id"])
+        if old is not None and old.get("key") == key and not refresh:
+            rows[row["id"]] = old
+            continue
+        pending.append((row, offer, key, len(cands), old))
+    todo = pending if limit is None else pending[:limit]
+    for row, _offer, _key, _in_file, old in pending[len(todo):]:
+        if old is not None:
+            rows[row["id"]] = old
+    today = datetime.date.today().isoformat()
+
+    def one(
+        item: tuple[dict[str, Any], list[dict[str, Any]], str, int, Any]
+    ) -> tuple[str, dict[str, Any], int]:
+        row, offer, key, in_file, _old = item
+        state, criteria = jev_question(row, offer)
+        v = ask(state, JEV_INSTRUCTIONS, criteria)
+        ranked = sorted(v["probabilities"].items(), key=lambda kv: (-kv[1], kv[0]))[:5]
+        verdict = {
+            "key": key,
+            "model": v["model"],
+            "asked": today,
+            "choice": v["choice"],
+            "confidence": round(float(v["confidence"]), 3),
+            "probabilities": {k: round(float(p), 3) for k, p in ranked},
+            "shortlist": len(offer),
+            "in_file": in_file,
+        }
+        return row["id"], verdict, int(v.get("input_tokens", 0))
+
+    tokens = 0
+    for rid, verdict, used in _run(todo, one, workers):
+        rows[rid] = verdict
+        tokens += used
+    totals = {"answered": len(rows), "asked_now": len(todo),
+              "reused": len(rows) - len(todo), "input_tokens": tokens}
+    return _jev_record(rows, (cached or {}).get("calibration"), totals)
+
+
+def jev_calibrate(
+    index: dict[str, Any], ledger: list[dict[str, Any]], ask: Ask,
+    sample: int | None = None, seed: int = 0, workers: int = 4,
+) -> dict[str, Any]:
+    """Score Jev the way ``calibrate`` scores the scorer: on rows whose answer is recorded.
+
+    Same population -- rows naming exactly one declaration, in a file offering at least two
+    theorems -- and the recorded declaration is offered like any other, so the measurement is
+    of the same question ``jev_propose`` asks.  Stored with its date, model, sample and seed
+    in the verdict record; the digest quotes the stored figures and never a hardcoded one.
+    """
+    by_file: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    for d in index["declarations"]:
+        if d["kind"] in ("theorem", "lemma"):
+            by_file[d["file"]].append(d)
+    resolved = [r for r in ledger if len(row_decls(r)) == 1]
+    eligible: list[tuple[dict[str, Any], list[dict[str, Any]]]] = []
+    for row in resolved:
+        cands = by_file.get(lean_key(row.get("lean")), [])
+        if len(cands) >= 2 and any(d["name"] == row_decls(row)[0] for d in cands):
+            eligible.append((row, cands))
+    chosen = eligible
+    if sample is not None and sample < len(eligible):
+        chosen = random.Random(seed).sample(eligible, sample)
+
+    def one(item: tuple[dict[str, Any], list[dict[str, Any]]]) -> dict[str, Any]:
+        row, cands = item
+        truth = row_decls(row)[0]
+        offer = jev_shortlist(row, cands)
+        state, criteria = jev_question(row, offer)
+        v = ask(state, JEV_INSTRUCTIONS, criteria)
+        ranked = [k for k, _ in sorted(v["probabilities"].items(),
+                                       key=lambda kv: (-kv[1], kv[0]))]
+        sw = words(row["statement"])
+        scorer = sorted(cands, key=lambda d: similarity(sw, d), reverse=True)[0]["name"]
+        return {
+            "id": row["id"], "truth": truth, "choice": v["choice"],
+            "confidence": round(float(v["confidence"]), 3),
+            "top3": truth in ranked[:3], "offered": any(d["name"] == truth for d in offer),
+            "scorer": scorer, "model": v["model"],
+            "input_tokens": int(v.get("input_tokens", 0)),
+        }
+
+    results = _run(chosen, one, workers)
+    confident = [r for r in results if r["confidence"] >= JEV_REVIEW]
+    misses = [{"id": r["id"], "truth": r["truth"], "choice": r["choice"],
+               "confidence": r["confidence"], "scorer": r["scorer"]}
+              for r in results if r["choice"] != r["truth"]]
+    return {
+        "asked": datetime.date.today().isoformat(),
+        "model": sorted({r["model"] for r in results})[-1] if results else None,
+        "resolved": len(resolved),
+        "eligible": len(eligible),
+        "sampled": len(results),
+        "seed": seed,
+        "top1": sum(r["choice"] == r["truth"] for r in results),
+        "top3": sum(r["top3"] for r in results),
+        "none": sum(r["choice"] == JEV_NONE for r in results),
+        "truth_not_offered": sum(not r["offered"] for r in results),
+        "confident": len(confident),
+        "confident_correct": sum(r["choice"] == r["truth"] for r in confident),
+        "scorer_top1": sum(r["scorer"] == r["truth"] for r in results),
+        "input_tokens": sum(r["input_tokens"] for r in results),
+        "misses": sorted(misses, key=lambda m: (-m["confidence"], m["id"])),
+    }
+
+
+def _jev_field(verdict: dict[str, Any], offer: list[dict[str, Any]], key: str) -> dict[str, Any]:
+    """A cached verdict as the row will carry it, checked against the current offer.
+
+    Four states.  ``pick``: a theorem this file offers now.  ``none``: Jev chose the option
+    that no listed declaration states the claim.  ``stale``: the row or the offer changed
+    since Jev was asked.  ``not_a_candidate``: a name the offer does not hold -- a theorem
+    claimed since, a renamed one, or an invention -- which is ignored rather than proposed,
+    because the digest must never show a candidate the file does not offer.
+    """
+    names = {d["name"] for d in offer}
+    choice = verdict.get("choice")
+    if verdict.get("key") != key:
+        state, decl = "stale", None
+    elif choice == JEV_NONE:
+        state, decl = "none", None
+    elif choice in names:
+        state, decl = "pick", choice
+    else:
+        state, decl = "not_a_candidate", None
+    return {
+        "verdict": state,
+        "decl": decl,
+        "choice": choice,
+        "confidence": float(verdict.get("confidence", 0.0)),
+        "probabilities": verdict.get("probabilities", {}),
+        "model": verdict.get("model"),
+        "asked": verdict.get("asked"),
+    }
+
+
+def _jev_summary(rows: list[dict[str, Any]]) -> dict[str, Any] | None:
+    carrying = [r for r in rows if r.get("jev")]
+    if not carrying:
+        return None
+    fields = [r["jev"] for r in carrying]
+    picks = [j for j in fields if j["verdict"] == "pick"]
+    dates = [j["asked"] for j in fields if j.get("asked")]
+    return {
+        "models": sorted({j["model"] for j in fields if j.get("model")}),
+        "asked": max(dates) if dates else None,
+        "answered": len(fields),
+        "picks": len(picks),
+        "none": sum(j["verdict"] == "none" for j in fields),
+        "stale": sum(j["verdict"] == "stale" for j in fields),
+        "not_a_candidate": sum(j["verdict"] == "not_a_candidate" for j in fields),
+        "confident": sum(j["confidence"] >= JEV_REVIEW for j in picks),
+        "agree_with_scorer": sum(
+            1 for r in carrying
+            if r["jev"]["verdict"] == "pick" and r["candidates"]
+            and r["jev"]["decl"] == r["candidates"][0]["decl"]
+        ),
+        "routed": sum(1 for j in fields if j.get("routed")),
     }
 
 
@@ -571,15 +958,60 @@ def signature(decl: dict[str, Any], limit: int = 8) -> str:
     return text.split(":=")[0].rstrip() if ":=" in text else text
 
 
-def review_digest(index: dict[str, Any], ledger: list[dict[str, Any]]) -> str:
+def _jev_lines(row: dict[str, Any], top: dict[str, Any],
+               docs: dict[tuple[str, str], dict[str, Any]]) -> list[str]:
+    """Jev's answer for one digest entry, beside the scorer's candidate.
+
+    A disagreement prints Jev's declaration in full, docstring and header, because the
+    reviewer's question is the same for both candidates and needs the same evidence.
+    """
+    jv = row.get("jev")
+    if not jv:
+        return []
+    conf = jv["confidence"]
+    out: list[str] = []
+    if jv["verdict"] == "pick" and jv["decl"] == top["decl"]:
+        out += [f"**Jev.** picks `{jv['decl']}` as well, at {conf}.", ""]
+    elif jv["verdict"] == "pick":
+        other = docs.get((lean_key(row["lean"]), jv["decl"]))
+        trust = other["trust"] if other else "?"
+        line = other["line"] if other else "?"
+        out += [f"**Jev.** picks `{jv['decl']}` at {conf}, not the scorer's candidate.", "",
+                f"**Jev's candidate.** `{jv['decl']}` &mdash; {trust}-checked, "
+                f"`{row['lean']}:{line}`", ""]
+        if other and other.get("doc"):
+            out += [f"> {other['doc']}", ""]
+        shown = (signature(other) if other else "") or "(could not read the declaration)"
+        out += ["```lean", shown, "```", ""]
+    elif jv["verdict"] == "none":
+        out += [f"**Jev.** none of these, at {conf}.  Read the row for a claim broader than any "
+                "one declaration here, or a declaration narrower than the row.", ""]
+    elif jv["verdict"] == "stale":
+        out += ["**Jev.** answered an earlier version of this row or of its file; rerun "
+                "`jev-propose`.", ""]
+    else:
+        out += [f"**Jev.** named `{jv['choice']}`, which this file does not offer; ignored.", ""]
+    if jv.get("routed"):
+        out += ["*The scorer rated this row low; it is listed on Jev's confidence.*", ""]
+    return out
+
+
+def review_digest(
+    index: dict[str, Any], ledger: list[dict[str, Any]], jev: dict[str, Any] | None = None
+) -> str:
     """The confident half of the proposal queue, laid out to be answered in one sitting.
 
     The JSON queue has everything except the thing the decision needs: what the candidate
     theorem actually says.  Deciding "is this row that declaration?" means reading the row's
     statement beside the declaration's docstring, so this puts them adjacent and drops
     everything else.
+
+    When Jev has been asked, each entry also carries its answer beside the scorer's, and a
+    row Jev is confident about is listed even where the scorer rated it low.  ``jev`` is the
+    verdict record, ``None`` for the committed one, as in ``propose``.
     """
     docs = {(d["file"], d["name"]): d for d in index["declarations"]}
+    verdicts = load_jev() if jev is None else jev
     cal = calibrate(index, ledger)
     pct = round(100 * cal["correct"] / cal["fires"]) if cal["fires"] else 0
     out = [
@@ -603,10 +1035,34 @@ def review_digest(index: dict[str, Any], ledger: list[dict[str, Any]]) -> str:
         "its `n : ℕ` is the tell, and a sibling proves the rest.  That is why the statement is",
         "printed below every candidate, docstring or not.",
         "",
+    ]
+    proposals = propose(index, ledger, jev=verdicts)
+    s = proposals.get("jev")
+    if s:
+        out += [
+            f"Jev ({', '.join(s['models'])}, last asked {s['asked']}) answered {s['answered']} of",
+            f"the unresolved rows: {s['picks']} picks and {s['none']} \"none of these\".",
+            f"{s['agree_with_scorer']} of the picks are the scorer's own first candidate, and",
+            f"{s['confident']} are at or above {JEV_REVIEW} confidence.  A confident pick lists",
+            "a row here whatever the scorer thought, and every entry shows Jev's answer beside",
+            "the scorer's.  Jev returns a probability, not a reading: a second opinion for the",
+            "reviewer, never a ledger write.",
+            "",
+        ]
+    c = (verdicts or {}).get("calibration")
+    if c:
+        out += [
+            f"Measured on {c['sampled']} resolved rows on {c['asked']} ({c['model']}): the",
+            f"recorded declaration first {c['top1']} times, in its top three {c['top3']} times,",
+            f"right {c['confident_correct']} of {c['confident']} times at or above {JEV_REVIEW}",
+            f"confidence.  The scorer's first candidate was right {c['scorer_top1']} times on the",
+            "same rows.",
+            "",
+        ]
+    out += [
         "Answer by adding `decl` and `lean_trust` to the row in `docs/theory/theorem_ledger.json`.",
         "",
     ]
-    proposals = propose(index, ledger)
     shown = 0
     for row in proposals["rows"]:
         if row["confidence"] != "review" or not row["candidates"]:
@@ -633,6 +1089,7 @@ def review_digest(index: dict[str, Any], ledger: list[dict[str, Any]]) -> str:
         out.append((signature(decl) if decl else "") or "(could not read the declaration)")
         out.append("```")
         out.append("")
+        out.extend(_jev_lines(row, top, docs))
         if row.get("names_own"):
             out.append(f"*Statement names: {', '.join('`' + n + '`' for n in row['names_own'])}*")
             out.append("")
@@ -683,6 +1140,18 @@ def _resolve(index: dict[str, Any], target: str) -> str | None:
     return None
 
 
+def _write_jev_artifacts(index: dict[str, Any], ledger: list[dict[str, Any]],
+                         record: dict[str, Any]) -> None:
+    """The verdict record, then the two artifacts that merge it, in that order."""
+    JEV.parent.mkdir(parents=True, exist_ok=True)
+    JEV.write_text(render(record), encoding="utf-8")
+    PROPOSALS.write_text(render(propose(index, ledger, jev=record)), encoding="utf-8")
+    REVIEW.parent.mkdir(parents=True, exist_ok=True)
+    REVIEW.write_text(review_digest(index, ledger, jev=record), encoding="utf-8")
+    for path in (JEV, PROPOSALS, REVIEW):
+        print(f"wrote {path.relative_to(ROOT).as_posix()}")
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description="A theorem index over the Lean sources.")
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -698,7 +1167,58 @@ def main(argv: list[str] | None = None) -> int:
     sub.add_parser("propose", help="rank declarations for rows that name none")
     sub.add_parser("papers", help="each manuscript's reachable trust surface")
     sub.add_parser("review", help="write the confident proposals as a readable digest")
+    p = sub.add_parser("jev-propose",
+                       help="ask Jev which theorem each unresolved row means; verdicts are cached")
+    p.add_argument("--model", default="jev-latest")
+    p.add_argument("--refresh", action="store_true",
+                   help="ask again where a cached verdict still matches")
+    p.add_argument("--limit", type=int, default=None, help="ask about at most this many rows now")
+    p.add_argument("--workers", type=int, default=4)
+    p = sub.add_parser("jev-calibrate",
+                       help="score Jev against rows whose declaration is recorded")
+    p.add_argument("--model", default="jev-latest")
+    p.add_argument("--sample", type=int, default=None,
+                   help="rows to draw; every eligible row if omitted")
+    p.add_argument("--seed", type=int, default=0)
+    p.add_argument("--workers", type=int, default=4)
     args = ap.parse_args(argv)
+
+    if args.cmd == "jev-propose":
+        index = load()
+        ledger = json.load(io.open(LEDGER, encoding="utf-8"))
+        record = jev_propose(index, ledger, jev_ask(args.model), cached=load_jev(),
+                             refresh=args.refresh, limit=args.limit, workers=args.workers)
+        _write_jev_artifacts(index, ledger, record)
+        t = record["totals"]
+        print(f"{t['answered']} rows carry a verdict: asked {t['asked_now']} now "
+              f"({t['input_tokens']} input tokens), reused {t['reused']}")
+        merged = propose(index, ledger, jev=record)
+        s = merged["jev"] or {}
+        print(f"  {s.get('picks', 0)} picks ({s.get('confident', 0)} at or above {JEV_REVIEW}), "
+              f"{s.get('none', 0)} none of these, {s.get('agree_with_scorer', 0)} agreeing with "
+              f"the scorer; {merged['worth_reviewing']} rows now worth reviewing")
+        return 0
+
+    if args.cmd == "jev-calibrate":
+        index = load()
+        ledger = json.load(io.open(LEDGER, encoding="utf-8"))
+        cal = jev_calibrate(index, ledger, jev_ask(args.model), sample=args.sample,
+                            seed=args.seed, workers=args.workers)
+        cached = load_jev()
+        record = _jev_record((cached or {}).get("rows", {}), cal,
+                             (cached or {}).get("totals", {"answered": 0, "asked_now": 0,
+                                                            "reused": 0, "input_tokens": 0}))
+        _write_jev_artifacts(index, ledger, record)
+        print(f"{cal['sampled']} of {cal['eligible']} eligible rows ({cal['model']}, seed "
+              f"{cal['seed']}, {cal['input_tokens']} input tokens)")
+        print(f"  recorded declaration first: {cal['top1']}; in the top three: {cal['top3']}; "
+              f"none of these: {cal['none']}; not offered: {cal['truth_not_offered']}")
+        print(f"  at or above {JEV_REVIEW}: {cal['confident_correct']} of {cal['confident']} "
+              f"right; scorer first candidate right: {cal['scorer_top1']}")
+        for m in cal["misses"]:
+            print(f"    miss {m['id']}: recorded {m['truth']}, Jev {m['choice']} "
+                  f"({m['confidence']}), scorer {m['scorer']}")
+        return 0
 
     if args.cmd == "build":
         index = build()

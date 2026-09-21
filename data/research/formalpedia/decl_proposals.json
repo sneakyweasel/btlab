@@ -1,5 +1,19 @@
 {
   "composite": 61,
+  "jev": {
+    "agree_with_scorer": 32,
+    "answered": 129,
+    "asked": "2026-09-21",
+    "confident": 48,
+    "models": [
+      "jev-1.13.0"
+    ],
+    "none": 47,
+    "not_a_candidate": 0,
+    "picks": 82,
+    "routed": 38,
+    "stale": 0
+  },
   "note": "Proposals for human review. Calibration: 86% precision (42 of 49 fires) against all resolved rows. Nothing here has been written into the ledger.",
   "rows": [
     {
@@ -24,7 +38,7 @@
         }
       ],
       "composite": true,
-      "confidence": "low",
+      "confidence": "review",
       "definitions": [
         {
           "decl": "IsMinimalCertificate",
@@ -39,6 +53,22 @@
       ],
       "id": "J-paper-b-lemma-5-1-minimal-certificates",
       "in_file": 17,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "lemma51_complete",
+        "confidence": 0.93,
+        "decl": "lemma51_complete",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "certE_is": 0.0,
+          "certOE_is": 0.0,
+          "lemma51": 0.04,
+          "lemma51_complete": 0.93,
+          "none_of_these": 0.03
+        },
+        "routed": true,
+        "verdict": "pick"
+      },
       "lean": "Problems/Juggler/PaperBCertificates.lean",
       "names_own": [
         "certificate_measures_sum",
@@ -84,6 +114,22 @@
       ],
       "id": "J-paper-b-five-step-count-assembly",
       "in_file": 31,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "none_of_these",
+        "confidence": 0.63,
+        "decl": null,
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "card_allWords_nat": 0.0,
+          "certifiedCount_five_eq": 0.02,
+          "five_step_density": 0.05,
+          "five_step_error_assembly": 0.28,
+          "none_of_these": 0.65
+        },
+        "routed": false,
+        "verdict": "none"
+      },
       "lean": "Problems/Juggler/PaperBFiveStepDensity.lean",
       "names_own": [
         "five_cylinders_cover",
@@ -132,6 +178,22 @@
       ],
       "id": "J-paper-b-certificates-extend-to-length-seven",
       "in_file": 31,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "none_of_these",
+        "confidence": 0.63,
+        "decl": null,
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "certifiedWordCount_seven": 0.06,
+          "minimal_certificates_seven": 0.01,
+          "no_minimal_certificate_six": 0.01,
+          "none_of_these": 0.65,
+          "seven_step_density": 0.26
+        },
+        "routed": false,
+        "verdict": "none"
+      },
       "lean": "Problems/Juggler/PaperBFiveStepDensity.lean",
       "names_own": [
         "no_minimal_certificate_six",
@@ -164,7 +226,7 @@
         }
       ],
       "composite": true,
-      "confidence": "low",
+      "confidence": "review",
       "definitions": [
         {
           "decl": "CertWindow",
@@ -179,6 +241,22 @@
       ],
       "id": "J-paper-b-certificate-length-window",
       "in_file": 22,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "minimalCert_exists_iff",
+        "confidence": 0.86,
+        "decl": "minimalCert_exists_iff",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "blockWord_isMinimalCertificate": 0.0,
+          "carrying_lengths_head": 0.0,
+          "minimalCert_exists_iff": 0.88,
+          "minimalCert_exists_iff_natLog": 0.02,
+          "none_of_these": 0.1
+        },
+        "routed": true,
+        "verdict": "pick"
+      },
       "lean": "Problems/Juggler/PaperBCertificateLengths.lean",
       "names_own": [
         "certWindow_unique",
@@ -212,7 +290,7 @@
         }
       ],
       "composite": true,
-      "confidence": "low",
+      "confidence": "review",
       "definitions": [
         {
           "decl": "onBarrierWords",
@@ -227,6 +305,22 @@
       ],
       "id": "J-paper-b-survivor-certificate-recursion",
       "in_file": 24,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "neverNegCount_add_minimalCertCount",
+        "confidence": 0.86,
+        "decl": "neverNegCount_add_minimalCertCount",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "certifiedWordCount_succ": 0.0,
+          "density_flat_eight_to_nine": 0.0,
+          "density_flat_five_to_six": 0.0,
+          "neverNegCount_add_minimalCertCount": 0.88,
+          "none_of_these": 0.12
+        },
+        "routed": true,
+        "verdict": "pick"
+      },
       "lean": "Problems/Juggler/PaperBCertificateRecursion.lean",
       "names_own": [
         "neverNegCount_add_minimalCertCount",
@@ -283,6 +377,22 @@
       ],
       "id": "BT-Pn3",
       "in_file": 7,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "evalPoly_reverse_three",
+        "confidence": 0.57,
+        "decl": "evalPoly_reverse_three",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "evalAt_three": 0.03,
+          "evalPoly_cons": 0.0,
+          "evalPoly_nil": 0.0,
+          "evalPoly_reverse_three": 0.63,
+          "none_of_these": 0.34
+        },
+        "routed": false,
+        "verdict": "pick"
+      },
       "lean": "Operators/Polynomial.lean",
       "names_own": [],
       "statement": "P_n(3) = n"
@@ -320,6 +430,22 @@
       "definitions": [],
       "id": "C-lift-zero",
       "in_file": 6,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "none_of_these",
+        "confidence": 0.68,
+        "decl": null,
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "bounded_iff_eventuallyZero": 0.17,
+          "eventuallyConstant_iff_eventuallyZero": 0.09,
+          "lift_nonnegative": 0.0,
+          "mixedRadix_reconstruction": 0.01,
+          "none_of_these": 0.73
+        },
+        "routed": false,
+        "verdict": "none"
+      },
       "lean": "Problems/Collatz/Lift.lean",
       "names_own": [],
       "statement": "Positive integer realizer iff eventual zero lift."
@@ -350,6 +476,22 @@
       "definitions": [],
       "id": "C-center",
       "in_file": 4,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "affineCenter_start_numerator",
+        "confidence": 0.39,
+        "decl": "affineCenter_start_numerator",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "affineCenter_endpoint_numerator": 0.08,
+          "affineCenter_scaling_cross": 0.08,
+          "affineCenter_start_numerator": 0.51,
+          "endpointRepresentative_le": 0.0,
+          "none_of_these": 0.33
+        },
+        "routed": false,
+        "verdict": "pick"
+      },
       "lean": "Problems/Collatz/Center.lean",
       "names_own": [],
       "statement": "Affine-center numerator identities"
@@ -386,6 +528,22 @@
       ],
       "id": "C-cycles",
       "in_file": 7,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "none_of_these",
+        "confidence": 0.77,
+        "decl": null,
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "candidate_mul_identity": 0.01,
+          "dvd_of_periodic_fixed_point": 0.08,
+          "expanding_excludes_positive_candidate": 0.07,
+          "none_of_these": 0.8,
+          "rotated_candidate": 0.03
+        },
+        "routed": false,
+        "verdict": "none"
+      },
       "lean": "Problems/Collatz/Cycles.lean",
       "names_own": [],
       "statement": "Expanding periods excluded; D divides C; even amplitude"
@@ -412,7 +570,7 @@
         }
       ],
       "composite": false,
-      "confidence": "low",
+      "confidence": "review",
       "definitions": [
         {
           "decl": "IZ",
@@ -427,6 +585,22 @@
       ],
       "id": "BTC-P-band",
       "in_file": 10,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "P_left_zero",
+        "confidence": 0.86,
+        "decl": "P_left_zero",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "D_after_P": 0.0,
+          "D_after_integralWord": 0.0,
+          "P_idem": 0.04,
+          "P_left_zero": 0.87,
+          "none_of_these": 0.09
+        },
+        "routed": true,
+        "verdict": "pick"
+      },
       "lean": "BTCalculus/Integral.lean",
       "names_own": [],
       "statement": "P_a \u2218 P_b = P_a"
@@ -468,6 +642,22 @@
       ],
       "id": "BTC-trit-kleene",
       "in_file": 17,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "none_of_these",
+        "confidence": 0.78,
+        "decl": null,
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "absorb_max_min": 0.0,
+          "absorb_min_max": 0.0,
+          "kleene": 0.06,
+          "none_of_these": 0.8,
+          "not_boolean_zero": 0.14
+        },
+        "routed": false,
+        "verdict": "none"
+      },
       "lean": "BTCalculus/Trit.lean",
       "names_own": [],
       "statement": "Trit is a 3-element Kleene algebra and not a Boolean algebra"
@@ -504,6 +694,22 @@
       ],
       "id": "BTC-cmp3",
       "in_file": 8,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "none_of_these",
+        "confidence": 0.71,
+        "decl": null,
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "cmp3_antisym": 0.19,
+          "cmp3_mul_neg": 0.01,
+          "cmp3_neg": 0.03,
+          "cmp3_translate": 0.04,
+          "none_of_these": 0.73
+        },
+        "routed": false,
+        "verdict": "none"
+      },
       "lean": "BTCalculus/Comparison.lean",
       "names_own": [],
       "statement": "cmp3 translation, negation, and antisymmetry"
@@ -545,6 +751,22 @@
       ],
       "id": "BTC-select3",
       "in_file": 8,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "select3_represents",
+        "confidence": 0.96,
+        "decl": "select3_represents",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "absZ_eq": 0.0,
+          "maxZ_eq": 0.0,
+          "minZ_eq": 0.0,
+          "none_of_these": 0.03,
+          "select3_represents": 0.97
+        },
+        "routed": false,
+        "verdict": "pick"
+      },
       "lean": "BTCalculus/Select.lean",
       "names_own": [],
       "statement": "select3 represents every Trit\u2192\u2124 map; abs/min/max"
@@ -586,6 +808,22 @@
       ],
       "id": "BTN-divmod",
       "in_file": 32,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "sub_lsd_eq_three_DZ",
+        "confidence": 0.46,
+        "decl": "sub_lsd_eq_three_DZ",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "DZ_carry_lower": 0.01,
+          "encodeZ_of_ne_zero": 0.01,
+          "none_of_these": 0.46,
+          "not_isTrit_natAbs": 0.02,
+          "sub_lsd_eq_three_DZ": 0.48
+        },
+        "routed": false,
+        "verdict": "pick"
+      },
       "lean": "BTCalculus/Normalization.lean",
       "names_own": [],
       "statement": "unique trit residue c = 3q + r"
@@ -627,6 +865,22 @@
       ],
       "id": "BTN-nf",
       "in_file": 32,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "none_of_these",
+        "confidence": 0.77,
+        "decl": null,
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "encodeZ_normalize": 0.13,
+          "encodeZ_trits": 0.01,
+          "none_of_these": 0.79,
+          "normalizeLSD_trits": 0.06,
+          "normalizeLSD_value": 0.01
+        },
+        "routed": false,
+        "verdict": "none"
+      },
       "lean": "BTCalculus/Normalization.lean",
       "names_own": [],
       "statement": "normalize_LSD(P) = encodeZ(value(P)); result is all trits"
@@ -668,6 +922,22 @@
       ],
       "id": "BTN-lex",
       "in_file": 32,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "step_lex_zero",
+        "confidence": 0.42,
+        "decl": "step_lex_zero",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "DZ_carry_lower": 0.0,
+          "none_of_these": 0.13,
+          "stepZero_lex": 0.34,
+          "step_lex_succ": 0.09,
+          "step_lex_zero": 0.44
+        },
+        "routed": false,
+        "verdict": "pick"
+      },
       "lean": "BTCalculus/Normalization.lean",
       "names_own": [],
       "statement": "LSD step strictly decreases the abs-lex rank"
@@ -709,6 +979,22 @@
       ],
       "id": "BTJ-hatD",
       "in_file": 16,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "hatDRaw_value",
+        "confidence": 0.58,
+        "decl": "hatDRaw_value",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "hatDRaw_two_correct": 0.12,
+          "hatDRaw_value": 0.61,
+          "m14_witness_dCoeff": 0.01,
+          "m14_witness_naive_ne": 0.14,
+          "none_of_these": 0.12
+        },
+        "routed": false,
+        "verdict": "pick"
+      },
       "lean": "BTCalculus/NormalizedDerivative.lean",
       "names_own": [],
       "statement": "value(hatD_raw(P))=D(value(P)); naive D_coeff fails on [2]"
@@ -750,6 +1036,22 @@
       ],
       "id": "BTJ-section",
       "in_file": 30,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "section_reconstruction_eval",
+        "confidence": 0.52,
+        "decl": "section_reconstruction_eval",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "eval_sectionDeriv": 0.01,
+          "none_of_these": 0.02,
+          "powShift_eval": 0.01,
+          "section_reconstruction": 0.41,
+          "section_reconstruction_eval": 0.55
+        },
+        "routed": false,
+        "verdict": "pick"
+      },
       "lean": "BTCalculus/Polynomial.lean",
       "names_own": [],
       "statement": "f(a+3x)=rho_a(f)+3 sectionDeriv_a f(x)"
@@ -791,6 +1093,22 @@
       ],
       "id": "BTJ-degree",
       "in_file": 30,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "sectionDeriv_leadingCoeff",
+        "confidence": 0.54,
+        "decl": "sectionDeriv_leadingCoeff",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "C_add_three_mul_X_ne_zero": 0.0,
+          "coeff_C_add_three_mul_X": 0.0,
+          "none_of_these": 0.39,
+          "sectionDeriv_leadingCoeff": 0.56,
+          "sectionDeriv_natDegree": 0.04
+        },
+        "routed": false,
+        "verdict": "pick"
+      },
       "lean": "BTCalculus/Polynomial.lean",
       "names_own": [],
       "statement": "deg sectionDeriv f = deg f for d>=1; LC = 3^{d-1} LC(f)"
@@ -817,7 +1135,7 @@
         }
       ],
       "composite": false,
-      "confidence": "low",
+      "confidence": "review",
       "definitions": [
         {
           "decl": "equivK",
@@ -832,6 +1150,22 @@
       ],
       "id": "BTA-equiv",
       "in_file": 12,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "equivK_iff_outputs",
+        "confidence": 0.71,
+        "decl": "equivK_iff_outputs",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "equivK_iff_outputs": 0.74,
+          "equivK_refl": 0.01,
+          "equivK_succ_iff": 0.01,
+          "equivK_trans": 0.03,
+          "none_of_these": 0.21
+        },
+        "routed": true,
+        "verdict": "pick"
+      },
       "lean": "BTCalculus/Residual.lean",
       "names_own": [],
       "statement": "finite-horizon equiv_k is an equivalence; recursive iff output words"
@@ -873,6 +1207,22 @@
       ],
       "id": "BTA-x2-raw",
       "in_file": 47,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "none_of_these",
+        "confidence": 0.75,
+        "decl": null,
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "equivK_quad": 0.02,
+          "none_of_these": 0.76,
+          "residualAlong_Xsq": 0.13,
+          "two_mul_packWord_le": 0.06,
+          "xsq_equivK_iff_eq": 0.02
+        },
+        "routed": false,
+        "verdict": "none"
+      },
       "lean": "BTCalculus/Quadratic.lean",
       "names_own": [],
       "statement": "R_k(x^2)=(3^k-1)/2"
@@ -914,6 +1264,22 @@
       ],
       "id": "BTA-x2-mn",
       "in_file": 47,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "none_of_these",
+        "confidence": 0.89,
+        "decl": null,
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "C_step": 0.01,
+          "equivK_quad": 0.01,
+          "none_of_these": 0.9,
+          "residualAlong_Xsq": 0.04,
+          "two_mul_packWord_le": 0.03
+        },
+        "routed": false,
+        "verdict": "none"
+      },
       "lean": "BTCalculus/Quadratic.lean",
       "names_own": [],
       "statement": "M_k(x^2)=R_k(x^2)=(3^k-1)/2 for all k>=1"
@@ -940,7 +1306,7 @@
         }
       ],
       "composite": false,
-      "confidence": "low",
+      "confidence": "review",
       "definitions": [
         {
           "decl": "quad",
@@ -955,6 +1321,22 @@
       ],
       "id": "BTA-x2-quad-form",
       "in_file": 47,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "residualAlong_Xsq",
+        "confidence": 0.99,
+        "decl": "residualAlong_Xsq",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "C_step": 0.0,
+          "X_sq_eq_quad": 0.0,
+          "coeff_quad_one": 0.0,
+          "coeff_quad_two": 0.0,
+          "residualAlong_Xsq": 1.0
+        },
+        "routed": true,
+        "verdict": "pick"
+      },
       "lean": "BTCalculus/Quadratic.lean",
       "names_own": [],
       "statement": "residual of x^2 along w is 3^|w| x^2 + 2 p(w) x + DZ^|w|(p(w)^2)"
@@ -981,7 +1363,7 @@
         }
       ],
       "composite": false,
-      "confidence": "low",
+      "confidence": "review",
       "definitions": [
         {
           "decl": "quad",
@@ -996,6 +1378,22 @@
       ],
       "id": "BTA-quad-mod",
       "in_file": 47,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "equivK_quad",
+        "confidence": 1.0,
+        "decl": "equivK_quad",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "C_step": 0.0,
+          "X_sq_eq_quad": 0.0,
+          "coeff_quad_one": 0.0,
+          "coeff_quad_two": 0.0,
+          "equivK_quad": 1.0
+        },
+        "routed": true,
+        "verdict": "pick"
+      },
       "lean": "BTCalculus/Quadratic.lean",
       "names_own": [],
       "statement": "degree <= 2 polynomials are equiv_k iff coefficients agree mod 3^k"
@@ -1037,6 +1435,22 @@
       ],
       "id": "BTA-x3-merge",
       "in_file": 33,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "none_of_these",
+        "confidence": 0.56,
+        "decl": null,
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "DZ_neg_one": 0.0,
+          "none_of_these": 0.58,
+          "x3_first_merge_equiv_two": 0.18,
+          "x3_first_merge_not_equiv_three": 0.12,
+          "x3_merge_eval_diff": 0.12
+        },
+        "routed": false,
+        "verdict": "none"
+      },
       "lean": "BTCalculus/PolynomialFunctionsMod.lean",
       "names_own": [],
       "statement": "first x^3 residual merge at k=2 is delayed distinction: equiv_2 and not equiv_3"
@@ -1078,6 +1492,22 @@
       ],
       "id": "BTA-x4-merge",
       "in_file": 33,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "none_of_these",
+        "confidence": 0.53,
+        "decl": null,
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "DZ_neg_one": 0.0,
+          "none_of_these": 0.55,
+          "x4_first_merge_equiv_three": 0.22,
+          "x4_first_merge_not_equiv_four": 0.13,
+          "x4_merge_eval_diff": 0.1
+        },
+        "routed": false,
+        "verdict": "none"
+      },
       "lean": "BTCalculus/PolynomialFunctionsMod.lean",
       "names_own": [],
       "statement": "first x^4 residual merge at k=3 is delayed distinction: equiv_3 and not equiv_4"
@@ -1119,6 +1549,22 @@
       ],
       "id": "BTA-Ik-newton",
       "in_file": 18,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "none_of_these",
+        "confidence": 0.45,
+        "decl": null,
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "equivK_iff_newtonCoeff": 0.05,
+          "newtonKernel_of_vanishesMod": 0.04,
+          "none_of_these": 0.49,
+          "vanishesMod_iff_newtonKernel": 0.3,
+          "vanishesMod_of_newtonKernel_aux": 0.1
+        },
+        "routed": false,
+        "verdict": "none"
+      },
       "lean": "BTCalculus/NewtonKernel.lean",
       "names_own": [],
       "statement": "I_k is the set of Z[x] polynomials whose Newton coefficients are divisible by 3^k"
@@ -1160,6 +1606,22 @@
       ],
       "id": "BTA-x3-raw",
       "in_file": 34,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "none_of_these",
+        "confidence": 0.85,
+        "decl": null,
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "cubicResid_one_pos": 0.01,
+          "eval_cubicResid_iter": 0.01,
+          "none_of_these": 0.87,
+          "residualAlong_Xcube": 0.07,
+          "residualAlong_cubic_family": 0.02
+        },
+        "routed": false,
+        "verdict": "none"
+      },
       "lean": "BTCalculus/CubicResidual.lean",
       "names_own": [],
       "statement": "R_k(x^3)=(3^k-1)/2"
@@ -1201,6 +1663,22 @@
       ],
       "id": "BTA-x3-newton",
       "in_file": 34,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "newton_cubicResid",
+        "confidence": 0.71,
+        "decl": "newton_cubicResid",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "newton_cubicResid": 0.73,
+          "none_of_these": 0.14,
+          "residualAlong_Xcube": 0.09,
+          "x3_first_merge_newton": 0.03,
+          "x3_first_merge_via_newton": 0.01
+        },
+        "routed": false,
+        "verdict": "pick"
+      },
       "lean": "BTCalculus/CubicResidual.lean",
       "names_own": [],
       "statement": "Newton coordinates of a cubic and of the residual family of x^3"
@@ -1242,6 +1720,22 @@
       ],
       "id": "BTA-x3-section",
       "in_file": 34,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "none_of_these",
+        "confidence": 0.66,
+        "decl": null,
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "newton_section_N2": 0.06,
+          "newton_section_N3": 0.23,
+          "none_of_these": 0.67,
+          "sectionDeriv_cubic": 0.01,
+          "x3_first_merge_newton": 0.01
+        },
+        "routed": false,
+        "verdict": "none"
+      },
       "lean": "BTCalculus/CubicResidual.lean",
       "names_own": [],
       "statement": "cubic Newton section step N3'=9 N3, N2'=3 N2+3(a+2)N3"
@@ -1268,7 +1762,7 @@
         }
       ],
       "composite": false,
-      "confidence": "low",
+      "confidence": "review",
       "definitions": [
         {
           "decl": "balWidth",
@@ -1283,6 +1777,22 @@
       ],
       "id": "BTA-x3-n2",
       "in_file": 15,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "sameDepth_n2_injective",
+        "confidence": 0.72,
+        "decl": "sameDepth_n2_injective",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "balWidth_sub": 0.0,
+          "none_of_these": 0.07,
+          "sameDepth_n2": 0.01,
+          "sameDepth_n2_injective": 0.74,
+          "sameDepth_n2_succ": 0.18
+        },
+        "routed": true,
+        "verdict": "pick"
+      },
       "lean": "BTCalculus/CubicFibres.lean",
       "names_own": [],
       "statement": "same-depth N2 is 3^{k-m-1}|(p-q); injective on P_m if 2m+1<=k"
@@ -1324,6 +1834,22 @@
       ],
       "id": "BTA-x3-sign",
       "in_file": 15,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "none_of_these",
+        "confidence": 0.56,
+        "decl": null,
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "newton_n2_eq": 0.02,
+          "none_of_these": 0.6,
+          "sameDepth_n2_sign": 0.08,
+          "sign_n0": 0.14,
+          "sign_n2_of_n1": 0.15
+        },
+        "routed": false,
+        "verdict": "none"
+      },
       "lean": "BTCalculus/CubicFibres.lean",
       "names_own": [],
       "statement": "odd pair: N2 iff N1; N0 iff 3^k divides D^m(p^3)"
@@ -1365,6 +1891,22 @@
       ],
       "id": "BTA-x3-deep-N",
       "in_file": 25,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "none_of_these",
+        "confidence": 0.66,
+        "decl": null,
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "deepest_n1_mod": 0.04,
+          "deepest_n1_zero": 0.07,
+          "deepest_n3_zero": 0.03,
+          "none_of_these": 0.68,
+          "zero_fibre_of": 0.12
+        },
+        "routed": false,
+        "verdict": "none"
+      },
       "lean": "BTCalculus/CubicDeepestLayer.lean",
       "names_own": [],
       "statement": "deepest layer: N3=N2=0, N1\u22613p^2 (k\u22652)"
@@ -1406,6 +1948,22 @@
       ],
       "id": "BTA-x3-deep-zero",
       "in_file": 25,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "zero_fibre_imp",
+        "confidence": 0.51,
+        "decl": "zero_fibre_imp",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "deepest_n1_mod": 0.01,
+          "none_of_these": 0.29,
+          "three_pow_dvd_cube": 0.06,
+          "zeroExp_cu": 0.08,
+          "zero_fibre_imp": 0.54
+        },
+        "routed": false,
+        "verdict": "pick"
+      },
       "lean": "BTCalculus/CubicDeepestLayer.lean",
       "names_own": [],
       "statement": "deepest 0-fibre is 3^{ceil((2k-1)/3)}|p"
@@ -1447,6 +2005,22 @@
       ],
       "id": "BTA-x3-inter-N",
       "in_file": 10,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "none_of_these",
+        "confidence": 0.87,
+        "decl": null,
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "inter_equiv_iff": 0.01,
+          "inter_n1_mod": 0.06,
+          "inter_n2_mod": 0.02,
+          "inter_n3_zero": 0.03,
+          "none_of_these": 0.88
+        },
+        "routed": false,
+        "verdict": "none"
+      },
       "lean": "BTCalculus/CubicIntermediateLayer.lean",
       "names_own": [],
       "statement": "m=k-2: N3=0, N2\u22612\u00b73^{k-1}p (k\u22653), N1\u22613p^2+3^{k-1}p (k\u22654)"
@@ -1488,6 +2062,22 @@
       ],
       "id": "BTA-x3-inter-crit",
       "in_file": 10,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "inter_equiv_iff",
+        "confidence": 0.63,
+        "decl": "inter_equiv_iff",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "inter_equiv_iff": 0.67,
+          "inter_n1_iff": 0.09,
+          "inter_n1_mod": 0.0,
+          "inter_n2_iff": 0.0,
+          "none_of_these": 0.24
+        },
+        "routed": false,
+        "verdict": "pick"
+      },
       "lean": "BTCalculus/CubicIntermediateLayer.lean",
       "names_own": [],
       "statement": "m=k-2 fibres iff p\u2261q (mod 3) and 3^{k-1}|(p-q)(p+q+3^{k-2}) and N0 agrees"
@@ -1529,6 +2119,22 @@
       ],
       "id": "BTA-x3-def2-N",
       "in_file": 10,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "none_of_these",
+        "confidence": 0.86,
+        "decl": null,
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "deficitTwo_n1_mod": 0.05,
+          "deficitTwo_n2_mod": 0.03,
+          "deficitTwo_n3_zero": 0.03,
+          "depthDeficit_two_N2_visibility": 0.01,
+          "none_of_these": 0.88
+        },
+        "routed": false,
+        "verdict": "none"
+      },
       "lean": "BTCalculus/CubicDeficitTwo.lean",
       "names_own": [],
       "statement": "m=k-3: N3=0 (k\u22655), N2\u22612\u00b73^{k-2}p (k\u22655), N1\u22613p^2+3^{k-2}p (k\u22656)"
@@ -1559,6 +2165,22 @@
       "definitions": [],
       "id": "BTA-x3-n0-scale",
       "in_file": 20,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "none_of_these",
+        "confidence": 0.55,
+        "decl": null,
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "iterDZ_pow_mul": 0.04,
+          "n0_scaled_of_le": 0.3,
+          "n0_val_stratum_ge": 0.03,
+          "n0_val_stratum_le": 0.03,
+          "none_of_these": 0.57
+        },
+        "routed": false,
+        "verdict": "none"
+      },
       "lean": "BTCalculus/CubicN0Reduction.lean",
       "names_own": [],
       "statement": "D^m((3^r u)^3) is 3^{3r-m} u^3 if m\u22643r, else D^{m-3r}(u^3)"
@@ -1589,6 +2211,22 @@
       "definitions": [],
       "id": "BTA-x3-n0-vis",
       "in_file": 20,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "n0_visible_mod",
+        "confidence": 0.81,
+        "decl": "n0_visible_mod",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "DZ_mul_three": 0.0,
+          "cube_val_succ": 0.01,
+          "n0_of_cube_mod": 0.08,
+          "n0_visible_mod": 0.82,
+          "none_of_these": 0.09
+        },
+        "routed": false,
+        "verdict": "pick"
+      },
       "lean": "BTCalculus/CubicN0Reduction.lean",
       "names_own": [],
       "statement": "D^t(u^3) mod 3^k is determined by u mod 3^{max(1,t+k-1)}"
@@ -1630,6 +2268,22 @@
       ],
       "id": "BTA-x3-Q-scale",
       "in_file": 21,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "none_of_these",
+        "confidence": 0.62,
+        "decl": null,
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "cube_diff": 0.0,
+          "cube_expand": 0.0,
+          "none_of_these": 0.64,
+          "q_val_of_ge": 0.06,
+          "q_val_of_le": 0.3
+        },
+        "routed": false,
+        "verdict": "none"
+      },
       "lean": "BTCalculus/MismatchedCubicQuotient.lean",
       "names_own": [],
       "statement": "Q_t(3^s w) is 3^{3s-t} w^3 if t<=3s, else Q_{t-3s}(w)"
@@ -1660,6 +2314,22 @@
       "definitions": [],
       "id": "BTA-x3-stratum",
       "in_file": 15,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "newtonStratum_n2",
+        "confidence": 0.35,
+        "decl": "newtonStratum_n2",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "newtonStratum_n1": 0.02,
+          "newtonStratum_n1_val": 0.09,
+          "newtonStratum_n2": 0.4,
+          "newtonStratum_n21_fibre": 0.1,
+          "none_of_these": 0.39
+        },
+        "routed": false,
+        "verdict": "pick"
+      },
       "lean": "BTCalculus/NewtonStratum.lean",
       "names_own": [],
       "statement": "At deficit r, N2 iff p = q (mod 3^r); N1 after N2 is the delta law; N0 is the mismatched Q on the 3^r locus"
@@ -1686,10 +2356,26 @@
         }
       ],
       "composite": false,
-      "confidence": "low",
+      "confidence": "review",
       "definitions": [],
       "id": "BTA-x3-C-core",
       "in_file": 17,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "balWidth_pow_iff",
+        "confidence": 0.72,
+        "decl": "balWidth_pow_iff",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "balWidth_mul_pow": 0.0,
+          "balWidth_of_mul_pow": 0.01,
+          "balWidth_pow_iff": 0.75,
+          "balWidth_pow_of_lt": 0.06,
+          "none_of_these": 0.18
+        },
+        "routed": true,
+        "verdict": "pick"
+      },
       "lean": "BTCalculus/XCubeStateComplexity.lean",
       "names_own": [],
       "statement": "3^r u in P_m iff u in P_{m-r} when r<=m; r>m forces u=0"
@@ -1720,6 +2406,22 @@
       "definitions": [],
       "id": "BTA-x3-M-spine",
       "in_file": 17,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "zero_spine_n1",
+        "confidence": 0.5,
+        "decl": "zero_spine_n1",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "balWidth_pow_of_lt": 0.01,
+          "none_of_these": 0.39,
+          "zero_spine_n0": 0.04,
+          "zero_spine_n1": 0.54,
+          "zero_spine_n2": 0.01
+        },
+        "routed": false,
+        "verdict": "pick"
+      },
       "lean": "BTCalculus/XCubeStateComplexity.lean",
       "names_own": [],
       "statement": "p=0 at depths 2m>=k is a single Newton class (the zero spine)"
@@ -1746,10 +2448,26 @@
         }
       ],
       "composite": false,
-      "confidence": "low",
+      "confidence": "review",
       "definitions": [],
       "id": "BTA-x3-H-A",
       "in_file": 17,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "n1_core_square_iff",
+        "confidence": 0.94,
+        "decl": "n1_core_square_iff",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "balWidth_mul_pow": 0.0,
+          "balWidth_of_mul_pow": 0.0,
+          "n1_core_square_iff": 0.95,
+          "none_of_these": 0.04,
+          "square_exp_eq_width": 0.01
+        },
+        "routed": true,
+        "verdict": "pick"
+      },
       "lean": "BTCalculus/XCubeStateComplexity.lean",
       "names_own": [],
       "statement": "on the core, N1 agrees iff u^2 agrees modulo 3^{k-2r-1}, and that exponent equals the core width W"
@@ -1791,6 +2509,22 @@
       ],
       "id": "BTL-unit-scaling",
       "in_file": 20,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "outputAlong_smul_iff",
+        "confidence": 0.42,
+        "decl": "outputAlong_smul_iff",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "isRootMod_smul_iff": 0.11,
+          "none_of_these": 0.19,
+          "outputAlong_smul_iff": 0.45,
+          "residualAlong_smul_of_outputs_zero": 0.01,
+          "sectionDeriv_smul_of_root": 0.23
+        },
+        "routed": false,
+        "verdict": "pick"
+      },
       "lean": "BTCalculus/PadicLiftingState.lean",
       "names_own": [],
       "statement": "on a surviving branch rho_a(g) = 0 the section derivative is unit-linear, D_a(lambda g) = lambda D_a g for every lambda coprime to 3, and survival is lambda-invariant, so the whole ordered trit-labelled depth-r lifting subtree is invariant under g -> lambda g"
@@ -1832,6 +2566,22 @@
       ],
       "id": "BTL-linear-transition",
       "in_file": 20,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "sectionDeriv_linState",
+        "confidence": 0.58,
+        "decl": "sectionDeriv_linState",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "linState_block_step": 0.03,
+          "linState_root_iff": 0.04,
+          "none_of_these": 0.28,
+          "outputAlong_linState_pow": 0.02,
+          "sectionDeriv_linState": 0.61
+        },
+        "routed": false,
+        "verdict": "pick"
+      },
       "lean": "BTCalculus/PadicLiftingState.lean",
       "names_own": [],
       "statement": "D_a(c + b x) = D(c + a b) + b x for every integer a, the trit a survives iff 3 divides c + a b, and the child is ((c + a b)/3, b); hence b is invariant along the whole tree and e = min(v_3(b), r) is a conserved quantity of a deep-regime branch"
@@ -1873,6 +2623,22 @@
       ],
       "id": "BTL-block-shift",
       "in_file": 20,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "residualAlong_linState_pow",
+        "confidence": 0.81,
+        "decl": "residualAlong_linState_pow",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "DZ_three_mul": 0.0,
+          "linState_block_step": 0.01,
+          "none_of_these": 0.1,
+          "residualAlong_linState_leaf": 0.06,
+          "residualAlong_linState_pow": 0.83
+        },
+        "routed": false,
+        "verdict": "pick"
+      },
       "lean": "BTCalculus/PadicLiftingState.lean",
       "names_own": [],
       "statement": "block shift law: for a word w of length j the section operators send the state (3^j d, 3^{j+i}) to (d + 3^i packWord(w), 3^{j+i}), every such word survives, and at i = 0, j = e the 3^e words of length e reach exactly the states d + t for t in the balanced window W_e = [-(3^e-1)/2, (3^e-1)/2]; the shift is the balanced value packWord(w) and NOT the digit sum, and the distinction is load bearing bec"
@@ -1914,6 +2680,22 @@
       ],
       "id": "BTM-x3-depth",
       "in_file": 28,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "monnaEndpoint_cube_val",
+        "confidence": 0.92,
+        "decl": "monnaEndpoint_cube_val",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "even_two_mul_int": 0.0,
+          "monnaEndpoint_cube_diff": 0.01,
+          "monnaEndpoint_cube_diff_int": 0.0,
+          "monnaEndpoint_cube_val": 0.93,
+          "none_of_these": 0.05
+        },
+        "routed": false,
+        "verdict": "pick"
+      },
       "lean": "BTCalculus/MonnaEndpointCube.lean",
       "names_own": [],
       "statement": "for every balanced-Monna endpoint pair u=zeta+2*3^n, v=zeta-2*3^n one has u^3-v^3=4*3^n(3 zeta^2+4*3^{2n}) and therefore t=v_3(u^3-v^3)=n+min(1+2 v_3(zeta), 2n), or t=3n when zeta=0; the two arguments of the minimum have opposite parity whenever zeta is nonzero"
@@ -1940,7 +2722,7 @@
         }
       ],
       "composite": false,
-      "confidence": "low",
+      "confidence": "review",
       "definitions": [
         {
           "decl": "monnaEndpointU",
@@ -1955,6 +2737,22 @@
       ],
       "id": "BTM-x3-no-preserve",
       "in_file": 28,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "monnaEndpoint_cube_diff_ne_pm_four_three_pow",
+        "confidence": 0.94,
+        "decl": "monnaEndpoint_cube_diff_ne_pm_four_three_pow",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "even_two_mul_int": 0.0,
+          "monnaEndpoint_cube_diff": 0.0,
+          "monnaEndpoint_cube_diff_ne_pm_four_three_pow": 0.95,
+          "monnaEndpoint_factor_ne_pm_three_pow": 0.01,
+          "none_of_these": 0.04
+        },
+        "routed": true,
+        "verdict": "pick"
+      },
       "lean": "BTCalculus/MonnaEndpointCube.lean",
       "names_own": [],
       "statement": "cubing never sends a balanced-Monna endpoint pair to an endpoint pair: 3 zeta^2+4*3^{2n} is never +/- 3^k, so u^3-v^3 is never +/- 4*3^k and B(u^3)=B(v^3) never holds"
@@ -1996,6 +2794,22 @@
       ],
       "id": "BTC-constructor-sum-class",
       "in_file": 25,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "apply_add_eq_iff",
+        "confidence": 0.75,
+        "decl": "apply_add_eq_iff",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "DZ_one": 0.0,
+          "DZ_two": 0.0,
+          "apply_add_eq_iff": 0.77,
+          "exactTriple_characterization": 0.22,
+          "none_of_these": 0.01
+        },
+        "routed": false,
+        "verdict": "pick"
+      },
       "lean": "BTCalculus/RewriteAddBoundary.lean",
       "names_own": [],
       "statement": "for U,V,W in {S,I+,I-,N}, the identity U(x)+V(y)=W(x+y) holds for all integers iff it is one of the eight concrete triples (S,S,S), (N,N,N), (I+,S,I+), (S,I+,I+), (I-,S,I-), (S,I-,I-), (I+,I-,S), (I-,I+,S); same-sign I+ or I- and mixed N+S are not constructor identities"
@@ -2022,7 +2836,7 @@
         }
       ],
       "composite": false,
-      "confidence": "low",
+      "confidence": "review",
       "definitions": [
         {
           "decl": "signedTrace",
@@ -2037,6 +2851,22 @@
       ],
       "id": "BTN-sdrm-lambda3-translate",
       "in_file": 18,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "lambda3_trace_translate",
+        "confidence": 0.81,
+        "decl": "lambda3_trace_translate",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "add_cancel_cong": 0.0,
+          "cong_iff_dvd_sub": 0.0,
+          "lambda3_trace_translate": 0.83,
+          "lambda3_translate_equiv": 0.05,
+          "none_of_these": 0.12
+        },
+        "routed": true,
+        "verdict": "pick"
+      },
       "lean": "Problems/BalancedTernary/SignedDigitResidualMinimality.lean",
       "names_own": [],
       "statement": "At \u03bb=3, translation by 3k preserves every output stream: signedTrace 3 (s+3k) w = signedTrace 3 s w. This symmetry is not origin-reachable when max|u|\u22641."
@@ -2063,10 +2893,26 @@
         }
       ],
       "composite": false,
-      "confidence": "low",
+      "confidence": "review",
       "definitions": [],
       "id": "BTN-sdsh-sep",
       "in_file": 8,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "short_horizon_separation",
+        "confidence": 0.89,
+        "decl": "short_horizon_separation",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "intVal3_ge_iff_pow_dvd": 0.0,
+          "lambda3_short_horizon_symmetry": 0.0,
+          "none_of_these": 0.03,
+          "short_horizon_separation": 0.91,
+          "traces_eq_iff_len_le_val": 0.06
+        },
+        "routed": true,
+        "verdict": "pick"
+      },
       "lean": "Problems/BalancedTernary/SignedDigitShortHorizon.lean",
       "names_own": [],
       "statement": "If \u03bb is not divisible by 3, s\u2260t, and |w|\u2265v_3(s-t)+1, then the lsd streams differ on w. Finite horizon preserves residual distinguishability exactly when a legal word of that length exists."
@@ -2108,6 +2954,22 @@
       ],
       "id": "J-first-defect-amplification",
       "in_file": 61,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "none_of_these",
+        "confidence": 0.33,
+        "decl": null,
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "expanding_defect_lower_bound": 0.25,
+          "firstDefect_contribution": 0.17,
+          "firstDefect_prefix_extremal": 0.01,
+          "global_defect_lower_bound": 0.22,
+          "none_of_these": 0.35
+        },
+        "routed": false,
+        "verdict": "none"
+      },
       "lean": "Problems/Juggler/DefectLowerBound.lean",
       "names_own": [],
       "statement": "For a realized Juggler word w, the first positive local remainder sits after a tight even or odd power-of-two prefix. That remainder contributes at least \u03c1_j^{2^j} to \u0394, and the suffix operator Amplify (later remainders dropped) is a lower bound. An odd letter lifts an inserted defect by the exact cubic (x^a+D)^3-x^{3a} \u2265 3 x^{2a} D. Mixed OOE has firstDefect \u2264 1, with \u0394 \u2265 3 T(n)^4 \u03c1_0 or \u0394 \u2265 \u03c1_1^"
@@ -2149,6 +3011,22 @@
       ],
       "id": "J-normalized-relative-slack",
       "in_file": 30,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "onePlusSlack_concat",
+        "confidence": 0.65,
+        "decl": "onePlusSlack_concat",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "defectRatio_concat": 0.0,
+          "defectRatio_le_one_iff_image_ge": 0.01,
+          "image_eq_start_defectRatio": 0.0,
+          "none_of_these": 0.32,
+          "onePlusSlack_concat": 0.67
+        },
+        "routed": false,
+        "verdict": "pick"
+      },
       "lean": "Problems/Juggler/NormalizedDefect.lean",
       "names_own": [],
       "statement": "For a realized Juggler itinerary, the relative slack 1+q = n^{3^{#O(w)}} / T_w(n)^{2^{|w|}} multiplies under concatenation: 1+q_{uv} = (1+q_u)^{3^{#O(v)}} (1+q_v)^{2^{|u|}}. An even letter multiplies by (1+\u03b7)^{2^k}; an odd letter multiplies by (1+q)^3 (1+\u03b7)^{2^k}. Running 1+q does not decrease under a realized extension. The surplus ratio R=\u0394/S satisfies R\u22641 iff T_w(n)\u2265n whenever S>0, so R is the "
@@ -2190,6 +3068,22 @@
       ],
       "id": "J-expansion-block-grammar",
       "in_file": 9,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "none_of_these",
+        "confidence": 0.84,
+        "decl": null,
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "block_growth_identity": 0.01,
+          "expansionSurplus_oddEvenBlock": 0.02,
+          "expansionSurplus_pos_iff": 0.03,
+          "expansion_run_365_chain": 0.06,
+          "none_of_these": 0.86
+        },
+        "routed": false,
+        "verdict": "none"
+      },
       "lean": "Problems/Juggler/ExpansionBlocks.lean",
       "names_own": [],
       "statement": "The integer exponent surplus of a finite Juggler word is E(w)=3^{#O(w)}-2^{|w|}, and E(w)>0 if and only if the itinerary is formally expanding. An expanding residual block O^a E^b with b\u22651 has b<a. On an expanding itinerary, n^{3^{#O}}=n^{2^{|w|}+E(w)}. Relative slack multiplies under concatenation, and the slack numerator of a three-block word is n^{3^{o(v)+o(w)}}. The chain 365 --OOE--> 763 --OO"
@@ -2220,6 +3114,22 @@
       "definitions": [],
       "id": "J-near-tight-scale-bounds",
       "in_file": 18,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "ooe_one_plus_slack_lt_succ_ratio",
+        "confidence": 0.37,
+        "decl": "ooe_one_plus_slack_lt_succ_ratio",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "block_growth_from_q": 0.0,
+          "even_eta_le_two_over_T": 0.0,
+          "large_lambda_successor_q_bound": 0.39,
+          "none_of_these": 0.19,
+          "ooe_one_plus_slack_lt_succ_ratio": 0.42
+        },
+        "routed": false,
+        "verdict": "pick"
+      },
       "lean": "Problems/Juggler/NearTightScale.lean",
       "names_own": [],
       "statement": "The local Juggler remainder satisfies 0\u2264\u03c1<2T+1, hence \u03b7=\u03c1/T^2 < 2/T + 1/T^2 and 1+\u03b7 < ((T+1)/T)^2. For the mixed itinerary OOE, 1+q = (1+\u03b70)^3 (1+\u03b71)^2 (1+\u03b72)^4, and 1+q is strictly below the successor-ratio product ((T0+1)/T0)^6 ((T1+1)/T1)^4 ((T2+1)/T2)^8. The same bound at a successor start y depends only on the itinerary of y."
@@ -2261,6 +3171,22 @@
       ],
       "id": "J-expanding-block-even-bound",
       "in_file": 14,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "expanding_oddEvenBlock_ratio",
+        "confidence": 0.4,
+        "decl": "expanding_oddEvenBlock_ratio",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "expanding_itinerary_ratio": 0.01,
+          "expanding_oddEvenBlock_iff_log": 0.14,
+          "expanding_oddEvenBlock_iff_maxEvens": 0.34,
+          "expanding_oddEvenBlock_ratio": 0.45,
+          "none_of_these": 0.06
+        },
+        "routed": false,
+        "verdict": "pick"
+      },
       "lean": "Problems/Juggler/ExpandingGrammar.lean",
       "names_own": [],
       "statement": "A residual-shaped word O^a E^b is formally expanding iff 2^{a+b}<3^a. For a\u22651 this is equivalent to a+b \u2264 log\u2082(3^a), or b \u2264 maxExpandingEvens(a). In particular a=2 or 3 forces b\u22641, and a=4 forces b\u22642. This is the syntactic expanding language, not a realized-orbit theorem."
@@ -2287,7 +3213,7 @@
         }
       ],
       "composite": false,
-      "confidence": "low",
+      "confidence": "review",
       "definitions": [
         {
           "decl": "expandingItinerary",
@@ -2302,6 +3228,22 @@
       ],
       "id": "J-persistent-implies-expanding",
       "in_file": 14,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "persistent_expanding_iff_odd",
+        "confidence": 1.0,
+        "decl": "persistent_expanding_iff_odd",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "expanding_block_odds_four": 0.0,
+          "expanding_block_odds_three": 0.0,
+          "expanding_block_odds_two": 0.0,
+          "expanding_implies_odd_density": 0.0,
+          "persistent_expanding_iff_odd": 1.0
+        },
+        "routed": true,
+        "verdict": "pick"
+      },
       "lean": "Problems/Juggler/ExpandingGrammar.lean",
       "names_own": [],
       "statement": "For n\u22652, PersistentOddResidual x y if and only if PersistentExpandingResidual x y. A contracting residual cannot overshoot, and 2^k=3^o is impossible for a nonempty residual. The expanding qualifier of a persistent residual is therefore redundant."
@@ -2328,7 +3270,7 @@
         }
       ],
       "composite": false,
-      "confidence": "low",
+      "confidence": "review",
       "definitions": [
         {
           "decl": "follows",
@@ -2343,6 +3285,22 @@
       ],
       "id": "J-itinerary-semantics",
       "in_file": 27,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "follows_iff_itinerary",
+        "confidence": 0.87,
+        "decl": "follows_iff_itinerary",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "bit_even": 0.0,
+          "follows_iff_itinerary": 0.88,
+          "image_append": 0.01,
+          "image_eq_iterate": 0.01,
+          "none_of_these": 0.1
+        },
+        "routed": true,
+        "verdict": "pick"
+      },
       "lean": "Problems/Juggler/Itinerary.lean",
       "names_own": [],
       "statement": "For every natural n and finite parity itinerary w, follows n w if and only if the actual length-|w| Juggler itinerary of n equals w. The itinerary image equals the |w|-fold iterate, and images and realization compose under word concatenation."
@@ -2384,6 +3342,22 @@
       ],
       "id": "J-power-envelope-contraction",
       "in_file": 36,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "none_of_these",
+        "confidence": 0.55,
+        "decl": null,
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "envelope_lt_pow": 0.03,
+          "none_of_these": 0.58,
+          "power_bound_contracts": 0.2,
+          "power_bound_follows": 0.04,
+          "power_bound_word": 0.13
+        },
+        "routed": false,
+        "verdict": "none"
+      },
       "lean": "Problems/Juggler/Envelope.lean",
       "names_own": [],
       "statement": "For every finite Juggler word w realized at n, J^{|w|}(n)^{2^{|w|}} \u2264 n^{3^{#O(w)}}. If n \u2265 2 and 3^{#O(w)} < 2^{|w|}, then J^{|w|}(n) < n."
@@ -2425,6 +3399,22 @@
       ],
       "id": "J-inverse-preimage-asymmetry",
       "in_file": 117,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "odd_preimage_unique",
+        "confidence": 0.43,
+        "decl": "odd_preimage_unique",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "floorPower_even_eq_iff_sq_interval": 0.03,
+          "floorPower_odd_eq_iff_cube_interval": 0.05,
+          "none_of_these": 0.4,
+          "odd_preimage_iff": 0.05,
+          "odd_preimage_unique": 0.45
+        },
+        "routed": false,
+        "verdict": "pick"
+      },
       "lean": "Problems/Juggler/Preimages.lean",
       "names_own": [],
       "statement": "The even fiber J(n)=m is the parity-restricted square interval m\u00b2 \u2264 n < (m+1)\u00b2, while the odd fiber is the parity-restricted cube-to-square interval m\u00b2 \u2264 n\u00b3 < (m+1)\u00b2; any odd fiber contains at most one integer."
@@ -2472,6 +3462,22 @@
       ],
       "id": "J-finite-progress-boundary",
       "in_file": 19,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "reachesOne_of_all_finiteProgress",
+        "confidence": 0.34,
+        "decl": "reachesOne_of_all_finiteProgress",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "even_finiteProgress": 0.0,
+          "finiteProgress_of_not_odd_odd": 0.19,
+          "no_finiteProgress_implies_odd_odd": 0.13,
+          "none_of_these": 0.3,
+          "reachesOne_of_all_finiteProgress": 0.38
+        },
+        "routed": false,
+        "verdict": "pick"
+      },
       "lean": "Problems/Juggler/Progress.lean",
       "names_own": [],
       "statement": "Universal FiniteProgress for starts above one implies universal reachability of one. Every even start n \u2265 2 and every odd start n \u2265 2 whose first image is even has FiniteProgress; consequently, any start without FiniteProgress is odd and has an odd first image. This isolates the automatic odd-to-odd frontier without proving universal progress."
@@ -2502,6 +3508,22 @@
       "definitions": [],
       "id": "J-leftover-length-six-orientations",
       "in_file": 38,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "none_of_these",
+        "confidence": 0.63,
+        "decl": null,
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "combine_ooo_tail": 0.0,
+          "combine_oooo_tail": 0.0,
+          "no_cycle_itinerary_oooeoe": 0.25,
+          "no_cycle_itinerary_ooooee": 0.1,
+          "none_of_these": 0.65
+        },
+        "routed": false,
+        "verdict": "none"
+      },
       "lean": "Problems/Juggler/LeftoverShort.lean",
       "names_own": [],
       "statement": "Neither OOOEOE nor OOOOEE is a Juggler cycle itinerary at any n \u2265 2 (Paper A Lemma 3.5). The argument is an exhaustive evaluation for n < 256 together with the last-even one-step preimage against the coarse lower envelope n^{81} > 2^{130}(n+1)^{64} for n \u2265 256. This excludes those two orientations only; the length-\u22646 census is the separate row J-small-cycle-census."
@@ -2532,6 +3554,22 @@
       "definitions": [],
       "id": "J-leftover-length-seven-orientations",
       "in_file": 38,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "none_of_these",
+        "confidence": 0.8,
+        "decl": null,
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "no_cycle_itinerary_oooeoe": 0.04,
+          "no_cycle_itinerary_ooooeoe": 0.1,
+          "no_cycle_itinerary_oooooee": 0.03,
+          "none_of_these": 0.81,
+          "pow243_gt_two_pow422_succ_pow128": 0.01
+        },
+        "routed": false,
+        "verdict": "none"
+      },
       "lean": "Problems/Juggler/LeftoverShort.lean",
       "names_own": [],
       "statement": "Neither OOOOEOE nor OOOOOEE is a Juggler cycle itinerary at any n \u2265 2 (Paper A Lemma 3.7). The argument is an exhaustive evaluation for n < 14 together with the last-even one-step preimage against the coarse lower envelope n^{243} > 2^{422}(n+1)^{128} for n \u2265 14. This excludes those two orientations only; the length-\u22647 census is the separate row J-small-cycle-census-seven."
@@ -2558,7 +3596,7 @@
         }
       ],
       "composite": true,
-      "confidence": "low",
+      "confidence": "review",
       "definitions": [
         {
           "decl": "itineraryO7EEEE",
@@ -2568,6 +3606,22 @@
       ],
       "id": "J-o7eeee-gap",
       "in_file": 29,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "o7_image_ge_succ_pow16",
+        "confidence": 0.97,
+        "decl": "o7_image_ge_succ_pow16",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "absorb_odd_step": 0.0,
+          "cross_mul_pow": 0.0,
+          "no_cycle_itinerary_oooooooeeee": 0.01,
+          "none_of_these": 0.02,
+          "o7_image_ge_succ_pow16": 0.97
+        },
+        "routed": true,
+        "verdict": "pick"
+      },
       "lean": "Problems/Juggler/O7EEEEGap.lean",
       "names_own": [
         "o7_image_ge_succ_pow16",
@@ -2601,6 +3655,22 @@
       "definitions": [],
       "id": "J-first-even-overshoots",
       "in_file": 43,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "minimal_first_even_overshoots",
+        "confidence": 0.41,
+        "decl": "minimal_first_even_overshoots",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "cycleMax_exists_min_succ_sq": 0.0,
+          "cycleMax_landing_gt_min": 0.0,
+          "cycleMin_first_even_overshoots": 0.29,
+          "minimal_first_even_overshoots": 0.44,
+          "none_of_these": 0.27
+        },
+        "routed": false,
+        "verdict": "pick"
+      },
       "lean": "Problems/Juggler/EvenCountThree.lean",
       "names_own": [
         "minimal_first_even_overshoots",
@@ -2640,6 +3710,22 @@
       ],
       "id": "J-survivor-count-decay",
       "in_file": 22,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "neverCertified_density_zero",
+        "confidence": 0.74,
+        "decl": "neverCertified_density_zero",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "choose_tail_succ": 0.0,
+          "count_oddCount_ge": 0.0,
+          "neverCertified_density_zero": 0.77,
+          "neverNegCount_div_pow_tendsto_zero": 0.04,
+          "none_of_these": 0.19
+        },
+        "routed": false,
+        "verdict": "pick"
+      },
       "lean": "Problems/Juggler/PaperBSurvivorDecay.lean",
       "names_own": [
         "count_oddCount_ge",
@@ -2697,6 +3783,22 @@
       ],
       "id": "J-cyclemin-slack",
       "in_file": 104,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "slack_of_four_even_word",
+        "confidence": 0.63,
+        "decl": "slack_of_four_even_word",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "exponents_slack": 0.06,
+          "familySlack_add": 0.01,
+          "none_of_these": 0.09,
+          "slack_of_four_even": 0.19,
+          "slack_of_four_even_word": 0.64
+        },
+        "routed": false,
+        "verdict": "pick"
+      },
       "lean": "Problems/Juggler/CycleMinFudge.lean",
       "names_own": [
         "two_pow_add_four_le_three_pow",
@@ -2732,6 +3834,22 @@
       "definitions": [],
       "id": "J-cyclemax-succ-sq",
       "in_file": 43,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "cycleMin_max_ge_succ_sq",
+        "confidence": 0.57,
+        "decl": "cycleMin_max_ge_succ_sq",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "cycleMax_exists_min_succ_sq": 0.13,
+          "cycleMax_min_succ_sq_le": 0.1,
+          "cycleMin_max_ge_succ_sq": 0.59,
+          "cycleMin_max_not_first_preimage": 0.07,
+          "none_of_these": 0.08
+        },
+        "routed": false,
+        "verdict": "pick"
+      },
       "lean": "Problems/Juggler/EvenCountThree.lean",
       "names_own": [
         "cycle_distinguished_order_succ_sq",
@@ -2769,6 +3887,22 @@
       "definitions": [],
       "id": "J-cyclemin-transport-oo",
       "in_file": 5,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "cycleMin_transport_second_oo",
+        "confidence": 0.37,
+        "decl": "cycleMin_transport_second_oo",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "cycleMin_transport_second_oo": 0.49,
+          "cycleMin_transport_second_oo_ge": 0.39,
+          "follows_replicate_odd_of_le": 0.0,
+          "none_of_these": 0.12,
+          "replicate_odd_three": 0.0
+        },
+        "routed": false,
+        "verdict": "pick"
+      },
       "lean": "Problems/Juggler/CycleMinObstruction.lean",
       "names_own": [
         "cycleMin_transport_second_oo",
@@ -2798,7 +3932,7 @@
         }
       ],
       "composite": true,
-      "confidence": "low",
+      "confidence": "review",
       "definitions": [
         {
           "decl": "FirstInternalOO",
@@ -2813,6 +3947,22 @@
       ],
       "id": "J-cyclemin-first-oo-r-bound",
       "in_file": 21,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "isolated_oe_ge_implies_exponent",
+        "confidence": 0.83,
+        "decl": "isolated_oe_ge_implies_exponent",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "finiteProgress_of_isolated_scale_gap": 0.0,
+          "isolatedOddSurvival_bound": 0.04,
+          "isolated_oe_ge_implies_exponent": 0.85,
+          "isolated_oe_r_max_two": 0.04,
+          "none_of_these": 0.07
+        },
+        "routed": true,
+        "verdict": "pick"
+      },
       "lean": "Problems/Juggler/FirstInternalOO.lean",
       "names_own": [
         "isolatedOddSurvival_bound",
@@ -2844,7 +3994,7 @@
         }
       ],
       "composite": false,
-      "confidence": "low",
+      "confidence": "review",
       "definitions": [
         {
           "decl": "EscapesToInfinity",
@@ -2859,6 +4009,22 @@
       ],
       "id": "J-trajectory-cycle-or-escape",
       "in_file": 59,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "cycles_or_escapes",
+        "confidence": 0.94,
+        "decl": "cycles_or_escapes",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "bounded_trajectory_eventually_cycles": 0.0,
+          "cycleItinerary_of_repeat": 0.0,
+          "cycles_or_escapes": 0.95,
+          "minimal_nonterm_cycles_or_escapes": 0.01,
+          "none_of_these": 0.04
+        },
+        "routed": true,
+        "verdict": "pick"
+      },
       "lean": "Problems/Juggler/Escape.lean",
       "names_own": [],
       "statement": "Every n satisfies EventuallyCycles n or EscapesToInfinity n. A uniformly bounded trajectory repeats: if T^k(n) \u2264 M for every k, then some i < j have T^i(n) = T^j(n). ReachesOne n implies EventuallyCycles n because T(1) = 1. On MinimalNonTerm n a cycle value stays \u2265 n. This is not a proof that escape is impossible, not a cycle-exclusion theorem, and not a halt theorem."
@@ -2900,6 +4066,22 @@
       ],
       "id": "J-minimal-ooeooe-escape-trap",
       "in_file": 59,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "none_of_these",
+        "confidence": 0.58,
+        "decl": null,
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "follows_ooeooe_image_lt_sq": 0.2,
+          "follows_ooeooeooe_image_lt_sq": 0.05,
+          "minimal_ooeooe_follows_ooeooeoo": 0.06,
+          "minimal_ooeooe_not_even_landing": 0.03,
+          "none_of_these": 0.59
+        },
+        "routed": false,
+        "verdict": "none"
+      },
       "lean": "Problems/Juggler/Escape.lean",
       "names_own": [],
       "statement": "If n \u2265 2 follows OOEOOE, then T_OOEOOE(n) < n^2 because x^{64} \u2264 n^{81} forbids n^2 \u2264 x. If n follows OOEOOEO, then the next image is < n^2 because z^{128} \u2264 n^{243} forbids n^2 \u2264 z. On MinimalNonTerm n the OOEOOE landing is odd, and the forced next O is followed by another O: an even landing or an even next image below n^2 is descent. The argument does not use a CycleMin return image = n. This is"
@@ -2941,6 +4123,22 @@
       ],
       "id": "J-ce-third-residual-preimages",
       "in_file": 59,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "none_of_these",
+        "confidence": 0.66,
+        "decl": null,
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "follows_ooeooeoo_image_lt_cube": 0.13,
+          "follows_ooeooeooe_image_lt_sq": 0.07,
+          "minimal_ooeooe_follows_ooeooeoo": 0.04,
+          "minimal_ooeooeooe_not_even_landing": 0.03,
+          "none_of_these": 0.68
+        },
+        "routed": false,
+        "verdict": "none"
+      },
       "lean": "Problems/Juggler/Escape.lean",
       "names_own": [],
       "statement": "If n \u2265 2 follows OOEOOEOO, then T_OOEOOEOO(n) < n^3 because x^{256} \u2264 n^{729} forbids n^3 \u2264 x (768 > 729). If n follows OOEOOEOOE, then T_OOEOOEOOE(n) < n^2 because y^{512} \u2264 n^{729} forbids n^2 \u2264 y (1024 > 729). A CE that follows OOEOOE follows OOEOOEOO. On MinimalNonTerm a completed third OOE cannot land even: an even landing below n^2 is descent. This is not a proof that the third residual is a"
@@ -2967,7 +4165,7 @@
         }
       ],
       "composite": false,
-      "confidence": "low",
+      "confidence": "review",
       "definitions": [
         {
           "decl": "itineraryOOEOOEOOE",
@@ -2982,6 +4180,22 @@
       ],
       "id": "J-ce-escaped-even-oe-preimage",
       "in_file": 59,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "follows_ooeooeooeoe_image_lt_sq",
+        "confidence": 0.97,
+        "decl": "follows_ooeooeooeoe_image_lt_sq",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "bounded_trajectory_eventually_cycles": 0.0,
+          "cycleItinerary_of_repeat": 0.0,
+          "cycles_or_escapes": 0.0,
+          "follows_ooeooeooeoe_image_lt_sq": 0.98,
+          "none_of_these": 0.02
+        },
+        "routed": true,
+        "verdict": "pick"
+      },
       "lean": "Problems/Juggler/Escape.lean",
       "names_own": [],
       "statement": "If n \u2265 2 follows OOEOOEOOEOE, then T_OOEOOEOOEOE(n) < n^2 because w^{2048} \u2264 n^{2187} forbids n^2 \u2264 w (4096 > 2187). A CE that follows OOEOOEOOE follows OOEOOEOOEO. On MinimalNonTerm an even OE landing after a third OOE is descent. This is not a length-11 cycle census, not a proof that every escaped even drops, and not a halt theorem."
@@ -3008,7 +4222,7 @@
         }
       ],
       "composite": false,
-      "confidence": "low",
+      "confidence": "review",
       "definitions": [
         {
           "decl": "itineraryOOEOOEOOEOE",
@@ -3023,6 +4237,22 @@
       ],
       "id": "J-ce-oe-next-oo",
       "in_file": 59,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "follows_ooeooeooeoeo_image_lt_sq",
+        "confidence": 0.89,
+        "decl": "follows_ooeooeooeoeo_image_lt_sq",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "bounded_trajectory_eventually_cycles": 0.0,
+          "follows_ooeooeooeoe_image_lt_sq": 0.01,
+          "follows_ooeooeooeoeo_image_lt_sq": 0.9,
+          "minimal_ooeooeooeoeo_not_even": 0.06,
+          "none_of_these": 0.03
+        },
+        "routed": true,
+        "verdict": "pick"
+      },
       "lean": "Problems/Juggler/Escape.lean",
       "names_own": [],
       "statement": "If n \u2265 2 follows OOEOOEOOEOEO, then T_OOEOOEOOEOEO(n) < n^2 because q^{4096} \u2264 n^{6561} forbids n^2 \u2264 q (8192 > 6561). A CE that follows OOEOOEOOEOE follows OOEOOEOOEOEO, and that image is odd. Another escaped even is impossible on this step. This is not a length-11 cycle census and not a halt theorem."
@@ -3049,7 +4279,7 @@
         }
       ],
       "composite": false,
-      "confidence": "low",
+      "confidence": "review",
       "definitions": [
         {
           "decl": "itineraryOOEOOEOOEOE",
@@ -3064,6 +4294,22 @@
       ],
       "id": "J-ce-second-o-cube",
       "in_file": 59,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "follows_ooeooeooeoeoo_image_lt_cube",
+        "confidence": 0.95,
+        "decl": "follows_ooeooeooeoeoo_image_lt_cube",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "bounded_trajectory_eventually_cycles": 0.0,
+          "cycleItinerary_of_repeat": 0.0,
+          "follows_ooeooeooeoeoo_image_lt_cube": 0.96,
+          "none_of_these": 0.03,
+          "ooeooeooeoeoo_loses_square": 0.01
+        },
+        "routed": true,
+        "verdict": "pick"
+      },
       "lean": "Problems/Juggler/Escape.lean",
       "names_own": [],
       "statement": "The itinerary OOEOOEOOEOEOO loses the square-cell gap (19683 > 16384). If n \u2265 2 follows that itinerary, then T(n) < n^3 because u^{8192} \u2264 n^{19683} forbids n^3 \u2264 u (24576 > 19683). A CE that follows OOEOOEOOEOE follows OOEOOEOOEOEOO. This is not a proof that the image stays below n^2, not a length-11 cycle census, and not a halt theorem."
@@ -3100,6 +4346,22 @@
       ],
       "id": "J-above-anchor",
       "in_file": 13,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "none_of_these",
+        "confidence": 0.86,
+        "decl": null,
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "aboveAnchor_image_ge": 0.01,
+          "aboveAnchor_iterate_ge": 0.06,
+          "aboveAnchor_not_continuation_drop": 0.02,
+          "aboveAnchor_not_lt": 0.03,
+          "none_of_these": 0.88
+        },
+        "routed": false,
+        "verdict": "none"
+      },
       "lean": "Problems/Juggler/MinimumRelative.lean",
       "names_own": [],
       "statement": "AboveAnchor(n,w) means n follows w and every T^i(n) for i \u2264 |w| is at least n. CycleMin(n,w) implies AboveAnchor(n,w). MinimalNonTerm(n) implies AboveAnchor(n,w) for every realized finite prefix w. A realized image T_w(n) < n is FiniteProgress. If the image is even and below n^2, one more even letter is FiniteProgress (the k=1 case of T(x) < n^k when x is even and x < n^{2k}). An AboveAnchor prefi"
@@ -3136,6 +4398,22 @@
       ],
       "id": "J-cube-not-square-split",
       "in_file": 13,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "none_of_these",
+        "confidence": 0.87,
+        "decl": null,
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "aboveAnchor_even_run_ge_pow": 0.01,
+          "aboveAnchor_image_ge": 0.01,
+          "aboveAnchor_isolated_two": 0.01,
+          "aboveAnchor_not_odd_even": 0.07,
+          "none_of_these": 0.89
+        },
+        "routed": false,
+        "verdict": "none"
+      },
       "lean": "Problems/Juggler/MinimumRelative.lean",
       "names_own": [],
       "statement": "If n \u2265 2 and n^2 \u2264 x < n^3, then an even x resets to n \u2264 T(x) < n^2, and an odd x lifts to T(x) \u2265 n^3. Even x < n^3 already gives T(x) < n^2 because n^3 < n^4. If that next image is also even, two even letters are FiniteProgress. On MinimalNonTerm a cube-cell even landing has odd next image. This is not a claim that a cube-cell even landing drops, not a next-letter envelope, and not a halt theorem"
@@ -3172,6 +4450,22 @@
       ],
       "id": "J-cube-odd-even-reset",
       "in_file": 13,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "none_of_these",
+        "confidence": 0.96,
+        "decl": null,
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "aboveAnchor_even_run_ge_pow": 0.0,
+          "aboveAnchor_follows": 0.0,
+          "aboveAnchor_not_odd_even": 0.02,
+          "forbidden_isolated_under_anchor": 0.01,
+          "none_of_these": 0.97
+        },
+        "routed": false,
+        "verdict": "none"
+      },
       "lean": "Problems/Juggler/MinimumRelative.lean",
       "names_own": [],
       "statement": "If n \u2265 2 and n^2 \u2264 x < n^3 with x odd, then n^3 \u2264 T(x) < n^5 and T(x)^2 < n^9. If T(x) is even, the first return satisfies n \u2264 T^2(x) < x < n^3 and T^2(x)^4 < n^9. If T(x) is odd, then x < T^2(x) and n^4 \u2264 T^2(x). An even reset that is itself even and already below n^2 is FiniteProgress; on MinimalNonTerm that case is impossible. This is not a claim that every even reset lands below n^2, not a new"
@@ -3213,6 +4507,22 @@
       ],
       "id": "J-small-cycle-census-ten",
       "in_file": 41,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "no_cycle_itinerary_length_le_ten",
+        "confidence": 1.0,
+        "decl": "no_cycle_itinerary_length_le_ten",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "cycleItinerary_iterate_not_lt_fifty_three": 0.0,
+          "cycleItinerary_iterate_not_lt_two_hundred_fifty_seven": 0.0,
+          "cycleItinerary_iterate_not_lt_two_hundred_sixty_one": 0.0,
+          "cycle_finance_min_fifty_three": 0.0,
+          "no_cycle_itinerary_length_le_ten": 1.0
+        },
+        "routed": false,
+        "verdict": "pick"
+      },
       "lean": "Problems/Juggler/CycleFinanceLeftovers.lean",
       "names_own": [
         "no_cycle_itinerary_length_nine",
@@ -3243,7 +4553,7 @@
         }
       ],
       "composite": true,
-      "confidence": "low",
+      "confidence": "review",
       "definitions": [
         {
           "decl": "EliahouLeftover",
@@ -3258,6 +4568,22 @@
       ],
       "id": "J-small-cycle-census-nineteen",
       "in_file": 41,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "no_cycle_itinerary_length_le_nineteen",
+        "confidence": 0.98,
+        "decl": "no_cycle_itinerary_length_le_nineteen",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "cycleItinerary_iterate_not_lt_fifty_three": 0.0,
+          "cycleItinerary_iterate_not_lt_two_hundred_fifty_seven": 0.0,
+          "cycleItinerary_iterate_not_lt_two_hundred_sixty_one": 0.0,
+          "no_cycle_itinerary_length_le_nineteen": 0.99,
+          "none_of_these": 0.01
+        },
+        "routed": true,
+        "verdict": "pick"
+      },
       "lean": "Problems/Juggler/CycleFinanceLeftovers.lean",
       "names_own": [
         "cycle_finance_min_two_hundred_fifty_seven",
@@ -3303,6 +4629,22 @@
       ],
       "id": "J-run-survivor-lattice",
       "in_file": 19,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "none_of_these",
+        "confidence": 0.7,
+        "decl": null,
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "family1_first": 0.0,
+          "none_of_these": 0.73,
+          "runSurvivors_length": 0.02,
+          "run_survivor_unimodular": 0.24,
+          "three_pow_step_gt_two_pow_step": 0.01
+        },
+        "routed": false,
+        "verdict": "none"
+      },
       "lean": "Problems/Juggler/RunSurvivorLattice.lean",
       "names_own": [
         "run_survivor_unimodular",
@@ -3335,10 +4677,26 @@
         }
       ],
       "composite": true,
-      "confidence": "low",
+      "confidence": "review",
       "definitions": [],
       "id": "J-cyclemin-last-odd-run",
       "in_file": 43,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "cycleMin_last_odd_run_eq_one",
+        "confidence": 0.98,
+        "decl": "cycleMin_last_odd_run_eq_one",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "cycleMax_exists_min_succ_sq": 0.0,
+          "cycleMax_landing_gt_min": 0.0,
+          "cycleMin_last_odd_run_eq_one": 0.97,
+          "cycleMin_not_last_odd_run_ge_two": 0.02,
+          "exists_cycleMin_last_odd_run": 0.01
+        },
+        "routed": true,
+        "verdict": "pick"
+      },
       "lean": "Problems/Juggler/EvenCountThree.lean",
       "names_own": [
         "no_cycleMin_odd_run",
@@ -3372,7 +4730,7 @@
         }
       ],
       "composite": true,
-      "confidence": "low",
+      "confidence": "review",
       "definitions": [
         {
           "decl": "hugIsEven",
@@ -3387,6 +4745,22 @@
       ],
       "id": "J-cyclemin-walk-word-identity",
       "in_file": 23,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "budgetedWord_eq_hugWord",
+        "confidence": 0.74,
+        "decl": "budgetedWord_eq_hugWord",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "budgetedIsEven_hug": 0.0,
+          "budgetedOdds_eq_hugOdds": 0.01,
+          "budgetedOdds_succ": 0.0,
+          "budgetedWord_eq_hugWord": 0.76,
+          "none_of_these": 0.23
+        },
+        "routed": true,
+        "verdict": "pick"
+      },
       "lean": "Problems/Juggler/WalkChargeItineraries.lean",
       "names_own": [
         "hugOdds_pow_ge",
@@ -3434,6 +4808,22 @@
       ],
       "id": "J-cyclemin-hug-charge-max",
       "in_file": 12,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "hug_charge_maximal",
+        "confidence": 0.43,
+        "decl": "hug_charge_maximal",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "cycleMin_defect_le_charge": 0.0,
+          "cycleMin_defect_le_hug_charge": 0.27,
+          "hugWeight_le_of_admissible": 0.0,
+          "hug_charge_maximal": 0.49,
+          "none_of_these": 0.24
+        },
+        "routed": false,
+        "verdict": "pick"
+      },
       "lean": "Problems/Juggler/WalkChargeMax.lean",
       "names_own": [
         "stateCharge_antitone",
@@ -3478,6 +4868,22 @@
       ],
       "id": "J-cyclemin-defect-finance-kill",
       "in_file": 11,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "cycleMin_defect_finance",
+        "confidence": 0.46,
+        "decl": "cycleMin_defect_finance",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "cycleMin_charge_prefix": 0.0,
+          "cycleMin_defect_finance": 0.51,
+          "cycleMin_hug_kill_criterion": 0.21,
+          "cycleMin_log_le_weight": 0.0,
+          "none_of_these": 0.28
+        },
+        "routed": false,
+        "verdict": "pick"
+      },
       "lean": "Problems/Juggler/DefectFinance.lean",
       "names_own": [
         "cycleMin_defect_finance",
@@ -3529,6 +4935,22 @@
       ],
       "id": "J-cyclemin-walk-ostrowski-numeration",
       "in_file": 14,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "none_of_these",
+        "confidence": 0.63,
+        "decl": null,
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "greedy_eq_ostro": 0.01,
+          "none_of_these": 0.67,
+          "ostroDigit_le": 0.04,
+          "ostro_digitSum_le": 0.22,
+          "theta_digitSum_le": 0.05
+        },
+        "routed": false,
+        "verdict": "none"
+      },
       "lean": "Problems/Juggler/OstrowskiNumeration.lean",
       "names_own": [
         "ostroRem_lt",
@@ -3566,7 +4988,7 @@
         }
       ],
       "composite": true,
-      "confidence": "low",
+      "confidence": "review",
       "definitions": [
         {
           "decl": "prefixDeficit",
@@ -3581,6 +5003,22 @@
       ],
       "id": "J-flight-envelope-transport",
       "in_file": 20,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "aboveAnchor_flight_envelope",
+        "confidence": 0.99,
+        "decl": "aboveAnchor_flight_envelope",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "aboveAnchor_flight_envelope": 0.99,
+          "aboveAnchor_transport": 0.0,
+          "aboveAnchor_transport_prefix": 0.0,
+          "cycleMin_transport_prefix": 0.0,
+          "none_of_these": 0.01
+        },
+        "routed": true,
+        "verdict": "pick"
+      },
       "lean": "Problems/Juggler/WalkTransport.lean",
       "names_own": [
         "aboveAnchor_transport",
@@ -3627,6 +5065,22 @@
       ],
       "id": "J-fate-classes-backward-closed",
       "in_file": 33,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "none_of_these",
+        "confidence": 0.65,
+        "decl": null,
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "ancestor_backwardClosed": 0.0,
+          "fate_trichotomy": 0.3,
+          "mem_iff_floorPower_mem": 0.01,
+          "none_of_these": 0.67,
+          "reachesOne_backwardClosed": 0.02
+        },
+        "routed": false,
+        "verdict": "none"
+      },
       "lean": "Problems/Juggler/FateContagion.lean",
       "names_own": [
         "reachesOne_backwardClosed",
@@ -3681,6 +5135,22 @@
       ],
       "id": "J-fate-oe-fiber-cell",
       "in_file": 33,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "none_of_these",
+        "confidence": 0.73,
+        "decl": null,
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "even_block_mem": 0.04,
+          "floorPower_oe_fiber": 0.05,
+          "mem_iff_floorPower_mem": 0.05,
+          "none_of_these": 0.75,
+          "oe_fiber_mem": 0.05
+        },
+        "routed": false,
+        "verdict": "none"
+      },
       "lean": "Problems/Juggler/FateContagion.lean",
       "names_own": [
         "floorPower_even_block",
@@ -3729,6 +5199,22 @@
       ],
       "id": "J-fate-odd-generation",
       "in_file": 33,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "none_of_these",
+        "confidence": 0.76,
+        "decl": null,
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "exists_odd_ancestor": 0.05,
+          "mem_iff_floorPower_mem": 0.01,
+          "none_of_these": 0.78,
+          "nonempty_iff_odd_image_mem": 0.13,
+          "odd_mem_iff": 0.02
+        },
+        "routed": false,
+        "verdict": "none"
+      },
       "lean": "Problems/Juggler/FateContagion.lean",
       "names_own": [
         "reachesOne_forwardClosed",
@@ -3779,6 +5265,22 @@
       ],
       "id": "J-fate-envelope-floor",
       "in_file": 33,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "reachesOne_of_itinerary_envelope",
+        "confidence": 0.37,
+        "decl": "reachesOne_of_itinerary_envelope",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "ancestor_backwardClosed": 0.0,
+          "iterate_le_of_envelope": 0.2,
+          "mem_of_envelope_floor": 0.24,
+          "none_of_these": 0.16,
+          "reachesOne_of_itinerary_envelope": 0.4
+        },
+        "routed": false,
+        "verdict": "pick"
+      },
       "lean": "Problems/Juggler/FateContagion.lean",
       "names_own": [
         "iterate_le_of_envelope",
@@ -3824,6 +5326,22 @@
       ],
       "id": "J-loglog-clock-walk-rotation-lean",
       "in_file": 19,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "fract_mul_sub_nat_eq_fract_mul_sub_one",
+        "confidence": 0.48,
+        "decl": "fract_mul_sub_nat_eq_fract_mul_sub_one",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "alphaClock_lt_one": 0.0,
+          "fract_mul_sub_nat_eq_fract_mul_sub_one": 0.52,
+          "fract_walk_depends_only_on_odd_count": 0.01,
+          "fract_walk_eq_fract_rotation": 0.26,
+          "none_of_these": 0.21
+        },
+        "routed": false,
+        "verdict": "pick"
+      },
       "lean": "Problems/Juggler/LogLogClock.lean",
       "names_own": [
         "fract_mul_sub_nat_eq_fract_mul_sub_one",
@@ -3854,7 +5372,7 @@
         }
       ],
       "composite": true,
-      "confidence": "low",
+      "confidence": "review",
       "definitions": [
         {
           "decl": "alphaClock",
@@ -3869,6 +5387,22 @@
       ],
       "id": "J-loglog-clock-even-chain-burst-lean",
       "in_file": 19,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "even_chain_mem_burst",
+        "confidence": 0.96,
+        "decl": "even_chain_mem_burst",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "alphaClock_lt_one": 0.0,
+          "alphaClock_pos": 0.0,
+          "even_chain_log_offset": 0.01,
+          "even_chain_mem_burst": 0.97,
+          "none_of_these": 0.02
+        },
+        "routed": true,
+        "verdict": "pick"
+      },
       "lean": "Problems/Juggler/LogLogClock.lean",
       "names_own": [
         "even_chain_mem_burst",
@@ -3914,6 +5448,22 @@
       ],
       "id": "J-loglog-clock-hug-band-lean",
       "in_file": 19,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "none_of_these",
+        "confidence": 0.8,
+        "decl": null,
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "band_successor_unique": 0.01,
+          "dead_zone_nonempty": 0.06,
+          "hug_band_step_exists": 0.1,
+          "narrow_band_dead": 0.01,
+          "none_of_these": 0.81
+        },
+        "routed": false,
+        "verdict": "none"
+      },
       "lean": "Problems/Juggler/LogLogClock.lean",
       "names_own": [
         "hug_band_step_exists",
@@ -3962,6 +5512,22 @@
       ],
       "id": "J-loglog-clock-band-word-forced-lean",
       "in_file": 19,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "band_successor_unique",
+        "confidence": 0.95,
+        "decl": "band_successor_unique",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "alphaClock_lt_one": 0.0,
+          "alphaClock_pos": 0.0,
+          "band_step_forced_even": 0.0,
+          "band_successor_unique": 0.97,
+          "none_of_these": 0.03
+        },
+        "routed": false,
+        "verdict": "pick"
+      },
       "lean": "Problems/Juggler/LogLogClock.lean",
       "names_own": [
         "band_step_forced_odd",
@@ -3992,7 +5558,7 @@
         }
       ],
       "composite": true,
-      "confidence": "low",
+      "confidence": "review",
       "definitions": [
         {
           "decl": "WalkStep",
@@ -4007,6 +5573,22 @@
       ],
       "id": "J-floor-stratifies-even-cylinders-lean",
       "in_file": 19,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "not_reachesOne_even_chain_ge",
+        "confidence": 1.0,
+        "decl": "not_reachesOne_even_chain_ge",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "alphaClock_lt_one": 0.0,
+          "alphaClock_pos": 0.0,
+          "band_step_forced_even": 0.0,
+          "band_step_forced_odd": 0.0,
+          "not_reachesOne_even_chain_ge": 1.0
+        },
+        "routed": true,
+        "verdict": "pick"
+      },
       "lean": "Problems/Juggler/LogLogClock.lean",
       "names_own": [
         "not_reachesOne_even_chain_ge",
@@ -4041,6 +5623,22 @@
       "definitions": [],
       "id": "J-tower-absorption",
       "in_file": 5,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "none_of_these",
+        "confidence": 0.81,
+        "decl": null,
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "floorPower_iter_of_even": 0.01,
+          "floorPower_odd_even_run": 0.06,
+          "floorPower_odd_even_run_eq_iff": 0.07,
+          "floorPower_oe_eq_iff": 0.01,
+          "none_of_these": 0.84
+        },
+        "routed": false,
+        "verdict": "none"
+      },
       "lean": "Problems/Juggler/TowerAbsorption.lean",
       "names_own": [
         "sqrt_iter_eq_iff",
@@ -4087,6 +5685,22 @@
       ],
       "id": "J-depth-one-arithmetic-layer",
       "in_file": 19,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "none_of_these",
+        "confidence": 0.84,
+        "decl": null,
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "completeCubicSum_eq_nine": 0.03,
+          "depthOneConstant_eq_sqrt_six_div_nine": 0.01,
+          "dual_phase": 0.07,
+          "dual_phase_rpow": 0.04,
+          "none_of_these": 0.85
+        },
+        "routed": false,
+        "verdict": "none"
+      },
       "lean": "formal/Problems/Juggler/DepthOneMainTerm.lean",
       "names_own": [
         "dual_phase",
@@ -4143,6 +5757,22 @@
       ],
       "id": "J-tilted-share-telescoping",
       "in_file": 23,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "count_le_pressure",
+        "confidence": 0.4,
+        "decl": "count_le_pressure",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "count_le_of_meanShare": 0.0,
+          "count_le_of_noMomentum": 0.03,
+          "count_le_pressure": 0.44,
+          "none_of_these": 0.11,
+          "weightGen_le_pressure": 0.42
+        },
+        "routed": false,
+        "verdict": "pick"
+      },
       "lean": "Problems/Juggler/TiltedShare.lean",
       "names_own": [
         "weightGen_succ_le",
@@ -4177,7 +5807,7 @@
         }
       ],
       "composite": true,
-      "confidence": "low",
+      "confidence": "review",
       "definitions": [
         {
           "decl": "liveCount",
@@ -4192,6 +5822,22 @@
       ],
       "id": "J-live-count-weight",
       "in_file": 11,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "juggler_count_le_of_noMomentum",
+        "confidence": 0.73,
+        "decl": "juggler_count_le_of_noMomentum",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "juggler_count_le_of_noMomentum": 0.76,
+          "liveCount_length": 0.01,
+          "liveCount_sum_oddCount": 0.01,
+          "liveWeight_weightSplit": 0.01,
+          "none_of_these": 0.21
+        },
+        "routed": true,
+        "verdict": "pick"
+      },
       "lean": "formal/Problems/Juggler/LiveCountWeight.lean",
       "names_own": [
         "liveWeight_weightSplit",
@@ -4237,6 +5883,22 @@
       ],
       "id": "J-mean-share-form",
       "in_file": 23,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "count_le_of_meanShare",
+        "confidence": 0.45,
+        "decl": "count_le_of_meanShare",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "count_le_of_meanShare": 0.48,
+          "count_le_of_meanShareOff": 0.0,
+          "count_le_of_noMomentum": 0.01,
+          "none_of_these": 0.29,
+          "weightGen_le_of_meanShare": 0.22
+        },
+        "routed": false,
+        "verdict": "pick"
+      },
       "lean": "formal/Problems/Juggler/TiltedShare.lean",
       "names_own": [
         "weightGen_le_of_meanShare",
@@ -4284,6 +5946,22 @@
       ],
       "id": "J-mean-share-exceptional-depths",
       "in_file": 23,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "weightGen_le_of_meanShareOff",
+        "confidence": 0.64,
+        "decl": "weightGen_le_of_meanShareOff",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "count_le_of_meanShare": 0.0,
+          "initial_depths_are_free": 0.03,
+          "none_of_these": 0.3,
+          "tower_ratio_lt_one": 0.01,
+          "weightGen_le_of_meanShareOff": 0.66
+        },
+        "routed": false,
+        "verdict": "pick"
+      },
       "lean": "formal/Problems/Juggler/TiltedShare.lean",
       "names_own": [
         "weightGen_le_of_meanShareOff",
@@ -4333,6 +6011,22 @@
       ],
       "id": "J-cycle-run-alphabet",
       "in_file": 14,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "none_of_these",
+        "confidence": 0.68,
+        "decl": null,
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "even_run_contracts": 0.02,
+          "none_of_these": 0.71,
+          "oddCount_le_of_noAdjOdd": 0.02,
+          "odd_run_upper": 0.12,
+          "oo_step_lower": 0.12
+        },
+        "routed": false,
+        "verdict": "none"
+      },
       "lean": "formal/Problems/Juggler/CycleRunAlphabet.lean",
       "names_own": [
         "odd_run_upper",
@@ -4380,6 +6074,22 @@
       ],
       "id": "J-cycle-band-discrepancy",
       "in_file": 14,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "walk_eq_discrepancy",
+        "confidence": 0.69,
+        "decl": "walk_eq_discrepancy",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "band_min_needs_three_climbs": 0.01,
+          "band_min_no_second_fall": 0.0,
+          "climbRun_append_oe_exponentGap": 0.0,
+          "none_of_these": 0.27,
+          "walk_eq_discrepancy": 0.72
+        },
+        "routed": false,
+        "verdict": "pick"
+      },
       "lean": "formal/Problems/Juggler/CycleRunAlphabet.lean",
       "names_own": [
         "walk_eq_discrepancy",
@@ -4425,6 +6135,22 @@
       ],
       "id": "J-parity-factor-exhaustion",
       "in_file": 7,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "none_of_these",
+        "confidence": 0.84,
+        "decl": null,
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "factorCount_five_saturates": 0.0,
+          "factorCount_four_saturates": 0.0,
+          "factorCount_six_not_before": 0.01,
+          "factorCount_six_saturates": 0.13,
+          "none_of_these": 0.86
+        },
+        "routed": false,
+        "verdict": "none"
+      },
       "lean": "formal/Problems/Juggler/ParityComplexity.lean",
       "names_own": [
         "oddCubeParity_eq_floorPower",
@@ -4470,6 +6196,22 @@
       ],
       "id": "J-localized-kernel-arithmetic",
       "in_file": 24,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "none_of_these",
+        "confidence": 0.83,
+        "decl": null,
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "absTail_eq": 0.03,
+          "none_of_these": 0.85,
+          "production_formal_effective_saving": 0.02,
+          "production_misses_same_saving": 0.04,
+          "production_same_saving_deficit": 0.05
+        },
+        "routed": false,
+        "verdict": "none"
+      },
       "lean": "formal/Problems/Juggler/LocalizedKernel.lean",
       "names_own": [
         "absTail_eq",
@@ -4520,6 +6262,22 @@
       "definitions": [],
       "id": "J-cube-fiber-exact",
       "in_file": 7,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "none_of_these",
+        "confidence": 0.75,
+        "decl": null,
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "cube_fiber_alternating": 0.01,
+          "cube_fiber_even_image": 0.0,
+          "even_cube_fiber_full": 0.15,
+          "none_of_these": 0.79,
+          "odd_cube_fiber_alternating": 0.05
+        },
+        "routed": false,
+        "verdict": "none"
+      },
       "lean": "formal/Problems/Juggler/CubeFiber.lean",
       "names_own": [
         "even_cube_fiber_full",
@@ -4567,6 +6325,22 @@
       ],
       "id": "J-theorem-six-one-threshold-is-slack",
       "in_file": 13,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "none_of_these",
+        "confidence": 0.7,
+        "decl": null,
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "breakEven_admissible": 0.01,
+          "breakEven_saturates": 0.11,
+          "first_usable_depth": 0.03,
+          "le_breakEven_of_admissible": 0.12,
+          "none_of_these": 0.73
+        },
+        "routed": false,
+        "verdict": "none"
+      },
       "lean": "formal/Problems/Juggler/PaperBThreshold.lean",
       "names_own": [
         "breakEven_saturates",
@@ -4622,6 +6396,22 @@
       ],
       "id": "J-paper-b-tilt-reduction-and-the-phase-factor",
       "in_file": 13,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "none_of_these",
+        "confidence": 0.92,
+        "decl": null,
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "beta_lt_one": 0.0,
+          "beta_rho_closed": 0.02,
+          "none_of_these": 0.93,
+          "one_add_tailRoot": 0.01,
+          "rho_closed_form": 0.04
+        },
+        "routed": false,
+        "verdict": "none"
+      },
       "lean": "formal/Problems/Juggler/PaperBTilt.lean",
       "names_own": [
         "lamStar_mean_zero",
@@ -4660,6 +6450,22 @@
       "definitions": [],
       "id": "J-tail-amplitude-is-a-cocycle-over-the-boundary-fraction",
       "in_file": 7,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "none_of_these",
+        "confidence": 0.48,
+        "decl": null,
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "cocycle_average_eq": 0.41,
+          "none_of_these": 0.54,
+          "nonrising_multiplier": 0.02,
+          "update_false_tail": 0.02,
+          "update_true_tail": 0.01
+        },
+        "routed": false,
+        "verdict": "none"
+      },
       "lean": "formal/Problems/Juggler/PaperBAmplitudeCocycle.lean",
       "names_own": [
         "update_true_tail",
@@ -4708,6 +6514,22 @@
       ],
       "id": "J-tail-double-root-in-lean-and-paper-b-updated",
       "in_file": 7,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "h_at_tailRoot",
+        "confidence": 0.42,
+        "decl": "h_at_tailRoot",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "h_at_tailRoot": 0.49,
+          "h_deriv_eq_zero_at_tailRoot": 0.01,
+          "h_hasDerivAt": 0.0,
+          "none_of_these": 0.48,
+          "tailRoot_pos": 0.02
+        },
+        "routed": false,
+        "verdict": "pick"
+      },
       "lean": "formal/Problems/Juggler/PaperBTailSpectrum.lean",
       "names_own": [
         "h_hasDerivAt",
@@ -4741,7 +6563,7 @@
         }
       ],
       "composite": true,
-      "confidence": "low",
+      "confidence": "review",
       "definitions": [
         {
           "decl": "klDiv",
@@ -4756,6 +6578,22 @@
       ],
       "id": "J-paper-b-formal-layer-has-an-estimate",
       "in_file": 7,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "theta_lt_one",
+        "confidence": 0.98,
+        "decl": "theta_lt_one",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "klDiv_half_eq": 0.0,
+          "klDiv_pos": 0.0,
+          "none_of_these": 0.02,
+          "one_sub_inv_lt_log": 0.0,
+          "theta_lt_one": 0.98
+        },
+        "routed": true,
+        "verdict": "pick"
+      },
       "lean": "formal/Problems/Juggler/PaperBChernoff.lean",
       "names_own": [
         "one_sub_inv_lt_log",
@@ -4793,6 +6631,22 @@
       "definitions": [],
       "id": "J-paper-b-chernoff-chain-is-formal",
       "in_file": 4,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "none_of_these",
+        "confidence": 0.77,
+        "decl": null,
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "chernoff_density": 0.03,
+          "chernoff_tail": 0.01,
+          "none_of_these": 0.82,
+          "sum_choose_mul_pow": 0.0,
+          "tilt_gives_theta": 0.14
+        },
+        "routed": false,
+        "verdict": "none"
+      },
       "lean": "formal/Problems/Juggler/PaperBMarkov.lean",
       "names_own": [
         "sum_choose_mul_pow",
@@ -4828,6 +6682,21 @@
       "definitions": [],
       "id": "J-fd-step-is-formal-and-theorem-six-one-stays-conditional",
       "in_file": 3,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "none_of_these",
+        "confidence": 0.8,
+        "decl": null,
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "density_of_finite_union": 0.04,
+          "exceptional_density_zero": 0.11,
+          "none_of_these": 0.85,
+          "tendsto_zero_of_eventually_le": 0.0
+        },
+        "routed": false,
+        "verdict": "none"
+      },
       "lean": "formal/Problems/Juggler/PaperBDensity.lean",
       "names_own": [
         "density_of_finite_union",
@@ -4858,7 +6727,7 @@
         }
       ],
       "composite": true,
-      "confidence": "low",
+      "confidence": "review",
       "definitions": [
         {
           "decl": "barrierMass",
@@ -4873,6 +6742,22 @@
       ],
       "id": "J-paper-b-transposition-costs-the-barrier-mass",
       "in_file": 16,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "run_stepRise_stepFlat",
+        "confidence": 0.71,
+        "decl": "run_stepRise_stepFlat",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "barrierMass_eq_ite": 0.0,
+          "none_of_these": 0.05,
+          "run_stepRise_stepFlat": 0.73,
+          "stepRise_stepFlat_eq_add_barrierMass": 0.17,
+          "total_run_stepRise_stepFlat": 0.05
+        },
+        "routed": true,
+        "verdict": "pick"
+      },
       "lean": "formal/Problems/Juggler/PaperBJumpTransposition.lean",
       "names_own": [
         "stepRise_stepFlat_eq_add_barrierMass",
@@ -4907,7 +6792,7 @@
         }
       ],
       "composite": true,
-      "confidence": "low",
+      "confidence": "review",
       "definitions": [
         {
           "decl": "parityWord",
@@ -4922,6 +6807,22 @@
       ],
       "id": "J-collatz-bridge-is-exact-at-the-word-level",
       "in_file": 59,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "word_affine",
+        "confidence": 0.79,
+        "decl": "word_affine",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "cycle_even_charge": 0.01,
+          "none_of_these": 0.15,
+          "two_pow_mul_iter_add_one": 0.02,
+          "word_affine": 0.81,
+          "word_affine_int": 0.01
+        },
+        "routed": true,
+        "verdict": "pick"
+      },
       "lean": "Problems/Juggler/CollatzBridge.lean",
       "names_own": [
         "word_affine",
@@ -4956,7 +6857,7 @@
         }
       ],
       "composite": true,
-      "confidence": "low",
+      "confidence": "review",
       "definitions": [
         {
           "decl": "undecidedResidues",
@@ -4971,6 +6872,22 @@
       ],
       "id": "J-survivor-count-is-a-collatz-residue-count",
       "in_file": 59,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "undecidedResidues_card",
+        "confidence": 0.97,
+        "decl": "undecidedResidues_card",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "allWords_card": 0.0,
+          "bit_eq_iff": 0.0,
+          "card_filter_parityWord": 0.0,
+          "none_of_these": 0.02,
+          "undecidedResidues_card": 0.98
+        },
+        "routed": true,
+        "verdict": "pick"
+      },
       "lean": "Problems/Juggler/CollatzBridge.lean",
       "names_own": [
         "undecidedResidues_card",
@@ -5002,7 +6919,7 @@
         }
       ],
       "composite": true,
-      "confidence": "low",
+      "confidence": "review",
       "definitions": [
         {
           "decl": "evenCharge",
@@ -5017,6 +6934,22 @@
       ],
       "id": "J-collatz-even-step-charge-identity",
       "in_file": 59,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "two_pow_mul_iter_add_one",
+        "confidence": 0.74,
+        "decl": "two_pow_mul_iter_add_one",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "allWords_card": 0.0,
+          "bit_eq_iff": 0.0,
+          "cycle_even_charge": 0.17,
+          "none_of_these": 0.08,
+          "two_pow_mul_iter_add_one": 0.75
+        },
+        "routed": true,
+        "verdict": "pick"
+      },
       "lean": "Problems/Juggler/CollatzBridge.lean",
       "names_own": [
         "wordConst_add_two_pow",
@@ -5064,6 +6997,22 @@
       ],
       "id": "J-collatz-cycle-equation-is-a-word-divisibility",
       "in_file": 59,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "cycle_of_equation",
+        "confidence": 0.56,
+        "decl": "cycle_of_equation",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "cycle_dvd": 0.03,
+          "cycle_equation": 0.07,
+          "cycle_equation_int": 0.03,
+          "cycle_of_equation": 0.58,
+          "none_of_these": 0.27
+        },
+        "routed": false,
+        "verdict": "pick"
+      },
       "lean": "Problems/Juggler/CollatzBridge.lean",
       "names_own": [
         "word_affine_int",
@@ -5098,7 +7047,7 @@
         }
       ],
       "composite": true,
-      "confidence": "low",
+      "confidence": "review",
       "definitions": [
         {
           "decl": "undecidedResidues",
@@ -5113,6 +7062,22 @@
       ],
       "id": "J-juggler-cycle-words-are-collatz-negative-cycle-words",
       "in_file": 59,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "neg_cycle_word_is_juggler_shape",
+        "confidence": 0.84,
+        "decl": "neg_cycle_word_is_juggler_shape",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "allWords_card": 0.0,
+          "bit_eq_iff": 0.0,
+          "neg_cycle_expanding": 0.01,
+          "neg_cycle_word_is_juggler_shape": 0.86,
+          "none_of_these": 0.13
+        },
+        "routed": true,
+        "verdict": "pick"
+      },
       "lean": "Problems/Juggler/CollatzBridge.lean",
       "names_own": [
         "neg_cycle_expanding",
@@ -5164,6 +7129,22 @@
       ],
       "id": "J-negative-cycle-finance-is-the-juggler-mirror",
       "in_file": 59,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "neg_cycle_finance",
+        "confidence": 0.43,
+        "decl": "neg_cycle_finance",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "allWords_card": 0.0,
+          "neg_cycle_finance": 0.45,
+          "neg_seventeen_finance": 0.02,
+          "none_of_these": 0.21,
+          "two_mul_evenCharge_le": 0.32
+        },
+        "routed": false,
+        "verdict": "pick"
+      },
       "lean": "Problems/Juggler/CollatzBridge.lean",
       "names_own": [
         "two_mul_evenCharge_le",
@@ -5196,7 +7177,7 @@
         }
       ],
       "composite": true,
-      "confidence": "low",
+      "confidence": "review",
       "definitions": [
         {
           "decl": "Vword",
@@ -5206,6 +7187,22 @@
       ],
       "id": "J-paper-c-production-words-are-prefix-free",
       "in_file": 6,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "Vword_prefix_iff",
+        "confidence": 0.99,
+        "decl": "Vword_prefix_iff",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "Vword_eq_odd_cons": 0.0,
+          "Vword_five": 0.0,
+          "Vword_length": 0.0,
+          "Vword_oddCount": 0.0,
+          "Vword_prefix_iff": 1.0
+        },
+        "routed": true,
+        "verdict": "pick"
+      },
       "lean": "Problems/Juggler/FateProductionWords.lean",
       "names_own": [
         "Vword_length",
@@ -5239,7 +7236,7 @@
         }
       ],
       "composite": true,
-      "confidence": "low",
+      "confidence": "review",
       "definitions": [
         {
           "decl": "Unstable",
@@ -5254,6 +7251,22 @@
       ],
       "id": "J-oe-fiber-block-lock",
       "in_file": 19,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "block_lock",
+        "confidence": 0.96,
+        "decl": "block_lock",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "block_chain": 0.0,
+          "block_count": 0.0,
+          "block_lock": 0.97,
+          "card_filter_abs_sub_le": 0.0,
+          "none_of_these": 0.03
+        },
+        "routed": true,
+        "verdict": "pick"
+      },
       "lean": "formal/Problems/Juggler/FateBlockLock.lean",
       "names_own": [
         "block_lock",
@@ -5296,6 +7309,22 @@
       ],
       "id": "J-oe-poor-fiber-tail",
       "in_file": 13,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "poor_logMass_le",
+        "confidence": 0.6,
+        "decl": "poor_logMass_le",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "B_ge": 0.0,
+          "none_of_these": 0.31,
+          "poor_count_le'": 0.01,
+          "poor_logMass_le": 0.64,
+          "poor_sum_dyadic_le": 0.04
+        },
+        "routed": false,
+        "verdict": "pick"
+      },
       "lean": "formal/Problems/Juggler/FatePoorTail.lean",
       "names_own": [
         "poor_count_le'",
@@ -5325,7 +7354,7 @@
         }
       ],
       "composite": true,
-      "confidence": "low",
+      "confidence": "review",
       "definitions": [
         {
           "decl": "errAddAvg",
@@ -5340,6 +7369,22 @@
       ],
       "id": "J-oe-averaged-two-productions-reach-the-depth-two-ceiling",
       "in_file": 16,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "logMass_contagion_averaged",
+        "confidence": 0.77,
+        "decl": "logMass_contagion_averaged",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "coef2avg_ge": 0.0,
+          "contagion_averaged": 0.12,
+          "logMass_contagion_averaged": 0.79,
+          "none_of_these": 0.07,
+          "production_two_averaged": 0.02
+        },
+        "routed": true,
+        "verdict": "pick"
+      },
       "lean": "formal/Problems/Juggler/FatePoorProduction.lean",
       "names_own": [
         "family_OE_averaged",
@@ -5374,7 +7419,7 @@
         }
       ],
       "composite": true,
-      "confidence": "low",
+      "confidence": "review",
       "definitions": [
         {
           "decl": "minimalCertCount",
@@ -5389,6 +7434,22 @@
       ],
       "id": "J-survivor-count-is-the-certificate-tail",
       "in_file": 24,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "neverNegCount_telescope",
+        "confidence": 0.99,
+        "decl": "neverNegCount_telescope",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "certifiedWordCount_succ": 0.0,
+          "density_flat_eight_to_nine": 0.0,
+          "density_flat_five_to_six": 0.0,
+          "minimalCert_tail_eq": 0.01,
+          "neverNegCount_telescope": 0.99
+        },
+        "routed": true,
+        "verdict": "pick"
+      },
       "lean": "formal/Problems/Juggler/PaperBCertificateRecursion.lean",
       "names_own": [
         "neverNegCount_add_minimalCertCount",
@@ -5434,6 +7495,22 @@
       ],
       "id": "J-free-lengths-are-never-adjacent",
       "in_file": 38,
+      "jev": {
+        "asked": "2026-09-21",
+        "choice": "carrying_in_adjacent_pair",
+        "confidence": 0.92,
+        "decl": "carrying_in_adjacent_pair",
+        "model": "jev-1.13.0",
+        "probabilities": {
+          "aliveAt_disjoint_certsAt": 0.0,
+          "aliveWordsAt_succ_iff_window_empty": 0.0,
+          "aliveWordsAt_succ_of_window_empty": 0.0,
+          "carrying_in_adjacent_pair": 0.93,
+          "not_cylinder_twice": 0.07
+        },
+        "routed": false,
+        "verdict": "pick"
+      },
       "lean": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "names_own": [
         "carrying_in_adjacent_pair",
@@ -5445,5 +7522,5 @@
     }
   ],
   "unresolved": 131,
-  "worth_reviewing": 24
+  "worth_reviewing": 62
 }

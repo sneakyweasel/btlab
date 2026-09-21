@@ -1,0 +1,2187 @@
+{
+  "asked": "2026-09-21",
+  "calibration": {
+    "asked": "2026-09-21",
+    "confident": 29,
+    "confident_correct": 24,
+    "eligible": 209,
+    "input_tokens": 128028,
+    "misses": [
+      {
+        "choice": "same_energy_same_OnF",
+        "confidence": 0.98,
+        "id": "OST-np-same-energy-same-OnF",
+        "scorer": "fold_on_F_iff",
+        "truth": "fold_on_F_iff"
+      },
+      {
+        "choice": "none_of_these",
+        "confidence": 0.95,
+        "id": "J-period-family-arithmetic-in-lean",
+        "scorer": "member_strictMono",
+        "truth": "familyClosed"
+      },
+      {
+        "choice": "origin_residual_box_iff",
+        "confidence": 0.9,
+        "id": "BTN-sdr-finite-condition",
+        "scorer": "lambda1_reachable_box",
+        "truth": "finite_residual_condition"
+      },
+      {
+        "choice": "four_block_pe_1999",
+        "confidence": 0.87,
+        "id": "J-four-block-persistent-expanding",
+        "scorer": "four_consecutive_persistent_expanding_exists",
+        "truth": "four_consecutive_persistent_expanding_exists"
+      },
+      {
+        "choice": "none_of_these",
+        "confidence": 0.86,
+        "id": "J-fate-share-law-layer",
+        "scorer": "integral_extremeMeasure",
+        "truth": "xval_expansion"
+      },
+      {
+        "choice": "none_of_these",
+        "confidence": 0.65,
+        "id": "J-cycle-short-return-cells",
+        "scorer": "ooe_sq_actual_of_cells",
+        "truth": "ooe_odd_maximal"
+      },
+      {
+        "choice": "none_of_these",
+        "confidence": 0.58,
+        "id": "BTN-expanding-magnitude",
+        "scorer": "expandingD_mod",
+        "truth": "magnitude_contraction_false"
+      },
+      {
+        "choice": "endpoint_congruence_zmod",
+        "confidence": 0.57,
+        "id": "C-endpoint",
+        "scorer": "kramer_endpoint_congruence_zmod",
+        "truth": "kramer_endpoint_congruence_zmod"
+      },
+      {
+        "choice": "none_of_these",
+        "confidence": 0.56,
+        "id": "BTA-x3-Q-def",
+        "scorer": "q_eq_of_cube_mod",
+        "truth": "qCubic_def"
+      },
+      {
+        "choice": "none_of_these",
+        "confidence": 0.44,
+        "id": "J-odd-run-recursive",
+        "scorer": "oddLanding_preimage_unique",
+        "truth": "oddRun_recursive"
+      },
+      {
+        "choice": "none_of_these",
+        "confidence": 0.4,
+        "id": "J-cycle-subtractive-return-step",
+        "scorer": "left_word_statistics",
+        "truth": "left_subtractive_first_return"
+      },
+      {
+        "choice": "none_of_these",
+        "confidence": 0.24,
+        "id": "BTN-sdsh-truncated-mod",
+        "scorer": "truncated_3adic_agree",
+        "truth": "truncated_3adic_agree"
+      },
+      {
+        "choice": "oddFailures_le_of_exc",
+        "confidence": 0.21,
+        "id": "J-fate-one-sided-atoms",
+        "scorer": "exc_implies_conjecture",
+        "truth": "exc_implies_conjecture"
+      }
+    ],
+    "model": "jev-1.13.0",
+    "none": 8,
+    "resolved": 210,
+    "sampled": 40,
+    "scorer_top1": 23,
+    "seed": 20260921,
+    "top1": 27,
+    "top3": 38,
+    "truth_not_offered": 0
+  },
+  "models": [
+    "jev-1.13.0"
+  ],
+  "note": "Jev's answers to the proposal queue, cached by row: which of the file's theorems states the row, or none of them. Advisory, like the scorer: propose() merges these onto its rows, and nothing here is written into the ledger.",
+  "rows": {
+    "BT-Pn3": {
+      "asked": "2026-09-21",
+      "choice": "evalPoly_reverse_three",
+      "confidence": 0.57,
+      "in_file": 7,
+      "key": "d203496f498fad95",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "evalAt_three": 0.03,
+        "evalPoly_cons": 0.0,
+        "evalPoly_nil": 0.0,
+        "evalPoly_reverse_three": 0.63,
+        "none_of_these": 0.34
+      },
+      "shortlist": 7
+    },
+    "BTA-Ik-newton": {
+      "asked": "2026-09-21",
+      "choice": "none_of_these",
+      "confidence": 0.45,
+      "in_file": 18,
+      "key": "9dde4464bbbf4fdc",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "equivK_iff_newtonCoeff": 0.05,
+        "newtonKernel_of_vanishesMod": 0.04,
+        "none_of_these": 0.49,
+        "vanishesMod_iff_newtonKernel": 0.3,
+        "vanishesMod_of_newtonKernel_aux": 0.1
+      },
+      "shortlist": 18
+    },
+    "BTA-equiv": {
+      "asked": "2026-09-21",
+      "choice": "equivK_iff_outputs",
+      "confidence": 0.71,
+      "in_file": 12,
+      "key": "eea5ad014de7acaa",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "equivK_iff_outputs": 0.74,
+        "equivK_refl": 0.01,
+        "equivK_succ_iff": 0.01,
+        "equivK_trans": 0.03,
+        "none_of_these": 0.21
+      },
+      "shortlist": 12
+    },
+    "BTA-quad-mod": {
+      "asked": "2026-09-21",
+      "choice": "equivK_quad",
+      "confidence": 1.0,
+      "in_file": 47,
+      "key": "16bf2079d5e5edbe",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "C_step": 0.0,
+        "X_sq_eq_quad": 0.0,
+        "coeff_quad_one": 0.0,
+        "coeff_quad_two": 0.0,
+        "equivK_quad": 1.0
+      },
+      "shortlist": 47
+    },
+    "BTA-x2-mn": {
+      "asked": "2026-09-21",
+      "choice": "none_of_these",
+      "confidence": 0.89,
+      "in_file": 47,
+      "key": "e77d023a06e16a13",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "C_step": 0.01,
+        "equivK_quad": 0.01,
+        "none_of_these": 0.9,
+        "residualAlong_Xsq": 0.04,
+        "two_mul_packWord_le": 0.03
+      },
+      "shortlist": 47
+    },
+    "BTA-x2-quad-form": {
+      "asked": "2026-09-21",
+      "choice": "residualAlong_Xsq",
+      "confidence": 0.99,
+      "in_file": 47,
+      "key": "9e502d5dd8b79f79",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "C_step": 0.0,
+        "X_sq_eq_quad": 0.0,
+        "coeff_quad_one": 0.0,
+        "coeff_quad_two": 0.0,
+        "residualAlong_Xsq": 1.0
+      },
+      "shortlist": 47
+    },
+    "BTA-x2-raw": {
+      "asked": "2026-09-21",
+      "choice": "none_of_these",
+      "confidence": 0.75,
+      "in_file": 47,
+      "key": "2bde9ec7b374fa78",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "equivK_quad": 0.02,
+        "none_of_these": 0.76,
+        "residualAlong_Xsq": 0.13,
+        "two_mul_packWord_le": 0.06,
+        "xsq_equivK_iff_eq": 0.02
+      },
+      "shortlist": 47
+    },
+    "BTA-x3-C-core": {
+      "asked": "2026-09-21",
+      "choice": "balWidth_pow_iff",
+      "confidence": 0.72,
+      "in_file": 17,
+      "key": "c5c50d965d8d201d",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "balWidth_mul_pow": 0.0,
+        "balWidth_of_mul_pow": 0.01,
+        "balWidth_pow_iff": 0.75,
+        "balWidth_pow_of_lt": 0.06,
+        "none_of_these": 0.18
+      },
+      "shortlist": 17
+    },
+    "BTA-x3-H-A": {
+      "asked": "2026-09-21",
+      "choice": "n1_core_square_iff",
+      "confidence": 0.94,
+      "in_file": 17,
+      "key": "d8116b4834da9321",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "balWidth_mul_pow": 0.0,
+        "balWidth_of_mul_pow": 0.0,
+        "n1_core_square_iff": 0.95,
+        "none_of_these": 0.04,
+        "square_exp_eq_width": 0.01
+      },
+      "shortlist": 17
+    },
+    "BTA-x3-M-spine": {
+      "asked": "2026-09-21",
+      "choice": "zero_spine_n1",
+      "confidence": 0.5,
+      "in_file": 17,
+      "key": "be89dc50b55e9fad",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "balWidth_pow_of_lt": 0.01,
+        "none_of_these": 0.39,
+        "zero_spine_n0": 0.04,
+        "zero_spine_n1": 0.54,
+        "zero_spine_n2": 0.01
+      },
+      "shortlist": 17
+    },
+    "BTA-x3-Q-scale": {
+      "asked": "2026-09-21",
+      "choice": "none_of_these",
+      "confidence": 0.62,
+      "in_file": 21,
+      "key": "179d070c56d32507",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "cube_diff": 0.0,
+        "cube_expand": 0.0,
+        "none_of_these": 0.64,
+        "q_val_of_ge": 0.06,
+        "q_val_of_le": 0.3
+      },
+      "shortlist": 21
+    },
+    "BTA-x3-deep-N": {
+      "asked": "2026-09-21",
+      "choice": "none_of_these",
+      "confidence": 0.66,
+      "in_file": 25,
+      "key": "477b019c176cd6ca",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "deepest_n1_mod": 0.04,
+        "deepest_n1_zero": 0.07,
+        "deepest_n3_zero": 0.03,
+        "none_of_these": 0.68,
+        "zero_fibre_of": 0.12
+      },
+      "shortlist": 25
+    },
+    "BTA-x3-deep-zero": {
+      "asked": "2026-09-21",
+      "choice": "zero_fibre_imp",
+      "confidence": 0.51,
+      "in_file": 25,
+      "key": "0407d8ad430b99b7",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "deepest_n1_mod": 0.01,
+        "none_of_these": 0.29,
+        "three_pow_dvd_cube": 0.06,
+        "zeroExp_cu": 0.08,
+        "zero_fibre_imp": 0.54
+      },
+      "shortlist": 25
+    },
+    "BTA-x3-def2-N": {
+      "asked": "2026-09-21",
+      "choice": "none_of_these",
+      "confidence": 0.86,
+      "in_file": 10,
+      "key": "4e9d58dd414ce5d1",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "deficitTwo_n1_mod": 0.05,
+        "deficitTwo_n2_mod": 0.03,
+        "deficitTwo_n3_zero": 0.03,
+        "depthDeficit_two_N2_visibility": 0.01,
+        "none_of_these": 0.88
+      },
+      "shortlist": 10
+    },
+    "BTA-x3-inter-N": {
+      "asked": "2026-09-21",
+      "choice": "none_of_these",
+      "confidence": 0.87,
+      "in_file": 10,
+      "key": "4e1283c7dc2a9f2c",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "inter_equiv_iff": 0.01,
+        "inter_n1_mod": 0.06,
+        "inter_n2_mod": 0.02,
+        "inter_n3_zero": 0.03,
+        "none_of_these": 0.88
+      },
+      "shortlist": 10
+    },
+    "BTA-x3-inter-crit": {
+      "asked": "2026-09-21",
+      "choice": "inter_equiv_iff",
+      "confidence": 0.63,
+      "in_file": 10,
+      "key": "6ee429f5fcaf3d07",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "inter_equiv_iff": 0.67,
+        "inter_n1_iff": 0.09,
+        "inter_n1_mod": 0.0,
+        "inter_n2_iff": 0.0,
+        "none_of_these": 0.24
+      },
+      "shortlist": 10
+    },
+    "BTA-x3-merge": {
+      "asked": "2026-09-21",
+      "choice": "none_of_these",
+      "confidence": 0.56,
+      "in_file": 33,
+      "key": "f4d77e4d9aca9a10",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "DZ_neg_one": 0.0,
+        "none_of_these": 0.58,
+        "x3_first_merge_equiv_two": 0.18,
+        "x3_first_merge_not_equiv_three": 0.12,
+        "x3_merge_eval_diff": 0.12
+      },
+      "shortlist": 33
+    },
+    "BTA-x3-n0-scale": {
+      "asked": "2026-09-21",
+      "choice": "none_of_these",
+      "confidence": 0.55,
+      "in_file": 20,
+      "key": "61c5fa2616541f76",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "iterDZ_pow_mul": 0.04,
+        "n0_scaled_of_le": 0.3,
+        "n0_val_stratum_ge": 0.03,
+        "n0_val_stratum_le": 0.03,
+        "none_of_these": 0.57
+      },
+      "shortlist": 20
+    },
+    "BTA-x3-n0-vis": {
+      "asked": "2026-09-21",
+      "choice": "n0_visible_mod",
+      "confidence": 0.81,
+      "in_file": 20,
+      "key": "316c94c94ba37ad6",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "DZ_mul_three": 0.0,
+        "cube_val_succ": 0.01,
+        "n0_of_cube_mod": 0.08,
+        "n0_visible_mod": 0.82,
+        "none_of_these": 0.09
+      },
+      "shortlist": 20
+    },
+    "BTA-x3-n2": {
+      "asked": "2026-09-21",
+      "choice": "sameDepth_n2_injective",
+      "confidence": 0.72,
+      "in_file": 15,
+      "key": "cdd75c5863ac195f",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "balWidth_sub": 0.0,
+        "none_of_these": 0.07,
+        "sameDepth_n2": 0.01,
+        "sameDepth_n2_injective": 0.74,
+        "sameDepth_n2_succ": 0.18
+      },
+      "shortlist": 15
+    },
+    "BTA-x3-newton": {
+      "asked": "2026-09-21",
+      "choice": "newton_cubicResid",
+      "confidence": 0.71,
+      "in_file": 34,
+      "key": "66bae7138bed530a",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "newton_cubicResid": 0.73,
+        "none_of_these": 0.14,
+        "residualAlong_Xcube": 0.09,
+        "x3_first_merge_newton": 0.03,
+        "x3_first_merge_via_newton": 0.01
+      },
+      "shortlist": 34
+    },
+    "BTA-x3-raw": {
+      "asked": "2026-09-21",
+      "choice": "none_of_these",
+      "confidence": 0.85,
+      "in_file": 34,
+      "key": "e242e2678fdba322",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "cubicResid_one_pos": 0.01,
+        "eval_cubicResid_iter": 0.01,
+        "none_of_these": 0.87,
+        "residualAlong_Xcube": 0.07,
+        "residualAlong_cubic_family": 0.02
+      },
+      "shortlist": 34
+    },
+    "BTA-x3-section": {
+      "asked": "2026-09-21",
+      "choice": "none_of_these",
+      "confidence": 0.66,
+      "in_file": 34,
+      "key": "21b5d51c15f4f3d1",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "newton_section_N2": 0.06,
+        "newton_section_N3": 0.23,
+        "none_of_these": 0.67,
+        "sectionDeriv_cubic": 0.01,
+        "x3_first_merge_newton": 0.01
+      },
+      "shortlist": 34
+    },
+    "BTA-x3-sign": {
+      "asked": "2026-09-21",
+      "choice": "none_of_these",
+      "confidence": 0.56,
+      "in_file": 15,
+      "key": "e912a6b950b202f6",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "newton_n2_eq": 0.02,
+        "none_of_these": 0.6,
+        "sameDepth_n2_sign": 0.08,
+        "sign_n0": 0.14,
+        "sign_n2_of_n1": 0.15
+      },
+      "shortlist": 15
+    },
+    "BTA-x3-stratum": {
+      "asked": "2026-09-21",
+      "choice": "newtonStratum_n2",
+      "confidence": 0.35,
+      "in_file": 15,
+      "key": "0d6666714da817d2",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "newtonStratum_n1": 0.02,
+        "newtonStratum_n1_val": 0.09,
+        "newtonStratum_n2": 0.4,
+        "newtonStratum_n21_fibre": 0.1,
+        "none_of_these": 0.39
+      },
+      "shortlist": 15
+    },
+    "BTA-x4-merge": {
+      "asked": "2026-09-21",
+      "choice": "none_of_these",
+      "confidence": 0.53,
+      "in_file": 33,
+      "key": "f8d8073647b741cd",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "DZ_neg_one": 0.0,
+        "none_of_these": 0.55,
+        "x4_first_merge_equiv_three": 0.22,
+        "x4_first_merge_not_equiv_four": 0.13,
+        "x4_merge_eval_diff": 0.1
+      },
+      "shortlist": 33
+    },
+    "BTC-P-band": {
+      "asked": "2026-09-21",
+      "choice": "P_left_zero",
+      "confidence": 0.86,
+      "in_file": 10,
+      "key": "957b55143c2752f3",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "D_after_P": 0.0,
+        "D_after_integralWord": 0.0,
+        "P_idem": 0.04,
+        "P_left_zero": 0.87,
+        "none_of_these": 0.09
+      },
+      "shortlist": 10
+    },
+    "BTC-cmp3": {
+      "asked": "2026-09-21",
+      "choice": "none_of_these",
+      "confidence": 0.71,
+      "in_file": 8,
+      "key": "c1f2c50ef1c37760",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "cmp3_antisym": 0.19,
+        "cmp3_mul_neg": 0.01,
+        "cmp3_neg": 0.03,
+        "cmp3_translate": 0.04,
+        "none_of_these": 0.73
+      },
+      "shortlist": 8
+    },
+    "BTC-constructor-sum-class": {
+      "asked": "2026-09-21",
+      "choice": "apply_add_eq_iff",
+      "confidence": 0.75,
+      "in_file": 25,
+      "key": "ec7fc7f37b9e168b",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "DZ_one": 0.0,
+        "DZ_two": 0.0,
+        "apply_add_eq_iff": 0.77,
+        "exactTriple_characterization": 0.22,
+        "none_of_these": 0.01
+      },
+      "shortlist": 25
+    },
+    "BTC-select3": {
+      "asked": "2026-09-21",
+      "choice": "select3_represents",
+      "confidence": 0.96,
+      "in_file": 8,
+      "key": "ed381bba13585c07",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "absZ_eq": 0.0,
+        "maxZ_eq": 0.0,
+        "minZ_eq": 0.0,
+        "none_of_these": 0.03,
+        "select3_represents": 0.97
+      },
+      "shortlist": 8
+    },
+    "BTC-trit-kleene": {
+      "asked": "2026-09-21",
+      "choice": "none_of_these",
+      "confidence": 0.78,
+      "in_file": 17,
+      "key": "f8827d0bfe34955b",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "absorb_max_min": 0.0,
+        "absorb_min_max": 0.0,
+        "kleene": 0.06,
+        "none_of_these": 0.8,
+        "not_boolean_zero": 0.14
+      },
+      "shortlist": 17
+    },
+    "BTJ-degree": {
+      "asked": "2026-09-21",
+      "choice": "sectionDeriv_leadingCoeff",
+      "confidence": 0.54,
+      "in_file": 30,
+      "key": "9cc67c2efbbd664d",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "C_add_three_mul_X_ne_zero": 0.0,
+        "coeff_C_add_three_mul_X": 0.0,
+        "none_of_these": 0.39,
+        "sectionDeriv_leadingCoeff": 0.56,
+        "sectionDeriv_natDegree": 0.04
+      },
+      "shortlist": 30
+    },
+    "BTJ-hatD": {
+      "asked": "2026-09-21",
+      "choice": "hatDRaw_value",
+      "confidence": 0.58,
+      "in_file": 16,
+      "key": "62b9268d6fb2a32b",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "hatDRaw_two_correct": 0.12,
+        "hatDRaw_value": 0.61,
+        "m14_witness_dCoeff": 0.01,
+        "m14_witness_naive_ne": 0.14,
+        "none_of_these": 0.12
+      },
+      "shortlist": 16
+    },
+    "BTJ-section": {
+      "asked": "2026-09-21",
+      "choice": "section_reconstruction_eval",
+      "confidence": 0.52,
+      "in_file": 30,
+      "key": "2a8d5c4b4dcff1f5",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "eval_sectionDeriv": 0.01,
+        "none_of_these": 0.02,
+        "powShift_eval": 0.01,
+        "section_reconstruction": 0.41,
+        "section_reconstruction_eval": 0.55
+      },
+      "shortlist": 30
+    },
+    "BTL-block-shift": {
+      "asked": "2026-09-21",
+      "choice": "residualAlong_linState_pow",
+      "confidence": 0.81,
+      "in_file": 20,
+      "key": "56f3f311b5279baf",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "DZ_three_mul": 0.0,
+        "linState_block_step": 0.01,
+        "none_of_these": 0.1,
+        "residualAlong_linState_leaf": 0.06,
+        "residualAlong_linState_pow": 0.83
+      },
+      "shortlist": 20
+    },
+    "BTL-linear-transition": {
+      "asked": "2026-09-21",
+      "choice": "sectionDeriv_linState",
+      "confidence": 0.58,
+      "in_file": 20,
+      "key": "182903c7cb100b7f",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "linState_block_step": 0.03,
+        "linState_root_iff": 0.04,
+        "none_of_these": 0.28,
+        "outputAlong_linState_pow": 0.02,
+        "sectionDeriv_linState": 0.61
+      },
+      "shortlist": 20
+    },
+    "BTL-unit-scaling": {
+      "asked": "2026-09-21",
+      "choice": "outputAlong_smul_iff",
+      "confidence": 0.42,
+      "in_file": 20,
+      "key": "c63f85143c467c33",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "isRootMod_smul_iff": 0.11,
+        "none_of_these": 0.19,
+        "outputAlong_smul_iff": 0.45,
+        "residualAlong_smul_of_outputs_zero": 0.01,
+        "sectionDeriv_smul_of_root": 0.23
+      },
+      "shortlist": 20
+    },
+    "BTM-x3-depth": {
+      "asked": "2026-09-21",
+      "choice": "monnaEndpoint_cube_val",
+      "confidence": 0.92,
+      "in_file": 28,
+      "key": "585f6b70c0773952",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "even_two_mul_int": 0.0,
+        "monnaEndpoint_cube_diff": 0.01,
+        "monnaEndpoint_cube_diff_int": 0.0,
+        "monnaEndpoint_cube_val": 0.93,
+        "none_of_these": 0.05
+      },
+      "shortlist": 28
+    },
+    "BTM-x3-no-preserve": {
+      "asked": "2026-09-21",
+      "choice": "monnaEndpoint_cube_diff_ne_pm_four_three_pow",
+      "confidence": 0.94,
+      "in_file": 28,
+      "key": "3b537ffbeb463289",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "even_two_mul_int": 0.0,
+        "monnaEndpoint_cube_diff": 0.0,
+        "monnaEndpoint_cube_diff_ne_pm_four_three_pow": 0.95,
+        "monnaEndpoint_factor_ne_pm_three_pow": 0.01,
+        "none_of_these": 0.04
+      },
+      "shortlist": 28
+    },
+    "BTN-divmod": {
+      "asked": "2026-09-21",
+      "choice": "sub_lsd_eq_three_DZ",
+      "confidence": 0.46,
+      "in_file": 32,
+      "key": "d20c40a0638b5d07",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "DZ_carry_lower": 0.01,
+        "encodeZ_of_ne_zero": 0.01,
+        "none_of_these": 0.46,
+        "not_isTrit_natAbs": 0.02,
+        "sub_lsd_eq_three_DZ": 0.48
+      },
+      "shortlist": 32
+    },
+    "BTN-lex": {
+      "asked": "2026-09-21",
+      "choice": "step_lex_zero",
+      "confidence": 0.42,
+      "in_file": 32,
+      "key": "421f3dd84afaac8a",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "DZ_carry_lower": 0.0,
+        "none_of_these": 0.13,
+        "stepZero_lex": 0.34,
+        "step_lex_succ": 0.09,
+        "step_lex_zero": 0.44
+      },
+      "shortlist": 32
+    },
+    "BTN-nf": {
+      "asked": "2026-09-21",
+      "choice": "none_of_these",
+      "confidence": 0.77,
+      "in_file": 32,
+      "key": "ed1608c7477352cc",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "encodeZ_normalize": 0.13,
+        "encodeZ_trits": 0.01,
+        "none_of_these": 0.79,
+        "normalizeLSD_trits": 0.06,
+        "normalizeLSD_value": 0.01
+      },
+      "shortlist": 32
+    },
+    "BTN-sdrm-lambda3-translate": {
+      "asked": "2026-09-21",
+      "choice": "lambda3_trace_translate",
+      "confidence": 0.81,
+      "in_file": 18,
+      "key": "9f4089be2f4b60b2",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "add_cancel_cong": 0.0,
+        "cong_iff_dvd_sub": 0.0,
+        "lambda3_trace_translate": 0.83,
+        "lambda3_translate_equiv": 0.05,
+        "none_of_these": 0.12
+      },
+      "shortlist": 18
+    },
+    "BTN-sdsh-sep": {
+      "asked": "2026-09-21",
+      "choice": "short_horizon_separation",
+      "confidence": 0.89,
+      "in_file": 8,
+      "key": "4fc0a5ac97fa3baf",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "intVal3_ge_iff_pow_dvd": 0.0,
+        "lambda3_short_horizon_symmetry": 0.0,
+        "none_of_these": 0.03,
+        "short_horizon_separation": 0.91,
+        "traces_eq_iff_len_le_val": 0.06
+      },
+      "shortlist": 8
+    },
+    "C-center": {
+      "asked": "2026-09-21",
+      "choice": "affineCenter_start_numerator",
+      "confidence": 0.39,
+      "in_file": 4,
+      "key": "490c8c6a8b24e2ba",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "affineCenter_endpoint_numerator": 0.08,
+        "affineCenter_scaling_cross": 0.08,
+        "affineCenter_start_numerator": 0.51,
+        "endpointRepresentative_le": 0.0,
+        "none_of_these": 0.33
+      },
+      "shortlist": 4
+    },
+    "C-cycles": {
+      "asked": "2026-09-21",
+      "choice": "none_of_these",
+      "confidence": 0.77,
+      "in_file": 7,
+      "key": "0da3f9839e5dfe84",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "candidate_mul_identity": 0.01,
+        "dvd_of_periodic_fixed_point": 0.08,
+        "expanding_excludes_positive_candidate": 0.07,
+        "none_of_these": 0.8,
+        "rotated_candidate": 0.03
+      },
+      "shortlist": 7
+    },
+    "C-lift-zero": {
+      "asked": "2026-09-21",
+      "choice": "none_of_these",
+      "confidence": 0.68,
+      "in_file": 6,
+      "key": "547abdd8c1bb88a8",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "bounded_iff_eventuallyZero": 0.17,
+        "eventuallyConstant_iff_eventuallyZero": 0.09,
+        "lift_nonnegative": 0.0,
+        "mixedRadix_reconstruction": 0.01,
+        "none_of_these": 0.73
+      },
+      "shortlist": 6
+    },
+    "J-above-anchor": {
+      "asked": "2026-09-21",
+      "choice": "none_of_these",
+      "confidence": 0.86,
+      "in_file": 13,
+      "key": "ed755c787a637fc4",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "aboveAnchor_image_ge": 0.01,
+        "aboveAnchor_iterate_ge": 0.06,
+        "aboveAnchor_not_continuation_drop": 0.02,
+        "aboveAnchor_not_lt": 0.03,
+        "none_of_these": 0.88
+      },
+      "shortlist": 13
+    },
+    "J-ce-escaped-even-oe-preimage": {
+      "asked": "2026-09-21",
+      "choice": "follows_ooeooeooeoe_image_lt_sq",
+      "confidence": 0.97,
+      "in_file": 59,
+      "key": "7fadcd4e11f21012",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "bounded_trajectory_eventually_cycles": 0.0,
+        "cycleItinerary_of_repeat": 0.0,
+        "cycles_or_escapes": 0.0,
+        "follows_ooeooeooeoe_image_lt_sq": 0.98,
+        "none_of_these": 0.02
+      },
+      "shortlist": 59
+    },
+    "J-ce-oe-next-oo": {
+      "asked": "2026-09-21",
+      "choice": "follows_ooeooeooeoeo_image_lt_sq",
+      "confidence": 0.89,
+      "in_file": 59,
+      "key": "435e611eeff0c53e",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "bounded_trajectory_eventually_cycles": 0.0,
+        "follows_ooeooeooeoe_image_lt_sq": 0.01,
+        "follows_ooeooeooeoeo_image_lt_sq": 0.9,
+        "minimal_ooeooeooeoeo_not_even": 0.06,
+        "none_of_these": 0.03
+      },
+      "shortlist": 59
+    },
+    "J-ce-second-o-cube": {
+      "asked": "2026-09-21",
+      "choice": "follows_ooeooeooeoeoo_image_lt_cube",
+      "confidence": 0.95,
+      "in_file": 59,
+      "key": "e63cb9e172927d72",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "bounded_trajectory_eventually_cycles": 0.0,
+        "cycleItinerary_of_repeat": 0.0,
+        "follows_ooeooeooeoeoo_image_lt_cube": 0.96,
+        "none_of_these": 0.03,
+        "ooeooeooeoeoo_loses_square": 0.01
+      },
+      "shortlist": 59
+    },
+    "J-ce-third-residual-preimages": {
+      "asked": "2026-09-21",
+      "choice": "none_of_these",
+      "confidence": 0.66,
+      "in_file": 59,
+      "key": "37404015a06106e1",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "follows_ooeooeoo_image_lt_cube": 0.13,
+        "follows_ooeooeooe_image_lt_sq": 0.07,
+        "minimal_ooeooe_follows_ooeooeoo": 0.04,
+        "minimal_ooeooeooe_not_even_landing": 0.03,
+        "none_of_these": 0.68
+      },
+      "shortlist": 59
+    },
+    "J-collatz-bridge-is-exact-at-the-word-level": {
+      "asked": "2026-09-21",
+      "choice": "word_affine",
+      "confidence": 0.79,
+      "in_file": 59,
+      "key": "8eb02112bb4dba91",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "cycle_even_charge": 0.01,
+        "none_of_these": 0.15,
+        "two_pow_mul_iter_add_one": 0.02,
+        "word_affine": 0.81,
+        "word_affine_int": 0.01
+      },
+      "shortlist": 59
+    },
+    "J-collatz-cycle-equation-is-a-word-divisibility": {
+      "asked": "2026-09-21",
+      "choice": "cycle_of_equation",
+      "confidence": 0.56,
+      "in_file": 59,
+      "key": "2011dcd0f776b000",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "cycle_dvd": 0.03,
+        "cycle_equation": 0.07,
+        "cycle_equation_int": 0.03,
+        "cycle_of_equation": 0.58,
+        "none_of_these": 0.27
+      },
+      "shortlist": 59
+    },
+    "J-collatz-even-step-charge-identity": {
+      "asked": "2026-09-21",
+      "choice": "two_pow_mul_iter_add_one",
+      "confidence": 0.74,
+      "in_file": 59,
+      "key": "fd8b7ab8330497fc",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "allWords_card": 0.0,
+        "bit_eq_iff": 0.0,
+        "cycle_even_charge": 0.17,
+        "none_of_these": 0.08,
+        "two_pow_mul_iter_add_one": 0.75
+      },
+      "shortlist": 59
+    },
+    "J-cube-fiber-exact": {
+      "asked": "2026-09-21",
+      "choice": "none_of_these",
+      "confidence": 0.75,
+      "in_file": 7,
+      "key": "05a44343a79c2e43",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "cube_fiber_alternating": 0.01,
+        "cube_fiber_even_image": 0.0,
+        "even_cube_fiber_full": 0.15,
+        "none_of_these": 0.79,
+        "odd_cube_fiber_alternating": 0.05
+      },
+      "shortlist": 7
+    },
+    "J-cube-not-square-split": {
+      "asked": "2026-09-21",
+      "choice": "none_of_these",
+      "confidence": 0.87,
+      "in_file": 13,
+      "key": "80d71bf5d313674b",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "aboveAnchor_even_run_ge_pow": 0.01,
+        "aboveAnchor_image_ge": 0.01,
+        "aboveAnchor_isolated_two": 0.01,
+        "aboveAnchor_not_odd_even": 0.07,
+        "none_of_these": 0.89
+      },
+      "shortlist": 13
+    },
+    "J-cube-odd-even-reset": {
+      "asked": "2026-09-21",
+      "choice": "none_of_these",
+      "confidence": 0.96,
+      "in_file": 13,
+      "key": "7956a93b543520c3",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "aboveAnchor_even_run_ge_pow": 0.0,
+        "aboveAnchor_follows": 0.0,
+        "aboveAnchor_not_odd_even": 0.02,
+        "forbidden_isolated_under_anchor": 0.01,
+        "none_of_these": 0.97
+      },
+      "shortlist": 13
+    },
+    "J-cycle-band-discrepancy": {
+      "asked": "2026-09-21",
+      "choice": "walk_eq_discrepancy",
+      "confidence": 0.69,
+      "in_file": 14,
+      "key": "b79617649749c48f",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "band_min_needs_three_climbs": 0.01,
+        "band_min_no_second_fall": 0.0,
+        "climbRun_append_oe_exponentGap": 0.0,
+        "none_of_these": 0.27,
+        "walk_eq_discrepancy": 0.72
+      },
+      "shortlist": 14
+    },
+    "J-cycle-run-alphabet": {
+      "asked": "2026-09-21",
+      "choice": "none_of_these",
+      "confidence": 0.68,
+      "in_file": 14,
+      "key": "bbf1bc7c9eff439c",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "even_run_contracts": 0.02,
+        "none_of_these": 0.71,
+        "oddCount_le_of_noAdjOdd": 0.02,
+        "odd_run_upper": 0.12,
+        "oo_step_lower": 0.12
+      },
+      "shortlist": 14
+    },
+    "J-cyclemax-succ-sq": {
+      "asked": "2026-09-21",
+      "choice": "cycleMin_max_ge_succ_sq",
+      "confidence": 0.57,
+      "in_file": 43,
+      "key": "a251d58a522a8ce8",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "cycleMax_exists_min_succ_sq": 0.13,
+        "cycleMax_min_succ_sq_le": 0.1,
+        "cycleMin_max_ge_succ_sq": 0.59,
+        "cycleMin_max_not_first_preimage": 0.07,
+        "none_of_these": 0.08
+      },
+      "shortlist": 43
+    },
+    "J-cyclemin-defect-finance-kill": {
+      "asked": "2026-09-21",
+      "choice": "cycleMin_defect_finance",
+      "confidence": 0.46,
+      "in_file": 11,
+      "key": "e1948ca8bf4e6f34",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "cycleMin_charge_prefix": 0.0,
+        "cycleMin_defect_finance": 0.51,
+        "cycleMin_hug_kill_criterion": 0.21,
+        "cycleMin_log_le_weight": 0.0,
+        "none_of_these": 0.28
+      },
+      "shortlist": 11
+    },
+    "J-cyclemin-first-oo-r-bound": {
+      "asked": "2026-09-21",
+      "choice": "isolated_oe_ge_implies_exponent",
+      "confidence": 0.83,
+      "in_file": 21,
+      "key": "3fc27f90370cfe45",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "finiteProgress_of_isolated_scale_gap": 0.0,
+        "isolatedOddSurvival_bound": 0.04,
+        "isolated_oe_ge_implies_exponent": 0.85,
+        "isolated_oe_r_max_two": 0.04,
+        "none_of_these": 0.07
+      },
+      "shortlist": 21
+    },
+    "J-cyclemin-hug-charge-max": {
+      "asked": "2026-09-21",
+      "choice": "hug_charge_maximal",
+      "confidence": 0.43,
+      "in_file": 12,
+      "key": "54fac1781af27319",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "cycleMin_defect_le_charge": 0.0,
+        "cycleMin_defect_le_hug_charge": 0.27,
+        "hugWeight_le_of_admissible": 0.0,
+        "hug_charge_maximal": 0.49,
+        "none_of_these": 0.24
+      },
+      "shortlist": 12
+    },
+    "J-cyclemin-last-odd-run": {
+      "asked": "2026-09-21",
+      "choice": "cycleMin_last_odd_run_eq_one",
+      "confidence": 0.98,
+      "in_file": 43,
+      "key": "0a40d21e429b4e38",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "cycleMax_exists_min_succ_sq": 0.0,
+        "cycleMax_landing_gt_min": 0.0,
+        "cycleMin_last_odd_run_eq_one": 0.97,
+        "cycleMin_not_last_odd_run_ge_two": 0.02,
+        "exists_cycleMin_last_odd_run": 0.01
+      },
+      "shortlist": 43
+    },
+    "J-cyclemin-slack": {
+      "asked": "2026-09-21",
+      "choice": "slack_of_four_even_word",
+      "confidence": 0.63,
+      "in_file": 104,
+      "key": "3289f036fcef3e2e",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "exponents_slack": 0.06,
+        "familySlack_add": 0.01,
+        "none_of_these": 0.09,
+        "slack_of_four_even": 0.19,
+        "slack_of_four_even_word": 0.64
+      },
+      "shortlist": 60
+    },
+    "J-cyclemin-transport-oo": {
+      "asked": "2026-09-21",
+      "choice": "cycleMin_transport_second_oo",
+      "confidence": 0.37,
+      "in_file": 5,
+      "key": "d56dc3acdbe48b1f",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "cycleMin_transport_second_oo": 0.49,
+        "cycleMin_transport_second_oo_ge": 0.39,
+        "follows_replicate_odd_of_le": 0.0,
+        "none_of_these": 0.12,
+        "replicate_odd_three": 0.0
+      },
+      "shortlist": 5
+    },
+    "J-cyclemin-walk-ostrowski-numeration": {
+      "asked": "2026-09-21",
+      "choice": "none_of_these",
+      "confidence": 0.63,
+      "in_file": 14,
+      "key": "da00b74085fad839",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "greedy_eq_ostro": 0.01,
+        "none_of_these": 0.67,
+        "ostroDigit_le": 0.04,
+        "ostro_digitSum_le": 0.22,
+        "theta_digitSum_le": 0.05
+      },
+      "shortlist": 14
+    },
+    "J-cyclemin-walk-word-identity": {
+      "asked": "2026-09-21",
+      "choice": "budgetedWord_eq_hugWord",
+      "confidence": 0.74,
+      "in_file": 23,
+      "key": "7b7d802455d5dc21",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "budgetedIsEven_hug": 0.0,
+        "budgetedOdds_eq_hugOdds": 0.01,
+        "budgetedOdds_succ": 0.0,
+        "budgetedWord_eq_hugWord": 0.76,
+        "none_of_these": 0.23
+      },
+      "shortlist": 23
+    },
+    "J-depth-one-arithmetic-layer": {
+      "asked": "2026-09-21",
+      "choice": "none_of_these",
+      "confidence": 0.84,
+      "in_file": 19,
+      "key": "fd88dc1d195bb84e",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "completeCubicSum_eq_nine": 0.03,
+        "depthOneConstant_eq_sqrt_six_div_nine": 0.01,
+        "dual_phase": 0.07,
+        "dual_phase_rpow": 0.04,
+        "none_of_these": 0.85
+      },
+      "shortlist": 19
+    },
+    "J-expanding-block-even-bound": {
+      "asked": "2026-09-21",
+      "choice": "expanding_oddEvenBlock_ratio",
+      "confidence": 0.4,
+      "in_file": 14,
+      "key": "1b8ef0ce57dbb5cb",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "expanding_itinerary_ratio": 0.01,
+        "expanding_oddEvenBlock_iff_log": 0.14,
+        "expanding_oddEvenBlock_iff_maxEvens": 0.34,
+        "expanding_oddEvenBlock_ratio": 0.45,
+        "none_of_these": 0.06
+      },
+      "shortlist": 14
+    },
+    "J-expansion-block-grammar": {
+      "asked": "2026-09-21",
+      "choice": "none_of_these",
+      "confidence": 0.84,
+      "in_file": 9,
+      "key": "810b6f53680ee62e",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "block_growth_identity": 0.01,
+        "expansionSurplus_oddEvenBlock": 0.02,
+        "expansionSurplus_pos_iff": 0.03,
+        "expansion_run_365_chain": 0.06,
+        "none_of_these": 0.86
+      },
+      "shortlist": 9
+    },
+    "J-fate-classes-backward-closed": {
+      "asked": "2026-09-21",
+      "choice": "none_of_these",
+      "confidence": 0.65,
+      "in_file": 33,
+      "key": "87b8e6b25635419b",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "ancestor_backwardClosed": 0.0,
+        "fate_trichotomy": 0.3,
+        "mem_iff_floorPower_mem": 0.01,
+        "none_of_these": 0.67,
+        "reachesOne_backwardClosed": 0.02
+      },
+      "shortlist": 33
+    },
+    "J-fate-envelope-floor": {
+      "asked": "2026-09-21",
+      "choice": "reachesOne_of_itinerary_envelope",
+      "confidence": 0.37,
+      "in_file": 33,
+      "key": "54ef2490fe77eb57",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "ancestor_backwardClosed": 0.0,
+        "iterate_le_of_envelope": 0.2,
+        "mem_of_envelope_floor": 0.24,
+        "none_of_these": 0.16,
+        "reachesOne_of_itinerary_envelope": 0.4
+      },
+      "shortlist": 33
+    },
+    "J-fate-odd-generation": {
+      "asked": "2026-09-21",
+      "choice": "none_of_these",
+      "confidence": 0.76,
+      "in_file": 33,
+      "key": "36d2d28850b0724b",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "exists_odd_ancestor": 0.05,
+        "mem_iff_floorPower_mem": 0.01,
+        "none_of_these": 0.78,
+        "nonempty_iff_odd_image_mem": 0.13,
+        "odd_mem_iff": 0.02
+      },
+      "shortlist": 33
+    },
+    "J-fate-oe-fiber-cell": {
+      "asked": "2026-09-21",
+      "choice": "none_of_these",
+      "confidence": 0.73,
+      "in_file": 33,
+      "key": "440de161cfa55b69",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "even_block_mem": 0.04,
+        "floorPower_oe_fiber": 0.05,
+        "mem_iff_floorPower_mem": 0.05,
+        "none_of_these": 0.75,
+        "oe_fiber_mem": 0.05
+      },
+      "shortlist": 33
+    },
+    "J-fd-step-is-formal-and-theorem-six-one-stays-conditional": {
+      "asked": "2026-09-21",
+      "choice": "none_of_these",
+      "confidence": 0.8,
+      "in_file": 3,
+      "key": "3dad2cc35340c52f",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "density_of_finite_union": 0.04,
+        "exceptional_density_zero": 0.11,
+        "none_of_these": 0.85,
+        "tendsto_zero_of_eventually_le": 0.0
+      },
+      "shortlist": 3
+    },
+    "J-finite-progress-boundary": {
+      "asked": "2026-09-21",
+      "choice": "reachesOne_of_all_finiteProgress",
+      "confidence": 0.34,
+      "in_file": 19,
+      "key": "eb852e727adb06b0",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "even_finiteProgress": 0.0,
+        "finiteProgress_of_not_odd_odd": 0.19,
+        "no_finiteProgress_implies_odd_odd": 0.13,
+        "none_of_these": 0.3,
+        "reachesOne_of_all_finiteProgress": 0.38
+      },
+      "shortlist": 19
+    },
+    "J-first-defect-amplification": {
+      "asked": "2026-09-21",
+      "choice": "none_of_these",
+      "confidence": 0.33,
+      "in_file": 61,
+      "key": "0018c929b67ae960",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "expanding_defect_lower_bound": 0.25,
+        "firstDefect_contribution": 0.17,
+        "firstDefect_prefix_extremal": 0.01,
+        "global_defect_lower_bound": 0.22,
+        "none_of_these": 0.35
+      },
+      "shortlist": 60
+    },
+    "J-first-even-overshoots": {
+      "asked": "2026-09-21",
+      "choice": "minimal_first_even_overshoots",
+      "confidence": 0.41,
+      "in_file": 43,
+      "key": "9155d23104038a4b",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "cycleMax_exists_min_succ_sq": 0.0,
+        "cycleMax_landing_gt_min": 0.0,
+        "cycleMin_first_even_overshoots": 0.29,
+        "minimal_first_even_overshoots": 0.44,
+        "none_of_these": 0.27
+      },
+      "shortlist": 43
+    },
+    "J-flight-envelope-transport": {
+      "asked": "2026-09-21",
+      "choice": "aboveAnchor_flight_envelope",
+      "confidence": 0.99,
+      "in_file": 20,
+      "key": "2adee91132ebdcf8",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "aboveAnchor_flight_envelope": 0.99,
+        "aboveAnchor_transport": 0.0,
+        "aboveAnchor_transport_prefix": 0.0,
+        "cycleMin_transport_prefix": 0.0,
+        "none_of_these": 0.01
+      },
+      "shortlist": 20
+    },
+    "J-floor-stratifies-even-cylinders-lean": {
+      "asked": "2026-09-21",
+      "choice": "not_reachesOne_even_chain_ge",
+      "confidence": 1.0,
+      "in_file": 19,
+      "key": "0c926913a36ea911",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "alphaClock_lt_one": 0.0,
+        "alphaClock_pos": 0.0,
+        "band_step_forced_even": 0.0,
+        "band_step_forced_odd": 0.0,
+        "not_reachesOne_even_chain_ge": 1.0
+      },
+      "shortlist": 19
+    },
+    "J-free-lengths-are-never-adjacent": {
+      "asked": "2026-09-21",
+      "choice": "carrying_in_adjacent_pair",
+      "confidence": 0.92,
+      "in_file": 38,
+      "key": "c868968939d0752d",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "aliveAt_disjoint_certsAt": 0.0,
+        "aliveWordsAt_succ_iff_window_empty": 0.0,
+        "aliveWordsAt_succ_of_window_empty": 0.0,
+        "carrying_in_adjacent_pair": 0.93,
+        "not_cylinder_twice": 0.07
+      },
+      "shortlist": 38
+    },
+    "J-inverse-preimage-asymmetry": {
+      "asked": "2026-09-21",
+      "choice": "odd_preimage_unique",
+      "confidence": 0.43,
+      "in_file": 117,
+      "key": "333dcee78420d402",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "floorPower_even_eq_iff_sq_interval": 0.03,
+        "floorPower_odd_eq_iff_cube_interval": 0.05,
+        "none_of_these": 0.4,
+        "odd_preimage_iff": 0.05,
+        "odd_preimage_unique": 0.45
+      },
+      "shortlist": 60
+    },
+    "J-itinerary-semantics": {
+      "asked": "2026-09-21",
+      "choice": "follows_iff_itinerary",
+      "confidence": 0.87,
+      "in_file": 27,
+      "key": "bf059256ee3c764a",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "bit_even": 0.0,
+        "follows_iff_itinerary": 0.88,
+        "image_append": 0.01,
+        "image_eq_iterate": 0.01,
+        "none_of_these": 0.1
+      },
+      "shortlist": 27
+    },
+    "J-juggler-cycle-words-are-collatz-negative-cycle-words": {
+      "asked": "2026-09-21",
+      "choice": "neg_cycle_word_is_juggler_shape",
+      "confidence": 0.84,
+      "in_file": 59,
+      "key": "8daf33d3dfee6902",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "allWords_card": 0.0,
+        "bit_eq_iff": 0.0,
+        "neg_cycle_expanding": 0.01,
+        "neg_cycle_word_is_juggler_shape": 0.86,
+        "none_of_these": 0.13
+      },
+      "shortlist": 59
+    },
+    "J-leftover-length-seven-orientations": {
+      "asked": "2026-09-21",
+      "choice": "none_of_these",
+      "confidence": 0.8,
+      "in_file": 38,
+      "key": "e6cdeabfa751fd54",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "no_cycle_itinerary_oooeoe": 0.04,
+        "no_cycle_itinerary_ooooeoe": 0.1,
+        "no_cycle_itinerary_oooooee": 0.03,
+        "none_of_these": 0.81,
+        "pow243_gt_two_pow422_succ_pow128": 0.01
+      },
+      "shortlist": 38
+    },
+    "J-leftover-length-six-orientations": {
+      "asked": "2026-09-21",
+      "choice": "none_of_these",
+      "confidence": 0.63,
+      "in_file": 38,
+      "key": "ffa55d2e8eb3e0aa",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "combine_ooo_tail": 0.0,
+        "combine_oooo_tail": 0.0,
+        "no_cycle_itinerary_oooeoe": 0.25,
+        "no_cycle_itinerary_ooooee": 0.1,
+        "none_of_these": 0.65
+      },
+      "shortlist": 38
+    },
+    "J-live-count-weight": {
+      "asked": "2026-09-21",
+      "choice": "juggler_count_le_of_noMomentum",
+      "confidence": 0.73,
+      "in_file": 11,
+      "key": "df293b29ab5ca29d",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "juggler_count_le_of_noMomentum": 0.76,
+        "liveCount_length": 0.01,
+        "liveCount_sum_oddCount": 0.01,
+        "liveWeight_weightSplit": 0.01,
+        "none_of_these": 0.21
+      },
+      "shortlist": 11
+    },
+    "J-localized-kernel-arithmetic": {
+      "asked": "2026-09-21",
+      "choice": "none_of_these",
+      "confidence": 0.83,
+      "in_file": 24,
+      "key": "fe6e8f46a8fad8e6",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "absTail_eq": 0.03,
+        "none_of_these": 0.85,
+        "production_formal_effective_saving": 0.02,
+        "production_misses_same_saving": 0.04,
+        "production_same_saving_deficit": 0.05
+      },
+      "shortlist": 24
+    },
+    "J-loglog-clock-band-word-forced-lean": {
+      "asked": "2026-09-21",
+      "choice": "band_successor_unique",
+      "confidence": 0.95,
+      "in_file": 19,
+      "key": "ffdbff5d5d1124ee",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "alphaClock_lt_one": 0.0,
+        "alphaClock_pos": 0.0,
+        "band_step_forced_even": 0.0,
+        "band_successor_unique": 0.97,
+        "none_of_these": 0.03
+      },
+      "shortlist": 19
+    },
+    "J-loglog-clock-even-chain-burst-lean": {
+      "asked": "2026-09-21",
+      "choice": "even_chain_mem_burst",
+      "confidence": 0.96,
+      "in_file": 19,
+      "key": "575eb6b179942efc",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "alphaClock_lt_one": 0.0,
+        "alphaClock_pos": 0.0,
+        "even_chain_log_offset": 0.01,
+        "even_chain_mem_burst": 0.97,
+        "none_of_these": 0.02
+      },
+      "shortlist": 19
+    },
+    "J-loglog-clock-hug-band-lean": {
+      "asked": "2026-09-21",
+      "choice": "none_of_these",
+      "confidence": 0.8,
+      "in_file": 19,
+      "key": "44fb2b61f6a7c5aa",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "band_successor_unique": 0.01,
+        "dead_zone_nonempty": 0.06,
+        "hug_band_step_exists": 0.1,
+        "narrow_band_dead": 0.01,
+        "none_of_these": 0.81
+      },
+      "shortlist": 19
+    },
+    "J-loglog-clock-walk-rotation-lean": {
+      "asked": "2026-09-21",
+      "choice": "fract_mul_sub_nat_eq_fract_mul_sub_one",
+      "confidence": 0.48,
+      "in_file": 19,
+      "key": "eab875cec4839c4c",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "alphaClock_lt_one": 0.0,
+        "fract_mul_sub_nat_eq_fract_mul_sub_one": 0.52,
+        "fract_walk_depends_only_on_odd_count": 0.01,
+        "fract_walk_eq_fract_rotation": 0.26,
+        "none_of_these": 0.21
+      },
+      "shortlist": 19
+    },
+    "J-mean-share-exceptional-depths": {
+      "asked": "2026-09-21",
+      "choice": "weightGen_le_of_meanShareOff",
+      "confidence": 0.64,
+      "in_file": 23,
+      "key": "4dd6446937b7c9f0",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "count_le_of_meanShare": 0.0,
+        "initial_depths_are_free": 0.03,
+        "none_of_these": 0.3,
+        "tower_ratio_lt_one": 0.01,
+        "weightGen_le_of_meanShareOff": 0.66
+      },
+      "shortlist": 23
+    },
+    "J-mean-share-form": {
+      "asked": "2026-09-21",
+      "choice": "count_le_of_meanShare",
+      "confidence": 0.45,
+      "in_file": 23,
+      "key": "49b5fe78a9c38660",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "count_le_of_meanShare": 0.48,
+        "count_le_of_meanShareOff": 0.0,
+        "count_le_of_noMomentum": 0.01,
+        "none_of_these": 0.29,
+        "weightGen_le_of_meanShare": 0.22
+      },
+      "shortlist": 23
+    },
+    "J-minimal-ooeooe-escape-trap": {
+      "asked": "2026-09-21",
+      "choice": "none_of_these",
+      "confidence": 0.58,
+      "in_file": 59,
+      "key": "3c9c16f0fa3a7d8c",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "follows_ooeooe_image_lt_sq": 0.2,
+        "follows_ooeooeooe_image_lt_sq": 0.05,
+        "minimal_ooeooe_follows_ooeooeoo": 0.06,
+        "minimal_ooeooe_not_even_landing": 0.03,
+        "none_of_these": 0.59
+      },
+      "shortlist": 59
+    },
+    "J-near-tight-scale-bounds": {
+      "asked": "2026-09-21",
+      "choice": "ooe_one_plus_slack_lt_succ_ratio",
+      "confidence": 0.37,
+      "in_file": 18,
+      "key": "e4f836940e836882",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "block_growth_from_q": 0.0,
+        "even_eta_le_two_over_T": 0.0,
+        "large_lambda_successor_q_bound": 0.39,
+        "none_of_these": 0.19,
+        "ooe_one_plus_slack_lt_succ_ratio": 0.42
+      },
+      "shortlist": 18
+    },
+    "J-negative-cycle-finance-is-the-juggler-mirror": {
+      "asked": "2026-09-21",
+      "choice": "neg_cycle_finance",
+      "confidence": 0.43,
+      "in_file": 59,
+      "key": "54d2efdf12f2dc57",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "allWords_card": 0.0,
+        "neg_cycle_finance": 0.45,
+        "neg_seventeen_finance": 0.02,
+        "none_of_these": 0.21,
+        "two_mul_evenCharge_le": 0.32
+      },
+      "shortlist": 59
+    },
+    "J-normalized-relative-slack": {
+      "asked": "2026-09-21",
+      "choice": "onePlusSlack_concat",
+      "confidence": 0.65,
+      "in_file": 30,
+      "key": "c3a19b7574b65800",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "defectRatio_concat": 0.0,
+        "defectRatio_le_one_iff_image_ge": 0.01,
+        "image_eq_start_defectRatio": 0.0,
+        "none_of_these": 0.32,
+        "onePlusSlack_concat": 0.67
+      },
+      "shortlist": 30
+    },
+    "J-o7eeee-gap": {
+      "asked": "2026-09-21",
+      "choice": "o7_image_ge_succ_pow16",
+      "confidence": 0.97,
+      "in_file": 29,
+      "key": "67effd70cf381479",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "absorb_odd_step": 0.0,
+        "cross_mul_pow": 0.0,
+        "no_cycle_itinerary_oooooooeeee": 0.01,
+        "none_of_these": 0.02,
+        "o7_image_ge_succ_pow16": 0.97
+      },
+      "shortlist": 29
+    },
+    "J-oe-averaged-two-productions-reach-the-depth-two-ceiling": {
+      "asked": "2026-09-21",
+      "choice": "logMass_contagion_averaged",
+      "confidence": 0.77,
+      "in_file": 16,
+      "key": "70d4c80f0d66890e",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "coef2avg_ge": 0.0,
+        "contagion_averaged": 0.12,
+        "logMass_contagion_averaged": 0.79,
+        "none_of_these": 0.07,
+        "production_two_averaged": 0.02
+      },
+      "shortlist": 16
+    },
+    "J-oe-fiber-block-lock": {
+      "asked": "2026-09-21",
+      "choice": "block_lock",
+      "confidence": 0.96,
+      "in_file": 19,
+      "key": "12a8da778e4d9132",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "block_chain": 0.0,
+        "block_count": 0.0,
+        "block_lock": 0.97,
+        "card_filter_abs_sub_le": 0.0,
+        "none_of_these": 0.03
+      },
+      "shortlist": 19
+    },
+    "J-oe-poor-fiber-tail": {
+      "asked": "2026-09-21",
+      "choice": "poor_logMass_le",
+      "confidence": 0.6,
+      "in_file": 13,
+      "key": "abe5111fef269a0e",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "B_ge": 0.0,
+        "none_of_these": 0.31,
+        "poor_count_le'": 0.01,
+        "poor_logMass_le": 0.64,
+        "poor_sum_dyadic_le": 0.04
+      },
+      "shortlist": 13
+    },
+    "J-paper-b-certificate-length-window": {
+      "asked": "2026-09-21",
+      "choice": "minimalCert_exists_iff",
+      "confidence": 0.86,
+      "in_file": 22,
+      "key": "1f369329369c32e4",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "blockWord_isMinimalCertificate": 0.0,
+        "carrying_lengths_head": 0.0,
+        "minimalCert_exists_iff": 0.88,
+        "minimalCert_exists_iff_natLog": 0.02,
+        "none_of_these": 0.1
+      },
+      "shortlist": 22
+    },
+    "J-paper-b-certificates-extend-to-length-seven": {
+      "asked": "2026-09-21",
+      "choice": "none_of_these",
+      "confidence": 0.63,
+      "in_file": 31,
+      "key": "d7111476183ed7de",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "certifiedWordCount_seven": 0.06,
+        "minimal_certificates_seven": 0.01,
+        "no_minimal_certificate_six": 0.01,
+        "none_of_these": 0.65,
+        "seven_step_density": 0.26
+      },
+      "shortlist": 31
+    },
+    "J-paper-b-chernoff-chain-is-formal": {
+      "asked": "2026-09-21",
+      "choice": "none_of_these",
+      "confidence": 0.77,
+      "in_file": 4,
+      "key": "a537ea8339fbf932",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "chernoff_density": 0.03,
+        "chernoff_tail": 0.01,
+        "none_of_these": 0.82,
+        "sum_choose_mul_pow": 0.0,
+        "tilt_gives_theta": 0.14
+      },
+      "shortlist": 4
+    },
+    "J-paper-b-five-step-count-assembly": {
+      "asked": "2026-09-21",
+      "choice": "none_of_these",
+      "confidence": 0.63,
+      "in_file": 31,
+      "key": "321ec30b80a62cb4",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "card_allWords_nat": 0.0,
+        "certifiedCount_five_eq": 0.02,
+        "five_step_density": 0.05,
+        "five_step_error_assembly": 0.28,
+        "none_of_these": 0.65
+      },
+      "shortlist": 31
+    },
+    "J-paper-b-formal-layer-has-an-estimate": {
+      "asked": "2026-09-21",
+      "choice": "theta_lt_one",
+      "confidence": 0.98,
+      "in_file": 7,
+      "key": "c8f16b0c1700ec56",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "klDiv_half_eq": 0.0,
+        "klDiv_pos": 0.0,
+        "none_of_these": 0.02,
+        "one_sub_inv_lt_log": 0.0,
+        "theta_lt_one": 0.98
+      },
+      "shortlist": 7
+    },
+    "J-paper-b-lemma-5-1-minimal-certificates": {
+      "asked": "2026-09-21",
+      "choice": "lemma51_complete",
+      "confidence": 0.93,
+      "in_file": 17,
+      "key": "9be39c15cf177bd4",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "certE_is": 0.0,
+        "certOE_is": 0.0,
+        "lemma51": 0.04,
+        "lemma51_complete": 0.93,
+        "none_of_these": 0.03
+      },
+      "shortlist": 17
+    },
+    "J-paper-b-survivor-certificate-recursion": {
+      "asked": "2026-09-21",
+      "choice": "neverNegCount_add_minimalCertCount",
+      "confidence": 0.86,
+      "in_file": 24,
+      "key": "bc6a79b0fff8a79d",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "certifiedWordCount_succ": 0.0,
+        "density_flat_eight_to_nine": 0.0,
+        "density_flat_five_to_six": 0.0,
+        "neverNegCount_add_minimalCertCount": 0.88,
+        "none_of_these": 0.12
+      },
+      "shortlist": 24
+    },
+    "J-paper-b-tilt-reduction-and-the-phase-factor": {
+      "asked": "2026-09-21",
+      "choice": "none_of_these",
+      "confidence": 0.92,
+      "in_file": 13,
+      "key": "db4f9b9bd950cc86",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "beta_lt_one": 0.0,
+        "beta_rho_closed": 0.02,
+        "none_of_these": 0.93,
+        "one_add_tailRoot": 0.01,
+        "rho_closed_form": 0.04
+      },
+      "shortlist": 13
+    },
+    "J-paper-b-transposition-costs-the-barrier-mass": {
+      "asked": "2026-09-21",
+      "choice": "run_stepRise_stepFlat",
+      "confidence": 0.71,
+      "in_file": 16,
+      "key": "76876f6ddd32910c",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "barrierMass_eq_ite": 0.0,
+        "none_of_these": 0.05,
+        "run_stepRise_stepFlat": 0.73,
+        "stepRise_stepFlat_eq_add_barrierMass": 0.17,
+        "total_run_stepRise_stepFlat": 0.05
+      },
+      "shortlist": 16
+    },
+    "J-paper-c-production-words-are-prefix-free": {
+      "asked": "2026-09-21",
+      "choice": "Vword_prefix_iff",
+      "confidence": 0.99,
+      "in_file": 6,
+      "key": "a060b78f9f5eb363",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "Vword_eq_odd_cons": 0.0,
+        "Vword_five": 0.0,
+        "Vword_length": 0.0,
+        "Vword_oddCount": 0.0,
+        "Vword_prefix_iff": 1.0
+      },
+      "shortlist": 6
+    },
+    "J-parity-factor-exhaustion": {
+      "asked": "2026-09-21",
+      "choice": "none_of_these",
+      "confidence": 0.84,
+      "in_file": 7,
+      "key": "2d94424bfc7a1644",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "factorCount_five_saturates": 0.0,
+        "factorCount_four_saturates": 0.0,
+        "factorCount_six_not_before": 0.01,
+        "factorCount_six_saturates": 0.13,
+        "none_of_these": 0.86
+      },
+      "shortlist": 7
+    },
+    "J-persistent-implies-expanding": {
+      "asked": "2026-09-21",
+      "choice": "persistent_expanding_iff_odd",
+      "confidence": 1.0,
+      "in_file": 14,
+      "key": "1ec9460a564470fe",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "expanding_block_odds_four": 0.0,
+        "expanding_block_odds_three": 0.0,
+        "expanding_block_odds_two": 0.0,
+        "expanding_implies_odd_density": 0.0,
+        "persistent_expanding_iff_odd": 1.0
+      },
+      "shortlist": 14
+    },
+    "J-power-envelope-contraction": {
+      "asked": "2026-09-21",
+      "choice": "none_of_these",
+      "confidence": 0.55,
+      "in_file": 36,
+      "key": "2622862e86bd0f59",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "envelope_lt_pow": 0.03,
+        "none_of_these": 0.58,
+        "power_bound_contracts": 0.2,
+        "power_bound_follows": 0.04,
+        "power_bound_word": 0.13
+      },
+      "shortlist": 36
+    },
+    "J-run-survivor-lattice": {
+      "asked": "2026-09-21",
+      "choice": "none_of_these",
+      "confidence": 0.7,
+      "in_file": 19,
+      "key": "1c8e4aa3ef92730f",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "family1_first": 0.0,
+        "none_of_these": 0.73,
+        "runSurvivors_length": 0.02,
+        "run_survivor_unimodular": 0.24,
+        "three_pow_step_gt_two_pow_step": 0.01
+      },
+      "shortlist": 19
+    },
+    "J-small-cycle-census-nineteen": {
+      "asked": "2026-09-21",
+      "choice": "no_cycle_itinerary_length_le_nineteen",
+      "confidence": 0.98,
+      "in_file": 41,
+      "key": "63b238fd4b6d700b",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "cycleItinerary_iterate_not_lt_fifty_three": 0.0,
+        "cycleItinerary_iterate_not_lt_two_hundred_fifty_seven": 0.0,
+        "cycleItinerary_iterate_not_lt_two_hundred_sixty_one": 0.0,
+        "no_cycle_itinerary_length_le_nineteen": 0.99,
+        "none_of_these": 0.01
+      },
+      "shortlist": 41
+    },
+    "J-small-cycle-census-ten": {
+      "asked": "2026-09-21",
+      "choice": "no_cycle_itinerary_length_le_ten",
+      "confidence": 1.0,
+      "in_file": 41,
+      "key": "28d7eeb768d30845",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "cycleItinerary_iterate_not_lt_fifty_three": 0.0,
+        "cycleItinerary_iterate_not_lt_two_hundred_fifty_seven": 0.0,
+        "cycleItinerary_iterate_not_lt_two_hundred_sixty_one": 0.0,
+        "cycle_finance_min_fifty_three": 0.0,
+        "no_cycle_itinerary_length_le_ten": 1.0
+      },
+      "shortlist": 41
+    },
+    "J-survivor-count-decay": {
+      "asked": "2026-09-21",
+      "choice": "neverCertified_density_zero",
+      "confidence": 0.74,
+      "in_file": 22,
+      "key": "2f6e041ddc0266cf",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "choose_tail_succ": 0.0,
+        "count_oddCount_ge": 0.0,
+        "neverCertified_density_zero": 0.77,
+        "neverNegCount_div_pow_tendsto_zero": 0.04,
+        "none_of_these": 0.19
+      },
+      "shortlist": 22
+    },
+    "J-survivor-count-is-a-collatz-residue-count": {
+      "asked": "2026-09-21",
+      "choice": "undecidedResidues_card",
+      "confidence": 0.97,
+      "in_file": 59,
+      "key": "a5a893baa5d599e7",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "allWords_card": 0.0,
+        "bit_eq_iff": 0.0,
+        "card_filter_parityWord": 0.0,
+        "none_of_these": 0.02,
+        "undecidedResidues_card": 0.98
+      },
+      "shortlist": 59
+    },
+    "J-survivor-count-is-the-certificate-tail": {
+      "asked": "2026-09-21",
+      "choice": "neverNegCount_telescope",
+      "confidence": 0.99,
+      "in_file": 24,
+      "key": "1b70e006b25ae9cf",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "certifiedWordCount_succ": 0.0,
+        "density_flat_eight_to_nine": 0.0,
+        "density_flat_five_to_six": 0.0,
+        "minimalCert_tail_eq": 0.01,
+        "neverNegCount_telescope": 0.99
+      },
+      "shortlist": 24
+    },
+    "J-tail-amplitude-is-a-cocycle-over-the-boundary-fraction": {
+      "asked": "2026-09-21",
+      "choice": "none_of_these",
+      "confidence": 0.48,
+      "in_file": 7,
+      "key": "2f8c18c7d71e1504",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "cocycle_average_eq": 0.41,
+        "none_of_these": 0.54,
+        "nonrising_multiplier": 0.02,
+        "update_false_tail": 0.02,
+        "update_true_tail": 0.01
+      },
+      "shortlist": 7
+    },
+    "J-tail-double-root-in-lean-and-paper-b-updated": {
+      "asked": "2026-09-21",
+      "choice": "h_at_tailRoot",
+      "confidence": 0.42,
+      "in_file": 7,
+      "key": "64106f0afcc38004",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "h_at_tailRoot": 0.49,
+        "h_deriv_eq_zero_at_tailRoot": 0.01,
+        "h_hasDerivAt": 0.0,
+        "none_of_these": 0.48,
+        "tailRoot_pos": 0.02
+      },
+      "shortlist": 7
+    },
+    "J-theorem-six-one-threshold-is-slack": {
+      "asked": "2026-09-21",
+      "choice": "none_of_these",
+      "confidence": 0.7,
+      "in_file": 13,
+      "key": "d664b2c0a3e5493a",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "breakEven_admissible": 0.01,
+        "breakEven_saturates": 0.11,
+        "first_usable_depth": 0.03,
+        "le_breakEven_of_admissible": 0.12,
+        "none_of_these": 0.73
+      },
+      "shortlist": 13
+    },
+    "J-tilted-share-telescoping": {
+      "asked": "2026-09-21",
+      "choice": "count_le_pressure",
+      "confidence": 0.4,
+      "in_file": 23,
+      "key": "f331778ec160e4fa",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "count_le_of_meanShare": 0.0,
+        "count_le_of_noMomentum": 0.03,
+        "count_le_pressure": 0.44,
+        "none_of_these": 0.11,
+        "weightGen_le_pressure": 0.42
+      },
+      "shortlist": 23
+    },
+    "J-tower-absorption": {
+      "asked": "2026-09-21",
+      "choice": "none_of_these",
+      "confidence": 0.81,
+      "in_file": 5,
+      "key": "6d485474c068cfea",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "floorPower_iter_of_even": 0.01,
+        "floorPower_odd_even_run": 0.06,
+        "floorPower_odd_even_run_eq_iff": 0.07,
+        "floorPower_oe_eq_iff": 0.01,
+        "none_of_these": 0.84
+      },
+      "shortlist": 5
+    },
+    "J-trajectory-cycle-or-escape": {
+      "asked": "2026-09-21",
+      "choice": "cycles_or_escapes",
+      "confidence": 0.94,
+      "in_file": 59,
+      "key": "c4b884e2ce9119ec",
+      "model": "jev-1.13.0",
+      "probabilities": {
+        "bounded_trajectory_eventually_cycles": 0.0,
+        "cycleItinerary_of_repeat": 0.0,
+        "cycles_or_escapes": 0.95,
+        "minimal_nonterm_cycles_or_escapes": 0.01,
+        "none_of_these": 0.04
+      },
+      "shortlist": 59
+    }
+  },
+  "totals": {
+    "answered": 129,
+    "asked_now": 129,
+    "input_tokens": 391985,
+    "reused": 0
+  }
+}

@@ -1,5 +1,40 @@
 # Research journal
 
+## 2026-09-21 -- Jev beside the scorer: the ledger-to-declaration queue gets a second opinion, measured before it was trusted
+
+- **Objective:** Philippe asked for a Jev proposer beside `propose` in `tools/formalpedia.py`,
+  after a survey of where a typed-judgment model could back the laboratory found that every
+  semantic verdict the tooling reaches is handed to a human queue, and that the
+  ledger-to-declaration join was the one with ground truth already in the repository.
+- **What was built.** `jev-propose` offers Jev every unresolved row's own theorems (the
+  scorer's order, capped at 60, taken declarations removed, docstring and statement header
+  each) plus "none of these", and caches its pick and confidence in
+  `data/research/formalpedia/jev_verdicts.json`, keyed on the statement, the file and the
+  names offered so a changed row is asked again and shows as stale until then. `propose`
+  merges a verdict onto its row as a `jev` field; a pick at or above `JEV_REVIEW` (0.7) lists
+  the row in the digest whatever the scorer thought. Candidates stay the scorer's, a name the
+  file does not offer is recorded as `not_a_candidate` and routes nothing, and nothing is
+  written into the ledger. `jev-calibrate` scores Jev on the scorer's own population and
+  stores the figures with date, model, sample and seed; the digest quotes the stored record,
+  never a constant. Eight tests run on a fake asker, including the known-bad name.
+- **Calibration, computed.** Forty resolved rows drawn at seed 20260921, `jev-1.13.0`: the
+  recorded declaration first 27 times, in the top three 38, none of these 8; at or above 0.7
+  confidence 24 of 29 right; the scorer's first candidate right 23 times on the same rows.
+  The thirteen misses are the ones read in the survey: composite rows where "none of these"
+  is a fair answer, two joins arguably better than the recorded one (the iff theorem where
+  the ledger holds one direction; the numbered four-block theorem the row states), and about
+  three plain errors, all below 0.6.
+- **The queue now.** 129 rows carry a verdict: 82 picks, 47 none of these, 48 picks at or
+  above 0.7, 32 agreeing with the scorer. 62 rows are worth reviewing, up from 24, and 34
+  entries show two candidates in full. Cost of the whole run: 520k input tokens, about two
+  cents.
+- **Gates.** `tests/tools/test_formalpedia.py`, `test_theorem_ledger.py` and
+  `test_lean_hygiene.py` green, except the artifact gate on `index.json`, which was red before
+  this work: a peer's uncommitted `formal/Problems/Engine/FactorConcat.lean` is not in the
+  committed index, and rebuilding would bake it in. Left red on purpose, as the skill says.
+- **Not done.** The coverage Noul ("does this declaration state the whole claim") that the
+  survey proposed for the EXACT / LEAN VERIFIED retag; it is the natural next command.
+
 ## 2026-09-21 -- The 3x-1 floor verifier on the RTX 5090: calibrated exactly on the certified range, 62 times the CPU run
 
 - **Objective:** Philippe asked for the CUDA kernel and its calibration on the certified

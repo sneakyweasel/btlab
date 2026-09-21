@@ -48,6 +48,7 @@ dev = [
 ui = ["streamlit>=1.62", "pandas>=2"]
 experiments = ["pyarrow>=14"]
 atlas = ["pyarrow>=14", "duckdb>=1", "polars>=1"]
+jev = ["typesafe-sdk>=0.7"]  # tools/formalpedia.py jev-propose / jev-calibrate; imported lazily
 
 [project.scripts]
 btlab = "cli.main:main"

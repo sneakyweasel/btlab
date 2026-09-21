@@ -377,6 +377,239 @@ def test_digest_flags_a_top_candidate_that_extends_a_runner_up() -> None:
     assert text.count("Careful:") == flagged
 
 
+def _fake_ask(*, confidence: float = 0.95, pick: dict[str, str] | None = None,
+              none_for: set[str] = frozenset(), seen: list | None = None):
+    """An ``ask`` that answers from the criteria it is offered and never touches the network.
+
+    Default answer: the alphabetically first theorem offered.  ``pick`` overrides per row,
+    including names the file does not offer, which is how the known-bad path is exercised;
+    ``none_for`` answers "none of these" for those rows; ``seen`` collects every question.
+    """
+    def ask(state, instructions, criteria):
+        if seen is not None:
+            seen.append((state, criteria))
+        names = sorted(n for n in criteria if n != fp.JEV_NONE)
+        rid = state["ledger_id"]
+        if rid in none_for:
+            choice = fp.JEV_NONE
+        elif pick and rid in pick:
+            choice = pick[rid]
+        else:
+            choice = names[0]
+        rest = (1.0 - confidence) / max(1, len(criteria) - 1)
+        probs = {n: rest for n in criteria}
+        probs[choice] = confidence
+        return {"choice": choice, "confidence": confidence, "probabilities": probs,
+                "model": "jev-test", "input_tokens": 100}
+    return ask
+
+
+def _queue_ids(index, ledger) -> set[str]:
+    return {row["id"] for row, cands, _ in fp._queue(index, ledger) if cands}
+
+
+def test_jev_propose_asks_each_unresolved_row_about_its_own_file_and_nothing_else() -> None:
+    """Jev is offered exactly the theorems the scorer may propose: the row's own file, minus
+    declarations another row already claims, plus the option that none of them is the claim.
+    The tests above pin those two rules for the scorer; this pins them for the offer."""
+    index = fp.build()
+    ledger = json.load(io.open(fp.LEDGER, encoding="utf-8"))
+    seen: list = []
+    record = fp.jev_propose(index, ledger, _fake_ask(seen=seen), workers=1)
+    asked = {state["ledger_id"] for state, _ in seen}
+    assert asked == _queue_ids(index, ledger) == set(record["rows"])
+    by_file: dict[str, set[str]] = {}
+    for d in index["declarations"]:
+        by_file.setdefault(d["file"], set()).add(d["name"])
+    taken = {(fp.lean_key(r.get("lean")), n) for r in ledger for n in fp.row_decls(r)}
+    rows = {r["id"]: r for r in ledger}
+    for state, criteria in seen:
+        assert fp.JEV_NONE in criteria
+        key = fp.lean_key(rows[state["ledger_id"]]["lean"])
+        for name in criteria:
+            if name == fp.JEV_NONE:
+                continue
+            assert name in by_file[key], f"{state['ledger_id']}: {name} is not in {key}"
+            assert (key, name) not in taken, f"{state['ledger_id']}: {name} is already claimed"
+        assert len(criteria) - 1 <= fp.JEV_SHORTLIST
+    for verdict in record["rows"].values():
+        fields = {"key", "model", "asked", "choice", "confidence", "shortlist", "in_file"}
+        assert fields <= set(verdict)
+    assert record["totals"]["asked_now"] == len(seen) == record["totals"]["answered"]
+
+
+def test_jev_propose_reuses_a_verdict_until_the_row_or_its_offer_changes() -> None:
+    """A verdict costs tokens and can differ between runs, so an unchanged row keeps the
+    answer it has.  The key covers the statement, the file and the names offered: any of
+    those moving re-asks that row alone, ``refresh`` re-asks them all, a row resolved since
+    is dropped rather than carried, and ``limit`` leaves the rows it does not reach as they
+    were instead of forgetting them."""
+    index = fp.build()
+    ledger = json.load(io.open(fp.LEDGER, encoding="utf-8"))
+    first = fp.jev_propose(index, ledger, _fake_ask(), workers=1)
+    n = first["totals"]["answered"]
+    assert n > 0
+    seen: list = []
+    again = fp.jev_propose(index, ledger, _fake_ask(seen=seen), cached=first, workers=1)
+    assert seen == [] and again["rows"] == first["rows"]
+    assert again["totals"] == {"answered": n, "asked_now": 0, "reused": n, "input_tokens": 0}
+    seen = []
+    fp.jev_propose(index, ledger, _fake_ask(seen=seen), cached=first, refresh=True, workers=1)
+    assert len(seen) == n
+    moved = json.loads(json.dumps(first))
+    victim = next(iter(moved["rows"]))
+    moved["rows"][victim]["key"] = "0000000000000000"
+    moved["rows"]["A-row-resolved-since"] = dict(moved["rows"][victim])
+    seen = []
+    third = fp.jev_propose(index, ledger, _fake_ask(seen=seen), cached=moved, workers=1)
+    assert [s["ledger_id"] for s, _ in seen] == [victim]
+    assert "A-row-resolved-since" not in third["rows"]
+    seen = []
+    capped = fp.jev_propose(index, ledger, _fake_ask(seen=seen), cached=first, refresh=True,
+                            limit=3, workers=1)
+    assert len(seen) == 3 and capped["totals"]["answered"] == n
+
+
+def test_propose_routes_a_confident_jev_pick_to_review_and_leaves_the_candidates_alone() -> None:
+    """Jev's answer is a field beside the scorer's candidates, never a substitute: candidates
+    and definitions are identical with and without it.  What it may change is the routing,
+    and only upward: a pick at or above JEV_REVIEW lists the row; a pick below it and a
+    "none of these" leave the scorer's verdict as it was."""
+    index = fp.build()
+    ledger = json.load(io.open(fp.LEDGER, encoding="utf-8"))
+    ids = sorted(_queue_ids(index, ledger))
+    none_for = set(ids[::3])
+    sure = fp.jev_propose(index, ledger, _fake_ask(confidence=0.95, none_for=none_for),
+                          workers=1)
+    unsure = fp.jev_propose(index, ledger, _fake_ask(confidence=0.4), workers=1)
+    plain = fp.propose(index, ledger, jev={})
+    base = {r["id"]: r for r in plain["rows"]}
+    by_file: dict[str, set[str]] = {}
+    for d in index["declarations"]:
+        by_file.setdefault(d["file"], set()).add(d["name"])
+    for record, routes in ((sure, True), (unsure, False)):
+        merged = fp.propose(index, ledger, jev=record)
+        assert merged["jev"]["answered"] == len(record["rows"])
+        assert merged["jev"]["picks"] + merged["jev"]["none"] == merged["jev"]["answered"]
+        for r in merged["rows"]:
+            b = base[r["id"]]
+            assert r["candidates"] == b["candidates"]
+            assert r.get("definitions") == b.get("definitions")
+            assert r["confidence"] in {"review", "low"}
+            jv = r.get("jev")
+            if jv is None:
+                assert r["id"] not in record["rows"]
+                assert r["confidence"] == b["confidence"]
+            elif jv["verdict"] == "none":
+                assert r["id"] in none_for and jv["decl"] is None
+                assert r["confidence"] == b["confidence"]
+            else:
+                assert jv["verdict"] == "pick"
+                assert jv["decl"] in by_file[fp.lean_key(r["lean"])]
+                assert r["confidence"] == ("review" if routes else b["confidence"])
+                assert jv["routed"] == (routes and b["confidence"] == "low")
+    assert fp.propose(index, ledger, jev=sure)["worth_reviewing"] > plain["worth_reviewing"]
+    assert fp.propose(index, ledger, jev=unsure)["worth_reviewing"] == plain["worth_reviewing"]
+
+
+def test_propose_ignores_a_jev_pick_that_the_file_does_not_offer() -> None:
+    """The known-bad input.  A cached name that is not in the offer -- claimed by another
+    row since, renamed, or invented -- is recorded as not_a_candidate and routes nothing;
+    the digest says so and never renders it as a candidate."""
+    index = fp.build()
+    ledger = json.load(io.open(fp.LEDGER, encoding="utf-8"))
+    plain = fp.propose(index, ledger, jev={})
+    shown = next(r for r in plain["rows"] if r["confidence"] == "review" and r["candidates"])
+    hidden = next(r for r in plain["rows"] if r["confidence"] == "low" and r["candidates"])
+    bad = fp.jev_propose(
+        index, ledger,
+        _fake_ask(confidence=0.99,
+                  pick={shown["id"]: "no_such_theorem", hidden["id"]: "no_such_theorem"}),
+        workers=1)
+    merged = {r["id"]: r for r in fp.propose(index, ledger, jev=bad)["rows"]}
+    for rid, before in ((shown["id"], "review"), (hidden["id"], "low")):
+        jv = merged[rid]["jev"]
+        assert jv["verdict"] == "not_a_candidate" and jv["decl"] is None
+        assert merged[rid]["confidence"] == before
+    text = fp.review_digest(index, ledger, jev=bad)
+    assert "which this file does not offer; ignored" in text
+    assert "`no_such_theorem`" in text
+    assert "**Jev's candidate.** `no_such_theorem`" not in text
+
+
+def test_propose_marks_a_verdict_stale_once_the_row_or_the_offer_moved() -> None:
+    """A verdict answers one wording of the claim against one offer.  When either changes,
+    the cached answer is shown as stale and routes nothing until jev-propose re-asks."""
+    index = fp.build()
+    ledger = json.load(io.open(fp.LEDGER, encoding="utf-8"))
+    record = fp.jev_propose(index, ledger, _fake_ask(confidence=0.99), workers=1)
+    plain = {r["id"]: r for r in fp.propose(index, ledger, jev={})["rows"]}
+    victim = next(rid for rid in record["rows"] if plain[rid]["confidence"] == "low")
+    stale = json.loads(json.dumps(record))
+    stale["rows"][victim]["key"] = "0000000000000000"
+    merged = {r["id"]: r for r in fp.propose(index, ledger, jev=stale)["rows"]}
+    assert merged[victim]["jev"]["verdict"] == "stale"
+    assert merged[victim]["confidence"] == "low"
+    fresh = {r["id"]: r for r in fp.propose(index, ledger, jev=record)["rows"]}
+    assert fresh[victim]["jev"]["verdict"] == "pick"
+    assert fresh[victim]["confidence"] == "review" and fresh[victim]["jev"]["routed"] is True
+
+
+def test_review_digest_shows_jev_beside_the_scorer_and_quotes_its_stored_calibration() -> None:
+    """Each listed entry carries Jev's answer next to the scorer's candidate; a disagreement
+    prints Jev's declaration in full so the reviewer reads both; and the figures in the
+    opening come from the stored, dated calibration record, never from a constant."""
+    index = fp.build()
+    ledger = json.load(io.open(fp.LEDGER, encoding="utf-8"))
+    record = fp.jev_propose(index, ledger, _fake_ask(confidence=0.9), workers=1)
+    record["calibration"] = {
+        "asked": "2026-09-21", "model": "jev-test", "sampled": 30, "top1": 19, "top3": 26,
+        "confident": 21, "confident_correct": 16, "scorer_top1": 16,
+    }
+    text = fp.review_digest(index, ledger, jev=record)
+    merged = fp.propose(index, ledger, jev=record)
+    listed = [r for r in merged["rows"] if r["confidence"] == "review" and r["candidates"]]
+    assert text.count("**Jev.**") == sum(1 for r in listed if r.get("jev"))
+    disagreeing = [r for r in listed if r["jev"]["verdict"] == "pick"
+                   and r["jev"]["decl"] != r["candidates"][0]["decl"]]
+    assert len(disagreeing) > 0
+    assert text.count("**Jev's candidate.**") == len(disagreeing)
+    assert "first 19 times, in its top three 26 times" in text
+    assert "right 16 of 21 times at or above 0.7" in text
+    entries = text.count("\n## ")
+    assert text.count("**Candidate.**") == entries == text.count("**Row.**")
+    assert "rows below, of" in text
+
+
+def test_jev_calibrate_scores_the_recorded_answer_on_the_scorer_s_own_population() -> None:
+    """Same rows as calibrate(): one recorded declaration, in a file offering at least two.
+    A fake that always answers the recorded name scores every row; one that never does
+    scores none, and the misses list names the rows it got wrong."""
+    index = fp.build()
+    ledger = json.load(io.open(fp.LEDGER, encoding="utf-8"))
+    truth = {r["id"]: fp.row_decls(r)[0] for r in ledger if len(fp.row_decls(r)) == 1}
+    oracle = fp.jev_calibrate(index, ledger, _fake_ask(pick=truth, confidence=0.9),
+                              sample=12, seed=1, workers=1)
+    assert oracle["sampled"] == 12 and oracle["top1"] == 12 == oracle["top3"]
+    assert oracle["confident"] == 12 == oracle["confident_correct"] and oracle["misses"] == []
+    assert oracle["resolved"] == fp.calibrate(index, ledger)["resolved"]
+    assert oracle["eligible"] <= oracle["resolved"]
+    blind = fp.jev_calibrate(index, ledger, _fake_ask(none_for=set(truth)),
+                             sample=12, seed=1, workers=1)
+    assert blind["top1"] == 0 and blind["none"] == 12 and len(blind["misses"]) == 12
+    assert {m["id"] for m in blind["misses"]} <= set(truth)
+
+
+def test_jev_key_tracks_the_statement_the_file_and_the_offer() -> None:
+    row = {"id": "X", "statement": "a claim", "lean": "Problems/X.lean"}
+    offer = [{"name": "a"}, {"name": "b"}]
+    key = fp.jev_key(row, offer)
+    assert key != fp.jev_key({**row, "statement": "a claim."}, offer)
+    assert key != fp.jev_key(row, offer[:1])
+    assert key != fp.jev_key({**row, "lean": "Problems/Y.lean"}, offer)
+    assert key == fp.jev_key(dict(row), list(offer))
+
+
 #: Every file this tool writes is committed, and until 14 September 2026 nothing
 #: compared any of them to a rebuild.  All four had drifted.  The index did not
 #: know InformationField's ninety declarations, still listed `window_digit_scan`
