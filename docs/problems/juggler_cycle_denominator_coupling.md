@@ -345,6 +345,12 @@ further branch is opened.
 
 ## Publication assessment
 
+The authorized escape-continuation question of 22 September 2026 is
+recorded in [power-family re-entry](juggler_power_family_reentry.md).
+It establishes density-zero square re-entry and conditional finiteness
+under abc for each fixed block type. The finite-prefix theorem above
+remains unchanged; no infinite escaping trajectory is constructed.
+
 Status: **STRUCTURAL** as a scoped method obstruction, not a new cycle
 bound or a separate paper candidate. The infinitude proof is AI-assisted
 and awaits independent human review. Papers A--D, their releases, the

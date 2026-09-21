@@ -1,5 +1,41 @@
 # Research journal
 
+## 2026-09-22 -- Perfect-power continuation meets an abc gap obstruction
+
+- **Objective:** Test whether the finite growing modular-return family can
+  feed its endpoints back into its starting form indefinitely.
+- **What was learned:** Every constructed start is an odd square. Square
+  re-entry requires a shrinking fractional-power target and has density
+  zero even within the positive-density phase family. Exact zero-gap
+  returns fail the first E guard. Nonzero returns create unusually small
+  gaps between perfect powers, with no need to assume coprime bases.
+- **Strongest theorem:** Assuming standard abc, each fixed expanding
+  O^a E^b has only finitely many guarded square re-entries from
+  n=s^(2^(a-1)). Consequently an infinite concatenation from a finite
+  collection of these types cannot remain in the construction, assuming
+  abc. Unconditional density zero is weaker and does not imply finiteness.
+- **Strongest refutation:** The positive-density family is not a closed
+  escape domain. The formal exact return at s=6561 has word OOO rather
+  than the required OOE; replacing that last O by E creates a false return.
+- **Reusable machinery:** The
+  [written proof](problems/juggler_power_family_reentry.md), shrinking-target
+  condition, normalized abc triple, and
+  [nine exact regression tests](../tests/research/juggler_sequence/test_power_family_reentry.py).
+  No production probe or new Lean module.
+- **Branch status:** **CLOSE** for direct continuation of the phase family.
+  The proof retains the abc assumption; arbitrary sparse escape is unresolved.
+- **Why:** No fixed invariant seed was produced, positive-density re-entry
+  is impossible, and fixed-type infinite perfect-power re-entry would
+  contradict abc. The arithmetic restriction goes beyond fixed-base tubes.
+- **Best next question:** An explicit nonsquare invariant domain with a
+  fixed ordinary integer seed. No new construction branch is opened.
+- **Validation:** Nine focused tests pass. Three capped scans of 25,000
+  odd parameters each found zero guarded square exits, with 6186, 6364,
+  and 3095 guarded odd exits respectively. Integration, theorem-ledger,
+  branch-index and the prior denominator regression checks also pass;
+  generated-file and scoped whitespace checks pass. Written arguments
+  are AI-assisted and await independent human review; not Lean verified.
+
 ## 2026-09-22 -- Exact modular returns do not cancel the cycle-code denominator
 
 - **Objective:** Pursue the bridge review's next question: whether exact Juggler

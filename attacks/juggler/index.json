@@ -6318,6 +6318,22 @@
       "nk_cluster": "Paper B, \\(K_3\\), and harvest counting"
     },
     {
+      "id": "power_family_reentry",
+      "kind": "dossier_only",
+      "probe": null,
+      "test": null,
+      "dossier": "docs/problems/juggler_power_family_reentry.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": [
+        "J-power-family-square-reentry-obstruction"
+      ],
+      "aliases": [],
+      "nk_cluster": "Finite growing power blocks do not form an invariant escape family"
+    },
+    {
       "id": "power_words",
       "kind": "dossier_only",
       "probe": null,

@@ -1,0 +1,21 @@
+{
+  "id": "conrad-2013-abc-conjecture",
+  "title": "The ABC conjecture",
+  "authors": [
+    "Brian Conrad"
+  ],
+  "year": 2013,
+  "identifiers": {},
+  "url": {
+    "pdf": "https://www.math.stonybrook.edu/Videos/Colloquium/PDFs/20130912-Conrad.pdf"
+  },
+  "problem_area": "diophantine-approximation",
+  "relevant_concepts": [
+    "abc conjecture",
+    "radicals",
+    "gaps between perfect powers"
+  ],
+  "project_relationship": "known",
+  "status": "classical-source",
+  "notes": "Slides dated 12 September 2013, read on 22 September 2026. Page 26 states the Masser-Oesterle conjecture: for each epsilon>0, all but finitely many coprime positive A+B=C satisfy C<rad(ABC)^(1+epsilon), equivalently a bound with an epsilon-dependent constant for all triples. Used only as an explicit hypothesis in docs/problems/juggler_power_family_reentry.md. The square-reentry consequence and its gcd normalization are derived in that dossier; this source does not claim a Juggler result. No proof or present-day resolution of abc is imported."
+}

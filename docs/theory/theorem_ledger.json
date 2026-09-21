@@ -1,5 +1,16 @@
 [
  {
+  "id": "J-power-family-square-reentry-obstruction",
+  "tag": "EXACT — HUMAN PROOF",
+  "source": "docs/problems/juggler_power_family_reentry.md",
+  "tests": [
+   "tests/research/juggler_sequence/test_power_family_reentry.py"
+  ],
+  "related_conjectures": [],
+  "lean": "",
+  "statement": "For fixed a,b>=1 with 3^a>2^(a+b), put d=2^(a-1), P=3^a, h=2^(b+1), beta=P/h>d>=2. An actual O^a E^b block from odd s^d, s>=3, ends at floor(s^beta)>s^d. Square endpoints require 0<=frac(s^(beta/2))<s^(-beta/2), so their parameters have density zero on every fixed odd arithmetic progression, by classical nonintegral-power equidistribution. If the endpoint is t^2, a guarded return has R=s^P-t^(2h)>0: zero gap makes the first E source odd. Also R<C_h s^(P-beta), C_h=h*2^(h-1). With g=gcd(s^P,t^(2h)), the positive coprime triple (t^(2h)/g,R/g,s^P/g) has radical at most C_h*s^E/g, E=P+1-beta/2<P. ASSUMING STANDARD ABC, choose epsilon=(P-E)/(2E) to bound s; thus only finitely many guarded square returns occur for each fixed block type. Consequently, ASSUMING ABC, no infinite concatenation from a fixed finite collection of these expanding types can retain the construction's perfect-power starts at every boundary. Bases may vary and selected parameters may be arbitrarily sparse. No unconditional finiteness, general no-escape, or termination result is asserted. OOE's hypothetical infinite square-return family would give abc quality liminf at least 72/71. AI-assisted written proof; independent human review and Lean verification outstanding."
+ },
+ {
   "id": "J-cycle-denominator-modular-return-obstruction",
   "tag": "EXACT — HUMAN PROOF",
   "source": "docs/problems/juggler_cycle_denominator_coupling.md",
