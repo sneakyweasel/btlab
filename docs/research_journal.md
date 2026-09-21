@@ -98,6 +98,60 @@
   equivalence. Paper C's Section 1.3 already says so for the \(3x+1\) side and the
   sentence transposes with the theorem.
 
+## 2026-09-21 -- Corollary 29 does transpose to 3n-1, and it improves a constant Paper D's open values do not turn on
+
+- **What happened.** This morning's entry reclassified Hercher's Corollary 29 from method
+  wall to `OPEN, WORTH TRYING`, because Lemma 6 had moved the first open value to \(m=62\)
+  and \(0.30\) bits would close it against his \(1.30\). I tried it. The mechanism carries;
+  the number does not, because the number belongs to a different constant.
+- **Lemma 26 has a negative-side statement, and it is exact.** Lemma 1 makes the run exact,
+  so the run from a local minimum contributes \(T(y)<\kappa(a)/u\) with
+  \(\kappa(a)=1-(2/3)^a\), which is precisely the factor Lemma 2 discards and precisely what
+  his Remark 7 keeps. The relation between consecutive minima,
+  \(u_i=(2/3)^{a_i}(2^{r_i}(u_{i+1}+1)-1)\), is his with the sign flipped, so the one, two
+  and three-run averaging goes over case for case with the same rationals. The residue drop
+  carries too and is sharper here, because every minimum of a window is above the floor, so
+  what matters is the least member of the class above the floor rather than the least
+  positive one. The first amendment's "no negative-side statement yet" was wrong.
+- **The measurement, and why I had the wrong target.** Corollary 29 improves Theorem 27's
+  m-free constant. Paper D's open values are not decided by any m-free bound: at \(m=62\)
+  the chaining display, the one a finance constant moves, clears by \(41.4\) bits. What
+  holds the row open is Lemma 6's cap, and the cap is minimised with **four** minima at the
+  floor at \(m=62\) and five at \(m=63\). An averaging argument can act on nothing else, and
+  a block of four is too short for averaging to be worth much: four consecutive local minima
+  above \(2^{51}\) average \(0.9013\) where \(0.8137\) is needed, five average \(0.8689\)
+  where \(0.6509\) is needed. Just over half of what \(m=62\) asks, a third of what \(m=63\)
+  asks, charging the method no boundary loss at all.
+- **The evidence runs the right way.** The verdict rests on concrete starts --
+  \(2255557997555713\), runs \(12,7,5,6\) -- walked on the map, which bound from below what
+  any averaging can give. A branch-and-bound over residue classes, which is Corollary 29's
+  own machinery on this side, closes within a part in ten thousand of them, so they are not
+  an artifact of a weak search. They are orbit windows, not windows of a known cycle, so
+  they refute the method rather than the conclusion -- which is the right target, since both
+  refinements use only the floor and the local step relations and never the cycle's closure.
+- **Why the block is short.** \(d\) minima near the floor must fit their runs and halvings
+  into the floor's \(51\) bits, so short runs are forced and short runs waste \(\kappa\). A
+  single minimum is worth nothing whatever: \(2^{51}+1\) has \(a=51\) and
+  \(\kappa=1-10^{-9}\). Seven consecutive minima average \(0.770\), which is \(0.376\)
+  bits -- so the refinement is worth real bits, just not where Lemma 6 puts the block at
+  \(m=62\).
+- **The known-bad input, which is unusually tight.** With the floor at a real cycle's own
+  least element the window bound must spare that cycle, and at \(17\) the two minima sit at
+  \(0.541975\) against a ceiling of \(0.541992\). Scaling \(\kappa\) by \(99/100\) excludes
+  both known cycles. That is now a test.
+- **What did not change.** Nothing in the manuscript. Version 1.1.0 stands at \(m\le61\),
+  and none of Paper D's pinned inputs were touched, so the release manifest still holds at
+  `b4efe1c5`. The new machinery is a support module beside the probe, not a probe.
+- **The second lesson, beside this morning's.** When a refinement is quoted as worth so many
+  bits, the bits belong to a constant, and before borrowing them one has to check that the
+  constant is the one the open case turns on. Here it was not, and the two constants were a
+  factor of forty apart in slack.
+- **Where it might still land.** The window constants grow with the floor and the block
+  grows with \(m\). At \(2^{60}\), \(m=76\) demands \(0.7535\) against an attained
+  \(0.7579\) -- short by \(0.008\) bits -- and \(m=75\) is undecided, since bounding the
+  block average from above would need a different tree from the one built here. Worth
+  remeasuring before that floor is run, not before.
+
 ## 2026-09-21 -- A method wall expired without anyone noticing, and the test that should have noticed was measuring the wrong bound
 
 - **What happened.** Earlier today I filed both of Hercher's m-free refinements as method
@@ -3029,7 +3083,6 @@ things in it bear on yesterday's repunit row; two are upgrades and two are kills
   `docs/problems/juggler_exponent_valuation_mirror.md`; probe
   `exponent_valuation_mirror`, eleven tests.
 
-
 ## 2026-09-19 -- Step 5b's interval counts were counting noise
 
 - **Objective:** Philippe asked how much of `lambda_interp` rested on the two
@@ -4178,7 +4231,6 @@ things in it bear on yesterday's repunit row; two are upgrades and two are kills
 - **Decision:** `PROMOTE`, on the existing branch.
   [Jump spectrum](problems/juggler_jump_spectrum.md).
 
-
 ## 2026-09-18 -- the jumps are the survivor sequence, and the law I found was the empty window
 
 - **Objective:** build the global jump fit, to reach `C_j` past the `j` about 25
@@ -4236,7 +4288,6 @@ things in it bear on yesterday's repunit row; two are upgrades and two are kills
 - **Decision:** `PROMOTE`.
   [Jump spectrum](problems/juggler_jump_spectrum.md);
   `formal/Problems/Juggler/PaperBJumpTransposition.lean`.
-
 
 ## 2026-09-18 -- the spectrum factorises, and the sequence it leaves resists me
 
@@ -5030,7 +5081,6 @@ write documentation patches with raw strings, `r"..."`, or put the patch in a
 scratch `.py` file and run that. An inline heredoc with LaTeX in a bare string
 is how all fourteen of these got in.
 
-
 ## 2026-09-14 — The orphan gate was measuring the wrong relation
 
 `test_orphan_declarations_do_not_grow` reported 439 unresolved candidates
@@ -5087,7 +5137,6 @@ namespace `Problems.Juggler.CubicGrid` sit in five different modules, and the
 Budget set to 404 with the reasoning recorded at the constant, and the
 remaining 396 recorded as a reviewed backlog rather than a green number.
 [Dossier](problems/juggler_orphan_declaration_gate.md).
-
 
 ## 2026-09-14 — The audit: one identity, one unread equation, one closed door
 
@@ -5173,7 +5222,6 @@ own.
 
 Decision **PROMOTE**, and the concentration half **CLOSE**. Best next
 question: none here.
-
 
 ## 2026-09-14 — Corollary 4.11 was citing the wrong measure
 
@@ -5412,7 +5460,6 @@ by another AI agent checked the signs and scope. This is written
 analysis, not independent human review or a new Lean/no-cycle theorem.
 No enumeration, floor increase or further gate was pursued.
 
-
 ## 2026-09-10 — Paper A: upper cells and full-domain consolidation
 
 The user explicitly requested a publication consolidation and the next
@@ -5433,7 +5480,6 @@ The release inventory additionally pins the numerical runner and saved
 control artifact used by Section 6.3. Generated copies are rebuilt from
 the canonical manuscript. This is a local revision, with no external
 upload or claim of independent human review.
-
 
 ## 2026-09-10 — Actual upper-square complements: local Lean gain, global test closed
 
@@ -5472,7 +5518,6 @@ generated copies are preserved. The remaining analytic and global
 arguments have written proofs and no new Lean verification. No further
 gate is automatically opened.
 
-
 ## 2026-09-10 — Complete cubic rank caps: signed envelope test still closed
 
 The user authorized the missing full target-cap comparison after the
@@ -5504,7 +5549,6 @@ floor, does not exclude the period, and says nothing about taller cycles.
 Row J-cycle-rank-capacity-envelope records the bounded computation; no new
 Lean module, manuscript edit, publication rebuild, or next gate is made.
 
-
 ## 2026-09-10 — Cubic rank curvature: exact window, coarse transfer closed
 
 **CLOSE** the bounded automatic transfer of polynomial-family finite
@@ -5529,7 +5573,6 @@ capacity census, trajectory scan, floor increase, or next gate is performed.
 The proof record, fixed runner, interval data and tests are registered, with
 row J-cycle-rank-curvature-window tagged REPARAMETERIZATION. No new Lean
 module, Paper A edit, or publication rebuild is made by this gate.
-
 
 ## 2026-09-10 — OOE escape constructions: residue and polynomial obstructions
 
@@ -5557,7 +5600,6 @@ single-family valuation cannot simply become a uniform shifted-state rank.
 Residue fixtures replay exact square margins. The canonical dossier, probe,
 data, tests and ledgers are registered; manuscript and release files are
 unchanged by this gate. No next branch is automatically opened.
-
 
 ## 2026-09-10 — Located O loss resolves split-pair accounting
 
@@ -5587,7 +5629,6 @@ no orbit census or floor increase occurred. The canonical proof owner
 and ledgers are updated. Paper A and its releases remain unchanged;
 independent human review and the remaining formal assembly are still
 outstanding. No further executable attack is established or launched.
-
 
 ## 2026-09-10 — Shared OE remainders tighten the budget; endpoint equality is unbounded
 
@@ -5619,7 +5660,6 @@ and claim/branch records retain the proofs and scope. Paper A, release
 PDFs and the floors 350000000/780239 are unchanged. No further gate
 or cycle census was opened.
 
-
 ## 2026-09-10 — Absolute quartic cells confine strict re-entry below 2m
 
 The user authorized the next absolute-cell gate after the six-module Lean
@@ -5648,7 +5688,6 @@ copies are unchanged; these new written results still need their complete
 formalization and independent human review. The large-valley equality
 candidate is recorded as a next local question without opening that gate.
 
-
 ## 2026-09-10 — Sorted quartic envelopes force every F cell to be uncovered
 
 After the requested five-module Lean consolidation passed, the user-authorized
@@ -5676,7 +5715,6 @@ small-product/no-cycle and exact separated-rotation realization remain
 PARK. The latter is recorded as the next question, without opening
 another research gate.
 
-
 ## 2026-09-10 — Quartic Lean consolidation with explicit assembly boundary
 
 Five laboratory modules now support the [canonical quartic dossier](problems/juggler_cycle_quartic_band.md):
@@ -5693,7 +5731,6 @@ certificate construction remain outstanding. The finite controls are not
 substitutes for those proofs. Paper A, PDFs, release artifacts and numerical
 floors remain unchanged. The user authorized the witness-transport attack
 after this consolidation; its outcome is recorded separately.
-
 
 ## 2026-09-10 — Every projected component needs an uncovered gap witness
 
@@ -5730,7 +5767,6 @@ or numerical floor increase was made. The next question concerns
 transporting the witness interval through the actual return map;
 that next gate is not launched. Paper A, Lean, PDFs and release
 copies are unchanged by this turn.
-
 
 ## 2026-09-10 — Full-cell displacement forces conditional uncovered F cells
 
@@ -5771,7 +5807,6 @@ Paper A, Lean, PDFs and releases are unchanged by this turn.
 The certified minimum floor 350000000 and period floor 780239
 remain fixed.
 
-
 ## 2026-09-10 — Disjoint actual returns force conditional quartic nonparticipants
 
 The user authorized the auxiliary periodic-component test.
@@ -5808,7 +5843,6 @@ No whole-slab exclusion or global no-cycle theorem follows.
 Paper A, Lean and release copies are unchanged. The certified
 floor350000000 and period floor780239 remain fixed.
 
-
 ## 2026-09-10 — Quartic nonparticipant audit: extremal descent and auxiliary closure
 
 The user authorized the next nonparticipant test. The target c_0>=1
@@ -5842,7 +5876,6 @@ component avoiding all changed F edges; no existence argument is
 provided by this gate. No new count, height or no-cycle restriction
 was obtained. Paper A and Lean are unchanged; floor350000000 and
 period floor780239 remain fixed. No next gate is launched.
-
 
 ## 2026-09-10 — Shared OE cells sharpen the quartic inversion bound
 
@@ -5879,7 +5912,6 @@ No new cycle census, runtime probe, Lean module, Paper A revision or
 publication is added. The certified floor 350000000 and period floor
 780239 remain fixed; no whole-slab exclusion or global no-cycle proof.
 
-
 ## 2026-09-10 — Quartic return order, inversion budget and population height bounds
 
 The user authorized the first taller slab \(m^3\le M<m^4\).
@@ -5915,7 +5947,6 @@ This gate stops here. Paper A, release PDFs, Zenodo and Lean are
 unchanged; the certified floor 350000000 and period floor 780239
 remain fixed. No universal no-cycle or divergent-orbit result follows.
 
-
 ## 2026-09-10 — Uniform signed return errors and complete terminal cancellation
 
 The user authorized the next signed-return test. **CLOSE** the tested
@@ -5946,7 +5977,6 @@ revision was added. Existing dependency and registration checks concern
 record consistency, not universal verification of the new arguments.
 The certified floor 350000000 and period floor 780239 remain fixed.
 No subsequent gate is launched.
-
 
 ## 2026-09-10 — Carry-level geometry and the return-depth dependency
 
@@ -5979,7 +6009,6 @@ No such estimate or strict flux inequality was established.
 No runtime code, numerical scan, local family, Lean module or paper
 revision was added. The certified floor 350000000 and period floor
 780239 remain fixed. No subsequent gate is launched.
-
 
 ## 2026-09-10 — Integer weighted transport: nonvanishing without contraction
 
@@ -6016,7 +6045,6 @@ The existing tests retain their original scope and do not machine-verify
 these universal written results. The remaining question is an independent
 bound on actual carry-level flux; no subsequent gate is launched.
 Certified floor 350000000 and period floor 780239 remain fixed.
-
 
 ## 2026-09-10 — Fifth odd-prefix split: resolution audit
 
@@ -6073,7 +6101,6 @@ No strict deficit or numerical period/height improvement is obtained.
 The remaining question is an arithmetic joint-support bound below a
 mandatory population that avoids these quantified limitations.
 No further gate is launched; floor350000000 and period780239 remain fixed.
-
 
 ## Cycle-period parity follow-up: sharper cells, no upper surplus estimate
 
@@ -13809,7 +13836,6 @@ Best next question
   OBSERVED WITHIN SEARCH BOUND?
 ```
 
-
 ## Juggler word atlas scientific census
 
 - **Date:** 2026-08-27
@@ -13947,7 +13973,6 @@ Best next question
 - Is there any arithmetic, other than the integer y itself, that
   decides whether a persistent residual landing stays odd-to-odd?
 ```
-
 
 ## Juggler residual future-quotient
 
@@ -15857,7 +15882,6 @@ Best next question
 - does the kernel K_c(P) = sum e(c(n){m^{3/2}}), c ~ k P^{9/8},
   admit any power saving (Conjecture 6.2)?
 ```
-
 
 ## Juggler kernel attack: a double-differencing draft proof of Conjecture 6.2 (Phase 8)
 
@@ -25705,7 +25729,6 @@ Best next question
   juggler_descent_time_log
 ```
 
-
 ## Juggler flight envelope (fly exponent = peak walk weight)
 
 - **Date:** 2026-09-01
@@ -25752,7 +25775,6 @@ Best next question
 - does the re-anchored excursion envelope compose across
   valleys into a whole-trajectory height law?
 ```
-
 
 ## Paper A editorial pass (two-review arbitrage; not a numbered milestone)
 
@@ -27342,7 +27364,6 @@ Best next question
   T_j = sum e(c m^{9/4} - j m^{2/3})?
 ```
 
-
 ## Paper B sign-critical composites on (C1)–(C3)
 
 - **Date:** 2026-09-01
@@ -28918,7 +28939,6 @@ Best next question
   the dangerous-position partial quotients of log 2/log 3
 ```
 
-
 ## Gap transfer, short-cycle reduction, and the mechanical window (not a numbered milestone)
 
 - **Date:** 2026-09-03
@@ -28958,7 +28978,6 @@ Why
 Best next question
 - none in this laboratory; the §6 sentence of Paper A is the deliverable
 ```
-
 
 ## Fate contagion: logarithmic density of the fate classes (not a numbered milestone)
 
@@ -29009,7 +29028,6 @@ Best next question
   in logarithmic density with target [1, N_0] and rate (log x)^{-0.6}?
 ```
 
-
 ## Tao-type reduction: the conjecture from a log-log-depth cylinder bound (not a numbered milestone)
 
 - **Date:** 2026-09-03
@@ -29056,7 +29074,6 @@ Best next question
   slowly as log log y? (the K_3 program; not opened here)
 ```
 
-
 ## Biased-split sharpening and the anatomy of the wall (not a numbered milestone)
 
 - **Date:** 2026-09-03
@@ -29099,7 +29116,6 @@ Best next question
   number theory
 ```
 
-
 ## Termination refocus: odd generation and the exact map (not a numbered milestone)
 
 - **Date:** 2026-09-03
@@ -29139,7 +29155,6 @@ Best next question
 - does Paper B's Theorem 4.4 localize to intervals of length >= P^{1/2+eps}
   with the same relative saving? (analytic task; not opened here)
 ```
-
 
 ## Localizing Paper B: the OOEEE production, \(\lambda^{***}=0.4922\) (not a numbered milestone)
 
@@ -29428,7 +29443,6 @@ Why
 Best next question
 - none on this line; 1/7 to 1/3 on the OE fiber stays recorded
 ```
-
 
 ## Paper B audited and upgraded after the first external review (consolidation, not a milestone)
 
@@ -44541,7 +44555,6 @@ Best next question
 - the V_3 truncation constants, later, not this branch
 ```
 
-
 ## OEOEE production audit and rate drop (not a numbered milestone)
 
 - **Date:** 2026-09-06
@@ -48423,7 +48436,6 @@ positions or couple the branch offsets discarded by gap subtraction.
 The no-cycle claim is unproved; M>=m^3 is separately unresolved, and no
 floor, period lower bound, Paper A source or release artifact is changed.
 
-
 ## 2026-09-09 — Cubic-band results consolidated into Lean and Paper A
 
 The user authorized consolidation and then the absolute floor-cell question.
@@ -48437,7 +48449,6 @@ The new proofs use the kernel; the old native scan remains disclosed.
 **Decision: PARK for cycle exclusion.** The universal wrong-parity conclusion
 and the taller-cycle regime remain open. The authorized follow-up targets
 absolute square-cell alignment without enlarging any census, floor or cap.
-
 
 ## 2026-09-09 — Absolute floor cells after the formal cubic-band consolidation
 
@@ -48597,7 +48608,6 @@ ceilings at previous literal starts, without trajectories, a source
 census, a new cycle search, or any floor increase. No new Lean or
 Paper A claim. The remaining cubic region and tall cycles are open.
 
-
 ## 2026-09-09 — All-odd counting: cumulative cost and shorter prefix
 
 The user authorized the growing-depth all-odd counting question.
@@ -48653,7 +48663,6 @@ independent human review. Paper A remains at its previous verified
 release until a separate consolidation. Later induced words and the
 terminal mixed-branch event prevent inferring uniform no-cycle from
 these two contractions. No automatic next branch is opened.
-
 
 ## 2026-09-10 — Later returns and the terminal mixed passage
 
@@ -48717,7 +48726,6 @@ standalone-source, archive-integrity, and repository checks are recorded
 in the current release check. This continues the existing publication
 consolidation; no new research branch or external deposit was opened.
 
-
 ## 2026-09-10 — Paper A successive-return consolidation
 
 **PROMOTE (consolidation).** The direction-change and later-return gates
@@ -48738,7 +48746,6 @@ descent floor 350000000 and period bound 780239 remain unchanged.
 The user separately authorized the next bounded question: joint absolute
 cell control of terminal-prefix amplification against the mixed passage
 and common suffix. This consolidation does not itself settle that question.
-
 
 ## 2026-09-10 — Terminal joint absolute cells
 
@@ -48762,7 +48769,6 @@ above the 2^128 minimum cutoff; all calculations use integer roots,
 fractions and powers. No census, trajectory extension or raised floor.
 These new scoped findings remain written research, separate from the
 preceding Paper A/Lean consolidation. No further branch was opened.
-
 
 ## 2026-09-10 — Cyclic weighted remainder gate
 
@@ -48788,7 +48794,6 @@ for both terminal cut states; it is recorded but not opened by this decision.
 Paper A and Lean remain unchanged. Written results are AI-assisted and
 await independent human review.
 
-
 ## 2026-09-10 — Simultaneous exact cut predecessors
 
 **CLOSE** the predecessor-only sign obstruction. The user authorized the
@@ -48813,7 +48818,6 @@ still admits a family. Do not infer no-cycle merely by eliminating this
 particular family, or continue indefinitely by adding local prefixes.
 No further gate is opened by this decision. Paper A and Lean are unchanged;
 the new proofs are AI-assisted written results awaiting human review.
-
 
 ## 2026-09-10 — The entire initialized return seam survives
 
@@ -48847,7 +48851,6 @@ orbit, rank, or floor census; the certified floor and period bound remain
 350000000 and 780239. This is an AI-assisted written proof awaiting human
 review and Lean verification; this Phase-0 gate changes no Paper A copy.
 
-
 ## 2026-09-10 — New Paper B theorem: all-odd projection and scope
 
 The user authorized continuation of the shorter-prefix counting question.
@@ -48872,7 +48875,6 @@ does not supply the y/(log y)^5 bound. Its inherited corollary
 improves a constant only; other high-odd-count words remain open.
 No paper edit, source census, floor increase, runtime module or
 formalization was made, and no further branch was opened.
-
 
 ## 2026-09-10 — Distinct preimage support and the common retained set
 
@@ -48910,7 +48912,6 @@ refuted, but no new local-prefix or candidate-closure campaign is opened.
 Paper A and Lean are unchanged; floor 350000000 and period bound 780239
 remain fixed. Written proofs are AI-assisted and await independent review.
 
-
 ## 2026-09-10 — Source-block pairing with bounded capacity
 
 The authorized source-pairing test obtains a scoped positive result.
@@ -48943,7 +48944,6 @@ fixed-depth corollaries under the existing neighbor-scale record.
 The t=4 capacity and all growing-depth capacities still require new
 arithmetic input; the five-to-one termination-related benchmark is
 not established. No further pairing rule was opened.
-
 
 ## 2026-09-11 — Paper A Lean interface consolidation
 
@@ -49232,7 +49232,6 @@ Both fixed-control tests and all 46 registration, ledger, branch-index
 and documentation checks passed. The generated theorem ledger and branch
 index are synchronized. No PDF generation or PDF validation was run.
 
-
 ## 11 September 2026 — Critical runs meet the selected signed arcs
 
 **What was learned**
@@ -49280,7 +49279,6 @@ ledger and branch index are synchronized, and scoped diff checks pass.
 The bounded gate used two rank boundary evaluations and exact integer
 controls, with no source/rank/minimum census, cap reintegration, new
 propagation sweep or PDF work. Paper A unchanged.
-
 
 ## 11 September 2026 — Critical cost and shared-cell compatibility
 
@@ -49338,7 +49336,6 @@ fixed symbolic/control calculations. No full state arrays were
 reconstructed, no propagation sweep or minimum subdivision was added,
 and no Paper A or PDF artifact was changed.
 
-
 ## 11 September 2026 — Lean consolidation and complete paired OOE returns
 
 **What was learned.** The minimum-cost critical OO pair extends to
@@ -49381,7 +49378,6 @@ and scoped diff checks pass. Only the two saved rank enclosures and
 eight prescribed path controls were used. No rank/minimum census,
 propagation sweep, cap integration or PDF work was performed.
 Paper A and all generated paper snapshots remain unchanged.
-
 
 ## 11 September 2026 — Attempt to construct a sparse invariant OOE set
 
@@ -49523,7 +49519,6 @@ nothing is left; what remains human is the analysis -- the block
 average, the share law, the contagion theorem, the identity (6.1),
 Theorem 7.3 and the asymptotic bookkeeping of Sections 8 to 10.
 
-
 ## Theorem 5.3 is Lean modulo the production inequality
 
 Theorem 5.3 has three inputs: the recursion lemma, the seed, and the
@@ -49569,7 +49564,6 @@ on 8 September within the hour; the collision was caught by a compile
 that saw both texts, and the split (seed, 7.2 and downstream here; 4.1'
 and the fiber lemmas there) held through the week.
 
-
 ## The numerics of Paper C in one module
 
 Lemmas 4.2, 4.3 and 8.2 certified their real powers the same way:
@@ -49600,7 +49594,6 @@ and window lemmas of the sweep, the log-mass forms, the repeated sweep
 hypotheses) lives in files shared with the WIZARD session and waits on
 a message to it.
 
-
 ## One window count for three sweep lemmas
 
 Lemma 4.1 counts how many terms of a separated sequence fit in a
@@ -49629,7 +49622,6 @@ needs no new lemma either, since a sequence falling by at least d is
 StepGe for j |-> -x j; I have sent that session the interface and the
 remark. Eighteen modules in the barrel now, 224 asked declarations, all
 on Mathlib's three axioms.
-
 
 ## The exact half of the first-letter identity
 
@@ -49665,7 +49657,6 @@ table now reads twenty-two Lean rows and four human. The four are the
 block average 4.4, the share law, the production inequality (5.2), and
 the Azuma and exponential-moment bookkeeping of Sections 8 to 10.
 
-
 ## The landing window is a Galois connection
 
 Appendix D of Paper C is analysis: smooth windows, endpoint errors,
@@ -49694,7 +49685,6 @@ This does not touch the production inequality. What Appendix D does
 with the window, the smooth comparison (D.3), the endpoint error
 O_k(P^{1-s}) and the inner-layer multiplicities, is exactly the part
 that stays human. Twenty-three Lean rows, four human.
-
 
 ## Half a Parseval identity
 
@@ -49728,7 +49718,6 @@ share law, the production inequality, and the Azuma and exponential-
 moment bookkeeping. Nothing exact is left for a small attack; what is
 left needs either an analytic argument or the hypothesis-as-input
 treatment the large attacks use.
-
 
 ## Proposition 4.4 without its exponential sums
 
@@ -49772,7 +49761,6 @@ majorant, the second-derivative test, Kusmin-Landau, and a two-sided
 count of the odd integers of the block for the asymptotic form. That is
 a Mathlib-scale project, not a session.
 
-
 ## Proposition 4.4, second pass: one of the three sums was never analysis
 
 The first pass took all three parity sums as hypotheses. That was one
@@ -49810,7 +49798,6 @@ the two hypotheses. The table row is still "human proof"; it now lists
 the slow sum and the block count among the Lean parts. The consolidation
 paid for itself today twice over: the descending Bernoulli step, the
 landing window and the fiber bounds were all on the shelf.
-
 
 ## The share law's three exact facts
 
@@ -49850,7 +49837,6 @@ sampling that make Lemma 4.5, Fubini in (1), and the identification of
 the theta-measure with max(0, 1/2 - range). The row stays "human
 proof". Twenty-four Lean rows, four human, and now every one of the
 four human rows has its exact layer in Lean and says so.
-
 
 ## Two productions are enough for an exponent, and they need no analysis
 
@@ -49902,7 +49888,6 @@ later: the lemma's conclusion mentions the unfolded term, linarith
 sees two atoms, and the proof fails for no visible reason. Generalizing
 the floors into variables with equations avoided it.
 
-
 ## The conjecture from a rate above 0.7, and nothing else
 
 Theorem 7.2 and Corollary 8.4 both take the contagion bound as a
@@ -49923,7 +49908,6 @@ bound at 0.7 is any easier or harder to prove than one at 0.51 is not a
 question this repository can answer today; it is the analytic question
 of Appendix C in both cases. What is settled is that one half of the
 pincer no longer has a hypothesis.
-
 
 ## Theorem 9.1 without the martingale
 
@@ -49962,7 +49946,6 @@ Theorem 9.1 added to its list of exact exceptions. Twenty-six Lean
 rows, four human, twenty-four modules, 322 declarations in the
 artifact.
 
-
 ## The one-sided hypothesis runs to the conjecture
 
 Philippe asked what the best attacks against no cycle are, and the
@@ -49999,7 +49982,6 @@ would not wrap them. Twenty-seven Lean rows, four human, twenty-five
 modules, 331 declarations in the artifact. The hypothesis itself is
 Appendix C's question in one-sided dress; nothing here touches it.
 
-
 ## The pressure and no-momentum forms run to the conjecture too
 
 Same jaw, two more forms. Theorem 9.2 and Proposition 9.3 are stated
@@ -50033,7 +50015,6 @@ exponential sums that would bring 0.7 down to 0.51. Twenty-eight Lean
 rows, four human, twenty-six modules, 339 declarations in the
 artifact.
 
-
 ## Exceptional atoms cost C less
 
 Philippe set the loop to proceed with the next best question, and the
@@ -50062,7 +50043,6 @@ unit, and after it the pincer's analytic question is a single
 mean-square statement. Twenty-nine Lean rows, four human,
 twenty-seven modules, 351 declarations in the artifact.
 
-
 ## One Cauchy--Schwarz, and the pincer's question is a second moment
 
 The step promised yesterday. The bias energy at depth t is the sum of
@@ -50089,7 +50069,6 @@ pincer is numerically dead and the effort goes elsewhere; if it holds
 with room to spare, the analytic question has its shape. Thirty Lean
 rows, four human, twenty-eight modules, 360 declarations in the
 artifact.
-
 
 ## The bad cylinders collapse
 
@@ -50129,7 +50108,6 @@ H(C, A) and H_q(C, A) by a construction in the pattern of the
 absorbed-cylinder theorem. That is a human-proof question, and the
 next best one.
 
-
 ## The collapsed-fiber construction does not survive triage
 
 The question the last entry left: can a dip to a bounded value give,
@@ -50167,7 +50145,6 @@ analytic and both open. The loop stops here, because the next
 questions are a decoration (a certified numerical instance) or
 weeks of exponential sums, and that choice is Philippe's.
 
-
 ## The collapsed component is nearly fair, exactly
 
 Philippe asked which analytic attacks the Lean progress suggests, and
@@ -50197,7 +50174,6 @@ needed, since every preimage of v lies below (v+1)^2 regardless.
 Thirty-one Lean rows, four human, twenty-nine modules, 378
 declarations in the artifact.
 
-
 ## Even runs are self-smoothing; the odd step is the share law
 
 Proceeding with the profile-smoothness bound, the honest result is a
@@ -50221,7 +50197,6 @@ the table already has, the share law and (4.1), plus an exact
 propagation that is now in Lean. Nothing new is asked of analysis; the
 question is sharpened, not moved. Two theorems added to FateCollapse,
 380 declarations in the artifact, thirty-one Lean rows, four human.
-
 
 ## One constant, no audit script
 
@@ -50254,7 +50229,6 @@ C = 19 is a statement about lambda**; both stay with the audit, and the
 bounds here are deliberately loose, the true value being e(30) about
 1.05, because loose bounds have small certificates. Thirty-two Lean
 rows, four human, thirty modules, 409 declarations in the artifact.
-
 
 ## Are the Section 9 hypotheses about anything?
 
@@ -50302,7 +50276,6 @@ fiber of a small value along a word, the preimage of a value under an
 even step is an interval, so the fiber can be computed from the value
 and the word at any scale, including where L(y) is 3 or 5 and the
 early-collapse artifact is gone. That is the next experiment.
-
 
 ## The barrier word, and what the one-sided hypothesis would have to be true
 
@@ -50363,6 +50336,7 @@ carrying a vanishing fraction does not disturb them. Which is an
 argument for the global forms being the right ones, and for the
 certified instance at C = 30 pointing at the pressure criterion rather
 than the one-sided one.
+
 ## The library errand: the report is faithful, and it is contradicted
 
 The audit closed with one errand it declined to do: read Rhin p. 160
@@ -50429,7 +50403,6 @@ on the cycle side.
 Status: OBSERVATION. Nothing proved, nothing refuted, one row
 reclassified, one attribution corrected in three places, and the next
 library errand named and ranked above this one.
-
 
 ## Six failures, one prefix: the guard that could not tell Energy from EnergyBound
 
@@ -50499,7 +50472,6 @@ is never diffed against a regeneration -- and like that one it needs the
 surrounding sentence read before each site is repaired, since this laboratory
 uses "word" as a real term of art. Not touched here.
 
-
 ## A check that compared a constant to itself, and the bound it was hiding
 
 Section 11 of the OEOEE production note prints, among the Half A pairing
@@ -50558,7 +50530,6 @@ The second-pass audit also reports that the (T3) additive constant is 2 rather
 than 1 and that the 4(V+1) block count needs nearly equal block lengths.
 Neither is checked here and neither has been evaluated on main.
 
-
 ## Two intervals counted as one: the (T3) additive constant
 
 The second-derivative test in the Section 11 toolkit reads
@@ -50603,7 +50574,6 @@ now settled: Lambda_3 was a false constant and the audit falsifies it; (T3)
 was a false proof of a surviving constant. The third -- that the 4(V+1) block
 count needs blocks of nearly equal length rather than merely length <= delta --
 is a hypothesis gap rather than a number, and is still unchecked.
-
 
 ## The block count needed a floor, and 4 was never the constant
 
@@ -50662,7 +50632,6 @@ percent, absorbed downstream. The branch said of (T4) that "with that hypothesis
 it holds"; that is the one place its own account was too generous, since with
 the hypothesis the constant is 2(1 + rho) and not 4.
 
-
 ## Extracted: the collision / large-sieve body from an unmerged branch
 
 The thirteen entries that follow were written on 6 and 7 September 2026 on
@@ -50701,7 +50670,6 @@ numeric half of the tower test is kept.
 lints, and its 34 tests pass against the current constants; the Phase-0
 falsifier still does not fire. That is a statement about the code, not about
 the proofs. Seventeen ledger rows come with it and carry their own tags.
-
 
 ## The collision route: half the exponent, twelve letters of depth, and a falsifier that did not fire
 
@@ -51953,7 +51921,6 @@ Best next question
   lambda** from 0.4480 to 0.4801 unconditionally and needs no Paper B.
 ```
 
-
 ## Nothing was watching the branches
 
 Three times this month a finding was made, left on a branch, and made again
@@ -52007,7 +51974,6 @@ one acknowledgement removed it fails, naming the branch and what it holds, and
 passes again when restored. A gate that cannot fail is the defect, not the
 absence of failures.
 
-
 ## Extracted: the information-field module, and the note that predicted today
 
 claude/information-field-dynamics-8eexis is the second branch the drift gate
@@ -52052,7 +52018,6 @@ honest position for a module that arrived without one.
 With this the drift gate has nothing outstanding to point at. Its
 acknowledgement for this branch is retired in the same commit, which is what
 the staleness half of the gate is for.
-
 
 ## Prospecting the corpus: what a leverage ranking finds, and what it cannot (consolidation, not a finding)
 
@@ -52141,7 +52106,6 @@ Best next question
   still describe the same object the dossier closed?
 ```
 
-
 ## The Juggler Lean layer is off the compiler entirely
 
 `window_digit_scan` is retired. It was the last proof in the layer discharged
@@ -52204,7 +52168,6 @@ was true on its own date and says so.
 Cost: the window cap is 47 where it was 37. Nothing downstream notices, and
 the layer no longer asks anyone to trust a compiler.
 
-
 ## Deleting every branch made the drift gate stop looking
 
 Twenty-one branches went today: seventeen fully merged and holding nothing,
@@ -52240,7 +52203,6 @@ by depending on transient repository state. The lesson is narrow and worth
 keeping: a calibration test must not be pinned to the thing it was written to
 describe, because the reason to write it is usually the reason that thing is
 about to change.
-
 
 ## The extracted work had classified itself out of the requirement
 
@@ -52294,7 +52256,6 @@ Problems/Engine holds seventeen other modules and not one carries a ledger row
 or an index entry. The engine layer sits outside the Juggler ceremony by
 design, and its prospecting note is already registered in manuscript
 consistency.
-
 
 ## The four files the Lean layer answers from were all wrong
 
@@ -52399,7 +52360,6 @@ finding. No declaration was added, removed, proved or broken by any of it; the
 trust boundary is where it was. What changed is that four generated files now
 say what the corpus actually contains, and that they cannot quietly stop
 saying it again.
-
 
 ## Eighty-five warnings, and the one citation that was holding a gate up
 
@@ -52508,7 +52468,6 @@ declaration-level diff is exact about why: zero declarations added, zero
 removed, twenty-eight entries differing, and `line` the only field that differs
 in any of them. No `kind`, no `trust`, no `ledger`, no `doc`. Eighty-three
 warnings left the build and not one proof changed.
-
 
 ## Auditing the seventeen collision rows: the mathematics held, the bookkeeping did not
 
@@ -52633,7 +52592,6 @@ belongs to the maintainer, not to an audit.
 Fourteen of the seventeen rows needed no change at all; three carried the
 retired constant and now do not.
 
-
 ## Clearing the open items: a bound that was prose, a figure with two sources
 
 Four items had been carried as open. Three were bookkeeping and are closed;
@@ -52718,7 +52676,6 @@ before acting, since adjacent Paper C material has been formalised since the
 note was written and the conditional spine is partly Lean without this entry
 being done. That re-pricing is the next real decision, and it is a judgement
 about where effort goes.
-
 
 ## Candidates 1.1 and 1.5: one was already done, the other needed its scope split
 
@@ -52805,7 +52762,6 @@ The body now says so.
 What stays open in 1.1 is the Lean counterpart, which is the half of the entry
 nothing here touches.
 
-
 ## 1.1 in Lean: the 2 is forced by the squaring, and now that is a proof
 
 The rows written earlier closed the bookkeeping half of candidate 1.1. This is
@@ -52888,7 +52844,6 @@ own header that the other two are not proved there.
 
 Candidate 1.1 is closed, both halves.
 
-
 ## Paper B's screen and Paper C's walk are the same coordinate
 
 This came out of the Lean rather than out of looking for it. `linearise_iff`
@@ -52968,7 +52923,6 @@ look like an orphan.
 The module went from 402 orphans to 410 and back to 402 without the budget
 moving, by the same citation route as before.
 
-
 ## The screen's only theorem does no work
 
 Having written that one of the three screen conditions is a theorem and two are
@@ -53021,7 +52975,6 @@ every depth separately, and not a reason for it.
 That is worth leaving open rather than filling with the first story that fits.
 The three audit rows that compared constants to themselves got there by
 accepting a plausible account of why a number was what it was.
-
 
 ## The whole screen is a condition on one walk
 
@@ -53086,7 +53039,6 @@ to.
 
 Nothing here moves a bound.
 
-
 ## The route closes: the cheapest non-contracting walk has a ceiling, and it is log2(3)
 
 The obvious next move was to turn the depth-ten emptiness into a theorem. If
@@ -53142,7 +53094,6 @@ The constant is `log2(3)`, which is the constant the map is built from, and the
 rate of approach is a Diophantine question about how well `log2(3)` is
 approximated from below --- the same object the Ostrowski layer already handles.
 That is a connection, not a result, and I have not pursued it.
-
 
 ## Two papers, one counting function
 
@@ -53209,7 +53160,6 @@ says what that replacement is worth and that it is worth more at larger `d`.
 
 Nothing here moves a bound in either paper.
 
-
 ## The exponents close the correspondence, and correct something I wrote this morning
 
 Conditions, then counts, now rates. The bad-word condition at depth `d = CL` is
@@ -53264,7 +53214,6 @@ so. Every caller is correct: `meander_constant` uses it as `rho ** d`, and the
 test converts with `-math.log(...)`. The mislabel is in the name and one phrase,
 nothing computes the wrong thing, and the wrong ratio in my first probe was mine
 and not the repo's.
-
 
 ## The measure closes it: four levels, one walk
 
@@ -53321,7 +53270,6 @@ A test of mine failed on the way in, with a bound of `1e-7` where the gap goes
 like `BETA/C` and so sits at `6.3e-6` at `C = 1e5`. The test was right and the
 bound was mine.
 
-
 ## CI was red for three runs and I did not know
 
 `41b9fba4` went up at 17:00 and its CI run failed. I had armed a watcher on it,
@@ -53373,7 +53321,6 @@ tolerance is `9.22` ULP --- tighter still. It is not at risk for the same
 reason: both sides are the same double round-tripped through JSON, which is
 exact, so the gap is zero rather than small. Worth knowing rather than worth
 changing.
-
 
 ## The third leg: the walk's extremal geometry is Ostrowski, in the bridge's own constant
 
@@ -53440,7 +53387,6 @@ semiconvergents is not proved for all `k`, and I am not claiming it is. No bound
 moves, nothing here is a halt theorem, and the `log2(3)` ceiling stays exactly
 where it was --- what is new is that the approach to it has a name.
 
-
 ## The meander is shared, and it is the thing Paper B could not derive
 
 The one place the bridge looked like it might *pay* rather than reorganise: Paper
@@ -53499,7 +53445,6 @@ It still does not improve Paper B's bound --- knowing the polynomial is a meande
 is not the same as replacing the step --- but it says what an improvement would
 have to be about, which the earlier links did not.
 
-
 ## The constant splits, and only one half is slow
 
 Knowing the polynomial is a meander is not the same as producing its constant, so
@@ -53549,7 +53494,6 @@ needs the ladder-height law of this particular step distribution, and that is
 the same Wiener--Hopf machinery Paper C already carries --- which at `L = 0`
 degenerates, as recorded earlier. The two facts sit together uncomfortably and
 that is worth leaving visible rather than resolved.
-
 
 ## The constant, derived
 
@@ -53629,7 +53573,6 @@ limit.
 
 No bound moves.
 
-
 ## G(1) closes in the ladder height, and stops there for a reason
 
 By duality, reversing `(S_1, ..., S_n)` turns `{S_k >= 0 for all k <= n}` into
@@ -53685,7 +53628,6 @@ Every one of those is the recurrence of the walk showing up as a cost. The
 identity needed none of them: it is duality plus renewal, and the number was
 already available from the series. I should have written the identity first and
 reached for a computation only if it disagreed.
-
 
 ## Does any of this help termination or no-cycle? Mostly no, and one exact coincidence
 
@@ -53744,7 +53686,6 @@ next. It does not weaken either side; it says the two sides do not combine in th
 obvious way, and the reason is one continued fraction being read from two
 directions.
 
-
 ## The split is a sign, so the door stays shut
 
 The complementarity between the cycle record lengths and the staircase jumps
@@ -53794,7 +53735,6 @@ that survives any amount of further computation.
 Three places in this thread pointed at one continued fraction --- the staircase,
 the ladder height behind `G(1)`, and the cycle records. This says the third is
 the mirror of the first.
-
 
 ## Near-closure is free, so counting cannot bound cycles
 
@@ -53852,7 +53792,6 @@ Both doors closed in this thread have the same shape --- the obvious way to
 combine the Juggler machinery does not combine --- and both were found by
 predicting, being wrong, and looking at why.
 
-
 ## The period bounds are one family, and it has 53 members left
 
 The sign characterisation was tested to 1200. Pushing it further turned out to
@@ -53904,7 +53843,6 @@ staircase cannot squeeze them, and now the reason the surviving route is
 expensive is the same continued fraction that closed both. Every obstruction this
 thread found is one arithmetic fact about `log2/log3` wearing different clothes.
 
-
 ## a_16 onward: the 55-family is the last hard one in reach
 
 The question the previous entry left was whether `16785921` ends the difficulty
@@ -53949,7 +53887,6 @@ terminates --- and that judgement is now possible because the count exists.
 
 Nothing here is a no-cycle theorem and no bound moves. It prices the horizon of
 the existing route, which is the last thing this thread had left to say about it.
-
 
 ## Consolidation: what the bridge thread actually added, and what Paper A already had
 
@@ -54036,6 +53973,7 @@ that something had changed.
 A second slip on the way: the rename was a `\bmember\b` regex, which rewrote the
 docstring prose as well as the identifier, leaving sentences like "the first
 fanMember of the family". Restored by hand.
+
 ## Paper B's Theorem 6.1 throws away three quarters of its own exponent
 
 Reading Theorem 6.1's proof for the first time in the bridge thread, the
@@ -56156,7 +56094,6 @@ four names from the same background knowledge. Negative knowledge about
 the *literature* is as reusable as negative knowledge about the
 mathematics; the index had the second kind and not the first.
 
-
 ## The criticality is not a coordinate artifact
 
 The driven-critical gap turned out to have a piece that is provable in an
@@ -56214,7 +56151,6 @@ the negative-knowledge entry from earlier today --- that the driven-critical
 combination has no literature --- now has a theorem under it explaining why one
 would not expect the autonomous machinery to transfer.
 
-
 ## Non-exponential weights, and a theorem that was already general
 
 The obvious next question after "no exponential weight restores the gap" is
@@ -56257,7 +56193,6 @@ the same reason, and the first time I had already written the warning into a
 docstring. Writing it down is not the same as reaching for it. The check that
 caught it both times was cheap and external: does the answer agree with a number
 I already trust?
-
 
 ## A change of space that is not a weight, and why the question dissolves
 
@@ -56305,7 +56240,6 @@ profile's own tail exactly at the exponent where memory loss degrades. One
 degeneracy, three consequences, and the third is the one that says what a proof
 would have to handle rather than what it cannot use.
 
-
 ## The coupling proof, attempted
 
 The cone works and the contraction does not.
@@ -56349,7 +56283,6 @@ but it needs the polynomial rate as an *input* rather than producing it, and tha
 rate is the original problem. Birkhoff would have produced it. That is the
 difference between the two, and it is why the cone, which is real, does not finish
 the job.
-
 
 ## Going rational, and a correction
 
@@ -56397,7 +56330,6 @@ It killed the route I proposed in four hours, identified the object to three
 figures, corrected an error in the record, and pointed at the correct literature.
 That is a good outcome for a route that does not work, and better than the route
 working would have been if the object had stayed unidentified.
-
 
 ## The audit flags the citation it does not use
 
@@ -56449,7 +56381,6 @@ answers it carefully for the result it does not use. The one it does use got a
 row in a table. An input is easiest to leave unchecked precisely when it is load
 bearing, because checking it has a cost and nothing has gone wrong.
 
-
 ## Read at source: the import is right and the query was wrong
 
 Philippe supplied the paper. Wu and Wang, *J. Number Theory* 142 (2014) 264-273,
@@ -56497,7 +56428,6 @@ Rhin equation (8) is untouched. Wu-Wang p. 265 cites Rhin 1987 as `mu(log 3) <=
 8.616`, a third reading consistent with Zudilin, but it is still secondary and
 Spiegelhofer's explicit distinction is still unexplained. That page is still
 unread, and now I believe the obligation rather than merely recording it.
-
 
 ## H_0(eps): not computed, but localised
 
@@ -56559,7 +56489,6 @@ without a reason to want `H_0` specifically, because the answer is already known
 be astronomically large, and "astronomically large" is what the practical
 conclusion above depends on, not its precise value.
 
-
 ## Rhin equation (8): the dispute was a false dichotomy
 
 I could not read p. 160 --- a 1987 Birkhauser seminar volume is not online --- but
@@ -56609,7 +56538,6 @@ If it is explicit, Paper A's effective cycle threshold improves from `L^14.3` to
 bound available**, because Wu-Wang's `5.1163051` supplies nothing at any `L` a
 search reaches. So p. 160 is now worth reading for one number, and the number is
 worth a real improvement rather than a bookkeeping fix.
-
 
 ## The Yaglom literature has the rate, and it explains our exponent
 

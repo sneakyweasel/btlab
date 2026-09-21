@@ -6362,7 +6362,7 @@
       "decision": "CLOSE",
       "ledger_ids": [],
       "aliases": [],
-      "nk_cluster": "Hercher's two m-free refinements: Theorem 27 is a wall, Corollary 29 stopped being one"
+      "nk_cluster": "Hercher's two m-free refinements: both are walls, and Corollary 29's is that it improves the wrong constant"
     },
     {
       "id": "survivor_count_decay",
@@ -7107,6 +7107,25 @@
       "decision": null,
       "ledger_ids": [
         "J-negative-floor-makes-the-mirror-unconditional",
+        "J-negative-m-cycles-excluded-through-58",
+        "J-negative-m-cycles-excluded-through-61"
+      ],
+      "aliases": [],
+      "nk_cluster": null
+    },
+    {
+      "id": "negative_valley_windows",
+      "kind": "support",
+      "probe": "src/research/juggler_sequence/negative_valley_windows.py",
+      "test": null,
+      "dossier": "docs/problems/juggler_negative_m_cycles.md",
+      "data_dir": "data/research/juggler/negative_m_cycles",
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-negative-m-cycle-lemmas",
+        "J-negative-m-cycles-excluded-through-49",
         "J-negative-m-cycles-excluded-through-58",
         "J-negative-m-cycles-excluded-through-61"
       ],
