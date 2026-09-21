@@ -22,9 +22,11 @@ which is what the ledger's list-valued `decl` exists to record.  `REFUTED` rows 
 asked: their declaration is the refutation.
 
 Jev (jev-1.13.0, last asked 2026-09-21) has answered
-248 of the 248 resolved rows: 94 covered,
-61 doubtful, 93 not covered; 154 are
+248 of the 248 resolved rows: 114 covered,
+38 doubtful, 96 not covered; 134 are
 listed below.
+
+Short claims filed as not covered, the likeliest mis-joins: `BTN-sdrg-lambda1-interval` (0.22).
 
 ## 1. `J-cycle-oe-quotient-parity-carry` &mdash; covers 0.03
 
@@ -2411,7 +2413,41 @@ theorem no_cycle_itinerary_length_le_eleven {n : ℕ} {w : List Branch}
     (hn : 2 ≤ n) (hlen : w.length ≤ 11) : ¬CycleItinerary n w
 ```
 
-## 86. `J-cycle-ooe-polynomial-block` &mdash; covers 0.22
+## 86. `BTN-sdrg-lambda1-interval` &mdash; covers 0.22
+
+*Reads as: the claim asserts more than the declarations state (0.9).*
+
+*Claim broader 0.9; declaration narrower 0.65; different result 0.28.  Tag EXACT — LEAN VERIFIED, trust kernel.*
+
+**Row.** For λ=1 and U_m, every integer s with |s|≤⌊m/2⌋ is reached from 0 by an admissible word. The explicit positive word is u=2,4,...,2n.
+
+**Declarations.** `lambda1_interval_reachable` &mdash; kernel-checked, `Problems/BalancedTernary/SignedDigitResidualGeometry.lean:80`
+
+> Every nonnegative point of the ``λ=1`` box is reached by an admissible word.
+
+```lean
+theorem lambda1_interval_reachable (m n : ℕ) (h : n ≤ m / 2) :
+    ∃ word : List ℤ, (∀ u ∈ word, u.natAbs ≤ m) ∧ foldSigned 1 word 0 = n
+```
+
+**And.** `lambda1_interval_reachable_neg` &mdash; kernel-checked, `Problems/BalancedTernary/SignedDigitResidualGeometry.lean:96`
+
+> Every nonpositive point of the `lambda=1` box is reached by an admissible word; the negative half of `lambda1_interval_reachable`.
+
+```lean
+theorem lambda1_interval_reachable_neg (m n : ℕ) (h : n ≤ m / 2) :
+    ∃ word : List ℤ, (∀ u ∈ word, u.natAbs ≤ m) ∧
+      foldSigned 1 word 0 = - (n : ℤ)
+```
+
+**And.** `lambda1Word_fold` &mdash; kernel-checked, `Problems/BalancedTernary/SignedDigitResidualGeometry.lean:52`
+
+```lean
+theorem lambda1Word_fold (n : ℕ) :
+    foldSigned 1 (lambda1Word n) 0 = lambda1Climb n
+```
+
+## 87. `J-cycle-ooe-polynomial-block` &mdash; covers 0.22
 
 *Reads as: the claim asserts more than the declarations state (0.85).*
 
@@ -2428,7 +2464,7 @@ theorem ooeFamily_juggler_block {r : ℕ} (hr : 3 ≤ r) (ho : r % 2 = 1) :
     floorPower (ooeFamilySecond r) = ooeFamilyExit r
 ```
 
-## 87. `J-cycle-quartic-formal-return` &mdash; covers 0.22
+## 88. `J-cycle-quartic-formal-return` &mdash; covers 0.22
 
 *Reads as: the claim asserts more than the declarations state (0.87).*
 
@@ -2460,7 +2496,7 @@ theorem exists_F_source (D : PeriodicExtrema C m M) (hm : 5 ≤ m)
     ∃ x ∈ C, Section m x ∧ O x % 2 = 1 ∧ follows x [.odd, .odd, .even]
 ```
 
-## 88. `J-fate-first-letter-split` &mdash; covers 0.22
+## 89. `J-fate-first-letter-split` &mdash; covers 0.22
 
 *Reads as: the claim asserts more than the declarations state (0.76).*
 
@@ -2481,7 +2517,7 @@ theorem first_letter_split {A : ℕ → Prop} (hF : ForwardClosed A) (hB : Backw
       + (∑ n ∈ {n ∈ s | n % 2 = 1 ∧ floorPower n % 2 = 1 ∧ A (floorPower n)}, w n)
 ```
 
-## 89. `J-cycle-upper-charge-least-period` &mdash; covers 0.23
+## 90. `J-cycle-upper-charge-least-period` &mdash; covers 0.23
 
 *Reads as: the claim asserts more than the declarations state (0.81).*
 
@@ -2568,7 +2604,7 @@ theorem cycleMin_upper_charge_certificate {m M : ℕ} {w : List Branch}
     Nonempty (OrbitUpperChargeCertificate m M w.length)
 ```
 
-## 90. `J-exponent-expanding-append` &mdash; covers 0.23
+## 91. `J-exponent-expanding-append` &mdash; covers 0.23
 
 *Reads as: the claim asserts more than the declarations state (0.84).*
 
@@ -2586,7 +2622,7 @@ theorem exponentExpanding_append {u v : List Branch}
     exponentExpanding (u ++ v)
 ```
 
-## 91. `J-fate-contagion-conditional` &mdash; covers 0.23
+## 92. `J-fate-contagion-conditional` &mdash; covers 0.23
 
 *Reads as: the claim asserts more than the declarations state (0.78).*
 
@@ -2609,7 +2645,7 @@ theorem contagion_of_production_inequality {A : ℕ → Prop} (hA : BackwardClos
     ∃ K : ℝ, 0 < K ∧ ∃ t₁ : ℝ, 0 < t₁ ∧ ∀ t, t₁ ≤ t → K * t ^ lam ≤ gA A t
 ```
 
-## 92. `J-fate-dyadic-pigeonhole` &mdash; covers 0.23
+## 93. `J-fate-dyadic-pigeonhole` &mdash; covers 0.23
 
 *Reads as: the claim asserts more than the declarations state (0.89).*
 
@@ -2629,7 +2665,44 @@ theorem exists_block_of_shell (A : ℕ → Prop) {K lam : ℝ} (hK : 0 < K) (hla
       K / 12 * y * Real.log y ^ (lam - 1) ≤ (blockCount A y : ℝ)
 ```
 
-## 93. `BTN-sdsh-maxlen` &mdash; covers 0.24
+## 94. `J-small-cycle-census-eighteen` &mdash; covers 0.23
+
+*Reads as: the claim asserts more than the declarations state (0.87).*
+
+*Claim broader 0.87; declaration narrower 0.27; different result 0.27.  Tag EXACT — LEAN VERIFIED, trust kernel.*
+
+**Row.** No itinerary of length at most 18 is a Juggler cycle itinerary at any n ≥ 2, except that length 19 is not excluded here. Lengths ≤ 11 are J-small-cycle-census-eleven; lengths 12, 13, and 16 remain excluded at the residual floor 12; lengths 14, 15, 17, and 18 are excluded by cycle_finance_min_fifty_three (finance_excludes_length_fourteen and companions, packaged as no_cycle_itinerary_length_le_eighteen). Strengthened by J-small-cycle-census-nineteen. This is a Lean companion to Paper A Theorem 4.6, not a leftover-itinerary census, not an exclusion of length 19, not a no-cycle-of-any-length theorem, and not a halt theorem.
+
+**Declarations.** `no_cycle_itinerary_length_le_eighteen` &mdash; kernel-checked, `Problems/Juggler/CycleFinanceLeftovers.lean:436`
+
+> Census extension: no cycle itinerary of length at most `18`. Length `11` is the near-convergent killed by the floor `53`; `14`–`18` die by the same comparison.
+
+```lean
+theorem no_cycle_itinerary_length_le_eighteen {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length ≤ 18) : ¬CycleItinerary n w
+```
+
+**And.** `cycle_finance_min_fifty_three` &mdash; kernel-checked, `Problems/Juggler/CycleFinanceLeftovers.lean:288`
+
+> Finance at the rotated odd minimum after the residual floor `53`: `(371/2)(3^o - 2^L) ≤ L 3^o`, because the minimum is at least `53` and `53 log 53 > 371/2`.
+
+```lean
+theorem cycle_finance_min_fifty_three {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleItinerary n w) :
+    (371 / 2 : ℝ) * ((3 : ℝ) ^ oddCount w - (2 : ℝ) ^ w.length) ≤
+      (w.length : ℝ) * (3 : ℝ) ^ oddCount w
+```
+
+**And.** `finance_excludes_length_fourteen` &mdash; kernel-checked, `Problems/Juggler/CycleFinanceLeftovers.lean:429`
+
+> Finance alone excludes cycle itineraries of length exactly `14`.
+
+```lean
+theorem finance_excludes_length_fourteen {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length = 14) : ¬CycleItinerary n w
+```
+
+## 95. `BTN-sdsh-maxlen` &mdash; covers 0.24
 
 *Reads as: the claim asserts more than the declarations state (0.87).*
 
@@ -2648,76 +2721,51 @@ theorem control_language_separation {gain s t : ℤ} {w : List ℤ}
     signedTrace gain s w ≠ signedTrace gain t w
 ```
 
+## 96. `J-cyclemin-fudge` &mdash; covers 0.24
+
+*Reads as: the claim asserts more than the declarations state (0.9).*
+
+*Claim broader 0.9; declaration narrower 0.43; different result 0.24.  Tag EXACT — LEAN VERIFIED, trust kernel.*
+
+**Row.** The thirty first-expanding four-even short-gap leftovers O^{a0} E O^{a1} E O^{a2} E O^{a3} E are not CycleMin words. On a CycleMin every later state is >= n, so the exact cells compose by absorb_odd_step and absorb_even_step: n^A < (n+1)^B (x+1)^γ implies n^{A+γ} < (n+1)^{B+γ} (isqrt(x)+1)^{2γ}. After the prefix, cycle_trailing_evens_lt puts the image below (n+1)^{2^r}. Any 7-odd word that starts O keeps γ a power of two and raises on each later odd, so the slack is identically 3^7-2^{11}=139, independent of even placement. For n >= 30 and A <= 13905 the comparison is (n+1)^{A-139} < n^A; no n with 2 <= n < 30 follows any of the thirty prefixes. The eight leftovers whose only CycleMin-shaped rotation is themselves (OOOOOOOEEEE, OOOOOOEOEEE, OOOOOOEEEOE, OOOOOEOEEOE, OOOOOOEEOEE, OOOOOEOEOE  *(truncated; read the ledger row)*
+
+**Declarations.** `no_cycleMin_cyclemin_fudge` &mdash; kernel-checked, `Problems/Juggler/CycleMinFudge.lean:806`
+
+> The thirty first-expanding short-gap leftovers are not `CycleMin` words. Not a length-11 census.
+
+```lean
+theorem no_cycleMin_cyclemin_fudge {n : ℕ} {w : List Branch}
+    (hw : w ∈ fudgeWords) (h : CycleMin n w) : False
+```
+
+**And.** `absorb_even_step` &mdash; kernel-checked, `Problems/Juggler/CycleMinFudge.lean:132`
+
+> One CycleMin-crossing even step: `x < (T(x)+1)^2` and `(x+1)/x ≤ (n+1)/n`.
+
+```lean
+theorem absorb_even_step {n x A B γ : ℕ} (hn : 1 ≤ n)
+    (h : n ^ A < (n + 1) ^ B * (x + 1) ^ γ)
+    (hx : n ≤ x) (heven : x % 2 = 0) (hγ : γ ≠ 0) :
+    n ^ (A + γ) <
+      (n + 1) ^ (B + γ) * (floorPower x + 1) ^ (2 * γ)
+```
+
+**And.** `family_slack139` &mdash; kernel-checked, `Problems/Juggler/CycleMinFudge.lean:293`
+
+```lean
+theorem family_slack139 : (3 : ℕ) ^ 7 - 2 ^ 11 = 139
+```
+
+**And.** `no_cycle_itinerary_of_unique_fudge` &mdash; kernel-checked, `Problems/Juggler/CycleMinFudge.lean:832`
+
+```lean
+theorem no_cycle_itinerary_of_unique_fudge {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hw : w ∈ fudgeWords)
+    (hu : onlySelfCycleMinShape w = true)
+    (h : CycleItinerary n w) : False
+```
+
 **Doubtful from here: coverage between 0.25 and 0.5.**
-
-## 94. `BTA-x3-n1-fibre` &mdash; covers 0.25
-
-*Reads as: the claim asserts more than the declarations state (0.71).*
-
-*Claim broader 0.71; declaration narrower 0.65; different result 0.14.  Tag EXACT — LEAN VERIFIED, trust kernel.*
-
-**Row.** every nontrivial N2+N1 fibre on P_m lies in 3^r Z
-
-**Declaration.** `n21_fibre_in_pow` &mdash; kernel-checked, `BTCalculus/CubicN1Valuation.lean:265`
-
-> Every nontrivial `N2`-then-`N1` fibre lies in `3^r ZZ`: distinct `p != q` of balanced width `k-1-r` that agree in both layers force `3^r | p`.
-
-```lean
-theorem n21_fibre_in_pow {k r : Nat} (hr : 1 ≤ r) (hk : r + 1 ≤ k)
-    {p q : Int}
-    (hpw : balWidth (k - 1 - r) p) (hqw : balWidth (k - 1 - r) q)
-    (hne : p ≠ q)
-    (hN2 : (3 : Int) ^ r ∣ p - q)
-    (hN1 : (3 : Int) ^ k ∣ n1Resid (k - 1 - r) p - n1Resid (k - 1 - r) q) :
-    (3 : Int) ^ r ∣ p
-```
-
-## 95. `BTN-dadd-closure` &mdash; covers 0.25
-
-*Reads as: the claim asserts more than the declarations state (0.8).*
-
-*Claim broader 0.8; declaration narrower 0.65; different result 0.22.  Tag EXACT — LEAN VERIFIED, trust compiler.*
-
-**Row.** If s,a,b are trits then D(s+a+b) is a trit. The streaming residual of trit addition is exactly {-1,0,1}. Three values occur on D(x)=D(y)=0, so the residual is minimal.
-
-**Declarations.** `dAdd_minimal_residual` &mdash; compiler-checked, `Problems/BalancedTernary/DAddResidual.lean:53`
-
-> On the slice ``D(x)=D(y)=0``, the observable ``D(x+y)`` takes three values, so no 1-state or 2-state residual can repair locality.
-
-```lean
-theorem dAdd_minimal_residual :
-    DZ 0 = DZ 1 ∧ DZ 1 = DZ (-1) ∧
-      DZ (0 + 0) ≠ DZ (1 + 1) ∧
-      DZ (1 + 1) ≠ DZ ((-1 : ℤ) + (-1)) ∧
-      DZ (0 + 0) ≠ DZ ((-1 : ℤ) + (-1))
-```
-
-**And.** `dAdd_residual_closure` &mdash; compiler-checked, `Problems/BalancedTernary/DAddResidual.lean:85`
-
-> Closure: if `s`, `a`, `b` are trits then `dAddNext s a b` is a trit.
-
-```lean
-theorem dAdd_residual_closure {s a b : ℤ}
-    (hs : isTrit s) (ha : isTrit a) (hb : isTrit b) :
-    isTrit (dAddNext s a b)
-```
-
-## 96. `BTN-step-value` &mdash; covers 0.25
-
-*Reads as: the claim asserts more than the declarations state (0.69).*
-
-*Claim broader 0.69; declaration narrower 0.61; different result 0.43.  Tag EXACT — LEAN VERIFIED, trust kernel.*
-
-**Row.** value(P → P') = value(P)
-
-**Declaration.** `step_value` &mdash; kernel-checked, `BTCalculus/Normalization.lean:98`
-
-> The normalising step at any index preserves the value.
-
-```lean
-theorem step_value (cs : List ℤ) (i : ℕ) :
-    coeffValue (step cs i) = coeffValue cs
-```
 
 ## 97. `J-cubic-remainder-assembly` &mdash; covers 0.25
 
@@ -2868,43 +2916,7 @@ theorem cubicBand_mechanical_itinerary {m L : ℕ} (hL : 0 < L)
           (k * o + L - 1) / L
 ```
 
-## 99. `J-cyclemin-fudge` &mdash; covers 0.25
-
-*Reads as: the claim asserts more than the declarations state (0.89).*
-
-*Claim broader 0.89; declaration narrower 0.36; different result 0.07.  Tag EXACT — LEAN VERIFIED, trust kernel.*
-
-**Row.** The thirty first-expanding four-even short-gap leftovers O^{a0} E O^{a1} E O^{a2} E O^{a3} E are not CycleMin words. On a CycleMin every later state is >= n, so the exact cells compose by absorb_odd_step and absorb_even_step: n^A < (n+1)^B (x+1)^γ implies n^{A+γ} < (n+1)^{B+γ} (isqrt(x)+1)^{2γ}. After the prefix, cycle_trailing_evens_lt puts the image below (n+1)^{2^r}. Any 7-odd word that starts O keeps γ a power of two and raises on each later odd, so the slack is identically 3^7-2^{11}=139, independent of even placement. For n >= 30 and A <= 13905 the comparison is (n+1)^{A-139} < n^A; no n with 2 <= n < 30 follows any of the thirty prefixes. The eight leftovers whose only CycleMin-shaped rotation is themselves (OOOOOOOEEEE, OOOOOOEOEEE, OOOOOOEEEOE, OOOOOEOEEOE, OOOOOOEEOEE, OOOOOEOEOE  *(truncated; read the ledger row)*
-
-**Declaration.** `no_cycleMin_cyclemin_fudge` &mdash; kernel-checked, `Problems/Juggler/CycleMinFudge.lean:806`
-
-> The thirty first-expanding short-gap leftovers are not `CycleMin` words. Not a length-11 census.
-
-```lean
-theorem no_cycleMin_cyclemin_fudge {n : ℕ} {w : List Branch}
-    (hw : w ∈ fudgeWords) (h : CycleMin n w) : False
-```
-
-## 100. `BTA-x3-n1-diff` &mdash; covers 0.26
-
-*Reads as: the claim asserts more than the declarations state (0.74).*
-
-*Claim broader 0.74; declaration narrower 0.66; different result 0.3.  Tag EXACT — LEAN VERIFIED, trust kernel.*
-
-**Row.** after N2, N1 agrees iff 3^{k-1-r} | δ(p+q+3^m)
-
-**Declaration.** `n1_after_n2_iff` &mdash; kernel-checked, `BTCalculus/CubicN1Valuation.lean:46`
-
-> Once `N2` is fixed, the depth-`k-1-r` `N1` residuals agree to order `3^k` exactly when `3^(k-1-r)` divides `d * (p + q + 3^(k-1-r))`, where `p - q = 3^r * d`.
-
-```lean
-theorem n1_after_n2_iff {k r : Nat} (hk : 1 ≤ k) (hr : r + 1 ≤ k)
-    {p q d : Int} (hd : p - q = (3 : Int) ^ r * d) :
-    (3 : Int) ^ k ∣ n1Resid (k - 1 - r) p - n1Resid (k - 1 - r) q ↔
-      (3 : Int) ^ (k - 1 - r) ∣ d * (p + q + (3 : Int) ^ (k - 1 - r))
-```
-
-## 101. `BTL-zero-output` &mdash; covers 0.26
+## 99. `BTL-zero-output` &mdash; covers 0.26
 
 *Reads as: the claim asserts more than the declarations state (0.81).*
 
@@ -2920,6 +2932,120 @@ theorem n1_after_n2_iff {k r : Nat} (hk : 1 ≤ k) (hr : r + 1 ≤ k)
 theorem lift_iff_outputs_zero (w : List ℤ) (f : ℤ[X]) :
     IsRootMod w.length f (packWord w) ↔
       outputAlong w f = List.replicate w.length (0 : ℤ)
+```
+
+## 100. `J-cycle-itinerary-length-eighty-four-or-ge-eighty-five` &mdash; covers 0.26
+
+*Reads as: the claim asserts more than the declarations state (0.88).*
+
+*Claim broader 0.88; declaration narrower 0.3; different result 0.15.  Tag EXACT — LEAN VERIFIED, trust kernel.*
+
+**Row.** If a nontrivial Juggler cycle itinerary exists at n ≥ 2, its period is 84 or at least 85. Lengths ≤ 56 are excluded at floor 257; lengths 57–83 are excluded by cycle_finance_min_two_hundred_sixty_one at 15921/11 (finance_excludes_length_fiftyseven, finance_excludes_length_seventysix, and companions, packaged as no_cycle_itinerary_length_lt_eighty_four). Length 84 is the next record near-convergent (need ≈ 40269). Lean theorem cycle_itinerary_length_eighty_four_or_ge_eighty_five. Strengthened by J-cycle-itinerary-length-eighty-four-m-ge-three-or-ge-eighty-five, which kills length 84 with at most two odd-runs, and by J-cycle-itinerary-eliahou-leftover, which rewrites the length leftover plus the finance table as period 84, a listed near-convergent, or at least 10^5. This is not a no-cycle-of  *(truncated; read the ledger row)*
+
+**Declarations.** `cycle_itinerary_length_eighty_four_or_ge_eighty_five` &mdash; kernel-checked, `Problems/Juggler/CycleFinanceLeftovers.lean:847`
+
+> If a nontrivial cycle exists, its period is `84` or at least `85`. The cheap leftovers `57` and `76` die at the residual floor `261`; `58`–`75` and `77`–`83` die by the same comparison. `L=84` is the next record near-convergent.
+
+```lean
+theorem cycle_itinerary_length_eighty_four_or_ge_eighty_five
+    {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleItinerary n w) :
+    w.length = 84 ∨ 85 ≤ w.length
+```
+
+**And.** `cycle_finance_min_two_hundred_sixty_one` &mdash; kernel-checked, `Problems/Juggler/CycleFinanceLeftovers.lean:725`
+
+> Finance at the rotated odd minimum after the residual floor `261`: `(15921/11)(3^o - 2^L) ≤ L 3^o`, because the minimum is at least `261` and `261 log 257 > 15921/11`.
+
+```lean
+theorem cycle_finance_min_two_hundred_sixty_one {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleItinerary n w) :
+    (15921 / 11 : ℝ) * ((3 : ℝ) ^ oddCount w - (2 : ℝ) ^ w.length) ≤
+      (w.length : ℝ) * (3 : ℝ) ^ oddCount w
+```
+
+**And.** `finance_excludes_length_fiftyseven` &mdash; kernel-checked, `Problems/Juggler/CycleFinanceLeftovers.lean:823`
+
+> Finance excludes length `57` (also killed by the floor `261` residual). Named leftover milestone.
+
+```lean
+theorem finance_excludes_length_fiftyseven {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length = 57) : ¬CycleItinerary n w
+```
+
+**And.** `finance_excludes_length_seventysix` &mdash; kernel-checked, `Problems/Juggler/CycleFinanceLeftovers.lean:829`
+
+> Finance excludes length `76` (also killed by the floor `261` residual). Named leftover milestone.
+
+```lean
+theorem finance_excludes_length_seventysix {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length = 76) : ¬CycleItinerary n w
+```
+
+**And.** `no_cycle_itinerary_length_lt_eighty_four` &mdash; kernel-checked, `Problems/Juggler/CycleFinanceLeftovers.lean:834`
+
+> No cycle itinerary of length below `84`.
+
+```lean
+theorem no_cycle_itinerary_length_lt_eighty_four {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hLt : w.length < 84) : ¬CycleItinerary n w
+```
+
+## 101. `J-cyclemin-walk-transport-envelope` &mdash; covers 0.26
+
+*Reads as: the claim asserts more than the declarations state (0.81).*
+
+*Claim broader 0.81; declaration narrower 0.39; different result 0.14.  Tag EXACT — LEAN VERIFIED, trust kernel.*
+
+**Row.** The transport inequality of Paper A Theorem 5.3, Lean end to end in log form. On a CycleMin cycle with minimum n ≥ 400, every state satisfies walkWeight w k · (log n − D) ≤ log x_k with walkWeight w k = 3^(a_k)/2^k (the walk weight 2^(u_k), rational — no real exponentiation) and D = 1.05·e/n + 0.7·o/(n·√n) (cycleMin_transport, WalkTransport.lean); exponentiating gives x_k ≥ (n e^(−D))^(w_k). Ingredients all Lean: per-step floor losses log T(x) ≥ (3/2)·log x − 1.05/(x√x) (odd, x ≥ 9) and log T(x) ≥ (1/2)·log x − 1.05/√x (even, x ≥ 441) from the floor cells and −log(1−t) ≤ 1.05t on t ≤ 1/21 (log_floorPower_odd_ge, log_floorPower_even_ge, neg_log_one_sub_le); the exact weight recursion w_{k+1} = (3/2)w_k (odd), w_k/2 (even); odd injections priced at x_j ≥ n (cycleMin_iterate_ge) against w_{j+  *(truncated; read the ledger row)*
+
+**Declarations.** `cycleMin_transport` &mdash; kernel-checked, `Problems/Juggler/WalkTransport.lean:453`
+
+> **Transport to a reduced base** (Paper A Theorem 5.3, log form): on a minimum-based cycle with minimum `n ≥ 400`, every state satisfies `w_k·(log n − D) ≤ log x_k` with `D = 1.05·e/n + 0.7·o/(n·√n)`. Exponentiating gives `x_k ≥ (n e^{−D})^{w_k}`. Closed instance of `aboveAnchor_transport`.
+
+```lean
+theorem cycleMin_transport {n : ℕ} {w : List Branch}
+    (hn : 400 ≤ n) (h : CycleMin n w) {k : ℕ} (hk : k ≤ w.length) :
+    walkWeight w k * (Real.log n - transportDeficit n w) ≤
+      Real.log (floorPower^[k] n)
+```
+
+**And.** `log_floorPower_odd_ge` &mdash; kernel-checked, `Problems/Juggler/WalkTransport.lean:129`
+
+> Odd step, lower side: for odd `x ≥ 9`, `log T(x) ≥ (3/2)·log x − 1.05/(x·√x)`.
+
+```lean
+theorem log_floorPower_odd_ge {x : ℕ} (hx : 9 ≤ x) (ho : x % 2 = 1) :
+    3 * Real.log x / 2 - 1.05 / (x * Real.sqrt x) ≤
+      Real.log (floorPower x)
+```
+
+**And.** `log_floorPower_even_ge` &mdash; kernel-checked, `Problems/Juggler/WalkTransport.lean:89`
+
+> Even step, lower side: for even `x ≥ 441`, `log T(x) ≥ (1/2)·log x − 1.05/√x`.
+
+```lean
+theorem log_floorPower_even_ge {x : ℕ} (hx : 441 ≤ x) (he : x % 2 = 0) :
+    Real.log x / 2 - 1.05 / Real.sqrt x ≤ Real.log (floorPower x)
+```
+
+**And.** `neg_log_one_sub_le` &mdash; kernel-checked, `Problems/Juggler/WalkTransport.lean:79`
+
+> `−log(1−t) ≤ 1.05·t` for `0 ≤ t ≤ 1/21`.
+
+```lean
+theorem neg_log_one_sub_le {t : ℝ} (h0 : 0 ≤ t) (h1 : t ≤ 1 / 21) :
+    -Real.log (1 - t) ≤ 1.05 * t
+```
+
+**And.** `one_le_walkWeight` &mdash; kernel-checked, `Problems/Juggler/WalkTransport.lean:220`
+
+> Cycle minimality forces `u_k ≥ 0`, that is `w_k ≥ 1` (`cycleMin_prefix_pow_le` in weight form).
+
+```lean
+theorem one_le_walkWeight {n : ℕ} {w : List Branch} (hn : 2 ≤ n)
+    (h : CycleMin n w) {k : ℕ} (hk : k ≤ w.length) :
+    1 ≤ walkWeight w k
 ```
 
 ## 102. `J-small-cycle-census-seven` &mdash; covers 0.26
@@ -2954,28 +3080,7 @@ theorem qCubic_def (t : Nat) (u : Int) :
     qCubic t u = iterDZ t (u ^ 3)
 ```
 
-## 104. `J-cyclemin-period-lower-bound` &mdash; covers 0.27
-
-*Reads as: a declaration is narrower than the claim (0.74).*
-
-*Claim broader 0.57; declaration narrower 0.74; different result 0.07.  Tag EXACT — LEAN VERIFIED, trust kernel.*
-
-**Row.** Floor-free period lower bound. Under the same budget C · L^{−p} ≤ Λ, a nontrivial Juggler cycle of minimum n has period L ≥ (C n log n / 2)^{1/(p+1)} (cycleMin_period_ge; Wu–Wang form cycleMin_period_ge_wuWang). This is Paper A Corollary 4.11 read as a bound on the period rather than the minimum, and it is the only proved statement in which a cycle's period grows with its minimum — the descent floor is a constant. The exponent in n rises from 1/14.3 = 0.0699 with Rhin to 1/5.1163051 = 0.1954 with Wu–Wang (wu-wang-2014-irrationality-measure-log3, |a + b log 2 + c log 3| ≥ H^{−4.1163051−ε} at a = 0, H = max(L, o) = L). Distinct from the fan-width cap of juggler_cycle_walk_fan_growth and from the REFUTED floor-level Baker transfer of juggler_cycle_gap_baker: no floor enters and nothing is exc  *(truncated; read the ledger row)*
-
-**Declaration.** `cycleMin_period_ge` &mdash; kernel-checked, `Problems/Juggler/GapTransferWW.lean:106`
-
-> **The same inequality read as a period lower bound.** Under the same Diophantine budget, a nontrivial cycle of minimum `n` has period at least `(C * n log n / 2)^{1/(p+1)}`. No descent floor enters: the bound grows with the minimum, which is the one direction the finite tables cannot supply. At `p = 13.3` (Rhin) the exponent in `n` is `1/14.3 = 0.0699...`; at `p = 4.1163051` (Wu-Wang) it is `1/5.1163051 = 0.1954...`.
-
-```lean
-theorem cycleMin_period_ge {n : ℕ} {w : List Branch} {C p : ℝ}
-    (hn : 2 ≤ n) (h : CycleMin n w) (hL : 0 < w.length)
-    (hC0 : 0 < C) (hC1 : C ≤ 1) (hp : 0 ≤ p)
-    (hgap : C * (w.length : ℝ) ^ (-p) ≤
-              (oddCount w : ℝ) * Real.log 3 - (w.length : ℝ) * Real.log 2) :
-    (C / 2 * ((n : ℝ) * Real.log n)) ^ (1 / (p + 1)) ≤ (w.length : ℝ)
-```
-
-## 105. `OST-np-particular-s3` &mdash; covers 0.27
+## 104. `OST-np-particular-s3` &mdash; covers 0.27
 
 *Reads as: the claim asserts more than the declarations state (0.88).*
 
@@ -2992,7 +3097,7 @@ theorem particular_s3 (ws : List ℤ) :
     (particularSum ws).2.2 = -consumedSum ws.length ws
 ```
 
-## 106. `BTN-confluence` &mdash; covers 0.3
+## 105. `BTN-confluence` &mdash; covers 0.3
 
 *Reads as: the claim asserts more than the declarations state (0.81).*
 
@@ -3050,260 +3155,11 @@ theorem overlap_minus5_two_stripped :
       rewriteAt (rewriteAt (rewriteAt [-5, 2] 1) 0) 1 = [1]
 ```
 
-## 107. `BTN-sdrg-lambda1-interval` &mdash; covers 0.31
+## 106. `J-cycle-quartic-formal-gap-separation` &mdash; covers 0.3
 
-*Reads as: the claim asserts more than the declarations state (0.9).*
+*Reads as: the claim asserts more than the declarations state (0.57).*
 
-*Claim broader 0.9; declaration narrower 0.5; different result 0.11.  Tag EXACT — LEAN VERIFIED, trust kernel.*
-
-**Row.** For λ=1 and U_m, every integer s with |s|≤⌊m/2⌋ is reached from 0 by an admissible word. The explicit positive word is u=2,4,...,2n.
-
-**Declarations.** `lambda1_interval_reachable` &mdash; kernel-checked, `Problems/BalancedTernary/SignedDigitResidualGeometry.lean:80`
-
-> Every nonnegative point of the ``λ=1`` box is reached by an admissible word.
-
-```lean
-theorem lambda1_interval_reachable (m n : ℕ) (h : n ≤ m / 2) :
-    ∃ word : List ℤ, (∀ u ∈ word, u.natAbs ≤ m) ∧ foldSigned 1 word 0 = n
-```
-
-**And.** `lambda1_interval_reachable_neg` &mdash; kernel-checked, `Problems/BalancedTernary/SignedDigitResidualGeometry.lean:96`
-
-> Every nonpositive point of the `lambda=1` box is reached by an admissible word; the negative half of `lambda1_interval_reachable`.
-
-```lean
-theorem lambda1_interval_reachable_neg (m n : ℕ) (h : n ≤ m / 2) :
-    ∃ word : List ℤ, (∀ u ∈ word, u.natAbs ≤ m) ∧
-      foldSigned 1 word 0 = - (n : ℤ)
-```
-
-## 108. `J-cyclemin-prefix-bunched-eoee` &mdash; covers 0.31
-
-*Reads as: the claim asserts more than the declarations state (0.71).*
-
-*Claim broader 0.71; declaration narrower 0.18; different result 0.05.  Tag EXACT — LEAN VERIFIED, trust kernel.*
-
-**Row.** For every n ≥ 2, every a ≥ 5, and every prefix u, the itinerary u ++ O^a EOEE is not a Juggler CycleMin at n. The leftover cell lifts to y = T_u(n) ≥ n against the EOEE tail at y. Large y is y ≥ 314 at a = 5 and y ≥ 256 at a ≥ 6. Below those cutoffs the argument is returnsIntoB tables and seven-odd for a ≥ 7. The case y = n reduces to no_cycle_itinerary_three_even_eoee. Lean theorem no_cycleMin_prefix_eoee. This excludes that one bunched family only; it is not a bunched-short attack, not a length-11 census, and not a halt theorem.
-
-**Declaration.** `no_cycleMin_prefix_eoee` &mdash; kernel-checked, `Problems/Juggler/PrefixBunched.lean:254`
-
-> No CycleMin word ends in the bunched leftover `threeEvenEOEE a`, `a >= 5`, after any prefix `u`.
-
-```lean
-theorem no_cycleMin_prefix_eoee {n a : ℕ} {u : List Branch}
-    (hn : 2 ≤ n) (ha : 5 ≤ a) :
-    ¬CycleMin n (u ++ threeEvenEOEE a)
-```
-
-## 109. `OST-np-fold-s3` &mdash; covers 0.31
-
-*Reads as: the claim asserts more than the declarations state (0.79).*
-
-*Claim broader 0.79; declaration narrower 0.4; different result 0.1.  Tag EXACT — LEAN VERIFIED, trust kernel.*
-
-**Row.** for Γ_NP, after an MSD word B from any residual s, (T_B(s))_3 = E_|B|(s) - val(B), so T_B(s) lies on F iff E_|B|(s)=val(B); this is energy_telescope at remaining 0, not a bound on L_0
-
-**Declaration.** `fold_s3` &mdash; kernel-checked, `Problems/Ostrowski/NP/Energy.lean:565`
-
-> From any start state, `(T_B(s))₃ = E_{|B|}(s) - val(B)`. KNOWN `energy_telescope` at remaining 0, not `L₀`.
-
-```lean
-theorem fold_s3 (ws : List ℤ) (s : State) :
-    (foldSteps ws s).2.2 =
-      energy ws.length s - consumedSum ws.length ws
-```
-
-## 110. `BTA-x3-inter-lift` &mdash; covers 0.32
-
-*Reads as: the claim asserts more than the declarations state (0.8).*
-
-*Claim broader 0.8; declaration narrower 0.39; different result 0.16.  Tag EXACT — LEAN VERIFIED, trust kernel.*
-
-**Row.** horizon k refines k-1 at depth k-2; unit signs split
-
-**Declaration.** `inter_horizon_refines` &mdash; kernel-checked, `BTCalculus/CubicIntermediateLayer.lean:143`
-
-> Horizon refinement at depth `k-2`: agreement of the `N2`, `N1` and `N0` residuals to order `3^k` carries down to order `3^(k-1)` for each of the three.
-
-```lean
-theorem inter_horizon_refines {k : ℕ} (_hk : 1 ≤ k) (p q : ℤ)
-    (h2 : (3 : ℤ) ^ k ∣ n2Resid (k - 2) p - n2Resid (k - 2) q)
-    (h1 : (3 : ℤ) ^ k ∣ n1Resid (k - 2) p - n1Resid (k - 2) q)
-    (h0 : (3 : ℤ) ^ k ∣ n0Resid (k - 2) p - n0Resid (k - 2) q) :
-    ((3 : ℤ) ^ (k - 1) ∣ n2Resid (k - 2) p - n2Resid (k - 2) q) ∧
-      ((3 : ℤ) ^ (k - 1) ∣ n1Resid (k - 2) p - n1Resid (k - 2) q) ∧
-        ((3 : ℤ) ^ (k - 1) ∣ n0Resid (k - 2) p - n0Resid (k - 2) q)
-```
-
-## 111. `BTC-add-requires-carry-state` &mdash; covers 0.32
-
-*Reads as: a declaration is narrower than the claim (0.73).*
-
-*Claim broader 0.52; declaration narrower 0.73; different result 0.49.  Tag EXACT — LEAN VERIFIED, trust kernel.*
-
-**Row.** the packaged Add boundary combines three exact statements: D(x+y) is not D-local, same-sign I_a is not a constructor identity, and the named carry-free S-through-Add push-in extension fails local confluence
-
-**Declaration.** `add_requires_carry_state` &mdash; kernel-checked, `BTCalculus/RewriteAddBoundary.lean:237`
-
-> Packaged Add boundary: `D ∘ Add` is not D-local, same-sign `I_a` is not a constructor identity, and the named carry-free push-in extension fails local confluence.
-
-```lean
-theorem add_requires_carry_state :
-    ¬ DLocal (fun x y => DZ (x + y)) ∧
-      (∀ W, ¬ AffineCtor.exactTriple .Ip .Ip W) ∧
-      (∀ W, ¬ AffineCtor.exactTriple .Im .Im W) ∧
-      PushInStep pushInPeak (.add .X .Y) ∧
-      PushInStep pushInPeak (.D (.add (.S .X) (.S .Y))) ∧
-      (∀ u, ¬ PushInStep (.add .X .Y) u) ∧
-      (∀ u, ¬ PushInStep (.D (.add (.S .X) (.S .Y))) u)
-```
-
-## 112. `BTN-sdrg-lambda2-evens` &mdash; covers 0.32
-
-*Reads as: the claim asserts more than the declarations state (0.7).*
-
-*Claim broader 0.7; declaration narrower 0.5; different result 0.11.  Tag EXACT — LEAN VERIFIED, trust kernel.*
-
-**Row.** For λ=2 and U_m, every even 2n with 0≤n≤(m-1)_+ is reached from 0 by an admissible word; the explicit word uses letters k+2 at step k (lambda2_step_up). The negative half -2n is not claimed by this row.
-
-**Declarations.** `lambda2_step_up` &mdash; kernel-checked, `Problems/BalancedTernary/SignedDigitResidualGeometry.lean:111`
-
-> One even ``λ=2`` step: from ``2k`` the letter ``k+2`` reaches ``2(k+1)``.
-
-```lean
-theorem lambda2_step_up (k : ℕ) :
-    signedNext 2 (2 * (k : ℤ)) ((k : ℤ) + 2) = 2 * ((k : ℤ) + 1)
-```
-
-**And.** `lambda2_even_reachable` &mdash; kernel-checked, `Problems/BalancedTernary/SignedDigitResidualGeometry.lean:161`
-
-> Every nonnegative even point of the sharp ``λ=2`` box is reached.
-
-```lean
-theorem lambda2_even_reachable (m n : ℕ) (h : n ≤ m.pred) :
-    ∃ word : List ℤ, (∀ u ∈ word, u.natAbs ≤ m) ∧
-      foldSigned 2 word 0 = 2 * (n : ℤ)
-```
-
-## 113. `J-cyclemin-walk-transport-envelope` &mdash; covers 0.32
-
-*Reads as: the claim asserts more than the declarations state (0.79).*
-
-*Claim broader 0.79; declaration narrower 0.33; different result 0.06.  Tag EXACT — LEAN VERIFIED, trust kernel.*
-
-**Row.** The transport inequality of Paper A Theorem 5.3, Lean end to end in log form. On a CycleMin cycle with minimum n ≥ 400, every state satisfies walkWeight w k · (log n − D) ≤ log x_k with walkWeight w k = 3^(a_k)/2^k (the walk weight 2^(u_k), rational — no real exponentiation) and D = 1.05·e/n + 0.7·o/(n·√n) (cycleMin_transport, WalkTransport.lean); exponentiating gives x_k ≥ (n e^(−D))^(w_k). Ingredients all Lean: per-step floor losses log T(x) ≥ (3/2)·log x − 1.05/(x√x) (odd, x ≥ 9) and log T(x) ≥ (1/2)·log x − 1.05/√x (even, x ≥ 441) from the floor cells and −log(1−t) ≤ 1.05t on t ≤ 1/21 (log_floorPower_odd_ge, log_floorPower_even_ge, neg_log_one_sub_le); the exact weight recursion w_{k+1} = (3/2)w_k (odd), w_k/2 (even); odd injections priced at x_j ≥ n (cycleMin_iterate_ge) against w_{j+  *(truncated; read the ledger row)*
-
-**Declaration.** `cycleMin_transport` &mdash; kernel-checked, `Problems/Juggler/WalkTransport.lean:453`
-
-> **Transport to a reduced base** (Paper A Theorem 5.3, log form): on a minimum-based cycle with minimum `n ≥ 400`, every state satisfies `w_k·(log n − D) ≤ log x_k` with `D = 1.05·e/n + 0.7·o/(n·√n)`. Exponentiating gives `x_k ≥ (n e^{−D})^{w_k}`. Closed instance of `aboveAnchor_transport`.
-
-```lean
-theorem cycleMin_transport {n : ℕ} {w : List Branch}
-    (hn : 400 ≤ n) (h : CycleMin n w) {k : ℕ} (hk : k ≤ w.length) :
-    walkWeight w k * (Real.log n - transportDeficit n w) ≤
-      Real.log (floorPower^[k] n)
-```
-
-## 114. `J-fate-pressure-form` &mdash; covers 0.32
-
-*Reads as: the claim asserts more than the declarations state (0.56).*
-
-*Claim broader 0.56; declaration narrower 0.28; different result 0.04.  Tag EXACT — LEAN VERIFIED, trust kernel.*
-
-**Row.** Paper C Theorem 9.2 (pressure form), exact. On the live weight of LiveCountWeight (starts n in {1, …, N} with J^i(n) > N₀ for i ≤ d, liveTo): livePressure N₀ N x d := weightGen (liveWeight N₀ N) x d = Σ_{n live} x^{o_d(n)}; the Markov step live_count_le_pressure gives #{n live, o_d(n) ≥ k} ≤ livePressure / x^k for x ≥ 1 (weight_markov on the live weight, liveCount_sum_oddCount); Lemma 8.1 on live starts: a live n ≤ N has an itinerary that fails the envelope comparison at scale N at every prefix (envelopeBad_of_liveTo, from iterate_le_of_envelope), hence is L(N)-bad with L(N) = log_2(log N / log N₀) (LBad_of_liveTo) and has o_d ≥ p_C d when d ≥ C L(N) (live_oddCount_ge). Theorem: N₀ ≥ 2, N ≥ 2, C ≥ 5, d ≥ 1, d ≥ C L(N), tilt x = p_C/(1 − p_C), a = (1 + x)/2; if livePressure N₀ N x d ≤ N a^d  *(truncated; read the ledger row)*
-
-**Declaration.** `live_count_le_of_pressure` &mdash; kernel-checked, `Problems/Juggler/FatePressure.lean:83`
-
-> **Theorem 9.2 (pressure form), exact.** Floor `N₀ ≥ 2`, scale `N ≥ 2`, `C ≥ 5`, depth `d ≥ 1` with `d ≥ C L(N)`, tilt `x = p_C/(1-p_C)`, `a = (1 + x)/2`. If the live pressure at depth `d` is at most `N a^d E`, then the starts in `{1, …, N}` that stay above `N₀` for `d` steps number at most `N exp(-d D(p_C ‖ 1/2)) E`.
-
-```lean
-theorem live_count_le_of_pressure (N₀ N : ℕ) (hN : 2 ≤ N₀) (hNN : 2 ≤ N) (C : ℝ)
-    (hC : 5 ≤ C) (d : ℕ) (hd1 : 1 ≤ d)
-    (hd : C * Real.logb 2 (Real.log N / Real.log N₀) ≤ d) (E : ℝ)
-    (hP : livePressure N₀ N (pC C / (1 - pC C)) d ≤
-      N * ((1 + pC C / (1 - pC C)) / 2) ^ d * E) :
-    (((Icc 1 N).filter (fun n => liveTo N₀ n d)).card : ℝ) ≤
-      N * Real.exp (-(d * klHalf (pC C))) * E
-```
-
-## 115. `BTN-doubled-minimality` &mdash; covers 0.33
-
-*Reads as: the claim asserts more than the declarations state (0.89).*
-
-*Claim broader 0.89; declaration narrower 0.34; different result 0.08.  Tag EXACT — LEAN VERIFIED, trust compiler.*
-
-**Row.** The three carries -1,0,1 have pairwise distinct Mealy output signatures, so the 3-state machine is minimal.
-
-**Declaration.** `doubledTrit_outputSignatures_distinct` &mdash; compiler-checked, `Problems/BalancedTernary/FiniteStateDynamics.lean:160`
-
-> The three carries `-1`, `0` and `1` have pairwise distinct Mealy output signatures, so the three-state machine is minimal.
-
-```lean
-theorem doubledTrit_outputSignatures_distinct :
-    outSig 0 ≠ outSig 1 ∧ outSig 0 ≠ outSig (-1) ∧ outSig 1 ≠ outSig (-1)
-```
-
-## 116. `BTN-sdr-escape-general` &mdash; covers 0.33
-
-*Reads as: the claim asserts more than the declarations state (0.79).*
-
-*Claim broader 0.79; declaration narrower 0.3; different result 0.07.  Tag EXACT — LEAN VERIFIED, trust kernel.*
-
-**Row.** If λ≥3 and |u|≥2 then the constant-control orbit of F_{λ,U} from 0 is unbounded: at λ=3 one has s'=s+u-lsd(s+u) so each step moves by at least 1; at λ≥4 the step is strictly expanding on the matching ray.
-
-**Declaration.** `signedIterate_unbounded_of_ge_three` &mdash; kernel-checked, `Problems/BalancedTernary/SignedDigitResidual.lean:330`
-
-> Escape at every gain `>= 3`: if `|u| >= 2`, the constant-control orbit from `0` is unbounded -- for each bound `B` some iterate exceeds it. This is the witness matching `finite_residual_condition`.
-
-```lean
-theorem signedIterate_unbounded_of_ge_three {gain u : ℤ}
-    (hg : (3 : ℤ) ≤ gain) (hu : 2 ≤ u ∨ u ≤ -2) (B : ℕ) :
-    ∃ n : ℕ, B < (signedIterate gain u n).natAbs
-```
-
-## 117. `J-cycle-itinerary-length-eighty-four-or-ge-eighty-five` &mdash; covers 0.33
-
-*Reads as: the claim asserts more than the declarations state (0.87).*
-
-*Claim broader 0.87; declaration narrower 0.23; different result 0.05.  Tag EXACT — LEAN VERIFIED, trust kernel.*
-
-**Row.** If a nontrivial Juggler cycle itinerary exists at n ≥ 2, its period is 84 or at least 85. Lengths ≤ 56 are excluded at floor 257; lengths 57–83 are excluded by cycle_finance_min_two_hundred_sixty_one at 15921/11 (finance_excludes_length_fiftyseven, finance_excludes_length_seventysix, and companions, packaged as no_cycle_itinerary_length_lt_eighty_four). Length 84 is the next record near-convergent (need ≈ 40269). Lean theorem cycle_itinerary_length_eighty_four_or_ge_eighty_five. Strengthened by J-cycle-itinerary-length-eighty-four-m-ge-three-or-ge-eighty-five, which kills length 84 with at most two odd-runs, and by J-cycle-itinerary-eliahou-leftover, which rewrites the length leftover plus the finance table as period 84, a listed near-convergent, or at least 10^5. This is not a no-cycle-of  *(truncated; read the ledger row)*
-
-**Declaration.** `cycle_itinerary_length_eighty_four_or_ge_eighty_five` &mdash; kernel-checked, `Problems/Juggler/CycleFinanceLeftovers.lean:847`
-
-> If a nontrivial cycle exists, its period is `84` or at least `85`. The cheap leftovers `57` and `76` die at the residual floor `261`; `58`–`75` and `77`–`83` die by the same comparison. `L=84` is the next record near-convergent.
-
-```lean
-theorem cycle_itinerary_length_eighty_four_or_ge_eighty_five
-    {n : ℕ} {w : List Branch}
-    (hn : 2 ≤ n) (h : CycleItinerary n w) :
-    w.length = 84 ∨ 85 ≤ w.length
-```
-
-## 118. `J-cycle-itinerary-length-fifty-seven-or-ge-fifty-eight` &mdash; covers 0.33
-
-*Reads as: the claim asserts more than the declarations state (0.78).*
-
-*Claim broader 0.78; declaration narrower 0.27; different result 0.1.  Tag EXACT — LEAN VERIFIED, trust kernel.*
-
-**Row.** If a nontrivial Juggler cycle itinerary exists at n ≥ 2, its period is 57 or at least 58. Lengths ≤ 19 are J-small-cycle-census-nineteen; lengths 20–56 are excluded at floor 257. This row is the leftover before the two extra odd seeds 257 and 259. Strengthened by J-cycle-itinerary-length-eighty-four-or-ge-eighty-five, which kills the length-57 disjunct at the residual floor 261. Lean theorem cycle_itinerary_length_fifty_seven_or_ge_fifty_eight. This is not a no-cycle-of-any-length theorem, and not a halt theorem.
-
-**Declaration.** `cycle_itinerary_length_fifty_seven_or_ge_fifty_eight` &mdash; kernel-checked, `Problems/Juggler/CycleFinanceLeftovers.lean:713`
-
-> If a nontrivial cycle exists, its period is `57` or at least `58`. Weaker leftover: the floor `261` also kills `57` and `76`.
-
-```lean
-theorem cycle_itinerary_length_fifty_seven_or_ge_fifty_eight
-    {n : ℕ} {w : List Branch}
-    (hn : 2 ≤ n) (h : CycleItinerary n w) :
-    w.length = 57 ∨ 58 ≤ w.length
-```
-
-## 119. `J-cycle-quartic-formal-gap-separation` &mdash; covers 0.33
-
-*Reads as: the claim asserts more than the declarations state (0.64).*
-
-*Claim broader 0.64; declaration narrower 0.59; different result 0.3.  Tag EXACT — LEAN VERIFIED, trust kernel.*
+*Claim broader 0.57; declaration narrower 0.54; different result 0.3.  Tag EXACT — LEAN VERIFIED, trust kernel.*
 
 **Row.** A supplied nonnegative finite transitive cocycle commuting with adjacent rotation, with total Lambda, gives adjacent gap at least [A-(e-1)*Lambda]/e. Applied to a strictly sorted integer array with source and OE-cell minima at least m>1, and the stated small-product condition, the exact floor-cell bound proves B injective on the array. The module derives the gap bound from the cocycle rather than assuming gap oscillation. The lower-power section predicate supplies the B-cell minimum. Full extraction of the positive sorted cocycle and original counts from an arbitrary primitive quartic Juggler cycle remains a separate written assembly, not an unconditional no-cycle theorem.
 
@@ -3352,7 +3208,198 @@ theorem B_injective_of_cocycle {L m : ℕ} [NeZero L]
 theorem B_ge_of_lower_power {m x : ℕ} (h : m ^ 4 ≤ x ^ 3) : m ≤ B x
 ```
 
-## 120. `J-cyclemin-prefix-two-even-eoe` &mdash; covers 0.33
+**And.** `section_B_injective_of_cocycle` &mdash; kernel-checked, `Problems/Juggler/QuarticGapSeparation.lean:107`
+
+```lean
+theorem section_B_injective_of_cocycle {L m : ℕ} [NeZero L]
+    (c : Fin L → ℕ) (hmono : StrictMono c) (hm : 1 < m)
+    (hmin : ∀ i, m ≤ c i) (hsection : ∀ i, m ^ 4 ≤ c i ^ 3)
+    (σ : Equiv.Perm (Fin L))
+    (hσ : σ.IsCycleOn (↑(Finset.univ : Finset (Fin L))))
+    (hcomm : Function.Commute σ (finRotate L)) (δ : Fin L → ℝ) (A Λ : ℝ)
+    (hδ : ∀ i, 0 ≤ δ i) (hsum : ∑ i, δ i = Λ)
+    (hw : ∀ i, logError c A (σ i) - logError c A i = Λ / (L : ℝ) - δ i)
+    (hsmall : ((L : ℝ) - 1) * Λ + (L : ℝ) * logEta m ≤ A) :
+    Function.Injective (fun i => B (c i))
+```
+
+## 107. `J-cycle-itinerary-length-nineteen-or-ge-thirty` &mdash; covers 0.31
+
+*Reads as: the claim asserts more than the declarations state (0.87).*
+
+*Claim broader 0.87; declaration narrower 0.25; different result 0.07.  Tag EXACT — LEAN VERIFIED, trust kernel.*
+
+**Row.** If a nontrivial Juggler cycle itinerary exists at n ≥ 2, its period is 19 or at least 30. Lengths ≤ 18 are J-small-cycle-census-eighteen; lengths 20–29 are excluded by the same floor-53 finance comparison. Length 19 is the next near-convergent (2^19 < 3^12) and survives 371/2; length 30 also survives 371/2. Lean theorems cycle_itinerary_length_nineteen_or_ge_thirty and the weaker corollary cycle_itinerary_length_nineteen_or_ge_twenty. This row is the floor-53 leftover. Strengthened by J-cycle-itinerary-length-thirty-eight-or-ge-thirty-nine, which kills the length-19 disjunct at the residual floor 257. This is not a no-cycle-of-any-length theorem, and not a halt theorem.
+
+**Declarations.** `cycle_itinerary_length_nineteen_or_ge_thirty` &mdash; kernel-checked, `Problems/Juggler/CycleFinanceLeftovers.lean:469`
+
+> If a nontrivial cycle exists, its period is `19` or at least `30`. The gap `20..29` dies by finance at the residual floor `53`; `19` is the next near-convergent (`2^19 < 3^12`).
+
+```lean
+theorem cycle_itinerary_length_nineteen_or_ge_thirty {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleItinerary n w) :
+    w.length = 19 ∨ 30 ≤ w.length
+```
+
+**And.** `cycle_itinerary_length_nineteen_or_ge_twenty` &mdash; kernel-checked, `Problems/Juggler/CycleFinanceLeftovers.lean:478`
+
+> Weaker leftover: period is `19` or at least `20`.
+
+```lean
+theorem cycle_itinerary_length_nineteen_or_ge_twenty {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleItinerary n w) :
+    w.length = 19 ∨ 20 ≤ w.length
+```
+
+## 108. `J-cyclemin-prefix-bunched-eoee` &mdash; covers 0.31
+
+*Reads as: the claim asserts more than the declarations state (0.71).*
+
+*Claim broader 0.71; declaration narrower 0.18; different result 0.05.  Tag EXACT — LEAN VERIFIED, trust kernel.*
+
+**Row.** For every n ≥ 2, every a ≥ 5, and every prefix u, the itinerary u ++ O^a EOEE is not a Juggler CycleMin at n. The leftover cell lifts to y = T_u(n) ≥ n against the EOEE tail at y. Large y is y ≥ 314 at a = 5 and y ≥ 256 at a ≥ 6. Below those cutoffs the argument is returnsIntoB tables and seven-odd for a ≥ 7. The case y = n reduces to no_cycle_itinerary_three_even_eoee. Lean theorem no_cycleMin_prefix_eoee. This excludes that one bunched family only; it is not a bunched-short attack, not a length-11 census, and not a halt theorem.
+
+**Declaration.** `no_cycleMin_prefix_eoee` &mdash; kernel-checked, `Problems/Juggler/PrefixBunched.lean:254`
+
+> No CycleMin word ends in the bunched leftover `threeEvenEOEE a`, `a >= 5`, after any prefix `u`.
+
+```lean
+theorem no_cycleMin_prefix_eoee {n a : ℕ} {u : List Branch}
+    (hn : 2 ≤ n) (ha : 5 ≤ a) :
+    ¬CycleMin n (u ++ threeEvenEOEE a)
+```
+
+## 109. `BTC-add-requires-carry-state` &mdash; covers 0.32
+
+*Reads as: a declaration is narrower than the claim (0.73).*
+
+*Claim broader 0.52; declaration narrower 0.73; different result 0.49.  Tag EXACT — LEAN VERIFIED, trust kernel.*
+
+**Row.** the packaged Add boundary combines three exact statements: D(x+y) is not D-local, same-sign I_a is not a constructor identity, and the named carry-free S-through-Add push-in extension fails local confluence
+
+**Declaration.** `add_requires_carry_state` &mdash; kernel-checked, `BTCalculus/RewriteAddBoundary.lean:237`
+
+> Packaged Add boundary: `D ∘ Add` is not D-local, same-sign `I_a` is not a constructor identity, and the named carry-free push-in extension fails local confluence.
+
+```lean
+theorem add_requires_carry_state :
+    ¬ DLocal (fun x y => DZ (x + y)) ∧
+      (∀ W, ¬ AffineCtor.exactTriple .Ip .Ip W) ∧
+      (∀ W, ¬ AffineCtor.exactTriple .Im .Im W) ∧
+      PushInStep pushInPeak (.add .X .Y) ∧
+      PushInStep pushInPeak (.D (.add (.S .X) (.S .Y))) ∧
+      (∀ u, ¬ PushInStep (.add .X .Y) u) ∧
+      (∀ u, ¬ PushInStep (.D (.add (.S .X) (.S .Y))) u)
+```
+
+## 110. `BTN-dadd-closure` &mdash; covers 0.32
+
+*Reads as: the claim asserts more than the declarations state (0.76).*
+
+*Claim broader 0.76; declaration narrower 0.61; different result 0.24.  Tag EXACT — LEAN VERIFIED, trust compiler.*
+
+**Row.** If s,a,b are trits then D(s+a+b) is a trit. The streaming residual of trit addition is exactly {-1,0,1}. Three values occur on D(x)=D(y)=0, so the residual is minimal.
+
+**Declarations.** `dAdd_minimal_residual` &mdash; compiler-checked, `Problems/BalancedTernary/DAddResidual.lean:53`
+
+> On the slice ``D(x)=D(y)=0``, the observable ``D(x+y)`` takes three values, so no 1-state or 2-state residual can repair locality.
+
+```lean
+theorem dAdd_minimal_residual :
+    DZ 0 = DZ 1 ∧ DZ 1 = DZ (-1) ∧
+      DZ (0 + 0) ≠ DZ (1 + 1) ∧
+      DZ (1 + 1) ≠ DZ ((-1 : ℤ) + (-1)) ∧
+      DZ (0 + 0) ≠ DZ ((-1 : ℤ) + (-1))
+```
+
+**And.** `dAdd_residual_closure` &mdash; compiler-checked, `Problems/BalancedTernary/DAddResidual.lean:85`
+
+> Closure: if `s`, `a`, `b` are trits then `dAddNext s a b` is a trit.
+
+```lean
+theorem dAdd_residual_closure {s a b : ℤ}
+    (hs : isTrit s) (ha : isTrit a) (hb : isTrit b) :
+    isTrit (dAddNext s a b)
+```
+
+**And.** `dAdd_fiber_three` &mdash; compiler-checked, `Problems/BalancedTernary/DAddResidual.lean:42`
+
+> The three fibre values `D(0+0) = 0`, `D(1+1) = 1`, `D(-1 + -1) = -1`.
+
+```lean
+theorem dAdd_fiber_three :
+    DZ (0 + 0) = 0 ∧
+      DZ (1 + 1) = 1 ∧
+      DZ ((-1 : ℤ) + (-1)) = -1 ∧
+      DZ (0 : ℤ) = 0 ∧
+      DZ (1 : ℤ) = 0 ∧
+      DZ (-1) = 0
+```
+
+## 111. `BTN-sdrg-lambda2-evens` &mdash; covers 0.32
+
+*Reads as: the claim asserts more than the declarations state (0.7).*
+
+*Claim broader 0.7; declaration narrower 0.5; different result 0.11.  Tag EXACT — LEAN VERIFIED, trust kernel.*
+
+**Row.** For λ=2 and U_m, every even 2n with 0≤n≤(m-1)_+ is reached from 0 by an admissible word; the explicit word uses letters k+2 at step k (lambda2_step_up). The negative half -2n is not claimed by this row.
+
+**Declarations.** `lambda2_step_up` &mdash; kernel-checked, `Problems/BalancedTernary/SignedDigitResidualGeometry.lean:111`
+
+> One even ``λ=2`` step: from ``2k`` the letter ``k+2`` reaches ``2(k+1)``.
+
+```lean
+theorem lambda2_step_up (k : ℕ) :
+    signedNext 2 (2 * (k : ℤ)) ((k : ℤ) + 2) = 2 * ((k : ℤ) + 1)
+```
+
+**And.** `lambda2_even_reachable` &mdash; kernel-checked, `Problems/BalancedTernary/SignedDigitResidualGeometry.lean:161`
+
+> Every nonnegative even point of the sharp ``λ=2`` box is reached.
+
+```lean
+theorem lambda2_even_reachable (m n : ℕ) (h : n ≤ m.pred) :
+    ∃ word : List ℤ, (∀ u ∈ word, u.natAbs ≤ m) ∧
+      foldSigned 2 word 0 = 2 * (n : ℤ)
+```
+
+## 112. `BTN-doubled-minimality` &mdash; covers 0.33
+
+*Reads as: the claim asserts more than the declarations state (0.89).*
+
+*Claim broader 0.89; declaration narrower 0.34; different result 0.08.  Tag EXACT — LEAN VERIFIED, trust compiler.*
+
+**Row.** The three carries -1,0,1 have pairwise distinct Mealy output signatures, so the 3-state machine is minimal.
+
+**Declaration.** `doubledTrit_outputSignatures_distinct` &mdash; compiler-checked, `Problems/BalancedTernary/FiniteStateDynamics.lean:160`
+
+> The three carries `-1`, `0` and `1` have pairwise distinct Mealy output signatures, so the three-state machine is minimal.
+
+```lean
+theorem doubledTrit_outputSignatures_distinct :
+    outSig 0 ≠ outSig 1 ∧ outSig 0 ≠ outSig (-1) ∧ outSig 1 ≠ outSig (-1)
+```
+
+## 113. `J-cycle-itinerary-length-fifty-seven-or-ge-fifty-eight` &mdash; covers 0.33
+
+*Reads as: the claim asserts more than the declarations state (0.78).*
+
+*Claim broader 0.78; declaration narrower 0.27; different result 0.1.  Tag EXACT — LEAN VERIFIED, trust kernel.*
+
+**Row.** If a nontrivial Juggler cycle itinerary exists at n ≥ 2, its period is 57 or at least 58. Lengths ≤ 19 are J-small-cycle-census-nineteen; lengths 20–56 are excluded at floor 257. This row is the leftover before the two extra odd seeds 257 and 259. Strengthened by J-cycle-itinerary-length-eighty-four-or-ge-eighty-five, which kills the length-57 disjunct at the residual floor 261. Lean theorem cycle_itinerary_length_fifty_seven_or_ge_fifty_eight. This is not a no-cycle-of-any-length theorem, and not a halt theorem.
+
+**Declaration.** `cycle_itinerary_length_fifty_seven_or_ge_fifty_eight` &mdash; kernel-checked, `Problems/Juggler/CycleFinanceLeftovers.lean:713`
+
+> If a nontrivial cycle exists, its period is `57` or at least `58`. Weaker leftover: the floor `261` also kills `57` and `76`.
+
+```lean
+theorem cycle_itinerary_length_fifty_seven_or_ge_fifty_eight
+    {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleItinerary n w) :
+    w.length = 57 ∨ 58 ≤ w.length
+```
+
+## 114. `J-cyclemin-prefix-two-even-eoe` &mdash; covers 0.33
 
 *Reads as: the claim asserts more than the declarations state (0.82).*
 
@@ -3370,62 +3417,7 @@ theorem no_cycleMin_prefix_two_even_eoe {n k : ℕ} {u : List Branch}
     ¬CycleMin n (u ++ twoEvenEOE k)
 ```
 
-## 121. `J-fate-cylinder-energy` &mdash; covers 0.33
-
-*No failure mode above the line; coverage itself is doubtful.*
-
-*Claim broader 0.34; declaration narrower 0.3; different result 0.05.  Tag EXACT — LEAN VERIFIED, trust kernel.*
-
-**Row.** Paper C Section 10(d), the counting half of the Parseval display. For an arbitrary finite set S of starts, write #[w] for the starts of S whose length-|w| itinerary is w (wordCount), D(w) = #[wO] - #[w]/2 for the first-letter bias (bias) and C_t = sum over |w| = t of #[w]^2 for the cylinder energy (energy). A cylinder splits into its two children, #[w] = #[wE] + #[wO] (wordCount_split), because the (t+1)-st letter of an itinerary is the parity of the t-th image (itinerary_succ_append). Hence sum over |w| = t of D(w)^2 = C_{t+1}/2 - C_t/4 exactly (sum_bias_sq), which is the second equality of the note's display; the algebra behind it is (b - (a+b)/2)^2 = (a^2+b^2)/2 - (a+b)^2/4. NOT formalized: the first equality, Parseval for the Walsh sums on the same starts -- no Walsh transform appears   *(truncated; read the ledger row)*
-
-**Declaration.** `sum_bias_sq` &mdash; kernel-checked, `Problems/Juggler/FateCylinderEnergy.lean:114`
-
-> **The counting identity of Section 10(d).** `Σ_{|w|=t} D(w)² = C_{t+1}/2 - C_t/4`, exactly. The Parseval form of the same quantity in terms of Walsh sums is not formalized.
-
-```lean
-theorem sum_bias_sq (S : Finset ℕ) (t : ℕ) :
-    ∑ w ∈ allWords t, bias S w ^ 2 = energy S (t + 1) / 2 - energy S t / 4
-```
-
-## 122. `BTL-trichotomy` &mdash; covers 0.34
-
-*Reads as: the claim asserts more than the declarations state (0.82).*
-
-*Claim broader 0.82; declaration narrower 0.35; different result 0.07.  Tag EXACT — LEAN VERIFIED, trust kernel.*
-
-**Row.** KNOWN, restated: for k >= 1 a level-k node has 1 child if 3 does not divide f'(n), 3 children if 3 divides f'(n) and v_3(f(n)) >= k+1, and none otherwise; the hypothesis k >= 1 is needed, since x^2 + x has two children at the root with a unit derivative
-
-**Declaration.** `lift_trichotomy` &mdash; kernel-checked, `BTCalculus/PadicLifting.lean:259`
-
-> The trichotomy in one statement: at a level-`k` node with `k ≥ 1` the set of lifting trits is a singleton, all of `{-1,0,1}`, or empty.
-
-```lean
-theorem lift_trichotomy (f : ℤ[X]) {k : ℕ} (hk : 1 ≤ k) {x c : ℤ}
-    (hc : eval x f = 3 ^ k * c) :
-    (∃! t : ℤ, isTrit t ∧ IsRootMod (k + 1) f (x + 3 ^ k * t)) ∨
-      (∀ t : ℤ, IsRootMod (k + 1) f (x + 3 ^ k * t)) ∨
-      (∀ t : ℤ, ¬ IsRootMod (k + 1) f (x + 3 ^ k * t))
-```
-
-## 123. `J-cycle-itinerary-length-nineteen-or-ge-thirty` &mdash; covers 0.35
-
-*Reads as: the claim asserts more than the declarations state (0.86).*
-
-*Claim broader 0.86; declaration narrower 0.25; different result 0.05.  Tag EXACT — LEAN VERIFIED, trust kernel.*
-
-**Row.** If a nontrivial Juggler cycle itinerary exists at n ≥ 2, its period is 19 or at least 30. Lengths ≤ 18 are J-small-cycle-census-eighteen; lengths 20–29 are excluded by the same floor-53 finance comparison. Length 19 is the next near-convergent (2^19 < 3^12) and survives 371/2; length 30 also survives 371/2. Lean theorems cycle_itinerary_length_nineteen_or_ge_thirty and the weaker corollary cycle_itinerary_length_nineteen_or_ge_twenty. This row is the floor-53 leftover. Strengthened by J-cycle-itinerary-length-thirty-eight-or-ge-thirty-nine, which kills the length-19 disjunct at the residual floor 257. This is not a no-cycle-of-any-length theorem, and not a halt theorem.
-
-**Declaration.** `cycle_itinerary_length_nineteen_or_ge_thirty` &mdash; kernel-checked, `Problems/Juggler/CycleFinanceLeftovers.lean:469`
-
-> If a nontrivial cycle exists, its period is `19` or at least `30`. The gap `20..29` dies by finance at the residual floor `53`; `19` is the next near-convergent (`2^19 < 3^12`).
-
-```lean
-theorem cycle_itinerary_length_nineteen_or_ge_thirty {n : ℕ} {w : List Branch}
-    (hn : 2 ≤ n) (h : CycleItinerary n w) :
-    w.length = 19 ∨ 30 ≤ w.length
-```
-
-## 124. `OST-np-origin-particular` &mdash; covers 0.35
+## 115. `OST-np-origin-particular` &mdash; covers 0.35
 
 *Reads as: the claim asserts more than the declarations state (0.87).*
 
@@ -3442,7 +3434,7 @@ theorem origin_particular (ws : List ℤ) :
     foldSteps ws origin = particularSum ws
 ```
 
-## 125. `C-shortcut-welldefined` &mdash; covers 0.36
+## 116. `C-shortcut-welldefined` &mdash; covers 0.36
 
 *Reads as: the claim asserts more than the declarations state (0.88).*
 
@@ -3481,112 +3473,42 @@ theorem shortcutC_terminal_cycle :
     shortcutC 1 = 2 ∧ shortcutC 2 = 1
 ```
 
-## 126. `C-T-welldefined` &mdash; covers 0.37
+## 117. `J-fate-cylinder-energy` &mdash; covers 0.37
 
-*Reads as: a declaration is narrower than the claim (0.74).*
+*No failure mode above the line; coverage itself is doubtful.*
 
-*Claim broader 0.67; declaration narrower 0.74; different result 0.13.  Tag EXACT — LEAN VERIFIED, trust kernel.*
+*Claim broader 0.41; declaration narrower 0.37; different result 0.15.  Tag EXACT — LEAN VERIFIED, trust kernel.*
 
-**Row.** Accelerated T is well-defined on positive odd integers.
+**Row.** Paper C Section 10(d), the counting half of the Parseval display. For an arbitrary finite set S of starts, write #[w] for the starts of S whose length-|w| itinerary is w (wordCount), D(w) = #[wO] - #[w]/2 for the first-letter bias (bias) and C_t = sum over |w| = t of #[w]^2 for the cylinder energy (energy). A cylinder splits into its two children, #[w] = #[wE] + #[wO] (wordCount_split), because the (t+1)-st letter of an itinerary is the parity of the t-th image (itinerary_succ_append). Hence sum over |w| = t of D(w)^2 = C_{t+1}/2 - C_t/4 exactly (sum_bias_sq), which is the second equality of the note's display; the algebra behind it is (b - (a+b)/2)^2 = (a^2+b^2)/2 - (a+b)^2/4. NOT formalized: the first equality, Parseval for the Walsh sums on the same starts -- no Walsh transform appears   *(truncated; read the ledger row)*
 
-**Declaration.** `acceleratedT_odd` &mdash; kernel-checked, `Problems/Collatz/Accelerated.lean:41`
+**Declarations.** `sum_bias_sq` &mdash; kernel-checked, `Problems/Juggler/FateCylinderEnergy.lean:114`
 
-> ``T`` sends a positive odd integer to a positive odd integer.
-
-```lean
-theorem acceleratedT_odd {n : ℕ} (_hn : Odd n) (hpos : 0 < n) :
-    Odd (acceleratedT n)
-```
-
-## 127. `OST-np-same-energy-same-OnF` &mdash; covers 0.37
-
-*Reads as: the claim asserts more than the declarations state (0.75).*
-
-*Claim broader 0.75; declaration narrower 0.41; different result 0.14.  Tag EXACT — LEAN VERIFIED, trust kernel.*
-
-**Row.** for Γ_NP, if E_|v|(s)=E_|v|(t) then T_v(s) lands on F iff T_v(t) does; length-n suffix acceptance is classified by E_n, not by residual coordinates. This is fold_on_F_iff, not a bound on L_0
-
-**Declaration.** `fold_on_F_iff` &mdash; kernel-checked, `Problems/Ostrowski/NP/Energy.lean:575`
-
-> Length-`n` suffix acceptance is classified by the energy, not by residual coordinates: `foldSteps ws s` lands on `F` exactly when `energy |ws| s` equals the consumed sum of `ws`.
+> **The counting identity of Section 10(d).** `Σ_{|w|=t} D(w)² = C_{t+1}/2 - C_t/4`, exactly. The Parseval form of the same quantity in terms of Walsh sums is not formalized.
 
 ```lean
-theorem fold_on_F_iff (ws : List ℤ) (s : State) :
-    OnF (foldSteps ws s) ↔
-      energy ws.length s = consumedSum ws.length ws
+theorem sum_bias_sq (S : Finset ℕ) (t : ℕ) :
+    ∑ w ∈ allWords t, bias S w ^ 2 = energy S (t + 1) / 2 - energy S t / 4
 ```
 
-## 128. `J-fate-monotone-pairing-repair` &mdash; covers 0.38
+**And.** `wordCount_split` &mdash; kernel-checked, `Problems/Juggler/FateCylinderEnergy.lean:47`
 
-*Reads as: the claim asserts more than the declarations state (0.57).*
-
-*Claim broader 0.57; declaration narrower 0.38; different result 0.06.  Tag EXACT — LEAN VERIFIED, trust kernel.*
-
-**Row.** Paper C Lemma 4.1' (monotone pairing), with a corrected proof and the same constant. Hypotheses of Lemma 4.1 (steps in [a, b], 0 < a ≤ b ≤ 1/2, b ≤ 21a/20, (H−1) a ≥ 12) plus monotone steps: each half-cell colour receives at least H/3 − 2 terms, in both cell conventions. The proof printed until 2026-09-08 claimed every pair of consecutive cells (ρ, ρ') has min ≥ (ρ+ρ')/3, deduced from a step scale that 'drops by at most X/21 spread over the cells'; monotonicity does not give gradual change, and a = 10/41, b = 21/82 with points −2a, −a, 0, a, 2a, 2a+b, 2a+2b, … (nondecreasing steps) has the interior pair (3, 1), ratio 1/4. It also paired the two partial end cells as if interior. Corrected proof: (a) for interior i < j, ρ_j ≤ ρ_i + 1, because the ρ_i + 1 steps across cell i span more than 1/  *(truncated; read the ledger row)*
-
-**Declaration.** `sweep_monotone_fract_lt_half` &mdash; kernel-checked, `Problems/Juggler/FateSweepMonotone.lean:2357`
-
-> Paper C Lemma 4.1′: at least `H/3 - 2` of the terms have `{x_j} < 1/2`.
+> A cylinder is the disjoint union of its two children: `#[w] = #[wE] + #[wO]`.
 
 ```lean
-theorem sweep_monotone_fract_lt_half (x : ℕ → ℝ) (H : ℕ) (a b : ℝ)
-    (ha : 0 < a) (hab : a ≤ b) (hb : b ≤ 1 / 2) (hba : b ≤ 21 / 20 * a)
-    (h12 : 12 ≤ ((H : ℝ) - 1) * a)
-    (hs : ∀ j, j + 1 < H → a ≤ x (j + 1) - x j ∧ x (j + 1) - x j ≤ b)
-    (hmono : MonoSteps x H ∨ AntiSteps x H) :
-    (H : ℝ) / 3 - 2 ≤ #{j ∈ Finset.range H | Int.fract (x j) < 1 / 2}
+theorem wordCount_split (S : Finset ℕ) (w : List Branch) :
+    wordCount S w = wordCount S (w ++ [Branch.even]) + wordCount S (w ++ [Branch.odd])
 ```
 
-## 129. `J-odd-image-upper-square-gap` &mdash; covers 0.38
+**And.** `itinerary_succ_append` &mdash; kernel-checked, `Problems/Juggler/FateCylinderEnergy.lean:34`
 
-*Reads as: a declaration is narrower than the claim (0.64).*
-
-*Claim broader 0.56; declaration narrower 0.64; different result 0.14.  Tag EXACT — LEAN VERIFIED, trust kernel.*
-
-**Row.** For odd natural numbers x and y with x^3<(y+1)^2, one has x^3+3<=(y+1)^2. If the positive odd upper-square complement were one, then y(y+2)=x^3; coprimality forces two positive cubes differing by two, which is impossible. Specialized in Lean to every actual odd-to-odd floorPower edge. This is a local arithmetic refinement only; no no-cycle conclusion, period or descent-floor improvement, or external novelty is claimed. The subsequent logarithmic cap comparison and global symbolic audits are written analysis, outside this Lean claim.
-
-**Declarations.** `cube_add_one_ne_odd_succ_sq` &mdash; kernel-checked, `Problems/Juggler/UpperSquareGap.lean:45`
-
-> A cube cannot be one below the successor square of an odd natural number.
+> The `(d+1)`-st letter of an itinerary is the parity of the `d`-th image, so depth grows by appending on the right.
 
 ```lean
-theorem cube_add_one_ne_odd_succ_sq {x y : ℕ} (hy : y % 2 = 1) :
-    x ^ 3 + 1 ≠ (y + 1) ^ 2
+theorem itinerary_succ_append (n d : ℕ) :
+    itinerary n (d + 1) = itinerary n d ++ [bit (floorPower^[d] n)]
 ```
 
-**And.** `floorPower_odd_image_upper_gap` &mdash; kernel-checked, `Problems/Juggler/UpperSquareGap.lean:69`
-
-> Every actual odd-to-odd Juggler edge has upper square complement at least three.
-
-```lean
-theorem floorPower_odd_image_upper_gap {x : ℕ}
-    (hx : x % 2 = 1) (hy : floorPower x % 2 = 1) :
-    x ^ 3 + 3 ≤ (floorPower x + 1) ^ 2
-```
-
-## 130. `BTA-x3-def2-crit` &mdash; covers 0.39
-
-*Reads as: the claim asserts more than the declarations state (0.51).*
-
-*Claim broader 0.51; declaration narrower 0.44; different result 0.14.  Tag EXACT — LEAN VERIFIED, trust kernel.*
-
-**Row.** m=k-3 fibres iff p≡q (mod 9) and 3^{k-1}|(p-q)(p+q+3^{k-3}) and N0 agrees
-
-**Declaration.** `deficitTwo_equiv_iff` &mdash; kernel-checked, `BTCalculus/CubicDeficitTwo.lean:134`
-
-> The deficit-two fibre criterion: `N2` and `N1` agreement at depth `k-3` together, spelled out as the congruence modulo `9`, the order-`(k-1)` product condition, and `N0`.
-
-```lean
-theorem deficitTwo_equiv_iff {k : Nat} (hk : 3 ≤ k) (p q : Int) :
-    ((3 : Int) ^ k ∣ n2Resid (k - 3) p - n2Resid (k - 3) q) ∧
-        ((3 : Int) ^ k ∣ n1Resid (k - 3) p - n1Resid (k - 3) q) ∧
-          ((3 : Int) ^ k ∣ n0Resid (k - 3) p - n0Resid (k - 3) q) ↔
-      ((3 : Int) ^ 2 ∣ p - q) ∧
-        ((3 : Int) ^ (k - 1) ∣ (p - q) * (p + q + (3 : Int) ^ (k - 3))) ∧
-          ((3 : Int) ^ k ∣ n0Resid (k - 3) p - n0Resid (k - 3) q)
-```
-
-## 131. `BTL-reconstruct` &mdash; covers 0.39
+## 118. `BTL-reconstruct` &mdash; covers 0.39
 
 *Reads as: a declaration is narrower than the claim (0.68).*
 
@@ -3606,7 +3528,7 @@ theorem iterated_reconstruction (f : ℤ[X]) :
   | [], x => by
 ```
 
-## 132. `J-cyclemin-prefix-bunched-eeoe` &mdash; covers 0.39
+## 119. `J-cyclemin-prefix-bunched-eeoe` &mdash; covers 0.39
 
 *Reads as: the claim asserts more than the declarations state (0.74).*
 
@@ -3624,24 +3546,7 @@ theorem no_cycleMin_prefix_eeoe {n a : ℕ} {u : List Branch}
     ¬CycleMin n (u ++ threeEvenEEOE a)
 ```
 
-## 133. `J-small-cycle-census-eighteen` &mdash; covers 0.39
-
-*Reads as: the claim asserts more than the declarations state (0.83).*
-
-*Claim broader 0.83; declaration narrower 0.25; different result 0.07.  Tag EXACT — LEAN VERIFIED, trust kernel.*
-
-**Row.** No itinerary of length at most 18 is a Juggler cycle itinerary at any n ≥ 2, except that length 19 is not excluded here. Lengths ≤ 11 are J-small-cycle-census-eleven; lengths 12, 13, and 16 remain excluded at the residual floor 12; lengths 14, 15, 17, and 18 are excluded by cycle_finance_min_fifty_three (finance_excludes_length_fourteen and companions, packaged as no_cycle_itinerary_length_le_eighteen). Strengthened by J-small-cycle-census-nineteen. This is a Lean companion to Paper A Theorem 4.6, not a leftover-itinerary census, not an exclusion of length 19, not a no-cycle-of-any-length theorem, and not a halt theorem.
-
-**Declaration.** `no_cycle_itinerary_length_le_eighteen` &mdash; kernel-checked, `Problems/Juggler/CycleFinanceLeftovers.lean:436`
-
-> Census extension: no cycle itinerary of length at most `18`. Length `11` is the near-convergent killed by the floor `53`; `14`–`18` die by the same comparison.
-
-```lean
-theorem no_cycle_itinerary_length_le_eighteen {n : ℕ} {w : List Branch}
-    (hn : 2 ≤ n) (hlen : w.length ≤ 18) : ¬CycleItinerary n w
-```
-
-## 134. `OST-np-impulse-place` &mdash; covers 0.39
+## 120. `OST-np-impulse-place` &mdash; covers 0.39
 
 *Reads as: the claim asserts more than the declarations state (0.56).*
 
@@ -3657,25 +3562,7 @@ theorem no_cycle_itinerary_length_le_eighteen {n : ℕ} {w : List Branch}
 theorem iterateA_e3 (r : ℕ) : iterateA r e3 = impulsePlace r
 ```
 
-## 135. `BTA-x3-n0-sign` &mdash; covers 0.4
-
-*Reads as: the claim asserts more than the declarations state (0.61).*
-
-*Claim broader 0.61; declaration narrower 0.58; different result 0.12.  Tag EXACT — LEAN VERIFIED, trust kernel.*
-
-**Row.** N0(p)≡N0(-p) iff 3^k | N0(p)
-
-**Declaration.** `n0_sign_survives` &mdash; kernel-checked, `BTCalculus/CubicN0Reduction.lean:118`
-
-> `N0(p)` and `N0(-p)` agree modulo `3^k` exactly when `3^k` divides `N0(p)`: the sign survives the reduction only where the residual already vanishes.
-
-```lean
-theorem n0_sign_survives {k m : Nat} {p : Int} :
-    (3 : Int) ^ k ∣ n0Resid m p - n0Resid m (-p) ↔
-      (3 : Int) ^ k ∣ n0Resid m p
-```
-
-## 136. `J-cubic-critical-run-kernels` &mdash; covers 0.4
+## 121. `J-cubic-critical-run-kernels` &mdash; covers 0.4
 
 *Reads as: a declaration is narrower than the claim (0.56).*
 
@@ -3861,7 +3748,7 @@ theorem fixed_nonzero_lower {C T : ℕ} (hC : 14569 ≤ C)
     (hfilter : C + 2 ≤ T) : 14571 ≤ T
 ```
 
-## 137. `J-cyclemin-closure-threshold` &mdash; covers 0.4
+## 122. `J-cyclemin-closure-threshold` &mdash; covers 0.4
 
 *Reads as: a declaration is narrower than the claim (0.74).*
 
@@ -3885,25 +3772,41 @@ theorem no_cycleMin_of_gap_and_minimum {C p : ℝ}
     w.length = 0
 ```
 
-## 138. `BTA-x3-n3gate` &mdash; covers 0.43
+## 123. `J-cyclemin-period-lower-bound` &mdash; covers 0.4
 
-*Reads as: the claim asserts more than the declarations state (0.76).*
+*Reads as: a declaration is narrower than the claim (0.72).*
 
-*Claim broader 0.76; declaration narrower 0.74; different result 0.06.  Tag EXACT — LEAN VERIFIED, trust kernel.*
+*Claim broader 0.61; declaration narrower 0.72; different result 0.09.  Tag EXACT — LEAN VERIFIED, trust kernel.*
 
-**Row.** cross-depth N3 agrees iff k<=2 min(m,n)+1 or m=n
+**Row.** Floor-free period lower bound. Under the same budget C · L^{−p} ≤ Λ, a nontrivial Juggler cycle of minimum n has period L ≥ (C n log n / 2)^{1/(p+1)} (cycleMin_period_ge; Wu–Wang form cycleMin_period_ge_wuWang). This is Paper A Corollary 4.11 read as a bound on the period rather than the minimum, and it is the only proved statement in which a cycle's period grows with its minimum — the descent floor is a constant. The exponent in n rises from 1/14.3 = 0.0699 with Rhin to 1/5.1163051 = 0.1954 with Wu–Wang (wu-wang-2014-irrationality-measure-log3, |a + b log 2 + c log 3| ≥ H^{−4.1163051−ε} at a = 0, H = max(L, o) = L). Distinct from the fan-width cap of juggler_cycle_walk_fan_growth and from the REFUTED floor-level Baker transfer of juggler_cycle_gap_baker: no floor enters and nothing is exc  *(truncated; read the ledger row)*
 
-**Declaration.** `n3_dvd_iff` &mdash; kernel-checked, `BTCalculus/CubicFibres.lean:139`
+**Declarations.** `cycleMin_period_ge` &mdash; kernel-checked, `Problems/Juggler/GapTransferWW.lean:106`
 
-> Cross-depth `N3` criterion: for `m <= n`, `3^k` divides `N3(m) - N3(n)` exactly when `k <= 2m + 1` or the depths coincide.
+> **The same inequality read as a period lower bound.** Under the same Diophantine budget, a nontrivial cycle of minimum `n` has period at least `(C * n log n / 2)^{1/(p+1)}`. No descent floor enters: the bound grows with the minimum, which is the one direction the finite tables cannot supply. At `p = 13.3` (Rhin) the exponent in `n` is `1/14.3 = 0.0699...`; at `p = 4.1163051` (Wu-Wang) it is `1/5.1163051 = 0.1954...`.
 
 ```lean
-theorem n3_dvd_iff {k m n : ℕ} (hmn : m ≤ n) :
-    (3 : ℤ) ^ k ∣ n3Resid m - n3Resid n ↔
-      k ≤ 2 * m + 1 ∨ m = n
+theorem cycleMin_period_ge {n : ℕ} {w : List Branch} {C p : ℝ}
+    (hn : 2 ≤ n) (h : CycleMin n w) (hL : 0 < w.length)
+    (hC0 : 0 < C) (hC1 : C ≤ 1) (hp : 0 ≤ p)
+    (hgap : C * (w.length : ℝ) ^ (-p) ≤
+              (oddCount w : ℝ) * Real.log 3 - (w.length : ℝ) * Real.log 2) :
+    (C / 2 * ((n : ℝ) * Real.log n)) ^ (1 / (p + 1)) ≤ (w.length : ℝ)
 ```
 
-## 139. `BTN-expanding-right-inverse` &mdash; covers 0.43
+**And.** `cycleMin_period_ge_wuWang` &mdash; kernel-checked, `Problems/Juggler/GapTransferWW.lean:175`
+
+> **Wu-Wang period lower bound.** Every nontrivial cycle has `L >= (C n log n / 2)^{1/5.1163051}`, floor-free.
+
+```lean
+theorem cycleMin_period_ge_wuWang {n : ℕ} {w : List Branch} {C : ℝ}
+    (hn : 2 ≤ n) (h : CycleMin n w) (hL : 0 < w.length)
+    (hC0 : 0 < C) (hC1 : C ≤ 1)
+    (hWW : C * (w.length : ℝ) ^ (-(4.1163051 : ℝ)) ≤
+             (oddCount w : ℝ) * Real.log 3 - (w.length : ℝ) * Real.log 2) :
+    (C / 2 * ((n : ℝ) * Real.log n)) ^ (1 / (5.1163051 : ℝ)) ≤ (w.length : ℝ)
+```
+
+## 124. `BTN-expanding-right-inverse` &mdash; covers 0.43
 
 *Reads as: the claim asserts more than the declarations state (0.64).*
 
@@ -3928,7 +3831,7 @@ theorem expandingD_eq_IZ_shape (n : ℤ) :
 theorem DZ_expandingD (n : ℤ) : DZ (expandingD n) = n
 ```
 
-## 140. `J-cycle-quartic-formal-defect` &mdash; covers 0.43
+## 125. `J-cycle-quartic-formal-defect` &mdash; covers 0.43
 
 *Reads as: the claim asserts more than the declarations state (0.6).*
 
@@ -4000,27 +3903,7 @@ theorem actual_sorted_positive_surplus {C : Set ℕ} {m M : ℕ}
         ((upperIndices m c).card : ℝ) * Real.log ((3 : ℝ) / 2)
 ```
 
-## 141. `BTA-x3-Q-inv-one` &mdash; covers 0.44
-
-*Reads as: a declaration is narrower than the claim (0.68).*
-
-*Claim broader 0.38; declaration narrower 0.68; different result 0.06.  Tag EXACT — LEAN VERIFIED, trust kernel.*
-
-**Row.** for t>=1, Q(1+3^t b)=Q(1+3^t c) iff 3^{K-1} divides b-c
-
-**Declaration.** `q_one_family_dvd` &mdash; kernel-checked, `BTCalculus/MismatchedCubicInvariant.lean:125`
-
-> On the family `1 + 3^t b` with `t >= 1` and `K >= 1`, `Q` values agree modulo `3^K` exactly when `3^(K-1)` divides `b - c`: one power of three is lost to the bracket unit.
-
-```lean
-theorem q_one_family_dvd {t K : Nat} (ht : 1 ≤ t) (hK : 1 ≤ K)
-    (b c : Int) :
-    (3 : Int) ^ K ∣ qCubic t (1 + (3 : Int) ^ t * b) -
-        qCubic t (1 + (3 : Int) ^ t * c) ↔
-      (3 : Int) ^ (K - 1) ∣ b - c
-```
-
-## 142. `BTA-fn-congr` &mdash; covers 0.45
+## 126. `BTA-fn-congr` &mdash; covers 0.45
 
 *Reads as: the claim asserts more than the declarations state (0.56).*
 
@@ -4037,7 +3920,7 @@ theorem equivK_iff_functionCongr (k : ℕ) (f g : ℤ[X]) :
     equivK k f g ↔ functionCongr k f g
 ```
 
-## 143. `BTA-x3-Q-visible` &mdash; covers 0.45
+## 127. `BTA-x3-Q-visible` &mdash; covers 0.45
 
 *Reads as: the claim asserts more than the declarations state (0.66).*
 
@@ -4056,7 +3939,7 @@ theorem q_visible_mod {t K s : Nat}
     (3 : Int) ^ K ∣ qCubic t u - qCubic t v
 ```
 
-## 144. `J-cyclemin-prefix-bunched-eooee` &mdash; covers 0.45
+## 128. `J-cyclemin-prefix-bunched-eooee` &mdash; covers 0.45
 
 *Reads as: the claim asserts more than the declarations state (0.55).*
 
@@ -4074,7 +3957,7 @@ theorem no_cycleMin_prefix_eooee {n a : ℕ} {u : List Branch}
     ¬CycleMin n (u ++ threeEvenEOOEE a)
 ```
 
-## 145. `OST-np-reset-prefix` &mdash; covers 0.45
+## 129. `OST-np-reset-prefix` &mdash; covers 0.45
 
 *Reads as: the claim asserts more than the declarations state (0.65).*
 
@@ -4091,24 +3974,7 @@ theorem reset_prefix (r u : List ℤ) (hr : particularSum r = origin) :
     particularSum (r ++ u) = particularSum u
 ```
 
-## 146. `PRC-section-I0-composite` &mdash; covers 0.45
-
-*Reads as: the claim asserts more than the declarations state (0.62).*
-
-*Claim broader 0.62; declaration narrower 0.27; different result 0.12.  Tag EXACT — LEAN VERIFIED, trust kernel.*
-
-**Row.** I_0(x)=3x. If |x|>1 then 3|x| is composite.
-
-**Declaration.** `i0_not_prime_of_natAbs` &mdash; kernel-checked, `Problems/Primes/Residual.lean:28`
-
-> If ``|x| > 1`` then ``3|x|`` is composite.
-
-```lean
-theorem i0_not_prime_of_natAbs {x : ℤ} (hx : 1 < x.natAbs) :
-    ¬ Nat.Prime (3 * x.natAbs)
-```
-
-## 147. `BTA-x3-x` &mdash; covers 0.46
+## 130. `BTA-x3-x` &mdash; covers 0.46
 
 *Reads as: the claim asserts more than the declarations state (0.64).*
 
@@ -4134,25 +4000,7 @@ theorem not_three_dvd_coeff_X_pow_three_sub_X :
     ¬ (3 : ℤ) ∣ coeff ((X : ℤ[X]) ^ 3 - X) 3
 ```
 
-## 148. `BTC-word-simp-nf` &mdash; covers 0.46
-
-*Reads as: the claim asserts more than the declarations state (0.88).*
-
-*Claim broader 0.88; declaration narrower 0.18; different result 0.08.  Tag EXACT — LEAN VERIFIED, trust kernel.*
-
-**Row.** the simplifying-only fragment of WORD_REWRITE_RULES (the sixteen rules with simplifying=True: cancellations, the W/K3 stock, and I0→S) is terminating and locally confluent; every word has a unique syntactic normal form
-
-**Declaration.** `unique_normal_form` &mdash; kernel-checked, `BTCalculus/WordSimpNewman.lean:329`
-
-> Unique syntactic normal form of a simplifying-fragment word. Semantic canonicity of that irreducible is not claimed.
-
-```lean
-theorem unique_normal_form (t : Word) :
-    ∃ n, Normal n ∧ ReflTransGen Step t n ∧
-      ∀ n', Normal n' → ReflTransGen Step t n' → n' = n
-```
-
-## 149. `BTN-expanding-lambda` &mdash; covers 0.46
+## 131. `BTN-expanding-lambda` &mdash; covers 0.46
 
 *Reads as: the claim asserts more than the declarations state (0.88).*
 
@@ -4178,7 +4026,7 @@ theorem lsdZ_expandingDGain_three (n : ℤ) :
     lsdZ (expandingDGain 3 n) = 0
 ```
 
-## 150. `BTN-carry-gain-3` &mdash; covers 0.47
+## 132. `BTN-carry-gain-3` &mdash; covers 0.47
 
 *Reads as: the claim asserts more than the declarations state (0.85).*
 
@@ -4203,55 +4051,7 @@ theorem carryGain3_unbounded (B : ℕ) :
     ∃ n : ℕ, B < (carryGain3 n).natAbs
 ```
 
-## 151. `J-fate-chernoff-count` &mdash; covers 0.47
-
-*Reads as: the claim asserts more than the declarations state (0.54).*
-
-*Claim broader 0.54; declaration narrower 0.3; different result 0.04.  Tag EXACT — LEAN VERIFIED, trust kernel.*
-
-**Row.** Paper C Lemma 8.2 (Chernoff), exact form. A word w of length d is L-bad if o_t(w) log_2 3 − t > −L for every 1 ≤ t ≤ d (LBad). For C ≥ 5, p_C = (1 − 1/C)/log_2 3, e(C) = C D(p_C‖1/2)/log 2, and every d ≥ 1 with d ≥ C L: #{L-bad words of length d} ≤ 2^d · 2^{−e(C) L} (LBad_count_le). Engine: the constant weight has weightGen (1+x)^d (weightGen_one), so the Markov tilt weight_markov of RateFreeDensity gives #{o(w) ≥ k} ≤ (1+x)^d/x^k for x ≥ 1 (count_oddCount_ge_le), hence #{o(w) ≥ p d} ≤ (1+x)^d/x^{pd} with a real exponent (count_oddCount_ge_real_le); at x = p/(1−p) this is exp(d h(p)) with h the binary entropy (tilt_value, count_oddCount_ge_le_exp), i.e. 2^d exp(−d D(p‖1/2)) (count_oddCount_ge_le_kl); D(p‖1/2) ≥ 0 by log x ≤ x − 1 (klHalf_nonneg); an L-bad word has o_d ≥ p_C d when d ≥ CL (  *(truncated; read the ledger row)*
-
-**Declaration.** `LBad_count_le` &mdash; kernel-checked, `Problems/Juggler/FateChernoff.lean:212`
-
-> **Lemma 8.2 (Chernoff), exact form.** For `C ≥ 5` and `d ≥ C L` with `d ≥ 1`, the number of `L`-bad words of length `d` is at most `2^d · 2^{-e(C) L}`.
-
-```lean
-theorem LBad_count_le (L C : ℝ) (d : ℕ) (hC : 5 ≤ C) (hd : C * L ≤ d) (hd1 : 1 ≤ d) :
-    (#{w ∈ allWords d | LBad L w} : ℝ) ≤ 2 ^ d * (2 : ℝ) ^ (-(chernoffExponent C * L))
-```
-
-## 152. `BTN-sdr-multi-trit` &mdash; covers 0.48
-
-*Reads as: the claim asserts more than the declarations state (0.69).*
-
-*Claim broader 0.69; declaration narrower 0.54; different result 0.15.  Tag EXACT — LEAN VERIFIED, trust mixed.*
-
-**Row.** r-way trit addition s'=D(s+a_1+⋯+a_r) is F_{1,U_r}: a trit sum of length r has absolute value at most r, so the λ=1 box |s|≤⌊r/2⌋ is invariant. The count 2⌊r/2⌋+1 equals 1,3,3,5 for r=1,2,3,4.
-
-**Declarations.** `multi_trit_carry_bound` &mdash; kernel-checked, `Problems/BalancedTernary/SignedDigitResidual.lean:418`
-
-> r-way trit addition is the ``λ=1`` family on ``U_r``.
-
-```lean
-theorem multi_trit_carry_bound {s : ℤ} {inputs : List ℤ}
-    (hs : s.natAbs ≤ inputs.length / 2)
-    (htrits : ∀ a ∈ inputs, isTrit a) :
-    (DZ (s + inputs.sum)).natAbs ≤ inputs.length / 2
-```
-
-**And.** `multi_trit_carry_minimal` &mdash; compiler-checked, `Problems/BalancedTernary/SignedDigitResidual.lean:426`
-
-> The residual state count `2 * (r / 2) + 1` at `r = 1, 2, 3, 4` is `1, 3, 3, 5`.
-
-```lean
-theorem multi_trit_carry_minimal :
-    2 * (1 / 2) + 1 = 1 ∧
-      2 * (2 / 2) + 1 = 3 ∧
-      2 * (3 / 2) + 1 = 3 ∧
-      2 * (4 / 2) + 1 = 5
-```
-
-## 153. `J-cycle-induced-count-determinant` &mdash; covers 0.48
+## 133. `J-cycle-induced-count-determinant` &mdash; covers 0.48
 
 *Reads as: the claim asserts more than the declarations state (0.88).*
 
@@ -4289,24 +4089,98 @@ theorem InducedPair.expanded_count_gcd {U V : List Branch} (h : InducedPair U V)
       (a * evenCount U + b * evenCount V) = Nat.gcd a b
 ```
 
-## 154. `BTC-push-in-S-peak` &mdash; covers 0.49
+## 134. `J-fate-monotone-pairing-repair` &mdash; covers 0.49
 
-*Reads as: the claim asserts more than the declarations state (0.77).*
+*Reads as: the claim asserts more than the declarations state (0.69).*
 
-*Claim broader 0.77; declaration narrower 0.4; different result 0.09.  Tag EXACT — LEAN VERIFIED, trust kernel.*
+*Claim broader 0.69; declaration narrower 0.43; different result 0.22.  Tag EXACT — LEAN VERIFIED, trust kernel.*
 
-**Row.** the named carry-free push-in system (unary D(S(t))→t plus S(Add(t,u))→Add(S(t),S(u)) and congruence, no D-through-Add) is not locally confluent: D(S(Add(X,Y))) has two distinct irreducibles Add(X,Y) and D(Add(S(X),S(Y))); both evaluate to X+Y
+**Row.** Paper C Lemma 4.1' (monotone pairing), with a corrected proof and the same constant. Hypotheses of Lemma 4.1 (steps in [a, b], 0 < a ≤ b ≤ 1/2, b ≤ 21a/20, (H−1) a ≥ 12) plus monotone steps: each half-cell colour receives at least H/3 − 2 terms, in both cell conventions. The proof printed until 2026-09-08 claimed every pair of consecutive cells (ρ, ρ') has min ≥ (ρ+ρ')/3, deduced from a step scale that 'drops by at most X/21 spread over the cells'; monotonicity does not give gradual change, and a = 10/41, b = 21/82 with points −2a, −a, 0, a, 2a, 2a+b, 2a+2b, … (nondecreasing steps) has the interior pair (3, 1), ratio 1/4. It also paired the two partial end cells as if interior. Corrected proof: (a) for interior i < j, ρ_j ≤ ρ_i + 1, because the ρ_i + 1 steps across cell i span more than 1/  *(truncated; read the ledger row)*
 
-**Declaration.** `pushIn_not_locally_confluent` &mdash; kernel-checked, `BTCalculus/RewriteAddBoundary.lean:212`
+**Declarations.** `sweep_monotone_fract_lt_half` &mdash; kernel-checked, `Problems/Juggler/FateSweepMonotone.lean:2357`
 
-> The named carry-free push-in system is not locally confluent: `D(S(X+Y))` has two distinct irreducibles.
+> Paper C Lemma 4.1′: at least `H/3 - 2` of the terms have `{x_j} < 1/2`.
 
 ```lean
-theorem pushIn_not_locally_confluent :
-    PushInStep pushInPeak (.add .X .Y) ∧
-      PushInStep pushInPeak (.D (.add (.S .X) (.S .Y))) ∧
-      AddTree.add .X .Y ≠ .D (.add (.S .X) (.S .Y)) ∧
-      (∀ u, ¬ PushInStep (.add .X .Y) u) ∧
-      (∀ u, ¬ PushInStep (.D (.add (.S .X) (.S .Y))) u)
+theorem sweep_monotone_fract_lt_half (x : ℕ → ℝ) (H : ℕ) (a b : ℝ)
+    (ha : 0 < a) (hab : a ≤ b) (hb : b ≤ 1 / 2) (hba : b ≤ 21 / 20 * a)
+    (h12 : 12 ≤ ((H : ℝ) - 1) * a)
+    (hs : ∀ j, j + 1 < H → a ≤ x (j + 1) - x j ∧ x (j + 1) - x j ≤ b)
+    (hmono : MonoSteps x H ∨ AntiSteps x H) :
+    (H : ℝ) / 3 - 2 ≤ #{j ∈ Finset.range H | Int.fract (x j) < 1 / 2}
+```
+
+**And.** `sweep_monotone_cell` &mdash; kernel-checked, `Problems/Juggler/FateSweepMonotone.lean:2294`
+
+> Paper C Lemma 4.1′ (monotone pairing), closed half-cells: each colour of `⌊2 x_j⌋` has at least `H/3 - 2` terms.
+
+```lean
+theorem sweep_monotone_cell (ha : 0 < a) (hab : a ≤ b)
+    (hb : b ≤ 1 / 2) (hba : b ≤ 21 / 20 * a) (h12 : 12 ≤ ((H : ℝ) - 1) * a)
+    (hs : Steps x H a b) (hmono : MonoSteps x H ∨ AntiSteps x H) (v : ℤ) :
+    (H : ℝ) / 3 - 2 ≤ #{j ∈ range H | cell (x j) ≡ v [ZMOD 2]}
+```
+
+**And.** `sweep_monotone_fract_ge_half` &mdash; kernel-checked, `Problems/Juggler/FateSweepMonotone.lean:2373`
+
+> Paper C Lemma 4.1′: at least `H/3 - 2` of the terms have `{x_j} ≥ 1/2`.
+
+```lean
+theorem sweep_monotone_fract_ge_half (x : ℕ → ℝ) (H : ℕ) (a b : ℝ)
+    (ha : 0 < a) (hab : a ≤ b) (hb : b ≤ 1 / 2) (hba : b ≤ 21 / 20 * a)
+    (h12 : 12 ≤ ((H : ℝ) - 1) * a)
+    (hs : ∀ j, j + 1 < H → a ≤ x (j + 1) - x j ∧ x (j + 1) - x j ≤ b)
+    (hmono : MonoSteps x H ∨ AntiSteps x H) :
+    (H : ℝ) / 3 - 2 ≤ #{j ∈ Finset.range H | 1 / 2 ≤ Int.fract (x j)}
+```
+
+**And.** `sweep_monotone_ceil` &mdash; kernel-checked, `Problems/Juggler/FateSweepMonotone.lean:2389`
+
+> Paper C Lemma 4.1′, left-open cells, by reflection `j ↦ -x_{H-1-j}`.
+
+```lean
+theorem sweep_monotone_ceil (x : ℕ → ℝ) (H : ℕ) (a b : ℝ)
+    (ha : 0 < a) (hab : a ≤ b) (hb : b ≤ 1 / 2) (hba : b ≤ 21 / 20 * a)
+    (h12 : 12 ≤ ((H : ℝ) - 1) * a)
+    (hs : ∀ j, j + 1 < H → a ≤ x (j + 1) - x j ∧ x (j + 1) - x j ≤ b)
+    (hmono : MonoSteps x H ∨ AntiSteps x H) (v : ℤ) :
+    (H : ℝ) / 3 - 2 ≤ #{j ∈ Finset.range H | ⌈2 * x j⌉ ≡ v [ZMOD 2]}
+```
+
+**And.** `sweep_monotone_rep_le_half` &mdash; kernel-checked, `Problems/Juggler/FateSweepMonotone.lean:2423`
+
+> Paper C Lemma 4.1′, left-open cells: representative at most `1/2`.
+
+```lean
+theorem sweep_monotone_rep_le_half (x : ℕ → ℝ) (H : ℕ) (a b : ℝ)
+    (ha : 0 < a) (hab : a ≤ b) (hb : b ≤ 1 / 2) (hba : b ≤ 21 / 20 * a)
+    (h12 : 12 ≤ ((H : ℝ) - 1) * a)
+    (hs : ∀ j, j + 1 < H → a ≤ x (j + 1) - x j ∧ x (j + 1) - x j ≤ b)
+    (hmono : MonoSteps x H ∨ AntiSteps x H) :
+    (H : ℝ) / 3 - 2 ≤ #{j ∈ Finset.range H | x j - ⌈x j⌉ + 1 ≤ 1 / 2}
+```
+
+**And.** `sweep_monotone_rep_gt_half` &mdash; kernel-checked, `Problems/Juggler/FateSweepMonotone.lean:2438`
+
+> Paper C Lemma 4.1′, left-open cells: representative above `1/2`.
+
+```lean
+theorem sweep_monotone_rep_gt_half (x : ℕ → ℝ) (H : ℕ) (a b : ℝ)
+    (ha : 0 < a) (hab : a ≤ b) (hb : b ≤ 1 / 2) (hba : b ≤ 21 / 20 * a)
+    (h12 : 12 ≤ ((H : ℝ) - 1) * a)
+    (hs : ∀ j, j + 1 < H → a ≤ x (j + 1) - x j ∧ x (j + 1) - x j ≤ b)
+    (hmono : MonoSteps x H ∨ AntiSteps x H) :
+    (H : ℝ) / 3 - 2 ≤ #{j ∈ Finset.range H | 1 / 2 < x j - ⌈x j⌉ + 1}
+```
+
+**And.** `fiber_card_le_succ` &mdash; kernel-checked, `Problems/Juggler/FateSweepMonotone.lean:113`
+
+> **Fact (a).** With nondecreasing steps in `[a, b]`, `b ≤ 1/2`, a cell `j` after an interior cell `i` holds at most one point more than `i`.
+
+```lean
+theorem fiber_card_le_succ (hs : Steps x H a b) (hmono : MonoSteps x H) (ha : 0 < a)
+    (_hb : b ≤ 1 / 2) (hH : 1 ≤ H) {i j : ℤ}
+    (hi₀ : cell (x 0) < i) (hiH : i < cell (x (H - 1))) (hij : i < j) :
+    #{r ∈ range H | cell (x r) = j} ≤ #{r ∈ range H | cell (x r) = i} + 1
 ```
 

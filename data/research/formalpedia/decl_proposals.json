@@ -4,14 +4,14 @@
     "agree_with_scorer": 32,
     "answered": 129,
     "asked": "2026-09-21",
-    "confident": 48,
+    "confident": 49,
     "models": [
       "jev-1.13.0"
     ],
     "none": 48,
     "not_a_candidate": 0,
     "picks": 81,
-    "routed": 38,
+    "routed": 39,
     "stale": 0
   },
   "note": "Proposals for human review. Calibration: 86% precision (42 of 49 fires) against all resolved rows. Nothing here has been written into the ledger.",
@@ -2004,7 +2004,7 @@
         }
       ],
       "id": "BTA-x3-inter-N",
-      "in_file": 10,
+      "in_file": 9,
       "jev": {
         "asked": "2026-09-21",
         "choice": "none_of_these",
@@ -2013,10 +2013,10 @@
         "model": "jev-1.13.0",
         "probabilities": {
           "inter_equiv_iff": 0.01,
-          "inter_n1_mod": 0.06,
-          "inter_n2_mod": 0.02,
+          "inter_n1_mod": 0.04,
+          "inter_n2_mod": 0.03,
           "inter_n3_zero": 0.03,
-          "none_of_these": 0.88
+          "none_of_these": 0.89
         },
         "routed": false,
         "verdict": "none"
@@ -2047,7 +2047,7 @@
         }
       ],
       "composite": false,
-      "confidence": "low",
+      "confidence": "review",
       "definitions": [
         {
           "decl": "interN2",
@@ -2061,21 +2061,21 @@
         }
       ],
       "id": "BTA-x3-inter-crit",
-      "in_file": 10,
+      "in_file": 9,
       "jev": {
         "asked": "2026-09-21",
         "choice": "inter_equiv_iff",
-        "confidence": 0.63,
+        "confidence": 0.73,
         "decl": "inter_equiv_iff",
         "model": "jev-1.13.0",
         "probabilities": {
-          "inter_equiv_iff": 0.67,
-          "inter_n1_iff": 0.09,
+          "inter_equiv_iff": 0.76,
+          "inter_n1_iff": 0.06,
           "inter_n1_mod": 0.0,
           "inter_n2_iff": 0.0,
-          "none_of_these": 0.24
+          "none_of_these": 0.18
         },
-        "routed": false,
+        "routed": true,
         "verdict": "pick"
       },
       "lean": "BTCalculus/CubicIntermediateLayer.lean",
@@ -2772,9 +2772,9 @@
           "trust": "kernel"
         },
         {
-          "decl": "pushIn_peak_semantic",
-          "line": 223,
-          "score": 0.059,
+          "decl": "carry_of_add",
+          "line": 15,
+          "score": 0.0,
           "trust": "kernel"
         }
       ],
@@ -2793,18 +2793,18 @@
         }
       ],
       "id": "BTC-constructor-sum-class",
-      "in_file": 25,
+      "in_file": 24,
       "jev": {
         "asked": "2026-09-21",
         "choice": "apply_add_eq_iff",
-        "confidence": 0.75,
+        "confidence": 0.79,
         "decl": "apply_add_eq_iff",
         "model": "jev-1.13.0",
         "probabilities": {
           "DZ_one": 0.0,
           "DZ_two": 0.0,
-          "apply_add_eq_iff": 0.77,
-          "exactTriple_characterization": 0.22,
+          "apply_add_eq_iff": 0.8,
+          "exactTriple_characterization": 0.19,
           "none_of_these": 0.01
         },
         "routed": false,
@@ -3782,19 +3782,19 @@
         }
       ],
       "id": "J-cyclemin-slack",
-      "in_file": 104,
+      "in_file": 101,
       "jev": {
         "asked": "2026-09-21",
         "choice": "slack_of_four_even_word",
-        "confidence": 0.63,
+        "confidence": 0.4,
         "decl": "slack_of_four_even_word",
         "model": "jev-1.13.0",
         "probabilities": {
-          "exponents_slack": 0.06,
-          "familySlack_add": 0.01,
-          "none_of_these": 0.09,
-          "slack_of_four_even": 0.19,
-          "slack_of_four_even_word": 0.64
+          "exponents_slack": 0.09,
+          "exponents_slack_add": 0.01,
+          "none_of_these": 0.11,
+          "slack_of_four_even": 0.35,
+          "slack_of_four_even_word": 0.42
         },
         "routed": false,
         "verdict": "pick"
@@ -4506,7 +4506,7 @@
         }
       ],
       "id": "J-small-cycle-census-ten",
-      "in_file": 41,
+      "in_file": 34,
       "jev": {
         "asked": "2026-09-21",
         "choice": "no_cycle_itinerary_length_le_ten",
@@ -4517,7 +4517,7 @@
           "cycleItinerary_iterate_not_lt_fifty_three": 0.0,
           "cycleItinerary_iterate_not_lt_two_hundred_fifty_seven": 0.0,
           "cycleItinerary_iterate_not_lt_two_hundred_sixty_one": 0.0,
-          "cycle_finance_min_fifty_three": 0.0,
+          "cycle_finance_min_thirteen": 0.0,
           "no_cycle_itinerary_length_le_ten": 1.0
         },
         "routed": false,
@@ -4546,9 +4546,9 @@
           "trust": "kernel"
         },
         {
-          "decl": "cycle_itinerary_length_nineteen_or_ge_twenty",
-          "line": 478,
-          "score": 0.2,
+          "decl": "no_cycle_itinerary_length_le_ten",
+          "line": 224,
+          "score": 0.194,
           "trust": "kernel"
         }
       ],
@@ -4567,18 +4567,18 @@
         }
       ],
       "id": "J-small-cycle-census-nineteen",
-      "in_file": 41,
+      "in_file": 34,
       "jev": {
         "asked": "2026-09-21",
         "choice": "no_cycle_itinerary_length_le_nineteen",
-        "confidence": 0.98,
+        "confidence": 0.99,
         "decl": "no_cycle_itinerary_length_le_nineteen",
         "model": "jev-1.13.0",
         "probabilities": {
           "cycleItinerary_iterate_not_lt_fifty_three": 0.0,
           "cycleItinerary_iterate_not_lt_two_hundred_fifty_seven": 0.0,
-          "cycleItinerary_iterate_not_lt_two_hundred_sixty_one": 0.0,
-          "no_cycle_itinerary_length_le_nineteen": 0.99,
+          "no_cycle_itinerary_length_le_nineteen": 0.98,
+          "no_cycle_itinerary_length_lt_fifty_seven": 0.01,
           "none_of_these": 0.01
         },
         "routed": true,
@@ -5002,7 +5002,7 @@
         }
       ],
       "id": "J-flight-envelope-transport",
-      "in_file": 20,
+      "in_file": 16,
       "jev": {
         "asked": "2026-09-21",
         "choice": "aboveAnchor_flight_envelope",
@@ -5010,11 +5010,11 @@
         "decl": "aboveAnchor_flight_envelope",
         "model": "jev-1.13.0",
         "probabilities": {
-          "aboveAnchor_flight_envelope": 0.99,
+          "aboveAnchor_flight_envelope": 1.0,
           "aboveAnchor_transport": 0.0,
           "aboveAnchor_transport_prefix": 0.0,
           "cycleMin_transport_prefix": 0.0,
-          "none_of_these": 0.01
+          "follows_log_le_walkWeight": 0.0
         },
         "routed": true,
         "verdict": "pick"
@@ -7522,5 +7522,5 @@
     }
   ],
   "unresolved": 131,
-  "worth_reviewing": 62
+  "worth_reviewing": 63
 }
