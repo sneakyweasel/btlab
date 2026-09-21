@@ -52,7 +52,7 @@
     {
       "path": "docs/theory/collatz_3n_minus_1_m_cycles_note.md",
       "mode": "text",
-      "sha256": "3dcfcd1e0ba8a43b0092123fc660d4670fcd7337400de96b62a29cc16382d859"
+      "sha256": "69304c72382cbb63ced66de6f39ebdc3949c3ecc70bfcbbfe7f2000b8f3bdf61"
     },
     {
       "path": "formal/Problems/Collatz/NegativeMCycles.lean",
@@ -94,12 +94,12 @@
     {
       "path": "juggler_review/collatz_3n_minus_1_m_cycles_note.pdf",
       "mode": "binary",
-      "sha256": "478f0a5b2e8ef61c8f1096d8b62e2855363d62bfb70cdce8e3a73944181d4dbd"
+      "sha256": "b7f7e394db98d300e8851769aa74aeb80a75c0dc97e3430c8b2f0ac5aa11497c"
     },
     {
       "path": "docs/theory/cochin-3n-minus-1-m-cycles.tex",
       "mode": "text",
-      "sha256": "62ab582ec1e7de2e6b6da022f6c36bbfa68bdff2a7678f21874be05edeff18b7"
+      "sha256": "e5d5ee2751fbf0bdf08ed7dae3f02ea803e1825f69a47b954990a57211865f85"
     },
     {
       "path": "docs/theory/paper_d_zenodo.json",

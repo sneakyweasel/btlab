@@ -381,10 +381,21 @@ in the `Problems` barrel, so the default build covers it, and
 `tests/research/juggler_sequence/test_negative_m_cycles_lean.py` holds it to no `sorry`, no
 `native_decide` and the three standard axioms.
 
-Every path, module and command named in this note is in the repository
-[sneakyweasel/btlab](https://github.com/sneakyweasel/btlab) at commit
-`e7dacdaabfb47afe4da69bf1421b55271cba4bfa`, which is the state this preprint describes
-([tree](https://github.com/sneakyweasel/btlab/tree/e7dacdaabfb47afe4da69bf1421b55271cba4bfa)).
+```text
+Repository:  https://github.com/sneakyweasel/btlab
+Commit:      d6e8a4ae20a5c82f46fc5e673a1bf8d1a344e29c
+Lean:        leanprover/lean4:v4.33.1
+Mathlib:     v4.33.1 (lake-manifest rev 0df444a360eaa60ab8c11dca51a86af692955474)
+Build:       lake build Problems.Collatz.NegativeMCycles   (from formal/)
+Tables:      python -m research.juggler_sequence.negative_m_cycles
+Floor:       python -m research.juggler_sequence.negative_floor_gpu sweep 44 51
+Recheck:     python tools/check_3n_minus_1_note_numeric.py
+```
+
+The commit is the repository state that produced the tables, the floor records and the Lean
+module; every file those commands read or write is byte-identical there to the version this
+paper reports. A later editorial commit of this text, including the one that adds the
+build tooling for this paper, does not change them.
 
 ## Acknowledgments and use of AI
 

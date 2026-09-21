@@ -602,11 +602,11 @@ ged.
 (rerunfilecheck)             Checksum: 335BBD343A10E2B421684AD7E577A9A5;1948.
  ) 
 Here is how much of TeX's memory you used:
- 14194 strings out of 402560
- 269762 string characters out of 5437925
+ 14268 strings out of 402560
+ 271745 string characters out of 5437925
  767038 words of memory out of 5000000
- 43168 multiletter control sequences out of 15000+600000
- 639200 words of font info for 102 fonts, out of 8000000 for 9000
+ 43241 multiletter control sequences out of 15000+600000
+ 639208 words of font info for 103 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  71i,10n,79p,565b,529s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
