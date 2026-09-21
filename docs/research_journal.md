@@ -1,5 +1,38 @@
 # Research journal
 
+## 2026-09-21 -- A Lean plan for the Collatz bridge: join the two copies of the 3x-1 map first
+
+- **Objective:** Philippe asked how the Juggler, the 3x-1 map and the 3x+1 map could
+  reinforce each other's proofs, then what Lean would bridge them correctly, then to store
+  the answer as an implementation plan.
+- **Result:** [collatz_bridge_lean_plan.md](theory/collatz_bridge_lean_plan.md), a PLAN with
+  nothing built. The finding that shapes it: the 3x-1 map exists twice in Lean, as `negT` in
+  `Problems.Collatz.NegativeMCycles` (Paper D Lemmas 1 and 3, kernel-only, Mathlib-only) and
+  as the integer shortcut map at negative arguments in `Problems.Juggler.CollatzBridge`
+  (expanding words, the CycleMin shape, the negative-cycle finance), and no theorem connects
+  them. Paper D's Section 3 sentence that Lemma 2's sign clause is "already in Lean on the
+  conjugate side" is a remark, not a declaration. Tier 1 of the plan: an auxiliary conjugacy
+  module whose corollaries are the Lemma 8 window as one theorem (the word OOE pinned to 5,
+  the -17 word to [17, 32]) and Paper D's sign clause on `negT`; a rounding-cocycle lemma
+  that states the sign flip once for both roundings at both levels; a `negT` sieve module
+  that makes the 2^51 floor's method kernel-checked (Paper D Lemma 5); and four completions
+  in hours each, the exact backward steps, `c_w = 3^(-b)`, the Collatz exhibit `{3 * 2^k}`,
+  and `Lambda_J + Lambda_C = log 3`. Tier 2: Catalan for the pair 2 and 3 (not in Mathlib,
+  checked through leansearch), Knight sign-free, Paper D Lemma 2, convergent alternation.
+- **Decision:** PLAN recorded. No Lean written, no ledger row changed, no floor moved, no
+  gate run beyond reads: this entry and the plan are the only edits, plus one pointer line in
+  `docs/architecture/juggler_lean.md`. The plan refuses any transport of a realization and
+  keeps Rhin's measure a hypothesis; N_0 and Paper A are untouched.
+- **Also observed, unrecorded:** two scratch checks, in the plan's appendix and in no probe.
+  The exact odd backward step of the Juggler exists iff the target is an odd cube (7 targets
+  below 3000, against 1000 residues 2 mod 3 for the Collatz odd preimage), the 3-adic half of
+  `J-lemma-eight-is-the-exponent-valuation`. The ceiling Juggler, rounding `n^(3/2)` and
+  `sqrt n` up, reaches only the cycles {1}, {2} and {3, 6} from starts below 3000, and {3, 6}
+  carries the contracting word OE of the Collatz trivial cycle: with -17, the known-bad inputs
+  for any Juggler no-cycle argument that does not use the direction of rounding.
+- **Ledger housekeeping the plan asks for:** `J-negative-m-cycle-lemmas` names no Lean file
+  although `NegativeMCycles` proves Lemmas 1 and 3; add the file name, no retag.
+
 ## 2026-09-21 -- The ORCID reaches all four papers, and the field sheet that no build was regenerating
 
 - **Objective:** Philippe asked for the ORCID

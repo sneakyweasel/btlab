@@ -7,6 +7,9 @@ The ordered source inventory and the publication module list live in
 sources have explicit auxiliary roles there. The barrel imports are checked
 against that inventory.
 
+Joining the Collatz-side modules to this layer, and what the join would prove:
+[collatz_bridge_lean_plan.md](../theory/collatz_bridge_lean_plan.md) (a plan, nothing built).
+
 ## Elementary cells and word statistics
 
 `Dynamics` defines the actual parity-dependent map. `RootCells` supplies the
