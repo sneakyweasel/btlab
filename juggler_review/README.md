@@ -166,3 +166,12 @@ asymptotic counting remain human-proof objects; censuses are observations.
 The full `Problems.Juggler` laboratory stack, the Word Atlas, pytest
 records, and internal dossiers. Those are not required to read either
 paper.
+
+## A draft in this folder, not in the bundle
+
+`collatz_3n_minus_1_m_cycles_note.pdf` (21 September 2026) is the laboratory draft of "No
+m-cycles of the 3n−1 map for m ≤ 49", built from
+[collatz_3n_minus_1_m_cycles_note.md](../docs/theory/collatz_3n_minus_1_m_cycles_note.md)
+by `python tools/build_3n_minus_1_note.py` (verify with `--check`). It is not a review
+object and is not deposited; its publication assessment is in
+[juggler_negative_m_cycles.md](../docs/problems/juggler_negative_m_cycles.md).

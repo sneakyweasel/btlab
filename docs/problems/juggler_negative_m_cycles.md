@@ -106,6 +106,18 @@ arithmetic at 80 digits).
 \(m\), the bound on \(\Lambda\), Rhin's ceiling \(K_3(m)\), the admissible lengths below it,
 the least one \(K_0(m)\), the closest margin in bits and the survivors.
 
+`python tools/check_3n_minus_1_note_numeric.py` recomputes the manuscript's numbers by a
+route independent of the probe: an integer sieve over \(K=iQ+j\) for the admissible lengths
+at \(2^{40}\), \(2^{44}\) and \(2^{48}\) (checked first against a direct scan at coarse
+windows), the ceilings from their defining inequality at \(K_3-1\) and \(K_3\), the margins
+at one hundred digits, the known cycles by iteration, the floor's printed counts against the
+certificate; it compares them with the note's tables and the summary, writes
+`manuscript_check.json` beside the summary, and fails on a copy of the note with two wrong
+cells (21 September 2026: two findings, nothing else). `python tools/build_3n_minus_1_note.py`
+builds [collatz_3n_minus_1_m_cycles_note.pdf](../../juggler_review/collatz_3n_minus_1_m_cycles_note.pdf)
+(seven pages) with the Paper C chain and a strict layout gate; `--check` verifies the PDF
+against its manifest in `.build/collatz_3n_minus_1_note/`.
+
 ## Conjectures
 
 None. The \(3n-1\) analogue of the Collatz conjecture, that \(1\), \(5\) and \(17\) are the
@@ -142,6 +154,11 @@ elementary and are the natural next Lean; Rhin's bound would enter as a hypothes
   \(15.0\), \(7.8\), \(2.9\) bits of room; at \(2^{48}\) only the last.
 - **Sanity.** With the floor at \(17\), \(m=2\) leaves \(K=11\); at \(5\), \(m=1\) leaves
   \(K=3\); the chaining is tight on the \(17\)-cycle (\(16\to40\) against \(40.5\)).
+- **Ceilings corrected (21 September 2026, by the manuscript check).** The probe's
+  \(K_3(m)\) was one above the least integer of its definition: it evaluated \(L_{\min}\)
+  at \(\lfloor K\rfloor\) inside a real bisection and rounded up. It is exact now; Table 1
+  of the note moved down by one in every row, and nothing else moved, the admissible counts,
+  least lengths, margins and survivors being the same at every floor.
 
 ## Open questions
 
@@ -161,6 +178,36 @@ lattice ([SdW] Section 7) does to the four lengths at \(m=50\).
 
 ## Publication assessment
 
-Status: `PAPER_CANDIDATE`. A short note, the length of Simons 2007: the floor as a
-computational certificate, the theorem with Rhin cited, the tables, the open lengths. Its
-first paragraph should say it is a transposition.
+Status: `PAPER_CANDIDATE`, not yet a review object (assessed 21 September 2026). A short
+note, the length of Simons 2007. What has been checked: Lemmas 1–4, Proposition 5 and
+Theorem 6 read line by line; every number in the manuscript recomputed by
+`tools/check_3n_minus_1_note_numeric.py` by a route independent of the probe; the PDF built
+with no layout warning. What a referee would ask for before acceptance, in the order it
+matters:
+
+1. **The fifth step.** [SdW] run the lattice reduction (their Section 7, Lemma 18) and it is
+   worth five values of \(m\) at their floor; a referee will ask why it was not run on the
+   four lengths at \(m=50\). It is the first thing to do.
+2. **The floor as a citable object.** One implementation, one run, archived in the
+   repository. It needs a deposit with a DOI (verifier sources, chunk reports, coverage
+   check) and, ideally, an independent re-run; Paper A's Remark 5.20 already rests on it, so
+   the deposit serves both.
+3. **Internal names.** Branch names, Lean lemma names and `python -m` commands must become a
+   repository URL with a commit hash, or the DOI of the deposit.
+4. **Front matter.** The draft banner and "not a review object" go; an AI-assistance
+   disclosure and the author's responsibility statement as in Papers A–C; a 2020 MSC line,
+   which is also what the layout filter uses to close the abstract.
+5. **References.** [Si03], [E93], [St77], [L85] and [A] are listed and never cited by key;
+   Lemma 4's walk needs the three-distance theorem cited (Sós 1958, Świerczkowski 1959,
+   Slater 1967); DOIs throughout.
+6. **Wording.** "No published verification floor and no \(m\)-cycle theorem with
+   \(m\ge3\) existed" should read "to our knowledge", with the search named; Simons [S07]
+   sketches the \(3x-1\) case in his Section 6 rather than proving it in full, and the note
+   should say so; Proposition 5's "the doubled constant covers \(m/\Lambda+1\)" should say
+   that the factor two is a margin the proof does not need.
+7. **Lean.** Lemmas 1–3 are elementary; the laboratory's standard is to have them
+   machine-checked before deposit, with Rhin's bound entering as a hypothesis as
+   `cycleMin_length_of_rhin` does on the Juggler side.
+
+None of these touches the theorem. Items 1 and 2 decide whether it is a note worth a
+referee's time or a table.

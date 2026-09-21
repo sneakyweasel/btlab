@@ -65,14 +65,18 @@ def test_the_cycles_that_exist_pass_the_template() -> None:
 
 
 def test_rhin_ceiling_is_a_genuine_ceiling() -> None:
-    """Beyond ``K3(m)`` the chaining beats ``2 e^{6.1256} m K^{13.3}``; just below it does
-    not. Checked at m = 1, 5, 20."""
-    with mp.workdps(30):
+    """From ``K3(m)`` on the chaining beats ``2 e^{13.3 RHIN_OFFSET} m K^{13.3}`` (``2 m K^{13.3}``
+    with the offset at zero); at ``K3(m) - 1`` it does not, so the ceiling is the least integer
+    of its definition and not one more (the rounding the first version had). Checked at
+    m = 1, 5, 20, 49."""
+    with mp.workdps(40):
         c0 = 2 * mp.e ** (nm.RHIN_EXPONENT * nm.RHIN_OFFSET)
-        for m in (1, 5, 20):
+        for m in (1, 5, 20, 49):
             K = nm.K3(m)
             assert 2 ** nm.log2_xmin_lower(K, m) >= c0 * m * mpf(K) ** nm.RHIN_EXPONENT
+            assert 2 ** nm.log2_xmin_lower(K - 1, m) < c0 * m * mpf(K - 1) ** nm.RHIN_EXPONENT
             assert 2 ** nm.log2_xmin_lower(max(K // 2, 2), m) < c0 * m * mpf(max(K // 2, 2)) ** nm.RHIN_EXPONENT
+        assert nm.K3(1) == 155 and nm.K3(49) == 9921719447060
 
 
 def test_admissible_lengths_are_exactly_the_expanding_near_convergents() -> None:

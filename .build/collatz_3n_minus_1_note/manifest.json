@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "canonical_source": "docs/theory/collatz_3n_minus_1_m_cycles_note.md",
+  "status": "laboratory draft; no external deposit",
+  "source_date_epoch": "1789948800",
+  "tools": {
+    "pandoc": "pandoc.EXE 3.6.3",
+    "xelatex": "MiKTeX-XeTeX 4.18 (MiKTeX 26.5)"
+  },
+  "pages": 7,
+  "inputs": {
+    "docs/theory/collatz_3n_minus_1_m_cycles_note.md": "831797c87ce34c5b0a3071c75c1f3f386f7d2c85ecb63250559973bfb08bf7c8",
+    "tools/collatz_note/article.tex": "fa21e0dd66c5259739347809808d9769b25ed6ad1fca1f1c8bfb408c5facd240",
+    "tools/collatz_note/layout.lua": "e021e63c99b8dff8668accd7edc0064e6ced736780839bff05b4b49b8fef65aa",
+    "tools/build_3n_minus_1_note.py": "641fedf940d0f0b3a05a20844dc623f70bd2d0f294ec6666a584677478b6a289"
+  },
+  "outputs": {
+    "juggler_review/collatz_3n_minus_1_m_cycles_note.pdf": "63fcf5de618b8cbd623aa5de519b61aa0b3f277d34f0521cca0169a438fc0c7d"
+  }
+}

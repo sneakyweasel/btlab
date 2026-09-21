@@ -23,11 +23,14 @@ in ``docs/theory/collatz_3n_minus_1_m_cycles_note.md``:
 * **Crandall.** ``Lambda ≤ m/(x_min - 1)`` makes ``o/K`` a best approximation of
   ``log 2 / log 3`` from above, so ``K`` is at least the first admissible length ``K0(m)``,
   found exactly by the three-gap walk.
-* **Rhin.** ``Lambda > exp(-13.3 (0.46057 + log K))`` (Rhin 1987, Proposition p. 160, (7), the
-  form Paper A Corollary 4.11 uses), so ``x_min - 1 < m e^{6.1256} K^{13.3}``; against the
-  chaining this bounds ``K`` above by ``K3(m)``.
+* **Rhin.** ``|u_0 + u_1 log 2 + u_2 log 3| >= H^{-13.3}`` for ``H = max(|u_1|, |u_2|) >= 2``
+  (Rhin 1987, Proposition p. 160, (7), as printed); with ``(u_0, u_1, u_2) = (0, -K, o)`` and
+  ``H = K`` the length, ``x_min - 1 < m / Lambda <= m K^{13.3}``; against the chaining this
+  bounds ``K`` above by ``K3(m)``. (The form ``exp(-13.3 (0.46057 + log K))`` carried since
+  Paper A is Simons-de Weger 2005 Lemma 12, the same bound at ``H = K + L`` in the odd count;
+  ``RHIN_OFFSET`` restores it for comparison.)
 
-For each ``m`` the admissible lengths ``K ≤ K3(m)`` with ``Lambda(K) ≤ m/(X0 - 1)`` are
+For each ``m`` the admissible lengths ``K < K3(m)`` with ``Lambda(K) < m/(X0 - 1)`` are
 enumerated exactly, and each is tested against the chaining: an m-cycle of length ``K`` needs
 ``2^{L_min(K, m)} < m / Lambda(K)``. No survivor means no m-cycle above the floor. The
 statement is conditional on Rhin's effective measure, an external theorem, and on nothing
@@ -72,6 +75,15 @@ CYCLES: tuple[tuple[int, ...], ...] = ((1,), (5, 7, 10), (17, 25, 37, 55, 82, 41
 #: that H is the cycle length itself.
 RHIN_EXPONENT = mpf("13.3")
 RHIN_OFFSET = mpf("0")
+
+
+def rhin_form() -> str:
+    """The bound in force, spelled out for the summary and the rendered table."""
+    if RHIN_OFFSET == 0:
+        return (f"Lambda >= K^(-{RHIN_EXPONENT}), K the cycle length "
+                "(Rhin 1987, Proposition (7), H = max(|u_1|, |u_2|) = K)")
+    return (f"Lambda > exp(-{RHIN_EXPONENT} ({RHIN_OFFSET} + log K)), K the cycle length "
+            "(Simons-de Weger 2005 Lemma 12 form)")
 #: floors to table, with the label each is reported under; 301 * 2^50 is the floor of
 #: Simons-de Weger 2005 (Roosendaal, November 2004), for a like-for-like comparison
 FLOORS: tuple[tuple[int, str], ...] = (
@@ -165,33 +177,43 @@ def lambda_bound(m: int, X0: int) -> mpf:
 
 
 def K3(m: int) -> int:
-    """The least ``K*`` such that for every ``K ≥ K*`` the chaining and Rhin contradict the
-    cycle equation whatever ``Lambda(K)`` is: ``2^{L_min(K, m)} ≥ 2 e^{6.1256} m K^{13.3}``,
-    which covers ``m/Lambda(K) + 1``. Found as the larger root of a function that is
-    eventually increasing."""
-    with mp.workdps(30):
+    """The least integer ``K*`` such that ``2^{L_min(K, m)} ≥ 2 e^{13.3 RHIN_OFFSET} m K^{13.3}``
+    for every ``K ≥ K*`` (the factor is ``2m`` with ``RHIN_OFFSET = 0``), which covers
+    ``m/Lambda(K) + 1``; every m-cycle has length ``K < K*``. The function
+    ``g(K) = L_min(K, m) - 13.3 log_2 K - log_2(2 e^{13.3 RHIN_OFFSET} m)`` is convex, has its
+    minimum at ``K = 13.3 delta B(m) / log 2`` and is negative there, so it has one root beyond
+    the minimum; ``K*`` is that root rounded up, confirmed at the integers ``K* - 1`` (negative)
+    and ``K*`` (non-negative). Earlier versions evaluated ``L_min`` at ``int(K)`` inside a real
+    bisection and returned one more than this."""
+    with mp.workdps(40):
         c = log(2 * exp(RHIN_EXPONENT * RHIN_OFFSET) * m) / log(2)
+        d = delta()
+        B = tower_B(m)
 
         def g(K: mpf) -> mpf:
-            return log2_xmin_lower(int(K), m) - RHIN_EXPONENT * log(K) / log(2) - c
+            return (K / d + (B - m) / (d - 1)) / B - RHIN_EXPONENT * log(K) / log(2) - c
 
-        lo, hi = mpf(2), mpf(2)
+        kmin = RHIN_EXPONENT * d * B / log(2)
+        if not g(kmin) < 0:
+            raise RuntimeError(f"the ceiling function is not negative at its minimum for m = {m}")
+        lo, hi = kmin, 2 * kmin
         while g(hi) < 0:
             hi *= 2
             if hi > mpf(10) ** 60:
                 raise RuntimeError("no Rhin ceiling below 1e60")
-        # g may be negative on [lo, hi) and positive from the root on; bisect the crossing
-        lo = hi / 2
-        for _ in range(200):
+        for _ in range(300):
             mid = (lo + hi) / 2
             if g(mid) < 0:
                 lo = mid
             else:
                 hi = mid
-        Kstar = int(floor(hi)) + 1
-        # g must stay non-negative beyond: check a few doublings
-        for t in range(1, 6):
-            assert g(mpf(Kstar) * 2 ** t) >= 0
+        Kstar = int(mp.ceil(hi))
+        while Kstar - 1 > kmin and g(mpf(Kstar - 1)) >= 0:
+            Kstar -= 1
+        while g(mpf(Kstar)) < 0:
+            Kstar += 1
+        if not (g(mpf(Kstar)) >= 0 > g(mpf(Kstar - 1)) and mpf(Kstar - 1) >= kmin):
+            raise RuntimeError(f"ceiling bracket failed for m = {m}")
         return Kstar
 
 
@@ -263,7 +285,7 @@ def row(m: int, X0: int) -> dict[str, Any]:
         eps_frac = eps / log(3)
         ceiling = K3(m)
         expected = float(eps_frac * ceiling)
-        lengths = admissible_lengths(eps_frac, ceiling) if expected < WALK_CAP / 2 else None
+        lengths = admissible_lengths(eps_frac, ceiling - 1) if expected < WALK_CAP / 2 else None
         survivors = []
         K0 = None
         margin = None
@@ -396,7 +418,7 @@ def probe_payload() -> dict[str, Any]:
                               for k, v in cycle_data(c).items()} for c in CYCLES],
         "floor_log2": FLOOR_LOG2,
         "rhin": {"exponent": float(RHIN_EXPONENT), "offset": float(RHIN_OFFSET),
-                 "form": "Lambda > exp(-13.3 (0.46057 + log K)), K the cycle length"},
+                 "form": rhin_form()},
         "identity_checks": run_identity_checks(),
         "known_cycles_survive": known_cycles_survive(),
         "tables": tables,

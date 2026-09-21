@@ -1,5 +1,43 @@
 # Research journal
 
+## 2026-09-21 -- The 3n-1 note read for publication: sound, not ready; its numbers independently checked, the ceilings off by one corrected, the PDF built
+
+- **Objective:** Philippe asked whether the \(3n-1\) \(m\)-cycle note is ready for
+  publication, and for a PDF.
+- **Verdict.** Sound, not ready. Lemmas 1–4, Proposition 5 and Theorem 6 read line by line
+  and hold; the theorem and its margins do not move. What stands between the draft and a
+  submission is in the dossier's publication assessment: the lattice step at \(m=50\)
+  ([SdW] Section 7), the floor deposited as a citable object, internal names replaced by a
+  public URL or DOI, the front matter (banner, disclosure, MSC), five references listed but
+  never cited, the three-distance theorem uncited, "to our knowledge" on the novelty claims,
+  Lean for Lemmas 1–3.
+- **The manuscript check.** `tools/check_3n_minus_1_note_numeric.py`, new: the admissible
+  lengths at \(2^{40}\), \(2^{44}\) and \(2^{48}\) enumerated by an integer sieve over
+  \(K=iQ+j\), \(Q=301994\), at a \(2^{256}\) scale (661 lengths below \(K_3(50)\); the
+  sieve first checked against a direct scan at two coarse windows), the 53 ceilings
+  recomputed from their defining inequality, every margin at one hundred digits, the known
+  cycles' \((K,o)\) re-derived, the floor's printed counts looked up in the certificate.
+  Every table entry agrees. Shown to fail on a copy of the note with two wrong cells: two
+  findings, nothing else.
+- **What it found.** The probe's \(K_3(m)\) was one above the least integer of the note's
+  definition: it evaluated \(L_{\min}\) at \(\lfloor K\rfloor\) inside a real bisection and
+  rounded up. Now exact; Table 1 down by one in every row; admissible counts, least lengths,
+  margins and survivors unchanged at every floor (the data diff is the ceiling column and a
+  stale string). The same pass fixed the probe's Rhin text, which still described the
+  Lemma 12 form after the switch to (7), and the note's floor paragraph, which had
+  ninety-six chunks covering everything below \(2^{44}\): the certificate is one hundred and
+  twelve, sixteen with the plain walker to \(2^{40}\) (544 steps against a cap of 4000) and
+  ninety-six above it (704 against 40000), plus the seven gap starts verified by full
+  iteration, as Paper A states it.
+- **The PDF.** `tools/build_3n_minus_1_note.py`, the Paper C chain with the note's own
+  template (a subtitle line; "≤" made an active character, since Latin Modern's text faces
+  lack the glyph; `tabcolsep` 3pt, which was Table 1's 1.16pt overfull) and the strict
+  layout gate; seven pages at `juggler_review/collatz_3n_minus_1_m_cycles_note.pdf`,
+  manifest and logs under `.build/collatz_3n_minus_1_note/`, `--check` green. Named outside
+  the `build_paper_*` glob on purpose: the release gates expect a Zenodo kit behind that
+  name.
+- **Next.** The lattice step at \(m=50\), then the deposit of the floor.
+
 ## 2026-09-21 -- Simons-de Weger 2005 read: the transposition lands on their Lemma 17 at their floor, and Rhin's bound was being carried 457 times too weak
 
 - **Objective:** Philippe placed the Acta Arithmetica PDF on the Desktop; read it, and
@@ -284,7 +322,39 @@
   open copy and stays unread; `winkler-2026-connection-thresholds` is now known
   not to be public at all — cited by the August revision and by nothing else, so
   it needs an author request (`mike.winkler@ruhr-uni-bochum.de`); Terras's
-  Table A row at `k = 900` is still held out as a scan-reading question.
+  Table A row at `k = 900` is still held out as a scan-reading question;
+  A100982 and the bridge drafts wait on Philippe's submission, A076227 on the
+  editors.
+- **OEIS edits, later the same day.** A076227: the Terras link and three
+  comments -- the counting problem is his Definitions 1.12-1.13, his Theorem
+  1.14 underlies Winkler's Pascal theorem, and Corollary 1.16 reads
+  `F(k) = a(k-1)/2^(k-1)` for `k >= 2` -- Philippe's draft #182, in review.
+  A100982 drafted: Wagon's admissible sequence of order n is Terras's terminal
+  word with n ones, the two senses of *admissible* flagged, and
+  `a(n) = n(A020914(n)-n, A020914(n))`, one cell of his table, since
+  `(2^(k-1), 2^k)` holds at most one power of 3; checked to `n = 27`, against
+  A260591 to `k = 35`, and against the actual dropping times below `2^20`.
+  Found on the way: the OEIS was Terras-aware where we had not looked --
+  A260591's reference line names Theorem 1.14 (11) by its title, A186008 has
+  the frequency, A186109 Table A, A126241 `tau` and Conjecture 2.9. The four
+  entries checked on 20 September were exactly the Terras-free ones, so "no
+  Terras in the neighbourhood" was a four-entry fact wearing a wider name. The
+  ICM scan link that seven entries carry now answers 403; the DOI resolves.
+- **The Juggler bridge drafted, and my own wording caught.** Comments for
+  A094778, A094683 and A076227 (the last to wait for #182). The one new
+  computation: the Juggler dropping time equals the first contracting length
+  of its own parity word for every odd start below `10^6`, exact integers, the
+  five starts past 400000 digits included; so every A094778 term in range lies
+  in A020914. The one-sided bound is Paper B's Proposition 2.1 and is a
+  theorem; the equality is an observation and is filed as one, with a control
+  that fails on a weakened floor
+  (`test_juggler_drop_is_first_contracting_length.py`, 4 green). Caught before
+  it went out: my draft said a contracting word "certifies descent in both
+  problems". For Collatz that is Terras's open Conjecture 2.9, the `+1`
+  delaying rather than hastening; `n = 1` is already an exception. The two
+  perturbations point in opposite directions, which is the comment's real
+  content. MathWorld and Wikipedia mention Collatz on the Juggler pages only
+  as "see also".
 - **Decision:** `PARK`. No mathematical claim moved; this is provenance, register
   and one regression. The three obligations above are the next questions.
 

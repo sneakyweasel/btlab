@@ -1,6 +1,6 @@
 ---
 title: "No m-cycles of the 3n−1 map for m ≤ 49"
-subtitle: "The Simons–de Weger template on the negative side, from a verification floor of 2^44"
+subtitle: 'The Simons–de Weger template on the negative side, from a verification floor of \(2^{44}\)'
 author: Philippe Cochin
 date: 21 September 2026
 keywords:
@@ -52,12 +52,17 @@ with \((K,o)=(1,1),(3,2),(11,7)\) steps and odd steps. Whether these are all the
 whether every orbit is bounded, are the \(3x-1\) questions of Lagarias's bibliographies, open.
 
 **The floor.** Every \(1\le y<2^{44}\) reaches one of the three cycles. This is the
-laboratory's own computation (19–20 September 2026), ninety-six chunks of \(5\cdot2^{35}\)
-starts, \(8246337208320\) odd starts counted exactly, no failure, no new cycle, greatest step
-count \(704\); the verifier source, the chunk reports and the coverage check are archived
-with the branch `negative_floor_3x1`. No published floor exists: the only statement in print
-is an unattributed comment on OEIS A037084, "up to at least 100000000". The certificate is a
-computation and is labelled as one throughout.
+laboratory's own computation (19–20 September 2026), descent by strong induction on odd
+starts in one hundred and twelve chunks: sixteen with a plain walker through \(2^{40}\)
+(greatest step count \(544\) against a cap of \(4000\)), then ninety-six chunks of
+\(5\cdot2^{35}\) starts with a residue sieve modulo \(2^{24}\) and a \(2^{16}\)-step block
+map as an accelerator, \(8246337208320\) odd starts counted exactly (greatest step count
+\(704\) against a cap of \(40000\), counted in blocks of sixteen); the seven odd starts the
+first sixteen chunks had skipped, found from their own printed counts, are verified by full
+iteration. No start failed and no new cycle appeared. The verifier sources, the chunk reports
+and the coverage check are archived with the branch `negative_floor_3x1`. No published floor
+exists: the only statement in print is an unattributed comment on OEIS A037084, "up to at
+least 100000000". The certificate is a computation and is labelled as one throughout.
 
 **\(m\)-cycles.** A cycle with at least one even step splits into \(m\ge1\) maximal runs of
 odd elements alternating with runs of even elements. The first element of an odd run is a
@@ -236,19 +241,19 @@ when every admissible length is excluded.
 
 | \(m\) | \(m/(X_0-1)\) | \(K_3(m)\) | admissible \(K<K_3\) | least admissible | margin (bits) |
 |---|---|---|---|---|---|
-| 1 | \(5.7\cdot10^{-14}\) | 156 | 0 | — | — |
-| 2 | \(1.1\cdot10^{-13}\) | 496 | 0 | — | — |
-| 5 | \(2.8\cdot10^{-13}\) | 3927 | 0 | — | — |
-| 10 | \(5.7\cdot10^{-13}\) | 57130 | 0 | — | — |
-| 20 | \(1.1\cdot10^{-12}\) | 8393108 | 0 | — | — |
-| 30 | \(1.7\cdot10^{-12}\) | 1094917646 | 0 | — | — |
-| 40 | \(2.3\cdot10^{-12}\) | 134716197552 | 0 | — | — |
-| 44 | \(2.5\cdot10^{-12}\) | 913288455198 | 1 | 757698850864 | \(-399.7\) |
-| 45 | \(2.6\cdot10^{-12}\) | 1472498495288 | 3 | 757698850864 | \(-236.4\) |
-| 47 | \(2.7\cdot10^{-12}\) | 3824399289666 | 9 | 757698850864 | \(-68.3\) |
-| 48 | \(2.7\cdot10^{-12}\) | 6160750059302 | 15 | 757698850864 | \(-27.3\) |
-| 49 | \(2.8\cdot10^{-12}\) | 9921719447061 | 25 | 757698850864 | \(-1.4\) |
-| 50 | \(2.8\cdot10^{-12}\) | 15974496522786 | 41 | 539722056247 | \(+22.4\) |
+| 1 | \(5.7\cdot10^{-14}\) | 155 | 0 | — | — |
+| 2 | \(1.1\cdot10^{-13}\) | 495 | 0 | — | — |
+| 5 | \(2.8\cdot10^{-13}\) | 3926 | 0 | — | — |
+| 10 | \(5.7\cdot10^{-13}\) | 57129 | 0 | — | — |
+| 20 | \(1.1\cdot10^{-12}\) | 8393107 | 0 | — | — |
+| 30 | \(1.7\cdot10^{-12}\) | 1094917645 | 0 | — | — |
+| 40 | \(2.3\cdot10^{-12}\) | 134716197551 | 0 | — | — |
+| 44 | \(2.5\cdot10^{-12}\) | 913288455197 | 1 | 757698850864 | \(-399.7\) |
+| 45 | \(2.6\cdot10^{-12}\) | 1472498495287 | 3 | 757698850864 | \(-236.4\) |
+| 47 | \(2.7\cdot10^{-12}\) | 3824399289665 | 9 | 757698850864 | \(-68.3\) |
+| 48 | \(2.7\cdot10^{-12}\) | 6160750059301 | 15 | 757698850864 | \(-27.3\) |
+| 49 | \(2.8\cdot10^{-12}\) | 9921719447060 | 25 | 757698850864 | \(-1.4\) |
+| 50 | \(2.8\cdot10^{-12}\) | 15974496522785 | 41 | 539722056247 | \(+22.4\) |
 
 The exclusion at \(m=49\) hangs on \(1.4\) bits at \(K=757698850864\); any weakening of the
 constants, in Rhin's form or in the chaining, would move the theorem to \(m\le48\). At
