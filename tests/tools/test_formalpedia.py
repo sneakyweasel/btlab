@@ -610,6 +610,128 @@ def test_jev_key_tracks_the_statement_the_file_and_the_offer() -> None:
     assert key == fp.jev_key(dict(row), list(offer))
 
 
+def _fake_nouls(answer: dict[str, dict[str, float]] | None = None, *, seen: list | None = None):
+    """An ``AskNouls`` that rates every row covered -- 0.9 for coverage, 0.1 for each failure
+    mode -- unless ``answer`` maps a ledger id to the probabilities to return instead."""
+    def ask(state, questions):
+        if seen is not None:
+            seen.append((state, questions))
+        nouls = {"covers": 0.9, "claim_broader": 0.1, "decl_narrower": 0.1,
+                 "different_result": 0.05}
+        nouls.update((answer or {}).get(state["ledger_id"], {}))
+        return {"nouls": {q: nouls[q] for q in questions}, "model": "jev-test",
+                "input_tokens": 100}
+    return ask
+
+
+def test_jev_coverage_asks_every_resolved_row_with_all_the_declarations_it_names() -> None:
+    """The retag rule is about the declarations a row names, all of them: a row joined to a
+    list is asked about the list, and the four questions are the constant ones.  The offer
+    verdicts and the calibration already in the record survive the run untouched."""
+    index = fp.build()
+    ledger = json.load(io.open(fp.LEDGER, encoding="utf-8"))
+    offers = fp.jev_propose(index, ledger, _fake_ask(), workers=1)
+    offers["calibration"] = {"asked": "2026-09-21", "model": "jev-test", "sampled": 1,
+                             "top1": 1, "top3": 1, "confident": 1, "confident_correct": 1,
+                             "scorer_top1": 1}
+    seen: list = []
+    record = fp.jev_coverage(index, ledger, _fake_nouls(seen=seen), cached=offers, workers=1)
+    resolved = {r["id"]: fp.row_decls(r) for r in ledger
+                if fp.row_decls(r) and r["tag"] != "REFUTED"}
+    assert any(fp.row_decls(r) and r["tag"] == "REFUTED" for r in ledger)  # the exclusion bites
+    assert {s["ledger_id"] for s, _ in seen} == set(resolved) == set(record["coverage"]["rows"])
+    for state, questions in seen:
+        assert [d["name"] for d in state["declarations"]] == resolved[state["ledger_id"]]
+        assert all(d["statement"] for d in state["declarations"])
+        assert list(questions) == list(fp.JEV_COVERAGE_QUESTIONS)
+    for verdict in record["coverage"]["rows"].values():
+        assert set(fp.JEV_COVERAGE_QUESTIONS) <= set(verdict)
+        assert {"key", "model", "asked", "decls"} <= set(verdict)
+    assert record["rows"] == offers["rows"] and record["calibration"] == offers["calibration"]
+    assert record["coverage"]["totals"]["asked_now"] == len(seen) == len(resolved)
+    assert record["coverage"]["totals"]["unfound"] == 0
+
+
+def test_jev_coverage_lists_a_known_bad_row_and_clears_the_covered_ones() -> None:
+    """The known-bad input.  A row Jev rates as broader than its declaration is filed as not
+    covered with that reading; a row with doubtful coverage and no mode above half is listed
+    under the doubtful mark and says so; a row rated covered is left off even when a failure
+    mode is high, because coverage alone lists; a record of all-covered rows lists nothing."""
+    index = fp.build()
+    ledger = json.load(io.open(fp.LEDGER, encoding="utf-8"))
+    ids = [r["id"] for r in ledger if fp.row_decls(r) and r["tag"] != "REFUTED"]
+    broad, doubtful, covered = ids[0], ids[-1], ids[1]
+    answer = {broad: {"covers": 0.1, "claim_broader": 0.9},
+              doubtful: {"covers": 0.3},
+              covered: {"covers": 0.55, "decl_narrower": 0.8}}
+    record = fp.jev_coverage(index, ledger, _fake_nouls(answer), workers=1)
+    rows = {r["id"]: r for r in fp.coverage_rows(index, ledger, record)}
+    assert rows[broad]["flagged"] and rows[broad]["reading"] == "claim_broader"
+    assert rows[broad]["band"] == "not_covered"
+    assert rows[doubtful]["flagged"] and rows[doubtful]["reading"] is None
+    assert rows[doubtful]["band"] == "doubtful"
+    assert not rows[covered]["flagged"] and rows[covered]["band"] == "covered"
+    assert rows[covered]["reading"] == "decl_narrower"
+    assert sum(r["flagged"] for r in rows.values()) == 2
+    text = fp.coverage_digest(index, ledger, jev=record)
+    assert text.startswith("# Coverage review queue")
+    assert text.count("\n## ") == 2
+    first, mark, second = (text.index(f"`{broad}`"), text.index("**Doubtful from here"),
+                           text.index(f"`{doubtful}`"))
+    assert first < mark < second                                       # lowest coverage first
+    assert "Reads as: the claim asserts more than the declarations state (0.9)" in text
+    assert "coverage itself is doubtful" in text
+    assert f"resolved rows: {len(ids) - 2} covered," in text
+    assert "1 doubtful, 1 not covered; 2 are" in text
+    statement = next(r["statement"] for r in ledger if r["id"] == broad)
+    assert ("likeliest mis-joins" in text) == (len(statement) < 150)
+    assert text.count("```lean") == len(fp.row_decls(next(r for r in ledger if r["id"] == broad))) \
+        + len(fp.row_decls(next(r for r in ledger if r["id"] == doubtful)))
+    clean = fp.coverage_digest(index, ledger, jev=fp.jev_coverage(index, ledger, _fake_nouls(),
+                                                                  workers=1))
+    assert "\n## " not in clean and "0 are\nlisted below" in clean
+    assert "Doubtful from here" not in clean
+
+
+def test_jev_coverage_reuses_verdicts_until_the_row_or_its_declarations_change() -> None:
+    """The key covers the statement and the declarations' text, so a row is re-asked when
+    either moves and otherwise keeps its answer; ``only`` asks the named rows and keeps the
+    rest; ``limit=0`` asks nothing; a changed row shows as stale and is not listed."""
+    index = fp.build()
+    ledger = json.load(io.open(fp.LEDGER, encoding="utf-8"))
+    first = fp.jev_coverage(index, ledger, _fake_nouls(), workers=1)
+    n = first["coverage"]["totals"]["answered"]
+    seen: list = []
+    again = fp.jev_coverage(index, ledger, _fake_nouls(seen=seen), cached=first, workers=1)
+    assert seen == [] and again["coverage"]["rows"] == first["coverage"]["rows"]
+    victim = next(iter(first["coverage"]["rows"]))
+    seen = []
+    some = fp.jev_coverage(index, ledger, _fake_nouls(seen=seen), cached=first,
+                           refresh=True, only={victim}, workers=1)
+    assert [s["ledger_id"] for s, _ in seen] == [victim]
+    assert some["coverage"]["totals"]["answered"] == n
+    seen = []
+    none = fp.jev_coverage(index, ledger, _fake_nouls(seen=seen), cached=first,
+                           refresh=True, limit=0, workers=1)
+    assert seen == [] and none["coverage"]["totals"]["answered"] == n
+    moved = json.loads(json.dumps(ledger))
+    row = next(r for r in moved if r["id"] == victim)
+    row["statement"] = row["statement"] + " And one more claim."
+    rows = {r["id"]: r for r in fp.coverage_rows(index, moved, first)}
+    assert rows[victim]["verdict"] == "stale" and not rows[victim]["flagged"]
+    assert "need a rerun" in fp.coverage_digest(index, moved, jev=first)
+    seen = []
+    fp.jev_coverage(index, moved, _fake_nouls(seen=seen), cached=first, workers=1)
+    assert [s["ledger_id"] for s, _ in seen] == [victim]
+
+
+def test_coverage_digest_says_so_when_jev_has_not_been_asked() -> None:
+    index = fp.build()
+    ledger = json.load(io.open(fp.LEDGER, encoding="utf-8"))
+    text = fp.coverage_digest(index, ledger, jev={})
+    assert "has not been asked yet" in text and "\n## " not in text
+
+
 #: Every file this tool writes is committed, and until 14 September 2026 nothing
 #: compared any of them to a rebuild.  All four had drifted.  The index did not
 #: know InformationField's ninety declarations, still listed `window_digit_scan`
@@ -639,6 +761,7 @@ def _generated() -> list[tuple[str, Path, str]]:
         ("propose", fp.PROPOSALS, fp.render(fp.propose(index, ledger))),
         ("dag", fp.DAG, fp.render(fp.dag(index, ledger))),
         ("review", fp.REVIEW, fp.review_digest(index, ledger)),
+        ("jev-coverage --limit 0", fp.COVERAGE, fp.coverage_digest(index, ledger)),
     ]
 
 

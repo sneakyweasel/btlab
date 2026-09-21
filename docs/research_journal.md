@@ -1,5 +1,44 @@
 # Research journal
 
+## 2026-09-21 -- The retag rule asked: Jev's coverage audit over the 248 resolved rows, reworded once after the first wording listed nine rows in ten
+
+- **Objective:** Philippe asked for the coverage Noul the morning's survey had proposed:
+  `EXACT — LEAN VERIFIED` is allowed only when the Lean theorem covers the English statement,
+  and nothing checked it. The proposal digest names the two ways a join records a part as the
+  whole and leaves both to the reader.
+- **What was built.** `jev-coverage` in `tools/formalpedia.py` asks four Nouls over each
+  resolved row and every declaration it names, docstring and header each: covers, claim
+  broader than the declarations, declarations narrower than the claim, different result.
+  Verdicts live in the same record as the offer verdicts, keyed on the statement and the
+  declarations' text, so an edit to either re-asks that row and shows it as stale until then.
+  `docs/research/formalpedia_coverage_review.md` lists rows with coverage below 0.5, lowest
+  first, filed as not covered below 0.25 and doubtful between, each with the statement and
+  every declaration in full and the failure mode Jev rates highest as the reading to check.
+  `--rows <id>` asks about one row, which the add-ledger-row skill now prescribes before a
+  retag; `--limit 0` rewrites the digest from the cache. `REFUTED` rows are not asked: their
+  declaration is the refutation. Four tests on a fake asker, including the known-bad row,
+  and the artifact gate now covers the new digest.
+- **The wording had to be measured, and failed once.** The first questions asked about the
+  claim "as written" and about "some declaration": 222 of 249 rows fell below half, the
+  digest's own repaired example among them at 0.08 with "narrower" 0.94, because a ledger row
+  cites papers, tests and trust levels and says what it does not claim, and because each of
+  two declarations covering half a claim is, alone, narrower than it. Rewritten to set
+  provenance aside and judge the declarations together, on the same forty rows: the six rows
+  readable as covered by eye moved to 0.72 and above, the five known part-for-whole joins
+  from the survey stayed at or below 0.08, the repaired example rose to 0.27 with "narrower"
+  halved. The mode clause was dropped from the listing rule; coverage alone lists.
+- **The audit now.** 248 rows, 262k input tokens, about a cent: 88 covered, 58 doubtful,
+  102 not covered, 160 listed. Coverage falls with statement length, 43 of 71 rows under 150
+  characters covered against 2 of 44 over a thousand, which is the rule read honestly: long
+  rows summarize a paper section and say more than one theorem proves. The digest therefore
+  indexes the short claims filed as not covered as the likeliest mis-joins, nine of them:
+  the finite-box row that claims an iff while its declaration proves one direction, the
+  `Q_{t,K,W}` definition row whose declaration carries no modulus, the two-congruence
+  endpoint row joined to one of them, and six more to read.
+- **Gates.** formalpedia, ledger and hygiene tests green except the pre-existing red on
+  `index.json`, a peer's unlanded `FactorConcat.lean`; left red as the skill says.
+- **Not done.** No ledger row was changed; the nine short mis-joins are a reading list.
+
 ## 2026-09-21 -- Jev beside the scorer: the ledger-to-declaration queue gets a second opinion, measured before it was trusted
 
 - **Objective:** Philippe asked for a Jev proposer beside `propose` in `tools/formalpedia.py`,

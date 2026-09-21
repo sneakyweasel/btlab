@@ -16,6 +16,7 @@ python tools/formalpedia.py show <name>      # one declaration, in full
 python tools/formalpedia.py impact <target>  # what a change here would rebuild
 python tools/formalpedia.py jev-propose      # ask Jev which theorem each unresolved row means
 python tools/formalpedia.py jev-calibrate    # score Jev on rows whose theorem is recorded
+python tools/formalpedia.py jev-coverage     # does a recorded theorem cover its row? (the retag rule)
 ```
 
 `<target>` accepts a module (`Problems.Juggler.CycleFinance`), a repo path, or a path
@@ -49,6 +50,28 @@ on 21 September 2026, thirty resolved rows, Jev put the recorded declaration fir
 and in its top three 26, against 16 for the scorer, and 16 of its 21 answers at or above 0.7
 were right. Most of what it got "wrong" were composite rows, where "none of these" is a fair
 reading, or a better join than the recorded one; read a disagreement before ruling on it.
+
+### The retag rule, asked
+
+`EXACT — LEAN VERIFIED` is allowed only when the Lean theorem covers the English statement,
+and nothing checked that. `jev-coverage` asks it of every resolved row as four Nouls over the
+claim and every declaration the row names: covers, claim broader than the declarations,
+declaration narrower than the claim, different result. Rows with coverage below 0.5 are
+listed in `docs/research/formalpedia_coverage_review.md`, lowest first, filed as not covered
+below 0.25 and doubtful between, each with the statement and every declaration in full and
+the failure mode Jev rates highest as the reading to check first. The questions set the
+row's provenance, trust remarks and disclaimers aside and judge the declarations together;
+the first wording did neither and listed nine rows in ten. Before retagging one row, ask
+about that row alone:
+
+```bash
+python tools/formalpedia.py jev-coverage --rows J-my-row-id
+```
+
+The verdict is keyed on the statement and the declarations' text, so an edit to either
+re-asks that row and shows it as stale until then; `--limit 0` rewrites the digest from the
+cache without asking. The remedies are the ledger's own: extend `decl` to the declarations
+that together state the claim, narrow the statement, or retag to `EXACT — HUMAN PROOF`.
 
 ## Before editing a Lean file, run `impact`
 

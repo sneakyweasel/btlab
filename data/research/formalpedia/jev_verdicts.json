@@ -109,10 +109,3160 @@
     "top3": 38,
     "truth_not_offered": 0
   },
+  "coverage": {
+    "asked": "2026-09-21",
+    "rows": {
+      "BT-D-S": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.23,
+        "covers": 0.78,
+        "decl_narrower": 0.6,
+        "decls": [
+          "D_after_S"
+        ],
+        "different_result": 0.07,
+        "key": "a661547e9946a5c4",
+        "model": "jev-1.13.0"
+      },
+      "BTA-cascade": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.05,
+        "covers": 0.89,
+        "decl_narrower": 0.2,
+        "decls": [
+          "outputAlong_comp"
+        ],
+        "different_result": 0.05,
+        "key": "8a4f50a8a4f2f697",
+        "model": "jev-1.13.0"
+      },
+      "BTA-cubic-vanish": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.22,
+        "covers": 0.88,
+        "decl_narrower": 0.2,
+        "decls": [
+          "vanishesMod_cubic_iff"
+        ],
+        "different_result": 0.06,
+        "key": "d558db46114e5cb0",
+        "model": "jev-1.13.0"
+      },
+      "BTA-eval-residualAlong": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.55,
+        "covers": 0.69,
+        "decl_narrower": 0.33,
+        "decls": [
+          "eval_residualAlong"
+        ],
+        "different_result": 0.09,
+        "key": "78ecacfc0d918094",
+        "model": "jev-1.13.0"
+      },
+      "BTA-fn-congr": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.56,
+        "covers": 0.45,
+        "decl_narrower": 0.27,
+        "decls": [
+          "equivK_iff_functionCongr"
+        ],
+        "different_result": 0.16,
+        "key": "cdb41cf1cae94dfc",
+        "model": "jev-1.13.0"
+      },
+      "BTA-quad-vanish": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.28,
+        "covers": 0.55,
+        "decl_narrower": 0.26,
+        "decls": [
+          "vanishesMod_quad_iff"
+        ],
+        "different_result": 0.04,
+        "key": "1dec8168174335ee",
+        "model": "jev-1.13.0"
+      },
+      "BTA-x3-H-n0neg": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.42,
+        "covers": 0.61,
+        "decl_narrower": 0.51,
+        "decls": [
+          "n0_eq_of_neg"
+        ],
+        "different_result": 0.06,
+        "key": "c90ec9d4e33172fd",
+        "model": "jev-1.13.0"
+      },
+      "BTA-x3-H-unit": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.15,
+        "covers": 0.72,
+        "decl_narrower": 0.52,
+        "decls": [
+          "unit_square_pm"
+        ],
+        "different_result": 0.04,
+        "key": "6cb688698937d184",
+        "model": "jev-1.13.0"
+      },
+      "BTA-x3-Q-def": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.92,
+        "covers": 0.08,
+        "decl_narrower": 0.74,
+        "decls": [
+          "qCubic_def"
+        ],
+        "different_result": 0.53,
+        "key": "81120fac3cffa585",
+        "model": "jev-1.13.0"
+      },
+      "BTA-x3-Q-eq": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.33,
+        "covers": 0.81,
+        "decl_narrower": 0.18,
+        "decls": [
+          "q_eq_iff"
+        ],
+        "different_result": 0.06,
+        "key": "f74e626861eb8460",
+        "model": "jev-1.13.0"
+      },
+      "BTA-x3-Q-inv-bal": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.27,
+        "covers": 0.77,
+        "decl_narrower": 0.26,
+        "decls": [
+          "balCubic_of_mod"
+        ],
+        "different_result": 0.11,
+        "key": "028ebe40a46a5526",
+        "model": "jev-1.13.0"
+      },
+      "BTA-x3-Q-inv-one": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.38,
+        "covers": 0.44,
+        "decl_narrower": 0.68,
+        "decls": [
+          "q_one_family_dvd"
+        ],
+        "different_result": 0.06,
+        "key": "1f55e8241106b518",
+        "model": "jev-1.13.0"
+      },
+      "BTA-x3-Q-shift": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.4,
+        "covers": 0.61,
+        "decl_narrower": 0.4,
+        "decls": [
+          "q_shift"
+        ],
+        "different_result": 0.24,
+        "key": "fc03ed5a69574256",
+        "model": "jev-1.13.0"
+      },
+      "BTA-x3-Q-unit-im": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.45,
+        "covers": 0.61,
+        "decl_narrower": 0.54,
+        "decls": [
+          "q_unit_family_dvd"
+        ],
+        "different_result": 0.08,
+        "key": "88c4801771e703a5",
+        "model": "jev-1.13.0"
+      },
+      "BTA-x3-Q-visible": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.66,
+        "covers": 0.45,
+        "decl_narrower": 0.57,
+        "decls": [
+          "q_visible_mod"
+        ],
+        "different_result": 0.39,
+        "key": "326f010c9ecae012",
+        "model": "jev-1.13.0"
+      },
+      "BTA-x3-deep-crit": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.15,
+        "covers": 0.56,
+        "decl_narrower": 0.33,
+        "decls": [
+          "deepest_equiv_iff"
+        ],
+        "different_result": 0.07,
+        "key": "2471dde5ace8207e",
+        "model": "jev-1.13.0"
+      },
+      "BTA-x3-def2-crit": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.51,
+        "covers": 0.39,
+        "decl_narrower": 0.44,
+        "decls": [
+          "deficitTwo_equiv_iff"
+        ],
+        "different_result": 0.14,
+        "key": "5b3557b04390a5a5",
+        "model": "jev-1.13.0"
+      },
+      "BTA-x3-equiv-N": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.3,
+        "covers": 0.74,
+        "decl_narrower": 0.24,
+        "decls": [
+          "equivK_cubic_newton"
+        ],
+        "different_result": 0.04,
+        "key": "f4a3fafdfeae76c3",
+        "model": "jev-1.13.0"
+      },
+      "BTA-x3-form": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.29,
+        "covers": 0.77,
+        "decl_narrower": 0.58,
+        "decls": [
+          "eval_cubicResid"
+        ],
+        "different_result": 0.06,
+        "key": "cdab6d300cb51d49",
+        "model": "jev-1.13.0"
+      },
+      "BTA-x3-inter-lift": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.8,
+        "covers": 0.32,
+        "decl_narrower": 0.39,
+        "decls": [
+          "inter_horizon_refines"
+        ],
+        "different_result": 0.16,
+        "key": "2890beb2f01167cf",
+        "model": "jev-1.13.0"
+      },
+      "BTA-x3-n0-sign": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.61,
+        "covers": 0.4,
+        "decl_narrower": 0.58,
+        "decls": [
+          "n0_sign_survives"
+        ],
+        "different_result": 0.12,
+        "key": "c8247ca07a7c43b0",
+        "model": "jev-1.13.0"
+      },
+      "BTA-x3-n1-diff": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.74,
+        "covers": 0.26,
+        "decl_narrower": 0.66,
+        "decls": [
+          "n1_after_n2_iff"
+        ],
+        "different_result": 0.3,
+        "key": "08ce1ae5890798a0",
+        "model": "jev-1.13.0"
+      },
+      "BTA-x3-n1-fibre": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.71,
+        "covers": 0.25,
+        "decl_narrower": 0.65,
+        "decls": [
+          "n21_fibre_in_pow"
+        ],
+        "different_result": 0.14,
+        "key": "f9c32d93b80f5c5e",
+        "model": "jev-1.13.0"
+      },
+      "BTA-x3-n1-scale": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.2,
+        "covers": 0.78,
+        "decl_narrower": 0.39,
+        "decls": [
+          "n1_high_val_scaled"
+        ],
+        "different_result": 0.06,
+        "key": "b8db8c905c4991c4",
+        "model": "jev-1.13.0"
+      },
+      "BTA-x3-n1-sign": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.48,
+        "covers": 0.19,
+        "decl_narrower": 0.77,
+        "decls": [
+          "n21_sign_iff"
+        ],
+        "different_result": 0.08,
+        "key": "d54970cbe3b78fa7",
+        "model": "jev-1.13.0"
+      },
+      "BTA-x3-n1-unit": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.47,
+        "covers": 0.55,
+        "decl_narrower": 0.45,
+        "decls": [
+          "n1_unit_injective"
+        ],
+        "different_result": 0.07,
+        "key": "1508f16b8e90b62b",
+        "model": "jev-1.13.0"
+      },
+      "BTA-x3-n1-val": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.39,
+        "covers": 0.61,
+        "decl_narrower": 0.6,
+        "decls": [
+          "n1_val_lt_injective"
+        ],
+        "different_result": 0.06,
+        "key": "8743776a2e0a2488",
+        "model": "jev-1.13.0"
+      },
+      "BTA-x3-n1fac": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.05,
+        "covers": 0.92,
+        "decl_narrower": 0.27,
+        "decls": [
+          "n1Resid_diff"
+        ],
+        "different_result": 0.04,
+        "key": "50cb460e773c7af8",
+        "model": "jev-1.13.0"
+      },
+      "BTA-x3-n3gate": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.76,
+        "covers": 0.43,
+        "decl_narrower": 0.74,
+        "decls": [
+          "n3_dvd_iff"
+        ],
+        "different_result": 0.06,
+        "key": "40e40d97f6c746c6",
+        "model": "jev-1.13.0"
+      },
+      "BTA-x3-vis": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.45,
+        "covers": 0.57,
+        "decl_narrower": 0.29,
+        "decls": [
+          "depthDeficit_n2_visibility"
+        ],
+        "different_result": 0.08,
+        "key": "ba7b5189949e77e0",
+        "model": "jev-1.13.0"
+      },
+      "BTA-x3-x": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.9,
+        "covers": 0.12,
+        "decl_narrower": 0.65,
+        "decls": [
+          "X_pow_three_sub_X_vanishes_one"
+        ],
+        "different_result": 0.57,
+        "key": "47f3274212df493c",
+        "model": "jev-1.13.0"
+      },
+      "BTC-D-I": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.53,
+        "covers": 0.67,
+        "decl_narrower": 0.43,
+        "decls": [
+          "D_after_I"
+        ],
+        "different_result": 0.09,
+        "key": "4e61faeb12a8f5fd",
+        "model": "jev-1.13.0"
+      },
+      "BTC-D-add": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.19,
+        "covers": 0.76,
+        "decl_narrower": 0.18,
+        "decls": [
+          "D_add"
+        ],
+        "different_result": 0.08,
+        "key": "73bd16e3fba49e88",
+        "model": "jev-1.13.0"
+      },
+      "BTC-D-mul": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.34,
+        "covers": 0.75,
+        "decl_narrower": 0.17,
+        "decls": [
+          "D_mul"
+        ],
+        "different_result": 0.06,
+        "key": "67289e27b2ba050d",
+        "model": "jev-1.13.0"
+      },
+      "BTC-add-not-D-local": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.47,
+        "covers": 0.58,
+        "decl_narrower": 0.26,
+        "decls": [
+          "add_not_DLocal"
+        ],
+        "different_result": 0.05,
+        "key": "0fa530c1be6bbefc",
+        "model": "jev-1.13.0"
+      },
+      "BTC-add-requires-carry-state": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.52,
+        "covers": 0.32,
+        "decl_narrower": 0.73,
+        "decls": [
+          "add_requires_carry_state"
+        ],
+        "different_result": 0.49,
+        "key": "dab7fd95f698ebb9",
+        "model": "jev-1.13.0"
+      },
+      "BTC-decomp": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.31,
+        "covers": 0.72,
+        "decl_narrower": 0.12,
+        "decls": [
+          "decomp"
+        ],
+        "different_result": 0.1,
+        "key": "f92742c8cc13acc9",
+        "model": "jev-1.13.0"
+      },
+      "BTC-op-fragment-nd-nf": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.93,
+        "covers": 0.2,
+        "decl_narrower": 0.22,
+        "decls": [
+          "unique_normal_form"
+        ],
+        "different_result": 0.07,
+        "key": "8d06e020d62b84d7",
+        "model": "jev-1.13.0"
+      },
+      "BTC-op-fragment-nd-semantic": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.9,
+        "covers": 0.17,
+        "decl_narrower": 0.65,
+        "decls": [
+          "eval_eq_unique_nf"
+        ],
+        "different_result": 0.16,
+        "key": "4f9a2468f294266d",
+        "model": "jev-1.13.0"
+      },
+      "BTC-push-in-S-peak": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.77,
+        "covers": 0.49,
+        "decl_narrower": 0.4,
+        "decls": [
+          "pushIn_not_locally_confluent"
+        ],
+        "different_result": 0.09,
+        "key": "4c38fe5a7a400338",
+        "model": "jev-1.13.0"
+      },
+      "BTC-word-simp-nf": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.88,
+        "covers": 0.46,
+        "decl_narrower": 0.18,
+        "decls": [
+          "unique_normal_form"
+        ],
+        "different_result": 0.08,
+        "key": "b019575a89ae6cf6",
+        "model": "jev-1.13.0"
+      },
+      "BTJ-comp": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.59,
+        "covers": 0.23,
+        "decl_narrower": 0.37,
+        "decls": [
+          "section_comp"
+        ],
+        "different_result": 0.48,
+        "key": "a87c77da5aa404c2",
+        "model": "jev-1.13.0"
+      },
+      "BTJ-jet": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.24,
+        "covers": 0.52,
+        "decl_narrower": 0.22,
+        "decls": [
+          "function_jet_reconstruction"
+        ],
+        "different_result": 0.08,
+        "key": "f5aa9ea230d46926",
+        "model": "jev-1.13.0"
+      },
+      "BTJ-product": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.14,
+        "covers": 0.81,
+        "decl_narrower": 0.17,
+        "decls": [
+          "section_product"
+        ],
+        "different_result": 0.07,
+        "key": "35d9255536e61390",
+        "model": "jev-1.13.0"
+      },
+      "BTL-reconstruct": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.64,
+        "covers": 0.39,
+        "decl_narrower": 0.68,
+        "decls": [
+          "iterated_reconstruction"
+        ],
+        "different_result": 0.15,
+        "key": "045e751a178ec806",
+        "model": "jev-1.13.0"
+      },
+      "BTL-trichotomy": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.82,
+        "covers": 0.34,
+        "decl_narrower": 0.35,
+        "decls": [
+          "lift_trichotomy"
+        ],
+        "different_result": 0.07,
+        "key": "0b9889851adaf354",
+        "model": "jev-1.13.0"
+      },
+      "BTL-zero-output": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.81,
+        "covers": 0.26,
+        "decl_narrower": 0.34,
+        "decls": [
+          "lift_iff_outputs_zero"
+        ],
+        "different_result": 0.09,
+        "key": "6e8118c1563fb2ae",
+        "model": "jev-1.13.0"
+      },
+      "BTN-carry-bound": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.93,
+        "covers": 0.14,
+        "decl_narrower": 0.6,
+        "decls": [
+          "DZ_carry_bound"
+        ],
+        "different_result": 0.2,
+        "key": "5ae7453c3fd047cf",
+        "model": "jev-1.13.0"
+      },
+      "BTN-carry-gain-3": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.85,
+        "covers": 0.47,
+        "decl_narrower": 0.56,
+        "decls": [
+          "carryGain3_eq",
+          "carryGain3_unbounded"
+        ],
+        "different_result": 0.1,
+        "key": "c7f0cd96cdda371b",
+        "model": "jev-1.13.0"
+      },
+      "BTN-confluence": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.81,
+        "covers": 0.3,
+        "decl_narrower": 0.56,
+        "decls": [
+          "stripped_trits_eq_encodeZ",
+          "reaches_encodeZ",
+          "confluence",
+          "locally_confluent",
+          "overlap_minus5_two_raw",
+          "overlap_minus5_two_stripped"
+        ],
+        "different_result": 0.28,
+        "key": "572c587963be3dbf",
+        "model": "jev-1.13.0"
+      },
+      "BTN-dadd-closure": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.8,
+        "covers": 0.25,
+        "decl_narrower": 0.65,
+        "decls": [
+          "dAdd_minimal_residual",
+          "dAdd_residual_closure"
+        ],
+        "different_result": 0.22,
+        "key": "3d935cf096f360dd",
+        "model": "jev-1.13.0"
+      },
+      "BTN-dadd-repaired": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.19,
+        "covers": 0.68,
+        "decl_narrower": 0.15,
+        "decls": [
+          "dAdd_repaired"
+        ],
+        "different_result": 0.08,
+        "key": "be333a6c6f6d4bf2",
+        "model": "jev-1.13.0"
+      },
+      "BTN-doubled-closure": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.22,
+        "covers": 0.74,
+        "decl_narrower": 0.33,
+        "decls": [
+          "doubledTrit_reach_one",
+          "doubledTrit_reach_neg",
+          "doubledTrit_closure"
+        ],
+        "different_result": 0.09,
+        "key": "b330afd003187fd5",
+        "model": "jev-1.13.0"
+      },
+      "BTN-doubled-lyapunov": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.36,
+        "covers": 0.72,
+        "decl_narrower": 0.24,
+        "decls": [
+          "doubledTrit_lyapunov"
+        ],
+        "different_result": 0.07,
+        "key": "b81f1180090d21e1",
+        "model": "jev-1.13.0"
+      },
+      "BTN-doubled-minimality": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.89,
+        "covers": 0.33,
+        "decl_narrower": 0.34,
+        "decls": [
+          "doubledTrit_outputSignatures_distinct"
+        ],
+        "different_result": 0.08,
+        "key": "6b80418c7fe9199c",
+        "model": "jev-1.13.0"
+      },
+      "BTN-doubled-sign": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.12,
+        "covers": 0.88,
+        "decl_narrower": 0.14,
+        "decls": [
+          "doubledTrit_sign"
+        ],
+        "different_result": 0.05,
+        "key": "750eb94cfe216e76",
+        "model": "jev-1.13.0"
+      },
+      "BTN-expanding-j2": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.27,
+        "covers": 0.68,
+        "decl_narrower": 0.5,
+        "decls": [
+          "jet2_expandingD",
+          "jet2_residue_closure"
+        ],
+        "different_result": 0.06,
+        "key": "37324ce8b296250e",
+        "model": "jev-1.13.0"
+      },
+      "BTN-expanding-j2-lambda": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.87,
+        "covers": 0.54,
+        "decl_narrower": 0.22,
+        "decls": [
+          "jet2_expandingDGain_two",
+          "jet2_expandingDGain_three"
+        ],
+        "different_result": 0.08,
+        "key": "427a82796f063f2e",
+        "model": "jev-1.13.0"
+      },
+      "BTN-expanding-j3": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.22,
+        "covers": 0.77,
+        "decl_narrower": 0.27,
+        "decls": [
+          "jet3_factors_through_jet2"
+        ],
+        "different_result": 0.08,
+        "key": "1bcb66ab7ecf20d3",
+        "model": "jev-1.13.0"
+      },
+      "BTN-expanding-j3-lambda": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.38,
+        "covers": 0.64,
+        "decl_narrower": 0.21,
+        "decls": [
+          "jet3_expandingDGain_two",
+          "jet3_expandingDGain_three"
+        ],
+        "different_result": 0.14,
+        "key": "b0b2f21ea4ebf32c",
+        "model": "jev-1.13.0"
+      },
+      "BTN-expanding-lambda": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.88,
+        "covers": 0.46,
+        "decl_narrower": 0.25,
+        "decls": [
+          "lsdZ_expandingDGain_two",
+          "lsdZ_expandingDGain_three"
+        ],
+        "different_result": 0.1,
+        "key": "348dca788cff9420",
+        "model": "jev-1.13.0"
+      },
+      "BTN-expanding-lsd": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.55,
+        "covers": 0.76,
+        "decl_narrower": 0.28,
+        "decls": [
+          "lsdZ_iterate_expandingD"
+        ],
+        "different_result": 0.09,
+        "key": "4ace5298abd88da7",
+        "model": "jev-1.13.0"
+      },
+      "BTN-expanding-right-inverse": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.64,
+        "covers": 0.43,
+        "decl_narrower": 0.26,
+        "decls": [
+          "expandingD_eq_IZ_shape",
+          "DZ_expandingD"
+        ],
+        "different_result": 0.23,
+        "key": "a532b7b499abeb67",
+        "model": "jev-1.13.0"
+      },
+      "BTN-expanding-section": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.14,
+        "covers": 0.8,
+        "decl_narrower": 0.28,
+        "decls": [
+          "expandingD_IZ",
+          "lsdZ_expandingD_IZ"
+        ],
+        "different_result": 0.08,
+        "key": "54b66e32589052c7",
+        "model": "jev-1.13.0"
+      },
+      "BTN-mr-factor-through-raw": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.65,
+        "covers": 0.56,
+        "decl_narrower": 0.38,
+        "decls": [
+          "product_factor_through_raw"
+        ],
+        "different_result": 0.24,
+        "key": "9433041066b6b383",
+        "model": "jev-1.13.0"
+      },
+      "BTN-mr-product-closure": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.86,
+        "covers": 0.52,
+        "decl_narrower": 0.5,
+        "decls": [
+          "product_residual_closure"
+        ],
+        "different_result": 0.08,
+        "key": "d7fe93887f1baf88",
+        "model": "jev-1.13.0"
+      },
+      "BTN-sdr-escape-general": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.79,
+        "covers": 0.33,
+        "decl_narrower": 0.3,
+        "decls": [
+          "signedIterate_unbounded_of_ge_three"
+        ],
+        "different_result": 0.07,
+        "key": "623ed60dcc1935c9",
+        "model": "jev-1.13.0"
+      },
+      "BTN-sdr-finite-condition": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.92,
+        "covers": 0.07,
+        "decl_narrower": 0.91,
+        "decls": [
+          "finite_residual_condition"
+        ],
+        "different_result": 0.09,
+        "key": "1cf23e43a462d348",
+        "model": "jev-1.13.0"
+      },
+      "BTN-sdr-lambda1-radius": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.9,
+        "covers": 0.1,
+        "decl_narrower": 0.73,
+        "decls": [
+          "lambda1_radius_div"
+        ],
+        "different_result": 0.46,
+        "key": "adca9f94ab820492",
+        "model": "jev-1.13.0"
+      },
+      "BTN-sdr-lambda2-radius": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.58,
+        "covers": 0.53,
+        "decl_narrower": 0.38,
+        "decls": [
+          "lambda2_sharp_box"
+        ],
+        "different_result": 0.06,
+        "key": "5748de8c26e1eb59",
+        "model": "jev-1.13.0"
+      },
+      "BTN-sdr-multi-trit": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.69,
+        "covers": 0.48,
+        "decl_narrower": 0.54,
+        "decls": [
+          "multi_trit_carry_bound",
+          "multi_trit_carry_minimal"
+        ],
+        "different_result": 0.15,
+        "key": "177cbc699ff81f28",
+        "model": "jev-1.13.0"
+      },
+      "BTN-sdrc-any-word": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.23,
+        "covers": 0.69,
+        "decl_narrower": 0.22,
+        "decls": [
+          "any_word_separation"
+        ],
+        "different_result": 0.06,
+        "key": "1c0a56d587d91ade",
+        "model": "jev-1.13.0"
+      },
+      "BTN-sdrc-lambda3-symmetry": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.63,
+        "covers": 0.76,
+        "decl_narrower": 0.22,
+        "decls": [
+          "lambda3_constrained_symmetry"
+        ],
+        "different_result": 0.06,
+        "key": "ac75d7bcd2e15597",
+        "model": "jev-1.13.0"
+      },
+      "BTN-sdrg-lambda1-interval": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.9,
+        "covers": 0.31,
+        "decl_narrower": 0.5,
+        "decls": [
+          "lambda1_interval_reachable",
+          "lambda1_interval_reachable_neg"
+        ],
+        "different_result": 0.11,
+        "key": "59e1fa64866e8b2f",
+        "model": "jev-1.13.0"
+      },
+      "BTN-sdrg-lambda2-evens": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.93,
+        "covers": 0.12,
+        "decl_narrower": 0.89,
+        "decls": [
+          "lambda2_step_up",
+          "lambda2_even_reachable"
+        ],
+        "different_result": 0.15,
+        "key": "e2fd92b67c5b61e1",
+        "model": "jev-1.13.0"
+      },
+      "BTN-sdrm-separation": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.94,
+        "covers": 0.17,
+        "decl_narrower": 0.55,
+        "decls": [
+          "residual_separation"
+        ],
+        "different_result": 0.11,
+        "key": "70e804742ba73225",
+        "model": "jev-1.13.0"
+      },
+      "BTN-sdsh-maxlen": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.87,
+        "covers": 0.24,
+        "decl_narrower": 0.85,
+        "decls": [
+          "control_language_separation"
+        ],
+        "different_result": 0.09,
+        "key": "74852fd2fd271fcd",
+        "model": "jev-1.13.0"
+      },
+      "BTN-sdsh-truncated-mod": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.9,
+        "covers": 0.19,
+        "decl_narrower": 0.51,
+        "decls": [
+          "truncated_3adic_agree"
+        ],
+        "different_result": 0.13,
+        "key": "1185a27f6eac71e5",
+        "model": "jev-1.13.0"
+      },
+      "BTN-step-value": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.69,
+        "covers": 0.25,
+        "decl_narrower": 0.61,
+        "decls": [
+          "step_value"
+        ],
+        "different_result": 0.43,
+        "key": "38cca93cef2db358",
+        "model": "jev-1.13.0"
+      },
+      "C-R-direct": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.14,
+        "covers": 0.85,
+        "decl_narrower": 0.29,
+        "decls": [
+          "direct_realizer_residue"
+        ],
+        "different_result": 0.04,
+        "key": "5eac48beecac9535",
+        "model": "jev-1.13.0"
+      },
+      "C-T-welldefined": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.67,
+        "covers": 0.37,
+        "decl_narrower": 0.74,
+        "decls": [
+          "acceleratedT_odd"
+        ],
+        "different_result": 0.13,
+        "key": "c315063c82743d78",
+        "model": "jev-1.13.0"
+      },
+      "C-endpoint": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.78,
+        "covers": 0.23,
+        "decl_narrower": 0.61,
+        "decls": [
+          "kramer_endpoint_congruence_zmod"
+        ],
+        "different_result": 0.52,
+        "key": "3586d4edbbe9c679",
+        "model": "jev-1.13.0"
+      },
+      "C-gap": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.32,
+        "covers": 0.64,
+        "decl_narrower": 0.37,
+        "decls": [
+          "affineGap_succ"
+        ],
+        "different_result": 0.16,
+        "key": "fb8f3a013407ef6b",
+        "model": "jev-1.13.0"
+      },
+      "C-no-uniform-L-descent": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.93,
+        "covers": 0.1,
+        "decl_narrower": 0.76,
+        "decls": [
+          "shortcutC_no_uniform_L_descent"
+        ],
+        "different_result": 0.12,
+        "key": "e44982458b4296b2",
+        "model": "jev-1.13.0"
+      },
+      "C-shortcut-welldefined": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.88,
+        "covers": 0.36,
+        "decl_narrower": 0.71,
+        "decls": [
+          "shortcutC_even",
+          "shortcutC_odd",
+          "shortcutC_one",
+          "shortcutC_two",
+          "shortcutC_terminal_cycle"
+        ],
+        "different_result": 0.07,
+        "key": "921ca3c6aa3afbee",
+        "model": "jev-1.13.0"
+      },
+      "J-above-anchor-hug-domination": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.92,
+        "covers": 0.14,
+        "decl_narrower": 0.35,
+        "decls": [
+          "aboveAnchor_prefix_odds_ge_hug"
+        ],
+        "different_result": 0.04,
+        "key": "6451f26a49783d92",
+        "model": "jev-1.13.0"
+      },
+      "J-cubic-critical-cost-kernels": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.48,
+        "covers": 0.55,
+        "decl_narrower": 0.58,
+        "decls": [
+          "critical_iff_valuation_lt",
+          "even_cells_separation",
+          "even_sqrt_separation",
+          "symmetric_family_cost_of_separation",
+          "symmetric_family_cost",
+          "symmetric_family_sqrt_cost",
+          "quartic_family_gap",
+          "symmetric_unit_odd_cells"
+        ],
+        "different_result": 0.18,
+        "key": "88a27ff386b8cbd3",
+        "model": "jev-1.13.0"
+      },
+      "J-cubic-critical-localization-kernels": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.77,
+        "covers": 0.16,
+        "decl_narrower": 0.57,
+        "decls": [
+          "valuation_le_of_lt_pow_succ",
+          "valuation_le_twenty_five",
+          "valuation_le_nineteen",
+          "suffixHeight",
+          "three_rank_low",
+          "highlow_two_step_tiny",
+          "block_length_le_twenty_one",
+          "fixed_block_count_lower",
+          "fixed_nonzero_lower",
+          "fixed_deviation_lower",
+          "block_hits_card",
+          "window_hits_card",
+          "window_hits_interval_card",
+          "r_arc_critical_count",
+          "r_arc_interval_critical_count",
+          "injective_deviation_count",
+          "disjoint_pair_deviation_count",
+          "r_arc_deviation_count"
+        ],
+        "different_result": 0.28,
+        "key": "03037aa5c818f1be",
+        "model": "jev-1.13.0"
+      },
+      "J-cubic-critical-run-kernels": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.5,
+        "covers": 0.4,
+        "decl_narrower": 0.56,
+        "decls": [
+          "Critical",
+          "valuation_sub_of_lt",
+          "noncritical_valuation_budget",
+          "even_sum_dvd_four_of_gap",
+          "weighted_run_budget",
+          "runIncrement",
+          "runCost",
+          "runIncrement_monotone",
+          "runCost_succ",
+          "runCost_affine_53",
+          "runIncrement_52",
+          "runCost_53",
+          "runCost_54",
+          "affine_block_cost_sum",
+          "run_cost_affine_budget",
+          "fixed_critical_count_lower",
+          "fixed_run_budget_critical_count_lower",
+          "fixed_deviation_lower",
+          "fixed_nonzero_lower"
+        ],
+        "different_result": 0.22,
+        "key": "8661027b50b72c03",
+        "model": "jev-1.13.0"
+      },
+      "J-cubic-equal-gap-oo-triple": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.85,
+        "covers": 0.09,
+        "decl_narrower": 0.48,
+        "decls": [
+          "oo_equal_gap_triple"
+        ],
+        "different_result": 0.07,
+        "key": "b199907d17b40953",
+        "model": "jev-1.13.0"
+      },
+      "J-cubic-remainder-assembly": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.74,
+        "covers": 0.25,
+        "decl_narrower": 0.55,
+        "decls": [
+          "evenCount_lt_oddCount",
+          "gap_pos",
+          "rem_add",
+          "numer_odd",
+          "rem_diff_ordinary",
+          "leftover_gap_val_le",
+          "leftover_rc70_of_cover",
+          "leftover_deviation_lower_of_cover",
+          "leftover_reset_lower_of_count",
+          "leftover_run_critical_of_blocks",
+          "leftover_run_nonzero_of_blocks",
+          "leftover_run_deviation_of_blocks"
+        ],
+        "different_result": 0.27,
+        "key": "d5bd6d3a0cb8d2b7",
+        "model": "jev-1.13.0"
+      },
+      "J-cubic-remainder-variation-kernels": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.52,
+        "covers": 0.51,
+        "decl_narrower": 0.44,
+        "decls": [
+          "valuation_balance",
+          "valuation_target_le_source",
+          "valuation_drop",
+          "card_le_exception_add_reset",
+          "strict_off_reset_count",
+          "reset_card_le_boundary_add_twice",
+          "card_le_three_block_deviations",
+          "strict_three_block_deviations",
+          "arithmetic_three_block_deviations",
+          "fixed_count_reset_lower",
+          "fixed_count_deviation_lower"
+        ],
+        "different_result": 0.11,
+        "key": "31d8560c23565f29",
+        "model": "jev-1.13.0"
+      },
+      "J-cycle-absolute-cell-grid-charge": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.91,
+        "covers": 0.06,
+        "decl_narrower": 0.58,
+        "decls": [
+          "power_cells_grid_charge",
+          "power_cells_scaled_charge"
+        ],
+        "different_result": 0.22,
+        "key": "2cb2bf95184282d4",
+        "model": "jev-1.13.0"
+      },
+      "J-cycle-branch-offset-obstruction": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.87,
+        "covers": 0.17,
+        "decl_narrower": 0.47,
+        "decls": [
+          "branchOffset_same_branch_difference",
+          "branchOffset_same_branch_smooth_gap",
+          "branchOffset_nearest_even_gap",
+          "branchOffsetCycle_primitive",
+          "branchOffsetCycle_cells"
+        ],
+        "different_result": 0.22,
+        "key": "16d4a9bc195a4976",
+        "model": "jev-1.13.0"
+      },
+      "J-cycle-cubic-band-order": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.9,
+        "covers": 0.25,
+        "decl_narrower": 0.65,
+        "decls": [
+          "cubicBand_mechanical_itinerary"
+        ],
+        "different_result": 0.08,
+        "key": "575c1748cfcfbcff",
+        "model": "jev-1.13.0"
+      },
+      "J-cycle-cubic-sorted-grid": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.9,
+        "covers": 0.04,
+        "decl_narrower": 0.63,
+        "decls": [
+          "threshold_cycle_grid",
+          "cubicBand_cycle_grid"
+        ],
+        "different_result": 0.6,
+        "key": "ab71abbb5ea79e33",
+        "model": "jev-1.13.0"
+      },
+      "J-cycle-direction-change-batches": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.89,
+        "covers": 0.1,
+        "decl_narrower": 0.48,
+        "decls": [
+          "dc_rank_stages"
+        ],
+        "different_result": 0.07,
+        "key": "a67431d2ce56d580",
+        "model": "jev-1.13.0"
+      },
+      "J-cycle-direction-change-contraction": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.94,
+        "covers": 0.05,
+        "decl_narrower": 0.74,
+        "decls": [
+          "c_contract"
+        ],
+        "different_result": 0.15,
+        "key": "e7426d6860c68828",
+        "model": "jev-1.13.0"
+      },
+      "J-cycle-direction-change-height": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.95,
+        "covers": 0.06,
+        "decl_narrower": 0.4,
+        "decls": [
+          "dc_cycle_height"
+        ],
+        "different_result": 0.18,
+        "key": "1095de8805945844",
+        "model": "jev-1.13.0"
+      },
+      "J-cycle-finance-inequality": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.93,
+        "covers": 0.1,
+        "decl_narrower": 0.32,
+        "decls": [
+          "cycleMin_finance"
+        ],
+        "different_result": 0.07,
+        "key": "c82380c38c0e132c",
+        "model": "jev-1.13.0"
+      },
+      "J-cycle-finite-even-transfer-budget": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.57,
+        "covers": 0.65,
+        "decl_narrower": 0.29,
+        "decls": [
+          "even_transfers_sum",
+          "even_transfers_positive"
+        ],
+        "different_result": 0.04,
+        "key": "b2859c30a32e69bc",
+        "model": "jev-1.13.0"
+      },
+      "J-cycle-fixed-residue-witness": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.82,
+        "covers": 0.12,
+        "decl_narrower": 0.64,
+        "decls": [
+          "guardResidueFamily_no_record_classifier"
+        ],
+        "different_result": 0.12,
+        "key": "d3e9f91efa18b622",
+        "model": "jev-1.13.0"
+      },
+      "J-cycle-induced-count-determinant": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.88,
+        "covers": 0.48,
+        "decl_narrower": 0.61,
+        "decls": [
+          "InducedPair.count_determinant",
+          "InducedPair.count_coprime",
+          "InducedPair.expanded_count_gcd"
+        ],
+        "different_result": 0.15,
+        "key": "e21a762a9896ffcc",
+        "model": "jev-1.13.0"
+      },
+      "J-cycle-itinerary-eliahou-leftover": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.84,
+        "covers": 0.13,
+        "decl_narrower": 0.39,
+        "decls": [
+          "cycle_itinerary_eliahou_leftover"
+        ],
+        "different_result": 0.16,
+        "key": "9786bc4597818e4c",
+        "model": "jev-1.13.0"
+      },
+      "J-cycle-itinerary-length-eighty-four-m-ge-three-or-ge-eighty-five": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.91,
+        "covers": 0.19,
+        "decl_narrower": 0.31,
+        "decls": [
+          "cycle_itinerary_length_eighty_four_m_ge_three_or_ge_eighty_five"
+        ],
+        "different_result": 0.07,
+        "key": "03cb87f9edc9b62c",
+        "model": "jev-1.13.0"
+      },
+      "J-cycle-itinerary-length-eighty-four-or-ge-eighty-five": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.87,
+        "covers": 0.33,
+        "decl_narrower": 0.23,
+        "decls": [
+          "cycle_itinerary_length_eighty_four_or_ge_eighty_five"
+        ],
+        "different_result": 0.05,
+        "key": "a1c7556ea56ed04f",
+        "model": "jev-1.13.0"
+      },
+      "J-cycle-itinerary-length-eleven-or-ge-fourteen": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.88,
+        "covers": 0.13,
+        "decl_narrower": 0.28,
+        "decls": [
+          "cycle_itinerary_length_eleven_or_ge_fourteen"
+        ],
+        "different_result": 0.12,
+        "key": "ecc1ab3aa9996cbf",
+        "model": "jev-1.13.0"
+      },
+      "J-cycle-itinerary-length-fifty-seven-or-ge-fifty-eight": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.78,
+        "covers": 0.33,
+        "decl_narrower": 0.27,
+        "decls": [
+          "cycle_itinerary_length_fifty_seven_or_ge_fifty_eight"
+        ],
+        "different_result": 0.1,
+        "key": "82ba5f1fd160db11",
+        "model": "jev-1.13.0"
+      },
+      "J-cycle-itinerary-length-ge-fourteen": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.92,
+        "covers": 0.17,
+        "decl_narrower": 0.31,
+        "decls": [
+          "cycle_itinerary_length_ge_fourteen"
+        ],
+        "different_result": 0.1,
+        "key": "4c78cfe5a9ef08ea",
+        "model": "jev-1.13.0"
+      },
+      "J-cycle-itinerary-length-ge-thirty": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.27,
+        "covers": 0.76,
+        "decl_narrower": 0.26,
+        "decls": [
+          "cycle_itinerary_length_ge_thirty"
+        ],
+        "different_result": 0.05,
+        "key": "711af153445adae1",
+        "model": "jev-1.13.0"
+      },
+      "J-cycle-itinerary-length-nineteen-or-ge-thirty": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.86,
+        "covers": 0.35,
+        "decl_narrower": 0.25,
+        "decls": [
+          "cycle_itinerary_length_nineteen_or_ge_thirty"
+        ],
+        "different_result": 0.05,
+        "key": "2391403177d19ba6",
+        "model": "jev-1.13.0"
+      },
+      "J-cycle-itinerary-length-thirty-eight-or-ge-thirty-nine": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.81,
+        "covers": 0.18,
+        "decl_narrower": 0.26,
+        "decls": [
+          "cycle_itinerary_length_thirty_eight_or_ge_thirty_nine"
+        ],
+        "different_result": 0.06,
+        "key": "645a02591a439ea6",
+        "model": "jev-1.13.0"
+      },
+      "J-cycle-later-return-certificate": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.91,
+        "covers": 0.09,
+        "decl_narrower": 0.49,
+        "decls": [
+          "certificate_requires_large_minimum"
+        ],
+        "different_result": 0.08,
+        "key": "8eac461b5c7a401f",
+        "model": "jev-1.13.0"
+      },
+      "J-cycle-later-return-height": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.96,
+        "covers": 0.06,
+        "decl_narrower": 0.43,
+        "decls": [
+          "lr_cycle_height"
+        ],
+        "different_result": 0.13,
+        "key": "d75c10f0f356cde9",
+        "model": "jev-1.13.0"
+      },
+      "J-cycle-oe-quotient-parity-carry": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.96,
+        "covers": 0.03,
+        "decl_narrower": 0.66,
+        "decls": [
+          "baseline_bounds"
+        ],
+        "different_result": 0.21,
+        "key": "1e2dd80a3b18b539",
+        "model": "jev-1.13.0"
+      },
+      "J-cycle-ooe-exact-remainder-repair": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.93,
+        "covers": 0.04,
+        "decl_narrower": 0.62,
+        "decls": [
+          "recoverPeak_guard_iff"
+        ],
+        "different_result": 0.16,
+        "key": "67106bdc0cb44f6c",
+        "model": "jev-1.13.0"
+      },
+      "J-cycle-ooe-family-chain-bound": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.9,
+        "covers": 0.1,
+        "decl_narrower": 0.45,
+        "decls": [
+          "ooeFamily_juggler_chain_bound"
+        ],
+        "different_result": 0.07,
+        "key": "366870f6dc32974e",
+        "model": "jev-1.13.0"
+      },
+      "J-cycle-ooe-polynomial-block": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.85,
+        "covers": 0.22,
+        "decl_narrower": 0.53,
+        "decls": [
+          "ooeFamily_juggler_block"
+        ],
+        "different_result": 0.1,
+        "key": "5554f6fe9bc24ff0",
+        "model": "jev-1.13.0"
+      },
+      "J-cycle-periodic-return-height-strip": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.95,
+        "covers": 0.03,
+        "decl_narrower": 0.6,
+        "decls": [
+          "cycleMin_height_strip"
+        ],
+        "different_result": 0.12,
+        "key": "21b506cc7094a23f",
+        "model": "jev-1.13.0"
+      },
+      "J-cycle-quartic-formal-budget": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.9,
+        "covers": 0.06,
+        "decl_narrower": 0.55,
+        "decls": [
+          "BlockSubstitution.strict_budget",
+          "BlockSubstitution.component_budget",
+          "BlockSubstitution.unselected_valley_witness",
+          "located_pair_lower",
+          "located_pair_upper",
+          "located_pairs_lower",
+          "located_pairs_upper"
+        ],
+        "different_result": 0.45,
+        "key": "b47d3e2685059d25",
+        "model": "jev-1.13.0"
+      },
+      "J-cycle-quartic-formal-cells": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.91,
+        "covers": 0.12,
+        "decl_narrower": 0.52,
+        "decls": [
+          "periodic_inversion_iff_cell",
+          "periodic_G_cell_unique",
+          "periodic_F_inverts_at_most_one_G",
+          "same_cell_loglog_lt_min",
+          "cube_ne_square_successor_square_successor",
+          "guarded_OE_remainder_dichotomy",
+          "guarded_OE_lower_cube",
+          "actual_OE_lower_cube"
+        ],
+        "different_result": 0.21,
+        "key": "b965d7d68231b949",
+        "model": "jev-1.13.0"
+      },
+      "J-cycle-quartic-formal-defect": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.6,
+        "covers": 0.43,
+        "decl_narrower": 0.48,
+        "decls": [
+          "F_strict_upper_pow",
+          "blockDefect_nonneg",
+          "blockDefect_pos_F",
+          "blockDefect_sum",
+          "selected_defect_sum_pos",
+          "actual_sorted_positive_surplus"
+        ],
+        "different_result": 0.37,
+        "key": "031eb31dc2bbe66b",
+        "model": "jev-1.13.0"
+      },
+      "J-cycle-quartic-formal-gap-separation": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.64,
+        "covers": 0.33,
+        "decl_narrower": 0.59,
+        "decls": [
+          "adjacent_gap_lower",
+          "B_injective_of_adjacent_gaps",
+          "B_injective_of_cocycle",
+          "B_ge_of_lower_power"
+        ],
+        "different_result": 0.3,
+        "key": "6b1ccd64837225ae",
+        "model": "jev-1.13.0"
+      },
+      "J-cycle-quartic-formal-projection": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.91,
+        "covers": 0.12,
+        "decl_narrower": 0.57,
+        "decls": [
+          "ofModular",
+          "displacement_balance",
+          "totalDisplacement_pos_of_omitted",
+          "adjacent_gap_of_ratio"
+        ],
+        "different_result": 0.77,
+        "key": "44e001e22c3cb772",
+        "model": "jev-1.13.0"
+      },
+      "J-cycle-quartic-formal-return": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.87,
+        "covers": 0.22,
+        "decl_narrower": 0.53,
+        "decls": [
+          "sorted_return_model",
+          "exists_F_source"
+        ],
+        "different_result": 0.1,
+        "key": "5028fef74dd3ce75",
+        "model": "jev-1.13.0"
+      },
+      "J-cycle-short-return-cells": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.95,
+        "covers": 0.04,
+        "decl_narrower": 0.63,
+        "decls": [
+          "ooe_odd_maximal"
+        ],
+        "different_result": 0.1,
+        "key": "cefed056f55f20d3",
+        "model": "jev-1.13.0"
+      },
+      "J-cycle-subtractive-return-step": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.93,
+        "covers": 0.07,
+        "decl_narrower": 0.77,
+        "decls": [
+          "left_subtractive_first_return"
+        ],
+        "different_result": 0.18,
+        "key": "ac0ff6798b193c12",
+        "model": "jev-1.13.0"
+      },
+      "J-cycle-terminal-mixed-gap": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.89,
+        "covers": 0.11,
+        "decl_narrower": 0.51,
+        "decls": [
+          "mixed_gap",
+          "periodicExtrema_terminal_cut",
+          "periodicOrbit_terminal_cut",
+          "TerminalOrbitCut",
+          "terminal_cut_from_section",
+          "periodicOrbit_terminal_totals",
+          "cycleMin_terminal_totals"
+        ],
+        "different_result": 0.53,
+        "key": "818c21ebabb2ef79",
+        "model": "jev-1.13.0"
+      },
+      "J-cycle-threshold-common-period": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.91,
+        "covers": 0.07,
+        "decl_narrower": 0.59,
+        "decls": [
+          "rankRotation_orbit_iff_residue",
+          "rankRotation_orbit_representatives",
+          "rankRotation_orbit_upper_card",
+          "rankResidue_interlaces"
+        ],
+        "different_result": 0.28,
+        "key": "a51dc87b2d6c8cce",
+        "model": "jev-1.13.0"
+      },
+      "J-cycle-threshold-relaxation": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.91,
+        "covers": 0.09,
+        "decl_narrower": 0.69,
+        "decls": [
+          "thresholdMap_exists_primitive",
+          "threshold_sorted_rotation",
+          "thresholdMap_eq_floorPower_iff"
+        ],
+        "different_result": 0.19,
+        "key": "7b0326792d799f6d",
+        "model": "jev-1.13.0"
+      },
+      "J-cycle-trailing-evens": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.18,
+        "covers": 0.79,
+        "decl_narrower": 0.24,
+        "decls": [
+          "cycle_trailing_evens_lt"
+        ],
+        "different_result": 0.05,
+        "key": "d5fbfcfd08ad6a7f",
+        "model": "jev-1.13.0"
+      },
+      "J-cycle-unit-perturbation": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.92,
+        "covers": 0.09,
+        "decl_narrower": 0.61,
+        "decls": [
+          "cubicRounding_exists_primitive",
+          "cubicRounding_eq_or_pred",
+          "cubicRounding_real_loss",
+          "cubicRounding_finite_invariant_rotation"
+        ],
+        "different_result": 0.2,
+        "key": "ac918cb961a3b2f8",
+        "model": "jev-1.13.0"
+      },
+      "J-cycle-upper-charge-least-period": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.81,
+        "covers": 0.23,
+        "decl_narrower": 0.47,
+        "decls": [
+          "periodicOrbit_upper_charge",
+          "cycleMin_upper_charge",
+          "OrbitUpperChargeCertificate",
+          "orbitModel_upper_charge",
+          "periodicOrbit_upper_charge_certificate",
+          "cycleMin_upper_charge_certificate"
+        ],
+        "different_result": 0.16,
+        "key": "af8fd084f2a746ca",
+        "model": "jev-1.13.0"
+      },
+      "J-cycle-upper-charge-monotonicity": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.92,
+        "covers": 0.1,
+        "decl_narrower": 0.6,
+        "decls": [
+          "nonlinearChargeBound_strictAntiOn_minimum",
+          "finiteGeometricChargeBound_strictAntiOn_minimum",
+          "closedGeometricChargeBound_strictAntiOn_minimum",
+          "nonlinearChargeBound_le_finiteGeometric",
+          "finiteGeometricChargeBound_lt_closed",
+          "nonlinear_cutoff_excludes",
+          "closedGeometric_cutoff_excludes"
+        ],
+        "different_result": 0.2,
+        "key": "910fa3cde6f773e6",
+        "model": "jev-1.13.0"
+      },
+      "J-cyclemin-closure-threshold": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.37,
+        "covers": 0.4,
+        "decl_narrower": 0.74,
+        "decls": [
+          "no_cycleMin_of_gap_and_minimum"
+        ],
+        "different_result": 0.05,
+        "key": "faa7e58b8544151a",
+        "model": "jev-1.13.0"
+      },
+      "J-cyclemin-fudge": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.89,
+        "covers": 0.25,
+        "decl_narrower": 0.36,
+        "decls": [
+          "no_cycleMin_cyclemin_fudge"
+        ],
+        "different_result": 0.07,
+        "key": "0d70ca81dc8cf452",
+        "model": "jev-1.13.0"
+      },
+      "J-cyclemin-gap-power-transfer": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.58,
+        "covers": 0.77,
+        "decl_narrower": 0.29,
+        "decls": [
+          "cycleMin_length_of_gap_power"
+        ],
+        "different_result": 0.05,
+        "key": "6f9aa61fe14167ee",
+        "model": "jev-1.13.0"
+      },
+      "J-cyclemin-gap-transfer": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.58,
+        "covers": 0.61,
+        "decl_narrower": 0.24,
+        "decls": [
+          "cycleMin_gap_transfer"
+        ],
+        "different_result": 0.07,
+        "key": "c880a84179df58ec",
+        "model": "jev-1.13.0"
+      },
+      "J-cyclemin-hug-prefix-bound": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.93,
+        "covers": 0.1,
+        "decl_narrower": 0.36,
+        "decls": [
+          "cycleMin_prefix_odds_ge_hug"
+        ],
+        "different_result": 0.06,
+        "key": "050d4f6ee595d35b",
+        "model": "jev-1.13.0"
+      },
+      "J-cyclemin-period-lower-bound": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.57,
+        "covers": 0.27,
+        "decl_narrower": 0.74,
+        "decls": [
+          "cycleMin_period_ge"
+        ],
+        "different_result": 0.07,
+        "key": "6614b7c8801db312",
+        "model": "jev-1.13.0"
+      },
+      "J-cyclemin-prefix-bunched-eee": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.49,
+        "covers": 0.67,
+        "decl_narrower": 0.2,
+        "decls": [
+          "no_cycleMin_prefix_eee"
+        ],
+        "different_result": 0.05,
+        "key": "93be21fd18417288",
+        "model": "jev-1.13.0"
+      },
+      "J-cyclemin-prefix-bunched-eeoe": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.74,
+        "covers": 0.39,
+        "decl_narrower": 0.2,
+        "decls": [
+          "no_cycleMin_prefix_eeoe"
+        ],
+        "different_result": 0.05,
+        "key": "f8ce726100992751",
+        "model": "jev-1.13.0"
+      },
+      "J-cyclemin-prefix-bunched-eoee": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.71,
+        "covers": 0.31,
+        "decl_narrower": 0.18,
+        "decls": [
+          "no_cycleMin_prefix_eoee"
+        ],
+        "different_result": 0.05,
+        "key": "0c833b1993039f10",
+        "model": "jev-1.13.0"
+      },
+      "J-cyclemin-prefix-bunched-eoeoe": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.52,
+        "covers": 0.56,
+        "decl_narrower": 0.19,
+        "decls": [
+          "no_cycleMin_prefix_eoeoe"
+        ],
+        "different_result": 0.05,
+        "key": "682101610d17059d",
+        "model": "jev-1.13.0"
+      },
+      "J-cyclemin-prefix-bunched-eooee": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.55,
+        "covers": 0.45,
+        "decl_narrower": 0.18,
+        "decls": [
+          "no_cycleMin_prefix_eooee"
+        ],
+        "different_result": 0.05,
+        "key": "f008911f0706e57a",
+        "model": "jev-1.13.0"
+      },
+      "J-cyclemin-prefix-bunched-eooeoe": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.35,
+        "covers": 0.71,
+        "decl_narrower": 0.17,
+        "decls": [
+          "no_cycleMin_prefix_eooeoe"
+        ],
+        "different_result": 0.05,
+        "key": "2ff2e29a58446bb6",
+        "model": "jev-1.13.0"
+      },
+      "J-cyclemin-prefix-bunched-eoooee": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.3,
+        "covers": 0.75,
+        "decl_narrower": 0.17,
+        "decls": [
+          "no_cycleMin_prefix_eoooee"
+        ],
+        "different_result": 0.05,
+        "key": "96aaea08c1415c88",
+        "model": "jev-1.13.0"
+      },
+      "J-cyclemin-prefix-two-even-ee": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.61,
+        "covers": 0.62,
+        "decl_narrower": 0.19,
+        "decls": [
+          "no_cycleMin_prefix_two_even_ee"
+        ],
+        "different_result": 0.04,
+        "key": "44f28bea5de15df3",
+        "model": "jev-1.13.0"
+      },
+      "J-cyclemin-prefix-two-even-eoe": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.82,
+        "covers": 0.33,
+        "decl_narrower": 0.24,
+        "decls": [
+          "no_cycleMin_prefix_two_even_eoe"
+        ],
+        "different_result": 0.06,
+        "key": "5d7aeb3e356a5279",
+        "model": "jev-1.13.0"
+      },
+      "J-cyclemin-rotation-average": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.94,
+        "covers": 0.03,
+        "decl_narrower": 0.67,
+        "decls": [
+          "hugCharge_sub_rotationAverage_le"
+        ],
+        "different_result": 0.17,
+        "key": "ad7764c31368699a",
+        "model": "jev-1.13.0"
+      },
+      "J-cyclemin-walk-ostrowski-arithmetic": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.89,
+        "covers": 0.11,
+        "decl_narrower": 0.41,
+        "decls": [
+          "theta_sandwich_upper",
+          "lower_lt_walkTheta",
+          "walkTheta_lt_upper",
+          "cf_lower_prefix",
+          "cf_upper_prefix",
+          "cf_lower_continues",
+          "cf_upper_continues",
+          "theta_convergent_denominators",
+          "window_digit_max",
+          "theta_convergent_numerators",
+          "thetaConvergents_eq_zip",
+          "theta_convergents_unimodular",
+          "theta_convergents_coprime",
+          "theta_convergent_quality",
+          "residue_mul_bijective",
+          "theta_block_permutations"
+        ],
+        "different_result": 0.25,
+        "key": "90fd11f0055d2e62",
+        "model": "jev-1.13.0"
+      },
+      "J-cyclemin-walk-transport-envelope": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.79,
+        "covers": 0.32,
+        "decl_narrower": 0.33,
+        "decls": [
+          "cycleMin_transport"
+        ],
+        "different_result": 0.06,
+        "key": "f7075595dba42ffb",
+        "model": "jev-1.13.0"
+      },
+      "J-envelope-lt-pow": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.9,
+        "covers": 0.15,
+        "decl_narrower": 0.8,
+        "decls": [
+          "power_bound_lt_pow"
+        ],
+        "different_result": 0.08,
+        "key": "070e708f4ebe317b",
+        "model": "jev-1.13.0"
+      },
+      "J-even-count-le-three": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.93,
+        "covers": 0.14,
+        "decl_narrower": 0.25,
+        "decls": [
+          "no_cycle_itinerary_even_count_le_three"
+        ],
+        "different_result": 0.05,
+        "key": "35d3b3fdd59aa969",
+        "model": "jev-1.13.0"
+      },
+      "J-exponent-expanding-append": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.84,
+        "covers": 0.23,
+        "decl_narrower": 0.35,
+        "decls": [
+          "exponentExpanding_append"
+        ],
+        "different_result": 0.19,
+        "key": "ee25a4f02b1562d6",
+        "model": "jev-1.13.0"
+      },
+      "J-fate-block-average-layer": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.9,
+        "covers": 0.09,
+        "decl_narrower": 0.35,
+        "decls": [
+          "block_average_two_bounds"
+        ],
+        "different_result": 0.05,
+        "key": "7a573dd931a10dc7",
+        "model": "jev-1.13.0"
+      },
+      "J-fate-certified-thirty": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.95,
+        "covers": 0.03,
+        "decl_narrower": 0.64,
+        "decls": [
+          "chernoffExponent_thirty_gt"
+        ],
+        "different_result": 0.08,
+        "key": "2a06c01fd9836a64",
+        "model": "jev-1.13.0"
+      },
+      "J-fate-chernoff-count": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.54,
+        "covers": 0.47,
+        "decl_narrower": 0.3,
+        "decls": [
+          "LBad_count_le"
+        ],
+        "different_result": 0.04,
+        "key": "afb21f6c8347ed08",
+        "model": "jev-1.13.0"
+      },
+      "J-fate-classes-density-averaged": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.96,
+        "covers": 0.03,
+        "decl_narrower": 0.61,
+        "decls": [
+          "reachesOne_natDensity_averaged"
+        ],
+        "different_result": 0.05,
+        "key": "cb923104d10a0f83",
+        "model": "jev-1.13.0"
+      },
+      "J-fate-collapse-bias": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.9,
+        "covers": 0.1,
+        "decl_narrower": 0.36,
+        "decls": [
+          "collapse_bias_le"
+        ],
+        "different_result": 0.05,
+        "key": "80224e42d25ec2b4",
+        "model": "jev-1.13.0"
+      },
+      "J-fate-contagion-conditional": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.78,
+        "covers": 0.23,
+        "decl_narrower": 0.43,
+        "decls": [
+          "contagion_of_production_inequality"
+        ],
+        "different_result": 0.06,
+        "key": "e0c890ee9d3aae5d",
+        "model": "jev-1.13.0"
+      },
+      "J-fate-contagion-elementary": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.9,
+        "covers": 0.11,
+        "decl_narrower": 0.5,
+        "decls": [
+          "logMass_contagion_elementary"
+        ],
+        "different_result": 0.05,
+        "key": "c74a9bc195554434",
+        "model": "jev-1.13.0"
+      },
+      "J-fate-cylinder-corollary": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.78,
+        "covers": 0.19,
+        "decl_narrower": 0.47,
+        "decls": [
+          "cylinder_bound_implies_conjecture"
+        ],
+        "different_result": 0.04,
+        "key": "5c394d9555a009f1",
+        "model": "jev-1.13.0"
+      },
+      "J-fate-cylinder-energy": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.34,
+        "covers": 0.33,
+        "decl_narrower": 0.3,
+        "decls": [
+          "sum_bias_sq"
+        ],
+        "different_result": 0.05,
+        "key": "e3cf642f0c50e7b8",
+        "model": "jev-1.13.0"
+      },
+      "J-fate-dyadic-pigeonhole": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.89,
+        "covers": 0.23,
+        "decl_narrower": 0.25,
+        "decls": [
+          "exists_block_of_shell"
+        ],
+        "different_result": 0.04,
+        "key": "d294fb808b04fcda",
+        "model": "jev-1.13.0"
+      },
+      "J-fate-energy-atoms": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.84,
+        "covers": 0.04,
+        "decl_narrower": 0.61,
+        "decls": [
+          "energy_implies_conjecture"
+        ],
+        "different_result": 0.15,
+        "key": "0d4372f18ddb5c05",
+        "model": "jev-1.13.0"
+      },
+      "J-fate-fiber-parity": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.43,
+        "covers": 0.68,
+        "decl_narrower": 0.2,
+        "decls": [
+          "fiber_parity_good"
+        ],
+        "different_result": 0.04,
+        "key": "19c5cc58e12e1c09",
+        "model": "jev-1.13.0"
+      },
+      "J-fate-first-letter-split": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.76,
+        "covers": 0.22,
+        "decl_narrower": 0.34,
+        "decls": [
+          "first_letter_split"
+        ],
+        "different_result": 0.06,
+        "key": "8664e5a72f2fefa8",
+        "model": "jev-1.13.0"
+      },
+      "J-fate-landing-window": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.88,
+        "covers": 0.13,
+        "decl_narrower": 0.26,
+        "decls": [
+          "exact_endpoints"
+        ],
+        "different_result": 0.05,
+        "key": "91b06ea74b7f08df",
+        "model": "jev-1.13.0"
+      },
+      "J-fate-minimal-failure-oo": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.93,
+        "covers": 0.07,
+        "decl_narrower": 0.5,
+        "decls": [
+          "minimal_failure_odd_odd"
+        ],
+        "different_result": 0.04,
+        "key": "44f193455057bc76",
+        "model": "jev-1.13.0"
+      },
+      "J-fate-monotone-pairing-repair": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.57,
+        "covers": 0.38,
+        "decl_narrower": 0.38,
+        "decls": [
+          "sweep_monotone_fract_lt_half"
+        ],
+        "different_result": 0.06,
+        "key": "09c9a90595a8f057",
+        "model": "jev-1.13.0"
+      },
+      "J-fate-one-sided-atoms": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.76,
+        "covers": 0.07,
+        "decl_narrower": 0.73,
+        "decls": [
+          "exc_implies_conjecture"
+        ],
+        "different_result": 0.12,
+        "key": "ade513c0f78597d3",
+        "model": "jev-1.13.0"
+      },
+      "J-fate-one-sided-conjecture": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.85,
+        "covers": 0.09,
+        "decl_narrower": 0.68,
+        "decls": [
+          "one_sided_implies_conjecture"
+        ],
+        "different_result": 0.14,
+        "key": "ed39af9dd00d7894",
+        "model": "jev-1.13.0"
+      },
+      "J-fate-one-sided-moments": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.87,
+        "covers": 0.13,
+        "decl_narrower": 0.52,
+        "decls": [
+          "one_sided_bound"
+        ],
+        "different_result": 0.05,
+        "key": "d8d29577799941f8",
+        "model": "jev-1.13.0"
+      },
+      "J-fate-pressure-conjecture": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.93,
+        "covers": 0.04,
+        "decl_narrower": 0.74,
+        "decls": [
+          "pressure_implies_conjecture"
+        ],
+        "different_result": 0.07,
+        "key": "31fef3fa19a9da25",
+        "model": "jev-1.13.0"
+      },
+      "J-fate-pressure-form": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.56,
+        "covers": 0.32,
+        "decl_narrower": 0.28,
+        "decls": [
+          "live_count_le_of_pressure"
+        ],
+        "different_result": 0.04,
+        "key": "7270767e5acb9c73",
+        "model": "jev-1.13.0"
+      },
+      "J-fate-recursion-lemma": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.94,
+        "covers": 0.07,
+        "decl_narrower": 0.53,
+        "decls": [
+          "recursion_lemma"
+        ],
+        "different_result": 0.06,
+        "key": "1d7a467b625e7f1d",
+        "model": "jev-1.13.0"
+      },
+      "J-fate-seed": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.9,
+        "covers": 0.12,
+        "decl_narrower": 0.41,
+        "decls": [
+          "seed_lemma"
+        ],
+        "different_result": 0.04,
+        "key": "22311e72da084fc7",
+        "model": "jev-1.13.0"
+      },
+      "J-fate-share-law-layer": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.95,
+        "covers": 0.03,
+        "decl_narrower": 0.63,
+        "decls": [
+          "xval_expansion"
+        ],
+        "different_result": 0.04,
+        "key": "e5f869d812b5870a",
+        "model": "jev-1.13.0"
+      },
+      "J-fate-sweep-lemma": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.96,
+        "covers": 0.04,
+        "decl_narrower": 0.63,
+        "decls": [
+          "sweep_fract_lt_half"
+        ],
+        "different_result": 0.06,
+        "key": "f589f2ac0a54d739",
+        "model": "jev-1.13.0"
+      },
+      "J-fate-tao-equivalence": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.74,
+        "covers": 0.56,
+        "decl_narrower": 0.34,
+        "decls": [
+          "tao_rate_iff_conjecture"
+        ],
+        "different_result": 0.03,
+        "key": "9e3af82925f83997",
+        "model": "jev-1.13.0"
+      },
+      "J-fate-tao-union-bound": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.8,
+        "covers": 0.13,
+        "decl_narrower": 0.58,
+        "decls": [
+          "oddFailures_card_le_explicit"
+        ],
+        "different_result": 0.06,
+        "key": "13d3926199ee3272",
+        "model": "jev-1.13.0"
+      },
+      "J-fate-thin-fibers": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.96,
+        "covers": 0.05,
+        "decl_narrower": 0.31,
+        "decls": [
+          "bad_logMass_le"
+        ],
+        "different_result": 0.04,
+        "key": "2b94ef318c95d23d",
+        "model": "jev-1.13.0"
+      },
+      "J-first-e-transport-ee": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.29,
+        "covers": 0.81,
+        "decl_narrower": 0.16,
+        "decls": [
+          "no_cycleMin_gapped_three_even_ee"
+        ],
+        "different_result": 0.04,
+        "key": "4db55dd2d5dd8830",
+        "model": "jev-1.13.0"
+      },
+      "J-first-e-transport-eoe": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.28,
+        "covers": 0.77,
+        "decl_narrower": 0.21,
+        "decls": [
+          "no_cycleMin_gapped_three_even_eoe"
+        ],
+        "different_result": 0.04,
+        "key": "0be88cb70525c72b",
+        "model": "jev-1.13.0"
+      },
+      "J-fixed-itinerary-image-monotone": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.39,
+        "covers": 0.74,
+        "decl_narrower": 0.34,
+        "decls": [
+          "image_monotone_of_follows"
+        ],
+        "different_result": 0.07,
+        "key": "3a1605298e53d69a",
+        "model": "jev-1.13.0"
+      },
+      "J-flight-height-law": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.91,
+        "covers": 0.1,
+        "decl_narrower": 0.55,
+        "decls": [
+          "aboveAnchor_height_of_walk"
+        ],
+        "different_result": 0.06,
+        "key": "9c806763e04ea433",
+        "model": "jev-1.13.0"
+      },
+      "J-four-block-persistent-expanding": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.82,
+        "covers": 0.1,
+        "decl_narrower": 0.37,
+        "decls": [
+          "four_consecutive_persistent_expanding_exists"
+        ],
+        "different_result": 0.13,
+        "key": "02949699de7ff291",
+        "model": "jev-1.13.0"
+      },
+      "J-gapped-cycle-itinerary-ee": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.5,
+        "covers": 0.58,
+        "decl_narrower": 0.19,
+        "decls": [
+          "no_cycle_itinerary_gapped_three_even_ee"
+        ],
+        "different_result": 0.04,
+        "key": "7318662f212f1529",
+        "model": "jev-1.13.0"
+      },
+      "J-gapped-cycle-itinerary-eoe": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.9,
+        "covers": 0.14,
+        "decl_narrower": 0.23,
+        "decls": [
+          "no_cycle_itinerary_gapped_three_even_eoe"
+        ],
+        "different_result": 0.05,
+        "key": "2534dffe3687cc8f",
+        "model": "jev-1.13.0"
+      },
+      "J-global-defect-identity": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.94,
+        "covers": 0.08,
+        "decl_narrower": 0.69,
+        "decls": [
+          "global_defect_identity"
+        ],
+        "different_result": 0.07,
+        "key": "95d668df697f3d50",
+        "model": "jev-1.13.0"
+      },
+      "J-leftover-ooooooeee": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.23,
+        "covers": 0.76,
+        "decl_narrower": 0.14,
+        "decls": [
+          "no_cycle_itinerary_ooooooeee"
+        ],
+        "different_result": 0.04,
+        "key": "685775c588e7751a",
+        "model": "jev-1.13.0"
+      },
+      "J-log-two-hundred-fifty-seven-gt-sixty-one-elevenths": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.95,
+        "covers": 0.06,
+        "decl_narrower": 0.23,
+        "decls": [
+          "log_two_hundred_fifty_seven_gt"
+        ],
+        "different_result": 0.05,
+        "key": "0cf954f830c6e613",
+        "model": "jev-1.13.0"
+      },
+      "J-minimal-prefix-noncontracting": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.93,
+        "covers": 0.11,
+        "decl_narrower": 0.73,
+        "decls": [
+          "minimal_nonterm_prefix_noncontracting"
+        ],
+        "different_result": 0.17,
+        "key": "128a87a9c95b3610",
+        "model": "jev-1.13.0"
+      },
+      "J-mixed-oe-eighth": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.75,
+        "covers": 0.2,
+        "decl_narrower": 0.34,
+        "decls": [
+          "odd_even_eighth_lt_sq"
+        ],
+        "different_result": 0.11,
+        "key": "345c7b2ee629e3a2",
+        "model": "jev-1.13.0"
+      },
+      "J-no-cycle-no-bounded-nonterm": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.31,
+        "covers": 0.73,
+        "decl_narrower": 0.31,
+        "decls": [
+          "no_nontrivial_cycle_no_bounded_nonterm"
+        ],
+        "different_result": 0.06,
+        "key": "c91e4ee9ba5f1e0e",
+        "model": "jev-1.13.0"
+      },
+      "J-odd-image-upper-square-gap": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.56,
+        "covers": 0.38,
+        "decl_narrower": 0.64,
+        "decls": [
+          "cube_add_one_ne_odd_succ_sq",
+          "floorPower_odd_image_upper_gap"
+        ],
+        "different_result": 0.14,
+        "key": "60bb33925b67820e",
+        "model": "jev-1.13.0"
+      },
+      "J-odd-odd-remainder-mod-eight": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.95,
+        "covers": 0.07,
+        "decl_narrower": 0.51,
+        "decls": [
+          "odd_odd_remainder_mod_eight"
+        ],
+        "different_result": 0.07,
+        "key": "06f615f6d3e003b1",
+        "model": "jev-1.13.0"
+      },
+      "J-odd-remainder-even": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.53,
+        "covers": 0.52,
+        "decl_narrower": 0.54,
+        "decls": [
+          "odd_remainder_even"
+        ],
+        "different_result": 0.09,
+        "key": "d18c629c3b947323",
+        "model": "jev-1.13.0"
+      },
+      "J-odd-run-recursive": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.95,
+        "covers": 0.1,
+        "decl_narrower": 0.67,
+        "decls": [
+          "oddRun_recursive"
+        ],
+        "different_result": 0.13,
+        "key": "b5098327b5ecfef3",
+        "model": "jev-1.13.0"
+      },
+      "J-ooo-residual-cube": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.95,
+        "covers": 0.08,
+        "decl_narrower": 0.67,
+        "decls": [
+          "cycleMin_ooo_residual_ge_cube"
+        ],
+        "different_result": 0.07,
+        "key": "800128a1f5490b72",
+        "model": "jev-1.13.0"
+      },
+      "J-paper-b-E-is-the-exponent-walk": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.93,
+        "covers": 0.06,
+        "decl_narrower": 0.31,
+        "decls": [
+          "iter_eq_pow"
+        ],
+        "different_result": 0.07,
+        "key": "2fa72be9a3c20d77",
+        "model": "jev-1.13.0"
+      },
+      "J-paper-b-count-is-the-level-zero-bad-count": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.92,
+        "covers": 0.03,
+        "decl_narrower": 0.27,
+        "decls": [
+          "iter_eq_one_iff"
+        ],
+        "different_result": 0.08,
+        "key": "10c7f2955a76b037",
+        "model": "jev-1.13.0"
+      },
+      "J-paper-b-defect-coefficient-chain": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.83,
+        "covers": 0.19,
+        "decl_narrower": 0.28,
+        "decls": [
+          "chain_rule"
+        ],
+        "different_result": 0.05,
+        "key": "d06943e581e42a52",
+        "model": "jev-1.13.0"
+      },
+      "J-paper-b-linearisation-E-lt-2": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.89,
+        "covers": 0.19,
+        "decl_narrower": 0.38,
+        "decls": [
+          "linearise_iff"
+        ],
+        "different_result": 0.2,
+        "key": "a703f58fb2ede3a2",
+        "model": "jev-1.13.0"
+      },
+      "J-paper-b-screen-is-a-walk-condition": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.94,
+        "covers": 0.03,
+        "decl_narrower": 0.62,
+        "decls": [
+          "noncontracting_two_forces"
+        ],
+        "different_result": 0.07,
+        "key": "f22ecb5d0ad48ac3",
+        "model": "jev-1.13.0"
+      },
+      "J-period-family-arithmetic-in-lean": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.92,
+        "covers": 0.03,
+        "decl_narrower": 0.57,
+        "decls": [
+          "familyClosed"
+        ],
+        "different_result": 0.06,
+        "key": "7742d4759aae87d2",
+        "model": "jev-1.13.0"
+      },
+      "J-rate-free-floor-certificates": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.13,
+        "covers": 0.91,
+        "decl_narrower": 0.3,
+        "decls": [
+          "reachesOne_of_floor_and_certificates"
+        ],
+        "different_result": 0.04,
+        "key": "af1d6a1067b49d5e",
+        "model": "jev-1.13.0"
+      },
+      "J-rate-free-prop-j-finite": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.87,
+        "covers": 0.21,
+        "decl_narrower": 0.3,
+        "decls": [
+          "propJ_count"
+        ],
+        "different_result": 0.05,
+        "key": "9de20e2bbbf5649b",
+        "model": "jev-1.13.0"
+      },
+      "J-residual-floor-fifty-three": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.94,
+        "covers": 0.08,
+        "decl_narrower": 0.44,
+        "decls": [
+          "reachesOne_of_lt_fifty_three"
+        ],
+        "different_result": 0.08,
+        "key": "9a37d1fb9e2b1f47",
+        "model": "jev-1.13.0"
+      },
+      "J-residual-floor-two-hundred-fifty-seven": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.95,
+        "covers": 0.05,
+        "decl_narrower": 0.4,
+        "decls": [
+          "reachesOne_of_lt_two_hundred_fifty_seven"
+        ],
+        "different_result": 0.09,
+        "key": "babda1776e9cfdb0",
+        "model": "jev-1.13.0"
+      },
+      "J-residual-floor-two-hundred-sixty-one": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.83,
+        "covers": 0.13,
+        "decl_narrower": 0.4,
+        "decls": [
+          "reachesOne_of_lt_two_hundred_sixty_one"
+        ],
+        "different_result": 0.09,
+        "key": "bbe109629fb76bfe",
+        "model": "jev-1.13.0"
+      },
+      "J-small-cycle-census": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.47,
+        "covers": 0.86,
+        "decl_narrower": 0.26,
+        "decls": [
+          "no_cycle_itinerary_length_le_six"
+        ],
+        "different_result": 0.05,
+        "key": "a7211f54a1698629",
+        "model": "jev-1.13.0"
+      },
+      "J-small-cycle-census-eight": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.66,
+        "covers": 0.85,
+        "decl_narrower": 0.25,
+        "decls": [
+          "no_cycle_itinerary_length_le_eight"
+        ],
+        "different_result": 0.05,
+        "key": "54b539951cf21f7c",
+        "model": "jev-1.13.0"
+      },
+      "J-small-cycle-census-eighteen": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.83,
+        "covers": 0.39,
+        "decl_narrower": 0.25,
+        "decls": [
+          "no_cycle_itinerary_length_le_eighteen"
+        ],
+        "different_result": 0.07,
+        "key": "c94c63b2144301ae",
+        "model": "jev-1.13.0"
+      },
+      "J-small-cycle-census-eleven": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.93,
+        "covers": 0.21,
+        "decl_narrower": 0.38,
+        "decls": [
+          "no_cycle_itinerary_length_le_eleven"
+        ],
+        "different_result": 0.07,
+        "key": "676c0e3aca8e9231",
+        "model": "jev-1.13.0"
+      },
+      "J-small-cycle-census-seven": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.91,
+        "covers": 0.26,
+        "decl_narrower": 0.35,
+        "decls": [
+          "no_cycle_itinerary_length_le_seven"
+        ],
+        "different_result": 0.05,
+        "key": "ecfe26bf234675cc",
+        "model": "jev-1.13.0"
+      },
+      "J-square-start-ooe-cells": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.33,
+        "covers": 0.52,
+        "decl_narrower": 0.34,
+        "decls": [
+          "ooe_sq_eq_iff",
+          "ooe_sq_cell",
+          "ooe_sq_actual_of_cells"
+        ],
+        "different_result": 0.09,
+        "key": "5ab69f0d8eeb9992",
+        "model": "jev-1.13.0"
+      },
+      "J-tao-rate-implies-conjecture": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.89,
+        "covers": 0.16,
+        "decl_narrower": 0.39,
+        "decls": [
+          "tao_rate_implies_conjecture"
+        ],
+        "different_result": 0.06,
+        "key": "497dff9dd6283284",
+        "model": "jev-1.13.0"
+      },
+      "J-three-even-eee": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.2,
+        "covers": 0.87,
+        "decl_narrower": 0.16,
+        "decls": [
+          "no_cycle_itinerary_three_even_eee"
+        ],
+        "different_result": 0.04,
+        "key": "d7a8b318fcc85543",
+        "model": "jev-1.13.0"
+      },
+      "J-three-even-eeoe": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.42,
+        "covers": 0.65,
+        "decl_narrower": 0.2,
+        "decls": [
+          "no_cycle_itinerary_three_even_eeoe"
+        ],
+        "different_result": 0.04,
+        "key": "f4c500b8d4265c6d",
+        "model": "jev-1.13.0"
+      },
+      "J-three-even-eoee": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.55,
+        "covers": 0.6,
+        "decl_narrower": 0.22,
+        "decls": [
+          "no_cycle_itinerary_three_even_eoee"
+        ],
+        "different_result": 0.04,
+        "key": "f9a5b7beaa4141c0",
+        "model": "jev-1.13.0"
+      },
+      "J-three-even-eoeoe": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.54,
+        "covers": 0.6,
+        "decl_narrower": 0.2,
+        "decls": [
+          "no_cycle_itinerary_three_even_eoeoe"
+        ],
+        "different_result": 0.04,
+        "key": "e42efa4d206c9563",
+        "model": "jev-1.13.0"
+      },
+      "J-three-even-eooee": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.46,
+        "covers": 0.57,
+        "decl_narrower": 0.18,
+        "decls": [
+          "no_cycle_itinerary_three_even_eooee"
+        ],
+        "different_result": 0.04,
+        "key": "ab7c8979b4e1729e",
+        "model": "jev-1.13.0"
+      },
+      "J-three-even-eooeoe": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.58,
+        "covers": 0.63,
+        "decl_narrower": 0.2,
+        "decls": [
+          "no_cycle_itinerary_three_even_eooeoe"
+        ],
+        "different_result": 0.04,
+        "key": "6c7a38c922098613",
+        "model": "jev-1.13.0"
+      },
+      "J-three-even-eoooee": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.47,
+        "covers": 0.67,
+        "decl_narrower": 0.17,
+        "decls": [
+          "no_cycle_itinerary_three_even_eoooee"
+        ],
+        "different_result": 0.04,
+        "key": "aa6c433ecbe56ced",
+        "model": "jev-1.13.0"
+      },
+      "J-two-even-leftover-ee": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.23,
+        "covers": 0.84,
+        "decl_narrower": 0.19,
+        "decls": [
+          "no_cycle_itinerary_two_even_ee"
+        ],
+        "different_result": 0.04,
+        "key": "8b9b997ed2759f71",
+        "model": "jev-1.13.0"
+      },
+      "J-two-even-leftover-eoe": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.68,
+        "covers": 0.53,
+        "decl_narrower": 0.15,
+        "decls": [
+          "no_cycle_itinerary_two_even_eoe"
+        ],
+        "different_result": 0.04,
+        "key": "227a9afff4d64414",
+        "model": "jev-1.13.0"
+      },
+      "OST-np-adjoint-window-det": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.92,
+        "covers": 0.07,
+        "decl_narrower": 0.66,
+        "decls": [
+          "adjointDet_eq"
+        ],
+        "different_result": 0.19,
+        "key": "f5c45cdaec3f2fc6",
+        "model": "jev-1.13.0"
+      },
+      "OST-np-consumed-sum-append": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.53,
+        "covers": 0.52,
+        "decl_narrower": 0.3,
+        "decls": [
+          "consumedSum_append"
+        ],
+        "different_result": 0.07,
+        "key": "46a68a671f6cab1b",
+        "model": "jev-1.13.0"
+      },
+      "OST-np-energy-ext-interval": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.15,
+        "covers": 0.79,
+        "decl_narrower": 0.31,
+        "decls": [
+          "energy_control_interval"
+        ],
+        "different_result": 0.04,
+        "key": "90fac879379d9db7",
+        "model": "jev-1.13.0"
+      },
+      "OST-np-energy-homogeneous": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.23,
+        "covers": 0.78,
+        "decl_narrower": 0.48,
+        "decls": [
+          "energy_homogeneous"
+        ],
+        "different_result": 0.04,
+        "key": "72552be9d07d613c",
+        "model": "jev-1.13.0"
+      },
+      "OST-np-energy-step": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.91,
+        "covers": 0.18,
+        "decl_narrower": 0.84,
+        "decls": [
+          "energy_step"
+        ],
+        "different_result": 0.06,
+        "key": "5db91084d9f1be41",
+        "model": "jev-1.13.0"
+      },
+      "OST-np-energy-telescope": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.36,
+        "covers": 0.69,
+        "decl_narrower": 0.43,
+        "decls": [
+          "energy_telescope"
+        ],
+        "different_result": 0.07,
+        "key": "d8bcdbe48c7dcbcb",
+        "model": "jev-1.13.0"
+      },
+      "OST-np-fold-s3": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.79,
+        "covers": 0.31,
+        "decl_narrower": 0.4,
+        "decls": [
+          "fold_s3"
+        ],
+        "different_result": 0.1,
+        "key": "00dd8eb7d7ccee9e",
+        "model": "jev-1.13.0"
+      },
+      "OST-np-impulse-place": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.56,
+        "covers": 0.39,
+        "decl_narrower": 0.33,
+        "decls": [
+          "iterateA_e3"
+        ],
+        "different_result": 0.09,
+        "key": "b36201f0d02e5df4",
+        "model": "jev-1.13.0"
+      },
+      "OST-np-kernel-unreach": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.56,
+        "covers": 0.61,
+        "decl_narrower": 0.33,
+        "decls": [
+          "kernel_unreachable_of_not_exceptional"
+        ],
+        "different_result": 0.07,
+        "key": "e59337b5b4f8fc60",
+        "model": "jev-1.13.0"
+      },
+      "OST-np-origin-particular": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.87,
+        "covers": 0.35,
+        "decl_narrower": 0.26,
+        "decls": [
+          "origin_particular"
+        ],
+        "different_result": 0.14,
+        "key": "a1e70b02743e1dc3",
+        "model": "jev-1.13.0"
+      },
+      "OST-np-particular-s3": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.88,
+        "covers": 0.27,
+        "decl_narrower": 0.44,
+        "decls": [
+          "particular_s3"
+        ],
+        "different_result": 0.18,
+        "key": "18759792d088becc",
+        "model": "jev-1.13.0"
+      },
+      "OST-np-recurrence-word-zero": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.31,
+        "covers": 0.77,
+        "decl_narrower": 0.44,
+        "decls": [
+          "q_rec"
+        ],
+        "different_result": 0.06,
+        "key": "a25f8c1d0a40cf07",
+        "model": "jev-1.13.0"
+      },
+      "OST-np-reset-pow-then-hub": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.38,
+        "covers": 0.77,
+        "decl_narrower": 0.32,
+        "decls": [
+          "reset_pow_then_hub"
+        ],
+        "different_result": 0.07,
+        "key": "28fa384d26631158",
+        "model": "jev-1.13.0"
+      },
+      "OST-np-reset-prefix": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.65,
+        "covers": 0.45,
+        "decl_narrower": 0.31,
+        "decls": [
+          "reset_prefix"
+        ],
+        "different_result": 0.15,
+        "key": "49389dd8cd5cf39b",
+        "model": "jev-1.13.0"
+      },
+      "OST-np-same-energy-same-OnF": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.75,
+        "covers": 0.37,
+        "decl_narrower": 0.41,
+        "decls": [
+          "fold_on_F_iff"
+        ],
+        "different_result": 0.14,
+        "key": "d89da55e287b1ec0",
+        "model": "jev-1.13.0"
+      },
+      "OST-np-unique-predecessor": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.57,
+        "covers": 0.55,
+        "decl_narrower": 0.23,
+        "decls": [
+          "unique_predecessor"
+        ],
+        "different_result": 0.07,
+        "key": "3ae6ec4ca706236f",
+        "model": "jev-1.13.0"
+      },
+      "OST-np-val-concat-energy": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.86,
+        "covers": 0.58,
+        "decl_narrower": 0.33,
+        "decls": [
+          "val_concat_energy"
+        ],
+        "different_result": 0.09,
+        "key": "02f45cc5d1fa6559",
+        "model": "jev-1.13.0"
+      },
+      "PRC-section-I0-composite": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.62,
+        "covers": 0.45,
+        "decl_narrower": 0.27,
+        "decls": [
+          "i0_not_prime_of_natAbs"
+        ],
+        "different_result": 0.12,
+        "key": "75608a6cf55267bd",
+        "model": "jev-1.13.0"
+      },
+      "PRC-sieve-mod-M": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.21,
+        "covers": 0.86,
+        "decl_narrower": 0.22,
+        "decls": [
+          "iz_mod_of_congruent"
+        ],
+        "different_result": 0.05,
+        "key": "8b5fb3e7aa4c64b5",
+        "model": "jev-1.13.0"
+      },
+      "PRC-sieve-prime-separator": {
+        "asked": "2026-09-21",
+        "claim_broader": 0.73,
+        "covers": 0.64,
+        "decl_narrower": 0.49,
+        "decls": [
+          "sievePrime_I0_separator"
+        ],
+        "different_result": 0.16,
+        "key": "3c17d5bd161026b4",
+        "model": "jev-1.13.0"
+      }
+    },
+    "totals": {
+      "answered": 248,
+      "asked_now": 0,
+      "input_tokens": 0,
+      "reused": 248,
+      "unfound": 0
+    }
+  },
   "models": [
     "jev-1.13.0"
   ],
-  "note": "Jev's answers to the proposal queue, cached by row: which of the file's theorems states the row, or none of them. Advisory, like the scorer: propose() merges these onto its rows, and nothing here is written into the ledger.",
+  "note": "Jev's answers, cached by ledger row. `rows`: for each unresolved row, which of the file's theorems states it, or none of them. `coverage`: for each resolved row, whether the declarations it names cover its claim. Advisory, like the scorer: propose() and the digests merge these, and nothing here is written into the ledger.",
   "rows": {
     "BT-Pn3": {
       "asked": "2026-09-21",

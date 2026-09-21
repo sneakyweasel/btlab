@@ -41,3 +41,15 @@ python -m pytest tests/unit/test_theorem_ledger.py
 ```
 
 5. Retag to `EXACT — LEAN VERIFIED` only when the Lean theorem covers the English statement.
+   Set `decl` to every declaration the statement needs, then ask Jev about that row before
+   ruling; the answer is advisory and the ruling is yours:
+
+```powershell
+python tools/formalpedia.py jev-coverage --rows <id>
+```
+
+   It prints a band and four probabilities: that the declarations cover the claim, that the
+   claim asserts more than they state, that a declaration is narrower than the claim, and
+   that one is a different result. Coverage below 0.5 (doubtful) and below 0.25 (not
+   covered) means read the row and the declarations side by side before retagging; the
+   highest failure mode says what to look for (see the formalpedia skill).

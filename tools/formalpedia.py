@@ -23,6 +23,7 @@ Usage::
     python tools/formalpedia.py impact <path>  # modules that would be rebuilt by a change
     python tools/formalpedia.py jev-propose    # ask Jev which theorem each unresolved row means
     python tools/formalpedia.py jev-calibrate  # score Jev on rows whose theorem is recorded
+    python tools/formalpedia.py jev-coverage   # ask Jev whether recorded theorems cover their rows
 """
 
 from __future__ import annotations
@@ -49,6 +50,7 @@ DAG = ROOT / "data" / "research" / "formalpedia" / "dag.json"
 PROPOSALS = ROOT / "data" / "research" / "formalpedia" / "decl_proposals.json"
 REVIEW = ROOT / "docs" / "research" / "formalpedia_decl_review.md"
 JEV = ROOT / "data" / "research" / "formalpedia" / "jev_verdicts.json"
+COVERAGE = ROOT / "docs" / "research" / "formalpedia_coverage_review.md"
 
 DECL = re.compile(
     r"^(?:private\s+|protected\s+|noncomputable\s+)*"
@@ -736,20 +738,28 @@ def _run(items: list[Any], fn: Callable[[Any], Any], workers: int) -> list[Any]:
     return [fn(item) for item in items]
 
 
+_EMPTY_TOTALS = {"answered": 0, "asked_now": 0, "reused": 0, "input_tokens": 0}
+
+
 def _jev_record(rows: dict[str, Any], calibration: dict[str, Any] | None,
-                totals: dict[str, int]) -> dict[str, Any]:
+                totals: dict[str, int], coverage: dict[str, Any] | None = None) -> dict[str, Any]:
     models = {v["model"] for v in rows.values() if v.get("model")}
     if calibration and calibration.get("model"):
         models.add(calibration["model"])
+    for v in ((coverage or {}).get("rows") or {}).values():
+        if v.get("model"):
+            models.add(v["model"])
     return {
-        "note": "Jev's answers to the proposal queue, cached by row: which of the file's "
-                "theorems states the row, or none of them. Advisory, like the scorer: "
-                "propose() merges these onto its rows, and nothing here is written into "
-                "the ledger.",
+        "note": "Jev's answers, cached by ledger row. `rows`: for each unresolved row, which "
+                "of the file's theorems states it, or none of them. `coverage`: for each "
+                "resolved row, whether the declarations it names cover its claim. Advisory, "
+                "like the scorer: propose() and the digests merge these, and nothing here is "
+                "written into the ledger.",
         "asked": datetime.date.today().isoformat(),
         "models": sorted(models),
         "calibration": calibration,
         "totals": totals,
+        "coverage": coverage,
         "rows": dict(sorted(rows.items())),
     }
 
@@ -813,7 +823,8 @@ def jev_propose(
         tokens += used
     totals = {"answered": len(rows), "asked_now": len(todo),
               "reused": len(rows) - len(todo), "input_tokens": tokens}
-    return _jev_record(rows, (cached or {}).get("calibration"), totals)
+    return _jev_record(rows, (cached or {}).get("calibration"), totals,
+                       (cached or {}).get("coverage"))
 
 
 def jev_calibrate(
@@ -936,6 +947,345 @@ def _jev_summary(rows: list[dict[str, Any]]) -> dict[str, Any] | None:
         ),
         "routed": sum(1 for j in fields if j.get("routed")),
     }
+
+
+JEV_COVERAGE_PROMPT = 2
+"""Bumped with the coverage questions or the state format, as ``JEV_PROMPT`` is for the offer.
+
+Version 1 asked about the claim "as written" and about "some declaration": on 21 September
+2026 it put 222 of 249 resolved rows below half, the digest's own repaired example among
+them at 0.08, because a ledger row cites papers, tests and trust levels and says what it does
+not claim, and because each of two declarations covering half a claim is, alone, narrower
+than the claim.  Version 2 sets provenance aside and judges the declarations together: the
+rows readable as covered moved to 0.72 and above, the five known part-for-whole joins stayed
+at or below 0.08, and the repaired example rose to 0.27 with "narrower" halved.
+"""
+
+JEV_COVERAGE_FLAG = 0.5
+"""A resolved row is listed for review when Jev puts coverage below this.  Half is where yes
+and no are equally likely, the Noul's own neutral; the list is read and never applied."""
+
+JEV_COVERAGE_LOW = 0.25
+"""Below this the digest files a row under "not covered" rather than "doubtful".  On the
+21 September 2026 sample every row whose claim demonstrably said more than its declaration
+sat at or below 0.14, and the ones readable as covered at 0.72 or above; the band between is
+where the reviewer's reading is genuinely needed."""
+
+JEV_COVERAGE_QUESTIONS = {
+    "covers": (
+        "`claim` is an informal ledger entry. It may cite papers, sections, tests and trust "
+        "levels, name the Lean declarations it rests on, and say what it does not claim; set "
+        "all of that aside and take only the mathematical assertions it makes. Do the formal "
+        "statements in `declarations`, taken together, establish those assertions: the same "
+        "objects, no hypothesis the claim does not make, and every conclusion the claim makes? "
+        "Yes means a reader could cite the declarations as the formal proof of the mathematics "
+        "in the claim."
+    ),
+    "claim_broader": (
+        "Setting aside provenance, references, trust remarks and disclaimers in `claim`, does "
+        "its mathematics assert something that the declarations in `declarations`, taken "
+        "together, do not state: an additional conclusion, a further case, a stronger "
+        "quantifier, or a wider domain?"
+    ),
+    "decl_narrower": (
+        "Are the declarations in `declarations`, taken together, restricted more than the "
+        "mathematics of `claim`: a hypothesis the claim does not make, a smaller domain such "
+        "as natural numbers where the claim speaks of integers, a special case, or one "
+        "direction of an equivalence the claim states in both directions? Several "
+        "declarations that together cover the claim are not narrower."
+    ),
+    "different_result": (
+        "Is some declaration in `declarations` about a different result from the mathematics "
+        "of `claim` altogether, rather than a part or the whole of it?"
+    ),
+}
+"""The retag rule as four yes/no questions over one row.  ``covers`` is the rule itself and
+the only one that lists a row; the other three are the failure modes the proposal digest
+names, asked separately so the reviewer is told what to look for.  All four are answered in
+one request and cannot see one another."""
+
+JEV_COVERAGE_READINGS = {
+    "claim_broader": "the claim asserts more than the declarations state",
+    "decl_narrower": "a declaration is narrower than the claim",
+    "different_result": "a declaration is a different result",
+}
+
+AskNouls = Callable[[dict[str, Any], dict[str, str]], dict[str, Any]]
+"""``ask(state, questions)`` with one instruction per question id, returning ``nouls`` (id to
+the probability of yes), ``model`` and ``input_tokens``.  ``jev_ask_nouls`` builds the real
+one; the tests pass a function."""
+
+
+def jev_ask_nouls(model: str = "jev-latest", timeout: float = 60.0) -> AskNouls:
+    """The real asker for the coverage questions: several Nouls over one state per call."""
+    try:
+        from typesafe_sdk import Noul, TypeSafeClient
+    except ImportError as exc:  # pragma: no cover - depends on the environment
+        raise SystemExit(
+            "typesafe-sdk is not installed: pip install typesafe-sdk, then set TYPESAFE_API_KEY"
+        ) from exc
+    client = TypeSafeClient(timeout=timeout)
+
+    def ask(state: dict[str, Any], questions: dict[str, str]) -> dict[str, Any]:
+        response = client.system_one(
+            state=state,
+            questions={qid: Noul(instructions=text) for qid, text in questions.items()},
+            model=model,
+        )
+        return {
+            "nouls": {qid: float(response.nouls[qid].noul) for qid in questions},
+            "model": response.model,
+            "input_tokens": int(response.usage.input_tokens),
+        }
+
+    return ask
+
+
+def _no_ask(state: dict[str, Any], questions: dict[str, str]) -> dict[str, Any]:
+    raise RuntimeError("no question may be asked in this run")
+
+
+def _resolved(
+    index: dict[str, Any], ledger: list[dict[str, Any]]
+) -> list[tuple[dict[str, Any], list[dict[str, Any]], list[str]]]:
+    """Rows that name their declarations, each with those declarations from the index.
+
+    A name the index does not hold is reported rather than skipped silently: the ledger's
+    own tests forbid it, so a hit here means the index is stale.  A ``REFUTED`` row is left
+    out: its declaration is the refutation, and whether that covers the refuted claim is a
+    different question from the retag rule.
+    """
+    byname = {(d["file"], d["name"]): d for d in index["declarations"]}
+    out: list[tuple[dict[str, Any], list[dict[str, Any]], list[str]]] = []
+    for row in ledger:
+        names = row_decls(row)
+        if not names or row["tag"] == "REFUTED":
+            continue
+        key = lean_key(row.get("lean"))
+        found = [byname[(key, n)] for n in names if (key, n) in byname]
+        missing = [n for n in names if (key, n) not in byname]
+        out.append((row, found, missing))
+    return out
+
+
+def coverage_state(row: dict[str, Any], decls: list[dict[str, Any]]) -> dict[str, Any]:
+    """The claim beside every declaration it names, each with docstring and header."""
+    return {
+        "claim": row["statement"],
+        "lean_file": row.get("lean") or "",
+        "ledger_id": row["id"],
+        "declarations": [
+            {"name": d["name"], "docstring": _clip(d.get("doc", ""), 600),
+             "statement": _clip(signature(d, limit=12), 900)}
+            for d in decls
+        ],
+    }
+
+
+def coverage_key(row: dict[str, Any], decls: list[dict[str, Any]]) -> str:
+    """Unlike the offer key, this covers the declarations' text: a strengthened header or a
+    corrected docstring changes what covers the claim, and re-asking one row is cheap."""
+    payload = [JEV_COVERAGE_PROMPT, row["statement"], row.get("lean") or "",
+               [[d["name"], d.get("doc", ""), signature(d, limit=12)] for d in decls]]
+    blob = json.dumps(payload, ensure_ascii=False).encode("utf-8")
+    return hashlib.sha256(blob).hexdigest()[:16]
+
+
+def jev_coverage(
+    index: dict[str, Any], ledger: list[dict[str, Any]], ask: AskNouls,
+    cached: dict[str, Any] | None = None, refresh: bool = False,
+    limit: int | None = None, only: set[str] | None = None, workers: int = 4,
+) -> dict[str, Any]:
+    """Ask Jev, once per resolved row, whether the declarations it names cover its claim.
+
+    The retag rule -- ``EXACT — LEAN VERIFIED`` only when the Lean theorem covers the English
+    statement -- has had no mechanism behind it: the proposal digest names the two ways a join
+    records a part as the whole and leaves both to the reader.  This asks the rule as four
+    Nouls over the claim and every declaration the row names, and caches the answers under
+    ``coverage_key`` in the verdict record, beside the offer verdicts.  ``only`` restricts a
+    run to some row ids, which is how one retag is checked; ``limit`` and ``refresh`` are as in
+    ``jev_propose``, and ``limit=0`` rewrites the artifacts from the cache without asking.
+    Advisory: the ledger is never written.
+    """
+    record = dict(cached or {})
+    prior = (record.get("coverage") or {}).get("rows", {})
+    rows: dict[str, Any] = {}
+    pending: list[tuple[dict[str, Any], list[dict[str, Any]], str, Any]] = []
+    unfound: dict[str, list[str]] = {}
+    for row, decls, missing in _resolved(index, ledger):
+        old = prior.get(row["id"])
+        if missing:
+            unfound[row["id"]] = missing
+            continue
+        if only is not None and row["id"] not in only:
+            if old is not None:
+                rows[row["id"]] = old
+            continue
+        key = coverage_key(row, decls)
+        if old is not None and old.get("key") == key and not refresh:
+            rows[row["id"]] = old
+            continue
+        pending.append((row, decls, key, old))
+    todo = pending if limit is None else pending[:limit]
+    for row, _decls, _key, old in pending[len(todo):]:
+        if old is not None:
+            rows[row["id"]] = old
+    today = datetime.date.today().isoformat()
+
+    def one(
+        item: tuple[dict[str, Any], list[dict[str, Any]], str, Any]
+    ) -> tuple[str, dict[str, Any], int]:
+        row, decls, key, _old = item
+        v = ask(coverage_state(row, decls), JEV_COVERAGE_QUESTIONS)
+        verdict: dict[str, Any] = {
+            "key": key, "model": v["model"], "asked": today,
+            "decls": [d["name"] for d in decls],
+        }
+        for qid in JEV_COVERAGE_QUESTIONS:
+            verdict[qid] = round(float(v["nouls"][qid]), 3)
+        return row["id"], verdict, int(v.get("input_tokens", 0))
+
+    tokens = 0
+    for rid, verdict, used in _run(todo, one, workers):
+        rows[rid] = verdict
+        tokens += used
+    earlier = (record.get("coverage") or {}).get("asked")
+    coverage = {
+        "asked": today if todo else earlier,
+        "totals": {"answered": len(rows), "asked_now": len(todo),
+                   "reused": len(rows) - len(todo), "input_tokens": tokens,
+                   "unfound": len(unfound)},
+        "rows": dict(sorted(rows.items())),
+    }
+    return _jev_record(record.get("rows", {}), record.get("calibration"),
+                       record.get("totals", dict(_EMPTY_TOTALS)), coverage)
+
+
+def coverage_rows(index: dict[str, Any], ledger: list[dict[str, Any]],
+                  record: dict[str, Any] | None) -> list[dict[str, Any]]:
+    """Every resolved row with its cached coverage verdict checked against the declarations
+    as they are now: ``verdict`` is ``fresh``, ``stale`` or ``unasked``; ``band`` is
+    ``covered``, ``doubtful`` or ``not_covered`` by ``covers`` alone; ``flagged`` says whether
+    the digest lists it; ``reading`` names the failure mode Jev rates highest when that is at
+    or above half."""
+    prior = ((record or {}).get("coverage") or {}).get("rows", {})
+    out: list[dict[str, Any]] = []
+    for row, decls, missing in _resolved(index, ledger):
+        entry: dict[str, Any] = {
+            "id": row["id"], "tag": row["tag"], "lean": row.get("lean"),
+            "trust": row.get("lean_trust"), "statement": row["statement"], "decls": decls,
+            "missing": missing, "verdict": "unasked", "band": None, "flagged": False,
+            "reading": None,
+        }
+        v = prior.get(row["id"])
+        if v is not None and not missing:
+            entry["verdict"] = "fresh" if v.get("key") == coverage_key(row, decls) else "stale"
+            for qid in JEV_COVERAGE_QUESTIONS:
+                entry[qid] = float(v.get(qid, 0.0))
+            entry["model"], entry["asked"] = v.get("model"), v.get("asked")
+            if entry["verdict"] == "fresh":
+                covers = entry["covers"]
+                entry["band"] = ("not_covered" if covers < JEV_COVERAGE_LOW
+                                 else "doubtful" if covers < JEV_COVERAGE_FLAG else "covered")
+                entry["flagged"] = covers < JEV_COVERAGE_FLAG
+                modes = {q: entry[q] for q in JEV_COVERAGE_READINGS}
+                worst = max(modes, key=lambda q: (modes[q], q))
+                entry["reading"] = worst if modes[worst] >= 0.5 else None
+        out.append(entry)
+    return out
+
+
+def coverage_digest(
+    index: dict[str, Any], ledger: list[dict[str, Any]], jev: dict[str, Any] | None = None
+) -> str:
+    """Resolved rows whose declarations may not state the whole claim, lowest coverage first.
+
+    The proposal digest joins rows to declarations; this one asks whether a recorded join is
+    complete, which is the retag rule.  Each entry is the row's statement beside every
+    declaration it names, docstring and header, with Jev's four probabilities and the failure
+    mode it rates highest, so the reviewer knows what to look for before reading.
+    """
+    verdicts = load_jev() if jev is None else jev
+    rows = coverage_rows(index, ledger, verdicts)
+    out = [
+        "# Coverage review queue",
+        "",
+        "Resolved rows -- rows that name their declarations -- whose declarations may not state",
+        "the whole claim.  The rule for `EXACT — LEAN VERIFIED` is that the Lean theorem covers",
+        "the English statement, and nothing checked it: the proposal digest names the two ways a",
+        "join records a part as the whole and leaves both to the reader.  Here Jev is asked four",
+        "yes/no questions over each row and every declaration it names: whether the declarations",
+        "cover the claim, whether the claim asserts more than they state, whether a declaration",
+        "is narrower than the claim, and whether one is a different result.",
+        "",
+        f"A row is listed when coverage is below {JEV_COVERAGE_FLAG}, lowest first: below",
+        f"{JEV_COVERAGE_LOW} it is filed as not covered, between the two as doubtful.  The other",
+        "three answers are shown as the reading to check first.  Jev returns probabilities, not",
+        "a reading: the list is where to look, and the ruling is the reviewer's.  Answer by",
+        "extending `decl` to the declarations that together state the claim, narrowing the",
+        "statement to what the declarations prove, or retagging to `EXACT — HUMAN PROOF`; then",
+        "rerun `jev-coverage`, which re-asks a row whose statement or declarations changed.",
+        "",
+        "A short claim filed as not covered is the likeliest mis-join and is worth reading first.",
+        "A long one usually summarizes a paper section and says more than one theorem proves,",
+        "which is what the ledger's list-valued `decl` exists to record.  `REFUTED` rows are not",
+        "asked: their declaration is the refutation.",
+        "",
+    ]
+    asked = [r for r in rows if r["verdict"] != "unasked"]
+    if not asked:
+        out += ["Jev has not been asked yet: run `python tools/formalpedia.py jev-coverage`.", ""]
+        return "\n".join(out) + "\n"
+    stale = [r for r in asked if r["verdict"] == "stale"]
+    flagged = sorted((r for r in asked if r["flagged"]), key=lambda r: (r["covers"], r["id"]))
+    bands = collections.Counter(r["band"] for r in asked if r["band"])
+    models = sorted({r["model"] for r in asked if r.get("model")})
+    dates = [r["asked"] for r in asked if r.get("asked")]
+    tail = (f", and {len(stale)} answered an earlier version of their row and need a rerun."
+            if stale else ".")
+    out += [
+        f"Jev ({', '.join(models)}, last asked {max(dates) if dates else '?'}) has answered",
+        f"{len(asked)} of the {len(rows)} resolved rows: {bands['covered']} covered,",
+        f"{bands['doubtful']} doubtful, {bands['not_covered']} not covered; {len(flagged)} are",
+        f"listed below{tail}",
+        "",
+    ]
+    short = [r for r in flagged if r["band"] == "not_covered" and len(r["statement"]) < 150]
+    if short:
+        names = ", ".join(f"`{r['id']}` ({r['covers']})" for r in short)
+        out += [f"Short claims filed as not covered, the likeliest mis-joins: {names}.", ""]
+    marked = False
+    for n, r in enumerate(flagged, 1):
+        if r["band"] == "doubtful" and not marked:
+            out += [f"**Doubtful from here: coverage between {JEV_COVERAGE_LOW} and "
+                    f"{JEV_COVERAGE_FLAG}.**", ""]
+            marked = True
+        out += [f"## {n}. `{r['id']}` &mdash; covers {r['covers']}", ""]
+        reading = JEV_COVERAGE_READINGS.get(r["reading"] or "")
+        if reading:
+            out.append(f"*Reads as: {reading} ({r[r['reading']]}).*")
+        else:
+            out.append("*No failure mode above the line; coverage itself is doubtful.*")
+        out += [
+            "",
+            f"*Claim broader {r['claim_broader']}; declaration narrower {r['decl_narrower']}; "
+            f"different result {r['different_result']}.  Tag {r['tag']}, trust "
+            f"{r['trust'] or '?'}.*",
+            "",
+            f"**Row.** {r['statement'][:800]}"
+            + ("  *(truncated; read the ledger row)*" if len(r["statement"]) > 800 else ""),
+            "",
+        ]
+        label = "**Declaration.**" if len(r["decls"]) == 1 else "**Declarations.**"
+        for i, d in enumerate(r["decls"]):
+            head = label if i == 0 else "**And.**"
+            out += [f"{head} `{d['name']}` &mdash; {d['trust']}-checked, `{r['lean']}:{d['line']}`",
+                    ""]
+            if d.get("doc"):
+                out += [f"> {d['doc']}", ""]
+            out += ["```lean", signature(d, limit=12) or "(could not read the declaration)",
+                    "```", ""]
+    return "\n".join(out) + "\n"
 
 
 def signature(decl: dict[str, Any], limit: int = 8) -> str:
@@ -1148,7 +1498,8 @@ def _write_jev_artifacts(index: dict[str, Any], ledger: list[dict[str, Any]],
     PROPOSALS.write_text(render(propose(index, ledger, jev=record)), encoding="utf-8")
     REVIEW.parent.mkdir(parents=True, exist_ok=True)
     REVIEW.write_text(review_digest(index, ledger, jev=record), encoding="utf-8")
-    for path in (JEV, PROPOSALS, REVIEW):
+    COVERAGE.write_text(coverage_digest(index, ledger, jev=record), encoding="utf-8")
+    for path in (JEV, PROPOSALS, REVIEW, COVERAGE):
         print(f"wrote {path.relative_to(ROOT).as_posix()}")
 
 
@@ -1181,7 +1532,43 @@ def main(argv: list[str] | None = None) -> int:
                    help="rows to draw; every eligible row if omitted")
     p.add_argument("--seed", type=int, default=0)
     p.add_argument("--workers", type=int, default=4)
+    p = sub.add_parser("jev-coverage",
+                       help="ask Jev whether each resolved row's declarations cover its claim")
+    p.add_argument("--model", default="jev-latest")
+    p.add_argument("--refresh", action="store_true",
+                   help="ask again where a cached verdict still matches")
+    p.add_argument("--limit", type=int, default=None,
+                   help="ask about at most this many rows now; 0 rewrites from the cache")
+    p.add_argument("--rows", default=None,
+                   help="comma-separated ledger ids to ask about, e.g. the row being retagged")
+    p.add_argument("--workers", type=int, default=4)
     args = ap.parse_args(argv)
+
+    if args.cmd == "jev-coverage":
+        index = load()
+        ledger = json.load(io.open(LEDGER, encoding="utf-8"))
+        only = {s.strip() for s in args.rows.split(",") if s.strip()} if args.rows else None
+        ask = _no_ask if args.limit == 0 else jev_ask_nouls(args.model)
+        record = jev_coverage(index, ledger, ask, cached=load_jev(), refresh=args.refresh,
+                              limit=args.limit, only=only, workers=args.workers)
+        _write_jev_artifacts(index, ledger, record)
+        t = record["coverage"]["totals"]
+        print(f"{t['answered']} resolved rows carry a coverage verdict: asked {t['asked_now']} "
+              f"now ({t['input_tokens']} input tokens), reused {t['reused']}"
+              + (f"; {t['unfound']} rows name a declaration the index lacks" if t["unfound"]
+                 else ""))
+        rows = coverage_rows(index, ledger, record)
+        bands = collections.Counter(r["band"] for r in rows if r["band"])
+        print(f"  {bands['covered']} covered, {bands['doubtful']} doubtful, "
+              f"{bands['not_covered']} not covered; {sum(r['flagged'] for r in rows)} listed "
+              f"for review, {sum(r['verdict'] == 'stale' for r in rows)} stale")
+        for r in rows:
+            if only and r["id"] in only and r["verdict"] != "unasked":
+                reading = JEV_COVERAGE_READINGS.get(r["reading"] or "", "no failure mode")
+                print(f"  {r['id']}: {r['band']}; covers {r['covers']}, claim broader "
+                      f"{r['claim_broader']}, declaration narrower {r['decl_narrower']}, "
+                      f"different result {r['different_result']} -> {reading}")
+        return 0
 
     if args.cmd == "jev-propose":
         index = load()
@@ -1206,8 +1593,8 @@ def main(argv: list[str] | None = None) -> int:
                             seed=args.seed, workers=args.workers)
         cached = load_jev()
         record = _jev_record((cached or {}).get("rows", {}), cal,
-                             (cached or {}).get("totals", {"answered": 0, "asked_now": 0,
-                                                            "reused": 0, "input_tokens": 0}))
+                             (cached or {}).get("totals", dict(_EMPTY_TOTALS)),
+                             (cached or {}).get("coverage"))
         _write_jev_artifacts(index, ledger, record)
         print(f"{cal['sampled']} of {cal['eligible']} eligible rows ({cal['model']}, seed "
               f"{cal['seed']}, {cal['input_tokens']} input tokens)")
