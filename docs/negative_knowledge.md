@@ -1,5 +1,21 @@
 # Negative knowledge
 
+## Exact parity coding does not transport ordinary integers
+
+Recorded 22 September 2026. The Juggler does admit an exact semiconjugacy
+into the 2-adic \(3n-1\) map: if \(d_j\) are its odd times, then
+\(H(n)=\sum_j2^{d_j}/3^{j+1}\) satisfies \(H(J(n))=C_-(H(n))\).
+This is Bernstein--Lagarias parity coding, a **REPARAMETERIZATION** available
+for any binary-labelled deterministic system. It is not an integer conjugacy:
+\(H(3)=83/27\), and it is not injective, since \(H(4)=H(6)=4\).
+The periodic code is \(A(w)/(3^o-2^K)\); ordinary integrality still requires
+the word divisibility. FD becomes equidistribution of the codes in
+\(\mathbb Z_2\), which is equivalent to the original hypothesis and proves
+nothing further. Do not reopen the existence of this coding as a cycle
+exclusion or a proof of FD. A new constraint from actual floor realizations
+would be needed. Derivation and exact checks:
+[Collatz bridge review](problems/juggler_collatz_bridge.md#review-of-22-september-2026-an-exact-orbit-map-into-the-2-adics).
+
 ## Two over-corrections in one week: a right fact rejected for a good-looking reason
 
 Recorded 21 September 2026, after five sources were read at last and three

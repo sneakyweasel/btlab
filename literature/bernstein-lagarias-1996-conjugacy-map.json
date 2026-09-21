@@ -1,0 +1,23 @@
+{
+  "id": "bernstein-lagarias-1996-conjugacy-map",
+  "title": "The 3x+1 conjugacy map",
+  "authors": ["Daniel J. Bernstein", "Jeffrey C. Lagarias"],
+  "year": 1996,
+  "identifiers": {
+    "doi": "10.4153/CJM-1996-060-x"
+  },
+  "url": {
+    "pdf": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/6975BB4A8C46CF6842217043AAF9EC13/S0008414X0004606Xa.pdf/div-class-title-the-3-span-class-italic-x-span-1-conjugacy-map-div.pdf"
+  },
+  "problem_area": "collatz",
+  "relevant_concepts": [
+    "2-adic parity coding",
+    "conjugacy to the binary shift",
+    "ax+b maps",
+    "rational periodic points",
+    "Juggler parity semiconjugacy"
+  ],
+  "project_relationship": "reproduced",
+  "status": "classical-source",
+  "notes": "Canadian Journal of Mathematics 48 (1996), 1154-1169. Read directly from the publisher PDF on 22 September 2026, especially equations (1.5), (1.6), (4.2) and the introduction's rationality distinction. Applying the inverse parity map to a Juggler itinerary and negating gives H(n) = sum_j 2^d_j / 3^(j+1) in Z_2, with H(J(n)) = C_-(H(n)). This is a universal symbolic construction, not a new arithmetic theorem. H(3) = 83/27 refutes transport of all positive integers into ordinary integers; H(4) = H(6) = 4 refutes injectivity. For periodic words the value is wordConst/(3^o-2^K), the existing rational-cycle formula. Paper B's fixed-depth fair-share hypothesis becomes equidistribution of these codes modulo every power of two. Review recorded in docs/problems/juggler_collatz_bridge.md; pure coding route CLOSE."
+}

@@ -1,5 +1,29 @@
 # Research journal
 
+## 2026-09-22 -- The bridge has an exact 2-adic orbit map, and integer realization still does not transfer
+
+- **Objective:** Review the latest commits and papers for a deeper connection
+  between Juggler, 3n+1 and 3n-1.
+- **Result:** [Review and derivations](problems/juggler_collatz_bridge.md#review-of-22-september-2026-an-exact-orbit-map-into-the-2-adics).
+  The common multiplier belongs to the group of rational {2,3}-units; its
+  signed correction explains the two sides of the logarithmic cycle gap.
+  Bernstein--Lagarias's classical parity coding supplies an exact
+  semiconjugacy from Juggler into the 2-adic 3n-1 system. FD is equivalently
+  equidistribution of its codes modulo every power of two.
+- **Refuted ideas:** This coding does not preserve ordinary integers
+  (H(3)=83/27), is not injective (H(4)=H(6)=4), and adds no restriction
+  on realizing a periodic word. The pure coding route is **CLOSE**;
+  no new branch, Lean result, ledger theorem or manuscript revision.
+- **Source review:** Hercher's journal links a 14 June 2026 corrigendum
+  repairing a step in Theorem 21. Paper D Lemma 6 has an independent
+  threshold-and-gap argument; no dependence on the faulty step was found.
+- **Checks:** Exact scratch arithmetic for starts 1 through 100 (761
+  rational parity/step checks) and all 8190 binary words through length 12;
+  no failures. The proof is the two inverse-branch identities, not the census.
+- **Best next question:** Whether actual Juggler floor equations restrict
+  the reduced denominator of the corresponding rational periodic point.
+  No proposed bound and no follow-up branch opened.
+
 ## 2026-09-21 -- A Lean plan for the Collatz bridge: join the two copies of the 3x-1 map first
 
 - **Objective:** Philippe asked how the Juggler, the 3x-1 map and the 3x+1 map could

@@ -516,3 +516,169 @@ removing the 2-adic rigidity, so it shows which parts of the Collatz problem
 need the 2-adics and which need only the words. On that reading Paper B's real
 contribution is machinery for proving analytically what Terras gets
 arithmetically, and that is the part which could not have come from Collatz.
+
+## Review of 22 September 2026: an exact orbit map into the 2-adics
+
+Disposition: **CLOSE** as a new arithmetic attack; **REPARAMETERIZATION** of
+classical parity coding. This review adds an exact orbit-level interpretation
+to the shared walk, without claiming an integer conjugacy or a new cycle bound.
+The original bridge's PROMOTE decision is unchanged.
+
+### Scope and sources
+
+The review read the recent commits through 66113cff, Paper A Section 5.9,
+Paper B's word-count identification, Paper C's current contagion statement,
+Paper D version 1.1.0, and the exponent-valuation and negative-knowledge records.
+The latest commit is an implementation plan, not completed Lean work.
+Paper D's local version excludes additional cycles with at most 61 odd runs,
+using Rhin's measure and the certified floor; its deposited version 1.0.0
+states 58. Neither statement transports a Juggler realization.
+
+The extra source is Bernstein and Lagarias, "The 3x+1 conjugacy map"
+(1996), equations (1.5), (1.6) and (4.2), read directly from the
+[publisher PDF](https://www.cambridge.org/core/services/aop-cambridge-core/content/view/6975BB4A8C46CF6842217043AAF9EC13/S0008414X0004606Xa.pdf/div-class-title-the-3-span-class-italic-x-span-1-conjugacy-map-div.pdf).
+Register: bernstein-lagarias-1996-conjugacy-map. Their construction, applied
+to a Juggler parity itinerary and with the sign reversed, gives the following.
+
+~~~text
+Mathematical target     identify the exact orbit-level connection and its limits
+Novelty hypothesis      a useful synthesis of classical parity coding with the bridge
+Falsifier               coding is universal and adds no realization constraint
+Already killed by?      shared-word results cannot transport integer realization;
+                        the closed residue-cylinder branch concerns a different map
+Existing machinery      word-affine identities and rational-cycle formulas
+Maximum Phase-0 scope   derive the coding; check exact examples and periodic words
+Promotion criterion     a new arithmetic restriction on Juggler realizations
+Stop criterion          only classical coding and the known walk survive
+~~~
+
+### The exact semiconjugacy
+
+Let \(d_0<d_1<\cdots\) be the times at which the positive Juggler orbit
+starting at \(n\) is odd. Define
+\[
+H(n)=\sum_{j\ge0}\frac{2^{d_j}}{3^{j+1}}\quad\hbox{in }\mathbb Z_2.
+\]
+The series converges 2-adically because its terms have valuations \(d_j\).
+It is not being asserted to converge in the real numbers for every orbit.
+Let \(C_-(x)=x/2\) on even 2-adic integers and \((3x-1)/2\) on odd ones.
+Then
+\[
+H(J(n))=C_-(H(n)),\qquad H(n)\equiv n\pmod2.
+\]
+
+Proof: deleting an even first letter gives \(H(n)=2H(J(n))\).
+Deleting an odd first letter gives \(H(n)=1/3+(2/3)H(J(n))\).
+These identities also show that the parity of \(H(n)\) is the first letter.
+Negation gives the corresponding map into \(C_+\):
+\(C_+(-H(n))=-H(J(n))\).
+This is an exact semiconjugacy, meaning a map that commutes with one step.
+No injectivity, surjectivity onto \(\mathbb Z_2\), or continuity with respect
+to the 2-adic metric on the original positive integers is asserted.
+
+This construction works for any deterministic system carrying a binary
+label. Its existence alone is therefore not additional Juggler arithmetic.
+In particular, it does not contradict the closed residue-cylinder branch:
+the digits encode iterated Juggler parities, not the binary digits of \(n\).
+
+### Explicit obstruction to integer transport
+
+For an orbit reaching 1, start with \(H(1)=1\) and work backwards:
+an even letter replaces \(h\) by \(2h\), an odd letter by \((2h+1)/3\).
+Thus a terminating orbit has a positive rational code with denominator a
+power of 3. Already
+\[
+\begin{array}{c|rrrrrrr}
+n&3&5&11&36&6&2&1\\
+H(n)&83/27&37/9&17/3&8&4&2&1
+\end{array}
+\]
+is a \(C_-\) orbit, with rational parity defined by the numerator after
+reduction to odd denominator. So the assertion that \(H\) maps all positive
+integers into ordinary integers is false at \(n=3\).
+Also \(H(4)=H(6)=4\), since both have parity itinerary EEOOO...:
+the map is not injective.
+
+For a periodic word \(w\) of length \(K\), with odd positions
+\(d_0,\ldots,d_{o-1}\), put
+\[
+A(w)=\sum_{j=0}^{o-1}2^{d_j}3^{o-1-j}.
+\]
+The periodic code is
+\[
+H_w=\frac{A(w)}{3^o-2^K}.
+\]
+It follows either by summing the 2-adic geometric series or by the finite
+affine identity. A nontrivial Juggler cycle would give \(3^o>2^K\), so its
+code would be a positive rational periodic point of \(C_-\).
+It would be an ordinary integer only if \(3^o-2^K\mid A(w)\).
+No result in this review establishes that divisibility for Juggler cycles.
+The periodic point can have period dividing \(K\); no preservation of
+primitive orbit period is assumed.
+
+This is the infinite-itinerary extension of the rational-cycle discussion
+already in [the finance dossier](juggler_collatz_finance_mirror.md), not a
+new rational-cycle theorem.
+
+### What it says about Papers A, B and C
+
+The common number-theoretic object in Paper A is
+\(\rho(w)=3^o/2^K\), an element of the group of rational
+\(\{2,3\}\)-units. Its logarithm is \(o\log3-K\log2\).
+For the shortcut maps use the value itself; for Juggler use \(z=\log n\).
+All three then have \(z_{i+1}=c_i z_i-\epsilon_i\), with
+\(c_i=1/2\) or \(3/2\). The correction is negative on the odd branch for
+\(C_+\), positive there for \(C_-\), and nonnegative floor loss for Juggler.
+Unrolling on a positive cycle gives
+\[
+(\rho-1)z_0=\sum_i\epsilon_i\prod_{j>i}c_j.
+\]
+This explains the opposite sides of the same continued-fraction problem:
+\(C_+\) cycles contract formally, whereas \(C_-\) and nontrivial Juggler
+cycles expand formally. The arithmetic of \(\{2,3\}\)-units is shared;
+calling it an S-unit problem supplies no stronger bound, since the
+correction sum has unrestricted arithmetic.
+
+Paper B's all-depth fair-share hypothesis is exactly
+\[
+\lim_{N\to\infty}\frac{\#\{1\le n\le N:H(n)\equiv r\pmod{2^d}\}}{N}
+=2^{-d}
+\quad(d\ge1,\ r\in\mathbb Z/2^d\mathbb Z).
+\]
+Indeed, Bernstein--Lagarias gives a bijection between depth-\(d\) words
+and residues of the coded point modulo \(2^d\). Thus FD is equidistribution
+of \(H(1),H(2),\ldots\) for the uniform 2-adic measure. This is an
+equivalent formulation, not a proof: the code still requires the Juggler
+iterations whose distribution is in question.
+
+Paper C remains metric information about Juggler's actual inverse fibres.
+The coding is not injective and supplies no transfer of reciprocal mass.
+The previously recorded counterexample \(\{3\cdot2^k:k\ge0\}\) to a
+Collatz analogue of universal backward-set contagion remains decisive.
+
+### Source correction and checks
+
+Hercher's journal page links a
+[corrigendum dated 14 June 2026](https://cs.uwaterloo.ca/journals/JIS/VOL26/Hercher/corrigendum.pdf).
+It repairs the derivation of individual bounds in the proof of Theorem 21
+using a convexity argument; it recovers the aggregate inequality used later.
+The original journal conclusions are not withdrawn.
+Paper D Lemma 6 instead proves its threshold bound from cyclic gaps and
+the chaining inequality. Comparing those arguments found no use of the
+faulty step in that lemma. This is a dependency check, not a complete
+independent audit of either paper. The corrigendum should accompany any
+future direct import of Hercher's proof.
+
+Exact scratch checks: starts 1 through 100, all reaching 1 within the
+500-step and 32768-bit caps; 761 rational parity/step checks; all 8190
+binary words of lengths 1 through 12 checked against their rational
+periodic candidates. All checks passed. These validate the formulas and
+examples; the displayed derivations, not the census, establish the identities.
+No Lean, ledger theorem, manuscript revision, or floor computation was added.
+
+**Decision:** CLOSE for the pure coding route: the promotion criterion
+fails because no new restriction on integer realization appears.
+**Best next question:** Can the exact floor equations of a returning Juggler
+word bound the reduced denominator
+\((3^o-2^K)/\gcd(A(w),3^o-2^K)\) beyond the restrictions supplied by its
+word alone? This is a question, not a conjectured bound or an opened branch.
