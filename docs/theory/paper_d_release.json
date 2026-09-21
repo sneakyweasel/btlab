@@ -3,7 +3,7 @@
   "canonical_source": "docs/theory/collatz_3n_minus_1_m_cycles_note.md",
   "status": "preprint; no external deposit performed",
   "verification_scope": "File provenance only. The mathematical trust boundaries are in the manuscript and in PAPER_D_BUILD.md.",
-  "pages": 8,
+  "pages": 9,
   "tools": {
     "pandoc": "pandoc.EXE 3.6.3",
     "xelatex": "MiKTeX-XeTeX 4.18 (MiKTeX 26.5)"
@@ -47,12 +47,12 @@
     {
       "path": "docs/theory/PAPER_D_BUILD.md",
       "mode": "text",
-      "sha256": "4d607c6e8608712e8c317147c3b51d857c721a10c51c45638955b5f8b0836e16"
+      "sha256": "c7b227b27b39e3ec302960da4f8561fea13da4a9a7a3416d8be0f15f9ac2b9af"
     },
     {
       "path": "docs/theory/collatz_3n_minus_1_m_cycles_note.md",
       "mode": "text",
-      "sha256": "69304c72382cbb63ced66de6f39ebdc3949c3ecc70bfcbbfe7f2000b8f3bdf61"
+      "sha256": "780db589f856a01cb335cf21f598d34896fda2b899e4831398c16f0dc56375f3"
     },
     {
       "path": "formal/Problems/Collatz/NegativeMCycles.lean",
@@ -94,17 +94,17 @@
     {
       "path": "juggler_review/collatz_3n_minus_1_m_cycles_note.pdf",
       "mode": "binary",
-      "sha256": "cb2158e8ae91b18ee406c8159e0ddefd15f3d1b4884ff816bf056dd0b51edb9c"
+      "sha256": "339c39dd1fc532f3f556eb5b914c36ffdac6123835a3a3905033072c7eaebc4b"
     },
     {
       "path": "docs/theory/cochin-3n-minus-1-m-cycles.tex",
       "mode": "text",
-      "sha256": "ef64906ebec594942e897f8b38200fa74d4295601ee12b71a6880eb588547a60"
+      "sha256": "adf7ad55621e6c1fe3365d2bdac07077d99c608ba8d92bcacbf6238cb467ff61"
     },
     {
       "path": "docs/theory/paper_d_zenodo.json",
       "mode": "text",
-      "sha256": "eb576d0d9a75cbf7190e06a29a31d24ef475cd16e57398ecc48c80fef28005c3"
+      "sha256": "f53bde74e024569d18ec90f95b38d6f582cc6a7e06878474bcc6cb2db79d4222"
     }
   ]
 }

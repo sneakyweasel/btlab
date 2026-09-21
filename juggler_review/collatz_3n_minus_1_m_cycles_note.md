@@ -33,7 +33,9 @@ so in the variable \(u=y-1\) an odd run is exact multiplication by \(3/2\), a ru
 steps starts at \(y\ge2^a+1\), the cycle equation bounds the linear form
 \(\Lambda=o\,\log 3-K\,\log 2\) by \(m/(x_{\min}-1)\) with constant one, and successive local
 minima obey \(u_{i+1}<u_i^{\log_2 3}/2\). With Rhin's bound this gives: the \(3n-1\) map has
-no \(m\)-cycle with \(1\le m\le58\) other than the two known ones. For \(m\le52\) no
+no \(m\)-cycle with \(1\le m\le58\) other than the two known ones. For \(m\le2\) that is a
+floor-dependent form of a theorem Simons proved without any floor; the statement is new for
+\(3\le m\le58\). For \(m\le52\) no
 admissible cycle length lies below Rhin's ceiling; for \(53\le m\le58\) the admissible lengths
 are excluded by the chaining, the closest by \(9.8\) bits. At \(m=59\) two lengths remain; they
 are the output of the template's last step, not its input, and the floors that remove them
@@ -65,7 +67,8 @@ the laboratory's CPU computation of 19–20 September 2026, descent by strong in
 starts in one hundred and twelve chunks: sixteen with a plain walker through \(2^{40}\)
 (greatest step count \(544\) against a cap of \(4000\)), then ninety-six chunks of
 \(5\cdot2^{35}\) starts with a residue sieve modulo \(2^{24}\) and a \(2^{16}\)-step block
-map as an accelerator, \(8246337208320\) odd starts counted exactly (greatest step count
+map as an accelerator (the sieve is exact by Lemma 5), \(8246337208320\) odd starts counted
+exactly (greatest step count
 \(704\) against a cap of \(40000\), counted in blocks of sixteen); the seven odd starts the
 first sixteen chunks had skipped, found from their own printed counts, are verified by full
 iteration. The range \([2^{44},2^{51})\) was verified on 21 September 2026 by a CUDA
@@ -78,8 +81,9 @@ the plain walker's step counts exactly, and cross-checked against the CPU walker
 cycle, no overflow, greatest step count \(847\), peak about \(2^{97.0}\), in
 \(3517\) seconds. No start failed and no new cycle appeared in either range. The
 verifier sources, the chunk reports, the calibration and the coverage checks are archived
-with the branch `negative_floor_3x1`. No published floor exists: the only statement in print
-is an unattributed comment on OEIS A037084, "up to at least 100000000". The certificate is a
+with the branch `negative_floor_3x1`. We found no published floor for this map: the only statement in print that the searches
+of Section 8 reached is an unattributed comment on OEIS A037084, "up to at least
+100000000". The certificate is a
 computation and is labelled as one throughout.
 
 **\(m\)-cycles.** A cycle with at least one even step splits into \(m\ge1\) maximal runs of
@@ -101,8 +105,10 @@ for a lower bound on the length (Lemma 10, Corollary 11) against Rhin's bound fo
 (Lemmas 12, 14), sharpened through the partial quotients of \(\log_23\) (Lemma 16); and de
 Weger's approximation lattice where a window remains (Lemma 18). At their floor the three
 stages give \(m\le57\), \(m\le63\) and \(m\le68\). Nobody has run any of it on \(3n-1\),
-because the first step was missing; [S08], which extends the template to \(3x+q\), \(px+q\)
-and Guy's permutation, skips the map. This note runs all five steps with the constants of
+because the first step was missing. [S08] carries the template to \(3x+q\) and to
+\(px+q\), but under the standing hypothesis \(q=1\) or \(q\ge5\) prime, which excludes
+\(q=-1\); its Section 5 treats Guy's permutation, a different map, and the paper makes no
+statement about \(3x-1\) anywhere. This note runs all five steps with the constants of
 this side. The exact enumeration of the admissible lengths by the three-gap walk is the list
 their approximation lattice produces ([SdW] Section 7: a two-dimensional lattice whose points
 of small norm are the pairs \((K,L)\) in the window of Corollary 5 below the ceiling, found by
@@ -122,7 +128,7 @@ cyclic order, \(u_i=y_i-1\), the run from \(y_i\) has \(a_i\) odd steps, and \(r
 halvings follow it. \(x_{\min}\) is the least element of \(C\). The floor is
 \(X_0=2^{51}\).
 
-## 3. Four lemmas on the negative side
+## 3. Five lemmas on the negative side
 
 **Lemma 1 (odd runs).** Let \(y\ge3\) be odd, \(u=y-1\), \(a=v_2(u)\). Then
 \[
@@ -198,24 +204,56 @@ lower bound on the least element rather than as an upper bound on \(\Lambda\); t
 \[
 \Lambda(K)=\log3\,\bigl(1-\{Kx\}\bigr)<\frac m{X_0-1}.
 \]
-The lengths \(K\) satisfying this are exactly those with \(1-\{Kx\}<m/((X_0-1)\log3)\), and
-below any bound they are enumerated exactly by the three-gap walk: from the two least
-returns \(q_1,q_2\) of \(\{Kx\}\) into the two windows, found among the convergents and
-semiconvergents of \(x\), every further member is the previous one plus \(q_1\), \(q_2\) or
-\(q_1+q_2\). The least member is Crandall's lower bound on the length.
+Hence the admissible lengths, those a cycle above the floor can have, are exactly the \(K\)
+with \(1-\{Kx\}<m/((X_0-1)\log3)\), and below any bound they are finite in number.
 
-*Proof.* Lemma 2 and \(x_{\min}\ge X_0\). The walk is the classical three-distance structure
-of \(\{Kx\}\) (Sós, Świerczkowski, Slater [3D]) and is the laboratory's `three_gap_walk`,
-checked against a direct scan at coarse thresholds. \(\square\)
+*Proof.* Lemma 2 gives \(0<\Lambda<m/(x_{\min}-1)\le m/(X_0-1)\), and \(m/(X_0-1)<\log3\)
+at every \((m,X_0)\) in Section 5. Then \(0<o\log3-K\log2<\log3\) puts \(o\) strictly
+between \(Kx\) and \(Kx+1\), and \(Kx\) is irrational, so \(o=\lceil Kx\rceil\) and
+\(\Lambda=\log3\,(o-Kx)=\log3\,(1-\{Kx\})\). Finiteness below a bound is immediate.
+\(\square\)
+
+*How the finite set is listed.* In practice the returns of \(\{Kx\}\) into the window are
+walked: from the two least returns \(q_1,q_2\), found among the convergents and
+semiconvergents of \(x\), each further member is the previous one plus \(q_1\), \(q_2\) or
+\(q_1+q_2\), which is the classical three-distance structure [3D]; the least member is
+Crandall's lower bound on the length. Nothing below depends on that recursion being the
+right one. Theorem 7 quantifies over *every* admissible \(K\) below the ceiling, and the
+lists used to verify it were produced twice by unrelated means, by the walk and by an
+exhaustive integer sieve over \(K=iQ+j\) at \(2^{256}\) scale, which agree (Section 8).
 
 [SdW] bound the same set from both ends before listing it: Lemma 10 and Corollary 11 give
 the least convergent denominator the floor admits, Lemma 16 caps the length through the
 largest partial quotient below that index, and Section 7 lists what lies between by an
-approximation lattice. The walk lists the set directly, and the two bounds are not needed.
+approximation lattice. The enumeration below replaces all three.
+
+**Lemma 5 (contracting prefixes, and the sieve the floor uses).** Let \(w\) be the first
+\(j\) parities of the orbit of \(y\), with \(a\) of them odd. Then
+\[
+2^j g^j(y)=3^a y-D(w),\qquad D(w)\ge0,
+\]
+with \(D\) a function of the word alone. The parity of \(g^i(y)\) depends only on
+\(y\bmod2^{i+1}\), so \(w\) depends only on \(y\bmod2^j\). Consequently, if
+\(3^a<2^j\) then \(g^j(y)<y\) for **every** \(y\) in that residue class, with no lower
+threshold on \(y\), and a descent verification may skip the class entirely.
+
+*Proof.* Induction on \(j\). At \(j=0\), \(D=0\). An even step has \(2g(y')=y'\), so
+\(2^{j+1}g^{j+1}(y)=2^jg^j(y)\) and \(D\) is unchanged; an odd step has
+\(2g(y')=3y'-1\), so \(2^{j+1}g^{j+1}(y)=3\bigl(3^ay-D\bigr)-2^j\) and \(D\) becomes
+\(3D+2^j\). Both keep \(D\ge0\) and depend on the word alone. Since \(3^a\) is odd,
+\(2^ig^i(y)=3^{a_i}y-D_i\) determines \(g^i(y)\bmod2\) from \(y\bmod2^{i+1}\). Finally
+\(g^j(y)=(3^ay-D)/2^j\le3^ay/2^j<y\) when \(3^a<2^j\). \(\square\)
+
+The absence of a threshold is the sign flip again: for \(3n+1\) the word constant is added,
+so a contracting prefix drops only the members of the class above an explicit bound, and the
+sieve must carry that bound. Here it is subtracted and the class falls entire. This is what
+makes the floor computation of Section 1 exact rather than approximate: at \(j=24\) the
+\(286581\) classes that never contract are the only ones walked, a count that is
+OEIS A076227(24).
 
 ## 4. Rhin's ceiling
 
-**Proposition 5.** Rhin's Proposition [R87, p. 160, (7)] states that for integers
+**Proposition 6.** Rhin's Proposition [R87, p. 160, (7)] states that for integers
 \(u_0,u_1,u_2\) with \(H=\max(|u_1|,|u_2|)\ge2\),
 \[
 |u_0+u_1\log2+u_2\log3|\ \ge\ H^{-13.3},
@@ -245,21 +283,22 @@ and \(\log3\).
 
 ## 5. The theorem
 
-**Theorem 6.** Let \(X_0=2^{51}\). For every \(1\le m\le58\) and every length \(K<K_3(m)\)
+**Theorem 7.** Let \(X_0=2^{51}\). For every \(1\le m\le58\) and every length \(K<K_3(m)\)
 with \(\Lambda(K)<m/(X_0-1)\),
 \[
 2^{L_{\min}(K,m)}\ \ge\ \frac m{\Lambda(K)} .
 \]
 Consequently, with Rhin's bound, the \(3n-1\) map has no \(m\)-cycle with \(1\le m\le58\)
 whose least element is at least \(2^{51}\), and by the floor no \(m\)-cycle with \(m\le58\)
-other than \((5,7,10)\) and the cycle at \(17\).
+other than \((5,7,10)\) and the cycle at \(17\). For \(m\le2\) this is weaker than [S07],
+which needs no floor; the content of the theorem is the range \(3\le m\le58\).
 
-*Proof.* An \(m\)-cycle above the floor has \(K<K_3(m)\) by Proposition 5, its length is
+*Proof.* An \(m\)-cycle above the floor has \(K<K_3(m)\) by Proposition 6, its length is
 admissible by Lemma 4, and Lemmas 2 and 3 give \(2^{L_{\min}(K,m)}<x_{\min}-1\le m/\Lambda(K)\),
 contradicting the display. The display is a finite exact computation: for each \(m\) the
-admissible lengths below \(K_3(m)\) are enumerated by Lemma 4 and each is tested at eighty
-digits. For \(m\le52\) there is no admissible length below \(K_3(m)\) at all, so the
-conclusion there rests on Lemmas 2 and 4 and Proposition 5 alone. For \(53\le m\le58\) the
+admissible lengths below \(K_3(m)\) are the finitely many \(K\) of Lemma 4, listed by two
+unrelated methods that agree, and each is tested at eighty digits. For \(m\le52\) there is no admissible length below \(K_3(m)\) at all, so the
+conclusion there rests on Lemmas 2 and 4 and Proposition 6 alone. For \(53\le m\le58\) the
 admissible lengths exist and fail the display by the margins of Table 1. \(\square\)
 
 **Table 1.** Rows at the floor \(2^{51}\). "Margin" is

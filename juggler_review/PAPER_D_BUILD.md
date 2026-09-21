@@ -28,8 +28,9 @@ deposit kit `juggler_review/zenodo_paper_d/`. Logs and the working TeX go to
 Three different kinds of claim sit in this paper, and the manifest checks none of them. It
 checks that the files agree with each other.
 
-**Proved here, by hand.** Lemmas 1 to 4, Proposition 5 and Theorem 6. Lemma 2's bound on
-\(\Lambda\) and Lemma 4's enumeration are the two whose proofs a referee should read first.
+**Proved here, by hand.** Lemmas 1 to 5, Proposition 6 and Theorem 7. Lemma 2's bound on
+\(\Lambda\) and Lemma 5, the sieve the verification floor rests on, are the two whose
+proofs a referee should read first.
 
 **Proved here, and machine-checked.** Lemmas 1 and 3, as
 `Problems.Collatz.NegativeMCycles`: twenty declarations, in the `Problems` barrel, thirteen
@@ -39,7 +40,7 @@ kernel. `lake build Problems` covers it;
 Lemma 2 is **not** in Lean: its content is real-analytic.
 
 **External, and taken on trust.** Rhin's effective measure, [R87, p. 160, (7)]. Nothing here
-re-proves it and no Lean statement carries it. Theorem 6 is conditional on it and says so.
+re-proves it and no Lean statement carries it. Theorem 7 is conditional on it and says so.
 
 **Computed, not proved.** The verification floor: every \(1 \le y < 2^{51}\) reaches 1, 5 or
 17. Below \(2^{44}\) that is the CPU certificate of 19–20 September 2026, above it the GPU
