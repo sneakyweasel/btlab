@@ -285,14 +285,18 @@ Pinned: `valley_cap`, `valley_excluded`, `valley_refined` in the probe;
 
 ## Open questions
 
-- The floor stands at \(2^{51}\) since the GPU sweep of 21 September 2026. \(2^{52}\) to
-  \(2^{55}\) buy nothing; \(2^{56}\) (about 32 hours of the card) buys \(m\le63\), \(2^{59}\)
-  buys \(64\), \(2^{60}\) (about 21 days) buys \(68\). Verifier, driver, calibration and
-  sweep records are archived with `negative_floor_3x1`.
+- The floor stands at \(2^{51}\) since the GPU sweep of 21 September 2026. With Lemma 6 in
+  force, \(2^{52}\) to \(2^{55}\) still buy nothing; \(2^{56}\) (about 32 hours of the
+  card) buys seven values at once, \(m\le68\), and \(2^{60}\) (about 21 days) buys
+  \(74\). Verifier, driver, calibration and sweep records are archived with
+  `negative_floor_3x1`.
 - Hercher's valley arrangement (his Main Theorem 21) **transposed on 21 September 2026**,
-  and worth three values of \(m\) at \(2^{51}\): see the section above. Writing it as a
-  lemma, with the vertex argument proved rather than argued, is what stands between it and a
-  version 1.1.0 of Paper D. His other two m-free refinements were read from the source on
+  and worth three values of \(m\) at \(2^{51}\): it is Lemma 6 of version 1.1.0, proved
+  through a threshold rather than the vertex argument the first derivation used, and the
+  section above records both. What remains open is the last value: at Hercher's own floor
+  these lemmas give \(90\) where he publishes \(91\), and closing that gap means reading
+  his arrangement more closely than the transposition did. His other two m-free refinements
+  were read from the source on
   21 September 2026 and measured: Corollary 29's residue tracking gains \(1.30\) bits of
   effective floor where \(4.18\) are needed to close \(m=59\), and Theorem 27's constant is
   \(0.23\) bits tighter than this side's kernel-checked one and leaves the period bound at
