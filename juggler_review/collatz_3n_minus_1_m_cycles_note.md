@@ -487,7 +487,7 @@ in the `Problems` barrel, so the default build covers it, and
 
 ```text
 Repository:  https://github.com/sneakyweasel/btlab
-Commit:      b4efe1c563d046cf20ba8ae05fa8ea3fd52e4730
+Commit:      34e5ef33cd2b90d427e971ee7ad65840652fe9c3
 Lean:        leanprover/lean4:v4.33.1
 Mathlib:     v4.33.1 (lake-manifest rev 0df444a360eaa60ab8c11dca51a86af692955474)
 Build:       lake build Problems.Collatz.NegativeMCycles   (from formal/)

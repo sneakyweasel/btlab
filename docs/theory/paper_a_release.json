@@ -9,6 +9,21 @@
   },
   "inputs": [
     {
+      "path": "data/research/juggler/cycle_finance/budget_opt.json",
+      "mode": "text",
+      "sha256": "06d7926fb31e0a3138d373f4295927390b5c30bb27b558815d576a5c7cf3e9f3"
+    },
+    {
+      "path": "data/research/juggler/cycle_finance/exceptions_parity.json",
+      "mode": "text",
+      "sha256": "b185c1a93879e1f02289f1c2aaed69405f0713d38eab0ed09b9b401f067c6bff"
+    },
+    {
+      "path": "data/research/juggler/cycle_finance/summary.json",
+      "mode": "text",
+      "sha256": "8a0f4dee8f1512c244d7b0df8db23b3bf480e75c8588d3a4edc7f1e19928395d"
+    },
+    {
       "path": "data/research/juggler/cycle_rank_curvature/controls.json",
       "mode": "text",
       "sha256": "817386d65902d1efa8f27ff245a18eb76cc7fa1ab73d6338a669054eb53a5101"
@@ -41,7 +56,7 @@
     {
       "path": "docs/theory/juggler_finite_dynamics_note.md",
       "mode": "text",
-      "sha256": "ffeb3d90ebb9e43c369da4e9decff8cf46382d60abc849bf0240486b9ac835a9"
+      "sha256": "542f975415ee850b155fa56b29ff4f7e39f264ab57c864dc498947a4b0a50013"
     },
     {
       "path": "docs/theory/juggler_finite_dynamics_reviewer_packet.md",
@@ -589,6 +604,11 @@
       "sha256": "3aac669c7a910ec2389f4e4f921b605adf6ebf2d1e0c9b9cd0be4d33f3f5db71"
     },
     {
+      "path": "src/research/juggler_sequence/cycle_finance.py",
+      "mode": "text",
+      "sha256": "267c164900c7cfe4827e7d5c7e5cd162bedee59ab86646faea25c71638d97b5c"
+    },
+    {
       "path": "src/research/juggler_sequence/cycle_rank_curvature.py",
       "mode": "text",
       "sha256": "cc487330c5adbee3c8b5d1ac6109a07d7eb566e44d7ea35b8ec35dd03e282279"
@@ -601,7 +621,7 @@
     {
       "path": "tools/build_paper_a.py",
       "mode": "text",
-      "sha256": "2a2759266416ad8cf513e1b52ccf7afaaeffbf96e690abd9b11179bc7ba654ea"
+      "sha256": "d09917370cd3137f8dc90d5dd0ef43442e857a285058896aa08a9af8580d6eeb"
     },
     {
       "path": "tools/check_paper_a_numeric.py",
@@ -628,12 +648,12 @@
     {
       "path": "juggler_review/juggler_finite_dynamics_note.pdf",
       "mode": "binary",
-      "sha256": "6215066338f69e614819a0ec09e7b881505d7c11ec1385badcfdaacc7ed0411b"
+      "sha256": "2ef2f100800691365e84fa460b25cf2638087fc2876fb86730c49b513c14c478"
     },
     {
       "path": "docs/theory/cochin-juggler.tex",
       "mode": "text",
-      "sha256": "beb86423b017379c531795323492437194f960a445d4e482a9114d441d48266b"
+      "sha256": "76fd242464ca79511aecad57960cbbdccaade1bf97e315664a5acabbb500dd52"
     },
     {
       "path": "docs/theory/paper_a_zenodo.json",
