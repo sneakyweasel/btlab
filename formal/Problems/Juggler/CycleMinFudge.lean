@@ -842,8 +842,11 @@ theorem no_cycle_itinerary_of_unique_fudge {n : ℕ} {w : List Branch}
 /-! ## Named corollaries
 
 `no_cycleMin_*` for every first-expanding leftover. `no_cycle_itinerary_*`
-only when the leftover is its unique CycleMin-shaped rotation.
-`OOOOOOOEEEE` is already `no_cycle_itinerary_oooooooeeee` in `O7EEEEGap`.
+only when the leftover is its unique CycleMin-shaped rotation, which is
+eight of the thirty. `OOOOOOOEEEE` carries the stronger unconditional
+`no_cycle_itinerary_oooooooeeee` in `O7EEEEGap`, about the same list under
+the name `itineraryO7EEEE`; the `_fudge_` name below is the family-shaped
+restatement, so the eight read off one list.
 -/
 
 theorem no_cycleMin_of_fourEven {n a0 a1 a2 a3 : ℕ}
@@ -947,6 +950,8 @@ theorem no_cycleMin_ooeooeoooee {n : ℕ} :
     ¬CycleMin n (fourEvenWord 2 2 3 0) :=
   no_cycleMin_of_fourEven (by decide)
 
+theorem unique_oooooooeeee :
+    onlySelfCycleMinShape (fourEvenWord 7 0 0 0) = true := by decide +kernel
 theorem unique_ooooooeoeee :
     onlySelfCycleMinShape (fourEvenWord 6 1 0 0) = true := by decide +kernel
 theorem unique_ooooooeeeoe :
@@ -962,6 +967,12 @@ theorem unique_oooooeeoeoe :
 theorem unique_ooooeoeoeoe :
     onlySelfCycleMinShape (fourEvenWord 4 1 1 1) = true := by decide +kernel
 
+/-- `OOOOOOOEEEE` closed by the fudge route, in `fourEvenWord` form like its
+seven siblings. `no_cycle_itinerary_oooooooeeee` in `O7EEEEGap` is stronger:
+it needs no `2 ≤ n`, and `itineraryO7EEEE` is this same list. -/
+theorem no_cycle_itinerary_fudge_oooooooeeee {n : ℕ} (hn : 2 ≤ n) :
+    ¬CycleItinerary n (fourEvenWord 7 0 0 0) :=
+  fun h => no_cycle_itinerary_of_unique_fudge hn (by decide) unique_oooooooeeee h
 theorem no_cycle_itinerary_ooooooeoeee {n : ℕ} (hn : 2 ≤ n) :
     ¬CycleItinerary n (fourEvenWord 6 1 0 0) :=
   fun h => no_cycle_itinerary_of_unique_fudge hn (by decide) unique_ooooooeoeee h

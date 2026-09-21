@@ -1290,7 +1290,7 @@
       }
     },
     "Problems.Juggler.CycleMinFudge": {
-      "declarations": 120,
+      "declarations": 122,
       "depends_on": [
         "Problems.Juggler.EvenCountThree",
         "Problems.Juggler.O7EEEEGap"
@@ -1302,7 +1302,7 @@
       ],
       "papers": [],
       "trust": {
-        "kernel": 120
+        "kernel": 122
       }
     },
     "Problems.Juggler.CycleMinObstruction": {

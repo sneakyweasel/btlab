@@ -21135,7 +21135,7 @@
         "J-cyclemin-fudge",
         "J-cyclemin-slack"
       ],
-      "line": 849,
+      "line": 852,
       "module": "Problems.Juggler.CycleMinFudge",
       "name": "no_cycleMin_of_fourEven",
       "trust": "kernel"
@@ -21148,7 +21148,7 @@
         "J-cyclemin-fudge",
         "J-cyclemin-slack"
       ],
-      "line": 854,
+      "line": 857,
       "module": "Problems.Juggler.CycleMinFudge",
       "name": "no_cycleMin_one_three_eee",
       "trust": "kernel"
@@ -21161,7 +21161,7 @@
         "J-cyclemin-fudge",
         "J-cyclemin-slack"
       ],
-      "line": 859,
+      "line": 862,
       "module": "Problems.Juggler.CycleMinFudge",
       "name": "no_cycleMin_oooooooeeee",
       "trust": "kernel"
@@ -21174,7 +21174,7 @@
         "J-cyclemin-fudge",
         "J-cyclemin-slack"
       ],
-      "line": 862,
+      "line": 865,
       "module": "Problems.Juggler.CycleMinFudge",
       "name": "no_cycleMin_ooooooeoeee",
       "trust": "kernel"
@@ -21187,7 +21187,7 @@
         "J-cyclemin-fudge",
         "J-cyclemin-slack"
       ],
-      "line": 865,
+      "line": 868,
       "module": "Problems.Juggler.CycleMinFudge",
       "name": "no_cycleMin_oooooeooeee",
       "trust": "kernel"
@@ -21200,7 +21200,7 @@
         "J-cyclemin-fudge",
         "J-cyclemin-slack"
       ],
-      "line": 868,
+      "line": 871,
       "module": "Problems.Juggler.CycleMinFudge",
       "name": "no_cycleMin_ooooeoooeee",
       "trust": "kernel"
@@ -21213,7 +21213,7 @@
         "J-cyclemin-fudge",
         "J-cyclemin-slack"
       ],
-      "line": 871,
+      "line": 874,
       "module": "Problems.Juggler.CycleMinFudge",
       "name": "no_cycleMin_oooeooooeee",
       "trust": "kernel"
@@ -21226,7 +21226,7 @@
         "J-cyclemin-fudge",
         "J-cyclemin-slack"
       ],
-      "line": 874,
+      "line": 877,
       "module": "Problems.Juggler.CycleMinFudge",
       "name": "no_cycleMin_ooeoooooeee",
       "trust": "kernel"
@@ -21239,7 +21239,7 @@
         "J-cyclemin-fudge",
         "J-cyclemin-slack"
       ],
-      "line": 877,
+      "line": 880,
       "module": "Problems.Juggler.CycleMinFudge",
       "name": "no_cycleMin_ooooooeeeoe",
       "trust": "kernel"
@@ -21252,7 +21252,7 @@
         "J-cyclemin-fudge",
         "J-cyclemin-slack"
       ],
-      "line": 880,
+      "line": 883,
       "module": "Problems.Juggler.CycleMinFudge",
       "name": "no_cycleMin_oooooeoeeoe",
       "trust": "kernel"
@@ -21265,7 +21265,7 @@
         "J-cyclemin-fudge",
         "J-cyclemin-slack"
       ],
-      "line": 883,
+      "line": 886,
       "module": "Problems.Juggler.CycleMinFudge",
       "name": "no_cycleMin_ooooeooeeoe",
       "trust": "kernel"
@@ -21278,7 +21278,7 @@
         "J-cyclemin-fudge",
         "J-cyclemin-slack"
       ],
-      "line": 886,
+      "line": 889,
       "module": "Problems.Juggler.CycleMinFudge",
       "name": "no_cycleMin_oooeoooeeoe",
       "trust": "kernel"
@@ -21291,7 +21291,7 @@
         "J-cyclemin-fudge",
         "J-cyclemin-slack"
       ],
-      "line": 889,
+      "line": 892,
       "module": "Problems.Juggler.CycleMinFudge",
       "name": "no_cycleMin_ooeooooeeoe",
       "trust": "kernel"
@@ -21304,7 +21304,7 @@
         "J-cyclemin-fudge",
         "J-cyclemin-slack"
       ],
-      "line": 892,
+      "line": 895,
       "module": "Problems.Juggler.CycleMinFudge",
       "name": "no_cycleMin_ooooooeeoee",
       "trust": "kernel"
@@ -21317,7 +21317,7 @@
         "J-cyclemin-fudge",
         "J-cyclemin-slack"
       ],
-      "line": 895,
+      "line": 898,
       "module": "Problems.Juggler.CycleMinFudge",
       "name": "no_cycleMin_oooooeoeoee",
       "trust": "kernel"
@@ -21330,7 +21330,7 @@
         "J-cyclemin-fudge",
         "J-cyclemin-slack"
       ],
-      "line": 898,
+      "line": 901,
       "module": "Problems.Juggler.CycleMinFudge",
       "name": "no_cycleMin_ooooeooeoee",
       "trust": "kernel"
@@ -21343,7 +21343,7 @@
         "J-cyclemin-fudge",
         "J-cyclemin-slack"
       ],
-      "line": 901,
+      "line": 904,
       "module": "Problems.Juggler.CycleMinFudge",
       "name": "no_cycleMin_oooeoooeoee",
       "trust": "kernel"
@@ -21356,7 +21356,7 @@
         "J-cyclemin-fudge",
         "J-cyclemin-slack"
       ],
-      "line": 904,
+      "line": 907,
       "module": "Problems.Juggler.CycleMinFudge",
       "name": "no_cycleMin_ooeooooeoee",
       "trust": "kernel"
@@ -21369,7 +21369,7 @@
         "J-cyclemin-fudge",
         "J-cyclemin-slack"
       ],
-      "line": 907,
+      "line": 910,
       "module": "Problems.Juggler.CycleMinFudge",
       "name": "no_cycleMin_oooooeeoeoe",
       "trust": "kernel"
@@ -21382,7 +21382,7 @@
         "J-cyclemin-fudge",
         "J-cyclemin-slack"
       ],
-      "line": 910,
+      "line": 913,
       "module": "Problems.Juggler.CycleMinFudge",
       "name": "no_cycleMin_ooooeoeoeoe",
       "trust": "kernel"
@@ -21395,7 +21395,7 @@
         "J-cyclemin-fudge",
         "J-cyclemin-slack"
       ],
-      "line": 913,
+      "line": 916,
       "module": "Problems.Juggler.CycleMinFudge",
       "name": "no_cycleMin_oooeooeoeoe",
       "trust": "kernel"
@@ -21408,7 +21408,7 @@
         "J-cyclemin-fudge",
         "J-cyclemin-slack"
       ],
-      "line": 916,
+      "line": 919,
       "module": "Problems.Juggler.CycleMinFudge",
       "name": "no_cycleMin_ooeoooeoeoe",
       "trust": "kernel"
@@ -21421,7 +21421,7 @@
         "J-cyclemin-fudge",
         "J-cyclemin-slack"
       ],
-      "line": 919,
+      "line": 922,
       "module": "Problems.Juggler.CycleMinFudge",
       "name": "no_cycleMin_oooooeeooee",
       "trust": "kernel"
@@ -21434,7 +21434,7 @@
         "J-cyclemin-fudge",
         "J-cyclemin-slack"
       ],
-      "line": 922,
+      "line": 925,
       "module": "Problems.Juggler.CycleMinFudge",
       "name": "no_cycleMin_ooooeoeooee",
       "trust": "kernel"
@@ -21447,7 +21447,7 @@
         "J-cyclemin-fudge",
         "J-cyclemin-slack"
       ],
-      "line": 925,
+      "line": 928,
       "module": "Problems.Juggler.CycleMinFudge",
       "name": "no_cycleMin_oooeooeooee",
       "trust": "kernel"
@@ -21460,7 +21460,7 @@
         "J-cyclemin-fudge",
         "J-cyclemin-slack"
       ],
-      "line": 928,
+      "line": 931,
       "module": "Problems.Juggler.CycleMinFudge",
       "name": "no_cycleMin_ooeoooeooee",
       "trust": "kernel"
@@ -21473,7 +21473,7 @@
         "J-cyclemin-fudge",
         "J-cyclemin-slack"
       ],
-      "line": 931,
+      "line": 934,
       "module": "Problems.Juggler.CycleMinFudge",
       "name": "no_cycleMin_ooooeeooeoe",
       "trust": "kernel"
@@ -21486,7 +21486,7 @@
         "J-cyclemin-fudge",
         "J-cyclemin-slack"
       ],
-      "line": 934,
+      "line": 937,
       "module": "Problems.Juggler.CycleMinFudge",
       "name": "no_cycleMin_oooeoeooeoe",
       "trust": "kernel"
@@ -21499,7 +21499,7 @@
         "J-cyclemin-fudge",
         "J-cyclemin-slack"
       ],
-      "line": 937,
+      "line": 940,
       "module": "Problems.Juggler.CycleMinFudge",
       "name": "no_cycleMin_ooeooeooeoe",
       "trust": "kernel"
@@ -21512,7 +21512,7 @@
         "J-cyclemin-fudge",
         "J-cyclemin-slack"
       ],
-      "line": 940,
+      "line": 943,
       "module": "Problems.Juggler.CycleMinFudge",
       "name": "no_cycleMin_ooooeeoooee",
       "trust": "kernel"
@@ -21525,7 +21525,7 @@
         "J-cyclemin-fudge",
         "J-cyclemin-slack"
       ],
-      "line": 943,
+      "line": 946,
       "module": "Problems.Juggler.CycleMinFudge",
       "name": "no_cycleMin_oooeoeoooee",
       "trust": "kernel"
@@ -21538,7 +21538,7 @@
         "J-cyclemin-fudge",
         "J-cyclemin-slack"
       ],
-      "line": 946,
+      "line": 949,
       "module": "Problems.Juggler.CycleMinFudge",
       "name": "no_cycleMin_ooeooeoooee",
       "trust": "kernel"
@@ -21551,7 +21551,20 @@
         "J-cyclemin-fudge",
         "J-cyclemin-slack"
       ],
-      "line": 950,
+      "line": 953,
+      "module": "Problems.Juggler.CycleMinFudge",
+      "name": "unique_oooooooeeee",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CycleMinFudge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-cyclemin-fudge",
+        "J-cyclemin-slack"
+      ],
+      "line": 955,
       "module": "Problems.Juggler.CycleMinFudge",
       "name": "unique_ooooooeoeee",
       "trust": "kernel"
@@ -21564,7 +21577,7 @@
         "J-cyclemin-fudge",
         "J-cyclemin-slack"
       ],
-      "line": 952,
+      "line": 957,
       "module": "Problems.Juggler.CycleMinFudge",
       "name": "unique_ooooooeeeoe",
       "trust": "kernel"
@@ -21577,7 +21590,7 @@
         "J-cyclemin-fudge",
         "J-cyclemin-slack"
       ],
-      "line": 954,
+      "line": 959,
       "module": "Problems.Juggler.CycleMinFudge",
       "name": "unique_oooooeoeeoe",
       "trust": "kernel"
@@ -21590,7 +21603,7 @@
         "J-cyclemin-fudge",
         "J-cyclemin-slack"
       ],
-      "line": 956,
+      "line": 961,
       "module": "Problems.Juggler.CycleMinFudge",
       "name": "unique_ooooooeeoee",
       "trust": "kernel"
@@ -21603,7 +21616,7 @@
         "J-cyclemin-fudge",
         "J-cyclemin-slack"
       ],
-      "line": 958,
+      "line": 963,
       "module": "Problems.Juggler.CycleMinFudge",
       "name": "unique_oooooeoeoee",
       "trust": "kernel"
@@ -21616,7 +21629,7 @@
         "J-cyclemin-fudge",
         "J-cyclemin-slack"
       ],
-      "line": 960,
+      "line": 965,
       "module": "Problems.Juggler.CycleMinFudge",
       "name": "unique_oooooeeoeoe",
       "trust": "kernel"
@@ -21629,9 +21642,22 @@
         "J-cyclemin-fudge",
         "J-cyclemin-slack"
       ],
-      "line": 962,
+      "line": 967,
       "module": "Problems.Juggler.CycleMinFudge",
       "name": "unique_ooooeoeoeoe",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`OOOOOOOEEEE` closed by the fudge route, in `fourEvenWord` form like its seven siblings. `no_cycle_itinerary_oooooooeeee` in `O7EEEEGap` is stronger: it needs no `2 \u2264 n`, and `itineraryO7EEEE` is this same list.",
+      "file": "formal/Problems/Juggler/CycleMinFudge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-cyclemin-fudge",
+        "J-cyclemin-slack"
+      ],
+      "line": 973,
+      "module": "Problems.Juggler.CycleMinFudge",
+      "name": "no_cycle_itinerary_fudge_oooooooeeee",
       "trust": "kernel"
     },
     {
@@ -21642,7 +21668,7 @@
         "J-cyclemin-fudge",
         "J-cyclemin-slack"
       ],
-      "line": 965,
+      "line": 976,
       "module": "Problems.Juggler.CycleMinFudge",
       "name": "no_cycle_itinerary_ooooooeoeee",
       "trust": "kernel"
@@ -21655,7 +21681,7 @@
         "J-cyclemin-fudge",
         "J-cyclemin-slack"
       ],
-      "line": 968,
+      "line": 979,
       "module": "Problems.Juggler.CycleMinFudge",
       "name": "no_cycle_itinerary_ooooooeeeoe",
       "trust": "kernel"
@@ -21668,7 +21694,7 @@
         "J-cyclemin-fudge",
         "J-cyclemin-slack"
       ],
-      "line": 971,
+      "line": 982,
       "module": "Problems.Juggler.CycleMinFudge",
       "name": "no_cycle_itinerary_oooooeoeeoe",
       "trust": "kernel"
@@ -21681,7 +21707,7 @@
         "J-cyclemin-fudge",
         "J-cyclemin-slack"
       ],
-      "line": 974,
+      "line": 985,
       "module": "Problems.Juggler.CycleMinFudge",
       "name": "no_cycle_itinerary_ooooooeeoee",
       "trust": "kernel"
@@ -21694,7 +21720,7 @@
         "J-cyclemin-fudge",
         "J-cyclemin-slack"
       ],
-      "line": 977,
+      "line": 988,
       "module": "Problems.Juggler.CycleMinFudge",
       "name": "no_cycle_itinerary_oooooeoeoee",
       "trust": "kernel"
@@ -21707,7 +21733,7 @@
         "J-cyclemin-fudge",
         "J-cyclemin-slack"
       ],
-      "line": 980,
+      "line": 991,
       "module": "Problems.Juggler.CycleMinFudge",
       "name": "no_cycle_itinerary_oooooeeoeoe",
       "trust": "kernel"
@@ -21720,7 +21746,7 @@
         "J-cyclemin-fudge",
         "J-cyclemin-slack"
       ],
-      "line": 983,
+      "line": 994,
       "module": "Problems.Juggler.CycleMinFudge",
       "name": "no_cycle_itinerary_ooooeoeoeoe",
       "trust": "kernel"
@@ -95632,7 +95658,7 @@
       ]
     },
     "Problems.Juggler.CycleMinFudge": {
-      "declarations": 120,
+      "declarations": 122,
       "file": "formal/Problems/Juggler/CycleMinFudge.lean",
       "imports": [
         "Problems.Juggler.EvenCountThree",
@@ -98760,13 +98786,13 @@
     }
   },
   "totals": {
-    "declarations": 7198,
-    "declarations_with_a_ledger_row": 5277,
+    "declarations": 7200,
+    "declarations_with_a_ledger_row": 5279,
     "ledger_rows_naming_a_file": 467,
     "modules": 317,
     "trust": {
       "compiler": 56,
-      "kernel": 7142
+      "kernel": 7144
     }
   }
 }
