@@ -13,16 +13,19 @@ arbitrary decorations, localization, and all-depth hypotheses remain open.
 
 ## Deposit files
 
-Upload `Five_Step_Descent_Certificates_for_the_Juggler_Map.pdf` and `paper_b_source_package.zip`.
-The source ZIP contains the complete manuscript, generated LaTeX,
+The record carries one file, `Five_Step_Descent_Certificates_for_the_Juggler_Map.pdf`.
+`paper_b_source_package.zip` was not deposited. The source ZIP contains the complete manuscript, generated LaTeX,
 build assets, all exact-control scripts, aggregate validation, fresh proof audit, metadata, and this guide. paper_b_zenodo_package.zip collects
 the prepared deposit materials for convenience.
 
-Prepared fields: paper_b_zenodo.json and paper_b_zenodo_fields.txt.
+Record fields: paper_b_zenodo.json, rendered as ZENODO_FIELDS.txt.
 The repository reviewer kit also contains the byte-identical PDF alias
-Five_Step_Descent_Certificates_for_the_Juggler_Map.pdf and generated ZENODO_FIELDS.txt.
-Submission instructions are in ZENODO_README.md. No deposit or DOI has been
-created. Use the actual first-publication date.
+Five_Step_Descent_Certificates_for_the_Juggler_Map.pdf and that generated
+export, which both archives ship as paper_b_zenodo_fields.txt.
+Submission instructions are in ZENODO_README.md. Paper B was published on
+21 September 2026: version DOI 10.5281/zenodo.22864934, concept DOI
+10.5281/zenodo.22864933 for all versions, recorded in paper_deposits.md.
+A later revision goes up through the new-version operation of that record.
 
 ## Standalone rebuild
 
@@ -111,6 +114,7 @@ The prepared manuscript/documentation license is CC BY 4.0:
 <https://creativecommons.org/licenses/by/4.0/>. Original Python/Lua code
 uses the repository's MIT license, included as LICENSE-MIT.txt.
 
-This is a locally prepared preprint. Author approval of its text and
-record fields is part of the publication decision. No upload, independent
-peer-review certification, or universal termination claim is made.
+Paper B was published on Zenodo on 21 September 2026. The author
+page-by-page review of this edition is still outstanding, as
+paper_b_release_check.json records. No independent peer-review
+certification or universal termination claim is made.

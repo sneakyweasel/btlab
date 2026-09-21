@@ -1,21 +1,25 @@
 GENERATED FROM docs/theory/; do not edit this export.
-Prepared local metadata only; this build does not create or update an external record.
+Version 1.1.1 is prepared and is not deposited. The record exists: concept doi:10.5281/zenodo.22678164 resolves to the latest version, which is 1.1.0 at doi:10.5281/zenodo.22865705 of 2026-09-21. A new version goes up through the new-version operation of that record, which keeps the concept DOI.
 
 TITLE
 Fate Contagion and Termination Criteria for the Juggler Map
 
 CREATOR
 Cochin, Philippe
+ORCID: 0009-0004-1939-3382 (https://orcid.org/0009-0004-1939-3382)
 Affiliation: none
 
 RESOURCE TYPE
 Publication / Preprint
 
 VERSION
-2026-09-21
+1.1.1
 
 LICENSE
 cc-by-4.0
+
+RECORD
+https://zenodo.org/records/22865705
 
 PUBLICATION DATE
 Use the actual date this version is first made public.
@@ -30,7 +34,9 @@ integer dynamics
 DESCRIPTION (HTML)
 <p>The Juggler map sends an even positive integer to the integer part of its square root and an odd positive integer to the integer part of its three-halves power. We prove that every nonempty set A closed under taking preimages satisfies ∑_(n ∈ A, n ≤ x)1/n ≥ c(log x)^(λ), for all sufficiently large x and every 0 &lt; λ &lt; λ_(ideal), where λ_(ideal) ≈ 0.4927 is the root of 2^(−λ) + (1/3)(3/4)^(λ) = 1. Thus every realized cycle basin and the set of unbounded orbits, if nonempty, obey this lower bound. Two proofs are given. The first combines exact inverse intervals, a monotone parity sweep, classical exponential-sum estimates and six disjoint parity productions, and reaches every λ &lt; λ^(**) ≈ 0.4926, an explicitly specified root. The second uses two productions and no exponential sum: the fibers whose parity share is far from 1/2 have finite total logarithmic mass, by a continued-fraction lock, so the production coefficient may be averaged. That proof is formalized in Lean 4 with no hypothesis for every λ ≤ 100/203, which exceeds λ^(**).</p>
 <p>For any fixed N₀ ≥ 2 such that every start in [1, N₀] reaches 1, universal termination is equivalent to an eventual-entry statement: all but O(y(log y)^(−e)) odd starts in (y, 2y] enter [1, N₀], for some e &gt; 1 − λ_(ideal); the threshold 103/203 is machine-checked. We give sufficient parity-cylinder and exponential-moment hypotheses at depth O(log log y) for a stronger statement with a time bound. These hypotheses remain unproved. A first-letter decomposition identifies the contribution of failures beginning with two odd steps, and an abstract production model describes possible improvements of the exponent. A separate appendix gives a conditional exponent 0.5392. The contagion theorem, the reductions that use it and the combinatorial layer are formalized in Lean 4 at the exponents stated; the analytic estimates of the first route are mathematical arguments outside the formalization, and the numerical experiments are observations. Neither universal termination nor the exclusion of a nontrivial cycle or an unbounded orbit is established.</p>
-<p>Large language models assisted the development of this work, including prose, proposed proof arguments, Lean formalizations, and computations. The September 2026 review with OpenAI Codex revised the analytic estimates and reductions, checked references, ran the numerical and formal audits, and prepared this preprint. AI assistance is not independent mathematical validation. The author is responsible for the statements, proofs, code, and the decision to make this version public. The formalization covers only the results identified in Section 1.4 and Appendix A.</p>
+<p>Large language models assisted the development of this work, including the prose, proposed proof arguments, the Lean formalizations, and the computations. AI assistance is not independent mathematical validation. The formalization covers only the results identified in Section 1.4 and Appendix A. The author is responsible for the statements, proofs, code, and the decision to make this version public.</p>
 
-RELATED SOFTWARE
-https://github.com/sneakyweasel/btlab
+RELATED WORKS
+isSupplementTo: https://github.com/sneakyweasel/btlab
+cites: 10.5281/zenodo.22676452
+cites: 10.5281/zenodo.22864933

@@ -48,12 +48,21 @@ four reported boundaries; the descent floors remain supplied inputs. In
 `AxiomCheckPaperA.expected`. When the manuscript cites a different set of
 declarations, update the audit list and regenerate its expected output.
 
-The published record is
-[doi:10.5281/zenodo.22676453](https://doi.org/10.5281/zenodo.22676453)
-([Zenodo](https://zenodo.org/records/22676453)), version 1.0.0,
-9 September 2026. A local build writes metadata only; it does not upload
+This repository holds version 1.1.0, which is prepared and not deposited.
+The record is at
+[zenodo.org/records/22865237](https://zenodo.org/records/22865237); its current
+version is 1.0.2,
+[doi:10.5281/zenodo.22865237](https://doi.org/10.5281/zenodo.22865237), of
+20 September 2026, after 1.0.1
+[doi:10.5281/zenodo.22846460](https://doi.org/10.5281/zenodo.22846460) of
+19 September 2026 and 1.0.0
+[doi:10.5281/zenodo.22676453](https://doi.org/10.5281/zenodo.22676453) of
+9 September 2026. The concept DOI
+[10.5281/zenodo.22676452](https://doi.org/10.5281/zenodo.22676452) resolves to the
+latest version. A local build writes metadata only; it does not upload
 a new version. Later revisions should use that record's new-version
-operation. See [paper_deposits.md](paper_deposits.md). The author has no
-affiliation and has disclosed AI assistance throughout the work. The
+operation. See [paper_deposits.md](paper_deposits.md). The author's ORCID is
+[0009-0004-1939-3382](https://orcid.org/0009-0004-1939-3382), there is no
+affiliation, and AI assistance throughout the work is disclosed. The
 preprint does not claim peer review, universal termination, or exclusion
 of every nontrivial cycle.

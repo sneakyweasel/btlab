@@ -114,7 +114,7 @@ def sync(root: Path) -> None:
         p.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(root / source, p)
     fields = zenodo_fields(json.loads((root / METADATA).read_text(encoding="utf-8")))
-    (root / "juggler_review/zenodo_paper_a/ZENODO_FIELDS.txt").write_text(fields, encoding="utf-8")
+    (root / "juggler_review/zenodo_paper_a/ZENODO_FIELDS.txt").write_text(fields, encoding="utf-8", newline="")
 
 
 def check(root: Path, exports: bool = True) -> None:
@@ -130,15 +130,76 @@ def check(root: Path, exports: bool = True) -> None:
 
 
 def zenodo_fields(meta: dict) -> str:
-    return ("GENERATED FROM docs/theory/; do not edit this export.\n"
-            "Metadata for the local revision; this build does not upload a new version.\n\n"
-            f"TITLE\n{meta['title']}\n\nCREATOR\n{meta['creators'][0]['name']}\n"
-            "Affiliation: none\n\nRESOURCE TYPE\nPublication / Preprint\n\n"
-            f"VERSION\n{meta['version']}\n\nLICENSE\n{meta['license']}\n\n"
-            "PUBLICATION DATE\nUse the actual date this version is first made public.\n\n"
-            "KEYWORDS\n" + "\n".join(meta['keywords']) + "\n\nDESCRIPTION (HTML)\n"
-            + meta['description'] + "\n\nRELATED SOFTWARE\nhttps://github.com/sneakyweasel/btlab\n")
+    """Render the upload form fields from the prepared metadata.
 
+    Three states, because two were never enough. A row naming its own `doi` describes
+    a version that is deposited. A row with no `doi` but a `conceptdoi` describes a
+    revision prepared on top of a record that already exists -- the state every paper
+    here is normally in, and the one the old binary printed as "no external record has
+    been created", underneath four published DOIs. A row with neither is a kit prepared
+    before any upload. Nothing is asserted that the metadata does not carry.
+    """
+    row = meta.get('metadata', meta)
+    doi, published = row.get('doi'), row.get('publication_date')
+    concept, latest = row.get('conceptdoi'), row.get('latest_deposit') or {}
+    if doi:
+        standing = (f'Describes the deposit at doi:{doi}; this build does not upload '
+                    f'a new version.\n\n')
+    elif concept:
+        standing = (
+            f'Version {row["version"]} is prepared and is not deposited. The record '
+            f'exists: concept doi:{concept} resolves to the latest version, which is '
+            f'{latest.get("version", "unknown")} at doi:{latest.get("doi", "unknown")} '
+            f'of {latest.get("publication_date", "unknown")}. A new version goes up '
+            f'through the new-version operation of that record, which keeps the '
+            f'concept DOI.\n\n')
+    else:
+        standing = 'Prepared metadata only; no external record has been created.\n\n'
+    date_field = (f'PUBLICATION DATE\n{published}\n\n' if published else
+                  'PUBLICATION DATE\nUse the actual date this version is first made '
+                  'public.\n\n')
+    who = row['creators'][0]
+    orcid = (f'ORCID: {who["orcid"]} (https://orcid.org/{who["orcid"]})\n'
+             if who.get('orcid') else '')
+    record = f'RECORD\n{row["record_url"]}\n\n' if row.get('record_url') else ''
+    related = '\n'.join(f'{r["relation"]}: {r["identifier"]}'
+                        for r in row.get('related_identifiers', ()))
+    return (
+        'GENERATED FROM docs/theory/; do not edit this export.\n'
+        + standing
+        + f'TITLE\n{row["title"]}\n\nCREATOR\n{who["name"]}\n' + orcid
+        + 'Affiliation: none\n\nRESOURCE TYPE\nPublication / Preprint\n\n'
+        + f'VERSION\n{row["version"]}\n\nLICENSE\n{row["license"]}\n\n'
+        + record + date_field
+        + 'KEYWORDS\n' + '\n'.join(row['keywords']) + '\n\nDESCRIPTION (HTML)\n'
+        + row['description'] + '\n\nRELATED WORKS\n' + related + '\n')
+
+#: Fields the build cannot know and must not invent: they describe an external record.
+#: Regenerating them is what reset the version to the manuscript date and dropped the
+#: ORCID, the concept DOI and the sibling relations on every single build.
+CARRIED_FROM_METADATA = ("version", "doi", "publication_date", "conceptdoi",
+                         "record_url", "latest_deposit", "related_identifiers")
+
+
+def carry_forward(root: Path, meta: dict) -> dict:
+    """Keep the deposit facts the metadata file already records.
+
+    Absent file or absent key means the builder default stands, so a first build still
+    works; present means the recorded value wins, because the build has no way to learn
+    a DOI. The metadata file is tracked, so the facts are not held only in a kit.
+    """
+    path = root / METADATA
+    if not path.is_file():
+        return meta
+    old = json.loads(path.read_text(encoding="utf-8"))
+    old = old.get("metadata", old)
+    for key in CARRIED_FROM_METADATA:
+        if key in old:
+            meta[key] = old[key]
+    recorded = (old.get("creators") or [{}])[0].get("orcid")
+    if recorded:
+        meta["creators"][0]["orcid"] = recorded
+    return meta
 
 def write_metadata(root: Path, pandoc: str) -> None:
     source = (root / SOURCE).read_text(encoding="utf-8")
@@ -157,7 +218,8 @@ def write_metadata(root: Path, pandoc: str) -> None:
             "keywords": ['Juggler map', 'Juggler sequence', 'floor-power map', 'cycle financing', 'integer dynamics'],
             "description": description,
             "related_identifiers": [{"identifier": "https://github.com/sneakyweasel/btlab", "relation": "isSupplementTo", "scheme": "url"}]}
-    (root / METADATA).write_text(json.dumps(meta, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+    meta = carry_forward(root, meta)
+    (root / METADATA).write_text(json.dumps(meta, ensure_ascii=False, indent=2) + '\n', encoding="utf-8", newline="")
 
 
 def executable(name: str, explicit: str | None) -> str:
@@ -196,7 +258,7 @@ def build(root: Path, args) -> None:
         "\\bottomrule\\noalign{}\n\\endfoot\n\\bottomrule\\noalign{}\n\\endlastfoot",
     )
     latex = re.sub(r"\\\\\n(\\end\{longtable\})", r"\\\\*\n\1", latex)
-    tex.write_text(latex, encoding="utf-8")
+    tex.write_text(latex, encoding="utf-8", newline="")
     versions = {}
     for name, exe in [("pandoc", pandoc), ("xelatex", xelatex)]:
         versions[name] = subprocess.check_output([exe, "--version"], encoding="utf-8", errors="replace").splitlines()[0]
@@ -204,7 +266,7 @@ def build(root: Path, args) -> None:
         run = subprocess.run([xelatex, "-no-shell-escape", "-interaction=nonstopmode",
                               "-halt-on-error", tex.name], cwd=work,
                              stdout=subprocess.PIPE, stderr=subprocess.STDOUT, encoding="utf-8", errors="replace")
-        (work / f"xelatex-pass-{iteration}.txt").write_text(run.stdout, encoding="utf-8")
+        (work / f"xelatex-pass-{iteration}.txt").write_text(run.stdout, encoding="utf-8", newline="")
         if run.returncode:
             raise ValueError(f"XeLaTeX failed; see {work / f'xelatex-pass-{iteration}.txt'}")
     log = tex.with_suffix(".log").read_text(encoding="utf-8", errors="replace")
@@ -227,7 +289,7 @@ def build(root: Path, args) -> None:
                "inputs": [{"path": p, "mode": "text", "sha256": digest(root / p, "text")} for p in input_files(root)],
                "outputs": [{"path": p, "mode": "binary" if p == PDF else "text",
                             "sha256": digest(root / p, "binary" if p == PDF else "text")} for p in OUTPUTS]}
-    (root / MANIFEST).write_text(json.dumps(release, indent=2) + "\n", encoding="utf-8")
+    (root / MANIFEST).write_text(json.dumps(release, indent=2) + "\n", encoding="utf-8", newline="")
     sync(root)
     check(root)
     print(f"Built and synchronized Paper A. Logs: {work}")

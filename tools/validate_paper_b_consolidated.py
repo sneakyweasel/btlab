@@ -15,6 +15,23 @@ MODULES=("validate_paper_b","validate_paper_b_repairs","validate_paper_b_ooeoe",
          "validate_paper_b_kernel_assembly","validate_paper_b_oooee_transfer")
 
 
+def paper_version():
+    """The version this record describes, read from the metadata rather than pinned.
+
+    The literal here was "2026-09-19-preprint" and could not follow anything, so the
+    record announced an edition older than the manuscript it had just digested, and
+    kept announcing it through every rerun. Both layouts are searched because the
+    standalone source package ships this module flat, beside the metadata, while the
+    repository keeps tools/ and docs/theory/ apart.
+    """
+    for candidate in (HERE.parent/"docs/theory/paper_b_zenodo.json",
+                      HERE/"paper_b_zenodo.json"):
+        if candidate.is_file():
+            meta=json.loads(candidate.read_text(encoding="utf-8"))
+            return meta.get("metadata",meta)["version"]
+    raise SystemExit("paper_b_zenodo.json not found beside this module or under docs/theory")
+
+
 def digest(path,mode="binary"):
     """SHA-256 of a recorded input, line endings normalised first in text mode.
 
@@ -63,7 +80,7 @@ def validate(source):
         for split in re.findall(r"\\begin\{split\}[\s\S]*?\\end\{split\}",display):
             assert r"\tag{" not in split
     return {
-        "status":"PASS","version":"2026-09-19-preprint",
+        "status":"PASS","version":paper_version(),
         "source_sha256":digest(source,"text"),
         "exact_control_modules":results,"equation_tags":len(tags),
         "appendix_equation_references":len(refs),
@@ -85,5 +102,5 @@ if __name__=="__main__":
     if not source.exists():
         source=HERE.parent/"docs/theory"/f"{STEM}.md"
     rendered=json.dumps(validate(source),indent=2)+"\n"
-    if args.output:args.output.write_text(rendered,encoding="utf-8")
+    if args.output:args.output.write_text(rendered, encoding="utf-8", newline="")
     print(rendered,end="")

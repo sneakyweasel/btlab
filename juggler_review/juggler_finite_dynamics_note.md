@@ -6928,19 +6928,35 @@ finite cycle.
 
 ## 7. Acknowledgments and use of AI
 
-The author used large language models throughout the development of this
-work, including drafting and revising the prose, proposing and developing
-proof arguments, writing Lean formalizations, and designing and implementing
-computations. The September 2026 review with OpenAI Codex checked the
-mathematical claims and references, corrected the finite-window estimate,
-revised the rotation-cell argument and several hypotheses, distinguished
-formal proofs from numerical evidence, and prepared the document build and
-independent numerical audit. Section 5.9 and its Lean module were drafted
-with Anthropic's Claude in September 2026, under the same evidence
-boundaries. AI assistance is not independent mathematical
-validation. The explicit evidence boundaries in Section 1.2 and Appendix A
-apply to these contributions. The author is responsible for the statements,
-proofs, code, and final verification of this preprint.
+Large language models assisted throughout this work, including drafting and
+revising the prose, proposing and developing proof arguments, writing the Lean
+formalizations, and designing and running the computations. AI assistance is
+not independent mathematical validation. The explicit evidence boundaries in
+Section 1.2 and Appendix A apply to these contributions. The author is
+responsible for the statements, proofs, code, and final verification of this
+preprint.
+
+## 8. Availability and version
+
+This is version 1.1.0 of Paper A, of 21 September 2026. It is a preprint, it has
+not been refereed, and it is not deposited. The deposited versions are:
+
+- 1.0.2 of 20 September 2026,
+  [doi:10.5281/zenodo.22865237](https://doi.org/10.5281/zenodo.22865237);
+- 1.0.1 of 19 September 2026,
+  [doi:10.5281/zenodo.22846460](https://doi.org/10.5281/zenodo.22846460);
+- 1.0.0 of 9 September 2026,
+  [doi:10.5281/zenodo.22676453](https://doi.org/10.5281/zenodo.22676453).
+
+The concept DOI
+[10.5281/zenodo.22676452](https://doi.org/10.5281/zenodo.22676452) resolves to the
+latest version, and the record is at <https://zenodo.org/records/22865237>.
+The author's ORCID is
+[0009-0004-1939-3382](https://orcid.org/0009-0004-1939-3382).
+A later revision goes up through the record's new-version operation, which
+keeps the concept DOI, rather than as a new deposit.
+The repository is
+[sneakyweasel/btlab](https://github.com/sneakyweasel/btlab).
 
 ## References
 
@@ -6973,7 +6989,7 @@ proofs, code, and final verification of this preprint.
    *Amer. Math. Monthly* 92 (1985), 3--23.
    [doi:10.1080/00029890.1985.11971528](https://doi.org/10.1080/00029890.1985.11971528).
 9. J. C. Lagarias (ed.), *The Ultimate Challenge: The \(3x+1\)
-   Problem*, American Mathematical Society, Providence, RI, 2010.
+   Problem*, American Mathematical Society, Providence, RI, 2010. [doi:10.1090/mbk/078](https://doi.org/10.1090/mbk/078).
 10. R. E. Crandall, “On the ``\(3x+1\)'' problem,” *Math. Comp.* 32
     (1978), 1281--1292.
     [doi:10.1090/S0025-5718-1978-0480321-3](https://doi.org/10.1090/S0025-5718-1978-0480321-3).
@@ -7001,12 +7017,14 @@ proofs, code, and final verification of this preprint.
 16. P. Cochin, “Five-Step Descent Certificates for the Juggler Map:
     Parity Statistics of Nested Floor Powers,” companion manuscript
     (Paper B), revision of 20 September 2026; Zenodo version 1.0.0,
-    [doi:10.5281/zenodo.22864934](https://doi.org/10.5281/zenodo.22864934).
+    [doi:10.5281/zenodo.22864934](https://doi.org/10.5281/zenodo.22864934); concept DOI
+    [10.5281/zenodo.22864933](https://doi.org/10.5281/zenodo.22864933) for all versions.
     [Source manuscript](https://github.com/sneakyweasel/btlab/blob/main/docs/theory/juggler_parity_discrepancy_note.md).
 17. P. Cochin, “Fate Contagion and Termination Criteria for the Juggler
-    Map,” companion manuscript (Paper C), revision of 9 September 2026;
-    Zenodo version 1.0.0,
-    [doi:10.5281/zenodo.22678165](https://doi.org/10.5281/zenodo.22678165).
+    Map,” companion manuscript (Paper C), revision of 21 September 2026;
+    Zenodo version 1.1.0,
+    [doi:10.5281/zenodo.22865705](https://doi.org/10.5281/zenodo.22865705); concept DOI
+    [10.5281/zenodo.22678164](https://doi.org/10.5281/zenodo.22678164) for all versions.
     [Source manuscript](https://github.com/sneakyweasel/btlab/blob/main/docs/theory/juggler_fate_almost_all_note.md).
 
 18. M. R. Herman, "Sur la conjugaison différentiable des difféomorphismes
@@ -7019,19 +7037,19 @@ proofs, code, and final verification of this preprint.
     Collatz-Zyklen’,” *Die Wurzel* 11 (2018), 243--250.
 20. C. Hercher, “There are no Collatz \(m\)-cycles with \(m\le 91\),”
     *J. Integer Seq.* 26 (2023), Article 23.3.5; arXiv:2201.00406.
-    https://cs.uwaterloo.ca/journals/JIS/VOL26/Hercher/hercher5.html.
+    https://cs.uwaterloo.ca/journals/JIS/VOL26/Hercher/hercher5.html. [doi:10.48550/arXiv.2201.00406](https://doi.org/10.48550/arXiv.2201.00406).
 21. OEIS Foundation Inc., “Number of surviving Collatz residues mod
     \(2^n\),” Sequence A076227 in *The On-Line Encyclopedia of Integer
     Sequences*, https://oeis.org/A076227 (accessed 19 September 2026).
 22. R. Terras, “A stopping time problem on the positive integers,” *Acta
-    Arith.* 30 (1976), 241--252.
+    Arith.* 30 (1976), 241--252. [doi:10.4064/aa-30-3-241-252](https://doi.org/10.4064/aa-30-3-241-252).
 23. D. Barina, “Improved verification limit for the convergence of the
     Collatz conjecture,” *J. Supercomput.* 81 (2025), Article 810.
     [doi:10.1007/s11227-025-07337-0](https://doi.org/10.1007/s11227-025-07337-0).
     Open access; its page 2 states the cycle length at \(2^{71}\), citing
     [20].
 24. B. G. Seifert, “On the arithmetic of cycles for the Collatz--Hasse
-    (‘Syracuse’) conjectures,” *Discrete Math.* 68 (1988), 293--298.
+    (‘Syracuse’) conjectures,” *Discrete Math.* 68 (1988), 293--298. [doi:10.1016/0012-365X(88)90121-5](https://doi.org/10.1016/0012-365X(88)90121-5).
 25. M. K. Sinisalo, “On the minimal cycle lengths of the Collatz
     sequences,” preprint, University of Oulu, c. 2003; entry 105 of
     J. C. Lagarias, “The \(3x+1\) problem: an annotated bibliography, II

@@ -5,8 +5,10 @@
 **Version 1.0.0 is deposited; this folder now holds 1.1.0.** Upload it through the record's
 new-version operation. Version 1.0.0's DOI [10.5281/zenodo.22876190](https://doi.org/10.5281/zenodo.22876190), concept DOI
 [10.5281/zenodo.22876189](https://doi.org/10.5281/zenodo.22876189), record
-[zenodo.org/records/22876190](https://zenodo.org/records/22876190). The PDF here is byte-identical to the deposited
-file (md5 `c6f6f662016ca30a859bf57b0cc81793`). See [AFTER_ZENODO.md](AFTER_ZENODO.md).
+[zenodo.org/records/22876190](https://zenodo.org/records/22876190), with the author's ORCID
+[0009-0004-1939-3382](https://orcid.org/0009-0004-1939-3382) attached. The deposited file has
+md5 `c6f6f662016ca30a859bf57b0cc81793`; the PDF here is version 1.1.0 and is no longer that
+file. See [AFTER_ZENODO.md](AFTER_ZENODO.md).
 
 This folder is generated from the canonical editorial inputs in `docs/theory/`. Do not edit
 anything here; edit

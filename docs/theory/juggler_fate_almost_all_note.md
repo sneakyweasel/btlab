@@ -3823,28 +3823,33 @@ input to Theorem 5.3. \(\square\)
 
 ## Acknowledgments and use of AI
 
-Large language models assisted the development of this work,
-including prose, proposed proof arguments, Lean formalizations,
-and computations. The September 2026 review with OpenAI Codex
-revised the analytic estimates and reductions, checked references,
-ran the numerical and formal audits, and prepared this preprint.
-AI assistance is not independent mathematical validation.
-The author is responsible for the statements, proofs, code, and
-the decision to make this version public. The formalization covers
-only the results identified in Section 1.4 and Appendix A.
+Large language models assisted the development of this work, including the
+prose, proposed proof arguments, the Lean formalizations, and the computations.
+AI assistance is not independent mathematical validation. The formalization
+covers only the results identified in Section 1.4 and Appendix A. The author is
+responsible for the statements, proofs, code, and the decision to make this
+version public.
 
 ## Availability and version
 
-The Zenodo record
-[doi:10.5281/zenodo.22678165](https://doi.org/10.5281/zenodo.22678165)
-of 9 September 2026 is version 1.0.0 of this paper.
-The present revision, of 21 September 2026, is not deposited; it adds
-Section 5.8 with its Lean layer, the corresponding rows of Section 1.4
-and Appendices A and B, the remarks of Sections 5.7, 6.3 and 7.1, the
-exponent \(\lambda_{\mathrm{ideal}}\) in the statements, and the current
-forms of the companion references. The changes between the deposit and
-this revision are listed in the build guide, `PAPER_C_BUILD.md`, in the
-repository. The accompanying
+This is version 1.1.1 of Paper C, of 21 September 2026. It is a preprint, it has
+not been refereed, and it is not deposited; it revises the acknowledgments and the
+reference DOIs of version 1.1.0 and changes nothing mathematical. The current
+Zenodo version is 1.1.0
+([doi:10.5281/zenodo.22865705](https://doi.org/10.5281/zenodo.22865705)) of
+21 September 2026, which added Section 5.8 with its Lean layer, the corresponding
+rows of Section 1.4 and Appendices A and B, the remarks of Sections 5.7, 6.3 and
+7.1, and the exponent \(\lambda_{\mathrm{ideal}}\) in the statements; version
+1.0.0 ([doi:10.5281/zenodo.22678165](https://doi.org/10.5281/zenodo.22678165)) is
+of 9 September 2026. The concept DOI
+[10.5281/zenodo.22678164](https://doi.org/10.5281/zenodo.22678164) resolves to the
+latest version, and the record is at <https://zenodo.org/records/22865705>.
+The author's ORCID is
+[0009-0004-1939-3382](https://orcid.org/0009-0004-1939-3382).
+A later revision goes up through the record's new-version operation, which
+keeps the concept DOI, rather than as a new deposit.
+The changes between versions are listed in the build guide,
+`PAPER_C_BUILD.md`, in the repository. The accompanying
 source package contains the Markdown and LaTeX sources, figures,
 the local Lean dependency closure with its pinned toolchain,
 numerical audit code, archived experiment records, and a manifest
@@ -3878,26 +3883,28 @@ in this version of Paper C govern this preprint.
    using difference inequalities," *Acta Arith.* 109 (2003), 237–258.
    [doi:10.4064/aa109-3-4](https://doi.org/10.4064/aa109-3-4).
 8. J. C. Lagarias (ed.), *The Ultimate Challenge: The \(3x+1\)
-   Problem*, American Mathematical Society, Providence, RI, 2010.
+   Problem*, American Mathematical Society, Providence, RI, 2010. [doi:10.1090/mbk/078](https://doi.org/10.1090/mbk/078).
 9. E. W. Weisstein, "Juggler Sequence," *MathWorld — A Wolfram Web
    Resource*, https://mathworld.wolfram.com/JugglerSequence.html.
 10. J. D. Vaaler, "Some extremal functions in Fourier analysis,"
     *Bull. Amer. Math. Soc. (N.S.)* 12 (1985), 183–216.
     [doi:10.1090/S0273-0979-1985-15349-2](https://doi.org/10.1090/S0273-0979-1985-15349-2).
 11. P. Cochin, "Lower Bounds for Cycle Lengths in the Juggler Map"
-    (Paper A), Zenodo version 1.0.0, 9 September 2026,
-    [doi:10.5281/zenodo.22676453](https://doi.org/10.5281/zenodo.22676453);
+    (Paper A), Zenodo version 1.0.2, 20 September 2026,
+    [doi:10.5281/zenodo.22865237](https://doi.org/10.5281/zenodo.22865237); concept DOI
+    [10.5281/zenodo.22676452](https://doi.org/10.5281/zenodo.22676452) for all versions;
     revision of 21 September 2026 at
     `docs/theory/juggler_finite_dynamics_note.md` in the repository
     https://github.com/sneakyweasel/btlab/.
 12. P. Cochin, "Five-Step Descent Certificates for the Juggler Map: Parity Statistics of Nested Floor Powers" (Paper B), Zenodo version
     1.0.0, 21 September 2026,
-    [doi:10.5281/zenodo.22864934](https://doi.org/10.5281/zenodo.22864934);
+    [doi:10.5281/zenodo.22864934](https://doi.org/10.5281/zenodo.22864934); concept DOI
+    [10.5281/zenodo.22864933](https://doi.org/10.5281/zenodo.22864933) for all versions;
     revision of 20 September 2026 at
     `docs/theory/juggler_parity_discrepancy_note.md`, same repository.
 13. S. W. Graham and G. Kolesnik, *Van der Corput's Method of
     Exponential Sums*, London Mathematical Society Lecture Note
-    Series 126, Cambridge University Press, Cambridge, 1991.
+    Series 126, Cambridge University Press, Cambridge, 1991. [doi:10.1017/CBO9780511661976](https://doi.org/10.1017/CBO9780511661976).
 14. P. Cochin, research notes on fate contagion, the Tao-type
     reduction and the poor-fiber tail for the Juggler map, 2026;
     `docs/theory/juggler_fate_contagion_note.md`,

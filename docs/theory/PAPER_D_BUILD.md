@@ -80,11 +80,14 @@ build prepares local metadata only; it never creates or updates an external reco
 
 **Deposited 21 September 2026**, version 1.0.0: version DOI
 [10.5281/zenodo.22876190](https://doi.org/10.5281/zenodo.22876190), concept DOI
-[10.5281/zenodo.22876189](https://doi.org/10.5281/zenodo.22876189). The deposited file is byte-identical to the
-kit copy and to the repository's single PDF, md5 `c6f6f662016ca30a859bf57b0cc81793`, checked against the record.
+[10.5281/zenodo.22876189](https://doi.org/10.5281/zenodo.22876189), record
+[zenodo.org/records/22876190](https://zenodo.org/records/22876190), with the author's ORCID
+[0009-0004-1939-3382](https://orcid.org/0009-0004-1939-3382) attached. The deposited file has
+md5 `c6f6f662016ca30a859bf57b0cc81793` and was byte-identical to the kit copy and to the
+repository's single PDF on the day it was deposited, checked against the record.
 
-Because of that identity the manuscript does **not** carry its own DOI: editing the text to
-add it would make the repository copy differ from the deposited file. The DOI enters at the
-next version. A rebuild from an unchanged source reproduces the deposited bytes, since
+That identity has ended: the repository now holds version 1.1.0, so the kit PDF is a different
+file. While it held, the manuscript deliberately did **not** carry its own DOI, because editing
+the text to add one would have broken it. The DOIs entered the text at 1.1.0, as planned. A rebuild from an unchanged source reproduces the deposited bytes, since
 `SOURCE_DATE_EPOCH` is pinned; a rebuild after any source edit does not, and at that point
 the kit stops being the deposited file and `AFTER_ZENODO.md` should say so.

@@ -55,7 +55,14 @@ SOURCE_MEMBERS = {
     'paper_b_proof_review.md': 'docs/theory/paper_b_proof_review.md',
     'paper_b_symbolic_review.json': 'docs/theory/paper_b_symbolic_review.json',
     'paper_b_zenodo.json': 'docs/theory/paper_b_zenodo.json',
-    'paper_b_zenodo_fields.txt': 'docs/theory/paper_b_zenodo_fields.txt',
+    # The fields export comes from the kit, where build_paper_b.py generates it from
+    # paper_b_zenodo.json and check_exports() gates it. docs/theory held a second copy
+    # under a "GENERATED FROM docs/theory/; do not edit this export" banner that nothing
+    # generated, so it never followed the metadata: it still announced no external
+    # record, version 2026-09-19-preprint and "use the actual date this version is first
+    # made public", and shipped that inside the kit of a record already published. One
+    # generated file, gated once, published under the name the deposit already uses.
+    'paper_b_zenodo_fields.txt': f'{KIT}/ZENODO_FIELDS.txt',
 }
 SOURCE_MEMBERS.update({f'validate_paper_b{s}.py': f'tools/validate_paper_b{s}.py' for s in (
     '', '_consolidated', '_d2', '_kernel_assembly', '_offset_anchor', '_ooeoe',
@@ -69,7 +76,7 @@ BUNDLE_MEMBERS = {
     'paper_b_release_check.json': RELEASE_CHECK,
     'paper_b_source_package.zip': SOURCE_ARCHIVE,
     'paper_b_zenodo.json': 'docs/theory/paper_b_zenodo.json',
-    'paper_b_zenodo_fields.txt': 'docs/theory/paper_b_zenodo_fields.txt',
+    'paper_b_zenodo_fields.txt': f'{KIT}/ZENODO_FIELDS.txt',
 }
 
 # Kit files this tool regenerates from the repository; the rest are hand-written

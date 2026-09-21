@@ -3,7 +3,7 @@
   "canonical_source": "docs/theory/collatz_3n_minus_1_m_cycles_note.md",
   "status": "preprint; no external deposit performed",
   "verification_scope": "File provenance only. The mathematical trust boundaries are in the manuscript and in PAPER_D_BUILD.md.",
-  "pages": 9,
+  "pages": 10,
   "tools": {
     "pandoc": "pandoc.EXE 3.6.3",
     "xelatex": "MiKTeX-XeTeX 4.18 (MiKTeX 26.5)"
@@ -47,12 +47,12 @@
     {
       "path": "docs/theory/PAPER_D_BUILD.md",
       "mode": "text",
-      "sha256": "4dc2ba59facc198c764120890095fcbe5bf7a5e1d443a4318f3971f399e33962"
+      "sha256": "8b52589d5bf414620e76cb4b593663dcf3b159f72a51faa0c2ada57fab5c203b"
     },
     {
       "path": "docs/theory/collatz_3n_minus_1_m_cycles_note.md",
       "mode": "text",
-      "sha256": "a6dba802e5093567ec6803c49be28fd35fbcc0355009b8ce03b537f70226581d"
+      "sha256": "dc211c6d42029990adac734211d9cd5c20ef67f0cb4a40f4bb482c258aad6278"
     },
     {
       "path": "formal/Problems/Collatz/NegativeMCycles.lean",
@@ -72,7 +72,7 @@
     {
       "path": "tools/build_paper_d.py",
       "mode": "text",
-      "sha256": "22998fb6789ced5f9f5aa1a81470e3b5474d34dc5a4c371ab7d81fc8a4b64f08"
+      "sha256": "3f7a2e1f7dd0f2124a12469e31a4f3f2886f15b1e6e90df1b29932915bf3cdef"
     },
     {
       "path": "tools/check_3n_minus_1_note_numeric.py",
@@ -94,17 +94,17 @@
     {
       "path": "juggler_review/collatz_3n_minus_1_m_cycles_note.pdf",
       "mode": "binary",
-      "sha256": "bfbbc7546e76a9fd47b4b5ae76d28ed5ed78a7fef6aace0442cfe68564375bf1"
+      "sha256": "ae8a6404341d9e847c56a2a9bd141714187b606e2304a2efe8a21ac32e3f7f9f"
     },
     {
       "path": "docs/theory/cochin-3n-minus-1-m-cycles.tex",
       "mode": "text",
-      "sha256": "10322a0794ddafe366f40c521053f73e828341cc1756a9652aa0ea59b2c7ec73"
+      "sha256": "0bb856ffce751363ceb674757bc563fa8e4a585b5efdd33d89ee6e1fd76c7f84"
     },
     {
       "path": "docs/theory/paper_d_zenodo.json",
       "mode": "text",
-      "sha256": "1a39fff606869365f8cc409397fe9261c61718d4a66de42612cc4cd4f6c02e68"
+      "sha256": "1d3d44750ba162815976a06b2eaee207fbeffed5d84a82b40bb85a5a4bd6f971"
     }
   ]
 }

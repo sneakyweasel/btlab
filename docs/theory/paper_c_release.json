@@ -26,7 +26,7 @@
     {
       "path": "docs/theory/PAPER_C_BUILD.md",
       "mode": "text",
-      "sha256": "33089f69ca95b3b28c7f6afbb98fe66ca8c59b8871290966b43d3096b4e7f093"
+      "sha256": "e0a03741ca28a954120b38e2321a8ef3aa464fb4f1834e819fb44f8eb9015733"
     },
     {
       "path": "docs/theory/figures/paper_c_decomposition.png",
@@ -51,7 +51,7 @@
     {
       "path": "docs/theory/juggler_fate_almost_all_note.md",
       "mode": "text",
-      "sha256": "6827df21b4678e51170f467874a1db95ec04fb8a3e093d6369957a23d513a66c"
+      "sha256": "68a1009daf7e636119b9c62529d4c497c35ac1af7bc1603707246043677d9504"
     },
     {
       "path": "formal/AxiomCheckPaperC.expected",
@@ -441,7 +441,7 @@
     {
       "path": "tools/build_paper_c.py",
       "mode": "text",
-      "sha256": "b87be506b67b42094b7bbb855135895c2790433f4dea304218bd8da5d30966b4"
+      "sha256": "4b6cb6b1a302f274d2270002daab454cf38c956a472e93ef16a536a592f32dae"
     },
     {
       "path": "tools/check_paper_c_numeric.py",
@@ -451,7 +451,7 @@
     {
       "path": "tools/paper_c/article.tex",
       "mode": "text",
-      "sha256": "7db5b3051094b5cdbcba256c111411370433c6158cebd16b281073f01f6f6503"
+      "sha256": "cdf9bc4970211d09cce7a5f2cdc739a81a28ae70157e0f0bc90ec437983c710d"
     },
     {
       "path": "tools/paper_c/layout.lua",
@@ -463,17 +463,17 @@
     {
       "path": "juggler_review/juggler_fate_almost_all_note.pdf",
       "mode": "binary",
-      "sha256": "a4b1eb44a29c31bdcd0fe2732c48b9f92769dfed2f1a5e7326aadaf7eb0899f5"
+      "sha256": "3308e85a5b800fbad6cde08a3d55e594f7b3ff940719ccdcf1101ec52efc9b97"
     },
     {
       "path": "docs/theory/cochin-juggler-fates.tex",
       "mode": "text",
-      "sha256": "f424071692cd11d85e03a73e47a6a7220f1e90e93f93013341b3dcd7aebecbb8"
+      "sha256": "084faf26a9c43ad1fe0f31099d8b1f6b11f7c42d0a311398289e693db4b2bb6c"
     },
     {
       "path": "docs/theory/paper_c_zenodo.json",
       "mode": "text",
-      "sha256": "a8f21d60dad8be0c655e9a22126f14aefcd05111f0eb81db56effb90f6b1ecf5"
+      "sha256": "42533f7b826ac938db7b9ef004ac2061dbd586e12a489f31837cc72526c4ebcb"
     }
   ],
   "publication": {

@@ -1,5 +1,5 @@
 GENERATED FROM docs/theory/; do not edit this export.
-Prepared local metadata only; this build does not create or update an external record.
+Version 1.1.0 is prepared and is not deposited. The record exists: concept doi:10.5281/zenodo.22876189 resolves to the latest version, which is 1.0.0 at doi:10.5281/zenodo.22876190 of 2026-09-21. A new version goes up through the new-version operation of that record, which keeps the concept DOI.
 
 TITLE
 No m-cycles of the 3n−1 map for m ≤ 61
@@ -18,6 +18,9 @@ VERSION
 LICENSE
 cc-by-4.0
 
+RECORD
+https://zenodo.org/records/22876190
+
 PUBLICATION DATE
 Use the actual date this version is first made public.
 
@@ -30,8 +33,8 @@ verification floor
 
 DESCRIPTION (HTML)
 <p>Let g(y) = y/2 for even y and g(y) = (3y − 1)/2 for odd y, the 3n − 1 map on the positive integers, equivalently the shortcut 3n + 1 map on the negative integers. Its known cycles are 1, (5, 7, 10) and the eleven-element cycle at 17, and every start below 2⁵¹ reaches one of them. An m-cycle is a cycle with m maximal runs of odd elements. We transpose the template of Simons and de Weger for 3n + 1 m-cycles to this map, deriving its constants on this side rather than borrowing them: the odd step subtracts, so in the variable u = y − 1 an odd run is exact multiplication by 3/2, a run of a odd steps starts at y ≥ 2^(a) + 1, the cycle equation bounds the linear form Λ = o log 3 − K log 2 by m/(x_(min) − 1) with constant one, and successive local minima obey u_(i + 1) &lt; u_(i)^(log₂3)/2. Those three facts are three constraints on one vector, and using them together rather than separately is a fourth ingredient: a cycle cannot keep all its local minima near the floor and still carry its odd steps, because the chaining limits how fast the minima can climb. With Rhin’s bound this gives: the 3n − 1 map has no m-cycle with 1 ≤ m ≤ 61 other than the two known ones. For m ≤ 2 that is a floor-dependent form of a theorem Simons proved without any floor; the statement is new for 3 ≤ m ≤ 61. For m ≤ 52 no admissible cycle length lies below Rhin’s ceiling; for 53 ≤ m ≤ 61 the admissible lengths are excluded, the closest by 0.1 bits. At m = 62 one length remains, 83130157078217, with 0.3 bits of room, and a floor of 2^(55.25) removes it. The same tables give m ≤ 49 from 2⁴⁰, m ≤ 51 from 2⁴⁴, m ≤ 68 from 2⁵⁶, m ≤ 74 from 2⁶⁰ and m ≤ 89 from 2⁶⁸; run on the 3n + 1 side at Hercher’s floor the same machinery returns m ≤ 90 against his published 91. No published verification floor and no m-cycle theorem with m ≥ 3 is known to us for this map.</p>
-<p>Large language models assisted the development of this work, including prose, proposed proof arguments, the Lean formalization, the CUDA verifier, and the computations. The sources of Simons–de Weger 2005 and Rhin 1987 were read directly and the constants taken from them, not from memory; the transposition to the 3n − 1 side, the enumeration, the tables and their independent recomputation were produced and checked in that collaboration. AI assistance is not independent mathematical validation. The author is responsible for the statements, the proofs, the code, and the decision to make this version public.</p>
+<p>Large language models assisted the development of this work, including the prose, proposed proof arguments, the Lean formalization, the CUDA verifier, and the computations. The two external sources were read directly and their constants taken from them rather than from memory. AI assistance is not independent mathematical validation. The author is responsible for the statements, the proofs, the code, and the decision to make this version public.</p>
 
-RELATED IDENTIFIERS
+RELATED WORKS
 isSupplementTo: https://github.com/sneakyweasel/btlab
-cites: 10.5281/zenodo.22676453
+cites: 10.5281/zenodo.22676452

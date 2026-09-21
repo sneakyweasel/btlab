@@ -3338,23 +3338,27 @@ This proves Corollary 4.12 and Theorem 5.4.
 
 ## Acknowledgments and AI assistance
 
-Large language models were used throughout the development of the
-earlier draft and this revision, including the formulation and review
-of proof arguments, drafting, programming, and discussion of Lean
-formalizations. The September 2026 review with OpenAI Codex identified
-unresolved analytic steps and assisted with the conditional revision,
-the four-step and fifth-letter repairs, the D2 reduction, the signed
-mixed-mode proofs, their consolidation into this version, and the
-release materials. The September 2026 attribution revisions, which
-identify the word counts of Sections 5 and 6 with the Collatz
-sequences A076227, A100982 and A020914, credit the formulas on those
-entries and the tabulations of Noe and Hikawa, list the machine-checked
-statements of Section 8 and record the closed forms of the jump
-spectrum in Section 6, were drafted with Anthropic's Claude, which also
-carried out the computations behind those closed forms. AI assistance and automated
-checks are not independent mathematical validation. The author is
-responsible for the statements, proofs, code, and final approval of
-the preprint. The models are not authors.
+Large language models assisted throughout the development of this work,
+including the formulation and review of proof arguments, drafting, programming,
+the Lean formalizations, and the computations behind the reported constants.
+AI assistance and automated checks are not independent mathematical validation.
+The author is responsible for the statements, proofs, code, and final approval
+of the preprint. The models are not authors.
+
+## Availability and version
+
+This is version 1.1.0 of Paper B, of 21 September 2026. It is a preprint, it has
+not been refereed, and it is not deposited. The current Zenodo version is 1.0.0
+([doi:10.5281/zenodo.22864934](https://doi.org/10.5281/zenodo.22864934)),
+published 21 September 2026 from the edition of 20 September 2026. The concept DOI
+[10.5281/zenodo.22864933](https://doi.org/10.5281/zenodo.22864933) resolves to the
+latest version, and the record is at <https://zenodo.org/records/22864934>.
+The author's ORCID is
+[0009-0004-1939-3382](https://orcid.org/0009-0004-1939-3382).
+A later revision goes up through the record's new-version operation, which
+keeps the concept DOI, rather than as a new deposit.
+The repository is
+[sneakyweasel/btlab](https://github.com/sneakyweasel/btlab).
 
 ## References
 
@@ -3365,7 +3369,7 @@ Integer Sequences*, A094683.
 2. S. W. Graham and G. Kolesnik, *Van der Corput's Method of
 Exponential Sums*, London Mathematical Society Lecture Note Series
 126, Cambridge University Press, 1991.
-[Publisher excerpt](https://beckassets.blob.core.windows.net/product/readingsample/666252/9780521339278_excerpt_001.pdf).
+[Publisher excerpt](https://beckassets.blob.core.windows.net/product/readingsample/666252/9780521339278_excerpt_001.pdf). [doi:10.1017/CBO9780511661976](https://doi.org/10.1017/CBO9780511661976).
 3. L. Kuipers and H. Niederreiter, *Uniform Distribution of Sequences*,
 Wiley-Interscience, New York, 1974. Chapter 2, especially pp. 112--116.
 [University-hosted scan](https://web.maths.unsw.edu.au/~josefdick/preprints/KuipersNied_book.pdf).

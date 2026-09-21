@@ -53,43 +53,47 @@ def repo_root() -> Path | None:
 def zenodo_fields(meta: dict) -> str:
     """Render the upload form fields from the prepared metadata.
 
-    Two of these lines used to be unconditional assertions: that no external
-    record existed, and that the uploader should supply a publication date. Both
-    became false the day Paper B was deposited, and they became false *inside the
-    kit that was deposited*, which is the worst place for a stale claim to sit.
-
-    They follow the metadata now. A row that names its own `doi` is describing a
-    record that exists, and one that names a `publication_date` knows when that
-    happened. Asserting the opposite -- that a record exists, always -- would have
-    been equally wrong the next time a kit is prepared before any upload, which is
-    the state this file is normally in.
-
-    Paper A and Paper C deliberately carry neither field: Paper A's metadata
-    describes a revision newer than its deposit, so its date really is still
-    unknown, and their generators are left alone.
+    Three states, because two were never enough. A row naming its own `doi` describes
+    a version that is deposited. A row with no `doi` but a `conceptdoi` describes a
+    revision prepared on top of a record that already exists -- the state every paper
+    here is normally in, and the one the old binary printed as "no external record has
+    been created", underneath four published DOIs. A row with neither is a kit prepared
+    before any upload. Nothing is asserted that the metadata does not carry.
     """
     row = meta.get('metadata', meta)
     doi, published = row.get('doi'), row.get('publication_date')
-    standing = (
-        f'Describes the deposit at doi:{doi}; this build does not upload a new version.\n\n'
-        if doi else
-        'Prepared metadata only; no external record has been created.\n\n'
-    )
-    date_field = (
-        f'PUBLICATION DATE\n{published}\n\n' if published else
-        'PUBLICATION DATE\nUse the actual date this version is first made public.\n\n'
-    )
+    concept, latest = row.get('conceptdoi'), row.get('latest_deposit') or {}
+    if doi:
+        standing = (f'Describes the deposit at doi:{doi}; this build does not upload '
+                    f'a new version.\n\n')
+    elif concept:
+        standing = (
+            f'Version {row["version"]} is prepared and is not deposited. The record '
+            f'exists: concept doi:{concept} resolves to the latest version, which is '
+            f'{latest.get("version", "unknown")} at doi:{latest.get("doi", "unknown")} '
+            f'of {latest.get("publication_date", "unknown")}. A new version goes up '
+            f'through the new-version operation of that record, which keeps the '
+            f'concept DOI.\n\n')
+    else:
+        standing = 'Prepared metadata only; no external record has been created.\n\n'
+    date_field = (f'PUBLICATION DATE\n{published}\n\n' if published else
+                  'PUBLICATION DATE\nUse the actual date this version is first made '
+                  'public.\n\n')
+    who = row['creators'][0]
+    orcid = (f'ORCID: {who["orcid"]} (https://orcid.org/{who["orcid"]})\n'
+             if who.get('orcid') else '')
+    record = f'RECORD\n{row["record_url"]}\n\n' if row.get('record_url') else ''
+    related = '\n'.join(f'{r["relation"]}: {r["identifier"]}'
+                        for r in row.get('related_identifiers', ()))
     return (
         'GENERATED FROM docs/theory/; do not edit this export.\n'
         + standing
-        + f"TITLE\n{row['title']}\n\nCREATOR\n{row['creators'][0]['name']}\n"
-        'Affiliation: none\n\nRESOURCE TYPE\nPublication / Preprint\n\n'
-        f"VERSION\n{row['version']}\n\nLICENSE\n{row['license']}\n\n"
-        + date_field
+        + f'TITLE\n{row["title"]}\n\nCREATOR\n{who["name"]}\n' + orcid
+        + 'Affiliation: none\n\nRESOURCE TYPE\nPublication / Preprint\n\n'
+        + f'VERSION\n{row["version"]}\n\nLICENSE\n{row["license"]}\n\n'
+        + record + date_field
         + 'KEYWORDS\n' + '\n'.join(row['keywords']) + '\n\nDESCRIPTION (HTML)\n'
-        + row['description'] + '\n\nRELATED SOFTWARE\nhttps://github.com/sneakyweasel/btlab\n'
-    )
-
+        + row['description'] + '\n\nRELATED WORKS\n' + related + '\n')
 
 def sync(root: Path) -> None:
     for source, target in EXPORTS:
@@ -161,7 +165,13 @@ def check_exports(root: Path) -> None:
 def run(command: list[str], cwd: Path, log: Path | None = None) -> bytes:
     result = subprocess.run(command, cwd=cwd, capture_output=True)
     if log:
-        log.write_bytes(result.stdout + result.stderr)
+        # xelatex emits CRLF on Windows and these logs are tracked, so the
+        # committed copy flipped convention on every Windows build. Written as
+        # raw bytes, they never pass through the newline='' that covers the
+        # other generated text.
+        captured = result.stdout + result.stderr
+        log.write_bytes(captured.replace(bytes([13, 10]), bytes([10]))
+                        .replace(bytes([13]), bytes([10])))
     if result.returncode:
         raise RuntimeError((result.stdout + result.stderr).decode('utf-8', errors='replace')[-5000:])
     return result.stdout
@@ -225,6 +235,11 @@ def main() -> None:
          '--to=latex','--standalone','--no-highlight','--ascii',
          '--template',str(assets/'article.tex'),'--lua-filter',str(assets/'layout.lua'),
          '--output',str(tex)], work)
+    # Pandoc writes this file itself, so the newline='' that keeps every other
+    # generated text artifact LF never reaches it: on Windows the .tex came out CRLF
+    # and the committed copy flipped convention on every Windows build. The digests
+    # normalise line endings and so could not see it. Normalise the bytes instead.
+    tex.write_bytes(tex.read_bytes().replace(bytes([13, 10]), bytes([10])).replace(bytes([13]), bytes([10])))
     for i in (1,2):
         run([xelatex,'-no-shell-escape','-interaction=nonstopmode','-halt-on-error',tex.name],
             work,work/f'xelatex-pass-{i}.txt')
@@ -247,7 +262,7 @@ def main() -> None:
             'pandoc':run([pandoc,'--version'],work).decode(errors='replace').splitlines()[0],
             'xelatex':run([xelatex,'--version'],work).decode(errors='replace').splitlines()[0],
             'files':records}
-    (output/'paper_b_build.json').write_text(json.dumps(record,indent=2)+'\n',encoding='utf-8')
+    (output/'paper_b_build.json').write_text(json.dumps(record,indent=2)+'\n', encoding="utf-8", newline="")
     if root is not None and output == (root / 'docs/theory'):
         sync(root)
     print(pdf_out)

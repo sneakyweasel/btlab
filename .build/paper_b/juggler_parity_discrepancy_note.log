@@ -352,26 +352,26 @@ File: l3backend-xetex.def 2026-08-10 L3 backend support: XeTeX
 ) (juggler_parity_discrepancy_note.aux)
 \openout1 = `juggler_parity_discrepancy_note.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
@@ -407,24 +407,24 @@ LaTeX Font Info:    ... okay on input line 28.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring OFF on input line 28.
+Package hyperref Info: Link coloring OFF on input line 29.
 (juggler_parity_discrepancy_note.out) (juggler_parity_discrepancy_note.out)
 \@outlinefile=\write3
 \openout3 = `juggler_parity_discrepancy_note.out'.
 
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 3
-0.
+1.
 
 (C:\Users\phili\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 36.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 37.
 
 
 (C:\Users\phili\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 36.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 37.
 
 
 (C:\Users\phili\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
@@ -433,7 +433,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 [1
 
 ] [2] [3]
-Underfull \hbox (badness 2384) in paragraph at lines 306--309
+Underfull \hbox (badness 2384) in paragraph at lines 307--310
 []\T1/lmr/m/n/10.95 On a dyadic block ap-ply the two-dimensional Erd®s--Turán--
 Koksma in-equal-ity to
  []
@@ -443,7 +443,7 @@ Koksma in-equal-ity to
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1885.
+(amsmath)                 on input line 1886.
 
 [25] [26] [27] [28] [29] [30] [31] [32] [33] [34] [35] [36] [37] [38] [39]
 [40] [41] [42] [43] [44] (juggler_parity_discrepancy_note.aux)
@@ -453,13 +453,13 @@ L3 programming layer <2026-08-10>
  ***********
 Package rerunfilecheck Info: File `juggler_parity_discrepancy_note.out' has not
  changed.
-(rerunfilecheck)             Checksum: 662EA0BE1F4D2C4F09236251C5F1C856;10185.
+(rerunfilecheck)             Checksum: B132B9D89628DF8CD9A0AABCAEBA6FE9;10358.
  ) 
 Here is how much of TeX's memory you used:
- 10152 strings out of 402560
- 152804 string characters out of 5437925
- 596373 words of memory out of 5000000
- 39180 multiletter control sequences out of 15000+600000
+ 10153 strings out of 402560
+ 152830 string characters out of 5437925
+ 596686 words of memory out of 5000000
+ 39181 multiletter control sequences out of 15000+600000
  671522 words of font info for 88 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  71i,21n,79p,570b,526s stack positions out of 10000i,1000n,20000p,200000b,200000s

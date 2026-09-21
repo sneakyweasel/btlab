@@ -20,7 +20,8 @@ Map},pdfauthor={Philippe Cochin},pdfsubject={Mathematics preprint}}
 \providecommand{\passthrough}[1]{#1}
 \setcounter{secnumdepth}{-1}
 \title{Lower Bounds for Cycle Lengths in the Juggler Map}
-\author{Philippe Cochin \\ \texttt{philippe@cochin.fr}}
+\author{Philippe Cochin \\ \texttt{philippe@cochin.fr} \\
+  \small ORCID \href{https://orcid.org/0009-0004-1939-3382}{0009-0004-1939-3382}}
 \date{21 September 2026}
 \begin{document}
 \maketitle
@@ -6880,20 +6881,41 @@ the infinite ideal Euclidean itinerary on an actual finite cycle.
 \section{7. Acknowledgments and use of
 AI}\label{acknowledgments-and-use-of-ai}
 
-The author used large language models throughout the development of this
-work, including drafting and revising the prose, proposing and
-developing proof arguments, writing Lean formalizations, and designing
-and implementing computations. The September 2026 review with OpenAI
-Codex checked the mathematical claims and references, corrected the
-finite-window estimate, revised the rotation-cell argument and several
-hypotheses, distinguished formal proofs from numerical evidence, and
-prepared the document build and independent numerical audit. Section 5.9
-and its Lean module were drafted with Anthropic's Claude in September
-2026, under the same evidence boundaries. AI assistance is not
-independent mathematical validation. The explicit evidence boundaries in
-Section 1.2 and Appendix A apply to these contributions. The author is
-responsible for the statements, proofs, code, and final verification of
-this preprint.
+Large language models assisted throughout this work, including drafting
+and revising the prose, proposing and developing proof arguments,
+writing the Lean formalizations, and designing and running the
+computations. AI assistance is not independent mathematical validation.
+The explicit evidence boundaries in Section 1.2 and Appendix A apply to
+these contributions. The author is responsible for the statements,
+proofs, code, and final verification of this preprint.
+
+\section{8. Availability and version}\label{availability-and-version}
+
+This is version 1.1.0 of Paper A, of 21 September 2026. It is a
+preprint, it has not been refereed, and it is not deposited. The
+deposited versions are:
+
+\begin{itemize}
+\tightlist
+\item
+  1.0.2 of 20 September 2026,
+  \href{https://doi.org/10.5281/zenodo.22865237}{doi:10.5281/zenodo.22865237};
+\item
+  1.0.1 of 19 September 2026,
+  \href{https://doi.org/10.5281/zenodo.22846460}{doi:10.5281/zenodo.22846460};
+\item
+  1.0.0 of 9 September 2026,
+  \href{https://doi.org/10.5281/zenodo.22676453}{doi:10.5281/zenodo.22676453}.
+\end{itemize}
+
+The concept DOI
+\href{https://doi.org/10.5281/zenodo.22676452}{10.5281/zenodo.22676452}
+resolves to the latest version, and the record is at
+\url{https://zenodo.org/records/22865237}. The author's ORCID is
+\href{https://orcid.org/0009-0004-1939-3382}{0009-0004-1939-3382}. A
+later revision goes up through the record's new-version operation, which
+keeps the concept DOI, rather than as a new deposit. The repository is
+\href{https://github.com/sneakyweasel/btlab}{sneakyweasel/btlab}.
 
 \section{References}\label{references}
 
@@ -6939,6 +6961,7 @@ this preprint.
 \item
   J. C. Lagarias (ed.), \emph{The Ultimate Challenge: The \(3x+1\)
   Problem}, American Mathematical Society, Providence, RI, 2010.
+  \href{https://doi.org/10.1090/mbk/078}{doi:10.1090/mbk/078}.
 \item
   R. E. Crandall, ``On the ``\(3x+1\)'\,' problem,'' \emph{Math. Comp.}
   32 (1978), 1281--1292.
@@ -6971,14 +6994,20 @@ this preprint.
   P. Cochin, ``Five-Step Descent Certificates for the Juggler Map:
   Parity Statistics of Nested Floor Powers,'' companion manuscript
   (Paper B), revision of 20 September 2026; Zenodo version 1.0.0,
-  \href{https://doi.org/10.5281/zenodo.22864934}{doi:10.5281/zenodo.22864934}.
+  \href{https://doi.org/10.5281/zenodo.22864934}{doi:10.5281/zenodo.22864934};
+  concept DOI
+  \href{https://doi.org/10.5281/zenodo.22864933}{10.5281/zenodo.22864933}
+  for all versions.
   \href{https://github.com/sneakyweasel/btlab/blob/main/docs/theory/juggler_parity_discrepancy_note.md}{Source
   manuscript}.
 \item
   P. Cochin, ``Fate Contagion and Termination Criteria for the Juggler
-  Map,'' companion manuscript (Paper C), revision of 9 September 2026;
-  Zenodo version 1.0.0,
-  \href{https://doi.org/10.5281/zenodo.22678165}{doi:10.5281/zenodo.22678165}.
+  Map,'' companion manuscript (Paper C), revision of 21 September 2026;
+  Zenodo version 1.1.0,
+  \href{https://doi.org/10.5281/zenodo.22865705}{doi:10.5281/zenodo.22865705};
+  concept DOI
+  \href{https://doi.org/10.5281/zenodo.22678164}{10.5281/zenodo.22678164}
+  for all versions.
   \href{https://github.com/sneakyweasel/btlab/blob/main/docs/theory/juggler_fate_almost_all_note.md}{Source
   manuscript}.
 \item
@@ -6996,6 +7025,7 @@ this preprint.
   C. Hercher, ``There are no Collatz \(m\)-cycles with \(m\le 91\),''
   \emph{J. Integer Seq.} 26 (2023), Article 23.3.5; arXiv:2201.00406.
   \url{https://cs.uwaterloo.ca/journals/JIS/VOL26/Hercher/hercher5.html}.
+  \href{https://doi.org/10.48550/arXiv.2201.00406}{doi:10.48550/arXiv.2201.00406}.
 \item
   OEIS Foundation Inc., ``Number of surviving Collatz residues mod
   \(2^n\),'' Sequence A076227 in \emph{The On-Line Encyclopedia of
@@ -7004,6 +7034,7 @@ this preprint.
 \item
   R. Terras, ``A stopping time problem on the positive integers,''
   \emph{Acta Arith.} 30 (1976), 241--252.
+  \href{https://doi.org/10.4064/aa-30-3-241-252}{doi:10.4064/aa-30-3-241-252}.
 \item
   D. Barina, ``Improved verification limit for the convergence of the
   Collatz conjecture,'' \emph{J. Supercomput.} 81 (2025), Article 810.
@@ -7013,6 +7044,7 @@ this preprint.
 \item
   B. G. Seifert, ``On the arithmetic of cycles for the Collatz--Hasse
   (`Syracuse') conjectures,'' \emph{Discrete Math.} 68 (1988), 293--298.
+  \href{https://doi.org/10.1016/0012-365X(88)90121-5}{doi:10.1016/0012-365X(88)90121-5}.
 \item
   M. K. Sinisalo, ``On the minimal cycle lengths of the Collatz
   sequences,'' preprint, University of Oulu, c.~2003; entry 105 of J. C.

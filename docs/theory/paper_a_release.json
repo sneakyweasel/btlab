@@ -41,7 +41,7 @@
     {
       "path": "docs/theory/juggler_finite_dynamics_note.md",
       "mode": "text",
-      "sha256": "bf6aef92666936e74c956ad842db1236d0873de6d62802f9990fa2a8b1863e9f"
+      "sha256": "ffeb3d90ebb9e43c369da4e9decff8cf46382d60abc849bf0240486b9ac835a9"
     },
     {
       "path": "docs/theory/juggler_finite_dynamics_reviewer_packet.md",
@@ -601,7 +601,7 @@
     {
       "path": "tools/build_paper_a.py",
       "mode": "text",
-      "sha256": "dd5e18a8b25843f7d0c5ef1e26a0b69772e790d847a739c4c317e8e182c2127d"
+      "sha256": "9f6a7ed7495a0111d27baca14eeaf47cd1390c71ccba84c2f0c49013463305b8"
     },
     {
       "path": "tools/check_paper_a_numeric.py",
@@ -611,7 +611,7 @@
     {
       "path": "tools/paper_a/article.tex",
       "mode": "text",
-      "sha256": "382aa3f495dbde6d90c06cab301ac8720b5ff7f34dc5da7432594ec9cc7c6cde"
+      "sha256": "ea74824650010b2b901f23184897dbb6a2c9096a1f19a725c7b4481fc0b17e2c"
     },
     {
       "path": "tools/paper_a/layout.lua",
@@ -628,17 +628,17 @@
     {
       "path": "juggler_review/juggler_finite_dynamics_note.pdf",
       "mode": "binary",
-      "sha256": "afd450aad8c7da3be9014c6520355ee52631d5ef821eee88edd76e28e3f01e86"
+      "sha256": "6215066338f69e614819a0ec09e7b881505d7c11ec1385badcfdaacc7ed0411b"
     },
     {
       "path": "docs/theory/cochin-juggler.tex",
       "mode": "text",
-      "sha256": "7ab831da0fc7f0f37be9d3366b6ed8c09e58ae89e30f073f7532fb20ca119abf"
+      "sha256": "beb86423b017379c531795323492437194f960a445d4e482a9114d441d48266b"
     },
     {
       "path": "docs/theory/paper_a_zenodo.json",
       "mode": "text",
-      "sha256": "ef0b2835cc91c01cd233e14407ca9f5deb301e5229250345c37ff27293f7f11c"
+      "sha256": "fe756dced4044a14136d634ddb0bf8b4b715242ee3d64b9b50ac24e8755f6804"
     }
   ]
 }

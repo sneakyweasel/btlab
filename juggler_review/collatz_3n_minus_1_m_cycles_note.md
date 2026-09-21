@@ -507,13 +507,11 @@ Version 1.0.0 of this paper was built at commit
 
 ## Acknowledgments and use of AI
 
-Large language models assisted the development of this work, including prose, proposed proof
-arguments, the Lean formalization, the CUDA verifier, and the computations. The sources of
-Simons–de Weger 2005 and Rhin 1987 were read directly and the constants taken from them, not
-from memory; the transposition to the \(3n-1\) side, the enumeration, the tables and their
-independent recomputation were produced and checked in that collaboration. AI assistance is
-not independent mathematical validation. The author is responsible for the statements, the
-proofs, the code, and the decision to make this version public.
+Large language models assisted the development of this work, including the prose, proposed
+proof arguments, the Lean formalization, the CUDA verifier, and the computations. The two
+external sources were read directly and their constants taken from them rather than from
+memory. AI assistance is not independent mathematical validation. The author is responsible
+for the statements, the proofs, the code, and the decision to make this version public.
 
 ## Availability and version
 
@@ -522,7 +520,9 @@ preprint and has not been refereed. Version 1.0.0, deposited the same day
 ([doi:10.5281/zenodo.22876190](https://doi.org/10.5281/zenodo.22876190)), proved the same
 theorem for \(m\le58\); this version adds Lemma 6 and reaches \(m\le61\) at the same
 floor, with the tables and the calibration regenerated. The concept DOI
-[10.5281/zenodo.22876189](https://doi.org/10.5281/zenodo.22876189) resolves to the latest. The manuscript, the probe that computes the tables, the
+[10.5281/zenodo.22876189](https://doi.org/10.5281/zenodo.22876189) resolves to the latest
+version, and the record is at <https://zenodo.org/records/22876190>. The author's ORCID is
+[0009-0004-1939-3382](https://orcid.org/0009-0004-1939-3382). The manuscript, the probe that computes the tables, the
 independent check that recomputes them, the Lean module, the CUDA verifier and the floor
 certificate with its chunk reports are in the repository
 [sneakyweasel/btlab](https://github.com/sneakyweasel/btlab) at the commit named in Section 8;
@@ -535,35 +535,37 @@ a correction of this one.
 ## References
 
 - [H23] C. Hercher, "There are no Collatz m-cycles with m ≤ 91," *J. Integer Seq.* 26 (2023),
-  Article 23.3.5. arXiv:2201.00406.
+  Article 23.3.5. arXiv:2201.00406. [doi:10.48550/arXiv.2201.00406](https://doi.org/10.48550/arXiv.2201.00406).
 - [B21] D. Barina, "Convergence verification of the Collatz problem," *J. Supercomput.* 77
-  (2021), 2681–2688.
+  (2021), 2681–2688. [doi:10.1007/s11227-020-03368-x](https://doi.org/10.1007/s11227-020-03368-x).
 - [S07] J. L. Simons, "A simple (inductive) proof for the non-existence of 2-cycles of the
-  3x+1 problem," *J. Number Theory* 123 (2007), 10–17. Section 6 treats \(3x-1\).
+  3x+1 problem," *J. Number Theory* 123 (2007), 10–17. Section 6 treats \(3x-1\). [doi:10.1016/j.jnt.2006.05.011](https://doi.org/10.1016/j.jnt.2006.05.011).
 - [S08] J. L. Simons, "On the (non-)existence of m-cycles for generalized Syracuse
-  sequences," *Acta Arith.* 131 (2008), 217–254.
+  sequences," *Acta Arith.* 131 (2008), 217–254. [doi:10.4064/aa131-3-2](https://doi.org/10.4064/aa131-3-2).
 - [SdW] J. L. Simons and B. M. M. de Weger, "Theoretical and computational bounds for
-  m-cycles of the 3n+1-problem," *Acta Arith.* 117 (2005), 51–70.
+  m-cycles of the 3n+1-problem," *Acta Arith.* 117 (2005), 51–70. [doi:10.4064/aa117-1-3](https://doi.org/10.4064/aa117-1-3).
 - [Si05] J. L. Simons, "On the nonexistence of 2-cycles for the 3x+1 problem," *Math. Comp.*
-  74 (2005), 1565–1572.
+  74 (2005), 1565–1572. [doi:10.1090/S0025-5718-04-01728-4](https://doi.org/10.1090/S0025-5718-04-01728-4).
 - [R87] G. Rhin, "Approximants de Padé et mesures effectives d'irrationalité," *Séminaire de
   Théorie des Nombres, Paris 1985–86*, Progress in Mathematics 71, Birkhäuser, 1987,
-  155–164.
+  155–164. [doi:10.1007/978-1-4757-4267-1_11](https://doi.org/10.1007/978-1-4757-4267-1_11).
 - [3D] V. T. Sós, "On the distribution mod 1 of the sequence \(n\alpha\)," *Ann. Univ. Sci. Budapest.
   Eötvös Sect. Math.* 1 (1958), 127–134; S. Świerczkowski, "On successive settings of an arc
-  on the circumference of a circle," *Fund. Math.* 46 (1959), 187–189; N. B. Slater, "Gaps and
-  steps for the sequence \(n\theta\) mod 1," *Proc. Cambridge Philos. Soc.* 63 (1967), 1115–1123.
+  on the circumference of a circle," *Fund. Math.* 46 (1959), 187–189,
+  [doi:10.4064/fm-46-2-187-189](https://doi.org/10.4064/fm-46-2-187-189); N. B. Slater, "Gaps and
+  steps for the sequence \(n\theta\) mod 1," *Proc. Cambridge Philos. Soc.* 63 (1967), 1115–1123,
+  [doi:10.1017/S0305004100042195](https://doi.org/10.1017/S0305004100042195).
 - [LMN] M. Laurent, M. Mignotte and Y. Nesterenko, "Formes linéaires en deux logarithmes et
-  déterminants d'interpolation," *J. Number Theory* 55 (1995), 285–321.
+  déterminants d'interpolation," *J. Number Theory* 55 (1995), 285–321. [doi:10.1006/jnth.1995.1141](https://doi.org/10.1006/jnth.1995.1141).
 - [Si03] M. K. Sinisalo, "On the minimal cycle lengths of the Collatz sequences," preprint,
   University of Oulu, 2003.
 - [E93] S. Eliahou, "The 3x+1 problem: new lower bounds on nontrivial cycle lengths,"
-  *Discrete Math.* 118 (1993), 45–56.
+  *Discrete Math.* 118 (1993), 45–56. [doi:10.1016/0012-365X(93)90052-U](https://doi.org/10.1016/0012-365X(93)90052-U).
 - [St77] R. P. Steiner, "A theorem on the Syracuse problem," *Proc. 7th Manitoba Conf.
   Numerical Math.* (1977), 553–559.
 - [L85] J. C. Lagarias, "The 3x+1 problem and its generalizations," *Amer. Math. Monthly* 92
-  (1985), 3–23; and the annotated bibliographies, arXiv:math/0309224 and math/0608208.
+  (1985), 3–23; and the annotated bibliographies, arXiv:math/0309224 and math/0608208. [doi:10.1080/00029890.1985.11971528](https://doi.org/10.1080/00029890.1985.11971528).
 - [A] P. Cochin, "Lower Bounds for Cycle Lengths in the Juggler Map" (Paper A), Zenodo
-  version 1.0.0, 9 September 2026, [doi:10.5281/zenodo.22676453](https://doi.org/10.5281/zenodo.22676453);
-  concept DOI [10.5281/zenodo.22676452](https://doi.org/10.5281/zenodo.22676452).
+  version 1.0.2, 20 September 2026, [doi:10.5281/zenodo.22865237](https://doi.org/10.5281/zenodo.22865237);
+  concept DOI [10.5281/zenodo.22676452](https://doi.org/10.5281/zenodo.22676452) for all versions.
 - OEIS A037084, comment on the \(3x-1\) verification to \(10^8\).
