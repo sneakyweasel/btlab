@@ -23,6 +23,35 @@ EVIDENCE_WITHOUT_TESTS = frozenset({"literature"})
 #: Tags that assert an artifact in the repository, so a row carrying one has a test to name.
 TESTABLE_TAGS = frozenset({LEAN_VERIFIED, "COMPUTATIONALLY VERIFIED"})
 
+#: Modifiers Lean allows in front of a declaration's keyword, in any order and any number.
+#: The index reads them (``tools/formalpedia.py``, ``DECL``); the gates below did not, so
+#: ``noncomputable def budget`` was a declaration the index held and the gate denied.
+DECL_MODIFIER = r"(?:(?:private|protected|noncomputable|partial|unsafe|nonrec)\s+)*"
+
+#: The keywords a declaration opens with.
+DECL_KEYWORD = r"(?:theorem|lemma|def|abbrev|instance|structure)"
+
+#: What may not follow a declaration's name. ``\b`` was wrong at both ends here, because ``'``
+#: is not a word character: it accepted ``foo`` against ``theorem foo'`` and rejected ``foo'``
+#: against ``theorem foo'``. Lean's identifiers admit ``'``, ``!`` and ``?``, so the end of a
+#: name is the absence of one of those, not a word boundary.
+DECL_TAIL = r"(?![A-Za-z0-9_'!?])"
+
+#: The name a declaration line opens with, captured.
+DECL_NAME = r"([A-Za-z_][A-Za-z0-9_'!?.]*)"
+
+#: Every declaration a file opens, by name.
+DECL_LINE = re.compile(rf"^\s*{DECL_MODIFIER}{DECL_KEYWORD}\s+{DECL_NAME}", re.MULTILINE)
+
+
+def _declares(text: str, name: str) -> bool:
+    """Does ``text`` open a declaration named exactly ``name``?"""
+    return re.search(
+        rf"^\s*{DECL_MODIFIER}{DECL_KEYWORD}\s+{re.escape(name)}{DECL_TAIL}",
+        text,
+        re.MULTILINE,
+    ) is not None
+
 
 def _entries() -> list[dict]:
     return json.loads(JSON_PATH.read_text(encoding="utf-8"))
@@ -199,14 +228,106 @@ def test_ledger_markdown_is_generated():
     assert result.returncode == 0, result.stdout + result.stderr
 
 
+#: Declarations the gate denied while the index held them, as (file, name). Six sit behind
+#: ``noncomputable``; one ends in a prime. Every one of them is real, indexed, and was
+#: rejected -- which is why 42 otherwise-correct ``decl`` entries were dropped on 2026-09-21
+#: while the coverage audit's not-covered band was rejoined (506dd239).
+DENIED_BY_THE_OLD_GATE = (
+    ("Problems/Juggler/ReturnWordLoss.lean", "budget"),
+    ("Problems/Juggler/FateChernoff.lean", "oddFailures"),
+    ("Problems/Juggler/FateChernoff.lean", "scaleRatio"),
+    ("Problems/Juggler/FateShareLaw.lean", "extremeMeasure"),
+    ("Problems/Juggler/FateShareLaw.lean", "phi"),
+    ("Problems/Juggler/QuarticCells.lean", "logEta"),
+    ("Problems/Juggler/FateTaoReduction.lean", "treeLevel_logMass_le'"),
+)
+
+#: The regex the gates carried before the widening, kept so the defect cannot come back
+#: unnoticed. A later simplification that restores ``\b`` will fail this file, not the band.
+_SUPERSEDED = r"^\s*(?:theorem|lemma|def|abbrev|instance|structure)\s+{}\b"
+
+
+def test_the_declaration_regex_reads_the_forms_lean_actually_writes():
+    """A declaration may wear a modifier, and a name may end in a prime.
+
+    The gate's alternation began at the keyword, so ``noncomputable def budget`` never
+    matched: the modifier stood where the keyword had to be. And the name ended at ``\\b``,
+    which cannot close after ``'`` -- a non-word character -- so ``treeLevel_logMass_le'``
+    failed against its own declaration line.
+
+    Neither failure is a ledger error. Both names are in the file, both are in the index, and
+    the gate said no. That is the shape of a check that is green for nothing: it was not
+    holding the ledger to the Lean, it was holding it to a subset of Lean's syntax.
+
+    The replacement is stricter, not looser, in the one place the two differ on real input.
+    ``\\b`` accepted ``foo`` against ``theorem foo'`` -- the wrong declaration, silently -- and
+    the lookahead does not.
+    """
+    for rel, name in DENIED_BY_THE_OLD_GATE:
+        text = (ROOT / "formal" / rel).read_text(encoding="utf-8")
+        assert _declares(text, name), f"{name} is declared in {rel} and the gate denies it"
+        assert not re.search(_SUPERSEDED.format(re.escape(name)), text, re.MULTILINE), (
+            f"{name} in {rel}: the old regex was expected to fail here; if it now passes, "
+            f"this record is stale and the widening needs re-justifying"
+        )
+
+    # A name genuinely absent from a file is still absent. `phi` is declared in FateShareLaw,
+    # not in FateChernoff, and a gate that cannot tell those apart is not a join.
+    chernoff = (ROOT / "formal" / "Problems/Juggler/FateChernoff.lean").read_text(encoding="utf-8")
+    for absent in ("phi", "oddFailure", "oddFailuresX", "scaleRati", "notADeclarationAtAll"):
+        assert not _declares(chernoff, absent), f"{absent} is not in FateChernoff.lean"
+
+    # The prime is part of the name, and the pair it separates is real: FateTaoReduction
+    # carries `treeLevel_logMass_le` at 2 <= n0 and `treeLevel_logMass_le'` at 3 <= n0. Each
+    # must resolve to itself. `\b` could not do that -- it matched the unprimed name against
+    # the primed line as happily as against its own, which is the mis-join this gate exists
+    # to catch, arriving through the boundary rather than through the data.
+    tao = (ROOT / "formal" / "Problems/Juggler/FateTaoReduction.lean").read_text(encoding="utf-8")
+    assert _declares(tao, "treeLevel_logMass_le")
+    assert _declares(tao, "treeLevel_logMass_le'")
+    assert not _declares(tao, "treeLevel_logMass_l")
+
+    # Both directions of the prime, on a sample small enough to read.
+    sample = "noncomputable def budget : Nat := 0\ntheorem foo' : True := trivial\n"
+    assert _declares(sample, "budget")
+    assert _declares(sample, "foo'")
+    assert not _declares(sample, "foo"), "`theorem foo'` does not declare `foo`"
+    assert not _declares(sample, "budg")
+
+
+def test_the_gate_resolves_every_declaration_the_index_holds():
+    """The gate and the index must agree on what a declaration is.
+
+    They did not: 214 declarations across 81 files were in the index and invisible to the
+    gate. A row naming one of them could be correct in the data, correct in the Lean, and
+    still rejected -- and the only way out was to drop the field, which is what happened.
+    Parity is the property worth asserting, because it is the one that failed.
+    """
+    import collections
+    import sys
+
+    sys.path.insert(0, str(ROOT / "tools"))
+    import formalpedia as fp
+
+    indexed = collections.defaultdict(set)
+    for d in fp.build()["declarations"]:
+        indexed[d["file"]].add(d["name"])
+    assert indexed, "the index is empty; this check would pass for nothing"
+
+    missing = {}
+    for rel, names in indexed.items():
+        seen = set(DECL_LINE.findall((ROOT / rel).read_text(encoding="utf-8")))
+        if names - seen:
+            missing[rel] = sorted(names - seen)
+    assert missing == {}, missing
+
+
 def test_decl_when_present_names_a_declaration_in_the_rows_own_file():
     """The ``decl`` field is the join the ``lean`` file pointer cannot make.
 
     A row naming a declaration that is not in its file is worse than a row naming none:
     it reads as a resolved claim while pointing somewhere else.
     """
-    import re
-
     for row in _entries():
         decls = _decls(row)
         if not decls:
@@ -216,9 +337,7 @@ def test_decl_when_present_names_a_declaration_in_the_rows_own_file():
         text = (ROOT / "formal" / lean).read_text(encoding="utf-8")
         assert len(decls) == len(set(decls)), f"{row['id']}: repeats a declaration"
         for decl in decls:
-            pattern = (rf"^\s*(?:theorem|lemma|def|abbrev|instance|structure)\s+"
-                       rf"{re.escape(decl)}\b")
-            assert re.search(pattern, text, re.MULTILINE), f"{row['id']}: {decl} not in {lean}"
+            assert _declares(text, decl), f"{row['id']}: {decl} not in {lean}"
 
 
 def test_lean_trust_is_recorded_wherever_a_declaration_is_named():
@@ -244,11 +363,7 @@ def test_a_statement_naming_a_lean_theorem_names_one_that_exists():
     This convention is how 34 rows were matched to their declaration. It only stays useful
     if a rename cannot quietly leave the sentence pointing at nothing.
     """
-    import re
-
     named = re.compile(r"Lean theorem\s+([A-Za-z][A-Za-z0-9_']*_[A-Za-z0-9_']+)")
-    decl = re.compile(r"^\s*(?:theorem|lemma|def|abbrev|instance|structure)\s+([A-Za-z_][A-Za-z0-9_'!?.]*)",
-                      re.MULTILINE)
     broken = []
     for row in _entries():
         lean = str(row.get("lean") or "").strip()
@@ -257,7 +372,7 @@ def test_a_statement_naming_a_lean_theorem_names_one_that_exists():
         path = ROOT / "formal" / lean
         if not path.is_file():
             continue
-        present = set(decl.findall(path.read_text(encoding="utf-8")))
+        present = set(DECL_LINE.findall(path.read_text(encoding="utf-8")))
         for name in named.findall(row["statement"]):
             if name not in present:
                 broken.append(f"{row['id']}: names {name}, absent from {lean}")
@@ -343,8 +458,6 @@ def test_no_row_credits_native_decide_to_a_kernel_checked_declaration():
     said "Kernel-checked". A row naming a declaration beside the words ``native_decide``
     should be naming one that actually uses it.
     """
-    import re
-
     for row in _entries():
         statement = row.get("statement", "")
         if "native_decide" not in statement:
@@ -360,8 +473,13 @@ def test_no_row_credits_native_decide_to_a_kernel_checked_declaration():
         for m in re.finditer(r"native_decide", statement):
             window = statement[max(0, m.start() - 120): m.start()]
             for name in re.findall(r"[A-Za-z][A-Za-z0-9_']*_[A-Za-z0-9_']+", window):
+                # The block ends at the next declaration, and a declaration wearing a
+                # modifier is still one: without that, a body ran on past its own `end`
+                # into the neighbour below and could be credited with the neighbour's
+                # `native_decide`. 31 theorem blocks in `formal/` over-ran that way.
                 block = re.search(
-                    r"(?:^|\n)\s*theorem\s+" + re.escape(name) + r"(?![A-Za-z0-9_'])(.*?)(?=\n\s*(?:theorem|lemma|def|/--)|\Z)",
+                    rf"(?:^|\n)\s*{DECL_MODIFIER}theorem\s+{re.escape(name)}{DECL_TAIL}"
+                    rf"(.*?)(?=\n\s*(?:{DECL_MODIFIER}{DECL_KEYWORD}|/--)|\Z)",
                     text, re.S)
                 if block is not None:
                     assert "native_decide" in block.group(1), (
