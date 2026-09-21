@@ -697,7 +697,7 @@ whole is formally verified.
 
 ```text
 Repository:  https://github.com/sneakyweasel/btlab
-Commit:      7802f78bec58c68cec92a2efb3db4a502f916277
+Commit:      bf018a78f4f8981899d5927015cc47056e8e3e22
 Lean:        leanprover/lean4:v4.33.1
 Mathlib:     v4.33.1 (lake-manifest rev 0df444a360eaa60ab8c11dca51a86af692955474)
 Build:       lake build Problems.JugglerPaper   (from formal/)
@@ -707,8 +707,29 @@ SHA-256:     Appendix B
 ```
 
 The commit is the repository state that produced the finance
-tables. A later editorial commit of this text does not change
-those hashes.
+tables and the Lean layer. All 124 files the release manifest
+records as inputs — the finance probe with its three tables,
+the builder with its template and layout filter, the numeric
+recheck, the trust-boundary audit, the paper's own audit, the
+curvature probe with its controls, the two floor verifiers
+with their chunk and run records, and the 105 Lean modules
+this paper's build reaches with their toolchain, lake manifest
+and axiom expectation — are byte-identical there to the
+versions this paper reports; the check is mechanical and is
+part of the release gate. Only this text and its two companion
+documents, the typeset LaTeX and the PDF they build, the
+copies of those in `juggler_review/`, the Zenodo metadata and
+the manifest of digests move afterwards, in the editorial
+commit that writes the line above.
+
+Version 1.0.0, deposited on 9 September 2026, named commit
+`7802f78b` here, and that line was wrong as deposited:
+`exceptions_parity.json` and `budget_opt.json`, the two files
+Appendix B sends the reader to, were both added to the
+repository after that commit. No statement in this paper
+depended on it — Appendix B identifies those tables by
+content, and both are byte-identical to the versions the
+deposit reports.
 
 ### 1.3 Notation
 

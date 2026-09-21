@@ -42,6 +42,19 @@ Record [zenodo.org/records/22865237](https://zenodo.org/records/22865237).
 | 1.0.1 | [10.5281/zenodo.22846460](https://doi.org/10.5281/zenodo.22846460) | 19 September 2026 |
 | 1.0.0 | [10.5281/zenodo.22676453](https://doi.org/10.5281/zenodo.22676453) | 9 September 2026 |
 
+**The deposited 1.0.0 carries a false provenance line, corrected in the repository
+and not yet on the record.** Its Section 1.2 names commit `7802f78b` of 31 August 2026
+as the state that produced the finance tables. Two files the paper points the reader
+to, `exceptions_parity.json` for the 141 exceptional lengths and `budget_opt.json` for
+the run-type table, were added after that commit and do not exist there, so the line
+was already wrong on 9 September 2026, the day 1.0.0 was deposited. It is not rot: it
+shipped that way. The repository now pins `bf018a78`, where all 124 files the release
+manifest records as inputs are byte-identical to the versions the paper reports, and
+`tools/paper_pin.py` holds every paper to that from inside the release gate. The
+correction goes up with the prepared 1.1.0, through the record's new-version
+operation. The deposited PDF is not otherwise affected, because Appendix B identifies
+the tables by content and both are byte-identical to the versions 1.0.0 reports.
+
 ### Paper B, Five-Step Descent Certificates for the Juggler Map
 
 Record [zenodo.org/records/22864934](https://zenodo.org/records/22864934).

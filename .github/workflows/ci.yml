@@ -9,6 +9,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          # tests/integration/test_paper_release_gates.py asks whether each paper's
+          # printed provenance commit still holds the inputs that paper reports. The
+          # default shallow checkout has one commit, so every such pin would be
+          # unverifiable and the gate would skip forever rather than ever fail.
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
