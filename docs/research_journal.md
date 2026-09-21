@@ -1,5 +1,53 @@
 # Research journal
 
+## 2026-09-21 -- J-cyclemin-fudge asserted the unique-rotation property for eight words and kernel-checked seven
+
+- **Objective:** decide whether the eighth word on the `J-cyclemin-fudge` claim was an
+  absent theorem or a miscounted claim, and repair whichever it was.
+- **The gap.** The row is tagged `EXACT -- LEAN VERIFIED`. Its claim lists eight leftovers
+  whose only CycleMin-shaped rotation is themselves, the first being `OOOOOOOEEEE` =
+  `fourEvenWord 7 0 0 0`. `CycleMinFudge.lean` carried seven `unique_*` and seven
+  `no_cycle_itinerary_*`, and `OOOOOOOEEEE` had neither.
+- **Absent theorem, not an over-count, checked twice and calibrated against known-bad
+  input.** `onlySelfCycleMinShape (fourEvenWord 7 0 0 0)` evaluates `true` in Lean; of the
+  eleven rotations only `k = 0` satisfies `startsTwoOddsEndsEven`. Evaluating the predicate
+  across all thirty `fudgeWords` gives exactly eight `true`, and they are exactly the eight
+  the claim lists. A separate Python transcription of `rotateItinerary`,
+  `startsTwoOddsEndsEven` and `onlySelfCycleMinShape` reproduced all seven Lean-proved
+  values and the twenty-two false ones before agreeing on the eighth, so the predicate
+  discriminates and the agreement is not vacuous. The claim counts correctly.
+- **Why the file had omitted it, and why that did not settle the row.** The section
+  docstring said so outright: `OOOOOOOEEEE` is already `no_cycle_itinerary_oooooooeeee` in
+  `O7EEEEGap`, an *unconditional* statement about `itineraryO7EEEE`, which is the same
+  eleven-element list. That theorem is strictly stronger than its seven siblings, which all
+  carry `2 <= n`. But the ledger gate requires `decl` to name a declaration in the row's own
+  file, so the row could not record it -- the exact convention cost named in the previous
+  entry. Separately, the unique-rotation property itself, which the claim asserts for all
+  eight, had never been kernel-checked for the eighth.
+- **What was added to `CycleMinFudge.lean`.** `unique_oooooooeeee`, by `decide +kernel`,
+  which is the fact the claim was asserting unbacked; and
+  `no_cycle_itinerary_fudge_oooooooeeee`, the family-shaped restatement in `fourEvenWord`
+  form through `no_cycle_itinerary_of_unique_fudge`, which makes the fudge route close all
+  eight uniformly and makes `unique_oooooooeeee` load-bearing. `#print axioms` gives
+  `[propext]` for the first and `[propext, Classical.choice, Quot.sound]` for the second --
+  no `Lean.ofReduceBool`, so the row's `kernel` trust still holds. The section docstring now says where the
+  stronger statement lives instead of saying the word is skipped. Names were kept short
+  enough for the axiom-artifact width rule, and `CycleMinFudge` is in no axiom probe anyway.
+- **The verdict moved almost nothing, and it was doubtful before.** Re-asked for the row
+  alone: `doubtful; covers 0.34, claim broader 0.72, declaration narrower 0.42, different
+  result 0.37`. Against the cached verdict, `covers`, `decl_narrower` and `different_result`
+  are unchanged to two places and `claim_broader` fell 0.75 to 0.72. So the missing theorem
+  was not what made this row doubtful; the 1193-character compound statement is, and it
+  still asserts more than its twenty-seven declarations state. Recorded as a repair of an
+  unbacked assertion, not as a coverage win.
+- **Gates.** `render_theorem_ledger.py --check` exit 0; `test_theorem_ledger.py` and
+  `test_formalpedia.py` 60 passed. The four formalpedia artifacts were rebuilt in order
+  after the ledger was written, with only this session's Lean dirty in `formal/`; the index
+  diff is confined to `Problems.Juggler.CycleMinFudge` and moves the counts by exactly two,
+  both kernel. Negative control: pointing the row at a declaration absent from its file
+  turns `test_decl_when_present_names_a_declaration_in_the_rows_own_file` red on this row by
+  name, so the gate that passed is live.
+
 ## 2026-09-21 -- The not-covered band read: 96 rows against their files, 89 rejoined, and the band falls from 96 to 52
 
 - **Objective:** work the coverage audit's bottom band, the 96 resolved rows Jev put below

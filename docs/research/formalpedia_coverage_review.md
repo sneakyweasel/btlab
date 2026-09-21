@@ -7005,9 +7005,9 @@ theorem guardResidue_aggregate_valuation {c : ℤ}
 
 ## 85. `J-cyclemin-fudge` &mdash; covers 0.34
 
-*Reads as: the claim asserts more than the declarations state (0.75).*
+*Reads as: the claim asserts more than the declarations state (0.72).*
 
-*Claim broader 0.75; declaration narrower 0.42; different result 0.37.  Tag EXACT — LEAN VERIFIED, trust kernel.*
+*Claim broader 0.72; declaration narrower 0.42; different result 0.37.  Tag EXACT — LEAN VERIFIED, trust kernel.*
 
 **Row.** The thirty first-expanding four-even short-gap leftovers O^{a0} E O^{a1} E O^{a2} E O^{a3} E are not CycleMin words. On a CycleMin every later state is >= n, so the exact cells compose by absorb_odd_step and absorb_even_step: n^A < (n+1)^B (x+1)^γ implies n^{A+γ} < (n+1)^{B+γ} (isqrt(x)+1)^{2γ}. After the prefix, cycle_trailing_evens_lt puts the image below (n+1)^{2^r}. Any 7-odd word that starts O keeps γ a power of two and raises on each later odd, so the slack is identically 3^7-2^{11}=139, independent of even placement. For n >= 30 and A <= 13905 the comparison is (n+1)^{A-139} < n^A; no n with 2 <= n < 30 follows any of the thirty prefixes. The eight leftovers whose only CycleMin-shaped rotation is themselves (OOOOOOOEEEE, OOOOOOEOEEE, OOOOOOEEEOE, OOOOOEOEEOE, OOOOOOEEOEE, OOOOOEOEOE  *(truncated; read the ledger row)*
 
@@ -7108,98 +7108,114 @@ theorem no_follows_from2_below {w : List Branch} {N n : ℕ}
     (h : noFollowsFrom2Below w N = true) : ¬follows n w
 ```
 
-**And.** `unique_ooooooeoeee` &mdash; kernel-checked, `Problems/Juggler/CycleMinFudge.lean:950`
+**And.** `unique_oooooooeeee` &mdash; kernel-checked, `Problems/Juggler/CycleMinFudge.lean:953`
+
+```lean
+theorem unique_oooooooeeee :
+    onlySelfCycleMinShape (fourEvenWord 7 0 0 0) = true
+```
+
+**And.** `unique_ooooooeoeee` &mdash; kernel-checked, `Problems/Juggler/CycleMinFudge.lean:955`
 
 ```lean
 theorem unique_ooooooeoeee :
     onlySelfCycleMinShape (fourEvenWord 6 1 0 0) = true
 ```
 
-**And.** `unique_ooooooeeeoe` &mdash; kernel-checked, `Problems/Juggler/CycleMinFudge.lean:952`
+**And.** `unique_ooooooeeeoe` &mdash; kernel-checked, `Problems/Juggler/CycleMinFudge.lean:957`
 
 ```lean
 theorem unique_ooooooeeeoe :
     onlySelfCycleMinShape (fourEvenWord 6 0 0 1) = true
 ```
 
-**And.** `unique_oooooeoeeoe` &mdash; kernel-checked, `Problems/Juggler/CycleMinFudge.lean:954`
+**And.** `unique_oooooeoeeoe` &mdash; kernel-checked, `Problems/Juggler/CycleMinFudge.lean:959`
 
 ```lean
 theorem unique_oooooeoeeoe :
     onlySelfCycleMinShape (fourEvenWord 5 1 0 1) = true
 ```
 
-**And.** `unique_ooooooeeoee` &mdash; kernel-checked, `Problems/Juggler/CycleMinFudge.lean:956`
+**And.** `unique_ooooooeeoee` &mdash; kernel-checked, `Problems/Juggler/CycleMinFudge.lean:961`
 
 ```lean
 theorem unique_ooooooeeoee :
     onlySelfCycleMinShape (fourEvenWord 6 0 1 0) = true
 ```
 
-**And.** `unique_oooooeoeoee` &mdash; kernel-checked, `Problems/Juggler/CycleMinFudge.lean:958`
+**And.** `unique_oooooeoeoee` &mdash; kernel-checked, `Problems/Juggler/CycleMinFudge.lean:963`
 
 ```lean
 theorem unique_oooooeoeoee :
     onlySelfCycleMinShape (fourEvenWord 5 1 1 0) = true
 ```
 
-**And.** `unique_oooooeeoeoe` &mdash; kernel-checked, `Problems/Juggler/CycleMinFudge.lean:960`
+**And.** `unique_oooooeeoeoe` &mdash; kernel-checked, `Problems/Juggler/CycleMinFudge.lean:965`
 
 ```lean
 theorem unique_oooooeeoeoe :
     onlySelfCycleMinShape (fourEvenWord 5 0 1 1) = true
 ```
 
-**And.** `unique_ooooeoeoeoe` &mdash; kernel-checked, `Problems/Juggler/CycleMinFudge.lean:962`
+**And.** `unique_ooooeoeoeoe` &mdash; kernel-checked, `Problems/Juggler/CycleMinFudge.lean:967`
 
 ```lean
 theorem unique_ooooeoeoeoe :
     onlySelfCycleMinShape (fourEvenWord 4 1 1 1) = true
 ```
 
-**And.** `no_cycle_itinerary_ooooooeoeee` &mdash; kernel-checked, `Problems/Juggler/CycleMinFudge.lean:965`
+**And.** `no_cycle_itinerary_fudge_oooooooeeee` &mdash; kernel-checked, `Problems/Juggler/CycleMinFudge.lean:973`
+
+> `OOOOOOOEEEE` closed by the fudge route, in `fourEvenWord` form like its seven siblings. `no_cycle_itinerary_oooooooeeee` in `O7EEEEGap` is stronger: it needs no `2 ≤ n`, and `itineraryO7EEEE` is this same list.
+
+```lean
+theorem no_cycle_itinerary_fudge_oooooooeeee {n : ℕ} (hn : 2 ≤ n) :
+    ¬CycleItinerary n (fourEvenWord 7 0 0 0)
+```
+
+**And.** `no_cycle_itinerary_ooooooeoeee` &mdash; kernel-checked, `Problems/Juggler/CycleMinFudge.lean:976`
 
 ```lean
 theorem no_cycle_itinerary_ooooooeoeee {n : ℕ} (hn : 2 ≤ n) :
     ¬CycleItinerary n (fourEvenWord 6 1 0 0)
 ```
 
-**And.** `no_cycle_itinerary_ooooooeeeoe` &mdash; kernel-checked, `Problems/Juggler/CycleMinFudge.lean:968`
+**And.** `no_cycle_itinerary_ooooooeeeoe` &mdash; kernel-checked, `Problems/Juggler/CycleMinFudge.lean:979`
 
 ```lean
 theorem no_cycle_itinerary_ooooooeeeoe {n : ℕ} (hn : 2 ≤ n) :
     ¬CycleItinerary n (fourEvenWord 6 0 0 1)
 ```
 
-**And.** `no_cycle_itinerary_oooooeoeeoe` &mdash; kernel-checked, `Problems/Juggler/CycleMinFudge.lean:971`
+**And.** `no_cycle_itinerary_oooooeoeeoe` &mdash; kernel-checked, `Problems/Juggler/CycleMinFudge.lean:982`
 
 ```lean
 theorem no_cycle_itinerary_oooooeoeeoe {n : ℕ} (hn : 2 ≤ n) :
     ¬CycleItinerary n (fourEvenWord 5 1 0 1)
 ```
 
-**And.** `no_cycle_itinerary_ooooooeeoee` &mdash; kernel-checked, `Problems/Juggler/CycleMinFudge.lean:974`
+**And.** `no_cycle_itinerary_ooooooeeoee` &mdash; kernel-checked, `Problems/Juggler/CycleMinFudge.lean:985`
 
 ```lean
 theorem no_cycle_itinerary_ooooooeeoee {n : ℕ} (hn : 2 ≤ n) :
     ¬CycleItinerary n (fourEvenWord 6 0 1 0)
 ```
 
-**And.** `no_cycle_itinerary_oooooeoeoee` &mdash; kernel-checked, `Problems/Juggler/CycleMinFudge.lean:977`
+**And.** `no_cycle_itinerary_oooooeoeoee` &mdash; kernel-checked, `Problems/Juggler/CycleMinFudge.lean:988`
 
 ```lean
 theorem no_cycle_itinerary_oooooeoeoee {n : ℕ} (hn : 2 ≤ n) :
     ¬CycleItinerary n (fourEvenWord 5 1 1 0)
 ```
 
-**And.** `no_cycle_itinerary_oooooeeoeoe` &mdash; kernel-checked, `Problems/Juggler/CycleMinFudge.lean:980`
+**And.** `no_cycle_itinerary_oooooeeoeoe` &mdash; kernel-checked, `Problems/Juggler/CycleMinFudge.lean:991`
 
 ```lean
 theorem no_cycle_itinerary_oooooeeoeoe {n : ℕ} (hn : 2 ≤ n) :
     ¬CycleItinerary n (fourEvenWord 5 0 1 1)
 ```
 
-**And.** `no_cycle_itinerary_ooooeoeoeoe` &mdash; kernel-checked, `Problems/Juggler/CycleMinFudge.lean:983`
+**And.** `no_cycle_itinerary_ooooeoeoeoe` &mdash; kernel-checked, `Problems/Juggler/CycleMinFudge.lean:994`
 
 ```lean
 theorem no_cycle_itinerary_ooooeoeoeoe {n : ℕ} (hn : 2 ≤ n) :

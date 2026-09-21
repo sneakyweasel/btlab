@@ -2101,7 +2101,7 @@
       },
       "J-cyclemin-fudge": {
         "asked": "2026-09-21",
-        "claim_broader": 0.75,
+        "claim_broader": 0.72,
         "covers": 0.34,
         "decl_narrower": 0.42,
         "decls": [
@@ -2116,6 +2116,7 @@
           "slack139_of_seven_odd_length_eleven",
           "succ_pow_slack139_of_ge_30",
           "no_follows_from2_below",
+          "unique_oooooooeeee",
           "unique_ooooooeoeee",
           "unique_ooooooeeeoe",
           "unique_oooooeoeeoe",
@@ -2123,6 +2124,7 @@
           "unique_oooooeoeoee",
           "unique_oooooeeoeoe",
           "unique_ooooeoeoeoe",
+          "no_cycle_itinerary_fudge_oooooooeeee",
           "no_cycle_itinerary_ooooooeoeee",
           "no_cycle_itinerary_ooooooeeeoe",
           "no_cycle_itinerary_oooooeoeeoe",
@@ -2132,7 +2134,7 @@
           "no_cycle_itinerary_ooooeoeoeoe"
         ],
         "different_result": 0.37,
-        "key": "c3caab90cfc99ce9",
+        "key": "3095b3e72d4b7c7d",
         "model": "jev-1.13.0"
       },
       "J-cyclemin-gap-power-transfer": {
@@ -3980,7 +3982,7 @@
     "totals": {
       "answered": 248,
       "asked_now": 1,
-      "input_tokens": 927,
+      "input_tokens": 3489,
       "reused": 247,
       "unfound": 0
     }
