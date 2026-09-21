@@ -1,5 +1,5 @@
 {
-  "asked": "2026-09-21",
+  "asked": "2026-09-22",
   "calibration": {
     "asked": "2026-09-21",
     "confident": 29,
@@ -110,7 +110,7 @@
     "truth_not_offered": 0
   },
   "coverage": {
-    "asked": "2026-09-21",
+    "asked": "2026-09-22",
     "rows": {
       "BT-D-S": {
         "asked": "2026-09-21",
@@ -3336,6 +3336,22 @@
         "key": "cbb7254865a3af49",
         "model": "jev-1.13.0"
       },
+      "J-pressure-scale-average-suffices": {
+        "asked": "2026-09-22",
+        "claim_broader": 0.33,
+        "covers": 0.52,
+        "decl_narrower": 0.4,
+        "decls": [
+          "liveOdds",
+          "oddPressure",
+          "rho",
+          "Bound",
+          "pressure_average_conjecture"
+        ],
+        "different_result": 0.11,
+        "key": "e72cd4f657391bd3",
+        "model": "jev-1.13.0"
+      },
       "J-rate-free-floor-certificates": {
         "asked": "2026-09-21",
         "claim_broader": 0.13,
@@ -3980,10 +3996,10 @@
       }
     },
     "totals": {
-      "answered": 248,
-      "asked_now": 1,
-      "input_tokens": 3489,
-      "reused": 247,
+      "answered": 249,
+      "asked_now": 0,
+      "input_tokens": 0,
+      "reused": 249,
       "unfound": 0
     }
   },

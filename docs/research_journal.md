@@ -1,5 +1,43 @@
 # Research journal
 
+## 2026-09-22 -- Scale-averaged pressure implication checked in Lean
+
+- **Objective:** Consolidate the existing conditional termination route,
+  with the actual arithmetic bound explicit and the verified contagion
+  exponent `100/203` as its input.
+- **Strongest theorem:**
+  `Problems.Juggler.ScaleAverage.pressure_average_conjecture` proves
+  universal termination from the cumulative stopped odd-pressure bound
+  and `r-eta > 103/203`, above a terminating floor. Its hypothesis is
+  `forall epsilon>0, exists D>=0, forall K>=0,
+  sum(rho_(k0+j),j<K)<=D*K^(1+eta+epsilon)` on actual Juggler starts.
+- **Proof:** Prefix-sum domination and Bernoulli's inequality give the
+  weighted Abel bound; the live odd-count envelope gives the dyadic
+  pressure estimate; dyadic summation bounds odd harmonic failure mass.
+  The existing even-tree log-log factor is absorbed by the strict
+  exponent gap before applying `Production.failures_logMass_averaged`.
+  No additional distribution or contagion hypothesis is inserted.
+- **Evidence:** [FateScaleAverage.lean](../formal/Problems/Juggler/FateScaleAverage.lean)
+  compiles; both the targeted build and the full `lake build` succeed.
+  All eleven new theorem dependency checks use only Mathlib's
+  three standard logical principles, as recorded in
+  [AxiomCheckScaleAverage.expected](../formal/AxiomCheckScaleAverage.expected).
+  The 39 focused architecture, pressure and Paper C formal-layer tests pass.
+  Integration, ledger and branch-index checks add 150 passes and 14 skips;
+  generated-file and scoped whitespace checks pass.
+- **Coverage review:** The ledger statement was narrowed to exactly the
+  formal implication; numerical tilt evaluations, sparse-source bounds
+  and scalar spike examples are excluded. The repository's Jev check
+  was initially blocked from sending private text, then run once after
+  the user's explicit authorization. It returned `covered` with score
+  0.52. Direct review of the definitions and compiled signature confirms
+  the quantifiers, stopping condition, normalization and threshold.
+- **Decision:** **PROMOTE** this formal-consolidation phase. The
+  [arithmetic pressure estimate](problems/juggler_pressure_external_average.md)
+  stays **PARK**. No new counting, cycle or escape branch is opened.
+- **Best next question:** Which arithmetic estimate can bound the actual
+  cumulative pressure at growing depth while retaining the nested floors?
+
 ## 2026-09-22 -- A nonsquare Pell domain fails by unconditional OOE interlacing
 
 - **Objective:** Pursue an explicit nonsquare invariant domain with a fixed

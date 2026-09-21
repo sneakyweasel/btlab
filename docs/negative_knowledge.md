@@ -1789,8 +1789,13 @@ can beat the faster-growing contagion lower bound. Precisely, with
 summation gives odd harmonic failure mass
 \(O((\log x)^\beta)\) for every
 \(\beta>\max\{1+\eta-r,0\}\); even fibers preserve that bound
-for \(\beta>0\). `J-pressure-scale-average-suffices`, EXACT — HUMAN
-PROOF. The original \(\Pi\) has \(\eta=0\), so it suffices at
+for \(\beta>0\). The conditional implication
+`J-pressure-scale-average-suffices` is now **EXACT — LEAN VERIFIED**
+(22 September 2026, `ScaleAverage.pressure_average_conjecture`) at the
+stronger threshold `r-eta>103/203`. The formal proof absorbs the
+existing even-tree log-log factor using the strict exponent gap;
+the sharper even-fiber upper bound just quoted remains a written proof.
+The original \(\Pi\) has \(\eta=0\), so it suffices at
 \(C=19\). This corrects sufficiency only; neither \(\Pi\) nor a
 Juggler-specific method to estimate it is proved. A small arithmetic
 mean of the tilted excess is not its exponential moment.

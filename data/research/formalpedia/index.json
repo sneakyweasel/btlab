@@ -36317,6 +36317,186 @@
       "trust": "kernel"
     },
     {
+      "doc": "Prefix-sum domination is preserved by nonnegative decreasing weights.",
+      "file": "formal/Problems/Juggler/FateScaleAverage.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-pressure-scale-average-suffices"
+      ],
+      "line": 21,
+      "module": "Problems.Juggler.FateScaleAverage",
+      "name": "weighted_prefix_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The discrete derivative of a convex power has its elementary upper bound.",
+      "file": "formal/Problems/Juggler/FateScaleAverage.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-pressure-scale-average-suffices"
+      ],
+      "line": 36,
+      "module": "Problems.Juggler.FateScaleAverage",
+      "name": "rpow_step_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A power is bounded by the sum of its upper discrete derivatives.",
+      "file": "formal/Problems/Juggler/FateScaleAverage.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-pressure-scale-average-suffices"
+      ],
+      "line": 55,
+      "module": "Problems.Juggler.FateScaleAverage",
+      "name": "rpow_le_sum",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Abel summation: a cumulative `K^s` bound gives the weighted `K^(1-e)` bound when `r = s - 1 + e`. No pointwise bound on the individual terms is assumed.",
+      "file": "formal/Problems/Juggler/FateScaleAverage.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-pressure-scale-average-suffices"
+      ],
+      "line": 66,
+      "module": "Problems.Juggler.FateScaleAverage",
+      "name": "weighted_rpow_sum_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The actual odd starts in one dyadic block, stopped at the certified floor.",
+      "file": "formal/Problems/Juggler/FateScaleAverage.lean",
+      "kind": "def",
+      "ledger": [
+        "J-pressure-scale-average-suffices"
+      ],
+      "line": 96,
+      "module": "Problems.Juggler.FateScaleAverage",
+      "name": "liveOdds",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The manuscript's `Z_d(y)`, using the actual Juggler itinerary.",
+      "file": "formal/Problems/Juggler/FateScaleAverage.lean",
+      "kind": "def",
+      "ledger": [
+        "J-pressure-scale-average-suffices"
+      ],
+      "line": 100,
+      "module": "Problems.Juggler.FateScaleAverage",
+      "name": "oddPressure",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Normalized pressure on `(2^k,2^(k+1)]`; `a` is the reference moment per step.",
+      "file": "formal/Problems/Juggler/FateScaleAverage.lean",
+      "kind": "def",
+      "ledger": [
+        "J-pressure-scale-average-suffices"
+      ],
+      "line": 104,
+      "module": "Problems.Juggler.FateScaleAverage",
+      "name": "rho",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Global big-O form of `sum_{k=k\u2080}^{k\u2080+K-1} rho_k \u2264 K^(1+\u03b7+o(1))`. The arbitrary constant absorbs the finitely many initial scales.",
+      "file": "formal/Problems/Juggler/FateScaleAverage.lean",
+      "kind": "def",
+      "ledger": [
+        "J-pressure-scale-average-suffices"
+      ],
+      "line": 110,
+      "module": "Problems.Juggler.FateScaleAverage",
+      "name": "Bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateScaleAverage.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-pressure-scale-average-suffices"
+      ],
+      "line": 114,
+      "module": "Problems.Juggler.FateScaleAverage",
+      "name": "rho_nonneg",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The envelope and exponential Markov inequality on the odd block itself.",
+      "file": "formal/Problems/Juggler/FateScaleAverage.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-pressure-scale-average-suffices"
+      ],
+      "line": 120,
+      "module": "Problems.Juggler.FateScaleAverage",
+      "name": "odd_block_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The dyadic change of variables, with its constant retained.",
+      "file": "formal/Problems/Juggler/FateScaleAverage.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-pressure-scale-average-suffices"
+      ],
+      "line": 160,
+      "module": "Problems.Juggler.FateScaleAverage",
+      "name": "block_le_rho",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Summing the actual dyadic odd blocks under a cumulative pressure bound.",
+      "file": "formal/Problems/Juggler/FateScaleAverage.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-pressure-scale-average-suffices"
+      ],
+      "line": 217,
+      "module": "Problems.Juggler.FateScaleAverage",
+      "name": "odd_mass_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Any subcritical odd harmonic-mass bound contradicts the verified contagion theorem. The harmless even-tree logarithm is absorbed using the strict exponent gap.",
+      "file": "formal/Problems/Juggler/FateScaleAverage.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-pressure-scale-average-suffices"
+      ],
+      "line": 262,
+      "module": "Problems.Juggler.FateScaleAverage",
+      "name": "conjecture_of_odd_mass",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The scale-averaged implication at the unconditional contagion exponent. The only arithmetic distribution hypothesis is `Bound` on the actual pressures.",
+      "file": "formal/Problems/Juggler/FateScaleAverage.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-pressure-scale-average-suffices"
+      ],
+      "line": 337,
+      "module": "Problems.Juggler.FateScaleAverage",
+      "name": "conjecture_of_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Manuscript parameters: `a = 1-q+q*exp \u03b8`, positive tilt, and `C > 1`. This is a conditional termination theorem; no estimate of `Bound` is proved here.",
+      "file": "formal/Problems/Juggler/FateScaleAverage.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-pressure-scale-average-suffices"
+      ],
+      "line": 370,
+      "module": "Problems.Juggler.FateScaleAverage",
+      "name": "pressure_average_conjecture",
+      "trust": "kernel"
+    },
+    {
       "doc": "Every nonempty backward-closed class (with a positive member) contains some `m \u2265 3`: `1 \u21a6 2 \u21a6 4` through even blocks.",
       "file": "formal/Problems/Juggler/FateSeed.lean",
       "kind": "theorem",
@@ -94987,6 +95167,7 @@
         "Problems.Juggler.FateProductionWords",
         "Problems.Juggler.FateRecursion",
         "Problems.Juggler.FateResonanceCount",
+        "Problems.Juggler.FateScaleAverage",
         "Problems.Juggler.FateSeed",
         "Problems.Juggler.FateShareLaw",
         "Problems.Juggler.FateSweep",
@@ -96482,6 +96663,21 @@
         "Problems.Juggler.FateThinFibers"
       ],
       "ledger": []
+    },
+    "Problems.Juggler.FateScaleAverage": {
+      "declarations": 15,
+      "file": "formal/Problems/Juggler/FateScaleAverage.lean",
+      "imports": [
+        "Problems.Juggler.FatePoorProduction",
+        "Problems.Juggler.FatePressureCorollary"
+      ],
+      "ledger": [
+        {
+          "id": "J-pressure-scale-average-suffices",
+          "statement": "Conditional scale-averaged pressure theorem at the unconditional contagion threshold. Fix integers N0>=2 and k0>=0 with N0<2^(k0+1), and assume every integer from 1 through N0 reaches 1. Let C>1, theta>0, 0<q<1, eta>=0, a=1-q+q*exp(theta), pC=(1-1/C)/log_2(3), and r=C*(theta*pC-log(a))/log(2). For y=2^k set d=ceil(C*log_2(log(2*y)/log(N0))). Let Z_k be the sum of exp(theta*o_d(n)) over odd integer starts y<n<=2*y whose Juggler iterates at every time 0 through d exceed N0; o_d(n) counts odd states at times 0 through d-1. Set rho_k=Z_k/((2^k/2)*a^d). Suppose that for every epsilon>0 there exists a real D>=0 such that, for every integer K>=0, sum(rho_(k0+j),0<=j<K)<=D*K^(1+eta+epsilon). If r-eta>103/203, every positive integer reaches 1. ScaleAverage.pressure_average_conjecture proves precisely this conditional implication. Its Bound definition spells out the cumulative hypothesis, and liveOdds, oddPressure and rho define the actual stopped Juggler moments. The actual cumulative pressure estimate remains unproved; the formal result introduces no additional distribution assumption and does not prove unconditional termination. Scalar spike examples, numerical tilt evaluations and sparse-source estimates elsewhere in the dossier are outside this row.",
+          "tag": "EXACT \u2014 LEAN VERIFIED"
+        }
+      ]
     },
     "Problems.Juggler.FateSeed": {
       "declarations": 18,
@@ -98786,13 +98982,13 @@
     }
   },
   "totals": {
-    "declarations": 7200,
-    "declarations_with_a_ledger_row": 5279,
-    "ledger_rows_naming_a_file": 467,
-    "modules": 317,
+    "declarations": 7215,
+    "declarations_with_a_ledger_row": 5294,
+    "ledger_rows_naming_a_file": 468,
+    "modules": 318,
     "trust": {
       "compiler": 56,
-      "kernel": 7144
+      "kernel": 7159
     }
   }
 }

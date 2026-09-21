@@ -1,6 +1,8 @@
 # Juggler pressure: external averaging of \(M_{\theta,q}\) / \(P_\theta\)
 
 Status: **PARK** (arithmetic-estimate follow-up, 9 September 2026).
+The conditional implication is now **EXACT — LEAN VERIFIED** at the stronger
+threshold `r - eta > 103/203` (22 September 2026; see Formalization).
 The previously promoted scale-average sufficiency theorem remains
 valid. A sparse-source part is now bounded; the full average remains
 unproved. The one-sided sieve follow-up below establishes only an
@@ -252,6 +254,25 @@ No fate is excluded. No halt theorem.
   summation method or a literature-priority claim.
 
 ## Branch budget
+
+**Formal consolidation (22 September 2026; PROMOTE).**
+
+```text
+Mathematical target     Kernel-check the existing scale-average implication
+                       using unconditional contagion at 100/203.
+Novelty hypothesis     Formal coverage of the conditional implication;
+                       no new arithmetic distribution estimate.
+Falsifier              A missing premise in the written summation argument.
+Already killed by?     Arithmetic shortcuts remain closed. None prevents
+                       checking this existing conditional theorem.
+Existing machinery     Live odd-count envelope, dyadic odd log-mass,
+                       even-tree covering, averaged contagion.
+Maximum Phase-0 scope  Summation lemma, actual-pressure implication,
+                       registration and proof-dependency checks.
+Promotion criterion    Full implication compiles with the arithmetic
+                       pressure bound explicit and no proof gaps.
+Stop criterion         Record any missing premise; open no counting branch.
+```
 
 **New Paper B transfer check (10 September 2026).**
 
@@ -519,9 +540,58 @@ recorded limitations.
 
 ## Formalization
 
-No new Lean file. The scale-average implication has a complete
-analytic human proof above. The completion identity and comparison
-with Proposition 11.1 remain elementary identities, not estimates.
+**EXACT — LEAN VERIFIED, 22 September 2026.**
+[FateScaleAverage.lean](../../formal/Problems/Juggler/FateScaleAverage.lean)
+defines the actual odd starts in each dyadic interval that remain above
+the floor through depth `d`, their exponential moment, and its normalized
+value `ScaleAverage.rho`. In particular the weight is on actual Juggler
+itineraries, with the stopping condition included.
+
+`ScaleAverage.pressure_average_conjecture` takes a terminating floor
+`N0 >= 2`, a starting index `k0` with `N0 < 2^(k0+1)`, `C > 1`,
+`theta > 0`, `0 < q < 1`, and `eta >= 0`. Put
+`a = 1-q+q*exp(theta)` and
+`r = C*(theta*pC(C)-log(a))/log(2)`. Its arithmetic hypothesis,
+`ScaleAverage.Bound`, is explicitly
+
+\[
+\forall\varepsilon>0\ \exists D\ge0\ \forall K\in\mathbb N,
+\qquad
+\sum_{j=0}^{K-1}\rho_{k_0+j}
+\le D K^{1+\eta+\varepsilon}.
+\]
+
+This is the global-constant form of the cumulative big-O bound after a
+fixed index shift; finitely many initial values are absorbed in `D`.
+Together with `r-eta > 103/203`, it implies that every positive integer
+reaches 1. No contagion hypothesis is required: the proof uses
+`Production.failures_logMass_averaged` at `100/203`.
+
+The proof follows the existing argument using summation by parts
+(`weighted_rpow_sum_le`), the actual block estimate (`block_le_rho`),
+and the odd harmonic-mass bound (`odd_mass_le`). It reuses the existing
+even-tree covering, absorbs its log-log factor with the strict exponent
+gap, and invokes `conjecture_of_odd_mass`. Thus the formal proof does
+not need to formalize the sharper no-log-log bound in (A5).
+
+[AxiomCheckScaleAverage.lean](../../formal/AxiomCheckScaleAverage.lean)
+checks the new theorems and their transitive proof dependencies. This
+check passes for all eleven theorems, with only `propext`,
+`Classical.choice`, and `Quot.sound`; its output is retained in
+[AxiomCheckScaleAverage.expected](../../formal/AxiomCheckScaleAverage.expected).
+The English ledger statement was checked against the definitions and
+compiled signature. The authorized Jev advisory review returned
+`covered` (coverage score 0.52); this is a statement-coverage opinion,
+not the mathematical proof.
+
+The module is registered in the laboratory barrel; the published Paper C
+barrel and manuscript are unchanged. The sparse-source estimates,
+numerical tilt evaluations, scalar spike separation, and other written
+corollaries in this dossier are not retagged as Lean verified.
+
+The bound on the actual cumulative pressure remains unproved. The
+completion identity and comparison with Proposition 11.1 remain
+elementary identities, not estimates.
 
 ## Results
 
@@ -1522,6 +1592,12 @@ phase proves the sparse-subset bound (B1)–(B2), but does not meet its
 promotion criterion of controlling the full population. The
 exceptional-scale calculation (B3) identifies the missing amplitude
 estimate; it is not an impossibility theorem for such an estimate.
+
+**PROMOTE** the bounded formal-consolidation phase of 22 September 2026:
+the conditional scale-average implication is kernel-checked with the
+unconditional `100/203` contagion input. Its sole distribution premise
+remains explicit. No new arithmetic attack is opened.
+
 The later finite-prefix/suffix-cap attempt is closed by (C1)–(C2),
 including all admissible fair tilt/depth choices. Those elementary
 diagnostics are not promoted as an arithmetic advance.

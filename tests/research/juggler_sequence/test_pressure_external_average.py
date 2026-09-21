@@ -1,8 +1,9 @@
 """Scale-average sufficiency and its finite algebraic regression checks.
 
 These finite fixtures do not establish an asymptotic bound on actual
-Juggler moments. The conditional implication and sparse-source estimate
-are human proofs in the dossier; the complementary population is open.
+Juggler moments. The conditional implication is now checked in
+FateScaleAverage.lean; the sparse-source estimate remains a written proof
+in the dossier, and the complementary population is open.
 """
 
 from __future__ import annotations

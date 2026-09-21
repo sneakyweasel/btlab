@@ -1220,15 +1220,24 @@
  },
  {
   "id": "J-pressure-scale-average-suffices",
-  "tag": "EXACT \u2014 HUMAN PROOF",
-  "statement": "Conditional scale-averaged pressure theorem, correcting the earlier rejection of Pi. Fix a terminating floor N0>=2, C>1, theta>0 and 0<q<1. Set p_C=(1-1/C)*log2/log3, a=1-q+q*exp(theta), d_k=ceil(C*log2(((k+1)*log2)/log N0)), N_k=2^(k-1), rho_k=Z_{d_k}(2^k)/(N_k*a^d_k), and r=C*(theta*p_C-log a)/log2>0. If for some eta>=0 the cumulative sum of rho_k through K is at most K^(1+eta+o(1)) and r-eta>1-lambda**, lambda**=0.4926, then every positive integer reaches 1. Proof: envelope plus Markov bounds block harmonic odd-failure mass by O(rho_k*(k+1)^(-r)); dyadic grouping gives total odd harmonic mass O((log x)^beta) for every beta>max(1+eta-r,0). The even-fiber inequality H_F(x)<=H_odd(x)+H_F(sqrt x)+zeta(2) gives the same bound for beta>0. Choosing beta<lambda<lambda** contradicts contagion if F is nonempty. At the optimizing tilt r=C*D(p_C||q)/log2; C=19,q=1/2 permits eta<0.0195265491 and C=41,q=0.55 permits eta<0.0120493967. In particular the original Cesaro bound Pi<=exp(o(d)) (eta=0) suffices. Scalar sequence rho_k=1+k on powers of two and 1 elsewhere separates this assumption from pointwise subpower pressure; not a Juggler realization. Existing recurrence rho_k<=exp(theta)/a*exp(c E_k) gives the corresponding sufficient exponential average of cumulative tilted excess, not an ordinary first-moment condition. The actual arithmetic average remains unproved. Human proof, no new Lean theorem; termination is only the conclusion of the stated conditional implication. CONTAGION INPUT DISCHARGED, 20 September 2026. The hypothesis r - eta > 1 - lambda** is now r - eta > 1 - 100/203 = 0.5073891626 and the contagion step it feeds -- 'choosing beta < lambda < lambda** contradicts contagion' -- no longer rests on Paper C's Proposition 4.4: Production.logMass_contagion_averaged reaches lambda <= 100/203, which is ABOVE lambda**, unconditionally (J-oe-averaged-two-productions-reach-the-depth-two-ceiling). The permitted eta at the optimizing tilt is therefore unconditional too. What remains open in this row is exactly one thing, and it is the interesting one: the arithmetic scale average, i.e. whether the cumulative sum of rho_k through K really is at most K^(1+eta+o(1)). That was previously bundled with a conditional contagion bound and is now the sole conditionality. ROUNDING CORRECTION, same date, and it goes the right way: the permitted eta this row prints -- 0.0195265491 at C=19,q=1/2 and 0.0120493967 at C=41,q=0.55 -- was computed from the ROUNDED lambda** = 0.4926, not from the ladder root 0.4925715447, which permits only 0.0194980938 and 0.0120209415. So those figures were 2.85e-5 too generous as stated. Under 100/203 = 0.4926108374 they are permitted and then some: eta < 0.0195373865 and eta < 0.0120602342. The printed numbers stand; what justifies them has changed from a rounding to a theorem. ALSO CHECKED AND REFUTED: the natural transfer of J-oe-poor-fiber-tail's technique -- discard an exceptional set of scales the way that proof discards an exceptional set of fibres -- is dead on arrival, and was already dead (negative_knowledge, scale-average follow-up, 9 September 2026). The technique needs the trivial cap on a discarded object to be commensurable with the weight the conclusion is stated in. A poor fibre contributes at most its own 1/m; an exceptional scale's trivial cap is k^4.8934268 against a whole cumulative budget of K^1.0195374, so one spike evaluated at K = k overshoots by k^3.8738894, a factor 1e23 at k = 1e6. Any infinite exceptional set at the trivial cap breaks the bound however superlacunary. Only amplitude control helps. test_pressure_external_average pins the arithmetic.",
+  "tag": "EXACT — LEAN VERIFIED",
+  "lean_trust": "kernel",
+  "statement": "Conditional scale-averaged pressure theorem at the unconditional contagion threshold. Fix integers N0>=2 and k0>=0 with N0<2^(k0+1), and assume every integer from 1 through N0 reaches 1. Let C>1, theta>0, 0<q<1, eta>=0, a=1-q+q*exp(theta), pC=(1-1/C)/log_2(3), and r=C*(theta*pC-log(a))/log(2). For y=2^k set d=ceil(C*log_2(log(2*y)/log(N0))). Let Z_k be the sum of exp(theta*o_d(n)) over odd integer starts y<n<=2*y whose Juggler iterates at every time 0 through d exceed N0; o_d(n) counts odd states at times 0 through d-1. Set rho_k=Z_k/((2^k/2)*a^d). Suppose that for every epsilon>0 there exists a real D>=0 such that, for every integer K>=0, sum(rho_(k0+j),0<=j<K)<=D*K^(1+eta+epsilon). If r-eta>103/203, every positive integer reaches 1. ScaleAverage.pressure_average_conjecture proves precisely this conditional implication. Its Bound definition spells out the cumulative hypothesis, and liveOdds, oddPressure and rho define the actual stopped Juggler moments. The actual cumulative pressure estimate remains unproved; the formal result introduces no additional distribution assumption and does not prove unconditional termination. Scalar spike examples, numerical tilt evaluations and sparse-source estimates elsewhere in the dossier are outside this row.",
   "source": "docs/problems/juggler_pressure_external_average.md",
-  "lean": "",
+  "lean": "Problems/Juggler/FateScaleAverage.lean",
   "tests": [
-   "tests/research/juggler_sequence/test_pressure_external_average.py"
+   "tests/research/juggler_sequence/test_pressure_external_average.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py"
   ],
   "related_conjectures": [
    "juggler_loglog_depth_cylinder_bound"
+  ],
+  "decl": [
+   "liveOdds",
+   "oddPressure",
+   "rho",
+   "Bound",
+   "pressure_average_conjecture"
   ]
  },
  {

@@ -106,7 +106,9 @@ Method: [docs/methodology.md](../../docs/methodology.md).
   (`Production.conjecture_of_tao_rate_averaged`, \(e>103/203\)). Pressure form is
   the weakest displayed per-scale hypothesis. The existing scale average
   also suffices: [corrected implication](../../docs/problems/juggler_pressure_external_average.md),
-  `J-pressure-scale-average-suffices`; its arithmetic bound is open.
+  `J-pressure-scale-average-suffices`, now Lean in `FateScaleAverage.lean`
+  (`ScaleAverage.pressure_average_conjecture`) at `r-eta>103/203`;
+  its arithmetic bound is open.
   Kernel localize CLOSE. Do not open a
   third formulation. Not a halt theorem; no fate excluded.
   The former unrestricted H/H_q statements are now **REFUTED** by

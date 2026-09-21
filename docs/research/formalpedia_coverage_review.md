@@ -21,8 +21,8 @@ A long one usually summarizes a paper section and says more than one theorem pro
 which is what the ledger's list-valued `decl` exists to record.  `REFUTED` rows are not
 asked: their declaration is the refutation.
 
-Jev (jev-1.13.0, last asked 2026-09-21) has answered
-248 of the 248 resolved rows: 130 covered,
+Jev (jev-1.13.0, last asked 2026-09-22) has answered
+249 of the 249 resolved rows: 131 covered,
 66 doubtful, 52 not covered; 118 are
 listed below.
 

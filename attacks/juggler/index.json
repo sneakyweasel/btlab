@@ -6748,6 +6748,7 @@
         "formal/Problems/Juggler/FateOneSided.lean",
         "formal/Problems/Juggler/FateOneSidedCorollary.lean",
         "formal/Problems/Juggler/FatePressureCorollary.lean",
+        "formal/Problems/Juggler/FateScaleAverage.lean",
         "formal/Problems/Juggler/FateOneSidedAtoms.lean",
         "formal/Problems/Juggler/FateEnergyAtoms.lean",
         "formal/Problems/Juggler/FateCollapse.lean",
