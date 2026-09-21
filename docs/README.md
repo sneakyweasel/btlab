@@ -42,12 +42,15 @@ The live publication task is the Juggler programme.
    [10 September proof audit](theory/paper_b_proof_review.md))
 3. [Paper C — fate contagion](theory/juggler_fate_almost_all_note.md)
    ([doi:10.5281/zenodo.22678165](https://doi.org/10.5281/zenodo.22678165))
-4. [Branch ledger](juggler_branch_ledger.md)
-5. [Negative knowledge](negative_knowledge.md) — every recorded
+4. [Paper D — no m-cycles of the 3n-1 map for m <= 58](theory/collatz_3n_minus_1_m_cycles_note.md)
+   ([doi:10.5281/zenodo.22876190](https://doi.org/10.5281/zenodo.22876190)) — the Collatz
+   side, not the Juggler map
+5. [Branch ledger](juggler_branch_ledger.md)
+6. [Negative knowledge](negative_knowledge.md) — every recorded
    `REFUTED` / CLOSE / method wall, clustered by killing invariant
-6. Reviewer snapshot: [juggler_review/](../juggler_review/)
+7. Reviewer snapshot: [juggler_review/](../juggler_review/)
    (export only; edit the `docs/theory/` sources, then rebuild)
-7. Published DOIs: [theory/paper_deposits.md](theory/paper_deposits.md)
+8. Published DOIs: [theory/paper_deposits.md](theory/paper_deposits.md)
 
 The rewrite-calculus note remains ready to send
 ([draft](theory/rewrite_calculus_note.md),
@@ -139,7 +142,7 @@ record. That is a status line, not a ban on stating a later matching
 - [Flight extract](theory/juggler_flight_note.md) (descriptively terminal)
 - [Cycle finance note](theory/juggler_cycle_finance_note.md)
 - [Walk-charge note](theory/juggler_walk_charge_note.md)
-- [Paper D draft: near-convergents of log 2 / log 3](theory/juggler_near_convergent_diophantine_note.md) (family leftover; not a fourth review object)
+- [Near-convergents of log 2 / log 3](theory/juggler_near_convergent_diophantine_note.md) (family leftover, not a review object; earlier records call it Paper D, a name the published 3n-1 note now carries)
 - [Itinerary-structure note](theory/juggler_cycle_itinerary_structure_note.md)
 - [Branch ledger](juggler_branch_ledger.md)
 - [Negative knowledge](negative_knowledge.md)

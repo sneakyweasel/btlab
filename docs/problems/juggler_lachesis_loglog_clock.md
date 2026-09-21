@@ -11,7 +11,7 @@ the Lachesis class, and nothing else.
 
 ## Problem
 
-Paper D's firewall states the gap in one sentence: Paper A constrains
+The near-convergents leftover's firewall states the gap in one sentence: Paper A constrains
 the *states* of a hypothetical cycle (minimum above \(3.5\cdot 10^8\),
 period at least \(780239\)); Paper C Theorem 1 constrains the *basin*
 (log-count \(\gg(\log x)^{0.448}\)); the two constraints do not meet.
@@ -98,7 +98,7 @@ strictly worse than the floor campaign already parked at
   rotation is that machinery read mod 1.
 - Flight note §2 height law and §6 return quantization (`reproduced`):
   the two halves of the clock.
-- Paper D §7 firewall (`extended`): this is a partial crossing of the
+- The near-convergents leftover, §7 firewall (`extended`): this is a partial crossing of the
   stated gap, on the basin side only.
 - Three-distance theorem (`known`): the gap structure of
   \(\{j\alpha\}\).

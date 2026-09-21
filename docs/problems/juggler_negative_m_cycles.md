@@ -1,6 +1,6 @@
 # m-cycles of the 3n−1 map: the Simons–de Weger template on the negative side
 
-Status: **PROMOTE** (a theorem with one external input, and a paper candidate)
+Status: **PROMOTE** (a theorem with one external input; published as Paper D, [doi:10.5281/zenodo.22876190](https://doi.org/10.5281/zenodo.22876190))
 
 Standalone phase on the Collatz bridge, following
 [juggler_negative_floor_3x1](juggler_negative_floor_3x1.md) and
@@ -242,9 +242,11 @@ arrangement.
 
 ## Publication assessment
 
-Status: `PAPER_CANDIDATE`, prepared for deposit as **Paper D** and not uploaded (21
-September 2026). *No m-cycles of the 3n−1 map for m ≤ 58*, version 1.0.0, eight pages, at
-the floor \(2^{51}\).
+Status: `PUBLISHED`. Deposited 21 September 2026 as **Paper D**, *No m-cycles of the 3n−1
+map for m ≤ 58*, version 1.0.0, nine pages, at the floor \(2^{51}\). Version DOI
+[10.5281/zenodo.22876190](https://doi.org/10.5281/zenodo.22876190), concept DOI
+[10.5281/zenodo.22876189](https://doi.org/10.5281/zenodo.22876189). The deposited file is byte-identical to the
+kit copy, md5 `c6f6f662016ca30a859bf57b0cc81793`, checked against the record after deposit.
 
 **Ready.** The theorem and its margins; every number recomputed by an independent route; the
 floor as a two-implementation certificate with spot checks; Lemmas 1 and 3 machine-checked;
@@ -253,10 +255,11 @@ front and back matter (classification, keywords, AI disclosure, responsibility s
 availability) as Papers A–C carry them; every reference cited, the three-distance theorem
 attributed, and every internal path pinned to a public commit.
 
-**Deliberately not done.** The upload: no DOI is reserved and none is claimed anywhere in
-the repository. The floor stands at \(2^{51}\); \(2^{56}\) would give \(m\le63\) for
-about thirty-two hours of the card and is a new version, not a correction. Lemma 2 is not in
-Lean, and the note says why. No independent human read has taken place.
+**Still open after publication.** No independent human has read the proofs; every check is
+the author's or mechanical. The floor is the laboratory's own and is not deposited as a
+citable dataset of its own. The floor stands at \(2^{51}\); \(2^{56}\) would give
+\(m\le63\) for about thirty-two hours of the card, and would be a new version of the
+record rather than a correction. Lemma 2 is not in Lean, and the note says why.
 
 **What a referee is still most likely to ask.** Why the floor stops where it does, since the
 sweep is cheap; and whether the \(m\)-free row should be compared with Sinisalo's table

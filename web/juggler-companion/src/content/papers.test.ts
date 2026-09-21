@@ -31,11 +31,18 @@ describe("published preprint records", () => {
     });
   });
 
-  it("carries all three papers and ships no local PDF copy", () => {
+  it("pins Paper D, the Collatz-side note, to its Zenodo version DOI", () => {
+    expect(paperByLetter("D").doi).toBe("10.5281/zenodo.22876190");
+    expect(paperByLetter("D").zenodo).toBe("https://zenodo.org/records/22876190");
+    expect(paperDoiHref(paperByLetter("D").doi!)).toBe("https://doi.org/10.5281/zenodo.22876190");
+    expect(paperByLetter("D").guide).toBeUndefined();
+  });
+
+  it("carries all four papers and ships no local PDF copy", () => {
     // The site linked its own public/papers/ copies until every paper had a
     // deposit. It links the records now, so a paper with no Zenodo link would
     // be unreachable rather than merely un-cited.
-    expect(PAPERS.map((paper) => paper.letter)).toEqual(["A", "B", "C"]);
+    expect(PAPERS.map((paper) => paper.letter)).toEqual(["A", "B", "C", "D"]);
     for (const paper of PAPERS) {
       expect(paper.doi).toBeTruthy();
       expect(paper.zenodo).toMatch(/^https:\/\/zenodo\.org\/records\/\d+$/);

@@ -75,7 +75,15 @@ record, not a correction, and the build's `SOURCE_DATE_EPOCH` and the `VERSION` 
 
 The kit is `juggler_review/zenodo_paper_d/`: the PDF under its deposit name, the field sheet
 `ZENODO_FIELDS.txt` generated from `paper_d_zenodo.json`, the checksums, and a README. A
-build prepares local metadata only; it never creates or updates an external record. After a
-deposit, record the version DOI and the concept DOI in
-[paper_deposits.md](paper_deposits.md) and in the kit's `AFTER_ZENODO.md`, and use the
-record's new-version operation for any later revision.
+build prepares local metadata only; it never creates or updates an external record.
+
+**Deposited 21 September 2026**, version 1.0.0: version DOI
+[10.5281/zenodo.22876190](https://doi.org/10.5281/zenodo.22876190), concept DOI
+[10.5281/zenodo.22876189](https://doi.org/10.5281/zenodo.22876189). The deposited file is byte-identical to the
+kit copy and to the repository's single PDF, md5 `c6f6f662016ca30a859bf57b0cc81793`, checked against the record.
+
+Because of that identity the manuscript does **not** carry its own DOI: editing the text to
+add it would make the repository copy differ from the deposited file. The DOI enters at the
+next version. A rebuild from an unchanged source reproduces the deposited bytes, since
+`SOURCE_DATE_EPOCH` is pinned; a rebuild after any source edit does not, and at that point
+the kit stops being the deposited file and `AFTER_ZENODO.md` should say so.

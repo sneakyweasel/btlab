@@ -1,4 +1,4 @@
-export type PaperLetter = "A" | "B" | "C";
+export type PaperLetter = "A" | "B" | "C" | "D";
 
 export type PaperRecord = {
   letter: PaperLetter;
@@ -32,6 +32,13 @@ export const PAPERS: readonly PaperRecord[] = [
     doi: "10.5281/zenodo.22678165",
     zenodo: "https://zenodo.org/records/22678165",
     guide: { to: "/play/preimages", label: "Play" },
+  },
+  {
+    letter: "D",
+    title: "No m-cycles of the 3n-1 map for m <= 58",
+    hint: "The Collatz side, not the Juggler map: no m-cycle of 3n-1 with m at most 58, from this laboratory's own verification floor. Conditional on Rhin's measure.",
+    doi: "10.5281/zenodo.22876190",
+    zenodo: "https://zenodo.org/records/22876190",
   },
 ];
 

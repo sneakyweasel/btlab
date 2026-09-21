@@ -254,7 +254,7 @@ Classification **GAP_TRANSFER_SHARPENED**.
   in \([0.164,1.207]\) across all five survivors, so the survivors sit at
   \(L^2/\log n\) and the exponent \(0.59\) is the logarithm, not a gap
   below two. The honest variable is \(q_{k+1}/q_k\), which is exactly
-  the unbounded quantity Paper D exports.
+  the unbounded quantity the near-convergents leftover exports.
 - Nothing is killed. Every survivor is inside the allowance; the largest
   certified quotient sits at \(1.9\cdot10^{-5}\) of the Wu-Wang cap; and
   even a perfect measure forces only \(58676\) at the certified floor
@@ -271,7 +271,7 @@ The two hypotheses of the closure threshold, neither proved:
    ([juggler_cycle_method_ceilings.md](juggler_cycle_method_ceilings.md)).
    This branch does not supply one and does not open a successor.
 2. Whether the dangerous-position partial quotients of \(\log2/\log3\)
-   are unbounded — **OPEN**, exported as Paper D
+   are unbounded — **OPEN**, exported as the near-convergents leftover
    ([juggler_near_convergent_diophantine_note.md](../theory/juggler_near_convergent_diophantine_note.md)).
 
 Do not reopen a kill, do not raise \(N_0\), and do not import a further

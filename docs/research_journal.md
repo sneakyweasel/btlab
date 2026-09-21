@@ -1,5 +1,36 @@
 # Research journal
 
+## 2026-09-21 -- Paper D is published: 10.5281/zenodo.22876190, and the letter D is now taken
+
+- **The record.** Philippe deposited *No m-cycles of the 3n−1 map for m ≤ 58* on Zenodo,
+  version 1.0.0, 21 September 2026. Version DOI `10.5281/zenodo.22876190`, concept DOI
+  `10.5281/zenodo.22876189`, Publication / Preprint, CC BY 4.0, English, open access.
+- **Checked against the record, not assumed.** The deposited file is
+  `No_m_cycles_of_the_3n_minus_1_map.pdf`, 131984 bytes, md5 `c6f6f662016ca30a859bf57b0cc81793`; the same md5 is the
+  kit copy's and the repository's single PDF's, so the published file is byte-for-byte what
+  the builder produced. The ORCID attached correctly, the licence and version fields are as
+  the field sheet specified, and the abstract on the record is the one the builder
+  generated, including the scoping sentence added in the referee pass.
+- **One field thinner than the sheet.** The relation citing Paper A is absent from the
+  record's metadata; the repository URL went in under the software fields instead. It can be
+  added later as a metadata edit, which keeps the DOI. Recorded in `AFTER_ZENODO.md`.
+- **The manuscript is deliberately not edited to carry its own DOI.** Adding it would make
+  the repository copy differ from the deposited file, which is the drift that made Paper C's
+  record and canonical text disagree. The DOI enters the text at the next version, and the
+  build guide now says so.
+- **The letter D was already taken, and is now settled.** Eight places called the
+  near-convergents note (`juggler_near_convergent_diophantine_note.md`) "Paper D". That note
+  is an unpublished exported leftover; the published note's own deposited text says "version
+  1.0.0 of Paper D", so the published one owns the letter. All eight references renamed to
+  the near-convergents leftover, and the Juggler index now lists Paper D with its DOIs and
+  says plainly that earlier records use the name for the other object.
+- **Recorded.** Deposit list, kit README and a new `AFTER_ZENODO.md`, the build guide, the
+  dossier (status `PUBLISHED`), the branch index, the companion site.
+- **Still open, and worth saying on the day of publication.** No independent human has read
+  the proofs. The floor is the laboratory's own and has no DOI of its own. The floor stands
+  at \(2^{51}\); \(2^{56}\) gives \(m\le63\) for a weekend of the card and would be a
+  new version.
+
 ## 2026-09-21 -- The not-covered band read: 96 rows against their files, 89 rejoined, and the band falls from 96 to 52
 
 - **Objective:** work the coverage audit's bottom band, the 96 resolved rows Jev put below

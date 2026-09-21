@@ -225,7 +225,7 @@ averaging removes `114208327604` at `2^71`; this inequality does not.
 `J-cycle-gaps-are-mirror-images` — **EXACT — HUMAN PROOF** for the identity,
 **COMPUTATIONALLY VERIFIED** for the sides: `Lambda_J(L) = log 3 - Lambda_C(L)`;
 the two admissible sets are the two one-sided Bohr sets of the rotation by `x`
-and are disjoint; Paper D's dangerous fans (`176251 + k * 301994`, closed by
+and are disjoint; the near-convergents leftover's dangerous fans (`176251 + k * 301994`, closed by
 the partial quotient `55`; `16785921 + k * 17087915`, closed by `4`) are the
 Juggler-side set between consecutive convergents, and Eliahou's lattice is
 the Collatz-side set. Each Juggler fan closes exactly at the next Collatz

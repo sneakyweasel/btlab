@@ -224,7 +224,7 @@ Diophantine-wall member, to a tighter walk envelope that the hug
 DP already computes, to a PARK floor, to the already-named
 CF-quotient question, or to the recorded long-cycle leftover.
 The laboratory-kill slogan is a method obstruction. The remaining
-mathematics is the family leftover, written as the Paper D
+mathematics is the family leftover, written as the near-convergents
 working draft
 [juggler_near_convergent_diophantine_note.md](../theory/juggler_near_convergent_diophantine_note.md)
 (not a fourth review object). The laboratory-kill slogan stays
@@ -237,6 +237,6 @@ whether the dangerous-position partial quotients of
 ## Publication assessment
 
 Status: `STRUCTURAL`. The laboratory-kill slogan is closed. The
-family leftover is the Paper D working draft
+family leftover is the near-convergents working draft
 [juggler_near_convergent_diophantine_note.md](../theory/juggler_near_convergent_diophantine_note.md)
 (not a fourth review object). Not a halt theorem.

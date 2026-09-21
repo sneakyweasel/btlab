@@ -49,7 +49,7 @@ contains the last-even cell, the logarithmic defect identity, and the
 conditional sorted-grid period comparison; the
 [cubic-band dossier](juggler_cycle_cubic_band.md) contains the saved
 threshold controls. Adjacent-convergent arithmetic is also used in
-[Paper D](../theory/juggler_near_convergent_diophantine_note.md).
+[the near-convergents leftover](../theory/juggler_near_convergent_diophantine_note.md).
 The [negative-knowledge record](../negative_knowledge.md) already excludes
 automatic parity transfer from threshold closure and real-cell averaging.
 

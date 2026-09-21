@@ -10,16 +10,22 @@ operation.
 | A | Lower Bounds for Cycle Lengths in the Juggler Map | [10.5281/zenodo.22676453](https://doi.org/10.5281/zenodo.22676453) | [zenodo.org/records/22676453](https://zenodo.org/records/22676453) |
 | B | Five-Step Descent Certificates for the Juggler Map: Parity Statistics of Nested Floor Powers | [10.5281/zenodo.22864934](https://doi.org/10.5281/zenodo.22864934) | [zenodo.org/records/22864934](https://zenodo.org/records/22864934) |
 | C | Fate Contagion and Termination Criteria for the Juggler Map | [10.5281/zenodo.22678165](https://doi.org/10.5281/zenodo.22678165) | [zenodo.org/records/22678165](https://zenodo.org/records/22678165) |
+| D | No m-cycles of the 3n−1 map for m ≤ 58 | [10.5281/zenodo.22876190](https://doi.org/10.5281/zenodo.22876190) | [zenodo.org/records/22876190](https://zenodo.org/records/22876190) |
 
-**Paper D is prepared but not deposited.** *No m-cycles of the 3n−1 map for m ≤ 58*,
-version 1.0.0 of 21 September 2026, at the verification floor \(2^{51}\). The kit is
-[juggler_review/zenodo_paper_d/](../../juggler_review/zenodo_paper_d/): the PDF under its
-deposit name, the field sheet generated from `docs/theory/paper_d_zenodo.json`, the
-checksums and a README. `python tools/build_paper_d.py` rebuilds it and `--check` verifies
-it; see [PAPER_D_BUILD.md](PAPER_D_BUILD.md) for what the paper rests on. No upload has been
-performed and no DOI is reserved. When it is deposited, add its row above, record the
-version and concept DOIs here and in the kit's `AFTER_ZENODO.md`, and use the record's
-new-version operation for any later floor.
+**Paper D was deposited on 21 September 2026**, version 1.0.0, at the verification floor
+\(2^{51}\). Version DOI [10.5281/zenodo.22876190](https://doi.org/10.5281/zenodo.22876190), concept DOI
+[10.5281/zenodo.22876189](https://doi.org/10.5281/zenodo.22876189) for all versions, resource type Publication /
+Preprint, CC BY 4.0, English, open access, with the author's ORCID
+[0009-0004-1939-3382](https://orcid.org/0009-0004-1939-3382) attached. The record carries one
+file, `No_m_cycles_of_the_3n_minus_1_map.pdf`, 131984 bytes, md5 `c6f6f662016ca30a859bf57b0cc81793`, which is
+byte-identical to the kit copy in
+[juggler_review/zenodo_paper_d/](../../juggler_review/zenodo_paper_d/) and to the repository's
+single PDF; the identity was checked against the record's own checksum after deposit. The
+manuscript is deliberately **not** edited to carry its own DOI, so that the repository copy
+stays the deposited file; the DOI enters the text at the next version. A higher floor raises
+the theorem's \(m\) and is a new version through the record's new-version operation, not a
+correction of this one.
+
 
 Papers A and C are version 1.0.0 of 9 September 2026, with concept DOIs
 [10.5281/zenodo.22676452](https://doi.org/10.5281/zenodo.22676452) and

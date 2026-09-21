@@ -2,6 +2,11 @@
 
 **No m-cycles of the 3n−1 map for m ≤ 58.** Version 1.0.0, 21 September 2026.
 
+**Deposited.** Version DOI [10.5281/zenodo.22876190](https://doi.org/10.5281/zenodo.22876190), concept DOI
+[10.5281/zenodo.22876189](https://doi.org/10.5281/zenodo.22876189), record
+[zenodo.org/records/22876190](https://zenodo.org/records/22876190). The PDF here is byte-identical to the deposited
+file (md5 `c6f6f662016ca30a859bf57b0cc81793`). See [AFTER_ZENODO.md](AFTER_ZENODO.md).
+
 This folder is generated from the canonical editorial inputs in `docs/theory/`. Do not edit
 anything here; edit
 [collatz_3n_minus_1_m_cycles_note.md](../../docs/theory/collatz_3n_minus_1_m_cycles_note.md)
@@ -17,7 +22,7 @@ which lemmas are proved by hand, which two are machine-checked, which single inp
 external (Rhin's measure), and which part is a computation of this laboratory rather than a
 result from the literature (the verification floor).
 
-## What to upload
+## What was uploaded
 
 | file | role |
 | --- | --- |
