@@ -48,17 +48,25 @@ the first open \(m\)?
   the probe applies those two tests, so the fifth step is not open. Run on their side at their
   floor, the machinery reproduces their Lemma 18 to the unit (none for \(64\le m\le68\), their
   five pairs at \(69\le m\le72\) with their killing floors to rounding). On the \(3n-1\) side
-  the same floor gives \(63\): the five values are the sign, not a stage. (A first reading on
-  21 September had called the transposition "their Lemma 17 exactly" and the lattice "worth
-  five values of \(m\)"; corrected the same day.)
+  the same floor gave \(63\) before Lemma 6 and gives \(69\) after it: the five values are
+  the sign, not a stage. Their \(68\) is not the right yardstick for the refined machinery,
+  because their 2005 work predates the valley argument entirely; the comparison that means
+  something is Hercher's. (A first reading on 21 September had called the transposition
+  "their Lemma 17 exactly" and the lattice "worth five values of \(m\)"; corrected the same
+  day.)
 - `rhin-1987-pade-irrationality`, read at its Proposition on 21 September 2026:
   \(|u_0+u_1\log2+u_2\log3|\ge H^{-13.3}\) for \(H=\max(|u_1|,|u_2|)\ge2\), no further
   constant. The form \(e^{-13.3(0.46057+\log K)}\) carried since Paper A is [SdW] Lemma 12,
   the same bound at \(H=K+L\) in the odd count; the probe now uses (7) at \(H\) the length.
 - `hercher-2023-collatz-m-cycles`, read from the PDF: \(m\le91\) for \(3n+1\) at
-  \(695\cdot2^{60}\), with the valley arrangement and Lemma 8. **known**; the plain template
-  here gives \(82\) at \(2^{68}\), so his refinement is worth about nine values of \(m\) and is
-  the next thing to transpose.
+  \(695\cdot2^{60}\), with the valley arrangement and Lemma 8. **extended**; the valley
+  arrangement behind his Main Theorem 21 is transposed as Lemma 6 of Paper D 1.1.0, worth
+  three values of \(m\) at \(2^{51}\) and seven at \(2^{68}\), where the plain template
+  gave \(82\) and the refined one gives \(89\). Run on his side at his own floor the six
+  lemmas give \(90\) against his \(91\), which is the calibration that says the
+  transposition is faithful and also says a little is lost in it. His two m-free refinements,
+  Theorem 27 and Corollary 29, were measured and do not reach; see
+  [negative_knowledge.md](../negative_knowledge.md).
 - `sinisalo-2003-collatz-minimal-cycle-lengths`: Table 2 is the \(m\)-free survivor table on
   this side. **known**.
 - Prior-art search by name, 21 September 2026: "3x−1 problem" cycles, "3n−1" negative Collatz
