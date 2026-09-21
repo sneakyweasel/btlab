@@ -1,5 +1,16 @@
 [
  {
+  "id": "J-pell-ooe-interlacing-obstruction",
+  "tag": "EXACT — HUMAN PROOF",
+  "source": "docs/problems/juggler_pell_invariant_domain.md",
+  "tests": [
+   "tests/research/juggler_sequence/test_pell_invariant_domain.py"
+  ],
+  "related_conjectures": [],
+  "lean": "",
+  "statement": "For every integer m>=2 let X_0=1, X_1=m and X_(k+1)=2m X_k-X_(k-1). With prescribed A=E composed with O composed with O, for every k>=2 and j=ceil(9k/8), X_(j-1)<A(X_k)<X_j. Proof: lambda=m+sqrt(m^2-1)>11/3 and X_k=(lambda^k+lambda^(-k))/2 give X_k^9/X_l^8=lambda^(9k-8l)/2 times an explicitly bounded conjugate correction. The ratio is below 1 when 9k-8l<=0, and above (14/13)^8 when 9k-8l>=1 and l>=3. Existing exact root cells A(x)^8<=x^9<(A(x)+2)^8 and strict growth x>=5 yield the bracket. For k=1,m>=5 the endpoint lies between X_1 and X_2. The remaining prescribed returns A(1)=1,A(2)=1,A(3)=3,A(4)=4 all fail actual OOE guards. Therefore no actual OOE block starts and ends in the positive x-coordinate set of one fixed Pell equation x^2-Dy^2=1; no nonempty sparse subset can be a guarded OOE invariant domain. Actual witness 97->955->29512->171 leaves D=3 despite both endpoints being odd nonsquares. Unconditional construction-class obstruction; no abc or logarithmic linear-form hypothesis. Does not address longer words, switching Pell equations, generalized right sides, or general escape. AI-assisted written proof using existing Lean inputs; this new statement is not Lean verified and independent human review is outstanding."
+ },
+ {
   "id": "J-power-family-square-reentry-obstruction",
   "tag": "EXACT — HUMAN PROOF",
   "source": "docs/problems/juggler_power_family_reentry.md",

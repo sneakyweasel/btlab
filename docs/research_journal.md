@@ -1,5 +1,43 @@
 # Research journal
 
+## 2026-09-22 -- A nonsquare Pell domain fails by unconditional OOE interlacing
+
+- **Objective:** Pursue an explicit nonsquare invariant domain with a fixed
+  seed, using a positive Pell equation as the bounded candidate class.
+- **What was learned:** The quadratic-unit formula carries a leading
+  factor 1/2. Under OOE this creates a uniform gap between possible
+  integer target indices. The endpoint falls strictly between consecutive
+  Pell coordinates, even for arbitrary sparse source selections. The
+  small prescribed exceptions fail actual parity guards.
+- **Strongest theorem:** For m>=2, X_0=1, X_1=m and
+  X_(k+1)=2mX_k-X_(k-1), the prescribed OOE endpoint at k>=2 lies
+  strictly between X_(ceil(9k/8)-1) and X_(ceil(9k/8)).
+  After the small-index cases, no actual OOE block begins and ends in
+  the positive x-coordinate set of the same fixed Pell equation.
+  This is unconditional and uses neither abc nor a linear-form estimate.
+- **Strongest refutation:** The actual fixed nonsquare seed 97 gives
+  97 -> 955 -> 29512 -> 171. Its source is a D=3 Pell coordinate,
+  but its odd nonsquare endpoint is not.
+- **Reusable machinery:** The
+  [uniform bracket proof](problems/juggler_pell_invariant_domain.md),
+  exact rational gap constants, and
+  [eight regression tests](../tests/research/juggler_sequence/test_pell_invariant_domain.py).
+  Existing root-cell and growth Lean declarations are inputs; no new
+  production probe or Lean module.
+- **Branch status:** **CLOSE** for fixed positive-Pell invariant domains.
+  The general nonsquare invariant-domain construction remains unresolved.
+- **Why:** This class cannot preserve even one guarded OOE transition,
+  so selecting a sparse subset cannot repair it.
+- **Best next question:** Whether a domain switching between two specified
+  Pell equations, such as D=2 and D=3, can preserve guarded growing
+  returns from a fixed seed. No switching branch is opened.
+- **Validation:** Eight focused tests pass, including 992 prescribed
+  blocks, 961 interior brackets, and 86 guarded blocks with odd exits.
+  Quadratic-ring multiplication independently checks the coordinates.
+  Integration, theorem-ledger and branch-index tests pass, as do the
+  generated-file and scoped whitespace checks. The new written proof
+  is AI-assisted and awaits independent human review and Lean verification.
+
 ## 2026-09-22 -- Perfect-power continuation meets an abc gap obstruction
 
 - **Objective:** Test whether the finite growing modular-return family can

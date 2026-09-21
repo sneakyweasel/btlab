@@ -301,6 +301,11 @@ unresolved.
 
 ## Publication assessment
 
+The authorized nonsquare-domain continuation of 22 September 2026
+tested [fixed positive Pell families](juggler_pell_invariant_domain.md).
+It obtains an unconditional single-OOE-block obstruction for that
+candidate class. The general invariant-domain question remains unresolved.
+
 Status: **STRUCTURAL**, an elementary application of classical
 equidistribution and a standard conjectural gap principle. External
 novelty is not asserted. Papers A--D, release files, the certified floor,

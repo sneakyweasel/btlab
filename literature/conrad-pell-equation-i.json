@@ -1,0 +1,21 @@
+{
+  "id": "conrad-pell-equation-i",
+  "title": "Pell's Equation, I",
+  "authors": [
+    "Keith Conrad"
+  ],
+  "year": null,
+  "identifiers": {},
+  "url": {
+    "pdf": "https://kconrad.math.uconn.edu/blurbs/ugradnumthy/pelleqn1.pdf"
+  },
+  "problem_area": "diophantine-equations",
+  "relevant_concepts": [
+    "Pell equation",
+    "fundamental unit",
+    "quadratic recurrences"
+  ],
+  "project_relationship": "known",
+  "status": "classical-source",
+  "notes": "Undated expository note, read 22 September 2026. Theorem 5.3 on pages 6-7 identifies all positive solutions of x^2-Dy^2=1 with positive powers of a fundamental unit. Examples 5.5 and 5.6 give D=2 and D=3; Example 5.8 gives D=m^2-1. These are the classical inputs to docs/problems/juggler_pell_invariant_domain.md. The OOE endpoint bracket is the dossier's application, not a theorem claimed by this source."
+}

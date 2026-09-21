@@ -6318,6 +6318,22 @@
       "nk_cluster": "Paper B, \\(K_3\\), and harvest counting"
     },
     {
+      "id": "pell_invariant_domain",
+      "kind": "dossier_only",
+      "probe": null,
+      "test": null,
+      "dossier": "docs/problems/juggler_pell_invariant_domain.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": [
+        "J-pell-ooe-interlacing-obstruction"
+      ],
+      "aliases": [],
+      "nk_cluster": "Fixed positive Pell domains cannot preserve an actual OOE return"
+    },
+    {
       "id": "power_family_reentry",
       "kind": "dossier_only",
       "probe": null,
