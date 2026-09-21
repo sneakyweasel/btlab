@@ -1,0 +1,254 @@
+{
+ "verifier": "verify_3x1_gpu.cu",
+ "source_sha256": "1f7bd56f373caf346616a31b34dad78ededbbbc6e87600f9206ec4034c264cbe",
+ "binary_sha256": "09c232b98468acaa90ae4cd682d74e6feb61a1e968ed1eea02647c0044ea8be8",
+ "gpu": "NVIDIA GeForce RTX 5090, 595.79",
+ "toolkit": "Cuda compilation tools, release 13.3, V13.3.73",
+ "host": "laboratory machine, Windows 11",
+ "date": "2026-09-21",
+ "sieve": {
+  "K": 24,
+  "classes": 286581
+ },
+ "reports": {
+  "known_bad_3_2000": {
+   "verifier": "verify_3x1_gpu.cu",
+   "lo": 3,
+   "limit": 2000,
+   "sieve_K": 24,
+   "classes": 286581,
+   "odd_starts": 999,
+   "walked": 32,
+   "skipped": 967,
+   "fails": 0,
+   "new_cycles": 1,
+   "overflows": 0,
+   "known_cycle_returns": 1,
+   "max_steps": 62,
+   "step_cap": 40000,
+   "peak_hi": 0,
+   "peak_lo": 413344,
+   "forget_17": true,
+   "seconds": 0.316,
+   "sieve_seconds": 0.111,
+   "new_cycle_starts": [
+    17
+   ],
+   "overflow_starts": [],
+   "stepcap_starts": [],
+   "exit_code": 1,
+   "printed": [
+    "NEW CYCLE at 17"
+   ]
+  },
+  "3_2000": {
+   "verifier": "verify_3x1_gpu.cu",
+   "lo": 3,
+   "limit": 2000,
+   "sieve_K": 24,
+   "classes": 286581,
+   "odd_starts": 999,
+   "walked": 32,
+   "skipped": 967,
+   "fails": 0,
+   "new_cycles": 0,
+   "overflows": 0,
+   "known_cycle_returns": 1,
+   "max_steps": 62,
+   "step_cap": 40000,
+   "peak_hi": 0,
+   "peak_lo": 413344,
+   "forget_17": false,
+   "seconds": 0.233,
+   "sieve_seconds": 0.11,
+   "new_cycle_starts": [],
+   "overflow_starts": [],
+   "stepcap_starts": [],
+   "exit_code": 0,
+   "printed": []
+  },
+  "3_2p35": {
+   "verifier": "verify_3x1_gpu.cu",
+   "lo": 3,
+   "limit": 34359738368,
+   "sieve_K": 24,
+   "classes": 286581,
+   "odd_starts": 17179869183,
+   "walked": 586917887,
+   "skipped": 16592951296,
+   "fails": 0,
+   "new_cycles": 0,
+   "overflows": 0,
+   "known_cycle_returns": 1,
+   "max_steps": 508,
+   "step_cap": 40000,
+   "peak_hi": 9,
+   "peak_lo": 8196917283189496792,
+   "forget_17": false,
+   "seconds": 0.279,
+   "sieve_seconds": 0.109,
+   "new_cycle_starts": [],
+   "overflow_starts": [],
+   "stepcap_starts": [],
+   "exit_code": 0,
+   "printed": []
+  },
+  "3_2p40": {
+   "verifier": "verify_3x1_gpu.cu",
+   "lo": 3,
+   "limit": 1099511627776,
+   "sieve_K": 24,
+   "classes": 286581,
+   "odd_starts": 549755813887,
+   "walked": 18781372415,
+   "skipped": 530974441472,
+   "fails": 0,
+   "new_cycles": 0,
+   "overflows": 0,
+   "known_cycle_returns": 1,
+   "max_steps": 544,
+   "step_cap": 40000,
+   "peak_hi": 14157,
+   "peak_lo": 10246583814699952252,
+   "forget_17": false,
+   "seconds": 1.936,
+   "sieve_seconds": 0.107,
+   "new_cycle_starts": [],
+   "overflow_starts": [],
+   "stepcap_starts": [],
+   "exit_code": 0,
+   "printed": []
+  },
+  "2p40_2p44": {
+   "verifier": "verify_3x1_gpu.cu",
+   "lo": 1099511627776,
+   "limit": 17592186044416,
+   "sieve_K": 24,
+   "classes": 286581,
+   "odd_starts": 8246337208320,
+   "walked": 281720586240,
+   "skipped": 7964616622080,
+   "fails": 0,
+   "new_cycles": 0,
+   "overflows": 0,
+   "known_cycle_returns": 0,
+   "max_steps": 703,
+   "step_cap": 40000,
+   "peak_hi": 6583469,
+   "peak_lo": 7992745433321049416,
+   "forget_17": false,
+   "seconds": 26.249,
+   "sieve_seconds": 0.11,
+   "new_cycle_starts": [],
+   "overflow_starts": [],
+   "stepcap_starts": [],
+   "exit_code": 0,
+   "printed": []
+  }
+ },
+ "comparison": {
+  "sieve_classes_A076227_24": true,
+  "known_bad_forgotten_17_reported": true,
+  "3_2000_clean": true,
+  "3_2p35": {
+   "max_steps": [
+    508,
+    508
+   ],
+   "peak": [
+    174217613946575461336,
+    174217613946575461336
+   ],
+   "odd_starts": [
+    17179869183,
+    17179869182
+   ],
+   "agree": true
+  },
+  "3_2p40": {
+   "max_steps": [
+    544,
+    544
+   ],
+   "peak": [
+    261160802435320822179964,
+    261160802435320822179964
+   ],
+   "odd_starts": [
+    549755813887,
+    549755813864
+   ],
+   "agree": true
+  },
+  "2p40_2p44": {
+   "odd_starts": [
+    8246337208320,
+    8246337208320
+   ],
+   "max_steps": [
+    703,
+    704
+   ],
+   "peak": [
+    121443575752945981388885320,
+    121443575752945981388885320
+   ],
+   "fails": [
+    0,
+    0
+   ],
+   "new_cycles": [
+    0,
+    0
+   ],
+   "agree": true
+  },
+  "peak_2p40_2p44_equal_to_landing_peak": true,
+  "odd_start_convention": "the CPU printed (limit - lo) // 2 per chunk, one below the count of odd integers when lo is odd; the GPU counts them exactly, and the seven gap starts the CPU verified separately are inside the GPU's ranges",
+  "max_steps_convention": "the jump walker counts sixteen per jump and checks the drop at landings, so its 704 is granular; the GPU's 703 is the plain walker's exact count",
+  "timing": {
+   "gpu_seconds_2p40_2p44": 26.249,
+   "cpu_wall_seconds": 1628,
+   "cpu_core_seconds": 35666,
+   "speedup_vs_24_threads": 62.0214103394415,
+   "speedup_vs_one_core": 1358.7565240580593
+  },
+  "all_agree": true
+ },
+ "rate_odd_starts_per_second": 314158147293.9922,
+ "rate_walked_starts_per_second": 10732621670.920797,
+ "projections_hours_from_2p44": [
+  {
+   "floor": "2^48",
+   "hours": 0.11666222222222222
+  },
+  {
+   "floor": "2^49",
+   "hours": 0.24110192592592591
+  },
+  {
+   "floor": "2^50",
+   "hours": 0.48998133333333327
+  },
+  {
+   "floor": "2^51",
+   "hours": 0.987740148148148
+  },
+  {
+   "floor": "2^52",
+   "hours": 1.9832577777777776
+  },
+  {
+   "floor": "2^56",
+   "hours": 31.848786666666662
+  },
+  {
+   "floor": "2^58",
+   "hours": 127.4184791111111
+  },
+  {
+   "floor": "2^60",
+   "hours": 509.69724888888885
+  }
+ ]
+}

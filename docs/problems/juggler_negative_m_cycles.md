@@ -185,10 +185,11 @@ elementary and are the natural next Lean; Rhin's bound would enter as a hypothes
 
 ## Open questions
 
-- The floor. On the 3900X at the measured \(9.9\) core-hours for \([2^{40},2^{44})\):
-  \(2^{49}\) (about fourteen hours wall) buys \(m\le54\), \(2^{50}\) (about twenty-nine) buys
-  \(56\), \(2^{51}\) (two and a half days) buys \(58\); nothing more until \(2^{56}\) (eleven
-  weeks). The verifier and the chunk driver are archived with `negative_floor_3x1`.
+- The floor. On the RTX 5090 with the GPU verifier calibrated on 21 September 2026
+  (62 times the 24-thread CPU run on the certified range): \(2^{51}\) (about
+  1 hour) buys \(m\le58\), \(2^{56}\) (about 32 hours) buys \(63\),
+  \(2^{60}\) (about 21 days) buys \(68\). Verifier, driver and calibration
+  are archived with `negative_floor_3x1`.
 - Hercher's valley arrangement transposed, worth about nine values of \(m\) at \(2^{68}\).
 - The Eliahou-type period lattice on this side at \(2^{44}\).
 - Their Lemma 7 constant \(c_m\to0.30576\) against the \((B-m)/(\delta-1)\) term here, a
@@ -214,8 +215,8 @@ matters:
 1. **The floor.** There is no lattice step left: [SdW]'s Section 7 is the list the three-gap
    walk produces, tested the same way, and the note now says so and reproduces their Lemma 18
    on their side. What a referee will ask instead is why the floor stops at \(2^{44}\) when
-   \(2^{49}\) costs a day of the machine and buys five values of \(m\), and \(2^{51}\) costs
-   three days and buys nine; the note should carry the higher floor or say what it costs.
+   the GPU verifier takes it to \(2^{56}\) in about 32 hours and buys fourteen
+   values of \(m\); the note should carry the higher floor.
 2. **The floor as a citable object.** One implementation, one run, archived in the
    repository. It needs a deposit with a DOI (verifier sources, chunk reports, coverage
    check) and, ideally, an independent re-run; Paper A's Remark 5.20 already rests on it, so

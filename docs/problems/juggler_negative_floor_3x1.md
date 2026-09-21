@@ -135,6 +135,19 @@ reports, and `drive_p44.sh` is the driver that produced them. The probe
 compiles either walker with `gcc`, or inside WSL when the checkout has no
 native compiler, and can re-run it on any window.
 
+A fourth verifier, `verify_3x1_gpu.cu`, runs the same descent on the GPU (21 September
+2026): the mod-\(2^{24}\) sieve of the jump walker, the run identity \(g^a(y)-1=(3/2)^a(y-1)\)
+for a whole odd run in one multiplication and a whole even run in one shift (Barina's domain
+switch, sign flipped), 128-bit state in two limbs with an overflow report, the exact
+trajectory peak and the plain walker's exact step count. `build_gpu.bat` builds it with the
+CUDA toolkit and the MSVC Build Tools that built the atlas;
+`python -m research.juggler_sequence.negative_floor_gpu calibrate` reruns the calibration set
+and writes `gpu_calibration/summary.json` and
+[juggler_negative_floor_gpu.md](../research/juggler_negative_floor_gpu.md); `sweep LO HI`
+verifies a new range in chunks into `gpu_chunks/` with a run record in `gpu_runs.json`.
+`walk` in that module is the same procedure on Python integers, for the tests and for any
+start whose state would overflow.
+
 ## Conjectures
 
 None.
@@ -189,11 +202,42 @@ verification floor is not a Lean object.
 
 ## Open questions
 
-Pushing the floor further is scheduling, not mathematics: at the measured
-rate \([2^{44},2^{48})\) is about 7.2 hours on this machine, an
-overnight run. \(2^{60}\) and \(2^{68}\) — the latter giving the
-\(72448885240\) of the conditional table — need GPU-class sieving and are
-a separate project.
+Pushing the floor further is scheduling, not mathematics, and since the GPU verifier below
+it is cheap scheduling: at the calibrated rate, from \(2^{44}\), \(2^{51}\) is about
+1.0 hour, \(2^{56}\) about 32 hours and \(2^{60}\) about
+21 days of the RTX 5090, floors rather than estimates since trajectories
+lengthen slowly with size. What each floor buys the \(3n-1\) \(m\)-cycle theorem is in
+[juggler_negative_m_cycles](juggler_negative_m_cycles.md): \(2^{51}\) gives \(m\le58\),
+\(2^{56}\) gives \(63\), \(2^{60}\) gives \(68\). The 128-bit state has headroom to
+about \(2^{60}\) on the evidence of the peak below \(2^{44}\), \(2^{86.6}\); an overflow
+is reported and re-walked wide on the host, not silently wrapped.
+
+## The GPU verifier, calibrated on the certified range
+
+**21 September 2026, RTX 5090, CUDA 13.3.** `verify_3x1_gpu.cu` against the certificate
+(record in `gpu_calibration/summary.json`, tests in
+`tests/research/juggler_sequence/test_negative_floor_gpu.py`):
+
+- **Sieve.** 286581 classes at \(K=24\), A076227(24), as the jump walker.
+- **Known-bad input.** With the 17-cycle forgotten, `NEW CYCLE at 17` on \([3,2000)\) and exit
+  code 1; with it known, a clean run. The Python walker on the same 32 survivors gives the
+  same 62 steps and peak 413344.
+- **\([3,2^{35})\)** against chunk 0: max steps 508 and peak 174217613946575461336, both exact.
+- **\([3,2^{40})\)** against chunks 0 to 15: max steps 544 and peak 261160802435320822179964,
+  both exact; the odd-start count is 23 above the CPU's, the CPU's per-chunk formula being
+  one short when the chunk starts odd (sixteen) plus the seven gap starts that were verified
+  separately and lie inside the GPU's range.
+- **\([2^{40},2^{44})\)** against `runs.json`: 8246337208320 odd starts, no failure, no cycle,
+  no overflow; peak 121443575752945981388885320, equal to the jump walker's landing peak;
+  max steps 703 exact against the jump walker's 704, which is granular to sixteen.
+- **Time.** 26.2 s for \([2^{40},2^{44})\) against the CPU's 1628 s wall on 24 threads
+  (62 times) and 35666 core-seconds (1359 times one core); 3.14e+11
+  odd starts per second, 1.07e+10 walked.
+
+The GPU run is a second implementation of the certificate's statement, with a different
+iteration (run identity rather than jump table) and a different language, agreeing with the
+CPU on every quantity where the semantics coincide. It does not replace the certificate; it
+reproduces it and prices its extension.
 
 ## Accelerating the verifier, measured — and a speedup claim withdrawn
 

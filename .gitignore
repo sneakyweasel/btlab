@@ -84,3 +84,14 @@ data/external/
 
 # Built PDFs are not tracked: each paper has one copy, in juggler_review/.
 .build/**/*.pdf
+
+# Retrieved source texts are local-only: this remote is public and most of these
+# are copyrighted articles. literature/*.json carries the provenance; the files
+# themselves stay on disk. The tracked .jpg excerpt predates this rule.
+literature/sources/*.pdf
+literature/sources/*.html
+
+# GPU verifier binaries (built by data/research/juggler/negative_floor_3x1/build_gpu.bat)
+.build/negative_floor_gpu/*.exe
+.build/negative_floor_gpu/*.exp
+.build/negative_floor_gpu/*.lib

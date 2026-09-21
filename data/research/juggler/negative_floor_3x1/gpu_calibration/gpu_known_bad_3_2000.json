@@ -1,0 +1,30 @@
+{
+ "verifier": "verify_3x1_gpu.cu",
+ "lo": 3,
+ "limit": 2000,
+ "sieve_K": 24,
+ "classes": 286581,
+ "odd_starts": 999,
+ "walked": 32,
+ "skipped": 967,
+ "fails": 0,
+ "new_cycles": 1,
+ "overflows": 0,
+ "known_cycle_returns": 1,
+ "max_steps": 62,
+ "step_cap": 40000,
+ "peak_hi": 0,
+ "peak_lo": 413344,
+ "forget_17": true,
+ "seconds": 0.316,
+ "sieve_seconds": 0.111,
+ "new_cycle_starts": [
+  17
+ ],
+ "overflow_starts": [],
+ "stepcap_starts": [],
+ "exit_code": 1,
+ "printed": [
+  "NEW CYCLE at 17"
+ ]
+}

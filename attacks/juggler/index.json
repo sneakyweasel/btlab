@@ -2432,6 +2432,24 @@
       "nk_cluster": null
     },
     {
+      "id": "drop_first_contracting_length",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/drop_first_contracting_length.py",
+      "test": "tests/research/juggler_sequence/test_drop_first_contracting_length.py",
+      "dossier": "docs/problems/juggler_drop_first_contracting_length.md",
+      "data_dir": "data/research/juggler/drop_first_contracting_length",
+      "lean": [
+        "formal/Problems/Juggler/Envelope.lean"
+      ],
+      "conjecture": [],
+      "decision": "PARK",
+      "ledger_ids": [
+        "J-uncertified-juggler-drop-needs-long-excursion"
+      ],
+      "aliases": [],
+      "nk_cluster": null
+    },
+    {
       "id": "e4_tight_pullback",
       "kind": "branch",
       "probe": "src/research/juggler_sequence/e4_tight_pullback.py",
@@ -7055,6 +7073,22 @@
       "decision": null,
       "ledger_ids": [
         "J-multiplicative-knight-residual-is-the-state-dependence"
+      ],
+      "aliases": [],
+      "nk_cluster": null
+    },
+    {
+      "id": "negative_floor_gpu",
+      "kind": "support",
+      "probe": "src/research/juggler_sequence/negative_floor_gpu.py",
+      "test": "tests/research/juggler_sequence/test_negative_floor_gpu.py",
+      "dossier": null,
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": null,
+      "ledger_ids": [
+        "J-negative-floor-makes-the-mirror-unconditional"
       ],
       "aliases": [],
       "nk_cluster": null

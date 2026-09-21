@@ -1,5 +1,37 @@
 # Research journal
 
+## 2026-09-21 -- The 3x-1 floor verifier on the RTX 5090: calibrated exactly on the certified range, 62 times the CPU run
+
+- **Objective:** Philippe asked for the CUDA kernel and its calibration on the certified
+  range, pointing at the atlas's CUDA code for the build.
+- **The kernel.** `verify_3x1_gpu.cu` beside the C verifiers: the jump walker's mod-\(2^{24}\)
+  sieve (286581 classes, A076227(24), the \(3^a\ge2^j\) test in integers), then Barina's domain
+  switch with the sign flipped, which is Lemma 1 of the \(3n-1\) note: \(u=y-1\),
+  \(a=\mathrm{ctz}(u)\), the whole odd run is \(u\to(u\gg a)\,3^a\), the whole even run is
+  \(\mathrm{ctz}(y)\) halvings, the first halving below the start found exactly. 128-bit state
+  in two limbs, multiplication by \(3^a\) in chunks of forty with an overflow report, the
+  trajectory peak exact (the value after an odd run is the local maximum), per-block reductions
+  and a second kernel for the 128-bit maximum. Built by `build_gpu.bat` with nvcc 13.3 and the
+  MSVC Build Tools the atlas used, `sm_120`.
+- **Calibration, all exact where the semantics coincide.** Known-bad first: with the
+  17-cycle forgotten, `NEW CYCLE at 17` on \([3,2000)\), exit 1. \([3,2^{35})\): max steps 508
+  and peak 174217613946575461336 as chunk 0. \([3,2^{40})\): 544 and
+  261160802435320822179964 as chunks 0 to 15. \([2^{40},2^{44})\): 8246337208320 odd starts,
+  no failure, no cycle, no overflow, the landing peak 121443575752945981388885320 to the
+  digit, max steps 703 against the jump walker's granular 704. The odd-start counts differ by
+  the CPU's per-chunk rounding and the seven gap starts, both understood. The Python walker
+  in the driver module reproduces the kernel on the 32 survivors below 2000 (62 steps, peak
+  413344) and single steps of \(g\) reproduce it on every odd start below 3000.
+- **Time.** 26.2 s for \([2^{40},2^{44})\): 62 times the CPU's 1628 s wall on 24 threads,
+  1359 times one core; 3.14e+11 odd starts per second. From \(2^{44}\):
+  \(2^{51}\) about 1 hour, \(2^{56}\) about 32 hours, \(2^{60}\) about
+  21 days, as floors on the time since trajectories lengthen with size. The
+  128-bit headroom holds to about \(2^{60}\) on the evidence of the peak below \(2^{44}\).
+- **Recorded.** `negative_floor_gpu.py` (build, run, calibrate, sweep with per-chunk reports,
+  overflow re-walk, coverage check), its tests (seven, one needing the card), the calibration
+  reports and summary, the research page, the floor and \(m\)-cycle dossiers, the theorem row.
+  The sweep beyond \(2^{44}\) is not run; it waits for the word.
+
 ## 2026-09-21 -- The fifth step was never open: the three-gap walk is Simons-de Weger's approximation lattice, shown by reproducing their Lemma 18 on their side
 
 - **Objective:** Philippe asked how long the lattice step at \(m=50\) would take. Their
