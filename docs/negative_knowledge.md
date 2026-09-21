@@ -33,22 +33,35 @@ in an index that is reachable; and when a channel-based rejection is recorded,
 record what would overturn it. Related: the four hosts recorded as egress-blocked
 that answered 200 on the first try, in the same day's reading.
 
-## Hercher's two m-free refinements do not reach the 3n-1 side
+## Hercher's two m-free refinements: Theorem 27 is a wall, Corollary 29 stopped being one
 
 Recorded 21 September 2026, after reading Hercher 2023 at Theorem 27, Lemma 26 and
-Corollary 29 from the arXiv PDF. Both were proposed here as ways to strengthen Paper D
-without raising the verification floor. Both were measured against what this side needs, and
-neither reaches. The proposal was mine and it was too optimistic; the measurement is the
+Corollary 29 from the arXiv PDF. Both were proposed as ways to strengthen Paper D without
+raising the verification floor, both were measured against what this side needed, and
+neither reached. The proposal was mine and it was too optimistic; the measurement was the
 correction.
+
+**Amended the same day, after Lemma 6.** The shortfall below was measured against the bound
+Paper D 1.0.0 used. Version 1.1.0's valley count moved the first open value from \(m=59\)
+to \(m=62\) and the shortfall with it, and one of the two verdicts does not survive that.
+Remeasured against the refined bound, closing \(m=62\) needs \(0.30\) bits of effective
+floor and \(m=63\) needs \(0.62\), against Corollary 29's \(1.30\). The guard in the
+pinned test was written to fire exactly here and did not, because it went on measuring the
+old shortfall while the paper moved; it now measures the current one.
 
 **Corollary 29, residue-class tracking.** He tracks the local minimum modulo powers of two
 across the Lemma 26 cases and drops any case whose residue class has its least member above
 the bound he needs, so a verified floor of \(1536\cdot2^{60}\) does the work of
 \(3781\cdot2^{60}\). That is a factor \(2.46\), or \(1.30\) bits of effective floor.
-Closing the first open value of Paper D, \(m=59\) at the floor \(2^{51}\), requires
-Lemma 2's bound to tighten by \(4.18\) bits; \(m=60\) to \(63\) require \(4.20\) to
-\(4.27\). Short by more than a factor of ten in the window, and the shortfall is not close
-enough to be worth an attempt at a sharper negative-side case analysis.
+Against Paper D 1.0.0's bound, closing its first open value \(m=59\) at the floor
+\(2^{51}\) required \(4.18\) bits, and \(m=60\) to \(63\) required \(4.20\) to
+\(4.27\): short by more than a factor of ten, which is why this was filed as a wall.
+Against 1.1.0's bound the same figures are \(0.30\) at \(m=62\), \(0.62\) at \(63\)
+and \(1.99\) at \(64\). **So \(1.30\) bits would now close two further values of
+\(m\) and fall short at the third.** That is a reason to attempt the transposition, not a
+result: nothing here shows his residue argument carries to a map whose odd step subtracts,
+and the case analysis it rests on is over his Lemma 26 cases, which have no negative-side
+statement yet. What has changed is only that the arithmetic no longer rules it out.
 
 **Theorem 27, the m-free averaging.** In the normalisation of this side it reads
 \(\Lambda<\tfrac14 o/X_0\), a constant of \(0.1577\) per unit of total cycle length
@@ -61,17 +74,26 @@ analysis. Worse, it buys nothing at all in practice: the m-free period bound is 
 of \(\log2/\log3\) and sit far apart, so a seventeen per cent change of the window removes
 none of them.
 
-Kind: `METHOD WALL` for both, at the measured sizes, not `REFUTED`: the methods are correct
-on their own side and would work here, they are simply an order of magnitude too small.
+Kind: `METHOD WALL` for Theorem 27, at the measured size, not `REFUTED`: the method is
+correct on its own side and would work here, it is simply too small and buys nothing where
+it is applied. **Corollary 29 is no longer a wall** and is reclassified `OPEN, WORTH
+TRYING`: its size now exceeds what the top two open values need.
 
-Do not reopen: Corollary 29 or Theorem 27 as a route to \(m\ge59\), or to a better period
-bound, at any floor near \(2^{51}\).
+Do not reopen: Theorem 27 as a route to a better period bound, at any floor near
+\(2^{51}\). Do not quote the \(4.18\)-bit shortfall without saying which version of the
+paper it was measured against.
 
-Still open, and a different mechanism: the valley arrangement behind his Main Theorem 21,
-which is what carries him to \(m\le91\). His Lemma 8 is already the note's Lemma 1.
+Done since: the valley arrangement behind his Main Theorem 21 was transposed and is Lemma 6
+of Paper D 1.1.0. His Lemma 8 was already the note's Lemma 1.
+
+The general lesson, which is the reason this entry was amended rather than left standing: a
+`METHOD WALL` is a measurement against a bound, and it expires when the bound improves. An
+entry recording one should name the bound it was measured against, and the test pinning it
+should measure the current shortfall rather than the one that was current when it was
+written. This one passed green while the condition it guarded had already arrived.
 
 Pinned: [tests/research/juggler_sequence/test_negative_m_cycles.py](../tests/research/juggler_sequence/test_negative_m_cycles.py),
-`test_herchers_two_m_free_refinements_do_not_reach`.
+`test_one_of_herchers_refinements_would_now_reach_and_the_other_still_does_not`.
 
 ## A realization law of FD type cannot give Juggler a Steiner theorem
 

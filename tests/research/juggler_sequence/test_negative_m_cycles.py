@@ -192,35 +192,64 @@ def test_the_valley_refinement_closes_three_more_values_of_m() -> None:
             assert nm.valley_cap(m, o, X0) <= mpf(m) / (X0 - 1) * (1 + mpf("1e-9"))
 
 
-def test_herchers_two_m_free_refinements_do_not_reach() -> None:
-    """Hercher 2023 read from the source on 21 September 2026, and both refinements measured
-    against what this side needs. Neither reaches, and this pins why.
+def test_one_of_herchers_refinements_would_now_reach_and_the_other_still_does_not() -> None:
+    """Hercher 2023 read from the source on 21 September 2026. When both refinements were
+    first measured, the first open value here was m = 59 and closing it needed 4.18 bits, so
+    Corollary 29's 1.30 were short by more than an order of magnitude. Lemma 6 moved the first
+    open value to m = 62 and the shortfall with it, and the verdict has to move too.
 
     Corollary 29 tracks residue classes modulo powers of two so that a verified floor does the
     work of a larger one: on his side 1536 * 2^60 does the work of 3781 * 2^60, a factor 2.46,
-    or 1.30 bits. Closing even the first open value here, m = 59, needs Lemma 2's bound to
-    tighten by 4.18 bits. Short by more than an order of magnitude.
+    or 1.30 bits. Against the refined bound, m = 62 needs 0.30 bits and m = 63 needs 0.62, so
+    1.30 would close both; m = 64 needs 1.99 and would stay open. That is a reason to try the
+    transposition, not a result: nothing here shows his residue argument carries to the 3n-1
+    side, where the odd step subtracts. What this pins is that the arithmetic no longer rules
+    it out.
 
-    Theorem 27 replaces the m-dependent bound by an m-free one, Lambda < (1/4) * o / X0 in the
-    normalisation of this side. That is 0.23 bits tighter than the laboratory's own constant,
-    which is proved in Lean (neg_cycle_finance: 2 (y-1)(3^o - 2^K) <= (K-o) 3^o, i.e.
-    Lambda <~ (1/2) * (K-o) / (y-1)). The m-free period bound does not move under it: the
-    surviving lengths are near-convergents of log2/log3 and sit far apart, so a seventeen per
-    cent change of the window does not remove the least one.
+    Theorem 27 is unchanged. It replaces the m-dependent bound by an m-free one,
+    Lambda < (1/4) * o / X0 in the normalisation of this side: 0.23 bits tighter than the
+    laboratory's own constant, which is proved in Lean (neg_cycle_finance:
+    2 (y-1)(3^o - 2^K) <= (K-o) 3^o, i.e. Lambda <~ (1/2) * (K-o) / (y-1)). The m-free period
+    bound does not move under it, because the surviving lengths are near-convergents of
+    log2/log3 and sit far apart.
     """
     data = json.loads(nm.JSON_PATH.read_text(encoding="utf-8"))
     rows = {r["m"]: r for r in data["tables"]["2^51"]["rows"]}
     with mp.workdps(50):
         X0 = mpf(2) ** 51
-        needed = {m: float(log(max(mpf(m) / nm.lambda_juggler(K)[1] + 1
-                                   for K in rows[m]["survivors_without_lemma_6"]) / X0, 2))
-                  for m in range(59, 64)}
-        assert 4.17 < needed[59] < 4.19, needed[59]
-        assert all(4.1 < v < 4.3 for v in needed.values()), needed
+
+        def extra_floor_bits(m: int) -> float:
+            """How far L0 must rise before the valley cap falls below Lambda at this m."""
+            lo, hi = mpf(0), mpf(40)
+            for _ in range(120):
+                mid = (lo + hi) / 2
+                floor = (X0 - 1) * mpf(2) ** mid + 1
+                if all(nm.valley_cap(m, s["o"], floor) <= nm.lambda_juggler(s["K"])[1]
+                       for s in rows[m]["survivors"]):
+                    hi = mid
+                else:
+                    lo = mid
+            return float(hi)
+
+        needed = {m: extra_floor_bits(m) for m in (62, 63, 64)}
+        assert 0.29 < needed[62] < 0.31, needed
+        assert 0.60 < needed[63] < 0.64, needed
+        assert 1.98 < needed[64] < 2.01, needed
+
         hercher_bits = float(log(mpf(3781) / 1536, 2))
         assert 1.29 < hercher_bits < 1.31, hercher_bits
-        assert needed[59] > 3 * hercher_bits, "if this ever fails, the transposition is worth trying"
-        # the two m-free constants, per unit of total cycle length
+        # the verdict, measured rather than asserted from prose
+        assert needed[62] < hercher_bits and needed[63] < hercher_bits
+        assert needed[64] > hercher_bits
+
+        # the old measurement, kept so the correction is legible: against the bound Paper D
+        # 1.0.0 used, the same 1.30 bits were short by more than a factor of three
+        was_needed = float(log(max(mpf(59) / nm.lambda_juggler(K)[1] + 1
+                                   for K in rows[59]["survivors_without_lemma_6"]) / X0, 2))
+        assert 4.17 < was_needed < 4.19, was_needed
+        assert was_needed > 3 * hercher_bits
+
+        # Theorem 27: the two m-free constants, per unit of total cycle length
         x = log(2) / log(3)
         lab, herch = mpf("0.5") * (1 - x), mpf("0.25") * x
         assert 1.16 < float(lab / herch) < 1.18, float(lab / herch)
