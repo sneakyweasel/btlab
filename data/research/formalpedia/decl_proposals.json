@@ -1,18 +1,18 @@
 {
   "composite": 61,
   "jev": {
-    "agree_with_scorer": 26,
+    "agree_with_scorer": 19,
     "answered": 129,
     "asked": "2026-09-21",
-    "confident": 39,
+    "confident": 30,
     "models": [
       "jev-1.13.0"
     ],
-    "none": 45,
+    "none": 43,
     "not_a_candidate": 0,
-    "picks": 68,
-    "routed": 30,
-    "stale": 16
+    "picks": 56,
+    "routed": 22,
+    "stale": 30
   },
   "note": "Proposals for human review. Calibration: 86% precision (42 of 49 fires) against all resolved rows. Nothing here has been written into the ledger.",
   "rows": [
@@ -226,7 +226,7 @@
         }
       ],
       "composite": true,
-      "confidence": "review",
+      "confidence": "low",
       "definitions": [
         {
           "decl": "CertWindow",
@@ -240,12 +240,12 @@
         }
       ],
       "id": "J-paper-b-certificate-length-window",
-      "in_file": 22,
+      "in_file": 24,
       "jev": {
         "asked": "2026-09-21",
         "choice": "minimalCert_exists_iff",
         "confidence": 0.86,
-        "decl": "minimalCert_exists_iff",
+        "decl": null,
         "model": "jev-1.13.0",
         "probabilities": {
           "blockWord_isMinimalCertificate": 0.0,
@@ -254,8 +254,8 @@
           "minimalCert_exists_iff_natLog": 0.02,
           "none_of_these": 0.1
         },
-        "routed": true,
-        "verdict": "pick"
+        "routed": false,
+        "verdict": "stale"
       },
       "lean": "Problems/Juggler/PaperBCertificateLengths.lean",
       "names_own": [
@@ -3270,7 +3270,7 @@
         }
       ],
       "composite": false,
-      "confidence": "review",
+      "confidence": "low",
       "definitions": [
         {
           "decl": "follows",
@@ -3284,12 +3284,12 @@
         }
       ],
       "id": "J-itinerary-semantics",
-      "in_file": 27,
+      "in_file": 29,
       "jev": {
         "asked": "2026-09-21",
         "choice": "follows_iff_itinerary",
         "confidence": 0.87,
-        "decl": "follows_iff_itinerary",
+        "decl": null,
         "model": "jev-1.13.0",
         "probabilities": {
           "bit_even": 0.0,
@@ -3298,8 +3298,8 @@
           "image_eq_iterate": 0.01,
           "none_of_these": 0.1
         },
-        "routed": true,
-        "verdict": "pick"
+        "routed": false,
+        "verdict": "stale"
       },
       "lean": "Problems/Juggler/Itinerary.lean",
       "names_own": [],
@@ -4998,7 +4998,7 @@
         }
       ],
       "id": "J-flight-envelope-transport",
-      "in_file": 14,
+      "in_file": 15,
       "jev": {
         "asked": "2026-09-21",
         "choice": "aboveAnchor_flight_envelope",
@@ -5679,7 +5679,7 @@
         }
       ],
       "id": "J-depth-one-arithmetic-layer",
-      "in_file": 19,
+      "in_file": 21,
       "jev": {
         "asked": "2026-09-21",
         "choice": "none_of_these",
@@ -5694,7 +5694,7 @@
           "none_of_these": 0.85
         },
         "routed": false,
-        "verdict": "none"
+        "verdict": "stale"
       },
       "lean": "formal/Problems/Juggler/DepthOneMainTerm.lean",
       "names_own": [
@@ -6005,7 +6005,7 @@
         }
       ],
       "id": "J-cycle-run-alphabet",
-      "in_file": 14,
+      "in_file": 16,
       "jev": {
         "asked": "2026-09-21",
         "choice": "none_of_these",
@@ -6020,7 +6020,7 @@
           "oo_step_lower": 0.12
         },
         "routed": false,
-        "verdict": "none"
+        "verdict": "stale"
       },
       "lean": "formal/Problems/Juggler/CycleRunAlphabet.lean",
       "names_own": [
@@ -6068,12 +6068,12 @@
         }
       ],
       "id": "J-cycle-band-discrepancy",
-      "in_file": 14,
+      "in_file": 16,
       "jev": {
         "asked": "2026-09-21",
         "choice": "walk_eq_discrepancy",
         "confidence": 0.69,
-        "decl": "walk_eq_discrepancy",
+        "decl": null,
         "model": "jev-1.13.0",
         "probabilities": {
           "band_min_needs_three_climbs": 0.01,
@@ -6083,7 +6083,7 @@
           "walk_eq_discrepancy": 0.72
         },
         "routed": false,
-        "verdict": "pick"
+        "verdict": "stale"
       },
       "lean": "formal/Problems/Juggler/CycleRunAlphabet.lean",
       "names_own": [
@@ -6722,7 +6722,7 @@
         }
       ],
       "composite": true,
-      "confidence": "review",
+      "confidence": "low",
       "definitions": [
         {
           "decl": "barrierMass",
@@ -6736,12 +6736,12 @@
         }
       ],
       "id": "J-paper-b-transposition-costs-the-barrier-mass",
-      "in_file": 16,
+      "in_file": 24,
       "jev": {
         "asked": "2026-09-21",
         "choice": "run_stepRise_stepFlat",
         "confidence": 0.71,
-        "decl": "run_stepRise_stepFlat",
+        "decl": null,
         "model": "jev-1.13.0",
         "probabilities": {
           "barrierMass_eq_ite": 0.0,
@@ -6750,8 +6750,8 @@
           "stepRise_stepFlat_eq_add_barrierMass": 0.17,
           "total_run_stepRise_stepFlat": 0.05
         },
-        "routed": true,
-        "verdict": "pick"
+        "routed": false,
+        "verdict": "stale"
       },
       "lean": "formal/Problems/Juggler/PaperBJumpTransposition.lean",
       "names_own": [
@@ -6787,7 +6787,7 @@
         }
       ],
       "composite": true,
-      "confidence": "review",
+      "confidence": "low",
       "definitions": [
         {
           "decl": "parityWord",
@@ -6801,12 +6801,12 @@
         }
       ],
       "id": "J-collatz-bridge-is-exact-at-the-word-level",
-      "in_file": 59,
+      "in_file": 72,
       "jev": {
         "asked": "2026-09-21",
         "choice": "word_affine",
         "confidence": 0.79,
-        "decl": "word_affine",
+        "decl": null,
         "model": "jev-1.13.0",
         "probabilities": {
           "cycle_even_charge": 0.01,
@@ -6815,8 +6815,8 @@
           "word_affine": 0.81,
           "word_affine_int": 0.01
         },
-        "routed": true,
-        "verdict": "pick"
+        "routed": false,
+        "verdict": "stale"
       },
       "lean": "Problems/Juggler/CollatzBridge.lean",
       "names_own": [
@@ -6852,7 +6852,7 @@
         }
       ],
       "composite": true,
-      "confidence": "review",
+      "confidence": "low",
       "definitions": [
         {
           "decl": "undecidedResidues",
@@ -6866,12 +6866,12 @@
         }
       ],
       "id": "J-survivor-count-is-a-collatz-residue-count",
-      "in_file": 59,
+      "in_file": 72,
       "jev": {
         "asked": "2026-09-21",
         "choice": "undecidedResidues_card",
         "confidence": 0.97,
-        "decl": "undecidedResidues_card",
+        "decl": null,
         "model": "jev-1.13.0",
         "probabilities": {
           "allWords_card": 0.0,
@@ -6880,8 +6880,8 @@
           "none_of_these": 0.02,
           "undecidedResidues_card": 0.98
         },
-        "routed": true,
-        "verdict": "pick"
+        "routed": false,
+        "verdict": "stale"
       },
       "lean": "Problems/Juggler/CollatzBridge.lean",
       "names_own": [
@@ -6914,7 +6914,7 @@
         }
       ],
       "composite": true,
-      "confidence": "review",
+      "confidence": "low",
       "definitions": [
         {
           "decl": "evenCharge",
@@ -6928,12 +6928,12 @@
         }
       ],
       "id": "J-collatz-even-step-charge-identity",
-      "in_file": 59,
+      "in_file": 72,
       "jev": {
         "asked": "2026-09-21",
         "choice": "two_pow_mul_iter_add_one",
         "confidence": 0.74,
-        "decl": "two_pow_mul_iter_add_one",
+        "decl": null,
         "model": "jev-1.13.0",
         "probabilities": {
           "allWords_card": 0.0,
@@ -6942,8 +6942,8 @@
           "none_of_these": 0.08,
           "two_pow_mul_iter_add_one": 0.75
         },
-        "routed": true,
-        "verdict": "pick"
+        "routed": false,
+        "verdict": "stale"
       },
       "lean": "Problems/Juggler/CollatzBridge.lean",
       "names_own": [
@@ -6991,12 +6991,12 @@
         }
       ],
       "id": "J-collatz-cycle-equation-is-a-word-divisibility",
-      "in_file": 59,
+      "in_file": 72,
       "jev": {
         "asked": "2026-09-21",
         "choice": "cycle_of_equation",
         "confidence": 0.56,
-        "decl": "cycle_of_equation",
+        "decl": null,
         "model": "jev-1.13.0",
         "probabilities": {
           "cycle_dvd": 0.03,
@@ -7006,7 +7006,7 @@
           "none_of_these": 0.27
         },
         "routed": false,
-        "verdict": "pick"
+        "verdict": "stale"
       },
       "lean": "Problems/Juggler/CollatzBridge.lean",
       "names_own": [
@@ -7042,7 +7042,7 @@
         }
       ],
       "composite": true,
-      "confidence": "review",
+      "confidence": "low",
       "definitions": [
         {
           "decl": "undecidedResidues",
@@ -7056,12 +7056,12 @@
         }
       ],
       "id": "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-      "in_file": 59,
+      "in_file": 72,
       "jev": {
         "asked": "2026-09-21",
         "choice": "neg_cycle_word_is_juggler_shape",
         "confidence": 0.84,
-        "decl": "neg_cycle_word_is_juggler_shape",
+        "decl": null,
         "model": "jev-1.13.0",
         "probabilities": {
           "allWords_card": 0.0,
@@ -7070,8 +7070,8 @@
           "neg_cycle_word_is_juggler_shape": 0.86,
           "none_of_these": 0.13
         },
-        "routed": true,
-        "verdict": "pick"
+        "routed": false,
+        "verdict": "stale"
       },
       "lean": "Problems/Juggler/CollatzBridge.lean",
       "names_own": [
@@ -7123,12 +7123,12 @@
         }
       ],
       "id": "J-negative-cycle-finance-is-the-juggler-mirror",
-      "in_file": 59,
+      "in_file": 72,
       "jev": {
         "asked": "2026-09-21",
         "choice": "neg_cycle_finance",
         "confidence": 0.43,
-        "decl": "neg_cycle_finance",
+        "decl": null,
         "model": "jev-1.13.0",
         "probabilities": {
           "allWords_card": 0.0,
@@ -7138,7 +7138,7 @@
           "two_mul_evenCharge_le": 0.32
         },
         "routed": false,
-        "verdict": "pick"
+        "verdict": "stale"
       },
       "lean": "Problems/Juggler/CollatzBridge.lean",
       "names_own": [
@@ -7172,7 +7172,7 @@
         }
       ],
       "composite": true,
-      "confidence": "review",
+      "confidence": "low",
       "definitions": [
         {
           "decl": "Vword",
@@ -7181,12 +7181,12 @@
         }
       ],
       "id": "J-paper-c-production-words-are-prefix-free",
-      "in_file": 6,
+      "in_file": 8,
       "jev": {
         "asked": "2026-09-21",
         "choice": "Vword_prefix_iff",
         "confidence": 0.99,
-        "decl": "Vword_prefix_iff",
+        "decl": null,
         "model": "jev-1.13.0",
         "probabilities": {
           "Vword_eq_odd_cons": 0.0,
@@ -7195,8 +7195,8 @@
           "Vword_oddCount": 0.0,
           "Vword_prefix_iff": 1.0
         },
-        "routed": true,
-        "verdict": "pick"
+        "routed": false,
+        "verdict": "stale"
       },
       "lean": "Problems/Juggler/FateProductionWords.lean",
       "names_own": [
@@ -7489,12 +7489,12 @@
         }
       ],
       "id": "J-free-lengths-are-never-adjacent",
-      "in_file": 38,
+      "in_file": 37,
       "jev": {
         "asked": "2026-09-21",
         "choice": "carrying_in_adjacent_pair",
         "confidence": 0.92,
-        "decl": "carrying_in_adjacent_pair",
+        "decl": null,
         "model": "jev-1.13.0",
         "probabilities": {
           "aliveAt_disjoint_certsAt": 0.0,
@@ -7504,7 +7504,7 @@
           "not_cylinder_twice": 0.07
         },
         "routed": false,
-        "verdict": "pick"
+        "verdict": "stale"
       },
       "lean": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "names_own": [
@@ -7517,5 +7517,5 @@
     }
   ],
   "unresolved": 131,
-  "worth_reviewing": 54
+  "worth_reviewing": 46
 }

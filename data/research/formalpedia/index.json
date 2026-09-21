@@ -94,6 +94,32 @@
         "BT-encode-unique",
         "C-append-plus"
       ],
+      "line": 24,
+      "module": "Representation.Words",
+      "name": "negate_negate",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Representation/Words.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BT-encode-unique",
+        "C-append-plus"
+      ],
+      "line": 27,
+      "module": "Representation.Words",
+      "name": "toInt_negate",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Representation/Words.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BT-encode-unique",
+        "C-append-plus"
+      ],
       "line": 30,
       "module": "Representation.Words",
       "name": "toInt_eq_zero_iff",
@@ -5686,8 +5712,7 @@
       "file": "formal/Problems/Collatz/NegativeMCycles.lean",
       "kind": "def",
       "ledger": [
-        "J-negative-m-cycles-excluded-through-58",
-        "J-negative-m-cycles-excluded-through-61"
+        "J-negative-m-cycles-excluded-through-58"
       ],
       "line": 40,
       "module": "Problems.Collatz.NegativeMCycles",
@@ -5699,8 +5724,7 @@
       "file": "formal/Problems/Collatz/NegativeMCycles.lean",
       "kind": "theorem",
       "ledger": [
-        "J-negative-m-cycles-excluded-through-58",
-        "J-negative-m-cycles-excluded-through-61"
+        "J-negative-m-cycles-excluded-through-58"
       ],
       "line": 43,
       "module": "Problems.Collatz.NegativeMCycles",
@@ -5712,8 +5736,7 @@
       "file": "formal/Problems/Collatz/NegativeMCycles.lean",
       "kind": "theorem",
       "ledger": [
-        "J-negative-m-cycles-excluded-through-58",
-        "J-negative-m-cycles-excluded-through-61"
+        "J-negative-m-cycles-excluded-through-58"
       ],
       "line": 47,
       "module": "Problems.Collatz.NegativeMCycles",
@@ -5725,8 +5748,7 @@
       "file": "formal/Problems/Collatz/NegativeMCycles.lean",
       "kind": "def",
       "ledger": [
-        "J-negative-m-cycles-excluded-through-58",
-        "J-negative-m-cycles-excluded-through-61"
+        "J-negative-m-cycles-excluded-through-58"
       ],
       "line": 52,
       "module": "Problems.Collatz.NegativeMCycles",
@@ -5734,12 +5756,35 @@
       "trust": "kernel"
     },
     {
+      "doc": "",
+      "file": "formal/Problems/Collatz/NegativeMCycles.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-negative-m-cycles-excluded-through-58"
+      ],
+      "line": 56,
+      "module": "Problems.Collatz.NegativeMCycles",
+      "name": "negTIter_zero",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/NegativeMCycles.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-negative-m-cycles-excluded-through-58"
+      ],
+      "line": 58,
+      "module": "Problems.Collatz.NegativeMCycles",
+      "name": "negTIter_succ",
+      "trust": "kernel"
+    },
+    {
       "doc": "**One odd step, in the conjugated variable.** For `u` even, `g (u + 1) = 3 (u / 2) + 1`: the odd step subtracts, so on `u = y - 1` it is exactly halve-then-triple.",
       "file": "formal/Problems/Collatz/NegativeMCycles.lean",
       "kind": "theorem",
       "ledger": [
-        "J-negative-m-cycles-excluded-through-58",
-        "J-negative-m-cycles-excluded-through-61"
+        "J-negative-m-cycles-excluded-through-58"
       ],
       "line": 65,
       "module": "Problems.Collatz.NegativeMCycles",
@@ -5751,8 +5796,7 @@
       "file": "formal/Problems/Collatz/NegativeMCycles.lean",
       "kind": "theorem",
       "ledger": [
-        "J-negative-m-cycles-excluded-through-58",
-        "J-negative-m-cycles-excluded-through-61"
+        "J-negative-m-cycles-excluded-through-58"
       ],
       "line": 79,
       "module": "Problems.Collatz.NegativeMCycles",
@@ -5764,8 +5808,7 @@
       "file": "formal/Problems/Collatz/NegativeMCycles.lean",
       "kind": "theorem",
       "ledger": [
-        "J-negative-m-cycles-excluded-through-58",
-        "J-negative-m-cycles-excluded-through-61"
+        "J-negative-m-cycles-excluded-through-58"
       ],
       "line": 102,
       "module": "Problems.Collatz.NegativeMCycles",
@@ -5777,8 +5820,7 @@
       "file": "formal/Problems/Collatz/NegativeMCycles.lean",
       "kind": "theorem",
       "ledger": [
-        "J-negative-m-cycles-excluded-through-58",
-        "J-negative-m-cycles-excluded-through-61"
+        "J-negative-m-cycles-excluded-through-58"
       ],
       "line": 112,
       "module": "Problems.Collatz.NegativeMCycles",
@@ -5790,8 +5832,7 @@
       "file": "formal/Problems/Collatz/NegativeMCycles.lean",
       "kind": "theorem",
       "ledger": [
-        "J-negative-m-cycles-excluded-through-58",
-        "J-negative-m-cycles-excluded-through-61"
+        "J-negative-m-cycles-excluded-through-58"
       ],
       "line": 122,
       "module": "Problems.Collatz.NegativeMCycles",
@@ -5803,8 +5844,7 @@
       "file": "formal/Problems/Collatz/NegativeMCycles.lean",
       "kind": "theorem",
       "ledger": [
-        "J-negative-m-cycles-excluded-through-58",
-        "J-negative-m-cycles-excluded-through-61"
+        "J-negative-m-cycles-excluded-through-58"
       ],
       "line": 130,
       "module": "Problems.Collatz.NegativeMCycles",
@@ -5816,8 +5856,7 @@
       "file": "formal/Problems/Collatz/NegativeMCycles.lean",
       "kind": "theorem",
       "ledger": [
-        "J-negative-m-cycles-excluded-through-58",
-        "J-negative-m-cycles-excluded-through-61"
+        "J-negative-m-cycles-excluded-through-58"
       ],
       "line": 137,
       "module": "Problems.Collatz.NegativeMCycles",
@@ -5829,8 +5868,7 @@
       "file": "formal/Problems/Collatz/NegativeMCycles.lean",
       "kind": "theorem",
       "ledger": [
-        "J-negative-m-cycles-excluded-through-58",
-        "J-negative-m-cycles-excluded-through-61"
+        "J-negative-m-cycles-excluded-through-58"
       ],
       "line": 157,
       "module": "Problems.Collatz.NegativeMCycles",
@@ -5842,8 +5880,7 @@
       "file": "formal/Problems/Collatz/NegativeMCycles.lean",
       "kind": "theorem",
       "ledger": [
-        "J-negative-m-cycles-excluded-through-58",
-        "J-negative-m-cycles-excluded-through-61"
+        "J-negative-m-cycles-excluded-through-58"
       ],
       "line": 173,
       "module": "Problems.Collatz.NegativeMCycles",
@@ -5855,8 +5892,7 @@
       "file": "formal/Problems/Collatz/NegativeMCycles.lean",
       "kind": "theorem",
       "ledger": [
-        "J-negative-m-cycles-excluded-through-58",
-        "J-negative-m-cycles-excluded-through-61"
+        "J-negative-m-cycles-excluded-through-58"
       ],
       "line": 187,
       "module": "Problems.Collatz.NegativeMCycles",
@@ -5868,8 +5904,7 @@
       "file": "formal/Problems/Collatz/NegativeMCycles.lean",
       "kind": "theorem",
       "ledger": [
-        "J-negative-m-cycles-excluded-through-58",
-        "J-negative-m-cycles-excluded-through-61"
+        "J-negative-m-cycles-excluded-through-58"
       ],
       "line": 218,
       "module": "Problems.Collatz.NegativeMCycles",
@@ -5881,8 +5916,7 @@
       "file": "formal/Problems/Collatz/NegativeMCycles.lean",
       "kind": "theorem",
       "ledger": [
-        "J-negative-m-cycles-excluded-through-58",
-        "J-negative-m-cycles-excluded-through-61"
+        "J-negative-m-cycles-excluded-through-58"
       ],
       "line": 235,
       "module": "Problems.Collatz.NegativeMCycles",
@@ -5894,8 +5928,7 @@
       "file": "formal/Problems/Collatz/NegativeMCycles.lean",
       "kind": "theorem",
       "ledger": [
-        "J-negative-m-cycles-excluded-through-58",
-        "J-negative-m-cycles-excluded-through-61"
+        "J-negative-m-cycles-excluded-through-58"
       ],
       "line": 238,
       "module": "Problems.Collatz.NegativeMCycles",
@@ -5907,8 +5940,7 @@
       "file": "formal/Problems/Collatz/NegativeMCycles.lean",
       "kind": "theorem",
       "ledger": [
-        "J-negative-m-cycles-excluded-through-58",
-        "J-negative-m-cycles-excluded-through-61"
+        "J-negative-m-cycles-excluded-through-58"
       ],
       "line": 240,
       "module": "Problems.Collatz.NegativeMCycles",
@@ -5920,8 +5952,7 @@
       "file": "formal/Problems/Collatz/NegativeMCycles.lean",
       "kind": "theorem",
       "ledger": [
-        "J-negative-m-cycles-excluded-through-58",
-        "J-negative-m-cycles-excluded-through-61"
+        "J-negative-m-cycles-excluded-through-58"
       ],
       "line": 242,
       "module": "Problems.Collatz.NegativeMCycles",
@@ -5933,8 +5964,7 @@
       "file": "formal/Problems/Collatz/NegativeMCycles.lean",
       "kind": "theorem",
       "ledger": [
-        "J-negative-m-cycles-excluded-through-58",
-        "J-negative-m-cycles-excluded-through-61"
+        "J-negative-m-cycles-excluded-through-58"
       ],
       "line": 246,
       "module": "Problems.Collatz.NegativeMCycles",
@@ -5946,8 +5976,7 @@
       "file": "formal/Problems/Collatz/NegativeMCycles.lean",
       "kind": "theorem",
       "ledger": [
-        "J-negative-m-cycles-excluded-through-58",
-        "J-negative-m-cycles-excluded-through-61"
+        "J-negative-m-cycles-excluded-through-58"
       ],
       "line": 252,
       "module": "Problems.Collatz.NegativeMCycles",
@@ -5959,8 +5988,7 @@
       "file": "formal/Problems/Collatz/NegativeMCycles.lean",
       "kind": "theorem",
       "ledger": [
-        "J-negative-m-cycles-excluded-through-58",
-        "J-negative-m-cycles-excluded-through-61"
+        "J-negative-m-cycles-excluded-through-58"
       ],
       "line": 259,
       "module": "Problems.Collatz.NegativeMCycles",
@@ -7038,9 +7066,49 @@
       "file": "formal/Problems/Engine/InformationField.lean",
       "kind": "theorem",
       "ledger": [],
+      "line": 95,
+      "module": "Problems.Engine.InformationField",
+      "name": "perturb_compose",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 99,
+      "module": "Problems.Engine.InformationField",
+      "name": "compose_apply",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
       "line": 103,
       "module": "Problems.Engine.InformationField",
       "name": "compose_assoc",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 107,
+      "module": "Problems.Engine.InformationField",
+      "name": "compose_id_left",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 110,
+      "module": "Problems.Engine.InformationField",
+      "name": "compose_id_right",
       "trust": "kernel"
     },
     {
@@ -7051,6 +7119,26 @@
       "line": 115,
       "module": "Problems.Engine.InformationField",
       "name": "trajectory",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 119,
+      "module": "Problems.Engine.InformationField",
+      "name": "trajectory_zero",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 123,
+      "module": "Problems.Engine.InformationField",
+      "name": "trajectory_succ",
       "trust": "kernel"
     },
     {
@@ -7121,6 +7209,36 @@
       "line": 163,
       "module": "Problems.Engine.InformationField",
       "name": "perturbationSize_eq_zero_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 167,
+      "module": "Problems.Engine.InformationField",
+      "name": "perturbationSize_id",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 171,
+      "module": "Problems.Engine.InformationField",
+      "name": "physicalEffect_id",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 174,
+      "module": "Problems.Engine.InformationField",
+      "name": "leverage_id",
       "trust": "kernel"
     },
     {
@@ -7381,6 +7499,16 @@
       "line": 429,
       "module": "Problems.Engine.InformationField",
       "name": "informationCost_nonneg",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 432,
+      "module": "Problems.Engine.InformationField",
+      "name": "informationCost_id",
       "trust": "kernel"
     },
     {
@@ -7684,6 +7812,36 @@
       "trust": "kernel"
     },
     {
+      "doc": "",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 690,
+      "module": "Problems.Engine.InformationField",
+      "name": "mem_noiseRegion",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 693,
+      "module": "Problems.Engine.InformationField",
+      "name": "mem_ordinaryRegion",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 697,
+      "module": "Problems.Engine.InformationField",
+      "name": "mem_originalRegion",
+      "trust": "kernel"
+    },
+    {
       "doc": "The three regimes cover the landscape.",
       "file": "formal/Problems/Engine/InformationField.lean",
       "kind": "theorem",
@@ -7764,6 +7922,26 @@
       "trust": "kernel"
     },
     {
+      "doc": "",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 789,
+      "module": "Problems.Engine.InformationField",
+      "name": "totalValue_nil",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 792,
+      "module": "Problems.Engine.InformationField",
+      "name": "totalValue_cons",
+      "trust": "kernel"
+    },
+    {
       "doc": "The total value does not depend on the mining order.",
       "file": "formal/Problems/Engine/InformationField.lean",
       "kind": "theorem",
@@ -7781,6 +7959,26 @@
       "line": 805,
       "module": "Problems.Engine.InformationField",
       "name": "waitingCost",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 809,
+      "module": "Problems.Engine.InformationField",
+      "name": "waitingCost_nil",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 812,
+      "module": "Problems.Engine.InformationField",
+      "name": "waitingCost_cons",
       "trust": "kernel"
     },
     {
@@ -9845,6 +10043,63 @@
       "trust": "kernel"
     },
     {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
+      ],
+      "line": 102,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "parityWord_zero",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
+      ],
+      "line": 104,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "parityWord_succ",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
+      ],
+      "line": 107,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "parityWord_length",
+      "trust": "kernel"
+    },
+    {
       "doc": "A prefix of the word is the word of the prefix.",
       "file": "formal/Problems/Juggler/CollatzBridge.lean",
       "kind": "theorem",
@@ -9880,6 +10135,63 @@
       "line": 132,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "wordConst",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
+      ],
+      "line": 137,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "wordConst_nil",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
+      ],
+      "line": 139,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "wordConst_even",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
+      ],
+      "line": 141,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "wordConst_odd",
       "trust": "kernel"
     },
     {
@@ -10453,6 +10765,63 @@
       "trust": "kernel"
     },
     {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
+      ],
+      "line": 469,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "evenCharge_nil",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
+      ],
+      "line": 471,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "evenCharge_even",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
+      ],
+      "line": 474,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "evenCharge_odd",
+      "trust": "kernel"
+    },
+    {
       "doc": "The odd-step constant and the even-step charge differ by the multiplier gap: `wordConst w + 2 ^ |w| = 3 ^ o + evenCharge w`.",
       "file": "formal/Problems/Juggler/CollatzBridge.lean",
       "kind": "theorem",
@@ -10602,6 +10971,82 @@
       "line": 542,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "parityWordZ",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
+      ],
+      "line": 546,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "parityWordZ_zero",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
+      ],
+      "line": 548,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "parityWordZ_succ",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
+      ],
+      "line": 552,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "shortcutZIter_zero",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
+      ],
+      "line": 554,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "shortcutZIter_succ",
       "trust": "kernel"
     },
     {
@@ -22404,6 +22849,32 @@
       "trust": "kernel"
     },
     {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CycleRunAlphabet.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-cycle-run-alphabet",
+        "J-cycle-band-discrepancy"
+      ],
+      "line": 195,
+      "module": "Problems.Juggler.CycleRunAlphabet",
+      "name": "climbRun_length",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CycleRunAlphabet.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-cycle-run-alphabet",
+        "J-cycle-band-discrepancy"
+      ],
+      "line": 200,
+      "module": "Problems.Juggler.CycleRunAlphabet",
+      "name": "climbRun_oddCount",
+      "trust": "kernel"
+    },
+    {
       "doc": "`OOE^k ++ OE` is an exponent gap exactly while `k \u2264 2`.",
       "file": "formal/Problems/Juggler/CycleRunAlphabet.lean",
       "kind": "theorem",
@@ -24609,6 +25080,18 @@
       "ledger": [
         "J-depth-one-arithmetic-layer"
       ],
+      "line": 46,
+      "module": "Problems.Juggler.DepthOneMainTerm",
+      "name": "e_zero",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/DepthOneMainTerm.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-depth-one-arithmetic-layer"
+      ],
       "line": 48,
       "module": "Problems.Juggler.DepthOneMainTerm",
       "name": "e_add",
@@ -24636,6 +25119,18 @@
       "line": 61,
       "module": "Problems.Juggler.DepthOneMainTerm",
       "name": "e_intCast",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/DepthOneMainTerm.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-depth-one-arithmetic-layer"
+      ],
+      "line": 66,
+      "module": "Problems.Juggler.DepthOneMainTerm",
+      "name": "e_one",
       "trust": "kernel"
     },
     {
@@ -35574,6 +36069,30 @@
       "trust": "kernel"
     },
     {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateProductionWords.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-c-production-words-are-prefix-free"
+      ],
+      "line": 40,
+      "module": "Problems.Juggler.FateProductionWords",
+      "name": "Vword_zero",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateProductionWords.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-c-production-words-are-prefix-free"
+      ],
+      "line": 42,
+      "module": "Problems.Juggler.FateProductionWords",
+      "name": "Vword_succ",
+      "trust": "kernel"
+    },
+    {
       "doc": "`V_(k+1)` has length `2k + 3`: the `k` copies of `OE` and the closing `OEE`.",
       "file": "formal/Problems/Juggler/FateProductionWords.lean",
       "kind": "theorem",
@@ -40238,20 +40757,6 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
-      "file": "formal/Problems/Juggler/GapTransferWW.lean",
-      "kind": "instance",
-      "ledger": [
-        "J-cyclemin-gap-power-transfer",
-        "J-cyclemin-period-lower-bound",
-        "J-cyclemin-closure-threshold"
-      ],
-      "line": 144,
-      "module": "Problems.Juggler.GapTransferWW",
-      "name": "of",
-      "trust": "kernel"
-    },
-    {
       "doc": "**The closure threshold.** If the Diophantine budget holds on every nontrivial cycle and cycle minima obey the matching lower bound `n log n > (2/C) L^{p+1}`, then every cycle word based at a minimum `n >= 2` is empty: there is no nontrivial cycle. This is the numerical content of the standing reopen condition \"a lower bound on the cycle minimum in terms of the period\" (`docs/problems/juggler_cycle_method_ceilings.md`). Neither hypothesis is proved here. The Wu-Wang instance `p = 4.1163051` sets the unconditional target at `n >> L^{5.1163051}`; since `p >= 1` for every irrational, no instance of this scheme can ask for less than `n >> L^{2}`.",
       "file": "formal/Problems/Juggler/GapTransferWW.lean",
       "kind": "theorem",
@@ -40315,6 +40820,30 @@
       "line": 20,
       "module": "Problems.Juggler.GlobalDefect",
       "name": "powGap_add",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/GlobalDefect.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-global-defect-identity"
+      ],
+      "line": 24,
+      "module": "Problems.Juggler.GlobalDefect",
+      "name": "powGap_zero_addend",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/GlobalDefect.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-global-defect-identity"
+      ],
+      "line": 27,
+      "module": "Problems.Juggler.GlobalDefect",
+      "name": "powGap_zero_exp",
       "trust": "kernel"
     },
     {
@@ -41753,6 +42282,26 @@
       "line": 156,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "CountBound.admitsProp",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/IdealCycleMin.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 159,
+      "module": "Problems.Juggler.IdealCycleMin",
+      "name": "CountBound.admitsProp_zeroPlus",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/IdealCycleMin.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 164,
+      "module": "Problems.Juggler.IdealCycleMin",
+      "name": "CountBound.admitsProp_onePlus",
       "trust": "kernel"
     },
     {
@@ -44005,6 +44554,32 @@
         "J-itinerary-semantics",
         "J-fixed-itinerary-image-monotone"
       ],
+      "line": 43,
+      "module": "Problems.Juggler.Itinerary",
+      "name": "image_nil",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/Itinerary.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-itinerary-semantics",
+        "J-fixed-itinerary-image-monotone"
+      ],
+      "line": 45,
+      "module": "Problems.Juggler.Itinerary",
+      "name": "image_cons",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/Itinerary.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-itinerary-semantics",
+        "J-fixed-itinerary-image-monotone"
+      ],
       "line": 48,
       "module": "Problems.Juggler.Itinerary",
       "name": "bit_even",
@@ -44565,6 +45140,42 @@
       "ledger": [
         "J-exponent-expanding-append"
       ],
+      "line": 24,
+      "module": "Problems.Juggler.ItineraryStats",
+      "name": "oddCount_nil",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/ItineraryStats.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-exponent-expanding-append"
+      ],
+      "line": 26,
+      "module": "Problems.Juggler.ItineraryStats",
+      "name": "oddCount_even_cons",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/ItineraryStats.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-exponent-expanding-append"
+      ],
+      "line": 29,
+      "module": "Problems.Juggler.ItineraryStats",
+      "name": "oddCount_odd_cons",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/ItineraryStats.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-exponent-expanding-append"
+      ],
       "line": 32,
       "module": "Problems.Juggler.ItineraryStats",
       "name": "oddCount_replicate_even",
@@ -44640,6 +45251,42 @@
       "line": 91,
       "module": "Problems.Juggler.ItineraryStats",
       "name": "evenCount",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/ItineraryStats.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-exponent-expanding-append"
+      ],
+      "line": 96,
+      "module": "Problems.Juggler.ItineraryStats",
+      "name": "evenCount_nil",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/ItineraryStats.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-exponent-expanding-append"
+      ],
+      "line": 98,
+      "module": "Problems.Juggler.ItineraryStats",
+      "name": "evenCount_even_cons",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/ItineraryStats.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-exponent-expanding-append"
+      ],
+      "line": 101,
+      "module": "Problems.Juggler.ItineraryStats",
+      "name": "evenCount_odd_cons",
       "trust": "kernel"
     },
     {
@@ -48891,31 +49538,6 @@
       "line": 1996,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycle_itinerary_three_even_eooeoe",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/Problems/Juggler/LeftoverFamilies.lean",
-      "kind": "theorem",
-      "ledger": [
-        "J-leftover-ooooooeee",
-        "J-two-even-leftover-ee",
-        "J-two-even-leftover-eoe",
-        "J-first-e-transport-ee",
-        "J-first-e-transport-eoe",
-        "J-three-even-eee",
-        "J-three-even-eoee",
-        "J-three-even-eooee",
-        "J-three-even-eoooee",
-        "J-three-even-eeoe",
-        "J-three-even-eoeoe",
-        "J-three-even-eooeoe",
-        "J-gapped-cycle-itinerary-ee",
-        "J-gapped-cycle-itinerary-eoe"
-      ],
-      "line": 2029,
-      "module": "Problems.Juggler.LeftoverFamilies",
-      "name": "at",
       "trust": "kernel"
     },
     {
@@ -53978,16 +54600,6 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
-      "file": "formal/Problems/Juggler/MonomialSplitting.lean",
-      "kind": "lemma",
-      "ledger": [],
-      "line": 149,
-      "module": "Problems.Juggler.MonomialSplitting",
-      "name": "needs",
-      "trust": "kernel"
-    },
-    {
       "doc": "**Lemma 3.8, the constant `c\u2086`.** With `p = \u03b1 - 2`, `q = \u03b2 - 2` the lemma needs `min_{s>0} max(|1 - s|, |p - q s|) > 0`. Over the ordered pairs of `E` the minimum is `1/14`, attained at `(\u03b1, \u03b2) = (11/8, 5/4)`, where `p = -5/8`, `q = -3/4`; the two V-shapes cross at `s = 13/14`.",
       "file": "formal/Problems/Juggler/MonomialSplitting.lean",
       "kind": "theorem",
@@ -56998,6 +57610,30 @@
       "trust": "kernel"
     },
     {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBCertificateLengths.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-certificate-length-window"
+      ],
+      "line": 175,
+      "module": "Problems.Juggler.PaperBCertificateLengths",
+      "name": "blockWord_length",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBCertificateLengths.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-certificate-length-window"
+      ],
+      "line": 178,
+      "module": "Problems.Juggler.PaperBCertificateLengths",
+      "name": "blockWord_oddCount",
+      "trust": "kernel"
+    },
+    {
       "doc": "**The window is attained.** When some power of three lies in `[2 ^ (L-1), 2 ^ L)`, the word `O^o E^(L-o)` is a minimal certificate: every proper prefix either is all odd (where `3 ^ k > 2 ^ k`) or is `O^o E^j` with `j < L - o`, where the window's lower bound `2 ^ (L-1) \u2264 3 ^ o` is exactly what stops it contracting early.",
       "file": "formal/Problems/Juggler/PaperBCertificateLengths.lean",
       "kind": "theorem",
@@ -57930,6 +58566,38 @@
       "trust": "kernel"
     },
     {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBChainRule.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-defect-coefficient-chain",
+        "J-paper-b-linearisation-E-lt-2",
+        "J-paper-b-E-is-the-exponent-walk",
+        "J-paper-b-screen-is-a-walk-condition",
+        "J-paper-b-count-is-the-level-zero-bad-count"
+      ],
+      "line": 61,
+      "module": "Problems.Juggler.PaperBChainRule",
+      "name": "iter_nil",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBChainRule.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-defect-coefficient-chain",
+        "J-paper-b-linearisation-E-lt-2",
+        "J-paper-b-E-is-the-exponent-walk",
+        "J-paper-b-screen-is-a-walk-condition",
+        "J-paper-b-count-is-the-level-zero-bad-count"
+      ],
+      "line": 63,
+      "module": "Problems.Juggler.PaperBChainRule",
+      "name": "iter_cons",
+      "trust": "kernel"
+    },
+    {
       "doc": "Every step exponent is positive.",
       "file": "formal/Problems/Juggler/PaperBChainRule.lean",
       "kind": "theorem",
@@ -58103,6 +58771,54 @@
       "line": 151,
       "module": "Problems.Juggler.PaperBChainRule",
       "name": "oddCount",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBChainRule.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-defect-coefficient-chain",
+        "J-paper-b-linearisation-E-lt-2",
+        "J-paper-b-E-is-the-exponent-walk",
+        "J-paper-b-screen-is-a-walk-condition",
+        "J-paper-b-count-is-the-level-zero-bad-count"
+      ],
+      "line": 156,
+      "module": "Problems.Juggler.PaperBChainRule",
+      "name": "oddCount_nil",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBChainRule.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-defect-coefficient-chain",
+        "J-paper-b-linearisation-E-lt-2",
+        "J-paper-b-E-is-the-exponent-walk",
+        "J-paper-b-screen-is-a-walk-condition",
+        "J-paper-b-count-is-the-level-zero-bad-count"
+      ],
+      "line": 158,
+      "module": "Problems.Juggler.PaperBChainRule",
+      "name": "oddCount_cons_O",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBChainRule.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-defect-coefficient-chain",
+        "J-paper-b-linearisation-E-lt-2",
+        "J-paper-b-E-is-the-exponent-walk",
+        "J-paper-b-screen-is-a-walk-condition",
+        "J-paper-b-count-is-the-level-zero-bad-count"
+      ],
+      "line": 161,
+      "module": "Problems.Juggler.PaperBChainRule",
+      "name": "oddCount_cons_E",
       "trust": "kernel"
     },
     {
@@ -59032,9 +59748,79 @@
         "J-paper-b-transposition-costs-the-barrier-mass",
         "J-paper-b-sturmian-zero-law-is-the-empty-window"
       ],
+      "line": 74,
+      "module": "Problems.Juggler.PaperBJumpTransposition",
+      "name": "barrierMass_zero",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBJumpTransposition.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-jump-spectrum-is-the-survivor-sequence",
+        "J-paper-b-transposition-costs-the-barrier-mass",
+        "J-paper-b-sturmian-zero-law-is-the-empty-window"
+      ],
+      "line": 76,
+      "module": "Problems.Juggler.PaperBJumpTransposition",
+      "name": "barrierMass_succ",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBJumpTransposition.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-jump-spectrum-is-the-survivor-sequence",
+        "J-paper-b-transposition-costs-the-barrier-mass",
+        "J-paper-b-sturmian-zero-law-is-the-empty-window"
+      ],
       "line": 78,
       "module": "Problems.Juggler.PaperBJumpTransposition",
       "name": "barrierMass_eq_ite",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBJumpTransposition.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-jump-spectrum-is-the-survivor-sequence",
+        "J-paper-b-transposition-costs-the-barrier-mass",
+        "J-paper-b-sturmian-zero-law-is-the-empty-window"
+      ],
+      "line": 82,
+      "module": "Problems.Juggler.PaperBJumpTransposition",
+      "name": "stepFlat_zero",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBJumpTransposition.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-jump-spectrum-is-the-survivor-sequence",
+        "J-paper-b-transposition-costs-the-barrier-mass",
+        "J-paper-b-sturmian-zero-law-is-the-empty-window"
+      ],
+      "line": 84,
+      "module": "Problems.Juggler.PaperBJumpTransposition",
+      "name": "stepFlat_succ",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBJumpTransposition.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-jump-spectrum-is-the-survivor-sequence",
+        "J-paper-b-transposition-costs-the-barrier-mass",
+        "J-paper-b-sturmian-zero-law-is-the-empty-window"
+      ],
+      "line": 87,
+      "module": "Problems.Juggler.PaperBJumpTransposition",
+      "name": "stepRise_apply",
       "trust": "kernel"
     },
     {
@@ -59077,6 +59863,48 @@
       "line": 103,
       "module": "Problems.Juggler.PaperBJumpTransposition",
       "name": "run",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBJumpTransposition.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-jump-spectrum-is-the-survivor-sequence",
+        "J-paper-b-transposition-costs-the-barrier-mass",
+        "J-paper-b-sturmian-zero-law-is-the-empty-window"
+      ],
+      "line": 107,
+      "module": "Problems.Juggler.PaperBJumpTransposition",
+      "name": "run_nil",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBJumpTransposition.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-jump-spectrum-is-the-survivor-sequence",
+        "J-paper-b-transposition-costs-the-barrier-mass",
+        "J-paper-b-sturmian-zero-law-is-the-empty-window"
+      ],
+      "line": 109,
+      "module": "Problems.Juggler.PaperBJumpTransposition",
+      "name": "run_cons_true",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBJumpTransposition.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-jump-spectrum-is-the-survivor-sequence",
+        "J-paper-b-transposition-costs-the-barrier-mass",
+        "J-paper-b-sturmian-zero-law-is-the-empty-window"
+      ],
+      "line": 112,
+      "module": "Problems.Juggler.PaperBJumpTransposition",
+      "name": "run_cons_false",
       "trust": "kernel"
     },
     {
@@ -59341,19 +60169,6 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
-      "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
-      "kind": "instance",
-      "ledger": [
-        "J-empty-window-holds-at-every-level",
-        "J-free-lengths-are-never-adjacent"
-      ],
-      "line": 163,
-      "module": "Problems.Juggler.PaperBLevelWindow",
-      "name": "at",
-      "trust": "kernel"
-    },
-    {
       "doc": "**A whole-number level is only a shift of the length.** At `c = 2`, that is `\u039b = 1`, the window at length `L` is Paper B's window at length `L - 1`. This is worth stating because it says where the new content is and where it is not. It is proved here at `c = 2` only; the same re-indexing holds at `c = 2 ^ k` by the same argument. So a whole-number level proves nothing Paper B did not already have, and the content of this file is at the *fractional* levels -- which is also the only place its strict barrier agrees with Paper C's non-strict one. `certWindowAt_twelve_empty_at_paperC_level` is the worked instance at such a level.",
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "theorem",
@@ -59471,19 +60286,6 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
-      "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
-      "kind": "instance",
-      "ledger": [
-        "J-empty-window-holds-at-every-level",
-        "J-free-lengths-are-never-adjacent"
-      ],
-      "line": 323,
-      "module": "Problems.Juggler.PaperBLevelWindow",
-      "name": "at",
-      "trust": "kernel"
-    },
-    {
       "doc": "The odd count of a window is bounded by the length, at any level at or below the start.",
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "theorem",
@@ -59494,19 +60296,6 @@
       "line": 327,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "certWindowAt_le",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
-      "kind": "theorem",
-      "ledger": [
-        "J-empty-window-holds-at-every-level",
-        "J-free-lengths-are-never-adjacent"
-      ],
-      "line": 348,
-      "module": "Problems.Juggler.PaperBLevelWindow",
-      "name": "nothing",
       "trust": "kernel"
     },
     {
@@ -76376,6 +77165,20 @@
       "trust": "kernel"
     },
     {
+      "doc": "",
+      "file": "formal/Problems/Juggler/WalkTransport.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-cyclemin-walk-transport-envelope",
+        "J-flight-envelope-transport",
+        "J-flight-height-law"
+      ],
+      "line": 183,
+      "module": "Problems.Juggler.WalkTransport",
+      "name": "walkWeight_zero",
+      "trust": "kernel"
+    },
+    {
       "doc": "One more letter adds one to the odd count exactly when that letter is odd.",
       "file": "formal/Problems/Juggler/WalkTransport.lean",
       "kind": "theorem",
@@ -86989,6 +87792,30 @@
       "ledger": [
         "BTC-op-fragment-nd-semantic"
       ],
+      "line": 259,
+      "module": "BTCalculus.OpFragSemantic",
+      "name": "signFactor_false",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/OpFragSemantic.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTC-op-fragment-nd-semantic"
+      ],
+      "line": 260,
+      "module": "BTCalculus.OpFragSemantic",
+      "name": "signFactor_true",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/OpFragSemantic.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTC-op-fragment-nd-semantic"
+      ],
       "line": 262,
       "module": "BTCalculus.OpFragSemantic",
       "name": "signFactor_ne_zero",
@@ -92916,7 +93743,7 @@
       ]
     },
     "BTCalculus.OpFragSemantic": {
-      "declarations": 58,
+      "declarations": 60,
       "file": "formal/BTCalculus/OpFragSemantic.lean",
       "imports": [
         "BTCalculus.OpFragNewman",
@@ -93854,18 +94681,13 @@
       ]
     },
     "Problems.Collatz.NegativeMCycles": {
-      "declarations": 22,
+      "declarations": 24,
       "file": "formal/Problems/Collatz/NegativeMCycles.lean",
       "imports": [],
       "ledger": [
         {
           "id": "J-negative-m-cycles-excluded-through-58",
-          "statement": "SUPERSEDED 21 September 2026 by J-negative-m-cycles-excluded-through-61: the same floor 2^51 and the same route, with one lemma more -- the valley count -- reading m <= 61. Kept as the record of version 1.0.0 of the paper, which states m <= 58 and is correct as it stands. THEOREM, WITH ONE EXTERNAL INPUT. Given Rhin's effective measure |u_0 + u_1 log 2 + u_2 log 3| >= H^(-13.3) for H = max(|u_1|, |u_2|) >= 2 (Rhin 1987, Proposition p. 160 (7)), the 3n-1 map g(y) = y/2 (even), (3y-1)/2 (odd) has no m-cycle with 1 <= m <= 58 whose least element is at least 2^51; with the floor (every 1 <= y < 2^51 reaches 1, 5 or 17: the CPU certificate to 2^44 and the GPU sweep of 21 September 2026 to 2^51, 1117103813820416 odd starts, no failure, spot-checked against the CPU walker on three 2^37 windows), none with m <= 58 other than (5, 7, 10) and the cycle at 17. THE ROUTE is that of the m <= 49 row at 2^44 (J-negative-m-cycles-excluded-through-49, now superseded): negative Lemma 8 y >= 2^a + 1, the run identity, the cycle equation Lambda < m/(x_min - 1), the chaining u' < u^delta / 2, the exact enumeration of the admissible lengths by the three-gap walk below Rhin's ceiling K_3(m), each tested against the chaining; the enumeration is Simons-de Weger's Section 7 lattice list and the two tests are their Corollary 5 and Lemma 7, so no step of their template is left. AT 2^51: no admissible length below the ceiling for m <= 52; for 53 <= m <= 58 the admissible lengths (1, 2, 4, 6, 10, 16 of them) are excluded by the chaining, the closest with 9.8 bits to spare at m = 58, K = 64789416887513; at m = 59 two lengths survive, 64789416887513 (12.4 bits) and 83130157078217 (5.0 bits), removed at floors 2^51.87 and 2^55.18. THE LADDER by the same tables: 2^40 gives 44, 2^44 gives 49, 2^49 gives 54, 2^50 gives 56, 2^51 to 2^55 give 58, 2^56 gives 63, 2^59 gives 64, 2^60 gives 68, 2^68 gives 82; on the 3n+1 side at 301 * 2^50 the same machinery reproduces Simons-de Weger's Lemma 18 to the unit. The m-free period bound at 2^51 is 85137581 with 53715833 odd steps. INDEPENDENT CHECK: tools/check_3n_minus_1_note_numeric.py re-sieves the admissible lengths and recomputes the ceilings, margins and killing floors from scratch and agrees with the note's tables at this floor. THE KNOWN-BAD INPUTS: with the floor at 17 and m = 2 the template leaves the 17-cycle's length 11; at 5 and m = 1 it leaves length 3; one above each it does not. PRIORITY: Simons 2007 proves m = 2 floor-free; Simons-de Weger 2005 and Hercher 2023 do 3n+1; nothing in print does 3n-1 at any m >= 3. LEMMAS 1 AND 3 ARE LEAN (21 September 2026): Problems.Collatz.NegativeMCycles, twenty declarations, in the Problems barrel; thirteen on Mathlib's three standard axioms, five (the decide computations on the known cycles) on none, two derived; no sorry, no native_decide. The run is put in closed form as negT_run_iter, g^k(2^a m + 1) = 3^k 2^(a-k) m + 1 for k <= a, which removes every truncated subtraction; Lemma 1's clauses are negT_run_odd, negT_run_even, negT_start_ge, negT_localMax, packaged by negT_lemma_one over the v_2 decomposition negT_run_decomp, and Lemma 3 is negT_chain_nat (2 u' < 3^a m) with negT_chain_real (u' < u^delta / 2), packaged as negT_lemma_three. The sign of the map and the three known cycles are kernel computations (negT_sign_is_minus: g 17 = 25 where 3n+1 gives 26; negT_chain_tight_at_17: 2 * 40 < 81, one unit of slack, the note's tightness remark). FORMALIZING SHARPENED ONE HYPOTHESIS: the closed form needs no parity assumption on m, the powers of two alone keeping the state odd through the run, so oddness is used only to know the run stops at a. LEMMA 2 IS NOT IN LEAN: the cycle equation and the bound on Lambda are real-analytic; its first clause Lambda > 0 is neg_cycle_expanding on the conjugate side, and the conjugation x = -y is not formalized because Problems.Collatz sits below Problems.Juggler.",
-          "tag": "EXACT \u2014 HUMAN PROOF"
-        },
-        {
-          "id": "J-negative-m-cycles-excluded-through-61",
-          "statement": "THEOREM, WITH ONE EXTERNAL INPUT. Given Rhin's effective measure |u_0 + u_1 log 2 + u_2 log 3| >= H^(-13.3) for H = max(|u_1|, |u_2|) >= 2 (Rhin 1987, Proposition p. 160 (7)), the 3n-1 map g(y) = y/2 (even), (3y-1)/2 (odd) has no m-cycle with 1 <= m <= 61 whose least element is at least 2^51; with the floor (every 1 <= y < 2^51 reaches 1, 5 or 17: the CPU certificate to 2^44 and the GPU sweep of 21 September 2026 to 2^51, 1117103813820416 odd starts, no failure, spot-checked against the CPU walker on three 2^37 windows), none with m <= 61 other than (5, 7, 10) and the cycle at 17. Paper D version 1.1.0, docs/theory/collatz_3n_minus_1_m_cycles_note.md. THE ROUTE is that of the m <= 58 row (J-negative-m-cycles-excluded-through-58, now superseded) with a sixth lemma: negative Lemma 8 y >= 2^a + 1, the run identity, the cycle equation Lambda < m/(x_min - 1), the chaining u' < u^delta / 2, the exact enumeration of the admissible lengths by the three-gap walk below Rhin's ceiling K_3(m), the contracting-prefix sieve, and now the valley count; each admissible length is tested against two displays and excluded if either holds. THE NEW LEMMA (Lemma 6 of the manuscript) is the transposition of the arrangement behind Hercher's Main Theorem 21. The earlier lemmas relax the same system twice, once by putting every local minimum at the floor and once by dropping the objective, and both relaxations are loose at the same time because a cycle cannot have all its valleys at the floor and carry o odd steps. Writing b_i = log2 u_i over the local minima, the constraints are b_i >= L0 = log2(X0 - 1), b_{i+1} < delta b_i - 1 (Lemma 3) and sum b_i >= o (Lemma 1 summed), with Lambda < sum 2^(-b_i) (Lemma 2) the objective. The lemma keeps them together through a threshold rather than a vertex enumeration: for every T >= L0, at most R(T) of the minima lie at or below T, where R(T) is the largest r <= m with r T + sum_{t <= m-r} (delta^t T - (delta^t - 1)/(delta - 1)) >= o, the largest total the chaining allows once the gaps between the low minima are merged into one; then Lambda < R(T) 2^(-L0) + (m - R(T)) 2^(-T). The minimum over T is exact rather than a grid: the bound is piecewise in T with breakpoints T_r = (o + A_{m-r}) / (r + B_{m-r}) and falls with T on each piece. At T = L0 it is Lemma 2, so the refinement is never weaker than what it refines. AT 2^51: no admissible length below the ceiling for m <= 52; for 53 <= m <= 61 the admissible lengths are excluded, the closest with 0.1 bits to spare at m = 61, K = 83130157078217; at m = 62 that same length survives with 0.3 bits. The theorem is delicate at its top end, which the two figures say plainly. THE LADDER by the same tables: 2^40 gives 49, 2^44 gives 51, 2^48 and 2^49 give 58, 2^50 gives 59, 2^51 gives 61, 2^56 gives 68, 301*2^50 gives 69, 2^60 gives 74, 2^68 gives 89, against 44, 49, 49, 54, 56, 58, 63, 63, 68 and 82 for the same floors without Lemma 6. The m-free period bound at 2^51 is unchanged at 85137581 with 53715833 odd steps. THE CALIBRATION, which is the evidence the transposition is faithful: run on the 3n+1 side at Hercher's own floor 695 * 2^60 the same six lemmas exclude m <= 90, one short of his published m <= 91 (Main Theorem 23) reached by the same idea. The comparison against Simons-de Weger's 68 is not the right one: their 2005 work predates the valley argument entirely, and at their floor 301*2^50 these lemmas give 69. INDEPENDENT CHECK: tools/check_3n_minus_1_note_numeric.py re-sieves the admissible lengths and recomputes the ceilings, margins and killing floors from scratch, with its own implementation of the valley cap written from the manuscript rather than imported from the probe, and agrees with the note's tables at this floor. THE KNOWN-BAD INPUTS: with the floor at their own least element the cycles (5, 7, 10) and 17 both clear the cap, so the refinement does not exclude the cycles that exist; the cap is separately checked never to exceed Lemma 2's m/(X0 - 1). PRIORITY: Simons 2007 proves m = 2 floor-free; Simons-de Weger 2005 and Hercher 2023 do 3n+1; nothing in print does 3n-1 at any m >= 3. LEAN, UNCHANGED BY THIS VERSION: Lemmas 1 and 3 are Problems.Collatz.NegativeMCycles, twenty declarations, no sorry and no native_decide; they are exactly the two the valley count consumes, so the formalized part of the route did not move. Lemma 2 remains real-analytic and unformalized, and Lemma 6 is arithmetic on top of 1, 2 and 3. MEASURED AND REJECTED on the way: Hercher's Corollary 29 (residue tracking) buys 1.30 bits where 4.18 are needed, and his Theorem 27 (m-free) is 0.23 bits tighter and leaves the period bound unchanged; both are method walls on this side, not oversights. WHAT IS OWED: the deposit. Version 1.1.0 goes up through the existing record's new-version operation, which keeps the concept DOI; version 1.0.0 is 10.5281/zenodo.22876190.",
+          "statement": "THEOREM, WITH ONE EXTERNAL INPUT. Given Rhin's effective measure |u_0 + u_1 log 2 + u_2 log 3| >= H^(-13.3) for H = max(|u_1|, |u_2|) >= 2 (Rhin 1987, Proposition p. 160 (7)), the 3n-1 map g(y) = y/2 (even), (3y-1)/2 (odd) has no m-cycle with 1 <= m <= 58 whose least element is at least 2^51; with the floor (every 1 <= y < 2^51 reaches 1, 5 or 17: the CPU certificate to 2^44 and the GPU sweep of 21 September 2026 to 2^51, 1117103813820416 odd starts, no failure, spot-checked against the CPU walker on three 2^37 windows), none with m <= 58 other than (5, 7, 10) and the cycle at 17. THE ROUTE is that of the m <= 49 row at 2^44 (J-negative-m-cycles-excluded-through-49, now superseded): negative Lemma 8 y >= 2^a + 1, the run identity, the cycle equation Lambda < m/(x_min - 1), the chaining u' < u^delta / 2, the exact enumeration of the admissible lengths by the three-gap walk below Rhin's ceiling K_3(m), each tested against the chaining; the enumeration is Simons-de Weger's Section 7 lattice list and the two tests are their Corollary 5 and Lemma 7, so no step of their template is left. AT 2^51: no admissible length below the ceiling for m <= 52; for 53 <= m <= 58 the admissible lengths (1, 2, 4, 6, 10, 16 of them) are excluded by the chaining, the closest with 9.8 bits to spare at m = 58, K = 64789416887513; at m = 59 two lengths survive, 64789416887513 (12.4 bits) and 83130157078217 (5.0 bits), removed at floors 2^51.87 and 2^55.18. THE LADDER by the same tables: 2^40 gives 44, 2^44 gives 49, 2^49 gives 54, 2^50 gives 56, 2^51 to 2^55 give 58, 2^56 gives 63, 2^59 gives 64, 2^60 gives 68, 2^68 gives 82; on the 3n+1 side at 301 * 2^50 the same machinery reproduces Simons-de Weger's Lemma 18 to the unit. The m-free period bound at 2^51 is 85137581 with 53715833 odd steps. INDEPENDENT CHECK: tools/check_3n_minus_1_note_numeric.py re-sieves the admissible lengths and recomputes the ceilings, margins and killing floors from scratch and agrees with the note's tables at this floor. THE KNOWN-BAD INPUTS: with the floor at 17 and m = 2 the template leaves the 17-cycle's length 11; at 5 and m = 1 it leaves length 3; one above each it does not. PRIORITY: Simons 2007 proves m = 2 floor-free; Simons-de Weger 2005 and Hercher 2023 do 3n+1; nothing in print does 3n-1 at any m >= 3. LEMMAS 1 AND 3 ARE LEAN (21 September 2026): Problems.Collatz.NegativeMCycles, twenty declarations, in the Problems barrel; thirteen on Mathlib's three standard axioms, five (the decide computations on the known cycles) on none, two derived; no sorry, no native_decide. The run is put in closed form as negT_run_iter, g^k(2^a m + 1) = 3^k 2^(a-k) m + 1 for k <= a, which removes every truncated subtraction; Lemma 1's clauses are negT_run_odd, negT_run_even, negT_start_ge, negT_localMax, packaged by negT_lemma_one over the v_2 decomposition negT_run_decomp, and Lemma 3 is negT_chain_nat (2 u' < 3^a m) with negT_chain_real (u' < u^delta / 2), packaged as negT_lemma_three. The sign of the map and the three known cycles are kernel computations (negT_sign_is_minus: g 17 = 25 where 3n+1 gives 26; negT_chain_tight_at_17: 2 * 40 < 81, one unit of slack, the note's tightness remark). FORMALIZING SHARPENED ONE HYPOTHESIS: the closed form needs no parity assumption on m, the powers of two alone keeping the state odd through the run, so oddness is used only to know the run stops at a. LEMMA 2 IS NOT IN LEAN: the cycle equation and the bound on Lambda are real-analytic; its first clause Lambda > 0 is neg_cycle_expanding on the conjugate side, and the conjugation x = -y is not formalized because Problems.Collatz sits below Problems.Juggler.",
           "tag": "EXACT \u2014 HUMAN PROOF"
         }
       ]
@@ -93954,7 +94776,7 @@
       "ledger": []
     },
     "Problems.Engine.InformationField": {
-      "declarations": 92,
+      "declarations": 109,
       "file": "formal/Problems/Engine/InformationField.lean",
       "imports": [],
       "ledger": []
@@ -94288,7 +95110,7 @@
       "ledger": []
     },
     "Problems.Juggler.CollatzBridge": {
-      "declarations": 68,
+      "declarations": 81,
       "file": "formal/Problems/Juggler/CollatzBridge.lean",
       "imports": [
         "Problems.Juggler.CycleCore",
@@ -94839,7 +95661,7 @@
       "ledger": []
     },
     "Problems.Juggler.CycleRunAlphabet": {
-      "declarations": 18,
+      "declarations": 20,
       "file": "formal/Problems/Juggler/CycleRunAlphabet.lean",
       "imports": [
         "Problems.Juggler.ItineraryStats",
@@ -94940,7 +95762,7 @@
       "ledger": []
     },
     "Problems.Juggler.DepthOneMainTerm": {
-      "declarations": 22,
+      "declarations": 24,
       "file": "formal/Problems/Juggler/DepthOneMainTerm.lean",
       "imports": [],
       "ledger": [
@@ -95573,7 +96395,7 @@
       ]
     },
     "Problems.Juggler.FateProductionWords": {
-      "declarations": 7,
+      "declarations": 9,
       "file": "formal/Problems/Juggler/FateProductionWords.lean",
       "imports": [
         "Problems.Juggler.ItineraryStats"
@@ -95777,7 +96599,7 @@
       ]
     },
     "Problems.Juggler.GapTransferWW": {
-      "declarations": 9,
+      "declarations": 8,
       "file": "formal/Problems/Juggler/GapTransferWW.lean",
       "imports": [
         "Problems.Juggler.GapTransfer"
@@ -95801,7 +96623,7 @@
       ]
     },
     "Problems.Juggler.GlobalDefect": {
-      "declarations": 36,
+      "declarations": 38,
       "file": "formal/Problems/Juggler/GlobalDefect.lean",
       "imports": [
         "Problems.Juggler.Defect"
@@ -95851,7 +96673,7 @@
       "ledger": []
     },
     "Problems.Juggler.IdealCycleMin": {
-      "declarations": 152,
+      "declarations": 154,
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "imports": [
         "Problems.Juggler.CycleMinFudge",
@@ -95891,7 +96713,7 @@
       "ledger": []
     },
     "Problems.Juggler.Itinerary": {
-      "declarations": 33,
+      "declarations": 35,
       "file": "formal/Problems/Juggler/Itinerary.lean",
       "imports": [
         "Problems.Juggler.Termination"
@@ -95918,7 +96740,7 @@
       "ledger": []
     },
     "Problems.Juggler.ItineraryStats": {
-      "declarations": 39,
+      "declarations": 45,
       "file": "formal/Problems/Juggler/ItineraryStats.lean",
       "imports": [
         "Problems.Juggler.Itinerary"
@@ -95989,7 +96811,7 @@
       "ledger": []
     },
     "Problems.Juggler.LeftoverFamilies": {
-      "declarations": 180,
+      "declarations": 179,
       "file": "formal/Problems/Juggler/LeftoverFamilies.lean",
       "imports": [
         "Problems.Juggler.BunchedTight",
@@ -96282,7 +97104,7 @@
       ]
     },
     "Problems.Juggler.MonomialSplitting": {
-      "declarations": 10,
+      "declarations": 9,
       "file": "formal/Problems/Juggler/MonomialSplitting.lean",
       "imports": [],
       "ledger": []
@@ -96482,7 +97304,7 @@
       ]
     },
     "Problems.Juggler.PaperBCertificateLengths": {
-      "declarations": 24,
+      "declarations": 26,
       "file": "formal/Problems/Juggler/PaperBCertificateLengths.lean",
       "imports": [
         "Problems.Juggler.PaperBCertificates"
@@ -96540,7 +97362,7 @@
       ]
     },
     "Problems.Juggler.PaperBChainRule": {
-      "declarations": 27,
+      "declarations": 32,
       "file": "formal/Problems/Juggler/PaperBChainRule.lean",
       "imports": [],
       "ledger": [
@@ -96616,7 +97438,7 @@
       ]
     },
     "Problems.Juggler.PaperBJumpTransposition": {
-      "declarations": 22,
+      "declarations": 30,
       "file": "formal/Problems/Juggler/PaperBJumpTransposition.lean",
       "imports": [],
       "ledger": [
@@ -96638,7 +97460,7 @@
       ]
     },
     "Problems.Juggler.PaperBLevelWindow": {
-      "declarations": 47,
+      "declarations": 44,
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "imports": [
         "Problems.Juggler.LogCells",
@@ -97539,7 +98361,7 @@
       ]
     },
     "Problems.Juggler.WalkTransport": {
-      "declarations": 25,
+      "declarations": 26,
       "file": "formal/Problems/Juggler/WalkTransport.lean",
       "imports": [
         "Problems.Juggler.CycleCore"
@@ -97891,7 +98713,7 @@
       ]
     },
     "Representation.Words": {
-      "declarations": 31,
+      "declarations": 33,
       "file": "formal/Representation/Words.lean",
       "imports": [],
       "ledger": [
@@ -97909,13 +98731,13 @@
     }
   },
   "totals": {
-    "declarations": 7134,
-    "declarations_with_a_ledger_row": 5231,
-    "ledger_rows_naming_a_file": 467,
+    "declarations": 7198,
+    "declarations_with_a_ledger_row": 5277,
+    "ledger_rows_naming_a_file": 466,
     "modules": 317,
     "trust": {
       "compiler": 56,
-      "kernel": 7078
+      "kernel": 7142
     }
   }
 }
