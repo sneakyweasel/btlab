@@ -36,16 +36,22 @@ the first open \(m\)?
   applied to \(3x+q\), \(px+q\), Guy's permutation and the Roelants problem; nothing on
   \(3x-1\). **extended**: the template transposed, with the negative-side constants derived
   here.
-- `simons-de-weger-2005-collatz-m-cycles`: \(m\le68\) for \(3n+1\) at \(X_0>2.5\cdot2^{60}\),
-  later \(75\). **Not yet read in full**; Acta Arithmetica's archive is shut to this
-  environment. The transposition at \(2^{60}\) gives \(68\) as well, which is a plausibility
-  check on the constants and not a reproduction.
+- `simons-de-weger-2005-collatz-m-cycles`, read in full on 21 September 2026 from the PDF
+  Philippe fetched: \(m\le68\) for \(3n+1\) at \(X_0=301\cdot2^{50}>3.3889\cdot10^{17}\)
+  (Roosendaal, November 2004), by three stages, tables (Lemma 15: \(57\)), the
+  continued-fraction reduction through the champion partial quotients (Lemma 17: \(63\)) and
+  de Weger's approximation lattice (Lemma 18: \(68\)); the \(75\) is Simons 2008 at the later
+  floor. **extended**: at their own floor the transposition gives \(63\), their Lemma 17
+  exactly, so the exact enumeration is their \(K_2\) stage and the lattice is worth five
+  values of \(m\) there.
+- `rhin-1987-pade-irrationality`, read at its Proposition on 21 September 2026:
+  \(|u_0+u_1\log2+u_2\log3|\ge H^{-13.3}\) for \(H=\max(|u_1|,|u_2|)\ge2\), no further
+  constant. The form \(e^{-13.3(0.46057+\log K)}\) carried since Paper A is [SdW] Lemma 12,
+  the same bound at \(H=K+L\) in the odd count; the probe now uses (7) at \(H\) the length.
 - `hercher-2023-collatz-m-cycles`, read from the PDF: \(m\le91\) for \(3n+1\) at
   \(695\cdot2^{60}\), with the valley arrangement and Lemma 8. **known**; the plain template
   here gives \(82\) at \(2^{68}\), so his refinement is worth about nine values of \(m\) and is
   the next thing to transpose.
-- `rhin-1987-pade-irrationality`: \(\Lambda>e^{-13.3(0.46057+\log K)}\), the form Paper A
-  Corollary 4.11 and `juggler_cycle_gap_baker` use. **known**, the one external input.
 - `sinisalo-2003-collatz-minimal-cycle-lengths`: Table 2 is the \(m\)-free survivor table on
   this side. **known**.
 - Prior-art search by name, 21 September 2026: "3x−1 problem" cycles, "3n−1" negative Collatz
@@ -128,7 +134,9 @@ elementary and are the natural next Lean; Rhin's bound would enter as a hypothes
   admissible lengths are excluded by the chaining, the closest by \(1.4\) bits at \(m=49\),
   \(K=757698850864\).
 - **The floors (COMPUTATIONALLY VERIFIED).** \(2^{40}\): \(m\le44\); \(2^{44}\) and
-  \(2^{48}\): \(m\le49\); \(2^{60}\): \(m\le68\); \(2^{68}\): \(m\le82\).
+  \(2^{48}\): \(m\le49\); \(301\cdot2^{50}\), [SdW]'s floor: \(m\le63\), their Lemma 17
+  exactly, first open length \(766512153894657\) at \(m=64\); \(2^{60}\):
+  \(m\le68\); \(2^{68}\): \(m\le82\).
 - **What the template leaves at \(m=50\), floor \(2^{44}\):** the lengths
   \(539722056247\), \(757698850864\), \(975675645481\), \(1193652440098\), with \(22.4\),
   \(15.0\), \(7.8\), \(2.9\) bits of room; at \(2^{48}\) only the last.
@@ -140,14 +148,16 @@ elementary and are the natural next Lean; Rhin's bound would enter as a hypothes
 - Lattice reduction (Simons–de Weger step 5) on the four lengths at \(m=50\), then upward.
 - Hercher's valley arrangement transposed, worth about nine values of \(m\) at \(2^{68}\).
 - The Eliahou-type period lattice on this side at \(2^{44}\).
-- Reading Simons–de Weger 2005 in full, for attribution and for their sharper constants.
+- Their Lemma 7 constant \(c_m\to0.30576\) against the \((B-m)/(\delta-1)\) term here, a
+  bookkeeping comparison that would move nothing at \(2^{44}\) but is owed to the note.
 
 ## Decision
 
 `PROMOTE`. The template carries with the sign flipped, the constants improve rather than
 worsen (the odd step subtracts), and the result is a theorem nobody has stated about a map
-the literature names but has not verified. Best next question: what lattice reduction does
-to the four lengths at \(m=50\).
+the literature names but has not verified; at [SdW]'s floor the transposition reproduces
+their continued-fraction stage exactly. Best next question: what de Weger's approximation
+lattice ([SdW] Section 7) does to the four lengths at \(m=50\).
 
 ## Publication assessment
 

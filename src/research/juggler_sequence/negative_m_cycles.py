@@ -65,12 +65,18 @@ _DPS = 80
 FLOOR_LOG2 = 44
 #: the three cycles of the 3x-1 shortcut map on the positive integers
 CYCLES: tuple[tuple[int, ...], ...] = ((1,), (5, 7, 10), (17, 25, 37, 55, 82, 41, 61, 91, 136, 68, 34))
-#: Rhin's constants, as Paper A and the cycle-gap Baker branch use them
+#: Rhin 1987, Proposition p. 160, (7): |u0 + u1 log 2 + u2 log 3| >= H^(-13.3) for every
+#: H = max(|u1|, |u2|) >= 2, with no further constant. Here u1 = -K, u2 = o, H = K. The form
+#: the laboratory carried since Paper A, exp(-13.3 (0.46057 + log K_odd)), is the same bound
+#: read at H = delta * K_odd, since 0.46057 = log delta; ``RHIN_OFFSET`` is kept at zero so
+#: that H is the cycle length itself.
 RHIN_EXPONENT = mpf("13.3")
-RHIN_OFFSET = mpf("0.46057")
-#: floors to table, with the label each is reported under
+RHIN_OFFSET = mpf("0")
+#: floors to table, with the label each is reported under; 301 * 2^50 is the floor of
+#: Simons-de Weger 2005 (Roosendaal, November 2004), for a like-for-like comparison
 FLOORS: tuple[tuple[int, str], ...] = (
-    (2**40, "2^40"), (2**44, "2^44"), (2**48, "2^48"), (2**60, "2^60"), (2**68, "2^68"),
+    (2**40, "2^40"), (2**44, "2^44"), (2**48, "2^48"), (301 * 2**50, "301*2^50"),
+    (2**60, "2^60"), (2**68, "2^68"),
 )
 #: the largest m tabled; beyond the excluded range the window is reported, not enumerated
 M_MAX = 120

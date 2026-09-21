@@ -1,5 +1,36 @@
 # Research journal
 
+## 2026-09-21 -- Simons-de Weger 2005 read: the transposition lands on their Lemma 17 at their floor, and Rhin's bound was being carried 457 times too weak
+
+- **Objective:** Philippe placed the Acta Arithmetica PDF on the Desktop; read it, and
+  Rhin 1987 beside it, before the \(3n-1\) note goes further.
+- **Two corrections to the record.** Their floor is \(X_0=301\cdot2^{50}>3.3889\cdot10^{17}\)
+  (Roosendaal, 10 November 2004), not \(2.5\cdot2^{60}\); that is Simons 2008's later floor,
+  where \(75\) comes from. And Rhin's Proposition (7) is \(|\Lambda|\ge H^{-13.3}\) for every
+  \(H\ge2\) with no further constant; the \(e^{-13.3(0.46057+\log K)}\) the laboratory has
+  carried since Paper A is their Lemma 12, Rhin at \(H=K+L\) written in the odd count with
+  \(0.46057=\log\delta\). Read at the cycle length itself the bound is \(457\) times
+  stronger. The probe now uses (7) as printed; the excluded ranges do not move, because the
+  margins come from the exact window and not from the ceiling.
+- **Their ladder, and where the transposition sits on it.** Tables (Lemma 15) \(57\),
+  continued-fraction reduction through the champion partial quotients (Lemma 17) \(63\), de
+  Weger's approximation lattice (Lemma 18) \(68\), all at their floor. Run at that floor,
+  the negative-side template with the exact enumeration gives \(63\), their Lemma 17 to the
+  unit, with the first open length \(766512153894657\) at \(m=64\). So the exact enumeration
+  is their \(K_2\) stage and no more, and the lattice is worth five values of \(m\) there;
+  at \(2^{44}\) it should be worth a comparable amount above \(49\). Their Lemma 6 is the
+  chaining with \(b=(1+X_0^{-1})/2^{1/\delta}\), which becomes exact here because \(u=y-1\)
+  is the conjugated variable; their Lemma 4 is the \(\Lambda\) bound with \(\sum1/x_i\) where
+  this side has \(\sum1/(y_i-1)\); their Lemma 10 and Corollary 11 are the Crandall stage
+  the walk replaces. Their conclusion, that an entirely new idea is needed past the border
+  the floor sets, stands on this side as on theirs.
+- **What moved.** Registry records for both papers rewritten from the text; the note's
+  Proposition 5 restated with (7), its Table 1 ceilings recomputed, a like-for-like row
+  added to Table 2 and the comparison paragraph corrected; the theorem row and the dossier
+  likewise; the tests pass unchanged, which is the point: nothing in the exclusion rested on
+  the weak form.
+- **Not done.** The lattice at \(m=50\); Hercher's valley arrangement; Lean for Lemmas 1-3.
+
 ## 2026-09-21 -- The 3n-1 m-cycle note started: no m-cycles with m <= 49 above 2^44, given Rhin
 
 - **Objective:** Philippe asked for the \(3n-1\) \(m\)-cycle note to be started, after the
