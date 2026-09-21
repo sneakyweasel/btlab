@@ -73,7 +73,9 @@ has a description of where all of its plateaus are — the next being
   states the dropping-time frequency `A186009(r)/2^A020914(r)` (2011),
   A186109 reads his Table A, A126241 states his `tau` and Conjecture 2.9,
   A365495 and A398792 the periodicity theorem. Philippe's edits: A076227
-  (Terras link, three comments, draft #182, in review) and A100982 (link,
+  (Terras link, three comments, proposed at #184; an editor pass at #185-186
+  by Michael De Vlieger expanded the Terras first name and re-proposed, with
+  no comment touched; awaiting approval) and A100982 (link,
   two comments, drafted the same day). The A100982 comment reads \(M\) at
   length \(A020914(n)\) as the single entry \(n(A020914(n)-n, A020914(n))\)
   of Terras's table, because \((2^{k-1}, 2^k)\) holds at most one power of

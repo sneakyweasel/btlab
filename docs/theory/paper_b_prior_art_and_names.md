@@ -129,7 +129,9 @@ Two obligations replace it, and both are sharper than the risk they retire.
      Table A; A126241 states his `tau` and Conjecture 2.9. The four entries this
      note checked -- A076227, A100982, A020914, A177789 -- are the Terras-free
      ones, and that is where Philippe's edits of 21 September 2026 go: A076227
-     (link and three comments, draft #182, in review) and A100982 (link and two
+     (link and three comments, proposed at #184; an editor pass at #185-186
+     by Michael De Vlieger expanded the Terras first name and re-proposed,
+     with no comment touched; awaiting approval) and A100982 (link and two
      comments, drafted; `a(n)` is the single cell `n(A020914(n)-n, A020914(n))`
      of Terras's table, because `(2^(k-1), 2^k)` holds at most one power of 3,
      brute-forced to `n = 27`).
