@@ -13,6 +13,8 @@ MODULES=("validate_paper_b","validate_paper_b_repairs","validate_paper_b_ooeoe",
          "validate_paper_b_d2","validate_paper_b_signed_waves",
          "validate_paper_b_wave_bearing","validate_paper_b_offset_anchor",
          "validate_paper_b_kernel_assembly","validate_paper_b_oooee_transfer")
+MONTHS=("January","February","March","April","May","June",
+        "July","August","September","October","November","December")
 
 
 def digest(path,mode="binary"):
@@ -29,6 +31,35 @@ def digest(path,mode="binary"):
     if mode=="text":
         data=data.replace(b"\r\n",b"\n").replace(b"\r",b"\n")
     return hashlib.sha256(data).hexdigest()
+
+
+def edition(text):
+    """The manuscript's edition stamp, read from its own YAML front matter.
+
+    This was the literal "2026-09-19-preprint" until 21 September 2026, so the
+    record printed an edition a day stale beside a current source_sha256: the
+    manuscript moved to 20 September, the digest followed it, and the label did
+    not. Deriving the stamp keeps the two describing one file.
+
+    It is the EDITION, the value docs/theory/paper_b_release_check.json carries
+    as "version" and PAPER_B_BUILD.md prints. It is deliberately not the Zenodo
+    RECORD version in docs/theory/paper_b_zenodo.json: that one tracks the
+    deposit, and on 21 September 2026 the title-page ORCID took it from 1.0.0 to
+    1.0.1 over a byte-identical manuscript. A label printed beside source_sha256
+    must not move when the source does not.
+
+    Read from the manuscript rather than from the release check because the
+    standalone source package ships this module and the manuscript without it.
+    Month names are matched against MONTHS rather than parsed with %B, which
+    follows LC_TIME and would read the packager's locale into the stamp.
+    """
+    front=re.match(r"---\n(.*?)\n---\n",text,re.S)
+    assert front,"the manuscript carries no YAML front matter"
+    stamp=re.search(r"^date:[ ]*(\d{1,2}) ([A-Za-z]+) (\d{4})[ ]*$",front.group(1),re.M)
+    assert stamp,"the front matter carries no 'date: D Month YYYY' line"
+    day,month,year=stamp.groups()
+    assert month in MONTHS,f"unrecognised month {month!r} in the front matter date"
+    return f"{year}-{MONTHS.index(month)+1:02d}-{int(day):02d}-preprint"
 
 
 def validate(source):
@@ -63,7 +94,8 @@ def validate(source):
         for split in re.findall(r"\\begin\{split\}[\s\S]*?\\end\{split\}",display):
             assert r"\tag{" not in split
     return {
-        "status":"PASS","version":"2026-09-19-preprint",
+        "status":"PASS","source_edition":edition(s),
+        "source_edition_definition":"The manuscript's own YAML front-matter date, rendered YYYY-MM-DD-preprint. This is the edition stamp, the value docs/theory/paper_b_release_check.json carries as \"version\" and PAPER_B_BUILD.md prints. It is not the Zenodo record version in docs/theory/paper_b_zenodo.json, which tracks the deposit and moved from 1.0.0 to 1.0.1 on 2026-09-21 over a byte-identical manuscript. The field was a pinned literal until 2026-09-21 and had gone stale at 2026-09-19-preprint while source_sha256 beside it already described the 2026-09-20 manuscript.",
         "source_sha256":digest(source,"text"),
         "exact_control_modules":results,"equation_tags":len(tags),
         "appendix_equation_references":len(refs),
@@ -85,5 +117,5 @@ if __name__=="__main__":
     if not source.exists():
         source=HERE.parent/"docs/theory"/f"{STEM}.md"
     rendered=json.dumps(validate(source),indent=2)+"\n"
-    if args.output:args.output.write_text(rendered,encoding="utf-8")
+    if args.output:args.output.write_text(rendered,encoding="utf-8",newline="\n")
     print(rendered,end="")
