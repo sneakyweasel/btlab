@@ -487,7 +487,7 @@ in the `Problems` barrel, so the default build covers it, and
 
 ```text
 Repository:  https://github.com/sneakyweasel/btlab
-Commit:      d6e8a4ae20a5c82f46fc5e673a1bf8d1a344e29c
+Commit:      7a9f66cdd07b7544dc0839073b673e70cb0ed085
 Lean:        leanprover/lean4:v4.33.1
 Mathlib:     v4.33.1 (lake-manifest rev 0df444a360eaa60ab8c11dca51a86af692955474)
 Build:       lake build Problems.Collatz.NegativeMCycles   (from formal/)
@@ -497,9 +497,13 @@ Recheck:     python tools/check_3n_minus_1_note_numeric.py
 ```
 
 The commit is the repository state that produced the tables, the floor records and the Lean
-module; every file those commands read or write is byte-identical there to the version this
-paper reports. A later editorial commit of this text, including the one that adds the
-build tooling for this paper, does not change them.
+module. All fourteen files those commands read or write -- the two probes, the recheck, the
+builder and its template, the four floor records, the CUDA source, the two table files and
+the Lean module -- are byte-identical there to the versions this paper reports; the check is
+mechanical and is part of the release gate. Only this text, its typeset form and the manifest
+of digests move afterwards, in the editorial commit that writes the line above.
+Version 1.0.0 of this paper was built at commit
+`d6e8a4ae20a5c82f46fc5e673a1bf8d1a344e29c`, before Lemma 6.
 
 ## Acknowledgments and use of AI
 
