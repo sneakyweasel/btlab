@@ -1,5 +1,29 @@
 # Research journal
 
+## 2026-09-21 -- A method wall expired without anyone noticing, and the test that should have noticed was measuring the wrong bound
+
+- **What happened.** Earlier today I filed both of Hercher's m-free refinements as method
+  walls against Paper D, on a measurement: closing the first open value, \(m=59\) at
+  \(2^{51}\), needed \(4.18\) bits of effective floor, and Corollary 29 buys \(1.30\).
+  Then Lemma 6 moved the first open value to \(m=62\). Remeasured against the refined
+  bound, \(m=62\) needs \(0.30\) bits and \(m=63\) needs \(0.62\). The same
+  \(1.30\) now clears both, and falls short only at \(64\), which needs \(1.99\).
+- **The guard was there and did not fire.** The pinned test carried
+  `assert needed[59] > 3 * hercher_bits, "if this ever fails, the transposition is worth
+  trying"`. Good instinct, wrong subject: it read `survivors_without_lemma_6`, so it kept
+  measuring the shortfall the paper used to have. It stayed green straight through the moment
+  it existed to catch. The fix bisects the extra floor each open \(m\) needs under the
+  valley cap and asserts the crossing itself.
+- **The lesson, which is now in the entry.** A `METHOD WALL` is a measurement against a
+  bound, not a property of the method, and it expires when the bound improves. An entry
+  recording one has to name the bound it was measured against, and its test has to measure
+  the current shortfall rather than the one that was current when the entry was written.
+- **What this is not.** It is not a result. Nothing measured says Corollary 29's residue
+  argument carries to a map whose odd step subtracts, and Lemma 26's case analysis has no
+  negative-side statement here. It is a reason to try, where an hour ago there was none.
+- **Also corrected:** the literature note and the dossier's prior-art row, which both carried
+  the old verdict and the old test name.
+
 ## 2026-09-21 -- Paper D 1.1.0 is built: the valley count is Lemma 6, the theorem reads m <= 61, and Hercher's 91 is reproduced to within one
 
 - **Objective:** Philippe said to proceed until it is publication ready.
