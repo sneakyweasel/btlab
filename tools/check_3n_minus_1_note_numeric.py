@@ -6,11 +6,16 @@ manuscript's numbers by a different route from the probe's:
 
 * the admissible lengths are enumerated by an integer sieve over K = iQ + j with
   Q a convergent denominator of log2/log3 (the probe uses the three-gap walk):
-  one sieve for the floors 2^40 to 2^48 through m = 50, a second, narrower one
-  for the floors 2^49 to 2^51 up to the first open m of the note's Table 2; the
-  sieve is first checked against a direct scan at coarse windows;
+  one sieve for the floors 2^40 and 2^44, a second, narrower one for the floors
+  2^49 to 2^51, each carried up to the largest first open m those floors print in
+  the note's Table 2; the sieve is first checked against a direct scan at coarse
+  windows;
 * each Rhin ceiling K_3(m) is recomputed and its defining inequality evaluated
   at K_3 - 1 and K_3;
+* Lemma 6's valley cap is implemented here from the manuscript's own statement,
+  minimised exactly over its breakpoints rather than on a grid, and combined with
+  the chaining display the way Theorem 8 combines them, so that every margin is a
+  second opinion on the probe rather than a rerun of it;
 * every margin and every killing floor is recomputed with mpmath at one hundred
   and twenty digits;
 * the known cycles' (K, o) are recomputed by iterating the map.
@@ -184,6 +189,49 @@ def margin(K: int, m: int) -> mp.mpf:
     return mp.log(m / L, 2) - L_min(K, m)
 
 
+def valley_thresholds(m, o, delta_, mpf_):
+    """T_r, where R(T) >= r exactly when T >= T_r:  T_r = (o + A_g)/(r + B_g), g = m - r,
+    A_g = sum_{t=1..g} (delta^t - 1)/(delta - 1),  B_g = sum_{t=1..g} delta^t."""
+    powers, p = [], mpf_(1)
+    for _ in range(m + 1):
+        p *= delta_
+        powers.append(p)
+    A = [mpf_(0)]
+    Bs = [mpf_(0)]
+    for g in range(1, m + 1):
+        A.append(A[-1] + (powers[g - 1] - 1) / (delta_ - 1))
+        Bs.append(Bs[-1] + powers[g - 1])
+    return {r: (mpf_(o) + A[m - r]) / (r + Bs[m - r]) for r in range(m + 1)}
+
+
+def valley_cap_from(m, o, X0, delta_, mpf_, log_):
+    """Lemma 6 minimised exactly. On [T_r, T_{r+1}) the bound is r 2^-L0 + (m-r) 2^-T, which
+    falls with T, so each r is best just below T_{r+1}; r = m gives Lemma 2."""
+    L0 = log_(mpf_(X0) - 1, 2)
+    T = valley_thresholds(m, o, delta_, mpf_)
+    best = mpf_(m) * mpf_(2) ** (-L0)
+    for r in range(m):
+        Tr = T[r + 1]
+        if Tr <= L0:
+            continue
+        best = min(best, r * mpf_(2) ** (-L0) + (m - r) * mpf_(2) ** (-Tr))
+    return best
+
+
+def valley_cap(m: int, o: int, X0: int) -> mp.mpf:
+    """Lemma 6 minimised over its breakpoints, written from the manuscript rather than
+    imported from the probe, so that it is a second opinion on the same claim."""
+    return valley_cap_from(m, o, X0, DELTA, mp.mpf, lambda z, b: mp.log(z, b))
+
+
+def combined_margin(K: int, m: int, X0: int) -> mp.mpf:
+    """The better of Theorem 8's two displays, in bits; negative means the length is excluded."""
+    o, L = lam(K)
+    chaining = mp.log(m / L, 2) - L_min(K, m)
+    valley = mp.log(valley_cap(m, o, X0) / L, 2)
+    return min(chaining, valley)
+
+
 def killing_floor_log2(K: int, m: int) -> float:
     """The floor at which Lemma 2's x_min - 1 < m / Lambda removes the length: log2(m/Lambda + 1)."""
     return float(mp.log(mp.mpf(m) / lam(K)[1] + 1, 2))
@@ -229,15 +277,20 @@ def parse_note(text: str) -> dict:
             else:
                 e = int(re.search(r"2\^\{(\d+)\}", cells[0]).group(1))
                 floor_key, floor = f"2^{e}", 2 ** e
-            rows2.append({"floor_key": floor_key, "floor": floor, "excluded_through": int(cells[1]),
-                          "first_open": int(cells[2]),
-                          "survivors": [int(s) for s in re.findall(r"\d+", cells[3])]})
+            # a floor whose enumeration was stopped reads "\ge N" and has no first open m
+            bound = cells[1].startswith(r"\(\ge")
+            through = int(re.search(r"(\d+)", cells[1]).group(1))
+            rows2.append({"floor_key": floor_key, "floor": floor, "excluded_through": through,
+                          "lower_bound_only": bound,
+                          "first_open": None if cells[2] == "—" else int(cells[2]),
+                          "survivors": [] if cells[3] == "—" else [int(s) for s in re.findall(r"\d+", cells[3])]})
     out = {"table1": rows1, "table2": rows2}
     out["floor_log2"] = int(re.search(r"The floor is\s*\\\(X_0=2\^\{(\d+)\}\\\)", flat).group(1))
     out["abstract_closest_bits"] = float(re.search(r"the closest by \\\((\d+\.\d)\\\) bits", flat).group(1))
     # Either phrasing of the closest exclusion: "hangs on X bits at K=..." (first draft) or
     # "has X bits to spare at K=..." (second). The parser must not be tied to one wording.
-    m5 = re.search(r"(?:hangs on|has)\s+\\\((\d+\.\d)\\\)\s+bits(?: to spare)?\s+at \\\(K=(\d+)\\\)", flat)
+    m5 = re.search(r"(?:hangs on|has|clears by)\s+\\\((\d+\.\d)\\\)\s+bits(?: to spare)?,?\s+"
+                   r"(?:at|and it is)\s+\\\(K=(\d+)\\\)", flat)
     if m5 is None:
         raise SystemExit("cannot find the closest-exclusion sentence (bits and K) in the note")
     out["section5_closest_bits"] = float(m5.group(1))
@@ -250,12 +303,17 @@ def parse_note(text: str) -> dict:
     out["no_admissible_through"] = sorted({int(v) for v in re.findall(
         r"For \\\(m\\le(\d+)\\\)\s+(?:no\s+admissible|there is no admissible)", flat)})
     out["first_admissible_m"] = int(re.search(r"for \\\((\d+)\\le m\\le\d+\\\) the admissible", flat).group(1))
-    block = re.search(r"leaves \w+ lengths?,\s*\\\[\s*(.+?)\s*\\\]\s*with (.+?) bits of room", flat, re.S)
-    out["open_lengths"] = [int(s) for s in re.findall(r"\d+", block.group(1))]
-    out["open_bits"] = [float(v) for v in numbers_in(block.group(2), NUM)]
-    out["open_killing_floors"] = [float(v) for v in numbers_in(window_after(flat, r"higher floor, at"), POW)]
-    out["abstract_killing_floors"] = [float(v) for v in
-                                      numbers_in(window_after(flat, r"the floors that remove them are"), POW)]
+    # the first open m, stated twice: once in the abstract, once after Table 1
+    blocks = re.findall(r"At \\\(m=\d+\\\) one length (?:survives|remains), \\\((\d+)\\\), with "
+                        r"\\\((\d+\.\d)\\\) bits of room[;,] (?:and )?a floor of \\\(2\^\{(\d+\.\d\d)\}\\\)", flat)
+    if len(blocks) != 2:
+        raise SystemExit(f"expected the first-open sentence twice, found {len(blocks)}")
+    if len({b for b in blocks}) != 1:
+        raise SystemExit(f"the abstract and Section 5 disagree about the first open m: {blocks}")
+    out["open_lengths"] = [int(blocks[0][0])]
+    out["open_bits"] = [float(blocks[0][1])]
+    out["open_killing_floors"] = [float(blocks[0][2])]
+    out["abstract_killing_floors"] = [float(blocks[1][2])]
     out["tightness"] = re.search(r"16\^\{\\delta\}/2=(\d+\.\d)", flat).group(1)
     out["cycle_steps"] = re.search(r"\\\(\(K,o\)=\(1,1\),\(3,2\),\(11,7\)\\\)", flat) is not None
     out["floor_odd_starts_cpu"] = int(re.search(r"\\\((\d+)\\\) odd starts counted exactly", flat).group(1))
@@ -280,6 +338,9 @@ def main() -> int:
     fkey = f"2^{F}"
     report: dict = {"scope": __doc__.strip().splitlines()[0], "note_floor": fkey,
                     "note": str(args.note.relative_to(ROOT)) if args.note.is_relative_to(ROOT) else str(args.note)}
+    for phrase in ("Lemma 6 (valley count)", "R(T)", "Theorem 8"):
+        if phrase not in text:
+            fail(f"the manuscript does not state {phrase!r}; the checker is testing a different paper")
     if note["subtitle_floor"] != F:
         fail(f"subtitle floor 2^{note['subtitle_floor']} vs Section 2's 2^{F}")
 
@@ -305,8 +366,9 @@ def main() -> int:
                                                          "agree": a == b})
 
     # 3. the ceilings, independently, for every m any check below needs
-    first_open = {r["floor_key"]: r["first_open"] for r in note["table2"]}
-    m_low = 50                                   # the floors 2^40 to 2^48 are checked through m = 50
+    # rows whose enumeration was stopped carry no first open m
+    first_open = {r["floor_key"]: r["first_open"] for r in note["table2"] if r["first_open"] is not None}
+    m_low = max([first_open.get(k, 0) for k in ("2^40", "2^44")] + [0])   # sieved directly
     m_mid = max([first_open.get(k, 0) for k in ("2^49", "2^50", "2^51")] + [0])
     need = set(range(1, max(m_low, m_mid) + 1)) | set(first_open.values())
     ceilings = {m: K3(m) for m in sorted(need)}
@@ -343,7 +405,7 @@ def main() -> int:
         for m in range(1, m_max + 1):
             eps = mp.mpf(m) / ((fl - 1) * LN3)
             adm = [K for K in hits if K < ceilings[m] and detail[K][1] < eps]
-            margins = {K: margin(K, m) for K in adm}
+            margins = {K: combined_margin(K, m, fl) for K in adm}
             surv = [K for K in adm if margins[K] > 0]
             rows[m] = {"admissible": adm, "least": adm[0] if adm else None,
                        "margin": max(margins.values()) if adm else None, "survivors": surv,
@@ -351,7 +413,7 @@ def main() -> int:
                        "worst_K": max(adm, key=lambda K: margins[K]) if adm else None}
         return rows
 
-    computed = {2 ** e: rows_for(2 ** e, hits_low, detail_low, m_low) for e in (40, 44, 48)}
+    computed = {2 ** e: rows_for(2 ** e, hits_low, detail_low, m_low) for e in (40, 44)}
     if m_mid:
         for e in (49, 50, 51):
             computed[2 ** e] = rows_for(2 ** e, hits_mid, detail_mid, m_mid)
@@ -442,18 +504,25 @@ def main() -> int:
                     [K for K, _ in got["first_open_survivors"]] != r["survivors"]:
                 fail(f"Table 2 {key}: note {r} vs recomputed {got}")
         else:
-            if probe["excluded_through"] != r["excluded_through"]:
-                fail(f"Table 2 {key}: excluded through {r['excluded_through']} vs probe {probe['excluded_through']}")
-            first = next(x for x in probe["rows"] if not x["excluded"])
-            if first["m"] != r["first_open"] or [s["K"] for s in first["survivors"]] != r["survivors"]:
-                fail(f"Table 2 {key}: first open row differs from the probe")
+            # the note's Table 2 carries the refined ladder, so compare with the probe's
+            ladder = summary.get("valley_ladder", {}).get(key)
+            if ladder != r["excluded_through"]:
+                fail(f"Table 2 {key}: excluded through {r['excluded_through']} vs probe {ladder}")
+            if r["first_open"] is None:
+                if not r["lower_bound_only"]:
+                    fail(f"Table 2 {key}: no first open m printed, but the entry is not marked as a bound")
+                report["floors"][key] = {"checked": "lower bound only; enumeration stopped",
+                                         "excluded_through": r["excluded_through"]}
+                continue
             m = r["first_open"]
             eps = mp.mpf(m) / ((r["floor"] - 1) * LN3)
             for K in r["survivors"]:
-                if not (one_minus_frac(K) < eps and K < ceilings[m] and margin(K, m) > 0):
-                    fail(f"Table 2 {key}: printed survivor {K} is not admissible with a positive margin")
+                if not (one_minus_frac(K) < eps and K < ceilings[m]
+                        and combined_margin(K, m, r["floor"]) > 0):
+                    fail(f"Table 2 {key}: printed survivor {K} does not clear both displays")
             report["floors"][key] = {"checked": "printed survivors only", "first_open": m,
-                                     "survivor_bits": [mp.nstr(margin(K, m), 6) for K in r["survivors"]]}
+                                     "survivor_bits": [mp.nstr(combined_margin(K, m, r["floor"]), 6)
+                                                       for K in r["survivors"]]}
     claims = {f"2^{e}": M for M, e in note["abstract_floor_claims"]}
     if len(claims) < 3:
         fail(f"abstract floor claims not parsed: {note['abstract_floor_claims']}")

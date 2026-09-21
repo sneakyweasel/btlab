@@ -42,9 +42,10 @@ The live publication task is the Juggler programme.
    [10 September proof audit](theory/paper_b_proof_review.md))
 3. [Paper C — fate contagion](theory/juggler_fate_almost_all_note.md)
    ([doi:10.5281/zenodo.22678165](https://doi.org/10.5281/zenodo.22678165))
-4. [Paper D — no m-cycles of the 3n-1 map for m <= 58](theory/collatz_3n_minus_1_m_cycles_note.md)
-   ([doi:10.5281/zenodo.22876190](https://doi.org/10.5281/zenodo.22876190)) — the Collatz
-   side, not the Juggler map
+4. [Paper D — no m-cycles of the 3n-1 map for m <= 61](theory/collatz_3n_minus_1_m_cycles_note.md)
+   ([doi:10.5281/zenodo.22876190](https://doi.org/10.5281/zenodo.22876190) is version 1.0.0,
+   which reads m <= 58; version 1.1.0 adds the valley-count lemma and is built but not yet
+   deposited) — the Collatz side, not the Juggler map
 5. [Branch ledger](juggler_branch_ledger.md)
 6. [Negative knowledge](negative_knowledge.md) — every recorded
    `REFUTED` / CLOSE / method wall, clustered by killing invariant

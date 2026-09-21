@@ -96,158 +96,131 @@
   "57": 445072680198484,
   "58": 715295665905327,
   "59": 1149356600587428,
-  "64": 12277228651011070,
+  "60": 1846464505724577,
+  "61": 2965831161057260,
+  "62": 4762921235638509,
   "69": 130597089394124633,
-  "83": 96194686215847874949
+  "70": 209460754665625920,
+  "75": 2218435982578972756,
+  "90": 2589222287509867073416
  },
  "sieves": [
   {
    "Q": 301994,
-   "kmax": 15974496522785,
-   "eps_max": "4.13928876982e-11",
-   "hits": 661
+   "kmax": 41379279094690,
+   "eps_max": "4.30486032061e-11",
+   "hits": 1780
   },
   {
-   "Q": 17087915,
-   "kmax": 1149356600587428,
-   "eps_max": "9.53976708668e-14",
-   "hits": 110
+   "Q": 85137581,
+   "kmax": 4762921235638509,
+   "eps_max": "1.00248399894e-13",
+   "hits": 479
   }
  ],
  "floors": {
   "2^40": {
-   "excluded_through": 44,
-   "first_open": 45,
-   "checked_through_m": 50,
+   "excluded_through": 49,
+   "first_open": 50,
+   "checked_through_m": 52,
    "first_open_survivors": [
     [
-     72448885240,
-     "11.8308"
-    ],
-    [
-     82888745831,
-     "8.47818"
-    ],
-    [
-     93328606422,
-     "5.38717"
-    ],
-    [
      103768467013,
-     "3.21745"
+     "0.242636"
+    ],
+    [
+     1193652440098,
+     "2.91098"
     ]
    ],
    "no_admissible_through": 38
   },
   "2^44": {
-   "excluded_through": 49,
-   "first_open": 50,
-   "checked_through_m": 50,
+   "excluded_through": 51,
+   "first_open": 52,
+   "checked_through_m": 52,
    "first_open_survivors": [
     [
-     539722056247,
-     "22.4284"
-    ],
-    [
-     757698850864,
-     "14.9558"
-    ],
-    [
-     975675645481,
-     "7.84165"
-    ],
-    [
      1193652440098,
-     "2.91098"
+     "0.519541"
     ]
    ],
    "no_admissible_through": 43
   },
-  "2^48": {
-   "excluded_through": 49,
-   "first_open": 50,
-   "checked_through_m": 50,
-   "first_open_survivors": [
-    [
-     1193652440098,
-     "2.91098"
-    ]
-   ],
-   "no_admissible_through": 44
-  },
   "2^49": {
-   "excluded_through": 54,
-   "first_open": 55,
-   "checked_through_m": 59,
+   "excluded_through": 58,
+   "first_open": 59,
+   "checked_through_m": 62,
    "first_open_survivors": [
     [
-     9767196315401,
-     "12.2108"
+     83130157078217,
+     "0.29749"
     ]
    ],
    "no_admissible_through": 48
   },
   "2^50": {
-   "excluded_through": 56,
-   "first_open": 57,
-   "checked_through_m": 59,
+   "excluded_through": 59,
+   "first_open": 60,
+   "checked_through_m": 62,
    "first_open_survivors": [
     [
-     28107936506105,
-     "7.42946"
+     83130157078217,
+     "0.29749"
     ]
    ],
    "no_admissible_through": 51
   },
   "2^51": {
-   "excluded_through": 58,
-   "first_open": 59,
-   "checked_through_m": 59,
+   "excluded_through": 61,
+   "first_open": 62,
+   "checked_through_m": 62,
    "first_open_survivors": [
     [
-     64789416887513,
-     "12.3598"
-    ],
-    [
      83130157078217,
-     "4.97002"
+     "0.29749"
     ]
    ],
    "no_admissible_through": 52
   },
+  "2^48": {
+   "checked": "printed survivors only",
+   "first_open": 59,
+   "survivor_bits": [
+    "1.29749"
+   ]
+  },
   "2^56": {
    "checked": "printed survivors only",
-   "first_open": 64,
+   "first_open": 69,
    "survivor_bits": [
-    "12.5724"
+    "1.40841"
    ]
   },
   "301*2^50": {
    "checked": "printed survivors only",
-   "first_open": 64,
+   "first_open": 70,
    "survivor_bits": [
-    "12.5724"
+    "0.174792"
    ]
   },
   "2^60": {
    "checked": "printed survivors only",
-   "first_open": 69,
+   "first_open": 75,
    "survivor_bits": [
-    "4.18086"
+    "0.215767"
    ]
   },
   "2^68": {
    "checked": "printed survivors only",
-   "first_open": 83,
+   "first_open": 90,
    "survivor_bits": [
-    "10.0208",
-    "5.34852"
+    "0.376521"
    ]
   }
  },
  "open_killing_floors_log2": [
-  51.869,
-  55.18
+  55.252
  ],
  "floor_certificate_numbers": {
   "note": {

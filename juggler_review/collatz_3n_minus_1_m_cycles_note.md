@@ -1,5 +1,5 @@
 ---
-title: "No m-cycles of the 3n−1 map for m ≤ 58"
+title: "No m-cycles of the 3n−1 map for m ≤ 61"
 subtitle: 'The Simons–de Weger template on the negative side, from a verification floor of \(2^{51}\)'
 author: Philippe Cochin
 date: 21 September 2026
@@ -32,17 +32,19 @@ map, deriving its constants on this side rather than borrowing them: the odd ste
 so in the variable \(u=y-1\) an odd run is exact multiplication by \(3/2\), a run of \(a\) odd
 steps starts at \(y\ge2^a+1\), the cycle equation bounds the linear form
 \(\Lambda=o\,\log 3-K\,\log 2\) by \(m/(x_{\min}-1)\) with constant one, and successive local
-minima obey \(u_{i+1}<u_i^{\log_2 3}/2\). With Rhin's bound this gives: the \(3n-1\) map has
-no \(m\)-cycle with \(1\le m\le58\) other than the two known ones. For \(m\le2\) that is a
+minima obey \(u_{i+1}<u_i^{\log_2 3}/2\). Those three facts are three constraints on one
+vector, and using them together rather than separately is a fourth ingredient: a cycle cannot
+keep all its local minima near the floor and still carry its odd steps, because the chaining
+limits how fast the minima can climb. With Rhin's bound this gives: the \(3n-1\) map has
+no \(m\)-cycle with \(1\le m\le61\) other than the two known ones. For \(m\le2\) that is a
 floor-dependent form of a theorem Simons proved without any floor; the statement is new for
-\(3\le m\le58\). For \(m\le52\) no
-admissible cycle length lies below Rhin's ceiling; for \(53\le m\le58\) the admissible lengths
-are excluded by the chaining, the closest by \(9.8\) bits. At \(m=59\) two lengths remain; they
-are the output of the template's last step, not its input, and the floors that remove them
-are \(2^{51.87}\) and \(2^{55.18}\). The same tables give \(m\le44\) from \(2^{40}\),
-\(m\le49\) from \(2^{44}\), \(m\le63\) from \(2^{56}\), \(m\le68\) from \(2^{60}\) and
-\(m\le82\) from \(2^{68}\); on the \(3n+1\) side at the floor of Simons and de Weger the same
-enumeration and tests return their Lemma 18 to the unit. No published verification floor and no
+\(3\le m\le61\). For \(m\le52\) no admissible cycle length lies below Rhin's ceiling; for
+\(53\le m\le61\) the admissible lengths are excluded, the closest by \(0.1\) bits. At
+\(m=62\) one length remains, \(83130157078217\), with \(0.3\) bits of room, and a floor of
+\(2^{55.25}\) removes it. The same tables give \(m\le49\) from \(2^{40}\), \(m\le51\) from
+\(2^{44}\), \(m\le68\) from \(2^{56}\), \(m\le74\) from \(2^{60}\) and \(m\le89\) from
+\(2^{68}\); run on the \(3n+1\) side at Hercher's floor the same machinery returns
+\(m\le90\) against his published \(91\). No published verification floor and no
 \(m\)-cycle theorem with \(m\ge3\) is known to us for this map.
 
 **2020 Mathematics Subject Classification:** Primary 11B83; Secondary 11J86, 11Y16.
@@ -128,7 +130,7 @@ cyclic order, \(u_i=y_i-1\), the run from \(y_i\) has \(a_i\) odd steps, and \(r
 halvings follow it. \(x_{\min}\) is the least element of \(C\). The floor is
 \(X_0=2^{51}\).
 
-## 3. Five lemmas on the negative side
+## 3. Six lemmas on the negative side
 
 **Lemma 1 (odd runs).** Let \(y\ge3\) be odd, \(u=y-1\), \(a=v_2(u)\). Then
 \[
@@ -218,7 +220,7 @@ walked: from the two least returns \(q_1,q_2\), found among the convergents and
 semiconvergents of \(x\), each further member is the previous one plus \(q_1\), \(q_2\) or
 \(q_1+q_2\), which is the classical three-distance structure [3D]; the least member is
 Crandall's lower bound on the length. Nothing below depends on that recursion being the
-right one. Theorem 7 quantifies over *every* admissible \(K\) below the ceiling, and the
+right one. Theorem 8 quantifies over *every* admissible \(K\) below the ceiling, and the
 lists used to verify it were produced twice by unrelated means, by the walk and by an
 exhaustive integer sieve over \(K=iQ+j\) at \(2^{256}\) scale, which agree (Section 8).
 
@@ -251,9 +253,53 @@ makes the floor computation of Section 1 exact rather than approximate: at \(j=2
 \(286581\) classes that never contract are the only ones walked, a count that is
 OEIS A076227(24).
 
+**Lemma 6 (valley count).** Let \(C\) be an \(m\)-cycle with \(x_{\min}\ge X_0\) and \(o\)
+odd steps, write \(b_i=\log_2u_i\) and \(L_0=\log_2(X_0-1)\). For \(T\ge L_0\) let
+\(R(T)\) be the largest \(r\le m\) with
+\[
+rT+\sum_{t=1}^{m-r}\Bigl(\delta^tT-\frac{\delta^t-1}{\delta-1}\Bigr)\ \ge\ o .
+\]
+Then, for every \(T\ge L_0\),
+\[
+\Lambda(C)\ <\ R(T)\,2^{-L_0}+\bigl(m-R(T)\bigr)2^{-T}.
+\]
+
+*Proof.* Three properties of the \(b_i\). Each \(u_i\ge x_{\min}-1\ge X_0-1\), so
+\(b_i\ge L_0\). Lemma 1 gives \(u_i\ge2^{a_i}\), so \(a_i\le b_i\) and
+\(\sum b_i\ge\sum a_i=o\). Lemma 3 gives \(u_{i+1}<u_i^{\delta}/2\), so
+\(b_{i+1}<\delta b_i-1\).
+
+Fix \(T\ge L_0\), put \(S=\{i:b_i\le T\}\) and \(r=|S|\). If \(S\) is empty then every
+\(b_i>T\) and the displayed bound holds because \(R(T)\ge0\). Otherwise, for \(i\notin S\)
+let \(d_i\ge1\) be least with \(i-d_i\in S\), the indices read cyclically. Iterating
+\(b_{j+1}<\delta b_j-1\), and using that \(z\mapsto\delta z-1\) is increasing,
+\[
+b_i\ \le\ \delta^{d_i}b_{i-d_i}-\frac{\delta^{d_i}-1}{\delta-1}\ \le\
+\delta^{d_i}T-\frac{\delta^{d_i}-1}{\delta-1}.
+\]
+The multiset \(\{d_i\}\) is, on each maximal gap of length \(g\) between cyclically
+consecutive members of \(S\), exactly \(1,\dots,g\); the gap lengths sum to \(m-r\). The
+right-hand side above increases with \(d_i\), so splitting \(m-r\) into several gaps gives a
+smaller total than one gap of length \(m-r\). Hence
+\[
+o\ \le\ \sum_i b_i\ \le\ rT+\sum_{t=1}^{m-r}\Bigl(\delta^tT-\frac{\delta^t-1}{\delta-1}\Bigr).
+\]
+That right-hand side is decreasing in \(r\), since replacing the largest ceiling term by
+\(T\) lowers it whenever \(T\ge1/(\delta-1)\), which holds as \(L_0\ge2\). So \(r\le R(T)\).
+Finally, by Lemma 2,
+\(\Lambda<\sum_i1/u_i=\sum_i2^{-b_i}\le r2^{-L_0}+(m-r)2^{-T}\), and that expression
+increases with \(r\) because \(2^{-L_0}\ge2^{-T}\). \(\square\)
+
+At \(T=L_0\) the lemma is exactly Lemma 2, so it is never weaker; it is stronger whenever
+some larger threshold does better, which is whenever \(o\) is large enough that most minima
+have to climb. This is the content of the arrangement behind Hercher's Main Theorem 21 [H23],
+which reaches the same conclusion on the \(3n+1\) side through a pigeonhole over windows of
+consecutive runs. Here the cyclic structure is already in Lemmas 1 to 3 and no pigeonhole is
+needed. Section 5 records what the two give on the same floor.
+
 ## 4. Rhin's ceiling
 
-**Proposition 6.** Rhin's Proposition [R87, p. 160, (7)] states that for integers
+**Proposition 7.** Rhin's Proposition [R87, p. 160, (7)] states that for integers
 \(u_0,u_1,u_2\) with \(H=\max(|u_1|,|u_2|)\ge2\),
 \[
 |u_0+u_1\log2+u_2\log3|\ \ge\ H^{-13.3},
@@ -283,27 +329,32 @@ and \(\log3\).
 
 ## 5. The theorem
 
-**Theorem 7.** Let \(X_0=2^{51}\). For every \(1\le m\le58\) and every length \(K<K_3(m)\)
-with \(\Lambda(K)<m/(X_0-1)\),
+**Theorem 8.** Let \(X_0=2^{51}\). For every \(1\le m\le61\) and every length
+\(K<K_3(m)\) with \(\Lambda(K)<m/(X_0-1)\), at least one of
 \[
-2^{L_{\min}(K,m)}\ \ge\ \frac m{\Lambda(K)} .
+2^{L_{\min}(K,m)}\ \ge\ \frac m{\Lambda(K)},\qquad
+\Lambda(K)\ \ge\ \min_{T\ge L_0}\Bigl(R(T)2^{-L_0}+(m-R(T))2^{-T}\Bigr)
 \]
-Consequently, with Rhin's bound, the \(3n-1\) map has no \(m\)-cycle with \(1\le m\le58\)
-whose least element is at least \(2^{51}\), and by the floor no \(m\)-cycle with \(m\le58\)
-other than \((5,7,10)\) and the cycle at \(17\). For \(m\le2\) this is weaker than [S07],
-which needs no floor; the content of the theorem is the range \(3\le m\le58\).
+holds. Consequently, with Rhin's bound, the \(3n-1\) map has no \(m\)-cycle with
+\(1\le m\le61\) whose least element is at least \(2^{51}\), and by the floor no
+\(m\)-cycle with \(m\le61\) other than \((5,7,10)\) and the cycle at \(17\). For
+\(m\le2\) this is weaker than [S07], which needs no floor; the content of the theorem is
+the range \(3\le m\le61\).
 
-*Proof.* An \(m\)-cycle above the floor has \(K<K_3(m)\) by Proposition 6, its length is
-admissible by Lemma 4, and Lemmas 2 and 3 give \(2^{L_{\min}(K,m)}<x_{\min}-1\le m/\Lambda(K)\),
-contradicting the display. The display is a finite exact computation: for each \(m\) the
-admissible lengths below \(K_3(m)\) are the finitely many \(K\) of Lemma 4, listed by two
-unrelated methods that agree, and each is tested at eighty digits. For \(m\le52\) there is no admissible length below \(K_3(m)\) at all, so the
-conclusion there rests on Lemmas 2 and 4 and Proposition 6 alone. For \(53\le m\le58\) the
-admissible lengths exist and fail the display by the margins of Table 1. \(\square\)
+*Proof.* An \(m\)-cycle above the floor has \(K<K_3(m)\) by Proposition 7, its length is
+admissible by Lemma 4, and its least element satisfies \(2^{L_{\min}(K,m)}<x_{\min}-1\le
+m/\Lambda(K)\) by Lemmas 2 and 3, contradicting the first display; and \(\Lambda(K)\) is
+below the valley cap by Lemma 6, contradicting the second. The alternative is a finite exact
+computation: for each \(m\) the admissible lengths below \(K_3(m)\) are the finitely many
+\(K\) of Lemma 4, listed by two unrelated methods that agree, and each is tested at eighty
+digits against both displays. For \(m\le52\) there is no admissible length below
+\(K_3(m)\) at all, so the conclusion there rests on Lemmas 2 and 4 and Proposition 7 alone.
+For \(53\le m\le61\) the admissible lengths exist and fail the displays by the margins of
+Table 1. \(\square\)
 
-**Table 1.** Rows at the floor \(2^{51}\). "Margin" is
-\(\max\log_2\bigl(m/(\Lambda(K)\,2^{L_{\min}})\bigr)\) over the admissible \(K<K_3(m)\), negative
-when every admissible length is excluded.
+**Table 1.** Rows at the floor \(2^{51}\). "Margin" is the largest, over the admissible
+\(K<K_3(m)\), of the better of the two displays of Theorem 8 measured in bits; it is
+negative exactly when every admissible length is excluded.
 
 | \(m\) | \(m/(X_0-1)\) | \(K_3(m)\) | admissible \(K<K_3\) | least admissible | margin (bits) |
 |---|---|---|---|---|---|
@@ -321,53 +372,68 @@ when every admissible length is excluded.
 | 56 | \(2.5\cdot10^{-14}\) | 276877898691766 | 6 | 64789416887513 | \(-100.4\) |
 | 57 | \(2.5\cdot10^{-14}\) | 445072680198484 | 10 | 64789416887513 | \(-44.8\) |
 | 58 | \(2.6\cdot10^{-14}\) | 715295665905327 | 16 | 64789416887513 | \(-9.8\) |
-| 59 | \(2.6\cdot10^{-14}\) | 1149356600587428 | 27 | 64789416887513 | \(+12.4\) |
+| 59 | \(2.6\cdot10^{-14}\) | 1149356600587428 | 27 | 64789416887513 | \(-1.7\) |
+| 60 | \(2.7\cdot10^{-14}\) | 1846464505724577 | 44 | 64789416887513 | \(-0.7\) |
+| 61 | \(2.7\cdot10^{-14}\) | 2965831161057260 | 73 | 64789416887513 | \(-0.1\) |
+| 62 | \(2.8\cdot10^{-14}\) | 4762921235638509 | 120 | 46448676696809 | \(+0.3\) |
 
-The closest exclusion, at \(m=58\), has \(9.8\) bits to spare at \(K=64789416887513\), the
-least admissible length at this floor; the same length is the first to survive at \(m=59\).
-At \(m=59\) the template leaves two lengths,
-\[
-64789416887513,\quad83130157078217,
-\]
-with \(12.4\) and \(5.0\) bits of room; they are near-convergent lengths of \(x\) on the
-expanding side. They are the output of the template's last step, not its input: what removes
-each is a higher floor, at \(2^{51.87}\) and \(2^{55.18}\) respectively
-(Lemma 2's \(x_{\min}-1<m/\Lambda\)).
+The exclusion tightens steadily and ends on a knife edge: at \(m=61\) the closest admissible
+length clears by \(0.1\) bits, and it is \(K=83130157078217\), the length that survives one
+row later. From \(m=53\) to \(m=58\) the closest length is instead \(64789416887513\), the
+least admissible at this floor. Any weakening of
+the constants, in Rhin's form, in the chaining or in the valley count, would move the theorem
+back to \(m\le60\) or further. At \(m=62\) one length survives,
+\(83130157078217\), with \(0.3\) bits of room; a floor of \(2^{55.25}\) removes it
+(Lemma 2's \(x_{\min}-1<m/\Lambda\)), which is why \(2^{56}\) is the next floor worth
+running.
 
 **Table 2.** What each floor buys, by the same tables.
 
 | floor | \(m\) excluded through | first open \(m\) | lengths left at the first open \(m\) |
 |---|---|---|---|
-| \(2^{40}\) | 44 | 45 | 72448885240, 82888745831, 93328606422, 103768467013 |
-| \(2^{44}\) | 49 | 50 | 539722056247, 757698850864, 975675645481, 1193652440098 |
-| \(2^{48}\) | 49 | 50 | 1193652440098 |
-| \(2^{49}\) | 54 | 55 | 9767196315401 |
-| \(2^{50}\) | 56 | 57 | 28107936506105 |
-| \(2^{51}\) | 58 | 59 | 64789416887513, 83130157078217 |
-| \(2^{56}\) | 63 | 64 | 766512153894657 |
-| \(301\cdot2^{50}\) ([SdW]'s floor) | 63 | 64 | 766512153894657 |
-| \(2^{60}\) | 68 | 69 | 9881527843552324 |
-| \(2^{68}\) | 82 | 83 | 6094436882695943503, 6724555128221608268 |
+| \(2^{40}\) | 49 | 50 | 103768467013, 1193652440098 |
+| \(2^{44}\) | 51 | 52 | 1193652440098 |
+| \(2^{48}\) | 58 | 59 | 83130157078217 |
+| \(2^{49}\) | 58 | 59 | 83130157078217 |
+| \(2^{50}\) | 59 | 60 | 83130157078217 |
+| \(2^{51}\) | 61 | 62 | 83130157078217 |
+| \(2^{56}\) | 68 | 69 | 9881527843552324 |
+| \(301\cdot2^{50}\) ([SdW]'s floor) | 69 | 70 | 9881527843552324 |
+| \(2^{60}\) | 74 | 75 | 9881527843552324 |
+| \(2^{68}\) | 89 | 90 | 79641170620168673833 |
 
-Two comparisons calibrate the method. First, on the \(3n+1\) side, with the window on the
-contracting side of \(x\), the same enumeration and the same two tests at the floor of [SdW],
-\(301\cdot2^{50}\), return their Lemma 18: no length for \(64\le m\le68\), and at
-\(69\le m\le72\) their five pairs \((K,L)\) at the nine places of their table, with the floors
-that remove them to rounding: their first pair \((5750934602875680,\,3364081086781987)\)
-falls at \(576.2\), \(584.6\), \(592.9\), \(601.3\) times \(2^{50}\) for \(m=69,\dots,72\)
-against their \(577\), \(585\), \(593\), \(602\), their second at \(623.6\), \(632.4\)
-against \(624\), \(633\), and their three at \(m=72\) at \(308.2\), \(666.8\), \(705.3\)
-against \(309\), \(667\), \(706\). The same run lists one point more at \(m=72\), the double
-of their second pair, with \(0.9\) bits of room and a removing floor of \(316.2\cdot2^{50}\);
-their table does not carry it, and the text does not say whether non-primitive pairs are
-discarded. On the \(3n-1\) side the same floor gives \(m\le63\): the length
-\(766512153894657\) sits inside the window at \(m=64\) on the expanding side, where the
-contracting side has nothing below the ceiling until \(m=69\). The five values between
-\(63\) and \(68\) are the sign of the map, not a missing stage. Second, Hercher's \(91\) at
-\(695\cdot2^{60}\) against the plain template's \(82\) at \(2^{68}\) prices his valley
-arrangement at about nine values of \(m\), the one refinement left to transpose. The floor
-enters only through the admissibility threshold, in steps: \(2^{52}\) to \(2^{55}\) buy nothing
-over \(2^{51}\); \(2^{56}\) buys \(m\le63\), \(2^{59}\) buys \(64\), \(2^{60}\) buys \(68\).
+Three comparisons calibrate the method, all of them on the other sign and so plausibility
+checks rather than reproductions.
+
+The first is the sharpest. Run on the \(3n+1\) side, with the window on the contracting side
+of \(x\) and the same six lemmas, the machinery at Hercher's floor \(695\cdot2^{60}\)
+excludes \(m\le90\), against the \(m\le91\) of his Main Theorem 23 [H23]. One value short
+of a published result obtained by the same idea is the strongest evidence available here that
+the transposition is faithful and that the valley count is doing the work it should.
+
+The second is the older state of the art. At [SdW]'s floor \(301\cdot2^{50}\) the
+machinery gives at least \(69\) where their paper gives \(68\). That is not an improvement
+on their work: their 2005 argument predates the valley arrangement entirely, and the right
+comparison for a paper that uses it is Hercher's. Without Lemma 6 the same floor gives
+\(63\), which is their Lemma 17 exactly, and Section 5 of the previous version of this note
+recorded that agreement.
+
+The third is the reproduction of [SdW] Lemma 18 itself, unchanged from the previous version
+and independent of Lemma 6: at their floor the enumeration with the two tests of their
+Corollary 5 and Lemma 7 returns no length for \(64\le m\le68\), and at \(69\le m\le72\)
+their five pairs \((K,L)\) at the nine places of their table, with the floors that remove
+them agreeing to rounding, \(576.2\), \(584.6\), \(592.9\), \(601.3\), \(623.6\),
+\(632.4\), \(308.2\), \(666.8\) and \(705.3\) times \(2^{50}\) against their \(577\),
+\(585\), \(593\), \(602\), \(624\), \(633\), \(309\), \(667\) and \(706\). The same
+run lists one point more at \(m=72\), the double of their second pair, with \(0.9\) bits of
+room; their table does not carry it, and the text does not say whether non-primitive pairs
+are discarded.
+
+The floor enters only through the admissibility threshold, and in steps: \(2^{52}\) to
+\(2^{55}\) buy nothing over \(2^{51}\), and \(2^{56}\) buys seven values at once. Lemma 6
+is worth between two and seven values of \(m\) at every floor in the table; without it the
+same rows read \(44\), \(49\), \(49\), \(54\), \(56\), \(58\), \(63\), \(63\),
+\(68\) and \(82\).
 
 ## 6. The cycles that exist pass the same test
 
@@ -384,8 +450,7 @@ It excludes no Juggler cycle. The Juggler's cycle words are, letter for letter, 
 the negative Collatz cycles ([A], Section 5.9), but a word
 shape does not transport a realization, so a \(3n-1\) \(m\)-cycle theorem constrains Juggler
 cycle words and nothing more. It does not settle the \(3n-1\) cycle question, \(m\) being
-bounded, and it says nothing about divergence on either map. Hercher's refinement is not transposed; the
-lattice of admissible periods that Eliahou [E93] builds on the positive side is not
+bounded, and it says nothing about divergence on either map. the lattice of admissible periods that Eliahou [E93] builds on the positive side is not
 transposed.
 
 Lemmas 1 and 3 are machine-checked (`Problems.Collatz.NegativeMCycles`, twenty declarations,
@@ -448,8 +513,12 @@ proofs, the code, and the decision to make this version public.
 
 ## Availability and version
 
-This is version 1.0.0 of Paper D, of 21 September 2026, at the floor \(2^{51}\). It is a
-preprint and has not been refereed. The manuscript, the probe that computes the tables, the
+This is version 1.1.0 of Paper D, of 21 September 2026, at the floor \(2^{51}\). It is a
+preprint and has not been refereed. Version 1.0.0, deposited the same day
+([doi:10.5281/zenodo.22876190](https://doi.org/10.5281/zenodo.22876190)), proved the same
+theorem for \(m\le58\); this version adds Lemma 6 and reaches \(m\le61\) at the same
+floor, with the tables and the calibration regenerated. The concept DOI
+[10.5281/zenodo.22876189](https://doi.org/10.5281/zenodo.22876189) resolves to the latest. The manuscript, the probe that computes the tables, the
 independent check that recomputes them, the Lean module, the CUDA verifier and the floor
 certificate with its chunk reports are in the repository
 [sneakyweasel/btlab](https://github.com/sneakyweasel/btlab) at the commit named in Section 8;

@@ -167,10 +167,12 @@ The full `Problems.Juggler` laboratory stack, the Word Atlas, pytest
 records, and internal dossiers. Those are not required to read either
 paper.
 
-## Paper D, prepared for deposit
+## Paper D, version 1.1.0 prepared for deposit
 
 `collatz_3n_minus_1_m_cycles_note.pdf` is **Paper D**, *No m-cycles of the 3n−1 map for
-m ≤ 58*, version 1.0.0 of 21 September 2026 at the verification floor 2^51. Source:
+m ≤ 61*, version 1.1.0 at the verification floor 2^51. Version 1.0.0 of 21 September 2026 is
+the deposited record and reads m ≤ 58; 1.1.0 adds Lemma 6, the valley count, and goes up
+through the record's new-version operation. Source:
 [collatz_3n_minus_1_m_cycles_note.md](../docs/theory/collatz_3n_minus_1_m_cycles_note.md).
 Rebuild with `python tools/build_paper_d.py`, verify every copy with `--check`, and see the
 [build instructions](../docs/theory/PAPER_D_BUILD.md).
@@ -178,8 +180,9 @@ Rebuild with `python tools/build_paper_d.py`, verify every copy with `--check`, 
 It is the only paper of the four that is about the Collatz side rather than the Juggler map:
 the Simons–de Weger m-cycle template transposed to 3n−1, from this laboratory's own
 verification floor. The theorem is conditional on Rhin's effective measure; Lemmas 1 and 3
-are machine-checked (`Problems.Collatz.NegativeMCycles`), Lemma 2 is a written proof, and
-every number in the tables is recomputed by a second, independent route.
+are machine-checked (`Problems.Collatz.NegativeMCycles`), Lemmas 2 and 6 are written proofs,
+and every number in the tables is recomputed by a second, independent route that carries its
+own implementation of the valley cap.
 
 The deposit kit is [zenodo_paper_d/](zenodo_paper_d/). **No upload has been performed and no
 DOI exists yet**; the canonical list is

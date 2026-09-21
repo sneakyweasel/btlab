@@ -897,7 +897,8 @@
       "depends_on": [],
       "file": "formal/Problems/Collatz/NegativeMCycles.lean",
       "ledger": [
-        "J-negative-m-cycles-excluded-through-58"
+        "J-negative-m-cycles-excluded-through-58",
+        "J-negative-m-cycles-excluded-through-61"
       ],
       "papers": [],
       "trust": {
@@ -3490,7 +3491,7 @@
   "totals": {
     "edges": 263,
     "edges_before_reduction": 2055,
-    "ledger_rows_placed": 466,
+    "ledger_rows_placed": 467,
     "nodes": 214
   }
 }

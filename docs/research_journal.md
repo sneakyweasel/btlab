@@ -1,5 +1,41 @@
 # Research journal
 
+## 2026-09-21 -- Paper D 1.1.0 is built: the valley count is Lemma 6, the theorem reads m <= 61, and Hercher's 91 is reproduced to within one
+
+- **Objective:** Philippe said to proceed until it is publication ready.
+- **The lemma, with a proof that needs no vertex argument.** The first derivation maximized
+  \(\sum2^{-b_i}\) over the polytope's vertices and argued which family was maximizing,
+  which is exactly the step a referee would refuse. The published form takes the bound
+  through a threshold: for every \(T\ge L_0\), at most \(R(T)\) minima lie at or below
+  \(T\), where \(R(T)\) comes from the chaining with the gaps between low minima merged
+  into one, and then \(\Lambda<R(T)2^{-L_0}+(m-R(T))2^{-T}\). Three lines, and at
+  \(T=L_0\) it is Lemma 2, so it can only help.
+- **The minimum over \(T\) is exact.** The bound is piecewise with breakpoints
+  \(T_r=(o+A_{m-r})/(r+B_{m-r})\) and falls with \(T\) on each piece, so the optimum is
+  read off the breakpoints. That removed a 600-point grid, made the cap four milliseconds
+  instead of seconds, and made both implementations grid-free.
+- **The theorem.** \(m\le61\) at \(2^{51}\), against \(58\). The ladder gains between
+  two and seven values at every floor: \(49\), \(51\), \(58\), \(58\), \(59\),
+  \(61\), \(68\), \(69\), \(74\), \(89\).
+- **The calibration.** On the \(3n+1\) side at Hercher's own floor the same six lemmas give
+  \(m\le90\) against his published \(91\). One short of a refereed result reached by the
+  same idea; that is the evidence the transposition is faithful, and it also corrected a
+  comparison that had been made against Simons--de Weger's \(68\), which predates the valley
+  argument entirely.
+- **Two errors caught.** An early calibration used the expanding-side linear form on
+  contracting-side lengths and produced a meaningless \(79\). And evaluating the bound *at*
+  its breakpoints rather than just below them silently lost a value of \(m\); the
+  breakpoints have to be approached from below.
+- **The paper.** Title and abstract, Lemma 6 with its proof, Proposition and Theorem
+  renumbered to 7 and 8, Theorem 8 restated with both displays, Tables 1 and 2 regenerated,
+  the calibration section rewritten around Hercher, and the availability section naming
+  1.0.0's DOI. Nine pages. The probe now produces the paper's tables directly, keeping the
+  unrefined survivors beside them so the before-and-after stays checkable, and the
+  independent checker has its own implementation of the cap written from the manuscript.
+- **Not done.** The upload. Version 1.1.0 goes up through the record's new-version
+  operation, which keeps the concept DOI; the kit holds its files and is no longer the 1.0.0
+  bytes.
+
 ## 2026-09-21 -- The valley arrangement transposed: m <= 61 at the same floor, three values by argument
 
 - **Objective:** Philippe said proceed on the one Hercher mechanism the earlier measurements

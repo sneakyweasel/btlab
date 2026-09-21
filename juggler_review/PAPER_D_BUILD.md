@@ -1,6 +1,6 @@
 # Paper D: build, and what it rests on
 
-**No m-cycles of the 3n−1 map for m ≤ 58.** The Simons–de Weger template transposed to the
+**No m-cycles of the 3n−1 map for m ≤ 61.** The Simons–de Weger template transposed to the
 negative side, from this laboratory's own verification floor.
 
 Canonical source: [collatz_3n_minus_1_m_cycles_note.md](collatz_3n_minus_1_m_cycles_note.md).
@@ -28,7 +28,7 @@ deposit kit `juggler_review/zenodo_paper_d/`. Logs and the working TeX go to
 Three different kinds of claim sit in this paper, and the manifest checks none of them. It
 checks that the files agree with each other.
 
-**Proved here, by hand.** Lemmas 1 to 5, Proposition 6 and Theorem 7. Lemma 2's bound on
+**Proved here, by hand.** Lemmas 1 to 6, Proposition 7 and Theorem 8. Lemma 2's bound on
 \(\Lambda\) and Lemma 5, the sieve the verification floor rests on, are the two whose
 proofs a referee should read first.
 
@@ -40,7 +40,7 @@ kernel. `lake build Problems` covers it;
 Lemma 2 is **not** in Lean: its content is real-analytic.
 
 **External, and taken on trust.** Rhin's effective measure, [R87, p. 160, (7)]. Nothing here
-re-proves it and no Lean statement carries it. Theorem 7 is conditional on it and says so.
+re-proves it and no Lean statement carries it. Theorem 8 is conditional on it and says so.
 
 **Computed, not proved.** The verification floor: every \(1 \le y < 2^{51}\) reaches 1, 5 or
 17. Below \(2^{44}\) that is the CPU certificate of 19–20 September 2026, above it the GPU
@@ -65,9 +65,10 @@ Lemma 18, which is the calibration, not a new result.
 
 ## Version and the floor
 
-Version 1.0.0 carries the floor \(2^{51}\) and the theorem \(m \le 58\). The floor is the
-only moving part: \(2^{56}\) gives \(m \le 63\) and \(2^{60}\) gives \(m \le 68\), at about
-32 hours and about 21 days of one RTX 5090 respectively. Raising it is a new version of the
+Version 1.1.0 carries the floor \(2^{51}\) and the theorem \(m \le 61\); version 1.0.0 proved
+the same theorem for \(m \le 58\) and lacked Lemma 6. The floor is the only moving part:
+\(2^{56}\) gives \(m \le 68\) and \(2^{60}\) gives \(m \le 74\), at about 32 hours and about
+21 days of one RTX 5090 respectively. Raising it is a new version of the
 record, not a correction, and the build's `SOURCE_DATE_EPOCH` and the `VERSION` constant in
 `tools/build_paper_d.py` both move with it.
 

@@ -172,30 +172,40 @@ the Paper D barrel, which does not exist yet. Rhin's bound would enter as a hypo
 
 ## Results
 
-- **Theorem (EXACT — HUMAN PROOF, one external input).** Given Rhin's bound, the \(3n-1\) map
-  has no \(m\)-cycle with \(1\le m\le58\) whose least element is at least \(2^{51}\); with
-  the floor, none with \(m\le58\) other than \((5,7,10)\) and the cycle at \(17\). For
-  \(m\le52\) no admissible length lies below Rhin's ceiling at all; for \(53\le m\le58\) the
-  admissible lengths are excluded by the chaining, the closest with \(9.8\) bits to spare at
-  \(m=58\), \(K=64789416887513\). (The first draft's floor \(2^{44}\) gave \(m\le49\), the
-  closest exclusion by \(1.4\) bits at \(m=49\), \(K=757698850864\); the same tables, one row
-  lower.) The m-free period bound at \(2^{51}\) is \(85137581\) with \(53715833\) odd steps.
-- **The floors (COMPUTATIONALLY VERIFIED).** \(2^{40}\): \(m\le44\); \(2^{44}\) to
-  \(2^{48}\): \(m\le49\); \(2^{49}\): \(54\); \(2^{50}\): \(56\); \(2^{51}\) to \(2^{55}\): \(58\);
-  \(2^{56}\): \(63\); \(301\cdot2^{50}\), [SdW]'s floor: \(63\) on this side against their
-  \(68\) on theirs, first open length \(766512153894657\) at \(m=64\); \(2^{60}\): \(68\);
-  \(2^{68}\): \(82\). The rows at \(2^{49}\), \(2^{50}\) and \(2^{51}\) were also sieved
-  independently (104 admissible lengths below \(K_3(59)\); the same three answers).
-- **What the template leaves at \(m=50\), floor \(2^{44}\):** the lengths
+- **Theorem (EXACT — HUMAN PROOF, one external input), version 1.1.0.** Given Rhin's bound,
+  the \(3n-1\) map has no \(m\)-cycle with \(1\le m\le61\) whose least element is at least
+  \(2^{51}\); with the floor, none with \(m\le61\) other than \((5,7,10)\) and the cycle at
+  \(17\). For \(m\le52\) no admissible length lies below Rhin's ceiling at all; for
+  \(53\le m\le61\) each admissible length fails one of Theorem 8's two displays, the
+  chaining or the valley count, the closest with \(0.1\) bits to spare at \(m=61\),
+  \(K=83130157078217\) -- which is the length that survives one row later with \(0.3\)
+  bits. The theorem is delicate at its top end and the two figures say so. The m-free period
+  bound at \(2^{51}\) is unchanged at \(85137581\) with \(53715833\) odd steps.
+- **Version 1.0.0 of the paper, superseded but correct.** Without the valley count the same
+  floor gives \(m\le58\), the closest exclusion by \(9.8\) bits at \(m=58\),
+  \(K=64789416887513\), and two lengths open at \(m=59\). The first draft's floor
+  \(2^{44}\) gave \(m\le49\), the closest by \(1.4\) bits at \(K=757698850864\).
+- **The floors (COMPUTATIONALLY VERIFIED).** With both displays: \(2^{40}\): \(m\le49\);
+  \(2^{44}\): \(51\); \(2^{48}\) and \(2^{49}\): \(58\); \(2^{50}\): \(59\);
+  \(2^{51}\): \(61\); \(2^{56}\): \(68\); \(301\cdot2^{50}\), [SdW]'s floor: \(69\)
+  on this side against their \(68\) on theirs, though that comparison is the wrong one --
+  their 2005 work predates the valley argument, and the calibration that means something is
+  Hercher's; \(2^{60}\): \(74\); \(2^{68}\): \(89\). Without the valley count the same
+  rows read \(44\), \(49\), \(49\), \(54\), \(56\), \(58\), \(63\), \(63\),
+  \(68\), \(82\). The rows at \(2^{49}\), \(2^{50}\) and \(2^{51}\) were also sieved
+  independently, by a checker carrying its own implementation of the valley cap written from
+  the manuscript rather than imported from the probe.
+- **What the template left at \(m=50\), floor \(2^{44}\), before Lemma 6:** the lengths
   \(539722056247\), \(757698850864\), \(975675645481\), \(1193652440098\), with \(22.4\),
   \(15.0\), \(7.8\), \(2.9\) bits of room; at \(2^{48}\) only the last. They are the output of
   the template's last step, not its input; the floors that remove them are \(2^{44.01}\),
   \(2^{44.57}\), \(2^{45.48}\) and \(2^{48.58}\).
 - **Sanity.** With the floor at \(17\), \(m=2\) leaves \(K=11\); at \(5\), \(m=1\) leaves
   \(K=3\); the chaining is tight on the \(17\)-cycle (\(16\to40\) against \(40.5\)).
-- **What the template leaves at \(m=59\), floor \(2^{51}\):** the lengths \(64789416887513\)
-  and \(83130157078217\), with \(12.4\) and \(5.0\) bits of room; the output of the last step,
-  removed at \(2^{51.87}\) and \(2^{55.18}\).
+- **What the template left at \(m=59\), floor \(2^{51}\), before Lemma 6:** the lengths
+  \(64789416887513\) and \(83130157078217\), with \(12.4\) and \(5.0\) bits of room,
+  removed by raising the floor to \(2^{51.87}\) and \(2^{55.18}\). Lemma 6 removes both at
+  \(2^{51}\), and the first open \(m\) moves from \(59\) to \(62\).
 - **The floor to \(2^{51}\) (COMPUTATIONALLY VERIFIED, 21 September 2026).** The GPU sweep of
   \([2^{44},2^{51})\) in 8 chunks, 59 minutes on the RTX 5090: \(1117103813820416\) odd starts,
   coverage exact, no failure, no new cycle, no overflow, greatest step count \(847\), peak about
@@ -221,7 +231,7 @@ the Paper D barrel, which does not exist yet. Rhin's bound would enter as a hypo
   does not carry. Their Lemma 7 constant \(c_m\) is, algebraically, the
   \(2^{-(B-m)/((\delta-1)B)}\) of the note's Lemma 3.
 
-## The valley-count refinement: m <= 61 at the same floor, not yet in the paper
+## The valley-count refinement: Lemma 6 of the paper, m <= 61 at the same floor
 
 **Derived 21 September 2026**, transposing the arrangement behind Hercher's Main Theorem 21.
 The three lemmas are three constraints and one objective on the same vector
@@ -247,18 +257,27 @@ ceiling. `valley_cap(m, o, X0)` maximizes over \(r\); a length is excluded when 
 
 **Result at the verified floor \(2^{51}\): \(m\le61\)**, against \(m\le58\) from the
 separate relaxations. The two lengths open at \(m=59\) and \(60\) fall, and so do the four
-at \(61\); one length, \(83130157078217\), survives at \(m=62\). Three values of \(m\)
-gained by argument, with no change to the floor.
+at \(61\); one length, \(83130157078217\), survives at \(m=62\) with \(0.3\) bits. Three
+values of \(m\) gained by argument, with no change to the floor, and between two and seven
+at every other floor in the table: the ladder reads \(49\), \(51\), \(58\), \(58\),
+\(59\), \(61\), \(68\), \(69\), \(74\), \(89\) where it read \(44\), \(49\),
+\(49\), \(54\), \(56\), \(58\), \(63\), \(63\), \(68\), \(82\).
+
+**The calibration that makes it credible.** Run on the \(3n+1\) side at Hercher's own floor
+\(695\cdot2^{60}\), the same six lemmas exclude \(m\le90\) against the \(m\le91\) of his
+Main Theorem 23. One short of a published result reached by the same idea.
 
 **Known-bad input.** With the floor set at their own least element, \((5,7,10)\) and the
 cycle at \(17\) both still clear the cap, so the refinement is not excluding the truth. The
 cap is also checked never to exceed Lemma 2's \(m/(X_0-1)\), so it can only help.
 
-**Status: not in the deposited paper.** Paper D version 1.0.0 states \(m\le58\) and is
-correct as it stands. Raising it to \(61\) means writing the constraint system and the
-vertex argument as a lemma, with the polytope and convexity spelled out, and then a new
-version of the record. The vertex enumeration in particular is argued, not yet proved: that a
-block at the floor followed by the ceiling is the maximizing family needs writing out.
+**Status: written as Lemma 6 of version 1.1.0**, with a proof that needs no vertex
+enumeration. The first derivation maximized the objective over the polytope's vertices and
+argued the maximizing family; the published form instead takes the bound through a threshold
+\(T\), bounds how many minima can sit below it, and minimizes over \(T\). The minimum is
+exact, not a grid: the bound is piecewise in \(T\) with breakpoints
+\(T_r=(o+A_{m-r})/(r+B_{m-r})\), and on each piece it falls with \(T\). At \(T=L_0\) it
+is Lemma 2, so it is never weaker. Version 1.0.0 states \(m\le58\) and remains correct.
 
 Pinned: `valley_cap`, `valley_excluded`, `valley_refined` in the probe;
 `test_the_valley_refinement_spares_the_cycles_that_exist` and
@@ -293,25 +312,46 @@ arrangement.
 
 ## Publication assessment
 
-Status: `PUBLISHED`. Deposited 21 September 2026 as **Paper D**, *No m-cycles of the 3n−1
-map for m ≤ 58*, version 1.0.0, nine pages, at the floor \(2^{51}\). Version DOI
+Status: `PUBLISHED`, with **version 1.1.0 built and not yet deposited**. The record is
+**Paper D**, deposited 21 September 2026 as *No m-cycles of the 3n−1 map for m ≤ 58*,
+version 1.0.0, nine pages, at the floor \(2^{51}\): version DOI
 [10.5281/zenodo.22876190](https://doi.org/10.5281/zenodo.22876190), concept DOI
-[10.5281/zenodo.22876189](https://doi.org/10.5281/zenodo.22876189). The deposited file is byte-identical to the
-kit copy, md5 `c6f6f662016ca30a859bf57b0cc81793`, checked against the record after deposit.
+[10.5281/zenodo.22876189](https://doi.org/10.5281/zenodo.22876189), deposited file
+byte-identical to the kit copy at the time, md5 `c6f6f662016ca30a859bf57b0cc81793`, checked
+against the record after deposit.
 
-**Ready.** The theorem and its margins; every number recomputed by an independent route; the
-floor as a two-implementation certificate with spot checks; Lemmas 1 and 3 machine-checked;
-the builder, the manifest, the Zenodo metadata and the kit, all under the release gate; the
-front and back matter (classification, keywords, AI disclosure, responsibility statement,
-availability) as Papers A–C carry them; every reference cited, the three-distance theorem
-attributed, and every internal path pinned to a public commit.
+Version 1.1.0, *No m-cycles of the 3n−1 map for m ≤ 61*, adds Lemma 6 and is built, gated and
+checked here; it goes up through the record's new-version operation, which keeps the concept
+DOI resolving to the latest. The kit at
+[juggler_review/zenodo_paper_d/](../../juggler_review/zenodo_paper_d/) now holds 1.1.0's
+files, so the kit PDF is no longer the deposited bytes; 1.0.0's are recoverable from the
+record and from the commit that carried them.
+
+**Ready.** The theorem and its margins; every number recomputed by an independent route,
+the valley cap included, from a second implementation written off the manuscript rather than
+imported; the floor as a two-implementation certificate with spot checks; Lemmas 1 and 3
+machine-checked, and they are exactly the two the valley count consumes; the builder, the
+manifest, the Zenodo metadata and the kit, all under the release gate; the front and back
+matter (classification, keywords, AI disclosure, responsibility statement, availability) as
+Papers A–C carry them; every reference cited, the three-distance theorem attributed, and
+every internal path pinned to a public commit.
+
+**What makes the new lemma credible rather than merely convenient.** Run on the \(3n+1\)
+side at Hercher's own floor \(695\cdot2^{60}\), the same six lemmas exclude \(m\le90\)
+against his published \(m\le91\): one short of a refereed result reached by the same idea.
+Run against the cycles that exist, with the floor at their own least element, the cap spares
+both \((5,7,10)\) and the \(17\)-cycle. And the cap is checked never to exceed Lemma 2's
+\(m/(X_0-1)\), which is the bound it refines.
 
 **Still open after publication.** No independent human has read the proofs; every check is
 the author's or mechanical. The floor is the laboratory's own and is not deposited as a
-citable dataset of its own. The floor stands at \(2^{51}\); \(2^{56}\) would give
-\(m\le63\) for about thirty-two hours of the card, and would be a new version of the
-record rather than a correction. Lemma 2 is not in Lean, and the note says why.
+citable dataset of its own. The floor stands at \(2^{51}\); \(2^{56}\) would now give
+\(m\le68\) for about thirty-two hours of the card, and would be a further version of the
+record rather than a correction. Lemma 2 is not in Lean, and the note says why; nor is
+Lemma 6, which is arithmetic on top of Lemmas 1, 2 and 3.
 
 **What a referee is still most likely to ask.** Why the floor stops where it does, since the
-sweep is cheap; and whether the \(m\)-free row should be compared with Sinisalo's table
-in more detail than one sentence.
+sweep is cheap; whether the \(m\)-free row should be compared with Sinisalo's table in more
+detail than one sentence; and why the valley count reaches \(90\) where Hercher reaches
+\(91\), which is a fair question with no answer here beyond the arithmetic -- his
+arrangement is stated for his side and the transposition loses a little.

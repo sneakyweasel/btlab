@@ -375,54 +375,51 @@ def sdw_lemma18_reproduction() -> dict[str, Any]:
 # because the chaining caps how fast the minima can climb away from the floor. Keeping the
 # system intact is the transposition of the arrangement behind Hercher's Main Theorem 21.
 #
-# The feasible set is a polytope and ``sum 2^{-b_i}`` is convex, so the maximum sits at a
-# vertex: a block of r minima at the floor, one free coordinate, the rest riding the chaining
-# ceiling. ``valley_cap`` maximizes over r, and a length is excluded when its Lambda already
-# exceeds that maximum.
+# The bound is taken through a threshold. For any ``T >= L0``, the chaining limits how many
+# minima can sit at or below ``T`` once the cycle has to carry ``o`` odd steps; those
+# contribute at most ``2^{-L0}`` each to the objective and the rest at most ``2^{-T}`` each.
+# Minimizing over ``T`` gives ``valley_cap``, and a length is excluded when its Lambda already
+# exceeds it. At ``T = L0`` the bound is exactly Lemma 2, so it is never weaker.
 
 
-def _valley_profile(r: int, c: mpf, m: int, L0: mpf) -> list[mpf]:
-    """r minima at the floor, the next at ``c``, the rest on the chaining ceiling from ``c``."""
-    vals = [L0] * r
-    if r < m:
-        vals.append(c)
-        b = c
-        for _ in range(m - r - 1):
-            b = delta() * b - 1
-            vals.append(b)
-    return vals
+def _valley_thresholds(m, o, delta_, mpf_):
+    """T_r, where R(T) >= r exactly when T >= T_r:  T_r = (o + A_g)/(r + B_g), g = m - r,
+    A_g = sum_{t=1..g} (delta^t - 1)/(delta - 1),  B_g = sum_{t=1..g} delta^t."""
+    powers, p = [], mpf_(1)
+    for _ in range(m + 1):
+        p *= delta_
+        powers.append(p)
+    A = [mpf_(0)]
+    Bs = [mpf_(0)]
+    for g in range(1, m + 1):
+        A.append(A[-1] + (powers[g - 1] - 1) / (delta_ - 1))
+        Bs.append(Bs[-1] + powers[g - 1])
+    return {r: (mpf_(o) + A[m - r]) / (r + Bs[m - r]) for r in range(m + 1)}
+
+
+def _valley_cap_from(m, o, X0, delta_, mpf_, log_):
+    """Lemma 6 minimised exactly. On [T_r, T_{r+1}) the bound is r 2^-L0 + (m-r) 2^-T, which
+    falls with T, so each r is best just below T_{r+1}; r = m gives Lemma 2."""
+    L0 = log_(mpf_(X0) - 1, 2)
+    T = _valley_thresholds(m, o, delta_, mpf_)
+    best = mpf_(m) * mpf_(2) ** (-L0)
+    for r in range(m):
+        Tr = T[r + 1]
+        if Tr <= L0:
+            continue
+        best = min(best, r * mpf_(2) ** (-L0) + (m - r) * mpf_(2) ** (-Tr))
+    return best
 
 
 def valley_cap(m: int, o: int, X0: int) -> mpf:
-    """The largest ``sum 2^{-b_i}`` any m-cycle above ``X0`` with ``o`` odd steps can have.
+    """Upper bound on ``sum 2^{-b_i}``, hence on ``Lambda``, for an m-cycle above ``X0``.
 
-    An upper bound on ``Lambda`` that uses the floor, the chaining and the odd-step count
-    together. It is never weaker than Lemma 2's ``m / (X0 - 1)``, and is much stronger once
-    ``o`` is large enough that most valleys have to climb."""
+    Lemma 6 holds for every threshold ``T >= L0 = log2(X0 - 1)``. The bound is piecewise in
+    ``T`` with breakpoints ``T_r``, and on each piece it falls with ``T``, so the exact
+    minimum is read off the breakpoints. At ``T = L0`` it is Lemma 2's ``m / (X0 - 1)``, so
+    the cap is never weaker."""
     with mp.workdps(_DPS):
-        L0 = log(mpf(X0) - 1) / log(2)
-        d = delta()
-        best = mpf(0)
-        for r in range(m + 1):
-            if r == m:
-                if m * L0 >= o:
-                    best = max(best, m * mpf(2) ** (-L0))
-                continue
-            lo, hi = L0, d * L0 - 1
-            if sum(_valley_profile(r, hi, m, L0)) < o:
-                continue            # even the ceiling cannot carry o odd steps with r at the floor
-            if sum(_valley_profile(r, lo, m, L0)) >= o:
-                c = lo
-            else:
-                for _ in range(200):
-                    mid = (lo + hi) / 2
-                    if sum(_valley_profile(r, mid, m, L0)) < o:
-                        lo = mid
-                    else:
-                        hi = mid
-                c = hi
-            best = max(best, sum(mpf(2) ** (-v) for v in _valley_profile(r, c, m, L0)))
-        return best
+        return _valley_cap_from(m, o, X0, delta(), mpf, lambda z, b: log(z) / log(b))
 
 
 def valley_excluded(m: int, K: int, X0: int) -> bool:
@@ -465,21 +462,30 @@ def row(m: int, X0: int) -> dict[str, Any]:
         survivors = []
         K0 = None
         margin = None
+        plain_survivors, plain_margin = [], None
         if lengths is not None:
             K0 = lengths[0] if lengths else None
             for K in lengths:
                 o, lam = lambda_juggler(K)
                 finance = mpf(m) / lam                      # x_min - 1 ≤ this
                 tower = 2 ** log2_xmin_lower(K, m)          # x_min - 1 > this
-                slack = float(log(finance / tower) / log(2))
+                chaining = log(finance / tower) / log(2)    # Theorem 8, first display
+                valley = log(valley_cap(m, o, X0) / lam) / log(2)   # second display, Lemma 6
+                slack = float(min(chaining, valley))
+                if plain_margin is None or float(chaining) > plain_margin:
+                    plain_margin = float(chaining)
+                if tower < finance:
+                    plain_survivors.append(K)
                 if margin is None or slack > margin:
                     margin = slack
-                if tower < finance:
+                if slack > 0:
                     survivors.append({
                         "K": K, "o": o, "Lambda": float(lam),
                         "xmin_minus_one_le": float(finance),
                         "xmin_minus_one_gt": float(tower),
-                        "log2_slack": float(log(finance / tower) / log(2)),
+                        "log2_slack": slack,                       # the better of the two displays
+                        "log2_slack_chaining": float(chaining),
+                        "log2_slack_valley": float(valley),
                     })
         return {
             "m": m,
@@ -491,8 +497,10 @@ def row(m: int, X0: int) -> dict[str, Any]:
             "admissible_count": None if lengths is None else len(lengths),
             "K0_least_admissible": K0,
             "closest_slack_bits": margin,
+            "closest_slack_bits_without_lemma_6": plain_margin,
             "rhin_free_window": lengths is not None and not lengths,
             "survivors": survivors,
+            "survivors_without_lemma_6": plain_survivors,
             "excluded": lengths is not None and not survivors,
         }
 
@@ -601,6 +609,8 @@ def probe_payload() -> dict[str, Any]:
         "m_free_survivors_at_floor": mfree[:12],
         "sdw_lemma18_reproduction": sdw_lemma18_reproduction(),
         "valley_refinement": valley_refined(at_floor["rows"], 2 ** FLOOR_LOG2),
+        "valley_ladder": {label: valley_refined(tables[label]["rows"], X0)["excluded_through"]
+                          for X0, label in FLOORS},
         "classification": {
             "label": CLASS_EXCLUDED if M >= 1 else "NEGATIVE_M_CYCLES_TABLES_INCONCLUSIVE",
             "excluded_through_at_floor": M,

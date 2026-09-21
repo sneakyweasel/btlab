@@ -1,8 +1,9 @@
 # Paper D: Zenodo preprint kit
 
-**No m-cycles of the 3n−1 map for m ≤ 58.** Version 1.0.0, 21 September 2026.
+**No m-cycles of the 3n−1 map for m ≤ 61.** Version 1.1.0, 21 September 2026, prepared and not yet deposited.
 
-**Deposited.** Version DOI [10.5281/zenodo.22876190](https://doi.org/10.5281/zenodo.22876190), concept DOI
+**Version 1.0.0 is deposited; this folder now holds 1.1.0.** Upload it through the record's
+new-version operation. Version 1.0.0's DOI [10.5281/zenodo.22876190](https://doi.org/10.5281/zenodo.22876190), concept DOI
 [10.5281/zenodo.22876189](https://doi.org/10.5281/zenodo.22876189), record
 [zenodo.org/records/22876190](https://zenodo.org/records/22876190). The PDF here is byte-identical to the deposited
 file (md5 `c6f6f662016ca30a859bf57b0cc81793`). See [AFTER_ZENODO.md](AFTER_ZENODO.md).

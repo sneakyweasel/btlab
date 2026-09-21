@@ -1,6 +1,6 @@
 """Build Paper D from docs/theory and validate/synchronize its generated exports.
 
-Paper D is *No m-cycles of the 3n-1 map for m <= 58*, the Simons-de Weger template
+Paper D is *No m-cycles of the 3n-1 map for m <= 61*, the Simons-de Weger template
 transposed to the negative side from the laboratory's own verification floor.
 
 Requires Pandoc and XeLaTeX only for a build. --check and --sync use the Python standard
@@ -67,7 +67,7 @@ KIT = "juggler_review/zenodo_paper_d"
 #: juggler_review/, and this is a byte-identical alias of it.
 DEPOSIT_PDF = f"{KIT}/No_m_cycles_of_the_3n_minus_1_map.pdf"
 PDF_EXPORTS = [DEPOSIT_PDF]
-VERSION = "1.0.0"
+VERSION = "1.1.0"
 #: Zenodo takes the bare identifier, not the URL, beside the creator's name.
 ORCID = "0009-0004-1939-3382"
 

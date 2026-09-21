@@ -107,15 +107,15 @@ def test_table_at_the_floor_excludes_the_recorded_range() -> None:
 
 
 def test_a_higher_floor_excludes_at_least_as_much() -> None:
-    """The ladder, as archived: 2^44 to 2^48 give 49, 2^49 gives 54, 2^50 56, 2^51 58, 2^56 63,
-    2^60 68, 2^68 82 (the rows at 2^49 to 2^51 were also sieved independently on 21 September
-    2026, with the same answers)."""
+    """The ladder as the paper prints it, with both displays of Theorem 8 in force. Lemma 6
+    is worth between two and seven values of m: without it the same rows read 44, 49, 49, 54,
+    56, 58, 63, 68 and 82."""
     data = json.loads(nm.JSON_PATH.read_text(encoding="utf-8"))
     labels = ("2^40", "2^44", "2^48", "2^49", "2^50", "2^51", "2^56", "2^60", "2^68")
     ms = [data["tables"][lbl]["excluded_through"] for lbl in labels]
     assert ms == sorted(ms), ms
-    assert dict(zip(labels, ms)) == {"2^40": 44, "2^44": 49, "2^48": 49, "2^49": 54, "2^50": 56, "2^51": 58,
-                                     "2^56": 63, "2^60": 68, "2^68": 82}, ms
+    assert dict(zip(labels, ms)) == {"2^40": 49, "2^44": 51, "2^48": 58, "2^49": 58, "2^50": 59,
+                                     "2^51": 61, "2^56": 68, "2^60": 74, "2^68": 89}, ms
 
 
 def test_m_free_survivor_at_the_floor_is_the_recorded_period() -> None:
@@ -131,25 +131,32 @@ def test_m_free_survivor_at_the_floor_is_the_recorded_period() -> None:
 
 
 def test_the_theorem_at_the_new_floor_and_the_old_one() -> None:
-    """2^51 excludes m <= 58 (no admissible length through m = 52, chaining through 58, the
-    closest 9.8 bits at K = 64789416887513); 2^44 still reads 49 in the same tables."""
+    """2^51 excludes m <= 61 with both displays: no admissible length through m = 52, then
+    the displays exclude 53 to 61, the closest by 0.1 bits at K = 83130157078217, which is
+    the length that survives at m = 62 with 0.3 bits of room."""
     data = json.loads(nm.JSON_PATH.read_text(encoding="utf-8"))
     t51 = {r["m"]: r for r in data["tables"]["2^51"]["rows"]}
-    assert data["tables"]["2^51"]["excluded_through"] == 58 == data["classification"]["excluded_through_at_floor"]
+    assert data["tables"]["2^51"]["excluded_through"] == 61 == data["classification"]["excluded_through_at_floor"]
+    assert data["classification"]["first_open_m"] == 62
     assert all(t51[m]["admissible_count"] == 0 for m in range(1, 53))
-    assert [t51[m]["admissible_count"] for m in range(53, 60)] == [1, 2, 4, 6, 10, 16, 27]
-    assert round(t51[58]["closest_slack_bits"], 1) == -9.8 and t51[58]["K0_least_admissible"] == 64789416887513
-    assert [s["K"] for s in t51[59]["survivors"]] == [64789416887513, 83130157078217]
-    assert data["tables"]["2^44"]["excluded_through"] == 49
+    assert round(t51[61]["closest_slack_bits"], 1) == -0.1
+    assert [s["K"] for s in t51[62]["survivors"]] == [83130157078217]
+    assert round(t51[62]["survivors"][0]["log2_slack"], 1) == 0.3
+    # without Lemma 6 the same rows are open from 59 on
+    assert t51[59]["survivors_without_lemma_6"] and not t51[59]["survivors"]
+    assert data["tables"]["2^44"]["excluded_through"] == 51
 
 
-def test_the_four_lengths_at_m_50_die_at_the_recorded_floors() -> None:
-    """They are the output of the template's last step, not its input: Lemma 2's
-    x_min - 1 < m / Lambda removes them at floors 2^44.01, 2^44.57, 2^45.48 and 2^48.58."""
+def test_the_lengths_open_without_lemma_6_die_at_the_recorded_floors() -> None:
+    """Before Lemma 6 the floor 2^44 left four lengths at m = 50; Lemma 2's
+    x_min - 1 < m / Lambda removes them at 2^44.01, 2^44.57, 2^45.48 and 2^48.58. The
+    unrefined survivors are kept in the tables so the comparison stays checkable."""
     data = json.loads(nm.JSON_PATH.read_text(encoding="utf-8"))
     r50 = next(r for r in data["tables"]["2^44"]["rows"] if r["m"] == 50)
+    lengths = r50["survivors_without_lemma_6"]
+    assert lengths == [539722056247, 757698850864, 975675645481, 1193652440098]
     with mp.workdps(40):
-        kills = [round(float(log(mpf(50) / mpf(s["Lambda"]) + 1, 2)), 2) for s in r50["survivors"]]
+        kills = [round(float(log(mpf(50) / nm.lambda_juggler(K)[1] + 1, 2)), 2) for K in lengths]
     assert kills == [44.01, 44.57, 45.48, 48.58], kills
 
 
@@ -169,22 +176,19 @@ def test_the_valley_refinement_spares_the_cycles_that_exist() -> None:
 
 
 def test_the_valley_refinement_closes_three_more_values_of_m() -> None:
-    """At the verified floor the refinement reaches m <= 61 where the separate relaxations
-    reach 58: the two lengths open at m = 59 and 60, and the four at 61, all fall. One length
-    survives at m = 62. The cap is never weaker than Lemma 2's m/(X0 - 1)."""
+    """Lemma 6 takes the floor's row from 58 to 61: the two lengths open at m = 59 and 60 and
+    the four at 61 all fall, and one survives at 62. The cap is never weaker than Lemma 2."""
     data = json.loads(nm.JSON_PATH.read_text(encoding="utf-8"))
-    v = data["valley_refinement"]
-    assert v["excluded_through"] == 61 and v["first_open_m"] == 62
-    assert data["classification"]["excluded_through_at_floor"] == 58
-    rows = {r["m"]: r for r in v["rows"]}
-    assert rows[59]["survivors_before"] == 2 and rows[59]["survivors_after"] == []
-    assert rows[61]["survivors_before"] == 4 and rows[61]["survivors_after"] == []
-    assert rows[62]["survivors_after"] == [83130157078217]
+    t51 = {r["m"]: r for r in data["tables"]["2^51"]["rows"]}
+    assert data["tables"]["2^51"]["excluded_through"] == 61
+    for m, before in ((59, 2), (60, 2), (61, 4)):
+        assert len(t51[m]["survivors_without_lemma_6"]) == before
+        assert t51[m]["survivors"] == []
+    assert [s["K"] for s in t51[62]["survivors"]] == [83130157078217]
     with mp.workdps(60):
         X0 = 2 ** nm.FLOOR_LOG2
-        for m in (10, 40, 58, 59, 62):
-            o = next(s["o"] for r in data["tables"]["2^51"]["rows"] if r["m"] >= 59
-                     for s in r["survivors"])
+        for m in (10, 40, 58, 61, 62):
+            o = int(mp.ceil(mpf(64789416887513) * log(2) / log(3)))
             assert nm.valley_cap(m, o, X0) <= mpf(m) / (X0 - 1) * (1 + mpf("1e-9"))
 
 
@@ -208,7 +212,8 @@ def test_herchers_two_m_free_refinements_do_not_reach() -> None:
     rows = {r["m"]: r for r in data["tables"]["2^51"]["rows"]}
     with mp.workdps(50):
         X0 = mpf(2) ** 51
-        needed = {m: float(log(max(mpf(m) / mpf(s["Lambda"]) + 1 for s in rows[m]["survivors"]) / X0, 2))
+        needed = {m: float(log(max(mpf(m) / nm.lambda_juggler(K)[1] + 1
+                                   for K in rows[m]["survivors_without_lemma_6"]) / X0, 2))
                   for m in range(59, 64)}
         assert 4.17 < needed[59] < 4.19, needed[59]
         assert all(4.1 < v < 4.3 for v in needed.values()), needed

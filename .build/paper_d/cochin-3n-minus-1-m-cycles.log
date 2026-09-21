@@ -599,15 +599,15 @@ L3 programming layer <2026-08-10>
  ***********
 Package rerunfilecheck Info: File `cochin-3n-minus-1-m-cycles.out' has not chan
 ged.
-(rerunfilecheck)             Checksum: EE8AAB110E6E7493437BC046AC0C02BC;1948.
+(rerunfilecheck)             Checksum: D19E74062973AB1F392094864F333E88;1943.
  ) 
 Here is how much of TeX's memory you used:
  14268 strings out of 402560
- 271745 string characters out of 5437925
- 764109 words of memory out of 5000000
+ 271744 string characters out of 5437925
+ 770103 words of memory out of 5000000
  43241 multiletter control sequences out of 15000+600000
  639208 words of font info for 103 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 71i,10n,79p,565b,530s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 71i,10n,79p,565b,489s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on cochin-3n-minus-1-m-cycles.pdf (9 pages).

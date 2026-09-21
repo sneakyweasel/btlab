@@ -12,7 +12,14 @@ operation.
 | C | Fate Contagion and Termination Criteria for the Juggler Map | [10.5281/zenodo.22678165](https://doi.org/10.5281/zenodo.22678165) | [zenodo.org/records/22678165](https://zenodo.org/records/22678165) |
 | D | No m-cycles of the 3n−1 map for m ≤ 58 | [10.5281/zenodo.22876190](https://doi.org/10.5281/zenodo.22876190) | [zenodo.org/records/22876190](https://zenodo.org/records/22876190) |
 
-**Paper D was deposited on 21 September 2026**, version 1.0.0, at the verification floor
+**Paper D version 1.1.0 is prepared and not deposited.** It proves the same theorem for
+\(m\le61\) where 1.0.0 proved \(m\le58\), by adding the valley-count lemma; the floor is
+unchanged. It goes up through the existing record's new-version operation, which keeps the
+concept DOI; the kit in
+[juggler_review/zenodo_paper_d/](../../juggler_review/zenodo_paper_d/) already holds its
+files, so the kit PDF is no longer the deposited 1.0.0 file.
+
+**Paper D version 1.0.0 was deposited on 21 September 2026**, at the verification floor
 \(2^{51}\). Version DOI [10.5281/zenodo.22876190](https://doi.org/10.5281/zenodo.22876190), concept DOI
 [10.5281/zenodo.22876189](https://doi.org/10.5281/zenodo.22876189) for all versions, resource type Publication /
 Preprint, CC BY 4.0, English, open access, with the author's ORCID
