@@ -210,14 +210,14 @@
       },
       "BTA-x3-Q-def": {
         "asked": "2026-09-21",
-        "claim_broader": 0.92,
-        "covers": 0.08,
-        "decl_narrower": 0.74,
+        "claim_broader": 0.65,
+        "covers": 0.27,
+        "decl_narrower": 0.33,
         "decls": [
           "qCubic_def"
         ],
-        "different_result": 0.53,
-        "key": "81120fac3cffa585",
+        "different_result": 0.11,
+        "key": "ea601b572998627d",
         "model": "jev-1.13.0"
       },
       "BTA-x3-Q-eq": {
@@ -402,14 +402,14 @@
       },
       "BTA-x3-n1-sign": {
         "asked": "2026-09-21",
-        "claim_broader": 0.48,
-        "covers": 0.19,
-        "decl_narrower": 0.77,
+        "claim_broader": 0.05,
+        "covers": 0.91,
+        "decl_narrower": 0.21,
         "decls": [
           "n21_sign_iff"
         ],
-        "different_result": 0.08,
-        "key": "d54970cbe3b78fa7",
+        "different_result": 0.04,
+        "key": "ac1553fc10965c0c",
         "model": "jev-1.13.0"
       },
       "BTA-x3-n1-unit": {
@@ -474,14 +474,15 @@
       },
       "BTA-x3-x": {
         "asked": "2026-09-21",
-        "claim_broader": 0.9,
-        "covers": 0.12,
-        "decl_narrower": 0.65,
+        "claim_broader": 0.64,
+        "covers": 0.46,
+        "decl_narrower": 0.48,
         "decls": [
-          "X_pow_three_sub_X_vanishes_one"
+          "X_pow_three_sub_X_vanishes_one",
+          "not_three_dvd_coeff_X_pow_three_sub_X"
         ],
-        "different_result": 0.57,
-        "key": "47f3274212df493c",
+        "different_result": 0.55,
+        "key": "13d44e16cf7e9317",
         "model": "jev-1.13.0"
       },
       "BTC-D-I": {
@@ -606,14 +607,14 @@
       },
       "BTJ-comp": {
         "asked": "2026-09-21",
-        "claim_broader": 0.59,
-        "covers": 0.23,
-        "decl_narrower": 0.37,
+        "claim_broader": 0.13,
+        "covers": 0.86,
+        "decl_narrower": 0.2,
         "decls": [
           "section_comp"
         ],
-        "different_result": 0.48,
-        "key": "a87c77da5aa404c2",
+        "different_result": 0.06,
+        "key": "b33f219d958bb5ae",
         "model": "jev-1.13.0"
       },
       "BTJ-jet": {
@@ -678,14 +679,15 @@
       },
       "BTN-carry-bound": {
         "asked": "2026-09-21",
-        "claim_broader": 0.93,
-        "covers": 0.14,
-        "decl_narrower": 0.6,
+        "claim_broader": 0.2,
+        "covers": 0.72,
+        "decl_narrower": 0.33,
         "decls": [
-          "DZ_carry_bound"
+          "DZ_carry_bound",
+          "DZ_le_of_abs_le"
         ],
-        "different_result": 0.2,
-        "key": "5ae7453c3fd047cf",
+        "different_result": 0.09,
+        "key": "3c0c009911d3c2e3",
         "model": "jev-1.13.0"
       },
       "BTN-carry-gain-3": {
@@ -933,26 +935,27 @@
       },
       "BTN-sdr-finite-condition": {
         "asked": "2026-09-21",
-        "claim_broader": 0.92,
-        "covers": 0.07,
-        "decl_narrower": 0.91,
+        "claim_broader": 0.33,
+        "covers": 0.69,
+        "decl_narrower": 0.44,
         "decls": [
-          "finite_residual_condition"
+          "origin_residual_box_iff"
         ],
-        "different_result": 0.09,
-        "key": "1cf23e43a462d348",
+        "different_result": 0.07,
+        "key": "00b1d4d3670dab65",
         "model": "jev-1.13.0"
       },
       "BTN-sdr-lambda1-radius": {
         "asked": "2026-09-21",
-        "claim_broader": 0.9,
-        "covers": 0.1,
-        "decl_narrower": 0.73,
+        "claim_broader": 0.19,
+        "covers": 0.8,
+        "decl_narrower": 0.35,
         "decls": [
+          "lambda1_reachable_box",
           "lambda1_radius_div"
         ],
-        "different_result": 0.46,
-        "key": "adca9f94ab820492",
+        "different_result": 0.14,
+        "key": "ee7d3e133fd67456",
         "model": "jev-1.13.0"
       },
       "BTN-sdr-lambda2-radius": {
@@ -1019,15 +1022,15 @@
       },
       "BTN-sdrg-lambda2-evens": {
         "asked": "2026-09-21",
-        "claim_broader": 0.93,
-        "covers": 0.12,
-        "decl_narrower": 0.89,
+        "claim_broader": 0.7,
+        "covers": 0.32,
+        "decl_narrower": 0.5,
         "decls": [
           "lambda2_step_up",
           "lambda2_even_reachable"
         ],
-        "different_result": 0.15,
-        "key": "e2fd92b67c5b61e1",
+        "different_result": 0.11,
+        "key": "367b4923828bb7c3",
         "model": "jev-1.13.0"
       },
       "BTN-sdrm-separation": {
@@ -1104,14 +1107,15 @@
       },
       "C-endpoint": {
         "asked": "2026-09-21",
-        "claim_broader": 0.78,
-        "covers": 0.23,
-        "decl_narrower": 0.61,
+        "claim_broader": 0.13,
+        "covers": 0.86,
+        "decl_narrower": 0.54,
         "decls": [
-          "kramer_endpoint_congruence_zmod"
+          "kramer_endpoint_congruence_zmod",
+          "endpoint_congruence_zmod"
         ],
-        "different_result": 0.52,
-        "key": "3586d4edbbe9c679",
+        "different_result": 0.06,
+        "key": "a5335c11e454da68",
         "model": "jev-1.13.0"
       },
       "C-gap": {
@@ -3253,9 +3257,9 @@
     },
     "totals": {
       "answered": 248,
-      "asked_now": 0,
-      "input_tokens": 0,
-      "reused": 248,
+      "asked_now": 9,
+      "input_tokens": 7640,
+      "reused": 239,
       "unfound": 0
     }
   },
@@ -3523,18 +3527,18 @@
     "BTA-x3-merge": {
       "asked": "2026-09-21",
       "choice": "none_of_these",
-      "confidence": 0.56,
-      "in_file": 33,
-      "key": "f4d77e4d9aca9a10",
+      "confidence": 0.5,
+      "in_file": 32,
+      "key": "e602cf9e2194abed",
       "model": "jev-1.13.0",
       "probabilities": {
         "DZ_neg_one": 0.0,
-        "none_of_these": 0.58,
-        "x3_first_merge_equiv_two": 0.18,
-        "x3_first_merge_not_equiv_three": 0.12,
-        "x3_merge_eval_diff": 0.12
+        "none_of_these": 0.52,
+        "x3_first_merge_equiv_two": 0.23,
+        "x3_first_merge_not_equiv_three": 0.11,
+        "x3_merge_eval_diff": 0.14
       },
-      "shortlist": 33
+      "shortlist": 32
     },
     "BTA-x3-n0-scale": {
       "asked": "2026-09-21",
@@ -3667,18 +3671,18 @@
     "BTA-x4-merge": {
       "asked": "2026-09-21",
       "choice": "none_of_these",
-      "confidence": 0.53,
-      "in_file": 33,
-      "key": "f8d8073647b741cd",
+      "confidence": 0.66,
+      "in_file": 32,
+      "key": "e5db0466c3f677fd",
       "model": "jev-1.13.0",
       "probabilities": {
         "DZ_neg_one": 0.0,
-        "none_of_these": 0.55,
-        "x4_first_merge_equiv_three": 0.22,
-        "x4_first_merge_not_equiv_four": 0.13,
-        "x4_merge_eval_diff": 0.1
+        "none_of_these": 0.68,
+        "x4_first_merge_equiv_three": 0.16,
+        "x4_first_merge_not_equiv_four": 0.1,
+        "x4_merge_eval_diff": 0.06
       },
-      "shortlist": 33
+      "shortlist": 32
     },
     "BTC-P-band": {
       "asked": "2026-09-21",
@@ -3890,51 +3894,51 @@
     },
     "BTN-divmod": {
       "asked": "2026-09-21",
-      "choice": "sub_lsd_eq_three_DZ",
-      "confidence": 0.46,
-      "in_file": 32,
-      "key": "d20c40a0638b5d07",
+      "choice": "none_of_these",
+      "confidence": 0.49,
+      "in_file": 31,
+      "key": "5476cc6f4ef0135e",
       "model": "jev-1.13.0",
       "probabilities": {
-        "DZ_carry_lower": 0.01,
-        "encodeZ_of_ne_zero": 0.01,
-        "none_of_these": 0.46,
-        "not_isTrit_natAbs": 0.02,
-        "sub_lsd_eq_three_DZ": 0.48
+        "DZ_carry_lower": 0.03,
+        "isTrit_lsdZ": 0.01,
+        "lsdZ_natAbs_le_one": 0.01,
+        "none_of_these": 0.52,
+        "sub_lsd_eq_three_DZ": 0.42
       },
-      "shortlist": 32
+      "shortlist": 31
     },
     "BTN-lex": {
       "asked": "2026-09-21",
       "choice": "step_lex_zero",
       "confidence": 0.42,
-      "in_file": 32,
-      "key": "421f3dd84afaac8a",
+      "in_file": 31,
+      "key": "28da9763ba8ca218",
       "model": "jev-1.13.0",
       "probabilities": {
         "DZ_carry_lower": 0.0,
-        "none_of_these": 0.13,
-        "stepZero_lex": 0.34,
+        "none_of_these": 0.16,
+        "stepZero_lex": 0.3,
         "step_lex_succ": 0.09,
-        "step_lex_zero": 0.44
+        "step_lex_zero": 0.45
       },
-      "shortlist": 32
+      "shortlist": 31
     },
     "BTN-nf": {
       "asked": "2026-09-21",
       "choice": "none_of_these",
-      "confidence": 0.77,
-      "in_file": 32,
-      "key": "ed1608c7477352cc",
+      "confidence": 0.72,
+      "in_file": 31,
+      "key": "a7100cc726f2c099",
       "model": "jev-1.13.0",
       "probabilities": {
-        "encodeZ_normalize": 0.13,
-        "encodeZ_trits": 0.01,
-        "none_of_these": 0.79,
-        "normalizeLSD_trits": 0.06,
-        "normalizeLSD_value": 0.01
+        "encodeZ_normalize": 0.16,
+        "encodeZ_trits": 0.02,
+        "none_of_these": 0.73,
+        "normalizeLSD_trits": 0.07,
+        "normalizeLSD_value": 0.02
       },
-      "shortlist": 32
+      "shortlist": 31
     },
     "BTN-sdrm-lambda3-translate": {
       "asked": "2026-09-21",
@@ -5330,8 +5334,8 @@
   },
   "totals": {
     "answered": 129,
-    "asked_now": 129,
-    "input_tokens": 391985,
-    "reused": 0
+    "asked_now": 5,
+    "input_tokens": 13665,
+    "reused": 124
   }
 }

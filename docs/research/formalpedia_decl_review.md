@@ -2,7 +2,7 @@
 
 Rows where one candidate leads its file clearly.  Each entry is the ledger row's own
 statement beside the candidate's docstring; the question is only whether they say the
-same thing.  Measured against all 210 single-declaration rows the scorer gets
+same thing.  Measured against all 206 single-declaration rows the scorer gets
 64 of the 79 it fires on right, 81% precise, so roughly one in
 5 below is wrong.
 62 rows below, of 131 unresolved.
@@ -21,7 +21,7 @@ its `n : ℕ` is the tell, and a sibling proves the rest.  That is why the state
 printed below every candidate, docstring or not.
 
 Jev (jev-1.13.0, last asked 2026-09-21) answered 129 of
-the unresolved rows: 82 picks and 47 "none of these".
+the unresolved rows: 81 picks and 48 "none of these".
 32 of the picks are the scorer's own first candidate, and
 48 are at or above 0.7 confidence.  A confident pick lists
 a row here whatever the scorer thought, and every entry shows Jev's answer beside

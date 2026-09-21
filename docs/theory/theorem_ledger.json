@@ -1216,10 +1216,13 @@
  {
   "id": "C-endpoint",
   "tag": "EXACT \u2014 LEAN VERIFIED",
-  "statement": "Kramer endpoint / 2-adic endpoint congruences",
+  "statement": "From the affine endpoint equation 3^m R + C = 2^K x: Kramer's 3-adic endpoint congruence 2^K x \u2261 C (mod 3^m), and for odd x the 2-adic endpoint congruence 3^m R + C \u2261 2^K (mod 2^(K+1)).",
   "source": "docs/literature_comparison.md",
   "lean": "Problems/Collatz/Endpoint.lean",
-  "decl": "kramer_endpoint_congruence_zmod",
+  "decl": [
+   "kramer_endpoint_congruence_zmod",
+   "endpoint_congruence_zmod"
+  ],
   "lean_trust": "kernel",
   "tests": [
    "tests/research/collatz/test_four_coordinate_core.py"
@@ -1435,7 +1438,10 @@
   "statement": "3|DZ n| \u2264 |n|+1 and |q| \u2264 (B+1)/3 on |c|\u2264B",
   "source": "docs/theory/normalization_complexity.md",
   "lean": "BTCalculus/Normalization.lean",
-  "decl": "DZ_carry_bound",
+  "decl": [
+   "DZ_carry_bound",
+   "DZ_le_of_abs_le"
+  ],
   "lean_trust": "kernel",
   "tests": [
    "tests/unit/test_normtheory_strategies.py"
@@ -1505,7 +1511,7 @@
  {
   "id": "BTJ-comp",
   "tag": "EXACT \u2014 LEAN VERIFIED",
-  "statement": "sectionDeriv_a(f.comp g)=sectionDeriv_{rho_a g} f compose sectionDeriv_a g",
+  "statement": "Section chain rule: sectionDeriv_a(f\u2218g) = (sectionDeriv_\u03c1 f)\u2218(sectionDeriv_a g) with \u03c1 = lsd(g(a)), the least significant digit of g at a, in place of a.",
   "source": "docs/theory/polynomial_jet_calculus.md",
   "lean": "BTCalculus/Composition.lean",
   "decl": "section_comp",
@@ -1685,7 +1691,10 @@
   "statement": "x^3-x vanishes modulo 3 and its leading coefficient is not divisible by 3",
   "source": "docs/theory/polynomial_function_congruence.md",
   "lean": "BTCalculus/PolynomialFunctionsMod.lean",
-  "decl": "X_pow_three_sub_X_vanishes_one",
+  "decl": [
+   "X_pow_three_sub_X_vanishes_one",
+   "not_three_dvd_coeff_X_pow_three_sub_X"
+  ],
   "lean_trust": "kernel",
   "tests": [
    "tests/unit/test_poly_congruence.py"
@@ -2216,7 +2225,7 @@
  {
   "id": "BTA-x3-n1-sign",
   "tag": "EXACT \u2014 LEAN VERIFIED",
-  "statement": "p ~ -p after N2+N1 iff 3^r | p",
+  "statement": "For 1\u2264k and r+1\u2264k, at depth k-1-r: p and -p agree in both the N2 and N1 layers modulo 3^k iff 3^r | p.",
   "source": "docs/theory/cubic_n1_valuation.md",
   "lean": "BTCalculus/CubicN1Valuation.lean",
   "decl": "n21_sign_iff",
@@ -2288,7 +2297,7 @@
  {
   "id": "BTA-x3-Q-def",
   "tag": "EXACT \u2014 LEAN VERIFIED",
-  "statement": "Q_{t,K,W}(u)=D^t(u^3) mod 3^K on u\u2208P_W",
+  "statement": "Q_t(u)=D^t(u^3), the integer cubic quotient (qCubic). The paper's Q_{t,K,W} is its residue modulo 3^K on u\u2208P_W; that reduction is stated in the congruence rows BTA-x3-Q-eq and BTA-x3-Q-visible, not here.",
   "source": "docs/theory/mismatched_cubic_quotient.md",
   "lean": "BTCalculus/MismatchedCubicQuotient.lean",
   "decl": "qCubic_def",
@@ -3872,7 +3881,10 @@
   "statement": "For \u03bb=1 and |u|\u2264m, if |s|\u2264\u230am/2\u230b then |D(s+u)|\u2264\u230am/2\u230b. The looser radius \u2308(m+1)/2\u2309 from 3|D n|\u2264|n|+1 is not required.",
   "source": "docs/problems/signed_digit_residual.md",
   "lean": "Problems/BalancedTernary/SignedDigitResidual.lean",
-  "decl": "lambda1_radius_div",
+  "decl": [
+   "lambda1_reachable_box",
+   "lambda1_radius_div"
+  ],
   "lean_trust": "kernel",
   "tests": [
    "tests/research/signed_digit_residual/test_signed_digit_residual.py"
@@ -3885,7 +3897,7 @@
   "statement": "For F_{\u03bb,U_m}(s,u)=\u03bb\u00b7D(s+u) and every integer \u03bb\u22650, a finite invariant box containing 0 exists if and only if \u03bb\u22642 or m\u22641.",
   "source": "docs/problems/signed_digit_residual.md",
   "lean": "Problems/BalancedTernary/SignedDigitResidual.lean",
-  "decl": "finite_residual_condition",
+  "decl": "origin_residual_box_iff",
   "lean_trust": "kernel",
   "tests": [
    "tests/research/signed_digit_residual/test_signed_digit_residual.py"
@@ -4000,7 +4012,7 @@
  {
   "id": "BTN-sdrg-lambda2-evens",
   "tag": "EXACT \u2014 LEAN VERIFIED",
-  "statement": "For \u03bb=2 and U_m, every even 2n with |n|\u2264(m-1)_+ is reached from 0 by an admissible word. The explicit nonnegative word uses letters k+2 at step k.",
+  "statement": "For \u03bb=2 and U_m, every even 2n with 0\u2264n\u2264(m-1)_+ is reached from 0 by an admissible word; the explicit word uses letters k+2 at step k (lambda2_step_up). The negative half -2n is not claimed by this row.",
   "source": "docs/problems/signed_digit_residual_geometry.md",
   "lean": "Problems/BalancedTernary/SignedDigitResidualGeometry.lean",
   "tests": [

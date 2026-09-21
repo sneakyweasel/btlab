@@ -1,5 +1,36 @@
 # Research journal
 
+## 2026-09-21 -- The nine short mis-joins repaired: seven part-for-whole joins and two terse statements over exact joins; six now read as covered, three doubtful, none not covered
+
+- **Objective:** Philippe asked to fix the nine short claims the coverage digest had indexed
+  as the likeliest mis-joins.
+- **Read before touching.** Every declaration in the nine rows' files, header, docstring and
+  existing claim, beside each statement; the collision test forbids two rows on one theorem,
+  and every declaration added below was unclaimed and kernel-checked.
+- **Seven part-for-whole joins.** `BTN-sdr-finite-condition` claims an iff and named the
+  forward direction; now `origin_residual_box_iff`. `BTN-sdr-lambda1-radius` named the
+  arithmetic lemma behind the box; now the box theorem `lambda1_reachable_box` and the lemma.
+  `BTA-x3-x` and `BTN-carry-bound` state two results each and named one; the second
+  declarations, `not_three_dvd_coeff_X_pow_three_sub_X` and `DZ_le_of_abs_le`, sat in the
+  files unclaimed. `C-endpoint` names two congruences; `endpoint_congruence_zmod` added and
+  the statement now says which is 3-adic and which 2-adic. Two were narrowed to what the
+  Lean proves: `BTA-x3-Q-def` defines the integer quotient, not its residue modulo 3^K on
+  P_W, which the congruence rows state; `BTN-sdrg-lambda2-evens` proves the nonnegative half
+  only (`n : ℕ`) and the statement said |n|.
+- **Two false flags.** `BTA-x3-n1-sign` and `BTJ-comp` were exact joins behind terse
+  statements ("p ~ -p after N2+N1", "rho_a g"); the statements now spell out the hypotheses
+  and the notation. No declaration changed.
+- **Re-asked.** Nine coverage requests, 7.6k tokens: six rows covered, 0.69 to 0.91; three
+  doubtful, 0.27 to 0.46; none not covered. The doubtful three are the Q definition row,
+  whose gloss about the reduction Jev reads as an assertion; the λ=2 row, whose disclaimer
+  it reads the same way; and x^3-x at 0.46, where both declarations plainly cover the claim
+  and Jev is simply unsure. Five offer verdicts had gone stale because their files gained
+  claimed declarations; re-asked for 13.7k tokens, one row changed its answer. The audit now
+  stands at 94 covered, 61 doubtful, 93 not covered.
+- **Gates.** `render_theorem_ledger.py --check`, the seventeen ledger tests, and formalpedia
+  except the index gate, which stays red on a peer's unlanded Lean and a peer's uncommitted
+  index rebuild; neither is staged here.
+
 ## 2026-09-21 -- The floor to 2^51 on the RTX 5090 in 59 minutes; the 3n-1 note now reads m <= 58
 
 - **Objective:** Philippe chose \(2^{51}\), the minimum worth running.
