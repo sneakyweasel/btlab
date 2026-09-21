@@ -202,15 +202,37 @@ verification floor is not a Lean object.
 
 ## Open questions
 
-Pushing the floor further is scheduling, not mathematics, and since the GPU verifier below
-it is cheap scheduling: at the calibrated rate, from \(2^{44}\), \(2^{51}\) is about
-1.0 hour, \(2^{56}\) about 32 hours and \(2^{60}\) about
-21 days of the RTX 5090, floors rather than estimates since trajectories
-lengthen slowly with size. What each floor buys the \(3n-1\) \(m\)-cycle theorem is in
-[juggler_negative_m_cycles](juggler_negative_m_cycles.md): \(2^{51}\) gives \(m\le58\),
-\(2^{56}\) gives \(63\), \(2^{60}\) gives \(68\). The 128-bit state has headroom to
-about \(2^{60}\) on the evidence of the peak below \(2^{44}\), \(2^{86.6}\); an overflow
-is reported and re-walked wide on the host, not silently wrapped.
+The floor stands at \(2^{51}\) since the GPU sweep of 21 September 2026 (below). Pushing it
+further is scheduling: \(2^{56}\) about 32 hours of the RTX 5090, \(2^{60}\) about 21 days,
+floors rather than estimates since trajectories lengthen slowly with size (the greatest step
+count rose from 704 below \(2^{44}\) to 847 below \(2^{51}\)). What each floor buys the
+\(3n-1\) \(m\)-cycle theorem is in [juggler_negative_m_cycles](juggler_negative_m_cycles.md):
+\(2^{56}\) gives \(m\le63\), \(2^{60}\) gives \(68\). The 128-bit state has headroom: the
+peak below \(2^{51}\) is about \(2^{97.0}\); an overflow is reported and re-walked wide on the
+host, not silently wrapped.
+
+## The sweep to \(2^{51}\)
+
+**21 September 2026, RTX 5090, `verify_3x1_gpu.cu`.** \([2^{44},2^{51})\) in 8 chunks of
+\(2^{48}\) numbers, 59 minutes wall: \(1117103813820416\) odd starts, the exact count for the range;
+no failure, no new cycle, no overflow; greatest step count \(847\) against the cap of
+\(40000\); peak \(154710878312175791134940888500\), about \(2^{97.0}\). Every chunk exited 0. Three
+\(2^{37}\) windows, at \(2^{45}\), \(2^{48}\) and just below \(2^{51}\), were also run with
+the archived CPU jump walker under WSL: the walked and skipped counts agree exactly (same
+sieve), neither side fails, the peaks are equal in all three, and the GPU's exact step counts
+are below the CPU's granular ones by 72, 12 and 48, the jump walker checking the
+drop at landings only and walking on past a dip inside a jump. Records: `gpu_runs.json`,
+`gpu_chunks/`, `gpu_calibration/spot_checks_2p44_2p51.json`; the statement of the probe and the
+\(m\)-cycle note now read \(2^{51}\), with the CPU certificate to \(2^{44}\) unchanged
+beneath it.
+
+**Consequence for Paper A, not yet taken.** Remark 5.20 reads the floor through
+`neg_cycle_finance` into a period bound: at \(2^{44}\), a fourth cycle of the \(3x-1\) map
+--- equivalently a fourth negative cycle of shortcut \(3x+1\) --- has period at least
+\(16483927\) with \(10400200\) odd steps. At \(2^{51}\) the same implication gives
+\(85137581\) with \(53715833\) odd steps, five times longer. Paper A's deposited text is
+correct as it stands and is not edited here; the stronger number is available to its next
+revision, and the implication itself is kernel-checked, so only the floor input changes.
 
 ## The GPU verifier, calibrated on the certified range
 
@@ -231,7 +253,8 @@ is reported and re-walked wide on the host, not silently wrapped.
   no overflow; peak 121443575752945981388885320, equal to the jump walker's landing peak;
   max steps 703 exact against the jump walker's 704, which is granular to sixteen.
 - **Time.** 26.2 s for \([2^{40},2^{44})\) against the CPU's 1628 s wall on 24 threads
-  (62 times) and 35666 core-seconds (1359 times one core); 3.14e+11
+  (about sixty times; 26.1 s and 26.7 s on two runs) and 35666 core-seconds (about
+  1300 times one core); 3.1e+11
   odd starts per second, 1.07e+10 walked.
 
 The GPU run is a second implementation of the certificate's statement, with a different

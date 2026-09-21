@@ -12,7 +12,9 @@ function Code(el)
 end
 
 function Table(el)
-  return {pandoc.RawBlock('latex', '\\begingroup\\small'), el,
+  -- \footnotesize, not \small: Table 1 carries six columns of up to sixteen digits at the
+  -- 2^51 floor and runs over the text width at \small whatever the column gutters.
+  return {pandoc.RawBlock('latex', '\\begingroup\\footnotesize'), el,
           pandoc.RawBlock('latex', '\\endgroup')}
 end
 

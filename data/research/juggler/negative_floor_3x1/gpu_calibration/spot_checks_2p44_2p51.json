@@ -1,0 +1,100 @@
+{
+ "cpu_verifier": "verify_3x1_jump.c",
+ "cpu_command": [
+  "wsl.exe",
+  "/tmp/verify_3x1_jump_tmpqi869e87"
+ ],
+ "gpu_verifier": "verify_3x1_gpu.cu",
+ "gpu_source_sha256": "1f7bd56f373caf346616a31b34dad78ededbbbc6e87600f9206ec4034c264cbe",
+ "date": "2026-09-21",
+ "windows": [
+  {
+   "lo": 35184372088832,
+   "hi": 35321811042304,
+   "lo_log2": 45.0,
+   "width_log2": 37.0,
+   "peaks_equal": true,
+   "cpu_steps_minus_gpu": 72,
+   "cpu": {
+    "walked": 2347671552,
+    "skipped": 66371805184,
+    "fails": 0,
+    "new_cycles": 0,
+    "max_steps": 602,
+    "peak": 4182108575694044801815612,
+    "seconds": 166.9
+   },
+   "gpu": {
+    "walked": 2347671552,
+    "skipped": 66371805184,
+    "odd_starts": 68719476736,
+    "fails": 0,
+    "new_cycles": 0,
+    "overflows": 0,
+    "max_steps": 530,
+    "peak": 4182108575694044801815612,
+    "seconds": 0.768
+   },
+   "agree": true
+  },
+  {
+   "lo": 281474976710656,
+   "hi": 281612415664128,
+   "lo_log2": 48.0,
+   "width_log2": 37.0,
+   "peaks_equal": true,
+   "cpu_steps_minus_gpu": 12,
+   "cpu": {
+    "walked": 2347671552,
+    "skipped": 66371805184,
+    "fails": 0,
+    "new_cycles": 0,
+    "max_steps": 561,
+    "peak": 44403154050143518849001836,
+    "seconds": 170.9
+   },
+   "gpu": {
+    "walked": 2347671552,
+    "skipped": 66371805184,
+    "odd_starts": 68719476736,
+    "fails": 0,
+    "new_cycles": 0,
+    "overflows": 0,
+    "max_steps": 549,
+    "peak": 44403154050143518849001836,
+    "seconds": 0.785
+   },
+   "agree": true
+  },
+  {
+   "lo": 2251662374731776,
+   "hi": 2251799813685248,
+   "lo_log2": 50.99991194219542,
+   "width_log2": 37.0,
+   "peaks_equal": true,
+   "cpu_steps_minus_gpu": 48,
+   "cpu": {
+    "walked": 2347671552,
+    "skipped": 66371805184,
+    "fails": 0,
+    "new_cycles": 0,
+    "max_steps": 581,
+    "peak": 74752559411306732037041140,
+    "seconds": 171.9
+   },
+   "gpu": {
+    "walked": 2347671552,
+    "skipped": 66371805184,
+    "odd_starts": 68719476736,
+    "fails": 0,
+    "new_cycles": 0,
+    "overflows": 0,
+    "max_steps": 533,
+    "peak": 74752559411306732037041140,
+    "seconds": 0.761
+   },
+   "agree": true
+  }
+ ],
+ "all_agree": true
+}

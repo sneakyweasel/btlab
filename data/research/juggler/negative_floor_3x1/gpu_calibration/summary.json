@@ -29,8 +29,8 @@
    "peak_hi": 0,
    "peak_lo": 413344,
    "forget_17": true,
-   "seconds": 0.316,
-   "sieve_seconds": 0.111,
+   "seconds": 0.233,
+   "sieve_seconds": 0.107,
    "new_cycle_starts": [
     17
    ],
@@ -59,8 +59,8 @@
    "peak_hi": 0,
    "peak_lo": 413344,
    "forget_17": false,
-   "seconds": 0.233,
-   "sieve_seconds": 0.11,
+   "seconds": 0.225,
+   "sieve_seconds": 0.108,
    "new_cycle_starts": [],
    "overflow_starts": [],
    "stepcap_starts": [],
@@ -85,8 +85,8 @@
    "peak_hi": 9,
    "peak_lo": 8196917283189496792,
    "forget_17": false,
-   "seconds": 0.279,
-   "sieve_seconds": 0.109,
+   "seconds": 0.269,
+   "sieve_seconds": 0.11,
    "new_cycle_starts": [],
    "overflow_starts": [],
    "stepcap_starts": [],
@@ -111,7 +111,7 @@
    "peak_hi": 14157,
    "peak_lo": 10246583814699952252,
    "forget_17": false,
-   "seconds": 1.936,
+   "seconds": 2.001,
    "sieve_seconds": 0.107,
    "new_cycle_starts": [],
    "overflow_starts": [],
@@ -137,8 +137,8 @@
    "peak_hi": 6583469,
    "peak_lo": 7992745433321049416,
    "forget_17": false,
-   "seconds": 26.249,
-   "sieve_seconds": 0.11,
+   "seconds": 26.741,
+   "sieve_seconds": 0.107,
    "new_cycle_starts": [],
    "overflow_starts": [],
    "stepcap_starts": [],
@@ -205,50 +205,50 @@
   },
   "peak_2p40_2p44_equal_to_landing_peak": true,
   "odd_start_convention": "the CPU printed (limit - lo) // 2 per chunk, one below the count of odd integers when lo is odd; the GPU counts them exactly, and the seven gap starts the CPU verified separately are inside the GPU's ranges",
-  "max_steps_convention": "the jump walker counts sixteen per jump and checks the drop at landings, so its 704 is granular; the GPU's 703 is the plain walker's exact count",
+  "max_steps_convention": "the jump walker counts sixteen per jump and checks the drop at landings only, so its count is at least the exact one and, when a trajectory dips below the start inside a jump and recovers, can exceed it by more than a jump (72 steps in one spot window); its 704 against the GPU's exact 703 on [2^40, 2^44). The peaks have no forced relation for the same reason; they were equal wherever compared",
   "timing": {
-   "gpu_seconds_2p40_2p44": 26.249,
+   "gpu_seconds_2p40_2p44": 26.741,
    "cpu_wall_seconds": 1628,
    "cpu_core_seconds": 35666,
-   "speedup_vs_24_threads": 62.0214103394415,
-   "speedup_vs_one_core": 1358.7565240580593
+   "speedup_vs_24_threads": 60.88029617441382,
+   "speedup_vs_one_core": 1333.75715193897
   },
   "all_agree": true
  },
- "rate_odd_starts_per_second": 314158147293.9922,
- "rate_walked_starts_per_second": 10732621670.920797,
+ "rate_odd_starts_per_second": 308378041521.2595,
+ "rate_walked_starts_per_second": 10535155238.771923,
  "projections_hours_from_2p44": [
   {
    "floor": "2^48",
-   "hours": 0.11666222222222222
+   "hours": 0.11884888888888887
   },
   {
    "floor": "2^49",
-   "hours": 0.24110192592592591
+   "hours": 0.245621037037037
   },
   {
    "floor": "2^50",
-   "hours": 0.48998133333333327
+   "hours": 0.4991653333333333
   },
   {
    "floor": "2^51",
-   "hours": 0.987740148148148
+   "hours": 1.0062539259259258
   },
   {
    "floor": "2^52",
-   "hours": 1.9832577777777776
+   "hours": 2.020431111111111
   },
   {
    "floor": "2^56",
-   "hours": 31.848786666666662
+   "hours": 32.445746666666665
   },
   {
    "floor": "2^58",
-   "hours": 127.4184791111111
+   "hours": 129.80675644444443
   },
   {
    "floor": "2^60",
-   "hours": 509.69724888888885
+   "hours": 519.2507955555556
   }
  ]
 }

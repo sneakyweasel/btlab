@@ -1,5 +1,33 @@
 # Research journal
 
+## 2026-09-21 -- The floor to 2^51 on the RTX 5090 in 59 minutes; the 3n-1 note now reads m <= 58
+
+- **Objective:** Philippe chose \(2^{51}\), the minimum worth running.
+- **The sweep.** `negative_floor_gpu sweep 44 51`, 8 chunks of \(2^{48}\): \(1117103813820416\) odd starts,
+  the exact count for the range; no failure, no new cycle, no overflow; greatest step count
+  \(847\) (704 below \(2^{44}\)); peak about \(2^{97.0}\); 59 minutes wall. Record
+  `gpu_runs.json`, chunk reports in `gpu_chunks/`.
+- **The spot checks.** The archived CPU jump walker, compiled under WSL, on three \(2^{37}\)
+  windows at \(2^{45}\), \(2^{48}\) and just below \(2^{51}\) (about three minutes each on
+  one core; the GPU does each in under a second): walked and skipped counts equal, no failure
+  either side, peaks equal in all three. The step counts differ by 72, 12 and
+  48, the CPU above: the jump walker checks the drop at landings only, so a trajectory
+  that dips below its start inside a jump and recovers is walked on to a later landing. The
+  first spot criterion had assumed the difference stays below a jump; corrected to the relation
+  the semantics guarantee, GPU exact at most CPU granular, with the peaks recorded rather than
+  required.
+- **What moved.** The m-cycle probe's floor is \(2^{51}\): no admissible length below the
+  ceiling through \(m=52\), the chaining excludes \(53\le m\le58\) with \(9.8\) bits to spare
+  at the closest (\(m=58\), \(K=64789416887513\)), and at \(m=59\) two lengths survive,
+  removed at \(2^{51.87}\) and \(2^{55.18}\). The m-free period bound is \(85137581\) with
+  \(53715833\) odd steps. The note's title, banner, abstract, floor paragraph, Section 2,
+  Theorem 6, Table 1, the Section 5 margins, the ladder sentence and Section 8 regenerated;
+  Barina cited for the domain switch; the manuscript check now reads the note's own floor and
+  re-sieves \(2^{49}\) to \(2^{51}\) independently; PDF rebuilt. A new theorem row for
+  \(m\le58\), the \(m\le49\) row kept as superseded, the floor row extended; both dossiers.
+- **Next.** \(2^{56}\) is a weekend of the card and \(m\le63\); then the editorial pass and the
+  kit for the deposit.
+
 ## 2026-09-21 -- The retag rule asked: Jev's coverage audit over the 248 resolved rows, reworded once after the first wording listed nine rows in ten
 
 - **Objective:** Philippe asked for the coverage Noul the morning's survey had proposed:
@@ -74,7 +102,7 @@
 - **Not done.** The coverage Noul ("does this declaration state the whole claim") that the
   survey proposed for the EXACT / LEAN VERIFIED retag; it is the natural next command.
 
-## 2026-09-21 -- The 3x-1 floor verifier on the RTX 5090: calibrated exactly on the certified range, 62 times the CPU run
+## 2026-09-21 -- The 3x-1 floor verifier on the RTX 5090: calibrated exactly on the certified range, about sixty times the CPU run
 
 - **Objective:** Philippe asked for the CUDA kernel and its calibration on the certified
   range, pointing at the atlas's CUDA code for the build.
@@ -96,7 +124,9 @@
   the CPU's per-chunk rounding and the seven gap starts, both understood. The Python walker
   in the driver module reproduces the kernel on the 32 survivors below 2000 (62 steps, peak
   413344) and single steps of \(g\) reproduce it on every odd start below 3000.
-- **Time.** 26.2 s for \([2^{40},2^{44})\): 62 times the CPU's 1628 s wall on 24 threads,
+- **Time.** 26.2 s for \([2^{40},2^{44})\): about sixty times the CPU's 1628 s wall on 24 threads
+  (26.1 s and 26.7 s on two runs, 62 and 61 times; the archived summary carries the
+  measurement, the prose does not pin it),
   1359 times one core; 3.14e+11 odd starts per second. From \(2^{44}\):
   \(2^{51}\) about 1 hour, \(2^{56}\) about 32 hours, \(2^{60}\) about
   21 days, as floors on the time since trajectories lengthen with size. The

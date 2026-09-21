@@ -91,15 +91,16 @@ def test_admissible_lengths_are_exactly_the_expanding_near_convergents() -> None
 
 
 def test_table_at_the_floor_excludes_the_recorded_range() -> None:
-    """At ``2^44`` the tables exclude every m up to the recorded value, and the archived
+    """At the floor ``2^FLOOR_LOG2`` (51 since the GPU sweep of 21 September 2026) the tables
+    exclude every m up to the recorded value, and the archived
     summary agrees with a fresh computation of the first rows."""
     data = json.loads(nm.JSON_PATH.read_text(encoding="utf-8"))
-    at = data["tables"]["2^44"]
+    at = data["tables"][f"2^{nm.FLOOR_LOG2}"]
     M = at["excluded_through"]
     assert M >= 20, M
     assert data["classification"]["excluded_through_at_floor"] == M
     for r in at["rows"][:3]:
-        fresh = nm.row(r["m"], 2**44)
+        fresh = nm.row(r["m"], 2**nm.FLOOR_LOG2)
         assert fresh["excluded"] == r["excluded"]
         assert fresh["K3_rhin_ceiling"] == r["K3_rhin_ceiling"]
         assert fresh["K0_least_admissible"] == r["K0_least_admissible"]
@@ -118,9 +119,28 @@ def test_a_higher_floor_excludes_at_least_as_much() -> None:
 
 
 def test_m_free_survivor_at_the_floor_is_the_recorded_period() -> None:
+    """The m-free period bound: 16483927 at 2^44 (Paper A, Remark 5.20), 85137581 at 2^51."""
+    from research.juggler_sequence.collatz_finance_mirror import negative_cycle_survivors
+
     data = json.loads(nm.JSON_PATH.read_text(encoding="utf-8"))
     first = data["m_free_survivors_at_floor"][0]
-    assert (first["K"], first["o"]) == (16483927, 10400200)
+    assert data["floor_log2"] == nm.FLOOR_LOG2 == 51
+    assert (first["K"], first["o"]) == (85137581, 53715833)
+    at44 = negative_cycle_survivors(mpf(2**44), 20_000_000)[0]
+    assert (at44["K"], at44["o"]) == (16483927, 10400200)
+
+
+def test_the_theorem_at_the_new_floor_and_the_old_one() -> None:
+    """2^51 excludes m <= 58 (no admissible length through m = 52, chaining through 58, the
+    closest 9.8 bits at K = 64789416887513); 2^44 still reads 49 in the same tables."""
+    data = json.loads(nm.JSON_PATH.read_text(encoding="utf-8"))
+    t51 = {r["m"]: r for r in data["tables"]["2^51"]["rows"]}
+    assert data["tables"]["2^51"]["excluded_through"] == 58 == data["classification"]["excluded_through_at_floor"]
+    assert all(t51[m]["admissible_count"] == 0 for m in range(1, 53))
+    assert [t51[m]["admissible_count"] for m in range(53, 60)] == [1, 2, 4, 6, 10, 16, 27]
+    assert round(t51[58]["closest_slack_bits"], 1) == -9.8 and t51[58]["K0_least_admissible"] == 64789416887513
+    assert [s["K"] for s in t51[59]["survivors"]] == [64789416887513, 83130157078217]
+    assert data["tables"]["2^44"]["excluded_through"] == 49
 
 
 def test_the_four_lengths_at_m_50_die_at_the_recorded_floors() -> None:

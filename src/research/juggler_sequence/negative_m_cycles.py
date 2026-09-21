@@ -2,7 +2,8 @@
 
 The map is ``g(y) = y/2`` (``y`` even), ``(3y-1)/2`` (``y`` odd) on the positive integers, the
 shortcut 3n+1 map read on the negative integers. Its known cycles are ``1``, ``(5, 7, 10)`` and
-the eleven-element cycle at ``17``; every start below ``2^44`` reaches one of them
+the eleven-element cycle at ``17``; every start below ``2^51`` reaches one of them (CPU
+certificate to ``2^44``, GPU sweep to ``2^51``, both under ``negative_floor_3x1``)
 (``negative_floor_3x1``). An m-cycle is a cycle with ``m`` odd runs, equivalently ``m`` local
 minima (the first element of each odd run). This probe runs the five-step template of
 Simons-de Weger 2005 / Simons 2008 on this side, with the negative-side constants derived
@@ -65,7 +66,7 @@ CLASS_EXCLUDED = "NEGATIVE_M_CYCLES_EXCLUDED_BELOW_M"
 
 _DPS = 80
 #: the verified floor of the 3x-1 map
-FLOOR_LOG2 = 44
+FLOOR_LOG2 = 51
 #: the three cycles of the 3x-1 shortcut map on the positive integers
 CYCLES: tuple[tuple[int, ...], ...] = ((1,), (5, 7, 10), (17, 25, 37, 55, 82, 41, 61, 91, 136, 68, 34))
 #: Rhin 1987, Proposition p. 160, (7): |u0 + u1 log 2 + u2 log 3| >= H^(-13.3) for every
@@ -493,7 +494,7 @@ def probe_payload() -> dict[str, Any]:
     at_floor = tables[f"2^{FLOOR_LOG2}"]
     M = at_floor["excluded_through"]
     first_open = next((r for r in at_floor["rows"] if not r["excluded"]), None)
-    mfree = negative_cycle_survivors(mpf(2 ** FLOOR_LOG2), 20_000_000)
+    mfree = negative_cycle_survivors(mpf(2 ** FLOOR_LOG2), 400_000_000)
     return {
         "map": "g(y) = y/2 (even), (3y-1)/2 (odd) on the positive integers; the shortcut 3n+1 map on the negatives",
         "known_cycles": [list(c) for c in CYCLES],
@@ -512,7 +513,7 @@ def probe_payload() -> dict[str, Any]:
             "excluded_through_at_floor": M,
             "first_open_m": None if first_open is None else first_open["m"],
             "first_open_survivors": None if first_open is None else first_open["survivors"],
-            "conditional_on": "Rhin 1987 (external theorem); the floor 2^44 (laboratory certificate)",
+            "conditional_on": f"Rhin 1987 (external theorem); the floor 2^{FLOOR_LOG2} (laboratory certificate: CPU to 2^44, GPU to 2^51)",
         },
     }
 

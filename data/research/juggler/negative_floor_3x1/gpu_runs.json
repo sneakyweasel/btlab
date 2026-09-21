@@ -1,0 +1,142 @@
+[
+ {
+  "range": [
+   17592186044416,
+   2251799813685248
+  ],
+  "range_log2": [
+   44,
+   51
+  ],
+  "chunk_log2": 48,
+  "chunks": 8,
+  "verifier": "verify_3x1_gpu.cu",
+  "verifier_source_sha256": "1f7bd56f373caf346616a31b34dad78ededbbbc6e87600f9206ec4034c264cbe",
+  "binary_sha256": "09c232b98468acaa90ae4cd682d74e6feb61a1e968ed1eea02647c0044ea8be8",
+  "gpu": "NVIDIA GeForce RTX 5090, 595.79",
+  "toolkit": "Cuda compilation tools, release 13.3, V13.3.73",
+  "started_utc": "2026-09-21T10:22:27Z",
+  "ended_utc": "2026-09-21T11:21:04Z",
+  "wall_seconds": 3517.1,
+  "sum_chunk_seconds": 3516.5,
+  "odd_starts": 1117103813820416,
+  "odd_starts_expected": 1117103813820416,
+  "coverage_exact": true,
+  "walked": 38163748749312,
+  "fails": 0,
+  "new_cycles": 0,
+  "overflows": 0,
+  "overflow_rewalks": [],
+  "max_steps": 847,
+  "step_cap": 40000,
+  "peak": "154710878312175791134940888500",
+  "peak_log2": 96.96548939348013,
+  "clean": true,
+  "chunk_reports": [
+   {
+    "chunk": 0,
+    "lo": 17592186044416,
+    "hi": 299067162755072,
+    "odd_starts": 140737488355328,
+    "fails": 0,
+    "new_cycles": 0,
+    "overflows": 0,
+    "max_steps": 734,
+    "peak": "21142881571964420917882086904",
+    "seconds": 439.228,
+    "exit_code": 0
+   },
+   {
+    "chunk": 1,
+    "lo": 299067162755072,
+    "hi": 580542139465728,
+    "odd_starts": 140737488355328,
+    "fails": 0,
+    "new_cycles": 0,
+    "overflows": 0,
+    "max_steps": 722,
+    "peak": "21142881571964420917882086904",
+    "seconds": 438.323,
+    "exit_code": 0
+   },
+   {
+    "chunk": 2,
+    "lo": 580542139465728,
+    "hi": 862017116176384,
+    "odd_starts": 140737488355328,
+    "fails": 0,
+    "new_cycles": 0,
+    "overflows": 0,
+    "max_steps": 847,
+    "peak": "41274920521729277074671487084",
+    "seconds": 474.049,
+    "exit_code": 0
+   },
+   {
+    "chunk": 3,
+    "lo": 862017116176384,
+    "hi": 1143492092887040,
+    "odd_starts": 140737488355328,
+    "fails": 0,
+    "new_cycles": 0,
+    "overflows": 0,
+    "max_steps": 847,
+    "peak": "41274920521729277074671487084",
+    "seconds": 438.95,
+    "exit_code": 0
+   },
+   {
+    "chunk": 4,
+    "lo": 1143492092887040,
+    "hi": 1424967069597696,
+    "odd_starts": 140737488355328,
+    "fails": 0,
+    "new_cycles": 0,
+    "overflows": 0,
+    "max_steps": 844,
+    "peak": "90432155160573081675193686196",
+    "seconds": 436.354,
+    "exit_code": 0
+   },
+   {
+    "chunk": 5,
+    "lo": 1424967069597696,
+    "hi": 1706442046308352,
+    "odd_starts": 140737488355328,
+    "fails": 0,
+    "new_cycles": 0,
+    "overflows": 0,
+    "max_steps": 769,
+    "peak": "32797456803608641877607168358",
+    "seconds": 439.097,
+    "exit_code": 0
+   },
+   {
+    "chunk": 6,
+    "lo": 1706442046308352,
+    "hi": 1987917023019008,
+    "odd_starts": 140737488355328,
+    "fails": 0,
+    "new_cycles": 0,
+    "overflows": 0,
+    "max_steps": 831,
+    "peak": "154710878312175791134940888500",
+    "seconds": 439.571,
+    "exit_code": 0
+   },
+   {
+    "chunk": 7,
+    "lo": 1987917023019008,
+    "hi": 2251799813685248,
+    "odd_starts": 131941395333120,
+    "fails": 0,
+    "new_cycles": 0,
+    "overflows": 0,
+    "max_steps": 750,
+    "peak": "41274920521729277074671487084",
+    "seconds": 410.949,
+    "exit_code": 0
+   }
+  ]
+ }
+]

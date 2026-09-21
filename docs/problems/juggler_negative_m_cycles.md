@@ -12,8 +12,9 @@ either map, not a Juggler cycle exclusion, and not a change to \(N_0\). The manu
 
 The \(3n-1\) map \(g(y)=y/2\) (\(y\) even), \((3y-1)/2\) (\(y\) odd) on the positive integers
 is the shortcut \(3n+1\) map read on the negative integers. Its known cycles are \(1\),
-\((5,7,10)\) and the eleven-element cycle at \(17\), and every start below \(2^{44}\) reaches
-one of them (the laboratory's certificate). An \(m\)-cycle is a cycle with \(m\) odd runs,
+\((5,7,10)\) and the eleven-element cycle at \(17\), and every start below \(2^{51}\) reaches
+one of them (the laboratory's certificate: CPU to \(2^{44}\), GPU to \(2^{51}\), 21 September
+2026). An \(m\)-cycle is a cycle with \(m\) odd runs,
 equivalently \(m\) local minima. Simons 2007 proves there is exactly one nontrivial 2-cycle,
 floor-free, and says his method stops at \(m\ge3\); Simons–de Weger 2005 and Hercher 2023
 exclude \(3n+1\) \(m\)-cycles for \(m\le68\) and \(m\le91\) from verification floors; nobody
@@ -22,7 +23,7 @@ has run that template on \(3n-1\), because nobody had a floor there. Run it.
 ## Exact statement
 
 For which \(m\) does the \(3n-1\) map have no \(m\)-cycle whose least element is at least
-\(2^{44}\), hence (by the floor) no \(m\)-cycle other than the two known ones with an even
+\(2^{51}\), hence (by the floor) no \(m\)-cycle other than the two known ones with an even
 step? What does each larger floor buy, and which lengths \(K\) does the template leave at
 the first open \(m\)?
 
@@ -67,7 +68,7 @@ the first open \(m\)?
 ## Branch budget
 
 - **Target:** the largest \(M\) such that no \(m\)-cycle with \(m\le M\) exists above the
-  \(2^{44}\) floor, by the Simons–de Weger template with negative-side constants.
+  \(2^{51}\) floor, by the Simons–de Weger template with negative-side constants.
 - **Novelty hypothesis:** the first \(m\)-cycle theorem for \(3n-1\) with \(m\ge3\), and the
   first floor to feed one.
 - **Falsifier:** a real cycle failing the inequalities — the template must leave the
@@ -147,11 +148,13 @@ elementary and are the natural next Lean; Rhin's bound would enter as a hypothes
 ## Results
 
 - **Theorem (EXACT — HUMAN PROOF, one external input).** Given Rhin's bound, the \(3n-1\) map
-  has no \(m\)-cycle with \(1\le m\le49\) whose least element is at least \(2^{44}\); with
-  the floor, none with \(m\le49\) other than \((5,7,10)\) and the cycle at \(17\). For
-  \(m\le43\) no admissible length lies below Rhin's ceiling at all; for \(44\le m\le49\) the
-  admissible lengths are excluded by the chaining, the closest by \(1.4\) bits at \(m=49\),
-  \(K=757698850864\).
+  has no \(m\)-cycle with \(1\le m\le58\) whose least element is at least \(2^{51}\); with
+  the floor, none with \(m\le58\) other than \((5,7,10)\) and the cycle at \(17\). For
+  \(m\le52\) no admissible length lies below Rhin's ceiling at all; for \(53\le m\le58\) the
+  admissible lengths are excluded by the chaining, the closest with \(9.8\) bits to spare at
+  \(m=58\), \(K=64789416887513\). (The first draft's floor \(2^{44}\) gave \(m\le49\), the
+  closest exclusion by \(1.4\) bits at \(m=49\), \(K=757698850864\); the same tables, one row
+  lower.) The m-free period bound at \(2^{51}\) is \(85137581\) with \(53715833\) odd steps.
 - **The floors (COMPUTATIONALLY VERIFIED).** \(2^{40}\): \(m\le44\); \(2^{44}\) to
   \(2^{48}\): \(m\le49\); \(2^{49}\): \(54\); \(2^{50}\): \(56\); \(2^{51}\) to \(2^{55}\): \(58\);
   \(2^{56}\): \(63\); \(301\cdot2^{50}\), [SdW]'s floor: \(63\) on this side against their
@@ -165,6 +168,16 @@ elementary and are the natural next Lean; Rhin's bound would enter as a hypothes
   \(2^{44.57}\), \(2^{45.48}\) and \(2^{48.58}\).
 - **Sanity.** With the floor at \(17\), \(m=2\) leaves \(K=11\); at \(5\), \(m=1\) leaves
   \(K=3\); the chaining is tight on the \(17\)-cycle (\(16\to40\) against \(40.5\)).
+- **What the template leaves at \(m=59\), floor \(2^{51}\):** the lengths \(64789416887513\)
+  and \(83130157078217\), with \(12.4\) and \(5.0\) bits of room; the output of the last step,
+  removed at \(2^{51.87}\) and \(2^{55.18}\).
+- **The floor to \(2^{51}\) (COMPUTATIONALLY VERIFIED, 21 September 2026).** The GPU sweep of
+  \([2^{44},2^{51})\) in 8 chunks, 59 minutes on the RTX 5090: \(1117103813820416\) odd starts,
+  coverage exact, no failure, no new cycle, no overflow, greatest step count \(847\), peak about
+  \(2^{97.0}\). Three \(2^{37}\) spot windows agree with the archived CPU jump walker under WSL:
+  same walked and skipped counts, same peaks, the GPU's exact step counts below the CPU's
+  granular ones by 72, 12 and 48. Record `gpu_runs.json`, checks
+  `gpu_calibration/` under `negative_floor_3x1`.
 - **Ceilings corrected (21 September 2026, by the manuscript check).** The probe's
   \(K_3(m)\) was one above the least integer of its definition: it evaluated \(L_{\min}\)
   at \(\lfloor K\rfloor\) inside a real bisection and rounded up. It is exact now; Table 1
@@ -185,11 +198,10 @@ elementary and are the natural next Lean; Rhin's bound would enter as a hypothes
 
 ## Open questions
 
-- The floor. On the RTX 5090 with the GPU verifier calibrated on 21 September 2026
-  (62 times the 24-thread CPU run on the certified range): \(2^{51}\) (about
-  1 hour) buys \(m\le58\), \(2^{56}\) (about 32 hours) buys \(63\),
-  \(2^{60}\) (about 21 days) buys \(68\). Verifier, driver and calibration
-  are archived with `negative_floor_3x1`.
+- The floor stands at \(2^{51}\) since the GPU sweep of 21 September 2026. \(2^{52}\) to
+  \(2^{55}\) buy nothing; \(2^{56}\) (about 32 hours of the card) buys \(m\le63\), \(2^{59}\)
+  buys \(64\), \(2^{60}\) (about 21 days) buys \(68\). Verifier, driver, calibration and
+  sweep records are archived with `negative_floor_3x1`.
 - Hercher's valley arrangement transposed, worth about nine values of \(m\) at \(2^{68}\).
 - The Eliahou-type period lattice on this side at \(2^{44}\).
 - Their Lemma 7 constant \(c_m\to0.30576\) against the \((B-m)/(\delta-1)\) term here, a
@@ -200,8 +212,8 @@ elementary and are the natural next Lean; Rhin's bound would enter as a hypothes
 `PROMOTE`. The template carries with the sign flipped, the constants improve rather than
 worsen (the odd step subtracts), and the result is a theorem nobody has stated about a map
 the literature names but has not verified; on their side at their floor it reproduces their
-Lemma 18 to the unit. Best next question: the floor to \(2^{50}\) or \(2^{51}\), then Hercher's
-valley arrangement.
+Lemma 18 to the unit. Best next question: the floor to \(2^{56}\), a weekend of the card, then Hercher's valley
+arrangement.
 
 ## Publication assessment
 
@@ -214,9 +226,9 @@ matters:
 
 1. **The floor.** There is no lattice step left: [SdW]'s Section 7 is the list the three-gap
    walk produces, tested the same way, and the note now says so and reproduces their Lemma 18
-   on their side. What a referee will ask instead is why the floor stops at \(2^{44}\) when
-   the GPU verifier takes it to \(2^{56}\) in about 32 hours and buys fourteen
-   values of \(m\); the note should carry the higher floor.
+   on their side. The note carries the \(2^{51}\) floor and \(m\le58\) since the GPU sweep
+   of 21 September 2026; \(2^{56}\) (\(m\le63\)) is a weekend of the card and is the floor
+   the deposit should carry if it can be spared.
 2. **The floor as a citable object.** One implementation, one run, archived in the
    repository. It needs a deposit with a DOI (verifier sources, chunk reports, coverage
    check) and, ideally, an independent re-run; Paper A's Remark 5.20 already rests on it, so

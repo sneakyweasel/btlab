@@ -3935,7 +3935,8 @@
       "decision": "PROMOTE",
       "ledger_ids": [
         "J-negative-m-cycle-lemmas",
-        "J-negative-m-cycles-excluded-through-49"
+        "J-negative-m-cycles-excluded-through-49",
+        "J-negative-m-cycles-excluded-through-58"
       ],
       "aliases": [],
       "nk_cluster": null
@@ -7088,7 +7089,8 @@
       "conjecture": [],
       "decision": null,
       "ledger_ids": [
-        "J-negative-floor-makes-the-mirror-unconditional"
+        "J-negative-floor-makes-the-mirror-unconditional",
+        "J-negative-m-cycles-excluded-through-58"
       ],
       "aliases": [],
       "nk_cluster": null

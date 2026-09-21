@@ -31,7 +31,14 @@ TEX_NAME = "cochin-3n-minus-1-m-cycles.tex"
 TEMPLATE = "tools/collatz_note/article.tex"
 FILTER = "tools/collatz_note/layout.lua"
 MANIFEST = f"{WORK}/manifest.json"
-INPUTS = [SOURCE, TEMPLATE, FILTER, "tools/build_3n_minus_1_note.py"]
+# The manuscript, its build chain, and the artifacts its tables are read from: a change to the
+# probe, to the tables it writes, or to the independent check stales the PDF, which is what
+# Paper C's gate exists to catch (a source edit under src/ silently staling a paper).
+INPUTS = [SOURCE, TEMPLATE, FILTER, "tools/build_3n_minus_1_note.py",
+          "src/research/juggler_sequence/negative_m_cycles.py",
+          "tools/check_3n_minus_1_note_numeric.py",
+          "data/research/juggler/negative_m_cycles/summary.json",
+          "data/research/juggler/negative_m_cycles/manuscript_check.json"]
 # XeLaTeX stamps a build time into the PDF; pin it to the note's date so a
 # no-op rebuild reproduces the bytes (21 September 2026, 00:00 UTC).
 SOURCE_DATE_EPOCH = "1789948800"

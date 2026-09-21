@@ -146,7 +146,11 @@ def test_the_run_record_names_the_source_that_ran() -> None:
 
 def test_the_floor_buys_the_period_bound() -> None:
     rows = {r["floor"]: r for r in period_bounds(
-        floors=((2**38, "2^38"), (10**11, "10^11"), (2**40, "2^40"), (2**44, "2^44")))}
+        floors=((2**38, "2^38"), (10**11, "10^11"), (2**40, "2^40"), (2**44, "2^44"), (2**51, "2^51")))}
+    # 2^51 is the GPU sweep of 21 September 2026; 16483927 at 2^44 is Paper A's Remark 5.20.
+    assert rows["2^51"]["least_period"] == 85_137_581
+    assert rows["2^51"]["odd_steps"] == 53_715_833
+    assert rows["2^51"]["least_period"] > rows["2^44"]["least_period"]
     assert rows["2^44"]["least_period"] == 16_483_927
     assert rows["2^44"]["odd_steps"] == 10_400_200
     assert rows["2^44"]["verified"]
@@ -166,4 +170,13 @@ def test_committed_artifact_is_green() -> None:
     assert data["decision"]["classification"] == CLASS_FLOOR
     assert data["decision"]["branch"] == "PROMOTE"
     assert data["certificate"]["clean"]
-    assert "16483927" in data["statement"]
+    # The statement quotes the period bound at the combined floor: 16483927 at the CPU
+    # certificate's 2^44, 85137581 once the GPU sweep extends it to 2^51.
+    floor_log2 = data.get("floor_log2", 44)
+    assert f"2^{floor_log2}" in data["statement"]
+    assert str({44: 16_483_927, 51: 85_137_581}[floor_log2]) in data["statement"]
+    if floor_log2 > 44:
+        ext = data["gpu_extension"]
+        assert ext["present"] and ext["covered_to_log2"] == floor_log2
+        assert ext["calibration_agrees"] and ext["spot_checks_agree"] is not False
+        assert all(r["clean"] and r["coverage_exact"] for r in ext["records"])

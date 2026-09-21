@@ -16,8 +16,8 @@
  "peak_hi": 0,
  "peak_lo": 413344,
  "forget_17": true,
- "seconds": 0.316,
- "sieve_seconds": 0.111,
+ "seconds": 0.233,
+ "sieve_seconds": 0.107,
  "new_cycle_starts": [
   17
  ],

@@ -1,7 +1,9 @@
 \documentclass[11pt,a4paper]{article}
 \usepackage{fontspec}
 \usepackage{amsmath,amssymb,amsthm}
-\usepackage[margin=1in]{geometry}
+% 0.9in rather than Paper C's 1in: this note is mostly wide numeric tables, and the extra
+% 14.4pt of text width is what Table 1 needs at the 2^51 floor.
+\usepackage[margin=0.9in]{geometry}
 \usepackage{longtable,booktabs,array,calc}
 \usepackage{graphicx}
 \usepackage{float}
@@ -16,7 +18,7 @@
 \usepackage{xurl}
 \usepackage[hidelinks]{hyperref}
 \hypersetup{pdftitle={No m-cycles of the 3n−1 map for m ≤
-49},pdfauthor={Philippe Cochin},pdfsubject={Mathematics preprint}}
+58},pdfauthor={Philippe Cochin},pdfsubject={Mathematics preprint}}
 % The Markdown keeps "≤" in its title and in one reference; Latin Modern's text
 % faces lack the glyph, so it is typeset as \le. Set after \hypersetup so the
 % PDF title keeps the character itself.
@@ -26,25 +28,31 @@
 \setlength{\emergencystretch}{3em}
 \setlength{\LTpre}{1em}
 \setlength{\LTpost}{1em}
-\setlength{\tabcolsep}{3pt}
+% Table 1 carries six columns of up to sixteen digits at the 2^51 floor; at 3pt its twelve
+% gaps put it 9.5pt over the text width.
+% Table 1 at the 2^51 floor: six columns, ceilings of up to sixteen digits. The filter sets
+% tables \footnotesize; with the 0.9in margins above, 2pt gutters leave a few points of slack.
+\setlength{\tabcolsep}{2pt}
 \renewcommand{\arraystretch}{1.12}
 \providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \providecommand{\passthrough}[1]{#1}
 \setcounter{secnumdepth}{-1}
-\title{No m-cycles of the 3n−1 map for m ≤ 49\\[0.5em]{\large The
+\title{No m-cycles of the 3n−1 map for m ≤ 58\\[0.5em]{\large The
 Simons--de Weger template on the negative side, from a verification
-floor of \(2^{44}\)}}
+floor of \(2^{51}\)}}
 \author{Philippe Cochin \\ \texttt{philippe@cochin.fr}}
 \date{21 September 2026}
 \begin{document}
 \maketitle
-\textbf{Laboratory manuscript, first draft of 21 September 2026.} Not a
-review object. One external input, Rhin's effective measure for linear
-forms in \(\log2\) and \(\log3\); one computational input, the
-laboratory's own verification floor; everything else is proved below or
-is exact arithmetic recorded with its margins. Simons--de Weger 2005 and
-Rhin 1987 were read in full on the day of this draft, and the constants
-below are compared with theirs where the comparison is informative.
+\textbf{Laboratory manuscript, second draft of 21 September 2026 (floor
+\(2^{51}\)).} Not a review object. One external input, Rhin's effective
+measure for linear forms in \(\log2\) and \(\log3\); one computational
+input, the laboratory's own verification floor, a CPU certificate to
+\(2^{44}\) and a GPU sweep to \(2^{51}\); everything else is proved
+below or is exact arithmetic recorded with its margins. Simons--de Weger
+2005 and Rhin 1987 were read in full on the day of this draft, and the
+constants below are compared with theirs where the comparison is
+informative.
 
 \begin{abstract}
 
@@ -52,7 +60,7 @@ Let \(g(y)=y/2\) for even \(y\) and \(g(y)=(3y-1)/2\) for odd \(y\), the
 \(3n-1\) map on the positive integers, equivalently the shortcut
 \(3n+1\) map on the negative integers. Its known cycles are \(1\),
 \((5,7,10)\) and the eleven-element cycle at \(17\), and every start
-below \(2^{44}\) reaches one of them. An \(m\)-cycle is a cycle with
+below \(2^{51}\) reaches one of them. An \(m\)-cycle is a cycle with
 \(m\) maximal runs of odd elements. We transpose the template of Simons
 and de Weger for \(3n+1\) \(m\)-cycles to this map, deriving its
 constants on this side rather than borrowing them: the odd step
@@ -62,18 +70,17 @@ multiplication by \(3/2\), a run of \(a\) odd steps starts at
 \(\Lambda=o\log3-K\log2\) by \(m/(x_{\min}-1)\) with constant one, and
 successive local minima obey \(u_{i+1}<u_i^{\log_23}/2\). With Rhin's
 bound this gives: the \(3n-1\) map has no \(m\)-cycle with
-\(1\le m\le49\) other than the two known ones. For \(m\le43\) no
-admissible cycle length lies below Rhin's ceiling; for \(44\le m\le49\)
+\(1\le m\le58\) other than the two known ones. For \(m\le52\) no
+admissible cycle length lies below Rhin's ceiling; for \(53\le m\le58\)
 the admissible lengths are excluded by the chaining, the closest by
-\(1.4\) bits. At \(m=50\) four lengths remain; they are the output of
-the template's last step, not its input, and the floors that remove them
-are \(2^{44.01}\), \(2^{44.57}\), \(2^{45.48}\) and \(2^{48.58}\). The
-same tables give \(m\le44\) from \(2^{40}\), \(m\le54\) from \(2^{49}\),
-\(m\le58\) from \(2^{51}\), \(m\le68\) from \(2^{60}\) and \(m\le82\)
-from \(2^{68}\); on the \(3n+1\) side at the floor of Simons and de
-Weger the same enumeration and tests return their Lemma 18 to the unit.
-No published verification floor and no \(m\)-cycle theorem with
-\(m\ge3\) existed for this map.
+\(9.8\) bits. At \(m=59\) two lengths remain; they are the output of the
+template's last step, not its input, and the floors that remove them are
+\(2^{51.87}\) and \(2^{55.18}\). The same tables give \(m\le44\) from
+\(2^{40}\), \(m\le49\) from \(2^{44}\), \(m\le63\) from \(2^{56}\),
+\(m\le68\) from \(2^{60}\) and \(m\le82\) from \(2^{68}\); on the
+\(3n+1\) side at the floor of Simons and de Weger the same enumeration
+and tests return their Lemma 18 to the unit. No published verification
+floor and no \(m\)-cycle theorem with \(m\ge3\) existed for this map.
 
 \end{abstract}
 
@@ -89,22 +96,34 @@ positive integers are the orbits of the shortcut Collatz map
 are all the cycles, and whether every orbit is bounded, are the \(3x-1\)
 questions of Lagarias's bibliographies, open.
 
-\textbf{The floor.} Every \(1\le y<2^{44}\) reaches one of the three
-cycles. This is the laboratory's own computation (19--20 September
-2026), descent by strong induction on odd starts in one hundred and
-twelve chunks: sixteen with a plain walker through \(2^{40}\) (greatest
-step count \(544\) against a cap of \(4000\)), then ninety-six chunks of
-\(5\cdot2^{35}\) starts with a residue sieve modulo \(2^{24}\) and a
-\(2^{16}\)-step block map as an accelerator, \(8246337208320\) odd
-starts counted exactly (greatest step count \(704\) against a cap of
-\(40000\), counted in blocks of sixteen); the seven odd starts the first
-sixteen chunks had skipped, found from their own printed counts, are
-verified by full iteration. No start failed and no new cycle appeared.
-The verifier sources, the chunk reports and the coverage check are
-archived with the branch \texttt{\nolinkurl{negative_floor_3x1}}. No
-published floor exists: the only statement in print is an unattributed
-comment on OEIS A037084, ``up to at least 100000000''. The certificate
-is a computation and is labelled as one throughout.
+\textbf{The floor.} Every \(1\le y<2^{51}\) reaches one of the three
+cycles. Below \(2^{44}\) this is the laboratory's CPU computation of
+19--20 September 2026, descent by strong induction on odd starts in one
+hundred and twelve chunks: sixteen with a plain walker through
+\(2^{40}\) (greatest step count \(544\) against a cap of \(4000\)), then
+ninety-six chunks of \(5\cdot2^{35}\) starts with a residue sieve modulo
+\(2^{24}\) and a \(2^{16}\)-step block map as an accelerator,
+\(8246337208320\) odd starts counted exactly (greatest step count
+\(704\) against a cap of \(40000\), counted in blocks of sixteen); the
+seven odd starts the first sixteen chunks had skipped, found from their
+own printed counts, are verified by full iteration. The range
+\([2^{44},2^{51})\) was verified on 21 September 2026 by a CUDA
+implementation of the same descent on one RTX 5090: the same sieve, then
+Barina's domain switch {[}B21{]} with the sign flipped, which is Lemma 1
+below, a whole odd run in one multiplication and a whole even run in one
+shift, on a 128-bit state with an overflow report. It was calibrated
+first on the CPU's range, where it reproduces every count, both peaks
+and the plain walker's step counts exactly, and cross-checked against
+the CPU walker on three \(2^{37}\) windows inside the new range;
+\(1117103813820416\) odd starts, no failure, no new cycle, no overflow,
+greatest step count \(847\), peak about \(2^{97.0}\), in \(3517\)
+seconds. No start failed and no new cycle appeared in either range. The
+verifier sources, the chunk reports, the calibration and the coverage
+checks are archived with the branch
+\texttt{\nolinkurl{negative_floor_3x1}}. No published floor exists: the
+only statement in print is an unattributed comment on OEIS A037084, ``up
+to at least 100000000''. The certificate is a computation and is
+labelled as one throughout.
 
 \textbf{\(m\)-cycles.} A cycle with at least one even step splits into
 \(m\ge1\) maximal runs of odd elements alternating with runs of even
@@ -147,7 +166,7 @@ of \(g\) with \(K\) steps and \(o\) odd steps put \[
 \] For odd \(y\) put \(u=y-1\). The local minima of an \(m\)-cycle are
 \(y_1,\dots,y_m\) in cyclic order, \(u_i=y_i-1\), the run from \(y_i\)
 has \(a_i\) odd steps, and \(r_i\ge1\) halvings follow it. \(x_{\min}\)
-is the least element of \(C\). The floor is \(X_0=2^{44}\).
+is the least element of \(C\). The floor is \(X_0=2^{51}\).
 
 \section{3. Four lemmas on the negative
 side}\label{four-lemmas-on-the-negative-side}
@@ -287,12 +306,12 @@ and is not competitive; Rhin's constant is specific to \(\log2\) and
 
 \section{5. The theorem}\label{the-theorem}
 
-\textbf{Theorem 6.} Let \(X_0=2^{44}\). For every \(1\le m\le49\) and
+\textbf{Theorem 6.} Let \(X_0=2^{51}\). For every \(1\le m\le58\) and
 every length \(K<K_3(m)\) with \(\Lambda(K)<m/(X_0-1)\), \[
 2^{L_{\min}(K,m)}\ \ge\ \frac m{\Lambda(K)} .
 \] Consequently, with Rhin's bound, the \(3n-1\) map has no \(m\)-cycle
-with \(1\le m\le49\) whose least element is at least \(2^{44}\), and by
-the floor no \(m\)-cycle with \(m\le49\) other than \((5,7,10)\) and the
+with \(1\le m\le58\) whose least element is at least \(2^{51}\), and by
+the floor no \(m\)-cycle with \(m\le58\) other than \((5,7,10)\) and the
 cycle at \(17\).
 
 \emph{Proof.} An \(m\)-cycle above the floor has \(K<K_3(m)\) by
@@ -300,17 +319,17 @@ Proposition 5, its length is admissible by Lemma 4, and Lemmas 2 and 3
 give \(2^{L_{\min}(K,m)}<x_{\min}-1\le m/\Lambda(K)\), contradicting the
 display. The display is a finite exact computation: for each \(m\) the
 admissible lengths below \(K_3(m)\) are enumerated by Lemma 4 and each
-is tested at eighty digits. For \(m\le43\) there is no admissible length
+is tested at eighty digits. For \(m\le52\) there is no admissible length
 below \(K_3(m)\) at all, so the conclusion there rests on Lemmas 2 and 4
-and Proposition 5 alone. For \(44\le m\le49\) the admissible lengths
+and Proposition 5 alone. For \(53\le m\le58\) the admissible lengths
 exist and fail the display by the margins of Table 1. \(\square\)
 
-\textbf{Table 1.} Rows at the floor \(2^{44}\). ``Margin'' is
+\textbf{Table 1.} Rows at the floor \(2^{51}\). ``Margin'' is
 \(\max\log_2\bigl(m/(\Lambda(K)\,2^{L_{\min}})\bigr)\) over the
 admissible \(K<K_3(m)\), negative when every admissible length is
 excluded.
 
-\begingroup\small
+\begingroup\footnotesize
 
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
@@ -339,44 +358,46 @@ margin (bits)
 \endfoot
 \bottomrule\noalign{}
 \endlastfoot
-1 & \(5.7\cdot10^{-14}\) & 155 & 0 & --- & --- \\
-2 & \(1.1\cdot10^{-13}\) & 495 & 0 & --- & --- \\
-5 & \(2.8\cdot10^{-13}\) & 3926 & 0 & --- & --- \\
-10 & \(5.7\cdot10^{-13}\) & 57129 & 0 & --- & --- \\
-20 & \(1.1\cdot10^{-12}\) & 8393107 & 0 & --- & --- \\
-30 & \(1.7\cdot10^{-12}\) & 1094917645 & 0 & --- & --- \\
-40 & \(2.3\cdot10^{-12}\) & 134716197551 & 0 & --- & --- \\
-44 & \(2.5\cdot10^{-12}\) & 913288455197 & 1 & 757698850864 &
-\(-399.7\) \\
-45 & \(2.6\cdot10^{-12}\) & 1472498495287 & 3 & 757698850864 &
-\(-236.4\) \\
-47 & \(2.7\cdot10^{-12}\) & 3824399289665 & 9 & 757698850864 &
-\(-68.3\) \\
-48 & \(2.7\cdot10^{-12}\) & 6160750059301 & 15 & 757698850864 &
-\(-27.3\) \\
-49 & \(2.8\cdot10^{-12}\) & 9921719447060 & 25 & 757698850864 &
-\(-1.4\) \\
-50 & \(2.8\cdot10^{-12}\) & 15974496522785 & 41 & 539722056247 &
-\(+22.4\) \\*
+1 & \(4.4\cdot10^{-16}\) & 155 & 0 & --- & --- \\
+2 & \(8.9\cdot10^{-16}\) & 495 & 0 & --- & --- \\
+5 & \(2.2\cdot10^{-15}\) & 3926 & 0 & --- & --- \\
+10 & \(4.4\cdot10^{-15}\) & 57129 & 0 & --- & --- \\
+20 & \(8.9\cdot10^{-15}\) & 8393107 & 0 & --- & --- \\
+30 & \(1.3\cdot10^{-14}\) & 1094917645 & 0 & --- & --- \\
+40 & \(1.8\cdot10^{-14}\) & 134716197551 & 0 & --- & --- \\
+50 & \(2.2\cdot10^{-14}\) & 15974496522785 & 0 & --- & --- \\
+53 & \(2.4\cdot10^{-14}\) & 66574098182843 & 1 & 64789416887513 &
+\(-549.2\) \\
+54 & \(2.4\cdot10^{-14}\) & 107084917386112 & 2 & 64789416887513 &
+\(-328.1\) \\
+55 & \(2.4\cdot10^{-14}\) & 172208666666214 & 4 & 64789416887513 &
+\(-188.5\) \\
+56 & \(2.5\cdot10^{-14}\) & 276877898691766 & 6 & 64789416887513 &
+\(-100.4\) \\
+57 & \(2.5\cdot10^{-14}\) & 445072680198484 & 10 & 64789416887513 &
+\(-44.8\) \\
+58 & \(2.6\cdot10^{-14}\) & 715295665905327 & 16 & 64789416887513 &
+\(-9.8\) \\
+59 & \(2.6\cdot10^{-14}\) & 1149356600587428 & 27 & 64789416887513 &
+\(+12.4\) \\*
 \end{longtable}
 
 \endgroup
 
-The exclusion at \(m=49\) hangs on \(1.4\) bits at \(K=757698850864\);
-any weakening of the constants, in Rhin's form or in the chaining, would
-move the theorem to \(m\le48\). At \(m=50\) the template leaves four
-lengths, \[
-539722056247,\quad757698850864,\quad975675645481,\quad1193652440098,
-\] with \(22.4\), \(15.0\), \(7.8\) and \(2.9\) bits of room; they are
-the near-convergent lengths of \(x\) on the expanding side, an
-arithmetic progression of step \(217976794617\). They are the output of
-the template's last step, not its input: what removes each is a higher
-floor, at \(2^{44.01}\), \(2^{44.57}\), \(2^{45.48}\) and \(2^{48.58}\)
-respectively (Lemma 2's \(x_{\min}-1<m/\Lambda\)).
+The closest exclusion, at \(m=58\), has \(9.8\) bits to spare at
+\(K=64789416887513\), the least admissible length at this floor; the
+same length is the first to survive at \(m=59\). At \(m=59\) the
+template leaves two lengths, \[
+64789416887513,\quad83130157078217,
+\] with \(12.4\) and \(5.0\) bits of room; they are near-convergent
+lengths of \(x\) on the expanding side. They are the output of the
+template's last step, not its input: what removes each is a higher
+floor, at \(2^{51.87}\) and \(2^{55.18}\) respectively (Lemma 2's
+\(x_{\min}-1<m/\Lambda\)).
 
 \textbf{Table 2.} What each floor buys, by the same tables.
 
-\begingroup\small
+\begingroup\footnotesize
 
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
@@ -437,10 +458,9 @@ values between \(63\) and \(68\) are the sign of the map, not a missing
 stage. Second, Hercher's \(91\) at \(695\cdot2^{60}\) against the plain
 template's \(82\) at \(2^{68}\) prices his valley arrangement at about
 nine values of \(m\), the one refinement left to transpose. The floor
-enters only through the admissibility threshold, in steps: \(2^{48}\)
-buys nothing over \(2^{44}\) but one survivor fewer at \(m=50\);
-\(2^{49}\) buys \(m\le54\), \(2^{50}\) buys \(56\), \(2^{51}\) buys
-\(58\), and nothing more until \(2^{56}\).
+enters only through the admissibility threshold, in steps: \(2^{52}\) to
+\(2^{55}\) buy nothing over \(2^{51}\); \(2^{56}\) buys \(m\le63\),
+\(2^{59}\) buys \(64\), \(2^{60}\) buys \(68\).
 
 \section{6. The cycles that exist pass the same
 test}\label{the-cycles-that-exist-pass-the-same-test}
@@ -482,7 +502,11 @@ pass, that \(K_3\) is a ceiling, that the three-gap walk agrees with a
 direct scan, that the archived tables reproduce, and that the same
 machinery with the window on the contracting side returns {[}SdW{]}
 Lemma 18 at their floor. The floor's certificate is with the branch
-\texttt{\nolinkurl{negative_floor_3x1}}.
+\texttt{\nolinkurl{negative_floor_3x1}}: the CPU chunk reports below
+\(2^{44}\), and above it the GPU sweep's chunk reports, its calibration
+on the CPU's range and the three spot-check windows
+(\texttt{python\ -m\ research.juggler\_sequence.negative\_floor\_gpu\ calibrate},
+\texttt{sweep\ 44\ 51}, \texttt{\nolinkurl{spot}}).
 
 \section{References}\label{references}
 
@@ -493,6 +517,9 @@ Lemma 18 at their floor. The floor's certificate is with the branch
 \item
   {[}H23{]} C. Hercher, ``There are no Collatz m-cycles with m ≤ 91,''
   \emph{J. Integer Seq.} 26 (2023), Article 23.3.5. arXiv:2201.00406.
+\item
+  {[}B21{]} D. Barina, ``Convergence verification of the Collatz
+  problem,'' \emph{J. Supercomput.} 77 (2021), 2681--2688.
 \item
   {[}S07{]} J. L. Simons, ``A simple (inductive) proof for the
   non-existence of 2-cycles of the 3x+1 problem,'' \emph{J. Number

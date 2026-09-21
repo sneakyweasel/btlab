@@ -242,14 +242,16 @@ def compare_with_certificate(reports: dict[str, dict[str, Any]]) -> dict[str, An
                       "fails": (r44["fails"], runs["fails"]), "new_cycles": (r44["new_cycles"], runs["new_cycles"]),
                       "agree": r44["odd_starts"] == runs["odd_starts"] and r44["fails"] == 0 == runs["fails"]
                       and r44["new_cycles"] == 0 == runs["new_cycles"] and r44["overflows"] == 0
-                      and runs["max_steps"] - 15 <= r44["max_steps"] <= runs["max_steps"]
-                      and peak_of(r44) >= runs["max_landing_peak"]},
+                      and r44["max_steps"] <= runs["max_steps"]},
         "peak_2p40_2p44_equal_to_landing_peak": peak_of(r44) == runs["max_landing_peak"],
         "odd_start_convention": "the CPU printed (limit - lo) // 2 per chunk, one below the count of odd "
                                 "integers when lo is odd; the GPU counts them exactly, and the seven gap "
                                 "starts the CPU verified separately are inside the GPU's ranges",
-        "max_steps_convention": "the jump walker counts sixteen per jump and checks the drop at landings, "
-                                "so its 704 is granular; the GPU's 703 is the plain walker's exact count",
+        "max_steps_convention": "the jump walker counts sixteen per jump and checks the drop at landings only, "
+                                "so its count is at least the exact one and, when a trajectory dips below the "
+                                "start inside a jump and recovers, can exceed it by more than a jump (72 steps in "
+                                "one spot window); its 704 against the GPU's exact 703 on [2^40, 2^44). The peaks "
+                                "have no forced relation for the same reason; they were equal wherever compared",
         "timing": {"gpu_seconds_2p40_2p44": r44["seconds"], "cpu_wall_seconds": runs["wall_seconds"],
                    "cpu_core_seconds": runs["sum_chunk_seconds"],
                    "speedup_vs_24_threads": runs["wall_seconds"] / r44["seconds"],
@@ -391,6 +393,46 @@ def sweep(lo_log2: int, hi_log2: int, chunk_log2: int = 48, out_dir: Path = CHUN
     return record
 
 
+# ---------------------------------------------------------------- spot checks against the CPU walker
+SPOT_WINDOWS = ((2 ** 45, 2 ** 45 + 2 ** 37), (2 ** 48, 2 ** 48 + 2 ** 37), (2 ** 51 - 2 ** 37, 2 ** 51))
+CPU_SPOT = CAL_DIR / "cpu_spot_2p44_2p51.json"
+SPOT_OUT = CAL_DIR / "spot_checks_2p44_2p51.json"
+
+
+def spot_check(cpu_json: Path = CPU_SPOT, out: Path = SPOT_OUT) -> dict[str, Any]:
+    """The GPU against the archived CPU jump walker on the windows the CPU has already run
+    (``cpu_json`` holds its reports; ``negative_floor_3x1.run_verifier`` produces them under
+    WSL). Exact where the semantics coincide: walked and skipped counts (same sieve), failures
+    and cycles; the CPU's step count is granular to sixteen and its peak is over landings."""
+    cpu = json.loads(cpu_json.read_text(encoding="utf-8"))
+    windows = []
+    for c in cpu["windows"]:
+        lo, hi = c["lo"], c["hi"]
+        rep = run(lo, hi)
+        cpu_odd = c["walked"] + c["skipped"]
+        # Same sieve, so the walked and skipped counts must match exactly; no failure, cycle or
+        # overflow on either side. The CPU's step count is at least the exact one (it checks the
+        # drop at jump landings only, and a trajectory that dips below the start inside a jump and
+        # recovers is walked on to a later landing), so it can exceed the GPU's by more than a
+        # jump; the peaks have no forced relation for the same reason and are recorded, not
+        # required (they were equal in every window and on [2^40, 2^44)).
+        agree = (rep["walked"] == c["walked"] and rep["odd_starts"] == cpu_odd and rep["fails"] == 0 == c["fails"]
+                 and rep["new_cycles"] == 0 == c["new_cycles"] and rep["overflows"] == 0
+                 and rep["max_steps"] <= c["max_steps"])
+        windows.append({"lo": lo, "hi": hi, "lo_log2": math.log2(lo), "width_log2": math.log2(hi - lo),
+                        "peaks_equal": peak_of(rep) == c["peak"], "cpu_steps_minus_gpu": c["max_steps"] - rep["max_steps"],
+                        "cpu": {k: c.get(k) for k in ("walked", "skipped", "fails", "new_cycles", "max_steps", "peak", "seconds")},
+                        "gpu": {"walked": rep["walked"], "skipped": rep["skipped"], "odd_starts": rep["odd_starts"],
+                                "fails": rep["fails"], "new_cycles": rep["new_cycles"], "overflows": rep["overflows"],
+                                "max_steps": rep["max_steps"], "peak": peak_of(rep), "seconds": rep["seconds"]},
+                        "agree": agree})
+    result = {"cpu_verifier": cpu["verifier"], "cpu_command": cpu["command"], "gpu_verifier": SOURCE.name,
+              "gpu_source_sha256": sha256(SOURCE), "date": time.strftime("%Y-%m-%d"), "windows": windows,
+              "all_agree": all(w["agree"] for w in windows)}
+    out.write_text(json.dumps(result, indent=1, default=str) + "\n", encoding="utf-8")
+    return result
+
+
 def main(argv: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     sub = parser.add_subparsers(dest="command")
@@ -400,9 +442,15 @@ def main(argv: list[str] | None = None) -> None:
     sw.add_argument("lo_log2", type=int)
     sw.add_argument("hi_log2", type=int)
     sw.add_argument("--chunk-log2", type=int, default=48)
+    sub.add_parser("spot")
     args = parser.parse_args(argv)
     if args.command == "build":
         print(build(force=True))
+    elif args.command == "spot":
+        res = spot_check()
+        print(json.dumps({"all_agree": res["all_agree"], "windows": [(w["lo"], w["hi"], w["agree"]) for w in res["windows"]]}))
+        if not res["all_agree"]:
+            sys.exit(1)
     elif args.command == "sweep":
         rec = sweep(args.lo_log2, args.hi_log2, args.chunk_log2)
         print(json.dumps({k: v for k, v in rec.items() if k not in ("chunk_reports", "overflow_rewalks")}, indent=1))

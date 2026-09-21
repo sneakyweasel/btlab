@@ -12,19 +12,19 @@ Verifier `verify_3x1_gpu.cu` (sha256 `1f7bd56f373caf34`), built with Cuda compil
 
 Known-bad input: with the 17-cycle forgotten the kernel reports `NEW CYCLE at 17` on [3, 2000): True. Clean run on [3, 2000): True. Peak on [2^40, 2^44) equal to the CPU landing peak: True.
 
-Conventions: the CPU printed (limit - lo) // 2 per chunk, one below the count of odd integers when lo is odd; the GPU counts them exactly, and the seven gap starts the CPU verified separately are inside the GPU's ranges. the jump walker counts sixteen per jump and checks the drop at landings, so its 704 is granular; the GPU's 703 is the plain walker's exact count.
+Conventions: the CPU printed (limit - lo) // 2 per chunk, one below the count of odd integers when lo is odd; the GPU counts them exactly, and the seven gap starts the CPU verified separately are inside the GPU's ranges. the jump walker counts sixteen per jump and checks the drop at landings only, so its count is at least the exact one and, when a trajectory dips below the start inside a jump and recovers, can exceed it by more than a jump (72 steps in one spot window); its 704 against the GPU's exact 703 on [2^40, 2^44). The peaks have no forced relation for the same reason; they were equal wherever compared.
 
-Timing on [2^40, 2^44): GPU 26.2 s against the CPU's 1628 s wall on 24 threads (62 times) and 35666 core-seconds (1359 times one core). Rate 3.142e+11 odd starts per second, 1.073e+10 walked.
+Timing on [2^40, 2^44): GPU 26.7 s against the CPU's 1628 s wall on 24 threads (61 times) and 35666 core-seconds (1334 times one core). Rate 3.084e+11 odd starts per second, 1.054e+10 walked.
 
 | floor | hours from 2^44 at this rate |
 |---|---|
 | 2^48 | 0.12 |
-| 2^49 | 0.24 |
-| 2^50 | 0.49 |
-| 2^51 | 0.99 |
-| 2^52 | 1.98 |
-| 2^56 | 31.85 |
-| 2^58 | 127.42 |
-| 2^60 | 509.70 |
+| 2^49 | 0.25 |
+| 2^50 | 0.50 |
+| 2^51 | 1.01 |
+| 2^52 | 2.02 |
+| 2^56 | 32.45 |
+| 2^58 | 129.81 |
+| 2^60 | 519.25 |
 
 All calibration checks agree: **True**.

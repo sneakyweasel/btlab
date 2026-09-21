@@ -100,10 +100,14 @@ CYCLES: tuple[tuple[int, ...], ...] = ((1,), (5, 7, 10), (17, 25, 37, 55, 82, 41
 CYCLE_ELEMENTS = frozenset(y for c in CYCLES for y in c)
 #: floors to price, and the period each one buys
 PRICED_FLOORS = (
-    (2**38, "2^38"), (10**11, "10^11"), (2**40, "2^40"), (2**44, "2^44"), (2**68, "2^68"),
+    (2**38, "2^38"), (10**11, "10^11"), (2**40, "2^40"), (2**44, "2^44"), (2**51, "2^51"), (2**68, "2^68"),
 )
-#: search cap for the finance walk; the smallest survivor is far below it
-KMAX = 20_000_000
+#: search cap for the finance walk; the smallest survivor is far below it (85137581 at 2^51)
+KMAX = 400_000_000
+#: the GPU sweep record and its checks, written by negative_floor_gpu (sweep, spot)
+GPU_RUNS_PATH = DATA_DIR / "gpu_runs.json"
+GPU_SPOT_PATH = DATA_DIR / "gpu_calibration" / "spot_checks_2p44_2p51.json"
+GPU_CALIBRATION_PATH = DATA_DIR / "gpu_calibration" / "summary.json"
 
 
 def shortcut(y: int) -> int:
@@ -315,11 +319,47 @@ def period_bounds(floors: tuple[tuple[int, str], ...] = PRICED_FLOORS) -> list[d
             "floor_value": float(value),
             "least_period": first["K"] if first else None,
             "odd_steps": first["o"] if first else None,
-            "verified": value <= 2**FLOOR_LOG2,
+            "verified": value <= 2**combined_floor_log2(),
             "note": "" if first else f"no survivor below the walk cap KMAX = {KMAX}; the "
             "laboratory's conditional table records 72448885240 at this floor",
         })
     return rows
+
+
+def gpu_extension() -> dict[str, Any]:
+    """The GPU sweep above the CPU certificate, if its record is clean and starts where the
+    certificate stops, with its calibration and the spot checks against the CPU walker."""
+    if not GPU_RUNS_PATH.is_file():
+        return {"present": False}
+    records = json.loads(GPU_RUNS_PATH.read_text(encoding="utf-8"))
+    chain = sorted((r for r in records if r.get("clean")), key=lambda r: r["range"][0])
+    covered = 2**FLOOR_LOG2
+    used = []
+    for r in chain:
+        if r["range"][0] == covered:
+            covered = r["range"][1]
+            used.append(r)
+    spot = json.loads(GPU_SPOT_PATH.read_text(encoding="utf-8")) if GPU_SPOT_PATH.is_file() else None
+    cal = json.loads(GPU_CALIBRATION_PATH.read_text(encoding="utf-8")) if GPU_CALIBRATION_PATH.is_file() else None
+    return {
+        "present": bool(used),
+        "covered_to": covered,
+        "covered_to_log2": covered.bit_length() - 1 if covered & (covered - 1) == 0 else None,
+        "records": [{k: v for k, v in r.items() if k not in ("chunk_reports", "overflow_rewalks")} for r in used],
+        "overflow_rewalks": [w for r in used for w in r.get("overflow_rewalks", [])],
+        "calibration_agrees": bool(cal and cal["comparison"]["all_agree"]),
+        "spot_checks_agree": None if spot is None else bool(spot.get("all_agree")),
+        "spot_checks": None if spot is None else spot.get("windows"),
+        "verifier": "data/research/juggler/negative_floor_3x1/verify_3x1_gpu.cu",
+    }
+
+
+def combined_floor_log2() -> int:
+    """The CPU certificate's floor, extended by a clean GPU sweep that starts at it."""
+    ext = gpu_extension()
+    if ext.get("present") and ext.get("covered_to_log2") and ext.get("calibration_agrees"):
+        return ext["covered_to_log2"]
+    return FLOOR_LOG2
 
 
 def probe_payload() -> dict[str, Any]:
@@ -327,22 +367,29 @@ def probe_payload() -> dict[str, Any]:
     bounds = period_bounds()
     ref = reference_agrees(limit=60_000)
     spot = run_verifier(3, 2_000_000)
-    at_floor = next((r for r in bounds if r["floor"] == f"2^{FLOOR_LOG2}"), None)
+    ext = gpu_extension()
+    floor_log2 = combined_floor_log2()
+    at_floor = next((r for r in bounds if r["floor"] == f"2^{floor_log2}"), None)
     green = (
         cert["clean"] and cert["covered_to_is_two_pow"] and ref["agree"]
         and at_floor is not None and at_floor["verified"]
         and at_floor["least_period"] is not None
         and (spot is None or (spot.get("fails") == 0 and spot.get("new_cycles") == 0))
+        and (not ext.get("present") or ext.get("spot_checks_agree") in (None, True))
     )
     return {
         "map": "g(y) = y/2 (y even), (3y-1)/2 (y odd): shortcut 3x+1 on the negatives",
         "known_cycles": [list(c) for c in CYCLES],
         "certificate": cert,
+        "gpu_extension": ext,
+        "floor_log2": floor_log2,
         "reference_check": ref,
         "verifier_spot_check": spot,
         "period_bounds": bounds,
         "statement": (
-            f"Every 1 <= y < 2^{FLOOR_LOG2} reaches 1, 5 or 17. Hence, by neg_cycle_finance "
+            f"Every 1 <= y < 2^{floor_log2} reaches 1, 5 or 17"
+            + (f" (CPU certificate to 2^{FLOOR_LOG2}, GPU sweep to 2^{floor_log2})" if floor_log2 != FLOOR_LOG2 else "")
+            + ". Hence, by neg_cycle_finance "
             "(kernel-checked), a fourth cycle of the 3x-1 shortcut map -- equivalently a fourth "
             "negative cycle of shortcut 3x+1, whose word is a Paper A CycleMin shape -- has period "
             f"at least {at_floor['least_period'] if at_floor else 'unknown'}, with "
@@ -395,6 +442,25 @@ def render_markdown(data: dict[str, Any]) -> str:
         f"- reference agreement (descent against full iteration): "
         f"`{data['reference_check']['agree']}` to `{data['reference_check']['limit']}`",
         "",
+    ]
+    ext = data.get("gpu_extension", {})
+    if ext.get("present"):
+        lines += ["## GPU extension", ""]
+        for r in ext["records"]:
+            lines.append(
+                f"- `[{r['range'][0]}, {r['range'][1]})` = `[2^{r['range_log2'][0]}, 2^{r['range_log2'][1]})` by "
+                f"`{r['verifier']}` on {r['gpu']}: {r['chunks']} chunks, odd starts `{r['odd_starts']}` "
+                f"(coverage exact: `{r['coverage_exact']}`), failures `{r['fails']}`, new cycles `{r['new_cycles']}`, "
+                f"overflows `{r['overflows']}`, greatest step count `{r['max_steps']}`, peak `{r['peak']}` "
+                f"(about 2^{r['peak_log2']:.1f}), {r['wall_seconds']} s wall"
+            )
+        lines += [
+            f"- calibration on the CPU's range agrees: `{ext['calibration_agrees']}`; spot checks against the "
+            f"CPU jump walker inside the new range agree: `{ext['spot_checks_agree']}`",
+            f"- combined floor: `2^{data['floor_log2']}`",
+            "",
+        ]
+    lines += [
         "## What each floor buys",
         "",
         "| floor | least period | odd steps | floor verified here |",

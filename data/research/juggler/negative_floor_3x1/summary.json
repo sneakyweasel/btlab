@@ -104,6 +104,140 @@
     ],
     "clean": true
   },
+  "gpu_extension": {
+    "present": true,
+    "covered_to": 2251799813685248,
+    "covered_to_log2": 51,
+    "records": [
+      {
+        "range": [
+          17592186044416,
+          2251799813685248
+        ],
+        "range_log2": [
+          44,
+          51
+        ],
+        "chunk_log2": 48,
+        "chunks": 8,
+        "verifier": "verify_3x1_gpu.cu",
+        "verifier_source_sha256": "1f7bd56f373caf346616a31b34dad78ededbbbc6e87600f9206ec4034c264cbe",
+        "binary_sha256": "09c232b98468acaa90ae4cd682d74e6feb61a1e968ed1eea02647c0044ea8be8",
+        "gpu": "NVIDIA GeForce RTX 5090, 595.79",
+        "toolkit": "Cuda compilation tools, release 13.3, V13.3.73",
+        "started_utc": "2026-09-21T10:22:27Z",
+        "ended_utc": "2026-09-21T11:21:04Z",
+        "wall_seconds": 3517.1,
+        "sum_chunk_seconds": 3516.5,
+        "odd_starts": 1117103813820416,
+        "odd_starts_expected": 1117103813820416,
+        "coverage_exact": true,
+        "walked": 38163748749312,
+        "fails": 0,
+        "new_cycles": 0,
+        "overflows": 0,
+        "max_steps": 847,
+        "step_cap": 40000,
+        "peak": "154710878312175791134940888500",
+        "peak_log2": 96.96548939348013,
+        "clean": true
+      }
+    ],
+    "overflow_rewalks": [],
+    "calibration_agrees": true,
+    "spot_checks_agree": true,
+    "spot_checks": [
+      {
+        "lo": 35184372088832,
+        "hi": 35321811042304,
+        "lo_log2": 45.0,
+        "width_log2": 37.0,
+        "peaks_equal": true,
+        "cpu_steps_minus_gpu": 72,
+        "cpu": {
+          "walked": 2347671552,
+          "skipped": 66371805184,
+          "fails": 0,
+          "new_cycles": 0,
+          "max_steps": 602,
+          "peak": 4182108575694044801815612,
+          "seconds": 166.9
+        },
+        "gpu": {
+          "walked": 2347671552,
+          "skipped": 66371805184,
+          "odd_starts": 68719476736,
+          "fails": 0,
+          "new_cycles": 0,
+          "overflows": 0,
+          "max_steps": 530,
+          "peak": 4182108575694044801815612,
+          "seconds": 0.768
+        },
+        "agree": true
+      },
+      {
+        "lo": 281474976710656,
+        "hi": 281612415664128,
+        "lo_log2": 48.0,
+        "width_log2": 37.0,
+        "peaks_equal": true,
+        "cpu_steps_minus_gpu": 12,
+        "cpu": {
+          "walked": 2347671552,
+          "skipped": 66371805184,
+          "fails": 0,
+          "new_cycles": 0,
+          "max_steps": 561,
+          "peak": 44403154050143518849001836,
+          "seconds": 170.9
+        },
+        "gpu": {
+          "walked": 2347671552,
+          "skipped": 66371805184,
+          "odd_starts": 68719476736,
+          "fails": 0,
+          "new_cycles": 0,
+          "overflows": 0,
+          "max_steps": 549,
+          "peak": 44403154050143518849001836,
+          "seconds": 0.785
+        },
+        "agree": true
+      },
+      {
+        "lo": 2251662374731776,
+        "hi": 2251799813685248,
+        "lo_log2": 50.99991194219542,
+        "width_log2": 37.0,
+        "peaks_equal": true,
+        "cpu_steps_minus_gpu": 48,
+        "cpu": {
+          "walked": 2347671552,
+          "skipped": 66371805184,
+          "fails": 0,
+          "new_cycles": 0,
+          "max_steps": 581,
+          "peak": 74752559411306732037041140,
+          "seconds": 171.9
+        },
+        "gpu": {
+          "walked": 2347671552,
+          "skipped": 66371805184,
+          "odd_starts": 68719476736,
+          "fails": 0,
+          "new_cycles": 0,
+          "overflows": 0,
+          "max_steps": 533,
+          "peak": 74752559411306732037041140,
+          "seconds": 0.761
+        },
+        "agree": true
+      }
+    ],
+    "verifier": "data/research/juggler/negative_floor_3x1/verify_3x1_gpu.cu"
+  },
+  "floor_log2": 51,
   "reference_check": {
     "limit": 60000,
     "disagreements": [],
@@ -156,15 +290,23 @@
       "note": ""
     },
     {
+      "floor": "2^51",
+      "floor_value": 2251799813685248.0,
+      "least_period": 85137581,
+      "odd_steps": 53715833,
+      "verified": true,
+      "note": ""
+    },
+    {
       "floor": "2^68",
       "floor_value": 2.9514790517935283e+20,
       "least_period": null,
       "odd_steps": null,
       "verified": false,
-      "note": "no survivor below the walk cap KMAX = 20000000; the laboratory's conditional table records 72448885240 at this floor"
+      "note": "no survivor below the walk cap KMAX = 400000000; the laboratory's conditional table records 72448885240 at this floor"
     }
   ],
-  "statement": "Every 1 <= y < 2^44 reaches 1, 5 or 17. Hence, by neg_cycle_finance (kernel-checked), a fourth cycle of the 3x-1 shortcut map -- equivalently a fourth negative cycle of shortcut 3x+1, whose word is a Paper A CycleMin shape -- has period at least 16483927, with 10400200 odd steps.",
+  "statement": "Every 1 <= y < 2^51 reaches 1, 5 or 17 (CPU certificate to 2^44, GPU sweep to 2^51). Hence, by neg_cycle_finance (kernel-checked), a fourth cycle of the 3x-1 shortcut map -- equivalently a fourth negative cycle of shortcut 3x+1, whose word is a Paper A CycleMin shape -- has period at least 85137581, with 53715833 odd steps.",
   "decision": {
     "classification": "NEGATIVE_FLOOR_MAKES_THE_MIRROR_A_STATEMENT",
     "branch": "PROMOTE",

@@ -61,7 +61,7 @@
       "cycle_equation_holds": true
     }
   ],
-  "floor_log2": 44,
+  "floor_log2": 51,
   "rhin": {
     "exponent": 13.3,
     "offset": 0.0,
@@ -12668,14 +12668,34 @@
   },
   "m_free_survivors_at_floor": [
     {
-      "K": 16483927,
-      "o": 10400200,
-      "abs_x_le": 26041564660651.027
+      "K": 85137581,
+      "o": 53715833,
+      "abs_x_le": 4524253986369034.0
     },
     {
-      "K": 16785921,
-      "o": 10590737,
-      "abs_x_le": 59226793185619.48
+      "K": 170275162,
+      "o": 107431666,
+      "abs_x_le": 4524253994224471.0
+    },
+    {
+      "K": 255412743,
+      "o": 161147499,
+      "abs_x_le": 4524254002079908.0
+    },
+    {
+      "K": 323462409,
+      "o": 204082058,
+      "abs_x_le": 2287213190258040.0
+    },
+    {
+      "K": 340550324,
+      "o": 214863332,
+      "abs_x_le": 4524254009935345.0
+    },
+    {
+      "K": 357638239,
+      "o": 225644606,
+      "abs_x_le": 3.920511302329062e+16
     }
   ],
   "sdw_lemma18_reproduction": {
@@ -12932,42 +12952,26 @@
   },
   "classification": {
     "label": "NEGATIVE_M_CYCLES_EXCLUDED_BELOW_M",
-    "excluded_through_at_floor": 49,
-    "first_open_m": 50,
+    "excluded_through_at_floor": 58,
+    "first_open_m": 59,
     "first_open_survivors": [
       {
-        "K": 539722056247,
-        "o": 340526703945,
-        "Lambda": 2.814925483184195e-12,
-        "xmin_minus_one_le": 17762459538872.363,
-        "xmin_minus_one_gt": 3146988.4074590416,
-        "log2_slack": 22.42835616316691
+        "K": 64789416887513,
+        "o": 40877570830877,
+        "Lambda": 1.4342045704797953e-14,
+        "xmin_minus_one_le": 4113778551149247.0,
+        "xmin_minus_one_gt": 782652792976.3625,
+        "log2_slack": 12.359804084857243
       },
       {
-        "K": 757698850864,
-        "o": 478054749257,
-        "Lambda": 1.9162706123224028e-12,
-        "xmin_minus_one_le": 26092348167570.684,
-        "xmin_minus_one_gt": 821021421.2440039,
-        "log2_slack": 14.95584739523446
-      },
-      {
-        "K": 975675645481,
-        "o": 615582794569,
-        "Lambda": 1.0176157414606103e-12,
-        "xmin_minus_one_le": 49134460054866.78,
-        "xmin_minus_one_gt": 214197221872.12958,
-        "log2_slack": 7.8416516232350135
-      },
-      {
-        "K": 1193652440098,
-        "o": 753110839881,
-        "Lambda": 1.1896087059881784e-13,
-        "xmin_minus_one_le": 420306271703570.3,
-        "xmin_minus_one_gt": 55882159308609.37,
-        "log2_slack": 2.9109813109392055
+        "K": 83130157078217,
+        "o": 52449289519716,
+        "Lambda": 1.445362963480534e-15,
+        "xmin_minus_one_le": 4.08201963733206e+16,
+        "xmin_minus_one_gt": 1302418079478080.2,
+        "log2_slack": 4.970018586049278
       }
     ],
-    "conditional_on": "Rhin 1987 (external theorem); the floor 2^44 (laboratory certificate)"
+    "conditional_on": "Rhin 1987 (external theorem); the floor 2^51 (laboratory certificate: CPU to 2^44, GPU to 2^51)"
   }
 }

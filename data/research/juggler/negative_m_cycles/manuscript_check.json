@@ -1,5 +1,6 @@
 {
  "scope": "Independent arithmetic checks for the 3n-1 m-cycle note.",
+ "note_floor": "2^51",
  "note": "docs\\theory\\collatz_3n_minus_1_m_cycles_note.md",
  "cycles": {
   "1": [
@@ -86,23 +87,38 @@
   "48": 6160750059301,
   "49": 9921719447060,
   "50": 15974496522785,
+  "51": 25713310782140,
+  "52": 41379279094690,
+  "53": 66574098182843,
+  "54": 107084917386112,
   "55": 172208666666214,
+  "56": 276877898691766,
   "57": 445072680198484,
+  "58": 715295665905327,
   "59": 1149356600587428,
   "64": 12277228651011070,
   "69": 130597089394124633,
   "83": 96194686215847874949
  },
- "sieve": {
-  "Q": 301994,
-  "kmax": 15974496522785,
-  "eps_max": "4.13928876982e-11",
-  "hits": 661
- },
+ "sieves": [
+  {
+   "Q": 301994,
+   "kmax": 15974496522785,
+   "eps_max": "4.13928876982e-11",
+   "hits": 661
+  },
+  {
+   "Q": 17087915,
+   "kmax": 1149356600587428,
+   "eps_max": "9.53976708668e-14",
+   "hits": 110
+  }
+ ],
  "floors": {
   "2^40": {
    "excluded_through": 44,
    "first_open": 45,
+   "checked_through_m": 50,
    "first_open_survivors": [
     [
      72448885240,
@@ -126,6 +142,7 @@
   "2^44": {
    "excluded_through": 49,
    "first_open": 50,
+   "checked_through_m": 50,
    "first_open_survivors": [
     [
      539722056247,
@@ -149,6 +166,7 @@
   "2^48": {
    "excluded_through": 49,
    "first_open": 50,
+   "checked_through_m": 50,
    "first_open_survivors": [
     [
      1193652440098,
@@ -158,26 +176,44 @@
    "no_admissible_through": 44
   },
   "2^49": {
-   "checked": "printed survivors only",
+   "excluded_through": 54,
    "first_open": 55,
-   "survivor_bits": [
-    "12.2108"
-   ]
+   "checked_through_m": 59,
+   "first_open_survivors": [
+    [
+     9767196315401,
+     "12.2108"
+    ]
+   ],
+   "no_admissible_through": 48
   },
   "2^50": {
-   "checked": "printed survivors only",
+   "excluded_through": 56,
    "first_open": 57,
-   "survivor_bits": [
-    "7.42946"
-   ]
+   "checked_through_m": 59,
+   "first_open_survivors": [
+    [
+     28107936506105,
+     "7.42946"
+    ]
+   ],
+   "no_admissible_through": 51
   },
   "2^51": {
-   "checked": "printed survivors only",
+   "excluded_through": 58,
    "first_open": 59,
-   "survivor_bits": [
-    "12.3598",
-    "4.97002"
-   ]
+   "checked_through_m": 59,
+   "first_open_survivors": [
+    [
+     64789416887513,
+     "12.3598"
+    ],
+    [
+     83130157078217,
+     "4.97002"
+    ]
+   ],
+   "no_admissible_through": 52
   },
   "2^56": {
    "checked": "printed survivors only",
@@ -209,23 +245,29 @@
    ]
   }
  },
- "m50_killing_floors_log2": [
-  44.014,
-  44.569,
-  45.482,
-  48.578
+ "open_killing_floors_log2": [
+  51.869,
+  55.18
  ],
  "floor_certificate_numbers": {
   "note": {
-   "odd_starts": 8246337208320,
+   "odd_starts_cpu": 8246337208320,
+   "odd_starts_gpu": 1117103813820416,
+   "peak_log2_gpu": 97.0,
    "max_steps": [
-    544
+    544,
+    704,
+    847
    ]
   },
   "found_in": {
-   "odd_starts": "summary.json",
+   "odd_starts_cpu": "summary.json",
+   "odd_starts_gpu": "gpu_runs.json",
+   "peak_log2_gpu": "gpu_runs.json",
    "max_steps": {
-    "544": "summary.json"
+    "544": "summary.json",
+    "704": "summary.json",
+    "847": "gpu_runs.json"
    }
   },
   "scope": "presence in the certificate's records only; the certificate itself is not re-run here"
