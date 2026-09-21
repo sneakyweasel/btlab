@@ -1,0 +1,110 @@
+{
+  "schema": 1,
+  "canonical_source": "docs/theory/collatz_3n_minus_1_m_cycles_note.md",
+  "status": "preprint; no external deposit performed",
+  "verification_scope": "File provenance only. The mathematical trust boundaries are in the manuscript and in PAPER_D_BUILD.md.",
+  "pages": 8,
+  "tools": {
+    "pandoc": "pandoc.EXE 3.6.3",
+    "xelatex": "MiKTeX-XeTeX 4.18 (MiKTeX 26.5)"
+  },
+  "inputs": [
+    {
+      "path": "data/research/juggler/negative_floor_3x1/gpu_calibration/spot_checks_2p44_2p51.json",
+      "mode": "text",
+      "sha256": "1e645e5bb84145ca71838cc4330ded2c3bf3906400c453ae558a72d752861a26"
+    },
+    {
+      "path": "data/research/juggler/negative_floor_3x1/gpu_calibration/summary.json",
+      "mode": "text",
+      "sha256": "2d1905ddcb9724c5633d305a29f9ac36f0f3f1ffb4735f13d30ce49f898f1407"
+    },
+    {
+      "path": "data/research/juggler/negative_floor_3x1/gpu_runs.json",
+      "mode": "text",
+      "sha256": "c57da7e29d18a5e594121ee6f28c0fa89dcc19ae6b69f712695a617d9a11a542"
+    },
+    {
+      "path": "data/research/juggler/negative_floor_3x1/summary.json",
+      "mode": "text",
+      "sha256": "7fbe5c0b0ed7110b5fbf4fed419c3047f4c84557536939bb5a80ff3dc5b5ff8d"
+    },
+    {
+      "path": "data/research/juggler/negative_floor_3x1/verify_3x1_gpu.cu",
+      "mode": "text",
+      "sha256": "1f7bd56f373caf346616a31b34dad78ededbbbc6e87600f9206ec4034c264cbe"
+    },
+    {
+      "path": "data/research/juggler/negative_m_cycles/manuscript_check.json",
+      "mode": "text",
+      "sha256": "54b10f0eb3598f886a368d0c4a1795b181c83f68087243d8ee44c06227ffc07b"
+    },
+    {
+      "path": "data/research/juggler/negative_m_cycles/summary.json",
+      "mode": "text",
+      "sha256": "3f34572035393a535307753359b045f154c6ab519aa4b5a3d12dcbfdcb325dda"
+    },
+    {
+      "path": "docs/theory/PAPER_D_BUILD.md",
+      "mode": "text",
+      "sha256": "4d607c6e8608712e8c317147c3b51d857c721a10c51c45638955b5f8b0836e16"
+    },
+    {
+      "path": "docs/theory/collatz_3n_minus_1_m_cycles_note.md",
+      "mode": "text",
+      "sha256": "3dcfcd1e0ba8a43b0092123fc660d4670fcd7337400de96b62a29cc16382d859"
+    },
+    {
+      "path": "formal/Problems/Collatz/NegativeMCycles.lean",
+      "mode": "text",
+      "sha256": "c3346c81b9d2ef614d45e9159d482899577ab8b1c364dfc631f10af3b297d2af"
+    },
+    {
+      "path": "src/research/juggler_sequence/negative_floor_gpu.py",
+      "mode": "text",
+      "sha256": "95c4a78d57c11c9c1d3af9ebfdc52013f52da905173477f234e8b6d267224cff"
+    },
+    {
+      "path": "src/research/juggler_sequence/negative_m_cycles.py",
+      "mode": "text",
+      "sha256": "28bad2f228980a1512a5d10a29ceee7f6d7602a64fa2558bdb7a3dd5ec42c291"
+    },
+    {
+      "path": "tools/build_paper_d.py",
+      "mode": "text",
+      "sha256": "077f8b4a6ee3bfc36d5a19da29c738e873eb74c098bb757037d15b11a065b807"
+    },
+    {
+      "path": "tools/check_3n_minus_1_note_numeric.py",
+      "mode": "text",
+      "sha256": "ecc2a15adf1009ad324ff82a83798f15a30974d9c7bd07da637aba42137b6707"
+    },
+    {
+      "path": "tools/paper_d/article.tex",
+      "mode": "text",
+      "sha256": "de7d03ecd54d7a2cbfaa7b8f198f684b21afc203db63669a547b53c4e499ea4d"
+    },
+    {
+      "path": "tools/paper_d/layout.lua",
+      "mode": "text",
+      "sha256": "37514155670379b4ab80ee9a5704bc0877c4233d257039ff26ea999add03ec1f"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "juggler_review/collatz_3n_minus_1_m_cycles_note.pdf",
+      "mode": "binary",
+      "sha256": "478f0a5b2e8ef61c8f1096d8b62e2855363d62bfb70cdce8e3a73944181d4dbd"
+    },
+    {
+      "path": "docs/theory/cochin-3n-minus-1-m-cycles.tex",
+      "mode": "text",
+      "sha256": "62ab582ec1e7de2e6b6da022f6c36bbfa68bdff2a7678f21874be05edeff18b7"
+    },
+    {
+      "path": "docs/theory/paper_d_zenodo.json",
+      "mode": "text",
+      "sha256": "eaaa099ac54bf440b3541eb23decb11b2f2102454ea5e3c84a5a22e598968630"
+    }
+  ]
+}

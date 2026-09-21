@@ -121,10 +121,11 @@ windows), the ceilings from their defining inequality at \(K_3-1\) and \(K_3\), 
 at one hundred digits, the known cycles by iteration, the floor's printed counts against the
 certificate; it compares them with the note's tables and the summary, writes
 `manuscript_check.json` beside the summary, and fails on a copy of the note with two wrong
-cells (21 September 2026: two findings, nothing else). `python tools/build_3n_minus_1_note.py`
+cells (21 September 2026: two findings, nothing else). `python tools/build_paper_d.py`
 builds [collatz_3n_minus_1_m_cycles_note.pdf](../../juggler_review/collatz_3n_minus_1_m_cycles_note.pdf)
-(seven pages) with the Paper C chain and a strict layout gate; `--check` verifies the PDF
-against its manifest in `.build/collatz_3n_minus_1_note/`.
+(eight pages) with the Paper C chain and a strict layout gate, writes the manifest
+`docs/theory/paper_d_release.json`, the Zenodo metadata and the deposit kit; `--check`
+verifies every generated copy, and the release gate calls it on the live repository.
 
 ## Conjectures
 
@@ -241,38 +242,22 @@ arrangement.
 
 ## Publication assessment
 
-Status: `PAPER_CANDIDATE`, not yet a review object (assessed 21 September 2026). A short
-note, the length of Simons 2007. What has been checked: Lemmas 1–4, Proposition 5 and
-Theorem 6 read line by line; every number in the manuscript recomputed by
-`tools/check_3n_minus_1_note_numeric.py` by a route independent of the probe; the PDF built
-with no layout warning. What a referee would ask for before acceptance, in the order it
-matters:
+Status: `PAPER_CANDIDATE`, prepared for deposit as **Paper D** and not uploaded (21
+September 2026). *No m-cycles of the 3n−1 map for m ≤ 58*, version 1.0.0, eight pages, at
+the floor \(2^{51}\).
 
-1. **The floor.** There is no lattice step left: [SdW]'s Section 7 is the list the three-gap
-   walk produces, tested the same way, and the note now says so and reproduces their Lemma 18
-   on their side. The note carries the \(2^{51}\) floor and \(m\le58\) since the GPU sweep
-   of 21 September 2026; \(2^{56}\) (\(m\le63\)) is a weekend of the card and is the floor
-   the deposit should carry if it can be spared.
-2. **The floor as a citable object.** One implementation, one run, archived in the
-   repository. It needs a deposit with a DOI (verifier sources, chunk reports, coverage
-   check) and, ideally, an independent re-run; Paper A's Remark 5.20 already rests on it, so
-   the deposit serves both.
-3. **Internal names.** Branch names, Lean lemma names and `python -m` commands must become a
-   repository URL with a commit hash, or the DOI of the deposit.
-4. **Front matter.** The draft banner and "not a review object" go; an AI-assistance
-   disclosure and the author's responsibility statement as in Papers A–C; a 2020 MSC line,
-   which is also what the layout filter uses to close the abstract.
-5. **References.** [Si03], [E93], [St77], [L85] and [A] are listed and never cited by key;
-   Lemma 4's walk needs the three-distance theorem cited (Sós 1958, Świerczkowski 1959,
-   Slater 1967); DOIs throughout.
-6. **Wording.** "No published verification floor and no \(m\)-cycle theorem with
-   \(m\ge3\) existed" should read "to our knowledge", with the search named; Simons [S07]
-   sketches the \(3x-1\) case in his Section 6 rather than proving it in full, and the note
-   should say so; Proposition 5's "the doubled constant covers \(m/\Lambda+1\)" should say
-   that the factor two is a margin the proof does not need.
-7. **Lean.** Lemmas 1–3 are elementary; the laboratory's standard is to have them
-   machine-checked before deposit, with Rhin's bound entering as a hypothesis as
-   `cycleMin_length_of_rhin` does on the Juggler side.
+**Ready.** The theorem and its margins; every number recomputed by an independent route; the
+floor as a two-implementation certificate with spot checks; Lemmas 1 and 3 machine-checked;
+the builder, the manifest, the Zenodo metadata and the kit, all under the release gate; the
+front and back matter (classification, keywords, AI disclosure, responsibility statement,
+availability) as Papers A–C carry them; every reference cited, the three-distance theorem
+attributed, and every internal path pinned to a public commit.
 
-None of these touches the theorem. Items 1 and 2 decide whether it is a note worth a
-referee's time or a table.
+**Deliberately not done.** The upload: no DOI is reserved and none is claimed anywhere in
+the repository. The floor stands at \(2^{51}\); \(2^{56}\) would give \(m\le63\) for
+about thirty-two hours of the card and is a new version, not a correction. Lemma 2 is not in
+Lean, and the note says why. No independent human read has taken place.
+
+**What a referee is still most likely to ask.** Why the floor stops where it does, since the
+sweep is cheap; and whether the \(m\)-free row should be compared with Sinisalo's table
+in more detail than one sentence.

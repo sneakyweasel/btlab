@@ -80,6 +80,6 @@ x.def) (cochin-3n-minus-1-m-cycles.aux)
 (cochin-3n-minus-1-m-cycles.out) (cochin-3n-minus-1-m-cycles.out)
 (C:\Users\phili\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd)
 (C:\Users\phili\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd)
-[1] [2] [3] [4] [5] [6] [7] (cochin-3n-minus-1-m-cycles.aux) )
-Output written on cochin-3n-minus-1-m-cycles.pdf (7 pages).
+[1] [2] [3] [4] [5] [6] [7] [8] (cochin-3n-minus-1-m-cycles.aux) )
+Output written on cochin-3n-minus-1-m-cycles.pdf (8 pages).
 Transcript written on cochin-3n-minus-1-m-cycles.log.

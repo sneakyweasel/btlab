@@ -167,11 +167,20 @@ The full `Problems.Juggler` laboratory stack, the Word Atlas, pytest
 records, and internal dossiers. Those are not required to read either
 paper.
 
-## A draft in this folder, not in the bundle
+## Paper D, prepared for deposit
 
-`collatz_3n_minus_1_m_cycles_note.pdf` (21 September 2026) is the laboratory draft of "No
-m-cycles of the 3n−1 map for m ≤ 49", built from
-[collatz_3n_minus_1_m_cycles_note.md](../docs/theory/collatz_3n_minus_1_m_cycles_note.md)
-by `python tools/build_3n_minus_1_note.py` (verify with `--check`). It is not a review
-object and is not deposited; its publication assessment is in
-[juggler_negative_m_cycles.md](../docs/problems/juggler_negative_m_cycles.md).
+`collatz_3n_minus_1_m_cycles_note.pdf` is **Paper D**, *No m-cycles of the 3n−1 map for
+m ≤ 58*, version 1.0.0 of 21 September 2026 at the verification floor 2^51. Source:
+[collatz_3n_minus_1_m_cycles_note.md](../docs/theory/collatz_3n_minus_1_m_cycles_note.md).
+Rebuild with `python tools/build_paper_d.py`, verify every copy with `--check`, and see the
+[build instructions](../docs/theory/PAPER_D_BUILD.md).
+
+It is the only paper of the four that is about the Collatz side rather than the Juggler map:
+the Simons–de Weger m-cycle template transposed to 3n−1, from this laboratory's own
+verification floor. The theorem is conditional on Rhin's effective measure; Lemmas 1 and 3
+are machine-checked (`Problems.Collatz.NegativeMCycles`), Lemma 2 is a written proof, and
+every number in the tables is recomputed by a second, independent route.
+
+The deposit kit is [zenodo_paper_d/](zenodo_paper_d/). **No upload has been performed and no
+DOI exists yet**; the canonical list is
+[paper_deposits.md](../docs/theory/paper_deposits.md).

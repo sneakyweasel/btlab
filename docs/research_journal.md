@@ -1,5 +1,41 @@
 # Research journal
 
+## 2026-09-21 -- Paper D exists as an object: builder, manifest, metadata, kit, and the editorial pass; nothing uploaded
+
+- **Objective:** Philippe asked for everything needed to publish the 3n-1 note on Zenodo.
+- **The manuscript became a preprint.** The laboratory banner is gone. Added: the 2020
+  subject classification (Primary 11B83; Secondary 11J86, 11Y16), a keywords line, an
+  acknowledgments section disclosing the AI assistance with the author's responsibility
+  statement, and an availability and version section naming the build command and saying
+  that a higher floor is a new version rather than a correction. The novelty sentence now
+  reads "is known to us" rather than asserting absence.
+- **References.** Five keys were listed and never cited; all five are now cited where they
+  belong (Lagarias on the open questions, Steiner in Simons's floor-free route, Sinisalo
+  against the m-free row, Eliahou on the period lattice, Paper A on the word identity, now
+  by its two DOIs). The three-distance theorem behind Lemma 4's walk is attributed to Sós,
+  Świerczkowski and Slater. Fourteen references, none uncited.
+- **Pinned.** Every path, module and command in the note resolves at one public commit,
+  named in Section 8 with a tree link.
+- **The scaffolding.** `tools/build_paper_d.py` on the Paper C pattern, with the template
+  and filter moved to `tools/paper_d/`; it writes the PDF, the TeX, `paper_d_release.json`,
+  `paper_d_zenodo.json` and the kit, and `check()` is what the release gate calls. Its
+  pinned inputs are the manuscript and its chain plus the probe, the tables, the independent
+  check and its report, the Lean module and the floor certificate, so a change to any of
+  them stales the PDF. `PAPER_D_BUILD.md` states the trust boundary in five kinds: proved by
+  hand, machine-checked, external (Rhin), computed (the floor), and computed-and-recomputed
+  (the tables). The interim builder and its template directory are retired.
+- **The kit.** `juggler_review/zenodo_paper_d/`: the PDF under a readable deposit name,
+  `ZENODO_FIELDS.txt` generated from the metadata, `SHA256SUMS.txt`, and a README saying
+  what to upload and what the paper is not. Version 1.0.0, not a date, which is the field
+  Paper C got wrong.
+- **Two typographic repairs worth noting.** Latin Modern has no Greek in its text faces, so
+  the new three-distance titles needed math mode; and a bash heredoc turned `\alpha` into a
+  BEL and `\theta` into a tab, the third recurrence of a mistake already in the notes. The
+  deposit description also rendered `\log_23` as "log₂₃" and `o\log3` as "olog 3"; both are
+  fixed at the source with a thin space, since that string is the public abstract.
+- **Not done, deliberately.** No upload, no reserved DOI, no DOI claimed anywhere. The floor
+  stays at \(2^{51}\) and the title at \(m\le58\).
+
 ## 2026-09-21 -- Lemmas 1 and 3 of the 3n-1 note are Lean; the closed form needed one hypothesis less than the note claims
 
 - **Objective:** Philippe asked for the Lean of the note's lemmas, on the way to Paper D.
