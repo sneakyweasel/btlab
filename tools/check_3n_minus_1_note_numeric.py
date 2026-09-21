@@ -30,7 +30,9 @@ outside this script's scope.
 
 Writes ``data/research/juggler/negative_m_cycles/manuscript_check.json`` and
 exits nonzero on any disagreement.  ``--note`` points it at another copy of
-the manuscript, which is how it is shown to fail on a wrong number.
+the manuscript, which is how it is shown to fail on a wrong number; such a run
+reports beside that copy rather than to the canonical path, which is a pinned
+input of Paper D's release manifest.
 """
 from __future__ import annotations
 
@@ -328,8 +330,16 @@ def parse_note(text: str) -> dict:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--note", type=Path, default=NOTE)
-    parser.add_argument("--output", type=Path, default=OUTPUT)
+    parser.add_argument("--output", type=Path, default=None)
     args = parser.parse_args()
+    # The report is a pinned input of Paper D's release manifest, so only a run on the
+    # canonical manuscript may write it. Showing the checker fail on a perturbed copy is
+    # documented practice; on 21 September 2026 doing so overwrote the committed report with
+    # a failing one that named a file in a scratch directory, and the release gate would have
+    # carried it. A run on any other note reports beside that note instead.
+    if args.output is None:
+        args.output = OUTPUT if args.note.resolve() == NOTE.resolve() \
+            else args.note.with_name(args.note.stem + "_check.json")
     text = args.note.read_text(encoding="utf-8")
     note = parse_note(text)
     summary = json.loads(SUMMARY.read_text(encoding="utf-8"))
