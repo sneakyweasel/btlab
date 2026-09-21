@@ -1,0 +1,113 @@
+{
+ "backend": "gmpy2 (GMP): the dropping-time check only, loss accounting not measured",
+ "start": 7000001,
+ "limit": 9000000,
+ "odd_starts": 1000000,
+ "seconds": 81.4,
+ "early_drops": [],
+ "identity_violations": null,
+ "capped_then_run_uncapped": [
+  {
+   "m": 7110201,
+   "dropping_time": 173,
+   "tau": 173,
+   "odd_letters": 109,
+   "digits": 89981517
+  },
+  {
+   "m": 7200393,
+   "dropping_time": 165,
+   "tau": 165,
+   "odd_letters": 104,
+   "digits": 1041109
+  },
+  {
+   "m": 7298001,
+   "dropping_time": 146,
+   "tau": 146,
+   "odd_letters": 92,
+   "digits": 3248899
+  },
+  {
+   "m": 7551709,
+   "dropping_time": 229,
+   "tau": 229,
+   "odd_letters": 144,
+   "digits": 522125
+  },
+  {
+   "m": 7758721,
+   "dropping_time": 140,
+   "tau": 140,
+   "odd_letters": 88,
+   "digits": 6191725
+  },
+  {
+   "m": 7896677,
+   "dropping_time": 159,
+   "tau": 159,
+   "odd_letters": 100,
+   "digits": 725579
+  },
+  {
+   "m": 8002133,
+   "dropping_time": 202,
+   "tau": 202,
+   "odd_letters": 127,
+   "digits": 604472
+  },
+  {
+   "m": 8080425,
+   "dropping_time": 240,
+   "tau": 240,
+   "odd_letters": 151,
+   "digits": 1063020
+  },
+  {
+   "m": 8258147,
+   "dropping_time": 116,
+   "tau": 116,
+   "odd_letters": 73,
+   "digits": 2124507
+  },
+  {
+   "m": 8535509,
+   "dropping_time": 165,
+   "tau": 165,
+   "odd_letters": 104,
+   "digits": 8305288
+  },
+  {
+   "m": 8685847,
+   "dropping_time": 143,
+   "tau": 143,
+   "odd_letters": 90,
+   "digits": 486621
+  }
+ ],
+ "largest_excursion_bits_m": [
+  298912128,
+  7110201
+ ],
+ "longest_dropping_time_m": [
+  243,
+  8469919
+ ],
+ "smallest_retained_fraction": [],
+ "largest_loss_ratio": [],
+ "near_drops_total": 0,
+ "near_drop_shortfall_units_histogram": [
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0
+ ],
+ "largest_near_drop_shortfall": []
+}

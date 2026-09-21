@@ -175,6 +175,24 @@ maps realise the additive walk with steps `log(3/2)` and `-log 2`; Collatz on
 `log x`, Juggler on `log log n`. Hence the non-contracting words are the same
 words and `N_d` is the same integer, verified against Collatz directly.
 
+**The drop half, 21 September 2026.** The two perturbations push in opposite
+directions. Collatz: Terras's coefficient stopping time `tau(x)`, the first
+contracting length of the word, is at most the dropping time, the `+1`
+delaying the drop; equality for `x >= 2` is his Conjecture 2.9, open (A126241
+records it). Juggler: `J(x)^2 <= x` on evens and `J(x)^2 <= x^3` on odds give
+`J^t(m)^(2^t) <= m^(3^o)` along any realised word (Paper B, Proposition 2.1),
+so a contracting prefix forces the drop and the dropping time is at most the
+first contracting length, which lies in A020914 because the letter that
+contracts is even. Computed: the dropping time EQUALS the first contracting
+length for every odd start below `10^6`, in exact integers, including the five
+starts whose excursions pass 400000 digits (275485 reaches 1909409 digits and
+drops at step 213). Paper B says in so many words that flooring can cause an
+uncertified descent; none exists below `10^6`. Recorded, with a control that
+fails on a weakened map, in
+[test_drop_first_contracting_length.py](../../tests/research/juggler_sequence/test_drop_first_contracting_length.py).
+Every A094778 term in that range lies in A020914; the OEIS comments drafted
+for A094778, A094683 and A076227 say exactly this and no more.
+
 `J-word-density-results-are-not-juggler-specific` -- `REPARAMETERIZATION`. Any
 laboratory result that depends only on word densities is a statement about the
 shared semigroup and is true of Collatz too.
@@ -273,9 +291,26 @@ survey although its Theorems A and C are both labelled "(Terras)", and Lagarias'
 own annotated bibliography credits Terras 1976 with the residue-class structure,
 the coefficient stopping time and natural density one, and with no rate. So
 "known since 1976" holds for the density and not for the exponent, which is known
-since 1985. The caveat this rests on: Terras 1976 could not be read here, the
-matwbn scan being behind an anti-bot gate, so the correction stands on Lagarias's
-annotation rather than on Terras's text.
+since 1985. **The caveat is discharged, 21 September 2026.** Terras 1976 has now
+been read in full from the ICM scan, and the correction rests on his text rather
+than on Lagarias's annotation. His only asymptotic statement is Theorem 1.17,
+"the sequence `F(k)` converges monotonely to 0", and its proof is the striking
+part: equation (12) writes the tail
+`P[tau >= k] = sum_{a <= [k(1-gamma)]} n(a,k) 2^(-k) <= sum_{a <= [k(1-gamma)]} C(k,a) 2^(-k)`
+-- exactly the binomial tail Theorem D bounds -- and then estimates it by the
+**central limit theorem**, concluding `lim F(k) = 0`. Terras has the right sum
+and takes the limit; the entropy bound that converts it into `2^(-eta k)` is the
+step he does not take and Lagarias takes nine years later. Not a gap in his
+paper: he was after the density, and the density is what he proves.
+
+One thing does move earlier. Terras's Definition 1.13 already counts the
+admissible words by length and by number of zeros -- his *modified binomial
+coefficient* `n(a,k)`, our `N_k` refined by weight -- and his Theorem 1.14 gives
+them a Pascal-type recursion `c(a,k) n(a,k) + c(a-1,k) n(a-1,k) = n(a,k+1)` with
+the admissibility gate `c(a,k) = [a < k(1-gamma)]`. Whether that is the Winkler /
+Hikawa recursion in another indexing is **not settled here**; it is the open
+check in
+[prior art and external names](../theory/paper_b_prior_art_and_names.md).
 
 **So FD buys a delta-fraction of that.** Minimising the two terms over `d`
 converts an equidistribution exponent into a density exponent. With
