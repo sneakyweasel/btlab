@@ -2,10 +2,10 @@
 
 Rows where one candidate leads its file clearly.  Each entry is the ledger row's own
 statement beside the candidate's docstring; the question is only whether they say the
-same thing.  Measured against all 188 single-declaration rows the scorer gets
-58 of the 70 it fires on right, 83% precise, so roughly one in
-6 below is wrong.
-63 rows below, of 131 unresolved.
+same thing.  Measured against all 115 single-declaration rows the scorer gets
+41 of the 48 it fires on right, 85% precise, so roughly one in
+7 below is wrong.
+54 rows below, of 131 unresolved.
 
 
 Two failure modes are not scored at all, and both record a part as the whole.
@@ -21,9 +21,9 @@ its `n : ℕ` is the tell, and a sibling proves the rest.  That is why the state
 printed below every candidate, docstring or not.
 
 Jev (jev-1.13.0, last asked 2026-09-21) answered 129 of
-the unresolved rows: 81 picks and 48 "none of these".
-32 of the picks are the scorer's own first candidate, and
-49 are at or above 0.7 confidence.  A confident pick lists
+the unresolved rows: 68 picks and 45 "none of these".
+26 of the picks are the scorer's own first candidate, and
+39 are at or above 0.7 confidence.  A confident pick lists
 a row here whatever the scorer thought, and every entry shows Jev's answer beside
 the scorer's.  Jev returns a probability, not a reading: a second opinion for the
 reviewer, never a ledger write.
@@ -597,34 +597,7 @@ theorem lambda3_trace_translate (s k : ℤ) :
 
 *If this row describes a definition rather than a theorem: `signedTrace`, `natVal3`*
 
-## 21. `BTN-sdsh-sep`
-
-**Row.** If λ is not divisible by 3, s≠t, and |w|≥v_3(s-t)+1, then the lsd streams differ on w. Finite horizon preserves residual distinguishability exactly when a legal word of that length exists.
-
-**Candidate.** `short_horizon_equiv` &mdash; kernel-checked, `Problems/BalancedTernary/SignedDigitShortHorizon.lean:76`
-
-```lean
-theorem short_horizon_equiv {gain s t : ℤ} {L : ℕ} {w : List ℤ}
-    (hdvd : (3 : ℤ) ^ L ∣ s - t) (hw : w.length ≤ L) :
-    signedTrace gain s w = signedTrace gain t w
-```
-
-**Jev.** picks `short_horizon_separation` at 0.89, not the scorer's candidate.
-
-**Jev's candidate.** `short_horizon_separation` &mdash; kernel-checked, `Problems/BalancedTernary/SignedDigitShortHorizon.lean:81`
-
-```lean
-theorem short_horizon_separation {gain s t : ℤ} {w : List ℤ}
-    (hgain : ¬ (3 : ℤ) ∣ gain) (hne : s ≠ t)
-    (hw : intVal3 (s - t) + 1 ≤ w.length) :
-    signedTrace gain s w ≠ signedTrace gain t w
-```
-
-*The scorer rated this row low; it is listed on Jev's confidence.*
-
-*Runners-up: `short_horizon_separation` (0.059), `lambda3_short_horizon_symmetry` (0.056)*
-
-## 22. `J-near-tight-scale-bounds`
+## 21. `J-near-tight-scale-bounds`
 
 **Row.** The local Juggler remainder satisfies 0≤ρ<2T+1, hence η=ρ/T^2 < 2/T + 1/T^2 and 1+η < ((T+1)/T)^2. For the mixed itinerary OOE, 1+q = (1+η0)^3 (1+η1)^2 (1+η2)^4, and 1+q is strictly below the successor-ratio product ((T0+1)/T0)^6 ((T1+1)/T1)^4 ((T2+1)/T2)^8. The same bound at a successor start y depends only on the itinerary of y.
 
@@ -662,7 +635,7 @@ theorem ooe_one_plus_slack_lt_succ_ratio {n : ℕ}
 
 *Runners-up: `ooe_one_plus_slack_lt_succ_ratio` (0.15), `even_remainder_bound` (0.118)*
 
-## 23. `J-persistent-implies-expanding`
+## 22. `J-persistent-implies-expanding`
 
 **Row.** For n≥2, PersistentOddResidual x y if and only if PersistentExpandingResidual x y. A contracting residual cannot overshoot, and 2^k=3^o is impossible for a nonempty residual. The expanding qualifier of a persistent residual is therefore redundant.
 
@@ -693,7 +666,7 @@ theorem persistent_expanding_iff_odd {x y : ℕ} (hx : 2 ≤ x) :
 
 *If this row describes a definition rather than a theorem: `expandingItinerary`, `maxExpandingEvens`*
 
-## 24. `J-itinerary-semantics`
+## 23. `J-itinerary-semantics`
 
 **Row.** For every natural n and finite parity itinerary w, follows n w if and only if the actual length-|w| Juggler itinerary of n equals w. The itinerary image equals the |w|-fold iterate, and images and realization compose under word concatenation.
 
@@ -722,7 +695,7 @@ theorem follows_iff_itinerary (n : ℕ) : ∀ w : List Branch,
 
 *If this row describes a definition rather than a theorem: `follows`, `followsB`*
 
-## 25. `J-inverse-preimage-asymmetry`
+## 24. `J-inverse-preimage-asymmetry`
 
 **Row.** The even fiber J(n)=m is the parity-restricted square interval m² ≤ n < (m+1)², while the odd fiber is the parity-restricted cube-to-square interval m² ≤ n³ < (m+1)²; any odd fiber contains at most one integer.
 
@@ -753,7 +726,7 @@ theorem odd_preimage_unique {m a b : ℕ}
 
 *If this row describes a definition rather than a theorem: `itineraryEOO`, `itineraryOOE`*
 
-## 26. `J-finite-progress-boundary`
+## 25. `J-finite-progress-boundary`
 
 **Row.** Universal FiniteProgress for starts above one implies universal reachability of one. Every even start n ≥ 2 and every odd start n ≥ 2 whose first image is even has FiniteProgress; consequently, any start without FiniteProgress is odd and has an odd first image. This isolates the automatic odd-to-odd frontier without proving universal prog
 
@@ -783,7 +756,7 @@ theorem reachesOne_of_all_finiteProgress
 
 *If this row describes a definition rather than a theorem: `FiniteProgress`*
 
-## 27. `J-o7eeee-gap`
+## 26. `J-o7eeee-gap`
 
 **Row.** If n ≥ 2 follows the Juggler word O^7, then T^7(n) ≥ (n+1)^16. In particular the EEEE inverse cell [n^16, (n+1)^16) is empty of seven-odd images, so O^7 EEEE is not a cycle itinerary. Lean theorems o7_image_ge_succ_pow16 and no_cycle_itinerary_oooooooeeee in O7EEEEGap.lean. Proof: no_follows_seven_odds_of_lt256 excludes n < 256; on an O^7
 
@@ -811,7 +784,7 @@ theorem o7_image_ge_succ_pow16 {n : ℕ} (hn : 2 ≤ n)
 
 *If this row describes a definition rather than a theorem: `itineraryO7EEEE`*
 
-## 28. `J-first-even-overshoots`
+## 27. `J-first-even-overshoots`
 
 **Row.** On a MinimalNonTerm or CycleMin start, the first even residual always overshoots: T(O^a E)(n) > n and the even residual sits at or above (n+1)^2. The return-to-n cell of the first-even dichotomy is an even-count-1 cycle itinerary, now excluded by no_cycle_itinerary_even_count_le_three. Lean theorems minimal_first_even_overshoots and cycle
 
@@ -826,13 +799,13 @@ theorem minimal_first_even_overshoots {n a : ℕ}
       n < image n (oddEvenBlock a 1)
 ```
 
-**Jev.** picks `minimal_first_even_overshoots` as well, at 0.41.
+**Jev.** answered an earlier version of this row or of its file; rerun `jev-propose`.
 
 *Statement names: `minimal_first_even_overshoots`, `cycleMin_first_even_overshoots`*
 
 *Runners-up: `cycleMin_first_even_overshoots` (0.3), `cycleMin_max_ge_succ_sq` (0.278)*
 
-## 29. `J-survivor-count-decay`
+## 28. `J-survivor-count-decay`
 
 **Row.** The never-contracting word count N_d of the rate-free density-one reduction (rows J-equidistribution-implies-density-one, J-rate-free-density-one) is identified with a binomial tail and provably decays, closing the link PaperBMarkov's header listed as written mathematics. (i) count_oddCount_ge: length-d parity words with at least a odd le
 
@@ -856,7 +829,7 @@ theorem neverCertified_density_zero (h : FairClasses) :
 
 *If this row describes a definition rather than a theorem: `FairClasses`*
 
-## 30. `J-cyclemax-succ-sq`
+## 29. `J-cyclemax-succ-sq`
 
 **Row.** On a CycleMin start n ≥ 2 the cycle maximum satisfies (n+1)^2 ≤ M. Equivalently, on a CycleMax the rotated minimum m satisfies (m+1)^2 ≤ M, so T(M) > m. The first-cell family m^2 < M < (m+1)^2 is impossible. cycle_distinguished_order_succ_sq is the distinguished-order package with that scale. Corollary of cycleMin_first_even_overshoots: t
 
@@ -873,13 +846,13 @@ theorem cycleMin_max_ge_succ_sq {n : ℕ} {w : List Branch}
           (n + 1) ^ 2 ≤ floorPower^[i] n
 ```
 
-**Jev.** picks `cycleMin_max_ge_succ_sq` as well, at 0.57.
+**Jev.** answered an earlier version of this row or of its file; rerun `jev-propose`.
 
 *Statement names: `cycle_distinguished_order_succ_sq`, `cycleMin_first_even_overshoots`, `cycleMin_max_ge_succ_sq`, `cycleMax_min_succ_sq_le`, `cycleMax_landing_gt_min`, `cycleMax_exists_min_succ_sq`*
 
 *Runners-up: `cycleMax_min_succ_sq_le` (0.222), `minimal_first_even_overshoots` (0.214)*
 
-## 31. `J-cyclemin-transport-oo`
+## 30. `J-cyclemin-transport-oo`
 
 **Row.** On a CycleMin, after the first O^a E with a ≥ 2, an immediate odd run of length at least two overshoots the landing y = T_{O^a E}(n) > n: the next two-odd residual is at least (y+1)^2, hence at least (n+2)^2. Lean: cycleMin_transport_second_oo, cycleMin_transport_second_oo_ge in CycleMinObstruction.lean. The second residual lies outside t
 
@@ -902,7 +875,7 @@ theorem cycleMin_transport_second_oo {n a b : ℕ} {v : List Branch}
 
 *Runners-up: `cycleMin_transport_second_oo_ge` (0.27), `follows_replicate_odd_of_le` (0.029)*
 
-## 32. `J-cyclemin-first-oo-r-bound`
+## 31. `J-cyclemin-first-oo-r-bound`
 
 **Row.** Let x1 = T_{O^{a0} E}(n) and B = T_OE. If O^{a0} E follows at n, (OE)^r follows at x1, and B^r(x1) ≥ n, then 2^{2r+a0+1} ≤ 3^{a0+r}. Write R(a0) for the largest such r. Then R(2)=0, R(3)=1, R(4)=3. This is an AboveAnchor / isolated-prefix theorem, not a cycle-return theorem. On a CycleMin-shaped prefix this bounds isolated-OE transport be
 
@@ -938,36 +911,7 @@ theorem isolated_oe_ge_implies_exponent {n a r : ℕ} (hn : 2 ≤ n)
 
 *If this row describes a definition rather than a theorem: `FirstInternalOO`, `isolatedPrefix`*
 
-## 33. `J-trajectory-cycle-or-escape`
-
-**Row.** Every n satisfies EventuallyCycles n or EscapesToInfinity n. A uniformly bounded trajectory repeats: if T^k(n) ≤ M for every k, then some i < j have T^i(n) = T^j(n). ReachesOne n implies EventuallyCycles n because T(1) = 1. On MinimalNonTerm n a cycle value stays ≥ n. This is not a proof that escape is impossible, not a cycle-exclusion th
-
-**Candidate.** `bounded_trajectory_eventually_cycles` &mdash; kernel-checked, `Problems/Juggler/Escape.lean:48`
-
-> A uniformly bounded trajectory repeats. Finite pigeonhole on the prefix of length `M + 2`.
-
-```lean
-theorem bounded_trajectory_eventually_cycles {n M : ℕ}
-    (hbound : ∀ k, floorPower^[k] n ≤ M) :
-    EventuallyCycles n
-```
-
-**Jev.** picks `cycles_or_escapes` at 0.94, not the scorer's candidate.
-
-**Jev's candidate.** `cycles_or_escapes` &mdash; kernel-checked, `Problems/Juggler/Escape.lean:76`
-
-```lean
-theorem cycles_or_escapes (n : ℕ) :
-    EventuallyCycles n ∨ EscapesToInfinity n
-```
-
-*The scorer rated this row low; it is listed on Jev's confidence.*
-
-*Runners-up: `reachesOne_implies_eventually_cycles` (0.174), `minimal_nonterm_cycles_or_escapes` (0.125)*
-
-*If this row describes a definition rather than a theorem: `EscapesToInfinity`, `EventuallyCycles`*
-
-## 34. `J-ce-third-residual-preimages`
+## 32. `J-ce-third-residual-preimages`
 
 **Row.** If n ≥ 2 follows OOEOOEOO, then T_OOEOOEOO(n) < n^3 because x^{256} ≤ n^{729} forbids n^3 ≤ x (768 > 729). If n follows OOEOOEOOE, then T_OOEOOEOOE(n) < n^2 because y^{512} ≤ n^{729} forbids n^2 ≤ y (1024 > 729). A CE that follows OOEOOE follows OOEOOEOO. On MinimalNonTerm a completed third OOE cannot land even: an even landing below n^2 
 
@@ -981,89 +925,13 @@ theorem minimal_ooeooeooe_not_even_landing {n : ℕ}
     image n itineraryOOEOOEOOE % 2 = 1
 ```
 
-**Jev.** none of these, at 0.66.  Read the row for a claim broader than any one declaration here, or a declaration narrower than the row.
+**Jev.** answered an earlier version of this row or of its file; rerun `jev-propose`.
 
 *Runners-up: `minimal_ooeooeooeoe_not_even_landing` (0.32), `minimal_ooeooeooeoeo_not_even` (0.222)*
 
 *If this row describes a definition rather than a theorem: `itineraryOOEOOEOO`, `itineraryOOEOOEOOE`*
 
-## 35. `J-ce-escaped-even-oe-preimage`
-
-**Row.** If n ≥ 2 follows OOEOOEOOEOE, then T_OOEOOEOOEOE(n) < n^2 because w^{2048} ≤ n^{2187} forbids n^2 ≤ w (4096 > 2187). A CE that follows OOEOOEOOE follows OOEOOEOOEO. On MinimalNonTerm an even OE landing after a third OOE is descent. This is not a length-11 cycle census, not a proof that every escaped even drops, and not a halt theorem.
-
-**Candidate.** `follows_ooeooeooeoe_image_lt_sq` &mdash; kernel-checked, `Problems/Juggler/Escape.lean:355`
-
-> The escaped-even `OE` after a third `OOE` has the square-cell gap `4096 > 2187`. This is not a length-11 cycle census.
-
-```lean
-theorem follows_ooeooeooeoe_image_lt_sq {n : ℕ} (hn : 2 ≤ n)
-    (hw : follows n itineraryOOEOOEOOEOE) :
-    image n itineraryOOEOOEOOEOE < n ^ 2
-```
-
-**Jev.** picks `follows_ooeooeooeoe_image_lt_sq` as well, at 0.97.
-
-*The scorer rated this row low; it is listed on Jev's confidence.*
-
-*Runners-up: `minimal_ooeooeooeoe_not_even_landing` (0.32), `minimal_ooeooeooe_not_even_landing` (0.28)*
-
-*If this row describes a definition rather than a theorem: `itineraryOOEOOEOOE`, `itineraryOOEOOEOOEO`*
-
-## 36. `J-ce-oe-next-oo`
-
-**Row.** If n ≥ 2 follows OOEOOEOOEOEO, then T_OOEOOEOOEOEO(n) < n^2 because q^{4096} ≤ n^{6561} forbids n^2 ≤ q (8192 > 6561). A CE that follows OOEOOEOOEOE follows OOEOOEOOEOEO, and that image is odd. Another escaped even is impossible on this step. This is not a length-11 cycle census and not a halt theorem.
-
-**Candidate.** `follows_ooeooeooeoeo_image_lt_sq` &mdash; kernel-checked, `Problems/Juggler/Escape.lean:413`
-
-> After an odd `OE` landing the next `O` still has the square-cell gap `8192 > 6561`. Another escaped even is impossible on this step.
-
-```lean
-theorem follows_ooeooeooeoeo_image_lt_sq {n : ℕ} (hn : 2 ≤ n)
-    (hw : follows n itineraryOOEOOEOOEOEO) :
-    image n itineraryOOEOOEOOEOEO < n ^ 2
-```
-
-**Jev.** picks `follows_ooeooeooeoeo_image_lt_sq` as well, at 0.89.
-
-*The scorer rated this row low; it is listed on Jev's confidence.*
-
-*Runners-up: `follows_ooeooeooeoe_image_lt_sq` (0.364), `minimal_ooeooeooeoeo_not_even` (0.217)*
-
-*If this row describes a definition rather than a theorem: `itineraryOOEOOEOOEOE`, `itineraryOOEOOEOOEOEO`*
-
-## 37. `J-ce-second-o-cube`
-
-**Row.** The itinerary OOEOOEOOEOEOO loses the square-cell gap (19683 > 16384). If n ≥ 2 follows that itinerary, then T(n) < n^3 because u^{8192} ≤ n^{19683} forbids n^3 ≤ u (24576 > 19683). A CE that follows OOEOOEOOEOE follows OOEOOEOOEOEOO. This is not a proof that the image stays below n^2, not a length-11 cycle census, and not a halt theorem.
-
-**Candidate.** `follows_ooeooeooeoe_image_lt_sq` &mdash; kernel-checked, `Problems/Juggler/Escape.lean:355`
-
-> The escaped-even `OE` after a third `OOE` has the square-cell gap `4096 > 2187`. This is not a length-11 cycle census.
-
-```lean
-theorem follows_ooeooeooeoe_image_lt_sq {n : ℕ} (hn : 2 ≤ n)
-    (hw : follows n itineraryOOEOOEOOEOE) :
-    image n itineraryOOEOOEOOEOE < n ^ 2
-```
-
-**Jev.** picks `follows_ooeooeooeoeoo_image_lt_cube` at 0.95, not the scorer's candidate.
-
-**Jev's candidate.** `follows_ooeooeooeoeoo_image_lt_cube` &mdash; kernel-checked, `Problems/Juggler/Escape.lean:478`
-
-> The second `O` after the new `OO` loses the square cell (`19683 > 16384`) but keeps the cube-cell gap `24576 > 19683`. The square comparison `3^9 < 2 · 2^13` fails; see `ooeooeooeoeoo_loses_square`. A cube-cell even landing is therefore not `FiniteProgress`.
-
-```lean
-theorem follows_ooeooeooeoeoo_image_lt_cube {n : ℕ} (hn : 2 ≤ n)
-    (hw : follows n itineraryOOEOOEOOEOEOO) :
-    image n itineraryOOEOOEOOEOEOO < n ^ 3
-```
-
-*The scorer rated this row low; it is listed on Jev's confidence.*
-
-*Runners-up: `follows_ooeooeo_image_lt_sq` (0.333), `follows_ooeooeoo_image_lt_cube` (0.263)*
-
-*If this row describes a definition rather than a theorem: `itineraryOOEOOEOOEOE`, `itineraryOOEOOEOOEOEOO`*
-
-## 38. `J-cube-odd-even-reset`
+## 33. `J-cube-odd-even-reset`
 
 **Row.** If n ≥ 2 and n^2 ≤ x < n^3 with x odd, then n^3 ≤ T(x) < n^5 and T(x)^2 < n^9. If T(x) is even, the first return satisfies n ≤ T^2(x) < x < n^3 and T^2(x)^4 < n^9. If T(x) is odd, then x < T^2(x) and n^4 ≤ T^2(x). An even reset that is itself even and already below n^2 is FiniteProgress; on MinimalNonTerm that case is impossible. This is 
 
@@ -1082,7 +950,7 @@ theorem aboveAnchor_not_odd_even {n : ℕ} {v : List Branch}
 
 *If this row describes a definition rather than a theorem: `AboveAnchor`*
 
-## 39. `J-small-cycle-census-ten`
+## 34. `J-small-cycle-census-ten`
 
 **Row.** No itinerary of length at most ten is a Juggler cycle itinerary at any n ≥ 2; equivalently a nontrivial Juggler cycle, if one exists, has period at least eleven. Lengths ≤ 8 are the census J-small-cycle-census-eight; lengths 9 and 10 are excluded by the finance inequality at the residual floor 12 (no_cycle_itinerary_length_nine, no_cycle_
 
@@ -1095,107 +963,15 @@ theorem no_cycle_itinerary_length_le_ten {n : ℕ} {w : List Branch}
     (hn : 2 ≤ n) (hlen : w.length ≤ 10) : ¬CycleItinerary n w
 ```
 
-**Jev.** picks `no_cycle_itinerary_length_le_ten` as well, at 1.0.
+**Jev.** answered an earlier version of this row or of its file; rerun `jev-propose`.
 
 *Statement names: `no_cycle_itinerary_length_nine`, `no_cycle_itinerary_length_ten`, `no_cycle_itinerary_length_le_ten`*
 
-*Runners-up: `finance_excludes_length_eleven` (0.207), `finance_contradicts_min_two_hundred_sixty_one` (0.206)*
+*Runners-up: `finance_contradicts_min_two_hundred_sixty_one` (0.206), `no_cycle_itinerary_length_le_nineteen` (0.172)*
 
 *If this row describes a definition rather than a theorem: `financeRows53`, `financeRows257`*
 
-## 40. `J-small-cycle-census-nineteen`
-
-**Row.** No itinerary of length at most 19 is a Juggler cycle itinerary at any n ≥ 2; equivalently a nontrivial Juggler cycle, if one exists, has period at least 20, and in fact 57 or at least 58 by J-cycle-itinerary-length-fifty-seven-or-ge-fifty-eight. Lengths ≤ 18 are J-small-cycle-census-eighteen; length 19 is the near-convergent 2^19 < 3^12 k
-
-**Candidate.** `cycle_finance_min_two_hundred_fifty_seven` &mdash; kernel-checked, `Problems/Juggler/CycleFinanceLeftovers.lean:550`
-
-> Finance at the rotated odd minimum after the residual floor `257`: `(15677/11)(3^o - 2^L) ≤ L 3^o`, because the minimum is at least `257` and `257 log 257 > 15677/11`.
-
-```lean
-theorem cycle_finance_min_two_hundred_fifty_seven {n : ℕ} {w : List Branch}
-    (hn : 2 ≤ n) (h : CycleItinerary n w) :
-    (15677 / 11 : ℝ) * ((3 : ℝ) ^ oddCount w - (2 : ℝ) ^ w.length) ≤
-      (w.length : ℝ) * (3 : ℝ) ^ oddCount w
-```
-
-**Jev.** picks `no_cycle_itinerary_length_le_nineteen` at 0.99, not the scorer's candidate.
-
-**Jev's candidate.** `no_cycle_itinerary_length_le_nineteen` &mdash; kernel-checked, `Problems/Juggler/CycleFinanceLeftovers.lean:629`
-
-> Census extension: no cycle itinerary of length at most `19`.
-
-```lean
-theorem no_cycle_itinerary_length_le_nineteen {n : ℕ} {w : List Branch}
-    (hn : 2 ≤ n) (hlen : w.length ≤ 19) : ¬CycleItinerary n w
-```
-
-*The scorer rated this row low; it is listed on Jev's confidence.*
-
-*Statement names: `cycle_finance_min_two_hundred_fifty_seven`, `finance_excludes_length_nineteen`, `no_cycle_itinerary_length_le_nineteen`*
-
-*Runners-up: `finance_contradicts_min_two_hundred_sixty_one` (0.205), `no_cycle_itinerary_length_le_ten` (0.194)*
-
-*If this row describes a definition rather than a theorem: `EliahouLeftover`, `financeRows53`*
-
-## 41. `J-cyclemin-last-odd-run`
-
-**Row.** On a CycleMin word that ends O^a E with a ≥ 1 and the preceding letter not odd, the last odd-run has length exactly one. Equivalently, a CycleMin word cannot end O^a E for a ≥ 2. This is no_cycleMin_odd_run when the prefix is empty and no_cycleMin_bootstrap_last_gap after an internal even: oo_suffix_threshold at the last valley versus the
-
-**Candidate.** `cycleMin_not_last_odd_run_ge_two` &mdash; kernel-checked, `Problems/Juggler/EvenCountThree.lean:202`
-
-> A CycleMin itinerary cannot end `O^a E` for `a ≥ 2`. This is `no_cycleMin_odd_run` when the prefix is empty and `no_cycleMin_bootstrap_last_gap` after an internal even.
-
-```lean
-theorem cycleMin_not_last_odd_run_ge_two {n a : ℕ} {u : List Branch}
-    (hn : 2 ≤ n) (ha : 2 ≤ a)
-    (h : CycleMin n (u ++ List.replicate a Branch.odd ++ [Branch.even]))
-    (hcut : u = [] ∨ u.getLast? = some Branch.even) : False
-```
-
-**Jev.** picks `cycleMin_last_odd_run_eq_one` at 0.98, not the scorer's candidate.
-
-**Jev's candidate.** `cycleMin_last_odd_run_eq_one` &mdash; kernel-checked, `Problems/Juggler/EvenCountThree.lean:217`
-
-> On a CycleMin itinerary ending `O^a E` with `a ≥ 1` and the preceding letter not odd, the last odd-run has length exactly one. Paper A §3 writes that last excursion as unconstrained `O^{a_e}E`; this is the `OOEOOE` sandwich of Theorem 3.6 at an arbitrary last valley.
-
-```lean
-theorem cycleMin_last_odd_run_eq_one {n a : ℕ} {u : List Branch}
-    (hn : 2 ≤ n) (ha : 1 ≤ a)
-    (h : CycleMin n (u ++ List.replicate a Branch.odd ++ [Branch.even]))
-    (hcut : u = [] ∨ u.getLast? = some Branch.even) :
-    a = 1
-```
-
-*The scorer rated this row low; it is listed on Jev's confidence.*
-
-*Statement names: `no_cycleMin_odd_run`, `no_cycleMin_bootstrap_last_gap`, `exists_trailing_odds`, `cycleMin_not_last_odd_run_ge_two`, `cycleMin_last_odd_run_eq_one`, `exists_cycleMin_last_odd_run`*
-
-*Runners-up: `cycleMin_last_odd_run_eq_one` (0.235), `exists_cycleMin_last_odd_run` (0.234)*
-
-## 42. `J-cyclemin-walk-word-identity`
-
-**Row.** Discrete side of the walk-charge itinerary identity (Paper A Lemma 5.6) and the combinatorial core of the hug exchange (Paper A Theorem 5.4). For the exact hug rule — the letter at position k with a odd letters used is even iff 2^(k+1) ≤ 3^a — the odd count hugOdds satisfies the unit-window invariant 2^k ≤ 3^(hugOdds k) < 3·2^k at every p
-
-**Candidate.** `budgetedWord_eq_hugWord` &mdash; kernel-checked, `Problems/Juggler/WalkChargeItineraries.lean:270`
-
-> **Itinerary identity** (Paper A Lemma 5.6, discrete side): the budgeted hug itinerary at `(L, hugOdds L)` equals the exact hug `L`-prefix. Together with `hugOdds_pow_ge` and `hugOdds_least` this says the exact rule forces exactly the minimal admissible odd budget, so the budget never binds.
-
-```lean
-theorem budgetedWord_eq_hugWord (L : ℕ) :
-    budgetedWord L (hugOdds L) = hugWord L
-```
-
-**Jev.** picks `budgetedWord_eq_hugWord` as well, at 0.74.
-
-*The scorer rated this row low; it is listed on Jev's confidence.*
-
-*Statement names: `hugOdds_pow_ge`, `hugOdds_pow_lt`, `hugOdds_least`, `hugOdds_le_of_admissible`, `budgetedWord_eq_hugWord`*
-
-*Runners-up: `hugOdds_le_of_admissible` (0.266), `hugOdds_pow_gt` (0.178)*
-
-*If this row describes a definition rather than a theorem: `hugIsEven`, `budgetedIsEven`*
-
-## 43. `J-cyclemin-defect-finance-kill`
+## 35. `J-cyclemin-defect-finance-kill`
 
 **Row.** The defect-sum finance inequality (the certified identity of Paper A Theorem 4.6, previously human) and the walk-charge kill criterion (Theorem 5.9 mechanism), Lean end to end (DefectFinance.lean). Finance: on a CycleMin cycle with minimum n ≥ 400, 1 − 2^L/3^o ≤ (6/5)·Σ_k 1/(x_k·log x_k) (cycleMin_defect_finance). Ingredients all Lean: pe
 
@@ -1232,43 +1008,7 @@ theorem cycleMin_defect_finance {n : ℕ} {w : List Branch}
 
 *If this row describes a definition rather than a theorem: `prefixCharge`*
 
-## 44. `J-flight-envelope-transport`
-
-**Row.** Flight envelope on open descent-free prefixes: the Paper A Theorem 5.3 transport ported from minimum-based cycles to AboveAnchor, plus the anchor-free upper side. If AboveAnchor(n,w) with n >= 400 then for every k <= |w|, in log form, w_k (log n − Δ) <= log x_k <= w_k log n, where w_k = 3^{a_k}/2^k is the walk weight and Δ = 1.05 e/n + 0.
-
-**Candidate.** `follows_log_le_walkWeight` &mdash; kernel-checked, `Problems/Juggler/WalkTransport.lean:293`
-
-> Upper envelope on any realized prefix (floors only lose): `log x_k ≤ w_k · log n`. Log form of `power_bound_word`; no anchor hypothesis.
-
-```lean
-theorem follows_log_le_walkWeight {n : ℕ} {w : List Branch}
-    (hn : 1 ≤ n) (hf : follows n w) {k : ℕ} (hk : k ≤ w.length) :
-    Real.log (floorPower^[k] n) ≤ walkWeight w k * Real.log n
-```
-
-**Jev.** picks `aboveAnchor_flight_envelope` at 0.99, not the scorer's candidate.
-
-**Jev's candidate.** `aboveAnchor_flight_envelope` &mdash; kernel-checked, `Problems/Juggler/WalkTransport.lean:468`
-
-> **Flight envelope** (fly-height sandwich): on a descent-free prefix with anchor `n ≥ 400`, `w_k·(log n − D) ≤ log x_k ≤ w_k·log n`. At the prefix peak `H` with `W = max_k w_k` this gives `W·(log n − D) ≤ log H ≤ W·log n`: the fly exponent `log H / log n` equals the peak walk weight up to `O(D·W/log n)`. Not a halt theorem and not a divergence theorem.
-
-```lean
-theorem aboveAnchor_flight_envelope {n : ℕ} {w : List Branch}
-    (hn : 400 ≤ n) (h : AboveAnchor n w) {k : ℕ} (hk : k ≤ w.length) :
-    walkWeight w k * (Real.log n - transportDeficit n w) ≤
-        Real.log (floorPower^[k] n) ∧
-      Real.log (floorPower^[k] n) ≤ walkWeight w k * Real.log n
-```
-
-*The scorer rated this row low; it is listed on Jev's confidence.*
-
-*Statement names: `aboveAnchor_transport`, `aboveAnchor_flight_envelope`, `follows_log_le_walkWeight`, `one_le_walkWeight_aboveAnchor`*
-
-*Runners-up: `aboveAnchor_flight_envelope` (0.18), `aboveAnchor_transport_prefix` (0.12)*
-
-*If this row describes a definition rather than a theorem: `prefixDeficit`, `transportDeficit`*
-
-## 45. `J-loglog-clock-even-chain-burst-lean`
+## 36. `J-loglog-clock-even-chain-burst-lean`
 
 **Row.** even_chain_mem_burst: if the first k states of the orbit of n are even and floorPower^[k] n = m, then m^(2^k) <= n < (m + 1)^(2^k); proved by induction from the one-step cell Nat.sqrt n ^ 2 <= n < (Nat.sqrt n + 1) ^ 2 (sqrt_cell) and floorPower_even_eq. Corollary even_chain_log_offset (1 <= m): 2^k log m <= log n < 2^k log (m + 1), i.e. i
 
@@ -1292,7 +1032,7 @@ theorem even_chain_mem_burst :
 
 *If this row describes a definition rather than a theorem: `alphaClock`, `WalkStep`*
 
-## 46. `J-loglog-clock-band-word-forced-lean`
+## 37. `J-loglog-clock-band-word-forced-lean`
 
 **Row.** Inside the hug band the parity letter is forced. band_step_forced_odd: from u < 1 a step staying in [0, 1 + alphaClock) must be the odd one, v = u + alphaClock (the even step goes negative). band_step_forced_even: from 1 <= u it must be the even one, v = u - 1 (the odd step exceeds the band). band_successor_unique: a band-confined walk ha
 
@@ -1314,7 +1054,7 @@ theorem band_successor_unique {u v w : ℝ} (_h0 : 0 ≤ u) (_h1 : u < 1 + alpha
 
 *If this row describes a definition rather than a theorem: `WalkStep`, `alphaClock`*
 
-## 47. `J-floor-stratifies-even-cylinders-lean`
+## 38. `J-floor-stratifies-even-cylinders-lean`
 
 **Row.** not_reachesOne_even_chain_ge: if n >= 1 does not reach 1 and its first k states are even, then 261^(2^k) <= n. Proof: the k-th iterate is again a failure (backwardClosed_iterate with reachesOne_backwardClosed), hence >= 261 by the Lean floor (reachesOne_of_lt_two_hundred_sixty_one via not_reachesOne_ge; positivity by floorPower_iterate_po
 
@@ -1337,7 +1077,7 @@ theorem not_reachesOne_even_chain_ge {n k : ℕ} (hn : 1 ≤ n) (h : ¬ ReachesO
 
 *If this row describes a definition rather than a theorem: `WalkStep`, `walk`*
 
-## 48. `J-live-count-weight`
+## 39. `J-live-count-weight`
 
 **Row.** The live count liveCount N0 N w = #{n in [1,N] : itinerary n |w| = w and n, J n, ..., J^|w| n all exceed N0} is a WeightSplit weight (liveWeight_weightSplit: the two one-letter extensions have disjoint live classes inside the parent's), and juggler_count_le_of_noMomentum instantiates the chain on it: if NoMomentum (liveWeight N0 N) x q de
 
@@ -1364,7 +1104,7 @@ theorem juggler_count_le_of_noMomentum (N0 N : ℕ) (x q δ : ℝ) (hx : 1 ≤ x
 
 *If this row describes a definition rather than a theorem: `liveCount`, `liveWeight`*
 
-## 49. `J-mean-share-exceptional-depths`
+## 40. `J-mean-share-exceptional-depths`
 
 **Row.** What the mean-share hypothesis does not need, machine-checked. Paper C section 9.3(a) and 9.3(b) were prose; these are the statements. (a) MeanShareOff mu x q d E := sum over t in [0,d) minus E of s_t <= q |[0,d) minus E|, with nothing whatever assumed on the exceptional set E. Then weightGen_le_of_meanShareOff gives Z_d <= Z_0 x^|[0,d) c
 
@@ -1400,7 +1140,7 @@ theorem weightGen_le_of_meanShareOff (μ : List Branch → ℝ) (x q : ℝ)
 
 *If this row describes a definition rather than a theorem: `MeanShareOff`, `NoMomentum`*
 
-## 50. `J-localized-kernel-arithmetic`
+## 41. `J-localized-kernel-arithmetic`
 
 **Row.** Rational bookkeeping only, not an exponential-sum estimate. LocalizedKernel.lean proves absTail_eq: three nested half-averages give (7y+a)/8; threshold_iff and threshold_value: retaining saving 1/96 requires y>=29/48. Legacy companionY=23/32 is explicitly a reference scale, not a production scale; absTail_companion=533/768, target_compani
 
@@ -1421,7 +1161,7 @@ theorem production_formal_effective_saving :
 
 *If this row describes a definition rather than a theorem: `absTail`, `absStep`*
 
-## 51. `J-cube-fiber-exact`
+## 42. `J-cube-fiber-exact`
 
 **Row.** The OE fiber of a perfect cube is full or exactly alternating. For every a >= 1 and every n with (2a)^4 <= n and n^3 < ((2a)^3+1)^4, floor(n^(3/2)) = Nat.sqrt (n^3) is even (even_cube_fiber_full); for every odd n with (2a+1)^4 <= n and n^3 < ((2a+1)^3+1)^4, Nat.sqrt (n^3) + (n - (2a+1)^4)/2 is odd (odd_cube_fiber_alternating), so consecut
 
@@ -1441,7 +1181,7 @@ theorem odd_cube_fiber_alternating (a n : ℕ) (hodd : n % 2 = 1) (hlo : (2 * a 
 
 *Runners-up: `even_cube_fiber_full` (0.076), `cube_fiber_sqrt_odd` (0.067)*
 
-## 52. `J-paper-b-formal-layer-has-an-estimate`
+## 43. `J-paper-b-formal-layer-has-an-estimate`
 
 **Row.** Paper B's formal layer now contains an estimate, where before it contained none. THE STANDING POSITION, stated in the paper's own barrel JugglerParityPaper.lean: 'Building it does not corroborate the paper's analysis. Every declaration reachable from here is an identity, a constant, or a threshold; not one of them is an estimate.' That wa
 
@@ -1472,7 +1212,7 @@ theorem theta_lt_one {q : ℝ} (hq0 : 0 < q) (hq1 : q < 1) (hq : q ≠ 1 / 2) : 
 
 *If this row describes a definition rather than a theorem: `klDiv`, `theta`*
 
-## 53. `J-paper-b-transposition-costs-the-barrier-mass`
+## 44. `J-paper-b-transposition-costs-the-barrier-mass`
 
 **Row.** Transposing two adjacent barrier letters costs exactly the mass on the barrier. Grade the surviving parity words of a given length by their surplus h above the barrier. A barrier letter that does not rise acts by stepFlat v h = v h + v (h-1) and kills nothing; one that rises acts by stepRise v h = v (h+1) + v h and loses exactly v 0, the 
 
@@ -1496,7 +1236,7 @@ theorem run_stepRise_stepFlat (w : List Bool) (v : Profile) :
 
 *If this row describes a definition rather than a theorem: `barrierMass`, `stepFlat`*
 
-## 54. `J-collatz-bridge-is-exact-at-the-word-level`
+## 45. `J-collatz-bridge-is-exact-at-the-word-level`
 
 **Row.** The Juggler-Collatz bridge, stated as theorems over the one shared object, the List Branch word, with no real number and nothing measured in any statement. COLLATZ IS WORD-AFFINE WITH THE CORRECTION POINTING UP: for the shortcut map C (x/2 on evens, (3x+1)/2 on odds) and w = parityWord x d the first d parities of the orbit of x, 2^d * C^d
 
@@ -1529,7 +1269,7 @@ theorem word_affine (x d : ℕ) :
 
 *If this row describes a definition rather than a theorem: `parityWord`, `shortcutC`*
 
-## 55. `J-survivor-count-is-a-collatz-residue-count`
+## 46. `J-survivor-count-is-a-collatz-residue-count`
 
 **Row.** Paper B's survivor count is a Collatz residue count, in Lean. undecidedResidues_card: the number of residues r modulo 2^d whose parity word parityWord r d has no contracting prefix equals neverNegCount d, the N_d of RateFreeDensity; decidedAtResidues_card: the number whose word is a minimal certificate (first contracts at exactly d) equal
 
@@ -1551,7 +1291,7 @@ theorem undecidedResidues_card (d : ℕ) : (undecidedResidues d).card = neverNeg
 
 *If this row describes a definition rather than a theorem: `undecidedResidues`, `parityWord`*
 
-## 56. `J-collatz-even-step-charge-identity`
+## 47. `J-collatz-even-step-charge-identity`
 
 **Row.** The Collatz walk charge, in natural numbers. Define evenCharge on words by evenCharge [] = 0, evenCharge (even :: w) = 3^(oddCount w) + 2 evenCharge w, evenCharge (odd :: w) = 2 evenCharge w -- in closed form the sum over even positions i of 3^(o - a_i) 2^i with a_i the odd letters before i. Then (wordConst_add_two_pow) wordConst w + 2^|w
 
@@ -1584,7 +1324,7 @@ theorem two_pow_mul_iter_add_one (x d : ℕ) :
 
 *If this row describes a definition rather than a theorem: `evenCharge`, `wordConst`*
 
-## 57. `J-juggler-cycle-words-are-collatz-negative-cycle-words`
+## 48. `J-juggler-cycle-words-are-collatz-negative-cycle-words`
 
 **Row.** The sign flip on cycles is the sign of x, and Juggler's cycle words are the words of Collatz's negative cycles. On the negative integers the odd step is |x| -> (3|x| - 1)/2, so the correction pushes |x| below the pure multiplier -- Juggler's sign -- and the cycle equation (x + 1)(2^d - 3^o) = evenCharge w >= 0 with x + 1 < 0 forces 2^d < 
 
@@ -1608,7 +1348,7 @@ theorem neg_cycle_word_is_juggler_shape {x : ℤ} {K : ℕ} (hK : 0 < K) (hx : x
 
 *If this row describes a definition rather than a theorem: `undecidedResidues`, `evenCharge`*
 
-## 58. `J-paper-c-production-words-are-prefix-free`
+## 49. `J-paper-c-production-words-are-prefix-free`
 
 **Row.** Paper C's finite production words are prefix-free, in Lean, for the whole family rather than for the six the manuscript fixes. Paper C (docs/theory/juggler_fate_almost_all_note.md) builds Theorem 1 from six productions V_k = (OE)^(k-1) OEE with rho_k = (1/2)(3/4)^k, 1 <= k <= 6, and uses their prefix-freeness three times: 'Production word
 
@@ -1630,7 +1370,7 @@ theorem Vword_prefix_iff {i j : ℕ} (h : Vword i <+: Vword j) : i = j
 
 *If this row describes a definition rather than a theorem: `Vword`*
 
-## 59. `J-oe-fiber-block-lock`
+## 50. `J-oe-fiber-block-lock`
 
 **Row.** An OE fiber can be unbalanced only by locking onto a rational step of small denominator, and the quantitative form is elementary. For m >= 10^6 and every convergent denominator q of alpha_m = {(3/2) m^(2/3)}, |G_m/H_m - 1/2| <= 4||q alpha_m|| + 5/(2q) + 3.77 q/H_m. PROOF: cut the fiber into blocks of q consecutive members; by Lemma 4.2's 
 
@@ -1670,7 +1410,7 @@ theorem block_lock (x : ℕ → ℝ) (H q : ℕ) (a η ρ : ℝ) (p : ℤ)
 
 *If this row describes a definition rather than a theorem: `Unstable`, `gridRes`*
 
-## 60. `J-oe-poor-fiber-tail`
+## 51. `J-oe-poor-fiber-tail`
 
 **Row.** The OE fibers whose parity share is bounded away from 1/2 have finite total logarithmic mass, so no set can concentrate on them. For eta_0 in (0,1/2], with P_eta0 = {m : |G_m/H_m - 1/2| >= eta_0} and u_0(eta_0) = max(10^6, (1950/eta_0^2)^3): #(P_eta0 cap (u,2u]) <= 430 u^(2/3)/eta_0^2 for u >= u_0, and sum over m in P_eta0, m > U of 1/m <
 
@@ -1704,7 +1444,7 @@ theorem poor_logMass_le {U N : ℕ} (hU : 10 ^ 6 ≤ U) {η₀ : ℝ} (hη0 : 0 
 
 *If this row describes a definition rather than a theorem: `Poor`*
 
-## 61. `J-oe-averaged-two-productions-reach-the-depth-two-ceiling`
+## 52. `J-oe-averaged-two-productions-reach-the-depth-two-ceiling`
 
 **Row.** With the poor-fiber tail, Paper C's contagion recursion needs only two productions, and they reach the depth-two ceiling. Taking the OE family over all of A cap (x^(3/8), x^(3/4)] rather than over the rest -- legitimate because the E-images are even and the OE-images odd, which is the only disjointness ever used -- Corollary of J-oe-poor-
 
@@ -1737,7 +1477,7 @@ theorem logMass_contagion_averaged {A : ℕ → Prop} (hA : BackwardClosed A) {a
 
 *If this row describes a definition rather than a theorem: `errAddAvg`, `errOEavg`*
 
-## 62. `J-survivor-count-is-the-certificate-tail`
+## 53. `J-survivor-count-is-the-certificate-tail`
 
 **Row.** PROVED IN LEAN, for every pair d <= K, over the naturals: 2^(K-d) * N_d = sum_{j=d+1}^{K} 2^(K-j) * M_j + N_K, where N_d = neverNegCount d counts the length-d words with no contracting prefix and M_j = minimalCertCount j counts those contracting for the first time at j. Divided by 2^K it reads N_d/2^d = sum_{j=d+1}^{K} M_j/2^j + N_K/2^K, 
 
@@ -1762,7 +1502,7 @@ theorem neverNegCount_telescope {d K : ℕ} (h : d ≤ K) :
 
 *If this row describes a definition rather than a theorem: `minimalCertCount`, `minimalCertWords`*
 
-## 63. `J-free-lengths-are-never-adjacent`
+## 54. `J-free-lengths-are-never-adjacent`
 
 **Row.** PROVED IN LEAN, at every level: above the bottom edge, no two adjacent lengths are both free. carrying_in_adjacent_pair says that for floor(Lambda) + 1 <= L, at least one of L and L+1 carries a window at level 2^Lambda. MECHANISM. The carrying lengths are floor(o log2 3 + Lambda) + 1 (certWindowAt_iff_floor). Since 1 < log2 3 < 2, one ste
 

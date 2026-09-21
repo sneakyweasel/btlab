@@ -93656,7 +93656,7 @@
       "ledger": [
         {
           "id": "BTN-sdrm-separation",
-          "statement": "If \u03bb is not divisible by 3 and s\u2260t, the constant word of any letter of length v_3(s-t)+1 distinguishes the output streams of F_{\u03bb,U}(s,u)=\u03bb\u00b7D(s+u) with output lsd(s+u). Distinct residuals are therefore Mealy-inequivalent, so M(\u03bb,U)=|R_{\u03bb,U}| on every nonempty origin-reachable machine in this regime.",
+          "statement": "If \u03bb is not divisible by 3 and s\u2260t, the constant word of any letter of length v_3(s-t)+1 distinguishes the output streams of F_{\u03bb,U}(s,u)=\u03bb\u00b7D(s+u) with output lsd(s+u). Distinct residuals are therefore Mealy-inequivalent. NOT formalized: the state count M(\u03bb,U)=|R_{\u03bb,U}| on every nonempty origin-reachable machine in this regime, which needs the Mealy minimality theory that Transducer.lean states it does not carry.",
           "tag": "EXACT \u2014 LEAN VERIFIED"
         },
         {

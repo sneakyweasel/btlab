@@ -396,7 +396,12 @@
   ],
   "related_conjectures": [],
   "lean_trust": "kernel",
-  "decl": "certificate_requires_large_minimum"
+  "decl": [
+   "certificate_requires_large_minimum",
+   "eval_mono",
+   "paired_bound",
+   "loss_exact"
+  ]
  },
  {
   "id": "J-cycle-later-return-height",
@@ -409,7 +414,11 @@
   ],
   "related_conjectures": [],
   "lean_trust": "kernel",
-  "decl": "lr_cycle_height"
+  "decl": [
+   "lr_cycle_height",
+   "lr_cycle_gap",
+   "periodicOrbit_lr_height"
+  ]
  },
  {
   "id": "J-cycle-terminal-mixed-gap",
@@ -430,7 +439,11 @@
    "TerminalOrbitCut",
    "terminal_cut_from_section",
    "periodicOrbit_terminal_totals",
-   "cycleMin_terminal_totals"
+   "cycleMin_terminal_totals",
+   "TerminalCut",
+   "AdjacentIn.image",
+   "AdjacentIn.cut_extrema",
+   "terminal_cut"
   ]
  },
  {
@@ -444,7 +457,15 @@
   ],
   "related_conjectures": [],
   "lean_trust": "kernel",
-  "decl": "c_contract"
+  "decl": [
+   "c_contract",
+   "c_certificate",
+   "c_dyadic_sum",
+   "c_budget_lt",
+   "c_loss",
+   "c_slope_lt",
+   "c_pair_from_floor"
+  ]
  },
  {
   "id": "J-cycle-direction-change-batches",
@@ -457,7 +478,11 @@
   ],
   "related_conjectures": [],
   "lean_trust": "kernel",
-  "decl": "dc_rank_stages"
+  "decl": [
+   "dc_rank_stages",
+   "force_two_left",
+   "force_two_right"
+  ]
  },
  {
   "id": "J-cycle-direction-change-height",
@@ -470,7 +495,11 @@
   ],
   "related_conjectures": [],
   "lean_trust": "kernel",
-  "decl": "dc_cycle_height"
+  "decl": [
+   "dc_cycle_height",
+   "dc_cycle_gap",
+   "periodicOrbit_dc_height"
+  ]
  },
  {
   "id": "J-paper-b-oooee-mixed-127",
@@ -616,7 +645,23 @@
   "statement": "Paper A Appendix E.6, explicit formal witness. For every requested modulus q>0, c=512q-1 and b=c^3 yield two prescribed OOE first-return blocks in the same full cubic threshold band and the same section. The source, first image and endpoint are odd, all six threshold edges and first-return memberships are proved, and the final E-source parities differ. The records agree in source/first-image/endpoint/natural-aggregate residues modulo q, exact first remainder zero, and exact aggregate 2-adic valuation three. No classifier of this record can give both hidden parities correctly, even when supplied the exact common threshold and section boundary. The general positive free-b Taylor construction remains written. These blocks are not asserted periodic points; no impossibility for full absolute-value formulas or cycle-specific guards is claimed. Kernel verified.",
   "source": "docs/theory/juggler_finite_dynamics_note.md",
   "lean": "Problems/Juggler/GuardResidueFamily.lean",
-  "decl": "guardResidueFamily_no_record_classifier",
+  "decl": [
+   "guardResidueFamily_no_record_classifier",
+   "guardResidueParameter",
+   "guardResidueParameter_valid",
+   "guardResidueFamily_every_modulus",
+   "guardResidueFamily_record_collision",
+   "guardResidueRecord",
+   "guardResidue_ooe_traces",
+   "guardResidue_good_juggler_block",
+   "guardResidue_threshold_blocks",
+   "guardResidue_common_band_and_section",
+   "guardResidue_nat_parities",
+   "guardResidue_nat_record",
+   "guardResidue_nat_aggregate_record",
+   "guardResidue_first_remainders_zero",
+   "guardResidue_aggregate_valuation"
+  ],
   "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_cycle_guard_residues.py",
@@ -631,7 +676,16 @@
   "statement": "Paper A Proposition E.3, formal polynomial-block subset. For every odd r>=3, x=r^8+8,u=r^12+12r^4,v=r^18+18r^10+54r^2-1,z=r^9+9r-1 satisfy all three adjacent-square cells, x,u,z odd and v even, and the actual Juggler steps x->u->v->z. The direct iterate-three identity is proved. Kernel verified; this row does not cover the real-power quotient substitution estimates or assert a closed orbit.",
   "source": "docs/theory/juggler_finite_dynamics_note.md",
   "lean": "Problems/Juggler/FamilyChains.lean",
-  "decl": "ooeFamily_juggler_block",
+  "decl": [
+   "ooeFamily_juggler_block",
+   "ooeFamilySource",
+   "ooeFamilyFirst",
+   "ooeFamilySecond",
+   "ooeFamilyExit",
+   "ooeFamily_square_cells",
+   "ooeFamily_parities",
+   "ooeFamily_iterate_three"
+  ],
   "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_cycle_cubic_induction.py",
@@ -646,7 +700,14 @@
   "statement": "Paper A Appendix E.2, formal core. For rankStep(a,b,i)=i+b when i<a and i-a otherwise, a>b gives the first return on [0,a) as rankStep(a-b,b), in one or two iterations with every earlier positive iterate outside. For b>a the first return on [0,b) is rankStep(a,b-a); equal counts give a two-step identity. Weighted word lengths and O/E statistics are preserved by A,AB or AB,B substitution. Kernel-verified return iterates and first-visit properties; full accelerated towers and their global partition remain written.",
   "source": "docs/theory/juggler_finite_dynamics_note.md",
   "lean": "Problems/Juggler/ReturnInduction.lean",
-  "decl": "left_subtractive_first_return",
+  "decl": [
+   "left_subtractive_first_return",
+   "rankStep",
+   "right_subtractive_first_return",
+   "equal_first_return",
+   "left_word_statistics",
+   "right_word_statistics"
+  ],
   "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_cycle_cubic_induction.py",
@@ -661,7 +722,21 @@
   "statement": "Paper A Appendix E.1, formal subset. The prescribed OE return equals y iff y^4<=x^3<(y+1)^4. Every prescribed OOE return v satisfies v^8<=x^9<(v+2)^8; relative to an eighth-root cell y it is y or y-1. If v is odd, it is the greatest odd integer whose eighth power is at most x^9. The family s^4->s^6->s^3 has all three states odd when s is odd, so endpoint parities do not imply the hidden E guard. Actual OE/OOE composition bridges retain every source-parity premise. Kernel verified; no arbitrary-root or OOEOE projection theorem is claimed by this row.",
   "source": "docs/theory/juggler_finite_dynamics_note.md",
   "lean": "Problems/Juggler/ReturnCells.lean",
-  "decl": "ooe_odd_maximal",
+  "decl": [
+   "ooe_odd_maximal",
+   "oe",
+   "ooe",
+   "oe_eq_iff",
+   "oe_cell",
+   "oe_actual",
+   "ooe_actual",
+   "ooe_upper_pow",
+   "ooe_lower_pow",
+   "ooe_two_cell",
+   "ooe_one_integer",
+   "oe_perfect_power",
+   "oe_perfect_power_hidden_odd"
+  ],
   "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_cycle_cubic_induction.py",
@@ -726,7 +801,13 @@
    "tests/research/juggler_sequence/test_paper_a_trust_boundary.py"
   ],
   "related_conjectures": [],
-  "decl": "cycleMin_height_strip",
+  "decl": [
+   "cycleMin_height_strip",
+   "height_strip",
+   "periodicOrbit_height_strip",
+   "cycleMin_all_states_height_strip",
+   "threshold_cycle_wrong_parity"
+  ],
   "lean_trust": "kernel"
  },
  {
@@ -796,7 +877,14 @@
    "tests/research/juggler_sequence/test_paper_a_trust_boundary.py"
   ],
   "related_conjectures": [],
-  "decl": "ooeFamily_juggler_chain_bound",
+  "decl": [
+   "ooeFamily_juggler_chain_bound",
+   "ooeFamilyReturn",
+   "ooeFamilyReturn_iff",
+   "ooeFamilyReturn_mod_fortyeight",
+   "ooeFamilyReturn_valuation_drop",
+   "ooeFamily_no_infinite_juggler_chain"
+  ],
   "lean_trust": "kernel"
  },
  {
@@ -811,7 +899,21 @@
    "tests/research/juggler_sequence/test_paper_a_trust_boundary.py"
   ],
   "related_conjectures": [],
-  "decl": "recoverPeak_guard_iff",
+  "decl": [
+   "recoverPeak_guard_iff",
+   "correction_identity",
+   "correction_error_bound",
+   "exact_remainder_correction",
+   "exact_quotient_gap",
+   "corrected_baseline_bounds",
+   "corrected_baseline_correction",
+   "integerQuotient",
+   "corrected_quotient_integer",
+   "endpoint_validation",
+   "record_initializes",
+   "recoverPeak",
+   "recoverPeak_eq"
+  ],
   "lean_trust": "kernel"
  },
  {
@@ -826,7 +928,15 @@
    "tests/research/juggler_sequence/test_paper_a_trust_boundary.py"
   ],
   "related_conjectures": [],
-  "decl": "baseline_bounds",
+  "decl": [
+   "baseline_bounds",
+   "baseline",
+   "baseline_correction",
+   "baseline_zero_iff",
+   "baseline_one_iff",
+   "baseline_two_iff",
+   "square_guard_iff"
+  ],
   "lean_trust": "kernel"
  },
  {
@@ -885,7 +995,13 @@
   "related_conjectures": [],
   "decl": [
    "power_cells_grid_charge",
-   "power_cells_scaled_charge"
+   "power_cells_scaled_charge",
+   "logCellDefect_lt_logEta",
+   "inv_log_sum_le_grid",
+   "grid_charge_le_geometric",
+   "geometric_grid_charge_lt",
+   "threshold_cycle_upper_charge",
+   "cubicBand_cycle_upper_charge"
   ],
   "lean_trust": "kernel"
  },
@@ -925,7 +1041,12 @@
    "rankRotation_orbit_iff_residue",
    "rankRotation_orbit_representatives",
    "rankRotation_orbit_upper_card",
-   "rankResidue_interlaces"
+   "rankResidue_interlaces",
+   "rankRotation_orbit_finset",
+   "rankResidue_range_card",
+   "rankResidue_fin_card",
+   "rankResidue_parameterization",
+   "rankResidue_upper_card"
   ],
   "lean_trust": "kernel"
  },
@@ -941,7 +1062,23 @@
   "related_conjectures": [],
   "decl": [
    "threshold_cycle_grid",
-   "cubicBand_cycle_grid"
+   "cubicBand_cycle_grid",
+   "logCellDefect_nonneg",
+   "logCellDefect_sum",
+   "rank_rotation_real",
+   "log_grid_of_power_cells",
+   "logGridSurplus_pos_of_power_cells",
+   "log_gap_bounds_of_power_cells",
+   "threshold_log_grid",
+   "cubicBand_log_grid",
+   "threshold_invariant_grid",
+   "realized_grid_bounds_of_power_cells",
+   "RealizedGridBounds",
+   "surplus_pos",
+   "grid_bound",
+   "error_oscillation",
+   "gap_range",
+   "gap_mean_bound"
   ],
   "lean_trust": "kernel"
  },
@@ -959,7 +1096,13 @@
    "cubicRounding_exists_primitive",
    "cubicRounding_eq_or_pred",
    "cubicRounding_real_loss",
-   "cubicRounding_finite_invariant_rotation"
+   "cubicRounding_finite_invariant_rotation",
+   "cubicParityDomain",
+   "cubicParityProject",
+   "cubicRounding",
+   "cubicRounding_mem",
+   "cubicRounding_no_fixed",
+   "cubicRounding_iterate_mem"
   ],
   "lean_trust": "kernel"
  },
@@ -978,7 +1121,17 @@
    "branchOffset_same_branch_smooth_gap",
    "branchOffset_nearest_even_gap",
    "branchOffsetCycle_primitive",
-   "branchOffsetCycle_cells"
+   "branchOffsetCycle_cells",
+   "branchOffset",
+   "branchOffsetCycle",
+   "branchOffsetCycle_edges",
+   "branchOffsetCycle_distinct",
+   "branchOffsetCycle_counts",
+   "branchOffsetCycle_bounds",
+   "branchOffsetCycle_rounding",
+   "branchOffsetCycle_iterate",
+   "branchOffsetCycle_iterates",
+   "branchOffsetCycle_rank_rotation"
   ],
   "lean_trust": "kernel"
  },
@@ -1010,7 +1163,12 @@
   "decl": [
    "thresholdMap_exists_primitive",
    "threshold_sorted_rotation",
-   "thresholdMap_eq_floorPower_iff"
+   "thresholdMap_eq_floorPower_iff",
+   "thresholdMap",
+   "thresholdMap_invariant",
+   "thresholdMap_ne_self",
+   "thresholdMap_image_separation",
+   "threshold_iterates_eq_of_compatible"
   ],
   "lean_trust": "kernel"
  },
@@ -2883,7 +3041,10 @@
   "statement": "the operator-fragment tree TRS {D, I_a, S, N} including N(D(x))\u2192D(N(x)) is terminating and locally confluent; every term has a unique syntactic normal form",
   "source": "docs/theory/rewrite_calculus.md",
   "lean": "BTCalculus/OpFragNewman.lean",
-  "decl": "unique_normal_form",
+  "decl": [
+   "unique_normal_form",
+   "locally_confluent"
+  ],
   "lean_trust": "kernel",
   "tests": [
    "tests/unit/test_operator_fragment_nf.py"
@@ -2898,7 +3059,10 @@
   "statement": "irreducibles of the enlarged operator-fragment TRS (tree rules plus N(D(x))\u2192D(N(x))) are unique representatives of integer operator functions on {D, I_a, S, N}",
   "source": "docs/theory/rewrite_calculus.md",
   "lean": "BTCalculus/OpFragSemantic.lean",
-  "decl": "eval_eq_unique_nf",
+  "decl": [
+   "eval_eq_unique_nf",
+   "irreducible_eval_injective"
+  ],
   "lean_trust": "kernel",
   "tests": [
    "tests/unit/test_operator_fragment_nf.py"
@@ -3233,7 +3397,13 @@
   "statement": "for \u0393_NP, the unread-tail energy E_i(s) = s1 q_{i-2} + s2 q_{i-1} + s3 q_i (with q_j = 0 for j < 0) satisfies E_{i-1}(T_w s) = E_i(s) - w q_{i-1} for i \u2265 1, equivalently the adjoint covariance u_{i-1} A = u_i",
   "source": "docs/problems/ostrowski_order_m_adder.md",
   "lean": "Problems/Ostrowski/NP/Energy.lean",
-  "decl": "energy_step",
+  "decl": [
+   "energy_step",
+   "qShift",
+   "energy",
+   "adjointU",
+   "adjoint_covariance"
+  ],
   "lean_trust": "kernel",
   "tests": [
    "tests/research/ostrowski/test_energy_geometry.py"
@@ -3285,7 +3455,12 @@
   "statement": "for \u0393_NP and n\u22652, the determinant of consecutive adjoints (u_n, u_{n-1}, u_{n-2}) equals 3^{n-2}, so neighboring energies invert s over Q; this is not a bound on L_0",
   "source": "docs/problems/ostrowski_order_m_adder.md",
   "lean": "Problems/Ostrowski/NP/Energy.lean",
-  "decl": "adjointDet_eq",
+  "decl": [
+   "adjointDet_eq",
+   "adjointDet",
+   "adjointDet_ne_zero",
+   "energy_eq_dot"
+  ],
   "lean_trust": "kernel",
   "tests": [
    "tests/research/ostrowski/test_energy_kernel.py"
@@ -3842,7 +4017,10 @@
   "statement": "For every L\u22651, n=2^L-1 realises L odd shortcut steps and C^L(n)=3^L-1>n. No residual n mod 2^L with blocks of length at most L certifies strict descent.",
   "source": "docs/problems/collatz_finite_descent.md",
   "lean": "Problems/Collatz/Shortcut.lean",
-  "decl": "shortcutC_no_uniform_L_descent",
+  "decl": [
+   "shortcutC_no_uniform_L_descent",
+   "shortcutC_all_odd_iter"
+  ],
   "lean_trust": "kernel",
   "tests": [
    "tests/research/collatz_finite_descent/test_finite_descent.py"
@@ -4041,7 +4219,10 @@
   "decl": [
    "lambda1_interval_reachable",
    "lambda1_interval_reachable_neg",
-   "lambda1Word_fold"
+   "lambda1Word_fold",
+   "lambda1Word",
+   "lambda1Climb_eq",
+   "lambda1Word_abs_le"
   ],
   "lean_trust": "kernel"
  },
@@ -4086,7 +4267,7 @@
  {
   "id": "BTN-sdrm-separation",
   "tag": "EXACT \u2014 LEAN VERIFIED",
-  "statement": "If \u03bb is not divisible by 3 and s\u2260t, the constant word of any letter of length v_3(s-t)+1 distinguishes the output streams of F_{\u03bb,U}(s,u)=\u03bb\u00b7D(s+u) with output lsd(s+u). Distinct residuals are therefore Mealy-inequivalent, so M(\u03bb,U)=|R_{\u03bb,U}| on every nonempty origin-reachable machine in this regime.",
+  "statement": "If \u03bb is not divisible by 3 and s\u2260t, the constant word of any letter of length v_3(s-t)+1 distinguishes the output streams of F_{\u03bb,U}(s,u)=\u03bb\u00b7D(s+u) with output lsd(s+u). Distinct residuals are therefore Mealy-inequivalent. NOT formalized: the state count M(\u03bb,U)=|R_{\u03bb,U}| on every nonempty origin-reachable machine in this regime, which needs the Mealy minimality theory that Transducer.lean states it does not carry.",
   "source": "docs/problems/signed_digit_residual_minimality.md",
   "lean": "Problems/BalancedTernary/SignedDigitResidualMinimality.lean",
   "decl": "residual_separation",
@@ -4183,7 +4364,11 @@
   "statement": "If 3^L divides s-t and |w|\u2264L, then the lsd streams of F_{\u03bb,U} from s and t agree on w. A remaining-horizon L controller therefore merges (s,q_L) and (t,q_L) whenever that congruence holds.",
   "source": "docs/problems/signed_digit_short_horizon.md",
   "lean": "Problems/BalancedTernary/SignedDigitShortHorizon.lean",
-  "decl": "truncated_3adic_agree",
+  "decl": [
+   "truncated_3adic_agree",
+   "truncated_3adic_equiv",
+   "short_horizon_equiv"
+  ],
   "lean_trust": "kernel",
   "tests": [
    "tests/research/signed_digit_short_horizon/test_signed_digit_short_horizon.py"
@@ -4229,7 +4414,10 @@
   "statement": "If \u03bb is not divisible by 3 and s\u2260t, the lsd streams of F_{\u03bb,U} agree on a word w if and only if |w|\u2264v_3(s-t). A finite control language therefore merges (s,q) and (t,q) exactly when every legal word is shorter than v_3(s-t)+1.",
   "source": "docs/problems/signed_digit_short_horizon.md",
   "lean": "Problems/BalancedTernary/SignedDigitShortHorizon.lean",
-  "decl": "control_language_separation",
+  "decl": [
+   "control_language_separation",
+   "traces_eq_iff_len_le_val"
+  ],
   "lean_trust": "kernel",
   "tests": [
    "tests/research/signed_digit_short_horizon/test_signed_digit_short_horizon.py"
@@ -4301,7 +4489,14 @@
   "statement": "For every realized finite Juggler word w, n^{3^{#O(w)}} = T_w(n)^{2^{|w|}} + \u0394_w(n), where \u0394 is the recursively lifted accumulation of local floor remainders. \u0394 \u2265 0, so the power envelope is a corollary; \u0394 = 0 iff every local remainder vanishes; concatenation is the two-term power-gap lift, not an additive sum.",
   "source": "docs/problems/juggler_global_defect.md",
   "lean": "Problems/Juggler/GlobalDefect.lean",
-  "decl": "global_defect_identity",
+  "decl": [
+   "global_defect_identity",
+   "globalDefect",
+   "global_defect_nonneg",
+   "power_bound_of_global_defect",
+   "global_defect_eq_zero_iff_locals",
+   "global_defect_append"
+  ],
   "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_global_defect.py"
@@ -4369,7 +4564,10 @@
   "statement": "Four consecutive persistent expanding Juggler residual blocks exist: 1999 follows OOE to 5169, 5169 follows OOOOEE to 50093, 50093 follows OOE to 193753, and 193753 follows OOE to 887471. Each step is PersistentExpandingResidual.",
   "source": "docs/problems/juggler_expansion_slack.md",
   "lean": "Problems/Juggler/ExpansionSlack.lean",
-  "decl": "four_consecutive_persistent_expanding_exists",
+  "decl": [
+   "four_consecutive_persistent_expanding_exists",
+   "four_block_pe_1999"
+  ],
   "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_expansion_slack.py"
@@ -4516,7 +4714,15 @@
   "statement": "If y is odd and T(y) is odd, then the local remainder \u03c1=y\u00b3-T(y)\u00b2 satisfies \u03c1\u2261y-1 (mod 8). Consequently v\u2082(\u03c1)=1 when y\u22613 or 7 (mod 8), v\u2082(\u03c1)=2 when y\u22615 (mod 8), and v\u2082(\u03c1)\u22653 when y\u22611 (mod 8) and \u03c1\u22600. The same congruences hold for any odd square below y\u00b3; the floor T(y)=\u230ay^{3/2}\u230b is not used beyond selecting an odd landing.",
   "source": "docs/problems/juggler_landing_valuation.md",
   "lean": "Problems/Juggler/LandingValuation.lean",
-  "decl": "odd_odd_remainder_mod_eight",
+  "decl": [
+   "odd_odd_remainder_mod_eight",
+   "landingRemainder",
+   "odd_cube_minus_odd_square_mod_eight",
+   "landing_valuation_three_or_seven",
+   "landing_valuation_five",
+   "landing_valuation_one",
+   "landing_valuation_classification"
+  ],
   "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_landing_valuation.py"
@@ -4562,7 +4768,15 @@
   "statement": "Write oddLanding y for y odd and T(y) odd, and oddRun 0 y = oddLanding y, oddRun (r+1) y = oddLanding y and oddRun r (T(y)). Then oddRun (r+1) y if and only if y is odd and oddRun r (T(y)). The odd-landing cylinder of a fixed m contains at most one integer.",
   "source": "docs/problems/juggler_odd_landing_sets.md",
   "lean": "Problems/Juggler/OddLandingSets.lean",
-  "decl": "oddRun_recursive",
+  "decl": [
+   "oddRun_recursive",
+   "oddLanding",
+   "oddRun",
+   "oddLanding_iff",
+   "oddRun_zero",
+   "oddRun_succ",
+   "oddLanding_preimage_unique"
+  ],
   "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_odd_landing_sets.py"
@@ -4938,7 +5152,15 @@
   "statement": "For every n \u2265 2, a \u2265 2, and b \u2265 3, the gapped three-even leftover O^a E O^b EOE is not a Juggler cycle itinerary. The same rotation classes apply: first-E CycleMin at k=0; bootstrap O^b EOE O^a E at k=a+1 (last-gap \u2265 2, with n=3 and b=3 failing after OOOE at 6); start OE at k=a+b+2; every other rotation ends odd. Lean theorem no_cycle_itinerary_gapped_three_even_eoe. This upgrades the CycleMin theorem to CycleItinerary; it is not first-E transport at a non-minimum start, not a bunched-tail theorem, not a length-8 or length-9 census, and not a halt theorem.",
   "source": "docs/theory/juggler_finite_dynamics_note.md",
   "lean": "Problems/Juggler/LeftoverFamilies.lean",
-  "decl": "no_cycle_itinerary_gapped_three_even_eoe",
+  "decl": [
+   "no_cycle_itinerary_gapped_three_even_eoe",
+   "gapped_eoe_rotate_succ_a",
+   "no_cycleMin_gapped_eoe_bootstrap",
+   "no_follows_three_eoe_bootstrap",
+   "cycleMin_rotate_start_OE",
+   "cycleMin_of_rotate_ends_odd",
+   "gappedThreeEvenEOE_pred_odd"
+  ],
   "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_gapped_cycle_itinerary.py",
@@ -4952,7 +5174,17 @@
   "statement": "No n \u2265 2 realizes a Juggler cycle itinerary with at most three even letters (Paper A Theorem 3.22). Every CycleItinerary has a CycleMin rotation that starts OO, ends E, and is formally expanding; those itineraries are the odd-run family, the two-even leftovers (Theorem 3.12), the internal-E bootstrap, the seven bunched leftovers (Theorems 3.14\u20133.20), or the gapped leftovers (Theorems 3.13 and 3.21). The corollary is that a nontrivial cycle itinerary has length at least eleven (Paper A Corollary 3.23). Lean theorems no_cycle_itinerary_even_count_le_three and cycle_itinerary_length_ge_eleven in EvenCountThree.lean. This is an even-count assembler, not a length-9 or length-10 itinerary census, and not a halt theorem.",
   "source": "docs/theory/juggler_finite_dynamics_note.md",
   "lean": "Problems/Juggler/EvenCountThree.lean",
-  "decl": "no_cycle_itinerary_even_count_le_three",
+  "decl": [
+   "no_cycle_itinerary_even_count_le_three",
+   "cycleMin_starts_two_odds",
+   "cycleMin_getLast_even",
+   "no_cycleMin_odd_run",
+   "no_cycleMin_bootstrap_last_gap",
+   "no_cycleMin_two_even",
+   "no_cycleMin_three_even",
+   "no_cycleMin_even_count_le_three",
+   "cycle_itinerary_length_ge_eleven"
+  ],
   "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_even_count_three.py"
@@ -5117,7 +5349,11 @@
   "statement": "Finite Proposition J. If every length-d parity class w satisfies classCount w N * 2^d <= N + E * 2^d, then the number of starts in 1..N whose length-d itinerary is prefix-noncontracting obeys uncertifiedCount d N * 2^d <= neverNegCount d * (N + E * 2^d). Any finite set of starts in 1..N with no coefficient stop sits inside that uncertified set. Lean theorem propJ_count. Not a density-one claim and not a halt theorem.",
   "source": "docs/problems/juggler_k3_rate_free.md",
   "lean": "Problems/Juggler/RateFreeDensity.lean",
-  "decl": "propJ_count",
+  "decl": [
+   "propJ_count",
+   "uncertifiedCount",
+   "neverCertified_subset_uncertified"
+  ],
   "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_k3_rate_free.py",
@@ -5648,7 +5884,28 @@
    "no_cycleMin_cyclemin_fudge",
    "absorb_even_step",
    "family_slack139",
-   "no_cycle_itinerary_of_unique_fudge"
+   "no_cycle_itinerary_of_unique_fudge",
+   "fourEvenWord",
+   "plus_one_chain",
+   "plus_one_vs_trailing",
+   "exponents_starts_odd",
+   "slack139_of_seven_odd_length_eleven",
+   "succ_pow_slack139_of_ge_30",
+   "no_follows_from2_below",
+   "unique_ooooooeoeee",
+   "unique_ooooooeeeoe",
+   "unique_oooooeoeeoe",
+   "unique_ooooooeeoee",
+   "unique_oooooeoeoee",
+   "unique_oooooeeoeoe",
+   "unique_ooooeoeoeoe",
+   "no_cycle_itinerary_ooooooeoeee",
+   "no_cycle_itinerary_ooooooeeeoe",
+   "no_cycle_itinerary_oooooeoeeoe",
+   "no_cycle_itinerary_ooooooeeoee",
+   "no_cycle_itinerary_oooooeoeoee",
+   "no_cycle_itinerary_oooooeeoeoe",
+   "no_cycle_itinerary_ooooeoeoeoe"
   ],
   "lean_trust": "kernel",
   "tests": [
@@ -6200,7 +6457,11 @@
   "statement": "If u and v are expanding itineraries (2^{|u|} < 3^{#O(u)} and 2^{|v|} < 3^{#O(v)}), then u ++ v is expanding: 2^{|u|+|v|} = 2^{|u|} 2^{|v|} < 3^{#O(u)} 3^{#O(v)}. A concatenation of expanding residual blocks is never an exponent-gap certificate. This is not a finite PE-run bound and not a halt theorem.",
   "source": "docs/problems/juggler_expanding_residual_concat.md",
   "lean": "Problems/Juggler/ItineraryStats.lean",
-  "decl": "exponentExpanding_append",
+  "decl": [
+   "exponentExpanding_append",
+   "exponentExpanding",
+   "exponentExpanding_not_gap"
+  ],
   "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_expanding_residual_concat.py"
@@ -6213,7 +6474,10 @@
   "statement": "If MinimalNonTerm n and n follows w, then w is not an exponent-gap itinerary, and every prefix of w is noncontracting. Contrapositive of power_bound_contracts plus minimal_nonterm_no_descent. Concatenating expanding residual blocks therefore cannot create an exponent certificate on a CE. This is not a proof that escape is impossible and not a halt theorem.",
   "source": "docs/problems/juggler_expanding_residual_concat.md",
   "lean": "Problems/Juggler/Escape.lean",
-  "decl": "minimal_nonterm_prefix_noncontracting",
+  "decl": [
+   "minimal_nonterm_prefix_noncontracting",
+   "minimal_nonterm_not_exponentGap"
+  ],
   "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_expanding_residual_concat.py"
@@ -6712,7 +6976,15 @@
   "statement": "If n \u2265 2, A > 0, x^A \u2264 n^B, and B < k\u00b7A, then x < n^k. EnvelopeState n x packages the free inequality x^A \u2264 n^B, with even (A,B)\u2192(2A,B) and odd (A,B)\u2192(2A,3B). PowerBound is the special case A=2^|w|, B=3^{oddCount w}. A realized itinerary with 3^{oddCount w} < k\u00b72^{|w|} therefore has T_w(n) < n^k. power_bound_contracts is the k=1 case. Escape square and cube cells are k=2 and k=3 instances. The leftover itinerary OOEOOEOOEOEOO has the cube gap 3^9 < 3\u00b72^13 and not the square gap 3^9 < 2\u00b72^13. This is not a halt theorem and not a cycle-exclusion theorem.",
   "source": "docs/problems/juggler_minimum_relative.md",
   "lean": "Problems/Juggler/Envelope.lean",
-  "decl": "power_bound_lt_pow",
+  "decl": [
+   "power_bound_lt_pow",
+   "envelope_lt_pow",
+   "PowerBound",
+   "EnvelopeState",
+   "EnvelopeState.even",
+   "EnvelopeState.odd",
+   "power_bound_contracts"
+  ],
   "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_minimum_relative.py"
@@ -6802,7 +7074,10 @@
   "statement": "If x is odd and T(x) is even, then T^2(x) < n^2 if and only if x^3 < n^8. This is the mixed odd-cube / even-square cell. It is strictly sharper than composing a cube-band bound x < n^3 into T^2(x)^4 < n^9. An eighth-cell even lift that returns even is FiniteProgress; on MinimalNonTerm that return is odd. This is not a claim that every leftover landing stays below n^8, not a defect restriction, and not a halt theorem.",
   "source": "docs/problems/juggler_mixed_oe_cell.md",
   "lean": "Problems/Juggler/CubeCorridor.lean",
-  "decl": "odd_even_eighth_lt_sq",
+  "decl": [
+   "odd_even_eighth_lt_sq",
+   "cube_lift_even_reset_fourth"
+  ],
   "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_mixed_oe_cell.py"
@@ -6881,7 +7156,11 @@
   "statement": "On a Juggler CycleMin start n \u2265 2 with word w of length L and oddCount o, the dyadic-cell logarithm bound log z \u2264 2 log y + 2/y unrolls to n \u00b7 log n \u00b7 (3^o \u2212 2^L) \u2264 L \u00b7 3^o (Paper A Theorem 4.4; Lean cycleMin_finance). Every cycle state is at least 12 and the rotated minimum is odd, so the minimum is at least 13 and 13 log 13 > 65/2, hence (65/2)(3^o \u2212 2^L) \u2264 L \u00b7 3^o for every CycleItinerary (cycle_finance_min_thirteen). This is the whole-cycle financing of the formal expansion 2^L < 3^o by relative floor defects. It is not a halt theorem, not an exclusion of every length, and not the computational 6/5 table used for L \u2264 10^5.",
   "source": "docs/theory/juggler_finite_dynamics_note.md",
   "lean": "Problems/Juggler/CycleFinance.lean",
-  "decl": "cycleMin_finance",
+  "decl": [
+   "cycleMin_finance",
+   "log_le_two_log_add",
+   "cycleMin_log_envelope"
+  ],
   "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_cycle_finance.py"
@@ -6905,7 +7184,12 @@
   "statement": "If a nontrivial Juggler cycle itinerary exists at n \u2265 2, its period is 11 or at least 14. Lengths \u2264 10 are J-small-cycle-census-ten; lengths 12 and 13 are excluded by the same finance comparison (no_cycle_itinerary_length_twelve, no_cycle_itinerary_length_thirteen); length 16 is likewise excluded (no_cycle_itinerary_length_sixteen) but is absorbed into the \u2265 14 residual. Lean theorem cycle_itinerary_length_eleven_or_ge_fourteen. Strengthened by J-cycle-itinerary-length-ge-fourteen, which kills the length-11 disjunct. This is not a leftover-itinerary length-11 census, not a no-cycle-of-any-length theorem, and not a halt theorem.",
   "source": "docs/problems/juggler_cycle_finance.md",
   "lean": "Problems/Juggler/CycleFinanceLeftovers.lean",
-  "decl": "cycle_itinerary_length_eleven_or_ge_fourteen",
+  "decl": [
+   "cycle_itinerary_length_eleven_or_ge_fourteen",
+   "no_cycle_itinerary_length_twelve",
+   "no_cycle_itinerary_length_thirteen",
+   "no_cycle_itinerary_length_sixteen"
+  ],
   "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_cycle_finance.py"
@@ -6918,7 +7202,31 @@
   "statement": "Every positive integer strictly below 53 reaches 1 under the Juggler map (reachesOne_of_lt_fifty_three). Evens below 144 already reduce to the residual class {1,\u2026,11}; the odd seeds 13,15,\u2026,51 are finite orbit certificates. This is a finite certificate, not a halt theorem. Combined with cycleMin_finance it excludes cycle length 11.",
   "source": "docs/problems/juggler_cycle_finance.md",
   "lean": "Problems/Juggler/Termination.lean",
-  "decl": "reachesOne_of_lt_fifty_three",
+  "decl": [
+   "reachesOne_of_lt_fifty_three",
+   "reachesOne_of_lt_twelve",
+   "even_lt_sq_twelve_reachesOne",
+   "thirteen_reachesOne",
+   "fifteen_reachesOne",
+   "seventeen_reachesOne",
+   "nineteen_reachesOne",
+   "twentyone_reachesOne",
+   "twentythree_reachesOne",
+   "twentyfive_reachesOne",
+   "twentyseven_reachesOne",
+   "twentynine_reachesOne",
+   "thirtyone_reachesOne",
+   "thirtythree_reachesOne",
+   "thirtyfive_reachesOne",
+   "thirtyseven_reachesOne",
+   "thirtynine_reachesOne",
+   "fortyone_reachesOne",
+   "fortythree_reachesOne",
+   "fortyfive_reachesOne",
+   "fortyseven_reachesOne",
+   "fortynine_reachesOne",
+   "fiftyone_reachesOne"
+  ],
   "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_cycle_finance.py"
@@ -6931,7 +7239,11 @@
   "statement": "No itinerary of length at most eleven is a Juggler cycle itinerary at any n \u2265 2; equivalently a nontrivial Juggler cycle, if one exists, has period at least twelve, and in fact at least fourteen by J-cycle-itinerary-length-ge-fourteen. Strengthened by J-small-cycle-census-eighteen. Length 11 is the first near-convergent (2^11 < 3^7); the residual floor 53 plus cycle_finance_min_fifty_three excludes it (finance_excludes_length_eleven, packaged as no_cycle_itinerary_length_le_eleven). This is a Lean companion to Paper A Theorem 4.6, not a leftover-itinerary census of the thirty length-11 short-gap families, not a theorem named no_cycle_itinerary_length_eleven, not a no-cycle-of-any-length theorem, and not a halt theorem.",
   "source": "docs/problems/juggler_cycle_finance.md",
   "lean": "Problems/Juggler/CycleFinanceLeftovers.lean",
-  "decl": "no_cycle_itinerary_length_le_eleven",
+  "decl": [
+   "no_cycle_itinerary_length_le_eleven",
+   "finance_excludes_length_eleven",
+   "cycleItinerary_iterate_not_lt_fifty_three"
+  ],
   "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_cycle_finance.py"
@@ -6960,7 +7272,8 @@
   "decl": [
    "no_cycle_itinerary_length_le_eighteen",
    "cycle_finance_min_fifty_three",
-   "finance_excludes_length_fourteen"
+   "finance_excludes_length_fourteen",
+   "cycle_finance_min_thirteen"
   ],
   "lean_trust": "kernel",
   "tests": [
@@ -6990,7 +7303,12 @@
   "statement": "If a nontrivial Juggler cycle itinerary exists at n \u2265 2, and every length in [30, 10^5) outside a named list of near-convergents is already excluded, then the period is 84, or belongs to that list, or is at least 10^5. Lean theorem cycle_itinerary_eliahou_leftover: bookkeeping on cycle_itinerary_length_eighty_four_or_ge_eighty_five plus EliahouTable, not a new inequality. This is the Collatz Eliahou leftover shape (period \u2265 X, or a named convergent family) on the floor-power map. Paper A prints the floor-10^6 instance as Theorem 4.6; leftover 84 is Appendix A companion. This is not a proof of the finance table, not a no-cycle-of-any-length theorem, and not a halt theorem.",
   "source": "docs/theory/juggler_finite_dynamics_note.md",
   "lean": "Problems/Juggler/CycleFinanceLeftovers.lean",
-  "decl": "cycle_itinerary_eliahou_leftover",
+  "decl": [
+   "cycle_itinerary_eliahou_leftover",
+   "EliahouTable",
+   "EliahouLeftover",
+   "eliahouTableCutoff"
+  ],
   "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_cycle_finance.py"
@@ -7069,7 +7387,112 @@
   "statement": "Every positive integer strictly below 257 reaches 1 under the Juggler map (reachesOne_of_lt_two_hundred_fifty_seven). Evens below 2809 already reduce to the residual class {1,\u2026,52}; the odd seeds 53,55,\u2026,255 are finite orbit certificates. This is a finite certificate, not a halt theorem. Combined with cycleMin_finance and log 257 > 61/11 it excludes cycle lengths 19 and 38. The Lean constant 1 only needs n ln n > 1411.63 to kill length 19, so the smallest such n is 255; the Python 6/5 table has n_max(19) = 297.",
   "source": "docs/problems/juggler_cycle_finance.md",
   "lean": "Problems/Juggler/TerminationFloor257.lean",
-  "decl": "reachesOne_of_lt_two_hundred_fifty_seven",
+  "decl": [
+   "reachesOne_of_lt_two_hundred_fifty_seven",
+   "reachesOne_n53",
+   "reachesOne_n55",
+   "reachesOne_n57",
+   "reachesOne_n59",
+   "reachesOne_n61",
+   "reachesOne_n63",
+   "reachesOne_n65",
+   "reachesOne_n67",
+   "reachesOne_n69",
+   "reachesOne_n71",
+   "reachesOne_n73",
+   "reachesOne_n75",
+   "reachesOne_n77",
+   "reachesOne_n79",
+   "reachesOne_n81",
+   "reachesOne_n83",
+   "reachesOne_n85",
+   "reachesOne_n87",
+   "reachesOne_n89",
+   "reachesOne_n91",
+   "reachesOne_n93",
+   "reachesOne_n95",
+   "reachesOne_n97",
+   "reachesOne_n99",
+   "reachesOne_n101",
+   "reachesOne_n103",
+   "reachesOne_n105",
+   "reachesOne_n107",
+   "reachesOne_n109",
+   "reachesOne_n111",
+   "reachesOne_n113",
+   "reachesOne_n115",
+   "reachesOne_n117",
+   "reachesOne_n119",
+   "reachesOne_n121",
+   "reachesOne_n123",
+   "reachesOne_n125",
+   "reachesOne_n127",
+   "reachesOne_n129",
+   "reachesOne_n131",
+   "reachesOne_n133",
+   "reachesOne_n135",
+   "reachesOne_n137",
+   "reachesOne_n139",
+   "reachesOne_n141",
+   "reachesOne_n143",
+   "reachesOne_n145",
+   "reachesOne_n147",
+   "reachesOne_n149",
+   "reachesOne_n151",
+   "reachesOne_n153",
+   "reachesOne_n155",
+   "reachesOne_n157",
+   "reachesOne_n159",
+   "reachesOne_n161",
+   "reachesOne_n163",
+   "reachesOne_n165",
+   "reachesOne_n167",
+   "reachesOne_n169",
+   "reachesOne_n171",
+   "reachesOne_n173",
+   "reachesOne_n175",
+   "reachesOne_n177",
+   "reachesOne_n179",
+   "reachesOne_n181",
+   "reachesOne_n183",
+   "reachesOne_n185",
+   "reachesOne_n187",
+   "reachesOne_n189",
+   "reachesOne_n191",
+   "reachesOne_n193",
+   "reachesOne_n195",
+   "reachesOne_n197",
+   "reachesOne_n199",
+   "reachesOne_n201",
+   "reachesOne_n203",
+   "reachesOne_n205",
+   "reachesOne_n207",
+   "reachesOne_n209",
+   "reachesOne_n211",
+   "reachesOne_n213",
+   "reachesOne_n215",
+   "reachesOne_n217",
+   "reachesOne_n219",
+   "reachesOne_n221",
+   "reachesOne_n223",
+   "reachesOne_n225",
+   "reachesOne_n227",
+   "reachesOne_n229",
+   "reachesOne_n231",
+   "reachesOne_n233",
+   "reachesOne_n235",
+   "reachesOne_n237",
+   "reachesOne_n239",
+   "reachesOne_n241",
+   "reachesOne_n243",
+   "reachesOne_n245",
+   "reachesOne_n247",
+   "reachesOne_n249",
+   "reachesOne_n251",
+   "reachesOne_n253",
+   "reachesOne_n255",
+   "non_reachesOne_ge_two_hundred_fifty_seven"
+  ],
   "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_cycle_finance.py"
@@ -7106,7 +7529,12 @@
   "statement": "If a nontrivial Juggler cycle itinerary exists at n \u2265 2, its period is 38 or at least 39. Lengths \u2264 19 are J-small-cycle-census-nineteen; lengths 20\u201329 remain excluded at the residual floor 53; lengths 30\u201337 are excluded by cycle_finance_min_two_hundred_fifty_seven. This row is the leftover before the 61/11 log certificate. Strengthened by J-cycle-itinerary-length-fifty-seven-or-ge-fifty-eight, which kills the length-38 disjunct. Lean theorems cycle_itinerary_length_thirty_eight_or_ge_thirty_nine and no_cycle_itinerary_length_lt_thirty_eight. This is not a no-cycle-of-any-length theorem, and not a halt theorem.",
   "source": "docs/problems/juggler_cycle_finance.md",
   "lean": "Problems/Juggler/CycleFinanceLeftovers.lean",
-  "decl": "cycle_itinerary_length_thirty_eight_or_ge_thirty_nine",
+  "decl": [
+   "cycle_itinerary_length_thirty_eight_or_ge_thirty_nine",
+   "no_cycle_itinerary_length_lt_thirty_eight",
+   "cycle_finance_min_two_hundred_fifty_seven",
+   "no_cycle_itinerary_length_lt_thirty_ne_nineteen"
+  ],
   "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_cycle_finance.py"
@@ -7119,7 +7547,11 @@
   "statement": "log 257 > 61/11, via e < 2.7182818286 and e^61 < 257^11 (log_two_hundred_fifty_seven_gt). Combined with the residual floor 257 this gives n log n > 15677/11 on a CycleMin, which excludes cycle length 38. The weaker half-integer bound 11/2 was enough for length 19 but not for 38. This is a numeric certificate, not a halt theorem.",
   "source": "docs/problems/juggler_cycle_finance.md",
   "lean": "Problems/Juggler/CycleFinanceLeftovers.lean",
-  "decl": "log_two_hundred_fifty_seven_gt",
+  "decl": [
+   "log_two_hundred_fifty_seven_gt",
+   "cycleItinerary_iterate_not_lt_two_hundred_fifty_seven",
+   "finance_excludes_length_thirtyeight"
+  ],
   "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_cycle_finance.py"
@@ -7145,7 +7577,11 @@
   "statement": "Every positive integer strictly below 261 reaches 1 under the Juggler map (reachesOne_of_lt_two_hundred_sixty_one). The floor-257 class plus the two odd seeds 257 and 259 (five steps each) raise the floor. Exact log 257 cannot kill length 57 (257 ln 257 \u2248 1426 < 1430.8). Combined with cycleMin_finance and 261 log 257 > 15921/11 this excludes the cheap leftovers 57 and 76, so the named leftover is the record near-convergent 84. This is a finite certificate, not a halt theorem.",
   "source": "docs/problems/juggler_cycle_finance.md",
   "lean": "Problems/Juggler/TerminationFloor257.lean",
-  "decl": "reachesOne_of_lt_two_hundred_sixty_one",
+  "decl": [
+   "reachesOne_of_lt_two_hundred_sixty_one",
+   "reachesOne_n257",
+   "reachesOne_n259"
+  ],
   "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_cycle_finance.py"
@@ -7177,7 +7613,15 @@
   "statement": "If a nontrivial Juggler cycle itinerary exists at n \u2265 2, its period is 84 with at least three odd-runs on a CycleMin rotation, or at least 85. At residual floor 261 the inv-sum form of cycleMin_finance (constant 1) plus a uniform odd-run height cap excludes every length-84 CycleMin with cycleCircuitCount \u2264 2: valleys \u2264 m/n, first odds \u2264 m/4217, later odds \u2264 o/273845, evens \u2264 e/n\u00b2, using floorPower 261 = 4216 and floorPower 4217 = 273845. Lean theorems no_cycleMin_length_eighty_four_of_circuit_le_two and cycle_itinerary_length_eighty_four_m_ge_three_or_ge_eighty_five in CycleHeightFinance.lean. This is not the 6/5 greedy packing of J-cycle-position-finance, not an exclusion of length 84 at m \u2265 3, not a no-cycle-of-any-length theorem, and not a halt theorem.",
   "source": "docs/problems/juggler_cycle_position_finance.md",
   "lean": "Problems/Juggler/CycleHeightFinance.lean",
-  "decl": "cycle_itinerary_length_eighty_four_m_ge_three_or_ge_eighty_five",
+  "decl": [
+   "cycle_itinerary_length_eighty_four_m_ge_three_or_ge_eighty_five",
+   "no_cycleMin_length_eighty_four_of_circuit_le_two",
+   "no_length_eighty_four_circuit_le_two",
+   "cycleMin_inv_sum_le_pack",
+   "cycleMin_l84_inv_sum_le_cap",
+   "floorPower_two_hundred_sixty_one",
+   "floorPower_four_thousand_two_hundred_seventeen"
+  ],
   "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_cycle_position_finance.py",
@@ -7602,7 +8046,17 @@
   "statement": "Cycle itineraries dominate the hug itinerary (Paper A Section 5.3 remark). On any minimum-based cycle itinerary w at minimum n \u2265 2, every length-k prefix carries at least hugOdds k = o_min(k) odd letters (cycleMin_prefix_odds_ge_hug; full word cycleMin_odds_ge_hug), by composing the formalized cycle prefix envelope 2^k \u2264 3^(oddCount (w.take k)) (cycleMin_prefix_pow_le, CycleFinance) with hug minimality (hugOdds_least). Strict window 2^k < 3^(hugOdds k) for k \u2265 1 (hugOdds_pow_gt, powers of 2 and 3 never meet) identifies hugOdds with the finance table's strict o_min. The survivor-lattice generators of Proposition 4.9 lie on the hug diagonal o = hugOdds L: (1054, 665), (25781, 16266), (50508, 31867) (hugOdds_1054, hugOdds_lattice_base, hugOdds_seed), and the hug counts along the certified convergent denominators are Lean-listed (hugOdds_convergent_denoms). This bounds odd counts from below only; it is not a charge bound, not a cycle obstruction, and not a halt theorem.",
   "source": "docs/theory/juggler_finite_dynamics_note.md",
   "lean": "Problems/Juggler/WalkChargeItineraries.lean",
-  "decl": "cycleMin_prefix_odds_ge_hug",
+  "decl": [
+   "cycleMin_prefix_odds_ge_hug",
+   "hugOdds",
+   "hugOdds_least",
+   "hugOdds_pow_gt",
+   "cycleMin_odds_ge_hug",
+   "hugOdds_1054",
+   "hugOdds_lattice_base",
+   "hugOdds_seed",
+   "hugOdds_convergent_denoms"
+  ],
   "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_cycle_walk_window.py"
@@ -7640,7 +8094,9 @@
    "theta_convergents_coprime",
    "theta_convergent_quality",
    "residue_mul_bijective",
-   "theta_block_permutations"
+   "theta_block_permutations",
+   "theta_sandwich_lower",
+   "greedy_reconstruct_all"
   ],
   "lean_trust": "kernel"
  },
@@ -7697,7 +8153,21 @@
   "statement": "The rotation average Laplace bound (Paper A Proposition 5.5, quantitative half, previously human). For every \u03bd > 0 the rotation average C*(\u03bd) = (1/log 3)\u00b7\u222b_1^3 e^{\u03bd(1\u2212t)} t\u207b\u00b2 dt satisfies C*(\u03bd) < 1/(log 3\u00b7\u03bd) and the sharper Laplace bound C*(\u03bd) \u2264 (1 \u2212 2/\u03bd + 6/\u03bd\u00b2)/(log 3\u00b7\u03bd), hence the gap form (2/\u03bd \u2212 6/\u03bd\u00b2)/(log 3\u00b7\u03bd) \u2264 1/(log 3\u00b7\u03bd) \u2212 C*(\u03bd) consumed by the Theorem 5.8 window computation (rotation_average_lt, rotation_average_le, rotationAverage_lt, rotationAverage_le, rotationAverage_gap, RotationAverage.lean). No quadrature: the quadratic majorant 1/t\u00b2 \u2264 1 \u2212 2(t\u22121) + 3(t\u22121)\u00b2 on [1,3] (inv_sq_le_quad; the product with t\u00b2 is 1 + 4(t\u22121)\u00b3 + 3(t\u22121)\u2074) turns the bound into an exact fundamental-theorem-of-calculus evaluation with explicit antiderivative (quadPrim, hasDerivAt_quadPrim), whose boundary term \u2212e^{\u22122\u03bd}(9/\u03bd + 10/\u03bd\u00b2 + 6/\u03bd\u00b3) drops with the right sign. Separately, Lean proves that the finite hug average differs from the circle integral `circleMean n'` by at most 2s(L)/L for n' > 1 and L > 0 (`hugCharge_sub_circleMean_le`, via `denjoy_koksma_blocks`). The elementary change of variables `circleMean n' = rotationAverage (log n')` is `circleMean_eq_rotationAverage`. The printed displays |C_L \u2212 C_*(n')| are `hugCharge_sub_rotationAverage_le`, `hugCharge_sub_rotationAverage_window`, and `hugCharge_sub_rotationAverage_extended`; `hugCharge_lt_invLog_add_budget` adds the Laplace bound without the numeric kill. Not a cycle obstruction and not a halt theorem.",
   "source": "docs/theory/juggler_finite_dynamics_note.md",
   "lean": "Problems/Juggler/RotationAverage.lean",
-  "decl": "hugCharge_sub_rotationAverage_le",
+  "decl": [
+   "hugCharge_sub_rotationAverage_le",
+   "inv_sq_le_quad",
+   "hasDerivAt_quadPrim",
+   "integral_quad_exp_le",
+   "rotation_average_lt",
+   "rotation_average_le",
+   "rotationAverage_lt",
+   "rotationAverage_le",
+   "rotationAverage_gap",
+   "circleMean_eq_rotationAverage",
+   "hugCharge_sub_rotationAverage_window",
+   "hugCharge_sub_rotationAverage_extended",
+   "hugCharge_lt_invLog_add_budget"
+  ],
   "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_cycle_walk_charge.py"
@@ -7753,7 +8223,10 @@
   "statement": "AboveAnchor walk nonnegativity and hug domination: the Section 5 discrete walk layer ported from cycles to open trajectories. If AboveAnchor(n,w) with n >= 2, then every prefix length k <= |w| satisfies 2^k <= 3^{oddCount(w.take k)} (aboveAnchor_prefix_pow_le, AboveAnchorWalk.lean): a never-descending orbit segment keeps the exponent walk u_k >= 0, exactly the CycleMin hypothesis of cycleMin_prefix_pow_le with no cycle, by composing the defect-free upper envelope power_bound_contracts with the anchor hypothesis. Composed with hug minimality (hugOdds_least), every above-anchor prefix dominates the exact hug itinerary in odd count: hugOdds k <= oddCount(w.take k) (aboveAnchor_prefix_odds_ge_hug; full-word form aboveAnchor_odds_ge_hug). Hence a hypothetical descent-free flight carries odd density at least log 2 / log 3 in every prefix, and the hug adversary prices open descent-free flight, not only hypothetical cycles. This constrains hypothetical non-terminating orbit segments only: not a halt theorem, not a descent-certificate existence claim, and not a cycle obstruction.",
   "source": "docs/problems/juggler_above_anchor_walk.md",
   "lean": "Problems/Juggler/AboveAnchorWalk.lean",
-  "decl": "aboveAnchor_prefix_odds_ge_hug",
+  "decl": [
+   "aboveAnchor_prefix_odds_ge_hug",
+   "aboveAnchor_odds_ge_hug"
+  ],
   "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_above_anchor_walk.py"
@@ -7796,7 +8269,11 @@
   "statement": "Walk-height law (divergence rate) on descent-free prefixes: if AboveAnchor(n,w) with n >= 400 and the exponent walk is at height >= B doublings at step k (2^(k+B) <= 3^{a_k} with a_k the odd count of the k-prefix), then 2^B (log n \u2212 D) <= log x_k with the transport deficit D = 1.05 e/n + 0.7 o/(n\u221an); exponentiating, x_k >= (n e^{\u2212D})^{2^B} \u2014 heights along a descent-free prefix are doubly exponential in the walk height (aboveAnchor_height_of_walk, weight form two_pow_le_walkWeight, WalkTransport.lean). One-case composition of aboveAnchor_transport with 2^B <= w_k = 3^{a_k}/2^k; when log n < D the bound is vacuously true since x_k >= 1. Appearing corollary of the September 2026 re-rooting of transport on AboveAnchor: composed with the flight walk-divergence theorem (J-flight-walk-divergence, human pigeonhole glue), every descent-free flight realizes this rate along an unbounded walk, so a divergent orbit escapes doubly exponentially in its walk height. Nonvacuous while D < log n (prefix lengths up to order n log n / 1.05); constrains descent-free prefixes only \u2014 not a halt theorem, not a divergence theorem, not a cycle obstruction.",
   "source": "docs/problems/juggler_flight_walk_divergence.md",
   "lean": "Problems/Juggler/WalkTransport.lean",
-  "decl": "aboveAnchor_height_of_walk",
+  "decl": [
+   "aboveAnchor_height_of_walk",
+   "two_pow_le_walkWeight",
+   "aboveAnchor_transport"
+  ],
   "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_flight_walk_divergence.py"
@@ -8212,7 +8689,14 @@
   "source": "docs/theory/juggler_tao_reduction_note.md",
   "lean": "Problems/Juggler/FateTaoReduction.lean",
   "lean_trust": "kernel",
-  "decl": "tao_rate_implies_conjecture",
+  "decl": [
+   "tao_rate_implies_conjecture",
+   "logMass_le_treeLevels",
+   "logMass_le_oddLogMass",
+   "oddLogMass_le_of_dyadic",
+   "logMass_le_rpow",
+   "tao_rate_implies_empty"
+  ],
   "tests": [
    "tests/research/juggler_sequence/test_tao_reduction.py"
   ],
@@ -8859,7 +9343,19 @@
   "statement": "Paper C Lemma 4.1 (sweep). Let x_0 < x_1 < ... < x_{H-1} be reals with consecutive gaps in [a, b], 0 < a \u2264 b \u2264 1/2, b \u2264 (21/20) a and (H-1) a \u2265 12. Then at least H/7 of the terms have {x_j} < 1/2 and at least H/7 have {x_j} \u2265 1/2 (sweep_fract_lt_half, sweep_fract_ge_half); with the left-open half-cells (k/2, (k+1)/2], i.e. the representative x - ceil(x) + 1 in (0, 1], at least H/7 have representative \u2264 1/2 and at least H/7 have representative > 1/2 (sweep_rep_le_half, sweep_rep_gt_half). Both are instances of sweep_cell: each residue class of the half-cell index floor(2x_j) mod 2 holds at least H/7 terms. Proof as in the paper with one simplification: every cell holds at most G = floor(1/(2a)) + 1 terms (fiber_card_le), every strictly interior cell at least g = floor(1/(2b)) (fiber_card_ge), the number of visited cells T is at least 25 (cell_span), one colour has at least (T-3)/2 interior cells (colour_cells_ge, via Int.Ico_filter_modEq_card), and 3g \u2265 G (three_g_ge, the paper's case analysis on X = 1/(2a)); the integer chain 42 Good \u2265 21 g (T-3) \u2265 7 G (T-3) \u2265 6 G T \u2265 6 H closes. The left-open variant is the closed one applied to j \u21a6 -x_{H-1-j} (Finset.sum_range_reflect). Kernel-checked, axioms propext, Classical.choice, Quot.sound only. Lemma 4.1' (monotone pairing, H/3 - 2) is not formalized. Not a parity theorem about the Juggler map; the fiber inputs (Lemma 4.2) stay human proofs.",
   "source": "docs/problems/juggler_paper_c_formal_layer.md",
   "lean": "Problems/Juggler/FateSweep.lean",
-  "decl": "sweep_fract_lt_half",
+  "decl": [
+   "sweep_fract_lt_half",
+   "sweep_fract_ge_half",
+   "sweep_rep_le_half",
+   "sweep_rep_gt_half",
+   "sweep_cell",
+   "sweep_ceil",
+   "fiber_card_le",
+   "fiber_card_ge",
+   "cell_span",
+   "colour_cells_ge",
+   "three_g_ge"
+  ],
   "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_paper_c_formal_layer.py",
@@ -8887,7 +9383,16 @@
   "statement": "Paper C Lemma 5.2 (seed). Every nonempty backward-closed A with a positive member contains some m \u2265 3 (exists_ge_three_of_backwardClosed: 1 maps to 2 maps to 4 through even blocks). For any such m and every y \u2265 (m+1)^4, the log-mass of A on (\u221ay, y] is at least c_A = (1 \u2212 2/m^4)(3/8 \u00b7 1/(m+1) \u2212 1/((m+1)^2 \u2212 1)) (seed_lemma), and c_A > 0 (seed_constant_pos). Proof as in the paper: the even-block tree S_k of m lies in A and in [m^{2^k}, (m+1)^{2^k}); its log-mass grows by at least 1 \u2212 2 m^{-2^k} per level; the product is at least 3/4 by the geometric series 1/(m^2 \u2212 1) \u2264 1/8; at scale k = log2 log_{m+1} y the tree splits at floor(\u221ay) into members above \u221ay, members whose even blocks lie there, and at most one member equal to floor(\u221ay). The integer form y = floor(x) is the paper's g_A(log x). Kernel-checked, axioms propext, Classical.choice, Quot.sound only. This is one hypothesis of Theorem 5.3; the production inequalities stay human proofs. Not a density theorem, not a halt theorem.",
   "source": "docs/problems/juggler_paper_c_formal_layer.md",
   "lean": "Problems/Juggler/FateSeed.lean",
-  "decl": "seed_lemma",
+  "decl": [
+   "seed_lemma",
+   "exists_ge_three_of_backwardClosed",
+   "seed_constant_pos",
+   "blockTree_mem",
+   "blockTree_bounds",
+   "blockTree_logMass_succ_ge",
+   "sum_inv_pow_two_pow_le",
+   "blockTree_logMass_ge"
+  ],
   "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_paper_c_formal_layer.py",
@@ -8901,7 +9406,14 @@
   "statement": "Paper C Proposition 6.3(i) and the first-letter trichotomy of Section 6.2. If some positive n does not reach 1, the failure set has a least positive member (exists_minimal_failure), and that member is odd with an odd image, i.e. an OO-type start (minimal_failure_odd_odd): an even member n \u2265 2 has the smaller positive member floor(sqrt n) (floorPower_even_lt), and an odd member with even image has the smaller positive member floor(sqrt(floor(n^{3/2}))) < n (floorPower_odd_even_two_step_lt). Stated for any forward-closed class excluding 1 (minimalMember_odd, minimalMember_image_odd). For a two-way closed class A, A n iff exactly one of: n even with J(n) \u2208 A; n odd, J(n) even, J(n) \u2208 A; n odd, J(n) odd, J(n) \u2208 A (first_letter_trichotomy, first_letter_pieces_disjoint) \u2014 the three pieces of the identity (6.1). Kernel-checked, axioms propext, Classical.choice, Quot.sound only. The log-mass bookkeeping of (6.1), the fiber weights and the free term \u03c8_F are not formalized; not a density theorem, not a halt theorem.",
   "source": "docs/problems/juggler_paper_c_formal_layer.md",
   "lean": "Problems/Juggler/FateFirstLetter.lean",
-  "decl": "minimal_failure_odd_odd",
+  "decl": [
+   "minimal_failure_odd_odd",
+   "exists_minimal_failure",
+   "minimalMember_odd",
+   "minimalMember_image_odd",
+   "first_letter_trichotomy",
+   "first_letter_pieces_disjoint"
+  ],
   "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_paper_c_formal_layer.py",
@@ -8915,7 +9427,13 @@
   "statement": "The exact layer of Paper C's first-letter identity (6.1). For a two-way closed class A (ForwardClosed and BackwardClosed), any weight w and any finite index set s, the weighted mass of A splits exactly into three pieces by first letter: the even members, the odd members with even image (OE-type) and the odd members with odd image (OO-type), each piece indexed by its image lying in A as the paper indexes it (first_letter_split); shellLogMass_split is the log-mass form on a shell (y, x]. The map J is strictly increasing on the odd integers (floorPower_odd_lt), hence injective there (floorPower_odd_injective), so the paper's odd preimage n(m) of the free term is well defined, and sum_image_ooPiece rewrites the OO-type piece as a sum over the odd images. This is the partition, with no error term. The identity (6.1) itself is not formalized: the densities phi_A, phi^fib_A and psi_A, the identification of each piece with its term of (6.1), and the boundary error O(e^{-t/4}/t) of Lemma 3.1 stay human. Nothing here bounds a density and nothing here is a halt theorem.",
   "source": "docs/theory/juggler_fate_almost_all_note.md",
   "lean": "Problems/Juggler/FateFirstLetter.lean",
-  "decl": "first_letter_split",
+  "decl": [
+   "first_letter_split",
+   "shellLogMass_split",
+   "floorPower_odd_lt",
+   "floorPower_odd_injective",
+   "sum_image_ooPiece"
+  ],
   "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_paper_c_formal_layer.py"
@@ -8928,7 +9446,17 @@
   "statement": "Paper C Appendix D.1, equations (D.1) and (D.2), the exact landing windows of the nested productions. Write F(u) = floor(u^{3/4}) as the integer operation cell34 n = sqrt(sqrt(n^3)), which is J^2 on an OE step (cell34_eq_floorPower_two), and Phi(a) = ceil(a^{4/3}) as windowStart a, the least n with a^4 <= n^3 -- which is what the ceiling means in exact arithmetic. The two are a Galois connection: windowStart a <= n and a <= cell34 n are both a^4 <= n^3 (windowStart_le_iff, le_cell34_iff). Hence (D.1): {n : a <= F(n) < b} = [Phi(a), Phi(b)) exactly (exact_endpoints, setOf_cell34_mem_Ico), and by induction the nested window (D.2) for the i-fold image (exact_endpoints_iterate, setOf_iterate_mem_Ico). Exact, with no error term and no real number. What Appendix D does with the window is not formalized: the smooth comparison (D.3), the endpoint error O_k(P^{1-s}), the inner-layer multiplicities, and the production inequality (5.2) they feed all stay human, as does the imposition of the parity conditions of V_k. Nothing here bounds a density and nothing here is a halt theorem.",
   "source": "docs/theory/juggler_fate_almost_all_note.md",
   "lean": "Problems/Juggler/FateLandingWindow.lean",
-  "decl": "exact_endpoints",
+  "decl": [
+   "exact_endpoints",
+   "cell34",
+   "cell34_eq_floorPower_two",
+   "le_cell34_iff",
+   "windowStart",
+   "windowStart_le_iff",
+   "setOf_cell34_mem_Ico",
+   "exact_endpoints_iterate",
+   "setOf_iterate_mem_Ico"
+  ],
   "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_paper_c_formal_layer.py"
@@ -8958,7 +9486,25 @@
   "statement": "The exact layer of Paper C Proposition 4.4, the slow sum, the block count, and equation (4.1) given the paper's two remaining exponential-sum bounds as hypotheses. The block: the odd n of I(m') = [m'^{8/3}, (m'+1)^{8/3}) are exactly the odd n with m'^2 <= floor(n^{3/4}) < (m'+1)^2 (mem_oddBlock, through the landing window of Appendix D.1). The decomposition: U(m') is the disjoint union of the even-image parts of the fibers Phi(m) over the even m of the block, so |U(m')| is the sum of Lemma 4.2's evenImageCount over E(m') (U_card_eq); the whole block is the disjoint union of the fibers (oddBlock_card_eq). The expansion: 4|U(m')| = M + S1 + S2 + S12 exactly (four_card_U). The slow sum S1 = sum psi(floor(n^{3/4})) is the alternating sum of fiber sizes over the block (slowSum_eq_fibers); the fiber bounds (2/3)m^{1/3} - 1 <= |Phi(m)| <= (2/3)(m+1)^{1/3} + 1 (FiberParity.oeFiber_card_ge, oeFiber_card_le) make consecutive fibers differ by at most 2 (oeFiber_card_succ_diff), and pairing the 2m'+1 fibers gives |S1| <= 2m' + (2/3)(m'+1)^{2/3} + 1 (slowSum_abs_le): the paper's 'the slow sum is O(m')', proved. The same fiber bounds give (2m'+1)((2/3)m'^{2/3} - 1) <= M <= (2m'+1)((2/3)(m'+1)^{2/3} + 1) (oddBlock_card_ge, oddBlock_card_le), hence |M/4 - m'^{5/3}/3| <= m' + 1 (oddBlock_quarter_close). Given |S2|, |S12| <= B, equation (4.1) holds as |U - M/4| <= B/2 + m' + 1 (block_average_two_bounds), in the paper's shape with B = C m'^{11/9} log(m'+1) and C_B = C/2 + 2 for m' >= 2 (block_average_bound_two), and the asymptotic form as |U - m'^{5/3}/3| <= B/2 + 2(m'+1) (block_average_asymptotic). THE TWO REMAINING BOUNDS ARE HYPOTHESES, NOT THEOREMS: the fast sum sum psi(floor(n^{3/2})) and the product sum are the exponential sums of the paper, estimated there by Vaaler's interval approximation, the second-derivative test and Kusmin-Landau, none of which is formalized here or anywhere in this repository; Proposition 4.4 remains a human proof in the paper's verification table. Nothing here bounds a density and nothing here is a halt theorem.",
   "source": "docs/theory/juggler_fate_almost_all_note.md",
   "lean": "Problems/Juggler/FateBlockAverage.lean",
-  "decl": "block_average_two_bounds",
+  "decl": [
+   "block_average_two_bounds",
+   "oddBlock",
+   "mem_oddBlock",
+   "blockE",
+   "U",
+   "U_card_eq",
+   "oddBlock_card_eq",
+   "four_card_U",
+   "slowSum",
+   "slowSum_eq_fibers",
+   "oeFiber_card_succ_diff",
+   "slowSum_abs_le",
+   "oddBlock_card_ge",
+   "oddBlock_card_le",
+   "oddBlock_quarter_close",
+   "block_average_asymptotic",
+   "block_average_bound_two"
+  ],
   "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_paper_c_formal_layer.py"
@@ -8971,7 +9517,20 @@
   "statement": "The exact layer of Paper C Section 4.3, the share law (Lemma 4.5) and Corollary 4.6. The expansion: along a fiber n_j = n_1 + 2(j-1) the phase x_j = n_j^{3/2}/2 (xval) equals x_1 + (3/2) sqrt(n_1) (j-1) + (3/4) (j-1)^2 / sqrt(n_1) + E_j with |E_j| <= (1/4)(j-1)^3 n_1^{-3/2} (xval_expansion); the Taylor step is, after v = sqrt(1+u), the polynomial inequality 0 <= 1 + (3/2)(v^2-1) + (3/8)(v^2-1)^2 - v^3 <= (v^2-1)^3/16 (taylor_three_halves), no derivative taken; on a fiber Phi(m) the remainder is at most (2/27)(m+1)/m^2 (xval_expansion_fiber), the paper's O(1/m) with a constant. The range: phi_beta(s) = beta s + s^2/3 has on [0,1] the range beta + 1/3 for beta >= 0, -beta - 1/3 for beta <= -2/3, and max(0, beta + 1/3) + (3/4) beta^2 between (phiRange; never exceeded, phi_sub_le; attained, exists_phi_sub_eq), and that range is at most 1/2 exactly for beta in [-5/6, 1/6] (phiRange_le_half_iff), the arithmetic of Corollary 4.6(2). The integral: max(0, 1/2 - range) vanishes outside [-5/6, 1/6] (extremeMeasure_eq_zero) and its interval integral over [-5/6, 1/6] is 25/108, as 1/72 + 11/108 + 11/108 + 1/72 over four polynomial pieces (integral_extremeMeasure), the arithmetic of Corollary 4.6(3). NOT formalized: the reduction of x_j modulo 1 to theta_m + beta_m s + s^2/3 with its O(1/H_m) error, the inverse-image and grid-sampling estimates that give Lemma 4.5, the Fubini argument of Corollary 4.6(1), and the identification of the theta-measure of the extreme fibers with max(0, 1/2 - range) in (2) and (3); the share law stays a human proof in the paper's table. Nothing in Sections 5-10 of the paper depends on this subsection, nothing here bounds a density, and nothing here is a halt theorem.",
   "source": "docs/theory/juggler_fate_almost_all_note.md",
   "lean": "Problems/Juggler/FateShareLaw.lean",
-  "decl": "xval_expansion",
+  "decl": [
+   "xval_expansion",
+   "taylor_three_halves",
+   "xval_expansion_fiber",
+   "phi_sub_le",
+   "exists_phi_sub_eq",
+   "phiRange_le_half_iff",
+   "extremeMeasure_eq_zero",
+   "extremeMeasure_piece1",
+   "extremeMeasure_piece2",
+   "extremeMeasure_piece3",
+   "extremeMeasure_piece4",
+   "integral_extremeMeasure"
+  ],
   "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_paper_c_formal_layer.py"
@@ -8984,7 +9543,20 @@
   "statement": "The production inequality of Paper C Section 5.1 without its exponential sums, and the unconditional theorem it yields. Of the three families of members of A on (sqrt x, x], the E-images of the members at scale t/2 (Lemma 3.1; Production.family_E) and the OE-fibers of the members at scale 3t/4 (Lemma 4.2 on good fibers, Lemma 4.3 for the bad; Production.family_OE, on the per-fiber bound (2/9)(1 - (25/2) m^{-1/3})/m) need no analysis. With the paper's sqrt x read as floor(e^{t/2}) (sqrt_floor_exp) they give, for t >= 40, g_A(t) >= (1 - 4e^{-t/4}) g_A(t/2) + (2/9 - (50/9)e^{-t/8}) g_A(3t/4) - eta_0(t) with eta_0(t) = 2e^{-t/2} + (4/9)e^{-3t/4} + 136 e^{-t/8}, every error explicit (production_two). Lemma 5.1 (recursion_lemma) on these two productions, with 2^{-13/40} + (2/9)(3/4)^{13/40} > 1 certified by 0.798^40 <= 2^{-13} and 0.91^40 <= (3/4)^13 (zeta2_pos) and the seed of Lemma 5.2, gives: for every nonempty backward-closed A and every 0 < lambda <= 13/40 there are K > 0 and x_0 with sum_{n in A, n <= x} 1/n >= K (log x)^lambda for all x >= x_0 (contagion_elementary, logMass_contagion_elementary), WITH NO HYPOTHESIS; and if some positive integer does not reach 1 the failures have that log-mass (failures_logMass_ge, Corollary 5.5(2) at exponent 13/40). Composed with Theorem 7.2 and Corollary 8.4, whose contagion hypothesis has exactly this shape: a Tao-type rate, odd failures in (y, 2y] at most y (log y)^{-e} for all large y with e > 7/10, implies that every positive integer reaches 1 (conjecture_of_tao_rate), and so does a cylinder bound H(C, A) at all large scales with A > C + e(C) and e(C) > 7/10 above a certified floor (conjecture_of_cylinder_bound), with no other hypothesis; the paper's conditional forms need e > 1 - lambda** ~ 0.51 and (5.2). This is Theorem 5.3 with 3/10 in place of lambda** ~ 0.4926: the root of 2^{-lambda} + (2/9)(3/4)^lambda = 1 is about 0.325. NOT formalized: the block-average family (Section 5.1 item 2), which needs the two exponential-sum bounds of Proposition 4.4 (hypotheses in FateBlockAverage) and is what lifts the exponent to 0.49, and the ladder (5.10), whose Appendix D estimates are human; (5.2) itself remains a human row. Nothing here is a density theorem in the paper's sense and nothing here is a halt theorem. EXPONENT LIFTED 2026-09-19, from 3/10 to 13/40. The exponent is not intrinsic to the argument: it enters only through zeta2_pos, and zeta2_antitone carries it to the theorems, so raising the certificate raises the theorem. The root of 2^{-lambda} + (2/9)(3/4)^lambda = 1 is 0.3261209621146946, so the old certificate 3/10 = 0.300 used 92 percent of what the TWO-production inequality can give and 13/40 = 0.325 uses 99.6 percent; the remaining 0.4 percent is the gap to an irrational root and is not worth a larger denominator. The new certificate is 399/500 <= (1/2)^{13/40}, since (399/500)^40 <= 2^{-13}, with the previous 91/100 <= (3/4)^{13/40} unchanged, and 399/500 + (2/9)(91/100) = 1.000222 > 1; the 40th powers are exact rational arithmetic in norm_num and the module compiles in 174 s. WHAT THIS DOES NOT DO: it does not approach Paper C's lambda** = 0.4926, which needs the block-average family and its two exponential-sum bounds, and those remain hypotheses in FateBlockAverage with no Lean proof. 13/40 is the ceiling of the unconditional route, not a step toward the conditional one. THRESHOLD WEAKENED THE SAME DAY. The Tao-rate wrapper needs only e > 1 - lambda, so lifting lambda to 13/40 lowered the requirement from 7/10 = 0.700 to 27/40 = 0.675; both public statements had kept 7/10, a gap invisible because linarith discharges it silently whenever the stated hypothesis is stronger than the proof needs. Five statements now ask for 27/40 across six modules -- conjecture_of_tao_rate and conjecture_of_cylinder_bound (FateProduction), one_sided_implies_conjecture and its no-momentum form (FateOneSidedCorollary, including a midpoint construction that had 7/10 in the value it picks), the pressure and no-momentum corollaries (FatePressureCorollary), and the atom forms (FateOneSidedAtoms, FateEnergyAtoms) -- each a strictly weaker hypothesis for the same conclusion. The literal 7/10 that remains in FateCertified is the bound log 2 <= 7/10, a different fact. THE LEAST ADMISSIBLE CONSTANT DOES NOT MOVE: e(22) = 0.668392 misses 27/40 and e(23) = 0.716046 clears it, so the least integer C is 23 at both thresholds; the computation reproduces the paper's own e(21) = 0.6210, e(25) = 0.8119 and e(30) = 1.0541. Paper C's manuscript was brought into agreement in the same pass: it had been quoting the retired certificates by name and attributing them to zeta2_pos, so it described a proof that no longer existed. Nine thresholds and two exponents rewritten, and the least-C result recorded in the passage that names it. SUPERSEDED, 20 September 2026: Production.logMass_contagion_averaged is unconditional at lambda <= 100/203 = 0.4926108, where this row is unconditional at 13/40 = 0.325. The difference is that this row pays Lemma 4.2's pointwise 2/9 on every fibre while the averaged route pays (2/3)(1/2 - eta_0), the poor fibres having finite total 1/m-mass. Concretely, in the Tao reduction the least cylinder depth drops from C = 23 to C = 19 (tao_reduction.unconditional_depth_drop). This row is still the cheapest unconditional contagion bound -- its proof needs no block lock, no Dirichlet, no arc count -- so it stays.",
   "source": "docs/theory/juggler_fate_almost_all_note.md",
   "lean": "Problems/Juggler/FateProduction.lean",
-  "decl": "logMass_contagion_elementary",
+  "decl": [
+   "logMass_contagion_elementary",
+   "sqrt_floor_exp",
+   "family_E",
+   "good_fiber_logMass_ge",
+   "family_OE",
+   "production_two",
+   "zeta2_pos",
+   "zeta2_antitone",
+   "contagion_elementary",
+   "failures_logMass_ge",
+   "conjecture_of_tao_rate",
+   "conjecture_of_cylinder_bound"
+  ],
   "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_paper_c_formal_layer.py"
@@ -8997,7 +9569,17 @@
   "statement": "Paper C Theorem 9.1 (the one-sided form) in exact form, by exponential moments and without the martingale, carrying out the paper's remark after Proposition 9.3. For a tilt x >= 1 let badMass(t) be the sum over the L-bad words w of length t of #[w] x^{o(w)}, the tilted mass of the bad cylinders of depth t. Under the one-sided hypothesis OneSidedShare (every L-bad cylinder of depth 1 <= t < d sends at most q #[w] + err of its members to an odd next letter), bad words being prefix-closed and a cylinder splitting into its two children, badMass(t+1) <= (1 + (x-1) q) badMass(t) + (x-1) err (2x)^t (badMass_succ_le), which unrolls to badMass(t+1) <= x (1 + (x-1) q)^t N + (x-1) err t (2x)^t with N the odd starts of (y, 2y] (badMass_le). Lemma 8.1 and the Markov tilt put every odd failure of (y, 2y] in a bad cylinder of depth d with at least p_C d odd letters (oddFailures_card_le_badMass), so for every y >= 1 and every d >= max(1, C L(y)), L(y) = log_2(log 2y / log N_0), above a certified floor N_0 >= 2: #{odd failures in (y, 2y]} <= (x a_q^{d-1} N + (x-1) err (d-1) (2x)^{d-1}) / x^{p_C d} with a_q = 1 + (x-1) q, at every tilt x >= 1 and with no epsilon (one_sided_bound); at the re-centring tilt x = p_C (1-q)/(q (1-p_C)) the main term is (x/a_q) N exp(-d D(p_C || q)) (one_sided_bound_kl, on tilt_pow_ratio and tilt_exponent_eq_kl), the exponent C D(p_C || q)/log 2 of Proposition 9.3, which the paper records is at least the Azuma exponent e_q(C). NOT formalized: the error term carries (2x)^{d-1} / x^{p_C d} where the martingale proof's Markov step carries 2^d, so absorbing it into y (log y)^{-r} needs A > C (1 + (1 - p_C) log_2 x) + r in place of the paper's A > C + r; that absorption, the substitution d = ceil(C L(y)) and the displayed asymptotic form (log 2y / log N_0)^{-(e_q(C) - epsilon)} are human. Nothing here bounds a cylinder and nothing here is a halt theorem.",
   "source": "docs/theory/juggler_fate_almost_all_note.md",
   "lean": "Problems/Juggler/FateOneSided.lean",
-  "decl": "one_sided_bound",
+  "decl": [
+   "one_sided_bound",
+   "cylinder_split",
+   "LBad_of_LBad_append",
+   "OneSidedShare",
+   "badMass_succ_le",
+   "badMass_le",
+   "oddFailures_card_le_badMass",
+   "tilt_pow_ratio",
+   "one_sided_bound_kl"
+  ],
   "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_paper_c_formal_layer.py"
@@ -9010,7 +9592,17 @@
   "statement": "Paper C Theorem 9.1's consequence, the conjecture from the one-sided hypothesis, in the pattern of Corollary 8.4. OneSidedBound N_0 C q A y is H_q(C, A) at the scale y: every L(y)-bad cylinder of depth 1 <= t < ceil(C L(y)) sends at most q #[w] + y (log y)^{-A} of its members to an odd next letter; oneSidedExponent C q = C D(p_C || q) / log 2 is the Chernoff exponent of Proposition 9.3. Absorption (oddFailures_le_of_one_sided): under H_q(C, A) at all large scales, with C >= 5, 0 < q < p_C, A > C (1 + log_2 x) + 1 + e for the re-centring tilt x = p_C (1-q)/(q (1-p_C)), and e < C D(p_C || q) / log 2, the odd failures in (y, 2y] number at most y (log y)^{-e} for all large y; on Gibbs' inequality D(p || q) >= 0 (klDiv_nonneg), exp(-d D) <= Lambda^{-C D / log 2} for d >= C log_2 Lambda (exp_le_rpow_scale) and (2x)^{d-1} <= Lambda^{C (1 + log_2 x)} for d - 1 <= C log_2 Lambda (pow_le_rpow_scale), with log y / log N_0 <= Lambda <= 2 log y / log N_0. Then Theorem 7.2: implies_conjecture_of_contagion keeps the contagion bound of Theorem 5.3 as a hypothesis at an exponent lambda with 1 - lambda < e, and one_sided_implies_conjecture discharges it through the unconditional Theorem 5.3 at exponent 3/10 (Production.failures_logMass_ge): H_q(C, A) at all large scales above a certified floor N_0 >= 2, with 7/10 < e < C D(p_C || q) / log 2, gives that every positive integer reaches 1, with nothing else assumed. exact_share_implies_conjecture is the paper's remark after Theorem 9.1: a share bound with no error term (OneSidedExact) at all large scales with C D(p_C || q) / log 2 > 7/10 gives the conjecture, and A disappears. NOT the paper's statement: the paper has the Azuma exponent e_q(C) and A > C + e_q(C); here the exponent is the Chernoff one, which the paper records is at least e_q(C), and the condition on A is sufficient, not sharp (the exact form pays the tilt on the error, and d - 1 is bounded by a multiple of log y). The numerical forms, the least C at each q, are not formalized. Nothing here proves the one-sided hypothesis, and nothing here is a halt theorem.",
   "source": "docs/theory/juggler_fate_almost_all_note.md",
   "lean": "Problems/Juggler/FateOneSidedCorollary.lean",
-  "decl": "one_sided_implies_conjecture",
+  "decl": [
+   "one_sided_implies_conjecture",
+   "OneSidedBound",
+   "OneSidedExact",
+   "klDiv_nonneg",
+   "exp_le_rpow_scale",
+   "pow_le_rpow_scale",
+   "oddFailures_le_of_one_sided",
+   "implies_conjecture_of_contagion",
+   "exact_share_implies_conjecture"
+  ],
   "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_paper_c_formal_layer.py"
@@ -9023,7 +9615,18 @@
   "statement": "Paper C Section 9.2's consequences: the pressure hypothesis P_theta(C) and the no-momentum hypothesis M_{theta,q}(C) each imply the conjecture, in the pattern of Corollary 8.4. Bridge: above a certified floor N_0, an odd failure of (y, 2y] is a start of {1, ..., 2y} that stays above N_0 for every number of steps (oddFailures_subset_live), so the live weight of LiveCountWeight, on which Theorem 9.2 (live_count_le_of_pressure) and Proposition 9.3 under no momentum (juggler_count_le_of_noMomentum) are stated, counts the failures. PressureBound N_0 C eps y is P_theta(C) at the scale y with the paper's e^{o(d)} quantified as (log y)^eps: the live pressure of {1, ..., 2y} at the tilt x = p_C/(1 - p_C) and depth d(y) = ceil(C L(y)) is at most 2y a_theta^{d(y)} (log y)^eps. NoMomentumBound N_0 C q delta y is M_{theta,q}(C) at the scale y: on the live weight of {1, ..., 2y} at the re-centring tilt x = p_C (1-q)/(q (1-p_C)), the excess odd shares (s_x(t) - q)^+ over t < d(y) sum to at most delta d(y); momentumExponent C q delta = C (D(p_C || q) - c_x delta) / log 2 with c_x = (x-1)/a_q. Shared absorption (absorb): a bound 2y exp(-d(y) D) (log y)^eps on the odd failures at all large scales, with D >= 0, is below y (log y)^{-e} for every e < C D / log 2 - eps and all large y, on exp_le_rpow_scale and log y / log N_0 <= Lambda. Hence (oddFailures_le_of_pressure, oddFailures_le_of_noMomentum) the dyadic rate y (log y)^{-e} for every e < e(C) - eps, respectively every 0 <= e < momentumExponent C q delta, and by Theorem 7.2: with the contagion bound of Theorem 5.3 as a hypothesis at an exponent lambda with 1 - lambda < e (pressure_conj_of_contagion, noMomentum_conj_of_contagion), or with nothing else assumed through the unconditional Theorem 5.3 at exponent 3/10 when 7/10 < e (pressure_implies_conjecture, noMomentum_implies_conjecture): every positive integer reaches 1. With FateOneSidedCorollary this closes the rate-side jaw of the pincer in Lean for every hypothesis Paper C states on that side (cylinder, one-sided, pressure, no-momentum). NOT formalized: the paper's numerical forms (the least C at each q). Nothing here proves any of the hypotheses, and nothing here is a halt theorem.",
   "source": "docs/theory/juggler_fate_almost_all_note.md",
   "lean": "Problems/Juggler/FatePressureCorollary.lean",
-  "decl": "pressure_implies_conjecture",
+  "decl": [
+   "pressure_implies_conjecture",
+   "oddFailures_subset_live",
+   "PressureBound",
+   "NoMomentumBound",
+   "absorb",
+   "oddFailures_le_of_pressure",
+   "pressure_conj_of_contagion",
+   "oddFailures_le_of_noMomentum",
+   "noMomentum_conj_of_contagion",
+   "noMomentum_implies_conjecture"
+  ],
   "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_paper_c_formal_layer.py"
@@ -9036,7 +9639,19 @@
   "statement": "Paper C Section 10(d), first paragraph: Theorem 9.1 with exceptional atoms, on the exponential-moment proof. OneSidedShareExc y L q err exc d: at each depth 1 <= t < d there is a set E of words of total cylinder mass at most exc such that every L-bad word outside E sends at most q #[w] + err of its members to an odd next letter; the original hypothesis is the case E empty (oneSidedShareExc_of_share). An exceptional bad atom sends at most its whole mass to its odd child, which costs (x - a_q) #[w] x^{o(w)} = (x-1)(1-q) #[w] x^{o(w)} in the tilted mass, so badMass(t+1) <= a_q badMass(t) + (x-1)(err (2x)^t + (1-q) exc x^t) (badMass_succ_le_exc), unrolled to x a_q^t N + (x-1) t (err (2x)^t + (1-q) exc x^t) (badMass_le_exc), and with Lemma 8.1 and the Markov tilt the odd failures of (y, 2y] number at most (x a_q^{d-1} N + (x-1)(d-1)(err (2x)^{d-1} + (1-q) exc x^{d-1})) / x^{p_C d} (one_sided_bound_exc), whose main term at the re-centring tilt is (x/a_q) N exp(-d D(p_C || q)) (one_sided_bound_kl_exc, on main_term_eq). Absorption (oddFailures_le_of_exc, on the one-tail lemma tail_le: (d-1) z^{d-1} y (log y)^{-A} <= K y (log y)^{C log_2 z + 1 - A} for z >= 1): with err = y (log y)^{-A}, exc = y (log y)^{-B}, A > C (1 + log_2 x) + 1 + e, B > C log_2 x + 1 + e and e < C D(p_C || q) / log 2, the odd failures number at most y (log y)^{-e} for all large y; the exceptional atoms cost C less than the error because they are not doubled at each depth. Then Theorem 7.2: exc_conj_of_contagion with the contagion bound as a hypothesis, exc_implies_conjecture with nothing else assumed when 7/10 < e. This is the weakest one-sided hypothesis the paper states, and the form the cylinder-energy statistic of Section 10(d) is meant to supply. NOT formalized: the paper's condition B > e_q(C), which is the Markov absorption of the martingale proof; the conditions here are sufficient and not sharp. Nothing here bounds a share, and nothing here is a halt theorem.",
   "source": "docs/theory/juggler_fate_almost_all_note.md",
   "lean": "Problems/Juggler/FateOneSidedAtoms.lean",
-  "decl": "exc_implies_conjecture",
+  "decl": [
+   "exc_implies_conjecture",
+   "OneSidedShareExc",
+   "oneSidedShareExc_of_share",
+   "badMass_succ_le_exc",
+   "badMass_le_exc",
+   "one_sided_bound_exc",
+   "main_term_eq",
+   "one_sided_bound_kl_exc",
+   "tail_le",
+   "oddFailures_le_of_exc",
+   "exc_conj_of_contagion"
+  ],
   "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_paper_c_formal_layer.py"
@@ -9049,7 +9664,19 @@
   "statement": "Paper C Section 10(d): the bias energy of the L-bad words supplies the exceptional atoms. energyOn y t S = sum over w in S of bias(w)^2 with bias(w) = #[wO] - #[w]/2 over the odd starts of (y, 2y]; biasEnergy y t is the sum over all words of length t, equal to the paper's C_{t+1}/2 - C_t/4 with C_t = sum of #[w]^2 (biasEnergy_eq, on CylinderEnergy.sum_bias_sq; wordCount_cylinder identifies the word count over the odd starts with the cylinder); badEnergy y L t is the sum over the L-bad words, at most the unrestricted one (badEnergy_le_biasEnergy). For a share q > 1/2, a bad atom violating #[wO] <= q #[w] has bias(w) > (q - 1/2) #[w], so the squared masses of the bad violators sum to at most badEnergy / (q - 1/2)^2, and Cauchy-Schwarz over the at most 2^t atoms of depth t (card_allWords) gives (sum over bad violators of #[w])^2 <= 2^t badEnergy / (q - 1/2)^2 (mass_violators_le). Hence badEnergy y L t <= (q - 1/2)^2 exc^2 / 2^t at every depth 1 <= t < d gives OneSidedShareExc y L q 0 exc d, the one-sided hypothesis with exceptional atoms of mass exc and no error term (oneSidedShareExc_of_energy), and with err = y (log y)^{-A} for any A (oneSidedBoundExc_of_energy, on OneSidedShareExc.mono_err). EnergyBound N_0 C q B y is that bound with L = L(y) and exc = y (log y)^{-B} at the depths below ceil(C L(y)); composed with FateOneSidedAtoms: energy_conj_of_contagion with the contagion bound as a hypothesis, and energy_implies_conjecture with nothing else assumed: EnergyBound at all large scales above a certified floor, with C >= 5, 1/2 < q < p_C, B > C log_2 x + 1 + e and 7/10 < e < C D(p_C || q) / log 2, gives that every positive integer reaches 1. The restriction to bad words is forced: the unrestricted energy is dominated by absorbed orbits (J-absorbed-cylinder). MEASURED (juggler_cylinder_energy_measure, exact enumeration at 10^4..10^7 to depth 30): the bad energy itself sits at its worst-case value sum of #[w]^2 / 4 from depth 16-20 at every computable scale, on cylinders of thousands of members, because bad words that dip to a bounded value collapse onto single deterministic futures; the reduction is exact, the hypothesis has no numerical support. NOT formalized: the energy bound itself, and the Parseval form in Walsh sums. Nothing here is a halt theorem.",
   "source": "docs/theory/juggler_fate_almost_all_note.md",
   "lean": "Problems/Juggler/FateEnergyAtoms.lean",
-  "decl": "energy_implies_conjecture",
+  "decl": [
+   "energy_implies_conjecture",
+   "OneSidedShareExc.mono_err",
+   "badEnergy_le_biasEnergy",
+   "card_allWords",
+   "mass_violators_le",
+   "oneSidedShareExc_of_energy",
+   "wordCount_cylinder",
+   "biasEnergy_eq",
+   "EnergyBound",
+   "oneSidedBoundExc_of_energy",
+   "energy_conj_of_contagion"
+  ],
   "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_paper_c_formal_layer.py"
@@ -9062,7 +9689,23 @@
   "statement": "The collapsed component is nearly fair, exact layer (Paper C Section 10(d), after the cylinder-energy measurement). For a finite set S of starts and a depth t, fiber S t v = #{n in S : J^t(n) = v}, window S t a b = the starts whose t-th iterate lies in [a, b], and windowBias S t a b = #{odd iterate} - #{even iterate} in the window, the bias of the next letter. windowBias = - sum over v in [a, b] of (-1)^v fiber(v) (windowBias_eq_sum, on card_filter_window), hence |windowBias| <= sum over v in [a, b) of |fiber(v+1) - fiber(v)| + fiber(b) (abs_windowBias_le), by summation by parts on alternating sums with the partial sums of (-1)^i bounded by 1 (abs_alt_sum_le). One step of the map: fiber(t+1, v) = sum of fiber(t, u) over the preimages u of v, all below (v+1)^2 (fiber_succ, lt_sq_succ_of_floorPower_eq); the even preimages are the even numbers of [v^2, (v+1)^2) (pre_filter_even, Lemma 3.1's even block in fiber form), so fiber(t+1, v) = blockSum + oddPart (fiber_succ_eq). The even branch smooths: v <= evenCount v <= v + 1 (le_evenCount, evenCount_le), so if m <= fiber(t, u) <= M on the double block [v^2, (v+2)^2) then |blockSum(v+1) - blockSum(v)| <= (v+1)(M - m) + 2M (blockSum_sub_le); the odd branch's variation over a window is at most twice its mass (sum_abs_oddPart_sub_le). Hence collapse_bias_le: |windowBias S (t+1) a b| <= sum over v in [a, b) of ((v+1)(M_v - m_v) + 2 M_v) + 2 sum over v in [a, b] of oddPart(v) + fiber(t+1, b) whenever the depth-t profile is sandwiched between m_v and M_v on each double block. Read against a smooth profile, M_v - m_v of order f/v on a block of size f v, the first term is O(f) per value against a window mass of f v: the collapsed mass entering through the even branch is fair up to a relative O(1/v). Even steps are self-smoothing: a sandwich m <= fiber(t, .) <= M on [v^2, (v+1)^2) with odd branch at most P propagates to v m <= fiber(t+1, v) <= (v+1) M + P (fiber_succ_sandwich), so two even steps bound the bias at depth t+2 by the depth-t sandwich on [w^4, (w+2)^4) with the propagated bounds w^2 m_w and (w+2)^2 M_w + P_w (collapse_bias_two_step): the relative oscillation is not amplified and the loss is a relative O(1/w) at the final scale; iterated, an even run leaves the oscillation it started with plus O(1/w). What an even run cannot repair is the profile after the preceding odd run, whose first even step is the share law of Section 4 and whose block average is Proposition 4.4. NOT formalized: any bound on the variation of a fiber profile beyond that propagation, and the parity of the odd-preimage mass, the share law at bounded scale. Nothing here is a halt theorem.",
   "source": "docs/theory/juggler_fate_almost_all_note.md",
   "lean": "Problems/Juggler/FateCollapse.lean",
-  "decl": "collapse_bias_le",
+  "decl": [
+   "collapse_bias_le",
+   "card_filter_window",
+   "windowBias_eq_sum",
+   "abs_alt_sum_le",
+   "abs_windowBias_le",
+   "lt_sq_succ_of_floorPower_eq",
+   "fiber_succ",
+   "pre_filter_even",
+   "fiber_succ_eq",
+   "evenCount_le",
+   "le_evenCount",
+   "blockSum_sub_le",
+   "sum_abs_oddPart_sub_le",
+   "fiber_succ_sandwich",
+   "collapse_bias_two_step"
+  ],
   "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_paper_c_formal_layer.py"
@@ -9075,7 +9718,36 @@
   "statement": "A certified instance of the side condition of Paper C's unconditional criteria, at C = 30, with no audit script in the chain. Device: a logarithm is certified by an integer power comparison. If E <= e and x^n <= E^m then n log x <= m (log_le_of_pow_le); if e <= E and E^m <= x^n then m <= n log x (le_log_of_pow_le); and the base-two pair logb_two_le, le_logb_two. With Mathlib's Real.exp_one_gt_d9 and exp_one_lt_d9 pinning 2.718 <= e <= 2.719 (e_ge, e_le), six comparisons closed by norm_num give: log 2 <= 7/10 (from 2^10 <= 2.718^7), 2/3 <= log 2 (2.719^2 <= 2^3), 84/53 <= log_2 3 (2^84 <= 3^53), log_2 3 <= 149/94 (3^94 <= 2^149), 19/100 <= log(3049/2500) (2.719^19 <= (3049/2500)^100) and log(39/50) >= -1/4 ((50/39)^4 <= 2.718). Hence p_30 = pC 30 lies in [3049/5000, 61/100] (pC_thirty_ge, pC_thirty_le), and by the sandwich klHalf_ge_of, D(p_30 || 1/2) >= 9156/500000 = 0.018312 (klHalf_thirty_ge); with log 2 <= 7/10 this gives e(30) = 30 D(p_30 || 1/2)/log 2 > 39/50 (chernoffExponent_thirty_gt), in particular > 7/10. Two further comparisons give D(p_30 || 1/2) <= 71/2500 and, with 2/3 <= log 2, e(30) < 13/10 (chernoffExponent_thirty_lt), which makes the side condition A > C + e(C) explicit as A >= 32. Consequences, each with every constant a numeral: cylinder_bound_thirty (Corollary 8.4 at C = 30: a cylinder bound H(30, A) at all large scales with A >= 32, above a certified floor N_0 >= 2, gives that every positive integer reaches 1), pressure_thirty (Theorem 9.2's criterion at C = 30 with no loss), and one_sided_thirty (Theorem 9.1's criterion at C = 30 and the fair share q = 1/2, with A >= 52; klDiv_half and oneSidedExponent_half identify the one-sided exponent at q = 1/2 with the Chernoff exponent, and logb_tilt_thirty_le bounds log_2 of the re-centring tilt by 13/20 from (61/39)^20 <= 2^13). NOT formalized: C = 30 is an instance, not the least; the audit finds e(C) > 7/10 first at C = 23, and the paper's own threshold e(C) > 1 - lambda** at C = 19 is a statement about lambda**. The bounds are deliberately loose (the true value is e(30) about 1.05). Nothing here proves any hypothesis, and nothing here is a halt theorem.",
   "source": "docs/theory/juggler_fate_almost_all_note.md",
   "lean": "Problems/Juggler/FateCertified.lean",
-  "decl": "chernoffExponent_thirty_gt",
+  "decl": [
+   "chernoffExponent_thirty_gt",
+   "e_ge",
+   "e_le",
+   "log_le_of_pow_le",
+   "le_log_of_pow_le",
+   "logb_two_le",
+   "le_logb_two",
+   "log_two_le",
+   "le_log_two",
+   "le_logb_three",
+   "logb_three_le",
+   "le_log_lo",
+   "le_log_hi",
+   "log_lo_le",
+   "log_hi_le",
+   "pC_thirty_ge",
+   "pC_thirty_le",
+   "klHalf_ge_of",
+   "klHalf_le_of",
+   "klHalf_thirty_ge",
+   "klHalf_thirty_le",
+   "chernoffExponent_thirty_lt",
+   "cylinder_bound_thirty",
+   "pressure_thirty",
+   "klDiv_half",
+   "oneSidedExponent_half",
+   "logb_tilt_thirty_le",
+   "one_sided_thirty"
+  ],
   "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_paper_c_formal_layer.py"
@@ -9149,7 +9821,15 @@
   "statement": "Paper C Theorem 8.3 (Tao-type bound from the cylinder hypothesis), exact and explicit forms. cylinder y d w is the set of odd n in (y, 2y] with itinerary n d = w; oddFailures y the odd n in (y, 2y] with \u00acReachesOne n; EnvelopeBad N\u2080 Y w says N\u2080^{2^t} < Y^{3^{o_t(w)}} for every prefix t \u2264 |w|. (i) oddFailures_subset_bad_cylinders: if every start up to N\u2080 reaches 1, then oddFailures y \u2286 \u22c3 {cylinder y d w : w \u2208 allWords d, EnvelopeBad N\u2080 (2y) w} \u2014 Lemma 8.1 (reachesOne_of_itinerary_envelope) in covering form, using n \u2264 2y. (ii) oddFailures_card_le: if every envelope-bad cylinder has at most M starts then #oddFailures y \u2264 #{envelope-bad words} \u00b7 M. (iii) LBad_of_envelopeBad: for N\u2080, Y \u2265 2, envelope-bad at scale Y implies L-bad with L = log_2(log Y / log N\u2080). (iv) oddFailures_card_le_chernoff: N\u2080 \u2265 2, y \u2265 1, C \u2265 5, d \u2265 1, d \u2265 C L(y) with L(y) = log_2(log 2y / log N\u2080), M \u2265 0, and every L(y)-bad cylinder of depth d has at most M starts: then #oddFailures y \u2264 2^d \u00b7 2^{\u2212e(C) L(y)} \u00b7 M, by (i)\u2013(iii) and row J-fate-chernoff-count. (v) oddFailures_card_le_explicit: with d = \u2308C L(y)\u2309 \u2265 1 (depth), y \u2265 2, and the bound of H(C, A) at the scale y on every O-rooted L(y)-bad cylinder of depth d (E-rooted cylinders are empty, cylinder_even_root_empty), the odd failures in (y, 2y] number at most y \u039b^{\u2212e(C)} + 2 \u039b^C y (log y)^{\u2212A} with \u039b = log 2y / log N\u2080 (scaleRatio) \u2014 at every y, no \u03b5, a factor 2 in the main term against the paper's y/2 \u039b^{\u2212(e(C)\u2212\u03b5)}. Kernel-checked, axioms propext, Classical.choice, Quot.sound only. The paper's displayed form is (v) with the factor 2 absorbed into \u039b^\u03b5 and the second term into the first for A > C + e(C), not formalized; Corollary 8.4 (the conjecture from a cylinder bound) rests on Theorem 7.2 and stays a human proof. Conditional on the cylinder bound; not a density theorem, not a halt theorem.",
   "source": "docs/problems/juggler_paper_c_formal_layer.md",
   "lean": "Problems/Juggler/FateChernoff.lean",
-  "decl": "oddFailures_card_le_explicit",
+  "decl": [
+   "oddFailures_card_le_explicit",
+   "EnvelopeBad",
+   "oddFailures_subset_bad_cylinders",
+   "oddFailures_card_le",
+   "LBad_of_envelopeBad",
+   "oddFailures_card_le_chernoff",
+   "cylinder_even_root_empty"
+  ],
   "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_paper_c_formal_layer.py",
@@ -9421,7 +10101,12 @@
   "lean": "Problems/Juggler/QuarticBand.lean",
   "decl": [
    "sorted_return_model",
-   "exists_F_source"
+   "exists_F_source",
+   "Section",
+   "returnMap",
+   "returnMap_closed",
+   "returnMap_inj",
+   "guarded_return_cases"
   ],
   "lean_trust": "kernel",
   "tests": [
@@ -9444,7 +10129,12 @@
    "cube_ne_square_successor_square_successor",
    "guarded_OE_remainder_dichotomy",
    "guarded_OE_lower_cube",
-   "actual_OE_lower_cube"
+   "actual_OE_lower_cube",
+   "B_eq_iff",
+   "B_source_cell",
+   "logEta_pos",
+   "logEta_antitone",
+   "logEta_lt_inv"
   ],
   "lean_trust": "kernel",
   "tests": [
@@ -9463,7 +10153,25 @@
    "ofModular",
    "displacement_balance",
    "totalDisplacement_pos_of_omitted",
-   "adjacent_gap_of_ratio"
+   "adjacent_gap_of_ratio",
+   "RankComponent",
+   "gcd_dvd_totalDisplacement",
+   "predecessor_le",
+   "predecessor_monotone",
+   "predecessor_eq_self",
+   "predecessor_mem",
+   "predecessor_eq_on_cell",
+   "selected_displacement_le",
+   "selected_displacement_cast_le",
+   "negative_card_le",
+   "partner_interval_sum_le",
+   "partner_injOn",
+   "partner_not_mem",
+   "block_injOn",
+   "component_target_injective",
+   "component_partner_injective",
+   "component_partner_not_in_range",
+   "component_block_injective"
   ],
   "lean_trust": "kernel",
   "tests": [
@@ -9485,7 +10193,14 @@
    "located_pair_lower",
    "located_pair_upper",
    "located_pairs_lower",
-   "located_pairs_upper"
+   "located_pairs_upper",
+   "calibrated_component_budget",
+   "weighted_gap_witness",
+   "weighted_uncovered_witness",
+   "gapThreshold_ge",
+   "gapThreshold_sum_lt",
+   "BlockSubstitution.uncovered_component_witness",
+   "BlockSubstitution.unequal_cell_witness"
   ],
   "lean_trust": "kernel",
   "tests": [
@@ -9662,7 +10377,10 @@
    "nonlinearChargeBound_le_finiteGeometric",
    "finiteGeometricChargeBound_lt_closed",
    "nonlinear_cutoff_excludes",
-   "closedGeometric_cutoff_excludes"
+   "closedGeometric_cutoff_excludes",
+   "minimum_lt_of_nonlinear_cutoff",
+   "minimum_lt_of_finiteGeometric_cutoff",
+   "minimum_lt_of_closedGeometric_cutoff"
   ],
   "lean_trust": "kernel"
  },
@@ -9672,7 +10390,12 @@
   "statement": "Paper C Corollary 8.4 (the conjecture from a cylinder bound), as the composition of Theorem 8.3 in explicit form (row J-fate-tao-union-bound) with Theorem 7.2 (FateTaoReduction, tao_rate_implies_conjecture, the contagion bound of Theorem 5.3 as hypothesis). CylinderBound N\u2080 C A y is the paper's H(C, A) at the scale y: every O-rooted L(y)-bad cylinder of depth d(y) = \u2308C L(y)\u2309 holds at most 2^{\u2212(d\u22121)} y/2 + y (log y)^{\u2212A} starts. (i) one_le_depth: d(y) \u2265 1 once 2y > N\u2080. (ii) oddFailures_eventually_le: for N\u2080 \u2265 2 with the floor, C \u2265 5, A > C + e(C), any e < e(C), and H(C, A) at all y \u2265 y\u2081, there is y\u2080 with #{odd failures in (y, 2y]} \u2264 y (log y)^{\u2212e} for all y \u2265 y\u2080; proof: \u039b = log 2y / log N\u2080 satisfies log y / log N\u2080 \u2264 \u039b \u2264 2 log y / log N\u2080 for y \u2265 2, so the explicit bound y \u039b^{\u2212e(C)} + 2 \u039b^C y (log y)^{\u2212A} is at most (log N\u2080)^{e(C)} y (log y)^{\u2212e} (log y)^{\u2212(e(C)\u2212e)} + 2 (2/log N\u2080)^C y (log y)^{\u2212e} (log y)^{\u2212(A\u2212C\u2212e)}, and each of the two negative powers is at most 1/(2 (log N\u2080)^{e(C)}) and 1/(4 (2/log N\u2080)^C) once log y exceeds the thresholds supplied by exists_rpow_gt; so each term is at most y (log y)^{\u2212e}/2. (iii) cylinder_bound_implies_conjecture: if H(C, A) holds at all large scales with C \u2265 5 and A > C + e(C), and for the failure set the contagion bound K (log x)^\u03bb \u2264 logMass holds for x \u2265 x\u2080 with 0 < \u03bb < 1 and 1 \u2212 \u03bb < e(C), then every positive integer reaches 1 (e := (1 \u2212 \u03bb + e(C))/2). Kernel-checked, axioms propext, Classical.choice, Quot.sound only. The contagion bound is a hypothesis; the paper's numerical form C \u2265 19 (e(19) = 0.527 > 0.5074 = 1 \u2212 \u03bb**) is about the root \u03bb** and is checked by paper_c_audit, not by Lean. Conditional on the cylinder bound; nothing here proves H(C, A); not a halt theorem.",
   "source": "docs/problems/juggler_paper_c_formal_layer.md",
   "lean": "Problems/Juggler/FateCylinderCorollary.lean",
-  "decl": "cylinder_bound_implies_conjecture",
+  "decl": [
+   "cylinder_bound_implies_conjecture",
+   "CylinderBound",
+   "one_le_depth",
+   "oddFailures_eventually_le"
+  ],
   "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_paper_c_formal_layer.py",
@@ -9700,7 +10423,23 @@
   "statement": "Paper C Lemma 4.3 (bad fibers are thin), badness being \u00acGood of row J-fate-fiber-parity. (i) bad_count_le: for u \u2265 10^6, #{m \u2208 (u, 2u] : \u00acGood m} \u2264 63 u^{2/3}. (ii) bad_logMass_le: for U \u2265 10^6 and every N, \u03a3_{m \u2208 (U, N], \u00acGood m} 1/m \u2264 306 U^{\u22121/3} (the paper's infinite sum, as a bound on every partial sum). Proof of (i): the increments of A_m = (3/2) m^{2/3} lie in [(m+1)^{\u22121/3}, m^{\u22121/3}] by Bernoulli both ways (Am_step_ge, Am_step_le); a bad m > u has {A_m + 22 u^{\u22121/3}} < 44 u^{\u22121/3} or {A_m} \u2208 [1/2 \u2212 2u^{\u22121/3}, 1/2 + 2u^{\u22121/3}) (bad_mem_arc; the shift makes the wrap-around arc a single arc); arc_count_le: a sequence increasing by at least d per step on (u, v] has at most (\u230a\u03c6(v)\u230b \u2212 \u230a\u03c6(u+1)\u230b + 1)(w/d + 1) indices with fractional part in an arc [c, c+w) \u2286 [0, 1), by the fibre-per-integer-window count; with d = (2u)^{\u22121/3} (sharper than the paper's (3u)^{\u22121/3}), w/d = 44\u00b72^{1/3} and 4\u00b72^{1/3}, the windows number at most A_{2u} \u2212 A_u + 2 \u2264 0.882 u^{2/3} + 2 (2^{2/3} \u2264 1.588), and (0.882 u^{2/3} + 2)(48\u00b72^{1/3} + 2) \u2264 63 u^{2/3} for u^{2/3} \u2265 10^4 (2^{1/3} \u2264 1.26). Proof of (ii): on one block (u, 2u] the bad log-mass is at most 63 u^{2/3}/u = 63 u^{\u22121/3} (bad_block_logMass_le); (U, N] \u2286 (U, 2^N U] which is the disjoint union of the blocks (2^i U, 2^{i+1} U], i < N (bad_sum_dyadic_le); (2^i U)^{\u22121/3} = (2^{\u22121/3})^i U^{\u22121/3} (eps_pow_two_mul); the geometric series gives 63 U^{\u22121/3}/(1 \u2212 2^{\u22121/3}) and 2^{\u22121/3} \u2264 0.794 (0.794^3 \u2265 1/2) gives 63/(1 \u2212 2^{\u22121/3}) \u2264 306. Kernel-checked, axioms propext, Classical.choice, Quot.sound only. Lemmas 4.2 and 4.3 together are the fiber input of the three-source inequality (5.2); Proposition 4.4 stays a human proof. Not a halt theorem.",
   "source": "docs/problems/juggler_paper_c_formal_layer.md",
   "lean": "Problems/Juggler/FateThinFibers.lean",
-  "decl": "bad_logMass_le",
+  "decl": [
+   "bad_logMass_le",
+   "bad_count_le",
+   "arc_count_le",
+   "Am_step_le",
+   "Am_step_ge",
+   "bad_mem_arc",
+   "two_rpow_third_le",
+   "two_rpow_two_thirds_le",
+   "rpow_two_thirds_ge",
+   "eps_div_eps_double",
+   "Am_double_sub_le",
+   "bad_block_logMass_le",
+   "bad_sum_dyadic_le",
+   "eps_pow_two_mul",
+   "two_rpow_neg_third_le"
+  ],
   "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_paper_c_formal_layer.py",
@@ -9714,7 +10453,18 @@
   "statement": "Paper C Theorem 5.3 (contagion) given the production inequality (5.2), for every 0 < \u03bb \u2264 0.49. Data: productionRate/productionCoeff are the eight productions (e_i, c_i) = (1/2, 1), (3/8, 1/9), (3/4, 2/9), (9/32, 1/27), (27/128, 1/81), (81/512, 1/243), (243/2048, 1/729), (729/8192, 1/2187); zeta \u03bb = \u03a3 c_i e_i^\u03bb \u2212 1 is antitone in \u03bb (zeta_antitone) and zeta (49/100) > 0 (zeta_pos_49): each e_i^{49/100} is bounded below by a five-digit rational r_i through r_i^100 \u2264 e_i^49 in exact integer arithmetic (le_rpow_div_of_pow_le), and \u03a3 c_i r_i \u2212 1 = 0.00168 > 0 (the exact value of \u03b6(0.49) is 0.001683; the paper's root is \u03bb** = 0.4926). gA A t = halfLogMass A \u230ae^t\u230b\u208a is the paper's g_A(t) (the integers in (\u221ax, x] are those in (\u230a\u221a\u230ax\u230b\u230b, \u230ax\u230b]); gA_seed is Lemma 5.2 in the form g_A(t) \u2265 c_A for t \u2265 4 log(m+1); logMass_ge_gA compares with the full log-mass. Theorem (contagion_of_production_inequality): A backward-closed with a positive member, 0 < \u03bb \u2264 49/100, errors \u03b7_i(t) \u2265 0 and \u03b7\u2080(t) with (\u2200 \u03b5 > 0, \u2203 T, \u2200 t \u2265 T, \u03b7_i(t) \u2264 \u03b5 and \u03b7\u2080(t) \u2264 \u03b5), and g_A(t) \u2265 \u03a3_i (c_i \u2212 \u03b7_i(t)) g_A(e_i t) \u2212 \u03b7\u2080(t) for all t \u2265 t\u2080: then \u2203 K > 0, \u2203 t\u2081 > 0, \u2200 t \u2265 t\u2081, K t^\u03bb \u2264 g_A(t). Proof as in the paper: m \u2265 3 in A (exists_ge_three_of_backwardClosed), \u03b5 = min(\u03b6/24, 2\u03b6c_A/3, 1/2187), t\u2081 \u2265 max(T, t\u2080, 1, 4 log(m+1)\u00b78192/729), then recursion_lemma with e_min = 729/8192, e_max = 3/4 and the seed on [e_min t\u2081, t\u2081]; the hypothesis \u03b7\u2080 \u2265 0 is never used. logMass_contagion_of_production is the same in the form \u03a3_{n \u2264 x, n \u2208 A} 1/n \u2265 K (log x)^\u03bb for x \u2265 x\u2080, which Theorem 7.2 consumes. conjecture_of_cylinder_bound_of_production: Corollary 8.4 with Theorem 5.3 discharged through (5.2) \u2014 H(C, A) at all large scales with C \u2265 5 and A > C + e(C), some 0 < \u03bb \u2264 0.49 with 1 \u2212 \u03bb < e(C), and (5.2) for the failure set give that every positive integer reaches 1 (C \u2265 19 still suffices since e(19) = 0.527 > 0.51, a numerical fact the audit checks, not Lean). Kernel-checked, axioms propext, Classical.choice, Quot.sound only. The production inequality (5.2) itself (Proposition 4.4, Lemmas 4.2\u20134.3 and the audited productions of Section 5.7) and the root \u03bb** stay human; the range 0.49 < \u03bb < \u03bb** is not formalized. Conditional; not a density theorem on its own, not a halt theorem. SUPERSEDED IN SCOPE, 20 September 2026, not in content: this row is Theorem 5.3 GIVEN the production inequality (5.2), at lambda <= 0.49. Production.contagion_averaged now reaches lambda <= 100/203 = 0.4926108 with NO hypothesis at all (J-oe-averaged-two-productions-reach-the-depth-two-ceiling), which is above both this row's 0.49 and the ladder root lambda** = 0.4925715447. The eight-production data here is still what Paper C prints and what the ladder analysis needs, so the row stands; what no longer holds is that reaching past 0.49 requires (5.2).",
   "source": "docs/problems/juggler_paper_c_formal_layer.md",
   "lean": "Problems/Juggler/FateContagionBound.lean",
-  "decl": "contagion_of_production_inequality",
+  "decl": [
+   "contagion_of_production_inequality",
+   "productionRate_ge",
+   "productionRate_le",
+   "zeta_antitone",
+   "zeta_pos_49",
+   "le_rpow_div_of_pow_le",
+   "gA_seed",
+   "logMass_ge_gA",
+   "logMass_contagion_of_production",
+   "conjecture_of_cylinder_bound_of_production"
+  ],
   "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_paper_c_formal_layer.py",
@@ -9965,7 +10715,18 @@
   "source": "docs/research_journal.md",
   "lean": "Problems/Juggler/PaperBChainRule.lean",
   "lean_trust": "kernel",
-  "decl": "chain_rule",
+  "decl": [
+   "chain_rule",
+   "step",
+   "iter",
+   "iter_pos",
+   "iter_split",
+   "coeff",
+   "coeffExponent",
+   "printed_thm53",
+   "printed_thm63_C",
+   "printed_thm63_B"
+  ],
   "tests": [
    "tests/research/juggler_sequence/test_paper_b_prefix_count.py"
   ],
@@ -9978,7 +10739,13 @@
   "source": "docs/research_journal.md",
   "lean": "Problems/Juggler/PaperBChainRule.lean",
   "lean_trust": "kernel",
-  "decl": "linearise_iff",
+  "decl": [
+   "linearise_iff",
+   "second_order",
+   "no_linearise_iff",
+   "two_odd_not_safe",
+   "odd_even_safe"
+  ],
   "tests": [
    "tests/research/juggler_sequence/test_paper_b_prefix_count.py"
   ],
@@ -10002,7 +10769,13 @@
   "source": "docs/research_journal.md",
   "lean": "Problems/Juggler/PaperBChainRule.lean",
   "lean_trust": "kernel",
-  "decl": "iter_eq_pow",
+  "decl": [
+   "iter_eq_pow",
+   "lt_two_iff_counts",
+   "iter_eq_of_counts",
+   "lt_two_congr",
+   "oddCount"
+  ],
   "tests": [
    "tests/research/juggler_sequence/test_paper_b_prefix_count.py"
   ],
@@ -10026,7 +10799,10 @@
   "source": "docs/research_journal.md",
   "lean": "Problems/Juggler/PaperBChainRule.lean",
   "lean_trust": "kernel",
-  "decl": "noncontracting_two_forces",
+  "decl": [
+   "noncontracting_two_forces",
+   "two_lt_nine_quarters"
+  ],
   "tests": [
    "tests/research/juggler_sequence/test_paper_b_prefix_count.py"
   ],
@@ -10050,7 +10826,11 @@
   "source": "docs/research_journal.md",
   "lean": "Problems/Juggler/PaperBChainRule.lean",
   "lean_trust": "kernel",
-  "decl": "iter_eq_one_iff",
+  "decl": [
+   "iter_eq_one_iff",
+   "three_pow_eq_two_pow",
+   "one_le_iff_one_lt"
+  ],
   "tests": [
    "tests/research/juggler_sequence/test_paper_b_prefix_count.py"
   ],
@@ -10196,7 +10976,21 @@
   "source": "docs/research_journal.md",
   "lean": "Problems/Juggler/PeriodFamily.lean",
   "lean_trust": "kernel",
-  "decl": "familyClosed",
+  "decl": [
+   "familyClosed",
+   "betaQuotients",
+   "betaDenoms",
+   "recStep",
+   "denomsRec",
+   "q13",
+   "q14",
+   "a15",
+   "fanMember",
+   "periodBoundsAreFamily",
+   "nextMember",
+   "lastMember",
+   "member_strictMono"
+  ],
   "tests": [
    "tests/research/juggler_sequence/test_paper_b_prefix_count.py"
   ],
@@ -11461,7 +12255,14 @@
   "statement": "Paper C Corollary 5.4 (natural density, infinitely often): the dyadic pigeonhole, from a shell bound. If K (log X)^lambda <= sum_{sqrt X < n <= X, n in A} 1/n with 0 < lambda <= 1, K > 0 and X >= 3, then some y with sqrt X < y <= X has #(A cap (y/2, y]) >= (K/12) y (log y)^(lambda-1) (Density.exists_block_of_shell; the block is Ioc (y/2) y in the natural numbers, blockCount). PROOF, the manuscript's: the shell (sqrt X, X] is covered by the blocks (X/2^(j+1), X/2^j] for j <= log_2 X, at most 3 log X of them since log 2 > 1/2 (halfLogMass_le_blocks, through Finset.sum_fiberwise_of_maps_to on j = floor(log_2(X/n)), block_index); a block's log-mass is at most 2 #/y because every member exceeds y/2 (block_logMass_le); the best block is at least the average (Finset.exists_le_of_sum_le); and y^2 > X gives log y > (log X)/2, which with lambda - 1 < 0 turns (log X)^(lambda-1) into (log y)^(lambda-1) at the cost of 2^(1-lambda) <= 2. From g_A(t) >= K t^lambda for t >= t_1 this is Corollary 5.4 with c = K/12 for every X >= ceil(e^t_1) + 3 (natDensity_of_shell_bound), and with Theorem 5.18 (Production.contagion_averaged at eta_0 = 10^-5) it holds for every 0 < lambda <= 100/203 with no hypothesis (natDensity_averaged). Kernel-checked on propext, Classical.choice, Quot.sound. The blocks found are distinct as X runs through the powers of 4, so there are infinitely many; no bound on every block is claimed, the range 100/203 < lambda < lambda_ideal stays with Theorem 5.18's human clause, and no fate is decided. In Paper C since the revision of 2026-09-21 (Section 1.4, the Lean paragraph after Corollary 5.5, Appendix A).",
   "source": "docs/problems/juggler_paper_c_formal_layer.md",
   "lean": "Problems/Juggler/FateDyadicDensity.lean",
-  "decl": "exists_block_of_shell",
+  "decl": [
+   "exists_block_of_shell",
+   "block_logMass_le",
+   "block_index",
+   "halfLogMass_le_blocks",
+   "natDensity_of_shell_bound",
+   "natDensity_averaged"
+  ],
   "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_paper_c_formal_layer.py",
@@ -11475,7 +12276,15 @@
   "statement": "Paper C Corollary 5.5 (fate contagion) at every 0 < lambda <= 100/203, each clause in its log-mass form and its dyadic-block form, as named theorems: (1) the reach-one class R, backward-closed and containing 1, has sum_{n in R, n <= x} 1/n >= K (log x)^lambda for x >= x_0 (Density.reachesOne_logMass_averaged) and natural density >= c (log y)^(lambda-1) on a dyadic block inside every large shell (reachesOne_natDensity_averaged); (2) if some start fails, the failures have the same bounds (Production.failures_logMass_averaged, Density.failures_natDensity_averaged); (3) the basin of any state m >= 1, the starts whose orbit passes through m, has them (basin_logMass_averaged, basin_natDensity_averaged) -- the paper's clause is the case of a periodic m, the basin of that cycle -- and so do the divergent starts if some orbit diverges (escapes_logMass_averaged, escapes_natDensity_averaged). Each is one instantiation of Production.logMass_contagion_averaged or Density.natDensity_averaged through Lemma 2.1 (reachesOne_backwardClosed with reachesOne_one, not_reachesOne_backwardClosed, ancestor_backwardClosed with ancestor_refl, escapes_backwardClosed). Kernel-checked on propext, Classical.choice, Quot.sound. With J-fate-dyadic-pigeonhole every clause of Paper C's Theorem 1 is Lean at 100/203; what stays human is the range 100/203 < lambda < lambda_ideal. Not a halt theorem: no fate is shown to occur, each clause is conditional on its class being nonempty except the first.",
   "source": "docs/problems/juggler_paper_c_formal_layer.md",
   "lean": "Problems/Juggler/FateDyadicDensity.lean",
-  "decl": "reachesOne_natDensity_averaged",
+  "decl": [
+   "reachesOne_natDensity_averaged",
+   "reachesOne_logMass_averaged",
+   "failures_natDensity_averaged",
+   "basin_logMass_averaged",
+   "basin_natDensity_averaged",
+   "escapes_logMass_averaged",
+   "escapes_natDensity_averaged"
+  ],
   "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_paper_c_formal_layer.py",

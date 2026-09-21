@@ -1,18 +1,18 @@
 {
   "composite": 61,
   "jev": {
-    "agree_with_scorer": 32,
+    "agree_with_scorer": 26,
     "answered": 129,
     "asked": "2026-09-21",
-    "confident": 49,
+    "confident": 39,
     "models": [
       "jev-1.13.0"
     ],
-    "none": 48,
+    "none": 45,
     "not_a_candidate": 0,
-    "picks": 81,
-    "routed": 39,
-    "stale": 0
+    "picks": 68,
+    "routed": 30,
+    "stale": 16
   },
   "note": "Proposals for human review. Calibration: 86% precision (42 of 49 fires) against all resolved rows. Nothing here has been written into the ledger.",
   "rows": [
@@ -2874,12 +2874,6 @@
     {
       "candidates": [
         {
-          "decl": "short_horizon_equiv",
-          "line": 76,
-          "score": 0.059,
-          "trust": "kernel"
-        },
-        {
           "decl": "short_horizon_separation",
           "line": 81,
           "score": 0.059,
@@ -2890,18 +2884,24 @@
           "line": 106,
           "score": 0.056,
           "trust": "kernel"
+        },
+        {
+          "decl": "signedTrace_take",
+          "line": 14,
+          "score": 0.0,
+          "trust": "kernel"
         }
       ],
       "composite": false,
-      "confidence": "review",
+      "confidence": "low",
       "definitions": [],
       "id": "BTN-sdsh-sep",
-      "in_file": 8,
+      "in_file": 5,
       "jev": {
         "asked": "2026-09-21",
         "choice": "short_horizon_separation",
         "confidence": 0.89,
-        "decl": "short_horizon_separation",
+        "decl": null,
         "model": "jev-1.13.0",
         "probabilities": {
           "intVal3_ge_iff_pow_dvd": 0.0,
@@ -2910,8 +2910,8 @@
           "short_horizon_separation": 0.91,
           "traces_eq_iff_len_le_val": 0.06
         },
-        "routed": true,
-        "verdict": "pick"
+        "routed": false,
+        "verdict": "stale"
       },
       "lean": "Problems/BalancedTernary/SignedDigitShortHorizon.lean",
       "names_own": [],
@@ -3341,7 +3341,7 @@
         }
       ],
       "id": "J-power-envelope-contraction",
-      "in_file": 36,
+      "in_file": 34,
       "jev": {
         "asked": "2026-09-21",
         "choice": "none_of_these",
@@ -3356,7 +3356,7 @@
           "power_bound_word": 0.13
         },
         "routed": false,
-        "verdict": "none"
+        "verdict": "stale"
       },
       "lean": "Problems/Juggler/Envelope.lean",
       "names_own": [],
@@ -3654,12 +3654,12 @@
       "confidence": "review",
       "definitions": [],
       "id": "J-first-even-overshoots",
-      "in_file": 43,
+      "in_file": 35,
       "jev": {
         "asked": "2026-09-21",
         "choice": "minimal_first_even_overshoots",
         "confidence": 0.41,
-        "decl": "minimal_first_even_overshoots",
+        "decl": null,
         "model": "jev-1.13.0",
         "probabilities": {
           "cycleMax_exists_min_succ_sq": 0.0,
@@ -3669,7 +3669,7 @@
           "none_of_these": 0.27
         },
         "routed": false,
-        "verdict": "pick"
+        "verdict": "stale"
       },
       "lean": "Problems/Juggler/EvenCountThree.lean",
       "names_own": [
@@ -3782,12 +3782,12 @@
         }
       ],
       "id": "J-cyclemin-slack",
-      "in_file": 101,
+      "in_file": 81,
       "jev": {
         "asked": "2026-09-21",
         "choice": "slack_of_four_even_word",
         "confidence": 0.4,
-        "decl": "slack_of_four_even_word",
+        "decl": null,
         "model": "jev-1.13.0",
         "probabilities": {
           "exponents_slack": 0.09,
@@ -3797,7 +3797,7 @@
           "slack_of_four_even_word": 0.42
         },
         "routed": false,
-        "verdict": "pick"
+        "verdict": "stale"
       },
       "lean": "Problems/Juggler/CycleMinFudge.lean",
       "names_own": [
@@ -3833,12 +3833,12 @@
       "confidence": "review",
       "definitions": [],
       "id": "J-cyclemax-succ-sq",
-      "in_file": 43,
+      "in_file": 35,
       "jev": {
         "asked": "2026-09-21",
         "choice": "cycleMin_max_ge_succ_sq",
         "confidence": 0.57,
-        "decl": "cycleMin_max_ge_succ_sq",
+        "decl": null,
         "model": "jev-1.13.0",
         "probabilities": {
           "cycleMax_exists_min_succ_sq": 0.13,
@@ -3848,7 +3848,7 @@
           "none_of_these": 0.08
         },
         "routed": false,
-        "verdict": "pick"
+        "verdict": "stale"
       },
       "lean": "Problems/Juggler/EvenCountThree.lean",
       "names_own": [
@@ -3994,7 +3994,7 @@
         }
       ],
       "composite": false,
-      "confidence": "review",
+      "confidence": "low",
       "definitions": [
         {
           "decl": "EscapesToInfinity",
@@ -4008,12 +4008,12 @@
         }
       ],
       "id": "J-trajectory-cycle-or-escape",
-      "in_file": 59,
+      "in_file": 58,
       "jev": {
         "asked": "2026-09-21",
         "choice": "cycles_or_escapes",
         "confidence": 0.94,
-        "decl": "cycles_or_escapes",
+        "decl": null,
         "model": "jev-1.13.0",
         "probabilities": {
           "bounded_trajectory_eventually_cycles": 0.0,
@@ -4022,8 +4022,8 @@
           "minimal_nonterm_cycles_or_escapes": 0.01,
           "none_of_these": 0.04
         },
-        "routed": true,
-        "verdict": "pick"
+        "routed": false,
+        "verdict": "stale"
       },
       "lean": "Problems/Juggler/Escape.lean",
       "names_own": [],
@@ -4065,7 +4065,7 @@
         }
       ],
       "id": "J-minimal-ooeooe-escape-trap",
-      "in_file": 59,
+      "in_file": 58,
       "jev": {
         "asked": "2026-09-21",
         "choice": "none_of_these",
@@ -4080,7 +4080,7 @@
           "none_of_these": 0.59
         },
         "routed": false,
-        "verdict": "none"
+        "verdict": "stale"
       },
       "lean": "Problems/Juggler/Escape.lean",
       "names_own": [],
@@ -4122,7 +4122,7 @@
         }
       ],
       "id": "J-ce-third-residual-preimages",
-      "in_file": 59,
+      "in_file": 58,
       "jev": {
         "asked": "2026-09-21",
         "choice": "none_of_these",
@@ -4137,7 +4137,7 @@
           "none_of_these": 0.68
         },
         "routed": false,
-        "verdict": "none"
+        "verdict": "stale"
       },
       "lean": "Problems/Juggler/Escape.lean",
       "names_own": [],
@@ -4165,7 +4165,7 @@
         }
       ],
       "composite": false,
-      "confidence": "review",
+      "confidence": "low",
       "definitions": [
         {
           "decl": "itineraryOOEOOEOOE",
@@ -4179,12 +4179,12 @@
         }
       ],
       "id": "J-ce-escaped-even-oe-preimage",
-      "in_file": 59,
+      "in_file": 58,
       "jev": {
         "asked": "2026-09-21",
         "choice": "follows_ooeooeooeoe_image_lt_sq",
         "confidence": 0.97,
-        "decl": "follows_ooeooeooeoe_image_lt_sq",
+        "decl": null,
         "model": "jev-1.13.0",
         "probabilities": {
           "bounded_trajectory_eventually_cycles": 0.0,
@@ -4193,8 +4193,8 @@
           "follows_ooeooeooeoe_image_lt_sq": 0.98,
           "none_of_these": 0.02
         },
-        "routed": true,
-        "verdict": "pick"
+        "routed": false,
+        "verdict": "stale"
       },
       "lean": "Problems/Juggler/Escape.lean",
       "names_own": [],
@@ -4222,7 +4222,7 @@
         }
       ],
       "composite": false,
-      "confidence": "review",
+      "confidence": "low",
       "definitions": [
         {
           "decl": "itineraryOOEOOEOOEOE",
@@ -4236,12 +4236,12 @@
         }
       ],
       "id": "J-ce-oe-next-oo",
-      "in_file": 59,
+      "in_file": 58,
       "jev": {
         "asked": "2026-09-21",
         "choice": "follows_ooeooeooeoeo_image_lt_sq",
         "confidence": 0.89,
-        "decl": "follows_ooeooeooeoeo_image_lt_sq",
+        "decl": null,
         "model": "jev-1.13.0",
         "probabilities": {
           "bounded_trajectory_eventually_cycles": 0.0,
@@ -4250,8 +4250,8 @@
           "minimal_ooeooeooeoeo_not_even": 0.06,
           "none_of_these": 0.03
         },
-        "routed": true,
-        "verdict": "pick"
+        "routed": false,
+        "verdict": "stale"
       },
       "lean": "Problems/Juggler/Escape.lean",
       "names_own": [],
@@ -4279,7 +4279,7 @@
         }
       ],
       "composite": false,
-      "confidence": "review",
+      "confidence": "low",
       "definitions": [
         {
           "decl": "itineraryOOEOOEOOEOE",
@@ -4293,12 +4293,12 @@
         }
       ],
       "id": "J-ce-second-o-cube",
-      "in_file": 59,
+      "in_file": 58,
       "jev": {
         "asked": "2026-09-21",
         "choice": "follows_ooeooeooeoeoo_image_lt_cube",
         "confidence": 0.95,
-        "decl": "follows_ooeooeooeoeoo_image_lt_cube",
+        "decl": null,
         "model": "jev-1.13.0",
         "probabilities": {
           "bounded_trajectory_eventually_cycles": 0.0,
@@ -4307,8 +4307,8 @@
           "none_of_these": 0.03,
           "ooeooeooeoeoo_loses_square": 0.01
         },
-        "routed": true,
-        "verdict": "pick"
+        "routed": false,
+        "verdict": "stale"
       },
       "lean": "Problems/Juggler/Escape.lean",
       "names_own": [],
@@ -4479,15 +4479,15 @@
           "trust": "kernel"
         },
         {
-          "decl": "finance_excludes_length_eleven",
-          "line": 319,
-          "score": 0.207,
-          "trust": "kernel"
-        },
-        {
           "decl": "finance_contradicts_min_two_hundred_sixty_one",
           "line": 757,
           "score": 0.206,
+          "trust": "kernel"
+        },
+        {
+          "decl": "no_cycle_itinerary_length_le_nineteen",
+          "line": 629,
+          "score": 0.172,
           "trust": "kernel"
         }
       ],
@@ -4506,12 +4506,12 @@
         }
       ],
       "id": "J-small-cycle-census-ten",
-      "in_file": 34,
+      "in_file": 23,
       "jev": {
         "asked": "2026-09-21",
         "choice": "no_cycle_itinerary_length_le_ten",
         "confidence": 1.0,
-        "decl": "no_cycle_itinerary_length_le_ten",
+        "decl": null,
         "model": "jev-1.13.0",
         "probabilities": {
           "cycleItinerary_iterate_not_lt_fifty_three": 0.0,
@@ -4521,7 +4521,7 @@
           "no_cycle_itinerary_length_le_ten": 1.0
         },
         "routed": false,
-        "verdict": "pick"
+        "verdict": "stale"
       },
       "lean": "Problems/Juggler/CycleFinanceLeftovers.lean",
       "names_own": [
@@ -4534,12 +4534,6 @@
     {
       "candidates": [
         {
-          "decl": "cycle_finance_min_two_hundred_fifty_seven",
-          "line": 550,
-          "score": 0.231,
-          "trust": "kernel"
-        },
-        {
           "decl": "finance_contradicts_min_two_hundred_sixty_one",
           "line": 757,
           "score": 0.205,
@@ -4550,10 +4544,16 @@
           "line": 224,
           "score": 0.194,
           "trust": "kernel"
+        },
+        {
+          "decl": "finance_excludes_at_two_hundred_fifty_seven",
+          "line": 607,
+          "score": 0.194,
+          "trust": "kernel"
         }
       ],
       "composite": true,
-      "confidence": "review",
+      "confidence": "low",
       "definitions": [
         {
           "decl": "EliahouLeftover",
@@ -4567,12 +4567,12 @@
         }
       ],
       "id": "J-small-cycle-census-nineteen",
-      "in_file": 34,
+      "in_file": 23,
       "jev": {
         "asked": "2026-09-21",
         "choice": "no_cycle_itinerary_length_le_nineteen",
         "confidence": 0.99,
-        "decl": "no_cycle_itinerary_length_le_nineteen",
+        "decl": null,
         "model": "jev-1.13.0",
         "probabilities": {
           "cycleItinerary_iterate_not_lt_fifty_three": 0.0,
@@ -4581,12 +4581,11 @@
           "no_cycle_itinerary_length_lt_fifty_seven": 0.01,
           "none_of_these": 0.01
         },
-        "routed": true,
-        "verdict": "pick"
+        "routed": false,
+        "verdict": "stale"
       },
       "lean": "Problems/Juggler/CycleFinanceLeftovers.lean",
       "names_own": [
-        "cycle_finance_min_two_hundred_fifty_seven",
         "finance_excludes_length_nineteen",
         "no_cycle_itinerary_length_le_nineteen"
       ],
@@ -4677,15 +4676,15 @@
         }
       ],
       "composite": true,
-      "confidence": "review",
+      "confidence": "low",
       "definitions": [],
       "id": "J-cyclemin-last-odd-run",
-      "in_file": 43,
+      "in_file": 35,
       "jev": {
         "asked": "2026-09-21",
         "choice": "cycleMin_last_odd_run_eq_one",
         "confidence": 0.98,
-        "decl": "cycleMin_last_odd_run_eq_one",
+        "decl": null,
         "model": "jev-1.13.0",
         "probabilities": {
           "cycleMax_exists_min_succ_sq": 0.0,
@@ -4694,13 +4693,11 @@
           "cycleMin_not_last_odd_run_ge_two": 0.02,
           "exists_cycleMin_last_odd_run": 0.01
         },
-        "routed": true,
-        "verdict": "pick"
+        "routed": false,
+        "verdict": "stale"
       },
       "lean": "Problems/Juggler/EvenCountThree.lean",
       "names_own": [
-        "no_cycleMin_odd_run",
-        "no_cycleMin_bootstrap_last_gap",
         "exists_trailing_odds",
         "cycleMin_not_last_odd_run_ge_two",
         "cycleMin_last_odd_run_eq_one",
@@ -4723,14 +4720,14 @@
           "trust": "kernel"
         },
         {
-          "decl": "hugOdds_pow_gt",
-          "line": 133,
-          "score": 0.178,
+          "decl": "budgetedIsEven_hug",
+          "line": 225,
+          "score": 0.152,
           "trust": "kernel"
         }
       ],
       "composite": true,
-      "confidence": "review",
+      "confidence": "low",
       "definitions": [
         {
           "decl": "hugIsEven",
@@ -4744,12 +4741,12 @@
         }
       ],
       "id": "J-cyclemin-walk-word-identity",
-      "in_file": 23,
+      "in_file": 16,
       "jev": {
         "asked": "2026-09-21",
         "choice": "budgetedWord_eq_hugWord",
         "confidence": 0.74,
-        "decl": "budgetedWord_eq_hugWord",
+        "decl": null,
         "model": "jev-1.13.0",
         "probabilities": {
           "budgetedIsEven_hug": 0.0,
@@ -4758,14 +4755,13 @@
           "budgetedWord_eq_hugWord": 0.76,
           "none_of_these": 0.23
         },
-        "routed": true,
-        "verdict": "pick"
+        "routed": false,
+        "verdict": "stale"
       },
       "lean": "Problems/Juggler/WalkChargeItineraries.lean",
       "names_own": [
         "hugOdds_pow_ge",
         "hugOdds_pow_lt",
-        "hugOdds_least",
         "hugOdds_le_of_admissible",
         "budgetedWord_eq_hugWord"
       ],
@@ -4988,7 +4984,7 @@
         }
       ],
       "composite": true,
-      "confidence": "review",
+      "confidence": "low",
       "definitions": [
         {
           "decl": "prefixDeficit",
@@ -5002,12 +4998,12 @@
         }
       ],
       "id": "J-flight-envelope-transport",
-      "in_file": 16,
+      "in_file": 14,
       "jev": {
         "asked": "2026-09-21",
         "choice": "aboveAnchor_flight_envelope",
         "confidence": 0.99,
-        "decl": "aboveAnchor_flight_envelope",
+        "decl": null,
         "model": "jev-1.13.0",
         "probabilities": {
           "aboveAnchor_flight_envelope": 1.0,
@@ -5016,12 +5012,11 @@
           "cycleMin_transport_prefix": 0.0,
           "follows_log_le_walkWeight": 0.0
         },
-        "routed": true,
-        "verdict": "pick"
+        "routed": false,
+        "verdict": "stale"
       },
       "lean": "Problems/Juggler/WalkTransport.lean",
       "names_own": [
-        "aboveAnchor_transport",
         "aboveAnchor_flight_envelope",
         "follows_log_le_walkWeight",
         "one_le_walkWeight_aboveAnchor"
@@ -7522,5 +7517,5 @@
     }
   ],
   "unresolved": 131,
-  "worth_reviewing": 63
+  "worth_reviewing": 54
 }
